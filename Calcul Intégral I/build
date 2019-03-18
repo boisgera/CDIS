@@ -6,5 +6,11 @@ DOC="Calcul Intégral I"
 # Options
 OPT=(-V lang=fr)
 OPT+=(--table-of-contents)
+
+# Generate Images
+cd images
+./main.py
+cd ..
+
 # PDF Output
 pandoc "${OPT[@]}" -o output/"${DOC}".pdf "${DOC}".md
