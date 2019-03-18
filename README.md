@@ -1,0 +1,1 @@
+![](https://travis-ci.org/boisgera/CDIS.svg?branch=master)
