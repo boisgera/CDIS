@@ -31,7 +31,7 @@ Installez sur votre ordinateur:
 
 Conda est particulièrement important puisqu'il est utilisé pour installer
 de nombreux autres outils logiciels dont nous avons besoin, comme Python,
-Pandoc, etc. Nos besoins supplémentaires sont décrites dans le fichier 
+Pandoc, etc. Nos besoins supplémentaires sont décrits dans le fichier 
 `environment.yml`.
 Pour créer un environnement conda qui soit conforme à ces besoins,
 exécuter dans le terminal la commande
