@@ -873,6 +873,11 @@ Ce qui importe:
 
   - Sommes de Taylor (avec o, avec reste intégral)
 
+Nota: peut-être opportun de minimiser le coté diff par les valeurs matricielles.
+Idées serait de caractériser $df$ en vérifiant la différentiabilité de
+$x \mapsto df(x)\cdot h$ pour tout $h$: on ne "monte" pas en rang et
+on peut définit $d^2f(x) \cdot k \cdot h := d(x \mapsto df(x)\cdot h)(x) \cdot k$
+
   
 Fonctions à valeurs matricielles/tensorielles
 --------------------------------------------------------------------------------
