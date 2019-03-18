@@ -1,3 +1,6 @@
+# Visual Studio Code
+settings.json
+
 # Conda Environment
 env
 
@@ -8,3 +11,4 @@ output
 # Generated Images
 */images
 !*/images/static
+!*/images/*.py
