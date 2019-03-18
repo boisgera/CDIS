@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  - pandoc=2.5
+  - numpy
+  - scipy
+  - matplotlib
+  - pip:
+    - "-e git+https://github.com/boisgera/pandoc@eb2d08b9a41d9a3bfaea82e89f317a25a32064db#egg=pandoc"

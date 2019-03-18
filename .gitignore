@@ -1,0 +1,10 @@
+# Conda Environment
+env
+
+# Generated Documents
+output
+*/output
+
+# Generated Images
+*/images
+!*/images/static

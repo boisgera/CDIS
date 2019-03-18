@@ -1,0 +1,10 @@
+#!/bin/bash
+mkdir -p output
+
+DOC="Calcul Intégral II"
+
+# Options
+OPT=(-V lang=fr)
+OPT+=(--table-of-contents)
+# PDF Output
+pandoc "${OPT[@]}" -o output/"${DOC}".pdf "${DOC}".md

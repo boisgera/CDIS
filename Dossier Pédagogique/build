@@ -1,0 +1,15 @@
+#!/bin/bash
+mkdir -p output
+
+DOC="Dossier Pédagogique"
+
+# Options
+OPT=(-V lang=fr)
+OPT+=(--table-of-contents)
+OPT+=(--standalone)
+
+# Outputs
+pandoc "${OPT[@]}" -o "output/${DOC}.pdf" "${DOC}.md"
+pandoc "${OPT[@]}" -o "output/${DOC}.odt" "${DOC}.md"
+pandoc "${OPT[@]}" -o "output/${DOC}.html" "${DOC}.md"
+
