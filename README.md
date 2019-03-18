@@ -9,7 +9,7 @@ Accès aux Documents
 <https://github.com/boisgera/CDIS/tree/gh-pages/output>
 
 
-(Re-)Produire les Documents
+Produire les Documents
 --------------------------------------------------------------------------------
 
 ### Préliminaire
@@ -18,14 +18,14 @@ Installez sur votre ordinateur:
 
   - un client du système de gestion de version [git](https://git-scm.com/), 
 
-  - un terminal bash,
+  - un terminal [bash](https://www.gnu.org/software/bash/),
 
   - une distribution [LaTeX](https://www.latex-project.org/),
 
   - le gestionnaire de paquetages et d'environnements [conda](https://conda.io/en/latest/).
 
   - optionnellement, pour modifier les sources du document,  
-    un environnement de développement comme
+    un environnement de développement intégré comme
     [Visual Studio Code](https://code.visualstudio.com/).
 
 ### Environnement de travail
@@ -46,3 +46,10 @@ commande:
 
 Reference: [Gestion des environnements Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
+### Génération des documents
+
+Exécutez la commande
+
+    $ ./build
+
+Les documents sont générés dans le répertoire `output`.
