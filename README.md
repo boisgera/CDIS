@@ -8,31 +8,32 @@ Accès aux Documents
 
 <https://github.com/boisgera/CDIS/tree/gh-pages/output>
 
-Instructions
+
+(Re-)Produire les Documents
 --------------------------------------------------------------------------------
 
-### Outils 
+### Préliminaire
 
-  - Un client du système de gestion de version [git](https://git-scm.com/),
+Installez sur votre ordinateur:
 
-  - Une distribution [LaTeX](https://www.latex-project.org/),
+  - un client du système de gestion de version [git](https://git-scm.com/), 
 
-  - Un éditeur de texte, explorateur de fichiers, terminal (bash), etc.
-    ou un IDE comme  [Visual Studio Code](https://code.visualstudio.com/) 
-    qui rassemble tous ces composants.
+  - un terminal bash,
 
-  - Le gestionnaire de paquetages et d'environnements [conda](https://conda.io/en/latest/).
+  - une distribution [LaTeX](https://www.latex-project.org/),
+
+  - le gestionnaire de paquetages et d'environnements [conda](https://conda.io/en/latest/).
+
+  - optionnellement, pour modifier les sources du document,  
+    un environnement de développement comme
+    [Visual Studio Code](https://code.visualstudio.com/).
+
+### Environnement de travail
 
 Conda est particulièrement important puisqu'il est utilisé pour installer
 de nombreux autres outils logiciels dont nous avons besoin, comme Python,
-Pandoc, etc. Si vous n'avez pas déjà conda sur votre ordinateur,
-vous pouvez installer [miniconda](https://docs.conda.io/en/latest/miniconda.html).
-
-Produire les Documents
---------------------------------------------------------------------------------
-
-
-Nos besoins supplémentaires sont décrites dans le fichier `environment.yml`.
+Pandoc, etc. Nos besoins supplémentaires sont décrites dans le fichier 
+`environment.yml`.
 Pour créer un environnement conda qui soit conforme à ces besoins,
 exécuter dans le terminal la commande
 
@@ -43,16 +44,5 @@ commande:
 
     $ conda activate ./env
 
-Reference: [Conda/Managing environments](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+Reference: [Gestion des environnements Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
-In the project directory: 
-
- 1. Edit the Markdown version `document.md` of the document,
-    its bibliography, etc.
-
- 2. Then, execute the command
-
-        $ ./build
-
-    to create PDF, HTML and ODT versions of the document
-    in the `output` directory.
