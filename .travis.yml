@@ -1,0 +1,32 @@
+dist: xenial
+language: bash
+
+env:
+  global:
+    - CONDA=https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+before_install:
+  - sudo apt-get --yes --force-yes install texlive-full
+  - curl $CONDA > conda.sh
+  - bash conda.sh -b -p $HOME/conda
+  - export PATH=$HOME/conda/bin:$PATH
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update conda
+  - conda info -a # debugging
+  - conda env create -f environment.yml -p env
+  - source activate ./env
+
+install:
+  - ./build
+  # now prepare deployment to gh-pages
+  - rm -rf env
+  - mv .gitignore .gitignore.bak 
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  
+  on:
+    branch: master  
+
