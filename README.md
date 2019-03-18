@@ -25,7 +25,6 @@ Installez sur votre ordinateur:
   - le gestionnaire de paquetages et d'environnements [conda](https://conda.io/en/latest/).
 
   - optionnellement, pour modifier les sources du document, 
-    un environnement de développement intégré comme
     [Visual Studio Code](https://code.visualstudio.com/).
 
 ### Environnement de travail
