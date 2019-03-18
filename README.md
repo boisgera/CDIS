@@ -3,6 +3,11 @@
 Calcul Différentiel, Intégral et Stochastique
 ================================================================================
 
+Accès aux Documents
+--------------------------------------------------------------------------------
+
+<https://github.com/boisgera/CDIS/tree/gh-pages/output>
+
 Instructions
 --------------------------------------------------------------------------------
 
@@ -23,6 +28,10 @@ de nombreux autres outils logiciels dont nous avons besoin, comme Python,
 Pandoc, etc. Si vous n'avez pas déjà conda sur votre ordinateur,
 vous pouvez installer [miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
+Produire les Documents
+--------------------------------------------------------------------------------
+
+
 Nos besoins supplémentaires sont décrites dans le fichier `environment.yml`.
 Pour créer un environnement conda qui soit conforme à ces besoins,
 exécuter dans le terminal la commande
@@ -35,10 +44,6 @@ commande:
     $ conda activate ./env
 
 Reference: [Conda/Managing environments](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
-
-
-Edit/Build the Document
---------------------------------------------------------------------------------
 
 In the project directory: 
 
