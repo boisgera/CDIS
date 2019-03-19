@@ -14,4 +14,3 @@ cd ..
 
 # PDF Output
 pandoc "${OPT[@]}" -o output/"${DOC}".pdf "${DOC}".md
-pandoc "${OPT[@]}" -o output/"${DOC}".odt "${DOC}".md

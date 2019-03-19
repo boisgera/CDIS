@@ -891,7 +891,11 @@ La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$,
 est définie comme l'application linéaire telle que pour tout $h$ 
 dans $\mathbb{R}^n$,
 $$
-d^2 f(x) \cdot h := d(x\mapsto df(x)\cdot h)(x).
+d^2 f(x) \cdot h := d(x\mapsto df(x)\cdot h)(x),
+$$
+c'est-à-dire pour tout vecteur $k$ de $\mathbb{R}^n$,
+$$
+d^2f(x) \cdot h \cdot k = d(x\mapsto df(x)\cdot h)(x) \cdot k.
 $$
 
 ### Remarques
@@ -933,20 +937,218 @@ $$
     L \cdot h \cdot k \cdot l := ((L \cdot h) \cdot k) \cdot l.
     $$
 
-La notion de différentielle d'ordre $2$ se généralise à un ordre plus
-élevé par induction.
+
+### Variation de la différentielle {.theorem} 
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
+deux fois différentiable en un point $x$ de $U$. On a
+$$
+df(x+k) = df(x) + d^2 f(x) \cdot \bullet \cdot k + o(\|k\|)
+$$
+
+**TODO:** en pratique, on combinera le résultat ci-dessus avec la symmétrie
+de la différentielle d'ordre 2 pour mémoriser le résultat. Mais ce résultat
+est lui-même utile dans la preuve de la symmétrie. Comment présenter les
+résultat au final ? Se débrouiller pour minorer l'impact de la forme 
+"temporaire" dans l'exposé oral c'est clair, mais dans le poly comment
+faire pour casser la boucle ? Du coup, ce résultat serait un lemme,
+et le "vrai" théorème simplifié suivra. OK.
+
+### Remarque
+Dans l'équation ci-dessus, le "$o(\|k\|)$" est inséré dans une équation
+entre applications linéaires de $\mathbb{R}^n \to \mathbb{R}^m$.
+Il doit donc être interprété comme
+$$
+o(\|k\|) = E(k) \|k\| \; \mbox{ où } \; 
+\, E(k) \in \mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m, \,
+\lim_{h \to 0} E(k) = E(0) = 0. 
+$$
+
+
+**TODO?**. "Sortir" les lemmes du théorème ? Voire les notation $\Delta f$ ?
+Ce sont des résultats majeurs ? (ça éclaire des choses sur ce qu'est 
+$d^2f$ et comment la calculer alors pourquoi pas ... ça pourrait aussi nous
+éviter des lemmes "nestés" quoi qu'il en soit dans la preuve du théorème.
+A la limite, le résultat sur la symmétrie de $\Delta f$ peut rester dedans,
+c'est ça le coeur de la preuve. Et je sors l'autre sur l'approximation de
+$d^2f$ par $\Delta^2 f$.)
+
+### Preuve
+Par définition de la différentielle d'ordre 2 en $x$, 
+pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, on a, 
+pour tout vecteur $k$ de $\mathbb{R}^n$,
+$$
+df(x+k) \cdot h = df(x) \cdot h + d^2f(x) \cdot h \cdot k + o(\|k\|),
+$$
+c'est-à-dire qu'il existe pour tout $h$ une fonction $\varepsilon_h$, 
+définie dans un voisinage de $0 \in \mathbb{R}^n$, nulle et continue
+en $0$, telle que
+$$
+df(x+k) \cdot h 
+= 
+df(x) \cdot h + d^2f(x) \cdot h \cdot k + \varepsilon_{h}(k) \|k\|,
+$$
+Pour tout vecteur $k$ non nul, on a
+$$
+\varepsilon_{h}(k) = \frac{1}{\|k\|}\left(df(x+k) \cdot h - df(x) \cdot h - d^2f(x) \cdot h \cdot k \right),
+$$
+le terme $\varepsilon_{h}(k)$ est donc linéaire en $h$; 
+notons $E(k)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
+qui est nulle quand $k=0$ et définie dans le cas contraire
+par $E(k) \cdot h = \varepsilon_h (k)$. On a donc pour tout $h$
+$$
+df(x+k) \cdot h 
+= 
+df(x) \cdot h + d^2f(x) \cdot h \cdot k + (E(k)\cdot h) \|k\|,
+$$
+soit 
+$$
+df(x+k)
+= 
+df(x) + d^2f(x) \cdot \bullet \cdot k + E(k) \|k\|,
+$$
+Par ailleurs, pour tout couple de 
+vecteurs $h$ et $k$ de $\mathbb{R}^n$, on a
+$$
+\begin{split}
+\|E(k) \cdot h\| &= \left\| E(k) \cdot \left(\sum_i h_i e_i \right) \right\| \\
+&\leq \sum_i \|E(k) \cdot e_i\| |h_i| \\
+&\leq \left(\sum_i \|E(k) \cdot e_i\|\right) \|h\| 
+= \left(\sum_i \|\varepsilon_{e_i}(k)\|\right) \|h\|
+\end{split},
+$$
+donc la norme d'opérateur de $E(k)$ vérifie
+$$
+\|E(k)\| \leq \sum_i \|\varepsilon_{e_i}(k)\| \to 0
+\, \mbox{ quand } k \, \to 0,
+$$
+ce qui prouve le résultat cherché.
+
+### Symmétrie de la différentielle d'ordre $2$ {.theorem}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
+deux fois différentiable en un point $x$ de $U$. Pour tout couple
+de vecteur $h$ et $k$ de $\mathbb{R}^n$, on a
+$$
+d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
+$$
+
+### Preuve
+Notons $\Delta f(x, h) = f(x+h) - f(x)$ la variation de $f$ en $x$ 
+associée pour une variation $h$ de l'argument et $\Delta^2 f(x, h, k)$ 
+la variation de $\Delta f(x, h)$ en $x$ pour une variation $k$ de l'argument:
+$$
+\Delta^2 f(x, h, k) = (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)).
+$$
+Bien qu'elle soit technique, la preuve repose sur deux idées simples.
+Tout d'abord, on peut constater directement que $\Delta^2 f(x, h, k)$ 
+est symmétrique par rapport à ses arguments $h$ et $k$:
+
+#### Symmétrie de la variation d'ordre 2
+$$
+\Delta^2 f(x, h, k) = \Delta^2 f(x, k, h). 
+$$
+
+--------------------------------------------------------------------------------
+
+Ensuite, il nous faudra montrer que la meilleure approximation bilinéaire de
+$\Delta^2 f(x, h, k)$ est donnée par $d^2f(x)\cdot h\cdot k$:
+
+#### Approximation de la variation d'ordre deux {.lemma}
+Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
+$\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
+$$
+\left\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k \right\| \leq \varepsilon (\|h\| + \|k\|)^2.
+$$
+
+--------------------------------------------------------------------------------
+
+La conclusion s'imposera alors: en effet, si $h$ et $k$ sont des vecteurs
+de $\mathbb{R}^n$ en exploitant la symmétrie de $\Delta^2f$, on obtient
+\begin{multline*}
+\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
+\leq \\
+\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
+\end{multline*}
+En substituant $th$ à $h$ et $tk$ à $tk$ dans cette expression, 
+puis en faisant tendre $t$ vers $0$, on peut rendre $th$ et $tk$ 
+arbitrairement proches de $0$ et donc s'assurer que
+pour tout $\varepsilon > 0$,
+$$
+\begin{split}
+\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
+&=
+\frac{1}{t^2}\|d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th \| \\
+&\leq \frac{1}{t^2}2 \varepsilon (\|th\|+\|tk\|)^2 \\ 
+&= 2\varepsilon (\|h\|+\|k\|)^2,
+\end{split}
+$$
+ce qui nous assure que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
+
+#### Preuve (approximation de la variation d'ordre deux) {.preuve}
+
+**TODO:** $h$ et $k$ assez petits pour que les expressions soient toutes
+définies.
+
+La différence $e$ entre $\Delta^2 f(x,h, k)$ et $d^2 f(x) \cdot h \cdot k$
+vaut
+$$
+\begin{split}
+e &= (f(x+h+k) - f(x+k)) - (f(x+h) - f(x))) - d^2f(x)\cdot h\cdot k \\
+  &= (f(x+h+k) - f(x+h) - d^2f(x) \cdot h \cdot k) \\
+  &\phantom{=} - (f(x+k) - f(x) - d^2f(x) \cdot 0 \cdot k)
+\end{split}
+$$
+Par conséquent, si l'on définit $g$ par
+$$
+g(u) = f(x+u+k) - f(x+u) - d^2f(x) \cdot u \cdot k,
+$$
+la différence vaut $e = g(h) - g(0).$ Cette différence peut être majorée
+par le théorème des accroissements finis: $g$ est différentiable sur
+le segment $[0, h]$ et
+$$
+dg(u) = df(x+u+k) - df(x+u) - d^2f(x) \cdot \bullet \cdot k. 
+$$
+Comme
+$$
+\begin{split}
+dg(u) &= (df(x+u+k) - df(x) - d^2f(x) \cdot \bullet \cdot (u+k) )\\
+      &\phantom{=} - (df(x+u) - df(x) - d^2f(x) \cdot \bullet \cdot u),
+\end{split}
+$$
+par le théorème controllant la [variation de la différentielle][Variation de la différentielle],
+pour $\varepsilon > 0$ quelconque, comme
+$\|u+k\| \leq \|h\| + \|k\|$ et $\|u\| \leq \|h\|$, 
+on peut trouver un $\eta > 0$ tel que si $\|h\| < \eta$ et $\|k\| < \eta,$ 
+alors 
+$$
+\|dg(u)\| \leq \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|.
+$$
+Par conséquent, le théorème des accroissement finis fournit
+$$
+\|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
+$$
+
+
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+
+La notion de différentielle d'ordre $2$ se généralise sans difficulté
+à un ordre plus élevé, par induction sur l'ordre de la différentielle.
 
 ### Différentielle d'ordre n {.definition}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
-à l'ordre $n-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
+à l'ordre $k-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
 *$k$ fois différentiable en $x$* si pour tous vecteurs $h_1, \dots, h_{k-1}$ 
 de $\mathbb{R}^n$, 
-la fonction $x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1}$ 
+la fonction 
+$$x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1}$$ 
 est différentiable en $x$.
-La *différentielle d'ordre $n$ de $f$ en $x$*, notée $d^k f(x)$ définie
-comme l'application linéaire telle que pour tout $h_1, \dots, h_{k-1}$ 
-de $\mathbb{R}^n$,
+La *différentielle d'ordre $k$ de $f$ en $x$*, notée $d^k f(x)$ 
+est définie comme l'application linéaire telle que pour tout 
+$h_1, \dots, h_{k-1}$ de $\mathbb{R}^n$,
 $$
 d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x)
 $$
@@ -961,6 +1163,7 @@ On a
 $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
 $$
+
 
 
 Fonctions à valeurs matricielles/tensorielles
