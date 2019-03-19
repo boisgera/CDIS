@@ -878,7 +878,91 @@ Idées serait de caractériser $df$ en vérifiant la différentiabilité de
 $x \mapsto df(x)\cdot h$ pour tout $h$: on ne "monte" pas en rang et
 on peut définit $d^2f(x) \cdot k \cdot h := d(x \mapsto df(x)\cdot h)(x) \cdot k$
 
-  
+Différentielles d'ordre supérieur
+--------------------------------------------------------------------------------
+
+### Différentielle d'ordre 2 {.definition}
+
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
+dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
+*deux fois différentiable en $x$* si pour tout vecteur $h$ de $\mathbb{R}^n$.
+La fonction $x \mapsto df(x) \cdot h$ est différentiable en $x$.
+La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
+est définie comme l'application linéaire telle que pour tout $h$ 
+dans $\mathbb{R}^n$,
+$$
+d^2 f(x) \cdot h := d(x\mapsto df(x)\cdot h)(x).
+$$
+
+### Remarques
+
+  - On peut vérifier que le terme $d(x\mapsto df(x)\cdot h)(x)$ dépend 
+    bien linéairement de $h$, ce qui justifie l'assertion que $d^2f(x)$
+    est linéaire et la notation "$\cdot$" lorsqu'elle est appliquée à un
+    argument $h$.
+
+  - Par construction, le terme $d(x\mapsto df(x)\cdot h)(x)$ 
+    est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
+    donc la fonction $d^2f(x)$
+    associe linéairement à un vecteur de $\mathbb{R}^n$ une application
+    linéaire de $\mathbb{R}^n \to \mathbb{R}^m$. Autrement dit,
+    $$
+    d^2f(x) \in (\mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m)),
+    $$
+    ce qui se décline successivement en
+    $$
+    d^2f(x) \cdot h \in (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m),
+    \; \mbox{ et } \;
+    (d^2f(x) \cdot h) \cdot k \in \mathbb{R}^m.
+    $$
+
+  - Pour alléger ces notations, on pourra considérer que dans les notations
+    d'espace fonctionnels, le symbole "$\to$" associe à droite, par exemple:
+    $$
+    A \to B \to C := A \to (B \to C),
+    $$
+    $$    
+    A \to B \to C \to D := A \to (B \to (C \to D))
+    $$
+    et inversement, lors de l'application d'une fonction linéaire,
+    le symbole "$\cdot$" associe à gauche, par exemple:
+    $$
+    L \cdot h \cdot k :=  (L \cdot h) \cdot k,
+    $$
+    $$
+    L \cdot h \cdot k \cdot l := ((L \cdot h) \cdot k) \cdot l.
+    $$
+
+La notion de différentielle d'ordre $2$ se généralise à un ordre plus
+élevé par induction.
+
+### Différentielle d'ordre n {.definition}
+
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
+à l'ordre $n-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
+*$k$ fois différentiable en $x$* si pour tous vecteurs $h_1, \dots, h_{k-1}$ 
+de $\mathbb{R}^n$, 
+la fonction $x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1}$ 
+est différentiable en $x$.
+La *différentielle d'ordre $n$ de $f$ en $x$*, notée $d^k f(x)$ définie
+comme l'application linéaire telle que pour tout $h_1, \dots, h_{k-1}$ 
+de $\mathbb{R}^n$,
+$$
+d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x)
+$$
+ou de façon équivalente
+$$
+d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x) \cdot h_k
+$$
+
+### Remarque
+
+On a 
+$$
+d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
+$$
+
+
 Fonctions à valeurs matricielles/tensorielles
 --------------------------------------------------------------------------------
 
