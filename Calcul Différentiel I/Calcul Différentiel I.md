@@ -1137,7 +1137,7 @@ $$
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
 à un ordre plus élevé, par induction sur l'ordre de la différentielle.
 
-### Différentielle d'ordre n {.definition}
+### Différentielle d'ordre $k$ {.definition}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 à l'ordre $k-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
