@@ -881,6 +881,82 @@ on peut définit $d^2f(x) \cdot k \cdot h := d(x \mapsto df(x)\cdot h)(x) \cdot 
 Différentielles d'ordre supérieur
 --------------------------------------------------------------------------------
 
+### Note {.speaker-note}
+
+La démarche pour présenter les différentielles d'ordre supérieur a été
+simplifié, mais le narratif peut profiter des "échecs" qui mène à notre
+solution finale:
+
+  1. On a envie de définir $d^2f(x)$ comme $d(x \mapsto df(x))(x)$.
+     C'est *exactement* la même démarche que la dérivée, et c'est
+     une démarche légitime que l'on adoptera pour le cadre de la dimension
+     infinie. Seul "problème", l'objet $df(x)$ appartient aux applis
+     linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et à ce stade on ne
+     sait différencier que des fonctions à valeurs dans $\mathbb{R}^p$.
+
+  2. On "patche" la démarche précédente: ok, $df(x)$ est linéaire de
+     $\mathbb{R}^n$ dans $\mathbb{R}^m$, mais c'est isomorphe (via les
+    matrices, plus la "mise à plat") à $\mathbb{R}^p$ pour $p=mn$.
+    Si on note $\pi$ cette correspondance, on peut étudier la diff
+    de $\pi \circ df$ et quand ça existe, le seul pb est que l'objet
+    associé produit des valeurs dans $\mathbb{R}^p$ au lieu de
+    trucs dans $\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m$, 
+    mais c'est pas grave, on peut inverser la transformation, ce qui
+    donne comme définition
+    $$
+    d^2 f(x) = \pi^{-1} \circ d(\pi \circ df)(x).
+    $$
+    c'est-à-dire
+    $$
+    d^2 f(x) \cdot h \cdot k = (\pi^{-1} (d(\pi \circ df)(x) \cdot h)) \cdot k
+    $$
+    (attention ici, "$\cdot$" ou "$\circ$" deviennent dangereux à utiliser
+    sans parenthèse, on a basculé dans du higher-order avec $\pi$; et la
+    convention que je pensais utiliser en remplaçant $\circ$ par
+    $\cdot$ quand l'application est linéaire déconne avec $\pi$ parce
+    qu'il y a des applications non-linéaire "plus bas"; le cadre ou 
+    "$\cdot$" fait le job sans ambiguité serait à restreindre/préciser ...).
+    Bon, voilà pourquoi je crois que même si c'est tentant sur le principe, 
+    il ne faut pas présenter les choses comme ça au final.
+    Mais ça peut faire l'objet d'exercices intéressants.
+
+  3. La version final, hyper simple: on se refuse à différencier un objet
+     fonctionnel, on l'évalue sur une direction / variation de l'argument
+     et là on s'est ramené au cadre usuel, donc on requière la diff et on
+     constate que le résultat est linéaire par rapport à la première 
+     variation choisie, et on en déduit l'"anatomie" de la différentielle
+     d'ordre 2 (c'est donc moins une construction qu'une découverte ...).
+     Au passage, par linéarité, on peut se convaincre facilement que notre
+     définition de la différentielle d'ordre 2 revient à vérifier que 
+     chaque dérivée partielle (d'une fonction différentiable)
+     est différentiable. Donc on vérifie l'existence avec la différentielle,
+     mais on peut utiliser les dérivées partielles pour les calculs
+     intermédiaires.
+
+
+### Note {.design-note}
+
+Notre définition simplifie la vie en dimension finie en se ramenant 
+directement à chaque étape de la façon la plus simple au cadre de la 
+différentielle de fonctions de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
+Mais elle n'est probablement pas adapté au cadre de la dimension
+finie; l'adaptation la plus simple consisterait à écrire l'expression
+qui fait que $df(x) \cdot h$ existe en terme de limite par rapport
+à un terme $k$, mais à requérir en plus que cette limite existe
+uniformément par rapport à l'argument $h$ tant que $h$ reste borné
+(voir par exemple [ici](https://en.wikipedia.org/wiki/Fr%C3%A9chet_derivative#Higher_derivatives)).
+
+A ce stade, le cadre abstrait classique devient probablement préférable,
+car simplificateur, mais
+
+  - un contre-exemple qui montre que notre définition ne "marche pas"
+    en dimension infinie (absence d'équivalence avec la classique)
+    serait intéressant
+
+  - une note / un exercice sur cette définition alternative au cadre
+    abstrait, plus proche de la démarche que nous avons choisi pour 
+    la dimension finie pourrait être intéressant
+
 ### Différentielle d'ordre 2 {.definition}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
