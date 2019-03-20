@@ -6,5 +6,6 @@ DOC="Calcul Intégral II"
 # Options
 OPT=(-V lang=fr)
 OPT+=(--table-of-contents)
+OPT+=(--bibliography=bibliography.json -M link-citations=true)
 # PDF Output
 pandoc "${OPT[@]}" -o output/"${DOC}".pdf "${DOC}".md
