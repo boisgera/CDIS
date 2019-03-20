@@ -25,16 +25,19 @@ Exemples (à améliorer, distiller):
     marche pas avec $f=1$), ce que l'on appelle "ensemble intégrable",
     mais est-ce que ça suffit ? La réponse est non ...   
     (c'est un cas particulier du précédent, le faire avant).
+    Pb résolu si la fct est abs int (c'est même un critère ici !).
 
   - Mais plus surprenant peut-être: le produit de deux fonction intégrables
     avec l'une des deux fonctions bornées n'est pas nécessairement intégrable.
     (cf [@Swa01, p.43, ex. 14] avec $\cos 1/t$ et $t^{-3/2} \cos 1/t$).
+    Pb résolu si les fcts sont abs int.
 
   - Si $f$ est intégrable et $g$ est "sympa" (Lipschitz), 
     est-ce que $g \circ f$ est intégrable ? Non ... cf
     [@HL89, p. 525, ex. 4.2]
+    Pb résolu si les fcts sont abs int.
 
-On a deux outils pour analyser et résoudre ces pbs:
+On a deux outils qui se combinent pour analyser et résoudre ces pbs:
 
   - La notion de fonction mesurable et le critère d'intégrabilité dominée [@PS17],
 
