@@ -4,11 +4,13 @@ settings.json
 # Conda Environment
 env
 
+# Python
+*.pyc
+
 # Generated Documents
 output
 */output
 
 # Generated Images
-*/images
-!*/images/static
-!*/images/*.py
+*/images/*.pdf
+*/images/*.svg
