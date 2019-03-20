@@ -416,3 +416,16 @@ $$
 \end{split}
 $$ 
 
+Exercices
+================================================================================
+
+Intégrale de Riemann
+--------------------------------------------------------------------------------
+
+Montrer que l'intégrale de Riemman est absolue, dans le sens ou si 
+une fonction $f$ est intégrable, sa valeur absolue $|f|$ l'est également.
+
+Caractérisation des dérivées
+--------------------------------------------------------------------------------
+
+Identifier par les gauges si une fonction est une dérivée (cf papier).

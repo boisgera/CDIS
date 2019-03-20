@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOC="Calcul Différentiel I"
+DOC="Calcul Différentiel II"
 
 mkdir -p output
 

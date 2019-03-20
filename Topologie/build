@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DOC="Topologie"
+
+mkdir -p output
+pandoc --toc -o output/"${DOC}".pdf "${DOC}".md

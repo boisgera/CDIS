@@ -1351,3 +1351,72 @@ $$
 ### Théorème
 **TODO:** approximation concrête de $d^2 f(x) \cdot h \cdot k$.
 
+
+Exercices
+================================================================================
+
+Dérivée sur un intervalle fermé
+--------------------------------------------------------------------------------
+
+Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
+($f'(a)$ et $f'(b)$ désignant alors les dérivées à droite de $f$ en $a$
+et à gauche de $f$ en $b$)
+si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
+$g$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable.
+
+Montrer qu'alors, $f' = g'|_{[a, b]}$.
+
+Calcul Méca
+--------------------------------------------------------------------------------
+
+Faire les calculs menant à $C(q, \dot{q})\dot{q}$ en mécanique lagrangienne ?
+
+Dérivée directionnelle d'Hadamard
+--------------------------------------------------------------------------------
+
+Faire le lien entre l'existence d'une dérivée composée $f \circ \gamma$,
+linéaire en $\gamma'(0)$ (préalable: montrer que cette grandeur ne dépend
+que de $\gamma'(0)$, ou l'admettre ?) 
+pour tout chemin différentiable partant du point $x$ et la condition que
+$$
+\lim_{t\to 0, k \to h} \frac{f(x+tk) - f(x)}{t}
+$$
+existe et est linéaire en $h$. (cf [@Sha90])
+
+Asymptotique
+--------------------------------------------------------------------------------
+
+Comportement asymptotique de $f(x+2h) - 2f(x+h) + f(x)$ (par approximation
+de variation d'ordre 2 par $d^2 f$.)
+
+Mean Value Theorem
+--------------------------------------------------------------------------------
+
+(version avec avec enveloppe convexe ? A voir. L'idée est éventuellement
+d'étendre le cas scalaire au cas des fonctions à valeurs vectorielles ...)
+Cf McLeod "Mean Value Theorem for Vector-Valued Functions".
+
+Analycité
+--------------------------------------------------------------------------------
+
+Borne sur $f^{(n)}$ et analycité ?
+
+Arguments Matriciels
+--------------------------------------------------------------------------------
+
+Différentielle d'objects comme $\det A$ ?
+
+Convexité
+--------------------------------------------------------------------------------
+
+Lien convexité et différentielle d'ordre 2.
+
+Formes, Fonction Distance, Squelette
+--------------------------------------------------------------------------------
+
+**TODO:** équivalence entre $(d_A(x))^2$ différentiable et $x$ pas sur le 
+squelette de $A$ (deux projections sur $\overline{A}$). 
+
+Pousser le bouchon avec $(d_A(x))^2$ convexe et $A$ convexe ?
+
+cf Zolésio.
