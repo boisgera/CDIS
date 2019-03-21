@@ -1,4 +1,7 @@
 #!/bin/bash
+set -e
+set -o pipefail
+
 mkdir -p output
 
 DOC="Calcul Intégral II"

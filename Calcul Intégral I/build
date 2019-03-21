@@ -12,7 +12,7 @@ OPT+=(--table-of-contents)
 
 # Generate Images
 cd images
-./mainz.py
+./main.py
 cd ..
 
 # PDF Output
