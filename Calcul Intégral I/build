@@ -1,4 +1,7 @@
 #!/bin/bash
+set -e
+set -o pipefail
+
 mkdir -p output
 
 DOC="Calcul Intégral I"
@@ -9,7 +12,7 @@ OPT+=(--table-of-contents)
 
 # Generate Images
 cd images
-./main.py
+./mainz.py
 cd ..
 
 # PDF Output
