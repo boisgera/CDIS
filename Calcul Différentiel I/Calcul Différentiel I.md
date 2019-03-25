@@ -305,44 +305,74 @@ limite aux matrices et vecteurs et se mappe mieux sur les projets num.
 
 
 
-"Petit O" -- Notation de Bachmann-Landau
+Notation de Landau
 --------------------------------------------------------------------------------
 
-**TODO:** changer, noter $\|h\|$ sous le petit o, sinon ça ne "passe pas"
-aux ordres supérieurs. Grmph, ca pose aussi un certain nombre de problèmes
-(l'expression finale ne dépend pas que de la norme). Résoudre ça.
-Je me demande dans quelle mesure je ne suis pas à deux doigts d'oublier Landau
-pour conserver la notation explicite $\varepsilon(h)\|h\|$.
+### Note {.note}
 
-La notation "$o$" est utilisée pour désigner une expression de la forme
+Présenté volontairement dans le cadre le plus étroit possible qui satisfasse
+nos besoins (notamment, comparaison par rapport $\|h\|^k$) suffit, ce qui 
+évite un grand nombre de subtilités. Pas jugé d'un grand intérêt en tant que
+tel, nous ne développons absolument pas le "calcul des o"; il s'agit juste
+d'avoir une notation pratique pour noter des résultats, dans le cadre bien
+précis du calcul différentiel et des propriétés des reste. 
+Toute les démonstrations commencent par la traduction des $o$ en fonctions;
+on est donc presque dans la situation ou l'on pourrait se passer de la 
+notation; on aurait en contrepartie des résultats un peu plus lourd à énoncer,
+les conséquences seraient limitées à ça.
+
+--------------------------------------------------------------------------------
+
+
+La notation $o(\|h\|^k)$, 
+où $h \in \mathbb{R}^n$ et $k \in \mathbb{N}$,
+désigne toute expression de la forme
 $$
-o(\phi(h)) := \varepsilon(h) \|\phi(h)\|
-\; \mbox{ où } \;
+o(\|h\|^k) := \varepsilon(h) \|h\|^k
+$$
+où $\varepsilon$ est une fonction définie dans un voisinage de $0$ 
+et telle que 
+$$
 \lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
 $$
-
-**TODO:** "détails"
-où $\varepsilon$ est une fonction 
--- scalaire ou vectorielle selon le contexte -- 
-définie dans un voisinage de $0 \in \mathbb{R}^n$ et telle que ...
-
-Expliquer aussi l'inverse: une équation avec un $o$ est vraie si on peut
-trouver une fct dans la "classe" du o qui rend vraie l'équation.
-
---------------------------------------------------------------------------------
-
-Par exemple, une fonction $f$ définie dans un voisinage de 
-$x \in \mathbb{R}^n$ et à valeurs dans $\mathbb{R}^m$ est 
-continue si et seulement si
+En dehors de tout contexte, cette notation est très ambiguë puisque l'on ne
+précise même pas à quel ensemble appartiennent les valeurs de $\varepsilon$.
+Les choses se précisent lorsqu'elle est utilisée dans une équation donnée,
+comme
 $$
-f(x+h) = f(x) + o(1).
+\phi(h) = o(\|h\|^k)
 $$
-En effet, la fonction caractérisée par $\varepsilon(h) = f(x+h) - f(x)$
-est définie dans un voisinage de $0 \in \mathbb{R}^n$ et c'est la seule
-fonction telle que l'on ait $f(x+h) = f(x) + \varepsilon(h) \|1\|$.
-Elle vérifie bien $\varepsilon(0) = 0$ et par ailleurs, il est clair
-que $\varepsilon$ est continue en $0$ si et seulement si $f$ est continue
-en $x$.
+où la fonction $\phi$ est connue.
+Cette relation signifie alors: la fonction $\phi$ est définie dans un
+voisinage $V$ de $0$ et vérifie:
+$$
+\lim_{h \to 0} \frac{\phi(h)}{\|h\|} = 0.
+$$
+La fonction $\varepsilon$ est alors définie de façon unique 
+sur $V$ par la relation
+$$
+\varepsilon(h) 
+= 
+\frac{\phi(h)}{\|h\|^k} \, \mbox{ si } \, h \neq 0
+\, \mbox{ et } \,
+\varepsilon(0) = 0.
+$$
+
+### Exemple
+
+Si $f$ est une fonction définie d'un sous-ensemble de $\mathbb{R}^n$
+dans $\mathbb{R}^m$ et que $x \in \mathbb{R}^n$, la notation
+$$
+f(x+h) = o(1)
+$$
+(ce qui correspond au cas ou $k=0$ puisque $\|h\|^0 =1$)
+signifie donc que $f$ définie dans un voisinage de $x$ et que
+$$
+\lim_{h \to 0} f(x + h) = 0,
+$$
+autrement dit que $x$ appartient à l'intérieur du domaine de $f$ et
+que $f$ est continue en $x$.
+
 
 Différentielle
 ================================================================================
@@ -353,15 +383,28 @@ Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert.
 La fonction $f$ est *[différentiable]{.index}* en $x \in U$ s'il 
 existe une application linéaire $L: \mathbb{R}^n \to \mathbb{R}^m$
 telle que
-$f(x+h) = f(x) + L \cdot h + o(h).$
+$f(x+h) = f(x) + L \cdot h + o(\|h\|).$
 Si c'est le cas, l'application $L$ est unique; nous la notons alors
 $df(x)$ et l'appelons *[différentielle de $f$ en $x$]{.index}*.
 Elle est donc caractérisée par:
 $$
-f(x+h) = f(x) + df(x) \cdot h + o(h).
+f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
 $$
 La fonction $f$ est *différentiable*
 si elle est différentiable en tout point de $U$. 
+
+### Remarque 
+On peut noter $\Delta f(x, h)$ la variation de $f$ en $x$ dans la direction $h$:
+$$
+\Delta f(x, h) = f(x+h) - f(x).
+$$
+La différentielle de $f$ en $x$, quand elle existe, constitue une approximation 
+de cette variation qui est linéaire en $h$:
+$$
+\Delta f(x, h) = df(x) \cdot h + o(h).
+$$
+
+
 
 ### Note
 
@@ -384,59 +427,69 @@ montrer que cette restriction n'est pas limitative et permet aussi de traiter
 le cas des dérivées à droite et à gauche si besoin. (et portée du système
 d'extension assez général ...)
 
-### Expressions
+Dans le cas où $f$ est une fonction d'une unique variable réelle,
+les deux concepts de dérivée et de différentielle coexistent et
+sont étroitement liés.
 
-**NOTA:** expliquer que $df(x)$ est $d(f)(x)$, pas $d(f(x))$ ... donc pas
-expression-friendly a priori ... Oui faire l'anatomie des "slots", comment
-la notation se lit: symbole "d", puis trois slots: fonction, point, variation.
+### Différentielle et Dérivée {.theorem}
 
-**TODO:** permetre d'écrire des choses comme
+Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert
+et soit $a \in U$.
+La fonction $f$ est différentiable en $a$ si et seulement si
+elle est dérivable en $a$. Dérivée et différentielle de $f$ en 
+$a$ se déduisent alors l'une de l'autre par les relations 
+$$
+f'(a) = df(a) \cdot 1
+\; \mbox{ et } \;
+df(a) = (h \in \mathbb{R} \mapsto f'(a) h).
+$$
 
+### Anatomie d'une variation / Différentielle d'une expression
+
+L'expression $df(x) \cdot h$ dépend de trois éléments: la fonction $f$,
+le point d'intérêt $x$ et la variation de l'argument $h$. Cette notation
+est sans ambiguité mais peut parfois être lourde à manipuler, en particulier
+lorsque nous ne souhaitons pas nommer les fonctions que nous souhaitons
+différencier pour conserver des notations compactes. 
+Dans le calcul des dérivées, nos avons pris l'habitude, pour affirmer que
+la dérivée de la fonction $x \mapsto x^2$ et tout point $x$ de $\mathbb{R}$
+est $2x$, d'écrire simplement
+  $$
+  (x^2)' = 2x.
+  $$
+Le membre de gauche désigne la dérivée de la fonction $x \mapsto x^2$, 
+évaluée en $x$.
+Avec les notations "strictes" de la différentielle, à ce stade 
+il nous faudrait écrire:
 $$
-d(x_1x_2) \cdot (h_1, h_2) = h_1 x_2 + x_1 h_2 
+d (x \in \mathbb{R} \to x^2)(x) \cdot h = 2 x h.
+$$
+Si l'on accepte de regrouper la fonction à différencier et le point où
+elle est calculée en un terme unique dans cette notation, qui est une
+expression de $x$, on peut alors écrire:
+$$
+d x^2 \cdot h = 2 x h,
+$$
+ce qui est un progrès, même si la notation n'est pas totalement dénuée 
+d'ambiguité[^amb].
+On remarque alors qu'en exploitant cette convention, le terme $dx$
+vient à désigner $d(x \mapsto x)(x)$; comme $(x)' = 1$,
+on a donc $dx \cdot h = 1 \times h = h$. 
+Par conséquent, on peut réécrire l'équation ci-dessus sous la forme
+mémorable
+$$
+dx^2 = 2 x dx.
 $$
 
-Pfff ... A la fois pas aussi simple que
-$$
-d(xy) = xdy + y dx
-$$
-et en même temps plus ambigu, car dans la notation au-dessus, on n'a pas
-d'info sur la position des divers arguments si l'on utilise les noms
-$x$ et $y$: on ne peut pas savoir que $x$ correspond à $h_1$ et $y$ à $h_2$.
-Mais l'interprétation avec les formes différentielles .... mmmm Nope.
+[^amb]: par exemple: est-ce que $df(x^2)$ désigne désormais la différentielle
+de la fonction $f$ évaluée en $x^2$ ou la différentielle de la fonction 
+$x \mapsto f(x^2)$ évaluée en $x$ ? Les deux grandeurs ne sont pas égales ...
+Il faut donc savoir si l'on différencie une fonction en un point ou bien
+une expression par rapport à une variable. On pourra rajouter des parenthèses
+pour lever l'ambiguité si nécessaire, avec $d(f)(x^2)$ dans le premier cas
+et $d(f(x^2))$ dans le second. Par défaut, nous supposerons dans la suite
+que $df(x^2)$ désigne la notation "stricte" $d(f)(x^2)$.
 
-Donc interpréter plutôt $d(xy)$ comme un raccourci pour
-$$
-df(x, y) \cdot (dx, dy)
-\; \mbox{ où } \; 
-f(x, y) = xy
-$$
-? Pas sans risque, le statut de $df$, $dx$ et $dy$ est différent ... Raaah.
-Mais c'est le seul truc qui tient un peu la route sans introduire les formes
-différentielles.
-
-Ou alors, noter les fonctions de façon appropriée avec une notation infixe ?
-Par exemple:
-$$
-d(+)(x, y) \cdot (h, k) = h y + x k 
-$$
-Horrible ... Oublier donc les expressions en première instance ?
-
-$$
-d(x y) = (\Delta x) y + x (\Delta y)
-$$
-bof. Confusoaire ...
-
-
-### Note {.author}
-Intégrer dès maintenant le pb de la différentiation des "expressions",
-comme $x_1+x_2$. Possible ? Suppose aussi de parler dès maintenant de fcts
-différentiables sur tout leur domaine puisque fondamentalement, ce
-sont des notations de champs qui simplifient ici la vie ...
-Mais on veut retarder la notion d'application différentielle ?
-Numéro d'équilibriste ... ce que l'on veut éviter, c'est de raisonner
-sur les espaces des valeurs associés (qui sont fonctionnels ... et peuvent
-donner le vertige)
 
 ### Note {.author}
 Même si la notation de la différentielle en $a$ donne un indice sur l'étape
@@ -454,22 +507,7 @@ de fonction continûment différentiable et de différentielle d'ordre supérieu
 
 --------------------------------------------------------------------------------
 
-Dans le cas où $f$ est une fonction d'une unique variable réelle,
-les deux concepts de dérivée et de différentielle coexistent et
-sont étroitement liés.
 
-### Différentielle et Dérivée {.theorem}
-
-Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert
-et soit $a \in U$.
-La fonction $f$ est différentiable en $a$ si et seulement si
-elle est dérivable en $a$. Dérivée et différentielle de $f$ en 
-$a$ se déduisent alors l'une de l'autre par les relations 
-$$
-f'(a) = df(a) \cdot 1
-\; \mbox{ et } \;
-df(a) = (h \in \mathbb{R} \mapsto f'(a) h).
-$$
 
 ### Différentiation de Fonction Composée
 
@@ -1014,11 +1052,11 @@ $$
     $$
 
 
-### Variation de la différentielle {.theorem} 
+### Variation de la différentielle {.lemma #LVD} 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 deux fois différentiable en un point $x$ de $U$. On a
 $$
-df(x+k) = df(x) + d^2 f(x) \cdot \bullet \cdot k + o(\|k\|)
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|)
 $$
 
 **TODO:** en pratique, on combinera le résultat ci-dessus avec la symmétrie
@@ -1099,67 +1137,22 @@ $$
 $$
 ce qui prouve le résultat cherché.
 
-### Symmétrie de la différentielle d'ordre $2$ {.theorem}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-deux fois différentiable en un point $x$ de $U$. Pour tout couple
-de vecteur $h$ et $k$ de $\mathbb{R}^n$, on a
-$$
-d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
-$$
-
-### Preuve
-Notons $\Delta f(x, h) = f(x+h) - f(x)$ la variation de $f$ en $x$ 
-associée pour une variation $h$ de l'argument et $\Delta^2 f(x, h, k)$ 
-la variation de $\Delta f(x, h)$ en $x$ pour une variation $k$ de l'argument:
-$$
-\Delta^2 f(x, h, k) = (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)).
-$$
-Bien qu'elle soit technique, la preuve repose sur deux idées simples.
-Tout d'abord, on peut constater directement que $\Delta^2 f(x, h, k)$ 
-est symmétrique par rapport à ses arguments $h$ et $k$:
-
-#### Symmétrie de la variation d'ordre 2
-$$
-\Delta^2 f(x, h, k) = \Delta^2 f(x, k, h). 
-$$
-
 --------------------------------------------------------------------------------
 
-Ensuite, il nous faudra montrer que la meilleure approximation bilinéaire de
-$\Delta^2 f(x, h, k)$ est donnée par $d^2f(x)\cdot h\cdot k$:
+**TODO: ** définir $\Delta^2 f$; définir $\Delta f$ au préalable qqpart, 
+et rappeler ici.
 
-#### Approximation de la variation d'ordre deux {.lemma}
+Le théorème qui suit montre que $d^2f(x)\cdot h\cdot k$ fournit une 
+approximation de $\Delta^2 f(x, h, k)$ quand $h$ et $k$ sont petits.
+
+#### Variation et différentielle d'ordre deux {.theorem}
 Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
 $\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
 $$
 \left\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k \right\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
 
---------------------------------------------------------------------------------
-
-La conclusion s'imposera alors: en effet, si $h$ et $k$ sont des vecteurs
-de $\mathbb{R}^n$ en exploitant la symmétrie de $\Delta^2f$, on obtient
-\begin{multline*}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
-\leq \\
-\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
-\end{multline*}
-En substituant $th$ à $h$ et $tk$ à $tk$ dans cette expression, 
-puis en faisant tendre $t$ vers $0$, on peut rendre $th$ et $tk$ 
-arbitrairement proches de $0$ et donc s'assurer que
-pour tout $\varepsilon > 0$,
-$$
-\begin{split}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
-&=
-\frac{1}{t^2}\|d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th \| \\
-&\leq \frac{1}{t^2}2 \varepsilon (\|th\|+\|tk\|)^2 \\ 
-&= 2\varepsilon (\|h\|+\|k\|)^2,
-\end{split}
-$$
-ce qui nous assure que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
-
-#### Preuve (approximation de la variation d'ordre deux) {.preuve}
+#### Preuve  {.proof}
 
 **TODO:** $h$ et $k$ assez petits pour que les expressions soient toutes
 définies.
@@ -1203,6 +1196,79 @@ $$
 \|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
 
+
+### Symmétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
+deux fois différentiable en un point $x$ de $U$. Pour tout couple
+de vecteur $h$ et $k$ de $\mathbb{R}^n$, on a
+$$
+d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
+$$
+
+### Preuve
+Notons $\Delta f(x, h) = f(x+h) - f(x)$ la variation de $f$ en $x$ 
+associée pour une variation $h$ de l'argument et $\Delta^2 f(x, h, k)$ 
+la variation de $\Delta f(x, h)$ en $x$ pour une variation $k$ de l'argument:
+$$
+\Delta^2 f(x, h, k) = (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)).
+$$
+On peut remarquer que la variation d'ordre $2$ de $f$ en $x$ est 
+symmétrique: lorsque $\Delta^2 f(x, h, k)$ est définie,
+$\Delta^2 f(x, k, h)$ également et
+$$
+\Delta^2 f(x, h, k) = \Delta^2 f(x, k, h). 
+$$
+
+
+
+
+--------------------------------------------------------------------------------
+
+La conclusion s'imposera alors: en effet, si $h$ et $k$ sont des vecteurs
+de $\mathbb{R}^n$ en exploitant la symmétrie de $\Delta^2f$, on obtient
+\begin{multline*}
+\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
+\leq \\
+\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
+\end{multline*}
+En substituant $th$ à $h$ et $tk$ à $tk$ dans cette expression, 
+puis en faisant tendre $t$ vers $0$, on peut rendre $th$ et $tk$ 
+arbitrairement proches de $0$ et donc s'assurer que
+pour tout $\varepsilon > 0$,
+$$
+\begin{split}
+\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
+&=
+\frac{1}{t^2}\|d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th \| \\
+&\leq \frac{1}{t^2}2 \varepsilon (\|th\|+\|tk\|)^2 \\ 
+&= 2\varepsilon (\|h\|+\|k\|)^2,
+\end{split}
+$$
+ce qui nous assure que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
+
+
+
+### Variation de la différentielle {.theorem} 
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
+deux fois différentiable en un point $x$ de $U$. On a
+$$
+df(x+k) = df(x) + d^2 f(x) \cdot k + o(\|k\|)
+$$
+
+### Preuve
+Par le [lemme sur la variation de la différentielle](#LVD), on sait que
+$$
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
+$$
+La [différentielle d'ordre 2 étant symmétrique](#SD2), 
+$$
+d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h,
+$$
+et par conséquent
+$$
+df(x+k) = df(x) + (h \mapsto (d^2 f(x) \cdot k) \cdot h) + o(\|k\|),
+$$
+qui est l'égalité cherchée.
 
 --------------------------------------------------------------------------------
 
