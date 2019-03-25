@@ -510,11 +510,11 @@ Différentielle
 de la diff, remarquer caractère linéaire, etc.
 
 
-### Différentielle {.definition .theorem}
+### Différentielle de Fréchet {.definition .theorem}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert.
-La fonction $f$ est *[différentiable]{.index}* en $x \in U$ s'il 
-existe une application linéaire $L: \mathbb{R}^n \to \mathbb{R}^m$
+La fonction $f$ est *[différentiable]{.index}* en $x \in U$ 
+s'il existe une application linéaire $L: \mathbb{R}^n \to \mathbb{R}^m$
 telle que
 $f(x+h) = f(x) + L \cdot h + o(\|h\|).$
 Si c'est le cas, l'application $L$ est unique; nous la notons alors
@@ -1626,14 +1626,56 @@ Faire les calculs menant à $C(q, \dot{q})\dot{q}$ en mécanique lagrangienne ?
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
 
-Faire le lien entre l'existence d'une dérivée composée $f \circ \gamma$,
-linéaire en $\gamma'(0)$ (préalable: montrer que cette grandeur ne dépend
-que de $\gamma'(0)$, ou l'admettre ?) 
-pour tout chemin différentiable partant du point $x$ et la condition que
+Source: [@Sha90]
+
+**Rappel.** Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est 
+ouvert et $x \in U$. 
+La fonction $f$ est *directionnellement dérivable* si pour tout
+vecteur $h \in \mathbb{R}^n$, la dérivée directionnelle
 $$
-\lim_{t\to 0, k \to h} \frac{f(x+tk) - f(x)}{t}
+f'(x, h) = (t \mapsto f(x+ th))'(0)
 $$
-existe et est linéaire en $h$. (cf [@Sha90])
+est bien définie.
+
+On introduit une variante à cette définition:
+la fonction $f$ est *directionnellement dérivable au sens de Hadamard* 
+en $x$ si pour toute fonction $\gamma: I \subset \mathbb{R} \to \mathbb{R}^n$,
+définie sur un intervalle ouvert $I$ contenant $0$, telle que
+$\gamma(I) \subset U$,  $\gamma(0) = x$ et $\gamma'(0)$ existe,
+la dérivée $(f \circ \gamma)'(0)$ existe. 
+
+ 1. Montrer que si $f$ est directionnellement dérivable au sens de Hadamard 
+    en $x$, alors $f$ est directionnellement dérivable au sens classique.
+
+ 2. Montrer que si $f$ est directionnellement dérivable au sens de Hadamard
+    en $x$, la grandeur $(f \circ \gamma)'(0)$ ne dépend de $\gamma$
+    qu'à travers $\gamma'(0)$. 
+    
+ 3. **Dérivation en chaîne.**
+    Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
+    $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
+    sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
+    Montrer que si $f$ est directionnellement dérivable au sens de Hadamard 
+    en $x \in U$ et $g$ est directionnellement dérivable au sens de Hadamard 
+    en $f(x) \in V$, alors la composée $g \circ f$ est directionnellement 
+    dérivable au sens de Hadamard en en $x$ et
+    $$
+    (g\circ f)'(x, h) = g'(f(x), f'(x, h)).
+    $$
+
+ 4. Montrer que $f$ est directionnellement dérivable au sens de Hadamard en $x$ 
+    si et seulement si la limite
+    $$
+    \lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
+    $$
+    existe.
+
+ 5. Une fonction dérivable directionnellement au sens de Hadamard en $x$ est 
+    *différentiable au sens de Hadamard* en $x$ si de plus $f'(x, h)$ 
+    est une fonction linéaire de $h$.
+    Montrer que $f$ est différentiable en $x$ au sens de Hadamard 
+    si et seulement si elle est différentiable en $x$ au sens de Fréchet.
+
 
 Asymptotique
 --------------------------------------------------------------------------------
