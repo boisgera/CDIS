@@ -4,6 +4,10 @@ set -o pipefail
 
 DOC="Calcul Différentiel I"
 
+# Doctest
+python -m doctest "${DOC}.md"
+
+# Output Directory
 mkdir -p output
 
 # Options

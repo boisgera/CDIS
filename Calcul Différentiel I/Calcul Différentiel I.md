@@ -1,49 +1,158 @@
 % Calcul Différentiel I
 
-TODO & random Notes
+Narratif, Notes & TODOs
 ================================================================================
 
-**TODO:** dérivée directionnelles, perspective (se ramener au calcul de
-fonction d'une variable), limitations (dérivée partielles très limitée,
-dérivée directionnelles un peu moins, mais cas assez général pour supporter
-la chain rule suppose de paramétriser par des chemins; lien avec définition
-d'Hadamard de la dérivée directionnelle ou $h$ est aussi autorisé à varier).
+### Différentielle & Dérivée Directionnelle
 
-**TODO.** fonctions à argument et/ou valeurs matricielles.
+La progression choisie est la suivante: 
 
-**TODO:** Notation "function application" sur les applis linéaires.
-3 options, dont la contraction $\cdot$
+  - la différentielle d'une fonction en un point est introduite directement,
+    par analogie avec le concept et les propriétés de la dérivée, une fois
+    présentés sous la bonne forme (meilleure approximation linéaire de la
+    variation, forme avec $o$ plutôt que taux d'accroissement).
 
-**TODO:** notation multiplication scalaire-vecteur et abus vecteur-scalaire,
-voire division vecteur scalaire.
+  - on exploite un peu cette définition, on finit de faire le lien
+    avec la dérivée, on donne les règles de combi linéaires, du produit,
+    de la différentation en chaîne.
 
-**TODO:** convention sur les normes sur $\mathbb{R}^m$ (euclidienne
-par défaut) et $\mathbb{R}^{m \times n}$ (norme d'opérateur par défaut,
-introduire la SVD, le lien avec les valeurs propres de $A^t A$ ?)
+  - sous hypothèse de différentiabilité, on donne le liens avec la dérivée
+    partielle et les dérivée directionnnelles.
 
-**TODO:** notation $\mathbb{R}^{m \times n}$ et 
-$\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m$ ici ?
-Et équivalent tensoriel / multilinéaire ? Ou dans le contexte
-d'utilisation ?
+  - après coup, on examine la tentation (légitime) que l'on pourrait avoir
+    de définir la différentielle en passant par les dérivée partielles:
+    cette approche si elle était couronnée de succès, permettrait de 
+    définir la différentielle en se ramenant à ce que l'on connaît déjà,
+    à savoir la notion de dérivée. Et on se rend compte assez facilement
+    que:
 
-**TODO:** rappel dérivée en préambule différentielle.
+      - l'existence des dérivées partielles ne suffit pas à assurer 
+        l'existence de la différentielle: un exemple très simple permet
+        de montrer que cela n'assure même pas la continuité de la fonction
+        au point d'intérêt. Plus grave si l'on veut: la règle de dérivation
+        en chaîne ne marche pas non plus; en particulier, on ne peut pas
+        calculer la dérivée partielle d'une fonction composée par ce biais.
+        Note: suppose que l'on ait dérivé la chain rule très rapidement
+        après la définition de la différentielle et c'est légitime:
+        c'est un grand succès du concept.
 
-$x = (x_1, \dots, x_n) \in \mathbb{R}^n$
-$$
-\|x\|^2 = \sum_{i=1}^n x_i^2
-$$
+      - examiner le contre-exemple standard (1 valeur sur les axes, une
+        autre dans le reste du domaine), diagnostiquer ce qui ne va pas
+        (à savoir, on est aveugle au comportement de la fonction en dehors
+        de directions privilégiées), propose une solution en travaillant
+        sur la dérivée directionnelle. Montrer par un nouveau contre-exemple,
+        moins évident, que ça ne va toujours pas (ni continuité ni "chain rule").
+        L'exemple en question travaille toujours avec deux valeurs distinctes,
+        mais sur une parabole. 
 
-$A \in \mathbb{R}^{m\times n}$
-$$
-\|A\| 
-= 
-\min 
-\{
-K\geq 0 
-\;|\; 
-\mbox{pour tout } x \in \mathbb{R}^n, \; \|A x\| \leq K \|x\|
-\}.
-$$
+      - le nouvelle exemple pour le coup met sur la piste d'une "bonne" solution
+        alternative, la dérivée directionnelle au sens d'Hadamard. On peut
+        la définir au moyens des chemins, simplifier sa caractérisation.
+        Au final, elle vérifie bien la règle de dérivation en chaîne par 
+        exemple, plus ou moins par construction, mais cela n'est pas surprenant
+        car elle est équivalent à la notion de différentielle !
+        A ce stade, pas évident que la démarche adoptée soit plus simple, 
+        on peut se convaincre que le concept de différentielle est finalement
+        pas si mal que ça ... d'autant plus qu'en dimension infinie, les
+        deux notions divergent à nouveau et la différentielle de Fréchet 
+        regagne des points.
+
+    Une partie de ça à faire dans le cours, une partie en exo, 
+    quelle frontière je ne sais pas encore exactement.
+
+    - en parralèle, on montre que tout de même, on a le droit de travailler
+      sur les dérivée partielles si l'on sait établir que le résultat est
+      continu, car cela garantit l'existence de la différentielle (et sa
+      continuité).
+
+### Vecteurs / Matrices / Tenseurs
+
+Sujet assez compliqué. Trois motivations sur ce sujet:
+
+  - Le "tout-matrice" est assez ridicule quand on y pense;
+    l'idée qu'il faille promouvoir des vecteurs de $\mathbb{R}^n$
+    en matrice pour faire des calculs complique souvent les choses
+    par rapport aux conventions tensorielles (où un vecteur est un
+    tableau de dimension 1). C'est aussi assez incohérent avec les
+    convention de NumPy qui pour le coup sont tensorielles par nature
+    (contrairement à Matlab).
+
+    Mais voilà, c'est la vision enseignée en prépa, difficile de tout
+    déconstruire, d'autant que la démarche tensorielle vient avec ses
+    propres problèmes de notation, conventions non partagées, etc.
+
+    Donc on a vocation à rester compatible avec ce tout-matriciel;
+    et à l'étendre mais de façon compatible quand nécessaire.
+    Ainsi, "$\cdot$" interprété comme "application d'une fonction 
+    linéaire", même quand la-dite fonction linéaire est à valeurs
+    fonctionnelle (comme dans les diff d'ordre supérieur)
+
+  - Il y a des problèmes qui supposent naturellement de considérer
+    des fonctions avec des arguments matriciels. Par exemple, on
+    comprend assez bien qu'on peut avoir besoin de différencier
+    $\det A$ ou $A^{-1}$. Même si le problème final n'a que des
+    paramètres vectoriels, on a envie de faire des "chain rules"
+    avec des arguments matriciels.
+
+  - Exemple pas trivial mais typique: calculer $d^2f \circ g$.
+    A l'ordre $1$ on a $d f \circ g(x) = df(g(x)) \cdot df(x)$, 
+    ce qui est (interprétable comme) un produit de matrices.
+
+Positions aujourd'hui:
+
+  - rester dans un premier temps compatible avec le conventions du 
+    tout-matriciel, se contenter de noter l'écart avec les conventions
+    NumPy, conserver une définition de $\cdot$ qui soit plus générale.
+
+  - minimiser les présentations du tensoriel: on peut se contenter de
+    montrer que $d^2f$ est représentable comme un tableau à trois dimensions
+    et de faire les calculs avec les indices pour évaluer 
+    $d^f(x) \cdot h_1 \cdot h_2$ par exemple; le cas différentielle d'ordre 
+    $k$ n'est guère plus complexe.
+
+  - regarder s'il y a des exemples éclairants à faire en TD sur 
+    de la différentielle à argument matriciels et "bootstrapper" la
+    définition de la différentielle à ce moment-là, en "mettant à plat"
+    la matrice par exemple ? Ou exploiter la définition d'Hadamard pour
+    éviter d'avoir à faire ça ?
+
+### Normes
+
+Ne rien mettre dans ce chapitre proprement dit, mais lister ce dont on
+a besoin très concrètement pour inclure ces éléments dans le chapitre 
+de topologie.
+
+J'ai assez envie de noter par défaut $|x|$ les normes dans $\mathbb{R}^n$
+et $\|L\|$ la norme d'opérateur et d'annoter ces normes par des symboles
+(comme $|x|_2$, $\|A\|_{22}$) dans les contextes ou il faudrait être
+plus précis.
+
+Dans ce chapitre j'imagine que l'on peut (presque ?) toujours se limiter aux
+normes euclidiennes et à la norme d'opérateur induite, sauf peut-être si
+l'on en vient à montrer des choses comme le caractére intrinsèque de la
+définition de différentielle ? Non, même là ça va marcher.
+
+Donc concrêtement, définition de ces deux normes, pptés habituelles
+(notamment $|Lx| \leq \|L\||x|$). Le coup de la norme d'opérateur
+associé à la représentation matricielle (via SVD), utile ou pas ?
+Si oui -- et on peut en douter -- alors il faut aussi parler de matrices
+dans le chapitre sur la topo. Ouch, non, éviter. En fait, il faudra sans
+peut-être "retarder" les rappels sur les opérateurs linéaires à ce chapitre,
+car c'est un gros focus du chapitre (idée d'approximation linéaire est 
+centrale ici, avant ça serait abstrait).
+
+Auquel cas on parle de norme en topo, on montrer les exemple classiques en
+dim finie et on parle d'équivalence des normes,
+mais on attend ce chapitre pour parler d'opérateurs et de norme.
+Donc un volet à rajouter ici ?
+
+Preambule
+--------------------------------------------------------------------------------
+
+Les fragment de codes de ce document utilisent le langage Python 3.
+La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
+
+    >>> from numpy import *
 
 Notations
 ================================================================================
@@ -51,22 +160,15 @@ Notations
 Ensembles et Fonctions
 --------------------------------------------------------------------------------
 
-**TODO.** produits cartésiens, "currying".
-
 La notation classique $f: A \to B$ pour désigner une fonction $f$ d'un
-ensemble $A$ dans un ensemble $B$ suggère de noter $A \to B$ 
-l'ensemble des fonctions de $A$ dans $B$.
-Avec cette convention, la notation classique $f: A \to B$ signifie la
-même chose que $f \in A \to B$; on pourra donc parfaitement continer à 
-utiliser la notation classique.
+ensemble $A$ dans un ensemble $B$ suggère d'utiliser $A \to B$ 
+pour désigner l'ensemble des fonctions de $A$ dans $B$.
+Avec cette convention, $f: A \to B$ signifie la
+même chose que $f \in A \to B$.
 
 La convention que nous adoptons a vocation à simplifier la manipulation
 de fonctions dont les valeurs sont des fonctions, un schéma très fréquent
-en calcul différentiel. Nous désignerons ainsi $A \to B \to C$ l'ensemble
-des fonctions qui associent à un élément de $A$ une fonction de $B$ dans
-$C$, c'est-à-dire une fonction appartenant à $A \to (B \to C)$ (notre
-convention est donc associative à droite).
-
+en calcul différentiel.
 Si $f: A \to B$ et $g: B \to C$, la composée des functions $f$ et de $g$,
 notée $g \circ f$, appartient à $A \to C$ et est définie par
 $$
@@ -78,13 +180,9 @@ il faut en effet s'adapter à la notation classique (infixe ou polonaise)
 qui désigne par $f(x)$ l'image de $x$ par $f$. 
 Pour cette même raison, il pourra être utile de
 d'utiliser $B \leftarrow A$ comme une variante de $A \to B$.
-On pourra alors utiliser la règle mécanique
+On pourra alors utiliser la règle
 $$
-\begin{array}{c}
-g: C \leftarrow B, \; f: B \leftarrow A \\
-\implies \\
-g \circ f: C \leftarrow A
-\end{array}
+g: C \leftarrow B, \; f: B \leftarrow A \; \implies \; g \circ f: C \leftarrow A
 $$
 ou les notations des ensembles et fonctions $g$, $f$, $A$, $B$ et $C$
 restent dans le même ordre d'apparition et les deux occurrences de 
@@ -93,79 +191,118 @@ l'ensemble intermédiaire $B$ se touchent.
 Applications Linéaires et Calcul Matriciel
 --------------------------------------------------------------------------------
 
+### Multiplication Scalaire-Vecteur
 Pour tout scalaire $\lambda \in \mathbb{R}$ et vecteur $x \in \mathbb{R}^n$,
 on notera $\lambda x$ ou parfois $x \lambda$ la multiplication du vecteur $x$ 
 par le scalaire $\lambda$. Lorsque $\lambda$ est non nul, on
 notera également $x / \lambda$ le vecteur $(1 / \lambda) x$.
 
-**TODO:** multiplication scalaire et matrice ? produit tensoriel également
-noté sans rien ...
+Un vecteur de $\mathbb{R}^n$ est représenté dans NumPy par un tableau à une
+dimension:
 
-En cohérence avec la notation choisie pour les ensembles de fonctions, 
-nous noterons
-$\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m$ 
-(ou $\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n$ 
-quand c'est opportun)
-l'ensemble des applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
+    >>> x = array([1, 2, 3])
+    >>> x.ndim
+    1
+    >>> shape(x)
+    (3,)
+    >>> size(x)
+    3
+
+La multiplication d'un scalaire et d'un vecteur est désignée par le symbole
+`*`:
+
+    >>> 2 * x
+    array([2, 4, 6])
+
+### Matrices
 
 Nous noterons $\mathbb{R}^{m \times n}$ l'ensemble des matrices à 
 $m$ lignes et $n$ colonnes à coefficients réels. 
-Attention, dans cette notation, $\times$ est un symbole de séparation, 
-purement syntactique; 
-$m \times n$ n'est pas une expression ayant vocation à être calculée. 
-Ainsi $\mathbb{R}^{2 \times 2}$ désigne l'ensemble des matrices
-à $2$ lignes et deux colonnes à coefficients réels quand $\mathbb{R}^4$
-désigne l'ensemble des $4$-uplets à coefficients réels. Cette similarité
-dans la notation n'est toutefois pas anodine: pour toute matrice 
-$A \in \mathbb{R}^{m\times n}$, on peut construire un $mn$-uplet en 
-listant tous les coefficients de la matrices, par exemple en parcourant
-chaque ligne de haut en bas, puis au sein de chaque ligne de gauche à
-droite; cette façon de faire définit un vecteur
-$a = (a_1, a_2, \dots, a_{mn})\in \mathbb{R}^{mn}$ par la relation
-$a_k = A_{ij}$ ou $k = (i-1) m + j$.
-L'application $\pi$ qui a la matrice $A$ associe le vecteur $a$ 
-est une bijection entre les deux espaces $\mathbb{R}^{m \times n}$ et 
-$\mathbb{R}^{mn}$, linéaire ainsi que sont inverse; on dira que
-ces deux espaces vectoriels sont isomorphes, 
-ce que l'on notera $\mathbb{R}^{m \times n} \simeq \mathbb{R}^{mn}$.
-En toute rigueur, $\pi$ n'est pas une fonction, mais une famille de 
-fonctions, paramétrisée par $m$ et $n$.
+Une matrice telle que
 
-    >>> from numpy import *
-    >>> A = array([[1,2,3], [4,5,6]])
+$$
+\left[
+\begin{array}{ccc}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{array}
+\right] \in \mathbb{R}^{2 \times 3}
+$$
+
+sera représentée avec NumPy par un tableau bi-dimensionnel:
+
+    >>> A = array([[1, 2, 3], [4, 5, 6]])
     >>> A
     array([[1, 2, 3],
            [4, 5, 6]])
+    >>> A.ndim
+    2
     >>> shape(A)
     (2, 3)
     >>> size(A)
     6
-    >>> reshape(A, size(A))
-    array([1, 2, 3, 4, 5, 6])
-    >>> A = array([[1,2,3], [4,5,6]])
-    >>> shape(A)
-    (2, 3)
-    >>> size(A)
-    6
-    >>> a = reshape(A, size(A))
+
+### Mise à plat des matrices {.warning}
+Dans la notation $\mathbb{R}^{m \times n}$, 
+$\times$ est un symbole de séparation, purement syntactique: 
+$\mathbb{R}^{2 \times 3}$ désigne ainsi 
+l'ensemble des matrices à 2 lignes et 3 colonnes à coefficients réels 
+et diffère de $\mathbb{R}^6$ qui
+désigne l'ensemble des $6$-uplets à coefficients réels. 
+
+Ces deux ensembles sont toutefois similaires: pour toute matrice 
+$A \in \mathbb{R}^{m\times n}$, on peut construire un $mn$-uplet en 
+listant tous les coefficients de la matrices en parcourant l'ensemble 
+des lignes de la matrice de haut en bas et chaque ligne de gauche à
+droite; cette façon de faire définit un vecteur de $\mathbb{R}^{mn}$.
+Par exemple:
+
+$$
+\left[
+\begin{array}{ccc}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{array}
+\right] \in \mathbb{R}^{2 \times 3}
+\; \mapsto \;
+(1,2,3,4,5,6) \in \mathbb{R}^6
+$$
+
+Cette opération est bijective; elle-même ainsi que son inverse sont linéaires.
+$\mathbb{R}^{m \times n}$ et $\mathbb{R}^{m n}$ sont donc isomorphes (en tant
+qu'espace vectoriels), ce que l'on notera:
+
+$$
+\mathbb{R}^{m \times n} \, \cong \, \mathbb{R}^{mn}
+$$
+
+Le passage de la forme matrice à la forme vecteur se fait de la façon suivante
+avec NumPy:
+
+    >>> A
+    array([[1, 2, 3],
+           [4, 5, 6]])
+    >>> a = reshape(A, (6,))
     >>> a
     array([1, 2, 3, 4, 5, 6])
-    >>> shape(a)
-    (6,)
-    >>> reshape(a, (2,3))
+    >>> reshape(a, (2, 3))
     array([[1, 2, 3],
-          [4, 5, 6]])
+           [4, 5, 6]])
 
+### Applications Linéaires
 
-Si $M$ est une telle matrice,
-$M_{ij}$ ou $m_{ij}$ désigne le coefficient en ligne $i$ et colonne $j$.
-Ces deux ensembles sont étroitement liés.
+Notons
+$$
+\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m
+\; \mbox{ ou } \;
+\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
+$$ 
+l'ensemble des applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
+La raison d'être des matrices $\mathbb{R}^{m \times n}$ est de représenter
+ces applications linéaires.
 
-Les matrices $m \times n$ permettent de représenter des applications 
-linéaires de $\mathbb{R}^{n}$ dans $\mathbb{R}^m$.
-
-Soit $A$ une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
-On peut décomposer $A$ en $m$ composantes $A_i$, 
+Si $A$ désigne  une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$,
+on peut la décomposer en $m$ composantes $A_i$, 
 des applications de $\mathbb{R}^n$ dans $\mathbb{R}$ 
 telles que pour tout $x$ dans $\mathbb{R}^n$, on ait
 $A(x) = (A_1(x), A_2(x), \dots, A_m(x))$, ce que l'on note
@@ -182,7 +319,7 @@ $$
 il est possible d'associer à l'application linéaire 
 $A: \mathbb{R}^n \to \mathbb{R}^m$ la matrice
 $$
-[A] := [A_{ij}]_{ij} :=
+[A_{ij}]_{ij} :=
 [A_i(e_j)]_{ij}=
 \left[ 
 \begin{array}{ccccc}
@@ -192,7 +329,7 @@ A_m(e_1) & A_m(e_2) & \cdots & A_m(e_n)
 \end{array}
 \right] \in \mathbb{R}^{m \times n}.
 $$
-Inversement, étant donné une matrice
+Réciproquement, étant donné une matrice
 $$
 [a_{ij}]_{ij}=
 \left[ 
@@ -206,37 +343,51 @@ $$
 il est possible de définir une application linéaire 
 $A: \mathbb{R}^n \to \mathbb{R}^m$ par la relation
 $$
-(A x)_i := \sum_{j} a_{ij} x_j.
+(A x)_i := \sum_{j} a_{ij} x_j
 $$
-Cette deux construction sont inverses l'une de l'autre et établissent un
-isomorphisme d'espaces vectoriels entre les applications linéaires de
-$\mathbb{R}^n$ dans $\mathbb{R}^m$ et les matrices de taille $m \times n$
-à coefficients réels.
+et cette opération est l'inverse de la précédente.
+
+Cette correspondance établit un isomorphisme d'espaces vectoriels entre 
+les applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et 
+les matrices de taille $m \times n$ à coefficients réels:
 $$
 \mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
-\simeq 
+\, \cong \,
 \mathbb{R}^{m \times n} 
 $$
 
-L'intérêt central des représentations matricielles: la composition de fonctions
-linéaires se traduit par une multiplication entre matrices. Si $A$ et $B$ 
-désignent des applications linéaires de $\mathbb{R}^p$ dans $\mathbb{R}^n$
-et de $\mathbb{R}^n$ dans $\mathbb{R}^m$ respectivement, 
-l'application linéaire composée $C = B \circ A$ vérifie
+### Composition d'application linéaires
+ 
+Si $A$ et $B$ désignent des applications linéaires de 
+$\mathbb{R}^p$ dans $\mathbb{R}^n$ et de $\mathbb{R}^n$ dans $\mathbb{R}^m$ 
+respectivement, la fonction composée $C = B \circ A$ est une application
+linéaire qui vérifie
   $$
   C_{ij} = \sum_{k} B_{ik} A_{kj}.
   $$
+Autrement dit, la composition de fonction linéaires se traduit par la
+multiplication des matrices associées.
+
 Dans la suite on évitera en général l'utilisation du symbole $\circ$ pour
 désigner la composition d'applications linéaires, en lui préférant le
 symbol $\cdot$. Le même symbole sera utilisé pour désigner le produit
 entre deux matrices (on évitera dans la mesure du possible de désigner
-le produit de deux matrices par simple juxtaposition des symboles; 
-on réservera cette notation pour la multiplication d'un vecteur ou
-d'une application linéaire par un scalaire).
+le produit de deux matrices par simple juxtaposition des symboles).
 
-------------------------------------------------
+Avec NumPy, la méthode `dot` des tableaux permet de réaliser cette opération:
 
-Dans le cadre du calcul matriciel, on associe en général à un vecteur 
+    >>> A = array([[1, 2, 3], [4, 5, 6]])
+    >>> B = array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    >>> A.dot(B)
+    array([[1, 2, 3],
+           [4, 5, 6]])
+
+
+
+### Vecteurs colonnes et vecteur lignes
+
+
+Dans le cadre du calcul matriciel, on associe souvent à un vecteur 
 $x=(x_1, \dots, x_n)$ de $\mathbb{R}^n$ le vecteur colonne
 $$
 \left[ 
@@ -247,35 +398,32 @@ x_n
 \end{array}
 \right] \in \mathbb{R}^{n \times 1}.
 $$
-Dans cette terminologie, un vecteur-colonne n'est pas un élément de
-$\mathbb{R}^n$, mais une matrice. Formellement, on associé à $x$
+Dans cette terminologie, un vecteur colonne n'est pas, 
+malgré son nom, un vecteur de $\mathbb{R}^n$, mais bien 
+une matrice de taille $n \times 1$. 
+Formellement, on a associé à $x$
 une matrice
 $X \in \mathbb{R}^{n\times 1}$, telle que $X_{i1} = x_i$.
+Le produit entre une matrice et un vecteur colonne de taille compatible
+n'est rien d'autre qu'un produit matriciel habituel. L'intérêt de cette
+opération: si $A$ est une application linéaire de $\mathbb{R}^n$ dans
+$\mathbb{R}^m$ et $x$ un vecteur de $\mathbb{R}^n$, le vecteur
+image $y=Ax \in \mathbb{R}^m$ de $x$ par $A$ est représenté par 
+le vecteur colonne qui est le produit entre 
+la représentation de $A$ comme matrice et la représentation de
+$x$ comme vecteur colonne.
 
-**TODO:** refaire la présentation "à la main" sans mettre en correspondance
-$x$ et l'application linéaire associée et mettre cette explication (qui
-explique pourquoi $\cdot$ n'est pas une nouvelle notation et pourquoi
-tous ces points sont associatifs) en exo ?
+Concrêtement, NumPy ne nécessite pas qu'un vecteur soit d'abord 
+transformé en matrice pour réaliser un produit matrice-vecteur.
+La méthode `dot` des tableaux peut être utilisée ici aussi 
+pour réaliser cette opération:
 
-Cette matrice correspond à une application linéaire de $\mathbb{R}$ dans
-$\mathbb{R}^n$.
-Il n'est pas difficile de se convaincre que cette application est
-tout simplement $\lambda \in \mathbb{R} \mapsto x \lambda \in \mathbb{R}^n$.
-Le produit matrice-vecteur de $A$ et de $x$ représente donc la composée
-de cette application et de $A$; on a "promu" $x$ du statut de vecteur
-de $\mathbb{R}^n$ à celui d'application linéaire de $\mathbb{R}$ dans 
-$\mathbb{R}^n$ et se faisant on lui a fourni une représentation matricielle.
-On utilisera donc également la notation
-$A \cdot x$ pour désigner l'image du vecteur $x$ par l'application linéaire
-$A$, ou de façon équivalente le produit matrice-vecteur entre $A$ et $x$.
+    >>> A = array([[1, 2, 3], [4, 5, 6]])
+    >>> x = array([7, 8, 9])
+    >>> A.dot(x)
+    array([ 50, 122])
 
-Notons qu'on peut également associer à un vecteur $x \in \mathbb{R}^n$ 
-un vecteur-ligne; pour cela, on considère l'application linéaire
-$x^t$ de $\mathbb{R}^n$ dans $\mathbb{R}$ définie par
-$$
-x^t \cdot y = \left< x, y \right> = \sum_i x_i y_i
-$$
-donc la matrice associée est un vecteur ligne.
+
 
 Le produit matriciel étant associatif, tant que l'on manipule des matrices
 et des vecteurs, il n'y a pas lieu de préciser si $A \cdot B \cdot C$ 
@@ -285,25 +433,6 @@ Comme le produit matrice-vecteur est un produit matriciel classique,
 quand $x$ est un vecteur, 
 $A \cdot B \cdot x$ désigne indifféremment $(A \cdot B) \cdot x$ ou
 $A \cdot (B \cdot x)$.
-
-------------------------------------------------
-
-**TODO:** préciser usage multiple du crochet: $[A]$ est une matrice quand
-$A$ est une appli line, $[a_{ij}]_{ij}$ est une matrice, quand $x$ est un
-vecteur, $x_i$ ou $[x]_i$ désigne son $i$-ème coefficient, etc.
-A la limite, cela aurait du sens d'utiliser aussi $[x]$ pour un 
-$n$-uplet, afin de le transformer en vecteur colonne (donc une matrice;
-dans ce cadre, la notation $[x]^t$ a parfaitement du sens et les deux
-"mondes", matriciels ou non, restent étanches ... mais les notations
-deviennent potentiellement lourdes ...). NOTA: est-ce que j'ai envie
-de parler de vecteur colonne ? Cela contribue à "figer" le crochet
-au niveau matriciel et donc obère le niveau tensoriel ... Pas dramatique
-sans doute, mais dommage parce qu'il est plus simple IMHO même si on se
-limite aux matrices et vecteurs et se mappe mieux sur les projets num.
-
-
-
-
 
 Notation de Landau
 --------------------------------------------------------------------------------
@@ -358,7 +487,7 @@ $$
 \varepsilon(0) = 0.
 $$
 
-### Exemple
+### Continuité {.example}
 
 Si $f$ est une fonction définie d'un sous-ensemble de $\mathbb{R}^n$
 dans $\mathbb{R}^m$ et que $x \in \mathbb{R}^n$, la notation
@@ -376,6 +505,10 @@ que $f$ est continue en $x$.
 
 Différentielle
 ================================================================================
+
+### TODO: préambule sur la dérivée, préparer, mettre sous une forme proche
+de la diff, remarquer caractère linéaire, etc.
+
 
 ### Différentielle {.definition .theorem}
 
@@ -406,6 +539,7 @@ $$
 
 
 
+
 ### Note
 
 On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
@@ -419,6 +553,12 @@ de l'existence de la différentielle en tout point du domaine de définition.
 donner exemple avec branche de log définie
 sur $\mathbb{C}^*$; on peut se poser la question de la différentiation
 partout sauf sur $\mathbb{R}^-$.)
+
+### TODO:
+
+différentier valeur par valeur OK, comme avec la dérivée.
+
+### TODO: manip avec extension à un ouvert en général.
 
 ### TODO: lien avec dérivée
 
@@ -444,13 +584,11 @@ f'(a) = df(a) \cdot 1
 df(a) = (h \in \mathbb{R} \mapsto f'(a) h).
 $$
 
-### Anatomie d'une variation / Différentielle d'une expression
+### Différencier une expression
 
 L'expression $df(x) \cdot h$ dépend de trois éléments: la fonction $f$,
-le point d'intérêt $x$ et la variation de l'argument $h$. Cette notation
-est sans ambiguité mais peut parfois être lourde à manipuler, en particulier
-lorsque nous ne souhaitons pas nommer les fonctions que nous souhaitons
-différencier pour conserver des notations compactes. 
+le point de référence $x$ et la variation de l'argument $h$. Cette notation
+est sans ambiguité mais peut parfois être lourde à manipuler.
 Dans le calcul des dérivées, nos avons pris l'habitude, pour affirmer que
 la dérivée de la fonction $x \mapsto x^2$ et tout point $x$ de $\mathbb{R}$
 est $2x$, d'écrire simplement
@@ -459,7 +597,7 @@ est $2x$, d'écrire simplement
   $$
 Le membre de gauche désigne la dérivée de la fonction $x \mapsto x^2$, 
 évaluée en $x$.
-Avec les notations "strictes" de la différentielle, à ce stade 
+Avec notre notation pour la différentielle, à ce stade 
 il nous faudrait écrire:
 $$
 d (x \in \mathbb{R} \to x^2)(x) \cdot h = 2 x h.
@@ -509,7 +647,7 @@ de fonction continûment différentiable et de différentielle d'ordre supérieu
 
 
 
-### Différentiation de Fonction Composée
+### Différentiation de fonction composée -- Règle de dérivation en chaîne
 
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
@@ -1040,9 +1178,9 @@ $$
     A \to B \to C := A \to (B \to C),
     $$
     $$    
-    A \to B \to C \to D := A \to (B \to (C \to D))
+    A \to B \to C \to D := A \to (B \to (C \to D)).
     $$
-    et inversement, lors de l'application d'une fonction linéaire,
+    La convention associée: lors de l'application d'une fonction linéaire,
     le symbole "$\cdot$" associe à gauche, par exemple:
     $$
     L \cdot h \cdot k :=  (L \cdot h) \cdot k,
@@ -1420,6 +1558,54 @@ $$
 
 Exercices
 ================================================================================
+
+Vecteurs, vecteurs colonnes, vecteurs lignes
+--------------------------------------------------------------------------------
+
+Soit $x = (x_1, \cdots, x_n)$ un vecteur de $\mathbb{R}^n$.
+
+ 1. Le vecteur colonne $X$ associé à $x$
+    $$
+    X = \left[ 
+    \begin{array}{c}
+    x_1 \\
+    \vdots \\
+    x_n
+    \end{array}
+    \right] \in \mathbb{R}^{n \times 1}.
+    $$
+    représente une application linéaire. Laquelle ?
+
+ 2. Le vecteur colonne ligne $X^t$ associé à $x$
+    $$
+    X^t = \left[ 
+    \begin{array}{ccc}
+    x_1 & \cdots & x_n
+    \end{array}
+    \right] \in \mathbb{R}^{1 \times n}.
+    $$
+    représente une application linéaire. Laquelle ?
+
+### Réponses
+
+ 1. Par définition, le vecteur colonne associé à $x$ représente l'application
+    linéaire $A$ de $\mathbb{R}$ dans $\mathbb{R}^n$ telle que pour tout
+    $h \in \mathbb{R}$ et tout $i=1,\dots, n$, 
+    $$
+    (A h)_i = \sum_{k=1}^1 X_{ik} h = x_i h,
+    $$
+    soit $A h = h$.
+
+ 2. Par définition, le vecteur ligne associé à $x$ représente l'application
+    linéaire $B$ de $\mathbb{R}^n$ dans $\mathbb{R}$ telle que pour tout
+    $h=(h_1, \dots, h_n) \in \mathbb{R}^n$ 
+    $$
+    B h = \sum_k x_i h_i,
+    $$
+    soit $B h = \left< x, h \right>$ ou $\left<\cdot, \cdot\right>$
+    désigne le produit scalaire dans $\mathbb{R}^n$. 
+
+
 
 Dérivée sur un intervalle fermé
 --------------------------------------------------------------------------------
