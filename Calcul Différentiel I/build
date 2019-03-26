@@ -14,6 +14,7 @@ mkdir -p output
 OPT=(-V lang=fr)
 OPT+=(--table-of-contents)
 OPT+=(--bibliography=bibliography.json -M link-citations=true)
+OPT+=(--pdf-engine=pdflatex)
 
 # PDF Output
 pandoc "${OPT[@]}" -o output/"${DOC}".pdf "${DOC}".md

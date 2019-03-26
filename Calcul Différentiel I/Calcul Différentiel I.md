@@ -1639,8 +1639,8 @@ est bien définie.
 
 On introduit une variante à cette définition:
 la fonction $f$ est *directionnellement dérivable au sens de Hadamard* 
-en $x$ si pour toute fonction $\gamma: I \subset \mathbb{R} \to \mathbb{R}^n$,
-définie sur un intervalle ouvert $I$ contenant $0$, telle que
+en $x$ si pour tout chemin $\gamma: I \subset \mathbb{R} \to \mathbb{R}^n$,
+défini sur un intervalle ouvert $I$ contenant $0$, telle que
 $\gamma(I) \subset U$,  $\gamma(0) = x$ et $\gamma'(0)$ existe,
 la dérivée $(f \circ \gamma)'(0)$ existe. 
 
@@ -1649,7 +1649,10 @@ la dérivée $(f \circ \gamma)'(0)$ existe.
 
  2. Montrer que si $f$ est directionnellement dérivable au sens de Hadamard
     en $x$, la grandeur $(f \circ \gamma)'(0)$ ne dépend de $\gamma$
-    qu'à travers $\gamma'(0)$. 
+    qu'à travers $\gamma'(0)$ et que par conséquent
+    $$
+    (f\circ \gamma)'(0) = f'(x, \gamma'(0)).
+    $$
     
  3. **Dérivation en chaîne.**
     Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
@@ -1668,13 +1671,206 @@ la dérivée $(f \circ \gamma)'(0)$ existe.
     $$
     \lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
     $$
-    existe.
+    existe et que la limite est alors égale à $f'(x, h)$.
 
  5. Une fonction dérivable directionnellement au sens de Hadamard en $x$ est 
     *différentiable au sens de Hadamard* en $x$ si de plus $f'(x, h)$ 
     est une fonction linéaire de $h$.
     Montrer que $f$ est différentiable en $x$ au sens de Hadamard 
     si et seulement si elle est différentiable en $x$ au sens de Fréchet.
+
+### Réponses
+
+ 1. Supposons que $f$ soit directionnellement dérivable au sens de Hadamard
+    en $x$. Pour tout $h \in \mathbb{R}^n$, par continuité de l'application
+    $t \in \mathbb{R} \mapsto x + th$, pour $\varepsilon > 0$ assez petit,
+    et parce que le domaine de définition de $f$ est ouvert,
+    l'image de la fonction 
+    $$
+    \gamma: t \in \left]-\varepsilon, \varepsilon \right[ \mapsto x + th
+    $$
+    est incluse dans le domaine de définition de $f$, est telle que
+    $\gamma(0) = x$, $\gamma'(0) = h$. Par conséquent, la dérivée
+    de $f\circ \gamma$ en $0$ existe, et c'est par construction la
+    dérivée directionnelle de $f$ en $x$ dans la direction $h$.
+    La fonction $f$ est donc directionnellement dérivable en $x$ 
+    au sens classique.
+
+ 2. Supposons que $f$ soit directionnellement dérivable au sens de Hadamard
+    en $x$. Pour montrer que l'expression $(f \circ \gamma)'(0)$ ne dépend
+    de $\gamma$ qu'à travers $\gamma'(0)$, nous allons considérer un
+    second chemin arbitraire $\beta: J \to \mathbb{R}^n$, 
+    où $J$ est un intervalle ouvert de $\mathbb{R}$ contenant $0$, 
+    tel que $\beta(0) = x$,
+    $\beta'(0)=\gamma'(0)$ et montrer que 
+    $$
+    (f \circ \gamma)'(0) = (f \circ \beta)'(0).
+    $$
+    L'idée de la démonstration consiste à construire un troisième chemin 
+    $\alpha$ qui en "mélangeant" les chemins $\beta$ et $\gamma$, 
+    satisfait les hypothèses de la définition de "directionnellement 
+    dérivable au sens de Hadamard",
+    est tel que $\alpha'(0) = \beta'(0) = \gamma'(0)$
+    et également tel que
+    d'une part $(f \circ \alpha)'(0)= (f \circ \beta)'(0)$ et d'autre 
+    part $(f \circ \alpha)'(0)=(f \circ \gamma)'(0)$.
+
+    Un chemin qui permette de tenir ce raisonnement est le suivant. 
+    Tout d'abord, choisissons
+    $\varepsilon > 0$ tel que 
+    $\left]-\varepsilon, \varepsilon\right[ \subset I \cap J$,
+    puis définissons $\alpha: \left]-\varepsilon,\varepsilon\right[ \to \mathbb{R}^n$
+    par
+    $$
+    \alpha(t) = \left|
+    \begin{array}{cl}
+    x & \mbox{si } \, t=0, \\
+    \beta(t) & \mbox{si } \, \varepsilon /2^{2k+1} \leq |t| < \varepsilon / 2^{2k}, \, \mbox{pour un entier } \, k \in \mathbb{N}, \\
+    \gamma(t) & \mbox{si } \, \varepsilon / 2^{2k+2} \leq |t| < \varepsilon / 2^{2k+1},  \, \mbox{pour un entier } \, k \in \mathbb{N}.
+    \end{array}
+    \right.
+    $$
+    Les hypothèses de la définition sont facilement vérifiées, 
+    ainsi que la preuve que $\alpha'(0) = \beta'(0) = \gamma'(0)$.
+    Avec l'hypothèse de différentiabilité au sens de Hadamard, nous
+    savons donc que la dérivée $(f\circ \alpha)'(0)$ existe.
+    On peut la calculer comme la limite de
+    $$
+    (f \circ \alpha)'(0) = \lim_{k \to +\infty} \frac{f(\alpha(t_k)) - f(x)}{t_n}
+    $$
+    où $t_k$ est une suite arbitraire de valeurs non nulles tendant vers $0$.
+    Or, si l'on choisit $t_k = \varepsilon/2^{2k+1}$, on trouve
+    $$
+    \lim_{k \to +\infty} \frac{f(\alpha(t_k)) - f(x)}{t_k}
+    =
+    \lim_{k \to +\infty} \frac{f(\beta(t_k)) - f(x)}{t_k}
+    = (f \circ \beta)'(0)
+    $$
+    et si l'on choisit $t_k = \varepsilon/2^{2k+2}$, on trouve
+    $$
+    \lim_{k \to +\infty} \frac{f(\alpha(t_k)) - f(x)}{t_k}
+    =
+    \lim_{k \to +\infty} \frac{f(\gamma(t_k)) - f(x)}{t_k}
+    = (f \circ \gamma)'(0),
+    $$
+  ce qui prouve le résultat d'indépendance souhaité.
+  Pour prouver que $(f\circ \gamma)'(0) = f'(x, \gamma'(0))$, 
+  il suffit d'associer à un chemin quelconque $\gamma$ le
+  chemin "canonique" $\beta: t \mapsto x+ t\gamma'(0)$ de la question 1,
+  qui est tel que $\beta'(0) = \gamma'(0)$ d'une part et d'autre part
+  $(f \circ \beta)'(0) = f'(x, \beta'(0))$ par construction.
+  On en déduit que
+  $$
+  (f \circ \gamma)'(0) = (f \circ \beta)'(0) = f'(x, \beta'(0)) = f'(x, \gamma'(0)).
+  $$
+
+ 3. Soit $\gamma: I \subset \mathbb{R} \to \mathbb{R}^n$,
+    un chemin défini sur un intervalle ouvert $I$ contenant $0$, 
+    tel que $\gamma(I) \subset U$,  $\gamma(0) = x$ et $\gamma'(0)$ existe.
+    Alors, sous les hypothèses du théorème de dérivée en chaîne que nous
+    souhaitons montrer, le chemin $\beta = f \circ \gamma$ est 
+    défini sur $I$, vérifie $\beta(I) \subset V$, $\beta(0) = f(x)$ 
+    et par hypothèse de dérivabilité directionnelle au sens de
+    Hadamard sur $f$ en $x$,
+    $\beta'(0) = f'(x, \gamma'(0))$.
+    Par hypothèse de dérivabilité directionnelle au sens de
+    Hadamard sur $g$ en $f(x)$, 
+    $$
+    ((g\circ f) \circ \gamma)'(0) = 
+    (g \circ \beta)'(0) = g'(f(x), \beta'(0)) = g'(f(x), f'(x, \gamma'(0))),
+    $$
+    ce qui prouve la dérivabilité directionnelle au sens de Hadamard pour
+    la composée $g \circ f$ en $x$. Il suffit d'associer à un vecteur $h$
+    le chemin canonique $t \mapsto x + th$ pour obtenir la relation
+    $$
+    (g \circ f)'(x, h) = g'(f(x), f'(x, h)).
+    $$
+
+ 4. En préambule: si la limite 
+    $$
+    \lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
+    $$
+    existe, elle est égale à la limite obtenue en fixant $k=h$ 
+    $$
+    \lim_{t \to 0} \frac{f(x+ t h) - f(x)}{t}
+    $$
+    qui est par définition $f'(x, h)$.
+
+
+ 
+ **TODO.** Un sens est simple ...
+
+ 5. Si $f$ est différentiable au sens de Fréchet, notons $\varepsilon$
+    la fonction définie dans un voisinage de $0$, continue et nulle en $0$,
+    telle que
+    $$
+    f(x+h) = f(x) + df(x) \cdot h + \varepsilon(h)\|h\|.
+    $$
+    On a alors pour tout $t\in \mathbb{R}$ non nul et tout vecteur
+    $k \in \mathbb{R}^n$ suffisamment petits, en posant $h=tk$, 
+    $$
+    \begin{split}
+    \frac{f(x+ t k) - f(x)}{t}
+    &= \frac{1}{t}df(x) \cdot tk + \frac{1}{t}\varepsilon(tk) \|tk\| \\
+    &= df(x) \cdot k + \varepsilon(t k) \frac{|t|}{t} \|k\|.
+    \end{split}
+    $$
+    Le terme $df(x) \cdot k$ tend vers $df(x)\cdot h$ quand $k \to h$
+    et le second terme du membre de droite tend vers $0$ quand 
+    $t$ et $k$ tendent vers $0$, donc
+    $$
+    \lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t} = df(x) \cdot h.
+    $$
+    Par conséquent la fonction $f$
+    est directionnellement dérivable au sens de Hadamard.
+    Le membre de droite, égal à $f'(x, h)$ est linéaire en $h$,
+    elle est donc différentiable au sens de Hadamard.
+
+    Réciproquement, supposons que $f$ est différentiable au sens de Hadamard.
+    Pour montrer que $f$ est différentiable au sens de Fréchet, 
+    de différentielle $f'(x, h)$, montrons que
+    $$
+    \frac{\|f(x+h) - f(x) - f'(x, h)\|}{\|h\|} \to 0 \, \mbox{ quand } \, h \to 0,
+    $$
+    ou de façon équivalente, que
+    $$
+    \frac{f\left(x+ \|h\|\frac{h}{\|h\|} \right) - f(x)}{\|h\|} - f'\left(x, \frac{h}{\|h\|} \right) \to 0
+    \, \mbox{ quand } \, h \to 0.
+    $$
+    Il nous suffit de montrer que pour toute suite $t_i > 0$ telle
+    que $t_i \to 0$ quand $i \to +\infty$ et 
+    $k_i \in \mathbb{R}^n$ telle que $\|k_i\| = 1$,
+    $$
+    \frac{f\left(x+ t_i k_i \right) - f(x)}{t_i} - f'\left(x, k_i \right) \to 0
+    \, \mbox{ quand } \, i \to +\infty.
+    $$
+    Imaginons au contraire que cette expression ne tende pas vers $0$.
+    Alors on pourrait trouver un $\varepsilon > 0$ et une sous-suite de 
+    $(t_i, k_i)$, notée de $(t'_i, k'_i)$, telle que pour tout $i$,
+    $$
+    \left\|
+    \frac{f \left(x+ t'_i k'_i \right) - f(x)}{t'_i} - f'\left(x, k'_i \right)
+    \right\| \geq \varepsilon.
+    $$
+    Mais la suite des $k'_i$ est de norme égale à $1$;
+    la sphère fermée de centre $1$ étant compacte, il existe des sous-suites
+    $t''_i$ et $k''_i$ de $t'_i$ et $k'_i$ et un $h \in \mathbb{R}^n$ tels que
+    $\|h\| = 1$ et
+    $k''_i \to h$. 
+    Par hypothèse de dérivabilité au sens de Hadamard,
+    on aurait
+    $$
+    \frac{f\left(x+ t''_i k''_i \right) - f(x)}{t''_i} \to f'\left(x, h\right)
+    \, \mbox{ quand } \, i \to +\infty
+    $$
+    ce qui contredit l'inégalité ci-dessus et prouve la contradiction.
+    Par conséquent, $f$ est bien différentiable au sens de Fréchet.
+
+
+
+
+   
+
 
 
 Asymptotique
