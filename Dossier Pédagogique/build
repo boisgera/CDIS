@@ -10,6 +10,7 @@ DOC="Dossier Pédagogique"
 OPT=(-V lang=fr)
 OPT+=(--table-of-contents)
 OPT+=(--standalone)
+OPT+=(--bibliography=bibliography.json -M link-citations=true)
 
 # Outputs
 pandoc "${OPT[@]}" -o "output/${DOC}.pdf" "${DOC}.md"

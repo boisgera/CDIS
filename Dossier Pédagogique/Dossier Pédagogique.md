@@ -67,6 +67,58 @@ articulation le cas échéant avec les UE ou les formations antérieures
 de référence. 
 \]*
 
+L'UE, programmé au 1er semestre de la 1ere année de la scolarité, 
+s'adresse à des étudiants issus pour l'essentiel des classes 
+préparatoires via le concours commun Mines-Ponts. 
+Plus de 85% des étudiants sont issus des filières MP, PSI et PC;
+c'est donc le corpus des connaissances communes à ces trois filières 
+et des compétences associées qui sert de référence à l'UE;
+on pourra se reporter aux programmes de CPGE (cf. @UPS) 
+issus de la réforme de 2013. 
+C'est également cette population à laquelle s'adresse principalement l'UE; 
+l'hétérogénéité des étudiants nécessite néanmoins d'étendre et de nuancer
+cette première intention.
+
+Au sein de cette population, les étudiants issus de MP sont les plus nombreux
+(ils représentent plus de 40% de l'effectif total des étudiants). 
+Dans ce projet, l'UE doit donc s'efforcer d'analyser et de limiter 
+l'enseignement de contenus qui -- bien que nécessaires aux autres populations -- 
+apparaîtraient aux élèves issus de MP comme au mieux des rappels et au pire des 
+redites. 
+C'est une problématique que ne connaissent pas les classes préparatoires.
+La place consacrée dans l'UE à des contenus nouveaux, stimulants et 
+susceptibles de susciter l'intérêt des étudiants les plus avancés 
+en Mathématiques doit être significative; la capacité à les préparer,
+s'ils le souhaitent, à intensifier la place des Mathématiques dans leur 
+parcours en 2A, 3A ou au-delà, à travers des unités d'enseignements proposés
+par Mines ParisTech ou des formations externes, doit être préservée.
+
+A l'inverse, plus de 10% des étudiants à qui s'adresse l'UE 
+ne satisfont pas l'hypothèse initiale: 
+ils ne sont pas issu des filières MP/PSI/PC, n'offrent pas les
+même garanties en termes de prérequis, et ont souvent 
+les plus grandes difficultés dans le cursus actuel
+à valider les enseignement de Mathématiques
+qui leur sont proposés.
+Facteur aggravant,
+cette population, très différente de la population générale, est elle-même
+fortement hétérogène, car composée d'ATS, de TSI, d'admis sur titres variés, 
+etc.
+Ils sont pourtant admis de plein droit dans le cycle ingénieur civil,
+ce nous donne l'obligation de rechercher des solutions 
+ne les condamnant pas à un échec systématique.
+L'impossibilité de concevoir un cours standard
+qui soit adaptés aux élèves les plus avancés et accessible à 
+cette population minoritaire ainsi que sa forte hétérogénéité, plaide
+pour un recours important au suivi personnalisé;
+il s'agira donc de concevoir un cours dont on sait pertinemment qu'il 
+n'est pas totalement adapté ou accessible à une faible fraction de la 
+population, ce qui supposera de leur part un travail important,
+plus important que la moyenne, et que ce travail pourra être accompagné, 
+en dehors des heures de face-à-face pédagogique,
+par l'équipe pédagogique, dans des dispositifs de remédiations 
+personnalisés.
+
 Acquis d'Apprentissage
 --------------------------------------------------------------------------------
 
@@ -99,6 +151,66 @@ l’étudiant sait donc précisément ce qui est attendu de lui [^1],
       <https://www.enseigner.ulaval.ca/ressources-pedagogiques/les-objectifs-d-apprentissage>
 
 
+**TODO:**
+
+  - A.A. "micro" et "macro"
+
+  - aller-retours entre descriptions A.A., modalités péda envisagées et examens
+    pour s'assurer de la cohérence
+
+
+Le lecteur pourra lire avec profit les objectifs de formation des 1ère et 2nde
+année des programmes de classe préparatoire aux grandes écoles [@UPS].
+Ce cadre général est presque totalement indifférencié en MP, PSI et PC. Les
+objectifs d'apprentissage que nous décrivons ci-dessous mettent l'accent sur
+les évolutions par rapport à la doctrine des classes préparatoires, que
+nous résumons brièvement en deux points:
+
+  - Les Mathématiques dans une démarche globale.
+
+    Les programmes de classe préparatoire encourage le développement 
+    d'un équilibre entre les exercices d'entraînement, contribuant à
+    l'acquisition de savoir et capacités très ciblés, et la confrontation à
+    des problèmes plus complexes, éventuellement ouverts, nécessitant 
+    un travail de recherche individuel ou collectif et d'un large 
+    éventail des connaissances et capacité. Sont en ligne de mire:
+    le développement de l'autonomie, le développement d'une large
+    gamme de stratégies de résolution de problème, l'interaction
+    des Mathématiques avec d'autres champs disciplinaires.
+
+  - Raisonner, Démontrer, Calculer, Communiquer.
+
+    Le programmes de classe préparatoire tendent à organiser ces éléments
+    autour de trois pôles: raisonner pour produire des démonstrations
+    (le coeur de l'activité mathématique); calculer, manipuler des symboles, 
+    maîtriser un formalisme; et enfin communiquer à l'écrit et à l'oral.
+    La construction d'objets comme une part de l'activité mathématique
+    n'est évoquée que pour la filière MP.
+
+-------------
+
+  - Intégration composants, périmètre, unité, interactions disciplinaires.
+
+  - Narratif, matrice, compréhension à différents niveaux.
+    Simple avant complexe, démarche inductive.
+    Proposer des solutions à des problèmes, inscrire les notions
+    dans une trame; ne pas chercher le cas le plus général / conceptuel
+    comme première étape.
+
+  - Construction objets, cadres mathématiques, démonstration et pas calcul formel.
+    Pratique de référence complète, modèle (pb, idée, démo, formalisation),
+    mais reconnaissance / valorisation maitrise partielle (suffisant pour
+    des gammes d'applications).
+    Valoriser différents volets de l'activité, même au niveau du raisonnement:
+    connaître / avoir assimilé notions, avoir intuitions, savoir formaliser,
+    etc.
+
+  - Numérique ...
+
+  - en prépa: Architecture des filières fortement différenciées, 
+    liste et description des compétences non ... 
+
+
 Compétences
 --------------------------------------------------------------------------------
 
@@ -111,6 +223,89 @@ l’UE et le référentiel générique de compétences CTI
 Il s’agit de mettre en correspondance les activités pédagogiques et le 
 référentiel CTI fourni en annexe.
 \]*
+
+Vis-à-vis du référentiel générique de la CTI, 
+l'UE participe principalement aux compétences relatives à
+"l'acquisition des connaissances scientifiques et techniques 
+et la maîtrise de leur mise en œuvre" :
+
+ 1. La connaissance et la compréhension d’un large champ de sciences 
+    fondamentales et la capacité d’analyse et de synthèse qui leur est associée.
+
+    **Totalement.**
+
+ 2. L’aptitude à mobiliser les ressources d’un champ scientifique et technique 
+    spécifique.
+
+    **Totalement.**
+
+ 3. La maitrise des méthodes et des outils de l’ingénieur :
+    identification, modélisation et résolution de problèmes même non familiers 
+    et incomplètement définis, l’utilisation des outils informatiques, 
+    l’analyse et la conception de systèmes.
+
+    **Partiellement. ** A ce stade de la formation, et dans la perspective des
+    problèmes auxquels peuvent être confrontés un ingénieur, 
+    l'UE confronte les étudiants à la résolution de problèmes simples
+    (par opposition à "composés" ou "complexes", 
+    mais pas dans le sens de "aisé") et bien définis.
+    L'utilisation de l'outil informatique est également une compétence que 
+    l'UE contribue à développer.
+
+ 4. La capacité à concevoir, concrétiser, tester et valider des solutions, 
+    des méthodes, produits, systèmes et services innovants.
+
+    **Partiellement.** La conception, le test et la validation de solutions
+    et de méthodes, dans le domaine des Mathématiques.
+
+ 5. La capacité à effectuer des activités de recherche, fondamentale 
+    ou appliquée, à mettre en place des dispositifs expérimentaux, 
+    à s’ouvrir à la pratique du travail collaboratif.
+
+    **Partiellement.** L'UE est plutôt un précurseur pour ce type
+    d'activité, qui arriveront plus tard dans le cursus.
+    Des pratiques collaboratives pourraient être exploitées dans
+    le cadre de l'UE, sans pour autant constituer un objectif de formation.
+
+ 6. La capacité à trouver l’information pertinente, à l’évaluer et à 
+    l’exploiter : compétence informationnelle.
+
+    **Partiellement.** Oui, à ceci près que la recherche de l'information
+    pertinente va être principalement cantonnée aux ressources pédagogiques
+    mises à disposition des étudiants.
+
+    **TODO.** dépend peu-être modalités 2eme EC ??? à préciser.
+
+Aucune compétence n'est spécifiquement développée qui soit relative
+à "l'adaptation aux exigences propres de l'entreprise et de la société" :
+
+ 7. --
+
+ 8. --
+
+ 9. --
+
+ 10. --
+
+La "prise en compte de la dimension organisationnelle, personnelle et culturelle"
+est partiellement concernée:
+
+ 11. --
+
+ 12. --
+
+ 13. --
+
+ 14. La capacité à se connaitre, à s’autoévaluer, à gérer ses compétences 
+     (notamment dans une perspective de formation tout au long de la vie), 
+     à opérer ses choix professionnels.
+
+     **Partiellement.** Pas dans une perspective globale, mais localement,
+     concernant le niveau de maîtrise des acquis d'apprentissage associés
+     à l'UE. Cette compétence est importante dans la mesure où elle
+     conditionne le recours que les étudiants peuvent avoir aux dispositifs
+     de remédiation.
+
 
 
 Modalités d'Evaluation
@@ -388,3 +583,6 @@ La prise en compte de la dimension organisationnelle, personnelle et culturelle 
  14. la capacité à se connaitre, à s’autoévaluer, à gérer ses compétences 
      (notamment dans une perspective de formation tout au long de la vie), 
      à opérer ses choix professionnels
+
+Références
+================================================================================

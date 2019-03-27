@@ -1,0 +1,12 @@
+[
+	{
+		"id": "UPS",
+		"type": "webpage",
+		"title": "Programmes.",
+		"container-title": "Prepa.org, le site de l'UPS pour les classes préparatoires aux grandes écoles",
+    "URL": "https://prepas.org/ups.php?entree=programmes",
+    "author": {"literal": "Union des Professeurs de classes préparatoires Scientifiques"},
+    "issued": "2019",
+    "accessed": "2019"
+	}
+]
