@@ -158,10 +158,88 @@ l’étudiant sait donc précisément ce qui est attendu de lui [^1],
   - aller-retours entre descriptions A.A., modalités péda envisagées et examens
     pour s'assurer de la cohérence
 
-
 Le lecteur pourra lire avec profit les objectifs de formation des 1ère et 2nde
 année des programmes de classe préparatoire aux grandes écoles [@UPS].
-Ce cadre général est presque totalement indifférencié en MP, PSI et PC. Les
+La description des compétences à développer est presque totalement 
+indifférenciée en MP, PSI et PC. 
+
+Les objectifs de formation de cet UE, situé en tout début de scolarité, 
+présente bien des aspects similaires à ceux des classes préparatoire:
+
+  - Assurer une continuité avec les enseignements des
+    classes préparatoires (là où les classes préparatoires 
+    se positionnent par rapport aux filières de lycée).
+  
+  - Permettre d'acquérir la maîtrise d'un large panel de connaissances,
+    indissociable d'une pratique des Mathématiques qui 
+    met en oeuvre des compétences multiples
+    (raisonner, démontrer, calculer, communiquer).
+    
+  - S'inscrire dans le projet de formation global, 
+    s'interfacer avec les enseignements de Mathématiques, Physique, etc.
+    en particulier de tronc commun.
+ 
+Des différences de contexte sont toutefois marquées:
+
+  - Le projet de formation consacre à cet UE un volume limité à 4 ECTS, 
+    ce qui est sans commune mesure avec le temps disponible en
+    classe préparatoire pour atteindre les objectifs de formation. 
+    Le périmètre concerné -- calcul différentiel, intégral et stochastique 
+    -- est pourtant très vaste (plus du double de
+    ce volume y était consacré dans l'ancienne maquette) et doit de plus
+    tenir compte des allégements dans ce domaine 
+    de la réforme de 2013 des classes préparatoires. 
+    Il est donc nécessaire d'avoir une ambition réaliste quant à notre capacité 
+    à compléter et infléchir les acquis de classe préparatoire, notamment dans 
+    les compétences de base associées à la pratique des Mathématiques. 
+
+  - L'hétérogénéité croissante des élèves, issus de filières variées et
+    aux objectifs de parcours diversifiés,
+    est une problématique qui épargne largement les classes préparatoires. 
+    Le modèle qui a pu prévaloir implicitement jusqu'à présent
+    pour gérer cette hétérogénéité -- remettre les étudiants à niveau 
+    pour les re-homogénéiser -- montre ses limites. Il est donc nécessaire
+    d'accepter en partie et de prendre en compte cette hétérogénéité 
+    plutôt que de chercher à tout prix à la réduire.
+
+  - La première année du cycle ingénieur civil est la dernière année 
+    du premier cycle d'étude supérieures (undergraduate) et 
+    doit préparer les élèves qui souhaiteraient faire une partie
+    de leur formation en seconde année à l'extérieur aux standards
+    du 2nd cycle d'étude supérieure en Mathématiques.
+
+    ... aussi: maturation, autonomie, etc? 
+
+<!--
+
+Donc
+
+  - L'analyse du tableau des compétences variées attachées à la pratique
+    des Mathématiques est toujours pertinente (raisonner, démontrer, calculer, 
+    communiquer). Compliqué, j'aimerai expliquer qu'il nous faudra être en
+    mesure de relever des compétences "une par une" sans qu'aucune ne soit
+    "bloquante" (en écho à la multiplicité des profils en entrée et des
+    besoins en sortie). Ex: statut/intérêt de la preuve pour la plupart des
+    élèves ?
+
+  - Compétences ? Largement "gelées" dans leur équilibre à l'issue de la prépa?
+
+  - Périmètre large, Volume restreint, 
+    
+  - Continuité: autonomie de l'élève à développer, mais possibilité d'un
+    suivi important (comme en prépa).
+
+  - Hétérogénéité (conséquences pour compétences).
+    Construction de objets mathématiques, "calcul", statut de la démonstration, etc.
+
+
+  - Interface, position ? Projet "complexe", multidisciplinaires, non.
+    (pas le temps, y'a la 2A, etc.). Besoins communs, etc.
+
+-->
+
+<!--
+Les
 objectifs d'apprentissage que nous décrivons ci-dessous mettent l'accent sur
 les évolutions par rapport à la doctrine des classes préparatoires, que
 nous résumons brièvement en deux points:
@@ -187,7 +265,22 @@ nous résumons brièvement en deux points:
     La construction d'objets comme une part de l'activité mathématique
     n'est évoquée que pour la filière MP.
 
+-->
+
 -------------
+
+TODO / hétérogénéité: compétences: "construction" juste MP. Statut de la preuve,
+niveau de "rigueur", différences dans les pratiques disciplinaires: donner les
+standards des Maths du 20ème siècle comme "direction", mais reconnaitre les
+compétences "partielles" (intuition, inductif, etc.) même si maitrise formelle
+pas totale. Nécessaire de mieux discriminer les spectre des compétences
+et la maitrise partielle.
+Reprendre compétences listées en prépa, réorganiser et dire nos attendus?
+Lister attendus ? Quid mémorisation, quid assimilation/intuition ?
+Capacité à formaliser vs "calcul formel" ? Calcul / preuve ?
+Lister ce qu'on attend ici dans ces domaines, en parallèle avec une
+vision des différents profils (raisonner, communiquer/convaincre, etc.).
+
 
   - Intégration composants, périmètre, unité, interactions disciplinaires.
 
@@ -331,6 +424,25 @@ L’impact du projet en terme de séquencement, de contraintes d’emploi du
 temps sera explicité. 
 \]*
 
+*\[ 
+Spécificités: classe inversée, APP, pédagogie par projets, 
+suivi personnalisé, soutien, remédiation, ... 
+\]*
+
+
+### Programme
+
+  - Topologie 1 (I)
+
+  - Calcul Différentiel 1, 2 (I), puis 3 (II).
+
+  - Calcul Intégral 1, 2, 3 (I), puis 4, 5 (II).
+
+  - Equations Différentielles: 1 et 2 (II)
+
+  - Probabilités 1, 2 (I), puis 3, 4, 5 (III).
+
+
 ### Principes
 
   - **Durée (6-9 semaines par EC).** 
@@ -404,7 +516,6 @@ temps sera explicité.
   de face-à-face pédagogique, et 5h de charge de travail totale par semaine.
 
 
-### Calcul Différentiel, Intégral et Stochastique I
 
 Chaque item fait référence à une session de 1h30; 
 les sessions de travail personnel (autonomie ou tutoré) sont listées en italique.
@@ -421,55 +532,169 @@ les sessions de travail personnel (autonomie ou tutoré) sont listées en italiq
 
   - PN: projet numérique.
 
+### Calcul Différentiel, Intégral et Stochastique I
+
 Semaine 1:
 
-  - Topologie (C)
+  - Jour 1:
+  
+    - Topologie (C)
 
-  - Calc. Diff. 1 (C) + Topologie (TD) *+ Topologie (TL)*
+  - Jour 2:
+  
+    - Calc. Diff. 1 (C)
+    
+    - Topologie (TD) *+ Topologie (TL)*
 
-  - Calc. Diff. 1 (TD) *+ Calc. Diff. 1 (TL)* 
+  - Jour 3:
+  
+    - Calc. Diff. 1 (TD) *+ Calc. Diff. 1 (TL)* 
 
 Semaine 2: 
 
-  - Calc. Diff. 2 (C)
+  - Jour 1:
+  
+    - Calc. Diff. 2 (C)
 
-  - Calc. Int. 1 (C) + Calc. Diff. 2 (TD) *+ Calc. Diff. 2 (TL)*
+  - Jour 2:
+  
+    - Calc. Int. 1 (C) 
+    
+    - Calc. Diff. 2 (TD) *+ Calc. Diff. 2 (TL)*
 
 Semaine 3:
 
-  - Calc. Int. 1 (TD) *+ Calc. Int. 1 (TL)*
+  - Jour 1:
+  
+    - Calc. Int. 1 (TD) *+ Calc. Int. 1 (TL)*
 
-  - Calc. Int. 2 (C) *+ Calc. Diff. 2 (PN) + Calc. Diff. 2 (PN)*
+  - Jour 2:
+  
+    - Calc. Int. 2 (C) 
+    
+    - *Calc. Diff. 2 (PN) + Calc. Diff. 2 (PN)*
 
 Semaine 4: 
 
-  - Calc. Int. 2 (TD) *+ Calc. Int. 2 (TL)*
+  - Jour 1:
 
-  - Proba 1 (C)
+    - Proba 1 (C)
 
-  - Proba 1 (TD) *+ Proba 1 (TL) *
+    - Calc. Int. 2 (TD) *+ Calc. Int. 2 (TL)*
+
+
+  - Jour 2:
   
-  - Proba 2 (C)
+    - Proba 1 (TD) *+ Proba 1 (TL) *
+  
+  - Jour 3:
+  
+    - Proba 2 (C)
 
 Semaine 5: 
 
-  - Proba 2 (TD) *+ Proba 2 (TL)*
+  - Jour 1:
   
-  - Calc. Int. 3 (C)
+    - Calc. Int. 3 (C)
 
-  - Calc. Int. 3 (TD) *+ Calc. Int. 3 (TL)*  
+    - Proba 2 (TD) *+ Proba 2 (TL)*
+  
+  - Jour 2:
+  
+    - Calc. Int. 3 (TD) *+ Calc. Int. 3 (TL)*  
 
 Semaine 6:
 
-  - *Révisions (TL) + Révisions (TL)*
+  - Jour 1:
   
-  - Examen (EX) + Examen (EX)
+    - *Révisions (TL) + Révisions (TL)*
+  
+  - Jour 2:
+  
+    - Examen (EX) + Examen (EX)
 
 
 ### Calcul Différentiel, Intégral et Stochastique II
 
 
+Semaine 1:
 
+  - Jour 1:
+  
+    - Calc. Int. 4 (C)
+
+  - Jour 2:
+  
+    - Equa. Diff. 1 (C)
+    
+    - Calc. Int. 4 (TD) *+ Calc. Int. 4 (TL)*
+
+Semaine 2: 
+
+  - Jour 1:
+  
+    - Calc. Int. 5 (C)
+
+    - Equa. Diff. 1 (TD) *+ Equa. Diff. 1 (TL)*
+
+  - Jour 2:
+  
+    - Equa. Diff. 2 (C) 
+    
+    - Calc. Int. 5 (TD) *+ Calc. Int. 5 (TL)*
+
+Semaine 3:
+
+  - Jour 1:
+  
+    - Proba. 3 (C) 
+    
+    - Equa. Diff 2 (TD) *+ Equa. Diff. 2 (TL)*
+
+  - Jour 2:
+  
+    - Calc. Diff. 3 (C) 
+    
+    - Proba. 3 (TD) *+ Proba. 3 (TL)*
+
+  - Jour 3:
+
+    - *Equa. Diff. (PN) + Equa. Diff. (PN)*
+
+Semaine 4: 
+
+  - Jour 1:
+
+    - Proba. 4 (C)
+
+    - Calc. Diff. 3 (TD) *+ Calc. Diff. 3 (TL)* 
+
+  - Jour 2:
+  
+    - Proba. 4 (TD) *+ Proba. 4 (TL)*
+
+ 
+Semaine 5: 
+
+  - Jour 1:
+  
+    - Proba. 5 (C)
+ 
+  - Jour 2:
+
+    - Proba. 5 (TD) *+ Proba. 5 (TL)*
+
+  - Jour 3:
+
+    - *Proba. 5 (PN) + Proba. 5 (PN)*
+
+Semaine 6:
+
+  - Jour 1:
+  
+    - Examen (EX) + Examen (EX)
+
+--------------------------------------------------------------------------------
 
 *\[ 
 Pour chaque activité, précisez les ressources mise à disposition:
@@ -477,10 +702,39 @@ documents (poly, note de cours), étude de cas, logiciels, ressources
 multimédias et éventuellement les productions attendues[^3].
 \]*
 
-*\[ 
-Spécificités: classe inversée, APP, pédagogie par projets, 
-suivi personnalisé, soutien, remédiation, ... 
-\]*
+Ressources Pédagogiques
+--------------------------------------------------------------------------------
+
+Un ensemble de documents comprenant les supports des cours, travaux dirigés et
+projets numériques sera développé en suivant trois principes:
+
+  - **Accès libre.**
+    Les documents associés à l'UE sont mis à disposition et de façon simple 
+    sous forme digitale à toute personne souhaitant y avoir accès.
+    Cette mise à disposition se fait dans le cadre d'une licence
+    de type Creative Commons CC-BY-NC-SA, qui offre une grande liberté
+    dans l'usage et la redistribution des documents.
+    Le développement et l'évolution des ressources se
+    déroulera de façon publique et transparente, 
+    ce qui ouvre la voie à des schémas participatifs.
+    
+  - **Reproductibilité.** 
+    La politique d'accès libre et public aux ressources pédagogiques
+    ne se limite pas aux documents eux-mêmes, mais s'étend à tous les
+    fichiers nécessaires à leur (re-)production.
+    Afin de faciliter leur modification et leur usage,
+    les documents sont produits
+    au moyens de technologies *open-source* et exploitent des formats
+    ouverts; un effort spécifique est également entrepris pour simplifier 
+    la reproduction de l'environnement logiciel nécessaire à cette démarche.    
+
+  - **Formes Digitales.** La production de documents papiers et e-book au
+    format PDF est prévue, mais le processus et les outils de développements 
+    utilisés intègrent en amont la nécessité d'évoluer à brève échéance
+    vers d'autres formats plus riches en fonctionnalités et plus adaptés au 
+    monde digital (HTML, notebooks, etc).
+
+
 
 [^3]: Le modèle IMAIP: <https://didac2b.wordpress.com/2014/12/06/imaip/>
 
@@ -491,6 +745,9 @@ Processus Qualité
 *\[ 
 Composition du groupe de travail. 
 \]*
+
+Lister contacts prépa, élèves, experts (mentionner trait commun de la
+connaissance du cursus et logique sous-jacente)
 
 *\[ 
 Déclinaison du processus qualité: description des aspects de l’UE
