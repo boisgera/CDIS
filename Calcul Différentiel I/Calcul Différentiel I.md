@@ -1786,7 +1786,7 @@ la dérivée $(f \circ \gamma)'(0)$ existe.
     (g \circ f)'(x, h) = g'(f(x), f'(x, h)).
     $$
 
- 4. En préambule: si la limite 
+ 4. Tout d'abord, si la limite 
     $$
     \lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
     $$
@@ -1795,10 +1795,71 @@ la dérivée $(f \circ \gamma)'(0)$ existe.
     \lim_{t \to 0} \frac{f(x+ t h) - f(x)}{t}
     $$
     qui est par définition $f'(x, h)$.
+    
+    Supposons que cette limite existe et montrons que $f$ a une dérivée
+    directionnelle au sens de Hadamard.
+    Soit $\gamma$ un chemin satisfaisant les hypothèses de cette définition.
+    La fonction $f\circ \gamma$ est dérivable en $0$ si et seulement si
+    le taux d'accroissement associé converge en $0$. Or, ce taux
+    d'accroissement peut s'écrire sous la forme
+    $$
+    \frac{f(\gamma(t)) - f(\gamma(0))}{t}
+    =
+    \frac{f\left(x + t \frac{\gamma(t) - \gamma(0)}{t}\right) - x}{t}.
+    $$ 
+    Le chemin $\gamma$ étant dérivable en $0$,
+    $$
+    k(t) :=  \frac{\gamma(t) - \gamma(0)}{t} \to \gamma'(0)
+    \, \mbox{ quand } \, t \to 0
+    $$
+    donc par hypothèse, le taux d'accroissement de $f\circ \gamma$ a une
+    limite en $0$.
 
-
- 
- **TODO.** Un sens est simple ...
+    Réciproquement, suppose que $f$ soit directionnellement dérivable au
+    sens de Hadamard en $0$. Pour montrer que la limite 
+    $$
+    \lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
+    $$
+    existe, il nous suffit de montrer que pour toute suite $t_i$ de valeurs
+    non nulles tendant vers $0$ et toute suite de vecteurs $k_i$ convergeant
+    vers $h$, la limite
+    $$
+    \lim_{i \to +\infty} \frac{f(x+ t_i k_i) - f(x)}{t_i}
+    $$
+    existe. On peut imposer la restriction que la suite $|t_i|$ soit 
+    strictement décroissante et le résultat reste valable.
+    
+    Pour tout $t \in \mathbb{R}^*$ notons $j(t)$ le plus
+    petit parmi les entiers $j$ satisfaisant
+    $$
+    |t - t_j| = \min_{i \in \mathbb{N}} |t - t_i|,
+    $$
+    puis définissons $\gamma(t)$ par $\gamma(0) = x$ et si $t \neq 0$,
+    $$
+    \gamma(t) = x + t k_{j(t)}.
+    $$
+    S'il est défini sur un intervalle $\left]-\varepsilon, \varepsilon\right[$
+    assez petit, $\gamma$ satisfait les hypothèses de la dérivabilité 
+    directionnelle. Le point critique à vérifier est que $\gamma$ est dérivable
+    en $0$. Mais par construction
+    $$
+    \frac{\gamma(t) - \gamma(0)}{t} = k_{j(t)}
+    $$
+    et $j(t)$ tend vers $+\infty$ quand $t$ tend vers $0$; 
+    par conséquent la limite existe et
+    $$
+    \lim_{t \to 0} \frac{\gamma(t) - \gamma(0)}{t} = h.
+    $$
+    Par construction
+    $$
+    \frac{f(\gamma(t_i)) - f(\gamma(0))}{t_i} = \frac{f(x+ t_i k_i) - f(x)}{t_i};
+    $$
+    comme la fonction est dérivable directionnellement au sens de 
+    Hadamard, 
+    $$
+    \lim_{i \to +\infty} \frac{f(x+ t_i k_i) - f(x)}{t_i}
+    $$
+    existe.
 
  5. Si $f$ est différentiable au sens de Fréchet, notons $\varepsilon$
     la fonction définie dans un voisinage de $0$, continue et nulle en $0$,
@@ -1900,6 +1961,7 @@ Convexité
 --------------------------------------------------------------------------------
 
 Lien convexité et différentielle d'ordre 2.
+
 
 Formes, Fonction Distance, Squelette
 --------------------------------------------------------------------------------
