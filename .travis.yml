@@ -18,6 +18,7 @@ before_install:
   - source activate ./env
 
 install:
+  - echo "install started ..."
   - ./build
   # now prepare deployment to gh-pages
   - rm -rf env
