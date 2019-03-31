@@ -7,4 +7,4 @@ dependencies:
   - scipy
   - matplotlib
   - pip:
-    - "-e git+https://github.com/boisgera/pandoc@eb2d08b9a41d9a3bfaea82e89f317a25a32064db#egg=pandoc"
+    - "-e git+https://github.com/boisgera/pandoc@4abbb6c4040e427696786721243a45a91f7d401d#egg=pandoc"
