@@ -1927,13 +1927,6 @@ la dérivée $(f \circ \gamma)'(0)$ existe.
     ce qui contredit l'inégalité ci-dessus et prouve la contradiction.
     Par conséquent, $f$ est bien différentiable au sens de Fréchet.
 
-
-
-
-   
-
-
-
 Asymptotique
 --------------------------------------------------------------------------------
 
@@ -1972,3 +1965,7 @@ squelette de $A$ (deux projections sur $\overline{A}$).
 Pousser le bouchon avec $(d_A(x))^2$ convexe et $A$ convexe ?
 
 cf Zolésio.
+
+
+Références
+================================================================================

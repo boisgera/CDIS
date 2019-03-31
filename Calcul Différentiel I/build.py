@@ -28,9 +28,23 @@ def doctest(*args):
 
 # Document Processing
 # ------------------------------------------------------------------------------
-pass
-# TODO: document sections: make a list of lvl 3 sections scope, then process
-#       Manage separators as a new untitled section (try it)
+def transform(doc):
+
+    # Replace rules with anonymous headers (not perfect solution ... 
+    # will appear in the TOC. But good for separation purposes)
+    todos = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, HorizontalRule):
+            todos.append(path[-1])
+    for todo in todos:        
+        holder, i = todo
+        holder[i] = Header(3, (u"", [], []), [])
+
+    # TODO: detect document sections delimited by headers,
+    #       index them by header ? 
+
+    return doc
+
 
 # ------------------------------------------------------------------------------
 
@@ -41,7 +55,7 @@ try:
     output.mkdir()
 except FileExistsError:
     pass
-bibliography = root / "bibiography.json"
+bibliography = root / "bibliography.json"
     
 # Documents
 doc = "Calcul Différentiel I" # TODO: automate this one
@@ -59,4 +73,5 @@ if bibliography.exists():
 
 # PDF Output
 doc = pandoc.read(file=doc_md)
+doc = transform(doc)
 pandoc.write(doc, file=doc_pdf, options=options)
