@@ -629,10 +629,13 @@ $$
 \Delta f(x, h) = f(x+h) - f(x),
 $$
 on réalise que la différentielle de $f$ en $x$, quand elle existe, 
-constitue une approximation de cette variation qui est linéaire en $h$:
+constitue une approximation de cette variation qui est linéaire en $h$
 $$
-\Delta f(x, h) = df(x) \cdot h + o(\|h\|).
+\Delta f(x, h) = df(x) \cdot h + o(\|h\|)
 $$
+et d'une certaine façon la meilleure puisque cette relation la définit
+de façon unique.
+
 
 
 ### Note
