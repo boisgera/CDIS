@@ -3,6 +3,8 @@ settings.json
 
 # Conda Environment
 env
+src/pip-delete-this-directory.txt
+src/pandoc
 
 # Python
 *.pyc
