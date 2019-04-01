@@ -725,16 +725,17 @@ que $df(x^2)$ désigne la notation "stricte" $d(f)(x^2)$.
 
 
 ### Note {.meta}
-Même si la notation de la différentielle en $a$ donne un indice sur l'étape
+Même si la notation de la différentielle en $x$ donne un indice sur l'étape
 suivante, il faut probablement retarder l'apparition de la notion d'application
 différentielle et construire une familiarité avec la notion de différentielle 
 en $a$ avant de passer à l'étape d'après.
 La notion d'application différentielle ne devient nécessaire que pour parler
 de fonction continûment différentiable et de différentielle d'ordre supérieur.
 
+# {.ante}
 
-
-
+Sous les hypothèse ad hoc, la différentielle de $f$ et $g$ en $x$ 
+est la composée des différentielles de $f$ en $x$ et de $g$ en $y=f(x)$.
 
 ### Différentiation de fonction composée -- Règle de dérivation en chaîne
 
@@ -744,31 +745,28 @@ sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$.
 Si $f$ est différentiable en $x \in U$ et $g$ est différentiable en $f(x) \in V$,
 alors la composée $g \circ f$ est différentiable en $x$ et
 $$
-d(g \circ f)(x) = dg(f(x)) \circ df(x)
+d(g \circ f)(x) = dg(y) \cdot df(x) \; \mbox{ où } \; y = f(x).
 $$
 
-### Remarque {.remark}
+### Notations {.note}
 
-**TODO:** Inverser l'approche ? Donner dans le théorème le résultat avec la
-variable intermédiaire, puis s'en passer en remarque, voire écrire
-simplement $d(g\circ f) = (dg \circ f) df$, avec toutes
-les ambiguités que cela peut engendrer ... 
+La formule précédente peut s'écrire de façon plus compacte sans
+la variable intermédiaire $y$:
+$$
+d(g \circ f)(x) = dg(f(x)) \cdot df(x).
+$$
+Le terme $dg(f(x))$ y désigne la différentielle de $g$ en $f(x)$
+et non la différentielle de l'expression $g(f(x))$ (qui est le terme
+que l'on souhaite calculer).
 
-En clair, la différentielle de $f$ et $g$ en $x$ est la composée des
-différentielles de $f$ en $x$ et de $g$ en $y=f(x)$.
-Il peut être utile pour se familiariser avec ce résultat d'expliciter
-le rôle de la variable intermédiaire $y$ dans la formule ci-dessus:
-$$
-d(g\circ f)(x) = dg(y) \circ df(x) \; \mbox{ où } \; y = f(x).
-$$
-En complément, annoter les composants d'une formule avec les ensembles 
+Comment souvent, annoter les composants d'une formule avec les ensembles 
 auquels ils appartiennent permet de s'assurer qu'elle n'est pas 
 trivialement incorrecte. Ici par exemple:
 $$
 \stackrel{\mathbb{R}^m \leftarrow \mathbb{R}^p}{d(g\circ f)(x)} 
 \, = \,  
 \stackrel{\mathbb{R}^m \leftarrow \mathbb{R}^n}{dg(y)} 
-\circ 
+\cdot
 \stackrel{\mathbb{R}^n \leftarrow \mathbb{R}^p}{df(x)} \; \mbox{ où } \; y = f(x).
 $$
 
@@ -834,35 +832,39 @@ le résultat est donc acquis.
 
 
 
-### Règles de la Somme et du Produit
+### Linéarité de la différentielle {.theorem}
 
-Les applications somme $(x, y) \in \mathbb{R}^n \times \mathbb{R}^n \mapsto x + y$
-et produit $(x, y) \in \mathbb{R}\times\mathbb{R} \to \mathbb{R}$ sont différentiables.
-Leurs différentielles au point $(x, y)$ satisfont:
 $$
-d(x, y \mapsto x + y) \cdot (dx, dy) = dx + dy
-$$
-$$
-d(x, y \mapsto x \times y) \cdot (dx, dy) = x dy + y dx 
+d(\lambda x + \mu y) = \lambda dx + \mu dy.
 $$
 
-**TODO:** notation $d_{xy}$ pour alléger le reste ? (qui est par ailleurs
-encore abusif malgré la lourdeur ... Rk: dans $df(x)$, on pourrait croire
-que $d$ s'applique à l'expression $f(x)$, mais ça n'est pas l'esprit ...
-donc rigoureusement plus haut je devrait écrire des choses comme:
-$d(x, y \mapsto x + y)(x, y) \cdot (h_1, h_2)$. L'usage répété de $x$ et de
-$y$ n'est qu'une "coincidence". Ici, l'écart avec ce que l'on a envie
-d'écrire, à savoir $d(x+y) = dx + dy$ est particulièrement frappant.
-Y'a-t'il une solution sans complexifier outre mesure de bénéficier de
-ce niveau de simplicité des calculs ? Au moins accepter de différencier
-des expressions ?)
 
 ### Preuve
 
 **TODO**
 
+### Règle du produit {.theorem}
 
-**TODO:** (cas matriciel pour le produit ? A un moment ?)
+L'application produit est différentiable en tout point et
+$$
+d xy = x dy + y dx
+$$
+
+### Remarque {.note}
+Si l'on note $\mathrm{p}$ l'application produit
+$$
+\mathrm{p}: (x, y) \in \mathbb{R}^2 \mapsto x y \in \mathbb{R},
+$$
+ce résultat signifie que pour tout $(h_x, h_y)$ de $\mathbb{R}^2$, on a
+$$
+d \mathrm{p} (x, y)  \cdot (h_x, h_y) = x h_y + y h_x.
+$$
+
+### Démonstration {.proof}
+
+
+
+**TODO:** (cas matriciel pour le produit ? A un moment ?). En exercice ?
 
 
 Matrice Jacobienne

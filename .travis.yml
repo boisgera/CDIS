@@ -14,7 +14,7 @@ before_install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update conda
   - conda info -a # debugging
-  - conda env create -vvv -f environment.yml -p env
+  - conda env create -v -f environment.yml -p env
   - source activate ./env
 
 install:
