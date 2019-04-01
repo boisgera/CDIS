@@ -831,6 +831,8 @@ $$
 le résultat est donc acquis.
 
 
+**TODO;** décomposer en règle de la somme et du facteur constant ?
+Omettre facteur constant et le voir comme un corollaire?
 
 ### Linéarité de la différentielle {.theorem}
 La combinaison linéaire
