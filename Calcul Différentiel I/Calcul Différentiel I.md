@@ -437,21 +437,26 @@ $A \cdot (B \cdot x)$.
 Notation de Landau
 --------------------------------------------------------------------------------
 
-### Note {.note}
+### Objectif {.meta}
 
 Présenté volontairement dans le cadre le plus étroit possible qui satisfasse
 nos besoins (notamment, comparaison par rapport $\|h\|^k$) suffit, ce qui 
 évite un grand nombre de subtilités. Pas jugé d'un grand intérêt en tant que
 tel, nous ne développons absolument pas le "calcul des o"; il s'agit juste
 d'avoir une notation pratique pour noter des résultats, dans le cadre bien
-précis du calcul différentiel et des propriétés des reste. 
-Toute les démonstrations commencent par la traduction des $o$ en fonctions;
+précis du calcul différentiel et des propriétés des restes dans les 
+développements limités. 
+Toutes les démonstrations commencent par la traduction des $o$ en fonctions;
 on est donc presque dans la situation ou l'on pourrait se passer de la 
 notation; on aurait en contrepartie des résultats un peu plus lourd à énoncer,
 les conséquences seraient limitées à ça.
 
---------------------------------------------------------------------------------
+**TODO:** remarque sur rôle du $o(1)$ et comment on pourrait tout ramener à
+ça ... retenir au moins que $o(\|h\|) = o(1) \|h\|$ ? La notation $o(1)$
+est pratique pour désigner $\varepsilon$ directement, sans avoir à rappeler
+les hypothèses en détail.
 
+### Petit o de Landau
 
 La notation $o(\|h\|^k)$, 
 où $h \in \mathbb{R}^n$ et $k \in \mathbb{N}$,
@@ -490,7 +495,7 @@ $$
 ### Continuité {.example}
 
 Si $f$ est une fonction définie d'un sous-ensemble de $\mathbb{R}^n$
-dans $\mathbb{R}^m$ et que $x \in \mathbb{R}^n$, la notation
+et que $x \in \mathbb{R}^n$, la notation
 $$
 f(x+h) = o(1)
 $$
@@ -500,7 +505,7 @@ $$
 \lim_{h \to 0} f(x + h) = 0,
 $$
 autrement dit que $x$ appartient à l'intérieur du domaine de $f$ et
-que $f$ est continue en $x$.
+que $f$ y est continue.
 
 
 Différentielle
@@ -527,7 +532,14 @@ Cette définition de la dérivée nécessite la formation d'un taux d'accroissem
 et par conséquent que $h$ soit scalaire puisque l'on divise par $h$; 
 il ne peut être utilisé que si la fonction $f$ n'ait qu'un argument scalaire.
 En revanche, la fonction peut être à valeurs scalaires ou vectorielles sans
-qu'il soit nécessaire de changer cette définition.
+qu'il soit nécessaire de changer cette définition. Plus précisement, 
+une fonction vectorielle $f=(f_1, \cdots, f_m)$ sera dérivable en $x$
+si et seulement si toutes ses composantes -- qui sont des fonctions
+scalaires -- sont dérivables; on a alors
+  $$
+  [f'(x)]_i = f_i'(x).
+  $$
+Autrement dit, on peut dériver composante par composante.
 
 ### Remarque {.ante}
 La dérivabilité peut être définie de façon équivalente en passant par la
@@ -628,6 +640,47 @@ $$
 On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
 définition de la fonction n'est pas évident dans le contexte (cas particulier
 des expressions, à suivre).
+
+### Différentiation composante par composante
+
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert.
+La fonction $f=(f_1, \cdots, f_m)$ est différentiable en $x \in U$ 
+si et seulement si chacune de ses composantes $f_i$ est différentiable
+en $x$. On a alors pour tout $h \in \mathbb{R}^n$
+$$
+(df(x) \cdot h)_i = d f_i(x) \cdot h.
+$$
+
+### Preuve {.proof}
+Supposons $f$ différentiable en $x$; soit $\varepsilon$ un $o(1)$ tel que
+$$
+f(x + h) = f(x) + df(x)\cdot h + \varepsilon(h) \|h\|.
+$$
+En prenant la $i$-ème composante de cette equation, on obtient
+$$
+f_i(x + h) = f_i(x) + (df(x)\cdot h)_i + \varepsilon_i(h) \|h\|.
+$$
+On constate alors que l'application $[h \mapsto df(x) \cdot h]_i$ est linéaire
+(l'application "prendre la $i$-ème composante d'un vecteur de $\mathbb{R}^m$" 
+étant linéaire)
+et que $\varepsilon_i$ est un $o(1)$. 
+La $i$-ème composante $i$ de $f$ est donc différentiable et 
+$df_i(x) \cdot h = df(x) \cdot h_i$.
+
+Réciproquement, si toutes les composantes de $f$ sont 
+différentables en $x$, c'est-à-dire si il existe pour chaque $i$ une
+fonction $\varepsilon_i$ qui soit un $o(1)$ et telle que
+$$
+f_i(x + h) = f_i(x) + df_i(x)\cdot h + \varepsilon_i(h) \|h\|,
+$$
+on a
+$$
+f(x + h) = f_i(x) + (df_1(x)\cdot h, \dots, df_m(x)\cdot h) + 
+\varepsilon(h) \|h\|,
+$$ 
+et $\varepsilon = (\varepsilon_1, \dots, \varepsilon_m)$ est un $o(1)$.
+Comme la fonction $h \mapsto (df_1(x)\cdot h, \dots, df_m(x)\cdot h)$ est 
+linéaire en $h$, on en déduit que $f$ est différentiable en $x$.
 
 ### Domaine de définition non ouvert {.note}
 
@@ -877,57 +930,131 @@ $$
 **TODO:** (cas matriciel pour le produit ? A un moment ?). En exercice ?
 
 
-Matrice Jacobienne
+Jacobienne, dérivées partielles et directionnelles 
 ================================================================================
 
-Quelle est la représentation matricielle $[df(x)]$ de la différentielle de
-$f$ en $x$ quand celle-ci existe ? Il s'agit de calculer par définition de
-calculer $[df(x) \cdot e_j]_i$. La relation
-$f(x+h) = f(x) + df(x) \cdot h + o(\|h\|)$ établit l'existence d'une
-fonction $\varepsilon$ définie dans un voisinage de $0$, nulle et continue
-en $0$ et telle que $f(x+h) = f(x) + df(x) \cdot h + \varepsilon(h) \|h\|$.
-Soit $t \neq  0$; en substituant $h = t e_j$, on obtient
-$$
-f(x+te_j) = f(x) + df(x) \cdot (t e_j) + \varepsilon(t e_j) \|t e_j\|.
-$$
-En exploitant la linéarité de la différentielle et en prenant la 
-$i$-ème composante de cette équation vectorielle,
-$$
-[df(x) \cdot e_j]_i = \frac{f_i(x+te_j) - f_i(x)}{t} + \varepsilon_i(t e_j) (\|t\|/t).
-$$
-Par conséquent, en passant à la limite quand $t \to 0$, on obtient
-$$
-[df(x) \cdot e_j]_i = \lim_{t \to 0} \frac{f_i(x+t e_j) - f_i(x)}{t}.
-$$
-Quelques notations et définitions permettent de capturer ce résultat.
+### Objectifs {.meta}
 
-**TODO:** la décomposition en composant dès ce stade est un poil pénible
-puisqu'elle n'est pas nécessaire au stade de la dérivée partielle ...
-Oui on peut revenir en arrière et travailler ligne par ligne.
+TODO: à l'oral, insister sur différentielle comme point de départ et
+le reste (dérivées partielles, directionnelle, etc) s'ensuivent.
+Montrer que la démarche inverse ne marche pas (bien que la jacobienne
+puisse être formellement définie, la chain rule ne marche pas, donc
+on ne peut pas les multiplier)
+
+
+### Matrice Jacobienne {.definition}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ où $U$ est ouvert et
+soit $x$ un point de $U$. Quand $f$ est différentiable en $x$, 
+on appelle *matrice jacobienne* de $f$ en $x$ et l'on note 
+$J_f(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la différentielle 
+$df(x)$ de $f$ en $x$ qui est une application linéaire de 
+$\mathbb{R}^m$ dans $\mathbb{R}^n$
+
+
+
+**TODO:** à quelle moment est-ce que j'indique que
+$$
+[d f(x) \cdot e_j]_i = df_i(x) \cdot e_j ?
+$$
+
+
 
 ### Dérivée Partielle {.definition}
 
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert.
-Soit $x \in U$. Lorsque la limite existe, on appelle $i$-ème dérivée partielle
-de $f$ en $x$ le vecteur $\partial_i f(x) \in \mathbb{R}^m$ défini par
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
+soit $x \in U$. 
+Lorsque la $i$-ème fonction partielle de $f$ en $x$
 $$
-\partial_i f(x) = \lim_{t \to 0} \frac{f(x + t e_i) - f(x)}{t}
-= \lim_{t \to 0} \frac{f(x_1, \dots, x_i + t, \dots, x_n) - f(x_1, \dots, x_n)}{t} 
+y_i \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)
 $$
-Lorsque $f$ est différentiable en $f$, toutes ses dérivées partielles existent
-et vérifient
+est dérivable en $y_i = x_i$, on appelle $i$-ème *dérivée partielle*
+de $f$ en $x$ et on note $\partial_i f(x) \in \mathbb{R}^m$ sa dérivée.
+Alternativement,
 $$
-\partial_i f(x) = df(x) \cdot e_i
+\begin{split}
+\partial_i f(x)
+&= \lim_{t \to 0} \frac{f(x + t e_i) - f(x)}{t} \\
+&= \lim_{t \to 0} \frac{f(x_1, \dots, x_i + t, \dots, x_n) - f(x_1, \dots, x_n)}{t} 
+\end{split}
+$$
+quand le second membre existe.
+
+
+### Dérivées partielles et différentielle
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
+soit $x$ un point de $U$. 
+Lorsque $f$ est différentiable en $x$, 
+toutes ses dérivées partielles existent et vérifient
+$$
+\partial_i f(x) = df(x) \cdot e_i,
 $$
 ou de façon équivalente, pour tout $h \in \mathbb{R}^n$
 $$
 df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i
 $$
 
-### Preuve 
+### Preuve {.proof}
+La différentiabilité de $f$ en $x$ établit l'existence d'une
+fonction $\varepsilon$ qui soit un $o(1)$ et telle que 
+$$
+f(x+h) = f(x) + df(x) \cdot h + \varepsilon(h) \|h\|.
+$$
+Soit $t \neq  0$; substituer $h := t e_j$ dans cette relation fournit
+$$
+f(x+te_j) = f(x) + df(x) \cdot (t e_j) + \varepsilon(t e_j) \|t e_j\|.
+$$
+En exploitant la linéarité de la différentielle, on obtient donc
+$$
+df(x) \cdot e_j = \frac{f(x+te_j) - f(x)}{t} + \varepsilon(t e_j) \frac{|t|}{t}.
+$$
+Par conséquent, en passant à la limite quand $t \to 0$, on obtient
+$$
+df(x) \cdot e_j = \lim_{t \to 0} \frac{f_i(x+t e_j) - f_i(x)}{t} =: \partial_j f(x)
+$$
+La différentielle pouvant être calculée composante par composante,
+on en déduit que
+$$
+\partial_i f(x)df_i(x) \cdot e_j = \lim_{t \to 0} \frac{f_i(x+t e_j) - f_i(x)}{t}.
+$$
+Pour obtenir la seconde forme de cette relation, il suffit de décomposer un
+vecteur $h=(h_1, \dots, h_m)$ sous la forme
+$$
+h = (h_1, \dots, h_m) = h_1 e_1 + \dots + h_m e_m
+$$
+et d'exploiter la linéarité de la différentielle; on obtient
+$$
+df(x) \cdot h 
+= df(x) \cdot \left( \sum_{i} h_i e_i \right)
+= \sum_i (df(x) \cdot e_i) h_i 
+= \sum_i \partial_i f(x) h_i.
+$$
 
-**TODO:** finir, mais l'essentiel des arguments est dans l'intro.
+### {.ante}
 
+La dérivée partielle n'est qu'un cas particulier du concept de dérivée
+directionnelle, limitée aux directions de la base canonique de $\mathbb{R}^n$.
+
+### Dérivée directionnelle {.definition}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
+soit $x$ un point de $U$. On appelle *dérivée directionnelle* de $f$ en 
+$x$ dans la direction $h \in \mathbb{R}^n$ la valeur
+$$
+f'(x, h) = (t \mapsto f(x + th))'(0) 
+= \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
+$$
+quand elle existe.
+
+### Dérivée partielle et directionnelle  {.theorem}
+La fonction $f$ admet une dérivée directionnelle en $x$ dans la direction
+$e_i$ si et seulement si sa $i$-ème dérivée partielle existe; on a 
+alors
+$$
+f'(x, h) = \partial_i f(x).
+$$
+
+### Preuve {.proof}
+
+Direct.
 
 
 ### Matrice Jacobienne {.definition}
@@ -961,9 +1088,10 @@ Exploiter la chain rule plutôt que la construction élémentaire de l'introduct
 
 
 
-### TODO
+### TODO {.meta}
 
-Fcts $C^1$ et réciproque partielle...
+Fcts $C^1$ et réciproque partielle... autre section ? ICI ?
+
 
 Inégalité des accroissement finis
 ================================================================================
