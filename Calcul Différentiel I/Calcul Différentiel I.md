@@ -737,7 +737,7 @@ de fonction continûment différentiable et de différentielle d'ordre supérieu
 Sous les hypothèse ad hoc, la différentielle de $f$ et $g$ en $x$ 
 est la composée des différentielles de $f$ en $x$ et de $g$ en $y=f(x)$.
 
-### Différentiation de fonction composée -- Règle de dérivation en chaîne
+### Règle de différentiation en chaîne
 
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
@@ -1720,6 +1720,49 @@ si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
 $g$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable.
 
 Montrer qu'alors, $f' = g'|_{[a, b]}$.
+
+Dérivation en chaîne
+--------------------------------------------------------------------------------
+
+Montrer que la règle de dérivation en chaîne ci-dessous, 
+concernant les fonctions d'une variable, se déduit de la 
+[règle générale de différentiation en chaîne][Règle de différentiation en chaîne].
+
+Soit $f: U \subset \mathbb{R} \to \mathbb{R}$ et 
+$g: V \subset \mathbb{R} \to \mathbb{R}$ deux fonctions définies
+sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
+Si $f$ est différentiable en $x \in U$ et $g$ est différentiable en $f(x) \in V$,
+alors la composée $g \circ f$ est différentiable en $x$ et
+$$
+(g \circ f)'(x) = g'(f(x)) f'(x).
+$$
+
+### Réponse
+
+Les fonction $f$ et $g$ sont dérivables donc différentiables 
+(cf. [Différentielle et Dérivée]).
+Par application de la [règle de différentiation en chaîne][Règle de dérivation en chaîne],
+leur composée $g \circ f$ est donc différentiable.
+C'est une fonction d'une variable, elle est donc dérivable, 
+à nouveau en invoquant 
+[le lien entre différentielle et dérivée][Différentielle et Dérivée].
+Pour ces trois fonctions, on obtient la dérivée en appliquant la
+différentielle à $1$; La [règle de différentiation en chaîne][Règle de différentiation en chaîne]
+fournissant
+$$
+d(g \circ f)(x) = dg(f(x)) \cdot df(x),
+$$
+on en déduit
+$$
+\begin{split}
+(g \circ f)'(x) &= (d(g \circ f)(x)) \cdot 1 \\
+&= (dg(f(x)) \cdot df(x) )\cdot 1 \\
+&=dg(f(x)) \cdot (df(x) \cdot 1) \\
+&= dg(f(x)) \cdot (f'(x) 1) \\
+&= (dg(f(x)) \cdot 1) f'(x) \\ 
+&= g'(f(x)) f'(x)
+\end{split}
+$$
 
 Calcul Méca
 --------------------------------------------------------------------------------
