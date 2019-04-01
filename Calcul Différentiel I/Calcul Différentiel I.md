@@ -833,29 +833,37 @@ le résultat est donc acquis.
 
 
 ### Linéarité de la différentielle {.theorem}
-
+La combinaison linéaire
+$(x, y) \in \mathbb{R}^2 \mapsto \lambda x + \mu y \in \mathbb{R}$ 
+est différentiable en tout point pour tous scalaires $\lambda$
+et $\mu$ et
 $$
 d(\lambda x + \mu y) = \lambda dx + \mu dy.
 $$
 
+### Remarque {.note}
+Si l'on note $\mathrm{c}$ l'application de combinaison linéaire,
+ce résultat signifie que pour tout couple $(h_x, h_y)$ de réels, on a
+$$
+d \mathrm{c} (x, y)  \cdot (h_x, h_y) = \lambda h_x + \mu h_y.
+$$
 
-### Preuve
+### Démonstration {.proof}
 
 **TODO**
 
 ### Règle du produit {.theorem}
 
-L'application produit est différentiable en tout point et
+L'application produit 
+$(x, y) \in \mathbb{R}^2 \mapsto xy  \in \mathbb{R}$
+est différentiable en tout point et
 $$
 d xy = x dy + y dx
 $$
 
 ### Remarque {.note}
-Si l'on note $\mathrm{p}$ l'application produit
-$$
-\mathrm{p}: (x, y) \in \mathbb{R}^2 \mapsto x y \in \mathbb{R},
-$$
-ce résultat signifie que pour tout $(h_x, h_y)$ de $\mathbb{R}^2$, on a
+Si l'on note $\mathrm{p}$ l'application produit,
+ce résultat signifie que pour tout couple $(h_x, h_y)$ de réels, on a
 $$
 d \mathrm{p} (x, y)  \cdot (h_x, h_y) = x h_y + y h_x.
 $$
