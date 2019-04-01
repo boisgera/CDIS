@@ -1,6 +1,6 @@
 % Calcul Différentiel I
 
-Narratif, Notes & TODOs
+Narratif & Notes & TODOs
 ================================================================================
 
 ### Différentielle & Dérivée Directionnelle
@@ -506,9 +506,93 @@ que $f$ est continue en $x$.
 Différentielle
 ================================================================================
 
-### TODO: préambule sur la dérivée, préparer, mettre sous une forme proche
-de la diff, remarquer caractère linéaire, etc.
+### Dérivée
 
+Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert.
+La fonction $f$ est *dérivable* en $x \in U$ s'il existe une
+limite $\ell \in \mathbb{R}^n$ au *taux d'accroissement* de
+$f$ en $x$:
+$$
+\ell = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+$$
+Cette limite quand elle existe est unique; 
+elle est appelée *dérivée de $f$ en $x$* et notée $f'(x)$:
+$$
+f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
+$$
+
+### Remarque
+
+Cette définition de la dérivée nécessite la formation d'un taux d'accroissement
+et par conséquent que $h$ soit scalaire puisque l'on divise par $h$; 
+il ne peut être utilisé que si la fonction $f$ n'ait qu'un argument scalaire.
+En revanche, la fonction peut être à valeurs scalaires ou vectorielles sans
+qu'il soit nécessaire de changer cette définition.
+
+### Remarque {.ante}
+La dérivabilité peut être définie de façon équivalente en passant par la
+notion de développement limité à l'ordre $1$.
+
+### Développement limité au premier ordre {.theorem}
+Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert.
+La fonction $f$ est *dérivable* en $x \in U$ si et seulement si il 
+existe un vecteur $\ell \in \mathbb{R}^m$ tel que
+$$
+f(x+h) = f(x) + \ell h + o(|h|).
+$$
+Le vecteur $\ell$ est alors égal à $f'(x)$.
+
+### Démonstration {.proof}
+Supposons que le taux d'accroissement de $f$ 
+ait une limite $\ell$ en $x$ et considérons la fonction $\varepsilon$,
+à valeurs dans $\mathbb{R}^m$, définie quand $x+h \in U$ par 
+$\varepsilon(0) = 0$ et si $h \neq 0$ par
+$$
+\varepsilon(h) = \frac{f(x+h) - f(x)}{|h|} - \ell \frac{h}{|h|}.
+$$
+Puisque $U$ est ouvert, la fonction $\varepsilon$ est définie dans un voisinage 
+de $h=0$;  
+par construction, pour tout $h$ on a $f(x+h) = f(x) + \ell h + \varepsilon(h) |h|$.
+Finalement, $f$ étant dérivable en $x$ de dérivée $\ell$, comme
+pour $h \neq 0$,
+$$
+\varepsilon(h) = \left(\frac{f(x+h) - f(x)}{h} - \ell h \right) \frac{h}{|h|}
+$$
+on a bien $\lim_{h \to 0} \varepsilon(h) = 0$.
+Par conséquent, avec la notation de Landau,
+$$
+f(x+h) = f(x) + \ell h + o(|h|).
+$$
+Réciproquement, si l'égalité $f(x+h) = f(x) + \ell h + \varepsilon(h) |h|$
+est satisfaite avec une fonction $\varepsilon$ conforme à la notation de
+Landau,
+$$
+\frac{f(x+h) - f(x)}{h} = \ell + \varepsilon(h) \frac{h}{|h|}
+$$
+et par conséquent le taux d'accroissement de $f$ en $x$ tend bien vers
+$\ell$ quand $h$ tend vers $0$.
+
+### Fonctions linéaires d'une variable scalaire {.note}
+Ce développement limité de $f$ en $x$ à l'ordre 1 fournit de façon explicite
+une approximation linéaire de la variation $\Delta f(x, h)$ de $f$ en $x$:
+$$
+\Delta f(x, h) :=  f(x+h) - f(x) = \ell h + o(|h|)
+$$
+Cette remarque n'est pas anodine car toutes les applications 
+linéaires
+de $\mathbb{R}$ dans $\mathbb{R}^m$ sont de la forme $h \mapsto \ell h$ 
+pour un certain vecteur $\ell$.
+En effet, $L$ étant linéaire, pour tout $h \in \mathbb{R}$, 
+$$L\cdot h = L \cdot (h \times 1) = h (L \cdot 1) = (L \cdot 1) h,$$
+le vecteur $\ell = L \cdot 1$ convient donc. 
+Par conséquent, on peut caractériser la dérivabilité de $f$ en $x$
+par l'existence d'une fonction linéaire de $\mathbb{R}^m$ dans $\mathbb{R}$
+telle que
+$$
+f(x) = f(x+h) + L \cdot h + o(|h|).
+$$
+Cette caractérisation de la dérivée est directement généralisable au cas
+de fonction à $n$ variables.
 
 ### Différentielle de Fréchet {.definition .theorem}
 
@@ -527,17 +611,16 @@ La fonction $f$ est *différentiable*
 si elle est différentiable en tout point de $U$. 
 
 ### Remarque 
-On peut noter $\Delta f(x, h)$ la variation de $f$ en $x$ dans la direction $h$:
+Si l'on considère à nouveau $\Delta f(x, h)$, 
+la variation de $f$ en $x$, associée à la variation $h$ de l'argument
 $$
-\Delta f(x, h) = f(x+h) - f(x).
+\Delta f(x, h) = f(x+h) - f(x),
 $$
-La différentielle de $f$ en $x$, quand elle existe, constitue une approximation 
-de cette variation qui est linéaire en $h$:
+on réalise que la différentielle de $f$ en $x$, quand elle existe, 
+constitue une approximation de cette variation qui est linéaire en $h$:
 $$
-\Delta f(x, h) = df(x) \cdot h + o(h).
+\Delta f(x, h) = df(x) \cdot h + o(\|h\|).
 $$
-
-
 
 
 ### Note
@@ -546,43 +629,55 @@ On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de
 définition de la fonction n'est pas évident dans le contexte (cas particulier
 des expressions, à suivre).
 
-### TODO: pourquoi ouvert
+### Domaine de définition non ouvert {.note}
 
-(pas stricto sensu nécessaire mais plus simple; permet de se poser la question
-de l'existence de la différentielle en tout point du domaine de définition. 
-donner exemple avec branche de log définie
-sur $\mathbb{C}^*$; on peut se poser la question de la différentiation
-partout sauf sur $\mathbb{R}^-$.)
+La définition de différentielle de $f$ suppose que le domaine de définition
+de $f$ soit un ensemble ouvert. Cette restriction permet de garantir qu'en
+tout point $x$ considéré du domaine de définition, on peut examiner la
+variation de $f$ en $x$ dans "toutes les directions" pour voir s'il existe
+une approximation linéaire.
 
-### TODO:
+Il y a néanmoins des façons de s'adapter quand le domaine de définition de 
+$f$ n'est pas ouvert
 
-différentier valeur par valeur OK, comme avec la dérivée.
+  - Si $x$ est un point de l'intérieur de ce domaine, 
+    on peut alors considérer la 
+    restriction de $f$ à un voisinage ouvert de $x$ et étudier la 
+    différentiabilité de cette restriction. Le résultat (existence
+    de la différentielle et valeur le cas échéant) est indépendant
+    du voisinage ouvert choisi.
 
-### TODO: manip avec extension à un ouvert en général.
+  - Si $x$ est un point de la frontière de ce domaine,
+    on peut à l'inverse chercher s'il existe une extension de $f$
+    à un voisinage ouvert de $x$ qui soit différentiable en $x$.
+    En général cette approche ne garantit pas une définition unique
+    de la différentielle de $f$ en $x$, mais est suffisante dans
+    des cas importants. Par exemple, elle permet d'étudier la
+    [différentiabilité (ou dérivabilité) de fonctions d'une variable 
+    scalaire sur des intervalles fermés de $\mathbb{R}$](#intervalle-fermé).
 
-### TODO: lien avec dérivée
 
-A faire dans le cas domaine de la dérivée ouvert d'abord. Puis, via l'extension,
-montrer que cette restriction n'est pas limitative et permet aussi de traiter
-le cas des dérivées à droite et à gauche si besoin. (et portée du système
-d'extension assez général ...)
+### {.ante}
 
-Dans le cas où $f$ est une fonction d'une unique variable réelle,
-les deux concepts de dérivée et de différentielle coexistent et
-sont étroitement liés.
+Résumons les liens entre dérivée et différentielle:
 
 ### Différentielle et Dérivée {.theorem}
 
 Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert
-et soit $a \in U$.
+et soit $x \in U$.
 La fonction $f$ est différentiable en $a$ si et seulement si
-elle est dérivable en $a$. Dérivée et différentielle de $f$ en 
+elle est dérivable en $x$. Dérivée et différentielle de $f$ en 
 $a$ se déduisent alors l'une de l'autre par les relations 
 $$
-f'(a) = df(a) \cdot 1
+f'(x) = df(x) \cdot 1
 \; \mbox{ et } \;
-df(a) = (h \in \mathbb{R} \mapsto f'(a) h).
+df(x) = (h \in \mathbb{R} \mapsto f'(x) h).
 $$
+
+### Démonstration {.proof}
+Une conséquence de la caractérisation de la dérivabilité des fonctions
+par l'existence de [développement limité au premier ordre][Développement limité au premier ordre]
+et de la caractérisation des [fonctions linéaires d'une variable scalaire][Fonctions linéaires d'une variable scalaire].
 
 ### Différencier une expression
 
@@ -629,7 +724,7 @@ et $d(f(x^2))$ dans le second. Par défaut, nous supposerons dans la suite
 que $df(x^2)$ désigne la notation "stricte" $d(f)(x^2)$.
 
 
-### Note {.author}
+### Note {.meta}
 Même si la notation de la différentielle en $a$ donne un indice sur l'étape
 suivante, il faut probablement retarder l'apparition de la notion d'application
 différentielle et construire une familiarité avec la notion de différentielle 
@@ -638,12 +733,6 @@ La notion d'application différentielle ne devient nécessaire que pour parler
 de fonction continûment différentiable et de différentielle d'ordre supérieur.
 
 
---------------------------------------------------------------------------------
-
-**TODO:** différentielle d'une fonction à valeurs "tensorielles"
-(vecteur, matrice).
-
---------------------------------------------------------------------------------
 
 
 
@@ -1607,8 +1696,10 @@ Soit $x = (x_1, \cdots, x_n)$ un vecteur de $\mathbb{R}^n$.
 
 
 
-Dérivée sur un intervalle fermé
+Dérivée sur un intervalle fermé {#intervalle-fermé}
 --------------------------------------------------------------------------------
+
+**TODO:** deux options: extension globale ou locale, y repenser.
 
 Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
 ($f'(a)$ et $f'(b)$ désignant alors les dérivées à droite de $f$ en $a$
