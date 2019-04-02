@@ -151,6 +151,31 @@ l’étudiant sait donc précisément ce qui est attendu de lui [^1],
       <https://www.enseigner.ulaval.ca/ressources-pedagogiques/les-objectifs-d-apprentissage>
 
 
+Les acquis d'apprentissages nécessitent d'être décrits à différents niveaux: 
+au niveau de l'UE ou de l'ECUE, puis des thématiques qui se déploient sur 
+plusieurs sessions, de chaque session elle-même voire de partie de session, etc. 
+Cette organisation permet de limiter le nombre d'acquis d'apprentissages
+décrits à chaque niveau, ce qui est une condition nécessaire pour une
+bonne lisibilité des objectifs; on peut également en considérant les
+acquis des différents niveaux s'assurer de la cohérence globale du projet
+et en allant au niveau le plus détaillé s'assurer que les objectifs de
+haut niveau sont bien transposés de façon opérationnelle.
+
+Nous nous intéressons ici aux acquis d'apprentissage globaux de l'UE;
+nous renvoyons le lecteur à la section [Contenus et Activités] pour
+la description plus précise des attendus thématique par thématique.
+Pour ce qui est du niveau de détail le plus fin nous renvoyons
+aux ressources pédagogiques elles-mêmes: un effort sera entrepris pour
+annoter les ressources pédagogiques afin d'expliciter 
+les raisons d'être des concepts, notations, méthodes, etc. introduits
+ainsi que les attentes associées dans le cadre du projet de formation 
+de l'UE. Rendre ces informations disponibles doit permettre une meilleure
+compréhension de la place de l'UE dans le projet de formation globale,
+favoriser la communication au sein de l'équipe pédagogique et préciser
+le contrat didactique avec les étudiants.
+
+
+
 **TODO:**
 
   - A.A. "micro" et "macro"
@@ -161,10 +186,10 @@ l’étudiant sait donc précisément ce qui est attendu de lui [^1],
 Le lecteur pourra lire avec profit les objectifs de formation des 1ère et 2nde
 année des programmes de classe préparatoire aux grandes écoles [@UPS].
 La description des compétences à développer est presque totalement 
-indifférenciée en MP, PSI et PC. 
+indifférenciée en MP, PSI et PC, mais les programmes diffèrent. 
 
 Les objectifs de formation de cet UE, situé en tout début de scolarité, 
-présente bien des aspects similaires à ceux des classes préparatoire:
+présente bien des aspects similaires à ceux des classes préparatoires:
 
   - Assurer une continuité avec les enseignements des
     classes préparatoires (là où les classes préparatoires 
@@ -725,8 +750,9 @@ projets numériques sera développé en suivant trois principes:
     Afin de faciliter leur modification et leur usage,
     les documents sont produits
     au moyens de technologies *open-source* et exploitent des formats
-    ouverts; un effort spécifique est également entrepris pour simplifier 
-    la reproduction de l'environnement logiciel nécessaire à cette démarche.    
+    ouverts et adaptés; un effort spécifique est également entrepris pour 
+    simplifier la reproduction de l'environnement logiciel nécessaire à 
+    cette démarche[^reprod].    
 
   - **Formes Digitales.** La production de documents papiers et e-book au
     format PDF est prévue, mais le processus et les outils de développements 
@@ -734,7 +760,56 @@ projets numériques sera développé en suivant trois principes:
     vers d'autres formats plus riches en fonctionnalités et plus adaptés au 
     monde digital (HTML, notebooks, etc).
 
+[^reprod]: en explicitant les dépendances logicielles, 
+en facilitant leur installation au sein d'environnements virtuels 
+et en mettant en oeuvre une démarche d'[intégration continue](https://fr.wikipedia.org/wiki/Int%C3%A9gration_continue)
+pour produire automatiquement les ressources pédagogiques.
 
+De ces principes généraux, qui ont une composante idéologique,  
+découlent également des bénéfices très concrets. Par exemple:
+
+  - **Développement durable.** Les évolutions des contenus enseignés
+    en lycée et classes préparatoires, du projet de formation du cycle au cours
+    du temps, les changements d'équipe pédagogique mettant en oeuvre le projet,
+    etc. sont autant de facteurs qui nécessitent l'adaptation régulière 
+    des ressources pédagogiques. Aujourd'hui, le modèle de production et
+    de propriété intellectuelle peut être fermé, et tend à encourager 
+    la production de ressources de qualité[^publiables] 
+    mais également largement immuables.
+    La réutilisation de l'existant est faible; les évolutions se font 
+    principalement par à-coup, sans réelle continuité et ont un coût
+    important. Le modèle que nous mettrons en oeuvre promet au contraire 
+    une forme de "développement durable" où les ressources sont vivantes,
+    en évolution, et les investissements initiaux peuvent être mieux 
+    réutilisés.
+
+  - **Agilité.** Il est difficile d'anticiper aujourd'hui la forme 
+    et la configuration dans lesquelles les ressources pédagogiques 
+    devraient être consommées.  Il peut ainsi être nécessaire de produire 
+    des ressources pédagogiques avec et sans annotations 
+    (cf section [Acquis d'Apprentissage]), organisées par thématique
+    ou regroupant toutes les ressources de l'UE, 
+    adaptées à un public malvoyant, destinés à l'impression ou à
+    des formats électroniques variés (PDF, HTML, etc.), 
+    réutilisables dans des cours en ligne, etc.
+    Ce qui est certain c'est qu'une forme unique ne va pas convenir 
+    à tous les usages et qu'il faut donc prévoir en amont une chaîne 
+    d'outils permettant une grande flexibilité. 
+    A ce titre le système de préparation de documents LaTeX, 
+    très majoritairement utilisé pour élaborer des documents en Mathématiques,
+    est malgré son grand âge, encore très novateur et de grande qualité
+    sur de multiples aspects; mais il est dévenu également très insuffisant 
+    à bien des égards et doit donc faire partie d'une solution plus globale.
+    
+
+  - Communication, DOI, etc.
+
+  - Appropriation (élèves, etc.), 
+
+
+
+
+[^publiables]: au sens de "publiable par un éditeur scientifique".
 
 [^3]: Le modèle IMAIP: <https://didac2b.wordpress.com/2014/12/06/imaip/>
 
