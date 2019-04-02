@@ -765,7 +765,7 @@ en facilitant leur installation au sein d'environnements virtuels
 et en mettant en oeuvre une démarche d'[intégration continue](https://fr.wikipedia.org/wiki/Int%C3%A9gration_continue)
 pour produire automatiquement les ressources pédagogiques.
 
-De ces principes généraux, qui ont une composante idéologique,  
+De ces principes généraux, qui ont une composante idéologique, 
 découlent également des bénéfices très concrets. Par exemple:
 
   - **Développement durable.** Les évolutions des contenus enseignés
