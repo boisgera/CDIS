@@ -292,7 +292,7 @@ et sympathique des contenus des noeuds:
     ...    else:
     ...        return f"Node({node.value})"
 
-Puis, faisons en sorte qu'elle soit utilisée par défaut 
+Puis, faisons en sorte qu'elle soit utilisée par défaut par le noeuds
 plutôt que la représentation standard des objets:
 
     >>> Node.__str__ = Node.__repr__ = node_repr
