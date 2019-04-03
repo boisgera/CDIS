@@ -1,15 +1,3 @@
-#!/bin/bash
-set -e
-set -o pipefail
+#!/usr/bin/env bash
 
-DOC="Calcul Différentiel II"
-
-mkdir -p output
-
-# Options
-OPT=(-V lang=fr)
-OPT+=(--table-of-contents)
-#OPT+=(--bibliography=bibliography.json -M link-citations=true)
-
-# PDF Output
-pandoc "${OPT[@]}" -o output/"${DOC}".pdf "${DOC}".md
+./build.py
