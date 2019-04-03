@@ -42,7 +42,7 @@ def transform(doc):
 
     divify(doc) 
 
-    proofify(doc)
+    #proofify(doc)
 
 
     return doc
@@ -69,7 +69,6 @@ def divify(doc, level=None):
         sections = []
         for elt, path in pandoc.iter(doc, path=True):
             if isinstance(elt, Header) and elt[0] == level:
-                #print(str(elt)[:100])
                 header = elt
                 holder, start = path[-1]
                 for offset, elt_ in enumerate(holder[start:]):
@@ -80,15 +79,20 @@ def divify(doc, level=None):
                         break
                 else:
                     end = None
+                
                 assert holder[start:end] # not empty, at least a header
+
                 sections.append((holder, start, end))
 
         for section in reversed(sections):
             holder, start, end = section
             attr = ("", ["section"], [])
             div = Div(attr, holder[slice(start, end)])
-            #print(div)
             holder[slice(start, end)] = [div]       
+
+#TODO: make sure that we don't have empty sections generated; 
+#      they should have at least a header right ? But proofify
+#      fails on such a section
 
 def proofify(doc):
     sections = []
@@ -96,7 +100,11 @@ def proofify(doc):
         if isinstance(elt, Div) and "section" in elt[0][1]:
             section = elt
             #print(section)
-            header = section[1][0]
+            try:
+                header = section[1][0]
+            except IndexError:
+                print(section[1])
+                raise
             assert isinstance(header, Header)
             #print(header[1][1])
             if "proof" in header[1][1]:
@@ -121,7 +129,7 @@ except FileExistsError:
 bibliography = root / "bibliography.json"
     
 # Documents
-doc = "Calcul Différentiel I" # TODO: automate this one
+doc = "Calcul Différentiel II" # TODO: automate this one
 doc_md = doc + ".md"
 doc_pdf = str(output / (doc + ".pdf"))
 doc_html = str(output / (doc + ".html"))
