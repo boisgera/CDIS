@@ -309,6 +309,12 @@ la valeur `0.0`, issue de l'addition de `-1.0`,
 calculé comme `cos(3.141592653589793)` et de la constante `1.0`.
 Cela semble donc correct !
 
+Un autre exemple -- à deux arguments -- pour la route:
+
+    >>> trace(lambda x, y: x * (x + y), [1.0, 2.0])
+    Node(3.0, multiply, [Node(1.0), Node(3.0, add, [Node(1.0), Node(2.0)])])
+
+
 
 Exercices
 ================================================================================
