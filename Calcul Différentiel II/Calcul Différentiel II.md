@@ -61,6 +61,7 @@ Objectifs {.meta}
   - exploiter un système existant, type `autograd` en python
     (sans doute le plus facile en terme de courbe d'apprentissage)
 
+Tracer le Graphe de Calcul
 --------------------------------------------------------------------------------
 
 **TODO:** montrer que les fonction Python n'implémentent pas 
@@ -314,7 +315,84 @@ Un autre exemple -- à deux arguments -- pour la route:
     >>> trace(lambda x, y: x * (x + y), [1.0, 2.0])
     Node(3.0, multiply, [Node(1.0), Node(3.0, add, [Node(1.0), Node(2.0)])])
 
+Calcul Automatique des Dérivées
+--------------------------------------------------------------------------------
 
+Registre des functions "élémentaires" dont on connaît la différentielle
+
+    >>> differential = {} 
+
+    >>> def d_cos(x):
+    ...     return lambda dx: - sin(x) * dx
+
+    >>> def d_multiply(x, y):
+    ...     return lambda dx, dy: x * dy + dx * y
+    >>> differential[multiply] = d_multiply
+
+    >>> def d_from_derivative(f_prime):
+    ...     def d_f(x):
+    ...        return lambda dx: f_prime(x) * dx
+    >>> differential[sin] = d_from_derivative(cos)
+
+    >>> differential[add] = lambda x, y: add
+
+Tri topologique
+
+    >>> def sort_nodes(end_node):
+    ...     todo = [end_node]
+    ...     nodes = []
+    ...     while todo:
+    ...         node = todo.pop()
+    ...         nodes.append(node)
+    ...         for parent in node.args:
+    ...             if parent not in nodes + todo:
+    ...                 todo.append(parent) 
+    ...     done = []
+    ...     while nodes:
+    ...         for node in nodes[:]:
+    ...             if all(parent in done for parent in node.args):
+    ...                 done.append(node)
+    ...                 nodes.remove(node)
+    ...     return done
+
+    >>> def d(f):
+    ...     def df(*args): # args=(x1, x2, ...)
+    ...         start_nodes = [Node(arg) for arg in args]
+    ...         end_node = f(*start_nodes)
+    ...         sorted_nodes = sort_nodes(end_node).copy()
+    ...         def df_x(*d_args): # d_args = (d_x1, d_x2, ...)
+    ...             for node in sorted_nodes:
+    ...                 if node in start_nodes:
+    ...                     i = start_nodes.index(node)
+    ...                     node.d_value = d_args[i]
+    ...                 elif node.function is None: # constant node
+    ...                     node.d_value = 0.0
+    ...                 else:
+    ...                     _d_f = differential[node.function]
+    ...                     _args = node.args
+    ...                     _args_values = [_node.value for _node in _args]
+    ...                     _d_args = [_node.d_value for _node in _args]
+    ...                     node.d_value = _d_f(*_args_values)(*_d_args)
+    ...             return end_node.d_value
+    ...         return df_x
+    ...     return df
+
+    >>> def f(x):
+    ...     return x * x + 2 * x + 1
+    >>> x = 1.0
+    >>> df_x = d(f)(2.0)
+    >>> df_x(1.0)
+    6.0
+
+
+Derivative of f (manual computation)
+
+    >>> def f(x):
+    ...    return cos(x) * cos(x) + sin(x) * sin(x)
+    >>> df = d(f)
+    >>> def f_prime(x):
+    ...    return df(x)(1.0)
+    >>> f_prime(pi/2)
 
 Exercices
 ================================================================================
