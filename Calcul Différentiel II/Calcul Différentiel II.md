@@ -196,7 +196,7 @@ des valeurs numérique) ou en train de tracer les calculs. Par exemple:
     >>> def cos(x):
     ...     if isinstance(x, Node):
     ...         cos_x_value = math_cos(x.value)
-    ...         cos_x = Node(cos_x_value, cos, x)
+    ...         cos_x = Node(cos_x_value, cos, [x])
     ...         return cos_x
     ...     else:
     ...         return math_cos(x) 
@@ -303,7 +303,7 @@ Nous somme prêts à faire notre vérification:
     >>> f = lambda x: 1.0 + cos(x)
     >>> end = trace(f, [pi])
     >>> print(end)
-    Node(0.0, add, [Node(-1.0, cos, Node(3.141592653589793)), Node(1.0)])
+    Node(0.0, add, [Node(-1.0, cos, [Node(3.141592653589793)]), Node(1.0)])
 
 Le résultat se lit de la façon suivante: le calcul de `f(pi)` produit 
 la valeur `0.0`, issue de l'addition de `-1.0`, 
@@ -324,6 +324,7 @@ Registre des functions "élémentaires" dont on connaît la différentielle
 
     >>> def d_cos(x):
     ...     return lambda dx: - sin(x) * dx
+    >>> differential[cos] = d_cos
 
     >>> def d_multiply(x, y):
     ...     return lambda dx, dy: x * dy + dx * y
@@ -332,6 +333,7 @@ Registre des functions "élémentaires" dont on connaît la différentielle
     >>> def d_from_derivative(f_prime):
     ...     def d_f(x):
     ...        return lambda dx: f_prime(x) * dx
+    ...     return d_f
     >>> differential[sin] = d_from_derivative(cos)
 
     >>> differential[add] = lambda x, y: add
@@ -392,7 +394,8 @@ Derivative of f (manual computation)
     >>> df = d(f)
     >>> def f_prime(x):
     ...    return df(x)(1.0)
-    >>> f_prime(pi/2)
+    >>> f_prime(pi/4)
+    0.0
 
 Exercices
 ================================================================================
