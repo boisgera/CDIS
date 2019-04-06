@@ -2232,6 +2232,11 @@ Convexité
 
 Lien convexité et différentielle d'ordre 2.
 
+Oloid
+--------------------------------------------------------------------------------
+
+cf <http://www.heldermann-verlag.de/jgg/jgg01_05/jgg0113.pdf>, par exemple
+calcul plan tangent ?
 
 Formes, Fonction Distance, Squelette
 --------------------------------------------------------------------------------
