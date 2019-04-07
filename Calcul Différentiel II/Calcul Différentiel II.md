@@ -400,7 +400,7 @@ Derivative of f (manual computation)
 Exercices
 ================================================================================
 
-Cinématique des Robots Manipulateuers
+Cinématique des Robots Manipulateurs
 --------------------------------------------------------------------------------
 
 Position de référence en cartésien, robot plan articulaire (ou extension 3d),
@@ -426,3 +426,34 @@ Différentiation à pas complexe
 --------------------------------------------------------------------------------
 
 **TODO**
+
+Projet Numérique
+================================================================================
+
+Idées pour poursuivre l'introduction du moteur de diff auto:
+
+  - gérer fct retournant des constantes
+
+  - compléter les opérateurs arithmétiques, fcts usuelles, etc.
+
+  - gérer le control flow (important et pas dur si un peu guidé !)
+
+  - adapter le code pour faire du backward diff (à évaluer),
+    avec pointeurs vers articles introductifs.
+
+  - diff d'ordre deux ? Compliqué, 2 show-stoppers potentiels
+    (différentiation "lazy" et nodes nestés).
+
+Faire un projet privé et une document de tests (public) pour permettre la
+vérification que ça marche ? Demander résultat comme un fichier autodiff.py
++ notebook mise en oeuvre ou notebook générant autodiff.py ?
+Quoi qu'il en soit: code et doc et accès sur github.
+Ce qui est fait en cours déjà fourni (sous quelle forme ? fichier, 
+notebook, etc ?). Oui, avec jupyter nbconvert, ça ne pose pas de pb.
+Intégration doctest/notebook ? Bof, non, on gère ça "normalement",
+en dehors, avec le truc comme un doc markdown.
+
+Applications (avec algo type IFT par exemple) ? En plus ?
+Eventuellement en utilisant un "vrai" autodiff pour ne pas
+être bloqué par des étapes précédentes non réussies ? 
+
