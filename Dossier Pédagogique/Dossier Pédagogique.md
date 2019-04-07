@@ -39,6 +39,19 @@ cf. éléments issus de la note de cadrage.
 \]*
 
 
+Discussions: 
+
+  - périmètre / actuel (notamment, transfert partiel, abandon TC, etc.).
+    Pas de "révolution" du périmètre (fondements des mathématiques, 
+    algèbre, etc.)
+
+  - volet numérique.
+
+  - articulations, notamment Maths Apps, Physique, etc.
+
+  - retour / autres élts note de cadrage
+
+
 Organisation de l'UE
 --------------------------------------------------------------------------------
 
