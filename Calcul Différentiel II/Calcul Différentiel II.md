@@ -400,6 +400,13 @@ Derivative of f (manual computation)
 Exercices
 ================================================================================
 
+Cinématique des Robots Manipulateuers
+--------------------------------------------------------------------------------
+
+Position de référence en cartésien, robot plan articulaire (ou extension 3d),
+étudier sous quelle conditions on peut "résoudre" un déplacement de 
+l'effecteur.
+
 Déformations
 --------------------------------------------------------------------------------
 
