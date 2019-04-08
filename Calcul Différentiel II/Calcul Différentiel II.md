@@ -21,7 +21,52 @@ Objectifs {.meta}
     la physique (ex: [thermo](https://fr.m.wikipedia.org/wiki/Gaz_parfait)). 
     Etudier un scope raisonnable. Cf Salamon sur scope géom diff ?
 
-Analyse d'Erreur
+
+### TODO {.meta}
+
+  - Différentielle partielle nécessaire en amont, pas que dérivée partielle.
+
+  - Donner un jeu d'hypothèse "non minimal" pour le théorème des fonctions
+    implicite dans le but de simplifier le résultat. Par exemple, supposer
+    au minimum l'existence de la différentielle dans un voisiange du point 
+    de référence ? Ou carrément son existence et sa continuité ?
+    Et ajouter en remarque que l'on peut nuancer / décomposer le résultats
+    en affinant les hypothèses, qui ne sont pas minimales ? En particulier, 
+    cela suffit pour énoncer le théorème d'inversion locale, donc go, 
+    simplifions.
+
+
+### Théorème des Fonctions Implicites {.theorem}
+
+Soit $f$ une fonction définie sur un ouvert $W$ de 
+$\mathbb{R}^n \times \mathbb{R}^m$,
+$$
+f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
+$$
+et qui soit continûment différentiable.
+Si le point $(x_0, y_0)$ de $W$ est tel que $f(x_0, y_0)= 0$ et
+la différentielle partielle $\partial_y f$ est inversible en $(x_0, y_0)$,
+alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $y_0$ tels que
+$U \times V \subset W$ et
+une fonction implicite $\psi: U \to \mathbb{R}^m$, continûment différentiable, 
+tels que pour tous $x \in  U$ et $y \in V$,
+$$
+f(x, y) = 0
+\; \Leftrightarrow \; 
+y = \psi(x)
+$$
+et tels que la différentielle de $\psi$ soit donnée pour tout $x \in U$ par
+$$
+d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
+$$
+
+### Démonstration {.proof}
+
+**TODO**
+
+### TODO: inversion locale
+
+Analyse d'Erreur / Numérique
 ================================================================================
 
 Objectifs {.meta}
