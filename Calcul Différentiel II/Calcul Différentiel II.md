@@ -35,6 +35,10 @@ Objectifs {.meta}
     cela suffit pour énoncer le théorème d'inversion locale, donc go, 
     simplifions.
 
+  - Nota: preuve IFT nécessite point fixe *avec paramètre*. 
+    Pas nécessairement si l'on se place directement dans les hypothèses
+    de différentiabilité continue ?
+
 
 ### Théorème des Fonctions Implicites {.theorem}
 
