@@ -39,13 +39,13 @@ Objectifs {.meta}
 ### Théorème des Fonctions Implicites {.theorem}
 
 Soit $f$ une fonction définie sur un ouvert $W$ de 
-$\mathbb{R}^n \times \mathbb{R}^m$,
+$\mathbb{R}^n \times \mathbb{R}^m$:
 $$
 f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
 $$
-et qui soit continûment différentiable.
-Si le point $(x_0, y_0)$ de $W$ est tel que $f(x_0, y_0)= 0$ et
-la différentielle partielle $\partial_y f$ est inversible en $(x_0, y_0)$,
+qui soit continûment différentiable.
+Si le point $(x_0, y_0)$ de $W$ vérifie $f(x_0, y_0)= 0$ et
+si la différentielle partielle $\partial_y f$ est inversible en $(x_0, y_0)$,
 alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $y_0$ tels que
 $U \times V \subset W$ et
 une fonction implicite $\psi: U \to \mathbb{R}^m$, continûment différentiable, 
