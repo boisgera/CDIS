@@ -66,7 +66,57 @@ $$
 
 ### Démonstration {.proof}
 
-**TODO**
+Un point préalable: l'expression que nous fournissons pour $d\psi(x)$ 
+nécessite que $\partial_y f(x, \psi(x))$ soit inversible en tout point 
+$x$ de $U$. Il faut donc démontrer qu'il sera toujours possible de choisir 
+un voisinage $U$ de $x$ suffisamment petit tel que cela soit le cas. 
+Supposons que nous ayons prouvé la première partie du théorème
+pour un voisinage $U$ pour lequelle cette condition n'est pas 
+nécessairement satisfaite. 
+L'application qui a une application linéaire 
+$A: \mathbb{R}^m \to \mathbb{R}^m$ associe son inverse $A^{-1}$
+est définie sur un ouvert et continue[^inv]. D'après la première partie
+du théorème, nous savons que l'application linéaire $\partial_y f(x_0, y_0)$ 
+est inversible et que l'application $x \mapsto \partial_y f(x, \psi(x))$
+est continue; il existe donc un voisinage de $x$ contenu dans $U$ où 
+$x \mapsto \partial_y f(x, \psi(x))$ est inversible.
+Dans la suite, nous noterons simplement $U$ ce voisinage.
+
+La partie la plus technique de la démonstration concerne l'existence et 
+la différentiabilité de la fonction implicite $\psi$. 
+Mais si l'on sait que ces résultats sont vrais, 
+établir l'expression de $d\psi$ est  relativement simple.
+En effet, l'égalité $f(x, \psi(x)) = 0$ étant satisfaite identiquement sur $U$,
+et la fonction $x \in U \mapsto f(x, \psi(x))$ étant différentiable
+comme composée de fonctions différentiables, la règle de dérivation 
+en chaîne fournit en tout point de $U$:
+$$
+\partial_x f(x, \psi(x)) + \partial_y f(x, \psi(x)) \cdot d\psi(x) = 0.
+$$
+On en déduit donc que
+$$
+d\psi(x) = - [\partial_y f(x, \psi(x))]^{-1} \cdot \partial_x f(x, \psi(x)).
+$$
+
+[^inv]: une application linéaire de $\mathbb{R}^m \to \mathbb{R}^m$ 
+est inversible si et seulement si
+le déterminant de la matrice $[A]$ qui la représente dans $\mathbb{R}^{m \times m}$ 
+est non-nul. 
+Or, la fonction $A \mapsto \det [A]$ est continue 
+car le déterminant ne fait intervenir que des produits et des sommes des 
+coefficients de $[A]$.
+Par conséquent, les applications linéaires inversibles de 
+$\mathbb{R}^m \to \mathbb{R}^m$ sont l'image réciproque de l'ouvert 
+$\mathbb{R} \setminus \{0\}$ par une application continue:
+cet ensemble est donc ouvert. Quand $A$ est inversible, on a 
+$$
+[A]^{-1} = \frac{\mathrm{co}([A])^t}{\det [A]}
+$$
+où $\mathrm{co}([A])$ désigne la comatrice de $[A]$. Chaque coefficient de 
+cette comatrice ne faisant également intervenir que des sommes et des produits 
+des coefficients de $[A]$, l'application $A \mapsto A^{-1}$ est inversible sur
+son domaine de définition.
+
 
 ### TODO: inversion locale
 
