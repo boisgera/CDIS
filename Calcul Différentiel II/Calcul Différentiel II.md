@@ -42,11 +42,6 @@ Objectifs {.meta}
 
 ### TODO
 
-Simplifier énoncé IFT en supposant $\partial_y f$ inversible sur $W$.
-Une remarque permet ensuite de montrer que cette hypothèse est plus forte
-que nécessaire, mais inutile d'introduire la technicité induite dans la
-version de référence.
-
 Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 (Oswaldo Rio Branco de Oliveira)
 
@@ -57,46 +52,45 @@ $\mathbb{R}^n \times \mathbb{R}^m$:
 $$
 f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
 $$
-qui soit continûment différentiable.
-Si le point $(x_0, y_0)$ de $W$ vérifie $f(x_0, y_0)= 0$ et
-si la différentielle partielle $\partial_y f$ est inversible en $(x_0, y_0)$,
+qui soit continûment différentiable et telle que la différentielle partielle
+$\partial_y f$ soit inversible en tout point de $W$.
+Si le point $(x_0, y_0)$ de $W$ vérifie $f(x_0, y_0)= 0$,
 alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $y_0$ tels que
 $U \times V \subset W$ et
 une fonction implicite $\psi: U \to \mathbb{R}^m$, continûment différentiable, 
-tels que pour tous $x \in  U$ et $y \in V$,
+telle que pour tous $x \in  U$ et $y \in V$,
 $$
 f(x, y) = 0
 \; \Leftrightarrow \; 
-y = \psi(x)
+y = \psi(x).
 $$
-et tels que la différentielle de $\psi$ soit donnée pour tout $x \in U$ par
+De plus, la différentielle de $\psi$ est donnée pour tout $x \in U$ par
 $$
 d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
 $$
 
-### Démonstration {.proof}
-
-Un point préalable: l'expression que nous fournissons pour $d\psi(x)$ 
-nécessite que $\partial_y f(x, \psi(x))$ soit inversible en tout point 
-$x$ de $U$. Il faut donc démontrer qu'il sera toujours possible de choisir 
-un voisinage $U$ de $x$ suffisamment petit tel que cela soit le cas. 
-Supposons que nous ayons prouvé la première partie du théorème
-pour un voisinage $U$ pour lequelle cette condition n'est pas 
-nécessairement satisfaite. 
-L'application qui a une application linéaire 
+### Extension {.note}
+Il est possible d'affaiblir l'hypothèse concernant $\partial_y f$ en supposant 
+uniquement celle-ci inversible en $(x_0, y_0)$ au lieu d'inversible sur tout $W$.
+En effet, l'application qui a une application linéaire 
 $A: \mathbb{R}^m \to \mathbb{R}^m$ associe son inverse $A^{-1}$
-est définie sur un ouvert et continue[^inv]. D'après la première partie
-du théorème, nous savons que l'application linéaire $\partial_y f(x_0, y_0)$ 
-est inversible et que l'application $x \mapsto \partial_y f(x, \psi(x))$
-est continue; il existe donc un voisinage de $x$ contenu dans $U$ où 
-$x \mapsto \partial_y f(x, \psi(x))$ est inversible.
-Dans la suite, nous noterons simplement $U$ ce voisinage.
+est définie sur un ouvert et continue[^inv]. 
+Comme l'application linéaire $\partial_y f(x_0, y_0)$ 
+est inversible et que l'application $\partial_y f$
+est continue, il existe donc un voisinage ouvert de $(x_0, y_0)$ contenu dans 
+$W$ où $\partial_y f$ est inversible. 
+Nous retrouvons donc les hypothèses initiales du théorème, 
+à ceci près qu'elle sont satisfaites dans un voisinage de $(x_0, y_0)$
+qui peut être plus petit que l'ouvert initial $W$.
+
+
+### Démonstration {.proof}
 
 La partie la plus technique de la démonstration concerne l'existence et 
 la différentiabilité de la fonction implicite $\psi$. 
 Mais si l'on sait que ces résultats sont vrais, 
 établir l'expression de $d\psi$ est  relativement simple.
-En effet, l'égalité $f(x, \psi(x)) = 0$ étant satisfaite identiquement sur $U$,
+En effet, l'égalité $f(x, \psi(x)) = 0$ étant satisfaite identiquement sur $U$
 et la fonction $x \in U \mapsto f(x, \psi(x))$ étant différentiable
 comme composée de fonctions différentiables, la règle de dérivation 
 en chaîne fournit en tout point de $U$:
@@ -107,6 +101,9 @@ On en déduit donc que
 $$
 d\psi(x) = - [\partial_y f(x, \psi(x))]^{-1} \cdot \partial_x f(x, \psi(x)).
 $$
+
+**TODO:** ici aussi, nécessaire d'invoquer la continuité de l'inversion
+pour conclure. Factoriser ce résultat avec la remarque précédente ?
 
 [^inv]: une application linéaire de $\mathbb{R}^m \to \mathbb{R}^m$ 
 est inversible si et seulement si
@@ -127,8 +124,53 @@ cette comatrice ne faisant également intervenir que des sommes et des produits
 des coefficients de $[A]$, l'application $A \mapsto A^{-1}$ est inversible sur
 son domaine de définition.
 
+### Difféomorphisme {.definition}
+Une fonction $f: U \subset \mathbb{R}^n \to V \subset \mathbb{R}^n$,
+où les ensembles $U$ et $V$ sont ouverts est un *$C^1$-difféomorphisme* 
+(de $U$ sur $V$) si $f$ est bijective et que $f$ ainsi que son inverse $f^{-1}$ 
+sont continûment différentiables.
 
-### TODO: inversion locale
+### Inverse de la Différentielle {.theorem}
+Si $f: U \to V$ est un $C^1$-difféomorphisme, sa différentielle $df$ est
+inversible en tout point $x$ de $U$ et
+$$
+(df(x))^{-1} = df^{-1}(y) \, \mbox{ où } \, y = f(x).
+$$
+
+### Démonstration {.proof}
+
+**TODO**
+
+### Inversion Locale {.theorem}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ continûment différentiable
+sur l'ouvert $U$ et telle que $df(x)$ soit inversible
+en tout point $x$ de $U$. Alors pour tout $x_0$ in $U$, il existe un voisinage
+ouvert $V \subset U$ de $x_0$ tel que $W=f(V)$ soit ouvert et que
+la restriction de la fonction $f$ à $V$ soit un $C^1$-difféomorphisme 
+de $V$ sur $W$.
+
+### Démonstration {.proof}
+
+Considérons la fonction $\phi: U \times \mathbb{R}^n  \to \mathbb{R}^n$
+définie par
+$$
+\phi(x, y) = f(x) - y.
+$$
+Par construction $\phi(x, y) = 0$ si et seulement si $f(x) = y$.
+De plus, $\phi$ est continûment différentiable et
+$\partial_x \phi(x, y) = df(x)$. On peut donc appliquer le théorème
+des fonctions implicites au voisinage du point $(x_0, f(x_0))$
+et en déduire l'existence de voisinages ouvert $A$ et $B$ de $x_0$
+et $f(x_0)$ tels que $A \times B \subset U \times \mathbb{R}^n$,
+et d'une fonction continûment différentiable 
+$\psi: B \to \mathbb{R}^m$ telle que pour tout $(x, y) \in A \times B$,
+$$
+f(x) = y \; \Leftrightarrow \; x = \psi(y). 
+$$
+Par continuité de $f$, $A' = A \cap f^{-1}(B)$ est un sous-ensemble ouvert
+de $A$. La fonction $x \in A' \mapsto f(x) \in B$ est bijective par 
+construction et son inverse est la fonction $y \in B \mapsto \psi(y) \in A'$;
+nous avons donc affaire à un  $C^1$-difféomorphisme de $A'$ sur $B$.
 
 Analyse d'Erreur / Numérique
 ================================================================================
