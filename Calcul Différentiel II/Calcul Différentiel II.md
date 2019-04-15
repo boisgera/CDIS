@@ -526,6 +526,14 @@ Différentiation à pas complexe
 
 **TODO**
 
+Méthode de Newton
+--------------------------------------------------------------------------------
+
+Revenir sur la preuve du théorème des fonctions implicites mais sous sous une
+hypothèse $C^2$, montrer qu'il n'est pas nécessaire de modifier la méthode
+de Newton.
+
+
 Projet Numérique
 ================================================================================
 
