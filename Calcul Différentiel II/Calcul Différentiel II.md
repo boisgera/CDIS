@@ -47,6 +47,9 @@ Une remarque permet ensuite de montrer que cette hypothèse est plus forte
 que nécessaire, mais inutile d'introduire la technicité induite dans la
 version de référence.
 
+Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
+(Oswaldo Rio Branco de Oliveira)
+
 ### Théorème des Fonctions Implicites {.theorem}
 
 Soit $f$ une fonction définie sur un ouvert $W$ de 
