@@ -40,6 +40,13 @@ Objectifs {.meta}
     de différentiabilité continue ?
 
 
+### TODO
+
+Simplifier énoncé IFT en supposant $\partial_y f$ inversible sur $W$.
+Une remarque permet ensuite de montrer que cette hypothèse est plus forte
+que nécessaire, mais inutile d'introduire la technicité induite dans la
+version de référence.
+
 ### Théorème des Fonctions Implicites {.theorem}
 
 Soit $f$ une fonction définie sur un ouvert $W$ de 
