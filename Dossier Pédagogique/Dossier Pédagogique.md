@@ -472,13 +472,13 @@ suivi personnalisé, soutien, remédiation, ...
 
 Le programme de l'UE est organisé ci-dessous en 5 thématiques, 
 dont la plupart sont réparties sur les deux EC.
-Cette présentatio a vocation à fournir une grille de lecture simple 
+Cette présentation a vocation à fournir une grille de lecture simple 
 des contenus et équilibres de l'UE, mais dans le détail, 
 ces volets thématiques sont tout sauf étanches[^ex]; 
-il ne doit donc pas être pris au pied de la lettre.
+ce découpage ne doit donc pas être pris au pied de la lettre.
 Chaque item listé fait référence à une session de cours magistral (1h30).
 
-[^ex]: par exemple, la problématique de l'intégration apparaîtra
+[^ex]: Par exemple, la problématique de l'intégration apparaîtra
 dès la 1ere session de calcul différentiel, des considérations de 
 topologie seront à nouveau évoquées dans la session de 
 calcul différentiel en dimension infinie, 
@@ -490,6 +490,45 @@ etc.
 #### Topologie
 
  1. Elements de Topologie pour l'Analyse
+
+Une introduction nécessairement minimaliste compte tenu du très faible
+volume dédié[^intro] et dictée par les besoins variés des sessions 
+qui suivent. Malheureusement, les contenus des programme des classes
+préparatoires dans ce domaine sont depuis la réforme de 2013 sévèrement
+réduits[^CPGE-topo].
+En conséquence, le contenu programmé se limite à la topologie des
+sous-ensembles d'espaces vectoriels normés.
+Ce positionnement est suffisant pour les besoins de l'UE[^Kura] et nous
+anticipons qu'il présentera déjà un défi important pour de nombreux 
+étudiants. En perspective, on peut envisager de compléter l'exposé oral
+par des éléments de topologie générale, selon des approches susceptibles
+d'être pédagogiquement concluantes[^nearness], mais ces compléments 
+destinés aux étudiants les plus curieux ne sauraient constituer des 
+compétences exigibles de tous.
+
+[^nearness]: En particulier, en prenant comme object primitif la 
+notion de "proximité" entre un point 
+plutôt que sur le concept d'ouvert (cf. par exemple [@Gau78]).
+Très différentes dans la présentation, les deux approches sont pourtant 
+strictement équivalentes mathématiquement.
+
+[^intro]: Cette session qui sera la première de l'UE occupera vraisemblablement
+moins de 1h30 de cours magistral s'il est nécessaire de présenter la logique
+et les modalités de l'UE dans cette même session.
+
+[^CPGE-topo]: A part en MP, les sections dédiées aux espaces vectoriel normés en
+classes préparatoires se limitent à la dimension finie. La notion d'espace 
+métrique n'est abordée dans aucune filière, sans parler de l'axiomatisation
+générale des espaces topoologique. La notion de suite de Cauchy, de complétude,
+de point fixe sont hors-programme pour tous. La notion d'ensemble compact
+(via la compacité séquentielle), n'est abordée qu'en MP.
+
+[^Kura]: Par le [théorème de plongement de Kuratowski](https://en.wikipedia.org/wiki/Kuratowski_embedding),
+ce cadre simple, qui est le prolongement naturel après les enseignements 
+de classes préparatoires est "exactement aussi puissant" que le cadre des 
+espaces métriques qui est enseigné aujourd'hui. Il s'agit donc principalement
+d'une modification de nature didactique.
+
 
 #### Calcul Différentiel 
 
@@ -510,6 +549,43 @@ etc.
   4. Théorie abstraite de la mesure,
 
   5. Applications de la théorie de la mesure.
+
+Cette organisation est motivée par la volonté d'arriver rapidement et
+avec aussi peu de technicité que possible à un concept d'intégrale 
+moderne et efficace dans $\mathbb{R}$ et $\mathbb{R}^n$ 
+(3 sessions, 1er EC), 
+susceptible de couvrir les besoins d'une large majorité des étudiants
+et de correspondre aux capacités du plus grand nombre.
+Les étudiants doivent pouvoir s'appuyer sur leur compréhension de ce
+premier volet pour aborder le second volet (2 sessions, 2nd EC), plus
+général et sensiblement plus abstrait, consacré à la théorie de la mesure.
+Susceptible de poser plus de difficultés aux étudiants, 
+cette seconde partie n'est donc plus sur le chemin critique;
+elle devient nécessaire pour des applications plus avancées tels que: 
+fonctions généralisées, probabilités dans le cadre général, etc.
+mais l'intégralité de l'enseignement d'intégration ne repose pas sur sa
+maîtrise. 
+
+Cette stratégie permet de se consacrer dans un premier temps
+à l'intégrale de Riemann généralisée[^HK] comme le plus court chemin
+pour définir l'intégrale "de Lebesgue" dans $\mathbb{R}$ et $\mathbb{R}^n$, 
+sans avoir recours à la théorie de la mesure. Plus moderne, mieux intégrée avec
+le calcul différentiel, plus simple à comprendre, les bénéfices de cette 
+approche par l'intégrale de Riemann généralisée sont bien documentés 
+(voir par exemple @Bar96).
+Cette étape intermédiaire doit se comprendre dans le contexte où
+même la construction de l'intégrale de Riemann "simple" (et non généralisée)
+n'est plus au programme des classes préparatoires[^CPGE-int] et par
+conséquent même cette approche simplifiée peut représenter un défi.
+
+[^HK]: Ou plus précisement, à l'intégrale de Henstock-Kurzweil, 
+puisqu'il y a plusieurs intégrales de Riemann généralisées.
+
+[^CPGE-int]: l'intégrale considérée concerne les fonction continues par 
+morceaux sur un intervalle de $\mathbb{R}$. Même dans ce périmètre étroit
+concernant l'intégration, "Aucune construction n’est exigible". Les sommes
+de Riemann, associées à une subdivision régulière, ne sont abordées
+qu'en MP.
 
 #### Equations Différentielles
 
