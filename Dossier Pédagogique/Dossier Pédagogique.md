@@ -567,7 +567,9 @@ mais l'intégralité de l'enseignement d'intégration ne repose pas sur sa
 maîtrise. 
 
 **TODO:** expliquer en quoi la 1ere étape facilite la seconde
-("découverte" des axiomes, pb mesurabilité, etc.)
+("découverte" des axiomes, pb mesurabilité, etc.) et insister 
+sur la présentation de la nécessité aux élèves de la seconde
+partie (Banach-Tarski, mesures de Hausdorff, etc)
 
 Cette stratégie permet de se consacrer dans un premier temps
 à l'intégrale de Riemann généralisée[^HK] comme le plus court chemin
