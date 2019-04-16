@@ -566,6 +566,9 @@ fonctions généralisées, probabilités dans le cadre général, etc.
 mais l'intégralité de l'enseignement d'intégration ne repose pas sur sa
 maîtrise. 
 
+**TODO:** expliquer en quoi la 1ere étape facilite la seconde
+("découverte" des axiomes, pb mesurabilité, etc.)
+
 Cette stratégie permet de se consacrer dans un premier temps
 à l'intégrale de Riemann généralisée[^HK] comme le plus court chemin
 pour définir l'intégrale "de Lebesgue" dans $\mathbb{R}$ et $\mathbb{R}^n$, 
