@@ -470,15 +470,87 @@ suivi personnalisé, soutien, remédiation, ...
 
 ### Programme
 
-  - Topologie 1 (I)
+Le programme de l'UE est organisé ci-dessous en 5 thématiques, 
+dont la plupart sont réparties sur les deux EC.
+Cette présentatio a vocation à fournir une grille de lecture simple 
+des contenus et équilibres de l'UE, mais dans le détail, 
+ces volets thématiques sont tout sauf étanches[^ex]; 
+il ne doit donc pas être pris au pied de la lettre.
+Chaque item listé fait référence à une session de cours magistral (1h30).
 
-  - Calcul Différentiel 1, 2 (I), puis 3 (II).
+[^ex]: par exemple, la problématique de l'intégration apparaîtra
+dès la 1ere session de calcul différentiel, des considérations de 
+topologie seront à nouveau évoquées dans la session de 
+calcul différentiel en dimension infinie, 
+les probabilités feront partie intégrante de la session "application" 
+de la théorie de la mesure, la session de probabilités consacrée aux
+méthodes de Monte-Carlo fournit des outils pour le calcul d'intégrales, 
+etc.
 
-  - Calcul Intégral 1, 2, 3 (I), puis 4, 5 (II).
+#### Topologie
 
-  - Equations Différentielles: 1 et 2 (II)
+ 1. Elements de Topologie pour l'Analyse
 
-  - Probabilités 1, 2 (I), puis 3, 4, 5 (III).
+#### Calcul Différentiel 
+
+ 1. Fonctions de plusieurs variables,
+
+ 2. Méthodes de calcul numériques,
+
+ 3. Calcul différentiel en dimension infinie.
+
+#### Calcul Intégral 
+
+  1. Intégrale de Riemann généralisée,
+
+  2. Intégrabilité absolue & mesurabilité,
+
+  3. Théorèmes de convergence & intégrales multiples,
+
+  4. Théorie abstraite de la mesure,
+
+  5. Applications de la théorie de la mesure.
+
+#### Equations Différentielles
+
+   1. Problème bien posé, comportement asymptotique.
+
+   2. Schémas et méthodes de résolution numériques.
+
+#### Probabilités 
+
+   1. Introduction,
+
+   2. Variables aléatoires à densité,
+
+   3. Vecteurs aléatoires & conditionnement,
+
+   4. Théorie asymptotique & inégalités de concentration,
+
+   5. Méthodes de Monte-Carlo.
+
+Quelques éléments complémentaires de phasage:
+
+**DISPATCHER DANS LES SECTIONS**
+
+  - topo: minimaliste, emphase sous-ensemble espace vectoriel normé 
+    (seul evn dim finie vu par PSI et PC), 
+    Cauchy, pt fixe, etc.
+    Objectifs limités (identifier pb topo, usage mécanique,
+    être à l'aise avec les
+    concepts/vocabulaires, etc.)
+    Evoqué solution générale mais simple (avec ref), 
+    mais demanderait trop de temps. Poly éventuellement.
+
+  - calcul diff: phasage, ce qui manque en prépa, nécessité d'aller
+    vers higher-order diff, etc.
+
+  - intégration: intégrale de gauge, on part de loin avec la prépa.
+
+  - proba: prépa: on vu variable aléatoire discrête.
+    phasage: continu, simple d'abord; théorie générale de 
+    la mesure dispo dans un second temps (pour session 4.)
+
 
 
 ### Principes
