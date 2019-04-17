@@ -516,12 +516,14 @@ strictement équivalentes mathématiquement.
 moins de 1h30 de cours magistral s'il est nécessaire de présenter la logique
 et les modalités de l'UE dans cette même session.
 
-[^CPGE-topo]: A part en MP, les sections dédiées aux espaces vectoriel normés en
-classes préparatoires se limitent à la dimension finie. La notion d'espace 
+[^CPGE-topo]: Plus exactement, il faudrait parler de quasi-disparition de 
+la topologie des programmes de CPGE.
+A part en MP, le seul cadre est celui des espaces vectoriels normés et la
+section associée se limite à la dimension finie. La notion d'espace 
 métrique n'est abordée dans aucune filière, sans parler de l'axiomatisation
 générale des espaces topoologique. La notion de suite de Cauchy, de complétude,
 de point fixe sont hors-programme pour tous. La notion d'ensemble compact
-(via la compacité séquentielle), n'est abordée qu'en MP.
+n'est abordée qu'en MP (et via la notion compacité séquentielle).
 
 [^Kura]: Par le [théorème de plongement de Kuratowski](https://en.wikipedia.org/wiki/Kuratowski_embedding),
 ce cadre simple, qui est le prolongement naturel après les enseignements 
@@ -537,6 +539,60 @@ d'une modification de nature didactique.
  2. Méthodes de calcul numériques,
 
  3. Calcul différentiel en dimension infinie.
+
+L'organisation du volet "Calcul Différentiel" prend acte du très net 
+recul de son enseignement en classes préparatoires avec la réforme de 
+2013[^CPGE-CD], en introduisant une démarche par étapes: d'abord un
+cadre limité aux fonction de plusieurs variables réelles[^ni] 
+(1er EC) qui permet d'introduire pour tout le monde la notion de différentielle, 
+de différentielle d'ordre supérieur, de différentiation de chaîne, 
+du théorème des fonctions implicites, ainsi que le lien avec 
+la réprésentation de la différentielle par une matrice, qui est propre 
+à la dimension finie.
+
+La seconde session (1er EC) fournira aux étudiants des clés pour 
+évaluer numériquement les différentielles lorsque le calcul d'une 
+solution symbolique ou analytique n'est pas une option[^détails-CD-num].
+
+Dans un second temps (2nd EC), 
+une fois que l'UE aura motivé l'étude de "fonctions de fonctions"
+-- le cas d'usage central pour le calcul différentiel en dimension infinie --
+la différentielle de Fréchet dans les espaces de Hilbert/Banach.
+L'étude des concepts et résultats initialement dans un cadre simple
+a pour ambition de faciliter leur acquisition dans le cadre plus
+technique mais aussi plus général.
+
+
+[^détails-CD-num]: L'accent -- notamment au travers du projet -- 
+sera mis sur les techniques de différentiation automatique dont l'usage s'est 
+rapidement (re-)développé en optimisation, machine learning, etc.
+Pour situer l'intérêt de cette méthode parmi le panel des options
+existantes (comme le calcul de différences finies), 
+des éléments d'analyse numérique (analyse des erreurs
+asymptotiques comme des erreurs d'arrondi) seront introduit.
+Enfin, cette session sera l'occasion de faire comprendre 
+le théorème des fonctions implicites -- une nouveauté pour toutes les filières
+et un résultat complexe -- du point de vue algorithmique,
+en insistant sur le caractère constructif de la méthode qui fournit
+une solution.
+
+
+[^ni]: C'est-à-dire "de dimension finie", mais sans mettre l'accent sur
+le caractère intrinsèque de la différentielle.
+
+ [^CPGE-CD]: Même dans la filière MP, la notion de différentielle n'est
+ introduite quand dans les espaces vectoriels normés de dimension finie;
+ la différentielle d'ordre 2 n'est pas définie; théorème des fonctions
+ implicites et d'inversion locale sont absents. Dans les filières PSI et PC,
+ le caractère "intrinsèque" de la différentielle disparaît: il s'agit
+ désormais d'étudier des fonctions de plusieurs variables réelles -- plus
+ précisément, "en pratique", de fonctions réelles dépendant d'au plus
+ 3 variables réelles.
+ Stricto sensu, la notion de fonction différentiable disparaît également:
+ la différentielle est définie a posteriori, pour les fonctions continûment
+ différentiables, à partir des dérivées partielles. La régle de 
+ différentiation en chaîne n'est pas au programme, seul le cas particulier
+ où la fonction composée dépend d'un seul paramètre réel est traité.
 
 #### Calcul Intégral 
 
@@ -557,19 +613,14 @@ moderne et efficace dans $\mathbb{R}$ et $\mathbb{R}^n$
 susceptible de couvrir les besoins d'une large majorité des étudiants
 et de correspondre aux capacités du plus grand nombre.
 Les étudiants doivent pouvoir s'appuyer sur leur compréhension de ce
-premier volet pour aborder le second volet (2 sessions, 2nd EC), plus
-général et sensiblement plus abstrait, consacré à la théorie de la mesure.
+premier volet[^step] pour aborder le second volet (2 sessions, 2nd EC), 
+plus général et sensiblement plus abstrait, consacré à la théorie de la mesure.
 Susceptible de poser plus de difficultés aux étudiants, 
 cette seconde partie n'est donc plus sur le chemin critique;
-elle devient nécessaire pour des applications plus avancées tels que: 
-fonctions généralisées, probabilités dans le cadre général, etc.
+elle devient nécessaire pour des applications plus avancées 
+(telles que: fonctions généralisées, probabilités dans le cadre général, etc.)
 mais l'intégralité de l'enseignement d'intégration ne repose pas sur sa
 maîtrise. 
-
-**TODO:** expliquer en quoi la 1ere étape facilite la seconde
-("découverte" des axiomes, pb mesurabilité, etc.) et insister 
-sur la présentation de la nécessité aux élèves de la seconde
-partie (Banach-Tarski, mesures de Hausdorff, etc)
 
 Cette stratégie permet de se consacrer dans un premier temps
 à l'intégrale de Riemann généralisée[^HK] comme le plus court chemin
@@ -583,20 +634,56 @@ même la construction de l'intégrale de Riemann "simple" (et non généralisée
 n'est plus au programme des classes préparatoires[^CPGE-int] et par
 conséquent même cette approche simplifiée peut représenter un défi.
 
+[^step]: Une grande partie de ce qui constitue l'"outillage axiomatique" 
+de la théorie de mesure -- notion d'ensemble et de fonction mesurables,
+mesure $\sigma$-additive, etc. -- peut être découvert, plutôt que postulé,
+dans le cadre du premier volet. Les solutions que la théorie générale
+apporte doivent être dans la mesure du possible mises en rapport avec 
+des problèmes que l'on a au préalable éprouvé -- 
+comme par exemple l'impossibilité de définir une mesure de volume 
+aux propriétés satisfaisante applicable à tous les ensembles de 
+$\mathbb{R}^3$. Les résultats majeurs de la théorie générale feront
+de plus écho à des résultats déjà énoncés et manipulés dans un cadre
+plus simple. Tous ces éléments sont de nature à faciliter l'apprentissage
+de ce second volet.
+
 [^HK]: Ou plus précisement, à l'intégrale de Henstock-Kurzweil, 
 puisqu'il y a plusieurs intégrales de Riemann généralisées.
 
-[^CPGE-int]: l'intégrale considérée concerne les fonction continues par 
+[^CPGE-int]: L'intégrale considérée concerne les fonction continues par 
 morceaux sur un intervalle de $\mathbb{R}$. Même dans ce périmètre étroit
-concernant l'intégration, "Aucune construction n’est exigible". Les sommes
+concernant l'intégration, "aucune construction n’est exigible". Les sommes
 de Riemann, associées à une subdivision régulière, ne sont abordées
 qu'en MP.
 
 #### Equations Différentielles
 
-   1. Problème bien posé, comportement asymptotique.
+   1. Equations non-linéaires,
+      problème bien-posé, 
+      comportement asymptotique.
 
-   2. Schémas et méthodes de résolution numériques.
+   2. Méthodes de résolution numériques.
+
+Le volet consacré aux équations différentielles, qui nécessite à la fois
+des résultats du calcul différentiel et intégral, est programmé dans le
+2nd EC. Il s'inscrit dans le prolongement des contenus enseignés en 
+classes préparatoires[^CPGE-ODEs]; en particulier, les équations
+différentielles étudiées ne sont plus nécessairement linéaires et n'ont
+plus nécessairement de solution analytique connue. 
+L'accent est donc mis sur la présentation d'un cadre général définissant 
+un problème bien posé, le comportement qualitatif des solutions 
+(en temps fini et asymptotiquement) 
+et surtout l'usage de méthodes numériques pour la détermination de solutions 
+approchées; cet effort se prolonge dans un projet numérique.
+
+[^CPGE-ODEs]: Le programme de CPGE consacré aux équations différentielles
+se limite au cadre linéaire pour toutes les filières. Les résultats
+d'existence et d'unicité (mais pas la continuité par rapport aux conditions
+initiales) sont présentés dans ce cadre étroit; la problématique des solutions
+locales (maximales) par exemple est donc occultée. Le volet numérique,
+en lien avec l'enseignement d'informatique, se limite au schéma d'Euler
+explicite; l'étude de l'influence du pas de discrétisation sur la 
+qualité de la solution est évoquée, mais de façon purement qualitative.
 
 #### Probabilités 
 
@@ -610,29 +697,48 @@ qu'en MP.
 
    5. Méthodes de Monte-Carlo.
 
-Quelques éléments complémentaires de phasage:
+Comme les volets consacrés au calcul différentiel et au calcul intégral,
+l'enseignement des Probabilité est décomposé en deux parties pour 
+introduire par étapes de difficulté croissante un nombre important 
+d'éléments nouveaux.
 
-**DISPATCHER DANS LES SECTIONS**
+Les enseignements de classes préparatoires en Probabilités sont consacrés
+aux variables aléatoires finies ou discrètes, ce qui permet d'aborder un
+périmètre de notions assez large et les calculs associés[^CPGE-Proba]
+tout en maintenant un niveau de technicité limité, un confort dont nous
+ne disposeront plus dans cet UE.
+La problématique de simulation de systèmes aléatoires est présente 
+mais de façon limitée dans les programmes; la modélisation 
+de systèmes aléatoires fait en théorie partie des compétences
+attendues, mais semble en pratique peu présente, sauf trajectoire
+particulière[^TIPE]. Hors ces deux compétences, 
+importantes pour l'ingénieur, doivent être développées.
 
-  - topo: minimaliste, emphase sous-ensemble espace vectoriel normé 
-    (seul evn dim finie vu par PSI et PC), 
-    Cauchy, pt fixe, etc.
-    Objectifs limités (identifier pb topo, usage mécanique,
-    être à l'aise avec les
-    concepts/vocabulaires, etc.)
-    Evoqué solution générale mais simple (avec ref), 
-    mais demanderait trop de temps. Poly éventuellement.
+[^TIPE]: Telle que: un professeur passionné par le sujet ou un TIPE 
+dédié à des phénomènes aléatoires.
 
-  - calcul diff: phasage, ce qui manque en prépa, nécessité d'aller
-    vers higher-order diff, etc.
-
-  - intégration: intégrale de gauge, on part de loin avec la prépa.
-
-  - proba: prépa: on vu variable aléatoire discrête.
-    phasage: continu, simple d'abord; théorie générale de 
-    la mesure dispo dans un second temps (pour session 4.)
+Dans la première partie (2 sessions, 1er EC), l'accent est mis sur 
+la première rupture qu'est l'introduction des variables aléatoires 
+continues (à densité), avec une relative économie de moyens techniques
+(en exploitant la théorie intégrale développée dans le 1er EC).
 
 
+La seconde partie (3 sessions, 2nd EC) introduit les notions plus complexes
+de vecteurs aléatoires, conditionnement, etc. Elle fera également la jonction
+avec les éléments de théorie abstraite de la mesure du calcul intégral pour
+développer les résultats (notamment asymptotiques) qui nécessitent le cadre
+le plus général. Le volet de simulation sera consacré aux méthodes de Monte-Carlo,
+à la fois comme méthode de simulation de phénomènes aléatoires et comme
+technique d'intégration numérique; il sera prolongé par un projet numérique.
+
+[^CPGE-Proba]: Le programme de 1ere année des CPGE est consacré aux
+probabilités dans des univers finis; en seconde année sont étudiées
+les variables aléatoires discrètes. Sur toutes les filières, le
+périmètre est assez large: univers, évènements, variables aléatoires,
+fonction de répartition, loi conditionnelles, espérance, variance, 
+etc. jusqu'à une introduction aux séries génératrices et aux résultats
+asymptotiques. Le poids des probabilités dans la formation des CPGE est
+significatif.
 
 ### Principes
 
@@ -701,12 +807,8 @@ Quelques éléments complémentaires de phasage:
     de séances de tutorat optionnels programmés à l'emploi du temps;
     typiquement une plage de 3h consécutives, après 17h.
 
-
-
 [^recomm-durée]: 9 semaines par EC correspond à 3h (2 sessions de 1h30) 
   de face-à-face pédagogique, et 5h de charge de travail totale par semaine.
-
-
 
 Chaque item fait référence à une session de 1h30; 
 les sessions de travail personnel (autonomie ou tutoré) sont listées en italique.
