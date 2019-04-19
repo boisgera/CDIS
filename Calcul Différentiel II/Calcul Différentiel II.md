@@ -69,7 +69,7 @@ $$
 d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
 $$
 
-### Extension {.note}
+### Extensions {.note}
 Il est possible d'affaiblir l'hypothèse concernant $\partial_y f$ en supposant 
 uniquement celle-ci inversible en $(x_0, y_0)$ au lieu d'inversible sur tout $W$.
 En effet, l'application qui a une application linéaire 
@@ -83,13 +83,15 @@ Nous retrouvons donc les hypothèses initiales du théorème,
 à ceci près qu'elle sont satisfaites dans un voisinage de $(x_0, y_0)$
 qui peut être plus petit que l'ouvert initial $W$.
 
+**TODO:** ref au résultat de Tao sur math overflow où l'on ne dispose que
+de la différentiabilité (pas du caractère continûment différentiable).
 
 ### Démonstration {.proof}
 
 La partie la plus technique de la démonstration concerne l'existence et 
 la différentiabilité de la fonction implicite $\psi$. 
-Mais si l'on sait que ces résultats sont vrais, 
-établir l'expression de $d\psi$ est  relativement simple.
+Mais si l'on admet temporairement ces résultats, 
+établir l'expression de $d\psi$ est relativement simple.
 En effet, l'égalité $f(x, \psi(x)) = 0$ étant satisfaite identiquement sur $U$
 et la fonction $x \in U \mapsto f(x, \psi(x))$ étant différentiable
 comme composée de fonctions différentiables, la règle de dérivation 
@@ -103,7 +105,8 @@ d\psi(x) = - [\partial_y f(x, \psi(x))]^{-1} \cdot \partial_x f(x, \psi(x)).
 $$
 
 **TODO:** ici aussi, nécessaire d'invoquer la continuité de l'inversion
-pour conclure. Factoriser ce résultat avec la remarque précédente ?
+pour conclure quand au caractère $C^1$ de la fonction implicite. 
+Factoriser ce résultat avec la remarque précédente ?
 
 [^inv]: une application linéaire de $\mathbb{R}^m \to \mathbb{R}^m$ 
 est inversible si et seulement si
@@ -123,6 +126,183 @@ où $\mathrm{co}([A])$ désigne la comatrice de $[A]$. Chaque coefficient de
 cette comatrice ne faisant également intervenir que des sommes et des produits 
 des coefficients de $[A]$, l'application $A \mapsto A^{-1}$ est inversible sur
 son domaine de définition.
+
+Pour établir l'existence de la fonction implicite $\psi$,
+nous allons pour une valeur $x$ suffisamment proche de $x_0$
+construire une suite convergente d'approximations $y_k$, 
+proches de $y_0$ dont la limite $y$ sera solution de 
+$f(x, y)=0$.
+
+L'idée de cette construction repose sur l'analyse suivante: si nous partons
+d'une valeur $y_k$ proche de $y_0$ (a priori telle que $f(x, y_k) \neq 0$)
+et que nous recherchons une valeur $y_{k+1}$ proche, 
+qui soit une (meilleure) solution approchée de $f(x, y) = 0$, 
+comme au premier ordre
+$$
+f(x, y_{k+1}) \approx f(x, y_k) + \partial_y f(x, y_k) \cdot (y_{k+1} - y_k),
+$$
+nous en déduisons que la valeur $y_{k+1}$ définie par
+$$
+y_{k+1} := y_k - (\partial_y f(x, y_k))^{-1} \cdot f(x, y_k)
+$$
+vérifie $f(x, y_{k+1}) \approx 0$.
+On peut espérer que répéter ce processus en partant de $y_0$ 
+détermine une suite convergente dont la limite soit une
+solution exacte $y$ de $f(x, y) = 0$.
+
+Le procédé décrit ci-dessus constitue la méthode de Newton de recherche de zéros.
+Nous allons prouver que cette heuristique est ici justifiée,
+à une modification mineure près: 
+nous allons lui substituer la méthode de Newton modifiée, 
+qui n'utilise pas $\partial_y f(x, y_k)$ mais la valeur constante 
+$\partial_y f(x_0, y_0)$, c'est-à-dire qui définit la suite
+$$
+y_{k+1} := y_k - Q^{-1} \cdot f(x, y_k) \, \mbox{ où } \, Q = \partial_y f(x_0, y_0).
+$$
+
+... **TODO:** reformuler sous forme de point fixe.
+
+$$
+\phi_x(y) = y - Q^{-1} \cdot f(x, y)
+$$
+
+...
+
+La fonction $\phi_x$ est différentiable sur l'ensemble 
+$\{y \in \mathbb{R}^m \, | \, (x, y) \in W\}$ et sa différentielle est donnée
+par
+$$
+d\phi_x(y) =  I - Q^{-1} \cdot \partial_{y} f(x, y)
+$$
+où $I$ désigne la fonction identité. 
+En écrivant
+que $\partial_y f(x, y)$ est la somme de $\partial_y f(x_0, y_0)$ et de 
+$\partial_y f(x, y) - \partial_y f(x_0, y_0)$, on obtient
+$$
+\begin{split}
+\|d \phi_x(y)\| 
+& \leq \|I - Q^{-1} \cdot Q\| + \|Q^{-1} \cdot (\partial_y f(x, y) - Q)\| \\
+& \leq \|Q^{-1}\| \times \|\partial_y f(x, y) - Q\|.
+\end{split}
+$$
+La fonction $f$ étant supposée de classe $C^1$, on peut trouver un $r>0$,
+tel que tout couple $(x, y)$ tel que $\|x - x_0\| \leq r$ et
+$\|y - y_0\| \leq r$ appartienne à $W$ et vérifie 
+$\|\partial_y f(x, y) - Q\| \leq \kappa \|Q^{-1}\|^{-1}$ avec par exemple 
+$\kappa = 1/2$, ce qui entraîne $\|d \phi_x(y)\| \leq \kappa$.
+Par le théorème des accroissements finis, la restriction de $\phi$
+à $\{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$
+(que l'on continuera à noter $\phi_x$)
+est $\kappa$-contractante:
+$$
+\|\phi_x(y) - \phi_x(z)\| \leq \kappa \|y - z\|.
+$$
+Par ailleurs,
+$$
+\begin{split}
+\|\phi_x(y) - y_0\| 
+&\leq \|\phi_x(y) - \phi_x(y_0)\|  + \|\phi_{x}(y_0) - \phi_{x_0}(y_0)\|. 
+\end{split}
+$$
+On a 
+$$\|\phi_x(y) - \phi_x(y_0)\| \leq \kappa\|y - y_0\| \leq \kappa r.$$
+De plus, par continuité de $\phi$ en $(x_0, y_0)$, on peut choisir 
+un $r'$ tel que $0 < r' < r$ et tel que si $\|x - x_0\| \leq r'$, 
+alors $\|\phi_{x}(y_0) - \phi_{x_0}(y_0)\| \leq (1 - \kappa) r$. 
+Pour de telles valeurs de $x$,
+$$
+\|\phi_x(y) - y_0\| \leq \kappa r +  (1- \kappa) r = r.
+$$
+L'image de la boule fermée 
+$B = \{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$ 
+par l'application $\phi_x$ est donc incluse dans $B$.
+
+**TODO.** conclure existence et unicité (expliciter choix voisinages
+$U$ et $V$).
+
+Pour montrer la différentiabilité de la fonction implicite $\psi$,
+il est nécessaire au préalable de montrer sa continuité.
+Soit $x_1, x_2$ deux points de $V$; notons $y_1 = \psi(x_1)$
+et $y_2 = \psi(x_2)$. Ces valeurs sont des solutions des équations
+de point fixe
+$$
+y_1 = \phi_{x_1}(y_1) \, \mbox{ et } \, y_2 = \phi_{x_2}(y_2).
+$$
+En formant la différence de $y_2$ et $y_1$, on obtient donc
+$$
+\begin{split}
+\|y_2 - y_1\| & = \|\phi_{x_2}(y_2) - \phi_{x_1}(y_1)\| \\
+& \leq \|\phi_{x_2}(y_2) - \phi_{x_2}(y_1)\| +
+\|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
+\end{split}
+$$
+La fonction $\phi_{x_2}$ étant $\kappa$-contractante,
+le premier terme du membre de droite de cette inégalité est majoré
+par $\kappa\|y_2 - y_1\|$, par conséquent
+$$
+\|y_2 - y_1\| \leq \frac{1}{1 - \kappa} \|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
+$$
+L'application $y \mapsto \phi_{x_1}(y)$ étant continue en $y_1$, 
+nous pouvons conclure que $y_2$ tend vers $y_1$ quand $x_2$ tend vers $x_1$;
+autrement dit: la fonction implicite $\psi$ est continue en $x_1$.
+
+Montrons finalement la différentiabilité de $\psi$ en $x_1$. Pour cela,
+il suffit d'exploiter la différentiabilité de $f$ en $(x_1, y_1)$
+où $y_1 = \psi(x_1)$. Elle fournit l'existence d'une fonction 
+$\varepsilon$ qui soit un $o(1)$ telle que
+$$
+\begin{split}
+f(x, y) &= f(x_1, y_1) 
++ \partial_x f(x_1, y_1) \cdot (x - x_1) 
++ \partial_y f(x_1, y_1) \cdot (y - y_1) \\
+& \phantom{=} + \varepsilon((x-x_1, y-y_1)) (\|x-x_1\| + \|y-y_1\|)
+\end{split}
+$$
+On a par construction $f(x_1, y_1) = 0$; en prenant $y = \psi(x)$,
+on annule également $f(x, y) = 0$. En notant $P = \partial_x f(x_1, y_1)$
+et $Q = \partial_y f(x_1, y_1)$, on obtient 
+$$
+\begin{split}
+\psi(x)  &= \psi(x_1) - Q^{-1} \cdot P \cdot (x - x_1) \\
+&\phantom{=} - Q^{-1} \cdot P \cdot \varepsilon((x-x_1, \psi(x)-\psi(x_1)) (\|x-x_1\| + \|\psi(x)-\psi(x_1)\|).
+\end{split}
+$$
+Nous allons exploiter une première fois cette égalité. 
+Notons tout d'abord que
+$$
+\varepsilon_x(x-x_1) := \varepsilon((x-x_1, \psi(x)-\psi(x_1))
+$$
+est un $o(1)$ du fait de la continuité de $\psi$ en $x_1$.
+En choisissant $x$
+dans un voisinage suffisamment proche de $x_1$, on peut donc
+garantir que ce terme est arbitrairement petit, par
+exemple, tel que
+$$
+\|Q^{-1} \cdot P\| \times \|\varepsilon_x(x-x_1) \| \leq \frac{1}{2},
+$$
+ce qui permet d'obtenir
+$$
+\|\psi(x) - \psi(x_1)\|
+\leq
+\|Q^{-1} P\| \times \|x - x_1\| + \frac{1}{2} \|x - x_1\| + \frac{1}{2} \|\psi(x) - \psi(x_1)\|
+$$
+et donc
+$$
+\|\psi(x) - \psi(x_1)\|
+\leq \alpha \|x - x_1\|
+\, \mbox{ avec } \, \alpha := 2 \|Q^{-1} P\| + 1.
+$$
+En exploitant une nouvelle fois la même égalité, on peut désormais conclure
+que 
+$$
+\|\psi(x) - \psi(x_1) - Q^{-1} \cdot P \cdot (x - x_1)\|
+\leq \|\varepsilon'_x(x-x_1)\| \times \|x - x_1\|.
+$$
+où la fonction $\varepsilon'_x$ est le $o(1)$ défini par
+$$
+\varepsilon'_x(x-x_1) := (1+\alpha)  \times \|Q^{-1} \cdot P\| \times \|\varepsilon_x(x-x_1)\|,
+$$
+ce qui prouve la différentiabilité de $\psi$ en $x_1$ et conclut la démonstration.
 
 ### Difféomorphisme {.definition}
 Une fonction $f: U \subset \mathbb{R}^n \to V \subset \mathbb{R}^n$,
