@@ -86,6 +86,8 @@ qui peut être plus petit que l'ouvert initial $W$.
 **TODO:** ref au résultat de Tao sur math overflow où l'on ne dispose que
 de la différentiabilité (pas du caractère continûment différentiable).
 
+**TODO:** évoquer cas Lipschitz ?
+
 ### Démonstration {.proof}
 
 La partie la plus technique de la démonstration concerne l'existence et 
