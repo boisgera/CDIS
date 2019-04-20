@@ -1,5 +1,6 @@
 channels:
   - conda-forge
+  - brown-data-science # (pdf2svg)
 dependencies:
   - python=3.7
   - pandoc=2.5
@@ -7,5 +8,7 @@ dependencies:
   - scipy
   - matplotlib
   - black
+  - librsvg # Linux or OSX only ...
+  - predictmd-pdf2svg # Linux only ...
   - pip:
     - "-e git+https://github.com/boisgera/pandoc@4abbb6c4040e427696786721243a45a91f7d401d#egg=pandoc"
