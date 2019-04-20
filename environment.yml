@@ -6,5 +6,6 @@ dependencies:
   - numpy
   - scipy
   - matplotlib
+  - black
   - pip:
     - "-e git+https://github.com/boisgera/pandoc@4abbb6c4040e427696786721243a45a91f7d401d#egg=pandoc"
