@@ -752,6 +752,10 @@ Racines d'un Polynôme
 
 Si racine simple, variation continue (et plus) par rapport aux coefficients.
 
+Lier ça à la sensibilité des valeurs propres (et vecteurs propres ?) par rapport
+aux coefficients de la matrice associée ? Avantage: plus de travail de mise en
+forme pour se ramener au pb de fct implicite (à ajouter aux objectifs).
+
 Différentielle de $X \mapsto X^{-1}$
 --------------------------------------------------------------------------------
 
