@@ -767,6 +767,10 @@ Revenir sur la preuve du théorème des fonctions implicites mais sous sous une
 hypothèse $C^2$, montrer qu'il n'est pas nécessaire de modifier la méthode
 de Newton.
 
+Inversion Locale
+--------------------------------------------------------------------------------
+
+**TODO:** exemple où l'on complète le jacobien pour pouvoir appliquer le TIL.
 
 Projet Numérique
 ================================================================================
