@@ -73,5 +73,27 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "Sch96",
+		"type": "book",
+		"title": "Handbook of Analysis and Its Foundations",
+		"publisher": "Elsevier Science",
+		"URL": "https://books.google.fr/books?id=eqUv3Bcd56EC",
+		"ISBN": "978-0-08-053299-8",
+		"note": "LCCN: 96032226",
+		"author": [
+			{
+				"family": "Schechter",
+				"given": "E."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1996"
+				]
+			]
+		}
 	}
 ]

@@ -91,13 +91,6 @@ Dans la présentation, commencer par le théorème d'intégrabilité dominée,
 son contraste avec le cas Riemann classique, sans utiliser le mot de
 mesurabilité, puis en "extraire" la notion de mesurabilité.
 
-### TODO
-
-Relire/réfléchir sur domain def: travailler sur intervalle fermé général ou
-dans $\mathbb{R}$ et si oui faire le lien ?
-A l'inverse, focus sur intervalle qui permet de limiter l'exposition au
-cas borné pour simplifier ???
-
 ### Ante {.ante}
 
 Nous allons nous doter dans ce chapitre d'outils permettant de caractériser
@@ -114,6 +107,14 @@ $f_k(x) \to f(x)$ quand $k \to +\infty$.
 Une fonction $f:\mathbb{R} \to \mathbb{R}^n$ est mesurable 
 si chacune de ses composantes est mesurable.
 
+### Mesurabilité sur un intervalle {.remark}
+Nous nous limitons dans ce chapitre à l'étude des fonctions mesurables
+définies sur $\mathbb{R}$. La notion peut être très facilement étendue
+à une fonction $f$ définie sur un intervalle fermé $I$ de $\mathbb{R}$ de la
+façon suivante: on dira que $f$ est mesurable si son prolongement par $0$
+à l'extérieur de $I$ est mesurable. Nous laissons le soin au lecteur
+de généraliser en conséquence les énoncés qui vont suivre.
+
 ### Ante {.ante}
 
 Le résultat qui met la notion de fonction mesurable au coeur de l'approche
@@ -126,6 +127,7 @@ si $f$ est mesurable et il existe deux fonctions intégrables
 $g: \mathbb{R} \to \mathbb{R}$ et $h: \mathbb{R} \to \mathbb{R}$ telles que
 $g \leq f \leq h$.
 
+
 ### Interprétation {.post .remark}
 
 Souvenons-nous qu'une fonction définie sur un intervalle fermé et borné 
@@ -137,9 +139,321 @@ l'intégrabilité est donc caractérisée par une structure analogue qui
 repose sur deux propriétés distinctes:
 être encadrée par deux fonctions intégrables et être "suffisamment
 régulière". La différence est que dans le cas de l'intégrale de Riemann
-l'exigence de régularité est forte, alors que dans le cas de l'intégrale
-de Henstock-Kurzweil, la régularité demandée -- la mesurabilité -- est 
-particulièrement faible.
+l'exigence de régularité est forte -- être continue presque partout --
+alors que dans le cas de l'intégrale de Henstock-Kurzweil, 
+la régularité demandée -- la mesurabilité -- s'avère être une 
+condition très peu contraignante[^note].
+
+[^note]: A tel point que s'il l'on peut prouver l'existence d'une fonction
+non-mesurable, sa "construction explicite" est impossible. Les fonctions
+non-mesurables font partie des objets "intangibles" (cf. @Sch96) dont
+l'existence est prédite par la théorie mais que l'on ne rencontre jamais 
+par hasard ...
+
+### Ante {.ante}
+Plusieurs propriétés des fonctions mesurables se déduisent directement de
+leur définition:
+
+### Les fonctions intégrables sont mesurables
+
+### Démonstration {.proof}
+Si $f$ est une fonction mesurable, elle est la limite simple de la suite
+constante égale à $f$.
+
+### Les fonctions mesurables forment un espace vectoriel
+
+### Démonstration {.proof}
+
+Si $f$, $g$ sont mesurables et $\lambda$ est un nombre réel, 
+il existe des suites $f_k$ et $g_k$ de fonctions intégrables
+convergeant simplement vers $f$ et $g$ respectivement.
+Les fonctions $f_k + g_k$ et $\lambda f_k$ sont intégrables
+et convergent alors simplement vers $f+g$ et $\lambda f$ 
+respectivement.
+
+
+### TODO ?
+
+Evoquer fct localement intégrable ? Quand on regarde la preuve ci-dessous,
+on n'utilise pas autre chose ...
+
+### Les fonctions continues (presque partout) sont mesurables
+
+### Démonstration {.proof}
+
+Soit $f:\mathbb{R} \to \mathbb{R}$ une fonction continue presque
+partout. Pour tout entier $k$, la fonction $f_k$ égale à $f$ sur
+l'intervalle $[-k, k]$ est intégrable (car Riemann-intégrable)
+et la suite des $f_k$ converge simplement vers $f$, qui est
+donc mesurable. 
+
+### Images réciproques des fonctions mesurables {.theorem}
+
+Une fonction $f:\mathbb{R} \mapsto \mathbb{R}^n$ est mesurable si et seulement
+pour tout ouvert $U$ de $\mathbb{R}$, l'image réciproque de $U$ par $f$
+$$
+f^{-1}(U) = \{x \in \mathbb{R} \, | \, f(x) \in U\}
+$$
+est mesurable.
+
+**NOTA:** l'énonce ici est donné dans le cas des fonctions scalaires,
+mais on a rapidement besoin du cadre vectoriel (pour composer avec
+des opérateurs binaires), ce qui renforce encore l'attrait de la 
+formulation "abstraite" (qui "tient" dans le cas vectoriel, mais
+pas les autres). donc **TODO:** nettoyer, ne garder que le cas 3.,
+et rajouter le bout de démo qui finit la preuve dans le cas vectoriel
+(dans les deux sens).
+
+**TODO:** update: énoncé patché, adapter la preuve en fonction.
+
+**TODO:** remarque très rapidement sur la forme abstraite et lien avec la
+continuité.
+
+### Ante {.ante}
+
+En se basant exclusivement sur ce critère de mesurabilité par 
+les images réciproques (donc en comprenant temporairement 
+"mesurable" comme "satisfaisant le critère de l'image réciproque"
+en attendant la preuve de l'équivalence des deux propriétés), 
+on peut montrer les résultats suivants:
+
+### Stabilité par passage à la limite
+
+Les limites simples de fonction mesurables sont mesurables.
+
+### Démonstration {.proof}
+
+Soit  $f_k: \mathbb{R} \to \mathbb{R}$ des fonctions vérifiant le critère
+de l'image réciproque, 
+telles que pour tout $x \in \mathbb{R}$, $f_k(x) \to f(x)$ quand $k \to +\infty$.
+Montrons que $f$ vérifie également ce critère.
+Il suffit pour cela de remarquer que comme $U$ est ouvert et que
+$f_k(x) \to f(x)$, $f(x) \in U$ si et seulement si $f_k(x) \in U$
+pour $k$ assez grand. Cette déclaration se traduit par la formule
+$$
+f^{-1}(U) = \bigcup_{j=1}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
+$$
+qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
+(dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
+
+### Fonctions presque partout égales {.theorem}
+
+Toute fonction égale presque partout à une fonction mesurable est
+mesurable.
+
+### Démonstration {.proof}
+
+Toute fonction $f$ égale presque partout à une fonction $g$ qui vérifie 
+le critère de l'image réciproque vérifie également le critère de l'image
+réciproque. En effet, si pour
+tout ouvert $U$ l'ensemble $g^{-1}(U)$ est mesurable, alors
+$$
+f^{-1}(U) = (g^{-1}(U) \setminus E) \cup F
+$$
+où $E$ et $F$ sont de mesure nulle (et donc mesurables puisque la mesure
+de Lebesgue est complète);
+par conséquent, $f^{-1}(U)$ est mesurable.
+
+**TODO:** des pptés des ensembles mesurables sont utilisés dans la preuve
+ci-dessous, repenser l'ordre ? J'aimerais pourtant retard l'apparition 
+des ensembles mesurables, ne pas focaliser trop tôt. Sinon, réécrire
+la preuve dans le langage des fonctions ? Urk, pas de choix parfait ici ...
+Vérifier au passage que je n'utilise pas à travers les ensembles mesurables
+de pptés que je n'ai pas encore démontré qui nécessité le critère par les
+images réciproques. Même chose au-dessus .... jeez.
+Arf, le nouvel ordre pose pb; j'ai de toute évidence bien besoin
+des ensembles mesurables pour L'ENONCE du critère de l'image réciproque,
+dont j'ai bien besoin au moins d'UN BOUT des ensembles mesurables ...
+Décider de l'approche donc pour ces ensembles (fonction carac localement 
+intégrable ou mesurable ?)
+
+
+### Démonstration {.proof}
+
+#### Sens direct
+
+Supposons le critère des images réciproques satisfait. 
+La démonstration repose sur la construction explicite d'une suite $f_k(x)$ 
+de fonctions intégrables qui soient étagées, c'est-à-dire ne prenant qu'un
+nombre fini de valeurs possibles.
+
+Définissons $f_0(x) = 0$ et $f_k(x)$ par la relation de récurrence
+$$
+f_{k+1}(x) = f_k(x) + 
+\left|
+\begin{array}{rl}
+-1/k & \mbox{si } \, f(x) < f_k(x) -1/k \, \mbox{ et } \, |x| \leq k,\\
++1/k  & \mbox{si } \, f_k(x) + 1/k < f(x)  \, \mbox{ et } \, |x| \leq k, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Par construction, si $f(x)=0$, $f_k(x)= 0$. Si $f(x) > 0$, les $f_k(x)$
+forment une suite croissante convergeant vers $f(x)$, car la suite des
+$1/k$ tend vers $0$ quand $k$ tend vers $+\infty$, mais leur somme est 
+divergente. La situation est similaire si $f(x) < 0$, mais avec une
+suite $f_k(x)$ décroissante.
+
+Montrons que la suite des $f_k$ est intégrable, ce qui concluera cette 
+section de la preuve.
+L'ensemble des valeurs $\{\alpha_j\}$ que prend chaque $f_k$ est bien fini;
+il comprend la valeurs $\alpha_0 = 0$ et la fonction 
+peut s'écrire sous la forme
+$$
+f_k = \sum_{j} \alpha_j \chi_{A_j}
+$$
+où les $A_j = f_k^{-1}(\alpha_j)$ sont en nombre fini et disjoints.
+A part $A_0$, les $A_j$ sont également bornés, 
+car $f_k$ est nulle en dehors de $[-k, k]$.
+Montrons qu'à tout rang $k$, les ensembles $A_j$ sont mesurables, 
+ce qui prouvera que chaque $f_k$ est intégrable par le critère d'intégrabilité
+dominé.
+C'est évident au rang $0$ où 
+$\{\alpha_j\} = \{0\}$, et la collection des $A_j$ se réduit à 
+$\{A_0\} = \{\mathbb{R}\}$;
+supposons cette propriété valable au rang $k$. 
+L'ensemble $E$ des
+réels $x$ tels que $f_k(x) + 1/k < f(x)$ et $|x| \leq k$
+peut être écrit comme
+$$
+E = \left(\bigcup_j \{x \in \mathbb{R} \, | \, \alpha_j + 1/k < f(x)\} \cap A_j\right) \cap [-k, k],
+$$
+qui est mesurable. De même, on peut montrer que 
+l'ensemble $F$ des
+réels $x$ tels que $f(x) < f_k(x) - 1/k < f(x)$ et $|x| \leq k$ est mesurable.
+On a alors par construction: 
+$$
+f_{k+1} = \sum_{j} \alpha_j \chi_{A_j} + \frac{1}{k} \chi_E - \frac{1}{k} \chi_F
+$$
+qui est sous la forme souhaitée, à ceci près que les ensembles intervenant
+ne sont pas nécessairement disjoints. Mais pour toute valeur $y$ dans l'image
+de $f_{k+1}$, l'image réciproque de $\{y\}$ par $f$ est nécessairement une
+union (finie) d'intersections (finies) d'ensembles dans la collection 
+$\{\dots, A_j, \dots, E, F\}$ et donc un ensemble mesurable. La fonction 
+$f_{k+1}$ peut donc être mise sous la forme souhaitée.
+
+#### Réciproque
+
+Considérons désormais une fonction intégrable $f:\mathbb{R} \to \mathbb{R}$.
+Par le [théorème de dérivation de l'annexe][Une intégrale indéterminée est dérivable presque partout],
+si l'on définit la fonction $f_k(x)$ comme le taux d'accroissement
+$$
+f_k(x) :=  \frac{F(x + 2^{-k}) - F(x)}{2^{-k}}
+\; \mbox{ où } \;
+F: x \in \mathbb{R} \mapsto \int_0^x f(t) \, dt,
+$$
+alors $f_k(x) \to f(x)$ presque partout quand $k \to +\infty$.
+Or chaque $f_k$ est continue, donc l'image réciproque de tout ouvert
+par $f_k$ est un ensemble mesurable. Par les deux résultats établis dans
+cette section, $f$ vérifie également ce critère.
+
+Par définition, une fonction mesurable est limite simple
+d'une suite de fonctions intégrables, et les fonctions intégrables 
+vérifient le critère de l'image réciproque. 
+Cette classe de fonctions étant [stable par passage à la limite][Stabilité par passage à la limite], 
+ce critère est également satisfait pour toute fonction mesurable.
+
+
+### Composition par une fonction continue {.theorem}
+
+Soit $f:\mathbb{R} \to \mathbb{R}^n$ une fonction mesurable et 
+$g:\mathbb{R}^n \to \mathbb{R}^m$ une fonction continue.
+La composée $g \circ f$ de ces deux fonctions est mesurable.
+
+### Démonstration {.proof}
+
+Si $U$ est un ouvert de $\mathbb{R}^m$.
+Par continuité de $g$, l'ensemble $g^{-1}(U)$ est un ouvert de $\mathbb{R}^n$ 
+et par conséquent, par [le critère de mesurabilité par les images réciproques][Images réciproques des fonctions mesurables],
+$$
+(g\circ f)^{-1}(U) = f^{-1}(g^{-1}(U))
+$$
+est un ensemble mesurable. Par le même critère, 
+la composée $g\circ f$ est donc mesurable.
+
+### Remarque {.remark}
+Les corollaires de ce résultat sont nombreux et immédiat. 
+Citons les deux instances les plus directement utiles.
+
+### Mesurabilité du produit {.corollary}
+
+Le produit de deux fonctions scalaires mesurables est mesurable.
+
+### Démonstration {.proof}
+
+Par continuité de l'application produit 
+$\times: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$.
+
+### Mesurabilité de la valeur absolue {.corollary}
+
+La valeur absolue d'une fonction scalaire mesurable est mesurable.
+
+### Démonstration {.proof}
+
+Par continuité de l'application valeur absolue
+$|\, \cdot \,|: \mathbb{R} \to \mathbb{R}$.
+
+
+**TODO:** adapter preuve ci-dessous, la preuve amont a été refaite,
+le "patch" pour borner n'est plus nécessaire.
+
+### Démonstration du critère d'intégrabilité dominée {.proof}
+
+Si la fonction $f$ est intégrable, elle est mesurable et satisfait
+les inégalités $f \leq f \leq f$. Le sens direct est donc démontré.
+
+Pour établir la réciproque, nous allons exploiter le théorème de convergence
+dominée du chapitre suivant.
+Nous allons appliquer le procédé d'approximation
+par une suite de fonctions étagées déjà utilisé dans [la preuve de la
+caractérisation des fonctions mesurables par leurs images réciproques][Images réciproques des fonctions mesurables]. Nous appliquons cette construction à la fonction $f - g$ qui
+est mesurable comme différence de fonctions mesurables. Comme $f-g$ vérifie
+$0\leq f-g \leq h - g$, la suite $\delta_k$ -- qui converge
+simplement vers $f-g$ --
+vérifie $0 \leq \delta_k \leq h - g$. En raison de cette inégalité,
+et comme $h - g$ est (absolument) intégrable, $\chi_{[-k, k]}\delta_k$ est 
+une somme finie de la forme $\sum_j \alpha_j \chi_{A_j}$ où les $A_j$ 
+sont mesurables et bornés (dans $[-k, k]$), $A_j$ est intégrable.
+
+La fonction $f-g$ apparaît donc comme une limite simple des
+fonction $\chi_{[-k, k]} \delta_k$, qui sont intégrables et
+encadrées par les fonctions intégrables $0$ et $h - g$. Par le théorème de
+convergence dominée, $f - g$ est intégrable, et par conséquent $f = (f-g) + g$
+l'est également.
+
+
+
+
+
+### Produit de fonctions intégrable et bornée {.corollary}
+
+Si $f: \mathbb{R} \to \mathbb{R}$ est une fonction absolument intégrable 
+et $g: \mathbb{R} \to \mathbb{R}$ est mesurable et bornée,
+alors le produit $fg$ est (absolument) intégrable.
+
+### Preuve {.proof}
+
+Par hypothèse $f$ est intégrable donc mesurable; $g$ étant mesurable,
+le produit $fg$ est mesurable. Par ailleurs, si $|g| \leq M$, on a
+$$
+- M |f| \leq f g \leq M |f|
+$$
+et comme les fonctions $-M|f|$ comme $M |f|$ sont intégrables, 
+par le critère d'intégrabilité dominée, $fg$ est intégrable. 
+La valeur absolue $|fg|$ de $fg$ est mesurable
+et vérifie également $- M |f| \leq f g \leq M |f|$, elle est donc également
+intégrable par le même critère.
+
+Fonctions Absolument Intégrables
+================================================================================
+
+### TODO
+
+ remarque nécessaire ou exemples montrant que le critère 
+d'intégrabilité dominée est en fait pratique quand on manipule des
+fonction absolument intégrables et que les calculs manipulant des 
+fonctions uniquement conditionnellement intégrables sont "fragiles".
+
 
 
 ### Remarque {.remark}
@@ -286,298 +600,6 @@ Comme la série de cette équation est divergente,
 on peut rendre l'intégrale arbitrairement grande en choisissant
 un $k$ suffisamment grand, ce qui permet de conclure.
 
-### Les fonctions intégrables sont mesurables
-
-... trivial
-
-### Les limites simples de fonction mesurables sont mesurables.
-
-... facile, en diagonalisant.
-
-### Les fonctions continues sont mesurables
-
-... car elle sont localement intégrables.
-
-
-### Images réciproques des fonctions mesurables {.theorem}
-
-Une fonction $f:\mathbb{R} \mapsto \mathbb{R}$ est mesurable si et seulement
-les conditions équivalentes suivantes sont satisfaites:
-
- 1. Pour tout nombre réel $a$, l'ensemble
-    $$
-    f^{-1}(\left]a, +\infty\right[) = \{x \in \mathbb{R} \, | \, a < f(x)\}
-    $$
-    est mesurable.
-
- 2. Pour tout intervalle ouvert $\left]a, b\right[$ de $\mathbb{R}$,
-    l'ensemble
-    $$
-    f^{-1}(\left]a, b\right[) = \{x \in \mathbb{R} \, | \, a < f(x) < b\}
-    $$
-    est mesurable.
-
- 3. Pour tout ouvert $U$ de $\mathbb{R}$, l'ensemble
-    $$
-    f^{-1}(U) = \{x \in \mathbb{R} \,  | \, f(x) \in U\}
-    $$
-    est mesurable.
-
-**TODO:** carac par les boréliens (serait 4.) nécessaire ici ? Non.
-
-A l'inverse, simplifier en ne retenant que la formulation la plus forte ?
-Et mettre le reste (et aussi intervalle fermé, etc.) en exercice 
-(éventuellement) ?
-
-**NOTA:** l'énonce ici est donné dans le cas des fonctions scalaires,
-mais on a rapidement besoin du cadre vectoriel (pour composer avec
-des opérateurs binaires), ce qui renforce encore l'attrait de la 
-formulation "abstraite" (qui "tient" dans le cas vectoriel, mais
-pas les autres). donc **TODO:** nettoyer, ne garder que le cas 3.,
-et rajouter le bout de démo qui finit la preuve dans le cas vectoriel
-(dans les deux sens).
-
-**TODO:** remarque très rapidement sur la forme abstraite et lien avec la
-continuité.
-
-### Démonstration {.proof}
-
-#### 1. $\Leftrightarrow$ 2. $\Leftrightarrow$ 3.
-
-Montrons avant tout l'équivalence des trois relations de l'énoncé.
-Supposons la condition 1.\ satisfaite.  Si $a =-\infty$ et $b=+\infty$,
-comme
-$$
-f^{-1}(\left]-\infty, +\infty\right[)
-= \bigcup_{k = 0}^{+\infty}  f^{-1}(\left]-2^k, +\infty\right[)
-$$
-l'image réciproque de $\left]a,b\right[$, est mesurable comme union
-dénombrable d'ensembles mesurables. Dans le cas $-\infty < a$ et 
-$b = +\infty$, la condition 1. s'applique directement et 
-$f^{-1}(\left]a, b \right[)$ est mesurable. 
-Si $-\infty < a < b < +\infty$, 
-$$
-\begin{split}
-f^{-1}(\left]a, b\right[)
-&= \bigcup_{k=0}^{+\infty} f^{-1}(\left]a, b - 2^{-n}\right]) \\
-&= \bigcup_{k=0}^{+\infty} f^{-1}(\left]a, +\infty\right[) \setminus f^{-1}(\left]b - 2^{-n}, +\infty\right[)
-\end{split}.
-$$
-L'image réciproque $f^{-1}(\left]a, b \right[)$ est donc mesurable comme
-union dénombrable d'ensembles mesurables, car différences d'ensembles mesurables. 
-Le seul intervalle ouvert que nous n'avons pas encore considéré est l'ensemble
-vide, mais son image réciproque par $f$ est l'ensemble vide qui est bien 
-mesurable.
-
-Si la condition 2. est satisfaite, la condition 3. également, car tout ouvert
-$U$ de $\mathbb{R}$ peut-être décomposé comme une union (finie ou) dénombrable 
-d'intervalles ouverts (disjoints) $I_k$, par conséquent
-$$
-f^{-1}(U) = f^{-1} \left(\cup_k I_k \right) = \bigcup_{k} f^{-1}(I_k),
-$$
-l'image réciproque de $U$ par $f$ est donc mesurable. Finalement,
-il est clair que si la condition 3.\ est satisfaite, la condition 1.\ également.
-
-#### 3. $\Rightarrow$ mesurable.
-
-Supposons la condition $3$ satisfaite. Construisons la suite
-des $f_k(x)$ par la condition initiale $f_0(x) = 0$ et la relation
-de récurrence
-$$
-f_{k+1}(x) = f_k(x) + 
-\left|
-\begin{array}{rl}
--1/k & \mbox{si } \, f(x) < f_k(x) -1/k \\
-0    & \mbox{si } \, f_k(x) -1/k \leq f(x) \leq f_k(x) + 1/k \\
-1/k  & \mbox{si } \, f_k(x) + 1/k < f(x).
-\end{array}
-\right.
-$$
-Par construction, si $f(x)=0$, $f_k(x)= 0$. Si $f(x) > 0$, les $f_k(x)$
-forment une suite croissante convergeant vers $f(x)$, car la suite des
-$1/k$ tend vers $0$ quand $k$ tend vers $+\infty$, mais leur somme est 
-divergente. La situation est similaire si $f(x) < 0$, mais avec une
-suite $f_k(x)$ décroissante.
-
-Montrons que la suite des $f_k$ est mesurable, ce qui concluera cette 
-section de la preuve puisqu'on aura montré que $f$ est une 
-limite simple de fonctions mesurables.
-Chaque fonction $f_k$ est étagée: l'ensemble des valeurs 
-$\{\alpha_j\}$ que prend chaque $f_k$ est fini. 
-La fonction peut donc s'écrire sous la forme
-$$
-f_k = \sum_{j} \alpha_j \chi_{A_j}
-$$
-où les ensembles $A_j = f_k^{-1}(\alpha_j)$ sont disjoints par construction.
-Montrons qu'à tout rang $k$, les ensembles $A_j$ sont mesurables, 
-ce qui prouve que chaque $f_k$ est mesurable.
-C'est évident au rang $0$ où $\{\alpha_j\} = \{0\}$ et $A_0 = \mathbb{R}$;
-supposons cette propriété valable au rang $k$. La fonction $f_k + 1/k$
-peut donc mettre sous la forme d'une somme finie $\sum_j (\alpha_j + 1/k) \chi_{A_j}$
-où les $A_k$ sont mesurables et disjoints. L'ensemble $E$ des
-réels $x$ tels que $f_k(x) + 1/k < f(x)$ peut être écrit comme
-$$
-E = \bigcup_j \{x \in \mathbb{R} \, | \, \alpha_j + 1/k < f(x)\} \cap A_j,
-$$
-qui est mesurable. De même, on peut montrer que 
-$F = \{x \in \mathbb{R} \, | \, f(x) < f_k(x) -1/k\}$ est mesurable.
-On a alors par construction 
-$$
-f_{k+1} = \sum_{j} \alpha_j \chi_{A_j} + \frac{1}{k} \chi_E - \frac{1}{k} \chi_F
-$$
-qui est sous la forme souhaitée, à ceci près que les ensembles intervenant
-ne sont pas nécessairement disjoints. Mais pour toute valeur $y$ dans l'image
-de $f_{k+1}$, l'image réciproque de $\{y\}$ par $f$ est nécessairement une
-union (finie) d'intersections (finies) d'ensembles dans la collection 
-$\{\dots, A_j, \dots, E, F\}$ et donc un ensemble mesurable. La fonction 
-$f_{k+1}$ a donc la forme souhaitée.
-
-#### mesurable $\Rightarrow$ 3.
-
-**TODO:** éviter circonvolution autour de "cette propriété"; 
-lui donner un nom.
-
-Montrons tout d'abord que l'ensemble des fonctions telles 
-que l'image réciproque de tout ensemble 
-ouvert est un ensemble mesurable est stable par passage à la limite simple,
-c'est-à-dire que si toutes les fonctions de la suite 
-$f_k: \mathbb{R} \to \mathbb{R}$ vérifient cette propriété et que
-pour tout $x \in \mathbb{R}$, $f_k(x) \to f(x)$ quand $k \to +\infty$,
-alors $f$ vérifie également cette propriété.
-Il suffit pour cela de remarquer que comme $U$ est ouvert et que
-$f_k(x) \to f(x)$, $f(x) \in U$ si et seulement si $f_k(x) \in U$
-pour $k$ assez grand. Cette déclaration se traduit par la formule
-$$
-f^{-1}(U) = \bigcup_{j=1}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
-$$
-qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
-(dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
-
-Toute fonction $f$ égale presque partout à une fonction $g$ qui vérifie 
-cette propriété vérifie également cette propriété. En effet, si pour
-tout ouvert $U$ l'ensemble $g^{-1}(U)$ est mesurable, alors
-$$
-f^{-1}(U) = (g^{-1}(U) \setminus E) \cup F
-$$
-où $E$ et $F$ sont de mesure nulle (et donc mesurables puisque la mesure
-de Lebesgue est complète);
-par conséquent, $f^{-1}(U)$ est mesurable.
-
-Considérons désormais une fonction intégrable $f:\mathbb{R} \to \mathbb{R}$.
-Par le [théorème de dérivation de l'annexe][Une intégrale indéterminée est dérivable presque partout],
-si l'on définit la fonction $f_k(x)$ comme le taux d'accroissement
-$$
-f_k(x) :=  \frac{F(x + 2^{-k}) - F(x)}{2^{-k}}
-$$
-où
-$$
-F: x \in \mathbb{R} \mapsto \int_0^x f(t) \, dt,
-$$
-alors $f_k(x) \to f(x)$ presque partout quand $k \to +\infty$.
-Or chaque $f_k$ est continue, donc l'image réciproque de tout ouvert
-par $f_k$ est un ensemble mesurable. Par les deux résultats établis dans
-cette section, $f$ vérifie également cette propriété.
-
-Pour conclure: par définition, une fonction mesurable est limite simple
-d'une suite de fonctions intégrables, qui vérifient donc la propriété. 
-Par stabilité de cette classe de fonctions par limite simple, la propriété
-est également satisfaite pour toute fonction mesurable.
-
-
-### Composition par une fonction continue {.theorem}
-
-Soit $f:\mathbb{R} \to \mathbb{R}^n$ une fonction mesurable et 
-$g:\mathbb{R}^n \to \mathbb{R}^m$ une fonction continue.
-La composée $g \circ f$ de ces deux fonctions est mesurable.
-
-**TODO:** extension composition par les fcts boréliennes ?
-En exercice, pas sur le chemin critique ici.
-
-### Démonstration {.proof}
-
-Si $U$ est un ouvert de $\mathbb{R}^m$.
-Par continuité de $g$, l'ensemble $g^{-1}(U)$ est un ouvert de $\mathbb{R}^n$ 
-et par conséquent, par [le critère de mesurabilité par les images réciproques][Images réciproques des fonctions mesurables],
-$$
-(g\circ f)^{-1}(U) = f^{-1}(g^{-1}(U))
-$$
-est un ensemble mesurable. Par le même critère, 
-la composée $g\circ f$ est donc mesurable.
-
-### Remarque {.remark}
-Les corollaires de ce résultat sont nombreux et immédiat. 
-Citons les deux instances les plus directement utiles.
-
-### Mesurabilité du produit {.corollary}
-
-Le produit de deux fonctions scalaires mesurables est mesurable.
-
-### Démonstration {.proof}
-
-Par continuité de l'application produit 
-$\times: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$.
-
-### Mesurabilité de la valeur absolue {.corollary}
-
-La valeur absolue d'une fonction scalaire mesurable est mesurable.
-
-### Démonstration {.proof}
-
-Par continuité de l'application valeur absolue
-$|\, \cdot \,|: \mathbb{R} \to \mathbb{R}$.
-
-
-### Démonstration du critère d'intégrabilité dominée {.proof}
-
-Si la fonction $f$ est intégrable, elle est mesurable et satisfait
-les inégalités $f \leq f \leq f$. Le sens direct est donc démontré.
-
-Pour établir la réciproque, nous allons exploiter le théorème de convergence
-dominée du chapitre suivant.
-Nous allons appliquer le procédé d'approximation
-par une suite de fonctions étagées déjà utilisé dans [la preuve de la
-caractérisation des fonctions mesurables par leurs images réciproques][Images réciproques des fonctions mesurables]. Nous appliquons cette construction à la fonction $f - g$ qui
-est mesurable comme différence de fonctions mesurables. Comme $f-g$ vérifie
-$0\leq f-g \leq h - g$, la suite $\delta_k$ -- qui converge
-simplement vers $f-g$ --
-vérifie $0 \leq \delta_k \leq h - g$. En raison de cette inégalité,
-et comme $h - g$ est (absolument) intégrable, $\chi_{[-k, k]}\delta_k$ est 
-une somme finie de la forme $\sum_j \alpha_j \chi_{A_j}$ où les $A_j$ 
-sont mesurables et bornés (dans $[-k, k]$), $A_j$ est intégrable.
-
-La fonction $f-g$ apparaît donc comme une limite simple des
-fonction $\chi_{[-k, k]} \delta_k$, qui sont intégrables et
-encadrées par les fonctions intégrables $0$ et $h - g$. Par le théorème de
-convergence dominée, $f - g$ est intégrable, et par conséquent $f = (f-g) + g$
-l'est également.
-
-### TODO
-
- remarque nécessaire ou exemples montrant que le critère 
-d'intégrabilité dominée est en fait pratique quand on manipule des
-fonction absolument intégrables et que les calculs manipulant des 
-fonctions uniquement conditionnellement intégrables sont "fragiles".
-
-### Produit de fonctions intégrable et bornée {.corollary}
-
-Si $f: \mathbb{R} \to \mathbb{R}$ est une fonction absolument intégrable 
-et $g: \mathbb{R} \to \mathbb{R}$ est mesurable et bornée,
-alors le produit $fg$ est (absolument) intégrable.
-
-### Preuve {.proof}
-
-Par hypothèse $f$ est intégrable donc mesurable; $g$ étant mesurable,
-le produit $fg$ est mesurable. Par ailleurs, si $|g| \leq M$, on a
-$$
-- M |f| \leq f g \leq M |f|
-$$
-et comme les fonctions $-M|f|$ comme $M |f|$ sont intégrables, 
-par le critère d'intégrabilité dominée, $fg$ est intégrable. 
-La valeur absolue $|fg|$ de $fg$ est mesurable
-et vérifie également $- M |f| \leq f g \leq M |f|$, elle est donc également
-intégrable par le même critère.
-
-
 Ensembles mesurables
 ================================================================================
 
@@ -687,10 +709,52 @@ la fonction $f$ soit intégrable sur $[x-\varepsilon, x+\varepsilon]$.
 Fonctions Mesurables
 --------------------------------------------------------------------------------
 
-Alléger le texte principal des 3 caractérisations de mesurable par l'image
-réciproque et se contenter de la plus "standard" (image réciproque de
-tout ouvert est mesurable). Proposer ici le variantes plus simples, 
-fermées et la variante plus "forte" (image réciproque d'un Borélien).
+Montrer qu'une fonction $f: \mathbb{R} \to \mathbb{R}$ est mesurable si et
+seulement si pour tout nombre réel $a$, l'ensemble
+$$
+f^{-1}(\left]a, +\infty\right[) = \{x \in \mathbb{R} \, | \, a < f(x)\}
+$$
+est mesurable.
+
+### Réponse
+
+Compte tenu du [critère de l'image réciproque][Images réciproques des fonctions mesurables],
+comme tous les ensembles $\left]a, +\infty\right[$ sont ouverts, 
+le critère ci-dessus est bien vérifié pour toute fonction mesurable.
+
+Montrons désormais la réciproque: supposons le critère ci-dessus vérifié et
+montrons que le [critère de l'image réciproque][Images réciproques des fonctions mesurables]
+l'est également.
+
+Soit $U$ un ouvert de $\mathbb{R}$; l'ensemble $U$ peut être décomposé comme
+union d'un nombre dénombrables d'intervalles ouverts bornés $I_k$
+de $\mathbb{R}$.
+Par conséquent, comme
+$$
+f^{-1}(U) = f^{-1} \left(\cup_k I_k \right) = \bigcup_{k} f^{-1}(I_k),
+$$
+il nous suffit de montrer que l'image réciproque de tout intervalle
+ouvert borné $\left]a, b\right[$ par $f$ est mesurable, pour conclure
+que $f^{-1}(U)$ est mesurable, comme union dénombrable d'ensembles
+mesurables.
+
+Or, un point $x$ vérifie $a < f(x) < b$ si et seulement
+il vérifie $a < f(x)$ et ne vérifie $b-2^{-k} < f(x)$ pour aucun entier $k$,
+ce qui se traduit par la relation ensembliste
+$$
+f^{-1}(\left]a, b\right[) 
+= 
+f^{-1}(\left]a, +\infty \right[) 
+\cap 
+\left(\mathbb{R} \setminus \bigcup_{k=0}^{+\infty} f^{-1}(\left]b -2^{-k}, +\infty \right[)\right).
+$$
+Les images réciproques au second membre sont mesurables par hypothèse,
+et sont combinées par union dénombrable, complément relatif et union finie
+par conséquent $f^{-1}(\left]a, b\right[)$ est également mesurable.
+
+
+Fonctions Boréliennes
+--------------------------------------------------------------------------------
 
 MMmm splitter, cas fct numériques et variantes "plus faibles" d'un coté
 et fct Boréliennes et mesurabilité de l'autre (avec appli qui revisite
