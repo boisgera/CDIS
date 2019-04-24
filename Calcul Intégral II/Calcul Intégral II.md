@@ -83,79 +83,208 @@ Sinon
 
   - Mener toute la présentation dans $\mathbb{R}$.
    
-Ensembles mesurables
-================================================================================
-
-**TODO:** secondaire dans l'approche, introduire plus tard et pas par une
-nouvelle définition: fonction caractéristique mesurable suffit.
-
-### Ensemble mesurable {.definition}
-
-Un ensemble $E$ de $\mathbb{R}$ est *mesurable* si pour tout intervalle
-$[a, b]$ compact de $\mathbb{R}$, la fonction caractéristique de 
-l'intersection de $E$ et de $[a, b]$ 
-$$
-x \in \mathbb{R} \mapsto \{x \in E \mbox{ et } x \in [a, b]\}
-$$
-est intégrable.
-
-
---------------------------------------------------------------------------------
-
-(expliquer ensembles infinis, problématique de régularité mais pas de taille)
-
-
-### Propriétés des ensembles mesurables {.theorem}
-
- 1. L'ensemble vide est mesurable.
-
- 2. L'ensemble des points n'appartenant pas à un ensemble mesurable est mesurable.
-
- 3. L'union d'une collection finie ou dénombrable d'ensembles mesurables,
-    est mesurable.
-
- 4. Tout ensemble ouvert est mesurable.
-
-### Preuve {.proof}
-
-**TODO.**
-
-**TODO:** corollaires immédiats: difference mesurable, ensemble fermés
-mesurables, etc.
-
---------------------------------------------------------------------------------
-
-### Tribu / $\sigma$-algèbre {.definition}
-
-**TODO:** $\sigma$-algèbre, "calculs"/notations associées, Boréliens, 
-perspective par rapport à supra.
-
-**TODO:** mesure, pptés, complétude de la mesure (nécessaire plus tard).
-
 Fonctions mesurables
 ================================================================================
 
-Perspective: "relâcher" la contrainte sur le caractère "borné" des fonctions
-intégrables. D'où la définition (à préciser dans le contexte de la conséquence
-du DCT ? Préciser ...)
+### Meta {.meta}
+Dans la présentation, commencer par le théorème d'intégrabilité dominée,
+son contraste avec le cas Riemann classique, sans utiliser le mot de
+mesurabilité, puis en "extraire" la notion de mesurabilité.
+
+### TODO
+
+Relire/réfléchir sur domain def: travailler sur intervalle fermé général ou
+dans $\mathbb{R}$ et si oui faire le lien ?
+A l'inverse, focus sur intervalle qui permet de limiter l'exposition au
+cas borné pour simplifier ???
+
+### Ante {.ante}
+
+Nous allons nous doter dans ce chapitre d'outils permettant de caractériser
+plus facilement l'intégrabilité des fonctions. Au coeur de l'approche,
+la notion de fonction mesurable:
 
 ### Fonction mesurable {.definition}
-Une fonction $f:\mathbb{R} \to \mathbb{R}^n$ est *mesurable* 
+Une fonction $f:\mathbb{R} \to \mathbb{R}$ est *mesurable* 
 si elle est la limite simple d'une suite de fonctions intégrables,
 c'est-à-dire s'il existe une suite de fonctions intégrables 
-$f_k:\mathbb{R} \to \mathbb{R}^n$ telle que 
+$f_k:\mathbb{R} \to \mathbb{R}$ telle que 
 pour tout $x\in \mathbb{R}$, 
 $f_k(x) \to f(x)$ quand $k \to +\infty$.
+Une fonction $f:\mathbb{R} \to \mathbb{R}^n$ est mesurable 
+si chacune de ses composantes est mesurable.
+
+### Ante {.ante}
+
+Le résultat qui met la notion de fonction mesurable au coeur de l'approche
+est le critère d'intégrabilité dominée:
+
+### Critère d'intégrabilité dominée {.theorem}
+
+Une fonction $f: \mathbb{R} \to \mathbb{R}$ est intégrable si et seulement
+si $f$ est mesurable et il existe deux fonctions intégrables 
+$g: \mathbb{R} \to \mathbb{R}$ et $h: \mathbb{R} \to \mathbb{R}$ telles que
+$g \leq f \leq h$.
+
+### Interprétation {.post .remark}
+
+Souvenons-nous qu'une fonction définie sur un intervalle fermé et borné 
+est intégrable au sens de Riemann si et seulement si elle est encadrée 
+par deux fonctions intégrables au sens de Riemann et continue presque partout.
+
+Dans le cas de l'intégrale de Riemann comme de Henstock-Kurzweil, 
+l'intégrabilité est donc caractérisée par une structure analogue qui
+repose sur deux propriétés distinctes:
+être encadrée par deux fonctions intégrables et être "suffisamment
+régulière". La différence est que dans le cas de l'intégrale de Riemann
+l'exigence de régularité est forte, alors que dans le cas de l'intégrale
+de Henstock-Kurzweil, la régularité demandée -- la mesurabilité -- est 
+particulièrement faible.
+
 
 ### Remarque {.remark}
-Une fonction $f:\mathbb{R} \to \mathbb{R}^n$ étant intégrable si et 
-seulement si chacune de ses composantes scalaire l'est, il en va de
-même pour les fonctions mesurables.
+
+Nous verrons également dans la suite que ce résultat est généralement 
+plus facile à exploiter quand on peut faire l'hypothèse que les fonctions
+que l'on manipule sont non seulement intégrables, mais également
+absolument intégrables.
+
+**TODO: fcts abs int introduites SI TOT ???** Cela retarde assez notablement les résultats élémentaires
+sur les fonctions mesurables, bof donc ... Faire une autre section ?
+
+### Fonction absolument/conditionnellement intégrable {.definition} 
+Une fonction $f:\mathbb{R} \to \mathbb{R}$ est *absolument intégrable*
+si $f$ et $|f|$ sont intégrables. Si $f$ est intégrable mais pas $|f|$,
+elle est *conditionnellement intégrable*.
+
+### Fonctions absolument intégrables {.theorem}
+L'ensemble des fonctions absolument intégrables de $\mathbb{R}$ dans
+$\mathbb{R}$ est un espace vectoriel.
+
+### Démonstration {.proof}
+Si $f$ et $g$ sont absolument intégrables et $\lambda \in \mathbb{R}$,
+alors $\lambda f$ est mesurable et $\lambda f$ comme $|\lambda f|$
+sont encadrées par les fonctions intégrables $-|\lambda||f|$ et
+$|\lambda||f|$; elle est donc absolument intégrable par le critère
+d'intégrabilité dominée. La somme $f + g$ est également mesurable
+et $f+g$ comme $|f+g|$ sont encadrées par $-|f| - |g|$ et $|f| + |g|$ qui
+sont intégrables; la somme est donc intégrable par le même critère.
+
+### Inégalité triangulaire {.theorem}
+Si $f: \mathbb{R} \to \mathbb{R}$ est absolument intégrable, alors
+$$
+\left|\int_{\mathbb{R}} f(t)\, dt \right| 
+\leq 
+\int_{\mathbb{R}} |f(t)| \,dt.
+$$
+
+### Démonstration {.proof}
+Les fonctions $f$ et $|f|$ étant intégrables, pour tout $\varepsilon > 0$,
+il existe une jauge commune $\gamma$ sur $\mathbb{R}$ et un $r>0$ commun, 
+tels que pour tout couple $(a,b)$ tel que 
+$a \leq -r$ et $r \leq b$ et toute subdivision pointée $\mathcal{D}$ de 
+$[a, b]$ qui soit subordonnée à $\gamma$, on ait
+$$
+\left| S(f, \mathcal{D}) - \int_{\mathbb{R}} f(t) \, dt \right| \leq \varepsilon/2
+\; \mbox{ et } \;
+\left| S(|f|, \mathcal{D}) - \int_{\mathbb{R}} |f(t)| \, dt \right| \leq \varepsilon/2.
+$$
+Par l'inégalité triangulaire appliquée à la somme finie $S(f, \mathcal{D})$, on
+obtient donc
+$$
+\int_{\mathbb{R}} f(t) \, dt \leq S(f, \mathcal{D}) + \varepsilon /2
+\leq S(|f|, \mathcal{D}) + \varepsilon /2
+\leq \int_{\mathbb{R}} |f(t)| \, dt + \varepsilon,
+$$
+et donc en passant à la limite sur $\varepsilon$,
+$$
+\int_{\mathbb{R}} f(t) \, dt \leq  \int_{\mathbb{R}} |f(t)| \, dt.
+$$
+L'inégalité similaire
+$$
+-\int_{\mathbb{R}} f(t) \, dt \leq \int_{\mathbb{R}} |f(t)| \, dt.
+$$
+est obtenue en remplaçant $f$ par $-f$.
 
 
+### TODO
 
-**TODO:** (définir puis) montrer que "localement intégrable" n'est pas le
-bon/même concept? Mais que localement intégrable est mesurable ? En exercice.
+Plus pertinent/simple de construire un exemple basé sur une série de valeurs
+qui converge conditionnellement ?
+
+### Une fonction conditionnellement intégrable {.example}
+
+La fonction $f:[0, 1] \to \mathbb{R}$ définie par
+$$
+f(x) = \frac{1}{x} \cos \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, f(0) = 0
+$$
+est conditionnellement intégrable. Pour montrer qu'elle est intégrable, 
+nous exploitons le théorème fondamental du calcul, appliqué à la fonction
+$g:[0, 1] \to \mathbb{R}$ définie par 
+$$
+g(x) = -\frac{x^2}{2} \sin \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, g(0) = 0.
+$$
+Cette fonction est dérivable en tout point de $[0,1]$; en $0$, sa dérivée est 
+nulle[^dn] et quand $x>0$,
+$$
+\left[-\frac{x^2}{2} \sin \frac{1}{x^2} \right]' +
+x \sin \frac{1}{x^2} 
+= \frac{1}{x} \cos \frac{1}{x^2}
+$$
+Par le théorème d'intégrabilité dominée, la fonction $h$ égale à
+$x \sin (1/x^2)$ si $x>0$ et nulle en zéro est absolument intégrable[^details].
+La fonction $g'$ étant également intégrable, $f = g' + h$ est intégrable comme
+somme de deux fonctions intégrables.
+
+[^dn]: En effet,
+$$
+\left| \frac{g(h) - g(0)}{h} \right| \leq \frac{|h|}{2} \to 0 \, \mbox{ quand } \, h \to 0.
+$$
+
+[^details]: La  fonction $h$ est mesurable comme limite des 
+suite des fonctions continues $h_k$ -- et donc intégrables -- définies par 
+$h_k(x) = 0$ si 
+$x \in [0, 1/\sqrt{2k\pi}]$ et $h_k(x) = h(x)$ sinon. De la même façon,
+$|h|$ est limite des fonctions intégrables $|h_k|$.
+Par ailleurs, $h$ comme $|h|$ sont encadrées par les deux fonctions intégrables
+$x\in [0,1] \mapsto -x$ et $x\in [0,1] \mapsto x$.
+
+La fonction $f$ n'est pourtant pas absolument intégrable, 
+car $h$ est absolument intégrable mais pas $g'$.
+En effet, si c'était le cas, toute fonction absolument intégrable
+dont la valeur absolue est majorée par $|g'|$ aurait par l'inégalité
+triangulaire son intégrale majorée par celle de $|g'|$. 
+Or nous allons exhiber une suite de telles fonctions dont l'intégrale
+tend vers $+\infty$, ce qui établira la contradiction.
+
+Soit $k\geq 1$ un entier;  on définit la function $\phi_k:[0,1] \to \mathbb{R}$ 
+par
+$$
+\phi_k(x) = 
+\left|
+\begin{array}{rl} 
+g'(x) & \mbox{si } \, \alpha_j \leq x \leq \beta_j, \, 0 \leq j \leq k\\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+où
+$$
+\alpha_j = \frac{1}{\sqrt{2\pi j}}
+\; \mbox{ et } \;
+\beta_j = \frac{1}{\sqrt{2\pi(j+3/4)}},
+$$
+Par construction, $\phi_k$ est continue par morceaux et donc absolument 
+intégrable, et bien telle que $|\phi_k| \leq |g'|$.
+Par ailleurs,
+$$
+\int_0^1 \phi_k(t) \, dt = \sum_{j=0}^k \int_{\alpha_j}^{\beta_k} \phi_k(t) \, dt
+=\sum_{j=0}^k \left[-\frac{x^2}{2} \sin \frac{1}{x^2} \right]_{\alpha_j}^{\beta_j}
+= \frac{1}{2}\sum_{j=0}^k \frac{1}{2\pi j + 3\pi/4}.
+$$
+Comme la série de cette équation est divergente, 
+on peut rendre l'intégrale arbitrairement grande en choisissant
+un $k$ suffisamment grand, ce qui permet de conclure.
 
 ### Les fonctions intégrables sont mesurables
 
@@ -355,7 +484,7 @@ Par stabilité de cette classe de fonctions par limite simple, la propriété
 est également satisfaite pour toute fonction mesurable.
 
 
-### Composition par fonction continue {.theorem}
+### Composition par une fonction continue {.theorem}
 
 Soit $f:\mathbb{R} \to \mathbb{R}^n$ une fonction mesurable et 
 $g:\mathbb{R}^n \to \mathbb{R}^m$ une fonction continue.
@@ -397,14 +526,8 @@ La valeur absolue d'une fonction scalaire mesurable est mesurable.
 Par continuité de l'application valeur absolue
 $|\, \cdot \,|: \mathbb{R} \to \mathbb{R}$.
 
-### Critère d'intégrabilité dominée {.théorème}
 
-Une fonction $f: \mathbb{R} \to \mathbb{R}$ est intégrable si et seulement
-si $f$ est mesurable et il existe deux fonctions intégrables 
-$g: \mathbb{R} \to \mathbb{R}$ et $h: \mathbb{R} \to \mathbb{R}$ telles que
-$g \leq f \leq h$.
-
-### Démonstration {.proof}
+### Démonstration du critère d'intégrabilité dominée {.proof}
 
 Si la fonction $f$ est intégrable, elle est mesurable et satisfait
 les inégalités $f \leq f \leq f$. Le sens direct est donc démontré.
@@ -453,6 +576,57 @@ par le critère d'intégrabilité dominée, $fg$ est intégrable.
 La valeur absolue $|fg|$ de $fg$ est mesurable
 et vérifie également $- M |f| \leq f g \leq M |f|$, elle est donc également
 intégrable par le même critère.
+
+
+Ensembles mesurables
+================================================================================
+
+**TODO:** secondaire dans l'approche, introduire plus tard et pas par une
+nouvelle définition: fonction caractéristique mesurable suffit.
+
+### Ensemble mesurable {.definition}
+
+Un ensemble $E$ de $\mathbb{R}$ est *mesurable* si pour tout intervalle
+$[a, b]$ compact de $\mathbb{R}$, la fonction caractéristique de 
+l'intersection de $E$ et de $[a, b]$ 
+$$
+x \in \mathbb{R} \mapsto \{x \in E \mbox{ et } x \in [a, b]\}
+$$
+est intégrable.
+
+
+--------------------------------------------------------------------------------
+
+(expliquer ensembles infinis, problématique de régularité mais pas de taille)
+
+
+### Propriétés des ensembles mesurables {.theorem}
+
+ 1. L'ensemble vide est mesurable.
+
+ 2. L'ensemble des points n'appartenant pas à un ensemble mesurable est mesurable.
+
+ 3. L'union d'une collection finie ou dénombrable d'ensembles mesurables,
+    est mesurable.
+
+ 4. Tout ensemble ouvert est mesurable.
+
+### Preuve {.proof}
+
+**TODO.**
+
+**TODO:** corollaires immédiats: difference mesurable, ensemble fermés
+mesurables, etc.
+
+--------------------------------------------------------------------------------
+
+### Tribu / $\sigma$-algèbre {.definition}
+
+**TODO:** $\sigma$-algèbre, "calculs"/notations associées, Boréliens, 
+perspective par rapport à supra.
+
+**TODO:** mesure, pptés, complétude de la mesure (nécessaire plus tard).
+
 
 ### Restriction à des ensembles mesurables {.corollary}
 
