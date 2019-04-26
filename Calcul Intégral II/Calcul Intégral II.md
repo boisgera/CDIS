@@ -83,6 +83,127 @@ Sinon
 
   - Mener toute la présentation dans $\mathbb{R}$.
    
+### TODO:
+
+Préambule: on va avoir besoin du DCT dès la 1er section non ?
+
+
+Ensembles mesurables
+================================================================================
+
+Il existe un lien étroit entre la notions de longueur d'un ensemble de réels
+et le calcul intégral. Nous savons par exemple que pour tout intervalle 
+compact $E = [a, b]$, la longueur $b-a$ de l'intervalle peut être calculée
+par l'intégrale de la fonction caractéristique de $E$:
+$$
+\ell(E) = \ell([a, b]):=  b - a  = \int_a^b \, dt = 
+\int_{\mathbb{R}} \chi_{[a, b]}(t) \, dt =
+\int_{\mathbb{R}} \chi_{E}(t) \, dt.
+$$
+Si $E$ est une collection finie d'intervalles disjoints $[a_i, b_i]$,
+l'intégrale de $\chi_E$ vaut cette fois-ci $\sum_i b_i - a_i$, 
+ce qui correspond toujours à la valeur "intuitive" de la longueur 
+de l'ensemble. 
+
+Il apparait donc légitime pour définir la longueur d'un sous-ensemble $E$
+de $\mathbb{R}$ aussi général que possible[^loop] de $\mathbb{R}$ de prendre cette 
+égalité comme une définition, ce qui suppose toutefois que la fonction 
+caractéristique soit intégrable; on parle alors d'ensemble intégrable. 
+Cette définition laisse toutefois de coté les ensembles "trop grands" 
+pour être intégrables, mais par ailleurs parfaitement anodins, 
+comme par exemple $\mathbb{R}$ tout entier ou l'ensemble des réels positifs. 
+Nous préférons donc mettre l'accent sur la notion d'ensemble mesurable:
+
+[^loop]: Oui il existe des ensembles dont on ne pas pas définir raisonnablement
+la longueur, sauf à accepter un concept de longueur aux propriétés
+très étranges. Non, cette situation ne résulte pas de la méthode de définition
+de la longueur par l'intégrale; c'est au contraire une limitation intrinsèque
+de la théorie de la mesure que nous étudierons plus en détail par la suite.
+Et non, il n'existe aucun construction "facile" (constructive, explicite) 
+d'ensemble qui ne soit pas mesurable (et c'est une chose que l'on peut prouver).
+
+### Ensemble mesurable {.definition}
+
+Un ensemble $E$ de $\mathbb{R}$ est *intégrable* si sa fonction 
+caractéristique $\chi_E$ est intégrable; il est *mesurable*
+si son intersection avec tout intervalle compact
+$[a, b]$ de $\mathbb{R}$ est intégrable.
+La (mesure de) *longueur* d'un ensemble $E$ mesurable est définie par
+$$
+\ell(E) := \int_{\mathbb{R}} \chi_E(t) \, dt
+$$
+si $E$ est intégrable et
+$$
+\ell(E) := +\infty
+$$
+dans le cas contraire ($E$ mesurable mais pas intégrable).
+
+### TODO
+
+Expliciter: intégrable = de longueur finie; mesurable = de longueur
+finie ou infinie, mais *bien définie*.
+
+Evoquer ensemble mesurable comme "localement intégrable" ?
+
+### TODO
+
+Implicite à expliciter: intégrable implique mesurable (ok, ne nécessite
+rien de fondamentalement nouveau, sauf à expliciter une ppté de restriction 
+/ d'additivité dans le chapitre 1).
+
+### TODO en exercice
+
+Structure de $\delta$-ring pour les ensembles intégrables ?
+
+### Propriétés élementaires des ensembles mesurables {.theorem}
+
+ 1. L'ensemble vide est mesurable.
+
+ 2. Le complémentaire d'un ensemble mesurable est mesurable.
+
+ 3. L'union d'une collection dénombrable[^dénom] d'ensembles mesurables
+    est mesurable.
+
+### Démonstration {.proof}
+
+ 1. La fonction caractéristique $\chi_{\varnothing}$ est identiquement 
+    nulle; l'ensemble vide $\varnothing$ est donc intégrable et par
+    conséquent mesurable.
+
+ 2. Si l'ensemble $E$ est mesurable et $F = \mathbb{R} \setminus E$,
+    pour tout $[a, b]$, l'ensemble $E \cap [a, b]$ est intégrable.
+    Par ailleurs, l'ensemble $[a, b]$ est intégrable. 
+    Donc, comme
+    $$
+    \chi_{F \cap [a, b]} = \chi_{[a, b]} - \chi_{E \cap [a, b]},
+    $$
+    l'ensemble $F \cap [a, b]$ est intégrable;
+    l'ensemble $F$ est donc mesurable.
+
+ 3. **TODO**
+
+### TODO
+
+terminologie $\sigma$-algèbre (ou tribu)
+
+### Topologie et ensembles mesurables
+
+Tout ensemble ouvert est mesurable.
+
+### Complétude de la longueur
+
+Tout ensemble inclus dans un ensemble de longeur nulle est de longueur nulle.
+
+[^dénom]: fini ou strictement dénombrable, c'est-à-dire en bijection avec 
+$\mathbb{N}$.
+
+### Preuve {.proof}
+
+**TODO.**
+
+**TODO:** corollaires immédiats: difference mesurable, ensemble fermés
+mesurables, etc.
+
 Fonctions mesurables
 ================================================================================
 
@@ -599,56 +720,6 @@ $$
 Comme la série de cette équation est divergente, 
 on peut rendre l'intégrale arbitrairement grande en choisissant
 un $k$ suffisamment grand, ce qui permet de conclure.
-
-Ensembles mesurables
-================================================================================
-
-**TODO:** secondaire dans l'approche, introduire plus tard et pas par une
-nouvelle définition: fonction caractéristique mesurable suffit.
-
-### Ensemble mesurable {.definition}
-
-Un ensemble $E$ de $\mathbb{R}$ est *mesurable* si pour tout intervalle
-$[a, b]$ compact de $\mathbb{R}$, la fonction caractéristique de 
-l'intersection de $E$ et de $[a, b]$ 
-$$
-x \in \mathbb{R} \mapsto \{x \in E \mbox{ et } x \in [a, b]\}
-$$
-est intégrable.
-
-
---------------------------------------------------------------------------------
-
-(expliquer ensembles infinis, problématique de régularité mais pas de taille)
-
-
-### Propriétés des ensembles mesurables {.theorem}
-
- 1. L'ensemble vide est mesurable.
-
- 2. L'ensemble des points n'appartenant pas à un ensemble mesurable est mesurable.
-
- 3. L'union d'une collection finie ou dénombrable d'ensembles mesurables,
-    est mesurable.
-
- 4. Tout ensemble ouvert est mesurable.
-
-### Preuve {.proof}
-
-**TODO.**
-
-**TODO:** corollaires immédiats: difference mesurable, ensemble fermés
-mesurables, etc.
-
---------------------------------------------------------------------------------
-
-### Tribu / $\sigma$-algèbre {.definition}
-
-**TODO:** $\sigma$-algèbre, "calculs"/notations associées, Boréliens, 
-perspective par rapport à supra.
-
-**TODO:** mesure, pptés, complétude de la mesure (nécessaire plus tard).
-
 
 ### Restriction à des ensembles mesurables {.corollary}
 
