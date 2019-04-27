@@ -416,6 +416,149 @@ $$
 \end{split}
 $$ 
 
+Propriétés Elementaires de l'Intégrale
+--------------------------------------------------------------------------------
+
+### TODO
+
+Ajouter distinctions notations
+
+$$
+\int_{[a, b]}, \int_a^b
+$$
+
+### Additivité
+
+Si la fonction $f$ est définie et intégrable sur les intervalles compacts
+$[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
+et
+$$
+\int_{[a, b]} f(t) \, dt + \int_{[b, c]} f(t) \, dt = \int_{[a, c]} f(t) \, dt.
+$$
+
+### Démonstration {.proof}
+
+Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
+$[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \mathbb{R}$ et
+$\gamma_2:[b, c] \to \mathbb{R}$ telles que pour toutes les subdivisions
+pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ de $[a, b]$ et $[c, d]$ 
+respectivement subordonnées à $\gamma_1$ et $\gamma_2$,
+$$
+\left| S(f, \mathcal{D}_1) - \int_{[a,b]} f(t) \, dt\right| \leq \varepsilon/2
+\, \mbox{ et } \, 
+\left| S(f, \mathcal{D}_2) - \int_{[b, c]} f(t) \, dt\right| \leq \varepsilon/2.
+$$
+Définissons la fonction $\gamma: [a, b] \to \mathbb{R}$ par:
+$$
+\gamma(x) = 
+\left| 
+\begin{array}{rl}
+\gamma_1(x) \cap \left]-\infty, c \right[ & \mbox{ si } \, a < x < b, \\
+\gamma_1(x) \cap \gamma_2(x) & \mbox{ si } \, x = b, \\
+\gamma_2(x) \cap \left]c, +\infty\right[ & \mbox{ si } \, b < x < c. \\
+\end{array}
+\right.
+$$
+Par construction, cette fonction est une jauge sur $[a, c]$ 
+(pour tout $x \in [a, c]$, $\gamma(x)$ est un ouvert non vide de 
+$\mathbb{R}$ contenant $x$). 
+Supposons que $\mathcal{D} =\{(t_i, I_i)\}_i$ soit une subdivision pointée de 
+$[a, c]$ subordonnée à $\gamma$. 
+Admettons temporairement que chaque intervalle $I_i$ appartienne
+à $[a, b]$ ou bien dans le cas contraire à $[b, c]$. Les
+deux subdivisions pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ sont telles
+que 
+$$
+S(f, \mathcal{D}) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2).
+$$
+Elles sont également subordonnées à $\gamma_1$ et $\gamma_2$ respectivement;
+par conséquent
+$$
+\left|
+S(f, \mathcal{D}) 
+- 
+\int_{[a, b]} f(t) \, dt + \int_{[b, c]} f(t) \, dt 
+\right|
+\leq 
+\varepsilon. 
+$$
+
+Si notre hypothèse temporaire n'est pas vérifié, c'est qu'il
+existe un (unique) intervalle $I_i$ à cheval sur $[a, b]$ et $[b, c]$, 
+c'est-à-dire d'intersection non vide avec $\left[a, b\right[$ et avec 
+$\left]b, c\right]$. 
+La jauge $\gamma$ a été choisie de telle sorte que 
+si $x \neq b$, alors $x \not \in \gamma(x)$;
+par conséquent, si cet intervalle $I_i=[d_i, e_i]$ existe, 
+alors $t_i = b$ et on peut remplacer le terme $(t_i, I_i)$ dans la subdivision
+pointée $\mathcal{D}$ par $(b, [d_i, b])$ et $(b, [b, e_i])$ sans que
+la somme de Riemann associée change (le terme 
+$f(b) \ell([d_i, e_i])$ étant à $f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
+La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
+l'hypothèse de non-chevauchement précédente. Par conséquent l'inégalité
+ci-dessus est satisfaite dans le cas général, ce qui conclut la preuve
+de ce théorème.
+
+### TODO
+
+Présenter ce qui vient comme une réciproque de l'additivité.
+Contextualiser critère de Cauchy (valeur de l'intégrale inconnue)
+
+### Critère d'intégrabilité de Cauchy {#CIC .theorem}
+Soit $f: I \to \mathbb{R}$. La function $f$ est intégrable si et seulement
+si pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur $I$ telle
+que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
+subordonnées à $\gamma$, on ait
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
+$$
+
+### Démonstration {.proof}
+
+**TODO**
+
+### Restriction
+
+Si $f$ est intégrable sur l'intervalle compact  $[a, b]$, 
+elle est intégrable sur tout intervalle compact $[c, d]$ 
+inclus dans $[a, b]$.
+
+### Démonstration {.proof}
+
+Nous démontrons en détail le cas où $c = a$; le cas où $d =b$ se prouve de
+façon similaire et le cas général se déduit facilement de ces deux cas
+particuliers.
+
+Soit $\varepsilon > 0$. Par le [critère d'intégrabilité de Cauchy](#CIC),
+il existe une jauge $\gamma$ sur $[a, b]$ telle
+que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
+subordonnées à $\gamma$, on ait
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
+$$
+Considérons les restrictions $\gamma_1$ et $\gamma_2$ de $\gamma$ à $[a, d]$ et 
+$[d, b]$ respectivement. Soient $\mathcal{D}_1$ et $\mathcal{D}_1'$ sont deux
+subdivisions pointées de $[a, d]$ subordonnées à $\gamma_1$. 
+Si $\mathcal{D}_2$ est une subdivision de $[d, b]$ subordonnée à $\gamma_2$,
+alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}_1 \cup \mathcal{D}_2'$
+sont des subdvisions pointées de $[a, b]$ subordonnées à $\gamma$.
+Par conséquent,
+$$
+|S(f, \mathcal{D}_1 \cup \mathcal{D}_2) 
+- S(f, \mathcal{D}_1 \cup \mathcal{D}_2')|
+\leq \varepsilon.
+$$
+Or
+$S(f, \mathcal{D}_1 \cup \mathcal{D}_2) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2)$
+et $S(f, \mathcal{D}_1 \cup \mathcal{D}_2') = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2')$,
+donc
+$$
+|S(f, \mathcal{D}_1) - S(f, \mathcal{D}_1)|
+\leq \varepsilon,
+$$
+ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
+par le [critère d'intégrabilité de Cauchy](#CIC).
+
 Exercices
 ================================================================================
 
