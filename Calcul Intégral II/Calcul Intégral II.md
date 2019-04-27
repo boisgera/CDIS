@@ -83,10 +83,32 @@ Sinon
 
   - Mener toute la présentation dans $\mathbb{R}$.
    
-### TODO:
 
-Préambule: on va avoir besoin du DCT dès la 1er section non ?
+Théorèmes de Convergence
+================================================================================
 
+### Théorème de convergence dominée {#TCD .theorem}
+
+Si une suite de fonctions intégrables $f_n:\mathbb{R} \to \mathbb{R}$
+converge simplement vers la fonction $f$, c'est-à-dire si pour tout
+$x \in \mathbb{R}^n$,
+$$
+\lim_{n \to +\infty} f_n(x) = f(x)
+$$
+et qu'il existe deux fonctions intégrables $g$ et $h$ encadrant la suite $f_n$,
+c'est-à-dire telles que pour tout $n\in \mathbb{N}$ et pour tout 
+$x \in \mathbb{R}$,
+$$
+g(x) \leq f_n(x) \leq h(x)
+$$
+alors la fonction $f$ est intégrable et 
+$$
+\int_{\mathbb{R}} f(t) \, dt 
+=
+\int_{\mathbb{R}} \lim_{n \to +\infty} f_n(t) \, dt
+= 
+\lim_{n \to +\infty} \int_{\mathbb{R}} f_n(t) \, dt.
+$$
 
 Ensembles mesurables
 ================================================================================
@@ -142,8 +164,16 @@ dans le cas contraire ($E$ mesurable mais pas intégrable).
 
 Expliciter: intégrable = de longueur finie; mesurable = de longueur
 finie ou infinie, mais *bien définie*.
+Substituer "de longueur finie" à "intégrable" où est-ce que c'est
+risquer des problèmes (la définition de la longueur comme mesure
+extérieure ?).
 
-Evoquer ensemble mesurable comme "localement intégrable" ?
+On aurait alors de longueur finie, infinie ou non définie.
+Et ensemble mesurable si la longueur est bien définie (finie ou infinie).
+C'est sans doute le plus simple ... Revoir la copie.
+
+Evoquer ensemble mesurable comme "localement intégrable" ? BOF.
+"mesurable" = que l'on peut mesurer = dont on peut mesurer la longueur.
 
 ### TODO
 
@@ -164,6 +194,9 @@ Structure de $\delta$-ring pour les ensembles intégrables ?
  3. L'union d'une collection dénombrable[^dénom] d'ensembles mesurables
     est mesurable.
 
+[^dénom]: fini ou bien strictement dénombrable, c'est-à-dire en bijection 
+avec $\mathbb{N}$.
+
 ### Démonstration {.proof}
 
  1. La fonction caractéristique $\chi_{\varnothing}$ est identiquement 
@@ -180,7 +213,18 @@ Structure de $\delta$-ring pour les ensembles intégrables ?
     l'ensemble $F \cap [a, b]$ est intégrable;
     l'ensemble $F$ est donc mesurable.
 
- 3. **TODO**
+ 3. Si les $E_n$ forment une famille dénombrable d'ensemble mesurables,
+    pour tout intervalle compact $[a, b]$, $E_n \cap [a, b]$ est 
+    intégrable, c'est-à-dire que $\chi_{E_n \cap [a, b]}$ est intégrable.
+    Comme $E \cap [a, b] = \cup_n E_n \cap [a, b]$, la suite des
+    fonctions caractéristiques
+    $\chi_{E_n \cap [a, b]}$ converge simplement vers 
+    $\chi_{E \cap  [a, b]}$. Par ailleurs, pour tout $n$, on a
+    $0 \leq \chi_{E_n \cap [a, b]} \leq \chi_{[a, b]}$, donc
+    par le [théorème de convergence dominée](#TCD), 
+    la fonction $\chi_{E \cap [a, b]}$ est intégrable. 
+    Par conséquent, l'ensemble $\cup_n E_n$ est mesurable.
+
 
 ### TODO
 
@@ -190,19 +234,58 @@ terminologie $\sigma$-algèbre (ou tribu)
 
 Tout ensemble ouvert est mesurable.
 
-### Complétude de la longueur
+### Démonstration {.proof}
 
-Tout ensemble inclus dans un ensemble de longeur nulle est de longueur nulle.
+**TODO**
 
-[^dénom]: fini ou strictement dénombrable, c'est-à-dire en bijection avec 
-$\mathbb{N}$.
+### TODO
+
+En amont (chap. I), énoncer que égale pp à intégrable est intégrale
+(et intégrale de même valeur). Grpmh ça n'est pas ce que l'on utilise
+excatement; la démo montre que ça marche si deux fonctions sont égales
+à l'exception d'un ensemble "négligeable", au sens de "de mesure extérieure
+de longueur nulle". L'exercice pertinent ici constiste donc à montrer qu'un
+ensemble est négligeable ssi il est de longueur nulle. Un sens est évident
+(négligeable $\to$ de longueur nulle) avec les résultats du chap précédent
+(à énoncer: comparaison intégrale de deux fcts ident sauf sur un ensemble
+négligeable)
+
+**NOTA:** shunter cette section "complétude" en première approche ?
+Je dois revoir la terminologie du chap précédent, l'usage du terme
+"négligeable" n'est pas safe (veut dire autre chose). Ici tout ça
+est identique, mais pas en général ...
+
+NOTA: on a quand même assez pour prouver que la mesure est complète ?
+Nope, pas encore. Ca plaide pout shunter ...
+
+### Ensembles de longueur nulle {.theorem}
+
+Un ensemble est de longueur nulle si et seulement 
+la mesure extérieure de sa longueur est nulle.
 
 ### Preuve {.proof}
 
-**TODO.**
+Un sens pas évident (mesure nulle donne mesure ext nulle)... shunter ?
+Je pensais partir sur une somme arbitrairement proche de l'intégrale,
+mais pas de raison que l'ensemble d'intervalles associés recouvre
+l'original.
+
+Le sens mesure extérieure nulle donne mesure nulle est OK modulo
+les bons énoncés dans le chapitre précédent.
+
+### Complétude de la longueur {.corollary}
+
+Un sous-ensemble d'un ensemble de longueur nulle est de longueur nulle.
+
+
+
+
+
+
+--------------------------------------------------------------------------------
 
 **TODO:** corollaires immédiats: difference mesurable, ensemble fermés
-mesurables, etc.
+mesurables, etc. Largement en exercice ...
 
 Fonctions mesurables
 ================================================================================
