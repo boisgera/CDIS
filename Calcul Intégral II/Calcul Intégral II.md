@@ -110,6 +110,10 @@ $$
 \lim_{n \to +\infty} \int_{\mathbb{R}} f_n(t) \, dt.
 $$
 
+### TODO:
+
+MCT, dérivation sous le signe somme (exercice ?)
+
 Ensembles mesurables
 ================================================================================
 
