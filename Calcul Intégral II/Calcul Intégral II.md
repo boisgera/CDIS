@@ -276,6 +276,9 @@ est identique, mais pas en général ...
 NOTA: on a quand même assez pour prouver que la mesure est complète ?
 Nope, pas encore. Ca plaide pout shunter ...
 
+Réfléchir quand même aux 3 notions: de mesure extérieure nulle,
+de mesure nulle et négligeable (dans un ens de mesure nulle).
+
 ### Ensembles de longueur nulle {.theorem}
 
 Un ensemble est de longueur nulle si et seulement 
