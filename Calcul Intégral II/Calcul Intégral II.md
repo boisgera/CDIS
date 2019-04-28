@@ -240,7 +240,21 @@ Tout ensemble ouvert est mesurable.
 
 ### Démonstration {.proof}
 
-**TODO**
+Tout intervalle ouvert $I$ est mesurable. En effet, son intersection avec
+un intervalle compact $[a, b]$ est un intervalle inclus dans $[a, b]$.
+La fonction caractéristique associée est de la forme $\chi_{[c, d]}$
+-- où en différe au plus en deux points. Dans tous les cas, elle est
+intégrable.
+
+Si maintenant $U$ est un ensemble ouvert ouvert, pour chaque point $x$ de $U$ 
+on peut construire le plus grand intervalle ouvert $I_x$ contenant $x$ et inclus
+dans $U$ (c'est l'union de tous les intervalles ouvert vérifiant ces
+deux propriétés). Pour un couple $x$ et $y$ dans $U$, soit $I_x = I_y$,
+soit $I_x$ et $I_y$ sont disjoints et l'union de tous les intervalles
+$I_x$ est égale à $U$. Comme dans chaque $I_x$ on peut choisir
+un nombre rationnel $y$ tel que $I_x = I_y$, cette union est dénombrable.
+L'ouvert $U$ est donc une union dénombrable d'intervalles ouverts, qui
+sont tous mesurables, il est donc mesurable.
 
 ### TODO
 
