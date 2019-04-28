@@ -87,6 +87,32 @@ Sinon
 Théorèmes de Convergence
 ================================================================================
 
+### Théorème de convergence monotone {#TCM .theorem}
+Si une suite de fonctions intégrables $f_k:\mathbb{R} \to \mathbb{R}$
+est croissante et majorée en tout point, c'est-à-dire si pour tout
+$x$ de $\mathbb{R}$ 
+$$
+\mbox{pour tout } \, k \in \mathbb{N}, \, f_k(x) \leq f_{k+1}(x) 
+\; \mbox{ et } \;
+\sup_k f_k(x) < + \infty,
+$$
+alors la limite simple $f$ des $f_k$ est intégrable si et seulement si 
+$$
+\sup_k \int_k f(t) \, dt < +\infty.
+$$
+et dans ce cas,
+$$
+\int_{\mathbb{R}} f(t) \, dt 
+=
+\int_{\mathbb{R}} \lim_{k \to +\infty} f_k(t) \, dt
+= 
+\lim_{n \to +\infty} \int_{\mathbb{R}}  f(t) \, dt.
+$$
+
+### Démonstration {.proof}
+
+Se reporter à @Dem11.
+
 ### Théorème de convergence dominée {#TCD .theorem}
 
 Si une suite de fonctions intégrables $f_n:\mathbb{R} \to \mathbb{R}$

@@ -1,4 +1,25 @@
-[
+[  
+	{
+		"id": "Dem11",
+		"type": "book",
+		"title": "Théorie élémentaire de l'intégration : l'intégrale de Kurzweil-Henstock",
+		"publisher": "Université Joseph Fourier Grenoble I",
+		"URL": "http://www-fourier.ujf-grenoble.fr/~demailly/books.html",
+		"language": "French",
+		"author":[
+			{
+				"family": "Demailly",
+				"given": "Jean-Pierre"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2011"
+				]
+			]
+		}
+  },
 	{
 		"id": "Swa01",
 		"type": "book",
