@@ -88,6 +88,7 @@ Théorèmes de Convergence
 ================================================================================
 
 ### Théorème de convergence monotone {#TCM .theorem}
+
 Si une suite de fonctions intégrables $f_k:\mathbb{R} \to \mathbb{R}$
 est croissante et majorée en tout point, c'est-à-dire si pour tout
 $x$ de $\mathbb{R}$ 
