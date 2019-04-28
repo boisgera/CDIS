@@ -2227,6 +2227,8 @@ Arguments Matriciels
 
 Différentielle d'objects comme $\det A$ ?
 
+Exploiter <https://terrytao.wordpress.com/2013/01/13/matrix-identities-as-derivatives-of-determinant-identities/#comment-514937>
+
 Convexité
 --------------------------------------------------------------------------------
 
