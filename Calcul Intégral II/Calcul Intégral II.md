@@ -137,9 +137,13 @@ $$
 \lim_{n \to +\infty} \int_{\mathbb{R}} f_n(t) \, dt.
 $$
 
+### Démonstration {.proof}
+
+Se reporter à @Dem11.
+
 ### TODO:
 
-MCT, dérivation sous le signe somme (exercice ?)
+dérivation sous le signe somme (exercice ?)
 
 Ensembles mesurables
 ================================================================================
