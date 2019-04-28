@@ -39,11 +39,77 @@ cf. éléments issus de la note de cadrage.
 \]*
 
 
-Discussions: 
+L'unité d'enseignement est composée de 2 éléments constitutifs :
 
-  - périmètre / actuel (notamment, transfert partiel, abandon TC, etc.).
-    Pas de "révolution" du périmètre (fondements des mathématiques, 
-    algèbre, etc.)
+  - Calcul Différentiel, Intégral et Stochastique I (2 ECTS, 1er semestre),
+
+  - Calcul Différentiel, Intégral et Stochastique II (2 ECTS, 1er semestre)
+
+Comme l'indique l'intitulé "Calcul Différentiel, Intégral et Stochastique", 
+le périmètre de l'UE correspond grossièrement dans le cycle de formation 2018 
+aux enseignements:
+
+  - Mathématiques 1: Calcul Différentiel (2 ECTS, 1er semestre),
+
+  - Mathématiques 2: Calcul Intégral (3 ECTS, 2ème semestre),
+
+  - Probabilités (2 ECTS, 2ème semestre),
+
+  - Mathématiques 3: Fonctions d'une variable complexe 
+    (2 ECTS, 3ème semestre)
+
+  - Compléments de Mathématiques (1 ECTS, 1er semestre)
+
+  - Soutien en Mathématiques (0 ECTS, 1er semestre)
+
+Cette comparaison met en évidence une nouvelle formule à la fois 
+courte et compacte (avec 4 ECTS contre ~10-11 ECTS aujourd'hui, 
+programmé sur 1 semestre contre 3 aujourd'hui).
+
+Ce constat est globalement exact; 
+il ne traduit toutefois pas une diminution générale du poids des Mathématiques 
+en tronc commun, mais plutôt la volonté de rééquilibrer la formation en faveur
+des Mathématiques Appliquées à travers l'UE 21, au second semestre.
+
+Dans le détail, toutefois:
+
+  - Une partie des contenus enseignés dans le périmètre actuel 
+    seront transférés à l'unité d'enseignement UE 21 de 
+    "Mathématiques Appliquées" au 2nd semestre[^transfert],
+    quand cela améliore la cohérence globale de l'ensemble.
+
+  - Certains éléments du périmètre actuel ne seront plus enseignés[^out] 
+    pour préserver un volume suffisant sur les savoir jugés prioritaires;
+    compte tenu de la forte réduction du volume, une stratégie de 
+    "coup de rabot" uniforme serait vouée à l'échec. 
+    Les thématiques correspondantes pourront donner lieu à des enseignements
+    électifs lors de la seconde année de formation.
+
+  - Le périmètre actuel de l'UE est très cohérent, ses thématiques susceptibles
+    d'être fortement intégrés.
+    Compte tenu de la réduction du volume et de ce souci de synergie, 
+    aucun nouveau champ général supplémentaire (Logique, Algèbre, etc.) 
+    n'a été considéré dans cette nouvelle formule.
+    Dans le périmètre actuel, tous les volets peuvent également être qualifiés 
+    de fondamentaux dans la mesure où de très nombreux enseignements en 
+    dépendent[^dep].
+
+
+[^transfert]: Principalement: les éléments d'optimisation du calcul différentiel 
+actuel sont naturellement transféré vers l'enseignement d'"Optimisation" 
+et l'analyse harmonique (de Fourier) développée dans le calcul intégral 
+actuel est intégrée au "Traitement du Signal".
+
+[^out]: Ou bien de façon très partielle. En particulier, l'analyse complexe
+et l'introduction aux équations aux dérivées partielles.
+
+[^dep]: En particulier, la nécessité d'enseigner très tôt le volet probabilités
+s'impose compte tenu des besoins des cours de Physique du 1er semestre comme
+des enseignements de Mathématiques Appliquées du 2nd semestre.
+
+
+
+Discussions: 
 
   - volet numérique.
 
