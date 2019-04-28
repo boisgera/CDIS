@@ -242,8 +242,8 @@ Tout ensemble ouvert est mesurable.
 
 Tout intervalle ouvert $I$ est mesurable. En effet, son intersection avec
 un intervalle compact $[a, b]$ est un intervalle inclus dans $[a, b]$.
-La fonction caractéristique associée est de la forme $\chi_{[c, d]}$
--- où en différe au plus en deux points. Dans tous les cas, elle est
+La fonction caractéristique associée est de la forme $\chi_{[c, d]}$,
+ou en différe au plus en deux points; dans tous les cas, elle est
 intégrable.
 
 Si maintenant $U$ est un ensemble ouvert ouvert, pour chaque point $x$ de $U$ 
