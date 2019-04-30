@@ -20,9 +20,9 @@ est une famille finie
 $$
 \{I_i \; | \; \; 0 \leq i \leq n-1 \}
 $$
-constituée d'intervalles fermés de $I$, ne se chevauchant pas 
+constituée d'intervalles fermés de $I$, *sans recouvrement mutuel*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
-plus un point -- et recouvrant $I$ -- l'union de l'ensemble des $I_i$
+plus un point -- et *recouvrant $I$* -- l'union de l'ensemble des $I_i$
 est égal à $I$. 
 Une *[subdivision pointée]{.index}* de l'intervalle fermé $I = [a, b]$ 
 de $\mathbb{R}$ une famille finie 
@@ -37,21 +37,21 @@ $$
 a = x_0 \leq \cdots \leq x_i \leq t_i \leq x_{i+1} \leq \cdots \leq x_{n} = b.
 $$
 
-### Gauge {.definition}
-Une *[gauge]{.index}* sur $I = [a, b]$ est une fonction $\gamma$
-qui associe à tout $t$ de $[a, b]$ un intervalle ouvert de $\mathbb{R}$
-contenant $t$. 
+### jauge {.definition}
+Une *[jauge]{.index}* sur $I = [a, b]$ est une fonction $\gamma$
+qui associe à tout $t$ de $[a, b]$ un intervalle ouvert $\gamma(t)$ 
+de $\mathbb{R}$ contenant $t$. 
 
-### Subdivision pointée subordonnée à une gauge {.definition}
+### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision $\mathcal{D}$ de l'intervalle fermé $I$ 
-est *subordonnée à une gauge* $\gamma$ de $I$ si 
+est *subordonnée à une jauge* $\gamma$ de $I$ si 
 $$
 \mbox{pour tout } (t, J) \in \mathcal{D}, \; J \subset \gamma(t). 
 $$
 
 ### Représentation graphique
 
-On peut associer à une gauge $\gamma$ sur $[a, b]$ l'ensemble du plan
+On peut associer à une jauge $\gamma$ sur $[a, b]$ l'ensemble du plan
 $$
 \{(x, y) \; | \; x \in [a, b], \, y \in \gamma(x) \}.
 $$
@@ -61,9 +61,9 @@ D = \{(x,x) \; | \; x \in [a, b]\}.
 $$
 
 **TODO:** example, et expliquer pourquoi cette représentation est pratique
-pour visualiser si une subdivision pointée est subordonnée à une gauge.
+pour visualiser si une subdivision pointée est subordonnée à une jauge.
 
-Par exemple, la gauge $\gamma$ définie sur $[0,1]$ par 
+Par exemple, la jauge $\gamma$ définie sur $[0,1]$ par 
 $\gamma(t) = \left] t-0.25, t+0.25 \right[$ est représentée comme suit:
 
 \newcommand{\lb}{[}
@@ -72,13 +72,13 @@ $\gamma(t) = \left] t-0.25, t+0.25 \right[$ est représentée comme suit:
 \newcommand{\rob}{\right[}
 
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb .$](images/gauge-plot.pdf)
+$t \in \lb 0, 1 \rb .$](images/jauge-plot.pdf)
 
 **TODO:** graphique d'une subdivision pointée, avec séparateurs en barres
 verticales et $t_i$ en croix.
 
 ### Lemme de Cousin {.theorem}
-Pour toute fonction de gauge $\gamma$ sur l'intervalle fermé $I$, 
+Pour toute fonction de jauge $\gamma$ sur l'intervalle fermé $I$, 
 il existe une subdivision $\mathcal{D}$ qui soit subordonnée à $\gamma$.
 
 ### Preuve {.proof}
@@ -136,7 +136,7 @@ $$
 ### Intégrale {.definition}
 Une fonction $f:[a, b] \to \mathbb{R}$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $I$ tel
-que pour tout $\varepsilon > 0$ il existe une gauge $\gamma$
+que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$
 sur $[a, b]$ telle que pour toute subdivision pointée 
 $\mathcal{D}$ subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - I| \leq \varepsilon$.
@@ -152,7 +152,7 @@ est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident
 
 ### Def Riemann + Preuve
 
-**TODO**. Passer par l'intermédiaires des gauges numériques ? Bof. Directement
+**TODO**. Passer par l'intermédiaires des jauges numériques ? Bof. Directement
 avec de $\delta > 0$ uniforme à l'intervalle ouvert.
 
 ### Théorème fondamental du calcul {.theorem}
@@ -174,7 +174,7 @@ entre somme de Riemann et intégral ... à voir. Arf, ça ne marche pas, tss tss
 Nous souhaitons établir que $f':[a, b] \to \mathbb{R}$ est intégrable, 
 d'intégrale égale à $f(b) - f(a)$.
 Pour cela, nous devons montrer que pour tout $\varepsilon > 0$ il existe 
-une fonction de gauge $\gamma$ sur $[a, b]$ telle que, 
+une fonction de jauge $\gamma$ sur $[a, b]$ telle que, 
 si une subdivision pointée 
 $$
 \mathcal{D} = \{(t_0, [x_0, x_1], \dots, (t_{m-1}, [x_{m-1}, x_m]))\}
@@ -221,7 +221,7 @@ $$
 |f'(t)(d - c) - (f(d) - f(c))| \leq \varepsilon' (d - c)
 $$
 Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[;$
-nous avons ainsi bien défini une fonction de gauge.
+nous avons ainsi bien défini une fonction de jauge.
 Si $\mathcal{D}$ est subordonnée à $\gamma$, 
 pour tout $i \in \{0, \dots, m-1\},$ 
 $$t_i \in [x_i,x_{i+1}] \subset \left]t_i - \delta(t_i), t_i + \delta(t_i)\right[,$$
@@ -259,12 +259,12 @@ Par le théorème fondamental du calcul,
 $f$ est intégrable au sens de Henstock-Kurzweil et l'intégrale associée 
 coïncide avec l'intégrale de Newton.
 Pour toute intervalle $[a, b]$ et toute précision $\varepsilon > 0$, 
-il existe donc une gauge $\gamma$ 
+il existe donc une jauge $\gamma$ 
 telle que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$,
 l'écart entre $S(f, \mathcal{D})$ et la valeur de l'intégrale
 soit au plus $\varepsilon(b-a)$.
 
-Construisons une telle gauge en nous inspirant de la preuve du théorème
+Construisons une telle jauge en nous inspirant de la preuve du théorème
 fondamental du calcul. Dans cette preuve, nous avons montré que la précision
 $\varepsilon (b-a)$ était atteinte
 si nous choisissions 
@@ -310,7 +310,7 @@ $$
 \delta(t) = W \left( 2e^{-x}\varepsilon\right)
 $$
 En conclusion: pour tout $[a, b]$ et tout $\varepsilon > 0$, 
-la gauge $\gamma$ sur $[a, b]$ définie par
+la jauge $\gamma$ sur $[a, b]$ définie par
 $$
 \gamma(t) = 
 \left]
@@ -324,7 +324,7 @@ $$
 \left|S(x\mapsto e^x, \mathcal{D}) - \int_a^b e^x \, dx \right| \leq \varepsilon(b-a).
 $$
 
-**TODO:** représentation graphique de la gauge pour un (des ?) $\varepsilon$ 
+**TODO:** représentation graphique de la jauge pour un (des ?) $\varepsilon$ 
 bien choisis.
 
 
@@ -347,14 +347,14 @@ Options: "manuellement" avec 3 hunches à avoir ("gérer" le cas $x=0$ à part
 et "forcer" la subdivision à prendre la valeur $0$; découpage de la valeur finale
 "pressentie" en bouts et recherche d'une somme télescopique). Ou, essayer
 d'exploiter la preuve du FTC, qui nécessite d'être détaillée, pour "exhiber"
-une gauge qui marche (note: au passage, en supposant $f$ deux fois diff on
+une jauge qui marche (note: au passage, en supposant $f$ deux fois diff on
 peut en construire une explicitement, c'est un exercice intéressant en soi).
 Tout est bon ici !
 
 Variante/extension: autre valeur que $0$ en $0$, montrer que cela n'a aucun
 impact.
 
-Une stratégie intéressant consisterait à expliciter/construire une gauge
+Une stratégie intéressant consisterait à expliciter/construire une jauge
 "qui fasse le job" pour $1/\sqrt{x}$ en évitant l'origine en s'inspirant 
 de la preuve du FTC (qui "lisse" l'erreur uniformément), PUIS à bootstraper
 ça pour la singularité. C'est sans doute une bonne idée, il y a beaucoup
@@ -387,7 +387,7 @@ On va confirmer cette intuition dans la suite.
 
 ### La singularité
 
-Soit $\varepsilon > 0$. On cherche à construire une gauge $\gamma$ sur $[0,1]$
+Soit $\varepsilon > 0$. On cherche à construire une jauge $\gamma$ sur $[0,1]$
 telle que toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$,
 vérifie
 $$
@@ -517,6 +517,10 @@ $$
 
 **TODO**
 
+# TODO:
+
+fusionner "Restriction" avec additivité.
+
 ### Restriction
 
 Si $f$ est intégrable sur l'intervalle compact  $[a, b]$, 
@@ -559,6 +563,88 @@ $$
 ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
 par le [critère d'intégrabilité de Cauchy](#CIC).
 
+### {.definition}
+
+### Subdivision pointée partielle {.definition}
+Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
+de $\mathbb{R}$ est une famille finie 
+$$
+\{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
+$$
+où les $I_i$ sont des intervalles fermé de $[a, b]$ sans recouvrement mutuel
+et $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
+La somme de Riemann associée à la fonction $f:[a, b] \to \mathbb{R}$ 
+et à la subdivision pointée partielle $\mathcal{D}$ de $[a, b]$ est 
+la grandeur
+$$
+S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
+$$
+Une subdivision pointée partielle $\mathcal{D}$ de l'intervalle fermé $[a, b]$ 
+est *subordonnée à une jauge* $\gamma$ de $[a, b]$ si 
+$$
+(t, J) \in \mathcal{D} \, \Rightarrow \, J \subset \gamma(t). 
+$$
+
+### TODO - remarque
+
+(autrement dit, c'est comme une subdivision pointée, sauf que l'on n'exige pas 
+que les $I_i$ recouvrent $[a, b]$. Mettre en ante ?)
+
+
+
+### Lemme de Henstock  {.theorem}
+Soit $[a, b]$ un intervalle fermé de $\mathbb{R}$, 
+$f$ une fonction intégrable sur $[a, b]$ et $\gamma$ une jauge sur $[a, b]$ 
+telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$, 
+on ait
+$$
+\left|S(f, \mathcal{D}) - \int_{[a, b]} f(t) \, dt\right| \leq \varepsilon.
+$$
+Alors pour tout subdivision pointée partielle $\mathcal{D} = \{(t_k, I_k)\}_k$
+de $[a, b]$ subordonnée à $\gamma$, on a également
+$$
+\left|S(f, \mathcal{D}) - \sum_k \int_{I_k} f(t) \, dt\right| \leq \varepsilon.
+$$
+
+
+### Preuve du [lemme de Henstock][Lemme de Henstock]
+
+Il existe une famille finie d'intervalles fermés $\{J_j\}$, 
+$j = 1, \dots, m$ 
+telle que l'union des familles $\{I_k\}$ et $\{J_j\}$ forment une subdivision
+(complète) de $[a, b]$. 
+Pour tout $\eta > 0$, 
+sur chaque intervalle $J_j$, il existe une jauge $\gamma_j$ telle que si
+$\mathcal{D}_j$ est une subdivision pointée de $J_j$ subordonnée à $\gamma_j$,
+alors 
+$$
+\left|S(f, \mathcal{D}_j) - \int_{J_j} f(t) \, dt \right| \leq \eta.
+$$
+Si de plus on choisit $\mathcal{D}_j$ subordonnée à la restriction de $\gamma$
+à $J_j$, alors $\mathcal{D} \cup \cup_j \mathcal{D}_j$ est une subdivision
+pointée (totale) de $[a, b]$ subordonnée à $\gamma$.
+On déduit de l'hypothèse centrale du lemme que
+$$
+\left|
+S(f, \mathcal{D}) + \sum_j S(f, \mathcal{D}_j) 
+- 
+\sum_k \int_{I_k} f(t) \, dt + \sum_{j} \int_{J_j} f(t) \, dt
+\right|
+\leq
+\varepsilon
+$$
+et donc par l'inégalité triangulaire que
+$$
+\left|
+S(f, \mathcal{D}) 
+- 
+\sum_k \int_{I_k} f(t) \, dt
+\right|
+\leq
+\varepsilon + m \eta.
+$$
+Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
+
 Exercices
 ================================================================================
 
@@ -571,4 +657,4 @@ une fonction $f$ est intégrable, sa valeur absolue $|f|$ l'est également.
 Caractérisation des dérivées
 --------------------------------------------------------------------------------
 
-Identifier par les gauges si une fonction est une dérivée (cf papier).
+Identifier par les jauges si une fonction est une dérivée (cf papier).
