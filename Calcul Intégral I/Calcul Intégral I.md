@@ -143,8 +143,26 @@ $|S(f, \mathcal{D}) - I| \leq \varepsilon$.
 Le réel $I$ quand il existe est unique; il est appelé
 *intégrale de $f$ sur $[a, b]$* et noté
 $$
-\mbox{(HK-)}\int_a^b f(t) \, dt.
+\int_a^b f(t) \, dt
+\, \mbox{ ou } \,
+\int_{[a, b]} f(t) \, dt
 $$
+
+### Notation
+
+La première notation peut être étendue au cas où $b < a$; 
+on définit alors l'intégrale de $a$ à $b$ en se ramenant 
+au cas précédent, par
+$$
+\int_{a}^b f(t) \, dt := - \int_b^a f(t) \, dt.
+$$
+Lorsqu'on sera en présence de plusieurs intégrales (Newton, Riemann, etc.), 
+on pourra préfixer l'intégrale par les lettres "HK" (pour Henstock-Kurzweil)
+pour lever toute ambiguité:
+$$
+\mbox{HK-}\int_{[a, b]} f(t) \, dt.
+$$
+
 
 ### Intégrale de Riemann {.theorem}
 Toute fonction $f:[a,b] \mapsto \mathbb{R}$ intégrable au sens de Riemann
