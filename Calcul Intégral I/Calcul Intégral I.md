@@ -581,7 +581,10 @@ $$
 ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
 par le [critère d'intégrabilité de Cauchy](#CIC).
 
-### {.definition}
+### TODO
+Ensemble négligeable (de mesure de longueur extérieuere nulle),
+notion d'égalité pp, résultat qu'un fct pp égale à une fct intégrable
+est intégrable, de même intégrable (utile en soi et utilisé chap II)
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
