@@ -614,9 +614,9 @@ des contenus actuels de CPGE dans le domaine, réduits par la réforme
 de 2013[^CPGE-CD], en introduisant une démarche par étapes.
 
 La première session (1er EC) introduit la notion de différentielle 
-dans un cadre limité aux fonctions de plusieurs variables réelles[^ni], puis dans ce même cadre
-la différentiation de chaîne, les différentielles d'ordre supérieur, 
-ainsi que le lien avec 
+dans un cadre limité aux fonctions de plusieurs variables réelles[^ni], 
+puis dans ce même cadre la différentiation en chaîne, 
+les différentielles d'ordre supérieur, ainsi que le lien avec 
 la réprésentation de la différentielle par une matrice, 
 qui est propre à la dimension finie.
 
