@@ -310,20 +310,21 @@ Nope, pas encore. Ca plaide pout shunter ...
 Réfléchir quand même aux 3 notions: de mesure extérieure nulle,
 de mesure nulle et négligeable (dans un ens de mesure nulle).
 
-### Ensembles de longueur nulle {.theorem}
+### Ensembles négligeables {.theorem}
 
-Un ensemble est de longueur nulle si et seulement 
-la mesure extérieure de sa longueur est nulle.
+Un ensemble est de longueur nulle si et seulement s'il est négligeable.
 
 ### Preuve {.proof}
 
-Un sens pas évident (mesure nulle donne mesure ext nulle)... shunter ?
-Je pensais partir sur une somme arbitrairement proche de l'intégrale,
-mais pas de raison que l'ensemble d'intervalles associés recouvre
-l'original.
+Si l'ensemble $A$ est négligeable, sa fonction caractéristique est
+égale presque partout à la fonction identiquement nulle, qui est
+intégrable, d'intégrale nulle. 
+Par conséquent (**TODO: insérer ce résultat dans chapitre 1**),
+$\chi_A$ est intégrable, d'intégrale nulle, donc $A$ est intégrable
+et de longueur nulle.
 
-Le sens mesure extérieure nulle donne mesure nulle est OK modulo
-les bons énoncés dans le chapitre précédent.
+Réciproquement, ...
+
 
 ### Complétude de la longueur {.corollary}
 
