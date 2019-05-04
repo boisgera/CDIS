@@ -181,40 +181,35 @@ d'ensemble qui ne soit pas mesurable (et c'est une chose que l'on peut prouver).
 
 ### Ensemble mesurable {.definition}
 
-Un ensemble $E$ de $\mathbb{R}$ est *intégrable* si sa fonction 
+Un ensemble $E$ de $\mathbb{R}$ est *de longueur finie* si sa fonction 
 caractéristique $\chi_E$ est intégrable; il est *mesurable*
 si son intersection avec tout intervalle compact
-$[a, b]$ de $\mathbb{R}$ est intégrable.
+$[a, b]$ de $\mathbb{R}$ est de longueur finie.
 La (mesure de) *longueur* d'un ensemble $E$ mesurable est définie par
 $$
 \ell(E) := \int_{\mathbb{R}} \chi_E(t) \, dt
 $$
-si $E$ est intégrable et
+si $E$ est de longueur finie et
 $$
 \ell(E) := +\infty
 $$
-dans le cas contraire ($E$ mesurable mais pas intégrable).
+dans le cas contraire (si $E$ mesurable mais pas de longueur finie).
 
-### TODO
+### Remarque {.remark}
 
-Expliciter: intégrable = de longueur finie; mesurable = de longueur
-finie ou infinie, mais *bien définie*.
-Substituer "de longueur finie" à "intégrable" où est-ce que c'est
-risquer des problèmes (la définition de la longueur comme mesure
-extérieure ?).
+Il faut comprendre le terme "mesurable" litéralement, signifiant
+"dont on peut définir la longueur" (un nombre fini ou infini). 
+Cette interprétation  est cohérente, puisque tous les ensembles 
+$E$ de longueur finie 
+sont bien mesurables;
+en effet si la fonction caractéristique $\chi_E$ est intégrable,
+sa restriction à tout intervalle compact $[a, b]$ également, 
+donc $\chi_{E \cap [a, b]}$ est bien intégrable.
 
-On aurait alors de longueur finie, infinie ou non définie.
-Et ensemble mesurable si la longueur est bien définie (finie ou infinie).
-C'est sans doute le plus simple ... Revoir la copie.
+### TODO:
 
-Evoquer ensemble mesurable comme "localement intégrable" ? BOF.
-"mesurable" = que l'on peut mesurer = dont on peut mesurer la longueur.
-
-### TODO
-
-Implicite à expliciter: intégrable implique mesurable (ok, ne nécessite
-rien de fondamentalement nouveau, sauf à expliciter une ppté de restriction 
-/ d'additivité dans le chapitre 1).
+intégrale de fct carac sur $[a, b]$ dominé par une borne finie commune,
+conclure que l'ensemble est de longueur finie?
 
 ### TODO en exercice
 
@@ -419,7 +414,8 @@ des usage que l'on a en aval ...
 Montrer que couvrir un ensemble de longueur nulle par une collection finie
 (et non dénombrable) d'intervalles de somme des longueurs arbitrairement 
 petite n'est pas tjs possible (travailler sur $\mathbb{Q} \cap [0, 1]$ par exemple,
-invoquer la densité des rationnels, etc.)
+invoquer la densité des rationnels, etc.), mais constuire une telle
+collection dénombrable si.
 
 ### Complétude de la longueur {.corollary}
 
