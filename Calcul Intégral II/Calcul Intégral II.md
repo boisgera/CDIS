@@ -318,13 +318,72 @@ Un ensemble est de longueur nulle si et seulement s'il est négligeable.
 
 Si l'ensemble $A$ est négligeable, sa fonction caractéristique est
 égale presque partout à la fonction identiquement nulle, qui est
-intégrable, d'intégrale nulle. 
+intégrable et d'intégrale nulle. 
 Par conséquent (**TODO: insérer ce résultat dans chapitre 1**),
-$\chi_A$ est intégrable, d'intégrale nulle, donc $A$ est intégrable
-et de longueur nulle.
+$\chi_A$ est intégrable et d'intégrale nulle, 
+donc l'ensemble $A$ est intégrable et de longueur nulle.
 
-Réciproquement, ...
+Réciproquement, supposons l'ensemble $A$ mesurable; nous cherchons à montrer
+que pour tout $\varepsilon >0$, il existe une famille dénombrable d'intervalles
+compacts $I_i$ de $\mathbb{R}$ qui recouvre $A$ et telle que
+$$
+\sum_i \ell(I_i) \leq \varepsilon.
+$$
+Supposons temporairement que $A$ soit inclus dans un intervalle compact 
+$[a, b]$ de $\mathbb{R}$. 
+La fonction caractéristique $\chi_A$ de $A$ est intégrable, 
+donc pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur
+$[a, b]$ telle que, si la subdivision pointée (totale ou partielle[^todo-hens]) 
+$\mathcal{D} =\{(t_i, I_i)\}_i$ est
+subordonnée à $\gamma$, on a
+$$
+S(\chi_A, \mathcal{D})
+=
+\left|S(\chi_A, \mathcal{D}) - \sum_i \int_{I_i}  \chi_A (t) \, dt \right| 
+\leq 
+\varepsilon.
+$$
+Si l'on était en mesure de trouver une telle subdivision partielle 
+$\mathcal{D}$ constituée d'une famille d'intervalle $I_i$ qui recouvre $A$, 
+nous aurions alors la conclusion souhaitée puisque dans ce cas
+$$
+S(\chi_A, \mathcal{D}) = \sum_i \chi_A(t_i) \ell(I_i)  \leq \sum_{i} \ell(I_i).
+$$
+Malheureusement, cela n'est pas toujours possible[^TODO-exo], avec une
+collection finie d'intervalles $I_i$. Il est toutefois toujours possible 
+de montrer l'existence d'une collection dénombrable de paires $(t_i, I_i)$
+où $t_i \in I_i$ et les $I_i$ sont des intervalles compacts de $[a, b]$, 
+sans recouvrement mutuel, tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$
+et l'argument ci-dessus peut alors être adapté pour fournir la conclusion 
+voulue.
 
+Cette collection est construite de la façon suivante: 
+
+**TODO.** (par bisection)
+
+
+
+
+
+[^TODO-exo]: travailler sur $\mathbb{Q} \cap [0, 1]$ par exemple,
+invoquer la densité des rationnels, etc.
+
+[^todo-hens]: cette formulation est intéressante. C'est un peu moins fort
+que le lemme de Henstock stricto sensu, mais ça peut peut-être suffire 
+à tous nos besoins: le lemme de Henstock permet de revisiter la définition
+d'intégrabilité (de façon équivalente) en rajoutant à la définition le
+qualificatif "(totale ou partielle)" à la subdivision (modulo aussi
+un mini-patch dans la formule inégalité ou l'on n'intègre plus nécessairement
+sur tout $[a, b]$, mais on somme sur les confettis ... Mmmm; on aurait
+peut-être intérêt à écrire ça comme
+$$
+\int_{\cup_i I_i} f(t) \, dt := \sum_i \int_{I_i} f(t) \, dt
+$$
+en définissant l'intégrale sur une union (finie) d'intervalles qui sont
+sans recouvrement mutuel).
+Et c'est un raccourci très intéressant pour la présentation orale.
+Il faudrait voir si ce "corollaire" du lemme de Henstock couvre l'ensemble
+des usage que l'on a en aval ...
 
 ### Complétude de la longueur {.corollary}
 
