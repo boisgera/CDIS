@@ -354,14 +354,14 @@ Malheureusement, cela n'est pas toujours possible[^TODO-exo], avec une
 collection finie d'intervalles $I_i$. Il est toutefois toujours possible 
 de montrer l'existence d'une collection dénombrable de paires $(t_i, I_i)$
 où $t_i \in I_i$ et les $I_i$ sont des intervalles compacts de $[a, b]$, 
-sans recouvrement mutuel, recouvrant $A$, 
+sans chevauchement, recouvrant $A$, 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ 
 et l'argument ci-dessus peut alors être adapté pour fournir la conclusion 
 voulue.
 -->
 
 Pour pouvoir conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i$ 
-où les $I_i$ sont des intervalles compacts de $[a, b]$ sans recouvrement mutuel, 
+où les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement, 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ et tels que la famille des
 $I_i$ recouvre $A$. Si cette construction est acquise et que $\mathcal{D}_k$
 désigne la collection des $\{(t_i, I_i)\}$ pour $1 \leq i \leq m$, alors c'est
@@ -389,7 +389,7 @@ et s'il existe un $t \in A \cap J$ tel que $J \subset \gamma(t)$,
 on inclut la paire $(t, J)$ dans la collection; dans le cas contraire,
 on poursuit la dichotomie. Cette procédure définit par construction
 une famille dénombrable $\{(t_i, I_i)\}_i$ où les $I_i$ sont des intervalles
-compacts de $[a, b]$ sans recouvrement mutuel et 
+compacts de $[a, b]$ sans chevauchement et 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$. 
 De plus, les $I_i$ recouvrent $A$: en effet si on considère $t \in A$,
 il existe nécessairement un entier $k$ tel que tout intervalle compact
@@ -409,7 +409,7 @@ $$
 \int_{\cup_i I_i} f(t) \, dt := \sum_i \int_{I_i} f(t) \, dt
 $$
 en définissant l'intégrale sur une union (finie) d'intervalles qui sont
-sans recouvrement mutuel).
+sans chevauchement).
 Et c'est un raccourci très intéressant pour la présentation orale.
 Il faudrait voir si ce "corollaire" du lemme de Henstock couvre l'ensemble
 des usage que l'on a en aval ...

@@ -20,7 +20,7 @@ est une famille finie
 $$
 \{I_i \; | \; \; 0 \leq i \leq n-1 \}
 $$
-constituée d'intervalles fermés de $I$, *sans recouvrement mutuel*
+constituée d'intervalles fermés de $I$, *sans chevauchement*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
 plus un point -- et *recouvrant $I$* -- l'union de l'ensemble des $I_i$
 est égal à $I$. 
@@ -592,7 +592,7 @@ de $\mathbb{R}$ est une famille finie
 $$
 \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
-où les $I_i$ sont des intervalles fermé de $[a, b]$ sans recouvrement mutuel
+où les $I_i$ sont des intervalles fermé de $[a, b]$ sans chevauchement
 et $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 La somme de Riemann associée à la fonction $f:[a, b] \to \mathbb{R}$ 
 et à la subdivision pointée partielle $\mathcal{D}$ de $[a, b]$ est 
