@@ -182,9 +182,9 @@ d'ensemble qui ne soit pas mesurable (et c'est une chose que l'on peut prouver).
 ### Ensemble mesurable {.definition}
 
 Un ensemble $E$ de $\mathbb{R}$ est *de longueur finie* si sa fonction 
-caractéristique $\chi_E$ est intégrable; il est *mesurable*
-si son intersection avec tout intervalle compact
-$[a, b]$ de $\mathbb{R}$ est de longueur finie.
+caractéristique $\chi_E$ est intégrable sur $\mathbb{R}$; 
+il est *mesurable* si sa fonction caractéristique est intégable 
+sur tout intervalle compact $[a, b]$ de $\mathbb{R}$.
 La (mesure de) *longueur* d'un ensemble $E$ mesurable est définie par
 $$
 \ell(E) := \int_{\mathbb{R}} \chi_E(t) \, dt
@@ -203,8 +203,7 @@ Cette interprétation  est cohérente, puisque tous les ensembles
 $E$ de longueur finie 
 sont bien mesurables;
 en effet si la fonction caractéristique $\chi_E$ est intégrable,
-sa restriction à tout intervalle compact $[a, b]$ également, 
-donc $\chi_{E \cap [a, b]}$ est bien intégrable.
+sa restriction à tout intervalle compact $[a, b]$ également.
 
 ### TODO:
 
@@ -874,6 +873,11 @@ est obtenue en remplaçant $f$ par $-f$.
 Plus pertinent/simple de construire un exemple basé sur une série de valeurs
 qui converge conditionnellement ?
 
+### TODO
+
+Simplifier l'exemple ci-dessous en ne travaillant que sur la dérivée;
+repousser l'étude de la fonction ci-dessous en exercice.
+
 ### Une fonction conditionnellement intégrable {.example}
 
 La fonction $f:[0, 1] \to \mathbb{R}$ définie par
@@ -982,6 +986,54 @@ La fonction $f$ est donc absolument intégrable.
 Exercices
 ================================================================================
 
+Ensembles de longueur finie
+--------------------------------------------------------------------------------
+
+Soit $E$ un ensemble mesurable de $\mathbb{R}$ pour lequel il existe une
+constante $L\geq 0$ (finie) telle que pour tout intervalle compact
+$[a, b]$, on ait
+$$
+\int_{[a, b]} \chi_E(t) \, dt \leq L.
+$$
+Montrer que $E$ est de longueur finie et que $\ell(E) \leq L$.
+
+### Réponse
+
+La suite des fonctions $f_k:\mathbb{R} \to \mathbb{R}$ définie par 
+$$
+f_k(t) = \left|
+\begin{array}{rl}
+\chi_E(t) & \mbox{si } \, t \in [-k, k], \\
+0         & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est croissante, de limite simple $\chi_E$. A tout rang $k$, on a 
+$$
+\int_{\mathbb{R}} f_k(t) \, dt 
+=
+\int_{[-k, k]} \chi_E(t) \, dt
+\leq L,
+$$
+donc
+$$
+\sup_k \int_{\mathbb{R}} f_k(t) \, dt 
+\leq 
+L < +\infty. 
+$$
+Le théorème de convergence monotone nous garantit l'intégrabilité de
+$\chi_E$ -- c'est-à-dire le fait que $E$ est de longueur finie -- et 
+fournit
+$$
+\ell(E) = \int_{\mathbb{R}} \chi_E(t) \, dt = 
+\lim_{k\to +\infty} \int_{\mathbb{R}} f_k(t) \, dt
+\leq L.
+$$
+
+
+
+
+
 Intégrabilité locale
 --------------------------------------------------------------------------------
 
@@ -1060,6 +1112,146 @@ au passage la composition, en affaiblissant l'hypothèse de continuité).
 Au passage, "jouer" avec les fcts Boréliennes ? Mq elles sont aussi 
 mesurables ? Question: peut-être exhiber un exemple simple de compo
 de fct Lebesgue mesurables qui ne soit pas mesurable?
+
+Composition par une fonction lipschitzienne
+--------------------------------------------------------------------------------
+
+Soit $f:[0,1] \to \mathbb{R}$ et $g:\mathbb{R} \to \mathbb{R}$.
+On suppose que $g$ est nulle en $0$ et lipschitzienne, 
+c'est-à-dire qu'il existe un $K\geq0$ tel que pour toute paire de réels 
+$x$ et $y$  on ait
+$|g(x) - g(y)| \leq K |x - y|$.
+
+ 1. Si $f$ est mesurable est-ce que $g \circ f$ est mesurable ?
+
+ 2. Si $f$ est intégrable, est-ce que $g \circ f$ est intégrable ?
+
+ 3. Si $f$ est absolument intégrable, est-ce que $g \circ f$ est 
+    absolument intégrable ?
+
+### Réponses
+
+ 1. Oui, car toute fonction lipschitzienne est continue; $g \circ f$
+    est donc mesurable comme composée d'une fonction mesurable et d'une
+    fonction continue.
+
+ 2. Pas nécessairement; si $f$ est une fonction conditionnellement
+    intégrable sur $[0,1]$, la fonction $|f|$ n'est pas intégrable; Or, 
+    l'application $t \mapsto |t|$ est lipschitzienne (avec $K=1$).
+
+ 3. Oui. D'une part, $f$ étant absolument intégrable, elle est mesurable et
+    donc par la question 1., la composée $g \circ f$ est mesurable.
+    D'autre part, pour tout $x \in [0,1]$, on a
+    $$
+    |g \circ f(x) - g \circ f(0)| \leq K |f(x) - f(0)|
+    $$
+    et donc
+    $$
+    |g \circ f(x)| \leq K |f(x)| + (K |f(0)| + |g \circ f(0)|)
+    $$
+    Le membre de droite de cette inégalité est une fonction (absolument)
+    intégrable sur $[0, 1]$, donc par le critère d'intégrabilité dominée,
+    la fonction $g \circ f$ est (absolument) intégrable.
+
+
+Théorème Intégral de Cauchy
+--------------------------------------------------------------------------------
+
+Soit $f: U \subset \mathbb{R}^2 \to \mathbb{R}^2$ où $U$ est un ensemble ouvert,
+supposée continûment différentiable. On considère $c \in U$ et $R > 0$ tel 
+que le disque fermé centré en $c$ 
+et de rayon $R$ soit inclus dans $U$; on définit alors la grandeur 
+$I(r)$ pour tout $r \in [0, R] \to \mathbb{R}^2$ comme la valeur moyenne
+du vecteur $f$ sur le cercle de rayon $c$ et de rayon $r$:
+$$
+I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(c_1 + r \cos \alpha, c_2 + r \sin \alpha) \, d\alpha.
+$$
+
+ 1. Que vaut $I(0)$ ?
+
+ 2. Montrer que l'application $r \in [0, R] \mapsto I(r)$ est dérivable et
+    calculer $I'(r)$ pour tout $r \in [0, R]$.
+
+ 3. On suppose désormais que $f$ vérifie les conditions de Cauchy-Riemann
+    en tout point $(x, y)$ de $U$, c'est-à-dire que
+    $$
+    \partial_y f(x, y) = R(\pi/2) \cdot \partial_x f(x, y)
+    $$
+    où $R(\alpha)$ désigne la rotation d'angle $\alpha$ centrée sur l'origine.
+    Simplifier l'expression de $I'(r)$ et conclure.
+
+### Réponses
+
+ 1. On a 
+    $$
+    I(0) = \frac{1}{2\pi}\int_0^{2\pi} f(c_1, c_2) \, d\alpha = f(c_1, c_2) = f(c).
+    $$
+
+ 2. Formons le taux d'accroissement de $I$ en $r$, pour une variation de
+    l'argument $h$ telle que $r + h \in [0, R]$. On a
+    $$
+    \begin{split}
+    \frac{I(r+h) - I(r)}{h}
+    &=
+    \frac{1}{2\pi h}
+    \left(
+    \int_0^{2\pi} f(c_1 + (r+h) \cos \alpha, c_2 + (r+h) \sin \alpha) \, d\alpha\right. \\
+    &\phantom{=} \left. - \int_0^{2\pi} f(c_1 + r \cos \alpha, c_2 + r \sin \alpha) \, d\alpha \right) \\
+    &= \frac{1}{2\pi}\int_0^{2\pi} 
+    \frac{g_{\alpha}(r+h) - g_{\alpha}(r)}{h} \, d\alpha.
+    \end{split}
+    $$
+    où 
+    $$
+    g_{\alpha}(r) = f(z_{r, \alpha}) \, \mbox{ et } \, 
+    z_{r, \alpha} = (c_1 + r \cos \alpha, c_2 + r \sin \alpha).
+    $$
+    La fonction $g_{\alpha}$ étant différentiable pour tout $\alpha$, 
+    on a 
+    $$
+    \begin{split}
+    \lim_{h \to 0} \frac{g_{\alpha}(r+h) - g_{\alpha}(r)}{h}
+    &= \frac{d}{dr} g_{\alpha}(r) \\ 
+    &= df(z_{r, \alpha}) \cdot (\cos \alpha, \sin \alpha) \\
+    &= \partial_x f (z_{r, \alpha}) \cos \alpha 
+    + \partial_y f (z_{r, \alpha}) \sin \alpha.
+    \end{split}.
+    $$
+    De plus, par le théorème des accroissements finis,
+    $$
+    \left\| \frac{g_{\alpha}(r+h) - g_{\alpha}(r)}{h} \right\|
+    \leq
+    \sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|
+    $$
+    où le membre de droite est bien fini puisque 
+    $dg_{\alpha}(r)/dr$
+    est une fonction continue du couple $(\alpha, r)$ qui appartient 
+    à l'ensemble $[0, 2\pi] \times [0, R]$.
+
+    Par conséquent, par le théorème de convergence dominée, en considérant
+    une suite arbitraire $h_n$ tendant vers $0$ et telle que $r+h_n \in [0, R]$,
+    on montre que
+    $$
+    I'(r)
+    = \frac{1}{2\pi}\int_{0}^{2\pi} 
+      \left(
+      \partial_x f (z_{r, \alpha}) \cos \alpha 
+      + \partial_y f (z_{r, \alpha}) \sin \alpha
+      \right) \, d\alpha.
+    $$
+    
+...
+
+ par la matrice
+$$
+\left[
+\begin{array}{rr}
+\cos \theta & - \sin \theta \\
+\sin \theta & \cos \theta
+\end{array}
+\right]
+$$
+
 
 Mesurabilité de $\|f\|$
 --------------------------------------------------------------------------------
