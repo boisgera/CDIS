@@ -1157,14 +1157,20 @@ $|g(x) - g(y)| \leq K |x - y|$.
 Théorème Intégral de Cauchy
 --------------------------------------------------------------------------------
 
-Soit $f: U \subset \mathbb{R}^2 \to \mathbb{R}^2$ où $U$ est un ensemble ouvert,
-supposée continûment différentiable. On considère $c \in U$ et $R > 0$ tel 
+(en fait version "light", centrée, version "formule de la moyenne". 
+Considérer le cas général ? Ou se contenter de celui-ci ?)
+
+Soit $f: U \subset \mathbb{R}^2 \to \mathbb{R}^2$ une fonction définie sur un
+ensemble $U$ ouvert et supposée continûment différentiable. 
+On considère $c \in U$ et $R > 0$ tel 
 que le disque fermé centré en $c$ 
 et de rayon $R$ soit inclus dans $U$; on définit alors la grandeur 
 $I(r)$ pour tout $r \in [0, R] \to \mathbb{R}^2$ comme la valeur moyenne
 du vecteur $f$ sur le cercle de rayon $c$ et de rayon $r$:
 $$
-I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(c_1 + r \cos \alpha, c_2 + r \sin \alpha) \, d\alpha.
+I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
+\, \mbox{ où } \, 
+z_{\alpha, r} = c + r (\cos \alpha, \sin \alpha).
 $$
 
  1. Que vaut $I(0)$ ?
@@ -1179,6 +1185,7 @@ $$
     $$
     où $R(\alpha)$ désigne la rotation d'angle $\alpha$ centrée sur l'origine.
     Simplifier l'expression de $I'(r)$ et conclure.
+    Indication: on pourra évaluer $\partial_{\alpha} (f(z_{\alpha, r}))$.
 
 ### Réponses
 
@@ -1198,20 +1205,15 @@ $$
     \int_0^{2\pi} f(c_1 + (r+h) \cos \alpha, c_2 + (r+h) \sin \alpha) \, d\alpha\right. \\
     &\phantom{=} \left. - \int_0^{2\pi} f(c_1 + r \cos \alpha, c_2 + r \sin \alpha) \, d\alpha \right) \\
     &= \frac{1}{2\pi}\int_0^{2\pi} 
-    \frac{g_{\alpha}(r+h) - g_{\alpha}(r)}{h} \, d\alpha.
+    \frac{f(z_{r+h, \alpha}) - f(z_{\alpha, r})}{h} \, d\alpha.
     \end{split}
     $$
-    où 
-    $$
-    g_{\alpha}(r) = f(z_{r, \alpha}) \, \mbox{ et } \, 
-    z_{r, \alpha} = (c_1 + r \cos \alpha, c_2 + r \sin \alpha).
-    $$
-    La fonction $g_{\alpha}$ étant différentiable pour tout $\alpha$, 
-    on a 
+    La fonction $r \mapsto f(z_{\alpha, r})$ étant différentiable 
+    pour tout $\alpha$, on a 
     $$
     \begin{split}
-    \lim_{h \to 0} \frac{g_{\alpha}(r+h) - g_{\alpha}(r)}{h}
-    &= \frac{d}{dr} g_{\alpha}(r) \\ 
+    \lim_{h \to 0} \frac{f(z_{r+h, \alpha}) - f(z_{\alpha, r})}{h}
+    &= \frac{d}{dr} f(z_{\alpha, r}) \\ 
     &= df(z_{r, \alpha}) \cdot (\cos \alpha, \sin \alpha) \\
     &= \partial_x f (z_{r, \alpha}) \cos \alpha 
     + \partial_y f (z_{r, \alpha}) \sin \alpha.
@@ -1223,14 +1225,28 @@ $$
     \leq
     \sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|
     $$
-    où le membre de droite est bien fini puisque 
+    où le sup du membre de droite est bien fini puisque 
     $dg_{\alpha}(r)/dr$
     est une fonction continue du couple $(\alpha, r)$ qui appartient 
     à l'ensemble $[0, 2\pi] \times [0, R]$.
-
-    Par conséquent, par le théorème de convergence dominée, en considérant
-    une suite arbitraire $h_n$ tendant vers $0$ et telle que $r+h_n \in [0, R]$,
-    on montre que
+    Par conséquent, 
+    pour toute suite $h_n$ tendant vers $0$ et 
+    telle que $r+h_n \in [0, R]$, la suite des
+    $$
+    \frac{g_{\alpha}(r+h_n) - g_{\alpha}(r)}{h_n}
+    $$
+    associée converge simplement vers 
+    $$
+    \partial_x f (z_{r, \alpha}) \cos \alpha 
+    + \partial_y f (z_{r, \alpha}) \sin \alpha
+    $$
+    et est dominée en norme par la fonction absolument intégrable
+    (constante)
+    $$
+    \alpha \in [0, 2\pi] \mapsto \sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|.
+    $$
+    Par conséquent, par le théorème de convergence dominée,
+    la dérivée de $I$ est définie en tout point $r$ et est donnée par
     $$
     I'(r)
     = \frac{1}{2\pi}\int_{0}^{2\pi} 
@@ -1240,17 +1256,79 @@ $$
       \right) \, d\alpha.
     $$
     
-...
-
- par la matrice
-$$
-\left[
-\begin{array}{rr}
-\cos \theta & - \sin \theta \\
-\sin \theta & \cos \theta
-\end{array}
-\right]
-$$
+ 3. Evaluons la dérivée par rapport à $\alpha$ de $f(z_{\alpha, r})$. On a
+    $$
+    \begin{split}
+    \partial_{\alpha} (f(z_{\alpha, r}))
+    &=
+    \partial_{\alpha} (f(c_1 + r \cos \alpha, c_2 + r \sin \alpha)) \\
+    &= \partial_x f(z_{\alpha, r}) (- r\sin \alpha)
+    + \partial_y f(z_{\alpha, r}) (r\cos \alpha).
+    \end{split}
+    $$
+    Comme $\partial_y f(z_{\alpha, r}) = R(\pi/2) \partial_x f(z_{\alpha, r})$,
+    on en déduit que
+    $$
+    \begin{split}
+    \partial_{\alpha} (f(z_{\alpha, r}))
+    &= r(- \sin \alpha \times I + \cos \alpha  \times R(\pi/2)) \partial_x f(z_{\alpha, r}) \\
+    & = r R(\pi/2 + \alpha) \partial_x f(z_{\alpha, r}) \\
+    & = r R(\pi/2) R(\alpha) \partial_x f(z_{\alpha, r})
+    \end{split}
+    $$
+    D'un autre coté, l'intégrande dans l'expression de $I'(r)$
+    s'écrit
+    $$
+    \begin{split}
+    \partial_x f (z_{r, \alpha}) \cos \alpha 
+    + 
+    \partial_y f (z_{r, \alpha}) \sin \alpha
+    &= 
+    (\cos \alpha \times I + \sin \alpha \times R(\pi/2)) \partial_x f(z_{r, \alpha}) \\
+    &=
+    R(\alpha) \partial_x f(z_{r, \alpha}).
+    \end{split}
+    $$
+    Par conséquent lorsque $r$ est non nul
+    $$
+    \partial_x f (z_{r, \alpha}) \cos \alpha 
+    + 
+    \partial_y f (z_{r, \alpha}) \sin \alpha
+    = \frac{1}{r} R(-\pi/2) \partial_{\alpha} (f(z_{\alpha, r}))
+    $$
+    et donc
+    $$
+    \begin{split}
+    I'(r)
+    &= \frac{1}{2\pi}\int_{0}^{2\pi} 
+      \left(
+      \partial_x f (z_{r, \alpha}) \cos \alpha 
+      + \partial_y f (z_{r, \alpha}) \sin \alpha
+      \right) \, d\alpha \\
+      &= \frac{1}{2\pi r} 
+      \left(
+      \int_0^{2\pi}
+      R(-\pi/2)
+      \partial_{\alpha} (f(z_{\alpha, r}))
+      \, d\alpha \right) \\
+    &= \frac{1}{2\pi r} 
+       R(-\pi/2)
+      \left(
+      \int_0^{2\pi} \partial_{\alpha} (f(z_{\alpha, r}))
+      \, d\alpha \right)  \\
+    & = \frac{1}{2\pi r} 
+       R(-\pi/2)
+       \left[f(z_{\alpha, r})\right]_0^{2\pi} \\
+    & = 0
+      \end{split}.
+    $$
+    Par ailleurs, un calcul direct montre que $I'(0) = 0$.
+    La dérivée de $I$ est identiquement nulle. On en conclut
+    que pour tout $r$,
+    $$
+    I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
+    = I(0) = f(c).
+    $$
 
 
 Mesurabilité de $\|f\|$
