@@ -343,30 +343,59 @@ S(\chi_A, \mathcal{D})
 \leq 
 \varepsilon.
 $$
+<!--
 Si l'on était en mesure de trouver une telle subdivision partielle 
 $\mathcal{D}$ constituée d'une famille d'intervalle $I_i$ qui recouvre $A$, 
 nous aurions alors la conclusion souhaitée puisque dans ce cas
 $$
-S(\chi_A, \mathcal{D}) = \sum_i \chi_A(t_i) \ell(I_i)  \leq \sum_{i} \ell(I_i).
+S(\chi_A, \mathcal{D}) = \sum_i \chi_A(t_i) \ell(I_i) \leq \sum_{i} \ell(I_i).
 $$
 Malheureusement, cela n'est pas toujours possible[^TODO-exo], avec une
 collection finie d'intervalles $I_i$. Il est toutefois toujours possible 
 de montrer l'existence d'une collection dénombrable de paires $(t_i, I_i)$
 où $t_i \in I_i$ et les $I_i$ sont des intervalles compacts de $[a, b]$, 
-sans recouvrement mutuel, tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$
+sans recouvrement mutuel, recouvrant $A$, 
+tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ 
 et l'argument ci-dessus peut alors être adapté pour fournir la conclusion 
 voulue.
+-->
 
-Cette collection est construite de la façon suivante: 
+Pour pouvoir conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i$ 
+où les $I_i$ sont des intervalles compacts de $[a, b]$ sans recouvrement mutuel, 
+tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ et tels que la famille des
+$I_i$ recouvre $A$. Si cette construction est acquise et que $\mathcal{D}_k$
+désigne la collection des $\{(t_i, I_i)\}$ pour $1 \leq i \leq m$, alors c'est
+une subdivision pointée partielle de $[a, b]$ subordonné à $\gamma$ et donc
+$$
+S(\chi_A, \mathcal{D}_k) 
+=
+\sum_{i=1}^k \chi_A(t_i) \ell(I_i)
+=
+\sum_{i=1}^k \ell(I_i) \leq \varepsilon.
+$$
+En passant à la limite sur $k$, cette inégalité fournit comme souhaité
+$$
+\sum_{i=1}^{+\infty} \ell(I_i) \leq \varepsilon.
+$$
 
-**TODO.** (par bisection)
-
-
-
-
-
-[^TODO-exo]: travailler sur $\mathbb{Q} \cap [0, 1]$ par exemple,
-invoquer la densité des rationnels, etc.
+Procédons finalement à la construction de la collection de $(t_i, I_i)$,
+par dichotomie.
+S'il existe un 
+$t \in [a, b]$ tel que $t \in A$ et $[a, b] \subset \gamma(t)$,
+alors on prend pour collection le singleton $\{(t, [a, b])\}$.
+Dans le cas contraire, on considère la décomposition de $[a, b]$ en
+$[a, (a+b)/2]$ et $[(a+b)/2, b]$. On examine chacun de ces intervalles $J$
+et s'il existe un $t \in A \cap J$ tel que $J \subset \gamma(t)$, 
+on inclut la paire $(t, J)$ dans la collection; dans le cas contraire,
+on poursuit la dichotomie. Cette procédure définit par construction
+une famille dénombrable $\{(t_i, I_i)\}_i$ où les $I_i$ sont des intervalles
+compacts de $[a, b]$ sans recouvrement mutuel et 
+tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$. 
+De plus, les $I_i$ recouvrent $A$: en effet si on considère $t \in A$,
+il existe nécessairement un entier $k$ tel que tout intervalle compact
+$I$ de longueur inférieure ou égale à $(b-a)/2^k$ vérifie $I \subset \gamma(t)$.
+Par conséquent, $t$ appartiend à l'un des intervalles inclus par le procédé
+au plus tard à l'étape $k$ de la dichotomie.
 
 [^todo-hens]: cette formulation est intéressante. C'est un peu moins fort
 que le lemme de Henstock stricto sensu, mais ça peut peut-être suffire 
@@ -384,6 +413,13 @@ sans recouvrement mutuel).
 Et c'est un raccourci très intéressant pour la présentation orale.
 Il faudrait voir si ce "corollaire" du lemme de Henstock couvre l'ensemble
 des usage que l'on a en aval ...
+
+### TODO:
+
+Montrer que couvrir un ensemble de longueur nulle par une collection finie
+(et non dénombrable) d'intervalles de somme des longueurs arbitrairement 
+petite n'est pas tjs possible (travailler sur $\mathbb{Q} \cap [0, 1]$ par exemple,
+invoquer la densité des rationnels, etc.)
 
 ### Complétude de la longueur {.corollary}
 
