@@ -14,6 +14,14 @@ un ensemble de mesure nulle, puis cas général, ce type de progression
 
 --------------------------------------------------------------------------------
 
+
+L'Intégrale de Riemann Généralisée
+--------------------------------------------------------------------------------
+
+### TODO
+
+intégral de Riemann "classique" ?
+
 ### Subdivision pointée {.definition}
 Une *[subdivision]{.index}* de l'intervalle fermé $I = [a,b]$
 est une famille finie
@@ -72,7 +80,7 @@ $\gamma(t) = \left] t-0.25, t+0.25 \right[$ est représentée comme suit:
 \newcommand{\rob}{\right[}
 
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb .$](images/jauge-plot.pdf)
+$t \in \lb 0, 1 \rb .$](images/gauge-plot.pdf)
 
 **TODO:** graphique d'une subdivision pointée, avec séparateurs en barres
 verticales et $t_i$ en croix.
@@ -133,12 +141,12 @@ $$
 
 **TODO.** Notation $\int_a^b$ when $a>b$.
 
-### Intégrale {.definition}
+### Intégrale sur un intervalle compact {.definition}
 Une fonction $f:[a, b] \to \mathbb{R}$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $I$ tel
 que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$
 sur $[a, b]$ telle que pour toute subdivision pointée 
-$\mathcal{D}$ subordonnée à $\gamma$, on ait
+$\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - I| \leq \varepsilon$.
 Le réel $I$ quand il existe est unique; il est appelé
 *intégrale de $f$ sur $[a, b]$* et noté
@@ -535,7 +543,7 @@ $$
 
 **TODO**
 
-# TODO:
+### TODO:
 
 fusionner "Restriction" avec additivité.
 
@@ -585,6 +593,104 @@ par le [critère d'intégrabilité de Cauchy](#CIC).
 Ensemble négligeable (de mesure de longueur extérieuere nulle),
 notion d'égalité pp, résultat qu'un fct pp égale à une fct intégrable
 est intégrable, de même intégrable (utile en soi et utilisé chap II)
+
+Intégration sur $\mathbb{R}$
+--------------------------------------------------------------------------------
+
+### Intégrale sur $\mathbb{R}$ {.definition}
+Une fonction $f:\mathbb{R} \to \mathbb{R}$ est dite *intégrable 
+(au sens de Henstock-Kurzweil)* s'il existe un réel $I$ tel
+que pour tout $\varepsilon > 0$ il existe un $r>0$ tel que
+pour tout intervalle compact $[a, b]$ avec $a \leq -r$ et $r \leq b$,
+il existe une jauge $\gamma$ sur $[a, b]$ telle que pour toute 
+subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, on ait
+$|S(f, \mathcal{D}) - I| \leq \varepsilon$.
+Le réel $I$ quand il existe est unique; il est appelé
+*intégrale de $f$ sur $\mathbb{R}$* et noté
+$$
+\int_{-\infty}^{+\infty} f(t) \, dt
+\, \mbox{ ou } \,
+\int_{\mathbb{R}} f(t) \, dt.
+$$
+
+### Intégrale sur un intervalle fermé {.definition}
+Une fonction $f:I \to \mathbb{R}$ définie sur un intervalle
+fermé quelconque $I$ (borné ou non borné) est 
+*intégrable (au sens de Henstock-Kurzweil)* si son prolongement
+$g$ par zero en dehors de l'intervalle $I$ 
+$$
+g(x) = \left|
+\begin{array}{rl}
+f(x) & \mbox{si } \, x \in  I, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est intégrable sur $\mathbb{R}$.
+On définit alors
+$$
+\int_I f(t) \, dt := \int_{\mathbb{R}} g(t) \, dt.
+$$
+
+### Démonstration (cohérence des définitions) {.proof}
+
+Il convient de vérifier que 
+[la définition d'intégrale sur un intervalle fermé $I$][Intégrale sur un intervalle fermé] 
+est cohérente avec 
+[la définition d'intégrale sur $\mathbb{R}$][Intégrale sur $\mathbb{R}$]
+(ce qui est direct) et aussi avec 
+[la définition d'intégrale sur un intervalle compact][Intégrale sur un intervalle compact]
+que nous avons utilisé jusqu'à présent.
+
+Dans ce second cas, si la fonction $f:[c, d] \to \mathbb{R}$ est
+[intégrable au sens de la définition originelle][Intégrale sur un intervalle compact],
+et si l'on prend $r>0$ tel que $-r \leq c$ et 
+$d \leq r$ et que l'on considère un intervalle
+compact $[a, b]$ vérifiant $a \leq -r$ et $r \leq b$, on
+a $[c, d] \subset [a, b]$. Par additivité de l'intégrale,
+$$
+\int_a^b g(t) \, dt  
+= 
+\int_a^c g(t) \, dt + \int_c^d g(t) \, dt + \int_d^b g(t) \, dt.
+$$
+Or sur $[a, c]$ et $[d, b]$, la fonction $g$ est nulle sauf peut-être en
+$c$ et $b$ ; sur $[c, d]$, elle est égale à $f$. Par conséquent $g$
+est intégrable sur $[a, b]$ et 
+$$
+\int_a^b g(t) \, dt
+=
+\int_c^d f(t) \, dt.
+$$
+On peut donc bien trouver une jauge $\gamma$ sur $[a, b]$ telle que toute 
+subdivision $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$ vérifie
+$$
+\left|S(f, \mathcal{D}) - \int_c^d f(t) \, dt \right| \leq
+\varepsilon
+$$
+
+Réciproquement, si la fonction $f:[c, d] \to \mathbb{R}$ est
+[intégrable au sens de la définition générale][Intégrale sur un intervalle fermé],
+pour tout $r>0$ et $[a, b]$ tel que $a \leq -r$ et $r \leq b$, le prolongement
+de $f$ par zéro est intégrable sur $[a, b]$. Il suffit de prendre $r$ tel
+que $-r \leq c$ et $d \leq r$ et d'utiliser à nouveau 
+[(la réciproque de) l'additivité de l'intégrale][Additivité] pour conclure
+que $f$ est intégrable sur $[c, d]$ et que son intégrale est l'intégrale de
+$g$.
+
+### TODO
+
+Existence et valeur de:
+
+$$
+\int_1^{+\infty} \frac{1}{t^2} \, dt
+$$
+
+### TODO
+
+Rappel / généralisation des pptés enoncées pour les intervalles compacts.
+
+Subdivisions Partielles
+--------------------------------------------------------------------------------
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
