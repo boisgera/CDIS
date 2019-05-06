@@ -24,10 +24,11 @@ intégral de Riemann "classique" ?
 
 ### TODO
 
-Important de maintenir ici la possibilité éventuellement de subdivisions
+Important d'introduire ici la possibilité éventuellement de subdivisions
 sur des ensembles non bornés mais en tout cas de jauge sur des ensembles
 non-bornés, pour être cohérent avec la suite. On pourrait s'en passer,
 mais les énoncés qui suivent sont plus simples avec cette formulation.
+
 
 ### Subdivision pointée {.definition}
 Une *[subdivision]{.index}* de l'intervalle fermé $I = [a,b]$
