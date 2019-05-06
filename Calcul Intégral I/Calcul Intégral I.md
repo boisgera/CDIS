@@ -597,6 +597,13 @@ est intégrable, de même intégrable (utile en soi et utilisé chap II)
 Intégration sur $\mathbb{R}$
 --------------------------------------------------------------------------------
 
+### TODO
+
+Motivé la définition de l'intégrale sur un intervalle non borné,
+disons $\left[0, +\infty\right[$
+par l'étude de l'intégrale sur $[a, b]$ et "sautant" le dernier
+terme de la somme de Riemann.
+
 ### Intégrale sur $\mathbb{R}$ {.definition}
 Une fonction $f:\mathbb{R} \to \mathbb{R}$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $I$ tel
