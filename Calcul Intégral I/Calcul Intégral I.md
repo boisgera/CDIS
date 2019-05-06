@@ -619,7 +619,7 @@ En effet, toute subdivision pointée d'un intervalle non-borné comporte
 nécessairement un ou deux éléments de la forme $(t, I)$ où $I$ est non-borné; 
 la longueur $\ell(I)$ associée est alors infinie et la somme de Riemann
 correspondante comporte alors un ou deux termes de la forme $f(t) \times \infty$;
-elle donc à potentiellement infinie, ou même indéfinie ...
+elle donc potentiellement infinie, ou même indéfinie ...
 
 Pour éviter cette difficulté technique, nous allons définir l'intégrale 
 sur $\mathbb{R}$ à partir de subdivisions d'intervalles compacts, en exigant 
