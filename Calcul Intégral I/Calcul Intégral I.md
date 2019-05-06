@@ -602,28 +602,64 @@ Intégration sur $\mathbb{R}$
 Motiver la définition de l'intégrale sur un intervalle non borné,
 disons $\left[0, +\infty\right[$
 par l'étude de l'intégrale sur $[a, b]$ et "sautant" le dernier
-terme de la somme de Riemann.
+terme de la somme de Riemann ? En exercice ?
 
 ### TODO
 
 Voir ce qu'il est possible de dire au passage sur l'absence d'intégrale
 impropre (théorème de Hake).
 
-### Intégrale sur $\mathbb{R}$ {.definition}
-Une fonction $f:\mathbb{R} \to \mathbb{R}$ est dite *intégrable 
-(au sens de Henstock-Kurzweil)* s'il existe un réel $I$ tel
-que pour tout $\varepsilon > 0$ il existe un $r>0$ tel que
-pour tout intervalle compact $[a, b]$ avec $a \leq -r$ et $r \leq b$,
-il existe une jauge $\gamma$ sur $[a, b]$ telle que pour toute 
-subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, on ait
-$|S(f, \mathcal{D}) - I| \leq \varepsilon$.
-Le réel $I$ quand il existe est unique; il est appelé
+### Remarque {.anonymous}
+
+La difficulté d'intégrer une fonction sur un intervalle non borné tel
+que $\mathbb{R}$ n'est pas lié au concept de subdivision pointée, 
+qui peut être généralisé pour comporter des intervalles non bornés,
+mais au calcul de la somme de Riemann associée. 
+En effet, toute subdivision pointée d'un intervalle non-borné comporte
+nécessairement un ou deux éléments de la forme $(t, I)$ où $I$ est non-borné; 
+la longueur $\ell(I)$ associée est alors infinie et la somme de Riemann
+correspondante comporte alors un ou deux termes de la forme $f(t) \times \infty$;
+elle donc à potentiellement infinie, ou même indéfinie ...
+
+Pour éviter cette difficulté technique, nous allons définir l'intégrale 
+sur $\mathbb{R}$ à partir de subdivisions d'intervalles compacts, en exigant 
+que celles-ci, en plus d'être suffisamment fines comme dans le cas des
+intervalles bornés, soient basées sur un intervalle suffisamment grand.
+
+
+### Intégrale sur un intervalle non borné {.definition}
+Soit $I$ un intervalle fermé non borné de $\mathbb{R}$ de bornes $a$ et $b$[^inb].
+Une fonction $f:I \to \mathbb{R}$ est dite *intégrable 
+(au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
+que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de $\mathbb{R}$ 
+et un intervalle compact $K$ de $I$
+tels que pour tout intervalle compact $[a, b]$ tel que $K \subset [a, b]$
+et pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
+subordonnée à $\gamma$, on ait
+$|S(f, \mathcal{D}) - A| \leq \varepsilon$.
+Le réel $A$ quand il existe est unique; il est appelé
 *intégrale de $f$ sur $\mathbb{R}$* et noté
 $$
-\int_{-\infty}^{+\infty} f(t) \, dt
+\int_{a}^{b} f(t) \, dt
 \, \mbox{ ou } \,
-\int_{\mathbb{R}} f(t) \, dt.
+\int_I f(t) \, dt.
 $$
+
+[^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[$,
+$I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \mathbb{R}$
+
+### TODO: 
+
+simplifier ce qui suit, inutilement compliqué.
+
+### TODO: 
+
+j'ai changé la définition ci-dessus, adapter la suite.
+
+### TODO
+
+Remarquer/Prouver que la définition ci-dessus "marche aussi" pour un
+intervalle borné.
 
 ### Intégrale sur un intervalle fermé {.definition}
 Une fonction $f:I \to \mathbb{R}$ définie sur un intervalle
