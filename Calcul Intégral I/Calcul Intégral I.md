@@ -594,7 +594,7 @@ Ensemble négligeable (de mesure de longueur extérieuere nulle),
 notion d'égalité pp, résultat qu'un fct pp égale à une fct intégrable
 est intégrable, de même intégrable (utile en soi et utilisé chap II)
 
-Intégration sur $\mathbb{R}$
+Intégration sur des intervalle non-bornés
 --------------------------------------------------------------------------------
 
 ### TODO
@@ -602,7 +602,7 @@ Intégration sur $\mathbb{R}$
 Motiver la définition de l'intégrale sur un intervalle non borné,
 disons $\left[0, +\infty\right[$
 par l'étude de l'intégrale sur $[a, b]$ et "sautant" le dernier
-terme de la somme de Riemann ? En exercice ?
+terme de la somme de Riemann ? En exercice ? Bof.
 
 ### TODO
 
