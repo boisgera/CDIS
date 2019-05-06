@@ -147,6 +147,7 @@ if len(_docs) != 1:
 doc = _docs[0] 
 doc_md = doc + ".md"
 doc_pdf = str(output / (doc + ".pdf"))
+doc_odt = str(output / (doc + ".odt"))
 doc_html = str(output / (doc + ".html"))
 doc_md_md = str(output / (doc + ".md"))
 
@@ -160,6 +161,7 @@ options += ["--table-of-contents"]
 if bibliography.exists():
     options += ["--bibliography=bibliography.json", "-M", "link-citations=true"]
 PDF_options = options.copy()
+ODT_options = options.copy()
 HTML_options = options.copy()
 HTML_options += ["--mathjax"]
 
@@ -168,3 +170,4 @@ doc = pandoc.read(file=doc_md)
 doc = transform(doc)
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
 pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
+pandoc.write(doc, format="odt", file=doc_odt, options=ODT_options)
