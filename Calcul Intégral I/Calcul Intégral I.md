@@ -599,7 +599,7 @@ Intégration sur $\mathbb{R}$
 
 ### TODO
 
-Motivé la définition de l'intégrale sur un intervalle non borné,
+Motiver la définition de l'intégrale sur un intervalle non borné,
 disons $\left[0, +\infty\right[$
 par l'étude de l'intégrale sur $[a, b]$ et "sautant" le dernier
 terme de la somme de Riemann.
