@@ -604,6 +604,11 @@ disons $\left[0, +\infty\right[$
 par l'étude de l'intégrale sur $[a, b]$ et "sautant" le dernier
 terme de la somme de Riemann.
 
+### TODO
+
+Voir ce qu'il est possible de dire au passage sur l'absence d'intégrale
+impropre (théorème de Hake).
+
 ### Intégrale sur $\mathbb{R}$ {.definition}
 Une fonction $f:\mathbb{R} \to \mathbb{R}$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $I$ tel
