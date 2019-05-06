@@ -645,7 +645,7 @@ $$
 \int_I f(t) \, dt.
 $$
 
-[^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[$,
+[^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\mathbb{R}$,
 $I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \mathbb{R}$
 
 ### TODO: 
