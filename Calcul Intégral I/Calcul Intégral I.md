@@ -1016,6 +1016,12 @@ Intégrale de Riemann
 Montrer que l'intégrale de Riemman est absolue, dans le sens ou si 
 une fonction $f$ est intégrable, sa valeur absolue $|f|$ l'est également.
 
+Ensembles Négligeables
+--------------------------------------------------------------------------------
+
+Exemple nombres dans $\left[0,1\right[$ developables avec uniquement des nombres
+pairs: négligeable mais équipotent à $\left[0,1\right[$ (et donc pas dénombrable)
+
 Caractérisation des dérivées
 --------------------------------------------------------------------------------
 
