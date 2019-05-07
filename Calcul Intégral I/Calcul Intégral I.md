@@ -1005,6 +1005,10 @@ Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
 Exercices
 ================================================================================
 
+### TODO
+
+Regarder exercices dans le Bartle ("A Modern Theory of Integration")
+
 Subdivision pointées
 --------------------------------------------------------------------------------
 
