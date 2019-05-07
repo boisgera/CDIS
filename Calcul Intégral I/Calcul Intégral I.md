@@ -1005,6 +1005,13 @@ Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
 Exercices
 ================================================================================
 
+Subdivision pointées
+--------------------------------------------------------------------------------
+
+Demander de construire à partir d'une subdivision une autre subdivision 
+"aussi fine", de même somme de Riemann, mais avec les points tjs à gauche
+ou à droite de l'intervalle.
+
 Intégrale de Riemann
 --------------------------------------------------------------------------------
 
