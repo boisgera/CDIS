@@ -878,6 +878,11 @@ qui converge conditionnellement ?
 Simplifier l'exemple ci-dessous en ne travaillant que sur la dérivée;
 repousser l'étude de la fonction ci-dessous en exercice.
 
+### TODO
+(en exercice ?) Exemple de Bartle basé sur une série conditionnellement
+convergente (dans "A modern theory of integration". Mieux que cet exemple
+ici ?)
+
 ### Une fonction conditionnellement intégrable {.example}
 
 La fonction $f:[0, 1] \to \mathbb{R}$ définie par
