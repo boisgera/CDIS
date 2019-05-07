@@ -228,7 +228,9 @@ $$
 
 ### Démonstration {.proof}
 
-**TODO:** trouver référence
+**TODO:** trouver référence (j'ai ça dans les slides de Sullivan de Caltech,
+mais pas dans un bouquin ? Je croyais que si; chercher en local, au pire
+Google pour "Lebesgue’s criterion for Riemann integrability")
 
 ### Remarque
 
