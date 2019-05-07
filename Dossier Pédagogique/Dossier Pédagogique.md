@@ -508,14 +508,70 @@ est partiellement concernée:
 Modalités d'Evaluation
 --------------------------------------------------------------------------------
 
-*\[ 
-Les modalités d’évaluations définissent sous quelles formes les élèves seront 
-évalués, individuel/groupe, examen sur table, rapport, oral, pondérations 
-éventuelles. 
-Les critères d’évaluation sont étroitement associés aux acquis d’apprentissage 
-visés; cette logique sera explicitée. 
-\]*
+L'évaluation de l'EC 1 sera principalement basée sur un examen écrit.
+Cette modalité, standard et familière pour les étudiants, 
+à l'inconvénient d'être peu personnalisable et fournit en cas de 
+note insuffisante très peu d'explications aux enseignants sur les 
+raisons de l'échec. Elle répond pourtant de façon simple à 
+l'organisation globale de l'UE, qui concentre une grande partie 
+des acquis d'apprentissage les plus simples et les plus importants 
+dans son premier volet, pour lesquels une évaluation normalisée 
+devrait convenir. A défaut de fournir des informations précises sur la 
+nature des difficultés rencontrées par les étudiants -- 
+difficultés qui n'auraient pas été détecté dans le cadre du dispositif 
+d'accompagnement personnalisé, auquel les étudiants ne sont pas tenus
+d'avoir recours -- elle a le mérite de donner l'alerte de façon claire
+et clinique, puisqu'elle situe les résultats des étudiants 
+les uns par rapport aux autres, dans un dispositif normalisé.
+Cette information doit être alors prise en compte dans le second 
+EC de l'UE pour définir de façon plus personnalisée des objectifs 
+adaptés et orienter si nécessaire les étudiants vers le dispositif
+d'accompagnement personnalisé du second EC.
 
+Les modalités d'évaluations du second EC ne sont pas définies dans le détail
+à ce stade; plusieurs modalités ont évoquées par le groupe de travail
+(oraux, mémoires, devoirs en temps libre, etc.) pour ne pas cantonner
+l'évaluation aux examens écrits qui ne permettent pas de mettre en valeur
+toutes les compétences des étudiants et sont globalement assez peu informatifs.
+Une certaine liberté peut également être envisagée dans la personnalisation
+de l'évaluation dans la mesure où certains acquis d'apprentissage plus avancés 
+du second EC sont un peu moins critiques pour l'ensemble des étudiants 
+et que leur intérêt pour chacun va dépendre de leur projet personnel de formation.
+En particulier, lorsque ces acquis dépendent explicitement d'acquis
+du premier EC qui ne sont pas maîtrisés, les étudiants -- conseillés par
+l'équipe pédagogique -- devront pouvoir consacrer à nouveau du temps sur les 
+acquis de base, afin de valider à nouveau les acquis du premier EC, 
+quitte à abandonner explicitement une partie des acquis du second EC[^exp-choix]. 
+Il faudra donc distinguer dans ce second EC les nouveaux 
+acquis fondamentaux d'acquis plus avancés qui prolongent le premier EC[^ex-distinction].
+
+[^exp-choix]: Avec pour conséquence mécanique de perdre des points à coup sûr 
+sur le second EC -- 
+mais des points qu'il aurait été très difficile de gagner quoi qu'il en soit
+-- et avec une nouvelle chance de gagner des points au titre du premier EC.
+
+
+[^ex-distinction]: A titre d'exemple: les équations différentielles n'apparaissent
+que dans le second EC et les savoirs de CPGE dans ce domaine sont trop limités pour
+les besoins de l'ingénieur, il est donc nécessaire d'exiger de tous l'acquisition 
+de compétences dans ce domaine; par contre,
+il est contre-productif de chercher à valider des acquis de calcul 
+différentiel en dimension infinie tant que le calcul différentiel en dimension 
+finie n'est pas un minimum maîtrisé.
+
+
+Le volet algorithmique et numérique, transverse à l'UE, 
+représente de l'ordre de 25% du travail total des étudiants[^detail-num]. 
+Le même poids lui est donc affecté dans l'évaluation de l'UE. 
+Un tiers de cette activité est programmée dans l'EC 1, 
+pour un poids de 1/6 de la note de l'EC, 
+et les deux tiers restant dans l'EC 2, pour 1/3 de la note de l'EC.
+
+[^detail-num]: Chacun des trois thèmes numériques comporte une session de
+cours magistral, une session de travaux dirigés, une session de travail
+personnel associée et deux sessions dédiées au projet numérique, pour un
+total de $3 \times 5 = 15$ sessions, soit 22h30 sur les 90h de travail
+total affectées à l'UE.
 
 Contenus et Activités
 --------------------------------------------------------------------------------
