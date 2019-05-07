@@ -133,8 +133,8 @@ difficile à exploiter. En particulier la classe des fonctions qui peuvent
 considérées ne peuvent être "ni trop grandes", "ni trop irrégulières" pour
 être intégrables. Les deux théorèmes qui suivent précisent cette situation.
 
-### Seules les fonctions bornées sont intégrables {.theorem}
-Si $f:[a, b] \to \mathbb{R}$ est intégrable, alors $f$ est bornée. 
+### Seules les fonctions bornées sont intégrables {.lemma}
+Si $f:[a, b] \to \mathbb{R}$ est intégrable au sens de Riemann, alors $f$ est bornée. 
 
 ### Démonstration {.proof}
 
@@ -197,8 +197,6 @@ Une propriété dépendant d'un réel $x$ est vraie *presque partout*
 si l'ensemble des points $x$ où elle est fausse est un ensemble
 négligeable.
 
-
-
 ### Les ensembles dénombrables sont négligeables {.example}
 Par exemple, les ensembles finis sont négligeables, $\mathbb{Q}$ est
 négligeable, etc. En effet, si $A = \{x_n \, | \, n \in \mathbb{N}\}$,
@@ -224,21 +222,17 @@ x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
 $$
 
 
-### Seules les fonctions continues presque partout sont intégrables
+### Critère de Lebesgue pour l'intégrabilité au sens de Riemann
+La fonction $f:[a, b] \to \mathbb{R}$ est intégrable au sens de Riemann, 
+si et seulement si $f$ est bornée et continue presque partout.
 
 ### Démonstration {.proof}
 
-**TODO:** trouver référence (j'ai ça dans les slides de Sullivan de Caltech,
-mais pas dans un bouquin ? Je croyais que si; chercher en local, au pire
-Google pour "Lebesgue’s criterion for Riemann integrability")
+[Le lemme ci-dessus][Seules les fonctions bornées sont intégrables] montre
+que le caractère borné est nécessaire pour l'intégrabilité au sens de
+Riemann. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
 
-### Remarque
 
-Dire que ce sont les seules limitations (toutes les fonctions continues pp
-et bornées sont intégrables), et référence. En déduire que continue par
-morceaux par exemple, ça marche. Enoncer la réciproque de façon formelle
-ou garder ça en remarque ? (utilisé en exo pour montrer que Riemann est
-absolue ? Borderline ...)
 
 
 Intégrale de Riemann Généralisée
