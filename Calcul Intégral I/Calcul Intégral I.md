@@ -14,24 +14,18 @@ un ensemble de mesure nulle, puis cas général, ce type de progression
 
 --------------------------------------------------------------------------------
 
-
-L'Intégrale de Riemann Généralisée
+Somme et Intégrale de Riemann
 --------------------------------------------------------------------------------
 
 ### TODO
 
-intégral de Riemann "classique" ?
+intégral de Riemann "classique" ? Et limitations.
+Avant jauge ?
 
-### TODO
-
-Important d'introduire ici la possibilité éventuellement de subdivisions
-sur des ensembles non bornés mais en tout cas de jauge sur des ensembles
-non-bornés, pour être cohérent avec la suite. On pourrait s'en passer,
-mais les énoncés qui suivent sont plus simples avec cette formulation.
 
 
 ### Subdivision pointée {.definition}
-Une *[subdivision]{.index}* de l'intervalle fermé $I = [a,b]$
+Une *subdivision* de l'intervalle fermé $I = [a,b]$
 est une famille finie
 $$
 \{I_i \; | \; \; 0 \leq i \leq n-1 \}
@@ -40,7 +34,7 @@ constituée d'intervalles fermés de $I$, *sans chevauchement*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
 plus un point -- et *recouvrant $I$* -- l'union de l'ensemble des $I_i$
 est égal à $I$. 
-Une *[subdivision pointée]{.index}* de l'intervalle fermé $I = [a, b]$ 
+Une *subdivision pointée* de l'intervalle fermé $I = [a, b]$ 
 de $\mathbb{R}$ une famille finie 
 $$
 \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
@@ -53,17 +47,210 @@ $$
 a = x_0 \leq \cdots \leq x_i \leq t_i \leq x_{i+1} \leq \cdots \leq x_{n} = b.
 $$
 
-### jauge {.definition}
-Une *[jauge]{.index}* sur $I = [a, b]$ est une fonction $\gamma$
-qui associe à tout $t$ de $[a, b]$ un intervalle ouvert $\gamma(t)$ 
-de $\mathbb{R}$ contenant $t$. 
+
+### Somme de Riemman {.definition}
+
+La somme de Riemann associée à la fonction $f:[a, b] \to \mathbb{R}$ 
+et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
+$$
+S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
+$$
+
+Alternative:
+$$
+S(f, \mathcal{D}) = \sum_{i=0}^{m-1} f(t_i) (x_{i+1} - x_i)
+$$
+Bof...
+
+### Intégrale de Riemann {.definition}
+Une fonction $f:[a, b] \to \mathbb{R}$ est dite *intégrable 
+(au sens de Riemann)* s'il existe un réel $A$ tel
+que pour tout $\varepsilon > 0$ il existe un réel $\delta>0$ tel 
+que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
+vérifiant pour $(t, J) \in \mathcal{D}$, 
+$\ell(J) < \delta$, on ait
+$|S(f, \mathcal{D}) - A| \leq \varepsilon$.
+Le réel $A$ quand il existe est unique; il est appelé
+*intégrale de $f$ sur $[a, b]$* et noté
+$$
+\int_a^b f(t) \, dt
+\, \mbox{ ou } \,
+\int_{[a, b]} f(t) \, dt
+$$
+
+### Quadrature {.example}
+
+Cette définition permet de garantir l'exactitude asymptotique de méthodes de 
+quadrature -- c'est-à-dire d'algorithmes de calcul numérique d'intégrales -- 
+comme la méthode des rectangles. 
+En effet, si $f:[a, b] \to \mathbb{R}$ est une fonction intégrable au sens de 
+Riemann, et $\mathcal{D}_m$ une subdivision pointée de $[a, b]$ de la forme
+$$
+\mathcal{D}_m=
+\left\{
+\left(a + i \frac{b-a}{m}, \left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)
+\, \left| \vphantom{\frac{a}{b}}\right.
+i \in \{0,\dots, m-1\}
+\right\},
+$$
+la somme de Riemann associée vérifie
+$$
+\begin{split}
+S(f, \mathcal{D}_m) 
+&= \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right) \ell 
+\left(\left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)\\
+&= \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right) \frac{b-a}{m}  \\
+&= \frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right)
+\end{split}
+$$
+De plus, quel que soit $\delta > 0$, pour $m$ suffisamment grand, on a
+$$
+\ell\left(\left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)
+=
+\frac{b-a}{m}
+<
+\delta
+$$
+Par conséquent,
+$$
+\frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right)
+\to \int_a^b f(t) \, dt
+\, \mbox{ quand } \, m \to +\infty.
+$$
+La définition de l'intégrale de Riemann, ne se limite pas à une famille 
+particulière de subdivisions -- comme ici à des subdivisions régulières de 
+$[a, b]$ où tous les intervalles sont de même longueur -- et n'impose 
+pas une position fixe au point $t_i$ dans l'intervalle $J_i$ -- 
+comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
+à la définition de l'intégrale; d'autres méthodes de quadratures pourront
+être utilisées avec le même résultat asymptotique.
+
+### Remarque {.remark .anonymous}
+
+L'intégrale de Riemann possède des limitations qui en font un outil mathématique
+difficile à exploiter. En particulier la classe des fonctions qui peuvent
+être intégrées est trop petite pour certaines applications car les fonctions 
+considérées ne peuvent être "ni trop grandes", "ni trop irrégulières" pour
+être intégrables. Les deux théorèmes qui suivent précisent cette situation.
+
+### Seules les fonctions bornées sont intégrables {.theorem}
+Si $f:[a, b] \to \mathbb{R}$ est intégrable, alors $f$ est bornée. 
+
+### Démonstration {.proof}
+
+Soit $\delta > 0$ tel que pour toute subdivision pointée $\mathcal{D}$ de 
+$[a, b]$ vérifiant $\ell(J) < \delta$ pour tout$(t, J) \in \mathcal{D}$, 
+on ait
+$|S(f, \mathcal{D}) - \int_a^b f(t) \, dt| \leq 1$.
+Soit $\mathcal{D} = \{(t_i, [a_i, b_i])\}_{i=0}^{m-1}$ une telle subdivision;
+on supposera de plus que $\ell(J_i)>0$ pour tout $i$, ce qu'il est toujours
+possible de garantir.
+Pour tout $i \in \{0, \dots, m-1\}$, si l'on définit
+$\mathcal{D}'$ à partir de $\mathcal{D}$ en remplaçant 
+$t_i$ par un $t$ de $J_i$ quelconque, on obtient
+$$
+\begin{split}
+|f(t) \ell(J_i) - f(t_i) \ell(J_i)| &=
+|S(f, \mathcal{D}') - S(f, \mathcal{D})| \\
+& \leq
+\left|S(f, \mathcal{D}') - \int_a^b f(t) \, dt\right|
++
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right|
+\leq 2
+\end{split}
+$$
+et par conséquent,
+$$
+|f(t)| \leq |f(t_i)| + \frac{2}{\ell(J_i)}.
+$$
+Les intervalles $J_i$ recouvrant $[a, b]$, on a pour tout
+$t\in [a, b]$
+$$
+|f(t)| \leq \max_i \left\{|f(t_i)| + \frac{2}{\ell(J_i)} 
+\, \left| \vphantom{\frac{a}{b}} \right. \, i \in \{0, \dots, m-1\}\right\}.
+$$
+
+### Ensemble négligeable  {.definition}
+Un ensemble $A$ de $\mathbb{R}$ est *négligeable* si pour tout
+$\varepsilon > 0$, il existe un recouvrement de $A$ par une famille
+dénombrable d'intervalles ouverts $I_i$ de $\mathbb{R}$ tels que
+$$
+\sum_i \ell(I_i) \leq  \varepsilon.
+$$
+
+### Remarque {.remark .anonymous}
+Nous voyons que le procédé qui définit la notion d'ensemble négligeable
+consiste à surestimer la taille de l'ensemble en lui substituant une
+collection d'intervalles dont l'union est au moins aussi grande,
+puis à surestimer la longueur de l'ensemble résultant en calculant la
+somme des longueurs des intervalles, sans tenir compte des éventuels
+recouvrements. Si à l'issue de cette double surestimation
+la longueur évaluée est encore aussi petite que l'on veut, on
+peut légitimement considérer que l'ensemble de départ est de 
+longueur nulle[^me] et que c'est donc ce que signifie "négligeable". 
+Nous verrons ultérieurement que cette intuition sera vérifiée.
+
+[^me]: plus exactement de mesure *extérieure* de longueur nulle.
+
+### Presque partout {.definition}
+Une propriété dépendant d'un réel $x$ est vraie *presque partout*
+si l'ensemble des points $x$ où elle est fausse est un ensemble
+négligeable.
+
+
+
+### Les ensembles dénombrables sont négligeables {.example}
+Par exemple, les ensembles finis sont négligeables, $\mathbb{Q}$ est
+négligeable, etc. En effet, si $A = \{x_n \, | \, n \in \mathbb{N}\}$,
+alors pour tout $\varepsilon > 0$, la collection d'intervalle ouverts
+$$
+\left\{
+\left]
+x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
+\right[
+\, \left| \vphantom{\frac{a}{b}} \, \right.
+i \in \mathbb{N}
+\right\}
+$$
+recouvre $A$ et par ailleurs
+$$
+\sum_{i=0}^{+\infty} \ell\left(\left]
+x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
+\right[\right)
+=
+\sum_{i=0}^{+\infty} \frac{\varepsilon}{2^{i+1}}
+=
+\varepsilon.
+$$
+
+
+### Seules les fonctions continues presque partout sont intégrables
+
+### Démonstration {.proof}
+
+**TODO:** trouver référence
+
+### Remarque
+
+Dire que ce sont les seules limitations (toutes les fonctions continues pp
+et bornées sont intégrables), et référence. En déduire que continue par
+morceaux par exemple, ça marche. Enoncer la réciproque de façon formelle
+ou garder ça en remarque ? (utilisé en exo pour montrer que Riemann est
+absolue ? Borderline ...)
+
+
+Intégrale de Riemann Généralisée
+--------------------------------------------------------------------------------
+
+### Jauge {.definition}
+Une jauge $\gamma$ sur un intervalle $I$ de $\mathbb{R}$ est une 
+fonction qui associe à tout $t \in I$ un 
+intervalle ouvert $\gamma(t)$ de $\mathbb{R}$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
-Une subdivision $\mathcal{D}$ de l'intervalle fermé $I$ 
-est *subordonnée à une jauge* $\gamma$ de $I$ si 
-$$
-\mbox{pour tout } (t, J) \in \mathcal{D}, \; J \subset \gamma(t). 
-$$
+Une subdivision $\mathcal{D}$ de l'intervalle compact $I$ 
+est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout 
+$(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Représentation graphique
 
@@ -134,29 +321,14 @@ coup de la faire "pour de vrai".
 Au passage, il faut s'arranger pour "lemmatiser" le résultats "... et le 
 processus termine en un nombre fini d'étapes" plus clairement.
 
-### Somme de Riemman {.definition}
-
-La somme de Riemann associée à la fonction $f:[a, b] \to \mathbb{R}$ 
-et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
-$$
-S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
-$$
-
-Alternative:
-$$
-S(f, \mathcal{D}) = \sum_{i=0}^{m-1} f(t_i) (x_{i+1} - x_i)
-$$
-
-**TODO.** Notation $\int_a^b$ when $a>b$.
-
-### Intégrale sur un intervalle compact {.definition}
+### Intégrale de Henstock-Kurzweil sur un intervalle compact {.definition}
 Une fonction $f:[a, b] \to \mathbb{R}$ est dite *intégrable 
-(au sens de Henstock-Kurzweil)* s'il existe un réel $I$ tel
+(au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$
 sur $[a, b]$ telle que pour toute subdivision pointée 
 $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, on ait
-$|S(f, \mathcal{D}) - I| \leq \varepsilon$.
-Le réel $I$ quand il existe est unique; il est appelé
+$|S(f, \mathcal{D}) - A| \leq \varepsilon$.
+Le réel $A$ quand il existe est unique; il est appelé
 *intégrale de $f$ sur $[a, b]$* et noté
 $$
 \int_a^b f(t) \, dt
