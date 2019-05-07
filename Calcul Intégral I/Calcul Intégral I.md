@@ -223,7 +223,7 @@ $$
 
 
 ### Critère de Lebesgue pour l'intégrabilité au sens de Riemann
-La fonction $f:[a, b] \to \mathbb{R}$ est intégrable au sens de Riemann, 
+La fonction $f:[a, b] \to \mathbb{R}$ est intégrable au sens de Riemann 
 si et seulement si $f$ est bornée et continue presque partout.
 
 ### Démonstration {.proof}
