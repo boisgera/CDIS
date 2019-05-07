@@ -1020,3 +1020,7 @@ Caractérisation des dérivées
 --------------------------------------------------------------------------------
 
 Identifier par les jauges si une fonction est une dérivée (cf papier).
+
+
+Références
+================================================================================
