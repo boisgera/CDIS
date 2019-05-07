@@ -1,6 +1,6 @@
 % Projet de Refonte IC
 % 
-% 2 mai 2019
+% 7 mai 2019
 
 Unité d'Enseignement: Document Pédagogique
 ================================================================================
