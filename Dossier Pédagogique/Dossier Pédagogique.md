@@ -18,14 +18,6 @@ Semestre                                 1
 Contexte, Enjeux et Objectifs
 --------------------------------------------------------------------------------
 
-*\[ 
-Notamment: analyse des enjeux spécifiques, place dans le projet
-global de formation (axes stratégiques, articulation avec les autres UE,
-etc.), perspective historique et actuelle, compétences associées; 
-cf. éléments issus de la note de cadrage.
-\]*
-
-
 L'unité d'enseignement est composée de 2 éléments constitutifs :
 
   - Calcul Différentiel, Intégral et Stochastique I (2 ECTS, 1er semestre),
@@ -96,13 +88,19 @@ des enseignements de Mathématiques Appliquées du 2nd semestre.
 
 
 
-Discussions: 
+Discussions: (citer, faire des renvois aux autres sections si dvlpt plus
+appropriés ailleurs)
 
-  - volet numérique.
+  - volet numérique. + généralement, au service de l'axe stratégique
+    "numérique" en direct et via la préparation (Maths Apps, etc.)
 
-  - articulations, notamment Maths Apps, Physique, etc.
+  - articulations, notamment Info, Maths Apps, Physique, etc.
+    Objectifs "en propres" et "au service" d'autres composants
+    de la formation. 
 
-  - retour / autres élts note de cadrage
+  - gestion hétérogénéité (renvoi accompagnement personnalisé,
+    modalité d'évaluation, etc.). Rappel ICI formule actuelle et
+    modèle sous-jacent, et ses limites ? Oui.
 
 
 Organisation de l'UE
