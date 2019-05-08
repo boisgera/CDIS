@@ -92,7 +92,8 @@ Discussions: (citer, faire des renvois aux autres sections si dvlpt plus
 appropriés ailleurs)
 
   - volet numérique. + généralement, au service de l'axe stratégique
-    "numérique" en direct et via la préparation (Maths Apps, etc.)
+    "numérique" en direct et via la préparation (Maths Apps, etc.).
+    Aussi, lien / axe "accompagnement personnalisé".
 
   - articulations, notamment Info, Maths Apps, Physique, etc.
     Objectifs "en propres" et "au service" d'autres composants
@@ -1185,23 +1186,98 @@ général.
 Ressources Humaines, Matérielles, Financières
 --------------------------------------------------------------------------------
 
-*\[ 
-Équipe pédagogique: composition, dimensionnement, rôles à pourvoir,
-analyse des compétences requises. 
-\]*
+La réalisation du projet de l'UE sera confiée à
+Emilie Chautru (GEOSCIENCES), Pauline Bernard (CAS), 
+Thomas Romary (GEOSIENCES) et Sébastien Boisgérault (CAOR) 
+à travers l'élaboration collaborative des ressources
+pédagogiques, la prise en charge des cours magistraux et une
+implication dans les autres activités de l'UE (travaux dirigés,
+tutorats, évaluation, etc.). 
+Une attention particulière sera apportée à la recherche au sein de 
+Mines ParisTech de doctorants ou de jeunes enseignants-chercheurs 
+susceptibles de compléter l'équipe pédagogique, pour les activités
+nécessitant des effectifs plus importants; l'expérience
+montre que bien accompagnée, cette implication peut être très bénéfique
+pour les deux parties. 
+En plus de l'expertise disciplinaire en Mathématiques, 
+qui est un prérequis évident pour ces enseignants-chercheurs, 
+il conviendra de tenir compte des profils 
+ayant une expérience et une motivation forte pour l'enseignement et la 
+pédagogie, pouvant contribuer à améliorer la cohérence interne ou externe de l'UE, 
+disposant d'un culture numérique forte et/ou d'une bonne 
+connaissance du profil des étudiants et du projet de formation.
 
-*\[ "
-Matériel" est à interpréter au sens large: les besoins logistiques,
-d’infrastructure, logiciels, etc. nécessaires au projet sont à inclure.
-\]*
+Les effectifs d'enseignants responsables des sessions en présentiel 
+(face-à-face pédagogique ou tutorat) suivent la répartition suivante:
 
-*\[ 
-  Analyse des coûts quand c’est possible ou éléments permettant de les
-déterminer. 
-\]*
+  - Cours magistraux: 1 intervenant ($\times$ 24h).  
+    Un intervenant à chaque session dans les modalités actuelles.
 
-**TODO:** coût du tutorat / dimensionnement.
+  - Travaux dirigés: 6 intervenants ($\times$ 24h).  
+    En prévision d'un effectif maximal de 130 étudiants,
+    6 groupes de travaux dirigés seront constitué.
 
+  - Tutorats (classique et projet): 6 intervenants ($\times$ 33h).  
+    Destinés à des effectifs plus restreint que les travaux dirigés 
+    en raison de leur caractère optionnel,
+    les tutorats s'inscrivent néanmoins dans une logique d'accompagnement 
+    personnalisé et supposent donc un encadrement renforcé. 
+    Dans cette optique, et pour assurer une continuité dans l'accompagnement, 
+    l'effectif de 6 personnes en charge des travaux dirigés sera maintenue.
+
+Ce découpage ne concerne que les activités en présentiel, 
+et laisse de coté des activités et des rôles moins visibles ou
+"nobles" mais importants et coûteux en temps[^exr] 
+qu'il sera intéresser de documenter plus précisément.
+Les titres décrivant aujourd'hui officiellement les rôles possibles des 
+enseignants-chercheurs dans un UE -- "responsable", "intervenant", 
+"chargé d'enseignement" -- sont trop grossiers pour avoir cette 
+utilité.
+
+[^exr]: Tels que: la gestion de l'infrastructure numérique 
+pour les ressources pédagogiques, l'accompagnement des doctorants 
+dans leur activité d'enseignement, etc.
+
+On constatera que les modalités pédagogiques envisagées,
+notamment les sessions tutorées, classiques ou numériques, ne s'inscrivent 
+pas spontanément dans les dénominations "classiques" servant de base au calcul 
+du taux de rémunération horaire pour les enseignant extérieurs (à savoir
+"Cours ou Conférences", "Petite Classe", "Travaux Pratiques", 
+"Soutien Technique"). Il serait pertinent de revisiter ces catégories en
+mettant clairement en évidence quelle différence de travail ou de niveau
+d'expertise fonde les écarts importants de rémunération entre les 
+différentes catégories[^dPCTP]. En particulier la place des activités
+numériques -- qui sont stratégiques -- dans cette hiérarchie devrait être 
+précisées.
+
+[^dPCTP]: le ratio entre la rémunération horaire des travaux dirigés 
+("Petite Classe") et des travaux pratiques est supérieur à 2.
+
+Concernant les problématiques matérielles ou d'infrastructure:
+
+  - Les cours magistraux -- à la forme essentiellement classique --
+    nécessitent principalement des amphithéatres dotés de tableaux
+    suffisamment grands, à plusieurs volets.
+    Des dispositifs technologiques facilitant les interactions pourraient 
+    également être envisagés
+    (tels que boitiers de vote, tablette graphique, etc.), mais aucune
+    solution précise de type n'est prévue à ce stade (l'interaction
+    pouvant être introduite dans un premier temps de façon plus classique).
+
+  - Concernant les ressources pédagogiques, la transition numérique
+    a été prise en compte depuis le départ dans ce projet d'UE, avec
+    une modernisation des processus.
+    Mais cet aspect ne sera mis en oeuvre initialement que de façon partielle,
+    compte tenu des efforts importants nécessaires qui reposent aujourd'hui
+    intégralement sur l'équipe pédagogique.
+    Exploiter pleinement ce potentiel numérique supposera un engagement
+    et des moyens (développement, valorisation, etc.) conséquents impliquant
+    une gamme plus large d'acteurs.
+    
+  - Les besoins en terme d'infrastructure informatique
+    nécessaires au bon déroulement des projets numériques sont en ligne 
+    avec ceux exprimés par l'UE 12 d'Informatique pour son volet
+    "Python Numérique".
 
 Annexe -- Référentiel de Base des Compétences CTI
 --------------------------------------------------------------------------------
