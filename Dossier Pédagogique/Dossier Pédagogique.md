@@ -116,20 +116,8 @@ Intégral et Stochastique I                                2
 Intégral et Stochastique II                               2
 --------------------------------------------------------------------------------
 
-*\[ 
-Les informations des sections suivantes seront déclinées au niveau
-de chaque ECUE pour permettre la constitution de fiches descriptives 
-\]*
-
-
 Prérequis
 --------------------------------------------------------------------------------
-
-*\[ 
-Analyse des compétences indispensables/souhaitées pour suivre l’ECUE, 
-articulation le cas échéant avec les UE ou les formations antérieures 
-de référence. 
-\]*
 
 L'UE, programmé au 1er semestre de la 1ere année de la scolarité, 
 s'adresse à des étudiants issus pour l'essentiel des classes 
@@ -396,16 +384,6 @@ vision des différents profils (raisonner, communiquer/convaincre, etc.).
 Compétences
 --------------------------------------------------------------------------------
 
-*\[ 
-Correspondance/contributions entre les acquis d’apprentissage de
-l’UE et le référentiel générique de compétences CTI 
-\]*
-
-*\[ 
-Il s’agit de mettre en correspondance les activités pédagogiques et le 
-référentiel CTI fourni en annexe.
-\]*
-
 Vis-à-vis du référentiel générique de la CTI, 
 l'UE participe principalement aux compétences relatives à
 "l'acquisition des connaissances scientifiques et techniques 
@@ -560,20 +538,6 @@ total affectées à l'UE.
 
 Contenus et Activités
 --------------------------------------------------------------------------------
-
-*\[ 
-Description des contenus. Description des activités pédagogiques
-favorisant leur apprentissage. On détaillera les activités en face à
-face pédagogique (cours, TD, ..) ainsi qu’en autonomie (projets, etc.).
-L’impact du projet en terme de séquencement, de contraintes d’emploi du
-temps sera explicité. 
-\]*
-
-*\[ 
-Spécificités: classe inversée, APP, pédagogie par projets, 
-suivi personnalisé, soutien, remédiation, ... 
-\]*
-
 
 ### Programme
 
@@ -858,15 +822,25 @@ pas l'unanimité.
 
 ### Principes
 
+**TODO:** vérifier explicitation tous impacts EDT.
+
+  - **TODO:** problématiques cours magistral:
+  
+      - pourquoi "old-school"
+
+      - gestion spécificités 1h30
+
+      - alternatives (substitution tutorée)
+
   - **Durée (6-9 semaines par EC).** 
     Le programme de référence de l'UE ci-après 
     associe à chaque EC une plage de 6 semaines. 
-    Cette durée n'est pas une recommandation, mais un minimum raisonnable,
+    Cette durée n'est pas une recommandation, mais un seuil plancher,
     à partir duquel on peut sans difficulté construire un programme sur
     7, 8 ou 9 semaines par EC, 9 semaines étant probablement 
     ce qui serait préférable[^recomm-durée].
 
-    **Place de l'examen, correction, césure, etc.**
+  - **Place de l'examen, correction, césure, etc.**
 
   - **Equilibre Cours/Travaux Dirigés/Travail Personnel.** 
     Chaque session de cours est associée à une session de travaux dirigés 
@@ -1103,13 +1077,6 @@ Semaine 6:
   
     - Examen (EX) + Examen (EX)
 
---------------------------------------------------------------------------------
-
-*\[ 
-Pour chaque activité, précisez les ressources mise à disposition:
-documents (poly, note de cours), étude de cas, logiciels, ressources
-multimédias et éventuellement les productions attendues[^3].
-\]*
 
 Ressources Pédagogiques
 --------------------------------------------------------------------------------
@@ -1194,8 +1161,6 @@ découlent également des bénéfices très concrets. Par exemple:
 
 
 [^publiables]: au sens de "publiable par un éditeur scientifique".
-
-[^3]: Le modèle IMAIP: <https://didac2b.wordpress.com/2014/12/06/imaip/>
 
 
 Processus Qualité
