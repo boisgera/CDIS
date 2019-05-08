@@ -1167,12 +1167,52 @@ découlent également des bénéfices très concrets. Par exemple:
 Processus Qualité
 --------------------------------------------------------------------------------
 
-*\[ 
-Composition du groupe de travail. 
-\]*
+Ont été associés au groupe de travail à différents stades du processus:
 
-Lister contacts prépa, élèves, experts (mentionner trait commun de la
-connaissance du cursus et logique sous-jacente)
+  - Paul-Adrien Blancquart, Marin Boyet, Alexandre Himmelein, 
+    étudiants ou jeunes diplômés du cycle ingénieur civil, qui
+    se seont portés volontaires pour participer à la réflexion 
+    portant sur l'UE 11. Marin Boyet s'est impliqué plus largement
+    dans la réflexion sur la refonte du cycle IC dans son ensemble
+    depuis son commencement.
+ 
+  - Silviu Niculescu (Centrale-Supélec), 
+    Michel Schmitt (Ministère de l'Economie et des Finances), 
+    Gabriel Stoltz (Ecole des Ponts ParisTech), comme experts.
+    Il s'agit d'experts disciplinaires et/ou de formation, 
+    qui bien qu'apportant un point de vue extérieur à Mines Paristech 
+    ont une très bonne connaissance de notre formation 
+    (responsabilité de direction, participation aux réformes précédentes
+    de l'enseignement des Mathématiques, etc.)
+    et ont tous des expériences concrêtes d'enseignement dans son cycle
+    ingénieur civil.
+
+  - Sébastien Giraud (Lycée Kléber) un enseignant de classes préparatoires aux 
+    grandes écoles (CPGE) et connaisseur du large spectre des filières de CPGE 
+    au sein desquelles nous recrutons. 
+    Deux autres entretiens ont été menés à ce stade avec des enseignants 
+    en CPGE à Paris et en région parisienne. 
+    C'est un dialogue que nous souhaitons maintenir dans la durée ; 
+    la réforme actuelle du lycée aura sans doute des répercussions importantes 
+    et les enseignants de CPGE seront alors aux avant-postes pour percevoir 
+    ces changements.
+
+  - La cellule TICE (Technologies de l'Information et de la Communication
+    pour l'Enseignement) de Mines ParisTech -- à travers Willy Morscheidt et 
+    Marie-Françoise Curto, associés notamment sur les questions d'ingénierie
+    pédagogiques.
+
+  - Au titre de l'équipe pédagogique, Emilie Chautru (GEOSCIENCES),
+    Pauline Bernard (CAS), Thomas Romary (GEOSIENCES) et Sébastien 
+    Boisgérault (CAOR), également préfigurateur de l'UE, dont les
+    compétences disciplinaires correspondent bien au périmètre de l'UE.
+    Des échanges nombreux ont également eu lieu avec les préfigurateurs et les 
+    équipes pédagogiques
+    des UE 12 -- Informatique, 13 -- Physique et 21 -- Mathématiques Appliquées,
+    sans que les interlocuteurs soient formellement associés au groupe de 
+    travail.
+
+
 
 *\[ 
 Déclinaison du processus qualité: description des aspects de l’UE
