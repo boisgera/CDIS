@@ -1016,8 +1016,23 @@ Intégrale de Riemann
 Montrer que l'intégrale de Riemman est absolue, dans le sens ou si 
 une fonction $f$ est intégrable, sa valeur absolue $|f|$ l'est également.
 
-Ensembles Négligeables
+Un ensemble de Cantor
 --------------------------------------------------------------------------------
+
+Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté de façon
+unique par un développement décimal de la forme noté noté $x=0.a_1a_2a_3\dots$
+où $a_i \in \{0,1, \dots, 9\}$, ce qui signifie que
+$$
+x = \sum_{i=1}^{+\infty} a_i 10^{-i}, 
+$$
+a la condition que les développements soit propres, c'est-à-dire tel que les 
+séquences infinies et ininterrompues de $9$ soient interdites[^wp].
+
+On définit l'ensemble $A$ comme le sous-ensemble de $\left[0, 1\right[$,
+
+[^wp]: Dans le cas contraire, on pourrait par exemple représenter $x=1/2$ comme
+$0.5000\dots$ ou comme $0.4999\dots$.
+
 
 Exemple nombres dans $\left[0,1\right[$ developables avec uniquement des nombres
 pairs: négligeable mais équipotent à $\left[0,1\right[$ (et donc pas dénombrable)
