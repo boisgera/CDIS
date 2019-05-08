@@ -1022,6 +1022,9 @@ Ensembles Négligeables
 Exemple nombres dans $\left[0,1\right[$ developables avec uniquement des nombres
 pairs: négligeable mais équipotent à $\left[0,1\right[$ (et donc pas dénombrable)
 
+Intuition sur les chances de "tirer au hasard" un tel nombre dans 
+$\left[0,1\right[$?
+
 Caractérisation des dérivées
 --------------------------------------------------------------------------------
 
