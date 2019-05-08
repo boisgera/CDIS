@@ -1199,8 +1199,8 @@ Ont été associés au groupe de travail à différents stades du processus:
 
   - La cellule TICE (Technologies de l'Information et de la Communication
     pour l'Enseignement) de Mines ParisTech -- à travers Willy Morscheidt et 
-    Marie-Françoise Curto, associés notamment sur les questions d'ingénierie
-    pédagogiques.
+    Marie-Françoise Curto  - associés notamment sur les questions d'ingénierie
+    pédagogique.
 
   - Au titre de l'équipe pédagogique, Emilie Chautru (GEOSCIENCES),
     Pauline Bernard (CAS), Thomas Romary (GEOSIENCES) et Sébastien 
