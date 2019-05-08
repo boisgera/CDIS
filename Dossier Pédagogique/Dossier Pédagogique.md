@@ -5,19 +5,6 @@
 Unité d'Enseignement: Document Pédagogique
 ================================================================================
 
-*\[ 
-Ce document présente l’organisation et le contenu d’une unité d’enseignement 
-(UE) ainsi que sa logique de conception. 
-**Il devra être produit par chaque groupe de travail de chaque UE**. 
-Il s’agit d’un document évolutif, qui constitue un outil de pilotage entre les
-enseignants et pour la DE ainsi qu’un outil d’explicitation à destination des 
-élèves. 
-Il comprend l’ensemble des informations nécessaires à l’élaboration des fiches 
-descriptives des éléments constitutifs (ECUE) qui le composent. 
-Le projet détaillé qu’il décrit, s’inscrit dans les objectifs et les
-attendus de sa note de cadrage. 
-\]*
-
 ---------------------------------------  ---------------------------------------
 Année ou version du document             2019
 Titre de l’UE                            Mathématiques
