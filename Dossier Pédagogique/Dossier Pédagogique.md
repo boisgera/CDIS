@@ -345,7 +345,6 @@ nous résumons brièvement en deux points:
 
 -->
 
--------------
 
 TODO / hétérogénéité: compétences: "construction" juste MP. Statut de la preuve,
 niveau de "rigueur", différences dans les pratiques disciplinaires: donner les
