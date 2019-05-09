@@ -1010,11 +1010,20 @@ Demander de construire à partir d'une subdivision une autre subdivision
 "aussi fine", de même somme de Riemann, mais avec les points tjs à gauche
 ou à droite de l'intervalle.
 
-Intégrale de Riemann
+L'Intégrale de Riemann est absolue
 --------------------------------------------------------------------------------
 
 Montrer que l'intégrale de Riemman est absolue, dans le sens ou si 
 une fonction $f$ est intégrable, sa valeur absolue $|f|$ l'est également.
+
+### Réponse
+
+Nous exploitons le [critère de Lebesgue pour l'intégrabilité au sens de Riemann][Critère de Lebesgue pour l'intégrabilité au sens de Riemann]: si $f$ est intégrable au sens de Riemann,
+elle est bornée -- et donc $f$ également -- et continue presque partout
+-- et donc $|f|$ également ($|f|$ est continue en tout point où
+$f$ est continue comme composée de fonctions continues en un point). 
+Par conséquent, $|f|$ est intégrable au sens de Riemann.
+
 
 Un ensemble de Cantor
 --------------------------------------------------------------------------------
