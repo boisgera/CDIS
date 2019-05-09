@@ -173,7 +173,7 @@ $$
 ### Ensemble négligeable  {.definition}
 Un ensemble $A$ de $\mathbb{R}$ est *négligeable* si pour tout
 $\varepsilon > 0$, il existe un recouvrement de $A$ par une famille
-dénombrable d'intervalles ouverts $I_i$ de $\mathbb{R}$ tels que
+dénombrable d'intervalles $I_i$ de $\mathbb{R}$ tels que
 $$
 \sum_i \ell(I_i) \leq  \varepsilon.
 $$
@@ -1020,27 +1020,60 @@ Un ensemble de Cantor
 --------------------------------------------------------------------------------
 
 Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté de façon
-unique par un développement décimal de la forme noté noté $x=0.a_1a_2a_3\dots$
-où $a_i \in \{0,1, \dots, 9\}$, ce qui signifie que
+par un développement décimal de la forme noté noté $x=0.a_1a_2a_3\dots$
+où $a_i \in \{0,1, \dots, 9\}$, une notation qui signifie que
 $$
-x = \sum_{i=1}^{+\infty} a_i 10^{-i}, 
+x = \sum_{i=1}^{+\infty} a_i 10^{-i}.
 $$
-a la condition que les développements soit propres, c'est-à-dire tel que les 
-séquences infinies et ininterrompues de $9$ soient interdites[^wp].
-
-On définit l'ensemble $A$ comme le sous-ensemble de $\left[0, 1\right[$,
+Ce développement est unique si l'on impose qu'il soit propre, 
+c'est-à-dire qu'il n'y ait pas
+de séquences infinies et consécutives de nombres $9$[^wp].
 
 [^wp]: Dans le cas contraire, on pourrait par exemple représenter $x=1/2$ comme
 $0.5000\dots$ ou comme $0.4999\dots$.
 
+On définit l'ensemble $A$ comme le sous-ensemble de $\left[0, 1\right[$
+dont le développement décimal ne comporte que des nombres pairs.
 
-Exemple nombres dans $\left[0,1\right[$ developables avec uniquement des nombres
-pairs: négligeable mais équipotent à $\left[0,1\right[$ (et donc pas dénombrable)
+ 1. Montrer que l'ensemble $A$ est négligeable.
 
-Donner ref original Cantor set.
+ 2. Montrer néanmoins que $A$ n'est pas dénombrable, mais 
+    a la "puissance du continu" (qu'il peut être mis en bijection
+    avec $\mathbb{R}$ ou avec un intervalle de longueur non vide de 
+    $\mathbb{R}$, ce qui revient au même).
 
-Intuition sur les chances de "tirer au hasard" un tel nombre dans 
-$\left[0,1\right[$?
+### Réponses
+
+ 1. L'ensemble $A$ peut être recouvert par la collection ne contenant que 
+    l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, ou par la collection d'intervalles
+    $$
+    \mathcal{A}_1 = \{\left[0, 1/10\right[, \left[2/10, 3/10\right[, \dots, \left[8/10, 9/10\right[\}
+    $$
+    qui contient exactement les nombres $x$ de $\left[0,1\right[$ dont
+    le premier chiffre du développement décimal propre est pair.
+    On a  clairement 
+    $$
+    \sum_{I \in \mathcal{A}_1} \ell(I) = \ell(\left[0,1\right[) = 1
+    \, \mbox{ et } \,
+    \sum_{I \in \mathcal{A}_1} \ell(I) = 5 \times \frac{1}{10} = \frac{1}{2}.
+    $$
+    On peut poursuivre le procédé en considérant la collection 
+    $\mathcal{A}_n$ des $5^n$ intervalles dont l'union forme l'ensemble
+    des nombres $x$ dont
+    les $n$ premiers chiffres du développement décimal propre sont pairs,
+    ensemble qui inclus $A$.
+    On peut de plus se convaincre par récurrence que
+    $$
+    \sum_{I \in \mathcal{A}_n} \ell(I) = 5^n \times \frac{1}{10^n} = \frac{1}{2^n}.
+    $$
+    Comme $1/2^n$ tend vers $0$ quand $n$ tend vers $+\infty$, 
+    nous avons établi que $A$ est négligeable.
+
+  2. L'opération qui à $x=0.a_1a_2\dots \in A$ associe
+     $y=0.b_1b_2\dots$ où $b_i = a_i/2$ est une bijection
+     de $A$ sur $\left[0, 0.444\dots\right[ = \left[0, 4/9\right[$,
+     ce qui montre que $A$ à la puissance du continu (et donc n'est pas
+     dénombrable).
 
 Caractérisation des dérivées
 --------------------------------------------------------------------------------

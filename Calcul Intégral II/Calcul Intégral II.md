@@ -319,7 +319,7 @@ donc l'ensemble $A$ est intégrable et de longueur nulle.
 
 Réciproquement, supposons l'ensemble $A$ mesurable; nous cherchons à montrer
 que pour tout $\varepsilon >0$, il existe une famille dénombrable d'intervalles
-compacts $I_i$ de $\mathbb{R}$ qui recouvre $A$ et telle que
+$I_i$ de $\mathbb{R}$ qui recouvre $A$ et telle que
 $$
 \sum_i \ell(I_i) \leq \varepsilon.
 $$
