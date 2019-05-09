@@ -234,8 +234,80 @@ en dehors des heures de face-à-face pédagogique,
 par l'équipe pédagogique, dans des dispositifs de remédiations 
 personnalisés.
 
+**Informatique.** 
+Pour un bon déroulement de son volet numérique, l'UE dépendra également 
+des compétences introduites dans l'UE 12 d'Informatique: il tirera parti
+des sessions d'introduction au langage Python et de son usage dans un 
+contexte scientifique, qu'il s'agisse des connaissances des constructions
+du langage, de la familiarité avec les notebooks Jupyer qui se prêtent
+au calcul interactif, des librairies comme NumPy pour le calcul numérique 
+ou des outils de visualisation de données comme Matplotlib.
 
-**TODO:** UE Liées
+**Physique.** L'UE 13 de Physique (Statistique et Quantique) aura une
+programmation a peu près simultanée avec l'UE 11; il ne sera donc pas
+possible de garantir en général que l'UE 11 ou l'UE 13 introduise le
+premier telle ou telle notion exploitée dans les deux disciplines.
+Il sera par contre nécessaire que ces évocations se renforcent et
+se complètent intelligemment, d'autant plus que l'UE de Physique 
+utilise un périmètre particulièrement large des Mathématiques.
+
+Les échanges laissent penser que le programme de Mathématiques de l'UE offrira
+des outils adaptés en ce qui concerne les probabilités[^oap], les notions
+de mesure et de distributions, le calcul intégral, le calcul différentiel et 
+les systèmes dynamiques[^oacdsd],
+ce qui serait un progrès par rapport à la situations actuelle, 
+en particulier du point de vue des probabilités.
+Les besoins en analyse fonctionnelle[^oaan], une thématique beaucoup plus 
+difficile du point de vue des Mathématiques, ne sont que très 
+partiellement couverts.
+L'analyse harmonique (séries/transformée de Fourier) présente une difficulté 
+particulière; indispensable en Physique, elle a totalement disparu des 
+enseignements de Mathématiques de classes préparatoires 
+dans la plupart des filières, 
+et ne rentre pas dans le périmètre de l'UE 11 mais de l'UE 21, dans
+l'EC de Traitement du Signal. Des contacts ont été pris avec l'équipe en
+charge pour tâcher de mitiger cette difficultés en fournissant par 
+anticipation des ressources aux étudiants sur le sujet. 
+Enfin, les notions algébriques qui pourraient être utiles à l'UE de
+Physique[^oaa] sont hors du périmètre de l'UE 11.
+
+[^oap]: Avec en particulier l'introduction des variables aléatoires à densité
+indispensable à la Physique Quantique.
+
+[^oacdsd]: Il s'agit par exemple de permettre l'étude des systèmes 
+hamiltoniens, qui relèvent à la fois des équations différentielles et
+du calcul des variations.
+
+[^oaan]: Les espaces de Hilbert seront introduits par exemple mais tardivement
+et façon minimale;
+l'étude des opérateurs en dimension infinie (comme les opérateurs hermitiens
+de la Physique Quantique), l'analyse spectrale associée, l'étude des problèmes
+elliptiques, etc. dépassent très largement le cadre de ce qu'il est
+possible de faire dans l'UE 11.
+
+[^oaa]: Telles que: groupe de Lie, algèbre de Lie, etc.
+
+**Mathématiques Appliquées.** Un large partie des enseignements de l'UE 11
+sert directement de fondation aux EC de l'UE 21:
+
+- L'EC "Optimisation" repose très largement sur le calcul différentiel
+  et prolonge ses enseignements,
+  en particulier les sessions consacrées à la dimension finie et au 
+  calcul numérique[^NBOC]. 
+
+- L'EC "Sciences des Données" exploite principalement les 
+  concepts et outils des Probabilités (ainsi que le calcul différentiel, 
+  mais largement à travers l'enseignement d'Optimisation).
+
+- L'EC "Traitement du Signal" requière avant tout des
+  concepts et outils relevant du calcul intégral, et dans une moindre 
+  mesure de la dimension infinie et des probabilités.
+
+[^NBOC]: L'UE 11 ne couvre toutefois pas l'intégralité des prérequis 
+  "raisonnables" de l'EC d'Optimisation; en particulier, les notions
+  de convexité nécessaires à l'Optimisation Convexe, par le passé
+  acquises en classes préparatoires, 
+  devront prendre en charge directement par l'UE 21.
 
 Acquis d'Apprentissage
 --------------------------------------------------------------------------------
@@ -887,16 +959,6 @@ pas l'unanimité.
 
 ### Principes
 
-**TODO:** vérifier explicitation tous impacts EDT.
-
-  - **TODO:** problématiques cours magistral:
-  
-      - pourquoi "old-school"
-
-      - gestion spécificités 1h30
-
-      - alternatives (substitution tutorée)
-
   - **Durée (6-9 semaines par EC).** 
     Le programme de référence de l'UE ci-après 
     associe à chaque EC une plage de 6 semaines. 
@@ -905,7 +967,59 @@ pas l'unanimité.
     7, 8 ou 9 semaines par EC, 9 semaines étant probablement 
     ce qui serait préférable[^recomm-durée].
 
-  - **Place de l'examen, correction, césure, etc.**
+  - **Cours Magistral "Classique".** Un consensus se dégage pour souhaiter
+    l'adoption de modalités relativement classiques, c'est-à-dire 
+    l'usage de la craie et du tableau noir[^em]
+    plutôt que l'usage de transparents. Cette modalité répond à plusieurs
+    objectifs: plus familière des étudiants de classe préparatoires qui
+    savent l'exploiter de façon efficace, elle facilite également une
+    attitude plus active; enfin, dans un contexte où la tentation est grande
+    de balayer un grand nombre de notions en très peu de temps, obliger
+    l'enseignant à écrire les choses agit comme un "limiteur de vitesse"
+    qui est le bienvenu. Il apparaît alors comme indispensable de faire
+    des choix en amont sur les notions à enseigner et de travailler sur 
+    une scénarisation cohérente et réaliste des sessions de cours, 
+    et l'articulation avec les ressources pédagogiques mises à
+    disposition. 
+
+    A noter que l'enseignement "Mathématiques 3" a introduit puis développé
+    des sessions tutorées d'étude des ressources pédagogiques en substitution
+    des cours magistraux, sur la base du choix des étudiants. 
+    Si les cours magistraux sont encore choisis
+    majoritairement, les étudiants qui optent pour la
+    formule tutorée font état d'une satisfaction plus élevée que ceux
+    ayant choisi les cours magistraux[^data-M3].
+    Nous n'avons pas opté pour ce type de modalité pour la rentrée 2019
+    compte tenu des défis majeurs que présente déjà la formule classique,
+    mais il conviendra de reconsidérer la question dans le futur.
+
+[^data-M3]: avec en 2018 des satisfactions de 3.68/4, 3.90/4 et 3.94/4 pour les 
+trois sessions de tutorats quand les cours magistraux classiques sont à 
+3.14/4 et 3.29/4.
+
+[^em]: ou équivalent: marqueurs et tableaux blancs ou stylet et tablettes 
+       graphiques et vidéoprojecteur, etc. remplissent le même rôle.
+
+  - **Cours Magistral et Pédagogie active.** 
+    Le groupe de travail souligne 
+    la difficulté liées l'organisation de cours magistraux aussi 
+    longs que 1h30, une durée qui est susceptible d'être peu efficace et de
+    démotiver les étudiants si aucune adaptation n'est envisagée.
+    Les solutions évoquées reposent soit sur une diminution de la
+    durée du cours -- par exemple 1h de cours puis 2h de travaux
+    dirigées au sein d'une plage de 2 $\times$ 1h30 -- un schéma 
+    probablement complexe à mettre en oeuvre dans l'organisation 
+    de la scolarité envisagée, 
+    ou -- ce que nous envisageons pour la rentrée 2019 -- 
+    sur la nécessité de ponctuer l'enseignement 
+    magistral de plages où les étudiants sont actifs 
+    (qu'il s'agisse de plages de questions, 
+    de courtes sessions d'exercices, d'expérimentation numériques, 
+    etc.). Les enseignements de Physique Quantique et Statistique
+    (UE 13 dans la nouvelle maquette) disposent d'expériences 
+    très positives avec ce type de modalité.
+
+
 
   - **Equilibre Cours/Travaux Dirigés/Travail Personnel.** 
     Chaque session de cours est associée à une session de travaux dirigés 
@@ -950,6 +1064,16 @@ pas l'unanimité.
     il ne se substitue donc pas intégralement
     au travail en totale autonomie.
 
+  - **Examen de Mi-Parcours.**
+    Se reporter à la section "[Modalités d’Evaluation]" pour le contexte.
+    Le projet de l'UE nécessite que l'évaluation du premier EC soit
+    programmé juste avant une pause dans les enseignements de l'UE 
+    pour que l'équipe pédagogique puisse corriger les examens, analyser
+    les prestations des étudiants et le cas échéant d'individualiser la
+    prise en charge et les objectifs de certains étudiants dans le cadre
+    du second EC.
+
+
   - **Projets Numériques.** 
     Les deux EC comportent au total trois projets numériques qui complètent 
     les cours et travaux dirigés par un volet applicatif/concret/expérimental,
@@ -957,10 +1081,10 @@ pas l'unanimité.
     Ces projets, bien que préparés par des sessions des cours et/ou TDs,
     ne sont pas conçus comme des travaux pratiques en face-à-face pédagogique, 
     mais affectés au temps de travail personnel des étudiants pour une plus
-    grande efficacité des apprentissages.
+    grande flexibilité et efficacité des apprentissages.
     Comme le reste des activités de travail personnel, ils feront l'objet
-    de séances de tutorat optionnels programmés à l'emploi du temps;
-    typiquement une plage de 3h consécutives, après 17h.
+    de séances de tutorat optionnelles programmées à l'emploi du temps;
+    typiquement une plage de 3h consécutives, programmées hors-horaire.
 
 [^recomm-durée]: 9 semaines par EC correspond à 3h (2 sessions de 1h30) 
   de face-à-face pédagogique, et 5h de charge de travail totale par semaine.
@@ -1231,7 +1355,8 @@ découlent également des bénéfices très concrets. Par exemple:
 Processus Qualité
 --------------------------------------------------------------------------------
 
-Ont été associés au groupe de travail à différents stades du processus:
+**Groupe de Travail.** Ont été associés au groupe de travail au fur et à mesure 
+du projet:
 
   - Paul-Adrien Blancquart, Marin Boyet, Alexandre Himmelein, 
     étudiants ou jeunes diplômés du cycle ingénieur civil, qui
@@ -1276,8 +1401,6 @@ Ont été associés au groupe de travail à différents stades du processus:
     sans que les interlocuteurs soient formellement associés au groupe de 
     travail.
 
-
-
 *\[ 
 Déclinaison du processus qualité: description des aspects de l’UE
 nécessitant des mesures et/ou des expérimentations spécifiques.
@@ -1286,6 +1409,16 @@ expertise domaine ou pédagogique) et insertion dans le processus qualité
 général. 
 \]*
 
+
+**Déclinaison du processus qualité.**
+
+  - questionnaires, autres ?
+
+  - data-driven, expérimental
+
+  - plus exhaustif (grain section, personne, dispositif)
+  
+  - transparence
 
 Ressources Humaines, Matérielles, Financières
 --------------------------------------------------------------------------------
@@ -1354,7 +1487,7 @@ différentes catégories[^dPCTP]. En particulier la place des activités
 numériques -- qui sont stratégiques -- dans cette hiérarchie devrait être 
 précisées.
 
-[^dPCTP]: le ratio entre la rémunération horaire des travaux dirigés 
+[^dPCTP]: Le ratio entre la rémunération horaire des travaux dirigés 
 ("Petite Classe") et des travaux pratiques est supérieur à 2.
 
 Concernant les problématiques matérielles ou d'infrastructure:
