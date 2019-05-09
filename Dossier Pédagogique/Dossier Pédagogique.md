@@ -42,15 +42,31 @@ aux enseignements:
   - Soutien en Mathématiques (0 ECTS, 1er semestre)
 
 Cette comparaison met en évidence une nouvelle formule à la fois 
-courte et compacte (avec 4 ECTS contre ~10-11 ECTS aujourd'hui, 
-programmé sur 1 semestre contre 3 aujourd'hui).
+plus courte et plus compacte (avec 4 ECTS contre ~10-11 ECTS aujourd'hui, 
+programmé sur 1 semestre contre 3 aujourd'hui), dans un contexte où la
+formule actuelle est déjà considérée par de nombreux enseignants
+comme disposant de trop peu de temps[^data-volume].
 
-Ce constat est globalement exact; 
-il ne traduit toutefois pas une diminution générale du poids des Mathématiques 
-en tronc commun, mais plutôt la volonté de rééquilibrer la formation en faveur
-des Mathématiques Appliquées à travers l'UE 21, au second semestre.
+[^data-volume]: Pour apprécier cette position, des éléments de comparaison 
+sont utiles. A titre d'exemple, le cours de tronc commun de 
+Mathématiques 3, "Fonctions d'une variable complexe", dispose de 2 ECTS
+(~20h de face-à-face à face pédagogique), quand le volume habituel pour
+ce type de sujet se situe entre 4 et 12 ECTS. 
+[Le cours d'Analyse Complexe de l'ENS (PSL)](https://www.math.ens.fr/enseignement/fiche_cours.html?cours=287#) se voit ainsi doté de 12 ECTS ;
+son contenu semble couvert à 80% par le cours des Mines (un élève 
+ayant déjà suivi ce type de cours à l'ENS Lyon, qualifie le cours 
+des Mines de "complet").
+Des exemples similaires peuvent être trouvés pour les autres enseignements
+de Mathématiques de tronc commun ; 
+l'analyse sur le peu de temps disponible pour ces enseignements 
+-- à ambition constante -- semble donc largement fondée.
 
-Dans le détail, toutefois:
+Ce constat ne traduit toutefois pas une diminution générale du poids des 
+Mathématiques en tronc commun, mais la volonté de rééquilibrer 
+la formation au profit des Mathématiques Appliquées à travers l'UE 21, 
+au second semestre.
+
+Dans le détail, toutefois, quelques nuances:
 
   - Une partie des contenus enseignés dans le périmètre actuel 
     seront transférés à l'unité d'enseignement UE 21 de 
@@ -58,7 +74,7 @@ Dans le détail, toutefois:
     quand cela améliore la cohérence globale de l'ensemble.
 
   - Certains éléments du périmètre actuel ne seront plus enseignés[^out] 
-    pour préserver un volume suffisant sur les savoir jugés prioritaires;
+    pour préserver un volume suffisant sur les savoirs jugés prioritaires;
     compte tenu de la forte réduction du volume, une stratégie de 
     "coup de rabot" uniforme serait vouée à l'échec. 
     Les thématiques correspondantes pourront donner lieu à des enseignements
@@ -86,22 +102,68 @@ et l'introduction aux équations aux dérivées partielles.
 s'impose compte tenu des besoins des cours de Physique du 1er semestre comme
 des enseignements de Mathématiques Appliquées du 2nd semestre.
 
+Trois enjeux importants pour cette unité d'enseignement 
+-- et qui seront traités dans ce document --
+sont soulignés par la note de cadrage et rappelés ici:
+
+**Hétérogénéité.** Selon la note de cadrage:
+
+> La gestion de l’hétérogénéité croissante des niveaux et des attentes 
+> des étudiants en Mathématiques à l’entrée du cycle ingénieur civil 
+> est un enjeu majeur de cette UE. 
+> L’UE devra répondre à cette attente en déterminant des acquis 
+> d’apprentissage réalistes et en adaptant ses modalités pédagogiques 
+> et d’évaluation. Il sera également nécessaire
+> de développer pour les étudiants une offre d’accès à l’équipe pédagogique 
+> en dehors des plages de face-à-face pédagogique pour proposer 
+> un suivi personnalisé se substituant et amplifiant les politiques de 
+> compléments et de soutien mises en œuvre jusqu’à présent.
+
+La problématique des acquis d'apprentissages est évoquée 
+dans la section "[Acquis d'Apprentissage]"; 
+les réflexions associées sur le choix des contenus enseignés se trouvent
+dans la sous-section "[Programme]" de la section "[Contenus et Activités]"
+et les informations relatives aux modalités pédagogiques dans la
+sous-section "[Principes]". La question des modalités d'évaluation est
+traitée dans la section "[Modalités d'Evaluation]".
+
+**Vision globale.** Selon la note de cadrage:
+
+> Les interfaces entre cette UE, l’UE 12 (“Informatique”) d’une part 
+> et l'UE 21  (“Mathématiques Appliquées”) d’autre part, 
+> devront faire l’objet d’une étude menée par les préfigurateurs associés 
+> pour assurer une cohérence d’ensemble à ce volet de la
+> formation. Les besoins des cours de Physique devront également être 
+> examinés.
+
+Le bilan de ce travail, issus des échanges entre préfigurateurs 
+et équipes pédagogiques, est restitué dans la section "[Prérequis]".
+
+**Transformation Numérique.** Selon la note de cadrage:
+
+> L’UE comportera un volet numérique conçu et valorisé et intégré 
+> au même titre que les savoirs plus théoriques, même si son volume 
+> sera plus modeste. Il couvrira l’étude des
+> méthodes numériques les plus pertinentes pour la simulation des 
+> solutions des équations différentielles, le calcul de différentielles 
+> ainsi que le calcul d’intégrales. Dans
+> ce contexte, le langage de programmation Python 
+> (et l’écosystème associé pour l’ingénierie numérique) sera utilisé.
+
+Cette problématique transverse s'invite naturellement dans presque toutes les
+sections du document: les "[Prérequis]" pour le lien avec les enseignements
+d'Informatique, la section "[Modalités d'Evaluation]" pour le poids du numérique
+dans l'évaluation de l'UE, les sous-sections "[Programme]" et "[Principes]"
+de "[Contenus et Activités]" concernant le détail des activités liées
+au numérique et à leur intégration dans l'UE, 
+la section "[Ressources Pédagogiques]" où la stratégie digitale associée
+est détaillée et finalement la section 
+"[Ressources Humaines, Matérielles, Financières]" où sont évoqués
+l'organisation et les moyens particuliers que l'intégration du 
+numérique suppose.
 
 
-Discussions: (citer, faire des renvois aux autres sections si dvlpt plus
-appropriés ailleurs)
 
-  - volet numérique. + généralement, au service de l'axe stratégique
-    "numérique" en direct et via la préparation (Maths Apps, etc.).
-    Aussi, lien / axe "accompagnement personnalisé".
-
-  - articulations, notamment Info, Maths Apps, Physique, etc.
-    Objectifs "en propres" et "au service" d'autres composants
-    de la formation. 
-
-  - gestion hétérogénéité (renvoi accompagnement personnalisé,
-    modalité d'évaluation, etc.). Rappel ICI formule actuelle et
-    modèle sous-jacent, et ses limites ? Oui.
 
 
 Organisation de l'UE
@@ -171,6 +233,9 @@ plus important que la moyenne, et que ce travail pourra être accompagné,
 en dehors des heures de face-à-face pédagogique,
 par l'équipe pédagogique, dans des dispositifs de remédiations 
 personnalisés.
+
+
+**TODO:** UE Liées
 
 Acquis d'Apprentissage
 --------------------------------------------------------------------------------
