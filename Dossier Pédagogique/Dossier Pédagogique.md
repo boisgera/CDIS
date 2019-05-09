@@ -364,15 +364,6 @@ compréhension de la place de l'UE dans le projet de formation globale,
 favoriser la communication au sein de l'équipe pédagogique et préciser
 le contrat didactique avec les étudiants.
 
-
-
-**TODO:**
-
-  - A.A. "micro" et "macro"
-
-  - aller-retours entre descriptions A.A., modalités péda envisagées et examens
-    pour s'assurer de la cohérence
-
 Le lecteur pourra lire avec profit les objectifs de formation des 1ère et 2nde
 année des programmes de classe préparatoire aux grandes écoles [@UPS].
 La description des compétences à développer est presque totalement 
@@ -381,8 +372,9 @@ indifférenciée en MP, PSI et PC, mais les programmes diffèrent.
 Les objectifs de formation de cet UE, situé en tout début de scolarité, 
 présente bien des aspects similaires à ceux des classes préparatoires:
 
-  - Assurer une continuité avec les enseignements des
-    classes préparatoires (là où les classes préparatoires 
+  - Assurer une continuité avec les enseignements 
+    -- contenus et approches pédagogiques -- 
+    des classes préparatoires (là où les classes préparatoires 
     se positionnent par rapport aux filières de lycée).
   
   - Permettre d'acquérir la maîtrise d'un large panel de connaissances,
@@ -392,7 +384,11 @@ présente bien des aspects similaires à ceux des classes préparatoires:
     
   - S'inscrire dans le projet de formation global, 
     s'interfacer avec les enseignements de Mathématiques, Physique, etc.
-    en particulier de tronc commun.
+    en particulier de tronc commun, ouvrir ultérieurement 
+    la voie à des parcours de formation très variés où l'usage
+    des Mathématiques est divers.
+
+**TODO:** renforcer la place du numérique, dvlper l'autonomie.
  
 Des différences de contexte sont toutefois marquées:
 
