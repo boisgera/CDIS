@@ -1411,14 +1411,26 @@ général.
 
 
 **Déclinaison du processus qualité.**
+L'amélioration continue de l'enseignement passe par un processus
+"data-driven" de recueil de données généralisé sur le terrain,
+s'inscrivant dans une démarche expérimentale plus explicite
+(analyse, décision, mise en oeuvre puis évaluation).
+Les sources de données seront à la fois informelles, qualitatives,
+fournies par les échanges avec les étudiants, échanges qui seront 
+renforcés par l'accompagnement personnalisé, et l'usage de questionnaires
+dédiés à l'UE, plus précis et quantitatifs. 
+Conformément aux expériences menées dans le cours
+de Mathématiques 3, nous avons l'intention de recueillir des données
+détaillées -- session par session, ressource par ressources, 
+intervenant par intervenant, dispositif pédagogique par dispositif pédagogique 
+-- sans quoi il est très difficile de mettre en oeuvre des actions correctives 
+efficaces, et de garantir une totale transparence sur ces informations 
+et les actions qui pourront en découler.
+Des dispositifs complémentaires -- comme la participation d'observateurs au
+sessions de l'enseignement, au titre de l'expertise disciplinaire
+et/ou pédagogique, dégagés de la charge d'encadrement -- auraient également 
+un intérêt certain.
 
-  - questionnaires, autres ?
-
-  - data-driven, expérimental
-
-  - plus exhaustif (grain section, personne, dispositif)
-  
-  - transparence
 
 Ressources Humaines, Matérielles, Financières
 --------------------------------------------------------------------------------
