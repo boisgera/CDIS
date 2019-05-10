@@ -44,7 +44,7 @@ $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 
 **TODO:** alternative passant par 
 $$
-a = x_0 \leq \cdots \leq x_i \leq t_i \leq x_{i+1} \leq \cdots \leq x_{n} = b.
+a = x_0 \leq \dots \leq x_i \leq t_i \leq x_{i+1} \leq \dots \leq x_{n} = b.
 $$
 
 
@@ -598,11 +598,11 @@ $$
 On cherche dans un premier temps à expliciter la contribution du voisinage 
 de l'origine à la somme de Riemann.
 Si $\mathcal{D}$ est composée des paires $([x_i, x_{i+1}], t_i)$ où
-$0 \leq x_0 \leq \cdots \leq x_m \leq 1$, et que $x_p$ est le premier
+$0 \leq x_0 \leq \dots \leq x_m \leq 1$, et que $x_p$ est le premier
 des $x_i$ qui diffère de $0$, on a 
 $$
 \begin{split}
-S(f, \mathcal{D}) &= f(t_0) (x_1 - x_0) + \cdots + f(t_{p-1}) (x_{p} - x_{p-1}) 
+S(f, \mathcal{D}) &= f(t_0) (x_1 - x_0) + \dots + f(t_{p-1}) (x_{p} - x_{p-1}) 
 + \sum_{i = p}^m f(t_i) (x_{i+1} - x_i) \\
 &= f(t_{p-1}) x_{p} 
 + \sum_{i = p}^m f(t_i) (x_{i+1} - x_i)
@@ -1035,15 +1035,24 @@ où $a_i \in \{0,1, \dots, 9\}$, une notation qui signifie que
 $$
 x = \sum_{i=1}^{+\infty} a_i 10^{-i}.
 $$
-Ce développement est unique si l'on impose qu'il soit propre, 
+Ce développement est unique si on lui impose d'être propre, 
 c'est-à-dire qu'il n'y ait pas
-de séquences infinies et consécutives de nombres $9$[^wp].
+de séquences infinie de nombres $9$ consécutifs[^wp].
 
 [^wp]: Dans le cas contraire, on pourrait par exemple représenter $x=1/2$ comme
 $0.5000\dots$ ou comme $0.4999\dots$.
 
 On définit l'ensemble $A$ comme le sous-ensemble de $\left[0, 1\right[$
 dont le développement décimal ne comporte que des nombres pairs.
+Par exemple, $x=2/3 = 0.666\dots$ appartient à $A$, mais 
+$x=\sqrt{2}/2 = 0.707\dots$ non.
+
+**TODO:** faire qqchose du style "Si vous deviez 
+"tirer un nombre au hasard dans $\left[0, 1\right[", 
+quelle serait les chances de tomber sur un nombre de $A$ ?".
+Qui suppose de modéliser la séquence des $a_n$, supposé équiprobables,
+indépendants, etc.? OK, why not mais est-on en état de relier ça à la
+question 1. à ce stade ? Mmmmmmm ....
 
  1. Montrer que l'ensemble $A$ est négligeable.
 
@@ -1053,6 +1062,8 @@ dont le développement décimal ne comporte que des nombres pairs.
     $\mathbb{R}$, ce qui revient au même).
 
 ### Réponses
+
+ 0. 
 
  1. L'ensemble $A$ peut être recouvert par la collection ne contenant que 
     l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, ou par la collection d'intervalles
