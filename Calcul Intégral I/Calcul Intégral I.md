@@ -155,8 +155,8 @@ $$
 & \leq
 \left|S(f, \mathcal{D}') - \int_a^b f(t) \, dt\right|
 +
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right|
-\leq 2
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \\
+& \leq 2
 \end{split}
 $$
 et par conséquent,
