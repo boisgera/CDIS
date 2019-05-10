@@ -3,6 +3,7 @@ channels:
   - brown-data-science # (pdf2svg)
 dependencies:
   - python=3.7
+  - pip
   - pandoc=2.5
   - numpy
   - scipy
