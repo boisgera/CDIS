@@ -1048,7 +1048,7 @@ Par exemple, $x=2/3 = 0.666\dots$ appartient à $A$, mais
 $x=\sqrt{2}/2 = 0.707\dots$ non.
 
 **TODO:** faire qqchose du style "Si vous deviez 
-"tirer un nombre au hasard dans $\left[0, 1\right[", 
+"tirer un nombre au hasard dans $\left[0, 1\right[$", 
 quelle serait les chances de tomber sur un nombre de $A$ ?".
 Qui suppose de modéliser la séquence des $a_n$, supposé équiprobables,
 indépendants, etc.? OK, why not mais est-on en état de relier ça à la
@@ -1062,8 +1062,6 @@ question 1. à ce stade ? Mmmmmmm ....
     $\mathbb{R}$, ce qui revient au même).
 
 ### Réponses
-
- 0. 
 
  1. L'ensemble $A$ peut être recouvert par la collection ne contenant que 
     l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, ou par la collection d'intervalles
