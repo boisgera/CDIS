@@ -1,3 +1,4 @@
+name: CDIS
 channels:
   - conda-forge
   - brown-data-science # (pdf2svg)
