@@ -29,7 +29,10 @@ def call(*args):
     process = subprocess.Popen(args, **options)
     for line in iter(process.stdout.readline, b""):
         print(line.decode("utf-8"), end="")
-    status = process.poll()
+    while True:
+        status = process.poll()
+        if status is not None:
+            break
     if status != 0:
         sys.exit(status)
 
