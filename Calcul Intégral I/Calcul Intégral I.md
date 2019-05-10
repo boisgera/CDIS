@@ -1013,8 +1013,9 @@ ou à droite de l'intervalle.
 L'Intégrale de Riemann est absolue
 --------------------------------------------------------------------------------
 
-Montrer que l'intégrale de Riemman est absolue, dans le sens ou si 
-une fonction $f$ est intégrable, sa valeur absolue $|f|$ l'est également.
+Montrer que l'intégrale de Riemman est absolue: 
+si une fonction $f$ est intégrable au sens de Riemann, 
+sa valeur absolue $|f|$ l'est également.
 
 ### Réponse
 
