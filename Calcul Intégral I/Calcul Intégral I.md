@@ -1,27 +1,56 @@
 % Calcul Intégral I
 % Sébastien Boisgérault
 
-**TODO:** intervalle (borné ou non borné par défaut).
 
-**TODO:** longueur $\ell(I)$ d'un intervalle.
 
-**TODO:** "longueur nulle" (dans limitations de Riemann)
-
-**TODO:** intégrale d'une fonction nulle presque partout (par étapes: 1 / nb
-finies de valeurs égale à 1, puis fct de Dirichlet, puis fct égale à un sur
-un ensemble de mesure nulle, puis cas général, ce type de progression 
-(même si pas exactement celle-là, on a peut-être ))
-
+TODO
 --------------------------------------------------------------------------------
+
+  - intégrale d'une fonction nulle presque partout (par étapes: 1 / nb
+    finies de valeurs égale à 1, puis fct de Dirichlet, puis fct égale à un sur
+    un ensemble de mesure nulle, puis cas général, ce type de progression 
+    (même si pas exactement celle-là, on a peut-être ))
+
+  - ...
+
+
 
 Somme et Intégrale de Riemann
 --------------------------------------------------------------------------------
 
-### TODO
+### Intervalle de $\mathbb{R}$
 
-intégral de Riemann "classique" ? Et limitations.
-Avant jauge ?
+On appelle *intervalle* tout sous-ensemble $I$ de $\mathbb{R}$ qui est tel
+que si $x$ et $y$ appartiennent à $I$ et $z$ est un point intermédiaire
+tel que $x \leq z \leq y$, alors $z \in I$ (c'est-à-dire tout sous-ensemble
+*convexe* de $\mathbb{R}$).
 
+### Type d'intervalles {.remark}
+Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
+ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
+Les intervalles de la forme $\left]-\infty, \infty\right[$ 
+(c'est-à-dire $\mathbb{R}$),
+$\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
+et $\left]a,b\right[$ sont ouverts;
+Les intervalles de la forme $\left]-\infty, \infty\right[$,
+$\left]-\infty, b\right]$, $\left[a,\infty\right[$ 
+et $\left[a,b \right]$ sont ouverts;
+les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
+
+### Longueur d'un intervalle
+La longueur $\ell(I)$ d'un intervalle $I$ 
+de $\mathbb{R}$ est le nombre réel étendu positif
+défini pour tout intervalle borné
+$I$ de la forme
+$\left[a, b\right]$, $\left]a, b\right[$, $\left[a, b\right[$ ou 
+$\left]a, b\right]$ avec $a\leq b$ par
+$$
+\ell(I) = b - a
+$$
+et si $I$ est non-borné par
+$$
+\ell(I) = +\infty.
+$$
 
 
 ### Subdivision pointée {.definition}
@@ -42,12 +71,6 @@ $$
 où les $I_i$ forment une subdivision de $I$ et 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 
-**TODO:** alternative passant par 
-$$
-a = x_0 \leq \dots \leq x_i \leq t_i \leq x_{i+1} \leq \dots \leq x_{n} = b.
-$$
-
-
 ### Somme de Riemman {.definition}
 
 La somme de Riemann associée à la fonction $f:[a, b] \to \mathbb{R}$ 
@@ -55,12 +78,6 @@ et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
 S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
 $$
-
-Alternative:
-$$
-S(f, \mathcal{D}) = \sum_{i=0}^{m-1} f(t_i) (x_{i+1} - x_i)
-$$
-Bof...
 
 ### Intégrale de Riemann {.definition}
 Une fonction $f:[a, b] \to \mathbb{R}$ est dite *intégrable 
@@ -623,6 +640,14 @@ Propriétés Elementaires de l'Intégrale
 
 ### TODO
 
+Linéarité
+
+### TODO
+
+IPP
+
+### TODO
+
 Ajouter distinctions notations
 
 $$
@@ -765,10 +790,99 @@ $$
 ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
 par le [critère d'intégrabilité de Cauchy](#CIC).
 
-### TODO
-Ensemble négligeable (de mesure de longueur extérieuere nulle),
-notion d'égalité pp, résultat qu'un fct pp égale à une fct intégrable
-est intégrable, de même intégrable (utile en soi et utilisé chap II)
+### Fonctions égales presque partout
+Une fonction $f:[a, b] \to \mathbb{R}$ égale presque partout à une 
+fonction $g:[a, b] \to \mathbb{R}$ intégrable est elle-même intégrable
+et 
+$$
+\int_{[a, b]} f(t) \, dt = \int_{[a, b]} g(t) \, dt.
+$$
+
+### Démonstration {.proof}
+
+Par linéarité de l'intégrale, il suffit d'établir que si 
+$f:[a, b] \to \mathbb{R}$ est nulle presque partout (c'est-à-dire égale
+presque partout à la fonction $g:[a, b] \to \mathbb{R}$ identiquement
+nulle), alors elle est intégrable d'intégrale nulle.
+
+Supposons dans un premier temps que $f$ soit bornée.
+Alors, pour tout $\varepsilon > 0$, il existe un recouvrement de
+$$
+A = f^{-1}(\{0\}) = \{x \in [a, b] \, | \, f(x) \neq 0\}
+$$ 
+par une collection dénombrable
+d'intervalles $I_i$ telle que $\sum_i \ell(I_i) \leq \varepsilon$.
+Il est de plus possible de supposer les $I_i$ ouverts[^why-open].
+Définissons la jauge $\gamma$ sur $[a, b]$ par
+$$
+\gamma(t) = I_i \, \mbox{ si } \, t \in I_i \;
+(\mbox{et } \, t \not \in I_j \mbox{ quand } \, j \leq i).
+$$
+et par exemple
+$\gamma(t) = \left]-\infty,\infty\right[$ si $t \not \in \cup_i I_i$. 
+Pour toute subdivision pointée $\mathcal{D} = \{(t_j, J_j)\}_j$ de $[a, b]$ 
+subordonnée à $\gamma$, 
+$$
+\left|S(f, \mathcal{D})\right| 
+= \left|\sum_j f(t_j) \ell(J_j)\right|
+= \left|\sum_{t_j \in A} f(t_j) \ell(J_j)\right|
+\leq \sup_{[a, b]} |f| \times \sum_j \ell(J_j).
+$$
+Mais par construction les $J_j$ ne se chevauchent pas et sont
+tous inclus dans un des intervalles $I_i$. On a donc
+$$
+\sum_j \ell(J_j) \leq  \sum_i \ell(I_i) \leq \varepsilon.
+$$
+Il suffit par conséquent de choisir un $\varepsilon$ suffisamment petit
+initialement pour rendre la somme de Riemann associée arbitrairement petite;
+$f$ est donc intégrable d'intégrale nulle.
+
+[^why-open]: On peut trouver un recouvrement de $A$ par des
+intervalles $J_i$ non nécessairement ouverts, tels que 
+$\sum_i \ell(J_i) \leq \varepsilon/2$, puis remplacer chaque
+$J_i$ par un intervalle $I_i$ ouvert de longueur double contenant $J_i$.
+
+Si $f$ est non-bornée, on peut faire un démonstration similaire en
+considérant les ensembles
+$$
+A_k = \{x \in [a, b] \, | \, k < |f(x)| \leq k+1\},
+$$
+puis en associant à chaque $A_k$ un recouvrement par une collection dénombrable
+d'intervalles ouverts $I^k_i$ tels que 
+$$
+\sum_i \ell(I^k_i) \leq \frac{\varepsilon}{(k+1)2^{k+1}}
+$$
+ce qui est possible puisque tous les $A_k$ sont négligeables. 
+On définit alors la jauge $\gamma$ sur $[a, b]$ par 
+$\gamma(t) = I^k_i$ si $t$ appartient à un $I^k_i$ (et on choisit alors
+le plus petit $k$, puis le plus petit $i$ telle que cette propriété
+soit vérifiée) et par exemple
+$\gamma(t) = \left]-\infty,\infty\right[$ si 
+$t \not \in \cup_k \cup_i I^k_i$. L'évaluation d'une somme de Riemann
+pour une subdivision pointée subordonnée à cette jauge fournit
+$$
+\left|S(f, \mathcal{D})\right| 
+= \left|\sum_j f(t_j) \ell(J_j)\right|
+= \left|\sum_k \sum_{t_j \in A_k} f(t_j) \ell(J_j)\right| \leq
+\sum_k \sum_{t_j \in A_k} (k+1) \ell(J_j)
+$$
+et comme
+$$
+\sum_{t_j \in A_k} \ell(J_j) 
+\leq  \sum_i \ell(I^k_i) 
+\leq \frac{\varepsilon}{(k+1)2^{k+1}},
+$$
+on obtient
+$$
+\left|S(f, \mathcal{D})\right| 
+\leq
+\sum_k (k+1) \sum_{i} \ell(I^k_i)
+\leq 
+\sum_k \frac{\varepsilon}{2^{k+1}} 
+= \varepsilon.
+$$
+La fonction $f$ est donc bien intégrable et d'intégrale nulle.
+
 
 Intégration sur des intervalle non-bornés
 --------------------------------------------------------------------------------
@@ -1002,6 +1116,14 @@ Exercices
 ### TODO
 
 Regarder exercices dans le Bartle ("A Modern Theory of Integration")
+
+Construction de Jauges
+--------------------------------------------------------------------------------
+
+**TODO:** faire construire "à la main" une jauge par dichotomie (exemple avec
+jauge s'affinant pour "forcer" un tag et/ou variante avec jauge "faciles",
+telles qu'on puisse trouver une jauge uniforme qui soit plus fine ? Et csq,
+à savoir capacité à trouver une subdivision uniforme associée)
 
 Subdivision pointées
 --------------------------------------------------------------------------------
