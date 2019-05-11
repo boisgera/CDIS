@@ -21,8 +21,9 @@ Somme et Intégrale de Riemann
 ### Intervalle
 
 On appelle *intervalle* tout sous-ensemble $I$ de $\mathbb{R}$ 
-tel que si $x$ et $y$ appartiennent à $I$ 
-et $z$ est un point intermédiaire, tel que $x \leq z \leq y$, alors $z \in I$.
+tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$,
+et si $z$ est un point intermédiaire, tel que $x \leq z \leq y$, 
+alors $z$ appartient à $I$.
 
 ### Type d'intervalles {.remark}
 Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
@@ -1119,6 +1120,35 @@ Exercices
 ### TODO
 
 Regarder exercices dans le Bartle ("A Modern Theory of Integration")
+
+Intervalle
+--------------------------------------------------------------------------------
+
+Montrer qu'un sous-ensemble $I$ de $\mathbb{R}$ est un intervalle si et
+seulement si il *est connexe par arcs*, c'est-à-dire si et seulement
+si pour tout couple de points $x$ et $y$ de $I$ on peut trouver un
+chemin de $I$ joignant $x$ à $y$, c'est-à-dire une fonction continue
+$\phi:[0, 1] \to I$, telle que $\phi(0) = x$ et $\phi(1) = y$.
+
+### Réponse
+
+Montrons tout d'abord que la condition est nécessaire. 
+Supposons que $x$ et $y$ appartiennent à $I$ et que $x$ 
+soit inférieur ou égal à $y$. Alors pour tout $t \in [0,1]$, 
+$\phi(t) = (1-t) x + t y$ est un point intermédiaire entre $x$ et $y$,
+et par conséquent, appartient à $I$. La fonction $\phi$ ainsi définie 
+est clairement continue et vérifie $\phi(0) = x$ et $\phi(1) = y$; 
+c'est donc un chemin de $I$ qui joint $x$ à $y$. Par conséquent,
+$I$ est connexe par arcs.
+
+Réciproquement, si $I$ est connexe par arcs et contient les points $x$
+et $y$, tout chemin de $I$ qui joint $x$ et $y$, continu et à valeurs réelles,
+vérifie le théorème des valeurs intermédiaires: pour toute valeur intermédiaire
+$z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
+Comme $\phi$ est à valeurs dans $I$, $z \in I$; l'ensemble $I$ est donc un 
+intervalle de $\mathbb{R}$.
+
+
 
 Construction de Jauges
 --------------------------------------------------------------------------------
