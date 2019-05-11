@@ -55,6 +55,13 @@ Gradient de Forme
 (dérivée une fonctionnelle dépendant de la géométrie en transportant la
 géomtrie par $I+u$, puis dérivée par rapport à $u$ ?)
 
+$Omega$ dans $U$ paramétrisé par une déformation $T = I + u$ avec $u$ petit
+et une base $\Omega_0$ qui est un compact à bords $C^1$.
+Différencier le volume de $\Omega$ par rapport $T$ (chgt de variable, etc), 
+utiliser Stokes, montrer que la différentielle ne dépend que de 
+$\left<V, n\right>$.
+
+
 Théorème de Cauchy Intégral
 --------------------------------------------------------------------------------
 

@@ -743,9 +743,68 @@ l'effecteur.
 Déformations
 --------------------------------------------------------------------------------
 
-Usage IFT pour montrer que les formes de type $I+u$ sont des difféo pour 
-$u petit. (le gradient de forme qui pourrait être sympa doit trouver
-sa place dans la session 3)
+Soit $U$ un ouvert convexe de $\mathbb{R}^n$ et 
+$T: U \subset \mathbb{R}^n \to \mathbb{R}^n$
+une fonction continûment différentiable. 
+On suppose que $T$ est de la forme $T=  I + H$ 
+où la fonction $H$ vérifie
+$$
+\sup_{x \in U} \|d H(x)\| := \kappa < 1.
+$$
+On appellera une telle fonction $T$ une *perturbation de l'identité*.
+
+ 1. Montrer que la foncton $T$ est injective.
+
+ 2. Montrer que l'image $V= T(U)$ est un ouvert et
+    que $T$ est difféomorphisme (global) de $U$ sur $V$.
+
+### Réponses
+
+ 1. Par le théorème des accroissements finis, si $x$ et $y$ appartiennent
+    à $U$, comme par convexité $[x, y] \subset U$, on a 
+    $$
+    \|H(x) - H(y)\| \leq \kappa \|x - y\|.
+    $$
+    Par conséquent,
+    $$
+    \begin{split}
+    \|T(x) - T(y)\| &= \|x + H(x) - (y + H(y))\| \\
+    &\geq \|x - y\| - \|H(x) - H(y)\| \\
+    &\geq (1 - \kappa) \|x - y\|
+    \end{split}
+    $$
+    et donc si $T(x) = T(y)$, $x=y$: $T$ est injective.
+
+ 2. La différentielle $dT(x)$ de $T$ en $x$ est une application 
+    de $\mathbb{R}^n$ dans $\mathbb{R}^n$ de la forme
+    $$
+    dT(x) = I + dH(x).
+    $$
+    Comme $\mathbb{R}^n$ est ouvert et que la fonction $h \mapsto dH(x) \cdot h$
+    a pour différentielle en tout point $y$ de $\mathbb{R}^n$ la function
+    $dH(x)$, 
+    la fonction linéaire $h \mapsto dT(x) \cdot h$ est une perturbation de 
+    l'identité; elle est donc injective, et inversible car elle est linéaire de
+    $\mathbb{R}^n$ dans $\mathbb{R}^n$. Les hypothèses du 
+    théorème d'inversion locale sont donc satisfaites 
+    en tout point $x$ de $U$. La fonction $f$ est donc un difféomorphisme 
+    local d'un voisinage ouvert $V_x$ de $x$ sur
+    $W_x= f(V_x)$ qui est ouvert. Clairement,
+    $$
+    f(U) = f\left(\bigcup_{x \in U} V_x\right) = \bigcup_{x \in U} f(V_x)
+    $$
+    et par conséquent $f(U)$ est ouvert.
+    La fonction $f$ est injective et surjective de $U$ dans $f(U)$,
+    donc inversible. En tout point $y$ de $f(U)$, il existe $x \in U$
+    tel que $f(x) = y$, et un voisinage ouvert $V_x$ de $x$ tel que
+    $f$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = f(V_x)$; 
+    la fonction
+    $f^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
+    C'est par conséquent un difféomorphisme global de $U$ dans $f(U)$.
+
+
+
+
 
 Racines d'un Polynôme
 --------------------------------------------------------------------------------
