@@ -380,8 +380,10 @@ présente bien des aspects similaires à ceux des classes préparatoires:
   - Permettre d'acquérir la maîtrise d'un large panel de connaissances,
     indissociable d'une pratique des Mathématiques qui 
     met en oeuvre des compétences multiples
-    (raisonner, démontrer, calculer, communiquer).
+    (comprendre, raisonner, démontrer, calculer, communiquer).
     
+
+
   - S'inscrire dans le projet de formation global, 
     s'interfacer avec les enseignements de Mathématiques, Physique, etc.
     en particulier de tronc commun, ouvrir ultérieurement 
