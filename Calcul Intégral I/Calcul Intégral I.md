@@ -18,12 +18,11 @@ TODO
 Somme et Intégrale de Riemann
 --------------------------------------------------------------------------------
 
-### Intervalle de $\mathbb{R}$
+### Intervalle
 
-On appelle *intervalle* tout sous-ensemble $I$ de $\mathbb{R}$ qui est tel
-que si $x$ et $y$ appartiennent à $I$ et $z$ est un point intermédiaire
-tel que $x \leq z \leq y$, alors $z \in I$ (c'est-à-dire tout sous-ensemble
-*convexe* de $\mathbb{R}$).
+On appelle *intervalle* tout sous-ensemble $I$ de $\mathbb{R}$ 
+tel que si $x$ et $y$ appartiennent à $I$ 
+et $z$ est un point intermédiaire, tel que $x \leq z \leq y$, alors $z \in I$.
 
 ### Type d'intervalles {.remark}
 Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
@@ -645,6 +644,10 @@ Linéarité
 ### TODO
 
 IPP
+
+### TODO
+
+Changement de variables
 
 ### TODO
 
