@@ -95,5 +95,32 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "DZ11",
+		"type": "book",
+		"title": "Shapes and geometries. Metrics, analysis, differential calculus, and optimization. 2nd ed.",
+		"publisher": "Philadelphia, PA: Society for Industrial and Applied Mathematics (SIAM)",
+		"number-of-pages": "xxiii + 622",
+		"edition": "2nd ed.",
+		"ISBN": "978-0-89871-936-9",
+		"language": "English",
+		"author": [
+			{
+				"family": "Delfour",
+				"given": "M. C."
+			},
+			{
+				"family": "Zolésio",
+				"given": "J.-P."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2011"
+				]
+			]
+		}
 	}
 ]
