@@ -357,14 +357,71 @@ Nous nous intéressons ici aux acquis d'apprentissage globaux de l'UE;
 nous renvoyons le lecteur à la section [Contenus et Activités] pour
 la description plus précise des attendus thématique par thématique.
 Pour ce qui est du niveau de détail le plus fin nous renvoyons
-aux ressources pédagogiques elles-mêmes: un effort sera entrepris pour
-annoter les ressources pédagogiques afin d'expliciter 
+aux ressources pédagogiques elles-mêmes: un effort sera entrepris[^en-cours] 
+pour annoter les ressources pédagogiques afin d'expliciter 
 les raisons d'être des concepts, notations, méthodes, etc. introduits
 ainsi que les attentes associées dans le cadre du projet de formation 
 de l'UE. Rendre ces informations disponibles doit permettre une meilleure
 compréhension de la place de l'UE dans le projet de formation globale,
 favoriser la communication au sein de l'équipe pédagogique et préciser
 le contrat didactique avec les étudiants.
+
+[^en-cours]: Il s'agit d'un effort en cours, qui nécessite
+de transformer en profondeur le processus de conception 
+des ressources pédagogiques.
+Compte tenu de son ampleur, cette transformation ne sera vraisemblablement
+pas achevée pour la première année de l'UE et sa visibilité pourrait 
+initialement être limitée.
+
+A l'issue de cette UE, les étudiants auront
+
+  - découvert et assimilé un large panel de nouvelles connaissances
+    fondamentales dans les domaines du calcul différentiel, intégral 
+    et stochastique, prolongeant les connaissances acquises antérieurement 
+    (cf. [Programme]).
+
+  - renforcé et élargi leur gamme de compétences dans le spectre
+    varié des pratiques mathématiques modernes, 
+    qui incluent le fait de savoir
+    comprendre, deviner, raisonner, démontrer, expérimenter, 
+    calculer, communiquer[^pratiques].
+    
+  - développé des compétences clés facilitant la poursuite de
+    leur études[^champs], 
+    compatibles avec les enseignement de tronc commun et 
+    ultérieurement, une large gamme de trajectoires 
+    de formation individualisées. 
+
+[^pratiques]: Il s'agit aussi bien ici de savoir développer un bon
+modèle mental pour un nouveau concept qui permettra d'avoir des
+intuitions exactes et de cerner son applicabilité, que de savoir 
+formaliser complétement un raisonnement déductif (rédiger une 
+"démonstration") ou encore d'interfacer les aspects théoriques
+avec les outils numériques.
+**TODO:**   difficulté / temps et hétérogéinté des profils.
+
+
+
+("savoir dvlper un bon modèle mental,
+et la capacité d'intuiter un résultat", "savoir formaliser /prouver/
+communiquer / convaincre", "savoir mettre en oeuvre des solutions
+expérimentales/numériques", etc. ce genre de truc)
+
+[sujet compliqué avec l'hétérogénéité, mais on ne peux pas
+faire l'impasse: pour certains, c'est bien la méthodo qui pose
+pb; ils n'ont pas la "matrice" sur laquelle on peut greffer de
+nouvelles connaissances]
+
+[^champs]: en Mathématiques bien sûr, mais aussi Physique, Informatique, 
+Sciences Economiques et Sociales, etc. 
+Si les Mathématiques ne sont pas "une discipline serve", 
+et qu'il est légitime qu'une partie des objectifs consiste à préparer
+les étudiants à des Mathématiques plus avancées,
+les Mathématiques *du tronc commun* du cycle ingénieur civil 
+ne peuvent pas être sourdes aux besoins exprimés 
+par les autres champs disciplinaires.
+
+
 
 Le lecteur pourra lire avec profit les objectifs de formation des 1ère et 2nde
 années des programmes de classe préparatoire aux grandes écoles [@UPS].
@@ -373,6 +430,8 @@ indifférenciée en MP, PSI et PC, mais les programmes diffèrent.
 
 Les objectifs de formation de cette UE, située en tout début de scolarité, 
 présentent bien des aspects similaires à ceux des classes préparatoires:
+
+
 
   - Assurer une continuité avec les enseignements 
     -- contenus et approches pédagogiques -- 
@@ -384,8 +443,6 @@ présentent bien des aspects similaires à ceux des classes préparatoires:
     met en œuvre des compétences multiples
     (comprendre, raisonner, démontrer, calculer, communiquer).
     
-
-
   - S'inscrire dans le projet de formation global, 
     s'interfacer avec les enseignements de Mathématiques, Physique, etc.
     en particulier de tronc commun, ouvrir ultérieurement 
