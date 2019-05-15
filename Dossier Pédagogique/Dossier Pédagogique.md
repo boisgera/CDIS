@@ -1,6 +1,6 @@
 % Projet de Refonte IC
-% 
-% 9 mai 2019
+% GT UE 11 -- Mathématiques
+% 15 mai 2019
 
 Unité d'Enseignement: Document Pédagogique
 ================================================================================
@@ -314,36 +314,23 @@ sert directement de fondation aux EC de l'UE 21:
 Acquis d'Apprentissage
 --------------------------------------------------------------------------------
 
-*\[ 
-Savoirs, aptitudes, compétences. La formulation explicite des
-objectifs d’apprentissage permet de déterminer les connaissances à
-acquérir et les compétences à développer par les étudiants au terme
-d’une activité d’apprentissage. Son rôle est central dans la conception
-d’un cours. 
-\]*
+Les objectifs de cette UE, située en tout début de scolarité, 
+présentent bien des aspects similaires à ceux des classes préparatoires:
+assurer une continuité avec les connaissances et pratiques pédagogiques
+des classes préparatoires (là où les classes préparatoires 
+se positionnent par rapport aux filières de lycée),
+permettre l'acquisition d'un large panel de connaissances,
+s'inscrire dans le projet de formation global
+en s'interfaçant avec les enseignements de Mathématiques, Physique, etc.[^ocpge]
 
-*\[ 
-Par souci de cohérence, le choix des évaluations, des activités
-d’enseignement-apprentissage et l’organisation du contenu du cours
-découlent des objectifs d’apprentissage. 
-\]*
+[^ocpge]: Le lecteur pourra lire avec profit les objectifs de formation des 
+1ère et 2nde années des programmes de classe préparatoire aux grandes écoles 
+[@UPS].
+La description des compétences à développer est presque totalement 
+indifférenciée en MP, PSI et PC, mais les programmes diffèrent. 
 
-*\[ 
-Les objectifs d’apprentissage facilitent la communication entre
-l’enseignant et les étudiants, puisqu’ils précisent les apprentissages à
-faire, les actions à accomplir ou les performances à atteindre;
-l’étudiant sait donc précisément ce qui est attendu de lui [^1],
-[^2].
-\]*
-
-[^1]: Rédiger des objectifs en termes de "résultats d’apprentissage":
-      <https://pedagogieuniversitaire.wordpress.com/2009/08/05/rediger-des-objectifs-en-termes-de-resultats-dapprentissage/>
-
-[^2]: Les objectifs d’apprentissage (Université Laval): 
-      <https://www.enseigner.ulaval.ca/ressources-pedagogiques/les-objectifs-d-apprentissage>
-
-
-Les acquis d'apprentissages nécessitent d'être décrits à différents niveaux: 
+Les acquis d'apprentissages qui en résultent 
+nécessitent d'être décrits à différents niveaux: 
 au niveau de l'UE ou de l'EC, puis des thématiques qui se déploient sur 
 plusieurs sessions, de chaque session elle-même, voire de partie de session, etc. 
 Cette organisation permet de limiter le nombre d'acquis d'apprentissage
@@ -361,13 +348,14 @@ aux ressources pédagogiques elles-mêmes: un effort sera entrepris[^en-cours]
 pour annoter les ressources pédagogiques afin d'expliciter 
 les raisons d'être des concepts, notations, méthodes, etc. introduits
 ainsi que les attentes associées dans le cadre du projet de formation 
-de l'UE. Rendre ces informations disponibles doit permettre une meilleure
-compréhension de la place de l'UE dans le projet de formation globale,
-favoriser la communication au sein de l'équipe pédagogique et préciser
-le contrat didactique avec les étudiants.
+de l'UE. 
+Rendre ces informations disponibles doit permettre une 
+meilleure compréhension de la place de l'UE dans le projet de formation 
+global, favoriser la communication au sein de l'équipe pédagogique et 
+préciser le contrat didactique avec les étudiants.
 
-[^en-cours]: Il s'agit d'un effort en cours, qui nécessite
-de transformer en profondeur le processus de conception 
+[^en-cours]: Il s'agit pour cette première année d'initier cet effort, 
+qui nécessite de transformer en profondeur le processus de conception 
 des ressources pédagogiques.
 Compte tenu de son ampleur, cette transformation ne sera vraisemblablement
 pas achevée pour la première année de l'UE et sa visibilité pourrait 
@@ -380,39 +368,37 @@ A l'issue de cette UE, les étudiants auront
     et stochastique, prolongeant les connaissances acquises antérieurement 
     (cf. [Programme]).
 
-  - renforcé et élargi leur gamme de compétences dans le spectre
-    varié des pratiques mathématiques modernes, 
-    qui incluent le fait de savoir
-    comprendre, deviner, raisonner, démontrer, expérimenter, 
-    calculer, communiquer[^pratiques].
-    
-  - développé des compétences clés facilitant la poursuite de
-    leur études[^champs], 
-    compatibles avec les enseignement de tronc commun et 
-    ultérieurement, une large gamme de trajectoires 
-    de formation individualisées. 
+  - renforcé et élargi les compétences associées au spectre
+    varié des pratiques mathématiques actuelles, 
+    qui supposent de savoir comprendre, deviner, raisonner, démontrer, 
+    expérimenter, calculer, communiquer.[^pratiques]
+
+  - développé des aptitudes clés facilitant leur études[^champs], 
+    aussi bien les enseignements de tronc commun 
+    qu'ultérieurement, une large gamme de parcours 
+    de formation individualisés. 
 
 [^pratiques]: Il s'agit aussi bien ici de savoir développer un bon
-modèle mental pour un nouveau concept qui permettra d'avoir des
-intuitions exactes et de cerner son applicabilité, que de savoir 
+modèle mental pour un nouveau concept (qui permettra d'avoir des
+intuitions pertinentes et de cerner son applicabilité), que de savoir 
 formaliser complétement un raisonnement déductif (rédiger une 
-"démonstration") ou encore d'interfacer les aspects théoriques
-avec les outils numériques.
-**TODO:**   difficulté / temps et hétérogéinté des profils.
+démonstration) ou encore d'interfacer les aspects théoriques
+avec les outils numériques. Les besoins en la matière sont variés,
+et posent des défis importants en terme de modalités pédagogiques
+et notamment de modalités d'évaluation. Les profils et les attentes
+des étudiants sont également plus variés que dans les filières 
+plus "pures" des classes préparatoires. Il est illusoire d'espérer
+compenser ces différences et homogéneiser la cohorte d'étudiants
+en quelques dizaines d'heures les différences importantes qui se 
+sont formées dans les deux ans des filières préparatoires,
+d'autant que les objectifs en termes d'acqusition de nouvelles
+connaissances sont ambitieu; il sera donc nécessaire d'œuvrer ne pas 
+évaluer systématiquement les étudiants à l'aune d'un "profil type" 
+étroit et rigide, mais par rapport à un large panel de compétences 
+mathématiques possibles, panel qui sera probablement maîtrisé de 
+façon lacunaire.
 
-
-
-("savoir dvlper un bon modèle mental,
-et la capacité d'intuiter un résultat", "savoir formaliser /prouver/
-communiquer / convaincre", "savoir mettre en oeuvre des solutions
-expérimentales/numériques", etc. ce genre de truc)
-
-[sujet compliqué avec l'hétérogénéité, mais on ne peux pas
-faire l'impasse: pour certains, c'est bien la méthodo qui pose
-pb; ils n'ont pas la "matrice" sur laquelle on peut greffer de
-nouvelles connaissances]
-
-[^champs]: en Mathématiques bien sûr, mais aussi Physique, Informatique, 
+[^champs]: En Mathématiques bien sûr, mais aussi Physique, Informatique, 
 Sciences Economiques et Sociales, etc. 
 Si les Mathématiques ne sont pas "une discipline serve", 
 et qu'il est légitime qu'une partie des objectifs consiste à préparer
@@ -421,33 +407,7 @@ les Mathématiques *du tronc commun* du cycle ingénieur civil
 ne peuvent pas être sourdes aux besoins exprimés 
 par les autres champs disciplinaires.
 
-
-
-Le lecteur pourra lire avec profit les objectifs de formation des 1ère et 2nde
-années des programmes de classe préparatoire aux grandes écoles [@UPS].
-La description des compétences à développer est presque totalement 
-indifférenciée en MP, PSI et PC, mais les programmes diffèrent. 
-
-Les objectifs de formation de cette UE, située en tout début de scolarité, 
-présentent bien des aspects similaires à ceux des classes préparatoires:
-
-
-
-  - Assurer une continuité avec les enseignements 
-    -- contenus et approches pédagogiques -- 
-    des classes préparatoires (là où les classes préparatoires 
-    se positionnent par rapport aux filières de lycée).
-  
-  - Permettre d'acquérir la maîtrise d'un large panel de connaissances,
-    indissociable d'une pratique des Mathématiques qui 
-    met en œuvre des compétences multiples
-    (comprendre, raisonner, démontrer, calculer, communiquer).
-    
-  - S'inscrire dans le projet de formation global, 
-    s'interfacer avec les enseignements de Mathématiques, Physique, etc.
-    en particulier de tronc commun, ouvrir ultérieurement 
-    la voie à des parcours de formation très variés où l'usage
-    des Mathématiques est divers.
+<!--
 
 **TODO:** renforcer la place du numérique, dvlper l'autonomie.
  
@@ -482,7 +442,11 @@ Des différences de contexte sont toutefois marquées:
 
     ... aussi: maturation, autonomie, etc? 
 
+-->
+
 <!--
+
+
 
 Donc
 
@@ -539,6 +503,7 @@ nous résumons brièvement en deux points:
 
 -->
 
+<!--
 
 TODO / hétérogénéité: compétences: "construction" juste MP. Statut de la preuve,
 niveau de "rigueur", différences dans les pratiques disciplinaires: donner les
@@ -574,6 +539,7 @@ vision des différents profils (raisonner, communiquer/convaincre, etc.).
   - en prépa: Architecture des filières fortement différenciées, 
     liste et description des compétences non ... 
 
+-->
 
 Compétences
 --------------------------------------------------------------------------------
