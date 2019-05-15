@@ -254,9 +254,11 @@ utilise un périmètre particulièrement large des Mathématiques.
 Les échanges laissent penser que le programme de Mathématiques de l'UE offrira
 des outils adaptés en ce qui concerne les probabilités[^oap], les notions
 de mesure et de distributions, le calcul intégral, le calcul différentiel et 
-les systèmes dynamiques[^oacdsd],
-ce qui serait un progrès par rapport à la situations actuelle, 
-en particulier du point de vue des probabilités.
+les systèmes dynamiques[^oacdsd].
+En particulier, une programmation plus précoce de l'enseignement 
+des probabilités dans la formation, conforme au statut fondamental
+(littéralement) de la discipline, serait un progrès par rapport à la
+situation actuelle.
 Les besoins en analyse fonctionnelle[^oaan], une thématique beaucoup plus 
 difficile du point de vue des Mathématiques, ne sont que très 
 partiellement couverts.
@@ -824,9 +826,9 @@ sensiblement plus technique et plus abstrait,
 consacré à la théorie de la mesure.
 Posant plus de difficultés aux étudiants, dotée d'un volume restreint,
 cette seconde partie n'est donc plus sur le chemin critique;
-elle ne devient plus nécessaire pour certaines des applications les 
+seules certaines des applications les 
 plus avancées (telles que: fonctions généralisées, 
-probabilités dans le cadre général, etc.). 
+probabilités dans le cadre général, etc.) requièrent sa maîtrise. 
 
 Cette stratégie permet de se consacrer dans un premier temps
 à l'intégrale de Riemann généralisée[^HK] comme le plus court chemin
