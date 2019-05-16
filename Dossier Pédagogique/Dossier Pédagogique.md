@@ -373,7 +373,7 @@ A l'issue de cette UE, les étudiants auront
     qui supposent de savoir comprendre, deviner, raisonner, démontrer, 
     expérimenter, calculer, communiquer.[^pratiques]
 
-  - développé des aptitudes clés facilitant la poursuite de leur 
+  - développé des aptitudes clés facilitant la poursuite de leurs 
     études[^champs], aussi bien les enseignements de tronc commun 
     qu'ultérieurement, une large gamme de parcours 
     de formation individualisés. 
@@ -592,7 +592,7 @@ et la maîtrise de leur mise en œuvre" :
     **Partiellement.** Oui, à ceci près que la recherche de l'information
     pertinente va être principalement cantonnée aux ressources pédagogiques
     conçues spécifiquement pour l'UE pour des raisons d'efficacité[^eff].
-    Les projets numériques, et peut-être les modalités d'évaluations 
+    Les projets numériques, et peut-être les modalités d'évaluations
     du second EC, pourraient être l'occasion d'élargir le champ des 
     recherches (à des corpus pré-selectionnés de ressources extérieures,
     ou même sans ce type d'assistance).
@@ -775,7 +775,7 @@ d'une modification de nature didactique.
 
  1. Fonctions de plusieurs variables,
 
- 2. Méthodes de calcul numériques,
+ 2. Méthodes numériques de calcul,
 
  3. Calcul différentiel en dimension infinie.
 
@@ -824,7 +824,7 @@ le caractère intrinsèque de la différentielle.
  précisément, "en pratique", de fonctions réelles dépendant d'au plus
  3 variables réelles.
  Stricto sensu, la notion de fonction différentiable n'est pas présente:
- l'objet "différentielle" est définie a posteriori,
+ l'objet "différentielle" est défini a posteriori,
  à partir des dérivées partielles; de même
  la règle de différentiation en chaîne est abordée à travers le calcul des 
  dérivées partielles.
@@ -866,7 +866,7 @@ le calcul différentiel, plus simple à comprendre, les bénéfices de cette
 approche par l'intégrale de Riemann généralisée sont bien documentés 
 (voir par exemple @Bar96).
 Cette étape doit être comprise dans le contexte où plus aucune construction 
-spécifique de l'intégrale n'est plus au programme des classes 
+spécifique de l'intégrale n'est au programme des classes 
 préparatoires[^CPGE-int]; il faut par conséquent s'attendre à ce que même 
 cette approche simplifiée, dans le prolongement des notions de CPGE, 
 présente son lot de défis pour certains étudiants.
@@ -888,7 +888,7 @@ plus simple.
 puisqu'il y a plusieurs intégrales de Riemann généralisées 
 (McShane, Mawhin, etc.).
 
-[^CPGE-int]: L'intégrale considérée concerne les fonction continues par 
+[^CPGE-int]: L'intégrale considérée concerne les fonctions continues par 
 morceaux sur un intervalle de $\mathbb{R}$. Même dans ce périmètre étroit
 concernant l'intégration, "aucune construction n’est exigible". 
 Toutefois, si les sommes de Riemann ne sont pas (nécessairement) 
@@ -903,7 +903,7 @@ d'Informatique.
       problème bien posé, 
       comportement asymptotique.
 
-   2. Méthodes de résolution numériques.
+   2. Méthodes numériques de résolution.
 
 Le volet consacré aux équations différentielles, qui nécessite à la fois
 des résultats du calcul différentiel et intégral, est programmé dans le
@@ -980,7 +980,7 @@ technique d'intégration numérique; il sera prolongé par un projet numérique.
 probabilités dans des univers finis; en seconde année sont étudiées
 les variables aléatoires discrètes. Sur les filières MP/PSI/PC, le
 périmètre est relativement large: univers, événements, variables aléatoires,
-fonction de répartition, loi conditionnelles, espérance, variance, 
+fonction de répartition, lois conditionnelles, espérance, variance, 
 etc. jusqu'à une introduction aux séries génératrices et aux résultats
 asymptotiques. Cependant, le poids des probabilités dans la formation des CPGE
 -- qui pourrait sembler significatif à la lecture des programmes -- 
@@ -1004,7 +1004,7 @@ pas l'unanimité et les professeurs étant inégalement formés à la discipline
     l'adoption de modalités relativement classiques, c'est-à-dire 
     l'usage de la craie et du tableau noir[^em]
     plutôt que l'usage de transparents. Cette modalité répond à plusieurs
-    objectifs: plus familière des étudiants de classe préparatoires qui
+    objectifs: plus familière des étudiants des classes préparatoires qui
     savent l'exploiter de façon efficace, elle facilite également une
     attitude plus active. Enfin, dans un contexte où la tentation est grande
     de balayer un grand nombre de notions en très peu de temps, obliger
@@ -1322,7 +1322,7 @@ projets numériques sera développé en suivant les trois principes suivants.
     fichiers nécessaires à leur (re-)production.
     Afin de faciliter leur modification et leur usage,
     les documents sont produits
-    au moyens de technologies *open-source* et exploitent des formats
+    au moyen de technologies *open-source* et exploitent des formats
     ouverts et adaptés; un effort spécifique est également entrepris pour 
     simplifier la reproduction de l'environnement logiciel nécessaire à 
     cette démarche[^reprod].    
@@ -1493,7 +1493,7 @@ Les effectifs d'enseignants responsables des sessions en présentiel
     6 groupes de travaux dirigés seront constitués.
 
   - Tutorats (classique et projet): 6 intervenants ($\times$ 33h).  
-    Destinés à des effectifs plus restreint que les travaux dirigés 
+    Destinés à des effectifs plus restreints que les travaux dirigés 
     en raison de leur caractère optionnel,
     les tutorats s'inscrivent néanmoins dans une logique d'accompagnement 
     personnalisé et supposent donc un encadrement renforcé. 
