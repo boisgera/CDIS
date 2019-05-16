@@ -1,6 +1,6 @@
 % Projet de Refonte IC
 % GT UE 11 -- Mathématiques
-% 15 mai 2019
+% 16 mai 2019
 
 Unité d'Enseignement: Document Pédagogique
 ================================================================================
