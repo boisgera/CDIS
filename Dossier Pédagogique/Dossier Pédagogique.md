@@ -239,7 +239,7 @@ Pour un bon déroulement de son volet numérique, l'UE dépendra également
 des compétences introduites dans l'UE 12 d'Informatique: elle tirera parti
 des sessions d'introduction au langage Python et de son usage dans un 
 contexte scientifique, qu'il s'agisse des connaissances des constructions
-du langage, de la familiarité avec les notebooks Jupyer qui se prêtent
+du langage, de la familiarité avec les notebooks Jupyter qui se prêtent
 au calcul interactif, des librairies comme NumPy pour le calcul numérique 
 ou des outils de visualisation de données comme Matplotlib.
 
@@ -392,7 +392,7 @@ compenser ces différences et homogéneiser la cohorte d'étudiants
 en quelques dizaines d'heures les différences importantes qui se 
 sont formées dans les deux ans des filières préparatoires,
 d'autant que les objectifs en termes d'acqusition de nouvelles
-connaissances sont ambitieu; il sera donc nécessaire d'œuvrer ne pas 
+connaissances sont ambitieux; il sera donc nécessaire d'œuvrer à ne pas 
 évaluer systématiquement les étudiants à l'aune d'un "profil type" 
 étroit et rigide, mais par rapport à un large panel de compétences 
 mathématiques possibles, panel qui sera probablement maîtrisé de 
@@ -811,7 +811,7 @@ applications sera alors considérée, avec les concepts dont elle dépend.
 le caractère intrinsèque de la différentielle.
 
  [^CPGE-CD]: Même dans la filière MP, la notion de différentielle n'est
- introduite quand dans le cadre les espaces vectoriels normés de dimension finie;
+ introduite que dans le cadre les espaces vectoriels normés de dimension finie;
  la différentielle d'ordre 2 n'est pas définie; théorème des fonctions
  implicites et d'inversion locale sont absents. Dans les filières PSI et PC,
  le caractère intrinsèque de la différentielle disparaît: il s'agit
@@ -882,7 +882,7 @@ plus simple.
 [^HK]: Ou plus précisement, à l'intégrale de Henstock-Kurzweil, 
 puisqu'il y a plusieurs intégrales de Riemann généralisées.
 
-[^CPGE-int]: L'intégrale considérée concerne les fonction continues par 
+[^CPGE-int]: L'intégrale considérée concerne les fonctions continues par 
 morceaux sur un intervalle de $\mathbb{R}$. Même dans ce périmètre étroit
 concernant l'intégration, "aucune construction n’est exigible". 
 Toutefois, si les sommes de Riemann ne sont pas (nécessairement) 
@@ -1533,7 +1533,7 @@ Concernant les problématiques matérielles ou d'infrastructure:
     Des dispositifs technologiques facilitant les interactions pourraient 
     également être envisagés
     (tels que boitiers de vote, tablette graphique, etc.), mais aucune
-    solution précise de type n'est prévue à ce stade (l'interaction
+    solution précise de ce type n'est prévue à ce stade (l'interaction
     pouvant être introduite dans un premier temps de façon plus classique).
 
   - Concernant les ressources pédagogiques, la transition numérique
