@@ -729,7 +729,7 @@ etc.
 
 Une introduction nécessairement minimaliste compte tenu du très faible
 volume dédié[^intro] et dictée par les besoins variés des sessions 
-qui suivent. Malheureusement, les contenus des programme des classes
+qui suivent. Malheureusement, les contenus des programmes des classes
 préparatoires dans ce domaine sont très réduits[^CPGE-topo].
 En conséquence, le contenu programmé se limite à la topologie des
 sous-ensembles d'espaces vectoriels normés (dimension finie ou infinie), 
