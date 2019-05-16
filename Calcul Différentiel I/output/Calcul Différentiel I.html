@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Calcul Différentiel I</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Calcul Différentiel I</h1>
+</header>
+<section>
+<h1 id="narratif-notes-todosss">Narratif &amp; Notes &amp; TODOsss</h1>
+<section>
+<h3 id="différentielle-dérivée-directionnelle">Différentielle &amp; Dérivée Directionnelle</h3>
+<p>La progression choisie est la suivante:</p>
+<ul>
+<li><p>la différentielle d’une fonction en un point est introduite directement, par analogie avec le concept et les propriétés de la dérivée, une fois présentés sous la bonne forme (meilleure approximation linéaire de la variation, forme avec <span class="math inline">\(o\)</span> plutôt que taux d’accroissement).</p></li>
+<li><p>on exploite un peu cette définition, on finit de faire le lien avec la dérivée, on donne les règles de combi linéaires, du produit, de la différentation en chaîne.</p></li>
+<li><p>sous hypothèse de différentiabilité, on donne le liens avec la dérivée partielle et les dérivée directionnnelles.</p></li>
+<li><p>après coup, on examine la tentation (légitime) que l’on pourrait avoir de définir la différentielle en passant par les dérivée partielles: cette approche si elle était couronnée de succès, permettrait de définir la différentielle en se ramenant à ce que l’on connaît déjà, à savoir la notion de dérivée. Et on se rend compte assez facilement que:</p>
+<ul>
+<li><p>l’existence des dérivées partielles ne suffit pas à assurer l’existence de la différentielle: un exemple très simple permet de montrer que cela n’assure même pas la continuité de la fonction au point d’intérêt. Plus grave si l’on veut: la règle de dérivation en chaîne ne marche pas non plus; en particulier, on ne peut pas calculer la dérivée partielle d’une fonction composée par ce biais. Note: suppose que l’on ait dérivé la chain rule très rapidement après la définition de la différentielle et c’est légitime: c’est un grand succès du concept.</p></li>
+<li><p>examiner le contre-exemple standard (1 valeur sur les axes, une autre dans le reste du domaine), diagnostiquer ce qui ne va pas (à savoir, on est aveugle au comportement de la fonction en dehors de directions privilégiées), propose une solution en travaillant sur la dérivée directionnelle. Montrer par un nouveau contre-exemple, moins évident, que ça ne va toujours pas (ni continuité ni “chain rule”). L’exemple en question travaille toujours avec deux valeurs distinctes, mais sur une parabole.</p></li>
+<li><p>le nouvelle exemple pour le coup met sur la piste d’une “bonne” solution alternative, la dérivée directionnelle au sens d’Hadamard. On peut la définir au moyens des chemins, simplifier sa caractérisation. Au final, elle vérifie bien la règle de dérivation en chaîne par exemple, plus ou moins par construction, mais cela n’est pas surprenant car elle est équivalent à la notion de différentielle ! A ce stade, pas évident que la démarche adoptée soit plus simple, on peut se convaincre que le concept de différentielle est finalement pas si mal que ça … d’autant plus qu’en dimension infinie, les deux notions divergent à nouveau et la différentielle de Fréchet regagne des points.</p></li>
+</ul>
+<p>Une partie de ça à faire dans le cours, une partie en exo, quelle frontière je ne sais pas encore exactement.</p>
+<ul>
+<li>en parralèle, on montre que tout de même, on a le droit de travailler sur les dérivée partielles si l’on sait établir que le résultat est continu, car cela garantit l’existence de la différentielle (et sa continuité).</li>
+</ul></li>
+</ul>
+</section>
+<section>
+<h3 id="vecteurs-matrices-tenseurs">Vecteurs / Matrices / Tenseurs</h3>
+<p>Sujet assez compliqué. Trois motivations sur ce sujet:</p>
+<ul>
+<li><p>Le “tout-matrice” est assez ridicule quand on y pense; l’idée qu’il faille promouvoir des vecteurs de <span class="math inline">\(\mathbb{R}^n\)</span> en matrice pour faire des calculs complique souvent les choses par rapport aux conventions tensorielles (où un vecteur est un tableau de dimension 1). C’est aussi assez incohérent avec les convention de NumPy qui pour le coup sont tensorielles par nature (contrairement à Matlab).</p>
+<p>Mais voilà, c’est la vision enseignée en prépa, difficile de tout déconstruire, d’autant que la démarche tensorielle vient avec ses propres problèmes de notation, conventions non partagées, etc.</p>
+<p>Donc on a vocation à rester compatible avec ce tout-matriciel; et à l’étendre mais de façon compatible quand nécessaire. Ainsi, “<span class="math inline">\(\cdot\)</span>” interprété comme “application d’une fonction linéaire”, même quand la-dite fonction linéaire est à valeurs fonctionnelle (comme dans les diff d’ordre supérieur)</p></li>
+<li><p>Il y a des problèmes qui supposent naturellement de considérer des fonctions avec des arguments matriciels. Par exemple, on comprend assez bien qu’on peut avoir besoin de différencier <span class="math inline">\(\det A\)</span> ou <span class="math inline">\(A^{-1}\)</span>. Même si le problème final n’a que des paramètres vectoriels, on a envie de faire des “chain rules” avec des arguments matriciels.</p></li>
+<li><p>Exemple pas trivial mais typique: calculer <span class="math inline">\(d^2f \circ g\)</span>. A l’ordre <span class="math inline">\(1\)</span> on a <span class="math inline">\(d f \circ g(x) = df(g(x)) \cdot df(x)\)</span>, ce qui est (interprétable comme) un produit de matrices.</p></li>
+</ul>
+<p>Positions aujourd’hui:</p>
+<ul>
+<li><p>rester dans un premier temps compatible avec le conventions du tout-matriciel, se contenter de noter l’écart avec les conventions NumPy, conserver une définition de <span class="math inline">\(\cdot\)</span> qui soit plus générale.</p></li>
+<li><p>minimiser les présentations du tensoriel: on peut se contenter de montrer que <span class="math inline">\(d^2f\)</span> est représentable comme un tableau à trois dimensions et de faire les calculs avec les indices pour évaluer <span class="math inline">\(d^f(x) \cdot h_1 \cdot h_2\)</span> par exemple; le cas différentielle d’ordre <span class="math inline">\(k\)</span> n’est guère plus complexe.</p></li>
+<li><p>regarder s’il y a des exemples éclairants à faire en TD sur de la différentielle à argument matriciels et “bootstrapper” la définition de la différentielle à ce moment-là, en “mettant à plat” la matrice par exemple ? Ou exploiter la définition d’Hadamard pour éviter d’avoir à faire ça ?</p></li>
+</ul>
+</section>
+<section>
+<h3 id="normes">Normes</h3>
+<p>Ne rien mettre dans ce chapitre proprement dit, mais lister ce dont on a besoin très concrètement pour inclure ces éléments dans le chapitre de topologie.</p>
+<p>J’ai assez envie de noter par défaut <span class="math inline">\(|x|\)</span> les normes dans <span class="math inline">\(\mathbb{R}^n\)</span> et <span class="math inline">\(\|L\|\)</span> la norme d’opérateur et d’annoter ces normes par des symboles (comme <span class="math inline">\(|x|_2\)</span>, <span class="math inline">\(\|A\|_{22}\)</span>) dans les contextes ou il faudrait être plus précis.</p>
+<p>Dans ce chapitre j’imagine que l’on peut (presque ?) toujours se limiter aux normes euclidiennes et à la norme d’opérateur induite, sauf peut-être si l’on en vient à montrer des choses comme le caractére intrinsèque de la définition de différentielle ? Non, même là ça va marcher.</p>
+<p>Donc concrêtement, définition de ces deux normes, pptés habituelles (notamment <span class="math inline">\(|Lx| \leq \|L\||x|\)</span>). Le coup de la norme d’opérateur associé à la représentation matricielle (via SVD), utile ou pas ? Si oui – et on peut en douter – alors il faut aussi parler de matrices dans le chapitre sur la topo. Ouch, non, éviter. En fait, il faudra sans peut-être “retarder” les rappels sur les opérateurs linéaires à ce chapitre, car c’est un gros focus du chapitre (idée d’approximation linéaire est centrale ici, avant ça serait abstrait).</p>
+<p>Auquel cas on parle de norme en topo, on montrer les exemple classiques en dim finie et on parle d’équivalence des normes, mais on attend ce chapitre pour parler d’opérateurs et de norme. Donc un volet à rajouter ici ?</p>
+</section>
+<section>
+<h2 id="preambule">Preambule</h2>
+<p>Les fragment de codes de ce document utilisent le langage Python 3. La bibliothèque <a href="http://www.numpy.org/">NumPy</a> est exploitée:</p>
+<pre><code>&gt;&gt;&gt; from numpy import *</code></pre>
+</section>
+</section>
+<section>
+<h1 id="notations">Notations</h1>
+<section>
+<h2 id="ensembles-et-fonctions">Ensembles et Fonctions</h2>
+<p>La notation classique <span class="math inline">\(f: A \to B\)</span> pour désigner une fonction <span class="math inline">\(f\)</span> d’un ensemble <span class="math inline">\(A\)</span> dans un ensemble <span class="math inline">\(B\)</span> suggère d’utiliser <span class="math inline">\(A \to B\)</span> pour désigner l’ensemble des fonctions de <span class="math inline">\(A\)</span> dans <span class="math inline">\(B\)</span>. Avec cette convention, <span class="math inline">\(f: A \to B\)</span> signifie la même chose que <span class="math inline">\(f \in A \to B\)</span>.</p>
+<p>La convention que nous adoptons a vocation à simplifier la manipulation de fonctions dont les valeurs sont des fonctions, un schéma très fréquent en calcul différentiel. Si <span class="math inline">\(f: A \to B\)</span> et <span class="math inline">\(g: B \to C\)</span>, la composée des functions <span class="math inline">\(f\)</span> et de <span class="math inline">\(g\)</span>, notée <span class="math inline">\(g \circ f\)</span>, appartient à <span class="math inline">\(A \to C\)</span> et est définie par <span class="math display">\[
+(g \circ f) (x) = g(f(x)).
+\]</span> Si l’on applique bien <span class="math inline">\(f\)</span> à <span class="math inline">\(x\)</span>, puis <span class="math inline">\(g\)</span> au résultat, il est néanmoins naturel d’inverser l’ordre d’apparition des functions dans la notation <span class="math inline">\(g \circ f\)</span>; il faut en effet s’adapter à la notation classique (infixe ou polonaise) qui désigne par <span class="math inline">\(f(x)\)</span> l’image de <span class="math inline">\(x\)</span> par <span class="math inline">\(f\)</span>. Pour cette même raison, il pourra être utile de d’utiliser <span class="math inline">\(B \leftarrow A\)</span> comme une variante de <span class="math inline">\(A \to B\)</span>. On pourra alors utiliser la règle <span class="math display">\[
+g: C \leftarrow B, \; f: B \leftarrow A \; \implies \; g \circ f: C \leftarrow A
+\]</span> ou les notations des ensembles et fonctions <span class="math inline">\(g\)</span>, <span class="math inline">\(f\)</span>, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> et <span class="math inline">\(C\)</span> restent dans le même ordre d’apparition et les deux occurrences de l’ensemble intermédiaire <span class="math inline">\(B\)</span> se touchent.</p>
+</section>
+<section>
+<h2 id="applications-linéaires-et-calcul-matriciel">Applications Linéaires et Calcul Matriciel</h2>
+<section>
+<h3 id="multiplication-scalaire-vecteur">Multiplication Scalaire-Vecteur</h3>
+<p>Pour tout scalaire <span class="math inline">\(\lambda \in \mathbb{R}\)</span> et vecteur <span class="math inline">\(x \in \mathbb{R}^n\)</span>, on notera <span class="math inline">\(\lambda x\)</span> ou parfois <span class="math inline">\(x \lambda\)</span> la multiplication du vecteur <span class="math inline">\(x\)</span> par le scalaire <span class="math inline">\(\lambda\)</span>. Lorsque <span class="math inline">\(\lambda\)</span> est non nul, on notera également <span class="math inline">\(x / \lambda\)</span> le vecteur <span class="math inline">\((1 / \lambda) x\)</span>.</p>
+<p>Un vecteur de <span class="math inline">\(\mathbb{R}^n\)</span> est représenté dans NumPy par un tableau à une dimension:</p>
+<pre><code>&gt;&gt;&gt; x = array([1, 2, 3])
+&gt;&gt;&gt; x.ndim
+1
+&gt;&gt;&gt; shape(x)
+(3,)
+&gt;&gt;&gt; size(x)
+3</code></pre>
+<p>La multiplication d’un scalaire et d’un vecteur est désignée par le symbole <code>*</code>:</p>
+<pre><code>&gt;&gt;&gt; 2 * x
+array([2, 4, 6])</code></pre>
+</section>
+<section>
+<h3 id="matrices">Matrices</h3>
+<p>Nous noterons <span class="math inline">\(\mathbb{R}^{m \times n}\)</span> l’ensemble des matrices à <span class="math inline">\(m\)</span> lignes et <span class="math inline">\(n\)</span> colonnes à coefficients réels. Une matrice telle que</p>
+<p><span class="math display">\[
+\left[
+\begin{array}{ccc}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{array}
+\right] \in \mathbb{R}^{2 \times 3}
+\]</span></p>
+<p>sera représentée avec NumPy par un tableau bi-dimensionnel:</p>
+<pre><code>&gt;&gt;&gt; A = array([[1, 2, 3], [4, 5, 6]])
+&gt;&gt;&gt; A
+array([[1, 2, 3],
+       [4, 5, 6]])
+&gt;&gt;&gt; A.ndim
+2
+&gt;&gt;&gt; shape(A)
+(2, 3)
+&gt;&gt;&gt; size(A)
+6</code></pre>
+</section>
+<section>
+<h3 id="mise-à-plat-des-matrices" class="warning">Mise à plat des matrices</h3>
+<p>Dans la notation <span class="math inline">\(\mathbb{R}^{m \times n}\)</span>, <span class="math inline">\(\times\)</span> est un symbole de séparation, purement syntactique: <span class="math inline">\(\mathbb{R}^{2 \times 3}\)</span> désigne ainsi l’ensemble des matrices à 2 lignes et 3 colonnes à coefficients réels et diffère de <span class="math inline">\(\mathbb{R}^6\)</span> qui désigne l’ensemble des <span class="math inline">\(6\)</span>-uplets à coefficients réels.</p>
+<p>Ces deux ensembles sont toutefois similaires: pour toute matrice <span class="math inline">\(A \in \mathbb{R}^{m\times n}\)</span>, on peut construire un <span class="math inline">\(mn\)</span>-uplet en listant tous les coefficients de la matrices en parcourant l’ensemble des lignes de la matrice de haut en bas et chaque ligne de gauche à droite; cette façon de faire définit un vecteur de <span class="math inline">\(\mathbb{R}^{mn}\)</span>. Par exemple:</p>
+<p><span class="math display">\[
+\left[
+\begin{array}{ccc}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{array}
+\right] \in \mathbb{R}^{2 \times 3}
+\; \mapsto \;
+(1,2,3,4,5,6) \in \mathbb{R}^6
+\]</span></p>
+<p>Cette opération est bijective; elle-même ainsi que son inverse sont linéaires. <span class="math inline">\(\mathbb{R}^{m \times n}\)</span> et <span class="math inline">\(\mathbb{R}^{m n}\)</span> sont donc isomorphes (en tant qu’espace vectoriels), ce que l’on notera:</p>
+<p><span class="math display">\[
+\mathbb{R}^{m \times n} \, \cong \, \mathbb{R}^{mn}
+\]</span></p>
+<p>Le passage de la forme matrice à la forme vecteur se fait de la façon suivante avec NumPy:</p>
+<pre><code>&gt;&gt;&gt; A
+array([[1, 2, 3],
+       [4, 5, 6]])
+&gt;&gt;&gt; a = reshape(A, (6,))
+&gt;&gt;&gt; a
+array([1, 2, 3, 4, 5, 6])
+&gt;&gt;&gt; reshape(a, (2, 3))
+array([[1, 2, 3],
+       [4, 5, 6]])</code></pre>
+</section>
+<section>
+<h3 id="applications-linéaires">Applications Linéaires</h3>
+<p>Notons <span class="math display">\[
+\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m
+\; \mbox{ ou } \;
+\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
+\]</span> l’ensemble des applications linéaires de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span>. La raison d’être des matrices <span class="math inline">\(\mathbb{R}^{m \times n}\)</span> est de représenter ces applications linéaires.</p>
+<p>Si <span class="math inline">\(A\)</span> désigne une application linéaire de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span>, on peut la décomposer en <span class="math inline">\(m\)</span> composantes <span class="math inline">\(A_i\)</span>, des applications de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}\)</span> telles que pour tout <span class="math inline">\(x\)</span> dans <span class="math inline">\(\mathbb{R}^n\)</span>, on ait <span class="math inline">\(A(x) = (A_1(x), A_2(x), \dots, A_m(x))\)</span>, ce que l’on note simplement <span class="math display">\[
+A = (A_1, A_2, \dots, A_m).
+\]</span> Si l’on désigne maintenant par <span class="math inline">\(e_j\)</span> le <span class="math inline">\(j\)</span>-ème vecteur de la base canonique de <span class="math inline">\(\mathbb{R}^n\)</span> <span class="math display">\[
+e_1 = (1, 0, 0, \dots, 0), \; e_2 = (0,1,0,\dots, 0), \; \dots \;, \;
+e_n = (0,0,0,\dots, 1),
+\]</span> il est possible d’associer à l’application linéaire <span class="math inline">\(A: \mathbb{R}^n \to \mathbb{R}^m\)</span> la matrice <span class="math display">\[
+[A_{ij}]_{ij} :=
+[A_i(e_j)]_{ij}=
+\left[ 
+\begin{array}{ccccc}
+A_1(e_1) &amp; A_1(e_2) &amp; \cdots &amp; A_1(e_n) \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+A_m(e_1) &amp; A_m(e_2) &amp; \cdots &amp; A_m(e_n)
+\end{array}
+\right] \in \mathbb{R}^{m \times n}.
+\]</span> Réciproquement, étant donné une matrice <span class="math display">\[
+[a_{ij}]_{ij}=
+\left[ 
+\begin{array}{ccccc}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{array}
+\right] \in \mathbb{R}^{m \times n},
+\]</span> il est possible de définir une application linéaire <span class="math inline">\(A: \mathbb{R}^n \to \mathbb{R}^m\)</span> par la relation <span class="math display">\[
+(A x)_i := \sum_{j} a_{ij} x_j
+\]</span> et cette opération est l’inverse de la précédente.</p>
+<p>Cette correspondance établit un isomorphisme d’espaces vectoriels entre les applications linéaires de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span> et les matrices de taille <span class="math inline">\(m \times n\)</span> à coefficients réels: <span class="math display">\[
+\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
+\, \cong \,
+\mathbb{R}^{m \times n} 
+\]</span></p>
+</section>
+<section>
+<h3 id="composition-dapplication-linéaires">Composition d’application linéaires</h3>
+<p>Si <span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span> désignent des applications linéaires de <span class="math inline">\(\mathbb{R}^p\)</span> dans <span class="math inline">\(\mathbb{R}^n\)</span> et de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span> respectivement, la fonction composée <span class="math inline">\(C = B \circ A\)</span> est une application linéaire qui vérifie <span class="math display">\[
+  C_{ij} = \sum_{k} B_{ik} A_{kj}.
+  \]</span> Autrement dit, la composition de fonction linéaires se traduit par la multiplication des matrices associées.</p>
+<p>Dans la suite on évitera en général l’utilisation du symbole <span class="math inline">\(\circ\)</span> pour désigner la composition d’applications linéaires, en lui préférant le symbol <span class="math inline">\(\cdot\)</span>. Le même symbole sera utilisé pour désigner le produit entre deux matrices (on évitera dans la mesure du possible de désigner le produit de deux matrices par simple juxtaposition des symboles).</p>
+<p>Avec NumPy, la méthode <code>dot</code> des tableaux permet de réaliser cette opération:</p>
+<pre><code>&gt;&gt;&gt; A = array([[1, 2, 3], [4, 5, 6]])
+&gt;&gt;&gt; B = array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+&gt;&gt;&gt; A.dot(B)
+array([[1, 2, 3],
+       [4, 5, 6]])</code></pre>
+</section>
+<section>
+<h3 id="vecteurs-colonnes-et-vecteur-lignes">Vecteurs colonnes et vecteur lignes</h3>
+<p>Dans le cadre du calcul matriciel, on associe souvent à un vecteur <span class="math inline">\(x=(x_1, \dots, x_n)\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> le vecteur colonne <span class="math display">\[
+\left[ 
+\begin{array}{c}
+x_1 \\
+\vdots \\
+x_n
+\end{array}
+\right] \in \mathbb{R}^{n \times 1}.
+\]</span> Dans cette terminologie, un vecteur colonne n’est pas, malgré son nom, un vecteur de <span class="math inline">\(\mathbb{R}^n\)</span>, mais bien une matrice de taille <span class="math inline">\(n \times 1\)</span>. Formellement, on a associé à <span class="math inline">\(x\)</span> une matrice <span class="math inline">\(X \in \mathbb{R}^{n\times 1}\)</span>, telle que <span class="math inline">\(X_{i1} = x_i\)</span>. Le produit entre une matrice et un vecteur colonne de taille compatible n’est rien d’autre qu’un produit matriciel habituel. L’intérêt de cette opération: si <span class="math inline">\(A\)</span> est une application linéaire de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span> et <span class="math inline">\(x\)</span> un vecteur de <span class="math inline">\(\mathbb{R}^n\)</span>, le vecteur image <span class="math inline">\(y=Ax \in \mathbb{R}^m\)</span> de <span class="math inline">\(x\)</span> par <span class="math inline">\(A\)</span> est représenté par le vecteur colonne qui est le produit entre la représentation de <span class="math inline">\(A\)</span> comme matrice et la représentation de <span class="math inline">\(x\)</span> comme vecteur colonne.</p>
+<p>Concrêtement, NumPy ne nécessite pas qu’un vecteur soit d’abord transformé en matrice pour réaliser un produit matrice-vecteur. La méthode <code>dot</code> des tableaux peut être utilisée ici aussi pour réaliser cette opération:</p>
+<pre><code>&gt;&gt;&gt; A = array([[1, 2, 3], [4, 5, 6]])
+&gt;&gt;&gt; x = array([7, 8, 9])
+&gt;&gt;&gt; A.dot(x)
+array([ 50, 122])</code></pre>
+<p>Le produit matriciel étant associatif, tant que l’on manipule des matrices et des vecteurs, il n’y a pas lieu de préciser si <span class="math inline">\(A \cdot B \cdot C\)</span> désigne <span class="math inline">\((A \cdot B) \cdot C\)</span> (association à gauche) ou <span class="math inline">\(A \cdot (B \cdot C)\)</span> (association à droite). Comme le produit matrice-vecteur est un produit matriciel classique, quand <span class="math inline">\(x\)</span> est un vecteur, <span class="math inline">\(A \cdot B \cdot x\)</span> désigne indifféremment <span class="math inline">\((A \cdot B) \cdot x\)</span> ou <span class="math inline">\(A \cdot (B \cdot x)\)</span>.</p>
+</section>
+</section>
+<section>
+<h2 id="notation-de-landau">Notation de Landau</h2>
+<section>
+<h3 id="objectif" class="meta">Objectif</h3>
+<p>Présenté volontairement dans le cadre le plus étroit possible qui satisfasse nos besoins (notamment, comparaison par rapport <span class="math inline">\(\|h\|^k\)</span>) suffit, ce qui évite un grand nombre de subtilités. Pas jugé d’un grand intérêt en tant que tel, nous ne développons absolument pas le “calcul des o”; il s’agit juste d’avoir une notation pratique pour noter des résultats, dans le cadre bien précis du calcul différentiel et des propriétés des restes dans les développements limités. Toutes les démonstrations commencent par la traduction des <span class="math inline">\(o\)</span> en fonctions; on est donc presque dans la situation ou l’on pourrait se passer de la notation; on aurait en contrepartie des résultats un peu plus lourd à énoncer, les conséquences seraient limitées à ça.</p>
+<p><strong>TODO:</strong> remarque sur rôle du <span class="math inline">\(o(1)\)</span> et comment on pourrait tout ramener à ça … retenir au moins que <span class="math inline">\(o(\|h\|) = o(1) \|h\|\)</span> ? La notation <span class="math inline">\(o(1)\)</span> est pratique pour désigner <span class="math inline">\(\varepsilon\)</span> directement, sans avoir à rappeler les hypothèses en détail.</p>
+</section>
+<section>
+<h3 id="petit-o-de-landau">Petit o de Landau</h3>
+<p>La notation <span class="math inline">\(o(\|h\|^k)\)</span>, où <span class="math inline">\(h \in \mathbb{R}^n\)</span> et <span class="math inline">\(k \in \mathbb{N}\)</span>, désigne toute expression de la forme <span class="math display">\[
+o(\|h\|^k) := \varepsilon(h) \|h\|^k
+\]</span> où <span class="math inline">\(\varepsilon\)</span> est une fonction définie dans un voisinage de <span class="math inline">\(0\)</span> et telle que <span class="math display">\[
+\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
+\]</span> En dehors de tout contexte, cette notation est très ambiguë puisque l’on ne précise même pas à quel ensemble appartiennent les valeurs de <span class="math inline">\(\varepsilon\)</span>. Les choses se précisent lorsqu’elle est utilisée dans une équation donnée, comme <span class="math display">\[
+\phi(h) = o(\|h\|^k)
+\]</span> où la fonction <span class="math inline">\(\phi\)</span> est connue. Cette relation signifie alors: la fonction <span class="math inline">\(\phi\)</span> est définie dans un voisinage <span class="math inline">\(V\)</span> de <span class="math inline">\(0\)</span> et vérifie: <span class="math display">\[
+\lim_{h \to 0} \frac{\phi(h)}{\|h\|} = 0.
+\]</span> La fonction <span class="math inline">\(\varepsilon\)</span> est alors définie de façon unique sur <span class="math inline">\(V\)</span> par la relation <span class="math display">\[
+\varepsilon(h) 
+= 
+\frac{\phi(h)}{\|h\|^k} \, \mbox{ si } \, h \neq 0
+\, \mbox{ et } \,
+\varepsilon(0) = 0.
+\]</span></p>
+</section>
+<section>
+<h3 id="continuité" class="example">Continuité</h3>
+<p>Si <span class="math inline">\(f\)</span> est une fonction définie d’un sous-ensemble de <span class="math inline">\(\mathbb{R}^n\)</span> et que <span class="math inline">\(x \in \mathbb{R}^n\)</span>, la notation <span class="math display">\[
+f(x+h) = o(1)
+\]</span> (ce qui correspond au cas ou <span class="math inline">\(k=0\)</span> puisque <span class="math inline">\(\|h\|^0 =1\)</span>) signifie donc que <span class="math inline">\(f\)</span> définie dans un voisinage de <span class="math inline">\(x\)</span> et que <span class="math display">\[
+\lim_{h \to 0} f(x + h) = 0,
+\]</span> autrement dit que <span class="math inline">\(x\)</span> appartient à l’intérieur du domaine de <span class="math inline">\(f\)</span> et que <span class="math inline">\(f\)</span> y est continue.</p>
+</section>
+</section>
+</section>
+<section>
+<h1 id="différentielle">Différentielle</h1>
+<section>
+<h3 id="dérivée">Dérivée</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R} \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est ouvert. La fonction <span class="math inline">\(f\)</span> est <em>dérivable</em> en <span class="math inline">\(x \in U\)</span> s’il existe une limite <span class="math inline">\(\ell \in \mathbb{R}^n\)</span> au <em>taux d’accroissement</em> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span>: <span class="math display">\[
+\ell = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+\]</span> Cette limite quand elle existe est unique; elle est appelée <em>dérivée de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span></em> et notée <span class="math inline">\(f&#39;(x)\)</span>: <span class="math display">\[
+f&#39;(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
+\]</span></p>
+</section>
+<section>
+<h3 id="remarque">Remarque</h3>
+<p>Cette définition de la dérivée nécessite la formation d’un taux d’accroissement et par conséquent que <span class="math inline">\(h\)</span> soit scalaire puisque l’on divise par <span class="math inline">\(h\)</span>; il ne peut être utilisé que si la fonction <span class="math inline">\(f\)</span> n’ait qu’un argument scalaire. En revanche, la fonction peut être à valeurs scalaires ou vectorielles sans qu’il soit nécessaire de changer cette définition. Plus précisement, une fonction vectorielle <span class="math inline">\(f=(f_1, \cdots, f_m)\)</span> sera dérivable en <span class="math inline">\(x\)</span> si et seulement si toutes ses composantes – qui sont des fonctions scalaires – sont dérivables; on a alors <span class="math display">\[
+  [f&#39;(x)]_i = f_i&#39;(x).
+  \]</span> Autrement dit, on peut dériver composante par composante.</p>
+</section>
+<section>
+<h3 id="remarque-1" class="ante">Remarque</h3>
+<p>La dérivabilité peut être définie de façon équivalente en passant par la notion de développement limité à l’ordre <span class="math inline">\(1\)</span>.</p>
+</section>
+<section>
+<h3 id="développement-limité-au-premier-ordre" class="theorem">Développement limité au premier ordre</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R} \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est ouvert. La fonction <span class="math inline">\(f\)</span> est <em>dérivable</em> en <span class="math inline">\(x \in U\)</span> si et seulement si il existe un vecteur <span class="math inline">\(\ell \in \mathbb{R}^m\)</span> tel que <span class="math display">\[
+f(x+h) = f(x) + \ell h + o(|h|).
+\]</span> Le vecteur <span class="math inline">\(\ell\)</span> est alors égal à <span class="math inline">\(f&#39;(x)\)</span>.</p>
+</section>
+<section>
+<h3 id="démonstration" class="proof">Démonstration</h3>
+<p>Supposons que le taux d’accroissement de <span class="math inline">\(f\)</span> ait une limite <span class="math inline">\(\ell\)</span> en <span class="math inline">\(x\)</span> et considérons la fonction <span class="math inline">\(\varepsilon\)</span>, à valeurs dans <span class="math inline">\(\mathbb{R}^m\)</span>, définie quand <span class="math inline">\(x+h \in U\)</span> par <span class="math inline">\(\varepsilon(0) = 0\)</span> et si <span class="math inline">\(h \neq 0\)</span> par <span class="math display">\[
+\varepsilon(h) = \frac{f(x+h) - f(x)}{|h|} - \ell \frac{h}{|h|}.
+\]</span> Puisque <span class="math inline">\(U\)</span> est ouvert, la fonction <span class="math inline">\(\varepsilon\)</span> est définie dans un voisinage de <span class="math inline">\(h=0\)</span>;<br />
+par construction, pour tout <span class="math inline">\(h\)</span> on a <span class="math inline">\(f(x+h) = f(x) + \ell h + \varepsilon(h) |h|\)</span>. Finalement, <span class="math inline">\(f\)</span> étant dérivable en <span class="math inline">\(x\)</span> de dérivée <span class="math inline">\(\ell\)</span>, comme pour <span class="math inline">\(h \neq 0\)</span>, <span class="math display">\[
+\varepsilon(h) = \left(\frac{f(x+h) - f(x)}{h} - \ell h \right) \frac{h}{|h|}
+\]</span> on a bien <span class="math inline">\(\lim_{h \to 0} \varepsilon(h) = 0\)</span>. Par conséquent, avec la notation de Landau, <span class="math display">\[
+f(x+h) = f(x) + \ell h + o(|h|).
+\]</span> Réciproquement, si l’égalité <span class="math inline">\(f(x+h) = f(x) + \ell h + \varepsilon(h) |h|\)</span> est satisfaite avec une fonction <span class="math inline">\(\varepsilon\)</span> conforme à la notation de Landau, <span class="math display">\[
+\frac{f(x+h) - f(x)}{h} = \ell + \varepsilon(h) \frac{h}{|h|}
+\]</span> et par conséquent le taux d’accroissement de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> tend bien vers <span class="math inline">\(\ell\)</span> quand <span class="math inline">\(h\)</span> tend vers <span class="math inline">\(0\)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="fonctions-linéaires-dune-variable-scalaire" class="note">Fonctions linéaires d’une variable scalaire</h3>
+<p>Ce développement limité de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> à l’ordre 1 fournit de façon explicite une approximation linéaire de la variation <span class="math inline">\(\Delta f(x, h)\)</span> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span>: <span class="math display">\[
+\Delta f(x, h) :=  f(x+h) - f(x) = \ell h + o(|h|)
+\]</span> Cette remarque n’est pas anodine car toutes les applications linéaires de <span class="math inline">\(\mathbb{R}\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span> sont de la forme <span class="math inline">\(h \mapsto \ell h\)</span> pour un certain vecteur <span class="math inline">\(\ell\)</span>. En effet, <span class="math inline">\(L\)</span> étant linéaire, pour tout <span class="math inline">\(h \in \mathbb{R}\)</span>, <span class="math display">\[L\cdot h = L \cdot (h \times 1) = h (L \cdot 1) = (L \cdot 1) h,\]</span> le vecteur <span class="math inline">\(\ell = L \cdot 1\)</span> convient donc. Par conséquent, on peut caractériser la dérivabilité de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> par l’existence d’une fonction linéaire de <span class="math inline">\(\mathbb{R}^m\)</span> dans <span class="math inline">\(\mathbb{R}\)</span> telle que <span class="math display">\[
+f(x) = f(x+h) + L \cdot h + o(|h|).
+\]</span> Cette caractérisation de la dérivée est directement généralisable au cas de fonction à <span class="math inline">\(n\)</span> variables.</p>
+</section>
+<section>
+<h3 id="différentielle-de-fréchet" class="definition theorem">Différentielle de Fréchet</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est ouvert. La fonction <span class="math inline">\(f\)</span> est <em><span class="index">différentiable</span></em> en <span class="math inline">\(x \in U\)</span> s’il existe une application linéaire <span class="math inline">\(L: \mathbb{R}^n \to \mathbb{R}^m\)</span> telle que <span class="math inline">\(f(x+h) = f(x) + L \cdot h + o(\|h\|).\)</span> Si c’est le cas, l’application <span class="math inline">\(L\)</span> est unique; nous la notons alors <span class="math inline">\(df(x)\)</span> et l’appelons <em><span class="index">différentielle de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span></span></em>. Elle est donc caractérisée par: <span class="math display">\[
+f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
+\]</span> La fonction <span class="math inline">\(f\)</span> est <em>différentiable</em> si elle est différentiable en tout point de <span class="math inline">\(U\)</span>.</p>
+</section>
+<section>
+<h3 id="remarque-2">Remarque</h3>
+<p>Si l’on considère à nouveau <span class="math inline">\(\Delta f(x, h)\)</span>, la variation de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span>, associée à la variation <span class="math inline">\(h\)</span> de l’argument <span class="math display">\[
+\Delta f(x, h) = f(x+h) - f(x),
+\]</span> on réalise que la différentielle de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span>, quand elle existe, constitue une approximation de cette variation qui est linéaire en <span class="math inline">\(h\)</span> <span class="math display">\[
+\Delta f(x, h) = df(x) \cdot h + o(\|h\|)
+\]</span> et d’une certaine façon la meilleure puisque cette relation la définit de façon unique.</p>
+</section>
+<section>
+<h3 id="note">Note</h3>
+<p>On pourra parler de fonction <span class="math inline">\(f\)</span> différentiable <em>sur <span class="math inline">\(U\)</span></em> si le domaine de définition de la fonction n’est pas évident dans le contexte (cas particulier des expressions, à suivre).</p>
+</section>
+<section>
+<h3 id="différentiation-composante-par-composante">Différentiation composante par composante</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est ouvert. La fonction <span class="math inline">\(f=(f_1, \cdots, f_m)\)</span> est différentiable en <span class="math inline">\(x \in U\)</span> si et seulement si chacune de ses composantes <span class="math inline">\(f_i\)</span> est différentiable en <span class="math inline">\(x\)</span>. On a alors pour tout <span class="math inline">\(h \in \mathbb{R}^n\)</span> <span class="math display">\[
+(df(x) \cdot h)_i = d f_i(x) \cdot h.
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve" class="proof">Preuve</h3>
+<p>Supposons <span class="math inline">\(f\)</span> différentiable en <span class="math inline">\(x\)</span>; soit <span class="math inline">\(\varepsilon\)</span> un <span class="math inline">\(o(1)\)</span> tel que <span class="math display">\[
+f(x + h) = f(x) + df(x)\cdot h + \varepsilon(h) \|h\|.
+\]</span> En prenant la <span class="math inline">\(i\)</span>-ème composante de cette equation, on obtient <span class="math display">\[
+f_i(x + h) = f_i(x) + (df(x)\cdot h)_i + \varepsilon_i(h) \|h\|.
+\]</span> On constate alors que l’application <span class="math inline">\([h \mapsto df(x) \cdot h]_i\)</span> est linéaire (l’application “prendre la <span class="math inline">\(i\)</span>-ème composante d’un vecteur de <span class="math inline">\(\mathbb{R}^m\)</span>” étant linéaire) et que <span class="math inline">\(\varepsilon_i\)</span> est un <span class="math inline">\(o(1)\)</span>. La <span class="math inline">\(i\)</span>-ème composante <span class="math inline">\(i\)</span> de <span class="math inline">\(f\)</span> est donc différentiable et <span class="math inline">\(df_i(x) \cdot h = df(x) \cdot h_i\)</span>.</p>
+<p>Réciproquement, si toutes les composantes de <span class="math inline">\(f\)</span> sont différentables en <span class="math inline">\(x\)</span>, c’est-à-dire si il existe pour chaque <span class="math inline">\(i\)</span> une fonction <span class="math inline">\(\varepsilon_i\)</span> qui soit un <span class="math inline">\(o(1)\)</span> et telle que <span class="math display">\[
+f_i(x + h) = f_i(x) + df_i(x)\cdot h + \varepsilon_i(h) \|h\|,
+\]</span> on a <span class="math display">\[
+f(x + h) = f_i(x) + (df_1(x)\cdot h, \dots, df_m(x)\cdot h) + 
+\varepsilon(h) \|h\|,
+\]</span> et <span class="math inline">\(\varepsilon = (\varepsilon_1, \dots, \varepsilon_m)\)</span> est un <span class="math inline">\(o(1)\)</span>. Comme la fonction <span class="math inline">\(h \mapsto (df_1(x)\cdot h, \dots, df_m(x)\cdot h)\)</span> est linéaire en <span class="math inline">\(h\)</span>, on en déduit que <span class="math inline">\(f\)</span> est différentiable en <span class="math inline">\(x\)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="domaine-de-définition-non-ouvert" class="note">Domaine de définition non ouvert</h3>
+<p>La définition de différentielle de <span class="math inline">\(f\)</span> suppose que le domaine de définition de <span class="math inline">\(f\)</span> soit un ensemble ouvert. Cette restriction permet de garantir qu’en tout point <span class="math inline">\(x\)</span> considéré du domaine de définition, on peut examiner la variation de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> dans “toutes les directions” pour voir s’il existe une approximation linéaire.</p>
+<p>Il y a néanmoins des façons de s’adapter quand le domaine de définition de <span class="math inline">\(f\)</span> n’est pas ouvert</p>
+<ul>
+<li><p>Si <span class="math inline">\(x\)</span> est un point de l’intérieur de ce domaine, on peut alors considérer la restriction de <span class="math inline">\(f\)</span> à un voisinage ouvert de <span class="math inline">\(x\)</span> et étudier la différentiabilité de cette restriction. Le résultat (existence de la différentielle et valeur le cas échéant) est indépendant du voisinage ouvert choisi.</p></li>
+<li><p>Si <span class="math inline">\(x\)</span> est un point de la frontière de ce domaine, on peut à l’inverse chercher s’il existe une extension de <span class="math inline">\(f\)</span> à un voisinage ouvert de <span class="math inline">\(x\)</span> qui soit différentiable en <span class="math inline">\(x\)</span>. En général cette approche ne garantit pas une définition unique de la différentielle de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span>, mais est suffisante dans des cas importants. Par exemple, elle permet d’étudier la <a href="#intervalle-fermé">différentiabilité (ou dérivabilité) de fonctions d’une variable scalaire sur des intervalles fermés de <span class="math inline">\(\mathbb{R}\)</span></a>.</p></li>
+</ul>
+</section>
+<section>
+<h3 id="section" class="ante"></h3>
+<p>Résumons les liens entre dérivée et différentielle:</p>
+</section>
+<section>
+<h3 id="différentielle-et-dérivée" class="theorem">Différentielle et Dérivée</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R} \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est ouvert et soit <span class="math inline">\(x \in U\)</span>. La fonction <span class="math inline">\(f\)</span> est différentiable en <span class="math inline">\(a\)</span> si et seulement si elle est dérivable en <span class="math inline">\(x\)</span>. Dérivée et différentielle de <span class="math inline">\(f\)</span> en <span class="math inline">\(a\)</span> se déduisent alors l’une de l’autre par les relations <span class="math display">\[
+f&#39;(x) = df(x) \cdot 1
+\; \mbox{ et } \;
+df(x) = (h \in \mathbb{R} \mapsto f&#39;(x) h).
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-1" class="proof">Démonstration</h3>
+<p>Une conséquence de la caractérisation de la dérivabilité des fonctions par l’existence de <a href="#développement-limité-au-premier-ordre">développement limité au premier ordre</a> et de la caractérisation des <a href="#fonctions-linéaires-dune-variable-scalaire">fonctions linéaires d’une variable scalaire</a>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="différencier-une-expression">Différencier une expression</h3>
+<p>L’expression <span class="math inline">\(df(x) \cdot h\)</span> dépend de trois éléments: la fonction <span class="math inline">\(f\)</span>, le point de référence <span class="math inline">\(x\)</span> et la variation de l’argument <span class="math inline">\(h\)</span>. Cette notation est sans ambiguité mais peut parfois être lourde à manipuler. Dans le calcul des dérivées, nos avons pris l’habitude, pour affirmer que la dérivée de la fonction <span class="math inline">\(x \mapsto x^2\)</span> et tout point <span class="math inline">\(x\)</span> de <span class="math inline">\(\mathbb{R}\)</span> est <span class="math inline">\(2x\)</span>, d’écrire simplement <span class="math display">\[
+  (x^2)&#39; = 2x.
+  \]</span> Le membre de gauche désigne la dérivée de la fonction <span class="math inline">\(x \mapsto x^2\)</span>, évaluée en <span class="math inline">\(x\)</span>. Avec notre notation pour la différentielle, à ce stade il nous faudrait écrire: <span class="math display">\[
+d (x \in \mathbb{R} \to x^2)(x) \cdot h = 2 x h.
+\]</span> Si l’on accepte de regrouper la fonction à différencier et le point où elle est calculée en un terme unique dans cette notation, qui est une expression de <span class="math inline">\(x\)</span>, on peut alors écrire: <span class="math display">\[
+d x^2 \cdot h = 2 x h,
+\]</span> ce qui est un progrès, même si la notation n’est pas totalement dénuée d’ambiguité<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. On remarque alors qu’en exploitant cette convention, le terme <span class="math inline">\(dx\)</span> vient à désigner <span class="math inline">\(d(x \mapsto x)(x)\)</span>; comme <span class="math inline">\((x)&#39; = 1\)</span>, on a donc <span class="math inline">\(dx \cdot h = 1 \times h = h\)</span>. Par conséquent, on peut réécrire l’équation ci-dessus sous la forme mémorable <span class="math display">\[
+dx^2 = 2 x dx.
+\]</span></p>
+</section>
+<section>
+<h3 id="note-1" class="meta">Note</h3>
+<p>Même si la notation de la différentielle en <span class="math inline">\(x\)</span> donne un indice sur l’étape suivante, il faut probablement retarder l’apparition de la notion d’application différentielle et construire une familiarité avec la notion de différentielle en <span class="math inline">\(a\)</span> avant de passer à l’étape d’après. La notion d’application différentielle ne devient nécessaire que pour parler de fonction continûment différentiable et de différentielle d’ordre supérieur.</p>
+</section>
+</section>
+<section>
+<h1 id="section-1" class="ante"></h1>
+<p>Sous les hypothèse ad hoc, la différentielle de <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> en <span class="math inline">\(x\)</span> est la composée des différentielles de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> et de <span class="math inline">\(g\)</span> en <span class="math inline">\(y=f(x)\)</span>.</p>
+<section>
+<h3 id="règle-de-différentiation-en-chaîne">Règle de différentiation en chaîne</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}\)</span> et <span class="math inline">\(g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}\)</span> deux fonctions définies sur des ouverts <span class="math inline">\(U\)</span> et <span class="math inline">\(V\)</span> et telles que <span class="math inline">\(f(U) \subset V\)</span>. Si <span class="math inline">\(f\)</span> est différentiable en <span class="math inline">\(x \in U\)</span> et <span class="math inline">\(g\)</span> est différentiable en <span class="math inline">\(f(x) \in V\)</span>, alors la composée <span class="math inline">\(g \circ f\)</span> est différentiable en <span class="math inline">\(x\)</span> et <span class="math display">\[
+d(g \circ f)(x) = dg(y) \cdot df(x) \; \mbox{ où } \; y = f(x).
+\]</span></p>
+</section>
+<section>
+<h3 id="notations-1" class="note">Notations</h3>
+<p>La formule précédente peut s’écrire de façon plus compacte sans la variable intermédiaire <span class="math inline">\(y\)</span>: <span class="math display">\[
+d(g \circ f)(x) = dg(f(x)) \cdot df(x).
+\]</span> Le terme <span class="math inline">\(dg(f(x))\)</span> y désigne la différentielle de <span class="math inline">\(g\)</span> en <span class="math inline">\(f(x)\)</span> et non la différentielle de l’expression <span class="math inline">\(g(f(x))\)</span> (qui est le terme que l’on souhaite calculer).</p>
+<p>Comment souvent, annoter les composants d’une formule avec les ensembles auquels ils appartiennent permet de s’assurer qu’elle n’est pas trivialement incorrecte. Ici par exemple: <span class="math display">\[
+\stackrel{\mathbb{R}^m \leftarrow \mathbb{R}^p}{d(g\circ f)(x)} 
+\, = \,  
+\stackrel{\mathbb{R}^m \leftarrow \mathbb{R}^n}{dg(y)} 
+\cdot
+\stackrel{\mathbb{R}^n \leftarrow \mathbb{R}^p}{df(x)} \; \mbox{ où } \; y = f(x).
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-1">Preuve</h3>
+<p>L’objectif de la preuve est de montrer que <span class="math display">\[
+g(f(x+h)) - g(f(x)) =  (dg(f(x)) \circ df(x)) \cdot h + o(h).
+\]</span> La fonction <span class="math inline">\(g\)</span> étant différentiable en <span class="math inline">\(f(x)\)</span>, il existe une fonction <span class="math inline">\(\varepsilon_1\)</span> définie sur un voisinage de <span class="math inline">\(0\)</span> et à valeurs dans <span class="math inline">\(\mathbb{R}^m\)</span> telle que <span class="math inline">\(\varepsilon_1(k) \to \varepsilon_1(0)= 0\)</span> quand <span class="math inline">\(k\)</span> tend vers <span class="math inline">\(0\)</span> et <span class="math display">\[
+g(f(x)+k) - g(f(x)) = dg(f(x)) \cdot k + \varepsilon_1(k) \|k\|.
+\]</span> Choisissons <span class="math inline">\(k=f(x+h) - f(x)\)</span> dans cette équation, de telle sorte que <span class="math display">\[
+g(f(x)+k) = g(f(x) + (f(x+h) - f(x)) = g(f(x+h)).
+\]</span> Nous obtenons donc <span class="math display">\[
+g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (f(x+h)-f(x)) + \varepsilon_1(k) \|k\|.
+\]</span></p>
+<p>Notons que la fonction <span class="math inline">\(\varepsilon_2(h) = \varepsilon_1(f(x+h) - f(x))\)</span> est définie dans un voisinage de l’origine et que par continuité de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span>, <span class="math inline">\(f(x+h) - f(x)\)</span> tend vers <span class="math inline">\(0\)</span> quand <span class="math inline">\(h\)</span> tend vers <span class="math inline">\(0\)</span>, et par conséquent <span class="math inline">\(\varepsilon_2(h) \to \varepsilon_2(0) = 0\)</span> quand <span class="math inline">\(h\to 0\)</span>. On a donc <span class="math display">\[
+\begin{split}
+g(f(x+h)) - g(f(x)) &amp;= dg(f(x)) \cdot (f(x+h)-f(x)) \\
+                    &amp;\phantom{=} + \varepsilon_2(h) \|f(x+h)-f(x)\|.
+\end{split}
+\]</span></p>
+<p>Comme <span class="math inline">\(f\)</span> est différentiable en <span class="math inline">\(x\)</span>, il existe une fonction <span class="math inline">\(\varepsilon_3\)</span> définie sur un voisinage de <span class="math inline">\(0\)</span> et à valeurs dans <span class="math inline">\(\mathbb{R}^n\)</span> telle que <span class="math inline">\(\varepsilon_3(h) \to \varepsilon_3(0)= 0\)</span> quand <span class="math inline">\(h\)</span> tend vers <span class="math inline">\(0\)</span> et <span class="math display">\[
+f(x+h) - f(x) = df(x) \cdot h + \varepsilon_3(h) \|h\|.
+\]</span> En substituant cette relation dans la précédente, nous obtenons <span class="math display">\[
+g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (df(x) \cdot h) + \varepsilon(h) \|h\|
+\]</span> où <span class="math inline">\(\varepsilon(0) = 0\)</span> et dans le cas contraire, <span class="math display">\[
+\varepsilon(h) = \varepsilon_2(h) \|df(x) \cdot (h / \|h\|) + \varepsilon_3(h) \| + dg(f(x)) \cdot \varepsilon_3(h).
+\]</span> Il suffit pour conclure de prouver que <span class="math inline">\(\varepsilon(h) \to 0\)</span> quand <span class="math inline">\(h \to 0\)</span>. Or, <span class="math display">\[
+\begin{split}
+\|\varepsilon(h)\| &amp; \leq \|\varepsilon_2(h)\| \times \|df(x) \cdot (h / \|h\|) \| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \| + \|dg(f(x)) \cdot \varepsilon_3(h)\| \\
+&amp; \leq \|\varepsilon_2(h)\|  \times \|df(x)\| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \| + \|dg(f(x))\| \times \|\varepsilon_3(h)\|
+\end{split}
+\]</span> le résultat est donc acquis.</p>
+<p><strong>TODO;</strong> décomposer en règle de la somme et du facteur constant ? Omettre facteur constant et le voir comme un corollaire?</p>
+</section>
+<section>
+<h3 id="linéarité-de-la-différentielle" class="theorem">Linéarité de la différentielle</h3>
+<p>La combinaison linéaire <span class="math inline">\((x, y) \in \mathbb{R}^2 \mapsto \lambda x + \mu y \in \mathbb{R}\)</span> est différentiable en tout point pour tous scalaires <span class="math inline">\(\lambda\)</span> et <span class="math inline">\(\mu\)</span> et <span class="math display">\[
+d(\lambda x + \mu y) = \lambda dx + \mu dy.
+\]</span></p>
+</section>
+<section>
+<h3 id="remarque-3" class="note">Remarque</h3>
+<p>Si l’on note <span class="math inline">\(\mathrm{c}\)</span> l’application de combinaison linéaire, ce résultat signifie que pour tout couple <span class="math inline">\((h_x, h_y)\)</span> de réels, on a <span class="math display">\[
+d \mathrm{c} (x, y)  \cdot (h_x, h_y) = \lambda h_x + \mu h_y.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-2" class="proof">Démonstration</h3>
+<p><strong>TODO</strong></p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="règle-du-produit" class="theorem">Règle du produit</h3>
+<p>L’application produit <span class="math inline">\((x, y) \in \mathbb{R}^2 \mapsto xy \in \mathbb{R}\)</span> est différentiable en tout point et <span class="math display">\[
+d xy = x dy + y dx
+\]</span></p>
+</section>
+<section>
+<h3 id="remarque-4" class="note">Remarque</h3>
+<p>Si l’on note <span class="math inline">\(\mathrm{p}\)</span> l’application produit, ce résultat signifie que pour tout couple <span class="math inline">\((h_x, h_y)\)</span> de réels, on a <span class="math display">\[
+d \mathrm{p} (x, y)  \cdot (h_x, h_y) = x h_y + y h_x.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-3" class="proof">Démonstration</h3>
+<p><strong>TODO:</strong> (cas matriciel pour le produit ? A un moment ?). En exercice ?</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+</section>
+<section>
+<h1 id="jacobienne-dérivées-partielles-et-directionnelles">Jacobienne, dérivées partielles et directionnelles</h1>
+<section>
+<h3 id="objectifs" class="meta">Objectifs</h3>
+<p>TODO: à l’oral, insister sur différentielle comme point de départ et le reste (dérivées partielles, directionnelle, etc) s’ensuivent. Montrer que la démarche inverse ne marche pas (bien que la jacobienne puisse être formellement définie, la chain rule ne marche pas, donc on ne peut pas les multiplier)</p>
+</section>
+<section>
+<h3 id="matrice-jacobienne" class="definition">Matrice Jacobienne</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^n\)</span> où <span class="math inline">\(U\)</span> est ouvert et soit <span class="math inline">\(x\)</span> un point de <span class="math inline">\(U\)</span>. Quand <span class="math inline">\(f\)</span> est différentiable en <span class="math inline">\(x\)</span>, on appelle <em>matrice jacobienne</em> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> et l’on note <span class="math inline">\(J_f(x)\)</span> la matrice <span class="math inline">\(\mathbb{R}^{m \times n}\)</span> associée à la différentielle <span class="math inline">\(df(x)\)</span> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> qui est une application linéaire de <span class="math inline">\(\mathbb{R}^m\)</span> dans <span class="math inline">\(\mathbb{R}^n\)</span></p>
+<p><strong>TODO:</strong> à quelle moment est-ce que j’indique que <span class="math display">\[
+[d f(x) \cdot e_j]_i = df_i(x) \cdot e_j ?
+\]</span></p>
+</section>
+<section>
+<h3 id="dérivée-partielle" class="definition">Dérivée Partielle</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est un ouvert et soit <span class="math inline">\(x \in U\)</span>. Lorsque la <span class="math inline">\(i\)</span>-ème fonction partielle de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> <span class="math display">\[
+y_i \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)
+\]</span> est dérivable en <span class="math inline">\(y_i = x_i\)</span>, on appelle <span class="math inline">\(i\)</span>-ème <em>dérivée partielle</em> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> et on note <span class="math inline">\(\partial_i f(x) \in \mathbb{R}^m\)</span> sa dérivée. Alternativement, <span class="math display">\[
+\begin{split}
+\partial_i f(x)
+&amp;= \lim_{t \to 0} \frac{f(x + t e_i) - f(x)}{t} \\
+&amp;= \lim_{t \to 0} \frac{f(x_1, \dots, x_i + t, \dots, x_n) - f(x_1, \dots, x_n)}{t} 
+\end{split}
+\]</span> quand le second membre existe.</p>
+</section>
+<section>
+<h3 id="dérivées-partielles-et-différentielle">Dérivées partielles et différentielle</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est un ouvert et soit <span class="math inline">\(x\)</span> un point de <span class="math inline">\(U\)</span>. Lorsque <span class="math inline">\(f\)</span> est différentiable en <span class="math inline">\(x\)</span>, toutes ses dérivées partielles existent et vérifient <span class="math display">\[
+\partial_i f(x) = df(x) \cdot e_i,
+\]</span> ou de façon équivalente, pour tout <span class="math inline">\(h \in \mathbb{R}^n\)</span> <span class="math display">\[
+df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-2" class="proof">Preuve</h3>
+<p>La différentiabilité de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> établit l’existence d’une fonction <span class="math inline">\(\varepsilon\)</span> qui soit un <span class="math inline">\(o(1)\)</span> et telle que <span class="math display">\[
+f(x+h) = f(x) + df(x) \cdot h + \varepsilon(h) \|h\|.
+\]</span> Soit <span class="math inline">\(t \neq 0\)</span>; substituer <span class="math inline">\(h := t e_j\)</span> dans cette relation fournit <span class="math display">\[
+f(x+te_j) = f(x) + df(x) \cdot (t e_j) + \varepsilon(t e_j) \|t e_j\|.
+\]</span> En exploitant la linéarité de la différentielle, on obtient donc <span class="math display">\[
+df(x) \cdot e_j = \frac{f(x+te_j) - f(x)}{t} + \varepsilon(t e_j) \frac{|t|}{t}.
+\]</span> Par conséquent, en passant à la limite quand <span class="math inline">\(t \to 0\)</span>, on obtient <span class="math display">\[
+df(x) \cdot e_j = \lim_{t \to 0} \frac{f_i(x+t e_j) - f_i(x)}{t} =: \partial_j f(x)
+\]</span> La différentielle pouvant être calculée composante par composante, on en déduit que <span class="math display">\[
+\partial_i f(x)df_i(x) \cdot e_j = \lim_{t \to 0} \frac{f_i(x+t e_j) - f_i(x)}{t}.
+\]</span> Pour obtenir la seconde forme de cette relation, il suffit de décomposer un vecteur <span class="math inline">\(h=(h_1, \dots, h_m)\)</span> sous la forme <span class="math display">\[
+h = (h_1, \dots, h_m) = h_1 e_1 + \dots + h_m e_m
+\]</span> et d’exploiter la linéarité de la différentielle; on obtient <span class="math display">\[
+df(x) \cdot h 
+= df(x) \cdot \left( \sum_{i} h_i e_i \right)
+= \sum_i (df(x) \cdot e_i) h_i 
+= \sum_i \partial_i f(x) h_i.
+\]</span></p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="section-2" class="ante"></h3>
+<p>La dérivée partielle n’est qu’un cas particulier du concept de dérivée directionnelle, limitée aux directions de la base canonique de <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+</section>
+<section>
+<h3 id="dérivée-directionnelle" class="definition">Dérivée directionnelle</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est un ouvert et soit <span class="math inline">\(x\)</span> un point de <span class="math inline">\(U\)</span>. On appelle <em>dérivée directionnelle</em> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> dans la direction <span class="math inline">\(h \in \mathbb{R}^n\)</span> la valeur <span class="math display">\[
+f&#39;(x, h) = (t \mapsto f(x + th))&#39;(0) 
+= \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
+\]</span> quand elle existe.</p>
+</section>
+<section>
+<h3 id="dérivée-partielle-et-directionnelle" class="theorem">Dérivée partielle et directionnelle</h3>
+<p>La fonction <span class="math inline">\(f\)</span> admet une dérivée directionnelle en <span class="math inline">\(x\)</span> dans la direction <span class="math inline">\(e_i\)</span> si et seulement si sa <span class="math inline">\(i\)</span>-ème dérivée partielle existe; on a alors <span class="math display">\[
+f&#39;(x, h) = \partial_i f(x).
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-3" class="proof">Preuve</h3>
+<p>Direct.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="matrice-jacobienne-1" class="definition">Matrice Jacobienne</h3>
+<p><span class="math display">\[
+Df(x) = [df(x)] = [\partial_j f_i(x)]_{ij}
+=
+\left[
+\begin{array}{c}
+\left[d f_1(x)\right] \\
+\vdots \\
+\left[d f_m(x)\right]
+\end{array}
+\right]
+\]</span></p>
+<p><strong>TODO.</strong></p>
+<p><strong>TODO:</strong> dumb down “différentielles” partielles en “dérivées partielles”. Et c’est une “découverte”, on part de la représentation sous forme matricielle des différentielles, les dérivée partielles ne sont pas considérées comme un point de départ.</p>
+<p><strong>TODO:</strong> variables nommées, impact notation.</p>
+<p><strong>TODO.</strong> Eventuellement un mot sur le concept d’application partielle ? Exploiter la chain rule plutôt que la construction élémentaire de l’introduction ?</p>
+</section>
+<section>
+<h3 id="todo" class="meta">TODO</h3>
+<p>Fcts <span class="math inline">\(C^1\)</span> et réciproque partielle… autre section ? ICI ?</p>
+</section>
+</section>
+<section>
+<h1 id="inégalité-des-accroissement-finis">Inégalité des accroissement finis</h1>
+<section>
+<h3 id="différentielle-et-intégrale">Différentielle et Intégrale</h3>
+<p>Pour comparer <span class="math inline">\(f(a+h)\)</span> et <span class="math inline">\(f(a)\)</span> de l’égalité, lorsque la fonction <span class="math inline">\(f\)</span> est continue en <span class="math inline">\(a\)</span>, nous disposons de l’égalité <span class="math inline">\(f(a + h) = f(a) + o(h)\)</span>, mais cette relation est asymptotique. Pour maîtriser l’écart entre <span class="math inline">\(f(a+h)\)</span> et <span class="math inline">\(f(a)\)</span> nous devons être mesure de faire tendre <span class="math inline">\(h\)</span> vers <span class="math inline">\(0\)</span>. Si la grandeur <span class="math inline">\(h\)</span> est fixé, cette relation est inexploitable.</p>
+<p>Toutefois, dans cette situation, si <span class="math inline">\(f\)</span> est différentiable sur tout le segment <span class="math inline">\([a,b]\)</span>, il est possible de relier <span class="math inline">\(f(a+h)\)</span> à <span class="math inline">\(f(a)\)</span>.</p>
+</section>
+<section>
+<h3 id="théorème" class="theorem">Théorème</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est ouvert, soit <span class="math inline">\(a \in U\)</span> et <span class="math inline">\(h \in \mathbb{R}^n\)</span> tel que le segment <span class="math inline">\([a, a+h]\)</span> <span class="math display">\[
+  [a, a+h] = \{a + th \; | \; t \in [0,1]\}
+  \]</span> soit inclus dans <span class="math inline">\(U\)</span>. Si <span class="math inline">\(f\)</span> est différentiable en tout point de <span class="math inline">\([a, a+h]\)</span>, <span class="math display">\[
+f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-4">Preuve</h3>
+<p>Considérons la fonction <span class="math inline">\(\phi: [0,1] \to \mathbb{R}^n\)</span> définie par <span class="math display">\[
+\phi(t) = f(a + th)
+\]</span> La fonction <span class="math inline">\(\phi\)</span> est dérivable sur <span class="math inline">\([0,1]\)</span> comme composée des fonction différentiables <span class="math inline">\(f\)</span> et <span class="math inline">\(t \mapsto a + th\)</span> et sa dérivée est donnée par <span class="math display">\[
+\begin{split}
+\phi&#39;(t) &amp;= d\phi(t) \cdot 1 \\
+         &amp;= (df(a+th) \circ d(t\mapsto a+th)) \cdot 1 \\
+         &amp;= df(a+th) \cdot (d(t\mapsto a+th) \cdot 1) \\
+         &amp;= df(a+th) \cdot (t \mapsto a+th)&#39; \\
+         &amp;= df(a+th) \cdot h
+\end{split}
+\]</span> Par le théorème fondamental du calcul, on a donc <span class="math display">\[
+f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi&#39;(t) \, dt 
+                                  = \int_0^1 df(a+th) \cdot h \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="inégalité-des-accroissements-finis-fonction-dune-variable-réelle" class="theorem">Inégalité des accroissements finis (fonction d’une variable réelle)</h3>
+<p>Soit <span class="math inline">\(f:[a, b] \to \mathbb{R}^m\)</span> où <span class="math inline">\(a \in \mathbb{R}\)</span>, <span class="math inline">\(b \in \mathbb{R}\)</span>, <span class="math inline">\(a \leq b\)</span> et <span class="math inline">\(m \in \mathbb{N}\)</span>. Si <span class="math inline">\(f\)</span> est dérivable sur <span class="math inline">\([a,b]\)</span> et <span class="math inline">\(M\)</span> est un majorant de <span class="math inline">\(\|f&#39;\|\)</span>, c’est-à-dire si <span class="math display">\[
+\mbox{pour tout } t \in [a, b], \;\|f&#39;(t)\| \leq M.
+\]</span> Alors <span class="math display">\[
+\|f(b) - f(a)\| \leq M (b-a)
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-5" class="proof">Preuve</h3>
+<p>Par définition, la fonction <span class="math inline">\(f&#39;\)</span> est intégrable au sens de Newton et <span class="math display">\[
+f(b) - f(a) = \int_a^b f&#39;(t) \, dt.
+\]</span> Elle est donc également intégrable au sens de Henstock-Kurzweil <strong>[TODO: référence]</strong>; en combinant la définition de l’intégrale de Henstock-Kurzweil et le lemme de Cousin, on peut trouver des approximations arbitrairement précises de l’intégrale de <span class="math inline">\(f&#39;\)</span> par des sommes de Riemann: pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span>, il existe une subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de l’intervalle <span class="math inline">\([a,b]\)</span> telle que <span class="math display">\[
+\left\| f(b) - f(a) -  S(f&#39;, \mathcal{D}) \right\| 
+=
+\left\| \int_a^b f&#39;(t) \, dt -  S(f&#39;, \mathcal{D}) \right\| 
+\leq 
+\varepsilon.
+\]</span> En exploitant l’inégalité triangulaire, on obtient donc <span class="math display">\[
+\|f(b) - f(a)\|
+\leq 
+\|S(f&#39;, \mathcal{D})\| + \varepsilon.
+\]</span> Supposons que <span class="math inline">\(\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; 0 \leq i \leq p-1 \}\)</span>. En utilisant à nouveau l’inégalité triangulaire, on peut majorer en norme la somme de Riemann <span class="math inline">\(S(f&#39;,\mathcal{D})\)</span>: <span class="math display">\[
+\|S(f&#39;, \mathcal{D})\|
+=
+\left\|\sum_{i=0}^{p-1} f&#39;(t_i) (x_{i+1} - x_i)\right\|
+\leq 
+\sum_{i=0}^{p-1} \|f&#39;(t_i)\| |x_{i+1} - x_i|.
+\]</span> Comme <span class="math inline">\(\|f&#39;(t_i)\| \leq M\)</span> pour tout <span class="math inline">\(i \in \{0,\dots,p-1\},\)</span> <span class="math display">\[
+\sum_{i=0}^{p-1} \|f&#39;(t_i)\| |x_{i+1} - x_i|
+\leq
+\sum_{i=0}^{p-1} M |x_{i+1} - x_i|
+\leq M \sum_{i=0}^{p-1} |x_{i+1} - x_i|
+\]</span> Finalement, comme <span class="math inline">\(a=x_0 \leq x_1 \leq \dots x_p = b\)</span>, <span class="math display">\[
+\sum_{i=0}^{p-1} |x_{i+1} - x_i| = \sum_{i=0}^{p-1} (x_{i+1} - x_i) =
+x_p - x_0 = b - a
+\]</span> et donc <span class="math inline">\(\|S(f&#39;, \mathcal{D})\| \leq M (b - a).\)</span> Par conséquent, <span class="math inline">\(\|f(b) - f(a)\| \leq M(b-a) + \varepsilon\)</span> et comme le choix de <span class="math inline">\(\varepsilon &gt; 0\)</span> est arbitraire, on en déduit le résultat cherché: <span class="math inline">\(\|f(b) - f(a)\| \leq M(b-a).\)</span></p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="inégalité-des-accroissements-finis" class="theorem">Inégalité des accroissements finis</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est ouvert, supposée différentiable en tout point d’un segment <span class="math inline">\([a, a+h]\)</span> inclus dans <span class="math inline">\(U\)</span> et dont la différentielle est majorée en norme par <span class="math inline">\(M\)</span> sur <span class="math inline">\([a, a+h]\)</span>, c’est-à-dire telle que <span class="math display">\[
+\mbox{pour tout } x \in [a, a+h], \;\|df(x)\| \leq M.
+\]</span> Alors <span class="math display">\[
+\|f(a+h) - f(a)\| \leq M \|h\|
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-6" class="proof">Preuve</h3>
+<p>Steps: define <span class="math inline">\(\phi: t \in [0,1] \mapsto f(a+th)\)</span>. Deduce <span class="math inline">\(\phi&#39;(t) = df(a+th)(h)\)</span> (chaine + rule + derivative/differential link). Conclude with <a href="#inégalité-des-accroissements-finis-fonction-dune-variable-réelle">above</a></p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+</section>
+<section>
+<h1 id="points-critiques">Points critiques</h1>
+</section>
+<section>
+<h1 id="différentielles-dordre-supérieur">Différentielles d’ordre supérieur</h1>
+<section>
+<h2 id="dos-and-dont" class="note">Do’s and don’t</h2>
+<p>Ne pas expliciter la correspondance avec les applis <span class="math inline">\(n\)</span>-linéaires en général (l’isomorphisme de trop). Une notation serait probablement la bienvenue, mais la collection des <span class="math inline">\(\cdot h \cdot h \dots\)</span> en <span class="math inline">\((h, h, \dots)\)</span> peut être ambigu (pourrait être lue comme la décomposition d’un vecteur …). Trouver une solution ici. OK, on se contente de multiplier les dots, avec convention association à gauche (“greedy”)</p>
+<p>Ce qui importe:</p>
+<ul>
+<li><p>comprendre comment “passer à l’échelle” de la diff à la diff d’ordre 2, qu’il n’y a “rien de nouveau” si l’on a déja compris comment différencier une fonction à valeurs matricielle (/tensorielle).</p></li>
+<li><p>donc dvlper en préambule le calcul diff appliqué aux fcts à valeurs fonctionnelles/tensorielles. Ne pas faire l’équivalent pour les arguments, cela n’est pas nécessaire pour traiter du calcul différentiel d’ordre supérieur.</p></li>
+<li><p>comprendre comment calculer <span class="math inline">\(d^2f(x)\cdot k \cdot h\)</span> quand on sait qu’il existe sans “monter dans les étages” (trick: différencier <span class="math inline">\(df(x)\cdot h\)</span>).</p></li>
+<li><p>comprendre quel terme représente <span class="math inline">\(d^2f(x)\cdot k \cdot h\)</span> en pratique, quelle approximation ce terme fait. (Nota: au passage c’est crucial pour établir la symmétrie !).</p></li>
+<li><p>représentation tensorielle, dérivées partielles. Application au Hessien.</p></li>
+<li><p>Sommes de Taylor (avec o, avec reste intégral)</p></li>
+</ul>
+<p>Nota: peut-être opportun de minimiser le coté diff par les valeurs matricielles. Idées serait de caractériser <span class="math inline">\(df\)</span> en vérifiant la différentiabilité de <span class="math inline">\(x \mapsto df(x)\cdot h\)</span> pour tout <span class="math inline">\(h\)</span>: on ne “monte” pas en rang et on peut définit <span class="math inline">\(d^2f(x) \cdot k \cdot h := d(x \mapsto df(x)\cdot h)(x) \cdot k\)</span></p>
+</section>
+<section>
+<h2 id="différentielles-dordre-supérieur-1">Différentielles d’ordre supérieur</h2>
+<section>
+<h3 id="note-2" class="speaker-note">Note</h3>
+<p>La démarche pour présenter les différentielles d’ordre supérieur a été simplifié, mais le narratif peut profiter des “échecs” qui mène à notre solution finale:</p>
+<ol type="1">
+<li><p>On a envie de définir <span class="math inline">\(d^2f(x)\)</span> comme <span class="math inline">\(d(x \mapsto df(x))(x)\)</span>. C’est <em>exactement</em> la même démarche que la dérivée, et c’est une démarche légitime que l’on adoptera pour le cadre de la dimension infinie. Seul “problème”, l’objet <span class="math inline">\(df(x)\)</span> appartient aux applis linéaire de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span> et à ce stade on ne sait différencier que des fonctions à valeurs dans <span class="math inline">\(\mathbb{R}^p\)</span>.</p></li>
+<li><p>On “patche” la démarche précédente: ok, <span class="math inline">\(df(x)\)</span> est linéaire de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span>, mais c’est isomorphe (via les matrices, plus la “mise à plat”) à <span class="math inline">\(\mathbb{R}^p\)</span> pour <span class="math inline">\(p=mn\)</span>. Si on note <span class="math inline">\(\pi\)</span> cette correspondance, on peut étudier la diff de <span class="math inline">\(\pi \circ df\)</span> et quand ça existe, le seul pb est que l’objet associé produit des valeurs dans <span class="math inline">\(\mathbb{R}^p\)</span> au lieu de trucs dans <span class="math inline">\(\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m\)</span>, mais c’est pas grave, on peut inverser la transformation, ce qui donne comme définition <span class="math display">\[
+    d^2 f(x) = \pi^{-1} \circ d(\pi \circ df)(x).
+    \]</span> c’est-à-dire <span class="math display">\[
+    d^2 f(x) \cdot h \cdot k = (\pi^{-1} (d(\pi \circ df)(x) \cdot h)) \cdot k
+    \]</span> (attention ici, “<span class="math inline">\(\cdot\)</span>” ou “<span class="math inline">\(\circ\)</span>” deviennent dangereux à utiliser sans parenthèse, on a basculé dans du higher-order avec <span class="math inline">\(\pi\)</span>; et la convention que je pensais utiliser en remplaçant <span class="math inline">\(\circ\)</span> par <span class="math inline">\(\cdot\)</span> quand l’application est linéaire déconne avec <span class="math inline">\(\pi\)</span> parce qu’il y a des applications non-linéaire “plus bas”; le cadre ou “<span class="math inline">\(\cdot\)</span>” fait le job sans ambiguité serait à restreindre/préciser …). Bon, voilà pourquoi je crois que même si c’est tentant sur le principe, il ne faut pas présenter les choses comme ça au final. Mais ça peut faire l’objet d’exercices intéressants.</p></li>
+<li><p>La version final, hyper simple: on se refuse à différencier un objet fonctionnel, on l’évalue sur une direction / variation de l’argument et là on s’est ramené au cadre usuel, donc on requière la diff et on constate que le résultat est linéaire par rapport à la première variation choisie, et on en déduit l’“anatomie” de la différentielle d’ordre 2 (c’est donc moins une construction qu’une découverte …). Au passage, par linéarité, on peut se convaincre facilement que notre définition de la différentielle d’ordre 2 revient à vérifier que chaque dérivée partielle (d’une fonction différentiable) est différentiable. Donc on vérifie l’existence avec la différentielle, mais on peut utiliser les dérivées partielles pour les calculs intermédiaires.</p></li>
+</ol>
+</section>
+<section>
+<h3 id="note-3" class="design-note">Note</h3>
+<p>Notre définition simplifie la vie en dimension finie en se ramenant directement à chaque étape de la façon la plus simple au cadre de la différentielle de fonctions de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span>. Mais elle n’est probablement pas adapté au cadre de la dimension finie; l’adaptation la plus simple consisterait à écrire l’expression qui fait que <span class="math inline">\(df(x) \cdot h\)</span> existe en terme de limite par rapport à un terme <span class="math inline">\(k\)</span>, mais à requérir en plus que cette limite existe uniformément par rapport à l’argument <span class="math inline">\(h\)</span> tant que <span class="math inline">\(h\)</span> reste borné (voir par exemple <a href="https://en.wikipedia.org/wiki/Fr%C3%A9chet_derivative#Higher_derivatives">ici</a>).</p>
+<p>A ce stade, le cadre abstrait classique devient probablement préférable, car simplificateur, mais</p>
+<ul>
+<li><p>un contre-exemple qui montre que notre définition ne “marche pas” en dimension infinie (absence d’équivalence avec la classique) serait intéressant</p></li>
+<li><p>une note / un exercice sur cette définition alternative au cadre abstrait, plus proche de la démarche que nous avons choisi pour la dimension finie pourrait être intéressant</p></li>
+</ul>
+</section>
+<section>
+<h3 id="différentielle-dordre-2" class="definition">Différentielle d’ordre 2</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> une fonction différentiable dans un voisinage d’un point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span>. On dira que <span class="math inline">\(f\)</span> est <em>deux fois différentiable en <span class="math inline">\(x\)</span></em> si pour tout vecteur <span class="math inline">\(h\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span>. La fonction <span class="math inline">\(x \mapsto df(x) \cdot h\)</span> est différentiable en <span class="math inline">\(x\)</span>. La <em>différentielle d’ordre <span class="math inline">\(2\)</span> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span></em>, notée <span class="math inline">\(d^2f(x)\)</span>, est définie comme l’application linéaire telle que pour tout <span class="math inline">\(h\)</span> dans <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math display">\[
+d^2 f(x) \cdot h := d(x\mapsto df(x)\cdot h)(x),
+\]</span> c’est-à-dire pour tout vecteur <span class="math inline">\(k\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math display">\[
+d^2f(x) \cdot h \cdot k = d(x\mapsto df(x)\cdot h)(x) \cdot k.
+\]</span></p>
+</section>
+<section>
+<h3 id="remarques">Remarques</h3>
+<ul>
+<li><p>On peut vérifier que le terme <span class="math inline">\(d(x\mapsto df(x)\cdot h)(x)\)</span> dépend bien linéairement de <span class="math inline">\(h\)</span>, ce qui justifie l’assertion que <span class="math inline">\(d^2f(x)\)</span> est linéaire et la notation “<span class="math inline">\(\cdot\)</span>” lorsqu’elle est appliquée à un argument <span class="math inline">\(h\)</span>.</p></li>
+<li><p>Par construction, le terme <span class="math inline">\(d(x\mapsto df(x)\cdot h)(x)\)</span> est une application linéaire de <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^m\)</span>, donc la fonction <span class="math inline">\(d^2f(x)\)</span> associe linéairement à un vecteur de <span class="math inline">\(\mathbb{R}^n\)</span> une application linéaire de <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^m\)</span>. Autrement dit, <span class="math display">\[
+d^2f(x) \in (\mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m)),
+\]</span> ce qui se décline successivement en <span class="math display">\[
+d^2f(x) \cdot h \in (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m),
+\; \mbox{ et } \;
+(d^2f(x) \cdot h) \cdot k \in \mathbb{R}^m.
+\]</span></p></li>
+<li><p>Pour alléger ces notations, on pourra considérer que dans les notations d’espace fonctionnels, le symbole “<span class="math inline">\(\to\)</span>” associe à droite, par exemple: <span class="math display">\[
+A \to B \to C := A \to (B \to C),
+\]</span> <span class="math display">\[    
+A \to B \to C \to D := A \to (B \to (C \to D)).
+\]</span> La convention associée: lors de l’application d’une fonction linéaire, le symbole “<span class="math inline">\(\cdot\)</span>” associe à gauche, par exemple: <span class="math display">\[
+L \cdot h \cdot k :=  (L \cdot h) \cdot k,
+\]</span> <span class="math display">\[
+L \cdot h \cdot k \cdot l := ((L \cdot h) \cdot k) \cdot l.
+\]</span></p></li>
+</ul>
+</section>
+<section>
+<h3 id="LVD" class="lemma">Variation de la différentielle</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> une fonction deux fois différentiable en un point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span>. On a <span class="math display">\[
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|)
+\]</span></p>
+<p><strong>TODO:</strong> en pratique, on combinera le résultat ci-dessus avec la symmétrie de la différentielle d’ordre 2 pour mémoriser le résultat. Mais ce résultat est lui-même utile dans la preuve de la symmétrie. Comment présenter les résultat au final ? Se débrouiller pour minorer l’impact de la forme “temporaire” dans l’exposé oral c’est clair, mais dans le poly comment faire pour casser la boucle ? Du coup, ce résultat serait un lemme, et le “vrai” théorème simplifié suivra. OK.</p>
+</section>
+<section>
+<h3 id="remarque-5">Remarque</h3>
+<p>Dans l’équation ci-dessus, le “<span class="math inline">\(o(\|k\|)\)</span>” est inséré dans une équation entre applications linéaires de <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^m\)</span>. Il doit donc être interprété comme <span class="math display">\[
+o(\|k\|) = E(k) \|k\| \; \mbox{ où } \; 
+\, E(k) \in \mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m, \,
+\lim_{h \to 0} E(k) = E(0) = 0. 
+\]</span></p>
+<p><strong>TODO?</strong>. “Sortir” les lemmes du théorème ? Voire les notation <span class="math inline">\(\Delta f\)</span> ? Ce sont des résultats majeurs ? (ça éclaire des choses sur ce qu’est <span class="math inline">\(d^2f\)</span> et comment la calculer alors pourquoi pas … ça pourrait aussi nous éviter des lemmes “nestés” quoi qu’il en soit dans la preuve du théorème. A la limite, le résultat sur la symmétrie de <span class="math inline">\(\Delta f\)</span> peut rester dedans, c’est ça le coeur de la preuve. Et je sors l’autre sur l’approximation de <span class="math inline">\(d^2f\)</span> par <span class="math inline">\(\Delta^2 f\)</span>.)</p>
+</section>
+<section>
+<h3 id="preuve-7">Preuve</h3>
+<p>Par définition de la différentielle d’ordre 2 en <span class="math inline">\(x\)</span>, pour tout vecteur <span class="math inline">\(h\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> fixé, on a, pour tout vecteur <span class="math inline">\(k\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math display">\[
+df(x+k) \cdot h = df(x) \cdot h + d^2f(x) \cdot h \cdot k + o(\|k\|),
+\]</span> c’est-à-dire qu’il existe pour tout <span class="math inline">\(h\)</span> une fonction <span class="math inline">\(\varepsilon_h\)</span>, définie dans un voisinage de <span class="math inline">\(0 \in \mathbb{R}^n\)</span>, nulle et continue en <span class="math inline">\(0\)</span>, telle que <span class="math display">\[
+df(x+k) \cdot h 
+= 
+df(x) \cdot h + d^2f(x) \cdot h \cdot k + \varepsilon_{h}(k) \|k\|,
+\]</span> Pour tout vecteur <span class="math inline">\(k\)</span> non nul, on a <span class="math display">\[
+\varepsilon_{h}(k) = \frac{1}{\|k\|}\left(df(x+k) \cdot h - df(x) \cdot h - d^2f(x) \cdot h \cdot k \right),
+\]</span> le terme <span class="math inline">\(\varepsilon_{h}(k)\)</span> est donc linéaire en <span class="math inline">\(h\)</span>; notons <span class="math inline">\(E(k)\)</span> l’application linéaire de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span> qui est nulle quand <span class="math inline">\(k=0\)</span> et définie dans le cas contraire par <span class="math inline">\(E(k) \cdot h = \varepsilon_h (k)\)</span>. On a donc pour tout <span class="math inline">\(h\)</span> <span class="math display">\[
+df(x+k) \cdot h 
+= 
+df(x) \cdot h + d^2f(x) \cdot h \cdot k + (E(k)\cdot h) \|k\|,
+\]</span> soit <span class="math display">\[
+df(x+k)
+= 
+df(x) + d^2f(x) \cdot \bullet \cdot k + E(k) \|k\|,
+\]</span> Par ailleurs, pour tout couple de vecteurs <span class="math inline">\(h\)</span> et <span class="math inline">\(k\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span>, on a <span class="math display">\[
+\begin{split}
+\|E(k) \cdot h\| &amp;= \left\| E(k) \cdot \left(\sum_i h_i e_i \right) \right\| \\
+&amp;\leq \sum_i \|E(k) \cdot e_i\| |h_i| \\
+&amp;\leq \left(\sum_i \|E(k) \cdot e_i\|\right) \|h\| 
+= \left(\sum_i \|\varepsilon_{e_i}(k)\|\right) \|h\|
+\end{split},
+\]</span> donc la norme d’opérateur de <span class="math inline">\(E(k)\)</span> vérifie <span class="math display">\[
+\|E(k)\| \leq \sum_i \|\varepsilon_{e_i}(k)\| \to 0
+\, \mbox{ quand } k \, \to 0,
+\]</span> ce qui prouve le résultat cherché.</p>
+</section>
+<section>
+<h3></h3>
+<p><strong>TODO: </strong> définir <span class="math inline">\(\Delta^2 f\)</span>; définir <span class="math inline">\(\Delta f\)</span> au préalable qqpart, et rappeler ici.</p>
+<p>Le théorème qui suit montre que <span class="math inline">\(d^2f(x)\cdot h\cdot k\)</span> fournit une approximation de <span class="math inline">\(\Delta^2 f(x, h, k)\)</span> quand <span class="math inline">\(h\)</span> et <span class="math inline">\(k\)</span> sont petits.</p>
+<h4 id="variation-et-différentielle-dordre-deux" class="theorem">Variation et différentielle d’ordre deux</h4>
+<p>Pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span>, il existe un <span class="math inline">\(\eta &gt; 0\)</span> tel que si <span class="math inline">\(\|h\| \leq \eta\)</span> et <span class="math inline">\(\|k\| \leq \eta\)</span>, alors <span class="math display">\[
+\left\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k \right\| \leq \varepsilon (\|h\| + \|k\|)^2.
+\]</span></p>
+<h4 id="preuve-8" class="proof">Preuve</h4>
+<p><strong>TODO:</strong> <span class="math inline">\(h\)</span> et <span class="math inline">\(k\)</span> assez petits pour que les expressions soient toutes définies.</p>
+<p>La différence <span class="math inline">\(e\)</span> entre <span class="math inline">\(\Delta^2 f(x,h, k)\)</span> et <span class="math inline">\(d^2 f(x) \cdot h \cdot k\)</span> vaut <span class="math display">\[
+\begin{split}
+e &amp;= (f(x+h+k) - f(x+k)) - (f(x+h) - f(x))) - d^2f(x)\cdot h\cdot k \\
+  &amp;= (f(x+h+k) - f(x+h) - d^2f(x) \cdot h \cdot k) \\
+  &amp;\phantom{=} - (f(x+k) - f(x) - d^2f(x) \cdot 0 \cdot k)
+\end{split}
+\]</span> Par conséquent, si l’on définit <span class="math inline">\(g\)</span> par <span class="math display">\[
+g(u) = f(x+u+k) - f(x+u) - d^2f(x) \cdot u \cdot k,
+\]</span> la différence vaut <span class="math inline">\(e = g(h) - g(0).\)</span> Cette différence peut être majorée par le théorème des accroissements finis: <span class="math inline">\(g\)</span> est différentiable sur le segment <span class="math inline">\([0, h]\)</span> et <span class="math display">\[
+dg(u) = df(x+u+k) - df(x+u) - d^2f(x) \cdot \bullet \cdot k. 
+\]</span> Comme <span class="math display">\[
+\begin{split}
+dg(u) &amp;= (df(x+u+k) - df(x) - d^2f(x) \cdot \bullet \cdot (u+k) )\\
+      &amp;\phantom{=} - (df(x+u) - df(x) - d^2f(x) \cdot \bullet \cdot u),
+\end{split}
+\]</span> par le théorème controllant la <a href="#variation-de-la-différentielle">variation de la différentielle</a>, pour <span class="math inline">\(\varepsilon &gt; 0\)</span> quelconque, comme <span class="math inline">\(\|u+k\| \leq \|h\| + \|k\|\)</span> et <span class="math inline">\(\|u\| \leq \|h\|\)</span>, on peut trouver un <span class="math inline">\(\eta &gt; 0\)</span> tel que si <span class="math inline">\(\|h\| &lt; \eta\)</span> et <span class="math inline">\(\|k\| &lt; \eta,\)</span> alors <span class="math display">\[
+\|dg(u)\| \leq \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|.
+\]</span> Par conséquent, le théorème des accroissement finis fournit <span class="math display">\[
+\|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
+\]</span></p>
+</section>
+<section>
+<h3 id="SD2" class="theorem">Symmétrie de la différentielle d’ordre <span class="math inline">\(2\)</span></h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> une fonction deux fois différentiable en un point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span>. Pour tout couple de vecteur <span class="math inline">\(h\)</span> et <span class="math inline">\(k\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span>, on a <span class="math display">\[
+d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-9">Preuve</h3>
+<p>Notons <span class="math inline">\(\Delta f(x, h) = f(x+h) - f(x)\)</span> la variation de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> associée pour une variation <span class="math inline">\(h\)</span> de l’argument et <span class="math inline">\(\Delta^2 f(x, h, k)\)</span> la variation de <span class="math inline">\(\Delta f(x, h)\)</span> en <span class="math inline">\(x\)</span> pour une variation <span class="math inline">\(k\)</span> de l’argument: <span class="math display">\[
+\Delta^2 f(x, h, k) = (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)).
+\]</span> On peut remarquer que la variation d’ordre <span class="math inline">\(2\)</span> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> est symmétrique: lorsque <span class="math inline">\(\Delta^2 f(x, h, k)\)</span> est définie, <span class="math inline">\(\Delta^2 f(x, k, h)\)</span> également et <span class="math display">\[
+\Delta^2 f(x, h, k) = \Delta^2 f(x, k, h). 
+\]</span></p>
+</section>
+<section>
+<h3></h3>
+<p>La conclusion s’imposera alors: en effet, si <span class="math inline">\(h\)</span> et <span class="math inline">\(k\)</span> sont des vecteurs de <span class="math inline">\(\mathbb{R}^n\)</span> en exploitant la symmétrie de <span class="math inline">\(\Delta^2f\)</span>, on obtient <span class="math display">\[\begin{multline*}
+\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
+\leq \\
+\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
+\end{multline*}\]</span> En substituant <span class="math inline">\(th\)</span> à <span class="math inline">\(h\)</span> et <span class="math inline">\(tk\)</span> à <span class="math inline">\(tk\)</span> dans cette expression, puis en faisant tendre <span class="math inline">\(t\)</span> vers <span class="math inline">\(0\)</span>, on peut rendre <span class="math inline">\(th\)</span> et <span class="math inline">\(tk\)</span> arbitrairement proches de <span class="math inline">\(0\)</span> et donc s’assurer que pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span>, <span class="math display">\[
+\begin{split}
+\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
+&amp;=
+\frac{1}{t^2}\|d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th \| \\
+&amp;\leq \frac{1}{t^2}2 \varepsilon (\|th\|+\|tk\|)^2 \\ 
+&amp;= 2\varepsilon (\|h\|+\|k\|)^2,
+\end{split}
+\]</span> ce qui nous assure que <span class="math inline">\(d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.\)</span></p>
+</section>
+<section>
+<h3 id="variation-de-la-différentielle" class="theorem">Variation de la différentielle</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> une fonction deux fois différentiable en un point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span>. On a <span class="math display">\[
+df(x+k) = df(x) + d^2 f(x) \cdot k + o(\|k\|)
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-10">Preuve</h3>
+<p>Par le <a href="#LVD">lemme sur la variation de la différentielle</a>, on sait que <span class="math display">\[
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
+\]</span> La <a href="#SD2">différentielle d’ordre 2 étant symmétrique</a>, <span class="math display">\[
+d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h,
+\]</span> et par conséquent <span class="math display">\[
+df(x+k) = df(x) + (h \mapsto (d^2 f(x) \cdot k) \cdot h) + o(\|k\|),
+\]</span> qui est l’égalité cherchée.</p>
+</section>
+<section>
+<h3></h3>
+</section>
+<section>
+<h3></h3>
+<p>La notion de différentielle d’ordre <span class="math inline">\(2\)</span> se généralise sans difficulté à un ordre plus élevé, par induction sur l’ordre de la différentielle.</p>
+</section>
+<section>
+<h3 id="différentielle-dordre-k" class="definition">Différentielle d’ordre <span class="math inline">\(k\)</span></h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> une fonction différentiable à l’ordre <span class="math inline">\(k-1\)</span> dans un voisinage d’un point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span>. On dira que <span class="math inline">\(f\)</span> est <em><span class="math inline">\(k\)</span> fois différentiable en <span class="math inline">\(x\)</span></em> si pour tous vecteurs <span class="math inline">\(h_1, \dots, h_{k-1}\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span>, la fonction <span class="math display">\[x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1}\]</span> est différentiable en <span class="math inline">\(x\)</span>. La <em>différentielle d’ordre <span class="math inline">\(k\)</span> de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span></em>, notée <span class="math inline">\(d^k f(x)\)</span> est définie comme l’application linéaire telle que pour tout <span class="math inline">\(h_1, \dots, h_{k-1}\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math display">\[
+d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x)
+\]</span> ou de façon équivalente <span class="math display">\[
+d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x) \cdot h_k
+\]</span></p>
+</section>
+<section>
+<h3 id="remarque-6">Remarque</h3>
+<p>On a <span class="math display">\[
+d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
+\]</span></p>
+</section>
+</section>
+<section>
+<h2 id="fonctions-à-valeurs-matriciellestensorielles">Fonctions à valeurs matricielles/tensorielles</h2>
+<p>Objectif: étendre les constructions du calcul différentielle aux fonctions <span class="math inline">\(f: U \subset \mathbb{R}^p \to \mathbb{R}^{m \times n}\)</span> (après valeurs scalaires et vectorielles, matricielles).</p>
+<p>Etape 1: valeurs interprétée indifférement comme une matrice de taille <span class="math inline">\(m \times n\)</span> ou comme une application linéaire de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^m\)</span>.</p>
+<section>
+<h3 id="ex-vm" class="example">Examples</h3>
+<p>On peut associer à tout vecteur <span class="math inline">\(x\)</span> non nul de <span class="math inline">\(\mathbb{R}^n\)</span> la projection orthogonale sur <span class="math inline">\(x\)</span>; c’est une application linéaire <span class="math inline">\(P(x)\)</span> qui a tout vecteur <span class="math inline">\(y\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> associe le vecteur <span class="math display">\[
+P(x) \cdot y = \left&lt;\frac{x}{\|x\|}, y\right&gt; \frac{x}{\|x\|}
+= \frac{x}{\|x\|} \cdot \left(\frac{x}{\|x\|}\right)^t \cdot y
+\]</span></p>
+<p>Produit scalaire, exp matrice, etc ?</p>
+</section>
+<section>
+<h3 id="définition">Définition</h3>
+<p><strong>TODO:</strong> motiver la nature de <span class="math inline">\(dF\)</span> quand <span class="math inline">\(F\)</span> est à valeurs fonctionnelles.</p>
+<p>Si <span class="math inline">\(F: U \subset \mathbb{R}^n \to \mathbb{R}^{p \times m}\)</span>, la différentielle de <span class="math inline">\(F\)</span> au point <span class="math inline">\(x \in \mathbb{R}^n\)</span> est l’application <span class="math inline">\(dF(x)\)</span> telle que <span class="math inline">\(dF(x)\cdot h\)</span> soit la meilleure approximation, linéaire en <span class="math inline">\(h\)</span>, de <span class="math inline">\(F(x+h) - F(x)\)</span> pour de petites valeurs de <span class="math inline">\(h\)</span> <span class="math display">\[
+F(x+h) = F(x) + dF(x) \cdot h + o(h)
+\]</span></p>
+<p>L’application <span class="math inline">\(dF(x)\)</span> est donc une application linéaire de <span class="math inline">\(\mathbb{R}^n\)</span> dans les applications linéaires de <span class="math inline">\(\mathbb{R}^m\)</span> dans <span class="math inline">\(\mathbb{R}^p\)</span>: <span class="math display">\[
+dF(x): \mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^m \stackrel{\ell}{\to} \mathbb{R}^p)
+\]</span> On peut associer à cette application un tenseur de rang 3, <strong>TODO, def etc.</strong></p>
+<p><span class="math display">\[
+[dF(x) \cdot e_k \cdot e_j]_i
+\]</span></p>
+<p><strong>TODO</strong> <span class="math inline">\(\cdot\)</span> désigne la contraction tensorielle, composition, etc. Généraliser le cas matriciel, montrer les correspondances avec le cadre fonctionnel. Isomorphisme</p>
+<p><span class="math display">\[
+\mathbb{R}^{m \times n \times n}
+\; \simeq \;
+\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n \stackrel{\ell}{\leftarrow} \mathbb{R}^n
+\]</span></p>
+<p><strong>TODO:</strong> régle du produit:</p>
+<p><span class="math inline">\(H(x) = G(x) \cdot F(x)\)</span>, <span class="math display">\[
+dH(x) \cdot h = (dG(x) \cdot h) F(x) + (dF(x) \cdot h) G(x)
+\]</span></p>
+</section>
+</section>
+<section>
+<h2 id="misc.">Misc.</h2>
+<p><span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span></p>
+<p><span class="math inline">\(df: U \subset \mathbb{R}^n \to (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m)\)</span></p>
+<p><span class="math display">\[
+d^2 f: 
+U \subset \mathbb{R}^n 
+\to 
+(\mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m))
+\]</span></p>
+<p>Tensor stuff</p>
+<section>
+<h3></h3>
+<p><strong>TODO:</strong> définition. Il va falloir être malin …</p>
+</section>
+<section>
+<h3 id="théorème-1">Théorème</h3>
+<p>Si <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> est deux fois différentiable en <span class="math inline">\(x\)</span>, pour tout <span class="math inline">\(h \in \mathbb{R}^n\)</span> et <span class="math inline">\(k \in \mathbb{R}^n\)</span>, <span class="math display">\[
+d^2 f(x) \cdot k \cdot h = d(x \mapsto df(x) \cdot k) \cdot h.
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-11">Preuve</h3>
+<p><strong>TODO</strong></p>
+</section>
+<section>
+<h3 id="théorème-2">Théorème</h3>
+<p><strong>TODO:</strong> approximation concrête de <span class="math inline">\(d^2 f(x) \cdot h \cdot k\)</span>.</p>
+</section>
+</section>
+</section>
+<section>
+<h1 id="exercices">Exercices</h1>
+<section>
+<h2 id="vecteurs-vecteurs-colonnes-vecteurs-lignes">Vecteurs, vecteurs colonnes, vecteurs lignes</h2>
+<p>Soit <span class="math inline">\(x = (x_1, \cdots, x_n)\)</span> un vecteur de <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<ol type="1">
+<li><p>Le vecteur colonne <span class="math inline">\(X\)</span> associé à <span class="math inline">\(x\)</span> <span class="math display">\[
+X = \left[ 
+\begin{array}{c}
+x_1 \\
+\vdots \\
+x_n
+\end{array}
+\right] \in \mathbb{R}^{n \times 1}.
+\]</span> représente une application linéaire. Laquelle ?</p></li>
+<li><p>Le vecteur colonne ligne <span class="math inline">\(X^t\)</span> associé à <span class="math inline">\(x\)</span> <span class="math display">\[
+X^t = \left[ 
+\begin{array}{ccc}
+x_1 &amp; \cdots &amp; x_n
+\end{array}
+\right] \in \mathbb{R}^{1 \times n}.
+\]</span> représente une application linéaire. Laquelle ?</p></li>
+</ol>
+<section>
+<h3 id="réponses">Réponses</h3>
+<ol type="1">
+<li><p>Par définition, le vecteur colonne associé à <span class="math inline">\(x\)</span> représente l’application linéaire <span class="math inline">\(A\)</span> de <span class="math inline">\(\mathbb{R}\)</span> dans <span class="math inline">\(\mathbb{R}^n\)</span> telle que pour tout <span class="math inline">\(h \in \mathbb{R}\)</span> et tout <span class="math inline">\(i=1,\dots, n\)</span>, <span class="math display">\[
+(A h)_i = \sum_{k=1}^1 X_{ik} h = x_i h,
+\]</span> soit <span class="math inline">\(A h = h\)</span>.</p></li>
+<li><p>Par définition, le vecteur ligne associé à <span class="math inline">\(x\)</span> représente l’application linéaire <span class="math inline">\(B\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}\)</span> telle que pour tout <span class="math inline">\(h=(h_1, \dots, h_n) \in \mathbb{R}^n\)</span> <span class="math display">\[
+B h = \sum_k x_i h_i,
+\]</span> soit <span class="math inline">\(B h = \left&lt; x, h \right&gt;\)</span> ou <span class="math inline">\(\left&lt;\cdot, \cdot\right&gt;\)</span> désigne le produit scalaire dans <span class="math inline">\(\mathbb{R}^n\)</span>.</p></li>
+</ol>
+</section>
+</section>
+<section>
+<h2 id="intervalle-fermé">Dérivée sur un intervalle fermé</h2>
+<p><strong>TODO:</strong> deux options: extension globale ou locale, y repenser.</p>
+<p>Montrer qu’une fonction <span class="math inline">\(f\)</span> est dérivable sur l’intervalle fermé <span class="math inline">\([a, b]\)</span> (<span class="math inline">\(f&#39;(a)\)</span> et <span class="math inline">\(f&#39;(b)\)</span> désignant alors les dérivées à droite de <span class="math inline">\(f\)</span> en <span class="math inline">\(a\)</span> et à gauche de <span class="math inline">\(f\)</span> en <span class="math inline">\(b\)</span>) si et seulement si il existe un <span class="math inline">\(\varepsilon &gt; 0\)</span> et une extension <span class="math inline">\(g\)</span> de <span class="math inline">\(g\)</span> sur <span class="math inline">\(\left]a-\varepsilon, b+\varepsilon\right[\)</span> tel que <span class="math inline">\(g\)</span> soit dérivable.</p>
+<p>Montrer qu’alors, <span class="math inline">\(f&#39; = g&#39;|_{[a, b]}\)</span>.</p>
+</section>
+<section>
+<h2 id="dérivation-en-chaîne">Dérivation en chaîne</h2>
+<p>Montrer que la règle de dérivation en chaîne ci-dessous, concernant les fonctions d’une variable, se déduit de la <a href="#règle-de-différentiation-en-chaîne">règle générale de différentiation en chaîne</a>.</p>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R} \to \mathbb{R}\)</span> et <span class="math inline">\(g: V \subset \mathbb{R} \to \mathbb{R}\)</span> deux fonctions définies sur des ouverts <span class="math inline">\(U\)</span> et <span class="math inline">\(V\)</span> et telles que <span class="math inline">\(f(U) \subset V\)</span>. Si <span class="math inline">\(f\)</span> est différentiable en <span class="math inline">\(x \in U\)</span> et <span class="math inline">\(g\)</span> est différentiable en <span class="math inline">\(f(x) \in V\)</span>, alors la composée <span class="math inline">\(g \circ f\)</span> est différentiable en <span class="math inline">\(x\)</span> et <span class="math display">\[
+(g \circ f)&#39;(x) = g&#39;(f(x)) f&#39;(x).
+\]</span></p>
+<section>
+<h3 id="réponse">Réponse</h3>
+<p>Les fonction <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> sont dérivables donc différentiables (cf. <a href="#différentielle-et-dérivée">Différentielle et Dérivée</a>). Par application de la [règle de différentiation en chaîne][Règle de dérivation en chaîne], leur composée <span class="math inline">\(g \circ f\)</span> est donc différentiable. C’est une fonction d’une variable, elle est donc dérivable, à nouveau en invoquant <a href="#différentielle-et-dérivée">le lien entre différentielle et dérivée</a>. Pour ces trois fonctions, on obtient la dérivée en appliquant la différentielle à <span class="math inline">\(1\)</span>; La <a href="#règle-de-différentiation-en-chaîne">règle de différentiation en chaîne</a> fournissant <span class="math display">\[
+d(g \circ f)(x) = dg(f(x)) \cdot df(x),
+\]</span> on en déduit <span class="math display">\[
+\begin{split}
+(g \circ f)&#39;(x) &amp;= (d(g \circ f)(x)) \cdot 1 \\
+&amp;= (dg(f(x)) \cdot df(x) )\cdot 1 \\
+&amp;=dg(f(x)) \cdot (df(x) \cdot 1) \\
+&amp;= dg(f(x)) \cdot (f&#39;(x) 1) \\
+&amp;= (dg(f(x)) \cdot 1) f&#39;(x) \\ 
+&amp;= g&#39;(f(x)) f&#39;(x)
+\end{split}
+\]</span></p>
+</section>
+</section>
+<section>
+<h2 id="calcul-méca">Calcul Méca</h2>
+<p>Faire les calculs menant à <span class="math inline">\(C(q, \dot{q})\dot{q}\)</span> en mécanique lagrangienne ?</p>
+</section>
+<section>
+<h2 id="dérivée-directionnelle-dhadamard">Dérivée directionnelle d’Hadamard</h2>
+<p>Source: <span class="citation" data-cites="Sha90">(Shapiro <a href="#ref-Sha90">1990</a>)</span></p>
+<p><strong>Rappel.</strong> Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^m\)</span> où <span class="math inline">\(U\)</span> est ouvert et <span class="math inline">\(x \in U\)</span>. La fonction <span class="math inline">\(f\)</span> est <em>directionnellement dérivable</em> si pour tout vecteur <span class="math inline">\(h \in \mathbb{R}^n\)</span>, la dérivée directionnelle <span class="math display">\[
+f&#39;(x, h) = (t \mapsto f(x+ th))&#39;(0)
+\]</span> est bien définie.</p>
+<p>On introduit une variante à cette définition: la fonction <span class="math inline">\(f\)</span> est <em>directionnellement dérivable au sens de Hadamard</em> en <span class="math inline">\(x\)</span> si pour tout chemin <span class="math inline">\(\gamma: I \subset \mathbb{R} \to \mathbb{R}^n\)</span>, défini sur un intervalle ouvert <span class="math inline">\(I\)</span> contenant <span class="math inline">\(0\)</span>, telle que <span class="math inline">\(\gamma(I) \subset U\)</span>, <span class="math inline">\(\gamma(0) = x\)</span> et <span class="math inline">\(\gamma&#39;(0)\)</span> existe, la dérivée <span class="math inline">\((f \circ \gamma)&#39;(0)\)</span> existe.</p>
+<ol type="1">
+<li><p>Montrer que si <span class="math inline">\(f\)</span> est directionnellement dérivable au sens de Hadamard en <span class="math inline">\(x\)</span>, alors <span class="math inline">\(f\)</span> est directionnellement dérivable au sens classique.</p></li>
+<li><p>Montrer que si <span class="math inline">\(f\)</span> est directionnellement dérivable au sens de Hadamard en <span class="math inline">\(x\)</span>, la grandeur <span class="math inline">\((f \circ \gamma)&#39;(0)\)</span> ne dépend de <span class="math inline">\(\gamma\)</span> qu’à travers <span class="math inline">\(\gamma&#39;(0)\)</span> et que par conséquent <span class="math display">\[
+(f\circ \gamma)&#39;(0) = f&#39;(x, \gamma&#39;(0)).
+\]</span></p></li>
+<li><p><strong>Dérivation en chaîne.</strong> Soit <span class="math inline">\(f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}\)</span> et <span class="math inline">\(g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}\)</span> deux fonctions définies sur des ouverts <span class="math inline">\(U\)</span> et <span class="math inline">\(V\)</span> et telles que <span class="math inline">\(f(U) \subset V\)</span>. Montrer que si <span class="math inline">\(f\)</span> est directionnellement dérivable au sens de Hadamard en <span class="math inline">\(x \in U\)</span> et <span class="math inline">\(g\)</span> est directionnellement dérivable au sens de Hadamard en <span class="math inline">\(f(x) \in V\)</span>, alors la composée <span class="math inline">\(g \circ f\)</span> est directionnellement dérivable au sens de Hadamard en en <span class="math inline">\(x\)</span> et <span class="math display">\[
+(g\circ f)&#39;(x, h) = g&#39;(f(x), f&#39;(x, h)).
+\]</span></p></li>
+<li><p>Montrer que <span class="math inline">\(f\)</span> est directionnellement dérivable au sens de Hadamard en <span class="math inline">\(x\)</span> si et seulement si la limite <span class="math display">\[
+\lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
+\]</span> existe et que la limite est alors égale à <span class="math inline">\(f&#39;(x, h)\)</span>.</p></li>
+<li><p>Une fonction dérivable directionnellement au sens de Hadamard en <span class="math inline">\(x\)</span> est <em>différentiable au sens de Hadamard</em> en <span class="math inline">\(x\)</span> si de plus <span class="math inline">\(f&#39;(x, h)\)</span> est une fonction linéaire de <span class="math inline">\(h\)</span>. Montrer que <span class="math inline">\(f\)</span> est différentiable en <span class="math inline">\(x\)</span> au sens de Hadamard si et seulement si elle est différentiable en <span class="math inline">\(x\)</span> au sens de Fréchet.</p></li>
+</ol>
+<section>
+<h3 id="réponses-1">Réponses</h3>
+<ol type="1">
+<li><p>Supposons que <span class="math inline">\(f\)</span> soit directionnellement dérivable au sens de Hadamard en <span class="math inline">\(x\)</span>. Pour tout <span class="math inline">\(h \in \mathbb{R}^n\)</span>, par continuité de l’application <span class="math inline">\(t \in \mathbb{R} \mapsto x + th\)</span>, pour <span class="math inline">\(\varepsilon &gt; 0\)</span> assez petit, et parce que le domaine de définition de <span class="math inline">\(f\)</span> est ouvert, l’image de la fonction <span class="math display">\[
+\gamma: t \in \left]-\varepsilon, \varepsilon \right[ \mapsto x + th
+\]</span> est incluse dans le domaine de définition de <span class="math inline">\(f\)</span>, est telle que <span class="math inline">\(\gamma(0) = x\)</span>, <span class="math inline">\(\gamma&#39;(0) = h\)</span>. Par conséquent, la dérivée de <span class="math inline">\(f\circ \gamma\)</span> en <span class="math inline">\(0\)</span> existe, et c’est par construction la dérivée directionnelle de <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span> dans la direction <span class="math inline">\(h\)</span>. La fonction <span class="math inline">\(f\)</span> est donc directionnellement dérivable en <span class="math inline">\(x\)</span> au sens classique.</p></li>
+<li><p>Supposons que <span class="math inline">\(f\)</span> soit directionnellement dérivable au sens de Hadamard en <span class="math inline">\(x\)</span>. Pour montrer que l’expression <span class="math inline">\((f \circ \gamma)&#39;(0)\)</span> ne dépend de <span class="math inline">\(\gamma\)</span> qu’à travers <span class="math inline">\(\gamma&#39;(0)\)</span>, nous allons considérer un second chemin arbitraire <span class="math inline">\(\beta: J \to \mathbb{R}^n\)</span>, où <span class="math inline">\(J\)</span> est un intervalle ouvert de <span class="math inline">\(\mathbb{R}\)</span> contenant <span class="math inline">\(0\)</span>, tel que <span class="math inline">\(\beta(0) = x\)</span>, <span class="math inline">\(\beta&#39;(0)=\gamma&#39;(0)\)</span> et montrer que <span class="math display">\[
+(f \circ \gamma)&#39;(0) = (f \circ \beta)&#39;(0).
+\]</span> L’idée de la démonstration consiste à construire un troisième chemin <span class="math inline">\(\alpha\)</span> qui en “mélangeant” les chemins <span class="math inline">\(\beta\)</span> et <span class="math inline">\(\gamma\)</span>, satisfait les hypothèses de la définition de “directionnellement dérivable au sens de Hadamard”, est tel que <span class="math inline">\(\alpha&#39;(0) = \beta&#39;(0) = \gamma&#39;(0)\)</span> et également tel que d’une part <span class="math inline">\((f \circ \alpha)&#39;(0)= (f \circ \beta)&#39;(0)\)</span> et d’autre part <span class="math inline">\((f \circ \alpha)&#39;(0)=(f \circ \gamma)&#39;(0)\)</span>.</p>
+<p>Un chemin qui permette de tenir ce raisonnement est le suivant. Tout d’abord, choisissons <span class="math inline">\(\varepsilon &gt; 0\)</span> tel que <span class="math inline">\(\left]-\varepsilon, \varepsilon\right[ \subset I \cap J\)</span>, puis définissons <span class="math inline">\(\alpha: \left]-\varepsilon,\varepsilon\right[ \to \mathbb{R}^n\)</span> par <span class="math display">\[
+\alpha(t) = \left|
+\begin{array}{cl}
+x &amp; \mbox{si } \, t=0, \\
+\beta(t) &amp; \mbox{si } \, \varepsilon /2^{2k+1} \leq |t| &lt; \varepsilon / 2^{2k}, \, \mbox{pour un entier } \, k \in \mathbb{N}, \\
+\gamma(t) &amp; \mbox{si } \, \varepsilon / 2^{2k+2} \leq |t| &lt; \varepsilon / 2^{2k+1},  \, \mbox{pour un entier } \, k \in \mathbb{N}.
+\end{array}
+\right.
+\]</span> Les hypothèses de la définition sont facilement vérifiées, ainsi que la preuve que <span class="math inline">\(\alpha&#39;(0) = \beta&#39;(0) = \gamma&#39;(0)\)</span>. Avec l’hypothèse de différentiabilité au sens de Hadamard, nous savons donc que la dérivée <span class="math inline">\((f\circ \alpha)&#39;(0)\)</span> existe. On peut la calculer comme la limite de <span class="math display">\[
+(f \circ \alpha)&#39;(0) = \lim_{k \to +\infty} \frac{f(\alpha(t_k)) - f(x)}{t_n}
+\]</span> où <span class="math inline">\(t_k\)</span> est une suite arbitraire de valeurs non nulles tendant vers <span class="math inline">\(0\)</span>. Or, si l’on choisit <span class="math inline">\(t_k = \varepsilon/2^{2k+1}\)</span>, on trouve <span class="math display">\[
+\lim_{k \to +\infty} \frac{f(\alpha(t_k)) - f(x)}{t_k}
+=
+\lim_{k \to +\infty} \frac{f(\beta(t_k)) - f(x)}{t_k}
+= (f \circ \beta)&#39;(0)
+\]</span> et si l’on choisit <span class="math inline">\(t_k = \varepsilon/2^{2k+2}\)</span>, on trouve <span class="math display">\[
+\lim_{k \to +\infty} \frac{f(\alpha(t_k)) - f(x)}{t_k}
+=
+\lim_{k \to +\infty} \frac{f(\gamma(t_k)) - f(x)}{t_k}
+= (f \circ \gamma)&#39;(0),
+\]</span> ce qui prouve le résultat d’indépendance souhaité. Pour prouver que <span class="math inline">\((f\circ \gamma)&#39;(0) = f&#39;(x, \gamma&#39;(0))\)</span>, il suffit d’associer à un chemin quelconque <span class="math inline">\(\gamma\)</span> le chemin “canonique” <span class="math inline">\(\beta: t \mapsto x+ t\gamma&#39;(0)\)</span> de la question 1, qui est tel que <span class="math inline">\(\beta&#39;(0) = \gamma&#39;(0)\)</span> d’une part et d’autre part <span class="math inline">\((f \circ \beta)&#39;(0) = f&#39;(x, \beta&#39;(0))\)</span> par construction. On en déduit que <span class="math display">\[
+  (f \circ \gamma)&#39;(0) = (f \circ \beta)&#39;(0) = f&#39;(x, \beta&#39;(0)) = f&#39;(x, \gamma&#39;(0)).
+  \]</span></p></li>
+<li><p>Soit <span class="math inline">\(\gamma: I \subset \mathbb{R} \to \mathbb{R}^n\)</span>, un chemin défini sur un intervalle ouvert <span class="math inline">\(I\)</span> contenant <span class="math inline">\(0\)</span>, tel que <span class="math inline">\(\gamma(I) \subset U\)</span>, <span class="math inline">\(\gamma(0) = x\)</span> et <span class="math inline">\(\gamma&#39;(0)\)</span> existe. Alors, sous les hypothèses du théorème de dérivée en chaîne que nous souhaitons montrer, le chemin <span class="math inline">\(\beta = f \circ \gamma\)</span> est défini sur <span class="math inline">\(I\)</span>, vérifie <span class="math inline">\(\beta(I) \subset V\)</span>, <span class="math inline">\(\beta(0) = f(x)\)</span> et par hypothèse de dérivabilité directionnelle au sens de Hadamard sur <span class="math inline">\(f\)</span> en <span class="math inline">\(x\)</span>, <span class="math inline">\(\beta&#39;(0) = f&#39;(x, \gamma&#39;(0))\)</span>. Par hypothèse de dérivabilité directionnelle au sens de Hadamard sur <span class="math inline">\(g\)</span> en <span class="math inline">\(f(x)\)</span>, <span class="math display">\[
+((g\circ f) \circ \gamma)&#39;(0) = 
+(g \circ \beta)&#39;(0) = g&#39;(f(x), \beta&#39;(0)) = g&#39;(f(x), f&#39;(x, \gamma&#39;(0))),
+\]</span> ce qui prouve la dérivabilité directionnelle au sens de Hadamard pour la composée <span class="math inline">\(g \circ f\)</span> en <span class="math inline">\(x\)</span>. Il suffit d’associer à un vecteur <span class="math inline">\(h\)</span> le chemin canonique <span class="math inline">\(t \mapsto x + th\)</span> pour obtenir la relation <span class="math display">\[
+(g \circ f)&#39;(x, h) = g&#39;(f(x), f&#39;(x, h)).
+\]</span></p></li>
+<li><p>Tout d’abord, si la limite <span class="math display">\[
+\lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
+\]</span> existe, elle est égale à la limite obtenue en fixant <span class="math inline">\(k=h\)</span> <span class="math display">\[
+\lim_{t \to 0} \frac{f(x+ t h) - f(x)}{t}
+\]</span> qui est par définition <span class="math inline">\(f&#39;(x, h)\)</span>.</p>
+<p>Supposons que cette limite existe et montrons que <span class="math inline">\(f\)</span> a une dérivée directionnelle au sens de Hadamard. Soit <span class="math inline">\(\gamma\)</span> un chemin satisfaisant les hypothèses de cette définition. La fonction <span class="math inline">\(f\circ \gamma\)</span> est dérivable en <span class="math inline">\(0\)</span> si et seulement si le taux d’accroissement associé converge en <span class="math inline">\(0\)</span>. Or, ce taux d’accroissement peut s’écrire sous la forme <span class="math display">\[
+\frac{f(\gamma(t)) - f(\gamma(0))}{t}
+=
+\frac{f\left(x + t \frac{\gamma(t) - \gamma(0)}{t}\right) - x}{t}.
+\]</span> Le chemin <span class="math inline">\(\gamma\)</span> étant dérivable en <span class="math inline">\(0\)</span>, <span class="math display">\[
+k(t) :=  \frac{\gamma(t) - \gamma(0)}{t} \to \gamma&#39;(0)
+\, \mbox{ quand } \, t \to 0
+\]</span> donc par hypothèse, le taux d’accroissement de <span class="math inline">\(f\circ \gamma\)</span> a une limite en <span class="math inline">\(0\)</span>.</p>
+<p>Réciproquement, suppose que <span class="math inline">\(f\)</span> soit directionnellement dérivable au sens de Hadamard en <span class="math inline">\(0\)</span>. Pour montrer que la limite <span class="math display">\[
+\lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
+\]</span> existe, il nous suffit de montrer que pour toute suite <span class="math inline">\(t_i\)</span> de valeurs non nulles tendant vers <span class="math inline">\(0\)</span> et toute suite de vecteurs <span class="math inline">\(k_i\)</span> convergeant vers <span class="math inline">\(h\)</span>, la limite <span class="math display">\[
+\lim_{i \to +\infty} \frac{f(x+ t_i k_i) - f(x)}{t_i}
+\]</span> existe. On peut imposer la restriction que la suite <span class="math inline">\(|t_i|\)</span> soit strictement décroissante et le résultat reste valable.</p>
+<p>Pour tout <span class="math inline">\(t \in \mathbb{R}^*\)</span> notons <span class="math inline">\(j(t)\)</span> le plus petit parmi les entiers <span class="math inline">\(j\)</span> satisfaisant <span class="math display">\[
+|t - t_j| = \min_{i \in \mathbb{N}} |t - t_i|,
+\]</span> puis définissons <span class="math inline">\(\gamma(t)\)</span> par <span class="math inline">\(\gamma(0) = x\)</span> et si <span class="math inline">\(t \neq 0\)</span>, <span class="math display">\[
+\gamma(t) = x + t k_{j(t)}.
+\]</span> S’il est défini sur un intervalle <span class="math inline">\(\left]-\varepsilon, \varepsilon\right[\)</span> assez petit, <span class="math inline">\(\gamma\)</span> satisfait les hypothèses de la dérivabilité directionnelle. Le point critique à vérifier est que <span class="math inline">\(\gamma\)</span> est dérivable en <span class="math inline">\(0\)</span>. Mais par construction <span class="math display">\[
+\frac{\gamma(t) - \gamma(0)}{t} = k_{j(t)}
+\]</span> et <span class="math inline">\(j(t)\)</span> tend vers <span class="math inline">\(+\infty\)</span> quand <span class="math inline">\(t\)</span> tend vers <span class="math inline">\(0\)</span>; par conséquent la limite existe et <span class="math display">\[
+\lim_{t \to 0} \frac{\gamma(t) - \gamma(0)}{t} = h.
+\]</span> Par construction <span class="math display">\[
+\frac{f(\gamma(t_i)) - f(\gamma(0))}{t_i} = \frac{f(x+ t_i k_i) - f(x)}{t_i};
+\]</span> comme la fonction est dérivable directionnellement au sens de Hadamard, <span class="math display">\[
+\lim_{i \to +\infty} \frac{f(x+ t_i k_i) - f(x)}{t_i}
+\]</span> existe.</p></li>
+<li><p>Si <span class="math inline">\(f\)</span> est différentiable au sens de Fréchet, notons <span class="math inline">\(\varepsilon\)</span> la fonction définie dans un voisinage de <span class="math inline">\(0\)</span>, continue et nulle en <span class="math inline">\(0\)</span>, telle que <span class="math display">\[
+f(x+h) = f(x) + df(x) \cdot h + \varepsilon(h)\|h\|.
+\]</span> On a alors pour tout <span class="math inline">\(t\in \mathbb{R}\)</span> non nul et tout vecteur <span class="math inline">\(k \in \mathbb{R}^n\)</span> suffisamment petits, en posant <span class="math inline">\(h=tk\)</span>, <span class="math display">\[
+\begin{split}
+\frac{f(x+ t k) - f(x)}{t}
+&amp;= \frac{1}{t}df(x) \cdot tk + \frac{1}{t}\varepsilon(tk) \|tk\| \\
+&amp;= df(x) \cdot k + \varepsilon(t k) \frac{|t|}{t} \|k\|.
+\end{split}
+\]</span> Le terme <span class="math inline">\(df(x) \cdot k\)</span> tend vers <span class="math inline">\(df(x)\cdot h\)</span> quand <span class="math inline">\(k \to h\)</span> et le second terme du membre de droite tend vers <span class="math inline">\(0\)</span> quand <span class="math inline">\(t\)</span> et <span class="math inline">\(k\)</span> tendent vers <span class="math inline">\(0\)</span>, donc <span class="math display">\[
+\lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t} = df(x) \cdot h.
+\]</span> Par conséquent la fonction <span class="math inline">\(f\)</span> est directionnellement dérivable au sens de Hadamard. Le membre de droite, égal à <span class="math inline">\(f&#39;(x, h)\)</span> est linéaire en <span class="math inline">\(h\)</span>, elle est donc différentiable au sens de Hadamard.</p>
+<p>Réciproquement, supposons que <span class="math inline">\(f\)</span> est différentiable au sens de Hadamard. Pour montrer que <span class="math inline">\(f\)</span> est différentiable au sens de Fréchet, de différentielle <span class="math inline">\(f&#39;(x, h)\)</span>, montrons que <span class="math display">\[
+\frac{\|f(x+h) - f(x) - f&#39;(x, h)\|}{\|h\|} \to 0 \, \mbox{ quand } \, h \to 0,
+\]</span> ou de façon équivalente, que <span class="math display">\[
+\frac{f\left(x+ \|h\|\frac{h}{\|h\|} \right) - f(x)}{\|h\|} - f&#39;\left(x, \frac{h}{\|h\|} \right) \to 0
+\, \mbox{ quand } \, h \to 0.
+\]</span> Il nous suffit de montrer que pour toute suite <span class="math inline">\(t_i &gt; 0\)</span> telle que <span class="math inline">\(t_i \to 0\)</span> quand <span class="math inline">\(i \to +\infty\)</span> et <span class="math inline">\(k_i \in \mathbb{R}^n\)</span> telle que <span class="math inline">\(\|k_i\| = 1\)</span>, <span class="math display">\[
+\frac{f\left(x+ t_i k_i \right) - f(x)}{t_i} - f&#39;\left(x, k_i \right) \to 0
+\, \mbox{ quand } \, i \to +\infty.
+\]</span> Imaginons au contraire que cette expression ne tende pas vers <span class="math inline">\(0\)</span>. Alors on pourrait trouver un <span class="math inline">\(\varepsilon &gt; 0\)</span> et une sous-suite de <span class="math inline">\((t_i, k_i)\)</span>, notée de <span class="math inline">\((t&#39;_i, k&#39;_i)\)</span>, telle que pour tout <span class="math inline">\(i\)</span>, <span class="math display">\[
+\left\|
+\frac{f \left(x+ t&#39;_i k&#39;_i \right) - f(x)}{t&#39;_i} - f&#39;\left(x, k&#39;_i \right)
+\right\| \geq \varepsilon.
+\]</span> Mais la suite des <span class="math inline">\(k&#39;_i\)</span> est de norme égale à <span class="math inline">\(1\)</span>; la sphère fermée de centre <span class="math inline">\(1\)</span> étant compacte, il existe des sous-suites <span class="math inline">\(t&#39;&#39;_i\)</span> et <span class="math inline">\(k&#39;&#39;_i\)</span> de <span class="math inline">\(t&#39;_i\)</span> et <span class="math inline">\(k&#39;_i\)</span> et un <span class="math inline">\(h \in \mathbb{R}^n\)</span> tels que <span class="math inline">\(\|h\| = 1\)</span> et <span class="math inline">\(k&#39;&#39;_i \to h\)</span>. Par hypothèse de dérivabilité au sens de Hadamard, on aurait <span class="math display">\[
+\frac{f\left(x+ t&#39;&#39;_i k&#39;&#39;_i \right) - f(x)}{t&#39;&#39;_i} \to f&#39;\left(x, h\right)
+\, \mbox{ quand } \, i \to +\infty
+\]</span> ce qui contredit l’inégalité ci-dessus et prouve la contradiction. Par conséquent, <span class="math inline">\(f\)</span> est bien différentiable au sens de Fréchet.</p></li>
+</ol>
+</section>
+</section>
+<section>
+<h2 id="asymptotique">Asymptotique</h2>
+<p>Comportement asymptotique de <span class="math inline">\(f(x+2h) - 2f(x+h) + f(x)\)</span> (par approximation de variation d’ordre 2 par <span class="math inline">\(d^2 f\)</span>.)</p>
+</section>
+<section>
+<h2 id="mean-value-theorem">Mean Value Theorem</h2>
+<p>(version avec avec enveloppe convexe ? A voir. L’idée est éventuellement d’étendre le cas scalaire au cas des fonctions à valeurs vectorielles …) Cf McLeod “Mean Value Theorem for Vector-Valued Functions”.</p>
+</section>
+<section>
+<h2 id="analycité">Analycité</h2>
+<p>Borne sur <span class="math inline">\(f^{(n)}\)</span> et analycité ?</p>
+</section>
+<section>
+<h2 id="arguments-matriciels">Arguments Matriciels</h2>
+<p>Différentielle d’objects comme <span class="math inline">\(\det A\)</span> ?</p>
+<p>Exploiter <a href="https://terrytao.wordpress.com/2013/01/13/matrix-identities-as-derivatives-of-determinant-identities/#comment-514937" class="uri">https://terrytao.wordpress.com/2013/01/13/matrix-identities-as-derivatives-of-determinant-identities/#comment-514937</a></p>
+</section>
+<section>
+<h2 id="convexité">Convexité</h2>
+<p>Lien convexité et différentielle d’ordre 2.</p>
+</section>
+<section>
+<h2 id="oloid">Oloid</h2>
+<p>cf <a href="http://www.heldermann-verlag.de/jgg/jgg01_05/jgg0113.pdf" class="uri">http://www.heldermann-verlag.de/jgg/jgg01_05/jgg0113.pdf</a>, par exemple calcul plan tangent ?</p>
+</section>
+<section>
+<h2 id="formes-fonction-distance-squelette">Formes, Fonction Distance, Squelette</h2>
+<p><strong>TODO:</strong> équivalence entre <span class="math inline">\((d_A(x))^2\)</span> différentiable et <span class="math inline">\(x\)</span> pas sur le squelette de <span class="math inline">\(A\)</span> (deux projections sur <span class="math inline">\(\overline{A}\)</span>).</p>
+<p>Pousser le bouchon avec <span class="math inline">\((d_A(x))^2\)</span> convexe et <span class="math inline">\(A\)</span> convexe ?</p>
+<p>cf Zolésio.</p>
+</section>
+</section>
+<section>
+<h1 id="références">Références</h1>
+<p>.</p>
+</section>
+<div id="refs" class="references">
+<div id="ref-Sha90">
+<p>Shapiro, A. 1990. “On Concepts of Directional Differentiability.” <em>Journal of Optimization Theory and Applications</em> 66 (3): 477–87.</p>
+</div>
+</div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>par exemple: est-ce que <span class="math inline">\(df(x^2)\)</span> désigne désormais la différentielle de la fonction <span class="math inline">\(f\)</span> évaluée en <span class="math inline">\(x^2\)</span> ou la différentielle de la fonction <span class="math inline">\(x \mapsto f(x^2)\)</span> évaluée en <span class="math inline">\(x\)</span> ? Les deux grandeurs ne sont pas égales … Il faut donc savoir si l’on différencie une fonction en un point ou bien une expression par rapport à une variable. On pourra rajouter des parenthèses pour lever l’ambiguité si nécessaire, avec <span class="math inline">\(d(f)(x^2)\)</span> dans le premier cas et <span class="math inline">\(d(f(x^2))\)</span> dans le second. Par défaut, nous supposerons dans la suite que <span class="math inline">\(df(x^2)\)</span> désigne la notation “stricte” <span class="math inline">\(d(f)(x^2)\)</span>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+</body>
+</html>
