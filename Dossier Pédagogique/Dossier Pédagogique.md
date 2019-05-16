@@ -1619,4 +1619,4 @@ La prise en compte de la dimension organisationnelle, personnelle et culturelle 
      à opérer ses choix professionnels.
 
 Références
-================================================================================
+--------------------------------------------------------------------------------
