@@ -592,9 +592,15 @@ et la maîtrise de leur mise en œuvre" :
 
     **Partiellement.** Oui, à ceci près que la recherche de l'information
     pertinente va être principalement cantonnée aux ressources pédagogiques
-    mises à disposition des étudiants.
-
-    **TODO.** dépend peu-être modalités 2eme EC ??? à préciser.
+    conçues spécifiquement pour l'UE pour des raisons d'efficacité[^eff].
+    Les projets numériques, et peut-être les modalités d'évaluations 
+    du second EC, pourraient être l'occasion d'élargir le champ des 
+    recherches (à des corpus pré-selectionnés de ressources extérieures,
+    ou même sans ce type d'assistance).
+    
+[^eff]: Le périmètre de l'UE est large et le rythme ambitieux; 
+accomoder fortement les ressources pédagogiques est un des 
+leviers principaux dont nous disposons pour répondre à ce défi.
 
 Aucune compétence n'est spécifiquement développée qui soit relative
 à "l'adaptation aux exigences propres de l'entreprise et de la société" :
@@ -1364,12 +1370,13 @@ découlent également de bénéfices très concrets, comme ceux listés ci-aprè
     sur de multiples aspects. Néanmoins, il est dévenu également très insuffisant 
     à bien des égards et doit donc faire partie d'une solution plus globale.
     
+<!--
 
   - Communication, DOI, etc.
 
   - Appropriation (élèves, etc.), 
 
-
+-->
 
 
 [^publiables]: au sens de "publiable par un éditeur scientifique".
@@ -1423,15 +1430,6 @@ du projet:
     des UE 12 -- Informatique -- 13 -- Physique -- et 21 -- Mathématiques Appliquées --
     sans que les interlocuteurs soient formellement associés au groupe de 
     travail.
-
-*\[ 
-Déclinaison du processus qualité: description des aspects de l’UE
-nécessitant des mesures et/ou des expérimentations spécifiques.
-Modalités de cette démarche (questionnaires élèves, groupes pilotes,
-expertise domaine ou pédagogique) et insertion dans le processus qualité
-général. 
-\]*
-
 
 **Déclinaison du processus qualité.**
 L'amélioration continue de l'enseignement passe par un processus
@@ -1504,11 +1502,18 @@ qu'il sera intéressant de documenter plus précisément.
 Les titres décrivant aujourd'hui officiellement les rôles possibles des 
 enseignants-chercheurs dans une UE -- "responsable", "intervenant", 
 "chargé d'enseignement" -- sont trop grossiers pour avoir cette 
-utilité.
+utilité[^fc].
 
 [^exr]: Tels que: la gestion de l'infrastructure numérique 
 pour les ressources pédagogiques, l'accompagnement des doctorants 
-dans leur activité d'enseignement, etc.
+dans leur activité d'enseignement, la mise en place d'initiatives
+pédagogiques, etc. 
+
+[^fc]: Ces catégories classiques ne permettent par exemple pas
+de distinguer les contributions à la définition et l'amélioration 
+continue du projet, des contributions dans le développement des 
+ressources pédagogiques, ou encore du temps passé en face-à-face 
+pédagogique ou dans les activités d'accompagnement.
 
 On constatera que les modalités pédagogiques envisagées,
 notamment les sessions tutorées, classiques ou numériques, ne s'inscrivent 
