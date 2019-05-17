@@ -136,7 +136,8 @@ Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
 s'il est compact et peut être caractérisé au voisinage de tout point de
 sa frontière $\partial K$, 
 et après un éventuel changement de repère orthonormé direct,
-comme l'épigraphe d'une fonction de classe $C^1$.
+comme l'épigraphe -- l'ensemble des points "au-dessus du graphe" -- 
+d'une fonction de classe $C^1$.
 Autrement dit, pour tout point $x \in \partial K$, 
 il existe un ouvert non vide $V_x \subset \mathbb{R}^n$ de la forme
 $V_x = U_x \times I_x$ où $U_x \subset \mathbb{R}^{n-1}$ et $I_x$ 
@@ -145,13 +146,19 @@ une isométrie directe $T_x$ telle que $T_x(x) \in V_x$
 et une fonction 
 $f_x: y \in U_x \to I_x$ continûment différentiable tels que
 $$
-T_x(K) \cap V_x = \{(y_1,\dots, y_n) \in V_x \; | \; y_n \leq f_x(y_1, \dots, y_{n-1})\}
+T_x(K) \cap V_x = \{(y_1,\dots, y_n) \in V_x \; | \;  f_x(y_1, \dots, y_{n-1}) \leq y_n\}
 $$
 
 ### TODO
 
 Vérifier qu'il n'est pas nécessaire (?) de spécifier indépendamment 
 intérieur et frontière comme dans [@DZ11, p. 87].
+
+Lister qq conséquences du fait d'être compact à bord (tq: adhérence de 
+l'intérieur est l'ensemble, etc.), etc.
+Notation $\Omega$, $\Gamma$, etc.
+
+Définir normale (extérieure).
 
 ### Caractérisation implicite des compacts à bord régulier {.theorem}
 Un sous-ensemble compact $K$ de $\mathbb{R}^n$ est un compact à bord $C^1$ 
@@ -163,7 +170,28 @@ si et seulement si $f_x(y) \leq 0$.
 
 ### TODO
 
+Rendre explicite la normale extérieure dans ce cas et comment trouver
+un axe orthonormé qui permet de se ramener au cadre de l'épigraphe.
+
 Evoquer en remarque la notion de sous-variété de $\mathbb{R}^n$ ?
+
+
+### TODO
+
+Intégrale de surface, partition de l'unité, etc.
+
+Preuve de Stokes (dans un patch, puis en général)
+Enoncer version différentielle partielle de Stokes
+(directement analogie à l'IPP en dimension 1, 
+permet de se limiter à l'intégration de fcts scalaires en 
+1ere approche et pas de perte de généralité; permet ensuite
+d'étudier les "applications" (théorème de la divergence, etc.))
+
+$$
+\int_{\Omega} \partial_i f(x) \, dx
+= 
+\int_{\Gamma} f(x) n_i(x) \, S(dx)
+$$
 
 Exercices
 ================================================================================
@@ -179,6 +207,12 @@ Exemples de compacts à bord (déterminés implicitement)
 --------------------------------------------------------------------------------
 
 ... par la fonction distance orientée par exemple ?
+
+Calcul
+--------------------------------------------------------------------------------
+
+Un calcul réalisable par Fubini et/ou Stokes ? Dans le disque unité ?
+Avec un champ de vecteurs
 
 
 Réferences
