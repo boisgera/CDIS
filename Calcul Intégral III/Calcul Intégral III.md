@@ -16,7 +16,7 @@ I = I_1 \times \dots \times I_n
 $$
 où les $I_i$ sont de intervalles de $\mathbb{R}$.
 
-### Remarque {.reamrk .anonymous}
+### Remarque {.remark .anonymous}
 La notion de pavé généralise la notion d'intervalle de 
 $\mathbb{R}$ à $\mathbb{R}^n$; le terme intervalle est d'ailleurs
 parfois utilisé au lieu du terme pavé. 
