@@ -168,6 +168,12 @@ $$
 
 ### TODO
 
+Faire passer l'idée d'un ensemble borné délimité par une surface
+$n-1$-dimensionelle (une "hypersurface"), "suffisamment régulière"
+et qu'il n'y a plus qu'à trouver une façon de mesure cette régularité.
+
+### TODO
+
 Vérifier qu'il n'est pas nécessaire (?) de spécifier indépendamment 
 intérieur et frontière comme dans [@DZ11, p. 87].
 
