@@ -116,6 +116,23 @@ $$
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
 
+### TODO
+
+Mention du fait qu'il est vraiment nécessaire de chercher l'absolue
+intégrabilité. Retrouver la référence qui cite qu'avec une simple
+rotation et l'intégrabilité conditionnelle ça ne marche pas.
+C'est dans le Bullen -- Non-Absolute Integrale, mais pas détaillé
+(Q: le texte utilise une rotation de $pi/4$ pour le contre-exemple.
+Avec une rotation de $\pi/2$ ça marcherait ?).
+Un exemple détaillé est donné dans 
+"Petit traité d'intégration: Riemann, Lebesgue et Kurzweil-Henstock" 
+(Jean-Yves Briend). L'exemple est compréhensible et intéressant;
+peut faire l'objet d'un exercice technique semble faisable.
+
+Tracer un parralèle avec les séries, ou il est connu que les séries
+conditionnellement convergentes ne gardent pas cette propriété par
+réordonnancement (exemple mono-dim ou bi-dim) ?
+
 Théorème de Stokes
 ================================================================================
 
