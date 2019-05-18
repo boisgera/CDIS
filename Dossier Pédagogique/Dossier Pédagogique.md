@@ -816,7 +816,7 @@ applications sera alors considérée, avec les concepts dont elle dépend.
 le caractère intrinsèque de la différentielle.
 
  [^CPGE-CD]: Même dans la filière MP, la notion de différentielle n'est
- introduite quand dans le cadre les espaces vectoriels normés de dimension finie;
+ introduite que dans le cadre les espaces vectoriels normés de dimension finie;
  la différentielle d'ordre 2 n'est pas définie; théorème des fonctions
  implicites et d'inversion locale sont absents. Dans les filières PSI et PC,
  le caractère intrinsèque de la différentielle disparaît: il s'agit
@@ -1543,7 +1543,7 @@ Concernant les problématiques matérielles ou d'infrastructure:
     Des dispositifs technologiques facilitant les interactions pourraient 
     également être envisagés
     (tels que boitiers de vote, tablette graphique, etc.), mais aucune
-    solution précise de type n'est prévue à ce stade (l'interaction
+    solution précise de ce type n'est prévue à ce stade (l'interaction
     pouvant être introduite dans un premier temps de façon plus classique).
 
   - Concernant les ressources pédagogiques, la transition numérique
