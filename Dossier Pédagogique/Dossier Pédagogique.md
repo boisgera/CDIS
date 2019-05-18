@@ -1,6 +1,6 @@
 % Projet de Refonte IC
 % GT UE 11 -- Mathématiques
-% 15 mai 2019
+% 16 mai 2019
 
 Unité d'Enseignement: Document Pédagogique
 ================================================================================
@@ -18,7 +18,7 @@ Semestre                                 1
 Contexte, Enjeux et Objectifs
 --------------------------------------------------------------------------------
 
-L'unité d'enseignement (UE) est composée de 2 éléments constitutifs :
+L'unité d'enseignement (UE) est composée de 2 éléments constitutifs (EC) :
 
   - Calcul Différentiel, Intégral et Stochastique I (2 ECTS, 1er semestre),
 
@@ -43,7 +43,7 @@ aux enseignements:
 
 Cette comparaison met en évidence une nouvelle formule à la fois 
 plus courte et plus compacte (avec 4 ECTS contre ~10 ECTS aujourd'hui, 
-programmé sur 1 semestre contre 3 aujourd'hui), dans un contexte où la
+programmée sur 1 semestre contre 3 aujourd'hui), dans un contexte où la
 formule actuelle est déjà considérée par de nombreux enseignants
 comme disposant de trop peu de temps[^data-volume].
 
@@ -95,8 +95,8 @@ actuel sont naturellement transféré vers l'enseignement d'"Optimisation"
 et l'analyse harmonique (de Fourier) développée dans le calcul intégral 
 actuel est intégrée au "Traitement du Signal".
 
-[^out]: Ou bien de façon très partielle. En particulier, l'analyse complexe
-et l'introduction aux équations aux dérivées partielles.
+[^out]: Ou bien de façon très partielle ; en particulier, sont concernées
+l'analyse complexe et l'introduction aux équations aux dérivées partielles.
 
 [^dep]: En particulier, la nécessité d'enseigner très tôt le volet probabilités
 s'impose compte tenu des besoins des cours de Physique du 1er semestre comme
@@ -184,7 +184,7 @@ Prérequis
 
 L'UE, programmé au 1er semestre de la 1ere année de la scolarité, 
 s'adresse à des étudiants issus pour l'essentiel des classes 
-préparatoires via le concours commun Mines-Ponts. 
+préparatoires aux grandes écoles (CPGE) via le concours commun Mines-Ponts. 
 Plus de 85% des étudiants sont issus des filières MP, PSI et PC.
 C'est donc le corpus des connaissances communes à ces trois filières 
 et des compétences associées qui sert de référence à l'UE;
@@ -211,9 +211,9 @@ par MINES ParisTech ou des formations externes, doit être préservée.
 A l'inverse, plus de 10% des étudiants à qui s'adresse l'UE 
 ne satisfont pas l'hypothèse initiale: 
 ils ne sont pas issu des filières MP/PSI/PC, n'offrent pas les
-même garanties en termes de prérequis, et ont souvent 
+mêmes garanties en termes de prérequis, et ont souvent 
 les plus grandes difficultés dans le cursus actuel
-à valider les enseignement de Mathématiques
+à valider les enseignements de Mathématiques
 qui leur sont proposés.
 Facteur aggravant,
 cette population, très différente de la population générale, est elle-même
@@ -225,7 +225,7 @@ ne les condamnant pas à un échec systématique.
 L'impossibilité de concevoir un cours standard
 qui soit adapté aux élèves les plus avancés et accessible à 
 cette population minoritaire et fortement hétérogène, plaide
-pour un recours important au suivi personnalisé;
+pour un recours important à l'accompagnement personnalisé;
 il s'agira donc de concevoir un cours dont on sait pertinemment qu'il 
 n'est pas totalement adapté ou accessible à une faible fraction de la 
 population, ce qui supposera de leur part un travail important,
@@ -249,7 +249,7 @@ possible de garantir en général que l'UE 11 ou l'UE 13 introduise la
 première telle ou telle notion exploitée dans les deux disciplines.
 Il sera par contre nécessaire que ces évocations se renforcent et
 se complètent intelligemment, d'autant plus que l'UE de Physique 
-utilise un périmètre particulièrement large des Mathématiques.
+exploite un périmètre particulièrement large des Mathématiques.
 
 Les échanges laissent penser que le programme de Mathématiques de l'UE offrira
 des outils adaptés en ce qui concerne les probabilités[^oap], les notions
@@ -280,11 +280,11 @@ indispensable à la Physique Quantique.
 hamiltoniens, qui relèvent à la fois des équations différentielles et
 du calcul des variations.
 
-[^oaan]: Les espaces de Hilbert seront introduits, par exemple, mais tardivement
-et de façon minimale;
+[^oaan]: Les espaces de Hilbert seront introduits par exemple, mais tardivement
+et de façon minimale ;
 l'étude des opérateurs en dimension infinie (comme les opérateurs hermitiens
 de la Physique Quantique), l'analyse spectrale associée, l'étude des problèmes
-elliptiques, etc. dépassent très largement le cadre de ce qu'il est
+elliptiques, etc. dépassent très largement le cadre de ce qu'il nous semble
 possible de faire dans l'UE 11.
 
 [^oaa]: Telles que: groupe de Lie, algèbre de Lie, etc.
@@ -327,7 +327,7 @@ en s'interfaçant avec les enseignements de Mathématiques, Physique, etc.[^ocpg
 1ère et 2nde années des programmes de classe préparatoire aux grandes écoles 
 [@UPS].
 La description des compétences à développer est presque totalement 
-indifférenciée en MP, PSI et PC, mais les programmes diffèrent. 
+indifférenciée en MP, PSI et PC, bien que les programmes diffèrent. 
 
 Les acquis d'apprentissages qui en résultent 
 nécessitent d'être décrits à différents niveaux: 
@@ -341,7 +341,7 @@ et, en allant au niveau le plus détaillé, s'assurer que les objectifs de
 haut niveau sont bien transposés de façon opérationnelle.
 
 Nous nous intéressons ici aux acquis d'apprentissage globaux de l'UE;
-nous renvoyons le lecteur à la section [Contenus et Activités] pour
+nous renvoyons le lecteur à la section "[Contenus et Activités]" pour
 la description plus précise des attendus thématique par thématique.
 Pour ce qui est du niveau de détail le plus fin nous renvoyons
 aux ressources pédagogiques elles-mêmes: un effort sera entrepris[^en-cours] 
@@ -373,29 +373,28 @@ A l'issue de cette UE, les étudiants auront
     qui supposent de savoir comprendre, deviner, raisonner, démontrer, 
     expérimenter, calculer, communiquer.[^pratiques]
 
-  - développé des aptitudes clés facilitant leur études[^champs], 
-    aussi bien les enseignements de tronc commun 
+  - développé des aptitudes clés facilitant la poursuite de leurs 
+    études[^champs], aussi bien les enseignements de tronc commun 
     qu'ultérieurement, une large gamme de parcours 
     de formation individualisés. 
 
-[^pratiques]: Il s'agit aussi bien ici de savoir développer un bon
-modèle mental pour un nouveau concept (qui permettra d'avoir des
-intuitions pertinentes et de cerner son applicabilité), que de savoir 
+[^pratiques]: Il s'agit aussi bien ici de savoir s'approprier 
+un nouveau concept (avoir des intuitions pertinentes le concernant, 
+cerner son applicabilité, etc.), que de savoir 
 formaliser complétement un raisonnement déductif (rédiger une 
 démonstration) ou encore d'interfacer les aspects théoriques
 avec les outils numériques. Les besoins en la matière sont variés,
 et posent des défis importants en terme de modalités pédagogiques
 et notamment de modalités d'évaluation. Les profils et les attentes
 des étudiants sont également plus variés que dans les filières 
-plus "pures" des classes préparatoires. Il est illusoire d'espérer
-compenser ces différences et homogéneiser la cohorte d'étudiants
-en quelques dizaines d'heures les différences importantes qui se 
-sont formées dans les deux ans des filières préparatoires,
-d'autant que les objectifs en termes d'acqusition de nouvelles
-connaissances sont ambitieux; il sera donc nécessaire d'œuvrer à ne pas 
+plus "pures" des classes préparatoires. Il est inutile d'espérer
+compenser intégralement en quelques dizaines d'heures les différences 
+importantes qui se sont formées dans les deux ans des filières préparatoires,
+d'autant que les objectifs en termes d'acquisition de nouvelles
+connaissances sont ambitieux; il sera donc nécessaire d'œuvrer pour ne pas 
 évaluer systématiquement les étudiants à l'aune d'un "profil type" 
 étroit et rigide, mais par rapport à un large panel de compétences 
-mathématiques possibles, panel qui sera probablement maîtrisé de 
+mathématiques utiles, panel qui sera probablement maîtrisé de 
 façon lacunaire.
 
 [^champs]: En Mathématiques bien sûr, mais aussi Physique, Informatique, 
@@ -592,9 +591,15 @@ et la maîtrise de leur mise en œuvre" :
 
     **Partiellement.** Oui, à ceci près que la recherche de l'information
     pertinente va être principalement cantonnée aux ressources pédagogiques
-    mises à disposition des étudiants.
-
-    **TODO.** dépend peu-être modalités 2eme EC ??? à préciser.
+    conçues spécifiquement pour l'UE pour des raisons d'efficacité[^eff].
+    Les projets numériques, et peut-être les modalités d'évaluations
+    du second EC, pourraient être l'occasion d'élargir le champ des 
+    recherches (à des corpus pré-selectionnés de ressources extérieures,
+    ou même sans ce type d'assistance).
+    
+[^eff]: Le périmètre de l'UE est large et le rythme ambitieux; 
+accomoder fortement les ressources pédagogiques est un des 
+leviers principaux dont nous disposons pour répondre à ce défi.
 
 Aucune compétence n'est spécifiquement développée qui soit relative
 à "l'adaptation aux exigences propres de l'entreprise et de la société" :
@@ -645,7 +650,7 @@ difficultés qui n'auraient pas été détectées dans le cadre du dispositif
 d'accompagnement personnalisé, auquel les étudiants ne sont pas tenus
 d'avoir recours -- elle a le mérite de donner l'alerte de façon claire
 et clinique, puisqu'elle situe les résultats des étudiants 
-les uns par rapport aux autres, dans un dispositif normalisé.
+les uns par rapport aux autres, dans un dispositif standard.
 Cette information doit être alors prise en compte dans le second 
 EC de l'UE pour définir de façon plus personnalisée des objectifs 
 adaptés et orienter si nécessaire les étudiants vers le dispositif
@@ -724,7 +729,7 @@ etc.
 
 Une introduction nécessairement minimaliste compte tenu du très faible
 volume dédié[^intro] et dictée par les besoins variés des sessions 
-qui suivent. Malheureusement, les contenus des programme des classes
+qui suivent. Malheureusement, les contenus des programmes des classes
 préparatoires dans ce domaine sont très réduits[^CPGE-topo].
 En conséquence, le contenu programmé se limite à la topologie des
 sous-ensembles d'espaces vectoriels normés (dimension finie ou infinie), 
@@ -770,7 +775,7 @@ d'une modification de nature didactique.
 
  1. Fonctions de plusieurs variables,
 
- 2. Méthodes de calcul numériques,
+ 2. Méthodes numériques de calcul,
 
  3. Calcul différentiel en dimension infinie.
 
@@ -782,19 +787,19 @@ La première session (1er EC) introduit la notion de différentielle
 dans un cadre limité aux fonctions de plusieurs variables réelles[^ni], 
 puis dans ce même cadre la différentiation en chaîne, 
 les différentielles d'ordre supérieur, ainsi que le lien avec 
-la réprésentation de la différentielle par une matrice, 
+la représentation de la différentielle par une matrice, 
 qui est propre à la dimension finie.
 
 La seconde session (1er EC) est un volet algorithmique et numérique.
 Elle introduira le théorème des fonctions implicites,
-en insistant sur l'aspect constructif de la construction 
+en insistant sur l'aspect constructif de la solution 
 (méthode de Newton, recherche d'un point fixe, etc.);
 elle fournira également aux étudiants des clés pour 
 évaluer numériquement les différentielles lorsque le calcul d'une 
 solution symbolique ou analytique n'est pas une option.
 L'accent -- notamment au travers du projet -- 
 sera mis sur les techniques de différentiation automatique dont l'usage s'est 
-rapidement (re-)développé en optimisation, machine learning, etc.
+rapidement (re-)développé en optimisation et machine learning.
 Pour situer l'intérêt de cette méthode parmi le panel des options
 existantes (comme le calcul de différences finies), 
 des éléments d'analyse numérique (analyse des erreurs
@@ -819,7 +824,7 @@ le caractère intrinsèque de la différentielle.
  précisément, "en pratique", de fonctions réelles dépendant d'au plus
  3 variables réelles.
  Stricto sensu, la notion de fonction différentiable n'est pas présente:
- l'objet "différentielle" est définie a posteriori,
+ l'objet "différentielle" est défini a posteriori,
  à partir des dérivées partielles; de même
  la règle de différentiation en chaîne est abordée à travers le calcul des 
  dérivées partielles.
@@ -856,7 +861,7 @@ probabilités dans le cadre général, etc.) requièrent sa maîtrise.
 Cette stratégie permet de se consacrer dans un premier temps
 à l'intégrale de Riemann généralisée[^HK] comme le plus court chemin
 pour définir l'intégrale "de Lebesgue" dans $\mathbb{R}$ et $\mathbb{R}^n$, 
-sans avoir recours à la théorie de la mesure. Plus moderne, mieux intégrée avec
+sans avoir recours à la théorie de la mesure. Plus récente, mieux intégrée avec
 le calcul différentiel, plus simple à comprendre, les bénéfices de cette 
 approche par l'intégrale de Riemann généralisée sont bien documentés 
 (voir par exemple @Bar96).
@@ -864,23 +869,24 @@ Cette étape doit être comprise dans le contexte où plus aucune construction
 spécifique de l'intégrale n'est au programme des classes 
 préparatoires[^CPGE-int]; il faut par conséquent s'attendre à ce que même 
 cette approche simplifiée, dans le prolongement des notions de CPGE, 
-présente son lot de défis pour les étudiants.
+présente son lot de défis pour certains étudiants.
 
 [^step]: Une grande partie de ce qui constitue l'"outillage axiomatique" 
-de la théorie de mesure -- notion d'ensemble et de fonction mesurables,
+de la théorie de mesure -- notion d'ensemble et de fonction mesurable,
 mesure $\sigma$-additive, etc. -- peut être découvert, plutôt que postulé,
 dans le cadre du premier volet. Les solutions que la théorie générale
 apporte doivent être dans la mesure du possible mises en rapport avec 
 des problèmes auquels on aura été confronté au préalable -- 
 comme par exemple l'impossibilité de définir une mesure de volume 
 aux propriétés satisfaisantes applicable à tous les ensembles de 
-$\mathbb{R}^3$ avant d'axiomatiser la notion d'ensemble mesurable. 
+$\mathbb{R}^3$ -- avant d'axiomatiser la notion d'ensemble mesurable. 
 Les résultats majeurs de la théorie générale feront
 de plus écho à des résultats déjà énoncés et manipulés dans un cadre
 plus simple.
 
 [^HK]: Ou plus précisement, à l'intégrale de Henstock-Kurzweil, 
-puisqu'il y a plusieurs intégrales de Riemann généralisées.
+puisqu'il y a plusieurs intégrales de Riemann généralisées 
+(McShane, Mawhin, etc.).
 
 [^CPGE-int]: L'intégrale considérée concerne les fonctions continues par 
 morceaux sur un intervalle de $\mathbb{R}$. Même dans ce périmètre étroit
@@ -894,10 +900,10 @@ d'Informatique.
 #### Equations Différentielles
 
    1. Equations non-linéaires,
-      problème bien-posé, 
+      problème bien posé, 
       comportement asymptotique.
 
-   2. Méthodes de résolution numériques.
+   2. Méthodes numériques de résolution.
 
 Le volet consacré aux équations différentielles, qui nécessite à la fois
 des résultats du calcul différentiel et intégral, est programmé dans le
@@ -952,11 +958,15 @@ doivent être développées.
 [^restr]: Dans les filières MP, PSI, PC, etc; dans d'autres filières
 comme B/L, ECE, ECS, certaines variables aléatoires réelles continues sont introduites.
 
-La première partie (2 sessions, 1er EC) commence par des rappels des résultats de prépa (cadre discret), mis en persepective relativement aux besoins de modélisation du réel et à l'histoire des probabilités. On sensibilise ainsi d'emblée les élèves à l'un des points les moins exploités en CPGE et utile (entre autres) à l'UE 21 : la modélisation probabiliste. 
-L'accent est ensuite mis sur la rupture qu'est l'introduction des variables aléatoires réelles 
+La première partie (2 sessions, 1er EC) commence par des rappels des résultats 
+de classes préparatoires (cadre discret), mis en perspective relativement aux 
+besoins de modélisation du réel et à l'histoire des probabilités. 
+On sensibilise ainsi d'emblée les élèves à l'un des points les moins exploités 
+en CPGE et utile (entre autres) à l'UE 21 : la modélisation probabiliste. 
+L'accent est ensuite mis sur la rupture qu'est l'introduction des variables 
+aléatoires réelles 
 continues (à densité), avec une relative économie de moyens techniques
 (en exploitant la théorie intégrale développée dans le 1er EC).
-
 
 La seconde partie (3 sessions, 2nd EC) introduit les notions plus complexes
 de vecteurs aléatoires, de conditionnement, etc. Elle fera également la jonction
@@ -970,7 +980,7 @@ technique d'intégration numérique; il sera prolongé par un projet numérique.
 probabilités dans des univers finis; en seconde année sont étudiées
 les variables aléatoires discrètes. Sur les filières MP/PSI/PC, le
 périmètre est relativement large: univers, événements, variables aléatoires,
-fonction de répartition, loi conditionnelles, espérance, variance, 
+fonction de répartition, lois conditionnelles, espérance, variance, 
 etc. jusqu'à une introduction aux séries génératrices et aux résultats
 asymptotiques. Cependant, le poids des probabilités dans la formation des CPGE
 -- qui pourrait sembler significatif à la lecture des programmes -- 
@@ -994,7 +1004,7 @@ pas l'unanimité et les professeurs étant inégalement formés à la discipline
     l'adoption de modalités relativement classiques, c'est-à-dire 
     l'usage de la craie et du tableau noir[^em]
     plutôt que l'usage de transparents. Cette modalité répond à plusieurs
-    objectifs: plus familière des étudiants de classe préparatoires qui
+    objectifs: plus familière des étudiants des classes préparatoires qui
     savent l'exploiter de façon efficace, elle facilite également une
     attitude plus active. Enfin, dans un contexte où la tentation est grande
     de balayer un grand nombre de notions en très peu de temps, obliger
@@ -1063,7 +1073,7 @@ trois sessions de tutorats quand les cours magistraux classiques sont à
     et un contenu de référence, dans une double logique: fournir à la plupart
     des élèves un guide -- purement indicatif -- sur l'organisation "standard"
     de leur temps de travail et permettre pour les autres un accès élargi
-    aux équipes pédagogiques pour mettre en œuvre un tutorat.
+    aux équipes pédagogiques à travers un tutorat.
 
     Le tutorat se distingue des autres modalités pédagogiques par son coté 
     individualisé et flexible; il s'agit d'accompagner des étudiants dans
@@ -1088,7 +1098,7 @@ trois sessions de tutorats quand les cours magistraux classiques sont à
     au travail en totale autonomie.
 
   - **Examen de Mi-Parcours.**
-    Se reporter à la section [Modalités d’Evaluation] pour le contexte.
+    Se reporter à la section "[Modalités d'Evaluation]" pour le contexte.
     Le projet de l'UE nécessite que l'évaluation du premier EC soit
     programmée juste avant une pause dans les enseignements de l'UE 
     pour que l'équipe pédagogique puisse corriger les examens, analyser
@@ -1100,7 +1110,7 @@ trois sessions de tutorats quand les cours magistraux classiques sont à
   - **Projets Numériques.** 
     Les deux EC comportent au total trois projets numériques qui complètent 
     les cours et travaux dirigés par un volet applicatif/concret/expérimental,
-    pour un total de 9h de travail.
+    pour un total de 9h de travail personnel.
     Ces projets, bien que préparés par des sessions des cours et/ou TDs,
     ne sont pas conçus comme des travaux pratiques en face-à-face pédagogique, 
     mais affectés au temps de travail personnel des étudiants pour une plus
@@ -1297,14 +1307,14 @@ Un ensemble de documents comprenant les supports des cours, travaux dirigés et
 projets numériques sera développé en suivant les trois principes suivants.
 
   - **Accès libre.**
-    Les documents associés à l'UE sont mis à disposition et de façon simple 
+    Les documents associés à l'UE sont mis à disposition sans formalité et
     sous forme digitale à toute personne souhaitant y avoir accès.
     Cette mise à disposition se fait dans le cadre d'une licence
     de type Creative Commons CC-BY-NC-SA, qui offre une grande liberté
     dans l'usage et la redistribution des documents.
     Le développement et l'évolution des ressources se
     déroulera de façon publique et transparente, 
-    ce qui ouvre la voie à des schémas participatifs.
+    ce qui facilite des schémas collaboratifs et participatifs.
     
   - **Reproductibilité.** 
     La politique d'accès libre et public aux ressources pédagogiques
@@ -1312,7 +1322,7 @@ projets numériques sera développé en suivant les trois principes suivants.
     fichiers nécessaires à leur (re-)production.
     Afin de faciliter leur modification et leur usage,
     les documents sont produits
-    au moyens de technologies *open-source* et exploitent des formats
+    au moyen de technologies *open-source* et exploitent des formats
     ouverts et adaptés; un effort spécifique est également entrepris pour 
     simplifier la reproduction de l'environnement logiciel nécessaire à 
     cette démarche[^reprod].    
@@ -1340,8 +1350,9 @@ découlent également de bénéfices très concrets, comme ceux listés ci-aprè
     la production de ressources de qualité[^publiables] 
     mais également largement immuables.
     La réutilisation de l'existant est faible; les évolutions se font 
-    principalement par à-coup, sans réelle continuité, et ont un coût
-    important. Le modèle que nous mettrons en œuvre promet au contraire 
+    principalement par à-coup, sans réelle continuité, et chaque itération
+    a un coût important. 
+    Le modèle que nous mettrons en œuvre promet au contraire 
     une forme de "développement durable" où les ressources sont vivantes,
     en évolution, et les investissements initiaux peuvent être mieux 
     réutilisés.
@@ -1350,7 +1361,7 @@ découlent également de bénéfices très concrets, comme ceux listés ci-aprè
     et la configuration dans lesquelles les ressources pédagogiques 
     devraient être consommées.  Il peut ainsi être nécessaire de produire 
     des ressources pédagogiques avec et sans annotations 
-    (cf. section [Acquis d'Apprentissage]), organisées par thématique
+    (cf. section "[Acquis d'Apprentissage]"), organisées par thématique
     ou regroupant toutes les ressources de l'UE, 
     adaptées à un public malvoyant, destinées à l'impression ou à
     des formats électroniques variés (PDF, HTML, etc.), 
@@ -1358,18 +1369,19 @@ découlent également de bénéfices très concrets, comme ceux listés ci-aprè
     Ce qui est certain c'est qu'une forme unique ne va pas convenir 
     à tous les usages et qu'il faut donc prévoir en amont une chaîne 
     d'outils permettant une grande flexibilité. 
-    À ce titre, le système de préparation de documents LaTeX, 
+    Le système de préparation de documents LaTeX, 
     très majoritairement utilisé pour élaborer des documents en Mathématiques,
     est malgré son grand âge, encore très novateur et de grande qualité
     sur de multiples aspects. Néanmoins, il est dévenu également très insuffisant 
     à bien des égards et doit donc faire partie d'une solution plus globale.
     
+<!--
 
   - Communication, DOI, etc.
 
   - Appropriation (élèves, etc.), 
 
-
+-->
 
 
 [^publiables]: au sens de "publiable par un éditeur scientifique".
@@ -1396,7 +1408,7 @@ du projet:
     ont une très bonne connaissance de notre formation 
     (responsabilité de direction, participation aux réformes précédentes
     de l'enseignement des Mathématiques, etc.)
-    et ont tous des expériences concrètes d'enseignement dans son cycle
+    et ont tous des expériences concrètes d'enseignement dans le cycle
     ingénieur civil.
 
   - Sébastien Giraud (Lycée Kléber), un enseignant de classes préparatoires aux 
@@ -1417,21 +1429,12 @@ du projet:
   - Au titre de l'équipe pédagogique, Emilie Chautru (GEOSCIENCES),
     Pauline Bernard (CAS), Thomas Romary (GEOSIENCES) et Sébastien 
     Boisgérault (CAOR), également préfigurateur de l'UE, dont les
-    compétences disciplinaires correspondent bien au périmètre de l'UE.
+    compétences disciplinaires correspondent au périmètre de l'UE.
     Des échanges nombreux ont également eu lieu avec les préfigurateurs et les 
     équipes pédagogiques
     des UE 12 -- Informatique -- 13 -- Physique -- et 21 -- Mathématiques Appliquées --
     sans que les interlocuteurs soient formellement associés au groupe de 
     travail.
-
-*\[ 
-Déclinaison du processus qualité: description des aspects de l’UE
-nécessitant des mesures et/ou des expérimentations spécifiques.
-Modalités de cette démarche (questionnaires élèves, groupes pilotes,
-expertise domaine ou pédagogique) et insertion dans le processus qualité
-général. 
-\]*
-
 
 **Déclinaison du processus qualité.**
 L'amélioration continue de l'enseignement passe par un processus
@@ -1490,25 +1493,32 @@ Les effectifs d'enseignants responsables des sessions en présentiel
     6 groupes de travaux dirigés seront constitués.
 
   - Tutorats (classique et projet): 6 intervenants ($\times$ 33h).  
-    Destinés à des effectifs plus restreint que les travaux dirigés 
+    Destinés à des effectifs plus restreints que les travaux dirigés 
     en raison de leur caractère optionnel,
     les tutorats s'inscrivent néanmoins dans une logique d'accompagnement 
     personnalisé et supposent donc un encadrement renforcé. 
     Dans cette optique, et pour assurer une continuité dans l'accompagnement, 
     l'effectif de 6 personnes en charge des travaux dirigés sera maintenue.
 
-Ce découpage ne concerne que les activités en présentiel, 
+Ce découpage ne concerne que les activités en présence des étudiants, 
 et laisse de coté des activités et des rôles moins visibles ou
-"nobles" mais importants et coûteux en temps[^exr] 
+"nobles" mais coûteux en temps et tout aussi importants[^exr], 
 qu'il sera intéressant de documenter plus précisément.
 Les titres décrivant aujourd'hui officiellement les rôles possibles des 
 enseignants-chercheurs dans une UE -- "responsable", "intervenant", 
 "chargé d'enseignement" -- sont trop grossiers pour avoir cette 
-utilité.
+fonction[^fc].
 
 [^exr]: Tels que: la gestion de l'infrastructure numérique 
 pour les ressources pédagogiques, l'accompagnement des doctorants 
-dans leur activité d'enseignement, etc.
+dans leur activité d'enseignement, la mise en place d'expérimentations 
+pédagogiques, etc. 
+
+[^fc]: Ces catégories classiques ne permettent par exemple pas
+de distinguer les contributions à la définition et l'amélioration 
+continue du projet, des contributions dans le développement des 
+ressources pédagogiques, ou encore du temps passé en face-à-face 
+pédagogique ou dans les activités d'accompagnement.
 
 On constatera que les modalités pédagogiques envisagées,
 notamment les sessions tutorées, classiques ou numériques, ne s'inscrivent 
@@ -1614,4 +1624,4 @@ La prise en compte de la dimension organisationnelle, personnelle et culturelle 
      à opérer ses choix professionnels.
 
 Références
-================================================================================
+--------------------------------------------------------------------------------
