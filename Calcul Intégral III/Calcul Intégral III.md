@@ -207,7 +207,9 @@ Définir normale (extérieure). Carac intrinsèque ?
 
 Considérer remplacement de $T$ par $T^{-1}$ dans cet enoncé,
 si cela simplifie les choses dans la suite (j'ai l'impression,
-techniquement et sur la compréhension).
+techniquement et sur la compréhension). Et s'arranger pour avoir
+dans le théorème qqchose de la forme $K \cap V = \dots$ 
+c'est plus simple à comprendre sans doute.
 
 ### Caractérisation implicite des compacts à bord régulier {.theorem}
 Un sous-ensemble compact $K$ de $\mathbb{R}^n$ est un compact à bord $C^1$ 
