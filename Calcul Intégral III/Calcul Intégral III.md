@@ -147,24 +147,40 @@ pour l'intuition (et de toute façon on a besoin de cette construction
 pour la suite) puis d'énoncer rigoureusement la version
 implicite, équivalente.
 
+### TODO
+
+Remplacer épigraphe par hypographe ? Ca me semble graphiquement plus
+intuitif et ça colle sans doute mieux avec les exemples usuels 
+(fonction distance orientée, conventions KKT, etc.), mais bien sûr pas
+toujours (ex: carac convexité). OK, oui
+
+### TODO
+Minimiser le cadre "reprère orthonormé direct", par simplement 
+"changement de repère"; cela simplifie l'enoncé, la preuve, etc.
+et la contrainte "orthonormé direct" peut venir plus tard, 
+en exercice? Pas évident, rédiger la preuve associé au passage
+de l'hypographe à l'inégalité implicite et voir ce qui vient.
+OK, ça devrait passer.
+
 ### Compact à bord régulier {.definition}
 
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
 s'il est compact et peut être caractérisé au voisinage de tout point de
 sa frontière $\partial K$, 
-et après un éventuel changement de repère orthonormé direct,
-comme l'épigraphe -- l'ensemble des points "au-dessus du graphe" -- 
+et après un éventuel changement de repère,
+comme l'*hypographe* -- l'ensemble des points en-dessous du graphe -- 
 d'une fonction de classe $C^1$.
-Autrement dit, pour tout point $x \in \partial K$, 
-il existe un ouvert non vide $V_x \subset \mathbb{R}^n$ de la forme
-$V_x = U_x \times I_x$ où $U_x \subset \mathbb{R}^{n-1}$ et $I_x$ 
+Autrement dit, pour tout point $x_0 \in \partial K$, 
+il existe un ouvert non vide $V \subset \mathbb{R}^n$ de la forme
+$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
 est un intervalle ouvert non vide de $\mathbb{R}$, 
-une isométrie directe $T_x$ telle que $T_x(x) \in V_x$ 
+une application affine inversible $T$ telle que $T(x_0) \in V$ 
 et une fonction 
-$f_x: y \in U_x \to I_x$ continûment différentiable tels que
+$f: U \to I$ continûment différentiable tels que
 $$
-T_x(K) \cap V_x = \{(y_1,\dots, y_n) \in V_x \; | \;  f_x(y_1, \dots, y_{n-1}) \leq y_n\}
+T(K) \cap V = \{(y_1,\dots, y_n) \in V \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}
 $$
+
 
 ### TODO
 
@@ -180,23 +196,109 @@ intérieur et frontière comme dans [@DZ11, p. 87].
 Lister qq conséquences du fait d'être compact à bord (tq: adhérence de 
 l'intérieur est l'ensemble, etc.), etc.
 Notation $\Omega$, $\Gamma$, etc.
+Caractériser la frontière de $K$ comme étant localement 
+les points tels que $y_n = f(y_1, \dots, y_{n-1})$.
 
-Définir normale (extérieure).
+Evoquer "localement d'un seul coté" de la frontière ?
+
+Définir normale (extérieure). Carac intrinsèque ?
 
 ### Caractérisation implicite des compacts à bord régulier {.theorem}
 Un sous-ensemble compact $K$ de $\mathbb{R}^n$ est un compact à bord $C^1$ 
-si pour tout point $x$ de sa frontière $\partial K$ il existe un voisinage 
-ouvert $V_x$ et une fonction continûment différentiable $f_x: V_x \to \mathbb{R}$ 
-dont la différentielle est inversible en tout point, 
-telle que pour tout point $y$ de $V_x$, $y$ appartient à $K$ 
-si et seulement si $f_x(y) \leq 0$.
+si pour tout point $x_0$ de sa frontière $\partial K$ il existe un voisinage 
+ouvert $V$ de $x_0$ et une fonction continûment différentiable 
+$g: V \to \mathbb{R}$ dont la différentielle est non-nulle en $x_0$, 
+telle que pour tout point $x$ de $V$, $x$ appartient à $K$ 
+si et seulement si $g(x) \leq 0$.
+
+### Démonstration {.proof}
+Si $K$ est un compact à bord $C^1$, il existe un ouvert non vide 
+$V \subset \mathbb{R}^n$ de la forme
+$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
+est un intervalle ouvert non vide de $\mathbb{R}$, 
+une application affine inversible $T$ telle que $T(x_0) \in V$ 
+et une fonction 
+$f: U \to I$ continûment différentiable tels que
+$$
+T(K) \cap V = \{(y_1,\dots, y_n) \in V \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}.
+$$
+Par conséquent, si l'on définit la fonction $g: V \to \mathbb{R}$ par
+$$
+g(x) = y_n - f(y_1, \dots, y_{n-1}) \, \mbox{ où } \,
+(y_1, \dots, y_n) = T^{-1}(x),
+$$
+on obtient la caractérisation implicite souhaitée.
+La seule vérification qui n'est pas évidente par construction 
+est le caractère non-nul de la différentielle $dg$. 
+Si $T(x) =  A \cdot x + b$ où $A$ est une application linéaire 
+(nécessairement inversible) et $b \in \mathbb{R}^n$, 
+en posant $\phi(y) = y_n - f(y_1, \dots, y_{n-1})$, on
+obtient 
+$$
+dg(x) = d\phi(T(x)) \cdot dT^{-1}(x) = d\phi(T(x)) \cdot A^{-1}.
+$$
+Or, $\partial_n \phi(y) = 1$ en tout point $y$ de $V$. 
+L'application $A^{-1}$ étant inversible, 
+il existe un vecteur $h$ de $\mathbb{R}^n$ tel que
+$A^{-1} \cdot h = (0, \dots, 0, 1)$; pour un tel vecteur on a donc
+$$
+dg(x) \cdot h = d\phi(T(x)) \cdot A^{-1} \cdot h = 
+\sum_{i} \partial_i \phi(T(x)) (A^{-1} \cdot h)_i = 1.
+$$
+La différentielle de $g$ est donc bien non nulle.
+
+Réciproquement, considérons un $x_0 \in \partial K$ et supposons qu'il existe 
+une fonction $g: V \to \mathbb{R}$ satisfaisant les propriétés de l'énoncé. 
+La différentielle de $g$ étant non nulle en $x_0$, il exists un vecteur de $u$ 
+de $\mathbb{R}^n$ tel que 
+$$
+dg(x) \cdot u > 0
+$$
+dans un voisinage $V'$ de $x_0$ contenu dans $V$. 
+Soit $T$ une application affine inversible de la forme 
+$T(x) = A \cdot x + b$ telle que $A \cdot u = e_n$.
+La fonction $g \circ T^{-1}$ définie sur un voisinage ouvert de $T(x_0)$
+satisfait alors
+$$
+\begin{split}
+\partial_n (g \circ T^{-1})(y) &= dg(T^{-1}(y)) \cdot dT^{-1}(y) \cdot e_n \\
+&= dg(T^{-1}(y)) \cdot A^{-1} \cdot e_n  \\
+&= dg(T^{-1}(y)) \cdot u > 0 \\
+\end{split}
+$$
+L'application du théorème des fonctions implicite fournit
+un ouvert non vide $V \subset \mathbb{R}^n$ de la forme
+$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
+est un intervalle ouvert non vide de $\mathbb{R}$ et une fonction 
+$f: U \to I$ continûment différentiable telle que
+$$
+g \circ T^{-1}(y_1,\dots,y_n) = 0 
+\, \Leftrightarrow \, 
+y_n = f(y_1,\dots, y_{n-1}).
+$$
+Par le théorème fondamental du calcul,
+$$
+\begin{split}
+g \circ T^{-1}(y_1,\dots,y_n) &= 
+g \circ T^{-1}(y_1,\dots,f(y_1, \dots, y_{n-1})) \\
+& \phantom{=}+
+\int_{f(y_1, \dots, y_{n-1})}^{y_n}
+\partial_n  (g\circ T^{-1})(y_1,\dots,y_{n-1}, t) \, dt \\
+&=
+\int_{f(y_1, \dots, y_{n-1})}^{y_n}
+\partial_n  (g\circ T^{-1})(y_1,\dots,y_{n-1}, t) \, dt, \\
+\end{split}
+$$
+ce qui garantit que dans $V$, $(g \circ T^{-1})(y) \leq 0$
+-- c'est-à-dire $x = T^{-1}(y) \in K$ --
+si et seulement si $f(y_1, \dots, y_{n-1}) \leq y_n$.
 
 ### TODO
 
-Rendre explicite la normale extérieure dans ce cas et comment trouver
-un axe orthonormé qui permet de se ramener au cadre de l'épigraphe.
-
-Evoquer en remarque la notion de sous-variété de $\mathbb{R}^n$ ?
+Rendre explicite la normale extérieure dans ce cas et 
+un peu plus explicitement (sur un exemple ?) comment trouver
+un axe (orthonormé ?) qui permet de se ramener au cadre de 
+l'épigraphe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
 
 ### TODO
