@@ -203,6 +203,12 @@ Evoquer "localement d'un seul coté" de la frontière ?
 
 Définir normale (extérieure). Carac intrinsèque ?
 
+### TODO
+
+Considérer remplacement de $T$ par $T^{-1}$ dans cet enoncé,
+si cela simplifie les choses dans la suite (j'ai l'impression,
+techniquement et sur la compréhension).
+
 ### Caractérisation implicite des compacts à bord régulier {.theorem}
 Un sous-ensemble compact $K$ de $\mathbb{R}^n$ est un compact à bord $C^1$ 
 si pour tout point $x_0$ de sa frontière $\partial K$ il existe un voisinage 
@@ -293,6 +299,39 @@ ce qui garantit que dans $V$, $(g \circ T^{-1})(y) \leq 0$
 -- c'est-à-dire $x = T^{-1}(y) \in K$ --
 si et seulement si $f(y_1, \dots, y_{n-1}) \leq y_n$.
 
+### Normale extérieure {.definition .theorem}
+Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
+$x_0 \in \partial K$ par l'inégalité $g(x) \leq 0$, 
+où $V$ est un voisinage ouvert de $x$ et $g: V \to \mathbb{R}$
+est continûment différentiable de différentielle non nulle, 
+alors la *normale extérieure* de $K$ en $x \in \partial K \cap V$ 
+est le vecteur de $\mathbb{R}^n$ donné par
+$$
+n(x) = \frac{\nabla g(x)}{\|\nabla g(x)\|}.
+$$
+
+### Terminologie
+La normale est dite *extérieure* car si l'on part de $x \in \partial K$ 
+et que l'on considère un déplacement suffisamment petit 
+dans la direction de la normale, on se retrouve à l'extérieur de $K$. 
+En effet, par la définition du gradient,
+$$
+g(x + h) = g(x) + \left<\nabla g(x), h \right> + o(h) = \left<\nabla g(x), h \right> + o(h)
+$$
+et par conséquent, si $h = \varepsilon n(x)$ avec $\varepsilon > 0$,
+$$
+g(x+h) =
+\left<\nabla g(x), \varepsilon \frac{\nabla g(x)}{\|\nabla g(x)\|} \right> + o(\varepsilon)
+= \varepsilon \|\nabla g(x)\| + o(\varepsilon)
+$$
+et le second membre de cette équation est positif si $\varepsilon$ est 
+suffisamment petit.
+
+### TODO
+
+Evoquer indépendance du choix dans la définition
+
+
 ### TODO
 
 Rendre explicite la normale extérieure dans ce cas et 
@@ -300,10 +339,36 @@ un peu plus explicitement (sur un exemple ?) comment trouver
 un axe (orthonormé ?) qui permet de se ramener au cadre de 
 l'épigraphe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
+### TODO -- Partition de l'unité
+
+**TODO** Définition, énoncé existence
+
+### Intégrale de surface
+
+Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
+Quand $K$ est caractérisée au voisinage de $x_0 \in \partial K$
+comme l'épigraphe de la fonction $f: V \to I$ après transformation $T$, 
+la contribution de $W = T^{-1}(V \times I)$ à l'intégrale de surface
+de $\phi$ est définie par la relation
+$$
+\int_{\partial K \cap W} \phi(x) S(dx) 
+:= 
+\int_{U}
+\phi(z, f(z)) \sqrt{1 + \|\nabla f(z)\|^2}\, dz. 
+$$
+Si les $\{W_i\}_i$ consituent un recouvrement fini de $\partial K$ par de tels
+ouverts et les $\{\rho_i\}_i$ une partition de l'unité associée,
+alors l'intégrale de surface de $\phi$ sur $\partial K$ est définie par
+$$
+\int_{\partial K} \phi(x) S(dx) 
+:= \sum_i \int_{\partial K \cap W_i} \rho_i(x) \phi(x) S(dx) 
+$$
 
 ### TODO
 
-Intégrale de surface, partition de l'unité, etc.
+Evoquer indépendance du choix dans la définition
+
+### TODO
 
 Preuve de Stokes (dans un patch, puis en général)
 Enoncer version différentielle partielle de Stokes
