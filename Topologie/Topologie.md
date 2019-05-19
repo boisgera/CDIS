@@ -110,3 +110,7 @@ en itérant sans s'assurer du caractère contractant.
 
 Lien norme d'opérateur et rayon spectral ???
 
+Nombres Réels de Bishop ?
+--------------------------------------------------------------------------------
+
+(illustration des suites de Cauchy ?)
