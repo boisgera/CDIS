@@ -26,11 +26,29 @@ Intégral et Stochastique I                                2
 Intégral et Stochastique II                               2
 --------------------------------------------------------------------------------
 
-
-
-
-Evolution (Avant-Après)
+Calcul Différentiel, Intégral et Stochastique
 --------------------------------------------------------------------------------
+
+**Aujourd'hui:**
+
+  - Math. 1: "Calcul Différentiel" (2 ECTS, 1er semestre),
+
+  - Math. 2: "Calcul Intégral" (3 ECTS, 2ème semestre),
+
+  - Probabilités (2 ECTS, 2ème semestre),
+
+(*à suivre*)
+
+--------------------------------------------------------------------------------
+
+  - Math. 3: "Fonctions d'une variable complexe" 
+    (2 ECTS, 3ème semestre),
+
+  - Compléments de Mathématiques (1 ECTS, 1er semestre),
+
+  - Soutien en Mathématiques (0 ECTS, 1er semestre).
+
+  - ...
 
 Enjeux (Cadrage)
 --------------------------------------------------------------------------------
@@ -44,7 +62,8 @@ A l'issue de cette UE, les étudiants auront
 
   - découvert et assimilé un large panel de nouvelles connaissances
     fondamentales dans les domaines du calcul différentiel, intégral 
-    et stochastique, prolongeant les connaissances acquises antérieurement.
+    et stochastique, prolongeant les connaissances acquises antérieurement
+    (cf [Programme]).
 
 --------------------------------------------------------------------------------
 
@@ -55,13 +74,14 @@ A l'issue de cette UE, les étudiants auront
 
 --------------------------------------------------------------------------------
 
-  - développé des aptitudes clés facilitant la poursuite de leurs 
-    études[^champs], aussi bien les enseignements de tronc commun 
-    qu'ultérieurement, une large gamme de parcours 
-    de formation individualisés. 
+  - développé des aptitudes clés facilitant la poursuite de leurs études, 
+    aussi bien les enseignements de tronc commun qu'ultérieurement, 
+    une large gamme de parcours de formation individualisés. 
 
 Programme
 ================================================================================
+
+--------------------------------------------------------------------------------
 
 ### Topologie & Calcul Différentiel 
 
@@ -72,6 +92,8 @@ Programme
  2. Méthodes numériques de calcul,
 
  3. Calcul différentiel en dimension infinie.
+
+--------------------------------------------------------------------------------
 
 ### Calcul Intégral 
 
@@ -85,6 +107,8 @@ Programme
 
   5. Applications de la théorie de la mesure.
 
+--------------------------------------------------------------------------------
+
 ### Equations Différentielles
 
    1. Equations non-linéaires,
@@ -93,6 +117,7 @@ Programme
 
    2. Méthodes numériques de résolution.
 
+--------------------------------------------------------------------------------
 
 ### Probabilités 
 
