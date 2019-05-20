@@ -41,6 +41,7 @@ mkdir -p output
 # Options
 OPT=(--standalone)
 OPT+=(-V lang=fr)
+OPT+=(--mathjax)
 OPT+=(-t revealjs -V theme:white -V slideNumber:true)
 
 # PDF Output
