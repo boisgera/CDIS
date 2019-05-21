@@ -42,13 +42,11 @@ Calcul Différentiel, Intégral et Stochastique
 
 --------------------------------------------------------------------------------
 
-Egalement:
+Egalement, "tronc commun optionnel":
 
   - Compléments de Mathématiques (1 ECTS, 1er semestre),
 
   - Soutien en Mathématiques (0 ECTS, 1er semestre).
-
-  - ...
 
 
 Avant / Après
@@ -99,19 +97,19 @@ Programme
 
 --------------------------------------------------------------------------------
 
-### Topologie & Calcul Différentiel 
+### Topologie & Calcul Différentiel (EC 1: 3, EC 2: 1)
 
- 0. Topologie pour l'Analyse
+ 0. Topologie pour l'Analyse,
 
  1. Fonctions de plusieurs variables,
 
- 2. Méthodes numériques de calcul,
+ 2. Méthodes numériques de calcul (<i class="fa fa-laptop"></i>),
 
  3. Calcul différentiel en dimension infinie.
 
 --------------------------------------------------------------------------------
 
-### Calcul Intégral 
+### Calcul Intégral (EC 1: 3, EC 2: 2)
 
   1. Intégrale de Riemann généralisée,
 
@@ -125,17 +123,17 @@ Programme
 
 --------------------------------------------------------------------------------
 
-### Equations Différentielles
+### Equations Différentielles (EC 2: 2)
 
    1. Equations non-linéaires,
       problème bien posé, 
       comportement asymptotique.
 
-   2. Méthodes numériques de résolution.
+   2. Méthodes numériques de résolution (<i class="fa fa-laptop"></i>).
 
 --------------------------------------------------------------------------------
 
-### Probabilités 
+### Probabilités (EC 1: 2, EC 2: 3)
 
    1. Introduction,
 
@@ -145,7 +143,7 @@ Programme
 
    4. Théorie asymptotique & inégalités de concentration,
 
-   5. Méthodes de Monte-Carlo.
+   5. Méthodes de Monte-Carlo (<i class="fa fa-laptop"></i>).
 
 Modalités
 ================================================================================
@@ -223,8 +221,32 @@ Pas prolongement du reste parce que pas le temps en tout cas.
 Evaluation
 --------------------------------------------------------------------------------
 
-...
+  - Calcul Diff., Int. et Stoch. I: 
+
+    - projet numérique: 1/6
+
+    - examen écrit: 5/6 
+
+  - Calcul Diff., Int. et Stoch. II:
+
+    - projet numérique: 2/6
+
+    - autres: 4/6
+
+
+"Autres ?"
 --------------------------------------------------------------------------------
+
+  - Examen écrit permet de poser un diagnostic partiel.
+    
+  - Nécessité d'exploiter ce diagnostic; si besoin,
+    adaptation des objectifs futurs, nouveau travail pour valider 
+    les acquis associés à l'EC 1 (avec abandon partiel acquis EC 2).
+
+  - Diversification des compétences évaluées dans l'EC 2 
+    (reflet diversité des pratiques); 
+    outil plus fin, plus flexible et personnalisé nécessaire.   
+    Oraux pertinents ; problématique mise en oeuvre.
 
 
 Ressources
@@ -260,16 +282,18 @@ Equipe Pédagogique (Noyau)
   - Sébastien Boisgérault (CAOR).
 
 
-Ressources Humaines, Matérielles et Financières
+Ressources Humaines
 --------------------------------------------------------------------------------
 
-Activités "visibles":
+Activités "visibles", par session:
 
   - Cours magistraux: 1 intervenant,
 
   - Travaux dirigés: 6 intervenants,  
 
-  - Tutorats: 6 intervenants.  
+  - Tutorats: 6 intervenants,
+
+  - Examen: ~12 (?) intervenants.
 
 Processus Qualité
 ================================================================================
@@ -285,7 +309,8 @@ Groupe de Travail (1/2)
   - **Experts classes préparatoires.**  
     Sébastien Giraud (Lycée Kléber) + consultations.
 
-  - **Autres experts.** Echanges inter-UEs.
+  - **Autres experts.** Echanges inter-UEs (Informatique, Physique, 
+    Mathématiques Appliquées).
 
 
 Groupe de Travail (2/2)
@@ -306,7 +331,7 @@ Groupe de Travail (2/2)
 Evaluation de l'UE
 --------------------------------------------------------------------------------
 
-  - Amélioration continue / démarche expérimentale;
+  - Amélioration continue / démarche **expérimentale**;
     
   - Intensifier retours qualitatifs / informels + ...
 
