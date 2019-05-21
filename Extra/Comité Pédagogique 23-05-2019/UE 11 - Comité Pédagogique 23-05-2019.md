@@ -191,31 +191,27 @@ en même temps.**»"
 Accompagnement personnalisé
 --------------------------------------------------------------------------------
 
-"Etudes" / Office Hours (Heures de Permanence ?) Accompagnement personnalisé / Tutorat, etc.
+  - accès supplémentaire à l'équipe pédagogique 
+    ("heures de permanence", "études", etc.)
 
-Accompagnement du travail personnel (même objectifs), 
-pas d'objectifs supplémentaires, accompagnement quand l'étudiant
-n'est pas en situation d'autonomie par rapport à l'atteinte de ses 
-objectifs (principalement: remédiation, mais pas que).
+  - formule de support/facilitation du travail personnel, 
+    (pas d'objectifs  / de charges *supplémentaires*).
 
-(dont: remédiation)
-
-Modalité: pas structuré *a priori*, travail **non dirigé**, 
-à l'initiative de l'étudiant, optionnel, minoritaire (voire transitoire), 
-potentiellement collectif, voire auto-organisé (simple bénéfice du temps commun,
-prise en charge par le groupe), 
-"enseignant-ressource", analyse des enjeux pour l'élève, programme de travail,
-définition des solutions, etc. développer l'autonomie ? 
-Pas prolongement du reste parce que pas le temps en tout cas.
+  - outil proposé à l'étudiant, qui reste décideur:
+    participation optionelle et choix réversible.
 
 --------------------------------------------------------------------------------
 
-> Le face à face pédagogique correspond aux moments, prévus à l'emploi du temps, 
-> pendant lesquels un élève réalise des activités sous le contrôle d'un enseignant 
-> (cours magistral, travaux dirigés, travaux pratiques, contrôles de connaissances). 
-> Les heures de projet ne sont pas comptées au titre du face à face pédagogique, 
-> même si elles sont inscrites à l'emploi du temps et si un enseignant est 
-> disponible pour répondre à des questions des étudiants, mais ne guide pas la séance. 
+  - quand l'étudiant estime ne pas pouvoir
+    atteindre de ses objectifs de manière totalement autonome 
+    (notamment: dispositif de remédiation).
+
+  - l'enseignant ne structure pas a priori la séance, 
+    dictée par les besoins/projets de l'étudiant
+    ("enseignant-ressource", analyse, support, etc.).
+    
+  - (partiellement) auto-organisé, ouvert aux élèves souhaitant 
+    simplement travailler en groupe.
 
 
 Evaluation
