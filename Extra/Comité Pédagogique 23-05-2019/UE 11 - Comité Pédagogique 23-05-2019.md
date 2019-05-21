@@ -289,7 +289,7 @@ Activités "visibles", par session:
 
   - Tutorats: 6 intervenants,
 
-  - Examen: ~12 (?) intervenants.
+  - Evaluations: ~12 (?) intervenants.
 
 Processus Qualité
 ================================================================================
