@@ -198,7 +198,7 @@ Accompagnement personnalisé
     (pas d'objectifs  / de charges *supplémentaires*).
 
   - outil proposé à l'étudiant, qui reste décideur:
-    participation optionelle, volontaire et choix réversible.
+    participation optionelle, volontaire, choix réversible.
 
 --------------------------------------------------------------------------------
 
