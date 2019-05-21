@@ -37,12 +37,12 @@ Calcul Différentiel, Intégral et Stochastique
 
   - Probabilités (2 ECTS, 2ème semestre),
 
-(*à suivre*)
+  - Math. 3: "Fonctions d'une variable complexe" 
+    (2 ECTS, 3ème semestre),
 
 --------------------------------------------------------------------------------
 
-  - Math. 3: "Fonctions d'une variable complexe" 
-    (2 ECTS, 3ème semestre),
+Egalement:
 
   - Compléments de Mathématiques (1 ECTS, 1er semestre),
 
@@ -50,8 +50,24 @@ Calcul Différentiel, Intégral et Stochastique
 
   - ...
 
+
+Avant / Après
+--------------------------------------------------------------------------------
+
+  - ~10 ECTS / 4 ECTS,
+
+  - 3 semestres /  1 semestre.
+
+
 Enjeux (Cadrage)
 --------------------------------------------------------------------------------
+
+  - Gestion de l'hétérogénéité,
+
+  - Place dans le projet de formation,
+
+  - Transformation numérique.
+
 
 Acquis d'Apprentissage / Compétences
 ================================================================================
@@ -134,12 +150,47 @@ Programme
 Modalités
 ================================================================================
 
-Evaluation
+Vue d'ensemble
 --------------------------------------------------------------------------------
 
-...
+  - Un cours magistral "classique"  
+    (avec à terme, des alternatives ?).
+
+  - Equilibre cours / travaux dirigés / travail personnel.
+
+  - Volet numérique (~25%) avec projet.
+
+  - Option travail personnel tutoré / personnalisé.
+
+
+Cours Magistral
 --------------------------------------------------------------------------------
 
+Les "Leçons d'Intégration" de [Henri-Léon Lebesgue](https://fr.wikipedia.org/wiki/Henri-L%C3%A9on_Lebesgue):
+
+"En 1921 j'ai assisté au premier cours de Lebesgue.
+Je dois dire qu'il n'y avait pas un cours où l'on ne riait 
+pas d'une manière infiniment agréable. Je soupçonne même qu'au moins le 
+tiers des gens venait au cours de Lebesgue pour s'amuser ; 
+il n'y avait rien de vulgaire, ni d'ordinaire dans ses plaisanteries
+lorsqu'il faisait des sorties. 
+Mais c'était infiniment intéressant, infiniment profond."
+
+--------------------------------------------------------------------------------
+
+"Lebesgue était un peu comme Bernstein à ce point de vue, 
+il n'a jamais su faire une démonstration léchée, mais il était très 
+inspirant parce que très inspiré.
+Je crois qu'il s'inspirait de la même idée (que Bernstein), que 
+**pour faire un cours, 
+il faut réfléchir pendant qu'on le fait, et non pas se rappeler.**  
+Avec Lebesgue, c'était chaque fois : « Ah, j'ai dit une bêtise, 
+laissez-moi recommencer. » Il recommençait et **tout le monde réfléchissait 
+en même temps.**»"
+
+(par [Szolem Mandelbrojt](https://fr.wikipedia.org/wiki/Szolem_Mandelbrojt))
+
+Accompagnement personnalisé
 --------------------------------------------------------------------------------
 
 "Etudes" / Office Hours (Heures de Permanence ?) Accompagnement personnalisé / Tutorat, etc.
@@ -161,19 +212,113 @@ Pas prolongement du reste parce que pas le temps en tout cas.
 
 --------------------------------------------------------------------------------
 
->Le face à face pédagogique correspond aux moments, prévus à l'emploi du temps, pendant lesquels un élève réalise des >activités sous le contrôle d'un enseignant (cours magistral, travaux dirigés, travaux pratiques, contrôles de >connaissances). Les heures de projet ne sont pas comptées au titre du face à face pédagogique, même si elles sont >inscrites à l'emploi du temps et si un enseignant est disponible pour répondre à des questions des étudiants, mais ne >guide pas la séance. 
+> Le face à face pédagogique correspond aux moments, prévus à l'emploi du temps, 
+> pendant lesquels un élève réalise des activités sous le contrôle d'un enseignant 
+> (cours magistral, travaux dirigés, travaux pratiques, contrôles de connaissances). 
+> Les heures de projet ne sont pas comptées au titre du face à face pédagogique, 
+> même si elles sont inscrites à l'emploi du temps et si un enseignant est 
+> disponible pour répondre à des questions des étudiants, mais ne guide pas la séance. 
 
+
+Evaluation
+--------------------------------------------------------------------------------
+
+...
+--------------------------------------------------------------------------------
+
+
+Ressources
+================================================================================
 
 Ressources Pédagogiques
-================================================================================
+--------------------------------------------------------------------------------
+
+Supports aux activités & documents de design
+
+  - **Media classiques & numériques.**
+  
+    Papier + E-book + "Notebooks" + Web + ...
+
+  - **Accessible, libre & gratuit.** 
+  
+    Hébergement public (DOI ?) & licence libérale.
+    
+  - **Processus de création.** 
+  
+    Collaboratif, transparent, reproductible.
+  
+
+Equipe Pédagogique (Noyau)
+--------------------------------------------------------------------------------
+
+  - Emilie Chautru (GEOSCIENCES),
+    
+  - Pauline Bernard (CAS), 
+  
+  - Thomas Romary (GEOSIENCES),
+    
+  - Sébastien Boisgérault (CAOR).
+
+
+Ressources Humaines, Matérielles et Financières
+--------------------------------------------------------------------------------
+
+Activités "visibles":
+
+  - Cours magistraux: 1 intervenant,
+
+  - Travaux dirigés: 6 intervenants,  
+
+  - Tutorats: 6 intervenants.  
 
 Processus Qualité
 ================================================================================
 
-Ressources Humaines, Matérielles et Financières
-================================================================================
-
+Groupe de Travail (1/2)
 --------------------------------------------------------------------------------
+
+  - **Experts grandes écoles.**  
+    Silviu Niculescu (Centrale-Supélec), 
+    Michel Schmitt (Ministère de l'Economie et des Finances), 
+    Gabriel Stoltz (Ecole des Ponts ParisTech)
+    
+  - **Experts classes préparatoires.**  
+    Sébastien Giraud (Lycée Kléber) + consultations.
+
+  - **Autres experts.** Echanges inter-UEs.
+
+
+Groupe de Travail (2/2)
+--------------------------------------------------------------------------------
+
+  - **Etudiants.**   
+    Paul-Adrien Blancquart, Marin Boyet, Alexandre Himmelein.
+
+  - **Ingénierie pédagogique / TICE.**   
+    Willy Morscheidt et Marie-Françoise Curto.
+
+  - **Equipe pédagogique.**   
+    Emilie Chautru (GEOSCIENCES),
+    Pauline Bernard (CAS), Thomas Romary (GEOSIENCES),
+    Sébastien Boisgérault (CAOR).
+    
+
+Evaluation de l'UE
+--------------------------------------------------------------------------------
+
+  - Amélioration continue / démarche expérimentale;
+    
+  - Intensifier retours qualitatifs / informels + ...
+
+  - Recueil données général et détaillé (sessions, intervenants, dispositifs).
+
+  - Questionnement systématique et adapté / nouveaux dispositifs 
+    à des fins d'évaluation.
+
+  - Observateurs ? Autres dispositifs ?
+
+
+
 
 <style>
 
