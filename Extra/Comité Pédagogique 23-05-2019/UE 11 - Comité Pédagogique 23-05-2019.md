@@ -1,5 +1,13 @@
 % Unité d'Enseignement 11 Mathématiques
 
+Documents
+--------------------------------------------------------------------------------
+
+**Présentation et Dossier Pédagogique:**
+
+[<i class="fa fa-github"></i> https://github.com/boisgera/CDIS/releases](https://github.com/boisgera/CDIS/releases)
+
+
 Contexte & Enjeux
 ================================================================================
 
