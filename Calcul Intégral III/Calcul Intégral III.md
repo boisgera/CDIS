@@ -122,7 +122,7 @@ Mention du fait qu'il est vraiment nécessaire de chercher l'absolue
 intégrabilité. Retrouver la référence qui cite qu'avec une simple
 rotation et l'intégrabilité conditionnelle ça ne marche pas.
 C'est dans le Bullen -- Non-Absolute Integrale, mais pas détaillé
-(Q: le texte utilise une rotation de $pi/4$ pour le contre-exemple.
+(Q: le texte utilise une rotation de $\pi/4$ pour le contre-exemple.
 Avec une rotation de $\pi/2$ ça marcherait ?).
 Un exemple détaillé est donné dans 
 "Petit traité d'intégration: Riemann, Lebesgue et Kurzweil-Henstock" 
@@ -369,6 +369,132 @@ $$
 ### TODO
 
 Evoquer indépendance du choix dans la définition
+
+### Définition {.definition}
+On appelle *divergence* d'une fonction différentiable 
+$$
+v: V \subset \mathbb{R}^n \to \mathbb{R}^n,
+\;
+v=(v_1, \dots, v_n)
+$$
+où $V$ est un ouvert la fonction $\mbox{div} \, f: V \to \mathbb{R}$
+définie par
+$$
+\mbox{div} \, v(x) = \sum_{i=1}^n \partial_i v_i(x)
+$$
+
+
+### Lemme de Stokes {.lemma}
+Soit $f: V \to \mathbb{R}$ une fonction de classe $C^1$
+où $V$ est un ouvert de $\mathbb{R}^{n-1}$. 
+Soit $v: V \times \mathbb{R} \to \mathbb{R}^n$ une fonction
+de classe $C^1$ de support compact[^sc]. 
+L'ensemble $\Omega$ désignant l'hypographe strict de $f$
+-- soit $\Omega = \{(y, z) \, | \, y \in \mathbb{R}^{n-1}, \; z < f(y)\}$ --
+et $\Gamma$ le graphe de $f$
+-- soit $\Gamma = \{(y, f(y)) \, | \, y \in \mathbb{R}^{n-1}\}$ --
+et $n$ la normale extérieure associée,
+on a la relation
+$$
+\int_{\Omega} \mbox{div} \, v(x) \, dx
+=
+\int_{\Gamma} \left<v(x), n(x) \right> \, S(dx)
+$$
+
+[^sc]: le support d'une fonction $v$ est l'adhérence de l'ensemble des
+points où elle est non nulle:
+$$
+\mbox{supp}(v) = \overline{\{x \in \mbox{dom}(v)\, | \, f(x) \neq 0\}}.
+$$
+Ici, $f$ étant définie dans un ouvert ($\mbox{dom}(f) = V \times \mathbb{R}$), 
+son support est compact si et seulement si l'ensemble $\{x \, | \, f(x) \neq 0\}$ 
+est borné et sa distance au complémentaire de $V\times \mathbb{R}$ 
+dans $\mathbb{R}^n$ est positive.
+
+### Démonstration {.proof}
+
+On remarque que si $v = w e_i$ où $w: V \times \mathbb{R} \to \mathbb{R}$ est
+de classe $C^1$ et $i \in \{1,\dots, n\}$, 
+comme $\mbox{div}\, v = \partial_i w$ et 
+$\left<v(x), n(x) \right> = w(x) n_i(x)$, 
+le résultat du lemme devient
+$$
+\int_{\Omega} \partial_i w(x) \, dx
+=
+\int_{\Gamma} w(x) n_i(x) \, S(dx).
+$$
+Réciproquement, que si cette relation est valable pour tout 
+$i \in \{1,\dots, n\}$, la conclusion du lemme de Stokes s'en déduit
+facilement. Démontrer cette relation suffit donc à prouver le lemme.
+
+La transformation $h: V \times \left]-\infty, 0\right[ 
+\to \mathbb{R}^n$ définie par
+$$
+h(x_1, \dots, x_{n-1}, x_n) = (x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1}))
+$$
+est une application de classe $C^1$. Par construction,
+$$
+h(V \times \left]-\infty, 0\right[) = \Omega
+$$
+et admet une inverse, donnée par 
+$$
+h^{-1}(x_1, \dots, x_{n-1}, x_n) = (x_1, \dots, x_{n-1}, x_n - f(x_1, \dots, x_{n-1}))
+$$
+qui est également de classe $C^1$. La matrice jacobienne associée à $h$ vaut
+$$
+Dh(x)
+=
+\left[
+\begin{array}{c|c}
+I & 0 \\
+\hline
+\nabla f(x)^t & 1
+\end{array}
+\right]
+$$
+et par conséquent son déterminant jacobien satisfait
+$$
+\mbox{det} \, Dh(x) = 1.
+$$
+Par conséquent, le changement de variable associé à $h$ fournit
+$$
+\begin{split}
+\int_{\Omega} \partial_i w(x) \, dx
+&= \int_{h(V \times \left]-\infty, 0\right[)} \partial_i w(x) \, dx \\
+&= \int_{V \times \left]-\infty, 0\right[} 
+\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
+\, dx
+\end{split}
+$$
+et donc par le théorème de Fubini
+$$
+\int_{\Omega} \partial_i w(x) \, dx
+=
+\int_V \left[
+\int_{-\infty}^0
+\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) dx_n
+\right]
+\, d(x_1,\dots, x_{n-1})
+$$
+
+Si $i \in \{1,\dots, n-1\}$,
+\begin{multline*}
+\partial_i \left( w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \right)
+= \\ 
+\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \\
++ \partial_n w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \times 
+\partial_i f (x_1, \dots, x_{n-1})
+\end{multline*}
+et dans le cas contraire,
+\begin{multline*}
+\partial_n \left( w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \right)
+= \\
+\partial_n w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
+\end{multline*}
+
+
+
+
 
 ### TODO
 
