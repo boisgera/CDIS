@@ -1,6 +1,6 @@
 % Unité d'Enseignement 11 Mathématiques
 
-Contexte, Enjeux, Objectifs
+Contexte & Enjeux
 ================================================================================
 
 --------------------------------------------------------------------------------
@@ -52,10 +52,20 @@ Egalement, "tronc commun optionnel":
 Avant / Après
 --------------------------------------------------------------------------------
 
-  - ~10 ECTS / 4 ECTS,
+  - **(Encore) Plus Court.** ~10 ECTS $\to$ 4 ECTS(*),
 
-  - 3 semestres /  1 semestre.
+  - **Plus Compact.** 3 semestres $\to$  1 semestre.  
+    
+(*): 24 h de cours magistral.
 
+Contexte
+--------------------------------------------------------------------------------
+
+  - Unité de Mathématiques fondamentales,
+
+  - Essor des Mathématiques Appliquées (UE 21),
+
+  - Transferts, synergies, arbitrages.
 
 Enjeux (Cadrage)
 --------------------------------------------------------------------------------
@@ -66,9 +76,32 @@ Enjeux (Cadrage)
 
   - Transformation numérique.
 
+Hétérogénéité
+--------------------------------------------------------------------------------
+
+Enjeu particulier pour les Mathématiques
+
+  - ~ 40% étudiants issus de CPGE/MP, 
+
+  - ~ 85% étudiants issus de CPGE/MP+PSI+PC,
+
+  - ~ 15% "autres". 
+
+Variabilité des compétences/projets.
 
 Acquis d'Apprentissage / Compétences
 ================================================================================
+
+--------------------------------------------------------------------------------
+
+  - Les compétences associées à l'UE 11 
+    s'inscrivent dans **"l’acquisition des connaissances 
+    scientifiques et techniques et la maîtrise de leur mise en œuvre"**
+    (référentiel générique CTI).
+
+  - Acquis d'apprentissage: travail de mise en cohérence 
+    qui nécessite une analyse à différents niveaux de détail.    
+    Seul le niveau le plus général est évoqué ici.
 
 --------------------------------------------------------------------------------
 
@@ -94,6 +127,18 @@ A l'issue de cette UE, les étudiants auront
 
 Programme
 ================================================================================
+
+Principes
+--------------------------------------------------------------------------------
+
+  - Enseignements avec des "paliers".
+
+  - Structure simple et systématique:   
+    1 élt = 1 cours + 1 travail dirigé + 1 travail personnel ; 
+    parfois, projet numérique associé (<i class="fa fa-laptop"></i>).
+
+  - Les transparents qui suivent proposent une grille de lecture,
+    pas une liste de volets étanches.
 
 --------------------------------------------------------------------------------
 
@@ -151,8 +196,8 @@ Modalités
 Vue d'ensemble
 --------------------------------------------------------------------------------
 
-  - Un cours magistral "classique"  
-    (avec à terme, des alternatives ?).
+  - Un cours magistral "classique" à adapter au format de 1h30
+    (et à terme, des alternatives ?).
 
   - Equilibre cours / travaux dirigés / travail personnel.
 
@@ -164,7 +209,9 @@ Vue d'ensemble
 Cours Magistral
 --------------------------------------------------------------------------------
 
-Les "Leçons d'Intégration" de [Henri-Léon Lebesgue](https://fr.wikipedia.org/wiki/Henri-L%C3%A9on_Lebesgue):
+Les "Leçons d'Intégration" de [Henri-Léon Lebesgue](https://fr.wikipedia.org/wiki/Henri-L%C3%A9on_Lebesgue),
+selon [Szolem Mandelbrojt](https://fr.wikipedia.org/wiki/Szolem_Mandelbrojt)
+
 
 "En 1921 j'ai assisté au premier cours de Lebesgue.
 Je dois dire qu'il n'y avait pas un cours où l'on ne riait 
@@ -185,8 +232,6 @@ il faut réfléchir pendant qu'on le fait, et non pas se rappeler.**
 Avec Lebesgue, c'était chaque fois : « Ah, j'ai dit une bêtise, 
 laissez-moi recommencer. » Il recommençait et **tout le monde réfléchissait 
 en même temps.**»"
-
-(par [Szolem Mandelbrojt](https://fr.wikipedia.org/wiki/Szolem_Mandelbrojt))
 
 Accompagnement personnalisé
 --------------------------------------------------------------------------------
@@ -331,7 +376,8 @@ Evaluation de l'UE
     
   - Intensifier retours qualitatifs / informels + ...
 
-  - Recueil données général et détaillé (sessions, intervenants, dispositifs).
+  - Recueil données généralisé, détaillé (sessions, intervenants, 
+    dispositifs, profils d'étudiants) et transparent.
 
   - Questionnement systématique et adapté / nouveaux dispositifs 
     à des fins d'évaluation.
