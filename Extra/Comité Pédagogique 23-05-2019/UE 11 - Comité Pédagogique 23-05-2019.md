@@ -80,7 +80,7 @@ Enjeux (Cadrage)
 
   - Gestion de l'hétérogénéité,
 
-  - Place dans le projet de formation,
+  - Place de l'UE dans le projet de formation,
 
   - Transformation numérique.
 
