@@ -145,7 +145,7 @@ Principes
     1 élt = 1 cours + 1 travail dirigé + 1 travail personnel ; 
     parfois, projet numérique associé (<i class="fa fa-laptop"></i>).
 
-  - Les transparents qui suivent proposent une grille de lecture,
+  - Les transparents qui suivent proposent une grille de lecture thématique,
     pas une liste de volets étanches.
 
 --------------------------------------------------------------------------------
@@ -380,20 +380,15 @@ Groupe de Travail (2/2)
 Evaluation de l'UE
 --------------------------------------------------------------------------------
 
-  - Amélioration continue / démarche **expérimentale**;
-    
-  - Intensifier retours qualitatifs / informels + ...
+  - Généraliser le recueil d'informations (qualitatif & quantitatif),
+    leur analyse et communication.
 
-  - Recueil données généralisé, détaillé (sessions, intervenants, 
-    dispositifs, profils d'étudiants) et transparent.
+  - Concerne les sessions, ressources, intervenants, étudiants, etc.
 
-  - Questionnement systématique et adapté / nouveaux dispositifs 
-    à des fins d'évaluation.
-
-  - Observateurs ? Autres dispositifs ?
-
-
-
+  - Démarche expérimentale / amélioration continue.
+    Evaluation des nouveaux dispositifs pédagogiques.
+  
+  - Autres dispositifs complémentaires ? Observateurs ? 
 
 <style>
 
