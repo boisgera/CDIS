@@ -1,3 +1,3 @@
 % Probabilités I
 
-(et rien dedans)
+(et rien dedans -- vraiment rien)
