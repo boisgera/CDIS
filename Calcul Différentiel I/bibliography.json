@@ -1,0 +1,27 @@
+[
+	{
+		"id": "Sha90",
+		"type": "article-journal",
+		"title": "On concepts of directional differentiability.",
+		"container-title": "Journal of Optimization Theory and Applications",
+		"page": "477–487",
+		"volume": "66",
+		"issue": "3",
+		"ISSN": "0022-3239; 1573-2878/e",
+		"journalAbbreviation": "J. Optim. Theory Appl.",
+		"language": "English",
+		"author": [
+			{
+				"family": "Shapiro",
+				"given": "A."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1990"
+				]
+			]
+		}
+	}
+]

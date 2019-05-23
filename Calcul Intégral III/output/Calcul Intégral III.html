@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="" />
+  <title>Calcul Intégral III</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Calcul Intégral III</h1>
+<p class="author"></p>
+<p class="date"><a href="https://www.youtube.com/watch?v=Te7DR4iuJj8">today</a></p>
+</header>
+<section>
+<h1 id="intégrales-multiples">Intégrales Multiples</h1>
+<section>
+<h3 id="todo">TODO</h3>
+<p>rappel résultats analogues (du chap I et II) au cas réel.</p>
+</section>
+<section>
+<h3 id="pavés" class="definition">Pavés</h3>
+<p>On appelle <em>pavé</em> tout sous-ensemble <span class="math inline">\(I\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> de la forme <span class="math display">\[
+I = I_1 \times \dots \times I_n
+\]</span> où les <span class="math inline">\(I_i\)</span> sont de intervalles de <span class="math inline">\(\mathbb{R}\)</span>.</p>
+</section>
+<section>
+<h3 id="remarque" class="remark anonymous">Remarque</h3>
+<p>La notion de pavé généralise la notion d’intervalle de <span class="math inline">\(\mathbb{R}\)</span> à <span class="math inline">\(\mathbb{R}^n\)</span>; le terme intervalle est d’ailleurs parfois utilisé au lieu du terme pavé.</p>
+</section>
+<section>
+<h3 id="subdivision-pointée">Subdivision pointée</h3>
+<p>Une <em>subdivision pointée</em> du pavé fermé <span class="math inline">\(I\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> est une famille finie <span class="math display">\[
+\{(t_i, I_i) \; | \; \; 0 \leq i \leq k-1\}
+\]</span> où les <span class="math inline">\(I_i\)</span> sont des pavés fermés de <span class="math inline">\(I\)</span> sans chevauchement, qui recouvrent <span class="math inline">\(I\)</span>, et tels que <span class="math inline">\(t_i \in I_i\)</span> pour tout <span class="math inline">\(i \in \{0, \dots, k-1\}.\)</span></p>
+</section>
+<section>
+<h3 id="volume-dun-pavé">Volume d’un pavé</h3>
+<p>On appelle <em>volume</em> du pavé <span class="math inline">\(I = I_1 \times \dots \times I_n\)</span> la valeur <span class="math display">\[
+v(I)  = \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
+\]</span> en adoptant la convention que <span class="math inline">\(0 \times \infty = 0\)</span>.</p>
+</section>
+<section>
+<h3 id="longeur-aire-volume" class="remark">Longeur, aire, volume</h3>
+<p>Dans <span class="math inline">\(\mathbb{R}\)</span>, on pourra continuer à appeler cette grandeur la longueur ; dans <span class="math inline">\(\mathbb{R}^2\)</span> il est approprié de la désigner sous le terme d’aire. Si l’on souhaite distinguer le cas du volume “classique” dans <span class="math inline">\(\mathbb{R}^3\)</span> et les autres dimensions, on pourra utiliser le terme d’<em>hypervolume</em> comme terme générique et réserver le terme de volume au cas de <span class="math inline">\(\mathbb{R}^3\)</span>.</p>
+</section>
+<section>
+<h3 id="somme-de-riemman" class="definition">Somme de Riemman</h3>
+<p>La somme de Riemann associée à la fonction <span class="math inline">\(f:I \to \mathbb{R}\)</span>, où <span class="math inline">\(I\)</span> est un pavé compact de <span class="math inline">\(\mathbb{R}^n\)</span>, et à la subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\(I\)</span> est la grandeur <span class="math display">\[
+S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) v(I)
+\]</span></p>
+</section>
+<section>
+<h3 id="jauge" class="definition">Jauge</h3>
+<p>Une jauge <span class="math inline">\(\gamma\)</span> sur un pavé <span class="math inline">\(I\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> est une fonction qui associe à tout <span class="math inline">\(t \in I\)</span> un intervalle ouvert <span class="math inline">\(\gamma(t)\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> contenant <span class="math inline">\(t\)</span>.</p>
+</section>
+<section>
+<h3 id="subdivision-pointée-subordonnée-à-une-jauge" class="definition">Subdivision pointée subordonnée à une jauge</h3>
+<p>Une subdivision <span class="math inline">\(\mathcal{D}\)</span> du pavé compact <span class="math inline">\(I\)</span> est <em>subordonnée à une jauge</em> <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\(I\)</span> si pour tout <span class="math inline">\((t, J) \in \mathcal{D}\)</span>, <span class="math inline">\(J \subset \gamma(t).\)</span></p>
+</section>
+<section>
+<h3 id="intégrale-dans-mathbbrn" class="definition">Intégrale dans <span class="math inline">\(\mathbb{R}^n\)</span></h3>
+<p>Soit <span class="math inline">\(I\)</span> un pavé de <span class="math inline">\(\mathbb{R}^n\)</span>. Une fonction <span class="math inline">\(f:I \to \mathbb{R}\)</span> est dite <em>intégrable (au sens de Henstock-Kurzweil)</em> s’il existe un réel <span class="math inline">\(A\)</span> tel que pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span> il existe une jauge <span class="math inline">\(\gamma\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> et un pavé compact <span class="math inline">\(K\)</span> de <span class="math inline">\(I\)</span> tels que pour tout pavé compact <span class="math inline">\(P\)</span> vérifiant <span class="math inline">\(K \subset P \subset I\)</span> et pour toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\(P\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>, on ait <span class="math inline">\(|S(f, \mathcal{D}) - A| \leq \varepsilon\)</span>. Le réel <span class="math inline">\(A\)</span> quand il existe est unique; il est appelé <em>intégrale de <span class="math inline">\(f\)</span> sur <span class="math inline">\(\mathbb{R}^n\)</span></em> et noté <span class="math display">\[
+\int_{\mathbb{R}^n} f(t) \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="théorème-de-fubini" class="theorem">Théorème de Fubini</h3>
+<p>Soit <span class="math inline">\(f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}\)</span> une fonction intégrable. Alors la fonction partielle <span class="math inline">\(x \in \mathbb{R}^n \mapsto f(x, y)\)</span> est intégrable pour presque tout <span class="math inline">\(y \in \mathbb{R}^m\)</span> et <span class="math display">\[
+\int_{\mathbb{R}^{m+n}} f(t) \, dt = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration" class="proof">Démonstration</h3>
+<p>Se reporter à <span class="citation" data-cites="Swa01">Swartz (<a href="#ref-Swa01">2001</a>)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-1">TODO</h3>
+<p>Résultat en intervertissant <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>, la réciproque ne marche pas (donc la définition d’intégrale directement dans <span class="math inline">\(\mathbb{R}^n\)</span> est “nécessaire”, l’intégrale multiple “ne marche pas”.)</p>
+</section>
+<section>
+<h3 id="changement-de-variables" class="theorem">Changement de variables</h3>
+<p>Soient <span class="math inline">\(D_1\)</span> et <span class="math inline">\(D_2\)</span> des ouverts de <span class="math inline">\(\mathbb{R}^n\)</span> et <span class="math inline">\(h: D_1 \to D_2\)</span> une fonction continûment différentiable ayant une fonction inverse <span class="math inline">\(h^{-1}: D_2 \to D_1\)</span> également continûment différentiable. Si <span class="math inline">\(Dh\)</span> désigne la matrice de Jacobi associée à la différentielle de <span class="math inline">\(h\)</span>, la fonction <span class="math inline">\(f: D_2 \to \mathbb{R}\)</span> est absolument intégrable si et seulement si la fonction <span class="math inline">\((f \circ h) |\det Dh| : D_1 \to \mathbb{R}\)</span> est absolument intégrable et dans ce cas, <span class="math display">\[
+\int_{D_2} f(y) \, dy = \int_{D_1} f(h(x)) |\det Dh(x)| \, dx.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-1" class="proof">Démonstration</h3>
+<p>Se reporter à <span class="citation" data-cites="Swa01">(Swartz <a href="#ref-Swa01">2001</a>, annexe 5)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-2">TODO</h3>
+<p>Mention du fait qu’il est vraiment nécessaire de chercher l’absolue intégrabilité. Retrouver la référence qui cite qu’avec une simple rotation et l’intégrabilité conditionnelle ça ne marche pas. C’est dans le Bullen – Non-Absolute Integrale, mais pas détaillé (Q: le texte utilise une rotation de <span class="math inline">\(\pi/4\)</span> pour le contre-exemple. Avec une rotation de <span class="math inline">\(\pi/2\)</span> ça marcherait ?). Un exemple détaillé est donné dans “Petit traité d’intégration: Riemann, Lebesgue et Kurzweil-Henstock” (Jean-Yves Briend). L’exemple est compréhensible et intéressant; peut faire l’objet d’un exercice technique semble faisable.</p>
+<p>Tracer un parralèle avec les séries, ou il est connu que les séries conditionnellement convergentes ne gardent pas cette propriété par réordonnancement (exemple mono-dim ou bi-dim) ?</p>
+</section>
+</section>
+<section>
+<h1 id="théorème-de-stokes">Théorème de Stokes</h1>
+<section>
+<h3 id="todo-3">TODO</h3>
+<p>Définition par une équation implicite (équivalent). Que doit-on adopter comme définition ? Et quoi comme propriété ? La définition par l’épigraphe est sans doute plus intuitive, mais sa formalisation plus lourde … Je serais tenté dans le cours oral de partir de la définition par l’épigraphe, informellement, pour l’intuition (et de toute façon on a besoin de cette construction pour la suite) puis d’énoncer rigoureusement la version implicite, équivalente.</p>
+</section>
+<section>
+<h3 id="todo-4">TODO</h3>
+<p>Remplacer épigraphe par hypographe ? Ca me semble graphiquement plus intuitif et ça colle sans doute mieux avec les exemples usuels (fonction distance orientée, conventions KKT, etc.), mais bien sûr pas toujours (ex: carac convexité). OK, oui</p>
+</section>
+<section>
+<h3 id="todo-5">TODO</h3>
+<p>Minimiser le cadre “reprère orthonormé direct”, par simplement “changement de repère”; cela simplifie l’enoncé, la preuve, etc. et la contrainte “orthonormé direct” peut venir plus tard, en exercice? Pas évident, rédiger la preuve associé au passage de l’hypographe à l’inégalité implicite et voir ce qui vient. OK, ça devrait passer.</p>
+</section>
+<section>
+<h3 id="compact-à-bord-régulier" class="definition">Compact à bord régulier</h3>
+<p>Un sous-ensemble <span class="math inline">\(K\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> est <em>un compact à bord <span class="math inline">\(C^1\)</span></em> s’il est compact et peut être caractérisé au voisinage de tout point de sa frontière <span class="math inline">\(\partial K\)</span>, et après un éventuel changement de repère, comme l’<em>hypographe</em> – l’ensemble des points en-dessous du graphe – d’une fonction de classe <span class="math inline">\(C^1\)</span>. Autrement dit, pour tout point <span class="math inline">\(x_0 \in \partial K\)</span>, il existe un ouvert non vide <span class="math inline">\(V \subset \mathbb{R}^n\)</span> de la forme <span class="math inline">\(V = U \times I\)</span> où <span class="math inline">\(U \subset \mathbb{R}^{n-1}\)</span> et <span class="math inline">\(I\)</span> est un intervalle ouvert non vide de <span class="math inline">\(\mathbb{R}\)</span>, une application affine inversible <span class="math inline">\(T\)</span> telle que <span class="math inline">\(T(x_0) \in V\)</span> et une fonction <span class="math inline">\(f: U \to I\)</span> continûment différentiable tels que <span class="math display">\[
+T(K) \cap V = \{(y_1,\dots, y_n) \in V \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}
+\]</span></p>
+</section>
+<section>
+<h3 id="todo-6">TODO</h3>
+<p>Faire passer l’idée d’un ensemble borné délimité par une surface <span class="math inline">\(n-1\)</span>-dimensionelle (une “hypersurface”), “suffisamment régulière” et qu’il n’y a plus qu’à trouver une façon de mesurer cette régularité.</p>
+</section>
+<section>
+<h3 id="todo-7">TODO</h3>
+<p>Vérifier qu’il n’est pas nécessaire (?) de spécifier indépendamment intérieur et frontière comme dans <span class="citation" data-cites="DZ11">(Delfour and Zolésio <a href="#ref-DZ11">2011</a>, 87)</span>.</p>
+<p>Lister qq conséquences du fait d’être compact à bord (tq: adhérence de l’intérieur est l’ensemble, etc.), etc. Notation <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(\Gamma\)</span>, etc. Caractériser la frontière de <span class="math inline">\(K\)</span> comme étant localement les points tels que <span class="math inline">\(y_n = f(y_1, \dots, y_{n-1})\)</span>.</p>
+<p>Evoquer “localement d’un seul coté” de la frontière ?</p>
+<p>Définir normale (extérieure). Carac intrinsèque ?</p>
+</section>
+<section>
+<h3 id="todo-8">TODO</h3>
+<p>Considérer remplacement de <span class="math inline">\(T\)</span> par <span class="math inline">\(T^{-1}\)</span> dans cet enoncé, si cela simplifie les choses dans la suite (j’ai l’impression, techniquement et sur la compréhension). Et s’arranger pour avoir dans le théorème qqchose de la forme <span class="math inline">\(K \cap V = \dots\)</span> c’est plus simple à comprendre sans doute.</p>
+</section>
+<section>
+<h3 id="caractérisation-implicite-des-compacts-à-bord-régulier" class="theorem">Caractérisation implicite des compacts à bord régulier</h3>
+<p>Un sous-ensemble compact <span class="math inline">\(K\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> est un compact à bord <span class="math inline">\(C^1\)</span> si pour tout point <span class="math inline">\(x_0\)</span> de sa frontière <span class="math inline">\(\partial K\)</span> il existe un voisinage ouvert <span class="math inline">\(V\)</span> de <span class="math inline">\(x_0\)</span> et une fonction continûment différentiable <span class="math inline">\(g: V \to \mathbb{R}\)</span> dont la différentielle est non-nulle en <span class="math inline">\(x_0\)</span>, telle que pour tout point <span class="math inline">\(x\)</span> de <span class="math inline">\(V\)</span>, <span class="math inline">\(x\)</span> appartient à <span class="math inline">\(K\)</span> si et seulement si <span class="math inline">\(g(x) \leq 0\)</span>.</p>
+</section>
+<section>
+<h3 id="démonstration-2" class="proof">Démonstration</h3>
+<p>Si <span class="math inline">\(K\)</span> est un compact à bord <span class="math inline">\(C^1\)</span>, il existe un ouvert non vide <span class="math inline">\(V \subset \mathbb{R}^n\)</span> de la forme <span class="math inline">\(V = U \times I\)</span> où <span class="math inline">\(U \subset \mathbb{R}^{n-1}\)</span> et <span class="math inline">\(I\)</span> est un intervalle ouvert non vide de <span class="math inline">\(\mathbb{R}\)</span>, une application affine inversible <span class="math inline">\(T\)</span> telle que <span class="math inline">\(T(x_0) \in V\)</span> et une fonction <span class="math inline">\(f: U \to I\)</span> continûment différentiable tels que <span class="math display">\[
+T(K) \cap V = \{(y_1,\dots, y_n) \in V \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}.
+\]</span> Par conséquent, si l’on définit la fonction <span class="math inline">\(g: V \to \mathbb{R}\)</span> par <span class="math display">\[
+g(x) = y_n - f(y_1, \dots, y_{n-1}) \, \mbox{ où } \,
+(y_1, \dots, y_n) = T^{-1}(x),
+\]</span> on obtient la caractérisation implicite souhaitée. La seule vérification qui n’est pas évidente par construction est le caractère non-nul de la différentielle <span class="math inline">\(dg\)</span>. Si <span class="math inline">\(T(x) = A \cdot x + b\)</span> où <span class="math inline">\(A\)</span> est une application linéaire (nécessairement inversible) et <span class="math inline">\(b \in \mathbb{R}^n\)</span>, en posant <span class="math inline">\(\phi(y) = y_n - f(y_1, \dots, y_{n-1})\)</span>, on obtient <span class="math display">\[
+dg(x) = d\phi(T(x)) \cdot dT^{-1}(x) = d\phi(T(x)) \cdot A^{-1}.
+\]</span> Or, <span class="math inline">\(\partial_n \phi(y) = 1\)</span> en tout point <span class="math inline">\(y\)</span> de <span class="math inline">\(V\)</span>. L’application <span class="math inline">\(A^{-1}\)</span> étant inversible, il existe un vecteur <span class="math inline">\(h\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> tel que <span class="math inline">\(A^{-1} \cdot h = (0, \dots, 0, 1)\)</span>; pour un tel vecteur on a donc <span class="math display">\[
+dg(x) \cdot h = d\phi(T(x)) \cdot A^{-1} \cdot h = 
+\sum_{i} \partial_i \phi(T(x)) (A^{-1} \cdot h)_i = 1.
+\]</span> La différentielle de <span class="math inline">\(g\)</span> est donc bien non nulle.</p>
+<p>Réciproquement, considérons un <span class="math inline">\(x_0 \in \partial K\)</span> et supposons qu’il existe une fonction <span class="math inline">\(g: V \to \mathbb{R}\)</span> satisfaisant les propriétés de l’énoncé. La différentielle de <span class="math inline">\(g\)</span> étant non nulle en <span class="math inline">\(x_0\)</span>, il exists un vecteur de <span class="math inline">\(u\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> tel que <span class="math display">\[
+dg(x) \cdot u &gt; 0
+\]</span> dans un voisinage <span class="math inline">\(V&#39;\)</span> de <span class="math inline">\(x_0\)</span> contenu dans <span class="math inline">\(V\)</span>. Soit <span class="math inline">\(T\)</span> une application affine inversible de la forme <span class="math inline">\(T(x) = A \cdot x + b\)</span> telle que <span class="math inline">\(A \cdot u = e_n\)</span>. La fonction <span class="math inline">\(g \circ T^{-1}\)</span> définie sur un voisinage ouvert de <span class="math inline">\(T(x_0)\)</span> satisfait alors <span class="math display">\[
+\begin{split}
+\partial_n (g \circ T^{-1})(y) &amp;= dg(T^{-1}(y)) \cdot dT^{-1}(y) \cdot e_n \\
+&amp;= dg(T^{-1}(y)) \cdot A^{-1} \cdot e_n  \\
+&amp;= dg(T^{-1}(y)) \cdot u &gt; 0 \\
+\end{split}
+\]</span> L’application du théorème des fonctions implicite fournit un ouvert non vide <span class="math inline">\(V \subset \mathbb{R}^n\)</span> de la forme <span class="math inline">\(V = U \times I\)</span> où <span class="math inline">\(U \subset \mathbb{R}^{n-1}\)</span> et <span class="math inline">\(I\)</span> est un intervalle ouvert non vide de <span class="math inline">\(\mathbb{R}\)</span> et une fonction <span class="math inline">\(f: U \to I\)</span> continûment différentiable telle que <span class="math display">\[
+g \circ T^{-1}(y_1,\dots,y_n) = 0 
+\, \Leftrightarrow \, 
+y_n = f(y_1,\dots, y_{n-1}).
+\]</span> Par le théorème fondamental du calcul, <span class="math display">\[
+\begin{split}
+g \circ T^{-1}(y_1,\dots,y_n) &amp;= 
+g \circ T^{-1}(y_1,\dots,f(y_1, \dots, y_{n-1})) \\
+&amp; \phantom{=}+
+\int_{f(y_1, \dots, y_{n-1})}^{y_n}
+\partial_n  (g\circ T^{-1})(y_1,\dots,y_{n-1}, t) \, dt \\
+&amp;=
+\int_{f(y_1, \dots, y_{n-1})}^{y_n}
+\partial_n  (g\circ T^{-1})(y_1,\dots,y_{n-1}, t) \, dt, \\
+\end{split}
+\]</span> ce qui garantit que dans <span class="math inline">\(V\)</span>, <span class="math inline">\((g \circ T^{-1})(y) \leq 0\)</span> – c’est-à-dire <span class="math inline">\(x = T^{-1}(y) \in K\)</span> – si et seulement si <span class="math inline">\(f(y_1, \dots, y_{n-1}) \leq y_n\)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="normale-extérieure" class="definition theorem">Normale extérieure</h3>
+<p>Si <span class="math inline">\(K\)</span> est un compact à bord <span class="math inline">\(C^1\)</span> caractérisé au voisinage de <span class="math inline">\(x_0 \in \partial K\)</span> par l’inégalité <span class="math inline">\(g(x) \leq 0\)</span>, où <span class="math inline">\(V\)</span> est un voisinage ouvert de <span class="math inline">\(x\)</span> et <span class="math inline">\(g: V \to \mathbb{R}\)</span> est continûment différentiable de différentielle non nulle, alors la <em>normale extérieure</em> de <span class="math inline">\(K\)</span> en <span class="math inline">\(x \in \partial K \cap V\)</span> est le vecteur de <span class="math inline">\(\mathbb{R}^n\)</span> donné par <span class="math display">\[
+n(x) = \frac{\nabla g(x)}{\|\nabla g(x)\|}.
+\]</span></p>
+</section>
+<section>
+<h3 id="terminologie">Terminologie</h3>
+<p>La normale est dite <em>extérieure</em> car si l’on part de <span class="math inline">\(x \in \partial K\)</span> et que l’on considère un déplacement suffisamment petit dans la direction de la normale, on se retrouve à l’extérieur de <span class="math inline">\(K\)</span>. En effet, par la définition du gradient, <span class="math display">\[
+g(x + h) = g(x) + \left&lt;\nabla g(x), h \right&gt; + o(h) = \left&lt;\nabla g(x), h \right&gt; + o(h)
+\]</span> et par conséquent, si <span class="math inline">\(h = \varepsilon n(x)\)</span> avec <span class="math inline">\(\varepsilon &gt; 0\)</span>, <span class="math display">\[
+g(x+h) =
+\left&lt;\nabla g(x), \varepsilon \frac{\nabla g(x)}{\|\nabla g(x)\|} \right&gt; + o(\varepsilon)
+= \varepsilon \|\nabla g(x)\| + o(\varepsilon)
+\]</span> et le second membre de cette équation est positif si <span class="math inline">\(\varepsilon\)</span> est suffisamment petit.</p>
+</section>
+<section>
+<h3 id="todo-9">TODO</h3>
+<p>Evoquer indépendance du choix dans la définition</p>
+</section>
+<section>
+<h3 id="todo-10">TODO</h3>
+<p>Rendre explicite la normale extérieure dans ce cas et un peu plus explicitement (sur un exemple ?) comment trouver un axe (orthonormé ?) qui permet de se ramener au cadre de l’épigraphe. Sur <span class="math inline">\(x^2 + y^2 - 1 \leq 0\)</span> par exemple.</p>
+</section>
+<section>
+<h3 id="todo-partition-de-lunité">TODO – Partition de l’unité</h3>
+<p><strong>TODO</strong> Définition, énoncé existence</p>
+</section>
+<section>
+<h3 id="intégrale-de-surface">Intégrale de surface</h3>
+<p>Soit <span class="math inline">\(\phi: \partial K \to \mathbb{R}^m\)</span> une fonction continue. Quand <span class="math inline">\(K\)</span> est caractérisée au voisinage de <span class="math inline">\(x_0 \in \partial K\)</span> comme l’épigraphe de la fonction <span class="math inline">\(f: V \to I\)</span> après transformation <span class="math inline">\(T\)</span>, la contribution de <span class="math inline">\(W = T^{-1}(V \times I)\)</span> à l’intégrale de surface de <span class="math inline">\(\phi\)</span> est définie par la relation <span class="math display">\[
+\int_{\partial K \cap W} \phi(x) S(dx) 
+:= 
+\int_{U}
+\phi(z, f(z)) \sqrt{1 + \|\nabla f(z)\|^2}\, dz. 
+\]</span> Si les <span class="math inline">\(\{W_i\}_i\)</span> consituent un recouvrement fini de <span class="math inline">\(\partial K\)</span> par de tels ouverts et les <span class="math inline">\(\{\rho_i\}_i\)</span> une partition de l’unité associée, alors l’intégrale de surface de <span class="math inline">\(\phi\)</span> sur <span class="math inline">\(\partial K\)</span> est définie par <span class="math display">\[
+\int_{\partial K} \phi(x) S(dx) 
+:= \sum_i \int_{\partial K \cap W_i} \rho_i(x) \phi(x) S(dx) 
+\]</span></p>
+</section>
+<section>
+<h3 id="todo-11">TODO</h3>
+<p>Evoquer indépendance du choix dans la définition</p>
+</section>
+<section>
+<h3 id="définition" class="definition">Définition</h3>
+<p>On appelle <em>divergence</em> d’une fonction différentiable <span class="math display">\[
+v: V \subset \mathbb{R}^n \to \mathbb{R}^n,
+\;
+v=(v_1, \dots, v_n)
+\]</span> où <span class="math inline">\(V\)</span> est un ouvert la fonction <span class="math inline">\(\mbox{div} \, f: V \to \mathbb{R}\)</span> définie par <span class="math display">\[
+\mbox{div} \, v(x) = \sum_{i=1}^n \partial_i v_i(x)
+\]</span></p>
+</section>
+<section>
+<h3 id="lemme-de-stokes" class="lemma">Lemme de Stokes</h3>
+<p>Soit <span class="math inline">\(f: V \to \mathbb{R}\)</span> une fonction de classe <span class="math inline">\(C^1\)</span> où <span class="math inline">\(V\)</span> est un ouvert de <span class="math inline">\(\mathbb{R}^{n-1}\)</span>. Soit <span class="math inline">\(v: V \times \mathbb{R} \to \mathbb{R}^n\)</span> une fonction de classe <span class="math inline">\(C^1\)</span> de support compact<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. L’ensemble <span class="math inline">\(\Omega\)</span> désignant l’hypographe strict de <span class="math inline">\(f\)</span> – soit <span class="math inline">\(\Omega = \{(y, z) \, | \, y \in \mathbb{R}^{n-1}, \; z &lt; f(y)\}\)</span> – et <span class="math inline">\(\Gamma\)</span> le graphe de <span class="math inline">\(f\)</span> – soit <span class="math inline">\(\Gamma = \{(y, f(y)) \, | \, y \in \mathbb{R}^{n-1}\}\)</span> – et <span class="math inline">\(n\)</span> la normale extérieure associée, on a la relation <span class="math display">\[
+\int_{\Omega} \mbox{div} \, v(x) \, dx
+=
+\int_{\Gamma} \left&lt;v(x), n(x) \right&gt; \, S(dx)
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-3" class="proof">Démonstration</h3>
+<p>On remarque que si <span class="math inline">\(v = w e_i\)</span> où <span class="math inline">\(w: V \times \mathbb{R} \to \mathbb{R}\)</span> est de classe <span class="math inline">\(C^1\)</span> et <span class="math inline">\(i \in \{1,\dots, n\}\)</span>, comme <span class="math inline">\(\mbox{div}\, v = \partial_i w\)</span> et <span class="math inline">\(\left&lt;v(x), n(x) \right&gt; = w(x) n_i(x)\)</span>, le résultat du lemme devient <span class="math display">\[
+\int_{\Omega} \partial_i w(x) \, dx
+=
+\int_{\Gamma} w(x) n_i(x) \, S(dx).
+\]</span> Réciproquement, que si cette relation est valable pour tout <span class="math inline">\(i \in \{1,\dots, n\}\)</span>, la conclusion du lemme de Stokes s’en déduit facilement. Démontrer cette relation suffit donc à prouver le lemme.</p>
+<p>La transformation <span class="math inline">\(h: V \times \left]-\infty, 0\right[ \to \mathbb{R}^n\)</span> définie par <span class="math display">\[
+h(x_1, \dots, x_{n-1}, x_n) = (x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1}))
+\]</span> est une application de classe <span class="math inline">\(C^1\)</span>. Par construction, <span class="math display">\[
+h(V \times \left]-\infty, 0\right[) = \Omega
+\]</span> et admet une inverse, donnée par <span class="math display">\[
+h^{-1}(x_1, \dots, x_{n-1}, x_n) = (x_1, \dots, x_{n-1}, x_n - f(x_1, \dots, x_{n-1}))
+\]</span> qui est également de classe <span class="math inline">\(C^1\)</span>. La matrice jacobienne associée à <span class="math inline">\(h\)</span> vaut <span class="math display">\[
+Dh(x)
+=
+\left[
+\begin{array}{c|c}
+I &amp; 0 \\
+\hline
+\nabla f(x)^t &amp; 1
+\end{array}
+\right]
+\]</span> et par conséquent son déterminant jacobien satisfait <span class="math display">\[
+\mbox{det} \, Dh(x) = 1.
+\]</span> Par conséquent, le changement de variable associé à <span class="math inline">\(h\)</span> fournit <span class="math display">\[
+\begin{split}
+\int_{\Omega} \partial_i w(x) \, dx
+&amp;= \int_{h(V \times \left]-\infty, 0\right[)} \partial_i w(x) \, dx \\
+&amp;= \int_{V \times \left]-\infty, 0\right[} 
+\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
+\, dx
+\end{split}
+\]</span> et donc par le théorème de Fubini <span class="math display">\[
+\int_{\Omega} \partial_i w(x) \, dx
+=
+\int_V \left[
+\int_{-\infty}^0
+\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) dx_n
+\right]
+\, d(x_1,\dots, x_{n-1})
+\]</span></p>
+<p>Si <span class="math inline">\(i \in \{1,\dots, n-1\}\)</span>, <span class="math display">\[\begin{multline*}
+\partial_i \left( w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \right)
+= \\ 
+\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \\
++ \partial_n w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \times 
+\partial_i f (x_1, \dots, x_{n-1})
+\end{multline*}\]</span> et dans le cas contraire, <span class="math display">\[\begin{multline*}
+\partial_n \left( w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \right)
+= \\
+\partial_n w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
+\end{multline*}\]</span></p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-12">TODO</h3>
+<p>Preuve de Stokes (dans un patch, puis en général) Enoncer version différentielle partielle de Stokes (directement analogie à l’IPP en dimension 1, permet de se limiter à l’intégration de fcts scalaires en 1ere approche et pas de perte de généralité; permet ensuite d’étudier les “applications” (théorème de la divergence, etc.))</p>
+<p><span class="math display">\[
+\int_{\Omega} \partial_i f(x) \, dx
+= 
+\int_{\Gamma} f(x) n_i(x) \, S(dx)
+\]</span></p>
+</section>
+<section>
+<h3 id="todo-13">TODO</h3>
+<p>Perspective sur les versions plus “relaxées” du théorème de Stokes, qu’il s’agisse du bord Lipschitz ou des travaux (Mawhin, Pfeffer, etc.) pour demander moins que <span class="math inline">\(C^1\)</span> sur l’intégrande ?</p>
+</section>
+</section>
+<section>
+<h1 id="exercices">Exercices</h1>
+<section>
+<h2 id="déformations">Déformations</h2>
+<p><span class="math inline">\(\Omega\)</span> dans <span class="math inline">\(U\)</span> paramétrisé par une déformation <span class="math inline">\(T = I + u\)</span> avec <span class="math inline">\(u\)</span> petit et une base <span class="math inline">\(\Omega_0\)</span> qui est un compact à bords <span class="math inline">\(C^1\)</span>. Montrer que si la base est un compact à bord <span class="math inline">\(C^1\)</span>, les déformés aussi.</p>
+</section>
+<section>
+<h2 id="exemples-de-compacts-à-bord-déterminés-implicitement">Exemples de compacts à bord (déterminés implicitement)</h2>
+<p>… par la fonction distance orientée par exemple ?</p>
+</section>
+<section>
+<h2 id="calcul">Calcul</h2>
+<p>Un calcul réalisable par Fubini et/ou Stokes ? Dans le disque unité ? Avec un champ de vecteurs</p>
+</section>
+</section>
+<section>
+<h1 id="réferences">Réferences</h1>
+</section>
+<div id="refs" class="references">
+<div id="ref-DZ11">
+<p>Delfour, M. C., and J.-P. Zolésio. 2011. <em>Shapes and Geometries. Metrics, Analysis, Differential Calculus, and Optimization. 2nd Ed.</em> 2nd ed. Philadelphia, PA: Society for Industrial and Applied Mathematics (SIAM).</p>
+</div>
+<div id="ref-Swa01">
+<p>Swartz, Charles. 2001. <em>Introduction to Gauge Integrals.</em> Singapore: World Scientific.</p>
+</div>
+</div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>le support d’une fonction <span class="math inline">\(v\)</span> est l’adhérence de l’ensemble des points où elle est non nulle: <span class="math display">\[
+\mbox{supp}(v) = \overline{\{x \in \mbox{dom}(v)\, | \, f(x) \neq 0\}}.
+\]</span> Ici, <span class="math inline">\(f\)</span> étant définie dans un ouvert (<span class="math inline">\(\mbox{dom}(f) = V \times \mathbb{R}\)</span>), son support est compact si et seulement si l’ensemble <span class="math inline">\(\{x \, | \, f(x) \neq 0\}\)</span> est borné et sa distance au complémentaire de <span class="math inline">\(V\times \mathbb{R}\)</span> dans <span class="math inline">\(\mathbb{R}^n\)</span> est positive.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+</body>
+</html>

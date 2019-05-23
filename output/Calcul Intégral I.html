@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sébastien Boisgérault" />
+  <title>Calcul Intégral I</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Calcul Intégral I</h1>
+<p class="author">Sébastien Boisgérault</p>
+</header>
+<section>
+<h2 id="todo">TODO</h2>
+<ul>
+<li><p>intégrale d’une fonction nulle presque partout (par étapes: 1 / nb finies de valeurs égale à 1, puis fct de Dirichlet, puis fct égale à un sur un ensemble de mesure nulle, puis cas général, ce type de progression (même si pas exactement celle-là, on a peut-être ))</p></li>
+<li><p>…</p></li>
+</ul>
+</section>
+<section>
+<h2 id="somme-et-intégrale-de-riemann">Somme et Intégrale de Riemann</h2>
+<section>
+<h3 id="intervalle">Intervalle</h3>
+<p>On appelle <em>intervalle</em> tout sous-ensemble <span class="math inline">\(I\)</span> de <span class="math inline">\(\mathbb{R}\)</span> tel que si <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> appartiennent à <span class="math inline">\(I\)</span> et vérifient <span class="math inline">\(x \leq y\)</span>, et si <span class="math inline">\(z\)</span> est un point intermédiaire, tel que <span class="math inline">\(x \leq z \leq y\)</span>, alors <span class="math inline">\(z\)</span> appartient à <span class="math inline">\(I\)</span>.</p>
+</section>
+<section>
+<h3 id="type-dintervalles" class="remark">Type d’intervalles</h3>
+<p>Avec cette définition, les intervalles peuvent être bornés ou non-bornés, ouverts, fermés, ouvert et fermés ou ni l’un ni l’autre. Les intervalles de la forme <span class="math inline">\(\left]-\infty, \infty\right[\)</span> (c’est-à-dire <span class="math inline">\(\mathbb{R}\)</span>), <span class="math inline">\(\left]-\infty, b\right[\)</span>, <span class="math inline">\(\left]a,\infty\right[\)</span> et <span class="math inline">\(\left]a,b\right[\)</span> sont ouverts; Les intervalles de la forme <span class="math inline">\(\left]-\infty, \infty\right[\)</span>, <span class="math inline">\(\left]-\infty, b\right]\)</span>, <span class="math inline">\(\left[a,\infty\right[\)</span> et <span class="math inline">\(\left[a,b \right]\)</span> sont ouverts; les intervalles compacts (à la fois fermés et bornés) sont de la forme <span class="math inline">\([a, b]\)</span>.</p>
+</section>
+<section>
+<h3 id="longueur-dun-intervalle">Longueur d’un intervalle</h3>
+<p>La longueur <span class="math inline">\(\ell(I)\)</span> d’un intervalle <span class="math inline">\(I\)</span> de <span class="math inline">\(\mathbb{R}\)</span> est le nombre réel étendu positif défini pour tout intervalle borné <span class="math inline">\(I\)</span> de la forme <span class="math inline">\(\left[a, b\right]\)</span>, <span class="math inline">\(\left]a, b\right[\)</span>, <span class="math inline">\(\left[a, b\right[\)</span> ou <span class="math inline">\(\left]a, b\right]\)</span> avec <span class="math inline">\(a\leq b\)</span> par <span class="math display">\[
+\ell(I) = b - a
+\]</span> et si <span class="math inline">\(I\)</span> est non-borné par <span class="math display">\[
+\ell(I) = +\infty.
+\]</span></p>
+</section>
+<section>
+<h3 id="subdivision-pointée" class="definition">Subdivision pointée</h3>
+<p>Une <em>subdivision</em> de l’intervalle fermé <span class="math inline">\(I = [a,b]\)</span> est une famille finie <span class="math display">\[
+\{I_i \; | \; \; 0 \leq i \leq n-1 \}
+\]</span> constituée d’intervalles fermés de <span class="math inline">\(I\)</span>, <em>sans chevauchement</em> – si <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span> diffèrent, l’intersection de <span class="math inline">\(I_i\)</span> et <span class="math inline">\(I_j\)</span> contient au plus un point – et <em>recouvrant <span class="math inline">\(I\)</span></em> – l’union de l’ensemble des <span class="math inline">\(I_i\)</span> est égal à <span class="math inline">\(I\)</span>. Une <em>subdivision pointée</em> de l’intervalle fermé <span class="math inline">\(I = [a, b]\)</span> de <span class="math inline">\(\mathbb{R}\)</span> une famille finie <span class="math display">\[
+\{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
+\]</span> où les <span class="math inline">\(I_i\)</span> forment une subdivision de <span class="math inline">\(I\)</span> et <span class="math inline">\(t_i \in I_i\)</span> pour tout <span class="math inline">\(i \in \{0, \dots, n-1\}.\)</span></p>
+</section>
+<section>
+<h3 id="somme-de-riemman" class="definition">Somme de Riemman</h3>
+<p>La somme de Riemann associée à la fonction <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> et à la subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> est la grandeur <span class="math display">\[
+S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
+\]</span></p>
+</section>
+<section>
+<h3 id="intégrale-de-riemann" class="definition">Intégrale de Riemann</h3>
+<p>Une fonction <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> est dite <em>intégrable (au sens de Riemann)</em> s’il existe un réel <span class="math inline">\(A\)</span> tel que pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span> il existe un réel <span class="math inline">\(\delta&gt;0\)</span> tel que pour toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> vérifiant pour <span class="math inline">\((t, J) \in \mathcal{D}\)</span>, <span class="math inline">\(\ell(J) &lt; \delta\)</span>, on ait <span class="math inline">\(|S(f, \mathcal{D}) - A| \leq \varepsilon\)</span>. Le réel <span class="math inline">\(A\)</span> quand il existe est unique; il est appelé <em>intégrale de <span class="math inline">\(f\)</span> sur <span class="math inline">\([a, b]\)</span></em> et noté <span class="math display">\[
+\int_a^b f(t) \, dt
+\, \mbox{ ou } \,
+\int_{[a, b]} f(t) \, dt
+\]</span></p>
+</section>
+<section>
+<h3 id="quadrature" class="example">Quadrature</h3>
+<p>Cette définition permet de garantir l’exactitude asymptotique de méthodes de quadrature – c’est-à-dire d’algorithmes de calcul numérique d’intégrales – comme la méthode des rectangles. En effet, si <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> est une fonction intégrable au sens de Riemann, et <span class="math inline">\(\mathcal{D}_m\)</span> une subdivision pointée de <span class="math inline">\([a, b]\)</span> de la forme <span class="math display">\[
+\mathcal{D}_m=
+\left\{
+\left(a + i \frac{b-a}{m}, \left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)
+\, \left| \vphantom{\frac{a}{b}}\right.
+i \in \{0,\dots, m-1\}
+\right\},
+\]</span> la somme de Riemann associée vérifie <span class="math display">\[
+\begin{split}
+S(f, \mathcal{D}_m) 
+&amp;= \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right) \ell 
+\left(\left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)\\
+&amp;= \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right) \frac{b-a}{m}  \\
+&amp;= \frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right)
+\end{split}
+\]</span> De plus, quel que soit <span class="math inline">\(\delta &gt; 0\)</span>, pour <span class="math inline">\(m\)</span> suffisamment grand, on a <span class="math display">\[
+\ell\left(\left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)
+=
+\frac{b-a}{m}
+&lt;
+\delta
+\]</span> Par conséquent, <span class="math display">\[
+\frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right)
+\to \int_a^b f(t) \, dt
+\, \mbox{ quand } \, m \to +\infty.
+\]</span> La définition de l’intégrale de Riemann, ne se limite pas à une famille particulière de subdivisions – comme ici à des subdivisions régulières de <span class="math inline">\([a, b]\)</span> où tous les intervalles sont de même longueur – et n’impose pas une position fixe au point <span class="math inline">\(t_i\)</span> dans l’intervalle <span class="math inline">\(J_i\)</span> – comme ici à gauche de l’intervalle – ce qui garantit une forme de robustesse à la définition de l’intégrale; d’autres méthodes de quadratures pourront être utilisées avec le même résultat asymptotique.</p>
+</section>
+<section>
+<h3 id="remarque" class="remark anonymous">Remarque</h3>
+<p>L’intégrale de Riemann possède des limitations qui en font un outil mathématique difficile à exploiter. En particulier la classe des fonctions qui peuvent être intégrées est trop petite pour certaines applications car les fonctions considérées ne peuvent être “ni trop grandes”, “ni trop irrégulières” pour être intégrables. Les deux théorèmes qui suivent précisent cette situation.</p>
+</section>
+<section>
+<h3 id="seules-les-fonctions-bornées-sont-intégrables" class="lemma">Seules les fonctions bornées sont intégrables</h3>
+<p>Si <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> est intégrable au sens de Riemann, alors <span class="math inline">\(f\)</span> est bornée.</p>
+</section>
+<section>
+<h3 id="démonstration" class="proof">Démonstration</h3>
+<p>Soit <span class="math inline">\(\delta &gt; 0\)</span> tel que pour toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> vérifiant <span class="math inline">\(\ell(J) &lt; \delta\)</span> pour tout<span class="math inline">\((t, J) \in \mathcal{D}\)</span>, on ait <span class="math inline">\(|S(f, \mathcal{D}) - \int_a^b f(t) \, dt| \leq 1\)</span>. Soit <span class="math inline">\(\mathcal{D} = \{(t_i, [a_i, b_i])\}_{i=0}^{m-1}\)</span> une telle subdivision; on supposera de plus que <span class="math inline">\(\ell(J_i)&gt;0\)</span> pour tout <span class="math inline">\(i\)</span>, ce qu’il est toujours possible de garantir. Pour tout <span class="math inline">\(i \in \{0, \dots, m-1\}\)</span>, si l’on définit <span class="math inline">\(\mathcal{D}&#39;\)</span> à partir de <span class="math inline">\(\mathcal{D}\)</span> en remplaçant <span class="math inline">\(t_i\)</span> par un <span class="math inline">\(t\)</span> de <span class="math inline">\(J_i\)</span> quelconque, on obtient <span class="math display">\[
+\begin{split}
+|f(t) \ell(J_i) - f(t_i) \ell(J_i)| &amp;=
+|S(f, \mathcal{D}&#39;) - S(f, \mathcal{D})| \\
+&amp; \leq
+\left|S(f, \mathcal{D}&#39;) - \int_a^b f(t) \, dt\right|
++
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \\
+&amp; \leq 2
+\end{split}
+\]</span> et par conséquent, <span class="math display">\[
+|f(t)| \leq |f(t_i)| + \frac{2}{\ell(J_i)}.
+\]</span> Les intervalles <span class="math inline">\(J_i\)</span> recouvrant <span class="math inline">\([a, b]\)</span>, on a pour tout <span class="math inline">\(t\in [a, b]\)</span> <span class="math display">\[
+|f(t)| \leq \max_i \left\{|f(t_i)| + \frac{2}{\ell(J_i)} 
+\, \left| \vphantom{\frac{a}{b}} \right. \, i \in \{0, \dots, m-1\}\right\}.
+\]</span></p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="ensemble-négligeable" class="definition">Ensemble négligeable</h3>
+<p>Un ensemble <span class="math inline">\(A\)</span> de <span class="math inline">\(\mathbb{R}\)</span> est <em>négligeable</em> si pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span>, il existe un recouvrement de <span class="math inline">\(A\)</span> par une famille dénombrable d’intervalles <span class="math inline">\(I_i\)</span> de <span class="math inline">\(\mathbb{R}\)</span> tels que <span class="math display">\[
+\sum_i \ell(I_i) \leq  \varepsilon.
+\]</span></p>
+</section>
+<section>
+<h3 id="remarque-1" class="remark anonymous">Remarque</h3>
+<p>Nous voyons que le procédé qui définit la notion d’ensemble négligeable consiste à surestimer la taille de l’ensemble en lui substituant une collection d’intervalles dont l’union est au moins aussi grande, puis à surestimer la longueur de l’ensemble résultant en calculant la somme des longueurs des intervalles, sans tenir compte des éventuels recouvrements. Si à l’issue de cette double surestimation la longueur évaluée est encore aussi petite que l’on veut, on peut légitimement considérer que l’ensemble de départ est de longueur nulle<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> et que c’est donc ce que signifie “négligeable”. Nous verrons ultérieurement que cette intuition sera vérifiée.</p>
+</section>
+<section>
+<h3 id="presque-partout" class="definition">Presque partout</h3>
+<p>Une propriété dépendant d’un réel <span class="math inline">\(x\)</span> est vraie <em>presque partout</em> si l’ensemble des points <span class="math inline">\(x\)</span> où elle est fausse est un ensemble négligeable.</p>
+</section>
+<section>
+<h3 id="les-ensembles-dénombrables-sont-négligeables" class="example">Les ensembles dénombrables sont négligeables</h3>
+<p>Par exemple, les ensembles finis sont négligeables, <span class="math inline">\(\mathbb{Q}\)</span> est négligeable, etc. En effet, si <span class="math inline">\(A = \{x_n \, | \, n \in \mathbb{N}\}\)</span>, alors pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span>, la collection d’intervalle ouverts <span class="math display">\[
+\left\{
+\left]
+x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
+\right[
+\, \left| \vphantom{\frac{a}{b}} \, \right.
+i \in \mathbb{N}
+\right\}
+\]</span> recouvre <span class="math inline">\(A\)</span> et par ailleurs <span class="math display">\[
+\sum_{i=0}^{+\infty} \ell\left(\left]
+x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
+\right[\right)
+=
+\sum_{i=0}^{+\infty} \frac{\varepsilon}{2^{i+1}}
+=
+\varepsilon.
+\]</span></p>
+</section>
+<section>
+<h3 id="critère-de-lebesgue-pour-lintégrabilité-au-sens-de-riemann">Critère de Lebesgue pour l’intégrabilité au sens de Riemann</h3>
+<p>La fonction <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> est intégrable au sens de Riemann si et seulement si <span class="math inline">\(f\)</span> est bornée et continue presque partout.</p>
+</section>
+<section>
+<h3 id="démonstration-1" class="proof">Démonstration</h3>
+<p><a href="#seules-les-fonctions-bornées-sont-intégrables">Le lemme ci-dessus</a> montre que le caractère borné est nécessaire pour l’intégrabilité au sens de Riemann. Pour le reste de la preuve, se reporter à <span class="citation" data-cites="Bur07">(Burk <a href="#ref-Bur07">2007</a>, 58)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+</section>
+<section>
+<h2 id="intégrale-de-riemann-généralisée">Intégrale de Riemann Généralisée</h2>
+<section>
+<h3 id="jauge" class="definition">Jauge</h3>
+<p>Une jauge <span class="math inline">\(\gamma\)</span> sur un intervalle <span class="math inline">\(I\)</span> de <span class="math inline">\(\mathbb{R}\)</span> est une fonction qui associe à tout <span class="math inline">\(t \in I\)</span> un intervalle ouvert <span class="math inline">\(\gamma(t)\)</span> de <span class="math inline">\(\mathbb{R}\)</span> contenant <span class="math inline">\(t\)</span>.</p>
+</section>
+<section>
+<h3 id="subdivision-pointée-subordonnée-à-une-jauge" class="definition">Subdivision pointée subordonnée à une jauge</h3>
+<p>Une subdivision <span class="math inline">\(\mathcal{D}\)</span> de l’intervalle compact <span class="math inline">\(I\)</span> est <em>subordonnée à une jauge</em> <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\(I\)</span> si pour tout <span class="math inline">\((t, J) \in \mathcal{D}\)</span>, <span class="math inline">\(J \subset \gamma(t).\)</span></p>
+</section>
+<section>
+<h3 id="représentation-graphique">Représentation graphique</h3>
+<p>On peut associer à une jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> l’ensemble du plan <span class="math display">\[
+\{(x, y) \; | \; x \in [a, b], \, y \in \gamma(x) \}.
+\]</span> Par construction, cet ensemble contient la diagonale <span class="math display">\[
+D = \{(x,x) \; | \; x \in [a, b]\}.
+\]</span></p>
+<p><strong>TODO:</strong> example, et expliquer pourquoi cette représentation est pratique pour visualiser si une subdivision pointée est subordonnée à une jauge.</p>
+<p>Par exemple, la jauge <span class="math inline">\(\gamma\)</span> définie sur <span class="math inline">\([0,1]\)</span> par <span class="math inline">\(\gamma(t) = \left] t-0.25, t+0.25 \right[\)</span> est représentée comme suit:</p>
+<figure>
+<embed src="images/gauge-plot.pdf" /><figcaption>Graphe de la jauge <span class="math inline">\(\gamma(t) = \left]t-0.2, t+0.2 \right[,\)</span> <span class="math inline">\(t \in [0, 1 ].\)</span></figcaption>
+</figure>
+<p><strong>TODO:</strong> graphique d’une subdivision pointée, avec séparateurs en barres verticales et <span class="math inline">\(t_i\)</span> en croix.</p>
+</section>
+<section>
+<h3 id="lemme-de-cousin" class="theorem">Lemme de Cousin</h3>
+<p>Pour toute fonction de jauge <span class="math inline">\(\gamma\)</span> sur l’intervalle fermé <span class="math inline">\(I\)</span>, il existe une subdivision <span class="math inline">\(\mathcal{D}\)</span> qui soit subordonnée à <span class="math inline">\(\gamma\)</span>.</p>
+</section>
+<section>
+<h3 id="preuve" class="proof">Preuve</h3>
+<p>S’il existe un <span class="math inline">\(t \in I^0 = I = [a, b]\)</span> tel que <span class="math inline">\(I \subset \gamma(t)\)</span>, la subdivision <span class="math inline">\(\mathcal{D} = \{(t, I)\}\)</span> convient. Sinon, on peut considérer les intervalles <span class="math inline">\(I_0^1 = [a, (a+b)/2]\)</span> et <span class="math inline">\(I_1^1 = [(a+b)/2, b]\)</span> et examiner pour chacun de ces intervalles s’il existe un <span class="math inline">\(t_i \in I_i^1\)</span> tel que <span class="math inline">\(I_i^1 \subset \gamma(t_i)\)</span>, dans ce cas ajouter la paire <span class="math inline">\((t_i, I_i^1)\)</span> à la famille <span class="math inline">\(\mathcal{D}\)</span> et dans le cas contraire décomposer à nouveau l’intervalle posant problème. Soit ce procédé converge en un nombre fini d’étapes et forme une subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\(I\)</span>, soit nous avons construit une infinité d’intervalles fermés <span class="math inline">\(J_i\)</span> emboités (<span class="math inline">\(J_{i+1} \subset J_i\)</span>) de <span class="math inline">\(I\)</span> tels que pour tout <span class="math inline">\(t \in J_i\)</span>, <span class="math inline">\(J_i \not \subset \gamma(t)\)</span>.</p>
+<p>Montrons que ce second scénario est impossible. Comme les <span class="math inline">\(J_i\)</span> sont emboités, la collection <span class="math inline">\(\{J_i \; | \; i \in \mathbb{N}\}\)</span> possède la propriété de l’intersection finie. L’intervalle <span class="math inline">\(I\)</span> étant compact, cela implique qu’il existe un <span class="math inline">\(t \in I\)</span> tel que pour tout <span class="math inline">\(i \in \mathbb{N}\)</span>, <span class="math inline">\(t\)</span> soit adhérent à <span class="math inline">\(J_i\)</span>. Les <span class="math inline">\(J_i\)</span> étant fermés, <span class="math inline">\(t\)</span> appartient à chaque <span class="math inline">\(J_i\)</span>. La longueur de <span class="math inline">\(J_i\)</span> étant divisée par deux à chaque incrément de <span class="math inline">\(i\)</span>, <span class="math inline">\(\ell(J_i) = \ell(J_0) / 2^i\)</span> et comme <span class="math inline">\(t_i \in J_i\)</span>, <span class="math inline">\(J_i \subset [t_i - \ell(J_0) / 2^i, t_i + \ell(J_0) / 2^i]\)</span>. Par conséquent, il existe un rang <span class="math inline">\(i\)</span> à partir duquel <span class="math inline">\(J_i \subset \gamma(t)\)</span>, ce qui contredit l’hypothèse de départ.</p>
+<h4 id="note">Note</h4>
+<p>Si l’argument topologique peut être survolé, la procédure de dichotomie est intéressante et peut être utilisé sur des exemples concrets, ça vaudrait le coup de la faire “pour de vrai”.</p>
+<p>Au passage, il faut s’arranger pour “lemmatiser” le résultats “… et le processus termine en un nombre fini d’étapes” plus clairement.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="intégrale-de-henstock-kurzweil-sur-un-intervalle-compact" class="definition">Intégrale de Henstock-Kurzweil sur un intervalle compact</h3>
+<p>Une fonction <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> est dite <em>intégrable (au sens de Henstock-Kurzweil)</em> s’il existe un réel <span class="math inline">\(A\)</span> tel que pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span> il existe une jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> telle que pour toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>, on ait <span class="math inline">\(|S(f, \mathcal{D}) - A| \leq \varepsilon\)</span>. Le réel <span class="math inline">\(A\)</span> quand il existe est unique; il est appelé <em>intégrale de <span class="math inline">\(f\)</span> sur <span class="math inline">\([a, b]\)</span></em> et noté <span class="math display">\[
+\int_a^b f(t) \, dt
+\, \mbox{ ou } \,
+\int_{[a, b]} f(t) \, dt
+\]</span></p>
+</section>
+<section>
+<h3 id="notation">Notation</h3>
+<p>La première notation peut être étendue au cas où <span class="math inline">\(b &lt; a\)</span>; on définit alors l’intégrale de <span class="math inline">\(a\)</span> à <span class="math inline">\(b\)</span> en se ramenant au cas précédent, par <span class="math display">\[
+\int_{a}^b f(t) \, dt := - \int_b^a f(t) \, dt.
+\]</span> Lorsqu’on sera en présence de plusieurs intégrales (Newton, Riemann, etc.), on pourra préfixer l’intégrale par les lettres “HK” (pour Henstock-Kurzweil) pour lever toute ambiguité: <span class="math display">\[
+\mbox{HK-}\int_{[a, b]} f(t) \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="intégrale-de-riemann-1" class="theorem">Intégrale de Riemann</h3>
+<p>Toute fonction <span class="math inline">\(f:[a,b] \mapsto \mathbb{R}\)</span> intégrable au sens de Riemann est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.</p>
+</section>
+<section>
+<h3 id="def-riemann-preuve">Def Riemann + Preuve</h3>
+<p><strong>TODO</strong>. Passer par l’intermédiaires des jauges numériques ? Bof. Directement avec de <span class="math inline">\(\delta &gt; 0\)</span> uniforme à l’intervalle ouvert.</p>
+</section>
+<section>
+<h3 id="théorème-fondamental-du-calcul" class="theorem">Théorème fondamental du calcul</h3>
+<p>Si la fonction <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> est dérivable sur <span class="math inline">\([a, b]\)</span>, la dérivée function dérivée <span class="math inline">\(f&#39;\)</span> est intégrable sur <span class="math inline">\([a, b]\)</span> et <span class="math display">\[
+  f(b) - f(a) = \int_a^b f&#39;(t) \, dt.
+  \]</span></p>
+</section>
+<section>
+<h3 id="théorème-fondamental-du-calcul-alternatif-corollaire" class="theorem">Théorème fondamental du calcul (alternatif) (Corollaire ?)</h3>
+<p>Toute fonction <span class="math inline">\(f:[a,b] \mapsto \mathbb{R}\)</span> intégrable au sens de Newton est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.</p>
+<p><strong>QUESTION</strong> exfiltrer le “Straddle Lemma”? Ca sera probablement plus clair. L’autre option est de splitter un cran plus avant la somme qui majore l’erreur entre somme de Riemann et intégral … à voir. Arf, ça ne marche pas, tss tss…</p>
+</section>
+<section>
+<h3 id="preuve-1" class="proof">Preuve</h3>
+<p>Nous souhaitons établir que <span class="math inline">\(f&#39;:[a, b] \to \mathbb{R}\)</span> est intégrable, d’intégrale égale à <span class="math inline">\(f(b) - f(a)\)</span>. Pour cela, nous devons montrer que pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span> il existe une fonction de jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> telle que, si une subdivision pointée <span class="math display">\[
+\mathcal{D} = \{(t_0, [x_0, x_1], \dots, (t_{m-1}, [x_{m-1}, x_m]))\}
+\]</span> vérifie pour tout <span class="math inline">\(i \in \{0, \dots, m-1\},\)</span> <span class="math inline">\([x_i,x_{i+1}] \subset \gamma(t_i),\)</span> alors <span class="math display">\[
+|S(f&#39;, \mathcal{D}) - (f(b) - f(a))| \leq \epsilon.
+\]</span> Notons que si <span class="math inline">\(\mathcal{D} = \{(t_0, [x_0, x_1], \dots, (t_{m-1}, [x_{m-1}, x_m]))\}\)</span>, le membre de gauche de cette inégalité vérifie <span class="math display">\[
+\begin{split}
+|S(f&#39;, \mathcal{D}) - (f(b) - f(a))| 
+  &amp;= \left|\sum_{i=0}^{m-1} f&#39;(t_i)(x_{i+1} - x_i) - (f(b) - f(a))\right| \\
+  &amp;= \left|\sum_{i=0}^{m-1} f&#39;(t_i)(x_{i+1} - x_i) - \sum_{i=0}^{m-1} (f(x_{i+1}) - f(x_i)) \right| \\
+  &amp;= \left|\sum_{i=0}^{m-1} (f&#39;(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i))) \right| \\
+  &amp;\leq \sum_{i=0}^{m-1} \left| f&#39;(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
+\end{split}
+\]</span></p>
+<p>Fixons donc un <span class="math inline">\(\varepsilon&#39; &gt; 0\)</span> arbitraire. Comme pour tout <span class="math inline">\(t \in [a, b],\)</span> <span class="math display">\[f(t+h) = f(t) + f&#39;(t) h + o(h),\]</span> il existe un <span class="math inline">\(\delta(t) &gt; 0\)</span> tel que si <span class="math inline">\(|h| &lt; \delta (t),\)</span> <span class="math display">\[
+|f&#39;(t) h - (f(t+h) - f(t))| \leq \varepsilon&#39; |h|
+\]</span> Par conséquent, si le sous-intervalle fermé <span class="math inline">\([c, d]\)</span> de <span class="math inline">\([a, b]\)</span> est tel que <span class="math display">\[
+t \in [c, d] \subset \left]t-\delta(t), t+\delta(t)\right[,
+\]</span> nous avons <span class="math display">\[
+|f&#39;(t) (d-t) - (f(d) - f(t))| \leq \varepsilon&#39; |d - t| = \varepsilon&#39; (d-t)
+\]</span> ainsi que <span class="math display">\[
+|f&#39;(t) (c-t) - (f(c) - f(t))| \leq \varepsilon&#39; |c - t| = \varepsilon&#39; (t - c).
+\]</span> L’inégalité triangulaire fournit alors <span class="math display">\[
+|f&#39;(t)(d - c) - (f(d) - f(c))| \leq \varepsilon&#39; (d - c)
+\]</span> Posons <span class="math inline">\(\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[;\)</span> nous avons ainsi bien défini une fonction de jauge. Si <span class="math inline">\(\mathcal{D}\)</span> est subordonnée à <span class="math inline">\(\gamma\)</span>, pour tout <span class="math inline">\(i \in \{0, \dots, m-1\},\)</span> <span class="math display">\[t_i \in [x_i,x_{i+1}] \subset \left]t_i - \delta(t_i), t_i + \delta(t_i)\right[,\]</span> par conséquent <span class="math display">\[
+|f&#39;(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i))| \leq \varepsilon&#39; (x_{i+1} - x_i).
+\]</span> Exploitons cette inégalité pour majorer l’erreur entre la somme de Riemann et l’intégrale de <span class="math inline">\(f&#39;\)</span>; nous avons <span class="math display">\[
+\begin{split}
+|S(f&#39;, \mathcal{D}) - (f(b) - f(a))| 
+&amp;\leq \sum_{i=0}^{m-1} \left| f&#39;(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
+&amp;\leq \sum_{i=0}^{m-1} \varepsilon&#39; (x_{i+1} - x_i) \\
+&amp;= \varepsilon&#39; \sum_{i=0}^{m-1} (x_{i+1} - x_i) \\
+&amp;= \varepsilon&#39; (x_m - x_0) \\
+&amp;= \varepsilon&#39; (b - a) \\
+\end{split}.
+\]</span> Il suffit de choisir un nombre réel positif <span class="math inline">\(\varepsilon&#39;\)</span> tel que <span class="math inline">\(\varepsilon&#39; (b-a) \leq \varepsilon\)</span> pour obtenir l’inégalité recherchée.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="exemple-x-mapsto-ex.">Exemple: <span class="math inline">\(x \mapsto e^x\)</span>.</h3>
+<p>La fonction <span class="math inline">\(f: x \mapsto e^x\)</span> est intégrable au sens de Newton sur tout intervalle compact <span class="math inline">\([a, b]\)</span> de <span class="math inline">\(\mathbb{R}\)</span> puisqu’elle admet <span class="math inline">\(x \mapsto e^x\)</span> comme primitive. On a ainsi <span class="math display">\[
+\int_a^b e^x \,dx 
+= 
+\left[ e^x \right]_a^b
+= e^b - e^a. 
+\]</span> Par le théorème fondamental du calcul, <span class="math inline">\(f\)</span> est intégrable au sens de Henstock-Kurzweil et l’intégrale associée coïncide avec l’intégrale de Newton. Pour toute intervalle <span class="math inline">\([a, b]\)</span> et toute précision <span class="math inline">\(\varepsilon &gt; 0\)</span>, il existe donc une jauge <span class="math inline">\(\gamma\)</span> telle que pour toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>, l’écart entre <span class="math inline">\(S(f, \mathcal{D})\)</span> et la valeur de l’intégrale soit au plus <span class="math inline">\(\varepsilon(b-a)\)</span>.</p>
+<p>Construisons une telle jauge en nous inspirant de la preuve du théorème fondamental du calcul. Dans cette preuve, nous avons montré que la précision <span class="math inline">\(\varepsilon (b-a)\)</span> était atteinte si nous choisissions <span class="math inline">\(\gamma(t) = \left]t-\delta(t), t+\delta(t)\right[\)</span> où <span class="math inline">\(\delta(t) &gt; 0\)</span> est tel que si <span class="math inline">\(|h| \leq \delta(t)\)</span>, alors <span class="math display">\[
+|f(t+h) - f(t) - f&#39;(t)h| \leq \varepsilon |h|.
+\]</span></p>
+<p>Explicitons cette contrainte dans le cas de la fonction <span class="math inline">\(x \in \mapsto e^x\)</span>. Cette fonction étant deux fois différentiable sur <span class="math inline">\([0, 1]\)</span>, la formule de Taylor avec reste intégral nous fournit <span class="math display">\[
+|f(t+h) - f(t) - f&#39;(t)h|
+= 
+\left| \int_t^{t+h}  f&#39;&#39;(x) (t + h - x) \, dx \right|.
+\]</span> Dans ce cas précis, puisque <span class="math inline">\(f&#39;&#39;(x) = e^x\)</span>, lorsque <span class="math inline">\(h\geq0\)</span> nous avons <span class="math display">\[
+\left| \int_t^{t+h}  f&#39;&#39;(x) (t + h - x) \, dx \right|
+\leq 
+e^{x+h} \int_t^{t+h} (t+h-x)\, dx
+= e^{x+h} h^2 / 2
+\]</span> Lorsque <span class="math inline">\(h &lt; 0\)</span>, on peut montrer que <span class="math display">\[
+\left| \int_t^{t+h}  f&#39;&#39;(x) (t + h - x) \, dx \right|
+\leq
+e^x h^2 / 2.
+\]</span> Dans tous les cas,pour garantir que <span class="math inline">\(|f(t+h) - f(t) - f&#39;(t)h| \leq \varepsilon |h|,\)</span> sous l’hypothèse que <span class="math inline">\(|h| \leq \delta(t),\)</span> il est donc suffisant de nous assurer que <span class="math inline">\(e^{x+\delta(t)} \delta(t) /2 \leq \varepsilon,\)</span> soit <span class="math inline">\(\delta(t) e^{\delta(t)} \leq 2 e^{-x}\varepsilon.\)</span> La fonction <span class="math inline">\(y \in \mathbb{R} \to y e^y \in \left]0, +\infty\right[\)</span> est croissante et bijective; son inverse est par définition la fonction <span class="math inline">\(W\)</span> de Lambert. Le plus grand <span class="math inline">\(\delta(t)\)</span> satisfaisant l’inégalité précédente est donc donné par <span class="math display">\[
+\delta(t) = W \left( 2e^{-x}\varepsilon\right)
+\]</span> En conclusion: pour tout <span class="math inline">\([a, b]\)</span> et tout <span class="math inline">\(\varepsilon &gt; 0\)</span>, la jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> définie par <span class="math display">\[
+\gamma(t) = 
+\left]
+t - W \left( 2e^{-x}\varepsilon\right),
+t + W \left( 2e^{-x}\varepsilon\right)
+\right[
+\]</span> est telle que pour toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> subordonnée à <span class="math inline">\(\gamma\)</span> <span class="math display">\[
+\left|S(x\mapsto e^x, \mathcal{D}) - \int_a^b e^x \, dx \right| \leq \varepsilon(b-a).
+\]</span></p>
+<p><strong>TODO:</strong> représentation graphique de la jauge pour un (des ?) <span class="math inline">\(\varepsilon\)</span> bien choisis.</p>
+</section>
+<section>
+<h3></h3>
+</section>
+<section>
+<h3 id="exemple-1sqrtx.">Exemple: <span class="math inline">\(1/\sqrt{x}\)</span>.</h3>
+<p>Considérons la fonction <span class="math inline">\(f:[0,1] \to \mathbb{R}\)</span> définie par <span class="math display">\[
+f(x) = 
+\left|
+\begin{array}{rl}
+1/\sqrt{x} &amp; \mbox{si } \, x &gt; 0, \\
+0          &amp; \mbox{si } \, x = 0.
+\end{array}
+\right.
+\]</span></p>
+<p>Options: “manuellement” avec 3 hunches à avoir (“gérer” le cas <span class="math inline">\(x=0\)</span> à part et “forcer” la subdivision à prendre la valeur <span class="math inline">\(0\)</span>; découpage de la valeur finale “pressentie” en bouts et recherche d’une somme télescopique). Ou, essayer d’exploiter la preuve du FTC, qui nécessite d’être détaillée, pour “exhiber” une jauge qui marche (note: au passage, en supposant <span class="math inline">\(f\)</span> deux fois diff on peut en construire une explicitement, c’est un exercice intéressant en soi). Tout est bon ici !</p>
+<p>Variante/extension: autre valeur que <span class="math inline">\(0\)</span> en <span class="math inline">\(0\)</span>, montrer que cela n’a aucun impact.</p>
+<p>Une stratégie intéressant consisterait à expliciter/construire une jauge “qui fasse le job” pour <span class="math inline">\(1/\sqrt{x}\)</span> en évitant l’origine en s’inspirant de la preuve du FTC (qui “lisse” l’erreur uniformément), PUIS à bootstraper ça pour la singularité. C’est sans doute une bonne idée, il y a beaucoup de techniques concentrées sur un seul exercice sinon. Et le coup de la méthode de sélection du pas associée au FTC montre une stratégie qui constraste avec celle de Riemann classique, c’est intéressant à contraster.</p>
+<h4 id="préambule">Préambule</h4>
+<p>La difficulté de cet exemple est liée à la “singularité” de <span class="math inline">\(f\)</span> en <span class="math inline">\(x=0\)</span>, où la fonction est à la fois discontinue et localement non-bornée. Si au lieu de l’intervalle <span class="math inline">\([0,1]\)</span>, on considére l’intervalle <span class="math inline">\([a, b]\)</span> où <span class="math inline">\(0 &lt; a \leq b \leq 1\)</span>, comme la fonction <span class="math inline">\(f\)</span> restreinte à <span class="math inline">\([a, b]\)</span> est continue, elle y admet une primitive, par exemple la fonction <span class="math inline">\(x \in [a, b] \mapsto 2 \sqrt{x}\)</span>. Elle y est intégrable au sens de Newton – et donc au sens de Henstock-Kurzweil – et <span class="math display">\[
+\int_a^b f(x) \, dx = \int_a^b (2\sqrt{x})&#39; \, dx
+=
+\left[ 2 \sqrt{x} \right]_a^b = 2 (\sqrt{b} - \sqrt{a}).
+\]</span> Si <span class="math inline">\(f\)</span> est bien HK-intégrable sur <span class="math inline">\([0,1]\)</span>, ce que nous allons nous efforcer de démontrer, l’expression ci-dessus suggère que son intégrale pourrait être <span class="math display">\[
+  \int_0^1 f(x) \, dx \stackrel{?}{=} 2(\sqrt{1} - \sqrt{0}) = 2.
+  \]</span> On va confirmer cette intuition dans la suite.</p>
+</section>
+<section>
+<h3 id="la-singularité">La singularité</h3>
+<p>Soit <span class="math inline">\(\varepsilon &gt; 0\)</span>. On cherche à construire une jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([0,1]\)</span> telle que toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>, vérifie <span class="math display">\[
+\left| S(f, \mathcal{D}) - 2 \right| \leq \varepsilon.
+\]</span> On cherche dans un premier temps à expliciter la contribution du voisinage de l’origine à la somme de Riemann. Si <span class="math inline">\(\mathcal{D}\)</span> est composée des paires <span class="math inline">\(([x_i, x_{i+1}], t_i)\)</span> où <span class="math inline">\(0 \leq x_0 \leq \dots \leq x_m \leq 1\)</span>, et que <span class="math inline">\(x_p\)</span> est le premier des <span class="math inline">\(x_i\)</span> qui diffère de <span class="math inline">\(0\)</span>, on a <span class="math display">\[
+\begin{split}
+S(f, \mathcal{D}) &amp;= f(t_0) (x_1 - x_0) + \dots + f(t_{p-1}) (x_{p} - x_{p-1}) 
++ \sum_{i = p}^m f(t_i) (x_{i+1} - x_i) \\
+&amp;= f(t_{p-1}) x_{p} 
++ \sum_{i = p}^m f(t_i) (x_{i+1} - x_i)
+\end{split}
+\]</span> soit <span class="math inline">\(S(f, \mathcal{D}) = f(t_{p-1}) x_p + S(f, \mathcal{D}&#39;)\)</span> où <span class="math inline">\(\mathcal{D}&#39; = \{(J, t) \in \mathcal{D} \; | \; J \subset [x_p, 1]\}.\)</span></p>
+<p><span class="math display">\[
+\begin{split}
+\left| S(f, \mathcal{D}) - 2 \right| &amp;=
+\left| f(t_{p-1}) x-p - 2(\sqrt{x_p} - \sqrt{0}) - (S(f, \mathcal{D}&#39;) - 2 (\sqrt{1} - \sqrt{x_p}) )\right|
+\end{split}
+\]</span></p>
+</section>
+</section>
+<section>
+<h2 id="propriétés-elementaires-de-lintégrale">Propriétés Elementaires de l’Intégrale</h2>
+<section>
+<h3 id="todo-1">TODO</h3>
+<p>Linéarité</p>
+</section>
+<section>
+<h3 id="todo-2">TODO</h3>
+<p>IPP</p>
+</section>
+<section>
+<h3 id="todo-3">TODO</h3>
+<p>Changement de variables</p>
+</section>
+<section>
+<h3 id="todo-4">TODO</h3>
+<p>Ajouter distinctions notations</p>
+<p><span class="math display">\[
+\int_{[a, b]}, \int_a^b
+\]</span></p>
+</section>
+<section>
+<h3 id="additivité">Additivité</h3>
+<p>Si la fonction <span class="math inline">\(f\)</span> est définie et intégrable sur les intervalles compacts <span class="math inline">\([a, b]\)</span> et <span class="math inline">\([b, c]\)</span>, alors elle est intégrable sur l’intervalle <span class="math inline">\([a, c]\)</span> et <span class="math display">\[
+\int_{[a, b]} f(t) \, dt + \int_{[b, c]} f(t) \, dt = \int_{[a, c]} f(t) \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-2" class="proof">Démonstration</h3>
+<p>Soit <span class="math inline">\(\varepsilon &gt; 0\)</span>. Si la fonction <span class="math inline">\(f\)</span> est intégrable sur <span class="math inline">\([a, b]\)</span> et <span class="math inline">\([b, c]\)</span>, alors il existe deux jauges <span class="math inline">\(\gamma_1:[a, b] \to \mathbb{R}\)</span> et <span class="math inline">\(\gamma_2:[b, c] \to \mathbb{R}\)</span> telles que pour toutes les subdivisions pointées <span class="math inline">\(\mathcal{D}_1\)</span> et <span class="math inline">\(\mathcal{D}_2\)</span> de <span class="math inline">\([a, b]\)</span> et <span class="math inline">\([c, d]\)</span> respectivement subordonnées à <span class="math inline">\(\gamma_1\)</span> et <span class="math inline">\(\gamma_2\)</span>, <span class="math display">\[
+\left| S(f, \mathcal{D}_1) - \int_{[a,b]} f(t) \, dt\right| \leq \varepsilon/2
+\, \mbox{ et } \, 
+\left| S(f, \mathcal{D}_2) - \int_{[b, c]} f(t) \, dt\right| \leq \varepsilon/2.
+\]</span> Définissons la fonction <span class="math inline">\(\gamma: [a, b] \to \mathbb{R}\)</span> par: <span class="math display">\[
+\gamma(x) = 
+\left| 
+\begin{array}{rl}
+\gamma_1(x) \cap \left]-\infty, c \right[ &amp; \mbox{ si } \, a &lt; x &lt; b, \\
+\gamma_1(x) \cap \gamma_2(x) &amp; \mbox{ si } \, x = b, \\
+\gamma_2(x) \cap \left]c, +\infty\right[ &amp; \mbox{ si } \, b &lt; x &lt; c. \\
+\end{array}
+\right.
+\]</span> Par construction, cette fonction est une jauge sur <span class="math inline">\([a, c]\)</span> (pour tout <span class="math inline">\(x \in [a, c]\)</span>, <span class="math inline">\(\gamma(x)\)</span> est un ouvert non vide de <span class="math inline">\(\mathbb{R}\)</span> contenant <span class="math inline">\(x\)</span>). Supposons que <span class="math inline">\(\mathcal{D} =\{(t_i, I_i)\}_i\)</span> soit une subdivision pointée de <span class="math inline">\([a, c]\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>. Admettons temporairement que chaque intervalle <span class="math inline">\(I_i\)</span> appartienne à <span class="math inline">\([a, b]\)</span> ou bien dans le cas contraire à <span class="math inline">\([b, c]\)</span>. Les deux subdivisions pointées <span class="math inline">\(\mathcal{D}_1\)</span> et <span class="math inline">\(\mathcal{D}_2\)</span> sont telles que <span class="math display">\[
+S(f, \mathcal{D}) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2).
+\]</span> Elles sont également subordonnées à <span class="math inline">\(\gamma_1\)</span> et <span class="math inline">\(\gamma_2\)</span> respectivement; par conséquent <span class="math display">\[
+\left|
+S(f, \mathcal{D}) 
+- 
+\int_{[a, b]} f(t) \, dt + \int_{[b, c]} f(t) \, dt 
+\right|
+\leq 
+\varepsilon. 
+\]</span></p>
+<p>Si notre hypothèse temporaire n’est pas vérifié, c’est qu’il existe un (unique) intervalle <span class="math inline">\(I_i\)</span> à cheval sur <span class="math inline">\([a, b]\)</span> et <span class="math inline">\([b, c]\)</span>, c’est-à-dire d’intersection non vide avec <span class="math inline">\(\left[a, b\right[\)</span> et avec <span class="math inline">\(\left]b, c\right]\)</span>. La jauge <span class="math inline">\(\gamma\)</span> a été choisie de telle sorte que si <span class="math inline">\(x \neq b\)</span>, alors <span class="math inline">\(x \not \in \gamma(x)\)</span>; par conséquent, si cet intervalle <span class="math inline">\(I_i=[d_i, e_i]\)</span> existe, alors <span class="math inline">\(t_i = b\)</span> et on peut remplacer le terme <span class="math inline">\((t_i, I_i)\)</span> dans la subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> par <span class="math inline">\((b, [d_i, b])\)</span> et <span class="math inline">\((b, [b, e_i])\)</span> sans que la somme de Riemann associée change (le terme <span class="math inline">\(f(b) \ell([d_i, e_i])\)</span> étant à <span class="math inline">\(f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])\)</span>). La nouvelle subdivision <span class="math inline">\(\mathcal{D}&#39;\)</span> ainsi construite vérifie quant à elle l’hypothèse de non-chevauchement précédente. Par conséquent l’inégalité ci-dessus est satisfaite dans le cas général, ce qui conclut la preuve de ce théorème.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-5">TODO</h3>
+<p>Présenter ce qui vient comme une réciproque de l’additivité. Contextualiser critère de Cauchy (valeur de l’intégrale inconnue)</p>
+</section>
+<section>
+<h3 id="CIC" class="theorem">Critère d’intégrabilité de Cauchy</h3>
+<p>Soit <span class="math inline">\(f: I \to \mathbb{R}\)</span>. La function <span class="math inline">\(f\)</span> est intégrable si et seulement si pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span> il existe une jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\(I\)</span> telle que pour tout couple de subdvisions pointées <span class="math inline">\(\mathcal{D}\)</span> et <span class="math inline">\(\mathcal{D}&#39;\)</span> subordonnées à <span class="math inline">\(\gamma\)</span>, on ait <span class="math display">\[
+|S(f, \mathcal{D}) - S(f, \mathcal{D}&#39;)| \leq \varepsilon.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-3" class="proof">Démonstration</h3>
+<p><strong>TODO</strong></p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-6">TODO:</h3>
+<p>fusionner “Restriction” avec additivité.</p>
+</section>
+<section>
+<h3 id="restriction">Restriction</h3>
+<p>Si <span class="math inline">\(f\)</span> est intégrable sur l’intervalle compact <span class="math inline">\([a, b]\)</span>, elle est intégrable sur tout intervalle compact <span class="math inline">\([c, d]\)</span> inclus dans <span class="math inline">\([a, b]\)</span>.</p>
+</section>
+<section>
+<h3 id="démonstration-4" class="proof">Démonstration</h3>
+<p>Nous démontrons en détail le cas où <span class="math inline">\(c = a\)</span>; le cas où <span class="math inline">\(d =b\)</span> se prouve de façon similaire et le cas général se déduit facilement de ces deux cas particuliers.</p>
+<p>Soit <span class="math inline">\(\varepsilon &gt; 0\)</span>. Par le <a href="#CIC">critère d’intégrabilité de Cauchy</a>, il existe une jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> telle que pour tout couple de subdvisions pointées <span class="math inline">\(\mathcal{D}\)</span> et <span class="math inline">\(\mathcal{D}&#39;\)</span> subordonnées à <span class="math inline">\(\gamma\)</span>, on ait <span class="math display">\[
+|S(f, \mathcal{D}) - S(f, \mathcal{D}&#39;)| \leq \varepsilon.
+\]</span> Considérons les restrictions <span class="math inline">\(\gamma_1\)</span> et <span class="math inline">\(\gamma_2\)</span> de <span class="math inline">\(\gamma\)</span> à <span class="math inline">\([a, d]\)</span> et <span class="math inline">\([d, b]\)</span> respectivement. Soient <span class="math inline">\(\mathcal{D}_1\)</span> et <span class="math inline">\(\mathcal{D}_1&#39;\)</span> sont deux subdivisions pointées de <span class="math inline">\([a, d]\)</span> subordonnées à <span class="math inline">\(\gamma_1\)</span>. Si <span class="math inline">\(\mathcal{D}_2\)</span> est une subdivision de <span class="math inline">\([d, b]\)</span> subordonnée à <span class="math inline">\(\gamma_2\)</span>, alors <span class="math inline">\(\mathcal{D}_1 \cup \mathcal{D}_2\)</span> et <span class="math inline">\(\mathcal{D}_1 \cup \mathcal{D}_2&#39;\)</span> sont des subdvisions pointées de <span class="math inline">\([a, b]\)</span> subordonnées à <span class="math inline">\(\gamma\)</span>. Par conséquent, <span class="math display">\[
+|S(f, \mathcal{D}_1 \cup \mathcal{D}_2) 
+- S(f, \mathcal{D}_1 \cup \mathcal{D}_2&#39;)|
+\leq \varepsilon.
+\]</span> Or <span class="math inline">\(S(f, \mathcal{D}_1 \cup \mathcal{D}_2) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2)\)</span> et <span class="math inline">\(S(f, \mathcal{D}_1 \cup \mathcal{D}_2&#39;) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2&#39;)\)</span>, donc <span class="math display">\[
+|S(f, \mathcal{D}_1) - S(f, \mathcal{D}_1)|
+\leq \varepsilon,
+\]</span> ce qui prouve l’intégrabilité de <span class="math inline">\(f\)</span> sur <span class="math inline">\([a, d]\)</span> par le <a href="#CIC">critère d’intégrabilité de Cauchy</a>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="fonctions-égales-presque-partout">Fonctions égales presque partout</h3>
+<p>Une fonction <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> égale presque partout à une fonction <span class="math inline">\(g:[a, b] \to \mathbb{R}\)</span> intégrable est elle-même intégrable et <span class="math display">\[
+\int_{[a, b]} f(t) \, dt = \int_{[a, b]} g(t) \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-5" class="proof">Démonstration</h3>
+<p>Par linéarité de l’intégrale, il suffit d’établir que si <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> est nulle presque partout (c’est-à-dire égale presque partout à la fonction <span class="math inline">\(g:[a, b] \to \mathbb{R}\)</span> identiquement nulle), alors elle est intégrable d’intégrale nulle.</p>
+<p>Supposons dans un premier temps que <span class="math inline">\(f\)</span> soit bornée. Alors, pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span>, il existe un recouvrement de <span class="math display">\[
+A = f^{-1}(\{0\}) = \{x \in [a, b] \, | \, f(x) \neq 0\}
+\]</span> par une collection dénombrable d’intervalles <span class="math inline">\(I_i\)</span> telle que <span class="math inline">\(\sum_i \ell(I_i) \leq \varepsilon\)</span>. Il est de plus possible de supposer les <span class="math inline">\(I_i\)</span> ouverts<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Définissons la jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> par <span class="math display">\[
+\gamma(t) = I_i \, \mbox{ si } \, t \in I_i \;
+(\mbox{et } \, t \not \in I_j \mbox{ quand } \, j \leq i).
+\]</span> et par exemple <span class="math inline">\(\gamma(t) = \left]-\infty,\infty\right[\)</span> si <span class="math inline">\(t \not \in \cup_i I_i\)</span>. Pour toute subdivision pointée <span class="math inline">\(\mathcal{D} = \{(t_j, J_j)\}_j\)</span> de <span class="math inline">\([a, b]\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>, <span class="math display">\[
+\left|S(f, \mathcal{D})\right| 
+= \left|\sum_j f(t_j) \ell(J_j)\right|
+= \left|\sum_{t_j \in A} f(t_j) \ell(J_j)\right|
+\leq \sup_{[a, b]} |f| \times \sum_j \ell(J_j).
+\]</span> Mais par construction les <span class="math inline">\(J_j\)</span> ne se chevauchent pas et sont tous inclus dans un des intervalles <span class="math inline">\(I_i\)</span>. On a donc <span class="math display">\[
+\sum_j \ell(J_j) \leq  \sum_i \ell(I_i) \leq \varepsilon.
+\]</span> Il suffit par conséquent de choisir un <span class="math inline">\(\varepsilon\)</span> suffisamment petit initialement pour rendre la somme de Riemann associée arbitrairement petite; <span class="math inline">\(f\)</span> est donc intégrable d’intégrale nulle.</p>
+<p>Si <span class="math inline">\(f\)</span> est non-bornée, on peut faire un démonstration similaire en considérant les ensembles <span class="math display">\[
+A_k = \{x \in [a, b] \, | \, k &lt; |f(x)| \leq k+1\},
+\]</span> puis en associant à chaque <span class="math inline">\(A_k\)</span> un recouvrement par une collection dénombrable d’intervalles ouverts <span class="math inline">\(I^k_i\)</span> tels que <span class="math display">\[
+\sum_i \ell(I^k_i) \leq \frac{\varepsilon}{(k+1)2^{k+1}}
+\]</span> ce qui est possible puisque tous les <span class="math inline">\(A_k\)</span> sont négligeables. On définit alors la jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> par <span class="math inline">\(\gamma(t) = I^k_i\)</span> si <span class="math inline">\(t\)</span> appartient à un <span class="math inline">\(I^k_i\)</span> (et on choisit alors le plus petit <span class="math inline">\(k\)</span>, puis le plus petit <span class="math inline">\(i\)</span> telle que cette propriété soit vérifiée) et par exemple <span class="math inline">\(\gamma(t) = \left]-\infty,\infty\right[\)</span> si <span class="math inline">\(t \not \in \cup_k \cup_i I^k_i\)</span>. L’évaluation d’une somme de Riemann pour une subdivision pointée subordonnée à cette jauge fournit <span class="math display">\[
+\left|S(f, \mathcal{D})\right| 
+= \left|\sum_j f(t_j) \ell(J_j)\right|
+= \left|\sum_k \sum_{t_j \in A_k} f(t_j) \ell(J_j)\right| \leq
+\sum_k \sum_{t_j \in A_k} (k+1) \ell(J_j)
+\]</span> et comme <span class="math display">\[
+\sum_{t_j \in A_k} \ell(J_j) 
+\leq  \sum_i \ell(I^k_i) 
+\leq \frac{\varepsilon}{(k+1)2^{k+1}},
+\]</span> on obtient <span class="math display">\[
+\left|S(f, \mathcal{D})\right| 
+\leq
+\sum_k (k+1) \sum_{i} \ell(I^k_i)
+\leq 
+\sum_k \frac{\varepsilon}{2^{k+1}} 
+= \varepsilon.
+\]</span> La fonction <span class="math inline">\(f\)</span> est donc bien intégrable et d’intégrale nulle.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+</section>
+<section>
+<h2 id="intégration-sur-des-intervalle-non-bornés">Intégration sur des intervalle non-bornés</h2>
+<section>
+<h3 id="todo-7">TODO</h3>
+<p>Motiver la définition de l’intégrale sur un intervalle non borné, disons <span class="math inline">\(\left[0, +\infty\right[\)</span> par l’étude de l’intégrale sur <span class="math inline">\([a, b]\)</span> et “sautant” le dernier terme de la somme de Riemann ? En exercice ? Bof.</p>
+</section>
+<section>
+<h3 id="todo-8">TODO</h3>
+<p>Voir ce qu’il est possible de dire au passage sur l’absence d’intégrale impropre (théorème de Hake).</p>
+</section>
+<section>
+<h3 id="remarque-2" class="anonymous">Remarque</h3>
+<p>La difficulté d’intégrer une fonction sur un intervalle non borné tel que <span class="math inline">\(\mathbb{R}\)</span> n’est pas lié au concept de subdivision pointée, qui peut être généralisé pour comporter des intervalles non bornés, mais au calcul de la somme de Riemann associée. En effet, toute subdivision pointée d’un intervalle non-borné comporte nécessairement un ou deux éléments de la forme <span class="math inline">\((t, I)\)</span> où <span class="math inline">\(I\)</span> est non-borné; la longueur <span class="math inline">\(\ell(I)\)</span> associée est alors infinie et la somme de Riemann correspondante comporte alors un ou deux termes de la forme <span class="math inline">\(f(t) \times \infty\)</span>; elle donc potentiellement infinie, ou même indéfinie …</p>
+<p>Pour éviter cette difficulté technique, nous allons définir l’intégrale sur <span class="math inline">\(\mathbb{R}\)</span> à partir de subdivisions d’intervalles compacts, en exigant que celles-ci, en plus d’être suffisamment fines comme dans le cas des intervalles bornés, soient basées sur un intervalle suffisamment grand.</p>
+</section>
+<section>
+<h3 id="intégrale-sur-un-intervalle-non-borné" class="definition">Intégrale sur un intervalle non borné</h3>
+<p>Soit <span class="math inline">\(I\)</span> un intervalle fermé non borné de <span class="math inline">\(\mathbb{R}\)</span> de bornes <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Une fonction <span class="math inline">\(f:I \to \mathbb{R}\)</span> est dite <em>intégrable (au sens de Henstock-Kurzweil)</em> s’il existe un réel <span class="math inline">\(A\)</span> tel que pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span> il existe une jauge <span class="math inline">\(\gamma\)</span> de <span class="math inline">\(\mathbb{R}\)</span> et un intervalle compact <span class="math inline">\(K\)</span> de <span class="math inline">\(I\)</span> tels que pour tout intervalle compact <span class="math inline">\([a, b]\)</span> tel que <span class="math inline">\(K \subset [a, b]\)</span> et pour toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>, on ait <span class="math inline">\(|S(f, \mathcal{D}) - A| \leq \varepsilon\)</span>. Le réel <span class="math inline">\(A\)</span> quand il existe est unique; il est appelé <em>intégrale de <span class="math inline">\(f\)</span> sur <span class="math inline">\(\mathbb{R}\)</span></em> et noté <span class="math display">\[
+\int_{a}^{b} f(t) \, dt
+\, \mbox{ ou } \,
+\int_I f(t) \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="todo-9">TODO:</h3>
+<p>simplifier ce qui suit, inutilement compliqué.</p>
+</section>
+<section>
+<h3 id="todo-10">TODO:</h3>
+<p>j’ai changé la définition ci-dessus, adapter la suite.</p>
+</section>
+<section>
+<h3 id="todo-11">TODO</h3>
+<p>Remarquer/Prouver que la définition ci-dessus “marche aussi” pour un intervalle borné.</p>
+</section>
+<section>
+<h3 id="intégrale-sur-un-intervalle-fermé" class="definition">Intégrale sur un intervalle fermé</h3>
+<p>Une fonction <span class="math inline">\(f:I \to \mathbb{R}\)</span> définie sur un intervalle fermé quelconque <span class="math inline">\(I\)</span> (borné ou non borné) est <em>intégrable (au sens de Henstock-Kurzweil)</em> si son prolongement <span class="math inline">\(g\)</span> par zero en dehors de l’intervalle <span class="math inline">\(I\)</span> <span class="math display">\[
+g(x) = \left|
+\begin{array}{rl}
+f(x) &amp; \mbox{si } \, x \in  I, \\
+0 &amp; \mbox{sinon.}
+\end{array}
+\right.
+\]</span> est intégrable sur <span class="math inline">\(\mathbb{R}\)</span>. On définit alors <span class="math display">\[
+\int_I f(t) \, dt := \int_{\mathbb{R}} g(t) \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-cohérence-des-définitions" class="proof">Démonstration (cohérence des définitions)</h3>
+<p>Il convient de vérifier que <a href="#intégrale-sur-un-intervalle-fermé">la définition d’intégrale sur un intervalle fermé <span class="math inline">\(I\)</span></a> est cohérente avec [la définition d’intégrale sur <span class="math inline">\(\mathbb{R}\)</span>][Intégrale sur <span class="math inline">\(\mathbb{R}\)</span>] (ce qui est direct) et aussi avec [la définition d’intégrale sur un intervalle compact][Intégrale sur un intervalle compact] que nous avons utilisé jusqu’à présent.</p>
+<p>Dans ce second cas, si la fonction <span class="math inline">\(f:[c, d] \to \mathbb{R}\)</span> est [intégrable au sens de la définition originelle][Intégrale sur un intervalle compact], et si l’on prend <span class="math inline">\(r&gt;0\)</span> tel que <span class="math inline">\(-r \leq c\)</span> et <span class="math inline">\(d \leq r\)</span> et que l’on considère un intervalle compact <span class="math inline">\([a, b]\)</span> vérifiant <span class="math inline">\(a \leq -r\)</span> et <span class="math inline">\(r \leq b\)</span>, on a <span class="math inline">\([c, d] \subset [a, b]\)</span>. Par additivité de l’intégrale, <span class="math display">\[
+\int_a^b g(t) \, dt  
+= 
+\int_a^c g(t) \, dt + \int_c^d g(t) \, dt + \int_d^b g(t) \, dt.
+\]</span> Or sur <span class="math inline">\([a, c]\)</span> et <span class="math inline">\([d, b]\)</span>, la fonction <span class="math inline">\(g\)</span> est nulle sauf peut-être en <span class="math inline">\(c\)</span> et <span class="math inline">\(b\)</span> ; sur <span class="math inline">\([c, d]\)</span>, elle est égale à <span class="math inline">\(f\)</span>. Par conséquent <span class="math inline">\(g\)</span> est intégrable sur <span class="math inline">\([a, b]\)</span> et <span class="math display">\[
+\int_a^b g(t) \, dt
+=
+\int_c^d f(t) \, dt.
+\]</span> On peut donc bien trouver une jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> telle que toute subdivision <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> subordonnée à <span class="math inline">\(\gamma\)</span> vérifie <span class="math display">\[
+\left|S(f, \mathcal{D}) - \int_c^d f(t) \, dt \right| \leq
+\varepsilon
+\]</span></p>
+<p>Réciproquement, si la fonction <span class="math inline">\(f:[c, d] \to \mathbb{R}\)</span> est <a href="#intégrale-sur-un-intervalle-fermé">intégrable au sens de la définition générale</a>, pour tout <span class="math inline">\(r&gt;0\)</span> et <span class="math inline">\([a, b]\)</span> tel que <span class="math inline">\(a \leq -r\)</span> et <span class="math inline">\(r \leq b\)</span>, le prolongement de <span class="math inline">\(f\)</span> par zéro est intégrable sur <span class="math inline">\([a, b]\)</span>. Il suffit de prendre <span class="math inline">\(r\)</span> tel que <span class="math inline">\(-r \leq c\)</span> et <span class="math inline">\(d \leq r\)</span> et d’utiliser à nouveau <a href="#additivité">(la réciproque de) l’additivité de l’intégrale</a> pour conclure que <span class="math inline">\(f\)</span> est intégrable sur <span class="math inline">\([c, d]\)</span> et que son intégrale est l’intégrale de <span class="math inline">\(g\)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-12">TODO</h3>
+<p>Existence et valeur de:</p>
+<p><span class="math display">\[
+\int_1^{+\infty} \frac{1}{t^2} \, dt
+\]</span></p>
+</section>
+<section>
+<h3 id="todo-13">TODO</h3>
+<p>Rappel / généralisation des pptés enoncées pour les intervalles compacts.</p>
+</section>
+</section>
+<section>
+<h2 id="subdivisions-partielles">Subdivisions Partielles</h2>
+<section>
+<h3 id="subdivision-pointée-partielle" class="definition">Subdivision pointée partielle</h3>
+<p>Une <em>subdivision pointée partielle</em> de l’intervalle fermé <span class="math inline">\(I = [a, b]\)</span> de <span class="math inline">\(\mathbb{R}\)</span> est une famille finie <span class="math display">\[
+\{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
+\]</span> où les <span class="math inline">\(I_i\)</span> sont des intervalles fermé de <span class="math inline">\([a, b]\)</span> sans chevauchement et <span class="math inline">\(t_i \in I_i\)</span> pour tout <span class="math inline">\(i \in \{0, \dots, n-1\}.\)</span> La somme de Riemann associée à la fonction <span class="math inline">\(f:[a, b] \to \mathbb{R}\)</span> et à la subdivision pointée partielle <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> est la grandeur <span class="math display">\[
+S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
+\]</span> Une subdivision pointée partielle <span class="math inline">\(\mathcal{D}\)</span> de l’intervalle fermé <span class="math inline">\([a, b]\)</span> est <em>subordonnée à une jauge</em> <span class="math inline">\(\gamma\)</span> de <span class="math inline">\([a, b]\)</span> si <span class="math display">\[
+(t, J) \in \mathcal{D} \, \Rightarrow \, J \subset \gamma(t). 
+\]</span></p>
+</section>
+<section>
+<h3 id="todo---remarque">TODO - remarque</h3>
+<p>(autrement dit, c’est comme une subdivision pointée, sauf que l’on n’exige pas que les <span class="math inline">\(I_i\)</span> recouvrent <span class="math inline">\([a, b]\)</span>. Mettre en ante ?)</p>
+</section>
+<section>
+<h3 id="lemme-de-henstock" class="theorem">Lemme de Henstock</h3>
+<p>Soit <span class="math inline">\([a, b]\)</span> un intervalle fermé de <span class="math inline">\(\mathbb{R}\)</span>, <span class="math inline">\(f\)</span> une fonction intégrable sur <span class="math inline">\([a, b]\)</span> et <span class="math inline">\(\gamma\)</span> une jauge sur <span class="math inline">\([a, b]\)</span> telle que pour toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span>, on ait <span class="math display">\[
+\left|S(f, \mathcal{D}) - \int_{[a, b]} f(t) \, dt\right| \leq \varepsilon.
+\]</span> Alors pour tout subdivision pointée partielle <span class="math inline">\(\mathcal{D} = \{(t_k, I_k)\}_k\)</span> de <span class="math inline">\([a, b]\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>, on a également <span class="math display">\[
+\left|S(f, \mathcal{D}) - \sum_k \int_{I_k} f(t) \, dt\right| \leq \varepsilon.
+\]</span></p>
+</section>
+<section>
+<h3 id="preuve-du-lemme-de-henstocklemme-de-henstock">Preuve du <a href="#lemme-de-henstock">lemme de Henstock</a></h3>
+<p>Il existe une famille finie d’intervalles fermés <span class="math inline">\(\{J_j\}\)</span>, <span class="math inline">\(j = 1, \dots, m\)</span> telle que l’union des familles <span class="math inline">\(\{I_k\}\)</span> et <span class="math inline">\(\{J_j\}\)</span> forment une subdivision (complète) de <span class="math inline">\([a, b]\)</span>. Pour tout <span class="math inline">\(\eta &gt; 0\)</span>, sur chaque intervalle <span class="math inline">\(J_j\)</span>, il existe une jauge <span class="math inline">\(\gamma_j\)</span> telle que si <span class="math inline">\(\mathcal{D}_j\)</span> est une subdivision pointée de <span class="math inline">\(J_j\)</span> subordonnée à <span class="math inline">\(\gamma_j\)</span>, alors <span class="math display">\[
+\left|S(f, \mathcal{D}_j) - \int_{J_j} f(t) \, dt \right| \leq \eta.
+\]</span> Si de plus on choisit <span class="math inline">\(\mathcal{D}_j\)</span> subordonnée à la restriction de <span class="math inline">\(\gamma\)</span> à <span class="math inline">\(J_j\)</span>, alors <span class="math inline">\(\mathcal{D} \cup \cup_j \mathcal{D}_j\)</span> est une subdivision pointée (totale) de <span class="math inline">\([a, b]\)</span> subordonnée à <span class="math inline">\(\gamma\)</span>. On déduit de l’hypothèse centrale du lemme que <span class="math display">\[
+\left|
+S(f, \mathcal{D}) + \sum_j S(f, \mathcal{D}_j) 
+- 
+\sum_k \int_{I_k} f(t) \, dt + \sum_{j} \int_{J_j} f(t) \, dt
+\right|
+\leq
+\varepsilon
+\]</span> et donc par l’inégalité triangulaire que <span class="math display">\[
+\left|
+S(f, \mathcal{D}) 
+- 
+\sum_k \int_{I_k} f(t) \, dt
+\right|
+\leq
+\varepsilon + m \eta.
+\]</span> Le choix de <span class="math inline">\(\eta &gt; 0\)</span> étant arbitraire, l’inégalité cherchée est établie.</p>
+</section>
+</section>
+<section>
+<h1 id="exercices">Exercices</h1>
+<section>
+<h3 id="todo-14">TODO</h3>
+<p>Regarder exercices dans le Bartle (“A Modern Theory of Integration”)</p>
+</section>
+<section>
+<h2 id="intervalle-1">Intervalle</h2>
+<p>Montrer qu’un sous-ensemble <span class="math inline">\(I\)</span> de <span class="math inline">\(\mathbb{R}\)</span> est un intervalle si et seulement si il <em>est connexe par arcs</em>, c’est-à-dire si et seulement si pour tout couple de points <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> de <span class="math inline">\(I\)</span> on peut trouver un chemin de <span class="math inline">\(I\)</span> joignant <span class="math inline">\(x\)</span> à <span class="math inline">\(y\)</span>, c’est-à-dire une fonction continue <span class="math inline">\(\phi:[0, 1] \to I\)</span>, telle que <span class="math inline">\(\phi(0) = x\)</span> et <span class="math inline">\(\phi(1) = y\)</span>.</p>
+<section>
+<h3 id="réponse">Réponse</h3>
+<p>Montrons tout d’abord que la condition est nécessaire. Supposons que <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> appartiennent à <span class="math inline">\(I\)</span> et que <span class="math inline">\(x\)</span> soit inférieur ou égal à <span class="math inline">\(y\)</span>. Alors pour tout <span class="math inline">\(t \in [0,1]\)</span>, <span class="math inline">\(\phi(t) = (1-t) x + t y\)</span> est un point intermédiaire entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>, et par conséquent, appartient à <span class="math inline">\(I\)</span>. La fonction <span class="math inline">\(\phi\)</span> ainsi définie est clairement continue et vérifie <span class="math inline">\(\phi(0) = x\)</span> et <span class="math inline">\(\phi(1) = y\)</span>; c’est donc un chemin de <span class="math inline">\(I\)</span> qui joint <span class="math inline">\(x\)</span> à <span class="math inline">\(y\)</span>. Par conséquent, <span class="math inline">\(I\)</span> est connexe par arcs.</p>
+<p>Réciproquement, si <span class="math inline">\(I\)</span> est connexe par arcs et contient les points <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>, tout chemin de <span class="math inline">\(I\)</span> qui joint <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>, continu et à valeurs réelles, vérifie le théorème des valeurs intermédiaires: pour toute valeur intermédiaire <span class="math inline">\(z\)</span> entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>, il existe donc un <span class="math inline">\(t \in [0, 1]\)</span> tel que <span class="math inline">\(\phi(t) = z\)</span>. Comme <span class="math inline">\(\phi\)</span> est à valeurs dans <span class="math inline">\(I\)</span>, <span class="math inline">\(z \in I\)</span>; l’ensemble <span class="math inline">\(I\)</span> est donc un intervalle de <span class="math inline">\(\mathbb{R}\)</span>.</p>
+</section>
+</section>
+<section>
+<h2 id="construction-de-jauges">Construction de Jauges</h2>
+<p><strong>TODO:</strong> faire construire “à la main” une jauge par dichotomie (exemple avec jauge s’affinant pour “forcer” un tag et/ou variante avec jauge “faciles”, telles qu’on puisse trouver une jauge uniforme qui soit plus fine ? Et csq, à savoir capacité à trouver une subdivision uniforme associée)</p>
+</section>
+<section>
+<h2 id="subdivision-pointées">Subdivision pointées</h2>
+<p>Demander de construire à partir d’une subdivision une autre subdivision “aussi fine”, de même somme de Riemann, mais avec les points tjs à gauche ou à droite de l’intervalle.</p>
+</section>
+<section>
+<h2 id="lintégrale-de-riemann-est-absolue">L’Intégrale de Riemann est absolue</h2>
+<p>Montrer que l’intégrale de Riemman est absolue: si une fonction <span class="math inline">\(f\)</span> est intégrable au sens de Riemann, sa valeur absolue <span class="math inline">\(|f|\)</span> l’est également.</p>
+<section>
+<h3 id="réponse-1">Réponse</h3>
+<p>Nous exploitons le <a href="#critère-de-lebesgue-pour-lintégrabilité-au-sens-de-riemann">critère de Lebesgue pour l’intégrabilité au sens de Riemann</a>: si <span class="math inline">\(f\)</span> est intégrable au sens de Riemann, elle est bornée – et donc <span class="math inline">\(f\)</span> également – et continue presque partout – et donc <span class="math inline">\(|f|\)</span> également (<span class="math inline">\(|f|\)</span> est continue en tout point où <span class="math inline">\(f\)</span> est continue comme composée de fonctions continues en un point). Par conséquent, <span class="math inline">\(|f|\)</span> est intégrable au sens de Riemann.</p>
+</section>
+</section>
+<section>
+<h2 id="un-ensemble-de-cantor">Un ensemble de Cantor</h2>
+<p>Chaque nombre réel <span class="math inline">\(x\)</span> de <span class="math inline">\(\left[0, 1\right[\)</span> peut être représenté de façon par un développement décimal de la forme noté noté <span class="math inline">\(x=0.a_1a_2a_3\dots\)</span> où <span class="math inline">\(a_i \in \{0,1, \dots, 9\}\)</span>, une notation qui signifie que <span class="math display">\[
+x = \sum_{i=1}^{+\infty} a_i 10^{-i}.
+\]</span> Ce développement est unique si on lui impose d’être propre, c’est-à-dire qu’il n’y ait pas de séquences infinie de nombres <span class="math inline">\(9\)</span> consécutifs<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<p>On définit l’ensemble <span class="math inline">\(A\)</span> comme le sous-ensemble de <span class="math inline">\(\left[0, 1\right[\)</span> dont le développement décimal ne comporte que des nombres pairs. Par exemple, <span class="math inline">\(x=2/3 = 0.666\dots\)</span> appartient à <span class="math inline">\(A\)</span>, mais <span class="math inline">\(x=\sqrt{2}/2 = 0.707\dots\)</span> non.</p>
+<p><strong>TODO:</strong> faire qqchose du style “Si vous deviez”tirer un nombre au hasard dans <span class="math inline">\(\left[0, 1\right[\)</span>“, quelle serait les chances de tomber sur un nombre de <span class="math inline">\(A\)</span> ?”. Qui suppose de modéliser la séquence des <span class="math inline">\(a_n\)</span>, supposé équiprobables, indépendants, etc.? OK, why not mais est-on en état de relier ça à la question 1. à ce stade ? Mmmmmmm ….</p>
+<ol type="1">
+<li><p>Montrer que l’ensemble <span class="math inline">\(A\)</span> est négligeable.</p></li>
+<li><p>Montrer néanmoins que <span class="math inline">\(A\)</span> n’est pas dénombrable, mais a la “puissance du continu” (qu’il peut être mis en bijection avec <span class="math inline">\(\mathbb{R}\)</span> ou avec un intervalle de longueur non vide de <span class="math inline">\(\mathbb{R}\)</span>, ce qui revient au même).</p></li>
+</ol>
+<section>
+<h3 id="réponses">Réponses</h3>
+<ol type="1">
+<li><p>L’ensemble <span class="math inline">\(A\)</span> peut être recouvert par la collection ne contenant que l’intervalle <span class="math inline">\(\mathcal{A}_0 = \left[0, 1\right[\)</span>, ou par la collection d’intervalles <span class="math display">\[
+\mathcal{A}_1 = \{\left[0, 1/10\right[, \left[2/10, 3/10\right[, \dots, \left[8/10, 9/10\right[\}
+\]</span> qui contient exactement les nombres <span class="math inline">\(x\)</span> de <span class="math inline">\(\left[0,1\right[\)</span> dont le premier chiffre du développement décimal propre est pair. On a clairement <span class="math display">\[
+\sum_{I \in \mathcal{A}_1} \ell(I) = \ell(\left[0,1\right[) = 1
+\, \mbox{ et } \,
+\sum_{I \in \mathcal{A}_1} \ell(I) = 5 \times \frac{1}{10} = \frac{1}{2}.
+\]</span> On peut poursuivre le procédé en considérant la collection <span class="math inline">\(\mathcal{A}_n\)</span> des <span class="math inline">\(5^n\)</span> intervalles dont l’union forme l’ensemble des nombres <span class="math inline">\(x\)</span> dont les <span class="math inline">\(n\)</span> premiers chiffres du développement décimal propre sont pairs, ensemble qui inclus <span class="math inline">\(A\)</span>. On peut de plus se convaincre par récurrence que <span class="math display">\[
+\sum_{I \in \mathcal{A}_n} \ell(I) = 5^n \times \frac{1}{10^n} = \frac{1}{2^n}.
+\]</span> Comme <span class="math inline">\(1/2^n\)</span> tend vers <span class="math inline">\(0\)</span> quand <span class="math inline">\(n\)</span> tend vers <span class="math inline">\(+\infty\)</span>, nous avons établi que <span class="math inline">\(A\)</span> est négligeable.</p></li>
+<li><p>L’opération qui à <span class="math inline">\(x=0.a_1a_2\dots \in A\)</span> associe <span class="math inline">\(y=0.b_1b_2\dots\)</span> où <span class="math inline">\(b_i = a_i/2\)</span> est une bijection de <span class="math inline">\(A\)</span> sur <span class="math inline">\(\left[0, 0.444\dots\right[ = \left[0, 4/9\right[\)</span>, ce qui montre que <span class="math inline">\(A\)</span> à la puissance du continu (et donc n’est pas dénombrable).</p></li>
+</ol>
+</section>
+</section>
+<section>
+<h2 id="caractérisation-des-dérivées">Caractérisation des dérivées</h2>
+<p>Identifier par les jauges si une fonction est une dérivée (cf papier).</p>
+</section>
+</section>
+<section>
+<h1 id="références">Références</h1>
+</section>
+<div id="refs" class="references">
+<div id="ref-Bur07">
+<p>Burk, Frank E. 2007. <em>A Garden of Integrals.</em> Washington, DC: Mathematical Association of America (MAA).</p>
+</div>
+</div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>plus exactement de mesure <em>extérieure</em> de longueur nulle.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>On peut trouver un recouvrement de <span class="math inline">\(A\)</span> par des intervalles <span class="math inline">\(J_i\)</span> non nécessairement ouverts, tels que <span class="math inline">\(\sum_i \ell(J_i) \leq \varepsilon/2\)</span>, puis remplacer chaque <span class="math inline">\(J_i\)</span> par un intervalle <span class="math inline">\(I_i\)</span> ouvert de longueur double contenant <span class="math inline">\(J_i\)</span>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>3 cas peuvent se présenter: <span class="math inline">\(I = \left]-\infty, +\infty\right[ =\mathbb{R}\)</span>, <span class="math inline">\(I=\left]-\infty, b\right]\)</span> ou <span class="math inline">\(I=\left[a, +\infty\right[\)</span> où <span class="math inline">\(a, b\in \mathbb{R}\)</span><a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Dans le cas contraire, on pourrait par exemple représenter <span class="math inline">\(x=1/2\)</span> comme <span class="math inline">\(0.5000\dots\)</span> ou comme <span class="math inline">\(0.4999\dots\)</span>.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+</body>
+</html>

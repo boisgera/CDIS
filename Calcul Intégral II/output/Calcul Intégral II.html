@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sébastien Boisgérault" />
+  <title>Calcul Intégral II</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Calcul Intégral II</h1>
+<p class="author">Sébastien Boisgérault</p>
+</header>
+<section>
+<h2 id="perspective" class="notes">Perspective</h2>
+<p>Scope: (ensembles mesurables,) fonctions mesurables, absolue intégrabilité.</p>
+<p>La perspective est commune dans une large mesure: avec les outils dont on dispose à ce moment, il est souvent difficile de savoir dans un calcul, une expression composée si une fonction va être intégrable.</p>
+<p>Exemples (à améliorer, distiller):</p>
+<ul>
+<li><p>produit de deux fonction intégrales n’est pas intégrable (ex: <span class="math inline">\(f(x) = g(x) = 1/\sqrt{x}\)</span> sur <span class="math inline">\([0,1]\)</span>), ok, car le produit est “trop grand”, moralement l’intégrale est <span class="math inline">\(+\infty\)</span>. Mais s’il n’était pas “trop grand”, est-ce que ça marcherait ?</p></li>
+<li><p>Si <span class="math inline">\(f\)</span> est intégrable sur l’intervalle <span class="math inline">\([a,b]\)</span> de <span class="math inline">\(\mathbb{R}\)</span>, elle est aussi intégrable sur toute union finie <span class="math inline">\(E\)</span> d’intervalles de <span class="math inline">\(\mathbb{R}\)</span>, ce que l’on peut définir comme l’intégrabilité de <span class="math inline">\(f \chi_{E}\)</span>. Et si <span class="math inline">\(E\)</span> est plus général ? On “voit bien” qu’il est nécessaire de requérir que <span class="math inline">\(\chi_E\)</span> soit intégrable (sinon ça ne marche pas avec <span class="math inline">\(f=1\)</span>), ce que l’on appelle “ensemble intégrable”, mais est-ce que ça suffit ? La réponse est non …<br />
+(c’est un cas particulier du précédent, le faire avant). Pb résolu si la fct est abs int (c’est même un critère ici !).</p></li>
+<li><p>Mais plus surprenant peut-être: le produit de deux fonction intégrables avec l’une des deux fonctions bornées n’est pas nécessairement intégrable. (cf <span class="citation" data-cites="Swa01">(Swartz <a href="#ref-Swa01">2001</a>, 43, ex. 14)</span> avec <span class="math inline">\(\cos 1/t\)</span> et <span class="math inline">\(t^{-3/2} \cos 1/t\)</span>). Pb résolu si les fcts sont abs int.</p></li>
+<li><p>Si <span class="math inline">\(f\)</span> est intégrable et <span class="math inline">\(g\)</span> est “sympa” (Lipschitz), est-ce que <span class="math inline">\(g \circ f\)</span> est intégrable ? Non … cf <span class="citation" data-cites="HL89">(Hu and Lakshmikantham <a href="#ref-HL89">1989</a>, 525, ex. 4.2)</span> Pb résolu si les fcts sont abs int.</p></li>
+</ul>
+<p>On a deux outils qui se combinent pour analyser et résoudre ces pbs:</p>
+<ul>
+<li><p>La notion de fonction mesurable et le critère d’intégrabilité dominée <span class="citation" data-cites="PS17">(Ponce and Schaftingen <a href="#ref-PS17">2017</a>)</span>,</p></li>
+<li><p>La notion de fonction absolument mesurable.</p></li>
+</ul>
+<p>(nota: autres avantages fcts abs int: chgt de variable robuste et complétude <span class="math inline">\(L^1\)</span>.)</p>
+<p>Sinon</p>
+<ul>
+<li><p>le théorème de convergence dominé est requis techniquement dans certaines preuves et également pour donner une perspective sur la démarche. Mais sa preuve, ses conséquences, variantes, etc. non, ce qui peut suggérer une “preview” de ce résultat et un développement plus complet ultérieurement. On a “besoin” du DCT et de son corollaire qu’une fct est intégrable ssi elle est bornée par des fcts intégrables et mesurable.</p></li>
+<li><p>UPDATE: ensemble mesurable objet “secondaire”, défini comme limite simple de fonction caractéristique ?</p>
+<p>Justifier l’introduction des ensembles mesurables … par la recherche d’une notion de “volume” (longueur/aire/…) suffisamment générale ? Oui, en généralisant ce qui se passe pour les intervalles. Et les ensembles mesurables sont ceux dont la mesure ne pose pas de pb à part qu’ils sont “trop grands”. Introduire mesure de Lebesgue à ce stade, est possible, <span class="math inline">\(\sigma\)</span>-algèbres, etc. Nécessaire dans la manip des fcts mesurables.</p>
+<p>Cross-justifier la notion de fonction absolument mesurable (concept “stable” par multiplication par la fonction caractéristique d’un ensemble mesurable.)</p>
+<p>Probablement inclure plus généralement la pbmatique des fcts absoluments continues ici. Deux axes: intégrer sur des sous-ensembles “plus généraux” et de façon général, meilleur comportement par rapport aux opération usuelles: le produit borné abs int et abs int est abs int; ça n’est pas le cas pour les fcts simplement intégrables, ce qui est compliqué! Le pb du “multiplier” de fcts intégrable (égal pp à une fct de variation bornée), c’est too much …</p></li>
+<li><p>JTODO: parallèle séries AC ou C pour fct AI (et exemple restriction est parlant, très proche, faire le parallèle ?)</p></li>
+<li><p>Mener toute la présentation dans <span class="math inline">\(\mathbb{R}\)</span>.</p></li>
+</ul>
+</section>
+<section>
+<h1 id="théorèmes-de-convergence">Théorèmes de Convergence</h1>
+<section>
+<h3 id="TCM" class="theorem">Théorème de convergence monotone</h3>
+<p>Si une suite de fonctions intégrables <span class="math inline">\(f_k:\mathbb{R} \to \mathbb{R}\)</span> est croissante et majorée en tout point, c’est-à-dire si pour tout <span class="math inline">\(x\)</span> de <span class="math inline">\(\mathbb{R}\)</span> <span class="math display">\[
+\mbox{pour tout } \, k \in \mathbb{N}, \, f_k(x) \leq f_{k+1}(x) 
+\; \mbox{ et } \;
+\sup_k f_k(x) &lt; + \infty,
+\]</span> alors la limite simple <span class="math inline">\(f\)</span> des <span class="math inline">\(f_k\)</span> est intégrable si et seulement si <span class="math display">\[
+\sup_k \int_k f(t) \, dt &lt; +\infty.
+\]</span> et dans ce cas, <span class="math display">\[
+\int_{\mathbb{R}} f(t) \, dt 
+=
+\int_{\mathbb{R}} \lim_{k \to +\infty} f_k(t) \, dt
+= 
+\lim_{n \to +\infty} \int_{\mathbb{R}}  f(t) \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration" class="proof">Démonstration</h3>
+<p>Se reporter à <span class="citation" data-cites="Dem11">Demailly (<a href="#ref-Dem11">2011</a>)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="TCD" class="theorem">Théorème de convergence dominée</h3>
+<p>Si une suite de fonctions intégrables <span class="math inline">\(f_n:\mathbb{R} \to \mathbb{R}\)</span> converge simplement vers la fonction <span class="math inline">\(f\)</span>, c’est-à-dire si pour tout <span class="math inline">\(x \in \mathbb{R}^n\)</span>, <span class="math display">\[
+\lim_{n \to +\infty} f_n(x) = f(x)
+\]</span> et qu’il existe deux fonctions intégrables <span class="math inline">\(g\)</span> et <span class="math inline">\(h\)</span> encadrant la suite <span class="math inline">\(f_n\)</span>, c’est-à-dire telles que pour tout <span class="math inline">\(n\in \mathbb{N}\)</span> et pour tout <span class="math inline">\(x \in \mathbb{R}\)</span>, <span class="math display">\[
+g(x) \leq f_n(x) \leq h(x)
+\]</span> alors la fonction <span class="math inline">\(f\)</span> est intégrable et <span class="math display">\[
+\int_{\mathbb{R}} f(t) \, dt 
+=
+\int_{\mathbb{R}} \lim_{n \to +\infty} f_n(t) \, dt
+= 
+\lim_{n \to +\infty} \int_{\mathbb{R}} f_n(t) \, dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-1" class="proof">Démonstration</h3>
+<p>Se reporter à <span class="citation" data-cites="Dem11">Demailly (<a href="#ref-Dem11">2011</a>)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo">TODO:</h3>
+<p>dérivation sous le signe somme (exercice ?)</p>
+</section>
+</section>
+<section>
+<h1 id="ensembles-mesurables">Ensembles mesurables</h1>
+<p>Il existe un lien étroit entre la notions de longueur d’un ensemble de réels et le calcul intégral. Nous savons par exemple que pour tout intervalle compact <span class="math inline">\(E = [a, b]\)</span>, la longueur <span class="math inline">\(b-a\)</span> de l’intervalle peut être calculée par l’intégrale de la fonction caractéristique de <span class="math inline">\(E\)</span>: <span class="math display">\[
+\ell(E) = \ell([a, b]):=  b - a  = \int_a^b \, dt = 
+\int_{\mathbb{R}} \chi_{[a, b]}(t) \, dt =
+\int_{\mathbb{R}} \chi_{E}(t) \, dt.
+\]</span> Si <span class="math inline">\(E\)</span> est une collection finie d’intervalles disjoints <span class="math inline">\([a_i, b_i]\)</span>, l’intégrale de <span class="math inline">\(\chi_E\)</span> vaut cette fois-ci <span class="math inline">\(\sum_i b_i - a_i\)</span>, ce qui correspond toujours à la valeur “intuitive” de la longueur de l’ensemble.</p>
+<p>Il apparait donc légitime pour définir la longueur d’un sous-ensemble <span class="math inline">\(E\)</span> de <span class="math inline">\(\mathbb{R}\)</span> aussi général que possible<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> de <span class="math inline">\(\mathbb{R}\)</span> de prendre cette égalité comme une définition, ce qui suppose toutefois que la fonction caractéristique soit intégrable; on parle alors d’ensemble intégrable. Cette définition laisse toutefois de coté les ensembles “trop grands” pour être intégrables, mais par ailleurs parfaitement anodins, comme par exemple <span class="math inline">\(\mathbb{R}\)</span> tout entier ou l’ensemble des réels positifs. Nous préférons donc mettre l’accent sur la notion d’ensemble mesurable:</p>
+<section>
+<h3 id="ensemble-mesurable" class="definition">Ensemble mesurable</h3>
+<p>Un ensemble <span class="math inline">\(E\)</span> de <span class="math inline">\(\mathbb{R}\)</span> est <em>de longueur finie</em> si sa fonction caractéristique <span class="math inline">\(\chi_E\)</span> est intégrable sur <span class="math inline">\(\mathbb{R}\)</span>; il est <em>mesurable</em> si sa fonction caractéristique est intégable sur tout intervalle compact <span class="math inline">\([a, b]\)</span> de <span class="math inline">\(\mathbb{R}\)</span>. La (mesure de) <em>longueur</em> d’un ensemble <span class="math inline">\(E\)</span> mesurable est définie par <span class="math display">\[
+\ell(E) := \int_{\mathbb{R}} \chi_E(t) \, dt
+\]</span> si <span class="math inline">\(E\)</span> est de longueur finie et <span class="math display">\[
+\ell(E) := +\infty
+\]</span> dans le cas contraire (si <span class="math inline">\(E\)</span> mesurable mais pas de longueur finie).</p>
+</section>
+<section>
+<h3 id="remarque" class="remark">Remarque</h3>
+<p>Il faut comprendre le terme “mesurable” litéralement, signifiant “dont on peut définir la longueur” (un nombre fini ou infini). Cette interprétation est cohérente, puisque tous les ensembles <span class="math inline">\(E\)</span> de longueur finie sont bien mesurables; en effet si la fonction caractéristique <span class="math inline">\(\chi_E\)</span> est intégrable, sa restriction à tout intervalle compact <span class="math inline">\([a, b]\)</span> également.</p>
+</section>
+<section>
+<h3 id="todo-1">TODO:</h3>
+<p>intégrale de fct carac sur <span class="math inline">\([a, b]\)</span> dominé par une borne finie commune, conclure que l’ensemble est de longueur finie?</p>
+</section>
+<section>
+<h3 id="todo-en-exercice">TODO en exercice</h3>
+<p>Structure de <span class="math inline">\(\delta\)</span>-ring pour les ensembles intégrables ?</p>
+</section>
+<section>
+<h3 id="propriétés-élementaires-des-ensembles-mesurables" class="theorem">Propriétés élementaires des ensembles mesurables</h3>
+<ol type="1">
+<li><p>L’ensemble vide est mesurable.</p></li>
+<li><p>Le complémentaire d’un ensemble mesurable est mesurable.</p></li>
+<li><p>L’union d’une collection dénombrable<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> d’ensembles mesurables est mesurable.</p></li>
+</ol>
+</section>
+<section>
+<h3 id="démonstration-2" class="proof">Démonstration</h3>
+<ol type="1">
+<li><p>La fonction caractéristique <span class="math inline">\(\chi_{\varnothing}\)</span> est identiquement nulle; l’ensemble vide <span class="math inline">\(\varnothing\)</span> est donc intégrable et par conséquent mesurable.</p></li>
+<li><p>Si l’ensemble <span class="math inline">\(E\)</span> est mesurable et <span class="math inline">\(F = \mathbb{R} \setminus E\)</span>, pour tout <span class="math inline">\([a, b]\)</span>, l’ensemble <span class="math inline">\(E \cap [a, b]\)</span> est intégrable. Par ailleurs, l’ensemble <span class="math inline">\([a, b]\)</span> est intégrable. Donc, comme <span class="math display">\[
+\chi_{F \cap [a, b]} = \chi_{[a, b]} - \chi_{E \cap [a, b]},
+\]</span> l’ensemble <span class="math inline">\(F \cap [a, b]\)</span> est intégrable; l’ensemble <span class="math inline">\(F\)</span> est donc mesurable.</p></li>
+<li><p>Si les <span class="math inline">\(E_n\)</span> forment une famille dénombrable d’ensemble mesurables, pour tout intervalle compact <span class="math inline">\([a, b]\)</span>, <span class="math inline">\(E_n \cap [a, b]\)</span> est intégrable, c’est-à-dire que <span class="math inline">\(\chi_{E_n \cap [a, b]}\)</span> est intégrable. Comme <span class="math inline">\(E \cap [a, b] = \cup_n E_n \cap [a, b]\)</span>, la suite des fonctions caractéristiques <span class="math inline">\(\chi_{E_n \cap [a, b]}\)</span> converge simplement vers <span class="math inline">\(\chi_{E \cap [a, b]}\)</span>. Par ailleurs, pour tout <span class="math inline">\(n\)</span>, on a <span class="math inline">\(0 \leq \chi_{E_n \cap [a, b]} \leq \chi_{[a, b]}\)</span>, donc par le <a href="#TCD">théorème de convergence dominée</a>, la fonction <span class="math inline">\(\chi_{E \cap [a, b]}\)</span> est intégrable. Par conséquent, l’ensemble <span class="math inline">\(\cup_n E_n\)</span> est mesurable.</p></li>
+</ol>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-2">TODO</h3>
+<p>terminologie <span class="math inline">\(\sigma\)</span>-algèbre (ou tribu)</p>
+</section>
+<section>
+<h3 id="topologie-et-ensembles-mesurables">Topologie et ensembles mesurables</h3>
+<p>Tout ensemble ouvert est mesurable.</p>
+</section>
+<section>
+<h3 id="démonstration-3" class="proof">Démonstration</h3>
+<p>Tout intervalle ouvert <span class="math inline">\(I\)</span> est mesurable. En effet, son intersection avec un intervalle compact <span class="math inline">\([a, b]\)</span> est un intervalle inclus dans <span class="math inline">\([a, b]\)</span>. La fonction caractéristique associée est de la forme <span class="math inline">\(\chi_{[c, d]}\)</span>, ou en diffère au plus en deux points; dans tous les cas, elle est intégrable.</p>
+<p>Si maintenant <span class="math inline">\(U\)</span> est un ensemble ouvert ouvert, pour chaque point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span> on peut construire le plus grand intervalle ouvert <span class="math inline">\(I_x\)</span> contenant <span class="math inline">\(x\)</span> et inclus dans <span class="math inline">\(U\)</span> (c’est l’union de tous les intervalles ouvert vérifiant ces deux propriétés). Pour un couple <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> dans <span class="math inline">\(U\)</span>, soit <span class="math inline">\(I_x = I_y\)</span>, soit <span class="math inline">\(I_x\)</span> et <span class="math inline">\(I_y\)</span> sont disjoints et l’union de tous les intervalles <span class="math inline">\(I_x\)</span> est égale à <span class="math inline">\(U\)</span>. Comme dans chaque <span class="math inline">\(I_x\)</span> on peut choisir un nombre rationnel <span class="math inline">\(y\)</span> tel que <span class="math inline">\(I_x = I_y\)</span>, cette union est dénombrable. L’ouvert <span class="math inline">\(U\)</span> est donc une union dénombrable d’intervalles ouverts, qui sont tous mesurables, il est donc mesurable.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-3">TODO</h3>
+<p>En amont (chap. I), énoncer que égale pp à intégrable est intégrale (et intégrale de même valeur). Grpmh ça n’est pas ce que l’on utilise excatement; la démo montre que ça marche si deux fonctions sont égales à l’exception d’un ensemble “négligeable”, au sens de “de mesure extérieure de longueur nulle”. L’exercice pertinent ici constiste donc à montrer qu’un ensemble est négligeable ssi il est de longueur nulle. Un sens est évident (négligeable <span class="math inline">\(\to\)</span> de longueur nulle) avec les résultats du chap précédent (à énoncer: comparaison intégrale de deux fcts ident sauf sur un ensemble négligeable)</p>
+<p><strong>NOTA:</strong> shunter cette section “complétude” en première approche ? Je dois revoir la terminologie du chap précédent, l’usage du terme “négligeable” n’est pas safe (veut dire autre chose). Ici tout ça est identique, mais pas en général …</p>
+<p>NOTA: on a quand même assez pour prouver que la mesure est complète ? Nope, pas encore. Ca plaide pout shunter …</p>
+<p>Réfléchir quand même aux 3 notions: de mesure extérieure nulle, de mesure nulle et négligeable (dans un ens de mesure nulle).</p>
+</section>
+<section>
+<h3 id="ensembles-négligeables" class="theorem">Ensembles négligeables</h3>
+<p>Un ensemble est de longueur nulle si et seulement s’il est négligeable.</p>
+</section>
+<section>
+<h3 id="preuve" class="proof">Preuve</h3>
+<p>Si l’ensemble <span class="math inline">\(A\)</span> est négligeable, sa fonction caractéristique est égale presque partout à la fonction identiquement nulle, qui est intégrable et d’intégrale nulle. Par conséquent (<strong>TODO: insérer ce résultat dans chapitre 1</strong>), <span class="math inline">\(\chi_A\)</span> est intégrable et d’intégrale nulle, donc l’ensemble <span class="math inline">\(A\)</span> est intégrable et de longueur nulle.</p>
+<p>Réciproquement, supposons l’ensemble <span class="math inline">\(A\)</span> mesurable; nous cherchons à montrer que pour tout <span class="math inline">\(\varepsilon &gt;0\)</span>, il existe une famille dénombrable d’intervalles <span class="math inline">\(I_i\)</span> de <span class="math inline">\(\mathbb{R}\)</span> qui recouvre <span class="math inline">\(A\)</span> et telle que <span class="math display">\[
+\sum_i \ell(I_i) \leq \varepsilon.
+\]</span> Supposons temporairement que <span class="math inline">\(A\)</span> soit inclus dans un intervalle compact <span class="math inline">\([a, b]\)</span> de <span class="math inline">\(\mathbb{R}\)</span>. La fonction caractéristique <span class="math inline">\(\chi_A\)</span> de <span class="math inline">\(A\)</span> est intégrable, donc pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span> il existe une jauge <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\([a, b]\)</span> telle que, si la subdivision pointée (totale ou partielle<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>) <span class="math inline">\(\mathcal{D} =\{(t_i, I_i)\}_i\)</span> est subordonnée à <span class="math inline">\(\gamma\)</span>, on a <span class="math display">\[
+S(\chi_A, \mathcal{D})
+=
+\left|S(\chi_A, \mathcal{D}) - \sum_i \int_{I_i}  \chi_A (t) \, dt \right| 
+\leq 
+\varepsilon.
+\]</span> <!--
+Si l'on était en mesure de trouver une telle subdivision partielle 
+$\mathcal{D}$ constituée d'une famille d'intervalle $I_i$ qui recouvre $A$, 
+nous aurions alors la conclusion souhaitée puisque dans ce cas
+$$
+S(\chi_A, \mathcal{D}) = \sum_i \chi_A(t_i) \ell(I_i) \leq \sum_{i} \ell(I_i).
+$$
+Malheureusement, cela n'est pas toujours possible[^TODO-exo], avec une
+collection finie d'intervalles $I_i$. Il est toutefois toujours possible 
+de montrer l'existence d'une collection dénombrable de paires $(t_i, I_i)$
+où $t_i \in I_i$ et les $I_i$ sont des intervalles compacts de $[a, b]$, 
+sans chevauchement, recouvrant $A$, 
+tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ 
+et l'argument ci-dessus peut alors être adapté pour fournir la conclusion 
+voulue.
+--></p>
+<p>Pour pouvoir conclure, nous allons construire une famille dénombrable <span class="math inline">\(\{(t_i, I_i)\}_i\)</span> où les <span class="math inline">\(I_i\)</span> sont des intervalles compacts de <span class="math inline">\([a, b]\)</span> sans chevauchement, tels que pour tout <span class="math inline">\(t_i\)</span>, <span class="math inline">\(I_i \subset \gamma(t_i)\)</span> et tels que la famille des <span class="math inline">\(I_i\)</span> recouvre <span class="math inline">\(A\)</span>. Si cette construction est acquise et que <span class="math inline">\(\mathcal{D}_k\)</span> désigne la collection des <span class="math inline">\(\{(t_i, I_i)\}\)</span> pour <span class="math inline">\(1 \leq i \leq m\)</span>, alors c’est une subdivision pointée partielle de <span class="math inline">\([a, b]\)</span> subordonné à <span class="math inline">\(\gamma\)</span> et donc <span class="math display">\[
+S(\chi_A, \mathcal{D}_k) 
+=
+\sum_{i=1}^k \chi_A(t_i) \ell(I_i)
+=
+\sum_{i=1}^k \ell(I_i) \leq \varepsilon.
+\]</span> En passant à la limite sur <span class="math inline">\(k\)</span>, cette inégalité fournit comme souhaité <span class="math display">\[
+\sum_{i=1}^{+\infty} \ell(I_i) \leq \varepsilon.
+\]</span></p>
+<p>Procédons finalement à la construction de la collection de <span class="math inline">\((t_i, I_i)\)</span>, par dichotomie. S’il existe un <span class="math inline">\(t \in [a, b]\)</span> tel que <span class="math inline">\(t \in A\)</span> et <span class="math inline">\([a, b] \subset \gamma(t)\)</span>, alors on prend pour collection le singleton <span class="math inline">\(\{(t, [a, b])\}\)</span>. Dans le cas contraire, on considère la décomposition de <span class="math inline">\([a, b]\)</span> en <span class="math inline">\([a, (a+b)/2]\)</span> et <span class="math inline">\([(a+b)/2, b]\)</span>. On examine chacun de ces intervalles <span class="math inline">\(J\)</span> et s’il existe un <span class="math inline">\(t \in A \cap J\)</span> tel que <span class="math inline">\(J \subset \gamma(t)\)</span>, on inclut la paire <span class="math inline">\((t, J)\)</span> dans la collection; dans le cas contraire, on poursuit la dichotomie. Cette procédure définit par construction une famille dénombrable <span class="math inline">\(\{(t_i, I_i)\}_i\)</span> où les <span class="math inline">\(I_i\)</span> sont des intervalles compacts de <span class="math inline">\([a, b]\)</span> sans chevauchement et tels que pour tout <span class="math inline">\(t_i\)</span>, <span class="math inline">\(I_i \subset \gamma(t_i)\)</span>. De plus, les <span class="math inline">\(I_i\)</span> recouvrent <span class="math inline">\(A\)</span>: en effet si on considère <span class="math inline">\(t \in A\)</span>, il existe nécessairement un entier <span class="math inline">\(k\)</span> tel que tout intervalle compact <span class="math inline">\(I\)</span> de longueur inférieure ou égale à <span class="math inline">\((b-a)/2^k\)</span> vérifie <span class="math inline">\(I \subset \gamma(t)\)</span>. Par conséquent, <span class="math inline">\(t\)</span> appartiend à l’un des intervalles inclus par le procédé au plus tard à l’étape <span class="math inline">\(k\)</span> de la dichotomie.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-4">TODO:</h3>
+<p>Montrer que couvrir un ensemble de longueur nulle par une collection finie (et non dénombrable) d’intervalles de somme des longueurs arbitrairement petite n’est pas tjs possible (travailler sur <span class="math inline">\(\mathbb{Q} \cap [0, 1]\)</span> par exemple, invoquer la densité des rationnels, etc.), mais constuire une telle collection dénombrable si.</p>
+</section>
+<section>
+<h3 id="complétude-de-la-longueur" class="corollary">Complétude de la longueur</h3>
+<p>Un sous-ensemble d’un ensemble de longueur nulle est de longueur nulle.</p>
+</section>
+<section>
+<h3></h3>
+<p><strong>TODO:</strong> corollaires immédiats: difference mesurable, ensemble fermés mesurables, etc. Largement en exercice …</p>
+</section>
+</section>
+<section>
+<h1 id="fonctions-mesurables">Fonctions mesurables</h1>
+<section>
+<h3 id="meta" class="meta">Meta</h3>
+<p>Dans la présentation, commencer par le théorème d’intégrabilité dominée, son contraste avec le cas Riemann classique, sans utiliser le mot de mesurabilité, puis en “extraire” la notion de mesurabilité.</p>
+</section>
+<section>
+<h3 id="ante" class="ante">Ante</h3>
+<p>Nous allons nous doter dans ce chapitre d’outils permettant de caractériser plus facilement l’intégrabilité des fonctions. Au coeur de l’approche, la notion de fonction mesurable:</p>
+</section>
+<section>
+<h3 id="fonction-mesurable" class="definition">Fonction mesurable</h3>
+<p>Une fonction <span class="math inline">\(f:\mathbb{R} \to \mathbb{R}\)</span> est <em>mesurable</em> si elle est la limite simple d’une suite de fonctions intégrables, c’est-à-dire s’il existe une suite de fonctions intégrables <span class="math inline">\(f_k:\mathbb{R} \to \mathbb{R}\)</span> telle que pour tout <span class="math inline">\(x\in \mathbb{R}\)</span>, <span class="math inline">\(f_k(x) \to f(x)\)</span> quand <span class="math inline">\(k \to +\infty\)</span>. Une fonction <span class="math inline">\(f:\mathbb{R} \to \mathbb{R}^n\)</span> est mesurable si chacune de ses composantes est mesurable.</p>
+</section>
+<section>
+<h3 id="mesurabilité-sur-un-intervalle" class="remark">Mesurabilité sur un intervalle</h3>
+<p>Nous nous limitons dans ce chapitre à l’étude des fonctions mesurables définies sur <span class="math inline">\(\mathbb{R}\)</span>. La notion peut être très facilement étendue à une fonction <span class="math inline">\(f\)</span> définie sur un intervalle fermé <span class="math inline">\(I\)</span> de <span class="math inline">\(\mathbb{R}\)</span> de la façon suivante: on dira que <span class="math inline">\(f\)</span> est mesurable si son prolongement par <span class="math inline">\(0\)</span> à l’extérieur de <span class="math inline">\(I\)</span> est mesurable. Nous laissons le soin au lecteur de généraliser en conséquence les énoncés qui vont suivre.</p>
+</section>
+<section>
+<h3 id="ante-1" class="ante">Ante</h3>
+<p>Le résultat qui met la notion de fonction mesurable au coeur de l’approche est le critère d’intégrabilité dominée:</p>
+</section>
+<section>
+<h3 id="critère-dintégrabilité-dominée" class="theorem">Critère d’intégrabilité dominée</h3>
+<p>Une fonction <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> est intégrable si et seulement si <span class="math inline">\(f\)</span> est mesurable et il existe deux fonctions intégrables <span class="math inline">\(g: \mathbb{R} \to \mathbb{R}\)</span> et <span class="math inline">\(h: \mathbb{R} \to \mathbb{R}\)</span> telles que <span class="math inline">\(g \leq f \leq h\)</span>.</p>
+</section>
+<section>
+<h3 id="interprétation" class="post remark">Interprétation</h3>
+<p>Souvenons-nous qu’une fonction définie sur un intervalle fermé et borné est intégrable au sens de Riemann si et seulement si elle est encadrée par deux fonctions intégrables au sens de Riemann et continue presque partout.</p>
+<p>Dans le cas de l’intégrale de Riemann comme de Henstock-Kurzweil, l’intégrabilité est donc caractérisée par une structure analogue qui repose sur deux propriétés distinctes: être encadrée par deux fonctions intégrables et être “suffisamment régulière”. La différence est que dans le cas de l’intégrale de Riemann l’exigence de régularité est forte – être continue presque partout – alors que dans le cas de l’intégrale de Henstock-Kurzweil, la régularité demandée – la mesurabilité – s’avère être une condition très peu contraignante<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+</section>
+<section>
+<h3 id="ante-2" class="ante">Ante</h3>
+<p>Plusieurs propriétés des fonctions mesurables se déduisent directement de leur définition:</p>
+</section>
+<section>
+<h3 id="les-fonctions-intégrables-sont-mesurables">Les fonctions intégrables sont mesurables</h3>
+</section>
+<section>
+<h3 id="démonstration-4" class="proof">Démonstration</h3>
+<p>Si <span class="math inline">\(f\)</span> est une fonction mesurable, elle est la limite simple de la suite constante égale à <span class="math inline">\(f\)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="les-fonctions-mesurables-forment-un-espace-vectoriel">Les fonctions mesurables forment un espace vectoriel</h3>
+</section>
+<section>
+<h3 id="démonstration-5" class="proof">Démonstration</h3>
+<p>Si <span class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span> sont mesurables et <span class="math inline">\(\lambda\)</span> est un nombre réel, il existe des suites <span class="math inline">\(f_k\)</span> et <span class="math inline">\(g_k\)</span> de fonctions intégrables convergeant simplement vers <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> respectivement. Les fonctions <span class="math inline">\(f_k + g_k\)</span> et <span class="math inline">\(\lambda f_k\)</span> sont intégrables et convergent alors simplement vers <span class="math inline">\(f+g\)</span> et <span class="math inline">\(\lambda f\)</span> respectivement.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-5">TODO ?</h3>
+<p>Evoquer fct localement intégrable ? Quand on regarde la preuve ci-dessous, on n’utilise pas autre chose …</p>
+</section>
+<section>
+<h3 id="les-fonctions-continues-presque-partout-sont-mesurables">Les fonctions continues (presque partout) sont mesurables</h3>
+</section>
+<section>
+<h3 id="démonstration-6" class="proof">Démonstration</h3>
+<p>Soit <span class="math inline">\(f:\mathbb{R} \to \mathbb{R}\)</span> une fonction continue presque partout. Pour tout entier <span class="math inline">\(k\)</span>, la fonction <span class="math inline">\(f_k\)</span> égale à <span class="math inline">\(f\)</span> sur l’intervalle <span class="math inline">\([-k, k]\)</span> est intégrable (car Riemann-intégrable) et la suite des <span class="math inline">\(f_k\)</span> converge simplement vers <span class="math inline">\(f\)</span>, qui est donc mesurable.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="images-réciproques-des-fonctions-mesurables" class="theorem">Images réciproques des fonctions mesurables</h3>
+<p>Une fonction <span class="math inline">\(f:\mathbb{R} \mapsto \mathbb{R}^n\)</span> est mesurable si et seulement pour tout ouvert <span class="math inline">\(U\)</span> de <span class="math inline">\(\mathbb{R}\)</span>, l’image réciproque de <span class="math inline">\(U\)</span> par <span class="math inline">\(f\)</span> <span class="math display">\[
+f^{-1}(U) = \{x \in \mathbb{R} \, | \, f(x) \in U\}
+\]</span> est mesurable.</p>
+<p><strong>NOTA:</strong> l’énonce ici est donné dans le cas des fonctions scalaires, mais on a rapidement besoin du cadre vectoriel (pour composer avec des opérateurs binaires), ce qui renforce encore l’attrait de la formulation “abstraite” (qui “tient” dans le cas vectoriel, mais pas les autres). donc <strong>TODO:</strong> nettoyer, ne garder que le cas 3., et rajouter le bout de démo qui finit la preuve dans le cas vectoriel (dans les deux sens).</p>
+<p><strong>TODO:</strong> update: énoncé patché, adapter la preuve en fonction.</p>
+<p><strong>TODO:</strong> remarque très rapidement sur la forme abstraite et lien avec la continuité.</p>
+</section>
+<section>
+<h3 id="ante-3" class="ante">Ante</h3>
+<p>En se basant exclusivement sur ce critère de mesurabilité par les images réciproques (donc en comprenant temporairement “mesurable” comme “satisfaisant le critère de l’image réciproque” en attendant la preuve de l’équivalence des deux propriétés), on peut montrer les résultats suivants:</p>
+</section>
+<section>
+<h3 id="stabilité-par-passage-à-la-limite">Stabilité par passage à la limite</h3>
+<p>Les limites simples de fonction mesurables sont mesurables.</p>
+</section>
+<section>
+<h3 id="démonstration-7" class="proof">Démonstration</h3>
+<p>Soit <span class="math inline">\(f_k: \mathbb{R} \to \mathbb{R}\)</span> des fonctions vérifiant le critère de l’image réciproque, telles que pour tout <span class="math inline">\(x \in \mathbb{R}\)</span>, <span class="math inline">\(f_k(x) \to f(x)\)</span> quand <span class="math inline">\(k \to +\infty\)</span>. Montrons que <span class="math inline">\(f\)</span> vérifie également ce critère. Il suffit pour cela de remarquer que comme <span class="math inline">\(U\)</span> est ouvert et que <span class="math inline">\(f_k(x) \to f(x)\)</span>, <span class="math inline">\(f(x) \in U\)</span> si et seulement si <span class="math inline">\(f_k(x) \in U\)</span> pour <span class="math inline">\(k\)</span> assez grand. Cette déclaration se traduit par la formule <span class="math display">\[
+f^{-1}(U) = \bigcup_{j=1}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
+\]</span> qui établit que <span class="math inline">\(f^{-1}(U)\)</span> est un ensemble mesurable, comme union (dénombrable) d’intersections (dénombrable) d’ensembles mesurables.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="fonctions-presque-partout-égales" class="theorem">Fonctions presque partout égales</h3>
+<p>Toute fonction égale presque partout à une fonction mesurable est mesurable.</p>
+</section>
+<section>
+<h3 id="démonstration-8" class="proof">Démonstration</h3>
+<p>Toute fonction <span class="math inline">\(f\)</span> égale presque partout à une fonction <span class="math inline">\(g\)</span> qui vérifie le critère de l’image réciproque vérifie également le critère de l’image réciproque. En effet, si pour tout ouvert <span class="math inline">\(U\)</span> l’ensemble <span class="math inline">\(g^{-1}(U)\)</span> est mesurable, alors <span class="math display">\[
+f^{-1}(U) = (g^{-1}(U) \setminus E) \cup F
+\]</span> où <span class="math inline">\(E\)</span> et <span class="math inline">\(F\)</span> sont de mesure nulle (et donc mesurables puisque la mesure de Lebesgue est complète); par conséquent, <span class="math inline">\(f^{-1}(U)\)</span> est mesurable.</p>
+<p><strong>TODO:</strong> des pptés des ensembles mesurables sont utilisés dans la preuve ci-dessous, repenser l’ordre ? J’aimerais pourtant retard l’apparition des ensembles mesurables, ne pas focaliser trop tôt. Sinon, réécrire la preuve dans le langage des fonctions ? Urk, pas de choix parfait ici … Vérifier au passage que je n’utilise pas à travers les ensembles mesurables de pptés que je n’ai pas encore démontré qui nécessité le critère par les images réciproques. Même chose au-dessus …. jeez. Arf, le nouvel ordre pose pb; j’ai de toute évidence bien besoin des ensembles mesurables pour L’ENONCE du critère de l’image réciproque, dont j’ai bien besoin au moins d’UN BOUT des ensembles mesurables … Décider de l’approche donc pour ces ensembles (fonction carac localement intégrable ou mesurable ?)</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="démonstration-9" class="proof">Démonstration</h3>
+<h4 id="sens-direct">Sens direct</h4>
+<p>Supposons le critère des images réciproques satisfait. La démonstration repose sur la construction explicite d’une suite <span class="math inline">\(f_k(x)\)</span> de fonctions intégrables qui soient étagées, c’est-à-dire ne prenant qu’un nombre fini de valeurs possibles.</p>
+<p>Définissons <span class="math inline">\(f_0(x) = 0\)</span> et <span class="math inline">\(f_k(x)\)</span> par la relation de récurrence <span class="math display">\[
+f_{k+1}(x) = f_k(x) + 
+\left|
+\begin{array}{rl}
+-1/k &amp; \mbox{si } \, f(x) &lt; f_k(x) -1/k \, \mbox{ et } \, |x| \leq k,\\
++1/k  &amp; \mbox{si } \, f_k(x) + 1/k &lt; f(x)  \, \mbox{ et } \, |x| \leq k, \\
+0 &amp; \mbox{sinon.}
+\end{array}
+\right.
+\]</span> Par construction, si <span class="math inline">\(f(x)=0\)</span>, <span class="math inline">\(f_k(x)= 0\)</span>. Si <span class="math inline">\(f(x) &gt; 0\)</span>, les <span class="math inline">\(f_k(x)\)</span> forment une suite croissante convergeant vers <span class="math inline">\(f(x)\)</span>, car la suite des <span class="math inline">\(1/k\)</span> tend vers <span class="math inline">\(0\)</span> quand <span class="math inline">\(k\)</span> tend vers <span class="math inline">\(+\infty\)</span>, mais leur somme est divergente. La situation est similaire si <span class="math inline">\(f(x) &lt; 0\)</span>, mais avec une suite <span class="math inline">\(f_k(x)\)</span> décroissante.</p>
+<p>Montrons que la suite des <span class="math inline">\(f_k\)</span> est intégrable, ce qui concluera cette section de la preuve. L’ensemble des valeurs <span class="math inline">\(\{\alpha_j\}\)</span> que prend chaque <span class="math inline">\(f_k\)</span> est bien fini; il comprend la valeurs <span class="math inline">\(\alpha_0 = 0\)</span> et la fonction peut s’écrire sous la forme <span class="math display">\[
+f_k = \sum_{j} \alpha_j \chi_{A_j}
+\]</span> où les <span class="math inline">\(A_j = f_k^{-1}(\alpha_j)\)</span> sont en nombre fini et disjoints. A part <span class="math inline">\(A_0\)</span>, les <span class="math inline">\(A_j\)</span> sont également bornés, car <span class="math inline">\(f_k\)</span> est nulle en dehors de <span class="math inline">\([-k, k]\)</span>. Montrons qu’à tout rang <span class="math inline">\(k\)</span>, les ensembles <span class="math inline">\(A_j\)</span> sont mesurables, ce qui prouvera que chaque <span class="math inline">\(f_k\)</span> est intégrable par le critère d’intégrabilité dominé. C’est évident au rang <span class="math inline">\(0\)</span> où <span class="math inline">\(\{\alpha_j\} = \{0\}\)</span>, et la collection des <span class="math inline">\(A_j\)</span> se réduit à <span class="math inline">\(\{A_0\} = \{\mathbb{R}\}\)</span>; supposons cette propriété valable au rang <span class="math inline">\(k\)</span>. L’ensemble <span class="math inline">\(E\)</span> des réels <span class="math inline">\(x\)</span> tels que <span class="math inline">\(f_k(x) + 1/k &lt; f(x)\)</span> et <span class="math inline">\(|x| \leq k\)</span> peut être écrit comme <span class="math display">\[
+E = \left(\bigcup_j \{x \in \mathbb{R} \, | \, \alpha_j + 1/k &lt; f(x)\} \cap A_j\right) \cap [-k, k],
+\]</span> qui est mesurable. De même, on peut montrer que l’ensemble <span class="math inline">\(F\)</span> des réels <span class="math inline">\(x\)</span> tels que <span class="math inline">\(f(x) &lt; f_k(x) - 1/k &lt; f(x)\)</span> et <span class="math inline">\(|x| \leq k\)</span> est mesurable. On a alors par construction: <span class="math display">\[
+f_{k+1} = \sum_{j} \alpha_j \chi_{A_j} + \frac{1}{k} \chi_E - \frac{1}{k} \chi_F
+\]</span> qui est sous la forme souhaitée, à ceci près que les ensembles intervenant ne sont pas nécessairement disjoints. Mais pour toute valeur <span class="math inline">\(y\)</span> dans l’image de <span class="math inline">\(f_{k+1}\)</span>, l’image réciproque de <span class="math inline">\(\{y\}\)</span> par <span class="math inline">\(f\)</span> est nécessairement une union (finie) d’intersections (finies) d’ensembles dans la collection <span class="math inline">\(\{\dots, A_j, \dots, E, F\}\)</span> et donc un ensemble mesurable. La fonction <span class="math inline">\(f_{k+1}\)</span> peut donc être mise sous la forme souhaitée.</p>
+<h4 id="réciproque">Réciproque</h4>
+<p>Considérons désormais une fonction intégrable <span class="math inline">\(f:\mathbb{R} \to \mathbb{R}\)</span>. Par le <a href="#une-intégrale-indéterminée-est-dérivable-presque-partout">théorème de dérivation de l’annexe</a>, si l’on définit la fonction <span class="math inline">\(f_k(x)\)</span> comme le taux d’accroissement <span class="math display">\[
+f_k(x) :=  \frac{F(x + 2^{-k}) - F(x)}{2^{-k}}
+\; \mbox{ où } \;
+F: x \in \mathbb{R} \mapsto \int_0^x f(t) \, dt,
+\]</span> alors <span class="math inline">\(f_k(x) \to f(x)\)</span> presque partout quand <span class="math inline">\(k \to +\infty\)</span>. Or chaque <span class="math inline">\(f_k\)</span> est continue, donc l’image réciproque de tout ouvert par <span class="math inline">\(f_k\)</span> est un ensemble mesurable. Par les deux résultats établis dans cette section, <span class="math inline">\(f\)</span> vérifie également ce critère.</p>
+<p>Par définition, une fonction mesurable est limite simple d’une suite de fonctions intégrables, et les fonctions intégrables vérifient le critère de l’image réciproque. Cette classe de fonctions étant <a href="#stabilité-par-passage-à-la-limite">stable par passage à la limite</a>, ce critère est également satisfait pour toute fonction mesurable.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="composition-par-une-fonction-continue" class="theorem">Composition par une fonction continue</h3>
+<p>Soit <span class="math inline">\(f:\mathbb{R} \to \mathbb{R}^n\)</span> une fonction mesurable et <span class="math inline">\(g:\mathbb{R}^n \to \mathbb{R}^m\)</span> une fonction continue. La composée <span class="math inline">\(g \circ f\)</span> de ces deux fonctions est mesurable.</p>
+</section>
+<section>
+<h3 id="démonstration-10" class="proof">Démonstration</h3>
+<p>Si <span class="math inline">\(U\)</span> est un ouvert de <span class="math inline">\(\mathbb{R}^m\)</span>. Par continuité de <span class="math inline">\(g\)</span>, l’ensemble <span class="math inline">\(g^{-1}(U)\)</span> est un ouvert de <span class="math inline">\(\mathbb{R}^n\)</span> et par conséquent, par <a href="#images-réciproques-des-fonctions-mesurables">le critère de mesurabilité par les images réciproques</a>, <span class="math display">\[
+(g\circ f)^{-1}(U) = f^{-1}(g^{-1}(U))
+\]</span> est un ensemble mesurable. Par le même critère, la composée <span class="math inline">\(g\circ f\)</span> est donc mesurable.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="remarque-1" class="remark">Remarque</h3>
+<p>Les corollaires de ce résultat sont nombreux et immédiat. Citons les deux instances les plus directement utiles.</p>
+</section>
+<section>
+<h3 id="mesurabilité-du-produit" class="corollary">Mesurabilité du produit</h3>
+<p>Le produit de deux fonctions scalaires mesurables est mesurable.</p>
+</section>
+<section>
+<h3 id="démonstration-11" class="proof">Démonstration</h3>
+<p>Par continuité de l’application produit <span class="math inline">\(\times: \mathbb{R} \times \mathbb{R} \to \mathbb{R}\)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="mesurabilité-de-la-valeur-absolue" class="corollary">Mesurabilité de la valeur absolue</h3>
+<p>La valeur absolue d’une fonction scalaire mesurable est mesurable.</p>
+</section>
+<section>
+<h3 id="démonstration-12" class="proof">Démonstration</h3>
+<p>Par continuité de l’application valeur absolue <span class="math inline">\(|\, \cdot \,|: \mathbb{R} \to \mathbb{R}\)</span>.</p>
+<p><strong>TODO:</strong> adapter preuve ci-dessous, la preuve amont a été refaite, le “patch” pour borner n’est plus nécessaire.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="démonstration-du-critère-dintégrabilité-dominée" class="proof">Démonstration du critère d’intégrabilité dominée</h3>
+<p>Si la fonction <span class="math inline">\(f\)</span> est intégrable, elle est mesurable et satisfait les inégalités <span class="math inline">\(f \leq f \leq f\)</span>. Le sens direct est donc démontré.</p>
+<p>Pour établir la réciproque, nous allons exploiter le théorème de convergence dominée du chapitre suivant. Nous allons appliquer le procédé d’approximation par une suite de fonctions étagées déjà utilisé dans <a href="#images-réciproques-des-fonctions-mesurables">la preuve de la caractérisation des fonctions mesurables par leurs images réciproques</a>. Nous appliquons cette construction à la fonction <span class="math inline">\(f - g\)</span> qui est mesurable comme différence de fonctions mesurables. Comme <span class="math inline">\(f-g\)</span> vérifie <span class="math inline">\(0\leq f-g \leq h - g\)</span>, la suite <span class="math inline">\(\delta_k\)</span> – qui converge simplement vers <span class="math inline">\(f-g\)</span> – vérifie <span class="math inline">\(0 \leq \delta_k \leq h - g\)</span>. En raison de cette inégalité, et comme <span class="math inline">\(h - g\)</span> est (absolument) intégrable, <span class="math inline">\(\chi_{[-k, k]}\delta_k\)</span> est une somme finie de la forme <span class="math inline">\(\sum_j \alpha_j \chi_{A_j}\)</span> où les <span class="math inline">\(A_j\)</span> sont mesurables et bornés (dans <span class="math inline">\([-k, k]\)</span>), <span class="math inline">\(A_j\)</span> est intégrable.</p>
+<p>La fonction <span class="math inline">\(f-g\)</span> apparaît donc comme une limite simple des fonction <span class="math inline">\(\chi_{[-k, k]} \delta_k\)</span>, qui sont intégrables et encadrées par les fonctions intégrables <span class="math inline">\(0\)</span> et <span class="math inline">\(h - g\)</span>. Par le théorème de convergence dominée, <span class="math inline">\(f - g\)</span> est intégrable, et par conséquent <span class="math inline">\(f = (f-g) + g\)</span> l’est également.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="produit-de-fonctions-intégrable-et-bornée" class="corollary">Produit de fonctions intégrable et bornée</h3>
+<p>Si <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> est une fonction absolument intégrable et <span class="math inline">\(g: \mathbb{R} \to \mathbb{R}\)</span> est mesurable et bornée, alors le produit <span class="math inline">\(fg\)</span> est (absolument) intégrable.</p>
+</section>
+<section>
+<h3 id="preuve-1" class="proof">Preuve</h3>
+<p>Par hypothèse <span class="math inline">\(f\)</span> est intégrable donc mesurable; <span class="math inline">\(g\)</span> étant mesurable, le produit <span class="math inline">\(fg\)</span> est mesurable. Par ailleurs, si <span class="math inline">\(|g| \leq M\)</span>, on a <span class="math display">\[
+- M |f| \leq f g \leq M |f|
+\]</span> et comme les fonctions <span class="math inline">\(-M|f|\)</span> comme <span class="math inline">\(M |f|\)</span> sont intégrables, par le critère d’intégrabilité dominée, <span class="math inline">\(fg\)</span> est intégrable. La valeur absolue <span class="math inline">\(|fg|\)</span> de <span class="math inline">\(fg\)</span> est mesurable et vérifie également <span class="math inline">\(- M |f| \leq f g \leq M |f|\)</span>, elle est donc également intégrable par le même critère.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+</section>
+<section>
+<h1 id="fonctions-absolument-intégrables">Fonctions Absolument Intégrables</h1>
+<section>
+<h3 id="todo-6">TODO</h3>
+<p>remarque nécessaire ou exemples montrant que le critère d’intégrabilité dominée est en fait pratique quand on manipule des fonction absolument intégrables et que les calculs manipulant des fonctions uniquement conditionnellement intégrables sont “fragiles”.</p>
+</section>
+<section>
+<h3 id="remarque-2" class="remark">Remarque</h3>
+<p>Nous verrons également dans la suite que ce résultat est généralement plus facile à exploiter quand on peut faire l’hypothèse que les fonctions que l’on manipule sont non seulement intégrables, mais également absolument intégrables.</p>
+<p><strong>TODO: fcts abs int introduites SI TOT ???</strong> Cela retarde assez notablement les résultats élémentaires sur les fonctions mesurables, bof donc … Faire une autre section ?</p>
+</section>
+<section>
+<h3 id="fonction-absolumentconditionnellement-intégrable" class="definition">Fonction absolument/conditionnellement intégrable</h3>
+<p>Une fonction <span class="math inline">\(f:\mathbb{R} \to \mathbb{R}\)</span> est <em>absolument intégrable</em> si <span class="math inline">\(f\)</span> et <span class="math inline">\(|f|\)</span> sont intégrables. Si <span class="math inline">\(f\)</span> est intégrable mais pas <span class="math inline">\(|f|\)</span>, elle est <em>conditionnellement intégrable</em>.</p>
+</section>
+<section>
+<h3 id="fonctions-absolument-intégrables-1" class="theorem">Fonctions absolument intégrables</h3>
+<p>L’ensemble des fonctions absolument intégrables de <span class="math inline">\(\mathbb{R}\)</span> dans <span class="math inline">\(\mathbb{R}\)</span> est un espace vectoriel.</p>
+</section>
+<section>
+<h3 id="démonstration-13" class="proof">Démonstration</h3>
+<p>Si <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> sont absolument intégrables et <span class="math inline">\(\lambda \in \mathbb{R}\)</span>, alors <span class="math inline">\(\lambda f\)</span> est mesurable et <span class="math inline">\(\lambda f\)</span> comme <span class="math inline">\(|\lambda f|\)</span> sont encadrées par les fonctions intégrables <span class="math inline">\(-|\lambda||f|\)</span> et <span class="math inline">\(|\lambda||f|\)</span>; elle est donc absolument intégrable par le critère d’intégrabilité dominée. La somme <span class="math inline">\(f + g\)</span> est également mesurable et <span class="math inline">\(f+g\)</span> comme <span class="math inline">\(|f+g|\)</span> sont encadrées par <span class="math inline">\(-|f| - |g|\)</span> et <span class="math inline">\(|f| + |g|\)</span> qui sont intégrables; la somme est donc intégrable par le même critère.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="inégalité-triangulaire" class="theorem">Inégalité triangulaire</h3>
+<p>Si <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> est absolument intégrable, alors <span class="math display">\[
+\left|\int_{\mathbb{R}} f(t)\, dt \right| 
+\leq 
+\int_{\mathbb{R}} |f(t)| \,dt.
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-14" class="proof">Démonstration</h3>
+<p>Les fonctions <span class="math inline">\(f\)</span> et <span class="math inline">\(|f|\)</span> étant intégrables, pour tout <span class="math inline">\(\varepsilon &gt; 0\)</span>, il existe une jauge commune <span class="math inline">\(\gamma\)</span> sur <span class="math inline">\(\mathbb{R}\)</span> et un <span class="math inline">\(r&gt;0\)</span> commun, tels que pour tout couple <span class="math inline">\((a,b)\)</span> tel que <span class="math inline">\(a \leq -r\)</span> et <span class="math inline">\(r \leq b\)</span> et toute subdivision pointée <span class="math inline">\(\mathcal{D}\)</span> de <span class="math inline">\([a, b]\)</span> qui soit subordonnée à <span class="math inline">\(\gamma\)</span>, on ait <span class="math display">\[
+\left| S(f, \mathcal{D}) - \int_{\mathbb{R}} f(t) \, dt \right| \leq \varepsilon/2
+\; \mbox{ et } \;
+\left| S(|f|, \mathcal{D}) - \int_{\mathbb{R}} |f(t)| \, dt \right| \leq \varepsilon/2.
+\]</span> Par l’inégalité triangulaire appliquée à la somme finie <span class="math inline">\(S(f, \mathcal{D})\)</span>, on obtient donc <span class="math display">\[
+\int_{\mathbb{R}} f(t) \, dt \leq S(f, \mathcal{D}) + \varepsilon /2
+\leq S(|f|, \mathcal{D}) + \varepsilon /2
+\leq \int_{\mathbb{R}} |f(t)| \, dt + \varepsilon,
+\]</span> et donc en passant à la limite sur <span class="math inline">\(\varepsilon\)</span>, <span class="math display">\[
+\int_{\mathbb{R}} f(t) \, dt \leq  \int_{\mathbb{R}} |f(t)| \, dt.
+\]</span> L’inégalité similaire <span class="math display">\[
+-\int_{\mathbb{R}} f(t) \, dt \leq \int_{\mathbb{R}} |f(t)| \, dt.
+\]</span> est obtenue en remplaçant <span class="math inline">\(f\)</span> par <span class="math inline">\(-f\)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="todo-7">TODO</h3>
+<p>Plus pertinent/simple de construire un exemple basé sur une série de valeurs qui converge conditionnellement ?</p>
+</section>
+<section>
+<h3 id="todo-8">TODO</h3>
+<p>Simplifier l’exemple ci-dessous en ne travaillant que sur la dérivée; repousser l’étude de la fonction ci-dessous en exercice.</p>
+</section>
+<section>
+<h3 id="todo-9">TODO</h3>
+<p>(en exercice ?) Exemple de Bartle basé sur une série conditionnellement convergente (dans “A modern theory of integration”. Mieux que cet exemple ici ?)</p>
+</section>
+<section>
+<h3 id="une-fonction-conditionnellement-intégrable" class="example">Une fonction conditionnellement intégrable</h3>
+<p>La fonction <span class="math inline">\(f:[0, 1] \to \mathbb{R}\)</span> définie par <span class="math display">\[
+f(x) = \frac{1}{x} \cos \frac{1}{x^2} \, \mbox{ si }\,  x &gt; 0 \, \mbox{ et } \, f(0) = 0
+\]</span> est conditionnellement intégrable. Pour montrer qu’elle est intégrable, nous exploitons le théorème fondamental du calcul, appliqué à la fonction <span class="math inline">\(g:[0, 1] \to \mathbb{R}\)</span> définie par <span class="math display">\[
+g(x) = -\frac{x^2}{2} \sin \frac{1}{x^2} \, \mbox{ si }\,  x &gt; 0 \, \mbox{ et } \, g(0) = 0.
+\]</span> Cette fonction est dérivable en tout point de <span class="math inline">\([0,1]\)</span>; en <span class="math inline">\(0\)</span>, sa dérivée est nulle<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> et quand <span class="math inline">\(x&gt;0\)</span>, <span class="math display">\[
+\left[-\frac{x^2}{2} \sin \frac{1}{x^2} \right]&#39; +
+x \sin \frac{1}{x^2} 
+= \frac{1}{x} \cos \frac{1}{x^2}
+\]</span> Par le théorème d’intégrabilité dominée, la fonction <span class="math inline">\(h\)</span> égale à <span class="math inline">\(x \sin (1/x^2)\)</span> si <span class="math inline">\(x&gt;0\)</span> et nulle en zéro est absolument intégrable<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. La fonction <span class="math inline">\(g&#39;\)</span> étant également intégrable, <span class="math inline">\(f = g&#39; + h\)</span> est intégrable comme somme de deux fonctions intégrables.</p>
+<p>La fonction <span class="math inline">\(f\)</span> n’est pourtant pas absolument intégrable, car <span class="math inline">\(h\)</span> est absolument intégrable mais pas <span class="math inline">\(g&#39;\)</span>. En effet, si c’était le cas, toute fonction absolument intégrable dont la valeur absolue est majorée par <span class="math inline">\(|g&#39;|\)</span> aurait par l’inégalité triangulaire son intégrale majorée par celle de <span class="math inline">\(|g&#39;|\)</span>. Or nous allons exhiber une suite de telles fonctions dont l’intégrale tend vers <span class="math inline">\(+\infty\)</span>, ce qui établira la contradiction.</p>
+<p>Soit <span class="math inline">\(k\geq 1\)</span> un entier; on définit la function <span class="math inline">\(\phi_k:[0,1] \to \mathbb{R}\)</span> par <span class="math display">\[
+\phi_k(x) = 
+\left|
+\begin{array}{rl} 
+g&#39;(x) &amp; \mbox{si } \, \alpha_j \leq x \leq \beta_j, \, 0 \leq j \leq k\\
+0 &amp; \mbox{sinon.}
+\end{array}
+\right.
+\]</span> où <span class="math display">\[
+\alpha_j = \frac{1}{\sqrt{2\pi j}}
+\; \mbox{ et } \;
+\beta_j = \frac{1}{\sqrt{2\pi(j+3/4)}},
+\]</span> Par construction, <span class="math inline">\(\phi_k\)</span> est continue par morceaux et donc absolument intégrable, et bien telle que <span class="math inline">\(|\phi_k| \leq |g&#39;|\)</span>. Par ailleurs, <span class="math display">\[
+\int_0^1 \phi_k(t) \, dt = \sum_{j=0}^k \int_{\alpha_j}^{\beta_k} \phi_k(t) \, dt
+=\sum_{j=0}^k \left[-\frac{x^2}{2} \sin \frac{1}{x^2} \right]_{\alpha_j}^{\beta_j}
+= \frac{1}{2}\sum_{j=0}^k \frac{1}{2\pi j + 3\pi/4}.
+\]</span> Comme la série de cette équation est divergente, on peut rendre l’intégrale arbitrairement grande en choisissant un <span class="math inline">\(k\)</span> suffisamment grand, ce qui permet de conclure.</p>
+</section>
+<section>
+<h3 id="restriction-à-des-ensembles-mesurables" class="corollary">Restriction à des ensembles mesurables</h3>
+<p>Une fonction <span class="math inline">\(f:\mathbb{R} \to \mathbb{R}\)</span> est absolument intégrable si et seulement si <span class="math inline">\(f \chi_E\)</span> est (absolument) intégrable pour tout ensemble mesurable <span class="math inline">\(E\)</span>.</p>
+</section>
+<section>
+<h3 id="preuve-2" class="proof">Preuve</h3>
+<p>Si <span class="math inline">\(f\)</span> est absolument intégrable, elle est mesurable; si l’ensemble <span class="math inline">\(E\)</span> est mesurable, sa fonction caractéristique <span class="math inline">\(\chi_E\)</span> est également mesurable. Par conséquent, le produit <span class="math inline">\(f \chi_E\)</span> est mesurable, comme sa valeur absolue <span class="math inline">\(|f \chi_E|\)</span>. Par ailleurs, comme <span class="math inline">\(|\chi_E| \leq 1\)</span>, on a <span class="math inline">\(-|f| \leq f\chi_E \leq |f|\)</span> et donc <span class="math inline">\(-|f| \leq |f\chi_E| \leq |f|\)</span>. Par le critère d’intégrabilité dominée, <span class="math inline">\(f \chi_E\)</span> est (absolument) intégrable.</p>
+<p>Réciproquement, supposons <span class="math inline">\(f \chi_E\)</span> intégrable pour tout ensemble mesurable <span class="math inline">\(E\)</span>. En prenant <span class="math inline">\(E = \mathbb{R}\)</span>, on constate que <span class="math inline">\(f\)</span> est intégrable, et donc mesurable. Notons <span class="math inline">\(E_+ = \{x \in \mathbb{R} \, | \, f(x) &gt; 0 \}\)</span> et <span class="math inline">\(E_- = \{x \in \mathbb{R} \, | \, f(x) &lt; 0 \}\)</span>; ces deux ensembles sont mesurables comme images réciproques d’ouverts par une fonction mesurable. La fonction <span class="math inline">\(|f|\)</span> satisfaisant <span class="math display">\[
+|f| = \chi_{E_+} f - \chi_{E_-} f,
+\]</span> elle est intégrable comme somme de fonctions intégrables. La fonction <span class="math inline">\(f\)</span> est donc absolument intégrable.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+</section>
+<section>
+<h1 id="exercices">Exercices</h1>
+<section>
+<h2 id="ensembles-de-longueur-finie">Ensembles de longueur finie</h2>
+<p>Soit <span class="math inline">\(E\)</span> un ensemble mesurable de <span class="math inline">\(\mathbb{R}\)</span> pour lequel il existe une constante <span class="math inline">\(L\geq 0\)</span> (finie) telle que pour tout intervalle compact <span class="math inline">\([a, b]\)</span>, on ait <span class="math display">\[
+\int_{[a, b]} \chi_E(t) \, dt \leq L.
+\]</span> Montrer que <span class="math inline">\(E\)</span> est de longueur finie et que <span class="math inline">\(\ell(E) \leq L\)</span>.</p>
+<section>
+<h3 id="réponse">Réponse</h3>
+<p>La suite des fonctions <span class="math inline">\(f_k:\mathbb{R} \to \mathbb{R}\)</span> définie par <span class="math display">\[
+f_k(t) = \left|
+\begin{array}{rl}
+\chi_E(t) &amp; \mbox{si } \, t \in [-k, k], \\
+0         &amp; \mbox{sinon.}
+\end{array}
+\right.
+\]</span> est croissante, de limite simple <span class="math inline">\(\chi_E\)</span>. A tout rang <span class="math inline">\(k\)</span>, on a <span class="math display">\[
+\int_{\mathbb{R}} f_k(t) \, dt 
+=
+\int_{[-k, k]} \chi_E(t) \, dt
+\leq L,
+\]</span> donc <span class="math display">\[
+\sup_k \int_{\mathbb{R}} f_k(t) \, dt 
+\leq 
+L &lt; +\infty. 
+\]</span> Le théorème de convergence monotone nous garantit l’intégrabilité de <span class="math inline">\(\chi_E\)</span> – c’est-à-dire le fait que <span class="math inline">\(E\)</span> est de longueur finie – et fournit <span class="math display">\[
+\ell(E) = \int_{\mathbb{R}} \chi_E(t) \, dt = 
+\lim_{k\to +\infty} \int_{\mathbb{R}} f_k(t) \, dt
+\leq L.
+\]</span></p>
+</section>
+</section>
+<section>
+<h2 id="intégrabilité-locale">Intégrabilité locale</h2>
+<p>Une fonction <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> est localement intégrable si pour tout point <span class="math inline">\(x \in \mathbb{R}\)</span>, il existe un <span class="math inline">\(\varepsilon &gt; 0\)</span> tel que la fonction <span class="math inline">\(f\)</span> soit intégrable sur <span class="math inline">\([x-\varepsilon, x+\varepsilon]\)</span>.</p>
+<ol start="0" type="1">
+<li><p>Montrer que <span class="math inline">\(f\)</span> est localement intégrable si et seulement si elle est intégrable sur tout intervalle fermé et borné.</p></li>
+<li><p>Montrer que toute fonction localement intégrable est mesurable.</p></li>
+<li><p>La réciproque est-elle vraie ?</p></li>
+</ol>
+<section>
+<h3 id="réponses">Réponses</h3>
+<ol start="0" type="1">
+<li><p><strong>TODO</strong></p></li>
+<li><p><strong>TODO</strong></p></li>
+<li><p><strong>TODO</strong></p></li>
+</ol>
+</section>
+</section>
+<section>
+<h2 id="fonctions-mesurables-1">Fonctions Mesurables</h2>
+<p>Montrer qu’une fonction <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> est mesurable si et seulement si pour tout nombre réel <span class="math inline">\(a\)</span>, l’ensemble <span class="math display">\[
+f^{-1}(\left]a, +\infty\right[) = \{x \in \mathbb{R} \, | \, a &lt; f(x)\}
+\]</span> est mesurable.</p>
+<section>
+<h3 id="réponse-1">Réponse</h3>
+<p>Compte tenu du <a href="#images-réciproques-des-fonctions-mesurables">critère de l’image réciproque</a>, comme tous les ensembles <span class="math inline">\(\left]a, +\infty\right[\)</span> sont ouverts, le critère ci-dessus est bien vérifié pour toute fonction mesurable.</p>
+<p>Montrons désormais la réciproque: supposons le critère ci-dessus vérifié et montrons que le <a href="#images-réciproques-des-fonctions-mesurables">critère de l’image réciproque</a> l’est également.</p>
+<p>Soit <span class="math inline">\(U\)</span> un ouvert de <span class="math inline">\(\mathbb{R}\)</span>; l’ensemble <span class="math inline">\(U\)</span> peut être décomposé comme union d’un nombre dénombrables d’intervalles ouverts bornés <span class="math inline">\(I_k\)</span> de <span class="math inline">\(\mathbb{R}\)</span>. Par conséquent, comme <span class="math display">\[
+f^{-1}(U) = f^{-1} \left(\cup_k I_k \right) = \bigcup_{k} f^{-1}(I_k),
+\]</span> il nous suffit de montrer que l’image réciproque de tout intervalle ouvert borné <span class="math inline">\(\left]a, b\right[\)</span> par <span class="math inline">\(f\)</span> est mesurable, pour conclure que <span class="math inline">\(f^{-1}(U)\)</span> est mesurable, comme union dénombrable d’ensembles mesurables.</p>
+<p>Or, un point <span class="math inline">\(x\)</span> vérifie <span class="math inline">\(a &lt; f(x) &lt; b\)</span> si et seulement il vérifie <span class="math inline">\(a &lt; f(x)\)</span> et ne vérifie <span class="math inline">\(b-2^{-k} &lt; f(x)\)</span> pour aucun entier <span class="math inline">\(k\)</span>, ce qui se traduit par la relation ensembliste <span class="math display">\[
+f^{-1}(\left]a, b\right[) 
+= 
+f^{-1}(\left]a, +\infty \right[) 
+\cap 
+\left(\mathbb{R} \setminus \bigcup_{k=0}^{+\infty} f^{-1}(\left]b -2^{-k}, +\infty \right[)\right).
+\]</span> Les images réciproques au second membre sont mesurables par hypothèse, et sont combinées par union dénombrable, complément relatif et union finie par conséquent <span class="math inline">\(f^{-1}(\left]a, b\right[)\)</span> est également mesurable.</p>
+</section>
+</section>
+<section>
+<h2 id="fonctions-boréliennes">Fonctions Boréliennes</h2>
+<p>MMmm splitter, cas fct numériques et variantes “plus faibles” d’un coté et fct Boréliennes et mesurabilité de l’autre (avec appli qui revisite au passage la composition, en affaiblissant l’hypothèse de continuité). Au passage, “jouer” avec les fcts Boréliennes ? Mq elles sont aussi mesurables ? Question: peut-être exhiber un exemple simple de compo de fct Lebesgue mesurables qui ne soit pas mesurable?</p>
+</section>
+<section>
+<h2 id="composition-par-une-fonction-lipschitzienne">Composition par une fonction lipschitzienne</h2>
+<p>Soit <span class="math inline">\(f:[0,1] \to \mathbb{R}\)</span> et <span class="math inline">\(g:\mathbb{R} \to \mathbb{R}\)</span>. On suppose que <span class="math inline">\(g\)</span> est nulle en <span class="math inline">\(0\)</span> et lipschitzienne, c’est-à-dire qu’il existe un <span class="math inline">\(K\geq0\)</span> tel que pour toute paire de réels <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> on ait <span class="math inline">\(|g(x) - g(y)| \leq K |x - y|\)</span>.</p>
+<ol type="1">
+<li><p>Si <span class="math inline">\(f\)</span> est mesurable est-ce que <span class="math inline">\(g \circ f\)</span> est mesurable ?</p></li>
+<li><p>Si <span class="math inline">\(f\)</span> est intégrable, est-ce que <span class="math inline">\(g \circ f\)</span> est intégrable ?</p></li>
+<li><p>Si <span class="math inline">\(f\)</span> est absolument intégrable, est-ce que <span class="math inline">\(g \circ f\)</span> est absolument intégrable ?</p></li>
+</ol>
+<section>
+<h3 id="réponses-1">Réponses</h3>
+<ol type="1">
+<li><p>Oui, car toute fonction lipschitzienne est continue; <span class="math inline">\(g \circ f\)</span> est donc mesurable comme composée d’une fonction mesurable et d’une fonction continue.</p></li>
+<li><p>Pas nécessairement; si <span class="math inline">\(f\)</span> est une fonction conditionnellement intégrable sur <span class="math inline">\([0,1]\)</span>, la fonction <span class="math inline">\(|f|\)</span> n’est pas intégrable; Or, l’application <span class="math inline">\(t \mapsto |t|\)</span> est lipschitzienne (avec <span class="math inline">\(K=1\)</span>).</p></li>
+<li><p>Oui. D’une part, <span class="math inline">\(f\)</span> étant absolument intégrable, elle est mesurable et donc par la question 1., la composée <span class="math inline">\(g \circ f\)</span> est mesurable. D’autre part, pour tout <span class="math inline">\(x \in [0,1]\)</span>, on a <span class="math display">\[
+|g \circ f(x) - g \circ f(0)| \leq K |f(x) - f(0)|
+\]</span> et donc <span class="math display">\[
+|g \circ f(x)| \leq K |f(x)| + (K |f(0)| + |g \circ f(0)|)
+\]</span> Le membre de droite de cette inégalité est une fonction (absolument) intégrable sur <span class="math inline">\([0, 1]\)</span>, donc par le critère d’intégrabilité dominée, la fonction <span class="math inline">\(g \circ f\)</span> est (absolument) intégrable.</p></li>
+</ol>
+</section>
+</section>
+<section>
+<h2 id="théorème-intégral-de-cauchy">Théorème Intégral de Cauchy</h2>
+<p>(en fait version “light”, centrée, version “formule de la moyenne”. Considérer le cas général ? Ou se contenter de celui-ci ?)</p>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^2 \to \mathbb{R}^2\)</span> une fonction définie sur un ensemble <span class="math inline">\(U\)</span> ouvert et supposée continûment différentiable. On considère <span class="math inline">\(c \in U\)</span> et <span class="math inline">\(R &gt; 0\)</span> tel que le disque fermé centré en <span class="math inline">\(c\)</span> et de rayon <span class="math inline">\(R\)</span> soit inclus dans <span class="math inline">\(U\)</span>; on définit alors la grandeur <span class="math inline">\(I(r)\)</span> pour tout <span class="math inline">\(r \in [0, R] \to \mathbb{R}^2\)</span> comme la valeur moyenne du vecteur <span class="math inline">\(f\)</span> sur le cercle de rayon <span class="math inline">\(c\)</span> et de rayon <span class="math inline">\(r\)</span>: <span class="math display">\[
+I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
+\, \mbox{ où } \, 
+z_{\alpha, r} = c + r (\cos \alpha, \sin \alpha).
+\]</span></p>
+<ol type="1">
+<li><p>Que vaut <span class="math inline">\(I(0)\)</span> ?</p></li>
+<li><p>Montrer que l’application <span class="math inline">\(r \in [0, R] \mapsto I(r)\)</span> est dérivable et calculer <span class="math inline">\(I&#39;(r)\)</span> pour tout <span class="math inline">\(r \in [0, R]\)</span>.</p></li>
+<li><p>On suppose désormais que <span class="math inline">\(f\)</span> vérifie les conditions de Cauchy-Riemann en tout point <span class="math inline">\((x, y)\)</span> de <span class="math inline">\(U\)</span>, c’est-à-dire que <span class="math display">\[
+\partial_y f(x, y) = R(\pi/2) \cdot \partial_x f(x, y)
+\]</span> où <span class="math inline">\(R(\alpha)\)</span> désigne la rotation d’angle <span class="math inline">\(\alpha\)</span> centrée sur l’origine. Simplifier l’expression de <span class="math inline">\(I&#39;(r)\)</span> et conclure. Indication: on pourra évaluer <span class="math inline">\(\partial_{\alpha} (f(z_{\alpha, r}))\)</span>.</p></li>
+</ol>
+<section>
+<h3 id="réponses-2">Réponses</h3>
+<ol type="1">
+<li><p>On a <span class="math display">\[
+I(0) = \frac{1}{2\pi}\int_0^{2\pi} f(c_1, c_2) \, d\alpha = f(c_1, c_2) = f(c).
+\]</span></p></li>
+<li><p>Formons le taux d’accroissement de <span class="math inline">\(I\)</span> en <span class="math inline">\(r\)</span>, pour une variation de l’argument <span class="math inline">\(h\)</span> telle que <span class="math inline">\(r + h \in [0, R]\)</span>. On a <span class="math display">\[
+\begin{split}
+\frac{I(r+h) - I(r)}{h}
+&amp;=
+\frac{1}{2\pi h}
+\left(
+\int_0^{2\pi} f(c_1 + (r+h) \cos \alpha, c_2 + (r+h) \sin \alpha) \, d\alpha\right. \\
+&amp;\phantom{=} \left. - \int_0^{2\pi} f(c_1 + r \cos \alpha, c_2 + r \sin \alpha) \, d\alpha \right) \\
+&amp;= \frac{1}{2\pi}\int_0^{2\pi} 
+\frac{f(z_{r+h, \alpha}) - f(z_{\alpha, r})}{h} \, d\alpha.
+\end{split}
+\]</span> La fonction <span class="math inline">\(r \mapsto f(z_{\alpha, r})\)</span> étant différentiable pour tout <span class="math inline">\(\alpha\)</span>, on a <span class="math display">\[
+\begin{split}
+\lim_{h \to 0} \frac{f(z_{r+h, \alpha}) - f(z_{\alpha, r})}{h}
+&amp;= \frac{d}{dr} f(z_{\alpha, r}) \\ 
+&amp;= df(z_{r, \alpha}) \cdot (\cos \alpha, \sin \alpha) \\
+&amp;= \partial_x f (z_{r, \alpha}) \cos \alpha 
++ \partial_y f (z_{r, \alpha}) \sin \alpha.
+\end{split}.
+\]</span> De plus, par le théorème des accroissements finis, <span class="math display">\[
+\left\| \frac{g_{\alpha}(r+h) - g_{\alpha}(r)}{h} \right\|
+\leq
+\sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|
+\]</span> où le sup du membre de droite est bien fini puisque <span class="math inline">\(dg_{\alpha}(r)/dr\)</span> est une fonction continue du couple <span class="math inline">\((\alpha, r)\)</span> qui appartient à l’ensemble <span class="math inline">\([0, 2\pi] \times [0, R]\)</span>. Par conséquent, pour toute suite <span class="math inline">\(h_n\)</span> tendant vers <span class="math inline">\(0\)</span> et telle que <span class="math inline">\(r+h_n \in [0, R]\)</span>, la suite des <span class="math display">\[
+\frac{g_{\alpha}(r+h_n) - g_{\alpha}(r)}{h_n}
+\]</span> associée converge simplement vers <span class="math display">\[
+\partial_x f (z_{r, \alpha}) \cos \alpha 
++ \partial_y f (z_{r, \alpha}) \sin \alpha
+\]</span> et est dominée en norme par la fonction absolument intégrable (constante) <span class="math display">\[
+\alpha \in [0, 2\pi] \mapsto \sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|.
+\]</span> Par conséquent, par le théorème de convergence dominée, la dérivée de <span class="math inline">\(I\)</span> est définie en tout point <span class="math inline">\(r\)</span> et est donnée par <span class="math display">\[
+I&#39;(r)
+= \frac{1}{2\pi}\int_{0}^{2\pi} 
+  \left(
+  \partial_x f (z_{r, \alpha}) \cos \alpha 
+  + \partial_y f (z_{r, \alpha}) \sin \alpha
+  \right) \, d\alpha.
+\]</span></p></li>
+<li><p>Evaluons la dérivée par rapport à <span class="math inline">\(\alpha\)</span> de <span class="math inline">\(f(z_{\alpha, r})\)</span>. On a <span class="math display">\[
+\begin{split}
+\partial_{\alpha} (f(z_{\alpha, r}))
+&amp;=
+\partial_{\alpha} (f(c_1 + r \cos \alpha, c_2 + r \sin \alpha)) \\
+&amp;= \partial_x f(z_{\alpha, r}) (- r\sin \alpha)
++ \partial_y f(z_{\alpha, r}) (r\cos \alpha).
+\end{split}
+\]</span> Comme <span class="math inline">\(\partial_y f(z_{\alpha, r}) = R(\pi/2) \partial_x f(z_{\alpha, r})\)</span>, on en déduit que <span class="math display">\[
+\begin{split}
+\partial_{\alpha} (f(z_{\alpha, r}))
+&amp;= r(- \sin \alpha \times I + \cos \alpha  \times R(\pi/2)) \partial_x f(z_{\alpha, r}) \\
+&amp; = r R(\pi/2 + \alpha) \partial_x f(z_{\alpha, r}) \\
+&amp; = r R(\pi/2) R(\alpha) \partial_x f(z_{\alpha, r})
+\end{split}
+\]</span> D’un autre coté, l’intégrande dans l’expression de <span class="math inline">\(I&#39;(r)\)</span> s’écrit <span class="math display">\[
+\begin{split}
+\partial_x f (z_{r, \alpha}) \cos \alpha 
++ 
+\partial_y f (z_{r, \alpha}) \sin \alpha
+&amp;= 
+(\cos \alpha \times I + \sin \alpha \times R(\pi/2)) \partial_x f(z_{r, \alpha}) \\
+&amp;=
+R(\alpha) \partial_x f(z_{r, \alpha}).
+\end{split}
+\]</span> Par conséquent lorsque <span class="math inline">\(r\)</span> est non nul <span class="math display">\[
+\partial_x f (z_{r, \alpha}) \cos \alpha 
++ 
+\partial_y f (z_{r, \alpha}) \sin \alpha
+= \frac{1}{r} R(-\pi/2) \partial_{\alpha} (f(z_{\alpha, r}))
+\]</span> et donc <span class="math display">\[
+\begin{split}
+I&#39;(r)
+&amp;= \frac{1}{2\pi}\int_{0}^{2\pi} 
+  \left(
+  \partial_x f (z_{r, \alpha}) \cos \alpha 
+  + \partial_y f (z_{r, \alpha}) \sin \alpha
+  \right) \, d\alpha \\
+  &amp;= \frac{1}{2\pi r} 
+  \left(
+  \int_0^{2\pi}
+  R(-\pi/2)
+  \partial_{\alpha} (f(z_{\alpha, r}))
+  \, d\alpha \right) \\
+&amp;= \frac{1}{2\pi r} 
+   R(-\pi/2)
+  \left(
+  \int_0^{2\pi} \partial_{\alpha} (f(z_{\alpha, r}))
+  \, d\alpha \right)  \\
+&amp; = \frac{1}{2\pi r} 
+   R(-\pi/2)
+   \left[f(z_{\alpha, r})\right]_0^{2\pi} \\
+&amp; = 0
+  \end{split}.
+\]</span> Par ailleurs, un calcul direct montre que <span class="math inline">\(I&#39;(0) = 0\)</span>. La dérivée de <span class="math inline">\(I\)</span> est identiquement nulle. On en conclut que pour tout <span class="math inline">\(r\)</span>, <span class="math display">\[
+I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
+= I(0) = f(c).
+\]</span></p></li>
+</ol>
+</section>
+</section>
+<section>
+<h2 id="mesurabilité-de-f">Mesurabilité de <span class="math inline">\(\|f\|\)</span></h2>
+<p><strong>TODO</strong></p>
+</section>
+<section>
+<h2 id="intégrabilité">Intégrabilité</h2>
+<p>Soient <span class="math inline">\(f:\mathbb{R} \to \mathbb{R}\)</span> et <span class="math inline">\(g:\mathbb{R} \to \mathbb{R}\)</span> deux fonctions mesurables dont les carrés sont intégrables. Montrer que le produit <span class="math inline">\(fg\)</span> est (absolument) intégrable.</p>
+<section>
+<h3 id="réponse-2">Réponse</h3>
+<p>Les produits <span class="math inline">\(fg\)</span> et <span class="math inline">\(|fg|\)</span> sont mesurables comme produit de fonctions mesurables. De plus, pour tout <span class="math inline">\(x \in \mathbb{R}\)</span>, comme <span class="math inline">\((|f(x)| + |g(x)|)^2 \geq 0,\)</span> on a <span class="math display">\[
+0 \leq |fg|(x) \leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
+\]</span> et donc <span class="math display">\[
+- \frac{1}{2} f(x)^2 - \frac{1}{2} g(x)^2
+\leq fg(x)
+\leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
+\]</span> Par le critère d’intégrabilité dominée, <span class="math inline">\(fg\)</span> et <span class="math inline">\(|fg|\)</span> sont donc intégrables.</p>
+</section>
+</section>
+</section>
+<section>
+<h1 id="annexe">Annexe</h1>
+<section>
+<h3 id="une-intégrale-indéterminée-est-dérivable-presque-partout" class="theorem">Une intégrale indéterminée est dérivable presque partout</h3>
+<p>Soit <span class="math inline">\(I\)</span> un intervalle fermé de <span class="math inline">\(\mathbb{R}\)</span>, <span class="math inline">\(f: I \to \mathbb{R}\)</span> une fonction intégrable et un point <span class="math inline">\(a\)</span> de <span class="math inline">\(I\)</span>. La dérivée de la fonction <span class="math display">\[
+F: x\in I \mapsto \int_a^x f(t) \, dt
+\]</span> existe et est égale à <span class="math inline">\(f\)</span> presque partout.</p>
+</section>
+<section>
+<h3 id="démonstration-15" class="proof">Démonstration</h3>
+<p>Voir <span class="citation" data-cites="Swa01">(Swartz <a href="#ref-Swa01">2001</a>, 135–36)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+</section>
+<section>
+<h1 id="références">Références</h1>
+</section>
+<div id="refs" class="references">
+<div id="ref-Dem11">
+<p>Demailly, Jean-Pierre. 2011. <em>Théorie élémentaire de l’intégration : l’intégrale de Kurzweil-Henstock</em>. Université Joseph Fourier Grenoble I. <a href="http://www-fourier.ujf-grenoble.fr/~demailly/books.html">http://www-fourier.ujf-grenoble.fr/~demailly/books.html</a>.</p>
+</div>
+<div id="ref-HL89">
+<p>Hu, Shouchuan, and V. Lakshmikantham. 1989. “Some Remarks on Generalized Riemann Integral.” <em>Journal of Mathematical Analysis and Applications</em> 137 (2): 515–27.</p>
+</div>
+<div id="ref-PS17">
+<p>Ponce, Augusto C., and Jean Van Schaftingen. 2017. “Gauge-Measurable Functions.” <a href="https://doi.org/10.13137/2464-8728/16208">https://doi.org/10.13137/2464-8728/16208</a>.</p>
+</div>
+<div id="ref-Sch96">
+<p>Schechter, E. 1996. <em>Handbook of Analysis and Its Foundations</em>. Elsevier Science. <a href="https://books.google.fr/books?id=eqUv3Bcd56EC">https://books.google.fr/books?id=eqUv3Bcd56EC</a>.</p>
+</div>
+<div id="ref-Swa01">
+<p>Swartz, Charles. 2001. <em>Introduction to Gauge Integrals.</em> Singapore: World Scientific.</p>
+</div>
+</div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Oui il existe des ensembles dont on ne pas pas définir raisonnablement la longueur, sauf à accepter un concept de longueur aux propriétés très étranges. Non, cette situation ne résulte pas de la méthode de définition de la longueur par l’intégrale; c’est au contraire une limitation intrinsèque de la théorie de la mesure que nous étudierons plus en détail par la suite. Et non, il n’existe aucun construction “facile” (constructive, explicite) d’ensemble qui ne soit pas mesurable (et c’est une chose que l’on peut prouver).<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>fini ou bien strictement dénombrable, c’est-à-dire en bijection avec <span class="math inline">\(\mathbb{N}\)</span>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>cette formulation est intéressante. C’est un peu moins fort que le lemme de Henstock stricto sensu, mais ça peut peut-être suffire à tous nos besoins: le lemme de Henstock permet de revisiter la définition d’intégrabilité (de façon équivalente) en rajoutant à la définition le qualificatif “(totale ou partielle)” à la subdivision (modulo aussi un mini-patch dans la formule inégalité ou l’on n’intègre plus nécessairement sur tout <span class="math inline">\([a, b]\)</span>, mais on somme sur les confettis … Mmmm; on aurait peut-être intérêt à écrire ça comme <span class="math display">\[
+\int_{\cup_i I_i} f(t) \, dt := \sum_i \int_{I_i} f(t) \, dt
+\]</span> en définissant l’intégrale sur une union (finie) d’intervalles qui sont sans chevauchement). Et c’est un raccourci très intéressant pour la présentation orale. Il faudrait voir si ce “corollaire” du lemme de Henstock couvre l’ensemble des usage que l’on a en aval …<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>A tel point que s’il l’on peut prouver l’existence d’une fonction non-mesurable, sa “construction explicite” est impossible. Les fonctions non-mesurables font partie des objets “intangibles” (cf. <span class="citation" data-cites="Sch96">Schechter (<a href="#ref-Sch96">1996</a>)</span>) dont l’existence est prédite par la théorie mais que l’on ne rencontre jamais par hasard …<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>En effet, <span class="math display">\[
+\left| \frac{g(h) - g(0)}{h} \right| \leq \frac{|h|}{2} \to 0 \, \mbox{ quand } \, h \to 0.
+\]</span><a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>La fonction <span class="math inline">\(h\)</span> est mesurable comme limite des suite des fonctions continues <span class="math inline">\(h_k\)</span> – et donc intégrables – définies par <span class="math inline">\(h_k(x) = 0\)</span> si <span class="math inline">\(x \in [0, 1/\sqrt{2k\pi}]\)</span> et <span class="math inline">\(h_k(x) = h(x)\)</span> sinon. De la même façon, <span class="math inline">\(|h|\)</span> est limite des fonctions intégrables <span class="math inline">\(|h_k|\)</span>. Par ailleurs, <span class="math inline">\(h\)</span> comme <span class="math inline">\(|h|\)</span> sont encadrées par les deux fonctions intégrables <span class="math inline">\(x\in [0,1] \mapsto -x\)</span> et <span class="math inline">\(x\in [0,1] \mapsto x\)</span>.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+</body>
+</html>

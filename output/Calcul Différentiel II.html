@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Calcul Différentiel II</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Calcul Différentiel II</h1>
+</header>
+<section>
+<h1 id="théorème-des-fonctions-implicites">Théorème des Fonctions Implicites</h1>
+<section>
+<h2 id="objectifs" class="meta">Objectifs</h2>
+<ul>
+<li><p>comprendre la portée du résultat: permettre la résolution <em>locale</em> d’équations non-linéaires paramétrique, autour d’une solution connue de référence.</p></li>
+<li><p>savoir mettre en oeuvre la version “inversion locale” du théorème des fonction implicites pour manipuler des changements de variables.</p></li>
+<li><p>connaître et savoir mettre en oeuvre dans les deux cas le ressort de la preuve: un théorème de point fixe qui exploite la différentielle.</p></li>
+<li><p>applications ? Géométriques d’abord ? Au changements de variables de la physique (ex: <a href="https://fr.m.wikipedia.org/wiki/Gaz_parfait">thermo</a>). Etudier un scope raisonnable. Cf Salamon sur scope géom diff ?</p></li>
+</ul>
+<section>
+<h3 id="todo" class="meta">TODO</h3>
+<ul>
+<li><p>Différentielle partielle nécessaire en amont, pas que dérivée partielle.</p></li>
+<li><p>Donner un jeu d’hypothèse “non minimal” pour le théorème des fonctions implicite dans le but de simplifier le résultat. Par exemple, supposer au minimum l’existence de la différentielle dans un voisiange du point de référence ? Ou carrément son existence et sa continuité ? Et ajouter en remarque que l’on peut nuancer / décomposer le résultats en affinant les hypothèses, qui ne sont pas minimales ? En particulier, cela suffit pour énoncer le théorème d’inversion locale, donc go, simplifions.</p></li>
+<li><p>Nota: preuve IFT nécessite point fixe <em>avec paramètre</em>. Pas nécessairement si l’on se place directement dans les hypothèses de différentiabilité continue ?</p></li>
+</ul>
+</section>
+<section>
+<h3 id="todo-1">TODO</h3>
+<p>Exploiter “THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS” (Oswaldo Rio Branco de Oliveira)</p>
+</section>
+<section>
+<h3 id="théorème-des-fonctions-implicites-1" class="theorem">Théorème des Fonctions Implicites</h3>
+<p>Soit <span class="math inline">\(f\)</span> une fonction définie sur un ouvert <span class="math inline">\(W\)</span> de <span class="math inline">\(\mathbb{R}^n \times \mathbb{R}^m\)</span>: <span class="math display">\[
+f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
+\]</span> qui soit continûment différentiable et telle que la différentielle partielle <span class="math inline">\(\partial_y f\)</span> soit inversible en tout point de <span class="math inline">\(W\)</span>. Si le point <span class="math inline">\((x_0, y_0)\)</span> de <span class="math inline">\(W\)</span> vérifie <span class="math inline">\(f(x_0, y_0)= 0\)</span>, alors il existe des voisinages ouverts <span class="math inline">\(U\)</span> de <span class="math inline">\(x_0\)</span> et <span class="math inline">\(V\)</span> de <span class="math inline">\(y_0\)</span> tels que <span class="math inline">\(U \times V \subset W\)</span> et une fonction implicite <span class="math inline">\(\psi: U \to \mathbb{R}^m\)</span>, continûment différentiable, telle que pour tous <span class="math inline">\(x \in U\)</span> et <span class="math inline">\(y \in V\)</span>, <span class="math display">\[
+f(x, y) = 0
+\; \Leftrightarrow \; 
+y = \psi(x).
+\]</span> De plus, la différentielle de <span class="math inline">\(\psi\)</span> est donnée pour tout <span class="math inline">\(x \in U\)</span> par <span class="math display">\[
+d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
+\]</span></p>
+</section>
+<section>
+<h3 id="extensions" class="note">Extensions</h3>
+<p>Il est possible d’affaiblir l’hypothèse concernant <span class="math inline">\(\partial_y f\)</span> en supposant uniquement celle-ci inversible en <span class="math inline">\((x_0, y_0)\)</span> au lieu d’inversible sur tout <span class="math inline">\(W\)</span>. En effet, l’application qui a une application linéaire <span class="math inline">\(A: \mathbb{R}^m \to \mathbb{R}^m\)</span> associe son inverse <span class="math inline">\(A^{-1}\)</span> est définie sur un ouvert et continue<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Comme l’application linéaire <span class="math inline">\(\partial_y f(x_0, y_0)\)</span> est inversible et que l’application <span class="math inline">\(\partial_y f\)</span> est continue, il existe donc un voisinage ouvert de <span class="math inline">\((x_0, y_0)\)</span> contenu dans <span class="math inline">\(W\)</span> où <span class="math inline">\(\partial_y f\)</span> est inversible. Nous retrouvons donc les hypothèses initiales du théorème, à ceci près qu’elle sont satisfaites dans un voisinage de <span class="math inline">\((x_0, y_0)\)</span> qui peut être plus petit que l’ouvert initial <span class="math inline">\(W\)</span>.</p>
+<p><strong>TODO:</strong> ref au résultat de Tao sur math overflow où l’on ne dispose que de la différentiabilité (pas du caractère continûment différentiable).</p>
+<p><strong>TODO:</strong> évoquer cas Lipschitz ?</p>
+</section>
+<section>
+<h3 id="démonstration" class="proof">Démonstration</h3>
+<p>La partie la plus technique de la démonstration concerne l’existence et la différentiabilité de la fonction implicite <span class="math inline">\(\psi\)</span>. Mais si l’on admet temporairement ces résultats, établir l’expression de <span class="math inline">\(d\psi\)</span> est relativement simple. En effet, l’égalité <span class="math inline">\(f(x, \psi(x)) = 0\)</span> étant satisfaite identiquement sur <span class="math inline">\(U\)</span> et la fonction <span class="math inline">\(x \in U \mapsto f(x, \psi(x))\)</span> étant différentiable comme composée de fonctions différentiables, la règle de dérivation en chaîne fournit en tout point de <span class="math inline">\(U\)</span>: <span class="math display">\[
+\partial_x f(x, \psi(x)) + \partial_y f(x, \psi(x)) \cdot d\psi(x) = 0.
+\]</span> On en déduit donc que <span class="math display">\[
+d\psi(x) = - [\partial_y f(x, \psi(x))]^{-1} \cdot \partial_x f(x, \psi(x)).
+\]</span></p>
+<p><strong>TODO:</strong> ici aussi, nécessaire d’invoquer la continuité de l’inversion pour conclure quand au caractère <span class="math inline">\(C^1\)</span> de la fonction implicite. Factoriser ce résultat avec la remarque précédente ?</p>
+<p>Pour établir l’existence de la fonction implicite <span class="math inline">\(\psi\)</span>, nous allons pour une valeur <span class="math inline">\(x\)</span> suffisamment proche de <span class="math inline">\(x_0\)</span> construire une suite convergente d’approximations <span class="math inline">\(y_k\)</span>, proches de <span class="math inline">\(y_0\)</span> dont la limite <span class="math inline">\(y\)</span> sera solution de <span class="math inline">\(f(x, y)=0\)</span>.</p>
+<p>L’idée de cette construction repose sur l’analyse suivante: si nous partons d’une valeur <span class="math inline">\(y_k\)</span> proche de <span class="math inline">\(y_0\)</span> (a priori telle que <span class="math inline">\(f(x, y_k) \neq 0\)</span>) et que nous recherchons une valeur <span class="math inline">\(y_{k+1}\)</span> proche, qui soit une (meilleure) solution approchée de <span class="math inline">\(f(x, y) = 0\)</span>, comme au premier ordre <span class="math display">\[
+f(x, y_{k+1}) \approx f(x, y_k) + \partial_y f(x, y_k) \cdot (y_{k+1} - y_k),
+\]</span> nous en déduisons que la valeur <span class="math inline">\(y_{k+1}\)</span> définie par <span class="math display">\[
+y_{k+1} := y_k - (\partial_y f(x, y_k))^{-1} \cdot f(x, y_k)
+\]</span> vérifie <span class="math inline">\(f(x, y_{k+1}) \approx 0\)</span>. On peut espérer que répéter ce processus en partant de <span class="math inline">\(y_0\)</span> détermine une suite convergente dont la limite soit une solution exacte <span class="math inline">\(y\)</span> de <span class="math inline">\(f(x, y) = 0\)</span>.</p>
+<p>Le procédé décrit ci-dessus constitue la méthode de Newton de recherche de zéros. Nous allons prouver que cette heuristique est ici justifiée, à une modification mineure près: nous allons lui substituer la méthode de Newton modifiée, qui n’utilise pas <span class="math inline">\(\partial_y f(x, y_k)\)</span> mais la valeur constante <span class="math inline">\(\partial_y f(x_0, y_0)\)</span>, c’est-à-dire qui définit la suite <span class="math display">\[
+y_{k+1} := y_k - Q^{-1} \cdot f(x, y_k) \, \mbox{ où } \, Q = \partial_y f(x_0, y_0).
+\]</span></p>
+<p>… <strong>TODO:</strong> reformuler sous forme de point fixe.</p>
+<p><span class="math display">\[
+\phi_x(y) = y - Q^{-1} \cdot f(x, y)
+\]</span></p>
+<p>…</p>
+<p>La fonction <span class="math inline">\(\phi_x\)</span> est différentiable sur l’ensemble <span class="math inline">\(\{y \in \mathbb{R}^m \, | \, (x, y) \in W\}\)</span> et sa différentielle est donnée par <span class="math display">\[
+d\phi_x(y) =  I - Q^{-1} \cdot \partial_{y} f(x, y)
+\]</span> où <span class="math inline">\(I\)</span> désigne la fonction identité. En écrivant que <span class="math inline">\(\partial_y f(x, y)\)</span> est la somme de <span class="math inline">\(\partial_y f(x_0, y_0)\)</span> et de <span class="math inline">\(\partial_y f(x, y) - \partial_y f(x_0, y_0)\)</span>, on obtient <span class="math display">\[
+\begin{split}
+\|d \phi_x(y)\| 
+&amp; \leq \|I - Q^{-1} \cdot Q\| + \|Q^{-1} \cdot (\partial_y f(x, y) - Q)\| \\
+&amp; \leq \|Q^{-1}\| \times \|\partial_y f(x, y) - Q\|.
+\end{split}
+\]</span> La fonction <span class="math inline">\(f\)</span> étant supposée de classe <span class="math inline">\(C^1\)</span>, on peut trouver un <span class="math inline">\(r&gt;0\)</span>, tel que tout couple <span class="math inline">\((x, y)\)</span> tel que <span class="math inline">\(\|x - x_0\| \leq r\)</span> et <span class="math inline">\(\|y - y_0\| \leq r\)</span> appartienne à <span class="math inline">\(W\)</span> et vérifie <span class="math inline">\(\|\partial_y f(x, y) - Q\| \leq \kappa \|Q^{-1}\|^{-1}\)</span> avec par exemple <span class="math inline">\(\kappa = 1/2\)</span>, ce qui entraîne <span class="math inline">\(\|d \phi_x(y)\| \leq \kappa\)</span>. Par le théorème des accroissements finis, la restriction de <span class="math inline">\(\phi\)</span> à <span class="math inline">\(\{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}\)</span> (que l’on continuera à noter <span class="math inline">\(\phi_x\)</span>) est <span class="math inline">\(\kappa\)</span>-contractante: <span class="math display">\[
+\|\phi_x(y) - \phi_x(z)\| \leq \kappa \|y - z\|.
+\]</span> Par ailleurs, <span class="math display">\[
+\begin{split}
+\|\phi_x(y) - y_0\| 
+&amp;\leq \|\phi_x(y) - \phi_x(y_0)\|  + \|\phi_{x}(y_0) - \phi_{x_0}(y_0)\|. 
+\end{split}
+\]</span> On a <span class="math display">\[\|\phi_x(y) - \phi_x(y_0)\| \leq \kappa\|y - y_0\| \leq \kappa r.\]</span> De plus, par continuité de <span class="math inline">\(\phi\)</span> en <span class="math inline">\((x_0, y_0)\)</span>, on peut choisir un <span class="math inline">\(r&#39;\)</span> tel que <span class="math inline">\(0 &lt; r&#39; &lt; r\)</span> et tel que si <span class="math inline">\(\|x - x_0\| \leq r&#39;\)</span>, alors <span class="math inline">\(\|\phi_{x}(y_0) - \phi_{x_0}(y_0)\| \leq (1 - \kappa) r\)</span>. Pour de telles valeurs de <span class="math inline">\(x\)</span>, <span class="math display">\[
+\|\phi_x(y) - y_0\| \leq \kappa r +  (1- \kappa) r = r.
+\]</span> L’image de la boule fermée <span class="math inline">\(B = \{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}\)</span> par l’application <span class="math inline">\(\phi_x\)</span> est donc incluse dans <span class="math inline">\(B\)</span>.</p>
+<p><strong>TODO.</strong> conclure existence et unicité (expliciter choix voisinages <span class="math inline">\(U\)</span> et <span class="math inline">\(V\)</span>).</p>
+<p>Pour montrer la différentiabilité de la fonction implicite <span class="math inline">\(\psi\)</span>, il est nécessaire au préalable de montrer sa continuité. Soit <span class="math inline">\(x_1, x_2\)</span> deux points de <span class="math inline">\(V\)</span>; notons <span class="math inline">\(y_1 = \psi(x_1)\)</span> et <span class="math inline">\(y_2 = \psi(x_2)\)</span>. Ces valeurs sont des solutions des équations de point fixe <span class="math display">\[
+y_1 = \phi_{x_1}(y_1) \, \mbox{ et } \, y_2 = \phi_{x_2}(y_2).
+\]</span> En formant la différence de <span class="math inline">\(y_2\)</span> et <span class="math inline">\(y_1\)</span>, on obtient donc <span class="math display">\[
+\begin{split}
+\|y_2 - y_1\| &amp; = \|\phi_{x_2}(y_2) - \phi_{x_1}(y_1)\| \\
+&amp; \leq \|\phi_{x_2}(y_2) - \phi_{x_2}(y_1)\| +
+\|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
+\end{split}
+\]</span> La fonction <span class="math inline">\(\phi_{x_2}\)</span> étant <span class="math inline">\(\kappa\)</span>-contractante, le premier terme du membre de droite de cette inégalité est majoré par <span class="math inline">\(\kappa\|y_2 - y_1\|\)</span>, par conséquent <span class="math display">\[
+\|y_2 - y_1\| \leq \frac{1}{1 - \kappa} \|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
+\]</span> L’application <span class="math inline">\(y \mapsto \phi_{x_1}(y)\)</span> étant continue en <span class="math inline">\(y_1\)</span>, nous pouvons conclure que <span class="math inline">\(y_2\)</span> tend vers <span class="math inline">\(y_1\)</span> quand <span class="math inline">\(x_2\)</span> tend vers <span class="math inline">\(x_1\)</span>; autrement dit: la fonction implicite <span class="math inline">\(\psi\)</span> est continue en <span class="math inline">\(x_1\)</span>.</p>
+<p>Montrons finalement la différentiabilité de <span class="math inline">\(\psi\)</span> en <span class="math inline">\(x_1\)</span>. Pour cela, il suffit d’exploiter la différentiabilité de <span class="math inline">\(f\)</span> en <span class="math inline">\((x_1, y_1)\)</span> où <span class="math inline">\(y_1 = \psi(x_1)\)</span>. Elle fournit l’existence d’une fonction <span class="math inline">\(\varepsilon\)</span> qui soit un <span class="math inline">\(o(1)\)</span> telle que <span class="math display">\[
+\begin{split}
+f(x, y) &amp;= f(x_1, y_1) 
++ \partial_x f(x_1, y_1) \cdot (x - x_1) 
++ \partial_y f(x_1, y_1) \cdot (y - y_1) \\
+&amp; \phantom{=} + \varepsilon((x-x_1, y-y_1)) (\|x-x_1\| + \|y-y_1\|)
+\end{split}
+\]</span> On a par construction <span class="math inline">\(f(x_1, y_1) = 0\)</span>; en prenant <span class="math inline">\(y = \psi(x)\)</span>, on annule également <span class="math inline">\(f(x, y) = 0\)</span>. En notant <span class="math inline">\(P = \partial_x f(x_1, y_1)\)</span> et <span class="math inline">\(Q = \partial_y f(x_1, y_1)\)</span>, on obtient <span class="math display">\[
+\begin{split}
+\psi(x)  &amp;= \psi(x_1) - Q^{-1} \cdot P \cdot (x - x_1) \\
+&amp;\phantom{=} - Q^{-1} \cdot P \cdot \varepsilon((x-x_1, \psi(x)-\psi(x_1)) (\|x-x_1\| + \|\psi(x)-\psi(x_1)\|).
+\end{split}
+\]</span> Nous allons exploiter une première fois cette égalité. Notons tout d’abord que <span class="math display">\[
+\varepsilon_x(x-x_1) := \varepsilon((x-x_1, \psi(x)-\psi(x_1))
+\]</span> est un <span class="math inline">\(o(1)\)</span> du fait de la continuité de <span class="math inline">\(\psi\)</span> en <span class="math inline">\(x_1\)</span>. En choisissant <span class="math inline">\(x\)</span> dans un voisinage suffisamment proche de <span class="math inline">\(x_1\)</span>, on peut donc garantir que ce terme est arbitrairement petit, par exemple, tel que <span class="math display">\[
+\|Q^{-1} \cdot P\| \times \|\varepsilon_x(x-x_1) \| \leq \frac{1}{2},
+\]</span> ce qui permet d’obtenir <span class="math display">\[
+\|\psi(x) - \psi(x_1)\|
+\leq
+\|Q^{-1} P\| \times \|x - x_1\| + \frac{1}{2} \|x - x_1\| + \frac{1}{2} \|\psi(x) - \psi(x_1)\|
+\]</span> et donc <span class="math display">\[
+\|\psi(x) - \psi(x_1)\|
+\leq \alpha \|x - x_1\|
+\, \mbox{ avec } \, \alpha := 2 \|Q^{-1} P\| + 1.
+\]</span> En exploitant une nouvelle fois la même égalité, on peut désormais conclure que <span class="math display">\[
+\|\psi(x) - \psi(x_1) - Q^{-1} \cdot P \cdot (x - x_1)\|
+\leq \|\varepsilon&#39;_x(x-x_1)\| \times \|x - x_1\|.
+\]</span> où la fonction <span class="math inline">\(\varepsilon&#39;_x\)</span> est le <span class="math inline">\(o(1)\)</span> défini par <span class="math display">\[
+\varepsilon&#39;_x(x-x_1) := (1+\alpha)  \times \|Q^{-1} \cdot P\| \times \|\varepsilon_x(x-x_1)\|,
+\]</span> ce qui prouve la différentiabilité de <span class="math inline">\(\psi\)</span> en <span class="math inline">\(x_1\)</span> et conclut la démonstration.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="difféomorphisme" class="definition">Difféomorphisme</h3>
+<p>Une fonction <span class="math inline">\(f: U \subset \mathbb{R}^n \to V \subset \mathbb{R}^n\)</span>, où les ensembles <span class="math inline">\(U\)</span> et <span class="math inline">\(V\)</span> sont ouverts est un <em><span class="math inline">\(C^1\)</span>-difféomorphisme</em> (de <span class="math inline">\(U\)</span> sur <span class="math inline">\(V\)</span>) si <span class="math inline">\(f\)</span> est bijective et que <span class="math inline">\(f\)</span> ainsi que son inverse <span class="math inline">\(f^{-1}\)</span> sont continûment différentiables.</p>
+</section>
+<section>
+<h3 id="inverse-de-la-différentielle" class="theorem">Inverse de la Différentielle</h3>
+<p>Si <span class="math inline">\(f: U \to V\)</span> est un <span class="math inline">\(C^1\)</span>-difféomorphisme, sa différentielle <span class="math inline">\(df\)</span> est inversible en tout point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span> et <span class="math display">\[
+(df(x))^{-1} = df^{-1}(y) \, \mbox{ où } \, y = f(x).
+\]</span></p>
+</section>
+<section>
+<h3 id="démonstration-1" class="proof">Démonstration</h3>
+<p><strong>TODO</strong></p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+<section>
+<h3 id="inversion-locale" class="theorem">Inversion Locale</h3>
+<p>Soit <span class="math inline">\(f: U \subset \mathbb{R}^n \to \mathbb{R}^n\)</span> continûment différentiable sur l’ouvert <span class="math inline">\(U\)</span> et telle que <span class="math inline">\(df(x)\)</span> soit inversible en tout point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span>. Alors pour tout <span class="math inline">\(x_0\)</span> in <span class="math inline">\(U\)</span>, il existe un voisinage ouvert <span class="math inline">\(V \subset U\)</span> de <span class="math inline">\(x_0\)</span> tel que <span class="math inline">\(W=f(V)\)</span> soit ouvert et que la restriction de la fonction <span class="math inline">\(f\)</span> à <span class="math inline">\(V\)</span> soit un <span class="math inline">\(C^1\)</span>-difféomorphisme de <span class="math inline">\(V\)</span> sur <span class="math inline">\(W\)</span>.</p>
+</section>
+<section>
+<h3 id="démonstration-2" class="proof">Démonstration</h3>
+<p>Considérons la fonction <span class="math inline">\(\phi: U \times \mathbb{R}^n \to \mathbb{R}^n\)</span> définie par <span class="math display">\[
+\phi(x, y) = f(x) - y.
+\]</span> Par construction <span class="math inline">\(\phi(x, y) = 0\)</span> si et seulement si <span class="math inline">\(f(x) = y\)</span>. De plus, <span class="math inline">\(\phi\)</span> est continûment différentiable et <span class="math inline">\(\partial_x \phi(x, y) = df(x)\)</span>. On peut donc appliquer le théorème des fonctions implicites au voisinage du point <span class="math inline">\((x_0, f(x_0))\)</span> et en déduire l’existence de voisinages ouvert <span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span> de <span class="math inline">\(x_0\)</span> et <span class="math inline">\(f(x_0)\)</span> tels que <span class="math inline">\(A \times B \subset U \times \mathbb{R}^n\)</span>, et d’une fonction continûment différentiable <span class="math inline">\(\psi: B \to \mathbb{R}^m\)</span> telle que pour tout <span class="math inline">\((x, y) \in A \times B\)</span>, <span class="math display">\[
+f(x) = y \; \Leftrightarrow \; x = \psi(y). 
+\]</span> Par continuité de <span class="math inline">\(f\)</span>, <span class="math inline">\(A&#39; = A \cap f^{-1}(B)\)</span> est un sous-ensemble ouvert de <span class="math inline">\(A\)</span>. La fonction <span class="math inline">\(x \in A&#39; \mapsto f(x) \in B\)</span> est bijective par construction et son inverse est la fonction <span class="math inline">\(y \in B \mapsto \psi(y) \in A&#39;\)</span>; nous avons donc affaire à un <span class="math inline">\(C^1\)</span>-difféomorphisme de <span class="math inline">\(A&#39;\)</span> sur <span class="math inline">\(B\)</span>.</p>
+<span class="math inline">\(\blacksquare\)</span>
+</section>
+</section>
+</section>
+<section>
+<h1 id="analyse-derreur-numérique">Analyse d’Erreur / Numérique</h1>
+<section>
+<h2 id="objectifs-1" class="meta">Objectifs</h2>
+<ul>
+<li><p>Savoir quelles sont les options quand il s’agit de calculer des dérivées, gradient, différentielles: “manuelles”, symboliques, différences finies, diff auto. et avoir au final une idée de la portée de chacune (applicabilité, avantages, pbs)</p></li>
+<li><p>Connaitre le principe des méthodes de type différence finie et mes deux sources d’erreurs potentielles associées (très général, pas limité au calcul diff): “erreur de troncature” et “erreur d’arrondi”. Savoir calculer des estimations numériques dans les deux cas. (attention, il y a plein de choses ici: il faut en passer par le modèle de représentation des nombres flottants, etc.)</p></li>
+</ul>
+</section>
+</section>
+<section>
+<h1 id="différentiation-automatique">Différentiation Automatique</h1>
+<section>
+<h2 id="objectifs-2" class="meta">Objectifs</h2>
+<ul>
+<li><p>avantage et portée de la méthode (plus détaillée: précision, dérivées à un ordre arbitraire, “workflow”, usages en optimisation, machine learning, etc.)</p></li>
+<li><p>connaître les (une version des) principes des différents “morceaux” de la méthode dans le cas de Python: “tracer”, “computation graph”, etc. Solution: en construire un “à la main”, au moins les étapes importantes. Note: permet aussi d’apprécier les limitations de la méthode.</p></li>
+<li><p>sur péda, essayer forward pass (plus près du cours), mais expliquer backward pass pour pouvoir se “plugger” dans l’existant.</p></li>
+<li><p>exploiter un système existant, type <code>autograd</code> en python (sans doute le plus facile en terme de courbe d’apprentissage)</p></li>
+</ul>
+</section>
+<section>
+<h2 id="tracer-le-graphe-de-calcul">Tracer le Graphe de Calcul</h2>
+<p><strong>TODO:</strong> montrer que les fonction Python n’implémentent pas “ce que l’on croit”, c’est-à-dire par exemple <span class="math inline">\([\cos([x])]\)</span> pour la function <code>lambda x: cos(x)</code>, parce que le TYPE de l’argument n’est pas spécifié et que cela à des conséquences importantes: le disassembleur montre bien que le bytecode est agnostique et se contente de résoudre des variables et d’appliquer une séquence d’instructions, sans de référence au type, sans savoir ce qu’il manipule.</p>
+<pre><code>&gt;&gt;&gt; from dis import dis
+
+&gt;&gt;&gt; from math import *</code></pre>
+<p><strong>TODO:</strong> expliquer notation lambda-fonction pour les expressions (ou fonctions anonymes).</p>
+<pre><code>&gt;&gt;&gt; f = lambda x: cos(x)
+
+&gt;&gt;&gt; dis(lambda x: cos(x))
+  1           0 LOAD_GLOBAL              0 (cos)
+              2 LOAD_FAST                0 (x)
+              4 CALL_FUNCTION            1
+              6 RETURN_VALUE
+
+&gt;&gt;&gt; dis(lambda x: x + 1)
+  1           0 LOAD_FAST                0 (x)
+              2 LOAD_CONST               1 (1)
+              4 BINARY_ADD
+              6 RETURN_VALUE</code></pre>
+<p>Expliquer en prenant des exemples frappants comment on peut en profiter pour “intercepter” cette séquence d’appels (big brother …) pour savoir ce qui se passe dans la fonction, influencer le résultat, etc.</p>
+<pre><code>&gt;&gt;&gt; math_cos = cos
+&gt;&gt;&gt; def cos(x):
+...     print(f&quot;trace: cos({x})&quot;)
+...     return math_cos(x)
+
+&gt;&gt;&gt; y = cos(pi)
+trace: cos(3.141592653589793)
+&gt;&gt;&gt; y
+-1.0</code></pre>
+<p>Le cas des opérateurs est plus complexe: le calcul de <code>x + 1</code> par exemple est délégué à la méthode <code>__add__</code> de l’objet <code>x</code>. Pour intercepter cet appel, il est donc nécessaire de modifier le type de nombre flottant que nous allons utiliser:</p>
+<pre><code>&gt;&gt;&gt; class Float(float):
+...     def __add__(self, other):
+...         print(f&quot;trace: {self} + {other}&quot;)
+...         return super().__add__(other)</code></pre>
+<p>Mais une fois cet effort fait, nous pouvons bien tracer les additions effectuées</p>
+<pre><code>&gt;&gt;&gt; x = Float(2.0) + 1.0
+trace: 2.0 + 1.0
+&gt;&gt;&gt; x
+3.0</code></pre>
+<p>… à condition que nous travaillions avec des instances de <code>Float</code> et non de <code>float</code> ! Pour commencer à généraliser cet usage, nous allons faire en sorte de générer des instances de <code>Float</code> dans la mesure du possible. Pour commencer, nous pouvons faire en sorte que les opérations sur nos flottants renvoient notre propre type de flottant:</p>
+<pre><code>&gt;&gt;&gt; class Float(float):
+...     def __add__(self, other):
+...         print(f&quot;trace: {self} + {other}&quot;)
+...         return Float(super().__add__(other))</code></pre>
+<p>Mais cela n’est pas suffisant: les fonction de la library <code>math</code> de Python vont renvoyer des flottants classiques, il nous faut donc à nouveau les adapter:</p>
+<pre><code>&gt;&gt;&gt; def cos(x):
+...     print(f&quot;trace: cos({x})&quot;)
+...     return Float(math_cos(x))</code></pre>
+<p>Vérifions le résultat:</p>
+<pre><code>&gt;&gt;&gt; cos(pi) + 1.0
+trace: cos(3.141592653589793)
+trace: -1.0 + 1.0
+0.0</code></pre>
+<p>Mais nous ne savons pas encore tracer correctement l’expression <code>1.0 + cos(pi)</code>:</p>
+<pre><code>&gt;&gt;&gt; 1.0 + cos(pi)
+trace: cos(3.141592653589793)
+0.0</code></pre>
+<p>En effet, c’est la méthode <code>__add__</code> de <code>1.0</code>, une instance de <code>float</code> qui est appelée; cet appel n’est donc pas tracé. Pour réussir à tracer ce type d’appel, il va falloir … le faire échouer ! La méthode appellée pour effectuer la somme jusqu’à présent confie l’opération à la méthode <code>__add__</code> de <code>1.0</code> parce ce cette objet sait prendre en charge l’opération, car il s’agit d’ajouter lui-même avec une autre instance (qui dérive) de <code>float</code>. Si nous faisons en sorte que le membre de gauche soit incapable de prendre en charge cette opération, elle sera confiée au membre de droite; pour cela il nous suffit de remplacer <code>Float</code>, un type numérique par <code>Node</code>, une classe qui contient (encapsule) une valeur numérique:</p>
+<pre><code>&gt;&gt;&gt; class Node:
+...     def __init__(self, value):
+...         self.value = value</code></pre>
+<p>Nous n’allons pas nous attarder sur cette version 0 de <code>Node</code>. Si elle est ainsi nommée, c’est parce qu’elle va représenter un noeud dans un graphe de calculs. Au lieu d’afficher les opérations réalisées sur la sortie standard, nous allons entreprendre d’enregistrer les opérations que subit chaque variable et comment elle s’organise; chaque noeud issu d’une opération devra mémoriser quelle opération a été appliquée, et quels étaient les arguments de l’opération (eux-mêmes des noeuds). Pour supporter cette démarche, <code>Node</code> devient:</p>
+<pre><code>&gt;&gt;&gt; class Node:
+...     def __init__(self, value, function=None, args=None):
+...         self.value = value
+...         self.function = function
+...         self.args = args if args is not None else []</code></pre>
+<p>Il nous faut alors rendre les opérations usuelles compatibles la création de noeuds; en examinant les arguments de la fonction, on doit décider si elle est dans un mode “normal” (recevant des valeurs numériques, produisant des valeurs numérique) ou en train de tracer les calculs. Par exemple:</p>
+<pre><code>&gt;&gt;&gt; def cos(x):
+...     if isinstance(x, Node):
+...         cos_x_value = math_cos(x.value)
+...         cos_x = Node(cos_x_value, cos, [x])
+...         return cos_x
+...     else:
+...         return math_cos(x) </code></pre>
+<p>ou</p>
+<pre><code>&gt;&gt;&gt; def add(x, y):
+...     if isinstance(x, Node) or isinstance(y, Node):
+...         if not isinstance(x, Node):
+...             x = Node(x)
+...         if not isinstance(y, Node):
+...             y = Node(y)
+...         add_x_y_value = x.value + y.value
+...         return Node(add_x_y_value, add, [x, y])
+...     else:
+...         return x + y</code></pre>
+<p>La fonction <code>add</code> ne sera sans doute pas utilisée directement, mais appelée sous forme d’opérateur <code>+</code>; elle doit donc nous permettre de définir les méthodes <code>__add__</code> et <code>__radd__</code>:</p>
+<pre><code>&gt;&gt;&gt; Node.__add__ = add
+&gt;&gt;&gt; Node.__radd__ = add</code></pre>
+<p>On remarque de nombreuse similarités entre les deux codes; plutôt que de continuer cette démarche pour toutes les fonctions dont nous allons avoir besoin, au prix d’un effort d’abstraction, il serait possible de définir une fonction opérant automatiquement cette transformation. Il s’agit d’une fonction d’ordre supérieur car elle prend comme argument une fonction (la fonction numérique originale) et renvoie une nouvelle fonction, compatible avec la gestion des noeuds. On pourra ignorer sont implémentation en première lecture.</p>
+<pre><code>&gt;&gt;&gt; def wrap(function):
+...    def wrapped_function(*args):
+...        if any(isinstance(arg, Node) for arg in args):
+...            node_args = []
+...            values = []
+...            for arg in args:
+...                if isinstance(arg, Node):
+...                    node_args.append(arg)
+...                    values.append(arg.value)
+...                else:
+...                    node_args.append(Node(arg)) 
+...                    values.append(arg)
+...            output_value = wrapped_function(*values)
+...            output_node = Node(output_value, wrapped_function, node_args)
+...            return output_node
+...        else:
+...            return function(*args)        
+...    wrapped_function.__qualname__ = function.__qualname__
+...    return wrapped_function</code></pre>
+<p>Malgré sa complexité apparente, l’utilisation de cette fonction est simple; ainsi pour rendre la foncton <code>sin</code> et l’opérateur <code>*</code> compatible avec la gestion de noeuds, il suffit de faire:</p>
+<pre><code>&gt;&gt;&gt; sin = wrap(sin)</code></pre>
+<p>et</p>
+<pre><code>&gt;&gt;&gt; def multiply(x, y):
+...     return x * y
+&gt;&gt;&gt; multiply = wrap(multiply)
+&gt;&gt;&gt; Node.__mul__ = Node.__rmul__ = multiply</code></pre>
+<p>ce que est sensiblement plus rapide et lisible que la démarche entreprise pour <code>cos</code> et <code>+</code>; mais encore une fois, le résultat est le même.</p>
+<p>Il est désormais possible d’implémenter le traceur. Celui-ci encapsule les arguments de la fonction à tracer dans des noeuds, puis appelle la fonction et renvoie le noeud associé à la valeur retournée par la fonction:</p>
+<pre><code>&gt;&gt;&gt; def trace(f, args):
+...     args = [Node(arg) for arg in args]
+...     end_node = f(*args)
+...     return end_node</code></pre>
+<p>Pour vérifier que tout se passe bien comme prévu, faisons en sorte d’afficher une représentation lisible et sympathique des contenus des noeuds:</p>
+<pre><code>&gt;&gt;&gt; def node_repr(node):
+...    if node.function is not None:
+...        function_name = node.function.__qualname__
+...        return f&quot;Node({node.value}, {function_name}, {node.args})&quot;
+...    else:
+...        return f&quot;Node({node.value})&quot;</code></pre>
+<p>Puis, faisons en sorte qu’elle soit utilisée par défaut par le noeuds plutôt que la représentation standard des objets:</p>
+<pre><code>&gt;&gt;&gt; Node.__str__ = Node.__repr__ = node_repr</code></pre>
+<p>Nous somme prêts à faire notre vérification:</p>
+<pre><code>&gt;&gt;&gt; f = lambda x: 1.0 + cos(x)
+&gt;&gt;&gt; end = trace(f, [pi])
+&gt;&gt;&gt; print(end)
+Node(0.0, add, [Node(-1.0, cos, [Node(3.141592653589793)]), Node(1.0)])</code></pre>
+<p>Le résultat se lit de la façon suivante: le calcul de <code>f(pi)</code> produit la valeur <code>0.0</code>, issue de l’addition de <code>-1.0</code>, calculé comme <code>cos(3.141592653589793)</code> et de la constante <code>1.0</code>. Cela semble donc correct !</p>
+<p>Un autre exemple – à deux arguments – pour la route:</p>
+<pre><code>&gt;&gt;&gt; trace(lambda x, y: x * (x + y), [1.0, 2.0])
+Node(3.0, multiply, [Node(1.0), Node(3.0, add, [Node(1.0), Node(2.0)])])</code></pre>
+</section>
+<section>
+<h2 id="calcul-automatique-des-dérivées">Calcul Automatique des Dérivées</h2>
+<p>Registre des functions “élémentaires” dont on connaît la différentielle</p>
+<pre><code>&gt;&gt;&gt; differential = {} 
+
+&gt;&gt;&gt; def d_cos(x):
+...     return lambda dx: - sin(x) * dx
+&gt;&gt;&gt; differential[cos] = d_cos
+
+&gt;&gt;&gt; def d_multiply(x, y):
+...     return lambda dx, dy: x * dy + dx * y
+&gt;&gt;&gt; differential[multiply] = d_multiply
+
+&gt;&gt;&gt; def d_from_derivative(f_prime):
+...     def d_f(x):
+...        return lambda dx: f_prime(x) * dx
+...     return d_f
+&gt;&gt;&gt; differential[sin] = d_from_derivative(cos)
+
+&gt;&gt;&gt; differential[add] = lambda x, y: add</code></pre>
+<p>Tri topologique</p>
+<pre><code>&gt;&gt;&gt; def sort_nodes(end_node):
+...     todo = [end_node]
+...     nodes = []
+...     while todo:
+...         node = todo.pop()
+...         nodes.append(node)
+...         for parent in node.args:
+...             if parent not in nodes + todo:
+...                 todo.append(parent) 
+...     done = []
+...     while nodes:
+...         for node in nodes[:]:
+...             if all(parent in done for parent in node.args):
+...                 done.append(node)
+...                 nodes.remove(node)
+...     return done
+
+&gt;&gt;&gt; def d(f):
+...     def df(*args): # args=(x1, x2, ...)
+...         start_nodes = [Node(arg) for arg in args]
+...         end_node = f(*start_nodes)
+...         sorted_nodes = sort_nodes(end_node).copy()
+...         def df_x(*d_args): # d_args = (d_x1, d_x2, ...)
+...             for node in sorted_nodes:
+...                 if node in start_nodes:
+...                     i = start_nodes.index(node)
+...                     node.d_value = d_args[i]
+...                 elif node.function is None: # constant node
+...                     node.d_value = 0.0
+...                 else:
+...                     _d_f = differential[node.function]
+...                     _args = node.args
+...                     _args_values = [_node.value for _node in _args]
+...                     _d_args = [_node.d_value for _node in _args]
+...                     node.d_value = _d_f(*_args_values)(*_d_args)
+...             return end_node.d_value
+...         return df_x
+...     return df
+
+&gt;&gt;&gt; def f(x):
+...     return x * x + 2 * x + 1
+&gt;&gt;&gt; x = 1.0
+&gt;&gt;&gt; df_x = d(f)(2.0)
+&gt;&gt;&gt; df_x(1.0)
+6.0</code></pre>
+<p>Derivative of f (manual computation)</p>
+<pre><code>&gt;&gt;&gt; def f(x):
+...    return cos(x) * cos(x) + sin(x) * sin(x)
+&gt;&gt;&gt; df = d(f)
+&gt;&gt;&gt; def f_prime(x):
+...    return df(x)(1.0)
+&gt;&gt;&gt; f_prime(pi/4)
+0.0</code></pre>
+</section>
+</section>
+<section>
+<h1 id="exercices">Exercices</h1>
+<section>
+<h2 id="cinématique-des-robots-manipulateurs">Cinématique des Robots Manipulateurs</h2>
+<p>Position de référence en cartésien, robot plan articulaire (ou extension 3d), étudier sous quelle conditions on peut “résoudre” un déplacement de l’effecteur.</p>
+</section>
+<section>
+<h2 id="déformations">Déformations</h2>
+<p>Soit <span class="math inline">\(U\)</span> un ouvert convexe de <span class="math inline">\(\mathbb{R}^n\)</span> et <span class="math inline">\(T: U \subset \mathbb{R}^n \to \mathbb{R}^n\)</span> une fonction continûment différentiable. On suppose que <span class="math inline">\(T\)</span> est de la forme <span class="math inline">\(T= I + H\)</span> où la fonction <span class="math inline">\(H\)</span> vérifie <span class="math display">\[
+\sup_{x \in U} \|d H(x)\| := \kappa &lt; 1.
+\]</span> On appellera une telle fonction <span class="math inline">\(T\)</span> une <em>perturbation de l’identité</em>.</p>
+<ol type="1">
+<li><p>Montrer que la foncton <span class="math inline">\(T\)</span> est injective.</p></li>
+<li><p>Montrer que l’image <span class="math inline">\(V= T(U)\)</span> est un ouvert et que <span class="math inline">\(T\)</span> est difféomorphisme (global) de <span class="math inline">\(U\)</span> sur <span class="math inline">\(V\)</span>.</p></li>
+</ol>
+<section>
+<h3 id="réponses">Réponses</h3>
+<ol type="1">
+<li><p>Par le théorème des accroissements finis, si <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> appartiennent à <span class="math inline">\(U\)</span>, comme par convexité <span class="math inline">\([x, y] \subset U\)</span>, on a <span class="math display">\[
+\|H(x) - H(y)\| \leq \kappa \|x - y\|.
+\]</span> Par conséquent, <span class="math display">\[
+\begin{split}
+\|T(x) - T(y)\| &amp;= \|x + H(x) - (y + H(y))\| \\
+&amp;\geq \|x - y\| - \|H(x) - H(y)\| \\
+&amp;\geq (1 - \kappa) \|x - y\|
+\end{split}
+\]</span> et donc si <span class="math inline">\(T(x) = T(y)\)</span>, <span class="math inline">\(x=y\)</span>: <span class="math inline">\(T\)</span> est injective.</p></li>
+<li><p>La différentielle <span class="math inline">\(dT(x)\)</span> de <span class="math inline">\(T\)</span> en <span class="math inline">\(x\)</span> est une application de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^n\)</span> de la forme <span class="math display">\[
+dT(x) = I + dH(x).
+\]</span> Comme <span class="math inline">\(\mathbb{R}^n\)</span> est ouvert et que la fonction <span class="math inline">\(h \mapsto dH(x) \cdot h\)</span> a pour différentielle en tout point <span class="math inline">\(y\)</span> de <span class="math inline">\(\mathbb{R}^n\)</span> la function <span class="math inline">\(dH(x)\)</span>, la fonction linéaire <span class="math inline">\(h \mapsto dT(x) \cdot h\)</span> est une perturbation de l’identité; elle est donc injective, et inversible car elle est linéaire de <span class="math inline">\(\mathbb{R}^n\)</span> dans <span class="math inline">\(\mathbb{R}^n\)</span>. Les hypothèses du théorème d’inversion locale sont donc satisfaites en tout point <span class="math inline">\(x\)</span> de <span class="math inline">\(U\)</span>. La fonction <span class="math inline">\(f\)</span> est donc un difféomorphisme local d’un voisinage ouvert <span class="math inline">\(V_x\)</span> de <span class="math inline">\(x\)</span> sur <span class="math inline">\(W_x= f(V_x)\)</span> qui est ouvert. Clairement, <span class="math display">\[
+f(U) = f\left(\bigcup_{x \in U} V_x\right) = \bigcup_{x \in U} f(V_x)
+\]</span> et par conséquent <span class="math inline">\(f(U)\)</span> est ouvert. La fonction <span class="math inline">\(f\)</span> est injective et surjective de <span class="math inline">\(U\)</span> dans <span class="math inline">\(f(U)\)</span>, donc inversible. En tout point <span class="math inline">\(y\)</span> de <span class="math inline">\(f(U)\)</span>, il existe <span class="math inline">\(x \in U\)</span> tel que <span class="math inline">\(f(x) = y\)</span>, et un voisinage ouvert <span class="math inline">\(V_x\)</span> de <span class="math inline">\(x\)</span> tel que <span class="math inline">\(f\)</span> soit un difféomorphisme local de <span class="math inline">\(V_x\)</span> sur l’ouvert <span class="math inline">\(W_x = f(V_x)\)</span>; la fonction <span class="math inline">\(f^{-1}\)</span> est donc continûment différentiable dans un voisinage de <span class="math inline">\(y\)</span>. C’est par conséquent un difféomorphisme global de <span class="math inline">\(U\)</span> dans <span class="math inline">\(f(U)\)</span>.</p></li>
+</ol>
+</section>
+</section>
+<section>
+<h2 id="racines-dun-polynôme">Racines d’un Polynôme</h2>
+<p>Si racine simple, variation continue (et plus) par rapport aux coefficients.</p>
+<p>Lier ça à la sensibilité des valeurs propres (et vecteurs propres ?) par rapport aux coefficients de la matrice associée ? Avantage: plus de travail de mise en forme pour se ramener au pb de fct implicite (à ajouter aux objectifs).</p>
+</section>
+<section>
+<h2 id="différentielle-de-x-mapsto-x-1">Différentielle de <span class="math inline">\(X \mapsto X^{-1}\)</span></h2>
+</section>
+<section>
+<h2 id="différentiation-à-pas-complexe">Différentiation à pas complexe</h2>
+<p><strong>TODO</strong></p>
+</section>
+<section>
+<h2 id="méthode-de-newton">Méthode de Newton</h2>
+<p>Revenir sur la preuve du théorème des fonctions implicites mais sous sous une hypothèse <span class="math inline">\(C^2\)</span>, montrer qu’il n’est pas nécessaire de modifier la méthode de Newton.</p>
+</section>
+<section>
+<h2 id="inversion-locale-1">Inversion Locale</h2>
+<p><strong>TODO:</strong> exemple où l’on complète le jacobien pour pouvoir appliquer le TIL.</p>
+</section>
+</section>
+<section>
+<h1 id="projet-numérique">Projet Numérique</h1>
+<p>Idées pour poursuivre l’introduction du moteur de diff auto:</p>
+<ul>
+<li><p>gérer fct retournant des constantes</p></li>
+<li><p>compléter les opérateurs arithmétiques, fcts usuelles, etc.</p></li>
+<li><p>gérer le control flow (important et pas dur si un peu guidé !)</p></li>
+<li><p>adapter le code pour faire du backward diff (à évaluer), avec pointeurs vers articles introductifs.</p></li>
+<li><p>diff d’ordre deux ? Compliqué, 2 show-stoppers potentiels (différentiation “lazy” et nodes nestés).</p></li>
+</ul>
+<p>Faire un projet privé et une document de tests (public) pour permettre la vérification que ça marche ? Demander résultat comme un fichier autodiff.py + notebook mise en oeuvre ou notebook générant autodiff.py ? Quoi qu’il en soit: code et doc et accès sur github. Ce qui est fait en cours déjà fourni (sous quelle forme ? fichier, notebook, etc ?). Oui, avec jupyter nbconvert, ça ne pose pas de pb. Intégration doctest/notebook ? Bof, non, on gère ça “normalement”, en dehors, avec le truc comme un doc markdown.</p>
+<p>Applications (avec algo type IFT par exemple) ? En plus ? Eventuellement en utilisant un “vrai” autodiff pour ne pas être bloqué par des étapes précédentes non réussies ?</p>
+</section>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>une application linéaire de <span class="math inline">\(\mathbb{R}^m \to \mathbb{R}^m\)</span> est inversible si et seulement si le déterminant de la matrice <span class="math inline">\([A]\)</span> qui la représente dans <span class="math inline">\(\mathbb{R}^{m \times m}\)</span> est non-nul. Or, la fonction <span class="math inline">\(A \mapsto \det [A]\)</span> est continue car le déterminant ne fait intervenir que des produits et des sommes des coefficients de <span class="math inline">\([A]\)</span>. Par conséquent, les applications linéaires inversibles de <span class="math inline">\(\mathbb{R}^m \to \mathbb{R}^m\)</span> sont l’image réciproque de l’ouvert <span class="math inline">\(\mathbb{R} \setminus \{0\}\)</span> par une application continue: cet ensemble est donc ouvert. Quand <span class="math inline">\(A\)</span> est inversible, on a <span class="math display">\[
+[A]^{-1} = \frac{\mathrm{co}([A])^t}{\det [A]}
+\]</span> où <span class="math inline">\(\mathrm{co}([A])\)</span> désigne la comatrice de <span class="math inline">\([A]\)</span>. Chaque coefficient de cette comatrice ne faisant également intervenir que des sommes et des produits des coefficients de <span class="math inline">\([A]\)</span>, l’application <span class="math inline">\(A \mapsto A^{-1}\)</span> est inversible sur son domaine de définition.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+</body>
+</html>
