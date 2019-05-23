@@ -203,7 +203,7 @@ Evoquer "localement d'un seul coté" de la frontière ?
 
 Définir normale (extérieure). Carac intrinsèque ?
 
-### TODO
+### TODO ...
 
 Considérer remplacement de $T$ par $T^{-1}$ dans cet enoncé,
 si cela simplifie les choses dans la suite (j'ai l'impression,
