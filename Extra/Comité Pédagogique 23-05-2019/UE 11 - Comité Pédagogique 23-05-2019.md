@@ -310,13 +310,13 @@ Supports aux activités & documents de design
   
     Papier + E-book + "Notebooks" + Web + ...
 
-  - **Accessible, libre & gratuit.** 
+  - **Accessible, libre & gratuit.**  
   
     Hébergement public (DOI ?) & licence libérale.
     
   - **Processus de création.** 
   
-    Collaboratif, transparent, reproductible.
+    Collaboratif, transparent, reproductible
   
 
 Equipe Pédagogique (Noyau)
