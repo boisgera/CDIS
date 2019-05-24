@@ -675,6 +675,9 @@ Perspective sur les versions plus "relaxées" du théorème de Stokes,
 qu'il s'agisse du bord Lipschitz ou des travaux (Mawhin, Pfeffer, etc.)
 pour demander moins que $C^1$ sur l'intégrande ?
 
+### TODO
+Préfiguration intégrale de surface "intrinsèque".
+
 
 Exercices
 ================================================================================
