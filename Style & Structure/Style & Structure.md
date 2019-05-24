@@ -21,13 +21,14 @@ Sections
 Hiérarchie
 --------------------------------------------------------------------------------
 
-3 niveau normalement assez.
+TODO:
 
-"Atomes"
+  - 3 niveaux normalement assez (4 le cas échéant pour segmenter les longues
+    preuves ?).
 
-lvl 4
+  - "Atomes", l'essentiel du contenu est au niveau 3
 
-Exercices
+  - Structure des sections d'exercices ?
 
 Type/Propriétés des sections de niveau 3
 --------------------------------------------------------------------------------
@@ -37,9 +38,40 @@ Type/Propriétés des sections de niveau 3
 
   - `proof`
 
-  - `exercise`, `questions`, `answers`
+  - `exercise` (?), `questions`, `answers` (pluriel ?)
 
   - `remark`, `example`, `meta`, `anonymous`
+
+
+Mathématiques
+================================================================================
+
+
+  - Au moins à court terme, inclure les macros LaTeX nécessaires
+    au début de chaque document (disons l'entête composée du titre, des auteurs 
+    et de la date); comme Pandoc se charge lui-même de faire la substitution,
+    a priori pas de risque de collision entre des conventions différentes
+    d'un document à l'autre en cas de regroupement.
+   
+    Cf la section [Pandox -- LaTeX macros](https://pandoc.org/MANUAL.html#latex-macros) 
+    pour lus de détails.
+
+    usage des macros
+
+  - usage libéral du "display style" si nécessaire plutôt que d'utiliser
+    la commande `\displaystyle` dans des formules "inlines", ce qui casse 
+    le [rythme vertical](https://zellwk.com/blog/why-vertical-rhythms/) 
+    du document.
+
+TODO:
+
+  - ponctuation dans les formules (à terme), par exemple
+
+        Dans le cas ou $a=1,$ la situation est identique.
+
+    Sinon dans l'export HTML, Mathjax va faire des césures à des endroits
+    inappropriés. Bonus de cette convention: c'est de toute façon ce qu'il
+    faut faire en mode "display style", ça à le mérite de la cohérence.
 
 
 Italique & Gras
