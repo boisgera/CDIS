@@ -386,7 +386,7 @@ $$
 
 ### Lemme de Stokes {.lemma}
 Soit $f: V \to \mathbb{R}$ une fonction de classe $C^1$
-où $V$ est un ouvert de $\mathbb{R}^{n-1}$. 
+où $V$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
 Soit $v: V \times \mathbb{R} \to \mathbb{R}^n$ une fonction
 de classe $C^1$ de support compact[^sc]. 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
@@ -425,7 +425,7 @@ $$
 $$
 Réciproquement, que si cette relation est valable pour tout 
 $i \in \{1,\dots, n\}$, la conclusion du lemme de Stokes s'en déduit
-facilement. Démontrer cette relation suffit donc à prouver le lemme.
+facilement. Démontrer la relation ci-dessus suffit donc à prouver le lemme.
 
 La transformation $h: V \times \left]-\infty, 0\right[ 
 \to \mathbb{R}^n$ définie par
@@ -466,34 +466,104 @@ $$
 \, dx
 \end{split}
 $$
-et donc par le théorème de Fubini
+ou encore, en notant $\pi(x) = (x_1,\dots, x_{n-1})$,
 $$
 \int_{\Omega} \partial_i w(x) \, dx
 =
-\int_V \left[
-\int_{-\infty}^0
-\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) dx_n
-\right]
-\, d(x_1,\dots, x_{n-1})
+\int_{V \times \left]-\infty, 0\right[} 
+\partial_i w(\pi(x), x_n + f(\pi(x))) 
+\, dx.
+$$
+Nous allons évaluer cette expression en comparant l'intégrande dans le
+membre de droite de cette équation avec la dérivée partielle 
+de $w(\pi(x), x_n + f(\pi(x)))$ par rapport à $x_i$.
+
+
+Si $i \in \{1,\dots, n-1\}$, la règle de dérivation en chaîne fournit
+$$
+\begin{split}
+\partial_i \left( w(\pi(x), x_n + f(\pi(x)) \right)
+&= 
+\partial_i w(\pi(x), x_n + f(\pi(x)) \\
+&\phantom{=}
++ \partial_n w(\pi(x), x_n + f(\pi(x)) \times 
+\partial_i f (\pi(x))
+\end{split}
+$$
+et dans le cas contraire,
+$$
+\partial_n \left( w(\pi(x), x_n + f(\pi(x)) \right)
+= 
+\partial_n w(\pi(x), x_n + f(\pi(x))).
 $$
 
-Si $i \in \{1,\dots, n-1\}$,
+Si $V = I_1 \times \dots \times I_{n-1}$ et si pour $i \in \{1,\dots, n-1\}$, 
+on a $I_i = \left]a_i, b_i\right[$, alors par le théorème fondamental du 
+calcul,
+$$
+\begin{split}
+\int_{I_i} 
+\partial_i (w(\pi(x), x_n + f(\pi(x))) 
+\, dx_i
+&=
+\lim_{\varepsilon \to 0}
+\int_{a_i+\varepsilon}^{b_i-\varepsilon}
+\partial_i (w(\pi(x), x_n + f(\pi(x))) 
+\, dx_i \\
+&=
+\lim_{\varepsilon \to 0}
+\left[
+w(\pi(x), x_n + f(\pi(x)))
+\right]_{a_i + \varepsilon}^{b_i - \varepsilon}
+\end{split}
+$$
+Comme $w$ est de support compact, pour toute valeur de 
+$x_1$, $x_2$, $\dots$, $x_{i-1}$, $x_{i+1}$, $\dots$, $x_n$, 
+la fonction partielle
+$$
+x_i \in \left]a_i, b_i \right[ \to w(\pi(x), x_n + f(\pi(x)))
+$$
+est également de support compact.
+Par conséquent,
+$$
+S_i(x_1, \dots, x_{i-1}, x_{i+1}, \dots) :=
+\int_{I_i} 
+\partial_i w(\pi(x), x_n + f(\pi(x))) 
+\, dx_i
+=
+0.
+$$
+Par le théorème de Fubini, on peut alors déduire que
 \begin{multline*}
-\partial_i \left( w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \right)
-= \\ 
-\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \\
-+ \partial_n w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \times 
-\partial_i f (x_1, \dots, x_{n-1})
+\int_{V \times \left]-\infty, 0\right[} 
+\partial_i w(\pi(x), x_n + f(\pi(x))) 
+\, dx
+=  \\
+\int_{I_1\times\dots I_{i-1} \times I_{i+1} \times \dots \times \left]-\infty, 0\right[}
+\!\!\!\!\!
+S_i(x_1, \dots, x_{i-1}, x_{i+1}, \dots)  \, d(x_1,\dots,x_{i-1}, x_{i+1},\dots)
+= 0.
 \end{multline*}
-et dans le cas contraire,
-\begin{multline*}
-\partial_n \left( w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) \right)
-= \\
-\partial_n w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
-\end{multline*}
-
-
-
+Si $i \in \{1,\dots, n-1\}$, on a donc
+$$
+\int_{\Omega} 
+\partial_i w(x) 
+\, dx
+= 
+\int_{V \times \left]-\infty, 0\right[} 
+\partial_n w(\pi(x), x_n + f(\pi(x)) \times 
+(- \partial_i f (\pi(x))) \, dx
+$$
+et pour $i=n$,
+$$
+\int_{\Omega} 
+\partial_n w(x) 
+\, dx
+= 
+\int_{V \times \left]-\infty, 0\right[} 
+\partial_n w(\pi(x), x_n + f(\pi(x)) \times 
+(1) \, dx
+$$
 
 
 ### TODO
