@@ -54,7 +54,7 @@ Egalement, "tronc commun optionnel":
 
   - Compléments de Mathématiques (1 ECTS, 1er semestre),
 
-  - Soutien en Mathématiques (0 ECTS, 1er semestre).
+  - Soutien en Mathématiques (0 ECTS, 1er & 2ème semestre).
 
 
 Avant / Après
