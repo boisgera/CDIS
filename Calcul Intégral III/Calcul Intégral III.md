@@ -686,6 +686,11 @@ $\Omega$ dans $U$ paramétrisé par une déformation $T = I + u$ avec $u$ petit
 et une base $\Omega_0$ qui est un compact à bords $C^1$. Montrer que
 si la base est un compact à bord $C^1$, les déformés aussi.
 
+Compact à Bords
+--------------------------------------------------------------------------------
+
+Caractérisation par "applatissement" local en un demi-espace fermé.
+
 Exemples de compacts à bord (déterminés implicitement)
 --------------------------------------------------------------------------------
 
