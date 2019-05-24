@@ -301,6 +301,10 @@ ce qui garantit que dans $V$, $(g \circ T^{-1})(y) \leq 0$
 -- c'est-à-dire $x = T^{-1}(y) \in K$ --
 si et seulement si $f(y_1, \dots, y_{n-1}) \leq y_n$.
 
+### TODO
+
+Définition intrinsèque de la normale extérieure.
+
 ### Normale extérieure {.definition .theorem}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
 $x_0 \in \partial K$ par l'inégalité $g(x) \leq 0$, 
@@ -561,8 +565,7 @@ $$
 \, dx
 = 
 \int_{V \times \left]-\infty, 0\right[} 
-\partial_n w(\pi(x), x_n + f(\pi(x)) \times 
-(1) \, dx
+\partial_n w(\pi(x), x_n + f(\pi(x)) \, dx
 $$
 
 
