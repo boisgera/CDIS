@@ -162,6 +162,12 @@ en exercice? Pas évident, rédiger la preuve associé au passage
 de l'hypographe à l'inégalité implicite et voir ce qui vient.
 OK, ça devrait passer.
 
+### TODO:
+
+Deux façon raisonnables de définir un compact à bord sont données;
+la troisème (localement demi-espace après transfo par difféo) peut trouver
+sa place en exo ?
+
 ### Compact à bord régulier {.definition}
 
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
@@ -315,6 +321,34 @@ est le vecteur de $\mathbb{R}^n$ donné par
 $$
 n(x) = \frac{\nabla g(x)}{\|\nabla g(x)\|}.
 $$
+
+### TODO
+
+revoir les conventions sur la transformation $T$ en amont et intégrer
+la transformation dans l'énoncée suivant
+
+### Normale extérieure et hypographe {.proposition}
+Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
+$x_0 \in \partial K$ comme l'hypographe de la fonction 
+$f: U \to I$ où $U$ est un ouvert de $\mathbb{R}^{n-1}$ et $I$ 
+un intervalle ouvert de $\mathbb{R}$, alors
+la normale extérieure de $K$ en $x \in \partial K \cap V$ 
+est le vecteur de $\mathbb{R}^n$ donné par
+$$
+n(x_1, \dots, x_n) = \frac{(1, -\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}))}{\sqrt{1 +\|\nabla f(x_1, \dots, x_{n-1})\|^2}}, 
+$$
+
+### Remarque TODO
+
+A retenir sous la forme: il existe $\alpha > 0$ tel que
+$$
+n(x_1, \dots, x_n) = \alpha \times (1, -\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}))
+$$
+(colinéarité)
+
+### Démonstration {.proof}
+
+**TODO** (essentiellement trivial)
 
 ### Terminologie
 La normale est dite *extérieure* car si l'on part de $x \in \partial K$ 
@@ -565,9 +599,61 @@ $$
 \, dx
 = 
 \int_{V \times \left]-\infty, 0\right[} 
-\partial_n w(\pi(x), x_n + f(\pi(x)) \, dx
+\partial_n w(\pi(x), x_n + f(\pi(x)) \, dx.
+$$
+Dans ce second cas, en raison de la compacité du support $w$, 
+le théorème fondamental du calcul fournit
+$$
+\begin{split}
+\int_{-\infty}^0 
+\partial_n w(\pi(x), x_n + f(\pi(x)) \, dx_n
+&= 
+\lim_{z \to -\infty}\left[
+x_n \mapsto 
+w(\pi(x), x_n + f(\pi(x)) \, dx
+\right]^0_{z} \\
+&= 
+w(\pi(x), f(\pi(x)),
+\end{split}
+$$
+et donc par le théorème de Fubini,
+$$
+\int_{\Omega} 
+\partial_n w(x) 
+\, dx
+= 
+\int_V w(y, f(y)) \, dy.
+$$
+Quand $i \in \{1, \dots, n-1\}$, un calcul analogue fournit
+$$
+\int_{\Omega} 
+\partial_n w(x) 
+\, dx
+= 
+\int_V w(y, f(y)) \times (- \partial_i f(y)) \, dy.
 $$
 
+Quel que soit la valeur de $i \in \{1, \dots, n\}$, comme la normale
+extérieure $n$ est donnée par
+$$
+n(y, f(y)) = \frac{(1, -\partial_1 f(y), \dots, -\partial_{n-1} f(y))}{\sqrt{1 +\|\nabla f(y)\|^2}}, 
+$$
+on constate que l'on a
+$$
+\int_{\Omega} 
+\partial_i w(x) 
+\, dx
+= 
+\int_V w(y, f(y)) n_i(y, f(y)) \sqrt{1 +\|\nabla f(y)\|^2} \, dy,
+$$
+et par conséquent
+$$
+\int_{\Omega} 
+\partial_i w(x) 
+\, dx
+= 
+\int_{\Gamma} w(x) n_i(x)\, dS(x).
+$$
 
 ### TODO
 
