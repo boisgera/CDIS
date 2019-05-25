@@ -47,6 +47,65 @@ Type/Propriétés des sections de niveau 3
 
   - `remark`, `example`, `meta`, `anonymous`
 
+(Hyper-)Liens
+================================================================================
+
+Il existe plusieurs mécanismes standards pour introduire un lien vers une 
+section interne au document ou un lien externe (page Web), qui sont documentés 
+dans le guide utilisateur de pandoc: <https://pandoc.org/MANUAL.html#links-1>
+
+Le plus simple en interne consiste sans doute à faire la chose suivante:
+
+    ### Théorème intégral de Cauchy {.theorem}
+    bla bla bla
+
+    (...)
+
+    ... par le [théorème de Cauchy][Théorème intégral de Cauchy], ...
+
+Alternativement, on pourra donner un identifiant à la section,
+ce qui permettra des références plus "compactes" 
+(mais moins explicites ...):
+
+    ### Théorème intégral de Cauchy {.theorem #TIC}
+    bla bla bla
+
+    (...)
+
+    ... par le [théorème de Cauchy](#TIC), ...
+
+Un besoin qui n'a pas de solution 100% standard est la référence à une section 
+**dans un autre document du projet**. 
+On fera l'hypothèse pour spécifier ces liens que les ressources prennent 
+la forme d'une collection de documents pdf dans le même répertoire[^sinon]. 
+Alors pour faire référence à une section dans un document `a.pdf`, 
+il faudra lui donner un identifiant explicite (ici: `towel`)
+
+    ### Théorème de la serviette {.theorem #towel}
+    bla bla bla
+
+et dans le document `b.pdf` y faire référence de la façon suivante:
+
+    Comme le prouve le [théorème de la serviette](a.pdf#towel)
+
+[^sinon]: Si *in fine* on génère des documents contenant plusieurs chapitres, 
+où si l'on génère des documents HTML, il faudra (automatiquement) détecter 
+et réinterpréter ces liens pour les adapter au nouveau contexte.    
+
+Lignes
+================================================================================
+
+Parce que je suis bigleux, j'utilise des fontes assez grosses dans mon 
+éditeur, ce qui me pousse à limiter -- quand c'est possible -- la largeur
+des lignes à 80 caractères, ce qui est un des standards "de fait" assez
+commun (à défaut d'être universel),
+cf. <https://en.wikipedia.org/wiki/Characters_per_line>.
+
+Quoi qu'il en soit, cela ne veut pas dire nécessairement aller jusqu'au 
+bout de la ligne: s'il y a une rupture "sémantique" naturelle, 
+ne pas hésiter à changer de ligne de façon précoce; c'est plus lisible,
+plus facile à éditer, les "diffs" de Git sont plus facile à interpréter, etc. 
+A ce propos, voir par exemple: <https://sembr.org/>
 
 Mathématiques
 ================================================================================
