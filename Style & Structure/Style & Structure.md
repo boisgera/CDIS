@@ -117,7 +117,7 @@ Mathématiques
     a priori pas de risque de collision entre des conventions différentes
     d'un document à l'autre en cas de regroupement.
    
-    Cf la section [Pandox -- LaTeX macros](https://pandoc.org/MANUAL.html#latex-macros) 
+    Cf la section [Pandoc -- LaTeX macros](https://pandoc.org/MANUAL.html#latex-macros) 
     pour lus de détails.
 
     usage des macros
