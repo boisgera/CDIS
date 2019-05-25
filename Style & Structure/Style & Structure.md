@@ -30,9 +30,14 @@ TODO:
 
   - Structure des sections d'exercices ?
 
+  - Exercises. Section (de top niveau) à part, mais en plus exercices
+    dans le corps du texte ou bien uniquement remarques avec éventuels
+    renvois à la section des exercices (l'info intéressante étant 
+    le "point d'insertion" d'un exerice dans le narratif du cours) ?
+    A priori je dirais à ce stade plutôt remarque + renvoi.
+
 Type/Propriétés des sections de niveau 3
 --------------------------------------------------------------------------------
-
 
   - `theorem`, `proposition`, `corollary`, `lemma`.
 
