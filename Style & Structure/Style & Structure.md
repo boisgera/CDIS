@@ -86,7 +86,7 @@ il faudra lui donner un identifiant explicite (ici: `towel`)
 
 et dans le document `b.pdf` y faire référence de la façon suivante:
 
-    Comme le prouve le [théorème de la serviette](a.pdf#towel)
+    Comme le prouve le [théorème de la serviette](a.pdf#towel), ...
 
 [^sinon]: Si *in fine* on génère des documents contenant plusieurs chapitres, 
 où si l'on génère des documents HTML, il faudra (automatiquement) détecter 
