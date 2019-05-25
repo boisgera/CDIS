@@ -383,6 +383,11 @@ l'épigraphe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
 **TODO** Définition, énoncé existence
 
+### TODO
+
+Ci-dessous, cette démarche suppose que $T$ soit une isométrie, 
+ce qui suppose d'avoir évoqué ce cas particulier en amont.
+
 ### Intégrale de surface
 
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
