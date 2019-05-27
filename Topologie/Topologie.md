@@ -125,6 +125,8 @@ utiliser / montrer que pour tout $A \in \R^{n\times n}$
 et tout $\varepsilon > 0$, il existe une norme matricielle 
 $\|\, \cdot \, \|$ telle que $\|A\| ≤ \rho(A) + \varepsilon$.
 
+Voir aussi <https://math.stackexchange.com/questions/126460/iteration-convergence>
+
 Fonctions définies par un recouvrement
 --------------------------------------------------------------------------------
 
