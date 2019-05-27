@@ -189,6 +189,6 @@ $$
 
 Montrer que les ensembles de sous-niveaux de $f$, de la forme
 $$
-\{x \in \mathbb{R}^n \, | \, f(x) \leq c\}, \, c \in \mathbb{R}
+\{x \in \mathbb{R}^n \, | \, f(x) \leq c\}, \, \mbox{ où } c \in \mathbb{R}
 $$
 sont compacts.
