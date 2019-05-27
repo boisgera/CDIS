@@ -1,5 +1,7 @@
 % Topologie
 
+\newcommand{\R}{\mathbb{R}}
+
 
 Complétude
 ================================================================================
@@ -84,6 +86,25 @@ qui conclut la preuve.
 Applis, exemples, par exemple dans le cas matriciel, 
 pour la résolution des systèmes linéaires, lien avec la norme d'opérateur.
 
+Compacité
+================================================================================
+
+### Compacité séquentielle {.definition}
+Un ensemble $E$ est *(séquentiellement) compact* si toute suite de valeurs de 
+$E$ admet une sous-suite convergeant dans $E$.
+
+### Image d'un compact {.theorem}
+L'image d'un ensemble compact par une application continue est un ensemble
+compact.
+
+### Existence d'un minimum {.corollary #T-EM}
+Une fonction continue $f: K \to \mathbb{R}$ définie sur un ensemble compact 
+$K$ admet un minimum global.
+
+### Théorème de Heine-Borel {.theorem}
+Un ensemble $E$ de $\R^n$ est compact 
+si et seulement si il est fermé et borné.
+
 Exercices
 ================================================================================
 
@@ -99,6 +120,33 @@ Changer les normes au départ et à l'arrivée, calculer les normes d'opérateur
 associées sur la base d'une représentation matricielle (ex: norme sup au 
 départ et à l'arrivée)
 
+Fonctions définies par un recouvrement
+--------------------------------------------------------------------------------
+
+Soit une fonction définie par la donnée de 
+ses restrictions $f_A$ aux ensembles $A \in \mathcal{A}$.
+Ce procédé permet de définir uniquement la fonction $f$ sur l'ensemble
+$$
+\mbox{dom}(f) = \bigcup_{A \in \mathcal{A}} A
+$$
+à condition que les restrictions soient compatibles
+$$
+x\in A \cap B, \, A \in \mathcal{A}, \, B \in \mathcal{A}
+\, \Rightarrow \, 
+f_A(x) = f_B(x).
+$$
+
+  1. On suppose que les fonctions $f_A$, $A \in \mathcal{A}$ sont continues.
+     Est-ce que la fonction $f$ est nécessairement continue ?
+     Dans le cas contraire, quelle condition "raisonnable" portant sur
+     la collection $\mathcal{A}$ faut-il ajouter pour s'assurer du résultat ?
+
+  2. Application angle sur l'hélice et $\arctan$ ...
+
+### Réponse {.answer}
+
+**TODO**
+
 Equations Linéaires et Point Fixes
 --------------------------------------------------------------------------------
 
@@ -110,7 +158,38 @@ en itérant sans s'assurer du caractère contractant.
 
 Lien norme d'opérateur et rayon spectral ???
 
+
+
 Nombres Réels de Bishop ?
 --------------------------------------------------------------------------------
 
 (illustration des suites de Cauchy ?)
+
+Compacité et Continuité
+--------------------------------------------------------------------------------
+
+Montrer la réciproque du [résultat d'existence d'un minimum pour une fonction
+numérique continue définie sur un compact](#T-EM), à savoir:
+
+Si l'ensemble $E \subset \mathbb{R}^n$ n'est pas compact, 
+il existe une fonction continue $f: E \to \mathbb{R}$ 
+n'ayant pas de minimum.
+
+### Réponse {.answer}
+
+**TODO**
+
+Fonctions propres
+--------------------------------------------------------------------------------
+
+Soit $f: \mathbb{R}^n \to \mathbb{R}$ une fonction continue et propre,
+c'est-à-dire telle que
+$$
+f(x) \to +\infty \mbox{ quand } \|x\| \to +\infty.
+$$
+
+Montrer que les ensembles de sous-niveaux de $f$, de la forme
+$$
+\{x \in \mathbb{R}^n \, | \, f(x) \leq c\}, \, c \in \mathbb{R}
+$$
+sont compacts.
