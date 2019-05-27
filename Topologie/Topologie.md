@@ -123,7 +123,7 @@ départ et à l'arrivée)
 En lien avec les résolutions itératives de systèmes linéaires,
 utiliser / montrer que pour tout $A \in \R^{n\times n}$
 et tout $\varepsilon > 0$, il existe une norme matricielle 
-$\|\, \cdot \, \|$ telle que $\|A\| ≤ \rho(A) + \varepsilon$.
+$\|\, \cdot \, \|$ telle que $\|A\| \leq \rho(A) + \varepsilon$.
 
 Voir aussi <https://math.stackexchange.com/questions/126460/iteration-convergence>
 
