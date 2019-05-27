@@ -139,7 +139,7 @@ $$
   1. On suppose que les fonctions $f_A$, $A \in \mathcal{A}$ sont continues.
      Est-ce que la fonction $f$ est nécessairement continue ?
      Dans le cas contraire, quelle condition "raisonnable" portant sur
-     la collection $\mathcal{A}$ faut-il ajouter pour s'assurer du résultat ?
+     la collection $\mathcal{A}$ peut-on ajouter pour s'assurer du résultat ?
 
   2. Application angle sur l'hélice et $\arctan$ ...
 
