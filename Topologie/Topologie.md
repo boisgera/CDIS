@@ -161,8 +161,8 @@ des cas simples (ex: Jacobi, Gauss-Seidel, cas diagonally dominant ?).
 Exemples concrets (ex: Poisson Image editing) et exemples ou "ça ne marche pas"
 en itérant sans s'assurer du caractère contractant. 
 
-Lien norme d'opérateur et rayon spectral ???
-
+Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
+et lien avec norme.
 
 
 Nombres Réels de Bishop ?
