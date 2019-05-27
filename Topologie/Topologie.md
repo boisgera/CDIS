@@ -120,6 +120,11 @@ Changer les normes au départ et à l'arrivée, calculer les normes d'opérateur
 associées sur la base d'une représentation matricielle (ex: norme sup au 
 départ et à l'arrivée)
 
+En lien avec les résolutions itératives de systèmes linéaires,
+utiliser / montrer que pour tout $A \in \R^{n\times n}$
+et tout $\varepsilon > 0$, il existe une norme matricielle 
+$\|\, \cdot \, \|$ telle que $\|A\| ≤ \rho(A) + \varepsilon$.
+
 Fonctions définies par un recouvrement
 --------------------------------------------------------------------------------
 
