@@ -169,9 +169,8 @@ Compacité et Continuité
 --------------------------------------------------------------------------------
 
 Montrer la réciproque du [résultat d'existence d'un minimum pour une fonction
-numérique continue définie sur un compact](#T-EM), à savoir:
-
-Si l'ensemble $E \subset \mathbb{R}^n$ n'est pas compact, 
+numérique continue définie sur un compact](#T-EM):
+si l'ensemble $E \subset \mathbb{R}^n$ n'est pas compact, 
 il existe une fonction continue $f: E \to \mathbb{R}$ 
 n'ayant pas de minimum.
 
