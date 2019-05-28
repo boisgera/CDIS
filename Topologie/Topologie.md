@@ -14,7 +14,7 @@ Complétude
   - application lipschitzienne, (et lip est cont) contractante, 
     $\kappa$-contractante
 
-### Théorème de Point Fixe de Banach {.definition .theorem}
+### Théorème de Point Fixe de Banach {.definition .theorem #T-TPFB}
 
 Soit $f: E \to E$ une application contractante dans un espace métrique $E$.
 Si l'espace $E$ est complet, l'application $f$ admet un unique *point fixe* $x$,
@@ -113,6 +113,27 @@ Comparaison des normes
 
 TODO: comparaison manuelle, meilleure bornes
 
+Point fixe
+--------------------------------------------------------------------------------
+
+Soit $f: E \to E$ une fonction définie et à valeurs dans un espace métrique 
+complet $E$ pour laquelle il existe un entier $n \geq 1$ tel que la composée 
+$n$ fois de $f$ avec elle-même, notée $f^n$, est contractante. 
+
+On souhaite montrer que sous ces hypothèses 
+-- qui généralisent celles du [théorème de point fixe de Banach](#T-TPFB) -- 
+$f$ admet encore un unique point fixe.
+
+ 1. Montrer que tout point fixe éventuel de $f$ est également 
+    un point fixe de $f^n$.
+
+ 2. Montrer que $f^n$ admet un unique point fixe et qu'il est également
+    un point fixe de $f$.
+
+ 3. Montrer que le procédé habituel pour construire un point 
+    fixe de $f$ est toujours valable quand $f^n$ est contractante.
+
+
 Normes d'opérateurs
 --------------------------------------------------------------------------------
 
@@ -150,9 +171,6 @@ $$
 
   2. Application angle sur l'hélice et $\arctan$ ...
 
-### Réponse {.answer}
-
-**TODO**
 
 Equations Linéaires et Point Fixes
 --------------------------------------------------------------------------------
@@ -181,9 +199,7 @@ si l'ensemble $E \subset \mathbb{R}^n$ n'est pas compact,
 il existe une fonction continue $f: E \to \mathbb{R}$ 
 n'ayant pas de minimum.
 
-### Réponse {.answer}
 
-**TODO**
 
 Fonctions propres
 --------------------------------------------------------------------------------
@@ -199,3 +215,47 @@ $$
 \{x \in \mathbb{R}^n \, | \, f(x) \leq c\} \, \mbox{ où } \, c \in \mathbb{R}
 $$
 sont compacts.
+
+Solutions aux Exercices
+================================================================================
+
+Solution -- [Point fixe]
+--------------------------------------------------------------------------------
+
+ 1. Si $x$ est un point fixe de $f$, $f(x) = x$, par conséquent
+    $$
+    f^2(x) = f(f(x)) = f(x) = x, 
+    $$
+    puis
+    $$
+    f^3(x) = f(f^2(x)) = f(x) = x,
+    $$
+    etc. Par récurrence, il est clair que l'on peut établir que pour tout
+    $n \geq 1$, on a $f^n(x) = x$: $x$ est un point fixe de $f^n$.
+
+ 2. La fonction itérée $f^n$ satisfait les hypothèses du 
+    [théorème du point fixe de Banach](#T-TPFB), par conséquent elle
+    admet un point fixe $x$. Comme $f^n(x) = x$, en applicant $f$ aux
+    deux membres de cette équation, on obtient 
+    $$
+    f(f^n(x)) = f^n(f(x)) = f(x).
+    $$
+    Par conséquent, $f(x)$ est un point fixe de $f^n$. 
+    C'est donc l'unique point fixe $x$ de $f^n$; on a donc $f(x) = x$,
+    c'est-à-dire que $x$ est un point fixe de $f$. 
+
+ 3. Le "procédé habituel pour construire un point fixe de $f$" 
+    consiste à prendre un $x_0 \in E$ quelconque et à construire 
+    par récurrence la suite des $x_{k+1} = f(x_k)$. 
+    On souhaite donc montrer que cette suite converge vers l'unique point fixe 
+    $x$ de $f$. 
+    La fonction $f^n$ satisfaisant les hypothèses du
+    [théorème du point fixe de Banach](#T-TPFB), 
+    on sait que la suite extraite
+    $(x_{kn})_k$ converge vers $x$, car $x_{(k+1)n} = f^n(x_{kn})$.
+    Il en est de même pour la suite extraite $(x_{kn+1})_k$, construite
+    à partir du même procédé mais en initialisant la séquence avec 
+    la valeur $x_1$, pour la suite $(x_{kn+2})_k$, ..., jusqu'à 
+    $(x_{kn + (n-1)})_k$. Ces $n$ suites convergent toutes vers $x$,
+    donc la suite des $(x_k)_k$ converge également vers le point fixe $x$, 
+    comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
