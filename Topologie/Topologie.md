@@ -181,6 +181,10 @@ des cas simples (ex: Jacobi, Gauss-Seidel, cas diagonally dominant ?).
 Exemples concrets (ex: Poisson Image editing) et exemples ou "ça ne marche pas"
 en itérant sans s'assurer du caractère contractant. 
 
+Prendre un exemple de petite dimension associé au PIE; admettre le résultat
+que $\|A^k\| \to 0 \Leftrightarrow \rho(A) < 1$ et tester algo de Jacobi
+(Au préalable, calculer norme de l'opérateur via la svd ?).
+
 Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
 et lien avec norme.
 
