@@ -194,6 +194,19 @@ Nombres Réels de Bishop ?
 
 (illustration des suites de Cauchy ?)
 
+"Localement"
+--------------------------------------------------------------------------------
+
+Etude des pptés "localement X" pour X=bornée, positive (ex: distance), 
+coup de la stabilité asympt (localt equi-convergente ?), 
+localement unift continue, etc.
+et comment elle s'étendent à un ensemble d'adhérence compacte 
+("compactement inclus" dans l'espace de référence).
+
+"Contre-exemples" ? Avec "localement constant", "localement polynomial", 
+"localement lipschitz" etc., opérations qui ne sont pas stables par union 
+finie. 
+
 Compacité et Continuité
 --------------------------------------------------------------------------------
 
