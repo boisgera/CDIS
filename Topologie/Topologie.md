@@ -9,7 +9,7 @@ Structures Topologiques
 
 Remarque scalaires réels, extension plus tard au cas complexe.
 
-### Espace Vectoriel Normé {.definition}
+### Norme {.definition}
 Une *norme* sur un espace vectoriel $E$ est une application
 $$\| \cdot \|: E \to \left[0, +\infty\right[$$
 qui vérifie les trois axiomes suivants:
@@ -19,8 +19,6 @@ qui vérifie les trois axiomes suivants:
   - Homogénéité: $\|\lambda x\| = |\lambda| \|x\|$ pour tous $\lambda \in \mathbb{R}$ et $x \in E$,
 
   - Inégalité triangulaire: $\|x+y\| \leq \|x\| + \|y\|$ pour tous $x \in E$ et $y \in E$.
-
-L'espace $E$ muni de la norme $\| \cdot \|$ est un *espace vectoriel normé*.
 
 ### Produit scalaire
 Un *produit scalaire* sur un espace vectoriel $E$ est une application
@@ -44,13 +42,27 @@ qui est
 
 ### Remarque
 
+Terminologie evn, espace métriques regroupées après coup ? Et référence
+au cas plus général en annexe ?
+
 **TODO:** limitation des evn, sous-ensembles d'evn, nouvelle
 structure, et plus tard (?) comment espace métrique n'est pas plus
-général (à une isométrie près).
+général (à une isométrie près). Convention (légèrement abusive)
+qui consiste à appeler espace métrique sous-ensembles d'un evn.
 
-### Espace Métrique {.definition}
+"Bestiaire" Topologique ?
+================================================================================
 
+**TODO**
 
+  - ouvert, fermé, voisinage, adhérence, intérieur, frontière
+
+  - point isolé, d'accumulation, ensemble dense, etc.
+
+Continuité et Limite
+================================================================================
+
+**TODO** (que dire sur limite ? Cadre général exclu ici ...)
 
 Complétude
 ================================================================================
@@ -138,8 +150,8 @@ pour la résolution des systèmes linéaires, lien avec la norme d'opérateur.
 Compacité
 ================================================================================
 
-### Compacité séquentielle {.definition}
-Un ensemble $E$ est *(séquentiellement) compact* si toute suite de valeurs de 
+### Compacité {.definition}
+Un ensemble $E$ est *compact* si toute suite de valeurs de 
 $E$ admet une sous-suite convergeant dans $E$.
 
 ### Image d'un compact {.theorem}
@@ -157,34 +169,40 @@ si et seulement si il est fermé et borné.
 Annexe
 ================================================================================
 
+### Remarque {.anonymous}
+
+**TODO.** quantitatif contre qualitatif
+$$
+d(x, A) = 0
+$$
+
+
 
 ### Topologie {.definition}
 
-Une relation d'*adhérence* sur un ensemble $E$ est une relation 
+Une relation de *proximité* sur un ensemble $E$ est une relation 
 entre points de $E$ et ensembles de $E$ vérifiant les axiomes 
 suivants:
 
- 1. Aucun point n'est adhérent à l'ensemble vide,
+ 1. Aucun point n'est proche de l'ensemble vide,
 
- 2. Tout point d'un ensemble est adhérent à cet ensemble,
+ 2. Tout point d'un ensemble est proche de cet ensemble,
 
- 3. Un point est adhérent à l'union de deux ensembles 
-    s'il est adhérent à (au moins) l'un des ensembles,
+ 3. Un point est proche de l'union de deux ensembles 
+    si et seulement s'il est proche d'au moins l'un 
+    des deux ensembles,
 
- 4. Un point adhérent à l'ensemble des points adhérents à un ensemble
+ 4. Un point proche de l'ensemble des points proches d'un ensemble
     est adhérent à l'ensemble.
 
-L'ensemble $E$ muni d'une relation d'adhérence est un *espace topologique*.
+L'ensemble $E$ muni d'une relation de proximité est un *espace topologique*.
     
 ### Adhérence {.definition}
 
 On appelle *adhérence* d'un ensemble $A$
 l'ensemble $\overline{A}$ des points adhérents à $A$.
 
-### TODO
 
-relation adhérence / relation d'adhérence. Renommer tout ça pour éviter la
-confusion ? Relation de proximité ?
 
 ### Calcul Topologique
 Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
