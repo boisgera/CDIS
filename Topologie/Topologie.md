@@ -50,19 +50,36 @@ structure, et plus tard (?) comment espace métrique n'est pas plus
 général (à une isométrie près). Convention (légèrement abusive)
 qui consiste à appeler espace métrique sous-ensembles d'un evn.
 
-"Bestiaire" Topologique ?
+Continuité et Limite
+================================================================================
+
+**TODO** (que dire sur limite ? Cadre général exclu ici ...
+Suite convergente et limite; fonctions $X \to Y$, etc ?)
+
+Bestiaire
 ================================================================================
 
 **TODO**
 
-  - ouvert, fermé, voisinage, adhérence, intérieur, frontière
+  - ouvert, fermé, voisinage, compact (?), adhérence, intérieur, frontière
 
   - point isolé, d'accumulation, ensemble dense, etc.
 
-Continuité et Limite
-================================================================================
+### Définitions séquentielles
 
-**TODO** (que dire sur limite ? Cadre général exclu ici ...)
+  - Un ensemble $F$ est *fermé* si la limite de toute suite convergente de $F$
+    appartient à $F$.
+
+  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
+    suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
+
+  - Un ensemble $O$ est *ouvert* si tout suite convergeant vers une
+    limite appartenant à $O$ appartient à $O$ à partir d'un certain rang.
+
+  - Un ensemble $K$ est *compact* si toute suite de $K$ admet une sous-suite
+    convergente.
+
+  
 
 Complétude
 ================================================================================
