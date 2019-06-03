@@ -328,27 +328,28 @@ identifié à un sous-ensemble d'un espace vectoriel normé tout en préservant
 sa distance.
 
 Soit $X$ un espace métrique et $x_0$ un point de $X$. 
-On définit l'application $\Phi$ de $X$ dans l'espace des fonctions
-de $X \to \mathbb{R}$ comme suit:
+On associe à l'élément $x$ de $X$ la fonction $f_x: X \to \R$ définie
+par
 $$
-\Phi(x)(y) = d(x, y) - d(x_0, y).
+f_x(y) = d(x, y) - d(x_0, y).
 $$
 
- 1. Montrer que la fonction $\Phi$ est injective.
+ 1. Montrer que la fonction $x \mapsto f_x$ est injective.
 
- 2. Montrer que pour tout $x \in X$ la fonction $\Phi(x)$ est bornée.
+ 2. Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
 
  3. Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
     $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
     $\| \cdot \|_{\infty}$ définie par
     $$
-    \|\phi\|_{\infty} = \sup \, \{|\phi(y)| \, | \, y \in X\}.
+    \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
     $$
 
- 4. Montrer que $\Phi$ est une isométrie, c'est-à-dire que pour tout $x$ et
+ 4. Montrer que $x \mapsto f_x$ est une isométrie, 
+    c'est-à-dire que pour tout $x$ et
     $y$ dans $X$, on a 
     $$
-    d(x, y) = \|\Phi(x) - \Phi(y)\|_{\infty}.
+    d(x, y) = \|f_x - f_y\|_{\infty}.
     $$
 
 Point fixe
