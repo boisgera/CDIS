@@ -60,7 +60,9 @@ Continuité et Limite
 **TODO** (que dire sur limite ? Cadre général exclu ici ...
 Au minimum, indispensable limite de suite. 
 Qui du reste ? fonctions $X \to Y$, etc ? 
-Montrer en exercice que des cas "limite en $\infty$" se ramènent à ça ?)
+Montrer en exercice que des cas "limite en $\infty$" se ramènent à ça ?
+L'idée que la notion de limite peut tjs être ramenée à une limite de
+type limite quand on tend vers un point est intéressante.)
 
 Bestiaire
 ================================================================================
