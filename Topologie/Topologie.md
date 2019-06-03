@@ -65,6 +65,9 @@ Bestiaire
 
   - point isolé, d'accumulation, ensemble dense, etc.
 
+**TODO.** Partir de la notion de limite, définir l'adhérence, et le reste
+à partir de ça, puis "découvrir" les définitions "directes"/séquentielles.
+
 ### Définitions séquentielles
 
   - Un ensemble $F$ est *fermé* si la limite de toute suite convergente de $F$
@@ -91,6 +94,38 @@ Complétude
 
   - application lipschitzienne, (et lip est cont) contractante, 
     $\kappa$-contractante
+
+### Suite de Cauchy {.definition}
+Une suite de points $x_k$ est *de Cauchy* si pour tout
+$\varepsilon > 0$, 
+il existe un rang $m$ tel que pour tous les entiers $n \geq m$ et $p \geq m$, 
+$\|x_n - x_p\| \leq \varepsilon$. 
+
+### Diamètre {.definition}
+Le diamètre d'un sous-ensemble $A$ d'un espace vectoriel normé est donné par:
+$$
+\mbox{diam}(A) = \sup \, \{\|x - y \| \, | \, x \in A, \, y \in A\}
+$$
+
+### Suite de Cauchy et diamètre {.proposition}
+Une suite de points $x_k$ est de Cauchy si et seulement si
+$$
+\lim_{k \to + \infty} \mbox{diam}(\{x_n \, | \, n \geq k \}) = 0.
+$$
+
+### Complétude {.definition}
+Un espace métrique $X$ est *complet* si et seulement si tout suite de Cauchy
+est convergente.
+
+### Application contractante {.definition}
+Une fonction $f: X \to X$ est *$\kappa$-contractante*, 
+où $\kappa \in \left[0, 1\right[$,
+si pour tout couple de points $x$ et $y$ de $X$, on a 
+$$
+\|f(x) - f(y)\| \leq \kappa \|x - y\|.
+$$
+Une telle application est *contractante* si elle est 
+$\kappa$-contractante pour un $\kappa \in \left[0, 1\right[$.
 
 ### Théorème de Point Fixe de Banach {.definition .theorem #T-TPFB}
 
@@ -157,12 +192,6 @@ $$
 Le second membre de cette inégalité tendant vers $0$ indépendamment de $p$
 quand $n$ tend vers $+\infty$, la suite des $x_n$ est bien de Cauchy, ce
 qui conclut la preuve.
-
-
-### TODO
-
-Applis, exemples, par exemple dans le cas matriciel, 
-pour la résolution des systèmes linéaires, lien avec la norme d'opérateur.
 
 Compacité
 ================================================================================
