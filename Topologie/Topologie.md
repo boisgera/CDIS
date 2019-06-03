@@ -20,7 +20,7 @@ qui vérifie les trois axiomes suivants:
 
   - Inégalité triangulaire: $\|x+y\| \leq \|x\| + \|y\|$ pour tous $x \in E$ et $y \in E$.
 
-### Produit scalaire
+### Produit scalaire {.definition}
 Un *produit scalaire* sur un espace vectoriel $E$ est une application
 $$\left< \cdot , \cdot \right>: E \times E \to \mathbb{R}$$
 qui est
@@ -57,12 +57,40 @@ qui consiste à appeler espace métrique sous-ensembles d'un evn.
 Continuité et Limite
 ================================================================================
 
-**TODO** (que dire sur limite ? Cadre général exclu ici ...
+### TODO 
+
+(que dire sur limite ? Cadre général exclu ici ...
 Au minimum, indispensable limite de suite. 
 Qui du reste ? fonctions $X \to Y$, etc ? 
 Montrer en exercice que des cas "limite en $\infty$" se ramènent à ça ?
 L'idée que la notion de limite peut tjs être ramenée à une limite de
 type limite quand on tend vers un point est intéressante.)
+
+### Limite d'une suite {.definition}
+Une suite $x_k$ de valeurs d'un espace métrique $X$ est *convergente*
+si elle a une *limite*, c'est-à-dire un élement de $x$ de $X$
+dont $x_{k}$ soit arbitrairement proche à partir d'un certain rang,
+c'est-à-dire vérifiant: pour tout $\varepsilon > 0$, il existe un entier $n$ 
+tel que pour tout $k \geq n$, on ait $\|x_k - x\| \leq \varepsilon$.
+
+### Unicité de la limite {.proposition}
+Si une suite $x_k$ admet une limite, celle-ci est unique.
+
+### Démonstration {.proof}
+Par l'inégalité triangulaire, pour tout entier $k$ on a
+$$
+\|x - x'\| \leq \|x - x_k\| + \|x' - x_k\|.
+$$
+Les points $x$ et $x'$ étant deux limites de $x_k$, 
+pour tout $\varepsilon > 0$, il existe des rangs $n$ et $n'$ tels que
+lorsque $k \geq n$ et $k\geq n'$, on a $\|x - x_k\| \leq \varepsilon /2$
+et $\|x' - x_k\| \leq \varepsilon /2$. Par conséquent, pour 
+$k = \max(n, n')$, on a
+$\|x - x'\| \leq \varepsilon$. La valeur $\varepsilon > 0$ étant arbitraire,
+on en déduit que $\|x - x'\|= 0$, soit par séparation, $x=x'$.
+
+
+
 
 Bestiaire
 ================================================================================
