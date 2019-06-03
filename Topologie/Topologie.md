@@ -40,6 +40,10 @@ qui est
 
     - $\left<x, x \right> = 0$ si et seulement si $x=0$.
 
+### TODO
+
+Mq produit scalaire définit une norme.
+
 ### Remarque
 
 Terminologie evn, espace métriques regroupées après coup ? Et référence
@@ -54,7 +58,9 @@ Continuité et Limite
 ================================================================================
 
 **TODO** (que dire sur limite ? Cadre général exclu ici ...
-Suite convergente et limite; fonctions $X \to Y$, etc ?)
+Au minimum, indispensable limite de suite. 
+Qui du reste ? fonctions $X \to Y$, etc ? 
+Montrer en exercice que des cas "limite en $\infty$" se ramènent à ça ?)
 
 Bestiaire
 ================================================================================
