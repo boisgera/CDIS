@@ -475,6 +475,36 @@ sont compacts.
 Solutions aux Exercices
 ================================================================================
 
+Solution -- [Plongement de Kuratowski]
+--------------------------------------------------------------------------------
+
+ 1. Soit $x$, $x'$ deux points de $X$. Pour tout $y$ dans $X$ on a:
+    $$
+    \begin{split}
+    f_x(y) - f_{x'}(y) &= d(x, y) - d(x_0, y) - (d(x', y) - d(x', x_0))\\
+    &= d(x, y) - d(x', y),
+    \end{split}
+    $$
+    par conséquent, si $f_x = f_{x'}$, on a en particulier
+    $f_x(x') = f_{x'}(x')$, soit $d(x, x') - d(x', x') = d(x, x') = 0$, 
+    c'est-à-dire $x = x'$.
+
+ 2. **TODO** Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
+
+ 3. **TODO** Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
+    $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
+    $\| \cdot \|_{\infty}$ définie par
+    $$
+    \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
+    $$
+
+ 4. **TODO** Montrer que $x \mapsto f_x$ est une isométrie, 
+    c'est-à-dire que pour tout $x$ et
+    $y$ dans $X$, on a 
+    $$
+    d(x, y) = \|f_x - f_y\|_{\infty}.
+    $$
+
 Solution -- [Point fixe]
 --------------------------------------------------------------------------------
 
