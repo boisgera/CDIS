@@ -44,6 +44,18 @@ qui est
 
 Mq produit scalaire définit une norme.
 
+### L'espace euclidien $\mathbb{R}^n$ {.remark}
+L'ensemble $\mathbb{R}^n$ est un espace vectoriel de dimension finie
+qui muni du produit scalaire
+$$
+\left<x,y\right> = x_1 y_1 + \dots + x_n y_n
+$$
+devient un *espace euclien*; la norme associée vérifie
+$$
+\|x\| = \sqrt{x_1^2 +\dots + x_n^2}.
+$$
+
+
 ### Remarque
 
 Terminologie evn, espace métriques regroupées après coup ? Et référence
@@ -89,8 +101,9 @@ $k = \max(n, n')$, on a
 $\|x - x'\| \leq \varepsilon$. La valeur $\varepsilon > 0$ étant arbitraire,
 on en déduit que $\|x - x'\|= 0$, soit par séparation, $x=x'$.
 
+### TODO
 
-
+Continuité cadre métrique/métrique.
 
 Bestiaire
 ================================================================================
@@ -306,6 +319,37 @@ Comparaison des normes
 --------------------------------------------------------------------------------
 
 TODO: comparaison manuelle, meilleure bornes
+
+Plongement de Kuratowski
+--------------------------------------------------------------------------------
+
+Nous souhaitons établir le résulat suivant: tout espace métrique peut être
+identifié à un sous-ensemble d'un espace vectoriel normé tout en préservant 
+sa distance.
+
+Soit $X$ un espace métrique et $x_0$ un point de $X$. 
+On définit l'application $\Phi$ de $X$ dans l'espace des fonctions
+de $X \to \mathbb{R}$ comme suit:
+$$
+\Phi(x)(y) = d(x, y) - d(x_0, y).
+$$
+
+ 1. Montrer que la fonction $\Phi$ est injective.
+
+ 2. Montrer que pour tout $x \in X$ la fonction $\Phi(x)$ est bornée.
+
+ 3. Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
+    $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
+    $\| \cdot \|_{\infty}$ définie par
+    $$
+    \|\phi\|_{\infty} = \sup \, \{|\phi(y)| \, | \, y \in X\}.
+    $$
+
+ 4. Montrer que $\Phi$ est une isométrie, c'est-à-dire que pour tout $x$ et
+    $y$ dans $X$, on a 
+    $$
+    d(x, y) = \|\Phi(x) - \Phi(y)\|_{\infty}.
+    $$
 
 Point fixe
 --------------------------------------------------------------------------------
