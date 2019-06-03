@@ -2,6 +2,55 @@
 
 \newcommand{\R}{\mathbb{R}}
 
+Structures Topologiques
+================================================================================
+
+### TODO
+
+Remarque scalaires réels, extension plus tard au cas complexe.
+
+### Espace Vectoriel Normé {.definition}
+Une *norme* sur un espace vectoriel $E$ est une application
+$$\| \cdot \|: E \to \left[0, +\infty\right[$$
+qui vérifie les trois axiomes suivants:
+
+  - Séparation: $\|x\| = 0$ si et seulement si $x=0$,
+
+  - Homogénéité: $\|\lambda x\| = |\lambda| \|x\|$ pour tous $\lambda \in \mathbb{R}$ et $x \in E$,
+
+  - Inégalité triangulaire: $\|x+y\| \leq \|x\| + \|y\|$ pour tous $x \in E$ et $y \in E$.
+
+L'espace $E$ muni de la norme $\| \cdot \|$ est un *espace vectoriel normé*.
+
+### Produit scalaire
+Un *produit scalaire* sur un espace vectoriel $E$ est une application
+$$\left< \cdot , \cdot \right>: E \times E \to \mathbb{R}$$
+qui est
+
+  - Bilinéaire symmétrique: pour tous $\lambda \in \mathbb{R}$ et $x, y, z \in E$:
+    
+      - $\left<x, y\right> = \left<y, x\right>$,
+
+      - $\left<x, \lambda y\right> = \lambda \left<x, y\right>$
+
+      - $\left<x, y + z\right> = \left<x, y\right> + \left<x, z\right>$.
+
+
+  - Définie positive: pour tout $x \in E$, 
+  
+    - $\left<x, x \right> \geq 0$,
+
+    - $\left<x, x \right> = 0$ si et seulement si $x=0$.
+
+### Remarque
+
+**TODO:** limitation des evn, sous-ensembles d'evn, nouvelle
+structure, et plus tard (?) comment espace métrique n'est pas plus
+général (à une isométrie près).
+
+### Espace Métrique {.definition}
+
+
 
 Complétude
 ================================================================================
@@ -104,6 +153,51 @@ $K$ admet un minimum global.
 ### Théorème de Heine-Borel {.theorem}
 Un ensemble $E$ de $\R^n$ est compact 
 si et seulement si il est fermé et borné.
+
+Annexe
+================================================================================
+
+
+### Topologie {.definition}
+
+Une relation d'*adhérence* sur un ensemble $E$ est une relation 
+entre points de $E$ et ensembles de $E$ vérifiant les axiomes 
+suivants:
+
+ 1. Aucun point n'est adhérent à l'ensemble vide,
+
+ 2. Tout point d'un ensemble est adhérent à cet ensemble,
+
+ 3. Un point est adhérent à l'union de deux ensembles 
+    s'il est adhérent à (au moins) l'un des ensembles,
+
+ 4. Un point adhérent à l'ensemble des points adhérents à un ensemble
+    est adhérent à l'ensemble.
+
+L'ensemble $E$ muni d'une relation d'adhérence est un *espace topologique*.
+    
+### Adhérence {.definition}
+
+On appelle *adhérence* d'un ensemble $A$
+l'ensemble $\overline{A}$ des points adhérents à $A$.
+
+### TODO
+
+relation adhérence / relation d'adhérence. Renommer tout ça pour éviter la
+confusion ? Relation de proximité ?
+
+### Calcul Topologique
+Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
+
+ 1. $\overline{\varnothing} = \varnothing$,
+
+ 2. $A \subset \overline{A}$,
+
+ 3. $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
+
+ 4. $\overline{\overline{A}} = \overline{A}$.
+
+
 
 Exercices
 ================================================================================
