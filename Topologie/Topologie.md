@@ -325,6 +325,9 @@ Distance entre ensembles
 
 **TODO:** distance de Hausdorff, continuité de la somme de Minkowski.
 
+Définir en fonction de $\|u\|_{\infty}$ minimal ou $I+u: A \to B$ 
+et réciproquement.
+
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
 
