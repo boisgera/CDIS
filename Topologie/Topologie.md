@@ -332,6 +332,9 @@ de cette hypothèse de compacité. Commencer la version non symmétrisée,
 montrer que les axiomes de la distance sont satisfaits sauf la symmétrie,
 en déduire l'adaptation à apporter.)
 
+**TODO:** relier à la formulation classique, comme sup de distance, ou 
+sup d'inf.
+
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
 
