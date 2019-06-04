@@ -328,7 +328,9 @@ Distance entre ensembles
 Définir en fonction de $\|u\|_{\infty}$ minimal ou $I+u: A \to B$ 
 et réciproquement. (nota: c'est bien un min pour commencer, si $A$
 et $B$ sont des compacts; en ante travailler pour montrer la nécessité
-de cette hypothèse de compacité)
+de cette hypothèse de compacité. Commencer la version non symmétrisée,
+montrer que les axiomes de la distance sont satisfaits sauf la symmétrie,
+en déduire l'adaptation à apporter.)
 
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
