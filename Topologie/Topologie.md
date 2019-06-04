@@ -327,7 +327,8 @@ Distance entre ensembles
 
 Définir en fonction de $\|u\|_{\infty}$ minimal ou $I+u: A \to B$ 
 et réciproquement. (nota: c'est bien un min pour commencer, si $A$
-et $B$ sont des compacts;)
+et $B$ sont des compacts; en ante travailler pour montrer la nécessité
+de cette hypothèse de compacité)
 
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
