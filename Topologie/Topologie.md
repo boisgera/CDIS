@@ -320,6 +320,11 @@ Comparaison des normes
 
 TODO: comparaison manuelle, meilleure bornes
 
+Distance entre ensembles
+--------------------------------------------------------------------------------
+
+**TODO:** distance de Hausdorff, continuité de la somme de Minkowski.
+
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
 
