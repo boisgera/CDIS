@@ -442,6 +442,12 @@ que $\|A^k\| \to 0 \Leftrightarrow \rho(A) < 1$ et tester algo de Jacobi
 Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
 et lien avec norme.
 
+Equa Diff
+--------------------------------------------------------------------------------
+
+Pt fixe associé à l'équation différentielle $\dot{x} = A(t) \cdot x$?
+Et solution itérative ? 
+
 
 Nombres Réels de Bishop ?
 --------------------------------------------------------------------------------
