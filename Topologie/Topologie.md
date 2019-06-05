@@ -2,6 +2,33 @@
 
 \newcommand{\R}{\mathbb{R}}
 
+TODO / acquis {.meta}
+--------------------------------------------------------------------------------
+
+  - intro: ensembles "nus" (théorie des ensembles sans structure additionnelle)
+   ne disposent que de la notion d'appartence et d'aucun notion de proximité.
+   Structure topologiques sur les ensembles comblent ce manque. 
+   "dualité" structure / morphismes, ie topologie peut être vue comme
+   l'étude des fcts continues (on peut tout ramener à ça: limites, etc.).
+
+  - "hiérarchie" des structures topologiques, justification
+    (généralité et/ou "abstraction"), positionnement utile.
+    Evocation dim finie et infinie (partiellement ici, 
+    principalement les choses qui ne posent pas de pb
+    supplémentaire par rapport au cas dim finie).
+    Exemple définition fonction continue de façon abstraite ... 
+    pas plus compliqué !
+
+  - point fixe, appli contractante, complétude
+
+  - lister "use cases" compacité,
+    transition locale vers le (semi-)global (dim. finie),
+    extraction recouvrement fini (ex compacts à bords),
+    optimisation, etc.
+
+  - warning: pptés définies *relativement à un espace de référence* 
+    (ex: fermé dans quoi ?). Topologie "trace" / induite, sous-espace ...
+
 Structures Topologiques
 ================================================================================
 
@@ -18,7 +45,7 @@ qui vérifie les trois axiomes suivants:
 
   - Homogénéité: $\|\lambda x\| = |\lambda| \|x\|$ pour tous $\lambda \in \mathbb{R}$ et $x \in E$,
 
-  - Inégalité triangulaire: $\|x+y\| \leq \|x\| + \|y\|$ pour tous $x \in E$ et $y \in E$.
+  - Inégalité triangulaire (subadditivité): $\|x+y\| \leq \|x\| + \|y\|$ pour tous $x \in E$ et $y \in E$.
 
 ### Produit scalaire {.definition}
 Un *produit scalaire* sur un espace vectoriel $E$ est une application
@@ -44,6 +71,11 @@ qui est
 
 Mq produit scalaire définit une norme.
 
+### TODO
+
+Hors cas euclidien, exemple de produit scalaire ? Trop tôt ? 
+(pas les structures adaptées)
+
 ### L'espace euclidien $\mathbb{R}^n$ {.remark}
 L'ensemble $\mathbb{R}^n$ est un espace vectoriel de dimension finie
 qui muni du produit scalaire
@@ -55,7 +87,6 @@ $$
 \|x\| = \sqrt{x_1^2 +\dots + x_n^2}.
 $$
 
-
 ### Remarque
 
 Terminologie evn, espace métriques regroupées après coup ? Et référence
@@ -65,6 +96,9 @@ au cas plus général en annexe ?
 structure, et plus tard (?) comment espace métrique n'est pas plus
 général (à une isométrie près). Convention (légèrement abusive)
 qui consiste à appeler espace métrique sous-ensembles d'un evn.
+
+Produit (et Quotient?)
+--------------------------------------------------------------------------------
 
 Continuité et Limite
 ================================================================================
@@ -314,6 +348,15 @@ Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est
 
 Exercices
 ================================================================================
+
+Ensembles localements fermés
+--------------------------------------------------------------------------------
+
+**TODO**, cf. Sato (hyperfonctions).
+
+Quelles pptés ? Jouer sur de tels ensembles dans $\mathbb{R}^2$ et dans
+$\mathbb{R}$ pour "tester" la compréhension de "ppté topologique relativement
+à une structure donnée".
 
 Comparaison des normes
 --------------------------------------------------------------------------------
