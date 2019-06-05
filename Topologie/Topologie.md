@@ -100,6 +100,8 @@ qui consiste à appeler espace métrique sous-ensembles d'un evn.
 Produit (et Quotient?)
 --------------------------------------------------------------------------------
 
+
+
 Continuité et Limite
 ================================================================================
 
