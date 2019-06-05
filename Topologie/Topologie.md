@@ -100,7 +100,7 @@ qui consiste à appeler espace métrique sous-ensembles d'un evn.
 Produit (et Quotient?)
 --------------------------------------------------------------------------------
 
-
+(rk: Quotient ne "marche pas" dans une simple structure métrique)
 
 Continuité et Limite
 ================================================================================
@@ -356,9 +356,16 @@ Ensembles localements fermés
 
 **TODO**, cf. Sato (hyperfonctions).
 
+Deux définitions équivalentes: d'abord étymologique (tout point de l'ensemble
+admet un voisinage où la trace de l'ensemble est fermé), 
+puis intersection d'un ouvert et d'un fermé.
+
+Test ensembles ... Construction d'un ensemble qui ne soit pas localement
+fermé ? $\mathbb{R} \setminus \mathbb{Q}$ ?
+
 Quelles pptés ? Jouer sur de tels ensembles dans $\mathbb{R}^2$ et dans
 $\mathbb{R}$ pour "tester" la compréhension de "ppté topologique relativement
-à une structure donnée".
+à une structure donnée". 
 
 Comparaison des normes
 --------------------------------------------------------------------------------
