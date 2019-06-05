@@ -24,7 +24,8 @@ TODO / acquis {.meta}
   - lister "use cases" compacité,
     transition locale vers le (semi-)global (dim. finie),
     extraction recouvrement fini (ex compacts à bords),
-    optimisation, etc.
+    optimisation, etc. Compacité substitut à fini dans le cas des
+    fonctions continues, etc.
 
   - warning: pptés définies *relativement à un espace de référence* 
     (ex: fermé dans quoi ?). Topologie "trace" / induite, sous-espace ...
@@ -139,7 +140,16 @@ on en déduit que $\|x - x'\|= 0$, soit par séparation, $x=x'$.
 
 ### TODO
 
-Continuité cadre métrique/métrique.
+Pb / pt dans l'adhérence de la fct (cf prg prépa).
+
+### Limite d'une fonction en un point {.definition}
+
+Soit $f:X \subset E \to Y$ une application définie sur un sous-ensemble $X$
+d'un espace vectoriel normé $E$ et à valeurs dans un espace métrique $Y$.
+Soit $x$ un point de l'adhérence de $X$ dans $E$. 
+Le point $\ell \in Y$ est la *limite* de $f$ en $x$ si pour toute suite
+$x_k$ de points de $X$ convergeant vers $x$, on a 
+$\lim_{k \to +\infty} f(x_k) = \ell$.
 
 Bestiaire
 ================================================================================
@@ -375,17 +385,37 @@ TODO: comparaison manuelle, meilleure bornes
 Distance entre ensembles
 --------------------------------------------------------------------------------
 
-**TODO:** distance de Hausdorff, continuité de la somme de Minkowski.
+Soit $A$ et $B$ deux ensembles compacts de $\mathbb{R}^n$.
+On définit la grandeur
+  $$
+  \begin{split}
+  d[A, B] &= \inf \, \{\|T - I\|_{\infty} \, | \, T \in A \to B \}.
+  \end{split}
+  $$
+afin de mesurer les écarts entre $A$ et $B$. Il s'agit de formaliser
+l'intuition que si les ensembles $A$ et $B$ diffèrent peu, 
+on devrait pouvoir trouver une application qui envoie $A$ dans $B$ 
+tout en étant proche de l'identité.
 
-Définir en fonction de $\|u\|_{\infty}$ minimal ou $I+u: A \to B$ 
-et réciproquement. (nota: c'est bien un min pour commencer, si $A$
-et $B$ sont des compacts; en ante travailler pour montrer la nécessité
-de cette hypothèse de compacité. Commencer la version non symmétrisée,
-montrer que les axiomes de la distance sont satisfaits sauf la symmétrie,
-en déduire l'adaptation à apporter.)
+ 1. Montrer que dans la définition de $d[A, B]$, l'infimum est un minimum, 
+    c'est-à-dire qu'il existe une fonction $T^{\star}: A \to B$
+    telle que $d[A, B] = \|T^{\star} - I\|_{\infty}$.
 
-**TODO:** relier à la formulation classique, comme sup de distance, ou 
-sup d'inf.
+ 2. Est-ce que $d[\cdot, \cdot]$ est une distance sur l'ensemble des
+    sous-ensembles compacts de $\mathbb{R}^n$ ? Dans le cas contraire,
+    suggérer une modification simple de $d[\cdot, \cdot]$ qui en soit
+    une (on parle alors de *distance de Hausdorff* entre ensembles).
+
+ 3. La somme de Minkowksi de deux ensembles $A$ et $B$ est définie
+    comme
+    $$
+    A + B = \{a + b \, | \, a \in A, \, b \in B \}.
+    $$
+    Est-ce que la somme de Minkowski, appliquée aux ensembles
+    compacts de $\mathbb{R}^n$, est continue pour la distance 
+    introduite à la question précédente ?
+
+
 
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
@@ -421,6 +451,8 @@ $$
 
 Point fixe
 --------------------------------------------------------------------------------
+
+**TODO:** exemple introductif (simple, matriciel $2\times2$)
 
 Soit $f: E \to E$ une fonction définie et à valeurs dans un espace métrique 
 complet $E$ pour laquelle il existe un entier $n \geq 1$ tel que la composée 
@@ -516,8 +548,8 @@ et comment elle s'étendent à un ensemble d'adhérence compacte
 ("compactement inclus" dans l'espace de référence).
 
 "Contre-exemples" ? Avec "localement constant", "localement polynomial", 
-"localement lipschitz" etc., opérations qui ne sont pas stables par union 
-finie. 
+"localement lipschitz", fct "localement définie", etc., opérations 
+qui ne sont pas stables par union finie. 
 
 Compacité et Continuité
 --------------------------------------------------------------------------------
@@ -547,6 +579,15 @@ sont compacts.
 
 Solutions aux Exercices
 ================================================================================
+
+Solution -- [Distance entre ensembles]
+--------------------------------------------------------------------------------
+
+ 1. **TODO**
+
+ 2. **TODO**
+
+ 3. **TODO**
 
 Solution -- [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
