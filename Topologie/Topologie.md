@@ -402,7 +402,7 @@ On définit la grandeur
   $$
 appelée *distance de Hausdorff* entre $A$ et $B$.
 
-![Ensembles $A = [-1,1] \times [-1, 1]$ et $B = [0, 2] \times [0,2]$ de $\mathbb{R}^2$.](images/hausdorff.tex){#A-et-B}
+![Ensembles $A = [-1,1] \times [-1, 1]$ et $B = [0, 2] \times [0,2]$.](images/hausdorff.tex){#A-et-B}
 
 [image link](#A-et-B)
 
