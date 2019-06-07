@@ -604,11 +604,22 @@ Solutions aux Exercices
 Solution -- [Distance entre ensembles]
 --------------------------------------------------------------------------------
 
- 1. **TODO**
+ 1. Non, la distance usuelle $d(A,B)$ en convient pas.
+    En effet, cette distance est nulle dès que l'intersection de $A$ et $B$
+    est non vide, même si des points de $A$ sont être très éloignés de $B$.
 
- 2. **TODO**
+ 2. Lorsque $A = [-1,1] \times [-1, 1]$ comme l'abscisse et l'ordonnée de 
+    tout point $a$ de $A$ sont de valeur absolue inférieure ou égale à $1$,
+    on a $d(a, 0) \leq \sqrt{2}$ et donc
+    $$
+    \inf_{a \in A} d(a, 0) \leq \sqrt{2}
+    $$
+    L'origine $0$ appartenant $B = [0, 2] \times [0,2]$
+    Or $(0,0)$ appartient à $B$ donc pour tout point $(x, y)$ de $A$,
+    $$d((x, y), B) \leq \sqrt{2}$. Par ailleurs, 
 
- 3. **TODO**
+
+ 3. 
 
 Solution -- [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
