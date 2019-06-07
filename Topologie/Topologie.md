@@ -385,12 +385,12 @@ TODO: comparaison manuelle, meilleure bornes
 Distance entre ensembles
 --------------------------------------------------------------------------------
 
-Soit $A$ et $B$ deux ensembles compacts de $\mathbb{R}^n$; 
+Soit $A$ et $B$ deux ensembles compacts non vides de $\mathbb{R}^n$; 
 on souhaite évaluer à quel point les deux ensembles diffèrent
 -- en mesurant à quelle distance les points de $A$ peuvent 
 être éloignés de l'ensemble $B$ et réciproquement.
 
-  0. Est-ce que la distance entre ensembles usuelle
+  0. Est-ce que la distance entre ensembles classique
      $$
      d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a\in A}\inf_{b \in B} d(a, b)
      $$
