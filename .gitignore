@@ -10,6 +10,7 @@ src/pandoc
 *.pyc
 
 # Generated Documents
+*.*.*
 output
 */output
 
