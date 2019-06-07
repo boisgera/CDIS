@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # Python 3 Standard Library
+import os
 import pathlib
 import subprocess
 import sys
@@ -40,10 +41,11 @@ def call(*args):
 def python(*args):
     return call("python", *args)
 
-
 def doctest(*args):
     return call("python", "-m", "doctest", *args)
 
+def pdflatex(*args):
+    return call("pdflatex", *args)
 
 # Document Processing
 # ------------------------------------------------------------------------------
@@ -62,6 +64,8 @@ def transform(doc):
     divify(doc)
 
     proofify(doc)
+
+    tex_to_pdf_ify(doc)
 
     return doc
 
@@ -128,12 +132,21 @@ def proofify(doc):
         block = Plain([inline])
         section[1].append(block)
 
+def tex_to_pdf_ify(doc):
+    for elt in pandoc.iter(doc):
+        if isinstance(elt, Image):
+            image = elt
+            attr, inlines, target = image[:]
+            url, title = target
+            new_target = url + ".pdf"
+            image[:] = attr, inlines, (new_target, title)
 
 # ------------------------------------------------------------------------------
 
 # Files and Directories
-root = pathlib.Path(".")
+root = pathlib.Path(".").resolve()
 output = root / "output"
+images = root / "images"
 try:
     output.mkdir()
 except FileExistsError:
@@ -154,7 +167,25 @@ doc_odt = str(output / (doc + ".odt"))
 doc_html = str(output / (doc + ".html"))
 doc_md_md = str(output / (doc + ".md"))
 
+# Images
+if images.exists():
+    try:
+        os.chdir(images)
+        l = pathlib.Path(".")
+        for tex_file in l.glob("*.tex"):
+            pdflatex(tex_file)
+            pdf_file = tex_file.with_suffix('.pdf')
+            pdf_file.rename(tex_file.with_suffix(tex_file.suffix + ".pdf"))
+        for file in list(l.glob("*.dvi")) + list(l.glob("*.aux")) + list(l.glob("*.log")) \
+        + list(l.glob("*.fls")) + list(l.glob("*.fdb_latexmk")):
+            file.unlink()
+    finally:
+        os.chdir(root)
+
 # Doctest
+print(os.getcwd())
+print(root)
+print(doc_md)
 python("-m", "doctest", doc_md)
 
 # Pandoc Options

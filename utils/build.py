@@ -176,7 +176,8 @@ if images.exists():
             pdflatex(tex_file)
             pdf_file = tex_file.with_suffix('.pdf')
             pdf_file.rename(tex_file.with_suffix(tex_file.suffix + ".pdf"))
-        for file in list(l.glob("*.dvi")) + list(l.glob("*.aux")) + list(l.glob("*.log")):
+        for file in list(l.glob("*.dvi")) + list(l.glob("*.aux")) + list(l.glob("*.log")) \
+        + list(l.glob("*.fls")) + list(l.glob("*.fdb_latexmk")):
             file.unlink()
     finally:
         os.chdir(root)

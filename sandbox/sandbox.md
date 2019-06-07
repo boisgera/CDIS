@@ -2,4 +2,4 @@
 
 ... nope.
 
-![](images/tikz-picture.tex)
+![Un exemple de dessin TikZ](images/tikz-picture.tex)
