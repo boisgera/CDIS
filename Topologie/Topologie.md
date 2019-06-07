@@ -392,7 +392,7 @@ on souhaite évaluer à quel point les deux ensembles diffèrent
 
   0. Est-ce que la distance entre ensembles usuelle
      $$
-     d(A, B) = \inf_{a \in A} d(a, B) = \inf{a\in A}\inf_{b \in B} d(a, b)
+     d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a\in A}\inf_{b \in B} d(a, b)
      $$
      fait l'affaire ?
 
