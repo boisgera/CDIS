@@ -385,8 +385,25 @@ TODO: comparaison manuelle, meilleure bornes
 Distance entre ensembles
 --------------------------------------------------------------------------------
 
-Soit $A$ et $B$ deux ensembles compacts de $\mathbb{R}^n$.
+Soit $A$ et $B$ deux ensembles compacts de $\mathbb{R}^n$; 
+on souhaite évaluer à quel point les deux ensembles diffèrent
+-- en mesurant à quelle distance les points de $A$ peuvent 
+être éloignés de l'ensemble $B$ et réciproquement.
+
+  0. Est-ce que la distance entre ensembles usuelle
+     $$
+     d(A, B) = \inf_{a \in A} d(a, B) = \inf{a\in A}\inf_{b \in B} d(a, b)
+     $$
+     fait l'affaire ?
+
 On définit la grandeur
+  $$
+  d[A, B] = \max \left\{ \sup_{a \in A} d(a, B), \, \sup_{b \in B} d(b, A) \right\}.
+  $$
+appelée *distance de Hausdorff* entre $A$ et $B$.
+
+  1. Cette terminologie de "distance" est-elle légitime ?
+
   $$
   \begin{split}
   d[A, B] &= \inf \, \{\|T - I\|_{\infty} \, | \, T \in A \to B \}.
