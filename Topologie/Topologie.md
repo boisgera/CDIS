@@ -390,11 +390,11 @@ on souhaite évaluer à quel point les deux ensembles diffèrent
 -- en mesurant à quelle distance les points de $A$ peuvent 
 être éloignés de l'ensemble $B$ et réciproquement.
 
-  0. Est-ce que la distance entre ensembles classique
-     $$
-     d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a\in A}\inf_{b \in B} d(a, b)
-     $$
-     fait l'affaire ?
+ 1. Est-ce que la distance entre ensembles classique
+    $$
+    d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a\in A}\inf_{b \in B} d(a, b)
+    $$
+    fait l'affaire ?
 
 On définit la grandeur
   $$
@@ -402,21 +402,21 @@ On définit la grandeur
   $$
 appelée *distance de Hausdorff* entre $A$ et $B$.
 
+  2. Calculer $d[A, B]$ lorsque $A = [-1,1] \times [-1, 1]$ et
+     $B = [0, 2] \times [0,2]$.
+
 ![Ensembles $A = [-1,1] \times [-1, 1]$ et $B = [0, 2] \times [0,2]$.](images/hausdorff.tex){#A-et-B}
 
-[image link](#A-et-B)
+  3. Cette terminologie de "distance" de Hausdorff est-elle légitime ?
 
-  1. Cette terminologie de "distance" est-elle légitime ?
+
+---------------------------
 
   $$
   \begin{split}
   d[A, B] &= \inf \, \{\|T - I\|_{\infty} \, | \, T \in A \to B \}.
   \end{split}
   $$
-afin de mesurer les écarts entre $A$ et $B$. Il s'agit de formaliser
-l'intuition que si les ensembles $A$ et $B$ diffèrent peu, 
-on devrait pouvoir trouver une application qui envoie $A$ dans $B$ 
-tout en étant proche de l'identité.
 
  1. Montrer que dans la définition de $d[A, B]$, l'infimum est un minimum, 
     c'est-à-dire qu'il existe une fonction $T^{\star}: A \to B$
