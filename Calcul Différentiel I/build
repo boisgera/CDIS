@@ -13,6 +13,7 @@ from pandoc.types import *
 # Command-Line/Process Helpers
 # ------------------------------------------------------------------------------
 def call(*args):
+    args = [str(arg) for arg in args]
     options = {
         "stdout": subprocess.PIPE,
         "stderr": subprocess.STDOUT,
@@ -183,7 +184,7 @@ if images.exists():
         for tex_file in l.glob("*.tex"):
             pdflatex(tex_file)
             pdf_file = tex_file.with_suffix(".pdf")
-            pdf_file.rename(tex_file.with_suffix(tex_file.suffix + ".pdf"))
+            pdf_file.replace(tex_file.with_suffix(tex_file.suffix + ".pdf"))
         for python_file in l.glob("*.py"):
             python(python_file)
     finally:
