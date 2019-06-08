@@ -203,6 +203,9 @@ générées. Ces fichiers générés -- qui ne doivent pas être versionnés -- 
 reconnaissable à leur double extension: `images/image.tex` génère un fichier
 `images/image.tex.pdf` par exemple.
 
-**Note.** A ce stade seul les fichiers `.tex` sont supportés.
-A l'avenir seront concernés les fichiers Python (utilisant par
-exemple Matplotlib) et les fichiers SVG (par exemple issus d'Inkscape).
+**Note.** A ce stade seul les fichiers `.tex` et `python` sont supportés.
+La conversion des fichiers `.tex` en fichiers `.pdf` est prise en charge
+automatiquement par le script de build. Dans le cas de Python, c'est au
+programme de tout prendre en charge et de générer le fichier `.pdf`
+avec le nom adéquat lorsqu'il est appelé. Un exemple de programme de ce type
+se trouve dans le répertoire `utils/images`.

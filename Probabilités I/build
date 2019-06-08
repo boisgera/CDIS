@@ -43,7 +43,7 @@ def pdflatex(*args):
 
 # Misc. Helpers
 # ------------------------------------------------------------------------------
-def clean_latex_mess():
+def clean_latex_trash():
     extensions = ["dvi", "aux", "log", "fls", "fdb_latexmk"]
     cwd = pathlib.Path.cwd()
     with_ext = lambda ext: cwd.glob("*." + ext)
@@ -70,7 +70,7 @@ def transform(doc):
 
     proofify(doc)
 
-    tex_to_pdf_ify(doc)
+    transform_image_format(doc)
 
     return doc
 
@@ -138,14 +138,15 @@ def proofify(doc):
         section[1].append(block)
 
 
-def tex_to_pdf_ify(doc):
+def transform_image_format(doc):
     for elt in pandoc.iter(doc):
         if isinstance(elt, Image):
             image = elt
             attr, inlines, target = image[:]
             url, title = target
-            new_target = url + ".pdf"
-            image[:] = attr, inlines, (new_target, title)
+            if pathlib.Path(url).suffix in [".tex", ".py"]:
+                new_target = url + ".pdf"
+                image[:] = attr, inlines, (new_target, title)
 
 
 # ------------------------------------------------------------------------------
@@ -183,8 +184,10 @@ if images.exists():
             pdflatex(tex_file)
             pdf_file = tex_file.with_suffix(".pdf")
             pdf_file.rename(tex_file.with_suffix(tex_file.suffix + ".pdf"))
+        for python_file in l.glob("*.py"):
+            python(python_file)
     finally:
-        clean_latex_mess()
+        clean_latex_trash()
         os.chdir(root)
 
 # Doctest
