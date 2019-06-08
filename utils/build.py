@@ -70,7 +70,7 @@ def transform(doc):
 
     proofify(doc)
 
-    tex_to_pdf_ify(doc)
+    transform_image_format(doc)
 
     return doc
 
@@ -138,14 +138,15 @@ def proofify(doc):
         section[1].append(block)
 
 
-def tex_to_pdf_ify(doc):
+def transform_image_format(doc):
     for elt in pandoc.iter(doc):
         if isinstance(elt, Image):
             image = elt
             attr, inlines, target = image[:]
             url, title = target
-            new_target = url + ".pdf"
-            image[:] = attr, inlines, (new_target, title)
+            if pathlib.Path(url).suffix in [".tex", ".py"]:
+                new_target = url + ".pdf"
+                image[:] = attr, inlines, (new_target, title)
 
 
 # ------------------------------------------------------------------------------

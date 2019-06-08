@@ -29,7 +29,7 @@ mpl.rcParams.update(rc)
 # ------------------------------------------------------------------------------
 def save():
     filename = pathlib.Path(__file__)
-    output = filename.with_suffix(".pdf") 
+    output = filename.with_suffix(filename.suffix + ".pdf") 
     savefig(output)
 
 # Layout Helper
