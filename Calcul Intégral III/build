@@ -183,9 +183,6 @@ if images.exists():
         os.chdir(root)
 
 # Doctest
-print(os.getcwd())
-print(root)
-print(doc_md)
 python("-m", "doctest", doc_md)
 
 # Pandoc Options
