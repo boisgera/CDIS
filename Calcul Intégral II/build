@@ -10,15 +10,6 @@ import sys
 import pandoc
 from pandoc.types import *
 
-# TODO
-# ------------------------------------------------------------------------------
-#
-#   - find the document name automatically
-#
-#   - regenerate the images automatically
-#
-
-
 # Command-Line/Process Helpers
 # ------------------------------------------------------------------------------
 def call(*args):
@@ -41,11 +32,24 @@ def call(*args):
 def python(*args):
     return call("python", *args)
 
+
 def doctest(*args):
     return call("python", "-m", "doctest", *args)
 
+
 def pdflatex(*args):
     return call("pdflatex", *args)
+
+
+# Misc. Helpers
+# ------------------------------------------------------------------------------
+def clean_latex_mess():
+    extensions = ["dvi", "aux", "log", "fls", "fdb_latexmk"]
+    with_ext = lambda ext: Path.cwd().glob("*." + ext)
+    for ext in extensions:
+        for file in with_ext(ext):
+            file.unlink()
+
 
 # Document Processing
 # ------------------------------------------------------------------------------
@@ -132,6 +136,7 @@ def proofify(doc):
         block = Plain([inline])
         section[1].append(block)
 
+
 def tex_to_pdf_ify(doc):
     for elt in pandoc.iter(doc):
         if isinstance(elt, Image):
@@ -140,6 +145,7 @@ def tex_to_pdf_ify(doc):
             url, title = target
             new_target = url + ".pdf"
             image[:] = attr, inlines, (new_target, title)
+
 
 # ------------------------------------------------------------------------------
 
@@ -160,7 +166,7 @@ if len(_docs) != 1:
     error = "cannot identify the main document "
     error += f"(found {len(docs)} markdown files)"
     raise RuntimeError(error)
-doc = _docs[0] 
+doc = _docs[0]
 doc_md = doc + ".md"
 doc_pdf = str(output / (doc + ".pdf"))
 doc_odt = str(output / (doc + ".odt"))
@@ -174,12 +180,10 @@ if images.exists():
         l = pathlib.Path(".")
         for tex_file in l.glob("*.tex"):
             pdflatex(tex_file)
-            pdf_file = tex_file.with_suffix('.pdf')
+            pdf_file = tex_file.with_suffix(".pdf")
             pdf_file.rename(tex_file.with_suffix(tex_file.suffix + ".pdf"))
-        for file in list(l.glob("*.dvi")) + list(l.glob("*.aux")) + list(l.glob("*.log")) \
-        + list(l.glob("*.fls")) + list(l.glob("*.fdb_latexmk")):
-            file.unlink()
     finally:
+        clean_latex_mess()
         os.chdir(root)
 
 # Doctest
