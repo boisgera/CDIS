@@ -45,7 +45,8 @@ def pdflatex(*args):
 # ------------------------------------------------------------------------------
 def clean_latex_mess():
     extensions = ["dvi", "aux", "log", "fls", "fdb_latexmk"]
-    with_ext = lambda ext: Path.cwd().glob("*." + ext)
+    cwd = pathlib.Path.cwd()
+    with_ext = lambda ext: cwd.glob("*." + ext)
     for ext in extensions:
         for file in with_ext(ext):
             file.unlink()
