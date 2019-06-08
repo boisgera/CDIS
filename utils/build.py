@@ -43,7 +43,7 @@ def pdflatex(*args):
 
 # Misc. Helpers
 # ------------------------------------------------------------------------------
-def clean_latex_mess():
+def clean_latex_trash():
     extensions = ["dvi", "aux", "log", "fls", "fdb_latexmk"]
     cwd = pathlib.Path.cwd()
     with_ext = lambda ext: cwd.glob("*." + ext)
@@ -183,8 +183,10 @@ if images.exists():
             pdflatex(tex_file)
             pdf_file = tex_file.with_suffix(".pdf")
             pdf_file.rename(tex_file.with_suffix(tex_file.suffix + ".pdf"))
+        for python_file in l.glob("*.py"):
+            python(python_file)
     finally:
-        clean_latex_mess()
+        clean_latex_trash()
         os.chdir(root)
 
 # Doctest
