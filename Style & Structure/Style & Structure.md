@@ -156,3 +156,53 @@ Par exemple:
 [^ptib]: voir en particulier [la remarque de Mattew Butterick](https://practicaltypography.com/bold-or-italic.html) concernant le manque de visibilité de l'italique
 dans les fontes sans sérif, qui fait pencher la balance en faveur du gras,
 d'autant que l'italique à déjà un rôle qui lui est propre.
+
+Images
+================================================================================
+
+Les fichier d'images "statiques" -- comme des photos au format PNG, JPG, etc. -- 
+doivent être stockées dans le répertoire `images`. 
+Dans le document Markdown, on les insère de la façon suivante:
+
+    ![Ceci est une image de chat](images/lolcatz.png)
+
+Voir aussi: <https://pandoc.org/MANUAL.html#images>
+(mais ne pas utiliser les attributs de taille ...)
+
+Un identifiant peut être rajouté pour faire référence à l'image
+(via un hyperlien) dans le corps du texte:
+
+    ![Ceci est une image de chat](images/lolcatz.png){#lolcatz}
+
+    Comme le montre [la photo de mon chat](#lolcatz), etc.
+
+Pour les images **générées par un programme**, c'est le fichier source
+de l'image -- une description de l'image dans un format plus ou moins
+exotique (SVG, LaTeX, etc.), ou bien le programme qui la génère 
+(python, etc.) -- qui devra être stocké dans `images`, et c'est à lui
+qu'on devra faire référence dans le document markdown. 
+
+Par exemple, si `images/image.tex` contient
+
+    \documentclass[tikz]{standalone}
+    \begin{document}
+    \begin{tikzpicture}
+      \draw (0,0) -- (1,1) -- (0,1); % ...
+    \end{tikzpicture}
+    \end{document}
+
+On peut insérer l'image associée dans un document Markdown par:
+
+    ![Image TikZ](images/image.tex)
+
+**Sous le capot.** Le script de build se charge de la conversion du `.tex` dans 
+des formats images plus comestibles (tels que le format PDF pour la génération 
+de documents PDF) 
+et de la modification du document pour qu'il fasse référence à ces images 
+générées. Ces fichiers générés -- qui ne doivent pas être versionnés -- sont
+reconnaissable à leur double extension: `images/image.tex` génère un fichier
+`images/image.tex.pdf` par exemple.
+
+**Note.** A ce stade seul les fichiers `.tex` sont supportés.
+A l'avenir seront concernés les fichiers Python (utilisant par
+exemple Matplotlib) et les fichiers SVG (par exemple issus d'Inkscape).
