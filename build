@@ -5,14 +5,12 @@ set -o pipefail
 
 # Build subdirs
 for dir in */; do
-    if [ "${dir}" != "utils/" ]; then
-        cd "${dir}"
-        if [ -f build ]; then
-            echo "build ${dir}"
-            ./build
-        fi
-        cd ..
+    cd "${dir}"
+    if [ -f build ]; then
+        echo "build ${dir}"
+        ./build
     fi
+    cd ..
 done
 
 # Gather outputs
