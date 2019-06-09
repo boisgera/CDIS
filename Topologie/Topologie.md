@@ -184,11 +184,17 @@ Complétude
 
 ### TODO:
 
+  - point fixe, lien avec la résolution d'équations implicites, etc.
+    Example nombre d'or
+
   - evn, espace métrique (comme sous-ensemble d'un e.v.n.), 
     suite de Cauchy, complétude
 
   - application lipschitzienne, (et lip est cont) contractante, 
     $\kappa$-contractante
+
+![---](images/fixed-point.tex){#golden-ratio}
+
 
 ### Suite de Cauchy {.definition}
 Une suite de points $x_k$ est *de Cauchy* si pour tout
