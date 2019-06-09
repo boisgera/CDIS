@@ -193,7 +193,7 @@ Complétude
   - application lipschitzienne, (et lip est cont) contractante, 
     $\kappa$-contractante
 
-![---](images/fixed-point.tex){#golden-ratio}
+![Point fixe de $x \mapsto 1 + 1/x$.](images/fixed-point.tex){#golden-ratio}
 
 
 ### Suite de Cauchy {.definition}
