@@ -111,7 +111,7 @@ d(x, y) = \|x - y\|.
 $$ 
 
 ![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.
-Bien que $x=(1,0)$ et $y=(1, 0)$ appartiennent au cercle unité, 
+Bien que $x=(1,0)$ et $y=(0,1)$ appartiennent au cercle unité, 
 ni $x+y$ ni $2 \times x$ ne lui appartiennent. Il hérite néanmoins
 d'une distance $d$ de l'espace euclien $\mathbb{R}^2$
 (telle que $d(x,y) = \|x - y\|_2 = \sqrt{2}$ par exemple),
