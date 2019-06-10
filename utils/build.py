@@ -80,9 +80,9 @@ def anonymify(doc):
     for elt, path in pandoc.iter(doc, path=True):
         if isinstance(elt, Header):
             header = elt
-            _, attr, _ = header[:]
+            _, attr, inlines = header[:]
             _, classes, _ = attr
-            if "anonymous" in classes:
+            if inlines == [] or "anonymous" in classes:
                 holder, i = path[-1]
                 anonymous_headers.append((holder, i))
     for (holder, i) in reversed(anonymous_headers):
