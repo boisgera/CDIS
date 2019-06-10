@@ -101,25 +101,51 @@ qui consiste à appeler espace métrique sous-ensembles d'un evn.
 "sous-ensemble d'un e.v.n." peut valoir uniquement dans le cours
 oral.
 
-### Remarque {.anonymous}
+### Sous-ensembles d'espaces vectoriels normés
 
-**TODO:** transition sous-ensemble d'un espace vectoriel normé à espace
-métrique par abstraction. Exemple: le cercle unité dans $\mathbb{R}^2$.
-Les opérations $+$ et $\times$ n'"ont plus de sens". 
+Si $X$ est un sous-ensemble d'espace vectoriel normé $E$, 
+celui-ci "hérite" de $E$ une mesure de la distance entre 
+deux points $x$ et $y$ avec la grandeur 
+$$
+d(x, y) = \|x - y\|.
+$$ 
 
-![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.](images/circle.tex)
+![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.
+Bien que $x=(1,0)$ et $y=(1.0)$ appartiennent au cercle unité, 
+ni $x+y$ ni $2 \times x$ ne lui appartiennent. Il hérite néanmoins
+d'une distance $d$ de l'espace euclien $\mathbb{R}^2$
+(telle que $d(x,y) = \|x - y\|_2 = \sqrt{2}$ par exemple),
+ce qui fait de lui un espace métrique.](images/circle.tex)
 
+Par contre, à moins que $X$ soit un sous-espace vectoriel de $X$
+les additions entre élements de $X$ ou la multiplication d'un 
+élément de $X$ n'ont plus de sens dans $X$;
+nous ne pouvons plus définir une norme sur $X$.
 
-### Espace Métrique et Distance
-Un *espace métrique* est un ensemble $X$ muni d'une *distance*,
-c'est-à-dire d'une fonction $d: X \times X \to \left[0, +\infty\right[$
-telle que pour tous points $x, y$ et $z$ de $X$, on ait:
+La fonction $d$ définie ci-dessus sur $X$ vérifie automatiquement 
+les axiomes qui font techniquement d'elle une distance:
+
+### Distance
+Une *distance* sur un ensemble $X$ est une fonction 
+$$
+d: X \times X \to \left[0, +\infty\right[
+$$
+telle que pour tous points 
+$x, y$ et $z$ de $X$, on ait:
 
  1. $d(x,y) = d(y,x)$ (symétrie).
 
  2. $d(x,y) = 0$ si et seulement si $x = y$ (séparation).
 
  3. $d(x,z) \leq d(x,y) + d(y,z)$ (inégalité triangulaire).
+
+
+### Remarque {.anonymous}
+On parle aussi de *métrique* pour désigner une fonction
+distance, ce qui explique la terminologie ci-dessous:
+
+### Espace Métrique
+Un *espace métrique* est un ensemble $X$ muni d'une *distance*.
 
 ### Remarque {.anonymous}
 
