@@ -57,16 +57,18 @@ def clean_latex_trash():
 # ------------------------------------------------------------------------------
 def transform(doc):
 
+    # DEPRECATED
+    #
     # Replace rules with anonymous headers (not perfect solution ...
     # will appear in the TOC. But good for separation purposes)
-    if False:
-        todos = []
-        for elt, path in pandoc.iter(doc, path=True):
-            if isinstance(elt, HorizontalRule):
-                todos.append(path[-1])
-        for todo in todos:
-            holder, i = todo
-            holder[i] = Header(3, ("", [], []), [])
+    # if False:
+    #     todos = []
+    #     for elt, path in pandoc.iter(doc, path=True):
+    #         if isinstance(elt, HorizontalRule):
+    #             todos.append(path[-1])
+    #     for todo in todos:
+    #         holder, i = todo
+    #         holder[i] = Header(3, ("", [], []), [])
 
     anonymify(doc)
     #divify(doc)
