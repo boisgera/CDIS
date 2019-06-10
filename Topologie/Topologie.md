@@ -216,6 +216,23 @@ Un *espace topologique* est un ensemble muni d'un test d'adhérence.
 Les éléments de l'ensemble sont appelés des *points*, 
 ses sous-ensembles des *ensembles de points*.
 
+### Application Continue
+
+Une application continue $f: X \to Y$ est une fonction définie entre deux espaces
+topologique telle que lorsque $x$ adhère à $A$ dans $X$, $f(x)$ adhère à $f(A)$
+dans $Y$.
+
+### {.post}
+Les applications sont les *morphismes* des espaces topologiques:
+elle préservent la structure des espaces topologiques.
+
+### TODO
+
+Rq comme quoi espace métrique et sous-ensemble d'un evn sont 
+similaires (métrique n'est "pas plus général"), mais que ça
+n'est pas le cas pour les espaces topo (il existe de espace
+topologiques non métrisables)
+
 ### Calcul Topologique
 Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
 
@@ -485,6 +502,57 @@ Exercices
 Nombres réels étendus
 --------------------------------------------------------------------------------
 
+Un *nombre réel étendu* est un nombre réel, $-\infty$ ou $+\infty$.
+Le but de cet exercice est de doter l'ensemble 
+$\mathbb{R} \cup \{-\infty, +\infty\}$[^nre] d'une distance aux propriétés
+"raisonnables".
+A cette fin, on introduit l'espace métrique $X$ des points du cercle unité de 
+$\mathbb{R}^2$ d'ordonnée positive ou nulle:
+$$
+X = 
+\left\{
+(x, y) \in \mathbb{R}^2 \, \left| \, \sqrt{x^2+y^2} = 1 \right. \mbox{ et } y \geq 0
+\right\},
+$$
+muni de la distance euclidienne de $\mathbb{R}^2$,
+et $f: X \to \mathbb{R} \cup \{-\infty, +\infty\}$ la fonction définie par
+$$
+f(x,y) = 
+\left|
+\begin{array}{rl}
+- \infty & \mbox{si } (x, y)=(-1, 0), \\
+x/y & \mbox{si } y > 0, \\
++ \infty & \mbox{si } (x, y)=(1, 0). \\
+\end{array}
+\right.
+$$
+
+[^nre]: dans le monde réel, en dehors de la Matrice, 
+on trouvera fréquemment la notation $\overline{\R}$ 
+pour désigner l'ensemble des réels étendus.
+
+ 1. Pouvez-vous donner une interprétation géométrique simple à la grandeur
+    calculée par la fonction $f$ ?
+
+    ![Indication -- Nombres réels étendus](images/extended-real-numbers.tex)
+
+ 2. Montrer que $f$ est une bijection.
+
+ 3. En déduire qu'il existe une et une seule fonction distance sur
+    $\mathbb{R} \cup \{-\infty, +\infty\}$ qui fasse de $f$ une isométrie;
+    on note $d^{\infty}$ cette distance. 
+
+ 4. (Optionnel) Calculer $d^{\infty}(0, +\infty)$, $d^{\infty}(-\infty, +\infty)$, 
+    $d^{\infty}(-1, 1)$.
+
+ 5. Montrer que l'injection canonique
+    $x \in \mathbb{R} \mapsto x \in \mathbb{R} \cup \{-\infty, +\infty\}$
+    est une fonction continue.
+
+ 6. Yoda a dit "deux façons d'interpréter $x_k \to +\infty$ désormais il y a".
+    Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
+    
+
 Ensembles localements fermés
 --------------------------------------------------------------------------------
 
@@ -728,6 +796,22 @@ sont compacts.
 Solutions aux Exercices
 ================================================================================
 
+Solution -- [Nombres réels étendus]
+--------------------------------------------------------------------------------
+
+ 1. **TODO**
+
+ 2. **TODO**
+
+ 3. **TODO**
+
+ 4. **TODO**
+
+ 5. **TODO**
+
+ 6. **TODO**
+
+ 
 Solution -- [Distance entre ensembles]
 --------------------------------------------------------------------------------
 
