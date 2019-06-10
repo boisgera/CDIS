@@ -148,28 +148,34 @@ distance, ce qui explique la terminologie ci-dessous:
 ### Espace Métrique
 Un *espace métrique* est un ensemble $X$ muni d'une *distance*.
 
-### Remarque {.anonymous}
+###
+
+Bazinga
+
+### {.anonymous}
 
 **TODO.** Abstraction $d(x, A) = 0$, $x$ est proche de $A$.
 
-### Espace Topologique {.definition}
+### Test d'adhérence {.definition}
 
-Un *espace topologique* est un ensemble $X$ muni d'une relation de
-proximité entre éléments de $X$ -- ou *points* de $X$ -- 
-et sous-ensembles de $X$ -- *ensembles de points* de $X$ -- 
-telle que:
+Un *test d'adhérence* sur l'ensemble *X* est une relation 
+entre éléments de $X$ et sous-ensembles de $X$ telle que:
 
- 1. Aucun point n'est proche de l'ensemble vide,
+ 1. Aucun point n'adhère à de l'ensemble vide,
 
- 2. Tout point d'un ensemble est proche de cet ensemble,
+ 2. Tout point d'un ensemble adhère à cet ensemble,
 
- 3. Un point est proche de l'union de deux ensembles 
-    si et seulement s'il est proche d'au moins l'un 
+ 3. Un point adhère à l'union de deux ensembles 
+    si et seulement s'il adhère à l'un ou l'autre 
     des deux ensembles,
 
- 4. Un point proche de l'ensemble des points proches d'un ensemble
-    est proche de l'ensemble.
+ 4. Un point qui adhère à l'ensemble des points adhérents 
+    à un ensemble adhère à cet ensemble.
 
+### Espace Topologique
+Un *espace topologique* est un ensemble muni d'un test d'adhérence.
+Les éléments de l'ensemble sont appelés des *points*, 
+ses sous-ensembles des *ensembles de points*.
 
 ### Calcul Topologique
 Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
