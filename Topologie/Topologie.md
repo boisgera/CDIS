@@ -347,7 +347,7 @@ Etre un point fixe d'une fonction $f: X \to X$, c'est être déterminé
 implicitement par l'équation $x = f(x)$. Si $X$ est un sous-espace
 d'un espace vectoriel,
 cela équivaut à dire que $x$ est une solution de l'équation $x - f(x) = 0$,
-soit un *zéro* -- ou une *racine* -- de la fonction $x \in X \mapsto x - f(x)$.
+soit un *zéro* (appelé également une *racine*) de la fonction $x \in X \mapsto x - f(x)$.
 
 La démarche inverse 
 -- qui consiste à caractériser les solutions d'une équation 
