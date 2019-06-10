@@ -141,19 +141,33 @@ $x, y$ et $z$ de $X$, on ait:
  3. $d(x,z) \leq d(x,y) + d(y,z)$ (inégalité triangulaire).
 
 
-### Remarque {.anonymous}
+### Extensions 
+Une distance $d$ sur $X$ associe à deux point de $X$ un réel positif.
+Cette fonction peut servir de base pour définir une distance entre
+un point $x$ de $X$ et un ensembles de points de $A$ de $X$:
+$$
+d(x, A) := \inf_{a \in A} d(x, A) \in \left[0, +\infty \right]
+$$
+ou même entre deux ensembles $A$ et $B$ de points de $X$:
+$$
+d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a \in A} \inf_{b \in B} d(a, b)
+\in \left[0, +\infty \right].
+$$
+Si $A$ est l'ensemble vide, on a $d(x, A) = +\infty$ et si $A$ ou $B$ est
+vide on a $d(A, B)= +\infty$; ce sont les seuls cas où ces extensions de
+la distance entre points peuvent prendre des valeurs infinies.
+
+### {.ante}
 On parle aussi de *métrique* pour désigner une fonction
 distance, ce qui explique la terminologie ci-dessous:
+
 
 ### Espace Métrique
 Un *espace métrique* est un ensemble $X$ muni d'une *distance*.
 
-###
-
-Bazinga
-
-### {.anonymous}
-
+### 
+Il est possible de se livrer un à exercice d'abstraction sur les
+espaces métriques
 **TODO.** Abstraction $d(x, A) = 0$, $x$ est proche de $A$.
 
 ### Test d'adhérence {.definition}
