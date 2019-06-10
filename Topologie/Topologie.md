@@ -540,10 +540,10 @@ pour désigner l'ensemble des réels étendus.
 
  3. En déduire qu'il existe une et une seule fonction distance sur
     $\mathbb{R} \cup \{-\infty, +\infty\}$ qui fasse de $f$ une isométrie;
-    on note $d^{\infty}$ cette distance. 
+    on note $d^{\pm \infty}$ cette distance. 
 
- 4. (Optionnel) Calculer $d^{\infty}(0, +\infty)$, $d^{\infty}(-\infty, +\infty)$, 
-    $d^{\infty}(-1, 1)$.
+ 4. (Optionnel) Calculer $d^{\pm \infty}(0, +\infty)$, $d^{\pm \infty}(-\infty, +\infty)$, 
+    $d^{\pm \infty}(-1, 1)$.
 
  5. Montrer que l'injection canonique
     $x \in \mathbb{R} \mapsto x \in \mathbb{R} \cup \{-\infty, +\infty\}$
@@ -551,6 +551,12 @@ pour désigner l'ensemble des réels étendus.
 
  6. Yoda a dit "deux façons d'interpréter $x_k \to +\infty$ désormais il y a".
     Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
+
+ 7. (Optionnel) Suggérer une variante de la construction précédente pour
+   doter l'ensemble $\mathbb{R} \cup \{\infty\}$ ($\infty$ sans signe:
+    ni $+$, ni $-$) d'une métrique $d^{\infty}$ 
+    telle que $d^{\infty}(x_k, \infty) \to 0$ si et seulement si
+    $|x_k| \to +\infty$.
     
 
 Ensembles localements fermés
@@ -811,6 +817,8 @@ Solution -- [Nombres réels étendus]
 
  6. **TODO**
 
+ 7. **TODO**
+
  
 Solution -- [Distance entre ensembles]
 --------------------------------------------------------------------------------
@@ -825,9 +833,9 @@ Solution -- [Distance entre ensembles]
     $$
     \inf_{a \in A} d(a, 0) \leq \sqrt{2}
     $$
-    L'origine $0$ appartenant $B = [0, 2] \times [0,2]$
+    L'origine $0$ appartenant $B = [0, 2] \times [0,2]$.
     Or $(0,0)$ appartient à $B$ donc pour tout point $(x, y)$ de $A$,
-    $$d((x, y), B) \leq \sqrt{2}$. Par ailleurs, 
+    $d((x, y), B) \leq \sqrt{2}$. Par ailleurs, ... **TODO**
 
 
  3. 
