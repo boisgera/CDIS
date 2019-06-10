@@ -114,7 +114,8 @@ $$
 Bien que $x=(1,0)$ et $y=(0,1)$ appartiennent au cercle unité, 
 ni $x+y$ ni $2 \times x$ ne lui appartiennent. Il hérite néanmoins
 d'une distance $d$ de l'espace euclien $\mathbb{R}^2$
-(telle que $d(x,y) = \|x - y\|_2 = \sqrt{2}$ par exemple),
+(telle que $d(x,y) = \|x - y\|_2 = \sqrt{2}$ par exemple
+quand $x=(1,0)$ et $y=(0,1)$),
 ce qui fait de lui un espace métrique.](images/circle.tex)
 
 Par contre, à moins que $X$ soit un sous-espace vectoriel de $X$
