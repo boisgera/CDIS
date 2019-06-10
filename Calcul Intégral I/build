@@ -59,22 +59,34 @@ def transform(doc):
 
     # Replace rules with anonymous headers (not perfect solution ...
     # will appear in the TOC. But good for separation purposes)
-    todos = []
-    for elt, path in pandoc.iter(doc, path=True):
-        if isinstance(elt, HorizontalRule):
-            todos.append(path[-1])
-    for todo in todos:
-        holder, i = todo
-        holder[i] = Header(3, ("", [], []), [])
+    if False:
+        todos = []
+        for elt, path in pandoc.iter(doc, path=True):
+            if isinstance(elt, HorizontalRule):
+                todos.append(path[-1])
+        for todo in todos:
+            holder, i = todo
+            holder[i] = Header(3, ("", [], []), [])
 
-    divify(doc)
-
+    anonymify(doc)
+    #divify(doc)
     proofify(doc)
-
     transform_image_format(doc)
 
     return doc
 
+def anonymify(doc):
+    anonymous_headers = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Header):
+            header = elt
+            _, attr, _ = header[:]
+            _, classes, _ = attr
+            if "anonymous" in classes:
+                holder, i = path[-1]
+                anonymous_headers.append((holder, i))
+    for (holder, i) in reversed(anonymous_headers):
+        del holder[i]
 
 # Examination of sections in proofs shows that this algo is borked.
 # Try lvl by level.
