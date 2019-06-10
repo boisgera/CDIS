@@ -141,7 +141,7 @@ $x, y$ et $z$ de $X$, on ait:
  3. $d(x,z) \leq d(x,y) + d(y,z)$ (inégalité triangulaire).
 
 
-### Extensions 
+### Distance point-ensemble et ensemble-ensemble
 Une distance $d$ sur $X$ associe à deux point de $X$ un réel positif.
 Cette fonction peut servir de base pour définir une distance entre
 un point $x$ de $X$ et un ensembles de points de $A$ de $X$:
@@ -161,14 +161,39 @@ la distance entre points peuvent prendre des valeurs infinies.
 On parle aussi de *métrique* pour désigner une fonction
 distance, ce qui explique la terminologie ci-dessous:
 
-
-### Espace Métrique
+### Espace Métrique  {.definition}
 Un *espace métrique* est un ensemble $X$ muni d'une *distance*.
 
-### 
+### Isométrie {.definition}
+Une isométrie $f: X \to Y$ est une fonction définie entre deux espaces
+métriques $(X, d_X)$ et $(Y, d_Y)$ telle que:
+$$
+d_Y(f(x), f(y)) = d_X(x, y)
+$$
+
+### {.post}
+Les isométries sont les *morphismes* des espaces métriques: 
+les applications qui préservent la structure des espaces métriques.
+Construire des isométries peut aller de pair avec la construction
+d'une métrique sur un ensemble qui en est initialement dépourvu;
+voir à ce propos l'exercice "[Nombres réels étendus]"
+
+
+### Structure topologique d'un espace métrique
 Il est possible de se livrer un à exercice d'abstraction sur les
-espaces métriques
-**TODO.** Abstraction $d(x, A) = 0$, $x$ est proche de $A$.
+espaces métriques en considérant la distance $d(x, A)$ entre un 
+point $x$ et un ensemble de points $A$ et en regardant uniquement
+si cette grandeur est nulle -- on dira alors que $x$ *adhère* à $A$ -- 
+ou strictement positive:
+$$
+x \mbox{ adhère à } A \, \mbox{ ssi } \, d(x, A) = 0
+$$
+En faisant de la sorte pour tous les points et ensembles de points
+de l'espace métrique et en "oubliant" ensuite la distance qui a permis
+cette construction, on remplace une mesure quantitative de proximité
+sur l'ensemble par une mesure uniquement qualitative 
+(dans ce contexte, "$x$ adhérent à $A$" peut être interprété comme 
+"$x$ infiniment proche de $A$ (ou dans $A$)").
 
 ### Test d'adhérence {.definition}
 
@@ -456,6 +481,9 @@ si et seulement si il est fermé et borné.
 
 Exercices
 ================================================================================
+
+Nombres réels étendus
+--------------------------------------------------------------------------------
 
 Ensembles localements fermés
 --------------------------------------------------------------------------------
