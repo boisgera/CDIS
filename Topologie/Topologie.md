@@ -107,6 +107,9 @@ oral.
 métrique par abstraction. Exemple: le cercle unité dans $\mathbb{R}^2$.
 Les opérations $+$ et $\times$ n'"ont plus de sens". 
 
+![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.](images/circle.tex)
+
+
 ### Espace Métrique et Distance
 Un *espace métrique* est un ensemble $X$ muni d'une *distance*,
 c'est-à-dire d'une fonction $d: X \times X \to \left[0, +\infty\right[$
@@ -250,7 +253,39 @@ Complétude
   - application lipschitzienne, (et lip est cont) contractante, 
     $\kappa$-contractante
 
-![Point fixe de la fonction $x \mapsto 1 + 1/x$.](images/fixed-point.tex){#golden-ratio}
+### Points fixes et zéros
+Etre un point fixe d'une fonction $f: X \to X$, c'est être déterminé 
+implicitement par l'équation $x = f(x)$. Si $X$ est un sous-espace
+d'un espace vectoriel,
+cela équivaut à dire que $x$ est une solution de l'équation $x - f(x) = 0$,
+soit un *zéro* -- ou une *racine* -- de la fonction $x \in X \mapsto x - f(x)$.
+
+La démarche inverse 
+-- qui consiste à caractériser les solutions d'une équation 
+comme des point fixes -- peut être utile pour établir des résultats
+d'existence et d'unicité des solution ou obtenir des méthodes numériques 
+pour leur calcul. Un exemple élémentaire de ce type de transformation:
+le nombre d'or est déterminé comme l'unique solution de l'équation
+$$
+x^2 = x + 1 = 0, \; x > 0
+$$
+ou encore comme un zéro de fonction par l'équation
+$$
+x^2 - x - 1 = 0, \; x > 0;
+$$
+il peut également être caractérisé comme un point fixe par l'équation
+$$
+x = 1 + \frac{1}{x}, \; x > 0.
+$$
+Ce type de transformation n'est toutefois pas unique: un zéro de fonction
+peut être caractérisé par une infinité d'équations de type point fixe. 
+Parmi cette multitude de choix, il faudra déterminer une reformulation
+qui soit utile aux objectifs poursuivis, ce qui n'a rien d'automatique.
+On se reportera à l'exercice "[Le nombre d'or]" pour prolonger l'étude de
+cet exemple particulier.
+
+
+![Le nombre d'or comme point fixe de $x \mapsto 1 + 1/x$.](images/fixed-point.tex){#golden-ratio}
 
 
 ### Suite de Cauchy {.definition}
@@ -483,6 +518,9 @@ $$
     $$
     d(x, y) = \|f_x - f_y\|_{\infty}.
     $$
+
+Le nombre d'or
+--------------------------------------------------------------------------------
 
 Point fixe
 --------------------------------------------------------------------------------
