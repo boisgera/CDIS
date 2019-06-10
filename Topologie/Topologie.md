@@ -118,7 +118,7 @@ telle que pour tous points $x, y$ et $z$ de $X$, on ait:
 
  3. $d(x,z) \leq d(x,y) + d(y,z)$ (inégalité triangulaire).
 
-### Remarque
+### Remarque {.anonymous}
 
 **TODO.** Abstraction $d(x, A) = 0$, $x$ est proche de $A$.
 
