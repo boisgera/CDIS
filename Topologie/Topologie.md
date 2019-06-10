@@ -97,6 +97,63 @@ au cas plus général en annexe ?
 structure, et plus tard (?) comment espace métrique n'est pas plus
 général (à une isométrie près). Convention (légèrement abusive)
 qui consiste à appeler espace métrique sous-ensembles d'un evn.
+**Update:** distinguer ici le cours oral du poly; la restriction
+"sous-ensemble d'un e.v.n." peut valoir uniquement dans le cours
+oral.
+
+### Remarque {.anonymous}
+
+**TODO:** transition sous-ensemble d'un espace vectoriel normé à espace
+métrique par abstraction. Exemple: le cercle unité dans $\mathbb{R}^2$.
+Les opérations $+$ et $\times$ n'"ont plus de sens". 
+
+### Espace Métrique et Distance
+Un *espace métrique* est un ensemble $X$ muni d'une *distance*,
+c'est-à-dire d'une fonction $d: X \times X \to \left[0, +\infty\right[$
+telle que pour tous points $x, y$ et $z$ de $X$, on ait:
+
+ 1. $d(x,y) = d(y,x)$ (symétrie).
+
+ 2. $d(x,y) = 0$ si et seulement si $x = y$ (séparation).
+
+ 3. $d(x,z) \leq d(x,y) + d(y,z)$ (inégalité triangulaire).
+
+### Remarque
+
+**TODO.** Abstraction $d(x, A) = 0$, $x$ est proche de $A$.
+
+### Espace Topologique {.definition}
+
+Un *espace topologique* est un ensemble $X$ muni d'une relation de
+proximité entre éléments de $X$ -- ou *points* de $X$ -- 
+et sous-ensembles de $X$ -- *ensembles de points* de $X$ -- 
+telle que:
+
+ 1. Aucun point n'est proche de l'ensemble vide,
+
+ 2. Tout point d'un ensemble est proche de cet ensemble,
+
+ 3. Un point est proche de l'union de deux ensembles 
+    si et seulement s'il est proche d'au moins l'un 
+    des deux ensembles,
+
+ 4. Un point proche de l'ensemble des points proches d'un ensemble
+    est proche de l'ensemble.
+
+
+### Calcul Topologique
+Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
+
+ 1. $\overline{\varnothing} = \varnothing$,
+
+ 2. $A \subset \overline{A}$,
+
+ 3. $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
+
+ 4. $\overline{\overline{A}} = \overline{A}$.
+
+
+
 
 Produit (et Quotient?)
 --------------------------------------------------------------------------------
@@ -312,55 +369,6 @@ $K$ admet un minimum global.
 ### Théorème de Heine-Borel {.theorem}
 Un ensemble $E$ de $\R^n$ est compact 
 si et seulement si il est fermé et borné.
-
-Annexe
-================================================================================
-
-### Remarque {.anonymous}
-
-**TODO.** quantitatif contre qualitatif
-$$
-d(x, A) = 0
-$$
-
-
-
-### Topologie {.definition}
-
-Une relation de *proximité* sur un ensemble $E$ est une relation 
-entre points de $E$ et ensembles de $E$ vérifiant les axiomes 
-suivants:
-
- 1. Aucun point n'est proche de l'ensemble vide,
-
- 2. Tout point d'un ensemble est proche de cet ensemble,
-
- 3. Un point est proche de l'union de deux ensembles 
-    si et seulement s'il est proche d'au moins l'un 
-    des deux ensembles,
-
- 4. Un point proche de l'ensemble des points proches d'un ensemble
-    est adhérent à l'ensemble.
-
-L'ensemble $E$ muni d'une relation de proximité est un *espace topologique*.
-    
-### Adhérence {.definition}
-
-On appelle *adhérence* d'un ensemble $A$
-l'ensemble $\overline{A}$ des points adhérents à $A$.
-
-
-
-### Calcul Topologique
-Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
-
- 1. $\overline{\varnothing} = \varnothing$,
-
- 2. $A \subset \overline{A}$,
-
- 3. $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
-
- 4. $\overline{\overline{A}} = \overline{A}$.
 
 
 
