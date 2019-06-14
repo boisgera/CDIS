@@ -687,6 +687,7 @@ Montrer que la spirale d'Euler à un point limite quand $t \to +\infty$.
 
 ![Spirale d'Euler ($t \geq 0$)](images/euler.py)
 
+**TODO:** référence de Levien.
 
 Séries Absolument Convergentes
 --------------------------------------------------------------------------------
