@@ -671,6 +671,21 @@ $$
 Le nombre d'or
 --------------------------------------------------------------------------------
 
+**TODO**
+
+Spirale de Cornu
+--------------------------------------------------------------------------------
+
+**TODO** Montrer l'existence d'une limite (par suite de Cauchy ?)
+
+
+Séries Absolument Convergentes
+--------------------------------------------------------------------------------
+
+**TODO:** définition "limite dans tous les sens" d'une série double et 
+jouer avec Cauchy ?
+
+
 Point fixe
 --------------------------------------------------------------------------------
 
