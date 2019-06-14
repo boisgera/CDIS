@@ -673,10 +673,19 @@ Le nombre d'or
 
 **TODO**
 
-Spirale de Cornu
+Spirale d'Euler
 --------------------------------------------------------------------------------
 
 **TODO** Montrer l'existence d'une limite (par suite de Cauchy ?)
+
+Courbe paramétrée déterminée par
+$$
+x(t) = \int_0^t \cos s^2 \, ds \, \mbox{ et } \, \, y(t) = \int_0^t \sin s^2 \, ds
+$$
+
+Montrer que la spirale d'Euler à un point limite quand $t \to +\infty$.
+
+![Spirale d'Euler ($t \geq 0$)](images/euler.py)
 
 
 Séries Absolument Convergentes
