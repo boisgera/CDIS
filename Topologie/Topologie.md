@@ -567,9 +567,9 @@ Localement fermé
 --------------------------------------------------------------------------------
 
 ### {.definition}
-Dans un espace métrique[^ext] $X$, un ensemble $A$ est *localement fermé* si chaque
-point de $A$ a un voisinage $V$ tel que $A \cap V$ soit fermé dans $V$
-[@Sat59].
+Dans un espace métrique[^ext] $X$, un ensemble $A$ est *localement fermé* si 
+chaque point de $A$ a un voisinage ouvert $V$ tel que $A \cap V$ soit fermé 
+dans $V$ [@Sat59].
 
 [^ext]: ou plus généralement dans un espace topologique.
 
@@ -922,29 +922,29 @@ Par conséquent, $B$ est fermé dans $A$.
 
 Soit $x \in A:=\left[0, 1\right[$; 
 si $x>0$, on peut prendre $V=\left]x/2, 1\right[$.
-C'est bien un voisinage (ouvert) de $x$ et $A\cap V = V$. 
+C'est bien un voisinage ouvert de $x$ et $A\cap V = V$. 
 L'ensemble $A \cap V$ est donc fermé dans $V$. 
-Si $x=0$, on peut prendre $V = \left]-1, 1/2\right]$; 
-c'est un voisinage de $x$ car 
-$0 \in \left]-1, 1/2\right[ \subset \left]-1, 1/2\right]$
-et $A \cap V = \left]0, 1/2\right]$ est bien fermé dans $V$.
+Si $x=0$, on peut prendre $V = \left]-1, 1/2\right[$; 
+c'est un voisinage ouvert de $x$ 
+et $A \cap V = \left[0, 1/2\right[$ est bien fermé dans $V$.
 
 Soit $x_k$ une suite de $\mathbb{R}$ qui converge vers $\ell$ et 
 $A = \{x_k \, | \, k \in \mathbb{N}\}$. 
 Si $a \in A$ et que $a \neq \ell$, 
 alors il existe un $\varepsilon > 0$ tel que 
-$V = [a - \varepsilon, a + \varepsilon]$ vérifie $A \cap V = \{a\}$.
-$V$ est un voisinage de $a$ et $A \cap V$ est bien fermé dans $V$.
+$V = ]a - \varepsilon, a + \varepsilon[$ vérifie $A \cap V = \{a\}$.
+$V$ est un voisinage ouvert de $a$ et $A \cap V$ est bien fermé dans $V$.
 Si la valeur limite $\ell$ n'est pas atteinte par un $x_k$, cela conclut
 la preuve que $A$ est localement fermé. Dans le cas contraire, pour 
 $a=\ell$, on peut prendre $V = \R$; en effet, $A$ est alors fermé.
 
 L'ensemble des rationnels $\mathbb{Q}$ n'est pas localement fermé.
 En effet si $V$ est un voisinage de $0$ il contient nécessairement un ensemble
-de la forme $[-\varepsilon, \varepsilon]$ pour un $\varepsilon > 0$.
+de la forme $\left]-\varepsilon, \varepsilon\right[$ pour un $\varepsilon > 0$.
 Or cet intervalle contient des irrationels, qui peuvent être obtenus
-comme limite de rationnels dans $[-\varepsilon, \varepsilon]$, et donc
-de $V$. Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
+comme limite de rationnels dans $\left]-\varepsilon, \varepsilon\right[$
+et donc de $V$. 
+Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
 donc $\mathbb{Q}$ n'est pas localement fermé.
 
 
@@ -959,19 +959,22 @@ de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc
 $A \cap V$ est bien fermé dans $V=A$.
 
 Si $A$ et $B$ sont localement fermés et $x \in A \cap B$, il existe des 
-voisinages $U$ et $V$ de $x$ tels que $A \cap U$ soit fermé dans $U$ et $B \cap V$ soit
-fermé dans $V$. Par construction, $U \cap V$ est un voisinage de $x$;
-en effet, si $X$ est un espace métrique, les hypothèses signifient que 
-$d(x, X \setminus U) > 0$ et que $d(x, X \setminus V) > 0$ ; or 
+voisinages ouverts $U$ et $V$ de $x$ tels que $A \cap U$ soit fermé 
+dans $U$ et $B \cap V$ soit fermé dans $V$. 
+Par construction, $U \cap V$ est un voisinage ouvert de $x$;
+en effet, d'une part cette intersection contient $x$ et d'autre part
+pour tout $y$ dans $U \cap V$, 
+$d(y, X \setminus U) > 0$ et $d(y, X \setminus V) > 0$ ; or 
 $$
 \begin{split}
-d(x, X \setminus (U \cap V)) 
+d(y, X \setminus (U \cap V)) 
 &= 
-d(x, (X \setminus U) \cup (X \setminus V)) \\
-&= \min \left( d(x, X \setminus U), d(x, X \setminus V) \right) \\
+d(y, (X \setminus U) \cup (X \setminus V)) \\
+&= \min \left( d(y, X \setminus U), d(y, X \setminus V) \right) \\
 &> 0.
 \end{split}
 $$
+donc $U \cap V$ est ouvert.
 L'ensemble $A$, qui est fermé dans $U$, est donc fermé dans $U \cap V$
 (si une suite de $A$ converge dans $U \cap V$, elle converge dans $U$
 et donc sa limite appartient à $A$); de la même façon, $B$ est fermé
@@ -984,6 +987,18 @@ il est l'intersection de deux ensembles localement fermés, donc il
 est localement fermé (par les résultats de la [question précédente](#lf-2)).
 
 Réciproquement, supposons que l'ensemble $A$ soit localement fermé.
+En tout point $a \in A$, il existe un voisinage ouvert $V_a$ tel que
+$A\cap V_a$ soit fermé dans $V_a$. L'ensemble $V_a \setminus (A \cap V_a)
+= V_a \setminus A$ est donc ouvert dans $V_a$ et donc dans $X$.
+Par construction, la collection des $V_a$ recouvre $A$, c'est-à-dire que
+$A \subset \cup_{a \in A} V_a$, donc
+$$
+A = \bigcup_{a \in A} V_a \setminus \left(\bigcup_{a \in A} V_a \setminus A\right).
+$$
+Posons $V = \cup_{a \in A} V_a$;
+le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
+ensemble fermé $F$; de l'équation ci-dessus on déduit donc
+que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 
 **TODO**
 
