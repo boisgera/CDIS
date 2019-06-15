@@ -565,7 +565,7 @@ $\overline{\mathbb{R}} = \mathbb{R}$.
 Ensembles localements fermés
 --------------------------------------------------------------------------------
 
-**TODO**, cf. Sato (hyperfonctions).
+**TODO**, cf. Sato (hyperfonctions) et nLab
 
 Deux définitions équivalentes: d'abord étymologique (tout point de l'ensemble
 admet un voisinage où la trace de l'ensemble est fermé), 
