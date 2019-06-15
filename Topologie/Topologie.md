@@ -945,7 +945,7 @@ Si un ensemble est l'intersection d'un ouvert et d'un fermé dans $X$,
 il est l'intersection de deux ensemble localement fermés, donc il
 est localement fermé (par les résultats de la [question précédente](#lf-2)).
 
-Réciproquement, suppose que l'ensemble $A$ soit localement fermé.
+Réciproquement, supposons que l'ensemble $A$ soit localement fermé.
 
 **TODO**
 
