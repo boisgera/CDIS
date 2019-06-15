@@ -567,16 +567,16 @@ Localement fermé
 --------------------------------------------------------------------------------
 
 ### {.definition}
-Dans un espace métrique[^ext], un ensemble $A$ est *localement fermé* si chaque
+Dans un espace métrique[^ext] $X$, un ensemble $A$ est *localement fermé* si chaque
 point de $A$ a un voisinage $V$ tel que $A \cap V$ soit fermé dans $V$
 [@Sat59].
 
 [^ext]: ou plus généralement dans un espace topologique.
 
 ### Question 0 {.question #lf-0}
-Expliquer le terme "fermé dans $V$" dans la définition de "localement fermé"; 
+Expliquer l'expression "fermé dans $V$" dans la définition ci-dessus; 
 est-ce que cela fait une différence si l'on remplace cette expression
-par "fermé" ?
+par "fermé" ? 
 
 $\to$ [Solution](#a-lf-0)
 
@@ -891,9 +891,20 @@ Solutions aux Exercices
 Solution -- [Localement fermé]
 --------------------------------------------------------------------------------
 
-### Solution à la [question 1](#lf-0) {.answer #a-lf-0}
+### Solution à la [question 0](#lf-0) {.answer #a-lf-0}
 
-**TODO**
+Un sous-ensemble $B$ d'un ensemble $A$ de points d'un espace topologique $X$
+est "fermé dans $A$" s'il est fermé **comme ensemble de points de l'espace
+topologique $A$**, muni de la topologie (ou le cas échéant la métrique)
+induite par $X$. Et cette propriété peut être différente de être "fermé"
+(sous-entendu comme ensemble de points de $X$).
+
+Par exemple, si $X = \R$, $A = \left]0, +\infty\right[$ et 
+$B = \left]0, +\infty\right[$, $B$ n'est pas fermé dans $\mathbb{R}$,
+car la suite $x_k = 2^{-k}$ appartient à $B$, mais $x_k \to 0 \not \in B$ 
+quand $k \to +\infty$. Par contre, toute suite de $B$ convergeant 
+dans $A$ converge dans $B$ car les deux ensembles sont identiques.
+Par conséquent, $B$ est fermé dans $A$.
 
 ### Solution à la [question 1](#lf-1) {.answer #a-lf-1}
 
@@ -901,9 +912,40 @@ Solution -- [Localement fermé]
 
 ### Solution à la [question 2](#lf-2) {.answer #a-lf-2}
 
-**TODO**
+Si $A$ est fermé, on peut prendre $V=X$ qui est un voisinage ouvert 
+de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
+$A \cap V$ est bien fermé dans $V=X$.
 
-### Solution à la [question 2](#lf-3) {.answer #a-lf-3}
+Si $A$ est ouvert, on peut prendre $V=A$ qui est un voisinage ouvert 
+de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
+$A \cap V$ est bien fermé dans $V=A$.
+
+Si $A$ et $B$ sont localement fermés, il existe des voisinages $U$ et $V$
+de $A$ et $B$ tels que $A \cap U$ soit fermé dans $U$ et $B \cap V$ soit
+fermé dans $V$. Par construction, $U \cap V$ est un voisinage de $A \cap B$;
+en effet, si $X$ est un espace métrique, les hypothèses signifient que 
+$d(A, X \setminus U) > 0$ et que $d(B, X \setminus V) > 0$ et 
+$$
+\begin{split}
+d(A \cap B, X \setminus (U \cap V)) 
+&= 
+d(A \cap B, (X \setminus U) \cup (X \setminus V)) \\
+&= \min \left( d(A \cap B, X \setminus U), d(A \cap B, X \setminus V) \right) \\
+&> 0.
+\end{split}
+$$
+L'ensemble $A$, qui est fermé dans $U$, est donc fermé dans $U \cap V$
+(si une suite de $A$ converge dans $U \cap V$, elle converge dans $U$
+et donc sa limite appartient à $A$); de la même façon, $B$ est fermé
+dans $U \cap V$. Par conséquent, $A \cap B$ est fermé dans $U \cap V$.
+
+### Solution à la [question 3](#lf-3) {.answer #a-lf-3}
+
+Si un ensemble est l'intersection d'un ouvert et d'un fermé dans $X$,
+il est l'intersection de deux ensemble localement fermés, donc il
+est localement fermé (par les résultats de la [question précédente](#lf-2)).
+
+Réciproquement, suppose que l'ensemble $A$ soit localement fermé.
 
 **TODO**
 
