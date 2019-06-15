@@ -932,7 +932,7 @@ L'ensemble des rationnels $\mathbb{Q}$ n'est pas localement fermé.
 En effet si $V$ est un voisinage de $0$ il contient nécessairement un ensemble
 de la forme $[-\varepsilon, \varepsilon]$ pour un $\varepsilon > 0$.
 Or cet intervalle contient des irrationels, qui peuvent être obtenus
-comme limite de rationnels dans $[-\varepsilson, \varepsilon]$, et donc
+comme limite de rationnels dans $[-\varepsilon, \varepsilon]$, et donc
 de $V$. Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
 donc $\mathbb{Q}$ n'est pas localement fermé.
 
