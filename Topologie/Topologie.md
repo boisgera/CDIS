@@ -907,7 +907,7 @@ Solution -- [Localement fermé]
 
 **TODO**
 
-Solution -- [Nombres réels étendus]
+Solution -- [Droite réelle achevée]
 --------------------------------------------------------------------------------
 
  1. **TODO**
