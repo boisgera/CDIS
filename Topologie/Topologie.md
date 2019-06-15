@@ -1000,8 +1000,6 @@ le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
 ensemble fermé $F$; de l'équation ci-dessus on déduit donc
 que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 
-**TODO**
-
 Solution -- [Droite réelle achevée]
 --------------------------------------------------------------------------------
 
