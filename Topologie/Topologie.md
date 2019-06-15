@@ -568,7 +568,7 @@ Localement fermé
 
 ### {.definition}
 Dans un espace métrique[^ext], un ensemble $A$ est *localement fermé* si chaque
-point de $A$ à un voisinage $V$ tel que $A \cap V$ soit fermé dans $V$
+point de $A$ a un voisinage $V$ tel que $A \cap V$ soit fermé dans $V$
 [@Sat59].
 
 [^ext]: ou plus généralement dans un espace topologique.
