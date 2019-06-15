@@ -673,7 +673,7 @@ Le nombre d'or
 
 **TODO**
 
-Spirale d'Euler
+Spirale d'Euler 
 --------------------------------------------------------------------------------
 
 La spirale d'Euler est la courbe paramétrée du plan déterminée 
@@ -689,26 +689,31 @@ Nous souhaitons établir que cette spirale à un point limite quand
 $t \to +\infty$[^euler].
 
  1. Montrer que si pour toute suite de valeurs $t_k$ tendant vers l'infini, 
-    la suite de points de coordonnées $(x(t_k), y(t_k))$ à une limite dans
-    le plan
+    la suite de points de coordonnées $(x_k, y_k) := (x(t_k), y(t_k))$ 
+    à une limite dans le plan
     -- limite qui peut dépendre a priori de la suite $t_k$ -- 
     alors le point de coordonnées $(x(t), y(t))$ a une limite dans le plan 
     quand $t$ tend vers $+\infty$.
 
- 2. Montrer que les grandeurs
+ 2. Montrer que pour tout couple $(a,b)$ de réels strictement positifs,
+    les grandeurs
     $$
     I(a, b) :=
     \int_{a}^{b} \cos s^2 \, ds
     \mbox{ et }
     J(a, b) := \int_{a}^{b} \sin s^2 \, ds
     $$
-    tendent vers $0$ quand $a\to +\infty$ uniformément par rapport à
-    $b \geq a$, c'est-à-dire que pour tout $\varepsilon > 0$, il existe
-    un $t \geq 0$ tel que pour tout couple $(a,b)$ de réels vérifiant
-    $t \leq a \leq b$, on a $|I(a,b)| \leq \varepsilon$ et
-    $|J(a,b)| \leq \varepsilon$.
+    vérifient pour un réel $\alpha > 0$ les inégalités
+    $$
+    |I(a, b)| \leq \frac{\alpha}{\sqrt{\min(a, b)}}
+    \, \mbox{ et } \,
+    |J(a, b)| \leq \frac{\alpha}{\sqrt{\min(a, b)}}.
+    $$
 
  3. Conclure.
+
+$\to$ [Solution][Solution -- [Spirale d'Euler]]
+
 
 [^euler]: cette courbe a été introduite par Euler en 1744. 
 Il lui apparait alors manifeste que la courbe est une spirale qui s'enroule 
@@ -930,7 +935,7 @@ Solution -- [Spirale d'Euler]
 
  1. Montrer que $(x(t), y(t))$ à une limite quand $t\to+\infty$ suppose de
     montrer qu'il existe un point $T \in \mathbb{R}^2$ tel que pour 
-    toute suite croissante de valeurs $t_k$ tendant vers $+\infty$, 
+    toute suite de valeurs $t_k$ tendant vers $+\infty$, 
     la suite $(x(t_k), y(t_k))$ tende vers $T$. 
     Compte tenu de l'hypothèse, 
     cela revient à montrer que la limite d'une telle suite est indépendante du
@@ -945,9 +950,71 @@ Solution -- [Spirale d'Euler]
     et de même limite, on a nécessairement $T = S = R$, ce qui prouve le
     résultat cherché.
 
- 2. **TODO**
+ 2. Nous traitons le cas de $I(a, b)$, celui de $J(a, b)$ étant similaire.
+    Pour tout $a$ et $b$ strictement positifs,
+    le changement de variable $\tau = s^2$ fournit:
+    $$
+    I(a, b) = \int_a^b \cos s^2 \, ds = \int_{\sqrt{a}}^{\sqrt{b}} \frac{\cos \tau}{2\sqrt{\tau}} \, d\tau.
+    $$
+    Par intégration par parties, on obtient alors
+    $$
+    I(a, b) = \frac{\sin b}{2\sqrt{b}} -  \frac{\sin a}{2\sqrt{a}} 
+    + \int_{\sqrt{a}}^{\sqrt{b}} \frac{\sin \tau}{\tau^{3/2}} \, d\tau.
+    $$
+    Comme $|\sin \tau| \leq 1$,
+    $$
+    \left| \int_{\sqrt{a}}^{\sqrt{b}} \frac{\sin \tau}{\tau^{3/2}} \, d\tau \right|
+    \leq \int_{\sqrt{a}}^{\sqrt{b}} \frac{d \tau}{\tau^{3/2}}
+    = - \frac{2}{\sqrt{b}} + \frac{2}{\sqrt{a}}.
+    $$
+    On en déduit
+    $$
+    \left|I(a, b)\right| 
+    \leq 
+    \frac{5}{2 \sqrt{a}} + \frac{5}{2 \sqrt{b}} \leq \frac{5}{\sqrt{\min(a, b)}}.
+    $$
 
- 3. **TODO**
+ 3. Pour établir l'existence d'un point limite à la spirale d'Euler,
+    compte tenu du résultat de la question 1, il nous suffit de montrer
+    que pour toute suite de valeurs $t_k$ tendant vers $+\infty$, 
+    la suite des $(x_k, y_k) = (x(t_k), y(t_k))$ est convergente. 
+    Comme nous ne connaissons
+    par la valeur de cette limite, nous allons établir que cette suite est
+    de Cauchy; l'ensemble $\mathbb{R}^2$ étant complet, cela prouvera la
+    convergence de la suite.
+
+    Or, pour tout couple d'entier $n$ et $p$, on a
+    $$
+    \begin{split}
+    x_n - x_p = x(t_n) - x(t_p) 
+    &= \int_0^{t_n} \cos s^2 \, ds - \int_0^{t_p} \cos s^2 \, ds \\
+    &=\int_{t_p}^{t_n} \cos s^2 \, ds \\& = I(t_p, t_n)
+    \end{split}
+    $$
+    et de façon similaire,
+    $$
+    y_n - y_p = \int_{t_p}^{t_n} \sin s^2 \, ds  = J(t_p, t_n).
+    $$
+    En exploitant le résultat de la question 2, on peut alors en déduire que
+    $$
+    \|(x_n, y_n) - (x_p, y_p)\| 
+    = 
+    \sqrt{I(t_p, t_n)^2 + J(t_p, t_n)^2}
+    \leq \frac{2\alpha}{\sqrt{\min(t_p, t_n)}}.
+    $$
+    Pour un $\varepsilon > 0$ donné, il suffit de choisir un rang 
+    $m \in \mathbb{N}$ tel que
+    $$
+    t_k \geq \left(\frac{2 \alpha}{\varepsilon}\right)^2, \, k\geq m
+    $$
+    pour avoir la garantie que si $p \geq m$ et $n \geq m$, alors
+    $$
+    \|(x_n, y_n) - (x_p, y_p)\| 
+    \leq \frac{2\alpha}{\sqrt{\min(t_p, t_n)}} 
+    \leq \varepsilon.
+    $$
+    La suite des $(x_k, y_k)$ est donc de Cauchy.
+
 
 
 Solution -- [Point fixe]
