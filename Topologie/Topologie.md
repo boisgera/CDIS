@@ -581,9 +581,10 @@ par "fermé" ?
 $\to$ [Solution](#a-lf-0)
 
 ### Question 1 {.question #lf-1}
-Dans $\mathbb{R}$, montrer que tous les intervalles sont localement fermés.
-Donner un exemple de sous-ensemble de $\mathbb{R}$ qui ne soit pas localement
-fermé.
+Montrer que dans $\R$, l'intervalle $\left[0, 1\right[$ est localement 
+fermé et que l'image de toute suite convergente est localement fermée. 
+Donner un exemple de sous-ensemble de $\mathbb{R}$ qui ne soit pas 
+localement fermé.
 
 $\to$ [Solution](#a-lf-1)
 
@@ -908,7 +909,33 @@ Par conséquent, $B$ est fermé dans $A$.
 
 ### Solution à la [question 1](#lf-1) {.answer #a-lf-1}
 
-**TODO**
+Soit $x \in A:=\left[0, 1\right[$; 
+si $x>0$, on peut prendre $V=\left]x/2, 1\right[$.
+C'est bien un voisinage (ouvert) de $x$ et $A\cap V = V$. 
+L'ensemble $A \cap V$ est donc fermé dans $V$. 
+Si $x=0$, on peut prendre $V = \left]-1, 1/2\right]$; 
+c'est un voisinage de $x$ car 
+$0 \in \left]-1, 1/2\right[ \subset \left]-1, 1/2\right]$
+et $A \cap V = \left]0, 1/2\right]$ est bien fermé dans $V$.
+
+Soit $x_k$ une suite de $\mathbb{R}$ qui converge vers $\ell$ et 
+$A = \{x_k \, | \, k \in \mathbb{N}\}$. 
+Si $a \in A$ et que $a \neq \ell$, 
+alors il existe un $\varepsilon > 0$ tel que 
+$V = [a - \varepsilon, a + \varepsilon]$ vérifie $A \cap V = \{a\}$.
+$V$ est un voisinage de $a$ et $A \cap V$ est bien fermé dans $V$.
+Si la valeur limite $\ell$ n'est pas atteinte par un $x_k$, cela conclut
+la preuve que $A$ est localement fermé. Dans le cas contraire, pour 
+$a=\ell$, on peut prendre $V = \R$; en effet, $A$ est alors fermé.
+
+L'ensemble des rationnels $\mathbb{Q}$ n'est pas localement fermé.
+En effet si $V$ est un voisinage de $0$ il contient nécessairement un ensemble
+de la forme $[-\varepsilon, \varepsilon]$ pour un $\varepsilon > 0$.
+Or cet intervalle contient des irrationels, qui peuvent être obtenus
+comme limite de rationnels dans $[-\varepsilson, \varepsilon]$, et donc
+de $V$. Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
+donc $\mathbb{Q}$ n'est pas localement fermé.
+
 
 ### Solution à la [question 2](#lf-2) {.answer #a-lf-2}
 
@@ -920,17 +947,17 @@ Si $A$ est ouvert, on peut prendre $V=A$ qui est un voisinage ouvert
 de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
 $A \cap V$ est bien fermé dans $V=A$.
 
-Si $A$ et $B$ sont localement fermés, il existe des voisinages $U$ et $V$
-de $A$ et $B$ tels que $A \cap U$ soit fermé dans $U$ et $B \cap V$ soit
-fermé dans $V$. Par construction, $U \cap V$ est un voisinage de $A \cap B$;
+Si $A$ et $B$ sont localement fermés et $x \in A \cap B$, il existe des 
+voisinages $U$ et $V$ de $x$ tels que $A \cap U$ soit fermé dans $U$ et $B \cap V$ soit
+fermé dans $V$. Par construction, $U \cap V$ est un voisinage de $x$;
 en effet, si $X$ est un espace métrique, les hypothèses signifient que 
-$d(A, X \setminus U) > 0$ et que $d(B, X \setminus V) > 0$ et 
+$d(x, X \setminus U) > 0$ et que $d(x, X \setminus V) > 0$ ; or 
 $$
 \begin{split}
-d(A \cap B, X \setminus (U \cap V)) 
+d(x, X \setminus (U \cap V)) 
 &= 
-d(A \cap B, (X \setminus U) \cup (X \setminus V)) \\
-&= \min \left( d(A \cap B, X \setminus U), d(A \cap B, X \setminus V) \right) \\
+d(x, (X \setminus U) \cup (X \setminus V)) \\
+&= \min \left( d(x, X \setminus U), d(x, X \setminus V) \right) \\
 &> 0.
 \end{split}
 $$
