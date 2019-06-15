@@ -1,0 +1,21 @@
+[
+  {
+    "id": "Lev08",
+    "type": "report",
+    "title": "The Euler spiral: a mathematical history",
+    "author": [
+            {
+                    "family": "Levien",
+                    "given": "Raph"
+            }
+    ],
+    "issued": {
+            "date-parts": [
+                    [
+                            "2008"
+                    ]
+            ]
+    }
+}
+
+]

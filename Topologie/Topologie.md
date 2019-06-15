@@ -676,18 +676,45 @@ Le nombre d'or
 Spirale d'Euler
 --------------------------------------------------------------------------------
 
-**TODO** Montrer l'existence d'une limite (par suite de Cauchy ?)
-
-Courbe paramétrée déterminée par
+La spirale d'Euler est la courbe paramétrée déterminée par
 $$
 x(t) = \int_0^t \cos s^2 \, ds \, \mbox{ et } \, \, y(t) = \int_0^t \sin s^2 \, ds
 $$
+pour $t\geq 0$. 
+Nous souhaitons établir que cette spirale à un point limite quand 
+$t \to +\infty$[^euler].
 
-Montrer que la spirale d'Euler à un point limite quand $t \to +\infty$.
+ 1. Montrer que si pour toute suite de valeurs $t_k$ tendant vers l'infini, 
+    la suite de points de coordonnées $(x(t_k), y(t_k))$ à une limite dans
+    le plan
+    -- limite qui peut dépendre a priori de la suite $t_k$ -- 
+    alors le point de coordonnées $(x(t), y(t))$ a une limite dans le plan 
+    quand $t$ tend vers $+\infty$.
 
-![Spirale d'Euler ($t \geq 0$)](images/euler.py)
+ 2. Montrer que les grandeurs
+    $$
+    I(a, b) :=
+    \int_{a}^{b} \cos s^2 \, ds
+    \mbox{ et }
+    J(a, b) := \int_{a}^{b} \sin s^2 \, ds
+    $$
+    tendent vers $0$ quand $a\to +\infty$ uniformément par rapport à
+    $b \geq a$, c'est-à-dire que pour tout $\varepsilon > 0$, il existe
+    un $t \geq 0$ tel que pour tout couple $(a,b)$ de réels vérifiant
+    $t \leq a \leq b$, on a $|I(a,b)| \leq \varepsilon$ et
+    $|J(a,b)| \leq \varepsilon$.
 
-**TODO:** référence de Levien.
+ 3. Conclure.
+
+[^euler]: cette courbe a été introduite par Euler en 1744. 
+Il lui apparait alors manifeste que la courbe est une spirale qui s'enroule 
+après un nombre de tours infinis autour d'un centre bien défini, 
+mais que ce point est très difficile à déterminer par cette construction. 
+Il faudra attendre 1781 pour
+qu'Euler puisse calculer analytiquement les coordonnées de ce point 
+(cf. @Lev08).
+
+![Spirale d'Euler](images/euler.py)
 
 Séries Absolument Convergentes
 --------------------------------------------------------------------------------
@@ -895,6 +922,16 @@ Solution -- [Plongement de Kuratowski]
     d(x, y) = \|f_x - f_y\|_{\infty}.
     $$
 
+Solution -- [Spirale d'Euler]
+--------------------------------------------------------------------------------
+
+ 1. **TODO**
+
+ 2. **TODO**
+
+ 3. **TODO**
+
+
 Solution -- [Point fixe]
 --------------------------------------------------------------------------------
 
@@ -935,3 +972,7 @@ Solution -- [Point fixe]
     $(x_{kn + (n-1)})_k$. Ces $n$ suites convergent toutes vers $x$,
     donc la suite des $(x_k)_k$ converge également vers le point fixe $x$, 
     comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
+
+
+Références
+============================================================================
