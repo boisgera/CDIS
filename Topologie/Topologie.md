@@ -683,7 +683,7 @@ x(t) = \int_0^t \cos s^2 \, ds \, \mbox{ et } \, \, y(t) = \int_0^t \sin s^2 \, 
 $$
 
 
-![Spirale d'Euler](images/euler.py)
+![Spirale d'Euler ($0 \leq t \leq 5$)](images/euler.py)
 
 Nous souhaitons établir que cette spirale à un point limite quand 
 $t \to +\infty$[^euler].
@@ -928,7 +928,22 @@ Solution -- [Plongement de Kuratowski]
 Solution -- [Spirale d'Euler]
 --------------------------------------------------------------------------------
 
- 1. **TODO**
+ 1. Montrer que $(x(t), y(t))$ à une limite quand $t\to+\infty$ suppose de
+    montrer qu'il existe un point $T \in \mathbb{R}^2$ tel que pour 
+    toute suite croissante de valeurs $t_k$ tendant vers $+\infty$, 
+    la suite $(x(t_k), y(t_k))$ tende vers $P$. 
+    Compte tenu de l'hypothèse, 
+    cela revient à montrer que la limite d'une telle suite est indépendante du
+    choix de la suite des $t_k$. 
+    
+    Considérons deux suites $s_k$ et $r_k$
+    de réels positifs tendant vers $+\infty$ et notons $S$ et $R$ les 
+    limites de $(x(s_k), y(s_k))$ et $(x(r_k), y(r_k))$. La suite 
+    $t_k$ des réels $s_0$, $r_0$, $s_1$, $r_1, \dots$ est positive 
+    et tend vers $+\infty$. Les $(x(t_k), y(t_k))$ sont admettent donc
+    une limite $T$ quand $k \to +\infty$; toute sous-suite étant convergente
+    et de même limite, on a nécessairement $T = S = R$, ce qui prouve le
+    résultat cherché.
 
  2. **TODO**
 
