@@ -527,9 +527,12 @@ x/y & \mbox{si } y > 0, \\
 \right.
 $$
 
-[^nre]: dans le monde réel, en dehors de la Matrice, 
+[^nre]: **Pilule rouge.** Dans le monde réel,
 on trouvera fréquemment la notation $\overline{\R}$ 
-pour désigner l'ensemble des réels étendus.
+pour désigner l'ensemble des réels étendus; 
+mais cette convention se heurte alors avec la désignation de l'adhérence
+de $\mathbb{R}$ dans lui-même, une autre interprétation selon laquelle 
+$\overline{\mathbb{R}} = \mathbb{R}$. 
 
  1. Pouvez-vous donner une interprétation géométrique simple à la grandeur
     calculée par la fonction $f$ ?
