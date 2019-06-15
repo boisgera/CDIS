@@ -514,8 +514,8 @@ X =
 (x, y) \in \mathbb{R}^2 \, \left| \, \sqrt{x^2+y^2} = 1 \right. \mbox{ et } y \geq 0
 \right\},
 $$
-muni de la distance euclidienne de $\mathbb{R}^2$,
-et $f: X \to \mathbb{R} \cup \{-\infty, +\infty\}$ la fonction définie par
+muni de la distance euclidienne de $\mathbb{R}^2$
+et la fonction $f: X \to \mathbb{R} \cup \{-\infty, +\infty\}$ définie par
 $$
 f(x,y) = 
 \left|
