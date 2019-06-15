@@ -676,11 +676,15 @@ Le nombre d'or
 Spirale d'Euler
 --------------------------------------------------------------------------------
 
-La spirale d'Euler est la courbe paramétrée déterminée par
+La spirale d'Euler est la courbe paramétrée du plan déterminée 
+pour $t\geq 0$ par les coordonnées
 $$
 x(t) = \int_0^t \cos s^2 \, ds \, \mbox{ et } \, \, y(t) = \int_0^t \sin s^2 \, ds
 $$
-pour $t\geq 0$. 
+
+
+![Spirale d'Euler](images/euler.py)
+
 Nous souhaitons établir que cette spirale à un point limite quand 
 $t \to +\infty$[^euler].
 
@@ -714,7 +718,6 @@ Il faudra attendre 1781 pour
 qu'Euler puisse calculer analytiquement les coordonnées de ce point 
 (cf. @Lev08).
 
-![Spirale d'Euler](images/euler.py)
 
 Séries Absolument Convergentes
 --------------------------------------------------------------------------------
