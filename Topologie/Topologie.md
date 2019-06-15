@@ -499,11 +499,12 @@ si et seulement si il est fermé et borné.
 Exercices
 ================================================================================
 
-Nombres réels étendus
+Droite réelle achevée
 --------------------------------------------------------------------------------
 
-Un *nombre réel étendu* est un nombre réel, $-\infty$ ou $+\infty$.
-Le but de cet exercice est de doter l'ensemble 
+La droite réelle achevée est composée des nombre réels de $-\infty$ 
+et de $+\infty$.
+Le but de cet exercice est de doter cet ensemble 
 $\mathbb{R} \cup \{-\infty, +\infty\}$[^nre] d'une distance aux propriétés
 "raisonnables".
 A cette fin, on introduit l'espace métrique $X$ des points du cercle unité de 
@@ -537,7 +538,7 @@ $\overline{\mathbb{R}} = \mathbb{R}$.
  1. Pouvez-vous donner une interprétation géométrique simple à la grandeur
     calculée par la fonction $f$ ?
 
-    ![Indication -- Nombres réels étendus](images/extended-real-numbers.tex)
+    ![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex)
 
  2. Montrer que $f$ est une bijection.
 
@@ -562,21 +563,43 @@ $\overline{\mathbb{R}} = \mathbb{R}$.
     $|x_k| \to +\infty$.
     
 
-Ensembles localements fermés
+Localement fermé
 --------------------------------------------------------------------------------
 
-**TODO**, cf. Sato (hyperfonctions) et nLab
+### {.definition}
+Dans un espace métrique[^ext], un ensemble $A$ est *localement fermé* si chaque
+point $a$ de $A$ à un voisinage $V$ tel que $A \cap V$ soit fermé dans $V$
+[@Sat59].
 
-Deux définitions équivalentes: d'abord étymologique (tout point de l'ensemble
-admet un voisinage où la trace de l'ensemble est fermé), 
-puis intersection d'un ouvert et d'un fermé.
+[^ext]: ou plus généralement dans un espace topologique.
 
-Test ensembles ... Construction d'un ensemble qui ne soit pas localement
-fermé ? $\mathbb{R} \setminus \mathbb{Q}$ ?
+### Question 0 {.question #lf-0}
+Expliquer le terme "fermé dans $V$" dans la définition de "localement fermé"; 
+est-ce que cela fait une différence si l'on remplace cette expression
+par "fermé" ?
 
-Quelles pptés ? Jouer sur de tels ensembles dans $\mathbb{R}^2$ et dans
-$\mathbb{R}$ pour "tester" la compréhension de "ppté topologique relativement
-à une structure donnée". 
+$\to$ [Solution](#a-lf-0)
+
+### Question 1 {.question #lf-1}
+Dans $\mathbb{R}$, montrer que tous les intervalles sont localement fermés.
+Donner un exemple de sous-ensemble de $\mathbb{R}$ qui ne soit pas localement
+fermé.
+
+$\to$ [Solution](#a-lf-1)
+
+### Question 2 {.question #lf-2} 
+Montrer que tout ensemble fermé est localement fermé, mais aussi que tout
+ensemble ouvert est localement fermé. 
+Montrer que l'intersection de deux ensembles localement fermés est 
+localement fermé.
+
+$\to$ [Solution](#a-lf-2)
+
+### Question 3 {.question #lf-3}
+Montrer qu'un ensemble est localement fermé si et seulement s'il est
+l'intersection d'un ensemble fermé et d'un ensemble ouvert.
+
+$\to$ [Solution](#a-lf-3)
 
 Comparaison des normes
 --------------------------------------------------------------------------------
@@ -864,6 +887,25 @@ sont compacts.
 
 Solutions aux Exercices
 ================================================================================
+
+Solution -- [Localement fermé]
+--------------------------------------------------------------------------------
+
+### Solution à la [question 1](#lf-0) {.answer #a-lf-0}
+
+**TODO**
+
+### Solution à la [question 1](#lf-1) {.answer #a-lf-1}
+
+**TODO**
+
+### Solution à la [question 2](#lf-2) {.answer #a-lf-2}
+
+**TODO**
+
+### Solution à la [question 2](#lf-3) {.answer #a-lf-3}
+
+**TODO**
 
 Solution -- [Nombres réels étendus]
 --------------------------------------------------------------------------------
