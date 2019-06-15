@@ -931,7 +931,7 @@ Solution -- [Spirale d'Euler]
  1. Montrer que $(x(t), y(t))$ à une limite quand $t\to+\infty$ suppose de
     montrer qu'il existe un point $T \in \mathbb{R}^2$ tel que pour 
     toute suite croissante de valeurs $t_k$ tendant vers $+\infty$, 
-    la suite $(x(t_k), y(t_k))$ tende vers $P$. 
+    la suite $(x(t_k), y(t_k))$ tende vers $T$. 
     Compte tenu de l'hypothèse, 
     cela revient à montrer que la limite d'une telle suite est indépendante du
     choix de la suite des $t_k$. 
