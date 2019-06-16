@@ -71,7 +71,7 @@ def transform(doc):
     #         holder[i] = Header(3, ("", [], []), [])
 
     anonymify(doc)
-    #divify(doc)
+    divify(doc)
     proofify(doc)
     transform_image_format(doc)
 
@@ -139,19 +139,30 @@ def proofify(doc):
     for elt, path in pandoc.iter(doc, path=True):
         if isinstance(elt, Div) and "section" in elt[0][1]:
             section = elt
-            # print(section)
-            header = section[1][0]
+            attributes, blocks = section
+            header = blocks[0]
             assert isinstance(header, Header)
-            # print(header[1][1])
-            if "proof" in header[1][1]:
+            level, attributes, inlines = header[:]
+            identifier, classes, key_value_pairs = attributes
+            if "proof" in classes:
                 sections.append(section)
 
+    # TODO: non-justified part not working
     for section in sections:
         # Not perfect, but a marker anyway.
-        inline = Math(InlineMath(), r"\blacksquare")
-        block = Plain([inline])
-        section[1].append(block)
-
+        attributes, blocks = section
+        blacksquare = Math(InlineMath(), r"\;\; \blacksquare") 
+        justified_blacksquare = RawInline("latex", r"\hfill$\blacksquare$")
+        justified = True
+        if blocks == [] or not isinstance(blocks[-1], (Plain, Para)):
+            blocks.append(Plain([]))
+            justified = False
+        last_block = blocks[-1]
+        inlines = last_block[0]
+        if justified:
+            inlines.append(justified_blacksquare)
+        else:
+            inlines.append(blacksquare)
 
 def transform_image_format(doc):
     for elt in pandoc.iter(doc):
