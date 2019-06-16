@@ -317,19 +317,96 @@ Bestiaire
 **TODO.** Partir de la notion de limite, définir l'adhérence, et le reste
 à partir de ça, puis "découvrir" les définitions "directes"/séquentielles.
 
-### Définitions séquentielles
+### Définitions séquentielles {.definition}
 
-  - Un ensemble $F$ est *fermé* si la limite de toute suite convergente de $F$
-    appartient à $F$.
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+
+  - Un point *adhère* à un ensemble $A$ s'il existe une suite de
+    points de $A$ qui converge vers ce point.
+
+  - Un ensemble $A$ est *fermé* si la limite de toute suite de points de $A$
+    qui est convergente dans $X$ appartient à $A$.
+
+  - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
+    qui converge vers ce point et une suite de points du complémentaire de $A$
+    qui converge vers ce point.
+
+  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
+    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
 
   - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
     suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
 
-  - Un ensemble $O$ est *ouvert* si tout suite convergeant vers une
-    limite appartenant à $O$ appartient à $O$ à partir d'un certain rang.
+  - Un ensemble $A$ est *ouvert* si tout suite de points de $X$ 
+    qui converge vers un point de $A$ appartient à $A$ 
+    à partir d'un certain rang.
 
-  - Un ensemble $K$ est *compact* si toute suite de $K$ admet une sous-suite
-    convergente.
+### TODO
+
+Notation $\mathcal{V}(x)$ pour les voisinages de $x$.
+
+### Ensembles dérivés {.definition}
+
+Soit $A$ un ensemble de $X$. On note
+
+  -  $\overline{A}$ l'*adhérence* de $A$ 
+     (composée de l'ensemble des points adhérents à $A$).
+
+  - $\partial A$ la *frontière* de $A$ (composée de 
+    l'ensemble des points frontières de $A$).
+
+  - $\mathring{A}$ l'*intérieur* de $A$ (composé de
+    l'ensemble des points intérieurs à $A$).
+
+
+### Définitions métriques {.definition}
+
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+
+  - Un point $x$ *adhère* à un ensemble $A$ si
+    sa distance à l'ensemble $A$ est nulle:
+    $$
+    x \in \overline{A} \; \Leftrightarrow \; d(x, A) = 0.
+    $$
+
+  - Un ensemble $A$ est *fermé* si tous les points à distance nulle de $A$
+    appartiennent à $A$:
+    $$
+    A = \overline{A} \; \Leftrightarrow \; (d(x, A) = 0 \Rightarrow x \in A).
+    $$
+
+  - Un point est *frontière* de $A$ si sa distance à $A$ et au complémentaire
+    de $A$ est nulle:
+    $$
+    x \in \partial{A} 
+    \; \Leftrightarrow \; 
+    (d(x, A) = 0 \mbox{ et } d(x, X \setminus A)=0)
+    $$
+
+  - Un point $x$ est *intérieur* à un ensemble $A$ si sa distance au 
+    complémentaire de $A$ est strictement positive:
+    $$
+    x \in \mathring{A}
+    \; \Leftrightarrow \; 
+    d(x, X \setminus A) > 0.
+    $$
+
+  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si la
+    distance de $x$ au complémentaire de $V$ est strictement positive:
+    $$
+    V \in \mathcal{V}(x)
+    \; \Leftrightarrow \; 
+    d(x, X \setminus A) > 0.
+    $$
+
+  - Un ensemble $A$ est *ouvert* si la distance de tout point de $A$
+    au complémentaire de $A$ est strictement positive:
+    $$
+    A = \mathring{A}
+    \; \Leftrightarrow \; 
+    (x \in A \Rightarrow d(x, X \setminus A)=0)
+    $$
+
 
   
 
