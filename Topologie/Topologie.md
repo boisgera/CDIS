@@ -380,7 +380,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     $$
     x \in \partial{A} 
     \; \Leftrightarrow \; 
-    (d(x, A) = 0 \mbox{ et } d(x, X \setminus A)=0)
+    (d(x, A) = 0 \mbox{ et } d(x, X \setminus A)=0).
     $$
 
   - Un point $x$ est *intérieur* à un ensemble $A$ si sa distance au 
@@ -404,7 +404,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     $$
     A = \mathring{A}
     \; \Leftrightarrow \; 
-    (x \in A \Rightarrow d(x, X \setminus A)=0)
+    (x \in A \Rightarrow d(x, X \setminus A)=0).
     $$
 
 
