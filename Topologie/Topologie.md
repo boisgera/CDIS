@@ -101,6 +101,13 @@ qui consiste à appeler espace métrique sous-ensembles d'un evn.
 "sous-ensemble d'un e.v.n." peut valoir uniquement dans le cours
 oral.
 
+### TODO
+
+Espace normés: fonctions bornées à valeurs dans $\mathbb{R}$,
+fonctions numériques continues définies sur un compact (à faire
+plus tard: nécessite à la fois compacité et complétude; évoquer
+aussi Arzela-Ascoli / attendre Calcul Diff 3 / zapper ?)
+
 ### Sous-ensembles d'espaces vectoriels normés
 
 Si $X$ est un sous-ensemble d'espace vectoriel normé $E$, 
