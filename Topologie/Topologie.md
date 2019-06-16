@@ -766,23 +766,39 @@ $$
 f_x(y) = d(x, y) - d(x_0, y).
 $$
 
- 1. Montrer que la fonction $x \mapsto f_x$ est injective.
+### Question 1 {#pk-1 .question}
 
- 2. Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
+Montrer que la fonction $x \mapsto f_x$ est injective.
 
- 3. Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
-    $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
-    $\| \cdot \|_{\infty}$ définie par
-    $$
-    \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
-    $$
+$\to$ [Solution](#a-pk-1)
 
- 4. Montrer que $x \mapsto f_x$ est une isométrie, 
-    c'est-à-dire que pour tout $x$ et
-    $y$ dans $X$, on a 
-    $$
-    d(x, y) = \|f_x - f_y\|_{\infty}.
-    $$
+
+### Question 2 {#pk-2 .question}
+
+Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
+
+$\to$ [Solution](#a-pk-2)
+
+### Question 3 {#pk-3 .question}
+
+Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
+$\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
+$\| \cdot \|_{\infty}$ définie par
+$$
+\|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
+$$
+
+$\to$ [Solution](#a-pk-3)
+
+### Question 4 {#pk-4 .question}
+
+Montrer que $x \mapsto f_x$ est une isométrie, 
+c'est-à-dire que pour tout $x$ et $y$ dans $X$, on a 
+$$
+d(x, y) = \|f_x - f_y\|_{\infty}.
+$$
+
+$\to$ [Solution](#a-pk-4)
 
 Le nombre d'or
 --------------------------------------------------------------------------------
@@ -1130,32 +1146,40 @@ Solution -- [Distance entre ensembles]
 Solution -- [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
 
- 1. Soit $x$, $x'$ deux points de $X$. Pour tout $y$ dans $X$ on a:
-    $$
-    \begin{split}
-    f_x(y) - f_{x'}(y) &= d(x, y) - d(x_0, y) - (d(x', y) - d(x', x_0))\\
-    &= d(x, y) - d(x', y),
-    \end{split}
-    $$
-    par conséquent, si $f_x = f_{x'}$, on a en particulier
-    $f_x(x') = f_{x'}(x')$, soit $d(x, x') - d(x', x') = d(x, x') = 0$, 
-    c'est-à-dire $x = x'$.
+### Solution à la [question 1](#pk-1) {#a-pk-1}
 
- 2. **TODO** Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
+Soit $x$, $x'$ deux points de $X$. Pour tout $y$ dans $X$ on a:
+$$
+\begin{split}
+f_x(y) - f_{x'}(y) &= d(x, y) - d(x_0, y) - (d(x', y) - d(x', x_0))\\
+&= d(x, y) - d(x', y),
+\end{split}
+$$
+par conséquent, si $f_x = f_{x'}$, on a en particulier
+$f_x(x') = f_{x'}(x')$, soit $d(x, x') - d(x', x') = d(x, x') = 0$, 
+c'est-à-dire $x = x'$.
 
- 3. **TODO** Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
-    $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
-    $\| \cdot \|_{\infty}$ définie par
-    $$
-    \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
-    $$
+### Solution à la [question 2](#pk-2) {#a-pk-2}
 
- 4. **TODO** Montrer que $x \mapsto f_x$ est une isométrie, 
-    c'est-à-dire que pour tout $x$ et
-    $y$ dans $X$, on a 
-    $$
-    d(x, y) = \|f_x - f_y\|_{\infty}.
-    $$
+**TODO** Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
+
+### Solution à la [question 3](#pk-3) {#a-pk-3}
+
+ **TODO** Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
+$\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
+$\| \cdot \|_{\infty}$ définie par
+$$
+\|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
+$$
+
+### Solution à la [question 4](#pk-4) {#a-pk-4}
+
+**TODO** Montrer que $x \mapsto f_x$ est une isométrie, 
+c'est-à-dire que pour tout $x$ et
+$y$ dans $X$, on a 
+$$
+d(x, y) = \|f_x - f_y\|_{\infty}.
+$$
 
 Solution -- [Spirale d'Euler]
 --------------------------------------------------------------------------------
