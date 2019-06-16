@@ -178,6 +178,9 @@ Construire des isométries peut aller de pair avec la construction
 d'une métrique sur un ensemble qui en est initialement dépourvu;
 voir à ce propos l'exercice "[Droite réelle achevée]"
 
+### TODO
+
+Sous-espace (métrique)
 
 ### Structure topologique d'un espace métrique
 Il est possible de se livrer un à exercice d'abstraction sur les
@@ -245,7 +248,9 @@ Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est
  4. $\overline{\overline{A}} = \overline{A}$.
 
 
+### TODO
 
+Sous-espace (topologique)
 
 Produit (et Quotient?)
 --------------------------------------------------------------------------------
@@ -262,7 +267,7 @@ Au minimum, indispensable limite de suite.
 Qui du reste ? fonctions $X \to Y$, etc ? 
 Montrer en exercice que des cas "limite en $\infty$" se ramènent à ça ?
 L'idée que la notion de limite peut tjs être ramenée à une limite de
-type limite quand on tend vers un point est intéressante.)
+type limite vers un point est intéressante.)
 
 ### Limite d'une suite {.definition}
 Une suite $x_k$ de valeurs d'un espace métrique $X$ est *convergente*
