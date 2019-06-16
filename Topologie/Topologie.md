@@ -198,9 +198,9 @@ sur l'ensemble par une mesure uniquement qualitative
 (dans ce contexte, "$x$ adhérent à $A$" peut être interprété comme 
 "$x$ infiniment proche de $A$ (ou dans $A$)").
 
-### Test d'adhérence {.definition}
+### Relation d'adhérence {.definition}
 
-Un *test d'adhérence* sur l'ensemble *X* est une relation 
+Une *relation d'adhérence* sur l'ensemble *X* est une relation 
 entre éléments de $X$ et sous-ensembles de $X$ telle que:
 
  1. Aucun point n'adhère à de l'ensemble vide,
@@ -215,7 +215,7 @@ entre éléments de $X$ et sous-ensembles de $X$ telle que:
     à un ensemble adhère à cet ensemble.
 
 ### Espace Topologique
-Un *espace topologique* est un ensemble muni d'un test d'adhérence.
+Un *espace topologique* est un ensemble muni d'une relation d'adhérence.
 Les éléments de l'ensemble sont appelés des *points*, 
 ses sous-ensembles des *ensembles de points*.
 
