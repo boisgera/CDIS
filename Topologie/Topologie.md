@@ -821,6 +821,12 @@ f(y_{\infty}) = \lim_{k \to +\infty} f(y_k) = \inf_{x \in K} f(x).
 $$
 La fonction $f$ admet donc un minimum en $y_{\infty}$.
 
+### TODO
+
+Enoncé critère "abstrait" compacité ?
+
+Inclure ici élts dim infinie ?
+
 Annexe
 ================================================================================
 
