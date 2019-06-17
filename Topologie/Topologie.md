@@ -483,7 +483,7 @@ Complétude
 
 ### Point fixe {.definition}
 Soit $f: X \to X$ une application d'un ensemble $X$ dans lui-même.
-Un élément $x \in X$ est un *point fixe* de $f$ si $f(x) = x$.
+Un élément $x \in X$ est un *point fixe* de $f$ si $x = f(x)$.
  
 ### Points fixes et zéros
 Etre un point fixe d'une fonction $f: X \to X$, c'est donc être déterminé 
@@ -496,7 +496,7 @@ $x \in X \mapsto x - f(x)$.
 La démarche inverse 
 -- qui consiste à caractériser les solutions d'une équation 
 comme des point fixes -- peut être utile pour établir des résultats
-d'existence et d'unicité des solution ou obtenir des méthodes numériques 
+d'existence et d'unicité des solutions ou obtenir des méthodes numériques 
 pour leur calcul. Un exemple élémentaire de ce type de transformation:
 le nombre d'or est déterminé comme l'unique solution de l'équation
 $$
@@ -538,6 +538,23 @@ Une suite de points $x_k$ est de Cauchy si et seulement si
 $$
 \lim_{k \to + \infty} \mbox{diam}(\{x_n \, | \, n \geq k \}) = 0.
 $$
+
+### Toute suite convergente est de Cauchy
+Toute suite de points convergente dans un espace métrique est de Cauchy.
+
+### Démonstration {.proof}
+Soit $X$ un espace métrique et $x_k$ une suite convergente, 
+de limite $x_{\infty}$. Soit $\varepsilon > 0$; il existe un rang
+$m$ au-delà duquel on a 
+$d(x_k, x_{\infty}) \leq \varepsilon / 2.$
+Par conséquent, si $n \geq m$ et $p\geq m$, 
+$$
+d(x_n, x_p) \leq d(x_n, x_{\infty}) + d(x_{\infty}, x_p) \leq \varepsilon.
+$$
+La suite $x_k$ est donc de Cauchy.
+
+
+### TODO -- Réciproque fausse
 
 ### Espaces complets {.definition}
 Un espace métrique $X$ est *complet* si et seulement si tout suite de Cauchy
