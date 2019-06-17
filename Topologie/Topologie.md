@@ -1486,7 +1486,7 @@ Solution -- [Distance entre ensembles]
 
 Non, la distance usuelle $d(A,B)$ en convient pas.
 En effet, cette distance est nulle dès que l'intersection de $A$ et $B$
-est non vide, même si des points de $A$ sont être très éloignés de $B$.
+est non vide, même si des points de $A$ sont très éloignés de $B$.
 
 ### TODO -- Solution à la [question 2](#dh-2) {.answer #a-dh-2}
 
