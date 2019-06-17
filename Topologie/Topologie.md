@@ -1,6 +1,8 @@
 % Topologie
 
 <!-- LaTeX Macros -->
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
@@ -551,26 +553,82 @@ d(x_n, x_p) \leq d(x_n, x_{\infty}) + d(x_{\infty}, x_p) \leq \varepsilon.
 $$
 La suite $x_k$ est donc de Cauchy.
 
-### TODO -- Réciproque fausse
+### Réciproque ?
 
-  - TODO: critère Cauchy utile car ne nécessite pas de connaitre la limite.
+Il est parfois plus facile de vérifier qu'une suite satisfait le critère
+de Cauchy que de vérifier qu'elle est convergente, en particulier quand
+la limite de la suite est inconnue.
+Malheureusement, il n'est pas possible en général de déduire la convergence
+du fait que la suite soit de Cauchy. 
+Ainsi, dans $\Q$, considéré en tant que sous-espace métrique de $\R$,
+la suite qui définie le développement décimal de $\sqrt{2}$ à l'ordre $k$:
+$$
+x_k = \frac{a_k}{10^k} \, \mbox{ où } \, a_k = \max \, \{ n \in \N \, | \, n^2 \leq 2(10^k)^2\}
+$$
+est de Cauchy -- on peut prouver que 
+$|x_n - x_p| \leq {1}/{10^m}$ quand $n \geq m$ et $p \geq m$
+-- mais n'est pas convergente. 
+En effet, la suite converge dans $\R$, mais sa limite $\sqrt{2}$ est 
+irrationelle;
+cette suite n'a donc pas de limite dans $\Q$ 
+(une telle limite serait aussi une limite dans $\R$, 
+ce qui contredirait son unicité.)
 
-  - TODO: mais contre-exemple
-
-  - Espace "sympas" ou la réciproque est vraie.
+L'ensemble $\R$ possède une propriété bien utile qui fait défaut à $\Q$:
+toute suite de Cauchy y est convergente.
 
 
 ### Espaces complets {.definition}
 Un espace métrique $X$ est *complet* si et seulement si tout suite de Cauchy
 est convergente. Un espace vectoriel normé $E$ complet est qualifié
-d'*espace de Banach*.
+d'*espace de Banach[^Banach]*.
 
-### L'espace euclien est complet {.proposition}
+[^Banach]: d'après [Stefan Banach](https://en.wikipedia.org/wiki/Stefan_Banach), 
+un mathématicien polonais du 20ème siècle d'après lequel sont nommés
+[de nombreux concepts et théorèmes](https://en.wikipedia.org/wiki/List_of_things_named_after_Stefan_Banach).
+
+### Complétude de l'espace euclien {.proposition}
 
 L'espace $\mathbb{R}^n$ est complet.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
 
+Dans les cas de $\R$ (c'est-à-dire quand $n=1$), 
+le résultat est une conséquence directe de la 
+construction de $\R$ comme complété de $\Q$[^ahahah].
+Pour des valeurs de $n > 1$, si $x_k$ est une suite de Cauchy,
+ses composantes $x_k^1, \dots, x_k^n$ sont aussi de Cauchy car
+pour tout $i \in \{1, \dots, n\}$,
+$$
+|x_n^i - x_p^i| \leq \left\|x_n - x_p\right\|.
+$$
+Comme $\mathbb{R}$ est complet, chaque suite $x_k^i$ admet donc une limite,
+notée $x^i_{\infty}$. 
+Si l'on note $x_{\infty} = (x_{\infty}^1, \dots, x_{\infty}^n)$,
+on déduit de l'égalité
+$$
+\|x_k - x_{\infty}\| = \sqrt{\sum_{i=1}^n (x_k^i - x_{\infty}^i)^2}
+$$
+la convergence de $x_k$ vers $x_{\infty}$. 
+Toute suite de Cauchy de $\R^n$ est donc convergente.
+
+[^ahahah]: bien sûr si l'on a utilisé une technique alternative pour
+construire $\R$, par exemple par les coupures de Dedekind, il faut en
+faire la démonstration.
+
+### Complétude de l'espace des fonctions bornées {.proposition}
+
+Soit $X$ un ensemble et $Y$ un espace métrique complet.
+L'ensemble des fonctions de $X$ dans $Y$ bornées, 
+muni de la distance de la convergence uniforme
+$$
+d(f, g) := \sup_{x \in X} d(f(x), g(x)))
+$$
+est complet.
+
+### Démonstration {.proof}
+
+**TODO**
 
 ### Application contractante {.definition}
 Une fonction $f: X \to X$ est *$\kappa$-contractante*, 
