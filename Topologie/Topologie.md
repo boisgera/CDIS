@@ -829,6 +829,8 @@ La fonction $f$ admet donc un minimum en $y_{\infty}$.
 
   - continuité application linéaire $\mathbb{R}^n \to Y$.
 
+  - Fct continue sur compact est uniformément continue.
+
   - Ens des fcts $C^0$ sur un compact est un espace de Banach.
 
   - Inclure ici élts dim infinie ?  Non, calcul diff 3
