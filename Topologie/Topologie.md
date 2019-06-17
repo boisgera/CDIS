@@ -539,6 +539,8 @@ $$
 \lim_{k \to + \infty} \mbox{diam}(\{x_n \, | \, n \geq k \}) = 0.
 $$
 
+### TODO - Suite de Cauchy & Algorithmes itératifs (critères d'arrêt)
+
 ### Toute suite convergente est de Cauchy
 Toute suite de points convergente dans un espace métrique est de Cauchy.
 
