@@ -517,9 +517,7 @@ qui soit utile aux objectifs poursuivis, ce qui n'a rien d'automatique.
 On se reportera à l'exercice "[Le nombre d'or]" pour prolonger l'étude de
 cet exemple particulier.
 
-
 ![Le nombre d'or comme point fixe de $x \mapsto 1 + 1/x$.](images/fixed-point.tex){#golden-ratio}
-
 
 ### Suite de Cauchy {.definition}
 Une suite de points $x_k$ d'un espace métrique $X$ est *de Cauchy* si pour tout
@@ -553,13 +551,26 @@ d(x_n, x_p) \leq d(x_n, x_{\infty}) + d(x_{\infty}, x_p) \leq \varepsilon.
 $$
 La suite $x_k$ est donc de Cauchy.
 
-
 ### TODO -- Réciproque fausse
+
+  - TODO: critère Cauchy utile car ne nécessite pas de connaitre la limite.
+
+  - TODO: mais contre-exemple
+
+  - Espace "sympas" ou la réciproque est vraie.
+
 
 ### Espaces complets {.definition}
 Un espace métrique $X$ est *complet* si et seulement si tout suite de Cauchy
 est convergente. Un espace vectoriel normé $E$ complet est qualifié
 d'*espace de Banach*.
+
+### L'espace euclien est complet {.proposition}
+
+L'espace $\mathbb{R}^n$ est complet.
+
+### TODO -- Démonstration {.proof}
+
 
 ### Application contractante {.definition}
 Une fonction $f: X \to X$ est *$\kappa$-contractante*, 
