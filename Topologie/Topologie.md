@@ -1033,11 +1033,17 @@ on souhaite évaluer à quel point les deux ensembles diffèrent
 -- en mesurant à quelle distance les points de $A$ peuvent 
 être éloignés de l'ensemble $B$ et réciproquement.
 
- 1. Est-ce que la distance entre ensembles classique
-    $$
-    d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a\in A}\inf_{b \in B} d(a, b)
-    $$
-    fait l'affaire ?
+### Question 1 {.question #dh-1}
+
+Est-ce que la distance entre ensembles classique
+$$
+d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a\in A}\inf_{b \in B} d(a, b)
+$$
+fait l'affaire ?
+
+$\to$ [Solution](#a-dh-1)
+
+### {.definition}
 
 On définit la grandeur
   $$
@@ -1045,15 +1051,25 @@ On définit la grandeur
   $$
 appelée *distance de Hausdorff* entre $A$ et $B$.
 
-  2. Calculer $d[A, B]$ lorsque $A = [-1,1] \times [-1, 1]$ et
-     $B = [0, 2] \times [0,2]$.
+### Question 2 {.question #dh-2}
+
+Calculer $d[A, B]$ lorsque $A = [-1,1] \times [-1, 1]$ et
+$B = [0, 2] \times [0,2]$.
 
 ![Ensembles $A = [-1,1] \times [-1, 1]$ et $B = [0, 2] \times [0,2]$.](images/hausdorff.tex){#A-et-B}
 
-  3. Cette terminologie de "distance" de Hausdorff est-elle légitime ?
+$\to$ [Solution](#a-dh-2)
+
+### Question 1 {.question #dh-3}
+
+Cette terminologie de "distance" de Hausdorff est-elle légitime ?
+
+$\to$ [Solution](#a-dh-2)
 
 
----------------------------
+---------------
+
+**TODO**
 
   $$
   \begin{split}
@@ -1216,15 +1232,26 @@ On souhaite montrer que sous ces hypothèses
 -- qui généralisent celles du [théorème de point fixe de Banach](#T-TPFB) -- 
 $f$ admet encore un unique point fixe.
 
- 1. Montrer que tout point fixe éventuel de $f$ est également 
-    un point fixe de $f^n$.
+### Question 1 {.question #pf-1}
 
- 2. Montrer que $f^n$ admet un unique point fixe et qu'il est également
-    un point fixe de $f$.
+Montrer que tout point fixe éventuel de $f$ est également 
+un point fixe de $f^n$.
 
- 3. Montrer que le procédé habituel pour construire un point 
-    fixe de $f$ est toujours valable quand $f^n$ est contractante.
+$\to$ [Solution](#a-pf-1)
 
+### Question 2 {.question #pf-2}
+
+Montrer que $f^n$ admet un unique point fixe et qu'il est également
+un point fixe de $f$.
+
+$\to$ [Solution](#a-pf-2)
+
+### Question 3 {.question #pf-3}
+
+Montrer que le procédé habituel pour construire un point 
+fixe de $f$ est toujours valable quand $f^n$ est contractante.
+
+$\to$ [Solution](#a-pf-3)
 
 Normes d'opérateurs
 --------------------------------------------------------------------------------
@@ -1455,22 +1482,27 @@ TODO -- Solution -- [Droite réelle achevée]
 Solution -- [Distance entre ensembles]
 --------------------------------------------------------------------------------
 
- 1. Non, la distance usuelle $d(A,B)$ en convient pas.
-    En effet, cette distance est nulle dès que l'intersection de $A$ et $B$
-    est non vide, même si des points de $A$ sont être très éloignés de $B$.
+### Solution à la [question 1](#dh-1) {.answer #a-lf-1}
 
- 2. Lorsque $A = [-1,1] \times [-1, 1]$ comme l'abscisse et l'ordonnée de 
-    tout point $a$ de $A$ sont de valeur absolue inférieure ou égale à $1$,
-    on a $d(a, 0) \leq \sqrt{2}$ et donc
-    $$
-    \inf_{a \in A} d(a, 0) \leq \sqrt{2}
-    $$
-    L'origine $0$ appartenant $B = [0, 2] \times [0,2]$.
-    Or $(0,0)$ appartient à $B$ donc pour tout point $(x, y)$ de $A$,
-    $d((x, y), B) \leq \sqrt{2}$. Par ailleurs, ... **TODO**
+Non, la distance usuelle $d(A,B)$ en convient pas.
+En effet, cette distance est nulle dès que l'intersection de $A$ et $B$
+est non vide, même si des points de $A$ sont être très éloignés de $B$.
 
+### TODO -- Solution à la [question 2](#dh-2) {.answer #a-dh-2}
 
- 3. 
+Lorsque $A = [-1,1] \times [-1, 1]$ comme l'abscisse et l'ordonnée de 
+tout point $a$ de $A$ sont de valeur absolue inférieure ou égale à $1$,
+on a $d(a, 0) \leq \sqrt{2}$ et donc
+$$
+\inf_{a \in A} d(a, 0) \leq \sqrt{2}
+$$
+L'origine $0$ appartenant $B = [0, 2] \times [0,2]$.
+Or $(0,0)$ appartient à $B$ donc pour tout point $(x, y)$ de $A$,
+$d((x, y), B) \leq \sqrt{2}$. Par ailleurs, ... **TODO**
+
+### TODO -- Solution à la [question 2](#dh-2) {.answer #a-dh-3}
+
+### TODO
 
 Solution -- [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
@@ -1606,43 +1638,49 @@ La suite des $(x_k, y_k)$ est donc de Cauchy.
 Solution -- [Point fixe]
 --------------------------------------------------------------------------------
 
- 1. Si $x$ est un point fixe de $f$, $f(x) = x$, par conséquent
-    $$
-    f^2(x) = f(f(x)) = f(x) = x, 
-    $$
-    puis
-    $$
-    f^3(x) = f(f^2(x)) = f(x) = x,
-    $$
-    etc. Par récurrence, il est clair que l'on peut établir que pour tout
-    $n \geq 1$, on a $f^n(x) = x$: $x$ est un point fixe de $f^n$.
+### Solution à la [question 1](#pf-1) {.answer #a-pf-1}
 
- 2. La fonction itérée $f^n$ satisfait les hypothèses du 
-    [théorème du point fixe de Banach](#T-TPFB), par conséquent elle
-    admet un point fixe $x$. Comme $f^n(x) = x$, en applicant $f$ aux
-    deux membres de cette équation, on obtient 
-    $$
-    f(f^n(x)) = f^n(f(x)) = f(x).
-    $$
-    Par conséquent, $f(x)$ est un point fixe de $f^n$. 
-    C'est donc l'unique point fixe $x$ de $f^n$; on a donc $f(x) = x$,
-    c'est-à-dire que $x$ est un point fixe de $f$. 
+Si $x$ est un point fixe de $f$, $f(x) = x$, par conséquent
+$$
+f^2(x) = f(f(x)) = f(x) = x, 
+$$
+puis
+$$
+f^3(x) = f(f^2(x)) = f(x) = x,
+$$
+etc. Par récurrence, il est clair que l'on peut établir que pour tout
+$n \geq 1$, on a $f^n(x) = x$: $x$ est un point fixe de $f^n$.
 
- 3. Le "procédé habituel pour construire un point fixe de $f$" 
-    consiste à prendre un $x_0 \in E$ quelconque et à construire 
-    par récurrence la suite des $x_{k+1} = f(x_k)$. 
-    On souhaite donc montrer que cette suite converge vers l'unique point fixe 
-    $x$ de $f$. 
-    La fonction $f^n$ satisfaisant les hypothèses du
-    [théorème du point fixe de Banach](#T-TPFB), 
-    on sait que la suite extraite
-    $(x_{kn})_k$ converge vers $x$, car $x_{(k+1)n} = f^n(x_{kn})$.
-    Il en est de même pour la suite extraite $(x_{kn+1})_k$, construite
-    à partir du même procédé mais en initialisant la séquence avec 
-    la valeur $x_1$, pour la suite $(x_{kn+2})_k$, ..., jusqu'à 
-    $(x_{kn + (n-1)})_k$. Ces $n$ suites convergent toutes vers $x$,
-    donc la suite des $(x_k)_k$ converge également vers le point fixe $x$, 
-    comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
+### Solution à la [question 2](#pf-2) {.answer #a-pf-2}
+
+La fonction itérée $f^n$ satisfait les hypothèses du 
+[théorème du point fixe de Banach](#T-TPFB), par conséquent elle
+admet un point fixe $x$. Comme $f^n(x) = x$, en applicant $f$ aux
+deux membres de cette équation, on obtient 
+$$
+f(f^n(x)) = f^n(f(x)) = f(x).
+$$
+Par conséquent, $f(x)$ est un point fixe de $f^n$. 
+C'est donc l'unique point fixe $x$ de $f^n$; on a donc $f(x) = x$,
+c'est-à-dire que $x$ est un point fixe de $f$. 
+
+### Solution à la [question 3](#pf-3) {.answer #a-pf-3}
+
+Le "procédé habituel pour construire un point fixe de $f$" 
+consiste à prendre un $x_0 \in E$ quelconque et à construire 
+par récurrence la suite des $x_{k+1} = f(x_k)$. 
+On souhaite donc montrer que cette suite converge vers l'unique point fixe 
+$x$ de $f$. 
+La fonction $f^n$ satisfaisant les hypothèses du
+[théorème du point fixe de Banach](#T-TPFB), 
+on sait que la suite extraite
+$(x_{kn})_k$ converge vers $x$, car $x_{(k+1)n} = f^n(x_{kn})$.
+Il en est de même pour la suite extraite $(x_{kn+1})_k$, construite
+à partir du même procédé mais en initialisant la séquence avec 
+la valeur $x_1$, pour la suite $(x_{kn+2})_k$, ..., jusqu'à 
+$(x_{kn + (n-1)})_k$. Ces $n$ suites convergent toutes vers $x$,
+donc la suite des $(x_k)_k$ converge également vers le point fixe $x$, 
+comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
 
 
 Références
