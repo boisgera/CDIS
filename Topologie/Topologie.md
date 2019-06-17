@@ -746,8 +746,8 @@ Compacité
 ================================================================================
 
 ### Compacité Séquentielle {.definition}
-Un ensemble $K$ d'un espace métrique est *compact* si toute suite de valeurs de 
-$K$ admet une sous-suite qui converge dans $K$.
+Un ensemble $K$ d'un espace métrique est *compact (séquentiellement)* 
+si toute suite de valeurs de $K$ admet une sous-suite qui converge dans $K$.
 
 ### Théorème de Heine-Borel {.theorem}
 Un ensemble $K$ de l'espace euclidien $\R^n$ est compact 
@@ -821,9 +821,41 @@ f(y_{\infty}) = \lim_{k \to +\infty} f(y_k) = \inf_{x \in K} f(x).
 $$
 La fonction $f$ admet donc un minimum en $y_{\infty}$.
 
-### TODO
+### Propriété de l'intersection finie {.definition}
+Une collection d'ensembles vérifie la propriété de l'intersection 
+finie si toute sous-collection finie est d'intersection non vide.
 
-  - Enoncé critère "abstrait" compacité ? (FIP et cover)
+### Compacité et propriété de l'intersection finie {.definition}
+Un ensemble $K$ d'un espace topologique est *compact* si pour toute collection
+de sous-ensembles de $K$ vérifiant la propriété de l'intersection finie, 
+il existe un point adhérent à tous les ensembles de la collection.
+
+Autrement dit, si pour tout $A \in \mathcal{A}$, $A$ est un sous-ensemble de
+$K$ et si pour toute suite finie $A_1, \dots, A_k \in \mathcal{A}$ 
+il existe un $x \in K$ tel que $x \in A_1\cap \dots \cap A_k$, 
+alors il existe un $x \in K$ adhérent à tout $A \in \mathcal{A}$.
+
+### Compacité et compacité séquentielle
+Dans les espaces métriques, compacité et compacité séquentielle sont 
+équivalentes.
+
+### TODO -- Démonstration {.proof}
+
+### Compacité et recouvrement ouvert {.proposition}
+Un ensemble $K$ d'un espace topologique est compact si pour tout
+recouvrement de $K$ par une collection d'ouverts, on peut extraire un
+sous-recouvrement fini.
+
+Autrement dit, si $\mathcal{O}$ est composé d'ouverts $O$ de $X$ tels que
+$$K \subset \bigcup \, \{O \, | \,  O \in \mathcal{O}\},$$ 
+alors il existe une collection
+finie $O_1, \dots, O_k$ de $\mathcal{O}$ telle que 
+$$K \subset O_1 \cup \dots \cup O_k.$$
+
+### TODO -- Démonstration {.proof}
+
+
+### TODO
 
   - distance fermé compact
 
