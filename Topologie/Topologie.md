@@ -2,6 +2,7 @@
 
 <!-- LaTeX Macros -->
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
@@ -744,25 +745,81 @@ quand $n$ tend vers $+\infty$; la suite des $x_n$ est bien de Cauchy.
 Compacité
 ================================================================================
 
-### Compacité {.definition}
+### Compacité Séquentielle {.definition}
 Un ensemble $K$ d'un espace métrique est *compact* si toute suite de valeurs de 
-$E$ admet une sous-suite convergeant dans $E$.
+$K$ admet une sous-suite qui converge dans $K$.
+
+### Théorème de Heine-Borel {.theorem}
+Un ensemble $K$ de l'espace euclidien $\R^n$ est compact 
+si et seulement si il est fermé et borné.
+
+### Démonstration {.proof}
+
+Supposons $K$ compact; soit $x_k$ une suite de points de
+$K$ qui converge dans $\R^n$, vers une limite notée $x_{\infty}$. 
+Il existe alors une sous-suite $y_k$ de $x_k$ qui converge dans $K$;
+or comme cette sous-suite a la même limite que $x_k$, $x_{\infty}$ 
+appartient à $K$. L'ensemble $K$ est donc fermé.
+
+Si $K$ est non-borné, il existe une suite $x_k$ non-bornée de points de $K$.
+Toute sous-suite de $x_k$ étant également non-bornée, elle ne peut donc converger
+et par conséquent $K$ ne peut pas être compact.
+
+Finalement, supposons $K$ fermé et borné. Soit $x_k$ une suite de valeurs
+de $K$.
+Tout ensemble borné peut être recouvert par un nombre finis d'ensembles 
+fermés et bornés de diamètre arbitrairement faible[^cover]. Si l'on 
+considère un recouvrement de ce type de $K$ pour un diamètre inférieur
+à 1, il existe nécessairement un ensemble du recouvrement qui contient
+l'intégralité d'une sous-suite $x^0_k$ de $x_k$; on le note $K_0$.
+Il est possible de réitérer le raisonnement à la suite des $x^0_k$ dans $K^0$
+en imposant cette fois-ci un diamètre maximale de $1/2$ aux
+élements du recouvrement et plus généralement de construire une suite 
+$y_k$ extraite de $x_k$ telle que $y_k \in K_m$ si $k\geq m$ et 
+$\mathrm{diam}(K_m) \leq 2^{-m}$. 
+La suite des $y_k$ est donc de Cauchy; l'espace euclidien $\R^n$ étant
+complet, elle converge vers un point $y_{\infty}$. L'ensemble $K$ étant
+fermé par hypothèse, cette limite appartient à $K$. L'ensemble $K$ est
+donc compact.
+
+[^cover]: par exemple des pavés de la forme 
+$$[i_1 \varepsilon, (i_1+1)\varepsilon] \times \dots \times [i_n \varepsilon, (i_{n+1} \varepsilon)]
+\, \mbox{ où } \, (i_1,\dots, i_n) \in \Z^n,$$
+dont le diamètre est $\varepsilon \sqrt{2} n$.
+
 
 ### Image d'un compact {.theorem}
 L'image d'un ensemble compact par une application continue est un ensemble
 compact.
 
+### Démonstration {.proof}
+
+Soit $f: K \subset X \to Y$ où $X$ et $Y$ sont deux espaces métriques 
+et $K$ un sous-ensemble compact de $X$. 
+Soit $y_k$ une suite de points de $f(K)$; par construction, 
+il existe une suite de points $x_k$ de $K$ tels que $f(x_k) = y_k$. 
+Soit $z_k$ une sous-suite de $x_k$ qui converge dans
+$K$ vers un $z_{\infty} \in K$; 
+par continuité de $f$, la suite des $f(z_k)$
+-- qui est une suite extraite des $y_k$ -- 
+converge vers $f(z_{k}) \in f(K)$. 
+L'ensemble $f(K)$ est donc compact.
+
 ### Existence d'un minimum {.corollary #T-EM}
 Une fonction continue $f: K \to \mathbb{R}$ définie sur un ensemble compact 
 $K$ admet un minimum global.
 
-### Théorème de Heine-Borel {.theorem}
-Un ensemble $E$ de $\R^n$ est compact 
-si et seulement si il est fermé et borné.
-
 ### Démonstration {.proof}
-
-**TODO*
+Soit $x_k \in K$ une suite minimisante de $f$, c'est-à-dire telle que
+$$
+\lim_{k \to +\infty} f(x_k) = \inf_{x \in K} f(x).
+$$
+Il existe une suite $y_k$ extraite de $x_k$ qui converge vers un point
+$y_{\infty}$ de $K$. Par continuité de $f$ en $y_{\infty}$, on a
+$$
+f(y_{\infty}) = \lim_{k \to +\infty} f(y_k) = \inf_{x \in K} f(x).
+$$
+La fonction $f$ admet donc un minimum en $y_{\infty}$.
 
 Annexe
 ================================================================================
