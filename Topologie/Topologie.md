@@ -825,6 +825,8 @@ La fonction $f$ admet donc un minimum en $y_{\infty}$.
 
   - Enoncé critère "abstrait" compacité ? (FIP et cover)
 
+  - distance fermé compact
+
   - Ens des fcts $C^0$ sur un compact est un espace de Banach.
 
   - Inclure ici élts dim infinie ?  Non, calcul diff 3
