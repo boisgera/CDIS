@@ -481,23 +481,17 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 Complétude
 ================================================================================
 
-### TODO:
-
-  - point fixe, lien avec la résolution d'équations implicites, etc.
-    Example nombre d'or
-
-  - evn, espace métrique (comme sous-ensemble d'un e.v.n.), 
-    suite de Cauchy, complétude
-
-  - application lipschitzienne, (et lip est cont) contractante, 
-    $\kappa$-contractante
-
+### Point fixe {.definition}
+Soit $f: X \to X$ une application d'un ensemble $X$ dans lui-même.
+Un élément $x \in X$ est un *point fixe* de $f$ si $f(x) = x$.
+ 
 ### Points fixes et zéros
-Etre un point fixe d'une fonction $f: X \to X$, c'est être déterminé 
-implicitement par l'équation $x = f(x)$. Si $X$ est un sous-espace
+Etre un point fixe d'une fonction $f: X \to X$, c'est donc être déterminé 
+**implicitement** par l'équation $x = f(x)$. Si $X$ est un sous-espace
 d'un espace vectoriel,
 cela équivaut à dire que $x$ est une solution de l'équation $x - f(x) = 0$,
-soit un *zéro* (appelé également une *racine*) de la fonction $x \in X \mapsto x - f(x)$.
+soit un *zéro* (appelé également une *racine*) de la fonction 
+$x \in X \mapsto x - f(x)$.
 
 La démarche inverse 
 -- qui consiste à caractériser les solutions d'une équation 
@@ -528,15 +522,15 @@ cet exemple particulier.
 
 
 ### Suite de Cauchy {.definition}
-Une suite de points $x_k$ est *de Cauchy* si pour tout
+Une suite de points $x_k$ d'un espace métrique $X$ est *de Cauchy* si pour tout
 $\varepsilon > 0$, 
 il existe un rang $m$ tel que pour tous les entiers $n \geq m$ et $p \geq m$, 
-$\|x_n - x_p\| \leq \varepsilon$. 
+$d(x_n, x_p) \leq \varepsilon$. 
 
 ### Diamètre {.definition}
-Le diamètre d'un sous-ensemble $A$ d'un espace vectoriel normé est donné par:
+Le diamètre d'un sous-ensemble $A$ d'un espace métrique $X$ est donné par:
 $$
-\mbox{diam}(A) = \sup \, \{\|x - y \| \, | \, x \in A, \, y \in A\}
+\mbox{diam}(A) = \sup \, \{d(x, y) \, | \, x \in A, \, y \in A\}
 $$
 
 ### Suite de Cauchy et diamètre {.proposition}
@@ -545,24 +539,25 @@ $$
 \lim_{k \to + \infty} \mbox{diam}(\{x_n \, | \, n \geq k \}) = 0.
 $$
 
-### Complétude {.definition}
+### Espaces complets {.definition}
 Un espace métrique $X$ est *complet* si et seulement si tout suite de Cauchy
-est convergente.
+est convergente. Un espace vectoriel normé $E$ complet est qualifié
+d'*espace de Banach*.
 
 ### Application contractante {.definition}
 Une fonction $f: X \to X$ est *$\kappa$-contractante*, 
 où $\kappa \in \left[0, 1\right[$,
 si pour tout couple de points $x$ et $y$ de $X$, on a 
 $$
-\|f(x) - f(y)\| \leq \kappa \|x - y\|.
+d(f(x), f(y)) \leq \kappa d(x, y).
 $$
 Une telle application est *contractante* si elle est 
 $\kappa$-contractante pour un $\kappa \in \left[0, 1\right[$.
 
 ### Théorème de Point Fixe de Banach {.definition .theorem #T-TPFB}
 
-Soit $f: E \to E$ une application contractante dans un espace métrique $E$.
-Si l'espace $E$ est complet, l'application $f$ admet un unique *point fixe* $x$,
+Soit $f: E \to E$ une application contractante dans un espace métrique $E$ complet.
+L'application $f$ admet un unique *point fixe* $x$,
 c'est-à-dire une unique solution $x \in E$ à l'équation
   $$
   x = f(x).
@@ -572,12 +567,12 @@ c'est-à-dire une unique solution $x \in E$ à l'équation
 
 L'unicité du point fixe (l'existence d'au plus une solution à $x=f(x)$) est
 simple à établir: si $x$ et $y$ sont deux points fixes de $f$, c'est-à-dire 
-si $x=f(x)$ et $y=f(y)$, alors $\|x - y\| = \|f(x) - f(y)\|$. 
+si $x=f(x)$ et $y=f(y)$, alors $d(x, y) = d(f(x), f(y))$. 
 L'application $f$ étant $\kappa$-contractante, on a donc
 $$
-\|x - y\| = \|f(x) - f(y)\| \leq \kappa \|x - y\|;
+d(x, y) = d(f(x), f(y)) \leq \kappa d(x, y);
 $$
-et puisque $0\leq \kappa < 1$, cette inégalité entraîne $\|x - y\| = 0$, 
+et puisque $0\leq \kappa < 1$, cette inégalité entraîne $d(x , y) = 0$, 
 soit $x=y$.
 
 Quant à l'existence du point fixe, sa preuve est constructive: 
@@ -598,17 +593,17 @@ A cette fin, nous allons prouver que la suite des $x_n$ est de Cauchy;
 l'existence d'une limite se déduira alors de la complétude de $E$. 
 On remarque tout d'abord que pour tout entier $n$, 
 $$
-\|x_{n+2} - x_{n+1}\| = \|f(x_{n+1}) - f(x_n)\| \leq \kappa \|x_{n+1} - x_n\|,
+d(x_{n+2}, x_{n+1}) = d(f(x_{n+1}), f(x_n)) \leq \kappa d(x_{n+1}, x_n),
 $$
 ce qui par récurrence fournit pour tout $n$
 $$
-\|x_{n+1} - x_n\| \leq \kappa^n \|x_1 - x_0\|.
+d(x_{n+1}, x_n) \leq \kappa^n d(x_1, x_0).
 $$
 Par conséquent, pour tout couple d'entiers $n$ et $p$, on a
 $$
-\|x_{n+p} - x_n\| 
-\leq \sum_{k=0}^{p-1} \|x_{n+k+1} - x_{n+k}\|
-\leq \sum_{k=0}^{p-1} \kappa^{n+k} \|x_{1} - x_{0}\|.
+d(x_{n+p} , x_n) 
+\leq \sum_{k=0}^{p-1} d(x_{n+k+1} , x_{n+k})
+\leq \sum_{k=0}^{p-1} \kappa^{n+k} d(x_{1}, x_{0}).
 $$
 Dans le second membre apparaît une somme de termes d'une suite géométrique:
 $$
@@ -617,13 +612,12 @@ $$
 $$
 on en déduit
 $$
-\|x_{n+p} - x_n\| 
+d(x_{n+p}, x_n) 
 \leq  
-\frac{\kappa^n}{1 - \kappa} \|x_{1} - x_{0}\|.
+\frac{\kappa^n}{1 - \kappa} d(x_{1}, x_{0}).
 $$
-Le second membre de cette inégalité tendant vers $0$ indépendamment de $p$
-quand $n$ tend vers $+\infty$, la suite des $x_n$ est bien de Cauchy, ce
-qui conclut la preuve.
+Le second membre de cette inégalité tend vers $0$ indépendamment de $p$
+quand $n$ tend vers $+\infty$; la suite des $x_n$ est bien de Cauchy.
 
 Compacité
 ================================================================================
