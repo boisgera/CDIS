@@ -630,7 +630,8 @@ faire la démonstration.
 ### Complétude de l'espace des fonctions bornées {.proposition}
 
 Soit $X$ un ensemble et $Y$ un espace métrique complet.
-L'ensemble des fonctions de $X$ dans $Y$ bornées, 
+L'ensemble des fonctions $f$ de $X$ dans $Y$ bornées
+-- c'est-à-dire telles que $\sup_{x \in X} d(0, f(x))$ soit fini --
 muni de la distance de la convergence uniforme
 $$
 d(f, g) := \sup_{x \in X} d(f(x), g(x)))
@@ -639,7 +640,31 @@ est complet.
 
 ### Démonstration {.proof}
 
-**TODO**
+Soit $f_k$ une suite de Cauchy de fonctions bornées pour la distance
+de la convergence uniforme. 
+Pour tout $\varepsilon > 0$, il existe un rang $m \in \N$ tel que si 
+$n\geq m$ et $p\geq m$, on ait
+$$
+\sup_{x \in X} d(f_n(x), f_p(x)) \leq \varepsilon.
+$$
+Par conséquent, pour tout $x \in X$, 
+on a $d(f_n(x), f_p(x)) \leq \varepsilon$, donc
+la suite des $f_k(x)$ est de Cauchy dans $Y$. 
+L'espace $Y$ étant par hypothèse complet, cette suite a une limite,
+que nous notons $f_{\infty}(x)$. Par continuité de la distance, 
+pour tout $x \in X$ et tout $n \geq m$, on a
+$$
+d(f_n(x), f_{\infty}(x)) 
+= \lim_{m \to +\infty} d(f_n(x), f_m(x)) 
+\leq \varepsilon
+$$
+et donc
+$\sup_{x \in X} d(f_n(x), f_{\infty}(x)) \leq \varepsilon$. 
+La fonction $f_{\infty}$ est donc bornée, car
+$$
+d(0, f_{\infty}(x)) \leq d(0, f_n(x)) + \varepsilon,
+$$
+et la limite uniforme de la suite des $f_k$.
 
 ### Application contractante {.definition}
 Une fonction $f: X \to X$ est *$\kappa$-contractante*, 
@@ -720,7 +745,7 @@ Compacité
 ================================================================================
 
 ### Compacité {.definition}
-Un ensemble $E$ est *compact* si toute suite de valeurs de 
+Un ensemble $K$ d'un espace métrique est *compact* si toute suite de valeurs de 
 $E$ admet une sous-suite convergeant dans $E$.
 
 ### Image d'un compact {.theorem}
@@ -734,6 +759,10 @@ $K$ admet un minimum global.
 ### Théorème de Heine-Borel {.theorem}
 Un ensemble $E$ de $\R^n$ est compact 
 si et seulement si il est fermé et borné.
+
+### Démonstration {.proof}
+
+**TODO*
 
 Annexe
 ================================================================================
