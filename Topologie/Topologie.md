@@ -827,6 +827,8 @@ La fonction $f$ admet donc un minimum en $y_{\infty}$.
 
   - distance fermé compact
 
+  - continuité application linéaire $\mathbb{R}^n \to Y$.
+
   - Ens des fcts $C^0$ sur un compact est un espace de Banach.
 
   - Inclure ici élts dim infinie ?  Non, calcul diff 3
@@ -920,34 +922,65 @@ mais cette convention se heurte alors avec la désignation de l'adhérence
 de $\mathbb{R}$ dans lui-même, une autre interprétation selon laquelle 
 $\overline{\mathbb{R}} = \mathbb{R}$. 
 
- 1. Pouvez-vous donner une interprétation géométrique simple à la grandeur
-    calculée par la fonction $f$ ?
+### Question 1 {.question #dra-1}
 
-    ![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex)
+Pouvez-vous donner une interprétation géométrique simple à la grandeur
+calculée par la fonction $f$ ?
 
- 2. Montrer que $f$ est une bijection.
+![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex)
 
- 3. En déduire qu'il existe une et une seule fonction distance sur
-    $\mathbb{R} \cup \{-\infty, +\infty\}$ qui fasse de $f$ une isométrie;
-    on note $d^{\pm \infty}$ cette distance. 
+$\to$ [Solution](#a-dra-1)
 
- 4. (Optionnel) Calculer $d^{\pm \infty}(0, +\infty)$, $d^{\pm \infty}(-\infty, +\infty)$, 
-    $d^{\pm \infty}(-1, 1)$.
+### Question 2 {.question #dra-2}
 
- 5. Montrer que l'injection canonique
-    $x \in \mathbb{R} \mapsto x \in \mathbb{R} \cup \{-\infty, +\infty\}$
-    est une fonction continue.
+Montrer que $f$ est une bijection.
 
- 6. Yoda a dit "deux façons d'interpréter $x_k \to +\infty$ désormais il y a".
-    Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
+$\to$ [Solution](#a-dra-2)
 
- 7. (Optionnel) Suggérer une variante de la construction précédente pour
-   doter l'ensemble $\mathbb{R} \cup \{\infty\}$ ($\infty$ sans signe:
-    ni $+$, ni $-$) d'une métrique $d^{\infty}$ 
-    telle que $d^{\infty}(x_k, \infty) \to 0$ si et seulement si
-    $|x_k| \to +\infty$.
+### Question 3 {.question #dra-3}
+
+En déduire qu'il existe une et une seule fonction distance sur
+$\mathbb{R} \cup \{-\infty, +\infty\}$ qui fasse de $f$ une isométrie;
+on note $d^{\pm \infty}$ cette distance. 
+
+$\to$ [Solution](#a-dra-3)
+
+### Question 4 {.question #dra-4}
+
+(Optionnel) 
+
+Calculer $d^{\pm \infty}(0, +\infty)$, $d^{\pm \infty}(-\infty, +\infty)$, 
+$d^{\pm \infty}(-1, 1)$.
+
+$\to$ [Solution](#a-dra-4)
+
+### Question 5 {.question #dra-5}
+
+Montrer que l'injection canonique
+$x \in \mathbb{R} \mapsto x \in \mathbb{R} \cup \{-\infty, +\infty\}$
+est une fonction continue.
+
+$\to$ [Solution](#a-dra-5)
+
+### Question 6 {.question #dra-6}
+
+Yoda a dit "deux façons d'interpréter $x_k \to +\infty$ désormais il y a".
+Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
+
+$\to$ [Solution](#a-dra-6)
+
+### Question 7 {.question #dra-7}
+
+(Optionnel) 
+
+Suggérer une variante de la construction précédente pour
+doter l'ensemble $\mathbb{R} \cup \{\infty\}$ ($\infty$ sans signe:
+ni $+$, ni $-$) d'une métrique $d^{\infty}$ 
+telle que $d^{\infty}(x_k, \infty) \to 0$ si et seulement si
+$|x_k| \to +\infty$.
     
-
+ $\to$ [Solution](#a-dra-7)
+   
 Localement fermé
 --------------------------------------------------------------------------------
 
@@ -1401,22 +1434,22 @@ le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
 ensemble fermé $F$; de l'équation ci-dessus on déduit donc
 que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 
-Solution -- [Droite réelle achevée]
+TODO -- Solution -- [Droite réelle achevée]
 --------------------------------------------------------------------------------
 
- 1. **TODO**
+### TODO -- Solution à la [question 1](#dra-1) {.answer #a-dra-1}
 
- 2. **TODO**
+### TODO -- Solution à la [question 2](#dra-2) {.answer #a-dra-2}
 
- 3. **TODO**
+### TODO -- Solution à la [question 3](#dra-3) {.answer #a-dra-3}
 
- 4. **TODO**
+### TODO -- Solution à la [question 4](#dra-4) {.answer #a-dra-4}
 
- 5. **TODO**
+### TODO -- Solution à la [question 5](#dra-5) {.answer #a-dra-5}
 
- 6. **TODO**
+### TODO -- Solution à la [question 6](#dra-6) {.answer #a-dra-6}
 
- 7. **TODO**
+### TODO -- Solution à la [question 7](#dra-7) {.answer #a-dra-7}
 
  
 Solution -- [Distance entre ensembles]
