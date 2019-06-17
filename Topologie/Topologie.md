@@ -241,6 +241,62 @@ dans $Y$.
 Les applications sont les *morphismes* des espaces topologiques:
 elle préservent la structure des espaces topologiques.
 
+### Les espaces métriques sont des espaces topologiques
+
+Soit $X$ un espace métrique muni d'une distance $d$. 
+La relation définie par
+$$
+x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0
+$$
+est une relation d'adhérence sur $X$.
+
+### Démonstration 
+
+ 1. Le point $x$ adhère à l'ensemble vide si et seulement si 
+    $d(x, \varnothing) = 0$, mais
+    $$
+    d(x, \varnothing) = \inf_{y \in \varnothing} d(x, y) = +\infty, 
+    $$
+    par conséquent aucun point d'adhère à l'ensemble vide.
+
+ 2. Si $x \in A$, on a 
+    $$
+    d(x, A) = \inf_{y \in A} d(x, y) = d(x, x) = 0,
+    $$
+    donc $x$ adhère à $A$.
+
+ 3. Si $x$ est proche de $A$, c'est-à-dire si $d(x,A)=0$, alors
+    $$
+    0 \leq d(x, A \cup B) = \inf_{y \in A \cup B} d(x, y)
+    \leq  \inf_{y \in A} d(x, y) = d(x, A)= 0
+    $$
+    et donc $x$ est proche de $A \cup B$.
+    De la même façon, du fait de la symétrie des rôles des ensembles $A$ et $B$,
+    si $x$ est proche de $B$ alors $x$ est proche de $A \cup B$.
+
+    Réciproquement, si $x$ est proche de $A \cup B$, alors il existe une
+    suite de points $x_k$ de $A \cup B$ telle que $d(x, x_k) \to 0$
+    quand $k \to +\infty$. Cette suite $x_k$ admet une suite extraite
+    de points de $A$ et/ou une suite extraite de points de $B$.
+    Dans le premier cas on a donc $d(x, A)=0$ et dans le second $d(x, B)=0$,
+    c'est-à-dire que $x$ est proche de $A$ et/ou proche de $B$.
+
+ 4. Les points $y$ qui adhèrent à l'ensemble $A$ sont caractérisés par
+    $d(y, A) = 0$. Par conséquent, l'ensemble des points $x$ qui adhèrent
+    à cet ensemble sont caractérisés par
+    $$
+    d(x, \{y \in X \, | \, d(y, A) = 0\}) = 0.
+    $$
+    Pour tout $x$ de ce type et pour tout $\varepsilon > 0$,
+    il existe un $y$ tel que $d(y, x) \leq \varepsilon /2$ et $d(y, A)= 0$
+    et donc un $z \in A$ tel que $d(y, z) \leq \varepsilon/2$.
+    L'[inégalité triangulaire](#dist-ineg) fournit donc
+    $$
+    d(x, A) = \inf_{a \in A} d(x, a) \leq d(x, z) 
+    \leq d(x, y) + d(y, z) \leq \varepsilon
+    $$
+    et comme $\varepsilon >0$ est arbitraire, $d(x, A)=0$: $x$ adhère à $A$.
+
 ### TODO
 
 Rq comme quoi espace métrique et sous-ensemble d'un evn sont 
