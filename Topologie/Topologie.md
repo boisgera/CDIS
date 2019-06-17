@@ -1,6 +1,8 @@
 % Topologie
 
+<!-- LaTeX Macros -->
 \newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
 
 TODO / acquis {.meta}
 --------------------------------------------------------------------------------
@@ -33,60 +35,19 @@ TODO / acquis {.meta}
 Structures Topologiques
 ================================================================================
 
-### TODO
-
-Remarque scalaires réels, extension plus tard au cas complexe.
-
 ### Norme {.definition}
 Une *norme* sur un espace vectoriel $E$ est une application
-$$\| \cdot \|: E \to \left[0, +\infty\right[$$
-qui vérifie les trois axiomes suivants:
+$$\| \cdot \|: E \to \left[0, +\infty\right[$$ telle que
+pour tous les points $x$ et $y$ de $E$ et tous les scalaires
+$\lambda$ dans $\R$ on ait
 
-  - Séparation: $\|x\| = 0$ si et seulement si $x=0$,
+ 1. [$\|x\| = 0$ si et seulement si $x=0$ (*séparation*)]{#norme-sep},
 
-  - Homogénéité: $\|\lambda x\| = |\lambda| \|x\|$ pour tous $\lambda \in \mathbb{R}$ et $x \in E$,
+ 2. [$\|\lambda x\| = |\lambda| \|x\|$ (*homogénéité*)]{#norme-homo},
 
-  - Inégalité triangulaire (subadditivité): $\|x+y\| \leq \|x\| + \|y\|$ pour tous $x \in E$ et $y \in E$.
-
-### Produit scalaire {.definition}
-Un *produit scalaire* sur un espace vectoriel $E$ est une application
-$$\left< \cdot , \cdot \right>: E \times E \to \mathbb{R}$$
-qui est
-
-  - Bilinéaire symmétrique: pour tous $\lambda \in \mathbb{R}$ et $x, y, z \in E$:
-    
-      - $\left<x, y\right> = \left<y, x\right>$,
-
-      - $\left<x, \lambda y\right> = \lambda \left<x, y\right>$
-
-      - $\left<x, y + z\right> = \left<x, y\right> + \left<x, z\right>$.
+ 3. [$\|x+y\| \leq \|x\| + \|y\|$ (*inégalité triangulaire*).]{#norme-ineg}
 
 
-  - Définie positive: pour tout $x \in E$, 
-  
-    - $\left<x, x \right> \geq 0$,
-
-    - $\left<x, x \right> = 0$ si et seulement si $x=0$.
-
-### TODO
-
-Mq produit scalaire définit une norme.
-
-### TODO
-
-Hors cas euclidien, exemple de produit scalaire ? Trop tôt ? 
-(pas les structures adaptées)
-
-### L'espace euclidien $\mathbb{R}^n$ {.remark}
-L'ensemble $\mathbb{R}^n$ est un espace vectoriel de dimension finie
-qui muni du produit scalaire
-$$
-\left<x,y\right> = x_1 y_1 + \dots + x_n y_n
-$$
-devient un *espace euclien*; la norme associée vérifie
-$$
-\|x\| = \sqrt{x_1^2 +\dots + x_n^2}.
-$$
 
 ### Remarque
 
@@ -110,7 +71,7 @@ aussi Arzela-Ascoli / attendre Calcul Diff 3 / zapper ?)
 
 ### Sous-ensembles d'espaces vectoriels normés
 
-Si $X$ est un sous-ensemble d'espace vectoriel normé $E$, 
+Si $X$ est un sous-ensemble d'un espace vectoriel normé $E$, 
 celui-ci "hérite" de $E$ une mesure de la distance entre 
 deux points $x$ et $y$ avec la grandeur 
 $$
@@ -141,11 +102,58 @@ $$
 telle que pour tous points 
 $x, y$ et $z$ de $X$, on ait:
 
- 1. $d(x,y) = d(y,x)$ (symétrie).
+ 1. [$d(x,y) = d(y,x)$ (*symétrie*)]{#dist-sym},
 
- 2. $d(x,y) = 0$ si et seulement si $x = y$ (séparation).
+ 2. [$d(x,y) = 0$ si et seulement si $x = y$ (*séparation*)]{#dist-sep},
 
- 3. $d(x,z) \leq d(x,y) + d(y,z)$ (inégalité triangulaire).
+ 3. [$d(x,z) \leq d(x,y) + d(y,z)$ (*inégalité triangulaire*)]{#dist-ineg}.
+
+### Espace Métrique  {.definition}
+Un *espace métrique* est un ensemble $X$ muni d'une *distance*.
+
+### Sous-ensemble d'un espace vectoriel normé {.proposition}
+Soit $X$ un sous-ensemble d'un espace vectoriel normé $E$. 
+La fonction $d: X \times X \to \left[0, +\infty\right[$ 
+définie par
+$$
+d(x, y) := \|x - y\|
+$$
+est une distance sur $X$.
+
+--------------------------------------------------------------------------------
+
+###
+
+Autrement dit, tout sous-ensemble d'un espace vectoriel normé "est" un
+espace métrique, c'est-à-dire qu'il existe une fonction distance
+"naturelle" dont on peut le doter, induite par l'espace vectoriel normé.
+Cela vaut en particulier pour l'espace vectoriel normé lui-même:
+tout espace vectoriel normé "est" un espace métrique.
+
+### Démonstration {.proof}
+
+Par construction, la fonction $d$ est bien positive. 
+De plus, pour tous points $x, y$ et $z$ de $X$:
+
+ 1. Par [homogénéité de la norme $\| \cdot \|$](#norme-homo), on a
+    $$
+    \|x - y\| = \|(-1) \times (y-x)\| = |-1| \times \|y - x\| = \|y - x\|,
+    $$
+    et donc $d(x, y) = d(y, x)$, 
+    d'où la [symétrie de la fonction $d$](#dist-sym).
+
+ 2. Par l'[axiome de séparation des normes](#norme-sep), 
+    $$
+    \|x - y\| = 0 \, \Leftrightarrow \, x - y = 0 \, \Leftrightarrow \, x = y.
+    $$
+    Cela entraîne que $d(x, y) = 0$ si et seulement si $x=y$, 
+    soit l'[axiome de séparation pour la distance $d$](#dist-sep).
+
+ 3. Par l'[inégalité triangulaire pour les normes](#norme-ineg), on a
+    $$
+    \|x - z\| = \|x - y - (y - z)\| \leq \|x - y\| + \|y - z\|,
+    $$
+    ce qui établit l'[inégalité triangulaire pour la distance $d$](#dist-ineg).
 
 
 ### Distance point-ensemble et ensemble-ensemble
@@ -167,9 +175,6 @@ la distance entre points peuvent prendre des valeurs infinies.
 ### {.ante}
 On parle aussi de *métrique* pour désigner une fonction
 distance, ce qui explique la terminologie ci-dessous:
-
-### Espace Métrique  {.definition}
-Un *espace métrique* est un ensemble $X$ muni d'une *distance*.
 
 ### Isométrie {.definition}
 Une isométrie $f: X \to Y$ est une fonction définie entre deux espaces
@@ -583,7 +588,55 @@ $K$ admet un minimum global.
 Un ensemble $E$ de $\R^n$ est compact 
 si et seulement si il est fermé et borné.
 
+Annexe
+================================================================================
 
+TODO -- Et $\C$ alors ?
+--------------------------------------------------------------------------------
+
+TODO -- Structures Euclidiennes & Hermitiennes
+--------------------------------------------------------------------------------
+
+### Produit scalaire {.definition}
+Un *produit scalaire* sur un espace vectoriel $E$ est une application
+$$\left< \cdot , \cdot \right>: E \times E \to \mathbb{R}$$
+qui est
+
+  - Bilinéaire symmétrique: pour tous $\lambda \in \mathbb{R}$ et $x, y, z \in E$:
+    
+      - $\left<x, y\right> = \left<y, x\right>$,
+
+      - $\left<x, \lambda y\right> = \lambda \left<x, y\right>$
+
+      - $\left<x, y + z\right> = \left<x, y\right> + \left<x, z\right>$.
+
+
+  - Définie positive: pour tout $x \in E$, 
+  
+    - $\left<x, x \right> \geq 0$,
+
+    - $\left<x, x \right> = 0$ si et seulement si $x=0$.
+
+### TODO
+
+Mq produit scalaire définit une norme.
+
+
+### TODO
+
+Hors cas euclidien, exemple de produit scalaire ? Trop tôt ? 
+(pas les structures adaptées)
+
+### L'espace euclidien $\mathbb{R}^n$ {.remark}
+L'ensemble $\mathbb{R}^n$ est un espace vectoriel de dimension finie
+qui muni du produit scalaire
+$$
+\left<x,y\right> = x_1 y_1 + \dots + x_n y_n
+$$
+devient un *espace euclien*; la norme associée vérifie
+$$
+\|x\| = \sqrt{x_1^2 +\dots + x_n^2}.
+$$
 
 Exercices
 ================================================================================
