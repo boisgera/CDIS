@@ -541,6 +541,15 @@ $$
 
 ### TODO - Suite de Cauchy & Algorithmes itératifs (critères d'arrêt)
 
+TODO: considérer successivement les critères de cgce:
+
+  - $|x_{k+1} - x_k| \to 0$
+
+  - $\sum_{j\geq k} |x_{j+1} - x_j| \to 0$
+
+et montrer le mismatch par rapport à la convergence ? (trop lâche, 
+trop stricte, etc.) ? A voir ...
+  
 ### Toute suite convergente est de Cauchy
 Toute suite de points convergente dans un espace métrique est de Cauchy.
 
