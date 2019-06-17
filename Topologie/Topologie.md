@@ -1060,11 +1060,11 @@ $B = [0, 2] \times [0,2]$.
 
 $\to$ [Solution](#a-dh-2)
 
-### Question 1 {.question #dh-3}
+### Question 3 {.question #dh-3}
 
 Cette terminologie de "distance" de Hausdorff est-elle légitime ?
 
-$\to$ [Solution](#a-dh-2)
+$\to$ [Solution](#a-dh-3)
 
 
 ---------------
@@ -1482,7 +1482,7 @@ TODO -- Solution -- [Droite réelle achevée]
 Solution -- [Distance entre ensembles]
 --------------------------------------------------------------------------------
 
-### Solution à la [question 1](#dh-1) {.answer #a-lf-1}
+### Solution à la [question 1](#dh-1) {.answer #a-dh-1}
 
 Non, la distance usuelle $d(A,B)$ en convient pas.
 En effet, cette distance est nulle dès que l'intersection de $A$ et $B$
