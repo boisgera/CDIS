@@ -865,8 +865,56 @@ elle converge donc vers $x$. De toute suite de points de $K$ on peut donc
 extraire une sous-suite qui converge dans $K$: $K$ est donc séquentiellement
 compact.
 
-
-**TODO:** Réciproque.
+Réciproquement, supposons $K$ séquentiellement compact.
+Nous allons montrer que si $\mathcal{A}$ est une collection d'ensembles
+de $K$ telle que 
+$$
+\bigcap_{A \in \mathcal{A}} \, \overline{A} = \varnothing,
+$$
+où $\overline{A}$ désigne l'adhérence de $A$ dans $K$, 
+alors il existe un nombre fini d'ensemble de $\mathcal{A}$ 
+dont l'intersection est non-vide. 
+Au préalable, nous allons montrer que sous l'hypothèse ci-dessus d'intersection
+vide des adhérences, il existe un $\varepsilon > 0$ tel
+que pour tout $x\in K$, on peut trouver un $A \in \mathcal{A}$ tel que
+$B(x, \varepsilon) \cap \overline{A} = \varnothing$. 
+En effet, si cette propriété n'était pas vérifiée, on pourrait construire
+une suite $x_k$ de points de $K$ telle que pour tout $A \in \mathcal{A}$,
+il existe un $a^A_k \in \overline{A}$ tel que $d(x_k, a^A_k) < 2^{-k}$.
+Mais une telle suite aurait alors une sous-suite convergente;
+la limite serait dans l'adhérence de chacun des
+$A \in \mathcal{A}$, en contradiction avec l'hypothèse initiale.
+On utilise ce résultat de la façon suivante: 
+on sélectionne un $x_0 \in K$ et un $A_0 \in \mathcal{A}$ 
+tel que $\overline{A_0} \cap B(x_0, \varepsilon) = \varnothing$, 
+puis un $x_1 \in K \setminus B(x_0, \varepsilon)$ et un
+$A_1 \in \mathcal{A}$ tel que $\overline{A_1} \cap B(x_1, \varepsilon) = \varnothing$, 
+ce qui induit
+$$
+(\overline{A_0} \cap \overline{A_1}) \cap (B(x_0, \varepsilon) \cup B(x_1, \varepsilon)) = \varnothing,
+$$
+puis un $x_2 \in K \setminus (B(x_0, \varepsilon) \cup B(x_1, \varepsilon))$
+et un $A_2 \in \mathcal{A}$ tel que 
+$\overline{A_2} \cap B(x_2, \varepsilon) = \varnothing$, etc.
+Le procédé s'arrête en un nombre fini d'étapes, dès que
+$B(x_0,\varepsilon) \cup \dots \cup B(x_k, \varepsilon)$ recouvre $K$.
+Cela arrive nécessairement puisque les $x_k$ ainsi construits
+vérifie $d(x_i, x_j) \geq \varepsilon$ si $i\neq j$; si cette suite
+était infinie, elle ne pourrait admettre de suite extraite convergente,
+en contradiction avec l'hypothèse de compacité séquentielle.
+Par conséquent, il existe un rang $k$ tel que 
+$$
+K \subset B(x_0,\varepsilon) \cup \dots \cup B(x_k, \varepsilon)
+$$
+et comme 
+$$
+(\overline{A_0} \cap \dots \cap \overline{A_k}) 
+\cap (B(x_0, \varepsilon) \cup \dots \cup B(x_k, \varepsilon)) = \varnothing,
+$$
+on en déduit que 
+$\overline{A_0} \cap \dots \cap \overline{A_k} = \varnothing$
+et donc que
+$A_0 \cap \dots \cap A_k = \varnothing$, ce qui conclut la preuve.
 
 ### Compacité et recouvrement ouvert {.proposition}
 Un ensemble $K$ d'un espace topologique est compact si pour tout
