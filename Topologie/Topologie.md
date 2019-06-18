@@ -1156,7 +1156,7 @@ TODO: comparaison manuelle, meilleure bornes
 Distance entre ensembles
 --------------------------------------------------------------------------------
 
-Soit $A$ et $B$ deux ensembles fermés non vides de $\mathbb{R}^n$; 
+Soit $A$ et $B$ deux ensembles compacts non vides de $\mathbb{R}^n$; 
 on souhaite évaluer à quel point les deux ensembles diffèrent
 -- en mesurant à quelle distance les points de $A$ peuvent 
 être éloignés de l'ensemble $B$ et réciproquement.
@@ -1200,8 +1200,8 @@ La somme de Minkowksi de deux ensembles $A$ et $B$ est définie comme
 $$
 A + B = \{a + b \, | \, a \in A, \, b \in B \}.
 $$
-Vérifier que la somme de Minkowski de deux ensembles fermés non vides de 
-$\R^n$ est un ensemble fermé non vide de $\R^n$.
+Vérifier que la somme de Minkowski de deux ensembles compacts non vides de 
+$\R^n$ est un ensemble compact non vide de $\R^n$.
 Cette opération est-elle continue pour la distance de Hausdorff ?
 
 $\to$ [Solution](#a-dh-4)
@@ -1639,10 +1639,10 @@ La distance de Hausdorff entre $A$ et $B$ vaut donc $\sqrt{2}$.
 ### Solution à la [question 3](#dh-3) {.answer #a-dh-3}
 
 Vérifions que la "distance" de Hausdorff est effectivement une distance
-sur l'espace des sous-ensembles fermés de $R^n$.
+sur l'espace des sous-ensembles compacts de $R^n$.
 
  1. Axiome de symétrie. Il est clair par construction que pour tous les
-    ensembles fermés non vide $A$ et $B$ de $\R^n$, on a $d[A, B] = d[B, A]$.
+    ensembles compacts non vide $A$ et $B$ de $\R^n$, on a $d[A, B] = d[B, A]$.
 
  2. Axiome de séparation. Si $$d[A, B] = \max(\sup_{a \in A} d(a, B), \sup_{b \in B} d(b, A)) = 0,$$
     alors pour tout $a \in A$, $d(a, B) = 0$ et pour tout $b \in B$, 
@@ -1686,8 +1686,52 @@ sur l'espace des sous-ensembles fermés de $R^n$.
     $$
     et donc $d[A, C] \leq d[A, B] + d[B, C]$.
     
-### TODO -- Solution à la [question 4](#dh-4) {.answer #a-dh-4}
+### Solution à la [question 4](#dh-4) {.answer #a-dh-4}
 
+Si $A$ et $B$ sont des ensembles non vides de $\R^n$, $A+B$ est clairement
+non vide. Si de plus $A$ et $B$ sont compacts, et que l'on considère une
+suite $x_k$ de points de $A+B$, alors il existe des $a_k$ de $A$ 
+et $b_k$ de $B$ tels que $x_k = a_k + b_k$. Par compacité de $A$, 
+il existe une suite $a_{\sigma(k)}$ 
+-- où $\sigma: \N \to \N$ est croissante --
+qui converge vers un $a \in A$;
+par compacité de $B$, il existe une suite $b_{\tau (\sigma(k))}$
+-- où $\tau: \N \to \N$ est croissante --
+qui converge vers un $b \in B$. 
+Par continuité de la somme dans $\R^n$, la suite des
+$x_{\tau (\sigma(k))}$, qui est extraite des $x_k$, converge vers $a+b \in A+B$.
+
+Soit $A$, $B$, $C$ et $D$ quatre ensembles compacts non vides de $\R^n$.
+Si $a \in A$, $b \in B$, $c \in C$ et $d \in D$, on a
+$$
+d(a+b, c+d) = \|a+b - c -d\| \leq \|a - c\| + \|b - d\|.
+$$
+Par conséquent,
+$$
+\begin{split}
+\sup_{x \in A + B} \inf_{y \in C + D} d(x, y)
+&=
+\sup_{a \in A} \sup_{b \in B} \inf_{c \in C} \inf_{d \in D}
+\|a + b - c - d\| \\
+&=
+\sup_{a \in A} \sup_{b \in B} \inf_{c \in C} \inf_{d \in D}
+\|a - c\| + \|b - d\| \\
+&= \sup_{a \in A} \inf_{c \in C} 
+\|a - c\| 
++ \sup_{b \in B} \inf_{d \in D}
+\|b - d\| \\
+&\leq d[A, C] + d[B, D].
+\end{split}
+$$
+De même, on peut montrer que 
+$$
+\sup_{y \in C+D} \inf_{x \in A + B} d(x, y) \leq d[A, C] + d[B, D]
+$$
+et par conséquent
+$d[A + B, C + D] \leq d[A, C] + d[B, D].$
+Si $A_k \to A$ et $C_k \to C$, comme
+$d[A_k+C_k, A+C] \leq d[A, A_k] + d[C, C_k]$, on en déduit que
+$A_k + C_k \to A + C$. La somme de Minkowski est donc continue.
 
 Solution -- [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
