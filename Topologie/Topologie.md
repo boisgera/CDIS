@@ -1441,12 +1441,6 @@ Equa Diff
 Pt fixe associé à l'équation différentielle $\dot{x} = A(t) \cdot x$?
 Et solution itérative ? Avec norme custom ?
 
-
-Nombres Réels de Bishop ?
---------------------------------------------------------------------------------
-
-(illustration des suites de Cauchy ?)
-
 "Localement"
 --------------------------------------------------------------------------------
 
