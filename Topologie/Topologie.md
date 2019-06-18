@@ -1156,7 +1156,7 @@ TODO: comparaison manuelle, meilleure bornes
 Distance entre ensembles
 --------------------------------------------------------------------------------
 
-Soit $A$ et $B$ deux ensembles compacts non vides de $\mathbb{R}^n$; 
+Soit $A$ et $B$ deux ensembles fermés non vides de $\mathbb{R}^n$; 
 on souhaite évaluer à quel point les deux ensembles diffèrent
 -- en mesurant à quelle distance les points de $A$ peuvent 
 être éloignés de l'ensemble $B$ et réciproquement.
@@ -1194,35 +1194,17 @@ Cette terminologie de "distance" de Hausdorff est-elle légitime ?
 
 $\to$ [Solution](#a-dh-3)
 
+### Question 4 {.question #dh-4}
 
----------------
+La somme de Minkowksi de deux ensembles $A$ et $B$ est définie comme
+$$
+A + B = \{a + b \, | \, a \in A, \, b \in B \}.
+$$
+Vérifier que la somme de Minkowski de deux ensembles fermés non vides de 
+$\R^n$ est un ensemble fermé non vide de $\R^n$.
+Cette opération est-elle continue pour la distance de Hausdorff ?
 
-**TODO**
-
-  $$
-  \begin{split}
-  d[A, B] &= \inf \, \{\|T - I\|_{\infty} \, | \, T \in A \to B \}.
-  \end{split}
-  $$
-
- 1. Montrer que dans la définition de $d[A, B]$, l'infimum est un minimum, 
-    c'est-à-dire qu'il existe une fonction $T^{\star}: A \to B$
-    telle que $d[A, B] = \|T^{\star} - I\|_{\infty}$.
-
- 2. Est-ce que $d[\cdot, \cdot]$ est une distance sur l'ensemble des
-    sous-ensembles compacts de $\mathbb{R}^n$ ? Dans le cas contraire,
-    suggérer une modification simple de $d[\cdot, \cdot]$ qui en soit
-    une (on parle alors de *distance de Hausdorff* entre ensembles).
-
- 3. La somme de Minkowksi de deux ensembles $A$ et $B$ est définie
-    comme
-    $$
-    A + B = \{a + b \, | \, a \in A, \, b \in B \}.
-    $$
-    Est-ce que la somme de Minkowski, appliquée aux ensembles
-    compacts de $\mathbb{R}^n$, est continue pour la distance 
-    introduite à la question précédente ?
-
+$\to$ [Solution](#a-dh-4)
 
 
 Plongement de Kuratowski
@@ -1610,21 +1592,102 @@ Non, la distance usuelle $d(A,B)$ en convient pas.
 En effet, cette distance est nulle dès que l'intersection de $A$ et $B$
 est non vide, même si des points de $A$ sont très éloignés de $B$.
 
-### TODO -- Solution à la [question 2](#dh-2) {.answer #a-dh-2}
+### Solution à la [question 2](#dh-2) {.answer #a-dh-2}
 
-Lorsque $A = [-1,1] \times [-1, 1]$ comme l'abscisse et l'ordonnée de 
-tout point $a$ de $A$ sont de valeur absolue inférieure ou égale à $1$,
-on a $d(a, 0) \leq \sqrt{2}$ et donc
+Lorsque $A = [-1,1] \times [-1, 1]$ et $B = [0,2] \times [0,2]$, 
+il est possible de calculer $d(a, B)$ pour tout $a \in A$.
+Plus précisément, $B$ étant fermé, l'infimum qui définit la
+distance est un minimum. Dans ce cas précis, il existe un 
+unique projeté $\pi_B(a)$ de $a$ sur $B$, 
+qui minimise la distance
 $$
-\inf_{a \in A} d(a, 0) \leq \sqrt{2}
+d(a, \pi_B(a)) = \inf_{b \in B} d(a, b).
 $$
-L'origine $0$ appartenant $B = [0, 2] \times [0,2]$.
-Or $(0,0)$ appartient à $B$ donc pour tout point $(x, y)$ de $A$,
-$d((x, y), B) \leq \sqrt{2}$. Par ailleurs, ... **TODO**
+Il est donné quadrant par quadrant par
+$$
+\pi_B((x, y)) = \left|
+\begin{array}{rl}
+(0, y) & \mbox{si } (x, y) \in [-1, 0] \times [0,1] \\
+(x, y) & \mbox{si } (x, y) \in [0, 1] \times  [0,1] \\
+(0, 0) & \mbox{si } (x, y) \in [-1, 0] \times [-1,0] \\
+(x, 0) & \mbox{si } (x, y) \in [0, 1] \times [-1,0] \\
+\end{array}
+\right.
+$$
+Par conséquent, on a
+$$
+d((x, y), B) = \left|
+\begin{array}{rl}
+|x| & \mbox{si } (x, y) \in [-1, 0] \times [0,1] \\
+0 & \mbox{si } (x, y) \in [0, 1] \times  [0,1] \\
+\sqrt{x^2 + y^2} & \mbox{si } (x, y) \in [-1, 0] \times [-1,0] \\
+|y| & \mbox{si } (x, y) \in [0, 1] \times [-1,0] \\
+\end{array}
+\right.
+$$
+Cette fonction est minimale sur $A$ pour $(x, y) = (-1, -1)$. 
+On a donc
+$$
+\sup_{a \in A} \inf_{b \in B} d(a, b) = \sqrt{2}.
+$$
+On montre de la même façon que 
+$$
+\sup_{b \in B} \inf_{a \in A} d(a, b) = \sqrt{2}.
+$$
+La distance de Hausdorff entre $A$ et $B$ vaut donc $\sqrt{2}$.
 
-### TODO -- Solution à la [question 2](#dh-2) {.answer #a-dh-3}
+### Solution à la [question 3](#dh-3) {.answer #a-dh-3}
 
-### TODO
+Vérifions que la "distance" de Hausdorff est effectivement une distance
+sur l'espace des sous-ensembles fermés de $R^n$.
+
+ 1. Axiome de symétrie. Il est clair par construction que pour tous les
+    ensembles fermés non vide $A$ et $B$ de $\R^n$, on a $d[A, B] = d[B, A]$.
+
+ 2. Axiome de séparation. Si $$d[A, B] = \max(\sup_{a \in A} d(a, B), \sup_{b \in B} d(b, A)) = 0,$$
+    alors pour tout $a \in A$, $d(a, B) = 0$ et pour tout $b \in B$, 
+    $d(b, A) = 0$, c'est-à-dire $a \in \overline{B}$ et $b \in \overline{A}$.
+    Par conséquent, puisque $A$ et $B$ sont fermés, 
+    $A \subset \overline{B} = B$ et $B \subset \overline{A} = A$
+    et donc $A = B$.
+
+ 3. Pour tout $a \in A$, $b \in B$, $c \in C$, l'inégalité triangulaire
+    fournit $d(a, c) \leq d(a, b) + d(b, c)$. 
+    Par conséquent, 
+    $\inf_{c \in C} d(a, c) \leq d(a, b) + \inf_{c \in C}d(b, c)$
+    et donc 
+    $$
+    \begin{split}
+    \inf_{c \in C} d(a, c) 
+    &\leq \inf_{b \in B} d(a, b) + \inf_{b \in B} \inf_{c \in C}d(b, c) \\
+    &\leq
+    \inf_{b \in B} d(a, b) + \sup_{b \in B} \inf_{c \in C}d(b, c),
+    \end{split}
+    $$
+    inégalité dont on déduit
+    $$
+    \sup_{a \in A} \inf_{c \in C} d(a, c) \leq
+    \sup_{a \in A} \inf_{b \in B} d(a, b) + \sup_{b \in B} \inf_{c \in C}d(b, c)
+    $$
+    et par conséquent
+    $$
+    \sup_{a \in A} \inf_{c \in C} d(a, c) \leq
+    d[A, B] + d[B, C].
+    $$
+    De façon similaire, on a 
+    $$
+    \sup_{c \in C} \inf_{a \in A} d(a, c) \leq
+    \sup_{c \in A} \inf_{b \in B} d(c, b) + \sup_{b \in B} \inf_{a \in A}d(b, a)
+    $$
+    et par conséquent
+    $$
+    \sup_{c \in C} \inf_{a \in A} d(a, c) \leq
+    d[A, B] + d[B, C]
+    $$
+    et donc $d[A, C] \leq d[A, B] + d[B, C]$.
+    
+### TODO -- Solution à la [question 4](#dh-4) {.answer #a-dh-4}
+
 
 Solution -- [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
