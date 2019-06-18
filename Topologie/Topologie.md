@@ -841,6 +841,33 @@ Dans les espaces métriques, compacité et compacité séquentielle sont
 
 ### TODO -- Démonstration {.proof}
 
+Supposons que $K$ est un sous-ensemble compact de l'espace métrique $X$.
+Soit $x_k$ une suite de points de $K$. Considerons la collection d'ensembles
+$\mathcal{A}$ définie par
+$$
+\mathcal{A} = \{A_k \, | \, k \in \mathbb{N} \}
+\; \mbox{ où } \; A_k = \{x_j \,| \, j \geq k \}.
+$$
+La collection $\mathcal{A}$ vérifie la propriété d'intersection finie: 
+en effet, si $A_{k_1}$, $A_{k_2}$, $\dots$, $A_{k_p} \in \mathcal{A}$, alors
+$$
+A_{k_1} \cap A_{k_2} \cap \dots \cap A_{k_p} = A_{k} 
+\; \mbox{ avec } \; k = \max(k_1, \dots, k_p)
+$$
+et donc leur intersection est non-vide. 
+Par conséquent, il existe un $x \in K$ tel que pour tout rang $k$,
+$x$ adhère à $A_k = \{x_j \,| \, j \geq k \}$, c'est-à-dire 
+$d(x, \{x_j \,| \, j \geq k \}) = 0$. En particulier, il existe un
+$y_0 := x_{k_0} \in A_0$ tel que $d(x, y_0) \leq 2^{-0}$, 
+un $y_1 := x_{k_1} \in A_{k_0+1}$ tel que $d(x, y_1) \leq 2^{-1}$, etc.
+La suite $y_k$ est extraite de $x_k$ et vérifie $d(x, y_k) \leq 2^{-k}$,
+elle converge donc vers $x$. De toute suite de points de $K$ on peut donc
+extraire une sous-suite qui converge dans $K$: $K$ est donc séquentiellement
+compact.
+
+
+**TODO:** Réciproque.
+
 ### Compacité et recouvrement ouvert {.proposition}
 Un ensemble $K$ d'un espace topologique est compact si pour tout
 recouvrement de $K$ par une collection d'ouverts, on peut extraire un
