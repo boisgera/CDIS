@@ -522,6 +522,32 @@ cet exemple particulier.
 
 ![Le nombre d'or comme point fixe de $x \mapsto 1 + 1/x$.](images/fixed-point.tex){#golden-ratio}
 
+### Algorithmes et critères de convergence
+
+Dans un algorithme (idéalisé) de calcul d'une suite de valeurs numériques,
+il n'est pas évident d'établir un critère de convergence
+qui garantisse exactement que la suite calculée ait une limite,
+quand cette limite potentielle est inconnue.
+
+Vérifier que $|x_{k+1} - x_k| \to 0$ par exemple est insuffisant comme
+en atteste la suite des $x_k = 1 / (k+1)$. 
+Vérifier que la suite  $\sum_{j=0}^{k} |x_{i+1} - x_i|$ reste bornée 
+va bien garantir la convergence, mais va par contrer rejeter des suites convergentes 
+telle que  $x_k = \sum_{j=0}^{k} (-1)^j / (j+1)$.
+Un critère plus adapté serait d'examiner le développement décimal de 
+$x_k$ et de vérifier que quel que soit le nombre de décimales souhaité
+après la virgule, le développement de $x_k$ finit par se stabiliser au-delà 
+d'un certain rang $m$ (qui dépend du nombre de décimales). 
+Mais là aussi, il existe des cas pathologiques qui convergent 
+sans respecter le critère, comme la suite des $x_k = 1 + (-1)^k 2^{-k}$, 
+dont le développement avec 0 décimales après la virgule oscille indéfiniment 
+entre $0$ et $1$. 
+
+C'est la notion de suite de Cauchy qui capture le bon critère;
+pour une suite numérique (à valeurs réelles ou dans $\R^n$) 
+être de Cauchy -- ou passer le test de Cauchy ou encore 
+vérifier le critère de Cauchy -- est équivalent à être convergente.
+
 ### Suite de Cauchy {.definition}
 Une suite de points $x_k$ d'un espace métrique $X$ est *de Cauchy* si pour tout
 $\varepsilon > 0$, 
@@ -539,17 +565,6 @@ Une suite de points $x_k$ est de Cauchy si et seulement si
 $$
 \lim_{k \to + \infty} \mbox{diam}(\{x_n \, | \, n \geq k \}) = 0.
 $$
-
-### TODO - Suite de Cauchy & Algorithmes itératifs (critères d'arrêt)
-
-TODO: considérer successivement les critères de cgce:
-
-  - $|x_{k+1} - x_k| \to 0$
-
-  - $\sum_{j\geq k} |x_{j+1} - x_j| \to 0$
-
-et montrer le mismatch par rapport à la convergence ? (trop lâche, 
-trop stricte, etc.) ? A voir ...
   
 ### Toute suite convergente est de Cauchy
 Toute suite de points convergente dans un espace métrique est de Cauchy.
@@ -567,11 +582,11 @@ La suite $x_k$ est donc de Cauchy.
 
 ### Réciproque ?
 
-Il est parfois plus facile de vérifier qu'une suite satisfait le critère
-de Cauchy que de vérifier qu'elle est convergente, en particulier quand
-la limite de la suite est inconnue.
-Malheureusement, il n'est pas possible en général de déduire la convergence
-du fait que la suite soit de Cauchy. 
+Il est parfois plus facile de vérifier qu'une suite de points dans un espace
+métrique satisfait le critère de Cauchy que de vérifier qu'elle est convergente, 
+en particulier quand la limite de la suite est inconnue.
+Malheureusement, dans ce cadre très général, il n'est pas possible en général 
+de déduire la convergence du fait que la suite vérifie le critère de Cauchy. 
 Ainsi, dans $\Q$, considéré en tant que sous-espace métrique de $\R$,
 la suite qui définie le développement décimal de $\sqrt{2}$ à l'ordre $k$:
 $$
