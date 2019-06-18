@@ -931,6 +931,19 @@ $\overline{A_0} \cap \dots \cap \overline{A_k} = \varnothing$
 et donc que
 $A_0 \cap \dots \cap A_k = \varnothing$, ce qui conclut la preuve.
 
+### TODO
+
+  - distance fermé compact
+
+  - continuité application linéaire $\mathbb{R}^n \to Y$.
+
+  - Fct continue sur compact est uniformément continue.
+
+  - Ens des fcts $C^0$ sur un compact est un espace de Banach.
+
+  - Inclure ici élts dim infinie ?  Non, calcul diff 3
+
+
 <!--
 
 ### Compacité et recouvrement ouvert {.proposition}
@@ -947,18 +960,6 @@ $$K \subset O_1 \cup \dots \cup O_k.$$
 ### TODO -- Démonstration {.proof}
 
 -->
-
-### TODO
-
-  - distance fermé compact
-
-  - continuité application linéaire $\mathbb{R}^n \to Y$.
-
-  - Fct continue sur compact est uniformément continue.
-
-  - Ens des fcts $C^0$ sur un compact est un espace de Banach.
-
-  - Inclure ici élts dim infinie ?  Non, calcul diff 3
 
 Annexe
 ================================================================================
