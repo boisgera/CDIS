@@ -931,6 +931,8 @@ $\overline{A_0} \cap \dots \cap \overline{A_k} = \varnothing$
 et donc que
 $A_0 \cap \dots \cap A_k = \varnothing$, ce qui conclut la preuve.
 
+<!--
+
 ### Compacité et recouvrement ouvert {.proposition}
 Un ensemble $K$ d'un espace topologique est compact si pour tout
 recouvrement de $K$ par une collection d'ouverts, on peut extraire un
@@ -944,6 +946,7 @@ $$K \subset O_1 \cup \dots \cup O_k.$$
 
 ### TODO -- Démonstration {.proof}
 
+-->
 
 ### TODO
 
