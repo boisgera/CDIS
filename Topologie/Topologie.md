@@ -401,7 +401,7 @@ sous-ensemble $X$ d'un espace métrique $Y$ et à valeurs dans un espace
 métrique $Z$.
 Soit $x$ un point de $Y$ adhérent à $X$. 
 Le point $\ell \in Z$ est la *limite* de $f$ en $x$ si pour toute suite
-$x_k$ de points de $X$ convergeant vers $x$, on a 
+$x_k$ de points de $X$ convergeant vers $\ell$, on a 
 $\lim_{k \to +\infty} f(x_k) = \ell$.
 On utilisera alors une des deux notations:
 $$
