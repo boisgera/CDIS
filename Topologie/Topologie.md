@@ -1216,7 +1216,7 @@ l'intersection d'un ensemble fermé et d'un ensemble ouvert.
 
 $\to$ [Solution](#a-lf-3)
 
-Comparaison des normes
+TODO -- Comparaison des normes
 --------------------------------------------------------------------------------
 
 TODO: comparaison manuelle, meilleure bornes
@@ -1274,7 +1274,6 @@ Cette opération est-elle continue pour la distance de Hausdorff ?
 
 $\to$ [Solution](#a-dh-4)
 
-
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
 
@@ -1323,7 +1322,7 @@ $$
 
 $\to$ [Solution](#a-pk-4)
 
-Le nombre d'or
+TODO -- Le nombre d'or
 --------------------------------------------------------------------------------
 
 **TODO**
@@ -1390,14 +1389,14 @@ qu'Euler puisse calculer analytiquement les coordonnées de ce point
 (cf. @Lev08).
 
 
-Séries Absolument Convergentes
+TODO -- Séries Absolument Convergentes
 --------------------------------------------------------------------------------
 
 **TODO:** définition "limite dans tous les sens" d'une série double et 
 jouer avec Cauchy ?
 
 
-Point fixe
+TODO -- Point fixe
 --------------------------------------------------------------------------------
 
 **TODO:** exemple introductif (simple, matriciel $2\times2$)
@@ -1431,7 +1430,7 @@ fixe de $f$ est toujours valable quand $f^n$ est contractante.
 
 $\to$ [Solution](#a-pf-3)
 
-Normes d'opérateurs
+TODO -- Normes d'opérateurs
 --------------------------------------------------------------------------------
 
 Changer les normes au départ et à l'arrivée, calculer les normes d'opérateurs
@@ -1445,7 +1444,7 @@ $\|\, \cdot \, \|$ telle que $\|A\| \leq \rho(A) + \varepsilon$.
 
 Voir aussi <https://math.stackexchange.com/questions/126460/iteration-convergence>
 
-Fonctions définies par un recouvrement
+TODO -- Fonctions définies par un recouvrement
 --------------------------------------------------------------------------------
 
 Soit une fonction définie par la donnée de 
@@ -1468,8 +1467,7 @@ $$
 
   2. Application angle sur l'hélice et $\arctan$ ...
 
-
-Equations Linéaires et Point Fixes
+TODO -- Equations Linéaires et Point Fixes
 --------------------------------------------------------------------------------
 
 Préparer et résoudre numériquement des systèmes de la forme $A x = b$ dans
@@ -1485,13 +1483,13 @@ que $\|A^k\| \to 0 \Leftrightarrow \rho(A) < 1$ et tester algo de Jacobi
 Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
 et lien avec norme.
 
-Equa Diff
+TODO -- Equa Diff
 --------------------------------------------------------------------------------
 
 Pt fixe associé à l'équation différentielle $\dot{x} = A(t) \cdot x$?
 Et solution itérative ? Avec norme custom ?
 
-"Localement"
+TODO -- "Localement"
 --------------------------------------------------------------------------------
 
 Etude des pptés "localement X" pour X=bornée, positive (ex: distance), 
@@ -1504,7 +1502,7 @@ et comment elle s'étendent à un ensemble d'adhérence compacte
 "localement lipschitz", fct "localement définie", etc., opérations 
 qui ne sont pas stables par union finie. 
 
-Compacité et Continuité
+TODO -- Compacité et Continuité
 --------------------------------------------------------------------------------
 
 Montrer la réciproque du [résultat d'existence d'un minimum pour une fonction
@@ -1513,9 +1511,7 @@ si l'ensemble $E \subset \mathbb{R}^n$ n'est pas compact,
 il existe une fonction continue $f: E \to \mathbb{R}$ 
 n'ayant pas de minimum.
 
-
-
-Fonctions propres
+TODO -- Fonctions propres
 --------------------------------------------------------------------------------
 
 Soit $f: \mathbb{R}^n \to \mathbb{R}$ une fonction continue et propre,
@@ -1536,7 +1532,7 @@ Solutions aux Exercices
 Solution -- [Localement fermé]
 --------------------------------------------------------------------------------
 
-### Solution à la [question 0](#lf-0) {.answer #a-lf-0}
+### Question 0 {.answer #a-lf-0}
 
 Un sous-ensemble $B$ d'un ensemble $A$ de points d'un espace topologique $X$
 est "fermé dans $A$" s'il est fermé **comme ensemble de points de l'espace
@@ -1551,7 +1547,7 @@ quand $k \to +\infty$. Par contre, toute suite de $B$ convergeant
 dans $A$ converge dans $B$ car les deux ensembles sont identiques.
 Par conséquent, $B$ est fermé dans $A$.
 
-### Solution à la [question 1](#lf-1) {.answer #a-lf-1}
+### Question 1 {.answer #a-lf-1}
 
 Soit $x \in A:=\left[0, 1\right[$; 
 si $x>0$, on peut prendre $V=\left]x/2, 1\right[$.
@@ -1581,7 +1577,7 @@ Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
 donc $\mathbb{Q}$ n'est pas localement fermé.
 
 
-### Solution à la [question 2](#lf-2) {.answer #a-lf-2}
+### Question 2 {.answer #a-lf-2}
 
 Si $A$ est fermé, on peut prendre $V=X$ qui est un voisinage ouvert 
 de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
@@ -1613,7 +1609,7 @@ L'ensemble $A$, qui est fermé dans $U$, est donc fermé dans $U \cap V$
 et donc sa limite appartient à $A$); de la même façon, $B$ est fermé
 dans $U \cap V$. Par conséquent, $A \cap B$ est fermé dans $U \cap V$.
 
-### Solution à la [question 3](#lf-3) {.answer #a-lf-3}
+### Question 3 {.answer #a-lf-3}
 
 Si un ensemble est l'intersection d'un ouvert et d'un fermé dans $X$,
 il est l'intersection de deux ensembles localement fermés, donc il
@@ -1636,31 +1632,31 @@ que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 TODO -- Solution -- [Droite réelle achevée]
 --------------------------------------------------------------------------------
 
-### TODO -- Solution à la [question 1](#dra-1) {.answer #a-dra-1}
+### TODO -- Question 1 {.answer #a-dra-1}
 
-### TODO -- Solution à la [question 2](#dra-2) {.answer #a-dra-2}
+### TODO -- Question 2 {.answer #a-dra-2}
 
-### TODO -- Solution à la [question 3](#dra-3) {.answer #a-dra-3}
+### TODO -- Question 3 {.answer #a-dra-3}
 
-### TODO -- Solution à la [question 4](#dra-4) {.answer #a-dra-4}
+### TODO -- Question 4 {.answer #a-dra-4}
 
-### TODO -- Solution à la [question 5](#dra-5) {.answer #a-dra-5}
+### TODO -- Question 5 {.answer #a-dra-5}
 
-### TODO -- Solution à la [question 6](#dra-6) {.answer #a-dra-6}
+### TODO -- Question 6 {.answer #a-dra-6}
 
-### TODO -- Solution à la [question 7](#dra-7) {.answer #a-dra-7}
+### TODO -- Question 7 {.answer #a-dra-7}
 
  
 Solution -- [Distance entre ensembles]
 --------------------------------------------------------------------------------
 
-### Solution à la [question 1](#dh-1) {.answer #a-dh-1}
+### Question 1 {.answer #a-dh-1}
 
 Non, la distance usuelle $d(A,B)$ en convient pas.
 En effet, cette distance est nulle dès que l'intersection de $A$ et $B$
 est non vide, même si des points de $A$ sont très éloignés de $B$.
 
-### Solution à la [question 2](#dh-2) {.answer #a-dh-2}
+### Question 2 {.answer #a-dh-2}
 
 Lorsque $A = [-1,1] \times [-1, 1]$ et $B = [0,2] \times [0,2]$, 
 il est possible de calculer $d(a, B)$ pour tout $a \in A$.
@@ -1704,7 +1700,7 @@ $$
 $$
 La distance de Hausdorff entre $A$ et $B$ vaut donc $\sqrt{2}$.
 
-### Solution à la [question 3](#dh-3) {.answer #a-dh-3}
+### Question 3 {.answer #a-dh-3}
 
 Vérifions que la "distance" de Hausdorff est effectivement une distance
 sur l'espace des sous-ensembles compacts de $R^n$.
@@ -1754,7 +1750,7 @@ sur l'espace des sous-ensembles compacts de $R^n$.
     $$
     et donc $d[A, C] \leq d[A, B] + d[B, C]$.
     
-### Solution à la [question 4](#dh-4) {.answer #a-dh-4}
+### Question 4 {.answer #a-dh-4}
 
 Si $A$ et $B$ sont des ensembles non vides de $\R^n$, $A+B$ est clairement
 non vide. Si de plus $A$ et $B$ sont compacts, et que l'on considère une
@@ -1804,7 +1800,7 @@ $A_k + C_k \to A + C$. La somme de Minkowski est donc continue.
 Solution -- [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
 
-### Solution à la [question 1](#pk-1) {#a-pk-1}
+### Question 1 {#a-pk-1}
 
 Soit $x$, $x'$ deux points de $X$. Pour tout $y$ dans $X$ on a:
 $$
@@ -1817,11 +1813,11 @@ par conséquent, si $f_x = f_{x'}$, on a en particulier
 $f_x(x') = f_{x'}(x')$, soit $d(x, x') - d(x', x') = d(x, x') = 0$, 
 c'est-à-dire $x = x'$.
 
-### Solution à la [question 2](#pk-2) {#a-pk-2}
+### TODO -- Question 2 {#a-pk-2}
 
 **TODO** Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
 
-### Solution à la [question 3](#pk-3) {#a-pk-3}
+### TODO -- Question 3 {#a-pk-3}
 
  **TODO** Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
 $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
@@ -1830,7 +1826,7 @@ $$
 \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
 $$
 
-### Solution à la [question 4](#pk-4) {#a-pk-4}
+### TODO -- Question 4 {#a-pk-4}
 
 **TODO** Montrer que $x \mapsto f_x$ est une isométrie, 
 c'est-à-dire que pour tout $x$ et
@@ -1842,7 +1838,7 @@ $$
 Solution -- [Spirale d'Euler]
 --------------------------------------------------------------------------------
 
-### Solution à la [question 1](#se-1) {.answer #a-se-1}
+### Question 1 {.answer #a-se-1}
 
 Montrer que $(x(t), y(t))$ à une limite quand $t\to+\infty$ suppose de
 montrer qu'il existe un point $T \in \mathbb{R}^2$ tel que pour 
@@ -1861,7 +1857,7 @@ une limite $T$ quand $k \to +\infty$; toute sous-suite étant convergente
 et de même limite, on a nécessairement $T = S = R$, ce qui prouve le
 résultat cherché.
 
-### Solution à la [question 2](#se-2) {.answer #a-se-2}
+### Question 2 {.answer #a-se-2}
 
 Nous traitons le cas de $I(a, b)$, celui de $J(a, b)$ étant similaire.
 Pour tout $a$ et $b$ strictement positifs,
@@ -1887,7 +1883,7 @@ $$
 \frac{5}{2 \sqrt{a}} + \frac{5}{2 \sqrt{b}} \leq \frac{5}{\sqrt{\min(a, b)}}.
 $$
 
-### Solution à la [question 3](#se-3) {.answer #a-se-3}
+### Question 3 {.answer #a-se-3}
 
 Pour établir l'existence d'un point limite à la spirale d'Euler,
 compte tenu du résultat de la question 1, il nous suffit de montrer
@@ -1935,7 +1931,7 @@ La suite des $(x_k, y_k)$ est donc de Cauchy.
 Solution -- [Point fixe]
 --------------------------------------------------------------------------------
 
-### Solution à la [question 1](#pf-1) {.answer #a-pf-1}
+### Question 1 {.answer #a-pf-1}
 
 Si $x$ est un point fixe de $f$, $f(x) = x$, par conséquent
 $$
@@ -1948,7 +1944,7 @@ $$
 etc. Par récurrence, il est clair que l'on peut établir que pour tout
 $n \geq 1$, on a $f^n(x) = x$: $x$ est un point fixe de $f^n$.
 
-### Solution à la [question 2](#pf-2) {.answer #a-pf-2}
+### Question 2 {.answer #a-pf-2}
 
 La fonction itérée $f^n$ satisfait les hypothèses du 
 [théorème du point fixe de Banach](#T-TPFB), par conséquent elle
@@ -1961,7 +1957,7 @@ Par conséquent, $f(x)$ est un point fixe de $f^n$.
 C'est donc l'unique point fixe $x$ de $f^n$; on a donc $f(x) = x$,
 c'est-à-dire que $x$ est un point fixe de $f$. 
 
-### Solution à la [question 3](#pf-3) {.answer #a-pf-3}
+### Question 3 {.answer #a-pf-3}
 
 Le "procédé habituel pour construire un point fixe de $f$" 
 consiste à prendre un $x_0 \in E$ quelconque et à construire 
