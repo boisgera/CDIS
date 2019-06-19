@@ -12,6 +12,8 @@ Calcul Différentiel, Intégral et Stochastique
 
   - [Calendrier au format iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics)
 
+  - [Calendrier en version texte](https://github.com/boisgera/CDIS/tree/gh-pages/Calendrier/calendrier.txt)
+
 :book: Accès aux Documents
 --------------------------------------------------------------------------------
 

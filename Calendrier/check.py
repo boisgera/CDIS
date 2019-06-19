@@ -13,3 +13,11 @@ url = "https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40gr
 calendar = Calendar(urlopen(url).read().decode("utf-8"))
 
 assert len(calendar.events) == 60
+
+for i, event in enumerate(calendar.events):
+    print(f"{i+1:2d}) {event.name}")
+    assert event.begin.date() == event.end.date()
+    assert event.duration.seconds == 1.5 * 3600
+    print("    " + event.begin.format("dddd DD MMMM YYYY", locale="fr_FR"), end=", ")
+    print(event.begin.format("HH:mm") + "-" + event.end.format("HH:mm") + ".")
+    print()

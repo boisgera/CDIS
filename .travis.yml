@@ -26,7 +26,7 @@ before_install:
 
 install:
   - echo "checking calendar ..."
-  - python Calendrier/check.py
+  - python Calendrier/check.py > Calendrier/calendrier.txt
   - echo "install started ..."
   - ./build
   - cd Extra/"Comité Pédagogique 23-05-2019" && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
