@@ -40,8 +40,10 @@ Structures Topologiques
 
 ### Norme {.definition}
 Une *norme* sur un espace vectoriel $E$ est une application
-$$\| \cdot \|: E \to \left[0, +\infty\right[$$ telle que
-pour tous les points $x$ et $y$ de $E$ et tous les scalaires
+$$
+\| \cdot \|: E \to \left[0, +\infty\right[
+$$ 
+telle que pour tous les points $x$ et $y$ de $E$ et tous les scalaires
 $\lambda$ dans $\R$ on ait
 
  1. [$\|x\| = 0$ si et seulement si $x=0$ (*séparation*)]{#norme-sep},
@@ -193,9 +195,10 @@ Construire des isométries peut aller de pair avec la construction
 d'une métrique sur un ensemble qui en est initialement dépourvu;
 voir à ce propos l'exercice "[Droite réelle achevée]"
 
-### TODO
-
-Sous-espace (métrique)
+### Sous-espace métrique {.definition}
+Un sous-ensemble $Y$ d'un espace métrique $X$ est un *sous-espace métrique*
+de $X$ lorsqu'il est muni de la distance de $X$, restreinte aux points de
+$Y$.
 
 ### Structure topologique d'un espace métrique
 Il est possible de se livrer un à exercice d'abstraction sur les
@@ -229,10 +232,15 @@ entre éléments de $X$ et sous-ensembles de $X$ telle que:
  4. Un point qui adhère à l'ensemble des points adhérents 
     à un ensemble adhère à cet ensemble.
 
-### Espace Topologique
+### Espace topologique
 Un *espace topologique* est un ensemble muni d'une relation d'adhérence.
 Les éléments de l'ensemble sont appelés des *points*, 
 ses sous-ensembles des *ensembles de points*.
+
+### Sous-espace topologique
+Un sous-ensemble $Y$ d'un espace topologique $X$ est un *sous-espace topologique*
+de $X$ lorsqu'il est muni de la relation d'adhérence de $X$, 
+restreinte aux points et sous-ensembles de $Y$.
 
 ### Application Continue
 
@@ -318,10 +326,6 @@ Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est
 
  4. $\overline{\overline{A}} = \overline{A}$.
 
-
-### TODO
-
-Sous-espace (topologique)
 
 Produit (et Quotient?)
 --------------------------------------------------------------------------------
