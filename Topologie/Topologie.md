@@ -429,7 +429,7 @@ $$
 \lim_{y \to x} f(y) = f(x).
 $$
 
-### Démonstration {.proof}
+### TODO -- Démonstration {.proof}
 
 Supposons que $f$ soit telle que $f(y) \to f(x)$ quand $y \to x$.
 Soit $A$ un sous-ensemble de $X$ tel que $x$ adhère à $A$.
@@ -443,8 +443,12 @@ de $f(A)$, nous en déduisons que $d(f(x), A) = 0$:
 le point $f(x)$ est adhérent à $f(A)$.
 La fonction $f$ est donc continue en $x$.
 
-Réciproquement, supposons la fonction $f$ est continue en $x$.
-Soit $x_k$ une suite de points de $X$ qui converge vers $x$.
+Réciproquement, supposons la fonction $f$ continue en $x$.
+Soit $x_k$ une suite de points de $X$ qui converge vers $x$,
+c'est-à-dire telle que $d(x_k, x) \to 0$ quand $k \to +\infty$.
+A tout rang $m$, la distance entre $x$ et l'ensemble 
+$A_m = \{x_k \, | \, k \geq m\}$ est nulle, donc $x$ adhère $A_m$.
+On en déduit que $f(x)$ adhère $f(A_m) =  \{f(x_k) \, | \, k \geq m\}$.
 
 **TODO**
 
