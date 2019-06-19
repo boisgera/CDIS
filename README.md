@@ -13,7 +13,7 @@ Calendrier 2019 (travail en cours)
 Accès aux Documents
 --------------------------------------------------------------------------------
 
-<https://github.com/boisgera/CDIS/tree/gh-pages/output>
+  - <https://github.com/boisgera/CDIS/tree/gh-pages/output>
 
 
 Développeurs
