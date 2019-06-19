@@ -188,7 +188,7 @@ la distance entre points peuvent prendre des valeurs infinies.
 On parle aussi de *métrique* pour désigner une fonction
 distance, ce qui explique la terminologie ci-dessous:
 
-### Morphismes entre espaces métriques {.definition}
+### Isométries {.definition}
 Une application $f: X \to Y$ définie entre deux espaces
 métriques $(X, d_X)$ et $(Y, d_Y)$ telle que:
 $$
@@ -250,11 +250,12 @@ Un sous-ensemble $Y$ d'un espace topologique $X$ est un *sous-espace topologique
 de $X$ lorsqu'il est muni de la relation d'adhérence de $X$, 
 restreinte aux points et sous-ensembles de $Y$.
 
-### Morphismes entre espaces topologiques
+### Application continue
 
-Une application $f: X \to Y$ définie entre deux espaces topologique 
-telle que lorsque $x$ adhère à $A$ dans $X$, $f(x)$ adhère à $f(A)$ dans $Y$
-est dite *continue*.
+Une application $f: X \to Y$ définie entre deux espaces topologiques
+est *continue en $x \in X$* si lorsque $x$ adhère à $A$ dans $X$, 
+$f(x)$ adhère à $f(A)$ dans $Y$. Une application continue en tout point
+$x \in X$  est *continue*.
 
 ### {.post}
 Les applications sont les *morphismes* des espaces topologiques:
@@ -321,7 +322,7 @@ est une relation d'adhérence sur $X$.
 Les espaces métriques "sont" des espaces topologiques 
 (c'est-à-dire héritent automatiquement d'une relation d'adhérence,
 définie à partir de leur distance). 
-Réciproquement, les espaces topologiques qui peuvent être muni d'une distance
+A l'inverse, les espaces topologiques qui peuvent être muni d'une distance
 compatible avec leur relation d'adhérence sont dits *métrisables*.
 Toutefois, tous les espaces topologiques ne sont pas métrisables[^Sier];
 la notion d'espace topologique est donc strictement plus générale que la notion
@@ -335,9 +336,8 @@ distance sur cet ensemble, telle que $d(x, A)= 0$ si et seulement si $x$
 adhère à $A$, alors on aurait $d(0, \{1\}) = d(0, 1) = 0$, ce qui contredirait
 l'axiome de séparation pour les distances.
 
+### TODO -- Calcul Topologique (transférer)
 
-
-### Calcul Topologique
 Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
 
  1. $\overline{\varnothing} = \varnothing$,
@@ -349,70 +349,85 @@ Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est
  4. $\overline{\overline{A}} = \overline{A}$.
 
 
-Produit (et Quotient?)
+TODO -- Produit (et Quotient?)
 --------------------------------------------------------------------------------
 
-(rk: Quotient ne "marche pas" dans une simple structure métrique)
+(rk: Quotient ne "marche pas" dans une simple structure métrique.
+Arf, si, si les classe d'équivalences sont fermées, via la distance
+de Hausdorff. Lol.)
 
-Continuité et Limite
+Limite
 ================================================================================
 
-### TODO 
-
-(que dire sur limite ? Cadre général exclu ici ...
-Au minimum, indispensable limite de suite. 
-Qui du reste ? fonctions $X \to Y$, etc ? 
-Montrer en exercice que des cas "limite en $\infty$" se ramènent à ça ?
-L'idée que la notion de limite peut tjs être ramenée à une limite de
-type limite vers un point est intéressante.)
-
 ### Limite d'une suite {.definition}
-Une suite $x_k$ de valeurs d'un espace métrique $X$ est *convergente*
-si elle a une *limite*, c'est-à-dire un élement de $x$ de $X$
-dont $x_{k}$ soit arbitrairement proche à partir d'un certain rang,
-c'est-à-dire vérifiant: pour tout $\varepsilon > 0$, il existe un entier $n$ 
-tel que pour tout $k \geq n$, on ait $\|x_k - x\| \leq \varepsilon$.
+Une suite $x_k$ de valeurs d'un espace métrique $X$ a comme *limite* 
+un point $\ell$ de $X$ si $x_{k}$ est arbitrairement proche 
+à partir d'un certain rang, c'est-à-dire si 
+pour tout $\varepsilon > 0$, il existe un entier $n$ 
+tel que pour tout $k \geq n$, $d(x_k, \ell) \leq \varepsilon$.
+On utilisera alors une des deux notations:
+$$
+\ell = \lim_{k\to +\infty} x_k
+\; \mbox{ ou } \;
+x_k \to \ell \mbox{ quand } k \to + \infty.
+$$
+Une suite possédant une limite est dite *convergente*.
 
-### Unicité de la limite {.proposition}
+### Unicité de la limite d'une suite {.proposition}
 Si une suite $x_k$ admet une limite, celle-ci est unique.
 
 ### Démonstration {.proof}
-Par l'inégalité triangulaire, pour tout entier $k$ on a
+Par [l'inégalité triangulaire](#dist-ineg), 
+si les points $\ell$ et $\ell'$
+sont des limites de la suite des $x_k$, alors pour tout entier $k$ on a
 $$
-\|x - x'\| \leq \|x - x_k\| + \|x' - x_k\|.
+d(\ell, \ell') \leq d(x_k, \ell) + d(x_k, \ell').
 $$
-Les points $x$ et $x'$ étant deux limites de $x_k$, 
-pour tout $\varepsilon > 0$, il existe des rangs $n$ et $n'$ tels que
-lorsque $k \geq n$ et $k\geq n'$, on a $\|x - x_k\| \leq \varepsilon /2$
-et $\|x' - x_k\| \leq \varepsilon /2$. Par conséquent, pour 
-$k = \max(n, n')$, on a
-$\|x - x'\| \leq \varepsilon$. La valeur $\varepsilon > 0$ étant arbitraire,
-on en déduit que $\|x - x'\|= 0$, soit par séparation, $x=x'$.
-
-### TODO
-
-Pb / pt dans l'adhérence de la fct (cf prg prépa).
+Comme il existe des rangs $n$ et $n'$ tels que
+lorsque $k \geq n$ et $k\geq n'$, on a $d(x_k, \ell) \leq \varepsilon /2$
+et $d(x_k, \ell') \leq \varepsilon /2$, 
+pour $k = \max(n, n')$, on a
+$d(\ell, \ell') \leq \varepsilon$. 
+La valeur $\varepsilon > 0$ étant arbitraire,
+on en déduit que $d(\ell, \ell')=0$, 
+soit par [l'axiome de séparation](#dist-sep), 
+que $\ell = \ell'$. 
+Il n'existe donc qu'une limite possible pour la suite des $x_k$.
 
 ### Limite d'une fonction en un point {.definition}
 
-Soit $f:X \subset E \to Y$ une application définie sur un sous-ensemble $X$
-d'un espace vectoriel normé $E$ et à valeurs dans un espace métrique $Y$.
-Soit $x$ un point de l'adhérence de $X$ dans $E$. 
-Le point $\ell \in Y$ est la *limite* de $f$ en $x$ si pour toute suite
+Soit $f: X \subset Y \to Z$ une application définie sur un 
+sous-ensemble $X$ d'un espace métrique $Y$ et à valeurs dans un espace 
+métrique $Z$.
+Soit $x$ un point de $Y$ adhérent à $X$. 
+Le point $\ell \in Z$ est la *limite* de $f$ en $x$ si pour toute suite
 $x_k$ de points de $X$ convergeant vers $x$, on a 
 $\lim_{k \to +\infty} f(x_k) = \ell$.
+On utilisera alors une des deux notations:
+$$
+\ell = \lim_{y \to x} f(x)
+\; \mbox{ ou } \;
+f(y) \to \ell \mbox{ quand } y \to x.
+$$
+
+### Unicité de la limite d'une fonction en un point {.proposition}
+Si la fonction $f$ admet une limite en $x$, celle-ci est unique.
+
+### TODO -- Démonstration {.proof}
+
+### Continuité et limite
+
+Une fonction $f: X \to Y$ où $X$ et $Y$ sont deux espaces métriques est
+continue en $x \in X$ si et seulement si 
+$$
+\lim_{y \to x} f(y) = f(x).
+$$
+
+### TODO -- Démonstration {.proof}
+
 
 Bestiaire
 ================================================================================
-
-**TODO**
-
-  - ouvert, fermé, voisinage, compact (?), adhérence, intérieur, frontière
-
-  - point isolé, d'accumulation, ensemble dense, etc.
-
-**TODO.** Partir de la notion de limite, définir l'adhérence, et le reste
-à partir de ça, puis "découvrir" les définitions "directes"/séquentielles.
 
 ### Définitions séquentielles {.definition}
 
@@ -597,12 +612,12 @@ Toute suite de points convergente dans un espace métrique est de Cauchy.
 
 ### Démonstration {.proof}
 Soit $X$ un espace métrique et $x_k$ une suite convergente, 
-de limite $x_{\infty}$. Soit $\varepsilon > 0$; il existe un rang
+de limite $\ell$. Soit $\varepsilon > 0$; il existe un rang
 $m$ au-delà duquel on a 
-$d(x_k, x_{\infty}) \leq \varepsilon / 2.$
+$d(x_k, \ell) \leq \varepsilon / 2.$
 Par conséquent, si $n \geq m$ et $p\geq m$, 
 $$
-d(x_n, x_p) \leq d(x_n, x_{\infty}) + d(x_{\infty}, x_p) \leq \varepsilon.
+d(x_n, x_p) \leq d(x_n, \ell) + d(\ell, x_p) \leq \varepsilon.
 $$
 La suite $x_k$ est donc de Cauchy.
 
@@ -657,12 +672,12 @@ $$
 $$
 Comme $\mathbb{R}$ est complet, chaque suite $x_k^i$ admet donc une limite,
 notée $x^i_{\infty}$. 
-Si l'on note $x_{\infty} = (x_{\infty}^1, \dots, x_{\infty}^n)$,
+Si l'on note $\ell = (\ell^1, \dots, \ell^n)$,
 on déduit de l'égalité
 $$
-\|x_k - x_{\infty}\| = \sqrt{\sum_{i=1}^n (x_k^i - x_{\infty}^i)^2}
+\|x_k - \ell\| = \sqrt{\sum_{i=1}^n (x_k^i - \ell^i)^2}
 $$
-la convergence de $x_k$ vers $x_{\infty}$. 
+la convergence de $x_k$ vers $\ell$. 
 Toute suite de Cauchy de $\R^n$ est donc convergente.
 
 [^ahahah]: bien sûr si l'on a utilisé une technique alternative pour
@@ -747,11 +762,11 @@ x_{n+1} = f(x_n)
 $$
 converge vers le point fixe. 
 Le point crucial est d'établir que cette suite
-admet une limite $x_{\infty}$; en effet, si ce résultat est acquis, 
+admet une limite $\ell$; en effet, si ce résultat est acquis, 
 en passant à la limite sur $n$ dans la relation de récurrence, 
 et exploitant la continuité de l'application $f$, on obtient
 $$
-x_{\infty} = \lim_{n \to +\infty} x_{n+1} = \lim_{n \to +\infty}f(x_n) = f(x_{\infty}).
+\ell = \lim_{n \to +\infty} x_{n+1} = \lim_{n \to +\infty}f(x_n) = f(\ell).
 $$
 A cette fin, nous allons prouver que la suite des $x_n$ est de Cauchy; 
 l'existence d'une limite se déduira alors de la complétude de $E$. 
@@ -797,9 +812,9 @@ si et seulement si il est fermé et borné.
 ### Démonstration {.proof}
 
 Supposons $K$ compact; soit $x_k$ une suite de points de
-$K$ qui converge dans $\R^n$, vers une limite notée $x_{\infty}$. 
+$K$ qui converge dans $\R^n$, vers une limite notée $\ell$. 
 Il existe alors une sous-suite $y_k$ de $x_k$ qui converge dans $K$;
-or comme cette sous-suite a la même limite que $x_k$, $x_{\infty}$ 
+or comme cette sous-suite a la même limite que $x_k$, $\ell$ 
 appartient à $K$. L'ensemble $K$ est donc fermé.
 
 Si $K$ est non-borné, il existe une suite $x_k$ non-bornée de points de $K$.
