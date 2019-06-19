@@ -405,7 +405,7 @@ $x_k$ de points de $X$ convergeant vers $x$, on a
 $\lim_{k \to +\infty} f(x_k) = \ell$.
 On utilisera alors une des deux notations:
 $$
-\ell = \lim_{y \to x} f(x)
+\ell = \lim_{y \to x} f(y)
 \; \mbox{ ou } \;
 f(y) \to \ell \mbox{ quand } y \to x.
 $$
