@@ -135,6 +135,13 @@ espace métrique, c'est-à-dire qu'il existe une fonction distance
 Cela vaut en particulier pour l'espace vectoriel normé lui-même:
 tout espace vectoriel normé "est" un espace métrique.
 
+Réciproquement, les espaces métriques ne sont pas plus généraux que les
+sous-ensembles d'espace vectoriels normés: tout espace métrique peut en
+effet être identifié au moyen d'une isométrie avec un tel sous-ensemble
+(cf. l'exercice "[Plongement de Kuratowski]"). Les espaces métrique
+n'exhibent donc aucune propriété qui ne soit déjà manifeste dans l'étude
+des sous-ensembles d'espaces vectoriel normés.
+
 ### Démonstration {.proof}
 
 Par construction, la fonction $d$ est bien positive. 
@@ -181,12 +188,13 @@ la distance entre points peuvent prendre des valeurs infinies.
 On parle aussi de *métrique* pour désigner une fonction
 distance, ce qui explique la terminologie ci-dessous:
 
-### Isométrie {.definition}
-Une isométrie $f: X \to Y$ est une fonction définie entre deux espaces
+### Morphismes entre espaces métriques {.definition}
+Une application $f: X \to Y$ définie entre deux espaces
 métriques $(X, d_X)$ et $(Y, d_Y)$ telle que:
 $$
 d_Y(f(x), f(y)) = d_X(x, y)
 $$
+est une *isométrie*.
 
 ### {.post}
 Les isométries sont les *morphismes* des espaces métriques: 
@@ -242,11 +250,11 @@ Un sous-ensemble $Y$ d'un espace topologique $X$ est un *sous-espace topologique
 de $X$ lorsqu'il est muni de la relation d'adhérence de $X$, 
 restreinte aux points et sous-ensembles de $Y$.
 
-### Application Continue
+### Morphismes entre espaces topologiques
 
-Une application continue $f: X \to Y$ est une fonction définie entre deux espaces
-topologique telle que lorsque $x$ adhère à $A$ dans $X$, $f(x)$ adhère à $f(A)$
-dans $Y$.
+Une application $f: X \to Y$ définie entre deux espaces topologique 
+telle que lorsque $x$ adhère à $A$ dans $X$, $f(x)$ adhère à $f(A)$ dans $Y$
+est dite *continue*.
 
 ### {.post}
 Les applications sont les *morphismes* des espaces topologiques:
@@ -308,12 +316,26 @@ est une relation d'adhérence sur $X$.
     $$
     et comme $\varepsilon >0$ est arbitraire, $d(x, A)=0$: $x$ adhère à $A$.
 
-### TODO
+### L'espace topologique généralise l'espace métrique
 
-Rq comme quoi espace métrique et sous-ensemble d'un evn sont 
-similaires (métrique n'est "pas plus général"), mais que ça
-n'est pas le cas pour les espaces topo (il existe de espace
-topologiques non métrisables)
+Les espaces métriques "sont" des espaces topologiques 
+(c'est-à-dire héritent automatiquement d'une relation d'adhérence,
+définie à partir de leur distance). 
+Réciproquement, les espaces topologiques qui peuvent être muni d'une distance
+compatible avec leur relation d'adhérence sont dits *métrisables*.
+Toutefois, tous les espaces topologiques ne sont pas métrisables[^Sier];
+la notion d'espace topologique est donc strictement plus générale que la notion
+d'espace métrique.
+
+[^Sier]: Par exemple, l'espace formé de deux points $\{0, 1\}$ 
+où $x$ adhère à $A$ si $x$ appartient à $A$ ou $x=0$ et $A=\{1\}$
+-- c'est-à-dire l'[espace de Sierpiński](https://en.m.wikipedia.org/wiki/Sierpi%C5%84ski_space) --
+est un espace topologique qui n'est pas métrisable. En effet, si $d$ était une
+distance sur cet ensemble, telle que $d(x, A)= 0$ si et seulement si $x$
+adhère à $A$, alors on aurait $d(0, \{1\}) = d(0, 1) = 0$, ce qui contredirait
+l'axiome de séparation pour les distances.
+
+
 
 ### Calcul Topologique
 Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
