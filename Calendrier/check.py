@@ -14,7 +14,10 @@ calendar = Calendar(urlopen(url).read().decode("utf-8"))
 
 assert len(calendar.events) == 60
 
-for i, event in enumerate(calendar.events):
+events = list(calendar.events)
+events.sort()
+
+for i, event in enumerate(events):
     print(f"{i+1:2d}) {event.name}")
     assert event.begin.date() == event.end.date()
     assert event.duration.seconds == 1.5 * 3600
