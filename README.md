@@ -10,13 +10,13 @@ Calcul Différentiel, Intégral et Stochastique
 
   - [Lien au format iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics)
 
-Accès aux Documents
+:book: Accès aux Documents
 --------------------------------------------------------------------------------
 
   - <https://github.com/boisgera/CDIS/tree/gh-pages/output>
 
 
-Développeurs & Contributeurs
+:pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
 
 ### Préliminaire
