@@ -72,11 +72,12 @@ def transform(doc):
 
     anonymify(doc)
     divify(doc)
-    #print_sections(doc)
+    # print_sections(doc)
     proofify(doc)
     transform_image_format(doc)
-
+    solve_toc_nesting(doc)
     return doc
+
 
 def anonymify(doc):
     anonymous_headers = []
@@ -90,6 +91,7 @@ def anonymify(doc):
                 anonymous_headers.append((holder, i))
     for (holder, i) in reversed(anonymous_headers):
         del holder[i]
+
 
 # Examination of sections in proofs shows that this algo is borked.
 # Try lvl by level.
@@ -139,6 +141,7 @@ def divify(doc, level=None):
             # print(div)
             holder[slice(start, end)] = [div]
 
+
 def print_sections(doc):
     for elt, path in pandoc.iter(doc, path=True):
         if isinstance(elt, Header):
@@ -146,8 +149,11 @@ def print_sections(doc):
             level, attr, inlines = header[:]
             minidoc = Pandoc(Meta({}), [Plain(inlines)])
             title = pandoc.write(minidoc)
-            depth = len([holder for holder, index in path if isinstance(holder, Div)])
-            print(str(depth) + "> " + depth *  4 * " " + title, end="")
+            depth = len(
+                [holder for holder, index in path if isinstance(holder, Div)]
+            )
+            print(str(depth) + "> " + depth * 4 * " " + title, end="")
+
 
 def proofify(doc):
     sections = []
@@ -166,7 +172,7 @@ def proofify(doc):
     for section in sections:
         # Not perfect, but a marker anyway.
         attributes, blocks = section
-        blacksquare = Math(InlineMath(), r"\;\; \blacksquare") 
+        blacksquare = Math(InlineMath(), r"\;\; \blacksquare")
         justified_blacksquare = RawInline("latex", r"\hfill$\blacksquare$")
         justified = True
         if blocks == [] or not isinstance(blocks[-1], (Plain, Para)):
@@ -179,6 +185,7 @@ def proofify(doc):
         else:
             inlines.append(blacksquare)
 
+
 def transform_image_format(doc):
     for elt in pandoc.iter(doc):
         if isinstance(elt, Image):
@@ -189,6 +196,13 @@ def transform_image_format(doc):
                 new_target = url + ".pdf"
                 image[:] = attr, inlines, (new_target, title)
 
+def solve_toc_nesting(doc): # fuck you LaTeX!
+    "Add the 'bookmark' package to solve TOC issues"
+    meta, blocks = doc[:]
+    metamap = meta[0]
+    metamap["header-includes"] = MetaList(
+        [MetaBlocks([RawBlock(Format("tex"), "\\usepackage{bookmark}")])]
+    )
 
 # ------------------------------------------------------------------------------
 
@@ -211,6 +225,7 @@ if len(_docs) != 1:
     raise RuntimeError(error)
 doc = _docs[0]
 doc_md = doc + ".md"
+doc_tex = str(output / (doc + ".tex"))
 doc_pdf = str(output / (doc + ".pdf"))
 doc_odt = str(output / (doc + ".odt"))
 doc_html = str(output / (doc + ".html"))
@@ -224,6 +239,9 @@ if images.exists():
         for tex_file in l.glob("*.tex"):
             pdflatex(tex_file)
             pdf_file = tex_file.with_suffix(".pdf")
+            # path.rename (which makes more sense) won't work with Windows
+            # if the target file already exists while path.replace works
+            # for all platforms (AFAICT).
             pdf_file.replace(tex_file.with_suffix(tex_file.suffix + ".pdf"))
         for python_file in l.glob("*.py"):
             python(python_file)
@@ -240,6 +258,7 @@ options += ["-V", "lang=fr"]
 options += ["--table-of-contents"]
 if bibliography.exists():
     options += ["--bibliography=bibliography.json", "-M", "link-citations=true"]
+TEX_options = options.copy()
 PDF_options = options.copy()
 ODT_options = options.copy()
 HTML_options = options.copy()
@@ -248,6 +267,7 @@ HTML_options += ["--mathjax"]
 # PDF Output
 doc = pandoc.read(file=doc_md)
 doc = transform(doc)
+pandoc.write(doc, file=doc_tex, options=TEX_options)
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
 pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
 pandoc.write(doc, format="odt", file=doc_odt, options=ODT_options)
