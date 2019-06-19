@@ -8,7 +8,7 @@ Calendrier 2019
 
   - [En ligne](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
 
-  - [Télécharger au format iCalendar (.ics)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics)
+  - Lien au format iCalendar (.ICS): <https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics>
 
 Accès aux Documents
 --------------------------------------------------------------------------------
