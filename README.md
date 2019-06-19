@@ -8,7 +8,7 @@ Calcul Différentiel, Intégral et Stochastique
 
 :construction: **En travaux** :construction:
 
-  - [En ligne](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
+  - [Voir en ligne](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
 
   - [Lien au format iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics)
 
