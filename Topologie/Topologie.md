@@ -359,12 +359,17 @@ de Hausdorff. Lol.)
 Limite
 ================================================================================
 
-### Limite d'une suite {.definition}
+### Limite d'une suite de points {.definition}
 Une suite $x_k$ de valeurs d'un espace métrique $X$ a comme *limite* 
-un point $\ell$ de $X$ si $x_{k}$ est arbitrairement proche 
+un point $\ell$ de $X$ -- ou *converge vers $\ell$* -- 
+si $x_{k}$ est arbitrairement proche 
 à partir d'un certain rang, c'est-à-dire si 
 pour tout $\varepsilon > 0$, il existe un entier $n$ 
-tel que pour tout $k \geq n$, $d(x_k, \ell) \leq \varepsilon$.
+tel que pour tout $k \geq n$, $d(x_k, \ell) \leq \varepsilon$,
+ou encore si
+$$
+\lim_{k \to +\infty} d(x_k, \ell) = 0.
+$$
 On utilisera alors une des deux notations:
 $$
 \ell = \lim_{k\to +\infty} x_k
@@ -413,7 +418,8 @@ $$
 ### Unicité de la limite d'une fonction en un point {.proposition}
 Si la fonction $f$ admet une limite en $x$, celle-ci est unique.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Une conséquence directe de [l'unicité de la limite des suites][Unicité de la limite d'une suite].
 
 ### Continuité et limite
 
@@ -423,7 +429,24 @@ $$
 \lim_{y \to x} f(y) = f(x).
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+
+Supposons que $f$ soit telle que $f(y) \to f(x)$ quand $y \to x$.
+Soit $A$ un sous-ensemble de $X$ tel que $x$ adhère à $A$.
+Dans un espace métrique, cela signifie que $d(x, A) = 0$, ou encore
+qu'il existe une suite de points $x_k$ de $A$ telle que 
+$d(x, x_k) \to 0$ quand $x_k \to x$. 
+Par conséquent, $f(x_k) \to f(x)$ quand $k \to +\infty$, 
+soit $d(f(x_k), f(x)) \to 0$ quand $k \to +\infty$. 
+Comme l'ensemble $\{f(x_k) \, | \, k \in \N\}$ est un sous-ensemble
+de $f(A)$, nous en déduisons que $d(f(x), A) = 0$: 
+le point $f(x)$ est adhérent à $f(A)$.
+La fonction $f$ est donc continue en $x$.
+
+Réciproquement, supposons la fonction $f$ est continue en $x$.
+Soit $x_k$ une suite de points de $X$ qui converge vers $x$.
+
+**TODO**
 
 
 Bestiaire
