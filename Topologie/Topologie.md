@@ -429,7 +429,7 @@ $$
 \lim_{y \to x} f(y) = f(x).
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
 
 Supposons que $f$ soit telle que $f(y) \to f(x)$ quand $y \to x$.
 Soit $A$ un sous-ensemble de $X$ tel que $x$ adhère à $A$.
@@ -443,14 +443,14 @@ de $f(A)$, nous en déduisons que $d(f(x), A) = 0$:
 le point $f(x)$ est adhérent à $f(A)$.
 La fonction $f$ est donc continue en $x$.
 
-Réciproquement, supposons la fonction $f$ continue en $x$.
-Soit $x_k$ une suite de points de $X$ qui converge vers $x$,
-c'est-à-dire telle que $d(x_k, x) \to 0$ quand $k \to +\infty$.
-A tout rang $m$, la distance entre $x$ et l'ensemble 
-$A_m = \{x_k \, | \, k \geq m\}$ est nulle, donc $x$ adhère $A_m$.
-On en déduit que $f(x)$ adhère $f(A_m) =  \{f(x_k) \, | \, k \geq m\}$.
-
-**TODO**
+Réciproquement, si $f(y) \not \to f(x)$ quand $y \to x$, 
+il existe une suite $x_k$ tendant vers $x$ telle que $f(x_k)$ ne tende
+pas vers $f(x)$ et donc un $\varepsilon > 0$ et une suite $y_k$ extraite
+de $x_k$ telle que $y_k \to x$ et pour tout $k \in \N$, 
+$d(f(x_k), f(x))  > \varepsilon$. Par conséquent, 
+$x$ adhère à $\{x_k \, | \, k \in  \N\}$, mais 
+$f(x)$ n'adhère pas à $f(\{x_k \, | \, k \in  \N\}) = 
+\{f(x_k) \, | \, k \in  \N\}$; la fonction $f$ n'est donc pas continue en $x$.
 
 
 Bestiaire
