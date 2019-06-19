@@ -16,7 +16,7 @@ Accès aux Documents
   - <https://github.com/boisgera/CDIS/tree/gh-pages/output>
 
 
-Développeurs / Contributeurs
+Développeurs & Contributeurs
 --------------------------------------------------------------------------------
 
 ### Préliminaire
