@@ -3,7 +3,7 @@
 Calcul Différentiel, Intégral et Stochastique
 ================================================================================
 
-Calendrier
+Calendrier 2019
 --------------------------------------------------------------------------------
 
   - [En ligne](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
