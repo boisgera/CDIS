@@ -72,6 +72,7 @@ def transform(doc):
 
     anonymify(doc)
     divify(doc)
+    #print_sections(doc)
     proofify(doc)
     transform_image_format(doc)
 
@@ -92,6 +93,11 @@ def anonymify(doc):
 
 # Examination of sections in proofs shows that this algo is borked.
 # Try lvl by level.
+# Note: print_section actually shows that the divification actually
+# works as intended, but the PDF toc generation messes the stuff
+# when lvl 3 sections are nested directly into lvl 1.
+# HTML also fucks up the stuff (to be checked), but this is not
+# the fault of this function.
 def divify(doc, level=None):
     # Encapsulate section content -- separated by headers -- in divs.
 
@@ -133,6 +139,15 @@ def divify(doc, level=None):
             # print(div)
             holder[slice(start, end)] = [div]
 
+def print_sections(doc):
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Header):
+            header = elt
+            level, attr, inlines = header[:]
+            minidoc = Pandoc(Meta({}), [Plain(inlines)])
+            title = pandoc.write(minidoc)
+            depth = len([holder for holder, index in path if isinstance(holder, Div)])
+            print(str(depth) + "> " + depth *  4 * " " + title, end="")
 
 def proofify(doc):
     sections = []
