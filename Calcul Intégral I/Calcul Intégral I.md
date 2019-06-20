@@ -22,14 +22,14 @@ TODO
 Somme et Intégrale de Riemann
 --------------------------------------------------------------------------------
 
-### Intervalle
+### Intervalle {.definition}
 
 On appelle *intervalle* tout sous-ensemble $I$ de $\R$ 
 tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$,
 et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$) 
 alors $z$ appartient à $I$.
 
-### Type d'intervalles {.remark}
+### Type d'intervalles {.remark .post}
 Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
 ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
 Les intervalles de la forme $\left]-\infty, \infty\right[$ 
@@ -43,8 +43,8 @@ $\left]-\infty, b\right]$, $\left[a,\infty\right[$
 et $\left[a,b \right]$ sont fermés;
 les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
 
-### Longueur d'un intervalle
-La longueur $\ell(I)$ d'un intervalle $I$ 
+### Longueur d'un intervalle {.definition}
+La *longueur* $\ell(I)$ d'un intervalle $I$ 
 de $\R$ est le nombre réel étendu positif (appartenant à $[0, +\infty]$)
 défini pour tout intervalle borné
 $I$ de la forme
@@ -61,28 +61,28 @@ $$
 
 ### Subdivision pointée {.definition}
 Une *subdivision* de l'intervalle fermé $I = [a,b]$
-est une famille finie
+est une collection finie
 $$
 \{I_i \; | \; \; 0 \leq i \leq n-1 \}
 $$
 constituée d'intervalles fermés de $I$, *sans chevauchement*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
-plus un point -- et *recouvrant $I$* -- l'union de l'ensemble des $I_i$
-est égal à $I$. 
-Une *subdivision pointée* de l'intervalle fermé $I = [a, b]$ 
-de $\R$ une famille finie 
+plus un point -- 
+et *recouvrant $I$* 
+-- l'union de tous les intervalles $I_i$ est égal à $I$. 
+Une *subdivision pointée* $\mathcal{D}$ de l'intervalle fermé $I = [a, b]$ 
+de $\R$ est une collection finie 
 $$
-\{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
+\mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
 où les $I_i$ forment une subdivision de $I$ et 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 
 ### Somme de Riemman {.definition}
-
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
-S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
+S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I).
 $$
 
 ### Intégrale de Riemann {.definition}
@@ -148,13 +148,14 @@ comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
 à la définition de l'intégrale; d'autres méthodes de quadratures pourront
 être utilisées avec le même résultat asymptotique.
 
-### Remarque {.remark .anonymous}
+### {.remark .ante}
 
 L'intégrale de Riemann possède des limitations qui en font un outil mathématique
-difficile à exploiter. En particulier la classe des fonctions qui peuvent
-être intégrées est trop petite pour certaines applications car les fonctions 
-considérées ne peuvent être "ni trop grandes", "ni trop irrégulières" pour
-être intégrables. Les deux théorèmes qui suivent précisent cette situation.
+difficile à exploiter. 
+En particulier la classe des fonctions qui peuvent être intégrées est trop 
+restrictives pour certaines applications car les fonctions "trop grandes" ou 
+"trop irrégulières" ne peuvent être intégrables. 
+Les deux théorèmes qui suivent précisent cette situation.
 
 ### Seules les fonctions bornées sont intégrables {.lemma}
 Si $f:[a, b] \to \R$ est intégrable au sens de Riemann, alors $f$ est bornée. 
@@ -162,14 +163,16 @@ Si $f:[a, b] \to \R$ est intégrable au sens de Riemann, alors $f$ est bornée.
 ### Démonstration {.proof}
 
 Soit $\delta > 0$ tel que pour toute subdivision pointée $\mathcal{D}$ de 
-$[a, b]$ vérifiant $\ell(J) < \delta$ pour tout$(t, J) \in \mathcal{D}$, 
+$[a, b]$ vérifiant $\ell(J) < \delta$ pour tout $(t, J) \in \mathcal{D}$, 
 on ait
-$|S(f, \mathcal{D}) - \int_a^b f(t) \, dt| \leq 1$.
+$$\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq 1.$$
 Soit $\mathcal{D} = \{(t_i, [a_i, b_i])\}_{i=0}^{m-1}$ une telle subdivision;
-on supposera de plus que $\ell(J_i)>0$ pour tout $i$, ce qu'il est toujours
-possible de garantir.
-Pour tout $i \in \{0, \dots, m-1\}$, si l'on définit
-$\mathcal{D}'$ à partir de $\mathcal{D}$ en remplaçant 
+il est toujours possible de supposer en en outre que $\mathcal{D}$ ne contient 
+aucun intervalle de longueur nulle (enlever de tels intervalles à $\mathcal{D}$
+génère une nouvelle subdivision dont la somme de Riemann est identique).
+
+Soit $J_i = [a_i, b_i]$ un intervalle de $\mathcal{D}$; 
+si l'on définit $\mathcal{D}'$ à partir de $\mathcal{D}$ en remplaçant 
 $t_i$ par un $t$ de $J_i$ quelconque, on obtient
 $$
 \begin{split}
@@ -186,12 +189,12 @@ et par conséquent,
 $$
 |f(t)| \leq |f(t_i)| + \frac{2}{\ell(J_i)}.
 $$
-Les intervalles $J_i$ recouvrant $[a, b]$, on a pour tout
-$t\in [a, b]$
+Les intervalles $J_i$ recouvrant $[a, b]$, on a pour tout $t\in [a, b]$
 $$
 |f(t)| \leq \max_i \left\{|f(t_i)| + \frac{2}{\ell(J_i)} 
-\, \left| \vphantom{\frac{a}{b}} \right. \, i \in \{0, \dots, m-1\}\right\}.
+\, \left| \vphantom{\frac{a}{b}} \right. \, i \in \{0, \dots, m-1\}\right\};
 $$
+la fonction $f$ est donc bornée.
 
 ### Ensemble négligeable  {.definition}
 Un ensemble $A$ de $\R$ est *négligeable* si pour tout
@@ -201,16 +204,17 @@ $$
 \sum_i \ell(I_i) \leq  \varepsilon.
 $$
 
-### Remarque {.remark .anonymous}
+### {.remark .post}
 Nous voyons que le procédé qui définit la notion d'ensemble négligeable
 consiste à surestimer la taille de l'ensemble en lui substituant une
 collection d'intervalles dont l'union est au moins aussi grande,
 puis à surestimer la longueur de l'ensemble résultant en calculant la
 somme des longueurs des intervalles, sans tenir compte des éventuels
-recouvrements. Si à l'issue de cette double surestimation
-la longueur évaluée est encore aussi petite que l'on veut, on
-peut légitimement considérer que l'ensemble de départ est de 
-longueur nulle[^me] et que c'est donc ce que signifie "négligeable". 
+chevauchements. 
+Si à l'issue de cette double surestimation la longueur évaluée est encore 
+aussi petite que l'on veut, on peut légitimement considérer que l'ensemble 
+de départ est de longueur nulle[^me] 
+et que c'est donc ce que signifie "négligeable". 
 Nous verrons ultérieurement que cette intuition sera vérifiée.
 
 [^me]: plus exactement de mesure *extérieure* de longueur nulle.
@@ -244,30 +248,26 @@ x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
 \varepsilon.
 $$
 
-
 ### Critère de Lebesgue pour l'intégrabilité au sens de Riemann
 La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
 si et seulement si $f$ est bornée et continue presque partout.
 
 ### Démonstration {.proof}
-
 [Le lemme ci-dessus][Seules les fonctions bornées sont intégrables] montre
 que le caractère borné est nécessaire pour l'intégrabilité au sens de
 Riemann. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
-
-
 
 
 Intégrale de Riemann Généralisée
 --------------------------------------------------------------------------------
 
 ### Jauge {.definition}
-Une jauge $\gamma$ sur un intervalle $I$ de $\R$ est une 
-fonction qui associe à tout $t \in I$ un 
-intervalle ouvert $\gamma(t)$ de $\R$ contenant $t$. 
+Une *jauge* $\gamma$ sur un intervalle $I$ de $\R$ est une fonction 
+qui associe à tout $t \in I$ un intervalle ouvert $\gamma(t)$ de $\R$ 
+contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
-Une subdivision $\mathcal{D}$ de l'intervalle compact $I$ 
+Une subdivision pointée $\mathcal{D}$ de l'intervalle compact $I$ 
 est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout 
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
@@ -282,11 +282,16 @@ $$
 D = \{(x,x) \; | \; x \in [a, b]\}.
 $$
 
-**TODO:** example, et expliquer pourquoi cette représentation est pratique
+### TODO
+ example, et expliquer pourquoi cette représentation est pratique
 pour visualiser si une subdivision pointée est subordonnée à une jauge.
 
 Par exemple, la jauge $\gamma$ définie sur $[0,1]$ par 
 $\gamma(t) = \left] t-0.25, t+0.25 \right[$ est représentée comme suit:
+
+### TODO
+Check valeur ($0.2$ ou $0.25$ ?) et "langage graphique": l'ensemble est ouvert,
+sont bord en noir ne devrait pas apparaître ici.
 
 \newcommand{\lb}{[}
 \newcommand{\rb}{]}
@@ -296,11 +301,12 @@ $\gamma(t) = \left] t-0.25, t+0.25 \right[$ est représentée comme suit:
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
 $t \in \lb 0, 1 \rb .$](images/gauge-plot.pdf)
 
-**TODO:** graphique d'une subdivision pointée, avec séparateurs en barres
+### TODO 
+graphique d'une subdivision pointée, avec séparateurs en barres
 verticales et $t_i$ en croix.
 
 ### Lemme de Cousin {.theorem}
-Pour toute fonction de jauge $\gamma$ sur l'intervalle fermé $I$, 
+Pour toute fonction de jauge $\gamma$ sur l'intervalle compact $I$, 
 il existe une subdivision $\mathcal{D}$ qui soit subordonnée à $\gamma$.
 
 ### Preuve {.proof}
