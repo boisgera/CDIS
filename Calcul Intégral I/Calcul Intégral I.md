@@ -306,8 +306,9 @@ graphique d'une subdivision pointée, avec séparateurs en barres
 verticales et $t_i$ en croix.
 
 ### Lemme de Cousin {.theorem}
-Pour toute fonction de jauge $\gamma$ sur l'intervalle compact $I$, 
-il existe une subdivision $\mathcal{D}$ qui soit subordonnée à $\gamma$.
+Pour toute jauge $\gamma$ sur l'intervalle compact $I$, 
+il existe une subdivision pointée $\mathcal{D}$ 
+qui soit subordonnée à $\gamma$.
 
 ### Preuve {.proof}
 S'il existe un $t \in I^0 = I = [a, b]$ tel que $I \subset \gamma(t)$, 
