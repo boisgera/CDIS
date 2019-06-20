@@ -1,10 +1,10 @@
 % Calcul Intégral I
 
 <!-- LaTeX Macros -->
-\newcommand{\N}{\mathbb{N}}
+\newcommand{\N}{\mathbb{N}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\R}
+\newcommand{\Q}{\mathbb{Q}
+\newcommand{\R}{\mathbb{R}
 \renewcommand{\C}{\mathbb{C}}
 
 TODO
@@ -219,8 +219,8 @@ si l'ensemble des points $x$ où elle est fausse est un ensemble
 négligeable.
 
 ### Les ensembles dénombrables sont négligeables {.example}
-Par exemple, les ensembles finis sont négligeables, $\mathbb{Q}$ est
-négligeable, etc. En effet, si $A = \{x_n \, | \, n \in \mathbb{N}\}$,
+Par exemple, les ensembles finis sont négligeables, $\Q$ est
+négligeable, etc. En effet, si $A = \{x_n \, | \, n \in \N\}$,
 alors pour tout $\varepsilon > 0$, la collection d'intervalle ouverts
 $$
 \left\{
@@ -228,7 +228,7 @@ $$
 x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
 \right[
 \, \left| \vphantom{\frac{a}{b}} \, \right.
-i \in \mathbb{N}
+i \in \N
 \right\}
 $$
 recouvre $A$ et par ailleurs
@@ -318,10 +318,10 @@ $t \in J_i$, $J_i \not \subset \gamma(t)$.
 
 Montrons que ce second scénario est impossible.
 Comme les $J_i$ sont emboités, la collection
-$\{J_i \; | \; i \in \mathbb{N}\}$ possède la
+$\{J_i \; | \; i \in \N\}$ possède la
 propriété de l'intersection finie. 
 L'intervalle $I$ étant compact, cela implique qu'il existe un $t \in I$
-tel que pour tout $i \in \mathbb{N}$, $t$ soit adhérent à $J_i$.
+tel que pour tout $i \in \N$, $t$ soit adhérent à $J_i$.
 Les $J_i$ étant fermés, $t$ appartient à chaque $J_i$.
 La longueur de $J_i$ étant divisée par deux à chaque incrément de $i$,
 $\ell(J_i) = \ell(J_0) / 2^i$ et comme $t_i \in J_i$, 
