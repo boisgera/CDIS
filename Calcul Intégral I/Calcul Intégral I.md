@@ -310,9 +310,9 @@ Pour toute jauge $\gamma$ sur l'intervalle compact $I$,
 il existe une subdivision pointée $\mathcal{D}$ 
 qui soit subordonnée à $\gamma$.
 
-### Preuve {.proof}
+### Démonstration {.proof}
 S'il existe un $t \in I^0 = I = [a, b]$ tel que $I \subset \gamma(t)$, 
-la subdivision $\mathcal{D} = \{(t, I)\}$ convient.
+la subdivision pointée $\mathcal{D} = \{(t, I)\}$ convient.
 Sinon, on peut considérer les intervalles $I_0^1 = [a, (a+b)/2]$ et
 $I_1^1 = [(a+b)/2, b]$ et examiner pour chacun de ces intervalles
 s'il existe un $t_i \in I_i^1$ tel que $I_i^1 \subset \gamma(t_i)$,
@@ -333,12 +333,13 @@ L'intervalle $I$ étant compact, cela implique qu'il existe un $t \in I$
 tel que pour tout $i \in \N$, $t$ soit adhérent à $J_i$.
 Les $J_i$ étant fermés, $t$ appartient à chaque $J_i$.
 La longueur de $J_i$ étant divisée par deux à chaque incrément de $i$,
-$\ell(J_i) = \ell(J_0) / 2^i$ et comme $t_i \in J_i$, 
+$\ell(J_i) = \ell(J_0) / 2^i$; 
+comme $t_i \in J_i$, 
 $J_i \subset [t_i - \ell(J_0) / 2^i, t_i + \ell(J_0) / 2^i]$.
 Par conséquent, il existe un rang $i$ à partir duquel
 $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
-#### Note
+#### TODO -- Note
 
 Si l'argument topologique peut être survolé, la procédure de dichotomie est
 intéressante et peut être utilisé sur des exemples concrets, ça vaudrait le
@@ -350,9 +351,10 @@ processus termine en un nombre fini d'étapes" plus clairement.
 ### Intégrale de Henstock-Kurzweil sur un intervalle compact {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
-que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$
-sur $[a, b]$ telle que pour toute subdivision pointée 
-$\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, on ait
+que pour tout $\varepsilon > 0$, 
+il existe une jauge $\gamma$ sur $[a, b]$ telle que, 
+pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, 
+on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique; il est appelé
 *intégrale de $f$ sur $[a, b]$* et noté
@@ -362,9 +364,10 @@ $$
 \int_{[a, b]} f(t) \, dt
 $$
 
-### Notation
+### Notation {.remark}
 
-La première notation peut être étendue au cas où $b < a$; 
+Comme dans le cas de l'intégrale de Riemann,
+la première notation peut être étendue au cas où $b < a$; 
 on définit alors l'intégrale de $a$ à $b$ en se ramenant 
 au cas précédent, par
 $$
@@ -377,24 +380,26 @@ $$
 \mbox{HK-}\int_{[a, b]} f(t) \, dt.
 $$
 
-
-### Intégrale de Riemann {.theorem}
+### Intégrale de Riemann et de Henstock-Kurzweil {.theorem}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Riemann
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
-### Def Riemann + Preuve
+### TODO -- Démonstration {.proof}
 
-**TODO**. Passer par l'intermédiaires des jauges numériques ? Bof. Directement
+Passer par l'intermédiaires des jauges numériques ? Bof. Directement
 avec de $\delta > 0$ uniforme à l'intervalle ouvert.
 
 ### Théorème fondamental du calcul {.theorem}
-Si la fonction $f:[a, b] \to \R$ est dérivable sur $[a, b]$,
-la dérivée function dérivée $f'$ est intégrable sur $[a, b]$ et 
-  $$
-  f(b) - f(a) = \int_a^b f'(t) \, dt.
-  $$
+Si la fonction $f:[a, b] \to \R$ est dérivable 
+sa dérivée $f'$ est intégrable sur $[a, b]$ et 
+$$
+f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
 
-### Théorème fondamental du calcul (alternatif) (Corollaire ?) {.theorem}
+### {.ante}
+Le théorème fondamental du calcul peut être reformulé de la façon suivante:
+
+### Intégrale de Riemann et de Henstock-Kurzweil {.corollary}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
@@ -402,7 +407,7 @@ est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident
 L'autre option est de splitter un cran plus avant la somme qui majore l'erreur
 entre somme de Riemann et intégral ... à voir. Arf, ça ne marche pas, tss tss...
 
-### Preuve {.proof}
+### Démonstration du [théorème fondamental du calcul][Théorème fondamental du calcul] {.proof}
 Nous souhaitons établir que $f':[a, b] \to \R$ est intégrable, 
 d'intégrale égale à $f(b) - f(a)$.
 Pour cela, nous devons montrer que pour tout $\varepsilon > 0$ il existe 
@@ -453,7 +458,7 @@ $$
 |f'(t)(d - c) - (f(d) - f(c))| \leq \varepsilon' (d - c)
 $$
 Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[;$
-nous avons ainsi bien défini une fonction de jauge.
+nous avons ainsi bien défini une fonction de jauge sur $[a, b]$.
 Si $\mathcal{D}$ est subordonnée à $\gamma$, 
 pour tout $i \in \{0, \dots, m-1\},$ 
 $$t_i \in [x_i,x_{i+1}] \subset \left]t_i - \delta(t_i), t_i + \delta(t_i)\right[,$$
@@ -476,29 +481,28 @@ $$
 Il suffit de choisir un nombre réel positif $\varepsilon'$ tel que
 $\varepsilon' (b-a) \leq \varepsilon$ pour obtenir l'inégalité recherchée.
 
-### Exemple: $x \mapsto e^x$.
-La fonction $f: x \mapsto e^x$ est intégrable au sens de Newton
-sur tout intervalle compact $[a, b]$ de $\R$
-puisqu'elle admet $x \mapsto e^x$ comme primitive. 
+### Intégration de $x \mapsto e^x$ {.example}
+La fonction $f: x \in [0, 1] \mapsto e^x$ est intégrable au sens de Newton
+puisqu'elle admet $x \mapsto e^x$ comme primitive sur cet intervalle. 
 On a ainsi
 $$
-\int_a^b e^x \,dx 
+\int_0^1 e^x \,dx 
 = 
-\left[ e^x \right]_a^b
-= e^b - e^a. 
+\left[ e^x \right]_0^1
+= e - 1. 
 $$
 Par le théorème fondamental du calcul, 
 $f$ est intégrable au sens de Henstock-Kurzweil et l'intégrale associée 
 coïncide avec l'intégrale de Newton.
-Pour toute intervalle $[a, b]$ et toute précision $\varepsilon > 0$, 
-il existe donc une jauge $\gamma$ 
+Pour toute précision $\varepsilon > 0$, 
+il existe donc une jauge $\gamma$ sur $[0, 1]$
 telle que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$,
 l'écart entre $S(f, \mathcal{D})$ et la valeur de l'intégrale
-soit au plus $\varepsilon(b-a)$.
+soit au plus $\varepsilon (1 - 0) = \varepsilon$.
 
 Construisons une telle jauge en nous inspirant de la preuve du théorème
 fondamental du calcul. Dans cette preuve, nous avons montré que la précision
-$\varepsilon (b-a)$ était atteinte
+$\varepsilon$ était atteinte
 si nous choisissions 
 $\gamma(t) = \left]t-\delta(t), t+\delta(t)\right[$
 où $\delta(t) > 0$ est tel que si $|h| \leq \delta(t)$, alors
@@ -507,7 +511,7 @@ $$
 $$
 
 Explicitons cette contrainte dans le cas de la fonction 
-$x \in \mapsto e^x$. 
+$x \in [0, 1] \mapsto e^x$. 
 Cette fonction étant deux fois différentiable sur
 $[0, 1]$, la formule de Taylor avec reste intégral nous fournit
 $$
@@ -515,54 +519,62 @@ $$
 = 
 \left| \int_t^{t+h}  f''(x) (t + h - x) \, dx \right|.
 $$
-Dans ce cas précis, puisque $f''(x) = e^x$, lorsque $h\geq0$ nous avons
+Dans ce cas précis, puisque $f''(x) = e^x$, lorsque $h \geq 0$ nous avons
 $$
 \left| \int_t^{t+h}  f''(x) (t + h - x) \, dx \right|
 \leq 
-e^{x+h} \int_t^{t+h} (t+h-x)\, dx
-= e^{x+h} h^2 / 2
+e^{t+h} \int_t^{t+h} (t+h-x)\, dx
+= e^{t+h} h^2 / 2.
 $$
 Lorsque $h < 0$, on peut montrer que
 $$
 \left| \int_t^{t+h}  f''(x) (t + h - x) \, dx \right|
 \leq
-e^x h^2 / 2.
+e^t h^2 / 2.
 $$
-Dans tous les cas,pour garantir que $|f(t+h) - f(t) - f'(t)h| \leq \varepsilon |h|,$
+Dans tous les cas, pour garantir que $|f(t+h) - f(t) - f'(t)h| \leq \varepsilon |h|,$
 sous l'hypothèse que $|h| \leq \delta(t),$
 il est donc suffisant de nous assurer que 
-$e^{x+\delta(t)} \delta(t) /2 \leq \varepsilon,$
+$$
+e^{t+\delta(t)} \delta(t) /2 \leq \varepsilon,
+$$
 soit 
-$\delta(t) e^{\delta(t)}  \leq 2 e^{-x}\varepsilon.$
+$\delta(t) e^{\delta(t)}  \leq 2 e^{-t}\varepsilon.$
 La fonction $y \in \R \to y e^y \in \left]0, +\infty\right[$ est 
 croissante et bijective; son inverse est par définition 
 la fonction $W$ de Lambert. Le plus grand $\delta(t)$ satisfaisant 
 l'inégalité précédente est donc donné par
 $$
-\delta(t) = W \left( 2e^{-x}\varepsilon\right)
+\delta(t) = W \left(2e^{-t}\varepsilon\right)
 $$
-En conclusion: pour tout $[a, b]$ et tout $\varepsilon > 0$, 
-la jauge $\gamma$ sur $[a, b]$ définie par
+En conclusion: pour tout $[0, 1]$ et tout $\varepsilon > 0$, 
+la jauge $\gamma$ définie sur $[0, 1]$ par
 $$
 \gamma(t) = 
 \left]
-t - W \left( 2e^{-x}\varepsilon\right),
-t + W \left( 2e^{-x}\varepsilon\right)
+t - W \left( 2e^{-t}\varepsilon\right),
+t + W \left( 2e^{-t}\varepsilon\right)
 \right[
 $$
 est telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
 subordonnée à $\gamma$
 $$
-\left|S(x\mapsto e^x, \mathcal{D}) - \int_a^b e^x \, dx \right| \leq \varepsilon(b-a).
+\left|
+S(x \in [0,1] \mapsto e^x, \mathcal{D}) 
+- 
+\int_0^1 e^x \, dx 
+\right| 
+\leq \varepsilon.
 $$
 
-**TODO:** représentation graphique de la jauge pour un (des ?) $\varepsilon$ 
+
+### TODO
+
+représentation graphique de la jauge pour un (des ?) $\varepsilon$ 
 bien choisis.
 
 
---------------------------------------------------------------------------------
-
-### Exemple: $1/\sqrt{x}$.
+### TODO -- Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
 
 Considérons la fonction $f:[0,1] \to \R$ définie par
 $$
