@@ -26,24 +26,26 @@ Somme et Intégrale de Riemann
 
 On appelle *intervalle* tout sous-ensemble $I$ de $\R$ 
 tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$,
-et si $z$ est un point intermédiaire, tel que $x \leq z \leq y$, 
+et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$) 
 alors $z$ appartient à $I$.
 
 ### Type d'intervalles {.remark}
 Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
 ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
 Les intervalles de la forme $\left]-\infty, \infty\right[$ 
-(c'est-à-dire $\R$),
+(c'est-à-dire $\R$)
 $\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
-et $\left]a,b\right[$ sont ouverts;
-Les intervalles de la forme $\left]-\infty, \infty\right[$,
+et $\left]a,b\right[$ 
+-- où $a$ et $b$ désignent des nombres réels -- 
+sont ouverts;
+les intervalles de la forme $\left]-\infty, \infty\right[$,
 $\left]-\infty, b\right]$, $\left[a,\infty\right[$ 
-et $\left[a,b \right]$ sont ouverts;
+et $\left[a,b \right]$ sont fermés;
 les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
 
 ### Longueur d'un intervalle
 La longueur $\ell(I)$ d'un intervalle $I$ 
-de $\R$ est le nombre réel étendu positif
+de $\R$ est le nombre réel étendu positif (appartenant à $[0, +\infty]$)
 défini pour tout intervalle borné
 $I$ de la forme
 $\left[a, b\right]$, $\left]a, b\right[$, $\left[a, b\right[$ ou 
