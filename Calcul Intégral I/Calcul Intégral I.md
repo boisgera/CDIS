@@ -1,7 +1,7 @@
 % Calcul Intégral I
 
 <!-- LaTeX Macros -->
-\newcommand{\N}{\mathbb{N}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}
 \newcommand{\R}{\mathbb{R}
