@@ -1,7 +1,11 @@
 % Calcul Intégral I
-% Sébastien Boisgérault
 
-
+<!-- LaTeX Macros -->
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\R}
+\renewcommand{\C}{\mathbb{C}}
 
 TODO
 --------------------------------------------------------------------------------
@@ -20,7 +24,7 @@ Somme et Intégrale de Riemann
 
 ### Intervalle
 
-On appelle *intervalle* tout sous-ensemble $I$ de $\mathbb{R}$ 
+On appelle *intervalle* tout sous-ensemble $I$ de $\R$ 
 tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$,
 et si $z$ est un point intermédiaire, tel que $x \leq z \leq y$, 
 alors $z$ appartient à $I$.
@@ -29,7 +33,7 @@ alors $z$ appartient à $I$.
 Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
 ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
 Les intervalles de la forme $\left]-\infty, \infty\right[$ 
-(c'est-à-dire $\mathbb{R}$),
+(c'est-à-dire $\R$),
 $\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
 et $\left]a,b\right[$ sont ouverts;
 Les intervalles de la forme $\left]-\infty, \infty\right[$,
@@ -39,7 +43,7 @@ les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b
 
 ### Longueur d'un intervalle
 La longueur $\ell(I)$ d'un intervalle $I$ 
-de $\mathbb{R}$ est le nombre réel étendu positif
+de $\R$ est le nombre réel étendu positif
 défini pour tout intervalle borné
 $I$ de la forme
 $\left[a, b\right]$, $\left]a, b\right[$, $\left[a, b\right[$ ou 
@@ -64,7 +68,7 @@ constituée d'intervalles fermés de $I$, *sans chevauchement*
 plus un point -- et *recouvrant $I$* -- l'union de l'ensemble des $I_i$
 est égal à $I$. 
 Une *subdivision pointée* de l'intervalle fermé $I = [a, b]$ 
-de $\mathbb{R}$ une famille finie 
+de $\R$ une famille finie 
 $$
 \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
@@ -73,14 +77,14 @@ $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 
 ### Somme de Riemman {.definition}
 
-La somme de Riemann associée à la fonction $f:[a, b] \to \mathbb{R}$ 
+La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
 S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
 $$
 
 ### Intégrale de Riemann {.definition}
-Une fonction $f:[a, b] \to \mathbb{R}$ est dite *intégrable 
+Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 (au sens de Riemann)* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe un réel $\delta>0$ tel 
 que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
@@ -100,7 +104,7 @@ $$
 Cette définition permet de garantir l'exactitude asymptotique de méthodes de 
 quadrature -- c'est-à-dire d'algorithmes de calcul numérique d'intégrales -- 
 comme la méthode des rectangles. 
-En effet, si $f:[a, b] \to \mathbb{R}$ est une fonction intégrable au sens de 
+En effet, si $f:[a, b] \to \R$ est une fonction intégrable au sens de 
 Riemann, et $\mathcal{D}_m$ une subdivision pointée de $[a, b]$ de la forme
 $$
 \mathcal{D}_m=
@@ -151,7 +155,7 @@ considérées ne peuvent être "ni trop grandes", "ni trop irrégulières" pour
 être intégrables. Les deux théorèmes qui suivent précisent cette situation.
 
 ### Seules les fonctions bornées sont intégrables {.lemma}
-Si $f:[a, b] \to \mathbb{R}$ est intégrable au sens de Riemann, alors $f$ est bornée. 
+Si $f:[a, b] \to \R$ est intégrable au sens de Riemann, alors $f$ est bornée. 
 
 ### Démonstration {.proof}
 
@@ -188,9 +192,9 @@ $$
 $$
 
 ### Ensemble négligeable  {.definition}
-Un ensemble $A$ de $\mathbb{R}$ est *négligeable* si pour tout
+Un ensemble $A$ de $\R$ est *négligeable* si pour tout
 $\varepsilon > 0$, il existe un recouvrement de $A$ par une famille
-dénombrable d'intervalles $I_i$ de $\mathbb{R}$ tels que
+dénombrable d'intervalles $I_i$ de $\R$ tels que
 $$
 \sum_i \ell(I_i) \leq  \varepsilon.
 $$
@@ -240,7 +244,7 @@ $$
 
 
 ### Critère de Lebesgue pour l'intégrabilité au sens de Riemann
-La fonction $f:[a, b] \to \mathbb{R}$ est intégrable au sens de Riemann 
+La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
 si et seulement si $f$ est bornée et continue presque partout.
 
 ### Démonstration {.proof}
@@ -256,9 +260,9 @@ Intégrale de Riemann Généralisée
 --------------------------------------------------------------------------------
 
 ### Jauge {.definition}
-Une jauge $\gamma$ sur un intervalle $I$ de $\mathbb{R}$ est une 
+Une jauge $\gamma$ sur un intervalle $I$ de $\R$ est une 
 fonction qui associe à tout $t \in I$ un 
-intervalle ouvert $\gamma(t)$ de $\mathbb{R}$ contenant $t$. 
+intervalle ouvert $\gamma(t)$ de $\R$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision $\mathcal{D}$ de l'intervalle compact $I$ 
@@ -335,7 +339,7 @@ Au passage, il faut s'arranger pour "lemmatiser" le résultats "... et le
 processus termine en un nombre fini d'étapes" plus clairement.
 
 ### Intégrale de Henstock-Kurzweil sur un intervalle compact {.definition}
-Une fonction $f:[a, b] \to \mathbb{R}$ est dite *intégrable 
+Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$
 sur $[a, b]$ telle que pour toute subdivision pointée 
@@ -366,7 +370,7 @@ $$
 
 
 ### Intégrale de Riemann {.theorem}
-Toute fonction $f:[a,b] \mapsto \mathbb{R}$ intégrable au sens de Riemann
+Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Riemann
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
 ### Def Riemann + Preuve
@@ -375,14 +379,14 @@ est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident
 avec de $\delta > 0$ uniforme à l'intervalle ouvert.
 
 ### Théorème fondamental du calcul {.theorem}
-Si la fonction $f:[a, b] \to \mathbb{R}$ est dérivable sur $[a, b]$,
+Si la fonction $f:[a, b] \to \R$ est dérivable sur $[a, b]$,
 la dérivée function dérivée $f'$ est intégrable sur $[a, b]$ et 
   $$
   f(b) - f(a) = \int_a^b f'(t) \, dt.
   $$
 
 ### Théorème fondamental du calcul (alternatif) (Corollaire ?) {.theorem}
-Toute fonction $f:[a,b] \mapsto \mathbb{R}$ intégrable au sens de Newton
+Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
 **QUESTION** exfiltrer le "Straddle Lemma"? Ca sera probablement plus clair.
@@ -390,7 +394,7 @@ L'autre option est de splitter un cran plus avant la somme qui majore l'erreur
 entre somme de Riemann et intégral ... à voir. Arf, ça ne marche pas, tss tss...
 
 ### Preuve {.proof}
-Nous souhaitons établir que $f':[a, b] \to \mathbb{R}$ est intégrable, 
+Nous souhaitons établir que $f':[a, b] \to \R$ est intégrable, 
 d'intégrale égale à $f(b) - f(a)$.
 Pour cela, nous devons montrer que pour tout $\varepsilon > 0$ il existe 
 une fonction de jauge $\gamma$ sur $[a, b]$ telle que, 
@@ -465,7 +469,7 @@ $\varepsilon' (b-a) \leq \varepsilon$ pour obtenir l'inégalité recherchée.
 
 ### Exemple: $x \mapsto e^x$.
 La fonction $f: x \mapsto e^x$ est intégrable au sens de Newton
-sur tout intervalle compact $[a, b]$ de $\mathbb{R}$
+sur tout intervalle compact $[a, b]$ de $\R$
 puisqu'elle admet $x \mapsto e^x$ comme primitive. 
 On a ainsi
 $$
@@ -521,7 +525,7 @@ il est donc suffisant de nous assurer que
 $e^{x+\delta(t)} \delta(t) /2 \leq \varepsilon,$
 soit 
 $\delta(t) e^{\delta(t)}  \leq 2 e^{-x}\varepsilon.$
-La fonction $y \in \mathbb{R} \to y e^y \in \left]0, +\infty\right[$ est 
+La fonction $y \in \R \to y e^y \in \left]0, +\infty\right[$ est 
 croissante et bijective; son inverse est par définition 
 la fonction $W$ de Lambert. Le plus grand $\delta(t)$ satisfaisant 
 l'inégalité précédente est donc donné par
@@ -551,7 +555,7 @@ bien choisis.
 
 ### Exemple: $1/\sqrt{x}$.
 
-Considérons la fonction $f:[0,1] \to \mathbb{R}$ définie par
+Considérons la fonction $f:[0,1] \to \R$ définie par
 $$
 f(x) = 
 \left|
@@ -670,8 +674,8 @@ $$
 ### Démonstration {.proof}
 
 Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
-$[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \mathbb{R}$ et
-$\gamma_2:[b, c] \to \mathbb{R}$ telles que pour toutes les subdivisions
+$[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \R$ et
+$\gamma_2:[b, c] \to \R$ telles que pour toutes les subdivisions
 pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ de $[a, b]$ et $[c, d]$ 
 respectivement subordonnées à $\gamma_1$ et $\gamma_2$,
 $$
@@ -679,7 +683,7 @@ $$
 \, \mbox{ et } \, 
 \left| S(f, \mathcal{D}_2) - \int_{[b, c]} f(t) \, dt\right| \leq \varepsilon/2.
 $$
-Définissons la fonction $\gamma: [a, b] \to \mathbb{R}$ par:
+Définissons la fonction $\gamma: [a, b] \to \R$ par:
 $$
 \gamma(x) = 
 \left| 
@@ -692,7 +696,7 @@ $$
 $$
 Par construction, cette fonction est une jauge sur $[a, c]$ 
 (pour tout $x \in [a, c]$, $\gamma(x)$ est un ouvert non vide de 
-$\mathbb{R}$ contenant $x$). 
+$\R$ contenant $x$). 
 Supposons que $\mathcal{D} =\{(t_i, I_i)\}_i$ soit une subdivision pointée de 
 $[a, c]$ subordonnée à $\gamma$. 
 Admettons temporairement que chaque intervalle $I_i$ appartienne
@@ -736,7 +740,7 @@ Présenter ce qui vient comme une réciproque de l'additivité.
 Contextualiser critère de Cauchy (valeur de l'intégrale inconnue)
 
 ### Critère d'intégrabilité de Cauchy {#CIC .theorem}
-Soit $f: I \to \mathbb{R}$. La function $f$ est intégrable si et seulement
+Soit $f: I \to \R$. La function $f$ est intégrable si et seulement
 si pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur $I$ telle
 que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
 subordonnées à $\gamma$, on ait
@@ -795,8 +799,8 @@ ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
 par le [critère d'intégrabilité de Cauchy](#CIC).
 
 ### Fonctions égales presque partout
-Une fonction $f:[a, b] \to \mathbb{R}$ égale presque partout à une 
-fonction $g:[a, b] \to \mathbb{R}$ intégrable est elle-même intégrable
+Une fonction $f:[a, b] \to \R$ égale presque partout à une 
+fonction $g:[a, b] \to \R$ intégrable est elle-même intégrable
 et 
 $$
 \int_{[a, b]} f(t) \, dt = \int_{[a, b]} g(t) \, dt.
@@ -805,8 +809,8 @@ $$
 ### Démonstration {.proof}
 
 Par linéarité de l'intégrale, il suffit d'établir que si 
-$f:[a, b] \to \mathbb{R}$ est nulle presque partout (c'est-à-dire égale
-presque partout à la fonction $g:[a, b] \to \mathbb{R}$ identiquement
+$f:[a, b] \to \R$ est nulle presque partout (c'est-à-dire égale
+presque partout à la fonction $g:[a, b] \to \R$ identiquement
 nulle), alors elle est intégrable d'intégrale nulle.
 
 Supposons dans un premier temps que $f$ soit bornée.
@@ -906,7 +910,7 @@ impropre (théorème de Hake).
 ### Remarque {.anonymous}
 
 La difficulté d'intégrer une fonction sur un intervalle non borné tel
-que $\mathbb{R}$ n'est pas lié au concept de subdivision pointée, 
+que $\R$ n'est pas lié au concept de subdivision pointée, 
 qui peut être généralisé pour comporter des intervalles non bornés,
 mais au calcul de la somme de Riemann associée. 
 En effet, toute subdivision pointée d'un intervalle non-borné comporte
@@ -916,31 +920,31 @@ correspondante comporte alors un ou deux termes de la forme $f(t) \times \infty$
 elle donc potentiellement infinie, ou même indéfinie ...
 
 Pour éviter cette difficulté technique, nous allons définir l'intégrale 
-sur $\mathbb{R}$ à partir de subdivisions d'intervalles compacts, en exigant 
+sur $\R$ à partir de subdivisions d'intervalles compacts, en exigant 
 que celles-ci, en plus d'être suffisamment fines comme dans le cas des
 intervalles bornés, soient basées sur un intervalle suffisamment grand.
 
 
 ### Intégrale sur un intervalle non borné {.definition}
-Soit $I$ un intervalle fermé non borné de $\mathbb{R}$ de bornes $a$ et $b$[^inb].
-Une fonction $f:I \to \mathbb{R}$ est dite *intégrable 
+Soit $I$ un intervalle fermé non borné de $\R$ de bornes $a$ et $b$[^inb].
+Une fonction $f:I \to \R$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
-que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de $\mathbb{R}$ 
+que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de $\R$ 
 et un intervalle compact $K$ de $I$
 tels que pour tout intervalle compact $[a, b]$ tel que $K \subset [a, b]$
 et pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique; il est appelé
-*intégrale de $f$ sur $\mathbb{R}$* et noté
+*intégrale de $f$ sur $\R$* et noté
 $$
 \int_{a}^{b} f(t) \, dt
 \, \mbox{ ou } \,
 \int_I f(t) \, dt.
 $$
 
-[^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\mathbb{R}$,
-$I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \mathbb{R}$
+[^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\R$,
+$I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \R$
 
 ### TODO: 
 
@@ -956,7 +960,7 @@ Remarquer/Prouver que la définition ci-dessus "marche aussi" pour un
 intervalle borné.
 
 ### Intégrale sur un intervalle fermé {.definition}
-Une fonction $f:I \to \mathbb{R}$ définie sur un intervalle
+Une fonction $f:I \to \R$ définie sur un intervalle
 fermé quelconque $I$ (borné ou non borné) est 
 *intégrable (au sens de Henstock-Kurzweil)* si son prolongement
 $g$ par zero en dehors de l'intervalle $I$ 
@@ -968,10 +972,10 @@ f(x) & \mbox{si } \, x \in  I, \\
 \end{array}
 \right.
 $$
-est intégrable sur $\mathbb{R}$.
+est intégrable sur $\R$.
 On définit alors
 $$
-\int_I f(t) \, dt := \int_{\mathbb{R}} g(t) \, dt.
+\int_I f(t) \, dt := \int_{\R} g(t) \, dt.
 $$
 
 ### Démonstration (cohérence des définitions) {.proof}
@@ -979,12 +983,12 @@ $$
 Il convient de vérifier que 
 [la définition d'intégrale sur un intervalle fermé $I$][Intégrale sur un intervalle fermé] 
 est cohérente avec 
-[la définition d'intégrale sur $\mathbb{R}$][Intégrale sur $\mathbb{R}$]
+[la définition d'intégrale sur $\R$][Intégrale sur $\R$]
 (ce qui est direct) et aussi avec 
 [la définition d'intégrale sur un intervalle compact][Intégrale sur un intervalle compact]
 que nous avons utilisé jusqu'à présent.
 
-Dans ce second cas, si la fonction $f:[c, d] \to \mathbb{R}$ est
+Dans ce second cas, si la fonction $f:[c, d] \to \R$ est
 [intégrable au sens de la définition originelle][Intégrale sur un intervalle compact],
 et si l'on prend $r>0$ tel que $-r \leq c$ et 
 $d \leq r$ et que l'on considère un intervalle
@@ -1010,7 +1014,7 @@ $$
 \varepsilon
 $$
 
-Réciproquement, si la fonction $f:[c, d] \to \mathbb{R}$ est
+Réciproquement, si la fonction $f:[c, d] \to \R$ est
 [intégrable au sens de la définition générale][Intégrale sur un intervalle fermé],
 pour tout $r>0$ et $[a, b]$ tel que $a \leq -r$ et $r \leq b$, le prolongement
 de $f$ par zéro est intégrable sur $[a, b]$. Il suffit de prendre $r$ tel
@@ -1036,13 +1040,13 @@ Subdivisions Partielles
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
-de $\mathbb{R}$ est une famille finie 
+de $\R$ est une famille finie 
 $$
 \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
 où les $I_i$ sont des intervalles fermé de $[a, b]$ sans chevauchement
 et $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
-La somme de Riemann associée à la fonction $f:[a, b] \to \mathbb{R}$ 
+La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée partielle $\mathcal{D}$ de $[a, b]$ est 
 la grandeur
 $$
@@ -1062,7 +1066,7 @@ que les $I_i$ recouvrent $[a, b]$. Mettre en ante ?)
 
 
 ### Lemme de Henstock  {.theorem}
-Soit $[a, b]$ un intervalle fermé de $\mathbb{R}$, 
+Soit $[a, b]$ un intervalle fermé de $\R$, 
 $f$ une fonction intégrable sur $[a, b]$ et $\gamma$ une jauge sur $[a, b]$ 
 telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$, 
 on ait
@@ -1124,7 +1128,7 @@ Regarder exercices dans le Bartle ("A Modern Theory of Integration")
 Intervalle {#e-int}
 --------------------------------------------------------------------------------
 
-Montrer qu'un sous-ensemble $I$ de $\mathbb{R}$ est un intervalle si et
+Montrer qu'un sous-ensemble $I$ de $\R$ est un intervalle si et
 seulement si il *est connexe par arcs*, c'est-à-dire si et seulement
 si pour tout couple de points $x$ et $y$ de $I$ on peut trouver un
 chemin de $I$ joignant $x$ à $y$, c'est-à-dire une fonction continue
@@ -1198,8 +1202,8 @@ $\to$ [Solution](#s-cantor-1)
 
 Montrer néanmoins que $A$ n'est pas dénombrable, 
 mais a la "puissance du continu" 
-(qu'il peut être mis en bijection avec $\mathbb{R}$ 
-ou avec un intervalle de longueur non vide de $\mathbb{R}$, 
+(qu'il peut être mis en bijection avec $\R$ 
+ou avec un intervalle de longueur non vide de $\R$, 
 ce qui revient au même).
 
 $\to$ [Solution](#s-cantor-2)
@@ -1232,7 +1236,7 @@ et $y$, tout chemin de $I$ qui joint $x$ et $y$, continu et à valeurs réelles,
 vérifie le théorème des valeurs intermédiaires: pour toute valeur intermédiaire
 $z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
 Comme $\phi$ est à valeurs dans $I$, $z \in I$; l'ensemble $I$ est donc un 
-intervalle de $\mathbb{R}$.
+intervalle de $\R$.
 
 TODO -- Construction de Jauges {#s-jauge}
 --------------------------------------------------------------------------------
