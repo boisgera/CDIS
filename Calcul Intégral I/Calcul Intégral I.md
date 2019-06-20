@@ -1121,7 +1121,7 @@ Exercices
 
 Regarder exercices dans le Bartle ("A Modern Theory of Integration")
 
-Intervalle
+Intervalle {#e-int}
 --------------------------------------------------------------------------------
 
 Montrer qu'un sous-ensemble $I$ de $\mathbb{R}$ est un intervalle si et
@@ -1130,27 +1130,9 @@ si pour tout couple de points $x$ et $y$ de $I$ on peut trouver un
 chemin de $I$ joignant $x$ à $y$, c'est-à-dire une fonction continue
 $\phi:[0, 1] \to I$, telle que $\phi(0) = x$ et $\phi(1) = y$.
 
-### Réponse
+$\to$ [Solution](#s-int)
 
-Montrons tout d'abord que la condition est nécessaire. 
-Supposons que $x$ et $y$ appartiennent à $I$ et que $x$ 
-soit inférieur ou égal à $y$. Alors pour tout $t \in [0,1]$, 
-$\phi(t) = (1-t) x + t y$ est un point intermédiaire entre $x$ et $y$,
-et par conséquent, appartient à $I$. La fonction $\phi$ ainsi définie 
-est clairement continue et vérifie $\phi(0) = x$ et $\phi(1) = y$; 
-c'est donc un chemin de $I$ qui joint $x$ à $y$. Par conséquent,
-$I$ est connexe par arcs.
-
-Réciproquement, si $I$ est connexe par arcs et contient les points $x$
-et $y$, tout chemin de $I$ qui joint $x$ et $y$, continu et à valeurs réelles,
-vérifie le théorème des valeurs intermédiaires: pour toute valeur intermédiaire
-$z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
-Comme $\phi$ est à valeurs dans $I$, $z \in I$; l'ensemble $I$ est donc un 
-intervalle de $\mathbb{R}$.
-
-
-
-Construction de Jauges
+TODO -- Construction de Jauges {#e-jauge}
 --------------------------------------------------------------------------------
 
 **TODO:** faire construire "à la main" une jauge par dichotomie (exemple avec
@@ -1158,30 +1140,27 @@ jauge s'affinant pour "forcer" un tag et/ou variante avec jauge "faciles",
 telles qu'on puisse trouver une jauge uniforme qui soit plus fine ? Et csq,
 à savoir capacité à trouver une subdivision uniforme associée)
 
-Subdivision pointées
+$\to$ [Solution](#s-jauge)
+
+Subdivision pointées {#e-sp}
 --------------------------------------------------------------------------------
 
 Demander de construire à partir d'une subdivision une autre subdivision 
 "aussi fine", de même somme de Riemann, mais avec les points tjs à gauche
 ou à droite de l'intervalle.
 
-L'Intégrale de Riemann est absolue
+$\to$ [Solution](#s-sp)
+
+L'intégrale de Riemann est absolue {#e-abs}
 --------------------------------------------------------------------------------
 
 Montrer que l'intégrale de Riemman est absolue: 
 si une fonction $f$ est intégrable au sens de Riemann, 
 sa valeur absolue $|f|$ l'est également.
 
-### Réponse
+$\to$ [Solution](#s-abs)
 
-Nous exploitons le [critère de Lebesgue pour l'intégrabilité au sens de Riemann][Critère de Lebesgue pour l'intégrabilité au sens de Riemann]: si $f$ est intégrable au sens de Riemann,
-elle est bornée -- et donc $f$ également -- et continue presque partout
--- et donc $|f|$ également ($|f|$ est continue en tout point où
-$f$ est continue comme composée de fonctions continues en un point). 
-Par conséquent, $|f|$ est intégrable au sens de Riemann.
-
-
-Un ensemble de Cantor
+TODO -- Un ensemble de Cantor {#e-cantor}
 --------------------------------------------------------------------------------
 
 Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté de façon
@@ -1209,51 +1188,107 @@ Qui suppose de modéliser la séquence des $a_n$, supposé équiprobables,
 indépendants, etc.? OK, why not mais est-on en état de relier ça à la
 question 1. à ce stade ? Mmmmmmm ....
 
- 1. Montrer que l'ensemble $A$ est négligeable.
+### Question 1
 
- 2. Montrer néanmoins que $A$ n'est pas dénombrable, mais 
-    a la "puissance du continu" (qu'il peut être mis en bijection
-    avec $\mathbb{R}$ ou avec un intervalle de longueur non vide de 
-    $\mathbb{R}$, ce qui revient au même).
+Montrer que l'ensemble $A$ est négligeable.
 
-### Réponses
+$\to$ [Solution](#s-cantor-1)
 
- 1. L'ensemble $A$ peut être recouvert par la collection ne contenant que 
-    l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, ou par la collection d'intervalles
-    $$
-    \mathcal{A}_1 = \{\left[0, 1/10\right[, \left[2/10, 3/10\right[, \dots, \left[8/10, 9/10\right[\}
-    $$
-    qui contient exactement les nombres $x$ de $\left[0,1\right[$ dont
-    le premier chiffre du développement décimal propre est pair.
-    On a  clairement 
-    $$
-    \sum_{I \in \mathcal{A}_1} \ell(I) = \ell(\left[0,1\right[) = 1
-    \, \mbox{ et } \,
-    \sum_{I \in \mathcal{A}_1} \ell(I) = 5 \times \frac{1}{10} = \frac{1}{2}.
-    $$
-    On peut poursuivre le procédé en considérant la collection 
-    $\mathcal{A}_n$ des $5^n$ intervalles dont l'union forme l'ensemble
-    des nombres $x$ dont
-    les $n$ premiers chiffres du développement décimal propre sont pairs,
-    ensemble qui inclus $A$.
-    On peut de plus se convaincre par récurrence que
-    $$
-    \sum_{I \in \mathcal{A}_n} \ell(I) = 5^n \times \frac{1}{10^n} = \frac{1}{2^n}.
-    $$
-    Comme $1/2^n$ tend vers $0$ quand $n$ tend vers $+\infty$, 
-    nous avons établi que $A$ est négligeable.
+### Question 2
 
-  2. L'opération qui à $x=0.a_1a_2\dots \in A$ associe
-     $y=0.b_1b_2\dots$ où $b_i = a_i/2$ est une bijection
-     de $A$ sur $\left[0, 0.444\dots\right[ = \left[0, 4/9\right[$,
-     ce qui montre que $A$ à la puissance du continu (et donc n'est pas
-     dénombrable).
+Montrer néanmoins que $A$ n'est pas dénombrable, 
+mais a la "puissance du continu" 
+(qu'il peut être mis en bijection avec $\mathbb{R}$ 
+ou avec un intervalle de longueur non vide de $\mathbb{R}$, 
+ce qui revient au même).
 
-Caractérisation des dérivées
+$\to$ [Solution](#s-cantor-2)
+
+TODO -- Caractérisation des dérivées {#e-der}
 --------------------------------------------------------------------------------
 
 Identifier par les jauges si une fonction est une dérivée (cf papier).
 
+$\to$ [Solution](#s-der)
+
+
+Solution aux exercices
+================================================================================
+
+Intervalle {#s-int}
+--------------------------------------------------------------------------------
+
+Montrons tout d'abord que la condition est nécessaire. 
+Supposons que $x$ et $y$ appartiennent à $I$ et que $x$ 
+soit inférieur ou égal à $y$. Alors pour tout $t \in [0,1]$, 
+$\phi(t) = (1-t) x + t y$ est un point intermédiaire entre $x$ et $y$,
+et par conséquent, appartient à $I$. La fonction $\phi$ ainsi définie 
+est clairement continue et vérifie $\phi(0) = x$ et $\phi(1) = y$; 
+c'est donc un chemin de $I$ qui joint $x$ à $y$. Par conséquent,
+$I$ est connexe par arcs.
+
+Réciproquement, si $I$ est connexe par arcs et contient les points $x$
+et $y$, tout chemin de $I$ qui joint $x$ et $y$, continu et à valeurs réelles,
+vérifie le théorème des valeurs intermédiaires: pour toute valeur intermédiaire
+$z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
+Comme $\phi$ est à valeurs dans $I$, $z \in I$; l'ensemble $I$ est donc un 
+intervalle de $\mathbb{R}$.
+
+TODO -- Construction de Jauges {#s-jauge}
+--------------------------------------------------------------------------------
+
+TODO -- Subdivision pointées {#s-sp}
+--------------------------------------------------------------------------------
+
+L'intégrale de Riemann est absolue {#s-abs}
+--------------------------------------------------------------------------------
+
+Nous exploitons le [critère de Lebesgue pour l'intégrabilité au sens de Riemann][Critère de Lebesgue pour l'intégrabilité au sens de Riemann]: si $f$ est intégrable au sens de Riemann,
+elle est bornée -- et donc $f$ également -- et continue presque partout
+-- et donc $|f|$ également ($|f|$ est continue en tout point où
+$f$ est continue comme composée de fonctions continues en un point). 
+Par conséquent, $|f|$ est intégrable au sens de Riemann.
+
+TODO -- Un ensemble de Cantor {#s-cantor}
+--------------------------------------------------------------------------------
+
+### Question 1 {#s-cantor-1}
+
+L'ensemble $A$ peut être recouvert par la collection ne contenant que 
+l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, ou par la collection d'intervalles
+$$
+\mathcal{A}_1 = \{\left[0, 1/10\right[, \left[2/10, 3/10\right[, \dots, \left[8/10, 9/10\right[\}
+$$
+qui contient exactement les nombres $x$ de $\left[0,1\right[$ dont
+le premier chiffre du développement décimal propre est pair.
+On a  clairement 
+$$
+\sum_{I \in \mathcal{A}_1} \ell(I) = \ell(\left[0,1\right[) = 1
+\, \mbox{ et } \,
+\sum_{I \in \mathcal{A}_1} \ell(I) = 5 \times \frac{1}{10} = \frac{1}{2}.
+$$
+On peut poursuivre le procédé en considérant la collection 
+$\mathcal{A}_n$ des $5^n$ intervalles dont l'union forme l'ensemble
+des nombres $x$ dont
+les $n$ premiers chiffres du développement décimal propre sont pairs,
+ensemble qui inclus $A$.
+On peut de plus se convaincre par récurrence que
+$$
+\sum_{I \in \mathcal{A}_n} \ell(I) = 5^n \times \frac{1}{10^n} = \frac{1}{2^n}.
+$$
+Comme $1/2^n$ tend vers $0$ quand $n$ tend vers $+\infty$, 
+nous avons établi que $A$ est négligeable.
+
+### Question 2 {#s-cantor-2}
+
+L'opération qui à $x=0.a_1a_2\dots \in A$ associe
+$y=0.b_1b_2\dots$ où $b_i = a_i/2$ est une bijection
+de $A$ sur $\left[0, 0.444\dots\right[ = \left[0, 4/9\right[$,
+ce qui montre que $A$ à la puissance du continu (et donc n'est pas
+dénombrable).
+
+TODO -- Caractérisation des dérivées {#s-der}
+--------------------------------------------------------------------------------
 
 Références
 ================================================================================
