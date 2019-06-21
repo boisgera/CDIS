@@ -757,6 +757,10 @@ $$
 $$
 ce qui est le résultat recherché.
 
+### TODO
+Mentionner résultat plus général, avec juste $f$ intégrable (sous hyp plus
+restrictives pour $g$ ?). Trouver ref ?
+
 ### Changement de variables {.theorem}
 Si la fonction $f:[c, d] \to \R$ admet une primitive,
 que la fonction $g:[a, b] \to \R$ est dérivable 
@@ -869,6 +873,21 @@ $$
 $$
 
 ### TODO -- Démonstration {.proof}
+Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$, 
+il existe une jauge $\gamma$ sur $[a, b]$ telle que pour tout couple de 
+subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma$,
+on ait
+$$
+|S(f, \mathcal{D}) - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}
+\; \mbox{ et } \;
+|S(f, \mathcal{D}') - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}.
+$$
+Par l'inégalité triangulaire, on a alors comme souhaités
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
+$$
+
+Réciproquement, **TODO**
 
 ### TODO:
 
