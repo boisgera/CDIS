@@ -629,7 +629,7 @@ démontrer, l'expression ci-dessus suggère que son intégrale pourrait être
   $$
 On va confirmer cette intuition dans la suite.
 
-### La singularité
+#### La singularité
 
 Soit $\varepsilon > 0$. On cherche à construire une jauge $\gamma$ sur $[0,1]$
 telle que toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$,

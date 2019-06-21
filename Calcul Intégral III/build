@@ -72,12 +72,12 @@ def transform(doc):
 
     anonymify(doc)
     divify(doc)
+    handle_level_4_sections(doc)
     # print_sections(doc)
     proofify(doc)
     transform_image_format(doc)
     solve_toc_nesting(doc)
     return doc
-
 
 def anonymify(doc):
     anonymous_headers = []
@@ -114,7 +114,7 @@ def divify(doc, level=None):
     # out of the section.
 
     if level is None:
-        for level in reversed([1, 2, 3]):
+        for level in reversed([1, 2, 3, 4]):
             divify(doc, level=level)
     else:
         sections = []
@@ -154,6 +154,29 @@ def print_sections(doc):
             )
             print(str(depth) + "> " + depth * 4 * " " + title, end="")
 
+def handle_level_4_sections(doc):
+    # TODO: find them, transform the header into an emphasized span,
+    # insert it into the subsequent content if it makes sense.
+
+    found = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Header):
+            header = elt
+            level, attr, inlines = header[:]
+            if level == 4:
+                span = Span(attr, [Strong(inlines), Str("."), Space()])
+                holder, i = path[-1]
+                assert isinstance(holder, list)
+                found.append((holder, span))
+
+    for holder, span in found:
+        assert isinstance(holder[0], Header)
+        del holder[0]
+        if holder == [] or not isinstance(holder[0], (Plain, Para)):
+            holder.insert(0, Para([]))
+        block = holder[0]
+        inlines = block[0]
+        inlines.insert(0, span)
 
 def proofify(doc):
     sections = []
@@ -161,12 +184,12 @@ def proofify(doc):
         if isinstance(elt, Div) and "section" in elt[0][1]:
             section = elt
             attributes, blocks = section
-            header = blocks[0]
-            assert isinstance(header, Header)
-            level, attributes, inlines = header[:]
-            identifier, classes, key_value_pairs = attributes
-            if "proof" in classes:
-                sections.append(section)
+            if len(blocks) >= 1 and isinstance(blocks[0], Header):
+                header = blocks[0]
+                level, attributes, inlines = header[:]
+                identifier, classes, key_value_pairs = attributes
+                if "proof" in classes:
+                    sections.append(section)
 
     # TODO: non-justified part not working
     for section in sections:
