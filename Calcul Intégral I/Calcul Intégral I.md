@@ -882,7 +882,7 @@ $$
 \; \mbox{ et } \;
 |S(f, \mathcal{D}') - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}.
 $$
-Par l'inégalité triangulaire, on a alors comme souhaités
+Par l'inégalité triangulaire, on a alors comme souhaité
 $$
 |S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
 $$
