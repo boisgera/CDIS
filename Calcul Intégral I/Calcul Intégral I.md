@@ -481,79 +481,90 @@ $$
 Il suffit de choisir un nombre réel positif $\varepsilon'$ tel que
 $\varepsilon' (b-a) \leq \varepsilon$ pour obtenir l'inégalité recherchée.
 
+### TODO
+
+Expliquer que le choix de $\delta(t)$ du FTC "lisse" l'erreur faite sur
+chaque terme de la somme de Riemann (proportionnellement à la largeur
+du pas).
+
 ### Intégration de $x \mapsto e^x$ {.example}
-La fonction $f: x \in [0, 1] \mapsto e^x$ est intégrable au sens de Newton
-puisqu'elle admet $x \mapsto e^x$ comme primitive sur cet intervalle. 
-On a ainsi
-$$
-\int_0^1 e^x \,dx 
-= 
-\left[ e^x \right]_0^1
-= e - 1. 
-$$
+La fonction $f: x \mapsto e^x$ est intégrable au sens de Newton sur 
+tout intervalle compact $[a, b]$ 
+puisqu'elle admet $x \mapsto e^x$ comme primitive.
 Par le théorème fondamental du calcul, 
 $f$ est intégrable au sens de Henstock-Kurzweil et l'intégrale associée 
-coïncide avec l'intégrale de Newton.
-Pour toute précision $\varepsilon > 0$, 
-il existe donc une jauge $\gamma$ sur $[0, 1]$
+coïncide avec l'intégrale de Newton. On a donc
+$$
+\int_a^b e^x \,dx 
+= 
+\left[ e^x \right]_a^b
+= e^b - e^a. 
+$$
+
+L'intégrabilité au sens de Henstock-Kurzweil signifie que
+pour toute précision $\varepsilon > 0$, 
+il existe une jauge $\gamma$ sur $[a, b]$
 telle que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$,
 l'écart entre $S(f, \mathcal{D})$ et la valeur de l'intégrale
-soit au plus $\varepsilon (1 - 0) = \varepsilon$.
+soit au plus $\varepsilon$.
 
 Construisons une telle jauge en nous inspirant de la preuve du théorème
 fondamental du calcul. Dans cette preuve, nous avons montré que la précision
 $\varepsilon$ était atteinte
 si nous choisissions 
 $\gamma(t) = \left]t-\delta(t), t+\delta(t)\right[$
-où $\delta(t) > 0$ est tel que si $|h| \leq \delta(t)$, alors
+où $\delta(t) > 0$ est tel que si $0 < |h| \leq \delta(t)$, alors
 $$
-|f(t+h) - f(t) - f'(t)h| \leq \varepsilon |h|.
+\frac{|f(t+h) - f(t) - f'(t)h|}{|h|} \leq \frac{\varepsilon}{b-a}.
 $$
 
 Explicitons cette contrainte dans le cas de la fonction 
-$x \in [0, 1] \mapsto e^x$. 
-Cette fonction étant deux fois différentiable sur
-$[0, 1]$, la formule de Taylor avec reste intégral nous fournit
+$x \mapsto e^x$. 
+Cette fonction étant deux fois continûment différentiable, 
+la formule de Taylor avec reste intégral nous fournit
 $$
-|f(t+h) - f(t) - f'(t)h|
-= 
-\left| \int_t^{t+h}  f''(x) (t + h - x) \, dx \right|.
+\begin{split}
+\frac{|f(t+h) - f(t) - f'(t)h|}{|h|}
+&= 
+\frac{1}{|h|}\left| \int_t^{t+h}  f''(x) (t + h - x) \, dx \right| \\
+&\leq 
+\max \left\{ |f''(x)| \, | \, x \in [t-|h|, t+|h|]\right\} \times \frac{|h|}{2}.
+\end{split}
 $$
+Le second membre de cette inégalité étant une fonction croissante de $|h|$, 
+il nous suffit donc pour assurer l'inégalité souhaitée de choisir 
+$\delta(t) > 0$ tel que
+$$
+\max \left\{ |f''(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\} \times \frac{\delta(t)}{2}
+\leq \frac{\varepsilon}{b-a}.
+$$
+
 Dans ce cas précis, puisque $f''(x) = e^x$, lorsque $h \geq 0$ nous avons
 $$
-\left| \int_t^{t+h}  f''(x) (t + h - x) \, dx \right|
-\leq 
-e^{t+h} \int_t^{t+h} (t+h-x)\, dx
-= e^{t+h} h^2 / 2.
+\max \left\{ |f''(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\}
+= e^{t + \delta(t)}.
 $$
-Lorsque $h < 0$, on peut montrer que
+L'inégalité à satisfaire prend donc la forme
 $$
-\left| \int_t^{t+h}  f''(x) (t + h - x) \, dx \right|
-\leq
-e^t h^2 / 2.
+e^{t+\delta(t)} \times \frac{\delta(t)}{2} \leq \frac{\varepsilon}{b-a},
+\; \mbox{ soit } \;
+\delta(t) e^{\delta(t)}  \leq 2 e^{-t} \frac{\varepsilon}{b-a}.
 $$
-Dans tous les cas, pour garantir que $|f(t+h) - f(t) - f'(t)h| \leq \varepsilon |h|,$
-sous l'hypothèse que $|h| \leq \delta(t),$
-il est donc suffisant de nous assurer que 
-$$
-e^{t+\delta(t)} \delta(t) /2 \leq \varepsilon,
-$$
-soit 
-$\delta(t) e^{\delta(t)}  \leq 2 e^{-t}\varepsilon.$
-La fonction $y \in \R \to y e^y \in \left]0, +\infty\right[$ est 
-croissante et bijective; son inverse est par définition 
-la fonction $W$ de Lambert. Le plus grand $\delta(t)$ satisfaisant 
+Or la fonction 
+$\delta \in \left]0, +\infty\right[ \to \delta e^\delta \in \left]0, +\infty\right[$ est 
+croissante et bijective; notons $W$ son inverse[^W]. 
+Le plus grand $\delta(t)$ satisfaisant 
 l'inégalité précédente est donc donné par
 $$
-\delta(t) = W \left(2e^{-t}\varepsilon\right)
+\delta(t) = W \left(2e^{-t}\frac{\varepsilon}{b-a}\right).
 $$
 En conclusion: pour tout $[0, 1]$ et tout $\varepsilon > 0$, 
-la jauge $\gamma$ définie sur $[0, 1]$ par
+la jauge $\gamma$ définie sur $[a, b]$ par
 $$
 \gamma(t) = 
 \left]
-t - W \left( 2e^{-t}\varepsilon\right),
-t + W \left( 2e^{-t}\varepsilon\right)
+t - W \left( 2e^{-t}\frac{\varepsilon}{b-a}\right),
+t + W \left( 2e^{-t}\frac{\varepsilon}{b-a}\right)
 \right[
 $$
 est telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
@@ -562,11 +573,12 @@ $$
 \left|
 S(x \in [0,1] \mapsto e^x, \mathcal{D}) 
 - 
-\int_0^1 e^x \, dx 
+\int_a^b e^x \, dx 
 \right| 
 \leq \varepsilon.
 $$
 
+[^W]: La notation $W$ est classique pour désigner [la fonction de Lambert](https://fr.wikipedia.org/wiki/Fonction_W_de_Lambert).
 
 ### TODO
 
