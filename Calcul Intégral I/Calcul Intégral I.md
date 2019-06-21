@@ -769,15 +769,15 @@ $$
 ### Démonstration {.proof}
 Soit $h$ une primitive de $f$. La fonction $t \in [a, b] \mapsto h(g(t))$
 a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Par le théorème fondamental
-du calcul on a donc 
+du calcul on a donc d'une part
 $$
 \int_a^b f(g(t)) g'(t) \, dt
 =
 \left[t \mapsto h(g(t)) \right]_a^b = h(g(b)) -  h(g(a))
 $$
-et
+et d'autre part
 $$
-\int_{g(a)}^{g(b)} f(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)),
+\int_{g(a)}^{g(b)} f(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a));
 $$
 les deux intégrales sont donc égales.
 
