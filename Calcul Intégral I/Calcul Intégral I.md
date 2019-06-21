@@ -757,7 +757,7 @@ $$
 $$
 ce qui est le résultat recherché.
 
-### TODO -- Changement de variables {.theorem}
+### Changement de variables {.theorem}
 Si la fonction $f:[c, d] \to \R$ admet une primitive,
 que la fonction $g:[a, b] \to \R$ est dérivable 
 et que $g([a, b]) \subset [c, d]$, alors la fonction
@@ -766,7 +766,21 @@ $$
 \int_a^b f(g(t)) g'(t)\, dt = \int_{g(a)}^{g(b)} f(x) \, dx.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Soit $h$ une primitive de $f$. La fonction $t \in [a, b] \mapsto h(g(t))$
+a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Par le théorème fondamental
+du calcul on a donc 
+$$
+\int_a^b f(g(t)) g'(t) \, dt
+=
+\left[t \mapsto h(g(t)) \right]_a^b = h(g(b)) -  h(g(a))
+$$
+et
+$$
+\int_{g(a)}^{g(b)} f(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)),
+$$
+les deux intégrales sont donc égales.
+
 
 ### Additivité {.proposition}
 Si la fonction $f$ est définie et intégrable sur les intervalles compacts
