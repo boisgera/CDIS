@@ -393,7 +393,7 @@ avec de $\delta > 0$ uniforme à l'intervalle ouvert.
 Si la fonction $f:[a, b] \to \R$ est dérivable 
 sa dérivée $f'$ est intégrable sur $[a, b]$ et 
 $$
-f(b) - f(a) = \int_a^b f'(t) \, dt.
+[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
 $$
 
 ### {.ante}
@@ -735,16 +735,27 @@ $$
 La fonction $\lambda f$ est donc intégrable sur $[a, b]$ et son intégrale
 est le produit de $\lambda$ et de l'intégrale de $f$ sur $[a, b]$.
 
-
 ### Intégration par parties {.theorem}
 Si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
 la fonction $f'g$ est intégrable si et seulement si la fonction $fg'$
 est intégrable. Si c'est le cas, on a
 $$
-\int_a^b f'(t)g(t) \, dt = [f(t) g(t)]_a^b - \int_a^b f(t) g'(t)\, dt.
+\int_a^b f'(t)g(t) \, dt = [f g]_a^b - \int_a^b f(t) g'(t)\, dt.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+La fonction $f'g + f g'$ est la dérivée du produit $fg$, 
+elle est donc intégrable. Par conséquent, si l'une des fonctions 
+$f'g$ ou $f g'$ est intégrable, l'autre est la différence de deux fonctions
+intégrables et elle est donc intégrable.
+Dans ce cas, le théorème fondamental du calcul appliqué à $(fg)'$ fournit
+$$
+\int_a^b (fg)'(t) \, dt
+=
+\int_a^b f'(t)g(t) \, dt + \int_a^b f(t)g'(t) \, dt
+= [fg]_a^b,
+$$
+ce qui est le résultat recherché.
 
 ### TODO -- Changement de variables {.theorem}
 Si la fonction $f:[c, d] \to \R$ admet une primitive,
