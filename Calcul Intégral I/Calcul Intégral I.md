@@ -672,36 +672,97 @@ $$
 \end{split}
 $$ 
 
-Propriétés Elementaires de l'Intégrale
+Propriétés élementaires de l'intégrale
 --------------------------------------------------------------------------------
 
-### TODO
-
-Linéarité
-
-### TODO
-
-IPP
-
-### TODO
-
-Changement de variables
-
-### TODO
-
-Ajouter distinctions notations
-
+### Linéarité {.theorem}
+Si $f: [a, b] \to \mathbb{R}$ et $g: [a, b] \to \mathbb{R}$ sont intégrables
+et $\lambda \in \mathbb{R}$, alors $f+g$ et $\lambda f$ sont intégrables. 
+De plus,
 $$
-\int_{[a, b]}, \int_a^b
+\int_{a}^b f(t) + g(t) \, dt 
+= 
+\int_{a}^b f(t) \, dt +
+\int_{a}^b g(t) \, dt
+\;
+\mbox{ et }
+\;
+\int_{a}^b \lambda f(t) \, dt
+=
+\lambda \int_{a}^b f(t) \, dt.
 $$
 
-### Additivité
+### Démonstration {.proof}
+La linéarité de l'intégrale résulte de la linéarité (additivité et homogénéité)
+de la somme de Riemann $S(f, \mathcal{D})$ par rapport à $f$.
 
+En effet, si $\varepsilon > 0$, on peut trouver des jauges $\gamma_f$ et $\gamma_g$
+sur $[a, b]$ telles que pour toute subdivision pointée $\mathcal{D}$
+subordonnée à $\gamma_f$ et $\gamma_g$, on ait
+$$
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}
+\; \mbox{ et } \;
+\left|S(g, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}.
+$$
+Comme $S(f+g, \mathcal{D}) =  S(f, \mathcal{D}) + S(g, \mathcal{D})$, 
+toute subdivision pointée $\mathcal{D}$ subordonnée à la jauge $\gamma$
+définie par $\gamma(t) = \gamma_f(t) \cap \gamma_g(t)$ vérifie
+$$
+\left|S(f+g, \mathcal{D}) - \int_a^b f(t)+g(t) \, dt \right| \leq \varepsilon.
+$$
+La fonction $f+g$ est donc intégrable, et son intégrale sur $[a, b]$ est 
+la somme des intégrales de $f$ et de $g$ sur $[a, b]$.
+
+De façon similaire, $S(\lambda f, \mathcal{D}) = \lambda S(f, \mathcal{D})$.
+Dans le cas où $\lambda = 0$, il est clair que $\lambda f$ est intégrable, 
+d'intégrale nulle;
+dans le cas contraire, on peut trouver une jauge $\gamma$ sur $[a, b]$ telle
+que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$, on ait:
+$$
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| 
+\leq 
+\frac{\varepsilon}{|\lambda|}.
+$$
+On a alors
+$$
+\left|S(\lambda f, \mathcal{D}) - \lambda \int_a^b f(t) \, dt \right| 
+=
+|\lambda| 
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| 
+\leq 
+\varepsilon.
+$$
+La fonction $\lambda f$ est donc intégrable sur $[a, b]$ et son intégrale
+est le produit de $\lambda$ et de l'intégrale de $f$ sur $[a, b]$.
+
+
+### TODO -- Intégration par parties {.theorem}
+Si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
+la fonction $f'g$ est intégrable si et seulement si la fonction $fg'$
+est intégrable. Si c'est le cas, on a
+$$
+\int_a^b f'(t)g(t) \, dt = [f(t) g(t)]_a^b - \int_a^b f(t) g'(t)\, dt.
+$$
+
+### TODO -- Démonstration {.proof}
+
+### TODO -- Changement de variables {.theorem}
+Si la fonction $f:[c, d] \to \R$ admet une primitive,
+que la fonction $g:[a, b] \to \R$ est dérivable 
+et que $g([a, b]) \subset [c, d]$, alors la fonction
+$(f\circ g) g'$ est intégrable sur $[a, b]$ et
+$$
+\int_a^b f(g(t)) g'(t)\, dt = \int_{g(a)}^{g(b)} f(x) \, dx.
+$$
+
+### TODO -- Démonstration {.proof}
+
+### Additivité {.proposition}
 Si la fonction $f$ est définie et intégrable sur les intervalles compacts
 $[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
 et
 $$
-\int_{[a, b]} f(t) \, dt + \int_{[b, c]} f(t) \, dt = \int_{[a, c]} f(t) \, dt.
+\int_a^b f(t) \, dt + \int_b^c f(t) \, dt = \int_a^c f(t) \, dt.
 $$
 
 ### Démonstration {.proof}
@@ -709,27 +770,27 @@ $$
 Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
 $[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \R$ et
 $\gamma_2:[b, c] \to \R$ telles que pour toutes les subdivisions
-pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ de $[a, b]$ et $[c, d]$ 
+pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ de $[a, b]$ et $[b, c]$ 
 respectivement subordonnées à $\gamma_1$ et $\gamma_2$,
 $$
-\left| S(f, \mathcal{D}_1) - \int_{[a,b]} f(t) \, dt\right| \leq \varepsilon/2
+\left| S(f, \mathcal{D}_1) - \int_a^b f(t) \, dt\right| \leq \varepsilon/2
 \, \mbox{ et } \, 
-\left| S(f, \mathcal{D}_2) - \int_{[b, c]} f(t) \, dt\right| \leq \varepsilon/2.
+\left| S(f, \mathcal{D}_2) - \int_b^c f(t) \, dt\right| \leq \varepsilon/2.
 $$
 Définissons la fonction $\gamma: [a, b] \to \R$ par:
 $$
 \gamma(x) = 
 \left| 
 \begin{array}{rl}
-\gamma_1(x) \cap \left]-\infty, c \right[ & \mbox{ si } \, a < x < b, \\
+\gamma_1(x) \cap \left]-\infty, b \right[ & \mbox{ si } \, a < x < b, \\
 \gamma_1(x) \cap \gamma_2(x) & \mbox{ si } \, x = b, \\
-\gamma_2(x) \cap \left]c, +\infty\right[ & \mbox{ si } \, b < x < c. \\
+\gamma_2(x) \cap \left]b, +\infty\right[ & \mbox{ si } \, b < x < c. \\
 \end{array}
 \right.
 $$
 Par construction, cette fonction est une jauge sur $[a, c]$ 
-(pour tout $x \in [a, c]$, $\gamma(x)$ est un ouvert non vide de 
-$\R$ contenant $x$). 
+(pour tout $x \in [a, c]$, $\gamma(x)$ est un intervalle 
+ouvert non vide de $\R$ contenant $x$). 
 Supposons que $\mathcal{D} =\{(t_i, I_i)\}_i$ soit une subdivision pointée de 
 $[a, c]$ subordonnée à $\gamma$. 
 Admettons temporairement que chaque intervalle $I_i$ appartienne
@@ -745,7 +806,7 @@ $$
 \left|
 S(f, \mathcal{D}) 
 - 
-\int_{[a, b]} f(t) \, dt + \int_{[b, c]} f(t) \, dt 
+\int_a^bf(t) \, dt + \int_b^c f(t) \, dt 
 \right|
 \leq 
 \varepsilon. 
@@ -760,43 +821,42 @@ si $x \neq b$, alors $x \not \in \gamma(x)$;
 par conséquent, si cet intervalle $I_i=[d_i, e_i]$ existe, 
 alors $t_i = b$ et on peut remplacer le terme $(t_i, I_i)$ dans la subdivision
 pointée $\mathcal{D}$ par $(b, [d_i, b])$ et $(b, [b, e_i])$ sans que
-la somme de Riemann associée change (le terme 
-$f(b) \ell([d_i, e_i])$ étant à $f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
+la somme de Riemann associée change 
+(le terme $f(b) \ell([d_i, e_i])$ étant égal à 
+$f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
 La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
-l'hypothèse de non-chevauchement précédente. Par conséquent l'inégalité
+l'hypothèse de non-chevauchement. Par conséquent l'inégalité
 ci-dessus est satisfaite dans le cas général, ce qui conclut la preuve
 de ce théorème.
 
 ### TODO
 
 Présenter ce qui vient comme une réciproque de l'additivité.
-Contextualiser critère de Cauchy (valeur de l'intégrale inconnue)
+Contextualiser le critère de Cauchy (valeur de l'intégrale inconnue)
 
 ### Critère d'intégrabilité de Cauchy {#CIC .theorem}
-Soit $f: I \to \R$. La function $f$ est intégrable si et seulement
-si pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur $I$ telle
-que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
+Une fonction $f: [a, b] \to \R$ est intégrable si et seulement si 
+pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur $[a, b]$ telle que 
+pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
 subordonnées à $\gamma$, on ait
 $$
 |S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
 $$
 
-### Démonstration {.proof}
-
-**TODO**
+### TODO -- Démonstration {.proof}
 
 ### TODO:
 
-fusionner "Restriction" avec additivité.
+fusionner "Restriction" avec additivité ou au moins évoquer la relation
+entre les deux résultats.
 
-### Restriction
+### Restriction {.theorem}
 
 Si $f$ est intégrable sur l'intervalle compact  $[a, b]$, 
 elle est intégrable sur tout intervalle compact $[c, d]$ 
 inclus dans $[a, b]$.
 
 ### Démonstration {.proof}
-
 Nous démontrons en détail le cas où $c = a$; le cas où $d =b$ se prouve de
 façon similaire et le cas général se déduit facilement de ces deux cas
 particuliers.
@@ -809,9 +869,10 @@ $$
 |S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
 $$
 Considérons les restrictions $\gamma_1$ et $\gamma_2$ de $\gamma$ à $[a, d]$ et 
-$[d, b]$ respectivement. Soient $\mathcal{D}_1$ et $\mathcal{D}_1'$ sont deux
-subdivisions pointées de $[a, d]$ subordonnées à $\gamma_1$. 
-Si $\mathcal{D}_2$ est une subdivision de $[d, b]$ subordonnée à $\gamma_2$,
+$[d, b]$ respectivement. 
+Soient $\mathcal{D}_1$ et $\mathcal{D}_1'$ deux subdivisions pointées de 
+$[a, d]$ subordonnées à $\gamma_1$;
+si $\mathcal{D}_2$ est une subdivision de $[d, b]$ subordonnée à $\gamma_2$,
 alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}_1 \cup \mathcal{D}_2'$
 sont des subdvisions pointées de $[a, b]$ subordonnées à $\gamma$.
 Par conséquent,
@@ -836,7 +897,7 @@ Une fonction $f:[a, b] \to \R$ égale presque partout à une
 fonction $g:[a, b] \to \R$ intégrable est elle-même intégrable
 et 
 $$
-\int_{[a, b]} f(t) \, dt = \int_{[a, b]} g(t) \, dt.
+\int_a^b f(t) \, dt = \int_a^b g(t) \, dt.
 $$
 
 ### Démonstration {.proof}
