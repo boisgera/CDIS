@@ -736,7 +736,7 @@ La fonction $\lambda f$ est donc intégrable sur $[a, b]$ et son intégrale
 est le produit de $\lambda$ et de l'intégrale de $f$ sur $[a, b]$.
 
 
-### TODO -- Intégration par parties {.theorem}
+### Intégration par parties {.theorem}
 Si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
 la fonction $f'g$ est intégrable si et seulement si la fonction $fg'$
 est intégrable. Si c'est le cas, on a
