@@ -571,7 +571,7 @@ est telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$
 subordonnée à $\gamma$
 $$
 \left|
-S(x \in [0,1] \mapsto e^x, \mathcal{D}) 
+S(x \in [a, b] \mapsto e^x, \mathcal{D}) 
 - 
 \int_a^b e^x \, dx 
 \right| 
