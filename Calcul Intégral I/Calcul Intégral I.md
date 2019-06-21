@@ -872,7 +872,7 @@ $$
 |S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
 Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$, 
 il existe une jauge $\gamma$ sur $[a, b]$ telle que pour tout couple de 
 subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma$,
@@ -887,9 +887,34 @@ $$
 |S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
 $$
 
-Réciproquement, **TODO**
+Réciproquement, si la fonction $f$ vérifie le critère du théorème,
+pour tout $k \in \N$ il existe une jauge $\gamma_{k}$ sur $[a, b]$ 
+telle que pour tout couple de subdvisions pointées 
+$\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma_k$, on ait
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq 2^{-k}.
+$$
+Il est de plus possible de choisir les jauges $\gamma_k$ telles qu'à tout 
+ordre $k$ et pour tout $t \in [a, b]$, 
+on ait $\gamma_{k+1}(t) \subset \gamma_k(t)$ (si $\gamma_{k+1}$ ne satisfait
+pas ce critère, il suffit de lui substituer la jauge définie par en $t$ par
+$\gamma_{k+1}(t) \cap \gamma_k(t)$). 
+Soit $\mathcal{D}_k$ une suite de subdivisions pointées sur $[a, b]$
+subordonnées à $\gamma_k$. Si $m \geq k$ et $n \geq k$, 
+$\mathcal{D}_m$ et $\mathcal{D}_n$ sont subordonnées à $\gamma_k$, donc
+$$
+|S(f, \mathcal{D}_m) - S(f, \mathcal{D}_n)| \leq 2^{-k}.
+$$
+La suite des $S(f, \mathcal{D}_k)$ est donc de Cauchy; la droite des réels
+étant complète, cette suite à une limite $A$. En passant à la limite sur
+$n$ dans l'inégalité $|S(f, \mathcal{D}) - S(f, \mathcal{D}_n)| \leq 2^{-k}$,
+valable quand $\mathcal{D}$ est subordonnée à $\gamma_k$, on obtient
+$$
+|S(f, \mathcal{D}) - A| \leq 2^{-k}.
+$$
+La fonction $f$ est donc intégrable et d'intégrale $A$.
 
-### TODO:
+### TODO
 
 fusionner "Restriction" avec additivité ou au moins évoquer la relation
 entre les deux résultats.
