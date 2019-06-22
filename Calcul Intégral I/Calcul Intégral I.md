@@ -490,7 +490,7 @@ du pas).
 ### Intégration de $x \mapsto e^x$ {.example}
 La fonction $f: x \mapsto e^x$ est intégrable au sens de Newton sur 
 tout intervalle compact $[a, b]$ 
-puisqu'elle admet $x \mapsto e^x$ comme primitive.
+puisqu'elle admet $F: x \mapsto e^x$ comme primitive.
 Par le théorème fondamental du calcul, 
 $f$ est intégrable au sens de Henstock-Kurzweil et l'intégrale associée 
 coïncide avec l'intégrale de Newton. On a donc
@@ -513,35 +513,37 @@ fondamental du calcul. Dans cette preuve, nous avons montré que la précision
 $\varepsilon$ était atteinte
 si nous choisissions 
 $\gamma(t) = \left]t-\delta(t), t+\delta(t)\right[$
-où $\delta(t) > 0$ est tel que si $0 < |h| \leq \delta(t)$, alors
+où $\delta(t) > 0$ est tel que si $0 \leq |h| \leq \delta(t)$, alors
 $$
-\frac{|f(t+h) - f(t) - f'(t)h|}{|h|} \leq \frac{\varepsilon}{b-a}.
+|F(t+h) - F(t) - f(t)h| \leq \frac{\varepsilon}{b-a} |h|.
 $$
 
 Explicitons cette contrainte dans le cas de la fonction 
-$x \mapsto e^x$. 
-Cette fonction étant deux fois continûment différentiable, 
+$F: x \mapsto e^x$. 
+Cette fonction étant deux fois continûment différentiable
+(la fonction $f$ étant continûment différentiable), 
+quand $h$ est non nul,
 la formule de Taylor avec reste intégral nous fournit
 $$
 \begin{split}
-\frac{|f(t+h) - f(t) - f'(t)h|}{|h|}
+\frac{|F(t+h) - F(t) - f(t)h|}{|h|}
 &= 
-\frac{1}{|h|}\left| \int_t^{t+h}  f''(x) (t + h - x) \, dx \right| \\
+\frac{1}{|h|}\left| \int_t^{t+h}  f'(x) (t + h - x) \, dx \right| \\
 &\leq 
-\max \left\{ |f''(x)| \, | \, x \in [t-|h|, t+|h|]\right\} \times \frac{|h|}{2}.
+\max \left\{ |f'(x)| \, | \, x \in [t-|h|, t+|h|]\right\} \times \frac{|h|}{2}.
 \end{split}
 $$
 Le second membre de cette inégalité étant une fonction croissante de $|h|$, 
 il nous suffit donc pour assurer l'inégalité souhaitée de choisir 
 $\delta(t) > 0$ tel que
 $$
-\max \left\{ |f''(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\} \times \frac{\delta(t)}{2}
+\max \left\{ |f'(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\} \times \frac{\delta(t)}{2}
 \leq \frac{\varepsilon}{b-a}.
 $$
 
-Dans ce cas précis, puisque $f''(x) = e^x$, lorsque $h \geq 0$ nous avons
+Dans ce cas précis, puisque $f'(x) = e^x$, lorsque $h \geq 0$ nous avons
 $$
-\max \left\{ |f''(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\}
+\max \left\{ |f'(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\}
 = e^{t + \delta(t)}.
 $$
 L'inégalité à satisfaire prend donc la forme
@@ -625,7 +627,7 @@ où la fonction est à la fois discontinue et localement non-bornée.
 Si au lieu de l'intervalle $[0,1]$, on considére l'intervalle
 $[a, b]$ où $0 < a \leq b \leq 1$, comme la fonction $f$ restreinte à $[a, b]$
 est continue, elle y admet une primitive, par exemple la fonction 
-$x \in [a, b] \mapsto 2 \sqrt{x}$.
+$F: x \in [a, b] \mapsto 2 \sqrt{x}$.
 Elle y est intégrable au sens de Newton 
 -- et donc au sens de Henstock-Kurzweil -- 
 et
@@ -641,7 +643,9 @@ démontrer, l'expression ci-dessus suggère que son intégrale pourrait être
   $$
 On va confirmer cette intuition dans la suite.
 
-#### La singularité
+#### TODO -- Intégrale sur $[a, b]$
+
+#### TODO -- Le voisinage de $0$
 
 Soit $\varepsilon > 0$. On cherche à construire une jauge $\gamma$ sur $[0,1]$
 telle que toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$,
