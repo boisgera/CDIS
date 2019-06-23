@@ -4,6 +4,8 @@ from autograd.numpy import *
 import numpy.linalg as linalg
 from matplotlib.pyplot import *
 
+print('Ceci est un test')
+
 def root(f, x):
     x = array(x)
     for i in range(100):
