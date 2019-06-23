@@ -752,7 +752,7 @@ $[t - \delta(t), t + \delta(t)] \subset \left]0, +\infty \right[$.
 On a alors $f'(z) = -(1/2) z^{-3/2}$, qui est une fonction décroissante
 de $z$; on cherche donc $\delta(t) > 0$ garantissant
 $$
-\frac{1}{2} (t- \delta(t))^{3/2} \times  \delta(t) \leq \frac{\varepsilon}{2}.
+\frac{1}{2} (t- \delta(t))^{-3/2} \times  \delta(t) \leq \frac{\varepsilon}{2}.
 $$
 Cette inégalité prend la forme équivalente
 $$
