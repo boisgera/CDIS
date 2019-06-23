@@ -419,7 +419,7 @@ $$
 vérifie pour tout $i \in \{0, \dots, m-1\},$ 
 $[x_i,x_{i+1}] \subset \gamma(t_i),$ alors 
 $$
-|S(f', \mathcal{D}) - (f(b) - f(a))| \leq \epsilon.
+|S(f', \mathcal{D}) - (f(b) - f(a))| \leq \varepsilon.
 $$
 Notons que si $\mathcal{D} = \{(t_0, [x_0, x_1], \dots, (t_{m-1}, [x_{m-1}, x_m]))\}$,
 le membre de gauche de cette inégalité vérifie
@@ -432,30 +432,47 @@ $$
   &\leq \sum_{i=0}^{m-1} \left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
 \end{split}
 $$
+Si l'on parvient à garantir que pour chacun des termes
+de cette somme,
+$$
+\left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| 
+\leq 
+\frac{\varepsilon}{b-a} (x_{i+1} - x_i),
+$$
+ce qui revient à assigner à chaque terme une erreur maximale
+proportionnelle à la longueur de l'intervalle $[x_i, x_{i+1}]$,
+alors
+$$
+\begin{split}
+|S(f', \mathcal{D}) - (f(b) - f(a))| 
+%&\leq \sum_{i=0}^{m-1} \left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
+&\leq \sum_{i=0}^{m-1} \frac{\varepsilon}{b-a} (x_{i+1} - x_i) \\
+&= \frac{\varepsilon}{b-a} \sum_{i=0}^{m-1} (x_{i+1} - x_i) \\
+&= \frac{\varepsilon}{b-a} (b - a) \\
+&= \varepsilon \\
+\end{split},
+$$
 
-Fixons donc un $\varepsilon' > 0$ arbitraire.
-Comme pour tout $t \in [a, b],$ 
+Fixons donc un $\varepsilon > 0$ arbitraire;
+comme pour tout $t \in [a, b],$ 
 $$f(t+h) = f(t) + f'(t) h + o(h),$$
 il existe un $\delta(t) > 0$ tel que si $|h| < \delta (t),$
 $$
-|f'(t) h - (f(t+h) - f(t))| \leq \varepsilon' |h|
+|f'(t) h - (f(t+h) - f(t))| \leq \frac{\varepsilon}{b-a} |h|
 $$
-Par conséquent, si le sous-intervalle fermé $[c, d]$ de $[a, b]$ est tel
-que
-$$
-t \in [c, d] \subset \left]t-\delta(t), t+\delta(t)\right[,
-$$ 
+Par conséquent, pour tout sous-intervalle fermé $[c, d]$ de $[a, b]$ tel que
+$t \in [c, d]$ et $[c, d] \subset \left]t-\delta(t), t+\delta(t)\right[,$ 
 nous avons
 $$
-|f'(t) (d-t) - (f(d) - f(t))| \leq \varepsilon' |d - t| = \varepsilon' (d-t)
+|f'(t) (d-t) - (f(d) - f(t))| \leq \frac{\varepsilon}{b-a} |d - t| = \frac{\varepsilon}{b-a} (d-t)
 $$
 ainsi que
 $$
-|f'(t) (c-t) - (f(c) - f(t))| \leq \varepsilon' |c - t| = \varepsilon' (t - c).
+|f'(t) (c-t) - (f(c) - f(t))| \leq \frac{\varepsilon}{b-a} |c - t| = \frac{\varepsilon}{b-a} (t - c).
 $$
 L'inégalité triangulaire fournit alors
 $$
-|f'(t)(d - c) - (f(d) - f(c))| \leq \varepsilon' (d - c)
+|f'(t)(d - c) - (f(d) - f(c))| \leq \frac{\varepsilon}{b-a} (d - c).
 $$
 Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[;$
 nous avons ainsi bien défini une fonction de jauge sur $[a, b]$.
@@ -464,28 +481,11 @@ pour tout $i \in \{0, \dots, m-1\},$
 $$t_i \in [x_i,x_{i+1}] \subset \left]t_i - \delta(t_i), t_i + \delta(t_i)\right[,$$
 par conséquent 
 $$
-|f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i))| \leq \varepsilon' (x_{i+1} - x_i).
+|f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i))| \leq \frac{\varepsilon}{b-a} (x_{i+1} - x_i).
 $$
-Exploitons cette inégalité pour majorer l'erreur entre la somme de Riemann et
-l'intégrale de $f'$; nous avons
-$$
-\begin{split}
-|S(f', \mathcal{D}) - (f(b) - f(a))| 
-&\leq \sum_{i=0}^{m-1} \left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
-&\leq \sum_{i=0}^{m-1} \varepsilon' (x_{i+1} - x_i) \\
-&= \varepsilon' \sum_{i=0}^{m-1} (x_{i+1} - x_i) \\
-&= \varepsilon' (x_m - x_0) \\
-&= \varepsilon' (b - a) \\
-\end{split}.
-$$
-Il suffit de choisir un nombre réel positif $\varepsilon'$ tel que
-$\varepsilon' (b-a) \leq \varepsilon$ pour obtenir l'inégalité recherchée.
-
-### TODO
-
-Expliquer que le choix de $\delta(t)$ du FTC "lisse" l'erreur faite sur
-chaque terme de la somme de Riemann (proportionnellement à la largeur
-du pas).
+et donc
+$|S(f', \mathcal{D}) - (f(b) - f(a))| \leq \varepsilon$, ce qui prouve le
+résultat recherché.
 
 ### Intégration de $x \mapsto e^x$ {.example}
 La fonction $f: x \mapsto e^x$ est intégrable au sens de Newton sur 
@@ -509,7 +509,64 @@ l'écart entre $S(f, \mathcal{D})$ et la valeur de l'intégrale
 soit au plus $\varepsilon$.
 
 Construisons une telle jauge en nous inspirant de la preuve du théorème
-fondamental du calcul. Dans cette preuve, nous avons montré que la précision
+fondamental du calcul. Dans cette preuve, nous avons montré que si 
+$\varepsilon > 0$, et nous pouvions trouver une jauge $\gamma$ telle que 
+pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$ et 
+tout $(t, [x, y]) \in \mathcal{D}$ nous avions
+$$
+|f(t) (y-x) - (F(y) - F(x))| \leq \frac{\varepsilon}{b - a} (y - x),
+$$
+alors nous avions 
+$\left|S(f, \mathcal{D}) - (F(b) - F(a))\right| \leq \varepsilon.$
+Nous avons également montré comment sélectionner une jauge $\gamma$ pour
+satisfaire cette inégalité en utilisant le fait que $F' = f$.
+Nous allons reprendre cette approche ici, mais quantitativement, 
+et en exploitant la propriété que la fonction $f$ est continûment
+dérivable (et plus simplement dérivable) et que donc sa dérivée est
+bornée sur tout compact. 
+Comme
+$$
+f(t) (y - x) = \int_x^y f(t) \, ds
+\; \mbox{ et } \;
+F(y) - F(x) = \int_x^y f(s) \, ds,
+$$
+le membre de gauche de l'inégalité vérifie
+$$
+|f(t) (y-x) - (F(y) - F(x))|
+=
+\left| \int_x^y (f(t) - f(s)) \, ds\right|
+\leq 
+\int_x^y |f(t) - f(s)| \, ds
+$$
+et par conséquent, comme par le théorème des accroissements finis
+$$
+|f(t) - f(s)| 
+\leq \max_{z \in [x, y]} |f'(z)|  \times |t - s|
+\leq \max_{z \in [x, y]} |f'(z)|  \times |t - x|
+,
+$$
+on obtient
+$$
+\int_x^y |f(t) - f(s)| \, ds \leq \max_{z \in [x, y]} |f'(z)| \times \frac{(y-x)^2}{2}.
+$$
+Il suffit donc de garantir
+$$
+\max_{z \in [x, y]} |f'(z)| \times \frac{y - x}{2} \leq \frac{\varepsilon}{b-a}
+$$
+pour obtenir l'inégalité recherchée.
+
+Si l'on décide de rechercher une jauge $\gamma$ garantissant cette inégalité 
+sous la forme $\gamma(t) = \left]t -\delta(t), t+\delta(t)\right[$, comme
+$t \in [x, y] \subset \gamma(t)$, nous somme assurés que l'inégalité 
+est vraie quand
+$$
+\max \{ |f'(z)|, \,   z \in [t-\delta(t), t+\delta(t)]  \} \times \delta(t) 
+\leq \frac{\varepsilon}{b-a}.
+$$
+
+<!--
+
+Dans cette preuve, nous avons montré que la précision
 $\varepsilon$ était atteinte
 si nous choisissions 
 $\gamma(t) = \left]t-\delta(t), t+\delta(t)\right[$
@@ -546,11 +603,13 @@ $$
 \max \left\{ |f'(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\}
 = e^{t + \delta(t)}.
 $$
-L'inégalité à satisfaire prend donc la forme
+-->
+Ici, comme $f'(z) = e^z$,
+l'inégalité à satisfaire prend simplement la forme
 $$
-e^{t+\delta(t)} \times \frac{\delta(t)}{2} \leq \frac{\varepsilon}{b-a},
+e^{t+\delta(t)} \times \delta(t) \leq \frac{\varepsilon}{b-a},
 \; \mbox{ soit } \;
-\delta(t) e^{\delta(t)}  \leq 2 e^{-t} \frac{\varepsilon}{b-a}.
+\delta(t) e^{\delta(t)}  \leq e^{-t} \frac{\varepsilon}{b-a}.
 $$
 Or la fonction 
 $\delta \in \left]0, +\infty\right[ \to \delta e^\delta \in \left]0, +\infty\right[$ est 
@@ -558,15 +617,15 @@ croissante et bijective; notons $W$ son inverse[^W].
 Le plus grand $\delta(t)$ satisfaisant 
 l'inégalité précédente est donc donné par
 $$
-\delta(t) = W \left(2e^{-t}\frac{\varepsilon}{b-a}\right).
+\delta(t) = W \left(e^{-t}\frac{\varepsilon}{b-a}\right).
 $$
 En conclusion: pour tout $[0, 1]$ et tout $\varepsilon > 0$, 
 la jauge $\gamma$ définie sur $[a, b]$ par
 $$
 \gamma(t) = 
 \left]
-t - W \left( 2e^{-t}\frac{\varepsilon}{b-a}\right),
-t + W \left( 2e^{-t}\frac{\varepsilon}{b-a}\right)
+t - W \left( e^{-t}\frac{\varepsilon}{b-a}\right),
+t + W \left( e^{-t}\frac{\varepsilon}{b-a}\right)
 \right[
 $$
 est telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
@@ -587,6 +646,25 @@ $$
 représentation graphique de la jauge pour un (des ?) $\varepsilon$ 
 bien choisis.
 
+### TODO {.post}
+
+Evoquer à posteriori que l'approche "brutale" de chercher une jauge 
+$\gamma$ constante / uniforme marchait et contextualiser
+(quand est-ce que ça marche ?).
+Notamment, ça ne marche plus dans l'exemple qui vient avec une
+singularité ...
+
+
+### TODO 
+
+Variante extension de la suite quand la valeur choisie en $0$ est non-nulle.
+
+### TODO
+
+Considérer la façon dont Bartle gère la majoration; c'est moins
+systématique (mais on a déjà fait systématique à la question précédente)
+et ça à le mérite d'être explicite (sans passer par les racines d'un
+polynôme). On peut tjs mentionner que la méthode précédente s'appliquerait ...
 
 ### TODO -- Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
 
@@ -596,18 +674,18 @@ f(x) =
 \left|
 \begin{array}{rl}
 1/\sqrt{x} & \mbox{si } \, x > 0, \\
-0          & \mbox{si } \, x = 0.
+?          & \mbox{si } \, x = 0.
 \end{array}
 \right.
 $$
 
-Options: "manuellement" avec 3 hunches à avoir ("gérer" le cas $x=0$ à part
-et "forcer" la subdivision à prendre la valeur $0$; découpage de la valeur finale
-"pressentie" en bouts et recherche d'une somme télescopique). Ou, essayer
-d'exploiter la preuve du FTC, qui nécessite d'être détaillée, pour "exhiber"
-une jauge qui marche (note: au passage, en supposant $f$ deux fois diff on
-peut en construire une explicitement, c'est un exercice intéressant en soi).
-Tout est bon ici !
+On ne précise pas pour le moment la valeur de $f$ en $0$: elle est supposée
+arbitraire (mais finie). On verra que l'intégrale de $f$ sur $[0, 1]$ 
+existe dans tous les cas et ne dépend pas de la valeur de $f$ en $0$
+(même si la sélection d'une jauge assurant une précision $\varepsilon$
+en dépend).
+
+<!--
 
 Variante/extension: autre valeur que $0$ en $0$, montrer que cela n'a aucun
 impact.
@@ -620,31 +698,125 @@ de techniques concentrées sur un seul exercice sinon. Et le coup de
 la méthode de sélection du pas associée au FTC montre une stratégie
 qui constraste avec celle de Riemann classique, c'est intéressant à contraster.
 
+-->
+
 #### Préambule
 
 La difficulté de cet exemple est liée à la "singularité" de $f$ en $x=0$,
 où la fonction est à la fois discontinue et localement non-bornée. 
 Si au lieu de l'intervalle $[0,1]$, on considére l'intervalle
-$[a, b]$ où $0 < a \leq b \leq 1$, comme la fonction $f$ restreinte à $[a, b]$
+$[a, 1]$ où $0 < a \leq 1$, comme la fonction $f$ restreinte à $[a, 1]$
 est continue, elle y admet une primitive, par exemple la fonction 
-$F: x \in [a, b] \mapsto 2 \sqrt{x}$.
+$F: x \in [a, 1] \mapsto 2 \sqrt{x}$.
 Elle y est intégrable au sens de Newton 
 -- et donc au sens de Henstock-Kurzweil -- 
 et
 $$
-\int_a^b f(x) \, dx = \int_a^b (2\sqrt{x})' \, dx
+\int_a^1 f(x) \, dx = \int_a^1 (2\sqrt{x})' \, dx
 =
-\left[ 2 \sqrt{x} \right]_a^b = 2 (\sqrt{b} - \sqrt{a}).
+\left[ 2 \sqrt{x} \right]_a^1 = 2 \sqrt{1} - 2\sqrt{a}.
 $$
 Si $f$ est bien HK-intégrable sur $[0,1]$, ce que nous allons nous efforcer de
 démontrer, l'expression ci-dessus suggère que son intégrale pourrait être
   $$
-  \int_0^1 f(x) \, dx \stackrel{?}{=} 2(\sqrt{1} - \sqrt{0}) = 2.
+  \int_0^1 f(x) \, dx \stackrel{?}{=} 2\sqrt{1} - 2\sqrt{0} = 2.
   $$
 On va confirmer cette intuition dans la suite.
 
-#### TODO -- Intégrale sur $[a, b]$
+#### Intégrale sur $[a, 1]$, $a>0$
 
+La stratégie est similaire à celle de l'exemple de la fonction 
+$x \mapsto e^x$: on recherche une jauge $\gamma$ sous la forme
+$\gamma(t) = \left]t -\delta(t), t+\delta(t)\right[$, avec $\delta(t) > 0$
+tel que[^wtc]
+$$
+\max \{ |f'(z)|, \,   z \in [t-\delta(t), t+\delta(t)]  \} \times \delta(t) 
+\leq \frac{\varepsilon}{2},
+$$
+ce qui permettra d'assurer que si $t \in [x, z] \subset \gamma(t)$,
+$$
+|f(t) (y-x) - (F(y) - F(x))| \leq \frac{\varepsilon}{2} (y-x).
+$$
+
+[^wtc]: La division de $\varepsilon$ par deux dans l'inégalité correspond
+à allouer 50% du "budget d'erreur" à notre disposition pour le calcul de
+l'intégrale sur $[a, 1]$ par les sommes de Riemann. Les 50% restant
+nous servirons ultérieurement à gérer l'erreur faite en $t=0$.
+
+Toutefois une précaution supplémentaire doit être prise ici: 
+pour avoir l'existence de $f'$ et la majoration associée, 
+nous devons éviter la singularité en $0$: 
+on s'assurera donc que $\delta(t) < t$, ce qui garantit que
+$[t - \delta(t), t + \delta(t)] \subset \left]0, +\infty \right[$.
+
+On a alors $f'(z) = -(1/2) z^{-3/2}$, qui est une fonction décroissante
+de $z$; on cherche donc $\delta(t) > 0$ garantissant
+$$
+\frac{1}{2} (t- \delta(t))^{3/2} \times  \delta(t) \leq \frac{\varepsilon}{2}.
+$$
+Cette inégalité prend la forme équivalente
+$$
+\varepsilon^2 (t - \delta(t))^3 - \delta(t)^2 \geq 0
+$$
+Le membre de gauche est polynomial en $\delta(t)$; 
+le polynôme $P_{t,\varepsilon}(\delta) = \varepsilon^2 (t - \delta)^3 - \delta^2$
+étant strictement positif pour $\delta = 0$ et strictement négatif
+pour $\delta = t$, on peut prendre pour $\delta(t)$ la plus grande
+racine réelle de $P_{t,\varepsilon}$ sur $[0, t]$. 
+
+Comme dans l'exemple de $x \mapsto e^x$,
+cette jauge garantit que pour toute subdivision pointée subordonnée 
+$\mathcal{D}$ sur $[a, 1]$, on obtient
+$$
+|S(f, \mathcal{D}) - (2\sqrt{1} - 2\sqrt{a})| \leq \frac{\varepsilon}{2}.
+$$
+On remarquera que la jauge $\gamma$ que nous avons construit
+-- et qui est définie sur $\left]0, 1\right]$ --
+ne dépend pas de la valeur de $a$ dans $\left]0, 1\right]$.
+
+### Intégrale sur $[0,1]$
+
+Considérons désormais une jauge sur $[0, 1]$ qui étende la jauge définie
+sur $\left]0,1\right]$ à la section précédente.
+
+Comme $\gamma(t) \subset \left]0, +\infty \right[$ si $t>0$,
+si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), i \in \{0,\dots, m-1\}\}$ est 
+une subdivision pointée de $[0, 1]$ subordonnée à $\gamma$, 
+si $t_i>0$, $0 \not \in [x_i, x_{i+1}]$. 
+Comme les ensembles $[x_i, x_{i+1}]$ doivent recouvrir $[0, 1]$, 
+il est nécessaire que le point $t_0$ associé à l'intervalle $[x_0, x_1]$
+soit $0$. Le reste de la subdivision est alors subordonnée à
+$\gamma$ sur $[x_1,1]$ avec x_1 > 0$
+$$
+S(f,\mathcal{D})
+=
+f(0) (x_1 - x_0) + \sum_{i = 1}^{m-1} f(t_i) (x_{i+1} - x_i)
+$$
+et d'après la section précédente,
+$$
+\left| 
+\sum_{i = 1}^{m-1} f(t_i) (x_{i+1} - x_i)
+- (2\sqrt{1} - 2\sqrt{x_1}))
+\right|
+\leq \frac{\varepsilon}{2}.
+$$
+Si l'on choisit $\gamma(0) = \left]-\delta(0), \delta(0)\right[$ tel que si $[x_0, x_1] \subset \gamma(0)$,
+$$
+|f(0) x_1| + 2\sqrt{x_1} \leq \frac{\varepsilon}{2},
+$$
+alors on a garanti que $|S(f,\mathcal{D}) - 2| \leq \varepsilon$, ce 
+qui est le résultat cherché.
+Comme sur $[0, 1]$, $x_1 \leq \sqrt{x_1}$, il suffit de s'assurer que
+$|f(0)| \sqrt{x_1} + 2\sqrt{x_1} \leq {\varepsilon}/{2}$, ce qui
+est le cas si
+$$
+\delta(0) = \frac{\varepsilon^2}{4(|f(0)| + 2)^2}.
+$$
+
+
+
+
+<!--
 #### TODO -- Le voisinage de $0$
 
 Soit $\varepsilon > 0$. On cherche à construire une jauge $\gamma$ sur $[0,1]$
@@ -675,6 +847,8 @@ $$
 \left| f(t_{p-1}) x-p - 2(\sqrt{x_p} - \sqrt{0}) - (S(f, \mathcal{D}') - 2 (\sqrt{1} - \sqrt{x_p}) )\right|
 \end{split}
 $$ 
+
+-->
 
 Propriétés élementaires de l'intégrale
 --------------------------------------------------------------------------------
