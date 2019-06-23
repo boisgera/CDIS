@@ -667,6 +667,11 @@ Exercice: intégrabilité fct croissante
 
 Exemple avec discontinuité ou stratégie de "lissage" de l'erreur ne marche pas.
 
+### TODO 
+
+Mentionner explicitement que fct continue par morceaux marche (contunue ici
++ par morceau en exo en utilisant la ppté d'additivité ?)
+
 ### TODO
 
 Considérer la façon dont Bartle gère la majoration; c'est moins
