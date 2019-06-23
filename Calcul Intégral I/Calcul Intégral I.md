@@ -661,6 +661,14 @@ Variante extension de la suite quand la valeur choisie en $0$ est non-nulle.
 
 ### TODO
 
+Exercice: intégrabilité fct croissante
+
+### TODO
+
+Exemple avec discontinuité ou stratégie de "lissage" de l'erreur ne marche pas.
+
+### TODO
+
 Considérer la façon dont Bartle gère la majoration; c'est moins
 systématique (mais on a déjà fait systématique à la question précédente)
 et ça à le mérite d'être explicite (sans passer par les racines d'un
