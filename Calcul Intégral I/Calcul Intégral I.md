@@ -8,7 +8,7 @@
 \renewcommand{\C}{\mathbb{C}}
 
 TODO
---------------------------------------------------------------------------------
+================================================================================
 
   - intégrale d'une fonction nulle presque partout (par étapes: 1 / nb
     finies de valeurs égale à 1, puis fct de Dirichlet, puis fct égale à un sur
@@ -20,7 +20,7 @@ TODO
 
 
 Somme et Intégrale de Riemann
---------------------------------------------------------------------------------
+================================================================================
 
 ### Intervalle {.definition}
 
@@ -259,7 +259,7 @@ Riemann. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
 
 
 Intégrale de Riemann Généralisée
---------------------------------------------------------------------------------
+================================================================================
 
 ### Jauge {.definition}
 Une *jauge* $\gamma$ sur un intervalle $I$ de $\R$ est une fonction 
@@ -864,7 +864,7 @@ $$
 -->
 
 Propriétés élementaires de l'intégrale
---------------------------------------------------------------------------------
+================================================================================
 
 ### Linéarité {.theorem}
 Si $f: [a, b] \to \mathbb{R}$ et $g: [a, b] \to \mathbb{R}$ sont intégrables
@@ -1178,7 +1178,7 @@ Il est de plus possible de supposer les $I_i$ ouverts[^why-open].
 Définissons la jauge $\gamma$ sur $[a, b]$ par
 $$
 \gamma(t) = I_i \, \mbox{ si } \, t \in I_i \;
-(\mbox{et } \, t \not \in I_j \mbox{ quand } \, j \leq i).
+\mbox{et } \, t \not \in I_j \mbox{ quand } \, j \leq i
 $$
 et par exemple
 $\gamma(t) = \left]-\infty,\infty\right[$ si $t \not \in \cup_i I_i$. 
@@ -1190,7 +1190,7 @@ $$
 = \left|\sum_{t_j \in A} f(t_j) \ell(J_j)\right|
 \leq \sup_{[a, b]} |f| \times \sum_j \ell(J_j).
 $$
-Mais par construction les $J_j$ ne se chevauchent pas et sont
+Par construction les $J_j$ ne se chevauchent pas et sont
 tous inclus dans un des intervalles $I_i$. On a donc
 $$
 \sum_j \ell(J_j) \leq  \sum_i \ell(I_i) \leq \varepsilon.
@@ -1204,7 +1204,7 @@ intervalles $J_i$ non nécessairement ouverts, tels que
 $\sum_i \ell(J_i) \leq \varepsilon/2$, puis remplacer chaque
 $J_i$ par un intervalle $I_i$ ouvert de longueur double contenant $J_i$.
 
-Si $f$ est non-bornée, on peut faire un démonstration similaire en
+Si $f$ est non-bornée, on peut faire une démonstration similaire en
 considérant les ensembles
 $$
 A_k = \{x \in [a, b] \, | \, k < |f(x)| \leq k+1\},
@@ -1247,7 +1247,7 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 
 
 Intégration sur des intervalle non-bornés
---------------------------------------------------------------------------------
+================================================================================
 
 ### TODO
 
@@ -1283,14 +1283,14 @@ intervalles bornés, soient basées sur un intervalle suffisamment grand.
 Soit $I$ un intervalle fermé non borné de $\R$ de bornes $a$ et $b$[^inb].
 Une fonction $f:I \to \R$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
-que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de $\R$ 
+que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de $I$ 
 et un intervalle compact $K$ de $I$
 tels que pour tout intervalle compact $[a, b]$ tel que $K \subset [a, b]$
 et pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique; il est appelé
-*intégrale de $f$ sur $\R$* et noté
+*intégrale de $f$ sur $I$* et noté
 $$
 \int_{a}^{b} f(t) \, dt
 \, \mbox{ ou } \,
@@ -1298,7 +1298,7 @@ $$
 $$
 
 [^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\R$,
-$I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \R$
+$I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \R$.
 
 ### TODO: 
 
@@ -1308,16 +1308,27 @@ simplifier ce qui suit, inutilement compliqué.
 
 j'ai changé la définition ci-dessus, adapter la suite.
 
+### {.remark .post}
+Cette définition d'intégrale sur un intervalle fermé non borné $I$
+peut être utilisée à l'identique si $I$ est fermé et borné. 
+On obtient alors une définition (inutilement compliquée, mais) 
+parfaitement compatible avec la définition adoptée jusqu'à présent 
+pour les intervalles compacts.
+
+
+
 ### TODO
 
-Remarquer/Prouver que la définition ci-dessus "marche aussi" pour un
-intervalle borné.
+Changer ce qui suit en ppté ? En fait c'est une conséquence directe de la
+ppté de restriction, il faut donc commencer à lister les ppté établies
+pour l'intégrale sur des intervalles compacts qui "passent" au cas non
+borné.
 
 ### Intégrale sur un intervalle fermé {.definition}
 Une fonction $f:I \to \R$ définie sur un intervalle
 fermé quelconque $I$ (borné ou non borné) est 
 *intégrable (au sens de Henstock-Kurzweil)* si son prolongement
-$g$ par zero en dehors de l'intervalle $I$ 
+$g$ par zéro en dehors de l'intervalle $I$ 
 $$
 g(x) = \left|
 \begin{array}{rl}
@@ -1332,6 +1343,7 @@ $$
 \int_I f(t) \, dt := \int_{\R} g(t) \, dt.
 $$
 
+<!--
 ### Démonstration (cohérence des définitions) {.proof}
 
 Il convient de vérifier que 
@@ -1377,6 +1389,29 @@ que $-r \leq c$ et $d \leq r$ et d'utiliser à nouveau
 que $f$ est intégrable sur $[c, d]$ et que son intégrale est l'intégrale de
 $g$.
 
+-->
+
+### TODO
+
+Considérer une par une étude/transposition pptés (s'il y a lieu):
+
+Q: va nécessité absence d'intégrale impropre ?
+
+  - FTC
+
+  - Linéarité
+
+  - IPP
+
+  - Chgt variables
+
+  - Additivité
+
+  - Critère de Cauchy
+
+  - Restriction
+
+
 ### TODO
 
 Existence et valeur de:
@@ -1385,12 +1420,8 @@ $$
 \int_1^{+\infty} \frac{1}{t^2} \, dt
 $$
 
-### TODO
-
-Rappel / généralisation des pptés enoncées pour les intervalles compacts.
-
 Subdivisions Partielles
---------------------------------------------------------------------------------
+================================================================================
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
