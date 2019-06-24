@@ -1395,15 +1395,17 @@ $g$.
 
 Considérer une par une étude/transposition pptés (s'il y a lieu):
 
-Q: va nécessité absence d'intégrale impropre ?
+Q: va nécessité absence d'intégrale impropre ? Pour le FTC par exemple ?
+(Ce qui conditionne IPP et Chgt variable). Considérer le reste des pptés
+dans un premier temps
 
-  - FTC
+  - (*) FTC
 
   - Linéarité
 
-  - IPP
+  - (*) IPP
 
-  - Chgt variables
+  - (*) Chgt variables
 
   - Additivité
 
@@ -1411,17 +1413,99 @@ Q: va nécessité absence d'intégrale impropre ?
 
   - Restriction
 
+  - Fonctions égales pp
 
-### TODO
 
-Existence et valeur de:
-
+### TODO -- Intégration de $x \mapsto 1/x^2$ {.example}
+Considérons la fonction $f:\left[1, +\infty\right[$ définie par
 $$
-\int_1^{+\infty} \frac{1}{t^2} \, dt
+f(x) = \frac{1}{x^2}.
 $$
+
+#### Préambule
+La fonction $f$ admettant comme primitive $x \mapsto -1/x$
+sur $\left[1, +\infty \right[$ sur chaque intervalle borné $[a, b]$ 
+de $\left[1, +\infty \right[$, on a
+$$
+\int_a^b f(t) \, dt = \left[x \mapsto -\frac{1}{x}\right]_a^b 
+= \frac{1}{a} - \frac{1}{b}.
+$$
+On peut donc supposer que $f$ est intégrable sur 
+$\left[1, +\infty \right[$ et vérifie
+$$
+\int_1^{+\infty} f(t) \, dt \stackrel{?}{=} 1.
+$$
+La suite confirmera cette intuition.
+
+### Quadrature
+Nous souhaitons trouver pour tout $\varepsilon > 0$, une jauge $\gamma$ sur 
+$\left[1, +\infty \right[$ et un réel positif $r$ 
+tels que toute subdvision pointée $\mathcal{D}$ de $[0, b]$ pour $b \geq r$ 
+subordonnée à $\gamma$ on ait
+$\left| S(f, \mathcal{D}) - 1 \right| \leq \varepsilon.$
+<!--
+Comme
+$$
+S(f, \mathcal{D}) = \sum_{(t, [x, y]) \in \mathcal{D}} f(t)(y-x),
+$$ -->
+Comme
+$$
+\begin{split}
+\left| S(f, \mathcal{D}) - 1 \right| 
+&\leq
+\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{b}\right) \right| + \frac{1}{b} \\
+&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{b} \\
+&\leq \sum_{(t, [x, y]) \in \mathcal{D}} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{b} \\
+\end{split}
+$$
+Comme $1/b \leq 1/r \leq \varepsilon/2$ quand $r\geq 2 /\varepsilon$,
+il suffira donc de disposer d'un majorant suffisamment petit de chaque 
+terme
+$$
+\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|,
+$$
+de telle sorte que leur somme soit inférieure à $\varepsilon/2$ pour conclure. 
+Toutefois la stratégie consistant à recherche un majorant proportionnel à 
+la longueur de l'intervalle $[x, y]$ n'est plus applicable car l'intervalle
+complet $[0, b]$ peut être arbitrairement long. Au lieu de cela, nous
+allons tâcher de trouver une jauge $\gamma$ telle que
+$$
+\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \leq
+\frac{\varepsilon(y - x)}{2xy}.
+$$
+Les termes de droite de cette inégalité forment alors une série télescopique
+dont la somme vérifie
+$$
+\sum_{(t, [x, y]) \in \mathcal{D}} \frac{\varepsilon(y - x)}{2xy}
+\leq \sum_{(t, [x, y]) \in \mathcal{D}} \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
+ = \varepsilon \left(\frac{1}{2} - \frac{1}{2b} \right)
+ \leq \frac{\varepsilon}{2}.
+$$
+
+Pour fournir la majoration cherchée, nous formons
+$$
+\frac{f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right)}{\frac{(y - x)}{xy}}
+= \frac{xy}{t^2} - 1.
+$$
+Si l'on recherche une jauge $\gamma$ sous la forme 
+$\gamma(t) = \left]t-\delta(t),t+\delta(t)\right[$, on a alors
+$t - \delta(t) \leq x \leq t$ et $t \leq y \leq t =\delta(t)$, et donc
+$$
+\frac{t(t-\delta(t))}{t^2} - 1 \leq \frac{xy}{t^2} - 1 \leq \frac{t(t+\delta(t))}{t^2} - 1,
+$$
+soit
+$$
+\left|  \frac{xy}{t^2} - 1  \right| \leq \frac{\delta(t)}{t}.
+$$
+Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
+majoration voulue.
 
 Subdivisions Partielles
 ================================================================================
+
+### TODO
+
+Nécessaire d'étendre au cas non borné ?
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
