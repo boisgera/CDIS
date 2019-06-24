@@ -1705,19 +1705,19 @@ par le [critère d'intégrabilité de Cauchy](#CIC).
 
 ### TODO -- restriction + add / corollaire {.definition}
 Une fonction $f:I \to \R$ définie sur un intervalle fermé $I$ de $\R$ est 
-intégrable (au sens de Henstock-Kurzweil) si et seulement si son prolongement
-$g$ par zéro en dehors de l'intervalle $I$ 
+intégrable si et seulement si son prolongement $g$ par zéro dans
+$\R$, c'est-à-dire la fonction $g :\R \to \R$ telle que
 $$
 g(x) = \left|
 \begin{array}{rl}
 f(x) & \mbox{si } \, x \in  I, \\
-0 & \mbox{sinon.}
+0 & \mbox{sinon,}
 \end{array}
 \right.
 $$
 est intégrable sur $\R$. Dans ce cas, on a
 $$
-\int_I f(t) \, dt := \int_{\R} g(t) \, dt.
+\int_I f(t) \, dt = \int_{\R} g(t) \, dt.
 $$
 
 
