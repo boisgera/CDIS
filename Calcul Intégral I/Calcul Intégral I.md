@@ -1608,7 +1608,7 @@ Présenter ce qui vient comme une réciproque de l'additivité.
 Contextualiser le critère de Cauchy (valeur de l'intégrale inconnue)
 
 ### TODO -- Critère d'intégrabilité de Cauchy {#CIC .theorem}
-Une fonction $f: I \to \R$ définie sur un intervall fermé est intégrable 
+Une fonction $f: I \to \R$ définie sur un intervalle fermé est intégrable 
 si et seulement si pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ 
 sur $[a, b]$ et un compact $K$ de $I$ tels que pour tout intervalle $[a, b]$
 tel que $K \subset [a, b] \subset I$ et 
