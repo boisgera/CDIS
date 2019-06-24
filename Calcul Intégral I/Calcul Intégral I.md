@@ -1324,24 +1324,6 @@ ppté de restriction, il faut donc commencer à lister les ppté établies
 pour l'intégrale sur des intervalles compacts qui "passent" au cas non
 borné.
 
-### Intégrale sur un intervalle fermé {.definition}
-Une fonction $f:I \to \R$ définie sur un intervalle
-fermé quelconque $I$ (borné ou non borné) est 
-*intégrable (au sens de Henstock-Kurzweil)* si son prolongement
-$g$ par zéro en dehors de l'intervalle $I$ 
-$$
-g(x) = \left|
-\begin{array}{rl}
-f(x) & \mbox{si } \, x \in  I, \\
-0 & \mbox{sinon.}
-\end{array}
-\right.
-$$
-est intégrable sur $\R$.
-On définit alors
-$$
-\int_I f(t) \, dt := \int_{\R} g(t) \, dt.
-$$
 
 <!--
 ### Démonstration (cohérence des définitions) {.proof}
@@ -1501,6 +1483,243 @@ dans un premier temps
   - Restriction
 
   - Fonctions égales pp
+
+
+### Linéarité {.theorem}
+Soit $I$ un intervalle fermé de $\R$,
+$f: I \to \mathbb{R}$ et $g: I \to \mathbb{R}$ deux fonctions intégrables
+et $\lambda \in \mathbb{R}$. 
+Alors $f+g$ et $\lambda f$ sont intégrables et
+$$
+\int_I f(t) + g(t) \, dt 
+= 
+\int_I f(t) \, dt +
+\int_I g(t) \, dt
+\;
+\mbox{ et }
+\;
+\int_I \lambda f(t) \, dt
+=
+\lambda \int_I f(t) \, dt.
+$$
+
+### TODO -- Démonstration {.proof}
+La preuve est similaire au cas des intervalles bornés; 
+nous montrons à titre d'exemple comment se démontre l'additivité.
+
+Par hypothèse pour tout $\varepsilon > 0$, 
+on peut trouver des jauges $\gamma_f$ et $\gamma_g$
+sur $I$ et des intervalles compact $K_f$ et $K_g$ de $I$ 
+tels que pour toute subdivision pointée $\mathcal{D}$
+subordonnée à $\gamma_f$ et $\gamma_g$, pour tout intervalle fermé
+$[a, b]$ contenant $K_f$ et $K_g$ et contenu dans $I$, 
+et pour toute subdivision de $[a, b]$, on a
+$$
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}
+\; \mbox{ et } \;
+\left|S(g, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}.
+$$
+Comme $S(f+g, \mathcal{D}) =  S(f, \mathcal{D}) + S(g, \mathcal{D})$, 
+pour tout intervalle $[a, b]$ de $I$ contenant $K_f \cup K_g$ et toute 
+subdivision pointée $\mathcal{D}$ sur $[a, b]$ subordonnée à la jauge $\gamma$ 
+définie par $\gamma(t) = \gamma_f(t) \cap \gamma_g(t)$ on a 
+$$
+\left|S(f+g, \mathcal{D}) - \int_a^b f(t)+g(t) \, dt \right| \leq \varepsilon.
+$$
+La fonction $f+g$ est donc intégrable sur $I$, et son intégrale est 
+la somme des intégrales de $f$ et de $g$ sur $I$.
+
+
+### TODO -- Additivité {.proposition}
+Si la fonction $f$ est définie et intégrable sur des intervalles fermés
+$I$ et $J$ dont l'intersection se réduit à un point, 
+alors elle est intégrable sur l'intervalle fermé $I \cup J$ et
+$$
+\int_I f(t) \, dt + \int_J f(t) \, dt = \int_{I \cup J} f(t) \, dt.
+$$
+
+### TODO -- Démonstration {.proof}
+
+Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
+$[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \R$ et
+$\gamma_2:[b, c] \to \R$ telles que pour toutes les subdivisions
+pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ de $[a, b]$ et $[b, c]$ 
+respectivement subordonnées à $\gamma_1$ et $\gamma_2$,
+$$
+\left| S(f, \mathcal{D}_1) - \int_a^b f(t) \, dt\right| \leq \varepsilon/2
+\, \mbox{ et } \, 
+\left| S(f, \mathcal{D}_2) - \int_b^c f(t) \, dt\right| \leq \varepsilon/2.
+$$
+Définissons la fonction $\gamma: [a, b] \to \R$ par:
+$$
+\gamma(x) = 
+\left| 
+\begin{array}{rl}
+\gamma_1(x) \cap \left]-\infty, b \right[ & \mbox{ si } \, a < x < b, \\
+\gamma_1(x) \cap \gamma_2(x) & \mbox{ si } \, x = b, \\
+\gamma_2(x) \cap \left]b, +\infty\right[ & \mbox{ si } \, b < x < c. \\
+\end{array}
+\right.
+$$
+Par construction, cette fonction est une jauge sur $[a, c]$ 
+(pour tout $x \in [a, c]$, $\gamma(x)$ est un intervalle 
+ouvert non vide de $\R$ contenant $x$). 
+Supposons que $\mathcal{D} =\{(t_i, I_i)\}_i$ soit une subdivision pointée de 
+$[a, c]$ subordonnée à $\gamma$. 
+Admettons temporairement que chaque intervalle $I_i$ appartienne
+à $[a, b]$ ou bien dans le cas contraire à $[b, c]$. Les
+deux subdivisions pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ sont telles
+que 
+$$
+S(f, \mathcal{D}) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2).
+$$
+Elles sont également subordonnées à $\gamma_1$ et $\gamma_2$ respectivement;
+par conséquent
+$$
+\left|
+S(f, \mathcal{D}) 
+- 
+\int_a^bf(t) \, dt + \int_b^c f(t) \, dt 
+\right|
+\leq 
+\varepsilon. 
+$$
+
+Si notre hypothèse temporaire n'est pas vérifié, c'est qu'il
+existe un (unique) intervalle $I_i$ à cheval sur $[a, b]$ et $[b, c]$, 
+c'est-à-dire d'intersection non vide avec $\left[a, b\right[$ et avec 
+$\left]b, c\right]$. 
+La jauge $\gamma$ a été choisie de telle sorte que 
+si $x \neq b$, alors $x \not \in \gamma(x)$;
+par conséquent, si cet intervalle $I_i=[d_i, e_i]$ existe, 
+alors $t_i = b$ et on peut remplacer le terme $(t_i, I_i)$ dans la subdivision
+pointée $\mathcal{D}$ par $(b, [d_i, b])$ et $(b, [b, e_i])$ sans que
+la somme de Riemann associée change 
+(le terme $f(b) \ell([d_i, e_i])$ étant égal à 
+$f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
+La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
+l'hypothèse de non-chevauchement. Par conséquent l'inégalité
+ci-dessus est satisfaite dans le cas général, ce qui conclut la preuve
+de ce théorème.
+
+### TODO
+
+Présenter ce qui vient comme une réciproque de l'additivité.
+Contextualiser le critère de Cauchy (valeur de l'intégrale inconnue)
+
+### TODO -- Critère d'intégrabilité de Cauchy {#CIC .theorem}
+Une fonction $f: I \to \R$ définie sur un intervall fermé est intégrable 
+si et seulement si pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ 
+sur $[a, b]$ et un compact $K$ de $I$ tels que pour tout intervalle $[a, b]$
+tel que $K \subset [a, b] \subset I$ et 
+tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$ sur
+$[a, b]$ subordonnées à $\gamma$, on ait
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
+$$
+
+### TODO -- Démonstration {.proof}
+Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$, 
+il existe une jauge $\gamma$ sur $[a, b]$ telle que pour tout couple de 
+subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma$,
+on ait
+$$
+|S(f, \mathcal{D}) - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}
+\; \mbox{ et } \;
+|S(f, \mathcal{D}') - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}.
+$$
+Par l'inégalité triangulaire, on a alors comme souhaité
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
+$$
+
+Réciproquement, si la fonction $f$ vérifie le critère du théorème,
+pour tout $k \in \N$ il existe une jauge $\gamma_{k}$ sur $[a, b]$ 
+telle que pour tout couple de subdvisions pointées 
+$\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma_k$, on ait
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq 2^{-k}.
+$$
+Il est de plus possible de choisir les jauges $\gamma_k$ telles qu'à tout 
+ordre $k$ et pour tout $t \in [a, b]$, 
+on ait $\gamma_{k+1}(t) \subset \gamma_k(t)$ (si $\gamma_{k+1}$ ne satisfait
+pas ce critère, il suffit de lui substituer la jauge définie par en $t$ par
+$\gamma_{k+1}(t) \cap \gamma_k(t)$). 
+Soit $\mathcal{D}_k$ une suite de subdivisions pointées sur $[a, b]$
+subordonnées à $\gamma_k$. Si $m \geq k$ et $n \geq k$, 
+$\mathcal{D}_m$ et $\mathcal{D}_n$ sont subordonnées à $\gamma_k$, donc
+$$
+|S(f, \mathcal{D}_m) - S(f, \mathcal{D}_n)| \leq 2^{-k}.
+$$
+La suite des $S(f, \mathcal{D}_k)$ est donc de Cauchy; la droite des réels
+étant complète, cette suite à une limite $A$. En passant à la limite sur
+$n$ dans l'inégalité $|S(f, \mathcal{D}) - S(f, \mathcal{D}_n)| \leq 2^{-k}$,
+valable quand $\mathcal{D}$ est subordonnée à $\gamma_k$, on obtient
+$$
+|S(f, \mathcal{D}) - A| \leq 2^{-k}.
+$$
+La fonction $f$ est donc intégrable et d'intégrale $A$.
+
+
+### TODO -- Restriction {.theorem}
+Si $f$ est intégrable sur l'intervalle fermé $I$, 
+elle est intégrable sur tout intervalle fermé $J$ 
+inclus dans $I$.
+
+### TODO -- Démonstration {.proof}
+Nous démontrons en détail le cas où $c = a$; le cas où $d =b$ se prouve de
+façon similaire et le cas général se déduit facilement de ces deux cas
+particuliers.
+
+Soit $\varepsilon > 0$. Par le [critère d'intégrabilité de Cauchy](#CIC),
+il existe une jauge $\gamma$ sur $[a, b]$ telle
+que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
+subordonnées à $\gamma$, on ait
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
+$$
+Considérons les restrictions $\gamma_1$ et $\gamma_2$ de $\gamma$ à $[a, d]$ et 
+$[d, b]$ respectivement. 
+Soient $\mathcal{D}_1$ et $\mathcal{D}_1'$ deux subdivisions pointées de 
+$[a, d]$ subordonnées à $\gamma_1$;
+si $\mathcal{D}_2$ est une subdivision de $[d, b]$ subordonnée à $\gamma_2$,
+alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}_1 \cup \mathcal{D}_2'$
+sont des subdvisions pointées de $[a, b]$ subordonnées à $\gamma$.
+Par conséquent,
+$$
+|S(f, \mathcal{D}_1 \cup \mathcal{D}_2) 
+- S(f, \mathcal{D}_1 \cup \mathcal{D}_2')|
+\leq \varepsilon.
+$$
+Or
+$S(f, \mathcal{D}_1 \cup \mathcal{D}_2) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2)$
+et $S(f, \mathcal{D}_1 \cup \mathcal{D}_2') = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2')$,
+donc
+$$
+|S(f, \mathcal{D}_1) - S(f, \mathcal{D}_1)|
+\leq \varepsilon,
+$$
+ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
+par le [critère d'intégrabilité de Cauchy](#CIC).
+
+
+### TODO -- restriction + add / corollaire {.definition}
+Une fonction $f:I \to \R$ définie sur un intervalle fermé $I$ de $\R$ est 
+intégrable (au sens de Henstock-Kurzweil) si et seulement si son prolongement
+$g$ par zéro en dehors de l'intervalle $I$ 
+$$
+g(x) = \left|
+\begin{array}{rl}
+f(x) & \mbox{si } \, x \in  I, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est intégrable sur $\R$. Dans ce cas, on a
+$$
+\int_I f(t) \, dt := \int_{\R} g(t) \, dt.
+$$
+
 
 Subdivisions Partielles
 ================================================================================
