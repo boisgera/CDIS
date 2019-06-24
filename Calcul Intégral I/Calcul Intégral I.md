@@ -1391,29 +1391,7 @@ $g$.
 
 -->
 
-### TODO
 
-Considérer une par une étude/transposition pptés (s'il y a lieu):
-
-Q: va nécessité absence d'intégrale impropre ? Pour le FTC par exemple ?
-(Ce qui conditionne IPP et Chgt variable). Considérer le reste des pptés
-dans un premier temps
-
-  - (*) FTC
-
-  - Linéarité
-
-  - (*) IPP
-
-  - (*) Chgt variables
-
-  - Additivité
-
-  - Critère de Cauchy
-
-  - Restriction
-
-  - Fonctions égales pp
 
 
 ### TODO -- Intégration de $x \mapsto 1/x^2$ {.example}
@@ -1499,6 +1477,30 @@ $$
 $$
 Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
 majoration voulue.
+
+### TODO
+
+Considérer une par une étude/transposition pptés (s'il y a lieu):
+
+Q: va nécessité absence d'intégrale impropre ? Pour le FTC par exemple ?
+(Ce qui conditionne IPP et Chgt variable). Considérer le reste des pptés
+dans un premier temps
+
+  - (*) FTC
+
+  - Linéarité
+
+  - (*) IPP
+
+  - (*) Chgt variables
+
+  - Additivité
+
+  - Critère de Cauchy
+
+  - Restriction
+
+  - Fonctions égales pp
 
 Subdivisions Partielles
 ================================================================================
