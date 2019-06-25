@@ -60,18 +60,18 @@ $$
 
 
 ### Subdivision pointée {.definition}
-Une *subdivision* de l'intervalle fermé $I = [a,b]$
+Une *subdivision* de l'intervalle fermé $[a,b]$
 est une collection finie
 $$
 \{I_i \; | \; \; 0 \leq i \leq n-1 \}
 $$
-constituée d'intervalles fermés de $I$, *sans chevauchement*
+constituée d'intervalles fermés inclus dans $I$, *sans chevauchement*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
 plus un point -- 
 et *recouvrant $I$* 
 -- l'union de tous les intervalles $I_i$ est égal à $I$. 
 Une *subdivision pointée* $\mathcal{D}$ de l'intervalle fermé $I = [a, b]$ 
-de $\R$ est une collection finie 
+est une collection finie 
 $$
 \mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
@@ -1338,27 +1338,30 @@ $$
 La suite confirmera cette intuition.
 
 Nous souhaitons trouver pour tout $\varepsilon > 0$, une jauge $\gamma$ sur 
-$\left[1, +\infty \right]$ et un réel positif $r$ 
-tels que toute subdvision pointée $\mathcal{D}$ de $[0, b]$ pour $b \geq r$ 
+$\left[1, +\infty \right]$
+tels que pour toute subdvision pointée $\mathcal{D}$ de $[1, +\infty]$ 
 subordonnée à $\gamma$ on ait
 $\left| S(f, \mathcal{D}) - 1 \right| \leq \varepsilon.$
-<!--
-Comme
-$$
-S(f, \mathcal{D}) = \sum_{(t, [x, y]) \in \mathcal{D}} f(t)(y-x),
-$$ -->
-Comme
+Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
+que les $x_i$ sont agencés de façon (strictement) croissante;
+notons $\mathcal{D}_{f}$ l'ensemble des $(t_i, [x_i, x_{i+1}])$ de 
+$\mathcal{D}$ tels que $x_{i+1} < +\infty$.
+On a 
 $$
 \begin{split}
 \left| S(f, \mathcal{D}) - 1 \right| 
 &\leq
-\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{b}\right) \right| + \frac{1}{b} \\
-&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{b} \\
-&\leq \sum_{(t, [x, y]) \in \mathcal{D}} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{b} \\
+\left| S(f, \mathcal{D}_f) - \left(1 - \frac{1}{x_{m-1}}\right) \right| + \frac{1}{x_{m-1}} \\
+&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m-1}} \\
+&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m-1}} \\
 \end{split}
 $$
-Comme $1/b \leq 1/r \leq \varepsilon/2$ quand $r\geq 2 /\varepsilon$,
-il suffira donc de disposer d'un majorant suffisamment petit de chaque 
+Si l'on sélectionne une jauge telle que 
+$\gamma(+\infty) = \left]2/\varepsilon, +\infty\right]$,
+si $\mathcal{D}$ est subordonnée à $\gamma$,
+$[x_{m-1}, x_m] \subset \gamma(+\infty)$
+et on a garanti que $1/x_{m-1} \leq \varepsilon/2.$
+Il suffira donc de disposer d'un majorant suffisamment petit de chaque 
 terme
 $$
 \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|,
@@ -1366,8 +1369,8 @@ $$
 de telle sorte que leur somme soit inférieure à $\varepsilon/2$ pour conclure. 
 Toutefois la stratégie consistant à recherche un majorant proportionnel à 
 la longueur de l'intervalle $[x, y]$ n'est plus applicable car l'intervalle
-complet $[0, b]$ peut être arbitrairement long. Au lieu de cela, nous
-allons tâcher de trouver une jauge $\gamma$ telle que
+$[0, x_{m-1}]$ peut être arbitrairement long. 
+Au lieu de cela, nous allons tâcher de trouver une jauge $\gamma$ telle que
 $$
 \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \leq
 \frac{\varepsilon(y - x)}{2xy}.
@@ -1375,9 +1378,9 @@ $$
 Les termes de droite de cette inégalité forment alors une série télescopique
 dont la somme vérifie
 $$
-\sum_{(t, [x, y]) \in \mathcal{D}} \frac{\varepsilon(y - x)}{2xy}
-\leq \sum_{(t, [x, y]) \in \mathcal{D}} \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
- = \varepsilon \left(\frac{1}{2} - \frac{1}{2b} \right)
+\sum_{(t, [x, y]) \in \mathcal{D}_f} \frac{\varepsilon(y - x)}{2xy}
+\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
+ = \varepsilon \left(\frac{1}{2} - \frac{1}{2x_m} \right)
  \leq \frac{\varepsilon}{2}.
 $$
 
@@ -1386,8 +1389,9 @@ $$
 \frac{f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right)}{\frac{(y - x)}{xy}}
 = \frac{xy}{t^2} - 1.
 $$
-Si l'on recherche une jauge $\gamma$ sous la forme 
-$\gamma(t) = \left]t-\delta(t),t+\delta(t)\right[$, on a alors
+Si l'on recherche une jauge $\gamma$ telle que 
+$\gamma(t) = \left]t-\delta(t),t+\delta(t)\right[$, 
+pour $t < +\infty$, on a alors
 $t - \delta(t) \leq x \leq t$ et $t \leq y \leq t =\delta(t)$, et donc
 $$
 \frac{t(t-\delta(t))}{t^2} - 1 \leq \frac{xy}{t^2} - 1 \leq \frac{t(t+\delta(t))}{t^2} - 1,
@@ -1401,263 +1405,41 @@ majoration voulue.
 
 ### TODO
 
-Considérer une par une étude/transposition pptés (s'il y a lieu):
-
-Q: va nécessité absence d'intégrale impropre ? Pour le FTC par exemple ?
-(Ce qui conditionne IPP et Chgt variable). Considérer le reste des pptés
-dans un premier temps
+Quid:
 
   - (*) FTC
-
-  - Linéarité
 
   - (*) IPP
 
   - (*) Chgt variables
 
-  - Additivité
+dans le cas nom borné ? Reprendre leur énoncés ad minimima et s'assurer
+que la terminologie "intervalle fermé **de $\R$**" est présente.
 
-  - Critère de Cauchy
+### {.remark .ante}
+Il n'est pas nécessaire de considérer l'intégration dans tous les types
+d'intervalles (fermés) bornés ou non bornés possibles: on peut toujours
+se ramener au cas où l'on cherche à intégrer une fonction sur la
+droite réelle (achevée) toute entière:
 
-  - Restriction
-
-  - Fonctions égales pp
-
-
-### Linéarité {.theorem}
-Soit $I$ un intervalle fermé de $\R$,
-$f: I \to \mathbb{R}$ et $g: I \to \mathbb{R}$ deux fonctions intégrables
-et $\lambda \in \mathbb{R}$. 
-Alors $f+g$ et $\lambda f$ sont intégrables et
-$$
-\int_I f(t) + g(t) \, dt 
-= 
-\int_I f(t) \, dt +
-\int_I g(t) \, dt
-\;
-\mbox{ et }
-\;
-\int_I \lambda f(t) \, dt
-=
-\lambda \int_I f(t) \, dt.
-$$
-
-### TODO -- Démonstration {.proof}
-La preuve est similaire au cas des intervalles bornés; 
-nous montrons à titre d'exemple comment se démontre l'additivité.
-
-Par hypothèse pour tout $\varepsilon > 0$, 
-on peut trouver des jauges $\gamma_f$ et $\gamma_g$
-sur $I$ et des intervalles compact $K_f$ et $K_g$ de $I$ 
-tels que pour toute subdivision pointée $\mathcal{D}$
-subordonnée à $\gamma_f$ et $\gamma_g$, pour tout intervalle fermé
-$[a, b]$ contenant $K_f$ et $K_g$ et contenu dans $I$, 
-et pour toute subdivision de $[a, b]$, on a
-$$
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}
-\; \mbox{ et } \;
-\left|S(g, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}.
-$$
-Comme $S(f+g, \mathcal{D}) =  S(f, \mathcal{D}) + S(g, \mathcal{D})$, 
-pour tout intervalle $[a, b]$ de $I$ contenant $K_f \cup K_g$ et toute 
-subdivision pointée $\mathcal{D}$ sur $[a, b]$ subordonnée à la jauge $\gamma$ 
-définie par $\gamma(t) = \gamma_f(t) \cap \gamma_g(t)$ on a 
-$$
-\left|S(f+g, \mathcal{D}) - \int_a^b f(t)+g(t) \, dt \right| \leq \varepsilon.
-$$
-La fonction $f+g$ est donc intégrable sur $I$, et son intégrale est 
-la somme des intégrales de $f$ et de $g$ sur $I$.
-
-
-### TODO -- Additivité {.proposition}
-Si la fonction $f$ est définie et intégrable sur des intervalles fermés
-$I$ et $J$ dont l'intersection se réduit à un point, 
-alors elle est intégrable sur l'intervalle fermé $I \cup J$ et
-$$
-\int_I f(t) \, dt + \int_J f(t) \, dt = \int_{I \cup J} f(t) \, dt.
-$$
-
-### TODO -- Démonstration {.proof}
-
-Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
-$[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \R$ et
-$\gamma_2:[b, c] \to \R$ telles que pour toutes les subdivisions
-pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ de $[a, b]$ et $[b, c]$ 
-respectivement subordonnées à $\gamma_1$ et $\gamma_2$,
-$$
-\left| S(f, \mathcal{D}_1) - \int_a^b f(t) \, dt\right| \leq \varepsilon/2
-\, \mbox{ et } \, 
-\left| S(f, \mathcal{D}_2) - \int_b^c f(t) \, dt\right| \leq \varepsilon/2.
-$$
-Définissons la fonction $\gamma: [a, b] \to \R$ par:
-$$
-\gamma(x) = 
-\left| 
-\begin{array}{rl}
-\gamma_1(x) \cap \left]-\infty, b \right[ & \mbox{ si } \, a < x < b, \\
-\gamma_1(x) \cap \gamma_2(x) & \mbox{ si } \, x = b, \\
-\gamma_2(x) \cap \left]b, +\infty\right[ & \mbox{ si } \, b < x < c. \\
-\end{array}
-\right.
-$$
-Par construction, cette fonction est une jauge sur $[a, c]$ 
-(pour tout $x \in [a, c]$, $\gamma(x)$ est un intervalle 
-ouvert non vide de $\R$ contenant $x$). 
-Supposons que $\mathcal{D} =\{(t_i, I_i)\}_i$ soit une subdivision pointée de 
-$[a, c]$ subordonnée à $\gamma$. 
-Admettons temporairement que chaque intervalle $I_i$ appartienne
-à $[a, b]$ ou bien dans le cas contraire à $[b, c]$. Les
-deux subdivisions pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ sont telles
-que 
-$$
-S(f, \mathcal{D}) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2).
-$$
-Elles sont également subordonnées à $\gamma_1$ et $\gamma_2$ respectivement;
-par conséquent
-$$
-\left|
-S(f, \mathcal{D}) 
-- 
-\int_a^bf(t) \, dt + \int_b^c f(t) \, dt 
-\right|
-\leq 
-\varepsilon. 
-$$
-
-Si notre hypothèse temporaire n'est pas vérifié, c'est qu'il
-existe un (unique) intervalle $I_i$ à cheval sur $[a, b]$ et $[b, c]$, 
-c'est-à-dire d'intersection non vide avec $\left[a, b\right[$ et avec 
-$\left]b, c\right]$. 
-La jauge $\gamma$ a été choisie de telle sorte que 
-si $x \neq b$, alors $x \not \in \gamma(x)$;
-par conséquent, si cet intervalle $I_i=[d_i, e_i]$ existe, 
-alors $t_i = b$ et on peut remplacer le terme $(t_i, I_i)$ dans la subdivision
-pointée $\mathcal{D}$ par $(b, [d_i, b])$ et $(b, [b, e_i])$ sans que
-la somme de Riemann associée change 
-(le terme $f(b) \ell([d_i, e_i])$ étant égal à 
-$f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
-La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
-l'hypothèse de non-chevauchement. Par conséquent l'inégalité
-ci-dessus est satisfaite dans le cas général, ce qui conclut la preuve
-de ce théorème.
-
-### TODO
-
-Présenter ce qui vient comme une réciproque de l'additivité.
-Contextualiser le critère de Cauchy (valeur de l'intégrale inconnue)
-
-### TODO -- Critère d'intégrabilité de Cauchy {#CIC .theorem}
-Une fonction $f: I \to \R$ définie sur un intervalle fermé est intégrable 
-si et seulement si pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ 
-sur $[a, b]$ et un compact $K$ de $I$ tels que pour tout intervalle $[a, b]$
-tel que $K \subset [a, b] \subset I$ et 
-tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$ sur
-$[a, b]$ subordonnées à $\gamma$, on ait
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
-$$
-
-### TODO -- Démonstration {.proof}
-Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$, 
-il existe une jauge $\gamma$ sur $[a, b]$ telle que pour tout couple de 
-subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma$,
-on ait
-$$
-|S(f, \mathcal{D}) - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}
-\; \mbox{ et } \;
-|S(f, \mathcal{D}') - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}.
-$$
-Par l'inégalité triangulaire, on a alors comme souhaité
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
-$$
-
-Réciproquement, si la fonction $f$ vérifie le critère du théorème,
-pour tout $k \in \N$ il existe une jauge $\gamma_{k}$ sur $[a, b]$ 
-telle que pour tout couple de subdvisions pointées 
-$\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma_k$, on ait
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq 2^{-k}.
-$$
-Il est de plus possible de choisir les jauges $\gamma_k$ telles qu'à tout 
-ordre $k$ et pour tout $t \in [a, b]$, 
-on ait $\gamma_{k+1}(t) \subset \gamma_k(t)$ (si $\gamma_{k+1}$ ne satisfait
-pas ce critère, il suffit de lui substituer la jauge définie par en $t$ par
-$\gamma_{k+1}(t) \cap \gamma_k(t)$). 
-Soit $\mathcal{D}_k$ une suite de subdivisions pointées sur $[a, b]$
-subordonnées à $\gamma_k$. Si $m \geq k$ et $n \geq k$, 
-$\mathcal{D}_m$ et $\mathcal{D}_n$ sont subordonnées à $\gamma_k$, donc
-$$
-|S(f, \mathcal{D}_m) - S(f, \mathcal{D}_n)| \leq 2^{-k}.
-$$
-La suite des $S(f, \mathcal{D}_k)$ est donc de Cauchy; la droite des réels
-étant complète, cette suite à une limite $A$. En passant à la limite sur
-$n$ dans l'inégalité $|S(f, \mathcal{D}) - S(f, \mathcal{D}_n)| \leq 2^{-k}$,
-valable quand $\mathcal{D}$ est subordonnée à $\gamma_k$, on obtient
-$$
-|S(f, \mathcal{D}) - A| \leq 2^{-k}.
-$$
-La fonction $f$ est donc intégrable et d'intégrale $A$.
-
-
-### TODO -- Restriction {.theorem}
-Si $f$ est intégrable sur l'intervalle fermé $I$, 
-elle est intégrable sur tout intervalle fermé $J$ 
-inclus dans $I$.
-
-### TODO -- Démonstration {.proof}
-Nous démontrons en détail le cas où $c = a$; le cas où $d =b$ se prouve de
-façon similaire et le cas général se déduit facilement de ces deux cas
-particuliers.
-
-Soit $\varepsilon > 0$. Par le [critère d'intégrabilité de Cauchy](#CIC),
-il existe une jauge $\gamma$ sur $[a, b]$ telle
-que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
-subordonnées à $\gamma$, on ait
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
-$$
-Considérons les restrictions $\gamma_1$ et $\gamma_2$ de $\gamma$ à $[a, d]$ et 
-$[d, b]$ respectivement. 
-Soient $\mathcal{D}_1$ et $\mathcal{D}_1'$ deux subdivisions pointées de 
-$[a, d]$ subordonnées à $\gamma_1$;
-si $\mathcal{D}_2$ est une subdivision de $[d, b]$ subordonnée à $\gamma_2$,
-alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}_1 \cup \mathcal{D}_2'$
-sont des subdvisions pointées de $[a, b]$ subordonnées à $\gamma$.
-Par conséquent,
-$$
-|S(f, \mathcal{D}_1 \cup \mathcal{D}_2) 
-- S(f, \mathcal{D}_1 \cup \mathcal{D}_2')|
-\leq \varepsilon.
-$$
-Or
-$S(f, \mathcal{D}_1 \cup \mathcal{D}_2) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2)$
-et $S(f, \mathcal{D}_1 \cup \mathcal{D}_2') = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2')$,
-donc
-$$
-|S(f, \mathcal{D}_1) - S(f, \mathcal{D}_1)|
-\leq \varepsilon,
-$$
-ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
-par le [critère d'intégrabilité de Cauchy](#CIC).
-
-
-### TODO -- restriction + add / corollaire {.definition}
-Une fonction $f:I \to \R$ définie sur un intervalle fermé $I$ de $\R$ est 
-intégrable si et seulement si son prolongement $g$ par zéro dans
-$\R$, c'est-à-dire la fonction $g :\R \to \R$ telle que
+### Extension à la droite réelle achevée {.corollary}
+Une fonction $f:[a, b] \to \R$ est intégrable si et seulement 
+si son prolongement $g$ par zéro dans $\R \cup \{-\infty, +\infty\}$, 
+c'est-à-dire la fonction $g :\R \cup \{-\infty, +\infty\} \to \R$ telle que
 $$
 g(x) = \left|
 \begin{array}{rl}
-f(x) & \mbox{si } \, x \in  I, \\
+f(x) & \mbox{si } \, x \in  [a, b], \\
 0 & \mbox{sinon,}
 \end{array}
 \right.
 $$
-est intégrable sur $\R$. Dans ce cas, on a
+est intégrable. Dans ce cas, on a
 $$
-\int_I f(t) \, dt = \int_{\R} g(t) \, dt.
+\int_a^b f(t) \, dt = \int_{-\infty}^{+\infty} g(t) \, dt.
 $$
+
+### TODO -- Démonstration {.proof}
 
 
 Subdivisions Partielles
