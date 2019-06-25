@@ -1413,7 +1413,7 @@ Quid:
 
   - (*) Chgt variables
 
-dans le cas nom borné ? Reprendre leur énoncés ad minimima et s'assurer
+dans le cas non borné ? Reprendre leur énoncés ad minimima et s'assurer
 que la terminologie "intervalle fermé **de $\R$**" est présente.
 
 ### {.remark .ante}
