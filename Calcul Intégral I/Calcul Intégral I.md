@@ -1457,7 +1457,7 @@ son intégrale sur $[-\infty, a]$ est nulle et comme $g=f$ sur $[a, +\infty]$,
 $$
 \int_{\R} g(t) \, dt = \int_{a}^{+\infty} f(t) \,dt.
 $$
-Les autres cas -- $a=-\infty$ et $b$ finis, $a$ et $b$ finis -- se démontrent
+Les autres cas ($a=-\infty$ et $b$ finis, $a$ et $b$ finis) se démontrent
 de manière analogue.
 
 
