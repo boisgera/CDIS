@@ -1439,7 +1439,26 @@ $$
 \int_a^b f(t) \, dt = \int_{-\infty}^{+\infty} g(t) \, dt.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Supposons que $a$ soit fini et que $b = +\infty$. 
+Si $g$ est intégrable sur $\R \cup \{-\infty, +\infty\}$, 
+par restriction, $f$ est intégrable sur $[a, +\infty]$.
+Réciproquement, si $f$ est intégrable sur $[a, +\infty]$,
+la fonction $g$ étant nulle sur sur $\left[-\infty, a\right]$ 
+à l'exception d'un point, elle y est intégrable et étant égale à $f$ sur
+$[a, +\infty]$ elle y est également intégrable. Par additivité, $g$ est donc
+intégrable sur $\R \cup \{-\infty, +\infty\}$.
+L'additivité fournit également
+$$
+\int_{\R} g(t) \, dt = \int_{-\infty}^a g(t) \, dt + \int_{a}^{+\infty} g(t) \,dt.
+$$
+Comme $g$ est nulle sur $\left[-\infty, a\right]$ à l'exception d'un point,
+son intégrale sur $[-\infty, a]$ est nulle et comme $g=f$ sur $[a, +\infty]$,
+$$
+\int_{\R} g(t) \, dt = \int_{a}^{+\infty} f(t) \,dt.
+$$
+Les autres cas -- $a=-\infty$ et $b$ finis, $a$ et $b$ finis -- se démontrent
+de manière analogue.
 
 
 Subdivisions Partielles
