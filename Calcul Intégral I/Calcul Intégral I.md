@@ -262,13 +262,13 @@ Intégrale de Riemann Généralisée
 ================================================================================
 
 ### Jauge {.definition}
-Une *jauge* $\gamma$ sur un intervalle $I$ de $\R$ est une fonction 
-qui associe à tout $t \in I$ un intervalle ouvert $\gamma(t)$ de $\R$ 
-contenant $t$. 
+Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction 
+qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
+de contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
-Une subdivision pointée $\mathcal{D}$ de l'intervalle compact $I$ 
-est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout 
+Une subdivision pointée $\mathcal{D}$ de l'intervalle $[a, b]$ 
+est *subordonnée à une jauge* $\gamma$ sur $[a, b]$ si pour tout 
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Représentation graphique
@@ -306,7 +306,7 @@ graphique d'une subdivision pointée, avec séparateurs en barres
 verticales et $t_i$ en croix.
 
 ### Lemme de Cousin {.theorem}
-Pour toute jauge $\gamma$ sur l'intervalle compact $I$, 
+Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
 il existe une subdivision pointée $\mathcal{D}$ 
 qui soit subordonnée à $\gamma$.
 
@@ -348,7 +348,7 @@ coup de la faire "pour de vrai".
 Au passage, il faut s'arranger pour "lemmatiser" le résultats "... et le 
 processus termine en un nombre fini d'étapes" plus clairement.
 
-### Intégrale de Henstock-Kurzweil sur un intervalle compact {.definition}
+### Intégrale de Henstock-Kurzweil {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$, 
@@ -489,8 +489,7 @@ résultat recherché.
 
 ### Intégration de $x \mapsto e^x$ {.example}
 La fonction $f: x \mapsto e^x$ est intégrable au sens de Newton sur 
-tout intervalle compact $[a, b]$ 
-puisqu'elle admet $F: x \mapsto e^x$ comme primitive.
+tout intervalle $[a, b]$ puisqu'elle admet $F: x \mapsto e^x$ comme primitive.
 Par le théorème fondamental du calcul, 
 $f$ est intégrable au sens de Henstock-Kurzweil et l'intégrale associée 
 coïncide avec l'intégrale de Newton. On a donc
@@ -950,13 +949,14 @@ ce qui est le résultat recherché.
 
 ### TODO
 Mentionner résultat plus général, avec juste $f$ intégrable (sous hyp plus
-restrictives pour $g$ ?). Trouver ref ?
+restrictives pour $g$ ?). Trouver ref ? Ou attendre chapitre multi-variable
+et y faire référence ?
+
 
 ### Changement de variables {.theorem}
 Si la fonction $f:[c, d] \to \R$ admet une primitive,
-que la fonction $g:[a, b] \to \R$ est dérivable 
-et que $g([a, b]) \subset [c, d]$, alors la fonction
-$(f\circ g) g'$ est intégrable sur $[a, b]$ et
+que la fonction $g:[a, b] \to [c, d]$ est dérivable, 
+alors la fonction $(f\circ g) g'$ est intégrable sur $[a, b]$ et
 $$
 \int_a^b f(g(t)) g'(t)\, dt = \int_{g(a)}^{g(b)} f(x) \, dx.
 $$
@@ -978,7 +978,7 @@ les deux intégrales sont donc égales.
 
 
 ### Additivité {.proposition}
-Si la fonction $f$ est définie et intégrable sur les intervalles compacts
+Si la fonction $f$ est définie et intégrable sur les intervalles
 $[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
 et
 $$
@@ -1112,8 +1112,8 @@ entre les deux résultats.
 
 ### Restriction {.theorem}
 
-Si $f$ est intégrable sur l'intervalle compact  $[a, b]$, 
-elle est intégrable sur tout intervalle compact $[c, d]$ 
+Si $f$ est intégrable sur l'intervalle $[a, b]$, 
+elle est intégrable sur tout intervalle $[c, d]$ 
 inclus dans $[a, b]$.
 
 ### Démonstration {.proof}
@@ -1249,140 +1249,79 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 Intégration sur des intervalle non-bornés
 ================================================================================
 
-### TODO
-
-Motiver la définition de l'intégrale sur un intervalle non borné,
-disons $\left[0, +\infty\right[$
-par l'étude de l'intégrale sur $[a, b]$ et "sautant" le dernier
-terme de la somme de Riemann ? En exercice ? Bof.
 
 ### TODO
 
 Voir ce qu'il est possible de dire au passage sur l'absence d'intégrale
 impropre (théorème de Hake).
 
-### Remarque {.anonymous}
-
-La difficulté d'intégrer une fonction sur un intervalle non borné tel
-que $\R$ n'est pas lié au concept de subdivision pointée, 
-qui peut être généralisé pour comporter des intervalles non bornés,
-mais au calcul de la somme de Riemann associée. 
-En effet, toute subdivision pointée d'un intervalle non-borné comporte
-nécessairement un ou deux éléments de la forme $(t, I)$ où $I$ est non-borné; 
-la longueur $\ell(I)$ associée est alors infinie et la somme de Riemann
-correspondante comporte alors un ou deux termes de la forme $f(t) \times \infty$;
-elle donc potentiellement infinie, ou même indéfinie ...
-
-Pour éviter cette difficulté technique, nous allons définir l'intégrale 
-sur $\R$ à partir de subdivisions d'intervalles compacts, en exigant 
-que celles-ci, en plus d'être suffisamment fines comme dans le cas des
-intervalles bornés, soient basées sur un intervalle suffisamment grand.
-
-
-### Intégrale sur un intervalle non borné {.definition}
-Soit $I$ un intervalle fermé non borné de $\R$ de bornes $a$ et $b$[^inb].
-Une fonction $f:I \to \R$ est dite *intégrable 
-(au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
-que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de $I$ 
-et un intervalle compact $K$ de $I$
-tels que pour tout intervalle compact $[a, b]$ tel que $K \subset [a, b]$
-et pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
-subordonnée à $\gamma$, on ait
-$|S(f, \mathcal{D}) - A| \leq \varepsilon$.
-Le réel $A$ quand il existe est unique; il est appelé
-*intégrale de $f$ sur $I$* et noté
-$$
-\int_{a}^{b} f(t) \, dt
-\, \mbox{ ou } \,
-\int_I f(t) \, dt.
-$$
-
-[^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\R$,
-$I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \R$.
-
-### TODO: 
-
-simplifier ce qui suit, inutilement compliqué.
-
-### TODO: 
-
-j'ai changé la définition ci-dessus, adapter la suite.
-
-### {.remark .post}
-Cette définition d'intégrale sur un intervalle fermé non borné $I$
-peut être utilisée à l'identique si $I$ est fermé et borné. 
-On obtient alors une définition (inutilement compliquée, mais) 
-parfaitement compatible avec la définition adoptée jusqu'à présent 
-pour les intervalles compacts.
-
-
-
 ### TODO
+Référence procédé "habituel" de Cauchy-Riemann nécessaire dans le cadre
+classique, coexistence d'intégrales "normales" et "impropres" et comment
+ça n'est plus le cas ici.
 
-Changer ce qui suit en ppté ? En fait c'est une conséquence directe de la
-ppté de restriction, il faut donc commencer à lister les ppté établies
-pour l'intégrale sur des intervalles compacts qui "passent" au cas non
-borné.
+### 
+La théorie de l'intégration de Henstock-Kurzweil présentée dans les
+sections précédentes peut être modifiée de façon assez mineure pour 
+permettre l'intégration de fonctions sur des intervalles non-bornés.
+Le travail central consiste à redéfinir la somme de Riemann; 
+en effet, comme toute subdivision pointée 
+d'un intervalle non-borné comporte nécessairement un ou deux éléments 
+de la forme $(t, I)$ où $I$ est non-borné,
+la longueur $\ell(I)$ associée est alors infinie et la somme de Riemann
+définie jusqu'à présent comporte alors un ou deux termes de la forme 
+$f(t) \times \infty$; elle donc potentiellement infinie, 
+ou même indéfinie si les termes $-\infty$ et $+\infty$ apparaissent.
 
+Pour pallier à ce problème, nous adoptons la stratégie suivante:
 
-<!--
-### Démonstration (cohérence des définitions) {.proof}
+ 1. **Intervalles.** 
+    Nous considérons désormais l'intégration de fonctions sur des 
+    intervalles de la forme $[a, b]$ où $-\infty \leq a \leq b \leq +\infty$,
+    autrement dit les intervalles fermés de la droite achevée
+    $\R \cup \{-\infty, +\infty\}$.
 
-Il convient de vérifier que 
-[la définition d'intégrale sur un intervalle fermé $I$][Intégrale sur un intervalle fermé] 
-est cohérente avec 
-[la définition d'intégrale sur $\R$][Intégrale sur $\R$]
-(ce qui est direct) et aussi avec 
-[la définition d'intégrale sur un intervalle compact][Intégrale sur un intervalle compact]
-que nous avons utilisé jusqu'à présent.
+ 2. **Fonctions.**
+    Si les fonctions que nous souhaitons intégrer sont définies sur des 
+    intervalles fermés dans $\R$ mais pas dans $\R \cup \{-\infty, +\infty\}$,
+    nous leur assignons une valeur arbitraire en $\pm \infty$, par exemple
+    la valeur $0$.
 
-Dans ce second cas, si la fonction $f:[c, d] \to \R$ est
-[intégrable au sens de la définition originelle][Intégrale sur un intervalle compact],
-et si l'on prend $r>0$ tel que $-r \leq c$ et 
-$d \leq r$ et que l'on considère un intervalle
-compact $[a, b]$ vérifiant $a \leq -r$ et $r \leq b$, on
-a $[c, d] \subset [a, b]$. Par additivité de l'intégrale,
-$$
-\int_a^b g(t) \, dt  
-= 
-\int_a^c g(t) \, dt + \int_c^d g(t) \, dt + \int_d^b g(t) \, dt.
-$$
-Or sur $[a, c]$ et $[d, b]$, la fonction $g$ est nulle sauf peut-être en
-$c$ et $b$ ; sur $[c, d]$, elle est égale à $f$. Par conséquent $g$
-est intégrable sur $[a, b]$ et 
-$$
-\int_a^b g(t) \, dt
-=
-\int_c^d f(t) \, dt.
-$$
-On peut donc bien trouver une jauge $\gamma$ sur $[a, b]$ telle que toute 
-subdivision $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$ vérifie
-$$
-\left|S(f, \mathcal{D}) - \int_c^d f(t) \, dt \right| \leq
-\varepsilon
-$$
+ 3. **Somme de Riemann.** Si $\mathcal{D}$ est une subdivision pointée de 
+    $[a, b]$ et $f:[a, b] \to \R$, la somme de Riemann associée est définie
+    comme
+    $$
+    S(f, \mathcal{D}) = \sum f(t) \ell(I) 
+    \; \mbox{ où } \; 
+    (t, I) \in \mathcal{D}
+    \mbox{ et } 
+    I \subset \left]-\infty, +\infty\right[.
+    $$
 
-Réciproquement, si la fonction $f:[c, d] \to \R$ est
-[intégrable au sens de la définition générale][Intégrale sur un intervalle fermé],
-pour tout $r>0$ et $[a, b]$ tel que $a \leq -r$ et $r \leq b$, le prolongement
-de $f$ par zéro est intégrable sur $[a, b]$. Il suffit de prendre $r$ tel
-que $-r \leq c$ et $d \leq r$ et d'utiliser à nouveau 
-[(la réciproque de) l'additivité de l'intégrale][Additivité] pour conclure
-que $f$ est intégrable sur $[c, d]$ et que son intégrale est l'intégrale de
-$g$.
+Autrement dit, nous remplaçons les intervalles fermés $\R$ par ceux de
+$\R \cup \{-\infty, +\infty\}$ et nous excluons de la somme de Riemann les
+contributions des intervalles contenant $-\infty$ ou $+\infty$ (ce qui
+explique pourquoi les valeurs $f(\pm \infty)$ n'ont pas d'importance).
 
--->
+Dans ce nouveau contexte, les définitions de jauge, de subdivision pointée, 
+d'intégrabilité et d'intégrale sur un intervalle fermés restent formellement 
+inchangées[^6s]. Les résultats relatifs à la linéarité de l'intégrale, son
+additivité, sa restriction, l'égalité des intégrales de fonctions égales
+presque partout sont toujours vrais; des preuves formellement identiques
+sont valables.
 
+[^6s]: c'est l'effet "Shyamalan" ou "6ème sens": 
+il faut relire le document, qui prend un nouveau sens compte tenu 
+de ce que l'on sait désormais.
 
-
-
-### TODO -- Intégration de $x \mapsto 1/x^2$ {.example}
+### Intégration de $x \mapsto 1/x^2$ {.example}
 Considérons la fonction $f:\left[1, +\infty\right[$ définie par
 $$
 f(x) = \frac{1}{x^2}.
 $$
+On étend immédiatement cette fonction sur $[0, +\infty]$ en posant
+$f(+\infty)=0$ (on note toujours $f$ la fonction qui en résulte).
 
-#### Préambule
 La fonction $f$ admettant comme primitive $x \mapsto -1/x$
 sur $\left[1, +\infty \right[$ sur chaque intervalle borné $[a, b]$ 
 de $\left[1, +\infty \right[$, on a
@@ -1390,16 +1329,16 @@ $$
 \int_a^b f(t) \, dt = \left[x \mapsto -\frac{1}{x}\right]_a^b 
 = \frac{1}{a} - \frac{1}{b}.
 $$
-On peut donc supposer que $f$ est intégrable sur 
-$\left[1, +\infty \right[$ et vérifie
+En "passant à la limite" informellement,
+on peut supposer que $f$ est intégrable sur 
+$\left[1, +\infty \right]$ et vérifie
 $$
 \int_1^{+\infty} f(t) \, dt \stackrel{?}{=} 1.
 $$
 La suite confirmera cette intuition.
 
-### Quadrature
 Nous souhaitons trouver pour tout $\varepsilon > 0$, une jauge $\gamma$ sur 
-$\left[1, +\infty \right[$ et un réel positif $r$ 
+$\left[1, +\infty \right]$ et un réel positif $r$ 
 tels que toute subdvision pointée $\mathcal{D}$ de $[0, b]$ pour $b \geq r$ 
 subordonnée à $\gamma$ on ait
 $\left| S(f, \mathcal{D}) - 1 \right| \leq \varepsilon.$
@@ -1906,6 +1845,35 @@ Identifier par les jauges si une fonction est une dérivée (cf papier).
 
 $\to$ [Solution](#s-der)
 
+Intégration sur un intervalle non borné
+--------------------------------------------------------------------------------
+
+Il est possible de définir l'intégrabilité (et l'intégrale) d'une fonction
+$f$ sur un intervalle fermé et non-borné de $\R$ de façon élémentaire,
+sans avoir recours à la droite achevée.
+Le procédé en question est plus élémentaire[^es]; 
+il revient à exiger que partir les subdivisions d'intervalles bornés
+exploitées par la somme de Riemman en plus d'être suffisamment "fines" 
+soient suffisamment "étendues".
+
+[^es]: mais pas nécessairement plus simple ...
+
+### Question 1 {.question #e-inb-1}
+
+Soit $I$ un intervalle fermé non borné de $\R$ de bornes $a$ et $b$[^inb].
+Montrer que la fonction $f:I \to \R$ est intégrable si et seulement si il
+existe un réel $A$ tel que pour tout $\varepsilon > 0$ 
+il existe une jauge $\gamma$ de $I$ et un intervalle compact $K$ de $I$
+tels que pour tout intervalle compact $[a, b]$ tel que $K \subset [a, b]$
+et pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
+subordonnée à $\gamma$, on ait
+$|S(f, \mathcal{D}) - A| \leq \varepsilon$.
+
+$\to$ [Solution](#s-inb-1)
+
+
+[^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\R$,
+$I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \R$.
 
 Solution aux exercices
 ================================================================================
@@ -1984,6 +1952,11 @@ dénombrable).
 
 TODO -- Caractérisation des dérivées {#s-der}
 --------------------------------------------------------------------------------
+
+TODO -- Intégration sur un intervalle non borné
+--------------------------------------------------------------------------------
+
+### TODO -- Question 1 {.answer #s-inb-1}
 
 Références
 ================================================================================
