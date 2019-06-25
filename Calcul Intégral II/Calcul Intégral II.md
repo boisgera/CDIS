@@ -232,7 +232,7 @@ conclure que l'ensemble est de longueur finie?
 
 Structure de $\delta$-ring pour les ensembles intégrables ?
 
-### Propriétés élementaires des ensembles mesurables {.theorem}
+### Propriétés élementaires {.theorem}
 
  1. L'ensemble vide est mesurable.
 
@@ -298,7 +298,7 @@ avec $\mathbb{N}$.
     $0 \leq 1_{E_k \cap [a, b]} \leq 1_{[a, b]}$, donc
     par le [théorème de convergence dominée](#TCD), 
     la fonction $1_{E \cap [a, b]}$ est intégrable. 
-    Par conséquent, l'ensemble $\cup_n E_k$ est mesurable.
+    Par conséquent, l'ensemble $\cup_k E_k$ est mesurable.
 
 
 ### TODO
