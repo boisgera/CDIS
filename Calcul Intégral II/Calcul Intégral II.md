@@ -423,7 +423,7 @@ Pour pouvoir conclure, nous allons construire une famille dénombrable $\{(t_i, 
 où les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement, 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ et tels que la famille des
 $I_i$ recouvre $A$. Si cette construction est acquise et que $\mathcal{D}_k$
-désigne la collection des $\{(t_i, I_i)\}$ pour $1 \leq i \leq m$, alors c'est
+désigne la collection des $\{(t_i, I_i)\}$ pour $1 \leq i \leq k$, alors c'est
 une subdivision pointée partielle de $[a, b]$ subordonné à $\gamma$ et donc
 $$
 S(1_A, \mathcal{D}_k) 
@@ -549,8 +549,9 @@ par deux fonctions intégrables au sens de Riemann et continue presque partout.
 Dans le cas de l'intégrale de Riemann comme de Henstock-Kurzweil, 
 l'intégrabilité est donc caractérisée par une structure analogue qui
 repose sur deux propriétés distinctes:
-être encadrée par deux fonctions intégrables et être "suffisamment
-régulière". La différence est que dans le cas de l'intégrale de Riemann
+être encadrée par deux fonctions intégrables (pour la notion d'intégrale
+considérée) et être "suffisamment régulière". 
+La différence est que dans le cas de l'intégrale de Riemann
 l'exigence de régularité est forte -- être continue presque partout --
 alors que dans le cas de l'intégrale de Henstock-Kurzweil, 
 la régularité demandée -- la mesurabilité -- s'avère être une 
@@ -560,7 +561,7 @@ condition très peu contraignante[^note].
 non-mesurable, sa "construction explicite" est impossible. Les fonctions
 non-mesurables font partie des objets "intangibles" (cf. @Sch96) dont
 l'existence est prédite par la théorie mais que l'on ne rencontre jamais 
-par hasard ...
+en pratique ...
 
 ### Ante {.ante}
 Plusieurs propriétés des fonctions mesurables se déduisent directement de
@@ -595,9 +596,10 @@ on n'utilise pas autre chose ...
 
 Soit $f:\R \to \R$ une fonction continue presque
 partout. Pour tout entier $k$, la fonction $f_k$ égale à $f$ sur
-l'intervalle $[-k, k]$ est intégrable (car Riemann-intégrable)
-et la suite des $f_k$ converge simplement vers $f$, qui est
-donc mesurable. 
+l'intervalle $[-k, k]$ et zéro en dehors de cet intervalle
+est intégrable (car Riemann-intégrable sur $[-k, k]$)
+et la suite des $f_k$ converge simplement vers $f$, 
+qui est donc mesurable. 
 
 ### Images réciproques des fonctions mesurables {.theorem}
 
