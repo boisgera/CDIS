@@ -633,7 +633,7 @@ on peut montrer les résultats suivants:
 
 ### Stabilité par passage à la limite
 
-Les limites simples de fonction mesurables sont mesurables.
+Les limites simples de fonctions mesurables sont mesurables.
 
 ### Démonstration {.proof}
 
