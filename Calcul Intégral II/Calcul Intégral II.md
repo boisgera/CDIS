@@ -21,6 +21,10 @@ une expression composée si une fonction va être intégrable.
 
 Exemples (à améliorer, distiller): 
 
+  - Hypothèses sous lesquelles $\max(f, g)$ ou $fg$ intégrables pas claires
+    (et quand c'est le cas, manque de théorème simple à ce stade pour 
+    l'affirme)
+
   - produit de deux fonction intégrales n'est pas intégrable
     (ex: $f(x) = g(x) = 1/\sqrt{x}$ sur $[0,1]$), ok, car
     le produit est "trop grand", moralement l'intégrale est $+\infty$.
