@@ -189,6 +189,9 @@ pour être intégrables, mais par ailleurs parfaitement anodins,
 comme par exemple $\R$ tout entier ou l'ensemble des réels positifs. 
 Nous préférons donc mettre l'accent sur la notion d'ensemble mesurable:
 
+### TODO
+Exemple d'ensemble non mesurable de Vitali en annexe ?
+
 [^loop]: Il existe des ensembles dont on ne pas pas définir raisonnablement
 la longueur, sauf à accepter un concept de longueur aux propriétés
 très étranges. Cette situation ne résulte pas de la méthode de définition
@@ -262,7 +265,22 @@ avec $\mathbb{N}$.
 
  3. Si les $E_k$ sont une famille finie d'ensemble mesurables
 
-    **TODO**
+    **TODO**. Oops; quand on veut mq que la fct carac de l'union de
+    deux ensembles intégrable est intégrable, on a plus ou moins
+    besoin de montrer que si $f$ est intégrable et tq $|f|$ est 
+    dominée par une fct intégrable, alors elle est absolument intégrable,
+    ce qui suppose utilisation lemme de Henstock, etc. 
+    Le fait d'être sur des fcts caractéristique ici ne semble pas
+    offrir de shortcut particulier ... C'est un peu pénible dans le
+    parcours: on peut très bien montrer ce résultat en amont, mais
+    j'aurais préféré parler de fcts abs intégrables bien plus tard
+    pour éviter les allers-retours.
+    Et sauf erreur, la carac par domination de fcts abs int devient
+    triviale quand on a le résulat général d'intégrabilité dominé avec
+    les fcts mesurables ... Donc chercher encore un peu un "shortcut"
+    pour éviter le cas général *à ce stade* ?
+
+
 
     Supposons désormais que les $E_k$ forment une famille strictement 
     dénombrable d'ensemble mesurables.
