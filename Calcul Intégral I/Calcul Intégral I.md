@@ -10,13 +10,13 @@
 TODO
 ================================================================================
 
+  - Continuité de l'intégrale (après restriction par exemple). Nécessite
+    lemme de Henstock?
+
   - intégrale d'une fonction nulle presque partout (par étapes: 1 / nb
     finies de valeurs égale à 1, puis fct de Dirichlet, puis fct égale à un sur
     un ensemble de mesure nulle, puis cas général, ce type de progression 
-    (même si pas exactement celle-là, on a peut-être ))
-
-  - ...
-
+    (même si pas exactement celle-là)
 
 
 Somme et Intégrale de Riemann
