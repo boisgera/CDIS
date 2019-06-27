@@ -109,7 +109,7 @@ $$
 Théorèmes de Convergence
 ================================================================================
 
-### Théorème de convergence monotone {#CI2-TCM .theorem}
+### Théorème de convergence monotone {#TCM .theorem}
 
 Si une suite de fonctions intégrables $f_k:\R \to \R$
 est croissante et majorée en tout point, c'est-à-dire si pour tout
@@ -248,8 +248,16 @@ Structure de $\delta$-ring pour les ensembles intégrables ?
  3. L'union d'une collection dénombrable[^dénom] d'ensembles mesurables
     est mesurable.
 
-[^dénom]: fini ou bien strictement dénombrable, c'est-à-dire en bijection 
-avec $\mathbb{N}$.
+[^dénom]: ou "au plus dénombrable" pour être dépourvu d'ambiguité; c'est-à-dire
+finie ou bien en bijection avec $\mathbb{N}$.
+
+### {.lemma}
+Si $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 
+sont deux fonctions intégrables, la fonction $\max(f, g)$ est également 
+intégrable.
+
+### Démonstration {.proof}
+
 
 ### TODO -- Démonstration {.proof}
 
@@ -307,7 +315,7 @@ avec $\mathbb{N}$.
     $$
     \int 1_{F_k} \leq \int 1_{[a, b]} = b - a < +\infty,
     $$
-    [le théorème de convergence monotone](#CI2-TCM) prouve que 
+    [le théorème de convergence monotone](#TCM) prouve que 
     la fonction $1_{E \cap [a, b]}$ est intégrable. 
     L'ensemble $E$ est donc mesurable.
 
