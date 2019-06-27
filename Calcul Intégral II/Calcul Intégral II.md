@@ -345,6 +345,11 @@ est dénombrable.
 L'ouvert $U$ est donc une union dénombrable d'intervalles ouverts, qui
 sont tous mesurables, il est donc mesurable.
 
+### TODO
+
+corollaires immédiats: difference mesurable, ensemble fermés
+mesurables, etc. Largement en exercice ...
+
 ### Ensembles négligeables {.theorem}
 
 Un ensemble est de longueur nulle si et seulement s'il est négligeable.
@@ -377,23 +382,6 @@ S(1_A, \mathcal{D})
 \leq 
 \varepsilon.
 $$
-<!--
-Si l'on était en mesure de trouver une telle subdivision partielle 
-$\mathcal{D}$ constituée d'une famille d'intervalle $I_i$ qui recouvre $A$, 
-nous aurions alors la conclusion souhaitée puisque dans ce cas
-$$
-S(1_A, \mathcal{D}) = \sum_i 1_A(t_i) \ell(I_i) \leq \sum_{i} \ell(I_i).
-$$
-Malheureusement, cela n'est pas toujours possible[^TODO-exo], avec une
-collection finie d'intervalles $I_i$. Il est toutefois toujours possible 
-de montrer l'existence d'une collection dénombrable de paires $(t_i, I_i)$
-où $t_i \in I_i$ et les $I_i$ sont des intervalles compacts de $[a, b]$, 
-sans chevauchement, recouvrant $A$, 
-tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ 
-et l'argument ci-dessus peut alors être adapté pour fournir la conclusion 
-voulue.
--->
-
 Pour pouvoir conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i$ 
 où les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement, 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ et tels que la famille des
@@ -461,14 +449,6 @@ collection dénombrable si.
 Un sous-ensemble d'un ensemble de longueur nulle est de longueur nulle.
 
 
-
-
-
-
---------------------------------------------------------------------------------
-
-**TODO:** corollaires immédiats: difference mesurable, ensemble fermés
-mesurables, etc. Largement en exercice ...
 
 Fonctions mesurables
 ================================================================================
