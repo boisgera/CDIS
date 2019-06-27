@@ -354,8 +354,7 @@ Un ensemble est de longueur nulle si et seulement s'il est négligeable.
 Si l'ensemble $A$ est négligeable, sa fonction caractéristique est
 égale presque partout à la fonction identiquement nulle, qui est
 intégrable et d'intégrale nulle. 
-Par conséquent (**TODO: insérer ce résultat dans chapitre 1**),
-$1_A$ est intégrable et d'intégrale nulle, 
+Par conséquent, $1_A$ est intégrable et d'intégrale nulle, 
 donc l'ensemble $A$ est intégrable et de longueur nulle.
 
 Réciproquement, supposons l'ensemble $A$ mesurable; nous cherchons à montrer
