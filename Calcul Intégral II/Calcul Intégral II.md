@@ -354,7 +354,7 @@ mesurables, etc. Largement en exercice ...
 
 Un ensemble est de longueur nulle si et seulement s'il est négligeable.
 
-### Preuve {.proof}
+### Démonstration {.proof}
 
 Si l'ensemble $A$ est négligeable, sa fonction caractéristique est
 égale presque partout à la fonction identiquement nulle, qui est
