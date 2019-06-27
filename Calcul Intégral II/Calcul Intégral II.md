@@ -222,8 +222,9 @@ dans le cas contraire (si $E$ mesurable mais pas de longueur finie).
 
 ### Remarque {.remark}
 
-Il faut comprendre le terme "mesurable" litéralement, signifiant
-"dont on peut définir la longueur" (un nombre fini ou infini). 
+Il faut comprendre le terme "mesurable" litéralement, 
+comme signifiant "dont on peut définir la mesure (de longueur)", 
+qui est un nombre fini ou infini. 
 Cette interprétation  est cohérente, puisque tous les ensembles 
 $E$ de longueur finie 
 sont bien mesurables;
@@ -248,15 +249,8 @@ Structure de $\delta$-ring pour les ensembles intégrables ?
  3. L'union d'une collection dénombrable[^dénom] d'ensembles mesurables
     est mesurable.
 
-[^dénom]: ou "au plus dénombrable" pour être dépourvu d'ambiguité; c'est-à-dire
-finie ou bien en bijection avec $\mathbb{N}$.
-
-### {.lemma}
-Si $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 
-sont deux fonctions intégrables, la fonction $\max(f, g)$ est également 
-intégrable.
-
-### Démonstration {.proof}
+[^dénom]: ou collection "au plus dénombrable" pour être dépourvu d'ambiguité; 
+c'est-à-dire une collection finie ou bien en bijection avec $\mathbb{N}$.
 
 
 ### TODO -- Démonstration {.proof}
@@ -265,37 +259,43 @@ intégrable.
     nulle; l'ensemble vide $\varnothing$ est donc intégrable et par
     conséquent mesurable.
 
- 2. Si l'ensemble $E$ est mesurable et $F = \R \setminus E$,
-    pour tout $[a, b]$, l'ensemble $E \cap [a, b]$ est intégrable.
+ 2. Si l'ensemble $A$ est mesurable et $B = \R \setminus A$,
+    pour tout $[a, b]$, l'ensemble $A \cap [a, b]$ est intégrable.
     Par ailleurs, l'ensemble $[a, b]$ est intégrable. 
     Donc, comme
     $$
-    1_{F \cap [a, b]} = 1_{[a, b]} - 1_{E \cap [a, b]},
+    1_{B \cap [a, b]} = 1_{[a, b]} - 1_{A \cap [a, b]},
     $$
-    l'ensemble $F \cap [a, b]$ est intégrable;
-    l'ensemble $F$ est donc mesurable.
+    l'ensemble $B \cap [a, b]$ est intégrable;
+    l'ensemble $B$ est donc mesurable.
 
- 3. Si les $E_k$ sont une famille finie d'ensemble mesurables
+ 3. Si une collection d'ensembles mesurables est finie,
+    il est possible de montrer par récurrence que son union est mesurable.
+    Il suffit pour cela de montrer que si $A$ et $B$ sont mesurables,
+    alors leur union $A \cup B$ l'est également. 
+    Or, pour tout intervalle compact $[a, b]$, on a 
+    $$
+    (A \cup B) \cap [a, b]
+    = (A \cap [a, b]) \cup (B \cap [a, b]),
+    $$
+    ce qui se traduit en terme de fonctions caractéristiques par la relation
+    $$
+    1_{(A \cup B) \cap [a, b]}  = \max \left(1_{A \cap [a, b]}, 1_{B \cap [a, b]} \right).
+    $$
+    La fonction caractéristique de $(A \cup B) \cap [a, b]$ est donc intégrable
+    comme [maximum de deux fonctions positives intégrables](#max).
+    L'union $A \cup B$ est donc mesurable.
+ 
+    Considérons désormais que la suite d'ensemble mesurables
+    $A_k$, $k \in N$. Quitte à remplacer $A_k$ par $\cup_{j\leq k} A_k$,
+    ce qui ne change par l'union 
+    $$
+    A = \bigcup_{k=0}^{+\infty},
+    $$
+    on peut supposer que $A_k \subset A_{k+1}$.
 
-    **TODO**. Oops; quand on veut mq que la fct carac de l'union de
-    deux ensembles intégrable est intégrable, on a plus ou moins
-    besoin de montrer que si $f$ est intégrable et tq $|f|$ est 
-    dominée par une fct intégrable, alors elle est absolument intégrable,
-    ce qui suppose utilisation lemme de Henstock, etc. 
-    Le fait d'être sur des fcts caractéristique ici ne semble pas
-    offrir de shortcut particulier ... C'est un peu pénible dans le
-    parcours: on peut très bien montrer ce résultat en amont, mais
-    j'aurais préféré parler de fcts abs intégrables bien plus tard
-    pour éviter les allers-retours.
-    Et sauf erreur, la carac par domination de fcts abs int devient
-    triviale quand on a le résulat général d'intégrabilité dominé avec
-    les fcts mesurables ... Donc chercher encore un peu un "shortcut"
-    pour éviter le cas général *à ce stade* ?
+    **TODO**
 
-
-
-    Supposons désormais que les $E_k$ forment une famille strictement 
-    dénombrable d'ensemble mesurables.
     Pour tout intervalle compact $[a, b]$, $E_k \cap [a, b]$ est 
     intégrable, c'est-à-dire que $1_{E_k \cap [a, b]}$ est intégrable.
     On a
@@ -1448,6 +1448,126 @@ $fg$ et $|fg|$ sont donc intégrables.
 
 Annexe 
 ================================================================================
+
+
+### Maximum de fonctions intégrables et positives {.lemma #max}
+Si les fonctions $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 
+sont intégrables, la fonction $\max(f, g)$ est également intégrable.
+
+### Démonstration {.proof}
+Pour simplifier le problème, on remarque tout d'abord que 
+$$\max(f, g) = f + \max(g - f, 0) = \max(f, g) = f + (g-f)_+$$ 
+où $x _+ = \max(x, 0)$ désigne la partie positive de $x$.
+Par linéarité, la fonction $g-f$ est intégrable et 
+$(g-f)_+ \leq g + f$ ; la fonction $g+f$ est également intégrable.
+Pour démontrer le lemme, il nous suffit donc de prouver que 
+toute fonction intégrable dont la partie positive est dominée
+par une fonction intégrable est de partie positive intégrable.
+
+Soit $f$ une telle fonction et $g$ une fonction intégrable telle que 
+$f_+ \leq g$. Nous allons montrer que
+$$
+\int f_+(t) \, dt 
+= 
+\sup_{\mathcal{D}} 
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
+:= S
+$$
+où le supremum est calculé sur toutes les subdivisions pointées de $\R$.
+Tout d'abord, ce supremum est fini; en effet pour toute subdivision
+$\mathcal{D}$, on a
+$$
+\begin{split}
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
+&=
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I g(t) \, dt\right)_{\!\!+} \\
+&\leq 
+\sum_{(t, I) \in \mathcal{D}} \int_I g(t) \, dt \\
+&=
+\int g(t) \, dt.
+\end{split}
+$$
+Soit $\varepsilon > 0$ et $\mathcal{D}_{0}$ une subdivision pointée
+de $\R$ telle que
+$$
+S - \frac{\varepsilon}{2} 
+\leq \sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
+\leq S.
+$$
+Soit $\lambda$ une jauge sur $\R$ assurant une précision $\varepsilon/2$
+dans le calcul de l'intégrale de $f$ pour toutes les sommes de Riemann
+de $f$ associées à une subdivision pointée subordonnée à $\gamma$.
+Soit $\nu$ une jauge sur $\R$ telle que si $(t, [a, b]) \in \mathcal{D}_0$
+et $x \in \left]a,b\right[$ alors $\nu(x) \subset \left]a,b\right[$;
+on note $\gamma$ la jauge définie par $\gamma(x) = \lambda(x) \cap \nu(x)$.
+Si $\mathcal{D}$ est subordonnée à $\gamma$, qui a découper des intervalles
+en deux si $(t, I) \subset \mathcal{D}$ et $t$ appartient à la frontière
+d'un intervalle composant $\mathcal{D}_0$ -- ce qui ne change pas la somme
+de Riemann associée -- les éléments $(t, J) \in \mathcal{D}$ tels que
+$J \subset I$, où $(x, I) \subset \mathcal{D}_0$ forment une subdivision
+pointée de $I$. Par conséquent, comme 
+$$
+\left( \int_I f(t) \, dt\right)_{\!\!+} 
+=
+\left( \sum_{(t, J) \in \mathcal{D}, J \subset I}\int_J f(t) \, dt\right)_{\!\!+} 
+\leq 
+\sum_{(t, J) \in \mathcal{D}, J \subset I} \left(\int_J f(t) \, dt\right)_{\!\!+} 
+$$
+et donc
+$$
+S - \frac{\varepsilon}{2} \leq 
+\sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
+\leq 
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
+\leq S, 
+$$
+ce qui fournit
+$$
+\left|
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
+- S \right| \leq \frac{\varepsilon}{2}.
+$$
+Par ailleurs, si l'on considère la subdivision (partielle) pointée 
+$\mathcal{D}_+$ extraite de $\mathcal{D}$ composée des paires
+$(t, I) \in \mathcal{D}$ et telles que
+$$
+f(t) \ell(I) \geq \int_I f(x) \, dx,
+$$
+alors le lemme de Henstock fournit
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+\left( f(t) \ell(I) - \int_I f(x) \, dx \right)_{\!\!+}
+\leq \frac{\varepsilon}{2}.
+$$
+Comme $(x+y)_+ \leq x_+ + y_+$, on en déduit
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+f_+(t) \ell(I) - 
+\sum_{(t, I) \in \mathcal{D}} 
+\left(\int_I f(x) \, dx \right)_{\!\!+}
+\leq \frac{\varepsilon}{2}.
+$$
+De façon similaire, en raisonnant sur la subdivision partielle complémentaire
+à $\mathcal{D}_+$ dans $\mathcal{D}$, on peut montrer que
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+\left(\int_I f(x) \, dx \right)_{\!\!+} - 
+\sum_{(t, I) \in \mathcal{D}} 
+f_+(t) \ell(I)
+\leq \frac{\varepsilon}{2}.
+$$
+On obtient donc au final
+$$
+\left|
+\sum_{(t, I) \in \mathcal{D}} f_+(t) \ell(I) 
+- 
+S
+\right| 
+\leq 
+\frac{\varepsilon}{2};
+$$
+la fonction $f_+$ est donc intégrable, d'intégrale $S$.
+
 
 ### Une intégrale indéterminée est dérivable presque partout {.theorem}
 
