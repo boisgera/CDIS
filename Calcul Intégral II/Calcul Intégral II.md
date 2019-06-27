@@ -345,32 +345,6 @@ est dénombrable.
 L'ouvert $U$ est donc une union dénombrable d'intervalles ouverts, qui
 sont tous mesurables, il est donc mesurable.
 
-<!--
-### TODO
-
-En amont (chap. I), énoncer que égale pp à intégrable est intégrale
-(et intégrale de même valeur). Grpmh ça n'est pas ce que l'on utilise
-excatement; la démo montre que ça marche si deux fonctions sont égales
-à l'exception d'un ensemble "négligeable", au sens de "de mesure extérieure
-de longueur nulle". L'exercice pertinent ici constiste donc à montrer qu'un
-ensemble est négligeable ssi il est de longueur nulle. Un sens est évident
-(négligeable $\to$ de longueur nulle) avec les résultats du chap précédent
-(à énoncer: comparaison intégrale de deux fcts ident sauf sur un ensemble
-négligeable)
-
-**NOTA:** shunter cette section "complétude" en première approche ?
-Je dois revoir la terminologie du chap précédent, l'usage du terme
-"négligeable" n'est pas safe (veut dire autre chose). Ici tout ça
-est identique, mais pas en général ...
-
-NOTA: on a quand même assez pour prouver que la mesure est complète ?
-Nope, pas encore. Ca plaide pout shunter ...
-
-Réfléchir quand même aux 3 notions: de mesure extérieure nulle,
-de mesure nulle et négligeable (dans un ens de mesure nulle).
-
--->
-
 ### Ensembles négligeables {.theorem}
 
 Un ensemble est de longueur nulle si et seulement s'il est négligeable.
