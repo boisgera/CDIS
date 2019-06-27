@@ -450,7 +450,7 @@ pour tout $\varepsilon > 0$, il existe une famille dénombrable
 d'intervalles $I_i$ recouvrant $B$ et tels que 
 $\sum_i \ell(I_i) \leq \varepsilon$ ; or cette famille recouvre aussi $A$. 
 Comme [un ensemble est négligeable si et seulement si il est de longueur
-nulle](#négligeable-longueur-nulle), la démonstration est achevée.
+nulle](#négligeable-longueur-nulle), cet argument conclut la démonstration.
 
 Fonctions mesurables
 ================================================================================
