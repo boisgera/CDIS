@@ -323,6 +323,11 @@ stable par passage au complémentaire et par union dénombrable
 est appelée *tribu* (ou *$\sigma$-algèbre*).
 Les ensembles mesurables dans $\R$ forment donc une tribu.
 
+### TODO
+
+corollaires immédiats: difference mesurable, ensemble fermés
+mesurables, etc. Largement en exercice ...
+
 ### Topologie et ensembles mesurables
 Tout ensemble ouvert est mesurable.
 
@@ -345,12 +350,7 @@ est dénombrable.
 L'ouvert $U$ est donc une union dénombrable d'intervalles ouverts, qui
 sont tous mesurables, il est donc mesurable.
 
-### TODO
-
-corollaires immédiats: difference mesurable, ensemble fermés
-mesurables, etc. Largement en exercice ...
-
-### Ensembles négligeables {.theorem}
+### Ensembles négligeables {.theorem #négligeable-longueur-nulle}
 
 Un ensemble est de longueur nulle si et seulement s'il est négligeable.
 
@@ -372,7 +372,7 @@ Supposons temporairement que $A$ soit inclus dans un intervalle compact
 $[a, b]$ de $\R$. 
 La fonction caractéristique $1_A$ de $A$ est intégrable, 
 donc pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur
-$[a, b]$ telle que, si la subdivision pointée (totale ou partielle[^todo-hens]) 
+$[a, b]$ telle que, si la subdivision pointée (totale ou partielle) <!--[^todo-hens]--> 
 $\mathcal{D} =\{(t_i, I_i)\}_i$ est
 subordonnée à $\gamma$, on a
 $$
@@ -400,25 +400,8 @@ $$
 \sum_{i=1}^{+\infty} \ell(I_i) \leq \varepsilon.
 $$
 
-Procédons finalement à la construction de la collection de $(t_i, I_i)$,
-par dichotomie.
-S'il existe un 
-$t \in [a, b]$ tel que $t \in A$ et $[a, b] \subset \gamma(t)$,
-alors on prend pour collection le singleton $\{(t, [a, b])\}$.
-Dans le cas contraire, on considère la décomposition de $[a, b]$ en
-$[a, (a+b)/2]$ et $[(a+b)/2, b]$. On examine chacun de ces intervalles $J$
-et s'il existe un $t \in A \cap J$ tel que $J \subset \gamma(t)$, 
-on inclut la paire $(t, J)$ dans la collection; dans le cas contraire,
-on poursuit la dichotomie. Cette procédure définit par construction
-une famille dénombrable $\{(t_i, I_i)\}_i$ où les $I_i$ sont des intervalles
-compacts de $[a, b]$ sans chevauchement et 
-tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$. 
-De plus, les $I_i$ recouvrent $A$: en effet si on considère $t \in A$,
-il existe nécessairement un entier $k$ tel que tout intervalle compact
-$I$ de longueur inférieure ou égale à $(b-a)/2^k$ vérifie $I \subset \gamma(t)$.
-Par conséquent, $t$ appartiend à l'un des intervalles inclus par le procédé
-au plus tard à l'étape $k$ de la dichotomie.
 
+<!--
 [^todo-hens]: cette formulation est intéressante. C'est un peu moins fort
 que le lemme de Henstock stricto sensu, mais ça peut peut-être suffire 
 à tous nos besoins: le lemme de Henstock permet de revisiter la définition
@@ -435,20 +418,39 @@ sans chevauchement).
 Et c'est un raccourci très intéressant pour la présentation orale.
 Il faudrait voir si ce "corollaire" du lemme de Henstock couvre l'ensemble
 des usage que l'on a en aval ...
+-->
 
-### TODO:
+Procédons finalement à la construction de la collection de $(t_i, I_i)$,
+par dichotomie.
+S'il existe un 
+$t \in [a, b]$ tel que $t \in A$ et $[a, b] \subset \gamma(t)$,
+alors on prend pour collection le singleton $\{(t, [a, b])\}$.
+Dans le cas contraire, on considère la décomposition de $[a, b]$ en
+$[a, (a+b)/2]$ et $[(a+b)/2, b]$. On examine chacun de ces intervalles $J$
+et s'il existe un $t \in A \cap J$ tel que $J \subset \gamma(t)$, 
+on inclut la paire $(t, J)$ dans la collection; dans le cas contraire,
+on poursuit la dichotomie. Cette procédure définit par construction
+une famille dénombrable $\{(t_i, I_i)\}_i$ où les $I_i$ sont des intervalles
+compacts de $[a, b]$ sans chevauchement et 
+tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$. 
+De plus, les $I_i$ recouvrent $A$: en effet si on considère $t \in A$,
+il existe nécessairement un entier $k$ tel que tout intervalle compact
+$I$ de longueur inférieure ou égale à $(b-a)/2^k$ vérifie $I \subset \gamma(t)$.
+Par conséquent, $t$ appartient à l'un des intervalles inclus par le procédé
+au plus tard à l'étape $k$ de la dichotomie.
 
-Montrer que couvrir un ensemble de longueur nulle par une collection finie
-(et non dénombrable) d'intervalles de somme des longueurs arbitrairement 
-petite n'est pas tjs possible (travailler sur $\mathbb{Q} \cap [0, 1]$ par exemple,
-invoquer la densité des rationnels, etc.), mais constuire une telle
-collection dénombrable si.
 
 ### Complétude de la longueur {.corollary}
 
 Un sous-ensemble d'un ensemble de longueur nulle est de longueur nulle.
 
-
+### Démonstration {.proof}
+Un sous-ensemble $A$ d'un ensemble négligeable $B$ est négligeable car
+pour tout $\varepsilon > 0$, il existe une famille dénombrable 
+d'intervalles $I_i$ recouvrant $B$ et tels que 
+$\sum_i \ell(I_i) \leq \varepsilon$ ; or cette famille recouvre aussi $A$. 
+Comme [un ensemble est négligeable si et seulement si il est de longueur
+nulle](#négligeable-longueur-nulle), la démonstration est achevée.
 
 Fonctions mesurables
 ================================================================================
