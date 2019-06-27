@@ -240,7 +240,7 @@ conclure que l'ensemble est de longueur finie?
 
 Structure de $\delta$-ring pour les ensembles intégrables ?
 
-### Propriétés élementaires {.theorem}
+### Propriétés élementaires {.theorem #pptés-tribu}
 
  1. L'ensemble vide est mesurable.
 
@@ -291,55 +291,40 @@ c'est-à-dire une collection finie ou bien en bijection avec $\mathbb{N}$.
     Quitte à remplacer $A_k$ par $\cup_{j=0}^k A_k$
     --
     ce qui ne change par le caractère mesurable des $A_k$ ou leur union 
-    $A = \cup_{k=0}^{+\infty} A_k$
+    $\cup_{k=0}^{+\infty} A_k$
     --
     on peut supposer que $A_k \subset A_{k+1}$.
     Pour tout intervalle compact $[a, b]$, 
     $$
-    A \cap [a, b] = \left(\bigcup_{k=1}^{+\infty} A_k\right) \cap [a, b]
-    = \bigcup_{k=1}^{+\infty} \left(A_k \cap [a, b]\right);$$
+    \left(\bigcup_{k=1}^{+\infty} A_k\right) \cap [a, b] = 
+    \bigcup_{k=1}^{+\infty} \left(A_k \cap [a, b]\right);$$
     les ensembles $A_k \cap [a, b]$ sont intégrables, 
     c'est-à-dire que $1_{A_k \cap [a, b]}$ est intégrable.
-    Les ensembles $A_k$ formant un suite croissante pour l'inclusion,
-    la suite des fonctions caractéristiques $1_{A_k \cap [a, b]}$ est donc croissante.
-    On a
-
-
+    Les ensembles $A_k \cap [a, b]$ formant un suite croissante pour l'inclusion,
+    la suite des fonctions caractéristiques $1_{A_k \cap [a, b]}$ est croissante.
+    Pour tout réel $x$ on a donc
     $$
-    E \cap [a, b] = \bigcup_{k=1}^{+\infty} F_k,$$
-    ce qui en terme de fonctions caractéristiques signifie que la suite
-    de fonction $1_{F_k}$ est croissante et que
+    1_{\left(\cup_{k=1}^{+\infty} A_k\right) \cap [a, b]}(x)
+    = \lim_{k\to +\infty} 1_{A_k \cap [a, b]}(x)
     $$
-    1_{E \cap [a, b]}  = \lim_{k \to +\infty} 1_{F_k}.
+    Comme pour tout $k\in \N$ on a 
+    $1_{A_k \cap [a, b]} \leq 1_{[a, b]}$, il s'ensuit que
     $$
-    Comme
-    $$
-    \int 1_{F_k} \leq \int 1_{[a, b]} = b - a < +\infty,
-    $$
-    [le théorème de convergence monotone](#TCM) prouve que 
-    la fonction $1_{E \cap [a, b]}$ est intégrable. 
-    L'ensemble $E$ est donc mesurable.
+    \sup_{k \in \N} \int 1_{A_k \cap [a, b]} \leq \int 1_{[a, b]} = b-a < +\infty.
+    $$ 
+    Par [le théorème de convergence monotone](#TCM),
+    la fonction $1_{\left(\cup_{k=1}^{+\infty} A_k\right) \cap [a, b]}$ 
+    est intégrable;
+    l'ensemble $\cup_{k=1}^{+\infty} A_k$ est donc mesurable.
 
-    **TODO**
-
-    la suite des
-    fonctions caractéristiques
-    $1_{E_k \cap [a, b]}$ converge simplement vers 
-    $1_{E \cap  [a, b]}$. Par ailleurs, pour tout $n$, on a
-    $0 \leq 1_{E_k \cap [a, b]} \leq 1_{[a, b]}$, donc
-    par le [théorème de convergence dominée](#TCD), 
-    la fonction $1_{E \cap [a, b]}$ est intégrable. 
-    Par conséquent, l'ensemble $\cup_k E_k$ est mesurable.
-
-
-### TODO
-
-terminologie $\sigma$-algèbre (ou tribu)
+### Tribu {.definition .remark}
+Une collection de sous-ensembles contenant l'ensemble vide,
+stable par passage au complémentaire et par union dénombrable 
+est appelée *tribu* (ou *$\sigma$-algèbre*).
+Les ensembles mesurables dans $\R$ forment donc une tribu.
 
 ### Topologie et ensembles mesurables
-
-Tout 
-ensemble ouvert est mesurable.
+Tout ensemble ouvert est mesurable.
 
 ### Démonstration {.proof}
 Tout intervalle ouvert $I$ est mesurable; en effet, 
@@ -355,10 +340,12 @@ dans $U$ (c'est l'union de tous les intervalles ouvert vérifiant ces
 deux propriétés). Pour un couple $x$ et $y$ dans $U$, soit $I_x = I_y$,
 soit $I_x$ et $I_y$ sont disjoints et l'union de tous les intervalles
 $I_x$ est égale à $U$. Comme dans chaque $I_x$ on peut choisir
-un nombre rationnel $y$ tel que $I_x = I_y$, cette union est dénombrable.
+un nombre rationnel $y$ tel que $I_x = I_y$, la collection de $I_x$
+est dénombrable.
 L'ouvert $U$ est donc une union dénombrable d'intervalles ouverts, qui
 sont tous mesurables, il est donc mesurable.
 
+<!--
 ### TODO
 
 En amont (chap. I), énoncer que égale pp à intégrable est intégrale
@@ -381,6 +368,8 @@ Nope, pas encore. Ca plaide pout shunter ...
 
 Réfléchir quand même aux 3 notions: de mesure extérieure nulle,
 de mesure nulle et négligeable (dans un ens de mesure nulle).
+
+-->
 
 ### Ensembles négligeables {.theorem}
 
