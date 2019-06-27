@@ -286,24 +286,25 @@ c'est-à-dire une collection finie ou bien en bijection avec $\mathbb{N}$.
     comme [maximum de deux fonctions positives intégrables](#max).
     L'union $A \cup B$ est donc mesurable.
  
-    Considérons désormais que la suite d'ensemble mesurables
-    $A_k$, $k \in N$. Quitte à remplacer $A_k$ par $\cup_{j\leq k} A_k$,
-    ce qui ne change par l'union 
-    $$
-    A = \bigcup_{k=0}^{+\infty},
-    $$
+    Considérons désormais une suite d'ensembles mesurables
+    $A_k$, pour $k \in \N$. 
+    Quitte à remplacer $A_k$ par $\cup_{j=0}^k A_k$
+    --
+    ce qui ne change par le caractère mesurable des $A_k$ ou leur union 
+    $A = \cup_{k=0}^{+\infty} A_k$
+    --
     on peut supposer que $A_k \subset A_{k+1}$.
-
-    **TODO**
-
-    Pour tout intervalle compact $[a, b]$, $E_k \cap [a, b]$ est 
-    intégrable, c'est-à-dire que $1_{E_k \cap [a, b]}$ est intégrable.
-    On a
+    Pour tout intervalle compact $[a, b]$, 
     $$
-    E \cap [a, b] = \left(\bigcup_{k=1}^{+\infty} E_k\right) \cap [a, b]
-    = \bigcup_{k=1}^{+\infty} \left(E_k \cap [a, b]\right);$$
-    les ensembles $F_k = \cup_{j=1}^k (E_k \cap [a, b])$ 
-    qui forment un suite croissante pour l'inclusion vérifie donc
+    A \cap [a, b] = \left(\bigcup_{k=1}^{+\infty} A_k\right) \cap [a, b]
+    = \bigcup_{k=1}^{+\infty} \left(A_k \cap [a, b]\right);$$
+    les ensembles $A_k \cap [a, b]$ sont intégrables, 
+    c'est-à-dire que $1_{A_k \cap [a, b]}$ est intégrable.
+    Les ensembles $A_k$ formant un suite croissante pour l'inclusion,
+    la suite des fonctions caractéristiques $1_{A_k \cap [a, b]}$ est donc croissante.
+    On a
+
+
     $$
     E \cap [a, b] = \bigcup_{k=1}^{+\infty} F_k,$$
     ce qui en terme de fonctions caractéristiques signifie que la suite
@@ -509,6 +510,10 @@ mesurables, etc. Largement en exercice ...
 
 Fonctions mesurables
 ================================================================================
+
+### TODO:
+
+ensemble mesurable ssi sa fct caractéristique est mesurable.
 
 ### Meta {.meta}
 Dans la présentation, commencer par le théorème d'intégrabilité dominée,
