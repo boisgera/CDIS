@@ -109,6 +109,10 @@ $$
 Théorèmes de Convergence
 ================================================================================
 
+### TODO
+
+Intro, contexte.
+
 ### Théorème de convergence monotone {#TCM .theorem}
 
 Si une suite de fonctions intégrables $f_k:\R \to \R$
@@ -163,9 +167,10 @@ $$
 
 Se reporter à @Dem11.
 
-### TODO:
+### TODO -- Dérivation sous le signe somme
 
-dérivation sous le signe somme (exercice ?)
+dérivation sous le signe somme ici ? Ou en exercice ?
+Listé ici, mais démo faite à la main en cours comme exemple. 
 
 Ensembles mesurables
 ================================================================================
