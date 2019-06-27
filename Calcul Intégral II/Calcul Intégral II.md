@@ -167,10 +167,65 @@ $$
 
 Se reporter à @Dem11.
 
-### TODO -- Dérivation sous le signe somme
-
+### TODO {.ante}
 dérivation sous le signe somme ici ? Ou en exercice ?
 Listé ici, mais démo faite à la main en cours comme exemple. 
+
+### Dérivation sous le signe somme {.theorem}
+Soit $I$ un intervalle ouvert de $\R$ et $f: I \times \R \to \R$ une fonction
+telle que:
+
+ 1. pour tout $\lambda \in I$, 
+    la fonction $t \in \R \mapsto f(\lambda, t)$ est intégrable,
+
+ 2. pour tout $t \in \R$, la fonction
+    $\lambda \in I \mapsto f(\lambda, t)$
+    est dérivable et 
+    $$|\partial_{\lambda} f(\lambda, t)| \leq g(t)$$
+    où $g: \R \to \left[0, +\infty\right[$ est une fonction intégrable.
+
+Alors la fonction $S: I \to \R$ définie par
+$$
+S(\lambda) := \int f(\lambda, t) \, dt
+$$
+est dérivable pour tout $\lambda$ et 
+$$
+S'(\lambda) = \int \partial_{\lambda} f(\lambda, t) \, dt.
+$$
+
+### Démonstration {.proof}
+Par linéarité de l'intégrale, 
+pour tout $\lambda \in I$ et tout $h \in \R$ tel que $\lambda + h \in I$, 
+on a
+$$
+\frac{S(\lambda + h) - S(\lambda)}{h}
+= \int \frac{f(\lambda + h, t) - f(\lambda, t)}{h} \, dt.
+$$
+Soit $h_k$ une suite de réels tels que $\lambda + h_k \in I$ et $h_k \to 0$
+quand $k \to +\infty$. En raison de la dérivabilité de $f$ par rapport
+à son premier argument, pour tout $t \in \R$,
+$$
+\lim_{k \to +\infty} \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h}
+= \partial_{\lambda} f(\lambda, t).
+$$
+De plus, par le théorème des accroissement finis, pour tout $k \in \N$,
+$$
+\left|\frac{f(\lambda + h_k, t) - f(\lambda, t)}{h} \right|
+\leq \sup_{\mu \in I} |\partial_{\lambda} f(\mu, t)| \leq g(t),
+$$
+et donc
+$$
+-g(t) \leq \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h} \leq g(t).
+$$
+Les taux d'accroissements sont donc encadrés par deux fonctions intégrables.
+Par [le théorème de convergence dominée](#TCD), on conclut que
+$$
+\lim_{k \to +\infty} \frac{S(\lambda + h_k) - S(\lambda)}{h_k}
+=
+\int \partial_{\lambda} f(\lambda, t) \, dt,
+$$
+ce qui achève la démonstration.
+
 
 Ensembles mesurables
 ================================================================================
@@ -331,7 +386,8 @@ Les ensembles mesurables dans $\R$ forment donc une tribu.
 ### TODO
 
 corollaires immédiats: difference mesurable, ensemble fermés
-mesurables, etc. Largement en exercice ...
+mesurables, etc. Largement en exercice ? Quel est le minimum vital ?
+Complément relatif, intersection dénombrables, etc. ?
 
 ### Topologie et ensembles mesurables
 Tout ensemble ouvert est mesurable.
