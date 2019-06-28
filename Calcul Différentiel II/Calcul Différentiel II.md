@@ -373,6 +373,426 @@ Objectifs {.meta}
     le modèle de représentation des nombres flottants, etc.)
 
 
+Introduction
+================================================================================
+
+You may already have used numerical differentiation to estimate the 
+derivative of a function, using for example Newton's finite difference 
+approximation
+  $$
+  f'(x) \approx \frac{f(x+h) - f(x)}{h}.
+  $$
+The implementation of this scheme in Python is straightforward:
+
+    def FD(f, x, h):
+        return (f(x + h) - f(x)) / h
+
+However, the relationship between the value of the step $h$ and the accuracy of
+the numerical derivative is more complex. Consider the following sample data:
+
+Expression                    Value
+----------------------------  --------------------------------------------------
+$\exp'(0)$                    $1$
+`FD(exp, 0, 1e-4)`            `1.000050001667141`
+`FD(exp, 0, 1e-8)`            `0.99999999392252903`
+`FD(exp, 0, 1e-12)`           `1.000088900582341`
+
+The most accurate value of the numerical derivative is obtained for $h=10^{-8}$
+and only 8 digits of the result are significant.
+For the larger value of $h=10^{-4},$ the accuracy is limited by the quality of
+the Taylor development of $\exp$ at the first order; this truncation error 
+decreases linearly with the step size. For the smaller value of $h=10^{-12},$ 
+the accuracy is essentially undermined by round-off errors in computations.
+
+In this document, we show that *complex-step differentiation* may be used to 
+get rid of the influence of the round-off error for the computation of the first 
+derivative. For higher-order derivatives, we introduce a *spectral method*, 
+a fast algorithm with an error that decreases exponentially with
+the number of function evaluations.
+
+Computer Arithmetic
+================================================================================
+
+You may skip this section if you are already familiar with the representation
+of real numbers as "doubles" on computers and with their basic properties. At
+the opposite, if you wish to have more details on this subject, it is probably
+a good idea to have a look at the classic
+"What every computer scientist should know about computer arithmetic" [@Gol91].
+
+In the sequel, the examples are provided as snippets of Python code that often 
+use the Numerical Python ([NumPy]) library; first of all, let's make sure
+that all NumPy symbols are available:
+
+    >>> from numpy import *
+
+[NumPy]: http://www.numpy.org/
+
+Floating-Point Numbers: First Contact
+--------------------------------------------------------------------------------
+
+The most obvious way to display a number is to print it:
+
+    >>> print pi
+    3.14159265359
+
+This is a lie of course: `print` is not supposed to display an accurate
+information about its argument, but something readable. To get something 
+unambiguous instead, we can do:
+
+    >>> pi
+    3.141592653589793
+
+When we say "unambiguous", we mean that there is enough information in this 
+sequence of digits to compute the original floating-point number; and indeed:
+
+    >>> pi == eval("3.141592653589793")
+    True
+
+Actually, this representation is *also* a lie: it is not an exact decimal 
+representation of the number `pi` stored in the computer memory. 
+To get an exact representation of `pi`,
+we can request the display of a large number of the decimal digits:
+
+    >>> def all_digits(number):
+    ...     print "{0:.100g}".format(number)    
+    >>> all_digits(pi)
+    3.141592653589793115997963468544185161590576171875
+
+Asking for 100 digits was actually good enough: only 49 of them are displayed
+anyway, as the extra digits are all zeros.
+
+Note that we obtained an exact representation of the floating-point number `pi` 
+with 49 digits. That does *not* mean that all -- or even most -- of these digits
+are significant in the representation the real number of $\pi.$ Indeed, if we 
+use the Python library for multiprecision floating-point arithmetic [mpmath], 
+we see that
+
+    >>> import mpmath
+    >>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
+    >>> +mpmath.pi
+    3.141592653589793238462643383279502884197169399375
+
+[mpmath]: https://mpmath.googlecode.com/svn/trunk/doc/build/index.html
+
+and both representations are identical only up to the 16th digit.
+
+
+Binary Floating-Point Numbers
+--------------------------------------------------------------------------------
+
+Representation of floating-point numbers appears to be complex so far, but it's
+only because we insist on using a *decimal* representation when these
+numbers are actually stored as *binary* numbers. In other words, instead of
+using a sequence of *(decimal) digits* $f_i \in \{0,1,\dots,9\}$ to represent 
+a real number $x$ as
+  $$
+  x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 10^{e} 
+  $$
+we should use *binary digits* -- aka *bits* -- $f_i \in \{0,1\}$ to write:
+  $$
+  x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 2^{e}.
+  $$
+These representations are *normalized* if the leading digit of the
+*significand* $(f_0.f_1f_2 \dots f_i \dots)$ is non-zero; 
+for example, with this convention, the rational number $999/1000$ would be 
+represented in base 10 as $9.99 \times 10^{-1}$ and not as $0.999 \times 10^{0}.$ 
+In base 2, the only non-zero digit is 1, hence the significand of a 
+normalized representation is always $(1.f_1f_2\dots f_i \dots).$
+
+In scientific computing, real numbers are usually approximated to fit into a 
+64-bit layout named "double"[^IEEE754]. In Python standard library, doubles
+are available as instances of `float` -- or alternatively as `float64` in NumPy.
+
+A triple of 
+
+  - *sign bit* $s \in \{0,1\},$ 
+  
+  - *biased exponent* $e\in\{1,\dots, 2046\}$ (11-bit), 
+
+  - *fraction* $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
+
+represents a normalized double
+  $$
+  x = (-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52}).
+  $$
+
+[^IEEE754]: **"Double"** is a shortcut for "double-precision floating-point format", 
+defined in the IEEE 754 standard, see [@ANS85]. 
+A single-precision format is also defined, that uses only 32 bits. 
+NumPy provides it under the name `float32`.
+
+The doubles that are not normalized are not-a-number (`nan`), infinity (`inf`) 
+and zero (`0.0`) (actually *signed* infinities and zeros), and denormalized numbers. 
+In the sequel, we will never consider such numbers.
+
+<!--
+With the [bitstream](https://pypi.python.org/pypi/bitstream) Python library, 
+it's actually quite easy to decompose a double into sign bit, biased exponent 
+and significand. Start with
+
+    >>> from bitstream import BitStream
+
+and define the function
+
+    def s_e_f(number):
+        stream = BitStream(number, float)
+        s = stream.read(bool)
+        e = 0
+        for bit in stream.read(bool, 11):
+            e = (e << 1) + bit
+        f = stream.read(bool, 52)
+        return s, e, f
+
+Getting the floating-point number from the values of $s,$ $e$ and $f$ is
+as easy:
+
+    def number(s, e, f):
+        bits = []
+        bits.append(s)
+        for i in range(11):
+            bits.insert(1, bool(e % 2))
+            e = e >> 1
+        bits.extend(f)
+        return BitStream(bits, bool).read(float)
+-->
+
+
+Accuracy
+--------------------------------------------------------------------------------
+
+Almost all real numbers cannot be represented exactly as doubles.
+It makes sense to associate to a real number $x$ the nearest double $[x].$
+A "round-to-nearest" method that does this is fully specified in the IEE754
+standard [see @ANS85], together with alternate ("directed rounding") methods.
+
+To have any kind of confidence in our computations with doubles, we need to be 
+able to estimate the error in the representation of $x$ by $[x].$ 
+The *machine epsilon*, denoted $\epsilon$ in the sequel, is a key number in this respect.
+It is defined as the gap between $1.0$ -- that can be represented exactly as 
+a double -- and the next double in the direction $+\infty.$
+
+    >>> after_one = nextafter(1.0, +inf)
+    >>> after_one
+    1.0000000000000002
+    >>> all_digits(after_one)
+    1.0000000000000002220446049250313080847263336181640625
+    >>> eps = after_one - 1.0
+    >>> all_digits(eps)
+    2.220446049250313080847263336181640625e-16
+
+This number is also available as an attribute of the `finfo` class of NumPy
+that gathers machine limits for floating-point data types: 
+
+    >>> all_digits(finfo(float).eps)
+    2.220446049250313080847263336181640625e-16
+
+Alternatively, the examination of the structure of normalized doubles yields 
+directly the value of $\epsilon$: the fraction of the number after $1.0$ is
+$(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ hence 
+$\epsilon  =2^{-52},$ a result confirmed by:
+
+    >>> all_digits(2**-52)
+    2.220446049250313080847263336181640625e-16
+
+The machine epsilon matters so much because it provides a simple bound on the 
+relative error of the representation of a real number as a double. Indeed, 
+for any sensible rounding method, the structure of normalized doubles yields
+    $$
+    \frac{|[x] - x|}{|x|} \leq \epsilon.
+    $$
+If the "round-to-nearest" method is used, you can actually derive a tighter 
+bound: the inequality above still holds with $\epsilon / 2$ instead of $\epsilon.$
+
+### Significant Digits
+
+This relative error translates directly into how many significant decimal 
+digits there are in the best approximation of a real number by a double.
+Consider the exact representation of $[x]$ in the scientific notation:
+    $$
+    [x] = \pm (f_0.f_1 \dots f_{p-1} \dots) \times 10^{e}.
+    $$
+We say that it is significant up to the $p$-th digit if 
+  $$
+  |x -  [x]| \leq \frac{10^{e-(p-1)}}{2}.
+  $$
+On the other hand, the error bound on $[x]$ yields
+  $$
+  |x - [x]| \leq \frac{\epsilon}{2} |x| \leq \frac{\epsilon}{2} \times 10^{e+1}.
+  $$
+Hence, the desired precision is achieved as long as
+  $$
+  p \leq - \log_{10} \epsilon/2 = 52 \log_{10} 2 \approx 15.7.
+  $$
+Consequently, doubles provide a 15-th digit approximation of real numbers.
+
+### Functions
+
+Most real numbers cannot be represented exactly as doubles; 
+accordingly, most real functions of real variables cannot be represented exactly 
+as functions operating on doubles either. 
+The best we can hope for are *correctly rounded* approximations.
+An approximation $[f]$ of a function $f$ of $n$ variables is *correctly rounded*
+if for any $n$-uple $(x_1,\dots,x_n),$ we have
+  $$
+  [f](x_1,\dots,x_n) = [f([x_1], \dots, [x_n])].
+  $$
+The IEEE 754 standard [see @ANS85] mandates that some functions have a correctly
+rounded implementation; they are:
+
+  >  add, substract, multiply, divide, remainder and square root.
+
+Other standard elementary functions -- such as sine, cosine, exponential, logarithm, etc. -- 
+are usually *not* correctly rounded; the design of computation algorithms that have a decent performance and are *provably* correctly rounded is a complex problem (see for example the documentation of the [Correctly Rounded mathematical library]).
+
+[Correctly Rounded mathematical library]: http://lipforge.ens-lyon.fr/www/crlibm/
+
+Complex Step Differentiation
+================================================================================
+
+Forward Difference
+--------------------------------------------------------------------------------
+
+Let $f$ be a real-valued function defined in some open interval. 
+In many concrete use cases, we can make the assumption that the function is 
+actually analytic and never have to worry about the existence of derivatives.
+As a bonus, for any real number $x$ in the domain of the function, the 
+(truncated) Taylor expansion
+  $$
+  f(x+h) = f(x) + f'(x) h + \frac{f''(x)}{2} h^2 
+           + \dots
+           +\frac{f^{(n)}}{n!} h^n 
+           + \mathcal{O}(h^{n+1})
+  $$
+is locally valid[^Landau]. 
+A straighforward computation shows that
+  $$
+  f'(x) = \frac{f(x+h) - f(x)}{h} + \mathcal{O}(h)
+  $$
+The asymptotic behavior of this *forward difference* scheme 
+-- controlled by the term $\mathcal{O}(h^1)$ -- is said to be of order 1.
+An implementation of this scheme is defined for doubles $x$ and $h$ as
+  $$
+  \mathrm{FD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] (x)]}{[h]} \right].
+  $$
+or equivalently, in Python as:
+
+    def FD(f, x, h):
+        return (f(x + h) - f(x)) / h
+
+[^Landau]: **Bachmann-Landau notation.** For a real or complex variable $h,$ 
+we write $\psi(h) = \mathcal{O}(\phi(h))$ if there is a suitable deleted 
+neighbourhood of $h=0$ where the functions $\psi$ and $\phi$ are defined 
+and the inequality $|\psi(h)| \leq \kappa |\phi(h)|$ holds for some $\kappa > 0.$ 
+When $N$ is a natural number, we write 
+$\psi(N) = \mathcal{O}(\phi(N))$ if there is a $n$ such that $\psi$ and $\phi$ 
+are defined for $N\geq n$ and for any such $N,$ 
+the inequality $|\psi(N)| \leq \kappa |\phi(N)|$ holds for some $\kappa > 0.$
+
+Round-Off Error
+--------------------------------------------------------------------------------
+
+We consider again the function $f(x) = \exp(x)$ used in the introduction
+and compute the numerical derivative based on the forward difference 
+at $x=0$ for several values of $h.$
+The graph of $h \mapsto \mathrm{FD}(\exp, 0, h)$ shows that for values of $h$ 
+near or below the machine epsilon $\epsilon,$ the difference between the 
+numerical derivative and the exact value of the derivative is *not* 
+explained by the classic asymptotic analysis. 
+
+![Forward Difference Scheme Values.](images/fd-value.pdf)
+
+If we take into account the representation of real numbers as doubles however, 
+we can explain and quantify the phenomenon. To focus only on the effect of the 
+round-off errors, we'd like to get rid of the truncation error. 
+To achieve this, in the following computations, instead of $\exp,$ we use 
+$\exp_0,$ the Taylor expansion of $\exp$ of order $1$ at $x=0;$ we have
+$\exp_0 (x) = 1 + x.$ 
+
+Assume that the rounding scheme is "round-to-nearest";
+select a floating-point number $h>0$ and compare it to the machine epsilon:
+
+  - If $h \ll \epsilon,$ then $1 + h$ is close to $1,$ actually, closer to 
+    $1$ than from the next binary floating-point value, which is $1 + \epsilon.$ 
+    Hence, the value is rounded to $[\exp_0](h) = 1,$ and a 
+    *catastrophic cancellation* happens:
+      $$
+      \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right] = 0.
+      $$
+
+  - If $h \approx \epsilon,$ then $1+h$ is closer from $1+\epsilon$ than it is from $1,$ 
+    hence we have $[\exp_0](h) = 1+\epsilon$ and
+      $$
+      \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right]
+      = \left[ \frac{\epsilon}{h} \right].
+      $$
+
+  - If $\epsilon \ll h \ll 1,$ then $[1+h] = 1+ h \pm \epsilon(1+h)$
+    (the symbol $\pm$ is used here to define a confidence interval[^pm]). 
+    Hence 
+      $$
+      [[\exp_0](h) - 1] = h \pm \epsilon \pm \epsilon(2h + \epsilon + \epsilon h)
+      $$
+    and
+      $$
+      \left[ \frac{[[\exp_0](h) - 1]}{h} \right] 
+      = 
+      1 \pm \frac{\epsilon}{h} + \frac{\epsilon}{h}(3h + 2\epsilon + 3h \epsilon +\epsilon^2 + \epsilon^2 h)
+      $$
+    therefore
+      $$
+      \mathrm{FD}(\exp_0, 0, h)  = \exp_0'(0) \pm \frac{\epsilon}{h}  \pm \epsilon', \; \epsilon' \ll \frac{\epsilon}{h}.
+      $$
+      
+[^pm]: **Plus-minus sign and confidence interval.** The equation
+$a = b \pm c$ should be interpreted as the inequality $|a - b| \leq |c|.$
+
+Going back to $\mathrm{FD}(\exp, 0, h)$ and using a log-log scale to display the 
+total error, we can clearly distinguish the region where the error is dominated
+by the round-off error -- the curve envelope is $\log(\epsilon/h)$ -- and where it 
+is dominated by the truncation error -- a slope of $1$ being characteristic of 
+schemes of order 1.
+
+![Forward Difference Scheme Error.](images/fd-error.pdf)
+
+Higher-Order Scheme
+--------------------------------------------------------------------------------
+
+The theoretical asymptotic behavior of the forward difference scheme can be 
+improved, for example if instead of the forward difference quotient we use a 
+central difference quotient. Consider the Taylor expansion at the order 2 of 
+$f(x+h)$ and $f(x-h)$:
+  $$
+  f(x+h) = f(x) + f'(x) (+h)+ \frac{f''(x)}{2} (+h)^2 + \mathcal{O}\left(h^3\right)
+  $$
+and
+  $$
+  f(x-h) = f(x) + f'(x) (-h) + \frac{f''(x)}{2} (-h)^2 + \mathcal{O}\left(h^3\right).
+  $$
+We have
+  $$
+  f'(x) = \frac{f(x+h) - f(x-h)}{2h} + \mathcal{O}(h^2),
+  $$
+hence, the *central difference* scheme is a scheme of order 2, with the  
+implementation:
+  $$
+  \mathrm{CD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x]-[h])]}{[2 \times [h]]} \right].
+  $$
+or equivalently, in Python:
+
+    def CD(f, x, h):
+        return 0.5 * (f(x + h) - f(x - h)) / h
+
+The error graph for the central difference scheme confirms that a truncation
+error of order two may be used to improve the accuracy. However, it also
+shows that a higher-order actually *increases* the region dominated by the
+round-off error, making the problem of selection of a correct step size $h$
+even more difficult. 
+
+![Central Difference Scheme Error.](images/cd-error.pdf)
+
+
+
+
 Différentiation Automatique
 ================================================================================
 
