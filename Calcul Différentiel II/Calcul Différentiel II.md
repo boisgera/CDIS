@@ -374,7 +374,7 @@ Objectifs {.meta}
 
 
 Introduction
-================================================================================
+--------------------------------------------------------------------------------
 
 You may already have used numerical differentiation to estimate the 
 derivative of a function, using for example Newton's finite difference 
@@ -411,7 +411,7 @@ a fast algorithm with an error that decreases exponentially with
 the number of function evaluations.
 
 Computer Arithmetic
-================================================================================
+--------------------------------------------------------------------------------
 
 You may skip this section if you are already familiar with the representation
 of real numbers as "doubles" on computers and with their basic properties. At
@@ -427,8 +427,8 @@ that all NumPy symbols are available:
 
 [NumPy]: http://www.numpy.org/
 
-Floating-Point Numbers: First Contact
---------------------------------------------------------------------------------
+### Floating-Point Numbers: First Contact
+
 
 The most obvious way to display a number is to print it:
 
@@ -477,8 +477,8 @@ we see that
 and both representations are identical only up to the 16th digit.
 
 
-Binary Floating-Point Numbers
---------------------------------------------------------------------------------
+### Binary Floating-Point Numbers
+
 
 Representation of floating-point numbers appears to be complex so far, but it's
 only because we insist on using a *decimal* representation when these
@@ -526,8 +526,8 @@ and zero (`0.0`) (actually *signed* infinities and zeros), and denormalized numb
 qIn the sequel, we will never consider such numbers.
 
 
-Accuracy
---------------------------------------------------------------------------------
+### Accuracy
+
 
 Almost all real numbers cannot be represented exactly as doubles.
 It makes sense to associate to a real number $x$ the nearest double $[x].$
@@ -572,7 +572,7 @@ for any sensible rounding method, the structure of normalized doubles yields
 If the "round-to-nearest" method is used, you can actually derive a tighter 
 bound: the inequality above still holds with $\epsilon / 2$ instead of $\epsilon.$
 
-### Significant Digits
+#### Significant Digits
 
 This relative error translates directly into how many significant decimal 
 digits there are in the best approximation of a real number by a double.
@@ -594,7 +594,7 @@ Hence, the desired precision is achieved as long as
   $$
 Consequently, doubles provide a 15-th digit approximation of real numbers.
 
-### Functions
+#### Functions
 
 Most real numbers cannot be represented exactly as doubles; 
 accordingly, most real functions of real variables cannot be represented exactly 
@@ -615,11 +615,11 @@ are usually *not* correctly rounded; the design of computation algorithms that h
 
 [Correctly Rounded mathematical library]: http://lipforge.ens-lyon.fr/www/crlibm/
 
-Complex Step Differentiation
-================================================================================
-
-Forward Difference
+Finite Differences
 --------------------------------------------------------------------------------
+
+### Forward Difference
+
 
 Let $f$ be a real-valued function defined in some open interval. 
 In many concrete use cases, we can make the assumption that the function is 
@@ -657,8 +657,8 @@ $\psi(N) = \mathcal{O}(\phi(N))$ if there is a $n$ such that $\psi$ and $\phi$
 are defined for $N\geq n$ and for any such $N,$ 
 the inequality $|\psi(N)| \leq \kappa |\phi(N)|$ holds for some $\kappa > 0.$
 
-Round-Off Error
---------------------------------------------------------------------------------
+### Round-Off Error
+
 
 We consider again the function $f(x) = \exp(x)$ used in the introduction
 and compute the numerical derivative based on the forward difference 
@@ -723,8 +723,8 @@ schemes of order 1.
 
 ![Forward Difference Scheme Error.](images/fd-error.py)
 
-Higher-Order Scheme
---------------------------------------------------------------------------------
+### Higher-Order Scheme
+
 
 The theoretical asymptotic behavior of the forward difference scheme can be 
 improved, for example if instead of the forward difference quotient we use a 
