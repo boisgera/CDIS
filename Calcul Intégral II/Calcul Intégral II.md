@@ -171,6 +171,8 @@ Se reporter à @Dem11.
 dérivation sous le signe somme ici ? Ou en exercice ?
 Listé ici, mais démo faite à la main en cours comme exemple. 
 
+### TODO -- Continuité d'intégrales paramétriques ?
+
 ### Dérivation sous le signe somme {.theorem}
 Soit $I$ un intervalle ouvert de $\R$ et $f: I \times \R \to \R$ une fonction
 telle que:
