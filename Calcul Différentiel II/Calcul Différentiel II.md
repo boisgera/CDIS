@@ -376,96 +376,92 @@ Objectifs {.meta}
 Introduction
 --------------------------------------------------------------------------------
 
-You may already have used numerical differentiation to estimate the 
-derivative of a function, using for example Newton's finite difference 
-approximation
+### TODO
+
+Terminologie "à virgule flottante" utilisée au moins une fois.
+
+-------
+
+Vous avez peut-être déjà utilise une méthode de différentiation numérique 
+pour évaluer la dérivée d'une fonction, par exemple l'approximation des 
+différences finies de Newton
   $$
   f'(x) \approx \frac{f(x+h) - f(x)}{h}.
   $$
-The implementation of this scheme in Python is straightforward:
+
+L'implémentation de ce schéma en Python est simple:
 
     def FD(f, x, h):
         return (f(x + h) - f(x)) / h
 
-However, the relationship between the value of the step $h$ and the accuracy of
-the numerical derivative is more complex. Consider the following sample data:
+Néanmoins, la relation entre la valeur du pas $h$ et la précision de
+cette évaluation -- c'est-à-dire l'écart entre la valeur de la dérivée
+et son estimation -- est plus complexe. 
+Considérons les échantillons de données suivants:
 
-Expression                    Value
+Expression                    Valeur
 ----------------------------  --------------------------------------------------
 $\exp'(0)$                    $1$
 `FD(exp, 0, 1e-4)`            `1.000050001667141`
 `FD(exp, 0, 1e-8)`            `0.99999999392252903`
 `FD(exp, 0, 1e-12)`           `1.000088900582341`
 
-The most accurate value of the numerical derivative is obtained for $h=10^{-8}$
-and only 8 digits of the result are significant.
-For the larger value of $h=10^{-4},$ the accuracy is limited by the quality of
-the Taylor development of $\exp$ at the first order; this truncation error 
-decreases linearly with the step size. For the smaller value of $h=10^{-12},$ 
-the accuracy is essentially undermined by round-off errors in computations.
+La valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
+et uniquement 8 nombres après la virgule du résultat sont singificatifs.
 
-In this document, we show that *complex-step differentiation* may be used to 
-get rid of the influence of the round-off error for the computation of the first 
-derivative. For higher-order derivatives, we introduce a *spectral method*, 
-a fast algorithm with an error that decreases exponentially with
-the number of function evaluations.
+Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
+du développement de Taylor de $\exp$ au premier ordre; 
+cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
+Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
+limitée par les erreurs d'arrondi dans les calculs.
 
-Computer Arithmetic
+"Computer Arithmetic" (**TRADUCTION ?**)
 --------------------------------------------------------------------------------
 
-You may skip this section if you are already familiar with the representation
-of real numbers as "doubles" on computers and with their basic properties. At
-the opposite, if you wish to have more details on this subject, it is probably
-a good idea to have a look at the classic
-"What every computer scientist should know about computer arithmetic" [@Gol91].
+Cette section introduit la représentation des nombres réels sur ordinateur
+comme des "doubles" et leur propriétés élémentaires. Pour avoir plus 
+d'informations sur le sujet, vous pouvez vous reporter au document classique
+"What every computer scientist should know about computer arithmetic" [@Gol91]
 
-In the sequel, the examples are provided as snippets of Python code that often 
-use the Numerical Python ([NumPy]) library; first of all, let's make sure
-that all NumPy symbols are available:
+Les exemples qui suivent exploitent la librairie numérique Python [NumPy];
+assurons-nous tout de suite d'avoir importé toutes ses fonctionnalités:
 
     >>> from numpy import *
 
 [NumPy]: http://www.numpy.org/
 
-### Floating-Point Numbers: First Contact
+### Nombres flottants: premier contact
 
-
-The most obvious way to display a number is to print it:
-
-    >>> print(pi)
-    3.141592653589793
-
-This is a lie of course: `print` is not supposed to display an accurate
-information about its argument, but something readable. To get something 
-unambiguous instead, we can do:
+Dans un interpréteur Python, la façon la plus simple d'afficher un nombre
+consiste à invoquer son nom; par exemple
 
     >>> pi
     3.141592653589793
 
-When we say "unambiguous", we mean that there is enough information in this 
-sequence of digits to compute the original floating-point number; and indeed:
+Cette information est non-ambigüe; par là nous voulons dire que nous disposons
+d'assez d'information pour reconstituer le nombre initial:
 
     >>> pi == eval("3.141592653589793")
     True
 
-Actually, this representation is *also* a lie: it is not an exact decimal 
-representation of the number `pi` stored in the computer memory. 
-To get an exact representation of `pi`,
-we can request the display of a large number of the decimal digits:
+Mais cette représentation n'en est pas moins un mensonge:
+ça n'est pas une représentation décimale exacte du nombre `pi`
+stockée en mémoire. Pour avoir une représentation exacte de `pi`,
+nous pouvons demander l'affichage d'un grand nombre de décimales:
 
     >>> def all_digits(number):
     ...     print("{0:.100g}".format(number))    
     >>> all_digits(pi)
     3.141592653589793115997963468544185161590576171875
 
-Asking for 100 digits was actually good enough: only 49 of them are displayed
-anyway, as the extra digits are all zeros.
+Demander 100 chiffres après la virgule est suffisant: 
+seul 49 chiffres sont affichés car les suivants sont tous nuls.
 
-Note that we obtained an exact representation of the floating-point number `pi` 
-with 49 digits. That does *not* mean that all -- or even most -- of these digits
-are significant in the representation the real number of $\pi.$ Indeed, if we 
-use the Python library for multiprecision floating-point arithmetic [mpmath], 
-we see that
+Remarquez que nous avons obtenu une représentation exacte du nombre flottant
+`pi` avec 49 chiffres. Cela ne signifie **pas** que tous ces chiffres
+-- ou même la plupart d'entre eux -- sont significatifs dans la représentation
+du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
+[mpmath] pour l'arithmétique flottante multi-précisions, nous voyons que
 
     #>>> import mpmath
     #>>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
@@ -474,60 +470,65 @@ we see that
 
 [mpmath]: https://mpmath.googlecode.com/svn/trunk/doc/build/index.html
 
-and both representations are identical only up to the 16th digit.
+et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre.
 
+### Nombres flottants binaires
 
-### Binary Floating-Point Numbers
-
-
-Representation of floating-point numbers appears to be complex so far, but it's
-only because we insist on using a *decimal* representation when these
-numbers are actually stored as *binary* numbers. In other words, instead of
-using a sequence of *(decimal) digits* $f_i \in \{0,1,\dots,9\}$ to represent 
-a real number $x$ as
+Si la représentation des nombres flottants peut apparaître complexe à ce stade,
+c'est que nous avons insisté pour utiliser une représentation **décimale**
+quand ces nombres sont stockés avec une réprésentation **binaire.**
+En d'autres termes; au lieu d'utiliser une suite de chiffres décimaux
+$f_i \in \{0,1,\dots,9\}$ pour représenter un nombre réel $x$ comme
   $$
   x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 10^{e} 
   $$
-we should use *binary digits* -- aka *bits* -- $f_i \in \{0,1\}$ to write:
+nous devrions utiliser des *chiffres binaires* -- ou *bits** -- 
+$f_i \in \{0,1\}$ pour écrire:
   $$
   x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 2^{e}.
   $$
-These representations are *normalized* if the leading digit of the
-*significand* $(f_0.f_1f_2 \dots f_i \dots)$ is non-zero; 
-for example, with this convention, the rational number $999/1000$ would be 
-represented in base 10 as $9.99 \times 10^{-1}$ and not as $0.999 \times 10^{0}.$ 
-In base 2, the only non-zero digit is 1, hence the significand of a 
-normalized representation is always $(1.f_1f_2\dots f_i \dots).$
+Ces représentations sont **normalisées** si le chiffre avant la virgule est
+non nul. Par exemple, avec cette convention, le nombre rationnel $999/1000$
+serait représenté en base 10 comme $9.99 \times 10^{-1}$ et non comme
+$0.999 \times 10^0$. En base $2$, le seul chiffre non-nul est $1$, donc
+le significant d'une représentation normalisée est toujours de la forme
+$(1.f_1f_2\dots f_i \dots).$
 
-In scientific computing, real numbers are usually approximated to fit into a 
-64-bit layout named "double"[^IEEE754]. In Python standard library, doubles
-are available as instances of `float` -- or alternatively as `float64` in NumPy.
+**TODO: traduction significand ...** 
 
-A triple of 
+**TODO below: footnote besoin machine learning qui fonctionne avec des
+singles ou half precisions**
 
-  - *sign bit* $s \in \{0,1\},$ 
+En calcul scientifique, les nombres réels sont le plus souvent approximés
+sous la forme de "doubles"[^IEEE754]. Dans la bibliothèque standard Python,
+les doubles sont disponibles comme instances du type `float` -- 
+ou alternativement comme `float64` dans NumPy.
+
+Un triplet de 
+
+  - *bit de signe* $s \in \{0,1\},$ 
   
-  - *biased exponent* $e\in\{1,\dots, 2046\}$ (11-bit), 
+  - *exposant biaisé* $e\in\{1,\dots, 2046\}$ (11-bit), 
 
   - *fraction* $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
 
-represents a normalized double
+représente un double normalisé
   $$
   x = (-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52}).
   $$
 
-[^IEEE754]: **"Double"** is a shortcut for "double-precision floating-point format", 
-defined in the IEEE 754 standard, see [@ANS85]. 
-A single-precision format is also defined, that uses only 32 bits. 
-NumPy provides it under the name `float32`.
+[^IEEE754]: "Double" est un raccourci pour "format à virgule flottante de 
+précision double", comme défini dans le standard IEEE 754, cf. [@ANS85]. 
+Un format de simple précision est aussi défini, qui utilise uniquement
+32 bits; NumPy le propose sous le nom `float32`.
 
-The doubles that are not normalized are not-a-number (`nan`), infinity (`inf`) 
-and zero (`0.0`) (actually *signed* infinities and zeros), and denormalized numbers. 
-qIn the sequel, we will never consider such numbers.
-
+Les doubles qui ne sont pas normalisés sont *not-a-number* (`nan`),
+plus ou moins l'infini (`inf`) et zero (`0.0`) (en fait $\pm$ `0.0`;
+car il existe deux zéros distincts, qui différent par leur signe)
+et les nombres dits *dénormalisés*. Dans la suite, nous ne parlerons
+pas de ces cas particuliers.
 
 ### Accuracy
-
 
 Almost all real numbers cannot be represented exactly as doubles.
 It makes sense to associate to a real number $x$ the nearest double $[x].$
@@ -758,8 +759,6 @@ round-off error, making the problem of selection of a correct step size $h$
 even more difficult. 
 
 ![Central Difference Scheme Error.](images/cd-error.py)
-
-
 
 
 Différentiation Automatique
