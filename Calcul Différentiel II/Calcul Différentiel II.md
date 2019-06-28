@@ -432,8 +432,8 @@ Floating-Point Numbers: First Contact
 
 The most obvious way to display a number is to print it:
 
-    >>> print pi
-    3.14159265359
+    >>> print(pi)
+    3.141592653589793
 
 This is a lie of course: `print` is not supposed to display an accurate
 information about its argument, but something readable. To get something 
@@ -454,7 +454,7 @@ To get an exact representation of `pi`,
 we can request the display of a large number of the decimal digits:
 
     >>> def all_digits(number):
-    ...     print "{0:.100g}".format(number)    
+    ...     print("{0:.100g}".format(number))    
     >>> all_digits(pi)
     3.141592653589793115997963468544185161590576171875
 
@@ -467,10 +467,10 @@ are significant in the representation the real number of $\pi.$ Indeed, if we
 use the Python library for multiprecision floating-point arithmetic [mpmath], 
 we see that
 
-    >>> import mpmath
-    >>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
-    >>> +mpmath.pi
-    3.141592653589793238462643383279502884197169399375
+    #>>> import mpmath
+    #>>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
+    #>>> +mpmath.pi
+    #3.141592653589793238462643383279502884197169399375
 
 [mpmath]: https://mpmath.googlecode.com/svn/trunk/doc/build/index.html
 
@@ -523,38 +523,7 @@ NumPy provides it under the name `float32`.
 
 The doubles that are not normalized are not-a-number (`nan`), infinity (`inf`) 
 and zero (`0.0`) (actually *signed* infinities and zeros), and denormalized numbers. 
-In the sequel, we will never consider such numbers.
-
-<!--
-With the [bitstream](https://pypi.python.org/pypi/bitstream) Python library, 
-it's actually quite easy to decompose a double into sign bit, biased exponent 
-and significand. Start with
-
-    >>> from bitstream import BitStream
-
-and define the function
-
-    def s_e_f(number):
-        stream = BitStream(number, float)
-        s = stream.read(bool)
-        e = 0
-        for bit in stream.read(bool, 11):
-            e = (e << 1) + bit
-        f = stream.read(bool, 52)
-        return s, e, f
-
-Getting the floating-point number from the values of $s,$ $e$ and $f$ is
-as easy:
-
-    def number(s, e, f):
-        bits = []
-        bits.append(s)
-        for i in range(11):
-            bits.insert(1, bool(e % 2))
-            e = e >> 1
-        bits.extend(f)
-        return BitStream(bits, bool).read(float)
--->
+qIn the sequel, we will never consider such numbers.
 
 
 Accuracy
@@ -699,7 +668,7 @@ near or below the machine epsilon $\epsilon,$ the difference between the
 numerical derivative and the exact value of the derivative is *not* 
 explained by the classic asymptotic analysis. 
 
-![Forward Difference Scheme Values.](images/fd-value.pdf)
+![Forward Difference Scheme Values.](images/fd-value.py)
 
 If we take into account the representation of real numbers as doubles however, 
 we can explain and quantify the phenomenon. To focus only on the effect of the 
@@ -752,7 +721,7 @@ by the round-off error -- the curve envelope is $\log(\epsilon/h)$ -- and where 
 is dominated by the truncation error -- a slope of $1$ being characteristic of 
 schemes of order 1.
 
-![Forward Difference Scheme Error.](images/fd-error.pdf)
+![Forward Difference Scheme Error.](images/fd-error.py)
 
 Higher-Order Scheme
 --------------------------------------------------------------------------------
@@ -788,7 +757,7 @@ shows that a higher-order actually *increases* the region dominated by the
 round-off error, making the problem of selection of a correct step size $h$
 even more difficult. 
 
-![Central Difference Scheme Error.](images/cd-error.pdf)
+![Central Difference Scheme Error.](images/cd-error.py)
 
 
 
