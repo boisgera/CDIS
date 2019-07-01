@@ -415,7 +415,7 @@ cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
 Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
 limitée par les erreurs d'arrondi dans les calculs.
 
-"Computer Arithmetic" (**TRADUCTION ?**)
+Arithmétique des ordinateurs
 --------------------------------------------------------------------------------
 
 Cette section introduit la représentation des nombres réels sur ordinateur
@@ -491,10 +491,8 @@ Ces représentations sont **normalisées** si le chiffre avant la virgule est
 non nul. Par exemple, avec cette convention, le nombre rationnel $999/1000$
 serait représenté en base 10 comme $9.99 \times 10^{-1}$ et non comme
 $0.999 \times 10^0$. En base $2$, le seul chiffre non-nul est $1$, donc
-le significant d'une représentation normalisée est toujours de la forme
+la *mantisse* d'une représentation normalisée est toujours de la forme
 $(1.f_1f_2\dots f_i \dots).$
-
-**TODO: traduction significand ...** 
 
 **TODO below: footnote besoin machine learning qui fonctionne avec des
 singles ou half precisions**
@@ -506,11 +504,11 @@ ou alternativement comme `float64` dans NumPy.
 
 Un triplet de 
 
-  - *bit de signe* $s \in \{0,1\},$ 
+  - *bit de signe:* $s \in \{0,1\},$ 
   
-  - *exposant biaisé* $e\in\{1,\dots, 2046\}$ (11-bit), 
+  - *exposant (biaisé):* $e\in\{1,\dots, 2046\}$ (11-bit), 
 
-  - *fraction* $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
+  - *fraction:* $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
 
 représente un double normalisé
   $$
@@ -528,18 +526,26 @@ car il existe deux zéros distincts, qui différent par leur signe)
 et les nombres dits *dénormalisés*. Dans la suite, nous ne parlerons
 pas de ces cas particuliers.
 
-### Accuracy
+### Précision
 
-Almost all real numbers cannot be represented exactly as doubles.
-It makes sense to associate to a real number $x$ the nearest double $[x].$
-A "round-to-nearest" method that does this is fully specified in the IEE754
-standard [see @ANS85], together with alternate ("directed rounding") methods.
+Presque aucun nombre réel ne peut être représenté exactement comme un double.
+Pour faire façe à cette difificulté, il est raisonnable d'associer à un
+nombre réel $x$ le double le plus proche $[x]$. Une telle méthode
+(*round-to-nearest*) totalement spécifiée[^holes] dans le standard IEE754
+[@ANS85], ainsi que des modes alternatifs d'arrondi (arrondis "dirigés").
 
-To have any kind of confidence in our computations with doubles, we need to be 
-able to estimate the error in the representation of $x$ by $[x].$ 
-The *machine epsilon*, denoted $\epsilon$ in the sequel, is a key number in this respect.
-It is defined as the gap between $1.0$ -- that can be represented exactly as 
-a double -- and the next double in the direction $+\infty.$
+[^holes]: Il faut préciser comme l'opération se comporte quand le réel
+est équidistant de deux doubles, comment les "nombres spéciaux" 
+(`inf, `nan`, ...) sont traités, etc. Autant de "détails" dont nous
+ne nous préoccuperons pas dans la suite.
+
+Pour avoir la moindre confiance dans le résultats des calculs que nous 
+effectuons avec des doubles, nous devons être en mesure d'évaluer l'erreur
+faite par la représentation de $x$ par $[x]$. L'*epsilon machine* 
+$\varepsilon$ est une grandeur clé à cet égard: il est défini comme l'écart 
+entre $1.0$
+-- qui peut être représenté exactement comme un double -- 
+et le double qui lui est immédiatement supérieur.
 
     >>> after_one = nextafter(1.0, +inf)
     >>> after_one
@@ -550,30 +556,32 @@ a double -- and the next double in the direction $+\infty.$
     >>> all_digits(eps)
     2.220446049250313080847263336181640625e-16
 
-This number is also available as an attribute of the `finfo` class of NumPy
-that gathers machine limits for floating-point data types: 
+Ce nombre est également disponible comme un attribut de la class `finfo`
+de NumPy qui rassemble les constantes limites de l'arithmétique pour les
+types flottants.
 
     >>> all_digits(finfo(float).eps)
     2.220446049250313080847263336181640625e-16
 
-Alternatively, the examination of the structure of normalized doubles yields 
-directly the value of $\epsilon$: the fraction of the number after $1.0$ is
-$(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ hence 
-$\epsilon  =2^{-52},$ a result confirmed by:
+Alternativement, l'examen de la structure des doubles normalisés fournit
+directement la valeur de $\epsilon$: la fraction du nombre après $1.0$
+est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ donc
+$\varepsilon =2^{-52},$ un résultat confirmé par:
 
     >>> all_digits(2**-52)
     2.220446049250313080847263336181640625e-16
 
-The machine epsilon matters so much because it provides a simple bound on the 
-relative error of the representation of a real number as a double. Indeed, 
-for any sensible rounding method, the structure of normalized doubles yields
+L'epsilon machine importe autant parce qu'il fournit une borne simple sur
+l'erreur relative de la représentation d'un nombre réel comme un double.
+En effet, pour n'importe quelle méthode d'arondi raisonnable, la structure
+des doubles normalisés fournit:
     $$
     \frac{|[x] - x|}{|x|} \leq \epsilon.
     $$
-If the "round-to-nearest" method is used, you can actually derive a tighter 
-bound: the inequality above still holds with $\epsilon / 2$ instead of $\epsilon.$
+Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
+garantir la borne plus contraignante $\epsilon / 2$ au lieu de $\epsilon.$
 
-#### Significant Digits
+#### Chiffres significatifs
 
 This relative error translates directly into how many significant decimal 
 digits there are in the best approximation of a real number by a double.
