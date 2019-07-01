@@ -633,60 +633,69 @@ la conception d'algorithmes de calcul qui aient une performance décente et
 dont on peut prouver qu'il sont correctement arrondis est un problème
 difficile (cf. @FHL07).
 
-Finite Differences
+Différences Finies
 --------------------------------------------------------------------------------
 
-### Forward Difference
+### Différence Avant
 
-
-Let $f$ be a real-valued function defined in some open interval. 
-In many concrete use cases, we can make the assumption that the function is 
-actually analytic and never have to worry about the existence of derivatives.
-As a bonus, for any real number $x$ in the domain of the function, the 
-(truncated) Taylor expansion
+Soit $f$ une fonction à valeurs réelles définie sur un intervalle ouvert.
+Dans de nombreux cas concrets, on peut faire l'hypothèse que la fonction
+$f$ est indéfiniment dérivable sur son domaine de définition;
+le développement de Taylor avec reste intégral fournit alors
+localement à tout ordre $n$,
   $$
   f(x+h) = f(x) + f'(x) h + \frac{f''(x)}{2} h^2 
            + \dots
-           +\frac{f^{(n)}}{n!} h^n 
-           + \mathcal{O}(h^{n+1})
+           +\frac{f^{(n)}(x)}{n!} h^n 
+           + O(h^{n+1})
   $$
-is locally valid[^Landau]. 
-A straighforward computation shows that
+où le terme $O(h^k)$ (notation "grand o" de Landau), 
+désigne une expression de la forme
+$O(h^k) := M(h) h^k$
+où $M$ est une fonction définie et bornée dans un voisinage de $0$.
+
+Un calcul direct montre que
   $$
-  f'(x) = \frac{f(x+h) - f(x)}{h} + \mathcal{O}(h)
+  f'(x) = \frac{f(x+h) - f(x)}{h} + O(h)
   $$
-The asymptotic behavior of this *forward difference* scheme 
--- controlled by the term $\mathcal{O}(h^1)$ -- is said to be of order 1.
-An implementation of this scheme is defined for doubles $x$ and $h$ as
+Le comportement asymptotique de ce schéma de *différence avant*
+(*forward difference*)
+-- controllé par le terme $O(h^1)$ -- est dit d'ordre 1.
+En supposant $f$ correctement arrondie,
+une implémentation de ce schéma est défini pour les réels $x$ et
+$h$ par
   $$
-  \mathrm{FD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] (x)]}{[h]} \right].
+  \mathrm{FD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x])]}{[h]} \right].
   $$
-or equivalently, in Python as:
+ou de façon équivalent en Python par:
 
     def FD(f, x, h):
         return (f(x + h) - f(x)) / h
 
+<!--
 [^Landau]: **Bachmann-Landau notation.** For a real or complex variable $h,$ 
-we write $\psi(h) = \mathcal{O}(\phi(h))$ if there is a suitable deleted 
+we write $\psi(h) = O(\phi(h))$ if there is a suitable deleted 
 neighbourhood of $h=0$ where the functions $\psi$ and $\phi$ are defined 
 and the inequality $|\psi(h)| \leq \kappa |\phi(h)|$ holds for some $\kappa > 0.$ 
 When $N$ is a natural number, we write 
-$\psi(N) = \mathcal{O}(\phi(N))$ if there is a $n$ such that $\psi$ and $\phi$ 
+$\psi(N) = O(\phi(N))$ if there is a $n$ such that $\psi$ and $\phi$ 
 are defined for $N\geq n$ and for any such $N,$ 
 the inequality $|\psi(N)| \leq \kappa |\phi(N)|$ holds for some $\kappa > 0.$
+-->
 
-### Round-Off Error
+### Erreur d'arrondi
 
+Nous considérons à nouveau la fonction $f(x) = \exp(x)$ utilisée dans
+l'introduction et nous calculons la dérivée numérique basée sur la
+différence avant à $x=0$ pour différentes valeurs de $h$.
 
-We consider again the function $f(x) = \exp(x)$ used in the introduction
-and compute the numerical derivative based on the forward difference 
-at $x=0$ for several values of $h.$
-The graph of $h \mapsto \mathrm{FD}(\exp, 0, h)$ shows that for values of $h$ 
-near or below the machine epsilon $\varepsilon,$ the difference between the 
-numerical derivative and the exact value of the derivative is *not* 
-explained by the classic asymptotic analysis. 
+Le graphe de $h \mapsto \mathrm{FD}(\exp, 0, h)$ montre que pour 
+les valeurs de $h$ proches ou inférieures à l'epsilon machine,
+la différence entre la dérivée numérique et la valeur exacte de la dérivée
+n'est pas expliquée par l'analyse classique liée au développement
+de Taylor. 
 
-![Forward Difference Scheme Values.](images/fd-value.py)
+![Valeurs de la différence avant](images/fd-value.py)
 
 If we take into account the representation of real numbers as doubles however, 
 we can explain and quantify the phenomenon. To focus only on the effect of the 
@@ -749,15 +758,15 @@ improved, for example if instead of the forward difference quotient we use a
 central difference quotient. Consider the Taylor expansion at the order 2 of 
 $f(x+h)$ and $f(x-h)$:
   $$
-  f(x+h) = f(x) + f'(x) (+h)+ \frac{f''(x)}{2} (+h)^2 + \mathcal{O}\left(h^3\right)
+  f(x+h) = f(x) + f'(x) (+h)+ \frac{f''(x)}{2} (+h)^2 + O\left(h^3\right)
   $$
 and
   $$
-  f(x-h) = f(x) + f'(x) (-h) + \frac{f''(x)}{2} (-h)^2 + \mathcal{O}\left(h^3\right).
+  f(x-h) = f(x) + f'(x) (-h) + \frac{f''(x)}{2} (-h)^2 + O\left(h^3\right).
   $$
 We have
   $$
-  f'(x) = \frac{f(x+h) - f(x-h)}{2h} + \mathcal{O}(h^2),
+  f'(x) = \frac{f(x+h) - f(x-h)}{2h} + O(h^2),
   $$
 hence, the *central difference* scheme is a scheme of order 2, with the  
 implementation:

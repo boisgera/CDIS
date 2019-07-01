@@ -66,7 +66,7 @@ def fd_value():
     plot(h, 2**(-52) / h, "k:", label=r"$[\epsilon/h]$")
     legend()
     set_ratio(sqrt(3.0), bottom=0.1, top=0.1)
-    title(r"Graph of $h \mapsto \mathrm{FD}(\exp, 0, h)$")
+    title(r"Graphe de $h \mapsto \mathrm{FD}(\exp, 0, h)$")
     save()
 
 if __name__ == "__main__":
