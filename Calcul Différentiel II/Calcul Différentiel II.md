@@ -536,7 +536,7 @@ nombre réel $x$ le double le plus proche $[x]$. Une telle méthode
 
 [^holes]: Il faut préciser comme l'opération se comporte quand le réel
 est équidistant de deux doubles, comment les "nombres spéciaux" 
-(`inf, `nan`, ...) sont traités, etc. Autant de "détails" dont nous
+(`inf`, `nan`, ...) sont traités, etc. Autant de "détails" dont nous
 ne nous préoccuperons pas dans la suite.
 
 Pour avoir la moindre confiance dans le résultats des calculs que nous 
@@ -564,7 +564,7 @@ types flottants.
     2.220446049250313080847263336181640625e-16
 
 Alternativement, l'examen de la structure des doubles normalisés fournit
-directement la valeur de $\epsilon$: la fraction du nombre après $1.0$
+directement la valeur de $\varepsilon$: la fraction du nombre après $1.0$
 est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ donc
 $\varepsilon =2^{-52},$ un résultat confirmé par:
 
@@ -576,10 +576,10 @@ l'erreur relative de la représentation d'un nombre réel comme un double.
 En effet, pour n'importe quelle méthode d'arondi raisonnable, la structure
 des doubles normalisés fournit:
     $$
-    \frac{|[x] - x|}{|x|} \leq \epsilon.
+    \frac{|[x] - x|}{|x|} \leq \varepsilon.
     $$
 Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
-garantir la borne plus contraignante $\epsilon / 2$ au lieu de $\epsilon.$
+garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
 
 #### Chiffres significatifs
 
@@ -595,11 +595,11 @@ We say that it is significant up to the $p$-th digit if
   $$
 On the other hand, the error bound on $[x]$ yields
   $$
-  |x - [x]| \leq \frac{\epsilon}{2} |x| \leq \frac{\epsilon}{2} \times 10^{e+1}.
+  |x - [x]| \leq \frac{\varepsilon}{2} |x| \leq \frac{\varepsilon}{2} \times 10^{e+1}.
   $$
 Hence, the desired precision is achieved as long as
   $$
-  p \leq - \log_{10} \epsilon/2 = 52 \log_{10} 2 \approx 15.7.
+  p \leq - \log_{10} \varepsilon/2 = 52 \log_{10} 2 \approx 15.7.
   $$
 Consequently, doubles provide a 15-th digit approximation of real numbers.
 
@@ -673,7 +673,7 @@ We consider again the function $f(x) = \exp(x)$ used in the introduction
 and compute the numerical derivative based on the forward difference 
 at $x=0$ for several values of $h.$
 The graph of $h \mapsto \mathrm{FD}(\exp, 0, h)$ shows that for values of $h$ 
-near or below the machine epsilon $\epsilon,$ the difference between the 
+near or below the machine epsilon $\varepsilon,$ the difference between the 
 numerical derivative and the exact value of the derivative is *not* 
 explained by the classic asymptotic analysis. 
 
@@ -689,36 +689,36 @@ $\exp_0 (x) = 1 + x.$
 Assume that the rounding scheme is "round-to-nearest";
 select a floating-point number $h>0$ and compare it to the machine epsilon:
 
-  - If $h \ll \epsilon,$ then $1 + h$ is close to $1,$ actually, closer to 
-    $1$ than from the next binary floating-point value, which is $1 + \epsilon.$ 
+  - If $h \ll \varepsilon,$ then $1 + h$ is close to $1,$ actually, closer to 
+    $1$ than from the next binary floating-point value, which is $1 + \varepsilon.$ 
     Hence, the value is rounded to $[\exp_0](h) = 1,$ and a 
     *catastrophic cancellation* happens:
       $$
       \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right] = 0.
       $$
 
-  - If $h \approx \epsilon,$ then $1+h$ is closer from $1+\epsilon$ than it is from $1,$ 
-    hence we have $[\exp_0](h) = 1+\epsilon$ and
+  - If $h \approx \varepsilon,$ then $1+h$ is closer from $1+\varepsilon$ than it is from $1,$ 
+    hence we have $[\exp_0](h) = 1+\varepsilon$ and
       $$
       \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right]
-      = \left[ \frac{\epsilon}{h} \right].
+      = \left[ \frac{\varepsilon}{h} \right].
       $$
 
-  - If $\epsilon \ll h \ll 1,$ then $[1+h] = 1+ h \pm \epsilon(1+h)$
+  - If $\varepsilon \ll h \ll 1,$ then $[1+h] = 1+ h \pm \varepsilon(1+h)$
     (the symbol $\pm$ is used here to define a confidence interval[^pm]). 
     Hence 
       $$
-      [[\exp_0](h) - 1] = h \pm \epsilon \pm \epsilon(2h + \epsilon + \epsilon h)
+      [[\exp_0](h) - 1] = h \pm \varepsilon \pm \varepsilon(2h + \varepsilon + \varepsilon h)
       $$
     and
       $$
       \left[ \frac{[[\exp_0](h) - 1]}{h} \right] 
       = 
-      1 \pm \frac{\epsilon}{h} + \frac{\epsilon}{h}(3h + 2\epsilon + 3h \epsilon +\epsilon^2 + \epsilon^2 h)
+      1 \pm \frac{\varepsilon}{h} + \frac{\varepsilon}{h}(3h + 2\varepsilon + 3h \varepsilon +\varepsilon^2 + \varepsilon^2 h)
       $$
     therefore
       $$
-      \mathrm{FD}(\exp_0, 0, h)  = \exp_0'(0) \pm \frac{\epsilon}{h}  \pm \epsilon', \; \epsilon' \ll \frac{\epsilon}{h}.
+      \mathrm{FD}(\exp_0, 0, h)  = \exp_0'(0) \pm \frac{\varepsilon}{h}  \pm \varepsilon', \; \varepsilon' \ll \frac{\varepsilon}{h}.
       $$
       
 [^pm]: **Plus-minus sign and confidence interval.** The equation
@@ -726,7 +726,7 @@ $a = b \pm c$ should be interpreted as the inequality $|a - b| \leq |c|.$
 
 Going back to $\mathrm{FD}(\exp, 0, h)$ and using a log-log scale to display the 
 total error, we can clearly distinguish the region where the error is dominated
-by the round-off error -- the curve envelope is $\log(\epsilon/h)$ -- and where it 
+by the round-off error -- the curve envelope is $\log(\varepsilon/h)$ -- and where it 
 is dominated by the truncation error -- a slope of $1$ being characteristic of 
 schemes of order 1.
 
