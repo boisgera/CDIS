@@ -458,7 +458,7 @@ Demander 100 chiffres après la virgule est suffisant:
 seul 49 chiffres sont affichés car les suivants sont tous nuls.
 
 Remarquez que nous avons obtenu une représentation exacte du nombre flottant
-`pi` avec 49 chiffres. Cela ne signifie **pas** que tous ces chiffres
+`pi` avec 49 chiffres. Cela ne signifie pas que tous ces chiffres
 -- ou même la plupart d'entre eux -- sont significatifs dans la représentation
 du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
 [mpmath] pour l'arithmétique flottante multi-précisions, nous voyons que
@@ -628,13 +628,17 @@ soustraction, la multiplication, la division, le reste d'une division
 entière et la racine carrée.
 D'autres fonctions élémentaires 
 -- comme sinus, cosinus, exponentielle, logarithme, etc. --
-ne sont en général **pas** correctement arrondies;
+ne sont en général pas correctement arrondies;
 la conception d'algorithmes de calcul qui aient une performance décente et
 dont on peut prouver qu'il sont correctement arrondis est un problème
 difficile (cf. @FHL07).
 
 Différences Finies
 --------------------------------------------------------------------------------
+
+### TODO
+
+Terminologie erreur de troncature
 
 ### Différence Avant
 
@@ -689,102 +693,110 @@ Nous considérons à nouveau la fonction $f(x) = \exp(x)$ utilisée dans
 l'introduction et nous calculons la dérivée numérique basée sur la
 différence avant à $x=0$ pour différentes valeurs de $h$.
 
-Le graphe de $h \mapsto \mathrm{FD}(\exp, 0, h)$ montre que pour 
+[Le graphe de $h \mapsto \mathrm{FD}(\exp, 0, h)$](#fdv) montre que pour 
 les valeurs de $h$ proches ou inférieures à l'epsilon machine,
 la différence entre la dérivée numérique et la valeur exacte de la dérivée
 n'est pas expliquée par l'analyse classique liée au développement
 de Taylor. 
 
-![Valeurs de la différence avant](images/fd-value.py)
+![Valeurs de la différence avant](images/fd-value.py){#fdv}
 
-If we take into account the representation of real numbers as doubles however, 
-we can explain and quantify the phenomenon. To focus only on the effect of the 
-round-off errors, we'd like to get rid of the truncation error. 
-To achieve this, in the following computations, instead of $\exp,$ we use 
-$\exp_0,$ the Taylor expansion of $\exp$ of order $1$ at $x=0;$ we have
-$\exp_0 (x) = 1 + x.$ 
+Toutefois, si nous prenons en compte la représentation des réels comme des
+doubles, nous pouvons expliquer et quantifier le phénomène. 
+Pour étudier exclusivement l'erreur d'arrondi, nous aimerions 
+nous débarasser de l'erreur de troncature; à cette fin, dans les
+calculs qui suivent, au lieu de $\exp$, nous utilisons $\exp_1$,
+le développement de Taylor de $\exp$ à l'ordre $1$ à $x=0$,
+c'est-à-dire $\exp_1(x) = 1 + x$.
 
-Assume that the rounding scheme is "round-to-nearest";
-select a floating-point number $h>0$ and compare it to the machine epsilon:
+**TODO:** élts / catastrophic cancellation
 
-  - If $h \ll \varepsilon,$ then $1 + h$ is close to $1,$ actually, closer to 
-    $1$ than from the next binary floating-point value, which is $1 + \varepsilon.$ 
-    Hence, the value is rounded to $[\exp_0](h) = 1,$ and a 
-    *catastrophic cancellation* happens:
+Supposons que l'arrondi soit calculé au plus proche;
+selectionons un double $h>0$ et comparons-le à l'epsilon machine:
+
+  - Si $h \ll \varepsilon,$ alors $1 + h$ est proche de $1,$ en fait plus
+    proche de $1$ que du double immédiatemment supérieur à $1$ qui est 
+    $1 + \varepsilon.$ 
+    Par conséquent, on a $[\exp_0](h) = 1;$ une *annulation catastrophique*
+    survient:
       $$
       \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right] = 0.
       $$
 
-  - If $h \approx \varepsilon,$ then $1+h$ is closer from $1+\varepsilon$ than it is from $1,$ 
-    hence we have $[\exp_0](h) = 1+\varepsilon$ and
+  - Si $h \approx \varepsilon,$ alors $1+h$ est plus proche  $1+\varepsilon$que de $1,$ 
+    et donc $[\exp_0](h) = 1+\varepsilon$, ce qui entraîne
       $$
       \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right]
       = \left[ \frac{\varepsilon}{h} \right].
       $$
 
-  - If $\varepsilon \ll h \ll 1,$ then $[1+h] = 1+ h \pm \varepsilon(1+h)$
-    (the symbol $\pm$ is used here to define a confidence interval[^pm]). 
-    Hence 
+  - Si $\varepsilon \ll h \ll 1,$ alors $[1+h] = 1+ h \pm \varepsilon(1+h)$
+    (le symbole $\pm$ est utilisé ici pour défini un intervalle de confiance[^pm]). 
+    Et donc
       $$
       [[\exp_0](h) - 1] = h \pm \varepsilon \pm \varepsilon(2h + \varepsilon + \varepsilon h)
       $$
-    and
+    et
       $$
       \left[ \frac{[[\exp_0](h) - 1]}{h} \right] 
       = 
       1 \pm \frac{\varepsilon}{h} + \frac{\varepsilon}{h}(3h + 2\varepsilon + 3h \varepsilon +\varepsilon^2 + \varepsilon^2 h)
       $$
-    therefore
+    et par conséquent
       $$
       \mathrm{FD}(\exp_0, 0, h)  = \exp_0'(0) \pm \frac{\varepsilon}{h}  \pm \varepsilon', \; \varepsilon' \ll \frac{\varepsilon}{h}.
       $$
       
-[^pm]: **Plus-minus sign and confidence interval.** The equation
-$a = b \pm c$ should be interpreted as the inequality $|a - b| \leq |c|.$
+[^pm]: L'équation $a = b \pm c$ est à interpréter comme l'inégalité $|a - b| \leq |c|.$
 
-Going back to $\mathrm{FD}(\exp, 0, h)$ and using a log-log scale to display the 
-total error, we can clearly distinguish the region where the error is dominated
-by the round-off error -- the curve envelope is $\log(\varepsilon/h)$ -- and where it 
-is dominated by the truncation error -- a slope of $1$ being characteristic of 
-schemes of order 1.
+![Erreur de la différence avant](images/fd-error.py)
 
-![Forward Difference Scheme Error.](images/fd-error.py)
-
-### Higher-Order Scheme
+Si l'on revient à $\mathrm{FD}(\exp, 0, h)$ et si l'on exploite des échelles
+log-log pour représenter l'erreur totale, on peut clairement distinguer la
+region ou l'erreur est dominée par l'erreur d'arrondi -- l'envellope de cette
+section du graphe est $h \mapsto \log(\varepsilon/h)$ -- et ou elle est dominée
+par l'erreur de troncature -- une pente $1$ étant caractéristique des schémas
+d'ordre 1
 
 
-The theoretical asymptotic behavior of the forward difference scheme can be 
-improved, for example if instead of the forward difference quotient we use a 
-central difference quotient. Consider the Taylor expansion at the order 2 of 
-$f(x+h)$ and $f(x-h)$:
+
+### Schémas d'ordre supérieur
+
+Le comportement asymptotique de la différence avant peut être amélioré,
+par exemple si au lieu de la différence avant nous utilisons un schéma
+de différence centrée. Considérons les développements de Taylor à l'ordre
+2 de $f(x+h)$ et $f(x-h)$:
   $$
   f(x+h) = f(x) + f'(x) (+h)+ \frac{f''(x)}{2} (+h)^2 + O\left(h^3\right)
   $$
-and
+et
   $$
   f(x-h) = f(x) + f'(x) (-h) + \frac{f''(x)}{2} (-h)^2 + O\left(h^3\right).
   $$
-We have
+On en déduit
   $$
   f'(x) = \frac{f(x+h) - f(x-h)}{2h} + O(h^2),
   $$
-hence, the *central difference* scheme is a scheme of order 2, with the  
-implementation:
+et donc, le schéma de *différence centrale* est d'ordre 2.
+Son implémentation sur ordinateur est donnée par
   $$
   \mathrm{CD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x]-[h])]}{[2 \times [h]]} \right].
   $$
-or equivalently, in Python:
+ou de façon équivalente en Python:
 
     def CD(f, x, h):
         return 0.5 * (f(x + h) - f(x - h)) / h
 
-The error graph for the central difference scheme confirms that a truncation
-error of order two may be used to improve the accuracy. However, it also
-shows that a higher-order actually *increases* the region dominated by the
-round-off error, making the problem of selection of a correct step size $h$
-even more difficult. 
 
-![Central Difference Scheme Error.](images/cd-error.py)
+![Erreur de la différence centrée](images/cd-error.py){#cde}
+
+[Le graphe d'erreur associé à la différence centrale](#cde) confirme qu'une 
+erreur de troncature d'ordre 2 améliore la précision. 
+Toutefois, il montre aussi que l'utilisation d'un schéma d'ordre plus
+élevé augmente également la région ou l'erreur est dominée par l'erreur
+d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
+
+
 
 
 Différentiation Automatique

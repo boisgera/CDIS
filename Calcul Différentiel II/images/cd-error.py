@@ -35,12 +35,13 @@ def save():
 
 # Layout Helper
 # ------------------------------------------------------------------------------
-def set_ratio(ratio, bottom=0.1, top=0.1, left=0.1, right=0.1):
+def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
     # The width of the standard LaTeX document is 345.0 pt.
-    width_in = 345.0 / 72.0
+    width_in = 345.0 / 72.0 * scale
     height_in = (1.0 - left - right)/(1.0 - bottom - top) * width_in / ratio
     gcf().set_size_inches((width_in, height_in))
     gcf().subplots_adjust(bottom=bottom, top=1.0-top, left=left, right=1.0-right)
+
 
 # Forward and Central Differentiation Schemes
 # ------------------------------------------------------------------------------
@@ -69,9 +70,10 @@ def cd_error():
     yticks([1e-12, 1e-8, 1e-4, 1e0], ha="left")
     gca().get_yaxis().set_tick_params(pad=25, direction="out")
     xticks([1e-16, 1e-12, 1e-8, 1e-4, 1e0])
-    plot(h, abs(1.0 - FD(f, 0.0, h)), "k", color="0.75", label="FD error")
-    plot(h, abs(1.0 - CD(f, 0.0, h)), "k", color="0.00", label="CD error")
-    title("Graph of $h \mapsto [|\mathrm{CD}(\exp, 0, h) -\exp'(0)|]$")
+    plot(h, abs(1.0 - FD(f, 0.0, h)), "k", color="0.75", label="erreur de FD")
+    plot(h, abs(1.0 - CD(f, 0.0, h)), "k", color="0.00", label="erreur de CD")
+    title("Graphe de $h \mapsto [|\mathrm{CD}(\exp, 0, h) -\exp'(0)|]$")
+    set_ratio(1.0, scale=1, bottom=-0.1, top=-0.1)
     gca().set_aspect(1.0)
     #gcf().set_figwidth(width_in)
     extra = 1.2
