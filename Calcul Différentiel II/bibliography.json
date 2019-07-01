@@ -91,5 +91,47 @@
     "title": "Spectral methods in matlab",
     "type": "book",
     "volume": "10"
-  }
+  },
+
+	{
+		"id": "FHL07",
+		"type": "article-journal",
+		"title": "MPFR: A Multiple-precision Binary Floating-point Library with Correct Rounding",
+		"container-title": "ACM Trans. Math. Softw.",
+		"volume": "33",
+		"issue": "2",
+		"URL": "http://doi.acm.org/10.1145/1236463.1236468",
+		"DOI": "10.1145/1236463.1236468",
+		"ISSN": "0098-3500",
+		"author": [
+			{
+				"family": "Fousse",
+				"given": "Laurent"
+			},
+			{
+				"family": "Hanrot",
+				"given": "Guillaume"
+			},
+			{
+				"family": "Lefèvre",
+				"given": "Vincent"
+			},
+			{
+				"family": "Pélissier",
+				"given": "Patrick"
+			},
+			{
+				"family": "Zimmermann",
+				"given": "Paul"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2007",
+					6
+				]
+			]
+		}
+	}
 ]

@@ -531,7 +531,7 @@ pas de ces cas particuliers.
 Presque aucun nombre réel ne peut être représenté exactement comme un double.
 Pour faire façe à cette difificulté, il est raisonnable d'associer à un
 nombre réel $x$ le double le plus proche $[x]$. Une telle méthode
-(*round-to-nearest*) totalement spécifiée[^holes] dans le standard IEE754
+(*arrondi-au-plus-proche*) totalement spécifiée[^holes] dans le standard IEE754
 [@ANS85], ainsi que des modes alternatifs d'arrondi (arrondis "dirigés").
 
 [^holes]: Il faut préciser comme l'opération se comporte quand le réel
@@ -583,46 +583,55 @@ garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
 
 #### Chiffres significatifs
 
-This relative error translates directly into how many significant decimal 
-digits there are in the best approximation of a real number by a double.
-Consider the exact representation of $[x]$ in the scientific notation:
+L'erreur relative se traduit directement par combien de chiffres décimaux
+sont *significatifs* dans la meilleurs approximation d'un nombre réel par
+un double. Considéons la représentation de $[x]$ en notation scientifique:
     $$
     [x] = \pm (f_0.f_1 \dots f_{p-1} \dots) \times 10^{e}.
     $$
-We say that it is significant up to the $p$-th digit if 
+On dira qu'elle est *significative jusqu'au $p$-ème chiffre* si
   $$
   |x -  [x]| \leq \frac{10^{e-(p-1)}}{2}.
   $$
-On the other hand, the error bound on $[x]$ yields
+D'autre part, la borne d'erreur sur $[x]$ fournit
   $$
   |x - [x]| \leq \frac{\varepsilon}{2} |x| \leq \frac{\varepsilon}{2} \times 10^{e+1}.
   $$
-Hence, the desired precision is achieved as long as
+Ainsi, la précision souhaitée est obtenue tant que
   $$
   p \leq - \log_{10} \varepsilon/2 = 52 \log_{10} 2 \approx 15.7.
   $$
-Consequently, doubles provide a 15-th digit approximation of real numbers.
+Par conséquent, les doubles fournissent une approximation des nombres réels
+à 15 décimales.
 
-#### Functions
+#### Fonctions
 
-Most real numbers cannot be represented exactly as doubles; 
-accordingly, most real functions of real variables cannot be represented exactly 
-as functions operating on doubles either. 
-The best we can hope for are *correctly rounded* approximations.
-An approximation $[f]$ of a function $f$ of $n$ variables is *correctly rounded*
-if for any $n$-uple $(x_1,\dots,x_n),$ we have
+La plupart des nombres réels ne pouvant être représentés par des doubles,
+la plupart des fonctions à valeur réelle et à variables réelles ne peuvent 
+pas non plus être représentée exactement comme des fonctions opérant sur
+des doubles. 
+Le mieux que nous puissions espérer est d'avoir des approximation 
+*correctement arrondies*. Une approximation $[f]$ d'une fonction $f$
+de $n$ variables est correctement arrondie si pour tout $n$-uplet
+$(x_1, \dots, x_n)$, on a
   $$
   [f](x_1,\dots,x_n) = [f([x_1], \dots, [x_n])].
   $$
-The IEEE 754 standard [see @ANS85] mandates that some functions have a correctly
-rounded implementation; they are:
+Autrement dit, tout se passe comme si le calcul de $[f](x_1,\dots,x_n)$
+était effectué de la façon suivante: approximation au plus proche 
+des arguments par des doubles, calcul **exact** de $f$ sur ces arguments, 
+et approximation de cette valeur produite au plus proche par un double.
 
-  >  add, substract, multiply, divide, remainder and square root.
-
-Other standard elementary functions -- such as sine, cosine, exponential, logarithm, etc. -- 
-are usually *not* correctly rounded; the design of computation algorithms that have a decent performance and are *provably* correctly rounded is a complex problem (see for example the documentation of the [Correctly Rounded mathematical library]).
-
-[Correctly Rounded mathematical library]: http://lipforge.ens-lyon.fr/www/crlibm/
+Le standard IEEE 754 [@ANS85] impose que certaines fonction aient des 
+implémentations correctement arrondies; elles sont l'addition, la
+soustraction, la multiplication, la division, le reste d'une division 
+entière et la racine carrée.
+D'autres fonctions élémentaires 
+-- comme sinus, cosinus, exponentielle, logarithme, etc. --
+ne sont en général **pas** correctement arrondies;
+la conception d'algorithmes de calcul qui aient une performance décente et
+dont on peut prouver qu'il sont correctement arrondis est un problème
+difficile (cf. @FHL07).
 
 Finite Differences
 --------------------------------------------------------------------------------
@@ -1261,3 +1270,5 @@ Applications (avec algo type IFT par exemple) ? En plus ?
 Eventuellement en utilisant un "vrai" autodiff pour ne pas
 être bloqué par des étapes précédentes non réussies ? 
 
+Références
+================================================================================
