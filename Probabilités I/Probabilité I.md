@@ -6,6 +6,7 @@
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\E}{\mathcal{E}}
 
 
 # Introduction 
@@ -71,8 +72,8 @@ Si on reprend les exemples précédents, on peut facilement définir les univers
  5. Evolution du prix d'un actif financier sur un intervalle de temps $[t_1,t_2]$, $\Omega = C ([t_1,t_2],\R^+)$, ensemble des application continues de $[t_1,t_2]$ dans $\R^+$
 
 
-### Evènements {.definition}
-Un *évènement* est une propriété qui est vérifiée ou non une fois l'expérience réalisée. On identifie un évènement $A$ à une partie de $\Omega$, i.e. $A = \{\omega \in \Omega, A \text{ est vérifiée pour } \omega \}$.
+### Evènement {.definition}
+Un *évènement* est une propriété qui est vérifiée ou non une fois l'expérience réalisée. On identifie un évènement $A$ à un sous-ensemble ou  *partie* de $\Omega$, i.e. $A = \{\omega \in \Omega, A \text{ est vérifiée pour } \omega \}$.
 
 ### Exemples {.example}
 
@@ -84,11 +85,22 @@ Un *évènement* est une propriété qui est vérifiée ou non une fois l'expér
  $A = \{ f \in C([t_1,t_2], \R^+), \|f-g\|_{\infty} \leq a \}$, où
  $g \in C([t_1,t_2],\R^+)$, $a \in \R^+$ 
 
-**TODO:** tableau d'équivalence opérations ensemblistes et logiques (cf poly maisonneuve)
+### Correspondance entre opérations logiques et ensemblistes
 
-On doit maintenant répondre à la question de savoir quels sont les évènements dont on va vouloir évaluer la probabilité d'occurence. On va ainsi regrouper les évènements en un ensemble $\A$ qui constitue une collection de sous-ensembles de $\Omega$. En particulier, si les évènements $A$ et $B$  Ceci conduit à la notion de *tribu de parties* de $\Omega$.
+| Terminologie probabiliste | Terminologie ensembliste | Notation |
+|:-:|:-:|:-:|
+| événement certain  | ensemble entier  | $\Omega$  |
+| événement impossible  |  ensemble vide  | $\varnothing$  |
+| événement contraire | complémentaire | $A^c$  |
+| événement atomique  |  singleton | $\{\omega\}$  |
+| implication | inclusion | $\subset$  |
+| et  | intersection  | $\cap$  |
+| ou  | réunion | $\cup$ |
+| évènements incompatibles | ensembles disjoints | $A_1\cap A_2 = \varnothing$  |
 
-### Tribu {.definition}
+On doit maintenant répondre à la question de savoir quels sont les évènements dont on va vouloir évaluer la probabilité d'occurence. On va ainsi regrouper les évènements en un ensemble $\A$ qui constitue une collection de sous-ensembles de $\Omega$. On va souhaiter en particulier pouvoir combiner des évènements au sein de $\A$ par les opérations ensemblistes courantes  Ceci conduit à la notion de *tribu de parties* de $\Omega$.
+
+### Tribu {.definition #deftribu}
 Une *tribu* $\A$ est une collection de sous-ensembles de $\Omega$ tels que
 
  1. $\Omega \in \A$.
@@ -97,9 +109,13 @@ Une *tribu* $\A$ est une collection de sous-ensembles de $\Omega$ tels que
 Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
 
 ### Exemples {.exemples}
- 1. Dans le cas où $\Omega$ est au plus dénombrable, on le munit généralement de l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$
- 2. Si $\Omega = \R$, on le munit de la *tribu borélienne* de $\R$, notée $\mathcal{B}(\R)$ **TODO voir si déjà vu en CI**
- 3. On verra par la suite qu'il est aisé de définir une tribu sur tout espace topologique **plus tard ?** 
+ 1. $\A = \{\varnothing,\Omega\}$ est la tribu grossière ou triviale : c'est la plus petite tribu de $\Omega$.
+ 2. Dans le cas où $\Omega$ est au plus dénombrable, on le munit généralement de l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$. On verra ultérieurement que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
+ 3. Si $\Omega = \R$, on le munit de la *tribu borélienne* de $\R$, notée $\mathcal{B}(\R)$ **TODO voir si déjà vu en CI**
+ 4. On verra par la suite qu'il est aisé de définir une tribu sur tout espace topologique **plus tard ?** 
+
+**question : notion de tribu engendrée ???**
+
 
 ### Probabilité {.definition #defproba}
 Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rightarrow [0,1]$, telle que :
@@ -107,7 +123,7 @@ Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rig
  1. $\P(\Omega) = 1$,
  2. Pour toute suite (dénombrable) $(A_n)$ d'éléments de $\A$ **deux à deux disjoints**, on a 
  \begin{equation}
- \P(\bigcup_n A_n) = \sum_n A_n.
+ \P(\bigcup_n A_n) = \sum_n \P(A_n).
  \end{equation}
 
 Le triplet $(\Omega, \A, \P)$ est appelé *espace probabilisé*. La modélisation probabiliste consiste ainsi à décrire une expérience
@@ -133,7 +149,9 @@ Exercice
 
 ### Remarque {.remark}
 Dans le cas d'une suite décroissante, on a 
-$$ \P(\cap_{i=1}^n A_i) = \lim_{n \rightarrow \infty} \P(A_n)$$
+$$ \P(\bigcap_{i=1}^n A_i) = \lim_{n \rightarrow \infty} \P(A_n)$$
+
+**ou version plus complète avec l'équivalence de la $\sigma$-additivité???**
 
 ### Lemme de Borel-Cantelli ??? ou alors à la fin 
 
@@ -171,7 +189,7 @@ Nous avons $A = \bigcup_n (A\cap B_n)$. Par hypothèse, les ensembles $(A\cap B_
 ### Formule de Bayes {.proposition}
 Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a 
 \begin{equation}
-\forall i \P(B_i | A) = \frac{\P(A | B_i) \P(B_i)}{\sum_n \P(A | B_n) \P(A)}
+\forall i,  \P(B_i | A) = \frac{\P(A | B_i) \P(B_i)}{\sum_n \P(A | B_n) \P(A)}
 \end{equation}
 
 ### Démonstration {.proof}
@@ -200,14 +218,66 @@ Deux évènements $A$ et $B$ sont *indépendants* si et seulement si
     \P(A\cap B) = \P(A)\P(B) \Leftrightarrow \P(A) = \P(A|B) \Leftrightarrow \P(B) = \P(B|A)
     \end{equation}
 
-## Proposition {.proposition}
+### Proposition {.proposition}
 Si les évènements $A$ et $B$ sont indépendants, alors il en est de même des couples $(A^c,B)$, $(A,B^c)$ et $(A^c,B^c)$.
+
+## Loi d'une variable aléatoire
+
+En théorie moderne des probabilités, on préfère prendre un point de vue fonctionnel plutôt qu’ensembliste, et utiliser les variables aléatoires plutôt que les événements. Ce point de vue sera développé dans la suite du cours. Nous en donnons ici uniquement les idées de base.
+
+Une variable aléatoire est une grandeur qui dépend du résultat de l’expérience. Par exemple,
+
+ * le nombre de 6 obtenus dans un lancer de 3 dés,
+ * le nombre d’appels dans un central téléphonique pendant une heure,
+ * la distance du point d’atteinte d’une flèche au centre de la cible,
+ * la valeur maximale d’un prix d’actif sur un intervalle de temps donné,
+sont des variables aléatoires.
+
+La définition formelle d'une variable aléatoire fait intervenir des éléments de la théorie de la mesure. Dans un premier temps, on retiendra qu'étant donné un espace probabilisé $(\Omega, \A, \P)$, une variable aléatoire $X$ est une application de $(\Omega,\A)$ dans un ensemble $E$,
+\begin{equation}
+\omega \in \Omega \mapsto X(\omega) \in E
+\end{equation}
+
+En pratique, l’ensemble $E$ pourra être un ensemble fini ou dénombrable ou $R$ ou $R^d$ ou encore un espace plus sophistiqué tel que l’ensemble $C(\R_+ , \R^d)$ des fonctions continues de $\R_+$ dans $\R^d$.
+
+### Remarque {.remark}
+La terminologie, consacrée par l'usage, peut être trompeuse. Une variable aléatoire n'est pas une variable (au sens de l'analyse) mais une fonction. Cette terminologie est apparentée à la notion de variable en physique ou en sciences humaines où on désigne volontiers par "variable" la valeur prise par une fonction de l'état du système étudié.
+
+L'intérêt principal de travailler avec des variables aléatoires est de pouvoir substituer à l'espace abstrait $\Omega$ des résultats de l'expérience l'espace $E$, mieux connu dans la pratique. Ainsi, grâce à une variable aléatoire $X$, nous pouvons transporter la structure abstraite du modèle probabiliste $(\Omega, \A, \P)$ sur l'espace d'arrivée $E$, en posant pour $B \in E$
+\begin{equation}
+\label{eq:loi_va}
+\P_X (B ) = \P(X^{-1}(B)) = \P(\{\omega, X(\omega)\in B\})
+\end{equation}
+Cette formule défini une nouvelle probabilité, notée $\P_X$ et définie sur $E$, qui s'appelle la *loi de la variable* $X$.
+
+Comme $\P(A)$ n'est définie que pour les $A$ de la tribu $\A$, la formule \eqref{eq:loi_va} ne permet de définir $\P_X(B)$ que pour les ensembles $B$ tels que $X^{-1}(B) \in \A$, d’où l’importance de la proposition suivante :
+
+### Proposition {.proposition}
+
+ a) La famille $\E$ des parties $B$ de $E$ telles que $X^{-1}(B) \in \A$ est une tribu de $E$.
+ b) L'application $\P_X$ définie pour $B \in \E$ par 
+ $$ \P_X (B ) = \P(X^{-1}(B)) $$ 
+ définit une probabilité sur le couple $(E,\E)$.
+
+### Démonstration {.proof}
+Les 3 propriétés de la [définition d'une tribu](#deftribu) pour $\E$ ainsi que les deux propriétés de la [définition de la probabilité](#defproba) pour $\P_X$ découlent immédiatement des mêmes propriétés pour $\A$ et $\P$, une fois remarquées les propriétés élémentaires suivantes :
+\begin{align*}
+& X^{-1}(\varnothing) = \varnothing, X^{-1}(E) = \Omega, X^{-1}(B^c) = X^{-1}(B)^c \\
+& X^{-1}(\cap_i A_i) = \cap_i X^{-1}(A_i), X^{-1}(\cup_i A_i) = \cup_i X^{-1}(A_i)
+\end{align*}
+
+### {.anonymous}
+
+Les variables que nous rencontrerons dans ce cours seront soit à valeurs dans un ensemble dénombrable, soit à valeurs dans $\R$ ou dans $R^d$ . Nous les appellerons respectivement des variables aléatoires discrètes, réelles ou des vecteurs aléatoires. Leurs lois seront alors des probabilités respectivement sur un ensemble dénombrable, sur $\R$ ou sur $R^d$ . Les probabilités sur un espace fini ou dénombrable sont considérées connues. La description des probabilités sur $\R$ ou sur $R^d$ est plus délicate et fera l'objet de l'essentiel de ce cours.
+
+
+### **TODO : ajouts d'exemples, trancher sur les v.a. discrètes, exercices**
+
 
 # V.A. discretes
 
-rappels rapides (complet avec lecture en autonomie ?) -> pas traité dans Bonnabel-Schmitt mais intéressant car analogies avec cas continu
+rappels rapides - renvoi vers références (complet avec lecture en autonomie ?) -> pas traité dans Bonnabel-Schmitt mais intéressant car certaines analogies avec le cas continu
 
-# Définition d'une variable aléatoire réelle (cas $\Omega=\R$ ?)
 
 # Variables aléatoires absolument continues -> plutôt en II
 
@@ -219,3 +289,5 @@ rappels rapides (complet avec lecture en autonomie ?) -> pas traité dans Bonnab
 aura-t-on le temps ? Sinon se limiter à une ouverture vers les v.a. à valeurs réelles
 
 # Exercices
+
+exos sur les probas discrètes
