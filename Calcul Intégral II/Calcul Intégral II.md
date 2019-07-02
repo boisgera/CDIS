@@ -106,6 +106,14 @@ $$
 \int := \int_{-\infty}^{+\infty}
 $$
 
+Faire le tour des opportunité de généraliser les concepts/résultats
+à des sous-ensembles de $\R$ est voir si c'est vraiment trivial.
+En particulier, fonction "intégrable sur $A$" doit au moins 
+faire l'objet d'une remarque (cela veut dire qqchose de naturel,
+dans le cas des intervalles fermés de $\R$, et la ppté via l'extension
+par $0$ suggère une extension de la définition à des ensembles $A$ plus
+généraux)
+
 Théorèmes de Convergence
 ================================================================================
 
@@ -1048,6 +1056,13 @@ Comme la série de cette équation est divergente,
 on peut rendre l'intégrale arbitrairement grande en choisissant
 un $k$ suffisamment grand, ce qui permet de conclure.
 
+### TODO 
+
+Formuler en-dessous en terme de "intégrable sur $E$" (à définir) et bien
+montrer le pb pour une fonction juste intégrable, ou la restriction ne
+marche pas. (passer de restriction de $E$ à $F$ et pas seulement $\R$
+ici ?)
+
 ### Restriction à des ensembles mesurables {.corollary}
 
 Une fonction $f:\R \to \R$ est absolument intégrable
@@ -1082,78 +1097,57 @@ La fonction $f$ est donc absolument intégrable.
 Exercices
 ================================================================================
 
-Ensembles de longueur finie
+Ensembles de longueur finie {.question #e-lf}
 --------------------------------------------------------------------------------
 
-Soit $E$ un ensemble mesurable de $\R$ pour lequel il existe une
-constante $L\geq 0$ (finie) telle que pour tout intervalle compact
+Soit $A$ un ensemble mesurable de $\R$ pour lequel il existe une
+constante $L$ (finie) telle que pour tout intervalle compact
 $[a, b]$, on ait
 $$
-\int_{[a, b]} 1_E(t) \, dt \leq L.
-$$
-Montrer que $E$ est de longueur finie et que $\ell(E) \leq L$.
-
-### Réponse
-
-La suite des fonctions $f_k:\R \to \R$ définie par 
-$$
-f_k(t) = \left|
-\begin{array}{rl}
-1_E(t) & \mbox{si } \, t \in [-k, k], \\
-0         & \mbox{sinon.}
-\end{array}
-\right.
-$$
-est croissante, de limite simple $1_E$. A tout rang $k$, on a 
-$$
-\int f_k(t) \, dt 
-=
-\int_{[-k, k]} 1_E(t) \, dt
-\leq L,
-$$
-donc
-$$
-\sup_k \int f_k(t) \, dt 
-\leq 
-L < +\infty. 
-$$
-Le théorème de convergence monotone nous garantit l'intégrabilité de
-$1_E$ -- c'est-à-dire le fait que $E$ est de longueur finie -- et 
-fournit
-$$
-\ell(E) = \int 1_E(t) \, dt = 
-\lim_{k\to +\infty} \int f_k(t) \, dt
-\leq L.
+\int_a^b 1_A(t) \, dt \leq L.
 $$
 
+Montrer que $A$ est de longueur finie et que $\ell(A) \leq L$.
 
+$\to$ [Solution](#s-lf)
 
-
-
-Intégrabilité locale
+TODO -- Intégrabilité locale
 --------------------------------------------------------------------------------
 
-Une fonction $f: \R \to  \R$ est localement intégrable si
-pour tout point $x \in \R$, il existe un $\varepsilon > 0$ tel que
-la fonction $f$ soit intégrable sur $[x-\varepsilon, x+\varepsilon]$.
+**TODO.** Question ouverte / choix définition vraiment local avec voisinage
+ou local via intervalle; une piste mène vers l'intégrabilité conditionnelle,
+l'autre l'intégrabilité absolue, ce qui n'est pas immédiat !
 
- 0. Montrer que $f$ est localement intégrable si et seulement si elle
-    est intégrable sur tout intervalle fermé et borné.
+----
 
- 1. Montrer que toute fonction localement intégrable est mesurable.
+Une fonction $f: \R \to  \R$ est dite *localement intégrable* 
+si tout point $x$ de $\R$, il existe un intervalle compact $[a, b]$ tel
+que $a < x < b$ où la fonction $f$ soit intégrable.
 
- 2. La réciproque est-elle vraie ?
+### Question 0 {.question #e-il-0}
+Montrer que $f$ est localement intégrable si et seulement si
+pour tout intervalle compact $[a, b]$ de $\R$, $f$ est intégrable
+sur $[a, b]$.
 
-### Réponses
+$\to$ [Solution](#s-il-0)
 
- 0. **TODO**
+### Question 1  {.question #e-il-1}
+Montrer que toute fonction localement intégrable est mesurable.
 
- 1. **TODO**
+$\to$ [Solution](#s-il-1)
 
- 2. **TODO**
+### Question 2  {.question #e-il-2}
+La réciproque est-elle vraie ?
+
+$\to$ [Solution](#s-il-2)
+
  
-Fonctions Mesurables
+TODO -- Fonctions Mesurables {.question #e-fm}
 --------------------------------------------------------------------------------
+
+**TODO.** Adapter choix variante au contexte proba (qui est $f(x) \leq a$ ?).
+
+**TODO.** En déduire mesurabilité et intégrabilité locale des fcts croissantes.
 
 Montrer qu'une fonction $f: \R \to \R$ est mesurable si et
 seulement si pour tout nombre réel $a$, l'ensemble
@@ -1162,41 +1156,7 @@ f^{-1}(\left]a, +\infty\right[) = \{x \in \R \, | \, a < f(x)\}
 $$
 est mesurable.
 
-### Réponse
-
-Compte tenu du [critère de l'image réciproque][Images réciproques des fonctions mesurables],
-comme tous les ensembles $\left]a, +\infty\right[$ sont ouverts, 
-le critère ci-dessus est bien vérifié pour toute fonction mesurable.
-
-Montrons désormais la réciproque: supposons le critère ci-dessus vérifié et
-montrons que le [critère de l'image réciproque][Images réciproques des fonctions mesurables]
-l'est également.
-
-Soit $U$ un ouvert de $\R$; l'ensemble $U$ peut être décomposé comme
-union d'un nombre dénombrables d'intervalles ouverts bornés $I_k$
-de $\R$.
-Par conséquent, comme
-$$
-f^{-1}(U) = f^{-1} \left(\cup_k I_k \right) = \bigcup_{k} f^{-1}(I_k),
-$$
-il nous suffit de montrer que l'image réciproque de tout intervalle
-ouvert borné $\left]a, b\right[$ par $f$ est mesurable, pour conclure
-que $f^{-1}(U)$ est mesurable, comme union dénombrable d'ensembles
-mesurables.
-
-Or, un point $x$ vérifie $a < f(x) < b$ si et seulement
-il vérifie $a < f(x)$ et ne vérifie $b-2^{-k} < f(x)$ pour aucun entier $k$,
-ce qui se traduit par la relation ensembliste
-$$
-f^{-1}(\left]a, b\right[) 
-= 
-f^{-1}(\left]a, +\infty \right[) 
-\cap 
-\left(\R \setminus \bigcup_{k=0}^{+\infty} f^{-1}(\left]b -2^{-k}, +\infty \right[)\right).
-$$
-Les images réciproques au second membre sont mesurables par hypothèse,
-et sont combinées par union dénombrable, complément relatif et union finie
-par conséquent $f^{-1}(\left]a, b\right[)$ est également mesurable.
+$\to$ [Solution](#s-fm)
 
 
 Fonctions Boréliennes
@@ -1456,11 +1416,91 @@ $$
 Par le critère d'intégrabilité dominée, 
 $fg$ et $|fg|$ sont donc intégrables.
 
+Solution aux exercices
+================================================================================
+
+Solution -- Ensembles de longueur finie {.answer #s-lf}
+--------------------------------------------------------------------------------
+
+La suite des fonctions $f_k:\R \to \R$ définie par 
+$$
+f_k(t) = \left|
+\begin{array}{rl}
+1_A(t) & \mbox{si } \, t \in [-k, k], \\
+0      & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est croissante, de limite simple $1_A$. A tout rang $k$, on a 
+$$
+\int f_k(t) \, dt 
+=
+\int_{-k}^k 1_A(t) \, dt
+\leq L,
+$$
+donc
+$$
+\sup_k \int f_k(t) \, dt 
+\leq 
+L < +\infty. 
+$$
+Le théorème de convergence monotone nous garantit l'intégrabilité de
+$1_A$ -- c'est-à-dire le fait que $A$ est de longueur finie -- et 
+fournit
+$$
+\ell(A) = \int 1_A(t) \, dt = 
+\lim_{k\to +\infty} \int f_k(t) \, dt
+\leq L.
+$$
+
+TODO -- Solution -- Intégrabilité locale
+--------------------------------------------------------------------------------
+
+### TODO -- Question 0 {#s-il-0}
+
+### TODO -- Question 1 {#s-il-1}
+
+### TODO -- Question 2 {#s-il-2}
+
+TODO -- Solution -- Fonction mesurables {.answer #s-fm}
+--------------------------------------------------------------------------------
+
+Compte tenu du [critère de l'image réciproque][Images réciproques des fonctions mesurables],
+comme tous les ensembles $\left]a, +\infty\right[$ sont ouverts, 
+le critère de l'énoncé est bien vérifié pour toute fonction mesurable.
+
+Montrons désormais la réciproque. Supposons le critère de l'énoncé vérifié et 
+soit $U$ un ouvert de $\R$; l'ensemble $U$ peut être décomposé comme
+union d'un nombre dénombrables d'intervalles ouverts bornés $I_k$
+de $\R$.
+Par conséquent, comme
+$$
+f^{-1}(U) = f^{-1} \left(\cup_k I_k \right) = \bigcup_{k} f^{-1}(I_k),
+$$
+il nous suffit de montrer que l'image réciproque de tout intervalle
+ouvert borné $\left]a, b\right[$ par $f$ est mesurable, pour conclure
+que $f^{-1}(U)$ est mesurable, comme union dénombrable d'ensembles
+mesurables.
+
+Or, un point $x$ vérifie $a < f(x) < b$ si et seulement
+il vérifie $a < f(x)$ et ne vérifie pas $b-2^{-k} < f(x)$ pour au moins 
+un entier $k$, ce qui se traduit par la relation ensembliste
+$$
+f^{-1}(\left]a, b\right[) 
+= 
+f^{-1}(\left]a, +\infty \right[) 
+\cap 
+\left( \bigcup_{k=0}^{+\infty} \R \setminus f^{-1}(\left]b -2^{-k}, +\infty \right[)\right).
+$$
+Les images réciproques au second membre sont mesurables par hypothèse,
+et sont combinées par complément, union dénombrable et intersection,
+par conséquent $f^{-1}(\left]a, b\right[)$ est également mesurable.
+Le [critère de l'image réciproque][Images réciproques des fonctions mesurables]
+pour la mesurabilité de $f$ est donc bien vérifié.
 
 
 Annexe 
 ================================================================================
-
 
 ### Maximum de fonctions intégrables et positives {.lemma #max}
 Si les fonctions $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 

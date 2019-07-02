@@ -373,6 +373,432 @@ Objectifs {.meta}
     le modèle de représentation des nombres flottants, etc.)
 
 
+Introduction
+--------------------------------------------------------------------------------
+
+### TODO
+
+Terminologie "à virgule flottante" utilisée au moins une fois.
+
+-------
+
+Vous avez peut-être déjà utilise une méthode de différentiation numérique 
+pour évaluer la dérivée d'une fonction, par exemple l'approximation des 
+différences finies de Newton
+  $$
+  f'(x) \approx \frac{f(x+h) - f(x)}{h}.
+  $$
+
+L'implémentation de ce schéma en Python est simple:
+
+    def FD(f, x, h):
+        return (f(x + h) - f(x)) / h
+
+Néanmoins, la relation entre la valeur du pas $h$ et la précision de
+cette évaluation -- c'est-à-dire l'écart entre la valeur de la dérivée
+et son estimation -- est plus complexe. 
+Considérons les échantillons de données suivants:
+
+Expression                    Valeur
+----------------------------  --------------------------------------------------
+$\exp'(0)$                    $1$
+`FD(exp, 0, 1e-4)`            `1.000050001667141`
+`FD(exp, 0, 1e-8)`            `0.99999999392252903`
+`FD(exp, 0, 1e-12)`           `1.000088900582341`
+
+La valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
+et uniquement 8 nombres après la virgule du résultat sont singificatifs.
+
+Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
+du développement de Taylor de $\exp$ au premier ordre; 
+cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
+Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
+limitée par les erreurs d'arrondi dans les calculs.
+
+Arithmétique des ordinateurs
+--------------------------------------------------------------------------------
+
+Cette section introduit la représentation des nombres réels sur ordinateur
+comme des "doubles" et leur propriétés élémentaires. Pour avoir plus 
+d'informations sur le sujet, vous pouvez vous reporter au document classique
+"What every computer scientist should know about computer arithmetic" [@Gol91]
+
+Les exemples qui suivent exploitent la librairie numérique Python [NumPy];
+assurons-nous tout de suite d'avoir importé toutes ses fonctionnalités:
+
+    >>> from numpy import *
+
+[NumPy]: http://www.numpy.org/
+
+### Nombres flottants: premier contact
+
+Dans un interpréteur Python, la façon la plus simple d'afficher un nombre
+consiste à invoquer son nom; par exemple
+
+    >>> pi
+    3.141592653589793
+
+Cette information est non-ambigüe; par là nous voulons dire que nous disposons
+d'assez d'information pour reconstituer le nombre initial:
+
+    >>> pi == eval("3.141592653589793")
+    True
+
+Mais cette représentation n'en est pas moins un mensonge:
+ça n'est pas une représentation décimale exacte du nombre `pi`
+stockée en mémoire. Pour avoir une représentation exacte de `pi`,
+nous pouvons demander l'affichage d'un grand nombre de décimales:
+
+    >>> def all_digits(number):
+    ...     print("{0:.100g}".format(number))    
+    >>> all_digits(pi)
+    3.141592653589793115997963468544185161590576171875
+
+Demander 100 chiffres après la virgule est suffisant: 
+seul 49 chiffres sont affichés car les suivants sont tous nuls.
+
+Remarquez que nous avons obtenu une représentation exacte du nombre flottant
+`pi` avec 49 chiffres. Cela ne signifie pas que tous ces chiffres
+-- ou même la plupart d'entre eux -- sont significatifs dans la représentation
+du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
+[mpmath] pour l'arithmétique flottante multi-précisions, nous voyons que
+
+    #>>> import mpmath
+    #>>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
+    #>>> +mpmath.pi
+    #3.141592653589793238462643383279502884197169399375
+
+[mpmath]: https://mpmath.googlecode.com/svn/trunk/doc/build/index.html
+
+et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre.
+
+### Nombres flottants binaires
+
+Si la représentation des nombres flottants peut apparaître complexe à ce stade,
+c'est que nous avons insisté pour utiliser une représentation **décimale**
+quand ces nombres sont stockés avec une réprésentation **binaire.**
+En d'autres termes; au lieu d'utiliser une suite de chiffres décimaux
+$f_i \in \{0,1,\dots,9\}$ pour représenter un nombre réel $x$ comme
+  $$
+  x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 10^{e} 
+  $$
+nous devrions utiliser des *chiffres binaires* -- ou *bits** -- 
+$f_i \in \{0,1\}$ pour écrire:
+  $$
+  x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 2^{e}.
+  $$
+Ces représentations sont **normalisées** si le chiffre avant la virgule est
+non nul. Par exemple, avec cette convention, le nombre rationnel $999/1000$
+serait représenté en base 10 comme $9.99 \times 10^{-1}$ et non comme
+$0.999 \times 10^0$. En base $2$, le seul chiffre non-nul est $1$, donc
+la *mantisse* d'une représentation normalisée est toujours de la forme
+$(1.f_1f_2\dots f_i \dots).$
+
+**TODO below: footnote besoin machine learning qui fonctionne avec des
+singles ou half precisions**
+
+En calcul scientifique, les nombres réels sont le plus souvent approximés
+sous la forme de "doubles"[^IEEE754]. Dans la bibliothèque standard Python,
+les doubles sont disponibles comme instances du type `float` -- 
+ou alternativement comme `float64` dans NumPy.
+
+Un triplet de 
+
+  - *bit de signe:* $s \in \{0,1\},$ 
+  
+  - *exposant (biaisé):* $e\in\{1,\dots, 2046\}$ (11-bit), 
+
+  - *fraction:* $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
+
+représente un double normalisé
+  $$
+  x = (-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52}).
+  $$
+
+[^IEEE754]: "Double" est un raccourci pour "format à virgule flottante de 
+précision double", comme défini dans le standard IEEE 754, cf. [@ANS85]. 
+Un format de simple précision est aussi défini, qui utilise uniquement
+32 bits; NumPy le propose sous le nom `float32`.
+
+Les doubles qui ne sont pas normalisés sont *not-a-number* (`nan`),
+plus ou moins l'infini (`inf`) et zero (`0.0`) (en fait $\pm$ `0.0`;
+car il existe deux zéros distincts, qui différent par leur signe)
+et les nombres dits *dénormalisés*. Dans la suite, nous ne parlerons
+pas de ces cas particuliers.
+
+### Précision
+
+Presque aucun nombre réel ne peut être représenté exactement comme un double.
+Pour faire façe à cette difificulté, il est raisonnable d'associer à un
+nombre réel $x$ le double le plus proche $[x]$. Une telle méthode
+(*arrondi-au-plus-proche*) totalement spécifiée[^holes] dans le standard IEE754
+[@ANS85], ainsi que des modes alternatifs d'arrondi (arrondis "dirigés").
+
+[^holes]: Il faut préciser comme l'opération se comporte quand le réel
+est équidistant de deux doubles, comment les "nombres spéciaux" 
+(`inf`, `nan`, ...) sont traités, etc. Autant de "détails" dont nous
+ne nous préoccuperons pas dans la suite.
+
+Pour avoir la moindre confiance dans le résultats des calculs que nous 
+effectuons avec des doubles, nous devons être en mesure d'évaluer l'erreur
+faite par la représentation de $x$ par $[x]$. L'*epsilon machine* 
+$\varepsilon$ est une grandeur clé à cet égard: il est défini comme l'écart 
+entre $1.0$
+-- qui peut être représenté exactement comme un double -- 
+et le double qui lui est immédiatement supérieur.
+
+    >>> after_one = nextafter(1.0, +inf)
+    >>> after_one
+    1.0000000000000002
+    >>> all_digits(after_one)
+    1.0000000000000002220446049250313080847263336181640625
+    >>> eps = after_one - 1.0
+    >>> all_digits(eps)
+    2.220446049250313080847263336181640625e-16
+
+Ce nombre est également disponible comme un attribut de la class `finfo`
+de NumPy qui rassemble les constantes limites de l'arithmétique pour les
+types flottants.
+
+    >>> all_digits(finfo(float).eps)
+    2.220446049250313080847263336181640625e-16
+
+Alternativement, l'examen de la structure des doubles normalisés fournit
+directement la valeur de $\varepsilon$: la fraction du nombre après $1.0$
+est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ donc
+$\varepsilon =2^{-52},$ un résultat confirmé par:
+
+    >>> all_digits(2**-52)
+    2.220446049250313080847263336181640625e-16
+
+L'epsilon machine importe autant parce qu'il fournit une borne simple sur
+l'erreur relative de la représentation d'un nombre réel comme un double.
+En effet, pour n'importe quelle méthode d'arondi raisonnable, la structure
+des doubles normalisés fournit:
+    $$
+    \frac{|[x] - x|}{|x|} \leq \varepsilon.
+    $$
+Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
+garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
+
+#### Chiffres significatifs
+
+L'erreur relative se traduit directement par combien de chiffres décimaux
+sont *significatifs* dans la meilleurs approximation d'un nombre réel par
+un double. Considéons la représentation de $[x]$ en notation scientifique:
+    $$
+    [x] = \pm (f_0.f_1 \dots f_{p-1} \dots) \times 10^{e}.
+    $$
+On dira qu'elle est *significative jusqu'au $p$-ème chiffre* si
+  $$
+  |x -  [x]| \leq \frac{10^{e-(p-1)}}{2}.
+  $$
+D'autre part, la borne d'erreur sur $[x]$ fournit
+  $$
+  |x - [x]| \leq \frac{\varepsilon}{2} |x| \leq \frac{\varepsilon}{2} \times 10^{e+1}.
+  $$
+Ainsi, la précision souhaitée est obtenue tant que
+  $$
+  p \leq - \log_{10} \varepsilon/2 = 52 \log_{10} 2 \approx 15.7.
+  $$
+Par conséquent, les doubles fournissent une approximation des nombres réels
+à 15 décimales.
+
+#### Fonctions
+
+La plupart des nombres réels ne pouvant être représentés par des doubles,
+la plupart des fonctions à valeur réelle et à variables réelles ne peuvent 
+pas non plus être représentée exactement comme des fonctions opérant sur
+des doubles. 
+Le mieux que nous puissions espérer est d'avoir des approximation 
+*correctement arrondies*. Une approximation $[f]$ d'une fonction $f$
+de $n$ variables est correctement arrondie si pour tout $n$-uplet
+$(x_1, \dots, x_n)$, on a
+  $$
+  [f](x_1,\dots,x_n) = [f([x_1], \dots, [x_n])].
+  $$
+Autrement dit, tout se passe comme si le calcul de $[f](x_1,\dots,x_n)$
+était effectué de la façon suivante: approximation au plus proche 
+des arguments par des doubles, calcul **exact** de $f$ sur ces arguments, 
+et approximation de cette valeur produite au plus proche par un double.
+
+Le standard IEEE 754 [@ANS85] impose que certaines fonction aient des 
+implémentations correctement arrondies; elles sont l'addition, la
+soustraction, la multiplication, la division, le reste d'une division 
+entière et la racine carrée.
+D'autres fonctions élémentaires 
+-- comme sinus, cosinus, exponentielle, logarithme, etc. --
+ne sont en général pas correctement arrondies;
+la conception d'algorithmes de calcul qui aient une performance décente et
+dont on peut prouver qu'il sont correctement arrondis est un problème
+difficile (cf. @FHL07).
+
+Différences Finies
+--------------------------------------------------------------------------------
+
+### TODO
+
+Terminologie erreur de troncature
+
+### Différence Avant
+
+Soit $f$ une fonction à valeurs réelles définie sur un intervalle ouvert.
+Dans de nombreux cas concrets, on peut faire l'hypothèse que la fonction
+$f$ est indéfiniment dérivable sur son domaine de définition;
+le développement de Taylor avec reste intégral fournit alors
+localement à tout ordre $n$,
+  $$
+  f(x+h) = f(x) + f'(x) h + \frac{f''(x)}{2} h^2 
+           + \dots
+           +\frac{f^{(n)}(x)}{n!} h^n 
+           + O(h^{n+1})
+  $$
+où le terme $O(h^k)$ (notation "grand o" de Landau), 
+désigne une expression de la forme
+$O(h^k) := M(h) h^k$
+où $M$ est une fonction définie et bornée dans un voisinage de $0$.
+
+Un calcul direct montre que
+  $$
+  f'(x) = \frac{f(x+h) - f(x)}{h} + O(h)
+  $$
+Le comportement asymptotique de ce schéma de *différence avant*
+(*forward difference*)
+-- controllé par le terme $O(h^1)$ -- est dit d'ordre 1.
+En supposant $f$ correctement arrondie,
+une implémentation de ce schéma est défini pour les réels $x$ et
+$h$ par
+  $$
+  \mathrm{FD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x])]}{[h]} \right].
+  $$
+ou de façon équivalent en Python par:
+
+    def FD(f, x, h):
+        return (f(x + h) - f(x)) / h
+
+<!--
+[^Landau]: **Bachmann-Landau notation.** For a real or complex variable $h,$ 
+we write $\psi(h) = O(\phi(h))$ if there is a suitable deleted 
+neighbourhood of $h=0$ where the functions $\psi$ and $\phi$ are defined 
+and the inequality $|\psi(h)| \leq \kappa |\phi(h)|$ holds for some $\kappa > 0.$ 
+When $N$ is a natural number, we write 
+$\psi(N) = O(\phi(N))$ if there is a $n$ such that $\psi$ and $\phi$ 
+are defined for $N\geq n$ and for any such $N,$ 
+the inequality $|\psi(N)| \leq \kappa |\phi(N)|$ holds for some $\kappa > 0.$
+-->
+
+### Erreur d'arrondi
+
+Nous considérons à nouveau la fonction $f(x) = \exp(x)$ utilisée dans
+l'introduction et nous calculons la dérivée numérique basée sur la
+différence avant à $x=0$ pour différentes valeurs de $h$.
+
+[Le graphe de $h \mapsto \mathrm{FD}(\exp, 0, h)$](#fdv) montre que pour 
+les valeurs de $h$ proches ou inférieures à l'epsilon machine,
+la différence entre la dérivée numérique et la valeur exacte de la dérivée
+n'est pas expliquée par l'analyse classique liée au développement
+de Taylor. 
+
+![Valeurs de la différence avant](images/fd-value.py){#fdv}
+
+Toutefois, si nous prenons en compte la représentation des réels comme des
+doubles, nous pouvons expliquer et quantifier le phénomène. 
+Pour étudier exclusivement l'erreur d'arrondi, nous aimerions 
+nous débarasser de l'erreur de troncature; à cette fin, dans les
+calculs qui suivent, au lieu de $\exp$, nous utilisons $\exp_1$,
+le développement de Taylor de $\exp$ à l'ordre $1$ à $x=0$,
+c'est-à-dire $\exp_1(x) = 1 + x$.
+
+**TODO:** élts / catastrophic cancellation
+
+Supposons que l'arrondi soit calculé au plus proche;
+selectionons un double $h>0$ et comparons-le à l'epsilon machine:
+
+  - Si $h \ll \varepsilon,$ alors $1 + h$ est proche de $1,$ en fait plus
+    proche de $1$ que du double immédiatemment supérieur à $1$ qui est 
+    $1 + \varepsilon.$ 
+    Par conséquent, on a $[\exp_0](h) = 1;$ une *annulation catastrophique*
+    survient:
+      $$
+      \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right] = 0.
+      $$
+
+  - Si $h \approx \varepsilon,$ alors $1+h$ est plus proche  $1+\varepsilon$que de $1,$ 
+    et donc $[\exp_0](h) = 1+\varepsilon$, ce qui entraîne
+      $$
+      \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right]
+      = \left[ \frac{\varepsilon}{h} \right].
+      $$
+
+  - Si $\varepsilon \ll h \ll 1,$ alors $[1+h] = 1+ h \pm \varepsilon(1+h)$
+    (le symbole $\pm$ est utilisé ici pour défini un intervalle de confiance[^pm]). 
+    Et donc
+      $$
+      [[\exp_0](h) - 1] = h \pm \varepsilon \pm \varepsilon(2h + \varepsilon + \varepsilon h)
+      $$
+    et
+      $$
+      \left[ \frac{[[\exp_0](h) - 1]}{h} \right] 
+      = 
+      1 \pm \frac{\varepsilon}{h} + \frac{\varepsilon}{h}(3h + 2\varepsilon + 3h \varepsilon +\varepsilon^2 + \varepsilon^2 h)
+      $$
+    et par conséquent
+      $$
+      \mathrm{FD}(\exp_0, 0, h)  = \exp_0'(0) \pm \frac{\varepsilon}{h}  \pm \varepsilon', \; \varepsilon' \ll \frac{\varepsilon}{h}.
+      $$
+      
+[^pm]: L'équation $a = b \pm c$ est à interpréter comme l'inégalité $|a - b| \leq |c|.$
+
+![Erreur de la différence avant](images/fd-error.py)
+
+Si l'on revient à $\mathrm{FD}(\exp, 0, h)$ et si l'on exploite des échelles
+log-log pour représenter l'erreur totale, on peut clairement distinguer la
+region ou l'erreur est dominée par l'erreur d'arrondi -- l'envellope de cette
+section du graphe est $h \mapsto \log(\varepsilon/h)$ -- et ou elle est dominée
+par l'erreur de troncature -- une pente $1$ étant caractéristique des schémas
+d'ordre 1
+
+
+
+### Schémas d'ordre supérieur
+
+Le comportement asymptotique de la différence avant peut être amélioré,
+par exemple si au lieu de la différence avant nous utilisons un schéma
+de différence centrée. Considérons les développements de Taylor à l'ordre
+2 de $f(x+h)$ et $f(x-h)$:
+  $$
+  f(x+h) = f(x) + f'(x) (+h)+ \frac{f''(x)}{2} (+h)^2 + O\left(h^3\right)
+  $$
+et
+  $$
+  f(x-h) = f(x) + f'(x) (-h) + \frac{f''(x)}{2} (-h)^2 + O\left(h^3\right).
+  $$
+On en déduit
+  $$
+  f'(x) = \frac{f(x+h) - f(x-h)}{2h} + O(h^2),
+  $$
+et donc, le schéma de *différence centrale* est d'ordre 2.
+Son implémentation sur ordinateur est donnée par
+  $$
+  \mathrm{CD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x]-[h])]}{[2 \times [h]]} \right].
+  $$
+ou de façon équivalente en Python:
+
+    def CD(f, x, h):
+        return 0.5 * (f(x + h) - f(x - h)) / h
+
+
+![Erreur de la différence centrée](images/cd-error.py){#cde}
+
+[Le graphe d'erreur associé à la différence centrale](#cde) confirme qu'une 
+erreur de troncature d'ordre 2 améliore la précision. 
+Toutefois, il montre aussi que l'utilisation d'un schéma d'ordre plus
+élevé augmente également la région ou l'erreur est dominée par l'erreur
+d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
+
+
+
+
 Différentiation Automatique
 ================================================================================
 
@@ -865,3 +1291,5 @@ Applications (avec algo type IFT par exemple) ? En plus ?
 Eventuellement en utilisant un "vrai" autodiff pour ne pas
 être bloqué par des étapes précédentes non réussies ? 
 
+Références
+================================================================================
