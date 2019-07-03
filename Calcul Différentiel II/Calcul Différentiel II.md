@@ -1284,6 +1284,17 @@ La représentation graphique de ces courbes est un *tracé de contour*
 où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
 Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py)
 
+**TODO:**
+
+  - Cube unité, trouver "seed" supposée coté gauche, etc.
+
+  - Propag courbe
+
+  - Validation / test sur fcts testant tel ou tel aspect
+    (linéaire, bilin)
+
+  - Passage à l'échelle: grille de cube, seed sur coté arbitraire, etc.
+
 <!--
 Idées pour poursuivre l'introduction du moteur de diff auto:
 
