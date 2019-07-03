@@ -1278,7 +1278,7 @@ $$
 $$
 
 La représentation graphique de ces courbes est un *tracé de contour*
-(cf. par exemple [les exemples d'usage de la fonction `contour` de matplotlib](https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.contour.html#examples-using-matplotlib-pyplot-contour)).
+(cf. [les exemples d'usage de la fonction `contour` de matplotlib](https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.contour.html#examples-using-matplotlib-pyplot-contour)).
 
 ![Lignes de niveau de $(x, y) \mapsto (f(x, y) - g(x, y))^2$
 où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
