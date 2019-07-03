@@ -1,5 +1,11 @@
 % Calcul Différentiel II
 
+<!-- LaTeX Macros -->
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
 
 Théorème des Fonctions Implicites
 ================================================================================
@@ -1261,9 +1267,24 @@ Inversion Locale
 
 **TODO:** exemple où l'on complète le jacobien pour pouvoir appliquer le TIL.
 
-Projet Numérique
+TODO -- Projet Numérique -- Lignes de niveau
 ================================================================================
 
+L'objectif de ce projet numérique est de développer un programme permettant
+de calculer les lignes de niveau d'une fonction $f$ de deux variables 
+réelles et à valeurs réelle, c'est-à-dire les ensembles de la forme
+$$
+\{(x, y) \in \R^2 \, | \, f(x, y) = c\} \, \mbox{ où } \, c \in \R.
+$$
+
+La représentation graphique de ces courbes est connue sous le
+nom de *tracé de contour*.
+
+![Lignes de niveau de $(x, y) \mapsto (f(x, y) - g(x, y))^2$
+où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
+Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py)
+
+<!--
 Idées pour poursuivre l'introduction du moteur de diff auto:
 
   - gérer fct retournant des constantes
@@ -1290,6 +1311,8 @@ en dehors, avec le truc comme un doc markdown.
 Applications (avec algo type IFT par exemple) ? En plus ?
 Eventuellement en utilisant un "vrai" autodiff pour ne pas
 être bloqué par des étapes précédentes non réussies ? 
+
+-->
 
 Références
 ================================================================================
