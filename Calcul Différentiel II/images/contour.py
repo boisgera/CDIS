@@ -48,7 +48,7 @@ def contour_demo():
     X, Y = meshgrid(x, y)
     Z1 = exp(-X**2 - Y**2)
     Z2 = exp(-(X - 1)**2 - (Y - 1)**2)
-    Z = (Z1 - Z2) * 2
+    Z = 2 * (Z1 - Z2) 
 
     fig, ax = subplots()
     CS = ax.contour(X, Y, Z, colors="k")

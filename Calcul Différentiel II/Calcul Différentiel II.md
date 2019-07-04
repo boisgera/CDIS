@@ -1280,7 +1280,7 @@ $$
 La représentation graphique de ces courbes est un *tracé de contour*
 (cf. [les exemples d'usage de la fonction `contour` de matplotlib](https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.contour.html#examples-using-matplotlib-pyplot-contour)).
 
-![Lignes de niveau de $(x, y) \mapsto (f(x, y) - g(x, y))^2$
+![Lignes de niveau de $(x, y) \mapsto 2(f(x, y) - g(x, y))$
 où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
 Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py)
 
@@ -1332,6 +1332,8 @@ mise bout à bout des morceaux de courbe, etc.
     def contour(f, domain=(0.0,0.0,1.0,1.0), c=0, n=(10,10)):
         ...
         return xs, ys
+
+Exemple test avec notamment morceaux de courbe distincts
 
 <!--
 Idées pour poursuivre l'introduction du moteur de diff auto:
