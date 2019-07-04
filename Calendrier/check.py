@@ -12,7 +12,8 @@ url = "https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40gr
 
 calendar = Calendar(urlopen(url).read().decode("utf-8"))
 
-assert len(calendar.events) == 60
+# assert len(calendar.events) == 60 
+# relax this; we have more slots with the exam of EC2 now.
 
 events = list(calendar.events)
 events.sort()
