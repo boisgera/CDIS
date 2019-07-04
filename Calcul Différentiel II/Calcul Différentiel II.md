@@ -1333,7 +1333,8 @@ mise bout à bout des morceaux de courbe, etc.
         ...
         return xs, ys
 
-Exemple test avec notamment morceaux de courbe distincts
+Exemple test avec notamment morceaux de courbe distincts (example similaire
+à la démo de contourde mpl)
 
 <!--
 Idées pour poursuivre l'introduction du moteur de diff auto:
