@@ -1284,16 +1284,54 @@ La représentation graphique de ces courbes est un *tracé de contour*
 où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
 Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py)
 
-**TODO:**
+On suppose dans un premier temps que la fonction $f$ dont on cherche les courbes
+de niveau est définie dans le carré unité $[0,1] \times [0,1]$ et qu'il existe
+une amorce à la courbe de niveau $c$ sur l'arête gauche du carré, c'est-à-dire 
+un point $(0, y)$ avec $y \in [0, 1]$, tel que $f(0, y) = c$. 
+La production de courbes de niveau dans cette situation élémentaire 
+deviendra ultérieurement le composant centrale dans un cas plus général.
 
-  - Cube unité, trouver "seed" supposée coté gauche, etc.
+### Amorce
 
-  - Propag courbe
+Considérons une fonction $g:[0, 1] \mapsto \mathbb{R}$ supposée continue.
+A quelle condition raisonnable portant sur $g(0)$, $g(1)$ et le réel $c$ 
+est-on certain qu'il existe un $t \in [0, 1]$ tel que $g(t) = c$ ?
+Développer une fonction, conforme au squelette suivant
 
-  - Validation / test sur fcts testant tel ou tel aspect
-    (linéaire, bilin)
+    def root(g, c=0, eps=2**(-52)):
+        ...
+        return t
 
-  - Passage à l'échelle: grille de cube, seed sur coté arbitraire, etc.
+qui renvoie un flottant éloigné d'au plus `eps` (par défaut, l'epsilon machine) 
+d'un tel $t$ (avec $c=0$ par défaut), ou `None` si la condition évoquée ci-dessus
+n'est pas satisfaite.
+
+Comment utiliser cette fonction pour trouver une amorce de courbe de niveau 
+pour la fonction $f$ si les conditions appropriées sont réunies ?
+
+
+**TODO:** suggérer des fonctions de tests à ce stade, voire des asserts ?
+
+### Propagation
+
+    def level_curve(f, c=0, delta=0.01):
+        ...
+        return x, y
+
+Evoquer rôle (flou) de delta, condition d'arrêt (sortir du carré, 
+non-convergence, etc.)
+
+**TODO.** Validation / test sur fcts testant tel ou tel aspect
+(linéaire, bilin, quad, etc.). 
+
+### Intégration
+
+Passage à l'échelle: grille de cube, seed sur coté arbitraire, 
+mise bout à bout des morceaux de courbe, etc.
+
+    def contour(f, domain=(0.0,0.0,1.0,1.0), c=0, n=(10,10)):
+        ...
+        return xs, ys
 
 <!--
 Idées pour poursuivre l'introduction du moteur de diff auto:
