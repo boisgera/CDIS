@@ -1318,8 +1318,10 @@ pour la fonction $f$ si les conditions appropriées sont réunies ?
         ...
         return x, y
 
-Evoquer rôle (flou) de delta, condition d'arrêt (sortir du carré, 
-non-convergence, etc.)
+Evoquer rôle (volontairement flou) de delta, condition d'arrêt 
+(sortir du carré; s'assurer que le dernier point est "propre". 
+Tester la non-convergence (excursions trop grandes, trop d'étapes,
+etc.), etc.)
 
 **TODO.** Validation / test sur fcts testant tel ou tel aspect
 (linéaire, bilin, quad, etc.). 
@@ -1327,7 +1329,7 @@ non-convergence, etc.)
 ### Intégration
 
 Passage à l'échelle: grille de cube, seed sur coté arbitraire, 
-mise bout à bout des morceaux de courbe, etc.
+éviter duplication des courbes, mise bout à bout des morceaux de courbe, etc.
 
     def contour(f, domain=(0.0,0.0,1.0,1.0), c=0, n=(10,10)):
         ...
