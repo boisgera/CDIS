@@ -71,3 +71,4 @@ Les variables que nous rencontrerons dans ce cours seront soit à valeurs dans u
 # Lois usuelles (annexe)
 
 # Exercices
+

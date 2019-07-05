@@ -2,11 +2,13 @@
 
 <!-- LaTeX Macros -->
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
 \renewcommand{\P}{\mathbb{P}}
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\E}{\mathcal{E}}
+\newcommand{\B}{\mathcal{B}}
 
 
 # Introduction 
@@ -116,7 +118,7 @@ Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
 
 **question : notion de tribu engendrée ???**
 
-Une fois l'espace probabilisable $(\Omega, \A)$ définit, on va peut définir la probabilité qui va nous permettre de mesurer la probabilité d'occurence d'un évènement de $\A$.
+Une fois l'espace probabilisable $(\Omega, \A)$ définit, on peut définir la probabilité qui va nous permettre de mesurer la probabilité d'occurence d'un évènement de $\A$.
 
 ### Probabilité {.definition #defproba}
 Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rightarrow [0,1]$, telle que :
@@ -203,7 +205,7 @@ Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales]. L
 \P(B_i | A) = \frac{\P(A \cap B_i)}{\P(A)} = \frac{\P(A | B_i) \P(B_i)}{\P(A)}
 \end{equation}
 
-### Exemple : problème inverse
+### Exemple : approche bayésienne (subjective)
 
 ## Indépendance des évènements 
 La notion d’indépendance est absolument fondamentale en probabilités et nous verrons
@@ -234,7 +236,7 @@ Si les évènements $A$ et $B$ sont indépendants, alors il en est de même des 
 Nous avons vu précédemment la définition générale d'une probabilité $\P$ sur un espace quelconque $\Omega$ muni d'une tribu $\A$. Un problème fondamental est de construire et de caractériser ces probabilités. La résolution de ce problème lorsque $\Omega$ est fini ou dénombrable est connu.
 Le cas général fait l'objet de la théorie de la mesure et sera développé ultérieurement.
 
-Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le cas où $\Omega = \R$ (**$\R^d$ ?**) et où la tribu $\A$ est la tribu borélienne (**ou de Lebesgue cf CI II**) $\B_\R$ engendrée par les ouverts, ou par les fermés, ou  par les intervalles de la forme $]-\infty, a]$ pour $a \in \Q$ (cf CI II). 
+Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le cas où $\Omega = \R$ (**$\R^d$ ?**) et où la tribu $\A$ est la tribu borélienne (**ou de Lebesgue cf CI II**) $\B_\R$ engendrée par les ouverts, ou par les fermés, ou par les intervalles de la forme $]-\infty, a]$ pour $a \in \Q$ (cf CI II). 
 
 ### Définition - fonction de répartition {.definition}
 La *fonction de répartition* de la probabilité $\P$ sur $\R$ est la fonction

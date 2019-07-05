@@ -1,5 +1,11 @@
 % Calcul Différentiel II
 
+<!-- LaTeX Macros -->
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
 
 Théorème des Fonctions Implicites
 ================================================================================
@@ -1261,9 +1267,78 @@ Inversion Locale
 
 **TODO:** exemple où l'on complète le jacobien pour pouvoir appliquer le TIL.
 
-Projet Numérique
+TODO -- Projet Numérique -- Lignes de niveau
 ================================================================================
 
+L'objectif de ce projet numérique est de développer un programme permettant
+de calculer les lignes de niveau d'une fonction $f$ de deux variables 
+réelles et à valeurs réelle, c'est-à-dire les ensembles de la forme
+$$
+\{(x, y) \in \R^2 \, | \, f(x, y) = c\} \, \mbox{ où } \, c \in \R.
+$$
+
+La représentation graphique de ces courbes est un *tracé de contour*
+(cf. [les exemples d'usage de la fonction `contour` de matplotlib](https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.contour.html#examples-using-matplotlib-pyplot-contour)).
+
+![Lignes de niveau de $(x, y) \mapsto 2(f(x, y) - g(x, y))$
+où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
+Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py)
+
+On suppose dans un premier temps que la fonction $f$ dont on cherche les courbes
+de niveau est définie dans le carré unité $[0,1] \times [0,1]$ et qu'il existe
+une amorce à la courbe de niveau $c$ sur l'arête gauche du carré, c'est-à-dire 
+un point $(0, y)$ avec $y \in [0, 1]$, tel que $f(0, y) = c$. 
+La production de courbes de niveau dans cette situation élémentaire 
+deviendra ultérieurement le composant centrale dans un cas plus général.
+
+### Amorce
+
+Considérons une fonction $g:[0, 1] \mapsto \mathbb{R}$ supposée continue.
+A quelle condition raisonnable portant sur $g(0)$, $g(1)$ et le réel $c$ 
+est-on certain qu'il existe un $t \in [0, 1]$ tel que $g(t) = c$ ?
+Développer une fonction, conforme au squelette suivant
+
+    def root(g, c=0, eps=2**(-52)):
+        ...
+        return t
+
+qui renvoie un flottant éloigné d'au plus `eps` (par défaut, l'epsilon machine) 
+d'un tel $t$ (avec $c=0$ par défaut), ou `None` si la condition évoquée ci-dessus
+n'est pas satisfaite.
+
+Comment utiliser cette fonction pour trouver une amorce de courbe de niveau 
+pour la fonction $f$ si les conditions appropriées sont réunies ?
+
+
+**TODO:** suggérer des fonctions de tests à ce stade, voire des asserts ?
+
+### Propagation
+
+    def level_curve(f, c=0, delta=0.01):
+        ...
+        return x, y
+
+Evoquer rôle (volontairement flou) de delta, condition d'arrêt 
+(sortir du carré; s'assurer que le dernier point est "propre". 
+Tester la non-convergence (excursions trop grandes, trop d'étapes,
+etc.), etc.)
+
+**TODO.** Validation / test sur fcts testant tel ou tel aspect
+(linéaire, bilin, quad, etc.). 
+
+### Intégration
+
+Passage à l'échelle: grille de cube, seed sur coté arbitraire, 
+éviter duplication des courbes, mise bout à bout des morceaux de courbe, etc.
+
+    def contour(f, domain=(0.0,0.0,1.0,1.0), c=0, n=(10,10)):
+        ...
+        return xs, ys
+
+Exemple test avec notamment morceaux de courbe distincts (example similaire
+à la démo de contourde mpl)
+
+<!--
 Idées pour poursuivre l'introduction du moteur de diff auto:
 
   - gérer fct retournant des constantes
@@ -1290,6 +1365,8 @@ en dehors, avec le truc comme un doc markdown.
 Applications (avec algo type IFT par exemple) ? En plus ?
 Eventuellement en utilisant un "vrai" autodiff pour ne pas
 être bloqué par des étapes précédentes non réussies ? 
+
+-->
 
 Références
 ================================================================================
