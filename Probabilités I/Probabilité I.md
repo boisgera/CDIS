@@ -35,7 +35,7 @@ De nos jours, l’Ecole française de Probabilités est très active. La premiè
 
 Le cours est organisé en 5 amphis : 
 Description des notions importantes du poly : variables aléatoires, conditionnement et indépendance, lois des grands nombres, simulation
-Ouverture vers les stats
+Ouverture vers les stats/ML
 
 **TODO** à reprendre/développer
 
@@ -43,7 +43,7 @@ Ouverture vers les stats
 
 ## Phénomènes aléatoires
 
-L’objet de la théorie des probabilités est l’analyse mathématique de phénomènes dans lesquels le hasard intervient. Les phénomènes aléatoires résultent d'expériences dont le résultat ne peut être prédit à l'avance et qui peut varier si on répète l'expérience dans des conditions identiques.
+L’objet de la théorie des probabilités est l’analyse mathématique de phénomènes dans lesquels le hasard intervient. Les phénomènes aléatoires résultent d'expériences dont le résultat ne peut être prédit à l'avance et qui peut varier si on répète l'expérience dans des conditions identiques. 
 
 Il est aisé de trouver des exemples de tels phénomènes.
 
@@ -111,11 +111,12 @@ Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
 ### Exemples {.exemples}
  1. $\A = \{\varnothing,\Omega\}$ est la tribu grossière ou triviale : c'est la plus petite tribu de $\Omega$.
  2. Dans le cas où $\Omega$ est au plus dénombrable, on le munit généralement de l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$. On verra ultérieurement que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
- 3. Si $\Omega = \R$, on le munit de la *tribu borélienne* de $\R$, notée $\mathcal{B}(\R)$ **TODO voir si déjà vu en CI**
- 4. On verra par la suite qu'il est aisé de définir une tribu sur tout espace topologique **plus tard ?** 
+ 3. Si $\Omega = \R$, on peut le munir de la tribu formée des ensembles mesurables de $\R$.
+ 4. On verra par la suite qu'il est aisé de définir une tribu sur tout espace topologique.
 
 **question : notion de tribu engendrée ???**
 
+Une fois l'espace probabilisable $(\Omega, \A)$ définit, on va peut définir la probabilité qui va nous permettre de mesurer la probabilité d'occurence d'un évènement de $\A$.
 
 ### Probabilité {.definition #defproba}
 Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rightarrow [0,1]$, telle que :
@@ -156,6 +157,10 @@ $$ \P(\bigcap_{i=1}^n A_i) = \lim_{n \rightarrow \infty} \P(A_n)$$
 ### Lemme de Borel-Cantelli ??? ou alors à la fin 
 
 ## Probabilité conditionnelle 
+
+La construction d’un modèle probabiliste repose sur l’information connue **a priori** sur l’expérience aléatoire. Ce modèle permet de quantifier les probabilités de réalisation de certains résultats de l’expérience. Il est fondamental de remarquer que si l’information change, les probabilités de réalisation changent.
+
+
 
 ### Probabilité conditionnelle {.definition}
 Soient $(\Omega, \A, \P)$ un espace probabilisé, $A, B \in \A$ tels que $\P(B)>0$. La *probabilité conditionnelle* de $A$ sachant $B$, est le nombre 
@@ -198,6 +203,8 @@ Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales]. L
 \P(B_i | A) = \frac{\P(A \cap B_i)}{\P(A)} = \frac{\P(A | B_i) \P(B_i)}{\P(A)}
 \end{equation}
 
+### Exemple : problème inverse
+
 ## Indépendance des évènements 
 La notion d’indépendance est absolument fondamentale en probabilités et nous verrons
 par la suite toutes ses implications dans la modélisation de l’aléatoire.
@@ -221,54 +228,111 @@ Deux évènements $A$ et $B$ sont *indépendants* si et seulement si
 ### Proposition {.proposition}
 Si les évènements $A$ et $B$ sont indépendants, alors il en est de même des couples $(A^c,B)$, $(A,B^c)$ et $(A^c,B^c)$.
 
-## Loi d'une variable aléatoire
+# Probabilité sur $\R$
 
-En théorie moderne des probabilités, on préfère prendre un point de vue fonctionnel plutôt qu’ensembliste, et utiliser les variables aléatoires plutôt que les événements. Ce point de vue sera développé dans la suite du cours. Nous en donnons ici uniquement les idées de base.
+## Fonction de répartition
+Nous avons vu précédemment la définition générale d'une probabilité $\P$ sur un espace quelconque $\Omega$ muni d'une tribu $\A$. Un problème fondamental est de construire et de caractériser ces probabilités. La résolution de ce problème lorsque $\Omega$ est fini ou dénombrable est connu.
+Le cas général fait l'objet de la théorie de la mesure et sera développé ultérieurement.
 
-Une variable aléatoire est une grandeur qui dépend du résultat de l’expérience. Par exemple,
+Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le cas où $\Omega = \R$ (**$\R^d$ ?**) et où la tribu $\A$ est la tribu borélienne (**ou de Lebesgue cf CI II**) $\B_\R$ engendrée par les ouverts, ou par les fermés, ou  par les intervalles de la forme $]-\infty, a]$ pour $a \in \Q$ (cf CI II). 
 
- * le nombre de 6 obtenus dans un lancer de 3 dés,
- * le nombre d’appels dans un central téléphonique pendant une heure,
- * la distance du point d’atteinte d’une flèche au centre de la cible,
- * la valeur maximale d’un prix d’actif sur un intervalle de temps donné,
-sont des variables aléatoires.
-
-La définition formelle d'une variable aléatoire fait intervenir des éléments de la théorie de la mesure. Dans un premier temps, on retiendra qu'étant donné un espace probabilisé $(\Omega, \A, \P)$, une variable aléatoire $X$ est une application de $(\Omega,\A)$ dans un ensemble $E$,
+### Définition - fonction de répartition {.definition}
+La *fonction de répartition* de la probabilité $\P$ sur $\R$ est la fonction
 \begin{equation}
-\omega \in \Omega \mapsto X(\omega) \in E
+F(x) = \P(]-\infty, x]), x \in \R.
 \end{equation}
 
-En pratique, l’ensemble $E$ pourra être un ensemble fini ou dénombrable ou $R$ ou $R^d$ ou encore un espace plus sophistiqué tel que l’ensemble $C(\R_+ , \R^d)$ des fonctions continues de $\R_+$ dans $\R^d$.
+### Exemple {.example}
+**à développer** 
+$\P$ mesure de Dirac -> $F$ fonction de Heavyside
 
-### Remarque {.remark}
-La terminologie, consacrée par l'usage, peut être trompeuse. Une variable aléatoire n'est pas une variable (au sens de l'analyse) mais une fonction. Cette terminologie est apparentée à la notion de variable en physique ou en sciences humaines où on désigne volontiers par "variable" la valeur prise par une fonction de l'état du système étudié.
+### Proposition {.proposition #propfdr}
+La fonction de répartition $F$ caractérise la probabilité $\P$ sur $\R$, et elle vérifie les trois conditions suivantes :
 
-L'intérêt principal de travailler avec des variables aléatoires est de pouvoir substituer à l'espace abstrait $\Omega$ des résultats de l'expérience l'espace $E$, mieux connu dans la pratique. Ainsi, grâce à une variable aléatoire $X$, nous pouvons transporter la structure abstraite du modèle probabiliste $(\Omega, \A, \P)$ sur l'espace d'arrivée $E$, en posant pour $B \in E$
-\begin{equation}
-\label{eq:loi_va}
-\P_X (B ) = \P(X^{-1}(B)) = \P(\{\omega, X(\omega)\in B\})
-\end{equation}
-Cette formule défini une nouvelle probabilité, notée $\P_X$ et définie sur $E$, qui s'appelle la *loi de la variable* $X$.
-
-Comme $\P(A)$ n'est définie que pour les $A$ de la tribu $\A$, la formule \eqref{eq:loi_va} ne permet de définir $\P_X(B)$ que pour les ensembles $B$ tels que $X^{-1}(B) \in \A$, d’où l’importance de la proposition suivante :
-
-### Proposition {.proposition}
-
- a) La famille $\E$ des parties $B$ de $E$ telles que $X^{-1}(B) \in \A$ est une tribu de $E$.
- b) L'application $\P_X$ définie pour $B \in \E$ par 
- $$ \P_X (B ) = \P(X^{-1}(B)) $$ 
- définit une probabilité sur le couple $(E,\E)$.
+ 1. elle est croissante
+ 2. elle est continue à droite
+ 3. $\lim\limits_{x \to -\infty} F(x) = 0, \lim\limits_{x \to +\infty} F(x) = 1$.
 
 ### Démonstration {.proof}
-Les 3 propriétés de la [définition d'une tribu](#deftribu) pour $\E$ ainsi que les deux propriétés de la [définition de la probabilité](#defproba) pour $\P_X$ découlent immédiatement des mêmes propriétés pour $\A$ et $\P$, une fois remarquées les propriétés élémentaires suivantes :
-\begin{align*}
-& X^{-1}(\varnothing) = \varnothing, X^{-1}(E) = \Omega, X^{-1}(B^c) = X^{-1}(B)^c \\
-& X^{-1}(\cap_i A_i) = \cap_i X^{-1}(A_i), X^{-1}(\cup_i A_i) = \cup_i X^{-1}(A_i)
-\end{align*}
+ Se reporter à @Jacod pour la caractérisation.
 
-### {.anonymous}
+ La première assertion est immédiate d'après sa définition. Pour la seconde, on remarque que si $x_n$ décroît vers $x$, alors $]-\infty,x_n]$ décroît vers $]-\infty,x]$ et donc $F(x_n)$ décroît vers $F(x)$ par le théorème de la continuité monotone. La troisième assertion se montre de manière analogue  en remarquant que $]-\infty,x]$ décroît vers $\varnothing$ (resp. croît vers $\R$) lorsque $x$ décroît vers $-\infty$ (resp. croît vers $+\infty$).
 
-Les variables que nous rencontrerons dans ce cours seront soit à valeurs dans un ensemble dénombrable, soit à valeurs dans $\R$ ou dans $R^d$ . Nous les appellerons respectivement des variables aléatoires discrètes, réelles ou des vecteurs aléatoires. Leurs lois seront alors des probabilités respectivement sur un ensemble dénombrable, sur $\R$ ou sur $R^d$ . Les probabilités sur un espace fini ou dénombrable sont considérées connues. La description des probabilités sur $\R$ ou sur $R^d$ est plus délicate et fera l'objet de l'essentiel de ce cours.
+### Remarque {.remark}
+ Comme $F$ est croissante, elle admet une limite à gauche en chaque point notée $F(x-)$. En remarquant que $]-\infty,y[ = \lim\limits_{n \to +\infty}]-\infty,y_n[$ si $y_n$ tend vers $y$ par valeurs décroissantes, on obtient pour $x < y$ : 
+
+  * $\P(]x,y]) = F(y) - F(x)$
+  * $\P(]x,y[) = F(y-) - F(x)$
+  * $\P([x,y]) = F(y) - F(x-)$
+  * $\P([x,y[) = F(y-) - F(x-)$
+
+En particulier, $\P(\{x\}) = F(x) - F(x-)$ est le **saut** de la fonction $F$ au point $x$. On a donc $\P(\{x\}) = 0$ pour tout $x$ si et seulement si $F$ est continue en tout point.
+
+La [proposition](#propfdr) admet une réciproque que nous admettrons. On se reportera à @Jacod pour une démonstration.
+
+### Théorème {.theorem}
+Si $F$ est une fonction réelle sur $\R$ qui vérifie les trois conditions de la [proposition](#propfdr), c'est la fonction de répartition d'une (unique) probabilité $\P$ sur $\R$ munie de la tribu borélienne $\B_\R$. On ne peut pas, en général, définir $\P$ sur la tribu $\mathcal{P}(\R)$ de toutes les parties de $\R$.
+
+### Remarque {.remark}
+Le théorème ci-dessus explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. Sinon, cela reviendrait à prendre (sans le dire) la tribu $\A = \mathcal{P}(\R)$ et il n'existerait que très peu de probabilités sur $\R$, à savoir les probabilités discrètes que l'on décrit rapidement ci-dessous :
+
+### Exemple {.example #ex.discret}
+
+ 1. Les masses de Dirac (ou **mesures** de Dirac). Soit $a \in \R$, on appelle mesure de Dirac en $a$, la probabilité $\P$ sur $\R$ qui vérifie pour $A \in \B_\R$
+ \begin{equation}
+    \P(A) = \left\{ \begin{array}{ll}
+    1  &\text{si } a \in A \\
+    0 &\text{sinon.}
+    \end{array}
+    \right.
+ \end{equation}
+  sa fonction de répartition est $F(x) = 1_{[a,+\infty[}(x)$
+
+ 2. Les probabilités portées par $\N$
+
+    Comme $\N$ est une partie de $\R$, toute probabilité sur $\N$ peut être considérée comme une probabilité sur $\N$ qui ne "charge" que $\N$. Plus précisément, si $Q$ est une probabilité sur $\N$, on définit son "extension" $\P$ à $\R$ en posant $\P(A) = Q(A\cap \N)$. Si $q_n = Q(\{n\})$ pour $n \in \N$, la fonction de répartition $F$ de $\P$ est 
+    \begin{equation}
+    F(x) = \left\{ \begin{array}{ll}
+    0  &\text{si } x <0 \\
+    \sum_{i=0}^{\lfloor x \rfloor} q_i &\text{sinon.}
+    \end{array}
+    \right.
+    \end{equation}
+    où $\lfloor \cdot \rfloor$ désigne la partie entière.
+ 3. Les probabilités discrètes
+
+    Plus généralement, si $E$ est une partie finie ou dénombrable de $\R$, toute probabilité $Q$ sur $E$ peut être considérée comme une probabilité $\P$ sur $\R$, via la formule $\P(A) = Q(A\cap E)$. Si pour tout $i \in E$, on pose $q_i = Q(\{i\})$, la fonction de répartition $F$ de $\P$ est alors 
+    $$F(x) = \sum_{i \in E ; i \leq x} q_i$$
+    avec la convention qu'une somme "vide" vaut 0. On retrouve bien l'exemple 2. si $E = \N$. On voit que $F$ est **purement discontinue** au sens où elle est complètement caractérisée par ses sauts $\triangle F(x) = F(x) - F(x-)$ :
+    $$F(x) = \sum_{y \in E ; y\leq x} q_i.$$
+    Notons aussi que l'ensemble $E$, bien qu'au plus dénombrable, peut tout-à-fait être partout dense dans $\R$, par exemple $E = \Q$ : si alors $q_i >0$ pour tout $i \in \Q$, la fonction $F$ est discontinue en tout rationnel.
+
+Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités avec densité.
+
+## Densités de probabilités
+
+### Définition {.definition}
+Une fonction $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement *densité*) si elle est positive, intégrable et vérifie 
+$$\int_\R f(x) dx = 1$$ 
+
+Si $f$ est une densité, la fonction 
+   $$F(x) =\int_{-\infty}^x f(y)dy$$ 
+est la fonction de répartition d'une probabilité $P$ sur $\R$. On dit que $f$ est la densité de $\P$ ou que $\P$ admet la densité $f$.
+Dans ce cas, $F$ est continue, de sorte que $\P(\{x\} = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point ou $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
+
+Il existe bien sûr des fonctions de répartitions qui n'ont pas de densités : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soit d'une part $f$ une fonction positive intégrable et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des indices $p_i>0$ indicés par $i \in E$, tels que :
+    $$ \int_\R f(x) dx + \sum_{i\in E}p_i = 1$$
+Alors la fonction 
+    $$ F(x) = \int_{-\infty}^x f(x) dx + \sum_{i\in E ; i \leq x} p_i$$
+est une fonction de répartition, et la probabilité associée $\P$ n'admet pas de densité et n'est pas non plus dicrète.
+
+### Remarques {.remark}
+
+ * La fonction de répartition est entièrement déterminée par la probabilité $\P$. Il n'en est pas de même de la densité lorsqu'elle existe : si en effet on a $F(x) =\int_{-\infty}^x f(y)dy$ et si on pose $g(x) = f(x)$ si $x \notin E$ et $g(x) =f(x)+1$ si $x\in E$, où E est un ensemble négligeable, alors $g$ est encore une densité de $\P$.
+
+ * Une interprétation intuitive de la densité $f$ de $\P$. Si $dx$ est un petit accroissement de la variable $x$, on a (si du moins $f$ est continue en $x$) :
+ $$ f(x) \sim \frac{\P([x,x+dx])}{dx}$$   
+
 
 
 ### **TODO : ajouts d'exemples, trancher sur les v.a. discrètes, exercices**
@@ -279,7 +343,7 @@ Les variables que nous rencontrerons dans ce cours seront soit à valeurs dans u
 rappels rapides - renvoi vers références (complet avec lecture en autonomie ?) -> pas traité dans Bonnabel-Schmitt mais intéressant car certaines analogies avec le cas continu
 
 
-# Variables aléatoires absolument continues -> plutôt en II
+# Variables aléatoires absolument continues -> plutôt en II ?
 
  * Fonction de répartition
  * Variables aléatoires à densité
