@@ -17,10 +17,10 @@ Un peu d'histoire
 Cadre de l'étude
 ============================
 
-Soit $E$ un espace vectoriel de dimension fini. 
+Soit $n\in \N^*$. 
 
 ### Equation différentielle de degré $p$  {.definition}
-Soient $p\in\N^*$, $U$ ouvert de $\R\times E^p$ et $f:\R\times E^p \to E$ une application continue sur $U$. Une application $x:I\to E$ de classe $C^p$ sur un intervalle $I$ de $\R$ est dite *solution* de *l'équation différentielle d'ordre $p$*
+Soient $p\in\N^*$, $U$ ouvert de $\R\times (\R^n)^p$ et $f:\R\times (\R^n)^p \to \R^n$ une application continue sur $U$. Une application $x:I\to \R^n$ de classe $C^p$ sur un intervalle $I$ de $\R$ est dite *solution* de *l'équation différentielle d'ordre $p$*
 $$
 x^{(p)} = f(t,x,\dot{x},\ldots, x^{(p-1)})
 $$
@@ -30,7 +30,7 @@ si pour tout $t\in I$,
 
 - $x^{(p)}(t) = f(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t))$.
 
-On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$, i.e., $f: E^p \to E$.
+On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$, i.e., $f: (\R^n)^p \to \R^n$.
 
 
 ### Exemples {.exemple}
@@ -38,21 +38,21 @@ quelques systèmes physiques vus en prépa (RLC, masse ressort, hamiltonien)
 
 
 ### Réduction à l'ordre 1
-Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times E^p$ et $f:\R\times E^p \to E$ une application continue sur $U$, définissons l'application $\underline{f} : \R \times E^p \to E^p$ par
+Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times (\R^n)^p$ et $f:\R\times (\R^n)^p \to \R^n$ une application continue sur $U$, définissons l'application $\underline{f} : \R \times (\R^n)^p \to (\R^n)^p$ par
 $$
 \underline{f}(t,x_0,x_1,\ldots,x_{p-1}) = (x_1,x_2,\ldots,x_{p-1},f(t,x_0,\ldots,x_{p-1})) \ .
 $$
-Alors $x\in C^p(I,E)$ est solution de l'équation différentielle d'ordre $p$ définie par $f$ si et seulement si $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,E^p)$ est solution de l'équation différentielle d'ordre 1
+Alors $x\in C^p(I,\R^n)$ est solution de l'équation différentielle d'ordre $p$ définie par $f$ si et seulement si $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,(\R^n)^p)$ est solution de l'équation différentielle d'ordre 1
 $$
 \dot{\underline{x}} = \underline{f}(t,\underline{x}) \ .
 $$
 Preuve ?
 
-Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,\underline{E})$ avec $\underline{E}=E^p$, au lieu de seulement $x\in C^p(I,E)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
+Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de seulement $x\in C^p(I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
 
 
 ### Problème de Cauchy {.definition #def_cauchy}
-Soient $U$ un ouvert de $\R\times E$, $(t_0,x_0)\in U$ et $f:\R\times E \to E$ une application continue sur $U$. Le *problème de Cauchy* fait référence au système
+Soient $U$ un ouvert de $\R\times \R^n$, $(t_0,x_0)\in U$ et $f:\R\times \R^n \to \R^n$ une application continue sur $U$. Le *problème de Cauchy* fait référence au système
 $$
 \dot{x}=f(t,x) \quad , \quad x(t_0)=x_0 \ .
 $$
