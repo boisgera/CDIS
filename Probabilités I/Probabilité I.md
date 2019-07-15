@@ -36,7 +36,7 @@ De nos jours, l’Ecole française de Probabilités est très active. La premiè
 ## Plan du cours
 
 Le cours est organisé en 5 amphis : 
-Description des notions importantes du poly : variables aléatoires, conditionnement et indépendance, lois des grands nombres, simulation
+Description des notions importantes du poly : variables aléatoires, conditionnement et indépendance, théorèmes limites, simulation
 Ouverture vers les stats/ML
 
 **TODO** à reprendre/développer
@@ -87,6 +87,9 @@ Un *évènement* est une propriété qui est vérifiée ou non une fois l'expér
  $A = \{ f \in C([t_1,t_2], \R^+), \|f-g\|_{\infty} \leq a \}$, où
  $g \in C([t_1,t_2],\R^+)$, $a \in \R^+$ 
 
+
+Les évènements étant des ensembles, les opérations ensemblistes classiques admettent une interprétation probabiliste :
+
 ### Correspondance entre opérations logiques et ensemblistes
 
 | Terminologie probabiliste | Terminologie ensembliste | Notation |
@@ -100,7 +103,7 @@ Un *évènement* est une propriété qui est vérifiée ou non une fois l'expér
 | ou  | réunion | $\cup$ |
 | évènements incompatibles | ensembles disjoints | $A_1\cap A_2 = \varnothing$  |
 
-On doit maintenant répondre à la question de savoir quels sont les évènements dont on va vouloir évaluer la probabilité d'occurence. On va ainsi regrouper les évènements en un ensemble $\A$ qui constitue une collection de sous-ensembles de $\Omega$. On va souhaiter en particulier pouvoir combiner des évènements au sein de $\A$ par les opérations ensemblistes courantes  Ceci conduit à la notion de *tribu de parties* de $\Omega$.
+On doit maintenant répondre à la question de savoir quels sont les évènements dont on va vouloir évaluer la probabilité d'occurence. On va ainsi regrouper les évènements en un ensemble $\A$ qui constitue une collection de sous-ensembles de $\Omega$. On va souhaiter en particulier pouvoir combiner des évènements au sein de $\A$ par les opérations ensemblistes courantes. Ceci conduit à la notion de *tribu de parties* de $\Omega$.
 
 ### Tribu {.definition #deftribu}
 Une *tribu* $\A$ est une collection de sous-ensembles de $\Omega$ tels que
@@ -110,13 +113,13 @@ Une *tribu* $\A$ est une collection de sous-ensembles de $\Omega$ tels que
  3. $\forall n \in \N, A_n \in \A \Rightarrow \bigcup_n A_n \in \A$.
 Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
 
-### Exemples {.exemples}
+### Exemples {.example}
  1. $\A = \{\varnothing,\Omega\}$ est la tribu grossière ou triviale : c'est la plus petite tribu de $\Omega$.
- 2. Dans le cas où $\Omega$ est au plus dénombrable, on le munit généralement de l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$. On verra ultérieurement que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
- 3. Si $\Omega = \R$, on peut le munir de la tribu formée des ensembles mesurables de $\R$.
+ 2. Dans le cas où $\Omega$ est au plus dénombrable, on choisit systématiquement l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$ dont on vérifie aisément qu'il s'agit d'une tribu. On verra ultérieurement que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
+ 3. Si $\Omega = \R$, on peut le munir de la tribu formée des ensembles mesurables de $\R$, dite *tribu de Lebesgue*.
  4. On verra par la suite qu'il est aisé de définir une tribu sur tout espace topologique.
 
-**question : notion de tribu engendrée ???**
+**question : notion de tribu engendrée -> Boréliens???**
 
 Une fois l'espace probabilisable $(\Omega, \A)$ définit, on peut définir la probabilité qui va nous permettre de mesurer la probabilité d'occurence d'un évènement de $\A$.
 
@@ -160,9 +163,7 @@ $$ \P(\bigcap_{i=1}^n A_i) = \lim_{n \rightarrow \infty} \P(A_n)$$
 
 ## Probabilité conditionnelle 
 
-La construction d’un modèle probabiliste repose sur l’information connue **a priori** sur l’expérience aléatoire. Ce modèle permet de quantifier les probabilités de réalisation de certains résultats de l’expérience. Il est fondamental de remarquer que si l’information change, les probabilités de réalisation changent.
-
-
+La construction d’un modèle probabiliste repose sur l’information connue **a priori** sur l’expérience aléatoire. Ce modèle permet de quantifier les probabilités de réalisation de certains résultats de l’expérience. Il est fondamental de remarquer que si l’information change, les probabilités de réalisation changent. L'outil qui va nous permettre d'introduire cette information est la probabiité conditionnelle dont nous donnons ici la définition:
 
 ### Probabilité conditionnelle {.definition}
 Soient $(\Omega, \A, \P)$ un espace probabilisé, $A, B \in \A$ tels que $\P(B)>0$. La *probabilité conditionnelle* de $A$ sachant $B$, est le nombre 
@@ -182,6 +183,9 @@ Il est clair que $0 \leq \P(A|B) \leq 1$. Par ailleurs, les deux propriétés de
 pour $P(\cdot|B)$ proviennent des mêmes propriétés pour $\P$ et des remarques suivantes :
 $\Omega \cap B = B$, et $(\bigcup_n A_n ) \cap B = \bigcup_n (A_n \cap B)$. De plus, si $A$ et $C$ sont disjoints, il en est
 de même de $A \cap B$ et $C \cap B$. L’assertion 2. est évidente. d'après la définition de la [Probabilité conditionnelle].
+
+### Exemple : approche bayésienne (subjective)
+
 
 ### Formule des probabilités totales {.proposition}
 
@@ -205,7 +209,7 @@ Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales]. L
 \P(B_i | A) = \frac{\P(A \cap B_i)}{\P(A)} = \frac{\P(A | B_i) \P(B_i)}{\P(A)}
 \end{equation}
 
-### Exemple : approche bayésienne (subjective)
+### Exemple d'application **TODO**
 
 ## Indépendance des évènements 
 La notion d’indépendance est absolument fondamentale en probabilités et nous verrons
@@ -337,12 +341,9 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
 
 
 
-### **TODO : ajouts d'exemples, trancher sur les v.a. discrètes, exercices**
+### **TODO : ajouts d'exemples,  exercices**
 
 
-# V.A. discretes
-
-rappels rapides - renvoi vers références (complet avec lecture en autonomie ?) -> pas traité dans Bonnabel-Schmitt mais intéressant car certaines analogies avec le cas continu
 
 
 # Variables aléatoires absolument continues -> plutôt en II ?
