@@ -6,6 +6,7 @@
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\E}{\mathcal{E}}
 \newcommand{\B}{\mathcal{B}}
 \newcommand{\E}{\mathcal{E}}
 \renewcommand{\L}{\mathcal{L}}
