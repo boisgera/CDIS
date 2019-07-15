@@ -1971,6 +1971,10 @@ $$
 
 approximation concrête de $d^2 f(x) \cdot h \cdot k$.
 
+### TODO -- Développement limité à l'ordre $n$
+
+### TODO -- Développement de Taylor avec reste intégral
+
 Annexe -- Intégrale de Newton {#intégrale-Newton}
 ================================================================================
 
