@@ -652,6 +652,11 @@ $$
 \Delta f(x, h) = df(x) \cdot h + o(\|h\|).
 $$
 
+### TODO -- Points critiques
+Se contenter d'introduire
+la terminologie et de signifier (en remarque) que c'est une condition 
+nécessaire d'extrémalité (le prouver ?).
+
 ### Note
 On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
 définition de la fonction n'est pas évident dans le contexte.
@@ -1258,12 +1263,13 @@ Evident.
 
 ### TODO {.meta}
 
-Fcts $C^1$ et réciproque partielle... autre section ? ICI ?
+Fcts $C^1$ et réciproque partielle... autre section ? ICI ? Oui.
+Ne définir $C^1$ qu'à partir des dérivées partielle (et la 
+matrice jacobienne, ce qui est équivalent)
 
 
 Inégalité des accroissement finis
 ================================================================================
-
 
 ### Différentielle et Intégrale
 
@@ -1272,16 +1278,20 @@ lorsque la fonction $f$ est continue en $a$,
 nous disposons de l'égalité $f(a + h) = f(a) + o(h)$,
 mais cette relation est asymptotique. 
 Pour maîtriser l'écart entre
-$f(a+h)$ et $f(a)$ nous devons être mesure de faire tendre $h$ vers $0$. 
+$f(a+h)$ et $f(a)$ au moyen de cette formule, 
+nous devons être mesure de faire tendre $h$ vers $0$. 
 Si la grandeur $h$ est fixé, cette relation est inexploitable. 
 
 Toutefois, dans cette situation, 
-si $f$ est différentiable sur tout le segment $[a,b]$, il est possible
-de relier $f(a+h)$ à $f(a)$.
+si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
+de relier $f(a+h)$ à $f(a)$ en intégrant les variations de $f$ le long
+de $[a, a+h]$. La seule notion d'intégrale dont nous avons besoin,
+minimaliste et construite exclusivement au service du calcul différentiel,
+est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton).
 
-### Théorème {.theorem}
+### Variation d'une fonction {.theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
-soit $a \in U$ et $h \in \mathbb{R}^n$ tel que le segment $[a, a+h]$
+soit $a \in U$ et $h \in \mathbb{R}^n$ tel que le segment
   $$
   [a, a+h] = \{a + th \; | \; t \in [0,1]\}
   $$
@@ -1290,18 +1300,18 @@ $$
 f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-### Preuve
+### Démonstration
 
 Considérons la fonction $\phi: [0,1] \to \mathbb{R}^n$ définie par
 $$
 \phi(t) = f(a + th)
 $$
-La fonction $\phi$ est dérivable sur $[0,1]$ comme composée des fonction 
-différentiables $f$ et $t \mapsto a + th$ et sa dérivée est donnée par
+La fonction $\phi$ est dérivable sur $[0,1]$ comme composée des fonctions 
+différentiables $f$ et $t \mapsto a + th$ ; sa dérivée est donnée par
 $$
 \begin{split}
 \phi'(t) &= d\phi(t) \cdot 1 \\
-         &= (df(a+th) \circ d(t\mapsto a+th)) \cdot 1 \\
+         &= (df(a+th) \cdot d(t\mapsto a+th)) \cdot 1 \\
          &= df(a+th) \cdot (d(t\mapsto a+th) \cdot 1) \\
          &= df(a+th) \cdot (t \mapsto a+th)' \\
          &= df(a+th) \cdot h
@@ -1314,30 +1324,28 @@ f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt
 $$
 
 
-
-
 ### Inégalité des accroissements finis (fonction d'une variable réelle) {.theorem}
 
-Soit $f:[a, b] \to \mathbb{R}^m$ 
-où $a \in \mathbb{R}$, $b \in \mathbb{R}$, $a \leq b$ et $m \in \mathbb{N}$.
-Si $f$ est dérivable sur $[a,b]$ et $M$ est un majorant de $\|f'\|$,
+Soit $f:[a, a+h] \to \mathbb{R}^m$ 
+où $a \in \mathbb{R}$, $h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
+Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
 c'est-à-dire si
 $$
 \mbox{pour tout } t \in [a, b], \;\|f'(t)\| \leq M.
 $$
 Alors 
 $$
-\|f(b) - f(a)\| \leq M (b-a)
+\|f(a+h) - f(a)\| \leq M h.
 $$
 
-### Preuve {.proof}
+### Démonstration {.proof}
 
-Par définition, la fonction $f'$ est intégrable au sens de Newton et
+Par construction, la fonction $f'$ est intégrable au sens de Newton et
 $$
-f(b) - f(a) = \int_a^b f'(t) \, dt.
+f(a+h) - f(a) = \int_a^b f'(t) \, dt.
 $$
 Elle est donc également intégrable au sens de Henstock-Kurzweil
-**[TODO: référence]**;
+(cf. chapitre "Calcul Intégral I");
 en combinant la définition de l'intégrale de Henstock-Kurzweil 
 et le lemme de Cousin, on peut trouver des approximations arbitrairement
 précises de l'intégrale de $f'$ par des sommes de Riemann:
@@ -1345,46 +1353,46 @@ pour tout $\varepsilon > 0$,
 il existe une subdivision pointée $\mathcal{D}$
 de l'intervalle $[a,b]$ telle que 
 $$
-\left\| f(b) - f(a) -  S(f', \mathcal{D}) \right\| 
+\left\| f(a+h) - f(a) -  S(f', \mathcal{D}) \right\| 
 =
-\left\| \int_a^b f'(t) \, dt -  S(f', \mathcal{D}) \right\| 
+\left\| \int_a^{a+h} f'(t) \, dt -  S(f', \mathcal{D}) \right\| 
 \leq 
 \varepsilon.
 $$
 En exploitant l'inégalité triangulaire, on obtient donc
 $$
-\|f(b) - f(a)\|
+\|f(a+h) - f(a)\|
 \leq 
 \|S(f', \mathcal{D})\| + \varepsilon.
 $$
 Supposons que 
-$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; 0 \leq i \leq p-1 \}$.
+$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; 0 \leq i \leq k-1 \}$.
 En utilisant à nouveau l'inégalité triangulaire, 
 on peut majorer en norme la somme de Riemann $S(f',\mathcal{D})$:
 $$
 \|S(f', \mathcal{D})\|
 =
-\left\|\sum_{i=0}^{p-1} f'(t_i) (x_{i+1} - x_i)\right\|
+\left\|\sum_{i=0}^{k-1} f'(t_i) (x_{i+1} - x_i)\right\|
 \leq 
-\sum_{i=0}^{p-1} \|f'(t_i)\| |x_{i+1} - x_i|.
+\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|.
 $$
-Comme $\|f'(t_i)\| \leq M$ pour tout $i \in \{0,\dots,p-1\},$
+Comme $\|f'(t_i)\| \leq M$ pour tout $i \in \{0,\dots,k-1\},$
 $$
-\sum_{i=0}^{p-1} \|f'(t_i)\| |x_{i+1} - x_i|
+\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|
 \leq
-\sum_{i=0}^{p-1} M |x_{i+1} - x_i|
-\leq M \sum_{i=0}^{p-1} |x_{i+1} - x_i|
+\sum_{i=0}^{k-1} M |x_{i+1} - x_i|
+\leq M \sum_{i=0}^{k-1} |x_{i+1} - x_i|
 $$
-Finalement, comme $a=x_0 \leq x_1 \leq \dots x_p = b$,
+Finalement, comme $a=x_0 \leq x_1 \leq \dots x_k = a+h$,
 $$
-\sum_{i=0}^{p-1} |x_{i+1} - x_i| = \sum_{i=0}^{p-1} (x_{i+1} - x_i) =
-x_p - x_0 = b - a
+\sum_{i=0}^{k-1} |x_{i+1} - x_i| = \sum_{i=0}^{k-1} (x_{i+1} - x_i) =
+x_p - x_0 = (a+h) - a = h
 $$ 
 et donc 
-$\|S(f', \mathcal{D})\| \leq M (b - a).$
-Par conséquent, $\|f(b) - f(a)\| \leq M(b-a) + \varepsilon$
+$\|S(f', \mathcal{D})\| \leq Mh.$
+Par conséquent, $\|f(a+h) - f(a)\| \leq M h + \varepsilon$
 et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
-le résultat cherché: $\|f(b) - f(a)\| \leq M(b-a).$
+le résultat cherché: $\|f(a+h) - f(a)\| \leq M h.$
 
 
 ### Inégalité des accroissements finis {.theorem}
@@ -1402,13 +1410,19 @@ $$
 $$
 
 ### Preuve {.proof}
+Considérons la fonction $\phi: t \in [0,1] \mapsto f(a+th)$.
+Nous avons déjà montré dans la démonstration de "[Variation d'une fonction]"
+que cette fonction est dérivable, de dérivée $\phi'(t) = df(a+th) \cdot h$.
+De plus, 
+$$
+\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
+$$
+Par [l'inégalité des accroissements fini dans le cas d'une variable réelle][Inégalité des accroissements finis (fonction d'une variable réelle)], 
+$$
+\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
+\leq M \|h\| \times 1 = M \|h\|.
+$$
 
-Steps: define $\phi: t \in [0,1] \mapsto f(a+th)$.
-Deduce $\phi'(t) = df(a+th)(h)$ (chaine + rule + derivative/differential link).
-Conclude with [above][Inégalité des accroissements finis (fonction d'une variable réelle)]
-
-Points critiques
-================================================================================
 
 Différentielles d'ordre supérieur
 ================================================================================
@@ -1841,7 +1855,7 @@ $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
 $$
 
-
+<!--
 
 Fonctions à valeurs matricielles/tensorielles
 --------------------------------------------------------------------------------
@@ -1950,9 +1964,14 @@ $$
 **TODO**
 
 ### Théorème
-**TODO:** approximation concrête de $d^2 f(x) \cdot h \cdot k$.
 
-Annexe -- Intégrale de Newton
+-->
+
+### TODO
+
+approximation concrête de $d^2 f(x) \cdot h \cdot k$.
+
+Annexe -- Intégrale de Newton {#intégrale-Newton}
 ================================================================================
 
 ### Intégrale de Newton {.definition}
@@ -1966,7 +1985,20 @@ $$
 La primitive $F$ de $f$ quand elle existe étant déterminée à une constante près,
 cette définition est non-ambiguë.
 
+Une autre façon de voir les choses: l'intégrale de Newton est définie de telle
+sorte que le théorème fondamental du calcul soit trivialement satisfait, 
+en toute généralité. A savoir:
 
+### Théorème fondamental du calcul {.theorem #TFC}
+Si $F: [a, b] \to \R$ est dérivable, alors $f = F'$ est intégrable et
+$$
+\int_a^b f(x) \, dx = F(b) - F(a).
+$$
+
+### {.remark}
+Pour d'autres intégrales, comme l'intégrale de Riemann ou l'intégrale
+de Lebesgue, il sera nécessaire de faire des hypothèses supplémentaires
+sur la fonction $f$ pour que ce résultat soit valable.
 
 Exercices
 ================================================================================
