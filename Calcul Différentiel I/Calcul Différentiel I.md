@@ -1256,38 +1256,6 @@ $$
 
 Evident.
 
-
-### Matrice Jacobienne {.definition}
-
-
-$$
-Df(x) = [df(x)] = [\partial_j f_i(x)]_{ij}
-=
-\left[
-\begin{array}{c}
-\left[d f_1(x)\right] \\
-\vdots \\
-\left[d f_m(x)\right]
-\end{array}
-\right]
-$$
-
-
-**TODO.**
-
-
-**TODO:** dumb down "différentielles" partielles en "dérivées partielles".
-Et c'est une "découverte", on part de la représentation sous forme matricielle
-des différentielles, les dérivée partielles ne sont pas considérées comme
-un point de départ.
-
-**TODO:** variables nommées, impact notation.
-
-**TODO.** Eventuellement un mot sur le concept d'application partielle ?
-Exploiter la chain rule plutôt que la construction élémentaire de l'introduction ?
-
-
-
 ### TODO {.meta}
 
 Fcts $C^1$ et réciproque partielle... autre section ? ICI ?
