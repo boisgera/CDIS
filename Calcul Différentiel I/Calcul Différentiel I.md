@@ -1066,14 +1066,6 @@ on appelle *matrice jacobienne* de $f$ en $x$ et l'on note
 $Df(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
 différentielle $df(x): \mathbb{R}^n \to \mathbb{R}^m$ de $f$ en $x$.
 
-
-**TODO:** à quelle moment est-ce que j'indique que
-$$
-[d f(x) \cdot e_j]_i = df_i(x) \cdot e_j ?
-$$
-
-
-
 ### Dérivée Partielle {.definition}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
@@ -1111,15 +1103,15 @@ $y = (y_1, \dots, y_n) \in \mathbb{R}^n$ d'autre part.
 Pour gérer ce type de situation, la *différentielle partielle* par rapport au 
 $i$-ème argument d'une fonction
 $$
-f: U \subset \R^{k_1} \times \dots \times \R^{k_n} \to \R^m
+f: U \subset \R^{n_1} \times \dots \times \R^{n_k} \to \R^m
 $$
 est définie comme la différentielle de la $i$-ème fonction partielle de $f$ en 
-$x = (x_1, \dots, x_n)$
+$x = (x_1, \dots, x_k)$
 $$
-y_i \in \R^{k_i} \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)
+y_i \in \R^{n_i} \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_k)
 $$
 quand celle-ci existe. Elle est notée $\partial_i f(x)$, comme la dérivée
-partielle, ce qui n'est pas trop ambigu dans la mesure on l'on explicite
+partielle, ce qui n'est pas trop ambigu tant que l'on explicite
 comment l'argument de $f$ est décomposé.
 
 ### Arguments nommés
@@ -1154,10 +1146,7 @@ $$
 \partial_{\mathbf{x}}m(\mathbf{x}, t) = 2 (xdx + y dy + z dz).
 $$
 
-
-
-
-### Dérivées partielles et différentielle
+### Différentielle et dérivées partielles {.proposition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
 soit $x$ un point de $U$. 
 Lorsque $f$ est différentiable en $x$, 
@@ -1167,48 +1156,81 @@ $$
 $$
 ou de façon équivalente, pour tout $h \in \mathbb{R}^n$
 $$
-df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i
+df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
 $$
 
+### Différentielle et différentielles partielles {.post}
+Sous les même hypothèses, si l'on considère désormais $f$ comme une
+fonction
+$f: U \subset \R^{n_1} \times \dots \times \R^{n_k} \to \R^m$
+(avec $n_1 + \dots + n_k = n$),
+toutes les différentielles partielles de $f$ en $x$ existent et
+pour tout $h=(h_1, \dots, h_k) \in \R^{n_1} \times \dots \times \R^{n_k}$,
+$$
+df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) \cdot h_i.
+$$
 
-### Preuve {.proof}
+### Démonstration {.proof}
 La différentiabilité de $f$ en $x$ établit l'existence d'une
 fonction $\varepsilon$ qui soit un $o(1)$ et telle que 
 $$
 f(x+h) = f(x) + df(x) \cdot h + \varepsilon(h) \|h\|.
 $$
-Soit $t \neq  0$; substituer $h := t e_j$ dans cette relation fournit
+Soit $t$ un réel non nul; substituer $h := t e_i$ dans cette relation fournit
 $$
-f(x+te_j) = f(x) + df(x) \cdot (t e_j) + \varepsilon(t e_j) \|t e_j\|.
+f(x+te_i) = f(x) + df(x) \cdot (t e_i) + \varepsilon(t e_i) \|t e_i\|.
 $$
 En exploitant la linéarité de la différentielle, on obtient donc
 $$
-df(x) \cdot e_j = \frac{f(x+te_j) - f(x)}{t} + \varepsilon(t e_j) \frac{|t|}{t}.
+df(x) \cdot e_i = \frac{f(x+te_i) - f(x)}{t} + \varepsilon(t e_i) \frac{|t|}{t}.
 $$
 Par conséquent, en passant à la limite quand $t \to 0$, on obtient
 $$
-df(x) \cdot e_j = \lim_{t \to 0} \frac{f_i(x+t e_j) - f_i(x)}{t} =: \partial_j f(x)
-$$
-La différentielle pouvant être calculée composante par composante,
-on en déduit que
-$$
-\partial_i f(x)df_i(x) \cdot e_j = \lim_{t \to 0} \frac{f_i(x+t e_j) - f_i(x)}{t}.
+df(x) \cdot e_i = \lim_{t \to 0} \frac{f(x+t e_i) - f_i(x)}{t} =: \partial_i f(x)
 $$
 Pour obtenir la seconde forme de cette relation, il suffit de décomposer un
-vecteur $h=(h_1, \dots, h_m)$ sous la forme
+vecteur $h=(h_1, \dots, h_n)$ sous la forme
 $$
-h = (h_1, \dots, h_m) = h_1 e_1 + \dots + h_m e_m
+h = (h_1, \dots, h_n) = h_1 e_1 + \dots + h_n e_n
 $$
 et d'exploiter la linéarité de la différentielle; on obtient
 $$
 df(x) \cdot h 
-= df(x) \cdot \left( \sum_{i} h_i e_i \right)
+= df(x) \cdot \left( h_1 e_1 + \dots + h_n e_n\right)
 = \sum_i (df(x) \cdot e_i) h_i 
-= \sum_i \partial_i f(x) h_i.
+= \sum_i \partial_i f(x) h_i
+$$
+comme attendu.
+
+### Matrice jacobienne et dérivées partielles {.corollary}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
+soit $x$ un point de $U$. 
+Si $f$ est différentiable en $x$, on a 
+$$
+[Df(x)]_{ij} = \partial_{j} f_i(x),
+$$
+c'est-à-dire
+$$
+Df(x) = \left[
+\begin{array}{cccc}
+\partial_1 f_1 (x) & \partial_2 f_1 (x) & \cdots & \partial_n f_1 (x) \\
+\partial_1 f_2 (x) & \partial_2 f_2 (x) & \cdots & \partial_n f_2 (x) \\
+\vdots & \vdots & \vdots & \vdots \\
+\partial_1 f_m (x) & \partial_2 f_m (x) & \cdots & \partial_n f_m (x) \\
+\end{array}
+\right]
 $$
 
-### {.ante}
+### Démonstration {.proof}
+Par définition, la matrice jacobienne de $f$ en $x$ se déduit de la 
+différentielle par
+$[Df(x)]_{ij} = [df(x) \cdot e_j]_i.$
+Comme $\partial_j f(x) = df(x) \cdot e_j,$ on a
+$[Df(x)]_{ij} = [\partial_j f(x)]_i.$ 
+Les fonctions vectorielles se dérivant composante par composante, 
+on en déduit que $[Df(x)]_{ij} = [\partial_j f_i(x)]$. 
 
+### {.ante .remark}
 La dérivée partielle n'est qu'un cas particulier du concept de dérivée
 directionnelle, limitée aux directions de la base canonique de $\mathbb{R}^n$.
 
@@ -1230,9 +1252,9 @@ $$
 f'(x, h) = \partial_i f(x).
 $$
 
-### Preuve {.proof}
+### Démonstration {.proof}
 
-Direct.
+Evident.
 
 
 ### Matrice Jacobienne {.definition}
