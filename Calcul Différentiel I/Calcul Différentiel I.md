@@ -1063,10 +1063,8 @@ on ne peut pas les multiplier)
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ où $U$ est ouvert et
 soit $x$ un point de $U$. Quand $f$ est différentiable en $x$, 
 on appelle *matrice jacobienne* de $f$ en $x$ et l'on note 
-$J_f(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la différentielle 
-$df(x)$ de $f$ en $x$ qui est une application linéaire de 
-$\mathbb{R}^m$ dans $\mathbb{R}^n$
-
+$Df(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
+différentielle $df(x): \mathbb{R}^n \to \mathbb{R}^m$ de $f$ en $x$.
 
 
 **TODO:** à quelle moment est-ce que j'indique que
@@ -1096,6 +1094,68 @@ $$
 $$
 quand le second membre existe.
 
+### Différentielle partielle {.remark .definition}
+La dérivée partielle permet d'étudier séparement l'influence de chaque 
+variable **scalaire** de $f$ sur sa variation. 
+Mais dans certaine situations il est plus naturel de regrouper 
+les variables dont dépend $f$ en en plusieurs variables vectorielles. 
+Ainsi, pour étudier l'application produit scalaire dans $\mathbb{R}^n$
+$$
+\left<\cdot, \cdot \right>: 
+(x_1,\dots, x_n, y_1, \dots, y_n) \in \R^{2n}
+\mapsto \sum_{k=1}^n x_k y_k \in \R,
+$$
+il est raisonnable de partitionner la variable en 
+$x = (x_1, \dots, x_n) \in \mathbb{R}^n$ d'une part et
+$y = (y_1, \dots, y_n) \in \mathbb{R}^n$ d'autre part.
+Pour gérer ce type de situation, la *différentielle partielle* par rapport au 
+$i$-ème argument d'une fonction
+$$
+f: U \subset \R^{k_1} \times \dots \times \R^{k_n} \to \R^m
+$$
+est définie comme la différentielle de la $i$-ème fonction partielle de $f$ en 
+$x = (x_1, \dots, x_n)$
+$$
+y_i \in \R^{k_i} \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)
+$$
+quand celle-ci existe. Elle est notée $\partial_i f(x)$, comme la dérivée
+partielle, ce qui n'est pas trop ambigu dans la mesure on l'on explicite
+comment l'argument de $f$ est décomposé.
+
+### Arguments nommés
+Les conventions tendant à attribuer un nom aux arguments d'une fonction
+permettent parfois de rendre les dérivées et différentielles partielles
+plus intelligibles. Si le $i$-ème argument 
+d'une fonction $f$ est désigné par un symbole $x$, 
+on pourra noter 
+$\partial_{x} f$ (ou ${\partial f}/{\partial x}$) au lieu de $\partial_i f$ 
+sa dérivée partielle 
+(ou différentielle partielle selon le cas).
+
+Si l'on considère par exemple la fonction $m$ définie par
+$$
+m: (x, y, z, t) \in \R^4 \to x^2 + y^2 + z^2 - c^2 t^2,
+$$
+comme dans la théorie de la relativité,
+les dérivées partielles par rapport au variables d'espace $x$, $y$, $z$ 
+sont données par 
+$\partial_x m(x, y, z, t) = 2 x$,
+$\partial_y m(x, y, z, t) = 2 y$,
+$\partial_z m(x, y, z, t) = 2 z$
+et par rapport à la variable de temps $t$ par
+$\partial_{t} m(x, y, z, t) = -2c^2t.$
+Si l'on préfère regrouper les trois premiers arguments en un 
+vecteur d'espace $\mathbf{x} = (x, y, z)$, on a alors
+$$
+m: (\mathbf{x}, t) \in \R^3 \times \R \to \|\mathbf{x}\|^2 - c^2 t^2,
+$$
+et la différentielle partielle
+$$
+\partial_{\mathbf{x}}m(\mathbf{x}, t) = 2 (xdx + y dy + z dz).
+$$
+
+
+
 
 ### Dérivées partielles et différentielle
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
@@ -1109,6 +1169,7 @@ ou de façon équivalente, pour tout $h \in \mathbb{R}^n$
 $$
 df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i
 $$
+
 
 ### Preuve {.proof}
 La différentiabilité de $f$ en $x$ établit l'existence d'une
