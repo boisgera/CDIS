@@ -7,6 +7,8 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+<!--
+
 Narratif & Notes & TODOsss
 ================================================================================
 
@@ -153,6 +155,11 @@ dim finie et on parle d'équivalence des normes,
 mais on attend ce chapitre pour parler d'opérateurs et de norme.
 Donc un volet à rajouter ici ?
 
+-->
+
+Notations
+================================================================================
+
 Preambule
 --------------------------------------------------------------------------------
 
@@ -160,9 +167,6 @@ Les fragment de codes de ce document utilisent le langage Python 3.
 La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
 
     >>> from numpy import *
-
-Notations
-================================================================================
 
 Ensembles et Fonctions
 --------------------------------------------------------------------------------
@@ -651,6 +655,8 @@ constitue la seule approximation linéaire de cette variation telle que
 $$
 \Delta f(x, h) = df(x) \cdot h + o(\|h\|).
 $$
+
+### TODO -- Gradient
 
 ### TODO -- Points critiques
 Se contenter d'introduire
@@ -1235,6 +1241,8 @@ $[Df(x)]_{ij} = [\partial_j f(x)]_i.$
 Les fonctions vectorielles se dérivant composante par composante, 
 on en déduit que $[Df(x)]_{ij} = [\partial_j f_i(x)]$. 
 
+### TODO -- Gradient
+
 ### {.ante .remark}
 La dérivée partielle n'est qu'un cas particulier du concept de dérivée
 directionnelle, limitée aux directions de la base canonique de $\mathbb{R}^n$.
@@ -1427,6 +1435,8 @@ $$
 Différentielles d'ordre supérieur
 ================================================================================
 
+<!--
+
 Do's and don't {.note}
 --------------------------------------------------------------------------------
 
@@ -1543,6 +1553,8 @@ car simplificateur, mais
   - une note / un exercice sur cette définition alternative au cadre
     abstrait, plus proche de la démarche que nous avons choisi pour 
     la dimension finie pourrait être intéressant
+
+-->
 
 ### Différentielle d'ordre 2 {.definition}
 
@@ -1819,12 +1831,9 @@ df(x+k) = df(x) + (h \mapsto (d^2 f(x) \cdot k) \cdot h) + o(\|k\|),
 $$
 qui est l'égalité cherchée.
 
---------------------------------------------------------------------------------
+### TODO: Hessien, condition suffisante d'optimalité ?
 
-
-
---------------------------------------------------------------------------------
-
+### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
 à un ordre plus élevé, par induction sur l'ordre de la différentielle.
 
