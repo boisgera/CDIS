@@ -70,13 +70,13 @@ def transform(doc):
     #         holder, i = todo
     #         holder[i] = Header(3, ("", [], []), [])
 
-    anonymify(doc)
     divify(doc)
     handle_level_4_sections(doc)
     # print_sections(doc)
     proofify(doc)
     transform_image_format(doc)
     solve_toc_nesting(doc)
+    anonymify(doc)
     return doc
 
 def anonymify(doc):
