@@ -1311,7 +1311,7 @@ ce qui établit le résultat.
 
 
 
-
+<!--
 ### {.ante .remark}
 La dérivée partielle n'est qu'un cas particulier du concept de dérivée
 directionnelle, limitée aux directions de la base canonique de $\mathbb{R}^n$.
@@ -1337,6 +1337,8 @@ $$
 ### Démonstration {.proof}
 
 Evident.
+
+-->
 
 ### TODO {.meta}
 
@@ -2168,12 +2170,12 @@ Dérivée directionnelle d'Hadamard
 
 Source: [@Sha90]
 
-**Rappel.** Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est 
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est 
 ouvert et $x \in U$. 
 La fonction $f$ est *directionnellement dérivable* si pour tout
 vecteur $h \in \mathbb{R}^n$, la dérivée directionnelle
 $$
-f'(x, h) = (t \mapsto f(x+ th))'(0)
+f'(x, h) := (t \mapsto f(x+ th))'(0) = \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
 $$
 est bien définie.
 
