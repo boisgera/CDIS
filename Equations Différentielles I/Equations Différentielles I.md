@@ -90,12 +90,16 @@ Existence de solutions locales
 Le théorème suivant assure l'existence locale de solutions au [problème de Cauchy](#def_cauchy) sous une simple hypothèse de continuité de $f$.
 
 ### Théorème de Peano {.theorem  #theo_peano}
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$, et $(t_0,x_0)\in U$. Alors il existe $\epsilon >0$ et $x\in C^1([t_0-\epsilon,t_0+\epsilon],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$. Pour tout $(t_0,x_0)\in U$, il existe $\epsilon >0$ et $x\in C^1([t_0-\epsilon,t_0+\epsilon],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
 
-*Démonstration*: La démonstration de ce résultat est hors-programme de ce cours car elle fait appel au théorème d'Ascoli qui sera abordé dans les notions avancées de Calcul Différentiel III qui ne sont pas exigibles pour comprendre ce cours. Preuve en appendice? $\hfill\blacksquare$
+*Démonstration*: La démonstration de ce résultat est hors-programme car elle fait appel au théorème d'Ascoli qui sera abordé dans les notions avancées de Calcul Différentiel III. Seule la connaissance et compréhension du résultat est exigible. Pour les curieux, preuve en appendice? $\hfill\blacksquare$
 
 ### Solution maximale {.definition #def_sol_max}
-
+Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$. On dit que $x\in C^1(I,\R^n)$ est une solution *maximale* de l'équation différentielle 
+$$
+\dot{x}=f(t,x)
+$$
+si pour toute autre solution $y\in C^1(J,\R^n)$ telle que $I\subseteq J$ et $x_{|I}\equiv y_{|I}$, on a nécessairement $I=J$ et $x\equiv y$. En d'autres termes, elle n'est pas *prolongeable*.
 
 ### Exemple
 $\dot{x}=-\sqrt{|x|}$ existence mais pas unicité
@@ -106,16 +110,37 @@ $\dot{x}=-\sqrt{|x|}$ existence mais pas unicité
 Unicité des solutions
 -------------------------------
 
-### Théorème de Cauchy-Lipschitz (local) {.theorem #theo_lips_local}
-Soit $f$ de classe $C^1$ sur $U$. + principe de preuve et preuve en annexe ?
+Nous avons vu dans la partie précédente que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$.
+
+### Théorème de Cauchy-Lipschitz {.theorem #theo_lips}
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$.
+Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ in $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert.
+
+*Démonstration*
++ principe de preuve et preuve en annexe ?
+
+
+### Exemples {.example #ex_lips}
+- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C(\R,\R^{n\times n})$ et $b\in C(\R,\R^n)$ telles que
+$$
+f(t,x) = a(t) x + b(t) \ ,
+$$
+admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R^2$.
+
+- L'intervalle de définition de la solution maximale du problème de Cauchy n'est pas nécessairement $\R$, même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. Par exemple, si $f:(t,x)\mapsto x^2$ et $U=\R^2$, quelque-soit $(t_0,x_0)\in \R^2$, la solution maximale s'écrit  
+$$
+x(t)=\frac{x_0}{1-x_0t} \quad , \quad I=(-\infty,\frac{1}{x_0})
+$$
+
 
 ### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
 On remarque dans la preuve qu'il suffit que $f$ soit Lipschitzienne. A définir + exemple de fonction Lipschitzienne pas $C^1$ "variation bornée". 
 
-C'est en fait Lipschitz lui-même qui a défini la notion de fonction Lipschitzienne pour faire marcher cette preuve et a montré le résultat parallèlement à Cauchy et de manière indépendente sous cette hypothèse plus faible.
+C'est en fait Lipschitz lui-même qui a défini la notion de fonction Lipschitzienne pour faire marcher cette preuve et a montré le résultat parallèlement à Cauchy et de manière indépendente sous cette hypothèse plus faible, alors que Cauchy l'avait montré sous l'hypothèse $C^1$ en utilisant le théorème des accroissements finis.
 
-### Exemples {.example #ex_lips}
-$f(x)=x^2$ : unicité mais pas global
+### Approximations successives {.remarque #rem_approx_succ}
+Il est rare de pouvoir calculer explicitement la solution au problème de Cauchy. Dans ce cas approximations successives de Picard
+
 
 Solutions globales
 --------------------------------
