@@ -2080,38 +2080,14 @@ concernant les fonctions d'une variable, se déduit de
 Soit $f: U \subset \mathbb{R} \to \mathbb{R}$ et 
 $g: V \subset \mathbb{R} \to \mathbb{R}$ deux fonctions définies
 sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
-Si $f$ est différentiable en $x \in U$ et $g$ est différentiable en $f(x) \in V$,
-alors la composée $g \circ f$ est différentiable en $x$ et
+Si $f$ est dérivable en $x \in U$ et $g$ est dérivable en $f(x) \in V$,
+alors la composée $g \circ f$ est dérivable en $x$ et
 $$
 (g \circ f)'(x) = g'(f(x)) f'(x).
 $$
 
-### Réponse
+$\to$ [Solution](#sol-dec)
 
-Les fonction $f$ et $g$ sont dérivables donc différentiables 
-(cf. [Différentielle et Dérivée]).
-Par application de la [règle de différentiation en chaîne](#chain-rule),
-leur composée $g \circ f$ est donc différentiable.
-C'est une fonction d'une variable, elle est donc dérivable, 
-à nouveau en invoquant 
-[le lien entre différentielle et dérivée][Différentielle et Dérivée].
-Pour ces trois fonctions, on obtient la dérivée en appliquant la
-différentielle à $1$; La [règle de différentiation en chaîne](#chain-rule)
-fournissant
-$$
-d(g \circ f)(x) = dg(f(x)) \cdot df(x),
-$$
-on en déduit
-$$
-\begin{split}
-(g \circ f)'(x) &= (d(g \circ f)(x)) \cdot 1 \\
-&= (dg(f(x)) \cdot df(x) )\cdot 1 \\
-&=dg(f(x)) \cdot (df(x) \cdot 1) \\
-&= dg(f(x)) \cdot (f'(x) 1) \\
-&= (dg(f(x)) \cdot 1) f'(x) \\ 
-&= g'(f(x)) f'(x)
-\end{split}
-$$
 
 TODO -- Calcul Méca
 --------------------------------------------------------------------------------
@@ -2256,6 +2232,35 @@ TODO -- Dérivée sur un intervalle fermé {#sol-if}
 ### TODO -- Question 1 {#sol-if-1}
 
 ### TODO -- Question 2 {#sol-if-2}
+
+Dérivation en chaîne {#sol-dec}
+--------------------------------------------------------------------------------
+
+Les fonction $f$ et $g$ sont dérivables donc différentiables 
+(cf. [Différentielle et Dérivée]).
+Par application de la [règle de différentiation en chaîne](#chain-rule),
+leur composée $g \circ f$ est donc différentiable.
+C'est une fonction d'une variable, elle est donc dérivable, 
+à nouveau en invoquant 
+[le lien entre différentielle et dérivée][Différentielle et Dérivée].
+Pour ces trois fonctions, on obtient la dérivée en appliquant la
+différentielle à $1$; La [règle de différentiation en chaîne](#chain-rule)
+fournissant
+$$
+d(g \circ f)(x) = dg(f(x)) \cdot df(x),
+$$
+on en déduit
+$$
+\begin{split}
+(g \circ f)'(x) &= (d(g \circ f)(x)) \cdot 1 \\
+&= (dg(f(x)) \cdot df(x) )\cdot 1 \\
+&=dg(f(x)) \cdot (df(x) \cdot 1) \\
+&= dg(f(x)) \cdot (f'(x) 1) \\
+&= (dg(f(x)) \cdot 1) f'(x) \\ 
+&= g'(f(x)) f'(x)
+\end{split}
+$$
+
 
 TODO -- Calcul Méca
 --------------------------------------------------------------------------------
