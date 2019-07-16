@@ -188,7 +188,6 @@ Le *coefficient de corrélation* des variables aléatoires $X$ et $Y$ est le nom
 qui est bien défini lorsque $\V(X)>0$ et $\V(Y)>0$.
 
 
-
 # Vecteurs aléatoires à densité
 
 # Variables aléatoires indépendantes
