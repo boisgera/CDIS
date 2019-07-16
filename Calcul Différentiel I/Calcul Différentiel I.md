@@ -1290,6 +1290,19 @@ $[Df(x)]_{ij} = [\partial_j f(x)]_i.$
 Les fonctions vectorielles se dérivant composante par composante, 
 on en déduit que $[Df(x)]_{ij} = [\partial_j f_i(x)]$. 
 
+### Matrice jacobienne et dérivées partielles {.remark}
+On remarquera qu'avec le résultat ci-dessus, il est techniquement possible de 
+définir la matrice jacobienne $Df(x)$ de $f$ en $x$ en supposant uniquement
+que les dérivées partielles de $f$ en $x$ existent, ce qui peut arriver
+alors que $f$ n'est pas différentiable en $x$. Mais cette extension est à
+prendre avec précaution. En effet, si l'on accepte cette extension, on ne
+peut plus transposer aux matrices jacobiennes tous les résultats valides pour
+les différentielles. Par exemple, si $Df(g(x)$ et $Dg(x)$ existent
+(au sens où toutes les dérivées partielles concernées existent), on peut
+former le produit matriciel $Df(g(x)) Dg(x)$, mais sans aucune garantie que 
+$D(f \circ g)(x)$ existe et/ou soit égal à ce produit, car la règle de 
+différentiation en chaîne requière l'existence des différentielles.
+
 ### Gradient et dérivées partielles
 Soit $f: U \subset \R^n \to \R$ où $U$ est un ouvert et
 soit $x$ un point de $U$. 
@@ -1310,11 +1323,15 @@ $$
 ce qui établit le résultat.
 
 
-### TODO {.meta}
+### Fonction continûment différentiable {.definition}
+Une fonction $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert
+est *continûment différentiable* si toutes ses dérivées
+partielles existent et sont continues.
 
-Fcts $C^1$ et réciproque partielle... autre section ? ICI ? Oui.
-Ne définir $C^1$ qu'à partir des dérivées partielle (et la 
-matrice jacobienne, ce qui est équivalent)
+### Continument différentiable implique différentiable {.proposition}
+Une fonction continûment différentiable est différentiable.
+
+### TODO -- Démonstration {.proof}
 
 
 Inégalité des accroissement finis
@@ -2053,6 +2070,65 @@ $$
 Pour d'autres intégrales, comme l'intégrale de Riemann ou l'intégrale
 de Lebesgue, il sera nécessaire de faire des hypothèses supplémentaires
 sur la fonction $f$ pour que ce résultat soit valable.
+
+### {.ante}
+L'intégrale de Newton est un outil assez primitif[^smjm] et difficile 
+à exploiter ; elle vérifie tout de même quelques propriétés bien utiles.
+
+[^smjm]: sans mauvais jeu de mots ...
+
+### Linéarité {.proposition}
+Soit $f:[a, b] \to \mathbb{R}$, $g:[a, b] \to \mathbb{R}$, et 
+$\lambda$, $\mu$ deux constantes réelles. Si $f$ et $g$ sont intégrables
+au sens de Newton, $\lambda f + \mu g$ également et
+$$
+\int_a^b \lambda f(x) + \mu g(x) \, dx
+=
+\lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
+$$
+
+### Démonstration {.proof}
+Par hypothèse, $f$ a une primitive $F$, $g$ a une primitive $G$,
+$$
+\int_a^b f(x) \, dx = F(b) - F(a)
+\; \mbox{ et } \; 
+\int_a^b g(x) \, dx = G(b) - G(a).
+$$
+La fonction $\lambda F + \mu G$ est une primitive de $\lambda f + \mu g$
+et donc
+$$
+\begin{split}
+\int_a^b \lambda f(x) + \mu g(x) \, dx
+&=
+(\lambda F(b) + \mu G(b)) - (\lambda F(a) + \mu G(a))\\
+&=
+\lambda (F(b) - F(a)) + \mu (G(b) - G(a)) \\
+&=
+\lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
+\end{split}
+$$
+
+### Intégration par parties {.theorem}
+Soit $f:[a, b] \to \mathbb{R}$ et $g:[a, b] \to \mathbb{R}$ deux fonctions
+dérivables. Si la fonction $f g'$ est intégrable au sens de Newton, 
+la fonction $f' g$ également et
+$$
+\int_a^b f'(x) g(x) \, dx = (f(b) g(b) - f(a) g(a)) -\int_a^b f(x) g'(x) \, dx.
+$$
+
+### Démonstration {.proof}
+Comme $(fg)' = f'g + fg'$, on a $f'g = (fg)' - fg'$. Or, $(fg)'$ est intégrable
+au sens de Newton (sa primitive est $fg$), $fg'$ est intégrable au sens de 
+Newton par hypothèse, donc $f'g$ est intégrable comme combinaison linéaire
+de fonctions intégrables. De plus, 
+$$
+\begin{split}
+\int_a^b f'(x) g(x) \,dx 
+&= 
+\int_a^b (fg)'(x) \, dx - \int_a^b f(x) g'(x) \, dx \\
+&= (f(b) g(b) - f(a) g(a)) - \int_a^b f(x) g'(x) \, dx.
+\end{split}
+$$
 
 Exercices
 ================================================================================
