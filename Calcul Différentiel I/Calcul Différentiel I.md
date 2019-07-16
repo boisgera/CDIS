@@ -1310,36 +1310,6 @@ $$
 ce qui établit le résultat.
 
 
-
-<!--
-### {.ante .remark}
-La dérivée partielle n'est qu'un cas particulier du concept de dérivée
-directionnelle, limitée aux directions de la base canonique de $\mathbb{R}^n$.
-
-### Dérivée directionnelle {.definition}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
-soit $x$ un point de $U$. On appelle *dérivée directionnelle* de $f$ en 
-$x$ dans la direction $h \in \mathbb{R}^n$ la valeur
-$$
-f'(x, h) = (t \mapsto f(x + th))'(0) 
-= \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
-$$
-quand elle existe.
-
-### Dérivée partielle et directionnelle  {.theorem}
-La fonction $f$ admet une dérivée directionnelle en $x$ dans la direction
-$e_i$ si et seulement si sa $i$-ème dérivée partielle existe; on a 
-alors
-$$
-f'(x, h) = \partial_i f(x).
-$$
-
-### Démonstration {.proof}
-
-Evident.
-
--->
-
 ### TODO {.meta}
 
 Fcts $C^1$ et réciproque partielle... autre section ? ICI ? Oui.
