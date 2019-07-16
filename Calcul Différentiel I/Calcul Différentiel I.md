@@ -656,7 +656,29 @@ $$
 \Delta f(x, h) = df(x) \cdot h + o(\|h\|).
 $$
 
-### TODO -- Gradient
+### Gradient {.definition}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+différentiable en $x \in U$. Le *gradient de $f$ en $x$* noté $\nabla f(x)$
+est l'unique vecteur de $\R^n$ tel que pour tout $h \in \R^n$,
+$$
+df(x) \cdot h = \left<\nabla f(x), h \right>.
+$$
+
+### Démonstration (existence et unicité) {.proof}
+La différentielle de $f$ en $x$ est une forme linéaire sur $\mathbb{R}^n$,
+c'est-à-dire une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}$.
+Or pour toute application $A$ de ce type, si un vecteur $a \in \R^n$
+est tel que $A \cdot h = \left<a, h\right>$ pour tout $h \in \R^n$, 
+alors sélectionner successivement $h = e_i$ pour $i=1, \dots, n$
+fournit nécessairement $a = (A(e_1), \dots, A(e_n))$; il existe donc au plus
+un vecteur $a$ satisfaisant ces égalités. Réciproquement, pour ce vecteur
+$a$, on a bien
+$$
+A \cdot h = A \cdot (h_1 e_1 + \dots + h_n e_n) = \sum_i h_i A(e_i) = \sum_i a_i h_i
+= \left<a, h\right>.
+$$
+Dans notre contexte où $A = df(x)$, le gradient est donc défini de façon unique
+par $\nabla f(x) = (df(x)\cdot e_1, \dots, df(x)\cdot e_n)$.
 
 ### TODO -- Points critiques
 Se contenter d'introduire
