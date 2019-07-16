@@ -1290,7 +1290,27 @@ $[Df(x)]_{ij} = [\partial_j f(x)]_i.$
 Les fonctions vectorielles se dérivant composante par composante, 
 on en déduit que $[Df(x)]_{ij} = [\partial_j f_i(x)]$. 
 
-### TODO -- Gradient
+### Gradient et dérivées partielles
+Soit $f: U \subset \R^n \to \R$ où $U$ est un ouvert et
+soit $x$ un point de $U$. 
+Si $f$ est différentiable en $x$, on a 
+$$
+\nabla f(x) = (\partial_1 f(x), \dots, \partial_n f(x)).
+$$
+
+### Démonstration {.proof}
+Pour tout $h \in \R^n$, on a
+$$
+\left<\nabla f(x), h\right> 
+= df(x) \cdot h
+= \sum_i \partial_i f \cdot h_i 
+= 
+\left<(\partial_1 f(x), \dots, \partial_n f(x)), h \right>, 
+$$
+ce qui établit le résultat.
+
+
+
 
 ### {.ante .remark}
 La dérivée partielle n'est qu'un cas particulier du concept de dérivée
