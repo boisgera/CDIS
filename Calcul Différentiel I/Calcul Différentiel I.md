@@ -900,7 +900,7 @@ de fonction continûment différentiable et de différentielle d'ordre supérieu
 Sous les hypothèses ad hoc, la différentielle de $f$ et $g$ en $x$ 
 est la composée des différentielles de $f$ en $x$ et de $g$ en $y=f(x)$.
 
-### Règle de différentiation en chaîne
+### Règle de différentiation en chaîne {#chain-rule}
 
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
@@ -1048,8 +1048,8 @@ en $x$ car ses composantes sont différentiables; sa différentielle
 -- calculée composante par composante -- 
 est l'application $h \mapsto (0, df(x) \cdot h)$.d
 L'application $\lambda f$ étant le produit de $\lambda$ et $f$,
-par la règle de différentiation en chaîne, elle est différentiable
-en $x$ et 
+par [la règle de différentiation en chaîne](#chain-rule), 
+elle est différentiable en $x$ et 
 $$
 d (\lambda f)(x) = \lambda df(x) + f(x) \times (h \to 0) = \lambda df(x).
 $$
@@ -2074,8 +2074,8 @@ Dérivation en chaîne
 --------------------------------------------------------------------------------
 
 Montrer que la règle de dérivation en chaîne ci-dessous, 
-concernant les fonctions d'une variable, se déduit de la 
-[règle générale de différentiation en chaîne][Règle de différentiation en chaîne].
+concernant les fonctions d'une variable, se déduit de
+[la règle générale de différentiation en chaîne](#chain-rule).
 
 Soit $f: U \subset \mathbb{R} \to \mathbb{R}$ et 
 $g: V \subset \mathbb{R} \to \mathbb{R}$ deux fonctions définies
@@ -2090,13 +2090,13 @@ $$
 
 Les fonction $f$ et $g$ sont dérivables donc différentiables 
 (cf. [Différentielle et Dérivée]).
-Par application de la [règle de différentiation en chaîne][Règle de dérivation en chaîne],
+Par application de la [règle de différentiation en chaîne](#chain-rule),
 leur composée $g \circ f$ est donc différentiable.
 C'est une fonction d'une variable, elle est donc dérivable, 
 à nouveau en invoquant 
 [le lien entre différentielle et dérivée][Différentielle et Dérivée].
 Pour ces trois fonctions, on obtient la dérivée en appliquant la
-différentielle à $1$; La [règle de différentiation en chaîne][Règle de différentiation en chaîne]
+différentielle à $1$; La [règle de différentiation en chaîne](#chain-rule)
 fournissant
 $$
 d(g \circ f)(x) = dg(f(x)) \cdot df(x),
