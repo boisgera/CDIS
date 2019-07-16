@@ -644,6 +644,10 @@ $$
 La fonction $f$ est *différentiable*
 si elle est différentiable en tout point de $U$. 
 
+### Note
+On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
+définition de la fonction n'est pas évident dans le contexte.
+
 ### Remarque 
 Si l'on considère à nouveau $\Delta f(x, h)$, 
 la variation de $f$ en $x$, associée à la variation $h$ de l'argument
@@ -680,14 +684,37 @@ $$
 Dans notre contexte où $A = df(x)$, le gradient est donc défini de façon unique
 par $\nabla f(x) = (df(x)\cdot e_1, \dots, df(x)\cdot e_n)$.
 
-### TODO -- Points critiques
-Se contenter d'introduire
-la terminologie et de signifier (en remarque) que c'est une condition 
-nécessaire d'extrémalité (le prouver ?).
+### Point critique
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+une fonction différentiable. Le point $x$ est un *point critique
+de $f$$ si $df(x) = 0$.
 
-### Note
-On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
-définition de la fonction n'est pas évident dans le contexte.
+### Point critique et extrema
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+une fonction différentiable. Si $f$ admet un minimum ou un maximum
+local en $x \in U$, alors $x$ est un point critique de $f$.
+
+### Démonstration {.proof}
+Supposons que $f$ admette un minimum local en $x$ (le cas du maximum peut
+s'en déduire en considérant la fonction $-f$). Soit $r > 0$ tel que 
+pour tout $y \in \R^n$ satisfaisant $\|y - x\| \leq r$ on ait $y \in U$ 
+et $f(x) \leq f(y)$. Soit $h \in \mathbb{R}^n$ et $t$ un réel non nul
+suffisamment petit pour que $\left\|th \right\| \leq r$. Comme $f$
+est différentiable en $x$, il existe une fonction $\varepsilon$ qui soit
+un petit o de $1$ telle que
+$$
+f(x+th) - f(x) = df(x) \cdot (th) + \varepsilon(th) \|th\|.
+$$
+Soit par linéarité de la différentielle,
+$$
+df(x) \cdot h = \frac{f(x+th) - f(x)}{t} - \varepsilon(th) \frac{|t|}{t} \|h\|. 
+$$
+En faisant tendre $t$ vers $0$ dans le membre de droite de cette équation
+(la limite existe puisque le membre de droite est indépendant de $t$),
+on obtient un nombre positif ou nul. 
+Le même raisonnement pouvant être appliqué pour calculer 
+$df(x) \cdot (-h) = -df(x) \cdot h$, on en déduit
+que $df(x) \cdot h = 0$.
 
 ### Différentiation composante par composante {#dcpc}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert.
