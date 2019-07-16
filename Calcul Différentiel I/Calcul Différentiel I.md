@@ -687,7 +687,7 @@ par $\nabla f(x) = (df(x)\cdot e_1, \dots, df(x)\cdot e_n)$.
 ### Point critique
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
 une fonction différentiable. Le point $x$ est un *point critique
-de $f$$ si $df(x) = 0$.
+de $f$* si $df(x) = 0$.
 
 ### Point critique et extrema
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
