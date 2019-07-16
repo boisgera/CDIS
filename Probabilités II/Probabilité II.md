@@ -8,7 +8,6 @@
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\B}{\mathcal{B}}
-\newcommand{\E}{\mathcal{E}}
 \renewcommand{\L}{\mathcal{L}}
 \newcommand{\Esp}{\mathbb{E}}
 \newcommand{\V}{\mathbb{V}}
