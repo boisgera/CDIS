@@ -2244,7 +2244,7 @@ C'est une fonction d'une variable, elle est donc dérivable,
 à nouveau en invoquant 
 [le lien entre différentielle et dérivée][Différentielle et Dérivée].
 Pour ces trois fonctions, on obtient la dérivée en appliquant la
-différentielle à $1$; La [règle de différentiation en chaîne](#chain-rule)
+différentielle à $1$ ; la [règle de différentiation en chaîne](#chain-rule)
 fournissant
 $$
 d(g \circ f)(x) = dg(f(x)) \cdot df(x),
