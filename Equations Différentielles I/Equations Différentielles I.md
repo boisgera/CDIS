@@ -87,9 +87,15 @@ Etude du problème de Cauchy
 Existence de solutions locales
 --------------------------------
 
+Le théorème suivant assure l'existence locale de solutions au [problème de Cauchy](#def_cauchy) sous une simple hypothèse de continuité de $f$.
+
 ### Théorème de Peano {.theorem  #theo_peano}
-Soit $f$ continue sur $U$. Alors le [problème de Cauchy](#def_cauchy) existence local solution
-preuve pour les curieux en appendice
+Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$, et $(t_0,x_0)\in U$. Alors il existe $\epsilon >0$ et $x\in C^1([t_0-\epsilon,t_0+\epsilon],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
+
+*Démonstration*: La démonstration de ce résultat est hors-programme de ce cours car elle fait appel au théorème d'Ascoli qui sera abordé dans les notions avancées de Calcul Différentiel III qui ne sont pas exigibles pour comprendre ce cours. Preuve en appendice? $\hfill\blacksquare$
+
+### Solution maximale {.definition #def_sol_max}
+
 
 ### Exemple
 $\dot{x}=-\sqrt{|x|}$ existence mais pas unicité
