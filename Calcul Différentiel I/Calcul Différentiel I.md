@@ -1331,7 +1331,7 @@ partielles existent et sont continues.
 ### Matrice jacobienne et fonction continûment différentiable {.remark}
 S'il l'on adopte la définition étendue de jacobien de la remarque
 "[Matrice jacobienne et dérivées partielles]", la définition de 
-continûment différentiable peut être reformulé comme
+continûment différentiable peut être reformulée comme
 "la matrice jacobienne existe et est continue".
 
 ### Continument différentiable implique différentiable {.proposition}
