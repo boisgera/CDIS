@@ -1717,7 +1717,8 @@ $$
     $$    
     A \to B \to C \to D := A \to (B \to (C \to D)).
     $$
-    La convention associée: lors de l'application d'une fonction linéaire,
+    La convention associée -- utilisée dans la définition de la différentielle
+    d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
     le symbole "$\cdot$" associe à gauche, par exemple:
     $$
     L \cdot h \cdot k :=  (L \cdot h) \cdot k,
