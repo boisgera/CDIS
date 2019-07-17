@@ -1337,8 +1337,10 @@ continûment différentiable peut être reformulée comme
 ### Continument différentiable implique différentiable {.proposition}
 Une fonction continûment différentiable est différentiable.
 
-### TODO -- Démonstration {.proof}
-Soit $f: U \subset \R^n \to \R^m$ une fonction continûment différentiable.
+### Démonstration {.proof}
+Soit $f: U \subset \R^n \to \R$ une fonction continûment différentiable
+(la preuve dans d'une fonction à valeurs vectorielles se déduit du résultat
+dans le cas scalaire).
 Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
 $r$ soit dans $U$; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
 La variation de $f$ entre $a$ et $a+h$ satisfait
@@ -1371,7 +1373,7 @@ quand $|b-a| \leq r$, alors l'inégalité triangulaire et
 [la majoration des intégrales](#ML-memma) ci-dessus
 conduit à
 $$
-\left\|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right\|
+\left|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right|
 \leq
 \sum_{i=1}^n |h_i| {\varepsilon}/{n}
 \leq \varepsilon \|h\|.
