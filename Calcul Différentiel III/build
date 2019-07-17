@@ -77,6 +77,9 @@ def transform(doc):
     transform_image_format(doc)
     solve_toc_nesting(doc)
     anonymify(doc)
+    #add_font_awesome(doc)
+    #add_marginnote(doc)
+    #flag_definitions(doc)
     return doc
 
 def anonymify(doc):
@@ -226,6 +229,31 @@ def solve_toc_nesting(doc): # fuck you LaTeX!
     metamap["header-includes"] = MetaList(
         [MetaBlocks([RawBlock(Format("tex"), "\\usepackage{bookmark}")])]
     )
+
+def add_font_awesome(doc):
+    meta, blocks = doc[:]
+    metamap = meta[0]
+    metalist = metamap["header-includes"]
+    metablocks = metalist[0][0]
+    metablocks[0].append(RawBlock(Format("tex"), "\\usepackage{fontawesome}"))
+
+def add_marginnote(doc):
+    meta, blocks = doc[:]
+    metamap = meta[0]
+    metalist = metamap["header-includes"]
+    metablocks = metalist[0][0]
+    metablocks[0].append(RawBlock(Format("tex"), "\\usepackage{marginnote}"))
+
+def flag_definitions(doc):
+    for elt in pandoc.iter(doc):
+        if isinstance(elt, Header):
+            header = elt
+            level, attr, inlines = header[:]
+            id_, classes, kv_pairs = attr
+            if "definition" in classes:
+                inlines = [RawInline(Format("tex"), r"\faFlagO\;\;")] + inlines # Space() doesn't seem to work :(
+                header[:] = level, attr, inlines
+
 
 # ------------------------------------------------------------------------------
 
