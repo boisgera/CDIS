@@ -1527,7 +1527,7 @@ $$
 $$
 Alors 
 $$
-\|f(a+h) - f(a)\| \leq M \|h\|
+\|f(a+h) - f(a)\| \leq M \|h\|.
 $$
 
 ### Preuve {.proof}
