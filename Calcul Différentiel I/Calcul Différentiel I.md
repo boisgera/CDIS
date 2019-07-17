@@ -1328,6 +1328,12 @@ Une fonction $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert
 est *continûment différentiable* si toutes ses dérivées
 partielles existent et sont continues.
 
+### Matrice jacobienne et fonction continûment différentiable {.remark}
+S'il l'on adopte la définition étendue de jacobien de la remarque
+"[Matrice jacobienne et dérivées partielles]", la définition de 
+continûment différentiable peut être reformulé comme
+"la matrice jacobienne existe et est continue".
+
 ### Continument différentiable implique différentiable {.proposition}
 Une fonction continûment différentiable est différentiable.
 
