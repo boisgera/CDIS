@@ -1338,6 +1338,46 @@ continûment différentiable peut être reformulée comme
 Une fonction continûment différentiable est différentiable.
 
 ### TODO -- Démonstration {.proof}
+Soit $f: U \subset \R^n \to \R^m$ une fonction continûment différentiable.
+Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
+$r$ soit dans $U$; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
+La variation de $f$ entre $a$ et $a+h$ satisfait
+$$
+f(a+h) - f(a) = \sum_{i=1}^n f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)). 
+$$
+Or, par [le théorème fondamental du calcul](#TFC), 
+comme pour tout $i$ la fonction
+$$t \in [0,1] \mapsto f(a+(h_1, \dots, th_i, 0, \dots))$$
+est dérivable de dérivée
+$\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) h_i$, on a
+\begin{multline*}
+f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)) = \\
+h_i \int_0^1 \partial_i f(a+(h_1, \dots, th_i, 0, \dots)) \, dt.
+\end{multline*}
+Par ailleurs, comme
+$$
+\partial_i f(a) h_i
+=
+h_i \int_0^1 \partial_i f(a) \, dt,
+$$
+on a 
+\begin{multline*}
+f(a+h) - f(a) - \sum_i \partial_i f(a) h_i = \\
+\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) - \partial_i f(a) \right] \, dt. 
+\end{multline*}
+Par continuité des dérivées partielles en $a$, si $r$ est choisi de telle sorte
+que $|\partial_i f(b) - \partial_i f(a)| \leq \varepsilon / n$ 
+quand $|b-a| \leq r$, alors l'inégalité triangulaire et 
+[la majoration des intégrales](#ML-memma) ci-dessus
+conduit à
+$$
+\left\|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right\|
+\leq
+\sum_{i=1}^n |h_i| {\varepsilon}/{n}
+\leq \varepsilon \|h\|.
+$$
+La fonction $f$ est donc différentiable en $a$, de différentielle
+$h \mapsto \sum_i \partial_i f(a) h_i$.
 
 
 Variation des fonctions
@@ -1359,7 +1399,18 @@ si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
 de relier $f(a+h)$ à $f(a)$ en intégrant les variations de $f$ le long
 de $[a, a+h]$. La seule notion d'intégrale dont nous avons besoin,
 minimaliste et construite exclusivement au service du calcul différentiel,
-est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton).
+est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton);
+dans de ce chapitre, c'est toujours cette intégrale dont nous ferons
+usage.
+
+### Théorème fondamental du calcul {.theorem #TFC}
+Si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable et
+$$
+f(b) - f(a)  = \int_a^b f'(x) \, dx.
+$$
+
+### Démonstration {.proof}
+Cf. [l'annexe consacrée à l'intégrale de Newton](#intégrale-Newton).
 
 ### Variation d'une fonction {.theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
@@ -1373,7 +1424,6 @@ f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
 ### Démonstration
-
 Considérons la fonction $\phi: [0,1] \to \mathbb{R}^n$ définie par
 $$
 \phi(t) = f(a + th)
@@ -1395,9 +1445,7 @@ f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt
                                   = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-
 ### Inégalité des accroissements finis (fonction d'une variable réelle) {.theorem}
-
 Soit $f:[a, a+h] \to \mathbb{R}^m$ 
 où $a \in \mathbb{R}$, $h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
 Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
@@ -2062,20 +2110,17 @@ $$
 La primitive $F$ de $f$ quand elle existe étant déterminée à une constante près,
 cette définition est non-ambiguë.
 
-Une autre façon de voir les choses: l'intégrale de Newton est définie de telle
-sorte que le théorème fondamental du calcul soit trivialement satisfait, 
-en toute généralité. A savoir:
-
-### Théorème fondamental du calcul {.theorem #TFC}
-Si $F: [a, b] \to \R$ est dérivable, alors $f = F'$ est intégrable et
-$$
-\int_a^b f(x) \, dx = F(b) - F(a).
-$$
-
 ### {.remark}
+Une autre façon de voir les choses: l'intégrale de Newton est définie de telle
+sorte que [le théorème fondamental du calcul](#TFC) soit trivialement satisfait, 
+en toute généralité.
 Pour d'autres intégrales, comme l'intégrale de Riemann ou l'intégrale
 de Lebesgue, il sera nécessaire de faire des hypothèses supplémentaires
-sur la fonction $f$ pour que ce résultat soit valable.
+sur la fonction $f'$ (par exemple, $f'$ continue) pour que ce résultat 
+soit valable. L'intégrale de Henstock-Kurzweil, qui sera exposée dans
+le cours de calcul intégral, vérifie bien le théorème fondamental du
+calcul en toute généralité: elle étend donc l'intégrale de Newton
+(et celle de Riemann, ainsi que celle de Lebesgue).
 
 ### {.ante}
 L'intégrale de Newton est un outil assez primitif[^smjm] et difficile 
@@ -2113,6 +2158,28 @@ $$
 \lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
 \end{split}
 $$
+
+### Majoration {.theorem} {#ML-lemma}
+Si $f:[a, b] \to \mathbb{R}$ est une fonction intégrable au sens de Newton 
+telle que $|f| \leq M,$
+$$
+\left| \int_a^b f(x) \, dx \right| \leq M (b-a).
+$$
+
+### Démonstration {.proof}
+
+La fonction $g: x \in [a, b] \mapsto f(x) - M$ est intégrable au sens de Newton
+et négative. Si $G$ est une primitive de $g$, elle est donc décroissante.
+Par conséquent,
+$$
+\int_a^b (f(x) - M) \, dx = \int_a^b f(x) \, dx - M(b-a) = G(b) - G(0) \leq 0.
+$$
+On peut de même montrer en intégrant la fonction $x \in [a, b] \to f(x) + M$ 
+que 
+$$
+\int_a^b f(x) \, dx + M(b-a) \geq 0,
+$$
+ce qui fournit le résultat cherché.
 
 ### Intégration par parties {.theorem}
 Soit $f:[a, b] \to \mathbb{R}$ et $g:[a, b] \to \mathbb{R}$ deux fonctions
