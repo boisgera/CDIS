@@ -1447,7 +1447,7 @@ f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt
                                   = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-### Inégalité des accroissements finis (fonction d'une variable réelle) {.theorem}
+### Inégalité des accroissements finis (fonction d'une variable réelle) {.theorem #TAFS}
 Soit $f:[a, a+h] \to \mathbb{R}^m$ 
 où $a \in \mathbb{R}$, $h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
 Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
@@ -1461,7 +1461,6 @@ $$
 $$
 
 ### Démonstration {.proof}
-
 Par construction, la fonction $f'$ est intégrable au sens de Newton et
 $$
 f(a+h) - f(a) = \int_a^b f'(t) \, dt.
@@ -1517,7 +1516,7 @@ et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
 le résultat cherché: $\|f(a+h) - f(a)\| \leq M h.$
 
 
-### Inégalité des accroissements finis {.theorem}
+### Inégalité des accroissements finis {.theorem #TAF}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
 supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
@@ -2102,9 +2101,9 @@ Annexe -- Intégrale de Newton {#intégrale-Newton}
 ================================================================================
 
 ### Intégrale de Newton {.definition}
-Soit $f:[a, b] \to \mathbb{R}$. On dit que $f$ 
+Soit $f:[a, b] \to \mathbb{R}^m$. On dit que $f$ 
 est *intégrable au sens de Newton* si elle admet une primitive 
-$F: [a, b] \to \mathbb{R}$. L'intégrale de $f$ entre $a$ et $b$ est
+$F: [a, b] \to \mathbb{R}^m$. L'intégrale de $f$ entre $a$ et $b$ est
 alors définie par
 $$
 \int_a^b f(x) \, dx = F(b) - F(a).
@@ -2131,7 +2130,7 @@ L'intégrale de Newton est un outil assez primitif[^smjm] et difficile
 [^smjm]: sans mauvais jeu de mots ...
 
 ### Linéarité {.proposition}
-Soit $f:[a, b] \to \mathbb{R}$, $g:[a, b] \to \mathbb{R}$, et 
+Soit $f:[a, b] \to \mathbb{R}^m$, $g:[a, b] \to \mathbb{R}^m$, et 
 $\lambda$, $\mu$ deux constantes réelles. Si $f$ et $g$ sont intégrables
 au sens de Newton, $\lambda f + \mu g$ également et
 $$
@@ -2161,7 +2160,7 @@ $$
 \end{split}
 $$
 
-### Majoration {.theorem} {#ML-lemma}
+### Majoration {.theorem #ML-lemma}
 Si $f:[a, b] \to \mathbb{R}$ est une fonction intégrable au sens de Newton 
 telle que $|f| \leq M,$
 $$
@@ -2169,7 +2168,6 @@ $$
 $$
 
 ### Démonstration {.proof}
-
 La fonction $g: x \in [a, b] \mapsto f(x) - M$ est intégrable au sens de Newton
 et négative. Si $G$ est une primitive de $g$, elle est donc décroissante.
 Par conséquent,
@@ -2345,6 +2343,18 @@ Une fonction dérivable directionnellement au sens de Hadamard en $x$ est
 est une fonction linéaire de $h$.
 Montrer que $f$ est différentiable en $x$ au sens de Hadamard 
 si et seulement si elle est différentiable en $x$ au sens de Fréchet.
+
+Inégalité de la valeur moyenne
+--------------------------------------------------------------------------------
+Soit $f:[a, b] \subset \R \to \R^m$ une fonction intégrable au sens de Newton;
+on appelle *valeur moyenne de $f$* la grandeur
+$$
+\left<f\right> := \frac{1}{b-a} \int_a^b f(x) \, dx.
+$$
+Quel est le lien entre $\left<f\right>$ et la grandeur 
+$\sup_{x \in [a, b]} \|f(x)\|$ ?
+
+$\to$ [Solution](#sol-ivm)
 
 
 TODO -- Asymptotique
@@ -2712,6 +2722,26 @@ $$
 ce qui contredit l'inégalité ci-dessus et prouve la contradiction.
 Par conséquent, $f$ est bien différentiable au sens de Fréchet.
 
+Inégalité de la valeur moyenne {#sol-ivm}
+--------------------------------------------------------------------------------
+
+Soit $F:[a, b] \to \R^m$ une primitive de $f$. 
+Par définition de l'intégrale de Newton,
+$$
+\left<f\right> = \frac{1}{b-a} \int_a^b f(x) \, dx
+= \frac{F(b) - F(a)}{b-a}.
+$$
+Or si $\|F'\| = \|f\|$ est borné sur $[a, b]$, par 
+[le théorème des accroissements finis](#TAFS),
+$$
+\|F(b) - F(a)\| \leq \sup_{x \in [a, b]} \|f(x)\| \times  (b-a),
+$$
+et donc
+$$
+\left\|\left<f\right>\right\| \leq  \sup_{x \in [a, b]} \|f(x)\|.
+$$
+Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
+c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
 
 TODO -- Asymptotique
 --------------------------------------------------------------------------------
