@@ -1340,7 +1340,7 @@ Une fonction continûment différentiable est différentiable.
 ### TODO -- Démonstration {.proof}
 
 
-Inégalité des accroissement finis
+Variation des fonctions
 ================================================================================
 
 ### Différentielle et Intégrale
