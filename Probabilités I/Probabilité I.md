@@ -13,7 +13,19 @@
 
 # Introduction 
 
-Le but de ce cours est de consolider et compléter les connaissances en théorie des probabilités acquises en CPGE mais surtout de permettre d’acquérir le raisonnement probabiliste. En effet, les probabilités peuvent être vues comme un outil de modélisation de phénomènes qui ont la caractéristique d'être aléatoires. Elles sont aussi un préalable indispensable pour aborder l'analyse statistique des données et les méthodes d'apprentissage automatique.
+Le but de ce cours est de consolider et compléter les connaissances en théorie des probabilités acquises en CPGE mais surtout de permettre d’acquérir le raisonnement probabiliste. En effet, les probabilités peuvent être vues comme un outil de modélisation de phénomènes qui ont la caractéristique d'être aléatoires. L'aléatoire peut intervenir de différentes manières dans ces phénomènes :
+
+ 
+ * Dans les cas d'école que sont les jeux de pile ou face ou de lancés de dés, la différence entre les résultats, si l’on réitère l’expérience, peut être liée à l’impulsion initiale communiquée au dé et à d'autres facteurs environnementaux comme le vent, la rugosité de la table, etc. Le hasard intervient du fait de la méconnaissance des conditions initiales, car la pièce ou le dé ont des trajectoires parfaitement définies par la mécanique classique.
+ * Dans beaucoup de cas de figure, on fait intervenir l'aléatoire dans la modélisation du fait d'une connaissance incomplète des phénomènes... 
+ * Dans certains domaines, tels la physique quantique, l'aléatoire fait intrinsèquement partie de la théorie.
+
+
+
+
+Elles sont aussi un préalable indispensable pour aborder l'analyse statistique des données et les méthodes d'apprentissage automatique.
+
+En classe préparatoire, les probabilités ont été vues dans le cadre de phénomènes aléatoires qui admettent un nombre au plus dénombrable de résultats possibles. Ce cadre restreint est supposé connu. On pourra se reporter aux deux premiers chapitres de @polyponts pour une éventuelle mise à niveau.
 
 ## Historique 
 
@@ -43,7 +55,7 @@ Ouverture vers les stats/ML
 
 # Probabilités des évènements 
 
-## Phénomènes aléatoires
+## Phénomènes aléatoires et évènements
 
 L’objet de la théorie des probabilités est l’analyse mathématique de phénomènes dans lesquels le hasard intervient. Les phénomènes aléatoires résultent d'expériences dont le résultat ne peut être prédit à l'avance et qui peut varier si on répète l'expérience dans des conditions identiques. 
 
@@ -111,6 +123,7 @@ Une *tribu* $\A$ est une collection de sous-ensembles de $\Omega$ tels que
  1. $\Omega \in \A$.
  2. $A \in \A \Rightarrow A^c \in \A$.
  3. $\forall n \in \N, A_n \in \A \Rightarrow \bigcup_n A_n \in \A$.
+
 Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
 
 ### Exemples {.example}
@@ -119,9 +132,44 @@ Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
  3. Si $\Omega = \R$, on peut le munir de la tribu formée des ensembles mesurables de $\R$, dite *tribu de Lebesgue*.
  4. On verra par la suite qu'il est aisé de définir une tribu sur tout espace topologique.
 
-**question : notion de tribu engendrée -> Boréliens???**
 
-Une fois l'espace probabilisable $(\Omega, \A)$ définit, on peut définir la probabilité qui va nous permettre de mesurer la probabilité d'occurence d'un évènement de $\A$.
+## Notion de densité de probabilité
+
+La nouveauté majeure de ce cours par rapport au programme des classes préparatoires est le cas où l'espace fondamental n'est plus fini ni dénombrable. On va voir ici que les outils développés dans le cours de calcul intégral vont nous permettre de définir une probabilité sur $\R$ muni de la tribu des ensembles mesurables de $\R$ via la notion de *densité de probabilité*.
+
+<!-- ### Densité de Probabilité {.definition} -->
+Soit $\Omega = \R$ et $f : \Omega \to \R^+$ une fonction absolument intégrable telle que 
+$$ \int_\Omega f(x) dx =1 $$
+
+Soit $\A$ la tribu des ensembles mesurables sur $\Omega$ et soit $A \in \A$, on peut définir **voir si on met ici la preuve que $\A$ est une tribu**
+
+$$ \P(A) = \int_\Omega 1_{A}f(x)dx = \int_A f(x)dx $$
+
+On vérifie aisément que $\P$ vérifie les 3 propriétés suivantes :
+
+ 1. $\forall A \in \A$, $P(A) \in [0,1]$
+
+ 2. $\P(\Omega) = \int_\Omega f(x) dx = 1$
+
+ 3. Si $A_n$ désigne une suite (dénombrable) d'évènements **disjoints** de $\A$, on a en utilisant le théorème de convergence monotone à la suite croissante de fonctions $1_{\{\bigcup_{n=1}^m A_n\}} = \sum_{n=1}^m 1_{A_n}$ :
+    \begin{align*}
+        \P(\bigcup_n A_n) &= \int_\Omega 1_{\{\bigcup_n A_n\}} f(x) dx\\
+                          &= \lim_{m \to +\infty} \int_\Omega \sum_{n=1}^m 1_{A_n} f(x) dx\\
+                          &= \lim_{m \to +\infty} \sum_{n=1}^m \int_\Omega 1_{A_n} f(x) dx\\
+                          &= \lim_{m \to +\infty} \sum_{n=1}^m \P(A_n) \\
+                          &= \sum_{n=1}^{+\infty} \P(A_n)                        
+    \end{align*}
+
+
+Ces trois propriétés correspondent aux [axiomes de Kolmogorov](#defproba) qui définissent une probabilité sur un espace probabilisable général. La fonction $f$ est appelée *densité de probabilité*. On verra plus loin que l'on ne peut pas caractériser toutes les probabilités sur $\R$ via cette notion. Celle-ci reste néanmoins un exemple fondamental que l'on approfondira dans la suite du cours, notamment dans le cadre de l'étude des variables aléatoires.
+
+### Remarque {.remark}
+
+On pourra faire l'analogie entre la densité de probabilité et la loi de probabilité sur un univers discret, dans le sens où elle va "pondérer" les valeurs réelles, en remarquant cependant que :
+ * $f(x)$ n'est pas nécéssairement inférieur à 1,
+ * $\P(\{x\}) = \int_{\{x\}} f(x)dx$ et plus généralement, $\P(A) = 0$ si $A$ est négligeable.
+
+## Probabilité
 
 ### Probabilité {.definition #defproba}
 Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rightarrow [0,1]$, telle que :
@@ -242,7 +290,7 @@ Le cas général fait l'objet de la théorie de la mesure et sera développé ul
 
 Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le cas où $\Omega = \R$ (**$\R^d$ ?**) et où la tribu $\A$ est la tribu borélienne (**ou de Lebesgue cf CI II**) $\B_\R$ engendrée par les ouverts, ou par les fermés, ou par les intervalles de la forme $]-\infty, a]$ pour $a \in \Q$ (cf CI II). 
 
-### Définition - fonction de répartition {.definition}
+### Définition - fonction de répartition {.definition #deffdr}
 La *fonction de répartition* de la probabilité $\P$ sur $\R$ est la fonction
 \begin{equation}
 F(x) = \P(]-\infty, x]), x \in \R.
@@ -262,7 +310,7 @@ La fonction de répartition $F$ caractérise la probabilité $\P$ sur $\R$, et e
 ### Démonstration {.proof}
  Se reporter à @Jacod pour la caractérisation.
 
- La première assertion est immédiate d'après sa définition. Pour la seconde, on remarque que si $x_n$ décroît vers $x$, alors $]-\infty,x_n]$ décroît vers $]-\infty,x]$ et donc $F(x_n)$ décroît vers $F(x)$ par le théorème de la continuité monotone. La troisième assertion se montre de manière analogue  en remarquant que $]-\infty,x]$ décroît vers $\varnothing$ (resp. croît vers $\R$) lorsque $x$ décroît vers $-\infty$ (resp. croît vers $+\infty$).
+ La première assertion est immédiate d'après la [définition](#deffdr). Pour la seconde, on remarque que si $x_n$ décroît vers $x$, alors $]-\infty,x_n]$ décroît vers $]-\infty,x]$ et donc $F(x_n)$ décroît vers $F(x)$ par le théorème de la continuité monotone. La troisième assertion se montre de manière analogue  en remarquant que $]-\infty,x]$ décroît vers $\varnothing$ (resp. croît vers $\R$) lorsque $x$ décroît vers $-\infty$ (resp. croît vers $+\infty$).
 
 ### Remarque {.remark}
  Comme $F$ est croissante, elle admet une limite à gauche en chaque point notée $F(x-)$. En remarquant que $]-\infty,y[ = \lim\limits_{n \to +\infty}]-\infty,y_n[$ si $y_n$ tend vers $y$ par valeurs décroissantes, on obtient pour $x < y$ : 
@@ -305,6 +353,7 @@ Le théorème ci-dessus explique pourquoi, d’un point de vue strictement math�
     \right.
     \end{equation}
     où $\lfloor \cdot \rfloor$ désigne la partie entière.
+
  3. Les probabilités discrètes
 
     Plus généralement, si $E$ est une partie finie ou dénombrable de $\R$, toute probabilité $Q$ sur $E$ peut être considérée comme une probabilité $\P$ sur $\R$, via la formule $\P(A) = Q(A\cap E)$. Si pour tout $i \in E$, on pose $q_i = Q(\{i\})$, la fonction de répartition $F$ de $\P$ est alors 
