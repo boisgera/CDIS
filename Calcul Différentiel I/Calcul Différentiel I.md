@@ -1672,9 +1672,10 @@ car simplificateur, mais
 ### Différentielle d'ordre 2 {.definition}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
-dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
-*deux fois différentiable en $x$* si pour tout vecteur $h$ de $\mathbb{R}^n$.
-La fonction $x \mapsto df(x) \cdot h$ est différentiable en $x$.
+dans un voisinage d'un point $x$ de $U$. 
+On dira que $f$ est *deux fois différentiable en $x$* 
+si pour tout vecteur $h$ de $\mathbb{R}^n$,
+la fonction $x \mapsto df(x) \cdot h$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
 est définie comme l'application linéaire telle que pour tout $h$ 
 dans $\mathbb{R}^n$,
@@ -2096,6 +2097,9 @@ approximation concrête de $d^2 f(x) \cdot h \cdot k$.
 ### TODO -- Développement limité à l'ordre $n$
 
 ### TODO -- Développement de Taylor avec reste intégral
+
+### TODO -- Dérivées partielles d'ordre supérieur
+
 
 Annexe -- Intégrale de Newton {#intégrale-Newton}
 ================================================================================
