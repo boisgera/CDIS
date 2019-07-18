@@ -2749,6 +2749,7 @@ d (x \mapsto d f(x) \cdot h) \cdot k
 \end{split}
 $$
 
+**TODO: end this**
 
 Robot Manipulateur
 --------------------------------------------------------------------------------
