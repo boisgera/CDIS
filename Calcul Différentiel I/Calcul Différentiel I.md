@@ -2448,11 +2448,38 @@ et calculer son gradient.
 $\to$ [Solution](#sol-vg)
 
 
-
-TODO -- Calcul Méca
+Robot Manipulateur
 --------------------------------------------------------------------------------
 
-Faire les calculs menant à $C(q, \dot{q})\dot{q}$ en mécanique lagrangienne ?
+Les coordonnées cartésiennes $x$ et $y$ de l'effecteur final 
+d'un robot dans le plan, composé de deux corps de longueur
+$\ell_1$ et $\ell_2$ et d'articulation rotoïdes sont données
+par
+$$
+\left|
+\begin{array}{rcl}
+x &=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2) \\
+y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
+\end{array}
+\right.
+$$
+ou $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
+
+### Question 1
+
+Montrer que l'application $f: (\theta_1, \theta_2) \mapsto (x, y)$ 
+est différentiable et déterminer sa matrice jacobienne.
+
+$\to$ [Solution](#sol-rm1)
+
+### TODO -- Question 2
+
+Calcul de $K(q, v)$ (en partant de $K = 1/2m(\dot{x}^2 + \dot{y}^2)$).
+
+### TODO -- Question 3
+
+Eq E.-L. soumis à couples $c_1$ et $c_2$ ? Ou juste grandeurs intermédiaires ?
+
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2685,8 +2712,48 @@ $$
 \nabla f(x) = -f(x) \Sigma^{-1} x.
 $$
 
-TODO -- Calcul Méca
+Robot Manipulateur
 --------------------------------------------------------------------------------
+
+### Question 1 {#sol-rm1}
+
+Des équations
+$$
+\left|
+\begin{array}{rcr}
+x &=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2) \\
+y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
+\end{array}
+\right.
+$$
+on déduit que les dérivées partielles de $x$ et de $y$ par rapport
+à $\theta_1$ et $\theta_2$ existent et vérifient
+$$
+\begin{array}{rcl}
+\partial_1 x(\theta_1, \theta_2)
+&=& -\ell_1 \sin \theta_1 - \ell_2 \sin (\theta_1 + \theta_2), \\
+\partial_2 x(\theta_1, \theta_2)
+&=& - \ell_2 \sin (\theta_1 + \theta_2), \\
+\partial_1 y(\theta_1, \theta_2)
+&=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2), \\
+\partial_2 y(\theta_1, \theta_2)
+&=& \ell_2 \cos (\theta_1 + \theta_2).
+\end{array}
+$$
+Ces grandeurs étant continues, la fonction $f=(x, y)$ est continûment
+différentiable et donc différentiable. Si l'on note $s_1 = \sin \theta_1$,
+$s_{12}= \sin(\theta_1+\theta_2)$, $c_1 = \cos \theta_1$ et
+$c_{12}= \cos(\theta_1+\theta_2)$, on obtient donc
+$$
+Df(\theta_1, \theta_2)
+=
+\left[
+\begin{array}{rr}
+-\ell_1 s_1 -\ell_2 s_{12} & -\ell_2 s_{12} \\
+\ell_1 c_1 + \ell_2 c_{12} & \ell_2 c_{12} 
+\end{array}
+\right]
+$$
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
