@@ -2432,6 +2432,23 @@ $$
 $\to$ [Solution](#sol-dec)
 
 
+Vecteur Gaussien
+--------------------------------------------------------------------------------
+
+La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
+est proportionnelle à la fonction
+$$
+f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1}x \right> \right)
+$$
+où $\Sigma \in \R^{d \times d}$ est une matrice symmétrique définie positive.
+
+Montrer que la fonction $f$ est différentiable sur son domaine de définition
+et calculer son gradient.
+
+$\to$ [Solution](#sol-vg)
+
+
+
 TODO -- Calcul Méca
 --------------------------------------------------------------------------------
 
@@ -2616,6 +2633,57 @@ $$
 \end{split}
 $$
 
+
+Vecteur Gaussien {#sol-vg}
+--------------------------------------------------------------------------------
+
+La fonction 
+$$
+f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1}x \right> \right)
+$$
+apparaît comme la composée des fonctions
+$$
+x \in \R^d \mapsto -\frac{1}{2} \left<x, \Sigma^{-1}x \right>
+\; \mbox{ et } \; \exp:\R \to \R.
+$$ 
+La fonction $\exp$ est dérivable, et donc différentiable 
+sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dx = \exp(y) dy$, c'est-à-dire
+$$
+d\exp(y) \cdot h = \exp(y) \times h.
+$$ 
+Quand à la première fonction, pour tout $h \in \R^d$, on a
+\begin{multline*}
+-\frac{1}{2} \left<x+h, \Sigma^{-1}x+h \right>
+=  \\
+-\frac{1}{2} \left(\left<x, \Sigma^{-1}x \right>
++ <x, \Sigma^{-1} h> + <h, \Sigma^{-1} x> + \left<h, \Sigma^{-1} h \right>
+\right). 
+\end{multline*}
+D'une part, comme $\Sigma$ est symmétrique (et inversible), $\Sigma^{-1}$ également et
+$$
+<x, \Sigma^{-1} h> + <h, \Sigma^{-1} x> = 2 \left<\Sigma^{-1} x, h \right>,
+$$
+d'autre part
+$$
+\left| \left<h, \Sigma^{-1} h \right> \right|
+\leq \|h\| \times \|\Sigma^{-1} h\| \leq \|h\| \times \|\Sigma^{-1}\| \times \|h\| = o(\|h\|).
+$$
+La fonction est donc différentiable sur $\R^n$, avec
+$$
+d \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1}x \right>\right) \right) \cdot h
+= - \left<\Sigma^{-1} x, h \right>.
+$$
+La fonction $f$ est donc différentiable sur $\R^d$ comme composée
+de fonctions différentiables et l'on a
+$$
+d f(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1}x \right>\right) \right)
+\left<\Sigma^{-1} x, h \right>
+= \left<-f(x) \Sigma^{-1} x, h \right>,
+$$
+le gradient de $f$ vaut donc
+$$
+\nabla f(x) = -f(x) \Sigma^{-1} x.
+$$
 
 TODO -- Calcul Méca
 --------------------------------------------------------------------------------
