@@ -1948,7 +1948,14 @@ qui est l'égalité cherchée.
 
 ### TODO -- Dérivées partielles d'ordre 2
 
-### TODO: Hessien, condition suffisante d'optimalité ?
+### Matrice Hessienne {.definition}
+Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
+$x \in U$. On appelle matrice hessienne de $f$ et $x$ et l'on note
+$Hf(x)$ la matrice $\R^{n \times n}$ telle que pour tout couple de
+vecteurs $h$ et $k$ de $\R^n$, on ait
+$$
+d^2f(x) \cdot h \cdot  = \left<Hf(x) h, k \right>.
+$$
 
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
@@ -2442,10 +2449,15 @@ f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1}x \right> \rig
 $$
 où $\Sigma \in \R^{d \times d}$ est une matrice symmétrique définie positive.
 
-Montrer que la fonction $f$ est différentiable sur son domaine de définition
-et calculer son gradient.
+### Question 1
+Montrer que la fonction $f$ est différentiable et calculer son gradient.
 
-$\to$ [Solution](#sol-vg)
+$\to$ [Solution](#sol-vg-1)
+
+### Question 2
+Montrer que la fonction $f$ est deux différentiable sa matrice Hessienne.
+
+$\to$ [Solution](#sol-vg-2)
 
 
 Robot Manipulateur
@@ -2664,6 +2676,8 @@ $$
 Vecteur Gaussien {#sol-vg}
 --------------------------------------------------------------------------------
 
+### Question 1 {#sol-vg-1}
+
 La fonction 
 $$
 f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1}x \right> \right)
@@ -2711,6 +2725,30 @@ le gradient de $f$ vaut donc
 $$
 \nabla f(x) = -f(x) \Sigma^{-1} x.
 $$
+
+### TODO -- Question 2 {#sol-vg-2}
+De l'équation
+$$
+d f(x) \cdot h 
+= \left<-f(x) \Sigma^{-1} x, h \right>
+= -f(x) \left<\Sigma^{-1} h, x \right>
+$$
+on déduit que $x \mapsto d f(x) \cdot h$ est différentiable comme produit
+de fonctions scalaires différentiables (la fonction 
+$x \mapsto \left<\Sigma^{-1} h, x \right>$ étant linéaire). 
+On a de plus
+$$
+\begin{split}
+d (x \mapsto d f(x) \cdot h) \cdot k
+&=
+- (df(x) \cdot k) \times \left<\Sigma^{-1} x, h \right>
+- f(x) \times \left<\Sigma^{-1} h, k \right> \\
+&= 
+\left<-f(x) \Sigma^{-1} x, k \right> \left<\Sigma^{-1} x, h \right>+
+\left<-f(x) \Sigma^{-1} h, k\right>
+\end{split}
+$$
+
 
 Robot Manipulateur
 --------------------------------------------------------------------------------
