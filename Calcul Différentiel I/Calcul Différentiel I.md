@@ -2465,7 +2465,7 @@ Robot Manipulateur
 --------------------------------------------------------------------------------
 
 Les coordonnées cartésiennes $x$ et $y$ de l'effecteur final 
-d'un robot dans le plan, composé de deux corps de longueur
+d'un robot dans le plan, composé de deux corps rigides de longueur
 $\ell_1$ et $\ell_2$ et d'articulation rotoïdes sont données
 par
 $$
