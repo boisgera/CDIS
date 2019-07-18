@@ -2455,7 +2455,8 @@ Montrer que la fonction $f$ est différentiable et calculer son gradient.
 $\to$ [Solution](#sol-vg-1)
 
 ### Question 2
-Montrer que la fonction $f$ est deux différentiable sa matrice Hessienne.
+Montrer que la fonction $f$ est deux différentiable et calculer sa matrice 
+Hessienne.
 
 $\to$ [Solution](#sol-vg-2)
 
