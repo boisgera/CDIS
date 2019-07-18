@@ -1961,17 +1961,17 @@ Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 *$k$ fois différentiable en $x$* si pour tous vecteurs $h_1, \dots, h_{k-1}$ 
 de $\mathbb{R}^n$, 
 la fonction 
-$$x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1}$$ 
+$$x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1}$$ 
 est différentiable en $x$.
 La *différentielle d'ordre $k$ de $f$ en $x$*, notée $d^k f(x)$ 
 est définie comme l'application linéaire telle que pour tout 
 $h_1, \dots, h_{k-1}$ de $\mathbb{R}^n$,
 $$
-d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x)
+d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x)
 $$
 ou de façon équivalente
 $$
-d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x) \cdot h_k
+d^k f(x) \cdot h_1 \cdot h_2 \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
 $$
 
 ### Remarque
@@ -2097,14 +2097,30 @@ $$
 
 approximation concrête de $d^2 f(x) \cdot h \cdot k$.
 
-### TODO -- Développement limité à l'ordre $n$
+### Développement limité à l'ordre $n$
+Soit $f: U \subset \R^n \to \R^m$ une fonction $j$ fois différentiable au point
+$x \in U$. Alors
+$$
+f(x+h) = \sum_{i=0}^{j}  \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h
++ o(\|h\|^j).
+$$
+
+### Démonstration {.proof}
+Le résultat est clair pour $j=0$. Supposons le vrai à un rang $j$ arbitraire
+et supposons que $f$ est $j+1$ fois différentiable. Formons le reste 
+d'ordre $j$:
+$$
+r(h)  = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h.
+$$
+
+
 
 ### Développement de Taylor avec reste intégral (fonction d'une variable réelle)
 Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
 $h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
 Si $f$ est $j+1$ fois dérivable sur $[a,a+h]$,
 $$
-f(a+h)  = \sum_{i=0}^n f^{(i)}(a) \frac{h^i}{i!} + \int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt.
+f(a+h)  = \sum_{i=0}^n \frac{f^{(i)}(a)}{i!} h^i + \int_a^{a+h} \frac{f^{(j+1)}(t)}{j!} (a+h-t)^j \, dt.
 $$
 
 ### Démonstration {.proof}
@@ -2135,8 +2151,8 @@ ce qui achève la preuve par récurrence.
 ### Développement de Taylor avec reste intégral 
 Si $f: U \subset \R^n \to \R^m$ est $j+1$ fois différentiable et $[a, a+h] \subset U$,
 $$
-f(a+h)  = \sum_{i=0}^n \frac{1}{i!}df^{(i)}(a) \cdot \overbrace{(h, \dots, h)}^{k \; \mathrm{termes}} 
-+ \int_0^{1} \frac{(1-t)^j}{j!}df^{(j+1)}(a+th) \cdot \overbrace{(h, \dots, h)}^{j+1 \; \mathrm{termes}}\, dt.
+f(a+h)  = \sum_{i=0}^n \frac{1}{i!}df^{(i)}(a) \cdot \overbrace{h \cdot \hdots \cdot h}^{k \; \mathrm{termes}} 
++ \int_0^{1} \frac{(1-t)^j}{j!}df^{(j+1)}(a+th) \cdot \overbrace{h \cdot \hdots \cdot h}^{j+1 \; \mathrm{termes}}\, dt.
 $$
 
 ### Démonstration {.proof}
@@ -2145,18 +2161,18 @@ Taylor avec reste intégral dans le cas d'une fonction d'une variable réelle,
 appliqué à la fonction $\phi: t \in [0, 1] \mapsto f(a+th) \in \R^m$.
 Il nous suffit de montrer que $\phi$ est $j+1$ fois différentiable 
 et que pour tout entier $i$ inférieur ou égal à $j+1$,
-$\phi^{(i)}(t) = df^{(i)}(a+th) \cdot (h, \dots, h)$. 
+$\phi^{(i)}(t) = df^{(i)}(a+th) \cdot h \cdot \hdots \cdot h$. 
 
 Cette relation est évidemment satisfaite pour 
 $i=0$. Supposons qu'elle soit vérifiée au rang $i \leq j$. 
 La fonction $f$ étant $i+1$ fois différentiable, la fonction
-$g:x \in U \mapsto df^{(i)}(x) \cdot (h, \dots, h)$ est différentiable, et
+$g:x \in U \mapsto df^{(i)}(x) \cdot h \cdot \hdots \cdot h$ est différentiable, et
 $$
-dg(x) \cdot h = df^{(i+1)}(x) \cdot (h, \dots, h, h).
+dg(x) \cdot h = df^{(i+1)}(x) \cdot h \cdot \hdots \cdot h \cdot h.
 $$
-Par dérivation en chaîne, la fonction $t \mapsto df^{(i)}(a+th) \cdot (h, \dots, h)$
+Par dérivation en chaîne, la fonction $t \mapsto df^{(i)}(a+th) \cdot h \cdot \hdots \cdot h$
 est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
-$df^{(i+1)}(a+th) \cdot (h, \dots, h, h).$
+$df^{(i+1)}(a+th) \cdot h \cdot \hdots \cdot h \cdot h.$
 
 ### TODO -- Dérivées partielles d'ordre supérieur
 
