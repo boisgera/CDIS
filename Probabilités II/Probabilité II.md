@@ -8,9 +8,6 @@
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\B}{\mathcal{B}}
-<!--
-\newcommand{\E}{\mathcal{E}}
--->
 \renewcommand{\L}{\mathcal{L}}
 \newcommand{\Esp}{\mathbb{E}}
 \newcommand{\V}{\mathbb{V}}
@@ -189,7 +186,6 @@ Si $X$ et $Y$ sont dans $\L^2$, la variable aléatoire $(X-\Esp(X))(Y-\Esp(Y))$ 
 Le *coefficient de corrélation* des variables aléatoires $X$ et $Y$ est le nombre 
         $$\rho(X,Y) = \frac{\cov (X,Y)}{\sqrt{\V(X)}\sqrt{\V(Y)}}$$
 qui est bien défini lorsque $\V(X)>0$ et $\V(Y)>0$.
-
 
 
 # Vecteurs aléatoires à densité

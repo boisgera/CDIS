@@ -644,6 +644,10 @@ $$
 La fonction $f$ est *différentiable*
 si elle est différentiable en tout point de $U$. 
 
+### Note
+On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
+définition de la fonction n'est pas évident dans le contexte.
+
 ### Remarque 
 Si l'on considère à nouveau $\Delta f(x, h)$, 
 la variation de $f$ en $x$, associée à la variation $h$ de l'argument
@@ -656,16 +660,61 @@ $$
 \Delta f(x, h) = df(x) \cdot h + o(\|h\|).
 $$
 
-### TODO -- Gradient
+### Gradient {.definition}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+différentiable en $x \in U$. Le *gradient de $f$ en $x$* noté $\nabla f(x)$
+est l'unique vecteur de $\R^n$ tel que pour tout $h \in \R^n$,
+$$
+df(x) \cdot h = \left<\nabla f(x), h \right>.
+$$
 
-### TODO -- Points critiques
-Se contenter d'introduire
-la terminologie et de signifier (en remarque) que c'est une condition 
-nécessaire d'extrémalité (le prouver ?).
+### Démonstration (existence et unicité) {.proof}
+La différentielle de $f$ en $x$ est une forme linéaire sur $\mathbb{R}^n$,
+c'est-à-dire une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}$.
+Or pour toute application $A$ de ce type, si un vecteur $a \in \R^n$
+est tel que $A \cdot h = \left<a, h\right>$ pour tout $h \in \R^n$, 
+alors sélectionner successivement $h = e_i$ pour $i=1, \dots, n$
+fournit nécessairement $a = (A(e_1), \dots, A(e_n))$; il existe donc au plus
+un vecteur $a$ satisfaisant ces égalités. Réciproquement, pour ce vecteur
+$a$, on a bien
+$$
+A \cdot h = A \cdot (h_1 e_1 + \dots + h_n e_n) = \sum_i h_i A(e_i) = \sum_i a_i h_i
+= \left<a, h\right>.
+$$
+Dans notre contexte où $A = df(x)$, le gradient est donc défini de façon unique
+par $\nabla f(x) = (df(x)\cdot e_1, \dots, df(x)\cdot e_n)$.
 
-### Note
-On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
-définition de la fonction n'est pas évident dans le contexte.
+### Point critique
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+une fonction différentiable. Le point $x$ est un *point critique
+de $f$* si $df(x) = 0$.
+
+### Point critique et extrema
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+une fonction différentiable. Si $f$ admet un minimum ou un maximum
+local en $x \in U$, alors $x$ est un point critique de $f$.
+
+### Démonstration {.proof}
+Supposons que $f$ admette un minimum local en $x$ (le cas du maximum peut
+s'en déduire en considérant la fonction $-f$). Soit $r > 0$ tel que 
+pour tout $y \in \R^n$ satisfaisant $\|y - x\| \leq r$ on ait $y \in U$ 
+et $f(x) \leq f(y)$. Soit $h \in \mathbb{R}^n$ et $t$ un réel non nul
+suffisamment petit pour que $\left\|th \right\| \leq r$. Comme $f$
+est différentiable en $x$, il existe une fonction $\varepsilon$ qui soit
+un petit o de $1$ telle que
+$$
+f(x+th) - f(x) = df(x) \cdot (th) + \varepsilon(th) \|th\|.
+$$
+Soit par linéarité de la différentielle,
+$$
+df(x) \cdot h = \frac{f(x+th) - f(x)}{t} - \varepsilon(th) \frac{|t|}{t} \|h\|. 
+$$
+En faisant tendre $t$ vers $0$ dans le membre de droite de cette équation
+(la limite existe puisque le membre de droite est indépendant de $t$),
+on obtient un nombre positif ou nul. 
+Le même raisonnement pouvant être appliqué pour calculer 
+$df(x) \cdot (-h) = -df(x) \cdot h$, on en déduit
+que $df(x) \cdot h = 0$.
 
 ### Différentiation composante par composante {#dcpc}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert.
@@ -900,7 +949,7 @@ de fonction continûment différentiable et de différentielle d'ordre supérieu
 Sous les hypothèses ad hoc, la différentielle de $f$ et $g$ en $x$ 
 est la composée des différentielles de $f$ en $x$ et de $g$ en $y=f(x)$.
 
-### Règle de différentiation en chaîne
+### Règle de différentiation en chaîne {#chain-rule}
 
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
@@ -1048,8 +1097,8 @@ en $x$ car ses composantes sont différentiables; sa différentielle
 -- calculée composante par composante -- 
 est l'application $h \mapsto (0, df(x) \cdot h)$.d
 L'application $\lambda f$ étant le produit de $\lambda$ et $f$,
-par la règle de différentiation en chaîne, elle est différentiable
-en $x$ et 
+par [la règle de différentiation en chaîne](#chain-rule), 
+elle est différentiable en $x$ et 
 $$
 d (\lambda f)(x) = \lambda df(x) + f(x) \times (h \to 0) = \lambda df(x).
 $$
@@ -1241,42 +1290,99 @@ $[Df(x)]_{ij} = [\partial_j f(x)]_i.$
 Les fonctions vectorielles se dérivant composante par composante, 
 on en déduit que $[Df(x)]_{ij} = [\partial_j f_i(x)]$. 
 
-### TODO -- Gradient
+### Matrice jacobienne et dérivées partielles {.remark}
+On remarquera qu'avec le résultat ci-dessus, il est techniquement possible de 
+définir la matrice jacobienne $Df(x)$ de $f$ en $x$ en supposant uniquement
+que les dérivées partielles de $f$ en $x$ existent, ce qui peut arriver
+alors que $f$ n'est pas différentiable en $x$. Mais cette extension est à
+prendre avec précaution. En effet, si l'on accepte cette extension, on ne
+peut plus transposer aux matrices jacobiennes tous les résultats valides pour
+les différentielles. Par exemple, si $Df(g(x)$ et $Dg(x)$ existent
+(au sens où toutes les dérivées partielles concernées existent), on peut
+former le produit matriciel $Df(g(x)) Dg(x)$, mais sans aucune garantie que 
+$D(f \circ g)(x)$ existe et/ou soit égal à ce produit, car la règle de 
+différentiation en chaîne requière l'existence des différentielles.
 
-### {.ante .remark}
-La dérivée partielle n'est qu'un cas particulier du concept de dérivée
-directionnelle, limitée aux directions de la base canonique de $\mathbb{R}^n$.
-
-### Dérivée directionnelle {.definition}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
-soit $x$ un point de $U$. On appelle *dérivée directionnelle* de $f$ en 
-$x$ dans la direction $h \in \mathbb{R}^n$ la valeur
+### Gradient et dérivées partielles
+Soit $f: U \subset \R^n \to \R$ où $U$ est un ouvert et
+soit $x$ un point de $U$. 
+Si $f$ est différentiable en $x$, on a 
 $$
-f'(x, h) = (t \mapsto f(x + th))'(0) 
-= \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
-$$
-quand elle existe.
-
-### Dérivée partielle et directionnelle  {.theorem}
-La fonction $f$ admet une dérivée directionnelle en $x$ dans la direction
-$e_i$ si et seulement si sa $i$-ème dérivée partielle existe; on a 
-alors
-$$
-f'(x, h) = \partial_i f(x).
+\nabla f(x) = (\partial_1 f(x), \dots, \partial_n f(x)).
 $$
 
 ### Démonstration {.proof}
+Pour tout $h \in \R^n$, on a
+$$
+\left<\nabla f(x), h\right> 
+= df(x) \cdot h
+= \sum_i \partial_i f \cdot h_i 
+= 
+\left<(\partial_1 f(x), \dots, \partial_n f(x)), h \right>, 
+$$
+ce qui établit le résultat.
 
-Evident.
 
-### TODO {.meta}
+### Fonction continûment différentiable {.definition}
+Une fonction $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert
+est *continûment différentiable* si toutes ses dérivées
+partielles existent et sont continues.
 
-Fcts $C^1$ et réciproque partielle... autre section ? ICI ? Oui.
-Ne définir $C^1$ qu'à partir des dérivées partielle (et la 
-matrice jacobienne, ce qui est équivalent)
+### Matrice jacobienne et fonction continûment différentiable {.remark}
+S'il l'on adopte la définition étendue de jacobien de la remarque
+"[Matrice jacobienne et dérivées partielles]", la définition de 
+continûment différentiable peut être reformulée comme
+"la matrice jacobienne existe et est continue".
+
+### Continument différentiable implique différentiable {.proposition}
+Une fonction continûment différentiable est différentiable.
+
+### Démonstration {.proof}
+Soit $f: U \subset \R^n \to \R$ une fonction continûment différentiable
+(la preuve dans d'une fonction à valeurs vectorielles se déduit du résultat
+dans le cas scalaire).
+Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
+$r$ soit dans $U$; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
+La variation de $f$ entre $a$ et $a+h$ satisfait
+$$
+f(a+h) - f(a) = \sum_{i=1}^n f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)). 
+$$
+Or, par [le théorème fondamental du calcul](#TFC), 
+comme pour tout $i$ la fonction
+$$t \in [0,1] \mapsto f(a+(h_1, \dots, th_i, 0, \dots))$$
+est dérivable de dérivée
+$\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) h_i$, on a
+\begin{multline*}
+f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)) = \\
+h_i \int_0^1 \partial_i f(a+(h_1, \dots, th_i, 0, \dots)) \, dt.
+\end{multline*}
+Par ailleurs, comme
+$$
+\partial_i f(a) h_i
+=
+h_i \int_0^1 \partial_i f(a) \, dt,
+$$
+on a 
+\begin{multline*}
+f(a+h) - f(a) - \sum_i \partial_i f(a) h_i = \\
+\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) - \partial_i f(a) \right] \, dt. 
+\end{multline*}
+Par continuité des dérivées partielles en $a$, si $r$ est choisi de telle sorte
+que $|\partial_i f(b) - \partial_i f(a)| \leq \varepsilon / n$ 
+quand $|b-a| \leq r$, alors l'inégalité triangulaire et 
+[la majoration des intégrales](#ML-memma) ci-dessus
+conduit à
+$$
+\left|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right|
+\leq
+\sum_{i=1}^n |h_i| {\varepsilon}/{n}
+\leq \varepsilon \|h\|.
+$$
+La fonction $f$ est donc différentiable en $a$, de différentielle
+$h \mapsto \sum_i \partial_i f(a) h_i$.
 
 
-Inégalité des accroissement finis
+Variation des fonctions
 ================================================================================
 
 ### Différentielle et Intégrale
@@ -1295,7 +1401,18 @@ si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
 de relier $f(a+h)$ à $f(a)$ en intégrant les variations de $f$ le long
 de $[a, a+h]$. La seule notion d'intégrale dont nous avons besoin,
 minimaliste et construite exclusivement au service du calcul différentiel,
-est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton).
+est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton);
+dans de ce chapitre, c'est toujours cette intégrale dont nous ferons
+usage.
+
+### Théorème fondamental du calcul {.theorem #TFC}
+Si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable et
+$$
+f(b) - f(a)  = \int_a^b f'(x) \, dx.
+$$
+
+### Démonstration {.proof}
+Cf. [l'annexe consacrée à l'intégrale de Newton](#intégrale-Newton).
 
 ### Variation d'une fonction {.theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
@@ -1309,7 +1426,6 @@ f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
 ### Démonstration
-
 Considérons la fonction $\phi: [0,1] \to \mathbb{R}^n$ définie par
 $$
 \phi(t) = f(a + th)
@@ -1331,9 +1447,7 @@ f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt
                                   = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-
-### Inégalité des accroissements finis (fonction d'une variable réelle) {.theorem}
-
+### Inégalité des accroissements finis (fonction d'une variable réelle) {.theorem #TAFS}
 Soit $f:[a, a+h] \to \mathbb{R}^m$ 
 où $a \in \mathbb{R}$, $h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
 Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
@@ -1347,7 +1461,6 @@ $$
 $$
 
 ### Démonstration {.proof}
-
 Par construction, la fonction $f'$ est intégrable au sens de Newton et
 $$
 f(a+h) - f(a) = \int_a^b f'(t) \, dt.
@@ -1403,7 +1516,7 @@ et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
 le résultat cherché: $\|f(a+h) - f(a)\| \leq M h.$
 
 
-### Inégalité des accroissements finis {.theorem}
+### Inégalité des accroissements finis {.theorem #TAF}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
 supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
@@ -1414,7 +1527,7 @@ $$
 $$
 Alors 
 $$
-\|f(a+h) - f(a)\| \leq M \|h\|
+\|f(a+h) - f(a)\| \leq M \|h\|.
 $$
 
 ### Preuve {.proof}
@@ -1559,9 +1672,10 @@ car simplificateur, mais
 ### Différentielle d'ordre 2 {.definition}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
-dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
-*deux fois différentiable en $x$* si pour tout vecteur $h$ de $\mathbb{R}^n$.
-La fonction $x \mapsto df(x) \cdot h$ est différentiable en $x$.
+dans un voisinage d'un point $x$ de $U$. 
+On dira que $f$ est *deux fois différentiable en $x$* 
+si pour tout vecteur $h$ de $\mathbb{R}^n$,
+la fonction $x \mapsto df(x) \cdot h$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
 est définie comme l'application linéaire telle que pour tout $h$ 
 dans $\mathbb{R}^n$,
@@ -1603,7 +1717,8 @@ $$
     $$    
     A \to B \to C \to D := A \to (B \to (C \to D)).
     $$
-    La convention associée: lors de l'application d'une fonction linéaire,
+    La convention associée -- utilisée dans la définition de la différentielle
+    d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
     le symbole "$\cdot$" associe à gauche, par exemple:
     $$
     L \cdot h \cdot k :=  (L \cdot h) \cdot k,
@@ -1984,13 +2099,16 @@ approximation concrête de $d^2 f(x) \cdot h \cdot k$.
 
 ### TODO -- Développement de Taylor avec reste intégral
 
+### TODO -- Dérivées partielles d'ordre supérieur
+
+
 Annexe -- Intégrale de Newton {#intégrale-Newton}
 ================================================================================
 
 ### Intégrale de Newton {.definition}
-Soit $f:[a, b] \to \mathbb{R}$. On dit que $f$ 
+Soit $f:[a, b] \to \mathbb{R}^m$. On dit que $f$ 
 est *intégrable au sens de Newton* si elle admet une primitive 
-$F: [a, b] \to \mathbb{R}$. L'intégrale de $f$ entre $a$ et $b$ est
+$F: [a, b] \to \mathbb{R}^m$. L'intégrale de $f$ entre $a$ et $b$ est
 alors définie par
 $$
 \int_a^b f(x) \, dx = F(b) - F(a).
@@ -1998,20 +2116,97 @@ $$
 La primitive $F$ de $f$ quand elle existe étant déterminée à une constante près,
 cette définition est non-ambiguë.
 
-Une autre façon de voir les choses: l'intégrale de Newton est définie de telle
-sorte que le théorème fondamental du calcul soit trivialement satisfait, 
-en toute généralité. A savoir:
-
-### Théorème fondamental du calcul {.theorem #TFC}
-Si $F: [a, b] \to \R$ est dérivable, alors $f = F'$ est intégrable et
-$$
-\int_a^b f(x) \, dx = F(b) - F(a).
-$$
-
 ### {.remark}
+Une autre façon de voir les choses: l'intégrale de Newton est définie de telle
+sorte que [le théorème fondamental du calcul](#TFC) soit trivialement satisfait, 
+en toute généralité.
 Pour d'autres intégrales, comme l'intégrale de Riemann ou l'intégrale
 de Lebesgue, il sera nécessaire de faire des hypothèses supplémentaires
-sur la fonction $f$ pour que ce résultat soit valable.
+sur la fonction $f'$ (par exemple, $f'$ continue) pour que ce résultat 
+soit valable. L'intégrale de Henstock-Kurzweil, qui sera exposée dans
+le cours de calcul intégral, vérifie bien le théorème fondamental du
+calcul en toute généralité: elle étend donc l'intégrale de Newton
+(et celle de Riemann, ainsi que celle de Lebesgue).
+
+### {.ante}
+L'intégrale de Newton est un outil assez primitif[^smjm] et difficile 
+à exploiter ; elle vérifie tout de même quelques propriétés bien utiles.
+
+[^smjm]: sans mauvais jeu de mots ...
+
+### Linéarité {.proposition}
+Soit $f:[a, b] \to \mathbb{R}^m$, $g:[a, b] \to \mathbb{R}^m$, et 
+$\lambda$, $\mu$ deux constantes réelles. Si $f$ et $g$ sont intégrables
+au sens de Newton, $\lambda f + \mu g$ également et
+$$
+\int_a^b \lambda f(x) + \mu g(x) \, dx
+=
+\lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
+$$
+
+### Démonstration {.proof}
+Par hypothèse, $f$ a une primitive $F$, $g$ a une primitive $G$,
+$$
+\int_a^b f(x) \, dx = F(b) - F(a)
+\; \mbox{ et } \; 
+\int_a^b g(x) \, dx = G(b) - G(a).
+$$
+La fonction $\lambda F + \mu G$ est une primitive de $\lambda f + \mu g$
+et donc
+$$
+\begin{split}
+\int_a^b \lambda f(x) + \mu g(x) \, dx
+&=
+(\lambda F(b) + \mu G(b)) - (\lambda F(a) + \mu G(a))\\
+&=
+\lambda (F(b) - F(a)) + \mu (G(b) - G(a)) \\
+&=
+\lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
+\end{split}
+$$
+
+### Majoration {.theorem #ML-lemma}
+Si $f:[a, b] \to \mathbb{R}$ est une fonction intégrable au sens de Newton 
+telle que $|f| \leq M,$
+$$
+\left| \int_a^b f(x) \, dx \right| \leq M (b-a).
+$$
+
+### Démonstration {.proof}
+La fonction $g: x \in [a, b] \mapsto f(x) - M$ est intégrable au sens de Newton
+et négative. Si $G$ est une primitive de $g$, elle est donc décroissante.
+Par conséquent,
+$$
+\int_a^b (f(x) - M) \, dx = \int_a^b f(x) \, dx - M(b-a) = G(b) - G(0) \leq 0.
+$$
+On peut de même montrer en intégrant la fonction $x \in [a, b] \to f(x) + M$ 
+que 
+$$
+\int_a^b f(x) \, dx + M(b-a) \geq 0,
+$$
+ce qui fournit le résultat cherché.
+
+### Intégration par parties {.theorem}
+Soit $f:[a, b] \to \mathbb{R}$ et $g:[a, b] \to \mathbb{R}$ deux fonctions
+dérivables. Si la fonction $f g'$ est intégrable au sens de Newton, 
+la fonction $f' g$ également et
+$$
+\int_a^b f'(x) g(x) \, dx = (f(b) g(b) - f(a) g(a)) -\int_a^b f(x) g'(x) \, dx.
+$$
+
+### Démonstration {.proof}
+Comme $(fg)' = f'g + fg'$, on a $f'g = (fg)' - fg'$. Or, $(fg)'$ est intégrable
+au sens de Newton (sa primitive est $fg$), $fg'$ est intégrable au sens de 
+Newton par hypothèse, donc $f'g$ est intégrable comme combinaison linéaire
+de fonctions intégrables. De plus, 
+$$
+\begin{split}
+\int_a^b f'(x) g(x) \,dx 
+&= 
+\int_a^b (fg)'(x) \, dx - \int_a^b f(x) g'(x) \, dx \\
+&= (f(b) g(b) - f(a) g(a)) - \int_a^b f(x) g'(x) \, dx.
+\end{split}
+$$
 
 Exercices
 ================================================================================
@@ -2074,44 +2269,20 @@ Dérivation en chaîne
 --------------------------------------------------------------------------------
 
 Montrer que la règle de dérivation en chaîne ci-dessous, 
-concernant les fonctions d'une variable, se déduit de la 
-[règle générale de différentiation en chaîne][Règle de différentiation en chaîne].
+concernant les fonctions d'une variable, se déduit de
+[la règle générale de différentiation en chaîne](#chain-rule).
 
 Soit $f: U \subset \mathbb{R} \to \mathbb{R}$ et 
 $g: V \subset \mathbb{R} \to \mathbb{R}$ deux fonctions définies
 sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
-Si $f$ est différentiable en $x \in U$ et $g$ est différentiable en $f(x) \in V$,
-alors la composée $g \circ f$ est différentiable en $x$ et
+Si $f$ est dérivable en $x \in U$ et $g$ est dérivable en $f(x) \in V$,
+alors la composée $g \circ f$ est dérivable en $x$ et
 $$
 (g \circ f)'(x) = g'(f(x)) f'(x).
 $$
 
-### Réponse
+$\to$ [Solution](#sol-dec)
 
-Les fonction $f$ et $g$ sont dérivables donc différentiables 
-(cf. [Différentielle et Dérivée]).
-Par application de la [règle de différentiation en chaîne][Règle de dérivation en chaîne],
-leur composée $g \circ f$ est donc différentiable.
-C'est une fonction d'une variable, elle est donc dérivable, 
-à nouveau en invoquant 
-[le lien entre différentielle et dérivée][Différentielle et Dérivée].
-Pour ces trois fonctions, on obtient la dérivée en appliquant la
-différentielle à $1$; La [règle de différentiation en chaîne][Règle de différentiation en chaîne]
-fournissant
-$$
-d(g \circ f)(x) = dg(f(x)) \cdot df(x),
-$$
-on en déduit
-$$
-\begin{split}
-(g \circ f)'(x) &= (d(g \circ f)(x)) \cdot 1 \\
-&= (dg(f(x)) \cdot df(x) )\cdot 1 \\
-&=dg(f(x)) \cdot (df(x) \cdot 1) \\
-&= dg(f(x)) \cdot (f'(x) 1) \\
-&= (dg(f(x)) \cdot 1) f'(x) \\ 
-&= g'(f(x)) f'(x)
-\end{split}
-$$
 
 TODO -- Calcul Méca
 --------------------------------------------------------------------------------
@@ -2123,12 +2294,12 @@ Dérivée directionnelle d'Hadamard
 
 Source: [@Sha90]
 
-**Rappel.** Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est 
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est 
 ouvert et $x \in U$. 
 La fonction $f$ est *directionnellement dérivable* si pour tout
 vecteur $h \in \mathbb{R}^n$, la dérivée directionnelle
 $$
-f'(x, h) = (t \mapsto f(x+ th))'(0)
+f'(x, h) := (t \mapsto f(x+ th))'(0) = \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
 $$
 est bien définie.
 
@@ -2177,6 +2348,18 @@ Une fonction dérivable directionnellement au sens de Hadamard en $x$ est
 est une fonction linéaire de $h$.
 Montrer que $f$ est différentiable en $x$ au sens de Hadamard 
 si et seulement si elle est différentiable en $x$ au sens de Fréchet.
+
+Inégalité de la valeur moyenne
+--------------------------------------------------------------------------------
+Soit $f:[a, b] \subset \R \to \R^m$ une fonction intégrable au sens de Newton;
+on appelle *valeur moyenne de $f$* la grandeur
+$$
+\left<f\right> := \frac{1}{b-a} \int_a^b f(x) \, dx.
+$$
+Quel est le lien entre $\left<f\right>$ et la grandeur 
+$\sup_{x \in [a, b]} \|f(x)\|$ ?
+
+$\to$ [Solution](#sol-ivm)
 
 
 TODO -- Asymptotique
@@ -2256,6 +2439,35 @@ TODO -- Dérivée sur un intervalle fermé {#sol-if}
 ### TODO -- Question 1 {#sol-if-1}
 
 ### TODO -- Question 2 {#sol-if-2}
+
+Dérivation en chaîne {#sol-dec}
+--------------------------------------------------------------------------------
+
+Les fonction $f$ et $g$ sont dérivables donc différentiables 
+(cf. [Différentielle et Dérivée]).
+Par application de la [règle de différentiation en chaîne](#chain-rule),
+leur composée $g \circ f$ est donc différentiable.
+C'est une fonction d'une variable, elle est donc dérivable, 
+à nouveau en invoquant 
+[le lien entre différentielle et dérivée][Différentielle et Dérivée].
+Pour ces trois fonctions, on obtient la dérivée en appliquant la
+différentielle à $1$ ; la [règle de différentiation en chaîne](#chain-rule)
+fournissant
+$$
+d(g \circ f)(x) = dg(f(x)) \cdot df(x),
+$$
+on en déduit
+$$
+\begin{split}
+(g \circ f)'(x) &= (d(g \circ f)(x)) \cdot 1 \\
+&= (dg(f(x)) \cdot df(x) )\cdot 1 \\
+&=dg(f(x)) \cdot (df(x) \cdot 1) \\
+&= dg(f(x)) \cdot (f'(x) 1) \\
+&= (dg(f(x)) \cdot 1) f'(x) \\ 
+&= g'(f(x)) f'(x)
+\end{split}
+$$
+
 
 TODO -- Calcul Méca
 --------------------------------------------------------------------------------
@@ -2515,6 +2727,26 @@ $$
 ce qui contredit l'inégalité ci-dessus et prouve la contradiction.
 Par conséquent, $f$ est bien différentiable au sens de Fréchet.
 
+Inégalité de la valeur moyenne {#sol-ivm}
+--------------------------------------------------------------------------------
+
+Soit $F:[a, b] \to \R^m$ une primitive de $f$. 
+Par définition de l'intégrale de Newton,
+$$
+\left<f\right> = \frac{1}{b-a} \int_a^b f(x) \, dx
+= \frac{F(b) - F(a)}{b-a}.
+$$
+Or si $\|F'\| = \|f\|$ est borné sur $[a, b]$, par 
+[le théorème des accroissements finis](#TAFS),
+$$
+\|F(b) - F(a)\| \leq \sup_{x \in [a, b]} \|f(x)\| \times  (b-a),
+$$
+et donc
+$$
+\left\|\left<f\right>\right\| \leq  \sup_{x \in [a, b]} \|f(x)\|.
+$$
+Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
+c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
 
 TODO -- Asymptotique
 --------------------------------------------------------------------------------
