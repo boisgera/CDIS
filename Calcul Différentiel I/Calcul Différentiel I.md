@@ -1975,18 +1975,46 @@ d^k f(x) \cdot h_1 \cdot h_2 \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}
 $$
 
 ### Remarque
-
 On a 
 $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
 $$
+
+
+### Stratification {.lemma}
+Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+$k$ fois différentiable en un point $x$ de $U$, pour tous vecteurs 
+$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, et tout $p \in \{0,\dots, k\}$,
+on a
+$$
+d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
+=
+d^{k-p} (x \mapsto d^p f(x) \cdot h_1 \cdot \hdots \cdot h_{p+1})(x) \cdot h_{p+2} \cdot \hdots \cdot h_k.
+$$
+
+### TODO -- Démonstration {.proof}
+
+### Symmétrie {.proposition}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+$k$ fois différentiable en un point $x$ de $U$, pour tous vecteurs 
+$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, et deux indices arbitraires
+$i \leq j$ entre $1$ et $k$, on a:
+$$
+d^k f(x) \cdot \hdots \cdot h_i \cdot \hdots \cdot h_j \cdot \hdots
+=
+d^k f(x) \cdot \hdots \cdot h_j \cdot \hdots \cdot h_i \cdot \hdots
+$$
+
+### TODO -- Démonstration {.proof}
+
+
 
 <!--
 
 Fonctions à valeurs matricielles/tensorielles
 --------------------------------------------------------------------------------
 
-Objectif: étendre les constructions du calcul différentielle aux fonctions
++1Objectif: étendre les constructions du calcul différentielle aux fonctions
 $f: U \subset \mathbb{R}^p \to \mathbb{R}^{m \times n}$ (après valeurs
 scalaires et vectorielles, matricielles).
 
@@ -2093,10 +2121,6 @@ $$
 
 -->
 
-### TODO
-
-approximation concrête de $d^2 f(x) \cdot h \cdot k$.
-
 ### Développement limité à l'ordre $n$
 Soit $f: U \subset \R^n \to \R^m$ une fonction $j$ fois différentiable au point
 $x \in U$. Alors
@@ -2106,12 +2130,61 @@ f(x+h) = \sum_{i=0}^{j}  \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h
 $$
 
 ### Démonstration {.proof}
-Le résultat est clair pour $j=0$. Supposons le vrai à un rang $j$ arbitraire
-et supposons que $f$ est $j+1$ fois différentiable. Formons le reste 
-d'ordre $j$:
+Le résultat est clair pour $j=0$. Supposons le vrai à un rang $j-1$ arbitraire
+pour toute fonction $j-1$ fois différentiable
+et supposons que $f$ est $j$ fois différentiable. Formons le reste 
+d'ordre $j$ associé à $f$:
 $$
-r(h)  = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h.
+r(h) = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h.
 $$
+Il nous faut montrer que $r(h)$ est un $o(\|h\|^j)$, ce qui 
+nous allons accomplir en établissant que $\|dr(h)\| = o(\|h\|^{j-1})$.
+En effet, si $dr(h) = E(h) \|h\|^{j-1}$ où l'application linéaire $E$
+est un $o(1)$, alors pour tout $\varepsilon > 0$ et $h$ assez proche de $0$ 
+on a $\|E(h)\| \leq \varepsilon$ et donc par le théorème des accroissements
+finis,
+$$
+\|r(h)\| = \|r(h) - r(0)\| \leq \varepsilon \|h\|^{j-1} \times \|h\|
+= \varepsilon \|h\|^j,
+$$
+ce qui établit que $r(h) = o(\|h\|^j)$.
+
+Etablissons donc que $r(h)$ est un $o(\|h\|^j)$.
+Les termes $d^i f(x)\cdot h_1 \cdot \hdots \cdot h_i$ 
+sont linéaires par rapport à chacun des $h_j$, donc pour tout vecteur 
+$k$, compte tenu de la symmétrie de $d^i f(x)$,
+$$
+d^i f(x) \cdot (h+k) \cdot \hdots \cdot (h+k)
+= 
+d^i f(x) \cdot h \cdot \hdots \cdot h
++ i d^i f(x) \cdot h \cdot \hdots \cdot h \cdot k
++ o(\|k\|).
+$$
+La différentielle de 
+$h \mapsto {d^i f(x)}\cdot h \cdot \hdots \cdot h$
+vaut donc $id^i f(x) \cdot h \cdot \hdots \cdot h$ et
+$$
+d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k - 
+d^2f(x) \cdot h\cdot k - \hdots -
+\frac{d^i f(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h \cdot k.
+$$
+Par le lemme de stratification et la symmétrie des différentielles
+d'ordre supérieur, on obtient 
+\begin{multline*}
+d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k - \\ 
+d(x \mapsto df(x) \cdot k)(x) \cdot h - \hdots -
+\frac{d^{i-1} (x \mapsto df(x) \cdot k)(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h.
+\end{multline*}
+soit en posant $\phi(x) = df(x) \cdot k$,
+$$
+d r(h) \cdot k = \phi(x+h) - \phi(x) - 
+d \phi(x) \cdot h - \hdots -
+\frac{d^{i-1} \phi(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h.
+$$
+L'hypothèse de récurrence nous garantit donc que 
+$d r(h) \cdot k = o(\|h\|^{j-1})$ à $k$ fixé, ce qui, 
+combiné avec la linéarité de $d r(h)$, fournit
+$\|dr(h)\| = o(\|h\|^{j-1})$.
 
 
 
