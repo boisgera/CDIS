@@ -1946,6 +1946,8 @@ df(x+k) = df(x) + (h \mapsto (d^2 f(x) \cdot k) \cdot h) + o(\|k\|),
 $$
 qui est l'égalité cherchée.
 
+### TODO -- Dérivées partielles d'ordre 2
+
 ### TODO: Hessien, condition suffisante d'optimalité ?
 
 ### {.ante}
@@ -2097,7 +2099,64 @@ approximation concrête de $d^2 f(x) \cdot h \cdot k$.
 
 ### TODO -- Développement limité à l'ordre $n$
 
-### TODO -- Développement de Taylor avec reste intégral
+### Développement de Taylor avec reste intégral (fonction d'une variable réelle)
+Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
+$h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
+Si $f$ est $j+1$ fois dérivable sur $[a,a+h]$,
+$$
+f(a+h)  = \sum_{i=0}^n f^{(i)}(a) \frac{h^i}{i!} + \int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt.
+$$
+
+### Démonstration {.proof}
+A l'ordre $j=0$, la relation à prouver est
+$$
+f(a+h) = f(a) + \int_a^{a+h} f'(t) \, dt
+$$
+qui n'est autre que [le théorème fondamental du calcul](#TFC).
+Si l'on suppose la relation vérifiée à l'ordre $j$, et $f$ $j+2$ fois dérivable,
+par intégration par parties, on obtient
+\begin{multline*}
+\int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
+= \\
+\left[ f^{(j+1)}(t) \times \left( -\frac{(a+h-t)^{j+1}}{(j+1)!} \right) \right]_a^{a+h} \\
+- 
+\int_a^{a+h} f^{(j+2)}(t) \left( -\frac{(a+h-t)^{j+1}}{(j+1)!} \right) \, dt,
+\end{multline*}
+soit 
+\begin{multline*}
+\int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
+= \\
+f^{(j+1)}(a) \times \frac{h^{j+1}}{(j+1)!}
++ 
+\int_a^{a+h} f^{(j+2)}(t) \frac{(a+h-t)^{j+1}}{(j+1)!} \, dt,
+\end{multline*}
+ce qui achève la preuve par récurrence.
+
+### Développement de Taylor avec reste intégral 
+Si $f: U \subset \R^n \to \R^m$ est $j+1$ fois différentiable et $[a, a+h] \subset U$,
+$$
+f(a+h)  = \sum_{i=0}^n \frac{1}{i!}df^{(i)}(a) \cdot \overbrace{(h, \dots, h)}^{k \; \mathrm{termes}} 
++ \int_0^{1} \frac{(1-t)^j}{j!}df^{(j+1)}(a+th) \cdot \overbrace{(h, \dots, h)}^{j+1 \; \mathrm{termes}}\, dt.
+$$
+
+### Démonstration {.proof}
+La démonstration découle directement du développement de 
+Taylor avec reste intégral dans le cas d'une fonction d'une variable réelle,
+appliqué à la fonction $\phi: t \in [0, 1] \mapsto f(a+th) \in \R^m$.
+Il nous suffit de montrer que $\phi$ est $j+1$ fois différentiable 
+et que pour tout entier $i$ inférieur ou égal à $j+1$,
+$\phi^{(i)}(t) = df^{(i)}(a+th) \cdot (h, \dots, h)$. 
+
+Cette relation est évidemment satisfaite pour 
+$i=0$. Supposons qu'elle soit vérifiée au rang $i \leq j$. 
+La fonction $f$ étant $i+1$ fois différentiable, la fonction
+$g:x \in U \mapsto df^{(i)}(x) \cdot (h, \dots, h)$ est différentiable, et
+$$
+dg(x) \cdot h = df^{(i+1)}(x) \cdot (h, \dots, h, h).
+$$
+Par dérivation en chaîne, la fonction $t \mapsto df^{(i)}(a+th) \cdot (h, \dots, h)$
+est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
+$df^{(i+1)}(a+th) \cdot (h, \dots, h, h).$
 
 ### TODO -- Dérivées partielles d'ordre supérieur
 
