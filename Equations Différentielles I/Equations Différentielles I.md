@@ -113,7 +113,7 @@ Unicité des solutions
 Nous avons vu dans la partie précédente que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$.
 
 ### Théorème de Cauchy-Lipschitz {.theorem #theo_lips}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$.
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$ (on dira par la suite pour simplifier que $f$ est de classe $C^1$ en $x$).
 Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ in $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert.
 
 *Démonstration*
@@ -131,6 +131,7 @@ admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)
 $$
 x(t)=\frac{x_0}{1-x_0t} \quad , \quad I=(-\infty,\frac{1}{x_0})
 $$
+On dit que la solution *explose en temps fini*.
 
 
 ### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
@@ -145,7 +146,10 @@ Il est rare de pouvoir calculer explicitement la solution au problème de Cauchy
 Solutions globales
 --------------------------------
 
+Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ en $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert qui n'est pas nécessairement $\R$ entier, c'est-à-dire la solution n'est pas nécessairement globale. Le théorème suivant montre que dans ce cas, la solution  quitte nécessairement n'importe quel compact en temps fini, c'est-à-dire explose en temps fini comme vu dans [l'exemple où $f(t,x)=x^2$](#ex_lips).
+
 ### Théorème des bouts {.theorem #theo_bouts}
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ en $x$. Soient $(t_0,x_0)\in U$ et $x:(t_0-\tau,t_0+\tau)\to \R^n$ la solution maximale au problème de Cauchy correspondant. to finish 
 
 ### Critères d'existence globale {.theorem #theo_exist_glob}
 
