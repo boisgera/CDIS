@@ -2509,10 +2509,9 @@ différentiable en l'identité ($A = I$) et calculer cette différentielle.
 $\to$ [Solution](#sol-dm-1)
 
 ### Question 2
-Montrer que si $A$ et $B$ sont des matrices carrées de même dimension,
-on a l'égalité $\tr A B = \tr BA$. 
-En déduire l'identité de Weinstein–Aronszajn
-$\det (I + AB) = \det (I + BA)$.
+L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
+vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
+En déduire une identité concernant $\tr A B$ et $\tr BA$.
 
 $\to$ [Solution](#sol-dm-2)
 
@@ -2889,7 +2888,18 @@ $$
 La différentiel du déterminant existe donc en l'identité et 
 $d\det(I) \cdot H = \tr H$.
 
-### TODO -- Question 2 {#sol-dm-2}
+### Question 2 {#sol-dm-2}
+Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
+$$
+\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
+$$
+Les deux membres de cette équations sont dérivables par rapport à
+$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
+et l'égalité de ces dérivées fournit
+$$
+\tr A B = \tr B A.
+$$
+
 
 ### TODO -- Question 3 {#sol-dm-3}
 
