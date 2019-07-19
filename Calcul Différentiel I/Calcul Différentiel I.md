@@ -1125,7 +1125,7 @@ on ne peut pas les multiplier)
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ où $U$ est ouvert et
 soit $x$ un point de $U$. Quand $f$ est différentiable en $x$, 
 on appelle *matrice jacobienne* de $f$ en $x$ et l'on note 
-$Df(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
+$J_f(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
 différentielle $df(x): \mathbb{R}^n \to \mathbb{R}^m$ de $f$ en $x$.
 
 ### Dérivée Partielle {.definition}
@@ -1269,11 +1269,11 @@ Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
 soit $x$ un point de $U$. 
 Si $f$ est différentiable en $x$, on a 
 $$
-[Df(x)]_{ij} = \partial_{j} f_i(x),
+[J_f(x)]_{ij} = \partial_{j} f_i(x),
 $$
 c'est-à-dire
 $$
-Df(x) = \left[
+J_f(x) = \left[
 \begin{array}{cccc}
 \partial_1 f_1 (x) & \partial_2 f_1 (x) & \cdots & \partial_n f_1 (x) \\
 \partial_1 f_2 (x) & \partial_2 f_2 (x) & \cdots & \partial_n f_2 (x) \\
@@ -1286,23 +1286,23 @@ $$
 ### Démonstration {.proof}
 Par définition, la matrice jacobienne de $f$ en $x$ se déduit de la 
 différentielle par
-$[Df(x)]_{ij} = [df(x) \cdot e_j]_i.$
+$[J_f(x)]_{ij} = [df(x) \cdot e_j]_i.$
 Comme $\partial_j f(x) = df(x) \cdot e_j,$ on a
-$[Df(x)]_{ij} = [\partial_j f(x)]_i.$ 
+$[J_f(x)]_{ij} = [\partial_j f(x)]_i.$ 
 Les fonctions vectorielles se dérivant composante par composante, 
-on en déduit que $[Df(x)]_{ij} = [\partial_j f_i(x)]$. 
+on en déduit que $[J_f(x)]_{ij} = [\partial_j f_i(x)]$. 
 
 ### Matrice jacobienne et dérivées partielles {.remark}
 On remarquera qu'avec le résultat ci-dessus, il est techniquement possible de 
-définir la matrice jacobienne $Df(x)$ de $f$ en $x$ en supposant uniquement
+définir la matrice jacobienne $J_f(x)$ de $f$ en $x$ en supposant uniquement
 que les dérivées partielles de $f$ en $x$ existent, ce qui peut arriver
 alors que $f$ n'est pas différentiable en $x$. Mais cette extension est à
 prendre avec précaution. En effet, si l'on accepte cette extension, on ne
 peut plus transposer aux matrices jacobiennes tous les résultats valides pour
-les différentielles. Par exemple, si $Df(g(x)$ et $Dg(x)$ existent
+les différentielles. Par exemple, si $J_f(g(x))$ et $J_g(x)$ existent
 (au sens où toutes les dérivées partielles concernées existent), on peut
-former le produit matriciel $Df(g(x)) Dg(x)$, mais sans aucune garantie que 
-$D(f \circ g)(x)$ existe et/ou soit égal à ce produit, car la règle de 
+former le produit matriciel $J_f(g(x)) J_g(x)$, mais sans aucune garantie que 
+$J_{f \circ g}(x)$ existe et/ou soit égal à ce produit, car la règle de 
 différentiation en chaîne requière l'existence des différentielles.
 
 ### Gradient et dérivées partielles
@@ -1950,14 +1950,16 @@ qui est l'égalité cherchée.
 
 ### TODO -- Dérivées partielles d'ordre 2
 
-### Matrice Hessienne {.definition}
+### Hessienne {.definition}
 Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
-$x \in U$. On appelle matrice hessienne de $f$ et $x$ et l'on note
-$\nabla^2f(x)$ la matrice $\R^{n \times n}$ telle que pour tout couple de
-vecteurs $h$ et $k$ de $\R^n$, on ait
+$x \in U$. On appelle *hessienne* de $f$ et $x$ et l'on note
+$\nabla^2f(x)$ l'application linéaire $\R^n \to \R^n$ telle 
+que pour tout couple de vecteurs $h$ et $k$ de $\R^n$
 $$
-d^2f(x) \cdot h \cdot  = \left<\nabla^2f(x) h, k \right>.
+d^2f(x) \cdot h \cdot  = \left<\nabla^2f(x) \cdot h, k \right>.
 $$
+La *matrice hessienne $H_f(x)$* est la matrice associée à cette application
+linéaire.
 
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
@@ -2457,8 +2459,8 @@ Montrer que la fonction $f$ est différentiable et calculer son gradient.
 $\to$ [Solution](#sol-vg-1)
 
 ### Question 2
-Montrer que la fonction $f$ est deux différentiable et calculer sa matrice 
-Hessienne.
+Montrer que la fonction $f$ est deux différentiable et calculer sa 
+hessienne.
 
 $\to$ [Solution](#sol-vg-2)
 
@@ -2788,7 +2790,7 @@ d (x \mapsto d f(x) \cdot h) \cdot k
 = 
 -f(x) \left<(\Sigma^{-1} x x^t \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
 $$
-La matrice Hessienne de $f$ en $x$ est donc donnée par
+La Hessienne de $f$ en $x$ est donc donnée par
 $$
 \nabla^2 f(x) = - f(x) (\Sigma^{-1} x x^t \Sigma^{-1} + \Sigma^{-1}).
 $$
@@ -2827,7 +2829,7 @@ différentiable et donc différentiable. Si l'on note $s_1 = \sin \theta_1$,
 $s_{12}= \sin(\theta_1+\theta_2)$, $c_1 = \cos \theta_1$ et
 $c_{12}= \cos(\theta_1+\theta_2)$, on obtient donc
 $$
-Df(\theta_1, \theta_2)
+J_f(\theta_1, \theta_2)
 =
 \left[
 \begin{array}{rr}
