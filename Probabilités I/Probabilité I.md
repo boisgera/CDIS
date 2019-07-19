@@ -183,6 +183,14 @@ Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rig
 Le triplet $(\Omega, \A, \P)$ est appelé *espace probabilisé*. La modélisation probabiliste consiste ainsi à décrire une expérience
 aléatoire par la donnée d’un espace probabilisé.
 
+La définition suivante est fondamentale en théorie des probabilités. Elle introduit une
+notion de “vrai ou faux” qui dépend de la probabilité choisie sur l’espace fondamental.
+
+### Définition {.definition}
+Soit $(\Omega, \A, \P)$ un espace probabilisé.
+
+Une propriété est vraie $\P$-*presque-sûrement* (en abrégé $\P$-p.s.), si l'ensemble des $\omega \in \Omega$ pour lesquels elle est vraie est de probabilité égale à 1.
+
 ### Propriétés élémentaires 
  1. $\forall A \in \A, \P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$
  2. $\forall A,B \in \A, A \subset B \Rightarrow \P(A) \leq \P(B)$
@@ -367,7 +375,7 @@ Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe
 ## Densités de probabilités
 
 ### Définition {.definition}
-Une fonction $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement *densité*) si elle est positive, intégrable et vérifie 
+Une fonction réelle $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement *densité*) si elle est positive, intégrable et vérifie 
 $$\int_\R f(x) dx = 1$$ 
 
 Si $f$ est une densité, la fonction 
