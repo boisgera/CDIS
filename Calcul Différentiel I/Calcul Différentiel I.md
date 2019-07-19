@@ -1956,7 +1956,7 @@ $x \in U$. On appelle *hessienne* de $f$ et $x$ et l'on note
 $\nabla^2f(x)$ l'application linéaire $\R^n \to \R^n$ telle 
 que pour tout couple de vecteurs $h$ et $k$ de $\R^n$
 $$
-d^2f(x) \cdot h \cdot  = \left<\nabla^2f(x) \cdot h, k \right>.
+d^2f(x) \cdot h \cdot k = \left<\nabla^2f(x) \cdot h, k \right>.
 $$
 La *matrice hessienne $H_f(x)$* est la matrice associée à cette application
 linéaire.
