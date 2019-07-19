@@ -7,6 +7,8 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+\newcommand{\tr}{\operatorname{tr}}
+
 <!--
 
 Narratif & Notes & TODOsss
@@ -1951,10 +1953,10 @@ qui est l'égalité cherchée.
 ### Matrice Hessienne {.definition}
 Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
 $x \in U$. On appelle matrice hessienne de $f$ et $x$ et l'on note
-$Hf(x)$ la matrice $\R^{n \times n}$ telle que pour tout couple de
+$\nabla^2f(x)$ la matrice $\R^{n \times n}$ telle que pour tout couple de
 vecteurs $h$ et $k$ de $\R^n$, on ait
 $$
-d^2f(x) \cdot h \cdot  = \left<Hf(x) h, k \right>.
+d^2f(x) \cdot h \cdot  = \left<\nabla^2f(x) h, k \right>.
 $$
 
 ### {.ante}
@@ -2493,6 +2495,33 @@ Calcul de $K(q, v)$ (en partant de $K = 1/2m(\dot{x}^2 + \dot{y}^2)$).
 
 Eq E.-L. soumis à couples $c_1$ et $c_2$ ? Ou juste grandeurs intermédiaires ?
 
+Différentiation Matricielle
+--------------------------------------------------------------------------------
+
+Source: [@Tao13]
+
+### Question 1
+Montrer que l'application $\det: A \in \R^n \to \det A \in \R$ est 
+différentiable en $A = I$ (l'identité) et y calculer sa différentielle.
+
+$\to$ [Solution](#sol-dm-1)
+
+### Question 2
+Montrer que si $A$ et $B$ sont des matrices carrées de même dimension,
+on a l'égalité $\tr A B = \tr BA$. 
+En déduire l'identité de Weinstein–Aronszajn
+$\det (I + AB) = \det (I + BA)$.
+
+$\to$ [Solution](#sol-dm-2)
+
+### Question 3
+Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
+ouvert de l'identité, est différentiable en ce point et calculer cette
+différentielle.
+
+$\to$ [Solution](#sol-dm-3)
+
+
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2566,19 +2595,22 @@ $\sup_{x \in [a, b]} \|f(x)\|$ ?
 
 $\to$ [Solution](#sol-ivm)
 
+Egalité des accroissements finis ?
+--------------------------------------------------------------------------------
+Soit $f:[0, 2\pi] \to \mathbb{R}^2$ la fonction définie par
+$$
+f(t) = (\cos t, \sin t)
+$$
+Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
+
+$\to$ [Solution](#sol-eaf)
+
 
 TODO -- Asymptotique
 --------------------------------------------------------------------------------
 
 Comportement asymptotique de $f(x+2h) - 2f(x+h) + f(x)$ (par approximation
 de variation d'ordre 2 par $d^2 f$.)
-
-TODO -- Mean Value Theorem
---------------------------------------------------------------------------------
-
-(version avec avec enveloppe convexe ? A voir. L'idée est éventuellement
-d'étendre le cas scalaire au cas des fonctions à valeurs vectorielles ...)
-Cf McLeod "Mean Value Theorem for Vector-Valued Functions".
 
 TODO -- Analycité
 --------------------------------------------------------------------------------
@@ -2681,7 +2713,7 @@ Vecteur Gaussien {#sol-vg}
 
 La fonction 
 $$
-f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1}x \right> \right)
+f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} x \right> \right)
 $$
 apparaît comme la composée des fonctions
 $$
@@ -2727,7 +2759,7 @@ $$
 \nabla f(x) = -f(x) \Sigma^{-1} x.
 $$
 
-### TODO -- Question 2 {#sol-vg-2}
+### Question 2 {#sol-vg-2}
 De l'équation
 $$
 d f(x) \cdot h 
@@ -2750,7 +2782,24 @@ d (x \mapsto d f(x) \cdot h) \cdot k
 \end{split}
 $$
 
-**TODO: end this**
+Pour des vecteurs arbitraires $u$ et $v$ dans $\R^n$, on a
+$$
+\left<u, k \right> \left<v, h \right>
+=
+\left<k, u \right> \left<v, h \right>
+= k^t u v^t h = (v u^t k)^t h = \left<(v u^t) k, h \right>,
+$$
+par conséquent
+$$
+d (x \mapsto d f(x) \cdot h) \cdot k
+= 
+-f(x) \left<(\Sigma^{-1} x x^t \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
+$$
+La matrice Hessienne de $f$ en $x$ est donc donnée par
+$$
+\nabla^2 f(x) = - f(x) (\Sigma^{-1} x x^t \Sigma^{-1} + \Sigma^{-1}).
+$$
+
 
 Robot Manipulateur
 --------------------------------------------------------------------------------
@@ -2794,6 +2843,16 @@ Df(\theta_1, \theta_2)
 \end{array}
 \right]
 $$
+
+Différentiation Matricielle
+--------------------------------------------------------------------------------
+
+### TODO -- Question 1 {#sol-dm-1}
+
+### TODO -- Question 2 {#sol-dm-2}
+
+### TODO -- Question 3 {#sol-dm-3}
+
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -3071,12 +3130,19 @@ $$
 Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
 c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
 
+Egalité des accroissements finis ? {#sol-eaf}
+--------------------------------------------------------------------------------
+
+La dérivée de $f$ est donnée par $f'(t) = (-\sin t, \cos t)$; 
+en particulier pour tout $t \in [0, 2\pi]$, $\|f'(t)\| = 1$.
+Or $f(2\pi) - f(0) = 0$, donc il est impossible de trouver un 
+$t$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$.
+
+
+
 TODO -- Asymptotique
 --------------------------------------------------------------------------------
 
-
-TODO -- Mean Value Theorem
---------------------------------------------------------------------------------
 
 
 TODO -- Analycité

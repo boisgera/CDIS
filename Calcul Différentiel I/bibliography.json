@@ -23,5 +23,26 @@
 				]
 			]
 		}
-	}
+	},
+	{
+		"id": "Tao13",
+		"type": "article",
+		"title": "Matrix identities as derivatives of determinant identities",
+		"URL": "https://terrytao.wordpress.com/2013/01/13/matrix-identities-as-derivatives-of-determinant-identities/",
+		"author": [
+						{
+										"family": "Tao",
+										"given": "Terence"
+						}
+		],
+		"issued": {
+						"date-parts": [
+										[
+														"2013",
+														1,
+														13
+										]
+						]
+		}
+}
 ]
