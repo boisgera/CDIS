@@ -2842,7 +2842,52 @@ $$
 Différentiation Matricielle
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {#sol-dm-1}
+### Question 1 {#sol-dm-1}
+Soit $H \in \R^{n\times n}$, telle que
+$$
+H = 
+\left[
+\begin{array}{cccc}
+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & h_{nn} \\
+\end{array} 
+\right].
+$$
+En développant le déterminant selon la première colonne, on constate
+que
+$$
+\begin{split}
+\det (I+H) &= 
+\left|
+\begin{array}{cccc}
+1+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & 1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} 
+\right| \\
+&=(1 + h_{11}) 
+\left| \begin{array}{ccc}
+1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots \\
+h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} \right| 
++ o(\|H\|), \\
+\end{split}
+$$
+une relation dont on tire par récurrence que
+$$
+\begin{split}
+\det (I+H) 
+&= \prod_{i = 1}^n (1 + h_{ii}) + o(\|H\|)
+=\det I + \sum_{i=1}^n h_{ii} + o(\|H\|) \\
+&= \det I + \tr H + o(\|H\|).
+\end{split}
+$$
+La différentiel du déterminant existe donc en l'identité et 
+$d\det(I) \cdot H = \tr H$.
 
 ### TODO -- Question 2 {#sol-dm-2}
 
