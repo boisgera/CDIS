@@ -2629,15 +2629,6 @@ TODO -- Oloid
 cf <http://www.heldermann-verlag.de/jgg/jgg01_05/jgg0113.pdf>, par exemple
 calcul plan tangent ?
 
-TODO -- Formes, Fonction Distance, Squelette
---------------------------------------------------------------------------------
-
-**TODO:** équivalence entre $(d_A(x))^2$ différentiable et $x$ pas sur le 
-squelette de $A$ (deux projections sur $\overline{A}$). 
-
-Pousser le bouchon avec $(d_A(x))^2$ convexe et $A$ convexe ?
-
-cf Zolésio.
 
 Solutions aux Exercices
 ================================================================================
@@ -3233,9 +3224,6 @@ TODO -- Convexité
 TODO -- Oloid
 --------------------------------------------------------------------------------
 
-
-TODO -- Formes, Fonction Distance, Squelette
---------------------------------------------------------------------------------
 
 Références
 ================================================================================
