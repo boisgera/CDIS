@@ -2501,8 +2501,8 @@ Différentiation Matricielle
 Source: [@Tao13]
 
 ### Question 1
-Montrer que l'application $\det: A \in \R^n \to \det A \in \R$ est 
-différentiable en $A = I$ (l'identité) et y calculer sa différentielle.
+Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
+différentiable en l'identité ($A = I$) et calculer cette différentielle.
 
 $\to$ [Solution](#sol-dm-1)
 
@@ -2616,13 +2616,6 @@ TODO -- Analycité
 --------------------------------------------------------------------------------
 
 Borne sur $f^{(n)}$ et analycité ?
-
-TODO -- Arguments Matriciels
---------------------------------------------------------------------------------
-
-Différentielle d'objects comme $\det A$ ?
-
-Exploiter <https://terrytao.wordpress.com/2013/01/13/matrix-identities-as-derivatives-of-determinant-identities/#comment-514937>
 
 TODO -- Convexité
 --------------------------------------------------------------------------------
