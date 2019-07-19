@@ -2900,9 +2900,36 @@ $$
 \tr A B = \tr B A.
 $$
 
+### Question 3 {#sol-dm-3}
 
-### TODO -- Question 3 {#sol-dm-3}
+Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
+est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
+son déterminant est positif; la matrice $A$ est alors inversible.
 
+Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
+pour être inversible, la formule de Cramer établit
+$$
+A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
+$$
+Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
+de $A$) est une fonction polynomiale
+des coefficients $a_{ij}$ de $A$; chaque coefficient de $\mathrm{co}(A)^t$
+est donc une fonction continûment différentiable des coefficients de $A$
+et donc différentiable en $A=I$.
+Par la règle du produit, chaque coefficient de $A^{-1}$ est 
+donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
+différentiable en $A=I$.
+
+Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
+$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + o(\|H\|),$
+l'identité $(I+ H) (I + H)^{-1} = I$ fournit:
+$$
+(I+H)(I + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)) 
+= I + H + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)
+= I,
+$$
+et donc
+$$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
