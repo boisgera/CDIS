@@ -644,17 +644,14 @@ $$
 f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
 $$
 La fonction $f$ est *différentiable*
+(ou *différentiable sur $U$*)
 si elle est différentiable en tout point de $U$. 
 
-### Note
-On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
-définition de la fonction n'est pas évident dans le contexte.
-
-### Remarque 
+### Approximation linéaire de la variation {.remark} 
 Si l'on considère à nouveau $\Delta f(x, h)$, 
 la variation de $f$ en $x$, associée à la variation $h$ de l'argument
 $$
-\Delta f(x, h) = f(x+h) - f(x),
+\Delta f(x, h) := f(x+h) - f(x),
 $$
 on réalise que la différentielle de $f$ en $x$, quand elle existe, 
 constitue la seule approximation linéaire de cette variation telle que
@@ -1146,7 +1143,7 @@ quand le second membre existe.
 
 ### Différentielle partielle {.remark .definition}
 La dérivée partielle permet d'étudier séparement l'influence de chaque 
-variable **scalaire** de $f$ sur sa variation. 
+variable scalaire de $f$ sur sa variation. 
 Mais dans certaine situations il est plus naturel de regrouper 
 les variables dont dépend $f$ en en plusieurs variables vectorielles. 
 Ainsi, pour étudier l'application produit scalaire dans $\mathbb{R}^n$
@@ -1726,41 +1723,28 @@ $$
     $$
 
 
-### Variation de la différentielle {.lemma #LVD} 
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-deux fois différentiable en un point $x$ de $U$. On a
+### Variation de la différentielle I {.proposition #LVD} 
+Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+deux fois différentiable en $x \in U$,
 $$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|)
-$$
-
-**TODO:** en pratique, on combinera le résultat ci-dessus avec la symmétrie
-de la différentielle d'ordre 2 pour mémoriser le résultat. Mais ce résultat
-est lui-même utile dans la preuve de la symmétrie. Comment présenter les
-résultat au final ? Se débrouiller pour minorer l'impact de la forme 
-"temporaire" dans l'exposé oral c'est clair, mais dans le poly comment
-faire pour casser la boucle ? Du coup, ce résultat serait un lemme,
-et le "vrai" théorème simplifié suivra. OK.
-
-### Remarque
-Dans l'équation ci-dessus, le "$o(\|k\|)$" est inséré dans une équation
-entre applications linéaires de $\mathbb{R}^n \to \mathbb{R}^m$.
-Il doit donc être interprété comme
-$$
-o(\|k\|) = E(k) \|k\| \; \mbox{ où } \; 
-\, E(k) \in \mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m, \,
-\lim_{h \to 0} E(k) = E(0) = 0. 
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
 $$
 
+### Interprétation du $o(\|k\|)$ {.remark}
+L'équation ci-dessus s'applique à des fonctions linéaires de $\R^n$
+dans $\R^m$. Elle doit donc être interprétée comme l'existence
+d'une fonction $E$, définie dans un voisinage de $0$ dans $\R^n$, 
+vérifiant
+$$
+E(k) \in \R^n \stackrel{\ell}{\to} \R^m \; \mbox{ et } \;
+\lim_{h \to 0} E(k) = E(0) = 0,
+$$
+telle que
+$$
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + E(k) \|k\|.
+$$
 
-**TODO?**. "Sortir" les lemmes du théorème ? Voire les notation $\Delta f$ ?
-Ce sont des résultats majeurs ? (ça éclaire des choses sur ce qu'est 
-$d^2f$ et comment la calculer alors pourquoi pas ... ça pourrait aussi nous
-éviter des lemmes "nestés" quoi qu'il en soit dans la preuve du théorème.
-A la limite, le résultat sur la symmétrie de $\Delta f$ peut rester dedans,
-c'est ça le coeur de la preuve. Et je sors l'autre sur l'approximation de
-$d^2f$ par $\Delta^2 f$.)
-
-### Preuve
+### Démonstration {.proof}
 Par définition de la différentielle d'ordre 2 en $x$, 
 pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, on a, 
 pour tout vecteur $k$ de $\mathbb{R}^n$,
@@ -1792,7 +1776,7 @@ soit
 $$
 df(x+k)
 = 
-df(x) + d^2f(x) \cdot \bullet \cdot k + E(k) \|k\|,
+df(x) + (h \mapsto d^2f(x) \cdot h \cdot k) + E(k) \|k\|,
 $$
 Par ailleurs, pour tout couple de 
 vecteurs $h$ et $k$ de $\mathbb{R}^n$, on a
@@ -1811,26 +1795,28 @@ $$
 $$
 ce qui prouve le résultat cherché.
 
---------------------------------------------------------------------------------
+### Variation d'ordre $2$
+Soit $f: U \subset \R^n \to \R^m$ où $U$ est un ouvert et $x \in U$.
+Quand cette expression est définie, on appelle *variation d'ordre 2*
+de $f$ en $x$, associée aux variation $h$ et $k$ de l'argument,
+la grandeur
+$$
+\begin{split}
+\Delta^2 f(x, h, k) &=\Delta(x \mapsto \Delta f(x, h))(x, k) \\
+&= \Delta f(x+k, h) - \Delta f(x, h).
+\end{split}
+$$
 
-**TODO: ** définir $\Delta^2 f$; définir $\Delta f$ au préalable qqpart, 
-et rappeler ici.
-
-Le théorème qui suit montre que $d^2f(x)\cdot h\cdot k$ fournit une 
-approximation de $\Delta^2 f(x, h, k)$ quand $h$ et $k$ sont petits.
-
-#### Variation et différentielle d'ordre deux {.theorem}
+### Variation et différentielle d'ordre deux {.theorem}
 Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
 $\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
 $$
 \left\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k \right\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
 
-#### Preuve  {.proof}
-
-**TODO:** $h$ et $k$ assez petits pour que les expressions soient toutes
-définies.
-
+### Démonstration  {.proof}
+Considérons des vecteurs $h$ et $k$ tels que $x+h$, $x+k$ et $x+h+k$ soient
+dans le domaine de définition de $f$.
 La différence $e$ entre $\Delta^2 f(x,h, k)$ et $d^2 f(x) \cdot h \cdot k$
 vaut
 $$
@@ -1848,16 +1834,16 @@ la différence vaut $e = g(h) - g(0).$ Cette différence peut être majorée
 par le théorème des accroissements finis: $g$ est différentiable sur
 le segment $[0, h]$ et
 $$
-dg(u) = df(x+u+k) - df(x+u) - d^2f(x) \cdot \bullet \cdot k. 
+dg(u) = df(x+u+k) - df(x+u) - [h \mapsto d^2f(x) \cdot h \cdot k]. 
 $$
 Comme
 $$
 \begin{split}
-dg(u) &= (df(x+u+k) - df(x) - d^2f(x) \cdot \bullet \cdot (u+k) )\\
-      &\phantom{=} - (df(x+u) - df(x) - d^2f(x) \cdot \bullet \cdot u),
+dg(u) &= (df(x+u+k) - df(x) - [h \mapsto d^2f(x) \cdot h \cdot (u+k)] )\\
+      &\phantom{=} - (df(x+u) - df(x) - [h \mapsto d^2f(x) \cdot h \cdot u]),
 \end{split}
 $$
-par le théorème controllant la [variation de la différentielle][Variation de la différentielle],
+par le théorème controllant la [variation de la différentielle][Variation de la différentielle I],
 pour $\varepsilon > 0$ quelconque, comme
 $\|u+k\| \leq \|h\| + \|k\|$ et $\|u\| \leq \|h\|$, 
 on peut trouver un $\eta > 0$ tel que si $\|h\| < \eta$ et $\|k\| < \eta,$ 
@@ -1870,7 +1856,6 @@ $$
 \|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
 
-
 ### Symmétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 deux fois différentiable en un point $x$ de $U$. Pour tout couple
@@ -1879,57 +1864,54 @@ $$
 d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
 $$
 
-### Preuve
-Notons $\Delta f(x, h) = f(x+h) - f(x)$ la variation de $f$ en $x$ 
-associée pour une variation $h$ de l'argument et $\Delta^2 f(x, h, k)$ 
-la variation de $\Delta f(x, h)$ en $x$ pour une variation $k$ de l'argument:
+### Démonstration {.proof}
+Notons au préalable que
 $$
-\Delta^2 f(x, h, k) = (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)).
+\begin{split}
+\Delta^2 f(x, h, k) &= (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)) \\
+&= f(x+h+k) - f(x+h) - f(x+k) + f(x) \\
+&= (f(x+k+h) - f(x+h)) - (f(x+k) - f(x)) \\
+&= \Delta^2 f(x, k, h).
+\end{split}
 $$
-On peut remarquer que la variation d'ordre $2$ de $f$ en $x$ est 
-symmétrique: lorsque $\Delta^2 f(x, h, k)$ est définie,
-$\Delta^2 f(x, k, h)$ également et
-$$
-\Delta^2 f(x, h, k) = \Delta^2 f(x, k, h). 
-$$
-
-
-
-
---------------------------------------------------------------------------------
-
-La conclusion s'imposera alors: en effet, si $h$ et $k$ sont des vecteurs
-de $\mathbb{R}^n$ en exploitant la symmétrie de $\Delta^2f$, on obtient
+La variation d'ordre $2$ de $f$ en $x$ est donc
+symmétrique par rapport à ses arguments $h$ et $k$.
+On peut alors exploiter la relation entre variation d'ordre $2$ et 
+différentielle d'ordre 2 en notant que
 \begin{multline*}
 \|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
 \leq \\
 \|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
 \end{multline*}
-En substituant $th$ à $h$ et $tk$ à $tk$ dans cette expression, 
-puis en faisant tendre $t$ vers $0$, on peut rendre $th$ et $tk$ 
-arbitrairement proches de $0$ et donc s'assurer que
-pour tout $\varepsilon > 0$,
+On obtient pour tout $\varepsilon > 0$ et quand $h$ et $k$ sont suffisamment petits,
 $$
 \begin{split}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
-&=
-\frac{1}{t^2}\|d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th \| \\
-&\leq \frac{1}{t^2}2 \varepsilon (\|th\|+\|tk\|)^2 \\ 
-&= 2\varepsilon (\|h\|+\|k\|)^2,
+\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \| 
+\leq 2\varepsilon (\|h\|+\|k\|)^2.
 \end{split}
 $$
-ce qui nous assure que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
+Quand $h$ et $k$ sont arbitraires, en substituant $th$ à $h$ et $tk$ à $k$
+pour un $t>0$ suffisamment petit pour que l'inégalité ci-dessus soit valable,
+comme 
+$$
+d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th
+=t^2 \times (d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h)
+$$
+et 
+$$
+2 \varepsilon (\|th\|+\|tk\|)^2 = t^2 \times 2 (\|h\|+\|k\|)^2,
+$$
+on voit que l'inégalité est en fait valable pour des $h$ et $k$ arbitraires.
+On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
 
-
-
-### Variation de la différentielle {.theorem} 
+### Variation de la différentielle II {.theorem} 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 deux fois différentiable en un point $x$ de $U$. On a
 $$
 df(x+k) = df(x) + d^2 f(x) \cdot k + o(\|k\|)
 $$
 
-### Preuve
+### Démonstration {.proof}
 Par le [lemme sur la variation de la différentielle](#LVD), on sait que
 $$
 df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
