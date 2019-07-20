@@ -1920,11 +1920,7 @@ La [différentielle d'ordre 2 étant symmétrique](#SD2),
 $$
 d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h,
 $$
-et par conséquent
-$$
-df(x+k) = df(x) + (h \mapsto (d^2 f(x) \cdot k) \cdot h) + o(\|k\|),
-$$
-qui est l'égalité cherchée.
+ce qui fournit l'égalité cherchée.
 
 ### TODO -- Dérivées partielles d'ordre 2
 
