@@ -1078,10 +1078,6 @@ et sa différentielle est l'application
 $(h_1, h_2) \to x h_2 + y h_1,$
 c'est-à-dire $x dy + y dx$.
 
-### TODO
-
-**TODO:** (cas matriciel pour le produit ? A un moment ?). En exercice ?
-
 ### Linéarité de la différentielle {.corollary}
 Soit $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et 
 $g: U \to \mathbb{R}^m$, différentiables en $x \in U$. 
@@ -2625,6 +2621,8 @@ Lien convexité et différentielle d'ordre 2.
 
 TODO -- Oloid
 --------------------------------------------------------------------------------
+
+Source: [@DS97]
 
 cf <http://www.heldermann-verlag.de/jgg/jgg01_05/jgg0113.pdf>, par exemple
 calcul plan tangent ?
