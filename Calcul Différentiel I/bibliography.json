@@ -44,5 +44,33 @@
 										]
 						]
 		}
+},
+{
+	"id": "DS97",
+	"type": "article-journal",
+	"title": "The Development of the Oloid",
+	"collection-title": "Journal for Geometry and Graphics",
+	"page": "105-118",
+	"volume": "1",
+	"issue": "2",
+	"URL": "http://www.heldermann-verlag.de/jgg/jgg01_05/jgg0113.pdf",
+	"author": [
+					{
+									"family": "Dirnböck",
+									"given": "Hans"
+					},
+					{
+									"family": "Stachel",
+									"given": "Hellmuth"
+					}
+	],
+	"issued": {
+					"date-parts": [
+									[
+													"1997"
+									]
+					]
+	}
 }
+
 ]
