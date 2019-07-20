@@ -1905,8 +1905,8 @@ on voit que l'inégalité est en fait valable pour des $h$ et $k$ arbitraires.
 On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
 
 ### Variation de la différentielle II {.theorem} 
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-deux fois différentiable en un point $x$ de $U$. On a
+Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+deux fois différentiable en $x \in U$,
 $$
 df(x+k) = df(x) + d^2 f(x) \cdot k + o(\|k\|)
 $$
