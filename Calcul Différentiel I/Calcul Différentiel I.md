@@ -1918,7 +1918,7 @@ df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
 $$
 La [différentielle d'ordre 2 étant symmétrique](#SD2), 
 $$
-d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h,
+d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h,
 $$
 ce qui fournit l'égalité cherchée.
 
