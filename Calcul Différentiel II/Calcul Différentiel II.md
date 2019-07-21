@@ -999,7 +999,7 @@ en première lecture.
 
     >>> def wrap(function):
     ...    def wrapped_function(*args):
-    ...        if any(isinstance(arg, Node) for arg in args):
+    ...        if any([isinstance(arg, Node) for arg in args]):
     ...            node_args = []
     ...            values = []
     ...            for arg in args:
@@ -1163,7 +1163,9 @@ TODO -- temp / test
     >>> print(sin(0.0))
     0.0
     >>> print("d_cos", d_cos(0.0)(1.0))
-    0.0
+    d_cos -0.0
+
+--------------------------------------------------------------------------------
 
     >>> def f(x):
     ...     return x + 1

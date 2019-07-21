@@ -301,7 +301,7 @@ if images.exists():
         os.chdir(root)
 
 # Doctest
-# python("-m", "doctest", doc_md)
+python("-m", "doctest", doc_md)
 
 # Pandoc Options
 options = ["--standalone"]
