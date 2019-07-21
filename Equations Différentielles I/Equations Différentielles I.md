@@ -118,6 +118,7 @@ Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to
 
 *Démonstration*
 + principe de preuve et preuve en annexe ?
+$\hfill\blacksquare$
 
 
 ### Exemples {.example #ex_lips}
@@ -125,7 +126,7 @@ Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to
 $$
 f(t,x) = a(t) x + b(t) \ ,
 $$
-admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R^2$.
+admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$.
 
 - L'intervalle de définition de la solution maximale du problème de Cauchy n'est pas nécessairement $\R$, même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. Par exemple, si $f:(t,x)\mapsto x^2$ et $U=\R^2$, quelque-soit $(t_0,x_0)\in \R^2$, la solution maximale s'écrit  
 $$
@@ -146,12 +147,51 @@ Il est rare de pouvoir calculer explicitement la solution au problème de Cauchy
 Solutions globales
 --------------------------------
 
-Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ en $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert qui n'est pas nécessairement $\R$ entier, c'est-à-dire la solution n'est pas nécessairement globale. Le théorème suivant montre que dans ce cas, la solution  quitte nécessairement n'importe quel compact en temps fini, c'est-à-dire explose en temps fini comme vu dans [l'exemple où $f(t,x)=x^2$](#ex_lips).
+Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ en $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert qui n'est pas nécessairement $\R$ entier, c'est-à-dire la solution n'est pas nécessairement globale. En fait, le théorème suivant montre que pour toute solution maximale, la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $U$ au bout d'un certain temps. Dans le cas usuel où $U=\R\times \R^n$, ceci implique donc que toute solution non globale explose en temps fini comme vu dans [l'exemple où $f(t,x)=x^2$](#ex_lips). Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger.
 
 ### Théorème des bouts {.theorem #theo_bouts}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ en $x$. Soient $(t_0,x_0)\in U$ et $x:(t_0-\tau,t_0+\tau)\to \R^n$ la solution maximale au problème de Cauchy correspondant. to finish 
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ en $x$. Soient $(t_0,x_0)\in U$ et $x:(\underline{t},\overline{t})\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in [-\infty,t_0)$ et $\overline{t}\in (t_0,+\infty]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in [t_0,\overline{t})$ and $t_K^-\in (\underline{t},t_0]$) tels que
+$$
+(t,x(t))\notin K \qquad \forall t\in [t_K^+,\overline{t}) \cup  (\underline{t},t_K^-] 
+$$
 
-### Critères d'existence globale {.theorem #theo_exist_glob}
+*Démonstration* : Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset U$ tel que
+$$
+ \forall t_K \in [t_0,\overline{t}) \, , \, \exists t\in [t_K,\overline{t}) \: : \: x(t)\in K
+$$
+En d'autres termes, on suppose que la solution revient de manière persistente dans $K$. Alors il existe une suite $(t_n)_{n\in \N}$ telle que 
+$$
+\overline{t}-\frac{1}{n}\leq  t_n < \overline{t} \quad \text{et} \quad (t_n,x(t_n))\in K \quad \forall n\in \N
+$$
+On a donc $\lim_{n\to+\infty} t_n = \overline{t}$, et par compacité de $K$, on peut extraire de $t_n,(x(t_n))_{n\in \N}$ une sous-suite qui converge vers $(\overline{t},\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{n\to+\infty} x(t_n) =\overline{x}$.
+
+BESOIN de CL local pour avoir l'estimée du temps minimal d'existence de solution 
+
+$\hfill\blacksquare$
+
+### Critère d'existence globale {.theorem #theo_exist_glob}
+Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$ de classe $C^1$ en x. S'il existe $a,b:I\to \R$ telles que  
+$$
+|f(t,x)|\leq a(t) |x| + b(t) \quad \forall (t,x)\in I\times \R^n \ ,
+$$
+alors la solution maximale au problème de Cauchy associé est défini sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
+
+*Démonstration* : 
+\hfill$\blacksquare$
+
+
+### Exemples
+- Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C(I,\R^{n\times n})$ et $b\in C(I,\R^n)$ telles que
+$$
+f(t,x) = a(t) x + b(t) \ .
+$$
+D'après le théorème précédent, quelque-soit sa condition initiale $(t_0,x_0)\in I\times\R^n$, sa solution maximale est définie sur $I$ entier.
+
+- Un autre cas important d'une croissance au plus affine est lorsque $f$ est globalement bornée en $x$, par exemple de la forme $f(t,x)=c(t)arctan(x)$ ou $f(t,x)=\frac{c(t)}{1+x^2}$. Dans ce cas, le théorème s'applique avec $a(t)=0$.
+
+- Bien sûr, la fonction $f:(t,x)\mapsto x^2$ ne satisfait pas la croissance au plus affine et [on a vu](#ex_lips) que les solutions associées explosent en temps fini. Par contre, si l'on prend $f(t,x)=-x|x|$ ou $f(t,x)=-x^3$ qui ne satisfont pas non plus cette condition, on peut montrer que les solutions maximales sont globales (et tendent vers 0). On en déduit donc que la croissance au plus affine est  suffisante mais pas nécessaire pour garantir la globalité des solutions.
+
+
 
 
 Régularité et stabilité des solutions
@@ -170,7 +210,15 @@ Régularité en temps fini
 Propriétés asymptotiques
 -----------------------------
 
+### Point d'équilibre
 
+### Stabilité, stabilité asymptotique
+
+### Lyapunov
+
+### Cas linéaire
+
+### Cas du plan : théorème de Bendixon
 
 
 Références
