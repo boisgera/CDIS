@@ -1034,6 +1034,21 @@ ce que est sensiblement plus rapide et lisible
 que la démarche entreprise pour `cos` et `+`; 
 mais encore une fois, le résultat est le même.
 
+### TODO
+
+exp, etc.
+
+   >>> def unary_plus(x):
+   ...     return x
+   >>> unary_plus = wrap(unary_plus)
+   >>> Node.__pos__ = unary_plus
+
+   >>> def unary_minus(x):
+   ...     return - x
+   >>> unary_minus = wrap(unary_minus)
+   >>> Node.__neg__ = unary_minus
+
+
 Il est désormais possible d'implémenter le traceur. 
 Celui-ci encapsule les arguments de la fonction à tracer 
 dans des noeuds, puis appelle la fonction et renvoie le noeud associé
@@ -1114,7 +1129,7 @@ Tri topologique
     ...     done = []
     ...     while nodes:
     ...         for node in nodes[:]:
-    ...             if all(parent in done for parent in node.args):
+    ...             if all([parent in done for parent in node.args]):
     ...                 done.append(node)
     ...                 nodes.remove(node)
     ...     return done
@@ -1135,16 +1150,17 @@ Tri topologique
     ...                     _d_f = differential[node.function]
     ...                     _args = node.args
     ...                     _args_values = [_node.value for _node in _args]
-    ...                     try:
-    ...                         _d_args = [_node.d_value for _node in _args]
-    ...                         node.d_value = _d_f(*_args_values)(*_d_args)
-    ...                     except AttributeError:
-    ...                          print("*")
-    ...                          for _node in _args:
-    ...                              print(_node, getattr(_node, "d_value", None))                     
-    ...             return getattr(end_node, "d_value", None) #end_node.d_value
+    ...                     _d_args = [_node.d_value for _node in _args]
+    ...                     node.d_value = _d_f(*_args_values)(*_d_args)
+    ...             return end_node.d_value
     ...         return df_x
     ...     return df
+
+
+TODO -- temp / test
+--------------------------------------------------------------------------------
+
+    >>> print("d_cos", d_cos(0.0)(1.0))
 
     >>> def f(x):
     ...     return x + 1
