@@ -980,15 +980,12 @@ ou
     ...         return x + y
 
 
-
-
 La fonction `add` ne sera sans doute pas utilisée directement, 
 mais appelée sous forme d'opérateur `+`; elle doit donc nous
 permettre de définir les méthodes `__add__` et `__radd__`:
 
     >>> Node.__add__ = add
     >>> Node.__radd__ = add
-
 
 On remarque de nombreuse similarités entre les deux codes;
 plutôt que de continuer cette démarche pour toutes les fonctions
@@ -1012,7 +1009,7 @@ en première lecture.
     ...                else:
     ...                    node_args.append(Node(arg)) 
     ...                    values.append(arg)
-    ...            output_value = wrapped_function(*values)
+    ...            output_value = function(*values)
     ...            output_node = Node(output_value, wrapped_function, node_args)
     ...            return output_node
     ...        else:
@@ -1138,16 +1135,28 @@ Tri topologique
     ...                     _d_f = differential[node.function]
     ...                     _args = node.args
     ...                     _args_values = [_node.value for _node in _args]
-    ...                     _d_args = [_node.d_value for _node in _args]
-    ...                     node.d_value = _d_f(*_args_values)(*_d_args)
-    ...             return end_node.d_value
+    ...                     try:
+    ...                         _d_args = [_node.d_value for _node in _args]
+    ...                         node.d_value = _d_f(*_args_values)(*_d_args)
+    ...                     except AttributeError:
+    ...                          print("*")
+    ...                          for _node in _args:
+    ...                              print(_node, getattr(_node, "d_value", None))                     
+    ...             return getattr(end_node, "d_value", None) #end_node.d_value
     ...         return df_x
     ...     return df
 
     >>> def f(x):
+    ...     return x + 1
+    >>> x = 2.0
+    >>> df_x = d(f)(x)
+    >>> df_x(1.0)
+    1.0
+
+    >>> def f(x):
     ...     return x * x + 2 * x + 1
-    >>> x = 1.0
-    >>> df_x = d(f)(2.0)
+    >>> x = 2.0
+    >>> df_x = d(f)(x)
     >>> df_x(1.0)
     6.0
 
