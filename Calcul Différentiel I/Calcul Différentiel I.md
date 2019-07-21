@@ -7,6 +7,8 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+\newcommand{\tr}{\operatorname{tr}}
+
 <!--
 
 Narratif & Notes & TODOsss
@@ -642,17 +644,14 @@ $$
 f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
 $$
 La fonction $f$ est *différentiable*
+(ou *différentiable sur $U$*)
 si elle est différentiable en tout point de $U$. 
 
-### Note
-On pourra parler de fonction $f$ différentiable *sur $U$* si le domaine de 
-définition de la fonction n'est pas évident dans le contexte.
-
-### Remarque 
+### Approximation linéaire de la variation {.remark} 
 Si l'on considère à nouveau $\Delta f(x, h)$, 
 la variation de $f$ en $x$, associée à la variation $h$ de l'argument
 $$
-\Delta f(x, h) = f(x+h) - f(x),
+\Delta f(x, h) := f(x+h) - f(x),
 $$
 on réalise que la différentielle de $f$ en $x$, quand elle existe, 
 constitue la seule approximation linéaire de cette variation telle que
@@ -1076,10 +1075,6 @@ et sa différentielle est l'application
 $(h_1, h_2) \to x h_2 + y h_1,$
 c'est-à-dire $x dy + y dx$.
 
-### TODO
-
-**TODO:** (cas matriciel pour le produit ? A un moment ?). En exercice ?
-
 ### Linéarité de la différentielle {.corollary}
 Soit $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et 
 $g: U \to \mathbb{R}^m$, différentiables en $x \in U$. 
@@ -1123,7 +1118,7 @@ on ne peut pas les multiplier)
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ où $U$ est ouvert et
 soit $x$ un point de $U$. Quand $f$ est différentiable en $x$, 
 on appelle *matrice jacobienne* de $f$ en $x$ et l'on note 
-$Df(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
+$J_f(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
 différentielle $df(x): \mathbb{R}^n \to \mathbb{R}^m$ de $f$ en $x$.
 
 ### Dérivée Partielle {.definition}
@@ -1148,7 +1143,7 @@ quand le second membre existe.
 
 ### Différentielle partielle {.remark .definition}
 La dérivée partielle permet d'étudier séparement l'influence de chaque 
-variable **scalaire** de $f$ sur sa variation. 
+variable scalaire de $f$ sur sa variation. 
 Mais dans certaine situations il est plus naturel de regrouper 
 les variables dont dépend $f$ en en plusieurs variables vectorielles. 
 Ainsi, pour étudier l'application produit scalaire dans $\mathbb{R}^n$
@@ -1267,11 +1262,11 @@ Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
 soit $x$ un point de $U$. 
 Si $f$ est différentiable en $x$, on a 
 $$
-[Df(x)]_{ij} = \partial_{j} f_i(x),
+[J_f(x)]_{ij} = \partial_{j} f_i(x),
 $$
 c'est-à-dire
 $$
-Df(x) = \left[
+J_f(x) = \left[
 \begin{array}{cccc}
 \partial_1 f_1 (x) & \partial_2 f_1 (x) & \cdots & \partial_n f_1 (x) \\
 \partial_1 f_2 (x) & \partial_2 f_2 (x) & \cdots & \partial_n f_2 (x) \\
@@ -1284,23 +1279,23 @@ $$
 ### Démonstration {.proof}
 Par définition, la matrice jacobienne de $f$ en $x$ se déduit de la 
 différentielle par
-$[Df(x)]_{ij} = [df(x) \cdot e_j]_i.$
+$[J_f(x)]_{ij} = [df(x) \cdot e_j]_i.$
 Comme $\partial_j f(x) = df(x) \cdot e_j,$ on a
-$[Df(x)]_{ij} = [\partial_j f(x)]_i.$ 
+$[J_f(x)]_{ij} = [\partial_j f(x)]_i.$ 
 Les fonctions vectorielles se dérivant composante par composante, 
-on en déduit que $[Df(x)]_{ij} = [\partial_j f_i(x)]$. 
+on en déduit que $[J_f(x)]_{ij} = [\partial_j f_i(x)]$. 
 
 ### Matrice jacobienne et dérivées partielles {.remark}
 On remarquera qu'avec le résultat ci-dessus, il est techniquement possible de 
-définir la matrice jacobienne $Df(x)$ de $f$ en $x$ en supposant uniquement
+définir la matrice jacobienne $J_f(x)$ de $f$ en $x$ en supposant uniquement
 que les dérivées partielles de $f$ en $x$ existent, ce qui peut arriver
 alors que $f$ n'est pas différentiable en $x$. Mais cette extension est à
 prendre avec précaution. En effet, si l'on accepte cette extension, on ne
 peut plus transposer aux matrices jacobiennes tous les résultats valides pour
-les différentielles. Par exemple, si $Df(g(x)$ et $Dg(x)$ existent
+les différentielles. Par exemple, si $J_f(g(x))$ et $J_g(x)$ existent
 (au sens où toutes les dérivées partielles concernées existent), on peut
-former le produit matriciel $Df(g(x)) Dg(x)$, mais sans aucune garantie que 
-$D(f \circ g)(x)$ existe et/ou soit égal à ce produit, car la règle de 
+former le produit matriciel $J_f(g(x)) J_g(x)$, mais sans aucune garantie que 
+$J_{f \circ g}(x)$ existe et/ou soit égal à ce produit, car la règle de 
 différentiation en chaîne requière l'existence des différentielles.
 
 ### Gradient et dérivées partielles
@@ -1728,41 +1723,28 @@ $$
     $$
 
 
-### Variation de la différentielle {.lemma #LVD} 
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-deux fois différentiable en un point $x$ de $U$. On a
+### Variation de la différentielle I {.proposition #LVD} 
+Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+deux fois différentiable en $x \in U$,
 $$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|)
-$$
-
-**TODO:** en pratique, on combinera le résultat ci-dessus avec la symmétrie
-de la différentielle d'ordre 2 pour mémoriser le résultat. Mais ce résultat
-est lui-même utile dans la preuve de la symmétrie. Comment présenter les
-résultat au final ? Se débrouiller pour minorer l'impact de la forme 
-"temporaire" dans l'exposé oral c'est clair, mais dans le poly comment
-faire pour casser la boucle ? Du coup, ce résultat serait un lemme,
-et le "vrai" théorème simplifié suivra. OK.
-
-### Remarque
-Dans l'équation ci-dessus, le "$o(\|k\|)$" est inséré dans une équation
-entre applications linéaires de $\mathbb{R}^n \to \mathbb{R}^m$.
-Il doit donc être interprété comme
-$$
-o(\|k\|) = E(k) \|k\| \; \mbox{ où } \; 
-\, E(k) \in \mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m, \,
-\lim_{h \to 0} E(k) = E(0) = 0. 
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
 $$
 
+### Interprétation du $o(\|k\|)$ {.remark}
+L'équation ci-dessus s'applique à des fonctions linéaires de $\R^n$
+dans $\R^m$. Elle doit donc être interprétée comme l'existence
+d'une fonction $E$, définie dans un voisinage de $0$ dans $\R^n$, 
+vérifiant
+$$
+E(k) \in \R^n \stackrel{\ell}{\to} \R^m \; \mbox{ et } \;
+\lim_{h \to 0} E(k) = E(0) = 0,
+$$
+telle que
+$$
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + E(k) \|k\|.
+$$
 
-**TODO?**. "Sortir" les lemmes du théorème ? Voire les notation $\Delta f$ ?
-Ce sont des résultats majeurs ? (ça éclaire des choses sur ce qu'est 
-$d^2f$ et comment la calculer alors pourquoi pas ... ça pourrait aussi nous
-éviter des lemmes "nestés" quoi qu'il en soit dans la preuve du théorème.
-A la limite, le résultat sur la symmétrie de $\Delta f$ peut rester dedans,
-c'est ça le coeur de la preuve. Et je sors l'autre sur l'approximation de
-$d^2f$ par $\Delta^2 f$.)
-
-### Preuve
+### Démonstration {.proof}
 Par définition de la différentielle d'ordre 2 en $x$, 
 pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, on a, 
 pour tout vecteur $k$ de $\mathbb{R}^n$,
@@ -1794,7 +1776,7 @@ soit
 $$
 df(x+k)
 = 
-df(x) + d^2f(x) \cdot \bullet \cdot k + E(k) \|k\|,
+df(x) + (h \mapsto d^2f(x) \cdot h \cdot k) + E(k) \|k\|,
 $$
 Par ailleurs, pour tout couple de 
 vecteurs $h$ et $k$ de $\mathbb{R}^n$, on a
@@ -1813,26 +1795,28 @@ $$
 $$
 ce qui prouve le résultat cherché.
 
---------------------------------------------------------------------------------
+### Variation d'ordre $2$
+Soit $f: U \subset \R^n \to \R^m$ où $U$ est un ouvert et $x \in U$.
+Quand cette expression est définie, on appelle *variation d'ordre 2*
+de $f$ en $x$, associée aux variation $h$ et $k$ de l'argument,
+la grandeur
+$$
+\begin{split}
+\Delta^2 f(x, h, k) &=\Delta(x \mapsto \Delta f(x, h))(x, k) \\
+&= \Delta f(x+k, h) - \Delta f(x, h).
+\end{split}
+$$
 
-**TODO: ** définir $\Delta^2 f$; définir $\Delta f$ au préalable qqpart, 
-et rappeler ici.
-
-Le théorème qui suit montre que $d^2f(x)\cdot h\cdot k$ fournit une 
-approximation de $\Delta^2 f(x, h, k)$ quand $h$ et $k$ sont petits.
-
-#### Variation et différentielle d'ordre deux {.theorem}
+### Variation et différentielle d'ordre deux {.theorem}
 Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
 $\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
 $$
 \left\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k \right\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
 
-#### Preuve  {.proof}
-
-**TODO:** $h$ et $k$ assez petits pour que les expressions soient toutes
-définies.
-
+### Démonstration  {.proof}
+Considérons des vecteurs $h$ et $k$ tels que $x+h$, $x+k$ et $x+h+k$ soient
+dans le domaine de définition de $f$.
 La différence $e$ entre $\Delta^2 f(x,h, k)$ et $d^2 f(x) \cdot h \cdot k$
 vaut
 $$
@@ -1850,16 +1834,16 @@ la différence vaut $e = g(h) - g(0).$ Cette différence peut être majorée
 par le théorème des accroissements finis: $g$ est différentiable sur
 le segment $[0, h]$ et
 $$
-dg(u) = df(x+u+k) - df(x+u) - d^2f(x) \cdot \bullet \cdot k. 
+dg(u) = df(x+u+k) - df(x+u) - [h \mapsto d^2f(x) \cdot h \cdot k]. 
 $$
 Comme
 $$
 \begin{split}
-dg(u) &= (df(x+u+k) - df(x) - d^2f(x) \cdot \bullet \cdot (u+k) )\\
-      &\phantom{=} - (df(x+u) - df(x) - d^2f(x) \cdot \bullet \cdot u),
+dg(u) &= (df(x+u+k) - df(x) - [h \mapsto d^2f(x) \cdot h \cdot (u+k)] )\\
+      &\phantom{=} - (df(x+u) - df(x) - [h \mapsto d^2f(x) \cdot h \cdot u]),
 \end{split}
 $$
-par le théorème controllant la [variation de la différentielle][Variation de la différentielle],
+par le théorème controllant la [variation de la différentielle][Variation de la différentielle I],
 pour $\varepsilon > 0$ quelconque, comme
 $\|u+k\| \leq \|h\| + \|k\|$ et $\|u\| \leq \|h\|$, 
 on peut trouver un $\eta > 0$ tel que si $\|h\| < \eta$ et $\|k\| < \eta,$ 
@@ -1872,7 +1856,6 @@ $$
 \|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
 
-
 ### Symmétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 deux fois différentiable en un point $x$ de $U$. Pour tout couple
@@ -1881,72 +1864,76 @@ $$
 d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
 $$
 
-### Preuve
-Notons $\Delta f(x, h) = f(x+h) - f(x)$ la variation de $f$ en $x$ 
-associée pour une variation $h$ de l'argument et $\Delta^2 f(x, h, k)$ 
-la variation de $\Delta f(x, h)$ en $x$ pour une variation $k$ de l'argument:
+### Démonstration {.proof}
+Notons au préalable que
 $$
-\Delta^2 f(x, h, k) = (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)).
+\begin{split}
+\Delta^2 f(x, h, k) &= (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)) \\
+&= f(x+h+k) - f(x+h) - f(x+k) + f(x) \\
+&= (f(x+k+h) - f(x+h)) - (f(x+k) - f(x)) \\
+&= \Delta^2 f(x, k, h).
+\end{split}
 $$
-On peut remarquer que la variation d'ordre $2$ de $f$ en $x$ est 
-symmétrique: lorsque $\Delta^2 f(x, h, k)$ est définie,
-$\Delta^2 f(x, k, h)$ également et
-$$
-\Delta^2 f(x, h, k) = \Delta^2 f(x, k, h). 
-$$
-
-
-
-
---------------------------------------------------------------------------------
-
-La conclusion s'imposera alors: en effet, si $h$ et $k$ sont des vecteurs
-de $\mathbb{R}^n$ en exploitant la symmétrie de $\Delta^2f$, on obtient
+La variation d'ordre $2$ de $f$ en $x$ est donc
+symmétrique par rapport à ses arguments $h$ et $k$.
+On peut alors exploiter la relation entre variation d'ordre $2$ et 
+différentielle d'ordre 2 en notant que
 \begin{multline*}
 \|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
 \leq \\
 \|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
 \end{multline*}
-En substituant $th$ à $h$ et $tk$ à $tk$ dans cette expression, 
-puis en faisant tendre $t$ vers $0$, on peut rendre $th$ et $tk$ 
-arbitrairement proches de $0$ et donc s'assurer que
-pour tout $\varepsilon > 0$,
+On obtient pour tout $\varepsilon > 0$ et quand $h$ et $k$ sont suffisamment petits,
 $$
 \begin{split}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
-&=
-\frac{1}{t^2}\|d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th \| \\
-&\leq \frac{1}{t^2}2 \varepsilon (\|th\|+\|tk\|)^2 \\ 
-&= 2\varepsilon (\|h\|+\|k\|)^2,
+\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \| 
+\leq 2\varepsilon (\|h\|+\|k\|)^2.
 \end{split}
 $$
-ce qui nous assure que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
+Quand $h$ et $k$ sont arbitraires, en substituant $th$ à $h$ et $tk$ à $k$
+pour un $t>0$ suffisamment petit pour que l'inégalité ci-dessus soit valable,
+comme 
+$$
+d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th
+=t^2 \times (d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h)
+$$
+et 
+$$
+2 \varepsilon (\|th\|+\|tk\|)^2 = t^2 \times 2 (\|h\|+\|k\|)^2,
+$$
+on voit que l'inégalité est en fait valable pour des $h$ et $k$ arbitraires.
+On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
 
-
-
-### Variation de la différentielle {.theorem} 
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-deux fois différentiable en un point $x$ de $U$. On a
+### Variation de la différentielle II {.theorem} 
+Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+deux fois différentiable en $x \in U$,
 $$
 df(x+k) = df(x) + d^2 f(x) \cdot k + o(\|k\|)
 $$
 
-### Preuve
+### Démonstration {.proof}
 Par le [lemme sur la variation de la différentielle](#LVD), on sait que
 $$
 df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
 $$
 La [différentielle d'ordre 2 étant symmétrique](#SD2), 
 $$
-d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h,
+d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h,
 $$
-et par conséquent
-$$
-df(x+k) = df(x) + (h \mapsto (d^2 f(x) \cdot k) \cdot h) + o(\|k\|),
-$$
-qui est l'égalité cherchée.
+ce qui fournit l'égalité cherchée.
 
-### TODO: Hessien, condition suffisante d'optimalité ?
+### TODO -- Dérivées partielles d'ordre 2
+
+### Hessienne {.definition}
+Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
+$x \in U$. On appelle *hessienne* de $f$ et $x$ et l'on note
+$\nabla^2f(x)$ l'application linéaire $\R^n \to \R^n$ telle 
+que pour tout couple de vecteurs $h$ et $k$ de $\R^n$
+$$
+d^2f(x) \cdot h \cdot k = \left<\nabla^2f(x) \cdot h, k \right>.
+$$
+La *matrice hessienne $H_f(x)$* est la matrice associée à cette application
+linéaire.
 
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
@@ -1959,32 +1946,60 @@ Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 *$k$ fois différentiable en $x$* si pour tous vecteurs $h_1, \dots, h_{k-1}$ 
 de $\mathbb{R}^n$, 
 la fonction 
-$$x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1}$$ 
+$$x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1}$$ 
 est différentiable en $x$.
 La *différentielle d'ordre $k$ de $f$ en $x$*, notée $d^k f(x)$ 
 est définie comme l'application linéaire telle que pour tout 
 $h_1, \dots, h_{k-1}$ de $\mathbb{R}^n$,
 $$
-d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x)
+d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x)
 $$
 ou de façon équivalente
 $$
-d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1})(x) \cdot h_k
+d^k f(x) \cdot h_1 \cdot h_2 \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
 $$
 
 ### Remarque
-
 On a 
 $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
 $$
+
+
+### Stratification {.lemma}
+Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+$k$ fois différentiable en un point $x$ de $U$, pour tous vecteurs 
+$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, et tout $p \in \{0,\dots, k\}$,
+on a
+$$
+d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
+=
+d^{k-p} (x \mapsto d^p f(x) \cdot h_1 \cdot \hdots \cdot h_{p+1})(x) \cdot h_{p+2} \cdot \hdots \cdot h_k.
+$$
+
+### TODO -- Démonstration {.proof}
+
+### Symmétrie {.proposition}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+$k$ fois différentiable en un point $x$ de $U$, pour tous vecteurs 
+$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, et deux indices arbitraires
+$i \leq j$ entre $1$ et $k$, on a:
+$$
+d^k f(x) \cdot \hdots \cdot h_i \cdot \hdots \cdot h_j \cdot \hdots
+=
+d^k f(x) \cdot \hdots \cdot h_j \cdot \hdots \cdot h_i \cdot \hdots
+$$
+
+### TODO -- Démonstration {.proof}
+
+
 
 <!--
 
 Fonctions à valeurs matricielles/tensorielles
 --------------------------------------------------------------------------------
 
-Objectif: étendre les constructions du calcul différentielle aux fonctions
++1Objectif: étendre les constructions du calcul différentielle aux fonctions
 $f: U \subset \mathbb{R}^p \to \mathbb{R}^{m \times n}$ (après valeurs
 scalaires et vectorielles, matricielles).
 
@@ -2091,13 +2106,131 @@ $$
 
 -->
 
-### TODO
+### Développement limité à l'ordre $n$
+Soit $f: U \subset \R^n \to \R^m$ une fonction $j$ fois différentiable au point
+$x \in U$. Alors
+$$
+f(x+h) = \sum_{i=0}^{j}  \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h
++ o(\|h\|^j).
+$$
 
-approximation concrête de $d^2 f(x) \cdot h \cdot k$.
+### Démonstration {.proof}
+Le résultat est clair pour $j=0$. Supposons le vrai à un rang $j-1$ arbitraire
+pour toute fonction $j-1$ fois différentiable
+et supposons que $f$ est $j$ fois différentiable. Formons le reste 
+d'ordre $j$ associé à $f$:
+$$
+r(h) = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h.
+$$
+Il nous faut montrer que $r(h)$ est un $o(\|h\|^j)$, ce qui 
+nous allons accomplir en établissant que $\|dr(h)\| = o(\|h\|^{j-1})$.
+En effet, si $dr(h) = E(h) \|h\|^{j-1}$ où l'application linéaire $E$
+est un $o(1)$, alors pour tout $\varepsilon > 0$ et $h$ assez proche de $0$ 
+on a $\|E(h)\| \leq \varepsilon$ et donc par le théorème des accroissements
+finis,
+$$
+\|r(h)\| = \|r(h) - r(0)\| \leq \varepsilon \|h\|^{j-1} \times \|h\|
+= \varepsilon \|h\|^j,
+$$
+ce qui établit que $r(h) = o(\|h\|^j)$.
 
-### TODO -- Développement limité à l'ordre $n$
+Etablissons donc que $r(h)$ est un $o(\|h\|^j)$.
+Les termes $d^i f(x)\cdot h_1 \cdot \hdots \cdot h_i$ 
+sont linéaires par rapport à chacun des $h_j$, donc pour tout vecteur 
+$k$, compte tenu de la symmétrie de $d^i f(x)$,
+$$
+d^i f(x) \cdot (h+k) \cdot \hdots \cdot (h+k)
+= 
+d^i f(x) \cdot h \cdot \hdots \cdot h
++ i d^i f(x) \cdot h \cdot \hdots \cdot h \cdot k
++ o(\|k\|).
+$$
+La différentielle de 
+$h \mapsto {d^i f(x)}\cdot h \cdot \hdots \cdot h$
+vaut donc $id^i f(x) \cdot h \cdot \hdots \cdot h$ et
+$$
+d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k - 
+d^2f(x) \cdot h\cdot k - \hdots -
+\frac{d^i f(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h \cdot k.
+$$
+Par le lemme de stratification et la symmétrie des différentielles
+d'ordre supérieur, on obtient 
+\begin{multline*}
+d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k - \\ 
+d(x \mapsto df(x) \cdot k)(x) \cdot h - \hdots -
+\frac{d^{i-1} (x \mapsto df(x) \cdot k)(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h.
+\end{multline*}
+soit en posant $\phi(x) = df(x) \cdot k$,
+$$
+d r(h) \cdot k = \phi(x+h) - \phi(x) - 
+d \phi(x) \cdot h - \hdots -
+\frac{d^{i-1} \phi(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h.
+$$
+L'hypothèse de récurrence nous garantit donc que 
+$d r(h) \cdot k = o(\|h\|^{j-1})$ à $k$ fixé, ce qui, 
+combiné avec la linéarité de $d r(h)$, fournit
+$\|dr(h)\| = o(\|h\|^{j-1})$.
 
-### TODO -- Développement de Taylor avec reste intégral
+
+
+### Développement de Taylor avec reste intégral (fonction d'une variable réelle)
+Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
+$h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
+Si $f$ est $j+1$ fois dérivable sur $[a,a+h]$,
+$$
+f(a+h)  = \sum_{i=0}^n \frac{f^{(i)}(a)}{i!} h^i + \int_a^{a+h} \frac{f^{(j+1)}(t)}{j!} (a+h-t)^j \, dt.
+$$
+
+### Démonstration {.proof}
+A l'ordre $j=0$, la relation à prouver est
+$$
+f(a+h) = f(a) + \int_a^{a+h} f'(t) \, dt
+$$
+qui n'est autre que [le théorème fondamental du calcul](#TFC).
+Si l'on suppose la relation vérifiée à l'ordre $j$, et $f$ $j+2$ fois dérivable,
+par intégration par parties, on obtient
+\begin{multline*}
+\int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
+= \\
+\left[ f^{(j+1)}(t) \times \left( -\frac{(a+h-t)^{j+1}}{(j+1)!} \right) \right]_a^{a+h} \\
+- 
+\int_a^{a+h} f^{(j+2)}(t) \left( -\frac{(a+h-t)^{j+1}}{(j+1)!} \right) \, dt,
+\end{multline*}
+soit 
+\begin{multline*}
+\int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
+= \\
+f^{(j+1)}(a) \times \frac{h^{j+1}}{(j+1)!}
++ 
+\int_a^{a+h} f^{(j+2)}(t) \frac{(a+h-t)^{j+1}}{(j+1)!} \, dt,
+\end{multline*}
+ce qui achève la preuve par récurrence.
+
+### Développement de Taylor avec reste intégral 
+Si $f: U \subset \R^n \to \R^m$ est $j+1$ fois différentiable et $[a, a+h] \subset U$,
+$$
+f(a+h)  = \sum_{i=0}^n \frac{1}{i!}df^{(i)}(a) \cdot \overbrace{h \cdot \hdots \cdot h}^{k \; \mathrm{termes}} 
++ \int_0^{1} \frac{(1-t)^j}{j!}df^{(j+1)}(a+th) \cdot \overbrace{h \cdot \hdots \cdot h}^{j+1 \; \mathrm{termes}}\, dt.
+$$
+
+### Démonstration {.proof}
+La démonstration découle directement du développement de 
+Taylor avec reste intégral dans le cas d'une fonction d'une variable réelle,
+appliqué à la fonction $\phi: t \in [0, 1] \mapsto f(a+th) \in \R^m$.
+Il nous suffit de montrer que $\phi$ est $j+1$ fois différentiable 
+et que pour tout entier $i$ inférieur ou égal à $j+1$,
+$\phi^{(i)}(t) = df^{(i)}(a+th) \cdot h \cdot \hdots \cdot h$. 
+
+Cette relation est évidemment satisfaite pour 
+$i=0$. Supposons qu'elle soit vérifiée au rang $i \leq j$. 
+La fonction $f$ étant $i+1$ fois différentiable, la fonction
+$g:x \in U \mapsto df^{(i)}(x) \cdot h \cdot \hdots \cdot h$ est différentiable, et
+$$
+dg(x) \cdot h = df^{(i+1)}(x) \cdot h \cdot \hdots \cdot h \cdot h.
+$$
+Par dérivation en chaîne, la fonction $t \mapsto df^{(i)}(a+th) \cdot h \cdot \hdots \cdot h$
+est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
+$df^{(i+1)}(a+th) \cdot h \cdot \hdots \cdot h \cdot h.$
 
 ### TODO -- Dérivées partielles d'ordre supérieur
 
@@ -2284,10 +2417,86 @@ $$
 $\to$ [Solution](#sol-dec)
 
 
-TODO -- Calcul Méca
+Vecteur Gaussien
 --------------------------------------------------------------------------------
 
-Faire les calculs menant à $C(q, \dot{q})\dot{q}$ en mécanique lagrangienne ?
+La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
+est proportionnelle à la fonction
+$$
+f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1}x \right> \right)
+$$
+où $\Sigma \in \R^{d \times d}$ est une matrice symmétrique définie positive.
+
+### Question 1
+Montrer que la fonction $f$ est différentiable et calculer son gradient.
+
+$\to$ [Solution](#sol-vg-1)
+
+### Question 2
+Montrer que la fonction $f$ est deux différentiable et calculer sa 
+hessienne.
+
+$\to$ [Solution](#sol-vg-2)
+
+
+Robot Manipulateur
+--------------------------------------------------------------------------------
+
+Les coordonnées cartésiennes $x$ et $y$ de l'effecteur final 
+d'un robot dans le plan, composé de deux corps rigides de longueur
+$\ell_1$ et $\ell_2$ et d'articulation rotoïdes sont données
+par
+$$
+\left|
+\begin{array}{rcl}
+x &=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2) \\
+y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
+\end{array}
+\right.
+$$
+ou $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
+
+### Question 1
+
+Montrer que l'application $f: (\theta_1, \theta_2) \mapsto (x, y)$ 
+est différentiable et déterminer sa matrice jacobienne.
+
+$\to$ [Solution](#sol-rm1)
+
+### TODO -- Question 2
+
+Calcul de $K(q, v)$ (en partant de $K = 1/2m(\dot{x}^2 + \dot{y}^2)$).
+
+### TODO -- Question 3
+
+Eq E.-L. soumis à couples $c_1$ et $c_2$ ? Ou juste grandeurs intermédiaires ?
+
+Différentiation Matricielle
+--------------------------------------------------------------------------------
+
+Source: [@Tao13]
+
+### Question 1
+Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
+différentiable en l'identité ($A = I$) et calculer cette différentielle.
+
+$\to$ [Solution](#sol-dm-1)
+
+### Question 2
+L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
+vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
+En déduire une identité concernant $\tr A B$ et $\tr BA$.
+
+$\to$ [Solution](#sol-dm-2)
+
+### Question 3
+Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
+ouvert de l'identité, est différentiable en ce point et calculer cette
+différentielle.
+
+$\to$ [Solution](#sol-dm-3)
+
+
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2361,6 +2570,16 @@ $\sup_{x \in [a, b]} \|f(x)\|$ ?
 
 $\to$ [Solution](#sol-ivm)
 
+Egalité des accroissements finis ?
+--------------------------------------------------------------------------------
+Soit $f:[0, 2\pi] \to \mathbb{R}^2$ la fonction définie par
+$$
+f(t) = (\cos t, \sin t)
+$$
+Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
+
+$\to$ [Solution](#sol-eaf)
+
 
 TODO -- Asymptotique
 --------------------------------------------------------------------------------
@@ -2368,24 +2587,10 @@ TODO -- Asymptotique
 Comportement asymptotique de $f(x+2h) - 2f(x+h) + f(x)$ (par approximation
 de variation d'ordre 2 par $d^2 f$.)
 
-TODO -- Mean Value Theorem
---------------------------------------------------------------------------------
-
-(version avec avec enveloppe convexe ? A voir. L'idée est éventuellement
-d'étendre le cas scalaire au cas des fonctions à valeurs vectorielles ...)
-Cf McLeod "Mean Value Theorem for Vector-Valued Functions".
-
 TODO -- Analycité
 --------------------------------------------------------------------------------
 
 Borne sur $f^{(n)}$ et analycité ?
-
-TODO -- Arguments Matriciels
---------------------------------------------------------------------------------
-
-Différentielle d'objects comme $\det A$ ?
-
-Exploiter <https://terrytao.wordpress.com/2013/01/13/matrix-identities-as-derivatives-of-determinant-identities/#comment-514937>
 
 TODO -- Convexité
 --------------------------------------------------------------------------------
@@ -2395,18 +2600,11 @@ Lien convexité et différentielle d'ordre 2.
 TODO -- Oloid
 --------------------------------------------------------------------------------
 
+Source: [@DS97]
+
 cf <http://www.heldermann-verlag.de/jgg/jgg01_05/jgg0113.pdf>, par exemple
 calcul plan tangent ?
 
-TODO -- Formes, Fonction Distance, Squelette
---------------------------------------------------------------------------------
-
-**TODO:** équivalence entre $(d_A(x))^2$ différentiable et $x$ pas sur le 
-squelette de $A$ (deux projections sur $\overline{A}$). 
-
-Pousser le bouchon avec $(d_A(x))^2$ convexe et $A$ convexe ?
-
-cf Zolésio.
 
 Solutions aux Exercices
 ================================================================================
@@ -2469,8 +2667,236 @@ $$
 $$
 
 
-TODO -- Calcul Méca
+Vecteur Gaussien {#sol-vg}
 --------------------------------------------------------------------------------
+
+### Question 1 {#sol-vg-1}
+
+La fonction 
+$$
+f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} x \right> \right)
+$$
+apparaît comme la composée des fonctions
+$$
+x \in \R^d \mapsto -\frac{1}{2} \left<x, \Sigma^{-1}x \right>
+\; \mbox{ et } \; \exp:\R \to \R.
+$$ 
+La fonction $\exp$ est dérivable, et donc différentiable 
+sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dx = \exp(y) dy$, c'est-à-dire
+$$
+d\exp(y) \cdot h = \exp(y) \times h.
+$$ 
+Quand à la première fonction, pour tout $h \in \R^d$, on a
+\begin{multline*}
+-\frac{1}{2} \left<x+h, \Sigma^{-1}x+h \right>
+=  \\
+-\frac{1}{2} \left(\left<x, \Sigma^{-1}x \right>
++ <x, \Sigma^{-1} h> + <h, \Sigma^{-1} x> + \left<h, \Sigma^{-1} h \right>
+\right). 
+\end{multline*}
+D'une part, comme $\Sigma$ est symmétrique (et inversible), $\Sigma^{-1}$ également et
+$$
+<x, \Sigma^{-1} h> + <h, \Sigma^{-1} x> = 2 \left<\Sigma^{-1} x, h \right>,
+$$
+d'autre part
+$$
+\left| \left<h, \Sigma^{-1} h \right> \right|
+\leq \|h\| \times \|\Sigma^{-1} h\| \leq \|h\| \times \|\Sigma^{-1}\| \times \|h\| = o(\|h\|).
+$$
+La fonction est donc différentiable sur $\R^n$, avec
+$$
+d \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1}x \right>\right) \right) \cdot h
+= - \left<\Sigma^{-1} x, h \right>.
+$$
+La fonction $f$ est donc différentiable sur $\R^d$ comme composée
+de fonctions différentiables et l'on a
+$$
+d f(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1}x \right>\right) \right)
+\left<\Sigma^{-1} x, h \right>
+= \left<-f(x) \Sigma^{-1} x, h \right>,
+$$
+le gradient de $f$ vaut donc
+$$
+\nabla f(x) = -f(x) \Sigma^{-1} x.
+$$
+
+### Question 2 {#sol-vg-2}
+De l'équation
+$$
+d f(x) \cdot h 
+= \left<-f(x) \Sigma^{-1} x, h \right>
+= -f(x) \left<\Sigma^{-1} h, x \right>
+$$
+on déduit que $x \mapsto d f(x) \cdot h$ est différentiable comme produit
+de fonctions scalaires différentiables (la fonction 
+$x \mapsto \left<\Sigma^{-1} h, x \right>$ étant linéaire). 
+On a de plus
+$$
+\begin{split}
+d (x \mapsto d f(x) \cdot h) \cdot k
+&=
+- (df(x) \cdot k) \times \left<\Sigma^{-1} x, h \right>
+- f(x) \times \left<\Sigma^{-1} h, k \right> \\
+&= 
+\left<-f(x) \Sigma^{-1} x, k \right> \left<\Sigma^{-1} x, h \right>+
+\left<-f(x) \Sigma^{-1} h, k\right>
+\end{split}
+$$
+
+Pour des vecteurs arbitraires $u$ et $v$ dans $\R^n$, on a
+$$
+\left<u, k \right> \left<v, h \right>
+=
+\left<k, u \right> \left<v, h \right>
+= k^t u v^t h = (v u^t k)^t h = \left<(v u^t) k, h \right>,
+$$
+par conséquent
+$$
+d (x \mapsto d f(x) \cdot h) \cdot k
+= 
+-f(x) \left<(\Sigma^{-1} x x^t \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
+$$
+La Hessienne de $f$ en $x$ est donc donnée par
+$$
+\nabla^2 f(x) = - f(x) (\Sigma^{-1} x x^t \Sigma^{-1} + \Sigma^{-1}).
+$$
+
+
+Robot Manipulateur
+--------------------------------------------------------------------------------
+
+### Question 1 {#sol-rm1}
+
+Des équations
+$$
+\left|
+\begin{array}{rcr}
+x &=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2) \\
+y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
+\end{array}
+\right.
+$$
+on déduit que les dérivées partielles de $x$ et de $y$ par rapport
+à $\theta_1$ et $\theta_2$ existent et vérifient
+$$
+\begin{array}{rcl}
+\partial_1 x(\theta_1, \theta_2)
+&=& -\ell_1 \sin \theta_1 - \ell_2 \sin (\theta_1 + \theta_2), \\
+\partial_2 x(\theta_1, \theta_2)
+&=& - \ell_2 \sin (\theta_1 + \theta_2), \\
+\partial_1 y(\theta_1, \theta_2)
+&=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2), \\
+\partial_2 y(\theta_1, \theta_2)
+&=& \ell_2 \cos (\theta_1 + \theta_2).
+\end{array}
+$$
+Ces grandeurs étant continues, la fonction $f=(x, y)$ est continûment
+différentiable et donc différentiable. Si l'on note $s_1 = \sin \theta_1$,
+$s_{12}= \sin(\theta_1+\theta_2)$, $c_1 = \cos \theta_1$ et
+$c_{12}= \cos(\theta_1+\theta_2)$, on obtient donc
+$$
+J_f(\theta_1, \theta_2)
+=
+\left[
+\begin{array}{rr}
+-\ell_1 s_1 -\ell_2 s_{12} & -\ell_2 s_{12} \\
+\ell_1 c_1 + \ell_2 c_{12} & \ell_2 c_{12} 
+\end{array}
+\right]
+$$
+
+Différentiation Matricielle
+--------------------------------------------------------------------------------
+
+### Question 1 {#sol-dm-1}
+Soit $H \in \R^{n\times n}$, telle que
+$$
+H = 
+\left[
+\begin{array}{cccc}
+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & h_{nn} \\
+\end{array} 
+\right].
+$$
+En développant le déterminant selon la première colonne, on constate
+que
+$$
+\begin{split}
+\det (I+H) &= 
+\left|
+\begin{array}{cccc}
+1+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & 1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} 
+\right| \\
+&=(1 + h_{11}) 
+\left| \begin{array}{ccc}
+1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots \\
+h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} \right| 
++ o(\|H\|), \\
+\end{split}
+$$
+une relation dont on tire par récurrence que
+$$
+\begin{split}
+\det (I+H) 
+&= \prod_{i = 1}^n (1 + h_{ii}) + o(\|H\|)
+=\det I + \sum_{i=1}^n h_{ii} + o(\|H\|) \\
+&= \det I + \tr H + o(\|H\|).
+\end{split}
+$$
+La différentiel du déterminant existe donc en l'identité et 
+$d\det(I) \cdot H = \tr H$.
+
+### Question 2 {#sol-dm-2}
+Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
+$$
+\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
+$$
+Les deux membres de cette équations sont dérivables par rapport à
+$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
+et l'égalité de ces dérivées fournit
+$$
+\tr A B = \tr B A.
+$$
+
+### Question 3 {#sol-dm-3}
+
+Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
+est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
+son déterminant est positif; la matrice $A$ est alors inversible.
+
+Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
+pour être inversible, la formule de Cramer établit
+$$
+A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
+$$
+Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
+de $A$) est une fonction polynomiale
+des coefficients $a_{ij}$ de $A$; chaque coefficient de $\mathrm{co}(A)^t$
+est donc une fonction continûment différentiable des coefficients de $A$
+et donc différentiable en $A=I$.
+Par la règle du produit, chaque coefficient de $A^{-1}$ est 
+donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
+différentiable en $A=I$.
+
+Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
+$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + o(\|H\|),$
+l'identité $(I+ H) (I + H)^{-1} = I$ fournit:
+$$
+(I+H)(I + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)) 
+= I + H + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)
+= I,
+$$
+et donc
+$$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2748,20 +3174,24 @@ $$
 Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
 c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
 
+Egalité des accroissements finis ? {#sol-eaf}
+--------------------------------------------------------------------------------
+
+La dérivée de $f$ est donnée par $f'(t) = (-\sin t, \cos t)$; 
+en particulier pour tout $t \in [0, 2\pi]$, $\|f'(t)\| = 1$.
+Or $f(2\pi) - f(0) = 0$, donc il est impossible de trouver un 
+$t$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$.
+
+
+
 TODO -- Asymptotique
 --------------------------------------------------------------------------------
 
-
-TODO -- Mean Value Theorem
---------------------------------------------------------------------------------
 
 
 TODO -- Analycité
 --------------------------------------------------------------------------------
 
-
-TODO -- Arguments Matriciels
---------------------------------------------------------------------------------
 
 TODO -- Convexité
 --------------------------------------------------------------------------------
@@ -2770,9 +3200,6 @@ TODO -- Convexité
 TODO -- Oloid
 --------------------------------------------------------------------------------
 
-
-TODO -- Formes, Fonction Distance, Squelette
---------------------------------------------------------------------------------
 
 Références
 ================================================================================
