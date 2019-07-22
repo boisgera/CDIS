@@ -12,7 +12,7 @@ Common thread
 
 Analyse et proba, étude de 
 $$
-g(t) = c + \int_t f(x) \,dx
+g(t) = c + \int^t f(x) \,dx
 $$
 et notion de dérivée faible associée ? Avec deux motivations différentes ?
 
