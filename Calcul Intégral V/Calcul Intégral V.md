@@ -25,7 +25,9 @@ Généralisation cas discret et à densité; dans les deux cas, fcts croissante
 $\mathbb{R} \to \mathbb{R}$, nulle en $-\infty$, de variation 1, etc.
 
 Montrer comment définir une mesure (extérieure) associée,
-notation $(\mu =) df$ (Lebesgue-Stieltjes) ?
+notation $\mu (= df)$ (Lebesgue-Stieltjes) ? 
+
+
 Lien notation avec somme de Riemman-Stieltjes pour l'intégration de fcts
 continues ?
 
