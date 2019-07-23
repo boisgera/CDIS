@@ -16,7 +16,10 @@ g(t) = c + \int^t f(x) \,dx
 $$
 et notion de dérivée faible associée ? Avec deux motivations différentes ?
 
-Bagage en commun ?
+Bagage en commun ? Oui, notion de dérivée faible, etc.
+
+Dérivée faible implique dérivée pp, réciproque pas vraie, même si on ajoute
+continue (idée qui vient naturellement quand on construit un contre-exemple).
 
 Proba / Fct répartition
 ================================================================================
@@ -93,3 +96,14 @@ Extension au cas vectoriel.
 
 Probab $\Omega \neq \R^n$
 ================================================================================
+
+Exercices
+================================================================================
+
+Fonctions lipschitzienne
+--------------------------------------------------------------------------------
+
+(d'une variable). Montrer qu'elles ont une dérivée faible (et donc pp),
+en utilisante leur caractère absolument continu (cf. Evans-Gariepy dans
+le cas multivariable) et que la dérivée (faible) est de norme plus petite
+que la constante de Lipschitz.
