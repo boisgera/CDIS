@@ -1401,8 +1401,9 @@ Si la grandeur $h$ est fixé, cette relation est inexploitable.
 
 Toutefois, dans cette situation, 
 si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
-de relier $f(a+h)$ à $f(a)$ en intégrant les variations de $f$ le long
-de $[a, a+h]$. La seule notion d'intégrale dont nous avons besoin,
+de relier $f(a+h)$ à $f(a)$ en intégrant les variations infinitésimales 
+de $f$ le long de $[a, a+h]$. 
+La seule notion d'intégrale dont nous avons besoin,
 minimaliste et construite exclusivement au service du calcul différentiel,
 est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton);
 dans de ce chapitre, c'est toujours cette intégrale dont nous ferons
@@ -1450,9 +1451,9 @@ f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt
                                   = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-### Inégalité des accroissements finis (fonction d'une variable réelle) {.theorem #TAFS}
-Soit $f:[a, a+h] \to \mathbb{R}^m$ 
-où $a \in \mathbb{R}$, $h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
+### Inégalité des accroissements finis I {.theorem #TAFS}
+Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
+$h \in \left[0, +\infty\right[$.
 Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
 c'est-à-dire si
 $$
@@ -1472,7 +1473,7 @@ Elle est donc également intégrable au sens de Henstock-Kurzweil
 (cf. chapitre "Calcul Intégral I");
 en combinant la définition de l'intégrale de Henstock-Kurzweil 
 et le lemme de Cousin, on peut trouver des approximations arbitrairement
-précises de l'intégrale de $f'$ par des sommes de Riemann:
+précises de l'intégrale de $f'$ par des sommes de Riemann[^hklc]:
 pour tout $\varepsilon > 0$, 
 il existe une subdivision pointée $\mathcal{D}$
 de l'intervalle $[a,b]$ telle que 
@@ -1518,8 +1519,14 @@ Par conséquent, $\|f(a+h) - f(a)\| \leq M h + \varepsilon$
 et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
 le résultat cherché: $\|f(a+h) - f(a)\| \leq M h.$
 
+[^hklc]: l'intégrabilité de $f'$ signifie que quelle que soit la
+précision $\varepsilon>0$ cherchée on pourra trouver une jauge telle que
+pour toute subdvision pointée subordonnée à cette jauge, l'écart entre
+la somme de Riemann et l'intégrale est au plus $\varepsilon$. 
+Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
+une subdivision pointée qui y soit subordonnée.
 
-### Inégalité des accroissements finis {.theorem #TAF}
+### Inégalité des accroissements finis II {.theorem #TAF}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
 supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
@@ -1533,7 +1540,7 @@ $$
 \|f(a+h) - f(a)\| \leq M \|h\|.
 $$
 
-### Preuve {.proof}
+### Démonstration {.proof}
 Considérons la fonction $\phi: t \in [0,1] \mapsto f(a+th)$.
 Nous avons déjà montré dans la démonstration de "[Variation d'une fonction]"
 que cette fonction est dérivable, de dérivée $\phi'(t) = df(a+th) \cdot h$.
@@ -1541,7 +1548,7 @@ De plus,
 $$
 \|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
 $$
-Par [l'inégalité des accroissements fini dans le cas d'une variable réelle][Inégalité des accroissements finis (fonction d'une variable réelle)], 
+Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
 $$
 \|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
 \leq M \|h\| \times 1 = M \|h\|.
@@ -1838,17 +1845,17 @@ Par conséquent, si l'on définit $g$ par
 $$
 g(u) = f(x+u+k) - f(x+u) - d^2f(x) \cdot u \cdot k,
 $$
-la différence vaut $e = g(h) - g(0).$ Cette différence peut être majorée
-par le théorème des accroissements finis: $g$ est différentiable sur
-le segment $[0, h]$ et
+la différence vaut $e = g(h) - g(0)$. 
+Cette différence peut être majorée par [l'inégalité des accroissements finis](#TAF): 
+$g$ est différentiable sur le segment $[0, h]$ et
 $$
-dg(u) = df(x+u+k) - df(x+u) - [h \mapsto d^2f(x) \cdot h \cdot k]. 
+dg(u) = df(x+u+k) - df(x+u) - (h \mapsto d^2f(x) \cdot h \cdot k). 
 $$
 Comme
 $$
 \begin{split}
-dg(u) &= (df(x+u+k) - df(x) - [h \mapsto d^2f(x) \cdot h \cdot (u+k)] )\\
-      &\phantom{=} - (df(x+u) - df(x) - [h \mapsto d^2f(x) \cdot h \cdot u]),
+dg(u) &= (df(x+u+k) - df(x) - (h \mapsto d^2f(x) \cdot h \cdot (u+k)) )\\
+      &\phantom{=} - (df(x+u) - df(x) - (h \mapsto d^2f(x) \cdot h \cdot u)),
 \end{split}
 $$
 par le théorème controllant la [variation de la différentielle][Variation de la différentielle I],
