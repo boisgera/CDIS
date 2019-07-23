@@ -169,7 +169,7 @@ De plus, pour tous points $x, y$ et $z$ de $X$:
 
 
 ### Distance point-ensemble et ensemble-ensemble
-Une distance $d$ sur $X$ associe à deux point de $X$ un réel positif.
+Une distance $d$ sur $X$ associe à deux points de $X$ un réel positif.
 Cette fonction peut servir de base pour définir une distance entre
 un point $x$ de $X$ et un ensembles de points de $A$ de $X$:
 $$
