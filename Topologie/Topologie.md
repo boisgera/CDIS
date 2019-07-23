@@ -440,8 +440,8 @@ $d(x, x_k) \to 0$ quand $x_k \to x$.
 Par conséquent, $f(x_k) \to f(x)$ quand $k \to +\infty$, 
 soit $d(f(x_k), f(x)) \to 0$ quand $k \to +\infty$. 
 Comme l'ensemble $\{f(x_k) \, | \, k \in \N\}$ est un sous-ensemble
-de $f(A)$, nous en déduisons que $d(f(x), A) = 0$: 
-le point $f(x)$ est adhérent à $f(A)$.
+de $f(A)$, nous en déduisons que $d(f(x), f(A) = 0$: 
+le point $f(x)$ adhère à à $f(A)$.
 La fonction $f$ est donc continue en $x$.
 
 Réciproquement, si $f(y) \not \to f(x)$ quand $y \to x$, 
@@ -465,7 +465,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     points de $A$ qui converge vers ce point.
 
   - Un ensemble $A$ est *fermé* si la limite de toute suite de points de $A$
-    qui est convergente dans $X$ appartient à $A$.
+    qui est convergente (dans $X$) appartient à $A$.
 
   - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
     qui converge vers ce point et une suite de points du complémentaire de $A$
