@@ -335,7 +335,7 @@ $$
 il est possible d'associer à l'application linéaire 
 $A: \mathbb{R}^n \to \mathbb{R}^m$ la matrice
 $$
-[A_{ij}]_{ij} :=
+[a_{ij}]_{ij} :=
 [A_i(e_j)]_{ij}=
 \left[ 
 \begin{array}{ccccc}
@@ -564,7 +564,7 @@ dérivable en $x$ si et seulement si toutes ses composantes
 -- qui sont des fonctions scalaires -- sont dérivables; 
 on a alors
   $$
-  [f'(x)]_i = f_i'(x).
+  (f'(x))_i = f_i'(x).
   $$
 Autrement dit, on peut dériver composante par composante. 
 Cette approche se généralise de façon directe au cas des fonctions
@@ -609,19 +609,15 @@ le taux d'accroissement de $f$ en $x$ tend bien vers
 $\ell$ quand $h$ tend vers $0$.
 
 ### Fonctions linéaires d'une variable scalaire {.note}
-Le développement limité de $f$ en $x$ à l'ordre 1 fournit de façon explicite
-une approximation linéaire de la variation $\Delta f(x, h)$ de $f$ en $x$:
-$$
-\Delta f(x, h) :=  f(x+h) - f(x) = \ell h + o(|h|)
-$$
+Le terme $\ell h$ dans le développement limité au premier ordre de $f$ en
+$x$ est une fonction linéaire de $h$.
 Cette remarque n'est pas anodine car toutes les applications 
 linéaires
-de $\mathbb{R}$ dans $\mathbb{R}^m$ sont de la forme $h \mapsto \ell h$ 
-pour un certain vecteur $\ell$.
+de $\mathbb{R}$ dans $\mathbb{R}^m$ sont de cette forme.
 En effet, pour une telle fonction $L$ et pour tout $h \in \mathbb{R}$, 
 $$L\cdot h = L \cdot (h \times 1) = h (L \cdot 1) = (L \cdot 1) h,$$
 le vecteur $\ell = L \cdot 1$ convient donc. 
-Par conséquent, on peut caractériser la dérivabilité de $f$ en $x$
+On donc peut caractériser la dérivabilité de $f$ en $x$
 par l'existence d'une fonction linéaire de $\mathbb{R}^m$ dans $\mathbb{R}$
 telle que
 $$
@@ -647,17 +643,43 @@ La fonction $f$ est *différentiable*
 (ou *différentiable sur $U$*)
 si elle est différentiable en tout point de $U$. 
 
-### Approximation linéaire de la variation {.remark} 
-Si l'on considère à nouveau $\Delta f(x, h)$, 
-la variation de $f$ en $x$, associée à la variation $h$ de l'argument
+### Variation d'une fonction {.definition} 
+On appelle variation de $f$ en $x$ associée à la variation 
+$h$ de l'argument la grandeur
 $$
 \Delta f(x, h) := f(x+h) - f(x),
 $$
-on réalise que la différentielle de $f$ en $x$, quand elle existe, 
-constitue la seule approximation linéaire de cette variation telle que
+
+### Variation et Différentielle {.remark}
+La différentielle de $f$ en $x$, quand elle existe, 
+constitue la "meilleure" approximation linéaire de la
+variation de $f$ en $x$, car c'est la seule telle que
 $$
 \Delta f(x, h) = df(x) \cdot h + o(\|h\|).
 $$
+
+
+### {.ante}
+
+Résumons les liens entre dérivée et différentielle à ce stade:
+
+### Différentielle et Dérivée {.theorem}
+
+Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert
+et soit $x \in U$.
+La fonction $f$ est différentiable en $a$ si et seulement si
+elle est dérivable en $x$. Dérivée et différentielle de $f$ en 
+$a$ se déduisent alors l'une de l'autre par les relations 
+$$
+f'(x) = df(x) \cdot 1
+\; \mbox{ et } \;
+df(x) = (h \in \mathbb{R} \mapsto f'(x) h).
+$$
+
+### Démonstration {.proof}
+Une conséquence de la caractérisation de la dérivabilité des fonctions
+par l'existence de [développement limité au premier ordre][Développement limité au premier ordre]
+et de la caractérisation des [fonctions linéaires d'une variable scalaire][Fonctions linéaires d'une variable scalaire].
 
 ### Gradient {.definition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
@@ -733,7 +755,7 @@ En prenant la $i$-ème composante de cette equation, on obtient
 $$
 f_i(x + h) = f_i(x) + (df(x)\cdot h)_i + \varepsilon_i(h) \|h\|.
 $$
-On constate alors que l'application $[h \mapsto df(x) \cdot h]_i$ est linéaire
+On constate alors que l'application $h \mapsto (df(x) \cdot h)_i$ est linéaire
 (l'application "prendre la $i$-ème composante d'un vecteur de $\mathbb{R}^m$" 
 étant linéaire)
 et que $\varepsilon_i$ est un $o(1)$. 
@@ -768,7 +790,7 @@ vectoriel:
 $$
 (dF(x) \cdot h)_{ij} = d F_{ij}(x) \cdot h.
 $$
-Le traitement des fonctions dont les arguments sont matriciels --
+Mais le traitement des fonctions dont les arguments sont matriciels --
 par exemple l'application trace $\mathrm{tr}: \R^{n\times n} \to \mathbb{R}$ --
 demande une autre approche. Dans le cas d'une unique variable matricielle[^ext],
 donc d'une fonction de la forme
@@ -776,20 +798,22 @@ $$
 f : U \subset \mathbb{R}^{n \times m} \to \R^p,
 $$
 on utilisera la fonction auxiliaire $f^*$ dont l'argument est un vecteur
-de $\R^{m\times n}$, qu'ont "remettra sous forme matricielle"
-(cf. section "[Mise à plat des matrices]") avant de le fournir comme argument à $f$, 
-c'est-à-dire la fonction définie à partir de $\pi := \pi_{m \times n}$ par
+de $\R^{m\times n}$, argument qu'on "remettra sous forme matricielle"
+(cf. section "[Mise à plat des matrices]") avant de le fournir comme argument à $f$.
+C'est-à-dire que la fonction auxiliaire $f^*$ est définie à partir de 
+$\pi := \pi_{m \times n}$ comme
 $$
 f^* = f \circ \pi^{-1}
 $$
 On dira alors que $f$ est différentiable en $X$ si et seulement si $f^*$
-est différentiable en $\pi(X)$ et si c'est le cas, on définira la
-fonction $df(x): \mathbb{R}^{m\times n} \to \mathbb{R}^p$ par
+est différentiable en $x=\pi(X)$ et si c'est le cas, on définira la
+fonction $df(X): \mathbb{R}^{m\times n} \to \mathbb{R}^p$ par
 $$
-df(x) = df^*(x) \circ \pi.
+df(X) = df^*(x) \circ \pi.
 $$
-Ces deux extensions de la différentielle -- valeurs matricielles et 
-arguments matriciels -- peuvent être combinées.
+Ces deux façons d'étendre la notion de la différentielle -- 
+aux fonction à valeurs matricielles et à arguments matriciels -- 
+peuvent être combinées.
 
 Prenons un exemple du second cas; la fonction
 $$
@@ -815,7 +839,7 @@ $$
 \mathrm{tr}^*(a + h) = 
 \mathrm{tr}^*(a) + h_{11} + h_{22}.
 $$
-L'application $h \mapsto h_{11} + h_{22}$ étant linéaire, $\mathrm{tr}_{2 \times 2}^*$
+L'application $h \mapsto h_{11} + h_{22}$ étant linéaire, $\mathrm{tr}^*$
 est différentiable en $a$, de différentielle
 $d\mathrm{tr}^*(a) \cdot h = h_{11} + h_{22}$.
 L'application $\mathrm{tr}$ est donc différentiable en $A$ et
@@ -838,7 +862,8 @@ A_1 \in \R^{m_1 \times n_1}, \, \dots, A_k \in \R^{m_k \times n_k},
 $$
 on pourra définir une fonction auxiliaire $f^*$ qui reconstruit ces matrices 
 à partir des éléments d'un unique vecteur de $\R^n$ où $n = m_1 n_1 + \dots + m_k n_k$,
-en procédant de gauche à droite, de haut en bas, et de la première à la dernière matrice.
+en procédant par exemple de gauche à droite, de haut en bas, 
+et de la première à la dernière matrice.
 
 ### Domaine de définition non ouvert {.remark}
 
@@ -868,27 +893,6 @@ $f$ n'est pas ouvert
     scalaire sur des intervalles fermés de $\mathbb{R}$](#intervalle-fermé).
 
 
-### {.ante}
-
-Résumons les liens entre dérivée et différentielle:
-
-### Différentielle et Dérivée {.theorem}
-
-Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert
-et soit $x \in U$.
-La fonction $f$ est différentiable en $a$ si et seulement si
-elle est dérivable en $x$. Dérivée et différentielle de $f$ en 
-$a$ se déduisent alors l'une de l'autre par les relations 
-$$
-f'(x) = df(x) \cdot 1
-\; \mbox{ et } \;
-df(x) = (h \in \mathbb{R} \mapsto f'(x) h).
-$$
-
-### Démonstration {.proof}
-Une conséquence de la caractérisation de la dérivabilité des fonctions
-par l'existence de [développement limité au premier ordre][Développement limité au premier ordre]
-et de la caractérisation des [fonctions linéaires d'une variable scalaire][Fonctions linéaires d'une variable scalaire].
 
 ### Différencier une expression
 
@@ -935,6 +939,7 @@ et $d(f(x^2))$ dans le second. Par défaut, nous supposerons dans la suite
 que $df(x^2)$ désigne la notation "stricte" $d(f)(x^2)$.
 
 
+<!--
 ### Note {.meta}
 Même si la notation de la différentielle en $x$ donne un indice sur l'étape
 suivante, il faut probablement retarder l'apparition de la notion d'application
@@ -942,6 +947,7 @@ différentielle et construire une familiarité avec la notion de différentielle
 en $a$ avant de passer à l'étape d'après.
 La notion d'application différentielle ne devient nécessaire que pour parler
 de fonction continûment différentiable et de différentielle d'ordre supérieur.
+-->
 
 # {.ante .remark}
 
@@ -1105,6 +1111,7 @@ $d(\lambda f + \mu g)(x) = \lambda df(x) + \mu dg(x)$.
 Jacobienne, dérivées partielles et directionnelles 
 ================================================================================
 
+<!--
 ### Objectifs {.meta}
 
 TODO: à l'oral, insister sur différentielle comme point de départ et
@@ -1112,7 +1119,7 @@ le reste (dérivées partielles, directionnelle, etc) s'ensuivent.
 Montrer que la démarche inverse ne marche pas (bien que la jacobienne
 puisse être formellement définie, la chain rule ne marche pas, donc
 on ne peut pas les multiplier)
-
+-->
 
 ### Matrice Jacobienne {.definition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ où $U$ est ouvert et
@@ -1170,7 +1177,7 @@ partielle, ce qui n'est pas trop ambigu tant que l'on explicite
 comment l'argument de $f$ est décomposé.
 
 ### Arguments nommés
-Les conventions tendant à attribuer un nom aux arguments d'une fonction
+Les conventions attribuant un nom aux arguments d'une fonction
 permettent parfois de rendre les dérivées et différentielles partielles
 plus intelligibles. Si le $i$-ème argument 
 d'une fonction $f$ est désigné par un symbole $x$, 
@@ -1279,24 +1286,11 @@ $$
 ### Démonstration {.proof}
 Par définition, la matrice jacobienne de $f$ en $x$ se déduit de la 
 différentielle par
-$[J_f(x)]_{ij} = [df(x) \cdot e_j]_i.$
+$[J_f(x)]_{ij} = (df(x) \cdot e_j)_i.$
 Comme $\partial_j f(x) = df(x) \cdot e_j,$ on a
-$[J_f(x)]_{ij} = [\partial_j f(x)]_i.$ 
+$[J_f(x)]_{ij} = (\partial_j f(x))_i.$ 
 Les fonctions vectorielles se dérivant composante par composante, 
-on en déduit que $[J_f(x)]_{ij} = [\partial_j f_i(x)]$. 
-
-### Matrice jacobienne et dérivées partielles {.remark}
-On remarquera qu'avec le résultat ci-dessus, il est techniquement possible de 
-définir la matrice jacobienne $J_f(x)$ de $f$ en $x$ en supposant uniquement
-que les dérivées partielles de $f$ en $x$ existent, ce qui peut arriver
-alors que $f$ n'est pas différentiable en $x$. Mais cette extension est à
-prendre avec précaution. En effet, si l'on accepte cette extension, on ne
-peut plus transposer aux matrices jacobiennes tous les résultats valides pour
-les différentielles. Par exemple, si $J_f(g(x))$ et $J_g(x)$ existent
-(au sens où toutes les dérivées partielles concernées existent), on peut
-former le produit matriciel $J_f(g(x)) J_g(x)$, mais sans aucune garantie que 
-$J_{f \circ g}(x)$ existe et/ou soit égal à ce produit, car la règle de 
-différentiation en chaîne requière l'existence des différentielles.
+on en déduit que $[J_f(x)]_{ij} = \partial_j f_i(x)$. 
 
 ### Gradient et dérivées partielles
 Soit $f: U \subset \R^n \to \R$ où $U$ est un ouvert et
@@ -1318,6 +1312,20 @@ $$
 ce qui établit le résultat.
 
 
+### Matrice jacobienne, gradient et dérivées partielles {.remark #mjgdp}
+On remarquera qu'avec les résultats ci-dessus, il est techniquement possible de 
+définir le gradient $\nabla f(x)$ ou la matrice jacobienne $J_f(x)$ en supposant 
+uniquement que les dérivées partielles de $f$ en $x$ existent, 
+ce qui peut arriver alors que $f$ n'est pas différentiable en $x$. 
+Mais cette extension est à prendre avec précaution. 
+En effet, dans ce cadre étendu, on ne
+peut plus transposer aux gradients et matrices jacobiennes tous les résultats valides pour
+les différentielles. Par exemple, si $J_f(g(x))$ et $J_g(x)$ existent
+(au sens où toutes les dérivées partielles concernées existent), on peut
+former le produit matriciel $J_f(g(x)) J_g(x)$, mais sans aucune garantie que 
+$J_{f \circ g}(x)$ existe et/ou soit égal à ce produit, car la règle de 
+différentiation en chaîne requiert l'existence des différentielles.
+
 ### Fonction continûment différentiable {.definition}
 Une fonction $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert
 est *continûment différentiable* si toutes ses dérivées
@@ -1325,7 +1333,7 @@ partielles existent et sont continues.
 
 ### Matrice jacobienne et fonction continûment différentiable {.remark}
 S'il l'on adopte la définition étendue de jacobien de la remarque
-"[Matrice jacobienne et dérivées partielles]", la définition de 
+"[Matrice jacobienne, gradient et dérivées partielles]", la définition de 
 continûment différentiable peut être reformulée comme
 "la matrice jacobienne existe et est continue".
 
@@ -1334,8 +1342,8 @@ Une fonction continûment différentiable est différentiable.
 
 ### Démonstration {.proof}
 Soit $f: U \subset \R^n \to \R$ une fonction continûment différentiable
-(la preuve dans d'une fonction à valeurs vectorielles se déduit du résultat
-dans le cas scalaire).
+(la preuve dans le cas d'une fonction à valeurs vectorielles se déduit 
+du résultat dans le cas scalaire).
 Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
 $r$ soit dans $U$; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
 La variation de $f$ entre $a$ et $a+h$ satisfait
@@ -1382,7 +1390,7 @@ Variation des fonctions
 
 ### Différentielle et Intégrale
 
-Pour comparer $f(a+h)$ et $f(a)$ de l'égalité, 
+Pour comparer $f(a+h)$ et $f(a)$, 
 lorsque la fonction $f$ est continue en $a$, 
 nous disposons de l'égalité $f(a + h) = f(a) + o(h)$,
 mais cette relation est asymptotique. 
@@ -1398,7 +1406,7 @@ de $[a, a+h]$. La seule notion d'intégrale dont nous avons besoin,
 minimaliste et construite exclusivement au service du calcul différentiel,
 est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton);
 dans de ce chapitre, c'est toujours cette intégrale dont nous ferons
-usage.
+usage implicitement.
 
 ### Théorème fondamental du calcul {.theorem #TFC}
 Si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable et
