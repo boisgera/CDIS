@@ -2196,9 +2196,9 @@ $\|dr(h)\| = o(\|h\|^{j-1})$.
 
 
 
-### Développement de Taylor avec reste intégral I
+### Développement de Taylor avec reste intégral I {#DTRI-I}
 Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
-$h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
+$h \in \left[0, +\infty\right[$.
 Si $f$ est $j+1$ fois dérivable sur $[a,a+h]$,
 $$
 f(a+h)  = \sum_{i=0}^n \frac{f^{(i)}(a)}{i!} h^i + \int_a^{a+h} \frac{f^{(j+1)}(t)}{j!} (a+h-t)^j \, dt.
@@ -2229,31 +2229,32 @@ f^{(j+1)}(a) \times \frac{h^{j+1}}{(j+1)!}
 \end{multline*}
 ce qui achève la preuve par récurrence.
 
-### Développement de Taylor avec reste intégral II
+### Développement de Taylor avec reste intégral II {#DTRI-II}
 Si $f: U \subset \R^n \to \R^m$ est $j+1$ fois différentiable et $[a, a+h] \subset U$,
 $$
-f(a+h)  = \sum_{i=0}^n \frac{1}{i!}df^{(i)}(a) \cdot \overbrace{h \cdot \hdots \cdot h}^{k \; \mathrm{termes}} 
-+ \int_0^{1} \frac{(1-t)^j}{j!}df^{(j+1)}(a+th) \cdot \overbrace{h \cdot \hdots \cdot h}^{j+1 \; \mathrm{termes}}\, dt.
+f(a+h)  = \sum_{i=0}^{j} \frac{df^{(i)}(a)}{i!} (\cdot \, h)^i
++ \int_0^{1} \frac{df^{(j+1)}(a+th)}{j!} (\cdot \, h)^{j+1} (1-t)^j\, dt.
 $$
 
 ### Démonstration {.proof}
-La démonstration découle directement du développement de 
-Taylor avec reste intégral dans le cas d'une fonction d'une variable réelle,
+La démonstration découle directement du [développement de 
+Taylor avec reste intégral dans le cas d'une fonction d'une variable réelle](#DTRI-I),
 appliqué à la fonction $\phi: t \in [0, 1] \mapsto f(a+th) \in \R^m$.
 Il nous suffit de montrer que $\phi$ est $j+1$ fois différentiable 
 et que pour tout entier $i$ inférieur ou égal à $j+1$,
-$\phi^{(i)}(t) = df^{(i)}(a+th) \cdot h \cdot \hdots \cdot h$. 
+$\phi^{(i)}(t) = df^{(i)}(a+th) (\cdot \, h)^i$. 
 
 Cette relation est évidemment satisfaite pour 
 $i=0$. Supposons qu'elle soit vérifiée au rang $i \leq j$. 
 La fonction $f$ étant $i+1$ fois différentiable, la fonction
-$g:x \in U \mapsto df^{(i)}(x) \cdot h \cdot \hdots \cdot h$ est différentiable, et
+$g:x \in U \mapsto df^{(i)}(x) (\cdot \, h)^i$ est différentiable, et
 $$
-dg(x) \cdot h = df^{(i+1)}(x) \cdot h \cdot \hdots \cdot h \cdot h.
+dg(x) \cdot h = df^{(i+1)}(x) (\cdot \, h)^{i+1}.
 $$
-Par dérivation en chaîne, la fonction $t \mapsto df^{(i)}(a+th) \cdot h \cdot \hdots \cdot h$
+Par dérivation en chaîne, la fonction 
+$t \mapsto df^{(i)}(a+th) (\cdot \, h)^i$
 est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
-$df^{(i+1)}(a+th) \cdot h \cdot \hdots \cdot h \cdot h.$
+$df^{(i+1)}(a+th) (\cdot \, h)^{i+1}.$
 
 ### TODO -- Dérivées partielles d'ordre supérieur
 
@@ -2278,7 +2279,7 @@ sorte que [le théorème fondamental du calcul](#TFC) soit trivialement satisfai
 en toute généralité.
 Pour d'autres intégrales, comme l'intégrale de Riemann ou l'intégrale
 de Lebesgue, il sera nécessaire de faire des hypothèses supplémentaires
-sur la fonction $f'$ (par exemple, $f'$ continue) pour que ce résultat 
+sur la fonction $f$ (par exemple, $f$ continue) pour que ce résultat 
 soit valable. L'intégrale de Henstock-Kurzweil, qui sera exposée dans
 le cours de calcul intégral, vérifie bien le théorème fondamental du
 calcul en toute généralité: elle étend donc l'intégrale de Newton
