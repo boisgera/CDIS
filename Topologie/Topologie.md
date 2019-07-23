@@ -362,7 +362,7 @@ Limite
 ### Limite d'une suite de points {.definition}
 Une suite $x_k$ de valeurs d'un espace métrique $X$ a comme *limite* 
 un point $\ell$ de $X$ -- ou *converge vers $\ell$* -- 
-si $x_{k}$ est arbitrairement proche 
+si $x_{k}$ est arbitrairement proche de $\ell$
 à partir d'un certain rang, c'est-à-dire si 
 pour tout $\varepsilon > 0$, il existe un entier $n$ 
 tel que pour tout $k \geq n$, $d(x_k, \ell) \leq \varepsilon$,
