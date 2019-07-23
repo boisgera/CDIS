@@ -1148,9 +1148,6 @@ on note $d^{\pm \infty}$ cette distance.
 $\to$ [Solution](#a-dra-3)
 
 ### Question 4 {.question #dra-4}
-
-(Optionnel) 
-
 Calculer $d^{\pm \infty}(0, +\infty)$, $d^{\pm \infty}(-\infty, +\infty)$, 
 $d^{\pm \infty}(-1, 1)$.
 
@@ -1172,9 +1169,6 @@ Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
 $\to$ [Solution](#a-dra-6)
 
 ### Question 7 {.question #dra-7}
-
-(Optionnel) 
-
 Suggérer une variante de la construction précédente pour
 doter l'ensemble $\mathbb{R} \cup \{\infty\}$ ($\infty$ sans signe:
 ni $+$, ni $-$) d'une métrique $d^{\infty}$ 
