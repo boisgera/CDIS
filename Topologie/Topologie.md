@@ -215,7 +215,7 @@ point $x$ et un ensemble de points $A$ et en regardant uniquement
 si cette grandeur est nulle -- on dira alors que $x$ *adhère* à $A$ -- 
 ou strictement positive:
 $$
-x \mbox{ adhère à } A \, \mbox{ ssi } \, d(x, A) = 0
+x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0.
 $$
 En faisant de la sorte pour tous les points et ensembles de points
 de l'espace métrique et en "oubliant" ensuite la distance qui a permis
@@ -226,8 +226,8 @@ sur l'ensemble par une mesure uniquement qualitative
 
 ### Relation d'adhérence {.definition}
 
-Une *relation d'adhérence* sur l'ensemble *X* est une relation 
-entre éléments de $X$ et sous-ensembles de $X$ telle que:
+Une *relation d'adhérence* (ou *test d'adhérence*) sur l'ensemble *X* est une 
+relation entre éléments de $X$ et sous-ensembles de $X$ telle que:
 
  1. Aucun point n'adhère à de l'ensemble vide,
 
@@ -285,7 +285,7 @@ est une relation d'adhérence sur $X$.
     $$
     donc $x$ adhère à $A$.
 
- 3. Si $x$ est proche de $A$, c'est-à-dire si $d(x,A)=0$, alors
+ 3. Si $x$ adhère à $A$, c'est-à-dire si $d(x,A)=0$, alors
     $$
     0 \leq d(x, A \cup B) = \inf_{y \in A \cup B} d(x, y)
     \leq  \inf_{y \in A} d(x, y) = d(x, A)= 0
