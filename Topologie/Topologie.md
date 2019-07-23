@@ -424,7 +424,8 @@ Une conséquence directe de [l'unicité de la limite des suites][Unicité de la 
 ### Continuité et limite
 
 Une fonction $f: X \to Y$ où $X$ et $Y$ sont deux espaces métriques est
-continue en $x \in X$ si et seulement si 
+continue en $x \in X$ si et seulement si la limite de $f$ existe en
+$x$ et
 $$
 \lim_{y \to x} f(y) = f(x).
 $$
