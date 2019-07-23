@@ -585,8 +585,8 @@ Ce type de transformation n'est toutefois pas unique: un zéro de fonction
 peut être caractérisé par une infinité d'équations de type point fixe. 
 Parmi cette multitude de choix, il faudra déterminer une reformulation
 qui soit utile aux objectifs poursuivis, ce qui n'a rien d'automatique.
-On se reportera à l'exercice "[Le nombre d'or]" pour prolonger l'étude de
-cet exemple particulier.
+On se reportera à l'exercice "[Le nombre d'or](#golden-ratio)" 
+pour prolonger l'étude de cet exemple particulier.
 
 ![Le nombre d'or comme point fixe de $x \mapsto 1 + 1/x$.](images/fixed-point.tex){#golden-ratio}
 
@@ -597,9 +597,9 @@ il n'est pas évident d'établir un critère de convergence
 qui garantisse exactement que la suite calculée ait une limite,
 quand cette limite potentielle est inconnue.
 
-Vérifier que $|x_{k+1} - x_k| \to 0$ par exemple est insuffisant comme
-en atteste la suite des $x_k = 1 / (k+1)$. 
-Vérifier que la suite  $\sum_{j=0}^{k} |x_{i+1} - x_i|$ reste bornée 
+Vérifier que $|x_{k+1} - x_k| \to 0$ par exemple est insuffisant 
+pour garantir une limite comme en atteste la suite des $x_k = 1 / (k+1)$. 
+Vérifier que la suite  $\sum_{j=0}^{k} |x_{j+1} - x_j|$ reste bornée 
 va bien garantir la convergence, mais va par contrer rejeter des suites convergentes 
 telle que  $x_k = \sum_{j=0}^{k} (-1)^j / (j+1)$.
 Un critère plus adapté serait d'examiner le développement décimal de 
@@ -613,11 +613,11 @@ entre $0$ et $1$.
 
 C'est la notion de suite de Cauchy qui capture le bon critère;
 pour une suite numérique (à valeurs réelles ou dans $\R^n$) 
-être de Cauchy -- ou passer le test de Cauchy ou encore 
-vérifier le critère de Cauchy -- est équivalent à être convergente.
+"être de Cauchy" -- ou "passer le test de Cauchy" ou encore 
+"vérifier le critère de Cauchy" -- est équivalent à être convergente.
 
 ### Suite de Cauchy {.definition}
-Une suite de points $x_k$ d'un espace métrique $X$ est *de Cauchy* si pour tout
+Une suite de points $x_k$ d'un espace métrique $X$ *est de Cauchy* si pour tout
 $\varepsilon > 0$, 
 il existe un rang $m$ tel que pour tous les entiers $n \geq m$ et $p \geq m$, 
 $d(x_n, x_p) \leq \varepsilon$. 
@@ -649,7 +649,6 @@ $$
 La suite $x_k$ est donc de Cauchy.
 
 ### Réciproque ?
-
 Il est parfois plus facile de vérifier qu'une suite de points dans un espace
 métrique satisfait le critère de Cauchy que de vérifier qu'elle est convergente, 
 en particulier quand la limite de la suite est inconnue.
@@ -671,7 +670,6 @@ ce qui contredirait son unicité.)
 
 L'ensemble $\R$ possède une propriété bien utile qui fait défaut à $\Q$:
 toute suite de Cauchy y est convergente.
-
 
 ### Espaces complets {.definition}
 Un espace métrique $X$ est *complet* si et seulement si tout suite de Cauchy
@@ -698,7 +696,7 @@ $$
 |x_n^i - x_p^i| \leq \left\|x_n - x_p\right\|.
 $$
 Comme $\mathbb{R}$ est complet, chaque suite $x_k^i$ admet donc une limite,
-notée $x^i_{\infty}$. 
+notée $\ell^i$. 
 Si l'on note $\ell = (\ell^1, \dots, \ell^n)$,
 on déduit de l'égalité
 $$
@@ -710,6 +708,9 @@ Toute suite de Cauchy de $\R^n$ est donc convergente.
 [^ahahah]: bien sûr si l'on a utilisé une technique alternative pour
 construire $\R$, par exemple par les coupures de Dedekind, il faut en
 faire la démonstration.
+
+### TODO
+Intégrer une partie de la définition ci-dessous en amont.
 
 ### Complétude de l'espace des fonctions bornées {.proposition}
 
@@ -762,9 +763,9 @@ $\kappa$-contractante pour un $\kappa \in \left[0, 1\right[$.
 
 ### Théorème de Point Fixe de Banach {.definition .theorem #T-TPFB}
 
-Soit $f: E \to E$ une application contractante dans un espace métrique $E$ complet.
+Soit $f: X \to X$ une application contractante dans un espace métrique $X$ complet.
 L'application $f$ admet un unique *point fixe* $x$,
-c'est-à-dire une unique solution $x \in E$ à l'équation
+c'est-à-dire une unique solution $x \in X$ à l'équation
   $$
   x = f(x).
   $$
@@ -796,7 +797,7 @@ $$
 \ell = \lim_{n \to +\infty} x_{n+1} = \lim_{n \to +\infty}f(x_n) = f(\ell).
 $$
 A cette fin, nous allons prouver que la suite des $x_n$ est de Cauchy; 
-l'existence d'une limite se déduira alors de la complétude de $E$. 
+l'existence d'une limite se déduira alors de la complétude de $X$. 
 On remarque tout d'abord que pour tout entier $n$, 
 $$
 d(x_{n+2}, x_{n+1}) = d(f(x_{n+1}), f(x_n)) \leq \kappa d(x_{n+1}, x_n),
@@ -805,7 +806,8 @@ ce qui par récurrence fournit pour tout $n$
 $$
 d(x_{n+1}, x_n) \leq \kappa^n d(x_1, x_0).
 $$
-Par conséquent, pour tout couple d'entiers $n$ et $p$, on a
+Par l'inégalité triangulaire, 
+pour tout couple d'entiers $n$ et $p$, on a
 $$
 d(x_{n+p} , x_n) 
 \leq \sum_{k=0}^{p-1} d(x_{n+k+1} , x_{n+k})
@@ -861,9 +863,9 @@ en imposant cette fois-ci un diamètre maximale de $1/2$ aux
 $y_k$ extraite de $x_k$ telle que $y_k \in K_m$ si $k\geq m$ et 
 $\mathrm{diam}(K_m) \leq 2^{-m}$. 
 La suite des $y_k$ est donc de Cauchy; l'espace euclidien $\R^n$ étant
-complet, elle converge vers un point $y_{\infty}$. L'ensemble $K$ étant
-fermé par hypothèse, cette limite appartient à $K$. L'ensemble $K$ est
-donc compact.
+complet, elle est convergente. L'ensemble $K$ étant
+fermé par hypothèse, cette limite appartient à $K$ ; 
+l'ensemble $K$ est donc compact.
 
 [^cover]: par exemple des pavés de la forme 
 $$[i_1 \varepsilon, (i_1+1)\varepsilon] \times \dots \times [i_n \varepsilon, (i_{n+1} \varepsilon)]
@@ -881,11 +883,10 @@ Soit $f: K \subset X \to Y$ où $X$ et $Y$ sont deux espaces métriques
 et $K$ un sous-ensemble compact de $X$. 
 Soit $y_k$ une suite de points de $f(K)$; par construction, 
 il existe une suite de points $x_k$ de $K$ tels que $f(x_k) = y_k$. 
-Soit $z_k$ une sous-suite de $x_k$ qui converge dans
-$K$ vers un $z_{\infty} \in K$; 
-par continuité de $f$, la suite des $f(z_k)$
+Soit $z_k$ une sous-suite de $x_k$ qui converge vers un $\ell \in K$; 
+par continuité de $f$ en $\ell$, la suite des $f(z_k)$
 -- qui est une suite extraite des $y_k$ -- 
-converge vers $f(z_{k}) \in f(K)$. 
+converge vers $f(\ell) \in f(K)$. 
 L'ensemble $f(K)$ est donc compact.
 
 ### Existence d'un minimum {.corollary #T-EM}
@@ -898,11 +899,15 @@ $$
 \lim_{k \to +\infty} f(x_k) = \inf_{x \in K} f(x).
 $$
 Il existe une suite $y_k$ extraite de $x_k$ qui converge vers un point
-$y_{\infty}$ de $K$. Par continuité de $f$ en $y_{\infty}$, on a
+$\ell$ de $K$. Par continuité de $f$ en $\ell$, on a
 $$
-f(y_{\infty}) = \lim_{k \to +\infty} f(y_k) = \inf_{x \in K} f(x).
+f(\ell) = \lim_{k \to +\infty} f(y_k) = \inf_{x \in K} f(x).
 $$
-La fonction $f$ admet donc un minimum en $y_{\infty}$.
+La fonction $f$ admet donc un minimum en $\ell$.
+
+### {.ante}
+La notion de compacité peut être définie dans des espaces topologiques
+généraux, sans recourir à une distance ou aux suites de points.
 
 ### Propriété de l'intersection finie {.definition}
 Une collection d'ensembles vérifie la propriété de l'intersection 
@@ -922,8 +927,7 @@ alors il existe un $x \in K$ adhérent à tout $A \in \mathcal{A}$.
 Dans les espaces métriques, compacité et compacité séquentielle sont 
 équivalentes.
 
-### TODO -- Démonstration {.proof}
-
+### Démonstration {.proof}
 Supposons que $K$ est un sous-ensemble compact de l'espace métrique $X$.
 Soit $x_k$ une suite de points de $K$. Considerons la collection d'ensembles
 $\mathcal{A}$ définie par
@@ -982,7 +986,7 @@ $\overline{A_2} \cap B(x_2, \varepsilon) = \varnothing$, etc.
 Le procédé s'arrête en un nombre fini d'étapes, dès que
 $B(x_0,\varepsilon) \cup \dots \cup B(x_k, \varepsilon)$ recouvre $K$.
 Cela arrive nécessairement puisque les $x_k$ ainsi construits
-vérifie $d(x_i, x_j) \geq \varepsilon$ si $i\neq j$; si cette suite
+vérifient $d(x_i, x_j) \geq \varepsilon$ si $i\neq j$; si cette suite
 était infinie, elle ne pourrait admettre de suite extraite convergente,
 en contradiction avec l'hypothèse de compacité séquentielle.
 Par conséquent, il existe un rang $k$ tel que 
@@ -1001,16 +1005,15 @@ $A_0 \cap \dots \cap A_k = \varnothing$, ce qui conclut la preuve.
 
 ### TODO
 
-  - distance fermé compact
+  - def norme d'opérateur / opérateur borné.
 
-  - continuité application linéaire $\mathbb{R}^n \to Y$.
+  - borné équiv continue
+
+  - tous les opés lin $\R^n \to E$ sont bornés.
 
   - Fct continue sur compact est uniformément continue.
 
   - Ens des fcts $C^0$ sur un compact est un espace de Banach.
-
-  - Inclure ici élts dim infinie ?  Non, calcul diff 3
-
 
 <!--
 
@@ -1032,6 +1035,7 @@ $$K \subset O_1 \cup \dots \cup O_k.$$
 Annexe
 ================================================================================
 
+<!--
 TODO -- Et $\C$ alors ?
 --------------------------------------------------------------------------------
 
@@ -1078,6 +1082,8 @@ devient un *espace euclien*; la norme associée vérifie
 $$
 \|x\| = \sqrt{x_1^2 +\dots + x_n^2}.
 $$
+
+-->
 
 Exercices
 ================================================================================
@@ -1322,7 +1328,7 @@ $$
 
 $\to$ [Solution](#a-pk-4)
 
-TODO -- Le nombre d'or
+TODO -- Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
 **TODO**
