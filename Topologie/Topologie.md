@@ -290,16 +290,16 @@ est une relation d'adhérence sur $X$.
     0 \leq d(x, A \cup B) = \inf_{y \in A \cup B} d(x, y)
     \leq  \inf_{y \in A} d(x, y) = d(x, A)= 0
     $$
-    et donc $x$ est proche de $A \cup B$.
+    et donc $x$ adhère à $A \cup B$.
     De la même façon, du fait de la symétrie des rôles des ensembles $A$ et $B$,
-    si $x$ est proche de $B$ alors $x$ est proche de $A \cup B$.
+    si $x$ adhère à $B$ alors $x$ adhère à $A \cup B$.
 
-    Réciproquement, si $x$ est proche de $A \cup B$, alors il existe une
+    Réciproquement, si $x$ adhère à $A \cup B$, alors il existe une
     suite de points $x_k$ de $A \cup B$ telle que $d(x, x_k) \to 0$
     quand $k \to +\infty$. Cette suite $x_k$ admet une suite extraite
     de points de $A$ et/ou une suite extraite de points de $B$.
     Dans le premier cas on a donc $d(x, A)=0$ et dans le second $d(x, B)=0$,
-    c'est-à-dire que $x$ est proche de $A$ et/ou proche de $B$.
+    c'est-à-dire que $x$ adhère à $A$ et/ou proche de $B$.
 
  4. Les points $y$ qui adhèrent à l'ensemble $A$ sont caractérisés par
     $d(y, A) = 0$. Par conséquent, l'ensemble des points $x$ qui adhèrent
