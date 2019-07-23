@@ -1967,7 +1967,7 @@ La *différentielle d'ordre $k$ de $f$ en $x$*, notée $d^k f(x)$
 est définie comme l'application linéaire telle que pour tout 
 $h_1, \dots, h_{k-1}$ de $\mathbb{R}^n$,
 $$
-d^k f(x) \cdot h_1 \cdot h_2 \cdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x)
+d^k f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x)
 $$
 ou de façon équivalente
 $$
@@ -2121,11 +2121,19 @@ $$
 
 -->
 
-### Développement limité à l'ordre $n$
+### Puissance symbolique
+Comme les différentielled d'ordre supérieures  sont fréquemment évaluées 
+lorsque les termes $h_1$, $h_2$, $\dots$, sont égaux, on adoptera la notation
+(purement syntaxique) suivante:
+$$
+(\cdot \, h)^k := \overbrace{\cdot h \cdot \hdots \cdot h}^{k \; \mathrm{termes}}.
+$$
+
+### Développement limité d'ordre supérieur
 Soit $f: U \subset \R^n \to \R^m$ une fonction $j$ fois différentiable au point
 $x \in U$. Alors
 $$
-f(x+h) = \sum_{i=0}^{j}  \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h
+f(x+h) = \sum_{i=0}^{j}  \frac{d^i f(x)}{i!} (\cdot \, h)^i
 + o(\|h\|^j).
 $$
 
@@ -2135,7 +2143,7 @@ pour toute fonction $j-1$ fois différentiable
 et supposons que $f$ est $j$ fois différentiable. Formons le reste 
 d'ordre $j$ associé à $f$:
 $$
-r(h) = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} \cdot h \cdot \hdots \cdot h.
+r(h) = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} (\cdot \, h)^i.
 $$
 Il nous faut montrer que $r(h)$ est un $o(\|h\|^j)$, ce qui 
 nous allons accomplir en établissant que $\|dr(h)\| = o(\|h\|^{j-1})$.
@@ -2154,32 +2162,32 @@ Les termes $d^i f(x)\cdot h_1 \cdot \hdots \cdot h_i$
 sont linéaires par rapport à chacun des $h_j$, donc pour tout vecteur 
 $k$, compte tenu de la symmétrie de $d^i f(x)$,
 $$
-d^i f(x) \cdot (h+k) \cdot \hdots \cdot (h+k)
+d^i f(x) (\cdot \, (h+k))^i
 = 
-d^i f(x) \cdot h \cdot \hdots \cdot h
-+ i d^i f(x) \cdot h \cdot \hdots \cdot h \cdot k
+d^i f(x) (\cdot \, h)^i
++ i d^i f(x) (\cdot \, h)^{i-1} \cdot k
 + o(\|k\|).
 $$
 La différentielle de 
-$h \mapsto {d^i f(x)}\cdot h \cdot \hdots \cdot h$
-vaut donc $id^i f(x) \cdot h \cdot \hdots \cdot h$ et
+$h \mapsto {d^i f(x)} (\cdot \, h)^i$
+vaut donc $id^i f(x) (\cdot \, h)^{i-1}$ et
 $$
 d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k - 
-d^2f(x) \cdot h\cdot k - \hdots -
-\frac{d^i f(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h \cdot k.
+d^2f(x) \cdot h\cdot k - \dots -
+\frac{d^i f(x)}{(i-1)!} (\cdot \, h)^{i-1} \cdot k.
 $$
 Par le lemme de stratification et la symmétrie des différentielles
 d'ordre supérieur, on obtient 
 \begin{multline*}
-d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k - \\ 
-d(x \mapsto df(x) \cdot k)(x) \cdot h - \hdots -
-\frac{d^{i-1} (x \mapsto df(x) \cdot k)(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h.
+d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k  \\ 
+- d(x \mapsto df(x) \cdot k)(x) \cdot h - \dots -
+\frac{d^{i-1} (x \mapsto df(x) \cdot k)(x)}{(i-1)!} (\cdot \, h)^{i-1}.
 \end{multline*}
 soit en posant $\phi(x) = df(x) \cdot k$,
 $$
 d r(h) \cdot k = \phi(x+h) - \phi(x) - 
-d \phi(x) \cdot h - \hdots -
-\frac{d^{i-1} \phi(x)}{(i-1)!} \cdot h \cdot \hdots \cdot h.
+d \phi(x) \cdot h - \dots -
+\frac{d^{i-1} \phi(x)}{(i-1)!} (\cdot h)^{i-1}.
 $$
 L'hypothèse de récurrence nous garantit donc que 
 $d r(h) \cdot k = o(\|h\|^{j-1})$ à $k$ fixé, ce qui, 
@@ -2188,7 +2196,7 @@ $\|dr(h)\| = o(\|h\|^{j-1})$.
 
 
 
-### Développement de Taylor avec reste intégral (fonction d'une variable réelle)
+### Développement de Taylor avec reste intégral I
 Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
 $h \in \left[0, +\infty\right[$ et $m \in \mathbb{N}$.
 Si $f$ est $j+1$ fois dérivable sur $[a,a+h]$,
@@ -2221,7 +2229,7 @@ f^{(j+1)}(a) \times \frac{h^{j+1}}{(j+1)!}
 \end{multline*}
 ce qui achève la preuve par récurrence.
 
-### Développement de Taylor avec reste intégral 
+### Développement de Taylor avec reste intégral II
 Si $f: U \subset \R^n \to \R^m$ est $j+1$ fois différentiable et $[a, a+h] \subset U$,
 $$
 f(a+h)  = \sum_{i=0}^n \frac{1}{i!}df^{(i)}(a) \cdot \overbrace{h \cdot \hdots \cdot h}^{k \; \mathrm{termes}} 
