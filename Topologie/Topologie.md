@@ -489,15 +489,14 @@ Notation $\mathcal{V}(x)$ pour les voisinages de $x$.
 
 Soit $A$ un ensemble de $X$. On note
 
-  -  $\overline{A}$ l'*adhérence* de $A$ 
-     (composée de l'ensemble des points adhérents à $A$).
+  -  $\overline{A}$ l'*adhérence* de $A$
+     (l'ensemble des points adhérents à $A$),
 
-  - $\partial A$ la *frontière* de $A$ (composée de 
-    l'ensemble des points frontières de $A$).
+  - $\partial A$ la *frontière* de $A$ 
+    (l'ensemble des points frontières de $A$).
 
-  - $\mathring{A}$ l'*intérieur* de $A$ (composé de
-    l'ensemble des points intérieurs à $A$).
-
+  - $\mathring{A}$ l'*intérieur* de $A$ 
+    (l'ensemble des points intérieurs à $A$).
 
 ### Définitions métriques {.definition}
 
@@ -568,7 +567,7 @@ $x \in X \mapsto x - f(x)$.
 La démarche inverse 
 -- qui consiste à caractériser les solutions d'une équation 
 comme des point fixes -- peut être utile pour établir des résultats
-d'existence et d'unicité des solutions ou obtenir des méthodes numériques 
+d'existence et d'unicité de solutions ou obtenir des méthodes numériques 
 pour leur calcul. Un exemple élémentaire de ce type de transformation:
 le nombre d'or est déterminé comme l'unique solution de l'équation
 $$
