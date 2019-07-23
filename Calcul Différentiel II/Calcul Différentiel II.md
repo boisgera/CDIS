@@ -10,6 +10,8 @@
 Théorème des Fonctions Implicites
 ================================================================================
 
+<!--
+
 Objectifs {.meta}
 --------------------------------------------------------------------------------
 
@@ -50,6 +52,8 @@ Objectifs {.meta}
 
 Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 (Oswaldo Rio Branco de Oliveira)
+
+-->
 
 ### Théorème des Fonctions Implicites {.theorem}
 
@@ -109,7 +113,7 @@ $$
 $$
 On en déduit donc que
 $$
-d\psi(x) = - [\partial_y f(x, \psi(x))]^{-1} \cdot \partial_x f(x, \psi(x)).
+d\psi(x) = - (\partial_y f(x, \psi(x)))^{-1} \cdot \partial_x f(x, \psi(x)).
 $$
 
 **TODO:** ici aussi, nécessaire d'invoquer la continuité de l'inversion
