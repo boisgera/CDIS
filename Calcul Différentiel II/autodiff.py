@@ -33,6 +33,10 @@ Derivative of f (manual computation)
     0.0
 """
 
+# TODO: 
+#   - constant wrapping
+#   - test management (branching)
+
 # Python 3.7 Standard Library
 import doctest
 import inspect
