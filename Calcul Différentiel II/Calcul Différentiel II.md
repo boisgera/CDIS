@@ -489,7 +489,7 @@ Remarquez que nous avons obtenu une représentation exacte du nombre flottant
 `pi` avec 49 chiffres. Cela ne signifie pas que tous ces chiffres
 -- ou même la plupart d'entre eux -- sont significatifs dans la représentation
 du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
-[mpmath] pour l'arithmétique flottante multi-précisions, nous voyons que
+[mpmath] pour l'arithmétique flottante multi-précision, nous voyons que
 
     >>> import mpmath
     >>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
