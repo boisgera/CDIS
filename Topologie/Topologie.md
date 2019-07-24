@@ -1483,11 +1483,61 @@ que $\|A^k\| \to 0 \Leftrightarrow \rho(A) < 1$ et tester algo de Jacobi
 Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
 et lien avec norme.
 
-TODO -- Equa Diff
+TODO -- Equation Différentielle
 --------------------------------------------------------------------------------
+Soit $A$ un opérateur linéaire de $\R^n$ dans $\R^n$. 
+On souhaite montrer que pour tout $x_0 \in \R^n$,
+il existe une unique fonction dérivable $x: \left[0, +\infty\right[ \to \R^n$
+à l'équation différentielle
+$$
+\dot{x}(t) = A \cdot x(t) \mbox{ pour tout } t \geq 0,
+$$
+assortie de la condition initiale $x(0) = x_0$. 
 
-Pt fixe associé à l'équation différentielle $\dot{x} = A(t) \cdot x$?
-Et solution itérative ? Avec norme custom ?
+### Question 1
+Montrer que la fonction $x: \left[0, +\infty\right[ \to \R^n$ est solution du 
+problème ci-dessus si et seulement si elle est continue et vérifie 
+pour tout $t \geq 0$ la relation
+$$
+x(t) = x_0 + \int_0^t A \cdot x(s) \, ds.
+$$
+
+$\to$ [Solution](#sol-ed-1)
+
+### Question 2
+Soit $T > 0$; on note $E$ l'espace des fonctions continues de $[0, T]$ dans
+$\R^n$, muni de la norme
+$$
+\|x\|_{\infty} = \sup_{t \in [0, T]} \|x(t)\|.
+$$
+A quelle condition simple
+l'application $\Phi: E \to E$ définie par
+$$
+\Phi(x) = \left(t \mapsto x_0 +  \int_0^t A \cdot x(s) \, ds\right)
+$$
+est-elle contractante ? Quelle conclusion (partielle) quand 
+au problème initial peut-on en tirer ?
+
+$\to$ [Solution](#sol-ed-2)
+
+### Question 3
+Soit $\alpha > 0$. On note 
+$$
+\|x\|_{\infty}^{\alpha} = \sup_{t \in [0, T]} \|e^{-\alpha t}x(t)\|.
+$$
+Montrer que $\|\cdot\|_{\infty}^{\alpha}$ est une norme sur l'espace
+des fonctions continues de $[0, T]$ dans $\R^n$ une norme et que 
+muni de cette norme, l'espace $E$ est complet.
+
+$\to$ [Solution](#sol-ed-3)
+
+### Question 4
+Reprendre la question 2 avec la norme $\|\cdot\|_{\infty}^{\alpha}$
+au lieu de $\|\cdot\|_{\infty}$ et conclure quant à l'existence
+d'une solution au problème initial.
+
+$\to$ [Solution](#sol-ed-4)
+
 
 TODO -- "Localement"
 --------------------------------------------------------------------------------
@@ -1974,6 +2024,105 @@ la valeur $x_1$, pour la suite $(x_{kn+2})_k$, ..., jusqu'à
 $(x_{kn + (n-1)})_k$. Ces $n$ suites convergent toutes vers $x$,
 donc la suite des $(x_k)_k$ converge également vers le point fixe $x$, 
 comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
+
+Equation Différentielle
+--------------------------------------------------------------------------------
+
+### Question 1 {#sol-ed-1}
+Si la fonction $x$ est continue et vérifie pour tout $t\geq0$
+l'équation intégrale
+$$
+x(t) = x_0 + \int_0^t A \cdot x(s) \, ds,
+$$
+alors nécessairement
+$$
+x(0) =x_0 + \int_0^0 A \cdot x(s) \, ds = x_0,
+$$
+et sa dérivée satisfait $\dot{x}(t) = A \cdot x(t)$.
+
+Réciproquement, si $x(0) = x_0$ et pour tout $t \geq 0$ on a 
+$\dot{x}(t) = A \cdot x(t)$, alors comme le second membre de cette équation
+est continue comme composée de fonctions continues, $\dot{x}$ est continue,
+et par intégration entre $0$ et $t$ on retrouve l'équation intégrale 
+souhaitée.
+
+### Question 2 {#sol-ed-2}
+Par linéarité de l'intégrale et de l'opérateur $A$, pour tout couple
+$x$ et $y$ de fonctions continue de $[0, T]$ dans $\R^n$ et tout
+$t \in [0, T]$, on a
+$$
+(\Phi(x) - \Phi(y))(t) = \int_0^t A \cdot (x(s) - y(s)) \, ds,
+$$
+et donc
+$$
+\begin{split}
+\|(\Phi(x)(t) - \Phi(y)(t)\| &\leq \int_0^t \|A \cdot (x(s) - y(s))\| \, ds \\
+&\leq  \int_0^t \|A \| \|x - y\|_{\infty} \, ds \\
+&= (\|A\| T) \times \|x - y\|_{\infty}, \\
+\end{split}
+$$
+soit 
+$$
+\|\Phi(x) - \Phi(y)\|_{\infty} \leq (\|A\| T) \times \|x - y\|_{\infty}.
+$$
+L'application $\Phi$ est donc contractante si $\|A\| \leq 1/T$.
+[Le théorème du point fixe de Banach](#T-TPFB) prouve alors
+l'unicité d'une fonction continue telle que 
+$$
+x(t) = x_0 + \int_0^t A \cdot x(s) \, ds
+$$
+pour tout $t \in [0, T]$.
+
+### Question 3 {#sol-ed-3}
+Le fait que $\|\cdot\|_{\infty}^{\alpha}$ soit une norme se déduit facilement
+du fait que $\|\cdot\|_{\infty}$ en soit une. On peut constater que pour 
+toute fonction $x$ continue sur $[0, T]$, on a
+$$
+\|e^{-\alpha T} x\|_{\infty}^{\alpha} \leq \|x\|_{\infty}^{\alpha} \leq \|x\|_{\infty}.
+$$
+Les deux normes sont donc équivalentes. En particulier, les notions de 
+convergence de suite de points et de suites de Cauchy sont les mêmes dans
+les deux espaces. 
+L'espace vectoriel $E$ muni de la norme $\|\cdot\|_{\infty}$ étant complet, 
+c'est également le cas pour $E$ muni de la norme $\|\cdot\|^{\alpha}_{\infty}$.
+
+### Question 4 {#sol-ed-4}
+Pour tout couple
+$x$ et $y$ de fonctions continue de $[0, T]$ dans $\R^n$ et tout
+$t \in [0, T]$, on a
+$$
+e^{-\alpha t} (x-y)(t) 
+= e^{-\alpha t} \int_{0}^t A \cdot (x-y)(s) \, ds
+= \int_{0}^t A \cdot e^{-\alpha s}(x-y)(s) e^{-\alpha (t-s)} \, ds
+$$
+et donc
+$$
+\begin{split}
+\left|e^{-\alpha t} (x-y)(t)\right|
+&\leq 
+\int_{0}^t \|A\| \|e^{-\alpha s}(x-y)(s)\| e^{-\alpha (t-s)} \, ds \\
+&\leq 
+\left(\|A\| T \int_0^t e^{-\alpha (t-s)} \, ds \right) \|x-y\|_{\infty}^{\alpha}.
+\end{split}
+$$
+Comme
+$$
+\int_0^t e^{-\alpha (t-s)} \, ds
+= \left[\frac{e^{-\alpha (t-s)}}{\alpha} \right]_0^t
+=\frac{1 - e^{-\alpha t}}{\alpha} \leq \frac{1}{\alpha},
+$$
+on en déduit que 
+$$
+\|x - y\|_{\infty}^{\alpha} \leq \frac{\|A| T}{\alpha} \|x-y\|_{\infty}^{\alpha}.
+$$
+L'application $\Phi$ est donc contractante dès lors que $\alpha > \|A\| T$.
+Pour tout $T > 0$,
+[le théorème du point fixe de Banach](#T-TPFB) prouve donc, en sélectionnant
+un $\alpha$ adapté, l'unicité d'une fonction continue telle que 
+$$
+x(t) = x_0 + \int_0^t A \cdot x(s) \, ds
+$$
+pour tout $t \in [0, T]$. Le problème original admet donc une solution unique.
 
 
 Références
