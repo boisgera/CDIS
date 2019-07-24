@@ -337,11 +337,6 @@ adhère à $A$, alors on aurait $d(0, \{1\}) = d(0, 1) = 0$, ce qui contredirait
 l'axiome de séparation pour les distances.
 
 
-
-
-TODO -- Produits
---------------------------------------------------------------------------------
-
 ### TODO -- Produit d'espaces vectoriels normés
 
 ### TODO -- Produit d'espaces métriques
