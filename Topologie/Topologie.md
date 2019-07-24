@@ -1483,7 +1483,7 @@ que $\|A^k\| \to 0 \Leftrightarrow \rho(A) < 1$ et tester algo de Jacobi
 Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
 et lien avec norme.
 
-TODO -- Equation Différentielle
+Equation Différentielle
 --------------------------------------------------------------------------------
 Soit $A$ un opérateur linéaire de $\R^n$ dans $\R^n$. 
 On souhaite montrer que pour tout $x_0 \in \R^n$,
