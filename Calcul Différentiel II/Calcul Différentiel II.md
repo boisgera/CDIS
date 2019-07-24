@@ -361,7 +361,7 @@ Par construction $\phi(x, y) = 0$ si et seulement si $f(x) = y$.
 De plus, $\phi$ est continûment différentiable et
 $\partial_x \phi(x, y) = df(x)$. On peut donc appliquer le théorème
 des fonctions implicites au voisinage du point $(x_0, f(x_0))$
-et en déduire l'existence de voisinages ouvert $A$ et $B$ de $x_0$
+et en déduire l'existence de voisinages ouverts $A$ et $B$ de $x_0$
 et $f(x_0)$ tels que $A \times B \subset U \times \mathbb{R}^n$,
 et d'une fonction continûment différentiable 
 $\psi: B \to \mathbb{R}^m$ telle que pour tout $(x, y) \in A \times B$,
@@ -373,9 +373,10 @@ de $A$. La fonction $x \in A' \mapsto f(x) \in B$ est bijective par
 construction et son inverse est la fonction $y \in B \mapsto \psi(y) \in A'$;
 nous avons donc affaire à un  $C^1$-difféomorphisme de $A'$ sur $B$.
 
-Analyse d'Erreur / Numérique
+Analyse Numérique
 ================================================================================
 
+<!--
 Objectifs {.meta}
 --------------------------------------------------------------------------------
 
@@ -390,16 +391,16 @@ Objectifs {.meta}
     Savoir calculer des estimations numériques dans les deux cas.
     (attention, il y a plein de choses ici: il faut en passer par
     le modèle de représentation des nombres flottants, etc.)
-
-
-Introduction
---------------------------------------------------------------------------------
+-->
 
 ### TODO
 
 Terminologie "à virgule flottante" utilisée au moins une fois.
 
--------
+
+
+Introduction
+--------------------------------------------------------------------------------
 
 Vous avez peut-être déjà utilise une méthode de différentiation numérique 
 pour évaluer la dérivée d'une fonction, par exemple l'approximation des 
