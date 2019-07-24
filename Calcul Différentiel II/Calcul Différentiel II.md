@@ -503,27 +503,24 @@ et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre.
 ### Nombres flottants binaires
 
 Si la représentation des nombres flottants peut apparaître complexe à ce stade,
-c'est que nous avons insisté pour utiliser une représentation **décimale**
-quand ces nombres sont stockés avec une réprésentation **binaire.**
+c'est que nous avons insisté pour utiliser une représentation *décimale*
+quand ces nombres sont stockés avec une réprésentation *binaire*.
 En d'autres termes; au lieu d'utiliser une suite de chiffres décimaux
 $f_i \in \{0,1,\dots,9\}$ pour représenter un nombre réel $x$ comme
   $$
   x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 10^{e} 
   $$
-nous devrions utiliser des *chiffres binaires* -- ou *bits** -- 
+nous devrions utiliser des *chiffres binaires* -- ou *bits* -- 
 $f_i \in \{0,1\}$ pour écrire:
   $$
   x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 2^{e}.
   $$
-Ces représentations sont **normalisées** si le chiffre avant la virgule est
+Ces représentations sont *normalisées* si le chiffre avant la virgule est
 non nul. Par exemple, avec cette convention, le nombre rationnel $999/1000$
 serait représenté en base 10 comme $9.99 \times 10^{-1}$ et non comme
 $0.999 \times 10^0$. En base $2$, le seul chiffre non-nul est $1$, donc
 la *mantisse* d'une représentation normalisée est toujours de la forme
 $(1.f_1f_2\dots f_i \dots).$
-
-**TODO below: footnote besoin machine learning qui fonctionne avec des
-singles ou half precisions**
 
 En calcul scientifique, les nombres réels sont le plus souvent approximés
 sous la forme de "doubles"[^IEEE754]. Dans la bibliothèque standard Python,
@@ -546,7 +543,11 @@ représente un double normalisé
 [^IEEE754]: "Double" est un raccourci pour "format à virgule flottante de 
 précision double", comme défini dans le standard IEEE 754, cf. [@ANS85]. 
 Un format de simple précision est aussi défini, qui utilise uniquement
-32 bits; NumPy le propose sous le nom `float32`.
+32 bits; NumPy le propose sous le nom `float32`. 
+Après un abandon progressif des "singles" au profit des "doubles",
+plus précis et mieux supportés par le CPUs modernes, le format de simple
+précision revient en force avec le développement de l'usage des GPUs 
+comme unités de calcul génériques.
 
 Les doubles qui ne sont pas normalisés sont *not-a-number* (`nan`),
 plus ou moins l'infini (`inf`) et zero (`0.0`) (en fait $\pm$ `0.0`;
