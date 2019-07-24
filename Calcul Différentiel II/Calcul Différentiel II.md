@@ -558,10 +558,10 @@ pas de ces cas particuliers.
 ### Précision
 
 Presque aucun nombre réel ne peut être représenté exactement comme un double.
-Pour faire façe à cette difificulté, il est raisonnable d'associer à un
+Pour faire façe à cette difficulté, il est raisonnable d'associer à un
 nombre réel $x$ le double le plus proche $[x]$. Une telle méthode
 (*arrondi-au-plus-proche*) totalement spécifiée[^holes] dans le standard IEE754
-[@ANS85], ainsi que des modes alternatifs d'arrondi (arrondis "dirigés").
+[@ANS85], ainsi que des modes alternatifs d'arrondi (arrondis "orientés").
 
 [^holes]: Il faut préciser comme l'opération se comporte quand le réel
 est équidistant de deux doubles, comment les "nombres spéciaux" 
@@ -597,7 +597,7 @@ directement la valeur de $\varepsilon$: la fraction du nombre après $1.0$
 est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ donc
 $\varepsilon =2^{-52},$ un résultat confirmé par:
 
-    >>> all_digits(2**-52)
+    >>> all_digits(2**(-52))
     2.220446049250313080847263336181640625e-16
 
 L'epsilon machine importe autant parce qu'il fournit une borne simple sur
@@ -610,8 +610,7 @@ des doubles normalisés fournit:
 Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
 garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
 
-#### Chiffres significatifs
-
+### Chiffres significatifs
 L'erreur relative se traduit directement par combien de chiffres décimaux
 sont *significatifs* dans la meilleurs approximation d'un nombre réel par
 un double. Considéons la représentation de $[x]$ en notation scientifique:
@@ -633,13 +632,12 @@ Ainsi, la précision souhaitée est obtenue tant que
 Par conséquent, les doubles fournissent une approximation des nombres réels
 à 15 décimales.
 
-#### Fonctions
-
+### Fonctions
 La plupart des nombres réels ne pouvant être représentés par des doubles,
 la plupart des fonctions à valeur réelle et à variables réelles ne peuvent 
 pas non plus être représentée exactement comme des fonctions opérant sur
 des doubles. 
-Le mieux que nous puissions espérer est d'avoir des approximation 
+Le mieux que nous puissions espérer est d'avoir des approximations
 *correctement arrondies*. Une approximation $[f]$ d'une fonction $f$
 de $n$ variables est correctement arrondie si pour tout $n$-uplet
 $(x_1, \dots, x_n)$, on a
@@ -650,24 +648,23 @@ Autrement dit, tout se passe comme si le calcul de $[f](x_1,\dots,x_n)$
 était effectué de la façon suivante: approximation au plus proche 
 des arguments par des doubles, calcul **exact** de $f$ sur ces arguments, 
 et approximation de cette valeur produite au plus proche par un double.
+Ou encore:
+$$
+[f] = [\, \cdot \,] \circ f \circ [\, \cdot \,].
+$$
 
-Le standard IEEE 754 [@ANS85] impose que certaines fonction aient des 
-implémentations correctement arrondies; elles sont l'addition, la
-soustraction, la multiplication, la division, le reste d'une division 
-entière et la racine carrée.
+Le standard IEEE 754 [@ANS85] impose que certaines fonctions aient des 
+implémentations correctement arrondies; 
+nommément, l'addition, la soustraction, la multiplication, la division, 
+le reste d'une division entière et la racine carrée.
 D'autres fonctions élémentaires 
--- comme sinus, cosinus, exponentielle, logarithme, etc. --
+-- comme sinus, cosinus, exponentielle, logarithme, ... --
 ne sont en général pas correctement arrondies;
 la conception d'algorithmes de calcul qui aient une performance décente et
-dont on peut prouver qu'il sont correctement arrondis est un problème
-difficile (cf. @FHL07).
+correctement arrondis est un problème difficile (cf. @FHL07).
 
 Différences Finies
 --------------------------------------------------------------------------------
-
-### TODO
-
-Terminologie erreur de troncature
 
 ### Différence Avant
 
@@ -694,16 +691,15 @@ Un calcul direct montre que
 Le comportement asymptotique de ce schéma de *différence avant*
 (*forward difference*)
 -- controllé par le terme $O(h^1)$ -- est dit d'ordre 1.
-En supposant $f$ correctement arrondie,
-une implémentation de ce schéma est défini pour les réels $x$ et
+Une implémentation de ce schéma est défini pour les réels $x$ et
 $h$ par
   $$
   \mathrm{FD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x])]}{[h]} \right].
   $$
 ou de façon équivalent en Python par:
 
-    def FD(f, x, h):
-        return (f(x + h) - f(x)) / h
+    >>> def FD(f, x, h):
+    ...     return (f(x + h) - f(x)) / h
 
 <!--
 [^Landau]: **Bachmann-Landau notation.** For a real or complex variable $h,$ 
@@ -736,9 +732,7 @@ Pour étudier exclusivement l'erreur d'arrondi, nous aimerions
 nous débarasser de l'erreur de troncature; à cette fin, dans les
 calculs qui suivent, au lieu de $\exp$, nous utilisons $\exp_1$,
 le développement de Taylor de $\exp$ à l'ordre $1$ à $x=0$,
-c'est-à-dire $\exp_1(x) = 1 + x$.
-
-**TODO:** élts / catastrophic cancellation
+c'est-à-dire $\exp_1(x) := 1 + x$.
 
 Supposons que l'arrondi soit calculé au plus proche;
 selectionons un double $h>0$ et comparons-le à l'epsilon machine:
@@ -752,14 +746,15 @@ selectionons un double $h>0$ et comparons-le à l'epsilon machine:
       \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right] = 0.
       $$
 
-  - Si $h \approx \varepsilon,$ alors $1+h$ est plus proche  $1+\varepsilon$que de $1,$ 
-    et donc $[\exp_0](h) = 1+\varepsilon$, ce qui entraîne
+  - Si $h \approx \varepsilon,$ alors $1+h$ est plus proche  $1+\varepsilon$
+    que de $1,$ et donc $[\exp_0](h) = 1+\varepsilon$, ce qui entraîne
       $$
       \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right]
       = \left[ \frac{\varepsilon}{h} \right].
       $$
 
-  - Si $\varepsilon \ll h \ll 1,$ alors $[1+h] = 1+ h \pm \varepsilon(1+h)$
+  - Si $\varepsilon \ll h \ll 1,$ alors 
+    $[1+h] = 1+ h \pm \varepsilon(1+h)$
     (le symbole $\pm$ est utilisé ici pour défini un intervalle de confiance[^pm]). 
     Et donc
       $$
@@ -813,8 +808,8 @@ Son implémentation sur ordinateur est donnée par
   $$
 ou de façon équivalente en Python:
 
-    def CD(f, x, h):
-        return 0.5 * (f(x + h) - f(x - h)) / h
+    >>> def CD(f, x, h):
+    ...    return 0.5 * (f(x + h) - f(x - h)) / h
 
 
 ![Erreur de la différence centrée](images/cd-error.py){#cde}
@@ -831,6 +826,7 @@ d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
 Différentiation Automatique
 ================================================================================
 
+<!--
 Objectifs {.meta}
 --------------------------------------------------------------------------------
 
@@ -848,6 +844,8 @@ Objectifs {.meta}
 
   - exploiter un système existant, type `autograd` en python
     (sans doute le plus facile en terme de courbe d'apprentissage)
+
+-->
 
 Tracer le Graphe de Calcul
 --------------------------------------------------------------------------------
