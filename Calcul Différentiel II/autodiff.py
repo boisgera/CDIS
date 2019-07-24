@@ -114,7 +114,11 @@ def autodiff(function):
 # ------------------------------------------------------------------------------
 functions  = ["exp", "log", "pow", "sqrt", "sin", "cos", "tan"]
 operators  = ["add", "sub", "mul", "truediv", "neg", "pos"]
-operators += ["lt", "le", "ge", "gt"] # not ne or eq
+operators += ["lt", "le", "ge", "gt"] # not ne or eq ; fucks up the current
+# topological sort. Of cours we could work with ids in the topological sort,
+# or have a global flag to disable node outputs but it's overkill;
+# x == y does generate "thin sets" in general where the differential
+# cannot be computed.
 
 globs = globals()
 for function_name in functions:
