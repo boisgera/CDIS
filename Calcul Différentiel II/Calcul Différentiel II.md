@@ -491,12 +491,12 @@ Remarquez que nous avons obtenu une représentation exacte du nombre flottant
 du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
 [mpmath] pour l'arithmétique flottante multi-précisions, nous voyons que
 
-    #>>> import mpmath
-    #>>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
-    #>>> +mpmath.pi
-    #3.141592653589793238462643383279502884197169399375
+    >>> import mpmath
+    >>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
+    >>> +mpmath.pi
+    3.141592653589793238462643383279502884197169399375
 
-[mpmath]: https://mpmath.googlecode.com/svn/trunk/doc/build/index.html
+[mpmath]: http://mpmath.org/
 
 et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre.
 
