@@ -31,6 +31,32 @@ Derivative of f (manual computation)
     ...    return df(x)(1.0)
     >>> f_prime(pi/4)
     0.0
+
+Branching
+--------------------------------------------------------------------------------
+
+    >>> def f(x):
+    ...     if x < 0.0:
+    ...         return -x
+    ...     else:
+    ...         return x
+    >>> df = d(f)
+    >>> df(2.0)(1.0)
+    1.0
+    >>> df(-2.0)(1.0)
+    -1.0
+
+    >>> def f(x):
+    ...     if x <= 0.0:
+    ...         return 0.0
+    ...     else:
+    ...         return x * x
+    >>> df = d(f)
+    >>> df(-1.0)(1.0)
+    0.0
+    >>> df(1.0)(1.0)
+    2.0
+
 """
 
 # TODO: 
@@ -79,8 +105,9 @@ def autodiff(function):
 
 # Function and Operators
 # ------------------------------------------------------------------------------
-functions = ["exp", "log", "pow", "sqrt", "sin", "cos", "tan"]
-operators = ["add", "sub", "mul", "truediv", "neg", "pos"]
+functions  = ["exp", "log", "pow", "sqrt", "sin", "cos", "tan"]
+operators  = ["add", "sub", "mul", "truediv", "neg", "pos"]
+operators += ["lt", "le", "ge", "gt"] # not ne or eq
 
 globs = globals()
 for function_name in functions:
@@ -95,6 +122,12 @@ for operator_name in operators:
     setattr(Node, f"__{operator_name}__", op)
     if binary_op:
         setattr(Node, f"__r{operator_name}__", op)
+def _bool(x):
+    if isinstance(x, Node):
+        return bool(x.value)
+    else:
+        return bool(x)
+Node.__bool__ = _bool
 
 
 # Elementary Differentials 
@@ -129,6 +162,13 @@ differential[truediv] = d_truediv
 differential[neg] = lambda x: neg
 differential[pos] = lambda x: pos
 
+def zero(dx, dy):
+    return 0.0
+differential[lt] = lambda x, y: zero
+differential[le] = lambda x, y: zero
+differential[ge] = lambda x, y: zero
+differential[gt] = lambda x, y: zero
+
 # Topological Sort
 # ------------------------------------------------------------------------------
 def sort_nodes(end_node):
@@ -154,6 +194,8 @@ def d(f):
     def df(*args): # args=(x1, x2, ...)
         start_nodes = [Node(arg) for arg in args]
         end_node = f(*start_nodes)
+        if not isinstance(end_node, Node): # constant output
+            end_node = Node(end_node)
         sorted_nodes = sort_nodes(end_node).copy()
         def df_x(*d_args): # d_args = (d_x1, d_x2, ...)
             for node in sorted_nodes:
