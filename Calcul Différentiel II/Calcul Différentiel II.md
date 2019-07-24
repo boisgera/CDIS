@@ -392,11 +392,6 @@ Objectifs {.meta}
     (attention, il y a plein de choses ici: il faut en passer par
     le modèle de représentation des nombres flottants, etc.)
 -->
-
-### TODO
-
-Terminologie "à virgule flottante" utilisée au moins une fois.
-
 Les exemples utilisés dans cette section exploitent la librairie numérique 
 Python [NumPy]; assurons-nous tout de suite d'avoir importé toutes ses 
 fonctionnalités:
@@ -406,12 +401,14 @@ fonctionnalités:
 Introduction
 --------------------------------------------------------------------------------
 
-Vous avez peut-être déjà utilise une méthode de différentiation numérique 
-pour évaluer la dérivée d'une fonction, par exemple l'approximation des 
-différences finies de Newton
+Compte tenu de la définition de la dérivée d'une fonction, la méthode de 
+différentiation numérique la plus naturelle pour évaluer cette dérivée
+repose sur le schéma des différences finies de Newton, qui repose sur
+l'approximation
   $$
-  f'(x) \approx \frac{f(x+h) - f(x)}{h}.
+  f'(x) \approx \frac{f(x+h) - f(x)}{h}
   $$
+valable lorsque la valeur de $h$ est suffisamment faible.
 
 L'implémentation de ce schéma en Python est simple:
 
@@ -453,11 +450,11 @@ Arithmétique des ordinateurs
 --------------------------------------------------------------------------------
 
 Cette section introduit la représentation des nombres réels sur ordinateur
-comme des "doubles" et leur propriétés élémentaires. Pour avoir plus 
-d'informations sur le sujet, vous pouvez vous reporter au document classique
+comme des "doubles" -- le type le plus utilisé des nombres à virgule flottante -- 
+et leur propriétés élémentaires. 
+Pour avoir plus d'informations sur le sujet, vous pouvez vous reporter au 
+document classique 
 "What every computer scientist should know about computer arithmetic" [@Gol91]
-
-
 
 [NumPy]: http://www.numpy.org/
 
