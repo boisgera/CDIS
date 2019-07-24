@@ -93,10 +93,12 @@ Nous retrouvons donc les hypothèses initiales du théorème,
 à ceci près qu'elle sont satisfaites dans un voisinage de $(x_0, y_0)$
 qui peut être plus petit que l'ouvert initial $W$.
 
+<!--
 **TODO:** ref au résultat de Tao sur math overflow où l'on ne dispose que
 de la différentiabilité (pas du caractère continûment différentiable).
 
 **TODO:** évoquer cas Lipschitz ?
+-->
 
 ### Démonstration {.proof}
 
@@ -171,15 +173,11 @@ $\partial_y f(x_0, y_0)$, c'est-à-dire qui définit la suite
 $$
 y_{k+1} := y_k - Q^{-1} \cdot f(x, y_k) \, \mbox{ où } \, Q = \partial_y f(x_0, y_0).
 $$
-
-... **TODO:** reformuler sous forme de point fixe.
-
+Cette définition par récurrence se réécrit sous la forme
+$y_{k+1} = \phi_x(y_k)$ où
 $$
-\phi_x(y) = y - Q^{-1} \cdot f(x, y)
+\phi_x(y) = y - Q^{-1} \cdot f(x, y).
 $$
-
-...
-
 La fonction $\phi_x$ est différentiable sur l'ensemble 
 $\{y \in \mathbb{R}^m \, | \, (x, y) \in W\}$ et sa différentielle est donnée
 par
@@ -197,7 +195,7 @@ $$
 & \leq \|Q^{-1}\| \times \|\partial_y f(x, y) - Q\|.
 \end{split}
 $$
-La fonction $f$ étant supposée de classe $C^1$, on peut trouver un $r>0$,
+La fonction $f$ étant supposée continûment différentiable, il existe un $r>0$
 tel que tout couple $(x, y)$ tel que $\|x - x_0\| \leq r$ et
 $\|y - y_0\| \leq r$ appartienne à $W$ et vérifie 
 $\|\partial_y f(x, y) - Q\| \leq \kappa \|Q^{-1}\|^{-1}$ avec par exemple 
@@ -216,9 +214,9 @@ $$
 &\leq \|\phi_x(y) - \phi_x(y_0)\|  + \|\phi_{x}(y_0) - \phi_{x_0}(y_0)\|. 
 \end{split}
 $$
-On a 
-$$\|\phi_x(y) - \phi_x(y_0)\| \leq \kappa\|y - y_0\| \leq \kappa r.$$
-De plus, par continuité de $\phi$ en $(x_0, y_0)$, on peut choisir 
+On a d'une part
+$$\|\phi_x(y) - \phi_x(y_0)\| \leq \kappa\|y - y_0\| \leq \kappa r$$
+et d'autre part, par continuité de $\phi$ en $(x_0, y_0)$, il existe
 un $r'$ tel que $0 < r' < r$ et tel que si $\|x - x_0\| \leq r'$, 
 alors $\|\phi_{x}(y_0) - \phi_{x_0}(y_0)\| \leq (1 - \kappa) r$. 
 Pour de telles valeurs de $x$,
@@ -228,12 +226,14 @@ $$
 L'image de la boule fermée 
 $B = \{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$ 
 par l'application $\phi_x$ est donc incluse dans $B$.
+Tant que $\|x-x_0\| \leq r'$, les hypothèses du 
+[théorème de point fixe de Banach](Topologie.pdf#T-TPFB) 
+sont donc satisfaites pour $\phi_x: B \to B$, ce qui
+montre l'existence et l'unicité de la fonction
+implicite $\psi$ associée aux voisinages ouverts $U = B(x_0, r')$ et 
+$V = B(y_0, r)$.
 
-**TODO.** conclure existence et unicité (expliciter choix voisinages
-$U$ et $V$).
-
-Pour montrer la différentiabilité de la fonction implicite $\psi$,
-il est nécessaire au préalable de montrer sa continuité.
+Montrons la continuité de la fonction implicite $\psi$.
 Soit $x_1, x_2$ deux points de $V$; notons $y_1 = \psi(x_1)$
 et $y_2 = \psi(x_2)$. Ces valeurs sont des solutions des équations
 de point fixe
@@ -254,7 +254,7 @@ par $\kappa\|y_2 - y_1\|$, par conséquent
 $$
 \|y_2 - y_1\| \leq \frac{1}{1 - \kappa} \|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
 $$
-L'application $y \mapsto \phi_{x_1}(y)$ étant continue en $y_1$, 
+L'application $x \mapsto \phi_{x}(y_1)$ étant continue en $x_1$, 
 nous pouvons conclure que $y_2$ tend vers $y_1$ quand $x_2$ tend vers $x_1$;
 autrement dit: la fonction implicite $\psi$ est continue en $x_1$.
 
