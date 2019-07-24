@@ -8,6 +8,7 @@ dependencies:
   - pandoc=2.5
   - numpy
   - scipy
+  - mpmath
   - autograd
   - matplotlib
   - black
