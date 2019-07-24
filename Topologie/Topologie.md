@@ -224,7 +224,7 @@ sur l'ensemble par une mesure uniquement qualitative
 (dans ce contexte, "$x$ adhérent à $A$" peut être interprété comme 
 "$x$ infiniment proche de $A$ (ou dans $A$)").
 
-### Relation d'adhérence {.definition}
+### Relation d'adhérence {.definition #ak}
 
 Une *relation d'adhérence* (ou *test d'adhérence*) sur l'ensemble *X* est une 
 relation entre éléments de $X$ et sous-ensembles de $X$ telle que:
@@ -336,25 +336,22 @@ distance sur cet ensemble, telle que $d(x, A)= 0$ si et seulement si $x$
 adhère à $A$, alors on aurait $d(0, \{1\}) = d(0, 1) = 0$, ce qui contredirait
 l'axiome de séparation pour les distances.
 
-### TODO -- Calcul Topologique (transférer)
-
-Une fonction $\overline{\, \cdot \,}: \mathcal{P}(E) \to \mathcal{P}(E)$ est 
-
- 1. $\overline{\varnothing} = \varnothing$,
-
- 2. $A \subset \overline{A}$,
-
- 3. $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
-
- 4. $\overline{\overline{A}} = \overline{A}$.
 
 
-TODO -- Produit (et Quotient?)
+
+TODO -- Produits
 --------------------------------------------------------------------------------
+
+### TODO -- Produit d'espaces vectoriels normés
+
+### TODO -- Produit d'espaces métriques
+
+<!--
 
 (rk: Quotient ne "marche pas" dans une simple structure métrique.
 Arf, si, si les classe d'équivalences sont fermées, via la distance
 de Hausdorff. Lol.)
+-->
 
 Limite
 ================================================================================
@@ -499,7 +496,6 @@ Soit $A$ un ensemble de $X$. On note
     (l'ensemble des points intérieurs à $A$).
 
 ### Définitions métriques {.definition}
-
 Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
   - Un point $x$ *adhère* à un ensemble $A$ si
@@ -543,9 +539,64 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     $$
     A = \mathring{A}
     \; \Leftrightarrow \; 
-    (x \in A \Rightarrow d(x, X \setminus A)=0).
+    (x \in A \Rightarrow d(x, X \setminus A) > 0).
     $$
 
+
+### Définitions topologiques {.definition}
+Soit $X$ un espace topologiqueet $A$ un ensemble de points de $X$.
+
+  - L'*adhérence* $\overline{A}$ d'un ensemble $A$ est constituée des points
+    qui adhèrent à l'ensemble $A$.
+    
+  - Un ensemble $A$ est *fermé* s'il est égale à son adhérence:
+    $$
+    A = \overline{A}
+    $$
+
+  - Un point est *frontière* de $A$ s'il appartient à l'adhérence de $A$ et
+    à celle de son complémentaire:
+    $$
+    x \in \partial{A} 
+    \; \Leftrightarrow \; 
+    (x \in \overline{A} = 0 \mbox{ et } x \in \overline{X \setminus A}).
+    $$
+
+  - Un point $x$ est *intérieur* à un ensemble $A$ s'il n'adhère pas
+    au complémentaire de $A$
+    $$
+    x \in \mathring{A}
+    \; \Leftrightarrow \; 
+    x \not \in X \setminus A.
+    $$
+
+  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si
+    $x$ est intérieur à $V$
+    $$
+    V \in \mathcal{V}(x)
+    \; \Leftrightarrow \; 
+    x \not \in \overline{X \setminus V}.
+    $$
+
+  - Un ensemble $A$ est *ouvert* s'il est un voisinage de chacun de ses points
+    $$
+    A = \mathring{A}
+    \; \Leftrightarrow \; 
+    (x \in A \Rightarrow x \not \in \overline{X \setminus A}).
+    $$
+
+### Calcul topologique {.ante}
+Avec l'opérateur d'adhérence, [les axiomes définissant
+une relation d'adhérence](#ak) -- et donc un espace topologique -- 
+prennent une forme symbolique simple:
+
+ 1. $\overline{\varnothing} = \varnothing$,
+
+ 2. $A \subset \overline{A}$,
+
+ 3. $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
+
+ 4. $\overline{\overline{A}} = \overline{A}$.
 
   
 
