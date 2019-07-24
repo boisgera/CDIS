@@ -368,10 +368,10 @@ $\psi: B \to \mathbb{R}^m$ telle que pour tout $(x, y) \in A \times B$,
 $$
 f(x) = y \; \Leftrightarrow \; x = \psi(y). 
 $$
-Par continuité de $f$, $A' = A \cap f^{-1}(B)$ est un sous-ensemble ouvert
-de $A$. La fonction $x \in A' \mapsto f(x) \in B$ est bijective par 
-construction et son inverse est la fonction $y \in B \mapsto \psi(y) \in A'$;
-nous avons donc affaire à un  $C^1$-difféomorphisme de $A'$ sur $B$.
+Par continuité de $f$, $V := A \cap f^{-1}(B)$ est un sous-ensemble ouvert
+de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par 
+construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$;
+nous avons donc affaire à un  $C^1$-difféomorphisme de $V$ sur $W$.
 
 Analyse Numérique
 ================================================================================
