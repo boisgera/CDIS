@@ -397,7 +397,11 @@ Objectifs {.meta}
 
 Terminologie "à virgule flottante" utilisée au moins une fois.
 
+Les exemples utilisés dans cette section exploitent la librairie numérique 
+Python [NumPy]; assurons-nous tout de suite d'avoir importé toutes ses 
+fonctionnalités:
 
+    >>> from numpy import *
 
 Introduction
 --------------------------------------------------------------------------------
@@ -411,23 +415,33 @@ différences finies de Newton
 
 L'implémentation de ce schéma en Python est simple:
 
-    def FD(f, x, h):
-        return (f(x + h) - f(x)) / h
+    >>> def FD(f, x, h):
+    ...     return (f(x + h) - f(x)) / h
 
 Néanmoins, la relation entre la valeur du pas $h$ et la précision de
 cette évaluation -- c'est-à-dire l'écart entre la valeur de la dérivée
 et son estimation -- est plus complexe. 
 Considérons les échantillons de données suivants:
 
+<!--
 Expression                    Valeur
 ----------------------------  --------------------------------------------------
 $\exp'(0)$                    $1$
 `FD(exp, 0, 1e-4)`            `1.000050001667141`
 `FD(exp, 0, 1e-8)`            `0.99999999392252903`
 `FD(exp, 0, 1e-12)`           `1.000088900582341`
+-->
 
-La valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
-et uniquement 8 nombres après la virgule du résultat sont singificatifs.
+    >>> FD(exp, 0, 1e-4)
+    1.000050001667141
+    >>> FD(exp, 0, 1e-8)
+    0.999999993922529
+    >>> FD(exp, 0, 1e-12)
+    1.000088900582341
+
+La valeur théorique de $\exp'(0)$ étant $1.0$,
+la valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
+et uniquement 8 nombres après la virgule du résultat sont significatifs.
 
 Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
 du développement de Taylor de $\exp$ au premier ordre; 
@@ -443,10 +457,7 @@ comme des "doubles" et leur propriétés élémentaires. Pour avoir plus
 d'informations sur le sujet, vous pouvez vous reporter au document classique
 "What every computer scientist should know about computer arithmetic" [@Gol91]
 
-Les exemples qui suivent exploitent la librairie numérique Python [NumPy];
-assurons-nous tout de suite d'avoir importé toutes ses fonctionnalités:
 
-    >>> from numpy import *
 
 [NumPy]: http://www.numpy.org/
 
