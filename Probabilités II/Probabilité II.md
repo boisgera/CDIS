@@ -212,7 +212,7 @@ $$-1\leq \rho(X,Y) \leq 1.$$
 
 Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition](#composition).
 
-### Proposition {.proposition}
+### Proposition {.proposition #esperanceg}
 Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction continue par morceaux de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si 
 $$\int_\R |g(x)|f(x) dx \leq +\infty,$$
 et dans ce cas
@@ -224,32 +224,162 @@ Nous n'avons pas les éléments permettant de démontrer ce résultat, mais l'ar
 
 # **TODO : à développer, notamment figures** Densités réelles usuelles
 Nous donnons ici quelques exemples de densités de probabilité. 
- ### *loi uniforme* 
+### *loi uniforme* 
         sur $[a,b]$, où $a < b$ et on note $X \sim \mathcal{U}_[a,b]$ si $X$ admet la densité
         $$ \frac{1}{b-a} 1_{[a,b]} (x).$$
- ### *loi exponentielle* de paramètre $\lambda > 0$ et on note $X \sim \mathcal{E}(\lambda)$ si $X$ admet la densité
+### *loi exponentielle* de paramètre $\lambda > 0$ et on note $X \sim \mathcal{E}(\lambda)$ si $X$ admet la densité
         $$ \lambda e^{-\lambda x} 1_{\{x>0\}}.$$
- ### *loi gaussienne*
- ### *loi de Cauchy*
- ### *loi Gamma*
+### *loi gaussienne*
+### *loi de Cauchy*
+### *loi Gamma*
 
 **note : ajouter de jolies figures**
 
 # Vecteurs aléatoires à densité
-Nous allons généraliser ici la notion de variable aléatoire en considérant qu'elle peut prendre ses valeurs dans $\R^n$. Les vecteurs aléatoires se rencontrent naturellement lorsqu'on s'intéresse à plusieurs variables conjointement, par exemple dans le cas de la météo, la température, la pluviométrie et la vitesse et la direction du vent.
+Nous allons généraliser ici la notion de variable aléatoire en considérant qu'elle peut prendre ses valeurs dans $\R^n$. Les vecteurs aléatoires se rencontrent naturellement lorsqu'on s'intéresse à plusieurs quantités conjointement, par exemple dans le cas de la météo, la température, la pluviométrie et la vitesse et la direction du vent.
 
-De même qu'en dimension 1, une probabilité $\P$ sur $\R^n$, muni de la tribu des ensembles mesurables de $\R^n$, est caractérisée par la fonction de répartition multi-dimensionnelle $F : \R^n \to \R$ définie par 
-$$F(x_1,\ldots,x_n) = \P(X_1\leq x_1,\ldots,X_n\leq x_n)$$
-Mais caractériser les fonctions de répartition sur $\R^n$ est assez délicat, de sorte que cette notion est rarement utilisée. Bien plus utile est la notion de densité lorsqu'elle existe :
+## Définitions
+
+Une variable aléatoire $X$ à valeurs dans $\R^n$ (ou vecteur aléatoire) est simplement une collection de $n$ variables réelles définies sur le même espace probabilisé $(\Omega, \A, \P)$, qui sont les *composantes* de $X$ : on écrit $X = (X_1,\ldots,X_n)$.
+
+De même qu'en dimension 1, la loi de $X$ est caractérisée par la fonction de répartition multi-dimensionnelle $F : \R^n \to \R$ définie par 
+$$F(x_1,\ldots,x_n) = \P_X(X_1\leq x_1,\ldots,X_n\leq x_n)$$
+Mais caractériser les fonctions de répartition sur $\R^n$ est assez délicat, de sorte que cette notion est rarement utilisée. Nous allons plus particulièrement nous intéresser aux vecteurs aléatoires à densité.
+
+### Définition {.definition #defvect}
+On dit que $X$ admet la densité $f$ si la fonction réelle $f$ sur $\R^n$ est positive, intégrable et vérifie 
+$$\int_\R^n f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n) dx_1 \ldots dx_n= 1$$
+et si
+$$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} f(x_1,\ldots,x_n) dx_1 \ldots dx_n$$
+
+De la même manière que dans la [proposition](#esperanceg), on a :
+
+### Proposition {.proposition}
+Soit $X$ un vecteur aléatoire de densité $f$, et soit $g$ une fonction de $\R^n$ dans $\R$, continue par morceaux (i.e. continue sauf sur une "bonne" surface de dimension au plus $n-1$). On a alors $g(X)\in \L^1$ si et seulement si 
+$$\int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} |g(x_1,\ldots,x_n)|f(x_1,\ldots,x_n) dx_1 \ldots dx_n < \infty,$$
+et dans ce cas, on a 
+$$\Esp(g(X)) = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} g(x_1,\ldots,x_n)f(x_1,\ldots,x_n) dx_1 \ldots dx_n.$$
+
+## Moments d'un vecteur aléatoire
 
 ### Définition {.definition}
-Une fonction réelle $f$ sur $\R^n$ est une *densité de probabilité* (ou plus simplement *densité*) si elle est positive, intégrable et vérifie 
-$$\int_\R^n f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n)= 1$$ 
+Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont intégrables, nos pouvons définir le *vecteur espérance* 
+        $$\Esp(X) = (\Esp(X_1),\ldots,\Esp(X_n))$$
+Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont de carré intégrable, la *matrice de covariance* de $X$ est la matrice $C_X = (c_{i,j})_{1 \leq i \leq n , 1 \leq j \leq n}$ de taille $n \times n$ et dont les éléments valent
+        $$c_{i,j} = \cov (X_i,X_j)$$
+
+### Proposition {.proposition}
+La matrice de covariance est symétrique non-négative.
+
+### Démonstration {.proof}
+La symétrie est évidente. Non-négative signifie que pour tous réels $a_1,\ldots,a_n$, on a $\sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} \geq 0$. Un calcul simple montre que
+$$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i).$$
+
+### Exemple : Vecteur Gaussien $n$-dimensionel {.example}
+
+## Lois marginale et conditionnelle ?? ou en III
 
 
-# Variables aléatoires indépendantes
+## Variables aléatoires indépendantes
+<!-- Lorsque l'on modélise plusieurs variables conjointement, une hypothèse importante est celle de l'indépendance. Ce caractère traduit l'absence de lien de causalité entre les variables. Par exemple, on fait naturellement l'hypothèse d'indépendance lorsque l'on considère une répétition d'une même expérience dans les mêmes conditions. ??? -->
+Dans ce paragraphe, on considère un couple $(X,Y)$ de vecteurs aléatoires respectivement à valeurs dans $\R^m$ et $\R^n$. Les résultats s'étendent sans peine à une famille finie quelconque. 
 
-# Calculs de loi (cf Jacod - Garnier)
+On peut se ramener aux évènements pour caractériser l'indépendance de deux variables aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles mesurables de $\R^m$ et $\R^n$. On a vu que les évènements $X\in A$ et $Y \in B$ sont aléatoires si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quelques soient $A$ et $B$.
+
+### Définition {.definition #defvai}
+Les vecteurs aléatoires $X$ et $Y$ sont *indépendants* si pour tous ensembles mesurables $A$ et $B$ dans les espaces correspondants, 
+$$\P(X \in A, Y \in B) = \P(X \in A)\P(Y \in B)$$
+
+Cette définition se traduit en termes de densités dans la proposition suivante que l'on énonce pour un couple de variables aléatoires pour simplifier
+
+### Proposition {.proposition}
+Soit $X$ et $Y$ deux variables aléatoires réelles de densités $f_x$ et $f_Y$. $X$ et $Y$ sont indépendantes si et seulement si 
+le couple $Z = (X,Y)$ a pour densité (sur $\R^2$) :
+$$f_Z(x,y) = f_X(x)f_Y(y).$$
+
+### Démonstration {.proof}
+S'il y a indépendance, la [définition](#defvai) implique 
+$$P(X\leq x, Y\leq y) = P(X\leq x) \P(Y\leq y) = \int_{-\infty}^x f_X(u) du \int_{-\infty}^y f_Y(v) dv$$
+ce qui montre que $\P_Z$ vérifie la [définition](#defvect) avec $f_Z=f_X f_Y$.
+
+Inversement, si $f_Z=f_X f_Y$, on a pour tous $A$, $B$ mesurables dans $\R$
+$$\P(X\in A, Y\in B) = \int_A \int_B f_X(x) f_Y(y) dxdy = \P(X \in A)\P(Y \in B)$$ 
+
+### {.anonymous}
+
+Considérons maintenant deux fonctions $g$ et $h$ définies sur $\R^m$ et $\R^n$ telles que $g(X)$ et $h(Y)$ soient aussi des variables aléatoires (par exemple continues par morceaux). 
+
+### Proposition {.proposition}
+Avec les notations précédentes, si $X$ et $Y$ sont indépendantes de densités respectives $f_X$ et $f_Y$, les variables aléatoires $g(X)$ et $h(Y)$ sont aussi indépendantes. Si de plus $g(X)$ et $h(Y)$ sont intégrables, alors le produit $g(X)h(Y)$ est aussi intégrable, et on a 
+$$ \Esp(g(X)h(Y)) = \Esp(g(X))\Esp(h(Y))$$ 
+
+### Démonstration {.proof}
+La première assertion est évidente par définition de l'indépendance. Par ailleurs, si $g(X)$ et $h(Y)$ sont intégrables, en notant $f_{(X,Y)}$ la densité du couple $(X,Y)$, et en utilisant le théorème de Fubini, on a
+\begin{align*}
+\Esp(g(X)h(Y))  & = \int_\R^{m+n} g(x)h(y) f_{(X,Y)}(x,y) dx dy \\
+                & = \int_\R^m \int_\R^n g(x)h(y)f_X(x) f_Y(y) dx dy \\
+                & = \left(\int_\R^m  g(x) f_X(x) dx \right) \left(\int_\R^n h(y) f_Y(y) dy\right)\\
+                & = \Esp(g(X))\Esp(h(Y))
+\end{align*}
+
+### Remarque {.remark}
+Ce résultat est encore valable si $X$ et $Y$ n'admettent pas de densité mais nous ne disposons pas encore des outils de théorie de la mesure nécessaires àsa démonstration.
+
+On déduit de ce résultat et de la [définition de la covariance](#defcov) que :
+
+### Corollaire {.corollary}
+Si les variables aléatoires réelles $X$ et $Y$ sont indépendantes et de carré intégrable, alors
+$\cov(X,Y) = 0$ et $\rho(X,Y) = 0$.
+
+### Remarque
+Attention, la réciproque est fausse. Par exemple, si $X \sim \mathcal{U}_{[-1,1]}$ et $Y = X^2$. $X$ et $Y$ ne sont clairement pas indépendante mais on a
+
+$$\cov(X,Y) = \cov(X,X^2) = \Esp(X^3) - \Esp(X)\Esp(X^2) = 0$$
+
+# Identification de densité
+
+Un problème important est le suivant. Soit $X$ une variable aléatoire réelle, admettant la densité $f_X$. Soit $g$ une fonction mesurable, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
+
+On peut déjà remarquer que cette densité n’existe pas toujours. Si par exemple $g(x) = a$ pour tout $x$, la loi de $Y$ est la masse de Dirac en $a$, qui n’a
+pas de densité.
+
+Pour résoudre ce problème, l’idée consiste à essayer de mettre $E(h(Y )) = E(h \circ g(X))$ sous la forme $\int h(y)f_Y (y)dy$ pour une fonction convenable 
+$f_Y$, et une classe de fonctions $h$ suffisamment grande. La fonction $f_Y$ sera alors la densité cherchée.
+
+La [proposition](#esperanceg) implique
+$$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_\R h \circ g(x) f_X(x) dx$$
+
+et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
+
+### Proposition {.proposition}
+Si il existe une fonction $f$ telle que pour toute fonction continue bornée $h$, 
+$$\Esp(h(X)) = \int_\R h(x) f(x) dx$$
+alors la loi de $X$ admet la densité $f$.
+
+L’idée de la preuve repose sur le fait que les fonctions continues bornées peuvent approcher une fonction $h = 1_{]-\infty,y]}$, pour laquelle la formule précédente donne la fonction de répartition de $f$.
+
+Nous donnons ici quelques exemples d'application de cette méthode :
+
+ * Soit $Y = aX + b$, où $a$ et $b$ sont des constantes. Si $a=0$, alors $Y = b$ et la loi de $Y$ est la masse de Dirac en $b$ (sans densité). Si $a \neq 0$, on fait le changement de variable $y = ax+b$, ce qui donne
+        $$ \Esp(h(Y)) = \int_\R h(ax+b) f_X(x) dx = \int_\R h(y) f_X(\frac{y-b}{a})\frac{1}{|a|} dy $$
+ Donc 
+        $$ f_Y(y) = f_X(\frac{y-b}{a})\frac{1}{|a|} $$
+ * Soit $Y =X^2$. La fonction $g$ est décroissante sur $\R_-$ et croissante sur $\R^+$. Le changement de variable $y = x^2$ donne alors
+        $$ \Esp(h(Y)) = \int_{-\infty}^0 h(x^2) f_X(x) dx + \int_{-\infty}^0 h(x^2) f_X(x) dx$$
+
+Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldots,X_n)$, un vecteur aléatoire de densité $f_X$ sur $\R^n$, $g$ une fonction de $\R^n$ dans $\R^m$ et $Y = g(X)$. Plusieurs cas sont à considérer :
+
+ 1. $m > n$, le vecteur $Y$ n'admet pas de densité
+ 2. $m=n$, on utilise comme dans le cas unidimensionel le changement de variable $y = g(x)$ dans 
+        $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_\R^n h \circ g(x) f_X(x) dx $$
+    Supposons d'abord que $g$ soit une bijection continûment différentiable de $A$ dans $B$, ouverts de $\R^n$. Le [théorème de changement de variable](Calcul Intégral III.pdf #) nous assure :
+        $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1} \frac{1}{|\det Dg (y)|}, dy$$ 
+    où $Dg$ désigne la matrice de Jacobi associée à la différentielle de $g$. Dans le cas où $f_X(x) = 0$ en dehors de $A$, on obtient que $Y$ admet la densité
+        $$ f_Y(y) = 1_B(y)f_X \circ g^{-1} \frac{1}{|\det Dg (y)|}$$
+    
+
+
+
 
 
 # Exercices
