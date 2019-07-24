@@ -724,7 +724,6 @@ $$
 est complet.
 
 ### Démonstration {.proof}
-
 Soit $f_k$ une suite de Cauchy de fonctions bornées pour la distance
 de la convergence uniforme. 
 Pour tout $\varepsilon > 0$, il existe un rang $m \in \N$ tel que si 
@@ -839,7 +838,6 @@ Un ensemble $K$ de l'espace euclidien $\R^n$ est compact
 si et seulement si il est fermé et borné.
 
 ### Démonstration {.proof}
-
 Supposons $K$ compact; soit $x_k$ une suite de points de
 $K$ qui converge dans $\R^n$, vers une limite notée $\ell$. 
 Il existe alors une sous-suite $y_k$ de $x_k$ qui converge dans $K$;
@@ -872,7 +870,6 @@ $$[i_1 \varepsilon, (i_1+1)\varepsilon] \times \dots \times [i_n \varepsilon, (i
 \, \mbox{ où } \, (i_1,\dots, i_n) \in \Z^n,$$
 dont le diamètre est $\varepsilon \sqrt{2} n$.
 
-
 ### Image d'un compact {.theorem}
 L'image d'un ensemble compact par une application continue est un ensemble
 compact.
@@ -904,6 +901,40 @@ $$
 f(\ell) = \lim_{k \to +\infty} f(y_k) = \inf_{x \in K} f(x).
 $$
 La fonction $f$ admet donc un minimum en $\ell$.
+
+
+### Complétude de l'espace des fonctions continues {.proposition}
+Soit $X$ un espace métrique compact et $Y$ un espace métrique complet.
+L'ensemble des fonctions continues de $X$ dans $Y$
+muni de la distance de la convergence uniforme
+$$
+d(f, g) := \sup_{x \in X} d(f(x), g(x)))
+$$
+est complet.
+
+### Démonstration {.proof}
+En préambule: pour toute fonction $f$ continue de $X$ dans $Y$,
+la fonction $$x \in X \mapsto -d(f(x), 0) \in \R,$$ 
+continue et définie sur un compact, [admet un minimum](#T-EM); 
+la fonction $f$ est donc bornée.
+L'espace des fonction continues de $X$ dans $Y$ est donc un
+sous-espace métrique de l'espace des fonctions bornées de $X$ dans $Y$.
+
+Soit $f_k$ une suite de Cauchy de fonctions continues de $X$ dans $Y$.
+Cette suite est convergente dans l'espace des fonctions bornées en raison
+de la complétude de ce dernier. Il nous suffit de montrer que sa limite
+(uniforme) est continue pour conclure la preuve. 
+
+Soit $f$ la limite des $f_k$ et soit $\varepsilon > 0$.
+Soit $k$ tel que $$\sup_{x \in X}(f_k(x), f(x)) \leq \varepsilon /3.$$
+Pour tout $x \in X$, $f_k$ étant continue en $x$, pour $y$ assez proche
+de $x$ on a $d(f_k(x), f_k(y)) \leq \varepsilon /3.$ 
+Or, par l'inégalité triangulaire,
+$$
+d(f(x), f(y)) \leq d(f(x), f_k(x))  + d(f_k(x), f_k(y)) + d(f_k(y), f(y))
+\leq \varepsilon.
+$$
+La fonction $f$ est donc continue.
 
 ### {.ante}
 La notion de compacité peut être définie dans des espaces topologiques
