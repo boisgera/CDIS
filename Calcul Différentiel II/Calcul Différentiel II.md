@@ -148,7 +148,7 @@ $f(x, y)=0$.
 L'idée de cette construction repose sur l'analyse suivante: si nous partons
 d'une valeur $y_k$ proche de $y_0$ (a priori telle que $f(x, y_k) \neq 0$)
 et que nous recherchons une valeur $y_{k+1}$ proche, 
-qui soit une (meilleure) solution approchée de $f(x, y) = 0$, 
+qui soit une meilleure solution approchée de $f(x, y) = 0$ que ne l'est $y_k$,
 comme au premier ordre
 $$
 f(x, y_{k+1}) \approx f(x, y_k) + \partial_y f(x, y_k) \cdot (y_{k+1} - y_k),
@@ -448,7 +448,7 @@ consiste à invoquer son nom; par exemple
     >>> pi
     3.141592653589793
 
-Cette information est non-ambigüe; par là nous voulons dire que nous disposons
+Cette information est non-ambiguë; par là nous voulons dire que nous disposons
 d'assez d'information pour reconstituer le nombre initial:
 
     >>> pi == eval("3.141592653589793")
