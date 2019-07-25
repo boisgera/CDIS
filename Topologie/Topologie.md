@@ -1431,10 +1431,36 @@ $$
 
 $\to$ [Solution](#a-pk-4)
 
-TODO -- Le nombre d'or {#golden-ratio}
+Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
-**TODO**
+Le but de cet exercice est de montrer l'existence d'un unique réel 
+positif $x$ tel que $x^2 = x + 1$ -- le *nombre d'or** --
+et de produire une méthode itérative pour l'évaluer.
+
+### Question 1
+Montrer l'existence d'un unique point fixe associé à l'application
+$$
+x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
+$$
+et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
+
+$\to$ [Solution]{#sol-golden-ratio-1}
+
+### Question 2
+Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
+et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
+
+$\to$ [Solution]{#sol-golden-ratio-2}
+ 
+### Question 3
+Etudier la fonction $f \circ f$ et en exploitant le résultat de 
+l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
+converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
+positive.
+
+$\to$ [Solution]{#sol-golden-ratio-3}
+
 
 Spirale d'Euler 
 --------------------------------------------------------------------------------
@@ -1505,7 +1531,7 @@ TODO -- Séries Absolument Convergentes
 jouer avec Cauchy ?
 
 
-TODO -- Point fixe
+TODO -- Point fixe {#TPFB2}
 --------------------------------------------------------------------------------
 
 **TODO:** exemple introductif (simple, matriciel $2\times2$)
@@ -2125,6 +2151,32 @@ $y$ dans $X$, on a
 $$
 d(x, y) = \|f_x - f_y\|_{\infty}.
 $$
+
+TODO -- Le nombre d'or {#golden-ratio}
+--------------------------------------------------------------------------------
+
+### TODO -- Question 1 {#sol-golden-ratio-1}
+Montrer l'existence d'un unique point fixe associé à l'application
+$$
+x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
+$$
+et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
+
+$\to$ [Solution]{#sol-golden-ratio-1}
+
+### TODO -- Question 2 {#sol-golden-ratio-2}
+Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
+et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
+
+$\to$ [Solution]{#sol-golden-ratio-2}
+ 
+### TODO -- Question 3 {#sol-golden-ratio-3}
+Etudier la fonction $f \circ f$ et en exploitant le résultat de 
+l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
+converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
+positive.
+
+$\to$ [Solution]{#sol-golden-ratio-3}
 
 Solution -- [Spirale d'Euler]
 --------------------------------------------------------------------------------
