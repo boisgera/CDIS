@@ -1435,7 +1435,7 @@ Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
 Le but de cet exercice est de montrer l'existence d'un unique réel 
-positif $x$ tel que $x^2 = x + 1$ -- le *nombre d'or** --
+positif $x$ tel que $x^2 = x + 1$ -- le *nombre d'or* --
 et de produire une méthode itérative pour l'évaluer.
 
 ### Question 1
