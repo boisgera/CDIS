@@ -248,13 +248,13 @@ Mais caractériser les fonctions de répartition sur $\R^n$ est assez délicat, 
 
 ### Définition {.definition #defvect}
 On dit que $X$ admet la densité $f$ si la fonction réelle $f$ sur $\R^n$ est positive, intégrable et vérifie 
-$$\int_\R^n f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n) dx_1 \ldots dx_n= 1$$
+$$\int_{\R^n} f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n) dx_1 \ldots dx_n= 1$$
 et si
 $$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} f(x_1,\ldots,x_n) dx_1 \ldots dx_n$$
 
 De la même manière que dans la [proposition](#esperanceg), on a :
 
-### Proposition {.proposition}
+### Proposition {.proposition #esperancegvect}
 Soit $X$ un vecteur aléatoire de densité $f$, et soit $g$ une fonction de $\R^n$ dans $\R$, continue par morceaux (i.e. continue sauf sur une "bonne" surface de dimension au plus $n-1$). On a alors $g(X)\in \L^1$ si et seulement si 
 $$\int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} |g(x_1,\ldots,x_n)|f(x_1,\ldots,x_n) dx_1 \ldots dx_n < \infty,$$
 et dans ce cas, on a 
@@ -277,7 +277,6 @@ $$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i).$$
 
 ### Exemple : Vecteur Gaussien $n$-dimensionel {.example}
 
-## Lois marginale et conditionnelle ?? ou en III
 
 
 ## Variables aléatoires indépendantes
@@ -317,8 +316,8 @@ $$ \Esp(g(X)h(Y)) = \Esp(g(X))\Esp(h(Y))$$
 La première assertion est évidente par définition de l'indépendance. Par ailleurs, si $g(X)$ et $h(Y)$ sont intégrables, en notant $f_{(X,Y)}$ la densité du couple $(X,Y)$, et en utilisant le théorème de Fubini, on a
 \begin{align*}
 \Esp(g(X)h(Y))  & = \int_\R^{m+n} g(x)h(y) f_{(X,Y)}(x,y) dx dy \\
-                & = \int_\R^m \int_\R^n g(x)h(y)f_X(x) f_Y(y) dx dy \\
-                & = \left(\int_\R^m  g(x) f_X(x) dx \right) \left(\int_\R^n h(y) f_Y(y) dy\right)\\
+                & = \int_\R^m \int_{\R^n} g(x)h(y)f_X(x) f_Y(y) dx dy \\
+                & = \left(\int_{\R^m}  g(x) f_X(x) dx \right) \left(\int_{\R^n} h(y) f_Y(y) dy\right)\\
                 & = \Esp(g(X))\Esp(h(Y))
 \end{align*}
 
@@ -371,12 +370,23 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
 
  1. $m > n$, le vecteur $Y$ n'admet pas de densité
  2. $m=n$, on utilise comme dans le cas unidimensionel le changement de variable $y = g(x)$ dans 
-        $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_\R^n h \circ g(x) f_X(x) dx $$
+        $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R^n} h \circ g(x) f_X(x) dx $$
     Supposons d'abord que $g$ soit une bijection continûment différentiable de $A$ dans $B$, ouverts de $\R^n$. Le [théorème de changement de variable](Calcul Intégral III.pdf #) nous assure :
-        $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1} \frac{1}{|\det Dg (y)|}, dy$$ 
+        $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1}(y) \frac{1}{|\det Dg (y)|}, dy$$ 
     où $Dg$ désigne la matrice de Jacobi associée à la différentielle de $g$. Dans le cas où $f_X(x) = 0$ en dehors de $A$, on obtient que $Y$ admet la densité
-        $$ f_Y(y) = 1_B(y)f_X \circ g^{-1} \frac{1}{|\det Dg (y)|}$$
-    
+        $$ f_Y(y) = 1_B(y)f_X \circ g^{-1}(y)\frac{1}{|\det Dg (y)|}.$$
+    Lorsque $g$ est simplement continûment différentiable, il existe souvent une partition finie $(A_i)_{1\leq i \leq n}$ de l'ensemble $\{x ; f(x) >0\}$, telle que $g$ soit injective sur chaque $A_i$. On note alors $B_i = g(A_i)$ l'image de $A_i$ par $g$. On découpe alors l'intégrale selon les $A_i$, on applique la formule précédente à chaque morceaux et on somme pour obtenir :
+        $$ f_Y(y) = \sum_{i=1}^n 1_B_i(y)f_X \circ g^{-1}(y) \frac{1}{|\det Dg (y)|},$$
+    où $g^{-1}$ est bien définie sur chaque $B_i$ comme image réciproque de la restriction de g à $A_i$.
+ 3. $m < n$, on commence par "compléter" $Y$, en essayant de construire une application $g'$ de $\R^n$ dans $\R^n$ dont les $m$ premières composantes coïncident    avec les composantes de $g$ et pour laquelle on peut appliquer l'une des deux formules précédentes. On obtient ainsi la densité $f_Y'$ de $Y' = g'(X)$ puis     on obtient la densité de $Y$ en calculant sa *loi marginale* :
+        $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n$$
+
+### TODO Exemples ou exercices ?
+
+ 1. **Coordonnées polaires**
+ 2. **Loi Beta**
+ 3. **Somme de deux variables aléatoires indépendantes**
+
 
 
 

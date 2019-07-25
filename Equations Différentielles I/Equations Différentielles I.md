@@ -8,6 +8,13 @@
 \renewcommand{\C}{\mathbb{C}}
 
 \newcommand{\cS}{\mathcal{S}}
+\newcommand{\cC}{\mathcal{C}}
+
+
+Notations à définir/uniformiser
+
+- $C(I, \R)$
+- boule ouverte/fermée
 
 Un peu d'histoire
 =========================== 
@@ -102,7 +109,11 @@ $$
 si pour toute autre solution $y\in C^1(J,\R^n)$ telle que $I\subseteq J$ et $x_{|I}\equiv y_{|I}$, on a nécessairement $I=J$ et $x\equiv y$. En d'autres termes, elle n'est pas *prolongeable*.
 
 ### Exemple
-$\dot{x}=-\sqrt{|x|}$ existence mais pas unicité
+Considérons le problème de Cauchy
+$$
+\dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0)
+$$ 
+La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc on sait que ce problème de Cauchy admet au moins une solution. Mais pas unicité A FINIR
 
 
 
@@ -116,8 +127,52 @@ Nous avons vu dans la partie précédente que des solutions locales au problème
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$ (on dira par la suite pour simplifier que $f$ est de classe $C^1$ en $x$).
 Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ in $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert.
 
-*Démonstration*
-+ principe de preuve et preuve en annexe ?
+*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. La preuve complète est donnée en appendice? L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale unique. L'ouverture de son intervalle de définition vient du fait qu'elle pourrait sinon être de nouveau prolongée *au bord* de l'intervalle, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat suivant.
+
+**Théorème**(Cauchy-Lipschitz local) Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ en $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
+$$
+\cC:=[t_0-\tau,t_0+\tau]\times \overline{B_{x_0}(r)}\subset U \ .
+$$
+Pour tout $\tau_m\in [0,\tau]$ tel que $\tau_m  \max_{\cC} |f| \leq r$,
+<!--- $$
+f_m := \max_{\cC} f \quad , \quad \tau_m := \min\left\{\tau,\frac{r}{f_m} \right\}
+$$--->
+il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+\tau_m]$. 
+
+*Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC |f|$ existe bien.  Rappelons nous que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$ (ref?) est un espace de Banach pour la norme uniforme $|\cdot|_\infty$, et définissons  
+$$
+F = \{x\in E \: : \: x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B_{x_0}(r)} \} \ .
+$$
+On peut montrer que[^Fferme] $F$ est un sous-ensemble fermé de $E$. $F$ est donc complet (ref?)  (toujours pour la norme uniforme $|\cdot|_\infty$). 
+Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset U$ pour tout $s\in [t_0-\tau_m,t_0+\tau_m]$ ; on peut donc définir l'opérateur $\Gamma : F\to E$ par
+$$
+\Gamma(x)(t) = x_0+\int_{t_0}^t f(s,x(s))ds \qquad \forall t\in [t_0-\tau_m,t_0+\tau_m] \ .
+$$
+En fait, d'après la [représentation intégrale des solutions](#theo_eq_integrale), on sait qu'une fonction $x\in F$ est solution du problème de Cauchy sur $[t_0-\tau_m,t_0+\tau_m]$ si et seulement si elle vérifie
+$$
+\Gamma(x)=x
+$$
+c'est-à-dire $x$ est un point fixe de $\Gamma$. Par ailleurs, on peut prouver[^solutionF]  que pour tout $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+\tau_m]$, $x$ est dans $F$: c'est donc un point fixe $x^*$ de $\Gamma$ sur $F$. L'idée de la preuve est donc de montrer que $\Gamma$ (ou une de ses itérées) est contractante pour utiliser le théorème de point fixe sur un espace de Banach et en déduire l'existence et l'unicité de ce point fixe (REF?).
+
+D'abord, pour tout $x\in F$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
+$$
+|\Gamma(x)(t)-x_0| \leq \left|\int_{t_0}^t |f(s,x(s))| ds \right| \leq \tau_m \max_{\cC} |f| \leq r
+$$
+de sorte que $\Gamma(x)\in F$, i.e. $\Gamma:F\to F$. Ensuite, pour tout $(x_a,x_b)\in  F\times F$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
+$$
+|\Gamma(x_a)(t)-\Gamma(x_b)(t)|\leq \left|\int_{t_0}^t |f(s,x_a(s))-f(s,x_b(s))| ds \right| \ .
+$$
+Soit $k=\max_\cC \left|\frac{\partial f}{\partial x} \right|$ (bien défini car $\cC$ est compact et $\frac{\partial f}{\partial x}$ est continue par hypothèse). Alors l'application du théorème des accroissement finis (REF) nous donne
+$$
+|\Gamma(x_a)(t)-\Gamma(x_b)(t)|\leq  \left|\int_{t_0}^t k|x_a(s)-x_b(s)| ds \right| \leq |t-t_0| k |x_a-x_b|_{\infty} 
+$$
+et donc $|\Gamma(x_a)-\Gamma(x_b)|_\infty \leq \tau_m k |x_a-x_b|_{\infty}$.
+A ce stade, sauf si $\tau_m k<1$, $\Gamma$ n'est pas contractante. Cependant, on peut montrer par récurrence que pour tout $p\in \N$, et pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
+$$
+|\Gamma^p(x_a)(t)-\Gamma^p(x_b)(t)|_\infty \leq \frac{(|t-t_0| k)^p}{p!} |x_a-x_b|_{\infty}
+$$
+en notant $\Gamma^p = \underbrace{\Gamma \circ \Gamma \circ \ldots \circ \Gamma}_{p \text{ fois }}$.
+Donc pour tout $p\in \N$, $|\Gamma^p(x_a)-\Gamma^p(x_b)|_\infty \leq \frac{(\tau_m k)^p}{p!} ||x_a-x_b|_{\infty}$. Il existe donc $m$ tel que $\Gamma^{m}$ est contractante. D'après le théorème de point fixe de Banach (REF), $\Gamma$ admet un unique point fixe $x^*$ dans $F$. 
 $\hfill\blacksquare$
 
 
@@ -128,11 +183,15 @@ f(t,x) = a(t) x + b(t) \ ,
 $$
 admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$.
 
-- L'intervalle de définition de la solution maximale du problème de Cauchy n'est pas nécessairement $\R$, même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. Par exemple, si $f:(t,x)\mapsto x^2$ et $U=\R^2$, quelque-soit $(t_0,x_0)\in \R^2$, la solution maximale s'écrit  
+- L'intervalle de définition de la solution maximale du problème de Cauchy n'est pas nécessairement $\R$, même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. Par exemple, considérons le problème de Cauchy
 $$
-x(t)=\frac{x_0}{1-x_0t} \quad , \quad I=(-\infty,\frac{1}{x_0})
+\dot{x} = x^2 \quad , \qquad (t_0,x_0)\in \R^2 \ .
 $$
-On dit que la solution *explose en temps fini*.
+La fonction $f:(t,x)\mapsto x^2$ est de classe $C^1$ sur $U=\R^2$, donc il existe une unique solution maximale. On peut vérifier par le calcul que celle-ci s'écrit  
+$$
+x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left(-\infty,t_0+\frac{1}{x_0}\right) \ .
+$$
+Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en temps fini*.
 
 
 ### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
@@ -187,9 +246,9 @@ f(t,x) = a(t) x + b(t) \ .
 $$
 D'après le théorème précédent, quelque-soit sa condition initiale $(t_0,x_0)\in I\times\R^n$, sa solution maximale est définie sur $I$ entier.
 
-- Un autre cas important d'une croissance au plus affine est lorsque $f$ est globalement bornée en $x$, par exemple de la forme $f(t,x)=c(t)arctan(x)$ ou $f(t,x)=\frac{c(t)}{1+x^2}$. Dans ce cas, le théorème s'applique avec $a(t)=0$.
+- Un autre cas important d'une croissance au plus affine est lorsque $f$ est globalement bornée en $x$, par exemple de la forme $f(t,x)=c(t)\arctan(x)$ ou $f(t,x)=\frac{c(t)}{1+x^2}$. Dans ce cas, le théorème s'applique avec $a(t)=0$.
 
-- Bien sûr, la fonction $f:(t,x)\mapsto x^2$ ne satisfait pas la croissance au plus affine et [on a vu](#ex_lips) que les solutions associées explosent en temps fini. Par contre, si l'on prend $f(t,x)=-x|x|$ ou $f(t,x)=-x^3$ qui ne satisfont pas non plus cette condition, on peut montrer que les solutions maximales sont globales (et tendent vers 0). On en déduit donc que la croissance au plus affine est  suffisante mais pas nécessaire pour garantir la globalité des solutions.
+<!--- Bien sûr, la fonction $f:(t,x)\mapsto x^2$ ne satisfait pas la croissance au plus affine et [on a vu](#ex_lips) que les solutions associées explosent en temps fini. Par contre, si l'on prend $f(t,x)=-x|x|$ ou $f(t,x)=-x^3$ qui ne satisfont pas non plus cette condition, on peut montrer que les solutions maximales sont globales (et tendent vers 0). On en déduit donc que la croissance au plus affine est  suffisante mais pas nécessaire pour garantir la globalité des solutions.-->
 
 
 
@@ -223,3 +282,23 @@ Propriétés asymptotiques
 
 Références
 ================================================================================
+
+
+
+[^Fferme]: 
+Pour toute suite $(x_n)$ d'éléments de $F$ convergeant vers $x^*$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
+$$
+|x_n(t)-x^*(t)|\leq |x_n-x^*|_{\infty} \quad \longrightarrow_{n\to \infty} 0
+$$
+donc la suite $(x_n(t))$ d'éléments du fermé $\overline{B_{x_0}(r)}$  converge dans $\R^n$ vers $x^*(t)$ qui est donc dans $\overline{B_{x_0}(r)}$. Ceci implique $x^*\in F$.
+
+[^solutionF]:
+Il suffit de montrer que $x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B_r(x_0)}$. Supposons le contraire et sans perdre en généralité supposons que
+$$
+S := \{ t\in [t_0,t_0+\tau_m] \: : \: |x(t)-x_0|>r \} \neq \emptyset \ .
+$$
+Soit $t^*=\inf S$. Nécessairement $t_0 < t^* < t_0+\tau_m$. Donc par la [représentation intégrale](#theo_eq_integrale), 
+$$
+|x(t^*)-x_0|\leq (t^*-t_0) \max_{s\in [t_0,t^*]} f(s,x(s)) < \tau_m \max_\cC|f|< r \ .
+$$
+Par continuité de $x$, $|x(t)-x_0|\leq r$ pour un temps après $t^*$, ce qui contredit sa définition.
