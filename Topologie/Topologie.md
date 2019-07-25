@@ -2152,7 +2152,7 @@ $$
 d(x, y) = \|f_x - f_y\|_{\infty}.
 $$
 
-TODO -- Le nombre d'or {#golden-ratio}
+Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
 ### Question 1 {#sol-golden-ratio-1}
@@ -2214,13 +2214,33 @@ L'existence et l'unicité du point fixe de $f$ sur $[3/2,2]$ ainsi que son
 obtention comme limite de la suite $x_k$ résultent du [théorème de point fixe
 de Banach](#T-TPFB).
  
-### TODO -- Question 3 {#sol-golden-ratio-3}
-Etudier la fonction $f \circ f$ et en exploitant le résultat de 
-l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
-converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
-positive.
+### Question 3 {#sol-golden-ratio-3}
+Compte tenu des résultats de l'exercice ["Point fixe"](#TPFB2),
+il suffit d'établir l'existence et l'unicité d'un point fixe de 
+$f\circ f$ pour obtenir l'existence et l'unicité d'un point fixe
+de $f$, et la garantie qu'il soit obtenu comme limite de la suite
+définie par $x_{k+1} = f(x_k)$ pour tout $x_0 > 0$.
+Or, pour tout $x>0$, on a
+$$
+f(f(x)) = 1+ \frac{1}{(1+1/x)} = 1 + \frac{x}{x+1} = 1+\frac{x+1}{x+1} - \frac{1}{x+1}
+=2 - \frac{1}{x+1}.
+$$
+Cette fonction est croissante. Comme $f(1) = 3/2 \geq 1$, on a 
+$f(\left[1, +\infty\right[) \subset \left[1, +\infty\right[$.
+De plus,
+$$
+(f \circ f)'(x) = \frac{1}{(x+1)^2}
+$$
+et donc $|(f \circ f)'(x)| \leq 1/4 < 1$ si $x\geq 1$.
+La restriction de $f$ à $\left[1, +\infty\right[$ est donc contractante; 
+comme $\left[1, +\infty\right[$ est complet 
+-- en tant que fermé dans un espace complet -- 
+le théorème du point fixe de Banach garantit l'existence et l'unicité
+d'un point fixe. Notons finalement que si $x_0 \in \left]0,1\right[$, 
+$f(x_0) \in \left[1, +\infty\right[$; par conséquent le résultat
+vaut non seulement pour tout $x_0 \in \left[1, +\infty\right[$ mais
+bien pour tout $x_0 \in \left]0, +\infty\right[$.
 
-$\to$ [Solution]{#sol-golden-ratio-3}
 
 Solution -- [Spirale d'Euler]
 --------------------------------------------------------------------------------
