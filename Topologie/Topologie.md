@@ -35,6 +35,10 @@ TODO / acquis {.meta}
   - warning: pptés définies *relativement à un espace de référence* 
     (ex: fermé dans quoi ?). Topologie "trace" / induite, sous-espace ...
 
+### TODO
+
+    >>> from numpy import *
+
 Structures Topologiques
 ================================================================================
 
@@ -1165,6 +1169,34 @@ $$
 Exercices
 ================================================================================
 
+Normes d'opérateurs
+--------------------------------------------------------------------------------
+
+[La fonction `norm` du module `numpy.linalg`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html#numpy-linalg-norm) peut calculer des normes de vecteurs 
+de $\R^n$, mais également de matrices carrée de $\R^{n\times n}$. 
+Ainsi, on a par exemple:
+
+    >>> from numpy.linalg import norm
+    >>> A = [[1.0, 2.0], [3.0, 4.0]]
+    >>> norm(A)
+    5.477225575051661
+    >>> norm(A, 1)
+    6.0
+    >>> norm(A, 2)
+    5.464985704219043
+    >>> norm(A, inf)
+    7.0
+
+En étudiant [la documentation de cette fonction]((https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html#numpy-linalg-norm)), déterminer pour les quatres exemples
+d'usage ci-dessus s'il existe une norme $\|\cdot\|_?$ de vecteurs de $\R^n$ dont 
+la norme d'opérateur associée correspond à cette norme de matrice, 
+c'est-à-dire telle que
+$$
+\|A\| = \sup_{x \neq 0} \frac{\|A\cdot x\|_?}{\|x\|_?}.
+$$
+
+$\to$ [Solution](#sol-nln)
+
 Droite réelle achevée
 --------------------------------------------------------------------------------
 
@@ -1399,10 +1431,36 @@ $$
 
 $\to$ [Solution](#a-pk-4)
 
-TODO -- Le nombre d'or {#golden-ratio}
+Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
-**TODO**
+Le but de cet exercice est de montrer l'existence d'un unique réel 
+positif $x$ tel que $x^2 = x + 1$ -- le *nombre d'or* --
+et de produire une méthode itérative pour l'évaluer.
+
+### Question 1
+Montrer l'existence d'un unique point fixe associé à l'application
+$$
+x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
+$$
+et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
+
+$\to$ [Solution](#sol-golden-ratio-1)
+
+### Question 2
+Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
+et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
+
+$\to$ [Solution](#sol-golden-ratio-2)
+ 
+### Question 3
+Etudier la fonction $f \circ f$ et en exploitant le résultat de 
+l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
+converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
+positive.
+
+$\to$ [Solution](#sol-golden-ratio-3)
+
 
 Spirale d'Euler 
 --------------------------------------------------------------------------------
@@ -1473,7 +1531,7 @@ TODO -- Séries Absolument Convergentes
 jouer avec Cauchy ?
 
 
-TODO -- Point fixe
+TODO -- Point fixe {#TPFB2}
 --------------------------------------------------------------------------------
 
 **TODO:** exemple introductif (simple, matriciel $2\times2$)
@@ -1655,6 +1713,138 @@ sont compacts.
 
 Solutions aux Exercices
 ================================================================================
+
+Normes d'opérateurs {#sol-nln}
+--------------------------------------------------------------------------------
+
+### `norm(A)`
+En l'absence de second argument, la fonction `norm` calcule 
+la norme de Frobenius de la matrice $A$, donnée comme
+$$
+\|A\|_F = \sqrt{\sum_{i=1}^n\sum_{j=1}^n a_{ij}^2}.
+$$
+Il s'agit bien d'une norme sur $\R^{n \times n}$, car on peut la calculer
+comme la norme euclidienne de la matrice $A$ 
+["mise à plat"](Calcul Différentiel I.pdf#flatten) comme vecteur
+de $\R^{n^2}$, c'est-à-dire par la formule $\|A\|_F = \|\pi(A)\|_2$. 
+Mais elle n'est induite par aucune
+norme de vecteur; en effet, s'il existait une norme $\|\cdot\|_?$ telle que 
+$\|A\|_F = \sup \|A \cdot x\|_? / \|x\|_?$, alors on aurait en particulier
+$$
+\|I\|_F  = \sup_{x \neq 0} \frac{\|I \cdot x\|_?}{\|x\|_?} = 
+\sup_{x \neq 0} \frac{\|x\|_?}{\|x\|_?}  = 1.
+$$
+Or, on peut constater que la norme de Frobenius de la matrice associée
+à l'identité dans $\R^n$ est $\sqrt{n}$, qui diffère de $1$ si $n>1$.
+
+### `norm(A, 1)`
+L'expression `norm(A, 1)` calcule d'après la documentation de `norm` la
+grandeur
+$$
+\|A\|_1 = \max_{j = 1 \dots n} \left(\sum_{i=1}^n |a_{ij}|\right).
+$$
+Le fait que le second argument de l'appel à `norm` soit $1$ peut laisser
+penser que cette norme de matrice est induite par la norme de vecteurs
+$$
+\|x\|_1 = \sum_{i=1}^n |x_i|.
+$$
+Vérifions cela; si $y= A \cdot x$, on a
+$$
+\begin{split}
+\|y\|_1 =
+\sum_{i=1}^n |y_i| = \sum_{i=1}^n \left|\sum_{j=1}^n a_{ij} x_j \right|
+&\leq \sum_{i=1}^n \sum_{j=1}^n |a_{ij}||x_j|
+=\sum_{j=1}^n \left(\sum_{i=1}^n |a_{ij}|\right)|x_j| \\
+&\leq 
+\max_{j=1\dots n} \left(\sum_{i=1}^n |a_{ij}|\right) \sum_{j=1}^n |x_j| \\
+&=
+\|A\|_1 \|x\|_1.
+\end{split}
+$$
+Pour conclure, il nous suffit désormais d'exhiber un $x \in \R^n$ tel que 
+$\|A \cdot x\| = \|A\|_1 \|x\|_1$. Si le maximum de $\sum_{i=1}^n |a_{ij}|$
+est réalisé en $j$, il nous suffit de considérer le $j$-ème vecteur de la
+base canonique de $\R^n$, $x = e_j$. En effet, on a alors
+$\|e_j\|_1 = 1$ et 
+$$
+\|A \cdot e_j\|_1 = \left\| (a_{1j}, \dots, a_{nj})\right\|_1
+= \sum_{i=1}^n |a_{ij}| = \|A\|_1.
+$$
+
+
+### `norm(A, 2)`
+La norme en question est définie par NumPy comme $\sigma_1$, 
+la plus grande valeur singulière de $A$.
+Les valeurs singulières $\sigma_1 \geq \sigma_2 \geq \sigma_n \geq 0$
+associées à l'opérateur linéaire $A:\R^n \to \R^n$ sont définies à
+travers une décomposition de $A$ de la forme
+$$
+A = U \cdot \Sigma \cdot V^*
+$$
+où $\Sigma \cdot (x_1, \dots, x_n) = (\sigma_1 x_1, \dots, \sigma_n x_n)$
+et $U \in \R^{n} \to \R^n$ et $V \in \R^n \to \R^n$ sont des applications 
+linéaires orthogonales (inversible et dont l'inverse est l'adjoint). 
+Pour montrer que $\sigma_1(\cdot)$
+constitue la norme $\|\cdot\|_{22}$ induite par la norme euclidienne
+$\|\cdot\|_2$ sur les vecteurs de $\R^n$, on constate au préalable que
+pour toute application orthogonale $U$,
+$$
+\|U \cdot x\|^2 = \sqrt{\left< U \cdot x, U \cdot x \right>}
+= \sqrt{\left<U^{\star} \cdot U \cdot x, x \right>}
+= \sqrt{\left<x, x\right>} = \|x\|_2,
+$$
+puis que
+$$
+\begin{split}
+\|A\|_{22} &= \sup_{\|x\|_2 \leq 1} \|(U \cdot \Sigma \cdot V^*) \cdot x\|  \\
+&= \sup_{\|x\|_2 \leq 1} \|U \cdot (\Sigma \cdot (V^* \cdot x))\| \\
+&= \sup_{\|y\|_2 \leq 1} \|\Sigma \cdot y\| \\
+&= \sup_{\|y\|_2 \leq 1} \sqrt{\sigma_1^2 y_1^2 + \dots + \sigma_n y_{n}^2} \\
+&= \sigma_1.
+\end{split}
+$$
+
+### `norm(A, inf)`
+On constate que l'expression donnée dans la documentation de `norm`, 
+à savoir
+$$
+\|A\|_{\infty} = \max_{i = 1 \dots n} \left(\sum_{j=1}^n |a_{ij}|\right)
+$$
+entretient une troublante ressemblance avec la norme 
+$\|\cdot\|_1$ pour les opérateurs. Plus précisément, 
+si $A^{*} : \R^n \to \R^n$ désigne l'opérateur adjoint de $A$,
+tel que pour tous vecteurs $x$ et $y$ de $\R^n$, 
+$\left<y, A x\right> = \left<A^* y,x \right>$,
+associé à la matrice transposée de la matrice associée à $A$,
+alors on a
+$$
+\|A\|_{\infty} = \|A^*\|_1.
+$$
+C'est un peu trop gros pour être une coincidence ...
+Pour montrer que $\|\cdot\|_{\infty}$ est la norme d'opérateur 
+$\|\cdot\|_{\infty\infty}$ associée à 
+la norme de vecteurs $\|\cdot\|_{\infty}$, on peut d'abord constater que 
+pour les vecteurs,
+$$
+\|x\|_{\infty} = \sup_{\|y\|_1 \leq 1} \left<y, x\right>
+\; \mbox{ et } \;
+\|x\|_{1} = \sup_{\|y\|_{\infty} \leq 1} \left<y, x\right>
+$$
+puis en déduire que 
+$$
+\begin{split}
+\|A\|_{\infty\infty} = \sup_{\|x\|_{\infty} \leq 1} \|A \cdot x\|_{\infty}
+&=\sup_{\|x\|_{\infty} \leq 1} \sup_{\|y\|_1 \leq 1} \left<y, A \cdot x\right> \\
+&=
+\sup_{\|x\|_{\infty} \leq 1} \sup_{\|y\|_1 \leq 1} \left<A^* \cdot y, x\right> \\
+&=
+\sup_{\|y\|_1 \leq 1} \sup_{\|x\|_{\infty} \leq 1} \left<x, A^* \cdot y \right> \\
+&=
+\sup_{\|y\|_1 \leq 1} \|A^* \cdot y \| \\
+&=\|A^*\|_1 \\ &= \|A\|_{\infty},
+\end{split}
+$$
+et donc $\|\cdot\|_{\infty\infty} = \|\cdot\|_{\infty}$.
 
 Solution -- [Localement fermé]
 --------------------------------------------------------------------------------
@@ -1961,6 +2151,32 @@ $y$ dans $X$, on a
 $$
 d(x, y) = \|f_x - f_y\|_{\infty}.
 $$
+
+TODO -- Le nombre d'or {#golden-ratio}
+--------------------------------------------------------------------------------
+
+### TODO -- Question 1 {#sol-golden-ratio-1}
+Montrer l'existence d'un unique point fixe associé à l'application
+$$
+x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
+$$
+et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
+
+$\to$ [Solution]{#sol-golden-ratio-1}
+
+### TODO -- Question 2 {#sol-golden-ratio-2}
+Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
+et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
+
+$\to$ [Solution]{#sol-golden-ratio-2}
+ 
+### TODO -- Question 3 {#sol-golden-ratio-3}
+Etudier la fonction $f \circ f$ et en exploitant le résultat de 
+l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
+converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
+positive.
+
+$\to$ [Solution]{#sol-golden-ratio-3}
 
 Solution -- [Spirale d'Euler]
 --------------------------------------------------------------------------------
