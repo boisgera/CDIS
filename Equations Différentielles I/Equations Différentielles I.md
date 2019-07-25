@@ -96,10 +96,10 @@ Existence de solutions locales
 
 Le théorème suivant assure l'existence locale de solutions au [problème de Cauchy](#def_cauchy) sous une simple hypothèse de continuité de $f$.
 
-### Théorème de Peano {.theorem  #theo_peano}
+### Théorème de Peano-Arzelà {.theorem  #theo_peano}
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$. Pour tout $(t_0,x_0)\in U$, il existe $\epsilon >0$ et $x\in C^1([t_0-\epsilon,t_0+\epsilon],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
 
-*Démonstration*: La démonstration de ce résultat est hors-programme car elle fait appel au théorème d'Ascoli qui sera abordé dans les notions avancées de Calcul Différentiel III. Seule la connaissance et compréhension du résultat est exigible. Pour les curieux, preuve en appendice? $\hfill\blacksquare$
+*Démonstration*: La démonstration de ce résultat est hors-programme car elle fait appel au théorème d'Ascoli(-Arzelà) qui sera abordé dans les notions avancées de Calcul Différentiel III. Seule la connaissance et compréhension du résultat est exigible. Pour les curieux, preuve en appendice? $\hfill\blacksquare$
 
 ### Solution maximale {.definition #def_sol_max}
 Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$. On dit que $x\in C^1(I,\R^n)$ est une solution *maximale* de l'équation différentielle 
@@ -121,17 +121,17 @@ La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc 
 Unicité des solutions
 -------------------------------
 
-Nous avons vu dans la partie précédente que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$.
+Nous avons vu dans la partie précédente que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
 
-### Théorème de Cauchy-Lipschitz {.theorem #theo_lips}
+### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$ (on dira par la suite pour simplifier que $f$ est de classe $C^1$ en $x$).
 Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ in $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert.
 
-*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. La preuve complète est donnée en appendice? L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale unique. L'ouverture de son intervalle de définition vient du fait qu'elle pourrait sinon être de nouveau prolongée *au bord* de l'intervalle, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat suivant.
+*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. La preuve complète est donnée en appendice? L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale unique. L'ouverture de son intervalle de définition vient du fait qu'elle pourrait sinon être de nouveau prolongée *au bord* de l'intervalle, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
-**Théorème**(Cauchy-Lipschitz local) Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ en $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
+**Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ en $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
 $$
-\cC:=[t_0-\tau,t_0+\tau]\times \overline{B_{x_0}(r)}\subset U \ .
+\cC:=[t_0-\tau,t_0+\tau]\times \overline{B}_{x_0}(r)\subset U \ .
 $$
 Pour tout $\tau_m\in [0,\tau]$ tel que $\tau_m  \max_{\cC} |f| \leq r$,
 <!--- $$
@@ -141,7 +141,7 @@ il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+
 
 *Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC |f|$ existe bien.  Rappelons nous que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$ (ref?) est un espace de Banach pour la norme uniforme $|\cdot|_\infty$, et définissons  
 $$
-F = \{x\in E \: : \: x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B_{x_0}(r)} \} \ .
+F = \{x\in E \: : \: x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B}_{x_0}(r) \} \ .
 $$
 On peut montrer que[^Fferme] $F$ est un sous-ensemble fermé de $E$. $F$ est donc complet (ref?)  (toujours pour la norme uniforme $|\cdot|_\infty$). 
 Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset U$ pour tout $s\in [t_0-\tau_m,t_0+\tau_m]$ ; on peut donc définir l'opérateur $\Gamma : F\to E$ par
@@ -176,14 +176,41 @@ Donc pour tout $p\in \N$, $|\Gamma^p(x_a)-\Gamma^p(x_b)|_\infty \leq \frac{(\tau
 $\hfill\blacksquare$
 
 
+
+
+
+### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
+La première preuve d'existence et unicité locale de solutions sous l'hypothèse que $f$ est de classe $C^1$ par rapport à $x$ est dûe à Augustin Louis Cauchy (1820) et repose sur l'utilisation du théorème d'accroissements finis (en l'absence d'outils d'analyse fonctionnelle à cette époque, sa preuve consiste plutôt à discrétiser (en temps) l'intégrale de plus en plus finement et montrer sa convergence). Mais on remarque dans notre preuve qu'il suffirait qu'il existe $k>0$ tel que
+$$
+|f(t,x_a)-f(t,x_b)|\leq k |x_a-x_b| \qquad \forall t\in [t_0-\tau_m,t_0+\tau_m], \forall (x_a,x_b)\in \overline{B}_r(x_0) \ ,
+$$
+c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendente: d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement une variation bornée de $x\mapsto f(t,x)$ au voisinage de $(t_0,x_0)$, au lieu de sa différentiabilité. Par exemple, $x\mapsto |x|$ est Lipschitzienne (mais pas $C^1$) et $\dot{x}=|x|$ admet donc une unique solution maximale quel que soit la condition initiale.
+
+### Approximations successives {.remarque #rem_approx_succ}
+Mise à part quelques formes particulières de $f$, il est très rare de savoir résoudre explicitement une équation différentielle. Cependant, la preuve (dans sa forme moderne donnée plus haut) caractérise la solution comme le point fixe de l'opérateur $\Gamma$. Or, on sait (REF) que ce point fixe est la limite uniforme de la suite des itérées de $\Gamma$. En pratique, on peut donc s'approcher arbitrairement proche  de la solution   sur l'intervalle $[t_0-\tau_m,t_0+\tau_m]$ (au sens de la norme uniforme), en calculant la suite $x_{p+1} = \Gamma(x_p)$ définie par
+$$
+x_{p+1}(t) =  x_0+\int_{t_0}^t f(s,x_p(s))ds  ,
+$$
+en notant ici de manière abusive $x_0$ la fonction constante égale à $x_0$. 
+Cette méthode de recherche de point fixe porte le nom d'*approximations successives* et est introduite pour la première fois par le mathématicien français Emile Picard à la fin du XIXème siècle grâce aux progrès de l'analyse fonctionnelle.  C'est finalement le mathématicien finlandais Ernst Lindelöf qui donne à la preuve sa forme moderne en utilisant en 1894 la théorie des espaces de Banach. Pour les anglophones, ce théorème s'appelle d'ailleurs le *théorème de Picard-Lindelöf*. 
+
+
 ### Exemples {.example #ex_lips}
 - Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C(\R,\R^{n\times n})$ et $b\in C(\R,\R^n)$ telles que
 $$
 f(t,x) = a(t) x + b(t) \ ,
 $$
 admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$.
+- 
 
-- L'intervalle de définition de la solution maximale du problème de Cauchy n'est pas nécessairement $\R$, même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. Par exemple, considérons le problème de Cauchy
+
+Solutions globales
+--------------------------------
+
+Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ en $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. Mais cet intervalle n'est pas nécessairement $\R$ entier même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la soliution n'est pas *globale*. 
+
+### Example d'explosion en temps fini
+L'intervalle de définition de la solution maximale du problème de Cauchy n'est pas nécessairement $\R$, même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. Par exemple, considérons le problème de Cauchy
 $$
 \dot{x} = x^2 \quad , \qquad (t_0,x_0)\in \R^2 \ .
 $$
@@ -193,22 +220,11 @@ x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left(-\infty,t_0+\frac{1}{x_0}\ri
 $$
 Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en temps fini*.
 
-
-### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
-La preuve d'existence et unicité de solutions sous l'hypothèse que $f$ est de classe $C^1$ est dûe à Cauchy et repose sur l'utilisation du théorème d'accroissements finis.  Mais en fait, on remarque qu'une propriété suffisante sur $f$ est l'existence de $k>0$ tel que
+En fait, le théorème suivant montre que pour toute solution maximale, la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $U$ au bout d'un certain temps. Dans le cas usuel où $U=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $[0,\overline{t})$ avec $\overline{t}<+\infty$, explose en temps fini, c'est-à-dire
 $$
-|f(t,x_a)-f(t,x_b)|\leq k |x_a-x_b| \qquad \forall t\in [t_0-\tau_m,t_0+\tau_m], \forall (x_a,x_b)\in \overline{B}_r(x_0) \ ,
+\lim_{t\to \overline{t}}x(t)=+\infty \ ,
 $$
-c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété a été introduite par le mathématicien allemand Lipschitz précisement pour prouver ce résultat de manière indépendante et contemporaine à Cauchy, d'où le théorème de Cauchy-Lipschitz. Cette hypothèse est plus faible car elle impose seulement une variation bornée de $x\mapsto f(t,x)$ au voisinage de $(t_0,x_0)$, au lieu de sa différentiabilité. Par exemple, $x\mapsto |x|$ est Lipschitzienne mais pas $C^1$. On en déduit que $\dot{x}=|x|$ admet une unique solution au voisinage de tout point.
-
-### Approximations successives {.remarque #rem_approx_succ}
-Il est rare de pouvoir calculer explicitement la solution au problème de Cauchy. Dans ce cas approximations successives de Picard
-
-
-Solutions globales
---------------------------------
-
-Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ en $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert qui n'est pas nécessairement $\R$ entier, c'est-à-dire la solution n'est pas nécessairement globale. En fait, le théorème suivant montre que pour toute solution maximale, la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $U$ au bout d'un certain temps. Dans le cas usuel où $U=\R\times \R^n$, ceci implique donc que toute solution non globale explose en temps fini comme vu dans [l'exemple où $f(t,x)=x^2$](#ex_lips). Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger.
+Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger.
 
 ### Théorème des bouts {.theorem #theo_bouts}
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ en $x$. Soient $(t_0,x_0)\in U$ et $x:(\underline{t},\overline{t})\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in [-\infty,t_0)$ et $\overline{t}\in (t_0,+\infty]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in [t_0,\overline{t})$ and $t_K^-\in (\underline{t},t_0]$) tels que
@@ -216,19 +232,7 @@ $$
 (t,x(t))\notin K \qquad \forall t\in [t_K^+,\overline{t}) \cup  (\underline{t},t_K^-] 
 $$
 
-*Démonstration* : Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset U$ tel que
-$$
- \forall t_K \in [t_0,\overline{t}) \, , \, \exists t\in [t_K,\overline{t}) \: : \: x(t)\in K
-$$
-En d'autres termes, on suppose que la solution revient de manière persistente dans $K$. Alors il existe une suite $(t_n)_{n\in \N}$ telle que 
-$$
-\overline{t}-\frac{1}{n}\leq  t_n < \overline{t} \quad \text{et} \quad (t_n,x(t_n))\in K \quad \forall n\in \N
-$$
-On a donc $\lim_{n\to+\infty} t_n = \overline{t}$, et par compacité de $K$, on peut extraire de $t_n,(x(t_n))_{n\in \N}$ une sous-suite qui converge vers $(\overline{t},\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{n\to+\infty} x(t_n) =\overline{x}$.
-
-BESOIN de CL local pour avoir l'estimée du temps minimal d'existence de solution 
-
-$\hfill\blacksquare$
+*Démonstration* : Voir en [annexe](#pr_theo_bouts).  $\hfill\blacksquare$
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
 Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$ de classe $C^1$ en x. S'il existe $a,b:I\to \R$ telles que  
@@ -237,18 +241,30 @@ $$
 $$
 alors la solution maximale au problème de Cauchy associé est défini sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
 
-*Démonstration* : 
-\hfill$\blacksquare$
+*Démonstration* : Voir en [annexe](#pr_theo_exist_glob).  $\hfill\blacksquare$
 
 
 ### Exemples
-- Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C(I,\R^{n\times n})$ et $b\in C(I,\R^n)$ telles que
+- Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A\in C(I,\R^{n\times n})$ et $b\in C(I,\R^n)$ telles que
 $$
-f(t,x) = a(t) x + b(t) \ .
+f(t,x) = A(t) x + b(t) \ .
 $$
-D'après le théorème précédent, quelque-soit sa condition initiale $(t_0,x_0)\in I\times\R^n$, sa solution maximale est définie sur $I$ entier.
+D'après le théorème précédent, quelque-soit sa condition initiale $(t_0,x_0)\in I\times\R^n$, sa solution maximale est définie sur $I$ entier. Dans le cas où $A$ est constant, on en a même une formule explicite (obtenue par la méthode de *variation de la constante*)
+$$
+x(t) = e^{A(t-t_0)}x_0 + \int_{t_0}^t e^{A(t-s)} b(s)ds \ ,
+$$
+où $e^{A(t-s}$ est l'exponentielle de matrice définie par
+$$
+e^{A(t-s}=\sum^{+\infty}_{p=0} \frac{A^p(t-s)^p}{p!} \ .
+$$
+Attention, cette formule  ne fonctionne que si $A$ est constant.
 
-- Un autre cas important d'une croissance au plus affine est lorsque $f$ est globalement bornée en $x$, par exemple de la forme $f(t,x)=c(t)\arctan(x)$ ou $f(t,x)=\frac{c(t)}{1+x^2}$. Dans ce cas, le théorème s'applique avec $a(t)=0$.
+- Un autre cas important d'une croissance au plus affine est lorsque $f$ est globalement bornée en $x$. Par exemple, 
+$$
+f(t,x)=c(t)\arctan(x) \qquad \text{ ou } \qquad 
+f(t,x)=\frac{c(t)}{1+x^2}
+$$
+engendrent des problèmes de Cauchy aux solutions uniques et globales.
 
 <!--- Bien sûr, la fonction $f:(t,x)\mapsto x^2$ ne satisfait pas la croissance au plus affine et [on a vu](#ex_lips) que les solutions associées explosent en temps fini. Par contre, si l'on prend $f(t,x)=-x|x|$ ou $f(t,x)=-x^3$ qui ne satisfont pas non plus cette condition, on peut montrer que les solutions maximales sont globales (et tendent vers 0). On en déduit donc que la croissance au plus affine est  suffisante mais pas nécessaire pour garantir la globalité des solutions.-->
 
@@ -286,16 +302,36 @@ Références
 ================================================================================
 
 
+Annexes 
+=========================================================================
+
+### Preuve du théorème des bouts {.preuve #pr_theo_bouts}
+Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset U$ tel que
+$$
+ \forall t_K \in [t_0,\overline{t}) \, , \, \exists t\in [t_K,\overline{t}) \: : \: x(t)\in K
+$$
+En d'autres termes, on suppose que la solution revient de manière persistente dans $K$. Alors il existe une suite $(t_n)_{n\in \N}$ telle que 
+$$
+\overline{t}-\frac{1}{n}\leq  t_n < \overline{t} \quad \text{et} \quad (t_n,x(t_n))\in K \quad \forall n\in \N
+$$
+On a donc $\lim_{n\to+\infty} t_n = \overline{t}$, et par compacité de $K$, on peut extraire de $t_n,(x(t_n))_{n\in \N}$ une sous-suite qui converge vers $(\overline{t},\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{n\to+\infty} x(t_n) =\overline{x}$.
+
+BESOIN de CL local pour avoir l'estimée du temps minimal d'existence de solution
+
+
+### Preuve du théorème d'existence globale de solutions {.preuve #pr_theo_exist_glob}
+
+<!-- Footnotes -->
 
 [^Fferme]: 
 Pour toute suite $(x_n)$ d'éléments de $F$ convergeant vers $x^*$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
 $$
 |x_n(t)-x^*(t)|\leq |x_n-x^*|_{\infty} \quad \longrightarrow_{n\to \infty} 0
 $$
-donc la suite $(x_n(t))$ d'éléments du fermé $\overline{B_{x_0}(r)}$  converge dans $\R^n$ vers $x^*(t)$ qui est donc dans $\overline{B_{x_0}(r)}$. Ceci implique $x^*\in F$.
+donc la suite $(x_n(t))$ d'éléments du fermé $\overline{B}_{x_0}(r)$  converge dans $\R^n$ vers $x^*(t)$ qui est donc dans $\overline{B}_{x_0}(r)$. Ceci implique $x^*\in F$.
 
 [^solutionF]:
-Il suffit de montrer que $x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B_r(x_0)}$. Supposons le contraire et sans perdre en généralité supposons que
+Il suffit de montrer que $x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B}_r(x_0)$. Supposons le contraire et sans perdre en généralité supposons que
 $$
 S := \{ t\in [t_0,t_0+\tau_m] \: : \: |x(t)-x_0|>r \} \neq \emptyset \ .
 $$
