@@ -1197,7 +1197,7 @@ $$
 
 $\to$ [Solution](#sol-nln)
 
-Droite réelle achevée
+Droite réelle achevée {#dra}
 --------------------------------------------------------------------------------
 
 La droite réelle achevée est composée des nombre réels de $-\infty$ 
@@ -2155,20 +2155,64 @@ $$
 TODO -- Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {#sol-golden-ratio-1}
-Montrer l'existence d'un unique point fixe associé à l'application
+### Question 1 {#sol-golden-ratio-1}
+L'existence d'un unique point fixe associé à l'application
 $$
-x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
+f: x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
 $$
-et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
+peut être établi par des méthodes classiques d'analyse d'une fonction
+d'une variable réelle. La fonction $g: x \in \left]0, +\infty\right[ \to x - f(x)$ ayant pour dérivée
+en $x$ la valeur $1 + 1/x^2$, qui est strictement positive, la fonction 
+$g$ est strictement croissante. De plus, $g(x) \to -\infty$ quand
+$x\to 0$ et $g(x) \to +\infty$ quand $g(x) \to +\infty$, 
+il existe donc bien un unique zéro de $g$, ou de façon équivalente un
+unique point fixe de $f$. 
+De plus, comme $g(3/2) = 3/2 - 1 - 2/3 = -1/6 <0$ 
+et $g(2) = 2 - 1 - 1/2 = 1/2 > 0$,
+ce zéro de $f$ se situe dans l'intervalle $[3/2, 2]$.
 
-$\to$ [Solution]{#sol-golden-ratio-1}
+Alternativement, pour établir l'existence (mais pas l'unicité) du point fixe,
+on aurait pu associer à la fonction $f$ la fonction 
+$\bar{f}: [0, +\infty] \to [0, +\infty]$ définie par
+$$
+\bar{f}(x) = \left|
+\begin{array}{cl}
++\infty & \mbox{si } x = 0, \\
+f(x) & \mbox{si } 0 < x < + \infty, \\
+1 & \mbox{si } x = +\infty.
+\end{array}
+\right.
+$$
+Si l'on munit $[0, +\infty]$ de la métrique
+induite par [la droite réelle achevée](#dra), la fonction $f$
+est continue et $[0, +\infty]$ est compact. 
+La suite de valeurs
+définie par $x_0 = 1$ (par exemple) et $x_{k+1} = \bar{f}(x_k)$
+admet donc une sous-suite $y_k$ qui converge vers un $\ell \in [0, +\infty]$.
+Par continuité de $\bar{f}$, on en déduit que $\ell = \bar{f}(\ell)$.
+Il suffit alors de vérifier que $\bar{f}(0) \neq 0$ et $\bar{f}(+\infty) \neq
++\infty$ pour conclure à l'existence d'un réel $\ell> 0$ tel que
+$\ell = f(\ell)$.
 
-### TODO -- Question 2 {#sol-golden-ratio-2}
-Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
-et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
-
-$\to$ [Solution]{#sol-golden-ratio-2}
+### Question 2 {#sol-golden-ratio-2}
+Soit $x_k$ la suite de réels définie par $x_0 \in [3/2, 2]$
+et $x_{k+1} = f(x_k)$. La fonction $f$ est (strictement) croissante;
+de plus
+$$
+f(3/2) = 1 + \frac{1}{3/2} = 1 + \frac{2}{3} = \frac{4}{3} \in \left[\frac{3}{2}, 2\right]
+$$
+et 
+$$
+f(2) = 1 + \frac{1}{2} = \frac{3}{2}  \in \left[\frac{3}{2}, 2\right].
+$$
+Par conséquent, $f([3/2,2]) \subset [3/2,2]$. Comme $f'(x) = - \frac{1}{x^2}$,
+pour tout $x \in [3/2,2]$, $|f'(x)| < 4/9 < 1$. 
+Par le théorème des accroissements finis, la restriction de $f$ à $[3/2]$ 
+est donc contractante.
+L'ensemble $[3/2, 2]$ est un ensemble fermé $\R$; il est donc complet.
+L'existence et l'unicité du point fixe de $f$ sur $[3/2,2]$ ainsi que son
+obtention comme limite de la suite $x_k$ résultent du [théorème de point fixe
+de Banach](#T-TPFB).
  
 ### TODO -- Question 3 {#sol-golden-ratio-3}
 Etudier la fonction $f \circ f$ et en exploitant le résultat de 
