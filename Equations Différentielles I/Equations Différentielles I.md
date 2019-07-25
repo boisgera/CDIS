@@ -113,9 +113,8 @@ Considérons le problème de Cauchy
 $$
 \dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0)
 $$ 
-La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc on sait que ce problème de Cauchy admet au moins une solution. Mais pas unicité A FINIR
-
-
+permettant de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli*.
+La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc on sait que ce problème de Cauchy admet au moins une solution. Mais l'on montrera en exercice qu'il existe une infinité de solutions maximales.
 
 
 Unicité des solutions
@@ -218,7 +217,7 @@ La fonction $f:(t,x)\mapsto x^2$ est de classe $C^1$ sur $U=\R^2$, donc il exist
 $$
 x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left(-\infty,t_0+\frac{1}{x_0}\right) \ .
 $$
-Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en temps fini*.
+Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en temps fini*. FIGURE
 
 En fait, le théorème suivant montre que pour toute solution maximale, la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $U$ au bout d'un certain temps. Dans le cas usuel où $U=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $[0,\overline{t})$ avec $\overline{t}<+\infty$, explose en temps fini, c'est-à-dire
 $$
@@ -255,7 +254,7 @@ x(t) = e^{A(t-t_0)}x_0 + \int_{t_0}^t e^{A(t-s)} b(s)ds \ ,
 $$
 où $e^{A(t-s}$ est l'exponentielle de matrice définie par
 $$
-e^{A(t-s}=\sum^{+\infty}_{p=0} \frac{A^p(t-s)^p}{p!} \ .
+e^{A(t-s)}=\sum^{+\infty}_{p=0} \frac{A^p(t-s)^p}{p!} \ .
 $$
 Attention, cette formule  ne fonctionne que si $A$ est constant.
 
@@ -274,14 +273,48 @@ engendrent des problèmes de Cauchy aux solutions uniques et globales.
 Régularité et stabilité des solutions
 ==========================================
 
-Régularité en temps fini
------------------------------
+Depuis l'apparition de la mécanique Newtonienne au XVIIème sciècle, l'étude des équations différentielles a toujours été motivée par l'espoir de compréhension et la prédiction du comportement futur de systèmes physiques.
+En particulier, une question ayant taraudé et divisé les scientifiques au cours des siècles est celle de la stabilité du système à trois corps (Terre-Lune-Soleil), ou plus généralement du système solaire.  Devant les avancées en mécanique céleste, Pierre-Simon Laplace écrit en 1814:
 
-### Régularité par rapport à la condition initiale  {.theorem #theo_reg_CI}
+>Nous devons donc envisager l'état présent de l'univers comme l'effet de son état antérieur, et comme la cause de celui qui va suivre. Une intelligence qui pour un instant donné connaîtrait toutes les forces dont la nature est animée et la situation respective des êtres qui la composent, si d'ailleurs elle était assez vaste pour soumettre ses données à l'analyse, embrasserait dans la même formule les mouvements des plus grands corps de l'univers et ceux du plus léger atome : rien ne serait incertain pour elle, et l'avenir comme le passé serait présent à ses yeux.
+
+Cette conviction *déterministe*, c'est-à-dire que les phénomènes physiques passés ou futurs sont entièrement déterminés par leur condition initiale, fut confirmée par le théorème de Cauchy-Lipschitz quelques années plus tard. Ce dernier suggère que l'on peut prévoir l'évolution des systèmes physiques par la seule connaissance de leur condition initiale et de leur modèle physique. 
+
+Cependant, à la fin du XIXème siècle, on se rend vite compte que la réalité est tout autre:
+
+- d'une part, la condition initiale et le modèle ne sont jamais parfaitement connus: quelle est alors la qualité de notre prédiction?  
+
+- d'autre part, ne pouvant généralement pas calculer explicitement la solution, comment anticiper son comportement sur des temps longs, voire son comportement asymptotique?
 
 
-### Chaos et exposant de Lyapunov {.remark #rem_chao}
+Sensibilité aux conditions initiales et erreurs de modèle
+--------------------------------------------------------
 
+La première question fut soulevée par Henri Poincaré à la fin du XIXème siècle alors qu'il s'attelle à la question de la stabilité du système solaire. Il écrit:
+
+>Si un cône repose sur sa pointe, nous savons bien qu'il va tomber, mais nous ne savons pas de quel côté ; il nous semble que le hasard seul va en décider. Si le cône était parfaitement symétrique, si son axe était parfaitement vertical, s'il n'était soumis à aucune autre force que la pesanteur, il ne tomberait pas du tout. Mais le moindre défaut de symétrie va le faire pencher légèrement d'un côté ou de l'autre, et dès qu'il penchera, si peu que ce soit, il tombera tout à fait de ce côté. Si même la symétrie est parfaite, une trépidation très légère, un souffle d'air pourra le faire incliner de quelques secondes d'arc ; ce sera assez pour déterminer sa chute et même le sens de sa chute qui sera celui de l'inclinaison initiale.
+
+### Régularité en temps fini  {.theorem #theo_reg_CI}
+Theo
+
+## Exemples
+- Considérons un système linéaire à paramètre et/ou condition initiale incertains
+$$
+\dot{x} = (p+\delta_p) x \qquad , \qquad x_0 = c +\delta_{c}
+$$
+Pour $\delta_p=0=\delta_c$, la solution est $x(t)=ce^{pt}$, et sinon $x_\delta(t)= (c+\delta_c)e^{(p+\delta_p)t}$. On a donc
+$$
+|x(t)-x_\delta(t)| = |c- (c+\delta_c)e^{\delta_p t}| e^{pt}
+$$
+A FINIR
+
+### Chaos déterministe et exposant de Lyapunov {.remark #rem_chao}
+Henri Poincaré continue:
+
+> Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible et nous avons le phénomène fortuit. 
+
+
+## Exemple : l'attracteur de Lorenz
 
 
 Propriétés asymptotiques
@@ -301,6 +334,18 @@ Propriétés asymptotiques
 Références
 ================================================================================
 
+Exercices 
+==============================================================================
+
+### Non unicité de solutions
+Fluide dans réservoir 
+$\dot{x}==-k\sqrt(|x|)$
+
+### Proie/prédateur
+Cycle limite Bendixon
+
+### Système linéaire
+
 
 Annexes 
 =========================================================================
@@ -316,7 +361,7 @@ $$
 $$
 On a donc $\lim_{n\to+\infty} t_n = \overline{t}$, et par compacité de $K$, on peut extraire de $t_n,(x(t_n))_{n\in \N}$ une sous-suite qui converge vers $(\overline{t},\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{n\to+\infty} x(t_n) =\overline{x}$.
 
-BESOIN de CL local pour avoir l'estimée du temps minimal d'existence de solution
+BESOIN de CL local pour avoir l'estimée du temps minimal d'existence de solution A compléter
 
 
 ### Preuve du théorème d'existence globale de solutions {.preuve #pr_theo_exist_glob}
