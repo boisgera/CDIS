@@ -1523,14 +1523,6 @@ Il faudra attendre 1781 pour
 qu'Euler puisse calculer analytiquement les coordonnées de ce point 
 (cf. @Lev08).
 
-
-TODO -- Séries Absolument Convergentes
---------------------------------------------------------------------------------
-
-**TODO:** définition "limite dans tous les sens" d'une série double et 
-jouer avec Cauchy ?
-
-
 TODO -- Point fixe {#TPFB2}
 --------------------------------------------------------------------------------
 
