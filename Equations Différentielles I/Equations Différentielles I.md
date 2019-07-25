@@ -195,9 +195,11 @@ Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en 
 
 
 ### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
-On remarque dans la preuve qu'il suffit que $f$ soit Lipschitzienne. A définir + exemple de fonction Lipschitzienne pas $C^1$ "variation bornée". 
-
-C'est en fait Lipschitz lui-même qui a défini la notion de fonction Lipschitzienne pour faire marcher cette preuve et a montré le résultat parallèlement à Cauchy et de manière indépendente sous cette hypothèse plus faible, alors que Cauchy l'avait montré sous l'hypothèse $C^1$ en utilisant le théorème des accroissements finis.
+La preuve d'existence et unicité de solutions sous l'hypothèse que $f$ est de classe $C^1$ est dûe à Cauchy et repose sur l'utilisation du théorème d'accroissements finis.  Mais en fait, on remarque qu'une propriété suffisante sur $f$ est l'existence de $k>0$ tel que
+$$
+|f(t,x_a)-f(t,x_b)|\leq k |x_a-x_b| \qquad \forall t\in [t_0-\tau_m,t_0+\tau_m], \forall (x_a,x_b)\in \overline{B}_r(x_0) \ ,
+$$
+c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété a été introduite par le mathématicien allemand Lipschitz précisement pour prouver ce résultat de manière indépendante et contemporaine à Cauchy, d'où le théorème de Cauchy-Lipschitz. Cette hypothèse est plus faible car elle impose seulement une variation bornée de $x\mapsto f(t,x)$ au voisinage de $(t_0,x_0)$, au lieu de sa différentiabilité. Par exemple, $x\mapsto |x|$ est Lipschitzienne mais pas $C^1$. On en déduit que $\dot{x}=|x|$ admet une unique solution au voisinage de tout point.
 
 ### Approximations successives {.remarque #rem_approx_succ}
 Il est rare de pouvoir calculer explicitement la solution au problème de Cauchy. Dans ce cas approximations successives de Picard
