@@ -1341,7 +1341,7 @@ Inversion Locale
 Solution des exercices
 ================================================================================
 
-TODO -- Inversion de matrice
+Inversion de matrice
 --------------------------------------------------------------------------------
 
 ### Question 1 {#sol-im-1}
