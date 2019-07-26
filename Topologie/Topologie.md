@@ -1594,9 +1594,42 @@ $$
 
   2. Application angle sur l'hélice et $\arctan$ ...
 
-TODO -- Equations Linéaires et Point Fixes
+TODO -- Résolution itérative de systèmes linéaires
 --------------------------------------------------------------------------------
 
+Un opérateur linéaire $A: \R^n \to \R^n$ est *diagonalement dominant* 
+si la matrice $[a_{ij}]_{ij} \in \R^{n\times n}$ associée vérifie
+pour tout $i \in \{1,\dots, n\}$,
+$$
+\sum_{j=1}^n a_{ij} < |a_{ii}|.
+$$
+Soit $D$ l'opérateur dont la matrice $[d_{ij}]_{ij}$ est la diagonale de 
+$[a_{ij}]_{ij}$:
+$$
+[d_{ij}]_{ij} = \left[
+\begin{array}{cccc}
+a_{11} & 0 & \cdots & 0 \\
+0 & a_{22} & \cdots & 0 \\
+\cdots & \cdots & \cdots & \cdots \\
+0 & \cdots & 0 & a_{nn} \\
+\end{array}
+\right]
+$$
+
+### Question 1 
+Montrer que deux vecteurs $x$ et $y$ de $\R^n$ vérifient 
+$A \cdot x = y$ si et seulement si 
+$$x = D^{-1} \cdot (D-A) \cdot x  + D^{-1} \cdot y.$$
+
+$\to$ [Solution](#sol-risl-1)
+
+### Question 2
+En déduire que $A$ est inversible et une méthode itérative de calcul de $A^{-1}$.
+
+$\to$ [Solution](#sol-risl-2)
+
+
+<!--
 Préparer et résoudre numériquement des systèmes de la forme $A x = b$ dans
 des cas simples (ex: Jacobi, Gauss-Seidel, cas diagonally dominant ?).
 
@@ -1609,6 +1642,7 @@ que $\|A^k\| \to 0 \Leftrightarrow \rho(A) < 1$ et tester algo de Jacobi
 
 Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
 et lien avec norme.
+-->
 
 Equation Différentielle
 --------------------------------------------------------------------------------
@@ -2373,6 +2407,9 @@ la valeur $x_1$, pour la suite $(x_{kn+2})_k$, ..., jusqu'à
 $(x_{kn + (n-1)})_k$. Ces $n$ suites convergent toutes vers $x$,
 donc la suite des $(x_k)_k$ converge également vers le point fixe $x$, 
 comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
+
+TODO -- Résolution itérative de systèmes linéaires
+--------------------------------------------------------------------------------
 
 Equation Différentielle
 --------------------------------------------------------------------------------
