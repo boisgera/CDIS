@@ -1338,6 +1338,17 @@ Inversion Locale
 
 **TODO:** exemple où l'on complète le jacobien pour pouvoir appliquer le TIL.
 
+Solution des exercices
+================================================================================
+
+TODO -- Inversion de matrice
+--------------------------------------------------------------------------------
+
+### TODO -- Question 1 {#sol-im-1}
+
+### TODO -- Question 2 {#sol-im-2}
+
+
 TODO -- Projet Numérique -- Lignes de niveau
 ================================================================================
 
