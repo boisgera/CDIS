@@ -1871,7 +1871,7 @@ $$
 $$
 et donc $\|\cdot\|_{\infty\infty} = \|\cdot\|_{\infty}$.
 
-Solution -- [Localement fermé]
+ [Localement fermé]
 --------------------------------------------------------------------------------
 
 ### Question 0 {.answer #a-lf-0}
@@ -1971,7 +1971,7 @@ le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
 ensemble fermé $F$; de l'équation ci-dessus on déduit donc
 que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 
-TODO -- Solution -- [Droite réelle achevée]
+TODO --  [Droite réelle achevée]
 --------------------------------------------------------------------------------
 
 ### TODO -- Question 1 {.answer #a-dra-1}
@@ -1989,7 +1989,7 @@ TODO -- Solution -- [Droite réelle achevée]
 ### TODO -- Question 7 {.answer #a-dra-7}
 
  
-Solution -- [Distance entre ensembles]
+ [Distance entre ensembles]
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #a-dh-1}
@@ -2139,7 +2139,7 @@ Si $A_k \to A$ et $C_k \to C$, comme
 $d[A_k+C_k, A+C] \leq d[A, A_k] + d[C, C_k]$, on en déduit que
 $A_k + C_k \to A + C$. La somme de Minkowski est donc continue.
 
-Solution -- [Plongement de Kuratowski]
+ [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
 
 ### Question 1 {#a-pk-1}
@@ -2267,7 +2267,7 @@ vaut non seulement pour tout $x_0 \in \left[1, +\infty\right[$ mais
 bien pour tout $x_0 \in \left]0, +\infty\right[$.
 
 
-Solution -- [Spirale d'Euler]
+ [Spirale d'Euler]
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #a-se-1}
@@ -2360,7 +2360,7 @@ La suite des $(x_k, y_k)$ est donc de Cauchy.
 
 
 
-Solution -- [Point fixe]
+ [Point fixe]
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #a-pf-1}
