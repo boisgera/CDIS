@@ -1352,7 +1352,7 @@ $$
 Par conséquent les dérivées partielles du coefficient $(i,k)$ de $A \times B$ 
 par rapport à $a_{\alpha\beta}$ existent et sont données par
 $$
-\frac{[A \times B]_{ik}}{\partial a_{\alpha \beta}}
+\frac{\partial[A \times B]_{ik}}{\partial a_{\alpha \beta}}
 = 
 \left|
 \begin{array}{cl}
@@ -1363,7 +1363,7 @@ b_{\beta k} & \mbox{si } i=\alpha, \\
 $$
 et de façon similaire on a
 $$
-\frac{[A \times B]_{ik}}{\partial b_{\beta \gamma}}
+\frac{\partial[A \times B]_{ik}}{\partial b_{\beta \gamma}}
 = 
 \left|
 \begin{array}{cl}
