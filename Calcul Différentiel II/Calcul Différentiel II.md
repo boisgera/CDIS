@@ -1298,8 +1298,28 @@ Lier ça à la sensibilité des valeurs propres (et vecteurs propres ?) par rapp
 aux coefficients de la matrice associée ? Avantage: plus de travail de mise en
 forme pour se ramener au pb de fct implicite (à ajouter aux objectifs).
 
-Différentielle de $X \mapsto X^{-1}$
+Inversion de matrice
 --------------------------------------------------------------------------------
+
+### Question 1
+Montrer que le produit matriciel
+  $$
+  (A, B) \in \R^{m \times n} \times \R^{n \times p} \to A \times B \in \R^{m \times p}
+  $$
+est une application continûment différentiable.
+
+$\to$ [Solution](#sol-im-1)
+
+### Question 2
+Montrer que l'application qui à une matrice inversible 
+$A \in \mathbb{R}^{n\times n}$ associe son inverse $A^{-1}$ est définie
+sur un ouvert de $\R^{n \times n}$, continûment différentiable et que
+$$
+d(A^{-1}) \cdot H = - A^{-1} \times H \times A^{-1}.
+$$
+
+$\to$ [Solution](#sol-im-1)
+
 
 Différentiation à pas complexe
 --------------------------------------------------------------------------------
