@@ -55,7 +55,7 @@ Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 
 -->
 
-### Théorème des Fonctions Implicites {.theorem}
+### Théorème des Fonctions Implicites {.theorem #TFI}
 
 Soit $f$ une fonction définie sur un ouvert $W$ de 
 $\mathbb{R}^n \times \mathbb{R}^m$:
@@ -1318,7 +1318,7 @@ $$
 d(A^{-1}) \cdot H = - A^{-1} \times H \times A^{-1}.
 $$
 
-$\to$ [Solution](#sol-im-1)
+$\to$ [Solution](#sol-im-2)
 
 
 Différentiation à pas complexe
@@ -1375,7 +1375,45 @@ $$
 Ces expressions sont des fonctions continues du couple $(A, B)$.
 L'application produit de matrices est donc continûment différentiable.
 
-### TODO -- Question 2 {#sol-im-2}
+### Question 2 {#sol-im-2}
+Soit $A_0 \in \R^{n \times n}$ une matrice inversible, d'inverse $B_0$.
+L'application 
+$$
+F: (A, B) \in \R^{n \times n} \times \R^{n \times n} 
+\mapsto A \times B - I \in \R^{n\times n}
+$$ 
+est continûment différentiable et s'annule en $(A_0, B_0)$.
+Pour toute matrice $A$ de $\R^{n\times n}$, 
+l'application $B \to A \times B - I$ est affine, donc
+$$\partial_B F(A, B) \cdot H = F(A, B+H) - F(A, B) = A \times H.$$
+D'après le [théorème des fonctions implicites](#TFI), il existe
+des voisinages ouverts $U$ de $A_0$ dans $\R^{n\times n}$ et $V$
+de $B_0 = A_0^{-1}$ dans $\R^{n\times n}$ et une fonction 
+$\mathrm{inv}: U \to V$ continûment différentiable telle que
+$$
+A \times B  = I \mbox{ et } (A,B) \in U \times V 
+\; \Leftrightarrow \; 
+B = \mathrm{inv}(A).
+$$
+La seule solution de $A \times B = I$ en $B$ étant l'inverse de $A$ si elle
+existe, l'inverse de $A$ existe dans un voisinage de $A_0$
+-- la matrice inversible $A_0$ étant arbitraire, l'ensemble
+des matrices inversibles $A$ est donc ouvert -- et une fonction 
+continûment différentiable de $A$.
+
+De plus, la différentielle $\mathrm{inv}$ est donnée par
+$$
+\begin{split}
+d\mathrm{inv}(A) 
+&= - (\partial_B F(A, \mathrm{inv}(A)))^{-1} \cdot \partial_A F(A, \mathrm{inv}(A))) \\
+&= - (H \mapsto A^{-1} \times H) \cdot (H \mapsto H \times A^{-1}) \\
+&= (H \mapsto - A^{-1} \times H \times A^{-1}). 
+\end{split}
+$$
+ou sous une forme plus compacte 
+$$
+d A^{-1} = -A^{-1} \times dA \times A^{-1}.
+$$
 
 
 TODO -- Projet Numérique -- Lignes de niveau
