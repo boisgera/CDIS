@@ -161,6 +161,10 @@ def handle_level_4_sections(doc):
     # TODO: find them, transform the header into an emphasized span,
     # insert it into the subsequent content if it makes sense.
 
+    # TODO. Grmph. Adding "." at the end doesn't always make sense.
+
+    # TODO: transfer the header id to the encloding div.section ?
+
     found = []
     for elt, path in pandoc.iter(doc, path=True):
         if isinstance(elt, Header):

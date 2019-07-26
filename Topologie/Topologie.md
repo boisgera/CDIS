@@ -35,6 +35,10 @@ TODO / acquis {.meta}
   - warning: pptés définies *relativement à un espace de référence* 
     (ex: fermé dans quoi ?). Topologie "trace" / induite, sous-espace ...
 
+### TODO
+
+    >>> from numpy import *
+
 Structures Topologiques
 ================================================================================
 
@@ -1165,7 +1169,35 @@ $$
 Exercices
 ================================================================================
 
-Droite réelle achevée
+Normes d'opérateurs
+--------------------------------------------------------------------------------
+
+[La fonction `norm` du module `numpy.linalg`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html#numpy-linalg-norm) peut calculer des normes de vecteurs 
+de $\R^n$, mais également de matrices carrée de $\R^{n\times n}$. 
+Ainsi, on a par exemple:
+
+    >>> from numpy.linalg import norm
+    >>> A = [[1.0, 2.0], [3.0, 4.0]]
+    >>> norm(A)
+    5.477225575051661
+    >>> norm(A, 1)
+    6.0
+    >>> norm(A, 2)
+    5.464985704219043
+    >>> norm(A, inf)
+    7.0
+
+En étudiant [la documentation de cette fonction]((https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html#numpy-linalg-norm)), déterminer pour les quatres exemples
+d'usage ci-dessus s'il existe une norme $\|\cdot\|_?$ de vecteurs de $\R^n$ dont 
+la norme d'opérateur associée correspond à cette norme de matrice, 
+c'est-à-dire telle que
+$$
+\|A\| = \sup_{x \neq 0} \frac{\|A\cdot x\|_?}{\|x\|_?}.
+$$
+
+$\to$ [Solution](#sol-nln)
+
+Droite réelle achevée {#dra}
 --------------------------------------------------------------------------------
 
 La droite réelle achevée est composée des nombre réels de $-\infty$ 
@@ -1399,10 +1431,36 @@ $$
 
 $\to$ [Solution](#a-pk-4)
 
-TODO -- Le nombre d'or {#golden-ratio}
+Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
-**TODO**
+Le but de cet exercice est de montrer l'existence d'un unique réel 
+positif $x$ tel que $x^2 = x + 1$ -- le *nombre d'or* --
+et de produire une méthode itérative pour l'évaluer.
+
+### Question 1
+Montrer l'existence d'un unique point fixe associé à l'application
+$$
+x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
+$$
+et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
+
+$\to$ [Solution](#sol-golden-ratio-1)
+
+### Question 2
+Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
+et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
+
+$\to$ [Solution](#sol-golden-ratio-2)
+ 
+### Question 3
+Etudier la fonction $f \circ f$ et en exploitant le résultat de 
+l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
+converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
+positive.
+
+$\to$ [Solution](#sol-golden-ratio-3)
+
 
 Spirale d'Euler 
 --------------------------------------------------------------------------------
@@ -1465,15 +1523,7 @@ Il faudra attendre 1781 pour
 qu'Euler puisse calculer analytiquement les coordonnées de ce point 
 (cf. @Lev08).
 
-
-TODO -- Séries Absolument Convergentes
---------------------------------------------------------------------------------
-
-**TODO:** définition "limite dans tous les sens" d'une série double et 
-jouer avec Cauchy ?
-
-
-TODO -- Point fixe
+TODO -- Point fixe {#TPFB2}
 --------------------------------------------------------------------------------
 
 **TODO:** exemple introductif (simple, matriciel $2\times2$)
@@ -1655,6 +1705,138 @@ sont compacts.
 
 Solutions aux Exercices
 ================================================================================
+
+Normes d'opérateurs {#sol-nln}
+--------------------------------------------------------------------------------
+
+### `norm(A)`
+En l'absence de second argument, la fonction `norm` calcule 
+la norme de Frobenius de la matrice $A$, donnée comme
+$$
+\|A\|_F = \sqrt{\sum_{i=1}^n\sum_{j=1}^n a_{ij}^2}.
+$$
+Il s'agit bien d'une norme sur $\R^{n \times n}$, car on peut la calculer
+comme la norme euclidienne de la matrice $A$ 
+["mise à plat"](Calcul Différentiel I.pdf#flatten) comme vecteur
+de $\R^{n^2}$, c'est-à-dire par la formule $\|A\|_F = \|\pi(A)\|_2$. 
+Mais elle n'est induite par aucune
+norme de vecteur; en effet, s'il existait une norme $\|\cdot\|_?$ telle que 
+$\|A\|_F = \sup \|A \cdot x\|_? / \|x\|_?$, alors on aurait en particulier
+$$
+\|I\|_F  = \sup_{x \neq 0} \frac{\|I \cdot x\|_?}{\|x\|_?} = 
+\sup_{x \neq 0} \frac{\|x\|_?}{\|x\|_?}  = 1.
+$$
+Or, on peut constater que la norme de Frobenius de la matrice associée
+à l'identité dans $\R^n$ est $\sqrt{n}$, qui diffère de $1$ si $n>1$.
+
+### `norm(A, 1)`
+L'expression `norm(A, 1)` calcule d'après la documentation de `norm` la
+grandeur
+$$
+\|A\|_1 = \max_{j = 1 \dots n} \left(\sum_{i=1}^n |a_{ij}|\right).
+$$
+Le fait que le second argument de l'appel à `norm` soit $1$ peut laisser
+penser que cette norme de matrice est induite par la norme de vecteurs
+$$
+\|x\|_1 = \sum_{i=1}^n |x_i|.
+$$
+Vérifions cela; si $y= A \cdot x$, on a
+$$
+\begin{split}
+\|y\|_1 =
+\sum_{i=1}^n |y_i| = \sum_{i=1}^n \left|\sum_{j=1}^n a_{ij} x_j \right|
+&\leq \sum_{i=1}^n \sum_{j=1}^n |a_{ij}||x_j|
+=\sum_{j=1}^n \left(\sum_{i=1}^n |a_{ij}|\right)|x_j| \\
+&\leq 
+\max_{j=1\dots n} \left(\sum_{i=1}^n |a_{ij}|\right) \sum_{j=1}^n |x_j| \\
+&=
+\|A\|_1 \|x\|_1.
+\end{split}
+$$
+Pour conclure, il nous suffit désormais d'exhiber un $x \in \R^n$ tel que 
+$\|A \cdot x\| = \|A\|_1 \|x\|_1$. Si le maximum de $\sum_{i=1}^n |a_{ij}|$
+est réalisé en $j$, il nous suffit de considérer le $j$-ème vecteur de la
+base canonique de $\R^n$, $x = e_j$. En effet, on a alors
+$\|e_j\|_1 = 1$ et 
+$$
+\|A \cdot e_j\|_1 = \left\| (a_{1j}, \dots, a_{nj})\right\|_1
+= \sum_{i=1}^n |a_{ij}| = \|A\|_1.
+$$
+
+
+### `norm(A, 2)`
+La norme en question est définie par NumPy comme $\sigma_1$, 
+la plus grande valeur singulière de $A$.
+Les valeurs singulières $\sigma_1 \geq \sigma_2 \geq \sigma_n \geq 0$
+associées à l'opérateur linéaire $A:\R^n \to \R^n$ sont définies à
+travers une décomposition de $A$ de la forme
+$$
+A = U \cdot \Sigma \cdot V^*
+$$
+où $\Sigma \cdot (x_1, \dots, x_n) = (\sigma_1 x_1, \dots, \sigma_n x_n)$
+et $U \in \R^{n} \to \R^n$ et $V \in \R^n \to \R^n$ sont des applications 
+linéaires orthogonales (inversible et dont l'inverse est l'adjoint). 
+Pour montrer que $\sigma_1(\cdot)$
+constitue la norme $\|\cdot\|_{22}$ induite par la norme euclidienne
+$\|\cdot\|_2$ sur les vecteurs de $\R^n$, on constate au préalable que
+pour toute application orthogonale $U$,
+$$
+\|U \cdot x\|^2 = \sqrt{\left< U \cdot x, U \cdot x \right>}
+= \sqrt{\left<U^{\star} \cdot U \cdot x, x \right>}
+= \sqrt{\left<x, x\right>} = \|x\|_2,
+$$
+puis que
+$$
+\begin{split}
+\|A\|_{22} &= \sup_{\|x\|_2 \leq 1} \|(U \cdot \Sigma \cdot V^*) \cdot x\|  \\
+&= \sup_{\|x\|_2 \leq 1} \|U \cdot (\Sigma \cdot (V^* \cdot x))\| \\
+&= \sup_{\|y\|_2 \leq 1} \|\Sigma \cdot y\| \\
+&= \sup_{\|y\|_2 \leq 1} \sqrt{\sigma_1^2 y_1^2 + \dots + \sigma_n y_{n}^2} \\
+&= \sigma_1.
+\end{split}
+$$
+
+### `norm(A, inf)`
+On constate que l'expression donnée dans la documentation de `norm`, 
+à savoir
+$$
+\|A\|_{\infty} = \max_{i = 1 \dots n} \left(\sum_{j=1}^n |a_{ij}|\right)
+$$
+entretient une troublante ressemblance avec la norme 
+$\|\cdot\|_1$ pour les opérateurs. Plus précisément, 
+si $A^{*} : \R^n \to \R^n$ désigne l'opérateur adjoint de $A$,
+tel que pour tous vecteurs $x$ et $y$ de $\R^n$, 
+$\left<y, A x\right> = \left<A^* y,x \right>$,
+associé à la matrice transposée de la matrice associée à $A$,
+alors on a
+$$
+\|A\|_{\infty} = \|A^*\|_1.
+$$
+C'est un peu trop gros pour être une coincidence ...
+Pour montrer que $\|\cdot\|_{\infty}$ est la norme d'opérateur 
+$\|\cdot\|_{\infty\infty}$ associée à 
+la norme de vecteurs $\|\cdot\|_{\infty}$, on peut d'abord constater que 
+pour les vecteurs,
+$$
+\|x\|_{\infty} = \sup_{\|y\|_1 \leq 1} \left<y, x\right>
+\; \mbox{ et } \;
+\|x\|_{1} = \sup_{\|y\|_{\infty} \leq 1} \left<y, x\right>
+$$
+puis en déduire que 
+$$
+\begin{split}
+\|A\|_{\infty\infty} = \sup_{\|x\|_{\infty} \leq 1} \|A \cdot x\|_{\infty}
+&=\sup_{\|x\|_{\infty} \leq 1} \sup_{\|y\|_1 \leq 1} \left<y, A \cdot x\right> \\
+&=
+\sup_{\|x\|_{\infty} \leq 1} \sup_{\|y\|_1 \leq 1} \left<A^* \cdot y, x\right> \\
+&=
+\sup_{\|y\|_1 \leq 1} \sup_{\|x\|_{\infty} \leq 1} \left<x, A^* \cdot y \right> \\
+&=
+\sup_{\|y\|_1 \leq 1} \|A^* \cdot y \| \\
+&=\|A^*\|_1 \\ &= \|A\|_{\infty},
+\end{split}
+$$
+et donc $\|\cdot\|_{\infty\infty} = \|\cdot\|_{\infty}$.
 
 Solution -- [Localement fermé]
 --------------------------------------------------------------------------------
@@ -1961,6 +2143,96 @@ $y$ dans $X$, on a
 $$
 d(x, y) = \|f_x - f_y\|_{\infty}.
 $$
+
+Le nombre d'or {#golden-ratio}
+--------------------------------------------------------------------------------
+
+### Question 1 {#sol-golden-ratio-1}
+L'existence d'un unique point fixe associé à l'application
+$$
+f: x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
+$$
+peut être établi par des méthodes classiques d'analyse d'une fonction
+d'une variable réelle. La fonction $g: x \in \left]0, +\infty\right[ \to x - f(x)$ ayant pour dérivée
+en $x$ la valeur $1 + 1/x^2$, qui est strictement positive, la fonction 
+$g$ est strictement croissante. De plus, $g(x) \to -\infty$ quand
+$x\to 0$ et $g(x) \to +\infty$ quand $g(x) \to +\infty$, 
+il existe donc bien un unique zéro de $g$, ou de façon équivalente un
+unique point fixe de $f$. 
+De plus, comme $g(3/2) = 3/2 - 1 - 2/3 = -1/6 <0$ 
+et $g(2) = 2 - 1 - 1/2 = 1/2 > 0$,
+ce zéro de $f$ se situe dans l'intervalle $[3/2, 2]$.
+
+Alternativement, pour établir l'existence (mais pas l'unicité) du point fixe,
+on aurait pu associer à la fonction $f$ la fonction 
+$\bar{f}: [0, +\infty] \to [0, +\infty]$ définie par
+$$
+\bar{f}(x) = \left|
+\begin{array}{cl}
++\infty & \mbox{si } x = 0, \\
+f(x) & \mbox{si } 0 < x < + \infty, \\
+1 & \mbox{si } x = +\infty.
+\end{array}
+\right.
+$$
+Si l'on munit $[0, +\infty]$ de la métrique
+induite par [la droite réelle achevée](#dra), la fonction $f$
+est continue et $[0, +\infty]$ est compact. 
+La suite de valeurs
+définie par $x_0 = 1$ (par exemple) et $x_{k+1} = \bar{f}(x_k)$
+admet donc une sous-suite $y_k$ qui converge vers un $\ell \in [0, +\infty]$.
+Par continuité de $\bar{f}$, on en déduit que $\ell = \bar{f}(\ell)$.
+Il suffit alors de vérifier que $\bar{f}(0) \neq 0$ et $\bar{f}(+\infty) \neq
++\infty$ pour conclure à l'existence d'un réel $\ell> 0$ tel que
+$\ell = f(\ell)$.
+
+### Question 2 {#sol-golden-ratio-2}
+Soit $x_k$ la suite de réels définie par $x_0 \in [3/2, 2]$
+et $x_{k+1} = f(x_k)$. La fonction $f$ est (strictement) croissante;
+de plus
+$$
+f(3/2) = 1 + \frac{1}{3/2} = 1 + \frac{2}{3} = \frac{4}{3} \in \left[\frac{3}{2}, 2\right]
+$$
+et 
+$$
+f(2) = 1 + \frac{1}{2} = \frac{3}{2}  \in \left[\frac{3}{2}, 2\right].
+$$
+Par conséquent, $f([3/2,2]) \subset [3/2,2]$. Comme $f'(x) = - \frac{1}{x^2}$,
+pour tout $x \in [3/2,2]$, $|f'(x)| < 4/9 < 1$. 
+Par le théorème des accroissements finis, la restriction de $f$ à $[3/2]$ 
+est donc contractante.
+L'ensemble $[3/2, 2]$ est un ensemble fermé $\R$; il est donc complet.
+L'existence et l'unicité du point fixe de $f$ sur $[3/2,2]$ ainsi que son
+obtention comme limite de la suite $x_k$ résultent du [théorème de point fixe
+de Banach](#T-TPFB).
+ 
+### Question 3 {#sol-golden-ratio-3}
+Compte tenu des résultats de l'exercice ["Point fixe"](#TPFB2),
+il suffit d'établir l'existence et l'unicité d'un point fixe de 
+$f\circ f$ pour obtenir l'existence et l'unicité d'un point fixe
+de $f$, et la garantie qu'il soit obtenu comme limite de la suite
+définie par $x_{k+1} = f(x_k)$ pour tout $x_0 > 0$.
+Or, pour tout $x>0$, on a
+$$
+f(f(x)) = 1+ \frac{1}{(1+1/x)} = 1 + \frac{x}{x+1} = 1+\frac{x+1}{x+1} - \frac{1}{x+1}
+=2 - \frac{1}{x+1}.
+$$
+Cette fonction est croissante. Comme $f(1) = 3/2 \geq 1$, on a 
+$f(\left[1, +\infty\right[) \subset \left[1, +\infty\right[$.
+De plus,
+$$
+(f \circ f)'(x) = \frac{1}{(x+1)^2}
+$$
+et donc $|(f \circ f)'(x)| \leq 1/4 < 1$ si $x\geq 1$.
+La restriction de $f$ à $\left[1, +\infty\right[$ est donc contractante; 
+comme $\left[1, +\infty\right[$ est complet 
+-- en tant que fermé dans un espace complet -- 
+le théorème du point fixe de Banach garantit l'existence et l'unicité
+d'un point fixe. Notons finalement que si $x_0 \in \left]0,1\right[$, 
+$f(x_0) \in \left[1, +\infty\right[$; par conséquent le résultat
+vaut non seulement pour tout $x_0 \in \left[1, +\infty\right[$ mais
+bien pour tout $x_0 \in \left]0, +\infty\right[$.
+
 
 Solution -- [Spirale d'Euler]
 --------------------------------------------------------------------------------

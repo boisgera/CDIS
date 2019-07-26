@@ -55,7 +55,7 @@ Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 
 -->
 
-### Théorème des Fonctions Implicites {.theorem}
+### Théorème des Fonctions Implicites {.theorem #TFI}
 
 Soit $f$ une fonction définie sur un ouvert $W$ de 
 $\mathbb{R}^n \times \mathbb{R}^m$:
@@ -1216,7 +1216,7 @@ Derivative of f (manual computation)
 Exercices
 ================================================================================
 
-Cinématique des Robots Manipulateurs
+TODO -- Cinématique des Robots Manipulateurs
 --------------------------------------------------------------------------------
 
 Position de référence en cartésien, robot plan articulaire (ou extension 3d),
@@ -1236,60 +1236,18 @@ $$
 $$
 On appellera une telle fonction $T$ une *perturbation de l'identité*.
 
- 1. Montrer que la foncton $T$ est injective.
+### Question 1
+Montrer que la fonction $T$ est injective.
 
- 2. Montrer que l'image $V= T(U)$ est un ouvert et
-    que $T$ est difféomorphisme (global) de $U$ sur $V$.
+$\to$ [Solution](#sol-d-1)
 
-### Réponses
+### Question 2
+Montrer que l'image $V= T(U)$ est un ouvert 
+et que $T$ est difféomorphisme global de $U$ sur $V$.
 
- 1. Par le théorème des accroissements finis, si $x$ et $y$ appartiennent
-    à $U$, comme par convexité $[x, y] \subset U$, on a 
-    $$
-    \|H(x) - H(y)\| \leq \kappa \|x - y\|.
-    $$
-    Par conséquent,
-    $$
-    \begin{split}
-    \|T(x) - T(y)\| &= \|x + H(x) - (y + H(y))\| \\
-    &\geq \|x - y\| - \|H(x) - H(y)\| \\
-    &\geq (1 - \kappa) \|x - y\|
-    \end{split}
-    $$
-    et donc si $T(x) = T(y)$, $x=y$: $T$ est injective.
+$\to$ [Solution](#sol-d-1)
 
- 2. La différentielle $dT(x)$ de $T$ en $x$ est une application 
-    de $\mathbb{R}^n$ dans $\mathbb{R}^n$ de la forme
-    $$
-    dT(x) = I + dH(x).
-    $$
-    Comme $\mathbb{R}^n$ est ouvert et que la fonction $h \mapsto dH(x) \cdot h$
-    a pour différentielle en tout point $y$ de $\mathbb{R}^n$ la function
-    $dH(x)$, 
-    la fonction linéaire $h \mapsto dT(x) \cdot h$ est une perturbation de 
-    l'identité; elle est donc injective, et inversible car elle est linéaire de
-    $\mathbb{R}^n$ dans $\mathbb{R}^n$. Les hypothèses du 
-    théorème d'inversion locale sont donc satisfaites 
-    en tout point $x$ de $U$. La fonction $f$ est donc un difféomorphisme 
-    local d'un voisinage ouvert $V_x$ de $x$ sur
-    $W_x= f(V_x)$ qui est ouvert. Clairement,
-    $$
-    f(U) = f\left(\bigcup_{x \in U} V_x\right) = \bigcup_{x \in U} f(V_x)
-    $$
-    et par conséquent $f(U)$ est ouvert.
-    La fonction $f$ est injective et surjective de $U$ dans $f(U)$,
-    donc inversible. En tout point $y$ de $f(U)$, il existe $x \in U$
-    tel que $f(x) = y$, et un voisinage ouvert $V_x$ de $x$ tel que
-    $f$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = f(V_x)$; 
-    la fonction
-    $f^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
-    C'est par conséquent un difféomorphisme global de $U$ dans $f(U)$.
-
-
-
-
-
-Racines d'un Polynôme
+TODO -- Valeurs propres d'une matrice
 --------------------------------------------------------------------------------
 
 Si racine simple, variation continue (et plus) par rapport aux coefficients.
@@ -1298,25 +1256,225 @@ Lier ça à la sensibilité des valeurs propres (et vecteurs propres ?) par rapp
 aux coefficients de la matrice associée ? Avantage: plus de travail de mise en
 forme pour se ramener au pb de fct implicite (à ajouter aux objectifs).
 
-Différentielle de $X \mapsto X^{-1}$
+Inversion de matrice
 --------------------------------------------------------------------------------
 
+### Question 1
+Montrer que le produit matriciel
+  $$
+  (A, B) \in \R^{m \times n} \times \R^{n \times p} \to A \times B \in \R^{m \times p}
+  $$
+est une application continûment différentiable.
+
+$\to$ [Solution](#sol-im-1)
+
+### Question 2
+Montrer que l'application qui à une matrice inversible 
+$A \in \mathbb{R}^{n\times n}$ associe son inverse $A^{-1}$ est définie
+sur un ouvert de $\R^{n \times n}$, continûment différentiable et que
+$$
+d(A^{-1}) \cdot H = - A^{-1} \times H \times A^{-1}.
+$$
+
+$\to$ [Solution](#sol-im-2)
+
+<!--
 Différentiation à pas complexe
 --------------------------------------------------------------------------------
 
 **TODO**
 
+-->
+
 Méthode de Newton
 --------------------------------------------------------------------------------
+L'analyse de la preuve du théorème du fonction implicite nous a conduit à
+considérer la méthode de Newton modifiée, associée à la construction
+du point fixe de
+$$
+\phi_x: y \mapsto y - (\partial_y f(x_0, y_0))^{-1} \cdot f(x, y).
+$$
+Si la fonction $f$ est deux fois continûment différentiable, 
+il n'est plus nécessaire de modifier la méthode de Newton pour 
+prouver le théorème: 
+on peut exploiter directement la fonction
+$$
+\phi_x: y \mapsto y - (\partial_y f(x, y))^{-1} \cdot f(x, y)
+$$
 
-Revenir sur la preuve du théorème des fonctions implicites mais sous sous une
-hypothèse $C^2$, montrer qu'il n'est pas nécessaire de modifier la méthode
-de Newton.
+Montrer que $\phi_x$ est différentiable dans un voisinage de $(x_0, y_0)$ et
+vérifier que $d \phi_x(y)$ est nul si $f(x, y) = 0$.
 
-Inversion Locale
+$\to$ [Solution](#sol-mn)
+
+
+
+Solution des exercices
+================================================================================
+
+TODO -- Cinématique des Robots Manipulateurs
 --------------------------------------------------------------------------------
 
-**TODO:** exemple où l'on complète le jacobien pour pouvoir appliquer le TIL.
+Position de référence en cartésien, robot plan articulaire (ou extension 3d),
+étudier sous quelle conditions on peut "résoudre" un déplacement de 
+l'effecteur.
+
+Déformations {#sol-d}
+--------------------------------------------------------------------------------
+
+### Question 1 {#sol-d-1} 
+Par le théorème des accroissements finis, si $x$ et $y$ appartiennent
+à $U$, comme par convexité $[x, y] \subset U$, on a 
+$$
+\|H(x) - H(y)\| \leq \kappa \|x - y\|.
+$$
+Par conséquent,
+$$
+\begin{split}
+\|T(x) - T(y)\| &= \|x + H(x) - (y + H(y))\| \\
+&\geq \|x - y\| - \|H(x) - H(y)\| \\
+&\geq (1 - \kappa) \|x - y\|
+\end{split}
+$$
+et donc si $T(x) = T(y)$, $x=y$: $T$ est bien injective.
+
+### Question 2 {#sol-d-2}
+La différentielle $dT(x)$ de $T$ en $x$ est une application 
+de $\mathbb{R}^n$ dans $\mathbb{R}^n$ de la forme
+$$
+dT(x) = I + dH(x).
+$$
+Comme $\mathbb{R}^n$ est ouvert et que la fonction $h \mapsto dH(x) \cdot h$
+a pour différentielle en tout point $y$ de $\mathbb{R}^n$ la function
+$dH(x)$, 
+la fonction linéaire $h \mapsto dT(x) \cdot h$ est une perturbation de 
+l'identité; elle est donc injective, et inversible car elle est linéaire de
+$\mathbb{R}^n$ dans $\mathbb{R}^n$. Les hypothèses du 
+théorème d'inversion locale sont donc satisfaites 
+en tout point $x$ de $U$. La fonction $f$ est donc un difféomorphisme 
+local d'un voisinage ouvert $V_x$ de $x$ sur
+$W_x= f(V_x)$ qui est ouvert. Clairement,
+$$
+f(U) = f\left(\bigcup_{x \in U} V_x\right) = \bigcup_{x \in U} f(V_x)
+$$
+et par conséquent $f(U)$ est ouvert.
+La fonction $f$ est injective et surjective de $U$ dans $f(U)$,
+donc inversible. En tout point $y$ de $f(U)$, il existe $x \in U$
+tel que $f(x) = y$, et un voisinage ouvert $V_x$ de $x$ tel que
+$f$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = f(V_x)$; 
+la fonction
+$f^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
+C'est par conséquent un difféomorphisme global de $U$ dans $f(U)$.
+
+TODO -- Valeurs propres d'une matrice
+--------------------------------------------------------------------------------
+
+Inversion de matrice
+--------------------------------------------------------------------------------
+
+### Question 1 {#sol-im-1}
+Pour tout $i \in \{1, \dots, m\}$ et $k \in \{1, \dots, p\}$, on a
+$$
+[A \times B]_{ik} = \sum_{j=1}^n a_{ij} \times b_{jk}.
+$$
+Par conséquent les dérivées partielles du coefficient $(i,k)$ de $A \times B$ 
+par rapport à $a_{\alpha\beta}$ existent et sont données par
+$$
+\frac{\partial[A \times B]_{ik}}{\partial a_{\alpha \beta}}
+= 
+\left|
+\begin{array}{cl}
+b_{\beta k} & \mbox{si } i=\alpha, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et de façon similaire on a
+$$
+\frac{\partial[A \times B]_{ik}}{\partial b_{\beta \gamma}}
+= 
+\left|
+\begin{array}{cl}
+a_{i \beta} & \mbox{si } k=\gamma, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Ces expressions sont des fonctions continues du couple $(A, B)$.
+L'application produit de matrices est donc continûment différentiable.
+
+### Question 2 {#sol-im-2}
+Soit $A_0 \in \R^{n \times n}$ une matrice inversible, d'inverse $B_0$.
+L'application 
+$$
+F: (A, B) \in \R^{n \times n} \times \R^{n \times n} 
+\mapsto A \times B - I \in \R^{n\times n}
+$$ 
+est continûment différentiable et s'annule en $(A_0, B_0)$.
+Pour toute matrice $A$ de $\R^{n\times n}$, 
+l'application $B \to A \times B - I$ est affine, donc
+$$\partial_B F(A, B) \cdot H = F(A, B+H) - F(A, B) = A \times H.$$
+D'après le [théorème des fonctions implicites](#TFI), il existe
+des voisinages ouverts $U$ de $A_0$ dans $\R^{n\times n}$ et $V$
+de $B_0 = A_0^{-1}$ dans $\R^{n\times n}$ et une fonction 
+$\mathrm{inv}: U \to V$ continûment différentiable telle que
+$$
+A \times B  = I \mbox{ et } (A,B) \in U \times V 
+\; \Leftrightarrow \; 
+B = \mathrm{inv}(A).
+$$
+La seule solution de $A \times B = I$ en $B$ étant l'inverse de $A$ si elle
+existe, l'inverse de $A$ existe dans un voisinage de $A_0$
+-- la matrice inversible $A_0$ étant arbitraire, l'ensemble
+des matrices inversibles $A$ est donc ouvert -- et une fonction 
+continûment différentiable de $A$.
+
+De plus, la différentielle $\mathrm{inv}$ est donnée par
+$$
+\begin{split}
+d\mathrm{inv}(A) 
+&= - (\partial_B F(A, \mathrm{inv}(A)))^{-1} \cdot \partial_A F(A, \mathrm{inv}(A))) \\
+&= - (H \mapsto A^{-1} \times H) \cdot (H \mapsto H \times A^{-1}) \\
+&= (H \mapsto - A^{-1} \times H \times A^{-1}). 
+\end{split}
+$$
+ou sous une forme plus compacte 
+$$
+d A^{-1} = -A^{-1} \times dA \times A^{-1}.
+$$
+
+Méthode de Newton {#sol-mn}
+--------------------------------------------------------------------------------
+Si la fonction $f$ est deux fois continûment différentiable,
+les termes $f(x, y)$ et $\partial_y f(x,y)$ sont des fonctions
+différentiables de $y$ à $x$ fixé. Soit
+$$
+\phi_x(y) = y - (\partial_y f(x, y))^{-1} \cdot f(x, y)
+$$
+Comme le produit de matrices $(A, B) \mapsto A \times B$ est différentiable,
+avec $d(A \times B) = dA \times B + A \times dB$ et que l'inversion de matrice
+$A \mapsto A^{-1}$, avec $d(A^{-1}) = -A^{-1} \times dA \times A^{-1}$,
+le terme  $(\partial_y f(x, y))^{-1} \cdot f(x, y)$
+est différentiable par rapport à $y$ par la règle de dérivation en chaîne
+de différentielle partielle par rapport à $y$
+$$
+-(\partial_y (\partial_y f(x, y))^{-1} \cdot dy) \cdot f(x, y)
+-
+(\partial_y f(x, y))^{-1} \cdot (\partial_y f(x, y) \cdot dy).
+$$
+Le second terme de cette expression vaut $dy$ et le premier vaut
+$$
+(\partial_y f(x, y))^{-1} \cdot (\partial_{yy}^2 f(x, y) \cdot dy) \cdot (\partial_y f(x, y))^{-1}
+\cdot f(x,y).
+$$
+On obtient finalement
+$$
+d \phi_x(y)=
+(\partial_y f(x, y))^{-1} \cdot (\partial_{yy}^2 f(x, y) \cdot dy) \cdot (\partial_y f(x, y))^{-1} \cdot f(x,y).
+$$
+En particulier, si $f(x, y) = 0$, on a bien $d \phi_x(y) = 0$.
+
+
 
 TODO -- Projet Numérique -- Lignes de niveau
 ================================================================================

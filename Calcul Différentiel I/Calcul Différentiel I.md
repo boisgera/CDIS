@@ -255,7 +255,7 @@ sera représentée avec NumPy par un tableau bi-dimensionnel:
     >>> size(A)
     6
 
-### Mise à plat des matrices {.warning}
+### Mise à plat des matrices {.warning #flatten}
 Dans la notation $\mathbb{R}^{m \times n}$, 
 $\times$ est un symbole de séparation, purement syntactique: 
 $\mathbb{R}^{2 \times 3}$ désigne ainsi 
