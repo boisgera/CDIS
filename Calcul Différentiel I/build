@@ -74,6 +74,7 @@ def transform(doc):
     handle_level_4_sections(doc)
     # print_sections(doc)
     proofify(doc)
+    demote_proofs_questions_and_answers(doc)
     transform_image_format(doc)
     solve_toc_nesting(doc)
     anonymify(doc)
@@ -161,6 +162,12 @@ def handle_level_4_sections(doc):
     # TODO: find them, transform the header into an emphasized span,
     # insert it into the subsequent content if it makes sense.
 
+    # TODO. Grmph. Adding "." at the end doesn't always make sense.
+
+    # TODO: transfer the header id to the encloding div.section ?
+    # Arf. For now, transfered to the a span at the start of the section
+    # Mmmm ...
+
     found = []
     for elt, path in pandoc.iter(doc, path=True):
         if isinstance(elt, Header):
@@ -180,6 +187,30 @@ def handle_level_4_sections(doc):
         block = holder[0]
         inlines = block[0]
         inlines.insert(0, span)
+
+def demote_proofs_questions_and_answers(doc):
+    found = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Header):
+            header = elt
+            level, attr, inlines = header[:]
+            identifier, classes, kv_pairs = attr
+            if "proof" in classes or "question" in classes or "answer" in classes:
+                span = Span(attr, [Strong(inlines), RawInline("latex", r"\quad")])
+                holder, i = path[-1]
+                assert isinstance(holder, list)
+                found.append((holder, span))
+
+    for holder, span in found:
+        assert isinstance(holder[0], Header)
+        del holder[0]
+        if holder == [] or not isinstance(holder[0], (Plain, Para)):
+            holder.insert(0, Para([]))
+        block = holder[0]
+        inlines = block[0]
+        # see <https://tex.stackexchange.com/questions/48753/obtaining-the-default-section-spacing-into-the-titlespacing-parameters>
+        inlines.insert(0, RawInline("latex", r"\vspace{3.25ex plus 1ex minus .2ex}"))
+        inlines.insert(1, span)
 
 def proofify(doc):
     sections = []

@@ -274,7 +274,7 @@ x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0
 $$
 est une relation d'adhérence sur $X$.
 
-### Démonstration 
+### Démonstration {.proof}
 
  1. Le point $x$ adhère à l'ensemble vide si et seulement si 
     $d(x, \varnothing) = 0$, mais
@@ -1438,7 +1438,7 @@ Le but de cet exercice est de montrer l'existence d'un unique réel
 positif $x$ tel que $x^2 = x + 1$ -- le *nombre d'or* --
 et de produire une méthode itérative pour l'évaluer.
 
-### Question 1
+### Question 1 {.question}
 Montrer l'existence d'un unique point fixe associé à l'application
 $$
 x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
@@ -1447,13 +1447,13 @@ et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
 
 $\to$ [Solution](#sol-golden-ratio-1)
 
-### Question 2
+### Question 2 {.question}
 Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
 et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
 
 $\to$ [Solution](#sol-golden-ratio-2)
  
-### Question 3
+### Question 3 {.question}
 Etudier la fonction $f \circ f$ et en exploitant le résultat de 
 l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
 converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
@@ -1615,14 +1615,14 @@ a_{11} & 0 & \cdots & 0 \\
 \right]
 $$
 
-### Question 1 
+### Question 1 {.question}
 Montrer que deux vecteurs $x$ et $y$ de $\R^n$ vérifient 
 $A \cdot x = y$ si et seulement si 
 $$x = D^{-1} \cdot (D-A) \cdot x  + D^{-1} \cdot y.$$
 
 $\to$ [Solution](#sol-risl-1)
 
-### Question 2
+### Question 2 {.question}
 En déduire que $A$ est inversible et une méthode itérative de calcul de $A^{-1}$.
 
 $\to$ [Solution](#sol-risl-2)
@@ -1654,7 +1654,7 @@ $$
 $$
 assortie de la condition initiale $x(0) = x_0$. 
 
-### Question 1
+### Question 1 {.question}
 Montrer que la fonction $x: \left[0, +\infty\right[ \to \R^n$ est solution du 
 problème ci-dessus si et seulement si elle est continue et vérifie 
 pour tout $t \geq 0$ la relation
@@ -1664,7 +1664,7 @@ $$
 
 $\to$ [Solution](#sol-ed-1)
 
-### Question 2
+### Question 2 {.question}
 Soit $T > 0$; on note $E$ l'espace des fonctions continues de $[0, T]$ dans
 $\R^n$, muni de la norme
 $$
@@ -1680,7 +1680,7 @@ au problème initial peut-on en tirer ?
 
 $\to$ [Solution](#sol-ed-2)
 
-### Question 3
+### Question 3 {.question}
 Soit $\alpha > 0$. On note 
 $$
 \|x\|_{\infty}^{\alpha} = \sup_{t \in [0, T]} \|e^{-\alpha t}x(t)\|.
@@ -1691,7 +1691,7 @@ muni de cette norme, l'espace $E$ est complet.
 
 $\to$ [Solution](#sol-ed-3)
 
-### Question 4
+### Question 4 {.question}
 Reprendre la question 2 avec la norme $\|\cdot\|_{\infty}^{\alpha}$
 au lieu de $\|\cdot\|_{\infty}$ et conclure quant à l'existence
 d'une solution au problème initial.
@@ -1742,7 +1742,7 @@ Solutions aux Exercices
 Normes d'opérateurs {#sol-nln}
 --------------------------------------------------------------------------------
 
-### `norm(A)`
+### `norm(A)` {.answer}
 En l'absence de second argument, la fonction `norm` calcule 
 la norme de Frobenius de la matrice $A$, donnée comme
 $$
@@ -1762,7 +1762,7 @@ $$
 Or, on peut constater que la norme de Frobenius de la matrice associée
 à l'identité dans $\R^n$ est $\sqrt{n}$, qui diffère de $1$ si $n>1$.
 
-### `norm(A, 1)`
+### `norm(A, 1)` {.answer}
 L'expression `norm(A, 1)` calcule d'après la documentation de `norm` la
 grandeur
 $$
@@ -1797,7 +1797,7 @@ $$
 $$
 
 
-### `norm(A, 2)`
+### `norm(A, 2)` {.answer}
 La norme en question est définie par NumPy comme $\sigma_1$, 
 la plus grande valeur singulière de $A$.
 Les valeurs singulières $\sigma_1 \geq \sigma_2 \geq \sigma_n \geq 0$
@@ -1829,7 +1829,7 @@ $$
 \end{split}
 $$
 
-### `norm(A, inf)`
+### `norm(A, inf)` {.answer}
 On constate que l'expression donnée dans la documentation de `norm`, 
 à savoir
 $$
@@ -2142,7 +2142,7 @@ $A_k + C_k \to A + C$. La somme de Minkowski est donc continue.
  [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
 
-### Question 1 {#a-pk-1}
+### Question 1 {#a-pk-1 .answer}
 
 Soit $x$, $x'$ deux points de $X$. Pour tout $y$ dans $X$ on a:
 $$
@@ -2155,11 +2155,11 @@ par conséquent, si $f_x = f_{x'}$, on a en particulier
 $f_x(x') = f_{x'}(x')$, soit $d(x, x') - d(x', x') = d(x, x') = 0$, 
 c'est-à-dire $x = x'$.
 
-### TODO -- Question 2 {#a-pk-2}
+### TODO -- Question 2 {#a-pk-2 .answer}
 
 **TODO** Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
 
-### TODO -- Question 3 {#a-pk-3}
+### TODO -- Question 3 {#a-pk-3 .answer}
 
  **TODO** Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
 $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
@@ -2168,7 +2168,7 @@ $$
 \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
 $$
 
-### TODO -- Question 4 {#a-pk-4}
+### TODO -- Question 4 {#a-pk-4 .answer}
 
 **TODO** Montrer que $x \mapsto f_x$ est une isométrie, 
 c'est-à-dire que pour tout $x$ et
@@ -2180,7 +2180,7 @@ $$
 Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-golden-ratio-1}
+### Question 1 {#sol-golden-ratio-1 .answer}
 L'existence d'un unique point fixe associé à l'application
 $$
 f: x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
@@ -2219,7 +2219,7 @@ Il suffit alors de vérifier que $\bar{f}(0) \neq 0$ et $\bar{f}(+\infty) \neq
 +\infty$ pour conclure à l'existence d'un réel $\ell> 0$ tel que
 $\ell = f(\ell)$.
 
-### Question 2 {#sol-golden-ratio-2}
+### Question 2 {#sol-golden-ratio-2 .answer}
 Soit $x_k$ la suite de réels définie par $x_0 \in [3/2, 2]$
 et $x_{k+1} = f(x_k)$. La fonction $f$ est (strictement) croissante;
 de plus
@@ -2239,7 +2239,7 @@ L'existence et l'unicité du point fixe de $f$ sur $[3/2,2]$ ainsi que son
 obtention comme limite de la suite $x_k$ résultent du [théorème de point fixe
 de Banach](#T-TPFB).
  
-### Question 3 {#sol-golden-ratio-3}
+### Question 3 {#sol-golden-ratio-3 .answer}
 Compte tenu des résultats de l'exercice ["Point fixe"](#TPFB2),
 il suffit d'établir l'existence et l'unicité d'un point fixe de 
 $f\circ f$ pour obtenir l'existence et l'unicité d'un point fixe
@@ -2270,7 +2270,7 @@ bien pour tout $x_0 \in \left]0, +\infty\right[$.
  [Spirale d'Euler]
 --------------------------------------------------------------------------------
 
-### Question 1 {.answer #a-se-1}
+### Question 1 {.answer #a-se-1 .answer}
 
 Montrer que $(x(t), y(t))$ à une limite quand $t\to+\infty$ suppose de
 montrer qu'il existe un point $T \in \mathbb{R}^2$ tel que pour 
@@ -2410,7 +2410,7 @@ comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
 Résolution itérative de systèmes linéaires
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-risl-1}
+### Question 1 {#sol-risl-1 .answer}
 La relation $A \cdot x = y$ est vérifiée si et seulement si
 $D \cdot x + (A - D) \cdot x = y$, soit
 $$
@@ -2423,7 +2423,7 @@ $$
 x = D^{-1} \cdot (D-A) \cdot x + D^{-1} \cdot y.
 $$
 
-### Question 2 {#sol-risl-2}
+### Question 2 {#sol-risl-2 .answer}
 La question 1 établit que pour tout $y \in \R^n$, 
 le vecteur $x \in \R^n$ est solution de $A \cdot x = y$ si et seulement 
 si il est un point fixe de l'application 
@@ -2461,7 +2461,7 @@ $x_{k+1} = B \cdot x_k$ pour un $x_0 \in \R^n$ arbitraire.
 Equation Différentielle
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-ed-1}
+### Question 1 {#sol-ed-1 .answer}
 Si la fonction $x$ est continue et vérifie pour tout $t\geq0$
 l'équation intégrale
 $$
@@ -2479,7 +2479,7 @@ est continue comme composée de fonctions continues, $\dot{x}$ est continue,
 et par intégration entre $0$ et $t$ on retrouve l'équation intégrale 
 souhaitée.
 
-### Question 2 {#sol-ed-2}
+### Question 2 {#sol-ed-2 .answer}
 Par linéarité de l'intégrale et de l'opérateur $A$, pour tout couple
 $x$ et $y$ de fonctions continue de $[0, T]$ dans $\R^n$ et tout
 $t \in [0, T]$, on a
@@ -2506,7 +2506,7 @@ x(t) = x_0 + \int_0^t A \cdot x(s) \, ds
 $$
 pour tout $t \in [0, T]$.
 
-### Question 3 {#sol-ed-3}
+### Question 3 {#sol-ed-3 .answer}
 Le fait que $\|\cdot\|_{\infty}^{\alpha}$ soit une norme se déduit facilement
 du fait que $\|\cdot\|_{\infty}$ en soit une. On peut constater que pour 
 toute fonction $x$ continue sur $[0, T]$, on a
@@ -2519,7 +2519,7 @@ les deux espaces.
 L'espace vectoriel $E$ muni de la norme $\|\cdot\|_{\infty}$ étant complet, 
 c'est également le cas pour $E$ muni de la norme $\|\cdot\|^{\alpha}_{\infty}$.
 
-### Question 4 {#sol-ed-4}
+### Question 4 {#sol-ed-4 .answer}
 Pour tout couple
 $x$ et $y$ de fonctions continue de $[0, T]$ dans $\R^n$ et tout
 $t \in [0, T]$, on a
