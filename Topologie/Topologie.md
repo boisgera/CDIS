@@ -1169,7 +1169,7 @@ $$
 Exercices
 ================================================================================
 
-Normes d'opérateurs
+Normes d'opérateurs {#no}
 --------------------------------------------------------------------------------
 
 [La fonction `norm` du module `numpy.linalg`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html#numpy-linalg-norm) peut calculer des normes de vecteurs 
@@ -2408,8 +2408,56 @@ $(x_{kn + (n-1)})_k$. Ces $n$ suites convergent toutes vers $x$,
 donc la suite des $(x_k)_k$ converge également vers le point fixe $x$, 
 comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
 
-TODO -- Résolution itérative de systèmes linéaires
+Résolution itérative de systèmes linéaires
 --------------------------------------------------------------------------------
+
+### Question 1 {#sol-risl-1}
+La relation $A \cdot x = y$ est vérifiée si et seulement si
+$D \cdot x + (A - D) \cdot x = y$, soit
+$$
+D \cdot x = (D - A) \cdot x + y.
+$$
+L'opérateur $A$ étant diagonalement dominant, $a_{ii} > 0$ pour tout $i$; 
+l'opérateur $D$ est donc inversible. 
+La relation ci-dessus est donc équivalente à
+$$
+x = D^{-1} \cdot (D-A) \cdot x + D^{-1} \cdot y.
+$$
+
+### Question 2 {#sol-risl-2}
+La question 1 établit que pour tout $y \in \R^n$, 
+le vecteur $x \in \R^n$ est solution de $A \cdot x = y$ si et seulement 
+si il est un point fixe de l'application 
+$$
+\phi: x \in \R^n \mapsto D^{-1} \cdot (D-A) \cdot x + D^{-1} \cdot y \in \R^n.
+$$
+Cette application est affine: pour tout couple $x_1$ et $x_2$ dans $\R^n$, 
+$$
+\phi(x_1) - \phi(x_2) = D^{-1} \cdot (D-A) \cdot (x_1 - x_2).
+$$
+Notons qu'avec $B := D^{-1} \cdot (D-A)$ et $[B]_{ij} = b_{ij}$, 
+on a $b_{ii} = 0$ et si $i \neq j$, $b_{ij} = -a_{ij}/a_{ii}$.
+Par conséquent, pour tout $i$, 
+$\sum_{j=1}^n |b_{ij}| < 1$, soit
+$$
+\max_{i=1\dots n} \sum_{j=1}^n  |b_{ij}| < 1.
+$$
+On reconnait au membre de gauche de cette inégalité la norme d'opérateur 
+$\|B\|_{\infty}$ de l'exercice "[Normes d'opérateurs]" ;
+on a donc pour tout $x \in \R^n$,
+$$
+\|B \cdot x\|_{\infty} \leq \kappa \|x\|_{\infty}
+\; \mbox{ avec } \; \kappa:=\|B\|_{\infty} < 1
+$$ 
+(on peut aussi établir ce résultat directement).
+Si l'on munit $\R^n$ de la norme $\|\cdot\|_{\infty}$
+(l'espace est alors complet puisque $\|\cdot\|_{\infty}$ est équivalent à la norme
+euclidienne), l'application $\phi$ est contractante. 
+Par [le théorème du point fixe de Banach](#T-TPFB), 
+elle admet donc un unique point fixe $x$, qui est la solution de $A \cdot x = y$.
+L'opérateur $A$ est donc inversible et $A^{-1} \cdot y$ peut être calculé comme
+la limite de la suite
+$x_{k+1} = B \cdot x_k$ pour un $x_0 \in \R^n$ arbitraire.
 
 Equation Différentielle
 --------------------------------------------------------------------------------
