@@ -1344,7 +1344,36 @@ Solution des exercices
 TODO -- Inversion de matrice
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {#sol-im-1}
+### Question 1 {#sol-im-1}
+Pour tout $i \in \{1, \dots, m\}$ et $k \in \{1, \dots, p\}$, on a
+$$
+[A \times B]_{ik} = \sum_{j=1}^n a_{ij} \times b_{jk}.
+$$
+Par conséquent les dérivées partielles du coefficient $(i,k)$ de $A \times B$ 
+par rapport à $a_{\alpha\beta}$ existent et sont données par
+$$
+\frac{[A \times B]_{ik}}{\partial a_{\alpha \beta}}
+= 
+\left|
+\begin{array}{cl}
+b_{\beta k} & \mbox{si } i=\alpha, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et de façon similaire on a
+$$
+\frac{[A \times B]_{ik}}{\partial b_{\beta \gamma}}
+= 
+\left|
+\begin{array}{cl}
+a_{i \beta} & \mbox{si } k=\gamma, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Ces expressions sont des fonctions continues du couple $(A, B)$.
+L'application produit de matrices est donc continûment différentiable.
 
 ### TODO -- Question 2 {#sol-im-2}
 
