@@ -342,14 +342,21 @@ l'axiome de séparation pour les distances.
 
 
 ### Produit d'espaces vectoriels normés
-On appelle produit des espaces vectoriels $E_1$, $\dots$, $E_n$, muni des
-normes $\|\cdot\|_1$, $\dots$, $\|\cdot\|_n$ le produit cartésien
+On appelle *produit des espaces vectoriels $E_1$, $\dots$, $E_n$,* 
+munis des normes $\|\cdot\|_1$, $\dots$, $\|\cdot\|_n$ le produit cartésien
 $E_1 \times \dots \times E_n$, muni de la norme
 $$
 \|(x_1,\dots, x_n)\| = \sqrt{\|x_1\|_1^2 + \dots + \|x_n\|^2_n}.
 $$
 
-### TODO -- Produit d'espaces métriques
+### Produit d'espaces métriques
+On appelle *produit des espaces métriques $X_1$, $\dots$, $X_n$,* 
+munis des distances $d_1$, $\dots$, $d_n$ le produit cartésien
+$X_1 \times \dots \times X_n$, muni de la distance
+$$
+d((x_1,\dots, x_n), (y_1,\dots, y_n)) 
+= \sqrt{d_1(x_1, y_1)^2 + \dots + d(x_n, y_n)_n^2}.
+$$
 
 <!--
 
