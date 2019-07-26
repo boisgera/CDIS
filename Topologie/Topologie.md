@@ -1594,9 +1594,8 @@ $$
 
   2. Application angle sur l'hélice et $\arctan$ ...
 
-TODO -- Résolution itérative de systèmes linéaires
+Résolution itérative de systèmes linéaires
 --------------------------------------------------------------------------------
-
 Un opérateur linéaire $A: \R^n \to \R^n$ est *diagonalement dominant* 
 si la matrice $[a_{ij}]_{ij} \in \R^{n\times n}$ associée vérifie
 pour tout $i \in \{1,\dots, n\}$,
