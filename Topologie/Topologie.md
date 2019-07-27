@@ -1248,7 +1248,7 @@ $\overline{\mathbb{R}} = \mathbb{R}$.
 Pouvez-vous donner une interprétation géométrique simple à la grandeur
 calculée par la fonction $f$ ?
 
-![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex)
+![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex) \
 
 ### Question 2 {.question #dra-2}
 Montrer que $f$ est une bijection.
@@ -1293,15 +1293,11 @@ Expliquer l'expression "fermé dans $V$" dans la définition ci-dessus;
 est-ce que cela fait une différence si l'on remplace cette expression
 par "fermé" ? 
 
-$\to$ [Solution](#a-lf-0)
-
 ### Question 1 {.question #lf-1}
 Montrer que dans $\R$, l'intervalle $\left[0, 1\right[$ est localement 
 fermé et que l'image de toute suite convergente est localement fermée. 
 Donner un exemple de sous-ensemble de $\mathbb{R}$ qui ne soit pas 
 localement fermé.
-
-$\to$ [Solution](#a-lf-1)
 
 ### Question 2 {.question #lf-2} 
 Montrer que tout ensemble fermé est localement fermé, mais aussi que tout
@@ -1309,13 +1305,9 @@ ensemble ouvert est localement fermé.
 Montrer que l'intersection de deux ensembles localement fermés est 
 localement fermé.
 
-$\to$ [Solution](#a-lf-2)
-
 ### Question 3 {.question #lf-3}
 Montrer qu'un ensemble est localement fermé si et seulement s'il est
 l'intersection d'un ensemble fermé et d'un ensemble ouvert.
-
-$\to$ [Solution](#a-lf-3)
 
 TODO -- Comparaison des normes
 --------------------------------------------------------------------------------
@@ -1331,14 +1323,11 @@ on souhaite évaluer à quel point les deux ensembles diffèrent
 être éloignés de l'ensemble $B$ et réciproquement.
 
 ### Question 1 {.question #dh-1}
-
 Est-ce que la distance entre ensembles classique
 $$
 d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a\in A}\inf_{b \in B} d(a, b)
 $$
 fait l'affaire ?
-
-$\to$ [Solution](#a-dh-1)
 
 ### {.definition}
 
@@ -1349,22 +1338,15 @@ On définit la grandeur
 appelée *distance de Hausdorff* entre $A$ et $B$.
 
 ### Question 2 {.question #dh-2}
-
 Calculer $d[A, B]$ lorsque $A = [-1,1] \times [-1, 1]$ et
 $B = [0, 2] \times [0,2]$.
 
 ![Ensembles $A = [-1,1] \times [-1, 1]$ et $B = [0, 2] \times [0,2]$.](images/hausdorff.tex){#A-et-B}
 
-$\to$ [Solution](#a-dh-2)
-
 ### Question 3 {.question #dh-3}
-
 Cette terminologie de "distance" de Hausdorff est-elle légitime ?
 
-$\to$ [Solution](#a-dh-3)
-
 ### Question 4 {.question #dh-4}
-
 La somme de Minkowksi de deux ensembles $A$ et $B$ est définie comme
 $$
 A + B = \{a + b \, | \, a \in A, \, b \in B \}.
@@ -1372,8 +1354,6 @@ $$
 Vérifier que la somme de Minkowski de deux ensembles compacts non vides de 
 $\R^n$ est un ensemble compact non vide de $\R^n$.
 Cette opération est-elle continue pour la distance de Hausdorff ?
-
-$\to$ [Solution](#a-dh-4)
 
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
@@ -1390,20 +1370,12 @@ f_x(y) = d(x, y) - d(x_0, y).
 $$
 
 ### Question 1 {#pk-1 .question}
-
 Montrer que la fonction $x \mapsto f_x$ est injective.
 
-$\to$ [Solution](#a-pk-1)
-
-
 ### Question 2 {#pk-2 .question}
-
 Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
 
-$\to$ [Solution](#a-pk-2)
-
 ### Question 3 {#pk-3 .question}
-
 Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
 $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
 $\| \cdot \|_{\infty}$ définie par
@@ -1411,17 +1383,12 @@ $$
 \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
 $$
 
-$\to$ [Solution](#a-pk-3)
-
 ### Question 4 {#pk-4 .question}
-
 Montrer que $x \mapsto f_x$ est une isométrie, 
 c'est-à-dire que pour tout $x$ et $y$ dans $X$, on a 
 $$
 d(x, y) = \|f_x - f_y\|_{\infty}.
 $$
-
-$\to$ [Solution](#a-pk-4)
 
 Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
@@ -1430,29 +1397,22 @@ Le but de cet exercice est de montrer l'existence d'un unique réel
 positif $x$ tel que $x^2 = x + 1$ -- le *nombre d'or* --
 et de produire une méthode itérative pour l'évaluer.
 
-### Question 1 {.question}
+### Question 1 {.question #golden-ratio-1}
 Montrer l'existence d'un unique point fixe associé à l'application
 $$
 x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
 $$
 et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
 
-$\to$ [Solution](#sol-golden-ratio-1)
-
-### Question 2 {.question}
+### Question 2 {.question #golden-ratio-2}
 Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
 et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
-
-$\to$ [Solution](#sol-golden-ratio-2)
  
-### Question 3 {.question}
+### Question 3 {.question #golden-ratio-3}
 Etudier la fonction $f \circ f$ et en exploitant le résultat de 
 l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
 converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
 positive.
-
-$\to$ [Solution](#sol-golden-ratio-3)
-
 
 Spirale d'Euler 
 --------------------------------------------------------------------------------
@@ -1463,14 +1423,12 @@ $$
 x(t) = \int_0^t \cos s^2 \, ds \, \mbox{ et } \, \, y(t) = \int_0^t \sin s^2 \, ds
 $$
 
-
 ![Spirale d'Euler ($0 \leq t \leq 5$)](images/euler.py)
 
 Nous souhaitons établir que cette spirale à un point limite quand 
 $t \to +\infty$[^euler].
 
 ### Question 1 {.question #se-1}
-
 Montrer que si pour toute suite de valeurs $t_k$ tendant vers l'infini, 
 la suite de points de coordonnées $(x_k, y_k) := (x(t_k), y(t_k))$ 
 à une limite dans le plan
@@ -1478,11 +1436,7 @@ la suite de points de coordonnées $(x_k, y_k) := (x(t_k), y(t_k))$
 alors le point de coordonnées $(x(t), y(t))$ a une limite dans le plan 
 quand $t$ tend vers $+\infty$.
 
-$\to$ [Solution](#a-se-1)
-
-
 ### Question 2 {.question #se-2}
-
 Montrer que pour tout couple $(a,b)$ de réels strictement positifs,
 les grandeurs
 $$
@@ -1498,14 +1452,8 @@ $$
 |J(a, b)| \leq \frac{\alpha}{\sqrt{\min(a, b)}}.
 $$
 
-$\to$ [Solution](#a-se-2)
-
 ### Question 3 {.question #se-3}
-
 Conclure.
-
-$\to$ [Solution](#a-se-3)
-
 
 [^euler]: cette courbe a été introduite par Euler en 1744. 
 Il lui apparait alors manifeste que la courbe est une spirale qui s'enroule 
@@ -1529,25 +1477,16 @@ On souhaite montrer que sous ces hypothèses
 $f$ admet encore un unique point fixe.
 
 ### Question 1 {.question #pf-1}
-
 Montrer que tout point fixe éventuel de $f$ est également 
 un point fixe de $f^n$.
 
-$\to$ [Solution](#a-pf-1)
-
 ### Question 2 {.question #pf-2}
-
 Montrer que $f^n$ admet un unique point fixe et qu'il est également
 un point fixe de $f$.
 
-$\to$ [Solution](#a-pf-2)
-
 ### Question 3 {.question #pf-3}
-
 Montrer que le procédé habituel pour construire un point 
 fixe de $f$ est toujours valable quand $f^n$ est contractante.
-
-$\to$ [Solution](#a-pf-3)
 
 TODO -- Normes d'opérateurs
 --------------------------------------------------------------------------------
@@ -1607,18 +1546,13 @@ a_{11} & 0 & \cdots & 0 \\
 \right]
 $$
 
-### Question 1 {.question}
+### Question 1 {.question #risl-1}
 Montrer que deux vecteurs $x$ et $y$ de $\R^n$ vérifient 
 $A \cdot x = y$ si et seulement si 
 $$x = D^{-1} \cdot (D-A) \cdot x  + D^{-1} \cdot y.$$
 
-$\to$ [Solution](#sol-risl-1)
-
-### Question 2 {.question}
+### Question 2 {.question #risl-2}
 En déduire que $A$ est inversible et une méthode itérative de calcul de $A^{-1}$.
-
-$\to$ [Solution](#sol-risl-2)
-
 
 <!--
 Préparer et résoudre numériquement des systèmes de la forme $A x = b$ dans
@@ -1646,7 +1580,7 @@ $$
 $$
 assortie de la condition initiale $x(0) = x_0$. 
 
-### Question 1 {.question}
+### Question 1 {.question #ed-1}
 Montrer que la fonction $x: \left[0, +\infty\right[ \to \R^n$ est solution du 
 problème ci-dessus si et seulement si elle est continue et vérifie 
 pour tout $t \geq 0$ la relation
@@ -1654,9 +1588,7 @@ $$
 x(t) = x_0 + \int_0^t A \cdot x(s) \, ds.
 $$
 
-$\to$ [Solution](#sol-ed-1)
-
-### Question 2 {.question}
+### Question 2 {.question #ed-2}
 Soit $T > 0$; on note $E$ l'espace des fonctions continues de $[0, T]$ dans
 $\R^n$, muni de la norme
 $$
@@ -1670,9 +1602,7 @@ $$
 est-elle contractante ? Quelle conclusion (partielle) quand 
 au problème initial peut-on en tirer ?
 
-$\to$ [Solution](#sol-ed-2)
-
-### Question 3 {.question}
+### Question 3 {.question #ed-3}
 Soit $\alpha > 0$. On note 
 $$
 \|x\|_{\infty}^{\alpha} = \sup_{t \in [0, T]} \|e^{-\alpha t}x(t)\|.
@@ -1681,15 +1611,10 @@ Montrer que $\|\cdot\|_{\infty}^{\alpha}$ est une norme sur l'espace
 des fonctions continues de $[0, T]$ dans $\R^n$ une norme et que 
 muni de cette norme, l'espace $E$ est complet.
 
-$\to$ [Solution](#sol-ed-3)
-
-### Question 4 {.question}
+### Question 4 {.question #ed-4}
 Reprendre la question 2 avec la norme $\|\cdot\|_{\infty}^{\alpha}$
 au lieu de $\|\cdot\|_{\infty}$ et conclure quant à l'existence
 d'une solution au problème initial.
-
-$\to$ [Solution](#sol-ed-4)
-
 
 TODO -- "Localement"
 --------------------------------------------------------------------------------
@@ -1866,8 +1791,7 @@ et donc $\|\cdot\|_{\infty\infty} = \|\cdot\|_{\infty}$.
  [Localement fermé]
 --------------------------------------------------------------------------------
 
-### Question 0 {.answer #a-lf-0}
-
+### Question 0 {.answer #answer-lf-0}
 Un sous-ensemble $B$ d'un ensemble $A$ de points d'un espace topologique $X$
 est "fermé dans $A$" s'il est fermé **comme ensemble de points de l'espace
 topologique $A$**, muni de la topologie (ou le cas échéant la métrique)
@@ -1881,7 +1805,7 @@ quand $k \to +\infty$. Par contre, toute suite de $B$ convergeant
 dans $A$ converge dans $B$ car les deux ensembles sont identiques.
 Par conséquent, $B$ est fermé dans $A$.
 
-### Question 1 {.answer #a-lf-1}
+### Question 1 {.answer #answer-lf-1}
 
 Soit $x \in A:=\left[0, 1\right[$; 
 si $x>0$, on peut prendre $V=\left]x/2, 1\right[$.
@@ -1911,7 +1835,7 @@ Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
 donc $\mathbb{Q}$ n'est pas localement fermé.
 
 
-### Question 2 {.answer #a-lf-2}
+### Question 2 {.answer #answer-lf-2}
 
 Si $A$ est fermé, on peut prendre $V=X$ qui est un voisinage ouvert 
 de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
@@ -1943,7 +1867,7 @@ L'ensemble $A$, qui est fermé dans $U$, est donc fermé dans $U \cap V$
 et donc sa limite appartient à $A$); de la même façon, $B$ est fermé
 dans $U \cap V$. Par conséquent, $A \cap B$ est fermé dans $U \cap V$.
 
-### Question 3 {.answer #a-lf-3}
+### Question 3 {.answer #answer-lf-3}
 
 Si un ensemble est l'intersection d'un ouvert et d'un fermé dans $X$,
 il est l'intersection de deux ensembles localement fermés, donc il
@@ -1966,7 +1890,7 @@ que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 TODO --  [Droite réelle achevée]
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {.answer #answer\-dra-1}
+### TODO -- Question 1 {.answer #answer-dra-1}
 
 ### TODO -- Question 2 {.answer #answer-dra-2}
 
@@ -1984,13 +1908,13 @@ TODO --  [Droite réelle achevée]
  [Distance entre ensembles]
 --------------------------------------------------------------------------------
 
-### Question 1 {.answer #a-dh-1}
+### Question 1 {.answer #answer-dh-1}
 
 Non, la distance usuelle $d(A,B)$ en convient pas.
 En effet, cette distance est nulle dès que l'intersection de $A$ et $B$
 est non vide, même si des points de $A$ sont très éloignés de $B$.
 
-### Question 2 {.answer #a-dh-2}
+### Question 2 {.answer #answer-dh-2}
 
 Lorsque $A = [-1,1] \times [-1, 1]$ et $B = [0,2] \times [0,2]$, 
 il est possible de calculer $d(a, B)$ pour tout $a \in A$.
@@ -2034,7 +1958,7 @@ $$
 $$
 La distance de Hausdorff entre $A$ et $B$ vaut donc $\sqrt{2}$.
 
-### Question 3 {.answer #a-dh-3}
+### Question 3 {.answer #answer-dh-3}
 
 Vérifions que la "distance" de Hausdorff est effectivement une distance
 sur l'espace des sous-ensembles compacts de $R^n$.
@@ -2084,7 +2008,7 @@ sur l'espace des sous-ensembles compacts de $R^n$.
     $$
     et donc $d[A, C] \leq d[A, B] + d[B, C]$.
     
-### Question 4 {.answer #a-dh-4}
+### Question 4 {.answer #answer-dh-4}
 
 Si $A$ et $B$ sont des ensembles non vides de $\R^n$, $A+B$ est clairement
 non vide. Si de plus $A$ et $B$ sont compacts, et que l'on considère une
@@ -2134,7 +2058,7 @@ $A_k + C_k \to A + C$. La somme de Minkowski est donc continue.
  [Plongement de Kuratowski]
 --------------------------------------------------------------------------------
 
-### Question 1 {#a-pk-1 .answer}
+### Question 1 {#answer-pk-1 .answer}
 
 Soit $x$, $x'$ deux points de $X$. Pour tout $y$ dans $X$ on a:
 $$
@@ -2147,11 +2071,11 @@ par conséquent, si $f_x = f_{x'}$, on a en particulier
 $f_x(x') = f_{x'}(x')$, soit $d(x, x') - d(x', x') = d(x, x') = 0$, 
 c'est-à-dire $x = x'$.
 
-### TODO -- Question 2 {#a-pk-2 .answer}
+### TODO -- Question 2 {#answer-pk-2 .answer}
 
 **TODO** Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
 
-### TODO -- Question 3 {#a-pk-3 .answer}
+### TODO -- Question 3 {#answer-pk-3 .answer}
 
  **TODO** Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
 $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
@@ -2160,7 +2084,7 @@ $$
 \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
 $$
 
-### TODO -- Question 4 {#a-pk-4 .answer}
+### TODO -- Question 4 {#answer-pk-4 .answer}
 
 **TODO** Montrer que $x \mapsto f_x$ est une isométrie, 
 c'est-à-dire que pour tout $x$ et
@@ -2172,7 +2096,7 @@ $$
 Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-golden-ratio-1 .answer}
+### Question 1 {#answer-golden-ratio-1 .answer}
 L'existence d'un unique point fixe associé à l'application
 $$
 f: x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
@@ -2211,7 +2135,7 @@ Il suffit alors de vérifier que $\bar{f}(0) \neq 0$ et $\bar{f}(+\infty) \neq
 +\infty$ pour conclure à l'existence d'un réel $\ell> 0$ tel que
 $\ell = f(\ell)$.
 
-### Question 2 {#sol-golden-ratio-2 .answer}
+### Question 2 {#answer-golden-ratio-2 .answer}
 Soit $x_k$ la suite de réels définie par $x_0 \in [3/2, 2]$
 et $x_{k+1} = f(x_k)$. La fonction $f$ est (strictement) croissante;
 de plus
@@ -2231,7 +2155,7 @@ L'existence et l'unicité du point fixe de $f$ sur $[3/2,2]$ ainsi que son
 obtention comme limite de la suite $x_k$ résultent du [théorème de point fixe
 de Banach](#T-TPFB).
  
-### Question 3 {#sol-golden-ratio-3 .answer}
+### Question 3 {#answer-golden-ratio-3 .answer}
 Compte tenu des résultats de l'exercice ["Point fixe"](#TPFB2),
 il suffit d'établir l'existence et l'unicité d'un point fixe de 
 $f\circ f$ pour obtenir l'existence et l'unicité d'un point fixe
@@ -2262,7 +2186,7 @@ bien pour tout $x_0 \in \left]0, +\infty\right[$.
  [Spirale d'Euler]
 --------------------------------------------------------------------------------
 
-### Question 1 {.answer #a-se-1 .answer}
+### Question 1 {.answer #answer-se-1}
 
 Montrer que $(x(t), y(t))$ à une limite quand $t\to+\infty$ suppose de
 montrer qu'il existe un point $T \in \mathbb{R}^2$ tel que pour 
@@ -2281,7 +2205,7 @@ une limite $T$ quand $k \to +\infty$; toute sous-suite étant convergente
 et de même limite, on a nécessairement $T = S = R$, ce qui prouve le
 résultat cherché.
 
-### Question 2 {.answer #a-se-2}
+### Question 2 {.answer #answer-se-2}
 
 Nous traitons le cas de $I(a, b)$, celui de $J(a, b)$ étant similaire.
 Pour tout $a$ et $b$ strictement positifs,
@@ -2307,7 +2231,7 @@ $$
 \frac{5}{2 \sqrt{a}} + \frac{5}{2 \sqrt{b}} \leq \frac{5}{\sqrt{\min(a, b)}}.
 $$
 
-### Question 3 {.answer #a-se-3}
+### Question 3 {.answer #answer-se-3}
 
 Pour établir l'existence d'un point limite à la spirale d'Euler,
 compte tenu du résultat de la question 1, il nous suffit de montrer
@@ -2355,7 +2279,7 @@ La suite des $(x_k, y_k)$ est donc de Cauchy.
  [Point fixe]
 --------------------------------------------------------------------------------
 
-### Question 1 {.answer #a-pf-1}
+### Question 1 {.answer #answer-pf-1}
 
 Si $x$ est un point fixe de $f$, $f(x) = x$, par conséquent
 $$
@@ -2368,7 +2292,7 @@ $$
 etc. Par récurrence, il est clair que l'on peut établir que pour tout
 $n \geq 1$, on a $f^n(x) = x$: $x$ est un point fixe de $f^n$.
 
-### Question 2 {.answer #a-pf-2}
+### Question 2 {.answer #answer-pf-2}
 
 La fonction itérée $f^n$ satisfait les hypothèses du 
 [théorème du point fixe de Banach](#T-TPFB), par conséquent elle
@@ -2381,7 +2305,7 @@ Par conséquent, $f(x)$ est un point fixe de $f^n$.
 C'est donc l'unique point fixe $x$ de $f^n$; on a donc $f(x) = x$,
 c'est-à-dire que $x$ est un point fixe de $f$. 
 
-### Question 3 {.answer #a-pf-3}
+### Question 3 {.answer #answer-pf-3}
 
 Le "procédé habituel pour construire un point fixe de $f$" 
 consiste à prendre un $x_0 \in E$ quelconque et à construire 
@@ -2402,7 +2326,7 @@ comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
 Résolution itérative de systèmes linéaires
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-risl-1 .answer}
+### Question 1 {#answer-risl-1 .answer}
 La relation $A \cdot x = y$ est vérifiée si et seulement si
 $D \cdot x + (A - D) \cdot x = y$, soit
 $$
@@ -2415,7 +2339,7 @@ $$
 x = D^{-1} \cdot (D-A) \cdot x + D^{-1} \cdot y.
 $$
 
-### Question 2 {#sol-risl-2 .answer}
+### Question 2 {#answer-risl-2 .answer}
 La question 1 établit que pour tout $y \in \R^n$, 
 le vecteur $x \in \R^n$ est solution de $A \cdot x = y$ si et seulement 
 si il est un point fixe de l'application 
@@ -2453,7 +2377,7 @@ $x_{k+1} = B \cdot x_k$ pour un $x_0 \in \R^n$ arbitraire.
 Equation Différentielle
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-ed-1 .answer}
+### Question 1 {#answer-ed-1 .answer}
 Si la fonction $x$ est continue et vérifie pour tout $t\geq0$
 l'équation intégrale
 $$
@@ -2471,7 +2395,7 @@ est continue comme composée de fonctions continues, $\dot{x}$ est continue,
 et par intégration entre $0$ et $t$ on retrouve l'équation intégrale 
 souhaitée.
 
-### Question 2 {#sol-ed-2 .answer}
+### Question 2 {#answer-ed-2 .answer}
 Par linéarité de l'intégrale et de l'opérateur $A$, pour tout couple
 $x$ et $y$ de fonctions continue de $[0, T]$ dans $\R^n$ et tout
 $t \in [0, T]$, on a
@@ -2498,7 +2422,7 @@ x(t) = x_0 + \int_0^t A \cdot x(s) \, ds
 $$
 pour tout $t \in [0, T]$.
 
-### Question 3 {#sol-ed-3 .answer}
+### Question 3 {#answer-ed-3 .answer}
 Le fait que $\|\cdot\|_{\infty}^{\alpha}$ soit une norme se déduit facilement
 du fait que $\|\cdot\|_{\infty}$ en soit une. On peut constater que pour 
 toute fonction $x$ continue sur $[0, T]$, on a
@@ -2511,7 +2435,7 @@ les deux espaces.
 L'espace vectoriel $E$ muni de la norme $\|\cdot\|_{\infty}$ étant complet, 
 c'est également le cas pour $E$ muni de la norme $\|\cdot\|^{\alpha}_{\infty}$.
 
-### Question 4 {#sol-ed-4 .answer}
+### Question 4 {#answer-ed-4 .answer}
 Pour tout couple
 $x$ et $y$ de fonctions continue de $[0, T]$ dans $\R^n$ et tout
 $t \in [0, T]$, on a
