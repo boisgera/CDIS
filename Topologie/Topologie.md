@@ -1248,7 +1248,7 @@ $\overline{\mathbb{R}} = \mathbb{R}$.
 Pouvez-vous donner une interprétation géométrique simple à la grandeur
 calculée par la fonction $f$ ?
 
-![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex) \
+![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex)
 
 ### Question 2 {.question #dra-2}
 Montrer que $f$ est une bijection.
