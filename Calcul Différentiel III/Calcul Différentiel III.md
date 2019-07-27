@@ -62,7 +62,9 @@ $$
 
 
 ### TODO
- $F$ **et $G$ complets **?
+ $F$ **et $G$ complets **? Ah ouais, conséquence de $\partial_2 f$
+homéomorphisme linéaire. Mmmm au passage $u: E \to F$ linéaire cont
+est un homéomorphisme ssi il est bijectif (théo de Banach)
 
 ### Théorème des Fonctions Implicites {.theorem #TFI-2}
 Soient $E$, $F$ et $G$ trois espaces vectoriels normés, $F$ étant complet, 
