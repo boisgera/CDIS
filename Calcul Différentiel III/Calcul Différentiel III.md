@@ -45,6 +45,47 @@ ou typiquement, définition de la trace sur un bord régulier ...
     tout ça revisité rapidement en se basant sur la familiarité
     avec la dim finie, déjà vue).
 
+--------------------------------------------------------------------------------
+
+### Différentielle de Fréchet {.definition}
+Soient $E$ et $F$ deux espaces vectoriels normés et $U$ un ouvert de $E$.
+La fonction $f: U \to F$ est *différentiable en $x \in U$* s'il existe
+une application linéaire continue, notée $df(x)$ et appellée 
+*différentielle de $f$ en $x$*, telle que
+$$
+f(x+h) = f(x) + df(x) \cdot h + o(\|h\|_E),
+$$
+c'est-à-dire si 
+$$
+\lim_{h \to O} \frac{f(x+h) - f(x) - df(x) \cdot h}{\|h\|_E} = 0.
+$$
+
+
+### TODO
+ $F$ **et $G$ complets **?
+
+### Théorème des Fonctions Implicites {.theorem #TFI-2}
+Soient $E$, $F$ et $G$ trois espaces vectoriels normés, $F$ étant complet, 
+et $f$ une fonction définie sur un ouvert $W$ de $E \times F$
+$$
+f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
+$$
+qui soit continûment différentiable et telle que la différentielle partielle
+$\partial_y f$ soit inversible en tout point de $W$.
+Si le point $(x_0, y_0)$ de $W$ vérifie $f(x_0, y_0)= 0$,
+alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $y_0$ tels que
+$U \times V \subset W$ et
+une fonction implicite $\psi: U \to F$, continûment différentiable, 
+telle que pour tous $x \in  U$ et $y \in V$,
+$$
+f(x, y) = 0
+\; \Leftrightarrow \; 
+y = \psi(x).
+$$
+De plus, la différentielle de $\psi$ est donnée pour tout $x \in U$ par
+$$
+d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
+$$
 
 Exercices
 ================================================================================
