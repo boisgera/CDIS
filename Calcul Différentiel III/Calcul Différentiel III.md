@@ -57,7 +57,7 @@ f(x+h) = f(x) + df(x) \cdot h + o(\|h\|_E),
 $$
 c'est-à-dire si 
 $$
-\lim_{h \to O} \frac{f(x+h) - f(x) - df(x) \cdot h}{\|h\|_E} = 0.
+\lim_{h \to 0} \frac{\|f(x+h) - f(x) - df(x) \cdot h\|_F}{\|h\|_E} = 0.
 $$
 
 
