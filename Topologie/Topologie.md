@@ -1182,7 +1182,7 @@ $$
 Exercices
 ================================================================================
 
-Normes d'opérateurs {#no}
+Normes d'opérateurs {#no .question}
 --------------------------------------------------------------------------------
 
 [La fonction `norm` du module `numpy.linalg`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html#numpy-linalg-norm) peut calculer des normes de vecteurs 
@@ -1207,8 +1207,6 @@ c'est-à-dire telle que
 $$
 \|A\| = \sup_{x \neq 0} \frac{\|A\cdot x\|_?}{\|x\|_?}.
 $$
-
-$\to$ [Solution](#sol-nln)
 
 Droite réelle achevée {#dra}
 --------------------------------------------------------------------------------
@@ -1247,48 +1245,31 @@ de $\mathbb{R}$ dans lui-même, une autre interprétation selon laquelle
 $\overline{\mathbb{R}} = \mathbb{R}$. 
 
 ### Question 1 {.question #dra-1}
-
 Pouvez-vous donner une interprétation géométrique simple à la grandeur
 calculée par la fonction $f$ ?
 
 ![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex)
 
-$\to$ [Solution](#a-dra-1)
-
 ### Question 2 {.question #dra-2}
-
 Montrer que $f$ est une bijection.
 
-$\to$ [Solution](#a-dra-2)
-
 ### Question 3 {.question #dra-3}
-
 En déduire qu'il existe une et une seule fonction distance sur
 $\mathbb{R} \cup \{-\infty, +\infty\}$ qui fasse de $f$ une isométrie;
 on note $d^{\pm \infty}$ cette distance. 
-
-$\to$ [Solution](#a-dra-3)
 
 ### Question 4 {.question #dra-4}
 Calculer $d^{\pm \infty}(0, +\infty)$, $d^{\pm \infty}(-\infty, +\infty)$, 
 $d^{\pm \infty}(-1, 1)$.
 
-$\to$ [Solution](#a-dra-4)
-
 ### Question 5 {.question #dra-5}
-
 Montrer que l'injection canonique
 $x \in \mathbb{R} \mapsto x \in \mathbb{R} \cup \{-\infty, +\infty\}$
 est une fonction continue.
 
-$\to$ [Solution](#a-dra-5)
-
 ### Question 6 {.question #dra-6}
-
 Yoda a dit "deux façons d'interpréter $x_k \to +\infty$ désormais il y a".
 Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
-
-$\to$ [Solution](#a-dra-6)
 
 ### Question 7 {.question #dra-7}
 Suggérer une variante de la construction précédente pour
@@ -1297,8 +1278,6 @@ ni $+$, ni $-$) d'une métrique $d^{\infty}$
 telle que $d^{\infty}(x_k, \infty) \to 0$ si et seulement si
 $|x_k| \to +\infty$.
     
- $\to$ [Solution](#a-dra-7)
-   
 Localement fermé
 --------------------------------------------------------------------------------
 
@@ -1752,7 +1731,7 @@ sont compacts.
 Solutions aux Exercices
 ================================================================================
 
-Normes d'opérateurs {#sol-nln}
+Normes d'opérateurs {#answer-no}
 --------------------------------------------------------------------------------
 
 ### `norm(A)` {.answer}
@@ -1987,19 +1966,19 @@ que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 TODO --  [Droite réelle achevée]
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {.answer #a-dra-1}
+### TODO -- Question 1 {.answer #answer\-dra-1}
 
-### TODO -- Question 2 {.answer #a-dra-2}
+### TODO -- Question 2 {.answer #answer-dra-2}
 
-### TODO -- Question 3 {.answer #a-dra-3}
+### TODO -- Question 3 {.answer #answer-dra-3}
 
-### TODO -- Question 4 {.answer #a-dra-4}
+### TODO -- Question 4 {.answer #answer-dra-4}
 
-### TODO -- Question 5 {.answer #a-dra-5}
+### TODO -- Question 5 {.answer #answer-dra-5}
 
-### TODO -- Question 6 {.answer #a-dra-6}
+### TODO -- Question 6 {.answer #answer-dra-6}
 
-### TODO -- Question 7 {.answer #a-dra-7}
+### TODO -- Question 7 {.answer #answer-dra-7}
 
  
  [Distance entre ensembles]

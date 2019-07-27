@@ -26,3 +26,28 @@ $$
 ### Autre section
 
 Gnié
+
+# Section 1
+
+dskjdksjdl
+
+## Section 2
+
+skjdslkdj
+
+### Section 3
+
+ksdlsjds
+
+#### Section 4
+
+kdlsjdlksj
+
+\newpage 
+
+### Question {.question #stoo}
+
+Oh une image !
+
+![Un exemple de dessin TikZ](images/tikz-picture.tex)
+

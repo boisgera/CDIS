@@ -71,16 +71,24 @@ def transform(doc):
     #         holder[i] = Header(3, ("", [], []), [])
 
     divify(doc)
-    handle_level_4_sections(doc)
-    # print_sections(doc)
     proofify(doc)
-    demote_proofs_questions_and_answers(doc)
+    add_font_awesome(doc)
+    add_link_to_answers(doc)
+
+    demote_proofs_questions_and_answers(doc) # -> level 4
+    make_level_4_section_headings_inline(doc)
+
+    # make_level_4_section_headings_inline(doc) # was: 
+    # fucks up the index; the TOC is still good on print but the index is wrong 
+    # and the TOC links are fucked-up. Now it's not even the runin config:
+    # the use of titlesec package is enough to do that. OK, see
+    # <https://tex.stackexchange.com/questions/56023/titlesec-messin-up-my-hyperrefd-table-of-contents>
+    # hyperref used by pandoc does not support titlesec, so we're back to
+    # square one, titlesec is off-limits.
+
     transform_image_format(doc)
     solve_toc_nesting(doc)
     anonymify(doc)
-    #add_font_awesome(doc)
-    #add_marginnote(doc)
-    #flag_definitions(doc)
     return doc
 
 def anonymify(doc):
@@ -158,7 +166,21 @@ def print_sections(doc):
             )
             print(str(depth) + "> " + depth * 4 * " " + title, end="")
 
-def handle_level_4_sections(doc):
+# Deprecated: titlesec won't work with hyperref used for links (toc, etc.)
+def _make_level_4_section_headings_inline(doc):
+    # Enable titlesec and configure level 4 sections as runin
+    # --------------------------------------------------------------------------
+    # workaround: can't just parse the LaTeX command, the "[.]" is not 
+    # recognized as raw LaTeX by pandoc.
+    inlines = [
+        RawInline("tex", r"\usepackage{titlesec}"),
+        #SoftBreak(),
+        #RawInline("tex", r"\titleformat{\subsubsubsection}[runin]{\bfseries}{}{}{}[.]")
+    ]
+    add_latex_header(doc, [Para(inlines)])
+
+# Deprecated
+def _make_level_4_section_headings_inline(doc):
     # TODO: find them, transform the header into an emphasized span,
     # insert it into the subsequent content if it makes sense.
 
@@ -188,14 +210,14 @@ def handle_level_4_sections(doc):
         inlines = block[0]
         inlines.insert(0, span)
 
-def demote_proofs_questions_and_answers(doc):
+def make_level_4_section_headings_inline(doc):
     found = []
     for elt, path in pandoc.iter(doc, path=True):
         if isinstance(elt, Header):
             header = elt
             level, attr, inlines = header[:]
             identifier, classes, kv_pairs = attr
-            if "proof" in classes or "question" in classes or "answer" in classes:
+            if level == 4:
                 span = Span(attr, [Strong(inlines), RawInline("latex", r"\quad")])
                 holder, i = path[-1]
                 assert isinstance(holder, list)
@@ -211,6 +233,41 @@ def demote_proofs_questions_and_answers(doc):
         # see <https://tex.stackexchange.com/questions/48753/obtaining-the-default-section-spacing-into-the-titlespacing-parameters>
         inlines.insert(0, RawInline("latex", r"\vspace{3.25ex plus 1ex minus .2ex}"))
         inlines.insert(1, span)
+
+def demote_proofs_questions_and_answers(doc):
+    for elt in pandoc.iter(doc):
+        if isinstance(elt, Header):
+            header = elt
+            level, attr, inlines = header[:]
+            identifier, classes, kv_pairs = attr
+            if "proof" in classes or "question" in classes or "answer" in classes:
+                if level == 3:
+                    level = 4
+                    header[:] = level, attr, inlines
+
+
+    # found = []
+    # for elt, path in pandoc.iter(doc, path=True):
+    #     if isinstance(elt, Header):
+    #         header = elt
+    #         level, attr, inlines = header[:]
+    #         identifier, classes, kv_pairs = attr
+    #         if "proof" in classes or "question" in classes or "answer" in classes:
+    #             span = Span(attr, [Strong(inlines), RawInline("latex", r"\quad")])
+    #             holder, i = path[-1]
+    #             assert isinstance(holder, list)
+    #             found.append((holder, span))
+
+    # for holder, span in found:
+    #     assert isinstance(holder[0], Header)
+    #     del holder[0]
+    #     if holder == [] or not isinstance(holder[0], (Plain, Para)):
+    #         holder.insert(0, Para([]))
+    #     block = holder[0]
+    #     inlines = block[0]
+    #     #see <https://tex.stackexchange.com/questions/48753/obtaining-the-default-section-spacing-into-the-titlespacing-parameters>
+    #     inlines.insert(0, RawInline("latex", r"\vspace{3.25ex plus 1ex minus .2ex}"))
+    #     inlines.insert(1, span)
 
 def proofify(doc):
     sections = []
@@ -242,6 +299,55 @@ def proofify(doc):
         else:
             inlines.append(blacksquare)
 
+def detect_image(elt):
+    for _elt in pandoc.iter(elt):
+        if isinstance(_elt, Image):
+            return True
+    else:
+        return False
+
+def add_link_to_answers(doc):
+    sections = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Div) and "section" in elt[0][1]:
+            section = elt
+            attributes, blocks = section
+            if len(blocks) >= 1 and isinstance(blocks[0], Header):
+                header = blocks[0]
+                level, attributes, inlines = header[:]
+                identifier, classes, key_value_pairs = attributes
+                if "question" in classes:
+                    sections.append(section)
+
+    for section in sections:
+        # Not perfect, but a marker anyway.
+        attributes, blocks = section
+
+        header = blocks[0]
+        _, attributes, _ = header[:]
+        identifier, _, _ = attributes
+        if identifier:
+            pass
+            symbol_no_space = RawInline(Format("tex"), r"\faQuestionCircle")
+            symbol = RawInline(Format("tex"), r"\; \faQuestionCircle")
+            if blocks == [] or not isinstance(blocks[-1], (Plain, Para)):
+                blocks.append(Plain([]))
+                symbol = symbol_no_space
+            elif isinstance(blocks[-1], Para):
+                para = blocks[-1]           
+                if isinstance(para[0][-1], Image):
+                    blocks.append(Para([]))
+                    symbol = symbol_no_space
+                elif isinstance(para[0][-1], Math) and para[0][-1][0] == DisplayMath():
+                    blocks.append(Para([]))
+                    symbol = symbol_no_space
+
+            attr = ("", [], [])
+            target = ("#answer-" + identifier, "")
+            link = Link(attr, [symbol], target)
+            last_block = blocks[-1]
+            inlines = last_block[0]
+            inlines.append(link)
 
 def transform_image_format(doc):
     for elt in pandoc.iter(doc):
@@ -253,7 +359,22 @@ def transform_image_format(doc):
                 new_target = url + ".pdf"
                 image[:] = attr, inlines, (new_target, title)
 
-def solve_toc_nesting(doc): # fuck you LaTeX!
+def add_latex_header(doc, latex_src):
+    new_blocks = None
+    if isinstance(latex_src, list): # list of blocks
+        new_blocks = latex_src
+    else:
+        new_blocks = pandoc.read(latex_src)[1]
+    meta, blocks = doc[:]
+    metamap = meta[0]
+    blocks = metamap.setdefault("header-includes", MetaBlocks([]))[0]
+    blocks.extend(new_blocks)
+
+def solve_toc_nesting(doc):
+    add_latex_header(doc, r"\usepackage{bookmark}")
+
+# Deprecated
+def _solve_toc_nesting(doc): # fuck you LaTeX!
     "Add the 'bookmark' package to solve TOC issues"
     meta, blocks = doc[:]
     metamap = meta[0]
@@ -262,6 +383,10 @@ def solve_toc_nesting(doc): # fuck you LaTeX!
     )
 
 def add_font_awesome(doc):
+    add_latex_header(doc, r"\usepackage{fontawesome}")
+
+# Deprecated
+def _add_font_awesome(doc):
     meta, blocks = doc[:]
     metamap = meta[0]
     metalist = metamap["header-includes"]
@@ -269,6 +394,10 @@ def add_font_awesome(doc):
     metablocks[0].append(RawBlock(Format("tex"), "\\usepackage{fontawesome}"))
 
 def add_marginnote(doc):
+    add_latex_header(doc, r"\usepackage{marginnote}")
+
+# Deprecated
+def _add_marginnote(doc):
     meta, blocks = doc[:]
     metamap = meta[0]
     metalist = metamap["header-includes"]
@@ -342,6 +471,11 @@ if bibliography.exists():
     options += ["--bibliography=bibliography.json", "-M", "link-citations=true"]
 TEX_options = options.copy()
 PDF_options = options.copy()
+
+# To use package titlesec, see <https://stackoverflow.com/questions/42916124/not-able-to-use-titlesec-with-markdown-and-pandoc>
+# Update: titlesec is off limit anyway with pandoc, 
+# as it is not compatible with hyperref
+# PDF_options += ["--variable", "subparagraph"] 
 ODT_options = options.copy()
 HTML_options = options.copy()
 HTML_options += ["--mathjax"]
