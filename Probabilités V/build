@@ -327,9 +327,11 @@ def add_link_to_answers(doc):
         _, attributes, _ = header[:]
         identifier, _, _ = attributes
         if identifier:
-            pass
-            symbol_no_space = RawInline(Format("tex"), r"\faQuestionCircle")
-            symbol = RawInline(Format("tex"), r"\; \faQuestionCircle")
+            #symbol_no_space = RawInline(Format("tex"), r"\faQuestionCircle")
+            symbol_no_space = Strong([Str("(?)")])
+            #symbol = RawInline(Format("tex"), r"\; \faQuestionCircle")
+            #symbol = RawInline(Format("tex"), r"\; $\to$")
+            symbol = Strong([Space(), Str("(?)")])
             if blocks == [] or not isinstance(blocks[-1], (Plain, Para)):
                 blocks.append(Plain([]))
                 symbol = symbol_no_space
