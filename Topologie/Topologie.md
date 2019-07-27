@@ -1599,7 +1599,7 @@ l'application $\Phi: E \to E$ définie par
 $$
 \Phi(x) = \left(t \mapsto x_0 +  \int_0^t A \cdot x(s) \, ds\right)
 $$
-est-elle contractante ? Quelle conclusion (partielle) quand 
+est-elle contractante ? Quelle conclusion (partielle) quant
 au problème initial peut-on en tirer ?
 
 ### Question 3 {.question #ed-3}
