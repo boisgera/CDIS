@@ -81,6 +81,9 @@ fcts lisses à support compact ...)
 Exemple techniques densité pour définir un truc ? et/ou étendre une
 relation (exemple: IPP pour fcts avec dérivées faibles ? Fourier ?)
 
+Opérateurs définis sur un domaine $D(A)$ dense 
+(certains bornés, d'autres non). Applis méca Q ?
+
 Différentielle
 ================================================================================
 
