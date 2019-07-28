@@ -70,6 +70,14 @@ Espaces d'opérateurs: $E \stackrel{\ell}{\to } F$.
 Opérateurs bornés, cas particulier des "inclusions"
 (fonction identité, différente norme au départ et à l'arrivée)
 
+Exemple d'opérateurs bornés (ici et en exercice): les identités
+($C^0 \to L^1$, $L^2 \to L^1$), l'intégrale ($L^1 \to \R^n$)
+
+Technique de définition d'un opérateur borné par densité.
+
+Liste de sous-ensembles denses (en particulier, 
+fcts lisses à support compact ...)
+
 Différentielle
 ================================================================================
 
@@ -179,6 +187,16 @@ Développement de Taylor, Taylor avec reste intégral, etc.
 
 TODO -- Calcul des variations
 ================================================================================
+
+### TODO {.lemma}
+Montrer conditions sous lesquelles on a (dans des espaces de fcts continues):
+$$
+d (f \mapsto g \circ f) 
+=
+h \mapsto (x \mapsto df(g(x)) \cdot h(x))
+$$
+
+### TODO -- Démonstration {.proof}
 
 TODO -- Exercices
 ================================================================================
