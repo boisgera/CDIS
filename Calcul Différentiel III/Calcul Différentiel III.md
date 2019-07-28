@@ -78,6 +78,9 @@ Technique de définition d'un opérateur borné par densité.
 Liste de sous-ensembles denses (en particulier, 
 fcts lisses à support compact ...)
 
+Exemple techniques densité pour définir un truc ? et/ou étendre une
+relation (exemple: IPP pour fcts avec dérivées faibles ? Fourier ?)
+
 Différentielle
 ================================================================================
 
@@ -188,7 +191,7 @@ Développement de Taylor, Taylor avec reste intégral, etc.
 TODO -- Calcul des variations
 ================================================================================
 
-### TODO {.lemma}
+### TODO Différentiation d'une composition {.lemma}
 Montrer conditions sous lesquelles on a (dans des espaces de fcts continues):
 $$
 d (f \mapsto g \circ f) 
@@ -197,7 +200,6 @@ h \mapsto (x \mapsto dg(f(x)) \cdot h(x))
 $$
 
 ### TODO -- Démonstration {.proof}
-
 Insister sur le caractère nécessaire du résultat (via composition
 du résultat avec $f \to f(x)$, soit "raisonner à $x$ fixé").
 
@@ -213,6 +215,31 @@ $$
 g (f(x)+ h(x)) = g(f(x)) + dg(f(x)) \cdot h(x) + o(\|h\|_{\infty}) 
 $$
 où le $o$ est uniforme par rapport à $x$; et c'est tout.
+
+### Lagrangien {.definition}
+Fonction
+$$
+L: (x, y, y') \in U \subset \R \times \R^n \mapsto L(x, y, y') \in \R^n,
+$$
+$U$ ouvert, $L$ supposée continûment différentiable.
+
+### TODO
+(Nota: $C^1$ est "de confort", on pourrait y arriver avec $L$ cont et 
+diff partielles par rapport à $y$ et $y'$ continues)
+Plus tard, nécessaire de renforcer régularité pour faire IPP et obtenir
+équation d'Euler-Lagrange (suffit de supposer que $\partial_{y'}L$ est
+diff / $x$ et que le résultat est cont).
+
+### Différentielle d'une fonctionelle
+$$
+J(y) = \int_a^b L(x, y(x), y'(x) \, dx
+$$
+
+$$
+dJ(y) \cdot h = \int_a^b \partial_{y}L(x, y(x), y'(x)) \cdot h(x)+
+\partial_{y'} L(x, y(x), y'(x)) \cdot h'(x)
+\, dx
+$$
 
 TODO -- Exercices
 ================================================================================
