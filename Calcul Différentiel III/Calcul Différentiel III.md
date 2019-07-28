@@ -193,10 +193,26 @@ Montrer conditions sous lesquelles on a (dans des espaces de fcts continues):
 $$
 d (f \mapsto g \circ f) 
 =
-h \mapsto (x \mapsto df(g(x)) \cdot h(x))
+h \mapsto (x \mapsto dg(f(x)) \cdot h(x))
 $$
 
 ### TODO -- Démonstration {.proof}
+
+Insister sur le caractère nécessaire du résultat (via composition
+du résultat avec $f \to f(x)$, soit "raisonner à $x$ fixé").
+
+Puis utiliser théorème des accroissements finis: on considère à $x$ fixé
+$$
+h \in \R^n \mapsto g (f(x)+ h) - g(f(x)) - dg(f(x)) \cdot h
+$$
+dont la différentielle vaut $dg(f(x)+h) - dg(f(x))$, aussi petit que
+l'on veut quand $\|h\|$ est petit, et ce uniformément par rapport 
+à $x$, ce qui donne en substituant $h(x)$ à $h$ 
+(où $h$ est désormais une fonction bornée)
+$$
+g (f(x)+ h(x)) = g(f(x)) + dg(f(x)) \cdot h(x) + o(\|h\|_{\infty}) 
+$$
+où le $o$ est uniforme par rapport à $x$; et c'est tout.
 
 TODO -- Exercices
 ================================================================================
