@@ -54,6 +54,25 @@ ou typiquement, définition de la trace sur un bord régulier ...
 
 --------------------------------------------------------------------------------
 
+TODO -- Espaces de Hilbert/Banach
+================================================================================
+
+$L^1$, $L^2$, $L^{\infty}$ ($L^p$ ?)
+Dans le cadre général ? (ens de départ ?)
+
+$C^0$, $C^k$, etc. Hölder $C^{k,\alpha}$ ? 
+Sur sous-ensemble compact de $\R^n$ ?
+
+Sobolev (sur $\R^n$) ? Sur $\Omega$ par densité ? (ouch)
+
+Espaces d'opérateurs: $E \stackrel{\ell}{\to } F$.
+
+Opérateurs bornés, cas particulier des "inclusions"
+(fonction identité, différente norme au départ et à l'arrivée)
+
+Différentielle
+================================================================================
+
 ### Différentielle de Fréchet {.definition}
 Soient $E$ et $F$ deux espaces vectoriels normés et $U$ un ouvert de $E$.
 La fonction $f: U \to F$ est *différentiable en $x \in U$* s'il existe
