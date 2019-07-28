@@ -43,6 +43,9 @@ def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
     gcf().set_size_inches((width_in, height_in))
     gcf().subplots_adjust(bottom=bottom, top=1.0-top, left=left, right=1.0-right)
 
+# Exploiter info sur Feigenbaum
+# <https://blog.stephenwolfram.com/2019/07/mitchell-feigenbaum-1944-2019-4-66920160910299067185320382/>
+
 # Plot
 # ------------------------------------------------------------------------------
 def main():
