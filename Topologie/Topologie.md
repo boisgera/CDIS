@@ -551,16 +551,12 @@ Si $A$ est un sous-ensemble non vide de $X$, la distance à $A$
 $x \in X \mapsto d(x, A) \in \left[0, +\infty\right[$ 
 est une application continue.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
 Soient $(x_0, y_0)$ et $(x, y)$ deux points de l'espace produit $X \times X$.
 Par l'inégalité triangulaire, 
-$$
-d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)
-$$
+$d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)$
 et
-$$
-d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),
-$$
+$d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),$
 donc
 $$
 |d(x, y) - d(x_0, y_0)| \leq d(x_0, x) + d(y_0, y).
@@ -575,7 +571,15 @@ $$
 $$
 et $d(x, y) \to d(x_0, y_0)$ quand $(x, y) \to (x_0, y_0)$. 
 
-**TODO. seconde partie** 
+Pour tout $a \in A$, on a $d(x, a) \leq d(x, x_0) + d(x_0, a)$ 
+et donc $d(x, A) \leq d(x, x_0) + d(x_0, A)$. 
+En intervertissant $x$ et $x_0$, on obtient 
+également $d(x_0, A) \leq d(x_0, x) + d(x, A)$. 
+Par symmétrie de la distance, ces deux inégalité entraînent
+$$
+|d(x, A) - d(x_0, A)| \leq d(x_0, x)
+$$
+et donc $d(x, A) \to d(x_0, A)$ quand $x \to x_0$.
 
 Bestiaire
 ================================================================================
