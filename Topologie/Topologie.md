@@ -1310,10 +1310,12 @@ localement fermé.
 Montrer qu'un ensemble est localement fermé si et seulement s'il est
 l'intersection d'un ensemble fermé et d'un ensemble ouvert.
 
+<!--
 TODO -- Comparaison des normes
 --------------------------------------------------------------------------------
 
 TODO: comparaison manuelle, meilleure bornes
+-->
 
 Distance entre ensembles
 --------------------------------------------------------------------------------
@@ -1464,10 +1466,12 @@ Il faudra attendre 1781 pour
 qu'Euler puisse calculer analytiquement les coordonnées de ce point 
 (cf. @Lev08).
 
-TODO -- Point fixe {#TPFB2}
+Point fixe {#TPFB2}
 --------------------------------------------------------------------------------
 
+<!--
 **TODO:** exemple introductif (simple, matriciel $2\times2$)
+-->
 
 Soit $f: E \to E$ une fonction définie et à valeurs dans un espace métrique 
 complet $E$ pour laquelle il existe un entier $n \geq 1$ tel que la composée 
@@ -1488,6 +1492,8 @@ un point fixe de $f$.
 ### Question 3 {.question #pf-3}
 Montrer que le procédé habituel pour construire un point 
 fixe de $f$ est toujours valable quand $f^n$ est contractante.
+
+<!--
 
 TODO -- Normes d'opérateurs
 --------------------------------------------------------------------------------
@@ -1525,6 +1531,8 @@ $$
      la collection $\mathcal{A}$ peut-on ajouter pour s'assurer du résultat ?
 
   2. Application angle sur l'hélice et $\arctan$ ...
+
+-->
 
 Résolution itérative de systèmes linéaires
 --------------------------------------------------------------------------------
@@ -1792,105 +1800,6 @@ $$
 $$
 et donc $\|\cdot\|_{\infty\infty} = \|\cdot\|_{\infty}$.
 
- [Localement fermé]
---------------------------------------------------------------------------------
-
-### Question 0 {.answer #answer-lf-0}
-Un sous-ensemble $B$ d'un ensemble $A$ de points d'un espace topologique $X$
-est "fermé dans $A$" s'il est fermé **comme ensemble de points de l'espace
-topologique $A$**, muni de la topologie (ou le cas échéant la métrique)
-induite par $X$. Et cette propriété peut être différente de être "fermé"
-(sous-entendu comme ensemble de points de $X$).
-
-Par exemple, si $X = \R$, $A = \left]0, +\infty\right[$ et 
-$B = \left]0, +\infty\right[$, $B$ n'est pas fermé dans $\mathbb{R}$,
-car la suite $x_k = 2^{-k}$ appartient à $B$, mais $x_k \to 0 \not \in B$ 
-quand $k \to +\infty$. Par contre, toute suite de $B$ convergeant 
-dans $A$ converge dans $B$ car les deux ensembles sont identiques.
-Par conséquent, $B$ est fermé dans $A$.
-
-### Question 1 {.answer #answer-lf-1}
-
-Soit $x \in A:=\left[0, 1\right[$; 
-si $x>0$, on peut prendre $V=\left]x/2, 1\right[$.
-C'est bien un voisinage ouvert de $x$ et $A\cap V = V$. 
-L'ensemble $A \cap V$ est donc fermé dans $V$. 
-Si $x=0$, on peut prendre $V = \left]-1, 1/2\right[$; 
-c'est un voisinage ouvert de $x$ 
-et $A \cap V = \left[0, 1/2\right[$ est bien fermé dans $V$.
-
-Soit $x_k$ une suite de $\mathbb{R}$ qui converge vers $\ell$ et 
-$A = \{x_k \, | \, k \in \mathbb{N}\}$. 
-Si $a \in A$ et que $a \neq \ell$, 
-alors il existe un $\varepsilon > 0$ tel que 
-$V = ]a - \varepsilon, a + \varepsilon[$ vérifie $A \cap V = \{a\}$.
-$V$ est un voisinage ouvert de $a$ et $A \cap V$ est bien fermé dans $V$.
-Si la valeur limite $\ell$ n'est pas atteinte par un $x_k$, cela conclut
-la preuve que $A$ est localement fermé. Dans le cas contraire, pour 
-$a=\ell$, on peut prendre $V = \R$; en effet, $A$ est alors fermé.
-
-L'ensemble des rationnels $\mathbb{Q}$ n'est pas localement fermé.
-En effet si $V$ est un voisinage de $0$ il contient nécessairement un ensemble
-de la forme $\left]-\varepsilon, \varepsilon\right[$ pour un $\varepsilon > 0$.
-Or cet intervalle contient des irrationels, qui peuvent être obtenus
-comme limite de rationnels dans $\left]-\varepsilon, \varepsilon\right[$
-et donc de $V$. 
-Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
-donc $\mathbb{Q}$ n'est pas localement fermé.
-
-
-### Question 2 {.answer #answer-lf-2}
-
-Si $A$ est fermé, on peut prendre $V=X$ qui est un voisinage ouvert 
-de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
-$A \cap V$ est bien fermé dans $V=X$.
-
-Si $A$ est ouvert, on peut prendre $V=A$ qui est un voisinage ouvert 
-de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
-$A \cap V$ est bien fermé dans $V=A$.
-
-Si $A$ et $B$ sont localement fermés et $x \in A \cap B$, il existe des 
-voisinages ouverts $U$ et $V$ de $x$ tels que $A \cap U$ soit fermé 
-dans $U$ et $B \cap V$ soit fermé dans $V$. 
-Par construction, $U \cap V$ est un voisinage ouvert de $x$;
-en effet, d'une part cette intersection contient $x$ et d'autre part
-pour tout $y$ dans $U \cap V$, 
-$d(y, X \setminus U) > 0$ et $d(y, X \setminus V) > 0$ ; or 
-$$
-\begin{split}
-d(y, X \setminus (U \cap V)) 
-&= 
-d(y, (X \setminus U) \cup (X \setminus V)) \\
-&= \min \left( d(y, X \setminus U), d(y, X \setminus V) \right) \\
-&> 0.
-\end{split}
-$$
-donc $U \cap V$ est ouvert.
-L'ensemble $A$, qui est fermé dans $U$, est donc fermé dans $U \cap V$
-(si une suite de $A$ converge dans $U \cap V$, elle converge dans $U$
-et donc sa limite appartient à $A$); de la même façon, $B$ est fermé
-dans $U \cap V$. Par conséquent, $A \cap B$ est fermé dans $U \cap V$.
-
-### Question 3 {.answer #answer-lf-3}
-
-Si un ensemble est l'intersection d'un ouvert et d'un fermé dans $X$,
-il est l'intersection de deux ensembles localement fermés, donc il
-est localement fermé (par les résultats de la [question précédente](#lf-2)).
-
-Réciproquement, supposons que l'ensemble $A$ soit localement fermé.
-En tout point $a \in A$, il existe un voisinage ouvert $V_a$ tel que
-$A\cap V_a$ soit fermé dans $V_a$. L'ensemble $V_a \setminus (A \cap V_a)
-= V_a \setminus A$ est donc ouvert dans $V_a$ et donc dans $X$.
-Par construction, la collection des $V_a$ recouvre $A$, c'est-à-dire que
-$A \subset \cup_{a \in A} V_a$, donc
-$$
-A = \bigcup_{a \in A} V_a \setminus \left(\bigcup_{a \in A} V_a \setminus A\right).
-$$
-Posons $V = \cup_{a \in A} V_a$;
-le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
-ensemble fermé $F$; de l'équation ci-dessus on déduit donc
-que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
-
 Droite réelle achevée
 --------------------------------------------------------------------------------
 
@@ -2024,8 +1933,107 @@ $x_k \to \infty$ dans $\R \cup\{\infty\}$. Dans les deux cas,
 la suite admet une suite extraite convergente, l'espace est donc
 compact.
 
- 
- [Distance entre ensembles]
+
+Localement fermé
+--------------------------------------------------------------------------------
+
+### Question 0 {.answer #answer-lf-0}
+Un sous-ensemble $B$ d'un ensemble $A$ de points d'un espace topologique $X$
+est "fermé dans $A$" s'il est fermé **comme ensemble de points de l'espace
+topologique $A$**, muni de la topologie (ou le cas échéant la métrique)
+induite par $X$. Et cette propriété peut être différente de être "fermé"
+(sous-entendu comme ensemble de points de $X$).
+
+Par exemple, si $X = \R$, $A = \left]0, +\infty\right[$ et 
+$B = \left]0, +\infty\right[$, $B$ n'est pas fermé dans $\mathbb{R}$,
+car la suite $x_k = 2^{-k}$ appartient à $B$, mais $x_k \to 0 \not \in B$ 
+quand $k \to +\infty$. Par contre, toute suite de $B$ convergeant 
+dans $A$ converge dans $B$ car les deux ensembles sont identiques.
+Par conséquent, $B$ est fermé dans $A$.
+
+### Question 1 {.answer #answer-lf-1}
+
+Soit $x \in A:=\left[0, 1\right[$; 
+si $x>0$, on peut prendre $V=\left]x/2, 1\right[$.
+C'est bien un voisinage ouvert de $x$ et $A\cap V = V$. 
+L'ensemble $A \cap V$ est donc fermé dans $V$. 
+Si $x=0$, on peut prendre $V = \left]-1, 1/2\right[$; 
+c'est un voisinage ouvert de $x$ 
+et $A \cap V = \left[0, 1/2\right[$ est bien fermé dans $V$.
+
+Soit $x_k$ une suite de $\mathbb{R}$ qui converge vers $\ell$ et 
+$A = \{x_k \, | \, k \in \mathbb{N}\}$. 
+Si $a \in A$ et que $a \neq \ell$, 
+alors il existe un $\varepsilon > 0$ tel que 
+$V = ]a - \varepsilon, a + \varepsilon[$ vérifie $A \cap V = \{a\}$.
+$V$ est un voisinage ouvert de $a$ et $A \cap V$ est bien fermé dans $V$.
+Si la valeur limite $\ell$ n'est pas atteinte par un $x_k$, cela conclut
+la preuve que $A$ est localement fermé. Dans le cas contraire, pour 
+$a=\ell$, on peut prendre $V = \R$; en effet, $A$ est alors fermé.
+
+L'ensemble des rationnels $\mathbb{Q}$ n'est pas localement fermé.
+En effet si $V$ est un voisinage de $0$ il contient nécessairement un ensemble
+de la forme $\left]-\varepsilon, \varepsilon\right[$ pour un $\varepsilon > 0$.
+Or cet intervalle contient des irrationels, qui peuvent être obtenus
+comme limite de rationnels dans $\left]-\varepsilon, \varepsilon\right[$
+et donc de $V$. 
+Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
+donc $\mathbb{Q}$ n'est pas localement fermé.
+
+
+### Question 2 {.answer #answer-lf-2}
+
+Si $A$ est fermé, on peut prendre $V=X$ qui est un voisinage ouvert 
+de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
+$A \cap V$ est bien fermé dans $V=X$.
+
+Si $A$ est ouvert, on peut prendre $V=A$ qui est un voisinage ouvert 
+de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
+$A \cap V$ est bien fermé dans $V=A$.
+
+Si $A$ et $B$ sont localement fermés et $x \in A \cap B$, il existe des 
+voisinages ouverts $U$ et $V$ de $x$ tels que $A \cap U$ soit fermé 
+dans $U$ et $B \cap V$ soit fermé dans $V$. 
+Par construction, $U \cap V$ est un voisinage ouvert de $x$;
+en effet, d'une part cette intersection contient $x$ et d'autre part
+pour tout $y$ dans $U \cap V$, 
+$d(y, X \setminus U) > 0$ et $d(y, X \setminus V) > 0$ ; or 
+$$
+\begin{split}
+d(y, X \setminus (U \cap V)) 
+&= 
+d(y, (X \setminus U) \cup (X \setminus V)) \\
+&= \min \left( d(y, X \setminus U), d(y, X \setminus V) \right) \\
+&> 0.
+\end{split}
+$$
+donc $U \cap V$ est ouvert.
+L'ensemble $A$, qui est fermé dans $U$, est donc fermé dans $U \cap V$
+(si une suite de $A$ converge dans $U \cap V$, elle converge dans $U$
+et donc sa limite appartient à $A$); de la même façon, $B$ est fermé
+dans $U \cap V$. Par conséquent, $A \cap B$ est fermé dans $U \cap V$.
+
+### Question 3 {.answer #answer-lf-3}
+
+Si un ensemble est l'intersection d'un ouvert et d'un fermé dans $X$,
+il est l'intersection de deux ensembles localement fermés, donc il
+est localement fermé (par les résultats de la [question précédente](#lf-2)).
+
+Réciproquement, supposons que l'ensemble $A$ soit localement fermé.
+En tout point $a \in A$, il existe un voisinage ouvert $V_a$ tel que
+$A\cap V_a$ soit fermé dans $V_a$. L'ensemble $V_a \setminus (A \cap V_a)
+= V_a \setminus A$ est donc ouvert dans $V_a$ et donc dans $X$.
+Par construction, la collection des $V_a$ recouvre $A$, c'est-à-dire que
+$A \subset \cup_{a \in A} V_a$, donc
+$$
+A = \bigcup_{a \in A} V_a \setminus \left(\bigcup_{a \in A} V_a \setminus A\right).
+$$
+Posons $V = \cup_{a \in A} V_a$;
+le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
+ensemble fermé $F$; de l'équation ci-dessus on déduit donc
+que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
+
+Distance entre ensembles
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dh-1}
@@ -2592,6 +2600,10 @@ $$
 x(t) = x_0 + \int_0^t A \cdot x(s) \, ds
 $$
 pour tout $t \in [0, T]$. Le problème original admet donc une solution unique.
+
+
+TODO -- "Localement"
+--------------------------------------------------------------------------------
 
 
 Références
