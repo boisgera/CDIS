@@ -145,7 +145,26 @@ $$
 ce qui prouve que la norme d'opérateur est bien une norme sur 
 l'espace des opérateurs bornés de $E$ dans $F$.
 
-### Opérateurs linéaires de $\R^n$ dans $\R^m$ {.proposition}.
+### Opérateurs linéaires de $\R^n$ dans $\R^m$ {.proposition}
+Tout opérateur linéaire de $\R^n$ dans $\R^m$ 
+-- munis de leur normes euclidiennes -- est borné.
+
+### Démonstration {.proof}
+Soit $e_i$ le $i$-ème vecteur de la base canonique de $\R^n$
+et soit $x=(x_1, \dots, x_n) \in \R^n$.
+Comme $x = x_1 e_1 + \dots + x_n e_n$, on a 
+$$
+A \cdot x
+= A \cdot (x_1 e_1 + \dots + x_n e_n) = 
+\sum_{i=1}^n x_i (A \cdot e_i).
+$$
+Par l'inégalité triangulaire,
+$$
+\|A \cdot x\|_2 \leq \sum_{i=1}^n |x_i| \|A \cdot e_i\|_2
+\leq \sum_{i=1}^n \|x\|_2 \|A \cdot e_i\|_2
+= \left(\sum_{i=1}^n \|A \cdot e_i\|_2\right) \|x\|_2,
+$$
+d'où le caractère borné de $A$.
 
 
 ### Sous-ensembles d'espaces vectoriels normés
