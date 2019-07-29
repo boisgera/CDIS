@@ -82,18 +82,17 @@ aussi Arzela-Ascoli / attendre Calcul Diff 3 / zapper ?)
 -->
 
 ### Normes sur $\R^n$ {.example}
-La norme privilégiée sur $\R^n$ est la norme *euclidienne*
+La norme privilégiée sur $\R^n$ est la *norme euclidienne*
+$\|\cdot\|_2$, définie par
 $$
-\|x\|_2 = \sqrt{x_1^2 + \dots + x_n^2},
+\|x\|_2 = \sqrt{x_1^2 + \dots + x_n^2}.
 $$
-appelée ainsi car elle se déduit du produit scalaire
+Elle se déduit du produit scalaire
 $$
 \left<x, y\right> = x_1 y_1 + \dots + x_n y_n
 $$
 par la relation $\|x\|_2 = \sqrt{\left<x, x\right>}$.
-On notera simplement $\|\cdot\|$ la norme euclidienne
-s'il n'y a pas d'ambiguité.
-
+On la notera simplement $\|\cdot\|$ s'il n'y a pas d'ambiguité.
 Deux autres normes communes dont on peut doter $\R^n$:
 la norme $\|\cdot\|_1$, définie par
 $$
@@ -107,7 +106,7 @@ $$
 ### Opérateurs linéaires bornés {.proposition}
 Si $E$ et $F$ sont deux espaces vectoriels normés muni des normes
 $\|\cdot\|_E$ et $\|\cdot\|_{F}$, l'ensemble des applications linéaires
-$A: E \to F$ dites *bornées*, telles que 
+$A: E \to F$ dites *bornées*, telles que *la norme d'opérateur*
 $$
 \|A\| := \sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} < +\infty
 $$
@@ -115,18 +114,19 @@ est un espace vectoriel normé.
 
 ### Démonstration {.proof}
 Il est clair que si $A$ et $B$ sont des opérateurs linéaires bornés de $E$ dans
-$F$ et $\lambda$, alors $\lambda A$ et $A + B$ sont des opérateurs linéaires
-de $E$ dans $F$ ; les opérateur linéaires bornés forment donc un espace
-vectoriel. 
+$F$ et $\lambda$ est un réel, 
+alors $\lambda A$ et $A + B$ sont des opérateurs linéaires de $E$ dans $F$ ; 
+les opérateurs linéaires bornés forment donc un espace vectoriel. 
 De plus $\|A\|$ est positive et si $\|A\| = 0$, c'est-à-dire si
 $$
-\sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} = 0
+\sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} = 0,
 $$
-nécessairement $A \cdot x$ est nulle pour tout $x \in E \setminus \{0\}$
-et donc pour tout $x \in E$, ce qui signifie que $A=0$.
+nécessairement $A \cdot x$ est nulle pour tout $x \in E \setminus \{0\}$.
+Comme $A \cdot 0 = 0$ par linéarité, l'opérateur $A$ est nul.
 On a également
 $$
 \|\lambda A\| = \sup_{x \neq 0} \frac{\|\lambda A \cdot x\|_F}{\|x\|_E} 
+= \sup_{x \neq 0} \frac{|\lambda| \|A \cdot x\|_F}{\|x\|_E} 
 = |\lambda|\sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E}
 = |\lambda| \|A\| 
 $$
@@ -139,11 +139,13 @@ $$
     &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F + \|B \cdot x\|_F}{\|x\|_E} \\
     &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F}{\|x\|_E} +  
         + \sup_{x \neq 0} \frac{\|B\cdot x\|_F}{\|x\|_E} \\
-    &= \|A\| + \|B\|.
+    &= \|A\| + \|B\|
 \end{split}
 $$
+ce qui prouve que la norme d'opérateur est bien une norme sur 
+l'espace des opérateurs bornés de $E$ dans $F$.
 
-### TODO -- Opérateurs linéaires de $\R^n$ dans $\R^m$.
+### Opérateurs linéaires de $\R^n$ dans $\R^m$ {.proposition}.
 
 
 ### Sous-ensembles d'espaces vectoriels normés
