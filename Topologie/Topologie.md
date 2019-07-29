@@ -140,6 +140,7 @@ $$
     &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F}{\|x\|_E} +  
         + \sup_{x \neq 0} \frac{\|B\cdot x\|_F}{\|x\|_E} \\
     &= \|A\| + \|B\|.
+\end{split}
 $$
 
 ### TODO -- Opérateurs linéaires de $\R^n$ dans $\R^m$.
