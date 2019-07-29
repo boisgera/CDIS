@@ -639,7 +639,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
 
 ### Définitions topologiques {.definition}
-Soit $X$ un espace topologiqueet $A$ un ensemble de points de $X$.
+Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
 
   - L'*adhérence* $\overline{A}$ d'un ensemble $A$ est constituée des points
     qui adhèrent à l'ensemble $A$.
