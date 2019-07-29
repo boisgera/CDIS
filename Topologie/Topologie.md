@@ -1977,7 +1977,24 @@ $$
 et cette expression est une fonction continue de ses arguments $x_1$ et $x_2$,
 nulle quand $x_1 = x_2$ ; cette propriété est donc bien vérifiée.
 
-### TODO -- Question 6 {.answer #answer-dra-6}
+### Question 6 {.answer #answer-dra-6}
+Quand $x_k$ est une suite de réels, $x_k \to +\infty$ est à interpréter
+classiquement comme: pour tout $M \in \R$, il existe un rang $m \in \N$
+tel que si $k \geq m$, alors $x_k \geq M$.
+
+Mais il existe maintenant une seconde interprétation si l'on considère 
+$x_k \in \R$ comme une suite de points dans l'espace métrique 
+$\R \cup \{-\infty, +\infty\}$. Cela signifie alors que
+$d^{\pm \infty}(x_k, +\infty) \to 0$ quand $k \to +\infty$.
+Or, comme
+$$
+\begin{split}
+\left(d^{\pm \infty}(x_k, +\infty) \right)^2
+&= \left(\frac{x_k}{\sqrt{1+x_k^2}} - 1\right)^2 + \frac{1}{1+x_k^2} \\
+&= \left(\mathrm{sign}(x_k)\sqrt{\frac{x_k^2}{1+x_k^2}} - 1\right)^2 + \frac{1}{1+x_k^2},
+\end{split}
+$$
+ces deux conditions sont équivalentes.
 
 ### TODO -- Question 7 {.answer #answer-dra-7}
 
