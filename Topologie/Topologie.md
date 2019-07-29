@@ -7,6 +7,7 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+<!--
 TODO / acquis {.meta}
 --------------------------------------------------------------------------------
 
@@ -38,6 +39,8 @@ TODO / acquis {.meta}
 ### TODO
 
     >>> from numpy import *
+
+-->
 
 Structures Topologiques
 ================================================================================
@@ -176,7 +179,6 @@ d(x, y) = \|x - y\|.
 $$ 
 
 ![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.
-
 Bien que $x=(1,0)$ et $y=(0,1)$ appartiennent au cercle unité, 
 ni $x+y$ ni $2 \times x$ ne lui appartiennent. Il hérite néanmoins
 d'une distance $d$ de l'espace euclien $\mathbb{R}^2$
