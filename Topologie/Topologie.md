@@ -56,10 +56,12 @@ $\lambda$ dans $\R$ on ait
 
  3. [$\|x+y\| \leq \|x\| + \|y\|$ (*inégalité triangulaire*).]{#norme-ineg}
 
+### Espace vectoriel normé {.definition}
+Un espace vectoriel $E$ muni d'une norme sur $E$ est 
+*un espace vectoriel normé*.
 
-
+<!--
 ### Remarque
-
 Terminologie evn, espace métriques regroupées après coup ? Et référence
 au cas plus général en annexe ?
 
@@ -77,9 +79,73 @@ Espace normés: fonctions bornées à valeurs dans $\mathbb{R}$,
 fonctions numériques continues définies sur un compact (à faire
 plus tard: nécessite à la fois compacité et complétude; évoquer
 aussi Arzela-Ascoli / attendre Calcul Diff 3 / zapper ?)
+-->
+
+### Normes sur $\R^n$ {.example}
+La norme privilégiée sur $\R^n$ est la norme *euclidienne*
+$$
+\|x\|_2 = \sqrt{x_1^2 + \dots + x_n^2},
+$$
+appelée ainsi car elle se déduit du produit scalaire
+$$
+\left<x, y\right> = x_1 y_1 + \dots + x_n y_n
+$$
+par la relation $\|x\|_2 = \sqrt{\left<x, x\right>}$.
+On notera simplement $\|\cdot\|$ la norme euclidienne
+s'il n'y a pas d'ambiguité.
+
+Deux autres normes communes dont on peut doter $\R^n$:
+la norme $\|\cdot\|_1$, définie par
+$$
+\|x\|_1 = |x_1| + \dots + |x_n|
+$$
+et la norme $\|\cdot\|_{\infty}$, définie par
+$$
+\|x\|_{\infty} = \max_{i=1\dots n} |x_i|.
+$$
+
+### Opérateurs linéaires bornés {.proposition}
+Si $E$ et $F$ sont deux espaces vectoriels normés muni des normes
+$\|\cdot\|_E$ et $\|\cdot\|_{F}$, l'ensemble des applications linéaires
+$A: E \to F$ dites *bornées*, telles que 
+$$
+\|A\| := \sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} < +\infty
+$$
+est un espace vectoriel normé.
+
+### Démonstration {.proof}
+Il est clair que si $A$ et $B$ sont des opérateurs linéaires bornés de $E$ dans
+$F$ et $\lambda$, alors $\lambda A$ et $A + B$ sont des opérateurs linéaires
+de $E$ dans $F$ ; les opérateur linéaires bornés forment donc un espace
+vectoriel. 
+De plus $\|A\|$ est positive et si $\|A\| = 0$, c'est-à-dire si
+$$
+\sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} = 0
+$$
+nécessairement $A \cdot x$ est nulle pour tout $x \in E \setminus \{0\}$
+et donc pour tout $x \in E$, ce qui signifie que $A=0$.
+On a également
+$$
+\|\lambda A\| = \sup_{x \neq 0} \frac{\|\lambda A \cdot x\|_F}{\|x\|_E} 
+= |\lambda|\sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E}
+= |\lambda| \|A\| 
+$$
+et 
+$$
+\begin{split}
+\|A+B\| 
+    &= \sup_{x \neq 0} \frac{\|(A+B) \cdot x\|_F}{\|x\|_E} \\
+    &= \sup_{x \neq 0} \frac{\|A\cdot x + B \cdot x\|_F}{\|x\|_E} \\
+    &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F + \|B \cdot x\|_F}{\|x\|_E} \\
+    &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F}{\|x\|_E} +  
+        + \sup_{x \neq 0} \frac{\|B\cdot x\|_F}{\|x\|_E} \\
+    &= \|A\| + \|B\|.
+$$
+
+### TODO -- Opérateurs linéaires de $\R^n$ dans $\R^m$.
+
 
 ### Sous-ensembles d'espaces vectoriels normés
-
 Si $X$ est un sous-ensemble d'un espace vectoriel normé $E$, 
 celui-ci "hérite" de $E$ une mesure de la distance entre 
 deux points $x$ et $y$ avec la grandeur 
@@ -255,7 +321,6 @@ de $X$ lorsqu'il est muni de la relation d'adhérence de $X$,
 restreinte aux points et sous-ensembles de $Y$.
 
 ### Application continue
-
 Une application $f: X \to Y$ définie entre deux espaces topologiques
 est *continue en $x \in X$* si lorsque $x$ adhère à $A$ dans $X$, 
 $f(x)$ adhère à $f(A)$ dans $Y$. Une application continue en tout point
@@ -266,7 +331,6 @@ Les applications sont les *morphismes* des espaces topologiques:
 elle préservent la structure des espaces topologiques.
 
 ### Les espaces métriques sont des espaces topologiques
-
 Soit $X$ un espace métrique muni d'une distance $d$. 
 La relation définie par
 $$
@@ -776,7 +840,6 @@ faire la démonstration.
 Intégrer une partie de la définition ci-dessous en amont.
 
 ### Complétude de l'espace des fonctions bornées {.proposition}
-
 Soit $X$ un ensemble et $Y$ un espace métrique complet.
 L'ensemble des fonctions $f$ de $X$ dans $Y$ bornées
 -- c'est-à-dire telles que $\sup_{x \in X} d(0, f(x))$ soit fini --
