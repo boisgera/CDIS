@@ -1958,7 +1958,24 @@ $d^{\pm \infty}(-\infty, +\infty) = d((-1, 0), (1, 0)) = 2$
 et 
 $d^{\pm \infty}(-1, 1) = \sqrt{2}.$
 
-### TODO -- Question 5 {.answer #answer-dra-5}
+### Question 5 {.answer #answer-dra-5}
+Soit $i: x \in \R \to x \in \R \cup\{-\infty, +\infty\}$. Pour montrer que
+$i$ est continue, il nous faut prouver que pour tout $x_1 \in \R$, quand
+$d(x_2, x_1) \to 0$, alors $d^{\pm \infty}(i(x_2), i(x_1)) = d^{\pm \infty}(x_2, x_1)\to 0$.
+Or, 
+$$
+\begin{split}
+d^{\pm \infty}(x_2, x_1)
+&= d \left(\left(\frac{x_1}{\sqrt{1 + x_1^2}}, \frac{1}{\sqrt{1 + x_1^2}} \right), 
+\left(\frac{x_2}{\sqrt{1 + x_2^2}}, \frac{1}{\sqrt{1 + x_2^2}} \right)\right) \\
+&= 
+\sqrt{\left(\frac{x_1}{\sqrt{1 + x_1^2}} - \frac{x_2}{\sqrt{1 + x_2^2}}\right)^2 
++ 
+\left(\frac{1}{\sqrt{1 + x_1^2}} -  \frac{1}{\sqrt{1 + x_2^2}}\right)^2},
+\end{split}
+$$
+et cette expression est une fonction continue de ses arguments $x_1$ et $x_2$,
+nulle quand $x_1 = x_2$ ; cette propriété est donc bien vérifiée.
 
 ### TODO -- Question 6 {.answer #answer-dra-6}
 
