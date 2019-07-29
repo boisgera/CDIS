@@ -556,10 +556,12 @@ Soient $(x_0, y_0)$ et $(x, y)$ deux points de l'espace produit $X \times X$.
 Par l'inégalité triangulaire, 
 $$
 d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)
-\; \mbox{ et } \;
+$$
+et
+$$
 d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),
 $$
-ce dont on déduit que
+donc
 $$
 |d(x, y) - d(x_0, y_0)| \leq d(x_0, x) + d(y_0, y).
 $$
