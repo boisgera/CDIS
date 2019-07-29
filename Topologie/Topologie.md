@@ -735,13 +735,12 @@ prennent une forme symbolique simple:
 
 ### Continuité {.theorem}
 Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
-continue si et seulement si l'image réciproque de tout fermée de $Y$ est
-un fermé de $X$.
+continue si et seulement si l'image réciproque de tout ensemble fermé de $Y$ 
+par $f$ est un ensemble fermé de $X$.
 
 ### Démonstration {.proof}
-
-Assume that $f$ is continuous. 
-If $B$ is a closed set of $Y$, by continuity, 
+Supposons $f$ continue. 
+Si $B$ est un ensemble fermé de $Y$, par continuité, 
   $$
   f(\overline{f^{-1}(B)}) 
   \subset 
@@ -750,29 +749,29 @@ If $B$ is a closed set of $Y$, by continuity,
   =
   B.
   $$
-Taking the preimage of both sides of this equation yields
+Prendre l'image réciproque des deux membre de cette équation fournit
   $$
   \overline{f^{-1}(B)} = f^{-1}(B),
   $$
-thus $f^{-1}(B)$ is closed.
+par conséquent $f^{-1}(B)$ est fermé.
 
-Conversely, assume that the preimage of any closed set is closed.
-Let $A$ be a subset of $X$. 
-The set $\overline{f(A)}$ is closed, thus by assumption
+Réciproquement, supposons que l'image réciproque de tout ensemble fermé
+est un ensemble fermé. Soit $A$ un sous-ensemble de $X$ ;
+l'ensemble $\overline{f(A)}$ étant fermé,
   $$
   \overline{f^{-1}(\overline{f(A)})}
   = 
   f^{-1}(\overline{f(A)}).
   $$
-As $A \subset f^{-1}(\overline{f(A)})$, we have
+Comme $A \subset f^{-1}(\overline{f(A)})$, on a
 $\overline{A} \subset f^{-1}(\overline{f(A)})$, 
-thus
+donc
   $$
   f(\overline{A}) 
   \subset f(f^{-1}(\overline{f(A)})) 
   \subset \overline{f(A)}.
   $$
-Since $A$ is arbitrary, $f$ is continuous.
+Comme $A$ est arbitraire, $f$ est continue.
   
 
 Complétude
