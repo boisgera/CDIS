@@ -1275,8 +1275,9 @@ Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
 Suggérer une variante de la construction précédente pour
 doter l'ensemble $\mathbb{R} \cup \{\infty\}$ ($\infty$ sans signe:
 ni $+$, ni $-$) d'une métrique $d^{\infty}$ 
-telle que $d^{\infty}(x_k, \infty) \to 0$ si et seulement si
-$|x_k| \to +\infty$.
+telle $|x_k| \to +\infty$ si et seulement si 
+$d^{\infty}(x_k, \infty) \to 0$. 
+En déduire que cet ensemble est compact.
     
 Localement fermé
 --------------------------------------------------------------------------------
@@ -1996,7 +1997,29 @@ $$
 $$
 ces deux conditions sont équivalentes.
 
-### TODO -- Question 7 {.answer #answer-dra-7}
+### Question 7 {.answer #answer-dra-7}
+On admettra sans preuve (la démarche est très similaire à celle menée
+dans les questions précédentes) que la construction graphique ci-dessous
+
+![Construction du compactifié de $\R$.](images/extended-real-numbers-2.tex)
+
+permet de doter $\R \cup \{\infty\}$ d'une métrique telle que 
+$|x_k| \to +\infty$ si et seulement si $d^{\infty}(x_k,\infty) \to 0$
+et que l'injection canonique associée est continue.
+On constate graphiquement que dans cette variante, quand le point
+de la droite d'ordonnée $y=2$ s'éloigne vers l'infini vers la droite ou
+vers la gauche, le point correspondant du cercle centré en $(0,1)$ et de
+rayon $1$ converge vers l'origine $(0,0)$.
+
+Si l'on considère une suite de points $x_k \in \R \cup\{\infty\}$, 
+soit il existe une suite de points réels bornée que l'on peut extraire de 
+$x_k$ -- auquel cas par compacité des fermés bornés dans $\R$ 
+il existe une sous-suite extraite des $x_k$ convergeant dans $\R$ 
+(et donc dans $\R \cup\{\infty\}$)
+-- soit $|x_k| \to +\infty$ quand $k\to +\infty$ -- auquel cas
+$x_k \to \infty$ dans $\R \cup\{\infty\}$. Dans les deux cas,
+la suite admet une suite extraire convergente, l'espace est donc
+compact.
 
  
  [Distance entre ensembles]
