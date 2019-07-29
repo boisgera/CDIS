@@ -170,7 +170,7 @@ $$
 d'où le caractère borné de $A$.
 
 
-### Sous-ensembles d'espaces vectoriels normés
+### {.remark .ante}
 Si $X$ est un sous-ensemble d'un espace vectoriel normé $E$, 
 celui-ci "hérite" de $E$ une mesure de la distance entre 
 deux points $x$ et $y$ avec la grandeur 
@@ -426,8 +426,7 @@ distance sur cet ensemble, telle que $d(x, A)= 0$ si et seulement si $x$
 adhère à $A$, alors on aurait $d(0, \{1\}) = d(0, 1) = 0$, ce qui contredirait
 l'axiome de séparation pour les distances.
 
-
-### Produit d'espaces vectoriels normés
+### Produit d'espaces vectoriels normés {.definition}
 On appelle *produit des espaces vectoriels $E_1$, $\dots$, $E_n$,* 
 munis des normes $\|\cdot\|_1$, $\dots$, $\|\cdot\|_n$ le produit cartésien
 $E_1 \times \dots \times E_n$, muni de la norme
@@ -435,7 +434,7 @@ $$
 \|(x_1,\dots, x_n)\| = \sqrt{\|x_1\|_1^2 + \dots + \|x_n\|^2_n}.
 $$
 
-### Produit d'espaces métriques
+### Produit d'espaces métriques {.definition}
 On appelle *produit des espaces métriques $X_1$, $\dots$, $X_n$,* 
 munis des distances $d_1$, $\dots$, $d_n$ le produit cartésien
 $X_1 \times \dots \times X_n$, muni de la distance
@@ -495,14 +494,13 @@ que $\ell = \ell'$.
 Il n'existe donc qu'une limite possible pour la suite des $x_k$.
 
 ### Limite d'une fonction en un point {.definition}
-
-Soit $f: X \subset Y \to Z$ une application définie sur un 
-sous-ensemble $X$ d'un espace métrique $Y$ et à valeurs dans un espace 
-métrique $Z$.
+Soit $f: X \subset Y \to Z$ une application 
+définie sur un sous-ensemble $X$ d'un espace métrique $Y$ 
+et à valeurs dans un espace métrique $Z$.
 Soit $x$ un point de $Y$ adhérent à $X$. 
 Le point $\ell \in Z$ est la *limite* de $f$ en $x$ si pour toute suite
-$x_k$ de points de $X$ convergeant vers $x$, on a 
-$\lim_{k \to +\infty} f(x_k) = \ell$.
+$x_k$ de points de $X$ convergeant vers $x$ mais ne prenant pas la
+valeur $x$, on a $\lim_{k \to +\infty} f(x_k) = \ell$.
 On utilisera alors une des deux notations:
 $$
 \ell = \lim_{y \to x} f(y)
@@ -514,10 +512,9 @@ $$
 Si la fonction $f$ admet une limite en $x$, celle-ci est unique.
 
 ### Démonstration {.proof}
-Une conséquence directe de [l'unicité de la limite des suites][Unicité de la limite d'une suite].
+Un corollaire de [l'unicité de la limite des suites][Unicité de la limite d'une suite].
 
 ### Continuité et limite
-
 Une fonction $f: X \to Y$ où $X$ et $Y$ sont deux espaces métriques est
 continue en $x \in X$ si et seulement si la limite de $f$ existe en
 $x$ et
@@ -526,7 +523,6 @@ $$
 $$
 
 ### Démonstration {.proof}
-
 Supposons que $f$ soit telle que $f(y) \to f(x)$ quand $y \to x$.
 Soit $A$ un sous-ensemble de $X$ tel que $x$ adhère à $A$.
 Dans un espace métrique, cela signifie que $d(x, A) = 0$, ou encore
@@ -576,12 +572,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     qui converge vers un point de $A$ appartient à $A$ 
     à partir d'un certain rang.
 
-### TODO
-
-Notation $\mathcal{V}(x)$ pour les voisinages de $x$.
-
 ### Ensembles dérivés {.definition}
-
 Soit $A$ un ensemble de $X$. On note
 
   -  $\overline{A}$ l'*adhérence* de $A$
@@ -638,6 +629,17 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     A = \mathring{A}
     \; \Leftrightarrow \; 
     (x \in A \Rightarrow d(x, X \setminus A) > 0).
+    $$
+
+  - Pour tout $x \in X$ et $r\geq 0$, on définit la *boule ouverte 
+    de centre $x$ et de rayon $r$* comme
+    $$
+    B(x, r) = \{y \in X \, | \, d(x, y) < r\}
+    $$
+    et la *boule fermée 
+    de centre $x$ et de rayon $r$* comme
+    $$
+    \overline{B}(x, r) = \{y \in X \, | \, d(x, y) \leq r\}.
     $$
 
 ### Définitions topologiques {.definition}
@@ -833,7 +835,6 @@ un mathématicien polonais du 20ème siècle d'après lequel sont nommés
 L'espace $\mathbb{R}^n$ est complet.
 
 ### Démonstration {.proof}
-
 Dans les cas de $\R$ (c'est-à-dire quand $n=1$), 
 le résultat est une conséquence directe de la 
 construction de $\R$ comme complété de $\Q$[^ahahah].
