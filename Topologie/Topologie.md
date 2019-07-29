@@ -1887,16 +1887,76 @@ le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
 ensemble fermé $F$; de l'équation ci-dessus on déduit donc
 que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 
-TODO --  [Droite réelle achevée]
+TODO --  Droite réelle achevée
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {.answer #answer-dra-1}
+### Question 1 {.answer #answer-dra-1}
+Quand l'ordonnée $y$ du point $p=(x,y)$ est strictement positive,
+$f(p)$ représente l'abscisse de l'unique point $q$ de l'intersection
+de la demi-droite $D$ issue de l'origine $(0,0)$ et passant par $p$ 
+avec la droite horizontale des points d'ordonnée $y=1$.
 
-### TODO -- Question 2 {.answer #answer-dra-2}
+En effet, les points de $D$ sont de la forme $(\lambda x, \lambda y)$
+pour $\lambda \geq 0$. On a donc $\lambda y = 1$ si et seulement si
+$\lambda  = 1/y$, auquel cas $\lambda x = x / y$.
 
-### TODO -- Question 3 {.answer #answer-dra-3}
+Dans les cas limites où $p = (1,0)$ et $p=(-1,0)$, la demi-droite $D$ est
+horizontale, partant vers la droite de l'origine ou vers sa gauche selon
+le cas. Il n'y a donc pas d'intersection avec la droite horizontale
+d'équation $y=1$ dans $\R^2$, mais des intersections "à l'infini".
 
-### TODO -- Question 4 {.answer #answer-dra-4}
+### Question 2 {.answer #answer-dra-2}
+La fonction $f$ peut être décomposée comme $f = \psi \circ \phi$ où
+l'application $\phi: (x, y) \in X \to x \in [-1, 1]$ est bijective,
+d'inverse $\phi^{-1}(x) = (x, \sqrt{1 - x^2})$ 
+et l'application $\psi: [-1, 1] \to \R \cup \{-\infty, +\infty\}$
+définie par
+$$
+\psi(x) = 
+\left|
+\begin{array}{cl}
+- \infty & \mbox{si } x=-1, \\
+\displaystyle \frac{x}{\sqrt{1-x^2}} & \mbox{si } -1 < x < 1, \\
++ \infty & \mbox{si } x=1. \\
+\end{array}
+\right.
+$$
+est également bijective, d'inverse
+$$
+\psi^{-1}(x) = 
+\left|
+\begin{array}{cl}
+- 1 & \mbox{si } x=-\infty, \\
+\displaystyle \frac{y}{\sqrt{1+y^2}} & \mbox{si } -\infty < x < +\infty, \\
++ 1 & \mbox{si } x=+\infty. \\
+\end{array}
+\right.
+$$
+La fonction $f$ est donc bijective comme composée de fonctions bijectives.
+
+### Question 3 {.answer #answer-dra-3}
+La fonction $f$ sera une isométrie quand $\R \cup \{-\infty, +\infty\}$ 
+est muni de la distance  $d^{\pm \infty}$ 
+-- et $X$ la distance induite par la distance euclidienne de $\R^2$ -- 
+si et seulement si pour toute paire de points $p_1$ et $p_2$ dans $X$
+$$
+d^{\pm \infty}(f(p_1), f(p_2)) = d(p_1, p_2),
+$$
+ce qui rend nécessaire le choix de
+$$
+d^{\pm \infty}(x_1, x_2) := d(f^{-1}(x_1), f^{-1}(x_2)).
+$$
+On vérifiera facilement que ce choix détermine bien une distance sur
+la droite réelle achevée.
+
+### Question 4 {.answer #answer-dra-4}
+On a $f^{-1}(-\infty) = (-1,0)$, $f^{-1}(-1) = (-\sqrt{2}/2, \sqrt{2}/2)$,
+$f^{-1}(0) = (0, 1)$,  $f^{-1}(-1) = (\sqrt{2}/2, \sqrt{2}/2)$ et
+$f^{-1}(\infty) = (1,0)$, donc
+$d^{\pm \infty}(0, +\infty) = d((0,1), (1,0)) = \sqrt{2},$ 
+$d^{\pm \infty}(-\infty, +\infty) = d((-1, 0), (1, 0)) = 2$
+et 
+$d^{\pm \infty}(-1, 1) = \sqrt{2}.$
 
 ### TODO -- Question 5 {.answer #answer-dra-5}
 
