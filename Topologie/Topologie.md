@@ -552,11 +552,28 @@ $x \in X \mapsto d(x, A) \in \left[0, +\infty\right[$
 est une application continue.
 
 ### TODO -- Démonstration {.proof}
-Pour tous points $x_0$, $y_0$, $x$ et $y$ appartenant à $X$,
+Soient $(x_0, y_0)$ et $(x, y)$ deux points de l'espace produit $X \times X$.
+Par l'inégalité triangulaire, 
 $$
-|d(x, y) - d(x_0, y_0)| \leq |d(x, y) - d(x, y_0)| + |d(x, y_0) - d(x_0, y_0)|. 
+d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)
+\; \mbox{ et } \;
+d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),
 $$
+ce dont on déduit que
+$$
+|d(x, y) - d(x_0, y_0)| \leq d(x_0, x) + d(y_0, y).
+$$
+Or la distance sur le produit $X \times X$ est définie comme
+$$
+d_{X \times X}((x, y), (x_0, y_0)) = \sqrt{d(x, x_0)^2 + d(y, y_0)^2},
+$$
+donc
+$$
+|d(x, y) - d(x_0, y_0)| \leq 2 d_{X \times X}((x, y), (x_0, y_0))
+$$
+et $d(x, y) \to d(x_0, y_0)$ quand $(x, y) \to (x_0, y_0)$. 
 
+**TODO. seconde partie** 
 
 Bestiaire
 ================================================================================
