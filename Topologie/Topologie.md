@@ -2018,7 +2018,7 @@ il existe une sous-suite extraite des $x_k$ convergeant dans $\R$
 (et donc dans $\R \cup\{\infty\}$)
 -- soit $|x_k| \to +\infty$ quand $k\to +\infty$ -- auquel cas
 $x_k \to \infty$ dans $\R \cup\{\infty\}$. Dans les deux cas,
-la suite admet une suite extraire convergente, l'espace est donc
+la suite admet une suite extraite convergente, l'espace est donc
 compact.
 
  
