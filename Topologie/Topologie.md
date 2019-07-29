@@ -217,10 +217,7 @@ d(x, y) := \|x - y\|
 $$
 est une distance sur $X$.
 
---------------------------------------------------------------------------------
-
-###
-
+### {.post}
 Autrement dit, tout sous-ensemble d'un espace vectoriel normé "est" un
 espace métrique, c'est-à-dire qu'il existe une fonction distance
 "naturelle" dont on peut le doter, induite par l'espace vectoriel normé.
