@@ -1630,6 +1630,7 @@ et comment elle s'étendent à un ensemble d'adhérence compacte
 "localement lipschitz", fct "localement définie", etc., opérations 
 qui ne sont pas stables par union finie. 
 
+<!--
 TODO -- Compacité et Continuité
 --------------------------------------------------------------------------------
 
@@ -1653,6 +1654,8 @@ $$
 \{x \in \mathbb{R}^n \, | \, f(x) \leq c\} \, \mbox{ où } \, c \in \mathbb{R}
 $$
 sont compacts.
+
+-->
 
 Solutions aux Exercices
 ================================================================================
