@@ -1625,6 +1625,27 @@ Reprendre la question 2 avec la norme $\|\cdot\|_{\infty}^{\alpha}$
 au lieu de $\|\cdot\|_{\infty}$ et conclure quant à l'existence
 d'une solution au problème initial.
 
+Localement borné
+--------------------------------------------------------------------------------
+Soit $f: U \subset \R^n \to \R$ où $U$ est ouvert.
+Cette application est dite
+*localement bornée* si pour tout point $x \in U$, on peut trouver un
+rayon $r>0$ et une borne $M\geq 0$ tels que pour tout point 
+$y \in U$ tel que $\|y - x\| \leq r$ on ait $|f(y)| \leq M$.
+
+### Question 1 {.question #lb-1}
+Soit $A$ un sous-ensemble borné de $U$ tel que $d(A, \R^n \setminus U) > 0$.
+Montrer que $f$ est bornée sur $A$.
+
+### Question 2 {.question #lb-2}
+La fonction $f$ est *localement constante*
+si pour tout point $x \in U$, on peut trouver un
+rayon $r>0$ et une valeur $c \in \R$ tels que pour tout point 
+$y \in U$ tel que $\|y - x\| \leq r$ on ait $f(y) = c$.
+La fonction $f$ est-elle nécessairement constante sur 
+tout sous-ensemble borné $A$ de $U$ tel que $d(A, \R^n \setminus U) > 0$ ?
+
+<!--
 TODO -- "Localement"
 --------------------------------------------------------------------------------
 
@@ -1637,7 +1658,8 @@ et comment elle s'étendent à un ensemble d'adhérence compacte
 "Contre-exemples" ? Avec "localement constant", "localement polynomial", 
 "localement lipschitz", fct "localement définie", etc., opérations 
 qui ne sont pas stables par union finie. 
-
+-->
+ 
 <!--
 TODO -- Compacité et Continuité
 --------------------------------------------------------------------------------
@@ -2601,10 +2623,38 @@ x(t) = x_0 + \int_0^t A \cdot x(s) \, ds
 $$
 pour tout $t \in [0, T]$. Le problème original admet donc une solution unique.
 
-
-TODO -- "Localement"
+Localement borné
 --------------------------------------------------------------------------------
 
+### Question 1 {.answer #answer-lb-1}
+Soit $A$ un sous-ensemble borné de $\R^n$ tel $d(A, \R^n \setminus U) > 0$.
+Supposons que $f$ ne soit pas bornée sur $A$ ;
+cela signifie qu'on peut trouver une suite de $x_k \in A$ telle que
+$|f(x_k)| \to +\infty$ quand $k \to +\infty$. Comme $A$ est borné,
+c'est-à-dire si $A \subset K:=\overline{B}(0,r)$ pour un $r > 0$,
+par compacité la suite $x_k$ a une sous-suite $y_k$ qui converge vers
+un $\ell \in \R^n$.
+Comme $d(A, \R^n \setminus U) > 0$ et que 
+$d(y_k, \R^n \setminus U) \geq d(A, \R^n \setminus U)$,
+en passant à la limite sur $k$ on obtient $d(\ell, \R^n \setminus U)  >0$,
+soit $\ell \in U$. Mais $f$ est localement bornée au voisinage de $\ell$,
+nous avons donc exhibé une contradiction ; par conséquent, $f$ est bornée
+sur $A$.
+
+### Question 2 {.answer #answer-lb-2}
+La éponse est non: il suffit de considérer pour $U$ l'ensemble $\R$ privé de $0$
+et la fonction $f: U  \to \R$ définie par
+$$
+f(x) = \left|
+\begin{array}{cl}
++1 & \mbox{si } x>0, \\
+-1 & \mbox{si } x<0.
+\end{array}
+\right.
+$$
+Elle est localement constante, mais pas constante sur l'ensemble 
+$A = \{-1, +1\}$ qui est pourtant borné et vérifie
+$d(A, \R \setminus U) = d(A, \{0\}) = 1>0$.
 
 Références
 ============================================================================
