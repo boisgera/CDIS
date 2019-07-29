@@ -733,6 +733,46 @@ prennent une forme symbolique simple:
 
  4. $\overline{\overline{A}} = \overline{A}$.
 
+### Continuité {.theorem}
+Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
+continue si et seulement si l'image réciproque de tout fermée de $Y$ est
+un fermé de $X$.
+
+### Démonstration {.proof}
+
+Assume that $f$ is continuous. 
+If $B$ is a closed set of $Y$, by continuity, 
+  $$
+  f(\overline{f^{-1}(B)}) 
+  \subset 
+  \overline{f(f^{-1}(B))} 
+  \subset \overline{B}
+  =
+  B.
+  $$
+Taking the preimage of both sides of this equation yields
+  $$
+  \overline{f^{-1}(B)} = f^{-1}(B),
+  $$
+thus $f^{-1}(B)$ is closed.
+
+Conversely, assume that the preimage of any closed set is closed.
+Let $A$ be a subset of $X$. 
+The set $\overline{f(A)}$ is closed, thus by assumption
+  $$
+  \overline{f^{-1}(\overline{f(A)})}
+  = 
+  f^{-1}(\overline{f(A)}).
+  $$
+As $A \subset f^{-1}(\overline{f(A)})$, we have
+$\overline{A} \subset f^{-1}(\overline{f(A)})$, 
+thus
+  $$
+  f(\overline{A}) 
+  \subset f(f^{-1}(\overline{f(A)})) 
+  \subset \overline{f(A)}.
+  $$
+Since $A$ is arbitrary, $f$ is continuous.
   
 
 Complétude
