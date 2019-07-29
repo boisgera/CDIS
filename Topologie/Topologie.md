@@ -176,6 +176,7 @@ d(x, y) = \|x - y\|.
 $$ 
 
 ![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.
+
 Bien que $x=(1,0)$ et $y=(0,1)$ appartiennent au cercle unité, 
 ni $x+y$ ni $2 \times x$ ne lui appartiennent. Il hérite néanmoins
 d'une distance $d$ de l'espace euclien $\mathbb{R}^2$
@@ -636,7 +637,6 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     \; \Leftrightarrow \; 
     (x \in A \Rightarrow d(x, X \setminus A) > 0).
     $$
-
 
 ### Définitions topologiques {.definition}
 Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
