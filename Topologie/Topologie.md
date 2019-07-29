@@ -933,9 +933,6 @@ Toute suite de Cauchy de $\R^n$ est donc convergente.
 construire $\R$, par exemple par les coupures de Dedekind, il faut en
 faire la démonstration.
 
-### TODO
-Intégrer une partie de la définition ci-dessous en amont.
-
 ### Complétude de l'espace des fonctions bornées {.proposition}
 Soit $X$ un ensemble et $Y$ un espace métrique complet.
 L'ensemble des fonctions $f$ de $X$ dans $Y$ bornées
@@ -1256,18 +1253,6 @@ on en déduit que
 $\overline{A_0} \cap \dots \cap \overline{A_k} = \varnothing$
 et donc que
 $A_0 \cap \dots \cap A_k = \varnothing$, ce qui conclut la preuve.
-
-### TODO
-
-  - def norme d'opérateur / opérateur borné.
-
-  - borné équiv continue
-
-  - tous les opés lin $\R^n \to E$ sont bornés.
-
-  - Fct continue sur compact est uniformément continue.
-
-  - Ens des fcts $C^0$ sur un compact est un espace de Banach.
 
 <!--
 
