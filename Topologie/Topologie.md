@@ -291,7 +291,7 @@ Les isométries sont les *morphismes* des espaces métriques:
 les applications qui préservent la structure des espaces métriques.
 Construire des isométries peut aller de pair avec la construction
 d'une métrique sur un ensemble qui en est initialement dépourvu;
-voir à ce propos l'exercice "[Droite réelle achevée]"
+voir à ce propos l'exercice "[Droite réelle achevée]".
 
 ### Sous-espace métrique {.definition}
 Un sous-ensemble $Y$ d'un espace métrique $X$ est un *sous-espace métrique*
