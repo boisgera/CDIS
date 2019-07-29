@@ -440,7 +440,7 @@ munis des distances $d_1$, $\dots$, $d_n$ le produit cartésien
 $X_1 \times \dots \times X_n$, muni de la distance
 $$
 d((x_1,\dots, x_n), (y_1,\dots, y_n)) 
-= \sqrt{d_1(x_1, y_1)^2 + \dots + d(x_n, y_n)_n^2}.
+= \sqrt{d_1(x_1, y_1)^2 + \dots + d_n(x_n, y_n)^2}.
 $$
 
 <!--
@@ -543,6 +543,19 @@ $d(f(x_k), f(x))  > \varepsilon$. Par conséquent,
 $x$ adhère à $\{x_k \, | \, k \in  \N\}$, mais 
 $f(x)$ n'adhère pas à $f(\{x_k \, | \, k \in  \N\}) = 
 \{f(x_k) \, | \, k \in  \N\}$; la fonction $f$ n'est donc pas continue en $x$.
+
+### Continuité de la distance {.proposition}
+Soit $X$ un espace métrique. La fonction distance
+$d: X \times X \to \left[0, +\infty\right[$ est une application continue.
+Si $A$ est un sous-ensemble non vide de $X$, la distance à $A$
+$x \in X \mapsto d(x, A) \in \left[0, +\infty\right[$ 
+est une application continue.
+
+### TODO -- Démonstration {.proof}
+Pour tous points $x_0$, $y_0$, $x$ et $y$ appartenant à $X$,
+$$
+|d(x, y) - d(x_0, y_0)| \leq |d(x, y) - d(x, y_0)| + |d(x, y_0) - d(x_0, y_0)|. 
+$$
 
 
 Bestiaire
