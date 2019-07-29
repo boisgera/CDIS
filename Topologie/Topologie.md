@@ -2642,7 +2642,7 @@ nous avons donc exhibé une contradiction ; par conséquent, $f$ est bornée
 sur $A$.
 
 ### Question 2 {.answer #answer-lb-2}
-La éponse est non: il suffit de considérer pour $U$ l'ensemble $\R$ privé de $0$
+La réponse est non: il suffit de prendre pour $U$ l'ensemble $\R$ privé de $0$
 et la fonction $f: U  \to \R$ définie par
 $$
 f(x) = \left|
