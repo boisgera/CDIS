@@ -2022,7 +2022,7 @@ d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^
 $$
 
 
-### Stratification {.lemma}
+### Stratification {.lemma #stratification}
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 $k$ fois différentiable en un point $x$ de $U$, pour tous vecteurs 
 $h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, et tout $p \in \{0,\dots, k\}$,
@@ -2071,7 +2071,7 @@ $$
 L'hypothèse de récurrence est donc prouvée au rang $k+1$, 
 ce qui établit le résultat.
 
-### Symétrie des différentielles d'ordre supérieur {.proposition}
+### Symétrie des différentielles d'ordre supérieur {.proposition #SDn}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 $k$ fois différentiable en un point $x$ de $U$. Pour toute permutation
 $\sigma$ de $\{1,\dots, n\}$
@@ -2083,7 +2083,20 @@ d^k f(x) \cdot h_{\sigma(1)} \cdot \hdots \cdot h_{\sigma(i)} \cdot \hdots \cdot
 d^k f(x) \cdot h_{1} \cdot \hdots \cdot h_{i} \cdot \hdots \cdot h_{k}.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Toute permutation peut être décomposée en une succession de transpositions
+$\tau_{ij}$, où $\tau_{ij}(i) = j$, $\tau_{ij}(j)=i$ et $\tau_{ij}(h) = h$
+si $h$ diffère de $i$ et de $j$.
+Il suffit donc d'établir le résultat quand $\sigma$ est une transposition.
+Nous procédons par récurrence sur $k$. Le résultat dans le cas $k=2$ résulte
+de [la symétrie de la différentielle d'ordre 2](#SD2). Supposons désormais 
+le résultat établi au rang $k \geq 2$. En utilisant la stratification de
+$d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_k \cdot h_{k+1}$
+pour $p=1$ et $p=k$, on peut établir le résultat si $i$ et $j$
+appartiennent tous les deux à $\{2,\dots, k+1\}$ ou à $\{1,\dots, k\}$.
+Dans l'unique cas restant, on peut décomposer $\tau_{1(k+1)}$ en
+$\tau_{2(k+1)} \circ \tau_{12} \circ \tau_{2(k+1)}$ et se ramener 
+au cas précédent.
 
 
 
