@@ -1628,7 +1628,7 @@ Ce qui importe:
 
   - comprendre quel terme représente $d^2f(x)\cdot k \cdot h$ en pratique,
     quelle approximation ce terme fait. (Nota: au passage 
-    c'est crucial pour établir la symmétrie !).
+    c'est crucial pour établir la symétrie !).
 
   - représentation tensorielle, dérivées partielles. Application au Hessien.
 
@@ -1912,7 +1912,7 @@ $$
 \|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
 
-### Symmétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
+### symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 deux fois différentiable en un point $x$ de $U$. Pour tout couple
 de vecteur $h$ et $k$ de $\mathbb{R}^n$, on a
@@ -1931,7 +1931,7 @@ $$
 \end{split}
 $$
 La variation d'ordre $2$ de $f$ en $x$ est donc
-symmétrique par rapport à ses arguments $h$ et $k$.
+symétrique par rapport à ses arguments $h$ et $k$.
 On peut alors exploiter la relation entre variation d'ordre $2$ et 
 différentielle d'ordre 2 en notant que
 \begin{multline*}
@@ -1972,7 +1972,7 @@ Par le [lemme sur la variation de la différentielle](#LVD), on sait que
 $$
 df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
 $$
-La [différentielle d'ordre 2 étant symmétrique](#SD2), 
+La [différentielle d'ordre 2 étant symétrique](#SD2), 
 $$
 d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h,
 $$
@@ -2071,7 +2071,7 @@ $$
 L'hypothèse de récurrence est donc prouvée au rang $k+1$, 
 ce qui établit le résultat.
 
-### Symmétrie {.proposition}
+### symétrie des différentielles d'ordre supérieur {.proposition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 $k$ fois différentiable en un point $x$ de $U$. Pour toute permutation
 $\sigma$ de $\{1,\dots, n\}$
@@ -2238,7 +2238,7 @@ ce qui établit que $r(h) = o(\|h\|^j)$.
 Etablissons donc que $r(h)$ est un $o(\|h\|^j)$.
 Les termes $d^i f(x)\cdot h_1 \cdot \hdots \cdot h_i$ 
 sont linéaires par rapport à chacun des $h_j$, donc pour tout vecteur 
-$k$, compte tenu de la symmétrie de $d^i f(x)$,
+$k$, compte tenu de la symétrie de $d^i f(x)$,
 $$
 d^i f(x) (\cdot \, (h+k))^i
 = 
@@ -2254,7 +2254,7 @@ d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k -
 d^2f(x) \cdot h\cdot k - \dots -
 \frac{d^i f(x)}{(i-1)!} (\cdot \, h)^{i-1} \cdot k.
 $$
-Par le lemme de stratification et la symmétrie des différentielles
+Par le lemme de stratification et la symétrie des différentielles
 d'ordre supérieur, on obtient 
 \begin{multline*}
 d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k  \\ 
@@ -2544,7 +2544,7 @@ est proportionnelle à la fonction
 $$
 f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
 $$
-où $\Sigma \in \R^{d \times d}$ est une matrice symmétrique définie positive.
+où $\Sigma \in \R^{d \times d}$ est une matrice symétrique définie positive.
 
 ### Question 1
 Montrer que la fonction $f$ est différentiable et calculer son gradient.
@@ -2825,7 +2825,7 @@ Elle est donc différentiable et
 $$
 d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
 $$
-Par symmétrie de la différentielle d'ordre $2$,
+Par symétrie de la différentielle d'ordre $2$,
 $$
 d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot h, k\right>,
 $$
@@ -2875,7 +2875,7 @@ Quand à la première fonction, pour tout $h \in \R^d$, on a
 + <x, \Sigma^{-1} h> + <h, \Sigma^{-1} \cdot x> + \left<h, \Sigma^{-1} \cdot h \right>
 \right). 
 \end{multline*}
-D'une part, comme $\Sigma$ est symmétrique (et inversible), $\Sigma^{-1}$ également et
+D'une part, comme $\Sigma$ est symétrique (et inversible), $\Sigma^{-1}$ également et
 $$
 <x, \Sigma^{-1} \cdot h> + <h, \Sigma^{-1} \cdot x> = 2 \left<\Sigma^{-1} \cdot x, h \right>,
 $$
