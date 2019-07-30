@@ -505,7 +505,6 @@ les hypothèses en détail.
 -->
 
 ### Petit o de Landau
-
 La notation $o(\|h\|^k)$, 
 où $h \in \mathbb{R}^n$ et $k \in \mathbb{N}$,
 désigne une expression de la forme
@@ -2108,7 +2107,7 @@ orthogonale sur $x$; c'est une application linéaire $P(x)$ qui a tout vecteur
 $y$ de $\mathbb{R}^n$ associe le vecteur 
 $$
 P(x) \cdot y = \left<\frac{x}{\|x\|}, y\right> \frac{x}{\|x\|}
-= \frac{x}{\|x\|} \cdot \left(\frac{x}{\|x\|}\right)^t \cdot y
+= \frac{x}{\|x\|} \cdot \left(\frac{x}{\|x\|}\right)^* \cdot y
 $$
 
 Produit scalaire, exp matrice, etc ?
@@ -2469,9 +2468,9 @@ est une matrice et représente donc une application linéaire. Laquelle ?
 $\to$ [Solution](#sol-vvcvl-1)
 
 ### Question 2
-Le vecteur colonne ligne $X^t$ associé à $x$
+Le vecteur colonne ligne $X^*$ associé à $x$
 $$
-X^t = \left[ 
+X^* = \left[ 
 \begin{array}{ccc}
 x_1 & \cdots & x_n
 \end{array}
@@ -2521,10 +2520,12 @@ $$
 
 $\to$ [Solution](#sol-dec)
 
+TODO -- Fonction quadratique 
+--------------------------------------------------------------------------------
+
 
 Vecteur Gaussien
 --------------------------------------------------------------------------------
-
 La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
 est proportionnelle à la fonction
 $$
@@ -2774,6 +2775,22 @@ $$
 \end{split}
 $$
 
+Fonction quadratique 
+--------------------------------------------------------------------------------
+Soit $A: \R^n \to \R^n$ un opérateur linéaire, $b$ un vecteur de $\R^n$ et
+$c \in \R$. On considère la fonction $f:\R^n \to \R$ définie par
+$$
+f(x) = \frac{1}{2} \left<x, A \cdot x \right> + \left<b, x\right> + c. 
+$$
+
+### Question 1 {.question #fq-1}
+Montrer que $f$ est 2 fois différentiable en tout point $x$ de $\R^n$ ; 
+calculer $\nabla f(x)$ et $\nabla^2 f(x)$.
+
+### Question 2 {.question #fq-2}
+Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
+Montrer que la fonction $f$ admet un unique point critique $x_0$ et le 
+calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
 
 Vecteur Gaussien {#sol-vg}
 --------------------------------------------------------------------------------
@@ -2856,17 +2873,17 @@ $$
 \left<u, k \right> \left<v, h \right>
 =
 \left<k, u \right> \left<v, h \right>
-= k^t u v^t h = (v u^t k)^t h = \left<(v u^t) k, h \right>,
+= k^* u  \times v^* h = (v \cdot u^* \cdot k)^* h = \left<(v \cdot u^*) \cdot k, h \right>,
 $$
 par conséquent
 $$
 d (x \mapsto d f(x) \cdot h) \cdot k
 = 
--f(x) \left<(\Sigma^{-1} x x^t \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
+-f(x) \left<(\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
 $$
 La Hessienne de $f$ en $x$ est donc donnée par
 $$
-\nabla^2 f(x) = - f(x) (\Sigma^{-1} x x^t \Sigma^{-1} + \Sigma^{-1}).
+\nabla^2 f(x) = - f(x) (\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}).
 $$
 
 
@@ -2984,11 +3001,11 @@ son déterminant est positif; la matrice $A$ est alors inversible.
 Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
 pour être inversible, la formule de Cramer établit
 $$
-A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
+A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^*.
 $$
-Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
+Chaque coefficient de $\mathrm{co}(A)^*$ (la transposée de la comatrice
 de $A$) est une fonction polynomiale
-des coefficients $a_{ij}$ de $A$; chaque coefficient de $\mathrm{co}(A)^t$
+des coefficients $a_{ij}$ de $A$; chaque coefficient de $\mathrm{co}(A)^*$
 est donc une fonction continûment différentiable des coefficients de $A$
 et donc différentiable en $A=I$.
 Par la règle du produit, chaque coefficient de $A^{-1}$ est 
