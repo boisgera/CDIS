@@ -446,7 +446,7 @@ il s'agit de l'application
 $$
 \lambda \in \R \mapsto \lambda x \in \R^n.
 $$
-Identifiant un vecteur et son opérateur linéaire de $\R \to \R^n$
+Identifier un vecteur et son opérateur linéaire de $\R \to \R^n$
 permet par exemple de disposer "gratuitement" de la définition 
 $x^*$ (l'adjoint de l'opérateur associé à $x$). Il s'agit donc
 de l'application linéaire de $\R^n$ dans $\R$ dont la matrice
