@@ -1989,10 +1989,11 @@ on a
 $$
 d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
 =
-d^{k-p} (x \mapsto d^p f(x) \cdot h_1 \cdot \hdots \cdot h_{p+1})(x) \cdot h_{p+2} \cdot \hdots \cdot h_k.
+d^{k-p} (x \mapsto d^p f(x) \cdot h_1 \cdot \hdots \cdot h_{p})(x) \cdot h_{p+1} \cdot \hdots \cdot h_k.
 $$
 
 ### TODO -- Démonstration {.proof}
+
 
 ### Symmétrie {.proposition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
