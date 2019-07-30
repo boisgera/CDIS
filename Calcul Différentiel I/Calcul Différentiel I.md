@@ -483,6 +483,7 @@ $A \cdot (B \cdot x)$.
 Notation de Landau
 --------------------------------------------------------------------------------
 
+<!--
 ### Objectif {.meta}
 
 Présenté volontairement dans le cadre le plus étroit possible qui satisfasse
@@ -501,6 +502,7 @@ les conséquences seraient limitées à ça.
 ça ... retenir au moins que $o(\|h\|) = o(1) \|h\|$ ? La notation $o(1)$
 est pratique pour désigner $\varepsilon$ directement, sans avoir à rappeler
 les hypothèses en détail.
+-->
 
 ### Petit o de Landau
 
