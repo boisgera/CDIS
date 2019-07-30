@@ -1987,11 +1987,14 @@ $$
 \partial^2_{ij} f(x) := \partial_i (x \mapsto \partial_j f(x))(x).
 $$
 
-### Symétrie des dérivées partielles d'ordre 2 {.proposition}
+### Symétrie des dérivées partielles d'ordre 2 {.proposition #sdp2}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
 soit $x \in U$. Si $f$ est deux fois différentiable en $x$, alors pour
 toute paire d'indice $i$ et $j$ la dérivée partielle $\partial_{ij} f(x)$
-existe et $\partial_{ij} f(x) = \partial_{ji} f(x)$. 
+existe et 
+$$
+\partial_{ij} f(x) = \partial_{ji} f(x) = d^2 f(x) \cdot e_i \cdot e_j.
+$$
 
 ### Démonstration {.proof}
 Si $f$ est deux fois différentiable, on a $\partial_j f(x) = d(f(x)) \cdot e_j$,
@@ -1999,19 +2002,28 @@ puis $\partial^2_{ij} f(x) = d(d(f(x)) \cdot e_j) \cdot e_i$.
 Par définition de la différentielle d'ordre 2,
 $$d^2f(x) \cdot e_j \cdot e_i = d(d(f(x)) \cdot e_j) \cdot e_i,$$
 on en déduit donc que $\partial^2_{ij} f(x) = d^2f(x) \cdot e_j \cdot e_i$.
-Par [symmétrie de la différentielle d'ordre 2](#SD2), 
+Par [symétrie de la différentielle d'ordre 2](#SD2), 
 $\partial^2_{ij} f(x) = \partial^2_{ji} f(x)$.
 
 ### Hessienne {.definition}
 Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
-$x \in U$. On appelle *hessienne* de $f$ et $x$ et l'on note
+$x \in U$. On appelle *Hessienne* de $f$ et $x$ et l'on note
 $\nabla^2f(x)$ l'application linéaire $\R^n \to \R^n$ telle 
 que pour tout couple de vecteurs $h$ et $k$ de $\R^n$
 $$
 d^2f(x) \cdot h \cdot k = \left<\nabla^2f(x) \cdot h, k \right>.
 $$
 La *matrice hessienne $H_f(x)$* est la matrice associée à cette application
-linéaire.
+linéaire ; elle est donnée par 
+$$
+(H_f(x))_{ij} = \partial^2_{ij} f(x).
+$$
+
+### Démonstration (expression de la matrice hessienne) {.proof}
+Elle résulte directement de la définition de $\nabla^2 f(x)$ et des liens entre
+$d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition 
+["Symétrie des dérivées partielles d'ordre 2"](#sdp2).
+
 
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
