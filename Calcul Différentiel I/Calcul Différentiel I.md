@@ -2159,7 +2159,7 @@ $$
 -->
 
 ### Puissance symbolique
-Comme les différentielled d'ordre supérieures  sont fréquemment évaluées 
+Comme les différentielles d'ordre supérieures  sont fréquemment évaluées 
 lorsque les termes $h_1$, $h_2$, $\dots$, sont égaux, on adoptera la notation
 (purement syntaxique) suivante:
 $$
