@@ -2399,8 +2399,6 @@ $t \mapsto df^{(i)}(a+th) (\cdot \, h)^i$
 est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
 $df^{(i+1)}(a+th) (\cdot \, h)^{i+1}.$
 
-### TODO -- Dérivées partielles d'ordre supérieur
-
 
 Annexe -- Intégrale de Newton {#intégrale-Newton}
 ================================================================================
