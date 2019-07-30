@@ -1992,8 +1992,43 @@ d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
 d^{k-p} (x \mapsto d^p f(x) \cdot h_1 \cdot \hdots \cdot h_{p})(x) \cdot h_{p+1} \cdot \hdots \cdot h_k.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Faisons l'hypothèse que le théorème est satisfait lorsque la fonction est $j$
+fois différentiable pour tout $j \leq k$. C'est de toute évidence le cas
+pour $k=0, 1, 2$ ; montrons qu'il est encore vrai pour $j=k+1$.
 
+Notons tout d'abord que si $p=0$, le résultat est évident ; on supposera
+donc dans la suite que $p \in \{1,\dots,k+1\}$.
+Par définition des différentielles d'ordre supérieur,
+$$
+d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
+= d (d^k f(x) \cdot h_1 \cdot \hdots \cdot h_{k}) \cdot h_{k+1}.
+$$
+Or, par l'hypothèse de récurrence à l'ordre $k$,
+$$
+d^k f(x) \cdot h_1 \cdot \hdots \cdot h_{k}
+= d^{k-p} (d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p) \cdot h_{p+1} \cdot \hdots \cdot h_k
+$$
+donc si l'on pose $g(x) = d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p$ et 
+que l'on applique l'hypothèse de récurrence à l'ordre $k+1-p$
+-- un nombre compris entre $0$ et $k$ -- on obtient
+$$
+\begin{split}
+d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
+&=
+d(d^{k-p} g(x) \cdot h_{p+1} \cdot \hdots \cdot h_k)\cdot h_{k+1} \\
+&=
+d^{k+1-p} g(x) \cdot h_{p+1} \cdot \hdots \cdot h_k \cdot h_{k+1}
+\end{split}
+$$
+et donc au final
+$$
+d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
+=
+d^{k+1-p} (d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p) \cdot h_{p+1} \cdot \hdots \cdot h_k \cdot h_{k+1}.
+$$
+L'hypothèse de récurrence est donc prouvée au rang $k+1$, 
+ce qui établit le résultat.
 
 ### Symmétrie {.proposition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
