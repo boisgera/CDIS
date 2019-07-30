@@ -10,6 +10,45 @@ import sys
 import pandoc
 from pandoc.types import *
 
+# Main Document Transform
+# ------------------------------------------------------------------------------
+def transform(doc):
+
+    # DEPRECATED
+    #
+    # Replace rules with anonymous headers (not perfect solution ...
+    # will appear in the TOC. But good for separation purposes)
+    # if False:
+    #     todos = []
+    #     for elt, path in pandoc.iter(doc, path=True):
+    #         if isinstance(elt, HorizontalRule):
+    #             todos.append(path[-1])
+    #     for todo in todos:
+    #         holder, i = todo
+    #         holder[i] = Header(3, ("", [], []), [])
+
+    remove_html(doc)
+    divify(doc)
+    proofify(doc)
+    add_font_awesome(doc)
+    add_link_to_answers(doc)
+
+    demote_proofs_questions_and_answers(doc) # -> level 4
+    make_level_4_section_headings_inline(doc)
+
+    # make_level_4_section_headings_inline(doc) # was: 
+    # fucks up the index; the TOC is still good on print but the index is wrong 
+    # and the TOC links are fucked-up. Now it's not even the runin config:
+    # the use of titlesec package is enough to do that. OK, see
+    # <https://tex.stackexchange.com/questions/56023/titlesec-messin-up-my-hyperrefd-table-of-contents>
+    # hyperref used by pandoc does not support titlesec, so we're back to
+    # square one, titlesec is off-limits.
+
+    transform_image_format(doc)
+    solve_toc_nesting(doc)
+    anonymify(doc)
+    return doc
+
 # Command-Line/Process Helpers
 # ------------------------------------------------------------------------------
 def call(*args):
@@ -55,41 +94,17 @@ def clean_latex_trash():
 
 # Document Processing
 # ------------------------------------------------------------------------------
-def transform(doc):
+def remove_html(doc):
+    found = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, (RawInline, RawBlock)):
+            format = elt[0]
+            if format[0] == "html":
+                holder, i = path[-1]
+                found.insert(0, (holder, i))
+    for holder, i in found:
+        del holder[i]
 
-    # DEPRECATED
-    #
-    # Replace rules with anonymous headers (not perfect solution ...
-    # will appear in the TOC. But good for separation purposes)
-    # if False:
-    #     todos = []
-    #     for elt, path in pandoc.iter(doc, path=True):
-    #         if isinstance(elt, HorizontalRule):
-    #             todos.append(path[-1])
-    #     for todo in todos:
-    #         holder, i = todo
-    #         holder[i] = Header(3, ("", [], []), [])
-
-    divify(doc)
-    proofify(doc)
-    add_font_awesome(doc)
-    add_link_to_answers(doc)
-
-    demote_proofs_questions_and_answers(doc) # -> level 4
-    make_level_4_section_headings_inline(doc)
-
-    # make_level_4_section_headings_inline(doc) # was: 
-    # fucks up the index; the TOC is still good on print but the index is wrong 
-    # and the TOC links are fucked-up. Now it's not even the runin config:
-    # the use of titlesec package is enough to do that. OK, see
-    # <https://tex.stackexchange.com/questions/56023/titlesec-messin-up-my-hyperrefd-table-of-contents>
-    # hyperref used by pandoc does not support titlesec, so we're back to
-    # square one, titlesec is off-limits.
-
-    transform_image_format(doc)
-    solve_toc_nesting(doc)
-    anonymify(doc)
-    return doc
 
 def anonymify(doc):
     anonymous_headers = []
