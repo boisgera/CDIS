@@ -1162,14 +1162,14 @@ puisse être formellement définie, la chain rule ne marche pas, donc
 on ne peut pas les multiplier)
 -->
 
-### Matrice Jacobienne {.definition}
+### Matrice jacobienne {.definition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ où $U$ est ouvert et
 soit $x$ un point de $U$. Quand $f$ est différentiable en $x$, 
 on appelle *matrice jacobienne* de $f$ en $x$ et l'on note 
 $J_f(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
 différentielle $df(x): \mathbb{R}^n \to \mathbb{R}^m$ de $f$ en $x$.
 
-### Dérivée Partielle {.definition}
+### Dérivées partielles {.definition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
 soit $x \in U$. 
 Lorsque la $i$-ème fonction partielle de $f$ en $x$
@@ -1188,7 +1188,7 @@ $$
 $$
 quand le second membre existe.
 
-### Différentielle partielle {.remark .definition}
+### Différentielles partielles {.remark .definition}
 La dérivée partielle permet d'étudier séparement l'influence de chaque 
 variable scalaire de $f$ sur sa variation. 
 Mais dans certaine situations il est plus naturel de regrouper 
@@ -1976,7 +1976,7 @@ d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h
 $$
 ce qui fournit l'égalité cherchée.
 
-### Dérivée Partielle d'ordre 2 {.definition}
+### Dérivées Partielles d'ordre 2 {.definition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
 soit $x \in U$. Soient $i$ et $j$ deux indices dans $\{1,\dots, n\}$.
 Lorsque la $j$-ème dérivée partielle de $f$ est définie sur $U$ et
@@ -2132,6 +2132,24 @@ Dans l'unique cas restant, on peut décomposer $\tau_{1(k+1)}$ en
 $\tau_{2(k+1)} \circ \tau_{12} \circ \tau_{2(k+1)}$ et se ramener 
 au cas précédent.
 
+### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
+Les dérivées partielles d'ordre supérieure se définissent par récurrence,
+de manière similaire aux dérivées partielles d'ordre $2$. Pour simplifier
+la notation $\partial^k_{i_1 \dots i_k} f(x)$, on exploite le fait que
+si $f$ et $k$ fois différentiable en $x$,
+$$
+\partial^k_{i_1 \dots i_k} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
+$$
+Compte tenu de la symétrie de $d^k f(x)$, peut importe l'ordre de $i_1$, $\dots$, $i_k$, 
+seul le nombre de fois ou un indice apparaît compte. 
+Cette remarque fonde une notation basée sur les multi-indices 
+$\alpha=(\alpha_1, \dots, \alpha_n) \in \N^n$ où $\alpha_i$ détermine le
+nombre de fois où l'indice $i$ apparait. 
+Formellement, le symbole $\partial^{\alpha} f(x)$ désigne $f(x)$ si 
+$\alpha = (0, \dots, 0)$ et dans le cas contraire:
+$$
+\partial^{(\alpha_1, \cdots, \alpha_i + 1, \cdots, \alpha_n)} f(x) = \partial_i (\partial^{\alpha} f)(x).
+$$
 
 
 <!--
