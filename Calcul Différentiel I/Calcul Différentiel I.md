@@ -2520,12 +2520,22 @@ $$
 
 $\to$ [Solution](#sol-dec)
 
-TODO -- Fonction quadratique 
+Fonction quadratique 
 --------------------------------------------------------------------------------
+Soit $A: \R^n \to \R^n$ un opérateur linéaire, $b$ un vecteur de $\R^n$ et
+$c \in \R$. On considère la fonction $f:\R^n \to \R$ définie par
+$$
+f(x) = \frac{1}{2} \left<x, A \cdot x \right> + \left<b, x\right> + c. 
+$$
 
-### Question 1 {.answer #answer-fq-1}
+### Question 1 {.question #fq-1}
+Montrer que $f$ est 2 fois différentiable en tout point $x$ de $\R^n$ ; 
+calculer $\nabla f(x)$ et $\nabla^2 f(x)$.
 
-### Question 2 {.answer #answer-fq-2}
+### Question 2 {.question #fq-2}
+Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
+Montrer que la fonction $f$ admet un unique point critique $x_0$ et le 
+calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
 
 Vecteur Gaussien
 --------------------------------------------------------------------------------
@@ -2780,20 +2790,63 @@ $$
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
-Soit $A: \R^n \to \R^n$ un opérateur linéaire, $b$ un vecteur de $\R^n$ et
-$c \in \R$. On considère la fonction $f:\R^n \to \R$ définie par
+
+### Question 1 {.answer #answer-fq-1}
+Pour tout $x \in \R^n$ est tout $h \in \R^n$, on a 
 $$
-f(x) = \frac{1}{2} \left<x, A \cdot x \right> + \left<b, x\right> + c. 
+\begin{split}
+f(x+h) - f(x) &= \frac{1}{2} \left<(x+h), A \cdot (x+h) \right> + \left<b, x+h\right> + c
+- \frac{1}{2} \left<x, A \cdot x \right> - \left<b, x\right> - c \\
+& =
+\frac{1}{2} \left<x, A \cdot h \right> + \frac{1}{2} \left<h, A \cdot x \right> +
+\left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right> \\
+&=
+\frac{1}{2} \left<A^* \cdot x, h \right> + \frac{1}{2} \left<A \cdot x, h \right> +
+\left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right>.
+\end{split}
+$$
+Comme $|\left<h, A \cdot h \right>| \leq \|h\| \times \|A\| \|h\|$, ce terme
+est un $o(\|h\|)$. On en conclut que
+$$
+f(x+h) - f(x)
+= \left<\frac{1}{2}(A + A^*) \cdot x + b, h\right> + o(\|h\|).
+$$
+La fonction $f$ est donc différentiable en $x$, de gradient
+$$
+\nabla f(x) = \frac{1}{2}(A + A^*) \cdot x + b.
+$$
+Pour tout $h \in \R^n$, la fonction $x \mapsto \left<\nabla f(x), h\right>$
+vérifie
+$$
+\left<\nabla f(x+k), h\right> - \left<\nabla f(x), h\right>
+= \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
+$$
+Elle est donc différentiable et 
+$$
+d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
+$$
+Par symmétrie de la différentielle d'ordre $2$,
+$$
+d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot h, k\right>,
+$$
+donc 
+$$
+\nabla^2 f(x) = \frac{1}{2}(A + A^*).
 $$
 
-### Question 1 {.question #fq-1}
-Montrer que $f$ est 2 fois différentiable en tout point $x$ de $\R^n$ ; 
-calculer $\nabla f(x)$ et $\nabla^2 f(x)$.
-
-### Question 2 {.question #fq-2}
-Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
-Montrer que la fonction $f$ admet un unique point critique $x_0$ et le 
-calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
+### Question 2 {.answer #answer-fq-2}
+Si $\nabla^2 f(x)$ est inversible (cet opérateur est constant), comme
+$$
+\nabla f(y) = \frac{1}{2}(A + A^*) \cdot y + b = \nabla^2 f(x) \cdot y + b,
+$$
+résoudre $\nabla f(y) = 0$ revient à rechercher les solutions de
+$$
+\nabla^2 f(x) \cdot y + b = \nabla^2 f(x) \cdot y + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
+$$
+Il existe donc un unique point critique pour $f$, donné par
+$$
+y = x - (\nabla^2 f(x))^{-1} \nabla f(x).
+$$
 
 Vecteur Gaussien {#sol-vg}
 --------------------------------------------------------------------------------
@@ -2829,7 +2882,7 @@ $$
 d'autre part
 $$
 \left| \left<h, \Sigma^{-1} \cdot h \right> \right|
-\leq \|h\| \times \|\Sigma^{-1} h\| \leq \|h\| \times \|\Sigma^{-1}\| \times \|h\| = o(\|h\|).
+\leq \|h\| \times \|\Sigma^{-1} \cdot h\| \leq \|h\| \times \|\Sigma^{-1}\| \times \|h\| = o(\|h\|).
 $$
 La fonction est donc différentiable sur $\R^n$, avec
 $$
@@ -2841,18 +2894,18 @@ de fonctions différentiables et l'on a
 $$
 d f(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
 \left<\Sigma^{-1} \cdot x, h \right>
-= \left<-f(x) \Sigma^{-1} \cdot x, h \right>,
+= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>,
 $$
 le gradient de $f$ vaut donc
 $$
-\nabla f(x) = -f(x) \Sigma^{-1} \cdot x.
+\nabla f(x) = -f(x) \times \Sigma^{-1} \cdot x.
 $$
 
 ### Question 2 {#sol-vg-2}
 De l'équation
 $$
 d f(x) \cdot h 
-= \left<-f(x) \Sigma^{-1} \cdot x, h \right>
+= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>
 = -f(x) \left<\Sigma^{-1} \cdot h, x \right>
 $$
 on déduit que $x \mapsto d f(x) \cdot h$ est différentiable comme produit
@@ -2866,8 +2919,8 @@ d (x \mapsto d f(x) \cdot h) \cdot k
 - (df(x) \cdot k) \times \left<\Sigma^{-1} \cdot x, h \right>
 - f(x) \times \left<\Sigma^{-1} \cdot h, k \right> \\
 &= 
-\left<-f(x) \Sigma^{-1} \cdot x, k \right> \left<\Sigma^{-1} \cdot x, h \right>+
-\left<-f(x) \Sigma^{-1} \cdot h, k\right>
+\left<-f(x) \times \Sigma^{-1} \cdot x, k \right> \left<\Sigma^{-1} \cdot x, h \right>+
+\left<-f(x) \times \Sigma^{-1} \cdot h, k\right>
 \end{split}
 $$
 
