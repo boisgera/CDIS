@@ -2445,6 +2445,7 @@ $$
 Exercices
 ================================================================================
 
+<!--
 Vecteurs, vecteurs colonnes, vecteurs lignes
 --------------------------------------------------------------------------------
 
@@ -2478,6 +2479,7 @@ représente également une application linéaire. Laquelle ?
 
 $\to$ [Solution](#sol-vvcvl-2)
 
+-->
 
 TODO -- Dérivée sur un intervalle fermé {#intervalle-fermé}
 --------------------------------------------------------------------------------
@@ -2710,6 +2712,7 @@ calcul plan tangent ?
 Solutions aux Exercices
 ================================================================================
 
+<!--
 Vecteurs, vecteurs colonnes, vecteurs lignes
 --------------------------------------------------------------------------------
 
@@ -2731,6 +2734,8 @@ B h = \sum_k x_i h_i,
 $$
 soit $B h = \left< x, h \right>$ ou $\left<\cdot, \cdot\right>$
 désigne le produit scalaire dans $\mathbb{R}^n$. 
+
+-->
 
 TODO -- Dérivée sur un intervalle fermé {#sol-if}
 --------------------------------------------------------------------------------
