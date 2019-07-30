@@ -448,7 +448,7 @@ $$
 $$
 Identifier un vecteur et son opérateur linéaire de $\R \to \R^n$
 permet par exemple de disposer "gratuitement" de la définition 
-$x^*$ (l'adjoint de l'opérateur associé à $x$). Il s'agit donc
+$x^*$ (l'adjoint de l'opérateur associé à $x$): il s'agit
 de l'application linéaire de $\R^n$ dans $\R$ dont la matrice
 est la transposée du vecteur colonne associé à $x$, autrement dit,
 la représentation de $x$ comme vecteur ligne.
