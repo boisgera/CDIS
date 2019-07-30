@@ -1170,7 +1170,6 @@ $J_f(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la
 différentielle $df(x): \mathbb{R}^n \to \mathbb{R}^m$ de $f$ en $x$.
 
 ### Dérivée Partielle {.definition}
-
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
 soit $x \in U$. 
 Lorsque la $i$-ème fonction partielle de $f$ en $x$
@@ -1721,7 +1720,6 @@ car simplificateur, mais
 -->
 
 ### Différentielle d'ordre 2 {.definition}
-
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 dans un voisinage d'un point $x$ de $U$. 
 On dira que $f$ est *deux fois différentiable en $x$* 
@@ -1978,7 +1976,31 @@ d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h
 $$
 ce qui fournit l'égalité cherchée.
 
-### TODO -- Dérivées partielles d'ordre 2
+### Dérivée Partielle d'ordre 2 {.definition}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
+soit $x \in U$. Soient $i$ et $j$ deux indices dans $\{1,\dots, n\}$.
+Lorsque la $j$-ème dérivée partielle de $f$ est définie sur $U$ et
+admet en $x$ une $i$-ème dérivée partielle, on l'appelle 
+*dérivée partielle d'ordre 2* de $f$ en $x$ par rapport aux $j$-ème 
+et $i$-ème variables et on la note $\partial^2_{ij} f(x)$:
+$$
+\partial^2_{ij} f(x) := \partial_i (x \mapsto \partial_j f(x))(x).
+$$
+
+### Symétrie des dérivées partielles d'ordre 2 {.proposition}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
+soit $x \in U$. Si $f$ est deux fois différentiable en $x$, alors pour
+toute paire d'indice $i$ et $j$ la dérivée partielle $\partial_{ij} f(x)$
+existe et $\partial_{ij} f(x) = \partial_{ji} f(x)$. 
+
+### Démonstration {.proof}
+Si $f$ est deux fois différentiable, on a $\partial_j f(x) = d(f(x)) \cdot e_j$,
+puis $\partial^2_{ij} f(x) = d(d(f(x)) \cdot e_j) \cdot e_i$. 
+Par définition de la différentielle d'ordre 2,
+$$d^2f(x) \cdot e_j \cdot e_i = d(d(f(x)) \cdot e_j) \cdot e_i,$$
+on en déduit donc que $\partial^2_{ij} f(x) = d^2f(x) \cdot e_j \cdot e_i$.
+Par [symmétrie de la différentielle d'ordre 2](#SD2), 
+$\partial^2_{ij} f(x) = \partial^2_{ji} f(x)$.
 
 ### Hessienne {.definition}
 Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
