@@ -2071,7 +2071,7 @@ $$
 L'hypothèse de récurrence est donc prouvée au rang $k+1$, 
 ce qui établit le résultat.
 
-### symétrie des différentielles d'ordre supérieur {.proposition}
+### Symétrie des différentielles d'ordre supérieur {.proposition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 $k$ fois différentiable en un point $x$ de $U$. Pour toute permutation
 $\sigma$ de $\{1,\dots, n\}$
