@@ -2032,13 +2032,14 @@ ce qui établit le résultat.
 
 ### Symmétrie {.proposition}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
-$k$ fois différentiable en un point $x$ de $U$, pour tous vecteurs 
-$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, et deux indices arbitraires
-$i \leq j$ entre $1$ et $k$, on a:
+$k$ fois différentiable en un point $x$ de $U$. Pour toute permutation
+$\sigma$ de $\{1,\dots, n\}$
+et pour tous vecteurs 
+$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, on a:
 $$
-d^k f(x) \cdot \hdots \cdot h_i \cdot \hdots \cdot h_j \cdot \hdots
+d^k f(x) \cdot h_{\sigma(1)} \cdot \hdots \cdot h_{\sigma(i)} \cdot \hdots \cdot h_{\sigma(k)}
 =
-d^k f(x) \cdot \hdots \cdot h_j \cdot \hdots \cdot h_i \cdot \hdots
+d^k f(x) \cdot h_{1} \cdot \hdots \cdot h_{i} \cdot \hdots \cdot h_{k}.
 $$
 
 ### TODO -- Démonstration {.proof}
