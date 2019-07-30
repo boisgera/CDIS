@@ -2523,6 +2523,9 @@ $\to$ [Solution](#sol-dec)
 TODO -- Fonction quadratique 
 --------------------------------------------------------------------------------
 
+### Question 1 {.answer #answer-fq-1}
+
+### Question 2 {.answer #answer-fq-2}
 
 Vecteur Gaussien
 --------------------------------------------------------------------------------
