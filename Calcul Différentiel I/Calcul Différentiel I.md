@@ -1912,7 +1912,7 @@ $$
 \|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
 
-### symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
+### Symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 deux fois différentiable en un point $x$ de $U$. Pour tout couple
 de vecteur $h$ et $k$ de $\mathbb{R}^n$, on a
