@@ -2550,22 +2550,17 @@ TODO -- Dérivée sur un intervalle fermé {#intervalle-fermé}
 
 **TODO:** deux options: extension globale ou locale, y repenser.
 
-### Question 1
+### Question 1 {.question #dif-1}
 Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
 ($f'(a)$ et $f'(b)$ désignant alors les dérivées à droite de $f$ en $a$
 et à gauche de $f$ en $b$)
 si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
 $g$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable.
 
-$\to$ [Solution](#sol-if-1)
-
-### Question 2
+### Question 2 {.question #dif-2}
 Montrer qu'alors, $f' = g'|_{[a, b]}$.
 
-$\to$ [Solution](#sol-if-2)
-
-
-Dérivation en chaîne
+Dérivation en chaîne {.question #dec}
 --------------------------------------------------------------------------------
 
 Montrer que la règle de dérivation en chaîne ci-dessous, 
@@ -2580,8 +2575,6 @@ alors la composée $g \circ f$ est dérivable en $x$ et
 $$
 (g \circ f)'(x) = g'(f(x)) f'(x).
 $$
-
-$\to$ [Solution](#sol-dec)
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
@@ -2602,6 +2595,7 @@ calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
 
 Vecteur Gaussien
 --------------------------------------------------------------------------------
+
 La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
 est proportionnelle à la fonction
 $$
@@ -2609,17 +2603,12 @@ f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \righ
 $$
 où $\Sigma \in \R^{d \times d}$ est une matrice symétrique définie positive.
 
-### Question 1
+### Question 1 {.question #vg-1}
 Montrer que la fonction $f$ est différentiable et calculer son gradient.
 
-$\to$ [Solution](#sol-vg-1)
-
-### Question 2
+### Question 2 {.question #vg-2}
 Montrer que la fonction $f$ est deux différentiable et calculer sa 
 hessienne.
-
-$\to$ [Solution](#sol-vg-2)
-
 
 Robot Manipulateur
 --------------------------------------------------------------------------------
@@ -2638,18 +2627,17 @@ y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
 $$
 ou $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
 
-### Question 1
+### Question 1 {.question #rm-1}
 
 Montrer que l'application $f: (\theta_1, \theta_2) \mapsto (x, y)$ 
 est différentiable et déterminer sa matrice jacobienne.
 
-$\to$ [Solution](#sol-rm1)
 
-### TODO -- Question 2
+### TODO -- Question 2 {.question #rm-2}
 
 Calcul de $K(q, v)$ (en partant de $K = 1/2m(\dot{x}^2 + \dot{y}^2)$).
 
-### TODO -- Question 3
+### TODO -- Question 3 {.question #rm-3}
 
 Eq E.-L. soumis à couples $c_1$ et $c_2$ ? Ou juste grandeurs intermédiaires ?
 
@@ -2658,27 +2646,19 @@ Différentiation Matricielle
 
 Source: [@Tao13]
 
-### Question 1
+### Question 1 {.question #dm-1}
 Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
 différentiable en l'identité ($A = I$) et calculer cette différentielle.
 
-$\to$ [Solution](#sol-dm-1)
-
-### Question 2
+### Question 2 {.question #dm-2}
 L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
 vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
 En déduire une identité concernant $\tr A B$ et $\tr BA$.
 
-$\to$ [Solution](#sol-dm-2)
-
-### Question 3
+### Question 3 {.question #dm-3}
 Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
 ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
-
-$\to$ [Solution](#sol-dm-3)
-
-
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2701,11 +2681,11 @@ défini sur un intervalle ouvert $I$ contenant $0$, telle que
 $\gamma(I) \subset U$,  $\gamma(0) = x$ et $\gamma'(0)$ existe,
 la dérivée $(f \circ \gamma)'(0)$ existe. 
 
-### Question 1
+### Question 1 {.question #ddh-1}
 Montrer que si $f$ est directionnellement dérivable au sens de Hadamard 
 en $x$, alors $f$ est directionnellement dérivable au sens classique.
 
-### Question 2
+### Question 2 {.question #ddh-2}
 Montrer que si $f$ est directionnellement dérivable au sens de Hadamard
 en $x$, la grandeur $(f \circ \gamma)'(0)$ ne dépend de $\gamma$
 qu'à travers $\gamma'(0)$ et que par conséquent
@@ -2713,7 +2693,7 @@ $$
 (f\circ \gamma)'(0) = f'(x, \gamma'(0)).
 $$
 
-### Question 3 -- Dérivation en chaîne
+### Question 3 -- Dérivation en chaîne {.question #ddh-3}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
 sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
@@ -2725,7 +2705,7 @@ $$
 (g\circ f)'(x, h) = g'(f(x), f'(x, h)).
 $$
 
-### Question 4
+### Question 4 {.question #ddh-4}
 Montrer que $f$ est directionnellement dérivable au sens de Hadamard en $x$ 
 si et seulement si la limite
 $$
@@ -2733,14 +2713,14 @@ $$
 $$
 existe et que la limite est alors égale à $f'(x, h)$.
 
-### Question 5
+### Question 5 {.question #ddh-5}
 Une fonction dérivable directionnellement au sens de Hadamard en $x$ est 
 *différentiable au sens de Hadamard* en $x$ si de plus $f'(x, h)$ 
 est une fonction linéaire de $h$.
 Montrer que $f$ est différentiable en $x$ au sens de Hadamard 
 si et seulement si elle est différentiable en $x$ au sens de Fréchet.
 
-Inégalité de la valeur moyenne
+Inégalité de la valeur moyenne {.question #ivm}
 --------------------------------------------------------------------------------
 Soit $f:[a, b] \subset \R \to \R^m$ une fonction intégrable au sens de Newton;
 on appelle *valeur moyenne de $f$* la grandeur
@@ -2750,18 +2730,13 @@ $$
 Quel est le lien entre $\left<f\right>$ et la grandeur 
 $\sup_{x \in [a, b]} \|f(x)\|$ ?
 
-$\to$ [Solution](#sol-ivm)
-
-Egalité des accroissements finis ?
+Egalité des accroissements finis ? {.question #eaf}
 --------------------------------------------------------------------------------
 Soit $f:[0, 2\pi] \to \mathbb{R}^2$ la fonction définie par
 $$
 f(t) = (\cos t, \sin t)
 $$
 Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
-
-$\to$ [Solution](#sol-eaf)
-
 
 TODO -- Asymptotique
 --------------------------------------------------------------------------------
@@ -2816,14 +2791,14 @@ désigne le produit scalaire dans $\mathbb{R}^n$.
 
 -->
 
-TODO -- Dérivée sur un intervalle fermé {#sol-if}
+TODO -- Dérivée sur un intervalle fermé 
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {#sol-if-1}
+### TODO -- Question 1 {.answer #answer-dif-1}
 
-### TODO -- Question 2 {#sol-if-2}
+### TODO -- Question 2 {.answer #answer-dif-2}
 
-Dérivation en chaîne {#sol-dec}
+Dérivation en chaîne {.answer #answer-dec}
 --------------------------------------------------------------------------------
 
 Les fonction $f$ et $g$ sont dérivables donc différentiables 
@@ -2911,11 +2886,10 @@ $$
 y = x - (\nabla^2 f(x))^{-1} \nabla f(x).
 $$
 
-Vecteur Gaussien {#sol-vg}
+Vecteur Gaussien
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-vg-1}
-
+### Question 1 {.answer #answer-vg-1}
 La fonction 
 $$
 f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
@@ -2964,7 +2938,7 @@ $$
 \nabla f(x) = -f(x) \times \Sigma^{-1} \cdot x.
 $$
 
-### Question 2 {#sol-vg-2}
+### Question 2 {.answer #answer-vg-2}
 De l'équation
 $$
 d f(x) \cdot h 
@@ -3009,8 +2983,7 @@ $$
 Robot Manipulateur
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-rm1}
-
+### Question 1 {.answer #answer-rm-1}
 Des équations
 $$
 \left|
@@ -3052,7 +3025,7 @@ $$
 Différentiation Matricielle
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-dm-1}
+### Question 1 {.answer #answer-dm-1}
 Soit $H \in \R^{n\times n}$, telle que
 $$
 H = 
@@ -3099,7 +3072,7 @@ $$
 La différentiel du déterminant existe donc en l'identité et 
 $d\det(I) \cdot H = \tr H$.
 
-### Question 2 {#sol-dm-2}
+### Question 2 {.answer #answer-dm-2}
 Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
 $$
 \det (I + \varepsilon A B) = \det (I + \varepsilon B A).
@@ -3111,8 +3084,7 @@ $$
 \tr A B = \tr B A.
 $$
 
-### Question 3 {#sol-dm-3}
-
+### Question 3 {.answer #answer-dm-3}
 Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
 est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
 son déterminant est positif; la matrice $A$ est alors inversible.
@@ -3145,8 +3117,7 @@ $$d \,\mathrm{inv} (I) \cdot H= - H.$$
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-ddh-1}
-
+### Question 1 {.answer #answer-ddh-1}
 Supposons que $f$ soit directionnellement dérivable au sens de Hadamard
 en $x$. Pour tout $h \in \mathbb{R}^n$, par continuité de l'application
 $t \in \mathbb{R} \mapsto x + th$, pour $\varepsilon > 0$ assez petit,
@@ -3162,7 +3133,7 @@ dérivée directionnelle de $f$ en $x$ dans la direction $h$.
 La fonction $f$ est donc directionnellement dérivable en $x$ 
 au sens classique.
 
-### Question 2 {#sol-ddh-2}
+### Question 2 {.answer #answer-ddh-2}
 Supposons que $f$ soit directionnellement dérivable au sens de Hadamard
 en $x$. Pour montrer que l'expression $(f \circ \gamma)'(0)$ ne dépend
 de $\gamma$ qu'à travers $\gamma'(0)$, nous allons considérer un
@@ -3231,7 +3202,7 @@ $$
 (f \circ \gamma)'(0) = (f \circ \beta)'(0) = f'(x, \beta'(0)) = f'(x, \gamma'(0)).
 $$
 
-### Question 3 {#sol-ddh-3}
+### Question 3 {.answer #answer-ddh-3}
 Soit $\gamma: I \subset \mathbb{R} \to \mathbb{R}^n$,
 un chemin défini sur un intervalle ouvert $I$ contenant $0$, 
 tel que $\gamma(I) \subset U$,  $\gamma(0) = x$ et $\gamma'(0)$ existe.
@@ -3254,7 +3225,7 @@ $$
 (g \circ f)'(x, h) = g'(f(x), f'(x, h)).
 $$
 
-### Question 4 {#sol-ddh-4}
+### Question 4 {.answer #answer-ddh-4}
 Tout d'abord, si la limite 
 $$
 \lim_{(t, k) \to (0, h)} \frac{f(x+ t k) - f(x)}{t}
@@ -3330,7 +3301,7 @@ $$
 $$
 existe.
 
-### Question 5 {#sol-ddh-5}
+### Question 5 {.answer #answer-ddh-5}
 Si $f$ est différentiable au sens de Fréchet, notons $\varepsilon$
 la fonction définie dans un voisinage de $0$, continue et nulle en $0$,
 telle que
@@ -3397,7 +3368,7 @@ $$
 ce qui contredit l'inégalité ci-dessus et prouve la contradiction.
 Par conséquent, $f$ est bien différentiable au sens de Fréchet.
 
-Inégalité de la valeur moyenne {#sol-ivm}
+Inégalité de la valeur moyenne {.answer #answer-ivm}
 --------------------------------------------------------------------------------
 
 Soit $F:[a, b] \to \R^m$ une primitive de $f$. 
@@ -3418,7 +3389,7 @@ $$
 Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
 c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
 
-Egalité des accroissements finis ? {#sol-eaf}
+Egalité des accroissements finis ? {.answer #answer-eaf}
 --------------------------------------------------------------------------------
 
 La dérivée de $f$ est donnée par $f'(t) = (-\sin t, \cos t)$; 
