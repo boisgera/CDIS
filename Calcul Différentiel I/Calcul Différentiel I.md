@@ -401,11 +401,25 @@ Avec NumPy, la méthode `dot` des tableaux permet de calculer ce produit matrici
     array([[1, 2, 3],
            [4, 5, 6]])
 
+### Adjoint d'un opérateur {.definition}
+Lorsque $A: \R^n \to \R^m$ est un opérateur linéaire, on peut définir de
+façon unique l'opérateur *adjoint* $A^* : \R^m \to \R^n$ comme l'unique
+opérateur tel que pour tout $x \in \R^n$ et tout $y \in \R^m$, on ait
+$$
+\left<y, A \cdot x \right> = \left<A^* \cdot y, x \right>.
+$$
+La matrice représentant $A^*$ est la transposée de la matrice représentant $A$:
+
+    >>> A
+    array([[1, 2, 3],
+           [4, 5, 6]])
+    >>> transpose(A)
+    array([[1, 4],
+           [2, 5],
+           [3, 6]])
 
 
 ### Vecteurs colonnes et vecteur lignes
-
-
 Dans le cadre du calcul matriciel, on associe souvent à un vecteur 
 $x=(x_1, \dots, x_n)$ de $\mathbb{R}^n$ le vecteur colonne
 $$
@@ -424,8 +438,23 @@ Formellement, on a associé à $x$
 une matrice
 $X \in \mathbb{R}^{n\times 1}$, telle que $X_{i1} = x_i$.
 Le produit entre une matrice et un vecteur colonne de taille compatible
-n'est rien d'autre qu'un produit matriciel habituel. L'intérêt de cette
-opération: si $A$ est une application linéaire de $\mathbb{R}^n$ dans
+n'est rien d'autre qu'un produit matriciel habituel. 
+
+Le vecteur $x$ étant associé à une matrice, on peut se demander quel
+opérateur linéaire est associé à cette matrice. La réponse est simple:
+il s'agit de l'application
+$$
+\lambda \in \R \mapsto \lambda x \in \R^n.
+$$
+Identifiant un vecteur et son opérateur linéaire de $\R \to \R^n$
+permet par exemple de disposer "gratuitement" de la définition 
+$x^*$ (l'adjoint de l'opérateur associé à $x$). Il s'agit donc
+de l'application linéaire de $\R^n$ dans $\R$ dont la matrice
+est la transposée du vecteur colonne associé à $x$, autrement dit,
+la représentation de $x$ comme vecteur ligne.
+
+L'intérêt de la représentation des vecteurs comme vecteurs colonnes: 
+si $A$ est une application linéaire de $\mathbb{R}^n$ dans
 $\mathbb{R}^m$ et $x$ un vecteur de $\mathbb{R}^n$, le vecteur
 image $y=A \cdot x \in \mathbb{R}^m$ de $x$ par $A$ est représenté par 
 le vecteur colonne qui est le produit entre 
@@ -441,8 +470,6 @@ pour réaliser cette opération:
     >>> x = array([7, 8, 9])
     >>> A.dot(x)
     array([ 50, 122])
-
-
 
 Le produit matriciel étant associatif, tant que l'on manipule des matrices
 et des vecteurs, il n'y a pas lieu de préciser si $A \cdot B \cdot C$ 
@@ -650,17 +677,30 @@ $$
 \Delta f(x, h) := f(x+h) - f(x),
 $$
 
-### Variation et Différentielle {.remark}
+### Variation et Différentielle {.remark .ante}
 La différentielle de $f$ en $x$, quand elle existe, 
 constitue la "meilleure" approximation linéaire de la
 variation de $f$ en $x$, car c'est la seule telle que
 $$
 \Delta f(x, h) = df(x) \cdot h + o(\|h\|).
 $$
+En particulier, quand la fonction $f$ est affine, 
+la fonction linéaire associée est sa différentielle
 
+### Différentielle d'une fonction affine
+Toute fonction $f: \R^n \to \R^m$ de la forme 
+$f(x) = A \cdot x + b$
+où $A: \R^n \to \R^m$ est linéaire et $b \in \R^m$,
+est différentiable en tout point $x$ de $\R^n$ et
+$df(x) = A.$
+
+### Démonstration {.proof}
+Il suffit de constater que 
+$$\Delta f(x, h) = f(x+h) - f(x) = A \cdot (x+h) + b - A \cdot x -b = A \cdot h$$
+et que par conséquent
+$\Delta f(x, h) = A \cdot h + o(\|h\|)$.
 
 ### {.ante}
-
 Résumons les liens entre dérivée et différentielle à ce stade:
 
 ### Différentielle et Dérivée {.theorem}
