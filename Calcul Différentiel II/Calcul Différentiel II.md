@@ -1287,13 +1287,14 @@ supérieur, etc.).
 
 La librairie [`autodidact`](https://github.com/mattjj/autodidact) est également
 à vocation pédagogique, mais pallie à ces défauts. Elle est elle-même 
-une version simplifiée de [HIPS/autograd`](https://github.com/hips/autograd)[^wn].
+une version simplifiée de [la librairie `autograd` du groupe 
+"Harvard Intelligent Probabilistic Systems"](https://github.com/hips/autograd)[^wn].
 
-Enfin, de nombreuses plate-formes de calcul, qu'il s'agisse de machine learning 
+Enfin, la différentiation automatique fait partie intégrante 
+de nombreuses plate-formes de calcul, qu'il s'agisse de machine learning 
 ([pytorch](https://pytorch.org/), [tensorflow](https://www.tensorflow.org/), etc.)
 ou de programmation probabiliste ([PyMC3](https://docs.pymc.io/),
-[Stan](https://mc-stan.org/), etc.) incluent un moteur de différentiation
-automatique.
+[Stan](https://mc-stan.org/), etc.).
 
 [^wn]: "autograd" ou "autodiff" sont des termes plus ou moins génériques
 qu'utilisent de nombreuses de librairies.
