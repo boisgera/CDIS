@@ -1264,10 +1264,10 @@ Exploitation
     ...     df = d(f)
     ...     def grad_f(x):
     ...         grad_f_x = n * [0.0]
-    ...         dfx = df(x)
+    ...         df_x = df(x)
     ...         for i in range(0, n):
     ...             e_i = n * [0.0]; e_i[i] = 1.0
-    ...             grad_f_x[i] = dfx(*e_i)
+    ...             grad_f_x[i] = df_x(*e_i)
     ...         return grad_f_x  
     ...     return grad_f
 
