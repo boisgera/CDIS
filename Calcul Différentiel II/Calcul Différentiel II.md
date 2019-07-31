@@ -1247,8 +1247,16 @@ Exploitation
 
     >>> from inspect import signature, Parameter
     >>> def num_args(f):
-    ...     positional = [Parameter.POSITIONAL_ONLY, Parameter.POSITIONAL_OR_KEYWORD]
-    ...     return len([p for p in signature(f).parameters if p.kind in positional])
+    ...     positional = [
+    ...         Parameter.POSITIONAL_ONLY, 
+    ...         Parameter.POSITIONAL_OR_KEYWORD
+    ...     ]
+    ...     parameters = signature(f).parameters.values()
+    ...     return len([p for p in parameters if p.kind in positional])
+    >>> def f(x, y, z):
+    ...     return x + y + z
+    >>> num_args(f)
+    3
     
     >>> def grad(f):
     ...     n = num_args(f)
