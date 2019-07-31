@@ -1194,8 +1194,12 @@ ainsi on déduit de l'identité $(\sin x)' = \cos x$ la déclaration
     >>> differential[sin] = d_from_deriv(cos)
 
 ### Différentielle des fonctions composées
-
-Tri topologique
+Pour exploiter le tracing d'une fonction, il nous faut à partir du noeud
+final produit par ce procédé extraire l'ensemble des noeuds amont,
+qui représentent les arguments utilisés dans le calcul de la valeur finale.
+Puis, pour préparer le calcul de la différentielle, nous ordonnerons 
+les noeuds de telle sorte que les arguments d'une fonction apparaissent 
+toujours avant la valeur qu'elle produit:
 
     >>> def find_and_sort_nodes(end_node):
     ...     todo = [end_node]
@@ -1214,11 +1218,16 @@ Tri topologique
     ...                 nodes.remove(node)
     ...     return done
 
+Le calcul de la différentielle en tant que tel ne consiste plus qu'à 
+propager la variation des arguments de noeud en noeud, en se basant
+sur la règle de différentiation en chaîne ; ces variations intermédiaires
+sont stockés dans l'attribut `d_value` des noeuds du graphe.
+
     >>> def d(f):
     ...     def df(*args): # args=(x1, x2, ...)
     ...         start_nodes = [Node(arg) for arg in args]
     ...         end_node = f(*start_nodes)
-    ...         if not isinstance(end_node, Node): # constant return value
+    ...         if not isinstance(end_node, Node): # constant value
     ...             end_node = Node(end_node)
     ...         nodes = find_and_sort_nodes(end_node).copy()
     ...         def df_x(*d_args): # d_args = (d_x1, d_x2, ...)
