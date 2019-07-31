@@ -1148,16 +1148,20 @@ Calcul automatique des dérivées
 ### Différentielles des fonctions élémentaires
 Pour exploiter le graphe de calcul que nous savons désormais déterminer,
 il nous faut déclarer les différentielles des opérations et fonctions 
-primitives dans un registre:
+primitives dans un "registre" de différentielles, indexées par la fonction
+à différencier.
 
     >>> differential = {} 
 
 Pour l'addition et la multiplication, nous exploitons les identités
-$d(x+y) = dx + dy$ et $d(x \times y) = x \times dy + dx \times y$:
+$d(x+y) = dx + dy$
 
     >>> def d_add(x, y):
     ...     return add
     >>> differential[add] = d_add
+
+et $d(x \times y) = x \times dy + dx \times y$
+
     >>> def d_multiply(x, y):
     ...     def d_multiply_xy(dx, dy):
     ...         return x * dy + dx * y
@@ -1193,7 +1197,7 @@ ainsi on déduit de l'identité $(\sin x)' = \cos x$ la déclaration
 
 Tri topologique
 
-    >>> def sort_nodes(end_node):
+    >>> def find_and_sort_nodes(end_node):
     ...     todo = [end_node]
     ...     nodes = []
     ...     while todo:
@@ -1214,9 +1218,9 @@ Tri topologique
     ...     def df(*args): # args=(x1, x2, ...)
     ...         start_nodes = [Node(arg) for arg in args]
     ...         end_node = f(*start_nodes)
-    ...         sorted_nodes = sort_nodes(end_node).copy()
+    ...         nodes = find_and_sort_nodes(end_node).copy()
     ...         def df_x(*d_args): # d_args = (d_x1, d_x2, ...)
-    ...             for node in sorted_nodes:
+    ...             for node in nodes:
     ...                 if node in start_nodes:
     ...                     i = start_nodes.index(node)
     ...                     node.d_value = d_args[i]
@@ -1241,11 +1245,31 @@ Exploitation
     ...         return df(x)(1.0)
     ...     return deriv_f
 
+    >>> from inspect import signature, Parameter
+    >>> def num_args(f):
+    ...     positional = [Parameter.POSITIONAL_ONLY, Parameter.POSITIONAL_OR_KEYWORD]
+    ...     return len([p for p in signature(f).parameters if p.kind in positional])
+    
+    >>> def grad(f):
+    ...     n = num_args(f)
+    ...     df = d(f)
+    ...     def grad_f(x):
+    ...         grad_f_x = n * [0.0]
+    ...         dfx = df(x)
+    ...         for i in range(0, n):
+    ...             e_i = n * [0.0]; e_i[i] = 1.0
+    ...             grad_f_x[i] = dfx(*e_i)
+    ...         return grad_f_x  
+    ...     return grad_f
+
     >>> def f(x):
     ...     return x + 1
-    >>> x = 2.0
-    >>> df_x = d(f)(x)
-    >>> df_x(1.0)
+    >>> f_prime = deriv(f)
+    >>> f_prime(0.0)
+    1.0
+    >>> f_prime(1.0)
+    1.0
+    >>> f_prime(2.0)
     1.0
 
     >>> def f(x):
