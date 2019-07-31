@@ -1245,26 +1245,27 @@ Exploitation
     ...         return df(x)(1.0)
     ...     return deriv_f
 
-    >>> from inspect import signature, Parameter
-    >>> def num_args(f):
-    ...     positional = [
-    ...         Parameter.POSITIONAL_ONLY, 
-    ...         Parameter.POSITIONAL_OR_KEYWORD
-    ...     ]
-    ...     parameters = signature(f).parameters.values()
-    ...     return len([p for p in parameters if p.kind in positional])
-    >>> def f(x, y, z):
-    ...     return x + y + z
-    >>> num_args(f)
-    3
-    
-    >>> def grad(f, n=None):
-    ...     if n is None:
-    ...         n = num_args(f)
+<!--
+#    >>> from inspect import signature, Parameter
+#    >>> def num_args(f):
+#    ...     positional = [
+#    ...         Parameter.POSITIONAL_ONLY, 
+#    ...         Parameter.POSITIONAL_OR_KEYWORD
+#    ...     ]
+#    ...     parameters = signature(f).parameters.values()
+#    ...     return len([p for p in parameters if p.kind in positional])
+#    >>> def f(x, y, z):
+#    ...     return x + y + z
+#    >>> num_args(f)
+#    3
+-->    
+  
+    >>> def grad(f):
     ...     df = d(f)
-    ...     def grad_f(x):
+    ...     def grad_f(*args):
+    ...         n = len(args)
     ...         grad_f_x = n * [0.0]
-    ...         df_x = df(x)
+    ...         df_x = df(*args)
     ...         for i in range(0, n):
     ...             e_i = n * [0.0]; e_i[i] = 1.0
     ...             grad_f_x[i] = df_x(*e_i)
@@ -1288,6 +1289,10 @@ Exploitation
     >>> df_x(1.0)
     6.0
 
+    >>> def f(x, y):
+    ...     return x * x + y * y
+    >>> grad(f)(1.0, 2.0)
+    [2.0, 4.0]
 
 Derivative of f (manual computation)
 
