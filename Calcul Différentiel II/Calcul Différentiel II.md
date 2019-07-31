@@ -123,12 +123,12 @@ On en déduit donc que
 $$
 d\psi(x) = - (\partial_y f(x, \psi(x)))^{-1} \cdot \partial_x f(x, \psi(x)).
 $$
+L'inversion d'opérateurs linéaires ainsi que leur composition étant des
+opérations continues, si $f$ est continûment différentiable et que 
+$d\psi$ existe, elle est nécessairement continue.
 
-**TODO:** ici aussi, nécessaire d'invoquer la continuité de l'inversion
-pour conclure quand au caractère $C^1$ de la fonction implicite. 
-Factoriser ce résultat avec la remarque précédente ?
-
-[^inv]: une application linéaire de $\mathbb{R}^m \to \mathbb{R}^m$ 
+[^inv]: **Continuité de l'inversion.** 
+Une application linéaire de $\mathbb{R}^m \to \mathbb{R}^m$ 
 est inversible si et seulement si
 le déterminant de la matrice $[A]$ qui la représente dans $\mathbb{R}^{m \times m}$ 
 est non-nul. 
@@ -144,7 +144,7 @@ $$
 $$
 où $\mathrm{co}([A])$ désigne la comatrice de $[A]$. Chaque coefficient de 
 cette comatrice ne faisant également intervenir que des sommes et des produits 
-des coefficients de $[A]$, l'application $A \mapsto A^{-1}$ est inversible sur
+des coefficients de $[A]$, l'application $A \mapsto A^{-1}$ est continue sur
 son domaine de définition.
 
 Pour établir l'existence de la fonction implicite $\psi$,
@@ -852,6 +852,9 @@ Objectifs {.meta}
     (sans doute le plus facile en terme de courbe d'apprentissage)
 
 -->
+
+Introduction 
+--------------------------------------------------------------------------------
 
 Tracer le Graphe de Calcul
 --------------------------------------------------------------------------------
