@@ -878,61 +878,69 @@ d'opérations primitives.
  
 Tracer le Graphe de Calcul
 --------------------------------------------------------------------------------
-**TODO:** montrer que les fonction Python n'implémentent pas 
-"ce que l'on croit", c'est-à-dire par exemple $[\cos([x])]$
-pour la function `lambda x: cos(x)`, parce que le TYPE de
-l'argument n'est pas spécifié et que cela à des conséquences
-importantes: le disassembleur montre bien que le bytecode
-est agnostique et se contente de résoudre des variables 
-et d'appliquer une séquence d'instructions, sans de référence 
-au type, sans savoir ce qu'il manipule.
+
+Python étant typé dynamiquement, 
+il n'attribue pas de type aux arguments des fonctions lors de leur définition. 
+Ainsi, la fonction d'addition,
+
+    >>> def add(x, y):
+    ...     return x + y
+
+permet bien sûr d'additionner des nombres flottants
+
+    >>> add(1.0, 2.0)
+    3.0
+
+mais ell marchera aussi parfaitement avec des entiers ou des tableaux NumPy
+ou même des types non-numériques comme des chaînes de caractères
+
+    >>> add(1, 2)
+    3
+    >>> add(array([1.0, 1.0]), array([2.0, 2.0]))
+    array([3., 3.])
+    >>> add("un", "deux")
+    'undeux'
+
+Le tout est qu'à l'exécution, les objets `x` et `y` supportent l'opération
+d'addition binaire -- dans le cas contraire, une exception sera générée. 
+Notre fonction `add` est donc définie implicitement pour les objets 
+additionnables[^dt].
+
+Cela est également confirmé par l'examen du *bytecode* de
+la fonction `add`, qui ne fait aucune référence au type des arguments
+`x` et `y`.
 
     >>> from dis import dis
-
-    >>> from math import *
-
-**TODO:** expliquer notation lambda-fonction pour les expressions 
-(ou fonctions anonymes).
-
-    >>> f = lambda x: cos(x)
-
-    >>> dis(lambda x: cos(x))
-      1           0 LOAD_GLOBAL              0 (cos)
-                  2 LOAD_FAST                0 (x)
-                  4 CALL_FUNCTION            1
-                  6 RETURN_VALUE
-
-    >>> dis(lambda x: x + 1)
-      1           0 LOAD_FAST                0 (x)
-                  2 LOAD_CONST               1 (1)
+    >>> dis(add)
+      2           0 LOAD_FAST                0 (x)
+                  2 LOAD_FAST                1 (y)
                   4 BINARY_ADD
                   6 RETURN_VALUE
 
-Expliquer en prenant des exemples frappants comment on peut en profiter
-pour "intercepter" cette séquence d'appels (big brother ...) pour savoir
-ce qui se passe dans la fonction, influencer le résultat, etc.
 
-    >>> math_cos = cos
-    >>> def cos(x):
-    ...     print(f"trace: cos({x})")
-    ...     return math_cos(x)
+[^dt]: les objets "additionnables" sont des "canards" dans le contexte 
+du terme *duck typing* de Python; 
+on ne demande pas qu'ils soient de "vrais" canards -- par exemple
+d'un type particulier -- mais juste qu'ils se comportent comme tels:
+"if it walks like a duck and it quacks like a duck, then it must be a duck".
 
-    >>> y = cos(pi)
-    trace: cos(3.141592653589793)
-    >>> y
-    -1.0
-
-Le cas des opérateurs est plus complexe: le calcul de `x + 1` par exemple est
-délégué à la méthode `__add__` de l'objet `x`. Pour intercepter cet appel,
-il est donc nécessaire de modifier le type de nombre flottant que nous
-allons utiliser:
+Dans le cas de l'addition, l'opération `x + y` 
+est déléguée à la méthode `__add__` de l'objet `x`. 
+Pour intercepter cet appel, il est donc nécessaire de modifier 
+le type de nombre flottant que nous allons utiliser:
 
     >>> class Float(float):
     ...     def __add__(self, other):
     ...         print(f"trace: {self} + {other}")
     ...         return super().__add__(other)
 
-Mais une fois cet effort fait, nous pouvons bien tracer les additions 
+Notre classe dérivant du type standard `float`, les opérations que nous
+n'avons pas redéfinies explicitement seront gérées comme d'habitude.
+Nous avons donc juste modifié l'addition des instances de `Float`, 
+et encore de façon très limitée puisque nous avons délégué le calcul
+du résultat à la classe parente `float`.
+
+Une fois cet effort fait, nous pouvons bien tracer les additions 
 effectuées
 
     >>> x = Float(2.0) + 1.0
@@ -940,7 +948,7 @@ effectuées
     >>> x
     3.0
 
-... à condition que nous travaillions avec des instances de `Float` et 
+à condition bien sûr de travailler avec des instances de `Float` et 
 non de `float` ! Pour commencer à généraliser cet usage, nous allons faire
 en sorte de générer des instances de `Float` dans la mesure du possible.
 Pour commencer, nous pouvons faire en sorte que les opérations sur nos 
@@ -951,10 +959,11 @@ flottants renvoient notre propre type de flottant:
     ...         print(f"trace: {self} + {other}")
     ...         return Float(super().__add__(other))
 
-Mais cela n'est pas suffisant: les fonction de la library `math` de Python
+Mais cela n'est pas suffisant: les fonctions de la library `math` de Python
 vont renvoyer des flottants classiques, il nous faut donc à nouveau les
 adapter:
 
+    >>> math_cos = math.cos
     >>> def cos(x):
     ...     print(f"trace: cos({x})")
     ...     return Float(math_cos(x))
@@ -966,21 +975,24 @@ Vérifions le résultat:
     trace: -1.0 + 1.0
     0.0
 
-Mais nous ne savons pas encore tracer correctement l'expression `1.0 + cos(pi)`:
+Malheureusement, nous ne savons pas encore tracer correctement l'expression 
+pourtant très similaire `1.0 + cos(pi)`:
 
     >>> 1.0 + cos(pi)
     trace: cos(3.141592653589793)
     0.0
 
 En effet, c'est la méthode `__add__` de `1.0`, une instance de `float` qui
-est appelée; cet appel n'est donc pas tracé. Pour réussir à tracer ce type
-d'appel, il va falloir ... le faire échouer ! La méthode appellée pour
-effectuer la somme jusqu'à présent confie l'opération à la méthode
-`__add__` de `1.0` parce ce cette objet sait prendre en charge l'opération,
-car il s'agit d'ajouter lui-même avec une autre instance (qui dérive) de
-`float`. Si nous faisons en sorte que le membre de gauche soit incapable
+est appelée; cet appel n'est donc pas tracé. Pour réussir à gérer correctement 
+ce type d'appel, il va falloir ... le faire échouer ! 
+La méthode appellée pour effectuer la somme jusqu'à présent confie l'opération 
+à la méthode `__add__` de `1.0` parce que cette objet sait prendre en charge 
+l'opération, car il s'agit d'ajouter lui-même avec une autre instance 
+(qui dérive) de `float`. 
+Si nous faisons en sorte que le membre de gauche soit incapable
 de prendre en charge cette opération, elle sera confiée au membre de 
-droite; pour cela il nous suffit de remplacer `Float`, un type numérique
+droite et à la méthode `__radd__`; 
+pour cela il nous suffit de remplacer `Float`, un type numérique
 par `Node`, une classe qui contient (encapsule) une valeur numérique:
 
     >>> class Node:
@@ -990,8 +1002,8 @@ par `Node`, une classe qui contient (encapsule) une valeur numérique:
 Nous n'allons pas nous attarder sur cette version 0 de `Node`.
 Si elle est ainsi nommée, c'est parce qu'elle va représenter un noeud
 dans un graphe de calculs. Au lieu d'afficher les opérations réalisées
-sur la sortie standard, nous allons entreprendre d'enregistrer les 
-opérations que subit chaque variable et comment elle s'organise;
+sur la sortie standard, nous allons enregistrer les 
+opérations que subit chaque variable et comment elles s'organisent;
 chaque noeud issu d'une opération devra mémoriser quelle opération
 a été appliquée, et quels étaient les arguments de l'opération (eux-mêmes
 des noeuds). Pour supporter cette démarche, `Node` devient:
@@ -1005,7 +1017,7 @@ des noeuds). Pour supporter cette démarche, `Node` devient:
 Il nous faut alors rendre les opérations usuelles compatibles la création
 de noeuds; en examinant les arguments de la fonction, on doit décider si
 elle est dans un mode "normal" (recevant des valeurs numériques, produisant
-des valeurs numérique) ou en train de tracer les calculs. Par exemple:
+des valeurs numériques) ou en train de tracer les calculs. Par exemple:
 
     >>> def cos(x):
     ...     if isinstance(x, Node):
@@ -1036,7 +1048,7 @@ permettre de définir les méthodes `__add__` et `__radd__`:
     >>> Node.__add__ = add
     >>> Node.__radd__ = add
 
-On remarque de nombreuse similarités entre les deux codes;
+On remarque de nombreuses similarités entre les deux codes;
 plutôt que de continuer cette démarche pour toutes les fonctions
 dont nous allons avoir besoin, au prix d'un effort d'abstraction,
 il serait possible de définir une fonction opérant automatiquement
@@ -1070,6 +1082,7 @@ Malgré sa complexité apparente, l'utilisation de cette fonction est simple;
 ainsi pour rendre la foncton `sin` et l'opérateur `*` compatible
 avec la gestion de noeuds, il suffit de faire:
 
+    >>> from math import sin
     >>> sin = wrap(sin)
 
 et
@@ -1082,21 +1095,6 @@ et
 ce que est sensiblement plus rapide et lisible 
 que la démarche entreprise pour `cos` et `+`; 
 mais encore une fois, le résultat est le même.
-
-### TODO
-
-exp, etc.
-
-   >>> def unary_plus(x):
-   ...     return x
-   >>> unary_plus = wrap(unary_plus)
-   >>> Node.__pos__ = unary_plus
-
-   >>> def unary_minus(x):
-   ...     return - x
-   >>> unary_minus = wrap(unary_minus)
-   >>> Node.__neg__ = unary_minus
-
 
 Il est désormais possible d'implémenter le traceur. 
 Celui-ci encapsule les arguments de la fonction à tracer 
@@ -1126,7 +1124,8 @@ plutôt que la représentation standard des objets:
 
 Nous somme prêts à faire notre vérification:
 
-    >>> f = lambda x: 1.0 + cos(x)
+    >>> def f(x):
+    ...    return 1.0 + cos(x)
     >>> end = trace(f, [pi])
     >>> print(end)
     Node(0.0, add, [Node(-1.0, cos, [Node(3.141592653589793)]), Node(1.0)])
@@ -1138,31 +1137,59 @@ Cela semble donc correct !
 
 Un autre exemple -- à deux arguments -- pour la route:
 
-    >>> trace(lambda x, y: x * (x + y), [1.0, 2.0])
+    >>> def f(x, y):
+    ...     return x * (x + y)
+    >>> trace(f, [1.0, 2.0])
     Node(3.0, multiply, [Node(1.0), Node(3.0, add, [Node(1.0), Node(2.0)])])
 
-Calcul Automatique des Dérivées
+Calcul automatique des dérivées
 --------------------------------------------------------------------------------
 
-Registre des functions "élémentaires" dont on connaît la différentielle
+### Différentielles des fonctions élémentaires
+Pour exploiter le graphe de calcul que nous savons désormais déterminer,
+il nous faut déclarer les différentielles des opérations et fonctions 
+primitives dans un registre:
 
     >>> differential = {} 
 
+Pour l'addition et la multiplication, nous exploitons les identités
+$d(x+y) = dx + dy$ et $d(x \times y) = x \times dy + dx \times y$:
+
+    >>> def d_add(x, y):
+    ...     return add
+    >>> differential[add] = d_add
+    >>> def d_multiply(x, y):
+    ...     def d_multiply_xy(dx, dy):
+    ...         return x * dy + dx * y
+    ...     return d_multiply_xy
+    >>> differential[multiply] = d_multiply
+  
+Pour une fonction telle que `cos`, nous exploitons l'identité 
+$d (\cos(x)) = -\sin(x) dx$
+
     >>> def d_cos(x):
-    ...     return lambda dx: - sin(x) * dx
+    ...     def d_cos_x(dx):
+    ...         return - sin(x) * dx
+    ...     return d_cos_x
     >>> differential[cos] = d_cos
 
-    >>> def d_multiply(x, y):
-    ...     return lambda dx, dy: x * dy + dx * y
-    >>> differential[multiply] = d_multiply
+Mais il ne s'agit que d'un cas particulier de l'identité
+$d (f(x)) = f'(x) dx$. Nous pouvons nous doter d'une fonction qui 
+calculera la différentielle $df$ à partir de la dérivée $f'$:
 
-    >>> def d_from_derivative(f_prime):
+    >>> def d_from_deriv(f_prime):
     ...     def d_f(x):
-    ...        return lambda dx: f_prime(x) * dx
+    ...         def d_f_x(dx):
+    ...             return f_prime(x) * dx
+    ...         return d_f_x
     ...     return d_f
-    >>> differential[sin] = d_from_derivative(cos)
 
-    >>> differential[add] = lambda x, y: add
+La déclaration de différentielles s'en trouve simplifiée ; 
+ainsi on déduit de $(\sin x)' = \cos x$ la déclaration
+
+    >>> differential[sin] = d_from_deriv(cos)
+
+### Différentielle des fonctions composées
 
 Tri topologique
 
@@ -1205,6 +1232,13 @@ Tri topologique
     ...         return df_x
     ...     return df
 
+### Exploitation
+
+    >>> def deriv(f):
+    ...     df = d(f)
+    ...     def deriv_f(x):
+    ...         return df(x)(1.0)
+    ...     return deriv_f
 
 TODO -- temp / test
 --------------------------------------------------------------------------------
