@@ -1258,8 +1258,9 @@ Exploitation
     >>> num_args(f)
     3
     
-    >>> def grad(f):
-    ...     n = num_args(f)
+    >>> def grad(f, n=None):
+    ...     if n is None:
+    ...         n = num_args(f)
     ...     df = d(f)
     ...     def grad_f(x):
     ...         grad_f_x = n * [0.0]
