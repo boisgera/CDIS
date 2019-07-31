@@ -1275,6 +1275,29 @@ Derivative of f (manual computation)
     >>> f_prime(pi/4)
     0.0
 
+### Et après ?
+
+**TODO:** référence forward propagation vs backward, etc.
+
+Le code de cette section, légèrement étendu (plus d'opérateurs, plus de fonctions)
+est disponible dans 
+[le fichier `autodiff.py` du dépôt git `boisgera/CDIS`](https://raw.githubusercontent.com/boisgera/CDIS/master/Calcul%20Diff%C3%A9rentiel%20II/autodiff.py). Mais il présente des limitations
+très importantes (pas de support de NumPy, pas de différentiations d'ordre
+supérieur, etc.).
+
+La librairie [`autodidact`](https://github.com/mattjj/autodidact) est également
+à vocation pédagogique, mais pallie à ces défauts. Elle est elle-même 
+une version simplifiée de [HIPS/autograd`](https://github.com/hips/autograd)[^wn].
+
+Enfin, de nombreuses plate-formes de calcul, qu'il s'agisse de machine learning 
+([pytorch](https://pytorch.org/), [tensorflow](https://www.tensorflow.org/), etc.)
+ou de programmation probabiliste ([PyMC3](https://docs.pymc.io/),
+[Stan](https://mc-stan.org/), etc.) incluent un moteur de différentiation
+automatique.
+
+[^wn]: "autograd" ou "autodiff" sont des termes plus ou moins génériques
+qu'utilisent de nombreuses de librairies.
+
 Exercices
 ================================================================================
 
