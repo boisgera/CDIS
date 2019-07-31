@@ -1366,22 +1366,32 @@ former le produit matriciel $J_f(g(x)) J_g(x)$, mais sans aucune garantie que
 $J_{f \circ g}(x)$ existe et/ou soit égal à ce produit, car la règle de 
 différentiation en chaîne requiert l'existence des différentielles.
 
-### Fonction continûment différentiable {.definition}
+### Fonction continûment différentiable {.proposition}
 Une fonction $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert
-est *continûment différentiable* si toutes ses dérivées
+est *continûment différentiable* si elle est différentiable et si 
+l'application différentielle
+$$
+df: x \in U \subset \R^n \mapsto df(x) \in (\R^n \stackrel{\ell}{\to} \R^m)
+$$
+est continue.
+
+### {.ante}
+Cette définition constitue un moyen vérifier l'existence de
+la différentielle (et sa continuité) en passant par les dérivées partielles:
+
+### Dérivées partielles continues {.proposition}
+Une fonction $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert
+est continûment différentiable si et seulement si toutes ses dérivées
 partielles existent et sont continues.
 
-### Matrice jacobienne et fonction continûment différentiable {.remark}
-S'il l'on adopte la définition étendue de jacobien de la remarque
-"[Matrice jacobienne, gradient et dérivées partielles]", la définition de 
-continûment différentiable peut être reformulée comme
-"la matrice jacobienne existe et est continue".
-
-### Continument différentiable implique différentiable {.proposition}
-Une fonction continûment différentiable est différentiable.
-
 ### Démonstration {.proof}
-Soit $f: U \subset \R^n \to \R$ une fonction continûment différentiable
+Si $f$ est différentiable de différentielle continue, ses dérivées partielles
+sont définies et $\partial_i f(x) = df(x) \cdot e_i$. Le second membre de 
+cette relation est une fonction continue de $x$, donc les dérivées partielles
+sont continues.
+
+Réciproquement, soit $f: U \subset \R^n \to \R$ une fonction 
+dont les dérivées partielles existent et sont continues
 (la preuve dans le cas d'une fonction à valeurs vectorielles se déduit 
 du résultat dans le cas scalaire).
 Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
@@ -1422,7 +1432,15 @@ $$
 \leq \varepsilon \|h\|.
 $$
 La fonction $f$ est donc différentiable en $a$, de différentielle
-$h \mapsto \sum_i \partial_i f(a) h_i$.
+$h \mapsto \sum_i \partial_i f(a) h_i$. La matrice (jacobienne) 
+représentant $df(x)$ ayant pour coefficients les dérivées partielles
+de $f$ en $x$, elle est une fonction continue de $x$, comme $df(x)$.
+
+### Matrice jacobienne continue {.remark}
+S'il l'on adopte la définition étendue de jacobien de la remarque
+"[Matrice jacobienne, gradient et dérivées partielles]", la définition de 
+continûment différentiable peut être reformulée comme
+"la matrice jacobienne existe et est continue".
 
 
 Variation des fonctions
