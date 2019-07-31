@@ -1185,7 +1185,7 @@ calculera la différentielle $df$ à partir de la dérivée $f'$:
     ...     return d_f
 
 La déclaration de différentielles s'en trouve simplifiée ; 
-ainsi on déduit de $(\sin x)' = \cos x$ la déclaration
+ainsi on déduit de l'identité $(\sin x)' = \cos x$ la déclaration
 
     >>> differential[sin] = d_from_deriv(cos)
 
@@ -1232,23 +1232,14 @@ Tri topologique
     ...         return df_x
     ...     return df
 
-### Exploitation
+Exploitation
+--------------------------------------------------------------------------------
 
     >>> def deriv(f):
     ...     df = d(f)
     ...     def deriv_f(x):
     ...         return df(x)(1.0)
     ...     return deriv_f
-
-TODO -- temp / test
---------------------------------------------------------------------------------
-
-    >>> print(sin(0.0))
-    0.0
-    >>> print("d_cos", d_cos(0.0)(1.0))
-    d_cos -0.0
-
---------------------------------------------------------------------------------
 
     >>> def f(x):
     ...     return x + 1
@@ -1275,7 +1266,9 @@ Derivative of f (manual computation)
     >>> f_prime(pi/4)
     0.0
 
-### Pour aller plus loin
+Pour aller plus loin
+--------------------------------------------------------------------------------
+
 Le code de cette section, légèrement étendu (essentiellement avec plus 
 d'opérateurs et de fonctions supportées) est disponible dans 
 [le fichier `autodiff.py` du dépôt git `boisgera/CDIS`](https://raw.githubusercontent.com/boisgera/CDIS/master/Calcul%20Diff%C3%A9rentiel%20II/autodiff.py). 
