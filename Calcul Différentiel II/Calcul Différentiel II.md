@@ -56,7 +56,6 @@ Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 -->
 
 ### Théorème des Fonctions Implicites {.theorem #TFI}
-
 Soit $f$ une fonction définie sur un ouvert $W$ de 
 $\mathbb{R}^n \times \mathbb{R}^m$:
 $$
@@ -78,6 +77,13 @@ De plus, la différentielle de $\psi$ est donnée pour tout $x \in U$ par
 $$
 d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
 $$
+
+![Au voisinage de $(0,1)$, la fonction
+$x, y \mapsto x^2 + y^2 - 1$ satisfait les hypothèses du théorème des fonctions
+implicites. Au voisinage de $(1,0)$, cela n'est pas le cas ; on constate alors
+que même si $x$ est arbitrairement proche de $1$ et que l'on restreint la 
+recherche des solutions $y$ à un voisinage arbitrairement petit de $0$, 
+il peut exister 0 ou 2 solutions $y$.](images/implicit-function-theorem.tex)
 
 ### Extensions {.note}
 Il est possible d'affaiblir l'hypothèse concernant $\partial_y f$ en supposant 
