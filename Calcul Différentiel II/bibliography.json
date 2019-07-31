@@ -133,5 +133,37 @@
 				]
 			]
 		}
-	}
+  },
+  {
+    "id": "BPRS15",
+    "type": "article-journal",
+    "title": "Automatic differentiation in machine learning: a survey",
+    "note": "Published: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul, Jeffrey Mark Siskind. Automatic differentiation in machine learning: a survey. The Journal of Machine Learning Research, 18(153):1–43, 2018",
+    "author": [
+            {
+                    "family": "Baydin",
+                    "given": "Atilim Gunes"
+            },
+            {
+                    "family": "Pearlmutter",
+                    "given": "Barak A."
+            },
+            {
+                    "family": "Radul",
+                    "given": "Alexey Andreyevich"
+            },
+            {
+                    "family": "Siskind",
+                    "given": "Jeffrey Mark"
+            }
+    ],
+    "issued": {
+            "date-parts": [
+                    [
+                            "2015"
+                    ]
+            ]
+    }
+}
+
 ]

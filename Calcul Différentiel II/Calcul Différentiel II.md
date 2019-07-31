@@ -1275,29 +1275,43 @@ Derivative of f (manual computation)
     >>> f_prime(pi/4)
     0.0
 
-### Et après ?
-
-**TODO:** référence forward propagation vs backward, etc.
-
-Le code de cette section, légèrement étendu (plus d'opérateurs, plus de fonctions)
-est disponible dans 
-[le fichier `autodiff.py` du dépôt git `boisgera/CDIS`](https://raw.githubusercontent.com/boisgera/CDIS/master/Calcul%20Diff%C3%A9rentiel%20II/autodiff.py). Mais il présente des limitations
-très importantes (pas de support de NumPy, pas de différentiations d'ordre
-supérieur, etc.).
+### Pour aller plus loin
+Le code de cette section, légèrement étendu (essentiellement avec plus 
+d'opérateurs et de fonctions supportées) est disponible dans 
+[le fichier `autodiff.py` du dépôt git `boisgera/CDIS`](https://raw.githubusercontent.com/boisgera/CDIS/master/Calcul%20Diff%C3%A9rentiel%20II/autodiff.py). 
+Mais il présente des limitations très importantes (pas de support de NumPy, 
+pas de différentiations d'ordre supérieur, pas de support pour la 
+différentiation rétrograde, etc.) et son intérêt est essentiellement 
+pédagogique.
 
 La librairie [`autodidact`](https://github.com/mattjj/autodidact) est également
-à vocation pédagogique, mais pallie à ces défauts. Elle est elle-même 
-une version simplifiée de [la librairie `autograd` du groupe 
-"Harvard Intelligent Probabilistic Systems"](https://github.com/hips/autograd)[^wn].
+à vocation pédagogique, mais pallie largement à ces défauts. Le document
+compagnon est [le chapitre 6](http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/readings/L06%20Automatic%20Differentiation.pdf) du cours 
+[CSC 421/2516 "Neural Networks and Deep Learning" de l'université de Toronto](http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/).
 
-Enfin, la différentiation automatique fait partie intégrante 
+La librairie `autodidact` est une version volontairement simplifiée de 
+[la librairie `autograd` du groupe 
+"Harvard Intelligent Probabilistic Systems"](https://github.com/hips/autograd)[^wn]
+qui est sans doute l'implémentation "sérieuse" de différentiation automatique
+en Python qu'il conviendrait d'utiliser à l'issue de ce cours introductif.
+[JAX](https://github.com/google/jax), une implémentation optimisée de `autograd`, 
+reposant sur [XLA](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/compiler/xla/g3doc/overview.md)
+(pour *accelerated linear algebra*) est une autre option.
+
+[^wn]: "autograd" ou "autodiff" sont des termes plus ou moins génériques
+qu'utilisent de nombreuses de librairies.
+
+La différentiation automatique fait également partie intégrante 
 de nombreuses plate-formes de calcul, qu'il s'agisse de machine learning 
 ([pytorch](https://pytorch.org/), [tensorflow](https://www.tensorflow.org/), etc.)
 ou de programmation probabiliste ([PyMC3](https://docs.pymc.io/),
 [Stan](https://mc-stan.org/), etc.).
+Pour finir,
+l'étude "Automatic Differentiation in Machine Learning: a Survey"
+[@BPRS15] vous permettra si besoin d'acquérir si besoin une perspective plus large sur
+le sujet.
 
-[^wn]: "autograd" ou "autodiff" sont des termes plus ou moins génériques
-qu'utilisent de nombreuses de librairies.
+
 
 Exercices
 ================================================================================
