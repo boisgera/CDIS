@@ -858,22 +858,23 @@ Introduction
 
 La différentiation automatique désigne une famille de méthodes numériques
 permettant de calculer dérivées et différentielles de fonctions numériques
-qui se positionne comme une alternative aux algorithmes de différentiation
+qui se positionne comme une alternative aux algorithmes de différences
 finies. Ces méthodes ont l'avantage majeur d'éliminer quasi-totalement les 
 erreurs d'arrondis -- l'erreur est aussi faible que dans une dérivation
 symbolique "manuelle" des expressions utilisées dans le calcul de la
-fonction.
+fonction -- et ce sans réglage délicat de paramètres.
 
 Selon le langage informatique utilisé pour implémenter les fonctions numériques 
-que l'on souhaite dériver (C, Fortran, Python, langages "embarqués", 
-etc.), différentes méthodes permettent de mettre en oeuvre la différentiation
+(C, Fortran, Python, langages "embarqués", etc.), 
+différentes méthodes permettent de mettre en oeuvre la différentiation
 automatique. 
 Le typage dynamique (ou [*duck typing*](https://en.wikipedia.org/wiki/Duck_typing)) 
 de Python permet de mettre en oeuvre simplement le *tracing* des fonctions 
 numériques -- l'enregistrement des opérations du calcul effectués d'une 
 fonction lors de son exécution -- ce qui fournit un graphe de calcul à 
-partir duquelle les différentielles peuvent être calculées par la règle
-de dérivation en chaîne. 
+partir duquelle les différentielles peuvent être calculées mécaniquement 
+par la règle de dérivation en chaîne à partir de la différentielles 
+d'opérations primitives. 
  
 Tracer le Graphe de Calcul
 --------------------------------------------------------------------------------
