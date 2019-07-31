@@ -1181,10 +1181,10 @@ Mais il ne s'agit que d'un cas particulier de l'identité
 $d (f(x)) = f'(x) dx$. Nous pouvons nous doter d'une fonction qui 
 calculera la différentielle $df$ à partir de la dérivée $f'$:
 
-    >>> def d_from_deriv(f_prime):
+    >>> def d_from_deriv(g):
     ...     def d_f(x):
     ...         def d_f_x(dx):
-    ...             return f_prime(x) * dx
+    ...             return g(x) * dx
     ...         return d_f_x
     ...     return d_f
 
@@ -1218,6 +1218,8 @@ Tri topologique
     ...     def df(*args): # args=(x1, x2, ...)
     ...         start_nodes = [Node(arg) for arg in args]
     ...         end_node = f(*start_nodes)
+    ...         if not isinstance(end_node, Node): # constant return value
+    ...             end_node = Node(end_node)
     ...         nodes = find_and_sort_nodes(end_node).copy()
     ...         def df_x(*d_args): # d_args = (d_x1, d_x2, ...)
     ...             for node in nodes:
@@ -1238,6 +1240,10 @@ Tri topologique
 
 Exploitation
 --------------------------------------------------------------------------------
+
+Pour exploiter simplement notre calcul de différentielle,
+nous pouvons dans le cas d'une fonction d'une variable réelle 
+en déduire la dérivée :
 
     >>> def deriv(f):
     ...     df = d(f)
@@ -1260,6 +1266,70 @@ Exploitation
 #    3
 -->    
   
+Vérifions que le comportement de ces opérateurs de différentiation est
+conforme à nos attentes dans le cas de fonction d'une variable; 
+d'abord dans le cas d'une fonction constante
+
+    >>> def f(x):
+    ...     return pi
+    >>> g = deriv(f)
+    >>> g(0.0)
+    0.0
+    >>> g(1.0)
+    0.0
+
+puis dans le cas d'une fonction affine
+
+    >>> def f(x):
+    ...     return 2 * x + 1.0
+    >>> g = deriv(f)
+    >>> g(0.0)
+    2.0
+    >>> g(1.0)
+    2.0
+    >>> g(2.0)
+    2.0
+
+et enfin dans le cas d'une fonction quadratique:
+
+    >>> def f(x):
+    ...     return x * x + 2 * x + 1
+    >>> g = deriv(f)
+    >>> g(0.0)
+    2.0
+    >>> g(1.0)
+    4.0
+    >>> g(2.0)
+    6.0
+
+Pour finir dans ce cadre, testons deux fonctions utilisant les fonctions
+trigonométriques `sin` et `cos`:
+
+    >>> def f(x):
+    ...    return cos(x) * cos(x) + sin(x) * sin(x)
+    >>> g = deriv(f)
+    >>> g(0.0)
+    0.0
+    >>> g(pi/4)
+    0.0
+    >>> g(pi/2)
+    0.0
+
+    >>> def f(x):
+    ...     return sin(x) * cos(x)
+    >>> g = deriv(f)
+    >>> def h(x):
+    ...     return cos(x) * cos(x) - sin(x) * sin(x)
+    >>> g(0.0) == h(0.0)
+    True
+    >>> g(pi/4) == h(pi/4)
+    True
+    >>> g(pi/2) == h(pi/2)
+    True
+
+Dans le cas général -- puisque nos fonctions sont toujours à valeurs réelles
+-- nous pouvons déduire de la différentielle le gradient :
+
     >>> def grad(f):
     ...     df = d(f)
     ...     def grad_f(*args):
@@ -1272,37 +1342,29 @@ Exploitation
     ...         return grad_f_x  
     ...     return grad_f
 
-    >>> def f(x):
-    ...     return x + 1
-    >>> f_prime = deriv(f)
-    >>> f_prime(0.0)
-    1.0
-    >>> f_prime(1.0)
-    1.0
-    >>> f_prime(2.0)
-    1.0
+Les fonctions constantes, affines et quadratiques permettent là aussi de 
+réaliser des tests élémentaires:
 
-    >>> def f(x):
-    ...     return x * x + 2 * x + 1
-    >>> x = 2.0
-    >>> df_x = d(f)(x)
-    >>> df_x(1.0)
-    6.0
+    >>> def f(x, y):
+    ...     return 1.0
+    >>> grad(f)(0.0, 0.0)
+    [0.0, 0.0]
+    >>> grad(f)(1.0, 2.0)
+    [0.0, 0.0]
+
+    >>> def f(x, y):
+    ...     return x + 2 * y + 1
+    >>> grad(f)(0.0, 0.0)
+    [1.0, 2.0]
+    >>> grad(f)(1.0, 2.0)
+    [1.0, 2.0]
 
     >>> def f(x, y):
     ...     return x * x + y * y
+    >>> grad(f)(0.0, 0.0)
+    [0.0, 0.0]
     >>> grad(f)(1.0, 2.0)
     [2.0, 4.0]
-
-Derivative of f (manual computation)
-
-    >>> def f(x):
-    ...    return cos(x) * cos(x) + sin(x) * sin(x)
-    >>> df = d(f)
-    >>> def f_prime(x):
-    ...    return df(x)(1.0)
-    >>> f_prime(pi/4)
-    0.0
 
 Pour aller plus loin
 --------------------------------------------------------------------------------
