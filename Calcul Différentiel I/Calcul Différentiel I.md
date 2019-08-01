@@ -2681,11 +2681,12 @@ Construire une fonction $f:\R^2 \to \R$ dont les dérivées partielles
 existent en $(0,0)$ mais qui ne soit pas différentiable en ce point.
 
 ### Question 2 {.question #dpdd-2}
-Construire une fonction $f:\R^2 \to \R$ dont la dérivée directionnelle
+Construire une fonction $f:\R^2 \to \R$ dont la dérivée dans la direction
+$h \in \R^2$
 $$
 f'(x, h) := \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
 $$
-existe en $x=(0,0)$ pour tout $h \in \R^é$,
+existe en $x=(0,0)$ pour tout $h \in \R^2$,
 mais qui ne soit pas différentiable en ce point.
 
 
@@ -3171,6 +3172,42 @@ $$
 $$
 et donc
 $$d \,\mathrm{inv} (I) \cdot H= - H.$$
+
+Dérivée partielles, directionnelles et différentielle
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dpdd-1}
+
+Les dérivées partielles de la fonction $f:\R^2 \to \R$ définie par
+$$
+f(x,y) 
+= \left|
+\begin{array}{cl}
+0 & \mbox{si } x=0 \mbox{ ou } y=0, \\
+1 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+existent en $(0,0)$ et sont nulles, puisque les fonctions partielles associéés
+sont nulles. Mais $f$ n'est pas continue en l'origine ; 
+elle n'y est donc a fortiori pas différentiable.
+
+### Question 2 {.answer #answer-dpdd-2}
+Les dérivées directionnelles de la fonction $f:\R^2 \to \R$ définie par
+$$
+f(x,y) 
+= \left|
+\begin{array}{cl}
+0 & \mbox{si } x\geq0 \mbox{ et } y=x^2, \\
+1 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+existent en $(0,0)$ et sont nulles pour tout $h \in \R^2$, 
+puisque les fonctions associéés $t \in \R \mapsto f(t h)$
+sont nulles pour $|t|$ suffisamment petit.
+Mais $f$ n'est pas continue en l'origine ; 
+elle n'y est donc a fortiori pas différentiable.
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
