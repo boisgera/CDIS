@@ -2563,20 +2563,15 @@ $\to$ [Solution](#sol-vvcvl-2)
 
 -->
 
-TODO -- Dérivée sur un intervalle fermé {#intervalle-fermé}
+Dérivée sur un intervalle fermé {.question #dif}
 --------------------------------------------------------------------------------
 
-**TODO:** deux options: extension globale ou locale, y repenser.
-
-### Question 1 {.question #dif-1}
 Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
-($f'(a)$ et $f'(b)$ désignant alors les dérivées à droite de $f$ en $a$
-et à gauche de $f$ en $b$)
+-- $f'(a)$ et $f'(b)$ désignant alors les dérivées à droite de $f$ en $a$
+et à gauche de $f$ en $b$ --
 si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
-$g$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable.
-
-### Question 2 {.question #dif-2}
-Montrer qu'alors, $f' = g'|_{[a, b]}$.
+$g$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable
+et qu'alors, $f' = g'|_{[a, b]}$.
 
 Dérivation en chaîne {.question #dec}
 --------------------------------------------------------------------------------
@@ -2809,12 +2804,26 @@ désigne le produit scalaire dans $\mathbb{R}^n$.
 
 -->
 
-TODO -- Dérivée sur un intervalle fermé 
+Dérivée sur un intervalle fermé {.answer #answer-dif}
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {.answer #answer-dif-1}
+Si une fonction $g$ dérivable sur $\left]a-\varepsilon, b+\varepsilon \right[$
+étend la fonction $f$ définie sur $[a, b]$,
+il est clair que $f$ est dérivable en tout point de $[a, b]$ et que
+$g'|_{[a, b]} = f'$.
 
-### TODO -- Question 2 {.answer #answer-dif-2}
+Réciproquement, si $f$ est dérivable sur $[a, b]$ (à droite en $a$ et à gauche
+en $b$), alors la fonction $g: \left]a-1, b+1 \right[$ définie par 
+$$
+g(x) = \left|
+\begin{array}{rl}
+f(a) + f'(a) \times (x-a) & \mbox{si } x < a \\
+f(x) & \mbox{si } x \in [a, b] \\
+f(b) + f'(b) \times (x-b) & \mbox{si } x > b
+\end{array}
+\right.
+$$
+étend $f$ et est dérivable par construction.
 
 Dérivation en chaîne {.answer #answer-dec}
 --------------------------------------------------------------------------------
