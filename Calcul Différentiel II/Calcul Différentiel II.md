@@ -1479,7 +1479,7 @@ où la fonction $H$ vérifie
 $$
 \sup_{x \in U} \|d H(x)\| := \kappa < 1.
 $$
-On appellera une telle fonction $T$ une *perturbation de l'identité*.
+($H$ est une *perturbation de l'identité*).
 
 ### Question 1 {.question #d-1}
 Montrer que la fonction $T$ est injective.
@@ -1488,14 +1488,13 @@ Montrer que la fonction $T$ est injective.
 Montrer que l'image $V= T(U)$ est un ouvert 
 et que $T$ est difféomorphisme global de $U$ sur $V$.
 
-TODO -- Valeurs propres d'une matrice
+Valeurs propres d'une matrice {.question #vpm}
 --------------------------------------------------------------------------------
 
-Si racine simple, variation continue (et plus) par rapport aux coefficients.
+Déterminer une condition "raisonnable" qui garantisse qu'une valeur propre
+$\lambda \in \R$ d'une matrice $A \in \R^{n \times n}$ varie continûment
+avec les coefficients de $A$.
 
-Lier ça à la sensibilité des valeurs propres (et vecteurs propres ?) par rapport
-aux coefficients de la matrice associée ? Avantage: plus de travail de mise en
-forme pour se ramener au pb de fct implicite (à ajouter aux objectifs).
 
 Inversion de matrice
 --------------------------------------------------------------------------------
@@ -1706,7 +1705,7 @@ $dH(x)$,
 la fonction linéaire $h \mapsto dT(x) \cdot h$ est une perturbation de 
 l'identité; elle est donc injective, et inversible car elle est linéaire de
 $\mathbb{R}^n$ dans $\mathbb{R}^n$. Les hypothèses du 
-théorème d'inversion locale sont donc satisfaites 
+[théorème d'inversion locale](#TIL) sont donc satisfaites 
 en tout point $x$ de $U$. La fonction $f$ est donc un difféomorphisme 
 local d'un voisinage ouvert $V_x$ de $x$ sur
 $W_x= f(V_x)$ qui est ouvert. Clairement,
@@ -1722,8 +1721,27 @@ la fonction
 $f^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
 C'est par conséquent un difféomorphisme global de $U$ dans $f(U)$.
 
-TODO -- Valeurs propres d'une matrice
+Valeurs propres d'une matrice {.answer #answer-vpm}
 --------------------------------------------------------------------------------
+
+Le nombre $\lambda \in \R$ est une valeur propre de $A \in \R^{n\times n}$ 
+si et seulement si 
+$$
+p(A, \lambda) = \det (A - \lambda I) = 0.
+$$
+La fonction $p$ est un polynôme dont les variables sont $\lambda$ et
+les coefficients $a_{ij}$ de la matrice $A$ ; cette fonction est donc
+continûment différentiable.
+Si $\lambda_0$ est une racine simple de $\lambda \mapsto p(A_0,\lambda)$, 
+on a $\partial_{\lambda}p(A_0, \lambda_0) \neq 0$ et donc par continuité, 
+dans un voisinage de $\lambda_0$ et de $A_0$, 
+$\partial_{\lambda}p(A, \lambda) \neq 0.$
+
+Par [le théorème des fonctions implicites](#TFI), 
+il existe donc localement une unique valeur propre réelle $\lambda$ associée à $A$,
+et elle est continûment différentiable -- et a fortiori continue --
+par rapport aux coefficients de $A$.
+
 
 Inversion de matrice
 --------------------------------------------------------------------------------
