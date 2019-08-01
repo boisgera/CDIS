@@ -2673,6 +2673,22 @@ Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
 ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
 
+Dérivée partielles, directionnelles et différentielle
+--------------------------------------------------------------------------------
+
+### Question 1 {.question #dpdd-1}
+Construire une fonction $f:\R^2 \to \R$ dont les dérivées partielles
+existent en $(0,0)$ mais qui ne soit pas différentiable en ce point.
+
+### Question 2 {.question #dpdd-2}
+Construire une fonction $f:\R^2 \to \R$ dont la dérivée directionnelle
+$$
+f'(x, h) := \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
+$$
+existe en $x=(0,0)$ pour tout $h \in \R^é$,
+mais qui ne soit pas différentiable en ce point.
+
+
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
 
