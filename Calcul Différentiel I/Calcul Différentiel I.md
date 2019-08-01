@@ -2768,22 +2768,39 @@ f(t) = (\cos t, \sin t)
 $$
 Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
 
-TODO -- Asymptotique
+Convexité
 --------------------------------------------------------------------------------
 
-Comportement asymptotique de $f(x+2h) - 2f(x+h) + f(x)$ (par approximation
-de variation d'ordre 2 par $d^2 f$.)
+Soit $U$ un ensemble convexe de $\R^n$ et $f: U \to \R$ une fonction
+deux fois différentiable. 
 
+### Question 0 {.question #c-0}
+Calculer le développement limité à l'ordre 2 de 
+$f(x+2h) - 2f(x+h) + f(x)$.
+
+### Question 1 {.question #c-1}
+Montrer que si $f$ est convexe, c'est-à-dire que
+pour tous $x, y \in U$ et $\lambda\in[0,1]$,
+$$
+f((1-\lambda) x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y),
+$$
+alors pour tout $x \in U$ et $h \in \R^n$,
+$$
+d^2f(x) (\cdot h)^2 = \left<\nabla^2 f(x) \cdot h, h\right> \geq 0.
+$$
+
+### Question 2 {.question #c-2}
+Montrer la réciproque de ce résultat.
+
+<!--
 TODO -- Analycité
 --------------------------------------------------------------------------------
 
 Borne sur $f^{(n)}$ et analycité ?
 
-TODO -- Convexité
---------------------------------------------------------------------------------
+-->
 
-Lien convexité et différentielle d'ordre 2.
-
+<!--
 TODO -- Oloid
 --------------------------------------------------------------------------------
 
@@ -2792,6 +2809,7 @@ Source: [@DS97]
 cf <http://www.heldermann-verlag.de/jgg/jgg01_05/jgg0113.pdf>, par exemple
 calcul plan tangent ?
 
+-->
 
 Solutions aux Exercices
 ================================================================================
@@ -3492,24 +3510,100 @@ en particulier pour tout $t \in [0, 2\pi]$, $\|f'(t)\| = 1$.
 Or $f(2\pi) - f(0) = 0$, donc il est impossible de trouver un 
 $t$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$.
 
-
-
-TODO -- Asymptotique
+Convexité
 --------------------------------------------------------------------------------
 
+### Question 0 {.answer #answer-c-0}
+Le développement limité à l'ordre 2 de $f$ en $x$ fournit
+$$
+f(x+h) = f(x) + df(x) \cdot h + d^2f(x) (\cdot h)^2 + o(\|h^2\|)
+$$
+et donc
+$$
+f(x+2h) = f(x) + 2 df(x) \cdot h + 4 d^2f(x) (\cdot h)^2 + o(\|h^2\|).
+$$
+Par conséquent,
+$$
+f(x+2h) - 2 f(x+h) + f(x) = 2 d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
+$$
 
+### Question 1 {.answer #answer-c-1}
+En considérant $y = x+2h$ et $\lambda = 1/2$, on voit que l'hypothèse
+de convexité de $f$ entraîne 
+$$
+f(x+h) \leq \frac{1}{2} f(x) + \frac{1}{2} f(x+2h),
+$$
+soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
+En utilisant le résultat de la question précédente,
+on obtient donc
+$d^2 f(x) (\cdot h)^2 \geq o(\|h\|^2)$ ou encore, en substituant 
+$th$ à $h$ et en faisant tendre $t$ vers $0$, 
+$d^2 f(x) (\cdot h)^2 \geq 0.$
 
+### Question 2 {.answer #answer-c-2}
+Comme $f((1-\lambda) x + \lambda y) = f(x + \lambda (y-x))$,
+l'inégalité de Taylor avec reste intégral fournit 
+$$
+\begin{split}
+f((1-\lambda) x + \lambda y)
+&= f(x) + df(x) \cdot \lambda (y-x) \\
+&\phantom{=} + \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot \lambda(y-x))^2 (1- t) \, dt.
+\end{split}
+$$
+L'intégrale ci-dessus étant égale à 
+$$
+\lambda \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot (y-x))^2 
+\left(1- \frac{ \lambda t}{\lambda} \right) \, \ \lambda dt,
+$$
+par le changement de variable $t \lambda \to t$ elle est égale à
+$$
+\lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot t (y-x))^2 
+\left(1 - \frac{t}{\lambda} \right)\, dt.
+$$
+En utilisant le développement de Taylor avec reste intégral pour
+$\lambda \in \left]0, 1\right]$ et $\lambda=1$, on obtient donc
+$$
+\begin{split}
+f((1-\lambda) x + \lambda y) - \lambda f(y)
+&= f(x) - \lambda f(x) + df(x) \cdot \lambda (y-x) - \lambda df(x) \cdot (y-x) \\
+&\phantom{=} + \lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot t (y-x))^2  \left(1 - \frac{t}{\lambda} \right)\, dt
+\\
+&\phantom{=} - \lambda \int_0^{1} d^2f(x+ t (y-x)) (\cdot t (y-x))^2 
+\left(1 - t \right)\, dt,
+\end{split}
+$$
+soit 
+$$
+f((1-\lambda) x + \lambda y) - \lambda f(y)
+- f(x) 
+=\lambda \int_0^1 \phi_f(t) \psi_{\lambda} (t) \, dt
+$$
+où
+$\phi_f(t) := d^2f(x+ t (y-x)) (\cdot t (y-x))^2$ est positive par hypothèse et 
+$$
+\psi_{\lambda}(t) :=
+\left|
+\begin{array}{cc}
+t(1 - 1/\lambda) & \mbox{si } t \leq \lambda\\
+(t - 1) & \mbox{sinon.}
+\end{array}
+\right.
+$$
+La fonction $\psi_{\lambda}$ étant négative, on en conclut que
+$f((1-\lambda) x + \lambda y) - \lambda f(y) - f(x)$ est négative pour tout
+$\lambda \in \left]0, 1\right]$ ; la fonction $f$ est donc convexe.
+
+<!--
 TODO -- Analycité
 --------------------------------------------------------------------------------
+-->
 
 
-TODO -- Convexité
---------------------------------------------------------------------------------
-
+<!--
 
 TODO -- Oloid
 --------------------------------------------------------------------------------
-
+-->
 
 Références
 ================================================================================
