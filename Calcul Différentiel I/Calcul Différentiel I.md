@@ -2654,7 +2654,7 @@ Montrer que l'application
 $f: (\theta_1, \theta_2) \in \R^2 \mapsto (x, y) \in \R^2$ 
 est différentiable et déterminer sa matrice jacobienne.
 
-Différentiation Matricielle
+Différentiation matricielle
 --------------------------------------------------------------------------------
 
 Source: [@Tao13]
@@ -3099,7 +3099,7 @@ J_f(\theta_1, \theta_2)
 \right].
 $$
 
-Différentiation Matricielle
+Différentiation matricielle
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dm-1}
