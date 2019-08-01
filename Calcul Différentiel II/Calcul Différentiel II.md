@@ -1418,12 +1418,58 @@ le sujet.
 Exercices
 ================================================================================
 
-TODO -- Cinématique des Robots Manipulateurs
+Cinématique d'un robot manipulateur
 --------------------------------------------------------------------------------
 
-Position de référence en cartésien, robot plan articulaire (ou extension 3d),
-étudier sous quelle conditions on peut "résoudre" un déplacement de 
-l'effecteur.
+On revient à l'étude du robot plan dont les coordonnés cartésiennes $(x, y)$
+se déduisent des coordonnées articulaires $q = (\theta_1, \theta_2)$ par la
+relation
+$$
+\left|
+\begin{array}{rcr}
+x &=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2) \\
+y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
+\end{array}
+\right.
+$$
+On note $f$ la fonction de $\R^2$ dans $\R^2$ telle que 
+$f(\theta_1, \theta_2) = (x, y)$.
+
+### Question 1 {.question #crm-1}
+Supposons que $\ell_1 \neq \ell_2$.
+Déterminer l'ensemble $V_0$ des valeurs $(x, y)$ du plan qui ne corresponde 
+à aucun couple $q$ de coordonnées articulaires, 
+l'ensmble $V_1$ celles qui correspondent 
+à un unique couple $q$ de coordonnées articulaires (modulo $2\pi$) et 
+finalement l'ensemble $V_2$ de celles qui
+correspondent à plusieurs couples de coordonnées articulaires $q$ 
+(toujours modulo $2\pi$).
+
+### Question 2 {.question #crm-2}
+Déterminer l'ensemble $U$ des $q \in \R^2$ tel que la matrice 
+$J_f(q)$ est inversible et comparer $f(U)$ avec $V_0$, $V_1$ et $V_2$.
+
+
+### Question 3 {.question #crm-3}
+Soit pour $\tau > 0$ ; on considère une trajectoire continue
+$$
+\gamma: t \in [0, \tau] \mapsto (x(t), y(t)) \in \R^2
+$$ 
+dans l'espace cartésien, dont l'image est incluse dans $f(U)$. 
+Soit $q_0 = (\theta_{10}, \theta_{20})$ tel que $f(q_0) = (x(0), y(0))$. 
+Montrer qu'il existe une unique fonction continue $\gamma_q: [0, \tau] \to \R^2$ 
+telle que $\gamma = f \circ \gamma_q$
+et $\gamma_q(0) = q_0$ ($\gamma_q$ est la trajectoire correspondant à
+$\gamma$ dans l'espace articulaire).
+Indication: on pourra commencer par établir le résultat pour $\tau$
+suffisamment petit.
+
+### Question 4 {.question #crm-4}
+Sous si $\gamma$ est différentiable, $\gamma_q$ également. 
+Déterminer la relation entre 
+$$(\dot{x}, \dot{y}) := \gamma'(t) \; \mbox{ et } \;
+\dot{q} := (\dot{\theta}_1, \dot{\theta}_2) := \gamma_q'(t).$$
+
 
 Déformations
 --------------------------------------------------------------------------------
@@ -1503,12 +1549,23 @@ vérifier que $d \phi_x(y)$ est nul si $f(x, y) = 0$.
 Solution des exercices
 ================================================================================
 
-TODO -- Cinématique des Robots Manipulateurs
+Cinématique d'un robots manipulateur
 --------------------------------------------------------------------------------
 
-Position de référence en cartésien, robot plan articulaire (ou extension 3d),
-étudier sous quelle conditions on peut "résoudre" un déplacement de 
-l'effecteur.
+Si l'on note $s_1 = \sin \theta_1$,
+$s_{12}= \sin(\theta_1+\theta_2)$, $c_1 = \cos \theta_1$ et
+$c_{12}= \cos(\theta_1+\theta_2)$, on obtient donc
+$$
+J_f(\theta_1, \theta_2)
+=
+\left[
+\begin{array}{rr}
+-\ell_1 s_1 -\ell_2 s_{12} & -\ell_2 s_{12} \\
+\ell_1 c_1 + \ell_2 c_{12} & \ell_2 c_{12} 
+\end{array}
+\right].
+$$
+
 
 Déformations {.answer #answer-d}
 --------------------------------------------------------------------------------
