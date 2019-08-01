@@ -2573,12 +2573,22 @@ si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
 $g$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable
 et qu'alors, $f' = g'|_{[a, b]}$.
 
-Dérivation en chaîne {.question #dec}
+
+Différentiation en chaîne {.question #dec}
 --------------------------------------------------------------------------------
 
-Montrer que la règle de dérivation en chaîne ci-dessous, 
-concernant les fonctions d'une variable, se déduit de
-[la règle générale de différentiation en chaîne](#chain-rule).
+[La règle générale de différentiation en chaîne](#chain-rule)
+s'applique à la composée de deux fonctions $f: U \subset \R^p \to \R^n$
+et $g: V \subset \R^n \to \R^m$.
+
+### Question 1 {.question #dec-1}
+Calculer $d(g \circ f)$ quand $p = n = 1$ (on utilisera les dérivées
+de $f$ et $g$).
+
+### Question 2 {.question #dec-2}
+Calculer $d(g \circ f)$ quand $p = m = 1$ (on utilisera les dérivées 
+et/ou gradients de $f$ et $g$).
+
 
 Soit $f: U \subset \mathbb{R} \to \mathbb{R}$ et 
 $g: V \subset \mathbb{R} \to \mathbb{R}$ deux fonctions définies
@@ -2623,7 +2633,7 @@ Montrer que la fonction $f$ est différentiable et calculer son gradient.
 Montrer que la fonction $f$ est deux différentiable et calculer sa 
 hessienne.
 
-Robot Manipulateur
+Robot Manipulateur {.question #rm}
 --------------------------------------------------------------------------------
 
 Les coordonnées cartésiennes $x$ et $y$ de l'effecteur final 
@@ -2640,19 +2650,9 @@ y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
 $$
 ou $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
 
-### Question 1 {.question #rm-1}
-
-Montrer que l'application $f: (\theta_1, \theta_2) \mapsto (x, y)$ 
+Montrer que l'application 
+$f: (\theta_1, \theta_2) \in \R^2 \mapsto (x, y) \in \R^2$ 
 est différentiable et déterminer sa matrice jacobienne.
-
-
-### TODO -- Question 2 {.question #rm-2}
-
-Calcul de $K(q, v)$ (en partant de $K = 1/2m(\dot{x}^2 + \dot{y}^2)$).
-
-### TODO -- Question 3 {.question #rm-3}
-
-Eq E.-L. soumis à couples $c_1$ et $c_2$ ? Ou juste grandeurs intermédiaires ?
 
 Différentiation Matricielle
 --------------------------------------------------------------------------------
@@ -2825,33 +2825,49 @@ f(b) + f'(b) \times (x-b) & \mbox{si } x > b
 $$
 étend $f$ et est dérivable par construction.
 
-Dérivation en chaîne {.answer #answer-dec}
+Différentiation en chaîne 
 --------------------------------------------------------------------------------
 
-Les fonction $f$ et $g$ sont dérivables donc différentiables 
+### Question 1 {.answer #answer-dec-1}
+Les fonction $f$ et $g$ sont différentiables  donc dérivables
 (cf. [Différentielle et Dérivée]).
-Par application de la [règle de différentiation en chaîne](#chain-rule),
-leur composée $g \circ f$ est donc différentiable.
-C'est une fonction d'une variable, elle est donc dérivable, 
-à nouveau en invoquant 
-[le lien entre différentielle et dérivée][Différentielle et Dérivée].
-Pour ces trois fonctions, on obtient la dérivée en appliquant la
-différentielle à $1$ ; la [règle de différentiation en chaîne](#chain-rule)
-fournissant
+Comme fonctions d'une variable, en raison du
+[lien entre différentielle et dérivée][Différentielle et Dérivée],
+on a $df(x) \cdot h = f'(x) h$ et $dg(x) \cdot h = g'(x)h$.
+Par la [règle de différentiation en chaîne](#chain-rule),
+on obtient
 $$
-d(g \circ f)(x) = dg(f(x)) \cdot df(x),
+d(g \circ f)(x)= dg(f(x)) \cdot df(x).
 $$
-on en déduit
+On en déduit
 $$
 \begin{split}
-(g \circ f)'(x) &= (d(g \circ f)(x)) \cdot 1 \\
-&= (dg(f(x)) \cdot df(x) )\cdot 1 \\
-&=dg(f(x)) \cdot (df(x) \cdot 1) \\
-&= dg(f(x)) \cdot (f'(x) 1) \\
-&= (dg(f(x)) \cdot 1) f'(x) \\ 
-&= g'(f(x)) f'(x)
+d(g \circ f)(x) \cdot h 
+&= (dg(f(x)) \cdot df(x) )\cdot h \\
+&=dg(f(x)) \cdot (df(x) \cdot h) \\
+&= dg(f(x)) \cdot (f'(x) h) \\
+&= g'(f(x)) (f'(x) h) \\
+&= (g'(f(x)) f'(x)) h.
 \end{split}
 $$
+
+### Question 2 {.answer #answer-dec-2}
+
+La fonction $f$ dépendant d'un variable scalaire, elle est dérivable et 
+$df(x) \cdot h = f'(x) h$. Quant $g$ qui est à valeur scalaire, sa
+différentielle en $x$ est reliée à son gradient par 
+$dg(x) \cdot h =\left<\nabla g(x), h\right>$.
+La [règle de différentiation en chaîne](#chain-rule),
+$d(g \circ f)(x)= dg(f(x)) \cdot df(x)$ se décline donc en
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= dg(f(x)) \cdot (f'(x) h) \\
+&= \left<\nabla g(f(x), f'(x)h \right>  \\
+&= \left<\nabla g(f(x)), f'(x) \right> h.
+\end{split}
+$$ 
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
@@ -3007,10 +3023,9 @@ $$
 $$
 
 
-Robot Manipulateur
+Robot Manipulateur {.answer #answer-rm}
 --------------------------------------------------------------------------------
 
-### Question 1 {.answer #answer-rm-1}
 Des équations
 $$
 \left|
@@ -3046,7 +3061,7 @@ J_f(\theta_1, \theta_2)
 -\ell_1 s_1 -\ell_2 s_{12} & -\ell_2 s_{12} \\
 \ell_1 c_1 + \ell_2 c_{12} & \ell_2 c_{12} 
 \end{array}
-\right]
+\right].
 $$
 
 Différentiation Matricielle
