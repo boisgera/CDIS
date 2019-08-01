@@ -2616,7 +2616,7 @@ Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible.
 Montrer que la fonction $f$ admet un unique point critique $x_0$ et le 
 calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
 
-Vecteur Gaussien
+Vecteur gaussien
 --------------------------------------------------------------------------------
 
 La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
@@ -2633,7 +2633,7 @@ Montrer que la fonction $f$ est différentiable et calculer son gradient.
 Montrer que la fonction $f$ est deux différentiable et calculer sa 
 hessienne.
 
-Robot Manipulateur {.question #rm}
+Robot manipulateur {.question #rm}
 --------------------------------------------------------------------------------
 
 Les coordonnées cartésiennes $x$ et $y$ de l'effecteur final 
@@ -2964,7 +2964,7 @@ $$
 y = x - (\nabla^2 f(x))^{-1} \nabla f(x).
 $$
 
-Vecteur Gaussien
+Vecteur gaussien
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-vg-1}
@@ -3058,7 +3058,7 @@ $$
 $$
 
 
-Robot Manipulateur {.answer #answer-rm}
+Robot manipulateur {.answer #answer-rm}
 --------------------------------------------------------------------------------
 
 Des équations
