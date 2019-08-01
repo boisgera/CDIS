@@ -348,7 +348,7 @@ df(x) \cdot df^{-1}(y) = I \; \mbox{ et } \; df^{-1}(y) \cdot  df(x)= I.
 $$
 La fonction $df(x)$ est donc inversible et est l'inverse de $d f^{-1}(y)$.
 
-### Inversion Locale {.theorem}
+### Théorème d'inversion locale {.theorem #TIL}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ continûment différentiable
 sur l'ouvert $U$ et telle que $df(x)$ soit inversible
 en tout point $x$ de $U$. Alors pour tout $x_0$ in $U$, il existe un voisinage
@@ -1437,35 +1437,32 @@ $f(\theta_1, \theta_2) = (x, y)$.
 
 ### Question 1 {.question #crm-1}
 Supposons que $\ell_1 \neq \ell_2$.
-Déterminer l'ensemble $V_0$ des valeurs $(x, y)$ du plan qui ne corresponde 
-à aucun couple $q$ de coordonnées articulaires, 
-l'ensmble $V_1$ celles qui correspondent 
-à un unique couple $q$ de coordonnées articulaires (modulo $2\pi$) et 
-finalement l'ensemble $V_2$ de celles qui
-correspondent à plusieurs couples de coordonnées articulaires $q$ 
-(toujours modulo $2\pi$).
+Déterminer l'ensemble des valeurs $(x, y)$ du plan qui ne corresponde 
+à aucun couple $q$ de coordonnées articulaires et 
+l'ensemble de celles qui correspondent à des coordonnées articulaires.
+Quand $(x, y)$ appartient à l'intérieur $V$ de ce second ensemble, 
+ces coordonnées articulaires sont-elles uniques (modulo $2\pi$) ?
 
 ### Question 2 {.question #crm-2}
 Déterminer l'ensemble $U$ des $q \in \R^2$ tel que la matrice 
-$J_f(q)$ est inversible et comparer $f(U)$ avec $V_0$, $V_1$ et $V_2$.
-
+$J_f(q)$ est inversible et comparer $f(U)$ avec $V$.
 
 ### Question 3 {.question #crm-3}
-Soit pour $\tau > 0$ ; on considère une trajectoire continue
+Soit $\tau > 0$ ; on considère une trajectoire continue
 $$
 \gamma: t \in [0, \tau] \mapsto (x(t), y(t)) \in \R^2
 $$ 
 dans l'espace cartésien, dont l'image est incluse dans $f(U)$. 
 Soit $q_0 = (\theta_{10}, \theta_{20})$ tel que $f(q_0) = (x(0), y(0))$. 
-Montrer qu'il existe une unique fonction continue $\gamma_q: [0, \tau] \to \R^2$ 
+Montrer que si $\tau$ est suffisamment petit, 
+il existe une unique fonction continue $\gamma_q: [0, \tau] \to \R^2$ 
 telle que $\gamma = f \circ \gamma_q$
 et $\gamma_q(0) = q_0$ ($\gamma_q$ est la trajectoire correspondant à
 $\gamma$ dans l'espace articulaire).
-Indication: on pourra commencer par établir le résultat pour $\tau$
-suffisamment petit.
+
 
 ### Question 4 {.question #crm-4}
-Sous si $\gamma$ est différentiable, $\gamma_q$ également. 
+Montrer que si $\gamma$ est différentiable, $\gamma_q$ également. 
 Déterminer la relation entre 
 $$(\dot{x}, \dot{y}) := \gamma'(t) \; \mbox{ et } \;
 \dot{q} := (\dot{\theta}_1, \dot{\theta}_2) := \gamma_q'(t).$$
@@ -1549,12 +1546,42 @@ vérifier que $d \phi_x(y)$ est nul si $f(x, y) = 0$.
 Solution des exercices
 ================================================================================
 
-Cinématique d'un robots manipulateur
+Cinématique d'un robot manipulateur
 --------------------------------------------------------------------------------
 
-Si l'on note $s_1 = \sin \theta_1$,
+### Question 1 {.answer #answer-crm-1}
+Remarquons tout d'abord que $r= \sqrt{x^2 + y^2}$ ne dépend que de la valeur
+de $\theta_2$, pas de celle $\theta_1$ puisque $(x, y) = f(\theta_1, \theta_2)$
+est obtenu par rotation d'un angle $\theta_1$ de $f(0, \theta_2)$.
+On a donc
+$$
+r = \sqrt{(\ell_1 + \ell_2 \cos \theta_2)^2 + (\ell_2 \sin \theta_2)^2}
+=
+\sqrt{\ell_1^2 + \ell_2^2 + 2 \ell_1 \ell_2 (\cos \theta_2)^2}.
+$$
+L'ensemble des valeurs de cette fonction de $\theta_2$ est l'intervalle
+$[|\ell_1 - \ell_2|, \ell_1 + \ell_2]$.
+Une fois $\theta_2$ sélectionné (modulo $2\pi$) pour atteindre la valeur 
+$r$, il est évident par rotation que l'on peut trouver un angle $\theta_1$
+tel que $f(\theta_1, \theta_2) = (x, y)$. Pour des raisons de symmétrie,
+si $\theta$ est un angle de $(x, y)$ et $\theta_1$ convient, alors
+$2\theta - \theta_1$ également. Ces deux angles sont différents si
+$\theta_1$ différe de $\theta$ modulo $\pi$, c'est-à-dire si le bras
+manipulateur n'est ni totalement déplié, ni totalement plié.
+
+Pour résumer: les points $(x, y)$ tels que $r < |\ell_1 - \ell_2|$ ou
+$\ell_1 + \ell_2 < r$ ne peuvent pas être atteints. Les points vérifiant
+les égalités correspondante correspondent à exactement un jeu de 
+coordonnées articulaires. Et dans le cas restant, dans
+$$
+V = \{(x, y) \i \R^2 \, | \, |\ell_1 - \ell_2| < \sqrt{x^2 + y^2} < \ell_1 + \ell_2\},
+$$
+plusieurs coordonnées articulaires (modulo $2\pi$) peuvent correspondre.
+
+### Question 2 {.answer #answer-crm-2}
+On rappelle qu'avec les notations $s_1 = \sin \theta_1$,
 $s_{12}= \sin(\theta_1+\theta_2)$, $c_1 = \cos \theta_1$ et
-$c_{12}= \cos(\theta_1+\theta_2)$, on obtient donc
+$c_{12}= \cos(\theta_1+\theta_2)$, on a
 $$
 J_f(\theta_1, \theta_2)
 =
@@ -1564,6 +1591,87 @@ J_f(\theta_1, \theta_2)
 \ell_1 c_1 + \ell_2 c_{12} & \ell_2 c_{12} 
 \end{array}
 \right].
+$$
+Comme soustraire à la première colonne la seconde ne change pas le rang
+de cette matrice, la matrice jacobienne est inversible si et seulement si
+$$
+\left|
+\begin{array}{rr}
+-\ell_1 s_1 & -\ell_2 s_{12} \\
+\ell_1 c_1 & \ell_2 c_{12} 
+\end{array}
+\right| = 
+-\ell_1 \ell_2 (s_1 c_{12} - c_1 s_{12}) =0,
+$$
+soit
+$\ell_1 \ell_2 \sin (\theta_1 + \theta_2 - \theta_1) = \ell_1 \ell_2 \sin \theta_2
+=0.$ 
+La matrice jacobienne de $f$ est donc inversible à moins que 
+$\theta_2$ soit égal à $0$ modulo $\pi$ (bras totalement déplié ou totalement
+plié), soit
+$$
+U = \R^2 \setminus (\R \times \pi \Z).
+$$
+En coordonnées cartésiennes, cela correspond aux points $(x, y)$ 
+à distance minimale $|\ell_1 - \ell_2|$
+ou maximale $\ell_1 + \ell_2$ de l'origine, soit $A_1$. 
+Les points à une distance intermédiaires $$|\ell_1 - \ell_2| < \sqrt{x^2+y^2} < \ell_1+\ell_2,$$
+soit $A_2$ en coordonnées cartésiennes, correspondent à une matrice jacobienne
+$J_f(q)$ inversible quel que soit l'antécédent $q$ de $(x, y)$ par $f$.
+
+### Question 3 {.answer #answer-crm-3}
+Si $q_0 = (\theta_{10}, \theta_{20}) \in U$ 
+Comme la matrice jacobienne de $f$ est inversible sur $U$, 
+[le théorème d'inversion locale](#TIL) s'applique: 
+la fonction $f$ est un difféomorphisme sur un voisinage ouvert 
+$V \subset U$ de $q_0$, d'inverse $g: W \to U$ défini sur 
+l'ouvert $W = f(V)$. 
+Si $\gamma$ est une trajectoire continue
+$$
+\gamma: t \in [0, \tau] \mapsto (x(t), y(t)) \in \R^2
+$$ 
+dans l'espace cartésien, dont l'image est incluse dans $f(U)$ et telle 
+que $f(q_0) = (x(0), y(0))$, tant que $\tau$ est suffisamment petit pour
+que par continuité $\gamma(t)$ appartienne à $W$, alors
+$f (\gamma_q(t)) = \gamma(t)$ si et seulement si $\gamma_q(t) = g (\gamma(t))$.
+
+### Question 4 {.answer #answer-crm-4}
+Si $\gamma$ est différentiable, comme $\gamma_q(t) = g (\gamma(t))$ et que
+$g$ est continûment différentiable, $\gamma_q$ l'est également.
+L'application de la règle de différentiation en chaîne à
+$\gamma = f \circ \gamma_q$ fournit
+$$
+\gamma'(t) = df(\gamma_q(t)) \cdot \gamma'_q(t),
+$$
+soit 
+$$
+\left[ 
+  \begin{array}{c}
+\dot{x} \\
+\dot{y}
+\end{array}
+\right]
+= J_f(q_0) \times 
+\left[
+\begin{array}{c}
+\dot{\theta}_1\\
+\dot{\theta}_2
+\end{array}
+\right]
+\; \mbox{ ou encore } \;
+\left[ 
+  \begin{array}{c}
+\dot{\theta}_1 \\
+\dot{\theta}_2
+\end{array}
+\right]
+= J_f(q_0)^{-1} \times 
+\left[
+\begin{array}{c}
+\dot{x}\\
+\dot{y}
+\end{array}
+\right]
 $$
 
 
