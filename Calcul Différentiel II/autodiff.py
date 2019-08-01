@@ -1,36 +1,83 @@
 """
-    >>> from math import pi
 
-    >>> print(sin(0.0))
-    0.0
-    >>> print("d_cos", d(cos)(0.0)(1.0))
-    d_cos -0.0
+   >>> from math import pi
 
+Scalar Functions
 --------------------------------------------------------------------------------
 
     >>> def f(x):
-    ...     return x + 1
-    >>> x = 2.0
-    >>> df_x = d(f)(x)
-    >>> df_x(1.0)
-    1.0
+    ...     return pi
+    >>> g = deriv(f)
+    >>> g(0.0)
+    0.0
+    >>> g(1.0)
+    0.0
+
+    >>> def f(x):
+    ...     return 2 * x + 1.0
+    >>> g = deriv(f)
+    >>> g(0.0)
+    2.0
+    >>> g(1.0)
+    2.0
+    >>> g(2.0)
+    2.0
 
     >>> def f(x):
     ...     return x * x + 2 * x + 1
-    >>> x = 2.0
-    >>> df_x = d(f)(x)
-    >>> df_x(1.0)
+    >>> g = deriv(f)
+    >>> g(0.0)
+    2.0
+    >>> g(1.0)
+    4.0
+    >>> g(2.0)
     6.0
-
-Derivative of f (manual computation)
 
     >>> def f(x):
     ...    return cos(x) * cos(x) + sin(x) * sin(x)
-    >>> df = d(f)
-    >>> def f_prime(x):
-    ...    return df(x)(1.0)
-    >>> f_prime(pi/4)
+    >>> g = deriv(f)
+    >>> g(0.0)
     0.0
+    >>> g(pi/4)
+    0.0
+    >>> g(pi/2)
+    0.0
+
+    >>> def f(x):
+    ...     return sin(x) * cos(x)
+    >>> g = deriv(f)
+    >>> def h(x):
+    ...     return cos(x) * cos(x) - sin(x) * sin(x)
+    >>> g(0.0) == h(0.0)
+    True
+    >>> g(pi/4) == h(pi/4)
+    True
+    >>> g(pi/2) == h(pi/2)
+    True
+
+Multivariable Functions
+--------------------------------------------------------------------------------
+
+    >>> def f(x, y):
+    ...     return 1.0
+    >>> grad(f)(0.0, 0.0)
+    [0.0, 0.0]
+    >>> grad(f)(1.0, 2.0)
+    [0.0, 0.0]
+
+    >>> def f(x, y):
+    ...     return x + 2 * y + 1
+    >>> grad(f)(0.0, 0.0)
+    [1.0, 2.0]
+    >>> grad(f)(1.0, 2.0)
+    [1.0, 2.0]
+
+    >>> def f(x, y):
+    ...     return x * x + y * y
+    >>> grad(f)(0.0, 0.0)
+    [0.0, 0.0]
+    >>> grad(f)(1.0, 2.0)
+    [2.0, 4.0]
 
 Branching
 --------------------------------------------------------------------------------
@@ -40,28 +87,29 @@ Branching
     ...         return -x
     ...     else:
     ...         return x
-    >>> df = d(f)
-    >>> df(2.0)(1.0)
-    1.0
-    >>> df(-2.0)(1.0)
+    >>> g = deriv(f)
+    >>> g(-1.0)
     -1.0
+    >>> g(1.0)
+    1.0
 
     >>> def f(x):
     ...     if x <= 0.0:
     ...         return 0.0
     ...     else:
     ...         return x * x
-    >>> df = d(f)
-    >>> df(-1.0)(1.0)
+    >>> g = deriv(f)
+    >>> g(-1.0)
     0.0
-    >>> df(1.0)(1.0)
+    >>> g(1.0)
     2.0
 
-    >>> f = lambda x: (x >= 0) * x * x
-    >>> df = d(f)
-    >>> df(-1.0)(1.0)
-    0.0
-    >>> df(1.0)(1.0)
+    >>> def f(x): 
+    ...     return (x > 0) * x * x
+    >>> g = deriv(f)
+    >>> g(-1.0) == 0.0 # actually, -0.0
+    True
+    >>> g(1.0)
     2.0
 
 """
@@ -225,6 +273,26 @@ def d(f):
         return df_x
     df.__qualname__ = "d_" + f.__qualname__
     return df
+
+# Differential Operators
+# ------------------------------------------------------------------------------
+def deriv(f):
+    df = d(f)
+    def deriv_f(x):
+        return df(x)(1.0)
+    return deriv_f
+
+def grad(f):
+    df = d(f)
+    def grad_f(*args):
+        n = len(args)
+        grad_f_x = n * [0.0]
+        df_x = df(*args)
+        for i in range(0, n):
+            e_i = n * [0.0]; e_i[i] = 1.0
+            grad_f_x[i] = df_x(*e_i)
+        return grad_f_x  
+    return grad_f
 
 # Unit Tests
 # ------------------------------------------------------------------------------
