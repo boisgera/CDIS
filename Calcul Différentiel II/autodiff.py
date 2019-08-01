@@ -34,6 +34,17 @@ Scalar Functions
     6.0
 
     >>> def f(x):
+    ...     return x ** 2 + 2 * x + 1
+    >>> g = deriv(f)
+    
+    Here g(0.0) won't work 
+    
+    >>> g(1.0)
+    4.0
+    >>> g(2.0)
+    6.0
+
+    >>> def f(x):
     ...    return cos(x) * cos(x) + sin(x) * sin(x)
     >>> g = deriv(f)
     >>> g(0.0)
@@ -160,8 +171,9 @@ def autodiff(function):
 
 # Function and Operators
 # ------------------------------------------------------------------------------
-functions  = ["exp", "log", "pow", "sqrt", "sin", "cos", "tan"]
-operators  = ["add", "sub", "mul", "truediv", "neg", "pos"]
+functions  = ["exp", "log", "sqrt", "sin", "cos", "tan"]
+operators  = ["add", "sub", "mul", "truediv", "pow"]
+operators += ["neg", "pos"]
 operators += ["lt", "le", "ge", "gt"] # not ne or eq ; fucks up the current
 # topological sort. Of cours we could work with ids in the topological sort,
 # or have a global flag to disable node outputs but it's overkill;
