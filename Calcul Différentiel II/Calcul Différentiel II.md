@@ -1438,16 +1438,12 @@ $$
 $$
 On appellera une telle fonction $T$ une *perturbation de l'identité*.
 
-### Question 1
+### Question 1 {.question #d-1}
 Montrer que la fonction $T$ est injective.
 
-$\to$ [Solution](#sol-d-1)
-
-### Question 2
+### Question 2 {.question #d-2}
 Montrer que l'image $V= T(U)$ est un ouvert 
 et que $T$ est difféomorphisme global de $U$ sur $V$.
-
-$\to$ [Solution](#sol-d-1)
 
 TODO -- Valeurs propres d'une matrice
 --------------------------------------------------------------------------------
@@ -1461,16 +1457,14 @@ forme pour se ramener au pb de fct implicite (à ajouter aux objectifs).
 Inversion de matrice
 --------------------------------------------------------------------------------
 
-### Question 1
+### Question 1 {.question #im-1}
 Montrer que le produit matriciel
   $$
   (A, B) \in \R^{m \times n} \times \R^{n \times p} \to A \times B \in \R^{m \times p}
   $$
 est une application continûment différentiable.
 
-$\to$ [Solution](#sol-im-1)
-
-### Question 2
+### Question 2 {.question #im-2}
 Montrer que l'application qui à une matrice inversible 
 $A \in \mathbb{R}^{n\times n}$ associe son inverse $A^{-1}$ est définie
 sur un ouvert de $\R^{n \times n}$, continûment différentiable et que
@@ -1478,7 +1472,6 @@ $$
 d(A^{-1}) \cdot H = - A^{-1} \times H \times A^{-1}.
 $$
 
-$\to$ [Solution](#sol-im-2)
 
 <!--
 Différentiation à pas complexe
@@ -1488,7 +1481,7 @@ Différentiation à pas complexe
 
 -->
 
-Méthode de Newton
+Méthode de Newton {.question #mn}
 --------------------------------------------------------------------------------
 L'analyse de la preuve du théorème du fonction implicite nous a conduit à
 considérer la méthode de Newton modifiée, associée à la construction
@@ -1507,10 +1500,6 @@ $$
 Montrer que $\phi_x$ est différentiable dans un voisinage de $(x_0, y_0)$ et
 vérifier que $d \phi_x(y)$ est nul si $f(x, y) = 0$.
 
-$\to$ [Solution](#sol-mn)
-
-
-
 Solution des exercices
 ================================================================================
 
@@ -1521,10 +1510,10 @@ Position de référence en cartésien, robot plan articulaire (ou extension 3d),
 étudier sous quelle conditions on peut "résoudre" un déplacement de 
 l'effecteur.
 
-Déformations {#sol-d}
+Déformations {.answer #answer-d}
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-d-1} 
+### Question 1 {.answer #answer-d-1} 
 Par le théorème des accroissements finis, si $x$ et $y$ appartiennent
 à $U$, comme par convexité $[x, y] \subset U$, on a 
 $$
@@ -1540,7 +1529,7 @@ $$
 $$
 et donc si $T(x) = T(y)$, $x=y$: $T$ est bien injective.
 
-### Question 2 {#sol-d-2}
+### Question 2 {.answer #answer-d-2}
 La différentielle $dT(x)$ de $T$ en $x$ est une application 
 de $\mathbb{R}^n$ dans $\mathbb{R}^n$ de la forme
 $$
@@ -1574,7 +1563,7 @@ TODO -- Valeurs propres d'une matrice
 Inversion de matrice
 --------------------------------------------------------------------------------
 
-### Question 1 {#sol-im-1}
+### Question 1 {.answer #answer-im-1}
 Pour tout $i \in \{1, \dots, m\}$ et $k \in \{1, \dots, p\}$, on a
 $$
 [A \times B]_{ik} = \sum_{j=1}^n a_{ij} \times b_{jk}.
@@ -1605,7 +1594,7 @@ $$
 Ces expressions sont des fonctions continues du couple $(A, B)$.
 L'application produit de matrices est donc continûment différentiable.
 
-### Question 2 {#sol-im-2}
+### Question 2 {.answer #answer-im-2}
 Soit $A_0 \in \R^{n \times n}$ une matrice inversible, d'inverse $B_0$.
 L'application 
 $$
@@ -1645,7 +1634,7 @@ $$
 d A^{-1} = -A^{-1} \times dA \times A^{-1}.
 $$
 
-Méthode de Newton {#sol-mn}
+Méthode de Newton {.answer #answer-mn}
 --------------------------------------------------------------------------------
 Si la fonction $f$ est deux fois continûment différentiable,
 les termes $f(x, y)$ et $\partial_y f(x,y)$ sont des fonctions
