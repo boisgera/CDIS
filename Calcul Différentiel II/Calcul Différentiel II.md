@@ -1848,14 +1848,13 @@ d \phi_x(y)=
 $$
 En particulier, si $f(x, y) = 0$, on a bien $d \phi_x(y) = 0$.
 
-
-
-TODO -- Projet Numérique -- Lignes de niveau
+Projet Numérique -- Lignes de niveau
 ================================================================================
 
-L'objectif de ce projet numérique est de développer un programme permettant
-de calculer les lignes de niveau d'une fonction $f$ de deux variables 
-réelles et à valeurs réelle, c'est-à-dire les ensembles de la forme
+L'objectif de ce projet numérique est de développer un programme 
+Python permettant de calculer les lignes de niveau d'une fonction $f$ 
+de deux variables réelles et à valeurs réelles, 
+c'est-à-dire les ensembles de la forme
 $$
 \{(x, y) \in \R^2 \, | \, f(x, y) = c\} \, \mbox{ où } \, c \in \R.
 $$
@@ -1867,37 +1866,28 @@ La représentation graphique de ces courbes est un *tracé de contour*
 où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
 Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py)
 
-On suppose dans un premier temps que la fonction $f$ dont on cherche les courbes
-de niveau est définie dans le carré unité $[0,1] \times [0,1]$ et qu'il existe
-une amorce à la courbe de niveau $c$ sur l'arête gauche du carré, c'est-à-dire 
-un point $(0, y)$ avec $y \in [0, 1]$, tel que $f(0, y) = c$. 
-La production de courbes de niveau dans cette situation élémentaire 
-deviendra ultérieurement le composant centrale dans un cas plus général.
+### Contour simple
+On suppose dans un premier temps que la fonction $f$ est définie dans le carré 
+unité $[0,1] \times [0,1]$ et on limite notre recherche aux lignes de niveau
+qui possèdent un point sur l'arête gauche du domaine de définition
+(de la forme $(0, y)$ pour un $0 \leq y \leq 1$.)
 
-### Amorce
-
-Considérons une fonction $g:[0, 1] \mapsto \mathbb{R}$ supposée continue.
-A quelle condition raisonnable portant sur $g(0)$, $g(1)$ et le réel $c$ 
-est-on certain qu'il existe un $t \in [0, 1]$ tel que $g(t) = c$ ?
+#### Amorce
+A quelle condition raisonnable portant sur $f(0,0)$, $f(0,1)$ et le réel $c$ 
+est-on certain qu'il existe un $t \in [0, 1]$ tel que $f(0, t) = c$ ?
 Développer une fonction, conforme au squelette suivant
 
-    def root(g, c=0, eps=2**(-52)):
+    def find_seed(g, c=0, eps=2**(-26)):
         ...
         return t
 
 qui renvoie un flottant éloigné d'au plus `eps` (par défaut, l'epsilon machine) 
-d'un tel $t$ (avec $c=0$ par défaut), ou `None` si la condition évoquée ci-dessus
-n'est pas satisfaite.
+d'un tel $t$ (avec $c=0$ par défaut), ou `None` si la condition évoquée 
+ci-dessus n'est pas satisfaite.
 
-Comment utiliser cette fonction pour trouver une amorce de courbe de niveau 
-pour la fonction $f$ si les conditions appropriées sont réunies ?
+#### Propagation: Point-fixe : valeur init + contrainte
 
-
-**TODO:** suggérer des fonctions de tests à ce stade, voire des asserts ?
-
-### Propagation
-
-    def level_curve(f, c=0, delta=0.01):
+    def simple_contour(f, c=0, delta=0.01):
         ...
         return x, y
 
@@ -1909,17 +1899,78 @@ etc.), etc.)
 **TODO.** Validation / test sur fcts testant tel ou tel aspect
 (linéaire, bilin, quad, etc.). 
 
-### Intégration
+### Contour complexe
 
-Passage à l'échelle: grille de cube, seed sur coté arbitraire, 
-éviter duplication des courbes, mise bout à bout des morceaux de courbe, etc.
+La signature de la fonction `contour` générale sera la suivante
 
-    def contour(f, domain=(0.0,0.0,1.0,1.0), c=0, n=(10,10)):
+    def contour(f, c=0, xc=[0.0,1.0], yc=[0.0,1.0], delta=0.01):
         ...
         return xs, ys
 
-Exemple test avec notamment morceaux de courbe distincts (example similaire
-à la démo de contourde mpl)
+Le domaine de $f$ n'est plus nécessairement $[0, 1]\times[0, 1]$;
+les arguments `xc` et `yc` sont des listes (ou tableaux 1d) croissantes 
+de nombres flottants qui découpent une portion rectangulaire de ce domaine 
+en cellules carrées, telles que `xc[i] <= x <= xc[i+1]` et `yc[j] <= y <= yc[j+1]`.
+Les valeurs par défaut de `xc` et `yc` correspondent à une unique cellule
+qui est $[0,1]^2$ ; il correspond donc au contexte de `simple_contour`
+
+Dans chaque cellule, on exploitera le procédé utilisé dans `simple_contour`, 
+mais en recherchant des amorces sur toute la frontière de la cellule et plus 
+simplement sur son arête gauche.
+
+Les tableaux 1d `xs` et `ys` renvoyées par la fonction `contour` ne décrivent 
+un fragment de contour, mais un ensemble de tels fragments ; 
+cette multiplicité résulte de la présence de plusieurs cellules 
+et/ou de l'existence de plusieurs fragments par cellule.
+Les valeurs `x = xs[i]` et `y = ys[i]` représentent 
+un fragment de contour de `f` comme en produit `simple_contour` ;
+autrement dit, le tracé d'un contour peut être réalisé par le code
+
+    for x, y in zip(xs, ys):
+        matplotlib.pyplot.plot(x, y)
+
+
+
+
+
+
+### Annexe -- `HIPS/autograd` {#autograd}
+
+    >>> import autograd
+    >>> from autograd import numpy as np
+
+[Le README de `HIPS/autograd`](https://github.com/HIPS/autograd) fournit
+une bonne illustration d'usage pour le cas des fonctions scalaires
+d'une variable:
+
+    >>> def f(x):
+    ...     y = np.exp(-2.0 * x)
+    ...     return (1.0 - y) / (1.0 + y)
+    >>> deriv_f = autograd.grad(np.tanh)  
+    >>> deriv_f(1.0)
+    0.4199743416140261
+
+Pour les fonctions scalaires de plusieurs variables,
+le fragment de code suivant fournit un exemple :
+
+    >>> def f(x, y):
+    ...     return np.sin(x) + 2.0 * np.sin(y)
+    >>> def grad_f(x, y):
+    ...     g = autograd.grad
+    ...     return np.r_[g(f, 0)(x, y), g(f, 1)(x, y)]
+    >>> grad_f(0.0, 0.0)
+    array([1., 2.])
+
+Pour les fonctions à valeurs vectorielles, l'équivalent est :
+
+    >>> def f(x, y):
+    ...     return np.array([np.exp(x), np.exp(y)])
+    >>> def J_f(x, y):
+    ...     j = autograd.jacobian
+    ...     return np.c_[j(f, 0)(x, y), j(f, 1)(x, y)]
+    >>> J_f(0.0, 0.0)
+    array([[1., 0.],
+           [0., 1.]])
 
 <!--
 Idées pour poursuivre l'introduction du moteur de diff auto:
