@@ -1944,7 +1944,7 @@ doivent être documentés !
 Expérimenter suppose de pouvoir tester la génération de lignes de niveaux
 sur de "bonnes" fonctions de référence. Pour l'évaluation de 
 `simple_contour`, les fonctions quadratiques sont de bonnes candidates ;
-pour `contour`, la fonction utilisée par la demo de la fonction
+pour `contour`, la fonction utilisée par la démo de la fonction
 `contour` de `matplotlib`, 
 représentée dans [la figure ci-dessus](#contour-demo), est pertinente.
 
