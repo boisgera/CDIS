@@ -1864,11 +1864,11 @@ La représentation graphique de ces courbes est un *tracé de contour*
 
 ![Lignes de niveau de $(x, y) \mapsto 2(f(x, y) - g(x, y))$
 où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
-Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py)
+Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py){#contour-demo}
 
 ### Contour simple
 On suppose dans un premier temps que la fonction $f$ est définie dans le carré 
-unité $[0,1] \times [0,1]$ et on limite notre recherche aux lignes de niveau
+unité $[0,1]^2$ et on limite notre recherche aux lignes de niveau
 qui possèdent un point sur l'arête gauche du domaine de définition
 (de la forme $(0, y)$ pour un $0 \leq y \leq 1$.)
 
@@ -1881,29 +1881,28 @@ Développer une fonction, conforme au squelette suivant
         ...
         return t
 
-qui renvoie un flottant éloigné d'au plus `eps` (par défaut, l'epsilon machine) 
-d'un tel $t$ (avec $c=0$ par défaut), ou `None` si la condition évoquée 
-ci-dessus n'est pas satisfaite.
+qui renvoie un flottant éloigné d'au plus `eps` d'un tel $t$ 
+ou `None` si la condition évoquée ci-dessus n'est pas satisfaite.
 
-#### Propagation: Point-fixe : valeur init + contrainte
+#### Propagation
+On souhaite implémenter une fonction dont la signature est:
 
-    def simple_contour(f, c=0, delta=0.01):
+    def simple_contour(f, c=0.0, delta=0.01):
         ...
         return x, y
 
-Evoquer rôle (volontairement flou) de delta, condition d'arrêt 
-(sortir du carré; s'assurer que le dernier point est "propre". 
-Tester la non-convergence (excursions trop grandes, trop d'étapes,
-etc.), etc.)
-
-**TODO.** Validation / test sur fcts testant tel ou tel aspect
-(linéaire, bilin, quad, etc.). 
+qui renvoie un fragment de ligne de niveau de valeur `c` de `f`, 
+sous la forme de deux tableaux 1d d'abscisses et d'ordonnées de points 
+de cette ligne. 
+Les points devront être espacés d'approximativement `delta`. 
+En cas d'impossibilité de générer un tel fragment
+deux tableaux vides devront être renvoyés.
 
 ### Contour complexe
 
 La signature de la fonction `contour` générale sera la suivante
 
-    def contour(f, c=0, xc=[0.0,1.0], yc=[0.0,1.0], delta=0.01):
+    def contour(f, c=0.0, xc=[0.0,1.0], yc=[0.0,1.0], delta=0.01):
         ...
         return xs, ys
 
@@ -1912,7 +1911,7 @@ les arguments `xc` et `yc` sont des listes (ou tableaux 1d) croissantes
 de nombres flottants qui découpent une portion rectangulaire de ce domaine 
 en cellules carrées, telles que `xc[i] <= x <= xc[i+1]` et `yc[j] <= y <= yc[j+1]`.
 Les valeurs par défaut de `xc` et `yc` correspondent à une unique cellule
-qui est $[0,1]^2$ ; il correspond donc au contexte de `simple_contour`
+qui est $[0,1]^2$ ; il correspond donc au contexte de `simple_contour`.
 
 Dans chaque cellule, on exploitera le procédé utilisé dans `simple_contour`, 
 mais en recherchant des amorces sur toute la frontière de la cellule et plus 
@@ -1929,18 +1928,41 @@ autrement dit, le tracé d'un contour peut être réalisé par le code
     for x, y in zip(xs, ys):
         matplotlib.pyplot.plot(x, y)
 
+### Consignes
+Le livrable de ce projet sera un notebook Jupyter. 
+Ce support doit vous permettre de documenter l'ensemble
+de votre démarche -- d'expliquer d'où viennent vos idées,
+comment vous les mettez en oeuvre, quelles expérimentations 
+permettent de les tester, quelles leçons que vous tirez de 
+leur analyse pour améliorer l'idée initiale, 
+quelles améliorations possibles vous entrevoyez
+(même sans implémentation),
+etc.
+En particulier, les échecs -- quand ils sont instructifs -- 
+doivent être documentés !
 
+Expérimenter suppose de pouvoir tester la génération de lignes de niveaux
+sur de "bonnes" fonctions de référence. Pour l'évaluation de 
+`simple_contour`, les fonctions quadratiques sont de bonnes candidates ;
+pour `contour`, la fonction utilisée par la demo de la fonction
+`contour` de `matplotlib`, 
+représentée dans [la figure ci-dessus](#contour-demo), est pertinente.
 
-
-
+Ce projet devrait
+exploiter des algorithmes de point-fixe qui nécessitent du
+calcul matriciel et du calcul de gradients et/ou de matrices jacobiennes. 
+Vous utiliserez de préférence NumPy pour le calcul matriciel
+et `HIPS/autograd` pour la différentiation automatique (cf. [annexe](#autograd)).
 
 ### Annexe -- `HIPS/autograd` {#autograd}
+
+Site Web: <https://github.com/HIPS/autograd>
 
     >>> import autograd
     >>> from autograd import numpy as np
 
-[Le README de `HIPS/autograd`](https://github.com/HIPS/autograd) fournit
-une bonne illustration d'usage pour le cas des fonctions scalaires
+La documentation de `HIPS/autograd` fournit une bonne illustration d'usage 
+pour le cas des fonctions scalaires
 d'une variable:
 
     >>> def f(x):
