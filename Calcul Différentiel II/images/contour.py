@@ -51,7 +51,7 @@ def contour_demo():
     Z = 2 * (Z1 - Z2) 
 
     fig, ax = subplots()
-    CS = ax.contour(X, Y, Z, colors="k")
+    CS = ax.contour(X, Y, Z, colors="k", linestyles="solid")
     ax.clabel(CS, inline=1, fmt= '%1.1f', fontsize=10)
     xlim(-2, 3); xticks([-2, -1, 0, 1, 2, 3])
     ylim(-1, 2); yticks([-1, 0, 1, 2])
