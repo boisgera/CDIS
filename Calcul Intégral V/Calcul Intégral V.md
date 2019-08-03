@@ -114,7 +114,10 @@ fcts, sinon quand il y a un saut, la fct de départ est tjs continue à gauche ?
 Grpmh la déf est peut-être pas terrible. On ferait mieux d'intégrer sur
 $\left[0, x\right[$ (ne serait-ce que pour avoir la "bonne" constante en 
 $0$, et l'additivité) ; nécessaire alors de définir ça comme ça dans
-la section sur la théorie de la mesure.
+la section sur la théorie de la mesure. Nota: pas évident, les probabilités
+avec la convention de la fonction de répartition suggère plutôt
+d'interpréter $\int_a^b$ comme l'intégrale sur $\left]a, b\right]$
+(si l'on veut garder l'additivité).
 
 ### TODO -- Fonction de variation localement bornée {.definition}
 
