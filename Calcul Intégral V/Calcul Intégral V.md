@@ -81,6 +81,17 @@ Mesures signées
 
 Aka section "dérivée est une mesure"
 
+### Note
+Sauf erreur, la définition "naturelle" (ressemblant) de mesure à valeurs
+dans $\R$ ne garantit pas l'existence d'une décomposition de Hahn et ne
+permet donc pas de se ramener au cas des mesures positives (cf. 
+Dunford-Schwarz pour la preuve de ce résultat). Cela a donc du sens
+d'insister sur une définition de mesure signée, prenant comme base une
+mesure et une fonction de signe.
+(à plus long-terme, j'aimerais un exemple de mesure à valeurs réelles
+qui n'admet pas de décompo de Hahn)
+
+
 ### TODO -- mesure signée {.definition} 
 Définir comme différence de deux mesures $\mu_+$ et $\mu_-$ de support disjoint
 (introduire $\bot$ et collapser $\pm \infty$ en $\bot$)
