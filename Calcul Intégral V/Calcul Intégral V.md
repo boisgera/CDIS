@@ -103,6 +103,9 @@ $$
 si l'application $1_A \times \sigma$ est $\mu$-intégrable 
 et $\nu(A) = \bot$ sinon.
 
+### TODO -- Mesure positive vers mesure signée
+"Conversion" de $\inf$ vers $\bot$.
+
 ### TODO
 Comment on a défini $\mu$-intégrable dans le chapitre précédent ?
 Précisément, est-ce qu'une intégrale avec "une valeur infinie" est
