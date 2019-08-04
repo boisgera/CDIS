@@ -92,13 +92,30 @@ mesure et une fonction de signe.
 qui n'admet pas de décompo de Hahn)
 
 
-### TODO -- mesure signée {.definition} 
-Définir comme différence de deux mesures $\mu_+$ et $\mu_-$ de support disjoint
-(introduire $\bot$ et collapser $\pm \infty$ en $\bot$)
-et / ou par une intégrale avec fct $\sigma$ mesurable égale à $\pm 1$?
-Et /ou par les axiomes habituels ? 
+### TODO -- Mesure signée {.definition} 
+Une *mesure signée* $\nu$ sur la tribu $\mathcal{A}$ de $X$ est une application
+de $\mathcal{A}$ dans $\R \cup \{\bot\}$ pour laquelle
+il existe une mesure positive $\mu$ sur $\mathcal{A}$ et une application
+$\mu$-mesurable $\nu: X \to \{-1, +1\}$ telles que
+$$
+\nu(A) := \sigma \mu(A) := \int_A \sigma(x) \, \mu(dx)
+$$
+si l'application $1_A \times \sigma$ est $\mu$-intégrable 
+et $\nu(A) = \bot$ sinon.
 
-### TODO -- Convention $\bot$
+### TODO
+Comment on a défini $\mu$-intégrable dans le chapitre précédent ?
+Précisément, est-ce qu'une intégrale avec "une valeur infinie" est
+intégrable ? Le "problème", outre l'absence de cohérence par rapport
+aux chapitres précédents, est qu'on peut alors avoir une fonction
+intégrable, et la rendre non-intégrable en la multipliant par une
+fonction de signe mesurable. OK, bon, intégrable veut dire intégrale
+finie, le cas $+\infty$ sera a décrire comme une extension dans les
+cas simples (comme fct mesurable positive non intégrable par exemple).
+
+### TODO -- Convention $\bot$, absorption $\inf$ ou non ?
+Disons pas d'absorption par défaut ? A voir, y réfléchir.
+Avec absorption c'est plus simple quand même ...
 
 ### TODO -- Décomposition de Hahn
 (trivial, mais bon)
