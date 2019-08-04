@@ -98,8 +98,16 @@ Définir comme différence de deux mesures $\mu_+$ et $\mu_-$ de support disjoin
 et / ou par une intégrale avec fct $\sigma$ mesurable égale à $\pm 1$?
 Et /ou par les axiomes habituels ? 
 
-### TODO -- Equivalence
-(des 3 cas précédents, à montrer)
+### TODO -- Convention $\bot$
+
+### TODO -- Décomposition de Hahn
+(trivial, mais bon)
+
+### TODO -- Variation totale
+
+
+### TODO -- $\sigma$-additivité
+
 
 ### TODO 
 $f$ $\mu-$intégrable à valeurs réelles fois $\mu$ défini une mesure signée
