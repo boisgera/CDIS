@@ -45,6 +45,12 @@ ou typiquement, définition de la trace sur un bord régulier ...
     tout ça revisité rapidement en se basant sur la familiarité
     avec la dim finie, déjà vue).
 
+  - Equation de Poisson: intro Sobolev, pb "variationnel" en multivariable,
+    trace, etc. Evocation schéma résolution numérique (élt finis) ?
+
+  - Cadre Méca Q, opérateurs (non bornés) hermitien, semi-groupes (unitaires)
+    fortement continus, etc?
+
 <!-- LaTeX Macros -->
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
