@@ -1471,7 +1471,7 @@ de $\R$ est une famille finie
 $$
 \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
-où les $I_i$ sont des intervalles fermé de $[a, b]$ sans chevauchement
+où les $I_i$ sont des intervalles fermés de $[a, b]$ sans chevauchement
 et $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée partielle $\mathcal{D}$ de $[a, b]$ est 
@@ -1484,13 +1484,6 @@ est *subordonnée à une jauge* $\gamma$ de $[a, b]$ si
 $$
 (t, J) \in \mathcal{D} \, \Rightarrow \, J \subset \gamma(t). 
 $$
-
-### TODO - remarque
-
-(autrement dit, c'est comme une subdivision pointée, sauf que l'on n'exige pas 
-que les $I_i$ recouvrent $[a, b]$. Mettre en ante ?)
-
-
 
 ### Lemme de Henstock  {.theorem}
 Soit $[a, b]$ un intervalle fermé de $\R$, 
