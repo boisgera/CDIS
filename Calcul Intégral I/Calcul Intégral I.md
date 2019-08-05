@@ -1279,7 +1279,7 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
  1. **Intervalles.** 
     Nous considérons désormais l'intégration de fonctions sur des 
     intervalles de la forme $[a, b]$ où $-\infty \leq a \leq b \leq +\infty$,
-    autrement dit les intervalles fermés de la droite achevée
+    autrement dit les intervalles fermés de la droite réelle achevée
     $\R \cup \{-\infty, +\infty\}$.
 
  2. **Fonctions.**
