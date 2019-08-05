@@ -1077,10 +1077,8 @@ $$
 \; \mbox{ et } \;
 |S(f, \mathcal{D}') - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}.
 $$
-Par l'inégalité triangulaire, on a alors comme souhaité
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
-$$
+Par l'inégalité triangulaire, on a alors 
+$|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.$
 
 Réciproquement, si la fonction $f$ vérifie le critère du théorème,
 pour tout $k \in \N$ il existe une jauge $\gamma_{k}$ sur $[a, b]$ 
@@ -1122,8 +1120,8 @@ inclus dans $[a, b]$.
 
 ### Démonstration {.proof}
 Nous démontrons en détail le cas où $c = a$; le cas où $d =b$ se prouve de
-façon similaire et le cas général se déduit facilement de ces deux cas
-particuliers.
+façon similaire et le cas général se déduit facilement de la combinaison 
+de ces deux cas particuliers.
 
 Soit $\varepsilon > 0$. Par le [critère d'intégrabilité de Cauchy](#CIC),
 il existe une jauge $\gamma$ sur $[a, b]$ telle
