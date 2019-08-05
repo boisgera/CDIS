@@ -33,7 +33,7 @@ alors $z$ appartient à $I$.
 Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
 ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
 Les intervalles de la forme $\left]-\infty, \infty\right[$ 
-(c'est-à-dire $\R$)
+(c'est-à-dire $\R$),
 $\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
 et $\left]a,b\right[$ 
 -- où $a$ et $b$ désignent des nombres réels -- 
@@ -87,7 +87,7 @@ $$
 
 ### Intégrale de Riemann {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
-(au sens de Riemann)* s'il existe un réel $A$ tel
+au sens de Riemann* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe un réel $\delta>0$ tel 
 que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
 vérifiant pour $(t, J) \in \mathcal{D}$, 
@@ -153,7 +153,7 @@ comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
 L'intégrale de Riemann possède des limitations qui en font un outil mathématique
 difficile à exploiter. 
 En particulier la classe des fonctions qui peuvent être intégrées est trop 
-restrictives pour certaines applications car les fonctions "trop grandes" ou 
+restrictive pour certaines applications car les fonctions "trop grandes" ou 
 "trop irrégulières" ne peuvent être intégrables. 
 Les deux théorèmes qui suivent précisent cette situation.
 
@@ -264,7 +264,7 @@ Intégrale de Riemann Généralisée
 ### Jauge {.definition}
 Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction 
 qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
-de contenant $t$. 
+de $\R$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision pointée $\mathcal{D}$ de l'intervalle $[a, b]$ 
@@ -339,7 +339,7 @@ $J_i \subset [t_i - \ell(J_0) / 2^i, t_i + \ell(J_0) / 2^i]$.
 Par conséquent, il existe un rang $i$ à partir duquel
 $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
-#### TODO -- Note
+### TODO -- Note
 
 Si l'argument topologique peut être survolé, la procédure de dichotomie est
 intéressante et peut être utilisé sur des exemples concrets, ça vaudrait le
@@ -350,7 +350,7 @@ processus termine en un nombre fini d'étapes" plus clairement.
 
 ### Intégrale de Henstock-Kurzweil {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
-(au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
+au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$, 
 il existe une jauge $\gamma$ sur $[a, b]$ telle que, 
 pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, 
@@ -377,7 +377,7 @@ Lorsqu'on sera en présence de plusieurs intégrales (Newton, Riemann, etc.),
 on pourra préfixer l'intégrale par les lettres "HK" (pour Henstock-Kurzweil)
 pour lever toute ambiguité:
 $$
-\mbox{HK-}\int_{[a, b]} f(t) \, dt.
+\mbox{HK}-\int_{[a, b]} f(t) \, dt.
 $$
 
 ### Intégrale de Riemann et de Henstock-Kurzweil {.theorem}
@@ -455,7 +455,7 @@ $$
 
 Fixons donc un $\varepsilon > 0$ arbitraire;
 comme pour tout $t \in [a, b],$ 
-$$f(t+h) = f(t) + f'(t) h + o(h),$$
+$$f(t+h) = f(t) + f'(t) h + o(|h|),$$
 il existe un $\delta(t) > 0$ tel que si $|h| < \delta (t),$
 $$
 |f'(t) h - (f(t+h) - f(t))| \leq \frac{\varepsilon}{b-a} |h|
@@ -521,7 +521,7 @@ Nous avons également montré comment sélectionner une jauge $\gamma$ pour
 satisfaire cette inégalité en utilisant le fait que $F' = f$.
 Nous allons reprendre cette approche ici, mais quantitativement, 
 et en exploitant la propriété que la fonction $f$ est continûment
-dérivable (et plus simplement dérivable) et que donc sa dérivée est
+dérivable (et non plus simplement dérivable) et que donc sa dérivée est
 bornée sur tout compact. 
 Comme
 $$
@@ -798,7 +798,7 @@ si $t_i>0$, $0 \not \in [x_i, x_{i+1}]$.
 Comme les ensembles $[x_i, x_{i+1}]$ doivent recouvrir $[0, 1]$, 
 il est nécessaire que le point $t_0$ associé à l'intervalle $[x_0, x_1]$
 soit $0$. Le reste de la subdivision est alors subordonnée à
-$\gamma$ sur $[x_1,1]$ avec x_1 > 0$
+$\gamma$ sur $[x_1,1]$ avec $x_1 > 0$
 $$
 S(f,\mathcal{D})
 =
@@ -1042,7 +1042,7 @@ existe un (unique) intervalle $I_i$ à cheval sur $[a, b]$ et $[b, c]$,
 c'est-à-dire d'intersection non vide avec $\left[a, b\right[$ et avec 
 $\left]b, c\right]$. 
 La jauge $\gamma$ a été choisie de telle sorte que 
-si $x \neq b$, alors $x \not \in \gamma(x)$;
+si $x \neq b$, alors $b \not \in \gamma(x)$;
 par conséquent, si cet intervalle $I_i=[d_i, e_i]$ existe, 
 alors $t_i = b$ et on peut remplacer le terme $(t_i, I_i)$ dans la subdivision
 pointée $\mathcal{D}$ par $(b, [d_i, b])$ et $(b, [b, e_i])$ sans que
@@ -1051,8 +1051,7 @@ la somme de Riemann associée change
 $f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
 La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
 l'hypothèse de non-chevauchement. Par conséquent l'inégalité
-ci-dessus est satisfaite dans le cas général, ce qui conclut la preuve
-de ce théorème.
+ci-dessus est satisfaite dans le cas général.
 
 ### TODO
 
@@ -1078,10 +1077,8 @@ $$
 \; \mbox{ et } \;
 |S(f, \mathcal{D}') - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}.
 $$
-Par l'inégalité triangulaire, on a alors comme souhaité
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
-$$
+Par l'inégalité triangulaire, on a alors 
+$|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.$
 
 Réciproquement, si la fonction $f$ vérifie le critère du théorème,
 pour tout $k \in \N$ il existe une jauge $\gamma_{k}$ sur $[a, b]$ 
@@ -1123,39 +1120,38 @@ inclus dans $[a, b]$.
 
 ### Démonstration {.proof}
 Nous démontrons en détail le cas où $c = a$; le cas où $d =b$ se prouve de
-façon similaire et le cas général se déduit facilement de ces deux cas
-particuliers.
+façon similaire et le cas général se déduit facilement de la combinaison 
+de ces deux cas particuliers.
 
 Soit $\varepsilon > 0$. Par le [critère d'intégrabilité de Cauchy](#CIC),
 il existe une jauge $\gamma$ sur $[a, b]$ telle
 que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
 subordonnées à $\gamma$, on ait
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
-$$
+$|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.$
+
 Considérons les restrictions $\gamma_1$ et $\gamma_2$ de $\gamma$ à $[a, d]$ et 
 $[d, b]$ respectivement. 
 Soient $\mathcal{D}_1$ et $\mathcal{D}_1'$ deux subdivisions pointées de 
 $[a, d]$ subordonnées à $\gamma_1$;
 si $\mathcal{D}_2$ est une subdivision de $[d, b]$ subordonnée à $\gamma_2$,
-alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}_1 \cup \mathcal{D}_2'$
+alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}'_1 \cup \mathcal{D}_2$
 sont des subdvisions pointées de $[a, b]$ subordonnées à $\gamma$.
 Par conséquent,
 $$
 |S(f, \mathcal{D}_1 \cup \mathcal{D}_2) 
-- S(f, \mathcal{D}_1 \cup \mathcal{D}_2')|
+- S(f, \mathcal{D}'_1 \cup \mathcal{D}_2)|
 \leq \varepsilon.
 $$
 Or
 $S(f, \mathcal{D}_1 \cup \mathcal{D}_2) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2)$
-et $S(f, \mathcal{D}_1 \cup \mathcal{D}_2') = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2')$,
-donc
+et $S(f, \mathcal{D}_1' \cup \mathcal{D}_2) = S(f, \mathcal{D}_1') + S(f, \mathcal{D}_2)$,
+par conséquent
 $$
-|S(f, \mathcal{D}_1) - S(f, \mathcal{D}_1)|
-\leq \varepsilon,
+|S(f, \mathcal{D}_1) - S(f, \mathcal{D}_1')|
+\leq \varepsilon.
 $$
-ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
-par le [critère d'intégrabilité de Cauchy](#CIC).
+Par le [critère d'intégrabilité de Cauchy](#CIC), la fonction $f$ est donc
+intégrable sur l'intervalle $[a, d]$.
 
 ### Fonctions égales presque partout
 Une fonction $f:[a, b] \to \R$ égale presque partout à une 
@@ -1170,7 +1166,7 @@ $$
 Par linéarité de l'intégrale, il suffit d'établir que si 
 $f:[a, b] \to \R$ est nulle presque partout (c'est-à-dire égale
 presque partout à la fonction $g:[a, b] \to \R$ identiquement
-nulle), alors elle est intégrable d'intégrale nulle.
+nulle), alors elle est intégrable et d'intégrale nulle.
 
 Supposons dans un premier temps que $f$ soit bornée.
 Alors, pour tout $\varepsilon > 0$, il existe un recouvrement de
@@ -1283,7 +1279,7 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
  1. **Intervalles.** 
     Nous considérons désormais l'intégration de fonctions sur des 
     intervalles de la forme $[a, b]$ où $-\infty \leq a \leq b \leq +\infty$,
-    autrement dit les intervalles fermés de la droite achevée
+    autrement dit les intervalles fermés de la droite réelle achevée
     $\R \cup \{-\infty, +\infty\}$.
 
  2. **Fonctions.**
@@ -1347,7 +1343,7 @@ $\left[1, +\infty \right]$
 tels que pour toute subdvision pointée $\mathcal{D}$ de $[1, +\infty]$ 
 subordonnée à $\gamma$ on ait
 $\left| S(f, \mathcal{D}) - 1 \right| \leq \varepsilon.$
-Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
+Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ et 
 que les $x_i$ sont agencés de façon (strictement) croissante;
 notons $\mathcal{D}_{f}$ l'ensemble des $(t_i, [x_i, x_{i+1}])$ de 
 $\mathcal{D}$ tels que $x_{i+1} < +\infty$.
@@ -1356,16 +1352,16 @@ $$
 \begin{split}
 \left| S(f, \mathcal{D}) - 1 \right| 
 &\leq
-\left| S(f, \mathcal{D}_f) - \left(1 - \frac{1}{x_{m-1}}\right) \right| + \frac{1}{x_{m-1}} \\
-&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m-1}} \\
-&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m-1}} \\
+\left| S(f, \mathcal{D}_f) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
 \end{split}
 $$
 Si l'on sélectionne une jauge telle que 
 $\gamma(+\infty) = \left]2/\varepsilon, +\infty\right]$,
 si $\mathcal{D}$ est subordonnée à $\gamma$,
 $[x_{m-1}, x_m] \subset \gamma(+\infty)$
-et on a garanti que $1/x_{m-1} \leq \varepsilon/2.$
+et on a garanti que $1/x_{m} \leq \varepsilon/2.$
 Il suffira donc de disposer d'un majorant suffisamment petit de chaque 
 terme
 $$
@@ -1374,17 +1370,16 @@ $$
 de telle sorte que leur somme soit inférieure à $\varepsilon/2$ pour conclure. 
 Toutefois la stratégie consistant à recherche un majorant proportionnel à 
 la longueur de l'intervalle $[x, y]$ n'est plus applicable car l'intervalle
-$[0, x_{m-1}]$ peut être arbitrairement long. 
+$[0, x_{m}]$ peut être arbitrairement long. 
 Au lieu de cela, nous allons tâcher de trouver une jauge $\gamma$ telle que
 $$
 \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \leq
-\frac{\varepsilon(y - x)}{2xy}.
+\frac{\varepsilon}{2xy} (y-x) = \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
 $$
 Les termes de droite de cette inégalité forment alors une série télescopique
 dont la somme vérifie
 $$
-\sum_{(t, [x, y]) \in \mathcal{D}_f} \frac{\varepsilon(y - x)}{2xy}
-\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
+\sum_{(t, [x, y]) \in \mathcal{D}_f} \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
  = \varepsilon \left(\frac{1}{2} - \frac{1}{2x_m} \right)
  \leq \frac{\varepsilon}{2}.
 $$
@@ -1449,9 +1444,10 @@ Supposons que $a$ soit fini et que $b = +\infty$.
 Si $g$ est intégrable sur $\R \cup \{-\infty, +\infty\}$, 
 par restriction, $f$ est intégrable sur $[a, +\infty]$.
 Réciproquement, si $f$ est intégrable sur $[a, +\infty]$,
-la fonction $g$ étant nulle sur sur $\left[-\infty, a\right]$ 
-à l'exception d'un point, elle y est intégrable et étant égale à $f$ sur
-$[a, +\infty]$ elle y est également intégrable. Par additivité, $g$ est donc
+la fonction $g$ étant nulle sur $\left[-\infty, a\right]$ 
+à l'exception d'un point, elle y est intégrable ; 
+étant égale à $f$ sur $[a, +\infty]$ elle y est également intégrable. 
+Par additivité, $g$ est donc
 intégrable sur $\R \cup \{-\infty, +\infty\}$.
 L'additivité fournit également
 $$
@@ -1462,16 +1458,12 @@ son intégrale sur $[-\infty, a]$ est nulle et comme $g=f$ sur $[a, +\infty]$,
 $$
 \int_{\R} g(t) \, dt = \int_{a}^{+\infty} f(t) \,dt.
 $$
-Les autres cas ($a=-\infty$ et $b$ fini, $a$ et $b$ finis) se démontrent
-de manière analogue.
+Le résultat dans les autres cas ($a=-\infty$ et $b$ fini, $a$ et $b$ finis) 
+se démontrent de manière analogue.
 
 
 Subdivisions Partielles
 ================================================================================
-
-### TODO
-
-Nécessaire d'étendre au cas non borné ?
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
@@ -1479,7 +1471,7 @@ de $\R$ est une famille finie
 $$
 \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
-où les $I_i$ sont des intervalles fermé de $[a, b]$ sans chevauchement
+où les $I_i$ sont des intervalles fermés de $[a, b]$ sans chevauchement
 et $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée partielle $\mathcal{D}$ de $[a, b]$ est 
@@ -1492,13 +1484,6 @@ est *subordonnée à une jauge* $\gamma$ de $[a, b]$ si
 $$
 (t, J) \in \mathcal{D} \, \Rightarrow \, J \subset \gamma(t). 
 $$
-
-### TODO - remarque
-
-(autrement dit, c'est comme une subdivision pointée, sauf que l'on n'exige pas 
-que les $I_i$ recouvrent $[a, b]$. Mettre en ante ?)
-
-
 
 ### Lemme de Henstock  {.theorem}
 Soit $[a, b]$ un intervalle fermé de $\R$, 
@@ -1529,7 +1514,7 @@ $$
 \left|S(f, \mathcal{D}_j) - \int_{J_j} f(t) \, dt \right| \leq \eta.
 $$
 Si de plus on choisit $\mathcal{D}_j$ subordonnée à la restriction de $\gamma$
-à $J_j$, alors $\mathcal{D} \cup \cup_j \mathcal{D}_j$ est une subdivision
+à $J_j$, alors $\mathcal{D} \cup (\cup_j \mathcal{D}_j)$ est une subdivision
 pointée (totale) de $[a, b]$ subordonnée à $\gamma$.
 On déduit de l'hypothèse centrale du lemme que
 $$

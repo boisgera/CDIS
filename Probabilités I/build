@@ -68,18 +68,32 @@ def call(*args):
     if status != 0:
         sys.exit(status)
 
-
 def python(*args):
     return call("python", *args)
-
 
 def doctest(*args):
     return call("python", "-m", "doctest", *args)
 
-
 def pdflatex(*args):
     return call("pdflatex", *args)
 
+# Git Statistics
+# ------------------------------------------------------------------------------
+def commiters():
+    log = subprocess.check_output(["git", "shortlog", "-snc"]).decode("utf-8")
+    cs = []
+    for line in log.splitlines():
+        items = line.split()
+        cs += [" ".join(items[1:])]
+    return cs
+
+aliases = {
+    "Emilie Chautru": ["Emilie Chautru"],
+    "Pauline Bernard": ["paulinebernard"],
+    "Thomas Romary": ["tromary"],
+    "Gabriel Stolz": ["GabrielStolz"],
+    "Sébastien Boisgérault": ["Sébastien Boisgérault"],
+}
 
 # Misc. Helpers
 # ------------------------------------------------------------------------------
