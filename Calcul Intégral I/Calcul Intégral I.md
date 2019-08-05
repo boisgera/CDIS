@@ -1465,10 +1465,6 @@ se démontrent de manière analogue.
 Subdivisions Partielles
 ================================================================================
 
-### TODO
-
-Nécessaire d'étendre au cas non borné ?
-
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
 de $\R$ est une famille finie 
