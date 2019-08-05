@@ -154,7 +154,10 @@ Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X 
 ### note bofbof cet exemple...
 
 # Vecteurs Gaussiens
-Dans cette partie, on s'intéresse à l'exemple canonique des vecteurs gaussiens. Les vecteurs gaussiens (et leur extension que sont les fonctions aléatoires gaussiennes, qui une fois discrétisées se ramènent à des vecteurs) se rencontrent dans un grand nombre d'applications. 
+Dans cette partie, on s'intéresse à l'exemple canonique des vecteurs gaussiens. Les vecteurs gaussiens (et leur extension que sont les fonctions aléatoires gaussiennes, qui, une fois discrétisées, se ramènent à des vecteurs) se rencontrent dans un grand nombre d'applications. L'ubiquité de la loi gaussienne se justifie également du fait du théorème central limite que nous verrons au prochain chapitre.
+
+
+
 
 # Régression 
 La régression est un ensemble de méthodes d'apprentissage statistique très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variable mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable. On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
