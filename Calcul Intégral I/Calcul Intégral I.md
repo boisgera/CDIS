@@ -153,7 +153,7 @@ comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
 L'intégrale de Riemann possède des limitations qui en font un outil mathématique
 difficile à exploiter. 
 En particulier la classe des fonctions qui peuvent être intégrées est trop 
-restrictives pour certaines applications car les fonctions "trop grandes" ou 
+restrictive pour certaines applications car les fonctions "trop grandes" ou 
 "trop irrégulières" ne peuvent être intégrables. 
 Les deux théorèmes qui suivent précisent cette situation.
 
