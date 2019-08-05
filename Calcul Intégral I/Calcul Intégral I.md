@@ -33,7 +33,7 @@ alors $z$ appartient à $I$.
 Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
 ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
 Les intervalles de la forme $\left]-\infty, \infty\right[$ 
-(c'est-à-dire $\R$)
+(c'est-à-dire $\R$),
 $\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
 et $\left]a,b\right[$ 
 -- où $a$ et $b$ désignent des nombres réels -- 
