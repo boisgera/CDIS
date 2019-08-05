@@ -1127,32 +1127,31 @@ Soit $\varepsilon > 0$. Par le [critère d'intégrabilité de Cauchy](#CIC),
 il existe une jauge $\gamma$ sur $[a, b]$ telle
 que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
 subordonnées à $\gamma$, on ait
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
-$$
+$|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.$
+
 Considérons les restrictions $\gamma_1$ et $\gamma_2$ de $\gamma$ à $[a, d]$ et 
 $[d, b]$ respectivement. 
 Soient $\mathcal{D}_1$ et $\mathcal{D}_1'$ deux subdivisions pointées de 
 $[a, d]$ subordonnées à $\gamma_1$;
 si $\mathcal{D}_2$ est une subdivision de $[d, b]$ subordonnée à $\gamma_2$,
-alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}_1 \cup \mathcal{D}_2'$
+alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}'_1 \cup \mathcal{D}_2$
 sont des subdvisions pointées de $[a, b]$ subordonnées à $\gamma$.
 Par conséquent,
 $$
 |S(f, \mathcal{D}_1 \cup \mathcal{D}_2) 
-- S(f, \mathcal{D}_1 \cup \mathcal{D}_2')|
+- S(f, \mathcal{D}'_1 \cup \mathcal{D}_2)|
 \leq \varepsilon.
 $$
 Or
 $S(f, \mathcal{D}_1 \cup \mathcal{D}_2) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2)$
-et $S(f, \mathcal{D}_1 \cup \mathcal{D}_2') = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2')$,
-donc
+et $S(f, \mathcal{D}_1' \cup \mathcal{D}_2) = S(f, \mathcal{D}_1') + S(f, \mathcal{D}_2)$,
+par conséquent
 $$
-|S(f, \mathcal{D}_1) - S(f, \mathcal{D}_1)|
-\leq \varepsilon,
+|S(f, \mathcal{D}_1) - S(f, \mathcal{D}_1')|
+\leq \varepsilon.
 $$
-ce qui prouve l'intégrabilité de $f$ sur $[a, d]$
-par le [critère d'intégrabilité de Cauchy](#CIC).
+Par le [critère d'intégrabilité de Cauchy](#CIC), la fonction $f$ est donc
+intégrable sur l'intervalle $[a, d]$.
 
 ### Fonctions égales presque partout
 Une fonction $f:[a, b] \to \R$ égale presque partout à une 
