@@ -350,7 +350,7 @@ processus termine en un nombre fini d'étapes" plus clairement.
 
 ### Intégrale de Henstock-Kurzweil {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
-(au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
+au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$, 
 il existe une jauge $\gamma$ sur $[a, b]$ telle que, 
 pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, 
