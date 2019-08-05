@@ -299,7 +299,16 @@ sont bord en noir ne devrait pas apparaître ici.
 \newcommand{\rob}{\right[}
 
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb .$](images/gauge-plot.pdf)
+$t \in \lb 0, 1 \rb .$](images/gauge-plot.py)
+
+![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
+$t \in \lb 0, 1 \rb$ et de la subdivision pointée
+$\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
+les intervalles de la subdivision sont limités
+par des barres verticales et les points associés 
+représentés par des croix. La comparaison avec le graphe de la
+jauge $\gamma$ montre que cette subdivision pointée 
+lui est subordonnée.](images/gauge-plot-subdivision.py)
 
 ### TODO 
 graphique d'une subdivision pointée, avec séparateurs en barres
@@ -639,6 +648,9 @@ S(x \in [a, b] \mapsto e^x, \mathcal{D})
 $$
 
 [^W]: La notation $W$ est classique pour désigner [la fonction de Lambert](https://fr.wikipedia.org/wiki/Fonction_W_de_Lambert).
+
+![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
+à la somme de Riemann pour évaluer l'intégrale de la fonction $x \in [0, 2] \mapsto e^x$.](images/gauge-plot-exp.py)
 
 ### TODO
 
