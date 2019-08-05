@@ -339,7 +339,7 @@ $J_i \subset [t_i - \ell(J_0) / 2^i, t_i + \ell(J_0) / 2^i]$.
 Par conséquent, il existe un rang $i$ à partir duquel
 $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
-#### TODO -- Note
+### TODO -- Note
 
 Si l'argument topologique peut être survolé, la procédure de dichotomie est
 intéressante et peut être utilisé sur des exemples concrets, ça vaudrait le
