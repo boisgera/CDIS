@@ -1343,7 +1343,7 @@ $\left[1, +\infty \right]$
 tels que pour toute subdvision pointée $\mathcal{D}$ de $[1, +\infty]$ 
 subordonnée à $\gamma$ on ait
 $\left| S(f, \mathcal{D}) - 1 \right| \leq \varepsilon.$
-Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
+Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ et 
 que les $x_i$ sont agencés de façon (strictement) croissante;
 notons $\mathcal{D}_{f}$ l'ensemble des $(t_i, [x_i, x_{i+1}])$ de 
 $\mathcal{D}$ tels que $x_{i+1} < +\infty$.
@@ -1352,16 +1352,16 @@ $$
 \begin{split}
 \left| S(f, \mathcal{D}) - 1 \right| 
 &\leq
-\left| S(f, \mathcal{D}_f) - \left(1 - \frac{1}{x_{m-1}}\right) \right| + \frac{1}{x_{m-1}} \\
-&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m-1}} \\
-&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m-1}} \\
+\left| S(f, \mathcal{D}_f) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
 \end{split}
 $$
 Si l'on sélectionne une jauge telle que 
 $\gamma(+\infty) = \left]2/\varepsilon, +\infty\right]$,
 si $\mathcal{D}$ est subordonnée à $\gamma$,
 $[x_{m-1}, x_m] \subset \gamma(+\infty)$
-et on a garanti que $1/x_{m-1} \leq \varepsilon/2.$
+et on a garanti que $1/x_{m} \leq \varepsilon/2.$
 Il suffira donc de disposer d'un majorant suffisamment petit de chaque 
 terme
 $$
@@ -1370,17 +1370,16 @@ $$
 de telle sorte que leur somme soit inférieure à $\varepsilon/2$ pour conclure. 
 Toutefois la stratégie consistant à recherche un majorant proportionnel à 
 la longueur de l'intervalle $[x, y]$ n'est plus applicable car l'intervalle
-$[0, x_{m-1}]$ peut être arbitrairement long. 
+$[0, x_{m}]$ peut être arbitrairement long. 
 Au lieu de cela, nous allons tâcher de trouver une jauge $\gamma$ telle que
 $$
 \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \leq
-\frac{\varepsilon(y - x)}{2xy}.
+\frac{\varepsilon}{2xy} (y-x) = \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
 $$
 Les termes de droite de cette inégalité forment alors une série télescopique
 dont la somme vérifie
 $$
-\sum_{(t, [x, y]) \in \mathcal{D}_f} \frac{\varepsilon(y - x)}{2xy}
-\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
+\sum_{(t, [x, y]) \in \mathcal{D}_f} \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
  = \varepsilon \left(\frac{1}{2} - \frac{1}{2x_m} \right)
  \leq \frac{\varepsilon}{2}.
 $$
@@ -1403,19 +1402,6 @@ $$
 $$
 Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
 majoration voulue.
-
-### TODO
-
-Quid:
-
-  - (*) FTC
-
-  - (*) IPP
-
-  - (*) Chgt variables
-
-dans le cas non borné ? Reprendre leur énoncés ad minimima et s'assurer
-que la terminologie "intervalle fermé **de $\R$**" est présente.
 
 ### {.remark .ante}
 Il n'est pas nécessaire de considérer l'intégration dans tous les types
