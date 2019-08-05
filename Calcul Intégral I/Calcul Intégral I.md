@@ -377,7 +377,7 @@ Lorsqu'on sera en présence de plusieurs intégrales (Newton, Riemann, etc.),
 on pourra préfixer l'intégrale par les lettres "HK" (pour Henstock-Kurzweil)
 pour lever toute ambiguité:
 $$
-\mbox{HK-}\int_{[a, b]} f(t) \, dt.
+\mbox{HK}-\int_{[a, b]} f(t) \, dt.
 $$
 
 ### Intégrale de Riemann et de Henstock-Kurzweil {.theorem}
@@ -455,7 +455,7 @@ $$
 
 Fixons donc un $\varepsilon > 0$ arbitraire;
 comme pour tout $t \in [a, b],$ 
-$$f(t+h) = f(t) + f'(t) h + o(h),$$
+$$f(t+h) = f(t) + f'(t) h + o(|h|),$$
 il existe un $\delta(t) > 0$ tel que si $|h| < \delta (t),$
 $$
 |f'(t) h - (f(t+h) - f(t))| \leq \frac{\varepsilon}{b-a} |h|
@@ -521,7 +521,7 @@ Nous avons également montré comment sélectionner une jauge $\gamma$ pour
 satisfaire cette inégalité en utilisant le fait que $F' = f$.
 Nous allons reprendre cette approche ici, mais quantitativement, 
 et en exploitant la propriété que la fonction $f$ est continûment
-dérivable (et plus simplement dérivable) et que donc sa dérivée est
+dérivable (et non plus simplement dérivable) et que donc sa dérivée est
 bornée sur tout compact. 
 Comme
 $$
