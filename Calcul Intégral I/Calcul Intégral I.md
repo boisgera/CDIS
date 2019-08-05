@@ -798,7 +798,7 @@ si $t_i>0$, $0 \not \in [x_i, x_{i+1}]$.
 Comme les ensembles $[x_i, x_{i+1}]$ doivent recouvrir $[0, 1]$, 
 il est nécessaire que le point $t_0$ associé à l'intervalle $[x_0, x_1]$
 soit $0$. Le reste de la subdivision est alors subordonnée à
-$\gamma$ sur $[x_1,1]$ avec x_1 > 0$
+$\gamma$ sur $[x_1,1]$ avec $x_1 > 0$
 $$
 S(f,\mathcal{D})
 =
