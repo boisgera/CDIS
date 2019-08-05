@@ -87,7 +87,7 @@ $$
 
 ### Intégrale de Riemann {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
-(au sens de Riemann)* s'il existe un réel $A$ tel
+au sens de Riemann* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe un réel $\delta>0$ tel 
 que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
 vérifiant pour $(t, J) \in \mathcal{D}$, 
