@@ -1042,7 +1042,7 @@ existe un (unique) intervalle $I_i$ à cheval sur $[a, b]$ et $[b, c]$,
 c'est-à-dire d'intersection non vide avec $\left[a, b\right[$ et avec 
 $\left]b, c\right]$. 
 La jauge $\gamma$ a été choisie de telle sorte que 
-si $x \neq b$, alors $x \not \in \gamma(x)$;
+si $x \neq b$, alors $b \not \in \gamma(x)$;
 par conséquent, si cet intervalle $I_i=[d_i, e_i]$ existe, 
 alors $t_i = b$ et on peut remplacer le terme $(t_i, I_i)$ dans la subdivision
 pointée $\mathcal{D}$ par $(b, [d_i, b])$ et $(b, [b, e_i])$ sans que
@@ -1051,8 +1051,7 @@ la somme de Riemann associée change
 $f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
 La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
 l'hypothèse de non-chevauchement. Par conséquent l'inégalité
-ci-dessus est satisfaite dans le cas général, ce qui conclut la preuve
-de ce théorème.
+ci-dessus est satisfaite dans le cas général.
 
 ### TODO
 
