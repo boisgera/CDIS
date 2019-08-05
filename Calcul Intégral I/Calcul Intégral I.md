@@ -1166,7 +1166,7 @@ $$
 Par linéarité de l'intégrale, il suffit d'établir que si 
 $f:[a, b] \to \R$ est nulle presque partout (c'est-à-dire égale
 presque partout à la fonction $g:[a, b] \to \R$ identiquement
-nulle), alors elle est intégrable d'intégrale nulle.
+nulle), alors elle est intégrable et d'intégrale nulle.
 
 Supposons dans un premier temps que $f$ soit bornée.
 Alors, pour tout $\varepsilon > 0$, il existe un recouvrement de
