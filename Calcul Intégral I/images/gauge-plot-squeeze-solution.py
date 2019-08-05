@@ -56,21 +56,20 @@ def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
 # ------------------------------------------------------------------------------
 def gauge_plot():
     figure()
-    gca().set_aspect("equal")
-    set_ratio(1.0, top=-0.1, bottom=-0.05)
+    set_ratio(1.0, top=-0.5, bottom=-0.4)
+    gca().set_aspect(1.0)
     x = linspace(0.0, 1.0, 1000)
+    fill_betweenx(x, zeros_like(x), 2*x, color="#d3d3d3")
+    plot([-0.5, 0.5], [0.0, 0.0], "-", color="#d3d3d3", lw=3.0)
     plot(x, x, "-", color="#808080", lw=1.0)
-    fill_betweenx(x, x-0.2, x+0.2, color="#d3d3d3")
 
     # Subdivision
-    delta = 0.2
-    x = r_[0.0:1.001:delta]
-    t = 0.5 * (x[1:] + x[:-1])
+    x = [0.0, 0.25, 0.5, 1.0]
+    t = [0.0, 0.5, 1.0]
     #print(x, t)
     # plot([0, 1], [0, 0], "k", lw=1.0)
     # plot(x, zeros_like(x), "k|")
     plot(t, zeros_like(t), "kx")
-
     for i in range(len(t)):
         plot([t[i], t[i]], [0, t[i]], "k--", lw=1.0)
         plot([x[i], x[i+1]], [t[i], t[i]], "k", lw=1.0)
@@ -79,8 +78,8 @@ def gauge_plot():
         plot([x[i+1]], [t[i]], "k|")
 
 
-
-
+    xticks(r_[-1:2.2:0.5]); 
+    yticks(r_[0.0:1.00001:0.5])
     xlabel("$t$")
     grid(True)
     save()

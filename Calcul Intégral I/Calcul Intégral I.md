@@ -304,7 +304,7 @@ $t \in \lb 0, 1 \rb .$](images/gauge-plot.py)
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
 $t \in \lb 0, 1 \rb$ et de la subdivision pointée
 $\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
-les intervalles de la subdivision sont limités
+les intervalles de la subdivision sont délimités
 par des barres verticales et les points associés 
 représentés par des croix. La comparaison avec le graphe de la
 jauge $\gamma$ montre que cette subdivision pointée 
@@ -314,7 +314,7 @@ lui est subordonnée.](images/gauge-plot-subdivision.py)
 graphique d'une subdivision pointée, avec séparateurs en barres
 verticales et $t_i$ en croix.
 
-### Lemme de Cousin {.theorem}
+### Lemme de Cousin {.theorem #cousin}
 Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
 il existe une subdivision pointée $\mathcal{D}$ 
 qui soit subordonnée à $\gamma$.
@@ -1569,15 +1569,16 @@ $\phi:[0, 1] \to I$, telle que $\phi(0) = x$ et $\phi(1) = y$.
 
 $\to$ [Solution](#s-int)
 
-TODO -- Construction de Jauges {#e-jauge}
+Subdvisions subordonnées à une jauge {.question #subd-subor}
 --------------------------------------------------------------------------------
 
-**TODO:** faire construire "à la main" une jauge par dichotomie (exemple avec
-jauge s'affinant pour "forcer" un tag et/ou variante avec jauge "faciles",
-telles qu'on puisse trouver une jauge uniforme qui soit plus fine ? Et csq,
-à savoir capacité à trouver une subdivision uniforme associée)
+Soit $\gamma$ la jauge sur $[0, 1]$ définie par 
+$\gamma(0)= \left]-1/2, 1/2\right[$ et $\gamma(t) = \left]0,2t\right[$
+si $t>0$.
 
-$\to$ [Solution](#s-jauge)
+![Graphe de la jauge $\gamma$.](images/gauge-plot-squeeze.py)
+
+Déterminer une subdivision pointée de $[0, 1]$ qui soit subordonnée à $\gamma$.
 
 Subdivision pointées {#e-sp}
 --------------------------------------------------------------------------------
@@ -1678,7 +1679,7 @@ $\to$ [Solution](#s-inb-1)
 [^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\R$,
 $I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \R$.
 
-Solution aux exercices
+Solutions
 ================================================================================
 
 Intervalle {#s-int}
@@ -1700,8 +1701,39 @@ $z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
 Comme $\phi$ est à valeurs dans $I$, $z \in I$; l'ensemble $I$ est donc un 
 intervalle de $\R$.
 
-TODO -- Construction de Jauges {#s-jauge}
+TODO -- Subdvisions subordonnées à une jauge {.answer #answer-subd-subor}
 --------------------------------------------------------------------------------
+On applique pas à pas la démarche de la preuve du [lemme de Cousin](#cousin).
+
+On considère initialement les subdivisions pointées de la forme $\{(t_1, [0,1])\}$. 
+Mais quel que soit $t_1 \in [0, 1]$, on réalise que $[0, 1] \not \subset \gamma(t_1)$.
+En effet, $[0, 1] \not \subset \gamma(0) = \left]-1/2, 1/2\right[$ et 
+comme pour tout $t_1>0$, $0 \not \in \gamma(t)$, on ne peut avoir
+$[0, 1] \subset \gamma(t)$.
+
+On considère donc les subdivisions de la forme
+$$\{(t_1, [0,1/2]), (t_2, [1/2, 1])\}.$$ 
+Concernant le second terme de cette subdivision, 
+on se rend compte que pour $t_2 = 1$, on a 
+$\gamma(t_2) = \left]0, 2\right[$ et donc $[1/2, 1] \subset \gamma(t_2)$.
+Par contre on peut se convaincre comme à la première étape du processus
+qu'il est impossible d'avoir $[0, 1/2] \subset \gamma(t_1)$
+quand $t_1 \in [0, 1/2]$.
+
+On considère donc les subdivisions de la forme
+$$\{(t_1, [0,1/4]), (t_2, [1/4, 1/2]), (1, [1/2, 1])\}.$$
+Cette fois-ci, on constate que $t_1=0$ fournit
+$[0,1/4] \subset \gamma(0) = \left]-1/2, 1/2\right[$, et
+qu'avec $t_2 = 1/2$, on a $[1/4, 1/2] \subset \gamma(t_2) = \left]0, 1\right[$.
+
+Par conséquent, la subdivision 
+$$
+\mathcal{D} = \{(t_1, [0,1/4]), (t_2, [1/4, 1/2]), (1, [1/2, 1])\}
+$$
+est subordonnée à $\gamma$.
+
+![Graphe de la jauge $\gamma$ et de la subdivision pointée $\mathcal{D}$](images/gauge-plot-squeeze-solution.py)
+
 
 TODO -- Subdivision pointées {#s-sp}
 --------------------------------------------------------------------------------
