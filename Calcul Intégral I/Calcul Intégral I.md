@@ -264,7 +264,7 @@ Intégrale de Riemann Généralisée
 ### Jauge {.definition}
 Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction 
 qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
-de contenant $t$. 
+de $\R$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision pointée $\mathcal{D}$ de l'intervalle $[a, b]$ 
