@@ -1514,7 +1514,7 @@ $$
 \left|S(f, \mathcal{D}_j) - \int_{J_j} f(t) \, dt \right| \leq \eta.
 $$
 Si de plus on choisit $\mathcal{D}_j$ subordonnée à la restriction de $\gamma$
-à $J_j$, alors $\mathcal{D} \cup \cup_j \mathcal{D}_j$ est une subdivision
+à $J_j$, alors $\mathcal{D} \cup (\cup_j \mathcal{D}_j)$ est une subdivision
 pointée (totale) de $[a, b]$ subordonnée à $\gamma$.
 On déduit de l'hypothèse centrale du lemme que
 $$
