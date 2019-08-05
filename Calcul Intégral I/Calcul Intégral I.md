@@ -1403,6 +1403,19 @@ $$
 Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
 majoration voulue.
 
+### TODO
+
+Quid:
+
+  - (*) FTC
+
+  - (*) IPP
+
+  - (*) Chgt variables
+
+dans le cas non borné ? Reprendre leur énoncés ad minimima et s'assurer
+que la terminologie "intervalle fermé **de $\R$**" est présente.
+
 ### {.remark .ante}
 Il n'est pas nécessaire de considérer l'intégration dans tous les types
 d'intervalles (fermés) bornés ou non bornés possibles: on peut toujours
