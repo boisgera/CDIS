@@ -141,7 +141,7 @@ $$
 =
 \int \lim_{k \to +\infty} f_k(t) \, dt
 = 
-\lim_{n \to +\infty} \int  f(t) \, dt.
+\lim_{k \to +\infty} \int  f(t) \, dt.
 $$
 
 ### Démonstration {.proof}
