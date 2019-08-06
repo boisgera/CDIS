@@ -360,7 +360,7 @@ $\mathbb{N}$.
  
     Considérons désormais une suite d'ensembles mesurables
     $A_k$, pour $k \in \N$. 
-    Quitte à remplacer $A_k$ par $\cup_{j=0}^k A_k$
+    Quitte à remplacer $A_k$ par $\cup_{j=0}^k A_j$
     --
     ce qui ne change par le caractère mesurable des $A_k$ ou leur union 
     jusqu'à l'ordre $k$
