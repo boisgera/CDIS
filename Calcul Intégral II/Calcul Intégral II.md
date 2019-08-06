@@ -634,14 +634,14 @@ est intégrable (car Riemann-intégrable sur $[-k, k]$)
 et la suite des $f_k$ converge simplement vers $f$, 
 qui est donc mesurable. 
 
-### Images réciproques des fonctions mesurables {.theorem}
-
+### Critère de l'image réciproque {.theorem #CIR}
 Une fonction $f:\R \mapsto \R^n$ est mesurable si et seulement
-pour tout ouvert $U$ de $\R$, l'image réciproque de $U$ par $f$
+pour tout ouvert $U$ de $\R^n$, l'image réciproque de $U$ par $f$
 $$
 f^{-1}(U) = \{x \in \R \, | \, f(x) \in U\}
 $$
 est mesurable.
+
 
 **NOTA:** l'énonce ici est donné dans le cas des fonctions scalaires,
 mais on a rapidement besoin du cadre vectoriel (pour composer avec
@@ -665,13 +665,11 @@ en attendant la preuve de l'équivalence des deux propriétés),
 on peut montrer les résultats suivants:
 
 ### Stabilité par passage à la limite
-
 Les limites simples de fonctions mesurables sont mesurables.
 
 ### Démonstration {.proof}
-
-Soit  $f_k: \R \to \R$ des fonctions vérifiant le critère
-de l'image réciproque, 
+Soit  $f_k: \R \to \R$ des fonctions vérifiant 
+[le critère de l'image réciproque](#CIR), 
 telles que pour tout $x \in \R$, $f_k(x) \to f(x)$ quand $k \to +\infty$.
 Montrons que $f$ vérifie également ce critère.
 Il suffit pour cela de remarquer que comme $U$ est ouvert et que
@@ -684,16 +682,15 @@ qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union
 (dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
 
 ### Fonctions presque partout égales {.theorem}
-
 Toute fonction égale presque partout à une fonction mesurable est
 mesurable.
 
 ### Démonstration {.proof}
-
 Toute fonction $f$ égale presque partout à une fonction $g$ qui vérifie 
-le critère de l'image réciproque vérifie également le critère de l'image
-réciproque. En effet, si pour
-tout ouvert $U$ l'ensemble $g^{-1}(U)$ est mesurable, alors
+[le critère de l'image réciproque](#CIR) vérifie également 
+[le critère de l'image réciproque](#CIR). 
+En effet, si pour tout ouvert $U$ l'ensemble $g^{-1}(U)$ est mesurable, 
+alors
 $$
 f^{-1}(U) = (g^{-1}(U) \setminus E) \cup F
 $$
@@ -701,12 +698,8 @@ où $E$ et $F$ sont de mesure nulle (et donc mesurables puisque la mesure
 de Lebesgue est complète);
 par conséquent, $f^{-1}(U)$ est mesurable.
 
-
-### Démonstration {.proof}
-
-#### Sens direct
-
-Supposons le critère des images réciproques satisfait. 
+### Démonstration -- [critère de l'image réciproque](#CIR) {.proof}
+Supposons [le critère de l'image réciproque](#CIR) satisfait. 
 La démonstration repose sur la construction explicite d'une suite $f_k(x)$ 
 de fonctions intégrables qui soient étagées, c'est-à-dire ne prenant qu'un
 nombre fini de valeurs possibles.
@@ -766,10 +759,8 @@ union (finie) d'intersections (finies) d'ensembles dans la collection
 $\{\dots, A_j, \dots, E, F\}$ et donc un ensemble mesurable. La fonction 
 $f_{k+1}$ peut donc être mise sous la forme souhaitée.
 
-#### Réciproque
-
-Considérons désormais une fonction intégrable $f:\R \to \R$.
-Par le [théorème de dérivation de l'annexe][Une intégrale indéterminée est dérivable presque partout],
+Réciproquement, considérons désormais une fonction intégrable $f:\R \to \R$.
+Par le [théorème de dérivation des intégrales indéterminées](#DII),
 si l'on définit la fonction $f_k(x)$ comme le taux d'accroissement
 $$
 f_k(x) :=  \frac{F(x + 2^{-k}) - F(x)}{2^{-k}}
@@ -1608,8 +1599,7 @@ $$
 la fonction $f_+$ est donc intégrable, d'intégrale $S$.
 
 
-### Une intégrale indéterminée est dérivable presque partout {.theorem}
-
+### Une intégrale indéterminée est dérivable presque partout {.theorem # DII}
 Soit $I$ un intervalle fermé de $\R$, 
 $f: I \to \R$ une fonction intégrable et un point 
 $a$ de $I$.
@@ -1620,7 +1610,6 @@ $$
 existe et est égale à $f$ presque partout.
 
 ### Démonstration {.proof}
-
 Voir [@Swa01, pp. 135-136].
 
 Références
