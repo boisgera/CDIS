@@ -325,7 +325,6 @@ Structure de $\delta$-ring pour les ensembles intégrables ?
 Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
 $\mathbb{N}$.
 
-
 ### Démonstration {.proof}
 
  1. La fonction caractéristique $1_{\varnothing}$ est identiquement 
@@ -342,9 +341,9 @@ $\mathbb{N}$.
     l'ensemble $B \cap [a, b]$ est intégrable;
     l'ensemble $B$ est donc mesurable.
 
- 3. Si une collection d'ensembles mesurables est finie,
-    il est possible de montrer par récurrence que son union est mesurable.
-    Il suffit pour cela de montrer que si $A$ et $B$ sont mesurables,
+ 3. Montrons tout d'abord que l'union d'une collection finie d'ensembles 
+    mesurables est mesurable ;
+    il suffit d'établir que si $A$ et $B$ sont mesurables,
     alors leur union $A \cup B$ l'est également. 
     Or, pour tout intervalle compact $[a, b]$, on a 
     $$
@@ -1588,7 +1587,7 @@ $(t, I) \in \mathcal{D}$ et telles que
 $$
 f(t) \ell(I) \geq \int_I f(x) \, dx,
 $$
-alors le lemme de Henstock fournit
+alors le [lemme de Henstock](Calcul Intégral I.pdf/#henstock-lemma) fournit
 $$
 \sum_{(t, I) \in \mathcal{D}} 
 \left( f(t) \ell(I) - \int_I f(x) \, dx \right)_{\!\!+}

@@ -1497,7 +1497,7 @@ $$
 (t, J) \in \mathcal{D} \, \Rightarrow \, J \subset \gamma(t). 
 $$
 
-### Lemme de Henstock  {.theorem}
+### Lemme de Henstock  {.theorem #henstock-lemma}
 Soit $[a, b]$ un intervalle fermé de $\R$, 
 $f$ une fonction intégrable sur $[a, b]$ et $\gamma$ une jauge sur $[a, b]$ 
 telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$, 
