@@ -1574,7 +1574,7 @@ S - \frac{\varepsilon}{2} \leq
 \sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
 \leq S, 
 $$
-ce qui fournit
+on a
 $$
 \left|
 \sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
