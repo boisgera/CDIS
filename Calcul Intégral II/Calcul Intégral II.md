@@ -225,7 +225,7 @@ $$
 $$
 et donc
 $$
--g(t) \leq \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h} \leq g(t).
+-g(t) \leq \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k} \leq g(t).
 $$
 Les taux d'accroissements sont donc encadrés par deux fonctions intégrables.
 Par [le théorème de convergence dominée](#TCD), on conclut que
