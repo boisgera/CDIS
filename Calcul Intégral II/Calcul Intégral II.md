@@ -154,7 +154,7 @@ Si une suite de fonctions intégrables $f_k:\R \to \R$
 converge simplement vers la fonction $f$, c'est-à-dire si pour tout
 $x \in \R^n$,
 $$
-\lim_{n \to +\infty} f_k(x) = f(x)
+\lim_{k \to +\infty} f_k(x) = f(x)
 $$
 et qu'il existe deux fonctions intégrables $g$ et $h$ encadrant la suite $f_k$,
 c'est-à-dire telles que pour tout $k \in \mathbb{N}$ et pour tout 
@@ -166,9 +166,9 @@ alors la fonction $f$ est intégrable et
 $$
 \int f(t) \, dt 
 =
-\int \lim_{n \to +\infty} f_k(t) \, dt
+\int \lim_{k \to +\infty} f_k(t) \, dt
 = 
-\lim_{n \to +\infty} \int f_k(t) \, dt.
+\lim_{k \to +\infty} \int f_k(t) \, dt.
 $$
 
 ### Démonstration {.proof}
@@ -220,7 +220,7 @@ $$
 $$
 De plus, par le théorème des accroissement finis, pour tout $k \in \N$,
 $$
-\left|\frac{f(\lambda + h_k, t) - f(\lambda, t)}{h} \right|
+\left|\frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k} \right|
 \leq \sup_{\mu \in I} |\partial_{\lambda} f(\mu, t)| \leq g(t),
 $$
 et donc
