@@ -362,7 +362,7 @@ $\mathbb{N}$.
     $A_k$, pour $k \in \N$. 
     Quitte à remplacer $A_k$ par $\cup_{j=0}^k A_j$
     --
-    ce qui ne change par le caractère mesurable des $A_k$ ou leur union 
+    ce qui ne change pas le caractère mesurable des $A_k$ ou leur union 
     jusqu'à l'ordre $k$
     --
     on peut supposer que $A_k \subset A_{k+1}$.
