@@ -372,22 +372,18 @@ $\mathbb{N}$.
     \bigcup_{k=1}^{+\infty} \left(A_k \cap [a, b]\right);$$
     les ensembles $A_k \cap [a, b]$ sont intégrables, 
     c'est-à-dire que $1_{A_k \cap [a, b]}$ est intégrable.
-    Les ensembles $A_k \cap [a, b]$ formant un suite croissante pour l'inclusion,
-    la suite des fonctions caractéristiques $1_{A_k \cap [a, b]}$ est croissante.
-    Pour tout réel $x$ on a donc
+    Pour tout $k\in \N$, on a $0 \leq 1_{A_k \cap [a, b]} \leq 1_{[a, b]}$ ;
+    les ensembles $A_k \cap [a, b]$ formant une suite croissante pour l'inclusion,
+    la suite des fonctions caractéristiques $1_{A_k \cap [a, b]}$ est croissante et
+    pour tout réel $x$ on a donc
     $$
     1_{\left(\cup_{k=1}^{+\infty} A_k\right) \cap [a, b]}(x)
     = \lim_{k\to +\infty} 1_{A_k \cap [a, b]}(x)
     $$
-    Comme pour tout $k\in \N$ on a 
-    $1_{A_k \cap [a, b]} \leq 1_{[a, b]}$, il s'ensuit que
-    $$
-    \sup_{k \in \N} \int 1_{A_k \cap [a, b]} \leq \int 1_{[a, b]} = b-a < +\infty.
-    $$ 
-    Par [le théorème de convergence monotone](#TCM),
-    la fonction $1_{\left(\cup_{k=1}^{+\infty} A_k\right) \cap [a, b]}$ 
-    est intégrable;
-    l'ensemble $\cup_{k=1}^{+\infty} A_k$ est donc mesurable.
+    Par [le théorème de convergence dominée](#TCD),
+    la fonction caractéristique de $\left(\cup_{k=1}^{+\infty} A_k\right) \cap [a, b]$ 
+    est intégrable ; 
+    cet ensemble est donc mesurable.
 
 ### Tribu {.definition .remark}
 Une collection de sous-ensembles contenant l'ensemble vide,
