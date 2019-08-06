@@ -454,7 +454,7 @@ S(1_A, \mathcal{D})
 \leq 
 \varepsilon.
 $$
-Pour pouvoir conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i$ 
+Pour conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i$ 
 où les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement, 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ et tels que la famille des
 $I_i$ recouvre $A$. Si cette construction est acquise et que $\mathcal{D}_k$
@@ -700,19 +700,6 @@ $$
 où $E$ et $F$ sont de mesure nulle (et donc mesurables puisque la mesure
 de Lebesgue est complète);
 par conséquent, $f^{-1}(U)$ est mesurable.
-
-**TODO:** des pptés des ensembles mesurables sont utilisés dans la preuve
-ci-dessous, repenser l'ordre ? J'aimerais pourtant retard l'apparition 
-des ensembles mesurables, ne pas focaliser trop tôt. Sinon, réécrire
-la preuve dans le langage des fonctions ? Urk, pas de choix parfait ici ...
-Vérifier au passage que je n'utilise pas à travers les ensembles mesurables
-de pptés que je n'ai pas encore démontré qui nécessité le critère par les
-images réciproques. Même chose au-dessus .... jeez.
-Arf, le nouvel ordre pose pb; j'ai de toute évidence bien besoin
-des ensembles mesurables pour L'ENONCE du critère de l'image réciproque,
-dont j'ai bien besoin au moins d'UN BOUT des ensembles mesurables ...
-Décider de l'approche donc pour ces ensembles (fonction carac localement 
-intégrable ou mesurable ?)
 
 
 ### Démonstration {.proof}
