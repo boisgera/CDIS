@@ -399,7 +399,7 @@ corollaires immédiats: difference mesurable, ensemble fermés
 mesurables, etc. Largement en exercice ? Quel est le minimum vital ?
 Complément relatif, intersection dénombrables, etc. ?
 
-### Topologie et ensembles mesurables
+### Topologie et ensembles mesurables {.theorem #OSM}
 Tout ensemble ouvert est mesurable.
 
 ### Démonstration {.proof}
@@ -664,7 +664,7 @@ les images réciproques (donc en comprenant temporairement
 en attendant la preuve de l'équivalence des deux propriétés), 
 on peut montrer les résultats suivants:
 
-### Stabilité par passage à la limite
+### Stabilité par passage à la limite {#SPL}
 Les limites simples de fonctions mesurables sont mesurables.
 
 ### Démonstration {.proof}
@@ -681,7 +681,7 @@ $$
 qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
 (dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
 
-### Fonctions presque partout égales {.theorem}
+### Fonctions presque partout égales {.theorem #FPPE}
 Toute fonction égale presque partout à une fonction mesurable est
 mesurable.
 
@@ -698,7 +698,7 @@ où $E$ et $F$ sont de mesure nulle (et donc mesurables puisque la mesure
 de Lebesgue est complète);
 par conséquent, $f^{-1}(U)$ est mesurable.
 
-### Démonstration -- [critère de l'image réciproque](#CIR) {.proof}
+### Démonstration du [critère de l'image réciproque](#CIR) {.proof}
 Supposons [le critère de l'image réciproque](#CIR) satisfait. 
 La démonstration repose sur la construction explicite d'une suite $f_k(x)$ 
 de fonctions intégrables qui soient étagées, c'est-à-dire ne prenant qu'un
@@ -709,16 +709,16 @@ $$
 f_{k+1}(x) = f_k(x) + 
 \left|
 \begin{array}{rl}
--1/k & \mbox{si } \, f(x) < f_k(x) -1/k \, \mbox{ et } \, |x| \leq k,\\
-+1/k  & \mbox{si } \, f_k(x) + 1/k < f(x)  \, \mbox{ et } \, |x| \leq k, \\
+-1/k & \mbox{si } \, f(x) \leq f_k(x) -1/k \, \mbox{ et } \, |x| \leq k,\\
++1/k  & \mbox{si } \, f_k(x) + 1/k \leq f(x)  \, \mbox{ et } \, |x| \leq k, \\
 0 & \mbox{sinon.}
 \end{array}
 \right.
 $$
-Par construction, si $f(x)=0$, $f_k(x)= 0$. Si $f(x) > 0$, les $f_k(x)$
+Par construction, si $f(x)=0$, $f_k(x)= 0$. Si $f(x) \geq 0$, les $f_k(x)$
 forment une suite croissante convergeant vers $f(x)$, car la suite des
 $1/k$ tend vers $0$ quand $k$ tend vers $+\infty$, mais leur somme est 
-divergente. La situation est similaire si $f(x) < 0$, mais avec une
+divergente. La situation est similaire si $f(x) \leq 0$, mais avec une
 suite $f_k(x)$ décroissante.
 
 Montrons que la suite des $f_k$ est intégrable, ce qui concluera cette 
@@ -740,14 +740,14 @@ $\{\alpha_j\} = \{0\}$, et la collection des $A_j$ se réduit à
 $\{A_0\} = \{\R\}$;
 supposons cette propriété valable au rang $k$. 
 L'ensemble $E$ des
-réels $x$ tels que $f_k(x) + 1/k < f(x)$ et $|x| \leq k$
+réels $x$ tels que $f_k(x) + 1/k \leq f(x)$ et $|x| \leq k$
 peut être écrit comme
 $$
-E = \left(\bigcup_j \{x \in \R \, | \, \alpha_j + 1/k < f(x)\} \cap A_j\right) \cap [-k, k],
+E = \left(\bigcup_j \{x \in \R \, | \, \alpha_j + 1/k \leq f(x)\} \cap A_j\right) \cap [-k, k],
 $$
-qui est mesurable. De même, on peut montrer que 
-l'ensemble $F$ des
-réels $x$ tels que $f(x) < f_k(x) - 1/k < f(x)$ et $|x| \leq k$ est mesurable.
+qui est mesurable. 
+De même, on peut montrer que l'ensemble $F$ des
+réels $x$ tels que $f(x) \leq f_k(x) - 1/k$ et $|x| \leq k$ est mesurable.
 On a alors par construction: 
 $$
 f_{k+1} = \sum_{j} \alpha_j 1_{A_j} + \frac{1}{k} 1_E - \frac{1}{k} 1_F
@@ -769,13 +769,19 @@ F: x \in \R \mapsto \int_0^x f(t) \, dt,
 $$
 alors $f_k(x) \to f(x)$ presque partout quand $k \to +\infty$.
 Or chaque $f_k$ est continue, donc l'image réciproque de tout ouvert
-par $f_k$ est un ensemble mesurable. Par les deux résultats établis dans
-cette section, $f$ vérifie également ce critère.
+par $f_k$ est un ouvert [et donc un ensemble mesurable](#OSM). 
+L'ensemble des fonctions satisfaisant le critère de l'image réciproque 
+étant [stable par passage à la limite](#SPM), 
+[une fonction égale à $f$ presque partout satisfait le critère 
+de l'image réciproque](#FPPE) ;
+la fonction intégrable $f$ satisfait donc 
+elle-même le critère de l'image réciproque.
 
-Par définition, une fonction mesurable est limite simple
+Finalement, une fonction mesurable étant limite simple
 d'une suite de fonctions intégrables, et les fonctions intégrables 
-vérifient le critère de l'image réciproque. 
-Cette classe de fonctions étant [stable par passage à la limite][Stabilité par passage à la limite], 
+vérifient le critère de l'image réciproque, 
+par une nouvelle application du résultat de 
+[stabilité par passage à la limite](#SPL), 
 ce critère est également satisfait pour toute fonction mesurable.
 
 
@@ -789,15 +795,15 @@ La composée $g \circ f$ de ces deux fonctions est mesurable.
 
 Si $U$ est un ouvert de $\R^m$.
 Par continuité de $g$, l'ensemble $g^{-1}(U)$ est un ouvert de $\R^n$ 
-et par conséquent, par [le critère de mesurabilité par les images réciproques][Images réciproques des fonctions mesurables],
+et par conséquent, par [le critère de mesurabilité par les images réciproques](#CIR)
 $$
 (g\circ f)^{-1}(U) = f^{-1}(g^{-1}(U))
 $$
 est un ensemble mesurable. Par le même critère, 
 la composée $g\circ f$ est donc mesurable.
 
-### Remarque {.remark}
-Les corollaires de ce résultat sont nombreux et immédiat. 
+### {.remark}
+Les corollaires de ce résultat sont nombreux et immédiats. 
 Citons les deux instances les plus directement utiles.
 
 ### Mesurabilité du produit {.corollary}
