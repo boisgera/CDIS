@@ -164,6 +164,14 @@ d'interpréter $\int_a^b$ comme l'intégrale sur $\left]a, b\right]$
 Fct de variation localement bornée iff dérivée est une mesure de Radon
 
 ### TODO -- Notation Stieltjes
+(explication en définissant explicitement la mesure associée à la
+fct de variation bornées)
+
+### TODO -- Explication notation, lien Kurzweil-Stieltjes
+(en gros: bien que la valeur des intégrales soit différentes
+-- et l'explication n'est pas si dure, L-S ignore les valeurs
+de la fct à la discontinuité, pas K-S -- intégrable au sens
+de L-S implique intégrabilité au sens de K-S, cf. @MAA18)
 
 ### TODO -- Rk Stieltjes
 Si on intègre des fcts continues, la notation prend du sens.
@@ -228,3 +236,6 @@ Fonction distance
 --------------------------------------------------------------------------------
 
 Dérivées seconde fonction distance, squelette, courbure, etc ?
+
+Références
+================================================================================
