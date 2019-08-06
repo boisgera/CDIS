@@ -400,10 +400,15 @@ mesurables, etc. Largement en exercice ? Quel est le minimum vital ?
 Complément relatif, intersection dénombrables, etc. ?
 
 ### Topologie et ensembles mesurables {.theorem #OSM}
-Tout ensemble ouvert est mesurable.
+Tout ensemble fermé (ou ouvert) est mesurable.
 
 ### Démonstration {.proof}
-Tout intervalle ouvert $I$ est mesurable; en effet, 
+Les ensembles fermés et ouverts étant complémentaires les uns des autres
+et le [complémentaire d'un ensemble mesurable étant mesurable](#pptés-tribu),
+on peut se contenter de démontrer le résultat pour les ouverts ou pour 
+les fermés ; la preuve s'avère plus simple dans le cas des ouverts.
+
+Tout intervalle ouvert $I$ est mesurable : en effet, 
 son intersection avec un intervalle compact $[a, b]$ 
 est un intervalle inclus dans $[a, b]$.
 La fonction caractéristique associée est de la forme $1_{[c, d]}$,
@@ -418,8 +423,10 @@ soit $I_x$ et $I_y$ sont disjoints et l'union de tous les intervalles
 $I_x$ est égale à $U$. Comme dans chaque $I_x$ on peut choisir
 un nombre rationnel $y$ tel que $I_x = I_y$, la collection de $I_x$
 est dénombrable.
-L'ouvert $U$ est donc une union dénombrable d'intervalles ouverts, qui
-sont tous mesurables, il est donc mesurable.
+L'ouvert $U$ est donc une union dénombrable d'intervalles ouverts[^pf], 
+qui sont tous mesurables, il est donc mesurable.
+
+[^pf]: le résultat correspondant est faux pour les intervalles fermés.
 
 ### Ensembles négligeables {.theorem #négligeable-longueur-nulle}
 
@@ -635,13 +642,9 @@ et la suite des $f_k$ converge simplement vers $f$,
 qui est donc mesurable. 
 
 ### Critère de l'image réciproque {.theorem #CIR}
-Une fonction $f:\R \mapsto \R^n$ est mesurable si et seulement
-pour tout ouvert $U$ de $\R^n$, l'image réciproque de $U$ par $f$
-$$
-f^{-1}(U) = \{x \in \R \, | \, f(x) \in U\}
-$$
-est mesurable.
-
+Une fonction $f:\R \to \R^n$ est mesurable si et seulement
+l'image réciproque de tout fermé (ou de tout ouvert) de $\R^n$
+par $f$ est mesurable.
 
 **NOTA:** l'énonce ici est donné dans le cas des fonctions scalaires,
 mais on a rapidement besoin du cadre vectoriel (pour composer avec
@@ -699,6 +702,17 @@ de Lebesgue est complète);
 par conséquent, $f^{-1}(U)$ est mesurable.
 
 ### Démonstration du [critère de l'image réciproque](#CIR) {.proof}
+A nouveau, il suffit de démontrer le critère pour les fermés ou pour les
+ouverts: si une fonction satisfait le critère de d'image réciproque pour
+tout fermé de $\R^n$, alors si $U$ est un ouvert de $\R^n$, 
+en utilisant l'égalité $\R \setminus f^{-1}(U) = f^{-1}(\R^n \setminus U)$,
+le fait que le complémentaire d'un ouvert soit un fermé et 
+que [le complémentaire d'un ensemble mesurable soit mesurable](#pptés-tribus),
+on établit le critère pour les ouverts ; la réciproque est similaire.
+
+**TODO:** cas scalaire ici, à préciser et finir avec cas vectoriel
+(ouvert réunion dénombrable de pavés ouverts)
+
 Supposons [le critère de l'image réciproque](#CIR) satisfait. 
 La démonstration repose sur la construction explicite d'une suite $f_k(x)$ 
 de fonctions intégrables qui soient étagées, c'est-à-dire ne prenant qu'un
@@ -792,12 +806,11 @@ $g:\R^n \to \R^m$ une fonction continue.
 La composée $g \circ f$ de ces deux fonctions est mesurable.
 
 ### Démonstration {.proof}
-
-Si $U$ est un ouvert de $\R^m$.
-Par continuité de $g$, l'ensemble $g^{-1}(U)$ est un ouvert de $\R^n$ 
+Si $F$ est un fermé de $\R^m$.
+Par continuité de $g$, l'ensemble $g^{-1}(F)$ est un fermé de $\R^n$ 
 et par conséquent, par [le critère de mesurabilité par les images réciproques](#CIR)
 $$
-(g\circ f)^{-1}(U) = f^{-1}(g^{-1}(U))
+(g\circ f)^{-1}(F) = f^{-1}(g^{-1}(F))
 $$
 est un ensemble mesurable. Par le même critère, 
 la composée $g\circ f$ est donc mesurable.
