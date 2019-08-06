@@ -385,11 +385,13 @@ $\mathbb{N}$.
     est intégrable ; 
     cet ensemble est donc mesurable.
 
+<!--
 ### Tribu {.definition .remark}
 Une collection de sous-ensembles contenant l'ensemble vide,
 stable par passage au complémentaire et par union dénombrable 
 est appelée *tribu* (ou *$\sigma$-algèbre*).
 Les ensembles mesurables dans $\R$ forment donc une tribu.
+-->
 
 ### TODO
 
