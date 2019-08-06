@@ -1522,10 +1522,9 @@ Soit $f$ une telle fonction et $g$ une fonction intégrable telle que
 $f_+ \leq g$. Nous allons montrer que
 $$
 \int f_+(t) \, dt 
-= 
+= S :=
 \sup_{\mathcal{D}} 
 \sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-:= S
 $$
 où le supremum est calculé sur toutes les subdivisions pointées de $\R$.
 Tout d'abord, ce supremum est fini; en effet pour toute subdivision
