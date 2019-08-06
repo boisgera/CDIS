@@ -318,14 +318,15 @@ Structure de $\delta$-ring pour les ensembles intégrables ?
 
  2. Le complémentaire d'un ensemble mesurable est mesurable.
 
- 3. L'union d'une collection dénombrable[^dénom] d'ensembles mesurables
+ 3. L'union d'une collection dénombrable d'ensembles mesurables
     est mesurable.
 
-[^dénom]: ou collection "au plus dénombrable" pour être dépourvu d'ambiguité; 
-c'est-à-dire une collection finie ou bien en bijection avec $\mathbb{N}$.
+### {.definition .post}
+Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
+$\mathbb{N}$.
 
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
 
  1. La fonction caractéristique $1_{\varnothing}$ est identiquement 
     nulle; l'ensemble vide $\varnothing$ est donc intégrable et par
