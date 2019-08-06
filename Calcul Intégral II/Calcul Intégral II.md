@@ -1553,7 +1553,7 @@ de $f$ associées à une subdivision pointée subordonnée à $\gamma$.
 Soit $\nu$ une jauge sur $\R$ telle que si $(t, [a, b]) \in \mathcal{D}_0$
 et $t \in \left]a,b\right[$ alors $\nu(t) \subset \left]a,b\right[$ ;
 on note $\gamma$ la jauge définie par $\gamma(t) = \lambda(t) \cap \nu(t)$.
-Si $\mathcal{D}$ est subordonnée à $\gamma$, qui a découper des intervalles
+Si $\mathcal{D}$ est subordonnée à $\gamma$, quitte à découper des intervalles
 en deux si $(t, I) \subset \mathcal{D}$ et $t$ appartient à la frontière
 d'un intervalle composant $\mathcal{D}_0$ -- ce qui ne change pas la somme
 de Riemann associée -- les éléments $(t, J) \in \mathcal{D}$ tels que
