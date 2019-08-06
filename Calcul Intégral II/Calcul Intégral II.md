@@ -355,7 +355,7 @@ $\mathbb{N}$.
     1_{(A \cup B) \cap [a, b]}  = \max \left(1_{A \cap [a, b]}, 1_{B \cap [a, b]} \right).
     $$
     La fonction caractéristique de $(A \cup B) \cap [a, b]$ est donc intégrable
-    comme [maximum de deux fonctions positives intégrables](#max).
+    comme [maximum de deux fonctions positives intégrables (cf. annexe)](#max).
     L'union $A \cup B$ est donc mesurable.
  
     Considérons désormais une suite d'ensembles mesurables
@@ -363,7 +363,7 @@ $\mathbb{N}$.
     Quitte à remplacer $A_k$ par $\cup_{j=0}^k A_k$
     --
     ce qui ne change par le caractère mesurable des $A_k$ ou leur union 
-    $\cup_{k=0}^{+\infty} A_k$
+    jusqu'à l'ordre $k$
     --
     on peut supposer que $A_k \subset A_{k+1}$.
     Pour tout intervalle compact $[a, b]$, 
