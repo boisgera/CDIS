@@ -1534,7 +1534,7 @@ $$
 \sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
 &\leq
 \sum_{(t, I) \in \mathcal{D}} \left( \int_I g(t) \, dt\right)_{\!\!+} \\
-&\leq 
+&=
 \sum_{(t, I) \in \mathcal{D}} \int_I g(t) \, dt \\
 &=
 \int g(t) \, dt.
