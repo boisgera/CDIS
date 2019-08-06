@@ -259,8 +259,8 @@ de $\R$ aussi général que possible[^loop] de $\R$ de prendre cette
 égalité comme une définition, ce qui suppose toutefois que la fonction 
 caractéristique soit intégrable; on parle alors d'*ensemble intégrable*. 
 Cette définition laisse toutefois de coté les ensembles "trop grands" 
-pour être intégrables, mais par ailleurs parfaitement anodins, 
-comme par exemple $\R$ tout entier ou l'ensemble des réels positifs. 
+pour être intégrables, mais par ailleurs parfaitement inoffensifs, 
+comme $\R$ tout entier ou l'ensemble des réels positifs. 
 Nous préférons donc mettre l'accent sur la notion d'ensemble mesurable:
 
 ### TODO
@@ -301,6 +301,7 @@ sont bien mesurables;
 en effet si la fonction caractéristique $1_E$ est intégrable,
 sa restriction à tout intervalle compact $[a, b]$ également.
 
+<!--
 ### TODO:
 
 intégrale de fct carac sur $[a, b]$ dominé par une borne finie commune,
@@ -309,6 +310,7 @@ conclure que l'ensemble est de longueur finie?
 ### TODO en exercice
 
 Structure de $\delta$-ring pour les ensembles intégrables ?
+-->
 
 ### Propriétés élementaires {.theorem #pptés-tribu}
 
