@@ -168,9 +168,54 @@ $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini. Elle converge donc aussi en probabilité. On a même convergence en *moyenne quadratique*, à savoir que :
 $$ \Esp((M_n - m)^2) \xrightarrow{n \to \infty} 0.$$
 
+Le résultat sur la convergence en probabilité est appelé *loi faible des grands nombres*. Sa preuve est presque immédiate. Elle résulte de l’inégalité de Bienaymé-Chebyshev (exercice). Le résultat est peu informatif et permet d’obtenir certains contrôles d’erreurs. Le résultat prouvant la convergence presque-sûre est appelé *loi forte des grands nombres*. Sa preuve est plus délicate et utilise le lemme de Borel-Cantelli.
 
+### Démonstration
+Notons $\sigma^2$ la variance des variables $X_n$, bien définie puisqu'on les a supposées de carré intégrable. En vertu de la linéarité de l'espérance, on a
+$$ \Esp(M_n) = m, \Esp((M_n-m)^2) = \V(M_n) = \frac{\sigma^2}{n},$$
+d'où la convergence en moyenne quadratique.
 
+Comme $\Esp(Y)^2 \leq \Esp(Y^2)$, on en déduit que $\Esp(|M_n -m|)\to 0$, donc on a aussi la convergence en moyenne.
 
+La preuve de la convergence presque-sûre est plus délicate.
+
+Quitte à remplacer $X_n$ par $X_n - m$ (et donc $M_n$ par $M_n - m$), nous pouvons supposer que $m = 0$.
+
+Montrons tout d’abord que la sous-suite $(M_{n^2})_{n \in \N^\star}$ converge presque-sûrement vers 0.
+
+D'après l'inégalité de Bienaymé-Chebyshev et ce qui précède, on a pour $q\in \N^\star$
+$$\P(|M_n^2|\geq \frac{1}{q}) \leq \frac{\sigma^2 q^2}{n^2}$$
+
+Donc si $A_{n,q} = \{|M_n^2|\geq \frac{1}{q}\}$, nous obtenons que $\sum_{n\geq 1} \P(A_{n,q}) < \infty$. Posons ensuite $B_{n,q} = \cup_{m\geq n} A_{m,q}$ et $C_q = \cap_{n \geq 1} B_{n,q} = \lim\sup_n A_{n,q}$. En appliquant le lemme de Borel-Cantelli, on obtient que $\P(C_q) = 0$. En conséquence, si on pose $N = \cup_{q \in \N^\star} C_q$, on obtient $\P(N) \leq \sum_{q\in\N^\star} = 0$.
+
+Si $\omega \notin N$, alors $\omega \in \cap_{q \in \N^\star} (C_q)^c$. Ainsi, $\omega \notin C_q$ pour tout $q \geq 1$, et donc $\omega \notin B_{n,q}$ pour $n$ assez grand (car $B_{n,q}$ est décroissant en $n$). Cela siginfie que pour tout $\omega \notin N$, pour tout $q \geq 1$, il existe un $n$ assez grand tel que $M_{k^2} \leq \frac{1}{q}$ dès que $k \geq n$. Autrement dit, $M_{n^2} \to 0$ si $\omega \notin N$, avec $\P(N) = 0$, d'où
+$$ M_{n^2} \xrightarrow{n \to \infty} 0 \text{ p.s.}$$
+
+Montrons maintenant que la suite $(M_n)_{n\in\N^\star}$ tend presque-sûrement vers 0.
+
+Pour tout entier $n$, notons $p(n)$, l'entier tel que $p(n)^2 \leq n \leq (p(n)+1)^2$. Alors, 
+$$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} = \frac{1}{n} \sum_{p = p(n)^2+1}^{n} X_p,$$
+et puique les variables aléatoires de la somme sont indépendantes, il vient
+\begin{align*}
+\Esp\left(\left(M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right)^2\right) & = \frac{n-p(n)^2}{n^2}\sigma^2 \\
+                                                                 & \leq \frac{2p(n)+1}{n^2} \sigma^2 \leq \frac{2\sqrt{n}+1}{n^2} \sigma^2
+\end{align*}
+
+En appliquant de nouveau l'inégalité de Bienaymé-Chebyshev, on obtient
+$$ \P(\left|M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right|>a) \leq \frac{2\sqrt{n}+1}{n^2} \frac{\sigma^2}{a^2}$$
+Comme la série $\sum_n \frac{2\sqrt{n}+1}{n^2}$ converge, le même raisonnement que pour $M_{n^2}$ décrit ci-dessus, montre que
+$$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} \to 0 \text{ p.s.}$$
+Par ailleurs, on a déjà montré que $M_{p(n)^2} \to 0$ p.s. et $\frac{p(n)^2}{n} \to 1$. On en déduit que $M_n \to 0$ p.s.$
+
+### {.anonymous}
+Plus généralement, on a le résultat suivant (se référer par exemple à @Jacod pour la démonstration)
+
+### Théorème {.theorem}
+Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et intégrables, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
+$$M_n = \frac{X_1 + \ldots + X_n}{n}$$
+converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
+
+### Exemple **TODO cf garnier** {.example}
 
 # Convergence en loi --- fonction caractéristique --- théorème central limite
 La convergence en loi définie dans ce paragraphe va concerner les lois des variables aléatoires. Elle signifiera que les lois sont asymptotiquement “proches”, sans que les variables aléatoires elles-mêmes le soient nécessairement. 
