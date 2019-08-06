@@ -1550,7 +1550,7 @@ $$
 Soit $\lambda$ une jauge sur $\R$ assurant une précision $\varepsilon/2$
 dans le calcul de l'intégrale de $f$ pour toutes les sommes de Riemann
 de $f$ associées à une subdivision pointée subordonnée à $\gamma$.
-Soit $\nu$ une jauge sur $\R$ telle que si $(t, [a, b]) \in \mathcal{D}_0$
+Soit $\nu$ une jauge sur $\R$ telle que si $(x, [a, b]) \in \mathcal{D}_0$
 et $x \in \left]a,b\right[$ alors $\nu(x) \subset \left]a,b\right[$ ;
 on note $\gamma$ la jauge définie par $\gamma(x) = \lambda(x) \cap \nu(x)$.
 Si $\mathcal{D}$ est subordonnée à $\gamma$, qui a découper des intervalles
