@@ -271,7 +271,7 @@ la longueur, sauf à accepter un concept de longueur aux propriétés
 très étranges. Cette situation ne résulte pas de la méthode de définition
 de la longueur par l'intégrale; c'est au contraire une limitation intrinsèque
 de la théorie de la mesure que nous étudierons plus en détail par la suite.
-Et il n'existe aucun construction "facile" (constructive, explicite) 
+Et il n'existe aucune construction "facile" (constructive, explicite) 
 d'ensemble qui ne soit pas mesurable (et c'est une chose que l'on peut prouver).
 
 ### Ensemble mesurable {.definition}
