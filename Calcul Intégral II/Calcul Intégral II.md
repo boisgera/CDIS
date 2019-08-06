@@ -410,7 +410,7 @@ La fonction caractéristique associée est de la forme $1_{[c, d]}$,
 ou en diffère au plus en deux points; dans tous les cas, elle est
 intégrable.
 
-Si maintenant $U$ est un ensemble ouvert ouvert, pour chaque point $x$ de $U$ 
+Si maintenant $U$ est un ensemble ouvert, pour chaque point $x$ de $U$ 
 on peut construire le plus grand intervalle ouvert $I_x$ contenant $x$ et inclus
 dans $U$ (c'est l'union de tous les intervalles ouvert vérifiant ces
 deux propriétés). Pour un couple $x$ et $y$ dans $U$, soit $I_x = I_y$,
