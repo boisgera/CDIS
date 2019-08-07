@@ -318,7 +318,12 @@ La fonction de répartition $F$ caractérise la probabilité $\P$ sur $\R$, et e
  3. $\lim\limits_{x \to -\infty} F(x) = 0, \lim\limits_{x \to +\infty} F(x) = 1$.
 
 ### Démonstration {.proof}
- Se reporter à @Jacod pour la caractérisation.
+ Se reporter à @Jacod[^nSB] pour la caractérisation.
+
+[^nSB]: on évoquera ça dans calcul intégral V (applis théorie mesure): 
+la fonction de répartition est de variation bornée (car croissante) 
+donc elle à une dérivée faible (ou au sens des distributions) qui est une 
+mesure (positive).
 
  La première assertion est immédiate d'après la [définition](#deffdr). Pour la seconde, on remarque que si $x_n$ décroît vers $x$, alors $]-\infty,x_n]$ décroît vers $]-\infty,x]$ et donc $F(x_n)$ décroît vers $F(x)$ par le théorème de la continuité monotone. La troisième assertion se montre de manière analogue  en remarquant que $]-\infty,x]$ décroît vers $\varnothing$ (resp. croît vers $\R$) lorsque $x$ décroît vers $-\infty$ (resp. croît vers $+\infty$).
 
