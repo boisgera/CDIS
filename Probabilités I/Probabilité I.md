@@ -167,8 +167,8 @@ Ces trois propriétés correspondent aux [axiomes de Kolmogorov](#defproba) qui 
 
 On pourra faire l'analogie entre la densité de probabilité et la loi de probabilité sur un univers discret, dans le sens où elle va "pondérer" les valeurs réelles, en remarquant cependant que :
 
- * $f(x)$ n'est pas nécéssairement inférieur à 1,
- 
+ * $f(x)$ n'est pas nécessairement inférieur à 1,
+
  * $\P(\{x\}) = \int_{\{x\}} f(x)dx$ et plus généralement, $\P(A) = 0$ si $A$ est négligeable.
 
 ## Probabilité
