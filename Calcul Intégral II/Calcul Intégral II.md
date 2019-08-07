@@ -1562,7 +1562,7 @@ Intégrabilité locale
 --------------------------------------------------------------------------------
 
 ### Question 0 {.answer #answer-il-0}
-De toute évidence, si $f$ est intégrable sur tout intervalle compact $[a, b]$,
+De toute évidence, si $f$ est intégrable sur tout intervalle compact,
 elle est intégrable sur tous les intervalles de la forme 
 $[x - \varepsilon, x+\varepsilon]$.
 
@@ -1586,12 +1586,55 @@ de la forme $[-k, k]$ où $k \in \N$ par [le résultat de la question 0](#il-0).
 La fonction $f$ étant la limite simple des fonctions $f_k = 1_{[-k, k]} f$, 
 elle est mesurable.
 
-### TODO -- Question 2 {.answer #answer-il-2}
+### Question 2 {.answer #answer-il-2}
+La réciproque est fausse. Par exemple, la fonction $f$ définie par 
+$$
+f(x) = 
+\left|
+\begin{array}{cc}
+1/x^2 & \mbox{si } x \neq 0, \\
+0     & \mbox{si } x = 0
+\end{array}
+\right.
+$$
+est mesurable ; c'est par exemple la limite des fonctions intégrables
+$$
+f_k(x) = 
+\left|
+\begin{array}{cl}
+0 & \mbox{si } |x| \leq 2^{-k}, \\
+1/x^2     & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Mais elle n'est intégrable sur $[-\varepsilon, \varepsilon]$ 
+pour aucun $\varepsilon > 0$. 
+En effet, si elle l'était, on pourrait appliquer 
+[le théorème de convergence dominée](#DCT) aux fonctions
+$0 \leq f_k 1_{[-\varepsilon, \varepsilon]} 
+\leq f 1_{[-\varepsilon, \varepsilon]}$
+et conclure que
+$$
+\int_{-\varepsilon}^{\varepsilon} f(x) \, dx 
+= 
+\lim_{k \to +\infty} \int_{-\varepsilon}^{\varepsilon} f_k(x) \, dx
+$$
+Or, quand $2^{-k} \leq \varepsilon$, on a
+$$
+\begin{split}
+\int_{-\varepsilon}^{\varepsilon} f_k(x) \, dx 
+&= \int_{-\varepsilon}^{-2^{-k}} \frac{dx}{x^2} + \int_{2^{-k}}^{\varepsilon} \frac{dx}{x^2} \\
+&= \left[ -\frac{1}{x} \right]_{-\varepsilon}^{-2^{-k}} + \left[ -\frac{1}{x}\right]_{2^{-k}}^{\varepsilon} \\
+&= (2^k - \varepsilon) + (2^k - \varepsilon) = 2^{k+1} - 2 \varepsilon.
+\end{split}
+$$
+Cette grandeur tendant vers $+\infty$ quand $k \to +\infty$, on aurait une
+contradiction. La fonction $f$ n'est donc pas intégrable.
 
 TODO -- Solution -- Fonction mesurables {.answer #s-fm}
 --------------------------------------------------------------------------------
 
-Compte tenu du [critère de l'image réciproque][Images réciproques des fonctions mesurables],
+Compte tenu du [critère de l'image réciproque](#CIR),
 comme tous les ensembles $\left]a, +\infty\right[$ sont ouverts, 
 le critère de l'énoncé est bien vérifié pour toute fonction mesurable.
 
