@@ -1039,7 +1039,10 @@ un $k$ suffisamment grand, ce qui permet de conclure.
 ### Intégrabilité sur un sous-ensemble {.definition}
 Une fonction $f: \R \to \R$ est dite *intégrable (resp. absolument intégrable) 
 sur un sous-ensemble $E$ de $\R$* si la fonction $f 1_E$ est intégrable
-(resp. absolument intégrable).
+(resp. absolument intégrable). On note alors
+$$
+\int_E f(x) \, dx = \int 1_E(x) f(x) \, dx.
+$$
 
 ### {.remark .post}
 Cette définition est cohérente avec la définition existant déjà dans le cas
