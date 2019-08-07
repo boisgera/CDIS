@@ -197,7 +197,7 @@ Une propriété est vraie $\P$-*presque-sûrement* (en abrégé $\P$-p.s.), si l
  1. $\forall A \in \A, \P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$
  2. $\forall A,B \in \A, A \subset B \Rightarrow \P(A) \leq \P(B)$
  3. $\forall A,B \in \A, \P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$
- 4. Inégalité de Boole, $\forall (A_i)_{1 \leq i \leq n} \in \A \P(\bigcup_{i=1}^n A_i) \leq \sum_{i=1}^n A_i$
+ 4. Inégalité de Boole, $\forall (A_i)_{1 \leq i \leq n} \in \A, \P(\bigcup_{i=1}^n A_i) \leq \sum_{i=1}^n \P(A_i)$
  5. Formule de Poincaré $\forall (A_i)_{1 \leq i \leq n} \in \A$
  $$ \P(\bigcup_{i=1}^n A_i) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P(\cap_{i=1}^n A_i)$$
 
