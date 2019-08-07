@@ -1580,7 +1580,11 @@ pour $k$ assez grand, on a $I_k \subset [x -\varepsilon, x+\varepsilon]$.
 Par restriction, $f$ devrait donc être intégrable sur $I_k$, d'où une
 contradiction ; $f$ est donc intégrable sur $[a, b]$.
 
-### TODO -- Question 1 {.answer #answer-il-1}
+### Question 1 {.answer #answer-il-1}
+Une fonction $f$ localement intégrable est intégrable sur tout intervalle
+de la forme $[-k, k]$ où $k \in \N$ par [le résultat de la question 0](#il-0).
+La fonction $f$ étant la limite simple des fonctions $f_k = 1_{[-k, k]} f$, 
+elle est mesurable.
 
 ### TODO -- Question 2 {.answer #answer-il-2}
 
