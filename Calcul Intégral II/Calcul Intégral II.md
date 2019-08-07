@@ -1216,7 +1216,7 @@ Voir [@Swa01, pp. 135-136].
 Exercices
 ================================================================================
 
-Ensembles de longueur finie {.question #e-lf}
+Ensembles de longueur finie {.question #lf}
 --------------------------------------------------------------------------------
 
 Soit $A$ un ensemble mesurable de $\R$ pour lequel il existe une
@@ -1228,38 +1228,24 @@ $$
 
 Montrer que $A$ est de longueur finie et que $\ell(A) \leq L$.
 
-$\to$ [Solution](#s-lf)
-
-TODO -- Intégrabilité locale
+Intégrabilité locale
 --------------------------------------------------------------------------------
 
-**TODO.** Question ouverte / choix définition vraiment local avec voisinage
-ou local via intervalle; une piste mène vers l'intégrabilité conditionnelle,
-l'autre l'intégrabilité absolue, ce qui n'est pas immédiat !
-
-----
-
 Une fonction $f: \R \to  \R$ est dite *localement intégrable* 
-si tout point $x$ de $\R$, il existe un intervalle compact $[a, b]$ tel
-que $a < x < b$ où la fonction $f$ soit intégrable.
+si tout point $x$ de $\R$, il existe un $\varepsilon > 0$ 
+et un intervalle $[x+\varepsilon, x+\varepsilon]$ 
+où la fonction $f$ soit intégrable.
 
-### Question 0 {.question #e-il-0}
+### Question 0 {.question #il-0}
 Montrer que $f$ est localement intégrable si et seulement si
 pour tout intervalle compact $[a, b]$ de $\R$, $f$ est intégrable
 sur $[a, b]$.
 
-$\to$ [Solution](#s-il-0)
-
-### Question 1  {.question #e-il-1}
+### Question 1  {.question #il-1}
 Montrer que toute fonction localement intégrable est mesurable.
 
-$\to$ [Solution](#s-il-1)
-
-### Question 2  {.question #e-il-2}
+### Question 2  {.question #il-2}
 La réciproque est-elle vraie ?
-
-$\to$ [Solution](#s-il-2)
-
  
 TODO -- Fonctions Mesurables {.question #e-fm}
 --------------------------------------------------------------------------------
@@ -1538,7 +1524,7 @@ $fg$ et $|fg|$ sont donc intégrables.
 Solutions
 ================================================================================
 
-Solution -- Ensembles de longueur finie {.answer #s-lf}
+Ensembles de longueur finie {.answer #answer-lf}
 --------------------------------------------------------------------------------
 
 La suite des fonctions $f_k:\R \to \R$ définie par 
@@ -1572,14 +1558,31 @@ $$
 \leq L.
 $$
 
-TODO -- Solution -- Intégrabilité locale
+Intégrabilité locale
 --------------------------------------------------------------------------------
 
-### TODO -- Question 0 {#s-il-0}
+### Question 0 {.answer #answer-il-0}
+De toute évidence, si $f$ est intégrable sur tout intervalle compact $[a, b]$,
+elle est intégrable sur tous les intervalles de la forme 
+$[x - \varepsilon, x+\varepsilon]$.
 
-### TODO -- Question 1 {#s-il-1}
+Réciproquement, supposons que pour tout $x$ il existe un $\varepsilon > 0$
+tel que $f$ soit intégrable sur $[x - \varepsilon, x + \varepsilon]$.
+Si la fonction $f$ n'est pas intégrable sur $[a, b]$, par additivité c'est
+qu'elle n'est pas intégrable sur $[a, (a+b)/2]$ ou sur $[(a+b)/2, b]$
+(voire sur les deux sous-ensembles). En procédant par récurrence, on
+construit ainsi une suite d'intervalles fermés emboités $[a_k, b_k]$,
+indexés par l'entier $k$, avec $[a_0, b_0] = [a, b]$, 
+de longueur $(b-a)/2^k$ où la fonction $f$ n'est pas intégrable.
+Par compacité de $[a, b]$, 
+il existe un (unique) point $x$ appartenant à tous ces intervalles fermés ;
+pour $k$ assez grand, on a $I_k \subset [x -\varepsilon, x+\varepsilon]$.
+Par restriction, $f$ devrait donc être intégrable sur $I_k$, d'où une
+contradiction ; $f$ est donc intégrable sur $[a, b]$.
 
-### TODO -- Question 2 {#s-il-2}
+### TODO -- Question 1 {.answer #answer-il-1}
+
+### TODO -- Question 2 {.answer #answer-il-2}
 
 TODO -- Solution -- Fonction mesurables {.answer #s-fm}
 --------------------------------------------------------------------------------
