@@ -1075,6 +1075,141 @@ elle est intégrable comme somme de fonctions intégrables.
 La fonction $f$ est donc absolument intégrable.
 
 
+
+Annexe 
+================================================================================
+
+### Maximum de fonctions intégrables et positives {.lemma #max}
+Si les fonctions $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 
+sont intégrables, la fonction $\max(f, g)$ est également intégrable.
+
+### Démonstration {.proof}
+Pour simplifier le problème, on remarque tout d'abord que 
+$$\max(f, g) = f + \max(g - f, 0) = \max(f, g) = f + (g-f)_+$$ 
+où $x _+ = \max(x, 0)$ désigne la partie positive de $x$.
+Par linéarité, la fonction $g-f$ est intégrable et 
+$(g-f)_+ \leq g + f$ ; la fonction $g+f$ est également intégrable.
+Pour démontrer le lemme, il nous suffit donc de prouver que 
+toute fonction intégrable dont la partie positive est dominée
+par une fonction intégrable est de partie positive intégrable.
+
+Soit $f$ une telle fonction et $g$ une fonction intégrable telle que 
+$f_+ \leq g$. Nous allons montrer que
+$$
+\int f_+(t) \, dt 
+= S :=
+\sup_{\mathcal{D}} 
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
+$$
+où le supremum est calculé sur toutes les subdivisions pointées de $\R$.
+Tout d'abord, ce supremum est fini; en effet pour toute subdivision
+$\mathcal{D}$, on a
+$$
+\begin{split}
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
+&\leq
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I g(t) \, dt\right)_{\!\!+} \\
+&=
+\sum_{(t, I) \in \mathcal{D}} \int_I g(t) \, dt \\
+&=
+\int g(t) \, dt.
+\end{split}
+$$
+Soit $\varepsilon > 0$ et $\mathcal{D}_{0}$ une subdivision pointée
+de $\R$ telle que
+$$
+S - \frac{\varepsilon}{2} 
+\leq \sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
+\leq S.
+$$
+Soit $\lambda$ une jauge sur $\R$ assurant une précision $\varepsilon/2$
+dans le calcul de l'intégrale de $f$ pour toutes les sommes de Riemann
+de $f$ associées à une subdivision pointée subordonnée à $\gamma$.
+Soit $\nu$ une jauge sur $\R$ telle que si $(t, [a, b]) \in \mathcal{D}_0$
+et $t \in \left]a,b\right[$ alors $\nu(t) \subset \left]a,b\right[$ ;
+on note $\gamma$ la jauge définie par $\gamma(t) = \lambda(t) \cap \nu(t)$.
+Si $\mathcal{D}$ est subordonnée à $\gamma$, quitte à découper des intervalles
+en deux si $(t, I) \subset \mathcal{D}$ et $t$ appartient à la frontière
+d'un intervalle composant $\mathcal{D}_0$ -- ce qui ne change pas la somme
+de Riemann associée -- les éléments $(t, J) \in \mathcal{D}$ tels que
+$J \subset I$, où $(x, I) \subset \mathcal{D}_0$ forment une subdivision
+pointée de $I$. Par conséquent, comme 
+$$
+\left( \int_I f(t) \, dt\right)_{\!\!+} 
+=
+\left( \sum_{(t, J) \in \mathcal{D}, J \subset I}\int_J f(t) \, dt\right)_{\!\!+} 
+\leq 
+\sum_{(t, J) \in \mathcal{D}, J \subset I} \left(\int_J f(t) \, dt\right)_{\!\!+} 
+$$
+et donc
+$$
+S - \frac{\varepsilon}{2} \leq 
+\sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
+\leq 
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
+\leq S, 
+$$
+on a
+$$
+\left|
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
+- S \right| \leq \frac{\varepsilon}{2}.
+$$
+Par ailleurs, si l'on considère la subdivision (partielle) pointée 
+$\mathcal{D}_+$ extraite de $\mathcal{D}$ composée des paires
+$(t, I) \in \mathcal{D}$ et telles que
+$$
+f(t) \ell(I) \geq \int_I f(x) \, dx,
+$$
+alors le [lemme de Henstock](Calcul Intégral I.pdf/#henstock-lemma) fournit
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+\left( f(t) \ell(I) - \int_I f(x) \, dx \right)_{\!\!+}
+\leq \frac{\varepsilon}{2}.
+$$
+Comme $(x+y)_+ \leq x_+ + y_+$, on en déduit
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+f_+(t) \ell(I) - 
+\sum_{(t, I) \in \mathcal{D}} 
+\left(\int_I f(x) \, dx \right)_{\!\!+}
+\leq \frac{\varepsilon}{2}.
+$$
+De façon similaire, en raisonnant sur la subdivision partielle complémentaire
+à $\mathcal{D}_+$ dans $\mathcal{D}$, on peut montrer que
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+\left(\int_I f(x) \, dx \right)_{\!\!+} - 
+\sum_{(t, I) \in \mathcal{D}} 
+f_+(t) \ell(I)
+\leq \frac{\varepsilon}{2}.
+$$
+On obtient donc au final
+$$
+\left|
+\sum_{(t, I) \in \mathcal{D}} f_+(t) \ell(I) 
+- 
+S
+\right| 
+\leq 
+\frac{\varepsilon}{2};
+$$
+la fonction $f_+$ est donc intégrable, d'intégrale $S$.
+
+
+### Une intégrale indéterminée est dérivable presque partout {.theorem #DII}
+Soit $I$ un intervalle fermé de $\R$, 
+$f: I \to \R$ une fonction intégrable et un point 
+$a$ de $I$.
+La dérivée de la fonction
+$$
+F: x\in I \mapsto \int_a^x f(t) \, dt
+$$
+existe et est égale à $f$ presque partout.
+
+### Démonstration {.proof}
+Voir [@Swa01, pp. 135-136].
+
 Exercices
 ================================================================================
 
@@ -1480,139 +1615,6 @@ Le [critère de l'image réciproque][Images réciproques des fonctions mesurable
 pour la mesurabilité de $f$ est donc bien vérifié.
 
 
-Annexe 
-================================================================================
-
-### Maximum de fonctions intégrables et positives {.lemma #max}
-Si les fonctions $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 
-sont intégrables, la fonction $\max(f, g)$ est également intégrable.
-
-### Démonstration {.proof}
-Pour simplifier le problème, on remarque tout d'abord que 
-$$\max(f, g) = f + \max(g - f, 0) = \max(f, g) = f + (g-f)_+$$ 
-où $x _+ = \max(x, 0)$ désigne la partie positive de $x$.
-Par linéarité, la fonction $g-f$ est intégrable et 
-$(g-f)_+ \leq g + f$ ; la fonction $g+f$ est également intégrable.
-Pour démontrer le lemme, il nous suffit donc de prouver que 
-toute fonction intégrable dont la partie positive est dominée
-par une fonction intégrable est de partie positive intégrable.
-
-Soit $f$ une telle fonction et $g$ une fonction intégrable telle que 
-$f_+ \leq g$. Nous allons montrer que
-$$
-\int f_+(t) \, dt 
-= S :=
-\sup_{\mathcal{D}} 
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-$$
-où le supremum est calculé sur toutes les subdivisions pointées de $\R$.
-Tout d'abord, ce supremum est fini; en effet pour toute subdivision
-$\mathcal{D}$, on a
-$$
-\begin{split}
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-&\leq
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I g(t) \, dt\right)_{\!\!+} \\
-&=
-\sum_{(t, I) \in \mathcal{D}} \int_I g(t) \, dt \\
-&=
-\int g(t) \, dt.
-\end{split}
-$$
-Soit $\varepsilon > 0$ et $\mathcal{D}_{0}$ une subdivision pointée
-de $\R$ telle que
-$$
-S - \frac{\varepsilon}{2} 
-\leq \sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
-\leq S.
-$$
-Soit $\lambda$ une jauge sur $\R$ assurant une précision $\varepsilon/2$
-dans le calcul de l'intégrale de $f$ pour toutes les sommes de Riemann
-de $f$ associées à une subdivision pointée subordonnée à $\gamma$.
-Soit $\nu$ une jauge sur $\R$ telle que si $(t, [a, b]) \in \mathcal{D}_0$
-et $t \in \left]a,b\right[$ alors $\nu(t) \subset \left]a,b\right[$ ;
-on note $\gamma$ la jauge définie par $\gamma(t) = \lambda(t) \cap \nu(t)$.
-Si $\mathcal{D}$ est subordonnée à $\gamma$, quitte à découper des intervalles
-en deux si $(t, I) \subset \mathcal{D}$ et $t$ appartient à la frontière
-d'un intervalle composant $\mathcal{D}_0$ -- ce qui ne change pas la somme
-de Riemann associée -- les éléments $(t, J) \in \mathcal{D}$ tels que
-$J \subset I$, où $(x, I) \subset \mathcal{D}_0$ forment une subdivision
-pointée de $I$. Par conséquent, comme 
-$$
-\left( \int_I f(t) \, dt\right)_{\!\!+} 
-=
-\left( \sum_{(t, J) \in \mathcal{D}, J \subset I}\int_J f(t) \, dt\right)_{\!\!+} 
-\leq 
-\sum_{(t, J) \in \mathcal{D}, J \subset I} \left(\int_J f(t) \, dt\right)_{\!\!+} 
-$$
-et donc
-$$
-S - \frac{\varepsilon}{2} \leq 
-\sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
-\leq 
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-\leq S, 
-$$
-on a
-$$
-\left|
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-- S \right| \leq \frac{\varepsilon}{2}.
-$$
-Par ailleurs, si l'on considère la subdivision (partielle) pointée 
-$\mathcal{D}_+$ extraite de $\mathcal{D}$ composée des paires
-$(t, I) \in \mathcal{D}$ et telles que
-$$
-f(t) \ell(I) \geq \int_I f(x) \, dx,
-$$
-alors le [lemme de Henstock](Calcul Intégral I.pdf/#henstock-lemma) fournit
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-\left( f(t) \ell(I) - \int_I f(x) \, dx \right)_{\!\!+}
-\leq \frac{\varepsilon}{2}.
-$$
-Comme $(x+y)_+ \leq x_+ + y_+$, on en déduit
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-f_+(t) \ell(I) - 
-\sum_{(t, I) \in \mathcal{D}} 
-\left(\int_I f(x) \, dx \right)_{\!\!+}
-\leq \frac{\varepsilon}{2}.
-$$
-De façon similaire, en raisonnant sur la subdivision partielle complémentaire
-à $\mathcal{D}_+$ dans $\mathcal{D}$, on peut montrer que
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-\left(\int_I f(x) \, dx \right)_{\!\!+} - 
-\sum_{(t, I) \in \mathcal{D}} 
-f_+(t) \ell(I)
-\leq \frac{\varepsilon}{2}.
-$$
-On obtient donc au final
-$$
-\left|
-\sum_{(t, I) \in \mathcal{D}} f_+(t) \ell(I) 
-- 
-S
-\right| 
-\leq 
-\frac{\varepsilon}{2};
-$$
-la fonction $f_+$ est donc intégrable, d'intégrale $S$.
-
-
-### Une intégrale indéterminée est dérivable presque partout {.theorem #DII}
-Soit $I$ un intervalle fermé de $\R$, 
-$f: I \to \R$ une fonction intégrable et un point 
-$a$ de $I$.
-La dérivée de la fonction
-$$
-F: x\in I \mapsto \int_a^x f(t) \, dt
-$$
-existe et est égale à $f$ presque partout.
-
-### Démonstration {.proof}
-Voir [@Swa01, pp. 135-136].
 
 Références
 ================================================================================
