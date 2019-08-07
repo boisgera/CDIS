@@ -394,7 +394,7 @@ Il existe bien sûr des fonctions de répartitions qui n'ont pas de densités : 
     $$ \int_\R f(x) dx + \sum_{i\in E}p_i = 1$$
 Alors la fonction 
     $$ F(x) = \int_{-\infty}^x f(x) dx + \sum_{i\in E ; i \leq x} p_i$$
-est une fonction de répartition, et la probabilité associée $\P$ n'admet pas de densité et n'est pas non plus dicrète.
+est une fonction de répartition, et la probabilité associée $\P$ n'admet pas de densité et n'est pas non plus discrète.
 
 ### Remarques {.remark}
 
