@@ -822,6 +822,15 @@ Soit $f:\R \to \R^n$ une fonction mesurable et
 $g:\R^n \to \R^m$ une fonction continue.
 La composée $g \circ f$ de ces deux fonctions est mesurable.
 
+### {.remark .post}
+Dans le cas d'une fonction $g: \R \to \R$, il suffit de supposer que
+$g$ soit continue par morceaux pour pouvoir conclure (cf. exercice
+["Composition de fonctions et mesurabilité"](#cfm)).
+En général, les fonctions $g$ qui assurent que 
+$g \circ f$ soit mesurable pour toutes les fonctions mesurables
+$f$ sont appelées fonction *boréliennes* ; elles seront étudiées plus
+en détail par la suite.
+
 ### Démonstration {.proof}
 Si $F$ est un fermé de $\R^m$.
 Par continuité de $g$, l'ensemble $g^{-1}(F)$ est un fermé de $\R^n$ 
@@ -853,10 +862,6 @@ La valeur absolue d'une fonction scalaire mesurable est mesurable.
 
 Par continuité de l'application valeur absolue
 $|\, \cdot \,|: \R \to \R$.
-
-
-**TODO:** adapter preuve ci-dessous, la preuve amont a été refaite,
-le "patch" pour borner n'est plus nécessaire.
 
 ### Démonstration du critère d'intégrabilité dominée {.proof}
 Le sens direct est évident:
@@ -1279,15 +1284,11 @@ est mesurable.
 En déduire qu'une fonction croissante $f: \R \to \R$ est intégrable 
 sur tout intervalle compact.
 
-Fonctions Boréliennes
+Composition de fonctions et mesurabilité {.question #cfm}
 --------------------------------------------------------------------------------
-
-MMmm splitter, cas fct numériques et variantes "plus faibles" d'un coté
-et fct Boréliennes et mesurabilité de l'autre (avec appli qui revisite
-au passage la composition, en affaiblissant l'hypothèse de continuité).
-Au passage, "jouer" avec les fcts Boréliennes ? Mq elles sont aussi 
-mesurables ? Question: peut-être exhiber un exemple simple de compo
-de fct Lebesgue mesurables qui ne soit pas mesurable?
+Montrer que si la fonction $f:\R \to \R$ est mesurable et que la
+fonction $g: \R \to \R$ est continue par morceaux, 
+alors la fonction composée $g \circ f$ est mesurable.
 
 Composition par une fonction lipschitzienne
 --------------------------------------------------------------------------------
@@ -1551,6 +1552,27 @@ De plus, $f$ étant croissante, pour tout intervalle compact $[a, b]$ et tout
 $x \in [a, b]$, on a $f(a) \leq f(x) \leq f(b)$.
 Par le [critère d'intégrabilité dominée](#CID), $f$ est intégrable sur
 $[a, b]$.
+
+
+Composition de fonctions et mesurabilité {.answer #answer-cfm}
+--------------------------------------------------------------------------------
+
+Soient $a_0 \leq a_1 \leq \dots \leq a_k$ des nombres réels 
+tels que la fonction $g$ soit continue sur
+chaque intervalle ouvert $\left]a_j, a_{j+1} \right[$. Soit $U$ un ouvert
+de $\R$ ; alors pour tout $j \in \{0,\dots,k-1\}$ si $g_j$ désigné la
+restriction de $g$ à $\left]a_j, a_{j+1} \right[$, par continuité de $g_j$, 
+l'image réciproque $V_j = g_j^{-1}(U)$ est ouverte dans $\left]a_j, a_{j+1} \right[$
+et donc dans $\R$. L'image réciproque de $U$ par $g$ est donc la réunion $V$
+de ces ouverts, c'est-à-dire un ouvert, 
+et éventuellement d'un sous-ensemble $F$ (nécessairement fini, donc fermé) 
+de $\{a_0, \dots, a_k\}$.
+
+L'image réciproque de $U$ par $g\circ f$ est donc l'image réciproque de 
+$V \cap F$ par $f$. La fonction $f$ étant mesurables, $f^{-1}(V)$ et
+$f^{-1}(F)$ sont mesurables, 
+ainsi que $f^{-1}(V \cap F) = f^{-1}(V) \cap f^{-1}(F)$.
+La fonction composée $g \circ f$ est donc mesurable.
 
 
 Formule de la moyenne
