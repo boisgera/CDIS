@@ -1290,7 +1290,7 @@ Montrer que si la fonction $f:\R \to \R$ est mesurable et que la
 fonction $g: \R \to \R$ est continue par morceaux, 
 alors la fonction composée $g \circ f$ est mesurable.
 
-Composition par une fonction lipschitzienne
+Composition par une fonction lipschitzienne 
 --------------------------------------------------------------------------------
 
 Soit $f:[0,1] \to \R$ et $g:\R \to \R$.
@@ -1299,12 +1299,15 @@ c'est-à-dire qu'il existe un $K\geq0$ tel que pour toute paire de réels
 $x$ et $y$  on ait
 $|g(x) - g(y)| \leq K |x - y|$.
 
- 1. Si $f$ est mesurable est-ce que $g \circ f$ est mesurable ?
+### Question 1 {.question #cfl-1}
+Si $f$ est mesurable est-ce que $g \circ f$ est mesurable ?
 
- 2. Si $f$ est intégrable, est-ce que $g \circ f$ est intégrable ?
+### Question 2 {.question #cfl-2}
+Si $f$ est intégrable, est-ce que $g \circ f$ est intégrable ?
 
- 3. Si $f$ est absolument intégrable, est-ce que $g \circ f$ est 
-    absolument intégrable ?
+### Question 3 {.question #cfl-3}
+Si $f$ est absolument intégrable, est-ce que $g \circ f$ est 
+  absolument intégrable ?
 
 ### Réponses
 
@@ -1573,6 +1576,35 @@ $V \cap F$ par $f$. La fonction $f$ étant mesurables, $f^{-1}(V)$ et
 $f^{-1}(F)$ sont mesurables, 
 ainsi que $f^{-1}(V \cap F) = f^{-1}(V) \cap f^{-1}(F)$.
 La fonction composée $g \circ f$ est donc mesurable.
+
+
+Composition par une fonction lipschitzienne 
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-cfl-1}
+Oui, car toute fonction lipschitzienne est continue; $g \circ f$
+est donc mesurable comme composée d'une fonction mesurable et d'une
+fonction continue.
+
+### Question 2 {.answer #answer-cfl-2}
+Pas nécessairement; si $f$ est une fonction conditionnellement
+intégrable sur $[0,1]$, la fonction $|f|$ n'est pas intégrable; Or, 
+l'application $t \mapsto |t|$ est lipschitzienne (avec $K=1$).
+
+### Question 3 {.answer #answer-cfl-3}
+Oui. D'une part, $f$ étant absolument intégrable, elle est mesurable et
+donc par la question 1., la composée $g \circ f$ est mesurable.
+D'autre part, pour tout $x \in [0,1]$, on a
+$$
+|g \circ f(x) - g \circ f(0)| \leq K |f(x) - f(0)|
+$$
+et donc
+$$
+|g \circ f(x)| \leq K |f(x)| + (K |f(0)| + |g \circ f(0)|)
+$$
+Le membre de droite de cette inégalité est une fonction (absolument)
+intégrable sur $[0, 1]$, donc par le critère d'intégrabilité dominée,
+la fonction $g \circ f$ est (absolument) intégrable.
 
 
 Formule de la moyenne
