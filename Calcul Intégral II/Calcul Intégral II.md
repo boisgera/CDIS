@@ -1309,31 +1309,6 @@ Si $f$ est intégrable, est-ce que $g \circ f$ est intégrable ?
 Si $f$ est absolument intégrable, est-ce que $g \circ f$ est 
   absolument intégrable ?
 
-### Réponses
-
- 1. Oui, car toute fonction lipschitzienne est continue; $g \circ f$
-    est donc mesurable comme composée d'une fonction mesurable et d'une
-    fonction continue.
-
- 2. Pas nécessairement; si $f$ est une fonction conditionnellement
-    intégrable sur $[0,1]$, la fonction $|f|$ n'est pas intégrable; Or, 
-    l'application $t \mapsto |t|$ est lipschitzienne (avec $K=1$).
-
- 3. Oui. D'une part, $f$ étant absolument intégrable, elle est mesurable et
-    donc par la question 1., la composée $g \circ f$ est mesurable.
-    D'autre part, pour tout $x \in [0,1]$, on a
-    $$
-    |g \circ f(x) - g \circ f(0)| \leq K |f(x) - f(0)|
-    $$
-    et donc
-    $$
-    |g \circ f(x)| \leq K |f(x)| + (K |f(0)| + |g \circ f(0)|)
-    $$
-    Le membre de droite de cette inégalité est une fonction (absolument)
-    intégrable sur $[0, 1]$, donc par le critère d'intégrabilité dominée,
-    la fonction $g \circ f$ est (absolument) intégrable.
-
-
 Formule de la moyenne 
 --------------------------------------------------------------------------------
 
