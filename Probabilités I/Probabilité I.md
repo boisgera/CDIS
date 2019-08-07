@@ -169,7 +169,7 @@ On pourra faire l'analogie entre la densité de probabilité et la loi de probab
 
  * $f(x)$ n'est pas nécessairement inférieur à 1,
 
- * $\P(\{x\}) = \int_{\{x\}} f(x)dx$ et plus généralement, $\P(A) = 0$ si $A$ est négligeable.
+ * $\P(\{x\}) = \int_{\{x\}} f(x)dx = 0$ et plus généralement, $\P(A) = 0$ si $A$ est négligeable.
 
 ## Probabilité
 
