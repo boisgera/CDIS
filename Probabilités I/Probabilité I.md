@@ -147,7 +147,7 @@ $$ \P(A) = \int_\Omega 1_{A}f(x)dx = \int_A f(x)dx $$
 
 On vérifie aisément que $\P$ vérifie les 3 propriétés suivantes :
 
- 1. $\forall A \in \A$, $P(A) \in [0,1]$
+ 1. $\forall A \in \A$, $\P(A) \in [0,1]$
 
  2. $\P(\Omega) = \int_\Omega f(x) dx = 1$
 
