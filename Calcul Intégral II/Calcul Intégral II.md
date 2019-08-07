@@ -1330,11 +1330,8 @@ $|g(x) - g(y)| \leq K |x - y|$.
     la fonction $g \circ f$ est (absolument) intégrable.
 
 
-Théorème Intégral de Cauchy
+Formule de la moyenne 
 --------------------------------------------------------------------------------
-
-(en fait version "light", centrée, version "formule de la moyenne". 
-Considérer le cas général ? Ou se contenter de celui-ci ?)
 
 Soit $f: U \subset \R^2 \to \R^2$ une fonction définie sur un
 ensemble $U$ ouvert et supposée continûment différentiable. 
@@ -1349,163 +1346,22 @@ I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
 z_{\alpha, r} = c + r (\cos \alpha, \sin \alpha).
 $$
 
- 1. Que vaut $I(0)$ ?
+### Question 1 {.question #fmoy-1}
+Que vaut $I(0)$ ?
 
- 2. Montrer que l'application $r \in [0, R] \mapsto I(r)$ est dérivable et
-    calculer $I'(r)$ pour tout $r \in [0, R]$.
+### Question 2 {.question #fmoy-2}
+Montrer que l'application $r \in [0, R] \mapsto I(r)$ est dérivable et
+calculer $I'(r)$ pour tout $r \in [0, R]$.
 
- 3. On suppose désormais que $f$ vérifie les conditions de Cauchy-Riemann
-    en tout point $(x, y)$ de $U$, c'est-à-dire que
+### Question 3 {.question #fmoy-3}
+On suppose désormais que $f$ vérifie les conditions de Cauchy-Riemann
+en tout point $(x, y)$ de $U$, c'est-à-dire que
     $$
     \partial_y f(x, y) = R(\pi/2) \cdot \partial_x f(x, y)
     $$
     où $R(\alpha)$ désigne la rotation d'angle $\alpha$ centrée sur l'origine.
     Simplifier l'expression de $I'(r)$ et conclure.
     Indication: on pourra évaluer $\partial_{\alpha} (f(z_{\alpha, r}))$.
-
-### Réponses
-
- 1. On a 
-    $$
-    I(0) = \frac{1}{2\pi}\int_0^{2\pi} f(c_1, c_2) \, d\alpha = f(c_1, c_2) = f(c).
-    $$
-
- 2. Formons le taux d'accroissement de $I$ en $r$, pour une variation de
-    l'argument $h$ telle que $r + h \in [0, R]$. On a
-    $$
-    \begin{split}
-    \frac{I(r+h) - I(r)}{h}
-    &=
-    \frac{1}{2\pi h}
-    \left(
-    \int_0^{2\pi} f(c_1 + (r+h) \cos \alpha, c_2 + (r+h) \sin \alpha) \, d\alpha\right. \\
-    &\phantom{=} \left. - \int_0^{2\pi} f(c_1 + r \cos \alpha, c_2 + r \sin \alpha) \, d\alpha \right) \\
-    &= \frac{1}{2\pi}\int_0^{2\pi} 
-    \frac{f(z_{r+h, \alpha}) - f(z_{\alpha, r})}{h} \, d\alpha.
-    \end{split}
-    $$
-    La fonction $r \mapsto f(z_{\alpha, r})$ étant différentiable 
-    pour tout $\alpha$, on a 
-    $$
-    \begin{split}
-    \lim_{h \to 0} \frac{f(z_{r+h, \alpha}) - f(z_{\alpha, r})}{h}
-    &= \frac{d}{dr} f(z_{\alpha, r}) \\ 
-    &= df(z_{r, \alpha}) \cdot (\cos \alpha, \sin \alpha) \\
-    &= \partial_x f (z_{r, \alpha}) \cos \alpha 
-    + \partial_y f (z_{r, \alpha}) \sin \alpha.
-    \end{split}.
-    $$
-    De plus, par le théorème des accroissements finis,
-    $$
-    \left\| \frac{g_{\alpha}(r+h) - g_{\alpha}(r)}{h} \right\|
-    \leq
-    \sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|
-    $$
-    où le sup du membre de droite est bien fini puisque 
-    $dg_{\alpha}(r)/dr$
-    est une fonction continue du couple $(\alpha, r)$ qui appartient 
-    à l'ensemble $[0, 2\pi] \times [0, R]$.
-    Par conséquent, 
-    pour toute suite $h_n$ tendant vers $0$ et 
-    telle que $r+h_n \in [0, R]$, la suite des
-    $$
-    \frac{g_{\alpha}(r+h_n) - g_{\alpha}(r)}{h_n}
-    $$
-    associée converge simplement vers 
-    $$
-    \partial_x f (z_{r, \alpha}) \cos \alpha 
-    + \partial_y f (z_{r, \alpha}) \sin \alpha
-    $$
-    et est dominée en norme par la fonction absolument intégrable
-    (constante)
-    $$
-    \alpha \in [0, 2\pi] \mapsto \sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|.
-    $$
-    Par conséquent, par le théorème de convergence dominée,
-    la dérivée de $I$ est définie en tout point $r$ et est donnée par
-    $$
-    I'(r)
-    = \frac{1}{2\pi}\int_{0}^{2\pi} 
-      \left(
-      \partial_x f (z_{r, \alpha}) \cos \alpha 
-      + \partial_y f (z_{r, \alpha}) \sin \alpha
-      \right) \, d\alpha.
-    $$
-    
- 3. Evaluons la dérivée par rapport à $\alpha$ de $f(z_{\alpha, r})$. On a
-    $$
-    \begin{split}
-    \partial_{\alpha} (f(z_{\alpha, r}))
-    &=
-    \partial_{\alpha} (f(c_1 + r \cos \alpha, c_2 + r \sin \alpha)) \\
-    &= \partial_x f(z_{\alpha, r}) (- r\sin \alpha)
-    + \partial_y f(z_{\alpha, r}) (r\cos \alpha).
-    \end{split}
-    $$
-    Comme $\partial_y f(z_{\alpha, r}) = R(\pi/2) \partial_x f(z_{\alpha, r})$,
-    on en déduit que
-    $$
-    \begin{split}
-    \partial_{\alpha} (f(z_{\alpha, r}))
-    &= r(- \sin \alpha \times I + \cos \alpha  \times R(\pi/2)) \partial_x f(z_{\alpha, r}) \\
-    & = r R(\pi/2 + \alpha) \partial_x f(z_{\alpha, r}) \\
-    & = r R(\pi/2) R(\alpha) \partial_x f(z_{\alpha, r})
-    \end{split}
-    $$
-    D'un autre coté, l'intégrande dans l'expression de $I'(r)$
-    s'écrit
-    $$
-    \begin{split}
-    \partial_x f (z_{r, \alpha}) \cos \alpha 
-    + 
-    \partial_y f (z_{r, \alpha}) \sin \alpha
-    &= 
-    (\cos \alpha \times I + \sin \alpha \times R(\pi/2)) \partial_x f(z_{r, \alpha}) \\
-    &=
-    R(\alpha) \partial_x f(z_{r, \alpha}).
-    \end{split}
-    $$
-    Par conséquent lorsque $r$ est non nul
-    $$
-    \partial_x f (z_{r, \alpha}) \cos \alpha 
-    + 
-    \partial_y f (z_{r, \alpha}) \sin \alpha
-    = \frac{1}{r} R(-\pi/2) \partial_{\alpha} (f(z_{\alpha, r}))
-    $$
-    et donc
-    $$
-    \begin{split}
-    I'(r)
-    &= \frac{1}{2\pi}\int_{0}^{2\pi} 
-      \left(
-      \partial_x f (z_{r, \alpha}) \cos \alpha 
-      + \partial_y f (z_{r, \alpha}) \sin \alpha
-      \right) \, d\alpha \\
-      &= \frac{1}{2\pi r} 
-      \left(
-      \int_0^{2\pi}
-      R(-\pi/2)
-      \partial_{\alpha} (f(z_{\alpha, r}))
-      \, d\alpha \right) \\
-    &= \frac{1}{2\pi r} 
-       R(-\pi/2)
-      \left(
-      \int_0^{2\pi} \partial_{\alpha} (f(z_{\alpha, r}))
-      \, d\alpha \right)  \\
-    & = \frac{1}{2\pi r} 
-       R(-\pi/2)
-       \left[f(z_{\alpha, r})\right]_0^{2\pi} \\
-    & = 0
-      \end{split}.
-    $$
-    Par ailleurs, un calcul direct montre que $I'(0) = 0$.
-    La dérivée de $I$ est identiquement nulle. On en conclut
-    que pour tout $r$,
-    $$
-    I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
-    = I(0) = f(c).
-    $$
-
 
 Mesurabilité de $\|f\|$
 --------------------------------------------------------------------------------
@@ -1695,6 +1551,154 @@ De plus, $f$ étant croissante, pour tout intervalle compact $[a, b]$ et tout
 $x \in [a, b]$, on a $f(a) \leq f(x) \leq f(b)$.
 Par le [critère d'intégrabilité dominée](#CID), $f$ est intégrable sur
 $[a, b]$.
+
+
+Formule de la moyenne
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-fmoy-1}
+On a 
+$$
+I(0) = \frac{1}{2\pi}\int_0^{2\pi} f(c_1, c_2) \, d\alpha = f(c_1, c_2) = f(c).
+$$
+
+### Question 2 {.answer #answer-fmoy-2}
+Formons le taux d'accroissement de $I$ en $r$, pour une variation de
+l'argument $h$ telle que $r + h \in [0, R]$. On a
+$$
+\begin{split}
+\frac{I(r+h) - I(r)}{h}
+&=
+\frac{1}{2\pi h}
+\left(
+\int_0^{2\pi} f(c_1 + (r+h) \cos \alpha, c_2 + (r+h) \sin \alpha) \, d\alpha\right. \\
+&\phantom{=} \left. - \int_0^{2\pi} f(c_1 + r \cos \alpha, c_2 + r \sin \alpha) \, d\alpha \right) \\
+&= \frac{1}{2\pi}\int_0^{2\pi} 
+\frac{f(z_{r+h, \alpha}) - f(z_{\alpha, r})}{h} \, d\alpha.
+\end{split}
+$$
+La fonction $g_{\alpha}: r \mapsto f(z_{\alpha, r})$ étant différentiable 
+pour tout $\alpha$, on a 
+$$
+\begin{split}
+\lim_{h \to 0} \frac{f(z_{r+h, \alpha}) - f(z_{\alpha, r})}{h}
+&= \frac{d}{dr} f(z_{\alpha, r}) \\ 
+&= df(z_{r, \alpha}) \cdot (\cos \alpha, \sin \alpha) \\
+&= \partial_x f (z_{r, \alpha}) \cos \alpha 
++ \partial_y f (z_{r, \alpha}) \sin \alpha.
+\end{split}.
+$$
+De plus, par le théorème des accroissements finis,
+$$
+\left\| \frac{g_{\alpha}(r+h) - g_{\alpha}(r)}{h} \right\|
+\leq
+\sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|
+$$
+où le sup du membre de droite est bien fini puisque 
+$dg_{\alpha}(r)/dr$
+est une fonction continue du couple $(\alpha, r)$ qui appartient 
+à l'ensemble compact $[0, 2\pi] \times [0, R]$.
+Par conséquent, 
+pour toute suite $h_k$ tendant vers $0$ et 
+telle que $r+h_k \in [0, R]$, la suite des
+$$
+\frac{g_{\alpha}(r+h_k) - g_{\alpha}(r)}{h_k}
+$$
+associée converge simplement vers 
+$$
+\partial_x f (z_{r, \alpha}) \cos \alpha 
++ \partial_y f (z_{r, \alpha}) \sin \alpha
+$$
+et chacune des composantes de ce vecteur de $\R^2$ 
+est bornée par la fonction absolument intégrable (constante)
+$$
+\alpha \in [0, 2\pi] \mapsto \sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|.
+$$
+Par conséquent, par le théorème de convergence dominée,
+la dérivée de $I$ est définie en tout point $r$ et est donnée par
+$$
+I'(r)
+= \frac{1}{2\pi}\int_{0}^{2\pi} 
+  \left(
+  \partial_x f (z_{r, \alpha}) \cos \alpha 
+  + \partial_y f (z_{r, \alpha}) \sin \alpha
+  \right) \, d\alpha.
+$$
+
+### Question 3 {.answer #answer-fmoy-3}
+Evaluons la dérivée par rapport à $\alpha$ de $f(z_{\alpha, r})$. On a
+$$
+\begin{split}
+\partial_{\alpha} (f(z_{\alpha, r}))
+&=
+\partial_{\alpha} (f(c_1 + r \cos \alpha, c_2 + r \sin \alpha)) \\
+&= \partial_x f(z_{\alpha, r}) (- r\sin \alpha)
++ \partial_y f(z_{\alpha, r}) (r\cos \alpha).
+\end{split}
+$$
+Comme $\partial_y f(z_{\alpha, r}) = R(\pi/2) \partial_x f(z_{\alpha, r})$,
+on en déduit que
+$$
+\begin{split}
+\partial_{\alpha} (f(z_{\alpha, r}))
+&= r(- \sin \alpha \times I + \cos \alpha  \times R(\pi/2)) \cdot \partial_x f(z_{\alpha, r}) \\
+& = r R(\pi/2 + \alpha) \cdot \partial_x f(z_{\alpha, r}) \\
+& = r R(\pi/2) R(\alpha) \cdot \partial_x f(z_{\alpha, r})
+\end{split}
+$$
+D'un autre coté, l'intégrande dans l'expression de $I'(r)$
+s'écrit
+$$
+\begin{split}
+\partial_x f (z_{r, \alpha}) \cos \alpha 
++ 
+\partial_y f (z_{r, \alpha}) \sin \alpha
+&= 
+(\cos \alpha \times I + \sin \alpha \times R(\pi/2)) \cdot \partial_x f(z_{r, \alpha}) \\
+&=
+R(\alpha) \cdot \partial_x f(z_{r, \alpha}).
+\end{split}
+$$
+Par conséquent lorsque $r$ est non nul
+$$
+\partial_x f (z_{r, \alpha}) \cos \alpha 
++ 
+\partial_y f (z_{r, \alpha}) \sin \alpha
+= \frac{1}{r} R(-\pi/2) \cdot \partial_{\alpha} (f(z_{\alpha, r}))
+$$
+et donc
+$$
+\begin{split}
+I'(r)
+&= \frac{1}{2\pi}\int_{0}^{2\pi} 
+  \left(
+  \partial_x f (z_{r, \alpha}) \cos \alpha 
+  + \partial_y f (z_{r, \alpha}) \sin \alpha
+  \right) \, d\alpha \\
+  &= \frac{1}{2\pi r} 
+  \left(
+  \int_0^{2\pi}
+  R(-\pi/2) \cdot
+  \partial_{\alpha} (f(z_{\alpha, r}))
+  \, d\alpha \right) \\
+&= \frac{1}{2\pi r} 
+    R(-\pi/2) \cdot
+  \left(
+  \int_0^{2\pi} \partial_{\alpha} (f(z_{\alpha, r}))
+  \, d\alpha \right)  \\
+& = \frac{1}{2\pi r} 
+    R(-\pi/2) \cdot 
+    \left[f(z_{\alpha, r})\right]_0^{2\pi} \\
+& = 0
+  \end{split}.
+$$
+Par ailleurs, un calcul direct montre que $I'(0) = 0$.
+La dérivée de $I$ est donc identiquement nulle ; on en conclut
+que pour tout $r$,
+$$
+I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
+= I(0) = f(c).
+$$
 
 
 
