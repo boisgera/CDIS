@@ -102,7 +102,7 @@ Soit $\Lambda_{n,\epsilon} = \{|X_n - X| > \epsilon \}$.
 La convergence en probabilité n’entraîne pas la convergence en moyenne, comme nous l’avons vu dans l’exemple ci-dessus, ne serait-ce que parce qu'elle n'implique pas l'appartenance de $X_n$ et $X$ à $\L^1$. Si les $X_n$ ne sont “pas trop grands”, il y a cependant équivalence entre les deux modes de convergence. En voici un exemple :
 
 ### Proposition {.proposition #propconv2}
-S'il existe une constante $a$ telle que $|X_n| \leq a$ presque sûrement, il y a équivalence entre $X_n \xrightarrow[\P ]{} X$ et $X_n \xrightarrow[\L^1 ]{} X$.
+S'il existe une constante $a$ telle que $|X_n| \leq a$ presque sûrement, il y a équivalence entre $X_n \xrightarrow{\P} X$ et $X_n \xrightarrow{\L^1} X$.
 
 ### Démonstration {.proof}
 Etant donnée la [proposition précédente](#propconv1), dont on reprend les notations, il suffit de montrer que la convergence en probabilité implique la convergence en moyenne lorsque $|X_n| \leq a$.
@@ -135,7 +135,7 @@ Soient $\Omega = \R$ muni de sa tribu borélienne et $\P$ la probabilité unifor
 Ainsi, $\Esp(X_n) = \frac{1}{n}$, et la suite $X_n$ tend vers $X = 0$ en moyenne, et donc en probabilité. Supposons que les $A_n$ soient placés bout-à-bout, en recommençant en 0 chaque fois qu’on arrive au point 1. Il est clair que l’on parcourt indéfiniment l’intervalle [0, 1] (car la série de terme général 1/n diverge). Ainsi la suite numérique $X_n (\omega)$ ne converge pour aucun $\omega$, et on n’a pas $X_n \to X$ presque-sûrement ; cependant comme
 la série $\sum_n 1/n^2$ converge, il s’en suit que $X_{n^2} \to X = 0$ presque-sûrement. Nous avons donc la convergence presque-sûre de la sous-suite $(X_{n^2})_{n\in \N^\star}$.
 
-### Proposition {.proposition}
+### Proposition {.proposition #propconv4}
 Soit $f$ une fonction continue de $\R^d$ dans $\R$.
 
  1. Si $X_n \to X$ presque-sûrement, alors $f(X_n) \to f(X)$ presque-sûrement.
@@ -163,10 +163,10 @@ même pour tout $n$). Il s’agit là d’un des résultats essentiels de toute 
 Nous allons démontrer dans un premier temps la loi des grands nombres pour des variables aléatoires de carré intégrable.
 
 ### Théorème {.theorem}
-Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et de carré intégrable, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
+Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini. Elle converge donc aussi en probabilité. On a même convergence en *moyenne quadratique*, à savoir que :
-$$ \Esp((M_n - m)^2) \xrightarrow{n \to \infty} 0.$$
+$$ \Esp((M_n - m)^2) \xrightarrow[n \to \infty]{} 0.$$
 
 Le résultat sur la convergence en probabilité est appelé *loi faible des grands nombres*. Sa preuve est presque immédiate. Elle résulte de l’inégalité de Bienaymé-Chebyshev (exercice). Le résultat est peu informatif et permet d’obtenir certains contrôles d’erreurs. Le résultat prouvant la convergence presque-sûre est appelé *loi forte des grands nombres*. Sa preuve est plus délicate et utilise le lemme de Borel-Cantelli.
 
@@ -189,7 +189,7 @@ $$\P(|M_n^2|\geq \frac{1}{q}) \leq \frac{\sigma^2 q^2}{n^2}$$
 Donc si $A_{n,q} = \{|M_n^2|\geq \frac{1}{q}\}$, nous obtenons que $\sum_{n\geq 1} \P(A_{n,q}) < \infty$. Posons ensuite $B_{n,q} = \cup_{m\geq n} A_{m,q}$ et $C_q = \cap_{n \geq 1} B_{n,q} = \lim\sup_n A_{n,q}$. En appliquant le lemme de Borel-Cantelli, on obtient que $\P(C_q) = 0$. En conséquence, si on pose $N = \cup_{q \in \N^\star} C_q$, on obtient $\P(N) \leq \sum_{q\in\N^\star} = 0$.
 
 Si $\omega \notin N$, alors $\omega \in \cap_{q \in \N^\star} (C_q)^c$. Ainsi, $\omega \notin C_q$ pour tout $q \geq 1$, et donc $\omega \notin B_{n,q}$ pour $n$ assez grand (car $B_{n,q}$ est décroissant en $n$). Cela siginfie que pour tout $\omega \notin N$, pour tout $q \geq 1$, il existe un $n$ assez grand tel que $M_{k^2} \leq \frac{1}{q}$ dès que $k \geq n$. Autrement dit, $M_{n^2} \to 0$ si $\omega \notin N$, avec $\P(N) = 0$, d'où
-$$ M_{n^2} \xrightarrow{n \to \infty} 0 \text{ p.s.}$$
+$$ M_{n^2} \xrightarrow[n \to \infty]{} 0 \text{ p.s.}$$
 
 Montrons maintenant que la suite $(M_n)_{n\in\N^\star}$ tend presque-sûrement vers 0.
 
@@ -211,14 +211,14 @@ Par ailleurs, on a déjà montré que $M_{p(n)^2} \to 0$ p.s. et $\frac{p(n)^2}{
 Plus généralement, on a le résultat suivant (se référer par exemple à @Jacod pour la démonstration)
 
 ### Théorème {.theorem}
-Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et intégrables, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
+Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et **intégrables**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
 
 ### Exemple **TODO cf garnier** {.example}
 
 # Convergence en loi --- fonction caractéristique --- théorème central limite
-La convergence en loi définie dans ce paragraphe va concerner les lois des variables aléatoires. Elle signifiera que les lois sont asymptotiquement “proches”, sans que les variables aléatoires elles-mêmes le soient nécessairement. 
+Nous allons introduire maintenant une nouvelle notion de convergence de suites de variables aléatoires. La convergence en loi définie dans ce paragraphe va concerner les lois des variables aléatoires. Elle signifiera que les lois sont asymptotiquement “proches”, sans que les variables aléatoires elles-mêmes le soient nécessairement. 
 
 On considère des vecteurs aléatoires $X_n$ et $X$, tous à valeurs dans le même espace $\R^d$, mais pouvant éventuellement être définis sur des espaces de probabilité différents.
 
@@ -242,8 +242,12 @@ Soit $(X_n)_{n \in \N^\star}$ et $X$ des variables aléatoires de lois respectiv
 \end{align*}
 où l'on a utilisée le théorème de convergence dominée.
 
+La convergence en loi est plus faible que la convergence en probabilité et donc aussi que les convergences presque-sûre et en moyenne.
 
-# Théorèmes limites
+### Proposition {.proposition}
+Si $X_n \xrightarrow{\P} X$, alors $X_n\xrightarrow{\L} X$.
 
- * Loi des grands nombre - faible, forte
- * TCL (fonction caractéristique)
+### Démonstration {.proof}
+Soit $f$ une fonction continue bornée. D'après la [proposition](#propconv4), on a $f(X_n) \xrightarrow{\P} f(X)$ et donc $f(X_n)$ converge aussi en moyenne vers $f(X)$ par la [proposition](#propconv2). Comme $|\Esp(Y)|\leq \Esp(|Y|)$ pour toute variable aléatoire réelle $Y$, on en déduit $\Esp(f(X_n)) \to \Esp(f(X))$.
+
+
