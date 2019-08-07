@@ -1532,7 +1532,7 @@ $$
 Par le critère d'intégrabilité dominée, 
 $fg$ et $|fg|$ sont donc intégrables.
 
-Solution aux exercices
+Solutions
 ================================================================================
 
 Solution -- Ensembles de longueur finie {.answer #s-lf}
