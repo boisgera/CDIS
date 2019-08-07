@@ -312,6 +312,10 @@ conclure que l'ensemble est de longueur finie?
 Structure de $\delta$-ring pour les ensembles intégrables ?
 -->
 
+### {.definition .post}
+Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
+$\mathbb{N}$.
+
 ### Propriétés élementaires {.theorem #pptés-tribu}
 
  1. L'ensemble vide est mesurable.
@@ -320,10 +324,6 @@ Structure de $\delta$-ring pour les ensembles intégrables ?
 
  3. L'union d'une collection dénombrable d'ensembles mesurables
     est mesurable.
-
-### {.definition .post}
-Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
-$\mathbb{N}$.
 
 ### Démonstration {.proof}
 
@@ -393,11 +393,28 @@ est appelée *tribu* (ou *$\sigma$-algèbre*).
 Les ensembles mesurables dans $\R$ forment donc une tribu.
 -->
 
-### TODO
 
-corollaires immédiats: difference mesurable, ensemble fermés
-mesurables, etc. Largement en exercice ? Quel est le minimum vital ?
-Complément relatif, intersection dénombrables, etc. ?
+### Intersection d'ensemble mesurables {.proposition #IEM}
+L'intersection d'une collection dénombrable d'ensemble mesurables et mesurable.
+
+### Démonstration {.proof}
+Il suffit de noter que 
+$$
+\cap_k A_k = \R \setminus (\cup_k \R \setminus A_k)
+$$
+et d'exploiter [les propriétés élémentaires des ensembles mesurables](#pptés-tribu)
+
+### Complément relatif {.proposition #CR}
+Si les ensembles $A$ et $B$ sont mesurables, le complément de $A$ dans $B$
+est mesurable.
+
+### Démonstration {.proof}
+Par définition, $B \setminus A = B \cap (\R \setminus A)$ ; 
+le complément de $A$ dans $B$ est donc mesurable comme intersection
+d'ensembles mesurables.
+
+
+
 
 ### Topologie et ensembles mesurables {.theorem #OSM}
 Tout ensemble fermé (ou ouvert) est mesurable.
@@ -1247,22 +1264,20 @@ Montrer que toute fonction localement intégrable est mesurable.
 ### Question 2  {.question #il-2}
 La réciproque est-elle vraie ?
  
-TODO -- Fonctions Mesurables {.question #e-fm}
+Fonctions Mesurables 
 --------------------------------------------------------------------------------
 
-**TODO.** Adapter choix variante au contexte proba (qui est $f(x) \leq a$ ?).
-
-**TODO.** En déduire mesurabilité et intégrabilité locale des fcts croissantes.
-
+### Question 1 {.question #fm-1}
 Montrer qu'une fonction $f: \R \to \R$ est mesurable si et
 seulement si pour tout nombre réel $a$, l'ensemble
 $$
-f^{-1}(\left]a, +\infty\right[) = \{x \in \R \, | \, a < f(x)\}
+f^{-1}(\left]-\infty, a\right]) = \{x \in \R \, | \, f(x) \leq a\}
 $$
 est mesurable.
 
-$\to$ [Solution](#s-fm)
-
+### Question 2 {.question #fm-2}
+En déduire qu'une fonction croissante $f: \R \to \R$ est intégrable 
+sur tout intervalle compact.
 
 Fonctions Boréliennes
 --------------------------------------------------------------------------------
@@ -1602,8 +1617,8 @@ $$
 f_k(x) = 
 \left|
 \begin{array}{cl}
-0 & \mbox{si } |x| \leq 2^{-k}, \\
-1/x^2     & \mbox{sinon.}
+1/x^2     & \mbox{si } |x| \geq 2^{-k}, \\
+0 & \mbox{si } |x| < 2^{-k}, \\
 \end{array}
 \right.
 $$
@@ -1625,17 +1640,19 @@ $$
 \int_{-\varepsilon}^{\varepsilon} f_k(x) \, dx 
 &= \int_{-\varepsilon}^{-2^{-k}} \frac{dx}{x^2} + \int_{2^{-k}}^{\varepsilon} \frac{dx}{x^2} \\
 &= \left[ -\frac{1}{x} \right]_{-\varepsilon}^{-2^{-k}} + \left[ -\frac{1}{x}\right]_{2^{-k}}^{\varepsilon} \\
-&= (2^k - \varepsilon) + (2^k - \varepsilon) = 2^{k+1} - 2 \varepsilon.
+&= (2^k - 1/\varepsilon) + (2^k - 1/\varepsilon) = 2^{k+1} - 2/\varepsilon.
 \end{split}
 $$
 Cette grandeur tendant vers $+\infty$ quand $k \to +\infty$, on aurait une
 contradiction. La fonction $f$ n'est donc pas intégrable.
 
-TODO -- Solution -- Fonction mesurables {.answer #s-fm}
+Fonction mesurables
 --------------------------------------------------------------------------------
 
+### Question 1 {.answer #answer-fm-1}
+
 Compte tenu du [critère de l'image réciproque](#CIR),
-comme tous les ensembles $\left]a, +\infty\right[$ sont ouverts, 
+comme tous les ensembles $\left]-\infty, a\right]$ sont fermés, 
 le critère de l'énoncé est bien vérifié pour toute fonction mesurable.
 
 Montrons désormais la réciproque. Supposons le critère de l'énoncé vérifié et 
@@ -1652,20 +1669,33 @@ que $f^{-1}(U)$ est mesurable, comme union dénombrable d'ensembles
 mesurables.
 
 Or, un point $x$ vérifie $a < f(x) < b$ si et seulement
-il vérifie $a < f(x)$ et ne vérifie pas $b-2^{-k} < f(x)$ pour au moins 
-un entier $k$, ce qui se traduit par la relation ensembliste
+il ne vérifie pas $f(x) \leq a$ et vérifie $f(x) \leq b - 2^{-k}$ 
+pour au moins un entier $k$, ce qui se traduit par la relation ensembliste
 $$
 f^{-1}(\left]a, b\right[) 
 = 
-f^{-1}(\left]a, +\infty \right[) 
+\left(\R \setminus
+f^{-1}(\left]-\infty,a \right]) \right) 
 \cap 
-\left( \bigcup_{k=0}^{+\infty} \R \setminus f^{-1}(\left]b -2^{-k}, +\infty \right[)\right).
+\left( \bigcup_{k=0}^{+\infty} f^{-1}(\left]-\infty, b -2^{-k}\right])\right).
 $$
 Les images réciproques au second membre sont mesurables par hypothèse,
 et sont combinées par complément, union dénombrable et intersection,
 par conséquent $f^{-1}(\left]a, b\right[)$ est également mesurable.
-Le [critère de l'image réciproque][Images réciproques des fonctions mesurables]
+Le [critère de l'image réciproque](#CIR)
 pour la mesurabilité de $f$ est donc bien vérifié.
+
+### Question 2 {.answer #answer-fm-2}
+Si la fonction $f: \R \to \R$ est croissante, les images réciproques
+des ensembles de la forme $\left]-\infty,a \right]$ sont des intervalles.
+En effet, si $f(x) \leq a$ et $f(y) \leq a$, pour tout point intermédiaire
+$x \leq z \leq y$, $f(z) \leq a$. Par conséquent, $f$ est mesurable.
+
+De plus, $f$ étant croissante, pour tout intervalle compact $[a, b]$ et tout
+$x \in [a, b]$, on a $f(a) \leq f(x) \leq f(b)$.
+Par le [critère d'intégrabilité dominée](#CID), $f$ est intégrable sur
+$[a, b]$.
+
 
 
 
