@@ -1601,7 +1601,7 @@ $$
 la fonction $f_+$ est donc intégrable, d'intégrale $S$.
 
 
-### Une intégrale indéterminée est dérivable presque partout {.theorem # DII}
+### Une intégrale indéterminée est dérivable presque partout {.theorem #DII}
 Soit $I$ un intervalle fermé de $\R$, 
 $f: I \to \R$ une fonction intégrable et un point 
 $a$ de $I$.
