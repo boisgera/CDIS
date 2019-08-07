@@ -398,7 +398,7 @@ est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident
 Passer par l'intermédiaires des jauges numériques ? Bof. Directement
 avec de $\delta > 0$ uniforme à l'intervalle ouvert.
 
-### Théorème fondamental du calcul {.theorem}
+### Théorème fondamental du calcul {.theorem #TFC}
 Si la fonction $f:[a, b] \to \R$ est dérivable 
 sa dérivée $f'$ est intégrable sur $[a, b]$ et 
 $$
@@ -1434,7 +1434,7 @@ d'intervalles (fermés) bornés ou non bornés possibles: on peut toujours
 se ramener au cas où l'on cherche à intégrer une fonction sur la
 droite réelle (achevée) toute entière:
 
-### Extension à la droite réelle achevée {.corollary}
+### Extension à la droite réelle achevée {.corollary #EDRA}
 Une fonction $f:[a, b] \to \R$ est intégrable si et seulement 
 si son prolongement $g$ par zéro dans $\R \cup \{-\infty, +\infty\}$, 
 c'est-à-dire la fonction $g :\R \cup \{-\infty, +\infty\} \to \R$ telle que

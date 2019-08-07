@@ -572,7 +572,7 @@ de généraliser en conséquence les énoncés qui vont suivre.
 Le résultat qui met la notion de fonction mesurable au coeur de l'approche
 est le critère d'intégrabilité dominée:
 
-### Critère d'intégrabilité dominée {.theorem}
+### Critère d'intégrabilité dominée {.theorem #CID}
 
 Une fonction $f: \R \to \R$ est intégrable si et seulement
 si $f$ est mesurable et il existe deux fonctions intégrables 
@@ -701,7 +701,7 @@ où $E$ et $F$ sont de mesure nulle (et donc mesurables puisque la mesure
 de Lebesgue est complète);
 par conséquent, $f^{-1}(U)$ est mesurable.
 
-### Démonstration du [critère de l'image réciproque](#CIR) {.proof}
+### Démonstration du [critère de l'image réciproque](#CIR) {.proof #pCIR}
 A nouveau, il suffit de démontrer le critère pour les fermés ou pour les
 ouverts: si une fonction satisfait le critère de d'image réciproque pour
 tout fermé de $\R^n$, alors si $U$ est un ouvert de $\R^n$, 
@@ -842,82 +842,67 @@ $|\, \cdot \,|: \R \to \R$.
 le "patch" pour borner n'est plus nécessaire.
 
 ### Démonstration du critère d'intégrabilité dominée {.proof}
+Le sens direct est évident:
+si la fonction $f$ est intégrable, elle est mesurable et satisfait
+les inégalités $f \leq f \leq f$. 
 
-Si la fonction $f$ est intégrable, elle est mesurable et satisfait
-les inégalités $f \leq f \leq f$. Le sens direct est donc démontré.
+Nous notons que pour établir la réciproque, il suffit de se limiter au cas
+où $g=0$. En effet si le résultat est établi dans ce cas précis, sous
+les hypothèses plus générales on a $0 \leq f - g \leq h -g$ où $f-g$
+est mesurable et $h - g$ est intégrable ; $f -g$ est alors intégrable,
+et donc $f$ est intégrable.
 
-Pour établir la réciproque, nous allons exploiter le théorème de convergence
-dominée du chapitre suivant.
-Nous allons appliquer le procédé d'approximation
-par une suite de fonctions étagées déjà utilisé dans [la preuve de la
-caractérisation des fonctions mesurables par leurs images réciproques][Images réciproques des fonctions mesurables]. Nous appliquons cette construction à la fonction $f - g$ qui
-est mesurable comme différence de fonctions mesurables. Comme $f-g$ vérifie
-$0\leq f-g \leq h - g$, la suite $\delta_k$ -- qui converge
-simplement vers $f-g$ --
-vérifie $0 \leq \delta_k \leq h - g$. En raison de cette inégalité,
-et comme $h - g$ est (absolument) intégrable, $1_{[-k, k]}\delta_k$ est 
-une somme finie de la forme $\sum_j \alpha_j 1_{A_j}$ où les $A_j$ 
-sont mesurables et bornés (dans $[-k, k]$), $A_j$ est intégrable.
-
-La fonction $f-g$ apparaît donc comme une limite simple des
-fonction $1_{[-k, k]} \delta_k$, qui sont intégrables et
-encadrées par les fonctions intégrables $0$ et $h - g$. Par le théorème de
-convergence dominée, $f - g$ est intégrable, et par conséquent $f = (f-g) + g$
-l'est également.
+Pour montrer la réciproque dans ce cas, nous approchons 
+la fonction mesurable $f$ par la suite de fonctions étagées $f_k$ 
+définie par le procédé de la [la démonstration du critère de l'image réciproque](#pCIR). 
+La fonction $f$ apparaît comme une limite simple des
+fonction $f_k$, qui sont intégrables et
+encadrées par les fonctions intégrables $0$ et $h$. 
+Par le théorème de convergence dominée, $f$ est intégrable.
 
 
+Fonctions absolument intégrables
+================================================================================
 
+### {.ante}
+Un grand nombre de résultats d'intégration 
+-- dont [le critère d'intégrabilité dominée](#CID) -- 
+sont plus faciles à exploiter quand les fonctions
+que l'on considère sont intégrables ainsi que leur valeur absolue.
 
+### Fonction absolument/conditionnellement intégrable {.definition} 
+Une fonction $f:\R \to \R$ est *absolument intégrable*
+si $f$ et $|f|$ sont intégrables. 
+Si $f$ est intégrable mais pas $|f|$, 
+elle est *conditionnellement intégrable*.
 
-### Produit de fonctions intégrable et bornée {.corollary}
+### {.post .remark .definition}
+Une intégrale (l'intégrale de Newton, Riemann, Henstock-Kurzweil, etc.)
+est dite *conditionnelle* si elle admet des fonctions
+conditionnellement intégrables ; dans le cas contraire -- si le fait que
+$f$ soit intégrable implique que $|f|$ le soit également, 
+elle est dite *absolue*.
 
+### Produit de fonctions absolument intégrable et bornée {.corollary}
 Si $f: \R \to \R$ est une fonction absolument intégrable 
-et $g: \R \to \R$ est mesurable et bornée,
+et $g: \R \to \R$ est une fonction mesurable et bornée,
 alors le produit $fg$ est (absolument) intégrable.
 
 ### Preuve {.proof}
-
 Par hypothèse $f$ est intégrable donc mesurable; $g$ étant mesurable,
 le produit $fg$ est mesurable. Par ailleurs, si $|g| \leq M$, on a
 $$
 - M |f| \leq f g \leq M |f|
 $$
 et comme les fonctions $-M|f|$ comme $M |f|$ sont intégrables, 
-par le critère d'intégrabilité dominée, $fg$ est intégrable. 
+par [le critère d'intégrabilité dominée](#CID), $fg$ est intégrable. 
 La valeur absolue $|fg|$ de $fg$ est mesurable
-et vérifie également $- M |f| \leq f g \leq M |f|$, elle est donc également
-intégrable par le même critère.
-
-Fonctions Absolument Intégrables
-================================================================================
-
-### TODO
-
- remarque nécessaire ou exemples montrant que le critère 
-d'intégrabilité dominée est en fait pratique quand on manipule des
-fonction absolument intégrables et que les calculs manipulant des 
-fonctions uniquement conditionnellement intégrables sont "fragiles".
-
-
-
-### Remarque {.remark}
-
-Nous verrons également dans la suite que ce résultat est généralement 
-plus facile à exploiter quand on peut faire l'hypothèse que les fonctions
-que l'on manipule sont non seulement intégrables, mais également
-absolument intégrables.
-
-**TODO: fcts abs int introduites SI TOT ???** Cela retarde assez notablement les résultats élémentaires
-sur les fonctions mesurables, bof donc ... Faire une autre section ?
-
-### Fonction absolument/conditionnellement intégrable {.definition} 
-Une fonction $f:\R \to \R$ est *absolument intégrable*
-si $f$ et $|f|$ sont intégrables. Si $f$ est intégrable mais pas $|f|$,
-elle est *conditionnellement intégrable*.
+et vérifie également $- M |f| \leq f g \leq M |f|$, 
+elle est donc également intégrable par le même critère.
 
 ### Fonctions absolument intégrables {.theorem}
-L'ensemble des fonctions absolument intégrables de $\R$ dans
-$\R$ est un espace vectoriel.
+L'ensemble des fonctions absolument intégrables 
+<!-- de $\R$ dans $\R$ --> est un espace vectoriel.
 
 ### Démonstration {.proof}
 Si $f$ et $g$ sont absolument intégrables et $\lambda \in \R$,
@@ -938,10 +923,9 @@ $$
 
 ### Démonstration {.proof}
 Les fonctions $f$ et $|f|$ étant intégrables, pour tout $\varepsilon > 0$,
-il existe une jauge commune $\gamma$ sur $\R$ et un $r>0$ commun, 
-tels que pour tout couple $(a,b)$ tel que 
-$a \leq -r$ et $r \leq b$ et toute subdivision pointée $\mathcal{D}$ de 
-$[a, b]$ qui soit subordonnée à $\gamma$, on ait
+il existe une jauge commune $\gamma$ sur $\R$ telle que pour toute 
+subdivision pointée $\mathcal{D}$ de $\R$ qui soit subordonnée à $\gamma$, 
+on ait
 $$
 \left| S(f, \mathcal{D}) - \int f(t) \, dt \right| \leq \varepsilon/2
 \; \mbox{ et } \;
@@ -950,35 +934,14 @@ $$
 Par l'inégalité triangulaire appliquée à la somme finie $S(f, \mathcal{D})$, on
 obtient donc
 $$
-\int f(t) \, dt \leq S(f, \mathcal{D}) + \varepsilon /2
+\left|
+\int f(t) \, dt
+\right| 
+\leq |S(f, \mathcal{D})| + \varepsilon /2
 \leq S(|f|, \mathcal{D}) + \varepsilon /2
 \leq \int |f(t)| \, dt + \varepsilon,
 $$
-et donc en passant à la limite sur $\varepsilon$,
-$$
-\int f(t) \, dt \leq  \int |f(t)| \, dt.
-$$
-L'inégalité similaire
-$$
--\int f(t) \, dt \leq \int |f(t)| \, dt.
-$$
-est obtenue en remplaçant $f$ par $-f$.
-
-
-### TODO
-
-Plus pertinent/simple de construire un exemple basé sur une série de valeurs
-qui converge conditionnellement ?
-
-### TODO
-
-Simplifier l'exemple ci-dessous en ne travaillant que sur la dérivée;
-repousser l'étude de la fonction ci-dessous en exercice.
-
-### TODO
-(en exercice ?) Exemple de Bartle basé sur une série conditionnellement
-convergente (dans "A modern theory of integration". Mieux que cet exemple
-ici ?)
+et donc en passant à la limite sur $\varepsilon$, l'inégalité cherchée.
 
 ### Une fonction conditionnellement intégrable {.example}
 
@@ -986,9 +949,13 @@ La fonction $f:[0, 1] \to \R$ définie par
 $$
 f(x) = \frac{1}{x} \cos \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, f(0) = 0
 $$
-est conditionnellement intégrable. Pour montrer qu'elle est intégrable, 
-nous exploitons le théorème fondamental du calcul, appliqué à la fonction
-$g:[0, 1] \to \R$ définie par 
+est conditionnellement intégrable. 
+
+![](images/f.py)\
+
+Pour montrer qu'elle est intégrable, 
+nous exploitons [le théorème fondamental du calcul](Calcul Intégral I.pdf/#TFC), 
+appliqué à la fonction $g:[0, 1] \to \R$ définie par 
 $$
 g(x) = -\frac{x^2}{2} \sin \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, g(0) = 0.
 $$
@@ -999,7 +966,7 @@ $$
 x \sin \frac{1}{x^2} 
 = \frac{1}{x} \cos \frac{1}{x^2}
 $$
-Par le théorème d'intégrabilité dominée, la fonction $h$ égale à
+Par [le critère d'intégrabilité dominée](#CID), la fonction $h$ égale à
 $x \sin (1/x^2)$ si $x>0$ et nulle en zéro est absolument intégrable[^details].
 La fonction $g'$ étant également intégrable, $f = g' + h$ est intégrable comme
 somme de deux fonctions intégrables.
@@ -1025,65 +992,81 @@ triangulaire son intégrale majorée par celle de $|g'|$.
 Or nous allons exhiber une suite de telles fonctions dont l'intégrale
 tend vers $+\infty$, ce qui établira la contradiction.
 
-Soit $k\geq 1$ un entier;  on définit la function $\phi_k:[0,1] \to \R$ 
+Soit $k\geq 1$ un entier; on définit la function $\phi_k:[0,1] \to \R$ 
 par
 $$
 \phi_k(x) = 
 \left|
 \begin{array}{rl} 
-g'(x) & \mbox{si } \, \alpha_j \leq x \leq \beta_j, \, 0 \leq j \leq k\\
+g'(x) & \mbox{si } \, \alpha_j \leq x \leq \beta_j, \, 1 \leq j \leq k\\
 0 & \mbox{sinon.}
 \end{array}
 \right.
 $$
 où
 $$
-\alpha_j = \frac{1}{\sqrt{2\pi j}}
+\alpha_j = \frac{1}{\sqrt{2\pi (j + 1/4)}}
 \; \mbox{ et } \;
-\beta_j = \frac{1}{\sqrt{2\pi(j+3/4)}},
+\beta_j = \frac{1}{\sqrt{2\pi(j - 1/4)}},
 $$
+
+L'idée sous-jacente est la suivante:
+les fonctions $\phi_k$ sont faites pour coïncider avec $g'$ dans les 
+plages de valeurs où $\cos 1/x^2$ est positif ; comme 
+$g'(x) = - x \sin {1}/{x^2} + (1/x)\cos {1} / {x^2}$,
+comme pour $x$ petit, $1/x$ est grand devant $x$, cela correspond 
+approximativement aux plages où $g'(x)$ est positif.
+
+![...](images/g-prime.py)\
+
 Par construction, $\phi_k$ est continue par morceaux et donc absolument 
 intégrable, et bien telle que $|\phi_k| \leq |g'|$.
 Par ailleurs,
 $$
-\int_0^1 \phi_k(t) \, dt = \sum_{j=0}^k \int_{\alpha_j}^{\beta_k} \phi_k(t) \, dt
-=\sum_{j=0}^k \left[-\frac{x^2}{2} \sin \frac{1}{x^2} \right]_{\alpha_j}^{\beta_j}
-= \frac{1}{2}\sum_{j=0}^k \frac{1}{2\pi j + 3\pi/4}.
+\begin{split}
+\int_0^1 \phi_k(t) \, dt &= \sum_{j=0}^k \int_{\alpha_j}^{\beta_k} \phi_k(t) \, dt \\
+&=\sum_{j=0}^k \left[-\frac{x^2}{2} \sin \frac{1}{x^2} \right]_{\alpha_j}^{\beta_j} \\
+&=\sum_{j=0}^k \left[-\frac{1}{4\pi(j-1/4)} \sin (2\pi(j-1/4)) \right. \\
+&\phantom{=\sum_{j=0}^k \left[\right.} \left. +\frac{1}{4\pi(j+1/4)} \sin (2\pi(j+1/4)) \right] \\
+&=\sum_{j=0}^k \frac{1}{4\pi}\left[\frac{1}{j-1/4} + \frac{1}{j+1/4}\right] \\
+&= \frac{1}{2 \pi}\sum_{j=0}^k \frac{j}{j^2 + 1/16}. \\
+\end{split}
 $$
-Comme la série de cette équation est divergente, 
+Comme la série associée à cette équation est divergente, 
 on peut rendre l'intégrale arbitrairement grande en choisissant
 un $k$ suffisamment grand, ce qui permet de conclure.
 
-### TODO 
+### Intégrabilité sur un sous-ensemble {.definition}
+Une fonction $f: \R \to \R$ est dite *intégrable (resp. absolument intégrable) 
+sur un sous-ensemble $E$ de $\R$* si la fonction $f 1_E$ est intégrable
+(resp. absolument intégrable).
 
-Formuler en-dessous en terme de "intégrable sur $E$" (à définir) et bien
-montrer le pb pour une fonction juste intégrable, ou la restriction ne
-marche pas. (passer de restriction de $E$ à $F$ et pas seulement $\R$
-ici ?)
+### {.remark .post}
+Cette définition est cohérente avec la définition existant déjà dans le cas
+où $E$ est un intervalle de $\R$ (cf. ["Extension à la droite réelle achevée"
+dans Calcul Intégral I](Calcul Intégral I.pdf/#EDRA)).
 
 ### Restriction à des ensembles mesurables {.corollary}
-
 Une fonction $f:\R \to \R$ est absolument intégrable
-si et seulement si $f 1_E$ est (absolument) intégrable pour 
-tout ensemble mesurable $E$. 
+si et seulement si $f$ est (absolument) intégrable sur $E$
+pour tout ensemble mesurable $E$. 
 
-### Preuve {.proof}
-
+### Démonstration {.proof}
 Si $f$ est absolument intégrable, elle est mesurable; si l'ensemble
 $E$ est mesurable, sa fonction caractéristique $1_E$ est également
 mesurable. Par conséquent, le produit $f 1_E$ est mesurable, 
 comme sa valeur absolue $|f 1_E|$.
 Par ailleurs, comme $|1_E| \leq 1$, on a 
 $-|f| \leq f1_E \leq |f|$ et donc $-|f| \leq |f1_E| \leq |f|$.
-Par le critère
-d'intégrabilité dominée, $f 1_E$ est (absolument) intégrable.
+Par [le critère d'intégrabilité dominée](#CID), 
+$f 1_E$ est (absolument) intégrable.
 
 Réciproquement, supposons $f 1_E$ intégrable pour tout ensemble mesurable 
 $E$. En prenant $E = \R$, on constate que $f$ est intégrable,
 et donc mesurable.
-Notons $E_+ = \{x \in \R \, | \, f(x) > 0 \}$ et 
-$E_- = \{x \in \R \, | \, f(x) < 0 \}$; ces deux ensembles sont
-mesurables comme images réciproques d'ouverts par une fonction mesurable.
+Notons $E_+ = \{x \in \R \, | \, f(x) \geq 0 \}$ et 
+$E_- = \{x \in \R \, | \, f(x) \leq 0 \}$; ces deux ensembles sont
+mesurables [comme images réciproques de fermés par une fonction mesurable](#CIR).
 La fonction $|f|$ satisfaisant
 $$
 |f| = 1_{E_+} f - 1_{E_-} f,
