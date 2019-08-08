@@ -97,22 +97,20 @@ Sinon
   - Mener toute la présentation dans $\R$.
    
 
-### TODO
+--------------------------------------------------------------------------------
 
-Justifier mener toute la présentation dans $\R$ (concepts, résultat;
-on peut tjs se ramener au cas de $\R$) et notation
+Dans la suite de ce document, nous mettons l'accent sur les fonctions définies
+sur $\R$ (ou $\R \cup \{-\infty, +\infty\}$) ; par défaut le symbole intégrale 
+sans bornes désignera donc l'intégrale entre $-\infty$ et $+\infty$:
 
 $$
 \int := \int_{-\infty}^{+\infty}
 $$
 
-Faire le tour des opportunité de généraliser les concepts/résultats
-à des sous-ensembles de $\R$ est voir si c'est vraiment trivial.
-En particulier, fonction "intégrable sur $A$" doit au moins 
-faire l'objet d'une remarque (cela veut dire qqchose de naturel,
-dans le cas des intervalles fermés de $\R$, et la ppté via l'extension
-par $0$ suggère une extension de la définition à des ensembles $A$ plus
-généraux)
+L'essentiel des notions et résultats qui sont introduits peuvent être 
+généralisés sans difficulté à des fonctions définies sur des intervalles
+(voire des ensembles plus complexes), en considérant le prolongement 
+de ces fonctions par zéro.
 
 Théorèmes de Convergence
 ================================================================================
