@@ -1354,6 +1354,12 @@ Soient $f:\R \to \R$ et $g:\R \to \R$ deux
 fonctions mesurables dont les carrés sont intégrables. 
 Montrer que le produit $fg$ est (absolument) intégrable.
 
+Intégrabilité du maximum {.question #im}
+--------------------------------------------------------------------------------
+
+Soient $f:\R \to \R$ et $g:\R \to \R$ deux fonctions absolument intégrables. 
+Montrer que la fonction $\max(f, g)$ est (absolument) intégrable.
+
 Séries et intégrales {#si}
 --------------------------------------------------------------------------------
 
@@ -1751,6 +1757,17 @@ $$
 $$
 Par le [critère d'intégrabilité dominée](#CID), 
 $fg$ et $|fg|$ sont donc intégrables.
+
+Intégrabilité du maximum {.answer #answer-im}
+--------------------------------------------------------------------------------
+
+Les fonctions $f$ et $g$ étant absolument intégrables, elles sont mesurables.
+Par [composition avec une fonctions continue](#CFC), 
+$\max(f, g)$ est également mesurable.
+
+De plus, on a $-|f|-|g| \leq |\max(f, g)| \leq |f| + |g|$. 
+Les fonctions $\max(f, g)$ et sa valeur absolue sont donc encadrées
+par deux fonctions intégrables ; $\max(f, g)$ est donc absolument intégrable.
 
 Séries et intégrales
 --------------------------------------------------------------------------------
