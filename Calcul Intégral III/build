@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # Python 3 Standard Library
+import datetime
 import os
 import pathlib
 import subprocess
@@ -48,6 +49,7 @@ def transform(doc):
     solve_toc_nesting(doc)
     anonymify(doc)
 
+    add_today(doc)
     insert_authors(doc)
 
     return doc
@@ -98,6 +100,8 @@ aliases = {
     "Sébastien Boisgérault": ["Sébastien Boisgérault"],
 }
 
+# Authors
+# ------------------------------------------------------------------------------
 def insert_authors(doc):
     content  = "STEP, Mines Paristech[^1]\n\n"
     content += \
@@ -114,6 +118,26 @@ la contribution de [Gabriel Stoltz](mailto:gabriel-stolz@mines-paristech.fr)
     content_inlines = pandoc.read(content)[1][0][0]
     metamap = doc[0][0]
     metamap["author"] = MetaList([MetaInlines(content_inlines)])
+
+# Date Management
+# ------------------------------------------------------------------------------
+def add_today(doc):
+    """
+    Add the current date in metadata if the field is empty.
+    """
+    metadata = doc[0][0]
+    if u"date" not in metadata:
+        date = datetime.date.today()
+        day = str(date.day)
+        year = str(date.year)
+        months = """janvier février mars avril mai juin juillet août septembre
+            octobre novembre décembre""".split()
+        month = months[date.month - 1]
+        meta = doc[0][0]
+        inlines = [Str(day), Space(), Str(month), Space(), Str(year)]
+        print(inlines)
+        meta["date"] = MetaInlines(inlines)
+    return doc
 
 # Misc. Helpers
 # ------------------------------------------------------------------------------
