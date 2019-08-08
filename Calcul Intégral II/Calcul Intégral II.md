@@ -845,7 +845,7 @@ la composée $g\circ f$ est donc mesurable.
 Les corollaires de ce résultat sont nombreux et immédiats. 
 Citons les deux instances les plus directement utiles.
 
-### Mesurabilité du produit {.corollary}
+### Mesurabilité du produit {.corollary #prod}
 
 Le produit de deux fonctions scalaires mesurables est mesurable.
 
@@ -854,7 +854,7 @@ Le produit de deux fonctions scalaires mesurables est mesurable.
 Par continuité de l'application produit 
 $\times: \R \times \R \to \R$.
 
-### Mesurabilité de la valeur absolue {.corollary}
+### Mesurabilité de la valeur absolue {.corollary #abs}
 
 La valeur absolue d'une fonction scalaire mesurable est mesurable.
 
@@ -1354,6 +1354,27 @@ Soient $f:\R \to \R$ et $g:\R \to \R$ deux
 fonctions mesurables dont les carrés sont intégrables. 
 Montrer que le produit $fg$ est (absolument) intégrable.
 
+Séries et intégrales {#si}
+--------------------------------------------------------------------------------
+
+Soit $a_k$, $k\geq 0$ une série à valeurs réelles ; on lui associe
+la fonction $f:[0, +\infty] \to \R$ définie par
+$f(x) = a_k$ quand $k \leq x < k+1$. 
+
+### Question 1 {.question #si-1}
+Montrer que si la série $\sum_k a_k$ est divergente, 
+$f$ n'est pas intégrable.
+
+### Question 2 {.question #si-2} 
+Montrer que si la série $\sum_k a_k$ est convergente,
+alors la fonction est intégrable et
+$$
+\int_0^{+\infty} f(x) \, dx = \sum_{k=0}^{+\infty} a_k.
+$$
+
+### Question 3 {.question #si-3}
+En déduire une fonction $f:[0, +\infty] \to \R$ qui soit conditionnellement
+intégrable.
 
 Solutions
 ================================================================================
@@ -1716,7 +1737,8 @@ $$
 Intégrabilité du produit {.answer #answer-ip}
 --------------------------------------------------------------------------------
 
-Les produits $fg$ et $|fg|$ sont mesurables comme produit de fonctions mesurables.
+Les produits $fg$ est mesurable comme [produit de fonctions mesurables](#prod) ;
+[la fonction $|fg|$ est donc également mesurable](#abs).
 De plus, pour tout $x \in \R$, comme $(|f(x)| + |g(x)|)^2 \geq 0,$
 $$
 0 \leq |fg|(x) \leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
@@ -1729,6 +1751,17 @@ $$
 $$
 Par le [critère d'intégrabilité dominée](#CID), 
 $fg$ et $|fg|$ sont donc intégrables.
+
+Séries et intégrales
+--------------------------------------------------------------------------------
+
+### TODO -- Question 1 {.answer #answer-si-1}
+
+
+### TODO -- Question 2 {.answer #answer-si-2} 
+
+
+### TODO -- Question 3 {.answer #answer-si-3}
 
 
 Références
