@@ -1259,6 +1259,13 @@ Voir [@Swa01, pp. 135-136].
 Exercices
 ================================================================================
 
+Théorème de convergence dominée {.question #exo-TCD}
+--------------------------------------------------------------------------------
+
+Montrer que la conclusion du [le théorème de convergence dominée](#TCD)
+est toujours valide si les fonctions $f_k$ ne satisfont 
+les hypothèses de convergence et d'encadrement que presque partout.
+
 Ensembles de longueur finie {.question #lf}
 --------------------------------------------------------------------------------
 
@@ -1405,6 +1412,38 @@ intégrable.
 
 Solutions
 ================================================================================
+
+Théorème de convergence dominée {.answer #answer-exo-TCD}
+--------------------------------------------------------------------------------
+
+Imaginons que les fonctions mesurables $f_k$ convergent vers la fonction
+$f$ sur $\R \setminus A$ où $A$ est négligeable, et satisfont 
+$g \leq f_k \leq h$ sur l'ensemble $\R \setminus B_k$ où $B_k$ est
+négligeable.
+
+Alors l'ensemble $C := A \cup (\cup_{k=1}^{+\infty} B_k)$ est négligeable. 
+En effet, $A$ et chaque $B_k$ [est négligeable donc mesurable et de longueur nulle](#négligeable-longueur-nulle) ;
+la suite des $C_j := A \cup (\cup_{k=1}^{j} B_k)$ est composée d'ensemble mesurables,
+croissante et comme
+$$
+1_{C_j} = 1_{A \cup (\cup_{k=1}^j B_k)} \leq 1_A + \sum_{k=1}^j 1_{B_k},
+$$
+on a 
+$$
+\int 1_{C_j}(x) \,dx \leq \int 1_A(x) \, dx + \sum_{k=1}^j \int 1_{B_k}(x) \,dx = 
+\ell(A) + \sum_{k=1}^j \ell(B_k) = 0. 
+$$
+Par [le théorème de convergence monotone](#TCM), 
+$$
+\ell(C) = \int 1_{C}(x) \,dx = \lim_{j\to +\infty} \int 1_{C_j}(x) \,dx = 0.
+$$
+
+Il suffit alors de rédéfinir chaque fonction $f_k$, $f$, $g$ et $h$ pour leur
+assigner la valeur $0$ en tout $x \in C$ ; cette opération ne change pas leur
+caractère mesurable ou intégrable, ni la valeur des intégrales associées.
+Et les nouvelles fonctions satisfont partout les hypothèses de convergence
+et d'encadrement du [théorème de convergence dominée](#TCD). On peut donc
+conclure sous les hypothèse plus faibles considérées dans cet exercice.
 
 Ensembles de longueur finie {.answer #answer-lf}
 --------------------------------------------------------------------------------
