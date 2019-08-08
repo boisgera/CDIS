@@ -1,8 +1,8 @@
 % Nuthin'
-% STEP, Mines ParisTech[^jjj]
+% STEP, Mines ParisTech[^note]
 % today
 
-[^jjj]: 888 ou bien.
+[^note]: 888 ou bien.
 
 ![Un exemple de dessin TikZ](images/tikz-picture.tex)
 

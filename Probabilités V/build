@@ -47,6 +47,9 @@ def transform(doc):
     transform_image_format(doc)
     solve_toc_nesting(doc)
     anonymify(doc)
+
+    insert_authors(doc)
+
     return doc
 
 # Command-Line/Process Helpers
@@ -94,6 +97,23 @@ aliases = {
     "Gabriel Stolz": ["GabrielStolz"],
     "Sébastien Boisgérault": ["Sébastien Boisgérault"],
 }
+
+def insert_authors(doc):
+    content  = "STEP, Mines Paristech[^1]\n\n"
+    content += \
+r"""[^1]: Ce document est un des produits du projet libre 
+[$\mbox{\faGithub}$ `boisgera/CDIS`](https://github.com/),
+initié par la collaboration de [(S)ébastien Boisgérault](mailto:sebastien.boisgerault@mines-paristech.fr)
+(CAOR),
+[(T)homas Romary](mailto:thomas.romary@mines-paristech.fr) et
+[(E)milie Chautru](mailto:emilie.chautru@mines-paristech.fr) (GEOSCIENCES), 
+[(P)auline Bernard](mailto:pauline.bernard@mines-paristech.fr) (CAS) et avec
+la contribution de [Gabriel Stoltz](mailto:gabriel-stolz@mines-paristech.fr)
+(Ecole des Ponts ParisTech, CERMICS). 
+"""
+    content_inlines = pandoc.read(content)[1][0][0]
+    metamap = doc[0][0]
+    metamap["author"] = MetaList([MetaInlines(content_inlines)])
 
 # Misc. Helpers
 # ------------------------------------------------------------------------------
