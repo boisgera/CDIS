@@ -1444,8 +1444,17 @@ Par [le théorème de convergence monotone](#TCM),
 $$
 \ell(C) = \int 1_{C}(x) \,dx = \lim_{j\to +\infty} \int 1_{C_j}(x) \,dx = 0.
 $$
+Alternativement, il suffit de recouvrir $A$ puis chaque $B_k$ par des intervalles
+sont la somme de longueurs soit inférieure à $\varepsilon/2$, puis $\varepsilon/2^{k+2}$.
+La collection de l'intégralité de ces intervalle est dénombrable, recouvre
+l'ensemble $C$, et la somme des longueurs des intervalles est inférieure à 
+$$
+\frac{\varepsilon}{2} + \sum_{k=0}^{+\infty} \frac{\varepsilon}{2^{k+1}} = \varepsilon.
+$$
+L'ensemble $C$ est donc négligeable.
 
-Il suffit alors de rédéfinir chaque fonction $f_k$, $f$, $g$ et $h$ pour leur
+Sachant que $C$ est négligeable, c'est-à-dire mesurable et de longueur nulle,
+il suffit alors de rédéfinir chaque fonction $f_k$, $f$, $g$ et $h$ pour leur
 assigner la valeur $0$ en tout $x \in C$ ; cette opération ne change pas leur
 caractère mesurable ou intégrable, ni la valeur des intégrales associées.
 Et les nouvelles fonctions satisfont partout les hypothèses de convergence
