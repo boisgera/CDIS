@@ -1347,29 +1347,13 @@ Mesurabilité de $\|f\|$
 
 **TODO**
 
-Intégrabilité
+Intégrabilité du produit {.question #ip}
 --------------------------------------------------------------------------------
 
 Soient $f:\R \to \R$ et $g:\R \to \R$ deux
-fonctions mesurables dont les carrés sont intégrables. Montrer que 
-le produit $fg$ est (absolument) intégrable.
+fonctions mesurables dont les carrés sont intégrables. 
+Montrer que le produit $fg$ est (absolument) intégrable.
 
-### Réponse
-
-Les produits $fg$ et $|fg|$ sont mesurables comme produit de fonctions mesurables.
-De plus, pour tout $x \in \R$, comme $(|f(x)| + |g(x)|)^2 \geq 0,$
-on a
-$$
-0 \leq |fg|(x) \leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
-$$
-et donc
-$$
-- \frac{1}{2} f(x)^2 - \frac{1}{2} g(x)^2
-\leq fg(x)
-\leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
-$$
-Par le critère d'intégrabilité dominée, 
-$fg$ et $|fg|$ sont donc intégrables.
 
 Solutions
 ================================================================================
@@ -1729,7 +1713,22 @@ I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
 = I(0) = f(c).
 $$
 
+Intégrabilité du produit {.answer #answer-ip}
+--------------------------------------------------------------------------------
 
+Les produits $fg$ et $|fg|$ sont mesurables comme produit de fonctions mesurables.
+De plus, pour tout $x \in \R$, comme $(|f(x)| + |g(x)|)^2 \geq 0,$
+$$
+0 \leq |fg|(x) \leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
+$$
+et donc
+$$
+- \frac{1}{2} f(x)^2 - \frac{1}{2} g(x)^2
+\leq fg(x)
+\leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
+$$
+Par le [critère d'intégrabilité dominée](#CID), 
+$fg$ et $|fg|$ sont donc intégrables.
 
 
 Références
