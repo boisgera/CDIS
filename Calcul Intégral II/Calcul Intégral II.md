@@ -1084,9 +1084,44 @@ elle est intégrable comme somme de fonctions intégrables.
 La fonction $f$ est donc absolument intégrable.
 
 
-
-Annexe 
+Annexes
 ================================================================================
+
+Ensembles non mesurables
+--------------------------------------------------------------------------------
+
+L'ensemble $\R / \Q$ 
+-- la droite des réels quotientée par l'ensemble des rationnels -- 
+désigne une partition de $\R$ construite de la façon suivante:
+les éléments $A$ de $\R / \Q$ sont de la forme
+$$
+A = \{r + q \, | \, q \in \Q \}, \; r \in \R.
+$$
+Par exemple, l'ensemble $A$ associée à $r=0$ est $\Q$ ; c'est le même que
+celui associé à $1/2$ ou $1$ car la différence entre ces valeurs est 
+rationnelle. Tout élément $A$ de $\R / \Q$ est d'intersection non vide avec
+$[0, 1]$. Nous avons donc une famille d'ensembles non vides indexées par
+$A \in \R / \Q$ définie par
+$$
+A \in \R / \Q \mapsto A \cap [0, 1].
+$$
+L'axiome du choix nous garantit donc l'existence d'une fonction de choix
+$f$ définie sur $\R / \Q$ telle que pour tout $A \in \R / \Q$,
+$f(A) \in A \cap [0, 1]$. On appelle alors *ensemble de Vitali* l'ensemble
+$$
+V := \{f(A) \, | \, A \in \R / \Q\}.
+$$
+(sa définition dépend de la fonction de choix considérée).
+
+### Existence d'un ensemble non-mesurable 
+Tout ensemble de Vitali est non-mesurable.
+
+### TODO -- Démonstration {.proof}
+
+
+
+Maximum
+--------------------------------------------------------------------------------
 
 ### Maximum de fonctions intégrables et positives {.lemma #max}
 Si les fonctions $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 
@@ -1205,6 +1240,8 @@ S
 $$
 la fonction $f_+$ est donc intégrable, d'intégrale $S$.
 
+Dérivabilité des intégrales indéterminées
+--------------------------------------------------------------------------------
 
 ### Une intégrale indéterminée est dérivable presque partout {.theorem #DII}
 Soit $I$ un intervalle fermé de $\R$, 
