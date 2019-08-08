@@ -1109,7 +1109,7 @@ L'axiome du choix nous garantit donc l'existence d'une fonction de choix
 $f$ définie sur $\R / \Q$ telle que pour tout $A \in \R / \Q$,
 $f(A) \in A \cap [0, 1]$. On appelle alors *ensemble de Vitali* l'ensemble
 $$
-V := \{f(A) \, | \, A \in \R / \Q\}.
+V := \{f(A) \, | \, A \in \R / \Q \}.
 $$
 (sa définition dépend de la fonction de choix considérée).
 
