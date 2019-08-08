@@ -1821,10 +1821,15 @@ $$
 $$
 ce qui prouve le résultat cherché.
 
-
-
-### TODO -- Question 3 {.answer #answer-si-3}
-
+### Question 3 {.answer #answer-si-3}
+La fonction $f$ associée à la suite des
+$$
+a_k = \frac{(-1)^k}{(k+1)}, \, k\geq 0
+$$
+est conditionnellement convergente. En effet, $\sum_k a_k$ est convergente
+-- donc $f$ est intégrable -- mais $\sum_k |a_k|$ ne l'est pas ($\sum_k a_k$
+n'est pas absolument convergente). Or la fonction associée aux $|a_k|$ n'est
+autre que $|f|$ ; la fonction $|f|$ n'est donc pas intégrable.
 
 Références
 ================================================================================
