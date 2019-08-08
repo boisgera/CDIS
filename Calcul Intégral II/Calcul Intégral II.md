@@ -1357,8 +1357,8 @@ Montrer que le produit $fg$ est (absolument) intégrable.
 Séries et intégrales {#si}
 --------------------------------------------------------------------------------
 
-Soit $a_k$, $k\geq 0$ une série à valeurs réelles ; on lui associe
-la fonction $f:[0, +\infty] \to \R$ définie par
+Soit $a_k$, $k\geq 0$ une série de valeurs réelles ; 
+on lui associe la fonction $f:[0, +\infty] \to \R$ définie par
 $f(x) = a_k$ quand $k \leq x < k+1$. 
 
 ### Question 1 {.question #si-1}
@@ -1755,8 +1755,26 @@ $fg$ et $|fg|$ sont donc intégrables.
 Séries et intégrales
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {.answer #answer-si-1}
-
+### Question 1 {.answer #answer-si-1}
+Si $\sum_k a_k$ est divergente, $f$ ne satisfait pas 
+[le critère d'intégrabilité de Cauchy](Calcul Intégral I.pdf/#CIC).
+En effet, la série elle-même ne satisfait pas le crtière de Cauchy: il existe donc
+un $\varepsilon > 0$ tel que pour tout entier $j$, il existe un
+entier $n$ tel que $$\left|\sum_{k=j}^{j+n} a_k\right| > \varepsilon.$$
+Soit $\gamma$ une jauge sur $\R$ et soit 
+$$\mathcal{D} = \{(t_k, (x_k, x_{k+1})\}_{k=1}^m$$ une subdivision subordonnée
+à $\gamma$.
+On a donc en particulier $\left[t_m, +\infty\right] \subset \gamma(+\infty)$ ;
+si l'entier $j$ est supérieur à $x_k$, la subdivision
+$$\mathcal{D}' = \mathcal{D} \cup \{(k,(k, k+1))\}_{k=j}^{j+n}$$ est
+également subordonnée à $\gamma$ et
+$$
+S(f,\mathcal{D}') = S(f,\mathcal{D}) + \sum_{k=j}^{j+n} a_k.
+$$
+Il est donc possible de choisir $\mathcal{D}'$ telle que la distance
+entre $S(f, \mathcal{D})$ et $S(f, \mathcal{D}')$ soit strictement supérieure
+à $\varepsilon$, ce qui contredit le critère d'intégrabilité de Cauchy.
+La fonction $f$ n'est donc pas intégrable.
 
 ### TODO -- Question 2 {.answer #answer-si-2} 
 
