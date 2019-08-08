@@ -1337,6 +1337,13 @@ Si $f$ est intégrable, est-ce que $g \circ f$ est intégrable ?
 Si $f$ est absolument intégrable, est-ce que $g \circ f$ est 
   absolument intégrable ?
 
+Caractérisation des ensembles mesurables {.question #cer}
+--------------------------------------------------------------------------------
+
+Montrer qu'un ensemble $E \subset $\R$ est mesurable si et seulement si
+sa fonction caractéristique $1_E$ est mesurable.
+
+
 Formule de la moyenne 
 --------------------------------------------------------------------------------
 
@@ -1652,6 +1659,20 @@ Le membre de droite de cette inégalité est une fonction (absolument)
 intégrable sur $[0, 1]$, donc par le critère d'intégrabilité dominée,
 la fonction $g \circ f$ est (absolument) intégrable.
 
+Caractérisation des ensembles mesurables {.answer #answer-cer}
+--------------------------------------------------------------------------------
+
+Si l'ensemble $E$ est mesurable, pour tout $k\in \N$, l'ensemble 
+$E_k := E \cap [-k,k]$
+est intégrable, c'est-à-dire que la fonction $1_{E_k}$ est intégrable.
+La fonction $1_{E}$ est donc mesurable car limite simple de fonctions intégrables.
+
+Réciproquement, si une fonction caratéristique $1_E$ est mesurable, 
+par [le critère de l'image réciproque](#CIR), comme
+$E = 1_{E}^{-1}(\{1\})$ et que le singleton $\{1\}$ est fermé,
+$E$ est mesurable.
+
+Alternativement, **TODO**
 
 Formule de la moyenne
 --------------------------------------------------------------------------------
