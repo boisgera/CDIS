@@ -103,8 +103,9 @@ aliases = {
 # Authors
 # ------------------------------------------------------------------------------
 def insert_authors(doc):
-    content  = "STEP, Mines Paristech[^1]\n\n"
-    content += \
+    content = "STEP, Mines ParisTech"
+    _content = "STEP, Mines Paristech[^1]\n\n"
+    _content = \
 r"""[^1]: Ce document est un des produits du projet
 [$\mbox{\faGithub}$ `boisgera/CDIS`](https://github.com/),
 initié par la collaboration de [(S)ébastien Boisgérault](mailto:sebastien.boisgerault@mines-paristech.fr)
