@@ -1340,7 +1340,7 @@ Si $f$ est absolument intégrable, est-ce que $g \circ f$ est
 Caractérisation des ensembles mesurables {.question #cer}
 --------------------------------------------------------------------------------
 
-Montrer qu'un ensemble $E \subset $\R$ est mesurable si et seulement si
+Montrer qu'un ensemble $E \subset \R$ est mesurable si et seulement si
 sa fonction caractéristique $1_E$ est mesurable.
 
 
@@ -1672,7 +1672,26 @@ par [le critère de l'image réciproque](#CIR), comme
 $E = 1_{E}^{-1}(\{1\})$ et que le singleton $\{1\}$ est fermé,
 $E$ est mesurable.
 
-Alternativement, **TODO**
+Alternativement, si $1_E$ est une limite simple de fonctions intégrables
+$f_k$ et $\sigma:\R \to \R$ est la fonction définie par
+$$
+\sigma(x) = \left|
+\begin{array}{cl}
+0 & \mbox{si } x \leq 1/2, \\
+1 & \mbox{si } x > 1/2, 
+\end{array}
+\right.
+$$
+alors les fonctions $g_k = \sigma \circ f_k$ sont à valeurs dans $\{0,1\}$, 
+convergent simplement vers $1_E$ et de plus sont mesurables: en effet si $F$
+est un fermé de $\R$, $\sigma^{-1}(F)$ est un ouvert ou un 
+fermé de $\R$ (4 possibilités uniquement, que l'on peut énumérer, selon
+que $F$ contienne ou non $0$ et $1$), et donc $g_k^{-1} (F) = f_k^{-1} (\sigma^{-1}(F))$
+est un ensemble mesurable.   
+Par conséquent, pour tout intervalle compact $[a, b]$ de $\R$, 
+$1_{E \cap [a, b]}$ est la limite simple des fonctions mesurables 
+$g_k 1_{[a, b]}$, qui sont dominées par $1_{[a, b]}$ et donc intégrable.
+L'ensemble $E$ est donc mesurable.
 
 Formule de la moyenne
 --------------------------------------------------------------------------------
