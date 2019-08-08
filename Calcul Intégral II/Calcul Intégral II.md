@@ -816,7 +816,7 @@ par une nouvelle application du résultat de
 ce critère est également satisfait pour toute fonction mesurable.
 
 
-### Composition par une fonction continue {.theorem}
+### Composition par une fonction continue {.theorem #CFC}
 
 Soit $f:\R \to \R^n$ une fonction mesurable et 
 $g:\R^n \to \R^m$ une fonction continue.
@@ -1557,14 +1557,14 @@ Composition par une fonction lipschitzienne
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cfl-1}
-Oui, car toute fonction lipschitzienne est continue; $g \circ f$
-est donc mesurable comme composée d'une fonction mesurable et d'une
-fonction continue.
+Oui, car toute fonction lipschitzienne est continue ; 
+$g \circ f$ est donc mesurable 
+comme [composée d'une fonction mesurable et d'une fonction continue](#CFC).
 
 ### Question 2 {.answer #answer-cfl-2}
 Pas nécessairement; si $f$ est une fonction conditionnellement
-intégrable sur $[0,1]$, la fonction $|f|$ n'est pas intégrable; Or, 
-l'application $t \mapsto |t|$ est lipschitzienne (avec $K=1$).
+intégrable sur $[0,1]$, la fonction $|f|$ n'est pas intégrable ; 
+or, l'application $t \mapsto |t|$ est lipschitzienne (avec $K=1$).
 
 ### Question 3 {.answer #answer-cfl-3}
 Oui. D'une part, $f$ étant absolument intégrable, elle est mesurable et
