@@ -105,15 +105,17 @@ aliases = {
 def insert_authors(doc):
     content  = "STEP, Mines Paristech[^1]\n\n"
     content += \
-r"""[^1]: Ce document est un des produits du projet libre 
+r"""[^1]: Ce document est un des produits du projet
 [$\mbox{\faGithub}$ `boisgera/CDIS`](https://github.com/),
 initié par la collaboration de [(S)ébastien Boisgérault](mailto:sebastien.boisgerault@mines-paristech.fr)
 (CAOR),
 [(T)homas Romary](mailto:thomas.romary@mines-paristech.fr) et
 [(E)milie Chautru](mailto:emilie.chautru@mines-paristech.fr) (GEOSCIENCES), 
-[(P)auline Bernard](mailto:pauline.bernard@mines-paristech.fr) (CAS) et avec
-la contribution de [Gabriel Stoltz](mailto:gabriel-stolz@mines-paristech.fr)
+[(P)auline Bernard](mailto:pauline.bernard@mines-paristech.fr) (CAS), 
+avec la contribution de [Gabriel Stoltz](mailto:gabriel-stolz@mines-paristech.fr)
 (Ecole des Ponts ParisTech, CERMICS). 
+Il est mis à disposition selon les termes de [la licence Creative Commons "attribution 
+-- pas d’utilisation commerciale -- partage dans les mêmes conditions" 4.0 internationale](http://creativecommons.org/licenses/by-nc-sa/).
 """
     content_inlines = pandoc.read(content)[1][0][0]
     metamap = doc[0][0]
@@ -147,7 +149,6 @@ def clean_latex_trash():
     for ext in extensions:
         for file in with_ext(ext):
             file.unlink()
-
 
 # Document Processing
 # ------------------------------------------------------------------------------
