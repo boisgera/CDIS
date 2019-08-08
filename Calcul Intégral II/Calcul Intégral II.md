@@ -181,7 +181,7 @@ Listé ici, mais démo faite à la main en cours comme exemple.
 
 ### TODO -- Continuité d'intégrales paramétriques ?
 
-### Dérivation sous le signe somme {.theorem}
+### Dérivation sous le signe somme {.theorem #DSS}
 Soit $I$ un intervalle de $\R$ et $f: I \times \R \to \R$ une fonction
 telle que:
 
