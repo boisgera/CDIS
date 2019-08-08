@@ -1761,12 +1761,15 @@ Si $\sum_k a_k$ est divergente, $f$ ne satisfait pas
 En effet, la série elle-même ne satisfait pas le crtière de Cauchy: il existe donc
 un $\varepsilon > 0$ tel que pour tout entier $j$, il existe un
 entier $n$ tel que $$\left|\sum_{k=j}^{j+n} a_k\right| > \varepsilon.$$
-Soit $\gamma$ une jauge sur $\R$ et soit 
-$$\mathcal{D} = \{(t_k, (x_k, x_{k+1})\}_{k=1}^m$$ une subdivision subordonnée
-à $\gamma$.
-On a donc en particulier $\left[t_m, +\infty\right] \subset \gamma(+\infty)$ ;
+Soit $\gamma$ une jauge sur $[0, +\infty]$ et soit 
+$$\mathcal{D} = \{(t_k, [x_k, x_{k+1}]\}_{k=1}^m$$ une subdivision subordonnée
+à $\gamma$ ; on peut toujours supposer que $\gamma(t) \subset \left[0, +\infty \right[$
+quand $t \in \left[0, +\infty \right[$ quite à rendre plus fine la jauge initiale,
+ce qui entraine $t_{m} = x_{m+1} = +\infty$.
+Dans ce cas, on a en particulier $\left[x_m, +\infty\right] \subset \gamma(+\infty)$ ;
 si l'entier $j$ est supérieur à $x_k$, la subdivision
-$$\mathcal{D}' = \mathcal{D} \cup \{(k,(k, k+1))\}_{k=j}^{j+n}$$ est
+$$\mathcal{D}' = \{(t_k, [x_k, x_{k+1}]\}_{k=1}^{m-1} \cup \{(k,[k, k+1])\}_{k=j}^{j+n}
+\cup \{(+\infty, [j+n+1, +\infty])\} $$ est
 également subordonnée à $\gamma$ et
 $$
 S(f,\mathcal{D}') = S(f,\mathcal{D}) + \sum_{k=j}^{j+n} a_k.
@@ -1776,7 +1779,48 @@ entre $S(f, \mathcal{D})$ et $S(f, \mathcal{D}')$ soit strictement supérieure
 à $\varepsilon$, ce qui contredit le critère d'intégrabilité de Cauchy.
 La fonction $f$ n'est donc pas intégrable.
 
-### TODO -- Question 2 {.answer #answer-si-2} 
+### Question 2 {.answer #answer-si-2} 
+Supposons la série $\sum_k a_k$ convergente. 
+Soit $\varepsilon > 0$ et $\mathcal{D}$ une
+subdivision pointée de $[0, +\infty]$, de la forme
+$$\mathcal{D} = \{(t_k, (x_k, x_{k+1})\}_{k=1}^m,$$
+subordonnée à une jauge $\gamma$ telle que $\gamma(t) \subset \left[0, +\infty \right[$
+quand $t \in \left[0, +\infty \right[$.
+Si $\lceil x \rceil$ désigne l'entier immédiatement supérieur au nombre réel $x$
+(et $\lfloor x \rfloor$ l'entier immédiatement inférieur), on a 
+$$
+\left|S(f, \mathcal{D}) - \sum_{k=0}^{+\infty} a_k \right|
+\leq 
+\left|S(f, \mathcal{D}) - \sum_{k=0}^{\lceil x_{m+1} \rceil} a_k \right|
++
+\left|\sum_{k =\lceil x_{m+1}\rceil+1}^{+\infty} a_k \right|.
+$$
+Si $|\sum_{k=j}^{+\infty} a_k| \leq \varepsilon / 2$, pour tout $j\geq n$, 
+il suffit donc d'imposer $\lceil x_{m+1}\rceil+1 \geq n$ pour garantir
+que
+$$
+\left|\sum_{k =\lceil x_{m+1}\rceil+1}^{+\infty} a_k \right| \leq \frac{\varepsilon}{2}.
+$$
+C'est donc le cas si $\gamma(+\infty) = \left]n, +\infty \right]$.
+Pour le reste des valeurs de la jauge, prenons
+$\gamma(t) = \left]\lfloor t \rfloor, \lceil t \rceil \right[$ si $t \not \in \N$,
+et $\gamma(k) = \left]k - \varepsilon' / 2^{k}, k+\varepsilon'/2^k\right[$ 
+si $k \in \N$. Un calcul direct montre alors que
+$$
+\left|S(f, \mathcal{D}) - \sum_{k=0}^{\lceil x_{m+1} \rceil} a_k \right|
+\leq \sum_{k=0}^{+\infty} |a_{k+1} - a_k| \frac{\varepsilon'}{2^{k}}
+\leq \left(\sup_k |a_{k+1} - a_k|\right) \times \varepsilon'.
+$$
+Il suffit de sélectionner 
+$\varepsilon' = (\varepsilon / 2) / \left(\sup_k |a_{k+1} - a_k|\right)$
+pour obtenir
+$$
+\left|S(f, \mathcal{D}) - \sum_{k=0}^{+\infty} a_k \right|
+\leq 
+\varepsilon,
+$$
+ce qui prouve le résultat cherché.
+
 
 
 ### TODO -- Question 3 {.answer #answer-si-3}
