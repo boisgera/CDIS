@@ -297,7 +297,7 @@ $$
 $$
 alors la limite simple $f$ des $f_k$ est intégrable si et seulement si 
 $$
-\sup_k \int_k f(t) \, dt < +\infty.
+\sup_k \int f_k(t) \, dt < +\infty.
 $$
 et dans ce cas,
 $$
