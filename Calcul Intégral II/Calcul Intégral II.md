@@ -108,7 +108,7 @@ que l'intégrale de Riemann : moins régulières, non bornées et/ou définies
 sur des intervalles non-bornés[^ii].
 
 Il faut néanmoins reconnaître à ce stade de notre exposé que l'intégrale
-de Riemann est plus pratique. Si avec l'intégrale de Henstock-Kurzweil
+de Riemann est plus pratique. Si avec l'intégrale de Henstock-Kurzweil,
 on sait que $\lambda f$ et $f + g$ sont intégrables par exemple quand
 $f$ et $g$ le sont, on ne peut rien dire a priori du produit $f g$ par exemple !
 Or dans le cadre Riemannien, rien de plus simple: si $f$ et $g$ sont
@@ -136,7 +136,7 @@ donc négligeable.
 
 Cette remarque ne constitue pas a proprement parler un défaut de l'intégrale de 
 Henstock-Kurzweil mais une conséquence mécanique de sa généralité: en acceptant
-d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/sqrt{x}$ (ou $0$
+d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/\sqrt{x}$ (ou $0$
 si $x=0$), on s'expose à devoir refuser le produit de cette fonction par
 elle-même qui est $x \in [0,1] \mapsto 1/x$ (ou $0$ si $x=0$).
 Il est donc normal de devoir imposer des conditions supplémentaires
