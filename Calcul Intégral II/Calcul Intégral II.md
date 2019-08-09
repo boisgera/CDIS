@@ -338,7 +338,7 @@ comme $\R$ tout entier ou l'ensemble des réels positifs.
 Nous préférons donc mettre l'accent sur la notion d'ensemble mesurable:
 
 ### TODO
-Exemple d'ensemble non mesurable de Vitali en annexe ?
+Insérer référence ens Vital en annexe
 
 [^loop]: Il existe des ensembles dont on ne pas pas définir raisonnablement
 la longueur, sauf à accepter un concept de longueur aux propriétés
