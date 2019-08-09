@@ -90,13 +90,13 @@ Etudions maintenant les liens entre ces différentes convergences.
 La convergence p.s. et la convergence en moyenne entraînent la convergence en probabilité.
 
 ### Démonstration {.proof}
-Soit $\Lambda_{n,\epsilon} = \{|X_n - X| > \epsilon \}$.
+Soit $A_{n,\epsilon} = \{|X_n - X| > \epsilon \}$.
 
- * Supposons que $X_n \to X$ p.s. et soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \to X(\omega)$. Si $\omega \notin N$, on a $\omega \notin \Lambda_{n,\epsilon}$ pour tout $n \geq n_0$, où $n_0$ dépende de $\omega$ et de $\epsilon$, ce qui implique que les variables aléatoires $Y_{n,\epsilon} = 1_{N^c\cap \Lambda_{n,\epsilon}}$ tendent simplement vers 0 lorsque $n \to \infty$. Comme on a aussi $0 \leq Y_{n,\epsilon} \leq 1$ le théorème de convergence dominée implique que $\Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$ Mais
- $$\P(\Lambda_{n,\epsilon}) \leq \P(N^c \cap \Lambda_{n,\epsilon}) + \P(N) = \P(N^c \cap \Lambda_{n,\epsilon}) = \Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$$
+ * Supposons que $X_n \to X$ p.s. et soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \to X(\omega)$. Si $\omega \notin N$, on a $\omega \notin A_{n,\epsilon}$ pour tout $n \geq n_0$, où $n_0$ dépende de $\omega$ et de $\epsilon$, ce qui implique que les variables aléatoires $Y_{n,\epsilon} = 1_{N^c\cap A_{n,\epsilon}}$ tendent simplement vers 0 lorsque $n \to \infty$. Comme on a aussi $0 \leq Y_{n,\epsilon} \leq 1$ le théorème de convergence dominée implique que $\Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$ Mais
+ $$\P(A_{n,\epsilon}) \leq \P(N^c \cap A_{n,\epsilon}) + \P(N) = \P(N^c \cap A_{n,\epsilon}) = \Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$$
 
- * Supposons que $X_n \xrightarrow{\L^1} X$. Pour $\epsilon >0$, on a $1_{\Lambda_{n,\epsilon}} \leq \frac{1}{\epsilon}|X_n - X|$, donc 
- $$ \P(\Lambda_{n,\epsilon}) \leq \frac{1}{\epsilon}\Esp(|X_n - X|) \to 0.$$
+ * Supposons que $X_n \xrightarrow{\L^1} X$. Pour $\epsilon >0$, on a $1_{A_{n,\epsilon}} \leq \frac{1}{\epsilon}|X_n - X|$, donc 
+ $$ \P(A_{n,\epsilon}) \leq \frac{1}{\epsilon}\Esp(|X_n - X|) \to 0.$$
 
 
 La convergence en probabilité n’entraîne pas la convergence en moyenne, comme nous l’avons vu dans l’exemple ci-dessus, ne serait-ce que parce qu'elle n'implique pas l'appartenance de $X_n$ et $X$ à $\L^1$. Si les $X_n$ ne sont “pas trop grands”, il y a cependant équivalence entre les deux modes de convergence. En voici un exemple :
@@ -107,12 +107,12 @@ S'il existe une constante $a$ telle que $|X_n| \leq a$ presque sûrement, il y a
 ### Démonstration {.proof}
 Etant donnée la [proposition précédente](#propconv1), dont on reprend les notations, il suffit de montrer que la convergence en probabilité implique la convergence en moyenne lorsque $|X_n| \leq a$.
 
-Comme $|X_n| \leq a$, on a $\{|X| > a +\epsilon\} \subset \Lambda_{n,\epsilon}$, et donc $\P(|X| > a +\epsilon ) \leq \P(\Lambda_{n,\epsilon})$. En faisant $n \to \infty$, on en déduit que $\P(|X| > a + \epsilon) = 0$. Ceci est vrai pour tout $\epsilon$ et donc
+Comme $|X_n| \leq a$, on a $\{|X| > a +\epsilon\} \subset A_{n,\epsilon}$, et donc $\P(|X| > a +\epsilon ) \leq \P(A_{n,\epsilon})$. En faisant $n \to \infty$, on en déduit que $\P(|X| > a + \epsilon) = 0$. Ceci est vrai pour tout $\epsilon$ et donc
 $$\P(|X|> a) = 0.$$
 Comme $|X_n| \leq a$, on a aussi
-$$ |X_n -X| \leq \epsilon + (X_n + X) 1_{\Lambda_{n,\epsilon}} \leq \epsilon + 2a 1_{\Lambda_{n,\epsilon}}$$
+$$ |X_n -X| \leq \epsilon + (X_n + X) 1_{A_{n,\epsilon}} \leq \epsilon + 2a 1_{A_{n,\epsilon}}$$
 sur l'ensemble $\{|X| \leq a \}$ qui est de probabilité 1. On a ainsi 
-$$ \Esp(|X_n - X|) \leq \epsilon +2a \P(\Lambda_{n,\epsilon})$$
+$$ \Esp(|X_n - X|) \leq \epsilon +2a \P(A_{n,\epsilon})$$
 On en déduit que $\lim \sup_n \Esp(|X_n - X|) \leq \epsilon$, et comme $\epsilon$ est arbitrairement proche de 0, on a le résultat souhaité.
 
 ### {.anonymous}
@@ -220,6 +220,8 @@ converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'in
 # Convergence en loi --- fonction caractéristique --- théorème central limite
 Nous allons introduire maintenant une nouvelle notion de convergence de suites de variables aléatoires. La convergence en loi définie dans ce paragraphe va concerner les lois des variables aléatoires. Elle signifiera que les lois sont asymptotiquement “proches”, sans que les variables aléatoires elles-mêmes le soient nécessairement. 
 
+## Convergence en loi
+
 On considère des vecteurs aléatoires $X_n$ et $X$, tous à valeurs dans le même espace $\R^d$, mais pouvant éventuellement être définis sur des espaces de probabilité différents.
 
 ### Définition {.definition}
@@ -250,4 +252,45 @@ Si $X_n \xrightarrow{\P} X$, alors $X_n\xrightarrow{\L} X$.
 ### Démonstration {.proof}
 Soit $f$ une fonction continue bornée. D'après la [proposition](#propconv4), on a $f(X_n) \xrightarrow{\P} f(X)$ et donc $f(X_n)$ converge aussi en moyenne vers $f(X)$ par la [proposition](#propconv2). Comme $|\Esp(Y)|\leq \Esp(|Y|)$ pour toute variable aléatoire réelle $Y$, on en déduit $\Esp(f(X_n)) \to \Esp(f(X))$.
 
+### {.anonymous}
+Un moyen efficace de caractériser la convergence en loi passe par l'étude de la suite des fonctions de répartition.
 
+### Proposition {.proposition}
+Soient $X_n$ et $X$ des variables aléatoires réelles de fonctions de répartition respectives $F_n$ et $F$. Pour que $X_n \xrightarrow{\L} X$, il faut et il suffit que $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x$ en lequel $F$ est continue.
+
+Notons que puisque la fonction $F$ est continue à droite et croissante, l’ensemble
+des points où $F$ est continue est l’ensemble $D = \{x : F (x-) = F (x)\}$, et son
+complémentaire est au plus dénombrable. Ainsi, $D$ est dense dans $R$.
+
+### Démonstration {.proof}
+
+ 1. Supposons d'abord que $X_n \xrightarrow{\L} X$. Soit $a \in \R$ tel que $F(a-)=F(a)$. Pour tout $p \in \N^\star$ et tout $b \in \R$, il existe une fonction $f_{p,b}$ continue bornée sur $\R$ telle que 
+ $$ 1_{]-\infty,b} \leq f_{p,b} \leq 1_{]-\infty,b + \frac{1}{p}}.$$
+ Alors, par définition, $\Esp(f_{p,b}(X_n)) \to \Esp(f_{p,b}(X))$ quand $n$ tend vers l'infini.
+ L'inégalité ci-dessus implique que $F_n(a) = \P(X_n \leq a) \leq \Esp(f_{p,a}(X_n))$ et $\Esp(f_{p,a}(X)) \leq F(a+1/p)$ ; 
+ donc $\lim\sup_n F_n(a) \leq F(a+1/p)$ pour tout $p$ et donc on a aussi $\lim\sup_n F_n(a) \leq F(a)$.
+ On a également que $F_n(a) \geq \Esp(f_{p,a-1/p}(X_n))$ et $\Esp(f_{p,a-1/p}(X)) \geq F(a-1/p)$ ; donc $\lim\inf_n F_n(a) \geq F(a-1/p)$ pour tout $p$ et donc aussi $\lim\inf_n F_n(a) \geq F(a)$, puique $F(a-)=F(a)$. Ces deux résultas impliquent que $F_n(a) \xrightarrow[n\to \infty]{} F(a)$.
+ 2. Inversement, supposons $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x\in T$, où $T$ est une partie dense de $\R$. Soit $f$ une fonction continue bornée sur $\R$ et $\epsilon > 0$. Soient $a,b \in T$ avec $F(a) \leq \epsilon$ et $F(b) \geq 1-\epsilon$. Il existe $n_0$ tel que 
+ $$ n\geq n_0 \Rightarrow \P(X_n\notin ]a,b]) = 1-F_n(b)+F_n(a) \leq 3\epsilon.$$
+ La fonction $f$ est uniformément continue sur $[a,b]$, donc il existe un nombre fini de points $a_0 = a < a_1 < \ldots < a_k = b$ appartenant tous à $T$, et tels que $|f(x) - f(a_i)|\leq \epsilon$ si $a_{i-1} \leq x \leq a_i$. Donc
+ $$ g(x) = \sum_{i=1}^k f(a_i)1_{]a_{i-1},a_i]}(x)$$
+ vérifie $|f-g| \leq \epsilon$ sur $]a,b]$. Si $M = \sup_x |f(x)|$, il vient alors
+ $$|\Esp(f(X_n))-\Esp(g(X_n))| \leq M \P(X_n \notin [a,b]) + \epsilon,$$
+ de même pour $X$. Enfin, $\Esp(g(X_n)) = \sum_{i=1}^k f(a_i)(F_n(a_i) - F_n(a_{i-1})$, et de même pour $X$ par définition de $g$. Comme $(F_n(a_i))_{n \in \N^\star}$ converge vers $F(a_i)$ pour tout $i$, on en déduit l'existence de $n_1$ tel que 
+ $$ n\geq n_1 \Rightarrow |\Esp(g(X_n)) - \Esp(g(X))|\leq \epsilon.$$
+ Finalement, on a 
+ $$ n \geq \sup(n_0,n_1) \Rightarrow |\Esp(f(X_n))-\Esp(f(X))|\leq 3\epsilon + 5 M \epsilon .$$ 
+ Vu l'arbitraire sur $\epsilon$, on en déduit que $\Esp(f(X_n))$ converge vers $\Esp(f(X))$, d'où le résultat.
+
+### Corollaire {.corollary}
+Si la suite $(X_n)_{n\in\N^\star}$ de variables aléatoires réelles converge en loi vers $X$, et si la loi de $X$ admet une densité, alors pour tous $a< b$,
+$$ \P(X_n \in ]a,b]) \xrightarrow[n\to \infty]{} \P(X\in]a,b]).$$
+
+### Démonstration {.proof}
+La fonction de répartition de $X$ est alors continue en tout point. (Mais pas nécessairement celles des variables aléatoires $X_n$.)
+
+
+
+## Fonction caractéristique
+
+## Théorème central limite
