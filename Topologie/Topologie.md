@@ -342,7 +342,7 @@ Un sous-ensemble $Y$ d'un espace topologique $X$ est un *sous-espace topologique
 de $X$ lorsqu'il est muni de la relation d'adhérence de $X$, 
 restreinte aux points et sous-ensembles de $Y$.
 
-### Application continue
+### Continuité
 Une application $f: X \to Y$ définie entre deux espaces topologiques
 est *continue en $x \in X$* si lorsque $x$ adhère à $A$ dans $X$, 
 $f(x)$ adhère à $f(A)$ dans $Y$. Une application continue en tout point
@@ -360,6 +360,11 @@ Cette caractérisation "abstraite" des fonctions continues se prête
 La composée de fonctions $f:X \to Y$ continue en $x \in X$ 
 et $g:Y\to Z$ continue en $f(x) \in Y$ est continue en $x$.
 
+### Démonstration {.proof}
+Si $x$ adhère à $A$, par continuité de $f$ en $x$,
+$f(x)$ adhère $f(A)$ ; donc par continuité de $g$ en $y=f(x)$,
+$g(y)= (g \circ f)(x)$ adhère à $g(f(A)) = (g \circ f)(A)$.
+La composée de $f$ et de $g$ est donc continue en $x$.
 
 ### Les espaces métriques sont des espaces topologiques
 Soit $X$ un espace métrique muni d'une distance $d$. 
