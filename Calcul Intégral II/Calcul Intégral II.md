@@ -337,16 +337,23 @@ pour être intégrables, mais par ailleurs parfaitement inoffensifs,
 comme $\R$ tout entier ou l'ensemble des réels positifs. 
 Nous préférons donc mettre l'accent sur la notion d'ensemble mesurable:
 
+<!--
 ### TODO
-Insérer référence ens Vital en annexe
+Insérer référence ens Vitali en annexe
+-->
 
 [^loop]: Il existe des ensembles dont on ne pas pas définir raisonnablement
 la longueur, sauf à accepter un concept de longueur aux propriétés
 très étranges. Cette situation ne résulte pas de la méthode de définition
-de la longueur par l'intégrale; c'est au contraire une limitation intrinsèque
+de la longueur par l'intégrale ; c'est au contraire une limitation intrinsèque
 de la théorie de la mesure que nous étudierons plus en détail par la suite.
-Et il n'existe aucune construction "facile" (constructive, explicite) 
+Malheureusement il n'existe aucune construction "facile" (constructive, explicite) 
 d'ensemble qui ne soit pas mesurable (et c'est une chose que l'on peut prouver).
+Finalement, du point de vue logique, supposer que tous les ensembles sont
+mesurables -- ce qui pourrait sembler relativement anodin -- 
+permet de prouver des propositions qui beaucoup plus perturbantes,
+comme l'existence de partitions de $\R$ "strictement
+plus grandes" que $\R$ lui-même. 
 
 ### Ensemble mesurable {.definition}
 Un ensemble $E$ de $\R$ est *de longueur finie* si sa fonction 
@@ -1175,6 +1182,8 @@ La fonction $f$ est donc absolument intégrable.
 Annexes
 ================================================================================
 
+<!-- suppression temporaire, cf <https://github.com/boisgera/CDIS/issues/29>
+
 Ensembles non mesurables
 --------------------------------------------------------------------------------
 
@@ -1206,9 +1215,9 @@ Tout ensemble de Vitali est non-mesurable.
 
 ### TODO -- Démonstration {.proof}
 
+-->
 
-
-Maximum
+Maximum de fonctions intégrables
 --------------------------------------------------------------------------------
 
 ### Maximum de fonctions intégrables et positives {.lemma #max}
