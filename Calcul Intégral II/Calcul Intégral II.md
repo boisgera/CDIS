@@ -121,9 +121,10 @@ $fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp
 de l'intégrale de Riemann, certaines de ces intégrales peuvent être
 calculées comme des intégrales *impropres*, par un passage à la limite
 d'intégrales de Riemann de fonctions définies sur un sous-ensemble.
-Mais l'intégrale qui en résulte -- on parle parfois d'intégrale de
-*Cauchy-Riemann* perd une bonne partie des propriétés de l'intégrale
-de Riemann qui la rendre exploitable.
+Mais l'intégrale qui en résulte 
+-- on parle parfois d'intégrale de *Cauchy-Riemann* -- 
+perd une bonne partie des propriétés de l'intégrale
+de Riemann qui la rende pratique.
 
 [^cocpp]:  Supposons $f$ et $g$ sont intégrables au sens de Riemann 
 sur un segment $[a, b]$, c'est-à-dire bornées et continues presque partout.
