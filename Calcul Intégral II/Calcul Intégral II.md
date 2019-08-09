@@ -100,7 +100,7 @@ Sinon
 -->
 
 Introduction
---------------------------------------------------------------------------------
+================================================================================
 
 L'intégrale de Henstock-Kurzweil, introduite dans ["Calcul Intégral I"], 
 présente l'avantage de pouvoir intégrer une plus grande gamme de fonctions
