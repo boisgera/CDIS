@@ -472,7 +472,7 @@ L'intersection d'une collection dénombrable d'ensemble mesurables et mesurable.
 ### Démonstration {.proof}
 Il suffit de noter que 
 $$
-\cap_k A_k = \R \setminus (\cup_k \R \setminus A_k)
+\cap_k A_k = \R \setminus (\cup_k (\R \setminus A_k))
 $$
 et d'exploiter [les propriétés élémentaires des ensembles mesurables](#pptés-tribu)
 
