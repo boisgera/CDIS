@@ -702,7 +702,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
     
   - Un ensemble $A$ est *fermé* s'il est égale à son adhérence:
     $$
-    A = \overline{A}
+    A = \overline{A} \; \mbox{ ou } \; (x \in \overline{A} \Leftrightarrow x \in A)
     $$
 
   - Un point est *frontière* de $A$ s'il appartient à l'adhérence de $A$ et
@@ -748,6 +748,26 @@ prennent une forme symbolique simple:
  3. $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
 
  4. $\overline{\overline{A}} = \overline{A}$.
+
+### Ouverts et fermés {.theorem}
+Un ensemble est ouvert si et seulement si son complémentaire
+est fermé ; un ensemble est fermé si et seulement 
+si son complémentaire est ouvert.
+
+### Démonstration {.proof}
+En raisonnant par équivalence, le complémentaire $F = X \setminus U$
+d'un ensemble ouvert $U$ -- qui vérifie aussi $U = X \setminus F$ -- est 
+caractérisé par
+$$
+x \in X \setminus F \Rightarrow x \not \in \overline{X \setminus (X \setminus F)},
+$$
+soit $x \in X \setminus F \Rightarrow x \not \in \overline{F}$.
+La contraposée de cette relation -- qui lui est équivalente -- est
+$x \in \overline{F} \Rightarrow x \in F$. Comme $F \subset \overline{F}$,
+cela équivaut $\overline{F} =F$, c'est-à-dire au caractère fermé de $F$.
+
+La démonstration de la seconde partie de l'énoncé est immédiate
+(le complémentaire du complémentaire d'un ensemble est cet ensemble).
 
 ### Continuité {.theorem}
 Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
