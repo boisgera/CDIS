@@ -494,7 +494,7 @@ Les ensembles mesurables dans $\R$ forment donc une tribu.
 
 
 ### Intersection d'ensemble mesurables {.proposition #IEM}
-L'intersection d'une collection dénombrable d'ensemble mesurables et mesurable.
+L'intersection d'une collection dénombrable d'ensemble mesurables est mesurable.
 
 ### Démonstration {.proof}
 Il suffit de noter que 
