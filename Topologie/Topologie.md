@@ -352,6 +352,15 @@ $x \in X$  est *continue*.
 Les applications sont les *morphismes* des espaces topologiques:
 elle préservent la structure des espaces topologiques.
 
+### {.post}
+Cette caractérisation "abstraite" des fonctions continues se prête
+à des preuves particulièrement concises de certains résultats. Ainsi:
+
+### Composée d'applications continues
+La composée de fonctions $f:X \to Y$ continue en $x \in X$ 
+et $g:Y\to Z$ continue en $f(x) \in Y$ est continue en $x$.
+
+
 ### Les espaces métriques sont des espaces topologiques
 Soit $X$ un espace métrique muni d'une distance $d$. 
 La relation définie par
