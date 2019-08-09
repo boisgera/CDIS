@@ -497,18 +497,21 @@ Les ensembles mesurables dans $\R$ forment donc une tribu.
 L'intersection d'une collection dénombrable d'ensemble mesurables est mesurable.
 
 ### Démonstration {.proof}
-Il suffit de noter que 
+Notons que pour toute collection $\mathcal{A}$ d'ensembles de $\R$,
 $$
-\cap_k A_k = \R \setminus (\cup_k (\R \setminus A_k))
+\bigcap \mathcal{A} =
+\bigcap_{A \in \mathcal{A}} A= \left(\bigcup_{A \in \mathcal{A}} A^c\right)^c.
 $$
-et d'exploiter [les propriétés élémentaires des ensembles mesurables](#pptés-tribu)
+La conclusion quand $\mathcal{A}$ est dénombrable résulte alors 
+des [propriétés élémentaires des ensembles mesurables](#pptés-tribu).
 
-### Complément relatif {.proposition #CR}
-Si les ensembles $A$ et $B$ sont mesurables, le complément de $A$ dans $B$
-est mesurable.
+### Complémentaire relatif {.proposition #CR}
+Si les ensembles $A$ et $B$ sont mesurables, le complémentaire 
+$B \setminus A$ de $A$ dans $B$ est mesurable.
 
 ### Démonstration {.proof}
-Par définition, $B \setminus A = B \cap (\R \setminus A)$ ; 
+Les ensembles $A$ et $B$ appartenant à $\R$, on a 
+$B \setminus A = B \cap A^c$ ; 
 le complément de $A$ dans $B$ est donc mesurable comme intersection
 d'ensembles mesurables.
 
