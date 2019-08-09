@@ -110,12 +110,13 @@ sur des intervalles non-bornés[^ii].
 Il faut néanmoins reconnaître à ce stade de notre exposé que l'intégrale
 de Riemann est plus pratique. Si avec l'intégrale de Henstock-Kurzweil,
 on sait que $\lambda f$ et $f + g$ sont intégrables par exemple quand
-$f$ et $g$ le sont, on ne peut rien dire a priori du produit $f g$ par exemple !
+$f$ et $g$ le sont, il n'est pas certain que le produit $f g$ soit 
+intégrable par exemple ! Et à ce stade, nous ne disposons pas des outils
+adaptés pour étudier cette intégrabilité.
 Or dans le cadre Riemannien, rien de plus simple: si $f$ et $g$ sont
 des fonctions intégrables au sens de Riemann sur un segment, le produit 
-$fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp] 
-(en première approche on pourra s'en convaincre en remplaçant 
-"intégrables au sens de Riemann" par "continues").
+$fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp]. 
+
 
 [^ii]: sans nécessiter de construction supplémentaire ; dans le cadre
 de l'intégrale de Riemann, certaines de ces intégrales peuvent être
@@ -126,7 +127,9 @@ Mais l'intégrale qui en résulte
 perd une bonne partie des propriétés de l'intégrale
 de Riemann qui la rende pratique.
 
-[^cocpp]:  Supposons $f$ et $g$ sont intégrables au sens de Riemann 
+[^cocpp]: En première approche on pourra s'en convaincre en remplaçant 
+"intégrables au sens de Riemann" par "continues". Dans le cas général,
+supposons $f$ et $g$ sont intégrables au sens de Riemann 
 sur un segment $[a, b]$, c'est-à-dire bornées et continues presque partout.
 De toute évidence, leur produit est borné. Si $f$ est continue en tout point
 de $[a, b]$ à l'exception de l'ensemble négligeable $A$ et $g$ en tout point
@@ -134,11 +137,11 @@ de $[a, b]$ à l'exception de l'ensemble négligeable $B$, l'ensemble
 $C$ des points de discontinuité de $fg$ est nécessairement dans $A\cup B$,
 donc négligeable.
 
-Cette remarque ne constitue pas a proprement parler un défaut de l'intégrale de 
-Henstock-Kurzweil mais une conséquence mécanique de sa généralité: en acceptant
-d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/\sqrt{x}$ (ou $0$
-si $x=0$), on s'expose à devoir refuser le produit de cette fonction par
-elle-même qui est $x \in [0,1] \mapsto 1/x$ (ou $0$ si $x=0$).
+Cette remarque ne souligne pas à proprement parler un défaut de l'intégrale de 
+Henstock-Kurzweil mais une conséquence de sa généralité: en permettant
+d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/\sqrt{x}$ 
+(presque partout), on s'expose à devoir refuser d'intégrer le produit d'une 
+fonction par elle-même, ici $x \in [0,1] \mapsto 1/x$ (presque partout).
 Il est donc normal de devoir imposer des conditions supplémentaires
 pour garantir l'intégrabilité d'un produit.
 
@@ -152,18 +155,36 @@ fonctions qui jouent le rôle de bornes devront être intégrables au sens
 de Henstock-Kurzweil (et non plus de Riemann); 
 quant à la régularité, il ne s'agira plus de tester la continuité presque
 partout, mais de vérifier la *mesurabilité* de la fonction considérée,
-une propriété beaucoup faible.
+un test que satisfait à peu près toute fonction "imaginable".
 
-Bien que n'étant un cas particulier, l'intégrabilité d'un produit revêt une
-importance particulière. En effet nous souhaitons définir l'intégrale d'une
-fonction $f:\R \to \R$ sur des sous-ensembles $A$ de $\R$ plus généraux
-a priori que des intervalles ; la définition la plus simple consiste à
-intégrer le produit de $f$ par la fonction caractéristique $1_A$ de $A$
-... sous réserve que le produit soit intégrable !
+Bien que n'étant un cas particulier, 
+l'intégrabilité d'un produit revêt une importance particulière. 
+En effet dans ce chapitre pour des raison de simplicité, 
+nous mettrons l'accent sur les fonctions définies sur $\R$ ; 
+par défaut le symbole intégrale sans bornes désignera donc 
+l'intégrale entre $-\infty$ et $+\infty$:
+$$
+\int := \int_{-\infty}^{+\infty}.
+$$
+Si une fonction n'est définie que sur un sous-ensemble $A$ de $\R$
+-- qui pourra être un intervalle ou un ensemble plus complexe --
+il est naturel de lui associer la fonction définie sur $\R$ prenant
+la valeur $0$ en dehors de $A$ puisque dans le cas des intervalles,
+cette opération ne change pas la valeur de l'intégrale.
+Le mouvement inverse -- restreindre une fonction définie sur $\R$ à un 
+sous-ensemble nécessite de considérer le produit $1_A f$ 
+de $f$ par la fonction caractéristique de $A$, ce qui soulève la question
+de l'étude de l'intégrabilité de ces fonctions caractéristiques.
 
-**TODO:** logique TCD.
+Finalement, l'intégrale de Henstock-Kurzweil possède comme l'intégrale de
+Riemann un théorème de convergence dominée qui permet d'évaluer 
+l'intégrale d'une fonction en calculant les intégrales d'une suite 
+de fonctions convergeant simplement. Contrairement au cadre de 
+l'intégrale de Riemann, il ne sera pas nécessaire de supposer que la
+limite des fonctions considérée soit intégrables -- les hypothèses
+du théorème fourniront automatiquement ce résultat.
 
-
+<!--
 --------------------------------------------------------------------------------
 
 Dans la suite de ce document, nous mettons l'accent sur les fonctions définies
@@ -178,6 +199,8 @@ L'essentiel des notions et résultats qui sont introduits peuvent être
 généralisés sans difficulté à des fonctions définies sur des intervalles
 (voire des ensembles plus complexes), en considérant le prolongement 
 de ces fonctions par zéro.
+
+-->
 
 Théorèmes de Convergence
 ================================================================================
