@@ -120,7 +120,7 @@ $fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp
 [^ii]: sans nécessiter de construction supplémentaire ; dans le cadre
 de l'intégrale de Riemann, certaines de ces intégrales peuvent être
 calculées comme des intégrales *impropres*, par un passage à la limite
-d'intégrale de Riemann de fonctions définies sur un sous-ensemble.
+d'intégrales de Riemann de fonctions définies sur un sous-ensemble.
 Mais l'intégrale qui en résulte -- on parle parfois d'intégrale de
 *Cauchy-Riemann* perd une bonne partie des propriétés de l'intégrale
 de Riemann qui la rendre exploitable.
