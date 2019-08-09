@@ -102,7 +102,7 @@ Sinon
 Introduction
 ================================================================================
 
-L'intégrale de Henstock-Kurzweil, introduite dans ["Calcul Intégral I"], 
+L'intégrale de Henstock-Kurzweil, introduite dans "Calcul Intégral I", 
 présente l'avantage de pouvoir intégrer une plus grande gamme de fonctions
 que l'intégrale de Riemann : moins régulières, non bornées et/ou définies
 sur des intervalles non-bornés[^ii].
