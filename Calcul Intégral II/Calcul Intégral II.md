@@ -515,9 +515,6 @@ $B \setminus A = B \cap A^c$ ;
 le complément de $A$ dans $B$ est donc mesurable comme intersection
 d'ensembles mesurables.
 
-
-
-
 ### Topologie et ensembles mesurables {.theorem #OSM}
 Tout ensemble fermé (ou ouvert) est mesurable.
 
@@ -637,7 +634,6 @@ $I$ de longueur inférieure ou égale à $(b-a)/2^k$ vérifie $I \subset \gamma(
 Par conséquent, $t$ appartient à l'un des intervalles inclus par le procédé
 au plus tard à l'étape $k$ de la dichotomie.
 
-
 ### Complétude de la longueur {.corollary}
 
 Un sous-ensemble d'un ensemble de longueur nulle est de longueur nulle.
@@ -652,21 +648,6 @@ nulle](#négligeable-longueur-nulle), cet argument conclut la démonstration.
 
 Fonctions mesurables
 ================================================================================
-
-### TODO:
-
-ensemble mesurable ssi sa fct caractéristique est mesurable.
-
-### Meta {.meta}
-Dans la présentation, commencer par le théorème d'intégrabilité dominée,
-son contraste avec le cas Riemann classique, sans utiliser le mot de
-mesurabilité, puis en "extraire" la notion de mesurabilité.
-
-### Ante {.ante}
-
-Nous allons nous doter dans ce chapitre d'outils permettant de caractériser
-plus facilement l'intégrabilité des fonctions. Au coeur de l'approche,
-la notion de fonction mesurable:
 
 ### Fonction mesurable {.definition}
 Une fonction $f:\R \to \R$ est *mesurable* 
@@ -686,13 +667,7 @@ façon suivante: on dira que $f$ est mesurable si son prolongement par $0$
 à l'extérieur de $I$ est mesurable. Nous laissons le soin au lecteur
 de généraliser en conséquence les énoncés qui vont suivre.
 
-### Ante {.ante}
-
-Le résultat qui met la notion de fonction mesurable au coeur de l'approche
-est le critère d'intégrabilité dominée:
-
 ### Critère d'intégrabilité dominée {.theorem #CID}
-
 Une fonction $f: \R \to \R$ est intégrable si et seulement
 si $f$ est mesurable et il existe deux fonctions intégrables 
 $g: \R \to \R$ et $h: \R \to \R$ telles que
@@ -700,7 +675,6 @@ $g \leq f \leq h$.
 
 
 ### Interprétation {.post .remark}
-
 Souvenons-nous qu'une fonction définie sur un intervalle fermé et borné 
 est intégrable au sens de Riemann si et seulement si elle est encadrée 
 par deux fonctions intégrables au sens de Riemann et continue presque partout.
@@ -722,20 +696,19 @@ non-mesurables font partie des objets "intangibles" (cf. @Sch96) dont
 l'existence est prédite par la théorie mais que l'on ne rencontre jamais 
 en pratique ...
 
-### Ante {.ante}
+### {.ante}
 Plusieurs propriétés des fonctions mesurables se déduisent directement de
 leur définition:
 
-### Les fonctions intégrables sont mesurables
+### Les fonctions intégrables sont mesurables {.proposition}
 
 ### Démonstration {.proof}
 Si $f$ est une fonction mesurable, elle est la limite simple de la suite
 constante égale à $f$.
 
-### Les fonctions mesurables forment un espace vectoriel
+### Les fonctions mesurables forment un espace vectoriel  {.proposition}
 
 ### Démonstration {.proof}
-
 Si $f$, $g$ sont mesurables et $\lambda$ est un nombre réel, 
 il existe des suites $f_k$ et $g_k$ de fonctions intégrables
 convergeant simplement vers $f$ et $g$ respectivement.
@@ -743,11 +716,12 @@ Les fonctions $f_k + g_k$ et $\lambda f_k$ sont intégrables
 et convergent alors simplement vers $f+g$ et $\lambda f$ 
 respectivement.
 
-
+<!--
 ### TODO ?
 
 Evoquer fct localement intégrable ? Quand on regarde la preuve ci-dessous,
 on n'utilise pas autre chose ...
+-->
 
 ### Les fonctions continues (presque partout) sont mesurables
 
@@ -765,6 +739,18 @@ Une fonction $f:\R \to \R^n$ est mesurable si et seulement
 l'image réciproque de tout fermé (ou de tout ouvert) de $\R^n$
 par $f$ est mesurable.
 
+### {.post .remark}
+
+--------------------------------------------------------------------------------
+
+Ce critère ressemble beaucoup à la caractérisation abstraite des fonctions
+continues, qui exige que l'image de tout fermé (ou de tout ouvert)
+soit un fermé (ou un ouvert). Comme [tout fermé (et tout ouvert) est
+mesurable](#OSM), ce critère montre de façon particulièrement simple
+que toute fonction continue est mesurable.
+
+
+<!--
 **NOTA:** l'énonce ici est donné dans le cas des fonctions scalaires,
 mais on a rapidement besoin du cadre vectoriel (pour composer avec
 des opérateurs binaires), ce qui renforce encore l'attrait de la 
@@ -777,9 +763,9 @@ et rajouter le bout de démo qui finit la preuve dans le cas vectoriel
 
 **TODO:** remarque très rapidement sur la forme abstraite et lien avec la
 continuité.
+-->
 
-### Ante {.ante}
-
+### {.ante}
 En se basant exclusivement sur ce critère de mesurabilité par 
 les images réciproques (donc en comprenant temporairement 
 "mesurable" comme "satisfaisant le critère de l'image réciproque"
@@ -803,7 +789,7 @@ $$
 qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
 (dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
 
-### Fonctions presque partout égales {.theorem #FPPE}
+### Fonctions égales presque partout {.theorem #FPPE}
 Toute fonction égale presque partout à une fonction mesurable est
 mesurable.
 
@@ -821,17 +807,15 @@ de Lebesgue est complète);
 par conséquent, $f^{-1}(U)$ est mesurable.
 
 ### Démonstration du [critère de l'image réciproque](#CIR) {.proof #pCIR}
-A nouveau, il suffit de démontrer le critère pour les fermés ou pour les
-ouverts: si une fonction satisfait le critère de d'image réciproque pour
-tout fermé de $\R^n$, alors si $U$ est un ouvert de $\R^n$, 
-en utilisant l'égalité $\R \setminus f^{-1}(U) = f^{-1}(\R^n \setminus U)$,
-le fait que le complémentaire d'un ouvert soit un fermé et 
+Il suffit de démontrer le critère soit pour les ouverts: 
+si une fonction satisfait le critère de d'image réciproque pour
+tout ouvert de $\R^n$, alors si $F$ est un fermé de $\R^n$, 
+en utilisant l'égalité $f^{-1}(F) = \R \setminus f^{-1}(\R^n \setminus F)$,
+le fait que le complémentaire d'un fermé soit un ouvert et 
 que [le complémentaire d'un ensemble mesurable soit mesurable](#pptés-tribus),
-on établit le critère pour les ouverts ; la réciproque est similaire.
+on établit le critère pour les fermés.
 
-**TODO:** cas scalaire ici, à préciser et finir avec cas vectoriel
-(ouvert réunion dénombrable de pavés ouverts)
-
+Montrons tout d'abord le résultat pour les fonctions scalaires ($n=1$).
 Supposons [le critère de l'image réciproque](#CIR) satisfait. 
 La démonstration repose sur la construction explicite d'une suite $f_k(x)$ 
 de fonctions intégrables qui soient étagées, c'est-à-dire ne prenant qu'un
@@ -916,6 +900,36 @@ vérifient le critère de l'image réciproque,
 par une nouvelle application du résultat de 
 [stabilité par passage à la limite](#SPL), 
 ce critère est également satisfait pour toute fonction mesurable.
+
+Pour établir le résultat dans le cas où $n>1$, il suffit de montrer qu'une
+fonction $f:\R \to \R^n$ satisfait le critère de l'image réciproque si et
+seulement si toutes ses composantes le satisfont. Pour le sens direct,
+il suffit de constater que 
+$$
+f_k^{-1}(U) = f^{-1}(\R \times \dots \times U \times \dots \R)
+$$
+et que si $U$ est ouvert, $\R \times \dots \times \R \times \dots \R$ également.
+Pour la réciproque, nous exploitons le fait[^demo] que tout ouvert de $\R^n$ peut être
+décomposé comme l'union d'une collection dénombrable $\mathcal{P}$ 
+de pavés ouverts de la forme
+$$
+P = \left]a_1,b_1\right[ \times \dots \times \left]a_n,b_n\right[.
+$$
+Il nous suffit alors de noter que pour tout pavé $P$,
+$$
+f^{-1}(P) = f_1^{-1}(\left]a_1,b_1\right[) \times \dots \times f_n^{-1}(\left]a_n,b_n\right[)
+$$
+et donc $f^{-1}(P)$ est mesurable. 
+Comme $f^{-1}(U) = \cup_{P \in \mathcal{P}} f^{-1}(P)$ et que $\mathcal{P}$
+est dénombrable, l'image réciproque de $U$ par $f$ est bien mesurable.
+
+[^demo]: la démonstration est similaire à la décomposition d'un ouvert de
+$\R$ en une collection d'intervalle ouvert: pour chaque point $x$ de 
+$U \subset \R^n$ ouvert, on considère le plus grand pavé ouvert $P$
+qui contienne $x$ ; ces pavés peuvent être indexés par un $n$-uplet de
+rationnels (un qu'il contienne), 
+ils forment donc une collection dénombrables et leur union 
+est égale à $U$ par construction.
 
 
 ### Composition par une fonction continue {.theorem #CFC}
