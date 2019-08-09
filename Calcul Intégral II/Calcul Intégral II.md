@@ -349,7 +349,6 @@ Et il n'existe aucune construction "facile" (constructive, explicite)
 d'ensemble qui ne soit pas mesurable (et c'est une chose que l'on peut prouver).
 
 ### Ensemble mesurable {.definition}
-
 Un ensemble $E$ de $\R$ est *de longueur finie* si sa fonction 
 caractéristique $1_E$ est intégrable sur $\R$; 
 il est *mesurable* si sa fonction caractéristique est intégable 
@@ -364,8 +363,7 @@ $$
 $$
 dans le cas contraire (si $E$ mesurable mais pas de longueur finie).
 
-### Remarque {.remark}
-
+### Intérprétation {.remark}
 Il faut comprendre le terme "mesurable" litéralement, 
 comme signifiant "dont on peut définir la mesure (de longueur)", 
 qui est un nombre fini ou infini. 
