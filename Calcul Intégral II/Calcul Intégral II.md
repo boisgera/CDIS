@@ -99,6 +99,70 @@ Sinon
    
 -->
 
+Introduction
+--------------------------------------------------------------------------------
+
+L'intégrale de Henstock-Kurzweil, introduite dans ["Calcul Intégral I"], 
+présente l'avantage de pouvoir intégrer une plus grande gamme de fonctions
+que l'intégrale de Riemann : moins régulières, non bornées et/ou définies
+sur des intervalles non-bornés[^ii].
+
+Il faut néanmoins reconnaître à ce stade de notre exposé que l'intégrale
+de Riemann est plus pratique. Si avec l'intégrale de Henstock-Kurzweil
+on sait que $\lambda f$ et $f + g$ sont intégrables par exemple quand
+$f$ et $g$ le sont, on ne peut rien dire a priori du produit $f g$ par exemple !
+Or dans le cadre Riemannien, rien de plus simple: si $f$ et $g$ sont
+des fonctions intégrables au sens de Riemann sur un segment, le produit 
+$fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp] 
+(en première approche on pourra s'en convaincre en remplaçant 
+"intégrables au sens de Riemann" par "continues").
+
+[^ii]: sans nécessiter de construction supplémentaire ; dans le cadre
+de l'intégrale de Riemann, certaines de ces intégrales peuvent être
+calculées comme des intégrales *impropres*, par un passage à la limite
+d'intégrale de Riemann de fonctions définies sur un sous-ensemble.
+Mais l'intégrale qui en résulte -- on parle parfois d'intégrale de
+*Cauchy-Riemann* perd une bonne partie des propriétés de l'intégrale
+de Riemann qui la rendre exploitable.
+
+[^cocpp]:  Supposons $f$ et $g$ sont intégrables au sens de Riemann 
+sur un segment $[a, b]$, c'est-à-dire bornées et continues presque partout.
+De toute évidence, leur produit est borné. Si $f$ est continue en tout point
+de $[a, b]$ à l'exception de l'ensemble négligeable $A$ et $g$ en tout point
+de $[a, b]$ à l'exception de l'ensemble négligeable $B$, l'ensemble
+$C$ des points de discontinuité de $fg$ est nécessairement dans $A\cup B$,
+donc négligeable.
+
+Cette remarque ne constitue pas a proprement parler un défaut de l'intégrale de 
+Henstock-Kurzweil mais une conséquence mécanique de sa généralité: en acceptant
+d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/sqrt{x}$ (ou $0$
+si $x=0$), on s'expose à devoir refuser le produit de cette fonction par
+elle-même qui est $x \in [0,1] \mapsto 1/x$ (ou $0$ si $x=0$).
+Il est donc normal de devoir imposer des conditions supplémentaires
+pour garantir l'intégrabilité d'un produit.
+
+Heureusement, comme dans le cas de l'intégrale de Riemann, 
+un critère d'intégrabilité des fonctions -- nécessaire et suffisant -- 
+existe pour établir ce type de résultat (et bien d'autres).
+Comme dans le cas de l'intégrale de Riemann, il se décompose en deux tests
+indépendants: pour être intégrable une fonction doit être "encadrée par des
+fonctions intégrables" et "suffisamment régulière". Bien sûr ici les 
+fonctions qui jouent le rôle de bornes devront être intégrables au sens
+de Henstock-Kurzweil (et non plus de Riemann); 
+quant à la régularité, il ne s'agira plus de tester la continuité presque
+partout, mais de vérifier la *mesurabilité* de la fonction considérée,
+une propriété beaucoup faible.
+
+Bien que n'étant un cas particulier, l'intégrabilité d'un produit revêt une
+importance particulière. En effet nous souhaitons définir l'intégrale d'une
+fonction $f:\R \to \R$ sur des sous-ensembles $A$ de $\R$ plus généraux
+a priori que des intervalles ; la définition la plus simple consiste à
+intégrer le produit de $f$ par la fonction caractéristique $1_A$ de $A$
+... sous réserve que le produit soit intégrable !
+
+**TODO:** logique TCD.
+
+
 --------------------------------------------------------------------------------
 
 Dans la suite de ce document, nous mettons l'accent sur les fonctions définies
