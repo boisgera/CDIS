@@ -404,8 +404,28 @@ $\mathbb{N}$.
  3. L'union d'une collection dénombrable d'ensembles mesurables
     est mesurable.
 
-### Démonstration {.proof}
+### Complémentaire absolu et relatif {.notation .definition}
+Le complémentaire (absolu) d'un ensemble $A$, relativement au
+sur-ensemble $X=\R$ dans ce chapitre
+-- mais le concept peut facilement être généralisé --
+désigne l'ensemble des points de $X$ qui ne sont pas dans $A$.
+Quand le choix de $X$ est clair dans le contexte, on pourra le noter
+$$
+A^c = \{x \in X \, | \, x \not \in A\}.
+$$
+Pour être plus explicite, on peut utiliser la notation du complémentaire 
+relatif: le complémentaire de $A$ dans $B$ est l'ensemble des points de 
+$B$ qui n'appartiennent pas à $A$:
+$$
+B \setminus A = \{x \in B \, | \, x \not \in A\}.
+$$
+Cette notation ne suppose pas a priori que $A$ soit inclus dans $B$ ; 
+on a bien sûr
+$$
+A^c = X \setminus A.
+$$
 
+### Démonstration des [propriétés élémentaires](#pptés-tribu) {.proof}
  1. La fonction caractéristique $1_{\varnothing}$ est identiquement 
     nulle; l'ensemble vide $\varnothing$ est donc intégrable et par
     conséquent mesurable.
