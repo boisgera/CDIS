@@ -348,6 +348,8 @@ est *continue en $x \in X$* si lorsque $x$ adhère à $A$ dans $X$,
 $f(x)$ adhère à $f(A)$ dans $Y$. Une application continue en tout point
 $x \in X$  est *continue*.
 
+--------------------------------------------------------------------------------
+
 ### {.post}
 Les applications sont les *morphismes* des espaces topologiques:
 elle préservent la structure des espaces topologiques.
