@@ -121,7 +121,7 @@ $$
 ### Intégrale d'une fonction positive
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto [0, +\infty]$ une fonction mesurable.
-Soit $\mathcal{F}$ la collection des fonctions étagées positives est mesurables
+Soit $\mathcal{F}$ la collection des fonctions étagées positives et mesurables
 inférieures à $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 la grandeur positive (finie ou infinie)
