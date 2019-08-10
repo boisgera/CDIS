@@ -157,7 +157,7 @@ Noter intégrale de Lebesgue absolue par construction.
 ### TODO
 aller vers la mesure de longueur. Par les mesures extérieures ? Yes.
 Mmmm, oui, mais-pas-que. On a déjà $\ell$ et les ensembles mesurables
-associés via la théorie $HK$ (ou $v$ dans $\R^n$), 
+associés via la théorie HK (ou $v$ dans $\R^n$), 
 on ne vas pas la jeter si ? Non !
 
 ### TODO
