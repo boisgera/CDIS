@@ -83,7 +83,7 @@ de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
 ### Conventions
 Lorsque $Y$ a une structure topologique, on supposera par défaut que la 
-tribu associée est la tribu de Borel, et lorsque $X = \R^n$  
+tribu associée est la tribu de Borel, et lorsque $X = \R^n$ 
 que la tribu associée est la tribu de Lebesgue. 
 Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
 on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
