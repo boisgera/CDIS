@@ -7,6 +7,9 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+TODO -- Mesures
+================================================================================
+
 Mesure et intégrale
 ================================================================================
 
@@ -70,25 +73,84 @@ $$
 on dit que $\mu$ est *$\sigma$-additive*.
 L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
 
+### TODO -- Pb
+Gérer "pb" des fonctions à valeurs étendues ? Non, il n'y en a pas ...
+
 ### Fonction mesurable
 Une fonction $f: X \to Y$ associée aux espaces mesurables $(X, \mathcal{A})$
 et $(Y,\mathcal{B})$ est *mesurable* si l'image réciproque $A =f^{-1}(B)$
 de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
 ### Conventions
-Lorsque $Y = \R^m$, on supposera par défaut que la tribu associée est la
-tribu de Borel, et lorsque $X = \R^n$, que la tribu associée est la tribu
-de Lebesgue. Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
-on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée),
-mais il existe une bonne raison pour ne pas prendre cette convention par 
-défaut:
+Lorsque $Y$ a une structure topologique, on supposera par défaut que la 
+tribu associée est la tribu de Borel, et lorsque $X = \R^n$  
+que la tribu associée est la tribu de Lebesgue. 
+Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
+on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
+Il existe une bonne raison pour adopter cette convention:
 
 ### Mesurable / mesurable
 Une fonction $f:\R^n \to \R^m$ est mesurable au sens du chapitre III, 
 c'est-à-dire limite simple de fonctions intégrables si et seulement si
-elle est mesurable au sens de ce chapitre, quand $\R^n$ est muni de la
+elle est mesurable au sens de ce chapitre quand $\R^n$ est muni de la
 tribu de Borel et $\R^m$ de la tribu de Lebesgue.
 
 ### TODO -- Démonstration {.proof}
 
+### Fonction étagée {.definition}
+On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
+l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
+prenne qu'un nombre fini de valeurs).
+
+### Intégrale d'une fonction étagée mesurable
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \mapsto \left[0, +\infty\right[$ une fonction étagée positive et mesurable.
+Soit $Y = f(X)$ l'ensemble des valeurs prises par $f$.
+On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
+la grandeur positive finie
+$$
+\int_X f \mu := \int_X f(x) \mu(dx) := \sum_{y \in Y} y \times \mu(f^{-1}(\{y\})).
+$$
+
 ### Intégrale d'une fonction positive
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \mapsto [0, +\infty]$ une fonction mesurable.
+Soit $\mathcal{F}$ la collection des fonctions étagées positives est mesurables
+inférieures à $f$.
+On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
+la grandeur positive (finie ou infinie)
+$$
+\int_X f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}} \int_X g \mu.
+$$
+
+### Intégrale d'une fonction à valeurs réelles
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \mapsto [-infty, +\infty]$ une fonction mesurable.
+On dit que la fonction $f$ est *intégrable au sens de Lebesgue 
+relativement à la mesure $\mu$* si elle est mesurable et que 
+les intégrales des fonctions positives 
+$f_+ = \max(f, 0)$ et $f_- = -\min(f, 0)$ sont finies. 
+*L'intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
+est alors la grandeur positive (finie)
+$$
+\int_X f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
+$$ 
+
+### TODO 
+Noter intégrale de fcts positives "plus souple"  et fct pas considérée
+intégrable (même si on peut donner une valeur à son intégrale !) si
+l'intégrale est infinie; 
+mais on est obligé d'être plus restrictif pour les fonctions signées, 
+en raison du risque
+de $+\infty - \infty$. Evoquer certains auteurs qui tolèrent l'une ou
+l'autre des valeurs
+
+### TODO
+Noter intégrale de Lebesgue absolue par construction.
+
+### TODO
+aller vers la mesure de longueur. Par les mesures extérieures ? Yes.
+
+### TODO
+"Equivalence" intégrabilité Lebesgue et HK absolue (modulo gestion des
+valeurs infinies.)
