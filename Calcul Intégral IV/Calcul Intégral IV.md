@@ -89,7 +89,7 @@ Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
 on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
 Il existe une bonne raison pour adopter cette convention:
 
-### Mesurable / mesurable
+### Mesurable ou mesurable ?
 Une fonction $f:\R^n \to \R^m$ est mesurable au sens du chapitre III, 
 c'est-à-dire limite simple de fonctions intégrables si et seulement si
 elle est mesurable au sens de ce chapitre quand $\R^n$ est muni de la
