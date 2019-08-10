@@ -1,6 +1,4 @@
 % Calcul Intégral II
-% Sébastien Boisgérault
-
 
 <!-- LaTeX Macros -->
 \newcommand{\N}{\mathbb{N}}
