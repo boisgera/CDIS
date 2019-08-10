@@ -125,7 +125,7 @@ $$
 
 ### Intégrale d'une fonction à valeurs réelles
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \mapsto [-infty, +\infty]$ une fonction mesurable.
+$f: X \mapsto [-\infty, +\infty]$ une fonction mesurable.
 On dit que la fonction $f$ est *intégrable au sens de Lebesgue 
 relativement à la mesure $\mu$* si elle est mesurable et que 
 les intégrales des fonctions positives 
