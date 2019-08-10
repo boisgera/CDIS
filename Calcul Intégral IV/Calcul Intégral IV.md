@@ -78,6 +78,17 @@ de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 ### Conventions
 Lorsque $Y = \R^m$, on supposera par défaut que la tribu associée est la
 tribu de Borel, et lorsque $X = \R^n$, que la tribu associée est la tribu
-de Lebesgue.
+de Lebesgue. Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
+on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée),
+mais il existe une bonne raison pour ne pas prendre cette convention par 
+défaut:
+
+### Mesurable / mesurable
+Une fonction $f:\R^n \to \R^m$ est mesurable au sens du chapitre III, 
+c'est-à-dire limite simple de fonctions intégrables si et seulement si
+elle est mesurable au sens de ce chapitre, quand $\R^n$ est muni de la
+tribu de Borel et $\R^m$ de la tribu de Lebesgue.
+
+### TODO -- Démonstration {.proof}
 
 ### Intégrale d'une fonction positive
