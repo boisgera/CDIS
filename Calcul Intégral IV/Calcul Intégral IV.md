@@ -131,7 +131,7 @@ relativement à la mesure $\mu$* si elle est mesurable et que
 les intégrales des fonctions positives 
 $f_+ = \max(f, 0)$ et $f_- = -\min(f, 0)$ sont finies. 
 *L'intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
-est alors la grandeur positive (finie)
+est alors la grandeur réelle (finie)
 $$
 \int_X f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
 $$ 
