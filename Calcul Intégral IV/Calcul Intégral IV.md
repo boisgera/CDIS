@@ -93,8 +93,9 @@ Il existe une bonne raison pour adopter cette convention:
 Une fonction $f:\R^n \to \R^m$ est mesurable au sens du chapitre III,
 c'est-à-dire limite simple de fonctions intégrables 
 au sens de Henstock-Kurzweil,
-si et seulement si elle est mesurable au sens de ce chapitre quand $\R^n$ 
-est muni de la tribu de Borel et $\R^m$ de la tribu de Lebesgue.
+si et seulement si elle est mesurable au sens de ce chapitre quand 
+l'espace de départ $\R^n$  est muni de la tribu de Lebesgue et 
+l'espace d'arrivée $\R^m$ de la tribu de Borel.
 
 ### TODO -- Démonstration {.proof}
 
