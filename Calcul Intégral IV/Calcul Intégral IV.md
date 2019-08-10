@@ -99,6 +99,10 @@ l'espace d'arrivée $\R^m$ de la tribu de Borel.
 
 ### TODO -- Démonstration {.proof}
 
+### TODO: composition de fcts mesurables
+Intérêt de fcts boréliennes dans ce schéma, lien avec Calcul Intégral III
+(généralisation résultats composition)
+
 ### Fonction étagée {.definition}
 On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
 l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
