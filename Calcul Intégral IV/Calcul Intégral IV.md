@@ -102,7 +102,7 @@ On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
 l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
 prenne qu'un nombre fini de valeurs).
 
-### Intégrale d'une fonction étagée mesurable
+### Intégrale d'une fonction étagée
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto \left[0, +\infty\right[$ une fonction étagée positive et mesurable.
 Soit $Y = f(X)$ l'ensemble des valeurs prises par $f$.
