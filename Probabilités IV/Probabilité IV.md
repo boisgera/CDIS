@@ -289,8 +289,82 @@ $$ \P(X_n \in ]a,b]) \xrightarrow[n\to \infty]{} \P(X\in]a,b]).$$
 ### Démonstration {.proof}
 La fonction de répartition de $X$ est alors continue en tout point. (Mais pas nécessairement celles des variables aléatoires $X_n$.)
 
-
+**Slutsky ???? voir avec CAA -> stat/ML**
 
 ## Fonction caractéristique
+
+Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités :
+il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire,
+et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment très utile pour démontrer le théorème central limite.
+
+On notera $< x, y >$ le produit scalaire de deux vecteurs de $\R^n$ . Si $u \in \R^n$ , la fonction (complexe) $x \mapsto e^{i < u,x>}$ est continue, de module 1. Donc si $X$ est un vecteur aléatoire à valeurs dans $\R^n$ , nous pouvons considérer $e^{i < u,x>}$ comme une variable aléatoire à valeurs complexes. Ses parties réelle $Y = \cos(< u, X>)$ et imaginaire $Z = \sin(< u, X>)$ sont des variables aléatoires réelles. Ces variables aléatoires réelles
+sont de plus bornées par 1, donc elles admettent une espérance. Il est alors naturel d’écrire que l’espérance de $e^{i < u,x>}$ est
+    $$\Esp(e^{i < u,x>}) = \Esp(Y) + i \Esp(Z) = \Esp(\cos< u, X>) + i\Esp(\sin< u, X>) $$
+
+### Définition {.definition}
+Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, sa *fonction caractéristique* est la fonction $\phi_X$ de $\R^n$ dans $\C$ définie par
+    $$ \phi_X(u) = \Esp(e^{i < u,x>}).$$
+
+### Remarque {.remark}
+La fonction caractéristique ne dépend en fait **que de la loi $\P_X$ de $X$** : c’est la “transformée de Fourier” de la loi $\P_X$.
+
+Nous verrons que cette fonction porte bien son nom, au sens où elle caractérise la loi $\P_X$. C’est une notion qui, de ce point de vue, généralise la fonction génératrice $G$ qui a été vue en CPGE. Elle vérifie
+    $$\phi_X(u) = G_X(e^{iu}) = \Esp(e^{iuX}) $$
+pour une variable $X$ à valeurs dans $\N$.
+
+### Proposition {.proposition}
+$\phi_X$ est de module inférieur à 1, continue, avec
+    $$ \phi(0) = 1 ; \phi_X(-u) = \overline{\phi_X(u)}.$$
+
+### Démonstration {.proof}
+$|z|$ désigne le module d'un nombre complexe $z$.
+
+Comme $\Esp(Y)^2 \leq \Esp(Y^2)$ pour toute variable réelle $Y$, on a :
+$$ |\phi_X(u)|^2 = \Esp(\cos< u, X>)^2 + \Esp(\sin< u, X>)^2 \leq \Esp(\cos^2< u, X> + \sin^2< u, X>) = 1.$$
+
+Pour montrer la continuité, considérons une suite $u_p \xrightarrow[p \to \infty]{} u$. Il y a convergence simple de $e^{i < u_p,X>}$ vers $e^{i < u,X>}$. Comme ces variables aléatoires sont de module borné par 1, le théorème de convergence dominée assure que $\phi_X(u_p) \xrightarrow[p \to \infty]{} \phi_X(u)$. $\phi_X$ est donc continue.
+
+### Proposition {.proposition}
+Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, si $a \in \R^m$ et $A$ est une matrice réelle de taille $m \times n$, alors 
+    $$ \phi{a+AX}(u) = e^{i < u,a>} \phi_X (A^t u), \forall u \in \R^m$$
+
+### Démonstration {.proof}
+Nous avons $e^{i< u, a + AX>} = e^{i < u,a>}e^{i <A^tu, X>}$. En effet, $< u, A X> = < A^t u, X>$. On prend ensuite les espérances pour obtenir le résultat.
+
+### Exemples {.example #ex}
+
+ 1. $X$ suit une loi binomiale $\mathcal{B}(n,p)$ : $\phi_X(u) = (p e^{iu}+ 1- p)^n$.
+ 2. $X$ suit une loi de Poisson $\mathcal{P}(\theta)$ : $\phi_X(u) = e^{\theta (e^{iu}-1)}$.
+ 3. $X$ suit une loi uniforme $\mathcal{U}_{[a,b]}$ :$\phi_X(u) = \frac{e^{iua} - e^{iub}}{iu(b-a)}$.
+ 4. $X$ suit une loi exponentielle $\mathcal{E}(\lambda)$, $\lambda > 0$ : $\phi_X(u) = \frac{\lambda}{\lambda - iu}$.
+ 5. $X$ suit une loi normale $\No(0,1)$ : $\phi_X(u) = e^{-u^2/2}$.
+ 6. $X$ suit une loi normale $\No(\mu,\sigma^2)$ : $\phi_X(u) = e^{iu\mu -u^2\sigma^2/2}$.
+
+L’intérêt majeur de la fonction caractéristique réside dans le fait qu’elle caractérise la
+loi de la variable aléatoire (d'où son nom).
+
+### Théorème {.theorem #caracfc}
+La fonction caractéristique $\phi_X$ caractérise la loi du vecteur aléatoire $X$. Ainsi, si deux vecteurs aléatoires $X$ et $Y$ ont même fonction caractéristique, ils ont même loi.
+
+### Démonstration {.proof}
+Soient les fonctions suivantes avec $\sigma > 0$ :
+    $$ f_\sigma (x) = \frac{1}{(2\pi \sigma^2)^{n/2}}\exp\left(-\frac{|x|^2}{2\sigma^2}\right) \text{ et } \widehat{f}_\sigma (u)= \exp\left(-\frac{|u|^2}{2\sigma^2}\right).$$
+On a 
+\begin{align*}
+\int f_\sigma (x) e^{i < u,x>} dx &= \int{\R^n} \prod_{j=1}^n \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{x_j^2}{2\sigma^2}+iu_j x_j\right) dx_1\ldots dx_n \\
+                                  &= \prod_{j=1}^n \int{\R} \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{t^2}{2\sigma^2}+iu_j t\right) dt = \widehat{f}_\sigma(u)
+\end{align*}
+d'après l'exemple 5 [ci-dessus](ex) et en utilisant le théorème de Fubini. On remarque ainsi que
+$$ f_\sigma (u-v) = \frac{1}{(2\pi \sigma^2)^{n/2}} \widehat{f}_\sigma(\frac{u-v}{\sigma^2}) = \frac{1}{(2\pi \sigma^2)^{n/2}} \int f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx.$$
+
+Supposons que $X$ et $X'$ admettent la même fonction caractéristique $\phi_X = \phi_{X'}$. En utilisant le théorème de Fubini, on a 
+\begin{align*}
+\int f_\sigma (u-v) \P_X (du) &= \int_{\R^n} \frac{1}{(2\pi \sigma^2)^{n/2}} \left( \int_{\R^n} f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx \right) \P_X (du)\\
+                              &= \int_{\R^n} f_\sigma (x) \frac{1}{(2\pi \sigma^2)^{n/2}} \phi_X(\frac{x}{\sigma^2}) e^{-i < v ,x>/\sigma^2} dx,
+\end{align*}
+
+et la même égalité reste vraie pour $\P_{X'}$. Par suite $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g$ de l'espace vectoriel de fonction engendrées par $u \mapsto f_\sigma (u-v)$. D'après le théorème de Stone-Weiertrass, cet espace est dense dans l'ensemble $C_0$ des fonctions continues sur $\R^n$ et ayant une limite nulle à l'infini, pour la topologie de la convergence uniforme. Par suite, $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g \in C_0$. Comme l'indicatrice de tout ouvert est limite croissante de fonctions de $C_0$, on en déduit que $\P_X(A) = \Esp(1_A (X))$ est égal à $\P_{X'}(A) = \Esp(1_A (X'))$ pour tout ouvert $A$, ce qui implique $P_X = P_{X'}$.
+
+
 
 ## Théorème central limite
