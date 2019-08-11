@@ -141,6 +141,7 @@ La nouveauté majeure de ce cours par rapport au programme des classes préparat
 Soit $\Omega = \R$ et $f : \Omega \to \R^+$ une fonction absolument intégrable telle que 
 $$ \int_\Omega f(x) dx =1 $$
 
+<!-- voir aussi issue #34 -->
 Soit $\A$ la collection des ensembles mesurables sur $\Omega$ ;
 [les propriétés élémentaires des ensembles mesurables (cf. "Calcul Intégral II")](Calcul Intégral II.pdf#pptés-tribu) établissent que $\mathcal{A}$ est une tribu, 
 sur laquelle on peut définir
