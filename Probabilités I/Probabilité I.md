@@ -303,7 +303,7 @@ Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le
 ### Définition - fonction de répartition {.definition #deffdr}
 La *fonction de répartition* de la probabilité $\P$ sur $\R$ est la fonction
 \begin{equation}
-F(x) = \P(]-\infty, x]), x \in \R.
+F(x) = \P(\left]-\infty, x\right]), x \in \R.
 \end{equation}
 
 ### Exemple {.example}
