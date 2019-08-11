@@ -383,6 +383,9 @@ Le théorème ci-dessus explique pourquoi, d’un point de vue strictement math�
     $$F(x) = \sum_{y \in E ; y\leq x} q_i.$$
     Notons aussi que l'ensemble $E$, bien qu'au plus dénombrable, peut tout-à-fait être partout dense dans $\R$, par exemple $E = \Q$ : si alors $q_i >0$ pour tout $i \in \Q$, la fonction $F$ est discontinue en tout rationnel.
 
+<!-- Nota SB: concept d'ensemble dense pas vu en Topo à ce stade, peut-être en 
+Calcul Diff 3, tard (et sans doute pas en CPGE) -->    
+
 Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités avec densité.
 
 ## Densités de probabilités
