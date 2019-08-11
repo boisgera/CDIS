@@ -124,7 +124,7 @@ Nous avons vu dans la partie précédente que des solutions locales au problème
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$ (on dira par la suite pour simplifier que $f$ est de classe $C^1$ en $x$).
-Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ in $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert.
+Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert.
 
 *Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. La preuve complète est donnée en appendice? L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale unique. L'ouverture de son intervalle de définition vient du fait qu'elle pourrait sinon être de nouveau prolongée *au bord* de l'intervalle, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
