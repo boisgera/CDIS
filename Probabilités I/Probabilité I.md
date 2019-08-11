@@ -404,6 +404,11 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
 
 ### Remarques {.remark}
 
+<!-- le "f(x) +1" me perturbe un peu ... comme si ce choix particulier avait un
+     rôle spécial ; bien sûr ça n'est pas le cas ! Est-ce qu'on peut éviter ce
+     "red herring" ? 
+  -->
+
  * La fonction de répartition est entièrement déterminée par la probabilité $\P$. Il n'en est pas de même de la densité lorsqu'elle existe : si en effet on a $F(x) =\int_{-\infty}^x f(y)dy$ et si on pose $g(x) = f(x)$ si $x \notin E$ et $g(x) =f(x)+1$ si $x\in E$, où $E$ est un ensemble négligeable, alors $g$ est encore une densité de $\P$.
 
  * Une interprétation intuitive de la densité $f$ de $\P$. Si $dx$ est un petit accroissement de la variable $x$, on a (si du moins $f$ est continue en $x$) :
@@ -415,6 +420,14 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
 
 
 
+<!-- SB: il me semble qu'un bout des VA à densité ici est plus adapté
+     que par exemple le conditionnement ou l'indépendance, que l'on
+     ne peut pas illustrer convenablement à ce stade (cf #33).
+    
+     Et il me semble important qu'on puisse faire des va à densité
+     dès le 1er td (cf #7 ; je dis ça parce qu'il n'y a que DEUX TDs
+     avant l'exam, sinon bien sûr ça pourrait attendre ...)
+-->
 
 # Variables aléatoires absolument continues -> plutôt en II ?
 
