@@ -345,7 +345,10 @@ La [proposition](#propfdr) admet une réciproque que nous admettrons. On se repo
 ### Théorème {.theorem}
 Si $F$ est une fonction réelle sur $\R$ qui vérifie les trois conditions de la [proposition](#propfdr), c'est la fonction de répartition d'une (unique) probabilité $\P$ sur $\R$ munie de la tribu borélienne $\B_\R$. On ne peut pas, en général, définir $\P$ sur la tribu $\mathcal{P}(\R)$ de toutes les parties de $\R$.
 
-### Remarque {.remark} <!-- cf #32 -->
+
+
+### Remarque {.remark} 
+<!-- cf #32 -->
 Le théorème ci-dessus explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. Sinon, cela reviendrait à prendre (sans le dire) la tribu $\A = \mathcal{P}(\R)$ et il n'existerait que très peu de probabilités sur $\R$, à savoir les probabilités discrètes que l'on décrit rapidement ci-dessous :
 
 ### Exemple {.example #ex.discret}
