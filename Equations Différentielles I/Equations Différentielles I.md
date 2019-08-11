@@ -206,7 +206,7 @@ admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)
 Solutions globales
 --------------------------------
 
-Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ en $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. Mais cet intervalle n'est pas nécessairement $\R$ entier même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la soliution n'est pas *globale*. 
+Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ en $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. Mais cet intervalle n'est pas nécessairement $\R$ entier même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la solution n'est pas *globale*. 
 
 ### Example d'explosion en temps fini
 L'intervalle de définition de la solution maximale du problème de Cauchy n'est pas nécessairement $\R$, même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. Par exemple, considérons le problème de Cauchy
