@@ -499,9 +499,10 @@ output = root / "output"
 images = root / "images"
 try:
     shutil.rmtree(output)
-    output.mkdir()
 except FileNotFoundError:
     pass
+output.mkdir()
+
 bibliography = root / "bibliography.json"
 
 # Documents
