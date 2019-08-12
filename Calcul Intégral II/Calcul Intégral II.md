@@ -923,12 +923,10 @@ est dénombrable, l'image réciproque de $U$ par $f$ est bien mesurable.
 
 [^demo]: la démonstration est similaire à la décomposition d'un ouvert de
 $\R$ en une collection d'intervalle ouvert: pour chaque point $x$ de 
-$U \subset \R^n$ ouvert, on considère le plus grand pavé ouvert $P$
-qui contienne $x$ ; ces pavés peuvent être indexés par un $n$-uplet de
-rationnels (un qu'il contienne), 
-ils forment donc une collection dénombrables et leur union 
+$U \subset \R^n$ ouvert dont les coordonnées sont rationnelles, 
+on considère le plus grand pavé ouvert $P_x$ qui contienne $x$ ; 
+ces pavés forment une collection dénombrable et leur union 
 est égale à $U$ par construction.
-
 
 ### Composition par une fonction continue {.theorem #CFC}
 
