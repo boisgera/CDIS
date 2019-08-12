@@ -1598,6 +1598,28 @@ sa valeur absolue $|f|$ l'est également.
 
 $\to$ [Solution](#s-abs)
 
+Continuité presque partout {#cpp}
+--------------------------------------------------------------------------------
+
+### Question 1 {.question #cpp-1}
+Est-ce qu'une fonction égale presque partout à une fonction continue est
+presque partout continue ? La réciproque est-elle vraie ?
+
+### Question 2 {.question #cpp-2}
+La fonction de Dirichlet $1_{\Q}$ -- ou fonction indicatrice de $\Q$ -- 
+définie par
+$$
+1_{\Q}(x) = 
+\left|
+\begin{array}{cl}
+1 & \mbox{si } x \mbox{ est rationnel,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est-elle intégrable sur $[0, 1]$ au sens de Riemann ? 
+Et au sens de Henstock-Kurzweil ?
+
 TODO -- Un ensemble de Cantor {#e-cantor}
 --------------------------------------------------------------------------------
 
