@@ -1546,8 +1546,8 @@ $$
 $$
 
 ### Question 3 {.question #si-3}
-En déduire une fonction $f:[0, +\infty] \to \R$ qui soit conditionnellement
-intégrable.
+En déduire une fonction $f:[0, +\infty] \to \R$ qui soit intégrable sans
+que $|f|$ le soit (on dit que $f$ est conditionnellement intégrable).
 
 Solutions
 ================================================================================
@@ -2062,11 +2062,11 @@ $$
 C'est donc le cas si $\gamma(+\infty) = \left]n, +\infty \right]$.
 Pour le reste des valeurs de la jauge, prenons
 $\gamma(t) = \left]\lfloor t \rfloor, \lceil t \rceil \right[$ si $t \not \in \N$,
-et $\gamma(k) = \left]k - \varepsilon' / 2^{k}, k+\varepsilon'/2^k\right[$ 
+et $\gamma(k) = \left]k - \varepsilon' / 2^{k+1}, k+\varepsilon'/2^{k+1}\right[$ 
 si $k \in \N$. Un calcul direct montre alors que
 $$
 \left|S(f, \mathcal{D}) - \sum_{k=0}^{\lceil x_{m+1} \rceil} a_k \right|
-\leq \sum_{k=0}^{+\infty} |a_{k+1} - a_k| \frac{\varepsilon'}{2^{k}}
+\leq \sum_{k=0}^{+\infty} |a_{k+1} - a_k| \frac{\varepsilon'}{2^{k+1}}
 \leq \left(\sup_k |a_{k+1} - a_k|\right) \times \varepsilon'.
 $$
 Il suffit de sélectionner 
