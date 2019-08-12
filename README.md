@@ -15,7 +15,7 @@ Calcul Différentiel, Intégral et Stochastique
 :book: Accès aux Documents
 --------------------------------------------------------------------------------
 
-  - <https://github.com/boisgera/CDIS/tree/gh-pages/output>
+  - [Documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
 
 
 :pencil: Développeurs & Contributeurs
