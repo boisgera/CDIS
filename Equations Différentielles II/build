@@ -513,7 +513,11 @@ if len(_docs) != 1:
     raise RuntimeError(error)
 doc = _docs[0]
 doc_md = doc + ".md"
-doc_tex = str(output / (doc + ".tex"))
+output_latex = output / (doc + " (LaTeX)")
+output_latex.mkdir()
+output_latex_images = output_latex / "images"
+output_latex_images.mkdir()
+doc_tex = str(output_latex / (doc + ".tex"))
 doc_pdf = str(output / (doc + ".pdf"))
 doc_odt = str(output / (doc + ".odt"))
 doc_html = str(output / (doc + ".html"))
@@ -560,7 +564,13 @@ HTML_options += ["--mathjax"]
 # PDF Output
 doc = pandoc.read(file=doc_md)
 doc = transform(doc)
-pandoc.write(doc, file=doc_tex, options=TEX_options)
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
+pandoc.write(doc, file=doc_tex, options=TEX_options)
+gl = lambda pattern: list(images.glob(pattern))
+image_filenames = gl("*.pdf") + gl("*.png") + gl("*.jpg")
+for image in image_filenames:
+    shutil.copy(image, output_latex_images)
+shutil.make_archive(str(output_latex), "zip", str(output_latex))
+shutil.rmtree(str(output_latex))
 #pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
 #pandoc.write(doc, format="odt", file=doc_odt, options=ODT_options)
