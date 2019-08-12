@@ -1774,6 +1774,13 @@ Continuité presque partout
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cpp-1}
+Une fonction égale presque partout à une fonction continue n'est pas 
+nécessairement presque partout continue. La fonction de Dirichlet 
+de [la question 2](#cpp-2) fournit un bon example: elle est égale à la
+fonction identiquement nulle -- qui est continue -- sur tout $\R$ à
+l'exception des rationnels, et l'ensemble des rationnels est négligeable,
+[car dénombrable](#edn).
+
 La réciproque n'est pas vérifiée non plus: la fonction de Heaviside
 $e:\R \to \R$ -- ou fonction indicatrice de $\left[0, +\infty \right[$, 
 définie par
