@@ -4,6 +4,7 @@
 import datetime
 import os
 import pathlib
+import shutil
 import subprocess
 import sys
 
@@ -497,8 +498,9 @@ root = pathlib.Path(".").resolve()
 output = root / "output"
 images = root / "images"
 try:
+    shutil.rmtree(output)
     output.mkdir()
-except FileExistsError:
+except FileNotFoundError:
     pass
 bibliography = root / "bibliography.json"
 
@@ -560,5 +562,5 @@ doc = pandoc.read(file=doc_md)
 doc = transform(doc)
 pandoc.write(doc, file=doc_tex, options=TEX_options)
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
-pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
-pandoc.write(doc, format="odt", file=doc_odt, options=ODT_options)
+#pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
+#pandoc.write(doc, format="odt", file=doc_odt, options=ODT_options)
