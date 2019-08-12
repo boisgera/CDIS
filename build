@@ -8,7 +8,7 @@ for dir in */; do
     cd "${dir}"
     if [ -f build ]; then
         echo "build ${dir}"
-        ./build
+        rm -rf output && ./build
     fi
     cd ..
 done

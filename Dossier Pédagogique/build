@@ -497,11 +497,13 @@ def flag_definitions(doc):
 root = pathlib.Path(".").resolve()
 output = root / "output"
 images = root / "images"
-try:
-    shutil.rmtree(output)
-except FileNotFoundError:
-    pass
-output.mkdir()
+
+# We need to be more gentle here for the PDF viewers not to choke
+# try:
+#     shutil.rmtree(output)
+# except FileNotFoundError:
+#     pass
+output.mkdir(exist_ok=True) 
 
 bibliography = root / "bibliography.json"
 

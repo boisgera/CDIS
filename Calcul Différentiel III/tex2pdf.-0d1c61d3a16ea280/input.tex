@@ -1,0 +1,396 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[french,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Calcul Différentiel II},
+            pdfauthor={STEP, Mines Paristech},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{fontawesome}
+
+\usepackage{bookmark}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=french]{babel}
+\else
+  % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{french}
+\fi
+
+\title{Calcul Différentiel II}
+\author{STEP, Mines Paristech\footnote{Ce document est un des produits du projet
+  \href{https://github.com/}{\(\mbox{\faGithub}\)
+  \texttt{boisgera/CDIS}}, initié par la collaboration de
+  \href{mailto:sebastien.boisgerault@mines-paristech.fr}{(S)ébastien
+  Boisgérault} (CAOR),
+  \href{mailto:thomas.romary@mines-paristech.fr}{(T)homas Romary} et
+  \href{mailto:emilie.chautru@mines-paristech.fr}{(E)milie Chautru}
+  (GEOSCIENCES),
+  \href{mailto:pauline.bernard@mines-paristech.fr}{(P)auline Bernard}
+  (CAS), avec la contribution de
+  \href{mailto:gabriel-stolz@mines-paristech.fr}{Gabriel Stoltz} (Ecole
+  des Ponts ParisTech, CERMICS). Il est mis à disposition selon les
+  termes de \href{http://creativecommons.org/licenses/by-nc-sa/}{la
+  licence Creative Commons ``attribution -- pas d'utilisation
+  commerciale -- partage dans les mêmes conditions'' 4.0
+  internationale}.}}
+\date{12 août 2019}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+TODO, à trier, idées en vrac:
+
+\begin{itemize}
+\item
+  e.v.n fonctionnels (\(C^k\), \(L^1\), \(L^2\), etc.), Hilbert, Banach.
+\item
+  opérateurs linéaires continus (bornés), adjoint (appli calcul diff,
+  par exemple pour calcul solution diff EDP sans recalcul ?)
+\item
+  différentielle (Fréchet), cas général
+\end{itemize}
+
+En fait va plus loin que le scope du calcul diff, contient un mini
+``topo en dim infinie'' (qu'est-ce qui change ? Compacité (en
+particulier ppté vraie sur les compacts ne donne plus le semi-global,
+ppté de type Ascoli-Arzela pour caractériser la compacité pour les fcts
+continues), non-équivalence des normes, dualité, topologie faible ?) et
+algèbre linéaire en dim infinie (opérateurs linéaires ne sont pas tous
+cont., pas de chance \ldots{} Hilbert, Banach, etc).
+
+Prérequis: Topo, Calcul Diff dim finie, sans doute l'intégrale (les
+critères intégraux sont une grande motivation pour enseigner le calcul
+diff en dim infinie), c'est aussi sans doute l'endroit ou on veut parler
+de la complétude des espaces comme \(L^1 / L^2\), etc.
+
+Exemples à traiter: ``interpolation'' données non-paramétrique, calcul
+des variations, maximum entropie sous contrainte, diff. / chemin (ex:
+usage en analyse complexe), optimisation/gradient forme, etc. Autre
+exemple: quantif qui optimise le SNR ou l'entropie. Autre exemple: Pb de
+Dirichlet variationel ? On peut faire ça ? Et lier ça au Laplacien ? Ou
+il il faut un cadre compliqué (trace \& co) ?
+
+Articulation avec Physique Fonda. et Appliquée (calc var, Hilb, etc.).
+Volonté de permettre de comprendre des trucs comme la construction de
+Fourier (prolgt opé lin con à partir d'un ensemble dense avec
+majoration), ou typiquement, définition de la trace sur un bord régulier
+\ldots{}
+
+\begin{itemize}
+\item
+  Topo en dim infinie, Banach, Hilbert, opérateurs lin cont, analyse
+  spectrale
+\item
+  Calcul diff en dim infinie (acc. fini, cont df, inversion locale,
+  point critique et multiplicateurs de lagrange, etc., tout ça revisité
+  rapidement en se basant sur la familiarité avec la dim finie, déjà
+  vue).
+\item
+  Equation de Poisson: intro Sobolev, pb ``variationnel'' en
+  multivariable, trace, etc. Evocation schéma résolution numérique (élt
+  finis) ?
+\item
+  Cadre Méca Q, opérateurs (non bornés) hermitien, semi-groupes
+  (unitaires) fortement continus, etc?
+\end{itemize}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\hypertarget{todo-espaces-de-hilbertbanach}{%
+\section{TODO -- Espaces de
+Hilbert/Banach}\label{todo-espaces-de-hilbertbanach}}
+
+\(L^1\), \(L^2\), \(L^{\infty}\) (\(L^p\) ?) Dans le cadre général ?
+(ens de départ ?)
+
+\(C^0\), \(C^k\), etc. Hölder \(C^{k,\alpha}\) ? Sur sous-ensemble
+compact de \(\mathbb{R}^n\) ?
+
+Sobolev (sur \(\mathbb{R}^n\)) ? Sur \(\Omega\) par densité ? (ouch)
+
+Espaces d'opérateurs: \(E \stackrel{\ell}{\to } F\).
+
+Opérateurs bornés, cas particulier des ``inclusions'' (fonction
+identité, différente norme au départ et à l'arrivée)
+
+Exemple d'opérateurs bornés (ici et en exercice): les identités
+(\(C^0 \to L^1\), \(L^2 \to L^1\)), l'intégrale
+(\(L^1 \to \mathbb{R}^n\))
+
+Technique de définition d'un opérateur borné par densité.
+
+Liste de sous-ensembles denses (en particulier, fcts lisses à support
+compact \ldots{})
+
+Exemple techniques densité pour définir un truc ? et/ou étendre une
+relation (exemple: IPP pour fcts avec dérivées faibles ? Fourier ?)
+
+Opérateurs définis sur un domaine \(D(A)\) dense (certains bornés,
+d'autres non). Applis méca Q ?
+
+\hypertarget{diffuxe9rentielle}{%
+\section{Différentielle}\label{diffuxe9rentielle}}
+
+\hypertarget{diffuxe9rentielle-de-fruxe9chet}{%
+\subsubsection{Différentielle de
+Fréchet}\label{diffuxe9rentielle-de-fruxe9chet}}
+
+Soient \(E\) et \(F\) deux espaces vectoriels normés et \(U\) un ouvert
+de \(E\). La fonction \(f: U \to F\) est \emph{différentiable en
+\(x \in U\)} s'il existe une application linéaire continue, notée
+\(df(x)\) et appellée \emph{différentielle de \(f\) en \(x\)}, telle que
+\[
+f(x+h) = f(x) + df(x) \cdot h + o(\|h\|_E),
+\] c'est-à-dire si \[
+\lim_{h \to 0} \frac{\|f(x+h) - f(x) - df(x) \cdot h\|_F}{\|h\|_E} = 0.
+\]
+
+\hypertarget{todo}{%
+\subsubsection{TODO}\label{todo}}
+
+Reprendre les règles de calcul de la dimension finie
+
+\hypertarget{TFI-2}{%
+\subsubsection{Théorème des Fonctions Implicites}\label{TFI-2}}
+
+Soient \(E\), \(F\) et \(G\) trois espaces vectoriels normés, \(F\)
+étant complet, et \(f\) une fonction définie sur un ouvert \(W\) de
+\(E \times F\) \[
+f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
+\] qui soit continûment différentiable et telle que la différentielle
+partielle \(\partial_y f\) soit inversible et d'inverse continu en tout
+point de \(W\). Si le point \((x_0, y_0)\) de \(W\) vérifie
+\(f(x_0, y_0)= 0\), alors il existe des voisinages ouverts \(U\) de
+\(x_0\) et \(V\) de \(y_0\) tels que \(U \times V \subset W\) et une
+fonction implicite \(\psi: U \to F\), continûment différentiable, telle
+que pour tous \(x \in U\) et \(y \in V\), \[
+f(x, y) = 0
+\; \Leftrightarrow \; 
+y = \psi(x).
+\] De plus, la différentielle de \(\psi\) est donnée pour tout
+\(x \in U\) par \[
+d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
+\]
+
+\vspace{3.25ex plus 1ex minus .2ex}\protect\hypertarget{duxe9monstration-esquisse}{}{\textbf{Démonstration
+(esquisse)}\quad}La démonstration est similaire au cas de la dimension
+finie: la construction de la solution \(f(x, y) = 0\) en \(y\) est
+toujours basée sur la construction d'une suite d'approximations \(y_k\)
+par la méthode (modifiée) de Newton. L'existence d'un point fixe à cette
+méthode repose sur le point fixe de Banach -- d'où l'hypothèse de
+complétude de \(F\) -- et la caractère contractant de la fonction de
+Newton, qui exploite la norme d'opérateur
+\(\|(\partial_y f(x_0, y_0))^{-1}\|\) et donc la continuité de cet
+inverse.\hfill$\blacksquare$
+
+\hypertarget{formulation-alternative}{%
+\subsubsection{Formulation alternative}\label{formulation-alternative}}
+
+On remarque que sous les hypothèses du théorème des fonctions
+implicites, l'espace vectoriel normé \(G\) est nécessairement complet.
+En effet, pour toute suite de Cauchy \(z_k\) dans \(G\), comme
+\(Q := \partial_y f(x_0, y_0)\) est inversible et d'inverse continu,
+\(y_k := Q^{-1} \cdot z_k\) est de Cauchy dans \(F\), complet par
+hypothèse; si \(\ell\) désigne la limite de cette suite,
+\(Q \cdot \ell\) fournit une limite à la suite des \(z_k\) dans \(G\).
+
+Si l'on ajoute cette hypothèse -- inutile à ce stade, mais le plus
+souvent très simple à vérifier -- au théorème, on peut en retirer une
+autre, en général plus technique. En effet, un théorème dû à Stefan
+Banach affirme que toute fonction linéaire continue entre deux espaces
+de Banach qui est inversible à un inverse continue. Compte tenu de ce
+résultat, on peut reformuler l'énoncé du théorème des fonctions
+implicites en omettant la vérification de l'inversibilité de
+\(\partial_y f\):
+
+\hypertarget{TFI-2-alt}{%
+\subsubsection{Théorème des Fonctions Implicites}\label{TFI-2-alt}}
+
+Soient \(E\), \(F\) et \(G\) trois espaces vectoriels normés, \(F\) et
+\(G\) étant complets, et \(f\) une fonction définie sur un ouvert \(W\)
+de \(E \times F\) \[
+f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
+\] qui soit continûment différentiable et dont la différentielle
+partielle \(\partial_y f\) est inversible en tout point de \(W\). Si le
+point \((x_0, y_0)\) de \(W\) vérifie \(f(x_0, y_0)= 0\), alors il
+existe des voisinages ouverts \(U\) de \(x_0\) et \(V\) de \(y_0\) tels
+que \(U \times V \subset W\) et une fonction implicite
+\(\psi: U \to F\), continûment différentiable, telle que pour tous
+\(x \in U\) et \(y \in V\), \[
+f(x, y) = 0
+\; \Leftrightarrow \; 
+y = \psi(x).
+\] De plus, la différentielle de \(\psi\) est donnée pour tout
+\(x \in U\) par \[
+d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
+\]
+
+\hypertarget{todo-1}{%
+\subsubsection{TODO}\label{todo-1}}
+
+Nouvelle définition de la différentielle d'ordre supérieur,
+compatibilité avec la dimension finie
+
+\hypertarget{todo-2}{%
+\subsubsection{TODO}\label{todo-2}}
+
+Développement de Taylor, Taylor avec reste intégral, etc.
+
+\hypertarget{todo-calcul-des-variations}{%
+\section{TODO -- Calcul des
+variations}\label{todo-calcul-des-variations}}
+
+\hypertarget{todo-diffuxe9rentiation-dune-composition}{%
+\subsubsection{TODO Différentiation d'une
+composition}\label{todo-diffuxe9rentiation-dune-composition}}
+
+Montrer conditions sous lesquelles on a (dans des espaces de fcts
+continues): \[
+d (f \mapsto g \circ f) 
+=
+h \mapsto (x \mapsto dg(f(x)) \cdot h(x))
+\]
+
+\vspace{3.25ex plus 1ex minus .2ex}\protect\hypertarget{todo-duxe9monstration}{}{\textbf{TODO
+-- Démonstration}\quad}Insister sur le caractère nécessaire du résultat
+(via composition du résultat avec \(f \to f(x)\), soit ``raisonner à
+\(x\) fixé'').
+
+Puis utiliser théorème des accroissements finis: on considère à \(x\)
+fixé \[
+h \in \mathbb{R}^n \mapsto g (f(x)+ h) - g(f(x)) - dg(f(x)) \cdot h
+\] dont la différentielle vaut \(dg(f(x)+h) - dg(f(x))\), aussi petit
+que l'on veut quand \(\|h\|\) est petit, et ce uniformément par rapport
+à \(x\), ce qui donne en substituant \(h(x)\) à \(h\) (où \(h\) est
+désormais une fonction bornée) \[
+g (f(x)+ h(x)) = g(f(x)) + dg(f(x)) \cdot h(x) + o(\|h\|_{\infty}) 
+\] où le \(o\) est uniforme par rapport à \(x\); et c'est
+tout.\hfill$\blacksquare$
+
+\hypertarget{lagrangien}{%
+\subsubsection{Lagrangien}\label{lagrangien}}
+
+Fonction \[
+L: (x, y, y') \in U \subset \mathbb{R}\times \mathbb{R}^n \mapsto L(x, y, y') \in \mathbb{R}^n,
+\] \(U\) ouvert, \(L\) supposée continûment différentiable.
+
+\hypertarget{todo-3}{%
+\subsubsection{TODO}\label{todo-3}}
+
+(Nota: \(C^1\) est ``de confort'', on pourrait y arriver avec \(L\) cont
+et diff partielles par rapport à \(y\) et \(y'\) continues) Plus tard,
+nécessaire de renforcer régularité pour faire IPP et obtenir équation
+d'Euler-Lagrange (suffit de supposer que \(\partial_{y'}L\) est diff /
+\(x\) et que le résultat est cont).
+
+\hypertarget{diffuxe9rentielle-dune-fonctionelle}{%
+\subsubsection{Différentielle d'une
+fonctionelle}\label{diffuxe9rentielle-dune-fonctionelle}}
+
+\[
+J(y) = \int_a^b L(x, y(x), y'(x) \, dx
+\]
+
+\[
+dJ(y) \cdot h = \int_a^b \partial_{y}L(x, y(x), y'(x)) \cdot h(x)+
+\partial_{y'} L(x, y(x), y'(x)) \cdot h'(x)
+\, dx
+\]
+
+\hypertarget{todo-exercices}{%
+\section{TODO -- Exercices}\label{todo-exercices}}
+
+\hypertarget{todo-thuxe9oruxe8me-de-banach}{%
+\subsection{TODO -- Théorème de
+Banach}\label{todo-thuxe9oruxe8me-de-banach}}
+
+\hypertarget{todo-compluxe9tude}{%
+\subsection{TODO -- Complétude}\label{todo-compluxe9tude}}
+
+Montrer que l'espace des fonctions continues de \([0,1]\) dans
+\(\mathbb{R}\) n'est pas complet pour la norme \[
+\|f\|_1 = \int_0^1 |f(x)| \, dx.
+\]
+
+\hypertarget{gradient-de-forme}{%
+\subsection{Gradient de Forme}\label{gradient-de-forme}}
+
+(dérivée une fonctionnelle dépendant de la géométrie en transportant la
+géomtrie par \(I+u\), puis dérivée par rapport à \(u\) ?)
+
+\(\Omega\) dans \(U\) paramétrisé par une déformation \(T = I + u\) avec
+\(u\) petit et une base \(\Omega_0\) qui est un compact à bords \(C^1\).
+Différencier le volume de \(\Omega\) par rapport \(T\) (chgt de
+variable, etc), utiliser Stokes, montrer que la différentielle ne dépend
+que de \(\left<V, n\right>\).
+
+\hypertarget{thuxe9oruxe8me-de-cauchy-intuxe9gral}{%
+\subsection{Théorème de Cauchy
+Intégral}\label{thuxe9oruxe8me-de-cauchy-intuxe9gral}}
+
+Montrer la version circulaire, sous l'hypothèse que \(f\) est de
+différentielle \(\mathbb{C}\)-linéaire et continue (en faisant une chain
+rule en dim infinie) \ldots{} mais est-ce vraiment nécessaire ? Ne
+peut-on pas calculer les dérivées par rapport au centre et au rayon sans
+ça, avec uniquement la dérivation ``point par point'' et les résultats
+de convergence dans les intégrales ?
+
+\end{document}
