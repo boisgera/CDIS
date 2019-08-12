@@ -1795,8 +1795,8 @@ $$
 est continue presque partout (sauf en $0$). Mais aucune modification de
 cette fonctions sur un ensemble négligeable ne pourra la rendre continue
 en $0$ ; il faudrait pour cela modifier tout un intervalle de la forme
-$\left]-\varepsilon, 0\right[$ ou de la forme $\left]0, \varepsilon\right[$,
-mais ces deux intervalles ne sont pas négligeables.
+$\left]-\varepsilon, 0\right[$ ou de la forme $\left]0, \varepsilon\right[$
+pour un $\varepsilon > 0$, mais aucun de ces deux intervalles n'est négligeable.
 
 ### Question 2 {.answer #answer-cpp-2}
 La fonction de Dirichlet $1_{\Q}$ -- ou fonction indicatrice de $\Q$ -- 
