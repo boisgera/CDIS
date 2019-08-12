@@ -1741,8 +1741,9 @@ $z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
 Comme $\phi$ est à valeurs dans $I$, $z \in I$; l'ensemble $I$ est donc un 
 intervalle de $\R$.
 
-TODO -- Subdvisions subordonnées à une jauge {.answer #answer-subd-subor}
+Subdvisions subordonnées à une jauge {.answer #answer-subd-subor}
 --------------------------------------------------------------------------------
+
 On applique pas à pas la démarche de la preuve du [lemme de Cousin](#cousin).
 
 On considère initialement les subdivisions pointées de la forme $\{(t_1, [0,1])\}$. 
@@ -1876,7 +1877,7 @@ Séries et intégrales
 ### Question 1 {.answer #answer-si-1}
 Si $\sum_k a_k$ est divergente, $f$ ne satisfait pas 
 [le critère d'intégrabilité de Cauchy](Calcul Intégral I.pdf/#CIC).
-En effet, la série elle-même ne satisfait pas le crtière de Cauchy: il existe donc
+En effet, la série elle-même ne satisfait pas le critère de Cauchy: il existe donc
 un $\varepsilon > 0$ tel que pour tout entier $j$, il existe un
 entier $n$ tel que $$\left|\sum_{k=j}^{j+n} a_k\right| > \varepsilon.$$
 Soit $\gamma$ une jauge sur $[0, +\infty]$ et soit 
