@@ -1793,7 +1793,7 @@ e(x) = \left|
 \right.
 $$
 est continue presque partout (sauf en $0$). Mais aucune modification de
-cette fonctions sur un ensemble négligeable ne pourra la rendre continue
+cette fonction sur un ensemble négligeable ne pourra la rendre continue
 en $0$ ; il faudrait pour cela modifier tout un intervalle de la forme
 $\left]-\varepsilon, 0\right[$ ou de la forme $\left]0, \varepsilon\right[$
 pour un $\varepsilon > 0$, mais aucun de ces deux intervalles n'est négligeable.
