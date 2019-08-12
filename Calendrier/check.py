@@ -29,5 +29,6 @@ for i, event in enumerate(events):
     description = event.description
     if event.description:
         description = "\n".join(["    " + line for line in description.splitlines()])
+        description = "    " + description.strip()
         print(description)
     print()
