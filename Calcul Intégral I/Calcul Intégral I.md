@@ -1775,12 +1775,12 @@ Continuité presque partout
 
 ### Question 1 {.answer #answer-cpp-1}
 La réciproque n'est pas vérifiée non plus: la fonction de Heaviside
-$e:\R \to $\R$ -- ou fonction indicatrice de $\left[0, +\infty \right[$, 
+$e:\R \to \R$ -- ou fonction indicatrice de $\left[0, +\infty \right[$, 
 définie par
 $$
 e(x) = \left|
 \begin{array}{cl}
-1 & \mbox{si } $x\geq 0$,\\
+1 & \mbox{si } x\geq 0,\\
 0 & \mbox{sinon.}
 \end{array}
 \right.
