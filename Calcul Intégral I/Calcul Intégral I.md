@@ -1553,7 +1553,7 @@ Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
 Exercices
 ================================================================================
 
-Intervalle {#e-int}
+Intervalle {.question #int}
 --------------------------------------------------------------------------------
 
 Montrer qu'un sous-ensemble $I$ de $\R$ est un intervalle si et
@@ -1561,8 +1561,6 @@ seulement si il *est connexe par arcs*, c'est-à-dire si et seulement
 si pour tout couple de points $x$ et $y$ de $I$ on peut trouver un
 chemin de $I$ joignant $x$ à $y$, c'est-à-dire une fonction continue
 $\phi:[0, 1] \to I$, telle que $\phi(0) = x$ et $\phi(1) = y$.
-
-$\to$ [Solution](#s-int)
 
 Subdvisions subordonnées à une jauge {.question #subd-subor}
 --------------------------------------------------------------------------------
@@ -1725,8 +1723,7 @@ que $|f|$ le soit (on dit que $f$ est conditionnellement intégrable).
 Solutions
 ================================================================================
 
-Intervalle {#s-int}
---------------------------------------------------------------------------------
+## Intervalle {.answer #answer-int}
 
 Montrons tout d'abord que la condition est nécessaire. 
 Supposons que $x$ et $y$ appartiennent à $I$ et que $x$ 
