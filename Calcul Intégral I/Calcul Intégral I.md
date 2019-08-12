@@ -1779,7 +1779,8 @@ nécessairement presque partout continue. La fonction de Dirichlet
 de [la question 2](#cpp-2) fournit un bon example: elle est égale à la
 fonction identiquement nulle -- qui est continue -- sur tout $\R$ à
 l'exception des rationnels, et l'ensemble des rationnels est négligeable,
-[car dénombrable](#edn).
+[car dénombrable](#edn). Mais elle n'est continue en aucun point, car
+tout nombre rationnel est limite de nombres irrationnels et réciproquement.
 
 La réciproque n'est pas vérifiée non plus: la fonction de Heaviside
 $e:\R \to \R$ -- ou fonction indicatrice de $\left[0, +\infty \right[$, 
@@ -1799,19 +1800,10 @@ $\left]-\varepsilon, 0\right[$ ou de la forme $\left]0, \varepsilon\right[$
 pour un $\varepsilon > 0$, mais aucun de ces deux intervalles n'est négligeable.
 
 ### Question 2 {.answer #answer-cpp-2}
-La fonction de Dirichlet $1_{\Q}$ -- ou fonction indicatrice de $\Q$ -- 
-définie par
-$$
-1_{\Q}(x) = 
-\left|
-\begin{array}{cl}
-1 & \mbox{si } x \mbox{ est rationnel,} \\
-0 & \mbox{sinon.}
-\end{array}
-\right.
-$$
-est-elle intégrable sur $[0, 1]$ au sens de Riemann ? 
-Et au sens de Henstock-Kurzweil ?
+La fonction de Dirichlet $1_{\Q}$ sur $[0, 1]$ est égale presque partout à la
+fonction identiquement nulle qui est continue, elle est donc intégrable au
+sens de Henstock-Kurzweil. Mais elle n'est pas continue presque partout,
+donc elle n'est pas intégrable au sens de Henstock-Kurzweil.
 
 TODO -- Un ensemble de Cantor {#s-cantor}
 --------------------------------------------------------------------------------
