@@ -14,5 +14,5 @@ for dir in */; do
 done
 
 # Gather outputs
-mkdir -p output
+rm -rf output && mkdir output
 cp */output/* output
