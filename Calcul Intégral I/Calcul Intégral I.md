@@ -1573,23 +1573,13 @@ si $t>0$.
 
 Déterminer une subdivision pointée de $[0, 1]$ qui soit subordonnée à $\gamma$.
 
-Subdivision pointées {#e-sp}
---------------------------------------------------------------------------------
-
-Demander de construire à partir d'une subdivision une autre subdivision 
-"aussi fine", de même somme de Riemann, mais avec les points tjs à gauche
-ou à droite de l'intervalle.
-
-$\to$ [Solution](#s-sp)
-
-L'intégrale de Riemann est absolue {#e-abs}
+L'intégrale de Riemann est absolue {.question #Rabs}
 --------------------------------------------------------------------------------
 
 Montrer que l'intégrale de Riemman est absolue: 
 si une fonction $f$ est intégrable au sens de Riemann, 
 sa valeur absolue $|f|$ l'est également.
 
-$\to$ [Solution](#s-abs)
 
 Continuité presque partout {#cpp}
 --------------------------------------------------------------------------------
@@ -1613,7 +1603,7 @@ $$
 est-elle intégrable sur $[0, 1]$ au sens de Riemann ? 
 Et au sens de Henstock-Kurzweil ?
 
-TODO -- Un ensemble de Cantor {#e-cantor}
+Un ensemble de Cantor
 --------------------------------------------------------------------------------
 
 Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté de façon
@@ -1634,20 +1624,11 @@ dont le développement décimal ne comporte que des nombres pairs.
 Par exemple, $x=2/3 = 0.666\dots$ appartient à $A$, mais 
 $x=\sqrt{2}/2 = 0.707\dots$ non.
 
-**TODO:** faire qqchose du style "Si vous deviez 
-"tirer un nombre au hasard dans $\left[0, 1\right[$", 
-quelle serait les chances de tomber sur un nombre de $A$ ?".
-Qui suppose de modéliser la séquence des $a_n$, supposé équiprobables,
-indépendants, etc.? OK, why not mais est-on en état de relier ça à la
-question 1. à ce stade ? Mmmmmmm ....
-
-### Question 1
+### Question 1 {.question #cantor-1}
 
 Montrer que l'ensemble $A$ est négligeable.
 
-$\to$ [Solution](#s-cantor-1)
-
-### Question 2
+### Question 2 {.question #cantor-2}
 
 Montrer néanmoins que $A$ n'est pas dénombrable, 
 mais a la "puissance du continu" 
@@ -1655,16 +1636,7 @@ mais a la "puissance du continu"
 ou avec un intervalle de longueur non vide de $\R$, 
 ce qui revient au même).
 
-$\to$ [Solution](#s-cantor-2)
-
-TODO -- Caractérisation des dérivées {#e-der}
---------------------------------------------------------------------------------
-
-Identifier par les jauges si une fonction est une dérivée (cf papier).
-
-$\to$ [Solution](#s-der)
-
-Intégration sur un intervalle non borné
+Intégration sur un intervalle non borné  {.question #iinb-1}
 --------------------------------------------------------------------------------
 
 Il est possible de définir l'intégrabilité (et l'intégrale) d'une fonction
@@ -1677,8 +1649,6 @@ soient suffisamment "étendues".
 
 [^es]: mais pas nécessairement plus simple ...
 
-### Question 1 {.question #e-inb-1}
-
 Soit $I$ un intervalle fermé non borné de $\R$ de bornes $a$ et $b$[^inb].
 Montrer que la fonction $f:I \to \R$ est intégrable si et seulement si il
 existe un réel $A$ tel que pour tout $\varepsilon > 0$ 
@@ -1687,9 +1657,6 @@ tels que pour tout intervalle compact $[a, b]$ tel que $K \subset [a, b]$
 et pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
-
-$\to$ [Solution](#s-inb-1)
-
 
 [^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\R$,
 $I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \R$.
@@ -1779,7 +1746,7 @@ est subordonnée à $\gamma$.
 TODO -- Subdivision pointées {#s-sp}
 --------------------------------------------------------------------------------
 
-L'intégrale de Riemann est absolue {#s-abs}
+L'intégrale de Riemann est absolue {.answer #answer-Rabs}
 --------------------------------------------------------------------------------
 
 Nous exploitons le [critère de Lebesgue pour l'intégrabilité au sens de Riemann][Critère de Lebesgue pour l'intégrabilité au sens de Riemann]: si $f$ est intégrable au sens de Riemann,
@@ -1824,10 +1791,10 @@ fonction identiquement nulle qui est continue, elle est donc intégrable au
 sens de Henstock-Kurzweil. Mais elle n'est pas continue presque partout,
 donc elle n'est pas intégrable au sens de Henstock-Kurzweil.
 
-TODO -- Un ensemble de Cantor {#s-cantor}
+Un ensemble de Cantor
 --------------------------------------------------------------------------------
 
-### Question 1 {#s-cantor-1}
+### Question 1 {.answer #answer-cantor-1}
 
 L'ensemble $A$ peut être recouvert par la collection ne contenant que 
 l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, ou par la collection d'intervalles
@@ -1854,7 +1821,7 @@ $$
 Comme $1/2^n$ tend vers $0$ quand $n$ tend vers $+\infty$, 
 nous avons établi que $A$ est négligeable.
 
-### Question 2 {#s-cantor-2}
+### Question 2 {.answer #answer-cantor-2}
 
 L'opération qui à $x=0.a_1a_2\dots \in A$ associe
 $y=0.b_1b_2\dots$ où $b_i = a_i/2$ est une bijection
@@ -1862,13 +1829,9 @@ de $A$ sur $\left[0, 0.444\dots\right[ = \left[0, 4/9\right[$,
 ce qui montre que $A$ à la puissance du continu (et donc n'est pas
 dénombrable).
 
-TODO -- Caractérisation des dérivées {#s-der}
+TODO -- Intégration sur un intervalle non borné {.answer #answer-iinb-1}
 --------------------------------------------------------------------------------
 
-TODO -- Intégration sur un intervalle non borné
---------------------------------------------------------------------------------
-
-### TODO -- Question 1 {.answer #s-inb-1}
 
 
 Séries et intégrales
