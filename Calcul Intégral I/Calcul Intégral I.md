@@ -224,7 +224,7 @@ Une propriété dépendant d'un réel $x$ est vraie *presque partout*
 si l'ensemble des points $x$ où elle est fausse est un ensemble
 négligeable.
 
-### Les ensembles dénombrables sont négligeables {.example}
+### Les ensembles dénombrables sont négligeables {.example #edn}
 Par exemple, les ensembles finis sont négligeables, $\Q$ est
 négligeable, etc. En effet, si $A = \{x_n \, | \, n \in \N\}$,
 alors pour tout $\varepsilon > 0$, la collection d'intervalle ouverts
@@ -1768,6 +1768,43 @@ elle est bornée -- et donc $f$ également -- et continue presque partout
 -- et donc $|f|$ également ($|f|$ est continue en tout point où
 $f$ est continue comme composée de fonctions continues en un point). 
 Par conséquent, $|f|$ est intégrable au sens de Riemann.
+
+
+Continuité presque partout
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-cpp-1}
+La réciproque n'est pas vérifiée non plus: la fonction de Heaviside
+$e:\R \to $\R$ -- ou fonction indicatrice de $\left[0, +\infty \right[$, 
+définie par
+$$
+e(x) = \left|
+\begin{array}{cl}
+1 & \mbox{si } $x\geq 0$,\\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est continue presque partout (sauf en $0$). Mais aucune modification de
+cette fonctions sur un ensemble négligeable ne pourra la rendre continue
+en $0$ ; il faudrait pour cela modifier tout un intervalle de la forme
+$\left]-\varepsilon, 0\right[$ ou de la forme $\left]0, \varepsilon\right[$,
+mais ces deux intervalles ne sont pas négligeables.
+
+### Question 2 {.answer #answer-cpp-2}
+La fonction de Dirichlet $1_{\Q}$ -- ou fonction indicatrice de $\Q$ -- 
+définie par
+$$
+1_{\Q}(x) = 
+\left|
+\begin{array}{cl}
+1 & \mbox{si } x \mbox{ est rationnel,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est-elle intégrable sur $[0, 1]$ au sens de Riemann ? 
+Et au sens de Henstock-Kurzweil ?
 
 TODO -- Un ensemble de Cantor {#s-cantor}
 --------------------------------------------------------------------------------
