@@ -1742,10 +1742,6 @@ est subordonnée à $\gamma$.
 
 ![Graphe de la jauge $\gamma$ et de la subdivision pointée $\mathcal{D}$](images/gauge-plot-squeeze-solution.py)
 
-
-TODO -- Subdivision pointées {#s-sp}
---------------------------------------------------------------------------------
-
 L'intégrale de Riemann est absolue {.answer #answer-Rabs}
 --------------------------------------------------------------------------------
 
