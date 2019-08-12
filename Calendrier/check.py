@@ -26,4 +26,8 @@ for i, event in enumerate(events):
     end = event.end.to("Europe/Paris")
     print("    " + begin.format("dddd DD MMMM YYYY", locale="fr_FR"), end=", ")
     print(begin.format("HH:mm") + "-" + end.format("HH:mm") + ".")
+    description = event.description
+    if event.description:
+        description = "\n".join(["    " + line for line in description.splitlines()])
+        print(description)
     print()
