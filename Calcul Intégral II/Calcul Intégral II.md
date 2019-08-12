@@ -884,11 +884,13 @@ F: x \in \R \mapsto \int_0^x f(t) \, dt,
 $$
 alors $f_k(x) \to f(x)$ presque partout quand $k \to +\infty$.
 Or chaque $f_k$ est continue, donc l'image réciproque de tout ouvert
-par $f_k$ est un ouvert [et donc un ensemble mesurable](#OSM). 
+par $f_k$ est un ouvert [et donc un ensemble mesurable](#OSM) ;
+c'est encore le cas des fonctions qui sont égales presque partout aux 
+$f_k$ mais valent $0$ aux points ou les $f_k$ ne convergent pas,
+car [elles sont égales presque partout aux fonctions $f_k$](#FPPE).
 L'ensemble des fonctions satisfaisant le critère de l'image réciproque 
 étant [stable par passage à la limite](#SPM), 
-[une fonction égale à $f$ presque partout satisfait le critère 
-de l'image réciproque](#FPPE) ;
+[une fonction égale à $f$ presque partout satisfait le critère de l'image réciproque](#FPPE) ;
 la fonction intégrable $f$ satisfait donc 
 elle-même le critère de l'image réciproque.
 
