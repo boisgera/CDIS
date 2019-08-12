@@ -1709,6 +1709,8 @@ Soit $a_k$, $k\geq 0$ une série de valeurs réelles ;
 on lui associe la fonction $f:[0, +\infty] \to \R$ définie par
 $f(x) = a_k$ quand $k \leq x < k+1$. 
 
+![Graphe de la fonction $f$ associée à la suite $a_k = (-1)^k / (k+1)$.](images/graph-series.py)
+
 ### Question 1 {.question #si-1}
 Montrer que si la série $\sum_k a_k$ est divergente, 
 $f$ n'est pas intégrable.
