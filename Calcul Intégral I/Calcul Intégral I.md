@@ -302,23 +302,22 @@ s'il existe un $t_i \in I_i^1$ tel que $I_i^1 \subset \gamma(t_i)$,
 dans ce cas ajouter la paire $(t_i, I_i^1)$ à la famille $\mathcal{D}$
 et dans le cas contraire décomposer à nouveau l'intervalle posant 
 problème. 
-Soit ce procédé converge en un nombre fini d'étapes et forme
-une subdivision pointée $\mathcal{D}$ de $I$, 
-soit nous avons construit une infinité d'intervalles fermés $J_i$ 
-emboités ($J_{i+1} \subset J_i$) de $I$ tels que pour tout 
-$t \in J_i$, $J_i \not \subset \gamma(t)$.
+Il s'avère que ce procédé converge en un nombre fini d'étapes ; 
+il génère donc une subdivision pointée $\mathcal{D}$ de $I$.
 
-Montrons que ce second scénario est impossible.
-Comme les $J_i$ sont emboités, la collection
-$\{J_i \; | \; i \in \N\}$ possède la
-propriété de l'intersection finie. 
-L'intervalle $I$ étant compact, cela implique qu'il existe un $t \in I$
-tel que pour tout $i \in \N$, $t$ soit adhérent à $J_i$.
-Les $J_i$ étant fermés, $t$ appartient à chaque $J_i$.
+En effet, dans le cas contraire il existerait une infinité 
+d'intervalles fermés $J_i$ emboités ($J_{i+1} \subset J_i$) 
+tels que $J_0 = I$, $\ell(J_{i+1}) = \ell(J_i)/2$ et 
+pour tout $t \in J_i$, $J_i \not \subset \gamma(t)$.
+Soit $t_i$ un point de $J_i$ ; la suite des ces points appartient 
+à $J_0$ qui est compact et admet donc une suite extraite qui converge.
+Comme la suite des $t_k$ appartient à $J_i$ pour tout $k \geq i$,
+cette limite $t$ adhère à tous les $J_i$, et donc appartient à tous
+les $J_i$ puisqu'ils sont fermés.
 La longueur de $J_i$ étant divisée par deux à chaque incrément de $i$,
-$\ell(J_i) = \ell(J_0) / 2^i$; 
-comme $t_i \in J_i$, 
-$J_i \subset [t_i - \ell(J_0) / 2^i, t_i + \ell(J_0) / 2^i]$.
+$\ell(J_i) = \ell(J_0) / 2^i$ ; 
+comme $t \in J_i$, 
+$J_i \subset [t - \ell(J_0) / 2^i, t + \ell(J_0) / 2^i]$.
 Par conséquent, il existe un rang $i$ à partir duquel
 $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
