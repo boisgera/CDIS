@@ -974,7 +974,7 @@ $$
 les deux intégrales sont donc égales.
 
 
-### Additivité {.proposition}
+### Additivité {.proposition #addivité}
 Si la fonction $f$ est définie et intégrable sur les intervalles
 $[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
 et
@@ -983,7 +983,6 @@ $$
 $$
 
 ### Démonstration {.proof}
-
 Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
 $[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \R$ et
 $\gamma_2:[b, c] \to \R$ telles que pour toutes les subdivisions
@@ -1045,10 +1044,9 @@ La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
 l'hypothèse de non-chevauchement. Par conséquent l'inégalité
 ci-dessus est satisfaite dans le cas général.
 
-### TODO
-
-Présenter ce qui vient comme une réciproque de l'additivité.
-Contextualiser le critère de Cauchy (valeur de l'intégrale inconnue)
+### {.ante}
+Dans le cas où l'on souhaite établir l'intégrabilité sans savoir quelle
+est la valeur de l'intégrale, le test suivant d'intégrabilité est utile:
 
 ### Critère d'intégrabilité de Cauchy {#CIC .theorem}
 Une fonction $f: [a, b] \to \R$ est intégrable si et seulement si 
@@ -1099,13 +1097,13 @@ $$
 $$
 La fonction $f$ est donc intégrable et d'intégrale $A$.
 
-### TODO
-
-fusionner "Restriction" avec additivité ou au moins évoquer la relation
-entre les deux résultats.
+### {.ante}
+[La propriété d'additivité](#additivité) de l'intégrale -- 
+qui permet de prouver l'intégrabilité de l'intégrale sur un intervalle
+à partir de sont intégrabilité sur des intervalles qui la compose --
+admet une réciproque:
 
 ### Restriction {.theorem}
-
 Si $f$ est intégrable sur l'intervalle $[a, b]$, 
 elle est intégrable sur tout intervalle $[c, d]$ 
 inclus dans $[a, b]$.
