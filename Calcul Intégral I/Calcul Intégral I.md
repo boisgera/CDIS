@@ -1478,10 +1478,11 @@ Subdivisions Partielles
 ================================================================================
 
 ### Subdivision pointée partielle {.definition}
-Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
-de $\R$ est une famille finie 
+Une *subdivision pointée partielle* $\mathcal{D}$ de l'intervalle fermé 
+$I = [a, b]$ (de $\R$ étendu par $\pm \infty$), 
+est une famille finie 
 $$
-\{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
+\mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
 où les $I_i$ sont des intervalles fermés de $[a, b]$ sans chevauchement
 et $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
@@ -1489,23 +1490,21 @@ La somme de Riemann associée à la fonction $f:[a, b] \to \R$
 et à la subdivision pointée partielle $\mathcal{D}$ de $[a, b]$ est 
 la grandeur
 $$
-S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
+S(f, \mathcal{D}) = \sum f(t) \ell(I), \; \mbox{ où }(t, I) \in \mathcal{D}, \, \ell(I) < +\infty.
 $$
 Une subdivision pointée partielle $\mathcal{D}$ de l'intervalle fermé $[a, b]$ 
 est *subordonnée à une jauge* $\gamma$ de $[a, b]$ si 
-$$
-(t, J) \in \mathcal{D} \, \Rightarrow \, J \subset \gamma(t). 
-$$
+pour tout $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Lemme de Henstock  {.theorem #henstock-lemma}
-Soit $[a, b]$ un intervalle fermé de $\R$, 
+Soit $[a, b]$ un intervalle fermé, 
 $f$ une fonction intégrable sur $[a, b]$ et $\gamma$ une jauge sur $[a, b]$ 
 telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$, 
 on ait
 $$
-\left|S(f, \mathcal{D}) - \int_{[a, b]} f(t) \, dt\right| \leq \varepsilon.
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
 $$
-Alors pour tout subdivision pointée partielle $\mathcal{D} = \{(t_k, I_k)\}_k$
+Alors pour toute subdivision pointée partielle $\mathcal{D} = \{(t_k, I_k)\}_k$
 de $[a, b]$ subordonnée à $\gamma$, on a également
 $$
 \left|S(f, \mathcal{D}) - \sum_k \int_{I_k} f(t) \, dt\right| \leq \varepsilon.
@@ -1548,7 +1547,7 @@ S(f, \mathcal{D})
 $$
 Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
 
-
+### TODO -- Continuité des intégrales indéterminées {.proposition}
 
 
 Exercices
