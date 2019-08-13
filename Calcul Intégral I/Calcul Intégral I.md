@@ -323,7 +323,7 @@ $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
 ### Intégrale de Henstock-Kurzweil {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
-au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
+au sens de Henstock-Kurzweil[^why-HK]* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$, 
 il existe une jauge $\gamma$ sur $[a, b]$ telle que, 
 pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, 
@@ -336,6 +336,23 @@ $$
 \, \mbox{ ou } \,
 \int_{[a, b]} f(t) \, dt
 $$
+
+[^why-HK]: On trouvera également dans la litérature cette intégrale désignée
+par le terme d'*intégrale de Riemann généralisée* ou 
+d'*intégrale de jauge* (mais ces termes sont génériques ; en particulier 
+il existe d'autres intégrales dont la définition repose sur des sommes
+de Riemann et des jauges, comme l'intégrale de McShane), 
+*intégrale de Kurzweil-Henstock* 
+(techniquement Jaroslav Kurzweil a inventé cette 
+construction avant Ralph Henstock dans les années 1950, 
+mais dans un but bien précis
+-- l'étude des équations différentielles généralisées -- probablement sans
+réaliser totalement la portée de sa définition) 
+ou *intégrale de Denjoy-Perron-Kurzweil-Henstock* (Arnaud Denjoy et Oskar Perron
+ont introduit des les années 1910 des intégrales équivalentes, mais dont la
+définition est beaucoup plus complexe et en apparence très différentes ; 
+en particulier, les sommes de Riemann n'interviennent pas dans 
+ces définitions).
 
 ### Notation {.remark}
 
@@ -357,10 +374,23 @@ $$
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Riemann
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Soit $f:[a,b] \mapsto \R$ une fonction intégrable au sens de Riemann,
+d'intégrale $A$ ;
+soit $\varepsilon > 0$ et $\delta$ tel que si la subdivision pointée 
+$\mathcal{D}$ de $[a, b]$ est telle que pour $(t, I) \in \mathcal{D}$, 
+$\ell(J) < \delta$ alors $|S(f,\mathcal{D}) - A| \leq \varepsilon$.
 
-Passer par l'intermédiaires des jauges numériques ? Bof. Directement
-avec de $\delta > 0$ uniforme à l'intervalle ouvert.
+Considérons la jauge $\gamma$ sur $[a, b]$ définie par 
+$\gamma(t)= \left]t-\delta/2, t+\delta/2 \right[$.
+Si la subdivision pointée $\mathcal{D}$ est subordonnée à $\gamma$,
+alors pour tout $(t, J) \in \mathcal{D}$, 
+$J \subset \left]t-\delta/2, t+\delta/2 \right[$ et par conséquent,
+$\ell(J) \leq \delta$. En conséquence, 
+$|S(f,\mathcal{D}) - A| \leq \varepsilon$. 
+La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et son
+intégrale est égale à sont intégrale de Riemann.
+
 
 ### Théorème fondamental du calcul {.theorem #TFC}
 Si la fonction $f:[a, b] \to \R$ est dérivable 
