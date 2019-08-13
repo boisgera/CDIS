@@ -268,17 +268,8 @@ Par construction, cet ensemble contient la diagonale
 $$
 D = \{(x,x) \; | \; x \in [a, b]\}.
 $$
-
-### TODO
- example, et expliquer pourquoi cette représentation est pratique
-pour visualiser si une subdivision pointée est subordonnée à une jauge.
-
-Par exemple, la jauge $\gamma$ définie sur $[0,1]$ par 
-$\gamma(t) = \left] t-0.25, t+0.25 \right[$ est représentée comme suit:
-
-### TODO
-Check valeur ($0.2$ ou $0.25$ ?) et "langage graphique": l'ensemble est ouvert,
-sont bord en noir ne devrait pas apparaître ici.
+La représentation graphique de cet ensemble permet de visualiser si
+une subdivision pointée est ou non subordonnée à la jauge considére.
 
 \newcommand{\lb}{[}
 \newcommand{\rb}{]}
@@ -286,7 +277,7 @@ sont bord en noir ne devrait pas apparaître ici.
 \newcommand{\rob}{\right[}
 
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb .$](images/gauge-plot.py)
+$t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
 
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
 $t \in \lb 0, 1 \rb$ et de la subdivision pointée
@@ -296,10 +287,6 @@ par des barres verticales et les points associés
 représentés par des croix. La comparaison avec le graphe de la
 jauge $\gamma$ montre que cette subdivision pointée 
 lui est subordonnée.](images/gauge-plot-subdivision.py)
-
-### TODO 
-graphique d'une subdivision pointée, avec séparateurs en barres
-verticales et $t_i$ en croix.
 
 ### Lemme de Cousin {.theorem #cousin}
 Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
