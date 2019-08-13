@@ -1548,14 +1548,57 @@ $$
 Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
 
 ### Continuité des intégrales indéterminées {.proposition}
-Si la fonction $f:\R \to \R$ est intégrable, 
-pour tout nombre réel étendu $a$, l'application
+Pour toute fonction $f:\R \to \R$ intégrable 
+et pour tout nombre réel étendu $a$, l'application
 $$
 x \in \R \mapsto \int_a^x f(t) \, dt 
 $$
 est continue.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Montrons la continuité de l'intégrale à droite en $x$, la continuité à gauche
+s'établissant de façon similaire. 
+Par additivité de l'intégrale, il suffit de montrer que la grandeur
+$$
+\int_x^{x+h} f(t) \, dt
+$$
+tend vers $0$ quand $h>0$ tend vers $0$. Par restriction, la fonction $f$ est 
+intégrable sur $[x, x+\infty]$ : 
+pour tout $\varepsilon > 0$, il existe une jauge
+$\gamma$ sur $[x, x+\infty]$ telle que pour toute subdivision pointée
+$\mathcal{D}$ de $[x, x+\infty]$ subordonnée à $\gamma$, 
+l'écart entre la somme de Riemann
+$S(f,\mathcal{D})$ et l'intégrale de $f$ entre $0$ et $+\infty$ est au
+plus $\varepsilon/2$. 
+
+On peut remplacer $\gamma$ par une jauge $\nu$ définie (partiellement en $x$)
+par $\nu(x) \subset \gamma(x)$ et $\nu(t) = \gamma(t) \cap \left]x,+\infty\right]$
+sinon ; cela garantit que pour tout subdivision pointée $\mathcal{D}$ 
+subordonnée à $\nu$, $\mathcal{D}$ est subordonnée à $\gamma$ et si 
+$(t,J) \in \mathcal{D}$ et $x \in J$, alors $t=x$.
+
+[Le lemme de Henstock](#henstock), appliqué à toute subdivision partielle
+$\mathcal{D} = \{(x, J)\}$ subordonnée à $\nu$, c'est-à-dire telle que
+$J := [x, x+h] \subset \nu(x)$, fournit
+$$
+\left| 
+f(x) h - \int_x^{x+h} f(t) \, dt
+\right| \leq \frac{\varepsilon}{2},
+$$ 
+dont on déduit par l'inégalité triangulaire que
+$$
+\left| \int_x^{x+h} f(t) \, dt \right|
+\leq
+\frac{\varepsilon}{2} + |f(x)|h.
+$$
+Il suffit donc de choisir $\nu(x)$ tel que $|f(x)| h \leq \varepsilon / 2$
+quand $[x, x+h] \subset \nu(x)$ pour assurer que
+$$
+\left| \int_x^{x+h} f(t) \, dt \right|
+\leq
+\varepsilon.
+$$
+
 
 Exercices
 ================================================================================
