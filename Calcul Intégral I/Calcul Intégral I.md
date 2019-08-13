@@ -1524,7 +1524,7 @@ $$
 $$
 Si de plus on choisit $\mathcal{D}_j$ subordonnée à la restriction de $\gamma$
 à $J_j$, alors $\mathcal{D} \cup (\cup_j \mathcal{D}_j)$ est une subdivision
-pointée (totale) de $[a, b]$ subordonnée à $\gamma$.
+pointée (complète) de $[a, b]$ subordonnée à $\gamma$.
 On déduit de l'hypothèse centrale du lemme que
 $$
 \left|
