@@ -18,7 +18,7 @@ alors $z$ appartient également à $I$.
 
 ### Intervalles de $\R$ {.remark .post}
 Les intervalles de $\R$ peuvent être bornés ou non-bornés,
-ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
+ouverts, fermés, ouverts et fermés ou ni l'un ni l'autre.
 Les intervalles de la forme $\left]-\infty, \infty\right[$ 
 (c'est-à-dire $\R$),
 $\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
