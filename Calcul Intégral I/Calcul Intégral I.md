@@ -335,7 +335,7 @@ $$
 \int_{[a, b]} f(t) \, dt
 $$
 
-[^why-HK]: On trouvera également dans la litérature cette intégrale désignée
+[^why-HK]: On trouvera également dans la littérature cette intégrale désignée
 par le terme d'*intégrale de Riemann généralisée* ou 
 d'*intégrale de jauge* (mais ces termes sont génériques ; en particulier 
 il existe d'autres intégrales dont la définition repose sur des sommes
