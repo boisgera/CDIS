@@ -382,19 +382,26 @@ $|S(f,\mathcal{D}) - A| \leq \varepsilon$.
 La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et 
 l'intégrale associée est égale à son intégrale de Riemann.
 
-### Théorème fondamental du calcul {.theorem #TFC}
-Si la fonction $f:[a, b] \to \R$ est dérivable 
-sa dérivée $f'$ est intégrable sur $[a, b]$ et 
-$$
-[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
-$$
-
 ### {.ante}
-Le théorème fondamental du calcul peut être reformulé de la façon suivante:
+Le résultat équivalent vaut pour l'intégrale de Newton:
 
 ### Intégrale de Newton et de Henstock-Kurzweil {.corollary}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
+
+### {.post .ante}
+L'énoncé précédent peut être réformulé de la façon suivante: 
+l'intégrale de Henstock-Kurzweil satisfait 
+[le théorème fondamental du calcul](#TCF) en toute généralité.
+
+### Théorème fondamental du calcul {.theorem #TFC}
+Si la fonction $f:[a, b] \to \R$ est dérivable, 
+sa dérivée $f'$ est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
+$$
+[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
+
+
 
 ### Démonstration du [théorème fondamental du calcul][Théorème fondamental du calcul] {.proof}
 Nous souhaitons établir que $f':[a, b] \to \R$ est intégrable, 
@@ -917,10 +924,32 @@ $$
 La fonction $\lambda f$ est donc intégrable sur $[a, b]$ et son intégrale
 est le produit de $\lambda$ et de l'intégrale de $f$ sur $[a, b]$.
 
-### TODO
+### Positivité {.proposition}
+Si $f: [a, b] \to \mathbb{R}$ est intégrable et positive alors
+$$
+\int_a^b f(t) \, dt \geq 0.
+$$
 
-Ajouter inégalités ou croissance de l'intégrale (ici et dans le non borné
-avec cas $f \leq g$ et cas $|f| \leq M$)
+### Démonstration {.proof}
+Soit $\varepsilon > 0$ et $\gamma$ une jauge telle que toute
+subdivisition pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$
+vérifie
+$$
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
+$$
+Quelle que soit la subdivisition pointée $\mathcal{D}$ de $[a, b]$,
+la somme de Riemann associeé 
+$$
+S(f, \mathcal{D})
+= \sum_{\{(t,J) \in \mathcal{D}\}} f(t) \ell(J)
+$$ 
+est positive, ce qui entraîne par l'inégalité triangulaire
+$$
+\int_a^b f(t) \, dt  \geq S(f, \mathcal{D}) - \varepsilon \geq -\varepsilon.
+$$
+Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement,
+on en déduit que l'intégrale est positive.
+
 
 ### Intégration par parties {.theorem}
 Si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
