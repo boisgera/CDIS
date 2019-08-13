@@ -11,7 +11,6 @@ Somme et Intégrale de Riemann
 ================================================================================
 
 ### Intervalle {.definition}
-
 On appelle *intervalle* tout sous-ensemble $I$ de $\R$ 
 tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$,
 et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$) 
