@@ -932,12 +932,12 @@ $$
 
 ### Démonstration {.proof}
 Soit $\varepsilon > 0$ et $\gamma$ une jauge telle que toute
-subdivisition pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$
+subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$
 vérifie
 $$
 \left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
 $$
-Quelle que soit la subdivisition pointée $\mathcal{D}$ de $[a, b]$,
+Quelle que soit la subdivision pointée $\mathcal{D}$ de $[a, b]$,
 la somme de Riemann associeé 
 $$
 S(f, \mathcal{D})
@@ -947,9 +947,8 @@ est positive, ce qui entraîne par l'inégalité triangulaire
 $$
 \int_a^b f(t) \, dt  \geq S(f, \mathcal{D}) - \varepsilon \geq -\varepsilon.
 $$
-Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement,
-on en déduit que l'intégrale est positive.
-
+Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
+petit, on en déduit que l'intégrale est positive.
 
 ### Intégration par parties {.theorem}
 Si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
