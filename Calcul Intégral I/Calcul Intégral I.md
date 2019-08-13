@@ -269,7 +269,7 @@ $$
 D = \{(x,x) \; | \; x \in [a, b]\}.
 $$
 La représentation graphique de cet ensemble permet de visualiser si
-une subdivision pointée est ou non subordonnée à la jauge considére.
+une subdivision pointée est ou non subordonnée à la jauge considérée.
 
 \newcommand{\lb}{[}
 \newcommand{\rb}{]}
