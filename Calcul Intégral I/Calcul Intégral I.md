@@ -279,6 +279,11 @@ une subdivision pointée est ou non subordonnée à la jauge considérée.
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
 $t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
 
+### Lemme de Cousin {.theorem #cousin}
+Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
+il existe une subdivision pointée $\mathcal{D}$ 
+qui soit subordonnée à $\gamma$.
+
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
 $t \in \lb 0, 1 \rb$ et de la subdivision pointée
 $\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
@@ -287,11 +292,6 @@ par des barres verticales et les points associés
 représentés par des croix. La comparaison avec le graphe de la
 jauge $\gamma$ montre que cette subdivision pointée 
 lui est subordonnée.](images/gauge-plot-subdivision.py)
-
-### Lemme de Cousin {.theorem #cousin}
-Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
-il existe une subdivision pointée $\mathcal{D}$ 
-qui soit subordonnée à $\gamma$.
 
 ### Démonstration {.proof}
 S'il existe un $t \in I^0 = I = [a, b]$ tel que $I \subset \gamma(t)$, 
@@ -375,22 +375,21 @@ Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Riemann
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
 ### Démonstration {.proof}
-Soit $f:[a,b] \mapsto \R$ une fonction intégrable au sens de Riemann,
+Soit $f:[a,b] \to \R$ une fonction intégrable au sens de Riemann,
 d'intégrale $A$ ;
-soit $\varepsilon > 0$ et $\delta$ tel que si la subdivision pointée 
+soit $\varepsilon > 0$ et $\delta>0$ tels que si la subdivision pointée 
 $\mathcal{D}$ de $[a, b]$ est telle que pour $(t, I) \in \mathcal{D}$, 
 $\ell(J) < \delta$ alors $|S(f,\mathcal{D}) - A| \leq \varepsilon$.
 
 Considérons la jauge $\gamma$ sur $[a, b]$ définie par 
 $\gamma(t)= \left]t-\delta/2, t+\delta/2 \right[$.
 Si la subdivision pointée $\mathcal{D}$ est subordonnée à $\gamma$,
-alors pour tout $(t, J) \in \mathcal{D}$, 
-$J \subset \left]t-\delta/2, t+\delta/2 \right[$ et par conséquent,
-$\ell(J) \leq \delta$. En conséquence, 
+alors pour tout $(t, J) \in \mathcal{D}$, on a
+$J \subset \left]t-\delta/2, t+\delta/2 \right[$ ; 
+par conséquent, $\ell(J) < \delta$ et donc
 $|S(f,\mathcal{D}) - A| \leq \varepsilon$. 
-La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et son
-intégrale est égale à sont intégrale de Riemann.
-
+La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et 
+l'intégrale associée est égale à son intégrale de Riemann.
 
 ### Théorème fondamental du calcul {.theorem #TFC}
 Si la fonction $f:[a, b] \to \R$ est dérivable 
