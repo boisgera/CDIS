@@ -396,10 +396,6 @@ Le théorème fondamental du calcul peut être reformulé de la façon suivante:
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
-**QUESTION** exfiltrer le "Straddle Lemma"? Ca sera probablement plus clair.
-L'autre option est de splitter un cran plus avant la somme qui majore l'erreur
-entre somme de Riemann et intégral ... à voir. Arf, ça ne marche pas, tss tss...
-
 ### Démonstration du [théorème fondamental du calcul][Théorème fondamental du calcul] {.proof}
 Nous souhaitons établir que $f':[a, b] \to \R$ est intégrable, 
 d'intégrale égale à $f(b) - f(a)$.
