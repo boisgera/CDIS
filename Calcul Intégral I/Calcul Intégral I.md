@@ -322,15 +322,6 @@ $J_i \subset [t_i - \ell(J_0) / 2^i, t_i + \ell(J_0) / 2^i]$.
 Par conséquent, il existe un rang $i$ à partir duquel
 $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
-### TODO -- Note
-
-Si l'argument topologique peut être survolé, la procédure de dichotomie est
-intéressante et peut être utilisé sur des exemples concrets, ça vaudrait le
-coup de la faire "pour de vrai".
-
-Au passage, il faut s'arranger pour "lemmatiser" le résultats "... et le 
-processus termine en un nombre fini d'étapes" plus clairement.
-
 ### Intégrale de Henstock-Kurzweil {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
