@@ -392,7 +392,7 @@ $$
 ### {.ante}
 Le théorème fondamental du calcul peut être reformulé de la façon suivante:
 
-### Intégrale de Riemann et de Henstock-Kurzweil {.corollary}
+### Intégrale de Newton et de Henstock-Kurzweil {.corollary}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
