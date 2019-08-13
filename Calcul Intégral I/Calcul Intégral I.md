@@ -239,6 +239,10 @@ $$
 La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
 si et seulement si $f$ est bornée et continue presque partout.
 
+### {.post}
+En particulier, si $f$ est continue par morceaux, elle est intégrable
+au sens de Riemann.
+
 ### Démonstration {.proof}
 [Le lemme ci-dessus][Seules les fonctions bornées sont intégrables] montre
 que le caractère borné est nécessaire pour l'intégrabilité au sens de
