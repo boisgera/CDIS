@@ -24,11 +24,11 @@ Les intervalles de la forme $\left]-\infty, \infty\right[$
 $\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
 et $\left]a,b\right[$ 
 -- où $a$ et $b$ désignent des nombres réels -- 
-sont ouverts;
-les intervalles de la forme $\left]-\infty, \infty\right[$,
+sont ouverts.
+Les intervalles de la forme $\left]-\infty, \infty\right[$,
 $\left]-\infty, b\right]$, $\left[a,\infty\right[$ 
-et $\left[a,b \right]$ sont fermés;
-les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
+et $\left[a,b \right]$ sont fermés.
+Les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
 
 ### Longueur d'un intervalle {.definition}
 La *longueur* $\ell(I)$ d'un intervalle $I$ 
