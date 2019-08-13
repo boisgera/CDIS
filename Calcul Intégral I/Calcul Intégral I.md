@@ -276,7 +276,7 @@ une subdivision pointée est ou non subordonnée à la jauge considérée.
 \newcommand{\lob}{\left]}
 \newcommand{\rob}{\right[}
 
-![Graphique associé à la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
+![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
 $t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
 
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
@@ -614,7 +614,7 @@ $$
 
 [^W]: La notation $W$ est classique pour désigner [la fonction de Lambert](https://fr.wikipedia.org/wiki/Fonction_W_de_Lambert).
 
-![Graphique associé à la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
+![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
 à la somme de Riemann pour évaluer l'intégrale de la fonction $x \in [0, 2] \mapsto e^x$.](images/gauge-plot-exp.py)
 
 ### TODO
@@ -1584,7 +1584,7 @@ Soit $\gamma$ la jauge sur $[0, 1]$ définie par
 $\gamma(0)= \left]-1/2, 1/2\right[$ et $\gamma(t) = \left]0,2t\right[$
 si $t>0$.
 
-![Graphique associé à la jauge $\gamma$.](images/gauge-plot-squeeze.py)
+![Graphe de la jauge $\gamma$.](images/gauge-plot-squeeze.py)
 
 Déterminer une subdivision pointée de $[0, 1]$ qui soit subordonnée à $\gamma$.
 
