@@ -365,6 +365,62 @@ Supposons que $X$ et $X'$ admettent la même fonction caractéristique $\phi_X =
 
 et la même égalité reste vraie pour $\P_{X'}$. Par suite $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g$ de l'espace vectoriel de fonction engendrées par $u \mapsto f_\sigma (u-v)$. D'après le théorème de Stone-Weiertrass, cet espace est dense dans l'ensemble $C_0$ des fonctions continues sur $\R^n$ et ayant une limite nulle à l'infini, pour la topologie de la convergence uniforme. Par suite, $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g \in C_0$. Comme l'indicatrice de tout ouvert est limite croissante de fonctions de $C_0$, on en déduit que $\P_X(A) = \Esp(1_A (X))$ est égal à $\P_{X'}(A) = \Esp(1_A (X'))$ pour tout ouvert $A$, ce qui implique $P_X = P_{X'}$.
 
+### {.anonymous}
+La fonction caractéristique offre également un moyen commode de caractériser l'indépendance.
+
+### Corollaire {.corollary}
+Soit $X = (X_1,\ldots,X_n)$ un vecteur aléatoire à valeurs dans $\R^n$. Ses composantes $X_i$ sont indépendantes si et seulement si pour tous $u_1, \ldots, u_n \in \R$, 
+    $$ \phi_X(u_1,\ldots,u_n) = \prod_{j=1}^n \phi_{X_j}(u_j) $$
+où $\phi_X$ désigne la fonction caractéristique du vecteur aléatoire $X$, et $\phi_{X_j}$ celle de la composante $X_j$ opur chaque $j$.
+
+### Démonstration {.proof}
+On a $< u,X> = \sum_{j=1}^n u_j X_j$. Si les $X_i$ sont indépendantes, et comme $e^{i < u,x>} = \prod_j e^{i u_j x_j}$, nous obtenons directement le résultat en utilisant la [proposition](Probabilité II.pdf #indep_fct).
+
+Supposons inversement qu'on ait $\phi_X (u_1,\ldots,u_n) = \prod_{j=1}^n \phi_{X_j}(u_j)$. On peut alors construire des variables aléatoires $X'_j$ indépendantes, telles que $X'_j$ et $X_j$ aient même loi pour tout $j$ et donc telles que $\phi_{X'_j} = \phi_{X_j}$. Si $X' = (X'_1,\ldots,X'_n)$, on a donc $\phi_{X'} = \phi_X$. Donc $X$ et $X'$ ont même loi, ce qui entraîne que pour tous boréliens $A_j$, on ait
+$$ \P(\bigcap_j \{X_j \in A_j\}) = \P(\bigcap_j \{X'_j \in A_j\}) = \prod_j \P(\{X'_j \in A_j\}) = \prod_j \P(\{X_j \in A_j\})$$
+d'où l'indépendance.
+
+### Proposition {.proposition #fct_carac_sum}
+Si $X$ et $Y$ sont deux vecteurs aléatoires indépendants à valeurs dans $\R^n$, la fonction caractéristique de la somme $X+Y$ est donnée par
+    $$ \phi_{X+Y} = \phi_X\phi_Y$$
+
+### Démonstration {.proof}
+Comme $e^{i< u, X+Y>}=e^{i< u, X>}e^{i< u, Y>}$, il suffit d'appliquer la [proposition](Probabilité II.pdf #indep_fct).
+
+### Exemples :
+Soient $X$ et $Y deux variables aléatoires réelles indépendantes et $Z = X+Y$ :
+
+ 1. Si $X$ suit la loi normale $\No(m,\sigma^2)$ et $Y$ suit $\No(m',\sigma'^2)$, alors $Z$ suit une loi $\No(m+m',\sigma^2+\sigma'^2)$, d'après l'[exemple](#ex) point 6. et la [proposition](#fct_carac_sum).
+ 2. Si $X$ et $Y$ suivent des lois de Poisson de paramètres $\theta$ et $\theta'$, alors $Z$ suit une loi de Poisson de paramètre $\theta + \theta'$, d'après l'[exemple](#ex) point 2. et la [proposition](#fct_carac_sum).
+ 3. Si $X$ suit une loi binomiale $\mathcal{B}(n,p)$ et $Y$ la loi biomiale $\mathcal{B}(m,p)$, alors $Z$ suit une loi binomiale $\mathcal{B}(n+m,p)$, d'après l'[exemple](#ex) point 1. et la [proposition](#fct_carac_sum).
+
+### Proposition {.proposition #fct_carac_deriv}
+Soit $X$ un vecteur aléatoire de $\R^n$. Si la variable $|X|^m$ (ou $|\cdot|$ désigne la norme euclidienne) est intégrable pour un entier $m$, la fonction $\phi_X$ est $m$ fois continûment différentiable sur $\R^n$ et pour tout choix des indices $i_1,\ldots, i_m$, 
+    $$ \frac{\partial^m}{\partial u_{i_1}\ldots \partial u_{i_m}} \phi_X(u) = i^m \Esp (e^{i < u,X >}X_{i_1}\ldots X_{i_m}),$$
+où les $X_j$ sont les composantes de $X$.
+
+### Démonstration {.proof}
+Le résultat se démontre par application itérée du théorème de dérivation sous le signe somme.
+
+### Remarque {.remark}
+En prenant $u=0$ dans la [proposition](#fct_carac_sum), la formule permet de calculer $\Esp(X_{i_1}\ldots X_{i_m})$ en fonction des dérivées à l'origine de $\phi_X$, autrement dit de calculer tous les moments du vecteur $X$, s'ils existent. Par exemple, si $X$ est à valeurs réelles et est intégrable (respectivement de carré intégrable), nous avons
+    $$ \Esp(X) = i \phi'_X(0), (\text{resp.} \Esp(X^2) = \phi"_X(0))$$
+
+### Théorème {.theorem #fct_carac_gauss}
+$X$ est un vecteur gaussien si et seulement si sa fonction caractéristique s'écrit
+    $$\phi_X(u) = e^{i< u,m> - \frac{1}{2}< u,Cu>}$$
+où $m = \Esp(X) \in \R^n$ et $C$ est la matrice de covariance de $X$.
+
+### Démonstration {.proof}
+
+ 1. Supposons $\phi_X(u) = e^{i< u,m> - \frac{1}{2}< u,Cu>}$. Pour toute combinaison linéaire $Y = \sum_j a_j X_j = < a, X >$, et pour tout $v \in \R$, on a 
+    $$ \phi_Y(v) = \phi_X(va) = e^{iv< a ,m> - \frac{v^2}{2}< a,Ca>}$$
+    donc $Y$ suit la loi $\No(< a, m>, < a, Ca>)$.
+ 2. Inversement, soit $C$ la matrice de covariance de $X$ et $m$ son vecteur moyenne. Si $Y = < a, X > = \sum_{j=1}^n a_j X_j$ avec $a\in\R^n$, un calcul simple montre
+        $$ \Esp(Y) = < a, m >, \V(Y) = < a, Ca> $$
+    Par hypothèse, $Y$ suit une loi normale donc vu le point 6. de l'[exemple plus haut](#ex), sa fonction caractéristique est
+        $$ \phi_Y(v) = e^{iv< a ,m> - \frac{v^2}{2}< a,Ca>} $$
+    Mais $\phi_Y(1) = \phi_{< a,X>} (1) = \Esp (e^{i < a, X>}) = \phi_X(a)$, d'où le résultat.
 
 
 ## Théorème central limite
