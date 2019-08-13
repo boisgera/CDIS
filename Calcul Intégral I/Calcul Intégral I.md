@@ -1513,7 +1513,7 @@ $$
 ### Preuve du [lemme de Henstock][Lemme de Henstock]
 Il existe une famille finie d'intervalles fermés $\{J_j\}$, 
 $j = 1, \dots, m$ 
-telle que l'union des familles $\{I_k\}$ et $\{J_j\}$ forment une subdivision
+telle que l'union des familles $\{I_k\}$ et $\{J_j\}$ forme une subdivision
 (complète) de $[a, b]$. 
 Pour tout $\eta > 0$, 
 sur chaque intervalle $J_j$, il existe une jauge $\gamma_j$ telle que si
