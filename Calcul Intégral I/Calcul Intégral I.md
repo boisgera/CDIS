@@ -19,14 +19,14 @@ alors $z$ appartient également à $I$.
 ### Intervalles de $\R$ {.remark .post}
 Les intervalles de $\R$ peuvent être bornés ou non-bornés,
 ouverts, fermés, ouverts et fermés ou ni l'un ni l'autre.
-Les intervalles de la forme $\left]-\infty, \infty\right[$ 
+Les intervalles de la forme $\left]-\infty, +\infty\right[$ 
 (c'est-à-dire $\R$),
-$\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
+$\left]-\infty, b\right[$, $\left]a,+\infty\right[$ 
 et $\left]a,b\right[$ 
 -- où $a$ et $b$ désignent des nombres réels -- 
 sont ouverts.
-Les intervalles de la forme $\left]-\infty, \infty\right[$,
-$\left]-\infty, b\right]$, $\left[a,\infty\right[$ 
+Les intervalles de la forme $\left]-\infty, +\infty\right[$,
+$\left]-\infty, b\right]$, $\left[a,+\infty\right[$ 
 et $\left[a,b \right]$ sont fermés.
 Les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
 
