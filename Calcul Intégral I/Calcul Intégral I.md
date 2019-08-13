@@ -245,7 +245,7 @@ que le caractère borné est nécessaire pour l'intégrabilité au sens de
 Riemann. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
 
 
-Intégrale de Riemann Généralisée
+Intégrale de Riemann généralisée
 ================================================================================
 
 ### Jauge {.definition}
@@ -265,9 +265,7 @@ $$
 \{(x, y) \; | \; x \in [a, b], \, y \in \gamma(x) \}.
 $$
 Par construction, cet ensemble contient la diagonale 
-$$
-D = \{(x,x) \; | \; x \in [a, b]\}.
-$$
+$D = \{(x,x) \; | \; x \in [a, b]\}.$
 La représentation graphique de cet ensemble permet de visualiser si
 une subdivision pointée est ou non subordonnée à la jauge considérée.
 
