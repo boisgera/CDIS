@@ -11,13 +11,13 @@ Somme et Intégrale de Riemann
 ================================================================================
 
 ### Intervalle {.definition}
-On appelle *intervalle* tout sous-ensemble $I$ de $\R$ 
-tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$,
-et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$) 
-alors $z$ appartient à $I$.
+On appelle *intervalle* d'un ensemble ordonné $E$ tout sous-ensemble $I$ de $E$ 
+tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$
+et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$),
+alors $z$ appartient également à $I$.
 
-### Type d'intervalles {.remark .post}
-Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
+### Intervalles de $\R$ {.remark .post}
+Les intervalles de $\R$ peuvent être bornés ou non-bornés,
 ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
 Les intervalles de la forme $\left]-\infty, \infty\right[$ 
 (c'est-à-dire $\R$),
