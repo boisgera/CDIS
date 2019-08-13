@@ -282,15 +282,6 @@ Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$,
 il existe une subdivision pointée $\mathcal{D}$ 
 qui soit subordonnée à $\gamma$.
 
-![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb$ et de la subdivision pointée
-$\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
-les intervalles de la subdivision sont délimités
-par des barres verticales et les points associés 
-représentés par des croix. La comparaison avec le graphe de la
-jauge $\gamma$ montre que cette subdivision pointée 
-lui est subordonnée.](images/gauge-plot-subdivision.py)
-
 ### Démonstration {.proof}
 S'il existe un $t \in I^0 = I = [a, b]$ tel que $I \subset \gamma(t)$, 
 la subdivision pointée $\mathcal{D} = \{(t, I)\}$ convient.
@@ -319,6 +310,16 @@ $J_i \subset [t - \ell(J_0) / 2^i, t + \ell(J_0) / 2^i]$.
 Par conséquent, il existe un rang $i$ à partir duquel
 $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
+### {.ante}
+La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégrale
+de Riemann classique. 
+Comme cette dernière, elle exploite des sommes de Riemann pour fournir une
+estimation de l'intégrale et contrôle la finesse des subdvisions employées
+pour améliorer la précision de cette estimation ; 
+mais contrairement à cette dernière, 
+elle permet de contrôler différemment cette finesse 
+en fonction de la zone de l'intervalle d'intégration considérée.
+
 ### Intégrale de Henstock-Kurzweil {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 au sens de Henstock-Kurzweil[^why-HK]* s'il existe un réel $A$ tel
@@ -334,6 +335,15 @@ $$
 \, \mbox{ ou } \,
 \int_{[a, b]} f(t) \, dt
 $$
+
+![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
+$t \in \lb 0, 1 \rb$ et de la subdivision pointée
+$\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
+les intervalles de la subdivision sont délimités
+par des barres verticales et les points associés 
+représentés par des croix. La comparaison avec le graphe de la
+jauge $\gamma$ montre que cette subdivision pointée 
+lui est subordonnée.](images/gauge-plot-subdivision.py)
 
 [^why-HK]: On trouvera également dans la littérature cette intégrale désignée
 par le terme d'*intégrale de Riemann généralisée* ou 
