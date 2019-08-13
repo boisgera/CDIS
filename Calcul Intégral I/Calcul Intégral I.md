@@ -1547,8 +1547,15 @@ S(f, \mathcal{D})
 $$
 Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
 
-### TODO -- Continuité des intégrales indéterminées {.proposition}
+### Continuité des intégrales indéterminées {.proposition}
+Si la fonction $f:\R \to \R$ est intégrable, 
+pour tout nombre réel étendu $a$, l'application
+$$
+x \in \R \mapsto \int_a^x f(t) \, dt 
+$$
+est continue.
 
+### TODO -- Démonstration {.proof}
 
 Exercices
 ================================================================================
