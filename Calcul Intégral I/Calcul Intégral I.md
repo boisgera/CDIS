@@ -352,20 +352,13 @@ définition est beaucoup plus complexe et en apparence très différentes ;
 en particulier, les sommes de Riemann n'interviennent pas dans 
 ces définitions).
 
-### Notation {.remark}
-
+### Ordre des bornes de l'intégrale {.notation .remark}
 Comme dans le cas de l'intégrale de Riemann,
-la première notation peut être étendue au cas où $b < a$; 
+la première notation peut être étendue sans difficulté au cas où $b < a$; 
 on définit alors l'intégrale de $a$ à $b$ en se ramenant 
 au cas précédent, par
 $$
 \int_{a}^b f(t) \, dt := - \int_b^a f(t) \, dt.
-$$
-Lorsqu'on sera en présence de plusieurs intégrales (Newton, Riemann, etc.), 
-on pourra préfixer l'intégrale par les lettres "HK" (pour Henstock-Kurzweil)
-pour lever toute ambiguité:
-$$
-\mbox{HK}-\int_{[a, b]} f(t) \, dt.
 $$
 
 ### Intégrale de Riemann et de Henstock-Kurzweil {.theorem}
