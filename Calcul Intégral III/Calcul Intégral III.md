@@ -145,23 +145,14 @@ Théorème de Stokes
 
 Définition par une équation implicite (équivalent).
 Que doit-on adopter comme définition ? Et quoi comme propriété ?
-La définition par l'épigraphe est sans doute plus intuitive, 
+La définition par l'hypographe est sans doute plus intuitive, 
 mais sa formalisation plus lourde ... Je serais tenté dans le cours
-oral de partir de la définition par l'épigraphe, informellement,
+oral de partir de la définition par l'hypographe, informellement,
 pour l'intuition (et de toute façon on a besoin de cette construction
 pour la suite) puis d'énoncer rigoureusement la version
 implicite, équivalente.
 
-### TODO
-
-Remplacer épigraphe par hypographe ? Ca me semble graphiquement plus
-intuitif et ça colle sans doute mieux avec les exemples usuels 
-(fonction distance orientée, conventions KKT, etc.), mais bien sûr pas
-toujours (ex: carac convexité). OK, oui
-
-
 ### TODO:
-
 Deux façon raisonnables de définir un compact à bord sont données;
 la troisème (localement demi-espace après transfo par difféo) peut trouver
 sa place en exo ?
@@ -368,7 +359,7 @@ Evoquer indépendance du choix dans la définition
 Rendre explicite la normale extérieure dans ce cas et 
 un peu plus explicitement (sur un exemple ?) comment trouver
 un axe (orthonormé ?) qui permet de se ramener au cadre de 
-l'épigraphe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
+l'hypographe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
 ### Partition de l'unité {.definition .propoosition #pu}
 Pour toute famille finie d'ouverts $V_i$ de $\R^n$ d'union $V$, 
@@ -393,7 +384,7 @@ satisfont donc la proposition.
 ### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
 Quand $K$ est caractérisée au voisinage de $x_0 \in \partial K$
-comme l'épigraphe de la fonction $f: U \to I$ après une
+comme l'hypographe de la fonction $f: U \to I$ après une
 transformation $T$ qui soit une isométrie directe, 
 la *contribution de $V = T(U \times I)$ à l'intégrale de surface
 de $\phi$* est définie par la relation
