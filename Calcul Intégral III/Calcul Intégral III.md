@@ -1,5 +1,12 @@
 % Calcul Intégral III
 
+<!-- LaTeX Macros -->
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
+
 Intégrales Multiples
 ================================================================================
 
@@ -167,22 +174,20 @@ la troisème (localement demi-espace après transfo par difféo) peut trouver
 sa place en exo ?
 
 ### Compact à bord régulier {.definition}
-
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
 s'il est compact et peut être caractérisé au voisinage de tout point de
 sa frontière $\partial K$, 
 et après un éventuel changement de repère,
 comme l'*hypographe* -- l'ensemble des points en-dessous du graphe -- 
-d'une fonction de classe $C^1$.
+d'une fonction continûment différentiable.
 Autrement dit, pour tout point $x_0 \in \partial K$, 
-il existe un ouvert non vide $V \subset \mathbb{R}^n$ de la forme
-$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
-est un intervalle ouvert non vide de $\mathbb{R}$, 
-une application affine inversible $T$ telle que $T(x_0) \in V$ 
-et une fonction 
+il existe une application affine inversible $T: \R^n \to \R^n$ et
+un voisinage ouvert $V$ de $x_0$ de la forme $V = T(U \times I)$,
+où $U$ est un ouvert de $\mathbb{R}^{n-1}$ et $I$ 
+est un intervalle ouvert de $\mathbb{R}$, et une fonction 
 $f: U \to I$ continûment différentiable tels que
 $$
-T(K) \cap V = \{(y_1,\dots, y_n) \in V \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}
+K \cap V = T\left(\{(y_1,\dots, y_n) \in U \times I \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}\right).
 $$
 
 
