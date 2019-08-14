@@ -183,7 +183,7 @@ $$
 K \cap V = T\left(\{(y_1,\dots, y_n) \in U \times I \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}\right).
 $$
 
-### Changement de repère orthonormé {.remark}
+### Changement de repère orthonormé {.remark #cbr-isom}
 Il est possible d'imposer dans [la définition des compacts à bord $C^1$](#cbr)
 que $T$ soit une isométrie directe (qui conserve la distance et l'orientation) ; 
 cela revient à n'autoriser que les changements de repère orthonormés directs. 
@@ -211,24 +211,23 @@ Evoquer "localement d'un seul coté" de la frontière ?
 
 Définir normale (extérieure). Carac intrinsèque ?
 
-### Caractérisation implicite des compacts à bord régulier {.theorem}
+### Caractérisation implicite des compacts à bord régulier {.theorem #cbr-implicit}
 Un sous-ensemble compact $K$ de $\mathbb{R}^n$ est un compact à bord $C^1$ 
 si pour tout point $x_0$ de sa frontière $\partial K$ il existe un voisinage 
 ouvert $V$ de $x_0$ et une fonction continûment différentiable 
-$g: V \to \mathbb{R}$ dont la différentielle est non-nulle en $x_0$, 
+$g: V \to \mathbb{R}$ dont la différentielle est non nulle en $x_0$, 
 telle que pour tout point $x$ de $V$, $x$ appartient à $K$ 
 si et seulement si $g(x) \leq 0$.
 
 ### Démonstration {.proof}
-Si $K$ est un compact à bord $C^1$, il existe un ouvert non vide 
-$V \subset \mathbb{R}^n$ de la forme
-$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
-est un intervalle ouvert non vide de $\mathbb{R}$, 
-une application affine inversible $T$ telle que $T(x_0) \in V$ 
-et une fonction 
+Si $K$ est un compact à bord $C^1$, il existe 
+une application affine inversible $T: \R^n \to \R^n$ et
+un voisinage ouvert $V$ de $x_0$ de la forme $V = T(U \times I)$,
+où $U$ est un ouvert de $\mathbb{R}^{n-1}$ et $I$ 
+est un intervalle ouvert de $\mathbb{R}$, et une fonction 
 $f: U \to I$ continûment différentiable tels que
 $$
-T(K) \cap V = \{(y_1,\dots, y_n) \in V \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}.
+K \cap V = T\left(\{(y_1,\dots, y_n) \in U \times I \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}\right).
 $$
 Par conséquent, si l'on définit la fonction $g: V \to \mathbb{R}$ par
 $$
@@ -243,17 +242,19 @@ Si $T(x) =  A \cdot x + b$ où $A$ est une application linéaire
 en posant $\phi(y) = y_n - f(y_1, \dots, y_{n-1})$, on
 obtient 
 $$
-dg(x) = d\phi(T(x)) \cdot dT^{-1}(x) = d\phi(T(x)) \cdot A^{-1}.
+dg(x) = d (\phi \circ T^{-1})(x) = d\phi(T^{-1}(x)) \cdot dT^{-1}(x) 
+= d\phi(T^{-1}(x)) \cdot A^{-1}.
 $$
 Or, $\partial_n \phi(y) = 1$ en tout point $y$ de $V$. 
 L'application $A^{-1}$ étant inversible, 
 il existe un vecteur $h$ de $\mathbb{R}^n$ tel que
-$A^{-1} \cdot h = (0, \dots, 0, 1)$; pour un tel vecteur on a donc
+$A^{-1} \cdot h = (0, \dots, 0, 1)$ ; 
+pour un tel vecteur on a donc
 $$
-dg(x) \cdot h = d\phi(T(x)) \cdot A^{-1} \cdot h = 
-\sum_{i} \partial_i \phi(T(x)) (A^{-1} \cdot h)_i = 1.
+dg(x) \cdot h = d\phi(T^{-1}(x)) \cdot A^{-1} \cdot h = 
+\sum_{i} \partial_i \phi(T^{-1}(x)) (A^{-1} \cdot h)_i = 1.
 $$
-La différentielle de $g$ est donc bien non nulle.
+La différentielle de $g$ est donc bien non-nulle.
 
 Réciproquement, considérons un $x_0 \in \partial K$ et supposons qu'il existe 
 une fonction $g: V \to \mathbb{R}$ satisfaisant les propriétés de l'énoncé. 
@@ -264,42 +265,43 @@ dg(x) \cdot u > 0
 $$
 dans un voisinage $V'$ de $x_0$ contenu dans $V$. 
 Soit $T$ une application affine inversible de la forme 
-$T(x) = A \cdot x + b$ telle que $A \cdot u = e_n$.
-La fonction $g \circ T^{-1}$ définie sur un voisinage ouvert de $T(x_0)$
+$T(x) = A \cdot x + b$ telle que $A \cdot e_n = u$.
+La fonction $g \circ T$ définie sur de $T^{-1}(V')$
 satisfait alors
 $$
 \begin{split}
-\partial_n (g \circ T^{-1})(y) &= dg(T^{-1}(y)) \cdot dT^{-1}(y) \cdot e_n \\
-&= dg(T^{-1}(y)) \cdot A^{-1} \cdot e_n  \\
-&= dg(T^{-1}(y)) \cdot u > 0 \\
+\partial_n (g \circ T)(y) &= dg(T(y)) \cdot dT(y) \cdot e_n \\
+&= dg(T(y)) \cdot A \cdot e_n  \\
+&= dg(T(y)) \cdot u > 0 \\
 \end{split}
 $$
 L'application du théorème des fonctions implicite fournit
-un ouvert non vide $V \subset \mathbb{R}^n$ de la forme
-$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
-est un intervalle ouvert non vide de $\mathbb{R}$ et une fonction 
-$f: U \to I$ continûment différentiable telle que
+un ouvert non vide $U \times I$ inclus dans $T^{-1}(V')$ 
+où $U \subset \mathbb{R}^{n-1}$ 
+et $I$ est un intervalle ouvert de $\mathbb{R}$ 
+et une fonction $f: U \to I$ continûment différentiable telle que
+dans $U \times I$,
 $$
-g \circ T^{-1}(y_1,\dots,y_n) = 0 
+g \circ T(y_1,\dots,y_n) = 0 
 \, \Leftrightarrow \, 
 y_n = f(y_1,\dots, y_{n-1}).
 $$
 Par le théorème fondamental du calcul,
 $$
 \begin{split}
-g \circ T^{-1}(y_1,\dots,y_n) &= 
-g \circ T^{-1}(y_1,\dots,f(y_1, \dots, y_{n-1})) \\
+g \circ T(y_1,\dots,y_n) &= 
+g \circ T(y_1,\dots,f(y_1, \dots, y_{n-1})) \\
 & \phantom{=}+
 \int_{f(y_1, \dots, y_{n-1})}^{y_n}
-\partial_n  (g\circ T^{-1})(y_1,\dots,y_{n-1}, t) \, dt \\
+\partial_n  (g\circ T)(y_1,\dots,y_{n-1}, t) \, dt \\
 &=
 \int_{f(y_1, \dots, y_{n-1})}^{y_n}
-\partial_n  (g\circ T^{-1})(y_1,\dots,y_{n-1}, t) \, dt, \\
+\partial_n  (g\circ T)(y_1,\dots,y_{n-1}, t) \, dt, \\
 \end{split}
 $$
-ce qui garantit que dans $V$, $(g \circ T^{-1})(y) \leq 0$
--- c'est-à-dire $x = T^{-1}(y) \in K$ --
-si et seulement si $f(y_1, \dots, y_{n-1}) \leq y_n$.
+ce qui garantit que dans $T(U \times I)$, $g(x) \leq 0$
+-- c'est-à-dire $x \in K$ --
+si et seulement si $x = T(y)$ et $f(y_1, \dots, y_{n-1}) \leq y_n$.
 
 ### TODO
 
@@ -315,11 +317,6 @@ est le vecteur de $\mathbb{R}^n$ donné par
 $$
 n(x) = \frac{\nabla g(x)}{\|\nabla g(x)\|}.
 $$
-
-### TODO
-
-revoir les conventions sur la transformation $T$ en amont et intégrer
-la transformation dans l'énoncée suivant
 
 ### Normale extérieure et hypographe {.proposition}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
@@ -377,30 +374,28 @@ l'épigraphe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
 **TODO** Définition, énoncé existence
 
-### TODO
 
-Ci-dessous, cette démarche suppose que $T$ soit une isométrie, 
-ce qui suppose d'avoir évoqué ce cas particulier en amont.
 
-### Intégrale de surface
-
+### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
 Quand $K$ est caractérisée au voisinage de $x_0 \in \partial K$
-comme l'épigraphe de la fonction $f: V \to I$ après transformation $T$, 
-la contribution de $W = T^{-1}(V \times I)$ à l'intégrale de surface
-de $\phi$ est définie par la relation
+comme l'épigraphe de la fonction $f: U \to I$ après une
+transformation $T$ qui soit une isométrie directe, 
+la *contribution de $V = T(U \times I)$ à l'intégrale de surface
+de $\phi$* est définie par la relation
 $$
-\int_{\partial K \cap W} \phi(x) S(dx) 
+\int_{\partial K \cap V} \phi(x) S(dx) 
 := 
 \int_{U}
 \phi(z, f(z)) \sqrt{1 + \|\nabla f(z)\|^2}\, dz. 
 $$
-Si les $\{W_i\}_i$ consituent un recouvrement fini de $\partial K$ par de tels
-ouverts et les $\{\rho_i\}_i$ une partition de l'unité associée,
-alors l'intégrale de surface de $\phi$ sur $\partial K$ est définie par
+Si les ouverts $V_i$ consituent un recouvrement fini de $\partial K$ par de tels
+ouverts et les $\rho_i$ une partition de l'unité associée,
+alors *l'intégrale de surface de $\phi$ sur $\partial K$* 
+est définie par
 $$
 \int_{\partial K} \phi(x) S(dx) 
-:= \sum_i \int_{\partial K \cap W_i} \rho_i(x) \phi(x) S(dx) 
+:= \sum_i \int_{\partial K \cap V_i} \rho_i(x) \phi(x) S(dx) 
 $$
 
 ### TODO
@@ -414,7 +409,7 @@ v: V \subset \mathbb{R}^n \to \mathbb{R}^n,
 \;
 v=(v_1, \dots, v_n)
 $$
-où $V$ est un ouvert la fonction $\mbox{div} \, f: V \to \mathbb{R}$
+où $V$ est un ouvert, la fonction $\mbox{div} \, f: V \to \mathbb{R}$
 définie par
 $$
 \mbox{div} \, v(x) = \sum_{i=1}^n \partial_i v_i(x)
