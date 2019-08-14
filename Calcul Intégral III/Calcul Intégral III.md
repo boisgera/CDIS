@@ -474,7 +474,7 @@ h^{-1}(x_1, \dots, x_{n-1}, x_n) = (x_1, \dots, x_{n-1}, x_n - f(x_1, \dots, x_{
 $$
 qui est également de classe $C^1$. La matrice jacobienne associée à $h$ vaut
 $$
-Dh(x)
+J_h(x)
 =
 \left[
 \begin{array}{c|c}
@@ -486,7 +486,7 @@ I & 0 \\
 $$
 et par conséquent son déterminant jacobien satisfait
 $$
-\mbox{det} \, Dh(x) = 1.
+\mbox{det} \, J_h(x) = 1.
 $$
 Par conséquent, le changement de variable associé à $h$ fournit
 $$
