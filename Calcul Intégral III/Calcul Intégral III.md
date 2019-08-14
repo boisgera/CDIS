@@ -485,7 +485,7 @@ J_h(x)
 \begin{array}{c|c}
 I & 0 \\
 \hline
-\nabla f(x)^t & 1
+J_f(x) & 1
 \end{array}
 \right]
 $$
