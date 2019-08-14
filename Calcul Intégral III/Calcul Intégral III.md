@@ -1,6 +1,4 @@
 % Calcul Intégral III
-%
-% [today](https://www.youtube.com/watch?v=Te7DR4iuJj8)
 
 Intégrales Multiples
 ================================================================================
