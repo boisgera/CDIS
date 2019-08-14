@@ -371,16 +371,24 @@ un axe (orthonormé ?) qui permet de se ramener au cadre de
 l'épigraphe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
 ### Partition de l'unité {.definition .propoosition #pu}
-Pour toute famille finie d'ouverts $V_i$ de $\R^n$, il existe une famille
-$\rho_i: \R^n \to \left[0, +\infty\right[$ de fonctions continues, telles
-que $\rho_i(x) = 0$ si $x \not \in V_i$ et 
+Pour toute famille finie d'ouverts $V_i$ de $\R^n$ d'union $V$, 
+il existe une famille $\rho_i: V \to \left[0, +\infty\right[$ de 
+fonctions continues, telles que $\rho_i(x) = 0$ si $x \not \in V_i$ et 
 $$
 \sum_{i} \rho_i(x) = 1 \mbox{ pour tout } x \in \bigcup_i V_i.
 $$
 
-**TODO** Définition, énoncé existence
-
-
+### Démonstration {.proof}
+L'ensemble $V_i$ étant ouvert, la fonction 
+$x \in V \mapsto d(x, \R^n \setminus V_i)$, qui est continue, 
+est strictement positive sur $V_i$ et nulle ailleurs. 
+La somme $x \in V \mapsto \sum_j d(x, \R^n \setminus V_j)$, également
+continue, est donc strictement positive sur $V$.
+Les fonctions $\rho_i$ définies par
+$$
+\rho_i(x) = \frac{d(x, \R^n \setminus V_i)}{\sum_j d(x, \R^n \setminus V_j)}
+$$
+satisfont donc la proposition.
 
 ### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
