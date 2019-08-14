@@ -159,13 +159,6 @@ intuitif et ça colle sans doute mieux avec les exemples usuels
 (fonction distance orientée, conventions KKT, etc.), mais bien sûr pas
 toujours (ex: carac convexité). OK, oui
 
-### TODO
-Minimiser le cadre "reprère orthonormé direct", par simplement 
-"changement de repère"; cela simplifie l'enoncé, la preuve, etc.
-et la contrainte "orthonormé direct" peut venir plus tard, 
-en exercice? Pas évident, rédiger la preuve associé au passage
-de l'hypographe à l'inégalité implicite et voir ce qui vient.
-OK, ça devrait passer.
 
 ### TODO:
 
@@ -173,7 +166,7 @@ Deux façon raisonnables de définir un compact à bord sont données;
 la troisème (localement demi-espace après transfo par difféo) peut trouver
 sa place en exo ?
 
-### Compact à bord régulier {.definition}
+### Compact à bord régulier {.definition #cbr}
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
 s'il est compact et peut être caractérisé au voisinage de tout point de
 sa frontière $\partial K$, 
@@ -190,6 +183,12 @@ $$
 K \cap V = T\left(\{(y_1,\dots, y_n) \in U \times I \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}\right).
 $$
 
+### Changement de repère orthonormé {.remark}
+Il est possible d'imposer dans [la définition des compacts à bord $C^1$](#cbr)
+que $T$ soit une isométrie directe (qui conserve l'orientation) ; cela revient 
+à n'autoriser que les changements de repère orthonormés directs. 
+La caractérisation des compacts
+à bord $C^1$ qui en résulte est inchangée.
 
 ### TODO
 
