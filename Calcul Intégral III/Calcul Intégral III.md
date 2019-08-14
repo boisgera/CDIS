@@ -662,7 +662,7 @@ $$
 Quel que soit la valeur de $i \in \{1, \dots, n\}$, comme la normale
 extérieure $n$ est donnée par
 $$
-n(y, f(y)) = \frac{(1, -\partial_1 f(y), \dots, -\partial_{n-1} f(y))}{\sqrt{1 +\|\nabla f(y)\|^2}}, 
+n(y, f(y)) = \frac{(-\partial_1 f(y), \dots, -\partial_{n-1} f(y), 1)}{\sqrt{1 +\|\nabla f(y)\|^2}}, 
 $$
 on constate que l'on a
 $$
