@@ -423,7 +423,7 @@ v: V \subset \mathbb{R}^n \to \mathbb{R}^n,
 \;
 v=(v_1, \dots, v_n)
 $$
-où $V$ est un ouvert, la fonction $\mbox{div} \, f: V \to \mathbb{R}$
+où $V$ est un ouvert, la fonction $\mbox{div} \, v: V \to \mathbb{R}$
 définie par
 $$
 \mbox{div} \, v(x) = \sum_{i=1}^n \partial_i v_i(x)
