@@ -315,7 +315,7 @@ $$
 n(x) = \frac{\nabla g(x)}{\|\nabla g(x)\|}.
 $$
 
-### TODO -- Démonstration {.proofs}
+### TODO -- Démonstration {.proof}
 
 ### Normale extérieure et hypographe {.proposition #neh}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
