@@ -315,7 +315,25 @@ $$
 n(x) = \frac{\nabla g(x)}{\|\nabla g(x)\|}.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+La fonction $g$ étant différentiable en $x \in \partial K$, 
+on a localement
+$$
+g(y) = g(x) + dg(x) \cdot (y - x) + o(\|y - x\|)
+=\left<\nabla g(x), y-x \right> + o(\|y-x\|).
+$$
+Si $y \in \partial K$, $g(y) = 0$, donc 
+$$
+\left<\nabla g(x), \frac{y-x}{\|y-x\|} \right> = o(1)
+\to 0 \, \mbox{ quand } \, y \to x.
+$$
+Si $y = x + \varepsilon \nabla g(x) /\|\nabla g(x)\|$, avec $\varepsilon >0$,
+$$
+g(y) = \left<\nabla g(x), y-x \right> + o(\|y-x\|)
+= \varepsilon \|\nabla g(x)\| + o(\varepsilon),
+$$
+et donc $g(y) > 0$ -- soit $y \not \in K$ -- 
+pour $\varepsilon$ suffisamment petit.
 
 ### Normale extérieure et hypographe {.proposition #neh}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
@@ -357,22 +375,6 @@ $$
 $$
 le résultat s'en déduit.
 
-### TODO -- transfert en preuve au-dessus 
-La normale est dite *extérieure* car si l'on part de $x \in \partial K$ 
-et que l'on considère un déplacement suffisamment petit 
-dans la direction de la normale, on se retrouve à l'extérieur de $K$. 
-En effet, par la définition du gradient,
-$$
-g(x + h) = g(x) + \left<\nabla g(x), h \right> + o(h) = \left<\nabla g(x), h \right> + o(h)
-$$
-et par conséquent, si $h = \varepsilon n(x)$ avec $\varepsilon > 0$,
-$$
-g(x+h) =
-\left<\nabla g(x), \varepsilon \frac{\nabla g(x)}{\|\nabla g(x)\|} \right> + o(\varepsilon)
-= \varepsilon \|\nabla g(x)\| + o(\varepsilon)
-$$
-et le second membre de cette équation est positif si $\varepsilon$ est 
-suffisamment petit.
 
 ### TODO
 
