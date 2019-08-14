@@ -357,7 +357,7 @@ $$
 $$
 le résultat s'en déduit.
 
-### Terminologie
+### TODO -- transfert en preuve au-dessus 
 La normale est dite *extérieure* car si l'on part de $x \in \partial K$ 
 et que l'on considère un déplacement suffisamment petit 
 dans la direction de la normale, on se retrouve à l'extérieur de $K$. 
