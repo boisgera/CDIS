@@ -294,11 +294,17 @@ ce qui garantit que dans $T(U \times I)$, $g(x) \leq 0$
 -- c'est-à-dire $x \in K$ --
 si et seulement si $x = T(y)$ et $f(y_1, \dots, y_{n-1}) \leq y_n$.
 
-### TODO
+### Normale extérieure {.definition}
+Une *normale* à un compact à bord $C^1$ $K$ de $\R^n$
+en un point $x \in \partial K$ de sa frontière est un vecteur 
+$n(x) \in \R^n$ de norme $1$ tel que
+$$
+\lim_{\substack{y \to x \\ y \in \partial K}} \left<n(x), \frac{y-x}{\|y-x\|}\right> = 0.
+$$
+Elle est *extérieure* si pour $\varepsilon>0$ assez petit, 
+$x + \varepsilon n(x) \not \in K$, *intérieure* dans le cas contraire.
 
-Définition intrinsèque de la normale extérieure.
-
-### Normale extérieure {.definition .theorem}
+### Normale extérieure et caractérisation implicite {.proposition}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
 $x_0 \in \partial K$ par l'inégalité $g(x) \leq 0$, 
 où $V$ est un voisinage ouvert de $x$ et $g: V \to \mathbb{R}$
