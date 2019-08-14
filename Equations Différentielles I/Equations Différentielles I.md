@@ -130,9 +130,9 @@ Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to
 
 **Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ en $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
 $$
-\cC:=[t_0-\tau,t_0+\tau]\times \overline{B}_{x_0}(r)\subset U \ .
+\cC:=\left[t_0-\tau,t_0+\tau \right]\times \overline{B}_{x_0}(r)\subset U \ .
 $$
-Pour tout $\tau_m\in [0,\tau]$ tel que $\tau_m  \max_{\cC} |f| \leq r$,
+Pour tout $\tau_m\in \left[0,\tau \right]$ tel que $\tau_m  \max_{\cC} |f| \leq r$,
 <!--- $$
 f_m := \max_{\cC} f \quad , \quad \tau_m := \min\left\{\tau,\frac{r}{f_m} \right\}
 $$--->
@@ -140,24 +140,24 @@ il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+
 
 *Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC |f|$ existe bien.  Rappelons nous que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$ (ref?) est un espace de Banach pour la norme uniforme $|\cdot|_\infty$, et définissons  
 $$
-F = \{x\in E \: : \: x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B}_{x_0}(r) \} \ .
+F = \{x\in E \: : \: x(\left[t_0-\tau_m,t_0+\tau_m \right])\subseteq \overline{B}_{x_0}(r) \} \ .
 $$
 On peut montrer que[^Fferme] $F$ est un sous-ensemble fermé de $E$. $F$ est donc complet (ref?)  (toujours pour la norme uniforme $|\cdot|_\infty$). 
-Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset U$ pour tout $s\in [t_0-\tau_m,t_0+\tau_m]$ ; on peut donc définir l'opérateur $\Gamma : F\to E$ par
+Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset U$ pour tout $s\in \left[t_0-\tau_m,t_0+\tau_m \right]$ ; on peut donc définir l'opérateur $\Gamma : F\to E$ par
 $$
-\Gamma(x)(t) = x_0+\int_{t_0}^t f(s,x(s))ds \qquad \forall t\in [t_0-\tau_m,t_0+\tau_m] \ .
+\Gamma(x)(t) = x_0+\int_{t_0}^t f(s,x(s))ds \qquad \forall t\in \left[ t_0-\tau_m,t_0+\tau_m \right] \ .
 $$
-En fait, d'après la [représentation intégrale des solutions](#theo_eq_integrale), on sait qu'une fonction $x\in F$ est solution du problème de Cauchy sur $[t_0-\tau_m,t_0+\tau_m]$ si et seulement si elle vérifie
+En fait, d'après la [représentation intégrale des solutions](#theo_eq_integrale), on sait qu'une fonction $x\in F$ est solution du problème de Cauchy sur $\left[ t_0-\tau_m,t_0+\tau_m \right]$ si et seulement si elle vérifie
 $$
 \Gamma(x)=x
 $$
-c'est-à-dire $x$ est un point fixe de $\Gamma$. Par ailleurs, on peut prouver[^solutionF]  que pour tout $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+\tau_m]$, $x$ est dans $F$: c'est donc un point fixe $x^*$ de $\Gamma$ sur $F$. L'idée de la preuve est donc de montrer que $\Gamma$ (ou une de ses itérées) est contractante pour utiliser le théorème de point fixe sur un espace de Banach et en déduire l'existence et l'unicité de ce point fixe (REF?).
+c'est-à-dire $x$ est un point fixe de $\Gamma$. Par ailleurs, on peut prouver[^solutionF]  que pour tout $x\in S_f(t_0,x_0)$ définie sur $\left[t_0-\tau_m,t_0+\tau_m \right]$, $x$ est dans $F$: c'est donc un point fixe $x^*$ de $\Gamma$ sur $F$. L'idée de la preuve est donc de montrer que $\Gamma$ (ou une de ses itérées) est contractante pour utiliser le théorème de point fixe sur un espace de Banach et en déduire l'existence et l'unicité de ce point fixe (REF?).
 
-D'abord, pour tout $x\in F$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
+D'abord, pour tout $x\in F$, pour tout $t\in \left[t_0-\tau_m,t_0+\tau_m \right]$,
 $$
 |\Gamma(x)(t)-x_0| \leq \left|\int_{t_0}^t |f(s,x(s))| ds \right| \leq \tau_m \max_{\cC} |f| \leq r
 $$
-de sorte que $\Gamma(x)\in F$, i.e. $\Gamma:F\to F$. Ensuite, pour tout $(x_a,x_b)\in  F\times F$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
+de sorte que $\Gamma(x)\in F$, i.e. $\Gamma:F\to F$. Ensuite, pour tout $(x_a,x_b)\in  F\times F$, pour tout $t\in \left[t_0-\tau_m,t_0+\tau_m \right]$,
 $$
 |\Gamma(x_a)(t)-\Gamma(x_b)(t)|\leq \left|\int_{t_0}^t |f(s,x_a(s))-f(s,x_b(s))| ds \right| \ .
 $$
@@ -166,7 +166,7 @@ $$
 |\Gamma(x_a)(t)-\Gamma(x_b)(t)|\leq  \left|\int_{t_0}^t k|x_a(s)-x_b(s)| ds \right| \leq |t-t_0| k |x_a-x_b|_{\infty} 
 $$
 et donc $|\Gamma(x_a)-\Gamma(x_b)|_\infty \leq \tau_m k |x_a-x_b|_{\infty}$.
-A ce stade, sauf si $\tau_m k<1$, $\Gamma$ n'est pas contractante. Cependant, on peut montrer par récurrence que pour tout $p\in \N$, et pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
+A ce stade, sauf si $\tau_m k<1$, $\Gamma$ n'est pas contractante. Cependant, on peut montrer par récurrence que pour tout $p\in \N$, et pour tout $t\in \left[t_0-\tau_m,t_0+\tau_m \right]$,
 $$
 |\Gamma^p(x_a)(t)-\Gamma^p(x_b)(t)|_\infty \leq \frac{(|t-t_0| k)^p}{p!} |x_a-x_b|_{\infty}
 $$
@@ -181,12 +181,12 @@ $\hfill\blacksquare$
 ### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
 La première preuve d'existence et unicité locale de solutions sous l'hypothèse que $f$ est de classe $C^1$ par rapport à $x$ est dûe à Augustin Louis Cauchy (1820) et repose sur l'utilisation du théorème d'accroissements finis (en l'absence d'outils d'analyse fonctionnelle à cette époque, sa preuve consiste plutôt à discrétiser (en temps) l'intégrale de plus en plus finement et montrer sa convergence). Mais on remarque dans notre preuve qu'il suffirait qu'il existe $k>0$ tel que
 $$
-|f(t,x_a)-f(t,x_b)|\leq k |x_a-x_b| \qquad \forall t\in [t_0-\tau_m,t_0+\tau_m], \forall (x_a,x_b)\in \overline{B}_r(x_0) \ ,
+|f(t,x_a)-f(t,x_b)|\leq k |x_a-x_b| \qquad \forall t\in \left[t_0-\tau_m,t_0+\tau_m \right], \forall (x_a,x_b)\in \overline{B}_r(x_0) \ ,
 $$
 c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendante: d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement une variation bornée de $x\mapsto f(t,x)$ au voisinage de $(t_0,x_0)$, au lieu de sa différentiabilité. Par exemple, $x\mapsto |x|$ est Lipschitzienne (mais pas $C^1$) et $\dot{x}=|x|$ admet donc une unique solution maximale quel que soit la condition initiale.
 
 ### Approximations successives {.remarque #rem_approx_succ}
-Mise à part quelques formes particulières de $f$, il est très rare de savoir résoudre explicitement une équation différentielle. Cependant, la preuve (dans sa forme moderne donnée plus haut) caractérise la solution comme le point fixe de l'opérateur $\Gamma$. Or, on sait (REF) que ce point fixe est la limite uniforme de la suite des itérées de $\Gamma$. En pratique, on peut donc s'approcher arbitrairement proche  de la solution   sur l'intervalle $[t_0-\tau_m,t_0+\tau_m]$ (au sens de la norme uniforme), en calculant la suite $x_{p+1} = \Gamma(x_p)$ définie par
+Mise à part quelques formes particulières de $f$, il est très rare de savoir résoudre explicitement une équation différentielle. Cependant, la preuve (dans sa forme moderne donnée plus haut) caractérise la solution comme le point fixe de l'opérateur $\Gamma$. Or, on sait (REF) que ce point fixe est la limite uniforme de la suite des itérées de $\Gamma$. En pratique, on peut donc s'approcher arbitrairement proche  de la solution   sur l'intervalle $\left[t_0-\tau_m,t_0+\tau_m \right]$ (au sens de la norme uniforme), en calculant la suite $x_{p+1} = \Gamma(x_p)$ définie par
 $$
 x_{p+1}(t) =  x_0+\int_{t_0}^t f(s,x_p(s))ds  ,
 $$
@@ -226,9 +226,9 @@ $$
 Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger.
 
 ### Théorème des bouts {.theorem #theo_bouts}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ en $x$. Soient $(t_0,x_0)\in U$ et $x:(\underline{t},\overline{t})\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in [-\infty,t_0)$ et $\overline{t}\in (t_0,+\infty]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in [t_0,\overline{t})$ and $t_K^-\in (\underline{t},t_0]$) tels que
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ en $x$. Soient $(t_0,x_0)\in U$ et $x:(\underline{t},\overline{t})\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in \left[-\infty,t_0\right)$ et $\overline{t}\in \left(t_0,+\infty\right]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in \left[t_0,\overline{t}\right)$ and $t_K^-\in \left(\underline{t},t_0 \right]$) tels que
 $$
-(t,x(t))\notin K \qquad \forall t\in [t_K^+,\overline{t}) \cup  (\underline{t},t_K^-] 
+(t,x(t))\notin K \qquad \forall t\in \left[t_K^+,\overline{t} \right) \cup  \left(\underline{t},t_K^- \right] 
 $$
 
 *Démonstration* : Voir en [annexe](#pr_theo_bouts).  $\hfill\blacksquare$
