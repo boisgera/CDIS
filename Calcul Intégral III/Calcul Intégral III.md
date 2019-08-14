@@ -297,14 +297,14 @@ si et seulement si $x = T(y)$ et $f(y_1, \dots, y_{n-1}) \leq y_n$.
 ### Normale extérieure {.definition}
 Une *normale* à un compact à bord $C^1$ $K$ de $\R^n$
 en un point $x \in \partial K$ de sa frontière est un vecteur 
-$n(x) \in \R^n$ de norme $1$ tel que
+$n(x) \in \R^n$ unitaire (de norme $1$) tel que
 $$
 \lim_{\substack{y \to x \\ y \in \partial K}} \left<n(x), \frac{y-x}{\|y-x\|}\right> = 0.
 $$
 Elle est *extérieure* si pour $\varepsilon>0$ assez petit, 
 $x + \varepsilon n(x) \not \in K$, *intérieure* dans le cas contraire.
 
-### Normale extérieure et caractérisation implicite {.proposition}
+### Normale extérieure et caractérisation implicite {.proposition #neci}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
 $x_0 \in \partial K$ par l'inégalité $g(x) \leq 0$, 
 où $V$ est un voisinage ouvert de $x$ et $g: V \to \mathbb{R}$
@@ -315,7 +315,9 @@ $$
 n(x) = \frac{\nabla g(x)}{\|\nabla g(x)\|}.
 $$
 
-### Normale extérieure et hypographe {.proposition}
+### TODO -- Démonstration {.proofs}
+
+### Normale extérieure et hypographe {.proposition #neh}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
 $x_0 \in \partial K$ comme l'hypographe de la fonction 
 $f: U \to I$ où $U$ est un ouvert de $\mathbb{R}^{n-1}$ et $I$ 
@@ -323,20 +325,37 @@ un intervalle ouvert de $\mathbb{R}$, alors
 la normale extérieure de $K$ en $x \in \partial K \cap V$ 
 est le vecteur de $\mathbb{R}^n$ donné par
 $$
-n(x_1, \dots, x_n) = \frac{(1, -\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}))}{\sqrt{1 +\|\nabla f(x_1, \dots, x_{n-1})\|^2}}, 
+n(x_1, \dots, x_n) = \frac{(-\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}),1)}{\sqrt{1 +\|\nabla f(x_1, \dots, x_{n-1})\|^2}}.
 $$
 
-### Remarque TODO
-
-A retenir sous la forme: il existe $\alpha > 0$ tel que
+<!--
+### Remarque {.remark .note}
+Il suffit de retenir que la normale extérieure
+est colinéaire et de même sens que le vecteur
 $$
-n(x_1, \dots, x_n) = \alpha \times (1, -\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}))
+(-\partial_1 f, \dots, -\partial_{n-1} f, 1),
 $$
-(colinéarité)
+puis de retrouver la formule de la normale extérieure en utilisant le fait que
+sa norme vaut 1.
+-->
 
 ### Démonstration {.proof}
-
-**TODO** (essentiellement trivial)
+Il suffit de constater qu'on peut associer à l'hypographe de $f$ la
+description implicite $g(x) \leq 0$ avec
+$$
+g(x_1,\dots, x_{n-1}, x_n) = x_n - f(x_1, \dots, x_{n-1})
+$$
+puis d'exploiter [la caractérisation de la normale dans ce cas](#neci).
+Comme
+$$
+\nabla g(x_1, \dots, x_n)
+= (-\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}),1)
+$$
+et que par conséquent
+$$
+\|\nabla g(x_1, \dots,  x_n)\| = \sqrt{1 +\|\nabla f(x_1, \dots, x_{n-1})\|^2},
+$$
+le résultat s'en déduit.
 
 ### Terminologie
 La normale est dite *extérieure* car si l'on part de $x \in \partial K$ 
