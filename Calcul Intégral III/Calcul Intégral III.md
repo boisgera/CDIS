@@ -370,7 +370,13 @@ un peu plus explicitement (sur un exemple ?) comment trouver
 un axe (orthonormé ?) qui permet de se ramener au cadre de 
 l'épigraphe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
-### TODO -- Partition de l'unité
+### Partition de l'unité {.definition .propoosition #pu}
+Pour toute famille finie d'ouverts $V_i$ de $\R^n$, il existe une famille
+$\rho_i: \R^n \to \left[0, +\infty\right[$ de fonctions continues, telles
+que $\rho_i(x) = 0$ si $x \not \in V_i$ et 
+$$
+\sum_{i} \rho_i(x) = 1 \mbox{ pour tout } x \in \bigcup_i V_i.
+$$
 
 **TODO** Définition, énoncé existence
 
