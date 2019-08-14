@@ -417,9 +417,9 @@ $$
 
 
 ### Lemme de Stokes {.lemma}
-Soit $f: V \to \mathbb{R}$ une fonction de classe $C^1$
-où $V$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
-Soit $v: V \times \mathbb{R} \to \mathbb{R}^n$ une fonction
+Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
+où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
+Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
 de classe $C^1$ de support compact[^sc]. 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
 -- soit $\Omega = \{(y, z) \, | \, y \in \mathbb{R}^{n-1}, \; z < f(y)\}$ --
@@ -438,14 +438,14 @@ points où elle est non nulle:
 $$
 \mbox{supp}(v) = \overline{\{x \in \mbox{dom}(v)\, | \, f(x) \neq 0\}}.
 $$
-Ici, $f$ étant définie dans un ouvert ($\mbox{dom}(f) = V \times \mathbb{R}$), 
+Ici, $f$ étant définie dans un ouvert ($\mbox{dom}(f) = U \times \mathbb{R}$), 
 son support est compact si et seulement si l'ensemble $\{x \, | \, f(x) \neq 0\}$ 
-est borné et sa distance au complémentaire de $V\times \mathbb{R}$ 
+est borné et sa distance au complémentaire de $U\times \mathbb{R}$ 
 dans $\mathbb{R}^n$ est positive.
 
 ### Démonstration {.proof}
 
-On remarque que si $v = w e_i$ où $w: V \times \mathbb{R} \to \mathbb{R}$ est
+On remarque que si $v = w e_i$ où $w: U \times \mathbb{R} \to \mathbb{R}$ est
 de classe $C^1$ et $i \in \{1,\dots, n\}$, 
 comme $\mbox{div}\, v = \partial_i w$ et 
 $\left<v(x), n(x) \right> = w(x) n_i(x)$, 
@@ -459,14 +459,14 @@ Réciproquement, que si cette relation est valable pour tout
 $i \in \{1,\dots, n\}$, la conclusion du lemme de Stokes s'en déduit
 facilement. Démontrer la relation ci-dessus suffit donc à prouver le lemme.
 
-La transformation $h: V \times \left]-\infty, 0\right[ 
+La transformation $h: U \times \left]-\infty, 0\right[ 
 \to \mathbb{R}^n$ définie par
 $$
 h(x_1, \dots, x_{n-1}, x_n) = (x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1}))
 $$
 est une application de classe $C^1$. Par construction,
 $$
-h(V \times \left]-\infty, 0\right[) = \Omega
+h(U \times \left]-\infty, 0\right[) = \Omega
 $$
 et admet une inverse, donnée par 
 $$
@@ -492,8 +492,8 @@ Par conséquent, le changement de variable associé à $h$ fournit
 $$
 \begin{split}
 \int_{\Omega} \partial_i w(x) \, dx
-&= \int_{h(V \times \left]-\infty, 0\right[)} \partial_i w(x) \, dx \\
-&= \int_{V \times \left]-\infty, 0\right[} 
+&= \int_{h(U \times \left]-\infty, 0\right[)} \partial_i w(x) \, dx \\
+&= \int_{U \times \left]-\infty, 0\right[} 
 \partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
 \, dx
 \end{split}
@@ -502,7 +502,7 @@ ou encore, en notant $\pi(x) = (x_1,\dots, x_{n-1})$,
 $$
 \int_{\Omega} \partial_i w(x) \, dx
 =
-\int_{V \times \left]-\infty, 0\right[} 
+\int_{U \times \left]-\infty, 0\right[} 
 \partial_i w(\pi(x), x_n + f(\pi(x))) 
 \, dx.
 $$
@@ -529,7 +529,7 @@ $$
 \partial_n w(\pi(x), x_n + f(\pi(x))).
 $$
 
-Si $V = I_1 \times \dots \times I_{n-1}$ et si pour $i \in \{1,\dots, n-1\}$, 
+Si $U = I_1 \times \dots \times I_{n-1}$ et si pour $i \in \{1,\dots, n-1\}$, 
 on a $I_i = \left]a_i, b_i\right[$, alors par le théorème fondamental du 
 calcul,
 $$
@@ -567,7 +567,7 @@ S_i(x_1, \dots, x_{i-1}, x_{i+1}, \dots) :=
 $$
 Par le théorème de Fubini, on peut alors déduire que
 \begin{multline*}
-\int_{V \times \left]-\infty, 0\right[} 
+\int_{U \times \left]-\infty, 0\right[} 
 \partial_i w(\pi(x), x_n + f(\pi(x))) 
 \, dx
 =  \\
@@ -582,7 +582,7 @@ $$
 \partial_i w(x) 
 \, dx
 = 
-\int_{V \times \left]-\infty, 0\right[} 
+\int_{U \times \left]-\infty, 0\right[} 
 \partial_n w(\pi(x), x_n + f(\pi(x)) \times 
 (- \partial_i f (\pi(x))) \, dx
 $$
@@ -592,7 +592,7 @@ $$
 \partial_n w(x) 
 \, dx
 = 
-\int_{V \times \left]-\infty, 0\right[} 
+\int_{U \times \left]-\infty, 0\right[} 
 \partial_n w(\pi(x), x_n + f(\pi(x)) \, dx.
 $$
 Dans ce second cas, en raison de la compacité du support $w$, 
@@ -616,7 +616,7 @@ $$
 \partial_n w(x) 
 \, dx
 = 
-\int_V w(y, f(y)) \, dy.
+\int_U w(y, f(y)) \, dy.
 $$
 Quand $i \in \{1, \dots, n-1\}$, un calcul analogue fournit
 $$
@@ -624,7 +624,7 @@ $$
 \partial_n w(x) 
 \, dx
 = 
-\int_V w(y, f(y)) \times (- \partial_i f(y)) \, dy.
+\int_U w(y, f(y)) \times (- \partial_i f(y)) \, dy.
 $$
 
 Quel que soit la valeur de $i \in \{1, \dots, n\}$, comme la normale
@@ -638,7 +638,7 @@ $$
 \partial_i w(x) 
 \, dx
 = 
-\int_V w(y, f(y)) n_i(y, f(y)) \sqrt{1 +\|\nabla f(y)\|^2} \, dy,
+\int_U w(y, f(y)) n_i(y, f(y)) \sqrt{1 +\|\nabla f(y)\|^2} \, dy,
 $$
 et par conséquent
 $$
