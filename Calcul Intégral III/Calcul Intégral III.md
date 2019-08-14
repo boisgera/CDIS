@@ -185,8 +185,8 @@ $$
 
 ### Changement de repère orthonormé {.remark}
 Il est possible d'imposer dans [la définition des compacts à bord $C^1$](#cbr)
-que $T$ soit une isométrie directe (qui conserve l'orientation) ; cela revient 
-à n'autoriser que les changements de repère orthonormés directs. 
+que $T$ soit une isométrie directe (qui conserve la distance et l'orientation) ; 
+cela revient à n'autoriser que les changements de repère orthonormés directs. 
 La caractérisation des compacts
 à bord $C^1$ qui en résulte est inchangée.
 
