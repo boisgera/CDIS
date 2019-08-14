@@ -138,7 +138,7 @@ Tracer un parralèle avec les séries, ou il est connu que les séries
 conditionnellement convergentes ne gardent pas cette propriété par
 réordonnancement (exemple mono-dim ou bi-dim) ?
 
-Théorème de Stokes
+Théorème de la divergence
 ================================================================================
 
 ### TODO
@@ -421,7 +421,7 @@ $$
 $$
 
 
-### Lemme de Stokes {.lemma}
+### Lemme de la divergence {.lemma}
 Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
 où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
 Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
