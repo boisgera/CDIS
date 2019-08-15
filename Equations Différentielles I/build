@@ -528,9 +528,9 @@ if len(_docs) != 1:
 doc = _docs[0]
 doc_md = doc + ".md"
 output_latex = output / (doc + " (LaTeX)")
-output_latex.mkdir()
+output_latex.mkdir(exist_ok=True)
 output_latex_images = output_latex / "images"
-output_latex_images.mkdir()
+output_latex_images.mkdir(exist_ok=True)
 doc_tex = str(output_latex / (doc + ".tex"))
 doc_pdf = str(output / (doc + ".pdf"))
 doc_odt = str(output / (doc + ".odt"))
