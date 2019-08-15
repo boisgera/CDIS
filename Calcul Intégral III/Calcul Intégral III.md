@@ -388,7 +388,13 @@ un peu plus explicitement (sur un exemple ?) comment trouver
 un axe (orthonormé ?) qui permet de se ramener au cadre de 
 l'hypographe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
-### Partition de l'unité {.definition .propoosition #pu}
+
+### TODO
+
+Insufisant ici ; on a besoin à la fois du caractère $C^1$ et du support
+compact dans chaque $V_i$.
+
+### Partition de l'unité {.definition .proposition #pu}
 Pour toute famille finie d'ouverts $V_i$ de $\R^n$ d'union $V$, 
 il existe une famille $\rho_i: V \to \left[0, +\infty\right[$ de 
 fonctions continues, telles que $\rho_i(x) = 0$ si $x \not \in V_i$ et 
@@ -731,6 +737,11 @@ Calcul
 Un calcul réalisable par Fubini et/ou Stokes ? Dans le disque unité ?
 Avec un champ de vecteurs
 
+Point fixe de Brouwer
+--------------------------------------------------------------------------------
+
+Soit $B = \overline{B}(0,1)$ la boule unité de $\R^2$ et 
+$f: B \to B$
 
 Réferences
 ================================================================================
