@@ -870,12 +870,12 @@ Intégrales de surface {.answer #answer-is}
 --------------------------------------------------------------------------------
 
 Comme la normale extérieure à $B$ en $\partial B$ vaut $n(x) = (x_1, x_2)$
-et que $x_1^2 + x_2^2 = 1$ sur $\partial B$, on a l'égalité
+et que $x_1^2 + x_2^2 = 1$ sur $\partial B$, on a en posant $v(x) = (x_1, x_2)$ 
+sur $B$ l'égalité
 $$
 \int_{\partial B} S(dx) = \int_{\partial B} (x_1^2 + x_2^2) \, S(dx)
 = 
 \int_{\partial B} \left<v(x), n(x)\right> S(dx)
-\, \mbox{ avec } \, v(x) = (x_1, x_2)
 $$
 et donc par le théorème de la divergence
 $$
