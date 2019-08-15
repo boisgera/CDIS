@@ -758,7 +758,7 @@ $g: D \to \partial D$ telle que $g(x) = x$ si $x \in \partial D$.
 ### Question 1  {.question #pfb-1}
 Montrer que pour une telle rétraction $f$, on a 
 $$
-\int_B \det J_(x) \, dx = 0.
+\int_B \det J_f(x) \, dx = 0.
 $$
 
 ### Question 2  {.question #pfb-2}
