@@ -731,13 +731,23 @@ Exemples de compacts à bord (déterminés implicitement)
 
 ... par la fonction distance orientée par exemple ?
 
-Intégrale de surface {.question #is}
+Aire du disque unité {.question #adu}
+--------------------------------------------------------------------------------
+Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+Calculer l'aire de $B$
+$$
+A := \int_B \, dx
+$$
+
+
+Intégrales de surface {.question #is}
 --------------------------------------------------------------------------------
 
 Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
 Calculer
-
 $$
+\int_{\partial B} S(dx)
+\; \mbox{ et } \;
 \int_{\partial B} x_1^2 \, S(dx).
 $$
 
@@ -772,11 +782,111 @@ En déduire l'impossibilité d'une telle rétraction.
 Solutions
 ================================================================================
 
-Intégrale de surface {.answer #answer-is}
+Aire du disque unité {.answer #answer-adu}
 --------------------------------------------------------------------------------
 
-Comme la normale extérieure à $B$ en $\partial B$ vaut $n(x) = (x_1, x_2)$, 
-on à l'égalité
+La fonction $f: x \in \R^2 \mapsto 1_B(x)$ est intégrable: l'ensemble $B$ est
+fermé, donc mesurable, et la fonction $f$ est par exemple dominée par la
+fonction caractéristique du pavé fermé $[-1,1]^2$, qui est intégrable.
+
+Le théorème de Fubini nous fournit donc
+$$
+\int_B dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
+= 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
+$$
+Comme
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+= \int_{[-1, 1]} \sqrt{1 - x^2} \, dx
+= \int_{\left]-1, 1\right[} \sqrt{1 - x^2} \, dx
+$$
+On peut donc opérer le changement de variable 
+$$
+\theta \in \left]0, \pi\right[ \mapsto x = -\cos \theta \in \left]-1,1\right[
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+Comme $(-\cos \theta)' = \sin \theta$, on a
+$$
+\int_{0}^{\pi} \sqrt{1-(-\cos^2 \theta)} \sin \theta  \, d\theta = \int_{-1}^1 \sqrt{1 - x^2} \, dx
+$$
+et donc
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+=
+\int_{0}^{\pi} \sin^2 \theta  \, d\theta
+=
+\int_{0}^{\pi} \frac{1 - \cos 2\theta}{2} \, d\theta
+=
+\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4} \right]_0^{\pi}
+=\frac{\pi}{2},
+$$
+et finalement
+$$
+\int_B \, dx = \pi.
+$$
+
+Alternativement, on peut noter que l'union $N$ de $\partial B$ et 
+du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
+et donc que
+$$
+\int_B \, dx = \int_{B \setminus N} dx,
+$$
+ce qui nous permet de considérer le changement de variable
+$$
+\phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
+\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in B \setminus N
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+On calcule la matrice jacobienne
+$$
+J_{\phi}(r, \theta) = 
+\left[ 
+\begin{array}{cc}
+\cos \theta & -r \sin \theta \\
+\sin \theta & r \cos \theta
+\end{array}
+\right],
+$$
+dont le déterminant vaut
+$$
+\det J_{\phi}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
+= r.
+$$
+On a donc
+$$
+\int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
+=
+\int_B \, dx,
+$$
+et donc par le théorème de Fubini,
+$$
+\int_B \, dx
+= \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
+= \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
+= \pi.
+$$
+
+Intégrales de surface {.answer #answer-is}
+--------------------------------------------------------------------------------
+
+Comme la normale extérieure à $B$ en $\partial B$ vaut $n(x) = (x_1, x_2)$
+et que $x_1^2 + x_2^2 = 1$ sur $\partial B$, on a l'égalité
+$$
+\int_{\partial B} S(dx) = \int_{\partial B} (x_1^2 + x_2^2) \, S(dx)
+= 
+\int_{\partial B} \left<v(x), n(x)\right> S(dx)
+\, \mbox{ avec } \, v(x) = (x_1, x_2)
+$$
+et donc par le théorème de la divergence
+$$
+\int_{\partial B} S(dx)
+= \int_{B} \mathrm{div} \, v(x) \, dx
+= \int_{B} (\partial_1 x_1 + \partial_2 x_2) \, dx
+= 2 \int_{B} \, dx.
+$$
+L'intégrale initiale est donc égale au double de l'aire du disque unité, 
+soit $2\pi$.
+Concernant la seconde intégrale, on à l'égalité
 $$
 \int_{\partial B} x_1^2 S(dx) = \int_{\partial B} \left<v(x), n(x)\right> S(dx)
 \, \mbox{ avec } \, v(x) = (x_1, 0)
@@ -785,6 +895,7 @@ et donc par le théorème de la divergence
 $$
 \int_{\partial B} x_1^2 S(dx)
 = \int_{B} \mathrm{div} \, v(x) \, dx
+= \int_{B} (\partial_1 x_1 + \partial_2 0) \, dx
 = \int_{B} \, dx.
 $$
 L'intégrale initiale est donc égale à l'aire du disque unité, soit $\pi$.
