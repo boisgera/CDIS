@@ -780,6 +780,8 @@ Par construction, cette fonction est une rétraction.
 Elle est également de classe $C^2$.
 -->
 
+Source: [@Kan81]
+
 ### Question 1  {.answer #answer-pfb-1}
 On déduit de l'identité $\|f(x)\|^2=\left<f(x), f(x)\right> =1$ valable sur $B$
 la relation $J_f(x) f(x) = 0$. La valeur $f(x)$ étant non nulle, cela
