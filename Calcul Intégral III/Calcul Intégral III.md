@@ -740,8 +740,26 @@ Avec un champ de vecteurs
 Point fixe de Brouwer
 --------------------------------------------------------------------------------
 
-Soit $B = \overline{B}(0,1)$ la boule unité de $\R^2$ et 
-$f: B \to B$
+Soit $B = \overline{B}(0,1)$ la boule unité fermée de $\R^2$ et 
+$f: B \to B$ une fonction de classe $C^2$,
+
+[c^2] c'est-à-dire admettant une extension de classe $C^2$ à un ouvert $U$ 
+contenant $B$.
+
+### Question 1 {.question #pfb-1}
+Montrer que si $f$ n'admet pas de point fixe, il existe un rétraction de 
+$B$ dans $\partial B$ de classe $C^2$, c'est-à-dire une fonction 
+$g: B \to \partial B$ telle que $g(x) = x$ si $x \in \partial B$.
+
+### Question 2  {.question #pfb-2}
+Montrer que pour une telle fonction $g$, on a 
+$$
+\int_B \det J_g(x) \, dx = 0.
+$$
+
+### Question 3  {.question #pfb-3}
+En déduire l'impossibilité d'une telle rétraction, et donc l'existence
+d'un point fixe.
 
 Réferences
 ================================================================================
