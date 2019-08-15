@@ -731,11 +731,15 @@ Exemples de compacts à bord (déterminés implicitement)
 
 ... par la fonction distance orientée par exemple ?
 
-Calcul
+Intégrale de surface {.question #is}
 --------------------------------------------------------------------------------
 
-Un calcul réalisable par Fubini et/ou Stokes ? Dans le disque unité ?
-Avec un champ de vecteurs
+Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+Calculer
+
+$$
+\int_{\partial B} x_1^2 \, S(dx).
+$$
 
 Rétraction
 --------------------------------------------------------------------------------
@@ -764,8 +768,26 @@ $$
 ### Question 2  {.question #pfb-2}
 En déduire l'impossibilité d'une telle rétraction.
 
-Réferences
+
+Solutions
 ================================================================================
+
+Intégrale de surface {.answer #answer-is}
+--------------------------------------------------------------------------------
+
+Comme la normale extérieure à $B$ en $\partial B$ vaut $n(x) = (x_1, x_2)$, 
+on à l'égalité
+$$
+\int_{\partial B} x_1^2 S(dx) = \int_{\partial B} \left<v(x), n(x)\right> S(dx)
+\, \mbox{ avec } \, v(x) = (x_1, 0)
+$$
+et donc par le théorème de la divergence
+$$
+\int_{\partial B} x_1^2 S(dx)
+= \int_{B} \mathrm{div} \, v(x) \, dx
+= \int_{B} \, dx.
+$$
+L'intégrale initiale est donc égale à l'aire du disque unité, soit $\pi$.
 
 Rétraction
 --------------------------------------------------------------------------------
