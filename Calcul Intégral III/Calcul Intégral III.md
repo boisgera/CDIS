@@ -781,7 +781,7 @@ Elle est également de classe $C^2$.
 -->
 
 ### Question 1  {.answer #answer-pfb-1}
-On déduit de l'identité $\left<f(x), f(x)\right> =1$ valable sur $B$
+On déduit de l'identité $\|f(x)\|^2=\left<f(x), f(x)\right> =1$ valable sur $B$
 la relation $J_f(x) f(x) = 0$. La valeur $f(x)$ étant non nulle, cela
 entraîne la non-inversibilité de la matrice jacobienne $J_f(x)$,
 ou ce qui est équivalent, la nullité du déterminant jacobien
@@ -791,3 +791,42 @@ $$
 $$
 
 ### Question 2  {.answer #answer-pfb-2}
+La fonction $f$ étant de classe $C^2$, on a
+$$
+\begin{split}
+\det J_f 
+&= (\partial_1 f_1) (\partial_2 f_2) - (\partial_1 f_2) (\partial_2 f_1) \\
+&= \partial_1 (f_1 \partial_2 f_2) - f_1 \partial^2_{12} f_2
+   -\partial_2 (f_1 \partial_1 f_2) + f_1 \partial^2_{21} f_2 \\
+&= \partial_1 (f_1 \partial_2 f_2) 
+   -\partial_2 (f_1 \partial_1 f_2)
+\end{split}
+$$
+Par le théorème de la divergence, on a donc
+$$
+\begin{split}
+\int_B \det J_f(x) \, dx &=
+\int_{\partial B} (n_1 (f_1 \partial_2 f_2) 
+   -n_2 (f_1 \partial_1 f_2)) S \\
+&=\int_{\partial B} f_1 \left<\nabla f_2, t\right> S   
+\end{split}
+$$
+où $t(x)$ désigne le vecteur tangent à $\partial B$ en $x$:
+$$
+t(x) = (-n_2(x), n_1(x)).
+$$
+Comme la normale extérieure à $B$ en $x=(x_1, x_2) \in \partial B$ est donnée
+par $n(x) = (x_1, x_2)$, on a $t(x) = (-x_2, -x_1)$. Par ailleurs, comme
+$f(x)$ vaut identiquement $x$ sur $\partial B$, $f_2(x)$ vaut $x_2$ et
+par conséquent 
+$$
+\left<\nabla f_2(x), t(x)\right>  = \left<\nabla (x_2), t(x)\right>= x_1,
+$$
+soit, puisque $f_1(x) = x_1$ sur $\partial B$,
+$$
+\int_B \det J_f(x) \, dx = \int_{\partial B} x_1^2 \, S(dx) > 0.
+$$
+Si une telle rétraction existait, on aurait donc une contradiction.
+
+Réferences
+================================================================================
