@@ -737,29 +737,57 @@ Calcul
 Un calcul réalisable par Fubini et/ou Stokes ? Dans le disque unité ?
 Avec un champ de vecteurs
 
-Point fixe de Brouwer
+Rétraction
 --------------------------------------------------------------------------------
 
-Soit $B = \overline{B}(0,1)$ la boule unité fermée de $\R^2$ et 
-$f: B \to B$ une fonction de classe $C^2$,
+Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$ et 
+$f: B \to B$ une fonction de classe $C^2$
+(c'est-à-dire admettant une extension de classe $C^2$ à un ouvert $U$ 
+contenant $B$). Une telle fonction $f$ est une *rétraction* de $B$
+sur $\partial B$ si $f(B) = \partial B$ et pour tout $x\in \partial B$,
+$f(x) = x$.
 
-[c^2] c'est-à-dire admettant une extension de classe $C^2$ à un ouvert $U$ 
-contenant $B$.
-
+<!--
 ### Question 1 {.question #pfb-1}
-Montrer que si $f$ n'admet pas de point fixe, il existe un rétraction de 
-$B$ dans $\partial B$ de classe $C^2$, c'est-à-dire une fonction 
-$g: B \to \partial B$ telle que $g(x) = x$ si $x \in \partial B$.
+Montrer que si $f$ n'admet pas de point fixe, il existe une 
+*rétraction* de $D$ dans $\partial D$ de classe $C^2$, 
+c'est-à-dire une fonction 
+$g: D \to \partial D$ telle que $g(x) = x$ si $x \in \partial D$.
+-->
+
+### Question 1  {.question #pfb-1}
+Montrer que pour une telle rétraction $f$, on a 
+$$
+\int_B \det J_(x) \, dx = 0.
+$$
 
 ### Question 2  {.question #pfb-2}
-Montrer que pour une telle fonction $g$, on a 
-$$
-\int_B \det J_g(x) \, dx = 0.
-$$
-
-### Question 3  {.question #pfb-3}
-En déduire l'impossibilité d'une telle rétraction, et donc l'existence
-d'un point fixe.
+En déduire l'impossibilité d'une telle rétraction.
 
 Réferences
 ================================================================================
+
+Rétraction
+--------------------------------------------------------------------------------
+
+<!--
+### Question 1 {.answer #answer-pfb-1}
+Comme par hypothèse pour tout $x\in B$, $f(x) \neq x$, on peut associer à
+$x$ l'unique point de la demi-droite ouverte d'origine $f(x)$ et
+de direction $x - f(x)$ appartenant à $\partial B$. 
+Par construction, cette fonction est une rétraction.
+
+Elle est également de classe $C^2$.
+-->
+
+### Question 1  {.answer #answer-pfb-1}
+On déduit de l'identité $\left<f(x), f(x)\right> =1$ valable sur $B$
+la relation $J_f(x) f(x) = 0$. La valeur $f(x)$ étant non nulle, cela
+entraîne la non-inversibilité de la matrice jacobienne $J_f(x)$,
+ou ce qui est équivalent, la nullité du déterminant jacobien
+$\det J_f(x)$. En conséquence,
+$$
+\int_B \det J_f(x) \, dx = 0.
+$$
+
+### Question 2  {.answer #answer-pfb-2}
