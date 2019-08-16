@@ -221,7 +221,7 @@ Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en 
 
 En fait, le théorème suivant montre que pour toute solution maximale, la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $U$ au bout d'un certain temps. Dans le cas usuel où $U=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $\left[0,\overline{t}\right[$ avec $\overline{t}<+\infty$, explose en temps fini, c'est-à-dire
 $$
-\lim_{t\to \overline{t}}x(t)=+\infty \ ,
+\lim_{t\to \overline{t}} \|x(t)\|=+\infty \ ,
 $$
 Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger.
 
