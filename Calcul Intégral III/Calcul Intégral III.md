@@ -897,6 +897,34 @@ TODO -- Changement de variables linéaire
 ### TODO -- Question 1 {.answer #answer-cvl-1}
 
 ### TODO -- Question 2 {.answer #answer-cvl-2}
+Par le changement de variable linéaire dans $\R$ de la question 1
+et le théorème de Fubini,
+$$
+\begin{split}
+S_1 
+&= 
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+&= 
+\frac{1}{\lambda}
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+&= 
+\frac{1}{\lambda}
+\int_{\R^n} f(x) \, dx.
+\end{split}
+$$
+
+**TODO:** comment établir l'intégrabilité de la nouvelle fonction ?
+
+$$
+S_2 = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx,
+$$
+$$
+S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \dots, x_n) \, dx.
+$$
+
+### TODO -- Question 2 {.answer #answer-cvl-2}
 
 
 Aire du disque unité {.answer #answer-adu}
