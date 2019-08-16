@@ -407,17 +407,8 @@ $$
 \sum_{i} \rho_i(x) = 1 \mbox{ pour tout } x \in \bigcup_i V_i.
 $$
 
-### Démonstration {.proof}
-L'ensemble $V_i$ étant ouvert, la fonction 
-$x \in V \mapsto d(x, \R^n \setminus V_i)$, qui est continue, 
-est strictement positive sur $V_i$ et nulle ailleurs. 
-La somme $x \in V \mapsto \sum_j d(x, \R^n \setminus V_j)$, également
-continue, est donc strictement positive sur $V$.
-Les fonctions $\rho_i$ définies par
-$$
-\rho_i(x) = \frac{d(x, \R^n \setminus V_i)}{\sum_j d(x, \R^n \setminus V_j)}
-$$
-satisfont donc la proposition.
+### {.post}
+La démonstration est donnée [en annexe](#pu).
 
 ### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
@@ -715,6 +706,23 @@ pour demander moins que $C^1$ sur l'intégrande ?
 ### TODO
 Préfiguration intégrale de surface "intrinsèque".
 
+Annexes
+================================================================================
+
+Partition de l'unité
+--------------------------------------------------------------------------------
+
+### TODO -- Démonstration de l'existence d'une partition de l'unité {.proof #proof-pu}
+L'ensemble $V_i$ étant ouvert, la fonction 
+$x \in V \mapsto d(x, \R^n \setminus V_i)$, qui est continue, 
+est strictement positive sur $V_i$ et nulle ailleurs. 
+La somme $x \in V \mapsto \sum_j d(x, \R^n \setminus V_j)$, également
+continue, est donc strictement positive sur $V$.
+Les fonctions $\rho_i$ définies par
+$$
+\rho_i(x) = \frac{d(x, \R^n \setminus V_i)}{\sum_j d(x, \R^n \setminus V_j)}
+$$
+satisfont donc la proposition.
 
 Exercices
 ================================================================================
