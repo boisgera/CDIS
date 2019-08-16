@@ -715,7 +715,7 @@ Partition de l'unité {#proof-pu}
 
 La preuve de l'existence d'une partition de l'unité repose sur le lemme suivant:
 
-### Lemme de recouvrement de Lebesgue {.lemma #lrl)
+### Lemme de recouvrement de Lebesgue {.lemma #lrl}
 Soit $K$ un compact de $\R^n$ et $V_i$ une famille d'ouverts $V_i$ recouvrant
 $K$. Alors il existe $r>0$ tel que pour tout $x \in K$, il existe un
 indice $i$ telle que la boule ouverte $B(x, r)$ de rayon $r$ centrée en $x$
