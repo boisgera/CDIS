@@ -722,7 +722,17 @@ indice $i$ telle que la boule ouverte $B(x, r)$ de rayon $r$ centrée en $x$
 soit incluse dans $V_i$.
 
 ### Démonstration {.proof}
-
+Supposons au contraire que pour tout $r>0$ il existe un $x \in K$ tel que 
+pour tout indice $i$, la distance entre $x$ et le complémentaire de $V_i$
+soit (strictement) inférieure à $r$.
+Soit $x_k$ une suite de points de $K$ tels que pour tout $i$,
+$d(x_k, \R^n \setminus V_i) \leq 2^{-k}$ ; par compacité de $K$,
+il existe une suite extraire des $x_k$ qui converge vers un $\ell \in K$.
+En passant à la limite sur cette suite extraire on établit que pour tout 
+indice $i$ on a $d(\ell, \R^n \setminus V_i) = 0$, 
+soit $x \in \R^n \setminus V_i$ puisque $\R^n \setminus V_i$ est fermé.
+Par conséquent, pour tout $i$, $x \not \in V_i$, ce qui contredit l'hypothèse
+que les $V_i$ forment un recouvrement de $K$.
 
 ### TODO -- Démonstration de l'existence d'une partition de l'unité {.proof}
 L'ensemble $V_i$ étant ouvert, la fonction 
