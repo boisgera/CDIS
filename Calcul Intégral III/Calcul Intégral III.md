@@ -684,6 +684,22 @@ $$
 \int_{\Gamma} w(x) n_i(x)\, dS(x).
 $$
 
+### Théorème de la divergence {.theorem}
+Soit $U$ un ouvert borné de $\R^n$ et $K$ un ensemble compact 
+$K$ à bord $C^1$ de $U$. Pour toute fonction $v: U \to \mathbb{R}^n$ 
+de classe $C^1$,
+$$
+\int_{K} \mbox{div} \, v(x) \, dx
+=
+\int_{\partial K} \left<v(x), n(x) \right> \, S(dx).
+$$
+et pour toute fonction $f: U \to \mathbb{R}$ et tout $i \in \{1,\dots, n\}$, 
+$$
+\int_{K} \partial_i f(x) \, dx
+=
+\int_{\partial K} n_i(x) f(x) \, S(dx).
+$$
+
 ### TODO
 
 Preuve de Stokes (dans un patch, puis en général)
