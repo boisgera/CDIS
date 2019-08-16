@@ -883,6 +883,14 @@ En déduire l'impossibilité d'une telle rétraction.
 Solutions
 ================================================================================
 
+TODO -- Changement de variables linéaire
+--------------------------------------------------------------------------------
+
+### TODO -- Question 1 {.answer #answer-cvl-1}
+
+### TODO -- Question 2 {.answer #answer-cvl-2}
+
+
 Aire du disque unité {.answer #answer-adu}
 --------------------------------------------------------------------------------
 
