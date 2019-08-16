@@ -795,20 +795,28 @@ Changement de variables linéaire
 Soit $f:\R^n \to \R$ une fonction intégrable.
 
 ### Question 1 {.question #cvl-1}
-Montrer que pour les trois fonctions linéaires $A: \R^n \to \R^n$:
-
-  - $A \cdot (x_1, x_2, \dots, x_n) =(\lambda x_1, x_2, \dots, x_n)$ ($\lambda \in \R$),
-
-  - $A \cdot (x_1, x_2, \dots, x_n) = (x_1+x_2 , x_2, \dots, x_n)$,
-
-  - $A \cdot (x_1, \dots, x_i, \dots, x_j, \dots, x_n) = (x_1, \dots, x_j, \dots, x_i, \dots, x_n)$,
-
-la fonction $x \in \R^n \mapsto A \cdot x$ est intégrable et calculer
+Soit $f:\R \to \R$ une fonction intégrable. Montrer que pour tout
+$\lambda \in \R$, $x \in \R \mapsto f(\lambda x)$ est intégrable
+et calculer
 $$
-\int_{\R^n} f(A\cdot x) \, dx.
+\int_{-\infty}^{+\infty} f(\lambda x) \, dx.
 $$
 
 ### Question 2 {.question #cvl-2}
+Soient $i, j \in \{1,\dots, n\}$, $i\neq j$ et $\lambda$ un réel non nul.
+Montrer que les intégrales suivantes existent et les calculer en fonction
+de l'intégrale de $f$:
+$$
+S_1 = \int_{\R^n} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx,
+$$
+$$
+S_2 = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx,
+$$
+$$
+S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \dots, x_n) \, dx.
+$$
+
+### Question 3 {.question #cvl-3}
 Soit $A: \R^n \to \R^n$ une application linéaire. Montrer que la fonction
 $x \in \R^n \mapsto |\det A| f(A \cdot x)$ est intégrable et que
 $$
