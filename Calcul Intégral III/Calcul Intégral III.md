@@ -701,21 +701,6 @@ $$
 $$
 
 ### TODO
-
-Preuve de Stokes (dans un patch, puis en général)
-Enoncer version différentielle partielle de Stokes
-(directement analogie à l'IPP en dimension 1, 
-permet de se limiter à l'intégration de fcts scalaires en 
-1ere approche et pas de perte de généralité; permet ensuite
-d'étudier les "applications" (théorème de la divergence, etc.))
-
-$$
-\int_{\Omega} \partial_i f(x) \, dx
-= 
-\int_{\Gamma} f(x) n_i(x) \, S(dx)
-$$
-
-### TODO
 Perspective sur les versions plus "relaxées" du théorème de Stokes,
 qu'il s'agisse du bord Lipschitz ou des travaux (Mawhin, Pfeffer, etc.)
 pour demander moins que $C^1$ sur l'intégrande ?
