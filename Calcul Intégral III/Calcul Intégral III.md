@@ -789,6 +789,32 @@ $$
 Exercices
 ================================================================================
 
+Changement de variables linéaire
+--------------------------------------------------------------------------------
+
+Soit $f:\R^n \to \R$ une fonction intégrable.
+
+### Question 1
+Montrer que pour les trois fonctions linéaires $A: \R^n \to \R^n$ suivantes:
+
+  - $A \cdot (x_1, x_2, \dots, x_n) =(\lambda x_1, x_2, \dots, x_n)$ ($\lambda \in \R$),
+
+  - $A \cdot (x_1, x_2, \dots, x_n) = (x_1+x_2 , x_2, \dots, x_n)$,
+
+  - $A \cdot (x_1, \dots, x_i, \dots, x_j, \dots, x_n) = (x_1, \dots, x_j, \dots, x_i, \dots, x_n)$,
+
+la fonction $x \in \R^n \mapsto A \cdot x$ est intégrable et calculer
+$$
+\int_{\R^n} f(A\cdot x) \, dx.
+$$
+
+### Question 2
+Soit $A: \R^n \to \R^n$ une application linéaire. Montrer que la fonction
+$x \in \R^n \mapsto |\det J_A(x)| f(A \cdot x)$ est intégrable et que
+$$
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det J_A(x)| \, dx.
+$$
+
 Déformations
 --------------------------------------------------------------------------------
 
