@@ -91,9 +91,14 @@ $$
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ 
 une fonction intégrable.
 Alors la fonction partielle $x \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
-pour presque tout $y \in \mathbb{R}^m$ et
+pour presque tout $y \in \mathbb{R}^n$, la fonction partielle 
+$y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
+pour presque tout $x \in \mathbb{R}^m$
+et
 $$
-\int_{\mathbb{R}^{m+n}} f(t) \, dt = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy
+\int_{\mathbb{R}^{m+n}} f(z) \, dz = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy
+=
+\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dy\right] dx
 $$
 
 ### Démonstration {.proof}
