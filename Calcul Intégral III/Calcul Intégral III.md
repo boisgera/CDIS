@@ -401,7 +401,7 @@ ce qui s'obtient par mollification.
 
 ### Partition de l'unité {.definition .proposition #pu}
 Pour toute famille finie d'ouverts $V_i$ de $\R^n$ recouvrant un ensemble
-compact $K$, il existe une famille $\rho_i: V \to \left[0, +\infty\right[$ 
+compact $K$, il existe une famille $\rho_i: \R^n \to \left[0, +\infty\right[$ 
 de fonctions continues dont le *support*
 $$
 \mbox{supp}(\rho_i) 
