@@ -794,8 +794,8 @@ Changement de variables linéaire
 
 Soit $f:\R^n \to \R$ une fonction intégrable.
 
-### Question 1
-Montrer que pour les trois fonctions linéaires $A: \R^n \to \R^n$ suivantes:
+### Question 1 {.question #cvl-1}
+Montrer que pour les trois fonctions linéaires $A: \R^n \to \R^n$:
 
   - $A \cdot (x_1, x_2, \dots, x_n) =(\lambda x_1, x_2, \dots, x_n)$ ($\lambda \in \R$),
 
@@ -808,7 +808,7 @@ $$
 \int_{\R^n} f(A\cdot x) \, dx.
 $$
 
-### Question 2
+### Question 2 {.question #cvl-2}
 Soit $A: \R^n \to \R^n$ une application linéaire. Montrer que la fonction
 $x \in \R^n \mapsto |\det J_A(x)| f(A \cdot x)$ est intégrable et que
 $$
