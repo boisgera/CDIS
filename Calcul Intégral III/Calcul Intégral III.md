@@ -410,7 +410,7 @@ $$
 $$ 
 est compact et inclus dans $V_i$ et telles que
 $$
-\sum_{i} \rho_i(x) = 1 \mbox{ pour tout } x \in \bigcup_i V_i.
+\sum_{i} \rho_i(x) = 1 \mbox{ pour tout } x \in K.
 $$
 
 ### {.post}
@@ -734,17 +734,58 @@ soit $x \in \R^n \setminus V_i$ puisque $\R^n \setminus V_i$ est fermé.
 Par conséquent, pour tout $i$, $x \not \in V_i$, ce qui contredit l'hypothèse
 que les $V_i$ forment un recouvrement de $K$.
 
-### TODO -- Démonstration de l'existence d'une partition de l'unité {.proof}
-L'ensemble $V_i$ étant ouvert, la fonction 
+### Démonstration de l'existence d'une partition de l'unité {.proof}
+
+Nous allons initialement établir l'existence
+d'une suite de fonctions $\rho_i:\R^n \to \R$ 
+continues, nulles en dehors de $V_i$ dont la somme vaut $1$, 
+puis déduire de cette construction l'existence de fonctions
+satisfaisant le théorème.
+
+Notons $V=\cup_i V_i$ ; l'ensemble $V_i$ étant ouvert, la fonction 
 $x \in V \mapsto d(x, \R^n \setminus V_i)$, qui est continue, 
 est strictement positive sur $V_i$ et nulle ailleurs. 
-La somme $x \in V \mapsto \sum_j d(x, \R^n \setminus V_j)$, également
+La somme $x \in \R^n \mapsto \sum_j d(x, \R^n \setminus V_j)$, également
 continue, est donc strictement positive sur $V$.
 Les fonctions $\rho_i$ définies par
 $$
 \rho_i(x) = \frac{d(x, \R^n \setminus V_i)}{\sum_j d(x, \R^n \setminus V_j)}
 $$
-satisfont donc la proposition.
+satisfont donc les propriétés requises pour l'étape 1.
+
+[Le lemme de recouvrement de Lebesgue](#lrl) établit l'existence d'un $r>0$ 
+tel que pour tout $x \in K$, il existe au moins un indice $i$ tel que
+$B(x, r) \subset V_i$. Notons $V'_i$ l'union des boules ouverts $B(x,r)$
+pour lequel l'incide $i$ convient quand $x$ décrit $K$. Par construction,
+les $V'_i$ sont ouverts et recouvrent $K$ ; de plus, les adhérences
+$\overline{V'_i}$ sont bornées
+(il sont des sous-ensembles de $\{x \in K \, | \, d(x, K) \leq r\}$)
+et vérifient $d(\overline{V}'_i, \R^n \setminus V_i) \geq r$.
+
+Considérons les fonctions $\rho_i$ de l'étape initiale 
+associées à la famille des $V'_i$ et prolongées par
+$0$ en dehors de $\bigcup_i V'_i$. Définissons alors
+les fonctions $\rho'_i:\R^n \to \left[0, +\infty \right[$ par
+$$
+\rho'_i(x) = \int_{\R^n} \rho_i(y) \phi(x-y) \, dy
+$$
+où $\phi:\R^n \to \left[0, +\infty\right[$ est une fonction indéfiniment 
+différentiable, de support inclus dans $\overline{B}(0, r/2)$ et 
+telle que 
+$$
+\int_{\R^n} \phi(x) \, dx = 1.
+$$
+Le théorème de dérivation sous le signe somme établit que les
+$\rho'_i$ sont continûment différentiables. Par construction,
+le support de $\rho'_i$ est inclus dans $V'_i + \overline{B}(x, r/2)$,
+ce qui garantit que $\mathrm{supp}(\rho'_i) \subset V_i$. Finalement,
+pour tout $x \in K$,
+$$
+\sum_{i} \rho'_i(x) = 
+\int_{\R^n} \sum_i \rho_i(y) \phi(x-y) \, dy
+= 
+\int_{\R^n} \phi(x-y) \, dy = 1.
+$$
 
 Exercices
 ================================================================================
