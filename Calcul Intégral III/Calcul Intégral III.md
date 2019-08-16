@@ -64,7 +64,7 @@ $$
 ### Jauge {.definition}
 Une jauge $\gamma$ sur un pavé $I$ de $\mathbb{R}^n$ est une 
 fonction qui associe à tout $t \in I$ un 
-intervalle ouvert $\gamma(t)$ de $\mathbb{R}^n$ contenant $t$. 
+pavé ouvert $\gamma(t)$ de $\mathbb{R}^n$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision $\mathcal{D}$ du pavé compact $I$ 
