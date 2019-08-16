@@ -400,15 +400,21 @@ Ne reste plus qu'à obtenir des fonctions $C^1$ et non plus continues,
 ce qui s'obtient par mollification.
 
 ### Partition de l'unité {.definition .proposition #pu}
-Pour toute famille finie d'ouverts $V_i$ de $\R^n$ d'union $V$, 
-il existe une famille $\rho_i: V \to \left[0, +\infty\right[$ de 
-fonctions continues, telles que $\rho_i(x) = 0$ si $x \not \in V_i$ et 
+Pour toute famille finie d'ouverts $V_i$ de $\R^n$ recouvrant un ensemble
+compact $K$, il existe une famille $\rho_i: V \to \left[0, +\infty\right[$ 
+de fonctions continues dont le *support*
+$$
+\mbox{supp}(\rho_i) 
+=
+\overline{\{x \in \mbox{dom}(\rho_i)\, | \, \rho_i(x) \neq 0\}}.
+$$ 
+est compact et inclus dans $V_i$ et telles que
 $$
 \sum_{i} \rho_i(x) = 1 \mbox{ pour tout } x \in \bigcup_i V_i.
 $$
 
 ### {.post}
-La démonstration est donnée [en annexe](#pu).
+La démonstration est donnée [en annexe](#proof-pu).
 
 ### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
@@ -467,12 +473,7 @@ $$
 \int_{\Gamma} \left<v(x), n(x) \right> \, S(dx)
 $$
 
-[^sc]: le support d'une fonction $v$ est l'adhérence de l'ensemble des
-points où elle est non nulle:
-$$
-\mbox{supp}(v) = \overline{\{x \in \mbox{dom}(v)\, | \, f(x) \neq 0\}}.
-$$
-Ici, $f$ étant définie dans un ouvert ($\mbox{dom}(f) = U \times \mathbb{R}$), 
+[^sc]: La fonction $f$ étant définie dans un ouvert ($\mbox{dom}(f) = U \times \mathbb{R}$), 
 son support est compact si et seulement si l'ensemble $\{x \, | \, f(x) \neq 0\}$ 
 est borné et sa distance au complémentaire de $U\times \mathbb{R}$ 
 dans $\mathbb{R}^n$ est positive.
@@ -711,6 +712,8 @@ Annexes
 
 Partition de l'unité {#proof-pu}
 --------------------------------------------------------------------------------
+
+
 
 ### TODO -- Démonstration de l'existence d'une partition de l'unité {.proof}
 L'ensemble $V_i$ étant ouvert, la fonction 
