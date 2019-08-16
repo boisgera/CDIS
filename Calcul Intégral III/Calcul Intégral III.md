@@ -709,10 +709,10 @@ Préfiguration intégrale de surface "intrinsèque".
 Annexes
 ================================================================================
 
-Partition de l'unité
+Partition de l'unité {#proof-pu}
 --------------------------------------------------------------------------------
 
-### TODO -- Démonstration de l'existence d'une partition de l'unité {.proof #proof-pu}
+### TODO -- Démonstration de l'existence d'une partition de l'unité {.proof}
 L'ensemble $V_i$ étant ouvert, la fonction 
 $x \in V \mapsto d(x, \R^n \setminus V_i)$, qui est continue, 
 est strictement positive sur $V_i$ et nulle ailleurs. 
