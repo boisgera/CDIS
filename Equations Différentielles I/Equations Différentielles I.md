@@ -66,9 +66,9 @@ $$
 $$
 On dira donc que $x\in C(I,\R^n)$ résout le problème de Cauchy défini par $f$ et $(t_0,x_0)$ sur l'intervalle $I\subseteq \R$ si
 
-- $t_0\in I$ and $x(t_0)=x_0$
+- $t_0\in I$ et $x(t_0)=x_0$
 
-- for all $t\in I$, $(t,x(t)) \in U$ and $\dot{x}(t)=f(t,x(t))$
+- pour tout $t\in I$, $(t,x(t)) \in U$ et $\dot{x}(t)=f(t,x(t))$
 
 On notera alors $x\in S_f(t_0,x_0)$.
 
