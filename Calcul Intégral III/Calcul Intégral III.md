@@ -418,7 +418,7 @@ La démonstration est donnée [en annexe](#proof-pu).
 
 ### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
-Quand $K$ est caractérisée au voisinage de $x_0 \in \partial K$
+Si $K$ est caractérisé dans un voisinage ouvert $V$ de $x_0 \in \partial K$
 comme l'hypographe de la fonction $f: U \to I$ après une
 transformation $T$ qui soit une isométrie directe, 
 la *contribution de $V = T(U \times I)$ à l'intégrale de surface
@@ -429,8 +429,8 @@ $$
 \int_{U}
 \phi(z, f(z)) \sqrt{1 + \|\nabla f(z)\|^2}\, dz. 
 $$
-Si les ouverts $V_i$ consituent un recouvrement fini de $\partial K$ par de tels
-ouverts et les $\rho_i$ une partition de l'unité associée,
+Si les $V_i$ sont des tels ouverts consituant un recouvrement fini de $\partial K$
+et les $\rho_i$ [une partition de l'unité associée](#lrl),
 alors *l'intégrale de surface de $\phi$ sur $\partial K$* 
 est définie par
 $$
@@ -438,9 +438,9 @@ $$
 := \sum_i \int_{\partial K \cap V_i} \rho_i(x) \phi(x) S(dx) 
 $$
 
-### TODO
-
-Evoquer indépendance du choix dans la définition
+### {.post}
+On admettra que cette définition est indépendante du choix de la 
+décomposition choisie de $\partial K$.
 
 ### Définition {.definition}
 On appelle *divergence* d'une fonction différentiable 
