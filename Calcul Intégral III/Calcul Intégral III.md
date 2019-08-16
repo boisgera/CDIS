@@ -424,7 +424,7 @@ transformation $T$ qui soit une isométrie directe,
 la *contribution de $V = T(U \times I)$ à l'intégrale de surface
 de $\phi$* est définie par la relation
 $$
-\int_{\partial K \cap V} \phi(x) S(dx) 
+\int_{\partial K \cap V} \phi(x) \sigma(dx) 
 := 
 \int_{U}
 \phi(z, f(z)) \sqrt{1 + \|\nabla f(z)\|^2}\, dz. 
@@ -434,8 +434,8 @@ et les $\rho_i$ [une partition de l'unité associée](#lrl),
 alors *l'intégrale de surface de $\phi$ sur $\partial K$* 
 est définie par
 $$
-\int_{\partial K} \phi(x) S(dx) 
-:= \sum_i \int_{\partial K \cap V_i} \rho_i(x) \phi(x) S(dx) 
+\int_{\partial K} \phi(x) \sigma(dx) 
+:= \sum_i \int_{\partial K \cap V_i} \rho_i(x) \phi(x) \sigma(dx) 
 $$
 
 ### {.post}
@@ -470,7 +470,7 @@ on a la relation
 $$
 \int_{\Omega} \mbox{div} \, v(x) \, dx
 =
-\int_{\Gamma} \left<v(x), n(x) \right> \, S(dx)
+\int_{\Gamma} \left<v(x), n(x) \right> \, \sigma(dx)
 $$
 
 [^sc]: La fonction $f$ étant définie dans un ouvert ($\mbox{dom}(f) = U \times \mathbb{R}$), 
@@ -488,7 +488,7 @@ le résultat du lemme devient
 $$
 \int_{\Omega} \partial_i w(x) \, dx
 =
-\int_{\Gamma} w(x) n_i(x) \, S(dx).
+\int_{\Gamma} w(x) n_i(x) \, \sigma(dx).
 $$
 Réciproquement, que si cette relation est valable pour tout 
 $i \in \{1,\dots, n\}$, la conclusion du lemme de Stokes s'en déduit
@@ -691,13 +691,13 @@ de classe $C^1$,
 $$
 \int_{K} \mbox{div} \, v(x) \, dx
 =
-\int_{\partial K} \left<v(x), n(x) \right> \, S(dx).
+\int_{\partial K} \left<v(x), n(x) \right> \, \sigma(dx).
 $$
 et pour toute fonction $f: U \to \mathbb{R}$ et tout $i \in \{1,\dots, n\}$, 
 $$
 \int_{K} \partial_i f(x) \, dx
 =
-\int_{\partial K} n_i(x) f(x) \, S(dx).
+\int_{\partial K} n_i(x) f(x) \, \sigma(dx).
 $$
 
 ### TODO
@@ -705,8 +705,6 @@ Perspective sur les versions plus "relaxées" du théorème de Stokes,
 qu'il s'agisse du bord Lipschitz ou des travaux (Mawhin, Pfeffer, etc.)
 pour demander moins que $C^1$ sur l'intégrande ?
 
-### TODO
-Préfiguration intégrale de surface "intrinsèque".
 
 Annexes
 ================================================================================
@@ -823,9 +821,9 @@ Intégrales de surface {.question #is}
 Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
 Calculer
 $$
-\int_{\partial B} S(dx)
+\int_{\partial B} \sigma(dx)
 \; \mbox{ et } \;
-\int_{\partial B} x_1^2 \, S(dx).
+\int_{\partial B} x_1^2 \, \sigma(dx).
 $$
 
 Rétraction
@@ -950,13 +948,13 @@ Comme la normale extérieure à $B$ en $\partial B$ vaut $n(x) = (x_1, x_2)$
 et que $x_1^2 + x_2^2 = 1$ sur $\partial B$, on a en posant $v(x) = (x_1, x_2)$ 
 sur $B$ l'égalité
 $$
-\int_{\partial B} S(dx) = \int_{\partial B} (x_1^2 + x_2^2) \, S(dx)
+\int_{\partial B} \sigma(dx) = \int_{\partial B} (x_1^2 + x_2^2) \, \sigma(dx)
 = 
-\int_{\partial B} \left<v(x), n(x)\right> S(dx)
+\int_{\partial B} \left<v(x), n(x)\right> \sigma(dx)
 $$
 et donc par le théorème de la divergence
 $$
-\int_{\partial B} S(dx)
+\int_{\partial B} \sigma(dx)
 = \int_{B} \mathrm{div} \, v(x) \, dx
 = \int_{B} (\partial_1 x_1 + \partial_2 x_2) \, dx
 = 2 \int_{B} \, dx.
@@ -965,12 +963,12 @@ L'intégrale initiale est donc égale au double de l'aire du disque unité,
 soit $2\pi$.
 Concernant la seconde intégrale, on à l'égalité
 $$
-\int_{\partial B} x_1^2 S(dx) = \int_{\partial B} \left<v(x), n(x)\right> S(dx)
+\int_{\partial B} x_1^2 \sigma(dx) = \int_{\partial B} \left<v(x), n(x)\right> \sigma(dx)
 \, \mbox{ avec } \, v(x) = (x_1, 0)
 $$
 et donc par le théorème de la divergence
 $$
-\int_{\partial B} x_1^2 S(dx)
+\int_{\partial B} x_1^2 \sigma(dx)
 = \int_{B} \mathrm{div} \, v(x) \, dx
 = \int_{B} (\partial_1 x_1 + \partial_2 0) \, dx
 = \int_{B} \, dx.
@@ -1019,8 +1017,8 @@ $$
 \begin{split}
 \int_B \det J_f(x) \, dx &=
 \int_{\partial B} (n_1 (f_1 \partial_2 f_2) 
-   -n_2 (f_1 \partial_1 f_2)) S \\
-&=\int_{\partial B} f_1 \left<\nabla f_2, t\right> S   
+   -n_2 (f_1 \partial_1 f_2)) \sigma \\
+&=\int_{\partial B} f_1 \left<\nabla f_2, t\right> \sigma
 \end{split}
 $$
 où $t(x)$ désigne le vecteur tangent à $\partial B$ en $x$:
@@ -1036,7 +1034,7 @@ $$
 $$
 soit, puisque $f_1(x) = x_1$ sur $\partial B$,
 $$
-\int_B \det J_f(x) \, dx = \int_{\partial B} x_1^2 \, S(dx) > 0.
+\int_B \det J_f(x) \, dx = \int_{\partial B} x_1^2 \, \sigma(dx) > 0.
 $$
 Si une telle rétraction existait, on aurait donc une contradiction.
 
