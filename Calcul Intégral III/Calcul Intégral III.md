@@ -810,9 +810,9 @@ $$
 
 ### Question 2 {.question #cvl-2}
 Soit $A: \R^n \to \R^n$ une application linéaire. Montrer que la fonction
-$x \in \R^n \mapsto |\det J_A(x)| f(A \cdot x)$ est intégrable et que
+$x \in \R^n \mapsto |\det A| f(A \cdot x)$ est intégrable et que
 $$
-\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det J_A(x)| \, dx.
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det A| \, dx.
 $$
 
 Déformations
