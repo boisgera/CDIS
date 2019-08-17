@@ -122,5 +122,29 @@
 				]
 			]
 		}
-	}
+	},
+	{
+		"id": "Kan81",
+		"type": "article-journal",
+		"title": "An elementary proof of the no-retraction theorem.",
+		"container-title": "American Mathematical Monthly",
+		"page": "264–268",
+		"volume": "88",
+		"ISSN": "0002-9890",
+		"journalAbbreviation": "Am. Math. Mon.",
+		"language": "English",
+		"author": [
+						{
+										"family": "Kannai",
+										"given": "Yakar"
+						}
+		],
+		"issued": {
+						"date-parts": [
+										[
+														"1981"
+										]
+						]
+		}
+}
 ]

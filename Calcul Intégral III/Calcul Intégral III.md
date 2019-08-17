@@ -1,6 +1,11 @@
 % Calcul Intégral III
-%
-% [today](https://www.youtube.com/watch?v=Te7DR4iuJj8)
+
+<!-- LaTeX Macros -->
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
 
 Intégrales Multiples
 ================================================================================
@@ -59,7 +64,7 @@ $$
 ### Jauge {.definition}
 Une jauge $\gamma$ sur un pavé $I$ de $\mathbb{R}^n$ est une 
 fonction qui associe à tout $t \in I$ un 
-intervalle ouvert $\gamma(t)$ de $\mathbb{R}^n$ contenant $t$. 
+pavé ouvert $\gamma(t)$ de $\mathbb{R}^n$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision $\mathcal{D}$ du pavé compact $I$ 
@@ -86,9 +91,14 @@ $$
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ 
 une fonction intégrable.
 Alors la fonction partielle $x \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
-pour presque tout $y \in \mathbb{R}^m$ et
+pour presque tout $y \in \mathbb{R}^n$, la fonction partielle 
+$y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
+pour presque tout $x \in \mathbb{R}^m$
+et
 $$
-\int_{\mathbb{R}^{m+n}} f(t) \, dt = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy
+\int_{\mathbb{R}^{m+n}} f(z) \, dz = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy
+=
+\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dy\right] dx
 $$
 
 ### Démonstration {.proof}
@@ -133,60 +143,48 @@ Tracer un parralèle avec les séries, ou il est connu que les séries
 conditionnellement convergentes ne gardent pas cette propriété par
 réordonnancement (exemple mono-dim ou bi-dim) ?
 
-Théorème de Stokes
+Théorème de la divergence
 ================================================================================
 
 ### TODO
 
 Définition par une équation implicite (équivalent).
 Que doit-on adopter comme définition ? Et quoi comme propriété ?
-La définition par l'épigraphe est sans doute plus intuitive, 
+La définition par l'hypographe est sans doute plus intuitive, 
 mais sa formalisation plus lourde ... Je serais tenté dans le cours
-oral de partir de la définition par l'épigraphe, informellement,
+oral de partir de la définition par l'hypographe, informellement,
 pour l'intuition (et de toute façon on a besoin de cette construction
 pour la suite) puis d'énoncer rigoureusement la version
 implicite, équivalente.
 
-### TODO
-
-Remplacer épigraphe par hypographe ? Ca me semble graphiquement plus
-intuitif et ça colle sans doute mieux avec les exemples usuels 
-(fonction distance orientée, conventions KKT, etc.), mais bien sûr pas
-toujours (ex: carac convexité). OK, oui
-
-### TODO
-Minimiser le cadre "reprère orthonormé direct", par simplement 
-"changement de repère"; cela simplifie l'enoncé, la preuve, etc.
-et la contrainte "orthonormé direct" peut venir plus tard, 
-en exercice? Pas évident, rédiger la preuve associé au passage
-de l'hypographe à l'inégalité implicite et voir ce qui vient.
-OK, ça devrait passer.
-
 ### TODO:
-
 Deux façon raisonnables de définir un compact à bord sont données;
 la troisème (localement demi-espace après transfo par difféo) peut trouver
 sa place en exo ?
 
-### Compact à bord régulier {.definition}
-
+### Compact à bord régulier {.definition #cbr}
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
 s'il est compact et peut être caractérisé au voisinage de tout point de
 sa frontière $\partial K$, 
 et après un éventuel changement de repère,
 comme l'*hypographe* -- l'ensemble des points en-dessous du graphe -- 
-d'une fonction de classe $C^1$.
+d'une fonction continûment différentiable.
 Autrement dit, pour tout point $x_0 \in \partial K$, 
-il existe un ouvert non vide $V \subset \mathbb{R}^n$ de la forme
-$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
-est un intervalle ouvert non vide de $\mathbb{R}$, 
-une application affine inversible $T$ telle que $T(x_0) \in V$ 
-et une fonction 
+il existe une application affine inversible $T: \R^n \to \R^n$ et
+un voisinage ouvert $V$ de $x_0$ de la forme $V = T(U \times I)$,
+où $U$ est un ouvert de $\mathbb{R}^{n-1}$ et $I$ 
+est un intervalle ouvert de $\mathbb{R}$, et une fonction 
 $f: U \to I$ continûment différentiable tels que
 $$
-T(K) \cap V = \{(y_1,\dots, y_n) \in V \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}
+K \cap V = T\left(\{(y_1,\dots, y_n) \in U \times I \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}\right).
 $$
 
+### Changement de repère orthonormé {.remark #cbr-isom}
+Il est possible d'imposer dans [la définition des compacts à bord $C^1$](#cbr)
+que $T$ soit une isométrie directe (qui conserve la distance et l'orientation) ; 
+cela revient à n'autoriser que les changements de repère orthonormés directs. 
+La caractérisation des compacts
+à bord $C^1$ qui en résulte est inchangée.
 
 ### TODO
 
@@ -209,32 +207,23 @@ Evoquer "localement d'un seul coté" de la frontière ?
 
 Définir normale (extérieure). Carac intrinsèque ?
 
-### TODO ...
-
-Considérer remplacement de $T$ par $T^{-1}$ dans cet enoncé,
-si cela simplifie les choses dans la suite (j'ai l'impression,
-techniquement et sur la compréhension). Et s'arranger pour avoir
-dans le théorème qqchose de la forme $K \cap V = \dots$ 
-c'est plus simple à comprendre sans doute.
-
-### Caractérisation implicite des compacts à bord régulier {.theorem}
+### Caractérisation implicite des compacts à bord régulier {.theorem #cbr-implicit}
 Un sous-ensemble compact $K$ de $\mathbb{R}^n$ est un compact à bord $C^1$ 
 si pour tout point $x_0$ de sa frontière $\partial K$ il existe un voisinage 
 ouvert $V$ de $x_0$ et une fonction continûment différentiable 
-$g: V \to \mathbb{R}$ dont la différentielle est non-nulle en $x_0$, 
+$g: V \to \mathbb{R}$ dont la différentielle est non nulle en $x_0$, 
 telle que pour tout point $x$ de $V$, $x$ appartient à $K$ 
 si et seulement si $g(x) \leq 0$.
 
 ### Démonstration {.proof}
-Si $K$ est un compact à bord $C^1$, il existe un ouvert non vide 
-$V \subset \mathbb{R}^n$ de la forme
-$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
-est un intervalle ouvert non vide de $\mathbb{R}$, 
-une application affine inversible $T$ telle que $T(x_0) \in V$ 
-et une fonction 
+Si $K$ est un compact à bord $C^1$, il existe 
+une application affine inversible $T: \R^n \to \R^n$ et
+un voisinage ouvert $V$ de $x_0$ de la forme $V = T(U \times I)$,
+où $U$ est un ouvert de $\mathbb{R}^{n-1}$ et $I$ 
+est un intervalle ouvert de $\mathbb{R}$, et une fonction 
 $f: U \to I$ continûment différentiable tels que
 $$
-T(K) \cap V = \{(y_1,\dots, y_n) \in V \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}.
+K \cap V = T\left(\{(y_1,\dots, y_n) \in U \times I \; | \;  y_n \leq f(y_1, \dots, y_{n-1})\}\right).
 $$
 Par conséquent, si l'on définit la fonction $g: V \to \mathbb{R}$ par
 $$
@@ -249,17 +238,19 @@ Si $T(x) =  A \cdot x + b$ où $A$ est une application linéaire
 en posant $\phi(y) = y_n - f(y_1, \dots, y_{n-1})$, on
 obtient 
 $$
-dg(x) = d\phi(T(x)) \cdot dT^{-1}(x) = d\phi(T(x)) \cdot A^{-1}.
+dg(x) = d (\phi \circ T^{-1})(x) = d\phi(T^{-1}(x)) \cdot dT^{-1}(x) 
+= d\phi(T^{-1}(x)) \cdot A^{-1}.
 $$
 Or, $\partial_n \phi(y) = 1$ en tout point $y$ de $V$. 
 L'application $A^{-1}$ étant inversible, 
 il existe un vecteur $h$ de $\mathbb{R}^n$ tel que
-$A^{-1} \cdot h = (0, \dots, 0, 1)$; pour un tel vecteur on a donc
+$A^{-1} \cdot h = (0, \dots, 0, 1)$ ; 
+pour un tel vecteur on a donc
 $$
-dg(x) \cdot h = d\phi(T(x)) \cdot A^{-1} \cdot h = 
-\sum_{i} \partial_i \phi(T(x)) (A^{-1} \cdot h)_i = 1.
+dg(x) \cdot h = d\phi(T^{-1}(x)) \cdot A^{-1} \cdot h = 
+\sum_{i} \partial_i \phi(T^{-1}(x)) (A^{-1} \cdot h)_i = 1.
 $$
-La différentielle de $g$ est donc bien non nulle.
+La différentielle de $g$ est donc bien non-nulle.
 
 Réciproquement, considérons un $x_0 \in \partial K$ et supposons qu'il existe 
 une fonction $g: V \to \mathbb{R}$ satisfaisant les propriétés de l'énoncé. 
@@ -270,48 +261,55 @@ dg(x) \cdot u > 0
 $$
 dans un voisinage $V'$ de $x_0$ contenu dans $V$. 
 Soit $T$ une application affine inversible de la forme 
-$T(x) = A \cdot x + b$ telle que $A \cdot u = e_n$.
-La fonction $g \circ T^{-1}$ définie sur un voisinage ouvert de $T(x_0)$
+$T(x) = A \cdot x + b$ telle que $A \cdot e_n = u$.
+La fonction $g \circ T$ définie sur de $T^{-1}(V')$
 satisfait alors
 $$
 \begin{split}
-\partial_n (g \circ T^{-1})(y) &= dg(T^{-1}(y)) \cdot dT^{-1}(y) \cdot e_n \\
-&= dg(T^{-1}(y)) \cdot A^{-1} \cdot e_n  \\
-&= dg(T^{-1}(y)) \cdot u > 0 \\
+\partial_n (g \circ T)(y) &= dg(T(y)) \cdot dT(y) \cdot e_n \\
+&= dg(T(y)) \cdot A \cdot e_n  \\
+&= dg(T(y)) \cdot u > 0 \\
 \end{split}
 $$
 L'application du théorème des fonctions implicite fournit
-un ouvert non vide $V \subset \mathbb{R}^n$ de la forme
-$V = U \times I$ où $U \subset \mathbb{R}^{n-1}$ et $I$ 
-est un intervalle ouvert non vide de $\mathbb{R}$ et une fonction 
-$f: U \to I$ continûment différentiable telle que
+un ouvert non vide $U \times I$ inclus dans $T^{-1}(V')$ 
+où $U \subset \mathbb{R}^{n-1}$ 
+et $I$ est un intervalle ouvert de $\mathbb{R}$ 
+et une fonction $f: U \to I$ continûment différentiable telle que
+dans $U \times I$,
 $$
-g \circ T^{-1}(y_1,\dots,y_n) = 0 
+g \circ T(y_1,\dots,y_n) = 0 
 \, \Leftrightarrow \, 
 y_n = f(y_1,\dots, y_{n-1}).
 $$
 Par le théorème fondamental du calcul,
 $$
 \begin{split}
-g \circ T^{-1}(y_1,\dots,y_n) &= 
-g \circ T^{-1}(y_1,\dots,f(y_1, \dots, y_{n-1})) \\
+g \circ T(y_1,\dots,y_n) &= 
+g \circ T(y_1,\dots,f(y_1, \dots, y_{n-1})) \\
 & \phantom{=}+
 \int_{f(y_1, \dots, y_{n-1})}^{y_n}
-\partial_n  (g\circ T^{-1})(y_1,\dots,y_{n-1}, t) \, dt \\
+\partial_n  (g\circ T)(y_1,\dots,y_{n-1}, t) \, dt \\
 &=
 \int_{f(y_1, \dots, y_{n-1})}^{y_n}
-\partial_n  (g\circ T^{-1})(y_1,\dots,y_{n-1}, t) \, dt, \\
+\partial_n  (g\circ T)(y_1,\dots,y_{n-1}, t) \, dt, \\
 \end{split}
 $$
-ce qui garantit que dans $V$, $(g \circ T^{-1})(y) \leq 0$
--- c'est-à-dire $x = T^{-1}(y) \in K$ --
-si et seulement si $f(y_1, \dots, y_{n-1}) \leq y_n$.
+ce qui garantit que dans $T(U \times I)$, $g(x) \leq 0$
+-- c'est-à-dire $x \in K$ --
+si et seulement si $x = T(y)$ et $f(y_1, \dots, y_{n-1}) \leq y_n$.
 
-### TODO
+### Normale extérieure {.definition}
+Une *normale* à un compact à bord $C^1$ $K$ de $\R^n$
+en un point $x \in \partial K$ de sa frontière est un vecteur 
+$n(x) \in \R^n$ unitaire (de norme $1$) tel que
+$$
+\lim_{\substack{y \to x \\ y \in \partial K}} \left<n(x), \frac{y-x}{\|y-x\|}\right> = 0.
+$$
+Elle est *extérieure* si pour $\varepsilon>0$ assez petit, 
+$x + \varepsilon n(x) \not \in K$, *intérieure* dans le cas contraire.
 
-Définition intrinsèque de la normale extérieure.
-
-### Normale extérieure {.definition .theorem}
+### Normale extérieure et caractérisation implicite {.proposition #neci}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
 $x_0 \in \partial K$ par l'inégalité $g(x) \leq 0$, 
 où $V$ est un voisinage ouvert de $x$ et $g: V \to \mathbb{R}$
@@ -322,12 +320,27 @@ $$
 n(x) = \frac{\nabla g(x)}{\|\nabla g(x)\|}.
 $$
 
-### TODO
+### Démonstration {.proof}
+La fonction $g$ étant différentiable en $x \in \partial K$, 
+on a localement
+$$
+g(y) = g(x) + dg(x) \cdot (y - x) + o(\|y - x\|)
+=\left<\nabla g(x), y-x \right> + o(\|y-x\|).
+$$
+Si $y \in \partial K$, $g(y) = 0$, donc 
+$$
+\left<\nabla g(x), \frac{y-x}{\|y-x\|} \right> = o(1)
+\to 0 \, \mbox{ quand } \, y \to x.
+$$
+Si $y = x + \varepsilon \nabla g(x) /\|\nabla g(x)\|$, avec $\varepsilon >0$,
+$$
+g(y) = \left<\nabla g(x), y-x \right> + o(\|y-x\|)
+= \varepsilon \|\nabla g(x)\| + o(\varepsilon),
+$$
+et donc $g(y) > 0$ -- soit $y \not \in K$ -- 
+pour $\varepsilon$ suffisamment petit.
 
-revoir les conventions sur la transformation $T$ en amont et intégrer
-la transformation dans l'énoncée suivant
-
-### Normale extérieure et hypographe {.proposition}
+### Normale extérieure et hypographe {.proposition #neh}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
 $x_0 \in \partial K$ comme l'hypographe de la fonction 
 $f: U \to I$ où $U$ est un ouvert de $\mathbb{R}^{n-1}$ et $I$ 
@@ -335,37 +348,38 @@ un intervalle ouvert de $\mathbb{R}$, alors
 la normale extérieure de $K$ en $x \in \partial K \cap V$ 
 est le vecteur de $\mathbb{R}^n$ donné par
 $$
-n(x_1, \dots, x_n) = \frac{(1, -\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}))}{\sqrt{1 +\|\nabla f(x_1, \dots, x_{n-1})\|^2}}, 
+n(x_1, \dots, x_n) = \frac{(-\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}),1)}{\sqrt{1 +\|\nabla f(x_1, \dots, x_{n-1})\|^2}}.
 $$
 
-### Remarque TODO
-
-A retenir sous la forme: il existe $\alpha > 0$ tel que
+<!--
+### Remarque {.remark .note}
+Il suffit de retenir que la normale extérieure
+est colinéaire et de même sens que le vecteur
 $$
-n(x_1, \dots, x_n) = \alpha \times (1, -\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}))
+(-\partial_1 f, \dots, -\partial_{n-1} f, 1),
 $$
-(colinéarité)
+puis de retrouver la formule de la normale extérieure en utilisant le fait que
+sa norme vaut 1.
+-->
 
 ### Démonstration {.proof}
+Il suffit de constater qu'on peut associer à l'hypographe de $f$ la
+description implicite $g(x) \leq 0$ avec
+$$
+g(x_1,\dots, x_{n-1}, x_n) = x_n - f(x_1, \dots, x_{n-1})
+$$
+puis d'exploiter [la caractérisation de la normale dans ce cas](#neci).
+Comme
+$$
+\nabla g(x_1, \dots, x_n)
+= (-\partial_1 f(x_1,\dots, x_{n-1}), \dots, -\partial_{n-1} f(x_1,\dots, x_{n-1}),1)
+$$
+et que par conséquent
+$$
+\|\nabla g(x_1, \dots,  x_n)\| = \sqrt{1 +\|\nabla f(x_1, \dots, x_{n-1})\|^2},
+$$
+le résultat s'en déduit.
 
-**TODO** (essentiellement trivial)
-
-### Terminologie
-La normale est dite *extérieure* car si l'on part de $x \in \partial K$ 
-et que l'on considère un déplacement suffisamment petit 
-dans la direction de la normale, on se retrouve à l'extérieur de $K$. 
-En effet, par la définition du gradient,
-$$
-g(x + h) = g(x) + \left<\nabla g(x), h \right> + o(h) = \left<\nabla g(x), h \right> + o(h)
-$$
-et par conséquent, si $h = \varepsilon n(x)$ avec $\varepsilon > 0$,
-$$
-g(x+h) =
-\left<\nabla g(x), \varepsilon \frac{\nabla g(x)}{\|\nabla g(x)\|} \right> + o(\varepsilon)
-= \varepsilon \|\nabla g(x)\| + o(\varepsilon)
-$$
-et le second membre de cette équation est positif si $\varepsilon$ est 
-suffisamment petit.
 
 ### TODO
 
@@ -377,41 +391,61 @@ Evoquer indépendance du choix dans la définition
 Rendre explicite la normale extérieure dans ce cas et 
 un peu plus explicitement (sur un exemple ?) comment trouver
 un axe (orthonormé ?) qui permet de se ramener au cadre de 
-l'épigraphe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
+l'hypographe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
-### TODO -- Partition de l'unité
-
-**TODO** Définition, énoncé existence
 
 ### TODO
 
-Ci-dessous, cette démarche suppose que $T$ soit une isométrie, 
-ce qui suppose d'avoir évoqué ce cas particulier en amont.
+Insufisant ici ; on a besoin à la fois du caractère $C^1$ et du support
+compact dans chaque $V_i$. On doit pouvoir patcher la démarche originale
+en faisant référence à un compact recouvert par les $V_i$, en "érodant"
+les $V_i$ (ce qui est possible tout en recouvrant encore le compact),
+puis en utilisant la construction donnée pour la nouvelle construction.
+Ne reste plus qu'à obtenir des fonctions $C^1$ et non plus continues,
+ce qui s'obtient par mollification.
 
-### Intégrale de surface
-
-Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
-Quand $K$ est caractérisée au voisinage de $x_0 \in \partial K$
-comme l'épigraphe de la fonction $f: V \to I$ après transformation $T$, 
-la contribution de $W = T^{-1}(V \times I)$ à l'intégrale de surface
-de $\phi$ est définie par la relation
+### Partition de l'unité {.definition .proposition #pu}
+Pour toute famille finie d'ouverts $V_i$ de $\R^n$ recouvrant un ensemble
+compact $K$, il existe une famille $\rho_i: \R^n \to \left[0, +\infty\right[$ 
+de fonctions continues dont le *support*
 $$
-\int_{\partial K \cap W} \phi(x) S(dx) 
+\mbox{supp}(\rho_i) 
+=
+\overline{\{x \in \mbox{dom}(\rho_i)\, | \, \rho_i(x) \neq 0\}}.
+$$ 
+est compact et inclus dans $V_i$ et telles que
+$$
+\sum_{i} \rho_i(x) = 1 \mbox{ pour tout } x \in K.
+$$
+
+### {.post}
+La démonstration est donnée [en annexe](#proof-pu).
+
+### Intégrale de surface {.definition}
+Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
+Si $K$ est caractérisé dans un voisinage ouvert $V$ de $x_0 \in \partial K$
+comme l'hypographe de la fonction $f: U \to I$ après une
+transformation $T$ qui soit une isométrie directe, 
+la *contribution de $V = T(U \times I)$ à l'intégrale de surface
+de $\phi$* est définie par la relation
+$$
+\int_{\partial K \cap V} \phi(x) \sigma(dx) 
 := 
 \int_{U}
 \phi(z, f(z)) \sqrt{1 + \|\nabla f(z)\|^2}\, dz. 
 $$
-Si les $\{W_i\}_i$ consituent un recouvrement fini de $\partial K$ par de tels
-ouverts et les $\{\rho_i\}_i$ une partition de l'unité associée,
-alors l'intégrale de surface de $\phi$ sur $\partial K$ est définie par
+Si les $V_i$ sont des tels ouverts consituant un recouvrement fini de $\partial K$
+et les $\rho_i$ [une partition de l'unité associée](#lrl),
+alors *l'intégrale de surface de $\phi$ sur $\partial K$* 
+est définie par
 $$
-\int_{\partial K} \phi(x) S(dx) 
-:= \sum_i \int_{\partial K \cap W_i} \rho_i(x) \phi(x) S(dx) 
+\int_{\partial K} \phi(x) \sigma(dx) 
+:= \sum_i \int_{\partial K \cap V_i} \rho_i(x) \phi(x) \sigma(dx) 
 $$
 
-### TODO
-
-Evoquer indépendance du choix dans la définition
+### {.post}
+On admettra que cette définition est indépendante du choix de la 
+décomposition choisie de $\partial K$.
 
 ### Définition {.definition}
 On appelle *divergence* d'une fonction différentiable 
@@ -420,17 +454,17 @@ v: V \subset \mathbb{R}^n \to \mathbb{R}^n,
 \;
 v=(v_1, \dots, v_n)
 $$
-où $V$ est un ouvert la fonction $\mbox{div} \, f: V \to \mathbb{R}$
+où $V$ est un ouvert, la fonction $\mbox{div} \, v: V \to \mathbb{R}$
 définie par
 $$
 \mbox{div} \, v(x) = \sum_{i=1}^n \partial_i v_i(x)
 $$
 
 
-### Lemme de Stokes {.lemma}
-Soit $f: V \to \mathbb{R}$ une fonction de classe $C^1$
-où $V$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
-Soit $v: V \times \mathbb{R} \to \mathbb{R}^n$ une fonction
+### Lemme de la divergence {.lemma}
+Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
+où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
+Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
 de classe $C^1$ de support compact[^sc]. 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
 -- soit $\Omega = \{(y, z) \, | \, y \in \mathbb{R}^{n-1}, \; z < f(y)\}$ --
@@ -441,22 +475,17 @@ on a la relation
 $$
 \int_{\Omega} \mbox{div} \, v(x) \, dx
 =
-\int_{\Gamma} \left<v(x), n(x) \right> \, S(dx)
+\int_{\Gamma} \left<v(x), n(x) \right> \, \sigma(dx)
 $$
 
-[^sc]: le support d'une fonction $v$ est l'adhérence de l'ensemble des
-points où elle est non nulle:
-$$
-\mbox{supp}(v) = \overline{\{x \in \mbox{dom}(v)\, | \, f(x) \neq 0\}}.
-$$
-Ici, $f$ étant définie dans un ouvert ($\mbox{dom}(f) = V \times \mathbb{R}$), 
+[^sc]: La fonction $f$ étant définie dans un ouvert ($\mbox{dom}(f) = U \times \mathbb{R}$), 
 son support est compact si et seulement si l'ensemble $\{x \, | \, f(x) \neq 0\}$ 
-est borné et sa distance au complémentaire de $V\times \mathbb{R}$ 
+est borné et sa distance au complémentaire de $U\times \mathbb{R}$ 
 dans $\mathbb{R}^n$ est positive.
 
 ### Démonstration {.proof}
 
-On remarque que si $v = w e_i$ où $w: V \times \mathbb{R} \to \mathbb{R}$ est
+On remarque que si $v = w e_i$ où $w: U \times \mathbb{R} \to \mathbb{R}$ est
 de classe $C^1$ et $i \in \{1,\dots, n\}$, 
 comme $\mbox{div}\, v = \partial_i w$ et 
 $\left<v(x), n(x) \right> = w(x) n_i(x)$, 
@@ -464,20 +493,20 @@ le résultat du lemme devient
 $$
 \int_{\Omega} \partial_i w(x) \, dx
 =
-\int_{\Gamma} w(x) n_i(x) \, S(dx).
+\int_{\Gamma} w(x) n_i(x) \, \sigma(dx).
 $$
 Réciproquement, que si cette relation est valable pour tout 
 $i \in \{1,\dots, n\}$, la conclusion du lemme de Stokes s'en déduit
 facilement. Démontrer la relation ci-dessus suffit donc à prouver le lemme.
 
-La transformation $h: V \times \left]-\infty, 0\right[ 
+La transformation $h: U \times \left]-\infty, 0\right[ 
 \to \mathbb{R}^n$ définie par
 $$
 h(x_1, \dots, x_{n-1}, x_n) = (x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1}))
 $$
 est une application de classe $C^1$. Par construction,
 $$
-h(V \times \left]-\infty, 0\right[) = \Omega
+h(U \times \left]-\infty, 0\right[) = \Omega
 $$
 et admet une inverse, donnée par 
 $$
@@ -485,26 +514,26 @@ h^{-1}(x_1, \dots, x_{n-1}, x_n) = (x_1, \dots, x_{n-1}, x_n - f(x_1, \dots, x_{
 $$
 qui est également de classe $C^1$. La matrice jacobienne associée à $h$ vaut
 $$
-Dh(x)
+J_h(x)
 =
 \left[
 \begin{array}{c|c}
 I & 0 \\
 \hline
-\nabla f(x)^t & 1
+J_f(x) & 1
 \end{array}
 \right]
 $$
 et par conséquent son déterminant jacobien satisfait
 $$
-\mbox{det} \, Dh(x) = 1.
+\mbox{det} \, J_h(x) = 1.
 $$
 Par conséquent, le changement de variable associé à $h$ fournit
 $$
 \begin{split}
 \int_{\Omega} \partial_i w(x) \, dx
-&= \int_{h(V \times \left]-\infty, 0\right[)} \partial_i w(x) \, dx \\
-&= \int_{V \times \left]-\infty, 0\right[} 
+&= \int_{h(U \times \left]-\infty, 0\right[)} \partial_i w(x) \, dx \\
+&= \int_{U \times \left]-\infty, 0\right[} 
 \partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
 \, dx
 \end{split}
@@ -513,7 +542,7 @@ ou encore, en notant $\pi(x) = (x_1,\dots, x_{n-1})$,
 $$
 \int_{\Omega} \partial_i w(x) \, dx
 =
-\int_{V \times \left]-\infty, 0\right[} 
+\int_{U \times \left]-\infty, 0\right[} 
 \partial_i w(\pi(x), x_n + f(\pi(x))) 
 \, dx.
 $$
@@ -540,7 +569,7 @@ $$
 \partial_n w(\pi(x), x_n + f(\pi(x))).
 $$
 
-Si $V = I_1 \times \dots \times I_{n-1}$ et si pour $i \in \{1,\dots, n-1\}$, 
+Si $U = I_1 \times \dots \times I_{n-1}$ et si pour $i \in \{1,\dots, n-1\}$, 
 on a $I_i = \left]a_i, b_i\right[$, alors par le théorème fondamental du 
 calcul,
 $$
@@ -578,7 +607,7 @@ S_i(x_1, \dots, x_{i-1}, x_{i+1}, \dots) :=
 $$
 Par le théorème de Fubini, on peut alors déduire que
 \begin{multline*}
-\int_{V \times \left]-\infty, 0\right[} 
+\int_{U \times \left]-\infty, 0\right[} 
 \partial_i w(\pi(x), x_n + f(\pi(x))) 
 \, dx
 =  \\
@@ -593,7 +622,7 @@ $$
 \partial_i w(x) 
 \, dx
 = 
-\int_{V \times \left]-\infty, 0\right[} 
+\int_{U \times \left]-\infty, 0\right[} 
 \partial_n w(\pi(x), x_n + f(\pi(x)) \times 
 (- \partial_i f (\pi(x))) \, dx
 $$
@@ -603,7 +632,7 @@ $$
 \partial_n w(x) 
 \, dx
 = 
-\int_{V \times \left]-\infty, 0\right[} 
+\int_{U \times \left]-\infty, 0\right[} 
 \partial_n w(\pi(x), x_n + f(\pi(x)) \, dx.
 $$
 Dans ce second cas, en raison de la compacité du support $w$, 
@@ -627,7 +656,7 @@ $$
 \partial_n w(x) 
 \, dx
 = 
-\int_V w(y, f(y)) \, dy.
+\int_U w(y, f(y)) \, dy.
 $$
 Quand $i \in \{1, \dots, n-1\}$, un calcul analogue fournit
 $$
@@ -635,13 +664,13 @@ $$
 \partial_n w(x) 
 \, dx
 = 
-\int_V w(y, f(y)) \times (- \partial_i f(y)) \, dy.
+\int_U w(y, f(y)) \times (- \partial_i f(y)) \, dy.
 $$
 
 Quel que soit la valeur de $i \in \{1, \dots, n\}$, comme la normale
 extérieure $n$ est donnée par
 $$
-n(y, f(y)) = \frac{(1, -\partial_1 f(y), \dots, -\partial_{n-1} f(y))}{\sqrt{1 +\|\nabla f(y)\|^2}}, 
+n(y, f(y)) = \frac{(-\partial_1 f(y), \dots, -\partial_{n-1} f(y), 1)}{\sqrt{1 +\|\nabla f(y)\|^2}}, 
 $$
 on constate que l'on a
 $$
@@ -649,7 +678,7 @@ $$
 \partial_i w(x) 
 \, dx
 = 
-\int_V w(y, f(y)) n_i(y, f(y)) \sqrt{1 +\|\nabla f(y)\|^2} \, dy,
+\int_U w(y, f(y)) n_i(y, f(y)) \sqrt{1 +\|\nabla f(y)\|^2} \, dy,
 $$
 et par conséquent
 $$
@@ -660,19 +689,20 @@ $$
 \int_{\Gamma} w(x) n_i(x)\, dS(x).
 $$
 
-### TODO
-
-Preuve de Stokes (dans un patch, puis en général)
-Enoncer version différentielle partielle de Stokes
-(directement analogie à l'IPP en dimension 1, 
-permet de se limiter à l'intégration de fcts scalaires en 
-1ere approche et pas de perte de généralité; permet ensuite
-d'étudier les "applications" (théorème de la divergence, etc.))
-
+### Théorème de la divergence {.theorem}
+Soit $U$ un ouvert borné de $\R^n$ et $K$ un ensemble compact 
+$K$ à bord $C^1$ de $U$. Pour toute fonction $v: U \to \mathbb{R}^n$ 
+de classe $C^1$,
 $$
-\int_{\Omega} \partial_i f(x) \, dx
-= 
-\int_{\Gamma} f(x) n_i(x) \, S(dx)
+\int_{K} \mbox{div} \, v(x) \, dx
+=
+\int_{\partial K} \left<v(x), n(x) \right> \, \sigma(dx).
+$$
+et pour toute fonction $f: U \to \mathbb{R}$ et tout $i \in \{1,\dots, n\}$, 
+$$
+\int_{K} \partial_i f(x) \, dx
+=
+\int_{\partial K} n_i(x) f(x) \, \sigma(dx).
 $$
 
 ### TODO
@@ -680,12 +710,123 @@ Perspective sur les versions plus "relaxées" du théorème de Stokes,
 qu'il s'agisse du bord Lipschitz ou des travaux (Mawhin, Pfeffer, etc.)
 pour demander moins que $C^1$ sur l'intégrande ?
 
-### TODO
-Préfiguration intégrale de surface "intrinsèque".
 
+Annexes
+================================================================================
+
+Partition de l'unité {#proof-pu}
+--------------------------------------------------------------------------------
+
+La preuve de l'existence d'une partition de l'unité repose sur le lemme suivant:
+
+### Lemme de recouvrement de Lebesgue {.lemma #lrl}
+Soit $K$ un compact de $\R^n$ et $V_i$ une famille d'ouverts $V_i$ recouvrant
+$K$. Alors il existe $r>0$ tel que pour tout $x \in K$, il existe un
+indice $i$ telle que la boule ouverte $B(x, r)$ de rayon $r$ centrée en $x$
+soit incluse dans $V_i$.
+
+### Démonstration {.proof}
+Supposons au contraire que pour tout $r>0$ il existe un $x \in K$ tel que 
+pour tout indice $i$, la distance entre $x$ et le complémentaire de $V_i$
+soit (strictement) inférieure à $r$.
+Soit $x_k$ une suite de points de $K$ tels que pour tout $i$,
+$d(x_k, \R^n \setminus V_i) \leq 2^{-k}$ ; par compacité de $K$,
+il existe une suite extraire des $x_k$ qui converge vers un $\ell \in K$.
+En passant à la limite sur cette suite extraire on établit que pour tout 
+indice $i$ on a $d(\ell, \R^n \setminus V_i) = 0$, 
+soit $x \in \R^n \setminus V_i$ puisque $\R^n \setminus V_i$ est fermé.
+Par conséquent, pour tout $i$, $x \not \in V_i$, ce qui contredit l'hypothèse
+que les $V_i$ forment un recouvrement de $K$.
+
+### Démonstration de l'existence d'une partition de l'unité {.proof}
+
+Nous allons initialement établir l'existence
+d'une suite de fonctions $\rho_i:\R^n \to \R$ 
+continues, nulles en dehors de $V_i$ dont la somme vaut $1$, 
+puis déduire de cette construction l'existence de fonctions
+satisfaisant le théorème.
+
+Notons $V=\cup_i V_i$ ; l'ensemble $V_i$ étant ouvert, la fonction 
+$x \in V \mapsto d(x, \R^n \setminus V_i)$, qui est continue, 
+est strictement positive sur $V_i$ et nulle ailleurs. 
+La somme $x \in \R^n \mapsto \sum_j d(x, \R^n \setminus V_j)$, également
+continue, est donc strictement positive sur $V$.
+Les fonctions $\rho_i$ définies par
+$$
+\rho_i(x) = \frac{d(x, \R^n \setminus V_i)}{\sum_j d(x, \R^n \setminus V_j)}
+$$
+satisfont donc les propriétés requises pour l'étape 1.
+
+[Le lemme de recouvrement de Lebesgue](#lrl) établit l'existence d'un $r>0$ 
+tel que pour tout $x \in K$, il existe au moins un indice $i$ tel que
+$B(x, r) \subset V_i$. Notons $V'_i$ l'union des boules ouverts $B(x,r)$
+pour lequel l'incide $i$ convient quand $x$ décrit $K$. Par construction,
+les $V'_i$ sont ouverts et recouvrent $K$ ; de plus, les adhérences
+$\overline{V'_i}$ sont bornées
+(il sont des sous-ensembles de $\{x \in K \, | \, d(x, K) \leq r\}$)
+et vérifient $d(\overline{V}'_i, \R^n \setminus V_i) \geq r$.
+
+Considérons les fonctions $\rho_i$ de l'étape initiale 
+associées à la famille des $V'_i$ et prolongées par
+$0$ en dehors de $\bigcup_i V'_i$. Définissons alors
+les fonctions $\rho'_i:\R^n \to \left[0, +\infty \right[$ par
+$$
+\rho'_i(x) = \int_{\R^n} \rho_i(y) \phi(x-y) \, dy
+$$
+où $\phi:\R^n \to \left[0, +\infty\right[$ est une fonction indéfiniment 
+différentiable, de support inclus dans $\overline{B}(0, r/2)$ et 
+telle que 
+$$
+\int_{\R^n} \phi(x) \, dx = 1.
+$$
+Le théorème de dérivation sous le signe somme établit que les
+$\rho'_i$ sont continûment différentiables. Par construction,
+le support de $\rho'_i$ est inclus dans $V'_i + \overline{B}(x, r/2)$,
+ce qui garantit que $\mathrm{supp}(\rho'_i) \subset V_i$. Finalement,
+pour tout $x \in K$,
+$$
+\sum_{i} \rho'_i(x) = 
+\int_{\R^n} \sum_i \rho_i(y) \phi(x-y) \, dy
+= 
+\int_{\R^n} \phi(x-y) \, dy = 1.
+$$
 
 Exercices
 ================================================================================
+
+Changement de variables linéaire
+--------------------------------------------------------------------------------
+
+Soit $f:\R^n \to \R$ une fonction intégrable.
+
+### Question 1 {.question #cvl-1}
+Soit $f:\R \to \R$ une fonction intégrable. Montrer que pour tout
+$\lambda \in \R$, $x \in \R \mapsto f(\lambda x)$ est intégrable
+et calculer
+$$
+\int_{-\infty}^{+\infty} f(\lambda x) \, dx.
+$$
+
+### Question 2 {.question #cvl-2}
+Soient $i, j \in \{1,\dots, n\}$, $i\neq j$ et $\lambda$ un réel non nul.
+Montrer que les intégrales suivantes existent et les calculer en fonction
+de l'intégrale de $f$:
+$$
+S_1 = \int_{\R^n} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx,
+$$
+$$
+S_2 = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx,
+$$
+$$
+S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \dots, x_n) \, dx.
+$$
+
+### Question 3 {.question #cvl-3}
+Soit $A: \R^n \to \R^n$ une application linéaire. Montrer que la fonction
+$x \in \R^n \mapsto |\det A| f(A \cdot x)$ est intégrable et que
+$$
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det A| \, dx.
+$$
 
 Déformations
 --------------------------------------------------------------------------------
@@ -704,12 +845,273 @@ Exemples de compacts à bord (déterminés implicitement)
 
 ... par la fonction distance orientée par exemple ?
 
-Calcul
+Aire du disque unité {.question #adu}
+--------------------------------------------------------------------------------
+Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+Calculer l'aire de $B$
+$$
+A := \int_B \, dx
+$$
+
+
+Intégrales de surface {.question #is}
 --------------------------------------------------------------------------------
 
-Un calcul réalisable par Fubini et/ou Stokes ? Dans le disque unité ?
-Avec un champ de vecteurs
+Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+Calculer
+$$
+\int_{\partial B} \sigma(dx)
+\; \mbox{ et } \;
+\int_{\partial B} x_1^2 \, \sigma(dx).
+$$
 
+Rétraction
+--------------------------------------------------------------------------------
+
+Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$ et 
+$f: B \to B$ une fonction de classe $C^2$
+(c'est-à-dire admettant une extension de classe $C^2$ à un ouvert $U$ 
+contenant $B$). Une telle fonction $f$ est une *rétraction* de $B$
+sur $\partial B$ si $f(B) = \partial B$ et pour tout $x\in \partial B$,
+$f(x) = x$.
+
+<!--
+### Question 1 {.question #pfb-1}
+Montrer que si $f$ n'admet pas de point fixe, il existe une 
+*rétraction* de $D$ dans $\partial D$ de classe $C^2$, 
+c'est-à-dire une fonction 
+$g: D \to \partial D$ telle que $g(x) = x$ si $x \in \partial D$.
+-->
+
+### Question 1  {.question #pfb-1}
+Montrer que pour une telle rétraction $f$, on a 
+$$
+\int_B \det J_f(x) \, dx = 0.
+$$
+
+### Question 2  {.question #pfb-2}
+En déduire l'impossibilité d'une telle rétraction.
+
+
+Solutions
+================================================================================
+
+TODO -- Changement de variables linéaire
+--------------------------------------------------------------------------------
+
+### TODO -- Question 1 {.answer #answer-cvl-1}
+
+### TODO -- Question 2 {.answer #answer-cvl-2}
+Par le changement de variable linéaire dans $\R$ de la question 1
+et le théorème de Fubini,
+$$
+\begin{split}
+S_1 
+&= 
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+&= 
+\frac{1}{\lambda}
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+&= 
+\frac{1}{\lambda}
+\int_{\R^n} f(x) \, dx.
+\end{split}
+$$
+
+**TODO:** comment établir l'intégrabilité de la nouvelle fonction ?
+
+$$
+S_2 = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx,
+$$
+$$
+S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \dots, x_n) \, dx.
+$$
+
+### TODO -- Question 2 {.answer #answer-cvl-2}
+
+
+Aire du disque unité {.answer #answer-adu}
+--------------------------------------------------------------------------------
+
+La fonction $f: x \in \R^2 \mapsto 1_B(x)$ est intégrable: l'ensemble $B$ est
+fermé, donc mesurable, et la fonction $f$ est par exemple dominée par la
+fonction caractéristique du pavé fermé $[-1,1]^2$, qui est intégrable.
+
+Le théorème de Fubini nous fournit donc
+$$
+\int_B dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
+= 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
+$$
+Comme
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+= \int_{[-1, 1]} \sqrt{1 - x^2} \, dx
+= \int_{\left]-1, 1\right[} \sqrt{1 - x^2} \, dx
+$$
+On peut donc opérer le changement de variable 
+$$
+\theta \in \left]0, \pi\right[ \mapsto x = -\cos \theta \in \left]-1,1\right[
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+Comme $(-\cos \theta)' = \sin \theta$, on a
+$$
+\int_{0}^{\pi} \sqrt{1-(-\cos^2 \theta)} \sin \theta  \, d\theta = \int_{-1}^1 \sqrt{1 - x^2} \, dx
+$$
+et donc
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+=
+\int_{0}^{\pi} \sin^2 \theta  \, d\theta
+=
+\int_{0}^{\pi} \frac{1 - \cos 2\theta}{2} \, d\theta
+=
+\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4} \right]_0^{\pi}
+=\frac{\pi}{2},
+$$
+et finalement
+$$
+\int_B \, dx = \pi.
+$$
+
+Alternativement, on peut noter que l'union $N$ de $\partial B$ et 
+du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
+et donc que
+$$
+\int_B \, dx = \int_{B \setminus N} dx,
+$$
+ce qui nous permet de considérer le changement de variable
+$$
+\phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
+\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in B \setminus N
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+On calcule la matrice jacobienne
+$$
+J_{\phi}(r, \theta) = 
+\left[ 
+\begin{array}{cc}
+\cos \theta & -r \sin \theta \\
+\sin \theta & r \cos \theta
+\end{array}
+\right],
+$$
+dont le déterminant vaut
+$$
+\det J_{\phi}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
+= r.
+$$
+On a donc
+$$
+\int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
+=
+\int_B \, dx,
+$$
+et donc par le théorème de Fubini,
+$$
+\int_B \, dx
+= \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
+= \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
+= \pi.
+$$
+
+Intégrales de surface {.answer #answer-is}
+--------------------------------------------------------------------------------
+
+Comme la normale extérieure à $B$ en $\partial B$ vaut $n(x) = (x_1, x_2)$
+et que $x_1^2 + x_2^2 = 1$ sur $\partial B$, on a en posant $v(x) = (x_1, x_2)$ 
+sur $B$ l'égalité
+$$
+\int_{\partial B} \sigma(dx) = \int_{\partial B} (x_1^2 + x_2^2) \, \sigma(dx)
+= 
+\int_{\partial B} \left<v(x), n(x)\right> \sigma(dx)
+$$
+et donc par le théorème de la divergence
+$$
+\int_{\partial B} \sigma(dx)
+= \int_{B} \mathrm{div} \, v(x) \, dx
+= \int_{B} (\partial_1 x_1 + \partial_2 x_2) \, dx
+= 2 \int_{B} \, dx.
+$$
+L'intégrale initiale est donc égale au double de l'aire du disque unité, 
+soit $2\pi$.
+Concernant la seconde intégrale, on à l'égalité
+$$
+\int_{\partial B} x_1^2 \sigma(dx) = \int_{\partial B} \left<v(x), n(x)\right> \sigma(dx)
+\, \mbox{ avec } \, v(x) = (x_1, 0)
+$$
+et donc par le théorème de la divergence
+$$
+\int_{\partial B} x_1^2 \sigma(dx)
+= \int_{B} \mathrm{div} \, v(x) \, dx
+= \int_{B} (\partial_1 x_1 + \partial_2 0) \, dx
+= \int_{B} \, dx.
+$$
+L'intégrale initiale est donc égale à l'aire du disque unité, soit $\pi$.
+
+Rétraction
+--------------------------------------------------------------------------------
+
+<!--
+### Question 1 {.answer #answer-pfb-1}
+Comme par hypothèse pour tout $x\in B$, $f(x) \neq x$, on peut associer à
+$x$ l'unique point de la demi-droite ouverte d'origine $f(x)$ et
+de direction $x - f(x)$ appartenant à $\partial B$. 
+Par construction, cette fonction est une rétraction.
+
+Elle est également de classe $C^2$.
+-->
+
+Source: [@Kan81]
+
+### Question 1  {.answer #answer-pfb-1}
+On déduit de l'identité $\|f(x)\|^2=\left<f(x), f(x)\right> =1$ valable sur $B$
+la relation $J_f(x) f(x) = 0$. La valeur $f(x)$ étant non nulle, cela
+entraîne la non-inversibilité de la matrice jacobienne $J_f(x)$,
+ou ce qui est équivalent, la nullité du déterminant jacobien
+$\det J_f(x)$. En conséquence,
+$$
+\int_B \det J_f(x) \, dx = 0.
+$$
+
+### Question 2  {.answer #answer-pfb-2}
+La fonction $f$ étant de classe $C^2$, on a
+$$
+\begin{split}
+\det J_f 
+&= (\partial_1 f_1) (\partial_2 f_2) - (\partial_1 f_2) (\partial_2 f_1) \\
+&= \partial_1 (f_1 \partial_2 f_2) - f_1 \partial^2_{12} f_2
+   -\partial_2 (f_1 \partial_1 f_2) + f_1 \partial^2_{21} f_2 \\
+&= \partial_1 (f_1 \partial_2 f_2) 
+   -\partial_2 (f_1 \partial_1 f_2)
+\end{split}
+$$
+Par le théorème de la divergence, on a donc
+$$
+\begin{split}
+\int_B \det J_f(x) \, dx &=
+\int_{\partial B} (n_1 (f_1 \partial_2 f_2) 
+   -n_2 (f_1 \partial_1 f_2)) \sigma \\
+&=\int_{\partial B} f_1 \left<\nabla f_2, t\right> \sigma
+\end{split}
+$$
+où $t(x)$ désigne le vecteur tangent à $\partial B$ en $x$:
+$$
+t(x) = (-n_2(x), n_1(x)).
+$$
+Comme la normale extérieure à $B$ en $x=(x_1, x_2) \in \partial B$ est donnée
+par $n(x) = (x_1, x_2)$, on a $t(x) = (-x_2, -x_1)$. Par ailleurs, comme
+$f(x)$ vaut identiquement $x$ sur $\partial B$, $f_2(x)$ vaut $x_2$ et
+par conséquent 
+$$
+\left<\nabla f_2(x), t(x)\right>  = \left<\nabla (x_2), t(x)\right>= x_1,
+$$
+soit, puisque $f_1(x) = x_1$ sur $\partial B$,
+$$
+\int_B \det J_f(x) \, dx = \int_{\partial B} x_1^2 \, \sigma(dx) > 0.
+$$
+Si une telle rétraction existait, on aurait donc une contradiction.
 
 Réferences
 ================================================================================

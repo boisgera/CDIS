@@ -50,7 +50,7 @@ def transform(doc):
     solve_toc_nesting(doc)
     anonymify(doc)
 
-    add_today(doc)
+    add_date(doc)
     insert_authors(doc)
 
     return doc
@@ -83,8 +83,13 @@ def doctest(*args):
 def pdflatex(*args):
     return call("pdflatex", *args)
 
-# Git Statistics
+
+# Git Helpers
 # ------------------------------------------------------------------------------
+def git_hash():
+    hashes = subprocess.check_output(["git", "log", '--pretty=format:"%H"']).decode("utf-8")
+    return hashes.splitlines()[0].strip()[1:-1]
+
 def commiters():
     log = subprocess.check_output(["git", "shortlog", "-snc"]).decode("utf-8")
     cs = []
@@ -124,7 +129,7 @@ Il est mis à disposition selon les termes de [la licence Creative Commons "attr
 
 # Date Management
 # ------------------------------------------------------------------------------
-def add_today(doc):
+def add_date(doc):
     """
     Add the current date in metadata if the field is empty.
     """
@@ -138,6 +143,12 @@ def add_today(doc):
         month = months[date.month - 1]
         meta = doc[0][0]
         inlines = [Str(day), Space(), Str(month), Space(), Str(year)]
+
+        short_hash = "#" + git_hash()[:7]
+        empty_attr = ("", [], [])
+        code_hash = Code(empty_attr, short_hash) 
+        inlines.extend([Space(), Str("("), code_hash, Str(")")])
+
         meta["date"] = MetaInlines(inlines)
     return doc
 
@@ -517,9 +528,9 @@ if len(_docs) != 1:
 doc = _docs[0]
 doc_md = doc + ".md"
 output_latex = output / (doc + " (LaTeX)")
-output_latex.mkdir()
+output_latex.mkdir(exist_ok=True)
 output_latex_images = output_latex / "images"
-output_latex_images.mkdir()
+output_latex_images.mkdir(exist_ok=True)
 doc_tex = str(output_latex / (doc + ".tex"))
 doc_pdf = str(output / (doc + ".pdf"))
 doc_odt = str(output / (doc + ".odt"))

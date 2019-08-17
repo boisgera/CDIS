@@ -7,41 +7,28 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
-TODO
-================================================================================
-
-  - Continuité de l'intégrale (après restriction par exemple). Nécessite
-    lemme de Henstock?
-
-  - intégrale d'une fonction nulle presque partout (par étapes: 1 / nb
-    finies de valeurs égale à 1, puis fct de Dirichlet, puis fct égale à un sur
-    un ensemble de mesure nulle, puis cas général, ce type de progression 
-    (même si pas exactement celle-là)
-
-
 Somme et Intégrale de Riemann
 ================================================================================
 
 ### Intervalle {.definition}
+On appelle *intervalle* d'un ensemble ordonné $E$ tout sous-ensemble $I$ de $E$ 
+tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$
+et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$),
+alors $z$ appartient également à $I$.
 
-On appelle *intervalle* tout sous-ensemble $I$ de $\R$ 
-tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$,
-et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$) 
-alors $z$ appartient à $I$.
-
-### Type d'intervalles {.remark .post}
-Avec cette définition, les intervalles peuvent être bornés ou non-bornés,
-ouverts, fermés, ouvert et fermés ou ni l'un ni l'autre.
-Les intervalles de la forme $\left]-\infty, \infty\right[$ 
+### Intervalles de $\R$ {.remark .post}
+Les intervalles de $\R$ peuvent être bornés ou non-bornés,
+ouverts, fermés, ouverts et fermés ou ni l'un ni l'autre.
+Les intervalles de la forme $\left]-\infty, +\infty\right[$ 
 (c'est-à-dire $\R$),
-$\left]-\infty, b\right[$, $\left]a,\infty\right[$ 
+$\left]-\infty, b\right[$, $\left]a,+\infty\right[$ 
 et $\left]a,b\right[$ 
 -- où $a$ et $b$ désignent des nombres réels -- 
-sont ouverts;
-les intervalles de la forme $\left]-\infty, \infty\right[$,
-$\left]-\infty, b\right]$, $\left[a,\infty\right[$ 
-et $\left[a,b \right]$ sont fermés;
-les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
+sont ouverts.
+Les intervalles de la forme $\left]-\infty, +\infty\right[$,
+$\left]-\infty, b\right]$, $\left[a,+\infty\right[$ 
+et $\left[a,b \right]$ sont fermés.
+Les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
 
 ### Longueur d'un intervalle {.definition}
 La *longueur* $\ell(I)$ d'un intervalle $I$ 
@@ -252,13 +239,17 @@ $$
 La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
 si et seulement si $f$ est bornée et continue presque partout.
 
+### {.post}
+En particulier, si $f$ est continue par morceaux, elle est intégrable
+au sens de Riemann.
+
 ### Démonstration {.proof}
 [Le lemme ci-dessus][Seules les fonctions bornées sont intégrables] montre
 que le caractère borné est nécessaire pour l'intégrabilité au sens de
 Riemann. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
 
 
-Intégrale de Riemann Généralisée
+Intégrale de Riemann généralisée
 ================================================================================
 
 ### Jauge {.definition}
@@ -278,20 +269,9 @@ $$
 \{(x, y) \; | \; x \in [a, b], \, y \in \gamma(x) \}.
 $$
 Par construction, cet ensemble contient la diagonale 
-$$
-D = \{(x,x) \; | \; x \in [a, b]\}.
-$$
-
-### TODO
- example, et expliquer pourquoi cette représentation est pratique
-pour visualiser si une subdivision pointée est subordonnée à une jauge.
-
-Par exemple, la jauge $\gamma$ définie sur $[0,1]$ par 
-$\gamma(t) = \left] t-0.25, t+0.25 \right[$ est représentée comme suit:
-
-### TODO
-Check valeur ($0.2$ ou $0.25$ ?) et "langage graphique": l'ensemble est ouvert,
-sont bord en noir ne devrait pas apparaître ici.
+$D = \{(x,x) \; | \; x \in [a, b]\}.$
+La représentation graphique de cet ensemble permet de visualiser si
+une subdivision pointée est ou non subordonnée à la jauge considérée.
 
 \newcommand{\lb}{[}
 \newcommand{\rb}{]}
@@ -299,20 +279,7 @@ sont bord en noir ne devrait pas apparaître ici.
 \newcommand{\rob}{\right[}
 
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb .$](images/gauge-plot.py)
-
-![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb$ et de la subdivision pointée
-$\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
-les intervalles de la subdivision sont délimités
-par des barres verticales et les points associés 
-représentés par des croix. La comparaison avec le graphe de la
-jauge $\gamma$ montre que cette subdivision pointée 
-lui est subordonnée.](images/gauge-plot-subdivision.py)
-
-### TODO 
-graphique d'une subdivision pointée, avec séparateurs en barres
-verticales et $t_i$ en croix.
+$t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
 
 ### Lemme de Cousin {.theorem #cousin}
 Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
@@ -328,38 +295,38 @@ s'il existe un $t_i \in I_i^1$ tel que $I_i^1 \subset \gamma(t_i)$,
 dans ce cas ajouter la paire $(t_i, I_i^1)$ à la famille $\mathcal{D}$
 et dans le cas contraire décomposer à nouveau l'intervalle posant 
 problème. 
-Soit ce procédé converge en un nombre fini d'étapes et forme
-une subdivision pointée $\mathcal{D}$ de $I$, 
-soit nous avons construit une infinité d'intervalles fermés $J_i$ 
-emboités ($J_{i+1} \subset J_i$) de $I$ tels que pour tout 
-$t \in J_i$, $J_i \not \subset \gamma(t)$.
+Il s'avère que ce procédé converge en un nombre fini d'étapes ; 
+il génère donc une subdivision pointée $\mathcal{D}$ de $I$.
 
-Montrons que ce second scénario est impossible.
-Comme les $J_i$ sont emboités, la collection
-$\{J_i \; | \; i \in \N\}$ possède la
-propriété de l'intersection finie. 
-L'intervalle $I$ étant compact, cela implique qu'il existe un $t \in I$
-tel que pour tout $i \in \N$, $t$ soit adhérent à $J_i$.
-Les $J_i$ étant fermés, $t$ appartient à chaque $J_i$.
+En effet, dans le cas contraire il existerait une infinité 
+d'intervalles fermés $J_i$ emboités ($J_{i+1} \subset J_i$) 
+tels que $J_0 = I$, $\ell(J_{i+1}) = \ell(J_i)/2$ et 
+pour tout $t \in J_i$, $J_i \not \subset \gamma(t)$.
+Soit $t_i$ un point de $J_i$ ; la suite des ces points appartient 
+à $J_0$ qui est compact et admet donc une suite extraite qui converge.
+Comme la suite des $t_k$ appartient à $J_i$ pour tout $k \geq i$,
+cette limite $t$ adhère à tous les $J_i$, et donc appartient à tous
+les $J_i$ puisqu'ils sont fermés.
 La longueur de $J_i$ étant divisée par deux à chaque incrément de $i$,
-$\ell(J_i) = \ell(J_0) / 2^i$; 
-comme $t_i \in J_i$, 
-$J_i \subset [t_i - \ell(J_0) / 2^i, t_i + \ell(J_0) / 2^i]$.
+$\ell(J_i) = \ell(J_0) / 2^i$ ; 
+comme $t \in J_i$, 
+$J_i \subset [t - \ell(J_0) / 2^i, t + \ell(J_0) / 2^i]$.
 Par conséquent, il existe un rang $i$ à partir duquel
 $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
-### TODO -- Note
-
-Si l'argument topologique peut être survolé, la procédure de dichotomie est
-intéressante et peut être utilisé sur des exemples concrets, ça vaudrait le
-coup de la faire "pour de vrai".
-
-Au passage, il faut s'arranger pour "lemmatiser" le résultats "... et le 
-processus termine en un nombre fini d'étapes" plus clairement.
+### {.ante}
+La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégrale
+de Riemann classique. 
+Comme cette dernière, elle exploite des sommes de Riemann pour fournir une
+estimation de l'intégrale et contrôle la finesse des subdvisions employées
+pour améliorer la précision de cette estimation ; 
+mais contrairement à cette dernière, 
+elle permet de contrôler différemment cette finesse 
+en fonction de la zone de l'intervalle d'intégration considérée.
 
 ### Intégrale de Henstock-Kurzweil {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
-au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
+au sens de Henstock-Kurzweil[^why-HK]* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$, 
 il existe une jauge $\gamma$ sur $[a, b]$ telle que, 
 pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, 
@@ -373,48 +340,82 @@ $$
 \int_{[a, b]} f(t) \, dt
 $$
 
-### Notation {.remark}
+![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
+$t \in \lb 0, 1 \rb$ et de la subdivision pointée
+$\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
+les intervalles de la subdivision sont délimités
+par des barres verticales et les points associés 
+représentés par des croix. La comparaison avec le graphe de la
+jauge $\gamma$ montre que cette subdivision pointée 
+lui est subordonnée.](images/gauge-plot-subdivision.py)
 
+[^why-HK]: On trouvera également dans la littérature cette intégrale désignée
+par le terme d'*intégrale de Riemann généralisée* ou 
+d'*intégrale de jauge* (mais ces termes sont génériques ; en particulier 
+il existe d'autres intégrales dont la définition repose sur des sommes
+de Riemann et des jauges, comme l'intégrale de McShane), 
+*intégrale de Kurzweil-Henstock* 
+(techniquement Jaroslav Kurzweil a inventé cette 
+construction avant Ralph Henstock dans les années 1950, 
+mais dans un but bien précis
+-- l'étude des équations différentielles généralisées -- probablement sans
+réaliser totalement la portée de sa définition) 
+ou *intégrale de Denjoy-Perron-Kurzweil-Henstock* (Arnaud Denjoy et Oskar Perron
+ont introduit des les années 1910 des intégrales équivalentes, mais dont la
+définition est beaucoup plus complexe et en apparence très différentes ; 
+en particulier, les sommes de Riemann n'interviennent pas dans 
+ces définitions).
+
+### Ordre des bornes de l'intégrale {.notation .remark}
 Comme dans le cas de l'intégrale de Riemann,
-la première notation peut être étendue au cas où $b < a$; 
+la première notation peut être étendue sans difficulté au cas où $b < a$; 
 on définit alors l'intégrale de $a$ à $b$ en se ramenant 
 au cas précédent, par
 $$
 \int_{a}^b f(t) \, dt := - \int_b^a f(t) \, dt.
-$$
-Lorsqu'on sera en présence de plusieurs intégrales (Newton, Riemann, etc.), 
-on pourra préfixer l'intégrale par les lettres "HK" (pour Henstock-Kurzweil)
-pour lever toute ambiguité:
-$$
-\mbox{HK}-\int_{[a, b]} f(t) \, dt.
 $$
 
 ### Intégrale de Riemann et de Henstock-Kurzweil {.theorem}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Riemann
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Soit $f:[a,b] \to \R$ une fonction intégrable au sens de Riemann,
+d'intégrale $A$ ;
+soit $\varepsilon > 0$ et $\delta>0$ tels que si la subdivision pointée 
+$\mathcal{D}$ de $[a, b]$ est telle que pour $(t, I) \in \mathcal{D}$, 
+$\ell(J) < \delta$ alors $|S(f,\mathcal{D}) - A| \leq \varepsilon$.
 
-Passer par l'intermédiaires des jauges numériques ? Bof. Directement
-avec de $\delta > 0$ uniforme à l'intervalle ouvert.
+Considérons la jauge $\gamma$ sur $[a, b]$ définie par 
+$\gamma(t)= \left]t-\delta/2, t+\delta/2 \right[$.
+Si la subdivision pointée $\mathcal{D}$ est subordonnée à $\gamma$,
+alors pour tout $(t, J) \in \mathcal{D}$, on a
+$J \subset \left]t-\delta/2, t+\delta/2 \right[$ ; 
+par conséquent, $\ell(J) < \delta$ et donc
+$|S(f,\mathcal{D}) - A| \leq \varepsilon$. 
+La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et 
+l'intégrale associée est égale à son intégrale de Riemann.
+
+### {.ante}
+Le résultat équivalent vaut pour l'intégrale de Newton:
+
+### Intégrale de Newton et de Henstock-Kurzweil {.corollary}
+Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
+est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
+
+### {.post .ante}
+L'énoncé précédent peut être réformulé de la façon suivante: 
+l'intégrale de Henstock-Kurzweil satisfait 
+[le théorème fondamental du calcul](#TCF) en toute généralité.
 
 ### Théorème fondamental du calcul {.theorem #TFC}
-Si la fonction $f:[a, b] \to \R$ est dérivable 
-sa dérivée $f'$ est intégrable sur $[a, b]$ et 
+Si la fonction $f:[a, b] \to \R$ est dérivable, 
+sa dérivée $f'$ est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
 $$
 [f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
 $$
 
-### {.ante}
-Le théorème fondamental du calcul peut être reformulé de la façon suivante:
 
-### Intégrale de Riemann et de Henstock-Kurzweil {.corollary}
-Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
-est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
-
-**QUESTION** exfiltrer le "Straddle Lemma"? Ca sera probablement plus clair.
-L'autre option est de splitter un cran plus avant la somme qui majore l'erreur
-entre somme de Riemann et intégral ... à voir. Arf, ça ne marche pas, tss tss...
 
 ### Démonstration du [théorème fondamental du calcul][Théorème fondamental du calcul] {.proof}
 Nous souhaitons établir que $f':[a, b] \to \R$ est intégrable, 
@@ -937,10 +938,31 @@ $$
 La fonction $\lambda f$ est donc intégrable sur $[a, b]$ et son intégrale
 est le produit de $\lambda$ et de l'intégrale de $f$ sur $[a, b]$.
 
-### TODO
+### Positivité {.proposition}
+Si $f: [a, b] \to \mathbb{R}$ est intégrable et positive alors
+$$
+\int_a^b f(t) \, dt \geq 0.
+$$
 
-Ajouter inégalités ou croissance de l'intégrale (ici et dans le non borné
-avec cas $f \leq g$ et cas $|f| \leq M$)
+### Démonstration {.proof}
+Soit $\varepsilon > 0$ et $\gamma$ une jauge telle que toute
+subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$
+vérifie
+$$
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
+$$
+Quelle que soit la subdivision pointée $\mathcal{D}$ de $[a, b]$,
+la somme de Riemann associeé 
+$$
+S(f, \mathcal{D})
+= \sum_{\{(t,J) \in \mathcal{D}\}} f(t) \ell(J)
+$$ 
+est positive, ce qui entraîne par l'inégalité triangulaire
+$$
+\int_a^b f(t) \, dt  \geq S(f, \mathcal{D}) - \varepsilon \geq -\varepsilon.
+$$
+Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
+petit, on en déduit que l'intégrale est positive.
 
 ### Intégration par parties {.theorem}
 Si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
@@ -994,7 +1016,7 @@ $$
 les deux intégrales sont donc égales.
 
 
-### Additivité {.proposition}
+### Additivité {.proposition #addivité}
 Si la fonction $f$ est définie et intégrable sur les intervalles
 $[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
 et
@@ -1003,7 +1025,6 @@ $$
 $$
 
 ### Démonstration {.proof}
-
 Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
 $[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \R$ et
 $\gamma_2:[b, c] \to \R$ telles que pour toutes les subdivisions
@@ -1065,10 +1086,9 @@ La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
 l'hypothèse de non-chevauchement. Par conséquent l'inégalité
 ci-dessus est satisfaite dans le cas général.
 
-### TODO
-
-Présenter ce qui vient comme une réciproque de l'additivité.
-Contextualiser le critère de Cauchy (valeur de l'intégrale inconnue)
+### {.ante}
+Dans le cas où l'on souhaite établir l'intégrabilité sans savoir quelle
+est la valeur de l'intégrale, le test suivant d'intégrabilité est utile:
 
 ### Critère d'intégrabilité de Cauchy {#CIC .theorem}
 Une fonction $f: [a, b] \to \R$ est intégrable si et seulement si 
@@ -1119,13 +1139,13 @@ $$
 $$
 La fonction $f$ est donc intégrable et d'intégrale $A$.
 
-### TODO
-
-fusionner "Restriction" avec additivité ou au moins évoquer la relation
-entre les deux résultats.
+### {.ante}
+[La propriété d'additivité](#additivité) de l'intégrale -- 
+qui permet de prouver l'intégrabilité de l'intégrale sur un intervalle
+à partir de sont intégrabilité sur des intervalles qui la compose --
+admet une réciproque:
 
 ### Restriction {.theorem}
-
 Si $f$ est intégrable sur l'intervalle $[a, b]$, 
 elle est intégrable sur tout intervalle $[c, d]$ 
 inclus dans $[a, b]$.
@@ -1478,10 +1498,11 @@ Subdivisions Partielles
 ================================================================================
 
 ### Subdivision pointée partielle {.definition}
-Une *subdivision pointée partielle* de l'intervalle fermé $I = [a, b]$ 
-de $\R$ est une famille finie 
+Une *subdivision pointée partielle* $\mathcal{D}$ de l'intervalle fermé 
+$I = [a, b]$ (de $\R$ étendu par $\pm \infty$), 
+est une famille finie 
 $$
-\{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
+\mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
 où les $I_i$ sont des intervalles fermés de $[a, b]$ sans chevauchement
 et $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
@@ -1489,34 +1510,30 @@ La somme de Riemann associée à la fonction $f:[a, b] \to \R$
 et à la subdivision pointée partielle $\mathcal{D}$ de $[a, b]$ est 
 la grandeur
 $$
-S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I)
+S(f, \mathcal{D}) = \sum f(t) \ell(I), \; \mbox{ où }(t, I) \in \mathcal{D}, \, \ell(I) < +\infty.
 $$
 Une subdivision pointée partielle $\mathcal{D}$ de l'intervalle fermé $[a, b]$ 
 est *subordonnée à une jauge* $\gamma$ de $[a, b]$ si 
-$$
-(t, J) \in \mathcal{D} \, \Rightarrow \, J \subset \gamma(t). 
-$$
+pour tout $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Lemme de Henstock  {.theorem #henstock-lemma}
-Soit $[a, b]$ un intervalle fermé de $\R$, 
+Soit $[a, b]$ un intervalle fermé, 
 $f$ une fonction intégrable sur $[a, b]$ et $\gamma$ une jauge sur $[a, b]$ 
 telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$, 
 on ait
 $$
-\left|S(f, \mathcal{D}) - \int_{[a, b]} f(t) \, dt\right| \leq \varepsilon.
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
 $$
-Alors pour tout subdivision pointée partielle $\mathcal{D} = \{(t_k, I_k)\}_k$
+Alors pour toute subdivision pointée partielle $\mathcal{D} = \{(t_k, I_k)\}_k$
 de $[a, b]$ subordonnée à $\gamma$, on a également
 $$
 \left|S(f, \mathcal{D}) - \sum_k \int_{I_k} f(t) \, dt\right| \leq \varepsilon.
 $$
 
-
 ### Preuve du [lemme de Henstock][Lemme de Henstock]
-
 Il existe une famille finie d'intervalles fermés $\{J_j\}$, 
 $j = 1, \dots, m$ 
-telle que l'union des familles $\{I_k\}$ et $\{J_j\}$ forment une subdivision
+telle que l'union des familles $\{I_k\}$ et $\{J_j\}$ forme une subdivision
 (complète) de $[a, b]$. 
 Pour tout $\eta > 0$, 
 sur chaque intervalle $J_j$, il existe une jauge $\gamma_j$ telle que si
@@ -1527,7 +1544,7 @@ $$
 $$
 Si de plus on choisit $\mathcal{D}_j$ subordonnée à la restriction de $\gamma$
 à $J_j$, alors $\mathcal{D} \cup (\cup_j \mathcal{D}_j)$ est une subdivision
-pointée (totale) de $[a, b]$ subordonnée à $\gamma$.
+pointée (complète) de $[a, b]$ subordonnée à $\gamma$.
 On déduit de l'hypothèse centrale du lemme que
 $$
 \left|
@@ -1549,6 +1566,59 @@ S(f, \mathcal{D})
 \varepsilon + m \eta.
 $$
 Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
+
+### Continuité des intégrales indéterminées {.proposition}
+Pour toute fonction $f:\R \to \R$ intégrable 
+et pour tout nombre réel étendu $a$, l'application
+$$
+x \in \R \mapsto \int_a^x f(t) \, dt 
+$$
+est continue.
+
+### Démonstration {.proof}
+Montrons la continuité de l'intégrale à droite en $x$, la continuité à gauche
+s'établissant de façon similaire. 
+Par additivité de l'intégrale, il suffit de montrer que la grandeur
+$$
+\int_x^{x+h} f(t) \, dt
+$$
+tend vers $0$ quand $h>0$ tend vers $0$. Par restriction, la fonction $f$ est 
+intégrable sur $[x, x+\infty]$ : 
+pour tout $\varepsilon > 0$, il existe une jauge
+$\gamma$ sur $[x, x+\infty]$ telle que pour toute subdivision pointée
+$\mathcal{D}$ de $[x, x+\infty]$ subordonnée à $\gamma$, 
+l'écart entre la somme de Riemann
+$S(f,\mathcal{D})$ et l'intégrale de $f$ entre $0$ et $+\infty$ est au
+plus $\varepsilon/2$. 
+
+On peut remplacer $\gamma$ par une jauge $\nu$ définie (partiellement en $x$)
+par $\nu(x) \subset \gamma(x)$ et $\nu(t) = \gamma(t) \cap \left]x,+\infty\right]$
+sinon ; cela garantit que pour tout subdivision pointée $\mathcal{D}$ 
+subordonnée à $\nu$, $\mathcal{D}$ est subordonnée à $\gamma$ et si 
+$(t,J) \in \mathcal{D}$ et $x \in J$, alors $t=x$.
+
+[Le lemme de Henstock](#henstock), appliqué à toute subdivision partielle
+$\mathcal{D} = \{(x, J)\}$ subordonnée à $\nu$, c'est-à-dire telle que
+$J := [x, x+h] \subset \nu(x)$, fournit
+$$
+\left| 
+f(x) h - \int_x^{x+h} f(t) \, dt
+\right| \leq \frac{\varepsilon}{2},
+$$ 
+dont on déduit par l'inégalité triangulaire que
+$$
+\left| \int_x^{x+h} f(t) \, dt \right|
+\leq
+\frac{\varepsilon}{2} + |f(x)|h.
+$$
+Il suffit donc de choisir $\nu(x)$ tel que $|f(x)| h \leq \varepsilon / 2$
+quand $[x, x+h] \subset \nu(x)$ pour assurer que
+$$
+\left| \int_x^{x+h} f(t) \, dt \right|
+\leq
+\varepsilon.
+$$
+
 
 Exercices
 ================================================================================
