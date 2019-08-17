@@ -921,6 +921,8 @@ dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
 $$
 
 **TODO:** comment établir l'intégrabilité de la nouvelle fonction ?
+Grpmh on va devoir utiliser l'absolue intégrabilité de $f$ et un argument
+de type Tonelli, donc rajouter ça dans le cours ...
 
 $$
 S_2 = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx,
