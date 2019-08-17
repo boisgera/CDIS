@@ -224,7 +224,7 @@ Nous allons introduire maintenant une nouvelle notion de convergence de suites d
 
 On considère des vecteurs aléatoires $X_n$ et $X$, tous à valeurs dans le même espace $\R^d$, mais pouvant éventuellement être définis sur des espaces de probabilité différents.
 
-### Définition {.definition}
+### Définition {.definition #defconvloi}
 On dit que la suite $(X_n)_{n\in \N^\star}$ *converge en loi* vers $X$ et on écrit $X_n \xrightarrow{\L} X$, si pour toute fonction $f$ continue bornée sur $\R^d$, 
 $$\Esp(f(X_n)) \xrightarrow{\L} \Esp(f(X)).$$
 
@@ -324,7 +324,7 @@ $$ |\phi_X(u)|^2 = \Esp(\cos< u, X>)^2 + \Esp(\sin< u, X>)^2 \leq \Esp(\cos^2< u
 
 Pour montrer la continuité, considérons une suite $u_p \xrightarrow[p \to \infty]{} u$. Il y a convergence simple de $e^{i < u_p,X>}$ vers $e^{i < u,X>}$. Comme ces variables aléatoires sont de module borné par 1, le théorème de convergence dominée assure que $\phi_X(u_p) \xrightarrow[p \to \infty]{} \phi_X(u)$. $\phi_X$ est donc continue.
 
-### Proposition {.proposition}
+### Proposition {.proposition #fct_carac_vec}
 Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, si $a \in \R^m$ et $A$ est une matrice réelle de taille $m \times n$, alors 
     $$ \phi{a+AX}(u) = e^{i < u,a>} \phi_X (A^t u), \forall u \in \R^m$$
 
@@ -422,5 +422,78 @@ où $m = \Esp(X) \in \R^n$ et $C$ est la matrice de covariance de $X$.
         $$ \phi_Y(v) = e^{iv< a ,m> - \frac{v^2}{2}< a,Ca>} $$
     Mais $\phi_Y(1) = \phi_{< a,X>} (1) = \Esp (e^{i < a, X>}) = \phi_X(a)$, d'où le résultat.
 
+Le théorème suivant caractérise la convergence en loi à l’aide des fonctions caractéristiques. C’est un critère extrêmement utile dans la pratique.
+
+### Théorème de Lévy {.theorem #levytheorem}
+Soit $(X_n)_{n \in \N^\star}$ une suite de vecteurs aléatoires à valeurs dans $\R^d$.
+
+ 1. Si la suite $(X_n)_{n \in \N^\star}$ converge en loi vers $X$, alors $\phi_{X_n}$ converge simplement vers $\phi_X$.
+
+ 2. Si les $\phi_{X_n}$ convergent simplement vers une fonction (complexe) $\phi$ sur $\R^d$ et si cette fonction est **continue** en 0, alors c'est la fonction caractéristique d'une variable aléatoire $X$ et $X_n \xrightarrow{\L} X$.
+
+### Démonstration {.proof}
+
+ 1. On remarque que $\phi_{X_n}(u) = \Esp(g_u(X_n))$ et $\phi_X(u) = \Esp(g_u(X))$ où $g_u$ est la fonction continue bornée $g_u(x) = e^{i < u,x>}$. On applique alors la [définition](#defconvloi).
+ 2. Admis.
 
 ## Théorème central limite
+Ce théorème est aussi connu sous le nom de théorème de la limite centrale. Plus simplement, il apparaît souvent sous l’abréviation TCL.
+
+On considère une suite de variables aléatoire $(X_n)_{n \in \N^\star}$ indépendantes, de même loi et de carré intégrable. On note $m$ et $\sigma^2$ la moyenne et la variance commune aux variables $X_n$, et
+    $$S_n = X_1 + \ldots X_n$$
+ainsi ($S_n = n M_n$). On a vu que la loi des grands nombres assure que $M_n$ converge vers $m$ presque-sûrement et en moyenne. On va s'intéresser a la vitesse à laquelle cette convergence a lieu.
+
+Pour évaluer cette vitesse, c’est-à-dire trouver un équivalent de $\frac{S_n}{n} - m$, on est amenés à étudier la limite éventuelle de la suite $n^\alpha (\frac{S_n}{n} - m)$ pour différentes valeurs de $\alpha$ : si $\alpha$ est “petit” cette suite va encore tendre vers 0, et elle va “exploser” si $\alpha$est “grand”. On peut espérer que pour une (et alors nécessairement une seule) valeur de $\alpha$, cette suite converge vers une limite qui n’est ni infinie ni nulle.
+
+Il se trouve que la réponse à cette question a un aspect “négatif” : la suite $n^\alpha (\frac{S_n}{n} - m)$ ne converge au sens presque-sûr, ou même en probabilité, pour aucune valeur de $\alpha$. Elle a aussi un aspect “positif” : cette suite converge, au sens de la convergence en loi, pour la même valeur $\alpha = 1/2$ quelle que soit la loi des $X_n$, et toujours vers une loi normale.
+
+Ce résultat, qui peut sembler miraculeux, a été énoncé par Laplace (1749-1827) et démontré beaucoup plus tard par Lyapounov (1901). Il montre le caractère universel de la loi normal en probabilités (d'où son nom). Il fait l’objet du théorème suivant, appelé théorème central limite (TCL), ou de la limite centrale.
+
+### Théorème central limite {.theorem #TCL}
+Si les $X_n$ sont des variables aléatoires réelles, indépendantes et de même loi, de carré intégrable, de moyenne $m$ et de variance $\sigma^2 >0$, alors les variables
+    $$ \frac{S_n -nm}{\sigma \sqrt{n}}$$
+convergent en loi vers une variable aléatoire de loi $\No(0,1)$.
+
+En d'autres termes, $\sqrt{n}(M_n - m)$ converge vers une variable normale de loi $\No(0,\sigma^2)$.
+
+### Démonstration {.proof}
+Soit $\phi$ la fonction caractéristique de $X_n - m $, et $Y_n = \frac{S_n -nm}{\sigma \sqrt{n}}$. D'après la [proposition](#fct_carac_vec) et la [proposition](#fct_carac_sum), la fonction caractéristique de $Y_n$ est 
+    $$\phi_n(u) = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n .$$
+Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition](#fct_carac_deriv) entraîne 
+    $$\phi(u) = 1 - \frac{u^2\sigma^2}{2} + u^2 o (|u|) \text{ quand } u \rightarrow 0.$$
+Comme $\phi(0) = 1$ et que $\phi$ est continue en 0, on a  que pour $u$ fixé et $n$ assez grand,
+    $$ \left| \phi\left(\frac{u}{\sigma\sqrt{n}}\right)-1\right| \leq 1/2. $$
+Il est possible de généraliser la notion de logarithme aux complexes $z$ tels que $|z  -1| \leq 1/2$. La fonction $\log z$ définie sur le disque $\{z\in \C; |z  -1| \leq 1/2\}$ admet le même développement limité au voisinage de $z = 1$ que le logarithme réel. Ainsi
+    $$ \phi_n(u) = \exp \left( n \log\left(1 - \frac{u^2}{2n} + \frac{1}{n}\epsilon_n(u) \right)\right),$$
+où $\epsilon_n(u)$ tend vers 0 quand $n$ tend vers l'infini, et on en déduit que $\phi_n(u)$ tend vers $\exp(-u^2/2)$. Le résultat découle alors du [théorème de Lévy](#levytheorem).
+
+### Remarque {.remark}
+
+On peut déduire de ce résultat que $n^\alpha (\frac{S_n}{n} - m)$ converge vers 0 (resp. $+\infty$) en probabilité lorsque $\alpha < 1/2$ (resp. $\alpha > 1/2$).
+
+### Exemple : convergence des lois binomiales
+Supposons que $S_n$ suive une loi binomiale $\mathcal{B}(p,n)$. Cela revient à dire que $S_n$ a la même loi qu'une somme $X_1+\ldots+X_n$ de $n$ variables aléatoires $X_i$ indépendantes de loi $\mathcal{B}(p,1)$, i.e. $\P(X_i= 1) = p$ et $\P(X_i= 0) = 1- p$. On a alors $m=p$ et $\sigma^2= p(1-p)$.
+
+On veut calculer $\P(S_n \leq x)$ pour $x$ fixé et $n$ grand.
+
+Si $p$ est petit de sorte que $\theta = np$ ne soit pas trop grand (en pratique, $\theta \leq 5$ convient), on peut utiliser l’approximation par une loi de Poisson, vue en CPGE. Si $p$ est très proche de 1, de sorte que $\theta = n(1 - p)$ soit comme ci-dessus, alors $n - S_n$ suit à son tour une loi proche de la loi de Poisson de paramètre $\theta$.
+
+Dans les autres cas, on utilise la loi des grands nombres et le théorème central limite :
+\begin{align*}
+\frac{S_n}{n} & \xrightarrow{\P} p,\\
+\frac{S_n - np}{\sqrt{n p(1-p)}} & \xrightarrow{\L} \No(0,1)
+\end{align*}
+
+Si on désigne par $\Phi$ la fonction de répartition de la loi $\No(0,1)$, il vient 
+    $$\P(S_n \leq x) \approx \Phi \left(\frac{x - np}{\sqrt{n p(1-p)}}\right)$$
+
+Imaginons que l'on lance 1000 fois une pièce (non truquée). On cherche la probabilité d’obtenir plus de 545 fois le côté Face. Le calcul exact utilisant les lois binomiales est extrêmement lourd. Le résultat ci-dessus nous donne une très bonne approximation. On a
+    $$ \P(S_{1000} > 545) = \P\left(\frac{S_{1000} - 500}{\sqrt{250}} > \frac{45}{\sqrt{250}}\right) \approx \int_{\frac{45}{\sqrt{250}}}^{+\infty} \frac{1}{\sqrt{2\pi}} e^{-x^2/2} dx.$$
+
+Cette dernière intégrale se calcule numériquement (on trouve encore des abaques où les valeurs de $\Phi$ sont tabulées) et on obtient
+    $$ \P(S_{1000} > 545) \approx 1 - \Phi(2,84) \approx 0,0023.$$
+
+Le [théorème](#TCL) admet une version multidimensionnelle, de preuve similaire. On considère des vecteurs aléatoires $X_n$ à valeurs dans $\R^d$, indépendants et de même loi, dont les composantes sont de carré intégrable. On a un vecteur moyenne $m = E(X_n)$, et une matrice de covariance $C = (c_{ij} )_{i,j=1,\ldots,d}$ avec $c_ij = \cov(X_i,X_j)$. On peut alors énoncer le TCL multi-dimensionnel.
+
+### Théorème central limite multi-dimensionnel {.theorem}
+Les vecteurs aléatoires $\frac{S_n-nm}{\sqrt{n}}$ convergent en loi vers un vecteur aléatoire gaussien centré (i.e. de moyenne nulle), de matrice $C$.
