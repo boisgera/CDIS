@@ -450,3 +450,6 @@ $\mathbb{C}$-linéaire et continue (en faisant une chain rule en dim infinie)
 ... mais est-ce vraiment nécessaire ? Ne peut-on pas calculer les dérivées
 par rapport au centre et au rayon sans ça, avec uniquement la dérivation
 "point par point" et les résultats de convergence dans les intégrales ?
+
+Solutions
+================================================================================
