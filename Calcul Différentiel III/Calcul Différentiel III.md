@@ -368,7 +368,7 @@ Plus tard, nécessaire de renforcer régularité pour faire IPP et obtenir
 équation d'Euler-Lagrange (suffit de supposer que $\partial_{y'}L$ est
 diff / $x$ et que le résultat est cont).
 
-### Différentielle de l'action
+### Différentielle de l'action {#da}
 L'action $A: y \in C^1([a, b], \R^n) \to  \R$ 
 est une fonction différentiable et
 $$
@@ -414,14 +414,44 @@ dA(y) \cdot h = \int_a^b \partial_y L(t, y(t), \dot{y}(t)) \cdot h(t) +
 \partial_{\dot{y}} L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t) \, dt.
 $$
 
-### Points critiques de l'action {.théorème}
-Si la fonction $\nabla_{\dot{y}} L$ est continûment différentiable,
-la différentielle de l'action est nulle en $y \in C^1([a, b], \R^n)$
-si et seulement si la fonction $y$ satisfait pour tout $t \in [a, b]$
-l'équation d'*Euler-Lagrange*:
+### Points critiques de l'action {.théorème #theo-EL}
+Supposons la fonction $\nabla_{\dot{y}} L$ continûment différentiable ;
+soit $\alpha, \beta \in \R^n$. 
+La différentielle de l'action 
 $$
-\frac{d}{dt} \left(\nabla_{\dot{y}} L(t, y(t), \dot{y}(t)) \right) - \nabla_y L(t, y(t), \dot{y}(t)) = 0.
+y \mapsto \int_a^b L(t, y(t), \dot{y}(t)) \, dt \in \R,
 $$
+restreinte au trajectoire $y \in C^1([a, b], \R^n)$ telles que 
+$y(a) = \alpha$ et $y(b) = \beta$
+est nulle en $y$ si et seulement si pour tout $t \in [a, b]$
+l'*équation d'Euler-Lagrange*
+[$$
+\frac{d}{dt} \left(\nabla_{\dot{y}} L(t, y(t), \dot{y}(t)) \right) - \nabla_y L(t, y(t), \dot{y}(t)) = 0
+$$]{#EL}
+est satisfaite.
+
+### Démonstration {.proof}
+Notons $\phi(t) = (t, y(t), \dot{y}(t))$ ; [la différentielle de l'action](#da)
+peut être exprimée en fonction des gradients (partiels) de $L$ comme
+$$
+dA(y) \cdot h = \int_a^b \left<\nabla_y L(\phi(t)), h(t)\right> +
+\left<\nabla_{\dot{y}} L(\phi(t)), \dot{h}(t) \right> \, dt.
+$$
+Sous l'hypothèse de régularité du théorème, 
+si $h \in C^1([a, b], \R)$ est telle que $h(a) = h(b) = 0$,
+une intégration par parties fournit
+$$
+\begin{split}
+dA(y) \cdot h &= \int_a^b \left<\nabla_y L(\phi(t)), h(t)\right> 
+- \left<\frac{d}{dt}\nabla_{\dot{y}} L(\phi(t)), h(t) \right> \, dt \\
+&= - \int_a^b \left<\frac{d}{dt}\nabla_{\dot{y}} L(\phi(t)) - \nabla_y L(\phi(t)), h(t) \right> \, dt.
+\end{split}.
+$$
+Compte tenu de la continuité en $t$ de  $\frac{d}{dt}\nabla_{\dot{y}} L(\phi(t)) - \nabla_y L(\phi(t))$
+et du caractère arbitraire de $h$, $dA(y) \cdot h =0$ implique que pour tout $t$,
+[l'équation d'Euler-Lagrange](#EL) est satisfaite.
+
+
 
 TODO -- Exercices
 ================================================================================
