@@ -416,19 +416,17 @@ $$
 
 ### Points critiques de l'action {.théorème #theo-EL}
 Supposons la fonction $\nabla_{\dot{y}} L$ continûment différentiable ;
-soit $\alpha, \beta \in \R^n$. 
-La différentielle de l'action 
+soit $\alpha, \beta \in \R^n$. Si la trajectoire $y$ minimise 
+(localement) l'action 
 $$
-y \mapsto \int_a^b L(t, y(t), \dot{y}(t)) \, dt \in \R,
+A(z) = \int_a^b L(t, z(t),\dot{z}(t)) \, dt
 $$
-restreinte au trajectoire $y \in C^1([a, b], \R^n)$ telles que 
-$y(a) = \alpha$ et $y(b) = \beta$
-est nulle en $y$ si et seulement si pour tout $t \in [a, b]$
-l'*équation d'Euler-Lagrange*
+parmi les fonctions $z \in C^1([a, b], \R^n)$ telles que 
+$z(a) = \alpha$ et $z(b) = \beta$, alors elle satisfait
+pour tout $t \in [a, b]$ l'*équation d'Euler-Lagrange*
 [$$
-\frac{d}{dt} \left(\nabla_{\dot{y}} L(t, y(t), \dot{y}(t)) \right) - \nabla_y L(t, y(t), \dot{y}(t)) = 0
+\frac{d}{dt} \left(\nabla_{\dot{y}} L(t, y(t), \dot{y}(t)) \right) - \nabla_y L(t, y(t), \dot{y}(t)) = 0.
 $$]{#EL}
-est satisfaite.
 
 ### Démonstration {.proof}
 Notons $\phi(t) = (t, y(t), \dot{y}(t))$ ; [la différentielle de l'action](#da)
