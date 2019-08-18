@@ -268,28 +268,66 @@ Développement de Taylor, Taylor avec reste intégral, etc.
 TODO -- Calcul des variations
 ================================================================================
 
-### TODO Différentiation d'une composition {.lemma}
-Montrer conditions sous lesquelles on a (dans des espaces de fcts continues):
+### Différentiation d'une composition {.lemma}
+Soit $K \subset \R^n$ un ensemble compact et $U \subset \R^m$ un ensemble
+ouvert. Notons $C^1(K,U)$ l'ensemble
 $$
-d (f \mapsto g \circ f) 
+C^1(K,U) = \{f \in C^1(K, \R^m) \, | \, f(K) \subset U\}.
+$$
+Si la fonction $g: U \subset \R^m \to \R^p$ est continûment différentiable,
+alors l'application
+$$
+f \in C^1(K,U) \mapsto g \circ f \in C^0(K,\R^p)
+$$
+est différentiable et
+$$
+d (f \mapsto g \circ f)(f) \cdot h
 =
-h \mapsto (x \mapsto dg(f(x)) \cdot h(x))
+(x \mapsto dg(f(x)) \cdot h(x))
 $$
 
 ### TODO -- Démonstration {.proof}
-Insister sur le caractère nécessaire du résultat (via composition
-du résultat avec $f \to f(x)$, soit "raisonner à $x$ fixé").
+**TODO.** Insister sur le caractère nécessaire du résultat (via composition
+du résultat avec $f \to f(x)$, soit "raisonner à $x$ fixé") (en exo ? Rk ?).
 
-Puis utiliser théorème des accroissements finis: on considère à $x$ fixé
+**TODO.** Nota $g \circ f \in C^1$, mais $f \mapsto g \circ f$ 
+pas différentiable si l'on considère cet espace d'arrivée.
+
+**TODO.** $C^1(K, U)$ ouvert.
+
+**TODO.** $(x \mapsto dg(f(x)) \cdot h(x))$ bien lin cont / à $h \in C^1$
+à valeurs dans les fcts continues. Ouch ...
+
+
+Soit $x \in K$ et $r>0$ (à déterminer) tel que $d(f(K), \R^m \setminus U) > r$.
+La fonction
 $$
-h \in \R^n \mapsto g (f(x)+ h) - g(f(x)) - dg(f(x)) \cdot h
+h \in B(0, r) \subset \R^n \mapsto g (f(x)+ h) - g(f(x)) - dg(f(x)) \cdot h
 $$
-dont la différentielle vaut $dg(f(x)+h) - dg(f(x))$, aussi petit que
-l'on veut quand $\|h\|$ est petit, et ce uniformément par rapport 
-à $x$, ce qui donne en substituant $h(x)$ à $h$ 
-(où $h$ est désormais une fonction bornée)
+est alors bien définie, de différentielle $dg(f(x)+h) - dg(f(x))$.
+Cette expression est une fonction continue
+de $x \in K$ et de $h \in \overline{B(0, r)}$ ; elle est donc 
+uniformément continue. Pour tout $\varepsilon > 0$, si $r$ est suffisamment
+petit, $x \in K$ et $h \in B(0, r)$, 
 $$
-g (f(x)+ h(x)) = g(f(x)) + dg(f(x)) \cdot h(x) + o(\|h\|_{\infty}) 
+\|dg(f(x)+h) - dg(f(x))\| \leq \varepsilon.
+$$
+Par le théorème des accroissements finis, comme 
+$$
+g (f(x)+ 0) - g(f(x)) - dg(f(x)) \cdot 0 = 0
+$$
+on a donc
+$$
+\|g (f(x)+ h) - g(f(x)) - dg(f(x)) \cdot h\| \leq \varepsilon \|h\|.
+$$
+ce qui donne en substituant $h(x)$ à $h$ 
+(où $h:K \to \R^m$ est désormais une fonction continue telle que
+$\|h\|_{\infty} < r$)
+$$
+\begin{split}
+\|g\circ (f+h) - g \circ f + (x \mapsto dg(f(x)) \cdot h(x)) \|_{\infty} &= \\
+\|x \mapsto g (f(x)+ h(x)) - g(f(x)) + dg(f(x)) \cdot h(x) \|_{\infty} &\leq \varepsilon \|h\|_{\infty}
+\end{split}
 $$
 où le $o$ est uniforme par rapport à $x$; et c'est tout.
 
