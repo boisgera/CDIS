@@ -268,7 +268,7 @@ Développement de Taylor, Taylor avec reste intégral, etc.
 TODO -- Calcul des variations
 ================================================================================
 
-### Différentiation d'une composition {.lemma}
+### Différentiation d'une composition {.lemma #duc}
 Soit $K \subset \R^n$ un ensemble compact et $U \subset \R^m$ un ensemble
 ouvert. Notons $C^1(K,U)$ l'ensemble
 $$
@@ -285,6 +285,10 @@ d (f \mapsto g \circ f)(f) \cdot h
 =
 (x \mapsto dg(f(x)) \cdot h(x))
 $$
+
+**TODO.** A titre d'exemple, peut être intéressant de différencier 
+$g \circ f$ par rapport à $g$ ; c'est plus simple mais ça donne une
+idée du type de travail à faire.
 
 ### TODO -- Démonstration {.proof}
 
@@ -330,14 +334,19 @@ $$
 \|x \mapsto g (f(x)+ h(x)) - g(f(x)) + dg(f(x)) \cdot h(x) \|_{\infty} &\leq \varepsilon \|h\|_{\infty}
 \end{split}
 $$
-où le $o$ est uniforme par rapport à $x$; et c'est tout.
+ce qui prouve la différentiabilité de $f \mapsto g \circ f$ et la valeur de 
+sa différentielle.
 
 ### Lagrangien {.definition}
-Fonction
+On appelle *lagrangien* toute fonction continûment différentiable
 $$
-L: (x, y, y') \in U \subset \R \times \R^n \mapsto L(x, y, y') \in \R^n,
+L: (t, y, \dot{y}) \in \R \times \R^n \times \R^n \to \R
 $$
-$U$ ouvert, $L$ supposée continûment différentiable.
+et *action* associée toute intégrale de la forme
+$$
+A(y) = \int_a^b L(t, y(t), \dot{y}(t)) \, dt
+$$
+où $a \leq b \in \R$ et $y \in C^1([a, b],\R^n)$.
 
 ### TODO
 (Nota: $C^1$ est "de confort", on pourrait y arriver avec $L$ cont et 
@@ -346,15 +355,13 @@ Plus tard, nécessaire de renforcer régularité pour faire IPP et obtenir
 équation d'Euler-Lagrange (suffit de supposer que $\partial_{y'}L$ est
 diff / $x$ et que le résultat est cont).
 
-### Différentielle d'une fonctionelle
+### Différentielle de l'action
+L'action $A: y \in C^1([a, b], \R^n) \to  \R$ 
+est une fonction différentiable et
 $$
-J(y) = \int_a^b L(x, y(x), y'(x) \, dx
-$$
-
-$$
-dJ(y) \cdot h = \int_a^b \partial_{y}L(x, y(x), y'(x)) \cdot h(x)+
-\partial_{y'} L(x, y(x), y'(x)) \cdot h'(x)
-\, dx
+dA(y) \cdot h = \int_a^b \partial_{y} L(t, y(t), \dot{y}(t)) \cdot h(t)+
+\partial_{\dot{y}}  L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t)
+\, dt
 $$
 
 TODO -- Exercices
