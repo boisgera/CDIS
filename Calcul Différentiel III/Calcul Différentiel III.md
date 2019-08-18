@@ -268,16 +268,21 @@ Développement de Taylor, Taylor avec reste intégral, etc.
 TODO -- Calcul des variations
 ================================================================================
 
-### Différentiation d'une composition {.lemma #duc}
-Soit $K \subset \R^n$ un ensemble compact et $U \subset \R^m$ un ensemble
-ouvert. Notons $C^1(K,U)$ l'ensemble
+<!--
+ Notons $C^1(K,U)$ l'ensemble
 $$
 C^1(K,U) = \{f \in C^1(K, \R^m) \, | \, f(K) \subset U\}.
 $$
+-->
+
+### Différentiation d'une composition {.lemma #duc}
+Soit $K \subset \R^n$ un ensemble compact et $U \subset \R^m$ un ensemble
+ouvert. Soit
+$C^0(K,U) = \{f \in C^0(K, \R^m) \, | \, f(K) \subset U\}.$
 Si la fonction $g: U \subset \R^m \to \R^p$ est continûment différentiable,
 alors l'application
 $$
-f \in C^1(K,U) \mapsto g \circ f \in C^0(K,\R^p)
+f \in C^0(K,U) \mapsto g \circ f \in C^0(K,\R^p)
 $$
 est différentiable et
 $$
@@ -287,8 +292,14 @@ d (f \mapsto g \circ f)(f) \cdot h
 $$
 
 **TODO.** A titre d'exemple, peut être intéressant de différencier 
-$g \circ f$ par rapport à $g$ ; c'est plus simple mais ça donne une
-idée du type de travail à faire.
+$g \circ f$ par rapport à $g$ ; c'est plus simple (euh ... non ?
+La il faut travailler dans les espaces $C^1$ ; bon ok c'est quand
+même plus simple)
+mais ça donne une idée du type de travail à faire. En exo ?
+
+**TODO.** Prendre $U = \R^m$ ? Au moins dans la présentation ?
+(Suffit pour la suite à moins qu'on soit amené à prendre des lagrangiens
+qui ne soient pas globalement définis.)
 
 ### TODO -- Démonstration {.proof}
 
