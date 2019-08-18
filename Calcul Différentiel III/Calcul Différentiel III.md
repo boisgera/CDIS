@@ -63,6 +63,34 @@ ou typiquement, définition de la trace sur un bord régulier ...
 TODO -- Espaces de Hilbert/Banach
 ================================================================================
 
+### Espace de Hilbert {.definition}
+On appelle *espace de Hilbert* tout espace vectoriel muni d'un produit scalaire
+qui soit complet.
+
+### Espace de Banach {.definition}
+On appelle *espace de Banach* tout espace vectoriel normé qui soit complet.
+
+### Fonctions de class $C^k$ {.definition}
+Soit $K$ un ensemble compact de $\R^n$ d'intérieur $V$, supposé *régulier*,
+c'est-à-dire tel que $\overline{V} = K$.
+On note $C^k(K, \R^m)$ l'espace des fonctions $f$ définies sur $K$, 
+dont la restriction à $V$ est $k$-fois continûment différentiable et
+dont les dérivées partielles $\partial^{\alpha} f$, $|\alpha| \leq k$ 
+sont prolongeables en une fonction continue sur $K$ (toujours notée
+$\partial^{\alpha} f$). Cet espace vectoriel est muni de la norme
+$$
+\|f\|^k_{\infty} = \sum_{|\alpha| \leq k} \|\partial^{\alpha} f\|_{\infty}
+= \sum_{|\alpha| \leq k} \max_{x \in K} \|\partial^{\alpha} f(x)\|_{\R^m}.
+$$
+
+### L'espace $C^k$ est complet {.proposition}
+
+### TODO -- Démonstration {.proof}
+
+
+TODO -- Autres
+--------------------------------------------------------------------------------
+
 $L^1$, $L^2$, $L^{\infty}$ ($L^p$ ?)
 Dans le cadre général ? (ens de départ ?)
 
@@ -73,8 +101,6 @@ Sobolev (sur $\R^n$) ? Sur $\Omega$ par densité ? (ouch)
 
 Espaces d'opérateurs: $E \stackrel{\ell}{\to } F$.
 
-Opérateurs bornés, cas particulier des "inclusions"
-(fonction identité, différente norme au départ et à l'arrivée)
 
 Exemple d'opérateurs bornés (ici et en exercice): les identités
 ($C^0 \to L^1$, $L^2 \to L^1$), l'intégrale ($L^1 \to \R^n$)
@@ -87,8 +113,15 @@ fcts lisses à support compact ...)
 Exemple techniques densité pour définir un truc ? et/ou étendre une
 relation (exemple: IPP pour fcts avec dérivées faibles ? Fourier ?)
 
+TODO -- Opérateurs Bornés
+================================================================================
+
 Opérateurs définis sur un domaine $D(A)$ dense 
 (certains bornés, d'autres non). Applis méca Q ?
+
+Opérateurs bornés, cas particulier des "inclusions"
+(fonction identité, différente norme au départ et à l'arrivée)
+
 
 Différentielle
 ================================================================================
