@@ -83,9 +83,44 @@ $$
 = \sum_{|\alpha| \leq k} \max_{x \in K} \|\partial^{\alpha} f(x)\|_{\R^m}.
 $$
 
+### TODO
+Alternative avec fct définies uniquement sur l'intérieur + continuité uniforme ?
+Bof (ou alors en exo, bon test pour la continuté uniforme). 
+Mais on peut constater après coup que les objets dont on dispose sont 
+uniformément continus (on a a besoin pour le calcul des variations).
+
 ### L'espace $C^k$ est complet {.proposition}
+Soit $K$ un ensemble compact régulier de $\R^n$ ;
+l'espace $C^k(K, \R^m)$ est complet.
 
 ### TODO -- Démonstration {.proof}
+
+### Continuité uniforme {.definition}
+Une fonction $f: X \to Y$, où $X$ et $Y$ sont des espaces métriques est 
+*uniformément continue* si pour tout $\varepsilon > 0$, il existe un $r >0$
+tel que, pour tous $x, y \in X$, si
+$d(x, y) \leq r$, alors $d(f(x), f(y)) \leq \varepsilon.$
+
+### {.ante}
+De toute évidence, la continuité uniforme implique la continuité ; 
+dans le cas de fonctions définies sur un ensemble compact, la réciproque
+est valable:
+
+### Continuité uniforme et compacité
+Soient $X$ et $Y$ deux espaces métriques et $K \subset X$ un ensemble compact;
+toute fonction $f: K \subset X \to Y$ qui est continue est uniformément continue.
+
+### Démonstration 
+Supposons au contraire qu'il existe un $\varepsilon>0$ 
+tel que pour tout $k \in \N$ il existe $x_k$ et $y_k$ dans $K$ 
+tels que $d(x_k, y_k) \leq 2^{-k}$, mais $d(f(x_k), f(y_k)) > \varepsilon$. 
+Par compacité de $K$, la suite $x_k$ admet une suite extraite qui converge
+vers un $\ell \in K$ ; la suite correspondante extraite de $y_k$ converge
+également vers $\ell$. 
+Comme $d(f(x_k), f(y_k)) \leq d(f(x_k), f(\ell)) + d(f(y_k), f(\ell))$,
+la continuité de $f$ en $\ell$ impose qu'il existe un $k$ tel que
+$d(f(x_k), f(y_k)) \leq \varepsilon$, ce qui contredit l'hypothèse initiale.
+
 
 
 TODO -- Autres
