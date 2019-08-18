@@ -414,6 +414,15 @@ dA(y) \cdot h = \int_a^b \partial_y L(t, y(t), \dot{y}(t)) \cdot h(t) +
 \partial_{\dot{y}} L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t) \, dt.
 $$
 
+### Points critiques de l'action {.théorème}
+Si la fonction $\nabla_{\dot{y}} L$ est continûment différentiable,
+la différentielle de l'action est nulle en $y \in C^1([a, b], \R^n)$
+si et seulement si la fonction $y$ satisfait pour tout $t \in [a, b]$
+l'équation d'*Euler-Lagrange*:
+$$
+\frac{d}{dt} \left(\nabla_{\dot{y}} L(t, y(t), \dot{y}(t)) \right) - \nabla_y L(t, y(t), \dot{y}(t)) = 0.
+$$
+
 TODO -- Exercices
 ================================================================================
 
