@@ -27,7 +27,7 @@ Cadre de l'étude
 Soit $n\in \N^*$. 
 
 ### Equation différentielle de degré $p$  {.definition}
-Soient $p\in\N^*$, $U$ ouvert de $\R\times (\R^n)^p$ et $f:\R\times (\R^n)^p \to \R^n$ une application continue sur $U$. Une application $x:I\to \R^n$ de classe $C^p$ sur un intervalle $I$ de $\R$ est dite *solution* de *l'équation différentielle d'ordre $p$*
+Soient $p\in\N^*$, $U$ ouvert de $\R\times (\R^n)^p$ et $f:U \to \R^n$ une application continue sur $U$. Une application $x:I\to \R^n$ de classe $C^p$ sur un intervalle $I$ de $\R$ est dite *solution* de *l'équation différentielle d'ordre $p$*
 $$
 x^{(p)} = f(t,x,\dot{x},\ldots, x^{(p-1)})
 $$
@@ -37,7 +37,7 @@ si pour tout $t\in I$,
 
 - $x^{(p)}(t) = f(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t))$.
 
-On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$, i.e., $f: (\R^n)^p \to \R^n$.
+On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$. Dans ce cas, on pourrait définir $U$ directement comme un ouvert de $(\R^n)^p$ et $f: U\subset(\R^n)^p \to \R^n$.
 
 
 ### Exemples {.exemple}
@@ -132,17 +132,17 @@ Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to
 $$
 \cC:=\left[t_0-\tau,t_0+\tau \right]\times \overline{B}_{r}(x_0)\subset U \ .
 $$
-Pour tout $\tau_m\in \left[0,\tau \right]$ tel que $\tau_m  \max_{\cC} |f| \leq r$,
+Pour tout $\tau_m\in \left[0,\tau \right]$ tel que $\tau_m  \max_{\cC} \|f\| \leq r$,
 <!--- $$
 f_m := \max_{\cC} f \quad , \quad \tau_m := \min\left\{\tau,\frac{r}{f_m} \right\}
 $$--->
 il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+\tau_m]$. 
 
-*Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC |f|$ existe bien.  Rappelons nous que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$ (ref?) est un espace de Banach pour la norme uniforme $|\cdot|_\infty$, et définissons  
+*Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$ (ref?) est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
 $$
 F = \{x\in E \: : \: x(\left[t_0-\tau_m,t_0+\tau_m \right])\subseteq \overline{B}_{r}(x_0) \} \ .
 $$
-On peut montrer que[^Fferme] $F$ est un sous-ensemble fermé de $E$. $F$ est donc complet (ref?)  (toujours pour la norme uniforme $|\cdot|_\infty$). 
+On peut montrer que[^Fferme] $F$ est un sous-ensemble fermé de $E$. $F$ est donc complet (ref?)  (toujours pour la norme uniforme $\|\cdot\|_\infty$). 
 Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset U$ pour tout $s\in \left[t_0-\tau_m,t_0+\tau_m \right]$ ; on peut donc définir l'opérateur $\Gamma : F\to E$ par
 $$
 \Gamma(x)(t) = x_0+\int_{t_0}^t f(s,x(s))ds \qquad \forall t\in \left[ t_0-\tau_m,t_0+\tau_m \right] \ .
@@ -155,23 +155,23 @@ c'est-à-dire $x$ est un point fixe de $\Gamma$. Par ailleurs, on peut prouver[^
 
 D'abord, pour tout $x\in F$, pour tout $t\in \left[t_0-\tau_m,t_0+\tau_m \right]$,
 $$
-|\Gamma(x)(t)-x_0| \leq \left|\int_{t_0}^t |f(s,x(s))| ds \right| \leq \tau_m \max_{\cC} |f| \leq r
+\|\Gamma(x)(t)-x_0\| \leq \left|\int_{t_0}^t \|f(s,x(s))\| ds \right| \leq \tau_m \max_{\cC} \|f\| \leq r
 $$
 de sorte que $\Gamma(x)\in F$, i.e. $\Gamma:F\to F$. Ensuite, pour tout $(x_a,x_b)\in  F\times F$, pour tout $t\in \left[t_0-\tau_m,t_0+\tau_m \right]$,
 $$
-|\Gamma(x_a)(t)-\Gamma(x_b)(t)|\leq \left|\int_{t_0}^t |f(s,x_a(s))-f(s,x_b(s))| ds \right| \ .
+\|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq \left|\int_{t_0}^t \|f(s,x_a(s))-f(s,x_b(s))\| ds \right| \ .
 $$
-Soit $k=\max_\cC \left|\frac{\partial f}{\partial x} \right|$ (bien défini car $\cC$ est compact et $\frac{\partial f}{\partial x}$ est continue par hypothèse). Alors l'application du théorème des accroissement finis (REF) nous donne
+Soit $k=\max_\cC \left\|\frac{\partial f}{\partial x} \right\|$ (bien défini car $\cC$ est compact et $\frac{\partial f}{\partial x}$ est continue par hypothèse). Alors l'application du théorème des accroissement finis (REF) nous donne
 $$
-|\Gamma(x_a)(t)-\Gamma(x_b)(t)|\leq  \left|\int_{t_0}^t k|x_a(s)-x_b(s)| ds \right| \leq |t-t_0| k |x_a-x_b|_{\infty} 
+\|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq  \left|\int_{t_0}^t k\|x_a(s)-x_b(s)\| ds \right| \leq |t-t_0| k \|x_a-x_b\|_{\infty} 
 $$
-et donc $|\Gamma(x_a)-\Gamma(x_b)|_\infty \leq \tau_m k |x_a-x_b|_{\infty}$.
+et donc $\|\Gamma(x_a)-\Gamma(x_b)\|_\infty \leq \tau_m k \|x_a-x_b\|_{\infty}$.
 A ce stade, sauf si $\tau_m k<1$, $\Gamma$ n'est pas contractante. Cependant, on peut montrer par récurrence que pour tout $p\in \N$, et pour tout $t\in \left[t_0-\tau_m,t_0+\tau_m \right]$,
 $$
-|\Gamma^p(x_a)(t)-\Gamma^p(x_b)(t)|_\infty \leq \frac{(|t-t_0| k)^p}{p!} |x_a-x_b|_{\infty}
+\|\Gamma^p(x_a)(t)-\Gamma^p(x_b)(t)\|_\infty \leq \frac{(|t-t_0| k)^p}{p!} \|x_a-x_b\|_{\infty}
 $$
 en notant $\Gamma^p = \underbrace{\Gamma \circ \Gamma \circ \ldots \circ \Gamma}_{p \text{ fois }}$.
-Donc pour tout $p\in \N$, $|\Gamma^p(x_a)-\Gamma^p(x_b)|_\infty \leq \frac{(\tau_m k)^p}{p!} ||x_a-x_b|_{\infty}$. Il existe donc $m$ tel que $\Gamma^{m}$ est contractante. D'après le théorème de point fixe de Banach (REF), $\Gamma$ admet un unique point fixe $x^*$ dans $F$. 
+Donc pour tout $p\in \N$, $\|\Gamma^p(x_a)-\Gamma^p(x_b)\|_\infty \leq \frac{(\tau_m k)^p}{p!} \|x_a-x_b\|_{\infty}$. Il existe donc $m$ tel que $\Gamma^{m}$ est contractante. D'après le théorème de point fixe de Banach (REF), $\Gamma$ admet un unique point fixe $x^*$ dans $F$. 
 $\hfill\blacksquare$
 
 
@@ -181,9 +181,9 @@ $\hfill\blacksquare$
 ### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
 La première preuve d'existence et unicité locale de solutions sous l'hypothèse que $f$ est de classe $C^1$ par rapport à $x$ est dûe à Augustin Louis Cauchy (1820) et repose sur l'utilisation du théorème d'accroissements finis[^accfinis_Cauchy]. Mais on remarque dans notre preuve qu'il suffirait qu'il existe $k>0$ tel que
 $$
-|f(t,x_a)-f(t,x_b)|\leq k |x_a-x_b| \qquad \forall t\in \left[t_0-\tau_m,t_0+\tau_m \right], \forall (x_a,x_b)\in \overline{B}_r(x_0) \ ,
+\|f(t,x_a)-f(t,x_b)\|\leq k \|x_a-x_b\| \qquad \forall t\in \left[t_0-\tau_m,t_0+\tau_m \right], \forall (x_a,x_b)\in \overline{B}_r(x_0) \ ,
 $$
-c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendante: d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement que $x\mapsto f(t,x)$ soit lipschitzienne au voisinage de $(t_0,x_0)$, au lieu de différentiable. Par exemple, $x\mapsto |x|$ est lipschitzienne (mais pas $C^1$) et $\dot{x}=|x|$ admet donc une unique solution maximale quel que soit la condition initiale.
+c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendante: d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement que $x\mapsto f(t,x)$ soit lipschitzienne au voisinage de $(t_0,x_0)$, au lieu de différentiable. Par exemple, $x\mapsto \|x\|$ est lipschitzienne (mais pas $C^1$) et $\dot{x}=\|x\|$ admet donc une unique solution maximale quel que soit la condition initiale.
 
 ### Approximations successives {.remarque #rem_approx_succ}
 Mise à part quelques formes particulières de $f$, il est très rare de savoir résoudre explicitement une équation différentielle. Cependant, la preuve (dans sa forme moderne donnée plus haut) caractérise la solution comme le point fixe de l'opérateur $\Gamma$. Or, on sait (REF) que ce point fixe est la limite uniforme de la suite des itérées de $\Gamma$. En pratique, on peut donc s'approcher arbitrairement proche  de la solution   sur l'intervalle $\left[t_0-\tau_m,t_0+\tau_m \right]$ (au sens de la norme uniforme), en calculant la suite $x_{p+1} = \Gamma(x_p)$ définie par
@@ -236,7 +236,7 @@ $$
 ### Critère d'existence globale {.theorem #theo_exist_glob}
 Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$. S'il existe $a,b:I\to \R$ telles que  
 $$
-|f(t,x)|\leq a(t) |x| + b(t) \quad \forall (t,x)\in I\times \R^n \ ,
+\|f(t,x)\|\leq a(t) \|x\| + b(t) \quad \forall (t,x)\in I\times \R^n \ ,
 $$
 alors la solution maximale au problème de Cauchy associé est défini sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
 
@@ -304,7 +304,7 @@ $$
 $$
 Pour $\delta_p=0=\delta_c$, la solution est $x(t)=ce^{pt}$, et sinon $x_\delta(t)= (c+\delta_c)e^{(p+\delta_p)t}$. On a donc
 $$
-|x(t)-x_\delta(t)| = |c- (c+\delta_c)e^{\delta_p t}| e^{pt}
+\|x(t)-x_\delta(t)\| = \|c- (c+\delta_c)e^{\delta_p t}\| e^{pt}
 $$
 A FINIR
 
