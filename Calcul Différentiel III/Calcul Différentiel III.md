@@ -287,6 +287,7 @@ d (f \mapsto g \circ f)(f) \cdot h
 $$
 
 ### TODO -- Démonstration {.proof}
+
 **TODO.** Insister sur le caractère nécessaire du résultat (via composition
 du résultat avec $f \to f(x)$, soit "raisonner à $x$ fixé") (en exo ? Rk ?).
 
