@@ -430,11 +430,17 @@ pour tout $t \in [a, b]$ l'*équation d'Euler-Lagrange*
 \frac{d}{dt} \left(\nabla_{\dot{y}} L(t, y(t), \dot{y}(t)) \right) - \nabla_y L(t, y(t), \dot{y}(t)) = 0.
 $$]{#EL}
 
-### TODO
-
-réécrire démo, adapter aux changements d'énoncé
-
 ### Démonstration {.proof}
+Soit $y$ une fonction minimisant l'action localement, sur une boule ouverte 
+de rayon $r$ (dans l'espace des fonctions $z$ de $C^1([a, b], \R^n)$ telles
+que $z(a) =\alpha$ et $z(b)=\beta$). 
+Soit $h \in C^1([a, b], \R^n)$ telle que $h(a) = h(b) = 0$
+et $\|h\|_{\infty}^1 < r$. Par hypothèse, la fonction
+$$
+h  \mapsto A(y+h)
+$$
+admet un minimum en $h=0$, ce qui nécessite que $d A(y) \cdot h$ pour 
+tout $h \in C^1([a, b], \R^n)$ tel que $h(a) = h(b) = 0$.
 Notons $\phi(t) = (t, y(t), \dot{y}(t))$ ; [la différentielle de l'action](#da)
 peut être exprimée en fonction des gradients (partiels) de $L$ comme
 $$
