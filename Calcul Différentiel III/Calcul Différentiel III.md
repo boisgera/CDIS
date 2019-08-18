@@ -180,6 +180,8 @@ Reprendre les règles de calcul de la dimension finie
 
 ### TODO -- Règle de différentiation en chaîne {#rdc}
 
+### TODO -- Pt critique et minimum {#rdc}
+
 ### Théorème des Fonctions Implicites {.theorem #TFI-2}
 Soient $E$, $F$ et $G$ trois espaces vectoriels normés, $F$ étant complet, 
 et $f$ une fonction définie sur un ouvert $W$ de $E \times F$
@@ -427,6 +429,10 @@ pour tout $t \in [a, b]$ l'*équation d'Euler-Lagrange*
 [$$
 \frac{d}{dt} \left(\nabla_{\dot{y}} L(t, y(t), \dot{y}(t)) \right) - \nabla_y L(t, y(t), \dot{y}(t)) = 0.
 $$]{#EL}
+
+### TODO
+
+réécrire démo, adapter aux changements d'énoncé
 
 ### Démonstration {.proof}
 Notons $\phi(t) = (t, y(t), \dot{y}(t))$ ; [la différentielle de l'action](#da)
