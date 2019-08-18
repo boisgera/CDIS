@@ -178,6 +178,8 @@ $$
 
 Reprendre les règles de calcul de la dimension finie
 
+### TODO -- Règle de différentiation en chaîne {#rdc}
+
 ### Théorème des Fonctions Implicites {.theorem #TFI-2}
 Soient $E$, $F$ et $G$ trois espaces vectoriels normés, $F$ étant complet, 
 et $f$ une fonction définie sur un ouvert $W$ de $E \times F$
@@ -373,6 +375,43 @@ $$
 dA(y) \cdot h = \int_a^b \partial_{y} L(t, y(t), \dot{y}(t)) \cdot h(t)+
 \partial_{\dot{y}}  L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t)
 \, dt
+$$
+
+### Démonstration {.proof}
+L'application
+$$
+y \in C^1([a, b], \R^n) \mapsto (t\mapsto t, y, \dot{y}) \in C^0([a, b], \R^{2n+1})
+$$
+est différentiable (car affine et continue), de différentielle
+$$
+h \in C^1([a, b], \R^n) \mapsto (0, h, \dot{h}) \in C^0([a, b], \R^{2n+1}).
+$$
+Le langrangien $L$ étant continûment différentiable, 
+par [différentiation d'une composition](#duc), l'application
+$$
+\phi \in C^0([a, b], \R^{2n+1}) \mapsto L \circ \phi \in C^0([a, b], \R) 
+$$
+est différentiable, de différentielle
+$$
+\psi \in C^0([a, b], \R^{2n+1}) \mapsto (t \mapsto dL(\phi(t)) \cdot \psi(t)) \in C^0([a, b], \R).
+$$
+Par [la règle de différentiation en chaîne]{#rdc}, l'application
+$y \in C^1([a, b], \R^n) \mapsto L \circ (t\mapsto t, y, \dot{y}) \in C^0([a, b], \R)$
+est donc différentiable, de différentielle
+$$
+\partial_t L(t, y(t), \dot{y}(t)) \cdot 0 + 
+\partial_y L(t, y(t), \dot{y}(t)) \cdot h(t) +
+\partial_{\dot{y}} L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t).
+$$
+L'application 
+$$
+f \in C^0([a, b], \R) \mapsto \int_a^b f(t) \, dt \in \R
+$$
+étant linéaire continue, à nouveau par application de 
+[la règle de différentiation en chaîne]{#rdc}, l'action est différentiable, de différentielle
+$$
+dA(y) \cdot h = \int_a^b \partial_y L(t, y(t), \dot{y}(t)) \cdot h(t) +
+\partial_{\dot{y}} L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t) \, dt.
 $$
 
 TODO -- Exercices
