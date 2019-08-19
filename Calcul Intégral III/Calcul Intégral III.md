@@ -906,11 +906,6 @@ T(K) = \{x + T(x) \, | \, x \in K\}
 $$
 est un compact à bords $C^1$ de $\R^n$.
 
-Compact à Bords
---------------------------------------------------------------------------------
-
-Caractérisation par "applatissement" local en un demi-espace fermé.
-
 Ovales de Cassini {.question #oc}
 --------------------------------------------------------------------------------
 
@@ -980,7 +975,7 @@ En déduire l'impossibilité d'une telle rétraction.
 Solutions
 ================================================================================
 
-TODO -- Changement de variables linéaire
+Changement de variables linéaire
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cvl-1}
