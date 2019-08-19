@@ -1004,10 +1004,38 @@ $$
 ### TODO -- Question 2 {.answer #answer-cvl-2}
 
 
-TODO -- Déformations d'un compact à bord régulier {.answer #answer-dcbr}
+Déformations d'un compact à bord régulier {.answer #answer-dcbr}
 --------------------------------------------------------------------------------
 
-TODO -- Ovales de Cassini {.answer #answer-oc}
+Sous les hypothèses de l'énoncé, nous avons établi en exercice de 
+"Calcul Différentiel II" que la fonction $T$ est un $C^1$-difféomorphisme
+global de $\R^n$ dans l'ouvert $T(\R^n)$.
+
+L'ensemble $T(K)$ est un ensemble compact comme image d'un ensemble compact
+par une application continue. Comme $T$ est un difféomorphisme, 
+un point $y$ de $\R^n$ est intérieur à $T(K)$ si et seulement si 
+$x = T^{-1}(y)$ est intérieur à $K$. Les points de la frontière
+$\partial T(K)$ sont donc les images des points de $\partial K$ par
+$T$.
+
+Soit $y_0 \in \partial T(K)$ et $x_0 = T^{-1}(y_0) \in \partial K$. 
+Dans un voisinage $V$ de $x_0$, il existe une fonction continûment 
+différentiable $g:V \to \R$
+de différentielle non nulle en $x_0$ telle que $g(x) \leq 0$ équivaut 
+à $x \in K$. Par conséquent, $y \in T(V)$ appartient à $T(K)$
+si et seulement si $g \circ T^{-1}(y) \leq 0$.
+La fonction $g \circ T^{-1}$ est continûment différentiable et
+$$
+d (g \circ T^{-1})(y_0) = dg (T^{-1}(y_0)) \cdot dT^{-1}(y_0)
+= dg(x_0) \cdot (dT(x_0))^{-1}.
+$$
+Soit $u \in \R^n$ tel que $dg(x_0) \cdot u \neq 0$ ; si 
+$v = (dT(x_0)) \cdot u$, $d(g \circ T^{-1})(y_0) \cdot v \neq 0$.
+La différentielle de $g \circ T^{-1}$ est donc non nulle en $y_0$.
+Par la [caractérisation implicite des compacts à bord $C^1$](#cbr-implicit), 
+$T(K)$ est donc un compact à bord $C^1$ de $\R^n$.
+
+Ovales de Cassini {.answer #answer-oc}
 --------------------------------------------------------------------------------
 
 Montrons tout d'abord que l'ensemble $K$ est compact. Si les points
