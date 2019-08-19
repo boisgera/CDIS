@@ -843,8 +843,8 @@ Caractérisation par "applatissement" local en un demi-espace fermé.
 Ovales de Cassini {.question #oc}
 --------------------------------------------------------------------------------
 
-Soit $a$ et $b$ deux nombres réels positifs. On désigne par $K$ l'ensemble
-du plan délimité par les *ovales de Cassini*
+Soit $a$ et $b$ deux nombres réels strictements positifs. 
+On désigne par $K$ l'ensemble du plan délimité par les *ovales de Cassini*
 $$
 K = \{(x,y) \in \R^2 \, | \, (x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 \leq b^4\}.
 $$
@@ -945,6 +945,70 @@ $$
 
 TODO -- Ovales de Cassini {.answer #answer-oc}
 --------------------------------------------------------------------------------
+
+Montrons tout d'abord que l'ensemble $K$ est compact. Si les points
+$(x_k, y_k)$ de $\R^2$ appartiennent à $K$, ils vérifient 
+$(x_k^2+y_k^2)^2 - 2a^2 (x_k^2 - y_k^2) + a^4 \leq b^4$ ; 
+si la suite converge vers $(x, y)$, par continuité
+$(x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 \leq b^4$ et donc $(x, y) \in K$.
+L'ensemble $K$ est donc fermé. De plus pour tout $(x, y) \in K$, 
+comme
+$$
+\|(x, y)\|^4 = (x^2 + y^2)^2 \, \mbox{ et } \, x^2- y^2 \leq \|(x, y)\|^2, 
+$$
+on a
+$\|(x, y)\|^4 \leq b^4 - a^4 + 2a^2 \|(x, y)\|^2,$
+donc si 
+$$
+\frac{\|(x, y)\|^4}{2} \geq b^4 
+\, \mbox{ et } \,
+\frac{\|(x, y)\|^2}{2} \geq 2a^2,
+$$
+le point $(x, y)$ n'appartient pas à $K$ ; l'ensemble $K$ est donc borné.
+Fermé et borné dans $\R^2$, l'ensemble $K$ est donc compact.
+
+Pour montrer que l'on a affaire à un ensemble compact à bords $C^1$, nous
+souhaitons utiliser le résultat sur [la caractérisation implicite de ces
+ensembles](#cbr-implicit). La fonction $g$ de ce théorème prend bien
+sûr ici la forme
+$$
+g(x, y) := (x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 - b^4
+$$
+puisque $x \in K$ si et seulement si $g(x, y) \neq 0$. Il nous suffit donc
+de vérifier que $g$ est $C^1$, ce qui est évident, et qu'en tout point de
+la frontière de $K$, la différentielle de $g$ -- ou son gradient -- est 
+non-nulle. On se convaincra que tout point $(x, y)$ de la frontière de 
+$K$ vérifie nécessairement $g(x, y)$ en exploitant la continuité de $g$.
+Par conséquent, notre démonstration sera achevée si nous montrons qu'aucun
+point $(x, y)$ de $\R^2$ ne satisfait simultanément
+$$
+g(x, y) = 0, \, \partial_x g(x, y) = 0 \, \mbox{ et } \, \partial_y g(x, y) = 0.
+$$
+Or $\partial_x g(x, y) = 4(x^2+y^2)x - 4a^2x$ et 
+$\partial_x g(x, y) = 4(x^2+y^2)y + 4a^2 y$ ; de la nullité de ces deux dérivées
+partielles, on déduit 
+$$
+(x^2+y^2)x = a^2 x \, \mbox{ et } \, (x^2 + y^2) y = -a^2 y.
+$$
+Il nous faut désormais envisager les cas possibles selon que 
+$x$ et $y$ sont nuls ou non:
+
+  - $x \neq 0$ et $y \neq 0$ est impossible car les deux équations ci-dessus
+    entraînent alors $(x^2+y^2) = a^2 = -a^2$ or $a > 0$.
+
+  - $x = y = 0$ est impossible car $g(0, 0) = a^4 - b^4 \neq 0$, car
+    $a>0$, $b>0$ et $a\neq b$.
+
+  - $x = 0$ et $y \neq 0$ entraîne $x^2 + y^2 = y^2 = -a^2$, impossible
+    car $a>0$.
+
+  - finalement, si $x\neq 0$ et $y = 0$, $x^2 + y^2 = x^2 = a^2$, ce qui
+    réinjecté dans $g(x, 0)= 0$ fournit 
+    $a^4 -2 a^4 + a^4 - b^4 = 0,$
+    soit $b^4=0$, également impossible car $b>0$.
+
+Aucun point $(x, y)$ de $\R^2$ n'annule simulanément $g$ et son gradient ;
+l'ensemble $K$ est donc bien un compact à bord $C^1$.
 
 
 Aire du disque unité {.answer #answer-adu}
