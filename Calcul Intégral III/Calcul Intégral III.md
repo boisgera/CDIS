@@ -145,8 +145,36 @@ $$
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
 
-### TODO
+### {.post .remark}
+L'absolue intégrabilité -- et pas simplement l'intégrabilité -- de la fonction
+est une hypothèse cruciale de ce théorème de changement de variables. 
+On peut en effet exhiber une fonction $f:\R^2 \to \R$ qui soit intégrable,
+mais telle que quand $h$ désigne la rotation centrée à l'origine d'angle
+$\pi/4$, la fonction $f \circ h$ ne soit pas intégrable[^ref-ai].
+Comme dans ce cas on a $|\det J_h| = 1$ sur tout $\R^2$, cela contredit
+le résultat du théorème de changement de variables.
 
+[^ref-ai]: cf. [@Swa01, ex. 29, p. 98].
+
+### {.post .remark}
+La situation est assez similaire à celles des séries réelles. 
+On sait en effet que si la série $\sum_k a_k$ est absolue
+convergente, un réordonnancement des termes de la série n'a pas d'effet,
+ni sur la convergence de la série ni sur la valeur de la somme ;
+pour toute bijection $\sigma: \N \to \N$,
+$$
+\sum_{k=0}^{+\infty} a_{\sigma(k)} = \sum_{k=0}^{+\infty} a_{k}.
+$$
+Par contre, si $\sum_k a_k$ est conditionellement convergente 
+(c'est-à-dire convergente, mais telle que $\sum_k |a_k|$ soit divergente ; 
+par exemple, $a_k = (-1)^k / (k+1)$),
+on peut construire un réordonnancement $\sigma$ tel que
+$$
+\sum_{k=0}^{+\infty} a_{\sigma(k)} = +\infty.
+$$
+
+<!--
+### TODO
 Mention du fait qu'il est vraiment nécessaire de chercher l'absolue
 intégrabilité. Retrouver la référence qui cite qu'avec une simple
 rotation et l'intégrabilité conditionnelle ça ne marche pas.
@@ -158,10 +186,15 @@ Un exemple détaillé est donné dans
 (Jean-Yves Briend). L'exemple est compréhensible et intéressant;
 peut faire l'objet d'un exercice technique semble faisable.
 (note: aussi exercice similaire dans le Swarz)
+-->
+
+<!--
 
 Tracer un parralèle avec les séries, ou il est connu que les séries
 conditionnellement convergentes ne gardent pas cette propriété par
 réordonnancement (exemple mono-dim ou bi-dim) ?
+
+-->
 
 Théorème de la divergence
 ================================================================================
