@@ -109,6 +109,25 @@ Résultat en intervertissant $x$ et $y$, la réciproque ne marche pas
 (donc la définition d'intégrale directement dans $\mathbb{R}^n$ est
 "nécessaire", l'intégrale multiple "ne marche pas".)
 
+### {.ante .post .remark}
+On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
+a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
+déduire l'intégrabilité de l'examen des intégrales itérées. Le théorème
+de Fubini peut alors être complété par le théorème de Tonelli:
+
+### Théorème de Tonelli {.theorem}
+Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ une fonction
+mesurable. Si pour presque tout $y \in \R^m$ la fonction
+$x \in \R^n \mapsto |f(x, y)|$ est intégrable et que la fonction
+définie presque partout
+$$
+y \in \R^m \mapsto \int_{\mathbb{R}^n} |f(x, y)| \, dx
+$$
+est intégrable, alors la fonction $f$ est (absolument) intégrable.
+
+### Démonstration {.proof}
+Se reporter à @Swa01.
+
 ### Changement de variables {.theorem}
 Soient $D_1$ et $D_2$ des ouverts de $\mathbb{R}^n$ et 
 $h: D_1 \to D_2$ une fonction continûment différentiable
