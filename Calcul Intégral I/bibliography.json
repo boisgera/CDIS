@@ -1,0 +1,24 @@
+[
+	{
+		"id": "Bur07",
+		"type": "book",
+		"title": "A garden of integrals.",
+		"publisher": "Washington, DC: Mathematical Association of America (MAA)",
+		"number-of-pages": "xiv + 281",
+		"ISBN": "978-0-88385-337-5",
+		"language": "English",
+		"author": [
+			{
+				"family": "Burk",
+				"given": "Frank E."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2007"
+				]
+			]
+		}
+	}
+]
