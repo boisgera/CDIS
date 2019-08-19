@@ -851,7 +851,10 @@ $$
 
 Montrer que si $a \neq b$, l'ensemble $K$ est un compact à bord $C^1$.
 
-![Ensemble compact délimité par des ovales de Cassini.](images/cassini-ovals.py)
+![Compact à bord $C^1$ délimité par les ovales de Cassini.](images/cassini-ovals.py)
+
+
+![Ensemble délimité par les ovales de Cassini quand $a=b=1$.](images/cassini-ovals-limite.py)
 
 
 
