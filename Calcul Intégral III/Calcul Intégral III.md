@@ -840,10 +840,16 @@ Compact à Bords
 
 Caractérisation par "applatissement" local en un demi-espace fermé.
 
-Exemples de compacts à bord (déterminés implicitement)
+Ovales de Cassini {.question #oc}
 --------------------------------------------------------------------------------
 
-... par la fonction distance orientée par exemple ?
+Soit $a$ et $b$ deux nombres réels positifs. On désigne par $K$ l'ensemble
+du plan délimité par les *ovales de Cassini*
+$$
+K = \{(x,y) \in \R^2 \, | \, (x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 \leq b^4\}.
+$$
+
+Montrer que si $a \neq b$, l'ensemble $K$ est un compact à bord $C^1$.
 
 Aire du disque unité {.question #adu}
 --------------------------------------------------------------------------------
@@ -932,6 +938,9 @@ S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \
 $$
 
 ### TODO -- Question 2 {.answer #answer-cvl-2}
+
+TODO -- Ovales de Cassini {.answer #answer-oc}
+--------------------------------------------------------------------------------
 
 
 Aire du disque unité {.answer #answer-adu}
