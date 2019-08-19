@@ -879,12 +879,18 @@ $$
 \int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det A| \, dx.
 $$
 
-Déformations
+Déformations d'un compact à bord régulier {.question #dcbr}
 --------------------------------------------------------------------------------
 
-$\Omega$ dans $U$ paramétrisé par une déformation $T = I + u$ avec $u$ petit
-et une base $\Omega_0$ qui est un compact à bords $C^1$. Montrer que
-si la base est un compact à bord $C^1$, les déformés aussi.
+Soit $K$ un compact à bord $C^1$ de $\R^n$ et $T:\R^n \to \R^n$ une application
+continûment différentiable telle que $T = I + H$, où l'application
+continûment différentiable $H:\R^n \to \R^n$ satisfait $\sup_{x \in \R^n} \|dH(x)\| < 1$.
+
+Montrer que l'ensemble
+$$
+T(K) = \{x + T(x) \, | \, x \in K\}
+$$
+est un compact à bords $C^1$ de $\R^n$.
 
 Compact à Bords
 --------------------------------------------------------------------------------
@@ -996,6 +1002,10 @@ S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \
 $$
 
 ### TODO -- Question 2 {.answer #answer-cvl-2}
+
+
+TODO -- Déformations d'un compact à bord régulier {.answer #answer-dcbr}
+--------------------------------------------------------------------------------
 
 TODO -- Ovales de Cassini {.answer #answer-oc}
 --------------------------------------------------------------------------------
