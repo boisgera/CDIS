@@ -433,6 +433,7 @@ $$
 le résultat s'en déduit.
 
 
+<!--
 ### TODO
 
 Evoquer indépendance du choix dans la définition
@@ -445,6 +446,7 @@ un peu plus explicitement (sur un exemple ?) comment trouver
 un axe (orthonormé ?) qui permet de se ramener au cadre de 
 l'hypographe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
+-->
 
 ### TODO
 
