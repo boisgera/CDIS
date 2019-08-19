@@ -87,7 +87,7 @@ $$
 \int_{\mathbb{R}^n} f(t) \, dt.
 $$
 
-### Théorème de Fubini {.theorem}
+### Théorème de Fubini {.theorem #Fubini}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ 
 une fonction intégrable.
 Alors la fonction partielle $x \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
@@ -110,7 +110,7 @@ a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
 déduire l'intégrabilité de l'examen des intégrales itérées. Le théorème
 de Fubini peut alors être complété par le théorème de Tonelli:
 
-### Théorème de Tonelli {.theorem}
+### Théorème de Tonelli {.theorem #Tonelli}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ une fonction
 mesurable. Si pour presque tout $y \in \R^m$ la fonction
 $x \in \R^n \mapsto |f(x, y)|$ est intégrable et que la fonction
@@ -848,17 +848,16 @@ Exercices
 Changement de variables linéaire
 --------------------------------------------------------------------------------
 
-Soit $f:\R^n \to \R$ une fonction intégrable.
-
 ### Question 1 {.question #cvl-1}
 Soit $f:\R \to \R$ une fonction intégrable. Montrer que pour tout
-$\lambda \in \R$, $x \in \R \mapsto f(\lambda x)$ est intégrable
+réel $\lambda$ non nul, $x \in \R \mapsto f(\lambda x)$ est intégrable
 et calculer
 $$
 \int_{-\infty}^{+\infty} f(\lambda x) \, dx.
 $$
 
 ### Question 2 {.question #cvl-2}
+Soit $f:\R^n \to \R$ une fonction absolument intégrable.
 Soient $i, j \in \{1,\dots, n\}$, $i\neq j$ et $\lambda$ un réel non nul.
 Montrer que les intégrales suivantes existent et les calculer en fonction
 de l'intégrale de $f$:
@@ -969,11 +968,49 @@ Solutions
 TODO -- Changement de variables linéaire
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {.answer #answer-cvl-1}
+### Question 1 {.answer #answer-cvl-1}
+Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$ il existe
+une jauge $\gamma$ sur $\R \cup \{\pm \infty\}$ telle que pour toute 
+subdvision pointée $\mathcal{D}$ de $\R \cup \{\pm \infty\}$ subordonnée 
+à $\gamma$ on ait
+$$
+\left|S(f,\mathcal{D}) - \int_{-\infty}^{+\infty} f(x) \,dx \right| \leq \varepsilon.
+$$
+Soit $\mathcal{C}$ une subdivision pointée de $\R \cup \{\pm \infty\}$ ;
+la somme de Riemann associée à $\mathcal{C}$ et la fonction 
+$x \mapsto f(\lambda x)$ s'écrit
+$$
+S(x \mapsto f(\lambda x), \mathcal{C}) 
+= 
+\sum f(\lambda t) \ell(J), \; (t, J) \in \mathcal{C}, \, \ell(J) < +\infty.
+$$
+L'ensemble 
+$$
+\mathcal{D} = \{(\lambda t, \lambda J) \, | \, (t, J) \in \mathcal{C}\}
+$$
+est une subdivision pointée de $\R \cup \{\pm \infty\}$, surbordonné à la jauge
+$\gamma$ -- tel que $\gamma(\lambda t) \subset \lambda J$ -- 
+si et seulement si $\mathcal{C}$ est subordonné à la jauge définie par
+$\nu(t) = \gamma(\lambda t) / \lambda$. Comme $f(\lambda t) \ell(J)
+= f(\lambda t)\ell(\lambda J) / \lambda$, on a
+$$
+S(x \mapsto f(\lambda x), \mathcal{C}) 
+= 
+\frac{1}{\lambda} S(f, \mathcal{D}).
+$$
+Si $\mathcal{C}$ est subordonnée $\nu$, on a donc
+$$
+\left|S(x \mapsto f(\lambda x),\mathcal{C}) - \frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx \right| \leq \frac{\varepsilon}{\lambda}.
+$$
+La fonction $x \mapsto f(\lambda x)$ est donc intégrable, d'intégrale
+$$
+\int_{-\infty}^{+\infty} f(\lambda x) \,dx = \frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx.
+$$
+
 
 ### TODO -- Question 2 {.answer #answer-cvl-2}
 Par le changement de variable linéaire dans $\R$ de la question 1
-et le théorème de Fubini,
+et le théorèmes de [Fubini](#Fubini) et [Tonelli](#Tonelli),
 $$
 \begin{split}
 S_1 
