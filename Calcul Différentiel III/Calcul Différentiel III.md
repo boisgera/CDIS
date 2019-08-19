@@ -431,16 +431,19 @@ pour tout $t \in [a, b]$ l'*équation d'Euler-Lagrange*
 $$]{#EL}
 
 ### Démonstration {.proof}
-Soit $y$ une fonction minimisant l'action localement, sur une boule ouverte 
-de rayon $r$ (dans l'espace des fonctions $z$ de $C^1([a, b], \R^n)$ telles
-que $z(a) =\alpha$ et $z(b)=\beta$). 
-Soit $h \in C^1([a, b], \R^n)$ telle que $h(a) = h(b) = 0$
-et $\|h\|_{\infty}^1 < r$. Par hypothèse, la fonction
+Soit $y$ une fonction minimisant l'action localement, sur la boule ouverte 
+$B(y, r)$ de rayon $r>0$ (dans l'espace affine des fonctions $z$ de $C^1([a, b], \R^n)$ 
+telles que $z(a) =\alpha$ et $z(b)=\beta$). 
+La fonction
 $$
-h  \mapsto A(y+h)
+h \in B(0,r) \mapsto A(y+h) \in \R,
 $$
-admet un minimum en $h=0$, ce qui nécessite que $d A(y) \cdot h$ pour 
-tout $h \in C^1([a, b], \R^n)$ tel que $h(a) = h(b) = 0$.
+où $B(0,r)$ désigne le sous-ensemble ouvert des fonctions de l'espace
+vectoriel normé $$E = \{h \in C^1([a, b],\R) \, | \, h(a) = h(b) = 0\}$$
+telles que $\|h\|_{\infty}^1 < r$,
+admet donc un minimum en $h=0$ ;
+cela nécessite que $d A(y) \cdot h$ pour 
+tout $h \in E$.
 Notons $\phi(t) = (t, y(t), \dot{y}(t))$ ; [la différentielle de l'action](#da)
 peut être exprimée en fonction des gradients (partiels) de $L$ comme
 $$
