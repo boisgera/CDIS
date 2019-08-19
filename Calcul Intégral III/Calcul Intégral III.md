@@ -851,6 +851,10 @@ $$
 
 Montrer que si $a \neq b$, l'ensemble $K$ est un compact à bord $C^1$.
 
+![Ensemble compact délimité par des ovales de Cassini.](images/cassini-ovals.py)
+
+
+
 Aire du disque unité {.question #adu}
 --------------------------------------------------------------------------------
 Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
