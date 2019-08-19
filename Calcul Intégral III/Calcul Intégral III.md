@@ -157,6 +157,7 @@ Un exemple détaillé est donné dans
 "Petit traité d'intégration: Riemann, Lebesgue et Kurzweil-Henstock" 
 (Jean-Yves Briend). L'exemple est compréhensible et intéressant;
 peut faire l'objet d'un exercice technique semble faisable.
+(note: aussi exercice similaire dans le Swarz)
 
 Tracer un parralèle avec les séries, ou il est connu que les séries
 conditionnellement convergentes ne gardent pas cette propriété par
