@@ -217,10 +217,12 @@ pour l'intuition (et de toute façon on a besoin de cette construction
 pour la suite) puis d'énoncer rigoureusement la version
 implicite, équivalente.
 
+<!--
 ### TODO:
 Deux façon raisonnables de définir un compact à bord sont données;
 la troisème (localement demi-espace après transfo par difféo) peut trouver
 sa place en exo ?
+-->
 
 ### Compact à bord régulier {.definition #cbr}
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
