@@ -619,7 +619,7 @@ garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
 ### Chiffres significatifs
 L'erreur relative se traduit directement par combien de chiffres décimaux
 sont *significatifs* dans la meilleurs approximation d'un nombre réel par
-un double. Considéons la représentation de $[x]$ en notation scientifique:
+un double. Considérons la représentation de $[x]$ en notation scientifique:
     $$
     [x] = \pm (f_0.f_1 \dots f_{p-1} \dots) \times 10^{e}.
     $$
