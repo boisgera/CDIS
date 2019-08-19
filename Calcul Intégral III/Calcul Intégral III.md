@@ -363,7 +363,7 @@ $$
 \lim_{\substack{y \to x \\ y \in \partial K}} \left<n(x), \frac{y-x}{\|y-x\|}\right> = 0.
 $$
 Elle est *extérieure* si pour $\varepsilon>0$ assez petit, 
-$x + \varepsilon n(x) \not \in K$, *intérieure* dans le cas contraire.
+$x + \varepsilon n(x) \not \in K$.
 
 ### Normale extérieure et caractérisation implicite {.proposition #neci}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
