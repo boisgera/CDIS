@@ -104,11 +104,6 @@ $$
 ### Démonstration {.proof}
 Se reporter à @Swa01.
 
-### TODO
-Résultat en intervertissant $x$ et $y$, la réciproque ne marche pas
-(donc la définition d'intégrale directement dans $\mathbb{R}^n$ est
-"nécessaire", l'intégrale multiple "ne marche pas".)
-
 ### {.ante .post .remark}
 On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
 a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
