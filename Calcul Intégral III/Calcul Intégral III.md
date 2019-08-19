@@ -237,6 +237,7 @@ cela revient à n'autoriser que les changements de repère orthonormés directs.
 La caractérisation des compacts
 à bord $C^1$ qui en résulte est inchangée.
 
+<!--
 ### TODO
 
 Faire passer l'idée d'un ensemble borné délimité par une surface
@@ -256,7 +257,7 @@ les points tels que $y_n = f(y_1, \dots, y_{n-1})$.
 
 Evoquer "localement d'un seul coté" de la frontière ?
 
-Définir normale (extérieure). Carac intrinsèque ?
+-->
 
 ### Caractérisation implicite des compacts à bord régulier {.theorem #cbr-implicit}
 Un sous-ensemble compact $K$ de $\mathbb{R}^n$ est un compact à bord $C^1$ 
