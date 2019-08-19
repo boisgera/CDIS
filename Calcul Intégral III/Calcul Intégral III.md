@@ -165,12 +165,15 @@ pour toute bijection $\sigma: \N \to \N$,
 $$
 \sum_{k=0}^{+\infty} a_{\sigma(k)} = \sum_{k=0}^{+\infty} a_{k}.
 $$
-Par contre, si $\sum_k a_k$ est conditionellement convergente 
+Par contre, si $\sum_k a_k$ est conditionnellement convergente 
 (c'est-à-dire convergente, mais telle que $\sum_k |a_k|$ soit divergente ; 
-par exemple, $a_k = (-1)^k / (k+1)$),
-on peut construire un réordonnancement $\sigma$ tel que
+par exemple, $a_k = (-1)^k / (k+1)$), il existe un réordonnancement 
+$\sigma$ tel que $\sum_k a_{\sigma(k)}$ n'ait ni limite finie ni infinie.
+Pour toute valeur limite 
+$\ell \in \R \cup \{-\infty, +\infty\}$ souhaitée de la somme, 
+on peut aussi construire un réordonnancement $\sigma$ tel que
 $$
-\sum_{k=0}^{+\infty} a_{\sigma(k)} = +\infty.
+\sum_{k=0}^{+\infty} a_{\sigma(k)} = \ell.
 $$
 
 <!--
