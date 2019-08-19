@@ -448,16 +448,6 @@ l'hypographe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
 -->
 
-### TODO
-
-Insufisant ici ; on a besoin à la fois du caractère $C^1$ et du support
-compact dans chaque $V_i$. On doit pouvoir patcher la démarche originale
-en faisant référence à un compact recouvert par les $V_i$, en "érodant"
-les $V_i$ (ce qui est possible tout en recouvrant encore le compact),
-puis en utilisant la construction donnée pour la nouvelle construction.
-Ne reste plus qu'à obtenir des fonctions $C^1$ et non plus continues,
-ce qui s'obtient par mollification.
-
 ### Partition de l'unité {.definition .proposition #pu}
 Pour toute famille finie d'ouverts $V_i$ de $\R^n$ recouvrant un ensemble
 compact $K$, il existe une famille $\rho_i: \R^n \to \left[0, +\infty\right[$ 
