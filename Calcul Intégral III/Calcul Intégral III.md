@@ -1063,7 +1063,7 @@ S_3 &= \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} 
 $$
 elle résulte directement du [théorème de Fubini](#Fubini).
 
-### TODO -- Question 2 {.answer #answer-cvl-2}
+### TODO -- Question 3 {.answer #answer-cvl-3}
 
 
 Déformations d'un compact à bord régulier {.answer #answer-dcbr}
