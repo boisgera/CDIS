@@ -864,6 +864,11 @@ et calculer
 $$
 \int_{-\infty}^{+\infty} f(\lambda x) \, dx.
 $$
+Même question pour 
+$$
+\int_{-\infty}^{+\infty} f(x + h) \, dx
+$$
+où $h \in \R$.
 
 ### Question 2 {.question #cvl-2}
 Soit $f:\R^n \to \R$ une fonction absolument intégrable.
@@ -1015,37 +1020,48 @@ La fonction $x \mapsto f(\lambda x)$ est donc intégrable, d'intégrale
 $$
 \int_{-\infty}^{+\infty} f(\lambda x) \,dx = \frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx.
 $$
+On montrerait de manière similaire la validité de
+$$
+\int_{-\infty}^{+\infty} f(x + h) \, dx = \int_{-\infty}^{+\infty} f(x) \, dx.
+$$
 
-
-### TODO -- Question 2 {.answer #answer-cvl-2}
+### Question 2 {.answer #answer-cvl-2}
 Par le changement de variable linéaire dans $\R$ de la question 1
 et le théorèmes de [Fubini](#Fubini) et [Tonelli](#Tonelli),
 $$
 \begin{split}
-S_1 
-&= 
-\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
-&= 
-\frac{1}{\lambda}
+& \phantom{ =. }  \frac{1}{\lambda} \int_{\R^n} f(x) \, dx  \\
+&= \frac{1}{\lambda}
 \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
 dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
 &= 
-\frac{1}{\lambda}
-\int_{\R^n} f(x) \, dx.
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+& = S_1
 \end{split}
 $$
-
-**TODO:** comment établir l'intégrabilité de la nouvelle fonction ?
-Grpmh on va devoir utiliser l'absolue intégrabilité de $f$ et un argument
-de type Tonelli, donc rajouter ça dans le cours ...
-
+De même,
 $$
-S_2 = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx,
+\begin{split}
+& \phantom{ =. }  \int_{\R^n} f(x) \, dx  \\
+&= 
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+&= 
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i + \lambda x_j, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+& = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx \\
+& = S_2.
+\end{split}
 $$
+Quant à l'identité
 $$
-S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \dots, x_n) \, dx.
+\begin{split}
+S_3 &= \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \dots, x_n) \, dx \\
+&= \int_{\R^n} f(x) \, dx,
+\end{split}
 $$
+elle résulte directement du [théorème de Fubini](#Fubini).
 
 ### TODO -- Question 2 {.answer #answer-cvl-2}
 
