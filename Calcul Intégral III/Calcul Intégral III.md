@@ -733,7 +733,7 @@ $$
 \int_{\Gamma} w(x) n_i(x)\, dS(x).
 $$
 
-### Théorème de la divergence {.theorem}
+### Théorème de la divergence {.theorem #div-theorem}
 Soit $U$ un ouvert borné de $\R^n$ et $K$ un ensemble compact 
 $K$ à bord $C^1$ de $U$. Pour toute fonction $v: U \to \mathbb{R}^n$ 
 de classe $C^1$,
@@ -748,6 +748,8 @@ $$
 =
 \int_{\partial K} n_i(x) f(x) \, \sigma(dx).
 $$
+
+### TODO -- Démonstration {.proof}
 
 <!--
 ### TODO
