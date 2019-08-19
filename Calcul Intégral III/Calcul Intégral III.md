@@ -206,17 +206,6 @@ réordonnancement (exemple mono-dim ou bi-dim) ?
 Théorème de la divergence
 ================================================================================
 
-### TODO
-
-Définition par une équation implicite (équivalent).
-Que doit-on adopter comme définition ? Et quoi comme propriété ?
-La définition par l'hypographe est sans doute plus intuitive, 
-mais sa formalisation plus lourde ... Je serais tenté dans le cours
-oral de partir de la définition par l'hypographe, informellement,
-pour l'intuition (et de toute façon on a besoin de cette construction
-pour la suite) puis d'énoncer rigoureusement la version
-implicite, équivalente.
-
 <!--
 ### TODO:
 Deux façon raisonnables de définir un compact à bord sont données;
