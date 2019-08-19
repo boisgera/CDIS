@@ -886,10 +886,11 @@ S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \
 $$
 
 ### Question 3 {.question #cvl-3}
-Soit $A: \R^n \to \R^n$ une application linéaire. Montrer que la fonction
-$x \in \R^n \mapsto |\det A| f(A \cdot x)$ est intégrable et que
+Soit $A: \R^n \to \R^n$ une application linéaire inversible. 
+Montrer que la fonction $x \in \R^n \mapsto  f(A \cdot x) |\det [A]|$ 
+est intégrable et que
 $$
-\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det A| \, dx.
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det [A]| \, dx.
 $$
 
 Déformations d'un compact à bord régulier {.question #dcbr}
@@ -983,7 +984,8 @@ TODO -- Changement de variables linéaire
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cvl-1}
-Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$ il existe
+Supposons tout d'abord que $\lambda > 0$ ;
+si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$ il existe
 une jauge $\gamma$ sur $\R \cup \{\pm \infty\}$ telle que pour toute 
 subdvision pointée $\mathcal{D}$ de $\R \cup \{\pm \infty\}$ subordonnée 
 à $\gamma$ on ait
@@ -1020,7 +1022,11 @@ La fonction $x \mapsto f(\lambda x)$ est donc intégrable, d'intégrale
 $$
 \int_{-\infty}^{+\infty} f(\lambda x) \,dx = \frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx.
 $$
-On montrerait de manière similaire la validité de
+On montrerait de manière similaire que si $\lambda < 0$, on a 
+$$
+\int_{-\infty}^{+\infty} f(\lambda x) \,dx = -\frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx
+$$
+et la validité de
 $$
 \int_{-\infty}^{+\infty} f(x + h) \, dx = \int_{-\infty}^{+\infty} f(x) \, dx.
 $$
@@ -1030,8 +1036,8 @@ Par le changement de variable linéaire dans $\R$ de la question 1
 et le théorèmes de [Fubini](#Fubini) et [Tonelli](#Tonelli),
 $$
 \begin{split}
-& \phantom{ =. }  \frac{1}{\lambda} \int_{\R^n} f(x) \, dx  \\
-&= \frac{1}{\lambda}
+& \phantom{ =. }  \frac{1}{|\lambda|} \int_{\R^n} f(x) \, dx  \\
+&= \frac{1}{|\lambda|}
 \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
 dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
 &= 
@@ -1063,7 +1069,35 @@ S_3 &= \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} 
 $$
 elle résulte directement du [théorème de Fubini](#Fubini).
 
-### TODO -- Question 3 {.answer #answer-cvl-3}
+### Question 3 {.answer #answer-cvl-3}
+Nous avons établi dans la question précédente que pour les 3 types
+d'opérations linéaires
+$$
+A \cdot (x_1, \dots, x_n) = (x_1, \dots, \lambda x_i , \dots, x_n),
+$$
+$$
+A \cdot (x_1, \dots, x_n) = (x_1, \dots, x_{i-1}, x_i + \lambda x_j, x_{i+1}, \dots, x_n)
+$$
+et
+$$
+A \cdot (x_1, \dots, x_n) = (x_1, \dots, x_{i-1}, x_{j},x_{i+1}, \dots, x_{j-1}, x_{i},x_{j+1}, \dots, x_n)
+$$
+nous avions
+$$
+\int f(A \cdot x) |\det [A]| \, dx 
+= \int f(x)  dx.
+$$
+Mais toute application linéaire inversible $A$ peut être décomposée
+-- par le pivot de Gauss -- en la succession d'un nombre fini
+de ces opérations. Or si $A = A_1 \cdots A_k$,
+comme $|\det [A]| = |\det [A_k] \cdots \det [A_k]|$, on peut
+établir par récurrence que
+$$
+\int f(A \cdot x) |\det [A]| \, dx 
+= \int f(A_1 \cdots A_k \cdot x) |\det [A_1] \cdots \det [A_k]| \, dx 
+= \int f(x)  dx.
+$$
+
 
 
 Déformations d'un compact à bord régulier {.answer #answer-dcbr}
