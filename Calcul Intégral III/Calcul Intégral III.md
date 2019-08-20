@@ -519,7 +519,7 @@ $$
 Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
 où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
 Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
-de classe $C^1$ de support compact[^sc]. 
+de classe $C^1$ de support compact[^sc] dans ce domaine. 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
 -- soit $\Omega = \{(y, z) \, | \, y \in \mathbb{R}^{n-1}, \; z < f(y)\}$ --
 et $\Gamma$ le graphe de $f$
@@ -532,8 +532,10 @@ $$
 \int_{\Gamma} \left<v(x), n(x) \right> \, \sigma(dx)
 $$
 
-[^sc]: La fonction $v$ étant définie dans un ouvert ($\mbox{dom}(v) = U \times \mathbb{R}$), 
-son support est compact si et seulement si l'ensemble $\{x \, | \, v(x) \neq 0\}$ 
+[^sc]: La fonction $v$ étant définie dans un ouvert de $\R^n$ 
+($\mbox{dom}(v) = U \times \mathbb{R}$), 
+son support est compact dans cet ensemble
+si et seulement si l'ensemble $\{x \, | \, v(x) \neq 0\}$ 
 est borné et sa distance au complémentaire de $U\times \mathbb{R}$ 
 dans $\mathbb{R}^n$ est positive.
 
