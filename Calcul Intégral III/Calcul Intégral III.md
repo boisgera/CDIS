@@ -465,6 +465,10 @@ $$
 ### {.post}
 La démonstration est donnée [en annexe](#proof-pu).
 
+### TODO
+
+Préciser hypothèse sur $f$ (ouch, $C^1(\overline{U})$ va être nécessaire)
+
 ### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
 Si $K$ est caractérisé dans un voisinage ouvert $V$ de $x_0 \in \partial K$
