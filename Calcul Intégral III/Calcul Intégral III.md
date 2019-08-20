@@ -10,34 +10,21 @@
 Intégrales Multiples
 ================================================================================
 
-### TODO
+Définitions
+--------------------------------------------------------------------------------
 
-rappel résultats analogues (du chap I et II) au cas réel.
+### {.remark .ante}
+La notion de pavé généralise la notion d'intervalle a plusieurs dimensions :
 
 ### Pavés {.definition}
-On appelle *pavé* tout sous-ensemble $I$ de $\mathbb{R}^n$ de la forme
+On appelle *pavé* de $\overline{\R}^n$ tout ensemble $I$ de la forme
 $$
 I = I_1 \times \dots \times I_n
 $$
-où les $I_i$ sont de intervalles de $\mathbb{R}$.
-
-### Remarque {.remark .anonymous}
-La notion de pavé généralise la notion d'intervalle de 
-$\mathbb{R}$ à $\mathbb{R}^n$; le terme intervalle est d'ailleurs
-parfois utilisé au lieu du terme pavé. 
-
-### Subdivision pointée
-Une *subdivision pointée* du pavé fermé $I$ de $\mathbb{R}^n$ est 
-une famille finie 
-$$
-\{(t_i, I_i) \; | \; \; 0 \leq i \leq k-1\}
-$$
-où les $I_i$ sont des pavés fermés de $I$ sans chevauchement, 
-qui recouvrent $I$, et tels que 
-$t_i \in I_i$ pour tout $i \in \{0, \dots, k-1\}.$
+où les $I_i$ sont des intervalles de $\overline{\R}$.
 
 ### Volume d'un pavé
-On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$
+On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$ de $\overline{\R}^n$
 la valeur
 $$
 v(I)  = \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
@@ -45,40 +32,51 @@ $$
 en adoptant la convention que $0 \times \infty = 0$.
 
 ### Longeur, aire, volume {.remark}
-Dans $\mathbb{R}$, on pourra continuer à appeler cette grandeur
-la longueur ; dans $\mathbb{R}^2$ il est approprié de la désigner
+Dans $\overline{\R}$, on pourra continuer à appeler cette grandeur
+la longueur ; dans $\overline{\R}\overline{\R}^2$ il est approprié de la désigner
 sous le terme d'aire. Si l'on souhaite distinguer le cas du
-volume "classique" dans $\mathbb{R}^3$ et les autres dimensions, 
+volume "classique" dans $\overline{\R}^3$ et les autres dimensions, 
 on pourra utiliser le terme d'*hypervolume* comme terme générique
 et réserver le terme de volume au cas de $\mathbb{R}^3$.
 
-### Somme de Riemman {.definition}
-
-La somme de Riemann associée à la fonction $f:I \to \mathbb{R}$,
-où $I$ est un pavé compact de $\mathbb{R}^n$,
-et à la subdivision pointée $\mathcal{D}$ de $I$ est la grandeur
+### Subdivision pointée
+Une *subdivision pointée* du pavé fermé $I$ de 
+$\overline{\R}^n$ est 
+une famille finie 
 $$
-S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) v(I)
+\{(t_i, I_i) \; | \; \; 0 \leq i \leq k-1\}
+$$
+où les $I_i$ sont des pavés fermés de $I$ sans chevauchement
+-- les volumes de leur intersections deux à deux sont nuls --
+qui recouvrent $I$, et tels que 
+$t_i \in I_i$ pour tout $i \in \{0, \dots, k-1\}.$
+
+
+### Somme de Riemman {.definition}
+La somme de Riemann associée à la fonction $f:I \to \mathbb{R}$,
+où $I$ est un pavé fermé de $\overline{\R}^n$ 
+et à la subdivision pointée $\mathcal{D}$ 
+de $I$ est la grandeur
+$$
+S(f, \mathcal{D}) = \sum f(t) v(I), \; (t, I) \in \mathcal{D}, \, v(I) < + \infty.
 $$
 
 ### Jauge {.definition}
-Une jauge $\gamma$ sur un pavé $I$ de $\mathbb{R}^n$ est une 
+Une jauge $\gamma$ sur un pavé fermé $I$ de $\overline{\R}^n$ est une 
 fonction qui associe à tout $t \in I$ un 
-pavé ouvert $\gamma(t)$ de $\mathbb{R}^n$ contenant $t$. 
+pavé ouvert $\gamma(t)$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
-Une subdivision $\mathcal{D}$ du pavé compact $I$ 
+Une subdivision $\mathcal{D}$ du pavé fermé $I$ de $\overline{\R}^n$
 est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout 
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Intégrale dans $\mathbb{R}^n$ {.definition}
-Soit $I$ un pavé de $\mathbb{R}^n$.
-Une fonction $f:I \to \mathbb{R}$ est dite *intégrable 
+Une fonction $f:\R^n \to \mathbb{R}$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
-que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de $\mathbb{R}^n$ 
-et un pavé compact $K$ de $I$
-tels que pour tout pavé compact $P$ vérifiant $K \subset P \subset I$
-et pour toute subdivision pointée $\mathcal{D}$ de $P$ 
+que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de 
+$\overline{R}^n$ telle que pour 
+toute subdivision pointée $\mathcal{D}$ de $\overline{R}^n$
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique; il est appelé
@@ -86,6 +84,21 @@ Le réel $A$ quand il existe est unique; il est appelé
 $$
 \int_{\mathbb{R}^n} f(t) \, dt.
 $$
+
+### {.post}
+Comme dans le cas réel, la définition supposerait que $f$ soit a priori
+définie sur $\overline{\R}^n$ plutôt que sur $\R^n$ ; 
+mais on peut étendre $f$ par des valeurs à l'infini sans 
+que l'intégrabilité de cette extension ou la valeur de son intégrale
+ne soient affectés par le choix de ces valeurs.
+
+TODO -- Propriétés élémentaires
+--------------------------------------------------------------------------------
+
+
+
+Théorème de Fubini
+--------------------------------------------------------------------------------
 
 ### Théorème de Fubini {.theorem #Fubini}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ 
@@ -117,7 +130,7 @@ Se reporter à @Swa01.
 On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
 a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
 déduire l'intégrabilité de l'examen des intégrales itérées. Le théorème
-de Fubini peut alors être complété par le théorème de Tonelli:
+de Fubini peut alors être complété utilement par le théorème de Tonelli:
 
 ### Théorème de Tonelli {.theorem #Tonelli}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ une fonction
@@ -131,6 +144,9 @@ est intégrable, alors la fonction $f$ est (absolument) intégrable.
 
 ### Démonstration {.proof}
 Se reporter à @Swa01.
+
+Changement de variables
+--------------------------------------------------------------------------------
 
 ### Changement de variables {.theorem}
 Soient $D_1$ et $D_2$ des ouverts de $\mathbb{R}^n$ et 
@@ -1026,13 +1042,13 @@ Changement de variables linéaire
 ### Question 1 {.answer #answer-cvl-1}
 Supposons tout d'abord que $\lambda > 0$ ;
 si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$ il existe
-une jauge $\gamma$ sur $\R \cup \{\pm \infty\}$ telle que pour toute 
-subdvision pointée $\mathcal{D}$ de $\R \cup \{\pm \infty\}$ subordonnée 
+une jauge $\gamma$ sur $\overline{R}$ telle que pour toute 
+subdvision pointée $\mathcal{D}$ de $\overline{R}$ subordonnée 
 à $\gamma$ on ait
 $$
 \left|S(f,\mathcal{D}) - \int_{-\infty}^{+\infty} f(x) \,dx \right| \leq \varepsilon.
 $$
-Soit $\mathcal{C}$ une subdivision pointée de $\R \cup \{\pm \infty\}$ ;
+Soit $\mathcal{C}$ une subdivision pointée de $\overline{R}$ ;
 la somme de Riemann associée à $\mathcal{C}$ et la fonction 
 $x \mapsto f(\lambda x)$ s'écrit
 $$
@@ -1044,7 +1060,7 @@ L'ensemble
 $$
 \mathcal{D} = \{(\lambda t, \lambda J) \, | \, (t, J) \in \mathcal{C}\}
 $$
-est une subdivision pointée de $\R \cup \{\pm \infty\}$, surbordonné à la jauge
+est une subdivision pointée de $\overline{R}$, surbordonné à la jauge
 $\gamma$ -- tel que $\gamma(\lambda t) \subset \lambda J$ -- 
 si et seulement si $\mathcal{C}$ est subordonné à la jauge définie par
 $\nu(t) = \gamma(\lambda t) / \lambda$. Comme $f(\lambda t) \ell(J)
