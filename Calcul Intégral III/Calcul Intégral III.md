@@ -72,17 +72,17 @@ est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Intégrale dans $\mathbb{R}^n$ {.definition}
-Une fonction $f:\R^n \to \mathbb{R}$ est dite *intégrable 
+Une fonction $f:\R^n \to \R$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de 
-$\overline{R}^n$ telle que pour 
-toute subdivision pointée $\mathcal{D}$ de $\overline{R}^n$
+$\overline{\R}^n$ telle que pour 
+toute subdivision pointée $\mathcal{D}$ de $\overline{\R}^n$
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique; il est appelé
-*intégrale de $f$ sur $\mathbb{R}^n$* et noté
+*intégrale de $f$ sur $\R^n$* et noté
 $$
-\int_{\mathbb{R}^n} f(t) \, dt.
+\int_{\R^n} f(t) \, dt.
 $$
 
 ### {.post}
@@ -95,6 +95,41 @@ ne soient affectés par le choix de ces valeurs.
 TODO -- Propriétés élémentaires
 --------------------------------------------------------------------------------
 
+### TODO -- Linéarité, Positivité
+
+### TODO -- Critère d'intégrabilité de Cauchy
+
+### TODO -- d'emblée, ens. mesurable et fct mesurable 
+
+ens négligeable ; 
+Def en. mesurable à la mano, les pavés sont mesurables ; pptés de type tribu,
+plus compat topo et complétude. 
+
+égalité intégrales fcts égales p.p.
+
+deux def équivalentes pour fct mesurable
+(limite et critère de l'image réciproque)
+
+Puis def intégrabilité / intégrale sur un sous-ensemble (si produit par
+fct carac mesurable)
+
+### TODO -- Additivité et restriction ?
+
+(focus pavé donc). Encore du sens alors qu'on a ici le cadre plus général ?
+Mmmmf restriction à encore du sens si on veut gérer du conditionnellement
+intégrable (sinon c'est une conséquence de la mesurabilité des pavés).
+
+Additivité ? Par utile si on sait que les intersections de pavé sans
+chevauchement sont négligeable (et c'est la définition ici ... mais quid
+dans Swarz ?)
+
+### TODO
+Théorème d'intégrabilité dominée, de convergence dominée, monotone, fct
+absolument continue, etc.
+
+### TODO -- Evoquer chgt de variable différent.
+
+### TODO -- Evoquer que l'équivalent de l'IPP est le théo de la divergence
 
 
 Théorème de Fubini
