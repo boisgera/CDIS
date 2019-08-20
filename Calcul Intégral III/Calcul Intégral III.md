@@ -814,7 +814,7 @@ $$
 \int_{\partial K} n_i(x) f(x) \, \sigma(dx).
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
 Comme dans la démonstration du [lemme de la divergence](#div-lemma), 
 il suffit d'établir une version du résultat, par exemple la première,
 et la seconde version s'en déduit.
