@@ -1014,7 +1014,7 @@ des noeuds). Pour supporter cette démarche, `Node` devient:
     ...         self.function = function
     ...         self.args = args if args is not None else []
 
-Il nous faut alors rendre les opérations usuelles compatibles la création
+Il nous faut alors rendre les opérations usuelles compatibles avec la création
 de noeuds; en examinant les arguments de la fonction, on doit décider si
 elle est dans un mode "normal" (recevant des valeurs numériques, produisant
 des valeurs numériques) ou en train de tracer les calculs. Par exemple:
@@ -1055,7 +1055,7 @@ il serait possible de définir une fonction opérant automatiquement
 cette transformation. Il s'agit d'une fonction d'ordre supérieur
 car elle prend comme argument une fonction (la fonction numérique
 originale) et renvoie une nouvelle fonction, compatible avec la
-gestion des noeuds. On pourra ignorer sont implémentation 
+gestion des noeuds. On pourra ignorer son implémentation 
 en première lecture.
 
     >>> def wrap(function):
@@ -1117,12 +1117,12 @@ et sympathique des contenus des noeuds:
     ...    else:
     ...        return f"Node({node.value})"
 
-Puis, faisons en sorte qu'elle soit utilisée par défaut par le noeuds
+Puis, faisons en sorte qu'elle soit utilisée par défaut par le noeud
 plutôt que la représentation standard des objets:
 
     >>> Node.__str__ = Node.__repr__ = node_repr
 
-Nous somme prêts à faire notre vérification:
+Nous sommes prêts à faire notre vérification:
 
     >>> def f(x):
     ...    return 1.0 + cos(x)
@@ -1132,7 +1132,7 @@ Nous somme prêts à faire notre vérification:
 
 Le résultat se lit de la façon suivante: le calcul de `f(pi)` produit 
 la valeur `0.0`, issue de l'addition de `-1.0`, 
-calculé comme `cos(3.141592653589793)` et de la constante `1.0`.
+calculé comme `cos(3.141592653589793)`, et de la constante `1.0`.
 Cela semble donc correct !
 
 Un autre exemple -- à deux arguments -- pour la route:
