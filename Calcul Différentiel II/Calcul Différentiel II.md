@@ -1060,7 +1060,7 @@ en première lecture.
 
     >>> def wrap(function):
     ...    def wrapped_function(*args):
-    ...        if any(isinstance(arg, Node) for arg in args):
+    ...        if any([isinstance(arg, Node) for arg in args]):
     ...            node_args = []
     ...            values = []
     ...            for arg in args:
