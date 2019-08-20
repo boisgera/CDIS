@@ -515,7 +515,7 @@ $$
 $$
 
 
-### Lemme de la divergence {.lemma}
+### Lemme de la divergence {.lemma #div-lemma}
 Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
 où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
 Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
@@ -540,7 +540,6 @@ est borné et sa distance au complémentaire de $U\times \mathbb{R}$
 dans $\mathbb{R}^n$ est positive.
 
 ### Démonstration {.proof}
-
 On remarque que si $v = w e_i$ où $w: U \times \mathbb{R} \to \mathbb{R}$ est
 de classe $C^1$ et $i \in \{1,\dots, n\}$, 
 comme $\mbox{div}\, v = \partial_i w$ et 
@@ -762,6 +761,44 @@ $$
 $$
 
 ### TODO -- Démonstration {.proof}
+Comme dans la démonstration du [lemme de la divergence](#div-lemma), 
+il suffit d'établir une version du résultat, par exemple la première,
+et la seconde version s'en déduit.
+
+Pour tout $x \in \partial K$, il existe un pavé ouvert borné $V_x$ de $\R^{n-1}$,
+un intervalle ouvert $I_x$ de $\R$, une isométrie affine directe $T_x$ et une
+fonction continûment différentiable $f_x:V_x \to I_x$ telle que 
+$T_x(V_x \times I_x)$ soit un voisinage de $x$ et 
+$K \cap T_x(V_x \times I_x)$ soit l'image de l'hypographe de $f_x$ par $T_x$.
+Si $x \in \mathring{K}$, il existe un pavé ouvert borné $V_x$ de $\R^{n-1}$ et
+un intervalle ouvert $I_x$ de $\R$ tels que $V_x \times I_x \subset \mathring{K}$ ;
+on prendra ici $T_x=I$ et pour $f_x: U_x \to \R$ une fonction constante dont
+la valeur soit un majorant de $I_x$.
+
+Par compacité, $K$ peut être recouvert par un nombre fini des
+ensembles $W_x := T_x(V_x \times I_x)$, associés au points $x_1, \dots, x_k$.
+Soit $\rho_j$, $j \in \{1,\dots, k\}$ une [partition de l'unité](#pu) associée.
+On a alors
+$$
+\begin{split}
+\int_{K} \mathrm{div}\, v(x) \, dx
+&= \int_{K} \mathrm{div}\, \left({\textstyle \sum}_{j=1}^k  \rho_j(x) v(x) \right) \, dx \\
+&= \sum_{j=1}^k \int_{K \cap W_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx.
+\end{split}
+$$
+L'application du [lemme de la divergence](#div-lemma) quand $x_j$ est un point
+intérieur à $K$ fournit
+$$
+\int_{K \cap W_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx = 0
+$$
+et quand $x_j$ est un point frontière
+$$
+\begin{split}
+\int_{K \cap W_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx &= 
+\int_{(\partial K) \cap W_{x_j}}  \left<\rho_j(x) v(x), n(x)\right> \, d\sigma(x) \\
+&=\int_{(\partial K) \cap W_{x_j}}  \rho_j(x) \left< v(x), n(x)\right> \, d\sigma(x)
+\end{split}
+$$
 
 <!--
 ### TODO
