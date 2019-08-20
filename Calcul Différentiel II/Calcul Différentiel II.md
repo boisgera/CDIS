@@ -1014,7 +1014,7 @@ des noeuds). Pour supporter cette démarche, `Node` devient:
     ...         self.function = function
     ...         self.args = args if args is not None else []
 
-Il nous faut alors rendre les opérations usuelles compatibles la création
+Il nous faut alors rendre les opérations usuelles compatibles avec la création
 de noeuds; en examinant les arguments de la fonction, on doit décider si
 elle est dans un mode "normal" (recevant des valeurs numériques, produisant
 des valeurs numériques) ou en train de tracer les calculs. Par exemple:
@@ -1055,7 +1055,7 @@ il serait possible de définir une fonction opérant automatiquement
 cette transformation. Il s'agit d'une fonction d'ordre supérieur
 car elle prend comme argument une fonction (la fonction numérique
 originale) et renvoie une nouvelle fonction, compatible avec la
-gestion des noeuds. On pourra ignorer sont implémentation 
+gestion des noeuds. On pourra ignorer son implémentation 
 en première lecture.
 
     >>> def wrap(function):
@@ -1117,12 +1117,12 @@ et sympathique des contenus des noeuds:
     ...    else:
     ...        return f"Node({node.value})"
 
-Puis, faisons en sorte qu'elle soit utilisée par défaut par le noeuds
+Puis, faisons en sorte qu'elle soit utilisée par défaut par le noeud
 plutôt que la représentation standard des objets:
 
     >>> Node.__str__ = Node.__repr__ = node_repr
 
-Nous somme prêts à faire notre vérification:
+Nous sommes prêts à faire notre vérification:
 
     >>> def f(x):
     ...    return 1.0 + cos(x)
@@ -1132,7 +1132,7 @@ Nous somme prêts à faire notre vérification:
 
 Le résultat se lit de la façon suivante: le calcul de `f(pi)` produit 
 la valeur `0.0`, issue de l'addition de `-1.0`, 
-calculé comme `cos(3.141592653589793)` et de la constante `1.0`.
+calculé comme `cos(3.141592653589793)`, et de la constante `1.0`.
 Cela semble donc correct !
 
 Un autre exemple -- à deux arguments -- pour la route:
@@ -1525,7 +1525,7 @@ Différentiation à pas complexe
 
 Méthode de Newton {.question #mn}
 --------------------------------------------------------------------------------
-L'analyse de la preuve du théorème du fonction implicite nous a conduit à
+L'analyse de la preuve du théorème des fonctions implicites nous a conduit à
 considérer la méthode de Newton modifiée, associée à la construction
 du point fixe de
 $$
@@ -1873,7 +1873,7 @@ qui possèdent un point sur l'arête gauche du domaine de définition
 (de la forme $(0, y)$ pour un $0 \leq y \leq 1$.)
 
 #### Amorce
-A quelle condition raisonnable portant sur $f(0,0)$, $f(0,1)$ et le réel $c$ 
+À quelle condition raisonnable portant sur $f(0,0)$, $f(0,1)$ et le réel $c$ 
 est-on certain qu'il existe un $t \in [0, 1]$ tel que $f(0, t) = c$ ?
 Développer une fonction, conforme au squelette suivant
 
@@ -1917,7 +1917,7 @@ Dans chaque cellule, on exploitera le procédé utilisé dans `simple_contour`,
 mais en recherchant des amorces sur toute la frontière de la cellule et plus 
 simplement sur son arête gauche.
 
-Les tableaux 1d `xs` et `ys` renvoyées par la fonction `contour` ne décrivent 
+Les tableaux 1d `xs` et `ys` renvoyés par la fonction `contour` ne décrivent pas
 un fragment de contour, mais un ensemble de tels fragments ; 
 cette multiplicité résulte de la présence de plusieurs cellules 
 et/ou de l'existence de plusieurs fragments par cellule.
@@ -1933,7 +1933,7 @@ Le livrable de ce projet sera un notebook Jupyter.
 Ce support doit vous permettre de documenter l'ensemble
 de votre démarche -- d'expliquer d'où viennent vos idées,
 comment vous les mettez en oeuvre, quelles expérimentations 
-permettent de les tester, quelles leçons que vous tirez de 
+permettent de les tester, quelles leçons vous tirez de 
 leur analyse pour améliorer l'idée initiale, 
 quelles améliorations possibles vous entrevoyez
 (même sans implémentation),
