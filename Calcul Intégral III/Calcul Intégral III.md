@@ -532,7 +532,7 @@ $$
 \int_{\Gamma} \left<v(x), n(x) \right> \, \sigma(dx)
 $$
 
-[^sc]: La fonction $$ vétant définie dans un ouvert ($\mbox{dom}(v) = U \times \mathbb{R}$), 
+[^sc]: La fonction $v$ étant définie dans un ouvert ($\mbox{dom}(v) = U \times \mathbb{R}$), 
 son support est compact si et seulement si l'ensemble $\{x \, | \, v(x) \neq 0\}$ 
 est borné et sa distance au complémentaire de $U\times \mathbb{R}$ 
 dans $\mathbb{R}^n$ est positive.
