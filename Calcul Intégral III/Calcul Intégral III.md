@@ -465,9 +465,14 @@ $$
 ### {.post}
 La démonstration est donnée [en annexe](#proof-pu).
 
+<!--
 ### TODO
+Préciser hypothèse sur $f$ (ouch, $C^1(\overline{U})$ va être nécessaire).
+OK, pas besoin dans l'usage qu'on a, si l'on accepte que la contribution
+de $V$ peut être indéfinie (ce qui n'arrive pas dès qu'on pondère par les
+fcts à support compact.)
 
-Préciser hypothèse sur $f$ (ouch, $C^1(\overline{U})$ va être nécessaire)
+-->
 
 ### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
@@ -494,6 +499,7 @@ $$
 ### {.post}
 On admettra que cette définition est indépendante du choix de la 
 décomposition choisie de $\partial K$.
+
 
 ### Définition {.definition}
 On appelle *divergence* d'une fonction différentiable 
