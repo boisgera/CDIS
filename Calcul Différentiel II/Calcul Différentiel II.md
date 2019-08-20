@@ -1525,7 +1525,7 @@ Différentiation à pas complexe
 
 Méthode de Newton {.question #mn}
 --------------------------------------------------------------------------------
-L'analyse de la preuve du théorème du fonction implicite nous a conduit à
+L'analyse de la preuve du théorème des fonctions implicites nous a conduit à
 considérer la méthode de Newton modifiée, associée à la construction
 du point fixe de
 $$
@@ -1873,7 +1873,7 @@ qui possèdent un point sur l'arête gauche du domaine de définition
 (de la forme $(0, y)$ pour un $0 \leq y \leq 1$.)
 
 #### Amorce
-A quelle condition raisonnable portant sur $f(0,0)$, $f(0,1)$ et le réel $c$ 
+À quelle condition raisonnable portant sur $f(0,0)$, $f(0,1)$ et le réel $c$ 
 est-on certain qu'il existe un $t \in [0, 1]$ tel que $f(0, t) = c$ ?
 Développer une fonction, conforme au squelette suivant
 
@@ -1917,7 +1917,7 @@ Dans chaque cellule, on exploitera le procédé utilisé dans `simple_contour`,
 mais en recherchant des amorces sur toute la frontière de la cellule et plus 
 simplement sur son arête gauche.
 
-Les tableaux 1d `xs` et `ys` renvoyées par la fonction `contour` ne décrivent 
+Les tableaux 1d `xs` et `ys` renvoyés par la fonction `contour` ne décrivent pas
 un fragment de contour, mais un ensemble de tels fragments ; 
 cette multiplicité résulte de la présence de plusieurs cellules 
 et/ou de l'existence de plusieurs fragments par cellule.
@@ -1933,7 +1933,7 @@ Le livrable de ce projet sera un notebook Jupyter.
 Ce support doit vous permettre de documenter l'ensemble
 de votre démarche -- d'expliquer d'où viennent vos idées,
 comment vous les mettez en oeuvre, quelles expérimentations 
-permettent de les tester, quelles leçons que vous tirez de 
+permettent de les tester, quelles leçons vous tirez de 
 leur analyse pour améliorer l'idée initiale, 
 quelles améliorations possibles vous entrevoyez
 (même sans implémentation),
