@@ -519,7 +519,7 @@ $$
 Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
 où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
 Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
-de classe $C^1$ de support compact dans ce domaine[^sc]. 
+de classe $C^1$ de support compact dans son domaine de définition[^sc]. 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
 -- soit $\Omega = \{(y, z) \, | \, y \in \mathbb{R}^{n-1}, \; z < f(y)\}$ --
 et $\Gamma$ le graphe de $f$
