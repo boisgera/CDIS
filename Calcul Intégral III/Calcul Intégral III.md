@@ -32,12 +32,14 @@ $$
 en adoptant la convention que $0 \times \infty = 0$.
 
 ### Longeur, aire, volume {.remark}
-Dans $\overline{\R}$, on pourra continuer à appeler cette grandeur
-la longueur ; dans $\overline{\R}^2$ il est approprié de la désigner
-sous le terme d'aire. Si l'on souhaite distinguer le cas du
+On pourra continuer à appeler cette grandeur
+*longueur* plutôt que *volume* si l'on travaille dans $\overline{\R}$ ; 
+dans $\overline{\R}^2$ il est approprié 
+de la désigner sous le terme d'*aire*. 
+Si l'on souhaite distinguer le cas du
 volume "classique" dans $\overline{\R}^3$ et les autres dimensions, 
 on pourra utiliser le terme d'*hypervolume* comme terme générique
-et réserver le terme de volume au cas de $\mathbb{R}^3$.
+et réserver le terme de *volume* au cas de $\mathbb{R}^3$.
 
 ### Subdivision pointée
 Une *subdivision pointée* du pavé fermé $I$ de 
