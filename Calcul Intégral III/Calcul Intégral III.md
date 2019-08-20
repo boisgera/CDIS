@@ -41,6 +41,8 @@ volume "classique" dans $\overline{\R}^3$ et les autres dimensions,
 on pourra utiliser le terme d'*hypervolume* comme terme générique
 et réserver le terme de *volume* au cas de $\mathbb{R}^3$.
 
+### TODO: adapter sans chevauchement avec de intersection des intérieurs vide.
+
 ### Subdivision pointée
 Une *subdivision pointée* du pavé fermé $I$ de 
 $\overline{\R}^n$ est 
@@ -124,7 +126,8 @@ intégrable (sinon c'est une conséquence de la mesurabilité des pavés).
 
 Additivité ? Par utile si on sait que les intersections de pavé sans
 chevauchement sont négligeable (et c'est la définition ici ... mais quid
-dans Swarz ?)
+dans Swarz ? Intersection des intérieurs vide. OK, adopter ça et Mq
+sans chevauchement implique intersection négligeable ?)
 
 ### TODO
 Théorème d'intégrabilité dominée, de convergence dominée, monotone, fct
