@@ -14,7 +14,7 @@ Définitions
 --------------------------------------------------------------------------------
 
 ### {.remark .ante}
-La notion de pavé généralise la notion d'intervalle a plusieurs dimensions :
+Les pavés joueront dans $\R^n$ le rôle dévolu aux intervalles dans $\R$:
 
 ### Pavés {.definition}
 On appelle *pavé* de $\overline{\R}^n$ tout ensemble $I$ de la forme
@@ -33,7 +33,7 @@ en adoptant la convention que $0 \times \infty = 0$.
 
 ### Longeur, aire, volume {.remark}
 Dans $\overline{\R}$, on pourra continuer à appeler cette grandeur
-la longueur ; dans $\overline{\R}\overline{\R}^2$ il est approprié de la désigner
+la longueur ; dans $\overline{\R}^2$ il est approprié de la désigner
 sous le terme d'aire. Si l'on souhaite distinguer le cas du
 volume "classique" dans $\overline{\R}^3$ et les autres dimensions, 
 on pourra utiliser le terme d'*hypervolume* comme terme générique
@@ -82,7 +82,8 @@ $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique; il est appelé
 *intégrale de $f$ sur $\R^n$* et noté
 $$
-\int_{\R^n} f(t) \, dt.
+\int f \; \mbox{ ou } \;
+\int_{\R^n} f(x) \, dx \; \mbox{ ou } \; \int_{\R^n} f(x_1,\dots, x_n) \, dx_1\dots dx_n.
 $$
 
 ### {.post}
