@@ -765,38 +765,47 @@ Comme dans la démonstration du [lemme de la divergence](#div-lemma),
 il suffit d'établir une version du résultat, par exemple la première,
 et la seconde version s'en déduit.
 
-Pour tout $x \in \partial K$, il existe un pavé ouvert borné $V_x$ de $\R^{n-1}$,
+Pour tout $x \in \partial K$, il existe un pavé ouvert borné $U_x$ de $\R^{n-1}$,
 un intervalle ouvert $I_x$ de $\R$, une isométrie affine directe $T_x$ et une
-fonction continûment différentiable $f_x:V_x \to I_x$ telle que 
-$T_x(V_x \times I_x)$ soit un voisinage de $x$ et 
-$K \cap T_x(V_x \times I_x)$ soit l'image de l'hypographe de $f_x$ par $T_x$.
-Si $x \in \mathring{K}$, il existe un pavé ouvert borné $V_x$ de $\R^{n-1}$ et
-un intervalle ouvert $I_x$ de $\R$ tels que $V_x \times I_x \subset \mathring{K}$ ;
+fonction continûment différentiable $f_x:U_x \to I_x$ telle que 
+$T_x(U_x \times I_x)$ soit un voisinage de $x$ et 
+$K \cap T_x(U_x \times I_x)$ soit l'image de l'hypographe de $f_x$ par $T_x$.
+Si $x \in \mathring{K}$, il existe un pavé ouvert borné $U_x$ de $\R^{n-1}$ et
+un intervalle ouvert $I_x$ de $\R$ tels que $U_x \times I_x \subset \mathring{K}$ ;
 on prendra ici $T_x=I$ et pour $f_x: U_x \to \R$ une fonction constante dont
 la valeur soit un majorant de $I_x$.
 
 Par compacité, $K$ peut être recouvert par un nombre fini des
-ensembles $W_x := T_x(V_x \times I_x)$, associés au points $x_1, \dots, x_k$.
+ensembles $V_x := T_x(U_x \times I_x)$, associés au points $x_1, \dots, x_k$.
 Soit $\rho_j$, $j \in \{1,\dots, k\}$ une [partition de l'unité](#pu) associée.
 On a alors
 $$
 \begin{split}
 \int_{K} \mathrm{div}\, v(x) \, dx
 &= \int_{K} \mathrm{div}\, \left({\textstyle \sum}_{j=1}^k  \rho_j(x) v(x) \right) \, dx \\
-&= \sum_{j=1}^k \int_{K \cap W_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx.
+&= \sum_{j=1}^k \int_{K \cap V_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx.
 \end{split}
 $$
 L'application du [lemme de la divergence](#div-lemma) quand $x_j$ est un point
 intérieur à $K$ fournit
 $$
-\int_{K \cap W_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx = 0
+\int_{K \cap V_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx = 0,
 $$
+car $v$ est nulle sur le graphe de $f_{x_j}$,
 et quand $x_j$ est un point frontière
 $$
 \begin{split}
-\int_{K \cap W_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx &= 
-\int_{(\partial K) \cap W_{x_j}}  \left<\rho_j(x) v(x), n(x)\right> \, d\sigma(x) \\
-&=\int_{(\partial K) \cap W_{x_j}}  \rho_j(x) \left< v(x), n(x)\right> \, d\sigma(x)
+\int_{K \cap V_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx &= 
+\int_{\partial K \cap V_{x_j}}  \left<\rho_j(x) v(x), n(x)\right> \, d\sigma(x) \\
+&=\int_{\partial K \cap V_{x_j}}  \rho_j(x) \left< v(x), n(x)\right> \, d\sigma(x).
+\end{split}
+$$
+Par conséquent,
+$$
+\begin{split}
+\int_{K} \mathrm{div}\, v(x) \, dx
+&= \sum_{j=1}^{k} \int_{\partial K \cap V_{x_j}}  \rho_j(x) \left< v(x), n(x)\right> \, d\sigma(x) \\
+&= \int_{\partial K} \left< v(x), n(x)\right> \, d\sigma(x).
 \end{split}
 $$
 
