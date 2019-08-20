@@ -521,9 +521,9 @@ où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$.
 Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
 de classe $C^1$ de support compact dans son domaine de définition[^sc]. 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
--- soit $\Omega = \{(y, z) \, | \, y \in \mathbb{R}^{n-1}, \; z < f(y)\}$ --
+-- soit $\Omega = \{(y, z) \, | \, y \in U, \, z \in \R, \, z < f(y)\}$ --
 et $\Gamma$ le graphe de $f$
--- soit $\Gamma = \{(y, f(y)) \, | \, y \in \mathbb{R}^{n-1}\}$ --
+-- soit $\Gamma = \{(y, f(y)) \, | \, y \in U\}$ --
 et $n$ la normale extérieure associée,
 on a la relation
 $$
@@ -656,7 +656,7 @@ Par conséquent,
 $$
 S_i(x_1, \dots, x_{i-1}, x_{i+1}, \dots) :=
 \int_{I_i} 
-\partial_i w(\pi(x), x_n + f(\pi(x))) 
+\partial_i (w(\pi(x), x_n + f(\pi(x)))) 
 \, dx_i
 =
 0.
@@ -664,7 +664,7 @@ $$
 Par le théorème de Fubini, on peut alors déduire que
 \begin{multline*}
 \int_{U \times \left]-\infty, 0\right[} 
-\partial_i w(\pi(x), x_n + f(\pi(x))) 
+\partial_i (w(\pi(x), x_n + f(\pi(x)))) 
 \, dx
 =  \\
 \int_{I_1\times\dots I_{i-1} \times I_{i+1} \times \dots \times \left]-\infty, 0\right[}
@@ -700,7 +700,7 @@ $$
 &= 
 \lim_{z \to -\infty}\left[
 x_n \mapsto 
-w(\pi(x), x_n + f(\pi(x)) \, dx
+w(\pi(x), x_n + f(\pi(x)))
 \right]^0_{z} \\
 &= 
 w(\pi(x), f(\pi(x)),
@@ -742,7 +742,7 @@ $$
 \partial_i w(x) 
 \, dx
 = 
-\int_{\Gamma} w(x) n_i(x)\, dS(x).
+\int_{\Gamma} w(x) n_i(x)\, d\sigma(x).
 $$
 
 ### Théorème de la divergence {.theorem #div-theorem}
