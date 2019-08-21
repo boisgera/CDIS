@@ -1491,8 +1491,7 @@ Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
 majoration voulue.
 -->
 
-
-### {.ante remark}
+### {.ante .remark}
 La construction proposée de l'intégrale de cette section est applicable
 indifféremment dans le cas des intervalles bornés ou non de la droite réelle.
 Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour donner
