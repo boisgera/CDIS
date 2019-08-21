@@ -1282,17 +1282,6 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 Intégration sur des intervalle non-bornés
 ================================================================================
 
-
-### TODO
-
-Voir ce qu'il est possible de dire au passage sur l'absence d'intégrale
-impropre (théorème de Hake).
-
-### TODO
-Référence procédé "habituel" de Cauchy-Riemann nécessaire dans le cadre
-classique, coexistence d'intégrales "normales" et "impropres" et comment
-ça n'est plus le cas ici.
-
 ### 
 La théorie de l'intégration de Henstock-Kurzweil présentée dans les
 sections précédentes peut être modifiée de façon assez mineure pour 
