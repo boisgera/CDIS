@@ -1492,7 +1492,7 @@ majoration voulue.
 -->
 
 ### {.ante .remark}
-La construction proposée de l'intégrale de cette section est applicable
+La construction de l'intégrale dans cette section est applicable
 indifféremment dans le cas des intervalles bornés ou non de la droite réelle.
 Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour donner
 un sens à l'intégrale d'une fonction définie sur un intervalle non-borné 
@@ -1505,7 +1505,7 @@ qu'il n'existe pas d'intégrale *impropre*,
 qui ne serait pas définissable directement mais uniquement par
 un passage à la limite.
 
-[^CR] sans garantie que ce nouvel objet -- l'intégrale de Cauchy-Riemann --
+[^CR]: sans garantie que ce nouvel objet -- l'intégrale de Cauchy-Riemann --
 partage les propriétés utiles de l'intégrale de Riemann sur les segments
 de $\R$.
 
