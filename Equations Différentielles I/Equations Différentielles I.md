@@ -10,11 +10,13 @@
 \newcommand{\cS}{\mathcal{S}}
 \newcommand{\cC}{\mathcal{C}}
 
+\newcommand{\inter}{\mathop{\rm int}\nolimits}
 
 Notations à définir/uniformiser
 
 - $C(I, \R)$
 - boule ouverte/fermée
+- interieur 
 
 Un peu d'histoire
 =========================== 
@@ -27,17 +29,23 @@ Cadre de l'étude
 Soit $n\in \N^*$. 
 
 ### Equation différentielle de degré $p$  {.definition}
-Soient $p\in\N^*$, $U$ ouvert de $\R\times (\R^n)^p$ et $f:U \to \R^n$ une application continue sur $U$. Une application $x:I\to \R^n$ de classe $C^p$ sur un intervalle $I$ de $\R$ est dite *solution* de *l'équation différentielle d'ordre $p$*
+Soient $p\in\N^*$, $U$ ouvert de $\R\times (\R^n)^p$ et $f:U \to \R^n$ une application continue sur $U$. Une application $x:I\to \R^n$ continue sur un intervalle $I\subseteq \R$ d'intérieur[^intI] non vide, est dite *solution (sur[^solsurI] $I$)* de *l'équation différentielle d'ordre $p$* 
 $$
 x^{(p)} = f(t,x,\dot{x},\ldots, x^{(p-1)})
 $$
-si pour tout $t\in I$,
+si 
 
-- $(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t)) \in U$
+- pour tout $t\in I$, 
+$$
+(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t)) \in U
+$$
 
-- $x^{(p)}(t) = f(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t))$.
+- $x$ est de classe $C^p$ sur $\inter I$, et pour tout $t\in \inter I$, 
+$$
+x^{(p)}(t) = f(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t)) \ .
+$$
 
-On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$. Dans ce cas, on pourrait définir $U$ directement comme un ouvert de $(\R^n)^p$ et $f: U\subset(\R^n)^p \to \R^n$.
+On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$. Dans ce cas, on pourrait définir $U$ directement comme un ouvert de $(\R^n)^p$ et $f: U\subseteq(\R^n)^p \to \R^n$.
 
 
 ### Exemples {.exemple}
@@ -45,35 +53,36 @@ quelques systèmes physiques vus en prépa (RLC, masse ressort, hamiltonien)
 
 
 ### Réduction à l'ordre 1
-Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times (\R^n)^p$ et $f:\R\times (\R^n)^p \to \R^n$ une application continue sur $U$, définissons l'application $\underline{f} : \R \times (\R^n)^p \to (\R^n)^p$ par
+Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times (\R^n)^p$ et $f\in C(U,\R^n)$, définissons l'application $\underline{f} \in C(U,\R^n)$ par
 $$
 \underline{f}(t,x_0,x_1,\ldots,x_{p-1}) = (x_1,x_2,\ldots,x_{p-1},f(t,x_0,\ldots,x_{p-1})) \ .
 $$
-Alors $x\in C^p(I,\R^n)$ est solution de l'équation différentielle d'ordre $p$ définie par $f$ si et seulement si $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,(\R^n)^p)$ est solution de l'équation différentielle d'ordre 1
+Alors $x\in C(I,\R^n)\cap C^p(\inter I,\R^n)$ est solution de l'équation différentielle d'ordre $p$ définie par $f$ si et seulement si $(x,\dot{x},\ldots,x^{(p-1)})$ est solution de l'équation différentielle d'ordre 1
 $$
 \dot{\underline{x}} = \underline{f}(t,\underline{x}) \ .
 $$
 
 *Démonstration* : \hfill $\blacksquare$
 
-Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de seulement $x\in C^p(I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
+Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(\inter I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de $x\in C^p(\inter I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
 
 
-### Problème de Cauchy {.definition #def_cauchy}
+### Problème de Cauchy (*Initial Value Problem*) {.definition #def_cauchy}
 Soient $U$ un ouvert de $\R\times \R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$. Le *problème de Cauchy* fait référence au système
 $$
 \dot{x}=f(t,x) \quad , \quad x(t_0)=x_0 \ .
 $$
-On dira donc que $x\in C(I,\R^n)$ résout le problème de Cauchy défini par $f$ et $(t_0,x_0)$ sur l'intervalle $I\subseteq \R$ si
+On dira donc que $x:I\to \R^n$ résout le problème de Cauchy défini par $f$ et $(t_0,x_0)$ (sur un intervalle $I$ d'intérieur non vide) si
 
 - $t_0\in I$ et $x(t_0)=x_0$
 
-- pour tout $t\in I$, $(t,x(t)) \in U$ et $\dot{x}(t)=f(t,x(t))$
+- $x$ est solution de l'équation différentielle $\dot{x}=f(t,x)$.
+<!-- pour tout $t\in I$, $(t,x(t)) \in U$ et $\dot{x}(t)=f(t,x(t))$ -->
 
 On notera alors $x\in S_f(t_0,x_0)$.
 
 ### Equation intégrale {.theorem #theo_eq_integrale}
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$, $I$ un intervalle de $\R$, $(t_0,x_0)\in U$ tel que $t_0\in I$, et $x\in C(I,\R^n)$ telle que $(t,x(t))\subset U$ pour tout $t\in I$. Alors, $x\in S_f(t_0,x_0)$ si et seulement si $x$ est solution de l'équation intégrale
+Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$, $I$ un intervalle de $\R$ d'intérieur non vide, $(t_0,x_0)\in U$ tel que $t_0\in I$, et $x\in C(I,\R^n)$ telle que $(t,x(t))\in U$ pour tout $t\in I$. Alors, $x\in S_f(t_0,x_0)$ si et seulement si $x$ est solution de l'équation intégrale
 $$
 x(t) = x_0 + \int_{t_0}^t f(s,x(s))ds \qquad \forall t\in I \ .
 $$
@@ -368,6 +377,12 @@ BESOIN de CL local pour avoir l'estimée du temps minimal d'existence de solutio
 
 <!-- Footnotes -->
 
+[^intI]:
+Certaines références autorisent les  solutions définies sur un intervalle d'intérieur vide, c'est-à-dire réduit à un point, qui sont dîtes "triviales". Mais cela n'a pas grand intérêt ici et nous supposons donc que les solutions sont définies au moins "pendant un certain temps".
+
+[^solsurI]:
+On pourra omettre de préciser l'intervalle $I$ sur lequel $x$ est solution lorsque $I$ est l'ensemble de définition naturel (ou clairement défini) de $x$. Lorsque celui-ci est ambigue ou bien lorsque l'on veut insister sur l'intervalle de définition, on dira *solution sur $I$*.
+
 [^Fferme]: 
 Pour toute suite $(x_n)$ d'éléments de $F$ convergeant vers $x^*$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
 $$
@@ -386,5 +401,5 @@ $$
 $$
 Par continuité de $x$, $|x(t)-x_0|\leq r$ pour un temps après $t^*$, ce qui contredit sa définition.
 
-[^accfinis_Cauchy]
+[^accfinis_Cauchy]:
 En l'absence d'outils d'analyse fonctionnelle à cette époque, la preuve de Cauchy consistait plutôt à discrétiser en temps l'intégrale de plus en plus finement et montrer la convergence vers une solution.
