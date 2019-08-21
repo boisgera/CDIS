@@ -309,7 +309,14 @@ On dit que la solution du problème de Cauchy est continue par rapport à la con
 *Démonstration* Exercice ? avec lemme de gronwall \hfill $\blacksquare$
 
 ### Exemples
-- $\lambda<0$ contraction
+- Si $\lambda<0$, l'erreur commise sur la condition initiale disparait au cours du temps dans les solutions : on dit qu'elles ``oublient'' leur condition initiales et que le système est *contractant*. 
+
+- On peut aussi déduire de ce résultat la continuité des solutions par rapport à des paramètres $p$ intervenant dans la fonction $f$. En effet, il suffit de considérer le système étendu
+\begin{align*}
+\dot{y} &= f(t,y,p)\\
+\dot{p} &= 0
+\end{align*}
+pour lequel l'incertitude de paramètre se ramène à une incertitude de condition initiale.
 
 - Considérons un système linéaire à paramètre et/ou condition initiale incertains
 $$
@@ -332,20 +339,28 @@ qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suf
 - L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la boîte de condition initiales, plus on les solutions restent proches. Par contre, lorsqu'on augmente le "Integration Time" les solutions s'écartent.
 
 ### Chaos déterministe et exposant de Lyapunov {.remark #rem_chao}
+Même si la continuité des solutions par rapport aux paramètres et conditions initiales est une bonne nouvelle qui donne espoir de pouvoir simuler et prédire des systèmes physiques, elle est malheureusement parfois insuffisante. 
 Henri Poincaré continue:
 
-> Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible et nous avons le phénomène fortuit. 
+<!-- Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. -->
+> Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible et nous avons le phénomène fortuit. 
 
+En fait, A FINIR + insister sur determinisme + anecdote poincaré, fin de l'espoir de Laplace
+chaos que pour borné
 
 ### Exemples 
 
-- l'attracteur de Lorenz, météo
+- 1963 : l'attracteur de Lorenz, météo
 
-- système solaire
+- 1992 : Sussman\& Wisdom système solaire chaotique avec horizon de Lyapunov 200 million d'années
+
+- electricité, pendule forcé
 
 
 Propriétés asymptotiques
 -----------------------------
+
+Dans la section précédente nous avon répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressans maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce qu'il diverge ? est-ce qu'il tend vers un point en particulier ? vers un cycle limite ?
 
 ### Point d'équilibre
 
