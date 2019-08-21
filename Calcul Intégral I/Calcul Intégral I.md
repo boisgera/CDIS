@@ -1300,10 +1300,11 @@ permettre l'intégration de fonctions sur des intervalles non-bornés.
 Le travail central consiste à redéfinir la somme de Riemann; 
 en effet, comme toute subdivision pointée 
 d'un intervalle non-borné comporte nécessairement un ou deux éléments 
-de la forme $(t, I)$ où $I$ est non-borné,
-la longueur $\ell(I)$ associée est alors infinie et la somme de Riemann
-définie jusqu'à présent comporte alors un ou deux termes de la forme 
-$f(t) \times \infty$; elle donc potentiellement infinie, 
+de la forme $(t, I)$ où $I$ est un intervalle non-borné de $\R$,
+la longueur $\ell(I)$ associée est alors infinie.
+La somme de Riemann définie jusqu'à présent comporte alors 
+un ou deux termes de la forme $f(t) \times \infty$; 
+elle donc potentiellement infinie, 
 ou même indéfinie si les termes $-\infty$ et $+\infty$ apparaissent.
 
 Pour pallier à ce problème, nous adoptons la stratégie suivante:
@@ -1311,14 +1312,15 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
  1. **Intervalles.** 
     Nous considérons désormais l'intégration de fonctions sur des 
     intervalles de la forme $[a, b]$ où $-\infty \leq a \leq b \leq +\infty$,
-    autrement dit les intervalles fermés de la droite réelle achevée
-    $\R \cup \{-\infty, +\infty\}$.
+    autrement dit les intervalles fermés (ou ce qui revient au même,
+    compacts) de la droite réelle achevée $[-\infty, +\infty]$.
 
  2. **Fonctions.**
     Si les fonctions que nous souhaitons intégrer sont définies sur des 
-    intervalles fermés dans $\R$ mais pas dans $\R \cup \{-\infty, +\infty\}$,
-    nous leur assignons une valeur arbitraire en $\pm \infty$, par exemple
-    la valeur $0$.
+    intervalles fermés mais non bornés dans $\R$, 
+    nous leur assignons une valeur arbitraire en $-\infty$ et/ou en $+\infty$, 
+    par exemple la valeur $0$, pour les étendre à un intervalle qui soit
+    fermé dans $[-\infty, +\infty]$.
 
  3. **Somme de Riemann.** Si $\mathcal{D}$ est une subdivision pointée de 
     $[a, b]$ et $f:[a, b] \to \R$, la somme de Riemann associée est définie
@@ -1332,7 +1334,7 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
     $$
 
 Autrement dit, nous remplaçons les intervalles fermés $\R$ par ceux de
-$\R \cup \{-\infty, +\infty\}$ et nous excluons de la somme de Riemann les
+$[-\infty, +\infty]$ et nous excluons de la somme de Riemann les
 contributions des intervalles contenant $-\infty$ ou $+\infty$ (ce qui
 explique pourquoi les valeurs $f(\pm \infty)$ n'ont pas d'importance).
 
@@ -1456,8 +1458,8 @@ droite réelle (achevée) toute entière:
 
 ### Extension à la droite réelle achevée {.corollary #EDRA}
 Une fonction $f:[a, b] \to \R$ est intégrable si et seulement 
-si son prolongement $g$ par zéro dans $\R \cup \{-\infty, +\infty\}$, 
-c'est-à-dire la fonction $g :\R \cup \{-\infty, +\infty\} \to \R$ telle que
+si son prolongement $g$ par zéro dans $[-\infty, +\infty]$, 
+c'est-à-dire la fonction $g :[-\infty, +\infty] \to \R$ telle que
 $$
 g(x) = \left|
 \begin{array}{rl}
@@ -1473,14 +1475,14 @@ $$
 
 ### Démonstration {.proof}
 Supposons que $a$ soit fini et que $b = +\infty$. 
-Si $g$ est intégrable sur $\R \cup \{-\infty, +\infty\}$, 
+Si $g$ est intégrable sur $[-\infty, +\infty]$, 
 par restriction, $f$ est intégrable sur $[a, +\infty]$.
 Réciproquement, si $f$ est intégrable sur $[a, +\infty]$,
 la fonction $g$ étant nulle sur $\left[-\infty, a\right]$ 
 à l'exception d'un point, elle y est intégrable ; 
 étant égale à $f$ sur $[a, +\infty]$ elle y est également intégrable. 
 Par additivité, $g$ est donc
-intégrable sur $\R \cup \{-\infty, +\infty\}$.
+intégrable sur $[-\infty, +\infty]$.
 L'additivité fournit également
 $$
 \int_{\R} g(t) \, dt = \int_{-\infty}^a g(t) \, dt + \int_{a}^{+\infty} g(t) \,dt.
