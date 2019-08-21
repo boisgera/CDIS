@@ -1009,10 +1009,10 @@ a été appliquée, et quels étaient les arguments de l'opération (eux-mêmes
 des noeuds). Pour supporter cette démarche, `Node` devient:
 
     >>> class Node:
-    ...     def __init__(self, value, function=None, args=None):
+    ...     def __init__(self, value, function=None, *args):
     ...         self.value = value
     ...         self.function = function
-    ...         self.args = args if args is not None else []
+    ...         self.args = args
 
 Il nous faut alors rendre les opérations usuelles compatibles avec la création
 de noeuds; en examinant les arguments de la fonction, on doit décider si
@@ -1022,7 +1022,7 @@ des valeurs numériques) ou en train de tracer les calculs. Par exemple:
     >>> def cos(x):
     ...     if isinstance(x, Node):
     ...         cos_x_value = math_cos(x.value)
-    ...         cos_x = Node(cos_x_value, cos, [x])
+    ...         cos_x = Node(cos_x_value, cos, x)
     ...         return cos_x
     ...     else:
     ...         return math_cos(x) 
@@ -1036,7 +1036,7 @@ ou
     ...         if not isinstance(y, Node):
     ...             y = Node(y)
     ...         add_x_y_value = x.value + y.value
-    ...         return Node(add_x_y_value, add, [x, y])
+    ...         return Node(add_x_y_value, add, x, y)
     ...     else:
     ...         return x + y
 
@@ -1058,8 +1058,8 @@ originale) et renvoie une nouvelle fonction, compatible avec la
 gestion des noeuds. On pourra ignorer son implémentation 
 en première lecture.
 
-    >>> def wrap(function):
-    ...    def wrapped_function(*args):
+    >>> def autodiff(function):
+    ...    def autodiff_function(*args):
     ...        if any([isinstance(arg, Node) for arg in args]):
     ...            node_args = []
     ...            values = []
@@ -1071,25 +1071,27 @@ en première lecture.
     ...                    node_args.append(Node(arg)) 
     ...                    values.append(arg)
     ...            output_value = function(*values)
-    ...            output_node = Node(output_value, wrapped_function, node_args)
+    ...            output_node = Node(
+    ...                output_value, autodiff_function, *node_args
+    ...            )
     ...            return output_node
     ...        else:
     ...            return function(*args)        
-    ...    wrapped_function.__qualname__ = function.__qualname__
-    ...    return wrapped_function
+    ...    autodiff_function.__qualname__ = function.__qualname__
+    ...    return autodiff_function
 
 Malgré sa complexité apparente, l'utilisation de cette fonction est simple; 
 ainsi pour rendre la foncton `sin` et l'opérateur `*` compatible
 avec la gestion de noeuds, il suffit de faire:
 
     >>> from math import sin
-    >>> sin = wrap(sin)
+    >>> sin = autodiff(sin)
 
 et
 
     >>> def multiply(x, y):
     ...     return x * y
-    >>> multiply = wrap(multiply)
+    >>> multiply = autodiff(multiply)
     >>> Node.__mul__ = Node.__rmul__ = multiply
 
 ce que est sensiblement plus rapide et lisible 
@@ -1108,27 +1110,43 @@ dans des noeuds, puis appelle la fonction et renvoie le noeud associé
 
 Pour vérifier que tout se passe bien comme prévu,
 faisons en sorte d'afficher une représentation lisible 
-et sympathique des contenus des noeuds:
+et sympathique des contenus des noeuds sous forme de chaîne de caractères:
+
+    >>> def node_str(node):
+    ...     if node.function is None:
+    ...         return str(node.value)
+    ...     else:
+    ...         function_name = node.function.__qualname__
+    ...         args_str = ", ".join(str(arg) for arg in node.args)
+    ...         return f"{function_name}({args_str})"
+
+Puis, faisons en sorte qu'elle soit utilisée quand on invoque
+la fonction `print`, plutôt que l'affichage standard: 
+
+    >>> Node.__str__ = node_str
+
+Nous complétons cette description par une seconde représentation, 
+plus explicite mais également plus verbeuse:
 
     >>> def node_repr(node):
+    ...    reprs = [repr(node.value)]
     ...    if node.function is not None:
-    ...        function_name = node.function.__qualname__
-    ...        return f"Node({node.value}, {function_name}, {node.args})"
-    ...    else:
-    ...        return f"Node({node.value})"
-
-Puis, faisons en sorte qu'elle soit utilisée par défaut par le noeud
-plutôt que la représentation standard des objets:
-
-    >>> Node.__str__ = Node.__repr__ = node_repr
+    ...        reprs.append(node.function.__qualname__)
+    ...    if node.args:
+    ...        reprs.extend([repr(arg) for arg in node.args])
+    ...    args_repr = ", ".join(reprs)
+    ...    return f"Node({args_repr})"
+    >>> Node.__repr__ = node_repr
 
 Nous sommes prêts à faire notre vérification:
 
     >>> def f(x):
     ...    return 1.0 + cos(x)
     >>> end = trace(f, [pi])
+    >>> end
+    Node(0.0, add, Node(-1.0, cos, Node(3.141592653589793)), Node(1.0))
     >>> print(end)
-    Node(0.0, add, [Node(-1.0, cos, [Node(3.141592653589793)]), Node(1.0)])
+    add(cos(3.141592653589793), 1.0)
 
 Le résultat se lit de la façon suivante: le calcul de `f(pi)` produit 
 la valeur `0.0`, issue de l'addition de `-1.0`, 
@@ -1139,8 +1157,11 @@ Un autre exemple -- à deux arguments -- pour la route:
 
     >>> def f(x, y):
     ...     return x * (x + y)
-    >>> trace(f, [1.0, 2.0])
-    Node(3.0, multiply, [Node(1.0), Node(3.0, add, [Node(1.0), Node(2.0)])])
+    >>> t = trace(f, [1.0, 2.0])
+    >>> t
+    Node(3.0, multiply, Node(1.0), Node(3.0, add, Node(1.0), Node(2.0)))
+    >>> print(t)
+    multiply(1.0, add(1.0, 2.0))
 
 Calcul automatique des dérivées
 --------------------------------------------------------------------------------
@@ -1199,7 +1220,8 @@ final produit par ce procédé extraire l'ensemble des noeuds amont,
 qui représentent les arguments utilisés dans le calcul de la valeur finale.
 Puis, pour préparer le calcul de la différentielle, nous ordonnerons 
 les noeuds de telle sorte que les arguments d'une fonction apparaissent 
-toujours avant la valeur qu'elle produit:
+toujours avant la valeur qu'elle produit.
+L'implémentation suivante, relativement naïve[^MI], réalise cette opération:
 
     >>> def find_and_sort_nodes(end_node):
     ...     todo = [end_node]
@@ -1217,6 +1239,10 @@ toujours avant la valeur qu'elle produit:
     ...                 done.append(node)
     ...                 nodes.remove(node)
     ...     return done
+
+[^MI]: Comme toujours, si vous ou l'un des membres de votre unité était surpris
+par un informaticien en possession de ce code, 
+l'UE 11 niera avoir connaissance de vos activités. 
 
 Le calcul de la différentielle en tant que tel ne consiste plus qu'à 
 propager la variation des arguments de noeud en noeud, en se basant

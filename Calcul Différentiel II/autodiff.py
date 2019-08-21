@@ -137,17 +137,25 @@ import operator
 
 # ------------------------------------------------------------------------------
 class Node:
-    def __init__(self, value, function=None, args=None):
+    def __init__(self, value, function=None, *args):
          self.value = value
          self.function = function
-         self.args = args if args is not None else []
+         self.args = args
     def __str__(self):
-        if self.function is not None:
-            function_name = self.function.__qualname__
-            return f"Node({self.value}, {function_name}, {self.args})"
+        if self.function is None:
+            return str(self.value)
         else:
-            return f"Node({self.value})"
-    __repr__ = __str__
+            function_name = self.function.__qualname__
+            args_str = ", ".join(str(arg) for arg in self.args)
+            return f"{function_name}({args_str})"
+    def ___repr__(node):
+        reprs = [repr(self.value)]
+        if self.function is not None:
+            reprs.append(self.function.__qualname__)
+        if self.args:
+            reprs.extend([repr(arg) for arg in self.args])
+        args_repr = ", ".join(reprs)
+        return f"Node({args_repr})"
 
 def autodiff(function):
     def autodiff_function(*args):
@@ -162,7 +170,7 @@ def autodiff(function):
                     node_args.append(Node(arg)) 
                     values.append(arg)
             output_value = function(*values)
-            output_node = Node(output_value, autodiff_function, node_args)
+            output_node = Node(output_value, autodiff_function, *node_args)
             return output_node
         else:
             return function(*args)        
