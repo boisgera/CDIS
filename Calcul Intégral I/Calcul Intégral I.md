@@ -255,7 +255,7 @@ Intégrale de Riemann généralisée
 ### Jauge {.definition}
 Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction 
 qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
-de $\R$ contenant $t$. 
+contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision pointée $\mathcal{D}$ de l'intervalle $[a, b]$ 
@@ -409,7 +409,8 @@ l'intégrale de Henstock-Kurzweil satisfait
 [le théorème fondamental du calcul](#TCF) en toute généralité.
 
 ### Théorème fondamental du calcul {.theorem #TFC}
-Si la fonction $f:[a, b] \to \R$ est dérivable, 
+Soit $[a, b]$ un intervalle compact de $\R$ ;
+si la fonction $f:[a, b] \to \R$ est dérivable, 
 sa dérivée $f'$ est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
 $$
 [f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
@@ -965,7 +966,8 @@ Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
 petit, on en déduit que l'intégrale est positive.
 
 ### Intégration par parties {.theorem}
-Si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
+Soit $[a, b]$ un intervalle compact de $\R$ ;
+si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
 la fonction $f'g$ est intégrable si et seulement si la fonction $fg'$
 est intégrable. Si c'est le cas, on a
 $$
@@ -993,7 +995,8 @@ et y faire référence ?
 
 
 ### Changement de variables {.theorem}
-Si la fonction $f:[c, d] \to \R$ admet une primitive,
+Soit $[a, b]$ et $[c, d]$ deux intervalles compacts de $\R$ ;
+si la fonction $f:[c, d] \to \R$ admet une primitive et
 que la fonction $g:[a, b] \to [c, d]$ est dérivable, 
 alors la fonction $(f\circ g) g'$ est intégrable sur $[a, b]$ et
 $$
@@ -1282,17 +1285,6 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 Intégration sur des intervalle non-bornés
 ================================================================================
 
-
-### TODO
-
-Voir ce qu'il est possible de dire au passage sur l'absence d'intégrale
-impropre (théorème de Hake).
-
-### TODO
-Référence procédé "habituel" de Cauchy-Riemann nécessaire dans le cadre
-classique, coexistence d'intégrales "normales" et "impropres" et comment
-ça n'est plus le cas ici.
-
 ### 
 La théorie de l'intégration de Henstock-Kurzweil présentée dans les
 sections précédentes peut être modifiée de façon assez mineure pour 
@@ -1300,10 +1292,11 @@ permettre l'intégration de fonctions sur des intervalles non-bornés.
 Le travail central consiste à redéfinir la somme de Riemann; 
 en effet, comme toute subdivision pointée 
 d'un intervalle non-borné comporte nécessairement un ou deux éléments 
-de la forme $(t, I)$ où $I$ est non-borné,
-la longueur $\ell(I)$ associée est alors infinie et la somme de Riemann
-définie jusqu'à présent comporte alors un ou deux termes de la forme 
-$f(t) \times \infty$; elle donc potentiellement infinie, 
+de la forme $(t, I)$ où $I$ est un intervalle non-borné de $\R$,
+la longueur $\ell(I)$ associée est alors infinie.
+La somme de Riemann définie jusqu'à présent comporte alors 
+un ou deux termes de la forme $f(t) \times \infty$; 
+elle donc potentiellement infinie, 
 ou même indéfinie si les termes $-\infty$ et $+\infty$ apparaissent.
 
 Pour pallier à ce problème, nous adoptons la stratégie suivante:
@@ -1311,14 +1304,15 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
  1. **Intervalles.** 
     Nous considérons désormais l'intégration de fonctions sur des 
     intervalles de la forme $[a, b]$ où $-\infty \leq a \leq b \leq +\infty$,
-    autrement dit les intervalles fermés de la droite réelle achevée
-    $\R \cup \{-\infty, +\infty\}$.
+    autrement dit les intervalles fermés (ou ce qui revient au même,
+    compacts) de la droite réelle achevée $[-\infty, +\infty]$.
 
  2. **Fonctions.**
     Si les fonctions que nous souhaitons intégrer sont définies sur des 
-    intervalles fermés dans $\R$ mais pas dans $\R \cup \{-\infty, +\infty\}$,
-    nous leur assignons une valeur arbitraire en $\pm \infty$, par exemple
-    la valeur $0$.
+    intervalles fermés mais non bornés dans $\R$, 
+    nous leur assignons une valeur arbitraire en $-\infty$ et/ou en $+\infty$, 
+    par exemple la valeur $0$, pour les étendre à un intervalle qui soit
+    fermé dans $[-\infty, +\infty]$.
 
  3. **Somme de Riemann.** Si $\mathcal{D}$ est une subdivision pointée de 
     $[a, b]$ et $f:[a, b] \to \R$, la somme de Riemann associée est définie
@@ -1331,8 +1325,9 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
     I \subset \left]-\infty, +\infty\right[.
     $$
 
-Autrement dit, nous remplaçons les intervalles fermés $\R$ par ceux de
-$\R \cup \{-\infty, +\infty\}$ et nous excluons de la somme de Riemann les
+Autrement dit, nous remplaçons les intervalles fermés 
+$\R= \left]-\infty, +\infty\right[$ par ceux de
+$[-\infty, +\infty]$ et nous excluons de la somme de Riemann les
 contributions des intervalles contenant $-\infty$ ou $+\infty$ (ce qui
 explique pourquoi les valeurs $f(\pm \infty)$ n'ont pas d'importance).
 
@@ -1356,14 +1351,14 @@ On étend immédiatement cette fonction sur $[0, +\infty]$ en posant
 $f(+\infty)=0$ (on note toujours $f$ la fonction qui en résulte).
 
 La fonction $f$ admettant comme primitive $x \mapsto -1/x$
-sur $\left[1, +\infty \right[$ sur chaque intervalle borné $[a, b]$ 
-de $\left[1, +\infty \right[$, on a
+sur chaque intervalle borné $[a, b]$ 
+de $\left[1, +\infty \right[$, par [le théorème fondamental du calcul](#TFC),
 $$
 \int_a^b f(t) \, dt = \left[x \mapsto -\frac{1}{x}\right]_a^b 
 = \frac{1}{a} - \frac{1}{b}.
 $$
-En "passant à la limite" informellement,
-on peut supposer que $f$ est intégrable sur 
+"Passer à la limite" informellement (sans justification) dans cette expression
+peut nous laisser penser que $f$ est intégrable sur 
 $\left[1, +\infty \right]$ et vérifie
 $$
 \int_1^{+\infty} f(t) \, dt \stackrel{?}{=} 1.
@@ -1375,47 +1370,99 @@ $\left[1, +\infty \right]$
 tels que pour toute subdvision pointée $\mathcal{D}$ de $[1, +\infty]$ 
 subordonnée à $\gamma$ on ait
 $\left| S(f, \mathcal{D}) - 1 \right| \leq \varepsilon.$
-Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ et 
-que les $x_i$ sont agencés de façon (strictement) croissante;
-notons $\mathcal{D}_{f}$ l'ensemble des $(t_i, [x_i, x_{i+1}])$ de 
-$\mathcal{D}$ tels que $x_{i+1} < +\infty$.
-On a 
+Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
+que les $x_i$ sont agencés de façon (strictement) croissante ; on a en particulier
+$x_{m+1} = +\infty$ et $x_k < +\infty$ quand $k \leq m$. Notons
+$\mathcal{D}_f = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ ;
+on a alors
 $$
 \begin{split}
 \left| S(f, \mathcal{D}) - 1 \right| 
 &\leq
-\left| S(f, \mathcal{D}_f) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
+\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
 &\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
 &\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
 \end{split}
 $$
-Si l'on sélectionne une jauge telle que 
-$\gamma(+\infty) = \left]2/\varepsilon, +\infty\right]$,
-si $\mathcal{D}$ est subordonnée à $\gamma$,
-$[x_{m-1}, x_m] \subset \gamma(+\infty)$
-et on a garanti que $1/x_{m} \leq \varepsilon/2.$
-Il suffira donc de disposer d'un majorant suffisamment petit de chaque 
-terme
+Si l'on sélectionne une jauge telle $\gamma$ telle que
+pour tout $t \in \left[1, +\infty\right[$ on ait $\gamma(t) \subset \R$
+(et donc $+\infty \not \in \gamma(t)$),
+et si la subdvision pointée $\mathcal{D}$ est subordonnée à $\gamma$,
+la valeur $t_m$ associée à $(t_m, [x_m, +\infty]) \in \mathcal{D}$
+vérifie nécessairement $t_m=+\infty$, et donc $[x_m,+\infty] \subset \gamma(+\infty)$.
+Il suffit donc d'imposer par exemple $\gamma(+\infty) = \left]2/\varepsilon, +\infty\right]$
+pour garantir que $1/x_{m} \leq \varepsilon/2.$
+Si nous disposons ensuite d'un majorant pour chaque terme
 $$
 \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|,
 $$
-de telle sorte que leur somme soit inférieure à $\varepsilon/2$ pour conclure. 
+choisi de telle sorte que leur somme soit également inférieure à $\varepsilon/2$, 
+nous pourrons alors conclure. 
 Toutefois la stratégie consistant à recherche un majorant proportionnel à 
 la longueur de l'intervalle $[x, y]$ n'est plus applicable car l'intervalle
 $[0, x_{m}]$ peut être arbitrairement long. 
 Au lieu de cela, nous allons tâcher de trouver une jauge $\gamma$ telle que
 $$
 \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \leq
-\frac{\varepsilon}{2xy} (y-x) = \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
+\frac{\varepsilon}{2xy} (y-x) = \frac{\varepsilon}{2} \left(\frac{1}{x} - \frac{1}{y} \right)
 $$
 Les termes de droite de cette inégalité forment alors une série télescopique
 dont la somme vérifie
 $$
-\sum_{(t, [x, y]) \in \mathcal{D}_f} \varepsilon \left(\frac{1}{2x} - \frac{1}{2y} \right)
- = \varepsilon \left(\frac{1}{2} - \frac{1}{2x_m} \right)
+\sum_{(t, [x, y]) \in \mathcal{D}_f} \frac{\varepsilon}{2} \left(\frac{1}{x} - \frac{1}{y} \right)
+ = \frac{\varepsilon}{2} \left(1- \frac{1}{x_m} \right)
  \leq \frac{\varepsilon}{2}.
 $$
+On note qu'il suffit d'établir d'une part que
+$$
+\left|f(t)(y-t) - \left(\frac{1}{t} - \frac{1}{y}\right) \right| \leq
+\frac{\varepsilon}{2} \left(\frac{1}{t} - \frac{1}{y} \right)
+$$
+et d'autre part que
+$$
+\left|f(t)(t-x) - \left(\frac{1}{x} - \frac{1}{t}\right) \right| \leq
+\frac{\varepsilon}{2} \left(\frac{1}{x} - \frac{1}{t} \right)
+$$
+pour obtenir l'inégalité cherchée. Or,
+$$
+\begin{split}
+f(t)(y-t) - \left(\frac{1}{t} - \frac{1}{y}\right)
+&= \frac{y-t}{t^2} - \left(\frac{1}{t} - \frac{1}{y}\right) \\
+&= \frac{y}{t}\frac{y-t}{ty} - \left(\frac{1}{t} - \frac{1}{y}\right) \\
+&= \frac{y}{t} \left(\frac{1}{t} - \frac{1}{y}\right) - \left(\frac{1}{t} - \frac{1}{y}\right) \\
+&= \left(\frac{y-t}{t}\right)\left(\frac{1}{t} - \frac{1}{y}\right). \\
+\end{split}
+$$
+On obtient donc la première inégalité souhaitée si 
+$$
+\frac{y-t}{t} \leq \frac{\varepsilon}{2}
+\; \mbox{ soit } \;
+y \leq t + \frac{\varepsilon}{2} t.
+$$
+De manière similaire, on montre que la seconde inégalité est satisfaite si
+$$
+\frac{t-x}{t} \leq \frac{\varepsilon}{2}
+\; \mbox{ soit } \;
+x \geq t - \frac{\varepsilon}{2} t.
+$$
+Au final, nous avons établi que si $\mathcal{D}$ est subordonnée à la jauge
+$\gamma$ définie par
+$$
+\gamma(t) 
+= 
+\left|
+\begin{array}{rl}
+\left]t - \varepsilon/2, t + \varepsilon/2 \right[ & \mbox{ si } t \in \left[1, +\infty\right[, \\
+\left]2/\varepsilon, +\infty\right] & \mbox{ si } t = +\infty,
+\end{array}
+\right.
+$$
+alors $|S(\mathcal{D}, f) - 1| \leq \varepsilon$ ; 
+la fonction $x \mapsto 1/x^2$ est donc intégrable sur $\left[1, +\infty\right]$, 
+d'intégrale égale à 1.
 
+
+<!--
 Pour fournir la majoration cherchée, nous formons
 $$
 \frac{f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right)}{\frac{(y - x)}{xy}}
@@ -1434,30 +1481,84 @@ $$
 $$
 Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
 majoration voulue.
+-->
 
-### TODO
+--------------------------------------------------------------------------------
 
-Quid:
+### {.ante .remark}
+La construction de l'intégrale dans cette section est applicable
+indifféremment dans le cas des intervalles bornés ou non de la droite réelle.
+Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour donner
+un sens à l'intégrale d'une fonction définie sur un intervalle non-borné 
+de calculer tout d'abord son intégrale sur un intervalle borné puis
+d'essayer de passer à la limite[^CR]. Toutefois, si on souhaite se livrer
+cette démarche avec l'intégrale de Henstock-Kurzweil, le résultat serait
+identique à la démarche directe que nous avons adoptée ; avec l'intégrale
+de Henstock-Kurzweil, [le théorème de Hake](#hake) montre
+qu'il n'existe pas d'intégrale *impropre*, 
+qui ne serait pas définissable directement mais uniquement par
+un passage à la limite.
 
-  - (*) FTC
+[^CR]: sans garantie que ce nouvel objet -- l'intégrale de Cauchy-Riemann --
+partage les propriétés utiles de l'intégrale de Riemann sur les segments
+de $\R$.
 
-  - (*) IPP
 
-  - (*) Chgt variables
+### Théorème de Hake {.theorem #hake}
+Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
+et $f: [a, b] \to \R$. La fonction $f$ est intégrable sur $[a, b]$ si
+et seulement si elle est intégrable sur tout intervalle $[c, d]$
+tel que $a < c$ et $d < b$ et que l'intégrale
+$$
+\int_c^d f(t) \, dt
+$$
+a une limite quand $c$ tend vers $a$ et $d$ tend vers $b$.
+On a alors
+$$
+\int_a^b f(t) \, dt = \lim_{(c, d) \to (a,b)} \int_{c}^d f(t) \, dt.
+$$
 
-dans le cas non borné ? Reprendre leur énoncés ad minimima et s'assurer
-que la terminologie "intervalle fermé **de $\R$**" est présente.
+### Démonstration {.proof}
+Se reporter à [@Swa01].
+
+### {.post}
+Le théorème de Hake permet d'étendre facilement certains résultats valables 
+sur des segments de la droite réelle. A titre d'exemple:
+
+### Théorème fondamental du calcul (extension) {.theorem}
+Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
+et $f: [a, b] \to \R$, une fonction dérivable sur $\left]a, b\right[$ et
+continue sur $[a, b]$. La fonction $f'$ (définie partout sauf en $a$ et $b$)
+est intégrable sur $[a, b]$ et
+$$
+[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
+Par continuité, le membre de gauche de cette équation à une limite quand
+$c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$. 
+[Le théorème de Hake](#hake) permet alors de conclure.
+
+### Démonstration {.proof}
+[Le théorème fondamental du calcul](#TFC) dans le cadre borné nous fournit
+pour tout $c$ et $d$ tels que $a < c \leq d < b$ l'intégrabilité de $f'$
+sur $[c, d]$ et la relation
+$$
+f(d) - f(c) = \int_c^d f'(t) \, dt.
+$$
+
+
 
 ### {.remark .ante}
-Il n'est pas nécessaire de considérer l'intégration dans tous les types
-d'intervalles (fermés) bornés ou non bornés possibles: on peut toujours
+Un facteur vient simplifier l'étude de l'intégration sur des intervalles
+(a priori) non bornés : il n'est pas nécessaire de considérer l'intégration 
+dans tous les types
+d'intervalles possibles car on peut toujours
 se ramener au cas où l'on cherche à intégrer une fonction sur la
 droite réelle (achevée) toute entière:
 
 ### Extension à la droite réelle achevée {.corollary #EDRA}
 Une fonction $f:[a, b] \to \R$ est intégrable si et seulement 
-si son prolongement $g$ par zéro dans $\R \cup \{-\infty, +\infty\}$, 
-c'est-à-dire la fonction $g :\R \cup \{-\infty, +\infty\} \to \R$ telle que
+si son prolongement $g$ par zéro dans $[-\infty, +\infty]$, 
+c'est-à-dire la fonction $g :[-\infty, +\infty] \to \R$ telle que
 $$
 g(x) = \left|
 \begin{array}{rl}
@@ -1473,14 +1574,14 @@ $$
 
 ### Démonstration {.proof}
 Supposons que $a$ soit fini et que $b = +\infty$. 
-Si $g$ est intégrable sur $\R \cup \{-\infty, +\infty\}$, 
+Si $g$ est intégrable sur $[-\infty, +\infty]$, 
 par restriction, $f$ est intégrable sur $[a, +\infty]$.
 Réciproquement, si $f$ est intégrable sur $[a, +\infty]$,
 la fonction $g$ étant nulle sur $\left[-\infty, a\right]$ 
 à l'exception d'un point, elle y est intégrable ; 
 étant égale à $f$ sur $[a, +\infty]$ elle y est également intégrable. 
 Par additivité, $g$ est donc
-intégrable sur $\R \cup \{-\infty, +\infty\}$.
+intégrable sur $[-\infty, +\infty]$.
 L'additivité fournit également
 $$
 \int_{\R} g(t) \, dt = \int_{-\infty}^a g(t) \, dt + \int_{a}^{+\infty} g(t) \,dt.

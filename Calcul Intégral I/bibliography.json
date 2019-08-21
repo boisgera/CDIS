@@ -20,5 +20,27 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "Swa01",
+		"type": "book",
+		"title": "Introduction to gauge integrals.",
+		"publisher": "Singapore: World Scientific",
+		"number-of-pages": "x + 157",
+		"ISBN": "981-02-4239-5",
+		"language": "English",
+		"author": [
+			{
+				"family": "Swartz",
+				"given": "Charles"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001"
+				]
+			]
+		}
 	}
 ]

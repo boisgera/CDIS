@@ -10,34 +10,21 @@
 Intégrales Multiples
 ================================================================================
 
-### TODO
+Définitions
+--------------------------------------------------------------------------------
 
-rappel résultats analogues (du chap I et II) au cas réel.
+### {.remark .ante}
+Les pavés joueront dans $\R^n$ le rôle dévolu aux intervalles dans $\R$:
 
 ### Pavés {.definition}
-On appelle *pavé* tout sous-ensemble $I$ de $\mathbb{R}^n$ de la forme
+On appelle *pavé* de $\overline{\R}^n$ tout ensemble $I$ de la forme
 $$
 I = I_1 \times \dots \times I_n
 $$
-où les $I_i$ sont de intervalles de $\mathbb{R}$.
-
-### Remarque {.remark .anonymous}
-La notion de pavé généralise la notion d'intervalle de 
-$\mathbb{R}$ à $\mathbb{R}^n$; le terme intervalle est d'ailleurs
-parfois utilisé au lieu du terme pavé. 
-
-### Subdivision pointée
-Une *subdivision pointée* du pavé fermé $I$ de $\mathbb{R}^n$ est 
-une famille finie 
-$$
-\{(t_i, I_i) \; | \; \; 0 \leq i \leq k-1\}
-$$
-où les $I_i$ sont des pavés fermés de $I$ sans chevauchement, 
-qui recouvrent $I$, et tels que 
-$t_i \in I_i$ pour tout $i \in \{0, \dots, k-1\}.$
+où les $I_i$ sont des intervalles de $\overline{\R}$.
 
 ### Volume d'un pavé
-On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$
+On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$ de $\overline{\R}^n$
 la valeur
 $$
 v(I)  = \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
@@ -45,89 +32,213 @@ $$
 en adoptant la convention que $0 \times \infty = 0$.
 
 ### Longeur, aire, volume {.remark}
-Dans $\mathbb{R}$, on pourra continuer à appeler cette grandeur
-la longueur ; dans $\mathbb{R}^2$ il est approprié de la désigner
-sous le terme d'aire. Si l'on souhaite distinguer le cas du
-volume "classique" dans $\mathbb{R}^3$ et les autres dimensions, 
+On pourra continuer à appeler cette grandeur
+*longueur* plutôt que *volume* si l'on travaille dans $\overline{\R}$ ; 
+dans $\overline{\R}^2$ il est approprié 
+de la désigner sous le terme d'*aire*. 
+Si l'on souhaite distinguer le cas du
+volume "classique" dans $\overline{\R}^3$ et les autres dimensions, 
 on pourra utiliser le terme d'*hypervolume* comme terme générique
-et réserver le terme de volume au cas de $\mathbb{R}^3$.
+et réserver le terme de *volume* au cas de $\mathbb{R}^3$.
+
+### TODO: adapter sans chevauchement avec de intersection des intérieurs vide.
+
+### Subdivision pointée
+Une *subdivision pointée* du pavé fermé $I$ de 
+$\overline{\R}^n$ est 
+une famille finie 
+$$
+\{(t_i, I_i) \; | \; \; 0 \leq i \leq k-1\}
+$$
+où les $I_i$ sont des pavés fermés de $I$ sans chevauchement
+-- les volumes de leur intersections deux à deux sont nuls --
+qui recouvrent $I$, et tels que 
+$t_i \in I_i$ pour tout $i \in \{0, \dots, k-1\}.$
+
 
 ### Somme de Riemman {.definition}
-
 La somme de Riemann associée à la fonction $f:I \to \mathbb{R}$,
-où $I$ est un pavé compact de $\mathbb{R}^n$,
-et à la subdivision pointée $\mathcal{D}$ de $I$ est la grandeur
+où $I$ est un pavé fermé de $\overline{\R}^n$ 
+et à la subdivision pointée $\mathcal{D}$ 
+de $I$ est la grandeur
 $$
-S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) v(I)
+S(f, \mathcal{D}) = \sum f(t) v(I), \; (t, I) \in \mathcal{D}, \, v(I) < + \infty.
 $$
 
 ### Jauge {.definition}
-Une jauge $\gamma$ sur un pavé $I$ de $\mathbb{R}^n$ est une 
+Une jauge $\gamma$ sur un pavé fermé $I$ de $\overline{\R}^n$ est une 
 fonction qui associe à tout $t \in I$ un 
-pavé ouvert $\gamma(t)$ de $\mathbb{R}^n$ contenant $t$. 
+pavé ouvert $\gamma(t)$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
-Une subdivision $\mathcal{D}$ du pavé compact $I$ 
+Une subdivision $\mathcal{D}$ du pavé fermé $I$ de $\overline{\R}^n$
 est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout 
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Intégrale dans $\mathbb{R}^n$ {.definition}
-Soit $I$ un pavé de $\mathbb{R}^n$.
-Une fonction $f:I \to \mathbb{R}$ est dite *intégrable 
+Une fonction $f:\R^n \to \R$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
-que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de $\mathbb{R}^n$ 
-et un pavé compact $K$ de $I$
-tels que pour tout pavé compact $P$ vérifiant $K \subset P \subset I$
-et pour toute subdivision pointée $\mathcal{D}$ de $P$ 
+que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de 
+$\overline{\R}^n$ telle que pour 
+toute subdivision pointée $\mathcal{D}$ de $\overline{\R}^n$
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique; il est appelé
-*intégrale de $f$ sur $\mathbb{R}^n$* et noté
+*intégrale de $f$ sur $\R^n$* et noté
 $$
-\int_{\mathbb{R}^n} f(t) \, dt.
+\int f \; \mbox{ ou } \;
+\int_{\R^n} f(x) \, dx \; \mbox{ ou } \; \int_{\R^n} f(x_1,\dots, x_n) \, dx_1\dots dx_n.
 $$
 
-### Théorème de Fubini {.theorem}
+### {.post}
+Comme dans le cas réel, la définition supposerait que $f$ soit a priori
+définie sur $\overline{\R}^n$ plutôt que sur $\R^n$ ; 
+mais on peut étendre $f$ par des valeurs à l'infini sans 
+que l'intégrabilité de cette extension ou la valeur de son intégrale
+ne soient affectés par le choix de ces valeurs.
+
+TODO -- Propriétés élémentaires
+--------------------------------------------------------------------------------
+
+### TODO -- Linéarité, Positivité
+
+### TODO -- Critère d'intégrabilité de Cauchy
+
+### TODO -- d'emblée, ens. mesurable et fct mesurable 
+
+ens négligeable ; 
+Def en. mesurable à la mano, les pavés sont mesurables ; pptés de type tribu,
+plus compat topo et complétude. 
+
+égalité intégrales fcts égales p.p.
+
+deux def équivalentes pour fct mesurable
+(limite et critère de l'image réciproque)
+
+Puis def intégrabilité / intégrale sur un sous-ensemble (si produit par
+fct carac mesurable)
+
+### TODO -- Additivité et restriction ?
+
+(focus pavé donc). Encore du sens alors qu'on a ici le cadre plus général ?
+Mmmmf restriction à encore du sens si on veut gérer du conditionnellement
+intégrable (sinon c'est une conséquence de la mesurabilité des pavés).
+
+Additivité ? Par utile si on sait que les intersections de pavé sans
+chevauchement sont négligeable (et c'est la définition ici ... mais quid
+dans Swarz ? Intersection des intérieurs vide. OK, adopter ça et Mq
+sans chevauchement implique intersection négligeable ?)
+
+### TODO
+Théorème d'intégrabilité dominée, de convergence dominée, monotone, fct
+absolument continue, etc.
+
+### TODO -- Evoquer chgt de variable différent.
+
+### TODO -- Evoquer que l'équivalent de l'IPP est le théo de la divergence
+
+
+Théorème de Fubini
+--------------------------------------------------------------------------------
+
+### Théorème de Fubini {.theorem #Fubini}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ 
 une fonction intégrable.
 Alors la fonction partielle $x \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
-pour presque tout $y \in \mathbb{R}^n$, la fonction partielle 
-$y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
-pour presque tout $x \in \mathbb{R}^m$
-et
+pour presque tout $y \in \mathbb{R}^n$, la fonction définie presque partout
 $$
-\int_{\mathbb{R}^{m+n}} f(z) \, dz = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy
-=
-\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dy\right] dx
+y \in \R^n \mapsto \int_{\R^m} f(x, y) \, dx
+$$
+est intégrable et
+$$
+\int_{\mathbb{R}^{m+n}} f(z) \, dz = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy.
+$$
+De même, la fonction partielle $y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
+pour presque tout $x \in \mathbb{R}^m$, la fonction définie presque partout
+$$
+x \in \R^m \mapsto \int_{\R^n} f(x, y) \, dy
+$$
+est intégrable et
+$$
+\int_{\mathbb{R}^{m+n}} f(z) \, dz =
+\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dy\right] dx.
 $$
 
 ### Démonstration {.proof}
 Se reporter à @Swa01.
 
-### TODO
-Résultat en intervertissant $x$ et $y$, la réciproque ne marche pas
-(donc la définition d'intégrale directement dans $\mathbb{R}^n$ est
-"nécessaire", l'intégrale multiple "ne marche pas".)
+### {.ante .post .remark}
+On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
+a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
+déduire l'intégrabilité de l'examen des intégrales itérées. Le théorème
+de Fubini peut alors être complété utilement par le théorème de Tonelli:
+
+### Théorème de Tonelli {.theorem #Tonelli}
+Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ une fonction
+mesurable. Si pour presque tout $y \in \R^m$ la fonction
+$x \in \R^n \mapsto |f(x, y)|$ est intégrable et que la fonction
+définie presque partout
+$$
+y \in \R^m \mapsto \int_{\mathbb{R}^n} |f(x, y)| \, dx
+$$
+est intégrable, alors la fonction $f$ est (absolument) intégrable.
+
+### Démonstration {.proof}
+Se reporter à @Swa01.
+
+Changement de variables
+--------------------------------------------------------------------------------
 
 ### Changement de variables {.theorem}
 Soient $D_1$ et $D_2$ des ouverts de $\mathbb{R}^n$ et 
 $h: D_1 \to D_2$ une fonction continûment différentiable
 ayant une fonction inverse $h^{-1}: D_2 \to D_1$ également 
-continûment différentiable. Si $Dh$ désigne la matrice de Jacobi
-associée à la différentielle de $h$,
+continûment différentiable. 
+La matrice de Jacobi associée à la différentielle de $h$ étant notée $J_h$,
 la fonction $f: D_2 \to \mathbb{R}$ est absolument intégrable
-si et seulement si la fonction $(f \circ h) |\det Dh| : D_1 \to \mathbb{R}$ 
+si et seulement si la fonction $(f \circ h) |\det J_h| : D_1 \to \mathbb{R}$ 
 est absolument intégrable et dans ce cas,
 $$
-\int_{D_2} f(y) \, dy = \int_{D_1} f(h(x)) |\det Dh(x)| \, dx.
+\int_{D_2} f(y) \, dy = \int_{D_1} f(h(x)) |\det J_h(x)| \, dx.
 $$
 
 
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
 
-### TODO
+### {.post .remark}
+L'absolue intégrabilité -- et pas simplement l'intégrabilité -- de la fonction
+est une hypothèse cruciale de ce théorème de changement de variables. 
+On peut en effet exhiber une fonction $f:\R^2 \to \R$ qui soit intégrable,
+mais telle que quand $h$ désigne la rotation centrée à l'origine d'angle
+$\pi/4$, la fonction $f \circ h$ ne soit pas intégrable[^ref-ai].
+Comme dans ce cas on a $|\det J_h| = 1$ sur tout $\R^2$, cela contredit
+le résultat du théorème de changement de variables.
 
+[^ref-ai]: cf. [@Swa01, ex. 29, p. 98].
+
+### {.post .remark}
+La situation est assez similaire à celles des séries réelles. 
+On sait en effet que si la série $\sum_k a_k$ est absolue
+convergente, un réordonnancement des termes de la série n'a pas d'effet,
+ni sur la convergence de la série ni sur la valeur de la somme ;
+pour toute bijection $\sigma: \N \to \N$,
+$$
+\sum_{k=0}^{+\infty} a_{\sigma(k)} = \sum_{k=0}^{+\infty} a_{k}.
+$$
+Par contre, si $\sum_k a_k$ est conditionnellement convergente 
+(c'est-à-dire convergente, mais telle que $\sum_k |a_k|$ soit divergente ; 
+par exemple, $a_k = (-1)^k / (k+1)$), il existe un réordonnancement 
+$\sigma$ tel que $\sum_k a_{\sigma(k)}$ n'ait ni limite finie ni infinie.
+Pour toute valeur limite 
+$\ell \in \R \cup \{-\infty, +\infty\}$ souhaitée de la somme, 
+on peut aussi construire un réordonnancement $\sigma$ tel que
+$$
+\sum_{k=0}^{+\infty} a_{\sigma(k)} = \ell.
+$$
+
+<!--
+### TODO
 Mention du fait qu'il est vraiment nécessaire de chercher l'absolue
 intégrabilité. Retrouver la référence qui cite qu'avec une simple
 rotation et l'intégrabilité conditionnelle ça ne marche pas.
@@ -138,29 +249,26 @@ Un exemple détaillé est donné dans
 "Petit traité d'intégration: Riemann, Lebesgue et Kurzweil-Henstock" 
 (Jean-Yves Briend). L'exemple est compréhensible et intéressant;
 peut faire l'objet d'un exercice technique semble faisable.
+(note: aussi exercice similaire dans le Swarz)
+-->
+
+<!--
 
 Tracer un parralèle avec les séries, ou il est connu que les séries
 conditionnellement convergentes ne gardent pas cette propriété par
 réordonnancement (exemple mono-dim ou bi-dim) ?
 
+-->
+
 Théorème de la divergence
 ================================================================================
 
-### TODO
-
-Définition par une équation implicite (équivalent).
-Que doit-on adopter comme définition ? Et quoi comme propriété ?
-La définition par l'hypographe est sans doute plus intuitive, 
-mais sa formalisation plus lourde ... Je serais tenté dans le cours
-oral de partir de la définition par l'hypographe, informellement,
-pour l'intuition (et de toute façon on a besoin de cette construction
-pour la suite) puis d'énoncer rigoureusement la version
-implicite, équivalente.
-
+<!--
 ### TODO:
 Deux façon raisonnables de définir un compact à bord sont données;
 la troisème (localement demi-espace après transfo par difféo) peut trouver
 sa place en exo ?
+-->
 
 ### Compact à bord régulier {.definition #cbr}
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
@@ -186,6 +294,7 @@ cela revient à n'autoriser que les changements de repère orthonormés directs.
 La caractérisation des compacts
 à bord $C^1$ qui en résulte est inchangée.
 
+<!--
 ### TODO
 
 Faire passer l'idée d'un ensemble borné délimité par une surface
@@ -205,7 +314,7 @@ les points tels que $y_n = f(y_1, \dots, y_{n-1})$.
 
 Evoquer "localement d'un seul coté" de la frontière ?
 
-Définir normale (extérieure). Carac intrinsèque ?
+-->
 
 ### Caractérisation implicite des compacts à bord régulier {.theorem #cbr-implicit}
 Un sous-ensemble compact $K$ de $\mathbb{R}^n$ est un compact à bord $C^1$ 
@@ -307,7 +416,7 @@ $$
 \lim_{\substack{y \to x \\ y \in \partial K}} \left<n(x), \frac{y-x}{\|y-x\|}\right> = 0.
 $$
 Elle est *extérieure* si pour $\varepsilon>0$ assez petit, 
-$x + \varepsilon n(x) \not \in K$, *intérieure* dans le cas contraire.
+$x + \varepsilon n(x) \not \in K$.
 
 ### Normale extérieure et caractérisation implicite {.proposition #neci}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
@@ -381,6 +490,7 @@ $$
 le résultat s'en déduit.
 
 
+<!--
 ### TODO
 
 Evoquer indépendance du choix dans la définition
@@ -393,16 +503,7 @@ un peu plus explicitement (sur un exemple ?) comment trouver
 un axe (orthonormé ?) qui permet de se ramener au cadre de 
 l'hypographe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
-
-### TODO
-
-Insufisant ici ; on a besoin à la fois du caractère $C^1$ et du support
-compact dans chaque $V_i$. On doit pouvoir patcher la démarche originale
-en faisant référence à un compact recouvert par les $V_i$, en "érodant"
-les $V_i$ (ce qui est possible tout en recouvrant encore le compact),
-puis en utilisant la construction donnée pour la nouvelle construction.
-Ne reste plus qu'à obtenir des fonctions $C^1$ et non plus continues,
-ce qui s'obtient par mollification.
+-->
 
 ### Partition de l'unité {.definition .proposition #pu}
 Pour toute famille finie d'ouverts $V_i$ de $\R^n$ recouvrant un ensemble
@@ -420,6 +521,15 @@ $$
 
 ### {.post}
 La démonstration est donnée [en annexe](#proof-pu).
+
+<!--
+### TODO
+Préciser hypothèse sur $f$ (ouch, $C^1(\overline{U})$ va être nécessaire).
+OK, pas besoin dans l'usage qu'on a, si l'on accepte que la contribution
+de $V$ peut être indéfinie (ce qui n'arrive pas dès qu'on pondère par les
+fcts à support compact.)
+
+-->
 
 ### Intégrale de surface {.definition}
 Soit $\phi: \partial K \to \mathbb{R}^m$ une fonction continue.
@@ -447,6 +557,7 @@ $$
 On admettra que cette définition est indépendante du choix de la 
 décomposition choisie de $\partial K$.
 
+
 ### Définition {.definition}
 On appelle *divergence* d'une fonction différentiable 
 $$
@@ -461,15 +572,15 @@ $$
 $$
 
 
-### Lemme de la divergence {.lemma}
+### Lemme de la divergence {.lemma #div-lemma}
 Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
 où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
 Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
-de classe $C^1$ de support compact[^sc]. 
+de classe $C^1$ de support compact dans son domaine de définition[^sc]. 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
--- soit $\Omega = \{(y, z) \, | \, y \in \mathbb{R}^{n-1}, \; z < f(y)\}$ --
+-- soit $\Omega = \{(y, z) \, | \, y \in U, \, z \in \R, \, z < f(y)\}$ --
 et $\Gamma$ le graphe de $f$
--- soit $\Gamma = \{(y, f(y)) \, | \, y \in \mathbb{R}^{n-1}\}$ --
+-- soit $\Gamma = \{(y, f(y)) \, | \, y \in U\}$ --
 et $n$ la normale extérieure associée,
 on a la relation
 $$
@@ -478,13 +589,14 @@ $$
 \int_{\Gamma} \left<v(x), n(x) \right> \, \sigma(dx)
 $$
 
-[^sc]: La fonction $f$ étant définie dans un ouvert ($\mbox{dom}(f) = U \times \mathbb{R}$), 
-son support est compact si et seulement si l'ensemble $\{x \, | \, f(x) \neq 0\}$ 
+[^sc]: La fonction $v$ étant définie dans un ouvert de $\R^n$ 
+($\mbox{dom}(v) = U \times \mathbb{R}$), 
+son support est compact dans cet ensemble
+si et seulement si l'ensemble $\{x \, | \, v(x) \neq 0\}$ 
 est borné et sa distance au complémentaire de $U\times \mathbb{R}$ 
 dans $\mathbb{R}^n$ est positive.
 
 ### Démonstration {.proof}
-
 On remarque que si $v = w e_i$ où $w: U \times \mathbb{R} \to \mathbb{R}$ est
 de classe $C^1$ et $i \in \{1,\dots, n\}$, 
 comme $\mbox{div}\, v = \partial_i w$ et 
@@ -600,7 +712,7 @@ Par conséquent,
 $$
 S_i(x_1, \dots, x_{i-1}, x_{i+1}, \dots) :=
 \int_{I_i} 
-\partial_i w(\pi(x), x_n + f(\pi(x))) 
+\partial_i (w(\pi(x), x_n + f(\pi(x)))) 
 \, dx_i
 =
 0.
@@ -608,7 +720,7 @@ $$
 Par le théorème de Fubini, on peut alors déduire que
 \begin{multline*}
 \int_{U \times \left]-\infty, 0\right[} 
-\partial_i w(\pi(x), x_n + f(\pi(x))) 
+\partial_i (w(\pi(x), x_n + f(\pi(x)))) 
 \, dx
 =  \\
 \int_{I_1\times\dots I_{i-1} \times I_{i+1} \times \dots \times \left]-\infty, 0\right[}
@@ -644,7 +756,7 @@ $$
 &= 
 \lim_{z \to -\infty}\left[
 x_n \mapsto 
-w(\pi(x), x_n + f(\pi(x)) \, dx
+w(\pi(x), x_n + f(\pi(x)))
 \right]^0_{z} \\
 &= 
 w(\pi(x), f(\pi(x)),
@@ -686,10 +798,10 @@ $$
 \partial_i w(x) 
 \, dx
 = 
-\int_{\Gamma} w(x) n_i(x)\, dS(x).
+\int_{\Gamma} w(x) n_i(x)\, d\sigma(x).
 $$
 
-### Théorème de la divergence {.theorem}
+### Théorème de la divergence {.theorem #div-theorem}
 Soit $U$ un ouvert borné de $\R^n$ et $K$ un ensemble compact 
 $K$ à bord $C^1$ de $U$. Pour toute fonction $v: U \to \mathbb{R}^n$ 
 de classe $C^1$,
@@ -705,11 +817,61 @@ $$
 \int_{\partial K} n_i(x) f(x) \, \sigma(dx).
 $$
 
+### Démonstration {.proof}
+Comme dans la démonstration du [lemme de la divergence](#div-lemma), 
+il suffit d'établir une version du résultat, par exemple la première,
+et la seconde version s'en déduit.
+
+Pour tout $x \in \partial K$, il existe un pavé ouvert borné $U_x$ de $\R^{n-1}$,
+un intervalle ouvert $I_x$ de $\R$, une isométrie affine directe $T_x$ et une
+fonction continûment différentiable $f_x:U_x \to I_x$ telle que 
+$T_x(U_x \times I_x)$ soit un voisinage de $x$ et 
+$K \cap T_x(U_x \times I_x)$ soit l'image de l'hypographe de $f_x$ par $T_x$.
+Si $x \in \mathring{K}$, il existe un pavé ouvert borné $U_x$ de $\R^{n-1}$ et
+un intervalle ouvert $I_x$ de $\R$ tels que $U_x \times I_x \subset \mathring{K}$ ;
+on prendra ici $T_x=I$ et pour $f_x: U_x \to \R$ une fonction constante dont
+la valeur soit un majorant de $I_x$.
+
+Par compacité, $K$ peut être recouvert par un nombre fini des
+ensembles $V_x := T_x(U_x \times I_x)$, associés au points $x_1, \dots, x_k$.
+Soit $\rho_j$, $j \in \{1,\dots, k\}$ une [partition de l'unité](#pu) associée.
+On a alors
+$$
+\begin{split}
+\int_{K} \mathrm{div}\, v(x) \, dx
+&= \int_{K} \mathrm{div}\, \left({\textstyle \sum}_{j=1}^k  \rho_j(x) v(x) \right) \, dx \\
+&= \sum_{j=1}^k \int_{K \cap V_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx.
+\end{split}
+$$
+L'application du [lemme de la divergence](#div-lemma) quand $x_j$ est un point
+intérieur à $K$ fournit
+$$
+\int_{K \cap V_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx = 0,
+$$
+car $v$ est nulle sur le graphe de $f_{x_j}$,
+et quand $x_j$ est un point frontière
+$$
+\begin{split}
+\int_{K \cap V_{x_j}} \mathrm{div}\, (\rho_j(x) v(x)) \, dx &= 
+\int_{\partial K \cap V_{x_j}}  \left<\rho_j(x) v(x), n(x)\right> \, d\sigma(x) \\
+&=\int_{\partial K \cap V_{x_j}}  \rho_j(x) \left< v(x), n(x)\right> \, d\sigma(x).
+\end{split}
+$$
+Par conséquent,
+$$
+\begin{split}
+\int_{K} \mathrm{div}\, v(x) \, dx
+&= \sum_{j=1}^{k} \int_{\partial K \cap V_{x_j}}  \rho_j(x) \left< v(x), n(x)\right> \, d\sigma(x) \\
+&= \int_{\partial K} \left< v(x), n(x)\right> \, d\sigma(x).
+\end{split}
+$$
+
+<!--
 ### TODO
 Perspective sur les versions plus "relaxées" du théorème de Stokes,
 qu'il s'agisse du bord Lipschitz ou des travaux (Mawhin, Pfeffer, etc.)
 pour demander moins que $C^1$ sur l'intégrande ?
-
+-->
 
 Annexes
 ================================================================================
@@ -797,17 +959,21 @@ Exercices
 Changement de variables linéaire
 --------------------------------------------------------------------------------
 
-Soit $f:\R^n \to \R$ une fonction intégrable.
-
 ### Question 1 {.question #cvl-1}
 Soit $f:\R \to \R$ une fonction intégrable. Montrer que pour tout
-$\lambda \in \R$, $x \in \R \mapsto f(\lambda x)$ est intégrable
+réel $\lambda$ non nul, $x \in \R \mapsto f(\lambda x)$ est intégrable
 et calculer
 $$
 \int_{-\infty}^{+\infty} f(\lambda x) \, dx.
 $$
+Même question pour 
+$$
+\int_{-\infty}^{+\infty} f(x + h) \, dx
+$$
+où $h \in \R$.
 
 ### Question 2 {.question #cvl-2}
+Soit $f:\R^n \to \R$ une fonction absolument intégrable.
 Soient $i, j \in \{1,\dots, n\}$, $i\neq j$ et $\lambda$ un réel non nul.
 Montrer que les intégrales suivantes existent et les calculer en fonction
 de l'intégrale de $f$:
@@ -822,28 +988,43 @@ S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \
 $$
 
 ### Question 3 {.question #cvl-3}
-Soit $A: \R^n \to \R^n$ une application linéaire. Montrer que la fonction
-$x \in \R^n \mapsto |\det A| f(A \cdot x)$ est intégrable et que
+Soit $A: \R^n \to \R^n$ une application linéaire inversible. 
+Montrer que la fonction $x \in \R^n \mapsto  f(A \cdot x) |\det [A]|$ 
+est intégrable et que
 $$
-\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det A| \, dx.
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det [A]| \, dx.
 $$
 
-Déformations
+Déformations d'un compact à bord régulier {.question #dcbr}
 --------------------------------------------------------------------------------
 
-$\Omega$ dans $U$ paramétrisé par une déformation $T = I + u$ avec $u$ petit
-et une base $\Omega_0$ qui est un compact à bords $C^1$. Montrer que
-si la base est un compact à bord $C^1$, les déformés aussi.
+Soit $K$ un compact à bord $C^1$ de $\R^n$ et $T:\R^n \to \R^n$ une application
+continûment différentiable telle que $T = I + H$, où l'application
+continûment différentiable $H:\R^n \to \R^n$ satisfait $\sup_{x \in \R^n} \|dH(x)\| < 1$.
 
-Compact à Bords
+Montrer que l'ensemble
+$$
+T(K) = \{x + T(x) \, | \, x \in K\}
+$$
+est un compact à bords $C^1$ de $\R^n$.
+
+Ovales de Cassini {.question #oc}
 --------------------------------------------------------------------------------
 
-Caractérisation par "applatissement" local en un demi-espace fermé.
+Soit $a$ et $b$ deux nombres réels strictements positifs. 
+On désigne par $K$ l'ensemble du plan délimité par les *ovales de Cassini*
+$$
+K = \{(x,y) \in \R^2 \, | \, (x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 \leq b^4\}.
+$$
 
-Exemples de compacts à bord (déterminés implicitement)
---------------------------------------------------------------------------------
+Montrer que si $a \neq b$, l'ensemble $K$ est un compact à bord $C^1$.
 
-... par la fonction distance orientée par exemple ?
+![Compact à bord $C^1$ délimité par les ovales de Cassini.](images/cassini-ovals.py)
+
+
+![Ensemble délimité par les ovales de Cassini quand $a=b=1$.](images/cassini-ovals-limite.py)
+
+
 
 Aire du disque unité {.question #adu}
 --------------------------------------------------------------------------------
@@ -896,42 +1077,223 @@ En déduire l'impossibilité d'une telle rétraction.
 Solutions
 ================================================================================
 
-TODO -- Changement de variables linéaire
+Changement de variables linéaire
 --------------------------------------------------------------------------------
 
-### TODO -- Question 1 {.answer #answer-cvl-1}
+### Question 1 {.answer #answer-cvl-1}
+Supposons tout d'abord que $\lambda > 0$ ;
+si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$ il existe
+une jauge $\gamma$ sur $\overline{R}$ telle que pour toute 
+subdvision pointée $\mathcal{D}$ de $\overline{R}$ subordonnée 
+à $\gamma$ on ait
+$$
+\left|S(f,\mathcal{D}) - \int_{-\infty}^{+\infty} f(x) \,dx \right| \leq \varepsilon.
+$$
+Soit $\mathcal{C}$ une subdivision pointée de $\overline{R}$ ;
+la somme de Riemann associée à $\mathcal{C}$ et la fonction 
+$x \mapsto f(\lambda x)$ s'écrit
+$$
+S(x \mapsto f(\lambda x), \mathcal{C}) 
+= 
+\sum f(\lambda t) \ell(J), \; (t, J) \in \mathcal{C}, \, \ell(J) < +\infty.
+$$
+L'ensemble 
+$$
+\mathcal{D} = \{(\lambda t, \lambda J) \, | \, (t, J) \in \mathcal{C}\}
+$$
+est une subdivision pointée de $\overline{R}$, surbordonné à la jauge
+$\gamma$ -- tel que $\gamma(\lambda t) \subset \lambda J$ -- 
+si et seulement si $\mathcal{C}$ est subordonné à la jauge définie par
+$\nu(t) = \gamma(\lambda t) / \lambda$. Comme $f(\lambda t) \ell(J)
+= f(\lambda t)\ell(\lambda J) / \lambda$, on a
+$$
+S(x \mapsto f(\lambda x), \mathcal{C}) 
+= 
+\frac{1}{\lambda} S(f, \mathcal{D}).
+$$
+Si $\mathcal{C}$ est subordonnée $\nu$, on a donc
+$$
+\left|S(x \mapsto f(\lambda x),\mathcal{C}) - \frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx \right| \leq \frac{\varepsilon}{\lambda}.
+$$
+La fonction $x \mapsto f(\lambda x)$ est donc intégrable, d'intégrale
+$$
+\int_{-\infty}^{+\infty} f(\lambda x) \,dx = \frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx.
+$$
+On montrerait de manière similaire que si $\lambda < 0$, on a 
+$$
+\int_{-\infty}^{+\infty} f(\lambda x) \,dx = -\frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx
+$$
+et la validité de
+$$
+\int_{-\infty}^{+\infty} f(x + h) \, dx = \int_{-\infty}^{+\infty} f(x) \, dx.
+$$
 
-### TODO -- Question 2 {.answer #answer-cvl-2}
+### Question 2 {.answer #answer-cvl-2}
 Par le changement de variable linéaire dans $\R$ de la question 1
-et le théorème de Fubini,
+et le théorèmes de [Fubini](#Fubini) et [Tonelli](#Tonelli),
 $$
 \begin{split}
-S_1 
-&= 
-\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
-&= 
-\frac{1}{\lambda}
+& \phantom{ =. }  \frac{1}{|\lambda|} \int_{\R^n} f(x) \, dx  \\
+&= \frac{1}{|\lambda|}
 \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
 dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
 &= 
-\frac{1}{\lambda}
-\int_{\R^n} f(x) \, dx.
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+& = S_1
 \end{split}
 $$
+De même,
+$$
+\begin{split}
+& \phantom{ =. }  \int_{\R^n} f(x) \, dx  \\
+&= 
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+&= 
+\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i + \lambda x_j, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+& = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx \\
+& = S_2.
+\end{split}
+$$
+Quant à l'identité
+$$
+\begin{split}
+S_3 &= \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \dots, x_n) \, dx \\
+&= \int_{\R^n} f(x) \, dx,
+\end{split}
+$$
+elle résulte directement du [théorème de Fubini](#Fubini).
 
-**TODO:** comment établir l'intégrabilité de la nouvelle fonction ?
-Grpmh on va devoir utiliser l'absolue intégrabilité de $f$ et un argument
-de type Tonelli, donc rajouter ça dans le cours ...
+### Question 3 {.answer #answer-cvl-3}
+Nous avons établi dans la question précédente que pour les 3 types
+d'opérations linéaires
+$$
+A \cdot (x_1, \dots, x_n) = (x_1, \dots, \lambda x_i , \dots, x_n),
+$$
+$$
+A \cdot (x_1, \dots, x_n) = (x_1, \dots, x_{i-1}, x_i + \lambda x_j, x_{i+1}, \dots, x_n)
+$$
+et
+$$
+A \cdot (x_1, \dots, x_n) = (x_1, \dots, x_{i-1}, x_{j},x_{i+1}, \dots, x_{j-1}, x_{i},x_{j+1}, \dots, x_n)
+$$
+nous avions
+$$
+\int f(A \cdot x) |\det [A]| \, dx 
+= \int f(x)  dx.
+$$
+Mais toute application linéaire inversible $A$ peut être décomposée
+-- par le pivot de Gauss -- en la succession d'un nombre fini
+de ces opérations. Or si $A = A_1 \cdots A_k$,
+comme $|\det [A]| = |\det [A_k] \cdots \det [A_k]|$, on peut
+établir par récurrence que
+$$
+\int f(A \cdot x) |\det [A]| \, dx 
+= \int f(A_1 \cdots A_k \cdot x) |\det [A_1] \cdots \det [A_k]| \, dx 
+= \int f(x)  dx.
+$$
 
-$$
-S_2 = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx,
-$$
-$$
-S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \dots, x_n) \, dx.
-$$
 
-### TODO -- Question 2 {.answer #answer-cvl-2}
+
+Déformations d'un compact à bord régulier {.answer #answer-dcbr}
+--------------------------------------------------------------------------------
+
+Sous les hypothèses de l'énoncé, nous avons établi en exercice de 
+"Calcul Différentiel II" que la fonction $T$ est un $C^1$-difféomorphisme
+global de $\R^n$ dans l'ouvert $T(\R^n)$.
+
+L'ensemble $T(K)$ est un ensemble compact comme image d'un ensemble compact
+par une application continue. Comme $T$ est un difféomorphisme, 
+un point $y$ de $\R^n$ est intérieur à $T(K)$ si et seulement si 
+$x = T^{-1}(y)$ est intérieur à $K$. Les points de la frontière
+$\partial T(K)$ sont donc les images des points de $\partial K$ par
+$T$.
+
+Soit $y_0 \in \partial T(K)$ et $x_0 = T^{-1}(y_0) \in \partial K$. 
+Dans un voisinage $V$ de $x_0$, il existe une fonction continûment 
+différentiable $g:V \to \R$
+de différentielle non nulle en $x_0$ telle que $g(x) \leq 0$ équivaut 
+à $x \in K$. Par conséquent, $y \in T(V)$ appartient à $T(K)$
+si et seulement si $g \circ T^{-1}(y) \leq 0$.
+La fonction $g \circ T^{-1}$ est continûment différentiable et
+$$
+d (g \circ T^{-1})(y_0) = dg (T^{-1}(y_0)) \cdot dT^{-1}(y_0)
+= dg(x_0) \cdot (dT(x_0))^{-1}.
+$$
+Soit $u \in \R^n$ tel que $dg(x_0) \cdot u \neq 0$ ; si 
+$v = (dT(x_0)) \cdot u$, $d(g \circ T^{-1})(y_0) \cdot v \neq 0$.
+La différentielle de $g \circ T^{-1}$ est donc non nulle en $y_0$.
+Par la [caractérisation implicite des compacts à bord $C^1$](#cbr-implicit), 
+$T(K)$ est donc un compact à bord $C^1$ de $\R^n$.
+
+Ovales de Cassini {.answer #answer-oc}
+--------------------------------------------------------------------------------
+
+Montrons tout d'abord que l'ensemble $K$ est compact. Si les points
+$(x_k, y_k)$ de $\R^2$ appartiennent à $K$, ils vérifient 
+$(x_k^2+y_k^2)^2 - 2a^2 (x_k^2 - y_k^2) + a^4 \leq b^4$ ; 
+si la suite converge vers $(x, y)$, par continuité
+$(x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 \leq b^4$ et donc $(x, y) \in K$.
+L'ensemble $K$ est donc fermé. De plus pour tout $(x, y) \in K$, 
+comme
+$$
+\|(x, y)\|^4 = (x^2 + y^2)^2 \, \mbox{ et } \, x^2- y^2 \leq \|(x, y)\|^2, 
+$$
+on a
+$\|(x, y)\|^4 \leq b^4 - a^4 + 2a^2 \|(x, y)\|^2,$
+donc si 
+$$
+\frac{\|(x, y)\|^4}{2} \geq b^4 
+\, \mbox{ et } \,
+\frac{\|(x, y)\|^2}{2} \geq 2a^2,
+$$
+le point $(x, y)$ n'appartient pas à $K$ ; l'ensemble $K$ est donc borné.
+Fermé et borné dans $\R^2$, l'ensemble $K$ est donc compact.
+
+Pour montrer que l'on a affaire à un ensemble compact à bords $C^1$, nous
+souhaitons utiliser le résultat sur [la caractérisation implicite de ces
+ensembles](#cbr-implicit). La fonction $g$ de ce théorème prend bien
+sûr ici la forme
+$$
+g(x, y) := (x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 - b^4
+$$
+puisque $x \in K$ si et seulement si $g(x, y) \neq 0$. Il nous suffit donc
+de vérifier que $g$ est $C^1$, ce qui est évident, et qu'en tout point de
+la frontière de $K$, la différentielle de $g$ -- ou son gradient -- est 
+non-nulle. On se convaincra que tout point $(x, y)$ de la frontière de 
+$K$ vérifie nécessairement $g(x, y)$ en exploitant la continuité de $g$.
+Par conséquent, notre démonstration sera achevée si nous montrons qu'aucun
+point $(x, y)$ de $\R^2$ ne satisfait simultanément
+$$
+g(x, y) = 0, \, \partial_x g(x, y) = 0 \, \mbox{ et } \, \partial_y g(x, y) = 0.
+$$
+Or $\partial_x g(x, y) = 4(x^2+y^2)x - 4a^2x$ et 
+$\partial_x g(x, y) = 4(x^2+y^2)y + 4a^2 y$ ; de la nullité de ces deux dérivées
+partielles, on déduit 
+$$
+(x^2+y^2)x = a^2 x \, \mbox{ et } \, (x^2 + y^2) y = -a^2 y.
+$$
+Il nous faut désormais envisager les cas possibles selon que 
+$x$ et $y$ sont nuls ou non:
+
+  - $x \neq 0$ et $y \neq 0$ est impossible car les deux équations ci-dessus
+    entraînent alors $(x^2+y^2) = a^2 = -a^2$ or $a > 0$.
+
+  - $x = y = 0$ est impossible car $g(0, 0) = a^4 - b^4 \neq 0$, car
+    $a>0$, $b>0$ et $a\neq b$.
+
+  - $x = 0$ et $y \neq 0$ entraîne $x^2 + y^2 = y^2 = -a^2$, impossible
+    car $a>0$.
+
+  - finalement, si $x\neq 0$ et $y = 0$, $x^2 + y^2 = x^2 = a^2$, ce qui
+    réinjecté dans $g(x, 0)= 0$ fournit 
+    $a^4 -2 a^4 + a^4 - b^4 = 0,$
+    soit $b^4=0$, également impossible car $b>0$.
+
+Aucun point $(x, y)$ de $\R^2$ n'annule simulanément $g$ et son gradient ;
+l'ensemble $K$ est donc bien un compact à bord $C^1$.
 
 
 Aire du disque unité {.answer #answer-adu}

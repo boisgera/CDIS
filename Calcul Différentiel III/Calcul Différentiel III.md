@@ -178,6 +178,10 @@ $$
 
 Reprendre les règles de calcul de la dimension finie
 
+### TODO -- Règle de différentiation en chaîne {#rdc}
+
+### TODO -- Pt critique et minimum {#rdc}
+
 ### Théorème des Fonctions Implicites {.theorem #TFI-2}
 Soient $E$, $F$ et $G$ trois espaces vectoriels normés, $F$ étant complet, 
 et $f$ une fonction définie sur un ouvert $W$ de $E \times F$
@@ -268,16 +272,21 @@ Développement de Taylor, Taylor avec reste intégral, etc.
 TODO -- Calcul des variations
 ================================================================================
 
-### Différentiation d'une composition {.lemma #duc}
-Soit $K \subset \R^n$ un ensemble compact et $U \subset \R^m$ un ensemble
-ouvert. Notons $C^1(K,U)$ l'ensemble
+<!--
+ Notons $C^1(K,U)$ l'ensemble
 $$
 C^1(K,U) = \{f \in C^1(K, \R^m) \, | \, f(K) \subset U\}.
 $$
+-->
+
+### Différentiation d'une composition {.lemma #duc}
+Soit $K \subset \R^n$ un ensemble compact et $U \subset \R^m$ un ensemble
+ouvert. Soit
+$C^0(K,U) = \{f \in C^0(K, \R^m) \, | \, f(K) \subset U\}.$
 Si la fonction $g: U \subset \R^m \to \R^p$ est continûment différentiable,
 alors l'application
 $$
-f \in C^1(K,U) \mapsto g \circ f \in C^0(K,\R^p)
+f \in C^0(K,U) \mapsto g \circ f \in C^0(K,\R^p)
 $$
 est différentiable et
 $$
@@ -287,8 +296,14 @@ d (f \mapsto g \circ f)(f) \cdot h
 $$
 
 **TODO.** A titre d'exemple, peut être intéressant de différencier 
-$g \circ f$ par rapport à $g$ ; c'est plus simple mais ça donne une
-idée du type de travail à faire.
+$g \circ f$ par rapport à $g$ ; c'est plus simple (euh ... non ?
+La il faut travailler dans les espaces $C^1$ ; bon ok c'est quand
+même plus simple)
+mais ça donne une idée du type de travail à faire. En exo ?
+
+**TODO.** Prendre $U = \R^m$ ? Au moins dans la présentation ?
+(Suffit pour la suite à moins qu'on soit amené à prendre des lagrangiens
+qui ne soient pas globalement définis.)
 
 ### TODO -- Démonstration {.proof}
 
@@ -355,7 +370,7 @@ Plus tard, nécessaire de renforcer régularité pour faire IPP et obtenir
 équation d'Euler-Lagrange (suffit de supposer que $\partial_{y'}L$ est
 diff / $x$ et que le résultat est cont).
 
-### Différentielle de l'action
+### Différentielle de l'action {#da}
 L'action $A: y \in C^1([a, b], \R^n) \to  \R$ 
 est une fonction différentiable et
 $$
@@ -363,6 +378,93 @@ dA(y) \cdot h = \int_a^b \partial_{y} L(t, y(t), \dot{y}(t)) \cdot h(t)+
 \partial_{\dot{y}}  L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t)
 \, dt
 $$
+
+### Démonstration {.proof}
+L'application
+$$
+y \in C^1([a, b], \R^n) \mapsto (t\mapsto t, y, \dot{y}) \in C^0([a, b], \R^{2n+1})
+$$
+est différentiable (car affine et continue), de différentielle
+$$
+h \in C^1([a, b], \R^n) \mapsto (0, h, \dot{h}) \in C^0([a, b], \R^{2n+1}).
+$$
+Le langrangien $L$ étant continûment différentiable, 
+par [différentiation d'une composition](#duc), l'application
+$$
+\phi \in C^0([a, b], \R^{2n+1}) \mapsto L \circ \phi \in C^0([a, b], \R) 
+$$
+est différentiable, de différentielle
+$$
+\psi \in C^0([a, b], \R^{2n+1}) \mapsto (t \mapsto dL(\phi(t)) \cdot \psi(t)) \in C^0([a, b], \R).
+$$
+Par [la règle de différentiation en chaîne]{#rdc}, l'application
+$y \in C^1([a, b], \R^n) \mapsto L \circ (t\mapsto t, y, \dot{y}) \in C^0([a, b], \R)$
+est donc différentiable, de différentielle
+$$
+\partial_t L(t, y(t), \dot{y}(t)) \cdot 0 + 
+\partial_y L(t, y(t), \dot{y}(t)) \cdot h(t) +
+\partial_{\dot{y}} L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t).
+$$
+L'application 
+$$
+f \in C^0([a, b], \R) \mapsto \int_a^b f(t) \, dt \in \R
+$$
+étant linéaire continue, à nouveau par application de 
+[la règle de différentiation en chaîne]{#rdc}, l'action est différentiable, de différentielle
+$$
+dA(y) \cdot h = \int_a^b \partial_y L(t, y(t), \dot{y}(t)) \cdot h(t) +
+\partial_{\dot{y}} L(t, y(t), \dot{y}(t)) \cdot \dot{h}(t) \, dt.
+$$
+
+### Points critiques de l'action {.théorème #theo-EL}
+Supposons la fonction $\nabla_{\dot{y}} L$ continûment différentiable ;
+soit $\alpha, \beta \in \R^n$. Si la trajectoire $y$ minimise 
+(localement) l'action 
+$$
+A(z) = \int_a^b L(t, z(t),\dot{z}(t)) \, dt
+$$
+parmi les fonctions $z \in C^1([a, b], \R^n)$ telles que 
+$z(a) = \alpha$ et $z(b) = \beta$, alors elle satisfait
+pour tout $t \in [a, b]$ l'*équation d'Euler-Lagrange*
+[$$
+\frac{d}{dt} \left(\nabla_{\dot{y}} L(t, y(t), \dot{y}(t)) \right) - \nabla_y L(t, y(t), \dot{y}(t)) = 0.
+$$]{#EL}
+
+### Démonstration {.proof}
+Soit $y$ une fonction minimisant l'action localement, sur la boule ouverte 
+$B(y, r)$ de rayon $r>0$ (dans l'espace affine des fonctions $z$ de $C^1([a, b], \R^n)$ 
+telles que $z(a) =\alpha$ et $z(b)=\beta$). 
+La fonction
+$$
+h \in B(0,r) \mapsto A(y+h) \in \R,
+$$
+où $B(0,r)$ désigne le sous-ensemble ouvert des fonctions de l'espace
+vectoriel normé $$E = \{h \in C^1([a, b],\R) \, | \, h(a) = h(b) = 0\}$$
+telles que $\|h\|_{\infty}^1 < r$,
+admet donc un minimum en $h=0$ ;
+cela nécessite que $d A(y) \cdot h$ pour 
+tout $h \in E$.
+Notons $\phi(t) = (t, y(t), \dot{y}(t))$ ; [la différentielle de l'action](#da)
+peut être exprimée en fonction des gradients (partiels) de $L$ comme
+$$
+dA(y) \cdot h = \int_a^b \left<\nabla_y L(\phi(t)), h(t)\right> +
+\left<\nabla_{\dot{y}} L(\phi(t)), \dot{h}(t) \right> \, dt.
+$$
+Sous l'hypothèse de régularité du théorème, 
+si $h \in C^1([a, b], \R)$ est telle que $h(a) = h(b) = 0$,
+une intégration par parties fournit
+$$
+\begin{split}
+dA(y) \cdot h &= \int_a^b \left<\nabla_y L(\phi(t)), h(t)\right> 
+- \left<\frac{d}{dt}\nabla_{\dot{y}} L(\phi(t)), h(t) \right> \, dt \\
+&= - \int_a^b \left<\frac{d}{dt}\nabla_{\dot{y}} L(\phi(t)) - \nabla_y L(\phi(t)), h(t) \right> \, dt.
+\end{split}.
+$$
+Compte tenu de la continuité en $t$ de  $\frac{d}{dt}\nabla_{\dot{y}} L(\phi(t)) - \nabla_y L(\phi(t))$
+et du caractère arbitraire de $h$, $dA(y) \cdot h =0$ implique que pour tout $t$,
+[l'équation d'Euler-Lagrange](#EL) est satisfaite.
+
+
 
 TODO -- Exercices
 ================================================================================
@@ -400,3 +502,6 @@ $\mathbb{C}$-linéaire et continue (en faisant une chain rule en dim infinie)
 ... mais est-ce vraiment nécessaire ? Ne peut-on pas calculer les dérivées
 par rapport au centre et au rayon sans ça, avec uniquement la dérivation
 "point par point" et les résultats de convergence dans les intégrales ?
+
+Solutions
+================================================================================

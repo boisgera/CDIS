@@ -12,7 +12,7 @@ Calcul Différentiel, Intégral et Stochastique
 
   - [Calendrier en version texte](https://github.com/boisgera/CDIS/tree/gh-pages/Calendrier/calendrier.txt)
 
-:book: Accès aux Documents
+:book: Documents
 --------------------------------------------------------------------------------
 
   - [Documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
