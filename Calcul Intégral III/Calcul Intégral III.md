@@ -33,11 +33,12 @@ en adoptant la convention que $0 \times \infty = 0$.
 
 ### Longeur, aire, volume {.remark}
 On pourra continuer à appeler cette grandeur
-*longueur* plutôt que *volume* si l'on travaille dans $\R$ ou $[-\infty,+\infty]$ ; 
-dans $\R^2$ ou $[-\infty,+\infty]^2$ il est approprié 
+*longueur* plutôt que *volume* si l'on travaille dans $\R$ 
+(ou $[-\infty,+\infty]$) ; 
+dans $\R^2$ (ou $[-\infty,+\infty]^2$) il est approprié 
 de la désigner sous le terme d'*aire*. 
 Si l'on souhaite distinguer le cas du
-volume "classique" dans $\R^3$ ou $[-\infty,+\infty]^3$ et les autres dimensions, 
+volume "classique" dans $\R^3$ (ou $[-\infty,+\infty]^3$) et les autres dimensions, 
 on pourra utiliser le terme d'*hypervolume* comme terme générique
 et réserver le terme de *volume* au cas tri-dimensionnel.
 
