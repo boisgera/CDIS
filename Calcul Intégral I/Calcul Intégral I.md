@@ -255,7 +255,7 @@ Intégrale de Riemann généralisée
 ### Jauge {.definition}
 Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction 
 qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
-de $\R$ contenant $t$. 
+contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision pointée $\mathcal{D}$ de l'intervalle $[a, b]$ 
@@ -409,7 +409,8 @@ l'intégrale de Henstock-Kurzweil satisfait
 [le théorème fondamental du calcul](#TCF) en toute généralité.
 
 ### Théorème fondamental du calcul {.theorem #TFC}
-Si la fonction $f:[a, b] \to \R$ est dérivable, 
+Soit $[a, b]$ un intervalle compact de $\R$ ;
+si la fonction $f:[a, b] \to \R$ est dérivable, 
 sa dérivée $f'$ est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
 $$
 [f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
@@ -965,7 +966,8 @@ Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
 petit, on en déduit que l'intégrale est positive.
 
 ### Intégration par parties {.theorem}
-Si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
+Soit $[a, b]$ un intervalle compact de $\R$ ;
+si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
 la fonction $f'g$ est intégrable si et seulement si la fonction $fg'$
 est intégrable. Si c'est le cas, on a
 $$
@@ -993,7 +995,8 @@ et y faire référence ?
 
 
 ### Changement de variables {.theorem}
-Si la fonction $f:[c, d] \to \R$ admet une primitive,
+Soit $[a, b]$ et $[c, d]$ deux intervalles compacts de $\R$ ;
+si la fonction $f:[c, d] \to \R$ admet une primitive et
 que la fonction $g:[a, b] \to [c, d]$ est dérivable, 
 alors la fonction $(f\circ g) g'$ est intégrable sur $[a, b]$ et
 $$
