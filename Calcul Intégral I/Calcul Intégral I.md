@@ -1491,6 +1491,43 @@ Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
 majoration voulue.
 -->
 
+
+### {.ante remark}
+La construction proposée de l'intégrale de cette section est applicable
+indifféremment dans le cas des intervalles bornés ou non de la droite réelle.
+Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour donner
+un sens à l'intégrale d'une fonction définie sur un intervalle non-borné 
+de calculer tout d'abord son intégrale sur un intervalle borné puis
+d'essayer de passer à la limite[^CR]. Toutefois, si on souhaite se livrer
+cette démarche avec l'intégrale de Henstock-Kurzweil, le résultat serait
+identique à la démarche directe que nous avons adoptée ; avec l'intégrale
+de Henstock-Kurzweil, [le théorème de Hake](#hake) montre
+qu'il n'existe pas d'intégrale *impropre*, 
+qui ne serait pas définissable directement mais uniquement par
+un passage à la limite.
+
+[^CR] sans garantie que ce nouvel objet -- l'intégrale de Cauchy-Riemann --
+partage les propriétés utiles de l'intégrale de Riemann sur les segments
+de $\R$.
+
+
+### Théorème de Hake {.theorem #hake}
+Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
+et $f: [a, b] \to \R$. La fonction $f$ est intégrable sur $[a, b]$ si
+et seulement si elle est intégrable sur tout intervalle $[c, d]$
+tel que $a < c$ et $d < b$ et que l'intégrale
+$$
+\int_c^d f(t) \, dt
+$$
+a une limite quand $c$ tend vers $a$ et $d$ tend vers $b$.
+On a alors
+$$
+\int_a^b f(t) \, dt = \lim_{(c, d) \to (a,b)} \int_{c}^d f(t) \, dt.
+$$
+
+### Démonstration {.proof}
+Se reporter à [@Swa01].
+
 ### TODO
 
 Quid:
