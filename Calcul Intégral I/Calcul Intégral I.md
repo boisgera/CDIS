@@ -1542,22 +1542,13 @@ $$
 [f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
 $$
 
-### TODO
-
-Quid:
-
-  - (*) FTC
-
-  - (*) IPP
-
-  - (*) Chgt variables
-
-dans le cas non borné ? Reprendre leur énoncés ad minimima et s'assurer
-que la terminologie "intervalle fermé **de $\R$**" est présente.
+### Démonstration {.proof}
 
 ### {.remark .ante}
-Il n'est pas nécessaire de considérer l'intégration dans tous les types
-d'intervalles (fermés) bornés ou non bornés possibles: on peut toujours
+Un facteur vient simplifier l'étude de l'intégration sur des intervalles
+(a priori) non bornés : il n'est pas nécessaire de considérer l'intégration 
+dans tous les types
+d'intervalles possibles car on peut toujours
 se ramener au cas où l'on cherche à intégrer une fonction sur la
 droite réelle (achevée) toute entière:
 
