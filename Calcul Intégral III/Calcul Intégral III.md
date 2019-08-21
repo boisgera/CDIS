@@ -17,14 +17,14 @@ Définitions
 Les pavés joueront dans $\R^n$ le rôle dévolu aux intervalles dans $\R$:
 
 ### Pavés {.definition}
-On appelle *pavé* de $\overline{\R}^n$ tout ensemble $I$ de la forme
+On appelle *pavé* de $[-\infty,+\infty]^n$ tout ensemble $I$ de la forme
 $$
 I = I_1 \times \dots \times I_n
 $$
-où les $I_i$ sont des intervalles de $\overline{\R}$.
+où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
 
 ### Volume d'un pavé
-On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$ de $\overline{\R}^n$
+On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$ de $[-\infty,+\infty]^n$
 la valeur
 $$
 v(I)  = \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
@@ -33,11 +33,11 @@ en adoptant la convention que $0 \times \infty = 0$.
 
 ### Longeur, aire, volume {.remark}
 On pourra continuer à appeler cette grandeur
-*longueur* plutôt que *volume* si l'on travaille dans $\overline{\R}$ ; 
-dans $\overline{\R}^2$ il est approprié 
+*longueur* plutôt que *volume* si l'on travaille dans $[-\infty,+\infty]$ ; 
+dans $[-\infty,+\infty]^2$ il est approprié 
 de la désigner sous le terme d'*aire*. 
 Si l'on souhaite distinguer le cas du
-volume "classique" dans $\overline{\R}^3$ et les autres dimensions, 
+volume "classique" dans $[-\infty,+\infty]^3$ et les autres dimensions, 
 on pourra utiliser le terme d'*hypervolume* comme terme générique
 et réserver le terme de *volume* au cas de $\mathbb{R}^3$.
 
@@ -45,7 +45,7 @@ et réserver le terme de *volume* au cas de $\mathbb{R}^3$.
 
 ### Subdivision pointée
 Une *subdivision pointée* du pavé fermé $I$ de 
-$\overline{\R}^n$ est 
+$[-\infty,+\infty]^n$ est 
 une famille finie 
 $$
 \{(t_i, I_i) \; | \; \; 0 \leq i \leq k-1\}
@@ -58,7 +58,7 @@ $t_i \in I_i$ pour tout $i \in \{0, \dots, k-1\}.$
 
 ### Somme de Riemman {.definition}
 La somme de Riemann associée à la fonction $f:I \to \mathbb{R}$,
-où $I$ est un pavé fermé de $\overline{\R}^n$ 
+où $I$ est un pavé fermé de $[-\infty,+\infty]^n$ 
 et à la subdivision pointée $\mathcal{D}$ 
 de $I$ est la grandeur
 $$
@@ -66,12 +66,12 @@ S(f, \mathcal{D}) = \sum f(t) v(I), \; (t, I) \in \mathcal{D}, \, v(I) < + \inft
 $$
 
 ### Jauge {.definition}
-Une jauge $\gamma$ sur un pavé fermé $I$ de $\overline{\R}^n$ est une 
+Une jauge $\gamma$ sur un pavé fermé $I$ de $[-\infty,+\infty]^n$ est une 
 fonction qui associe à tout $t \in I$ un 
 pavé ouvert $\gamma(t)$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
-Une subdivision $\mathcal{D}$ du pavé fermé $I$ de $\overline{\R}^n$
+Une subdivision $\mathcal{D}$ du pavé fermé $I$ de $[-\infty,+\infty]^n$
 est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout 
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
@@ -79,8 +79,8 @@ $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 Une fonction $f:\R^n \to \R$ est dite *intégrable 
 (au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de 
-$\overline{\R}^n$ telle que pour 
-toute subdivision pointée $\mathcal{D}$ de $\overline{\R}^n$
+$[-\infty,+\infty]^n$ telle que pour 
+toute subdivision pointée $\mathcal{D}$ de $[-\infty,+\infty]^n$
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique; il est appelé
@@ -92,7 +92,7 @@ $$
 
 ### {.post}
 Comme dans le cas réel, la définition supposerait que $f$ soit a priori
-définie sur $\overline{\R}^n$ plutôt que sur $\R^n$ ; 
+définie sur $[-\infty,+\infty]^n$ plutôt que sur $\R^n$ ; 
 mais on peut étendre $f$ par des valeurs à l'infini sans 
 que l'intégrabilité de cette extension ou la valeur de son intégrale
 ne soient affectés par le choix de ces valeurs.
