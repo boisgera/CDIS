@@ -1278,7 +1278,9 @@ Exploitation
 
 Pour exploiter simplement notre calcul de différentielle,
 nous pouvons dans le cas d'une fonction d'une variable réelle 
-en déduire la dérivée :
+en déduire la dérivée ; rappelons que dans ce cas, la
+dérivée se déduit de la différentielle par la relation
+$f'(x) = df(x) \cdot 1$.
 
     >>> def deriv(f):
     ...     df = d(f)
