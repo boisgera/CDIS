@@ -1491,6 +1491,8 @@ Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
 majoration voulue.
 -->
 
+--------------------------------------------------------------------------------
+
 ### {.ante .remark}
 La construction de l'intégrale dans cette section est applicable
 indifféremment dans le cas des intervalles bornés ou non de la droite réelle.
@@ -1526,6 +1528,19 @@ $$
 
 ### Démonstration {.proof}
 Se reporter à [@Swa01].
+
+### {.post}
+Le théorème de Hake permet d'étendre facilement certains résultats valable 
+sur des segments de la droite réelle. Par exemple:
+
+### Théorème fondamental du calcul (non borné) {.theorem}
+Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
+et $f: [a, b] \to \R$, une fonction dérivable sur $\left]a, b\right[$ et
+continue sur $[a, b]$. La fonction $f'$ (définie partout sauf en $a$ et $b$)
+est intégrable sur $[a, b]$ et
+$$
+[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
 
 ### TODO
 
