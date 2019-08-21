@@ -1530,10 +1530,10 @@ $$
 Se reporter à [@Swa01].
 
 ### {.post}
-Le théorème de Hake permet d'étendre facilement certains résultats valable 
-sur des segments de la droite réelle. Par exemple:
+Le théorème de Hake permet d'étendre facilement certains résultats valables 
+sur des segments de la droite réelle. A titre d'exemple:
 
-### Théorème fondamental du calcul (non borné) {.theorem}
+### Théorème fondamental du calcul (extension) {.theorem}
 Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
 et $f: [a, b] \to \R$, une fonction dérivable sur $\left]a, b\right[$ et
 continue sur $[a, b]$. La fonction $f'$ (définie partout sauf en $a$ et $b$)
@@ -1541,8 +1541,19 @@ est intégrable sur $[a, b]$ et
 $$
 [f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
 $$
+Par continuité, le membre de gauche de cette équation à une limite quand
+$c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$. 
+[Le théorème de Hake](#hake) permet alors de conclure.
 
 ### Démonstration {.proof}
+[Le théorème fondamental du calcul](#TFC) dans le cadre borné nous fournit
+pour tout $c$ et $d$ tels que $a < c \leq d < b$ l'intégrabilité de $f'$
+sur $[c, d]$ et la relation
+$$
+f(d) - f(c) = \int_c^d f'(t) \, dt.
+$$
+
+
 
 ### {.remark .ante}
 Un facteur vient simplifier l'étude de l'intégration sur des intervalles
