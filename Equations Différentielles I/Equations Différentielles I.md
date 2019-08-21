@@ -14,7 +14,7 @@
 
 Notations à définir/uniformiser
 
-- $C(I, \R)$
+- $C^k(I, \R)$
 - boule ouverte/fermée
 - interieur 
 
@@ -29,21 +29,15 @@ Cadre de l'étude
 Soit $n\in \N^*$. 
 
 ### Equation différentielle de degré $p$  {.definition}
-Soient $p\in\N^*$, $U$ ouvert de $\R\times (\R^n)^p$ et $f:U \to \R^n$ une application continue sur $U$. Une application $x:I\to \R^n$ continue sur un intervalle $I\subseteq \R$ d'intérieur[^intI] non vide, est dite *solution (sur[^solsurI] $I$)* de *l'équation différentielle d'ordre $p$* 
+Soient $p\in\N^*$, $U$ ouvert de $\R\times (\R^n)^p$ et $f:U \to \R^n$ une application continue sur $U$. Une application $x:I\to \R^n$ continue sur un intervalle $I\subseteq \R$ non réduit[^intI] à un point, est dite *solution (sur[^solsurI] $I$)* de *l'équation différentielle d'ordre $p$* 
 $$
 x^{(p)} = f(t,x,\dot{x},\ldots, x^{(p-1)})
 $$
-si 
+si $x$ est de classe $C^p$ sur $I$ et pour tout $t\in I$,
 
-- pour tout $t\in I$, 
-$$
-(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t)) \in U
-$$
+- $(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t)) \in U$
 
-- $x$ est de classe $C^p$ sur $\inter I$, et pour tout $t\in \inter I$, 
-$$
-x^{(p)}(t) = f(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t)) \ .
-$$
+- $x^{(p)}(t) = f(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t))$.
 
 On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$. Dans ce cas, on pourrait définir $U$ directement comme un ouvert de $(\R^n)^p$ et $f: U\subseteq(\R^n)^p \to \R^n$.
 
@@ -53,18 +47,18 @@ quelques systèmes physiques vus en prépa (RLC, masse ressort, hamiltonien)
 
 
 ### Réduction à l'ordre 1
-Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times (\R^n)^p$ et $f\in C(U,\R^n)$, définissons l'application $\underline{f} \in C(U,\R^n)$ par
+Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times (\R^n)^p$ et $f\in C^0(U,\R^n)$, définissons l'application $\underline{f} \in C^0(U,\R^n)$ par
 $$
 \underline{f}(t,x_0,x_1,\ldots,x_{p-1}) = (x_1,x_2,\ldots,x_{p-1},f(t,x_0,\ldots,x_{p-1})) \ .
 $$
-Alors $x\in C(I,\R^n)\cap C^p(\inter I,\R^n)$ est solution de l'équation différentielle d'ordre $p$ définie par $f$ si et seulement si $(x,\dot{x},\ldots,x^{(p-1)})$ est solution de l'équation différentielle d'ordre 1
+Alors $x\in C^p(I,\R^n)$ est solution de l'équation différentielle d'ordre $p$ définie par $f$ si et seulement si $(x,\dot{x},\ldots,x^{(p-1)})$ est solution de l'équation différentielle d'ordre 1
 $$
 \dot{\underline{x}} = \underline{f}(t,\underline{x}) \ .
 $$
 
 *Démonstration* : \hfill $\blacksquare$
 
-Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(\inter I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de $x\in C^p(\inter I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
+Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de $x\in C^p(I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
 
 
 ### Problème de Cauchy (*Initial Value Problem*) {.definition #def_cauchy}
@@ -72,11 +66,11 @@ Soient $U$ un ouvert de $\R\times \R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$. L
 $$
 \dot{x}=f(t,x) \quad , \quad x(t_0)=x_0 \ .
 $$
-On dira donc que $x:I\to \R^n$ résout le problème de Cauchy défini par $f$ et $(t_0,x_0)$ (sur un intervalle $I$ d'intérieur non vide) si
+On dira donc que $x:I\to \R^n$ est solution du problème de Cauchy défini par $f$ et $(t_0,x_0)$ (sur un intervalle $I$ non réduit à un point) si
 
 - $t_0\in I$ et $x(t_0)=x_0$
 
-- $x$ est solution de l'équation différentielle $\dot{x}=f(t,x)$.
+- $x$ est solution de l'équation différentielle $\dot{x}=f(t,x)$ sur $I$.
 <!-- pour tout $t\in I$, $(t,x(t)) \in U$ et $\dot{x}(t)=f(t,x(t))$ -->
 
 On notera alors $x\in S_f(t_0,x_0)$.
@@ -123,7 +117,7 @@ $$
 \dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0)
 $$ 
 permettant de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli*.
-La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc on sait que ce problème de Cauchy admet au moins une solution. Mais l'on montrera en exercice qu'il existe une infinité de solutions maximales.
+La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc on sait que ce problème de Cauchy admet au moins une solution. En fait, on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales.
 
 
 Unicité des solutions
@@ -132,12 +126,12 @@ Unicité des solutions
 Nous avons vu dans la partie précédente que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$ (on dira par la suite pour simplifier que $f$ est de classe $C^1$ par rapport à $x$).
-Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert.
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
+Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
 
 *Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. La preuve complète est donnée en appendice? L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale unique. L'ouverture de son intervalle de définition vient du fait qu'elle pourrait sinon être de nouveau prolongée *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
-**Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
+**Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
 $$
 \cC:=\left[t_0-\tau,t_0+\tau \right]\times \overline{B}_{r}(x_0)\subset U \ .
 $$
@@ -147,7 +141,7 @@ f_m := \max_{\cC} f \quad , \quad \tau_m := \min\left\{\tau,\frac{r}{f_m} \right
 $$--->
 il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+\tau_m]$. 
 
-*Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$ (ref?) est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
+*Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous que $E:=C^0([t_0-\tau_m,t_0+\tau_m],\R^n)$ (ref?) est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
 $$
 F = \{x\in E \: : \: x(\left[t_0-\tau_m,t_0+\tau_m \right])\subseteq \overline{B}_{r}(x_0) \} \ .
 $$
@@ -204,7 +198,7 @@ Cette méthode de recherche de point fixe porte le nom d'*approximations success
 
 
 ### Exemples {.example #ex_lips}
-- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C(\R,\R^{n\times n})$ et $b\in C(\R,\R^n)$ telles que
+- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C^0(\R,\R^{n\times n})$ et $b\in C^0(\R,\R^n)$ telles que
 $$
 f(t,x) = a(t) x + b(t) \ ,
 $$
@@ -218,7 +212,7 @@ Solutions globales
 Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ par rapport à $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. Mais cet intervalle n'est pas nécessairement $\R$ entier même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la solution n'est pas *globale*. 
 
 ### Example d'explosion en temps fini
-L'intervalle de définition de la solution maximale du problème de Cauchy n'est pas nécessairement $\R$, même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. Par exemple, considérons le problème de Cauchy
+Par exemple, considérons le problème de Cauchy
 $$
 \dot{x} = x^2 \quad , \qquad (t_0,x_0)\in \R^2 \ .
 $$
@@ -235,7 +229,7 @@ $$
 Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger.
 
 ### Théorème des bouts {.theorem #theo_bouts}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$. Soient $(t_0,x_0)\in U$ et $x:\left]\underline{t},\overline{t}\right[\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in \left[-\infty,t_0\right[$ et $\overline{t}\in \left]t_0,+\infty\right]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in \left[t_0,\overline{t}\right[$ and $t_K^-\in \left]\underline{t},t_0 \right]$) tels que
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$. Soient $(t_0,x_0)\in U$ et $x:\left]\underline{t},\overline{t}\right[\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in \left[-\infty,t_0\right[$ et $\overline{t}\in \left]t_0,+\infty\right]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in \left[t_0,\overline{t}\right[$ and $t_K^-\in \left]\underline{t},t_0 \right]$) tels que
 $$
 (t,x(t))\notin K \qquad \forall t\in \left[t_K^+,\overline{t} \right[ \cup  \left]\underline{t},t_K^- \right] 
 $$
@@ -243,7 +237,7 @@ $$
 *Démonstration* : Voir en [annexe](#pr_theo_bouts).  $\hfill\blacksquare$
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
-Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$. S'il existe $a,b:I\to \R$ telles que  
+Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$. S'il existe $a,b:I\to \R$ telles que  
 $$
 \|f(t,x)\|\leq a(t) \|x\| + b(t) \quad \forall (t,x)\in I\times \R^n \ ,
 $$
@@ -253,7 +247,7 @@ alors la solution maximale au problème de Cauchy associé est défini sur $I$ e
 
 
 ### Exemples
-- Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A\in C(I,\R^{n\times n})$ et $b\in C(I,\R^n)$ telles que
+- Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A\in C^0(I,\R^{n\times n})$ et $b\in C^0(I,\R^n)$ telles que
 $$
 f(t,x) = A(t) x + b(t) \ .
 $$
@@ -282,8 +276,8 @@ engendrent des problèmes de Cauchy aux solutions uniques et globales.
 Régularité et stabilité des solutions
 ==========================================
 
-Depuis l'apparition de la mécanique Newtonienne au XVIIème sciècle, l'étude des équations différentielles a toujours été motivée par l'espoir de compréhension et la prédiction du comportement futur de systèmes physiques.
-En particulier, une question ayant taraudé et divisé les scientifiques au cours des siècles est celle de la stabilité du système à trois corps (Terre-Lune-Soleil), ou plus généralement du système solaire.  Devant les avancées en mécanique céleste, Pierre-Simon Laplace écrit en 1814:
+Depuis l'apparition de la mécanique Newtonienne au XVIIème sciècle, l'étude des équations différentielles a toujours été motivée par l'espoir de compréhension et de prédiction du comportement futur ou passé de systèmes physiques.
+En particulier, une question ayant taraudé et divisé les scientifiques au cours des siècles est celle de la stabilité du système à trois corps (Terre-Lune-Soleil), ou plus généralement du système solaire.  Enchanté devant les avancées de la mécanique céleste, Pierre-Simon Laplace écrit en 1814:
 
 >Nous devons donc envisager l'état présent de l'univers comme l'effet de son état antérieur, et comme la cause de celui qui va suivre. Une intelligence qui pour un instant donné connaîtrait toutes les forces dont la nature est animée et la situation respective des êtres qui la composent, si d'ailleurs elle était assez vaste pour soumettre ses données à l'analyse, embrasserait dans la même formule les mouvements des plus grands corps de l'univers et ceux du plus léger atome : rien ne serait incertain pour elle, et l'avenir comme le passé serait présent à ses yeux.
 
@@ -301,33 +295,72 @@ Sensibilité aux conditions initiales et erreurs de modèle
 
 La première question fut soulevée par Henri Poincaré à la fin du XIXème siècle alors qu'il s'attelle à la question de la stabilité du système solaire. Il écrit:
 
->Si un cône repose sur sa pointe, nous savons bien qu'il va tomber, mais nous ne savons pas de quel côté ; il nous semble que le hasard seul va en décider. Si le cône était parfaitement symétrique, si son axe était parfaitement vertical, s'il n'était soumis à aucune autre force que la pesanteur, il ne tomberait pas du tout. Mais le moindre défaut de symétrie va le faire pencher légèrement d'un côté ou de l'autre, et dès qu'il penchera, si peu que ce soit, il tombera tout à fait de ce côté. Si même la symétrie est parfaite, une trépidation très légère, un souffle d'air pourra le faire incliner de quelques secondes d'arc ; ce sera assez pour déterminer sa chute et même le sens de sa chute qui sera celui de l'inclinaison initiale.
+>Si un cône repose sur sa pointe, nous savons bien qu'il va tomber, mais nous ne savons pas de quel côté [...]. Si le cône était parfaitement symétrique, si son axe était parfaitement vertical, s'il n'était soumis à aucune autre force que la pesanteur, il ne tomberait pas du tout. Mais le moindre défaut de symétrie va le faire pencher légèrement d'un côté ou de l'autre, et dès qu'il penchera, si peu que ce soit, il tombera tout à fait de ce côté. Si même la symétrie est parfaite, une trépidation très légère, un souffle d'air pourra le faire incliner de quelques secondes d'arc [...]. 
+
+Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais tout modéliser parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
-Theo
+Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,t_0+\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,t_0+\overline{t}]$ et vérifie
+$$
+|x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,t_0+\overline{t}] \ .
+$$
+On dit que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite.
 
-## Exemples
+*Démonstration* Exercice ? avec lemme de gronwall \hfill $\blacksquare$
+
+### Exemples
+- Si $\lambda<0$, l'erreur commise sur la condition initiale disparait au cours du temps dans les solutions : on dit qu'elles ``oublient'' leur condition initiales et que le système est *contractant*. 
+
+- On peut aussi déduire de ce résultat la continuité des solutions par rapport à des paramètres $p$ intervenant dans la fonction $f$. En effet, il suffit de considérer le système étendu
+\begin{align*}
+\dot{y} &= f(t,y,p)\\
+\dot{p} &= 0
+\end{align*}
+pour lequel l'incertitude de paramètre se ramène à une incertitude de condition initiale.
+
 - Considérons un système linéaire à paramètre et/ou condition initiale incertains
 $$
-\dot{x} = (p+\delta_p) x \qquad , \qquad x_0 = c +\delta_{c}
+\dot{x} = (a+\delta_a) x \qquad , \qquad x_0 = c +\delta_{c}
 $$
-Pour $\delta_p=0=\delta_c$, la solution est $x(t)=ce^{pt}$, et sinon $x_\delta(t)= (c+\delta_c)e^{(p+\delta_p)t}$. On a donc
+Pour $\delta_a=0=\delta_c$, la solution est $x(t)=ce^{at}$, et sinon 
 $$
-\|x(t)-x_\delta(t)\| = \|c- (c+\delta_c)e^{\delta_p t}\| e^{pt}
+x_\delta(t)= (c+\delta_c)e^{(a+\delta_a)t} \ .
+$$ 
+On a donc pour tout $t$,
 $$
-A FINIR
+\|x(t)-x_\delta(t)\| = \|c- (c+\delta_c)e^{\delta_a t}\| e^{at} \leq \left(|\delta_c|e^{\delta_a t} + |1-e^{\delta_a t}| |c| \right) e^{at} 
+$$
+et pour tout $\overline{t}>0$ et $|\delta_a| \leq \frac{1}{\overline{t}}$
+$$
+\sup_{t\in [0,\overline{t}] } \|x(t)-x_\delta(t)\| \leq \left( |\delta_c|e^{\delta_a\overline{t}} + |\delta_a|  |c| \overline{t}\right) e^{a\overline{t}}
+$$
+qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suffisamment petits. On voit bien ici que cette différence est bornée en temps fini, mais pas forcément aymptotiquement en particulier si $a>0$.
+
+- L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la boîte de condition initiales, plus on les solutions restent proches. Par contre, lorsqu'on augmente le "Integration Time" les solutions s'écartent.
 
 ### Chaos déterministe et exposant de Lyapunov {.remark #rem_chao}
+Même si la continuité des solutions par rapport aux paramètres et conditions initiales est une bonne nouvelle qui donne espoir de pouvoir simuler et prédire des systèmes physiques, elle est malheureusement parfois insuffisante. 
 Henri Poincaré continue:
 
-> Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible et nous avons le phénomène fortuit. 
+<!-- Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. -->
+> Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible et nous avons le phénomène fortuit. 
 
+En fait, A FINIR + insister sur determinisme + anecdote poincaré, fin de l'espoir de Laplace
+chaos que pour borné
 
-## Exemple : l'attracteur de Lorenz
+### Exemples 
+
+- 1963 : l'attracteur de Lorenz, météo
+
+- 1992 : Sussman\& Wisdom système solaire chaotique avec horizon de Lyapunov 200 million d'années
+
+- electricité, pendule forcé
 
 
 Propriétés asymptotiques
 -----------------------------
+
+Dans la section précédente nous avon répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressans maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce qu'il diverge ? est-ce qu'il tend vers un point en particulier ? vers un cycle limite ?
 
 ### Point d'équilibre
 
@@ -346,7 +379,7 @@ Références
 Exercices 
 ==============================================================================
 
-### Non unicité de solutions
+### Non unicité de solutions {.exercice #ex_Torricelli}
 Fluide dans réservoir 
 $\dot{x}==-k\sqrt(|x|)$
 
@@ -403,3 +436,6 @@ Par continuité de $x$, $|x(t)-x_0|\leq r$ pour un temps après $t^*$, ce qui co
 
 [^accfinis_Cauchy]:
 En l'absence d'outils d'analyse fonctionnelle à cette époque, la preuve de Cauchy consistait plutôt à discrétiser en temps l'intégrale de plus en plus finement et montrer la convergence vers une solution.
+
+[^linkFibre]:
+https://portsmouth.github.io/fibre/ + details
