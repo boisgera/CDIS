@@ -58,10 +58,18 @@ def gauge_plot():
     figure()
     set_ratio(1.0, top=-0.5, bottom=-0.4)
     gca().set_aspect(1.0)
-    x = linspace(0.0, 1.0, 1000)
-    fill_betweenx(x, zeros_like(x), 2*x, color="#d3d3d3")
-    plot([-0.5, 0.5], [0.0, 0.0], "-", color="#d3d3d3", lw=3.0)
-    plot(x, x, "-", color="#808080", lw=1.0)
+
+    eps = 0.5
+    f0 = 0.0
+    delta = eps / (2*(abs(f0) + 2))
+    t = linspace(0.0, 1.0, 1000)
+
+    high = (sqrt(t) + eps/2 * t)**2
+    low = (sqrt(t) - eps/2 * t)**2
+
+    fill_betweenx(t, low, high, color="#d3d3d3")
+    plot([-delta, delta], [0.0, 0.0], "-", color="#d3d3d3", lw=3.0)
+    plot(t, t, "-", color="#808080", lw=1.0)
     xticks(r_[-1:2.2:0.5]); 
     yticks(r_[0.0:1.00001:0.5])
     xlabel("$t$")

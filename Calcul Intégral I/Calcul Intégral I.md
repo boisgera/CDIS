@@ -896,18 +896,35 @@ $$
 $$
 Si l'on choisit $\gamma(0) = \left]-\delta, \delta\right[$ tel que si $[x_0, x_1] \subset \gamma(0)$,
 $$
-|f(0) x_1| + 2\sqrt{x_1} \leq \frac{\varepsilon}{2},
+\left|f(0)(x_1 - 0) - (2\sqrt{x_1} - 2\sqrt{x_0})\right| 
+\leq 
+\frac{\varepsilon}{2},
 $$
+ce qui est le cas si $|f(0) x_1| + 2\sqrt{x_1} \leq {\varepsilon}/{2},$
 alors on a garanti que $|S(f,\mathcal{D}) - 2| \leq \varepsilon$, ce 
 qui est le résultat cherché.
 Comme sur $[0, 1]$, $x_1 \leq \sqrt{x_1}$, il suffit de s'assurer que
-$|f(0)| \sqrt{x_1} + 2\sqrt{x_1} \leq {\varepsilon}/{2}$, ce qui
+$|f(0)| x_1 + 2 x_1 \leq {\varepsilon}/{2}$, ce qui
 est le cas si
 $$
-\delta = \frac{\varepsilon^2}{4(|f(0)| + 2)^2}.
+\delta = \frac{\varepsilon}{2(|f(0)| + 2)}.
 $$
+Au final, la jauge $\gamma$ sur $[0,1]$ définie par
+$$
+\gamma(t) =
+\left|
+\begin{array}{cl}
+\displaystyle \left]- \frac{\varepsilon}{2(|f(0)| + 2)}, \frac{\varepsilon}{2(|f(0)| + 2)} \right[ & \mbox{si } t=0 \\
+\displaystyle \left]
+\left(\sqrt{t} -  \frac{\varepsilon}{2} t \right)^2, \left(\sqrt{t} +  \frac{\varepsilon}{2} t \right)^2  \right[
+& \mbox{si } t \in \left]0,1\right]
+\end{array}
+\right.
+$$
+garantit un écart $|S(f, \mathcal{D}) - 2|$ inférieur à $\varepsilon$
+pour toute subdivision pointée $\mathcal{D}$ de $[0,1]$ subordonnée à $\gamma$.
 
-![Graphe de la jauge $\gamma$ et de la subdivision pointée $\mathcal{D}$](images/gauge-plot-sqrt.py)
+![Graphe de la jauge $\gamma$ pour $f(0)=0$ et $\varepsilon=0.5$](images/gauge-plot-sqrt.py)
 
 
 
