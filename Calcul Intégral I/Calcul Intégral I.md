@@ -685,13 +685,6 @@ Exemple avec discontinuité ou stratégie de "lissage" de l'erreur ne marche pas
 Mentionner explicitement que fct continue par morceaux marche (contunue ici
 + par morceau en exo en utilisant la ppté d'additivité ?)
 
-### TODO
-
-Considérer la façon dont Bartle gère la majoration; c'est moins
-systématique (mais on a déjà fait systématique à la question précédente)
-et ça à le mérite d'être explicite (sans passer par les racines d'un
-polynôme). On peut tjs mentionner que la méthode précédente s'appliquerait ...
-
 ### TODO -- Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
 Considérons la fonction $f:[0,1] \to \R$ définie par
 $$
