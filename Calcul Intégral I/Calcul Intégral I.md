@@ -1885,30 +1885,32 @@ mais a la "puissance du continu"
 ou avec un intervalle de longueur non vide de $\R$, 
 ce qui revient au même).
 
+<!-- En attente ...
 Intégration sur un intervalle non borné  {.question #iinb-1}
 --------------------------------------------------------------------------------
 
 Il est possible de définir l'intégrabilité (et l'intégrale) d'une fonction
-$f$ sur un intervalle fermé et non-borné de $\R$ de façon élémentaire,
+sur $\R$ de façon élémentaire,
 sans avoir recours à la droite achevée.
-Le procédé en question est plus élémentaire[^es]; 
+Le procédé en question est plus élémentaire[^es] ; 
 il revient à exiger que partir les subdivisions d'intervalles bornés
 exploitées par la somme de Riemman en plus d'être suffisamment "fines" 
 soient suffisamment "étendues".
 
 [^es]: mais pas nécessairement plus simple ...
 
-Soit $I$ un intervalle fermé non borné de $\R$ de bornes $a$ et $b$[^inb].
-Montrer que la fonction $f:I \to \R$ est intégrable si et seulement si il
+Montrer que la fonction $f:\R \to \R$ est intégrable si et seulement si il
 existe un réel $A$ tel que pour tout $\varepsilon > 0$ 
-il existe une jauge $\gamma$ de $I$ et un intervalle compact $K$ de $I$
-tels que pour tout intervalle compact $[a, b]$ tel que $K \subset [a, b]$
+il existe une jauge $\gamma$ de $\R$ 
+et un intervalle compact $K$ de $\R$ tels que pour tout intervalle compact 
+$[a, b]$ de $\R$ tel que $K \subset [a, b]$
 et pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 
-[^inb]: 3 cas peuvent se présenter: $I = \left]-\infty, +\infty\right[ =\R$,
-$I=\left]-\infty, b\right]$ ou $I=\left[a, +\infty\right[$ où $a, b\in \R$.
+-->
+
+
 
 
 Séries et intégrales {#si}
@@ -2074,9 +2076,12 @@ de $A$ sur $\left[0, 0.444\dots\right[ = \left[0, 4/9\right[$,
 ce qui montre que $A$ à la puissance du continu (et donc n'est pas
 dénombrable).
 
+<!--
+
 TODO -- Intégration sur un intervalle non borné {.answer #answer-iinb-1}
 --------------------------------------------------------------------------------
 
+  -->
 
 
 Séries et intégrales
