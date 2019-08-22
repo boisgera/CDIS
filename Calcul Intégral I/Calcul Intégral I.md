@@ -750,6 +750,19 @@ démontrer, l'expression ci-dessus suggère que son intégrale pourrait être
 On va confirmer cette intuition dans la suite.
 
 #### Intégrale sur $[a, 1]$, $a>0$
+Une primitive de $F$ de $f$ sur $[a, 1]$ est $x \mapsto 2 \sqrt{x}$.
+Nous allons rechercher une jauge $\gamma$ sur $[a, 1]$ telle que
+$$
+|f(t) (y-x) - (F(y) - F(x))| = 
+\left| \frac{y-x}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{x}\right|
+\leq \frac{\varepsilon}{2} (y-x).
+$$
+quand $t \in [x, y] \subset \gamma(t)$, ce qui garantira que
+$$
+|S(f_{|[a, 1]}, \mathcal{D}_a) - (F(1) - F(a))| \leq \frac{\varepsilon}{2}
+$$
+pour tout subdivision oointée $\mathcal{D}_a$ de $[a, 1]$ subordonnée à $\gamma$.
+
 
 <!-- DEPRECATED
 La stratégie est similaire à celle de l'exemple de la fonction 
@@ -793,15 +806,11 @@ racine réelle de $P_{t,\varepsilon}$ sur $[0, t]$.
 
 -->
 
-Comme dans l'exemple de $x \mapsto e^x$,
-cette jauge garantit que pour toute subdivision pointée subordonnée 
-$\mathcal{D}$ sur $[a, 1]$, on obtient
-$$
-|S(f, \mathcal{D}) - (2\sqrt{1} - 2\sqrt{a})| \leq \frac{\varepsilon}{2}.
-$$
 On remarquera que la jauge $\gamma$ que nous avons construit
 -- et qui est définie sur $\left]0, 1\right]$ --
 ne dépend pas de la valeur de $a$ dans $\left]0, 1\right]$.
+
+**TODO**: check squeeze.
 
 ### Intégrale sur $[0,1]$
 
