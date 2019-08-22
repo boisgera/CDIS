@@ -243,7 +243,7 @@ $$
 $$
 alors la solution maximale au problème de Cauchy associé est défini sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
 
-*Démonstration* : Prouvé en [exercice](#exo_gronwall).  $\hfill\blacksquare$
+*Démonstration* : Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).  $\hfill\blacksquare$
 
 
 ### Exemples
@@ -306,7 +306,7 @@ $$
 $$
 On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite.
 
-*Démonstration* Exercice ? avec lemme de gronwall \hfill $\blacksquare$
+*Démonstration* Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall) \hfill $\blacksquare$
 
 ### Exemples
 - Si $\lambda<0$, l'erreur commise sur la condition initiale disparait au cours du temps dans les solutions : on dit qu'elles ``oublient'' leur condition initiales et que le système est *contractant*. 
@@ -383,26 +383,30 @@ Exercices
 Fluide dans réservoir 
 $\dot{x}==-k\sqrt(|x|)$
 
-### Autour du Lemme de Gronwall {.exercice #exo_theo_exist_glob}
+-> [*Correction*](#correc_Torricelli)
 
-1. (Lemme de Gronwall) Soient $t_0, t_1\in \R$, $u,\alpha, \beta\in C^0([t_0,t_1],\R^+)$, tels que
+### Autour du Lemme de Grönwall {.exercice #exo_gronwall}
+
+1. (Lemme de Grönwall) Soient $t_0, t_1\in \R$, $u,\alpha, \beta\in C^0([t_0,t_1],\R^+)$, tels que
 $$
 u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t_0,t_1] \ .
 $$
 Montrer qu'alors
 $$
-u(t) \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1]\ .
+u(t) \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right) ds\qquad \forall t\in [t_0,t_1]\ .
 $$
 En déduire que si $\alpha$ est constant,
 $$
 u(t) \leq \alpha \exp\left(\int_{t_0}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1] \ .
 $$
-*Indice : poser $v(t)=\int_{t_0}^t\beta(r)dr$ et montrer que ...*
+*Indice : poser $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ et montrer que ...*
 
-2. Utiliser le Lemme de Gronwall pour montrer le [théorème d'existence globale de solutions](#theo_exist_glob). 
+2. Utiliser le Lemme de Grönwall pour montrer le [théorème d'existence globale de solutions](#theo_exist_glob). 
 *Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*
 
-3. Utiliser le Lemme de Gronwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI).
+3. Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI).
+
+-> [*Correction*](#correc_gronwall)
 
 ### Proie/prédateur
 Cycle limite Bendixon
@@ -414,12 +418,12 @@ critère stabilité dimension 2
 Correction des exercices
 ===============================
 
-### Ecoulement dans un réservoir {.exercice #exo_Torricelli}
+### Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
 
-### Autour du Lemme de Gronwall {.exercice #exo_theo_exist_glob}
+### Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
-1. (Lemme de Gronwall) Soient $t_0, t_1\in \R$, $u,\alpha, \beta\in C^0([t_0,t_1],\R^+)$, tels que
+1. (Lemme de Grönwall) Soient $t_0, t_1\in \R$, $u,\alpha, \beta\in C^0([t_0,t_1],\R^+)$, tels que
 $$
 u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t_0,t_1] \ .
 $$
@@ -433,17 +437,33 @@ u(t) \leq \alpha \exp\left(\int_{t_0}^t\beta(r)dr \right) \qquad \forall t\in [t
 $$
 *Indice : poser $v(t)=\int_{t_0}^t\beta(r)dr$ et montrer que ...*
 
-2. Soit $x:I\to \R^n$ une solution au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale)*,
+Si $\alpha$ est constant alors
+\begin{align*}
+u(t) &\leq \alpha +\alpha \left[-\exp\left(\int_s^t\beta(r)dr \right) \right]_{t_0}^t \\
+& \leq \alpha -\alpha +\alpha \exp\left(\int_{t_0}^t\beta(r)dr \right)
+\end{align*}
+ce qui donne le résultat.
+
+2. Soit $x:]\underline{t},\overline{t}[\subseteq I\to \R^n$ une solution au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale), 
 $$
-x(t)=x_0 + \int_{t_0}^t f(s,x(s))ds
+x(t)=x_0 + \int_{t_0}^t f(s,x(s))ds \ ,
 $$
+et donc, utilisant l'hypothèse de borne au plus affine de $f$, 
+$$
+\|x(t)\| \leq \|x_0\| + \int_{t_0}^t |b(s)| + |a(s)|\|x(s)\|ds \ .
+$$
+Sur tout segment $[t^-,t^+]\subset ]\underline{t},\overline{t}[$, on peut donc appliquer le Lemme de Grönwall, ce qui donne
+$$
+\|x(t)\| \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right)
+$$
+avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $I$. D'après le [théoreme des bouts](#theo_bouts), nécessairement $]\underline{t},\overline{t}[=I$.
 
 3. 
 
-### Proie/prédateur
+### Proie/prédateur {.correction #correc_proiePreda}
 
 
-### Système linéaire
+### Système linéaire {.correction}
 
 
 
