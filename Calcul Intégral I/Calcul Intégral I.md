@@ -907,6 +907,7 @@ $$
 \delta = \frac{\varepsilon^2}{4(|f(0)| + 2)^2}.
 $$
 
+![Graphe de la jauge $\gamma$ et de la subdivision pointée $\mathcal{D}$](images/gauge-plot-sqrt.py)
 
 
 
