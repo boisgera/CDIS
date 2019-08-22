@@ -693,7 +693,6 @@ et ça à le mérite d'être explicite (sans passer par les racines d'un
 polynôme). On peut tjs mentionner que la méthode précédente s'appliquerait ...
 
 ### TODO -- Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
-
 Considérons la fonction $f:[0,1] \to \R$ définie par
 $$
 f(x) = 
