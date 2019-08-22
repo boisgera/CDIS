@@ -751,6 +751,7 @@ On va confirmer cette intuition dans la suite.
 
 #### Intégrale sur $[a, 1]$, $a>0$
 
+<!-- DEPRECATED
 La stratégie est similaire à celle de l'exemple de la fonction 
 $x \mapsto e^x$: on recherche une jauge $\gamma$ sous la forme
 $\gamma(t) = \left]t -\delta(t), t+\delta(t)\right[$, avec $\delta(t) > 0$
@@ -789,6 +790,8 @@ le polynôme $P_{t,\varepsilon}(\delta) = \varepsilon^2 (t - \delta)^3 - \delta^
 étant strictement positif pour $\delta = 0$ et strictement négatif
 pour $\delta = t$, on peut prendre pour $\delta(t)$ la plus grande
 racine réelle de $P_{t,\varepsilon}$ sur $[0, t]$. 
+
+-->
 
 Comme dans l'exemple de $x \mapsto e^x$,
 cette jauge garantit que pour toute subdivision pointée subordonnée 
