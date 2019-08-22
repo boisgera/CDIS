@@ -759,9 +759,64 @@ $$
 $$
 quand $t \in [x, y] \subset \gamma(t)$, ce qui garantira que
 $$
-|S(f_{|[a, 1]}, \mathcal{D}_a) - (F(1) - F(a))| \leq \frac{\varepsilon}{2}
+|S(f_{|[a, 1]}, \mathcal{D}_a) - (F(1) - F(a))| \leq \frac{\varepsilon}{2} (1 - a) \leq \frac{\varepsilon}{2}
 $$
-pour tout subdivision oointée $\mathcal{D}_a$ de $[a, 1]$ subordonnée à $\gamma$.
+pour tout subdivision pointée $\mathcal{D}_a$ de $[a, 1]$ subordonnée à $\gamma$.
+
+On remarque qu'il suffit de prouver d'une part que 
+$$
+\left| \frac{y-t}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{t}\right|
+\leq \frac{\varepsilon}{2} (y-t)
+$$
+et d'autre part que
+$$
+\left| \frac{t-x}{\sqrt{t}} - 2\sqrt{t} + 2 \sqrt{x} \right|
+\leq \frac{\varepsilon}{2} (t-x)
+$$
+pour obtenir l'inégalité voulue. 
+Intéressons-nous au membre de gauche de la première de ces inégalités ; on a
+$$
+\begin{split}
+\frac{y-t}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{t}
+&=
+\frac{y - t -2 \sqrt{t}\sqrt{y} + 2 t}{\sqrt{t}} \\
+&=
+\frac{\sqrt{y}^2 + \sqrt{t}^2 -2 \sqrt{t}\sqrt{y}}{\sqrt{t}} \\
+&= \frac{(\sqrt{y} - \sqrt{t})^2}{\sqrt{t}}.
+\end{split}
+$$
+Pour garantir que ce terme soit plus petit que 
+$$
+\frac{\varepsilon}{2} (y - t)
+= \frac{\varepsilon}{2} (\sqrt{y} - \sqrt{t})(\sqrt{y} + \sqrt{t}),
+$$
+il suffit donc de s'assurer que
+$$
+\frac{(\sqrt{y} - \sqrt{t})}{\sqrt{t}} \leq \frac{\varepsilon}{2} (\sqrt{y} + \sqrt{t}),
+$$
+soit 
+$$
+\sqrt{y} \leq \sqrt{t} + \frac{\varepsilon}{2} (\sqrt{ty} + t).
+$$
+C'est le cas si 
+$$
+\sqrt{y} \leq \sqrt{t} + \frac{\varepsilon}{2} t
+\; \mbox{ soit } \;
+y \leq \left(\sqrt{t} +  \frac{\varepsilon}{2} t \right)^2.
+$$
+Par une méthode similaire, on pourra montrer que la seconde inégalité cherchée
+est satisfaite si
+$$
+x \geq \left(\sqrt{t} -  \frac{\varepsilon}{2} t \right)^2.
+$$
+La gauge $\gamma$ définie par
+$$
+\gamma(t) 
+= 
+\left]
+\left(\sqrt{t} -  \frac{\varepsilon}{2} t \right)^2, \left(\sqrt{t} +  \frac{\varepsilon}{2} t \right)^2  \right[
+$$
+satisfait donc nos critères.
 
 
 <!-- DEPRECATED
@@ -806,11 +861,12 @@ racine réelle de $P_{t,\varepsilon}$ sur $[0, t]$.
 
 -->
 
-On remarquera que la jauge $\gamma$ que nous avons construit
--- et qui est définie sur $\left]0, 1\right]$ --
+On remarquera que cette jauge $\gamma$ que nous avons construit
+-- et qui est en fait définie sur $\left]0, 1\right]$ --
 ne dépend pas de la valeur de $a$ dans $\left]0, 1\right]$.
-
-**TODO**: check squeeze.
+De plus, quand $\varepsilon$ est suffisamment petit -- 
+par exemple $\varepsilon \leq 1$ -- on constate
+que pour tout $t \in \left]0, 1\right]$, $0 \not \in \gamma(t)$.
 
 ### Intégrale sur $[0,1]$
 
@@ -838,7 +894,7 @@ $$
 \right|
 \leq \frac{\varepsilon}{2}.
 $$
-Si l'on choisit $\gamma(0) = \left]-\delta(0), \delta(0)\right[$ tel que si $[x_0, x_1] \subset \gamma(0)$,
+Si l'on choisit $\gamma(0) = \left]-\delta, \delta\right[$ tel que si $[x_0, x_1] \subset \gamma(0)$,
 $$
 |f(0) x_1| + 2\sqrt{x_1} \leq \frac{\varepsilon}{2},
 $$
@@ -848,7 +904,7 @@ Comme sur $[0, 1]$, $x_1 \leq \sqrt{x_1}$, il suffit de s'assurer que
 $|f(0)| \sqrt{x_1} + 2\sqrt{x_1} \leq {\varepsilon}/{2}$, ce qui
 est le cas si
 $$
-\delta(0) = \frac{\varepsilon^2}{4(|f(0)| + 2)^2}.
+\delta = \frac{\varepsilon^2}{4(|f(0)| + 2)^2}.
 $$
 
 
