@@ -1066,11 +1066,12 @@ $$
 $$
 ce qui est le résultat recherché.
 
+<!--
 ### TODO
 Mentionner résultat plus général, avec juste $f$ intégrable (sous hyp plus
 restrictives pour $g$ ?). Trouver ref ? Ou attendre chapitre multi-variable
 et y faire référence ?
-
+-->
 
 ### Changement de variables {.theorem}
 Soit $[a, b]$ et $[c, d]$ deux intervalles compacts de $\R$ ;
