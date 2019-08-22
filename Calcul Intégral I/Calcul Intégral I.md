@@ -654,23 +654,19 @@ $$
 ![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
 à la somme de Riemann pour évaluer l'intégrale de la fonction $x \in [0, 1] \mapsto e^x$.](images/gauge-plot-exp.py)
 
-### TODO {.post}
-Evoquer à posteriori que l'approche "brutale" de chercher une jauge 
-$\gamma$ constante / uniforme marchait et contextualiser
-(quand est-ce que ça marche ?).
-Notamment, ça ne marche plus dans l'exemple qui vient avec une
-singularité ...
-
-### TODO
-Subdvision subordonnée à une jauge contenant une jauge plus fine uniforme.
 
 ### TODO
 
-Exercice: intégrabilité fct croissante
+Exercice: intégrabilité fct croissante ?
 
 ### TODO
 
-Exemple avec discontinuité ou stratégie de "lissage" de l'erreur ne marche pas,
+Intégrabilité fct continue, à la main ?
+
+### TODO
+
+Exemple avec discontinuité 
+(ou stratégie de "lissage" de l'erreur ne marche pas), 
 à la main ?
 
 
@@ -1801,7 +1797,7 @@ si pour tout couple de points $x$ et $y$ de $I$ on peut trouver un
 chemin de $I$ joignant $x$ à $y$, c'est-à-dire une fonction continue
 $\phi:[0, 1] \to I$, telle que $\phi(0) = x$ et $\phi(1) = y$.
 
-Subdvisions subordonnées à une jauge {.question #subd-subor}
+Subdvisions subordonnées à une jauge I {.question #subd-subor}
 --------------------------------------------------------------------------------
 
 Soit $\gamma$ la jauge sur $[0, 1]$ définie par 
@@ -1811,6 +1807,19 @@ si $t>0$.
 ![Graphe de la jauge $\gamma$.](images/gauge-plot-squeeze.py)
 
 Déterminer une subdivision pointée de $[0, 1]$ qui soit subordonnée à $\gamma$.
+
+Subdvisions subordonnées à une jauge II {.question #subd-subor-2}
+--------------------------------------------------------------------------------
+
+Soit $[a, b]$ un intervalle compact de $\R$ ;
+soit $\gamma$ une jauge sur $[a, b]$. On suppose qu'il existe 
+un $\varepsilon > 0$ tel que  
+$$
+\mbox{pour tout } t \in [a, b], \; \left]t-\varepsilon, t+\varepsilon\right[ \subset \gamma(t).
+$$
+Suggérer un procédé plus simple que le procédé très général utilisé par 
+[le lemme de Cousin](#cousin) pour construire une subdivision pointée
+subordonnée à $\gamma$.
 
 L'intégrale de Riemann est absolue {.question #Rabs}
 --------------------------------------------------------------------------------
@@ -1949,7 +1958,7 @@ $z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
 Comme $\phi$ est à valeurs dans $I$, $z \in I$; l'ensemble $I$ est donc un 
 intervalle de $\R$.
 
-Subdvisions subordonnées à une jauge {.answer #answer-subd-subor}
+Subdvisions subordonnées à une jauge I {.answer #answer-subd-subor}
 --------------------------------------------------------------------------------
 
 On applique pas à pas la démarche de la preuve du [lemme de Cousin](#cousin).
@@ -1982,6 +1991,31 @@ $$
 est subordonnée à $\gamma$.
 
 ![Graphe de la jauge $\gamma$ et de la subdivision pointée $\mathcal{D}$](images/gauge-plot-squeeze-solution.py)
+
+Subdvisions subordonnées à une jauge II {.answer #answer-subd-subor-2}
+--------------------------------------------------------------------------------
+
+Sous l'hypothèse énoncée, il suffit de limiter la recherche aux subdivisions
+uniformes
+$$
+\mathcal{D}_m 
+= 
+\left\{\left(t_k, \left[a + k\frac{b-a}{m}, a + (k+1)\frac{b-a}{m} \right]\right)
+\, \left|\vphantom{\frac{a}{b}}\right. k \in \{0, \dots, m-1\}\, \right\},
+$$
+et le choix des $t_k$ importe peu.
+En effet, dès que $m$ est assez grand pour que l'on ait
+$$
+\frac{b-a}{m} < \varepsilon,
+$$
+alors pour tout $k \in \{0, \dots, m-1\}$ et pour tout 
+$t \in \left[a + k\frac{b-a}{m}, a + (k+1)\frac{b-a}{m} \right]$,
+$$
+\left[a + k\frac{b-a}{m}, a + (k+1)\frac{b-a}{m} \right] \subset \left]t- \varepsilon, t+\varepsilon \right[
+\subset \gamma(t).
+$$
+La jauge $\mathcal{D}_m$ est donc subordonnée à $\gamma$.
+
 
 L'intégrale de Riemann est absolue {.answer #answer-Rabs}
 --------------------------------------------------------------------------------
