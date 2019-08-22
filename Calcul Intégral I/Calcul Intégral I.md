@@ -685,7 +685,7 @@ Exemple avec discontinuité ou stratégie de "lissage" de l'erreur ne marche pas
 Mentionner explicitement que fct continue par morceaux marche (contunue ici
 + par morceau en exo en utilisant la ppté d'additivité ?)
 
-### TODO -- Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
+### Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
 Considérons la fonction $f:[0,1] \to \R$ définie par
 $$
 f(x) = 
