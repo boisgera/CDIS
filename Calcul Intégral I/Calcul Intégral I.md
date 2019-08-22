@@ -652,7 +652,7 @@ $$
 [^W]: La notation $W$ est classique pour désigner [la fonction de Lambert](https://fr.wikipedia.org/wiki/Fonction_W_de_Lambert).
 
 ![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
-à la somme de Riemann pour évaluer l'intégrale de la fonction $x \in [0, 2] \mapsto e^x$.](images/gauge-plot-exp.py)
+à la somme de Riemann pour évaluer l'intégrale de la fonction $x \in [0, 1] \mapsto e^x$.](images/gauge-plot-exp.py)
 
 ### TODO
 
