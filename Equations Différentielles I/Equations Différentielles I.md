@@ -75,7 +75,7 @@ On dira donc que $x:I\to \R^n$ est solution du problème de Cauchy défini par $
 
 On notera alors $x\in S_f(t_0,x_0)$.
 
-### Equation intégrale {.theorem #theo_eq_integrale}
+### Représentation intégrale des solutions {.theorem #theo_eq_integrale}
 Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$, $I$ un intervalle de $\R$ d'intérieur non vide, $(t_0,x_0)\in U$ tel que $t_0\in I$, et $x\in C(I,\R^n)$ telle que $(t,x(t))\in U$ pour tout $t\in I$. Alors, $x\in S_f(t_0,x_0)$ si et seulement si $x$ est solution de l'équation intégrale
 $$
 x(t) = x_0 + \int_{t_0}^t f(s,x(s))ds \qquad \forall t\in I \ .
@@ -243,7 +243,7 @@ $$
 $$
 alors la solution maximale au problème de Cauchy associé est défini sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
 
-*Démonstration* : Voir en [annexe](#pr_theo_exist_glob).  $\hfill\blacksquare$
+*Démonstration* : Prouvé en [exercice](#exo_gronwall).  $\hfill\blacksquare$
 
 
 ### Exemples
@@ -304,7 +304,7 @@ Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par 
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,t_0+\overline{t}] \ .
 $$
-On dit que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite.
+On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite.
 
 *Démonstration* Exercice ? avec lemme de gronwall \hfill $\blacksquare$
 
@@ -336,7 +336,7 @@ $$
 $$
 qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suffisamment petits. On voit bien ici que cette différence est bornée en temps fini, mais pas forcément aymptotiquement en particulier si $a>0$.
 
-- L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la boîte de condition initiales, plus on les solutions restent proches. Par contre, lorsqu'on augmente le "Integration Time" les solutions s'écartent.
+- L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la boîte de condition initiales, plus les solutions restent proches. Par contre, lorsqu'on augmente le "Integration Time" les solutions s'écartent.
 
 ### Chaos déterministe et exposant de Lyapunov {.remark #rem_chao}
 Même si la continuité des solutions par rapport aux paramètres et conditions initiales est une bonne nouvelle qui donne espoir de pouvoir simuler et prédire des systèmes physiques, elle est malheureusement parfois insuffisante. 
@@ -379,14 +379,73 @@ Références
 Exercices 
 ==============================================================================
 
-### Non unicité de solutions {.exercice #ex_Torricelli}
+### Ecoulement dans un réservoir {.exercice #exo_Torricelli}
 Fluide dans réservoir 
 $\dot{x}==-k\sqrt(|x|)$
+
+### Autour du Lemme de Gronwall {.exercice #exo_theo_exist_glob}
+
+1. (Lemme de Gronwall) Soient $t_0, t_1\in \R$, $u,\alpha, \beta\in C^0([t_0,t_1],\R^+)$, tels que
+$$
+u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t_0,t_1] \ .
+$$
+Montrer qu'alors
+$$
+u(t) \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1]\ .
+$$
+En déduire que si $\alpha$ est constant,
+$$
+u(t) \leq \alpha \exp\left(\int_{t_0}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1] \ .
+$$
+*Indice : poser $v(t)=\int_{t_0}^t\beta(r)dr$ et montrer que ...*
+
+2. Utiliser le Lemme de Gronwall pour montrer le [théorème d'existence globale de solutions](#theo_exist_glob). 
+*Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*
+
+3. Utiliser le Lemme de Gronwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI).
 
 ### Proie/prédateur
 Cycle limite Bendixon
 
 ### Système linéaire
+critère stabilité dimension 2
+
+
+Correction des exercices
+===============================
+
+### Ecoulement dans un réservoir {.exercice #exo_Torricelli}
+
+
+### Autour du Lemme de Gronwall {.exercice #exo_theo_exist_glob}
+
+1. (Lemme de Gronwall) Soient $t_0, t_1\in \R$, $u,\alpha, \beta\in C^0([t_0,t_1],\R^+)$, tels que
+$$
+u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t_0,t_1] \ .
+$$
+Montrer qu'alors
+$$
+u(t) \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1]\ .
+$$
+En déduire que si $\alpha$ est constant,
+$$
+u(t) \leq \alpha \exp\left(\int_{t_0}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1] \ .
+$$
+*Indice : poser $v(t)=\int_{t_0}^t\beta(r)dr$ et montrer que ...*
+
+2. Soit $x:I\to \R^n$ une solution au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale)*,
+$$
+x(t)=x_0 + \int_{t_0}^t f(s,x(s))ds
+$$
+
+3. 
+
+### Proie/prédateur
+
+
+### Système linéaire
+
+
 
 
 Annexes 
@@ -397,16 +456,19 @@ Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même 
 $$
  \forall t_K \in \left[t_0,\overline{t}\right[ \, , \, \exists t\in \left[t_K,\overline{t}\right[ \: : \: x(t)\in K
 $$
-En d'autres termes, on suppose que la solution revient de manière persistente dans $K$. Alors il existe une suite $(t_n)_{n\in \N}$ telle que 
+En d'autres termes, on suppose que la solution revient de manière persistente dans $K$. Alors il existe une suite $(t_p)_{p\in \N}$ telle que 
 $$
-\overline{t}-\frac{1}{n}\leq  t_n < \overline{t} \quad \text{et} \quad (t_n,x(t_n))\in K \quad \forall n\in \N
+\overline{t}-\frac{1}{p}\leq  t_p < \overline{t} \quad \text{et} \quad (t_p,x(t_p))\in K \quad \forall p\in \N
 $$
-On a donc $\lim_{n\to+\infty} t_n = \overline{t}$, et par compacité de $K$, on peut extraire de $(t_n,(x(t_n))_{n\in \N}$ une sous-suite qui converge vers $(\overline{t},\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{n\to+\infty} x(t_n) =\overline{x}$.
+On a donc $\lim_{p\to+\infty} t_p = \overline{t}$, et par compacité de $K$, on peut extraire de $(t_p,(x(t_p))_{p\in \N}$ une sous-suite qui converge vers $(\overline{t},\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{p\to+\infty} x(t_p) =\overline{x}$.
 
-BESOIN de CL local pour avoir l'estimée du temps minimal d'existence de solution A compléter
+Soient $\tau>0$, $r>0$ et $\tau_m\in \left(0,\tau \right]$ tels que 
+$$
+\cC:=\left[\overline{t}-2\tau,\overline{t}+2\tau \right]\times \overline{B}_{2r}(\overline{x})\subset U \quad , \quad \tau_m  \max_{\cC} \|f\| \leq r\ .
+$$
+Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset U$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
 
 
-### Preuve du théorème d'existence globale de solutions {.preuve #pr_theo_exist_glob}
 
 <!-- Footnotes -->
 
