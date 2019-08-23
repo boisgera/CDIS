@@ -67,7 +67,7 @@ $$
 ### Jauge {.definition}
 Une jauge $\gamma$ sur un pavé fermé $I$ de $[-\infty,+\infty]^n$ est une 
 fonction qui associe à tout $t \in I$ un 
-pavé ouvert $\gamma(t)$ contenant $t$. 
+pavé ouvert $\gamma(t)$ de $[-\infty,+\infty]^n$ contenant $t$. 
 
 ### Subdivision pointée subordonnée à une jauge {.definition}
 Une subdivision $\mathcal{D}$ du pavé fermé $I$ de $[-\infty,+\infty]^n$
@@ -96,46 +96,43 @@ mais on peut étendre $f$ par des valeurs à l'infini sans
 que l'intégrabilité de cette extension ou la valeur de son intégrale
 ne soient affectés par le choix de ces valeurs.
 
-TODO -- Propriétés élémentaires
+Propriétés élémentaires
 --------------------------------------------------------------------------------
 
-### TODO -- Linéarité, Positivité
+Nous évoquons rapidement dans cette section la façon dont les propriétés 
+de l'intégrale dans $\R$ se transposent à $\R^n$.
 
-### TODO -- Critère d'intégrabilité de Cauchy
+L'intégrale dans $\R^n$ est toujours linéaire et positive ;
+l'intégrabilité peut être testée par un critère de Cauchy analogue au cas réel.
+La notion d'ensemble négligeable est similaire au cas réel, à ceci près
+qu'on utilise des pavés au lieu d'intervalles et le volume au lieu de la
+longueur ; comme dans le cas réel, des fonctions égales presque partout
+sont intégrables simultanément et ont la même intégrale.
 
-### TODO -- d'emblée, ens. mesurable et fct mesurable 
+Un théorème de changement de variable existe, mais il diffère quelque peu
+du résultat élémentaire déjà traité dans $\R$
+(par certains aspects, il est plus général) ; 
+il possède dans sa propre sous-section dans ce chapitre.
+L'équivalent dans $\R^n$ du théorème fondamental du calcul est le théorème
+de la divergence[^pe] auquel une section entière de ce chapitre est consacrée.
 
-ens négligeable ; 
-Def en. mesurable à la mano, les pavés sont mesurables ; pptés de type tribu,
-plus compat topo et complétude. 
+[^pe]: même si cela ne saute pas forcément aux yeux !
 
-égalité intégrales fcts égales p.p.
+Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
+dominée se transposent directement.
+La notion d'ensemble mesurable est inchangée (modulo le remplacement des
+intervalles compact de $\R$ par les pavés compacts de $\R^n$) ; les trois
+propriétés élémentaires de la collection des ensembles mesurables de $\R^n$
+sont toujours vérifiées (la collection est une tribu), cette famille contient
+tous les ouverts et "négligeable" et "mesurable-de-volume-nul" sont 
+toujours synonymes.
 
-deux def équivalentes pour fct mesurable
-(limite et critère de l'image réciproque)
-
-Puis def intégrabilité / intégrale sur un sous-ensemble (si produit par
-fct carac mesurable)
-
-### TODO -- Additivité et restriction ?
-
-(focus pavé donc). Encore du sens alors qu'on a ici le cadre plus général ?
-Mmmmf restriction à encore du sens si on veut gérer du conditionnellement
-intégrable (sinon c'est une conséquence de la mesurabilité des pavés).
-
-Additivité ? Par utile si on sait que les intersections de pavé sans
-chevauchement sont négligeable (et c'est la définition ici ... mais quid
-dans Swarz ? Intersection des intérieurs vide. OK, adopter ça et Mq
-sans chevauchement implique intersection négligeable ?)
-
-### TODO
-Théorème d'intégrabilité dominée, de convergence dominée, monotone, fct
-absolument continue, etc.
-
-### TODO -- Evoquer chgt de variable différent.
-
-### TODO -- Evoquer que l'équivalent de l'IPP est le théo de la divergence
-
+Les fonctions mesurables ont la même definition (limite simple de fonctions
+intégrables) ; le critère de mesurabilité par l'image réciproque est toujours
+valide. L'intégrabilité (et les intégrales) des fonctions définies sur des 
+sous-ensembles de $\R^n$ (ou $[-\infty, +\infty]^n$) sont toujours définies
+à partir de l'extension de la fonction par zéro. Les fonctions absolument 
+et conditionnellement intégrables sont définies de manière identique.
 
 Théorème de Fubini
 --------------------------------------------------------------------------------
@@ -1071,7 +1068,13 @@ $$
 
 ### Question 2  {.question #pfb-2}
 En déduire l'impossibilité d'une telle rétraction.
+ 
+Intégration par parties {#IPP-n}
+--------------------------------------------------------------------------------
 
+Si l'équivalent du théorème fondamental dans $\R$ est le théorème 
+de la divergence dans $\R^n$, quel résultat serait l'équivalent
+de l'intégration par parties ?
 
 Solutions
 ================================================================================
