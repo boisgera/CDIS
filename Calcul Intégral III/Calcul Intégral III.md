@@ -1069,12 +1069,12 @@ $$
 ### Question 2  {.question #pfb-2}
 En déduire l'impossibilité d'une telle rétraction.
  
-Intégration par parties {#IPP-n}
+Intégration par parties {.question #IPP-n}
 --------------------------------------------------------------------------------
 
-Si l'équivalent du théorème fondamental dans $\R$ est le théorème 
-de la divergence dans $\R^n$, quel résultat serait l'équivalent
-de l'intégration par parties ?
+Si l'équivalent dans $\R^n$ du théorème fondamental du calcul 
+est le théorème de la divergence, quel résultat est l'équivalent
+dans $\R^n$ de l'intégration par parties ?
 
 Solutions
 ================================================================================
@@ -1478,6 +1478,13 @@ $$
 \int_B \det J_f(x) \, dx = \int_{\partial B} x_1^2 \, \sigma(dx) > 0.
 $$
 Si une telle rétraction existait, on aurait donc une contradiction.
+
+Intégration par parties {.answer #answer-IPP-n}
+--------------------------------------------------------------------------------
+
+Si l'équivalent du théorème fondamental dans $\R$ est le théorème 
+de la divergence dans $\R^n$, quel résultat serait l'équivalent
+de l'intégration par parties ?
 
 Réferences
 ================================================================================
