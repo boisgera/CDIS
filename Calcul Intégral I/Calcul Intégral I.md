@@ -1854,7 +1854,7 @@ Et au sens de Henstock-Kurzweil ?
 Un ensemble de Cantor
 --------------------------------------------------------------------------------
 
-Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté de façon
+Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté
 par un développement décimal de la forme noté noté $x=0.a_1a_2a_3\dots$
 où $a_i \in \{0,1, \dots, 9\}$, une notation qui signifie que
 $$
