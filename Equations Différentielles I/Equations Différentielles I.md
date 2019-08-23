@@ -304,7 +304,7 @@ Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par 
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
-On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite.
+On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*.
 
 *Démonstration* Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall) \hfill $\blacksquare$
 
@@ -360,17 +360,46 @@ chaos que pour borné
 Propriétés asymptotiques
 -----------------------------
 
-Dans la section précédente nous avon répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressans maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce qu'il diverge ? est-ce qu'il tend vers un point en particulier ? vers un cycle limite ?
+Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce qu'il diverge ? est-ce qu'il tend vers un point en particulier ? vers un cycle limite ?
+
+Dans la suite, on se donne donc une fonction $f:U\to \R^n$ et on étudie le comportement des solutions de $\dot{x}=f(t,x)$. SIMPLIFIER AUTONOME ?
 
 ### Point d'équilibre
+On appelle *point d'équilibre* un point $a\in \R^n$ tel que
+$$
+f(t,a) = 0 \qquad \forall t\in \R \ .
+$$
+En d'autres termes, la fonction constante $x\equiv a$ est solution.
 
 ### Stabilité, stabilité asymptotique
+Un point d'équilibre $a$ est dit:
+
+- *stable* si l'*on peut rester arbitrairement proche de $a$ quitte à initialiser les solutions suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: I\to \R$ vérifie
+$$
+|x(t_0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in I \ .
+$$
+
+- *instable* s'il n'est pas stable.
+
+- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ convergent vers $a$*, c'est-à-dire si pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: I\to \R$ vérifie
+$$
+|x(t_0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
+$$
+
+- *globalement attractif* si *toutes les solutions convergent vers $a$*.
+
+- *localement (resp. globalement) asymptotiquement stable* s'il est à la fois stable et localement (resp. globalement) attractif. 
+
+SE RESTREINDRE AUX SOLUTIONS COMPLETES ???
+
+### Exemples
+
 
 ### Lyapunov
 
-### Cas linéaire
+### Cas d'un système linéaire
 
-### Cas du plan : théorème de Bendixon
+### Cas du plan : portrait de phase et théorème de Bendixon
 
 
 Références
@@ -411,18 +440,41 @@ $$
 *Indice : poser $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ et étudier la dérivée de $v(t)\exp\left(-\int_{t_0}^t\beta(r)dr\right)$*.
 
 2. Utiliser le Lemme de Grönwall pour montrer le [théorème d'existence globale de solutions](#theo_exist_glob). 
-*Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*
+*Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*.
 
 3. Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI).
-*Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*
+*Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*.
 
 -> [*Correction*](#correc_gronwall)
 
 ### Proie/prédateur
-Cycle limite Bendixon
+Cycle limite Bendixon ou exo cercle attractif
 
-### Système linéaire
-critère stabilité dimension 2
+### Masse/ressort {.correction #masse_ressort}
+Considérons une masse $m$ accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
+
+1. Montrer que l'évolution de la position de la masse peut être décrite par  
+$$
+m\ddot{x} = - \lambda \dot{x} -k x \ ,
+$$
+où $\lambda$ est un coefficient de frottement. Que représente $x$ ?
+
+2. Réduire l'équation différentielle à l'ordre $1$.
+
+3. Déterminer les points d'équilibre.
+
+4. Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
+
+### Contrôle d'un système linéaire {.correction #cont_lin}
+Soit le système décrit par
+$$
+\dot{x} = x + u(t)
+$$
+où $t\mapsto u(t)$ est une entrée à choisir.
+
+1. Comment se comporte le système si $u\equiv 0$ ?
+
+2. Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre asymptotiquement stable ?
 
 
 Correction des exercices
@@ -498,9 +550,10 @@ Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$. A FINI
 ### Proie/prédateur {.correction #correc_proiePreda}
 
 
-### Système linéaire {.correction}
+### Masse/ressort {.correction #masse_ressort}
 
 
+### Contrôle d'un système linéaire {.correction #cont_lin}
 
 
 Annexes 
