@@ -1504,8 +1504,7 @@ $$
 $$
 Alternativement, si
 $f:U \to \R$ et $v: U \to \mathbb{R}^n$ sont deux
-fonctions de classe $C^1$
- de classe $C^1$, comme $fv$ est de classe $C^1$ et que
+fonctions de classe $C^1$, comme $fv$ est de classe $C^1$ et que
  $\mathrm{div} \, fv = f \mathrm{div} f + \left<\nabla v, f\right>$
 et donc par le théorème de la divergence appliqué à $fv$,
 $$
