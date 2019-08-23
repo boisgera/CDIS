@@ -239,7 +239,7 @@ $$
 La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
 si et seulement si $f$ est bornée et continue presque partout.
 
-### {.post}
+### {.post #Rcpp}
 En particulier, si $f$ est continue par morceaux, elle est intégrable
 au sens de Riemann.
 
@@ -375,7 +375,7 @@ $$
 \int_{a}^b f(t) \, dt := - \int_b^a f(t) \, dt.
 $$
 
-### Intégrale de Riemann et de Henstock-Kurzweil {.theorem}
+### Intégrale de Riemann et de Henstock-Kurzweil {.theorem #RHK}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Riemann
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
@@ -1252,7 +1252,7 @@ $$
 Par le [critère d'intégrabilité de Cauchy](#CIC), la fonction $f$ est donc
 intégrable sur l'intervalle $[a, d]$.
 
-### Fonctions égales presque partout
+### Fonctions égales presque partout {.proposition #fepp}
 Une fonction $f:[a, b] \to \R$ égale presque partout à une 
 fonction $g:[a, b] \to \R$ intégrable est elle-même intégrable
 et 
@@ -2071,8 +2071,67 @@ donc elle n'est pas intégrable au sens de Henstock-Kurzweil.
 Continuité par morceaux {.answer #answer-cpm}
 --------------------------------------------------------------------------------
 
+On peut bien sûr exploiter les propriétés de l'intégrale de Riemann
+pour répondre à cette question :
+toute [fonction continue par morceaux $f:[a, b] \to \R$ 
+définie sur un intervalle compact de $\R$ est intégrable au sens de Riemann](#Rcpp) ;
+comme [toute fonction intégrable au sens de Riemann est intégrable au sens
+de Henstock-Kurzweil](#RHK), le résultat est acquis.
 
+Si l'on souhaite montrer directement ce résultat, sans passer par l'intégrale
+de Riemann, on peut tout d'abord réduire ce problème à celui de l'intégrabilité
+des fonctions continues $f:[a, b] \to \R$. En effet, supposons les fonctions 
+continues sur un intervalle compact de $\R$ intégrables ; si $f$ est
+une fonction continue par morceaux sur $[a, b]$, 
+on peut décomposer $[a, b]$ en une union finie d'intervalles $[a_k, b_k]$ qui ne
+se chevauchent pas, et tels que la restriction de $f$ à chaque $[a_k, b_k]$
+soit continue -- ou diffère d'une fonction continue en au plus deux points.
+Deux [fonctions égales presque partout étant intégrables](#fepp) (ou non) 
+simultanément, ces restrictions sont toutes intégrables. 
+Par [additivité](#additivité), la fonction $f$ est donc intégrable.
 
+Supposons désormais $f:[a, b] \to \R$ continue. Comme nous ne connaissons
+pas a priori la valeur de son intégrale (éventuelle), nous allons essayer
+de prouver son intégrabilité en utilisant le [critère de Cauchy](#CIC).
+Soit $\mathcal{D}$ et $\mathcal{D'}$ deux subdivisions pointées de $[a, b]$.
+Si $\mathcal{D}$ est composée des paires $(t_i, I_i)$ et $\mathcal{D'}$
+des paires $(s_j, J_j)$, en notant $K_{ij} = I_i \cap J_j$, on obtient
+$$
+\begin{split}
+\left|S(f, \mathcal{D}) - S(f,\mathcal{D}')\right|
+&=
+\left|\sum_i f(t_i) \ell(I_i) - \sum_k f(s_j) \ell(I_j)\right| \\
+&=
+\left|\sum_i f(t_i) \left(\sum_j \ell(K_{ij})\right) - \sum_j f(s_j) \left(\sum_{i} \ell(K_{ij})\right)\right| \\
+&=
+\left|\sum_{i, j}  (f(t_i) - f(s_j)) \ell(K_{ij}) \right|.
+\end{split}
+$$
+De toute évidence, on peut limiter dans la dernière expression la somme
+aux ensemble $K_{ij}$ non vides, c'est-à-dire tels que 
+$I_i \cap J_j \neq \varnothing$.
+Supposons que $\mathcal{D}$ et $\mathcal{D}'$ soient subordonnées à une
+jauge $\gamma$ de $[a, b]$, telle que si $x \in \gamma(t)$, alors
+$$
+|f(x) - f(t)| \leq \frac{1}{2}\frac{\varepsilon}{b-a}.
+$$
+Une telle jauge existe par continuité de $f$.
+Alors, si $t_i \in I_i$, $s_j \in J_j$ et $x \in I_i \cap J_j$,
+$$
+\left|f(t_i) - f(s_j)\right| \leq 
+\left|f(x) - f(s_j)\right| + \left|f(x) - f(t_i)\right|
+\leq 
+\frac{\varepsilon}{b-a}
+$$
+et par conséquent
+$$
+\left|S(f, \mathcal{D}) - S(f,\mathcal{D}')\right|
+\leq 
+\sum_{i, j}  \left|f(t_i) - f(s_j)\right| \ell(K_{ij})
+=\frac{\varepsilon}{b-a} \sum_{i, j} \ell(K_{ij})
+= \varepsilon.
+$$
+Par [le critère de Cauchy](#CIC), la fonction $f$ est donc intégrable.
 
 Un ensemble de Cantor
 --------------------------------------------------------------------------------
@@ -2125,7 +2184,7 @@ Séries et intégrales
 
 ### Question 1 {.answer #answer-si-1}
 Si $\sum_k a_k$ est divergente, $f$ ne satisfait pas 
-[le critère d'intégrabilité de Cauchy](Calcul Intégral I.pdf/#CIC).
+[le critère d'intégrabilité de Cauchy](#CIC).
 En effet, la série elle-même ne satisfait pas le critère de Cauchy: il existe donc
 un $\varepsilon > 0$ tel que pour tout entier $j$, il existe un
 entier $n$ tel que $$\left|\sum_{k=j}^{j+n} a_k\right| > \varepsilon.$$
