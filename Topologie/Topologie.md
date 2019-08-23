@@ -1389,10 +1389,10 @@ $$
 Droite réelle achevée {#dra}
 --------------------------------------------------------------------------------
 
-La droite réelle achevée est composée des nombre réels de $-\infty$ 
-et de $+\infty$.
+La *droite réelle achevée* (ou *droite réelle étendue*) 
+est composée des nombre réels et de $-\infty$ et $+\infty$.
 Le but de cet exercice est de doter cet ensemble 
-$\mathbb{R} \cup \{-\infty, +\infty\}$[^nre] d'une distance aux propriétés
+$[-\infty, +\infty]$([^nre]) d'une distance aux propriétés
 "raisonnables".
 A cette fin, on introduit l'espace métrique $X$ des points du cercle unité de 
 $\mathbb{R}^2$ d'ordonnée positive ou nulle:
@@ -1403,7 +1403,7 @@ X =
 \right\},
 $$
 muni de la distance euclidienne de $\mathbb{R}^2$
-et la fonction $f: X \to \mathbb{R} \cup \{-\infty, +\infty\}$ définie par
+et la fonction $f: X \to [-\infty, +\infty]$ définie par
 $$
 f(x,y) = 
 \left|
@@ -1420,7 +1420,7 @@ on trouvera fréquemment la notation $\overline{\R}$
 pour désigner l'ensemble des réels étendus; 
 mais cette convention se heurte alors avec la désignation de l'adhérence
 de $\mathbb{R}$ dans lui-même, une autre interprétation selon laquelle 
-$\overline{\mathbb{R}} = \mathbb{R}$. 
+on aurait $\overline{\mathbb{R}} = \mathbb{R}$. 
 
 ### Question 1 {.question #dra-1}
 Pouvez-vous donner une interprétation géométrique simple à la grandeur
@@ -1433,7 +1433,7 @@ Montrer que $f$ est une bijection.
 
 ### Question 3 {.question #dra-3}
 En déduire qu'il existe une et une seule fonction distance sur
-$\mathbb{R} \cup \{-\infty, +\infty\}$ qui fasse de $f$ une isométrie;
+$[-\infty, +\infty]$ qui fasse de $f$ une isométrie;
 on note $d^{\pm \infty}$ cette distance. 
 
 ### Question 4 {.question #dra-4}
@@ -1442,7 +1442,7 @@ $d^{\pm \infty}(-1, 1)$.
 
 ### Question 5 {.question #dra-5}
 Montrer que l'injection canonique
-$x \in \mathbb{R} \mapsto x \in \mathbb{R} \cup \{-\infty, +\infty\}$
+$x \in \mathbb{R} \mapsto x \in [-\infty, +\infty]$
 est une fonction continue.
 
 ### Question 6 {.question #dra-6}
@@ -2022,7 +2022,7 @@ d'équation $y=1$ dans $\R^2$, mais des intersections "à l'infini".
 La fonction $f$ peut être décomposée comme $f = \psi \circ \phi$ où
 l'application $\phi: (x, y) \in X \to x \in [-1, 1]$ est bijective,
 d'inverse $\phi^{-1}(x) = (x, \sqrt{1 - x^2})$ 
-et l'application $\psi: [-1, 1] \to \R \cup \{-\infty, +\infty\}$
+et l'application $\psi: [-1, 1] \to [-\infty, +\infty]$
 définie par
 $$
 \psi(x) = 
@@ -2048,7 +2048,7 @@ $$
 La fonction $f$ est donc bijective comme composée de fonctions bijectives.
 
 ### Question 3 {.answer #answer-dra-3}
-La fonction $f$ sera une isométrie quand $\R \cup \{-\infty, +\infty\}$ 
+La fonction $f$ sera une isométrie quand $[-\infty, +\infty]$ 
 est muni de la distance  $d^{\pm \infty}$ 
 -- et $X$ la distance induite par la distance euclidienne de $\R^2$ -- 
 si et seulement si pour toute paire de points $p_1$ et $p_2$ dans $X$
@@ -2072,7 +2072,7 @@ et
 $d^{\pm \infty}(-1, 1) = \sqrt{2}.$
 
 ### Question 5 {.answer #answer-dra-5}
-Soit $i: x \in \R \to x \in \R \cup\{-\infty, +\infty\}$. Pour montrer que
+Soit $i: x \in \R \to x \in [-\infty, +\infty]$. Pour montrer que
 $i$ est continue, il nous faut prouver que pour tout $x_1 \in \R$, quand
 $d(x_2, x_1) \to 0$, alors $d^{\pm \infty}(i(x_2), i(x_1)) = d^{\pm \infty}(x_2, x_1)\to 0$.
 Or, 
@@ -2097,7 +2097,7 @@ tel que si $k \geq m$, alors $x_k \geq M$.
 
 Mais il existe maintenant une seconde interprétation si l'on considère 
 $x_k \in \R$ comme une suite de points dans l'espace métrique 
-$\R \cup \{-\infty, +\infty\}$. Cela signifie alors que
+$[-\infty, +\infty]$. Cela signifie alors que
 $d^{\pm \infty}(x_k, +\infty) \to 0$ quand $k \to +\infty$.
 Or, comme
 $$
