@@ -50,7 +50,7 @@ $$
 \{(t_i, I_i) \; | \; \; 0 \leq i \leq k-1\}
 $$
 où les $I_i$ sont des pavés fermés de $I$ sans chevauchement
--- les intersections deux à deux de leurs intérieurs sont vide --
+-- les intersections deux à deux de leurs intérieurs sont vides --
 qui recouvrent $I$, et tels que 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, k-1\}.$
 
