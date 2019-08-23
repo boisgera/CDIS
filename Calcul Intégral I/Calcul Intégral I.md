@@ -1855,7 +1855,7 @@ Un ensemble de Cantor
 --------------------------------------------------------------------------------
 
 Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté
-par un développement décimal de la forme noté noté $x=0.a_1a_2a_3\dots$
+par un développement décimal de la forme noté noté $x=0.a_1a_2a_3\cdots$
 où $a_i \in \{0,1, \dots, 9\}$, une notation qui signifie que
 $$
 x = \sum_{i=1}^{+\infty} a_i 10^{-i}.
@@ -1869,8 +1869,8 @@ $0.5000\cdots$ ou comme $0.4999\cdots$.
 
 On définit l'ensemble $A$ comme le sous-ensemble de $\left[0, 1\right[$
 dont le développement décimal ne comporte que des nombres pairs.
-Par exemple, $x=2/3 = 0.666\dots$ appartient à $A$, mais 
-$x=\sqrt{2}/2 = 0.707\dots$ non.
+Par exemple, $x=2/3 = 0.666\cdots$ appartient à $A$, mais 
+$x=\sqrt{2}/2 = 0.707\cdots$ non.
 
 ### Question 1 {.question #cantor-1}
 
