@@ -413,7 +413,7 @@ Considérons un réservoir cylindrique de section $S$ qui se vide par une ouvert
 $$
 \dot{x}=-k\sqrt{|x|} \qquad k = \frac{s}{S}\sqrt{2g}
 $$
-où $g$ est l'apesanteur.
+où $g$ est la pesanteur.
 
 1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0$, résoudre le problème de Cauchy associé.
 
