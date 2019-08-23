@@ -1851,6 +1851,12 @@ $$
 est-elle intégrable sur $[0, 1]$ au sens de Riemann ? 
 Et au sens de Henstock-Kurzweil ?
 
+Continuité par morceaux {.question #cpm}
+--------------------------------------------------------------------------------
+
+Montrer que toute fonction $f:[a, b] \to \R$ continue par morceaux sur un
+intervalle compact de $\R$ est intégrable au sens de Henstock-Kurzweil.
+
 Un ensemble de Cantor
 --------------------------------------------------------------------------------
 
@@ -2061,6 +2067,12 @@ La fonction de Dirichlet $1_{\Q}$ sur $[0, 1]$ est égale presque partout à la
 fonction identiquement nulle qui est continue, elle est donc intégrable au
 sens de Henstock-Kurzweil. Mais elle n'est pas continue presque partout,
 donc elle n'est pas intégrable au sens de Henstock-Kurzweil.
+
+Continuité par morceaux {.answer #answer-cpm}
+--------------------------------------------------------------------------------
+
+
+
 
 Un ensemble de Cantor
 --------------------------------------------------------------------------------
