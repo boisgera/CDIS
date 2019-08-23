@@ -1486,25 +1486,34 @@ Intégration par parties {.answer #answer-IPP-n}
 On obtient le théorème d'intégration par parties en appliquant le théorème
 fondamental du calcul à la dérivée du produit $fg$.
 
-Supposons que $U$ est un ouvert borné de $\R^n$ et $K$ un ensemble compact 
-$K$ à bord $C^1$ de $U$ et que  $f, g: U \to \mathbb{R}$ 
-sont de classe $C^1$. Le produit $fg$ est également de classe $C^1$
-et pour tout $i \in \{1,\dots, n\}$, 
+Supposons de façon analogue que $U$ est un ouvert borné de $\R^n$,
+$K$ un ensemble compact à bord $C^1$ de $U$ et que $f, g: U \to \mathbb{R}$ 
+sont deux fonctions de classe $C^1$. Le produit $fg$ est également de classe 
+$C^1$ et pour tout $i \in \{1,\dots, n\}$, 
 $$
-\int_{K} \partial_i f(x) \, dx
+\int_{K} \partial_i f(x)g(x) \, dx
 =
-\int_{\partial K} n_i(x) f(x) \, \sigma(dx).
+\int_{\partial K} n_i(x) f(x)g(x) \, \sigma(dx),
 $$
-
-et que $u, v: U \to \mathbb{R}^n$ sont deux
-fonctions de class $C^1$
- de classe $C^1$,
+soit
 $$
-\int_{K} \mbox{div} \, v(x) \, dx
+\int_{K} (\partial_i f(x))g(x) \, dx
 =
-\int_{\partial K} \left<v(x), n(x) \right> \, \sigma(dx).
+\int_{\partial K} n_i(x) f(x)g(x) \, \sigma(dx) 
+- \int_{K} f(x)(\partial_i g(x)) \, dx.
 $$
-et pour toute fonction
+Alternativement, si
+$f:U \to \R$ et $v: U \to \mathbb{R}^n$ sont deux
+fonctions de classe $C^1$
+ de classe $C^1$, comme $fv$ est de classe $C^1$ et que
+ $\mathrm{div} \, fv = f \mathrm{div} f + \left<\nabla v, f\right>$
+et donc par le théorème de la divergence appliqué à $fv$,
+$$
+\int_{K} \left<\nabla f(x), v(x)\right> \, dx
+=
+\int_{\partial K} \left<v(x), n(x) \right> \, \sigma(dx)
+-\int_{K} f(x) \mathrm{div} \, v(x) \, dx
+$$
 
 Réferences
 ================================================================================
