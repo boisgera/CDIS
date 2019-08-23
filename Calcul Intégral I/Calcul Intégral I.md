@@ -1354,6 +1354,8 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
     intervalles de la forme $[a, b]$ où $-\infty \leq a \leq b \leq +\infty$,
     autrement dit les intervalles fermés (ou ce qui revient au même,
     compacts) de la droite réelle achevée $[-\infty, +\infty]$.
+    Nous définissons la longueur d'un intervalle de $[-\infty, +\infty]$ 
+    comme la longueur de sa restriction $\R$[^cp]
 
  2. **Fonctions.**
     Si les fonctions que nous souhaitons intégrer sont définies sur des 
@@ -1372,6 +1374,9 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
     \mbox{ et } 
     I \subset \left]-\infty, +\infty\right[.
     $$
+
+[^cp]: En particulier avec cette convention, 
+$\ell([-\infty, -\infty]) = \ell([+\infty, +\infty])= \ell(\varnothing) = 0$.
 
 Autrement dit, nous remplaçons les intervalles fermés 
 $\R= \left]-\infty, +\infty\right[$ par ceux de
