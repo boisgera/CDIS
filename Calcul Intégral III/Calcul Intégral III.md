@@ -1505,7 +1505,7 @@ $$
 Alternativement, si
 $f:U \to \R$ et $v: U \to \mathbb{R}^n$ sont deux
 fonctions de classe $C^1$, comme $fv$ est de classe $C^1$ et que
- $\mathrm{div} \, fv = f \mathrm{div} f + \left<\nabla v, f\right>$
+ $\mathrm{div} \, fv = f \mathrm{div} \, v + \left<\nabla v, f\right>$
 et donc par le théorème de la divergence appliqué à $fv$,
 $$
 \int_{K} \left<\nabla f(x), v(x)\right> \, dx
