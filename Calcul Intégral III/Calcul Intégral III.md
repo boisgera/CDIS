@@ -1085,13 +1085,13 @@ Changement de variables linéaire
 ### Question 1 {.answer #answer-cvl-1}
 Supposons tout d'abord que $\lambda > 0$ ;
 si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$ il existe
-une jauge $\gamma$ sur $\overline{R}$ telle que pour toute 
-subdvision pointée $\mathcal{D}$ de $\overline{R}$ subordonnée 
+une jauge $\gamma$ sur $[-\infty, +\infty]$ telle que pour toute 
+subdvision pointée $\mathcal{D}$ de $[-\infty, +\infty]$ subordonnée 
 à $\gamma$ on ait
 $$
 \left|S(f,\mathcal{D}) - \int_{-\infty}^{+\infty} f(x) \,dx \right| \leq \varepsilon.
 $$
-Soit $\mathcal{C}$ une subdivision pointée de $\overline{R}$ ;
+Soit $\mathcal{C}$ une subdivision pointée de $[-\infty, +\infty]$ ;
 la somme de Riemann associée à $\mathcal{C}$ et la fonction 
 $x \mapsto f(\lambda x)$ s'écrit
 $$
@@ -1103,7 +1103,7 @@ L'ensemble
 $$
 \mathcal{D} = \{(\lambda t, \lambda J) \, | \, (t, J) \in \mathcal{C}\}
 $$
-est une subdivision pointée de $\overline{R}$, surbordonné à la jauge
+est une subdivision pointée de $[-\infty, +\infty]$, surbordonné à la jauge
 $\gamma$ -- tel que $\gamma(\lambda t) \subset \lambda J$ -- 
 si et seulement si $\mathcal{C}$ est subordonné à la jauge définie par
 $\nu(t) = \gamma(\lambda t) / \lambda$. Comme $f(\lambda t) \ell(J)
