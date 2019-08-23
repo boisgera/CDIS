@@ -237,11 +237,11 @@ $$
 *Démonstration* : Voir en [annexe](#pr_theo_bouts).  $\hfill\blacksquare$
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
-Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$. S'il existe $a,b:I\to \R$ telles que  
+Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C^0(U,\R^n)$. S'il existe $a,b:I\to \R$ telles que  
 $$
 \|f(t,x)\|\leq a(t) \|x\| + b(t) \quad \forall (t,x)\in I\times \R^n \ ,
 $$
-alors la solution maximale au problème de Cauchy associé est défini sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
+alors toute[^uniCritExGlob] solution maximale au problème de Cauchy associé est définie sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
 
 *Démonstration* : Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).  $\hfill\blacksquare$
 
@@ -300,9 +300,9 @@ La première question fut soulevée par Henri Poincaré à la fin du XIXème si�
 Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais tout modéliser parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,t_0+\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,t_0+\overline{t}]$ et vérifie
+Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
 $$
-|x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,t_0+\overline{t}] \ .
+|x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
 On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite.
 
@@ -380,31 +380,41 @@ Exercices
 ==============================================================================
 
 ### Ecoulement dans un réservoir {.exercice #exo_Torricelli}
-Fluide dans réservoir 
-$\dot{x}==-k\sqrt(|x|)$
+Considérons un réservoir cylindrique de section $S$ qui se vide par une ouverture de section $s$ située à sa base. On note $x$ la hauteur de liquide dans le réservoir. D'après la *loi de Torricelli*[^Torricelli], l'équation d'évolution de $x$ est donnée par 
+$$
+\dot{x}=-k\sqrt{|x|} \qquad k = \frac{s}{S}\sqrt{2g}
+$$
+où $g$ est l'apesanteur.
+
+1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0$, résoudre le problème de Cauchy associé.
+
+2. Comment expliquer physiquement la multitude de solutions ? 
+
+3. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
 
 -> [*Correction*](#correc_Torricelli)
 
 ### Autour du Lemme de Grönwall {.exercice #exo_gronwall}
 
-1. (Lemme de Grönwall) Soient $t_0, t_1\in \R$, $u,\alpha, \beta\in C^0([t_0,t_1],\R^+)$, tels que
+1. (Lemme de Grönwall) Soient $t^-, t^+\in \R$, $u,\alpha, \beta\in C^0([t^-,t^+],\R^+)$, tels que
 $$
-u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t_0,t_1] \ .
+u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t^-,t^+] \ .
 $$
 Montrer qu'alors
 $$
-u(t) \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right) ds\qquad \forall t\in [t_0,t_1]\ .
+u(t) \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right) ds\qquad \forall t\in [t^-,t^+]\ .
 $$
 En déduire que si $\alpha$ est constant,
 $$
-u(t) \leq \alpha \exp\left(\int_{t_0}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1] \ .
+u(t) \leq \alpha \exp\left(\int_{t_0}^t\beta(r)dr \right) \qquad \forall t\in [t^-,t^+] \ .
 $$
-*Indice : poser $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ et montrer que ...*
+*Indice : poser $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ et étudier la dérivée de $v(t)\exp\left(-\int_{t_0}^t\beta(r)dr\right)$*.
 
 2. Utiliser le Lemme de Grönwall pour montrer le [théorème d'existence globale de solutions](#theo_exist_glob). 
 *Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*
 
 3. Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI).
+*Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*
 
 -> [*Correction*](#correc_gronwall)
 
@@ -423,21 +433,29 @@ Correction des exercices
 
 ### Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
-1. (Lemme de Grönwall) Soient $t_0, t_1\in \R$, $u,\alpha, \beta\in C^0([t_0,t_1],\R^+)$, tels que
+1. Soit $v$ l'application définie par $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ sur $[t^-,t^+]$. Elle vérifie
 $$
-u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t_0,t_1] \ .
+\dot{v}(t) = \beta(t)u(t) \quad , \quad u(t) \leq \alpha(t)+v(t) \ ,
 $$
-Montrer qu'alors
+et donc puisque $\beta$ est à valeurs positives,
 $$
-u(t) \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1]\ .
+\dot{v}(t) \leq \alpha(t)\beta(t)+\beta(t)v(t) \ .
 $$
-En déduire que si $\alpha$ est constant,
+Soit maintenant $w$ l'application définie par $w(t)=v(t)\exp\left(-\int_{t_0}^t\beta(r)dr\right)$. $w$ est dérivable sur $[t^-,t^+]$ et 
+\begin{align*}
+\dot{w}(t) &= (\dot{v}(t)-\beta(t)v(t))\exp\left(-\int_{t_0}^t\beta(r)dr\right)\\
+&\leq \alpha(t)\beta(t)\exp\left(-\int_{t_0}^t\beta(r)dr\right)
+\end{align*}
+En intégrant des deux côté entre $t_0$ et $t$, on obtient
 $$
-u(t) \leq \alpha \exp\left(\int_{t_0}^t\beta(r)dr \right) \qquad \forall t\in [t_0,t_1] \ .
+w(t)-w(t_0)\leq \int_{t_0}^t \alpha(s)\beta(s)\exp\left(-\int_{t_0}^s\beta(r)dr\right)ds
 $$
-*Indice : poser $v(t)=\int_{t_0}^t\beta(r)dr$ et montrer que ...*
-
-Si $\alpha$ est constant alors
+et en remplaçant $w$ par son expression,
+$$
+v(t)\leq \int_{t_0}^t \alpha(s)\beta(s)\exp\left(\int_{t_0}^t\beta(r)dr\right)ds \ ,
+$$
+ce qui donne le résultat.
+Finalement, si $\alpha$ est constant alors
 \begin{align*}
 u(t) &\leq \alpha +\alpha \left[-\exp\left(\int_s^t\beta(r)dr \right) \right]_{t_0}^t \\
 & \leq \alpha -\alpha +\alpha \exp\left(\int_{t_0}^t\beta(r)dr \right)
@@ -458,7 +476,24 @@ $$
 $$
 avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $I$. D'après le [théoreme des bouts](#theo_bouts), nécessairement $]\underline{t},\overline{t}[=I$.
 
-3. 
+3. Soient $x:I\to \R^n$ et $x_\delta:I_\delta\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$. On sait que
+\begin{align*}
+x(t)&=x_0  + \int_{t_0}^t f(s,x(s))ds & \forall t\in I\\
+x_\delta(t)&=x_0 +\delta  + \int_{t_0}^t f(s,x_\delta(s))ds &\forall t\in I_\delta
+\end{align*}
+ce qui donne
+$$
+|x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t |f(s,x(s))-f(s,x_\delta(s))|ds \qquad \forall t\in I\cap I_\delta
+$$
+Si $[t_0,\overline{t}]\subset I\cap I_\delta$, définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\frac{\partial f}{\partial x}$ est continue sur $U$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \frac{\partial f}{\partial x}$ est bien défini. On a donc par le théorème des accroissements finis
+$$
+|x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t M |x(s)-x_\delta(s)|ds \qquad \forall t\in [t_0,\overline{t}] \ .
+$$
+Donc par le Lemme de Grönwall, 
+$$
+|x(t)-x_\delta(t)|\leq |\delta|e^{M(t-t_0)} \qquad \forall t\in [t_0,\overline{t}] \ .
+$$
+Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$. A FINIR !!!
 
 ### Proie/prédateur {.correction #correc_proiePreda}
 
@@ -519,5 +554,19 @@ Par continuité de $x$, $|x(t)-x_0|\leq r$ pour un temps après $t^*$, ce qui co
 [^accfinis_Cauchy]:
 En l'absence d'outils d'analyse fonctionnelle à cette époque, la preuve de Cauchy consistait plutôt à discrétiser en temps l'intégrale de plus en plus finement et montrer la convergence vers une solution.
 
+[^uniCritExGlob]:
+Si $f$ est de classe $C^1$ par rapport à $x$, cette solution est unique. Mais ce théorème est aussi valable pour $f$ seulement continue.
+
 [^linkFibre]:
 https://portsmouth.github.io/fibre/ + details
+
+[^Torricelli]:
+Sous l'hypothèse d'incompressibilité du fluide, la loi de Bernoulli dit que 
+$$
+p_s + \rho g h_s + \rho \frac{v_s^2}{2}=p_o + \rho g h_o + \rho \frac{v_o^2}{2}
+$$ 
+où $s$ fait référence aux quantités à la surface et $o$ à l'ouverture.  On a $p_s=p_o$ égales à la pression atmosphérique, $h_s-h_o=x$, $v_s=\frac{s}{S}v_o$ par conservation du débit, et $\dot{x} = - v_s$. On obtient donc
+$$
+\dot{x} = - \frac{1}{\sqrt{\left(\frac{S}{s}\right)^2-1}} \sqrt{2gx} \approx -\frac{s}{S} \sqrt{2gx}
+$$
+en supposant que $s\ll S$.
