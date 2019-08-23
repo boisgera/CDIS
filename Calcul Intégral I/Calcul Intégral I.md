@@ -1865,7 +1865,7 @@ c'est-à-dire qu'il n'y ait pas
 de séquences infinie de nombres $9$ consécutifs[^wp].
 
 [^wp]: Dans le cas contraire, on pourrait par exemple représenter $x=1/2$ comme
-$0.5000\dots$ ou comme $0.4999\dots$.
+$0.5000\cdots$ ou comme $0.4999\cdots$.
 
 On définit l'ensemble $A$ comme le sous-ensemble de $\left[0, 1\right[$
 dont le développement décimal ne comporte que des nombres pairs.
