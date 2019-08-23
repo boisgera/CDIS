@@ -654,22 +654,6 @@ $$
 ![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
 à la somme de Riemann pour évaluer l'intégrale de la fonction $x \in [0, 1] \mapsto e^x$.](images/gauge-plot-exp.py)
 
-
-### TODO
-
-Exercice: intégrabilité fct croissante ?
-
-### TODO
-
-Intégrabilité fct continue, à la main ?
-
-### TODO
-
-Exemple avec discontinuité 
-(ou stratégie de "lissage" de l'erreur ne marche pas), 
-à la main ?
-
-
 ### Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
 Considérons la fonction $f:[0,1] \to \R$ définie par
 $$
