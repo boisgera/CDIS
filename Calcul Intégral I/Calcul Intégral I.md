@@ -2094,9 +2094,9 @@ nous avons établi que $A$ est négligeable.
 
 ### Question 2 {.answer #answer-cantor-2}
 
-L'opération qui à $x=0.a_1a_2\dots \in A$ associe
-$y=0.b_1b_2\dots$ où $b_i = a_i/2$ est une bijection
-de $A$ sur $\left[0, 0.444\dots\right[ = \left[0, 4/9\right[$,
+L'opération qui à $x=0.a_1a_2\cdots \in A$ associe
+$y=0.b_1b_2\cdots$ où $b_i = a_i/2$ est une bijection
+de $A$ sur $\left[0, 0.444\cdots\right[ = \left[0, 4/9\right[$,
 ce qui montre que $A$ à la puissance du continu (et donc n'est pas
 dénombrable).
 
