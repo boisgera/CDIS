@@ -1509,10 +1509,12 @@ en tout point $(x, y)$ de $U$, c'est-à-dire que
     Simplifier l'expression de $I'(r)$ et conclure.
     Indication: on pourra évaluer $\partial_{\alpha} (f(z_{\alpha, r}))$.
 
+<!--
 Mesurabilité de $\|f\|$
 --------------------------------------------------------------------------------
 
 **TODO**
+-->
 
 Intégrabilité du produit {.question #ip}
 --------------------------------------------------------------------------------
