@@ -1511,7 +1511,7 @@ $$
 \int_{K} \left<\nabla f(x), v(x)\right> \, dx
 =
 \int_{\partial K} \left<v(x), n(x) \right> \, \sigma(dx)
--\int_{K} f(x) \mathrm{div} \, v(x) \, dx
+-\int_{K} f(x) \mathrm{div} \, v(x) \, dx.
 $$
 
 Réferences
