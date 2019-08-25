@@ -17,6 +17,10 @@ Calcul Différentiel, Intégral et Stochastique
 
   - [Documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
 
+:speech_balloon: Forum
+--------------------------------------------------------------------------------
+
+[Discourse Mines ParisTech](https://discourse.mines-paristech.fr)
 
 :pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
