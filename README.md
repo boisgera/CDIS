@@ -9,7 +9,7 @@ Calcul Différentiel, Intégral et Stochastique
 
 | Chapitre      | PDF (e-book) | PDF (print) |
 | ------------- | ------------- | --------------------- |
-| Topologie 1/1  | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-versio).pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf)
+| Topologie 1/1  | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf)
 
 
   - Topologie 1/1: [e-book](https://boisgera.github.io/CDIS/output/Topologie.pdf), 
