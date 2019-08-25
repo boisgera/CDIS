@@ -22,7 +22,7 @@ Calcul Différentiel, Intégral et Stochastique
 :speech_balloon: Forum
 --------------------------------------------------------------------------------
 
-  - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr)
+  - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr) (privé)
 
 :pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
