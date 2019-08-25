@@ -7,7 +7,13 @@ Calcul Différentiel, Intégral et Stochastique
 :book: Documents
 --------------------------------------------------------------------------------
 
-  - [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
+  - [Topologie 1/1 (PDF)](https://boisgera.github.io/CDIS/output/Topologie.pdf)
+
+  - [Calcul Différentiel 1/3 (PDF)](https://boisgera.github.io/CDIS/output/Calcul Différentiel I.pdf)
+
+  - ...
+
+  - [Tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
 
 :calendar: Calendrier 2019 
 --------------------------------------------------------------------------------
