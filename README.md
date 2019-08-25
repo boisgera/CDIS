@@ -7,6 +7,8 @@ Calcul Différentiel, Intégral et Stochastique
 :book: Documents
 --------------------------------------------------------------------------------
 
+:construction: **Travail en cours:** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
+
 | Chapitre      | PDF (e-book) | PDF (impression) |
 | ------------- | ------------- | --------------------- |
 | Topologie 1/1  | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Topologie%20(a4%2C%20recto-verso).pdf) |
@@ -14,7 +16,6 @@ Calcul Différentiel, Intégral et Stochastique
 | ... | ... | ... |
 
 
-:construction: **Travail en cours:** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) 
 
 :calendar: Calendrier 2019 
 --------------------------------------------------------------------------------
