@@ -9,17 +9,14 @@ Calcul Différentiel, Intégral et Stochastique
 
 | Chapitre      | PDF (e-book) | PDF (print) |
 | ------------- | ------------- | --------------------- |
-| Topologie 1/1  | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf)
+| Topologie 1/1  | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) |
+| Calcul Différentiel 1/3 | [Calcul Différentiel I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf) | [Calcul Différentiel I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf) |
+| ... | ... | ... |
 
 
-  - Topologie 1/1: [e-book](https://boisgera.github.io/CDIS/output/Topologie.pdf), 
-    [papier]((https://boisgera.github.io/CDIS/output/Topologie%20(a4,%20recto-verso).pdf)
 
-  - [Calcul Différentiel 1/3 (PDF)](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf)
 
-  - ...
-
-[Tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
+  - [Tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
 
 :calendar: Calendrier 2019 
 --------------------------------------------------------------------------------
