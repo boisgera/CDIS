@@ -533,6 +533,7 @@ output_latex_images = output_latex / "images"
 output_latex_images.mkdir(exist_ok=True)
 doc_tex = str(output_latex / (doc + ".tex"))
 doc_pdf = str(output / (doc + ".pdf"))
+doc_pdf_print = str(output / (doc + " (a4, recto-verso)" + ".pdf"))
 doc_odt = str(output / (doc + ".odt"))
 doc_html = str(output / (doc + ".html"))
 doc_md_md = str(output / (doc + ".md"))
@@ -570,7 +571,10 @@ PDF_options = options.copy()
 # To use package titlesec, see <https://stackoverflow.com/questions/42916124/not-able-to-use-titlesec-with-markdown-and-pandoc>
 # Update: titlesec is off limit anyway with pandoc, 
 # as it is not compatible with hyperref
-# PDF_options += ["--variable", "subparagraph"] 
+# PDF_options += ["--variable", "subparagraph"]
+PDF_PRINT_options = PDF_options.copy()
+PDF_PRINT_options += ["-Vpapersize=a4", "-Vclassoption=twoside"]
+
 ODT_options = options.copy()
 HTML_options = options.copy()
 HTML_options += ["--mathjax"]
@@ -579,6 +583,11 @@ HTML_options += ["--mathjax"]
 doc = pandoc.read(file=doc_md)
 doc = transform(doc)
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
+
+# PDF Output (Print)
+pandoc.write(doc, file=doc_pdf_print, options=PDF_PRINT_options)
+
+# LaTeX Output 
 pandoc.write(doc, file=doc_tex, options=TEX_options)
 gl = lambda pattern: list(images.glob(pattern))
 image_filenames = gl("*.pdf") + gl("*.png") + gl("*.jpg")
