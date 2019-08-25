@@ -6,21 +6,21 @@ Calcul Différentiel, Intégral et Stochastique
 :calendar: Calendrier 2019 
 --------------------------------------------------------------------------------
 
-  - [Calendrier en ligne (Google Calendar)](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
+  - [en ligne (Google Calendar)](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
 
-  - [Calendrier au format iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics)
+  - [au format iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics)
 
-  - [Calendrier en version texte](https://github.com/boisgera/CDIS/tree/gh-pages/Calendrier/calendrier.txt)
+  - [en version texte](https://github.com/boisgera/CDIS/tree/gh-pages/Calendrier/calendrier.txt)
 
 :book: Documents
 --------------------------------------------------------------------------------
 
-  - [Documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
+  - [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
 
 :speech_balloon: Forum
 --------------------------------------------------------------------------------
 
-[Discourse Mines ParisTech](https://discourse.mines-paristech.fr)
+  - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr)
 
 :pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
