@@ -16,7 +16,7 @@ Calcul Différentiel, Intégral et Stochastique
 
 
 
-  - [Tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output)
+  - [Tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) (travail en cours)
 
 :calendar: Calendrier 2019 
 --------------------------------------------------------------------------------
