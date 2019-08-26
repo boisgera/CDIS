@@ -3,6 +3,8 @@
 Calcul Différentiel, Intégral et Stochastique
 ================================================================================
 
+Mines ParisTech, cycle IC 2019, unité d'enseignement Mathématiques (UE 11).
+
 
 :book: Documents
 --------------------------------------------------------------------------------
