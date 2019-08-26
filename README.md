@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/boisgera/CDIS.svg?branch=master)](https://travis-ci.org/boisgera/CDIS)
+<!-- don't you dare break my build! -->
 
 Calcul Différentiel, Intégral et Stochastique
 ================================================================================
