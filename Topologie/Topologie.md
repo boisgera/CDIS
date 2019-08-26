@@ -180,7 +180,7 @@ $$
 
 ![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.
 Bien que $x=(1,0)$ et $y=(0,1)$ appartiennent au cercle unité, 
-ni $x+y$ ni $2 \times x$ ne lui appartiennent. Il hérite néanmoins
+ni $x+y$ ni $2 x$ ne lui appartiennent. Il hérite néanmoins
 d'une distance $d$ de l'espace euclien $\mathbb{R}^2$
 (telle que $d(x,y) = \|x - y\|_2 = \sqrt{2}$
 quand $x=(1,0)$ et $y=(0,1)$),
@@ -612,7 +612,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
   - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
     qui converge vers ce point et une suite de points du complémentaire de $A$
-    qui converge vers ce point.
+    dans $X$ qui converge vers ce point.
 
   - Un point $x$ est *intérieur* à un ensemble $A$ si toute
     suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
@@ -771,8 +771,9 @@ La démonstration de la seconde partie de l'énoncé est immédiate
 
 ### Continuité {.theorem}
 Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
-continue si et seulement si l'image réciproque de tout ensemble fermé de $Y$ 
-par $f$ est un ensemble fermé de $X$.
+continue si et seulement si l'image réciproque de tout ensemble fermé 
+(resp. ouvert) de $Y$ 
+par $f$ est un ensemble fermé (resp. ouvert) de $X$.
 
 ### Démonstration {.proof}
 Supposons $f$ continue. 
@@ -808,7 +809,15 @@ donc
   \subset \overline{f(A)}.
   $$
 Comme $A$ est arbitraire, $f$ est continue.
-  
+
+Montrons la variante avec des ensembles ouverts plutôt que fermés.
+Supposons $f$ continue ; si $C$ est un ensemble ouvert de $Y$, 
+son complémentaire $B=Y \setminus C$ est un ensemble fermé. Comme
+$$
+f^{-1}(C) = f^{-1}(Y \setminus B) = X \setminus f^{-1}(B),
+$$  
+son image réciproque est le complémentaire d'un fermé dans $X$ et donc ouverte.
+La réciproque est établie de façon similaire.
 
 Complétude
 ================================================================================
@@ -869,8 +878,9 @@ après la virgule, le développement de $x_k$ finit par se stabiliser au-delà
 d'un certain rang $m$ (qui dépend du nombre de décimales). 
 Mais là aussi, il existe des cas pathologiques qui convergent 
 sans respecter le critère, comme la suite des $x_k = 1 + (-1)^k 2^{-k}$, 
-dont le développement avec 0 décimales après la virgule oscille indéfiniment 
-entre $0$ et $1$. 
+dont le développement avec 0 décimales  après la virgule 
+-- c'est-à-dire la partie entière --
+oscille indéfiniment entre $0$ et $1$. 
 
 C'est la notion de suite de Cauchy qui capture le bon critère;
 pour une suite numérique (à valeurs réelles ou dans $\R^n$) 
