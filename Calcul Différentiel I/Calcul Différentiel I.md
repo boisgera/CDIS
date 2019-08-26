@@ -550,11 +550,11 @@ $$
 Si $f$ est une fonction définie d'un sous-ensemble de $\mathbb{R}^n$
 et que $x \in \mathbb{R}^n$, la notation
 $$
-f(x+h) = o(1)
+f(x+h) = f(x) + o(1)
 $$
 signifie donc que $f$ définie dans un voisinage de $x$ et que
 $$
-\lim_{h \to 0} f(x + h) = 0,
+\lim_{h \to 0} f(x + h) = f(x),
 $$
 autrement dit que $x$ appartient à l'intérieur du domaine de définition de
 $f$ et que $f$ est continue en ce point.
