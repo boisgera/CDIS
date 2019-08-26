@@ -645,7 +645,7 @@ de $\mathbb{R}$ dans $\mathbb{R}^m$ sont de cette forme.
 En effet, pour une telle fonction $L$ et pour tout $h \in \mathbb{R}$, 
 $$L\cdot h = L \cdot (h \times 1) = h (L \cdot 1) = (L \cdot 1) h,$$
 le vecteur $\ell = L \cdot 1$ convient donc. 
-On donc peut caractériser la dérivabilité de $f$ en $x$
+On  peut donc caractériser la dérivabilité de $f$ en $x$
 par l'existence d'une fonction linéaire de $\mathbb{R}^m$ dans $\mathbb{R}$
 telle que
 $$
@@ -686,7 +686,7 @@ $$
 \Delta f(x, h) = df(x) \cdot h + o(\|h\|).
 $$
 En particulier, quand la fonction $f$ est affine, 
-la fonction linéaire associée est sa différentielle
+la fonction linéaire associée est sa différentielle.
 
 ### Différentielle d'une fonction affine
 Toute fonction $f: \R^n \to \R^m$ de la forme 
