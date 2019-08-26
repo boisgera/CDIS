@@ -1,10 +1,13 @@
 [![Build Status](https://travis-ci.org/boisgera/CDIS.svg?branch=master)](https://travis-ci.org/boisgera/CDIS)
+<!-- don't you dare break my build! -->
 
 Calcul Différentiel, Intégral et Stochastique
 ================================================================================
 
+[Mines ParisTech, cycle ingénieur civil 2019](https://admissibles.mines-paristech.fr/), unité d'enseignement Mathématiques (UE 11).
 
-:book: Documents
+
+:books: Documents
 --------------------------------------------------------------------------------
 
 :construction: **Travail en cours:** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
@@ -22,9 +25,9 @@ Calcul Différentiel, Intégral et Stochastique
 
   - [en ligne (Google Calendar)](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
 
-  - [au format iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics)
+  - [lien iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics): `https://tinyurl.com/y3fnkz5h`
 
-  - [en version texte](https://github.com/boisgera/CDIS/tree/gh-pages/Calendrier/calendrier.txt)
+  - [en version texte](https://boisgera.github.io/CDIS/Calendrier/calendrier.txt)
 
 
 :speech_balloon: Forum
@@ -66,7 +69,7 @@ commande:
 
     $ conda activate ./env
 
-Reference: [Gestion des environnements Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+Référence: [Gestion des environnements Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
 ### Génération des documents
 
