@@ -301,7 +301,7 @@ de $X$ lorsqu'il est muni de la distance de $X$, restreinte aux points de
 $Y$.
 
 ### Structure topologique d'un espace métrique
-Il est possible de se livrer un à exercice d'abstraction sur les
+Il est possible de se livrer à un exercice d'abstraction sur les
 espaces métriques en considérant la distance $d(x, A)$ entre un 
 point $x$ et un ensemble de points $A$ et en regardant uniquement
 si cette grandeur est nulle -- on dira alors que $x$ *adhère* à $A$ -- 
@@ -321,7 +321,7 @@ sur l'ensemble par une mesure uniquement qualitative
 Une *relation d'adhérence* (ou *test d'adhérence*) sur l'ensemble *X* est une 
 relation entre éléments de $X$ et sous-ensembles de $X$ telle que:
 
- 1. Aucun point n'adhère à de l'ensemble vide,
+ 1. Aucun point n'adhère à l'ensemble vide,
 
  2. Tout point d'un ensemble adhère à cet ensemble,
 
@@ -531,7 +531,7 @@ Si la fonction $f$ admet une limite en $x$, celle-ci est unique.
 Un corollaire de [l'unicité de la limite des suites][Unicité de la limite d'une suite].
 
 ### Continuité et limite
-Une fonction $f: X \to Y$ où $X$ et $Y$ sont deux espaces métriques est
+Une fonction $f: X \to Y$, où $X$ et $Y$ sont deux espaces métriques, est
 continue en $x \in X$ si et seulement si la limite de $f$ existe en
 $x$ et
 $$
@@ -547,7 +547,7 @@ $d(x, x_k) \to 0$ quand $x_k \to x$.
 Par conséquent, $f(x_k) \to f(x)$ quand $k \to +\infty$, 
 soit $d(f(x_k), f(x)) \to 0$ quand $k \to +\infty$. 
 Comme l'ensemble $\{f(x_k) \, | \, k \in \N\}$ est un sous-ensemble
-de $f(A)$, nous en déduisons que $d(f(x), f(A) = 0$: 
+de $f(A)$, nous en déduisons que $d(f(x), f(A)) = 0$: 
 le point $f(x)$ adhère à à $f(A)$.
 La fonction $f$ est donc continue en $x$.
 
@@ -591,7 +591,7 @@ Pour tout $a \in A$, on a $d(x, a) \leq d(x, x_0) + d(x_0, a)$
 et donc $d(x, A) \leq d(x, x_0) + d(x_0, A)$. 
 En intervertissant $x$ et $x_0$, on obtient 
 également $d(x_0, A) \leq d(x_0, x) + d(x, A)$. 
-Par symmétrie de la distance, ces deux inégalité entraînent
+Par symétrie de la distance, ces deux inégalités entraînent
 $$
 |d(x, A) - d(x_0, A)| \leq d(x_0, x)
 $$
@@ -620,7 +620,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
   - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
     suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
 
-  - Un ensemble $A$ est *ouvert* si tout suite de points de $X$ 
+  - Un ensemble $A$ est *ouvert* si toute suite de points de $X$ 
     qui converge vers un point de $A$ appartient à $A$ 
     à partir d'un certain rang.
 
@@ -700,7 +700,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
   - L'*adhérence* $\overline{A}$ d'un ensemble $A$ est constituée des points
     qui adhèrent à l'ensemble $A$.
     
-  - Un ensemble $A$ est *fermé* s'il est égale à son adhérence:
+  - Un ensemble $A$ est *fermé* s'il est égal à son adhérence:
     $$
     A = \overline{A} \; \mbox{ ou } \; (x \in \overline{A} \Leftrightarrow x \in A)
     $$
@@ -818,7 +818,7 @@ Soit $f: X \to X$ une application d'un ensemble $X$ dans lui-même.
 Un élément $x \in X$ est un *point fixe* de $f$ si $x = f(x)$.
  
 ### Points fixes et zéros
-Etre un point fixe d'une fonction $f: X \to X$, c'est donc être déterminé 
+\^{E}tre un point fixe d'une fonction $f: X \to X$, c'est donc être déterminé 
 **implicitement** par l'équation $x = f(x)$. Si $X$ est un sous-espace
 d'un espace vectoriel,
 cela équivaut à dire que $x$ est une solution de l'équation $x - f(x) = 0$,
@@ -861,7 +861,7 @@ quand cette limite potentielle est inconnue.
 Vérifier que $|x_{k+1} - x_k| \to 0$ par exemple est insuffisant 
 pour garantir une limite comme en atteste la suite des $x_k = 1 / (k+1)$. 
 Vérifier que la suite  $\sum_{j=0}^{k} |x_{j+1} - x_j|$ reste bornée 
-va bien garantir la convergence, mais va par contrer rejeter des suites convergentes 
+va bien garantir la convergence, mais va par contre rejeter des suites convergentes 
 telle que  $x_k = \sum_{j=0}^{k} (-1)^j / (j+1)$.
 Un critère plus adapté serait d'examiner le développement décimal de 
 $x_k$ et de vérifier que quel que soit le nombre de décimales souhaité
@@ -933,7 +933,7 @@ L'ensemble $\R$ possède une propriété bien utile qui fait défaut à $\Q$:
 toute suite de Cauchy y est convergente.
 
 ### Espaces complets {.definition}
-Un espace métrique $X$ est *complet* si et seulement si tout suite de Cauchy
+Un espace métrique $X$ est *complet* si et seulement si toute suite de Cauchy
 est convergente. Un espace vectoriel normé $E$ complet est qualifié
 d'*espace de Banach[^Banach]*.
 
@@ -975,7 +975,7 @@ L'ensemble des fonctions $f$ de $X$ dans $Y$ bornées
 -- c'est-à-dire telles que $\sup_{x \in X} d(0, f(x))$ soit fini --
 muni de la distance de la convergence uniforme
 $$
-d(f, g) := \sup_{x \in X} d(f(x), g(x)))
+d(f, g) := \sup_{x \in X} d(f(x), g(x))
 $$
 est complet.
 
@@ -1051,7 +1051,7 @@ et exploitant la continuité de l'application $f$, on obtient
 $$
 \ell = \lim_{n \to +\infty} x_{n+1} = \lim_{n \to +\infty}f(x_n) = f(\ell).
 $$
-A cette fin, nous allons prouver que la suite des $x_n$ est de Cauchy; 
+\`{A} cette fin, nous allons prouver que la suite des $x_n$ est de Cauchy; 
 l'existence d'une limite se déduira alors de la complétude de $X$. 
 On remarque tout d'abord que pour tout entier $n$, 
 $$
@@ -1164,7 +1164,7 @@ Soit $X$ un espace métrique compact et $Y$ un espace métrique complet.
 L'ensemble des fonctions continues de $X$ dans $Y$
 muni de la distance de la convergence uniforme
 $$
-d(f, g) := \sup_{x \in X} d(f(x), g(x)))
+d(f, g) := \sup_{x \in X} d(f(x), g(x))
 $$
 est complet.
 
