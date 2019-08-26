@@ -162,10 +162,10 @@ Donc un volet à rajouter ici ?
 Notations
 ================================================================================
 
-Preambule
+Préambule
 --------------------------------------------------------------------------------
 
-Les fragment de codes de ce document utilisent le langage Python 3.
+Les fragments de code de ce document utilisent le langage Python 3.
 La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
 
     >>> from numpy import *
@@ -182,13 +182,13 @@ même chose que $f \in A \to B$.
 La convention que nous adoptons a vocation à simplifier la manipulation
 de fonctions dont les valeurs sont des fonctions, un schéma très fréquent
 en calcul différentiel.
-Si $f: A \to B$ et $g: B \to C$, la composée des functions $f$ et de $g$,
+Si $f: A \to B$ et $g: B \to C$, la composée des fonctions $f$ et de $g$,
 notée $g \circ f$, appartient à $A \to C$ et est définie par
 $$
 (g \circ f) (x) = g(f(x)).
 $$
 Si l'on applique bien $f$ à $x$, puis $g$ au résultat, il est néanmoins
-naturel d'inverser l'ordre d'apparition des functions dans la notation $g \circ f$;
+naturel d'inverser l'ordre d'apparition des fonctions dans la notation $g \circ f$;
 il faut en effet s'adapter à la notation classique (infixe ou polonaise) 
 qui désigne par $f(x)$ l'image de $x$ par $f$. 
 Pour cette même raison, il pourra être utile de
@@ -372,7 +372,7 @@ $$
 \mathbb{R}^{m \times n} 
 $$
 
-### Composition d'application linéaires
+### Composition d'applications linéaires
  
 Si $A$ et $B$ désignent des applications linéaires de 
 $\mathbb{R}^p$ dans $\mathbb{R}^n$ et de $\mathbb{R}^n$ dans $\mathbb{R}^m$ 
@@ -533,7 +533,7 @@ où la fonction $\phi$ est connue.
 Cette relation signifie alors: la fonction $\phi$ est définie dans un
 voisinage de $0$ et vérifie:
 $$
-\lim_{h \to 0} \frac{\phi(h)}{\|h\|} = 0.
+\lim_{h \to 0} \frac{\phi(h)}{\|h\|^k} = 0.
 $$
 La fonction $\varepsilon$ est alors définie de façon unique 
 sur ce voisinage de $0$ par la relation
@@ -1137,7 +1137,7 @@ il suffit d'établir le résultat pour $f$ et $g$ à valeurs réelles.
 Or, l'application $x \in \mathbb{R}^n \mapsto (\lambda, f(x))$ est différentiable
 en $x$ car ses composantes sont différentiables; sa différentielle 
 -- calculée composante par composante -- 
-est l'application $h \mapsto (0, df(x) \cdot h)$.d
+est l'application $h \mapsto (0, df(x) \cdot h)$.
 L'application $\lambda f$ étant le produit de $\lambda$ et $f$,
 par [la règle de différentiation en chaîne](#chain-rule), 
 elle est différentiable en $x$ et 
@@ -1192,7 +1192,7 @@ quand le second membre existe.
 La dérivée partielle permet d'étudier séparement l'influence de chaque 
 variable scalaire de $f$ sur sa variation. 
 Mais dans certaine situations il est plus naturel de regrouper 
-les variables dont dépend $f$ en en plusieurs variables vectorielles. 
+les variables dont dépend $f$ en plusieurs variables vectorielles. 
 Ainsi, pour étudier l'application produit scalaire dans $\mathbb{R}^n$
 $$
 \left<\cdot, \cdot \right>: 
@@ -1231,7 +1231,7 @@ $$
 m: (x, y, z, t) \in \R^4 \to x^2 + y^2 + z^2 - c^2 t^2,
 $$
 comme dans la théorie de la relativité,
-les dérivées partielles par rapport au variables d'espace $x$, $y$, $z$ 
+les dérivées partielles par rapport aux variables d'espace $x$, $y$, $z$ 
 sont données par 
 $\partial_x m(x, y, z, t) = 2 x$,
 $\partial_y m(x, y, z, t) = 2 y$,
@@ -1478,7 +1478,7 @@ Cf. [l'annexe consacrée à l'intégrale de Newton](#intégrale-Newton).
 
 ### Variation d'une fonction {.theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
-soit $a \in U$ et $h \in \mathbb{R}^n$ tel que le segment
+soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
   $$
   [a, a+h] = \{a + th \; | \; t \in [0,1]\}
   $$
@@ -1858,7 +1858,7 @@ $$
 &\leq \sum_i \|E(k) \cdot e_i\| |h_i| \\
 &\leq \left(\sum_i \|E(k) \cdot e_i\|\right) \|h\| 
 = \left(\sum_i \|\varepsilon_{e_i}(k)\|\right) \|h\|
-\end{split},
+\end{split}
 $$
 donc la norme d'opérateur de $E(k)$ vérifie
 $$
@@ -2124,7 +2124,7 @@ L'hypothèse de récurrence est donc prouvée au rang $k+1$,
 ce qui établit le résultat.
 
 ### Symétrie des différentielles d'ordre supérieur {.proposition #SDn}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 $k$ fois différentiable en un point $x$ de $U$. Pour toute permutation
 $\sigma$ de $\{1,\dots, n\}$
 et pour tous vecteurs 
@@ -2151,15 +2151,15 @@ $\tau_{2(k+1)} \circ \tau_{12} \circ \tau_{2(k+1)}$ et se ramener
 au cas précédent.
 
 ### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
-Les dérivées partielles d'ordre supérieure se définissent par récurrence,
+Les dérivées partielles d'ordre supérieur se définissent par récurrence,
 de manière similaire aux dérivées partielles d'ordre $2$. Pour simplifier
 la notation $\partial^k_{i_1 \dots i_k} f(x)$, on exploite le fait que
-si $f$ et $k$ fois différentiable en $x$,
+si $f$ est $k$ fois différentiable en $x$,
 $$
 \partial^k_{i_1 \dots i_k} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
 $$
-Compte tenu de la symétrie de $d^k f(x)$, peut importe l'ordre de $i_1$, $\dots$, $i_k$, 
-seul le nombre de fois ou un indice apparaît compte. 
+Compte tenu de la symétrie de $d^k f(x)$, peu importe l'ordre de $i_1$, $\dots$, $i_k$, 
+seul le nombre de fois où un indice apparaît compte. 
 Cette remarque fonde une notation basée sur les multi-indices 
 $\alpha=(\alpha_1, \dots, \alpha_n) \in \N^n$ où $\alpha_i$ détermine le
 nombre de fois où l'indice $i$ apparait. 
