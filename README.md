@@ -68,7 +68,7 @@ commande:
 
     $ conda activate ./env
 
-Reference: [Gestion des environnements Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+Référence: [Gestion des environnements Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
 ### Génération des documents
 
