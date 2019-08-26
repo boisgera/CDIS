@@ -25,7 +25,7 @@ Calcul Différentiel, Intégral et Stochastique
 
   - [en ligne (Google Calendar)](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
 
-  - [lien iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics): <https://tinyurl.com/y3fnkz5h>
+  - [lien iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics): https://tinyurl.com/y3fnkz5h
 
   - [en version texte](https://github.com/boisgera/CDIS/tree/gh-pages/Calendrier/calendrier.txt)
 
