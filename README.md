@@ -7,7 +7,7 @@ Calcul Différentiel, Intégral et Stochastique
 [Mines ParisTech, cycle ingénieur civil 2019](https://admissibles.mines-paristech.fr/), unité d'enseignement Mathématiques (UE 11).
 
 
-:book: Documents
+:books: Documents
 --------------------------------------------------------------------------------
 
 :construction: **Travail en cours:** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
