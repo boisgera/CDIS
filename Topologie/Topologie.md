@@ -832,7 +832,7 @@ d'existence et d'unicité de solutions ou obtenir des méthodes numériques
 pour leur calcul. Un exemple élémentaire de ce type de transformation:
 le nombre d'or est déterminé comme l'unique solution de l'équation
 $$
-x^2 = x + 1 = 0, \; x > 0
+x^2 = x + 1 , \; x > 0
 $$
 ou encore comme un zéro de fonction par l'équation
 $$
