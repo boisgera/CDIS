@@ -66,7 +66,7 @@ def call(*args):
     }
     process = subprocess.Popen(args, **options)
     for line in iter(process.stdout.readline, b""):
-        print(line.decode("utf-8"), end="")
+        print(line.decode("utf-8"), end="") # TODO: study encoding bug with doctest (#61)
     while True:
         status = process.poll()
         if status is not None:

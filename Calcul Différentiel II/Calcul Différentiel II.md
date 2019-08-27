@@ -1583,13 +1583,13 @@ On a donc
 $$
 r = \sqrt{(\ell_1 + \ell_2 \cos \theta_2)^2 + (\ell_2 \sin \theta_2)^2}
 =
-\sqrt{\ell_1^2 + \ell_2^2 + 2 \ell_1 \ell_2 (\cos \theta_2)^2}.
+\sqrt{\ell_1^2 + \ell_2^2 + 2 \ell_1 \ell_2 \cos \theta_2}.
 $$
 L'ensemble des valeurs de cette fonction de $\theta_2$ est l'intervalle
 $[|\ell_1 - \ell_2|, \ell_1 + \ell_2]$.
 Une fois $\theta_2$ sélectionné (modulo $2\pi$) pour atteindre la valeur 
 $r$, il est évident par rotation que l'on peut trouver un angle $\theta_1$
-tel que $f(\theta_1, \theta_2) = (x, y)$. Pour des raisons de symmétrie,
+tel que $f(\theta_1, \theta_2) = (x, y)$. Pour des raisons de symétrie,
 si $\theta$ est un angle de $(x, y)$ et $\theta_1$ convient, alors
 $2\theta - \theta_1$ également. Ces deux angles sont différents si
 $\theta_1$ différe de $\theta$ modulo $\pi$, c'est-à-dire si le bras
@@ -1597,10 +1597,10 @@ manipulateur n'est ni totalement déplié, ni totalement plié.
 
 Pour résumer: les points $(x, y)$ tels que $r < |\ell_1 - \ell_2|$ ou
 $\ell_1 + \ell_2 < r$ ne peuvent pas être atteints. Les points vérifiant
-les égalités correspondante correspondent à exactement un jeu de 
+les égalités correspondantes correspondent à exactement un jeu de 
 coordonnées articulaires. Et dans le cas restant, dans
 $$
-V = \{(x, y) \i \R^2 \, | \, |\ell_1 - \ell_2| < \sqrt{x^2 + y^2} < \ell_1 + \ell_2\},
+V = \{(x, y) \in \R^2 \, | \, |\ell_1 - \ell_2| < \sqrt{x^2 + y^2} < \ell_1 + \ell_2\},
 $$
 plusieurs coordonnées articulaires (modulo $2\pi$) peuvent correspondre.
 
