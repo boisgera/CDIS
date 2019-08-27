@@ -1583,7 +1583,7 @@ On a donc
 $$
 r = \sqrt{(\ell_1 + \ell_2 \cos \theta_2)^2 + (\ell_2 \sin \theta_2)^2}
 =
-\sqrt{\ell_1^2 + \ell_2^2 + 2 \ell_1 \ell_2 (\cos \theta_2)^2}.
+\sqrt{\ell_1^2 + \ell_2^2 + 2 \ell_1 \ell_2 \cos \theta_2}.
 $$
 L'ensemble des valeurs de cette fonction de $\theta_2$ est l'intervalle
 $[|\ell_1 - \ell_2|, \ell_1 + \ell_2]$.
