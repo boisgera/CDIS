@@ -16,4 +16,4 @@ dependencies:
 #  - predictmd-pdf2svg # Linux only ...
   - pip:
     - ics==0.4
-    - "-e git+https://github.com/boisgera/pandoc@172f0f86fef8c972c2f0396f01e266934a67294a#egg=pandoc"
+    - "-e git+https://github.com/boisgera/pandoc@fd5c60f3db9f167e6924a2ce42112b127a8fd08b#egg=pandoc"
