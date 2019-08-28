@@ -55,3 +55,7 @@ Oh une image !
 
 ![Un exemple de dessin TikZ](images/tikz-picture.tex)
 
+### Doctest
+
+    >>> 1 + 1
+    ... 2
