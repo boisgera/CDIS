@@ -63,10 +63,11 @@ def call(*args):
         "stdout": subprocess.PIPE,
         "stderr": subprocess.STDOUT,
         "bufsize": 1,
+        "universal_newlines": True,
     }
     process = subprocess.Popen(args, **options)
-    for line in iter(process.stdout.readline, b""):
-        print(line.decode("utf-8"), end="") # TODO: study encoding bug with doctest (#61)
+    for line in process.stdout:
+        print(line, end="")
     while True:
         status = process.poll()
         if status is not None:
