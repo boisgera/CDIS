@@ -7,7 +7,7 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
-Théorème des Fonctions Implicites
+Théorème des fonctions implicites
 ================================================================================
 
 <!--
@@ -55,7 +55,7 @@ Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 
 -->
 
-### Théorème des Fonctions Implicites {.theorem #TFI}
+### Théorème des fonctions implicites {.theorem #TFI}
 Soit $f$ une fonction définie sur un ouvert $W$ de 
 $\mathbb{R}^n \times \mathbb{R}^m$:
 $$
@@ -328,7 +328,7 @@ où les ensembles $U$ et $V$ sont ouverts est un *$C^1$-difféomorphisme*
 (de $U$ sur $V$) si $f$ est bijective et que $f$ ainsi que son inverse $f^{-1}$ 
 sont continûment différentiables.
 
-### Inverse de la Différentielle {.theorem}
+### Inverse de la différentielle {.theorem}
 Si $f: U \to V$ est un $C^1$-difféomorphisme, sa différentielle $df$ est
 inversible en tout point $x$ de $U$ et
 $$
@@ -379,7 +379,7 @@ de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par
 construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$;
 nous avons donc affaire à un  $C^1$-difféomorphisme de $V$ sur $W$.
 
-Analyse Numérique
+Analyse numérique
 ================================================================================
 
 <!--
@@ -669,10 +669,10 @@ ne sont en général pas correctement arrondies;
 la conception d'algorithmes de calcul qui aient une performance décente et
 correctement arrondis est un problème difficile (cf. @FHL07).
 
-Différences Finies
+Différences finies
 --------------------------------------------------------------------------------
 
-### Différence Avant
+### Différence avant
 
 Soit $f$ une fonction à valeurs réelles définie sur un intervalle ouvert.
 Dans de nombreux cas concrets, on peut faire l'hypothèse que la fonction
@@ -829,7 +829,7 @@ d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
 
 
 
-Différentiation Automatique
+Différentiation automatique
 ================================================================================
 
 <!--
@@ -876,7 +876,7 @@ partir duquel les différentielles peuvent être calculées mécaniquement
 par la règle de dérivation en chaîne à partir de la différentielle 
 d'opérations primitives. 
  
-Tracer le Graphe de Calcul
+Tracer le graphe de calcul
 --------------------------------------------------------------------------------
 
 Python étant typé dynamiquement, 
