@@ -565,7 +565,7 @@ Différentielle
 
 ### Dérivée
 
-Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert.
+Soient $U$ un ouvert de $\mathbb{R}$ et $f: U \to \mathbb{R}^m$.
 La fonction $f$ est *dérivable* en $x \in U$ s'il existe une
 limite $\ell \in \mathbb{R}^n$ au *taux d'accroissement* de
 $f$ en $x$:
@@ -599,7 +599,7 @@ Cette approche se généralise de façon directe au cas des fonctions
 à valeurs matricielles.
 
 ### Développement limité au premier ordre {.theorem}
-Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert.
+Soient $U$ un ouvert de $\mathbb{R}$ et $f: U \to \mathbb{R}^m$.
 La fonction $f$ est *dérivable* en $x \in U$ si et seulement si il 
 existe un vecteur $\ell \in \mathbb{R}^m$ tel que
 $$
@@ -656,7 +656,7 @@ de fonctions à $n$ variables.
 
 ### Différentielle de Fréchet {.definition .theorem}
 
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert.
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
 La fonction $f$ est *[différentiable]{.index}* en $x \in U$ 
 s'il existe une application linéaire $L: \mathbb{R}^n \to \mathbb{R}^m$
 telle que
@@ -706,8 +706,8 @@ Résumons les liens entre dérivée et différentielle à ce stade:
 
 ### Différentielle et Dérivée {.theorem}
 
-Soit $f: U \subset \mathbb{R} \to \mathbb{R}^m$ où $U$ est ouvert
-et soit $x \in U$.
+Soient $U$ un ouvert de $\mathbb{R}$, $f: U \to \mathbb{R}^m$
+et $x \in U$.
 La fonction $f$ est différentiable en $a$ si et seulement si
 elle est dérivable en $x$. Dérivée et différentielle de $f$ en 
 $a$ se déduisent alors l'une de l'autre par les relations 
@@ -723,7 +723,7 @@ par l'existence de [développement limité au premier ordre][Développement limi
 et de la caractérisation des [fonctions linéaires d'une variable scalaire][Fonctions linéaires d'une variable scalaire].
 
 ### Gradient {.definition}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}$ 
 différentiable en $x \in U$. Le *gradient de $f$ en $x$* noté $\nabla f(x)$
 est l'unique vecteur de $\R^n$ tel que pour tout $h \in \R^n$,
 $$
@@ -747,12 +747,12 @@ Dans notre contexte où $A = df(x)$, le gradient est donc défini de façon uniq
 par $\nabla f(x) = (df(x)\cdot e_1, \dots, df(x)\cdot e_n)$.
 
 ### Point critique
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}$,
 une fonction différentiable. Le point $x$ est un *point critique
 de $f$* si $df(x) = 0$.
 
 ### Point critique et extrema
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ où $U$ est ouvert,
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}$
 une fonction différentiable. Si $f$ admet un minimum ou un maximum
 local en $x \in U$, alors $x$ est un point critique de $f$.
 
@@ -779,7 +779,7 @@ $df(x) \cdot (-h) = -df(x) \cdot h$, on en déduit
 que $df(x) \cdot h = 0$.
 
 ### Différentiation composante par composante {#dcpc}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert.
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
 La fonction $f=(f_1, \cdots, f_m)$ est différentiable en $x \in U$ 
 si et seulement si chacune de ses composantes $f_i$ est différentiable
 en $x$. On a alors pour tout $h \in \mathbb{R}^n$
@@ -1163,15 +1163,14 @@ on ne peut pas les multiplier)
 -->
 
 ### Matrice jacobienne {.definition}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ où $U$ est ouvert et
-soit $x$ un point de $U$. Quand $f$ est différentiable en $x$, 
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. Quand $f$ est différentiable en $x$, 
 on appelle *matrice jacobienne* de $f$ en $x$ et l'on note 
 $J_f(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
 différentielle $df(x): \mathbb{R}^n \to \mathbb{R}^m$ de $f$ en $x$.
 
 ### Dérivées partielles {.definition}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
-soit $x \in U$. 
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$. 
 Lorsque la $i$-ème fonction partielle de $f$ en $x$
 $$
 y_i \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)
@@ -1249,8 +1248,8 @@ $$
 $$
 
 ### Différentielle et dérivées partielles {.proposition}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
-soit $x$ un point de $U$. 
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
 Lorsque $f$ est différentiable en $x$, 
 toutes ses dérivées partielles existent et vérifient
 $$
@@ -1305,8 +1304,8 @@ $$
 comme attendu.
 
 ### Matrice jacobienne et dérivées partielles {.corollary}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
-soit $x$ un point de $U$. 
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
 Si $f$ est différentiable en $x$, on a 
 $$
 [J_f(x)]_{ij} = \partial_{j} f_i(x),
@@ -1333,8 +1332,7 @@ Les fonctions vectorielles se dérivant composante par composante,
 on en déduit que $[J_f(x)]_{ij} = \partial_j f_i(x)$. 
 
 ### Gradient et dérivées partielles
-Soit $f: U \subset \R^n \to \R$ où $U$ est un ouvert et
-soit $x$ un point de $U$. 
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et $x$ un point de $U$. 
 Si $f$ est différentiable en $x$, on a 
 $$
 \nabla f(x) = (\partial_1 f(x), \dots, \partial_n f(x)).
@@ -1367,7 +1365,8 @@ $J_{f \circ g}(x)$ existe et/ou soit égal à ce produit, car la règle de
 différentiation en chaîne requiert l'existence des différentielles.
 
 ### Fonction continûment différentiable {.proposition}
-Une fonction $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert
+Soit $U$ un ouvert de $\mathbb{R}^n$. 
+Une fonction $f: U \to \mathbb{R}^m$ 
 est *continûment différentiable* si elle est différentiable et si 
 l'application différentielle
 $$
@@ -1380,7 +1379,8 @@ Cette définition constitue un moyen vérifier l'existence de
 la différentielle (et sa continuité) en passant par les dérivées partielles:
 
 ### Dérivées partielles continues {.proposition}
-Une fonction $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert
+Soit $U$ un ouvert de $\mathbb{R}^n$.
+Une fonction $f: U \to \mathbb{R}^m$ 
 est continûment différentiable si et seulement si toutes ses dérivées
 partielles existent et sont continues.
 
@@ -1477,7 +1477,7 @@ $$
 Cf. [l'annexe consacrée à l'intégrale de Newton](#intégrale-Newton).
 
 ### Variation d'une fonction {.theorem}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
 soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
   $$
   [a, a+h] = \{a + th \; | \; t \in [0,1]\}
@@ -1586,7 +1586,7 @@ une subdivision pointée qui y soit subordonnée.
 
 ### Inégalité des accroissements finis II {.theorem #TAF}
 
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est ouvert,
+Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
 supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
 dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
 c'est-à-dire telle que
@@ -1868,7 +1868,7 @@ $$
 ce qui prouve le résultat cherché.
 
 ### Variation d'ordre $2$
-Soit $f: U \subset \R^n \to \R^m$ où $U$ est un ouvert et $x \in U$.
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 Quand cette expression est définie, on appelle *variation d'ordre 2*
 de $f$ en $x$, associée aux variation $h$ et $k$ de l'argument,
 la grandeur
@@ -1995,8 +1995,8 @@ $$
 ce qui fournit l'égalité cherchée.
 
 ### Dérivées Partielles d'ordre 2 {.definition}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
-soit $x \in U$. Soient $i$ et $j$ deux indices dans $\{1,\dots, n\}$.
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x \in U$. Soient $i$ et $j$ deux indices dans $\{1,\dots, n\}$.
 Lorsque la $j$-ème dérivée partielle de $f$ est définie sur $U$ et
 admet en $x$ une $i$-ème dérivée partielle, on l'appelle 
 *dérivée partielle d'ordre 2* de $f$ en $x$ par rapport aux $j$-ème 
@@ -2006,8 +2006,8 @@ $$
 $$
 
 ### Symétrie des dérivées partielles d'ordre 2 {.proposition #sdp2}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est un ouvert et
-soit $x \in U$. Si $f$ est deux fois différentiable en $x$, alors pour
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x \in U$. Si $f$ est deux fois différentiable en $x$, alors pour
 toute paire d'indice $i$ et $j$ la dérivée partielle $\partial_{ij} f(x)$
 existe et 
 $$
@@ -2695,8 +2695,7 @@ Dérivée directionnelle d'Hadamard
 
 Source: [@Sha90]
 
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ où $U$ est 
-ouvert et $x \in U$. 
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$. 
 La fonction $f$ est *directionnellement dérivable* si pour tout
 vecteur $h \in \mathbb{R}^n$, la dérivée directionnelle
 $$
