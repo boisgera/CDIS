@@ -58,6 +58,6 @@ Oh une image !
 ### Doctest
 
     >>> 1 + 1
-    ... 2
+    2
 
 
