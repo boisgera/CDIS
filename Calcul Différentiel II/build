@@ -622,6 +622,11 @@ if code is not None:
     with open(doc_py, "w") as py_file:
         py_file.write(code)
     python("-m", "doctest", doc_py)
+    try:
+        shutil.rmtree(output / "__pycache__")
+    except:
+        pass
+
 
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
 
