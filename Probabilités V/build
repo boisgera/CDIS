@@ -84,7 +84,6 @@ def doctest(*args):
 def pdflatex(*args):
     return call("pdflatex", *args)
 
-
 # Git Helpers
 # ------------------------------------------------------------------------------
 def git_hash():
@@ -502,6 +501,36 @@ def flag_definitions(doc):
                 inlines = [RawInline(Format("tex"), r"\faFlagO\;\;")] + inlines # Space() doesn't seem to work :(
                 header[:] = level, attr, inlines
 
+# Code Generation
+# ------------------------------------------------------------------------------
+def generate_code(doc):
+    doctests = []
+    snippets = []
+    for elt in pandoc.iter(doc):
+        if isinstance(elt, CodeBlock):
+            attr, src = elt[:]
+            id_, classes, kv_pairs = attr
+            if not "discard" in classes:
+                if src.startswith(">>> "):
+                    doctests.append(src)
+                else:
+                    lines = src.splitlines()
+                    for i, line in enumerate(lines): 
+                        if line.startswith("    "):
+                            lines[i] = "... " + line
+                        else:
+                            lines[i] = ">>> " + line
+                    #lines = [">>> " + lines[0]] + ["... " + line for line in lines[1:]]
+                    doctests.append("\n".join(lines))
+                    snippets.append(src)
+    doctests = "\n\n".join(doctests)
+    snippets = "\n\n".join(snippets)
+    return \
+f'''"""
+{doctests}
+"""
+{snippets}
+'''
 
 # ------------------------------------------------------------------------------
 
@@ -537,6 +566,7 @@ doc_pdf = str(output / (doc + ".pdf"))
 doc_pdf_print = str(output / (doc + " (a4, recto-verso)" + ".pdf"))
 doc_odt = str(output / (doc + ".odt"))
 doc_html = str(output / (doc + ".html"))
+doc_py = str(output / (doc + ".py"))
 doc_md_md = str(output / (doc + ".md"))
 
 # Images
@@ -556,9 +586,6 @@ if images.exists():
     finally:
         clean_latex_trash()
         os.chdir(root)
-
-# Doctest
-python("-m", "doctest", doc_md)
 
 # Pandoc Options
 options = ["--standalone"]
@@ -583,6 +610,14 @@ HTML_options += ["--mathjax"]
 # PDF Output
 doc = pandoc.read(file=doc_md)
 doc = transform(doc)
+
+# Code and Doctest
+code = generate_code(doc)
+#print("code:\n\n", code)
+with open(doc_py, "w") as py_file:
+    py_file.write(code)
+python("-m", "doctest", doc_py)
+
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
 
 # PDF Output (Print)

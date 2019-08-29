@@ -883,8 +883,8 @@ Python étant typé dynamiquement,
 il n'attribue pas de type aux arguments des fonctions lors de leur définition. 
 Ainsi, la fonction d'addition,
 
-    >>> def add(x, y):
-    ...     return x + y
+    def add(x, y):
+        return x + y
 
 permet bien sûr d'additionner des nombres flottants
 
@@ -929,10 +929,10 @@ est déléguée à la méthode `__add__` de l'objet `x`.
 Pour intercepter cet appel, il est donc nécessaire de modifier 
 le type de nombre flottant que nous allons utiliser:
 
-    >>> class Float(float):
-    ...     def __add__(self, other):
-    ...         print(f"trace: {self} + {other}")
-    ...         return super().__add__(other)
+    class Float(float):
+        def __add__(self, other):
+            print(f"trace: {self} + {other}")
+            return super().__add__(other)
 
 Notre classe dérivant du type standard `float`, les opérations que nous
 n'avons pas redéfinies explicitement seront gérées comme d'habitude.
@@ -954,19 +954,22 @@ en sorte de générer des instances de `Float` dans la mesure du possible.
 Pour commencer, nous pouvons faire en sorte que les opérations sur nos 
 flottants renvoient notre propre type de flottant:
 
-    >>> class Float(float):
-    ...     def __add__(self, other):
-    ...         print(f"trace: {self} + {other}")
-    ...         return Float(super().__add__(other))
+    class Float(float):
+        def __add__(self, other):
+            print(f"trace: {self} + {other}")
+            return Float(super().__add__(other))
 
 Mais cela n'est pas suffisant: les fonctions de la library `math` de Python
 vont renvoyer des flottants classiques, il nous faut donc à nouveau les
-adapter:
+adapter ; avant tout importons le module `math`
 
-    >>> math_cos = math.cos
-    >>> def cos(x):
-    ...     print(f"trace: cos({x})")
-    ...     return Float(math_cos(x))
+    import math
+
+puis définissons notre propre fonction `cos`:
+    
+    def cos(x):
+        print(f"trace: cos({x})")
+        return Float(math.cos(x))
 
 Vérifions le résultat:
 
@@ -995,9 +998,9 @@ droite et à la méthode `__radd__`;
 pour cela il nous suffit de remplacer `Float`, un type numérique
 par `Node`, une classe qui contient (encapsule) une valeur numérique:
 
-    >>> class Node:
-    ...     def __init__(self, value):
-    ...         self.value = value
+    class Node:
+        def __init__(self, value):
+            self.value = value
 
 Nous n'allons pas nous attarder sur cette version 0 de `Node`.
 Si elle est ainsi nommée, c'est parce qu'elle va représenter un noeud
@@ -1008,45 +1011,45 @@ chaque noeud issu d'une opération devra mémoriser quelle opération
 a été appliquée, et quels étaient les arguments de l'opération (eux-mêmes
 des noeuds). Pour supporter cette démarche, `Node` devient:
 
-    >>> class Node:
-    ...     def __init__(self, value, function=None, *args):
-    ...         self.value = value
-    ...         self.function = function
-    ...         self.args = args
+    class Node:
+        def __init__(self, value, function=None, *args):
+            self.value = value
+            self.function = function
+            self.args = args
 
 Il nous faut alors rendre les opérations usuelles compatibles avec la création
 de noeuds; en examinant les arguments de la fonction, on doit décider si
 elle est dans un mode "normal" (recevant des valeurs numériques, produisant
 des valeurs numériques) ou en train de tracer les calculs. Par exemple:
 
-    >>> def cos(x):
-    ...     if isinstance(x, Node):
-    ...         cos_x_value = math_cos(x.value)
-    ...         cos_x = Node(cos_x_value, cos, x)
-    ...         return cos_x
-    ...     else:
-    ...         return math_cos(x) 
+    def cos(x):
+        if isinstance(x, Node):
+            cos_x_value = math.cos(x.value)
+            cos_x = Node(cos_x_value, cos, x)
+            return cos_x
+        else:
+            return math.cos(x) 
 
 ou 
 
-    >>> def add(x, y):
-    ...     if isinstance(x, Node) or isinstance(y, Node):
-    ...         if not isinstance(x, Node):
-    ...             x = Node(x)
-    ...         if not isinstance(y, Node):
-    ...             y = Node(y)
-    ...         add_x_y_value = x.value + y.value
-    ...         return Node(add_x_y_value, add, x, y)
-    ...     else:
-    ...         return x + y
+    def add(x, y):
+        if isinstance(x, Node) or isinstance(y, Node):
+            if not isinstance(x, Node):
+                x = Node(x)
+            if not isinstance(y, Node):
+                y = Node(y)
+            add_x_y_value = x.value + y.value
+            return Node(add_x_y_value, add, x, y)
+        else:
+            return x + y
 
 
 La fonction `add` ne sera sans doute pas utilisée directement, 
 mais appelée sous forme d'opérateur `+`; elle doit donc nous
 permettre de définir les méthodes `__add__` et `__radd__`:
 
-    >>> Node.__add__ = add
-    >>> Node.__radd__ = add
+    Node.__add__ = add
+    Node.__radd__ = add
 
 On remarque de nombreuses similarités entre les deux codes;
 plutôt que de continuer cette démarche pour toutes les fonctions
@@ -1058,41 +1061,40 @@ originale) et renvoie une nouvelle fonction, compatible avec la
 gestion des noeuds. On pourra ignorer son implémentation 
 en première lecture.
 
-    >>> def autodiff(function):
-    ...    def autodiff_function(*args):
-    ...        if any([isinstance(arg, Node) for arg in args]):
-    ...            node_args = []
-    ...            values = []
-    ...            for arg in args:
-    ...                if isinstance(arg, Node):
-    ...                    node_args.append(arg)
-    ...                    values.append(arg.value)
-    ...                else:
-    ...                    node_args.append(Node(arg)) 
-    ...                    values.append(arg)
-    ...            output_value = function(*values)
-    ...            output_node = Node(
-    ...                output_value, autodiff_function, *node_args
-    ...            )
-    ...            return output_node
-    ...        else:
-    ...            return function(*args)        
-    ...    autodiff_function.__qualname__ = function.__qualname__
-    ...    return autodiff_function
+    def autodiff(function):
+        def autodiff_function(*args):
+            if any([isinstance(arg, Node) for arg in args]):
+                node_args = []
+                values = []
+                for arg in args:
+                    if isinstance(arg, Node):
+                        node_args.append(arg)
+                        values.append(arg.value)
+                    else:
+                        node_args.append(Node(arg)) 
+                        values.append(arg)
+                output_value = function(*values)
+                output_node = Node(
+                   output_value, autodiff_function, *node_args
+                )
+                return output_node
+            else:
+                return function(*args)        
+        autodiff_function.__qualname__ = function.__qualname__
+        return autodiff_function
 
 Malgré sa complexité apparente, l'utilisation de cette fonction est simple; 
 ainsi pour rendre la foncton `sin` et l'opérateur `*` compatible
 avec la gestion de noeuds, il suffit de faire:
 
-    >>> from math import sin
-    >>> sin = autodiff(sin)
+    sin = autodiff(math.sin)
 
 et
 
-    >>> def multiply(x, y):
-    ...     return x * y
-    >>> multiply = autodiff(multiply)
-    >>> Node.__mul__ = Node.__rmul__ = multiply
+    def multiply(x, y):
+        return x * y
+    multiply = autodiff(multiply)
+    Node.__mul__ = Node.__rmul__ = multiply
 
 ce que est sensiblement plus rapide et lisible 
 que la démarche entreprise pour `cos` et `+`; 
@@ -1112,31 +1114,31 @@ Pour vérifier que tout se passe bien comme prévu,
 faisons en sorte d'afficher une représentation lisible 
 et sympathique des contenus des noeuds sous forme de chaîne de caractères:
 
-    >>> def node_str(node):
-    ...     if node.function is None:
-    ...         return str(node.value)
-    ...     else:
-    ...         function_name = node.function.__qualname__
-    ...         args_str = ", ".join(str(arg) for arg in node.args)
-    ...         return f"{function_name}({args_str})"
+    def node_str(node):
+        if node.function is None:
+            return str(node.value)
+        else:
+            function_name = node.function.__qualname__
+            args_str = ", ".join(str(arg) for arg in node.args)
+            return f"{function_name}({args_str})"
 
 Puis, faisons en sorte qu'elle soit utilisée quand on invoque
 la fonction `print`, plutôt que l'affichage standard: 
 
-    >>> Node.__str__ = node_str
+    Node.__str__ = node_str
 
 Nous complétons cette description par une seconde représentation, 
 plus explicite mais également plus verbeuse:
 
-    >>> def node_repr(node):
-    ...    reprs = [repr(node.value)]
-    ...    if node.function is not None:
-    ...        reprs.append(node.function.__qualname__)
-    ...    if node.args:
-    ...        reprs.extend([repr(arg) for arg in node.args])
-    ...    args_repr = ", ".join(reprs)
-    ...    return f"Node({args_repr})"
-    >>> Node.__repr__ = node_repr
+    def node_repr(node):
+        reprs = [repr(node.value)]
+        if node.function is not None:
+            reprs.append(node.function.__qualname__)
+        if node.args:
+            reprs.extend([repr(arg) for arg in node.args])
+        args_repr = ", ".join(reprs)
+        return f"Node({args_repr})"
+    Node.__repr__ = node_repr
 
 Nous sommes prêts à faire notre vérification:
 
@@ -1172,47 +1174,47 @@ il nous faut déclarer les différentielles des opérations et fonctions
 primitives dans un "registre" de différentielles, indexées par la fonction
 à différencier.
 
-    >>> differential = {} 
+    differential = {} 
 
 Pour l'addition et la multiplication, nous exploitons les identités
 $d(x+y) = dx + dy$
 
-    >>> def d_add(x, y):
-    ...     return add
-    >>> differential[add] = d_add
+    def d_add(x, y):
+        return add
+    differential[add] = d_add
 
 et $d(x \times y) = x \times dy + dx \times y$
 
-    >>> def d_multiply(x, y):
-    ...     def d_multiply_xy(dx, dy):
-    ...         return x * dy + dx * y
-    ...     return d_multiply_xy
-    >>> differential[multiply] = d_multiply
+    def d_multiply(x, y):
+        def d_multiply_xy(dx, dy):
+            return x * dy + dx * y
+        return d_multiply_xy
+    differential[multiply] = d_multiply
   
 Pour une fonction telle que `cos`, nous exploitons l'identité 
 $d (\cos(x)) = -\sin(x) dx$
 
-    >>> def d_cos(x):
-    ...     def d_cos_x(dx):
-    ...         return - sin(x) * dx
-    ...     return d_cos_x
-    >>> differential[cos] = d_cos
+    def d_cos(x):
+        def d_cos_x(dx):
+            return - sin(x) * dx
+        return d_cos_x
+    differential[cos] = d_cos
 
 Mais il ne s'agit que d'un cas particulier de l'identité
 $d (f(x)) = f'(x) dx$. Nous pouvons nous doter d'une fonction qui 
 calculera la différentielle $df$ à partir de la dérivée $f'$:
 
-    >>> def d_from_deriv(g):
-    ...     def d_f(x):
-    ...         def d_f_x(dx):
-    ...             return g(x) * dx
-    ...         return d_f_x
-    ...     return d_f
+    def d_from_deriv(g):
+        def d_f(x):
+            def d_f_x(dx):
+                return g(x) * dx
+            return d_f_x
+        return d_f
 
 La déclaration de différentielles s'en trouve simplifiée ; 
 ainsi on déduit de l'identité $(\sin x)' = \cos x$ la déclaration
 
-    >>> differential[sin] = d_from_deriv(cos)
+    differential[sin] = d_from_deriv(cos)
 
 ### Différentielle des fonctions composées
 Pour exploiter le tracing d'une fonction, il nous faut à partir du noeud
@@ -1223,22 +1225,22 @@ les noeuds de telle sorte que les arguments d'une fonction apparaissent
 toujours avant la valeur qu'elle produit.
 L'implémentation suivante, relativement naïve[^MI], réalise cette opération:
 
-    >>> def find_and_sort_nodes(end_node):
-    ...     todo = [end_node]
-    ...     nodes = []
-    ...     while todo:
-    ...         node = todo.pop()
-    ...         nodes.append(node)
-    ...         for parent in node.args:
-    ...             if parent not in nodes + todo:
-    ...                 todo.append(parent) 
-    ...     done = []
-    ...     while nodes:
-    ...         for node in nodes[:]:
-    ...             if all([parent in done for parent in node.args]):
-    ...                 done.append(node)
-    ...                 nodes.remove(node)
-    ...     return done
+    def find_and_sort_nodes(end_node):
+        todo = [end_node]
+        nodes = []
+        while todo:
+            node = todo.pop()
+            nodes.append(node)
+            for parent in node.args:
+                if parent not in nodes + todo:
+                    todo.append(parent) 
+        done = []
+        while nodes:
+            for node in nodes[:]:
+                if all([parent in done for parent in node.args]):
+                    done.append(node)
+                    nodes.remove(node)
+        return done
 
 [^MI]: Comme toujours, si vous ou l'un des membres de votre unité était surpris
 par un informaticien en possession de ce code, 
@@ -1249,29 +1251,29 @@ propager la variation des arguments de noeud en noeud, en se basant
 sur la règle de différentiation en chaîne ; ces variations intermédiaires
 sont stockés dans l'attribut `d_value` des noeuds du graphe.
 
-    >>> def d(f):
-    ...     def df(*args): # args=(x1, x2, ...)
-    ...         start_nodes = [Node(arg) for arg in args]
-    ...         end_node = f(*start_nodes)
-    ...         if not isinstance(end_node, Node): # constant value
-    ...             end_node = Node(end_node)
-    ...         nodes = find_and_sort_nodes(end_node).copy()
-    ...         def df_x(*d_args): # d_args = (d_x1, d_x2, ...)
-    ...             for node in nodes:
-    ...                 if node in start_nodes:
-    ...                     i = start_nodes.index(node)
-    ...                     node.d_value = d_args[i]
-    ...                 elif node.function is None: # constant node
-    ...                     node.d_value = 0.0
-    ...                 else:
-    ...                     _d_f = differential[node.function]
-    ...                     _args = node.args
-    ...                     _args_values = [_node.value for _node in _args]
-    ...                     _d_args = [_node.d_value for _node in _args]
-    ...                     node.d_value = _d_f(*_args_values)(*_d_args)
-    ...             return end_node.d_value
-    ...         return df_x
-    ...     return df
+    def d(f):
+        def df(*args): # args=(x1, x2, ...)
+            start_nodes = [Node(arg) for arg in args]
+            end_node = f(*start_nodes)
+            if not isinstance(end_node, Node): # constant value
+                end_node = Node(end_node)
+            nodes = find_and_sort_nodes(end_node).copy()
+            def df_x(*d_args): # d_args = (d_x1, d_x2, ...)
+                for node in nodes:
+                    if node in start_nodes:
+                        i = start_nodes.index(node)
+                        node.d_value = d_args[i]
+                    elif node.function is None: # constant node
+                        node.d_value = 0.0
+                    else:
+                        _d_f = differential[node.function]
+                        _args = node.args
+                        _args_values = [_node.value for _node in _args]
+                        _d_args = [_node.d_value for _node in _args]
+                        node.d_value = _d_f(*_args_values)(*_d_args)
+                return end_node.d_value
+            return df_x
+        return df
 
 Exploitation
 --------------------------------------------------------------------------------
@@ -1281,11 +1283,11 @@ nous pouvons dans le cas d'une fonction d'une variable réelle
 en déduire la dérivée ; rappelons qu'on a alors
 $f'(x) = df(x) \cdot 1$.
 
-    >>> def deriv(f):
-    ...     df = d(f)
-    ...     def deriv_f(x):
-    ...         return df(x)(1.0)
-    ...     return deriv_f
+    def deriv(f):
+        df = d(f)
+        def deriv_f(x):
+            return df(x)(1.0)
+        return deriv_f
 
 <!--
 #    >>> from inspect import signature, Parameter
@@ -1366,17 +1368,17 @@ trigonométriques `sin` et `cos`:
 Dans le cas général -- puisque nos fonctions sont toujours à valeurs réelles
 -- nous pouvons déduire de la différentielle le gradient :
 
-    >>> def grad(f):
-    ...     df = d(f)
-    ...     def grad_f(*args):
-    ...         n = len(args)
-    ...         grad_f_x = n * [0.0]
-    ...         df_x = df(*args)
-    ...         for i in range(0, n):
-    ...             e_i = n * [0.0]; e_i[i] = 1.0
-    ...             grad_f_x[i] = df_x(*e_i)
-    ...         return grad_f_x  
-    ...     return grad_f
+    def grad(f):
+        df = d(f)
+        def grad_f(*args):
+            n = len(args)
+            grad_f_x = n * [0.0]
+            df_x = df(*args)
+            for i in range(0, n):
+                e_i = n * [0.0]; e_i[i] = 1.0
+                grad_f_x[i] = df_x(*e_i)
+            return grad_f_x  
+        return grad_f
 
 Les fonctions constantes, affines et quadratiques permettent là aussi de 
 réaliser des tests élémentaires:
@@ -1904,9 +1906,11 @@ qui possèdent un point sur l'arête gauche du domaine de définition
 est-on certain qu'il existe un $t \in [0, 1]$ tel que $f(0, t) = c$ ?
 Développer une fonction, conforme au squelette suivant
 
-    def find_seed(g, c=0, eps=2**(-26)):
-        ...
-        return t
+``` {.discard}
+def find_seed(g, c=0, eps=2**(-26)):
+    ...
+    return t
+```
 
 qui renvoie un flottant éloigné d'au plus `eps` d'un tel $t$ 
 ou `None` si la condition évoquée ci-dessus n'est pas satisfaite.
@@ -1914,9 +1918,11 @@ ou `None` si la condition évoquée ci-dessus n'est pas satisfaite.
 #### Propagation
 On souhaite implémenter une fonction dont la signature est:
 
-    def simple_contour(f, c=0.0, delta=0.01):
-        ...
-        return x, y
+``` {.discard}
+def simple_contour(f, c=0.0, delta=0.01):
+    ...
+    return x, y
+```
 
 qui renvoie un fragment de ligne de niveau de valeur `c` de `f`, 
 sous la forme de deux tableaux 1d d'abscisses et d'ordonnées de points 
@@ -1929,9 +1935,11 @@ deux tableaux vides devront être renvoyés.
 
 La signature de la fonction `contour` générale sera la suivante
 
-    def contour(f, c=0.0, xc=[0.0,1.0], yc=[0.0,1.0], delta=0.01):
-        ...
-        return xs, ys
+``` {.discard}
+def contour(f, c=0.0, xc=[0.0,1.0], yc=[0.0,1.0], delta=0.01):
+    ...
+    return xs, ys
+```
 
 Le domaine de $f$ n'est plus nécessairement $[0, 1]\times[0, 1]$;
 les arguments `xc` et `yc` sont des listes (ou tableaux 1d) croissantes 
@@ -1952,8 +1960,10 @@ Les valeurs `x = xs[i]` et `y = ys[i]` représentent
 un fragment de contour de `f` comme en produit `simple_contour` ;
 autrement dit, le tracé d'un contour peut être réalisé par le code
 
-    for x, y in zip(xs, ys):
-        matplotlib.pyplot.plot(x, y)
+``` {.discard}
+for x, y in zip(xs, ys):
+    matplotlib.pyplot.plot(x, y)
+```
 
 ### Consignes
 Le livrable de ce projet sera un notebook Jupyter. 
