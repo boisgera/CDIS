@@ -623,7 +623,7 @@ if code is not None:
         py_file.write(code)
     python("-m", "doctest", doc_py)
     try:
-        shutil.rmtree(output / "__pycache__")
+        shutil.rmtree(output / "__pycache__") # otherwise, top build has issues.
     except:
         pass
 
