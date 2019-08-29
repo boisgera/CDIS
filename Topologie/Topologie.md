@@ -827,7 +827,7 @@ Soit $f: X \to X$ une application d'un ensemble $X$ dans lui-même.
 Un élément $x \in X$ est un *point fixe* de $f$ si $x = f(x)$.
  
 ### Points fixes et zéros
-\^{E}tre un point fixe d'une fonction $f: X \to X$, c'est donc être déterminé 
+Être un point fixe d'une fonction $f: X \to X$, c'est donc être déterminé 
 **implicitement** par l'équation $x = f(x)$. Si $X$ est un sous-espace
 d'un espace vectoriel,
 cela équivaut à dire que $x$ est une solution de l'équation $x - f(x) = 0$,
@@ -1061,7 +1061,7 @@ et exploitant la continuité de l'application $f$, on obtient
 $$
 \ell = \lim_{n \to +\infty} x_{n+1} = \lim_{n \to +\infty}f(x_n) = f(\ell).
 $$
-\`{A} cette fin, nous allons prouver que la suite des $x_n$ est de Cauchy; 
+À cette fin, nous allons prouver que la suite des $x_n$ est de Cauchy; 
 l'existence d'une limite se déduira alors de la complétude de $X$. 
 On remarque tout d'abord que pour tout entier $n$, 
 $$
@@ -1401,7 +1401,7 @@ Droite réelle achevée {#dra}
 --------------------------------------------------------------------------------
 
 La *droite réelle achevée* (ou *droite réelle étendue*) 
-est composée des nombre réels et de $-\infty$ et $+\infty$.
+est composées des nombre réels et de $-\infty$ et $+\infty$.
 Le but de cet exercice est de doter cet ensemble 
 $[-\infty, +\infty]$([^nre]) d'une distance aux propriétés
 "raisonnables".
@@ -1623,7 +1623,7 @@ $t \to +\infty$[^euler].
 ### Question 1 {.question #se-1}
 Montrer que si pour toute suite de valeurs $t_k$ tendant vers l'infini, 
 la suite de points de coordonnées $(x_k, y_k) := (x(t_k), y(t_k))$ 
-à une limite dans le plan
+a une limite dans le plan
 -- limite qui peut dépendre a priori de la suite $t_k$ -- 
 alors le point de coordonnées $(x(t), y(t))$ a une limite dans le plan 
 quand $t$ tend vers $+\infty$.
@@ -1767,7 +1767,7 @@ Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
 et lien avec norme.
 -->
 
-Equation Différentielle
+Équation Différentielle
 --------------------------------------------------------------------------------
 Soit $A$ un opérateur linéaire de $\R^n$ dans $\R^n$. 
 On souhaite montrer que pour tout $x_0 \in \R^n$,
@@ -1806,7 +1806,7 @@ $$
 \|x\|_{\infty}^{\alpha} = \sup_{t \in [0, T]} \|e^{-\alpha t}x(t)\|.
 $$
 Montrer que $\|\cdot\|_{\infty}^{\alpha}$ est une norme sur l'espace
-des fonctions continues de $[0, T]$ dans $\R^n$ une norme et que 
+des fonctions continues de $[0, T]$ dans $\R^n$ et que 
 muni de cette norme, l'espace $E$ est complet.
 
 ### Question 4 {.question #ed-4}
@@ -1876,7 +1876,7 @@ sont compacts.
 
 -->
 
-Solutions aux Exercices
+Solutions aux exercices
 ================================================================================
 
 Normes d'opérateurs {#answer-no}
@@ -2713,7 +2713,7 @@ L'opérateur $A$ est donc inversible et $A^{-1} \cdot y$ peut être calculé com
 la limite de la suite
 $x_{k+1} = B \cdot x_k$ pour un $x_0 \in \R^n$ arbitraire.
 
-Equation Différentielle
+Équation Différentielle
 --------------------------------------------------------------------------------
 
 ### Question 1 {#answer-ed-1 .answer}
