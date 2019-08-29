@@ -1377,6 +1377,7 @@ Normes d'opérateurs {#no .question}
 de $\R^n$, mais également de matrices carrée de $\R^{n\times n}$. 
 Ainsi, on a par exemple:
 
+    >>> from numpy import inf
     >>> from numpy.linalg import norm
     >>> A = [[1.0, 2.0], [3.0, 4.0]]
     >>> norm(A)

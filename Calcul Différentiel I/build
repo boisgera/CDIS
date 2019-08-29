@@ -504,6 +504,7 @@ def flag_definitions(doc):
 # Code Generation
 # ------------------------------------------------------------------------------
 def generate_code(doc):
+    has_doctests = False
     doctests = []
     snippets = []
     for elt in pandoc.iter(doc):
@@ -513,6 +514,7 @@ def generate_code(doc):
             if not "discard" in classes:
                 if src.startswith(">>> "):
                     doctests.append(src)
+                    has_doctests = True
                 else:
                     lines = src.splitlines()
                     for i, line in enumerate(lines): 
@@ -523,6 +525,8 @@ def generate_code(doc):
                     #lines = [">>> " + lines[0]] + ["... " + line for line in lines[1:]]
                     doctests.append("\n".join(lines))
                     snippets.append(src)
+    if not has_doctests:
+        return None
     doctests = "\n\n".join(doctests)
     snippets = "\n\n".join(snippets)
     return \
@@ -613,10 +617,11 @@ doc = transform(doc)
 
 # Code and Doctest
 code = generate_code(doc)
-#print("code:\n\n", code)
-with open(doc_py, "w") as py_file:
-    py_file.write(code)
-python("-m", "doctest", doc_py)
+if code is not None:
+    #print("code:\n\n", code)
+    with open(doc_py, "w") as py_file:
+        py_file.write(code)
+    python("-m", "doctest", doc_py)
 
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
 
