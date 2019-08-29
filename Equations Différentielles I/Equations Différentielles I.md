@@ -5,6 +5,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Rgeq}{\R_{\geq 0}}
 \renewcommand{\C}{\mathbb{C}}
 
 \newcommand{\cS}{\mathcal{S}}
@@ -220,7 +221,9 @@ La fonction $f:(t,x)\mapsto x^2$ est de classe $C^1$ sur $U=\R^2$, donc il exist
 $$
 x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left(-\infty,t_0+\frac{1}{x_0}\right) \ .
 $$
-Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en temps fini*. FIGURE
+Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en temps fini*. 
+
+![Solutions à $\dot{x} = x^2$ pour $t_0=0$ et différentes valeurs de $x_0$](images/explosion_temps_fini.py){#fig_explo_temps_fini}
 
 En fait, le théorème suivant montre que pour toute solution maximale, la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $U$ au bout d'un certain temps. Dans le cas usuel où $U=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $\left[0,\overline{t}\right[$ avec $\overline{t}<+\infty$, explose en temps fini, c'est-à-dire
 $$
@@ -362,42 +365,60 @@ Propriétés asymptotiques
 
 Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce qu'il diverge ? est-ce qu'il tend vers un point en particulier ? vers un cycle limite ?
 
-Dans la suite, on se donne donc une fonction $f:U\to \R^n$ et on étudie le comportement des solutions de $\dot{x}=f(t,x)$. SIMPLIFIER AUTONOME ?
+Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc un ouvert $\Omega$ de $\R^n$ et une fonction continue $f:\Omega\to \R^n$. Dans ce cas, on prend par défaut $t_0=0$. Puisque l'on souhaite étudir plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.
 
 ### Point d'équilibre
 On appelle *point d'équilibre* un point $a\in \R^n$ tel que
 $$
-f(t,a) = 0 \qquad \forall t\in \R \ .
+f(a) = 0  \ .
 $$
 En d'autres termes, la fonction constante $x\equiv a$ est solution.
 
 ### Stabilité, stabilité asymptotique
 Un point d'équilibre $a$ est dit:
 
-- *stable* si l'*on peut rester arbitrairement proche de $a$ quitte à initialiser les solutions suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: I\to \R$ vérifie
+- *stable* si l'*on peut rester arbitrairement proche de $a$ quitte à initialiser les solutions suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
 $$
-|x(t_0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in I \ .
+|x(0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in I \ .
 $$
 
 - *instable* s'il n'est pas stable.
 
-- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ convergent vers $a$*, c'est-à-dire si pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: I\to \R$ vérifie
+- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
 $$
-|x(t_0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
+|x(0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
 $$
 
 - *globalement attractif* si *toutes les solutions convergent vers $a$*.
 
 - *localement (resp. globalement) asymptotiquement stable* s'il est à la fois stable et localement (resp. globalement) attractif. 
 
-SE RESTREINDRE AUX SOLUTIONS COMPLETES ???
 
 ### Exemples
 
 
-### Lyapunov
+### Caractérisation par Lyapunov
+
 
 ### Cas d'un système linéaire
+Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est  asymptotiquement stable pour le système
+$$
+\dot{x} = Ax
+$$
+si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative.
+
+*Démonstration* La notion d'*asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, la stabilité asymptotique est équivalente à l'attractivité, c'est-à-dire que la stabilité vient gratuitement avec l'attractivité. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attrictivité de 0. On a vu que les solutions s'écrivent
+$$
+x(t)= e^{At} x_0 \ .
+$$
+Si $A$ était diagonale (réelle), on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit toute matrice $A$ n'est pas diagonalisable. Par contre, toute matrice est triangularisable. 
+\hfill $\blacksquare$
+
+Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C^0(I,\R^{n\times n})$ ait des valeurs propres à partie réelle strictement négative pour tout $t$ n'implique pas que le système
+$$
+\dot{x} = A(t) x 
+$$
+soit asymptotiquement stable. EXEMPLE ?
 
 ### Cas du plan : portrait de phase et théorème de Bendixon
 
@@ -425,7 +446,7 @@ où $g$ est la pesanteur.
 
 ### Autour du Lemme de Grönwall {.exercice #exo_gronwall}
 
-1. (Lemme de Grönwall) Soient $t^-, t^+\in \R$, $u,\alpha, \beta\in C^0([t^-,t^+],\R^+)$, tels que
+1. (Lemme de Grönwall) Soient $t^-, t^+\in \R$, $u,\alpha, \beta\in C^0([t^-,t^+],\Rgeq)$, tels que
 $$
 u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t^-,t^+] \ .
 $$
@@ -450,7 +471,7 @@ $$
 ### Proie/prédateur
 Cycle limite Bendixon ou exo cercle attractif
 
-### Masse/ressort {.correction #masse_ressort}
+### Masse/ressort {.exercice #exo_masse_ressort}
 Considérons une masse $m$ accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
 
 1. Montrer que l'évolution de la position de la masse peut être décrite par  
@@ -465,7 +486,19 @@ où $\lambda$ est un coefficient de frottement. Que représente $x$ ?
 
 4. Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
 
-### Contrôle d'un système linéaire {.correction #cont_lin}
+-> [*Correction*](#correc_masse_ressort)
+
+### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.exercice #exo_attrac_stab}
+Soit $A\in \R^{n\times n}$. Montrer que si 0 est localement attractif pour 
+$$
+\dot{x} = Ax
+$$
+alors il l'est globalement et 0 est stable.
+
+-> [*Correction*](#correc_attrac_stab)
+
+
+### Contrôle d'un système linéaire {.exercice #exo_cont_lin}
 Soit le système décrit par
 $$
 \dot{x} = x + u(t)
@@ -475,6 +508,8 @@ où $t\mapsto u(t)$ est une entrée à choisir.
 1. Comment se comporte le système si $u\equiv 0$ ?
 
 2. Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre asymptotiquement stable ?
+
+-> [*Correction*](#correc_cont_lin)
 
 
 Correction des exercices
@@ -550,11 +585,37 @@ Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$. A FINI
 ### Proie/prédateur {.correction #correc_proiePreda}
 
 
-### Masse/ressort {.correction #masse_ressort}
+### Masse/ressort {.correction #correc_masse_ressort}
 
+### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.correction #corr_attrac_stab}
 
-### Contrôle d'un système linéaire {.correction #cont_lin}
+Tout d'abord, montrons que l'attractivité locale de 0 implique l'attractivité globale. Ceci est dû à la propriété d'*homogénéité* des systèmes linéaires: si $x$ une solution initialisée à $x_0\in\R$, alors $\lambda x$ est solution initialisée à $\lambda x_0$ puisque 
+$$
+\lambda x(t) = \lambda e^{At} x_0 = e^{At} (\lambda x_0) \ .
+$$
+Donc soit $\eta>0$ tel que toute solution initialisée dans $B_\eta(0)$ converge vers 0. Soit $x$ une solution initialisée à $x_0\in\R$. Alors $\lambda x$ avec $\lambda < \eta / |x_0|$ est solution initialisée dans $B_\eta(0)$ et converge vers 0. Donc $x$ converge vers 0.
 
+Maintenant, montrons la stabilité. Soit $\varepsilon >0$. Notons $(x_i)_{i=1...n}$ une base orthonormale de $\R^n$. Soit alors $M>0$ tel que 
+$$
+|e^{At} x_i | \leq M \quad \forall t \in \Rgeq \quad \forall i\in \{1,...,n\}
+$$
+qui existe bien puisque toutes les solutions convergent vers 0 et $n$ est fini. 
+Soit maintenant $\eta >0$. Pour tout $x_0 \in B_\eta(0)$ dont la décomposition dans la base s'écrit
+$$
+x_0 = \sum_{i=1}^n \alpha_i x_i
+$$
+on a $|\alpha_i|\leq \eta$ et donc pour tout $t \in \Rgeq$,
+$$
+\left| e^{At} x_0 \right| \leq \left| \sum_{i=1}^n  e^{At} \alpha_i x_i\right|  \leq  n \eta M 
+$$
+On conclut que pour des conditions initiales suffisamment petites ($\eta <\frac{\varepsilon}{nM}$), les solutions restent inférieures à $\varepsilon$ en norme. Donc le système est stable.
+
+### Contrôle d'un système linéaire {.correction #correc_cont_lin}
+Si $u\equiv 0$, les solutions sont $x(t) = e^t x_0$ donc le point d'équilibre 0 est instable et les solutions divergent. Si l'on mesure $x(t)$, on peut prendre $u(t) = - kx(t)$, ce qui donne
+$$
+\dot{x} = -(k-1) x
+$$
+qui est donc asymptotiquement stable si $k>1$.
 
 Annexes 
 =========================================================================
