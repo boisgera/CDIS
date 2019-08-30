@@ -580,7 +580,7 @@ est également continûment différentiable (car linéaire continue entre ces
 espaces). 
 La fonction 
 $$
-T \in C^1(K, \R^3) \mapsto \det J_T \in C^1(K,\R^3)
+T \in C^1(K, \R^3) \mapsto \det J_T \in C^0(K,\R^3)
 $$
 est donc différentiable en $I$ comme différentielle d'une composition et
 $$
