@@ -53,6 +53,8 @@ def transform(doc):
     add_date(doc)
     insert_authors(doc)
 
+    tt_url(doc)
+
     return doc
 
 # Command-Line/Process Helpers
@@ -471,6 +473,13 @@ def _solve_toc_nesting(doc): # fuck you LaTeX!
 
 def add_font_awesome(doc):
     add_latex_header(doc, r"\usepackage{fontawesome}")
+
+
+# Typewriter URLs
+# ------------------------------------------------------------------------------
+def tt_url(doc):
+    add_latex_header(doc, r"\urlstyle{tt}")
+
 
 # Deprecated
 def _add_font_awesome(doc):

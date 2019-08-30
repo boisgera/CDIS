@@ -1,6 +1,5 @@
 % Nuthin'
 % STEP, Mines ParisTech[^note]
-% today
 
 [^note]: 888 ou bien.
 
@@ -59,5 +58,15 @@ Oh une image !
 
     >>> 1 + 1
     2
+
+### Bibliographie
+
+@Tao13
+
+### URLs
+
+<https://www.lemonde.fr>
+
+### Références
 
 
