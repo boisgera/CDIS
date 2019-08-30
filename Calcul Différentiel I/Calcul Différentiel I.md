@@ -1375,7 +1375,7 @@ $$
 est continue.
 
 ### {.ante}
-Cette définition constitue un moyen vérifier l'existence de
+Cette définition constitue un moyen de vérifier l'existence de
 la différentielle (et sa continuité) en passant par les dérivées partielles:
 
 ### Dérivées partielles continues {.proposition}
@@ -1454,7 +1454,7 @@ nous disposons de l'égalité $f(a + h) = f(a) + o(h)$,
 mais cette relation est asymptotique. 
 Pour maîtriser l'écart entre
 $f(a+h)$ et $f(a)$ au moyen de cette formule, 
-nous devons être mesure de faire tendre $h$ vers $0$. 
+nous devons être en mesure de faire tendre $h$ vers $0$. 
 Si la grandeur $h$ est fixé, cette relation est inexploitable. 
 
 Toutefois, dans cette situation, 
@@ -2648,7 +2648,7 @@ y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
 \end{array}
 \right.
 $$
-ou $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
+où $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
 
 Montrer que l'application 
 $f: (\theta_1, \theta_2) \in \R^2 \mapsto (x, y) \in \R^2$ 
