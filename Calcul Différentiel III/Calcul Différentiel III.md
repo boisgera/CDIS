@@ -529,7 +529,8 @@ lui-même.
 Montrer que $V$ est une fonction différentiable de $T$ au point $T=I$ 
 dans $C^1(K, \R^3)$ et calculer sa différentielle $dV(I) \cdot H$.
 
-
+**TODO:** ajouter check dépendance en $H$ uniquement sur le bord, et via
+la composante normale.
 
 
 Théorème de Cauchy Intégral
@@ -592,7 +593,7 @@ $$
 f \in C^0(K,\R^3) \mapsto \int_{K} f dx \in \R
 $$
 étant linéaire continue, le volume est une fonction différentiable de $T$
-en l'identité et
+en l'identité et vérifie
 $$
 d V(T) \cdot H = \int_K \mathrm{div} \, H(x) \, dx,
 $$
