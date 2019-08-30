@@ -387,13 +387,6 @@ A(y) = \int_a^b L(t, y(t), \dot{y}(t)) \, dt
 $$
 où $a \leq b \in \R$ et $y \in C^1([a, b],\R^n)$.
 
-### TODO
-(Nota: $C^1$ est "de confort", on pourrait y arriver avec $L$ cont et 
-diff partielles par rapport à $y$ et $y'$ continues)
-Plus tard, nécessaire de renforcer régularité pour faire IPP et obtenir
-équation d'Euler-Lagrange (suffit de supposer que $\partial_{y'}L$ est
-diff / $x$ et que le résultat est cont).
-
 ### Différentielle de l'action {#da}
 L'action $A: y \in C^1([a, b], \R^n) \to  \R$ 
 est une fonction différentiable et
@@ -553,6 +546,4 @@ $$
 \max_{y \in K} \|h(y)\| = \|h\|_{\infty}.
 $$
 La fonction $F$ est donc différentiable en $g$ et
-$$
-dF(g) \cdot h = h \circ f.
-$$
+$dF(g) \cdot h = h \circ f.$
