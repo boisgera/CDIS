@@ -324,10 +324,6 @@ La il faut travailler dans les espaces $C^1$ ; bon ok c'est quand
 même plus simple)
 mais ça donne une idée du type de travail à faire. En exo ?
 
-**TODO.** Prendre $U = \R^m$ ? Au moins dans la présentation ?
-(Suffit pour la suite à moins qu'on soit amené à prendre des lagrangiens
-qui ne soient pas globalement définis.)
-
 ### TODO -- Démonstration {.proof}
 Remarquons tout d'abord que le domaine de définition $C^1(K, U)$ de $G$ est bien un
 sous-ensemble ouvert de l'espace vectoriel normé $C^1(K, \R^m)$,
