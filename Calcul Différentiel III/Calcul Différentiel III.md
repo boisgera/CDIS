@@ -286,21 +286,17 @@ $C^0(K,U) = \{f \in C^0(K, \R^m) \, | \, f(K) \subset U\}.$
 Si la fonction $g: U \subset \R^m \to \R^p$ est continûment différentiable,
 alors l'application
 $$
-f \in C^0(K,U) \mapsto g \circ f \in C^0(K,\R^p)
+G: f \in C^0(K,U) \mapsto g \circ f \in C^0(K,\R^p)
 $$
 est différentiable et
 $$
-d (f \mapsto g \circ f)(f) \cdot h
+d G(f) \cdot h = d (f \mapsto g \circ f)(f) \cdot h
 =
-(x \mapsto dg(f(x)) \cdot h(x))
+(x \mapsto dg(f(x)) \cdot h(x)).
 $$
 
 ### Expression de la différentielle {.remark}
-Si l'on admet (temporairement) que l'application 
-$$
-G: f \in C^0(K,U) \mapsto g \circ f \in C^0(K,\R^p)
-$$
-est différentiable,
+Si l'on admet (temporairement) que l'application $G$ est différentiable,
 il est possible de deviner quelle sera nécessairement son expression 
 en se ramenant à du calcul différentiel en dimension finie.
 Fixons pour cela un $x \in K$ arbitraire et définissons pour $k=m$ ou $n$
