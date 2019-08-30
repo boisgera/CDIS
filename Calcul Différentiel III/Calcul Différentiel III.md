@@ -336,11 +336,18 @@ $\|h(x)\| < \varepsilon$. On a donc $(f + h)(x) \in U$ pour tout $x \in K$:
 la boule ouverte centrée en $f$ et de rayon $\varepsilon$ dans $C^1(K, \R^m)$
 est incluse dans $C^1(K, U)$.
 
-
-
-**TODO.** $(x \mapsto dg(f(x)) \cdot h(x))$ bien lin cont / à $h \in C^1$
-à valeurs dans les fcts continues. Ouch ...
-
+Notons ensuite que $dg(f(x)) \cdot h(x)$ appartient à $C^0(K,\R^p)$
+et que l'application $h \in C^0(K,\R^m) \mapsto dg(f(x)) \cdot h(x)$
+est linéaire et continue ; on a en effet
+$$
+\begin{split}
+\|dg(f(x)) \cdot h(x)\|_{\infty} 
+&= \left\|\sum_{i} \partial_i g(f(x)) h_i(x)\right\| \\
+&\leq \sum_{i} \|\partial_i g(f(x))\| \|h_i(x)\| \\
+&\leq \left(\sum_i \|\partial_i g(f(x))\|\right) \|h(x)\| \\
+& \leq \left(\max_{x \in K} \sum_i \|\partial_i g(f(x))\|\right) \|h\|_{\infty}.
+\end{split}
+$$
 
 Soit $x \in K$ et $r>0$ (à déterminer) tel que $d(f(K), \R^m \setminus U) > r$.
 La fonction
