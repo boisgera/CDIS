@@ -318,7 +318,6 @@ $$
 soit $(dG(f) \cdot h)(x) = dg(f(x)) \cdot h(x)$, 
 ce qui est bien le résultat cherché.
 
-
 **TODO.** A titre d'exemple, peut être intéressant de différencier 
 $g \circ f$ par rapport à $g$ ; c'est plus simple (euh ... non ?
 La il faut travailler dans les espaces $C^1$ ; bon ok c'est quand
@@ -330,11 +329,18 @@ mais ça donne une idée du type de travail à faire. En exo ?
 qui ne soient pas globalement définis.)
 
 ### TODO -- Démonstration {.proof}
+Remarquons tout d'abord que le domaine de définition $C^1(K, U)$ de $G$ est bien un
+sous-ensemble ouvert de l'espace vectoriel normé $C^1(K, \R^m)$,
+il est donc possible d'envisager sa différentiabilité.
+En effet, si $f \in C^1(K, U)$, l'image $f(K)$ est un sous-ensemble
+compact de $U$ ; par conséquent, $\varepsilon := d(f(K), \R^m \setminus U) > 0$.
+Si $h \in C^1(K, \R^m)$ et que $\|h\|^1_{\infty} < \varepsilon$, alors
+$\|h\|_{\infty} < \varepsilon$ et par conséquent pour tout $x \in K$,
+$\|h(x)\| < \varepsilon$. On a donc $(f + h)(x) \in U$ pour tout $x \in K$:
+la boule ouverte centrée en $f$ et de rayon $\varepsilon$ dans $C^1(K, \R^m)$
+est incluse dans $C^1(K, U)$.
 
-**TODO.** Nota $g \circ f \in C^1$, mais $f \mapsto g \circ f$ 
-pas différentiable si l'on considère cet espace d'arrivée.
 
-**TODO.** $C^1(K, U)$ ouvert.
 
 **TODO.** $(x \mapsto dg(f(x)) \cdot h(x))$ bien lin cont / à $h \in C^1$
 à valeurs dans les fcts continues. Ouch ...
