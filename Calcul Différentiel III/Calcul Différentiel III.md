@@ -269,7 +269,7 @@ la dimension finie
 
 Développement de Taylor, Taylor avec reste intégral, etc.
 
-TODO -- Calcul des variations
+Calcul des variations
 ================================================================================
 
 <!--
