@@ -295,6 +295,34 @@ d (f \mapsto g \circ f)(f) \cdot h
 (x \mapsto dg(f(x)) \cdot h(x))
 $$
 
+### Expression de la différentielle {.remark}
+Si l'on admet (temporairement) que l'application 
+$$
+G: f \in C^0(K,U) \mapsto g \circ f \in C^0(K,\R^p)
+$$
+est différentiable,
+il est possible de deviner quelle sera nécessairement son expression 
+en se ramenant à du calcul différentiel en dimension finie.
+Fixons pour cela un $x \in K$ arbitraire et définissons pour $k=m$ ou $n$
+l'opérateur linéaire continu
+$$
+X: \phi \in C^0(K, \R^k) \to \phi(x) \in \R^k.
+$$
+Par définition de $G$, pour toute fonction $f$ on a 
+$G(f)(x) = (g \circ f)(x) = g(f(x))$, soit $X(G(f)) = g(X(f))$, ou encore
+$X \circ G = g \circ X$. Différencier cette dernière équation en $f$ 
+pour la variation $h$, fournit
+$$
+d(X \circ G)(f)\cdot h = d(g \circ X)(f) \cdot h.
+$$
+Par la règle de différentiation en chaîne, comme $dX(\phi) = X$, on a donc
+$$
+X \cdot dG(f) \cdot h = dg(X(f)) \cdot X \cdot h,
+$$
+soit $(dG(f) \cdot h)(x) = dg(f(x)) \cdot h(x)$, 
+ce qui est bien le résultat cherché.
+
+
 **TODO.** A titre d'exemple, peut être intéressant de différencier 
 $g \circ f$ par rapport à $g$ ; c'est plus simple (euh ... non ?
 La il faut travailler dans les espaces $C^1$ ; bon ok c'est quand
@@ -306,9 +334,6 @@ mais ça donne une idée du type de travail à faire. En exo ?
 qui ne soient pas globalement définis.)
 
 ### TODO -- Démonstration {.proof}
-
-**TODO.** Insister sur le caractère nécessaire du résultat (via composition
-du résultat avec $f \to f(x)$, soit "raisonner à $x$ fixé") (en exo ? Rk ?).
 
 **TODO.** Nota $g \circ f \in C^1$, mais $f \mapsto g \circ f$ 
 pas différentiable si l'on considère cet espace d'arrivée.
