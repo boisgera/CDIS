@@ -2574,7 +2574,7 @@ $g$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable
 et qu'alors, $f' = g'|_{[a, b]}$.
 
 
-Différentiation en chaîne {.question #dec}
+Différentiation en chaîne {#dec}
 --------------------------------------------------------------------------------
 
 [La règle générale de différentiation en chaîne](#chain-rule)
