@@ -318,12 +318,6 @@ $$
 soit $(dG(f) \cdot h)(x) = dg(f(x)) \cdot h(x)$, 
 ce qui est bien le résultat cherché.
 
-**TODO.** A titre d'exemple, peut être intéressant de différencier 
-$g \circ f$ par rapport à $g$ ; c'est plus simple (euh ... non ?
-La il faut travailler dans les espaces $C^1$ ; bon ok c'est quand
-même plus simple)
-mais ça donne une idée du type de travail à faire. En exo ?
-
 ### Démonstration {.proof}
 Remarquons tout d'abord que le domaine de définition $C^1(K, U)$ de $G$ est bien un
 sous-ensemble ouvert de l'espace vectoriel normé $C^1(K, \R^m)$,
@@ -510,6 +504,16 @@ $$
 \|f\|_1 = \int_0^1 |f(x)| \, dx.
 $$
 
+Différentiation d'une composition {.question #dc}
+--------------------------------------------------------------------------------
+
+Soit $J$ un ensemble compact de $\R^n$, $f \in C^0(J, \R^n)$ et $K$
+un ensemble compact de $\R^n$ contenant $f(J)$.
+On note $F$ l'application
+$$
+F: g \in C^0(K, \R^p) \mapsto g \circ f \in C^0(J ,\R^p).
+$$
+Montrer que $F$ est différentiable et calculer sa différentielle.
 
 Gradient de Forme
 --------------------------------------------------------------------------------
@@ -535,3 +539,20 @@ par rapport au centre et au rayon sans ça, avec uniquement la dérivation
 
 Solutions
 ================================================================================
+
+Différentiation d'une composition {.answer #answer-dc}
+--------------------------------------------------------------------------------
+
+Soit $g, h \in C^0(K, \R^p)$ ; on a 
+$(g+h) \circ f - g \circ f = h \circ f,$ soit
+$$F(g+h) - F(g) - h \circ f = 0.$$
+De plus, la fonction $h \in C^0(K, \R^p) \mapsto h \circ f \in C^0(J, \R^p)$ 
+est linéaire (évident) et continue, car 
+$$
+\|h\circ f\|_{\infty} = \max_{x \in J} \|(h \circ f)(x)\| \leq 
+\max_{y \in K} \|h(y)\| = \|h\|_{\infty}.
+$$
+La fonction $F$ est donc différentiable en $g$ et
+$$
+dF(g) \cdot h = h \circ f.
+$$
