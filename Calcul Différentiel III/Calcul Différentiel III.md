@@ -508,17 +508,28 @@ F: g \in C^0(K, \R^p) \mapsto g \circ f \in C^0(J ,\R^p).
 $$
 Montrer que $F$ est différentiable et calculer sa différentielle.
 
-Gradient de Forme
+TODO -- Gradient de Forme {.question #gf}
 --------------------------------------------------------------------------------
 
-(dérivée une fonctionnelle dépendant de la géométrie en transportant la
-géomtrie par $I+u$, puis dérivée par rapport à $u$ ?)
+**TODO.** Préciser cadre des perturbations, matcher avec ce qui vient avant
+(Calcul Intégral III) si nécessaire, adapter et rédiger les "détails techniques" 
+du corrigé ensuite.
 
-$\Omega$ dans $U$ paramétrisé par une déformation $T = I + u$ avec $u$ petit
-et une base $\Omega_0$ qui est un compact à bords $C^1$.
-Différencier le volume de $\Omega$ par rapport $T$ (chgt de variable, etc), 
-utiliser Stokes, montrer que la différentielle ne dépend que de 
-$\left<V, n\right>$.
+Soit $K_0$ un compact à bord $C^1$ de $\R^3$ et $T:K_0 \to \R^3$ une 
+application continûment différentiable. On s'intéresse au volume 
+de $K= T(K_0)$, vu comme une fonction de $T$.
+$$
+V = \int_{K} \, dx.
+$$
+
+Montrer que si $T est suffisamment proche de l'identité dans $C^1(K_0, \R^3)$,
+il admet une extension comme un $C^1$-diffeomorphisme (global) de $\R^3$ dans
+lui-même.
+
+Montrer que $V$ est une fonction différentiable de $T$ au point $T=I$ 
+dans $C^1(K, \R^3)$ et calculer sa différentielle $dV(I) \cdot H$.
+
+
 
 
 Théorème de Cauchy Intégral
@@ -547,3 +558,45 @@ $$
 $$
 La fonction $F$ est donc différentiable en $g$ et
 $dF(g) \cdot h = h \circ f.$
+
+TODO -- Gradient de Forme {.answer #answer-gf}
+--------------------------------------------------------------------------------
+
+Par changement de variable, $T$ étant un $C^1$-difféomorphisme, 
+$$
+V = \int_{T(K)} dx = \int_{K} |\det J_T(x)| \, dx.
+$$
+Quand $T$ est suffisamment proche de l'identé, $\det J_T(x) > 0$.
+L'application $\det$ est continûment différentable dans un voisinage
+de l'identité, de différentielle
+$$
+d\det(I) \cdot H = \mathrm{tr}(H).
+$$
+L'application 
+$$
+T \in C^1(K,\R^3) \mapsto J_T \in C^0(K, \R^{3\times 3})
+$$
+est également continûment différentiable (car linéaire continue entre ces
+espaces). 
+La fonction 
+$$
+T \in C^1(K, \R^3) \mapsto \det J_T \in C^1(K,\R^3)
+$$
+est donc différentiable en $I$ comme différentielle d'une composition et
+$$
+d(T \mapsto \det J_T) \cdot H = \mathrm{tr}(J_H) = \sum_{i=1}^3 \partial_i H_i
+= \mathrm{div} \, H.
+$$
+L'application
+$$
+f \in C^0(K,\R^3) \mapsto \int_{K} f dx \in \R
+$$
+étant linéaire continue, le volume est une fonction différentiable de $T$
+en l'identité et
+$$
+d V(T) \cdot H = \int_K \mathrm{div} \, H(x) \, dx,
+$$
+soit encore par le théorème de la divergence,
+$$
+d V(T) \cdot H = \int_{\partial K} \left<H(x), n(x) \right> \, \sigma(dx).
+$$
