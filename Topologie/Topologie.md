@@ -42,7 +42,7 @@ TODO / acquis {.meta}
 
 -->
 
-Structures Topologiques
+Structures topologiques
 ================================================================================
 
 ### Norme {.definition}
@@ -1767,7 +1767,7 @@ Lien norme d'opérateur et rayon spectral ??? Cf supra sur rayon spectral
 et lien avec norme.
 -->
 
-Équation Différentielle
+Équation différentielle
 --------------------------------------------------------------------------------
 Soit $A$ un opérateur linéaire de $\R^n$ dans $\R^n$. 
 On souhaite montrer que pour tout $x_0 \in \R^n$,
@@ -1876,7 +1876,7 @@ sont compacts.
 
 -->
 
-Solutions aux exercices
+Solutions
 ================================================================================
 
 Normes d'opérateurs {#answer-no}
@@ -2713,7 +2713,7 @@ L'opérateur $A$ est donc inversible et $A^{-1} \cdot y$ peut être calculé com
 la limite de la suite
 $x_{k+1} = B \cdot x_k$ pour un $x_0 \in \R^n$ arbitraire.
 
-Équation Différentielle
+Équation différentielle
 --------------------------------------------------------------------------------
 
 ### Question 1 {#answer-ed-1 .answer}
