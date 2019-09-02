@@ -1582,6 +1582,21 @@ $$
 d(x, y) = \|f_x - f_y\|_{\infty}.
 $$
 
+<!--
+Limite approchée {.question #approximate-limit}
+--------------------------------------------------------------------------------
+
+Soit $x_k$ une suite de points dans un espace métrique $X$. On dit que 
+$\ell \in X$ est une *limite approchée de la suite $x_k$ à la précision
+$\varepsilon > 0$* s'il existe un seuil $n \in \N$ tel que pour tout
+$k \geq m$, on ait $d(x_k, \ell) \leq \varepsilon$.
+
+Comment désigner une suite qui admet pour tout $\varepsilon$ 
+une limite approchée $\ell$ (qui peut dépendre de $\varepsilon$) ?
+
+-->
+
+
 Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
 
