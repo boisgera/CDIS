@@ -740,7 +740,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
 ### Calcul topologique {.ante}
 Avec l'opérateur d'adhérence, [les axiomes définissant
 une relation d'adhérence](#ak) -- et donc un espace topologique -- 
-prennent une forme symbolique simple:
+prennent une forme symbolique simple :
 
  1. $\overline{\varnothing} = \varnothing$,
 
