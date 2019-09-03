@@ -56,7 +56,7 @@ constituée d'intervalles fermés inclus dans $I$, *sans chevauchement*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
 plus un point -- 
 et *recouvrant $I$* 
--- l'union de tous les intervalles $I_i$ est égal à $I$. 
+-- l'union de tous les intervalles $I_i$ est égale à $I$. 
 Une *subdivision pointée* $\mathcal{D}$ de l'intervalle fermé $I = [a, b]$ 
 est une collection finie 
 $$
@@ -107,10 +107,10 @@ la somme de Riemann associée vérifie
 $$
 \begin{split}
 S(f, \mathcal{D}_m) 
-&= \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right) \ell 
+&= \sum_{i=0}^{m-1} f\left(a + i\frac{b-a}{m}\right) \ell 
 \left(\left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)\\
-&= \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right) \frac{b-a}{m}  \\
-&= \frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right)
+&= \sum_{i=0}^{m-1} f\left(a + i\frac{b-a}{m}\right) \frac{b-a}{m}  \\
+&= \frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + i\frac{b-a}{m}\right)
 \end{split}
 $$
 De plus, quel que soit $\delta > 0$, pour $m$ suffisamment grand, on a
@@ -123,7 +123,7 @@ $$
 $$
 Par conséquent,
 $$
-\frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + \frac{b-a}{m}\right)
+\frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + i\frac{b-a}{m}\right)
 \to \int_a^b f(t) \, dt
 \, \mbox{ quand } \, m \to +\infty.
 $$
@@ -154,7 +154,7 @@ $[a, b]$ vérifiant $\ell(J) < \delta$ pour tout $(t, J) \in \mathcal{D}$,
 on ait
 $$\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq 1.$$
 Soit $\mathcal{D} = \{(t_i, [a_i, b_i])\}_{i=0}^{m-1}$ une telle subdivision;
-il est toujours possible de supposer en en outre que $\mathcal{D}$ ne contient 
+il est toujours possible de supposer en outre que $\mathcal{D}$ ne contient 
 aucun intervalle de longueur nulle (enlever de tels intervalles à $\mathcal{D}$
 génère une nouvelle subdivision dont la somme de Riemann est identique).
 
@@ -204,7 +204,7 @@ de départ est de longueur nulle[^me]
 et que c'est donc ce que signifie "négligeable". 
 Nous verrons ultérieurement que cette intuition sera vérifiée.
 
-[^me]: plus exactement de mesure *extérieure* de longueur nulle.
+[^me]: plus exactement de mesure *extérieure* nulle.
 
 ### Presque partout {.definition}
 Une propriété dépendant d'un réel $x$ est vraie *presque partout*
@@ -266,7 +266,7 @@ $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 On peut associer à une jauge $\gamma$ sur $[a, b]$ l'ensemble du plan
 $$
-\{(x, y) \; | \; x \in [a, b], \, y \in \gamma(x) \}.
+\{(x, y) \; | \; y \in [a, b], \, x \in \gamma(y) \}.
 $$
 Par construction, cet ensemble contient la diagonale 
 $D = \{(x,x) \; | \; x \in [a, b]\}.$
@@ -361,7 +361,7 @@ mais dans un but bien précis
 -- l'étude des équations différentielles généralisées -- probablement sans
 réaliser totalement la portée de sa définition) 
 ou *intégrale de Denjoy-Perron-Kurzweil-Henstock* (Arnaud Denjoy et Oskar Perron
-ont introduit des les années 1910 des intégrales équivalentes, mais dont la
+ont introduit dès les années 1910 des intégrales équivalentes, mais dont la
 définition est beaucoup plus complexe et en apparence très différentes ; 
 en particulier, les sommes de Riemann n'interviennent pas dans 
 ces définitions).
@@ -397,14 +397,14 @@ La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et
 l'intégrale associée est égale à son intégrale de Riemann.
 
 ### {.ante}
-Le résultat équivalent vaut pour l'intégrale de Newton:
+Le résultat équivalent vaut pour l'intégrale de Newton :
 
 ### Intégrale de Newton et de Henstock-Kurzweil {.corollary}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
 
 ### {.post .ante}
-L'énoncé précédent peut être réformulé de la façon suivante: 
+L'énoncé précédent peut être reformulé de la façon suivante : 
 l'intégrale de Henstock-Kurzweil satisfait 
 [le théorème fondamental du calcul](#TCF) en toute généralité.
 
