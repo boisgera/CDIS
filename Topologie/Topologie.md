@@ -548,7 +548,7 @@ Par conséquent, $f(x_k) \to f(x)$ quand $k \to +\infty$,
 soit $d(f(x_k), f(x)) \to 0$ quand $k \to +\infty$. 
 Comme l'ensemble $\{f(x_k) \, | \, k \in \N\}$ est un sous-ensemble
 de $f(A)$, nous en déduisons que $d(f(x), f(A)) = 0$: 
-le point $f(x)$ adhère à à $f(A)$.
+le point $f(x)$ adhère à $f(A)$.
 La fonction $f$ est donc continue en $x$.
 
 Réciproquement, si $f(y) \not \to f(x)$ quand $y \to x$, 
