@@ -2451,14 +2451,26 @@ De plus,
 
   3. On a $$\begin{split}\|f+g\|_{\infty} &= \sup_{x\in E} \| f(x) + g(x)\| \\ &\leq \sup_{x\in E} \|\lambda f(x)\| + \sup_{x\in E} \|\lambda g(x)\|\\ &= \|f\|_{\infty} + \|g\|_{\infty}.\end{split}$$
 
-### TODO -- Question 4 {#answer-pk-4 .answer}
-
-**TODO** Montrer que $x \mapsto f_x$ est une isométrie, 
-c'est-à-dire que pour tout $x$ et
-$y$ dans $X$, on a 
+### Question 4 {#answer-pk-4 .answer}
+Soient $x, y \in X$ ; on a
 $$
-d(x, y) = \|f_x - f_y\|_{\infty}.
+f_x(z) - f_y(z) = d(z, x) - d(z, x_0) - (d(z, y) - d(z, y_0)) = d(z, x) - d(z, y).
 $$
+Par conséquent, par [l'inégalité triangulaire](#dist-ineg),
+$$
+\|f_x - f_y\|_{\infty}
+= \sup_{y \in X} |d(z, x) - d(z, y)| \leq d(x, y)
+$$
+et d'autre part
+$$
+\|f_x - f_y\|_{\infty}
+= \sup_{y \in X} |d(z, x) - d(z, y)| \geq |d(x, x) - d(x, y)| = d(x, y).
+$$
+Finalement, on a bien
+$$
+\|f_x - f_y\|_{\infty} = d(x, y)
+$$
+et $x \mapsto f_x$ est une isométrie.
 
 Le nombre d'or {#golden-ratio}
 --------------------------------------------------------------------------------
