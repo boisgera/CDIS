@@ -313,7 +313,7 @@ En faisant de la sorte pour tous les points et ensembles de points
 de l'espace métrique et en "oubliant" ensuite la distance qui a permis
 cette construction, on remplace une mesure quantitative de proximité
 sur l'ensemble par une mesure uniquement qualitative 
-(dans ce contexte, "$x$ adhére à $A$" peut être interprété comme 
+(dans ce contexte, "$x$ adhère à $A$" peut être interprété comme 
 "$x$ dans $A$ ou infiniment proche de $A$").
 
 ### Relation d'adhérence {.definition #ak}
