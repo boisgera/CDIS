@@ -343,14 +343,14 @@ restreinte aux points et sous-ensembles de $Y$.
 
 ### Continuité
 Une application $f: X \to Y$ définie entre deux espaces topologiques
-est *continue en $x \in X$* si lorsque $x$ adhère à $A$ dans $X$, 
+est *continue en $x \in X$* si, lorsque $x$ adhère à $A$ dans $X$, 
 $f(x)$ adhère à $f(A)$ dans $Y$. Une application continue en tout point
 $x \in X$  est *continue*.
 
 --------------------------------------------------------------------------------
 
 ### {.post}
-Les applications sont les *morphismes* des espaces topologiques:
+Les applications continues sont les *morphismes* des espaces topologiques:
 elle préservent la structure des espaces topologiques.
 
 ### {.post}
