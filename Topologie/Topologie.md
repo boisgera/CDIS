@@ -1146,7 +1146,7 @@ compact.
 
 Soit $f: K \subset X \to Y$ où $X$ et $Y$ sont deux espaces métriques 
 et $K$ un sous-ensemble compact de $X$. 
-Soit $y_k$ une suite de points de $f(K)$; par construction, 
+Soit $y_k$ une suite de points de $f(K)$ ; par construction, 
 il existe une suite de points $x_k$ de $K$ tels que $f(x_k) = y_k$. 
 Soit $z_k$ une sous-suite de $x_k$ qui converge vers un $\ell \in K$; 
 par continuité de $f$ en $\ell$, la suite des $f(z_k)$
@@ -1514,7 +1514,7 @@ TODO: comparaison manuelle, meilleure bornes
 Distance entre ensembles
 --------------------------------------------------------------------------------
 
-Soit $A$ et $B$ deux ensembles compacts non vides de $\mathbb{R}^n$; 
+Soit $A$ et $B$ deux ensembles compacts non vides de $\mathbb{R}^n$ ; 
 on souhaite évaluer à quel point les deux ensembles diffèrent
 -- en mesurant à quelle distance les points de $A$ peuvent 
 être éloignés de l'ensemble $B$ et réciproquement.
@@ -1527,7 +1527,6 @@ $$
 fait l'affaire ?
 
 ### {.definition}
-
 On définit la grandeur
   $$
   d[A, B] = \max \left\{ \sup_{a \in A} d(a, B), \, \sup_{b \in B} d(b, A) \right\}.
@@ -1972,20 +1971,20 @@ où $\Sigma \cdot (x_1, \dots, x_n) = (\sigma_1 x_1, \dots, \sigma_n x_n)$
 et $U \in \R^{n} \to \R^n$ et $V \in \R^n \to \R^n$ sont des applications 
 linéaires orthogonales (inversible et dont l'inverse est l'adjoint). 
 Pour montrer que $\sigma_1(\cdot)$
-constitue la norme $\|\cdot\|_{22}$ induite par la norme euclidienne
-$\|\cdot\|_2$ sur les vecteurs de $\R^n$, on constate au préalable que
+constitue la norme d'opérateur $\|\cdot\|_{22}$ induite par la norme euclidienne
+$\|\cdot\|_2$ des vecteurs de $\R^n$, on constate au préalable que
 pour toute application orthogonale $U$,
 $$
 \|U \cdot x\|^2 = \sqrt{\left< U \cdot x, U \cdot x \right>}
-= \sqrt{\left<U^{\star} \cdot U \cdot x, x \right>}
+= \sqrt{\left<U^* \cdot U \cdot x, x \right>}
 = \sqrt{\left<x, x\right>} = \|x\|_2,
 $$
 puis que
 $$
 \begin{split}
-\|A\|_{22} &= \sup_{\|x\|_2 \leq 1} \|(U \cdot \Sigma \cdot V^*) \cdot x\|  \\
-&= \sup_{\|x\|_2 \leq 1} \|U \cdot (\Sigma \cdot (V^* \cdot x))\| \\
-&= \sup_{\|y\|_2 \leq 1} \|\Sigma \cdot y\| \\
+\|A\|_{22} &= \sup_{\|x\|_2 \leq 1} \|(U \cdot \Sigma \cdot V^*) \cdot x\|_2  \\
+&= \sup_{\|x\|_2 \leq 1} \|U \cdot (\Sigma \cdot (V^* \cdot x))\|_2 \\
+&= \sup_{\|y\|_2 \leq 1} \|\Sigma \cdot y\|_2 \\
 &= \sup_{\|y\|_2 \leq 1} \sqrt{\sigma_1^2 y_1^2 + \dots + \sigma_n y_{n}^2} \\
 &= \sigma_1.
 \end{split}
@@ -2186,7 +2185,7 @@ Par conséquent, $B$ est fermé dans $A$.
 
 ### Question 1 {.answer #answer-lf-1}
 
-Soit $x \in A:=\left[0, 1\right[$; 
+Soit $x \in A:=\left[0, 1\right[$ ; 
 si $x>0$, on peut prendre $V=\left]x/2, 1\right[$.
 C'est bien un voisinage ouvert de $x$ et $A\cap V = V$. 
 L'ensemble $A \cap V$ est donc fermé dans $V$. 
@@ -2263,7 +2262,7 @@ A = \bigcup_{a \in A} V_a \setminus \left(\bigcup_{a \in A} V_a \setminus A\righ
 $$
 Posons $V = \cup_{a \in A} V_a$;
 le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
-ensemble fermé $F$; de l'équation ci-dessus on déduit donc
+ensemble fermé $F$ ; de l'équation ci-dessus on déduit donc
 que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
 
 Distance entre ensembles
@@ -2322,17 +2321,18 @@ La distance de Hausdorff entre $A$ et $B$ vaut donc $\sqrt{2}$.
 ### Question 3 {.answer #answer-dh-3}
 
 Vérifions que la "distance" de Hausdorff est effectivement une distance
-sur l'espace des sous-ensembles compacts de $R^n$.
+sur l'espace des sous-ensembles compacts de $\R^n$.
 
- 1. Axiome de symétrie. Il est clair par construction que pour tous les
-    ensembles compacts non vide $A$ et $B$ de $\R^n$, on a $d[A, B] = d[B, A]$.
-
- 2. Axiome de séparation. Si $$d[A, B] = \max(\sup_{a \in A} d(a, B), \sup_{b \in B} d(b, A)) = 0,$$
+ 1. Axiome de séparation. 
+    Si $$d[A, B] = \max(\sup_{a \in A} d(a, B), \sup_{b \in B} d(b, A)) = 0,$$
     alors pour tout $a \in A$, $d(a, B) = 0$ et pour tout $b \in B$, 
     $d(b, A) = 0$, c'est-à-dire $a \in \overline{B}$ et $b \in \overline{A}$.
     Par conséquent, puisque $A$ et $B$ sont fermés, 
     $A \subset \overline{B} = B$ et $B \subset \overline{A} = A$
     et donc $A = B$.
+
+ 2. Axiome de symétrie. Il est clair par construction que pour tous les
+    ensembles compacts non vides $A$ et $B$ de $\R^n$, on a $d[A, B] = d[B, A]$.
 
  3. Pour tout $a \in A$, $b \in B$, $c \in C$, l'inégalité triangulaire
     fournit $d(a, c) \leq d(a, b) + d(b, c)$. 
@@ -2377,7 +2377,7 @@ suite $x_k$ de points de $A+B$, alors il existe des $a_k$ de $A$
 et $b_k$ de $B$ tels que $x_k = a_k + b_k$. Par compacité de $A$, 
 il existe une suite $a_{\sigma(k)}$ 
 -- où $\sigma: \N \to \N$ est croissante --
-qui converge vers un $a \in A$;
+qui converge vers un $a \in A$ ;
 par compacité de $B$, il existe une suite $b_{\tau (\sigma(k))}$
 -- où $\tau: \N \to \N$ est croissante --
 qui converge vers un $b \in B$. 
@@ -2396,10 +2396,10 @@ $$
 &=
 \sup_{a \in A} \sup_{b \in B} \inf_{c \in C} \inf_{d \in D}
 \|a + b - c - d\| \\
-&=
+&\leq
 \sup_{a \in A} \sup_{b \in B} \inf_{c \in C} \inf_{d \in D}
 \|a - c\| + \|b - d\| \\
-&= \sup_{a \in A} \inf_{c \in C} 
+&\leq \sup_{a \in A} \inf_{c \in C} 
 \|a - c\| 
 + \sup_{b \in B} \inf_{d \in D}
 \|b - d\| \\
@@ -2539,7 +2539,7 @@ comme $\left[1, +\infty\right[$ est complet
 -- en tant que fermé dans un espace complet -- 
 le théorème du point fixe de Banach garantit l'existence et l'unicité
 d'un point fixe. Notons finalement que si $x_0 \in \left]0,1\right[$, 
-$f(x_0) \in \left[1, +\infty\right[$; par conséquent le résultat
+$f(x_0) \in \left[1, +\infty\right[$ ; par conséquent le résultat
 vaut non seulement pour tout $x_0 \in \left[1, +\infty\right[$ mais
 bien pour tout $x_0 \in \left]0, +\infty\right[$.
 
