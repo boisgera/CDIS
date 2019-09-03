@@ -1682,8 +1682,8 @@ Point fixe {#TPFB2}
 **TODO:** exemple introductif (simple, matriciel $2\times2$)
 -->
 
-Soit $f: E \to E$ une fonction définie et à valeurs dans un espace métrique 
-complet $E$ pour laquelle il existe un entier $n \geq 1$ tel que la composée 
+Soit $f: X \to X$ une fonction définie et à valeurs dans un espace métrique 
+complet $X$ pour laquelle il existe un entier $n \geq 1$ tel que la composée 
 $n$ fois de $f$ avec elle-même, notée $f^n$, est contractante. 
 
 On souhaite montrer que sous ces hypothèses 
@@ -2667,7 +2667,7 @@ c'est-à-dire que $x$ est un point fixe de $f$.
 ### Question 3 {.answer #answer-pf-3}
 
 Le "procédé habituel pour construire un point fixe de $f$" 
-consiste à prendre un $x_0 \in E$ quelconque et à construire 
+consiste à prendre un $x_0 \in X$ quelconque et à construire 
 par récurrence la suite des $x_{k+1} = f(x_k)$. 
 On souhaite donc montrer que cette suite converge vers l'unique point fixe 
 $x$ de $f$. 
