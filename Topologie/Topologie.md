@@ -1018,6 +1018,7 @@ $$
 et la limite uniforme de la suite des $f_k$.
 
 ### Application contractante {.definition}
+Soit $X$ un espace métrique.
 Une fonction $f: X \to X$ est *$\kappa$-contractante*, 
 où $\kappa \in \left[0, 1\right[$,
 si pour tout couple de points $x$ et $y$ de $X$, on a 
