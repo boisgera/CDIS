@@ -673,7 +673,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     $$
     V \in \mathcal{V}(x)
     \; \Leftrightarrow \; 
-    d(x, X \setminus A) > 0.
+    d(x, X \setminus V) > 0.
     $$
 
   - Un ensemble $A$ est *ouvert* si la distance de tout point de $A$
@@ -719,7 +719,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
     $$
     x \in \mathring{A}
     \; \Leftrightarrow \; 
-    x \not \in X \setminus A.
+    x \not \in \overline{X \setminus A}.
     $$
 
   - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si
