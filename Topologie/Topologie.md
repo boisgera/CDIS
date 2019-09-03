@@ -1684,7 +1684,7 @@ Point fixe {#TPFB2}
 
 Soit $f: X \to X$ une fonction définie et à valeurs dans un espace métrique 
 complet $X$ pour laquelle il existe un entier $n \geq 1$ tel que la composée 
-$n$ fois de $f$ avec elle-même, notée $f^n$, est contractante. 
+$n$ fois de $f$ avec elle-même, notée $f^n$, soit contractante. 
 
 On souhaite montrer que sous ces hypothèses 
 -- qui généralisent celles du [théorème de point fixe de Banach](#T-TPFB) -- 
@@ -1807,8 +1807,9 @@ x(t) = x_0 + \int_0^t A \cdot x(s) \, ds.
 $$
 
 ### Question 2 {.question #ed-2}
-Soit $T > 0$; on note $E$ l'espace des fonctions continues de $[0, T]$ dans
-$\R^n$, muni de la norme
+Soit $T > 0$ ; 
+on note $E$ l'espace des fonctions continues de $[0, T]$ dans $\R^n$, 
+muni de la norme
 $$
 \|x\|_{\infty} = \sup_{t \in [0, T]} \|x(t)\|.
 $$
