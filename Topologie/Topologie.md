@@ -231,7 +231,7 @@ tout espace vectoriel normé "est" un espace métrique.
 Réciproquement, les espaces métriques ne sont pas plus généraux que les
 sous-ensembles d'espace vectoriels normés: tout espace métrique peut en
 effet être identifié au moyen d'une isométrie avec un tel sous-ensemble
-(cf. l'exercice "[Plongement de Kuratowski]"). Les espaces métrique
+(cf. l'exercice "[Plongement de Kuratowski]"). Les espaces métriques
 n'exhibent donc aucune propriété qui ne soit déjà manifeste dans l'étude
 des sous-ensembles d'espaces vectoriel normés.
 
