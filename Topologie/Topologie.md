@@ -274,7 +274,7 @@ d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a \in A} \inf_{b \in B} d(a, b)
 \in \left[0, +\infty \right].
 $$
 Si $A$ est l'ensemble vide, on a $d(x, A) = +\infty$ et si $A$ ou $B$ est
-vide on a $d(A, B)= +\infty$; ce sont les seuls cas où ces extensions de
+vide on a $d(A, B)= +\infty$ ; ce sont les seuls cas où ces extensions de
 la distance entre points peuvent prendre des valeurs infinies.
 
 ### {.ante}
