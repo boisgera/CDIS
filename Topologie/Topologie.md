@@ -959,7 +959,7 @@ L'espace $\mathbb{R}^n$ est complet.
 ### Démonstration {.proof}
 Dans les cas de $\R$ (c'est-à-dire quand $n=1$), 
 le résultat est une conséquence directe de la 
-construction de $\R$ comme complété de $\Q$[^ahahah].
+construction de $\R$ comme complété de $\Q$([^ahahah]).
 Pour des valeurs de $n > 1$, si $x_k$ est une suite de Cauchy,
 ses composantes $x_k^1, \dots, x_k^n$ sont aussi de Cauchy car
 pour tout $i \in \{1, \dots, n\}$,
