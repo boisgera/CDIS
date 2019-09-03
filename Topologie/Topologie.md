@@ -1154,9 +1154,9 @@ par continuité de $f$ en $\ell$, la suite des $f(z_k)$
 converge vers $f(\ell) \in f(K)$. 
 L'ensemble $f(K)$ est donc compact.
 
-### Existence d'un minimum {.corollary #T-EM}
+### Existence d'un minimum / maximum {.corollary #T-EM}
 Une fonction continue $f: K \to \mathbb{R}$ définie sur un ensemble compact 
-$K$ admet un minimum global.
+$K$ admet un minimum global et un maximum global.
 
 ### Démonstration {.proof}
 Soit $x_k \in K$ une suite minimisante de $f$, c'est-à-dire telle que
@@ -1169,6 +1169,8 @@ $$
 f(\ell) = \lim_{k \to +\infty} f(y_k) = \inf_{x \in K} f(x).
 $$
 La fonction $f$ admet donc un minimum en $\ell$.
+En appliquant ce résultat à la fonction $-f$, 
+on établit que $f$ admet un maximum.
 
 
 ### Complétude de l'espace des fonctions continues {.proposition}
@@ -1182,8 +1184,8 @@ est complet.
 
 ### Démonstration {.proof}
 En préambule: pour toute fonction $f$ continue de $X$ dans $Y$,
-la fonction $$x \in X \mapsto -d(f(x), 0) \in \R,$$ 
-continue et définie sur un compact, [admet un minimum](#T-EM); 
+la fonction $$x \in X \mapsto d(f(x), 0) \in \R,$$ 
+continue et définie sur un compact, [admet un maximum](#T-EM); 
 la fonction $f$ est donc bornée.
 L'espace des fonction continues de $X$ dans $Y$ est donc un
 sous-espace métrique de l'espace des fonctions bornées de $X$ dans $Y$.
