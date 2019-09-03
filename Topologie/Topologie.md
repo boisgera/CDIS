@@ -1638,7 +1638,7 @@ $$
 ![Spirale d'Euler ($0 \leq t \leq 5$)](images/euler.py)
 
 Nous souhaitons établir que cette spirale à un point limite quand 
-$t \to +\infty$[^euler].
+$t \to +\infty$([^euler]).
 
 ### Question 1 {.question #se-1}
 Montrer que si pour toute suite de valeurs $t_k$ tendant vers l'infini, 
