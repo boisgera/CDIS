@@ -1435,7 +1435,7 @@ $$
 on trouvera fréquemment la notation $\overline{\R}$ 
 pour désigner l'ensemble des réels étendus; 
 mais cette convention se heurte alors avec la désignation de l'adhérence
-de $\mathbb{R}$ dans lui-même, une autre interprétation selon laquelle 
+de $\mathbb{R}$ dans lui-même, une interprétation selon laquelle 
 on aurait $\overline{\mathbb{R}} = \mathbb{R}$. 
 
 ### Question 1 {.question #dra-1}
