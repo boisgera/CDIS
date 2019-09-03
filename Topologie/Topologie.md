@@ -140,7 +140,7 @@ $$
     &= \sup_{x \neq 0} \frac{\|(A+B) \cdot x\|_F}{\|x\|_E} \\
     &= \sup_{x \neq 0} \frac{\|A\cdot x + B \cdot x\|_F}{\|x\|_E} \\
     &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F + \|B \cdot x\|_F}{\|x\|_E} \\
-    &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F}{\|x\|_E} +  
+    &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F}{\|x\|_E} 
         + \sup_{x \neq 0} \frac{\|B\cdot x\|_F}{\|x\|_E} \\
     &= \|A\| + \|B\|
 \end{split}
