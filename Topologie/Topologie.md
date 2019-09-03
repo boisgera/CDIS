@@ -1556,8 +1556,8 @@ Plongement de Kuratowski
 --------------------------------------------------------------------------------
 
 Nous souhaitons établir le résulat suivant: tout espace métrique peut être
-identifié à un sous-ensemble d'un espace vectoriel normé tout en préservant 
-sa distance.
+identifié à un sous-ensemble d'un espace vectoriel normé
+d'une façon qui préserve la distance entre points.
 
 Soit $X$ un espace métrique et $x_0$ un point de $X$. 
 On associe à l'élément $x$ de $X$ la fonction $f_x: X \to \R$ définie
