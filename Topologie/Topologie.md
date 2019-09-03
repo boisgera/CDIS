@@ -1058,7 +1058,7 @@ $$
 converge vers un point fixe. 
 Le point crucial est d'établir que cette suite
 admet une limite $\ell$ ; en effet, si ce résultat est acquis, 
-en passant à la limite sur $n$ dans la relation de récurrence, 
+en passant à la limite sur $n$ dans la relation de récurrence
 et exploitant la continuité de l'application $f$, on obtient
 $$
 \ell = \lim_{n \to +\infty} x_{n+1} = \lim_{n \to +\infty}f(x_n) = f(\ell).
