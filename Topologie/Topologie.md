@@ -118,7 +118,7 @@ est un espace vectoriel normé.
 ### Démonstration {.proof}
 Il est clair que si $A$ et $B$ sont des opérateurs linéaires bornés de $E$ dans
 $F$ et $\lambda$ est un réel, 
-alors $\lambda A$ et $A + B$ sont des opérateurs linéaires de $E$ dans $F$ ; 
+alors $\lambda A$ et $A + B$ sont des opérateurs linéaires bornés de $E$ dans $F$ ; 
 les opérateurs linéaires bornés forment donc un espace vectoriel. 
 De plus $\|A\|$ est positive et si $\|A\| = 0$, c'est-à-dire si
 $$
