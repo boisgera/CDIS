@@ -203,9 +203,9 @@ $$
 telle que pour tous points 
 $x, y$ et $z$ de $X$, on ait:
 
- 1. [$d(x,y) = d(y,x)$ (*symétrie*)]{#dist-sym},
+ 1. [$d(x,y) = 0$ si et seulement si $x = y$ (*séparation*)]{#dist-sep},
 
- 2. [$d(x,y) = 0$ si et seulement si $x = y$ (*séparation*)]{#dist-sep},
+ 2. [$d(x,y) = d(y,x)$ (*symétrie*)]{#dist-sym},
 
  3. [$d(x,z) \leq d(x,y) + d(y,z)$ (*inégalité triangulaire*)]{#dist-ineg}.
 
@@ -240,19 +240,19 @@ des sous-ensembles d'espaces vectoriel normés.
 Par construction, la fonction $d$ est bien positive. 
 De plus, pour tous points $x, y$ et $z$ de $X$:
 
- 1. Par [homogénéité de la norme $\| \cdot \|$](#norme-homo), on a
-    $$
-    \|x - y\| = \|(-1) \times (y-x)\| = |-1| \times \|y - x\| = \|y - x\|,
-    $$
-    et donc $d(x, y) = d(y, x)$, 
-    d'où la [symétrie de la fonction $d$](#dist-sym).
-
- 2. Par l'[axiome de séparation des normes](#norme-sep), 
+ 1. Par l'[axiome de séparation des normes](#norme-sep), 
     $$
     \|x - y\| = 0 \, \Leftrightarrow \, x - y = 0 \, \Leftrightarrow \, x = y.
     $$
     Cela entraîne que $d(x, y) = 0$ si et seulement si $x=y$, 
     soit l'[axiome de séparation pour la distance $d$](#dist-sep).
+
+ 2. Par [homogénéité de la norme $\| \cdot \|$](#norme-homo), on a
+    $$
+    \|x - y\| = \|(-1) \times (y-x)\| = |-1| \times \|y - x\| = \|y - x\|,
+    $$
+    et donc $d(x, y) = d(y, x)$, 
+    d'où la [symétrie de la fonction $d$](#dist-sym).
 
  3. Par l'[inégalité triangulaire pour les normes](#norme-ineg), on a
     $$
