@@ -977,8 +977,8 @@ la convergence de $x_k$ vers $\ell$.
 Toute suite de Cauchy de $\R^n$ est donc convergente.
 
 [^ahahah]: bien sûr si l'on a utilisé une technique alternative pour
-construire $\R$, par exemple par les coupures de Dedekind, il faut en
-faire la démonstration.
+construire $\R$, par exemple par les coupures de Dedekind, 
+la complétude de $\R$ n'a rien d'automatique.
 
 ### Complétude de l'espace des fonctions bornées {.proposition}
 Soit $X$ un ensemble et $Y$ un espace métrique complet.
