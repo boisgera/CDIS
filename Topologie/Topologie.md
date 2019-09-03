@@ -420,7 +420,7 @@ est une relation d'adhérence sur $X$.
     d(x, A) = \inf_{a \in A} d(x, a) \leq d(x, z) 
     \leq d(x, y) + d(y, z) \leq \varepsilon
     $$
-    et comme $\varepsilon >0$ est arbitraire, $d(x, A)=0$: $x$ adhère à $A$.
+    et comme $\varepsilon >0$ est arbitraire, $d(x, A)=0$ : $x$ adhère à $A$.
 
 ### L'espace topologique généralise l'espace métrique
 
