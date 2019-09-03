@@ -90,7 +90,7 @@ $\|\cdot\|_2$, définie par
 $$
 \|x\|_2 = \sqrt{x_1^2 + \dots + x_n^2}.
 $$
-Elle se déduit du produit scalaire
+Elle se déduit du produit scalaire usuel
 $$
 \left<x, y\right> = x_1 y_1 + \dots + x_n y_n
 $$
