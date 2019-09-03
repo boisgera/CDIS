@@ -120,7 +120,7 @@ Il est clair que si $A$ et $B$ sont des opérateurs linéaires bornés de $E$ da
 $F$ et $\lambda$ est un réel, 
 alors $\lambda A$ et $A + B$ sont des opérateurs linéaires bornés de $E$ dans $F$ ; 
 les opérateurs linéaires bornés forment donc un espace vectoriel. 
-De plus $\|A\|$ est positive et si $\|A\| = 0$, c'est-à-dire si
+De plus la valeur $\|A\|$ est positive et si $\|A\| = 0$, c'est-à-dire si
 $$
 \sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} = 0,
 $$
