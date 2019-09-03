@@ -1055,7 +1055,7 @@ la suite de valeurs définie par
 $$
 x_{n+1} = f(x_n)
 $$
-converge vers le point fixe. 
+converge vers un point fixe. 
 Le point crucial est d'établir que cette suite
 admet une limite $\ell$; en effet, si ce résultat est acquis, 
 en passant à la limite sur $n$ dans la relation de récurrence, 
