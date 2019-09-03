@@ -208,7 +208,7 @@ $x, y$ et $z$ de $X$, on ait:
 
  3. [$d(x,z) \leq d(x,y) + d(y,z)$ (*inégalité triangulaire*)]{#dist-ineg}.
 
-### Espace Métrique  {.definition}
+### Espace métrique  {.definition}
 Un *espace métrique* est un ensemble $X$ muni d'une *distance*.
 
 ### Sous-ensemble d'un espace vectoriel normé {.proposition}
@@ -1026,7 +1026,7 @@ $$
 Une telle application est *contractante* si elle est 
 $\kappa$-contractante pour un $\kappa \in \left[0, 1\right[$.
 
-### Théorème de Point Fixe de Banach {.definition .theorem #T-TPFB}
+### Théorème de point fixe de Banach {.definition .theorem #T-TPFB}
 
 Soit $f: X \to X$ une application contractante dans un espace métrique $X$ complet.
 L'application $f$ admet un unique *point fixe* $x$,
@@ -1095,7 +1095,7 @@ quand $n$ tend vers $+\infty$; la suite des $x_n$ est bien de Cauchy.
 Compacité
 ================================================================================
 
-### Compacité Séquentielle {.definition}
+### Compacité séquentielle {.definition}
 Un ensemble $K$ d'un espace métrique est *compact (séquentiellement)* 
 si toute suite de valeurs de $K$ admet une sous-suite qui converge dans $K$.
 
