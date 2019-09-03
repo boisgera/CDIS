@@ -326,14 +326,13 @@ relation entre éléments de $X$ et sous-ensembles de $X$ telle que:
  2. Tout point d'un ensemble adhère à cet ensemble,
 
  3. Un point adhère à l'union de deux ensembles 
-    si et seulement s'il adhère à l'un ou l'autre 
-    des deux ensembles,
+    si et seulement s'il adhère à l'un des deux ensembles,
 
  4. Un point qui adhère à l'ensemble des points adhérents 
     à un ensemble adhère à cet ensemble.
 
 ### Espace topologique
-Un *espace topologique* est un ensemble muni d'une relation d'adhérence.
+Un *espace topologique* est un ensemble muni d'[une relation d'adhérence](#ak).
 Les éléments de l'ensemble sont appelés des *points*, 
 ses sous-ensembles des *ensembles de points*.
 
