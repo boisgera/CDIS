@@ -1207,7 +1207,7 @@ $$
 La fonction $f$ est donc continue.
 
 ### {.ante}
-La notion de compacité peut être définie dans des espaces topologiques
+La notion de compacité peut également être définie dans des espaces topologiques
 généraux, sans recourir à une distance ou aux suites de points.
 
 ### Propriété de l'intersection finie {.definition}
@@ -1261,7 +1261,8 @@ $$
 $$
 où $\overline{A}$ désigne l'adhérence de $A$ dans $K$, 
 alors il existe un nombre fini d'ensemble de $\mathcal{A}$ 
-dont l'intersection est non-vide. 
+dont l'intersection est vide ; nous aurons alors établi la contraposée
+de la propriété qui définit la compacité de $K$ et donc la compacité de $K$. 
 Au préalable, nous allons montrer que sous l'hypothèse ci-dessus d'intersection
 vide des adhérences, il existe un $\varepsilon > 0$ tel
 que pour tout $x\in K$, on peut trouver un $A \in \mathcal{A}$ tel que
