@@ -161,7 +161,8 @@ A \cdot x
 = A \cdot (x_1 e_1 + \dots + x_n e_n) = 
 \sum_{i=1}^n x_i (A \cdot e_i).
 $$
-Par l'inégalité triangulaire,
+Par [l'inégalité triangulaire](#norme-ineg) 
+et par [homogénéité de la norme](#norme-homo),
 $$
 \|A \cdot x\|_2 \leq \sum_{i=1}^n |x_i| \|A \cdot e_i\|_2
 \leq \sum_{i=1}^n \|x\|_2 \|A \cdot e_i\|_2
