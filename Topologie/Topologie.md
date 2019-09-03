@@ -555,10 +555,11 @@ Réciproquement, si $f(y) \not \to f(x)$ quand $y \to x$,
 il existe une suite $x_k$ tendant vers $x$ telle que $f(x_k)$ ne tende
 pas vers $f(x)$ et donc un $\varepsilon > 0$ et une suite $y_k$ extraite
 de $x_k$ telle que $y_k \to x$ et pour tout $k \in \N$, 
-$d(f(x_k), f(x))  > \varepsilon$. Par conséquent, 
-$x$ adhère à $\{x_k \, | \, k \in  \N\}$, mais 
-$f(x)$ n'adhère pas à $f(\{x_k \, | \, k \in  \N\}) = 
-\{f(x_k) \, | \, k \in  \N\}$; la fonction $f$ n'est donc pas continue en $x$.
+$d(f(y_k), f(x))  > \varepsilon$. 
+Par conséquent, $x$ adhère à $\{y_k \, | \, k \in  \N\}$, mais 
+$f(x)$ n'adhère pas à $f(\{y_k \, | \, k \in  \N\}) = 
+\{f(y_k) \, | \, k \in  \N\}$ ; 
+la fonction $f$ n'est donc pas continue en $x$.
 
 ### Continuité de la distance {.proposition}
 Soit $X$ un espace métrique. La fonction distance
