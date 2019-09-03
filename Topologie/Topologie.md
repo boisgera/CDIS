@@ -212,6 +212,9 @@ $x, y$ et $z$ de $X$, on ait:
 ### Espace métrique  {.definition}
 Un *espace métrique* est un ensemble $X$ muni d'une *distance*.
 
+### {.post}
+Une fonction distance est également appelée une *métrique*.
+
 ### Sous-ensemble d'un espace vectoriel normé {.proposition}
 Soit $X$ un sous-ensemble d'un espace vectoriel normé $E$. 
 La fonction $d: X \times X \to \left[0, +\infty\right[$ 
@@ -276,10 +279,6 @@ $$
 Si $A$ est l'ensemble vide, on a $d(x, A) = +\infty$ et si $A$ ou $B$ est
 vide on a $d(A, B)= +\infty$ ; ce sont les seuls cas où ces extensions de
 la distance entre points peuvent prendre des valeurs infinies.
-
-### {.ante}
-On parle aussi de *métrique* pour désigner une fonction
-distance, ce qui explique la terminologie ci-dessous:
 
 ### Isométries {.definition}
 Une application $f: X \to Y$ définie entre deux espaces
