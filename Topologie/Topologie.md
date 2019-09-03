@@ -1006,7 +1006,7 @@ que nous notons $f_{\infty}(x)$. Par continuité de la distance,
 pour tout $x \in X$ et tout $n \geq m$, on a
 $$
 d(f_n(x), f_{\infty}(x)) 
-= \lim_{m \to +\infty} d(f_n(x), f_m(x)) 
+= \lim_{p \to +\infty} d(f_n(x), f_p(x)) 
 \leq \varepsilon
 $$
 et donc
