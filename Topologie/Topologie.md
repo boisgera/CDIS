@@ -592,7 +592,7 @@ Pour tout $a \in A$, on a $d(x, a) \leq d(x, x_0) + d(x_0, a)$
 et donc $d(x, A) \leq d(x, x_0) + d(x_0, A)$. 
 En intervertissant $x$ et $x_0$, on obtient 
 également $d(x_0, A) \leq d(x_0, x) + d(x, A)$. 
-Par symétrie de la distance, ces deux inégalités entraînent
+Par [symétrie de la distance](#dist-sym), ces deux inégalités entraînent
 $$
 |d(x, A) - d(x_0, A)| \leq d(x_0, x)
 $$
