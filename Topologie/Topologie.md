@@ -570,7 +570,7 @@ est une application continue.
 
 ### Démonstration {.proof}
 Soient $(x_0, y_0)$ et $(x, y)$ deux points de l'espace produit $X \times X$.
-Par l'inégalité triangulaire, 
+Par [l'inégalité triangulaire](#dist-ineg), 
 $d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)$
 et
 $d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),$
@@ -1073,7 +1073,7 @@ ce qui par récurrence fournit pour tout $n$
 $$
 d(x_{n+1}, x_n) \leq \kappa^n d(x_1, x_0).
 $$
-Par l'inégalité triangulaire, 
+Par [l'inégalité triangulaire](#dist-ineg), 
 pour tout couple d'entiers $n$ et $p$, on a
 $$
 d(x_{n+p} , x_n) 
@@ -1134,9 +1134,9 @@ fermé par hypothèse, cette limite appartient à $K$ ;
 l'ensemble $K$ est donc compact.
 
 [^cover]: par exemple des pavés de la forme 
-$$[i_1 \varepsilon, (i_1+1)\varepsilon] \times \dots \times [i_n \varepsilon, (i_{n+1} \varepsilon)]
+$$[i_1 \varepsilon, (i_1+1)\varepsilon] \times \dots \times [i_n \varepsilon, (i_{n}+1) \varepsilon]
 \, \mbox{ où } \, (i_1,\dots, i_n) \in \Z^n,$$
-dont le diamètre est $\varepsilon \sqrt{2} n$.
+dont le diamètre est $\varepsilon \sqrt{n}$.
 
 ### Image d'un compact {.theorem}
 L'image d'un ensemble compact par une application continue est un ensemble
