@@ -439,23 +439,24 @@ où $x$ adhère à $A$ si $x$ appartient à $A$ ou $x=0$ et $A=\{1\}$
 est un espace topologique qui n'est pas métrisable. En effet, si $d$ était une
 distance sur cet ensemble, telle que $d(x, A)= 0$ si et seulement si $x$
 adhère à $A$, alors on aurait $d(0, \{1\}) = d(0, 1) = 0$, ce qui contredirait
-l'axiome de séparation pour les distances.
+[l'axiome de séparation pour les distances](#dist-sep).
 
 ### Produit d'espaces vectoriels normés {.definition}
-On appelle *produit des espaces vectoriels $E_1$, $\dots$, $E_n$,* 
-munis des normes $\|\cdot\|_1$, $\dots$, $\|\cdot\|_n$ le produit cartésien
-$E_1 \times \dots \times E_n$, muni de la norme
+On appelle *produit des espaces vectoriels normés $E_1$, $\dots$, $E_n$*, 
+munis des normes $\|\cdot\|_{E_1}$, $\dots$, $\|\cdot\|_{E_n}$, 
+l'espace vectoriel $E = E_1 \times \dots \times E_n$, 
+muni de la norme
 $$
-\|(x_1,\dots, x_n)\| = \sqrt{\|x_1\|_1^2 + \dots + \|x_n\|^2_n}.
+\|(x_1,\dots, x_n)\| = \sqrt{\|x_1\|_{E_1}^2 + \dots + \|x_n\|_{E_n}^2}.
 $$
 
 ### Produit d'espaces métriques {.definition}
 On appelle *produit des espaces métriques $X_1$, $\dots$, $X_n$,* 
-munis des distances $d_1$, $\dots$, $d_n$ le produit cartésien
-$X_1 \times \dots \times X_n$, muni de la distance
+munis des distances $d_{X_1}$, $\dots$, $d_{X_n}$ le produit cartésien
+$X = X_1 \times \dots \times X_n$, muni de la distance
 $$
 d((x_1,\dots, x_n), (y_1,\dots, y_n)) 
-= \sqrt{d_1(x_1, y_1)^2 + \dots + d_n(x_n, y_n)^2}.
+= \sqrt{d_{X_1}(x_1, y_1)^2 + \dots + d_{X_n}(x_n, y_n)^2}.
 $$
 
 <!--
