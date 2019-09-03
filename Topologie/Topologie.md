@@ -2430,20 +2430,26 @@ f_x(y) - f_{x'}(y) &= d(x, y) - d(x_0, y) - (d(x', y) - d(x', x_0))\\
 $$
 par conséquent, si $f_x = f_{x'}$, on a en particulier
 $f_x(x') = f_{x'}(x')$, soit $d(x, x') - d(x', x') = d(x, x') = 0$, 
-c'est-à-dire $x = x'$.
+c'est-à-dire $x = x'$ par [l'axiome de séparation](#dist-sep).
 
-### TODO -- Question 2 {#answer-pk-2 .answer}
-
-**TODO** Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
-
-### TODO -- Question 3 {#answer-pk-3 .answer}
-
- **TODO** Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
-$\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
-$\| \cdot \|_{\infty}$ définie par
+### Question 2 {#answer-pk-2 .answer}
+Pour tout $x, y \in X$, on a 
 $$
-\|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
+|f_x(y)| = |d(x, y) - d(x_0, y)| \leq d(x, x_0)
 $$
+par [l'inégalité triangulaire](#dist-ineg).
+
+### Question 3 {#answer-pk-3 .answer}
+Si $f: E \to \R$ et $g: E \to \R$ sont bornées et $\lambda \in \R$,
+il est clair que $f+g$ et $\lambda f$ sont bornées.
+De plus,
+
+  1. Si $\|f\|_{\infty} = \sup_{x\in E} \|f(x)\| = 0$, alors 
+     $\|f(x)\|=0$ pour tout $x \in E$ ; par conséquent $f=0$,
+
+  2. On a $\|\lambda f\|_{\infty} = \sup_{x\in E} \|\lambda f(x)\| = |\lambda| \sup_{x\in E} \|f(x)\| = |\lambda| \|f\|_{\infty}$.
+
+  3. On a $$\begin{split}\|f+g\|_{\infty} &= \sup_{x\in E} \| f(x) + g(x)\| \\ &\leq \sup_{x\in E} \|\lambda f(x)\| + \sup_{x\in E} \|\lambda g(x)\|\\ &= \|f\|_{\infty} + \|g\|_{\infty}.\end{split}$$
 
 ### TODO -- Question 4 {#answer-pk-4 .answer}
 
