@@ -363,7 +363,7 @@ et $g:Y\to Z$ continue en $f(x) \in Y$ est continue en $x$.
 
 ### Démonstration {.proof}
 Si $x$ adhère à $A$, par continuité de $f$ en $x$,
-$f(x)$ adhère $f(A)$ ; donc par continuité de $g$ en $y=f(x)$,
+$f(x)$ adhère à $f(A)$ ; donc par continuité de $g$ en $y=f(x)$,
 $g(y)= (g \circ f)(x)$ adhère à $g(f(A)) = (g \circ f)(A)$.
 La composée de $f$ et de $g$ est donc continue en $x$.
 
