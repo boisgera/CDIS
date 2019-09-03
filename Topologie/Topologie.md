@@ -1411,7 +1411,7 @@ Le but de cet exercice est de doter cet ensemble
 $[-\infty, +\infty]$([^nre]) d'une distance aux propriétés
 "raisonnables".
 A cette fin, on introduit l'espace métrique $X$ des points du cercle unité de 
-$\mathbb{R}^2$ d'ordonnée positive ou nulle:
+$\mathbb{R}^2$ d'ordonnée positive:
 $$
 X = 
 \left\{
