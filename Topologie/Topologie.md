@@ -1905,16 +1905,17 @@ Normes d'opérateurs {#answer-no}
 
 ### `norm(A)` {.answer}
 En l'absence de second argument, la fonction `norm` calcule 
-la norme de Frobenius de la matrice $A$, donnée comme
+la norme de Frobenius de l'opérateur $A$, donnée comme
 $$
 \|A\|_F = \sqrt{\sum_{i=1}^n\sum_{j=1}^n a_{ij}^2}.
 $$
-Il s'agit bien d'une norme sur $\R^{n \times n}$, car on peut la calculer
-comme la norme euclidienne de la matrice $A$ 
-["mise à plat"](Calcul Différentiel I.pdf#flatten) comme vecteur
-de $\R^{n^2}$, c'est-à-dire par la formule $\|A\|_F = \|\pi(A)\|_2$. 
+Il s'agit bien d'une norme sur les applications linéaires de 
+$\R^n$ dans $\R^n$, car on peut la calculer
+comme la norme euclidienne de la matrice $[A]$ 
+après une ["mise à plat"](Calcul Différentiel I.pdf#flatten) comme vecteur
+de $\R^{n^2}$, c'est-à-dire par la formule $\|A\|_F = \|\pi([A])\|_2$. 
 Mais elle n'est induite par aucune
-norme de vecteur; en effet, s'il existait une norme $\|\cdot\|_?$ telle que 
+norme de vecteur ; en effet, s'il existait une norme $\|\cdot\|_?$ telle que 
 $\|A\|_F = \sup \|A \cdot x\|_? / \|x\|_?$, alors on aurait en particulier
 $$
 \|I\|_F  = \sup_{x \neq 0} \frac{\|I \cdot x\|_?}{\|x\|_?} = 
@@ -1934,7 +1935,7 @@ penser que cette norme de matrice est induite par la norme de vecteurs
 $$
 \|x\|_1 = \sum_{i=1}^n |x_i|.
 $$
-Vérifions cela; si $y= A \cdot x$, on a
+Vérifions cela ; si $y= A \cdot x$, on a
 $$
 \begin{split}
 \|y\|_1 =
