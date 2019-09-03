@@ -1406,7 +1406,7 @@ Droite réelle achevée {#dra}
 --------------------------------------------------------------------------------
 
 La *droite réelle achevée* (ou *droite réelle étendue*) 
-est composée des nombre réels et de $-\infty$ et $+\infty$.
+est composée des nombres réels et de $-\infty$ et $+\infty$.
 Le but de cet exercice est de doter cet ensemble 
 $[-\infty, +\infty]$([^nre]) d'une distance aux propriétés
 "raisonnables".
