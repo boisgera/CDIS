@@ -404,7 +404,7 @@ est une relation d'adhérence sur $X$.
     quand $k \to +\infty$. Cette suite $x_k$ admet une suite extraite
     de points de $A$ et/ou une suite extraite de points de $B$.
     Dans le premier cas on a donc $d(x, A)=0$ et dans le second $d(x, B)=0$,
-    c'est-à-dire que $x$ adhère à $A$ et/ou proche de $B$.
+    c'est-à-dire que $x$ adhère à $A$ et/ou à $B$.
 
  4. Les points $y$ qui adhèrent à l'ensemble $A$ sont caractérisés par
     $d(y, A) = 0$. Par conséquent, l'ensemble des points $x$ qui adhèrent
