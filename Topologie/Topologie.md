@@ -1613,10 +1613,10 @@ Montrer l'existence d'un unique point fixe associé à l'application
 $$
 x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
 $$
-et établir qu'il se situe dans l'intervalle fermé $[3/2, 2]$.
+et établir qu'il se situe dans l'intervalle fermé $[4/3, 2]$.
 
 ### Question 2 {.question #golden-ratio-2}
-Montrer que la suite de réels définie par $x_0 \in [3/2, 2]$
+Montrer que la suite de réels définie par $x_0 \in [4/3, 2]$
 et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
  
 ### Question 3 {.question #golden-ratio-3}
@@ -2490,7 +2490,7 @@ De plus, $g(x) \to -\infty$ quand $x\to 0$ et $g(x) \to +\infty$ quand $g(x) \to
 Comme $g$ est continue (puisque dérivable), par le théorème des valeurs intermédiaires,
 $g$ admet bien un zéro sur $\left]0, +\infty\right[$.
 La fonction $f$ admet donc un unique point fixe. 
-Comme $g(3/2) = 3/2 - 1 - 2/3 = -1/6 <0$ 
+Comme $g(4/3) = 4/3 - 1 - 3/4 = -5/12 <0$ 
 et $g(2) = 2 - 1 - 1/2 = 1/2 > 0$,
 le point fixe de $f$ se situe dans l'intervalle $[3/2, 2]$.
 
@@ -2521,22 +2521,22 @@ $\ell = f(\ell)$.
 -->
 
 ### Question 2 {#answer-golden-ratio-2 .answer}
-Soit $x_k$ la suite de réels définie par $x_0 \in [3/2, 2]$
-et $x_{k+1} = f(x_k)$. La fonction $f$ est (strictement) croissante;
-de plus
+Soit $x_k$ la suite de réels définie par $x_0 \in [4/3, 2]$
+et $x_{k+1} = f(x_k)$. La fonction $f$ est continue et décroissante 
+croissante ; de plus
 $$
-f(3/2) = 1 + \frac{1}{3/2} = 1 + \frac{2}{3} = \frac{4}{3} \in \left[\frac{3}{2}, 2\right]
+f(4/3) = 1 + \frac{1}{4/3} = 1 + \frac{3}{4} = \frac{7}{4} \in \left[\frac{4}{3}, 2\right]
 $$
 et 
 $$
-f(2) = 1 + \frac{1}{2} = \frac{3}{2}  \in \left[\frac{3}{2}, 2\right].
+f(2) = 1 + \frac{1}{2} = \frac{3}{2}  \in \left[\frac{4}{3}, 2\right].
 $$
-Par conséquent, $f([3/2,2]) \subset [3/2,2]$. Comme $f'(x) = - \frac{1}{x^2}$,
-pour tout $x \in [3/2,2]$, $|f'(x)| < 4/9 < 1$. 
-Par le théorème des accroissements finis, la restriction de $f$ à $[3/2]$ 
+Par conséquent, $f([4/3,2]) \subset [4/3,2]$. Comme $f'(x) = - 1/x^2$,
+pour tout $x \in [4/3,2]$, $|f'(x)| < 9/16 < 1$. 
+Par le théorème des accroissements finis, la restriction de $f$ à $[4/3, 2]$ 
 est donc contractante.
-L'ensemble $[3/2, 2]$ est un ensemble fermé $\R$; il est donc complet.
-L'existence et l'unicité du point fixe de $f$ sur $[3/2,2]$ ainsi que son
+L'ensemble $[4/3, 2]$ est un ensemble fermé $\R$ ; il est donc complet.
+L'existence et l'unicité du point fixe de $f$ sur $[4/3,2]$ ainsi que son
 obtention comme limite de la suite $x_k$ résultent du [théorème de point fixe
 de Banach](#T-TPFB).
  
