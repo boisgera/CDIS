@@ -1681,25 +1681,25 @@ Point fixe {#TPFB2}
 **TODO:** exemple introductif (simple, matriciel $2\times2$)
 -->
 
-Soit $f: X \to X$ une fonction définie et à valeurs dans un espace métrique 
-complet $X$ pour laquelle il existe un entier $n \geq 1$ tel que la composée 
-$n$ fois de $f$ avec elle-même, notée $f^n$, soit contractante. 
-
-On souhaite montrer que sous ces hypothèses 
--- qui généralisent celles du [théorème de point fixe de Banach](#T-TPFB) -- 
-$f$ admet encore un unique point fixe.
+On souhaite montrer que si $X$ est un espace métrique complet et 
+qu'il existe un entier $n \geq 1$ tel que la composée 
+$n$ fois d'une application $f: X \to X$ avec elle-même 
+-- notée $f^n$ -- est contractante,
+alors la conclusion du [théorème de point fixe de Banach](#T-TPFB)
+est toujours valable (bien que les hypothèses considérées ici 
+soient plus générales).
 
 ### Question 1 {.question #pf-1}
-Montrer que tout point fixe éventuel de $f$ est également 
-un point fixe de $f^n$.
+Soit $X$ un ensemble et $f: X \to X$.
+Montrer que tout point fixe de $f$ est également 
+un point fixe de $f^n$ ; montrer que si $f^n$ admet un unique point fixe,
+il est également l'unique point fixe de $f$.
 
 ### Question 2 {.question #pf-2}
-Montrer que $f^n$ admet un unique point fixe et qu'il est également
-un point fixe de $f$.
-
-### Question 3 {.question #pf-3}
-Montrer que le procédé habituel pour construire un point 
-fixe de $f$ est toujours valable quand $f^n$ est contractante.
+On suppose désormais que $X$ est un espace métrique complet et que 
+$f^n$ est contractante.
+Montrer que $f$ admet un unique point fixe et que le procédé habituel 
+pour calculer ce point fixe comme une limite est toujours valable.
 
 <!--
 
@@ -2542,27 +2542,32 @@ de Banach](#T-TPFB).
  
 ### Question 3 {#answer-golden-ratio-3 .answer}
 Compte tenu des résultats de l'exercice ["Point fixe"](#TPFB2),
-il suffit d'établir l'existence et l'unicité d'un point fixe de 
-$f\circ f$ pour obtenir l'existence et l'unicité d'un point fixe
-de $f$, et la garantie qu'il soit obtenu comme limite de la suite
-définie par $x_{k+1} = f(x_k)$ pour tout $x_0 > 0$.
-Or, pour tout $x>0$, on a
+il suffit d'établir que sur un sous-ensemble complet $X$ de 
+$\left]0, +\infty\right[$ tel que $f(X) \subset X$, $f \circ f$ 
+est contractante pour conclure que $f$ possède un unique point fixe
+sur $X$,  obtenu comme limite de la suite
+définie par $x_{k+1} = f(x_k)$ pour tout $x_0 \in X$.
+
+Posons $X = \left[1, +\infty\right[$ ; $X$ est complet car c'est un sous-ensemble
+fermé de $\R$ qui est complet (une suite de Cauchy de $X$ converge dans $\R$,
+donc dans $X$). 
+De plus, comme pour tout $x>0$, $1+1/x > 1$, 
+on a bien $f(\left[1, +\infty\right[) \subset \left[1, +\infty\right[$.
+Pour tout $x \geq 1$, on a
 $$
 f(f(x)) = 1+ \frac{1}{(1+1/x)} = 1 + \frac{x}{x+1} = 1+\frac{x+1}{x+1} - \frac{1}{x+1}
-=2 - \frac{1}{x+1}.
+=2 - \frac{1}{x+1}
 $$
-Cette fonction est croissante. Comme $f(1) = 3/2 \geq 1$, on a 
-$f(\left[1, +\infty\right[) \subset \left[1, +\infty\right[$.
-De plus,
+et donc
 $$
 (f \circ f)'(x) = \frac{1}{(x+1)^2}
 $$
-et donc $|(f \circ f)'(x)| \leq 1/4 < 1$ si $x\geq 1$.
-La restriction de $f$ à $\left[1, +\infty\right[$ est donc contractante; 
-comme $\left[1, +\infty\right[$ est complet 
--- en tant que fermé dans un espace complet -- 
-le théorème du point fixe de Banach garantit l'existence et l'unicité
-d'un point fixe. Notons finalement que si $x_0 \in \left]0,1\right[$, 
+ce qui entraîne que $|(f \circ f)'(x)| \leq 1/4 < 1$ si $x\geq 1$.
+La restriction de $f \circ f$ à $\left[1, +\infty\right[$ est donc contractante.
+Nous avons donc établi toutes les hypothèses garantissant que
+la suite $x_{k+1} = f(x_k)$ tend vers le nombre d'or si 
+$x_0 \geq 1$.
+Notons finalement que si $x_0 \in \left]0,1\right[$, 
 $f(x_0) \in \left[1, +\infty\right[$ ; par conséquent le résultat
 vaut non seulement pour tout $x_0 \in \left[1, +\infty\right[$ mais
 bien pour tout $x_0 \in \left]0, +\infty\right[$.
@@ -2665,7 +2670,6 @@ La suite des $(x_k, y_k)$ est donc de Cauchy.
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-pf-1}
-
 Si $x$ est un point fixe de $f$, $f(x) = x$, par conséquent
 $$
 f^2(x) = f(f(x)) = f(x) = x, 
@@ -2677,36 +2681,38 @@ $$
 etc. Par récurrence, il est clair que l'on peut établir que pour tout
 $n \geq 1$, on a $f^n(x) = x$: $x$ est un point fixe de $f^n$.
 
-### Question 2 {.answer #answer-pf-2}
-
-La fonction itérée $f^n$ satisfait les hypothèses du 
-[théorème du point fixe de Banach](#T-TPFB), par conséquent elle
-admet un point fixe $x$. Comme $f^n(x) = x$, en applicant $f$ aux
+Supposons désormais que la fonction itérée $f^n$ admette un unique point fixe
+$x$. Comme tout point fixe de $f$ est un point fixe de $f^n$, $f$ admet au
+plus un point fixe.
+De plus, comme $f^n(x) = x$, en applicant $f$ aux
 deux membres de cette équation, on obtient 
 $$
 f(f^n(x)) = f^n(f(x)) = f(x).
 $$
-Par conséquent, $f(x)$ est un point fixe de $f^n$. 
-C'est donc l'unique point fixe $x$ de $f^n$; on a donc $f(x) = x$,
-c'est-à-dire que $x$ est un point fixe de $f$. 
+Par conséquent, $f(x)$ est un point fixe de $f^n$ ; 
+c'est donc l'unique point fixe $x$ de $f^n$.
+On a donc $f(x) = x$, c'est-à-dire que $x$ est un point fixe de $f$. 
 
-### Question 3 {.answer #answer-pf-3}
+### Question 2 {.answer #answer-pf-2}
+Si $X$ est un espace métrique complet et que $f^n$ est contractante, 
+par [théorème du point fixe de Banach](#T-TPFB), $f^n$ admet un
+unique point fixe $x$, calculable comme limite de toute suite
+$y_k$ telle que $y_{k+1} = f^n(y_k)$ et $y_0 \in X$.
 
+Par les résultats de [la question 1](#pf-1), $x$ est l'unique point 
+fixe de $f$.
 Le "procédé habituel pour construire un point fixe de $f$" 
 consiste à prendre un $x_0 \in X$ quelconque et à construire 
-par récurrence la suite des $x_{k+1} = f(x_k)$. 
-On souhaite donc montrer que cette suite converge vers l'unique point fixe 
+par récurrence la suite des $x_{k+1} = f(x_k)$ ; 
+on souhaite donc montrer que cette suite converge vers l'unique point fixe 
 $x$ de $f$. 
-La fonction $f^n$ satisfaisant les hypothèses du
-[théorème du point fixe de Banach](#T-TPFB), 
-on sait que la suite extraite
-$(x_{kn})_k$ converge vers $x$, car $x_{(k+1)n} = f^n(x_{kn})$.
+La suite $(x_{kn})_k$ -- extraite des $x_k$ -- converge vers $x$, 
+car $x_{(k+1)n} = f^n(x_{kn})$.
 Il en est de même pour la suite extraite $(x_{kn+1})_k$, construite
 à partir du même procédé mais en initialisant la séquence avec 
 la valeur $x_1$, pour la suite $(x_{kn+2})_k$, ..., jusqu'à 
 $(x_{kn + (n-1)})_k$. Ces $n$ suites convergent toutes vers $x$,
-donc la suite des $(x_k)_k$ converge également vers le point fixe $x$, 
-comme sous les hypothèses du [théorème du point fixe de Banach](#T-TPFB).
+donc la suite des $(x_k)_k$ converge également vers le point fixe $x$.
 
 Résolution itérative de systèmes linéaires
 --------------------------------------------------------------------------------
