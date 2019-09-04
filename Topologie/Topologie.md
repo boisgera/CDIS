@@ -1648,7 +1648,7 @@ alors le point de coordonnées $(x(t), y(t))$ a une limite dans le plan
 quand $t$ tend vers $+\infty$.
 
 ### Question 2 {.question #se-2}
-Montrer que pour tout couple $(a,b)$ de réels strictement positifs,
+Montrer que pour tout couple $(a,b)$ de réels tels que $0 < a \leq b$,
 les grandeurs
 $$
 I(a, b) :=
@@ -1658,9 +1658,9 @@ J(a, b) := \int_{a}^{b} \sin s^2 \, ds
 $$
 vérifient pour un réel $\alpha > 0$ les inégalités
 $$
-|I(a, b)| \leq \frac{\alpha}{\sqrt{\min(a, b)}}
+|I(a, b)| \leq \frac{\alpha}{\sqrt{a}}
 \, \mbox{ et } \,
-|J(a, b)| \leq \frac{\alpha}{\sqrt{\min(a, b)}}.
+|J(a, b)| \leq \frac{\alpha}{\sqrt{a}}.
 $$
 
 ### Question 3 {.question #se-3}
@@ -2598,7 +2598,7 @@ résultat cherché.
 ### Question 2 {.answer #answer-se-2}
 
 Nous traitons le cas de $I(a, b)$, celui de $J(a, b)$ étant similaire.
-Pour tout $a$ et $b$ strictement positifs,
+Pour tout $a$ et $b$ tels que $0 < a \leq b$,
 le changement de variable $\tau = s^2$ fournit:
 $$
 I(a, b) = \int_a^b \cos s^2 \, ds = \int_{\sqrt{a}}^{\sqrt{b}} \frac{\cos \tau}{2\sqrt{\tau}} \, d\tau.
@@ -2618,7 +2618,7 @@ On en déduit
 $$
 \left|I(a, b)\right| 
 \leq 
-\frac{5}{2 \sqrt{a}} + \frac{5}{2 \sqrt{b}} \leq \frac{5}{\sqrt{\min(a, b)}}.
+\frac{5}{2 \sqrt{a}} + \frac{5}{2 \sqrt{b}} \leq \frac{5}{\sqrt{a}}.
 $$
 
 ### Question 3 {.answer #answer-se-3}
@@ -2732,8 +2732,8 @@ $$
 
 ### Question 2 {#answer-risl-2 .answer}
 La question 1 établit que pour tout $y \in \R^n$, 
-le vecteur $x \in \R^n$ est solution de $A \cdot x = y$ si et seulement 
-si il est un point fixe de l'application 
+le vecteur $x \in \R^n$ est solution de $A \cdot x = y$ 
+si et seulement s'il est un point fixe de l'application 
 $$
 \phi: x \in \R^n \mapsto D^{-1} \cdot (D-A) \cdot x + D^{-1} \cdot y \in \R^n.
 $$
@@ -2758,7 +2758,8 @@ $$
 (on peut aussi établir ce résultat directement).
 Si l'on munit $\R^n$ de la norme $\|\cdot\|_{\infty}$
 (l'espace est alors complet puisque $\|\cdot\|_{\infty}$ est équivalent à la norme
-euclidienne), l'application $\phi$ est contractante. 
+euclidienne : on a $\|\cdot\|_2 / \sqrt{n} \leq \|\cdot\|_{\infty} \leq \|\cdot\|_2$), 
+l'application $\phi$ est contractante. 
 Par [le théorème du point fixe de Banach](#T-TPFB), 
 elle admet donc un unique point fixe $x$, qui est la solution de $A \cdot x = y$.
 L'opérateur $A$ est donc inversible et $A^{-1} \cdot y$ peut être calculé comme
