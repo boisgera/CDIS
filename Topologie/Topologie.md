@@ -2490,11 +2490,12 @@ De plus, $g(x) \to -\infty$ quand $x\to 0$ et $g(x) \to +\infty$ quand $g(x) \to
 Comme $g$ est continue (puisque dérivable), par le théorème des valeurs intermédiaires,
 $g$ admet bien un zéro sur $\left]0, +\infty\right[$.
 La fonction $f$ admet donc un unique point fixe. 
-
 Comme $g(3/2) = 3/2 - 1 - 2/3 = -1/6 <0$ 
 et $g(2) = 2 - 1 - 1/2 = 1/2 > 0$,
-ce zéro de $f$ se situe dans l'intervalle $[3/2, 2]$.
+le point fixe de $f$ se situe dans l'intervalle $[3/2, 2]$.
 
+<!-- C'est mignon mais c'est faux: la suite extraite n'est pas solution de la
+même équation fonctionnelle ...
 Alternativement, pour établir l'existence (mais pas l'unicité) du point fixe,
 on aurait pu associer à la fonction $f$ la fonction 
 $\bar{f}: [0, +\infty] \to [0, +\infty]$ définie par
@@ -2517,6 +2518,7 @@ Par continuité de $\bar{f}$, on en déduit que $\ell = \bar{f}(\ell)$.
 Il suffit alors de vérifier que $\bar{f}(0) \neq 0$ et $\bar{f}(+\infty) \neq
 +\infty$ pour conclure à l'existence d'un réel $\ell> 0$ tel que
 $\ell = f(\ell)$.
+-->
 
 ### Question 2 {#answer-golden-ratio-2 .answer}
 Soit $x_k$ la suite de réels définie par $x_0 \in [3/2, 2]$
