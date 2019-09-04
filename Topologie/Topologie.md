@@ -2481,13 +2481,17 @@ $$
 f: x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
 $$
 peut être établi par des méthodes classiques d'analyse d'une fonction
-d'une variable réelle. La fonction $g: x \in \left]0, +\infty\right[ \to x - f(x)$ ayant pour dérivée
-en $x$ la valeur $1 + 1/x^2$, qui est strictement positive, la fonction 
-$g$ est strictement croissante. De plus, $g(x) \to -\infty$ quand
-$x\to 0$ et $g(x) \to +\infty$ quand $g(x) \to +\infty$, 
-il existe donc bien un unique zéro de $g$, ou de façon équivalente un
-unique point fixe de $f$. 
-De plus, comme $g(3/2) = 3/2 - 1 - 2/3 = -1/6 <0$ 
+d'une variable réelle. 
+La fonction $g: x \in \left]0, +\infty\right[ \to x - f(x)$ est dérivable.
+Sa dérivée en $x$ vaut $1 + 1/x^2$, qui est strictement positive, donc 
+la fonction  $g$ est strictement croissante et 
+il existe donc au plus un zéro de $g$. 
+De plus, $g(x) \to -\infty$ quand $x\to 0$ et $g(x) \to +\infty$ quand $g(x) \to +\infty$.
+Comme $g$ est continue (puisque dérivable), par le théorème des valeurs intermédiaires,
+$g$ admet bien un zéro sur $\left]0, +\infty\right[$.
+La fonction $f$ admet donc un unique point fixe. 
+
+Comme $g(3/2) = 3/2 - 1 - 2/3 = -1/6 <0$ 
 et $g(2) = 2 - 1 - 1/2 = 1/2 > 0$,
 ce zéro de $f$ se situe dans l'intervalle $[3/2, 2]$.
 
