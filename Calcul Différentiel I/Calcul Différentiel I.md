@@ -736,8 +736,9 @@ c'est-à-dire une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}$.
 Or pour toute application $A$ de ce type, si un vecteur $a \in \R^n$
 est tel que $A \cdot h = \left<a, h\right>$ pour tout $h \in \R^n$, 
 alors sélectionner successivement $h = e_i$ pour $i=1, \dots, n$
-fournit nécessairement $a = (A(e_1), \dots, A(e_n))$; il existe donc au plus
-un vecteur $a$ satisfaisant ces égalités. Réciproquement, pour ce vecteur
+fournit nécessairement $a = (A(e_1), \dots, A(e_n))$ ; 
+il existe donc au plus un vecteur $a$ satisfaisant ces égalités. 
+Réciproquement, pour ce vecteur
 $a$, on a bien
 $$
 A \cdot h = A \cdot (h_1 e_1 + \dots + h_n e_n) = \sum_i h_i A(e_i) = \sum_i a_i h_i
@@ -788,7 +789,7 @@ $$
 $$
 
 ### Démonstration {.proof}
-Supposons $f$ différentiable en $x$; soit $\varepsilon$ un $o(1)$ tel que
+Supposons $f$ différentiable en $x$ ; soit $\varepsilon$ un $o(1)$ tel que
 $$
 f(x + h) = f(x) + df(x)\cdot h + \varepsilon(h) \|h\|.
 $$
@@ -908,14 +909,14 @@ et de la première à la dernière matrice.
 
 ### Domaine de définition non ouvert {.remark}
 
-La définition de différentielle de $f$ suppose que le domaine de définition
+La définition de la différentielle de $f$ suppose que le domaine de définition
 de $f$ soit un ensemble ouvert. Cette restriction permet de garantir qu'en
-tout point $x$ considéré du domaine de définition, on peut examiner la
+tout point $x$ considéré du domaine de définition, on puisse examiner la
 variation de $f$ en $x$ dans "toutes les directions" pour voir s'il existe
 une approximation linéaire.
 
 Il y a néanmoins des façons de s'adapter quand le domaine de définition de 
-$f$ n'est pas ouvert
+$f$ n'est pas ouvert :
 
   - Si $x$ est un point de l'intérieur de ce domaine, 
     on peut alors considérer la 
@@ -933,15 +934,12 @@ $f$ n'est pas ouvert
     [différentiabilité (ou dérivabilité) de fonctions d'une variable 
     scalaire sur des intervalles fermés de $\mathbb{R}$](#intervalle-fermé).
 
-
-
 ### Différencier une expression
-
-L'expression $df(x) \cdot h$ dépend de trois éléments: la fonction $f$,
+L'expression $df(x) \cdot h$ dépend de trois éléments : la fonction $f$,
 le point de référence $x$ et la variation de l'argument $h$. Cette notation
 est sans ambiguité mais peut parfois être lourde à manipuler.
-Dans le calcul des dérivées, nos avons pris l'habitude, pour affirmer que
-la dérivée de la fonction $x \mapsto x^2$ et tout point $x$ de $\mathbb{R}$
+Dans le calcul des dérivées, nous avons l'habitude, pour signifier que
+la dérivée de la fonction $x \mapsto x^2$ en tout point $x$ de $\mathbb{R}$
 est $2x$, d'écrire simplement
   $$
   (x^2)' = 2x.
@@ -1009,7 +1007,7 @@ $$
 ### Notations {.note}
 
 La formule précédente peut s'écrire de façon plus compacte sans
-la variable intermédiaire $y$:
+la variable intermédiaire $y$ :
 $$
 d(g \circ f)(x) = dg(f(x)) \cdot df(x).
 $$
@@ -1019,7 +1017,7 @@ que l'on souhaite calculer).
 
 Comment souvent, annoter les composants d'une formule avec les ensembles 
 auquels ils appartiennent permet de s'assurer qu'elle n'est pas 
-évidemment incorrecte. Ici par exemple:
+de toute évidence incorrecte. Ici par exemple :
 $$
 \stackrel{\mathbb{R}^m \leftarrow \mathbb{R}^p}{d(g\circ f)(x)} 
 \, = \,  
@@ -1050,8 +1048,8 @@ $$
 Notons que la fonction $\varepsilon_2(h) := \varepsilon_1(f(x+h) - f(x))$
 est définie dans un voisinage de l'origine et que par continuité de $f$ en 
 $x$, $f(x+h) - f(x)$ tend vers $0$ quand $h$ tend vers $0$, et par conséquent
-$\varepsilon_2(h) \to \varepsilon_2(0) = 0$ quand $h\to 0$; la fonction
-$\varepsilon_2$ est donc un $o(1)$.
+$\varepsilon_2(h) \to \varepsilon_2(0) = 0$ quand $h\to 0$ ; 
+la fonction $\varepsilon_2$ est donc un $o(1)$.
 Avec cette notation, on a
 $$
 \begin{split}
@@ -1078,7 +1076,7 @@ Or,
 $$
 \begin{split}
 \|\varepsilon(h)\| & \leq \|dg(f(x)) \cdot \varepsilon_3(h)\| + \|\varepsilon_2(h)\| \times \|df(x) \cdot (h / \|h\|) \| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|   \\
-& \leq \|dg(f(x))\| \times \|\varepsilon_3(h)\| + \|\varepsilon_2(h)\|  \times \|df(x)\| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|  
+& \leq \|dg(f(x))\| \times \|\varepsilon_3(h)\| + \|\varepsilon_2(h)\|  \times \|df(x)\| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|,  
 \end{split}
 $$
 le résultat est donc acquis.
@@ -1132,11 +1130,11 @@ d(\lambda f + \mu g)(x) = \lambda df(x) + \mu dg(x).
 $$
 
 ### Démonstration {.proof}
-Compte tenu du résultat concernant [la différentiation composante par composante]{#dcpc},
+Compte tenu du résultat concernant [la différentiation composante par composante](#dcpc),
 il suffit d'établir le résultat pour $f$ et $g$ à valeurs réelles.
 Or, l'application $x \in \mathbb{R}^n \mapsto (\lambda, f(x))$ est différentiable
-en $x$ car ses composantes sont différentiables; sa différentielle 
--- calculée composante par composante -- 
+en $x$ car ses composantes sont différentiables ; 
+sa différentielle -- calculée composante par composante -- 
 est l'application $h \mapsto (0, df(x) \cdot h)$.
 L'application $\lambda f$ étant le produit de $\lambda$ et $f$,
 par [la règle de différentiation en chaîne](#chain-rule), 
@@ -1221,9 +1219,10 @@ permettent parfois de rendre les dérivées et différentielles partielles
 plus intelligibles. Si le $i$-ème argument 
 d'une fonction $f$ est désigné par un symbole $x$, 
 on pourra noter 
-$\partial_{x} f$ (ou ${\partial f}/{\partial x}$) au lieu de $\partial_i f$ 
+$\partial_{x} f$ (ou ${\partial f}/{\partial x}$)
 sa dérivée partielle 
-(ou différentielle partielle selon le cas).
+(ou différentielle partielle selon le cas)
+au lieu de $\partial_i f$.
 
 Si l'on considère par exemple la fonction $m$ définie par
 $$
@@ -1277,7 +1276,7 @@ fonction $\varepsilon$ qui soit un $o(1)$ et telle que
 $$
 f(x+h) = f(x) + df(x) \cdot h + \varepsilon(h) \|h\|.
 $$
-Soit $t$ un réel non nul; substituer $h := t e_i$ dans cette relation fournit
+Soit $t$ un réel non nul ; substituer $h := t e_i$ dans cette relation fournit
 $$
 f(x+te_i) = f(x) + df(x) \cdot (t e_i) + \varepsilon(t e_i) \|t e_i\|.
 $$
@@ -1292,14 +1291,14 @@ $$
 Pour obtenir la seconde forme de cette relation, il suffit de décomposer un
 vecteur $h=(h_1, \dots, h_n)$ sous la forme
 $$
-h = (h_1, \dots, h_n) = h_1 e_1 + \dots + h_n e_n
+h = h_1 e_1 + \dots + h_n e_n
 $$
-et d'exploiter la linéarité de la différentielle; on obtient
+et d'exploiter la linéarité de la différentielle ; on obtient
 $$
 df(x) \cdot h 
 = df(x) \cdot \left( h_1 e_1 + \dots + h_n e_n\right)
 = \sum_i (df(x) \cdot e_i) h_i 
-= \sum_i \partial_i f(x) h_i
+= \sum_i \partial_i f(x) h_i,
 $$
 comme attendu.
 
