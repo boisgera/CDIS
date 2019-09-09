@@ -1342,7 +1342,7 @@ Pour tout $h \in \R^n$, on a
 $$
 \left<\nabla f(x), h\right> 
 = df(x) \cdot h
-= \sum_i \partial_i f \cdot h_i 
+= \sum_i \partial_i f(x) \cdot h_i 
 = 
 \left<(\partial_1 f(x), \dots, \partial_n f(x)), h \right>, 
 $$
@@ -1355,13 +1355,15 @@ définir le gradient $\nabla f(x)$ ou la matrice jacobienne $J_f(x)$ en supposan
 uniquement que les dérivées partielles de $f$ en $x$ existent, 
 ce qui peut arriver alors que $f$ n'est pas différentiable en $x$. 
 Mais cette extension est à prendre avec précaution. 
-En effet, dans ce cadre étendu, on ne
-peut plus transposer aux gradients et matrices jacobiennes tous les résultats valides pour
-les différentielles. Par exemple, si $J_f(g(x))$ et $J_g(x)$ existent
+En effet, dans ce cadre étendu, 
+on ne peut plus transposer aux gradients et matrices jacobiennes 
+tous les résultats valides pour les différentielles. 
+Par exemple, si $J_g(f(x))$ et $J_f(x)$ existent
 (au sens où toutes les dérivées partielles concernées existent), on peut
-former le produit matriciel $J_f(g(x)) J_g(x)$, mais sans aucune garantie que 
-$J_{f \circ g}(x)$ existe et/ou soit égal à ce produit, car la règle de 
-différentiation en chaîne requiert l'existence des différentielles.
+former le produit matriciel $J_g(f(x)) J_f(x)$, mais sans aucune garantie que 
+$J_{g \circ f}(x)$ existe et/ou soit égal à ce produit, 
+car [la règle de différentiation en chaîne](#chain-rule) requiert l'existence 
+des différentielles.
 
 ### Fonction continûment différentiable {.proposition}
 Soit $U$ un ouvert de $\mathbb{R}^n$. 
@@ -1375,7 +1377,7 @@ est continue.
 
 ### {.ante}
 Cette définition constitue un moyen de vérifier l'existence de
-la différentielle (et sa continuité) en passant par les dérivées partielles:
+la différentielle (et sa continuité) en passant par les dérivées partielles :
 
 ### Dérivées partielles continues {.proposition}
 Soit $U$ un ouvert de $\mathbb{R}^n$.
@@ -1394,7 +1396,7 @@ dont les dérivées partielles existent et sont continues
 (la preuve dans le cas d'une fonction à valeurs vectorielles se déduit 
 du résultat dans le cas scalaire).
 Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
-$r$ soit dans $U$; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
+$r$ soit dans $U$ ; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
 La variation de $f$ entre $a$ et $a+h$ satisfait
 $$
 f(a+h) - f(a) = \sum_{i=1}^n f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)). 
@@ -1423,7 +1425,7 @@ Par continuité des dérivées partielles en $a$, si $r$ est choisi de telle sor
 que $|\partial_i f(b) - \partial_i f(a)| \leq \varepsilon / n$ 
 quand $|b-a| \leq r$, alors l'inégalité triangulaire et 
 [la majoration des intégrales](#ML-memma) ci-dessus
-conduit à
+conduisent à
 $$
 \left|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right|
 \leq
@@ -1449,12 +1451,12 @@ Variation des fonctions
 
 Pour comparer $f(a+h)$ et $f(a)$, 
 lorsque la fonction $f$ est continue en $a$, 
-nous disposons de l'égalité $f(a + h) = f(a) + o(h)$,
+nous disposons de l'égalité $f(a + h) = f(a) + o(1)$,
 mais cette relation est asymptotique. 
 Pour maîtriser l'écart entre
 $f(a+h)$ et $f(a)$ au moyen de cette formule, 
 nous devons être en mesure de faire tendre $h$ vers $0$. 
-Si la grandeur $h$ est fixé, cette relation est inexploitable. 
+Si la grandeur $h$ est fixée, cette relation est inexploitable. 
 
 Toutefois, dans cette situation, 
 si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
@@ -1462,7 +1464,7 @@ de relier $f(a+h)$ à $f(a)$ en intégrant les variations infinitésimales
 de $f$ le long de $[a, a+h]$. 
 La seule notion d'intégrale dont nous avons besoin,
 minimaliste et construite exclusivement au service du calcul différentiel,
-est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton);
+est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton) ;
 dans de ce chapitre, c'est toujours cette intégrale dont nous ferons
 usage implicitement.
 
@@ -1527,10 +1529,11 @@ $$
 f(a+h) - f(a) = \int_a^b f'(t) \, dt.
 $$
 Elle est donc également intégrable au sens de Henstock-Kurzweil
-(cf. chapitre "Calcul Intégral I");
-en combinant la définition de l'intégrale de Henstock-Kurzweil 
-et le lemme de Cousin, on peut trouver des approximations arbitrairement
-précises de l'intégrale de $f'$ par des sommes de Riemann[^hklc]:
+(cf. [chapitre "Calcul Intégral I"](Calcul Intégral I.pdf)) ;
+en combinant [la définition de l'intégrale de Henstock-Kurzweil](Calcul Intégral I.pdf#HK) 
+et [le lemme de Cousin](Calcul Intégral I.pdf#cousin), 
+on peut trouver des approximations arbitrairement
+précises de l'intégrale de $f'$ par des sommes de Riemann[^hklc] :
 pour tout $\varepsilon > 0$, 
 il existe une subdivision pointée $\mathcal{D}$
 de l'intervalle $[a,b]$ telle que 
@@ -1574,7 +1577,7 @@ et donc
 $\|S(f', \mathcal{D})\| \leq Mh.$
 Par conséquent, $\|f(a+h) - f(a)\| \leq M h + \varepsilon$
 et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
-le résultat cherché: $\|f(a+h) - f(a)\| \leq M h.$
+le résultat cherché : $\|f(a+h) - f(a)\| \leq M h.$
 
 [^hklc]: l'intégrabilité de $f'$ signifie que quelle que soit la
 précision $\varepsilon>0$ cherchée on pourra trouver une jauge telle que
