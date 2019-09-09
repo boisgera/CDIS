@@ -679,7 +679,7 @@ $$
 \Delta f(x, h) := f(x+h) - f(x),
 $$
 
-### Variation et Différentielle {.remark .ante}
+### Variation et différentielle {.remark .ante}
 La différentielle de $f$ en $x$, quand elle existe, 
 constitue la "meilleure" approximation linéaire de la
 variation de $f$ en $x$, car c'est la seule telle que
@@ -705,7 +705,7 @@ $\Delta f(x, h) = A \cdot h + o(\|h\|)$.
 ### {.ante}
 Résumons les liens entre dérivée et différentielle à ce stade :
 
-### Différentielle et Dérivée {.theorem}
+### Différentielle et dérivée {.theorem}
 Soient $U$ un ouvert de $\mathbb{R}$, $f: U \to \mathbb{R}^m$
 et $x \in U$.
 La fonction $f$ est différentiable en $x$ si et seulement si
@@ -1447,7 +1447,7 @@ continûment différentiable peut être reformulée comme
 Variation des fonctions
 ================================================================================
 
-### Différentielle et Intégrale
+### Différentielle et intégrale
 
 Pour comparer $f(a+h)$ et $f(a)$, 
 lorsque la fonction $f$ est continue en $a$, 
@@ -2868,9 +2868,9 @@ Différentiation en chaîne
 
 ### Question 1 {.answer #answer-dec-1}
 Les fonction $f$ et $g$ sont différentiables  donc dérivables
-(cf. [Différentielle et Dérivée]).
+(cf. [Différentielle et dérivée]).
 Comme fonctions d'une variable, en raison du
-[lien entre différentielle et dérivée][Différentielle et Dérivée],
+[lien entre différentielle et dérivée][Différentielle et dérivée],
 on a $df(x) \cdot h = f'(x) h$ et $dg(x) \cdot h = g'(x)h$.
 Par la [règle de différentiation en chaîne](#chain-rule),
 on obtient
