@@ -1739,7 +1739,7 @@ car simplificateur, mais
 
 -->
 
-### Différentielle d'ordre 2 {.definition}
+### Différentielle d'ordre 2 {.definition #d2}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 dans un voisinage d'un point $x$ de $U$. 
 On dira que $f$ est *deux fois différentiable en $x$* 
@@ -1819,7 +1819,7 @@ df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + E(k) \|k\|.
 $$
 
 ### Démonstration {.proof}
-Par définition de la différentielle d'ordre 2 en $x$, 
+Par [définition de la différentielle d'ordre 2 en $x$](#d2), 
 pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, on a, 
 pour tout vecteur $k$ de $\mathbb{R}^n$,
 $$
@@ -1996,7 +1996,7 @@ d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h
 $$
 ce qui fournit l'égalité cherchée.
 
-### Dérivées Partielles d'ordre 2 {.definition}
+### Dérivées partielles d'ordre 2 {.definition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x \in U$. Soient $i$ et $j$ deux indices dans $\{1,\dots, n\}$.
 Lorsque la $j$-ème dérivée partielle de $f$ est définie sur $U$ et
@@ -2019,7 +2019,7 @@ $$
 ### Démonstration {.proof}
 Si $f$ est deux fois différentiable, on a $\partial_j f(x) = d(f(x)) \cdot e_j$,
 puis $\partial^2_{ij} f(x) = d(d(f(x)) \cdot e_j) \cdot e_i$. 
-Par définition de la différentielle d'ordre 2,
+Par [définition de la différentielle d'ordre 2](#d2),
 $$d^2f(x) \cdot e_j \cdot e_i = d(d(f(x)) \cdot e_j) \cdot e_i,$$
 on en déduit donc que $\partial^2_{ij} f(x) = d^2f(x) \cdot e_j \cdot e_i$.
 Par [symétrie de la différentielle d'ordre 2](#SD2), 
@@ -2049,7 +2049,7 @@ $d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
 à un ordre plus élevé, par induction sur l'ordre de la différentielle.
 
-### Différentielle d'ordre $k$ {.definition}
+### Différentielle d'ordre $k$ {.definition #dos}
 
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 à l'ordre $k-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
@@ -2094,7 +2094,7 @@ pour $k=0, 1, 2$ ; montrons qu'il est encore vrai pour $j=k+1$.
 
 Notons tout d'abord que si $p=0$, le résultat est évident ; on supposera
 donc dans la suite que $p \in \{1,\dots,k+1\}$.
-Par définition des différentielles d'ordre supérieur,
+Par [définition des différentielles d'ordre supérieur](#dos),
 $$
 d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
 = d (d^k f(x) \cdot h_1 \cdot \hdots \cdot h_{k}) \cdot h_{k+1}.
@@ -2106,7 +2106,7 @@ d^k f(x) \cdot h_1 \cdot \hdots \cdot h_{k}
 $$
 donc si l'on pose $g(x) = d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p$ et 
 que l'on applique l'hypothèse de récurrence à l'ordre $k+1-p$
--- un nombre compris entre $0$ et $k$ -- on obtient
+(un nombre compris entre $0$ et $k$), on obtient
 $$
 \begin{split}
 d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
@@ -2125,7 +2125,7 @@ $$
 L'hypothèse de récurrence est donc prouvée au rang $k+1$, 
 ce qui établit le résultat.
 
-### Symétrie des différentielles d'ordre supérieur {.proposition #SDn}
+### Symétrie des différentielles d'ordre supérieur {.proposition #sdos}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 $k$ fois différentiable en un point $x$ de $U$. Pour toute permutation
 $\sigma$ de $\{1,\dots, n\}$
@@ -2139,14 +2139,15 @@ $$
 
 ### Démonstration {.proof}
 Toute permutation peut être décomposée en une succession de transpositions
-$\tau_{ij}$, où $\tau_{ij}(i) = j$, $\tau_{ij}(j)=i$ et $\tau_{ij}(h) = h$
-si $h$ diffère de $i$ et de $j$.
+$\tau_{ij}$, où $\tau_{ij}(i) = j$, $\tau_{ij}(j)=i$ et $\tau_{ij}(k) = k$
+si $k$ diffère de $i$ et de $j$.
 Il suffit donc d'établir le résultat quand $\sigma$ est une transposition.
 Nous procédons par récurrence sur $k$. Le résultat dans le cas $k=2$ résulte
 de [la symétrie de la différentielle d'ordre 2](#SD2). Supposons désormais 
-le résultat établi au rang $k \geq 2$. En utilisant la stratification de
+le résultat établi au rang $k \geq 2$. 
+En utilisant [la stratification de
 $d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_k \cdot h_{k+1}$
-pour $p=1$ et $p=k$, on peut établir le résultat si $i$ et $j$
+pour $p=1$ et $p=k$](#stratification), on peut établir le résultat si $i$ et $j$
 appartiennent tous les deux à $\{2,\dots, k+1\}$ ou à $\{1,\dots, k\}$.
 Dans l'unique cas restant, on peut décomposer $\tau_{1(k+1)}$ en
 $\tau_{2(k+1)} \circ \tau_{12} \circ \tau_{2(k+1)}$ et se ramener 
@@ -2285,9 +2286,9 @@ $$
 -->
 
 ### Puissance symbolique
-Comme les différentielles d'ordre supérieures  sont fréquemment évaluées 
+Comme les différentielles d'ordre supérieure sont fréquemment évaluées 
 lorsque les termes $h_1$, $h_2$, $\dots$, sont égaux, on adoptera la notation
-(purement syntaxique) suivante:
+(purement syntaxique) suivante :
 $$
 (\cdot \, h)^k := \overbrace{\cdot h \cdot \hdots \cdot h}^{k \; \mathrm{termes}}.
 $$
@@ -2312,8 +2313,8 @@ Il nous faut montrer que $r(h)$ est un $o(\|h\|^j)$, ce qui
 nous allons accomplir en établissant que $\|dr(h)\| = o(\|h\|^{j-1})$.
 En effet, si $dr(h) = E(h) \|h\|^{j-1}$ où l'application linéaire $E$
 est un $o(1)$, alors pour tout $\varepsilon > 0$ et $h$ assez proche de $0$ 
-on a $\|E(h)\| \leq \varepsilon$ et donc par le théorème des accroissements
-finis,
+on a $\|E(h)\| \leq \varepsilon$ et donc par [le théorème des accroissements
+finis](#TAF),
 $$
 \|r(h)\| = \|r(h) - r(0)\| \leq \varepsilon \|h\|^{j-1} \times \|h\|
 = \varepsilon \|h\|^j,
@@ -2339,8 +2340,8 @@ d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k -
 d^2f(x) \cdot h\cdot k - \dots -
 \frac{d^i f(x)}{(i-1)!} (\cdot \, h)^{i-1} \cdot k.
 $$
-Par le lemme de stratification et la symétrie des différentielles
-d'ordre supérieur, on obtient 
+Par [le lemme de stratification](#stratification) et 
+[la symétrie des différentielles d'ordre supérieur](#sdos), on obtient 
 \begin{multline*}
 d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k  \\ 
 - d(x \mapsto df(x) \cdot k)(x) \cdot h - \dots -
@@ -2374,7 +2375,7 @@ f(a+h) = f(a) + \int_a^{a+h} f'(t) \, dt
 $$
 qui n'est autre que [le théorème fondamental du calcul](#TFC).
 Si l'on suppose la relation vérifiée à l'ordre $j$, et $f$ $j+2$ fois dérivable,
-par intégration par parties, on obtient
+par [intégration par parties](#IPP), on obtient
 \begin{multline*}
 \int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
 = \\
@@ -2435,15 +2436,15 @@ La primitive $F$ de $f$ quand elle existe étant déterminée à une constante p
 cette définition est non-ambiguë.
 
 ### {.remark}
-Une autre façon de voir les choses: l'intégrale de Newton est définie de telle
+Une autre façon de voir les choses : l'intégrale de Newton est définie de telle
 sorte que [le théorème fondamental du calcul](#TFC) soit trivialement satisfait, 
 en toute généralité.
 Pour d'autres intégrales, comme l'intégrale de Riemann ou l'intégrale
 de Lebesgue, il sera nécessaire de faire des hypothèses supplémentaires
-sur la fonction $f$ (par exemple, $f$ continue) pour que ce résultat 
+sur la fonction $f'$ (par exemple, $f'$ continue) pour que ce résultat 
 soit valable. L'intégrale de Henstock-Kurzweil, qui sera exposée dans
 le cours de calcul intégral, vérifie bien le théorème fondamental du
-calcul en toute généralité: elle étend donc l'intégrale de Newton
+calcul en toute généralité : elle étend donc l'intégrale de Newton
 (et celle de Riemann, ainsi que celle de Lebesgue).
 
 ### {.ante}
@@ -2504,7 +2505,7 @@ $$
 $$
 ce qui fournit le résultat cherché.
 
-### Intégration par parties {.theorem}
+### Intégration par parties {.theorem #IPP}
 Soit $f:[a, b] \to \mathbb{R}$ et $g:[a, b] \to \mathbb{R}$ deux fonctions
 dérivables. Si la fonction $f g'$ est intégrable au sens de Newton, 
 la fonction $f' g$ également et
