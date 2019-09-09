@@ -324,7 +324,7 @@ mais contrairement à cette dernière,
 elle permet de contrôler différemment cette finesse 
 en fonction de la zone de l'intervalle d'intégration considérée.
 
-### Intégrale de Henstock-Kurzweil {.definition}
+### Intégrale de Henstock-Kurzweil {.definition #HK}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 au sens de Henstock-Kurzweil[^why-HK]* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$, 
