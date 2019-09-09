@@ -192,7 +192,7 @@ naturel d'inverser l'ordre d'apparition des fonctions dans la notation $g \circ 
 il faut en effet s'adapter à la notation classique (infixe ou polonaise) 
 qui désigne par $f(x)$ l'image de $x$ par $f$. 
 Pour cette même raison, il pourra être utile de
-d'utiliser $B \leftarrow A$ comme une variante de $A \to B$.
+d'utiliser $B \leftarrow A$ comme une variante de la notation $A \to B$.
 On pourra alors utiliser la règle
 $$
 g: C \leftarrow B, \; f: B \leftarrow A \; \implies \; g \circ f: C \leftarrow A
