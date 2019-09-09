@@ -2514,10 +2514,11 @@ $$
 $$
 
 ### Démonstration {.proof}
-Comme $(fg)' = f'g + fg'$, on a $f'g = (fg)' - fg'$. Or, $(fg)'$ est intégrable
-au sens de Newton (sa primitive est $fg$), $fg'$ est intégrable au sens de 
-Newton par hypothèse, donc $f'g$ est intégrable comme combinaison linéaire
-de fonctions intégrables. De plus, 
+Comme $(fg)' = f'g + fg'$, on a $f'g = (fg)' - fg'$. 
+Or, $(fg)'$ est intégrable au sens de Newton ($fg$ est une de ses primitives), 
+$fg'$ est intégrable au sens de Newton par hypothèse, 
+donc $f'g$ est intégrable comme combinaison linéaire de fonctions intégrables. 
+De plus, 
 $$
 \begin{split}
 \int_a^b f'(x) g(x) \,dx 
@@ -2813,7 +2814,7 @@ calcul plan tangent ?
 
 -->
 
-Solutions aux Exercices
+Solutions
 ================================================================================
 
 <!--
