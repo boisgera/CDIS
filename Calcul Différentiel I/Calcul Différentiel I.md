@@ -170,7 +170,7 @@ La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
 
     >>> from numpy import *
 
-Ensembles et Fonctions
+Ensembles et fonctions
 --------------------------------------------------------------------------------
 
 La notation classique $f: A \to B$ pour désigner une fonction $f$ d'un
@@ -201,10 +201,10 @@ où les notations des ensembles et fonctions $g$, $f$, $A$, $B$ et $C$
 restent dans le même ordre d'apparition et les deux occurrences de 
 l'ensemble intermédiaire $B$ se touchent.
 
-Applications Linéaires et Calcul Matriciel
+Applications linéaires et calcul matriciel
 --------------------------------------------------------------------------------
 
-### Multiplication Scalaire-Vecteur
+### Multiplication scalaire-vecteur
 Pour tout scalaire $\lambda \in \mathbb{R}$ et vecteur $x \in \mathbb{R}^n$,
 on notera $\lambda x$ ou parfois $x \lambda$ la multiplication du vecteur $x$ 
 par le scalaire $\lambda$. Lorsque $\lambda$ est non nul, on
