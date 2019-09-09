@@ -197,7 +197,7 @@ On pourra alors utiliser la règle
 $$
 g: C \leftarrow B, \; f: B \leftarrow A \; \implies \; g \circ f: C \leftarrow A
 $$
-ou les notations des ensembles et fonctions $g$, $f$, $A$, $B$ et $C$
+où les notations des ensembles et fonctions $g$, $f$, $A$, $B$ et $C$
 restent dans le même ordre d'apparition et les deux occurrences de 
 l'ensemble intermédiaire $B$ se touchent.
 
