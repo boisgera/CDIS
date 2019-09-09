@@ -616,7 +616,7 @@ $$
 \varepsilon(h) = \frac{f(x+h) - f(x)}{|h|} - \ell \frac{h}{|h|}.
 $$
 Puisque $U$ est ouvert, la fonction $\varepsilon$ est définie dans un voisinage 
-de $h=0$;  
+de $h=0$ ;  
 par construction, pour tout $h$ on a $f(x+h) = f(x) + \ell h + \varepsilon(h) |h|$.
 Finalement, $f$ étant dérivable en $x$ de dérivée $\ell$, comme
 pour $h \neq 0$,
@@ -661,9 +661,9 @@ La fonction $f$ est *[différentiable]{.index}* en $x \in U$
 s'il existe une application linéaire $L: \mathbb{R}^n \to \mathbb{R}^m$
 telle que
 $f(x+h) = f(x) + L \cdot h + o(\|h\|).$
-Si c'est le cas, l'application $L$ est unique; nous la notons alors
-$df(x)$ et l'appelons *[différentielle de $f$ en $x$]{.index}*.
-Elle est donc caractérisée par:
+Si c'est le cas, l'application $L$ est unique ; 
+nous la notons alors $df(x)$ et l'appelons *[différentielle de $f$ en $x$]{.index}*.
+Elle est donc caractérisée par :
 $$
 f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
 $$
@@ -672,8 +672,9 @@ La fonction $f$ est *différentiable*
 si elle est différentiable en tout point de $U$. 
 
 ### Variation d'une fonction {.definition} 
-On appelle variation de $f$ en $x$ associée à la variation 
-$h$ de l'argument la grandeur
+On appelle *variation de $f$ en $x$*, 
+pour la variation $h$ de l'argument, 
+la grandeur
 $$
 \Delta f(x, h) := f(x+h) - f(x),
 $$
@@ -702,7 +703,7 @@ et que par conséquent
 $\Delta f(x, h) = A \cdot h + o(\|h\|)$.
 
 ### {.ante}
-Résumons les liens entre dérivée et différentielle à ce stade:
+Résumons les liens entre dérivée et différentielle à ce stade :
 
 ### Différentielle et Dérivée {.theorem}
 
