@@ -211,7 +211,7 @@ par le scalaire $\lambda$. Lorsque $\lambda$ est non nul, on
 notera également $x / \lambda$ le vecteur $(1 / \lambda) x$.
 
 Un vecteur de $\mathbb{R}^n$ est représenté dans NumPy par un tableau à une
-dimension:
+dimension :
 
     >>> x = array([1, 2, 3])
     >>> x.ndim
@@ -257,7 +257,7 @@ sera représentée avec NumPy par un tableau bi-dimensionnel:
 
 ### Mise à plat des matrices {.warning #flatten}
 Dans la notation $\mathbb{R}^{m \times n}$, 
-$\times$ est un symbole de séparation, purement syntactique: 
+$\times$ est un symbole de séparation, purement syntactique : 
 $\mathbb{R}^{2 \times 3}$ désigne ainsi 
 l'ensemble des matrices à 2 lignes et 3 colonnes à coefficients réels 
 et diffère de $\mathbb{R}^6$ qui
@@ -270,7 +270,7 @@ des lignes de la matrice de haut en bas et chaque ligne de gauche à
 droite; cette façon de faire définit un vecteur de $\mathbb{R}^{mn}$.
 L'opération ainsi définie sera notée $\pi_{m\times n}$ (voire $\pi$
 s'il n'y a pas d'ambiguité).
-Par exemple:
+Par exemple :
 
 $$
 \pi_{2 \times 3}: 
@@ -284,9 +284,9 @@ $$
 (1,2,3,4,5,6) \in \mathbb{R}^6
 $$
 
-Cette opération est bijective; elle-même ainsi que son inverse sont linéaires.
+Cette opération est bijective ; elle-même ainsi que son inverse sont linéaires.
 $\mathbb{R}^{m \times n}$ et $\mathbb{R}^{m n}$ sont donc isomorphes (en tant
-qu'espace vectoriels), ce que l'on notera:
+qu'espace vectoriels), ce que l'on notera :
 
 $$
 \mathbb{R}^{m \times n} \, \cong \, \mathbb{R}^{mn}
@@ -305,7 +305,7 @@ avec NumPy:
     array([[1, 2, 3],
            [4, 5, 6]])
 
-### Applications Linéaires
+### Applications linéaires
 
 Notons
 $$
@@ -335,7 +335,7 @@ $$
 il est possible d'associer à l'application linéaire 
 $A: \mathbb{R}^n \to \mathbb{R}^m$ la matrice
 $$
-[a_{ij}]_{ij} :=
+[A] :=
 [A_i(e_j)]_{ij}=
 \left[ 
 \begin{array}{ccccc}
@@ -365,7 +365,7 @@ et cette opération est l'inverse de la précédente.
 
 Cette correspondance établit un isomorphisme d'espaces vectoriels entre 
 les applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et 
-les matrices de taille $m \times n$ à coefficients réels:
+les matrices de taille $m \times n$ à coefficients réels :
 $$
 \mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
 \, \cong \,
@@ -386,14 +386,14 @@ multiplication des matrices associées.
 
 Dans la suite on évitera en général l'utilisation du symbole $\circ$ pour
 désigner la composition d'applications linéaires, en lui préférant le
-symbole $\cdot$. 
+symbole $\cdot$ ("point"). 
 <!--
 Le même symbole sera utilisé pour désigner le produit
 entre deux matrices (on évitera dans la mesure du possible de désigner
 le produit de deux matrices par simple juxtaposition des symboles).
 -->
 
-Avec NumPy, la méthode `dot` des tableaux permet de calculer ce produit matriciel:
+La méthode `dot` des tableaux NumPy permet de calculer ce produit matriciel :
 
     >>> A = array([[1, 2, 3], [4, 5, 6]])
     >>> B = array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
@@ -408,7 +408,7 @@ opérateur tel que pour tout $x \in \R^n$ et tout $y \in \R^m$, on ait
 $$
 \left<y, A \cdot x \right> = \left<A^* \cdot y, x \right>.
 $$
-La matrice représentant $A^*$ est la transposée de la matrice représentant $A$:
+La matrice représentant $A^*$ est la transposée de la matrice représentant $A$ :
 
     >>> A
     array([[1, 2, 3],
@@ -438,7 +438,7 @@ Formellement, on a associé à $x$
 une matrice
 $X \in \mathbb{R}^{n\times 1}$, telle que $X_{i1} = x_i$.
 Le produit entre une matrice et un vecteur colonne de taille compatible
-n'est rien d'autre qu'un produit matriciel habituel. 
+n'est rien d'autre qu'un produit matriciel classique. 
 
 Le vecteur $x$ étant associé à une matrice, on peut se demander quel
 opérateur linéaire est associé à cette matrice. La réponse est simple:
@@ -448,12 +448,12 @@ $$
 $$
 Identifier un vecteur et son opérateur linéaire de $\R \to \R^n$
 permet par exemple de disposer "gratuitement" de la définition 
-$x^*$ (l'adjoint de l'opérateur associé à $x$): il s'agit
+$x^*$ (l'adjoint de l'opérateur associé à $x$) : il s'agit
 de l'application linéaire de $\R^n$ dans $\R$ dont la matrice
 est la transposée du vecteur colonne associé à $x$, autrement dit,
 la représentation de $x$ comme vecteur ligne.
 
-L'intérêt de la représentation des vecteurs comme vecteurs colonnes: 
+L'intérêt de la représentation des vecteurs comme vecteurs colonnes : 
 si $A$ est une application linéaire de $\mathbb{R}^n$ dans
 $\mathbb{R}^m$ et $x$ un vecteur de $\mathbb{R}^n$, le vecteur
 image $y=A \cdot x \in \mathbb{R}^m$ de $x$ par $A$ est représenté par 
@@ -572,7 +572,7 @@ $f$ en $x$:
 $$
 \ell = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
 $$
-Cette limite quand elle existe est unique; 
+Cette limite quand elle existe est unique ; 
 elle est appelée *dérivée de $f$ en $x$* et notée $f'(x)$:
 $$
 f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
@@ -582,7 +582,7 @@ $$
 
 La formation d'un taux d'accroissement dans cette définition 
 nécessite que l'on divise par $h$
-et par conséquent que $h$ soit scalaire; 
+et par conséquent que $h$ soit scalaire ; 
 la dérivée ne peut donc être définie que si $f$ est une fonction 
 d'une unique variable (scalaire).
 En revanche, la fonction peut être à valeurs scalaires ou vectorielles sans
