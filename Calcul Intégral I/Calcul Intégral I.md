@@ -204,7 +204,7 @@ de départ est de longueur nulle[^me]
 et que c'est donc ce que signifie "négligeable". 
 Nous verrons ultérieurement que cette intuition sera vérifiée.
 
-[^me]: plus exactement de mesure *extérieure* nulle.
+[^me]: plus exactement de mesure *extérieure* (de longueur) nulle.
 
 ### Presque partout {.definition}
 Une propriété dépendant d'un réel $x$ est vraie *presque partout*
