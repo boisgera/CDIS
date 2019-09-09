@@ -1837,7 +1837,7 @@ Pour tout vecteur $k$ non nul, on a
 $$
 \varepsilon_{h}(k) = \frac{1}{\|k\|}\left(df(x+k) \cdot h - df(x) \cdot h - d^2f(x) \cdot h \cdot k \right),
 $$
-le terme $\varepsilon_{h}(k)$ est donc linéaire en $h$; 
+le terme $\varepsilon_{h}(k)$ est donc linéaire en $h$ ; 
 notons $E(k)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
 qui est nulle quand $k=0$ et définie dans le cas contraire
 par $E(k) \cdot h = \varepsilon_h (k)$. On a donc pour tout $h$
@@ -1872,7 +1872,7 @@ ce qui prouve le résultat cherché.
 ### Variation d'ordre $2$
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 Quand cette expression est définie, on appelle *variation d'ordre 2*
-de $f$ en $x$, associée aux variation $h$ et $k$ de l'argument,
+de $f$ en $x$, associée aux variations $h$ et $k$ de l'argument,
 la grandeur
 $$
 \begin{split}
@@ -1881,7 +1881,7 @@ $$
 \end{split}
 $$
 
-### Variation et différentielle d'ordre deux {.theorem}
+### Variation et différentielle d'ordre deux {.theorem #D2d2}
 Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
 $\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
 $$
@@ -1905,7 +1905,7 @@ $$
 g(u) = f(x+u+k) - f(x+u) - d^2f(x) \cdot u \cdot k,
 $$
 la différence vaut $e = g(h) - g(0)$. 
-Cette différence peut être majorée par [l'inégalité des accroissements finis](#TAF): 
+Cette différence peut être majorée par [l'inégalité des accroissements finis](#TAF) : 
 $g$ est différentiable sur le segment $[0, h]$ et
 $$
 dg(u) = df(x+u+k) - df(x+u) - (h \mapsto d^2f(x) \cdot h \cdot k). 
@@ -1925,7 +1925,7 @@ alors
 $$
 \|dg(u)\| \leq \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|.
 $$
-Par conséquent, le théorème des accroissement finis fournit
+Par conséquent, [le théorème des accroissements finis](#TAF) fournit
 $$
 \|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
 $$
@@ -1950,8 +1950,8 @@ $$
 $$
 La variation d'ordre $2$ de $f$ en $x$ est donc
 symétrique par rapport à ses arguments $h$ et $k$.
-On peut alors exploiter la relation entre variation d'ordre $2$ et 
-différentielle d'ordre 2 en notant que
+On peut alors exploiter [la relation entre variation d'ordre $2$ et 
+différentielle d'ordre 2](#D2d2) en notant que
 \begin{multline*}
 \|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
 \leq \\
@@ -1964,7 +1964,7 @@ $$
 \leq 2\varepsilon (\|h\|+\|k\|)^2.
 \end{split}
 $$
-Quand $h$ et $k$ sont arbitraires, en substituant $th$ à $h$ et $tk$ à $k$
+Si $h$ et $k$ sont arbitraires, en substituant $th$ à $h$ et $tk$ à $k$
 pour un $t>0$ suffisamment petit pour que l'inégalité ci-dessus soit valable,
 comme 
 $$
@@ -1976,7 +1976,7 @@ $$
 2 \varepsilon (\|th\|+\|tk\|)^2 = t^2 \times 2 (\|h\|+\|k\|)^2,
 $$
 on voit que l'inégalité est en fait valable pour des $h$ et $k$ arbitraires.
-On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h.$
+On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h = 0.$
 
 ### Variation de la différentielle II {.theorem} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
