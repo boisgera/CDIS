@@ -706,12 +706,11 @@ $\Delta f(x, h) = A \cdot h + o(\|h\|)$.
 Résumons les liens entre dérivée et différentielle à ce stade :
 
 ### Différentielle et Dérivée {.theorem}
-
 Soient $U$ un ouvert de $\mathbb{R}$, $f: U \to \mathbb{R}^m$
 et $x \in U$.
-La fonction $f$ est différentiable en $a$ si et seulement si
+La fonction $f$ est différentiable en $x$ si et seulement si
 elle est dérivable en $x$. Dérivée et différentielle de $f$ en 
-$a$ se déduisent alors l'une de l'autre par les relations 
+$x$ se déduisent alors l'une de l'autre par les relations 
 $$
 f'(x) = df(x) \cdot 1
 \; \mbox{ et } \;
