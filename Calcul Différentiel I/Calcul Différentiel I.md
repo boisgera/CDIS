@@ -182,7 +182,7 @@ même chose que $f \in A \to B$.
 La convention que nous adoptons a vocation à simplifier la manipulation
 de fonctions dont les valeurs sont des fonctions, un schéma très fréquent
 en calcul différentiel.
-Si $f: A \to B$ et $g: B \to C$, la composée des fonctions $f$ et de $g$,
+Si $f: A \to B$ et $g: B \to C$, la composée des fonctions $f$ et $g$,
 notée $g \circ f$, appartient à $A \to C$ et est définie par
 $$
 (g \circ f) (x) = g(f(x)).
