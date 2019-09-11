@@ -182,7 +182,7 @@ $$
 ![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.
 Bien que $x=(1,0)$ et $y=(0,1)$ appartiennent au cercle unité, 
 ni $x+y$ ni $2 x$ ne lui appartiennent. Il hérite néanmoins
-d'une distance $d$ de l'espace euclien $\mathbb{R}^2$
+d'une distance $d$ de l'espace euclidien $\mathbb{R}^2$
 (telle que $d(x,y) = \|x - y\|_2 = \sqrt{2}$
 quand $x=(1,0)$ et $y=(0,1)$),
 ce qui fait de lui un espace métrique.](images/circle.tex)
@@ -952,7 +952,7 @@ d'*espace de Banach[^Banach]*.
 un mathématicien polonais du 20ème siècle d'après lequel sont nommés
 [de nombreux concepts et théorèmes](https://en.wikipedia.org/wiki/List_of_things_named_after_Stefan_Banach).
 
-### Complétude de l'espace euclien {.proposition}
+### Complétude de l'espace euclidien {.proposition}
 
 L'espace $\mathbb{R}^n$ est complet.
 
@@ -1365,7 +1365,7 @@ qui muni du produit scalaire
 $$
 \left<x,y\right> = x_1 y_1 + \dots + x_n y_n
 $$
-devient un *espace euclien*; la norme associée vérifie
+devient un *espace euclidien*; la norme associée vérifie
 $$
 \|x\| = \sqrt{x_1^2 +\dots + x_n^2}.
 $$
