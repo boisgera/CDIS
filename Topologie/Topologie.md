@@ -869,10 +869,14 @@ qui garantisse exactement que la suite calculée ait une limite,
 quand cette limite potentielle est inconnue.
 
 Vérifier que $|x_{k+1} - x_k| \to 0$ par exemple est insuffisant 
-pour garantir une limite comme en atteste la suite des $x_k = 1 / (k+1)$. 
-Vérifier que la suite  $\sum_{j=0}^{k} |x_{j+1} - x_j|$ reste bornée 
+pour garantir une limite comme en atteste la suite des $x_k = \sum_{j=0}^k 1 / (j+1).$ 
+Vérifier que la série de terme général $|x_{k+1} - x_k|$ est bornée, c'est-à-dire
+que
+$$
+\sum_{k=0}^{+\infty} |x_{k+1} - x_k| < +\infty
+$$
 va bien garantir la convergence, mais va par contre rejeter des suites convergentes 
-telle que  $x_k = \sum_{j=0}^{k} (-1)^j / (j+1)$.
+telle que $x_k = \sum_{j=0}^{k} (-1)^j / (j+1)$.
 Un critère plus adapté serait d'examiner le développement décimal de 
 $x_k$ et de vérifier que quel que soit le nombre de décimales souhaité
 après la virgule, le développement de $x_k$ finit par se stabiliser au-delà 
