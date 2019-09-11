@@ -2891,7 +2891,6 @@ d(g \circ f)(x) \cdot h
 $$
 
 ### Question 2 {.answer #answer-dec-2}
-
 La fonction $f$ dépendant d'une variable scalaire, elle est dérivable et 
 $df(x) \cdot h = f'(x) h$. Quant à $g$ qui est à valeur scalaire, sa
 différentielle en $x$ est reliée à son gradient par 
@@ -2912,7 +2911,7 @@ Fonction quadratique
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-fq-1}
-Pour tout $x \in \R^n$ est tout $h \in \R^n$, on a 
+Pour tout $x \in \R^n$ et tout $h \in \R^n$, on a 
 $$
 \begin{split}
 f(x+h) - f(x) &= \frac{1}{2} \left<(x+h), A \cdot (x+h) \right> + \left<b, x+h\right> + c
