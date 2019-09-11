@@ -111,7 +111,7 @@ aliases = {
 # Authors
 # ------------------------------------------------------------------------------
 def insert_authors(doc):
-    content = "STEP, Mines Paristech[^1]\n\n"
+    content = "STEP, MINES ParisTech[^1]\n\n"
     content += \
 r"""[^1]: Ce document est un des produits du projet
 [$\mbox{\faGithub}$ `boisgera/CDIS`](https://github.com/),
