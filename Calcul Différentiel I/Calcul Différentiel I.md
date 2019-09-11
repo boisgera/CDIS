@@ -3227,7 +3227,7 @@ f(x,y)
 \right.
 $$
 existent en $(0,0)$ et sont nulles pour tout $h \in \R^2$, 
-puisque les fonctions associéés $t \in \R \mapsto f(t h)$
+puisque les fonctions associées $t \in \R \mapsto f(t h)$
 sont nulles pour $|t|$ suffisamment petit.
 Mais $f$ n'est pas continue en l'origine ; 
 elle n'y est donc a fortiori pas différentiable.
