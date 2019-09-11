@@ -2582,8 +2582,8 @@ Différentiation en chaîne {#dec}
 --------------------------------------------------------------------------------
 
 [La règle générale de différentiation en chaîne](#chain-rule)
-s'applique à la composée de deux fonctions $f: U \subset \R^p \to \R^n$
-et $g: V \subset \R^n \to \R^m$.
+s'applique à la composée de deux fonctions différentiables 
+$f: U \subset \R^p \to \R^n$ et $g: V \subset \R^n \to \R^m$.
 
 ### Question 1 {.question #dec-1}
 Calculer $d(g \circ f)$ quand $p = n = 1$ (on utilisera les dérivées
@@ -2593,7 +2593,7 @@ de $f$ et $g$).
 Calculer $d(g \circ f)$ quand $p = m = 1$ (on utilisera les dérivées 
 et/ou gradients de $f$ et $g$).
 
-
+<!--
 Soit $f: U \subset \mathbb{R} \to \mathbb{R}$ et 
 $g: V \subset \mathbb{R} \to \mathbb{R}$ deux fonctions définies
 sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
@@ -2602,6 +2602,7 @@ alors la composée $g \circ f$ est dérivable en $x$ et
 $$
 (g \circ f)'(x) = g'(f(x)) f'(x).
 $$
+-->
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
