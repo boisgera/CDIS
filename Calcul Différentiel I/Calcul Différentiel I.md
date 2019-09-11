@@ -2629,7 +2629,9 @@ est proportionnelle à la fonction
 $$
 f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
 $$
-où $\Sigma \in \R^{d \times d}$ est une matrice symétrique définie positive.
+où $\Sigma : \R^d \to \R^d$ est un opérateur linéaire autoadjoint 
+(c'est-à-dire que $\Sigma^* = \Sigma$) 
+tel que $\left<x, \Sigma \cdot x \right> > 0$ quand $x\neq 0$.
 
 ### Question 1 {.question #vg-1}
 Montrer que la fonction $f$ est différentiable et calculer son gradient.
@@ -2993,7 +2995,7 @@ Quand à la première fonction, pour tout $h \in \R^d$, on a
 + <x, \Sigma^{-1} h> + <h, \Sigma^{-1} \cdot x> + \left<h, \Sigma^{-1} \cdot h \right>
 \right). 
 \end{multline*}
-D'une part, comme $\Sigma$ est symétrique (et inversible), $\Sigma^{-1}$ également et
+D'une part, comme $\Sigma$ est autoadjoint (et inversible), $\Sigma^{-1}$ également et
 $$
 <x, \Sigma^{-1} \cdot h> + <h, \Sigma^{-1} \cdot x> = 2 \left<\Sigma^{-1} \cdot x, h \right>,
 $$
@@ -3047,7 +3049,7 @@ $$
 \left<u, k \right> \left<v, h \right>
 =
 \left<k, u \right> \left<v, h \right>
-= k^* u  \times v^* h = (v \cdot u^* \cdot k)^* h = \left<(v \cdot u^*) \cdot k, h \right>,
+= k^* \cdot u  \times v^* \cdot h = (v \cdot u^* \cdot k)^* \cdot h = \left<(v \cdot u^*) \cdot k, h \right>,
 $$
 par conséquent
 $$
