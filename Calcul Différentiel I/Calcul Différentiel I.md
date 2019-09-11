@@ -2574,7 +2574,7 @@ Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
 -- $f'(a)$ et $f'(b)$ désignant alors les dérivées à droite de $f$ en $a$
 et à gauche de $f$ en $b$ --
 si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
-$g$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable
+$f$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable
 et qu'alors, $f' = g'|_{[a, b]}$.
 
 
