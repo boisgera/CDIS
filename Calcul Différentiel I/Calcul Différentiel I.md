@@ -3211,7 +3211,7 @@ f(x,y)
 \end{array}
 \right.
 $$
-existent en $(0,0)$ et sont nulles, puisque les fonctions partielles associéés
+existent en $(0,0)$ et sont nulles, puisque les fonctions partielles associées
 sont nulles. Mais $f$ n'est pas continue en l'origine ; 
 elle n'y est donc a fortiori pas différentiable.
 
