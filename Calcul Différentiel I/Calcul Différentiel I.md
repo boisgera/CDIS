@@ -2892,8 +2892,8 @@ $$
 
 ### Question 2 {.answer #answer-dec-2}
 
-La fonction $f$ dépendant d'un variable scalaire, elle est dérivable et 
-$df(x) \cdot h = f'(x) h$. Quant $g$ qui est à valeur scalaire, sa
+La fonction $f$ dépendant d'une variable scalaire, elle est dérivable et 
+$df(x) \cdot h = f'(x) h$. Quant à $g$ qui est à valeur scalaire, sa
 différentielle en $x$ est reliée à son gradient par 
 $dg(x) \cdot h =\left<\nabla g(x), h\right>$.
 La [règle de différentiation en chaîne](#chain-rule),
