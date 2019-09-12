@@ -3174,11 +3174,11 @@ son déterminant est positif ; la matrice $A$ est alors inversible.
 Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
 pour être inversible, la formule de Cramer établit
 $$
-A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^*.
+A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
 $$
-Chaque coefficient de $\mathrm{co}(A)^*$ (la transposée de la comatrice
+Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
 de $A$) est une fonction polynomiale
-des coefficients $a_{ij}$ de $A$; chaque coefficient de $\mathrm{co}(A)^*$
+des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
 est donc une fonction continûment différentiable des coefficients de $A$
 et donc différentiable en $A=I$.
 Par la règle du produit, chaque coefficient de $A^{-1}$ est 
@@ -3187,7 +3187,7 @@ différentiable en $A=I$.
 
 Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
 $\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + o(\|H\|),$
-l'identité $(I+ H) (I + H)^{-1} = I$ fournit:
+l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
 $$
 (I+H)(I + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)) 
 = I + H + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)
