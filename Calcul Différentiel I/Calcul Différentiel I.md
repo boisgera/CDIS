@@ -3521,15 +3521,15 @@ Convexité
 ### Question 0 {.answer #answer-c-0}
 [Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
 $$
-f(x+h) = f(x) + df(x) \cdot h + d^2f(x) (\cdot h)^2 + o(\|h\|^2)
+f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2)
 $$
 et donc
 $$
-f(x+2h) = f(x) + 2 df(x) \cdot h + 4 d^2f(x) (\cdot h)^2 + o(\|h\|^2).
+f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2).
 $$
 Par conséquent,
 $$
-f(x+2h) - 2 f(x+h) + f(x) = 2 d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
+f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
 $$
 
 ### Question 1 {.answer #answer-c-1}
