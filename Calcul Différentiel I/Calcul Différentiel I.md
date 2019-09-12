@@ -3410,9 +3410,9 @@ $$
 $$
 Par construction
 $$
-\frac{f(\gamma(t_i)) - f(\gamma(0))}{t_i} = \frac{f(x+ t_i k_i) - f(x)}{t_i} ;
+\frac{f(\gamma(t_i)) - f(\gamma(0))}{t_i} = \frac{f(x+ t_i k_i) - f(x)}{t_i}.
 $$
-comme la fonction est dérivable directionnellement au sens de 
+Comme la fonction est dérivable directionnellement au sens de 
 Hadamard, 
 $$
 \lim_{i \to +\infty} \frac{f(x+ t_i k_i) - f(x)}{t_i}
