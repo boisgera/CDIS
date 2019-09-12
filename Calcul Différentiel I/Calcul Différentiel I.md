@@ -2713,7 +2713,7 @@ est bien définie.
 On introduit une variante à cette définition:
 la fonction $f$ est *directionnellement dérivable au sens de Hadamard* 
 en $x$ si pour tout chemin $\gamma: I \subset \mathbb{R} \to \mathbb{R}^n$,
-défini sur un intervalle ouvert $I$ contenant $0$, telle que
+défini sur un intervalle ouvert $I$ contenant $0$, tel que
 $\gamma(I) \subset U$,  $\gamma(0) = x$ et $\gamma'(0)$ existe,
 la dérivée $(f \circ \gamma)'(0)$ existe. 
 
