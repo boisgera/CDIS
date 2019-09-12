@@ -1,0 +1,46 @@
+[
+	{
+		"id": "Bur07",
+		"type": "book",
+		"title": "A garden of integrals.",
+		"publisher": "Washington, DC: Mathematical Association of America (MAA)",
+		"number-of-pages": "xiv + 281",
+		"ISBN": "978-0-88385-337-5",
+		"language": "English",
+		"author": [
+			{
+				"family": "Burk",
+				"given": "Frank E."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2007"
+				]
+			]
+		}
+	},
+	{
+		"id": "Swa01",
+		"type": "book",
+		"title": "Introduction to gauge integrals.",
+		"publisher": "Singapore: World Scientific",
+		"number-of-pages": "x + 157",
+		"ISBN": "981-02-4239-5",
+		"language": "English",
+		"author": [
+			{
+				"family": "Swartz",
+				"given": "Charles"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001"
+				]
+			]
+		}
+	}
+]
