@@ -2785,7 +2785,7 @@ Calculer le développement limité à l'ordre 2 de
 $f(x+2h) - 2f(x+h) + f(x)$.
 
 ### Question 1 {.question #c-1}
-Montrer que si $f$ est convexe, c'est-à-dire que
+Montrer que si $f$ est convexe, c'est-à-dire si
 pour tous $x, y \in U$ et $\lambda\in[0,1]$,
 $$
 f((1-\lambda) x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y),
