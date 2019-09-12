@@ -2734,7 +2734,7 @@ Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
 sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
 Montrer que si $f$ est directionnellement dérivable au sens de Hadamard 
-en $x \in U$ et $g$ est directionnellement dérivable au sens de Hadamard 
+en $x \in U$ et que $g$ est directionnellement dérivable au sens de Hadamard 
 en $f(x) \in V$, alors la composée $g \circ f$ est directionnellement 
 dérivable au sens de Hadamard en en $x$ et
 $$
@@ -3410,7 +3410,7 @@ $$
 $$
 Par construction
 $$
-\frac{f(\gamma(t_i)) - f(\gamma(0))}{t_i} = \frac{f(x+ t_i k_i) - f(x)}{t_i};
+\frac{f(\gamma(t_i)) - f(\gamma(0))}{t_i} = \frac{f(x+ t_i k_i) - f(x)}{t_i} ;
 $$
 comme la fonction est dérivable directionnellement au sens de 
 Hadamard, 
