@@ -3443,8 +3443,8 @@ $$
 $$
 Par conséquent la fonction $f$
 est directionnellement dérivable au sens de Hadamard.
-Le membre de droite, égal à $f'(x, h)$ est linéaire en $h$,
-elle est donc différentiable au sens de Hadamard.
+Le membre de droite, égal à $f'(x, h)$, est linéaire en $h$ ;
+la fonction $f$ est donc différentiable au sens de Hadamard.
 
 Réciproquement, supposons que $f$ est différentiable au sens de Hadamard.
 Pour montrer que $f$ est différentiable au sens de Fréchet, 
@@ -3472,7 +3472,7 @@ $$
 \frac{f \left(x+ t'_i k'_i \right) - f(x)}{t'_i} - f'\left(x, k'_i \right)
 \right\| \geq \varepsilon.
 $$
-Mais la suite des $k'_i$ est de norme égale à $1$;
+Mais la suite des $k'_i$ est de norme égale à $1$ ;
 la sphère fermée de centre $1$ étant compacte, il existe des sous-suites
 $t''_i$ et $k''_i$ de $t'_i$ et $k'_i$ et un $h \in \mathbb{R}^n$ tels que
 $\|h\| = 1$ et
