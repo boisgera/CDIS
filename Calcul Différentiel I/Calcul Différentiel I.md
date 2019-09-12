@@ -2293,7 +2293,7 @@ $$
 (\cdot \, h)^k := \overbrace{\cdot h \cdot \hdots \cdot h}^{k \; \mathrm{termes}}.
 $$
 
-### Développement limité d'ordre supérieur
+### Développement limité d'ordre supérieur {.theorem #dl}
 Soit $f: U \subset \R^n \to \R^m$ une fonction $j$ fois différentiable au point
 $x \in U$. Alors
 $$
@@ -3519,7 +3519,7 @@ Convexité
 --------------------------------------------------------------------------------
 
 ### Question 0 {.answer #answer-c-0}
-Le développement limité à l'ordre 2 de $f$ en $x$ fournit
+[Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
 $$
 f(x+h) = f(x) + df(x) \cdot h + d^2f(x) (\cdot h)^2 + o(\|h\|^2)
 $$
