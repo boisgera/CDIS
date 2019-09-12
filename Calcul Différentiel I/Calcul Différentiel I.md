@@ -2777,7 +2777,7 @@ Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi
 Convexité
 --------------------------------------------------------------------------------
 
-Soit $U$ un ensemble convexe de $\R^n$ et $f: U \to \R$ une fonction
+Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
 deux fois différentiable. 
 
 ### Question 0 {.question #c-0}
@@ -3490,7 +3490,7 @@ Inégalité de la valeur moyenne {.answer #answer-ivm}
 --------------------------------------------------------------------------------
 
 Soit $F:[a, b] \to \R^m$ une primitive de $f$. 
-Par définition de l'intégrale de Newton,
+Par [définition de l'intégrale de Newton](#intégrale-Newton),
 $$
 \left<f\right> = \frac{1}{b-a} \int_a^b f(x) \, dx
 = \frac{F(b) - F(a)}{b-a}.
@@ -3521,11 +3521,11 @@ Convexité
 ### Question 0 {.answer #answer-c-0}
 Le développement limité à l'ordre 2 de $f$ en $x$ fournit
 $$
-f(x+h) = f(x) + df(x) \cdot h + d^2f(x) (\cdot h)^2 + o(\|h^2\|)
+f(x+h) = f(x) + df(x) \cdot h + d^2f(x) (\cdot h)^2 + o(\|h\|^2)
 $$
 et donc
 $$
-f(x+2h) = f(x) + 2 df(x) \cdot h + 4 d^2f(x) (\cdot h)^2 + o(\|h^2\|).
+f(x+2h) = f(x) + 2 df(x) \cdot h + 4 d^2f(x) (\cdot h)^2 + o(\|h\|^2).
 $$
 Par conséquent,
 $$
