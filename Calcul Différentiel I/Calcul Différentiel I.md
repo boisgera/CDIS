@@ -3540,8 +3540,8 @@ f(x+h) \leq \frac{1}{2} f(x) + \frac{1}{2} f(x+2h),
 $$
 soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
 En utilisant le résultat de la question précédente,
-on obtient donc
-$d^2 f(x) (\cdot h)^2 \geq o(\|h\|^2)$ ou encore, en substituant 
+on obtient
+$$d^2 f(x) (\cdot h)^2 + o(\|h\|^2) \geq 0$$ et donc, en substituant 
 $th$ à $h$ et en faisant tendre $t$ vers $0$, 
 $d^2 f(x) (\cdot h)^2 \geq 0.$
 
