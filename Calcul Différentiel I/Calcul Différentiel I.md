@@ -3562,7 +3562,7 @@ $$
 $$
 par le changement de variable $t \lambda \to t$ elle est égale à
 $$
-\lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot t (y-x))^2 
+\lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
 \left(1 - \frac{t}{\lambda} \right)\, dt.
 $$
 En utilisant le développement de Taylor avec reste intégral pour
@@ -3571,20 +3571,20 @@ $$
 \begin{split}
 f((1-\lambda) x + \lambda y) - \lambda f(y)
 &= f(x) - \lambda f(x) + df(x) \cdot \lambda (y-x) - \lambda df(x) \cdot (y-x) \\
-&\phantom{=} + \lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot t (y-x))^2  \left(1 - \frac{t}{\lambda} \right)\, dt
+&\phantom{=} + \lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2  \left(1 - \frac{t}{\lambda} \right)\, dt
 \\
-&\phantom{=} - \lambda \int_0^{1} d^2f(x+ t (y-x)) (\cdot t (y-x))^2 
+&\phantom{=} - \lambda \int_0^{1} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
 \left(1 - t \right)\, dt,
 \end{split}
 $$
 soit 
 $$
 f((1-\lambda) x + \lambda y) - \lambda f(y)
-- f(x) 
+- (1 - \lambda) f(x) 
 =\lambda \int_0^1 \phi_f(t) \psi_{\lambda} (t) \, dt
 $$
 où
-$\phi_f(t) := d^2f(x+ t (y-x)) (\cdot t (y-x))^2$ est positive par hypothèse et 
+$\phi_f(t) := d^2f(x+ t (y-x)) (\cdot (y-x))^2$ est positive par hypothèse et 
 $$
 \psi_{\lambda}(t) :=
 \left|
@@ -3596,7 +3596,8 @@ t(1 - 1/\lambda) & \mbox{si } t \leq \lambda\\
 $$
 La fonction $\psi_{\lambda}$ étant négative, on en conclut que
 $f((1-\lambda) x + \lambda y) - \lambda f(y) - f(x)$ est négative pour tout
-$\lambda \in \left]0, 1\right]$ ; la fonction $f$ est donc convexe.
+$\lambda \in \left]0, 1\right]$ ; cette inégalité est également trivialement
+satisfaite si $\lambda=0$. La fonction $f$ est donc convexe.
 
 <!--
 TODO -- Analycité
