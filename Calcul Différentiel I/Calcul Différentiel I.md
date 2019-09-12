@@ -3169,7 +3169,7 @@ $$
 ### Question 3 {.answer #answer-dm-3}
 Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
 est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
-son déterminant est positif; la matrice $A$ est alors inversible.
+son déterminant est positif ; la matrice $A$ est alors inversible.
 
 Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
 pour être inversible, la formule de Cramer établit
