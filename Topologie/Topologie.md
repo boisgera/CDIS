@@ -1752,7 +1752,7 @@ Un opérateur linéaire $A: \R^n \to \R^n$ est *diagonalement dominant*
 si la matrice $[a_{ij}]_{ij} \in \R^{n\times n}$ associée vérifie
 pour tout $i \in \{1,\dots, n\}$,
 $$
-\sum_{j=1}^n |a_{ij}| < |a_{ii}|.
+\sum_{\substack{j=1\\j\neq i}}^n |a_{ij}| < |a_{ii}|.
 $$
 Soit $D$ l'opérateur dont la matrice $[d_{ij}]_{ij}$ est la diagonale de 
 $[a_{ij}]_{ij}$:
