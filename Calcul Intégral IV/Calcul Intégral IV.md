@@ -73,11 +73,11 @@ et $B_1, \dots, B_n$ leurs images après rotation et translation.
 Comme par construction la mesure $\mathcal{H}^3$ est invariante par
 rotation et translation, il semble que l'on doive avoir
 $$
-\frac{4\pi}{3}
-= \mathcal{H}^3(S) = \sum_{i=1}^n \mathcal{H}^3(A_i)
+\mathcal{H}^3(S) = \sum_{i=1}^n \mathcal{H}^3(A_i)
 = \sum_{i=1}^n \mathcal{H}^3(B_i) = \mathcal{H}^3(S_1) + \mathcal{H}(S_2)
-=2 \times \frac{4 \pi}{3}.
+=2 \times \mathcal{H}^3(S),
 $$ 
+une contradiction puisque $\mathcal{H}^3(S) = 4\pi/3$.
 
 --------------------------------------------------------------------------------
 
