@@ -79,6 +79,18 @@ $$
 $$ 
 une contradiction puisque $\mathcal{H}^3(S) = 4\pi/3$.
 
+**TODO** négation de l'additivité, comment la retrouver (ensembles qui
+"splittent" proprement la mesure) et on retombe sur les ensembles
+mesurables.
+
+Généralisation de la démarche : le procédé utilisée, qq soit la mesure
+élémentaire, génère une fct sous-additive appelée mesure extérieures. 
+Les ensembles qui splittent proprement la mesure sont appelés ensembles
+mesurables, la restriction de la mesure à ces ensembles est additive,
+et même $\sigma$-additive.
+
+Et on "reboote" la théorie abstraite de la mesure à ce point.
+
 --------------------------------------------------------------------------------
 
 $$
