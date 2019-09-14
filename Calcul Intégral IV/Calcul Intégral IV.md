@@ -60,13 +60,24 @@ grandeurs que nous avons cité.
 Ce problème sera mis en évidence par le résultat suivant :
 
 ### Paradoxe de Banach-Tarski {.theorem}
-Il est possible de partitionner la sphère de rayon unitaire de $\R^3$ 
+Il est possible de partitionner une sphère $S$ de rayon unitaire de $\R^3$ 
 en un nombre fini d'ensembles[^how-many], qui, 
 après rotations et translations, 
-forment une partition de deux sphères disjointes de rayon unitaire.
+forment une partition de deux sphères $S_1$ et $S_2$ disjointes de rayon unitaire.
 
 [^how-many]: 6 morceaux dans la preuve originale de Banach et Tarski (1924),
 un nombre abaissé à 5 par Robinson en 1947.
+
+Notons $A_1, \dots, A_n$ la partition de la sphère initiale
+et $B_1, \dots, B_n$ leurs images après rotation et translation.
+Comme par construction la mesure $\mathcal{H}^3$ est invariante par
+rotation et translation, il semble que l'on doive avoir
+$$
+\frac{4\pi}{3}
+= \mathcal{H}^3(S) = \sum_{i=1}^n \mathcal{H}^3(A_i)
+= \sum_{i=1}^n \mathcal{H}^3(B_i) = \mathcal{H}^3(S_1) + \mathcal{H}(S_2)
+=2 \times \frac{4 \pi}{3}.
+$$ 
 
 --------------------------------------------------------------------------------
 
