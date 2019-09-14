@@ -7,8 +7,97 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
-TODO -- Mesures
+
+
+Mesure de grandeurs
 ================================================================================
+
+Il est possible même au sein d'un espace unique comme $\R^3$ de vouloir
+mesurer différentes grandeurs attachées à un ensemble $A$. 
+On peut ainsi vouloir compter le nombre de points que contient $A$
+(sa "mesure de comptage"), sa longueur, sa surface ou encore son volume.
+
+L'exemple du volume a déjà été traité avec l'intégrale de Henstock-Kurzweil
+dans $\R^3$. L'exemple de la surface, a été partiellement traité, 
+dans un cas très limité (la frontière de compacts à bord réguliers) 
+et au prix d'un processus complexe
+permettant de se ramener à des calculs d'intégrale dans $\R^2$.
+Il est en fait possible de traiter ces quatres type de grandeurs, 
+ces quatre *mesures* différentes de façon similaire, et sans requérir
+à la notion d'intégrale. 
+
+Détaillons tous d'abord le cas de la mesure du volume dans $\R^3$.
+Le volume de la sphère de même diamètre qu'un ensemble $B$ arbitraire 
+est donnée par
+$$
+\frac{4 \pi}{3} \left(\frac{\mathrm{diam} \, B}{2}\right)^3.
+$$
+On peut alors calculer pour tout $\delta > 0$ estimer le volume d'un ensemble
+$A$ à partir de tous les recouvrements dénombrables de $A$ par des ensembles
+de diamètre inférieur ou égal à $\delta$ par
+$$
+\mathcal{H}^3_{\delta}(A) =
+\inf \left\{
+\sum_{j=1}^{+\infty} \frac{4\pi}{3} \left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
+\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
+A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
+\right\},
+$$
+puis passer à la limite sur $\delta$. 
+Il s'avère que le résultat
+-- on parle de *mesure de Hausdorff* de dimension $3$ de $A$ --
+est identique à l'approche par l'intégrale de Henstock-Kurzweil quand
+l'ensemble $A$ est mesurable :
+$$
+\mathcal{H}^3(A) = \int_A \, dx.
+$$
+On pense a priori avoir amélioré notre approche pour définir le volume d'un
+ensemble $A$, puisque l'on a supprimé la limitation que l'ensemble $A$ soit 
+mesurable. Toutefois, la mesure $\mathcal{H}^3$ qui résulte de cette définition
+perd un propriété importante qui est implicitement attachée à toutes les
+grandeurs que nous avons cité.
+
+Ce problème sera mis en évidence par le résultat suivant :
+
+### Paradoxe de Banach-Tarski {.theorem}
+Il est possible de partitionner la sphère de rayon unitaire de $\R^3$ 
+en un nombre fini d'ensembles[^how-many], qui, 
+après rotations et translations, 
+forment une partition de deux sphères disjointes de rayon unitaire.
+
+[^how-many]: 6 morceaux dans la preuve originale de Banach et Tarski (1924),
+un nombre abaissé à 5 par Robinson en 1947.
+
+--------------------------------------------------------------------------------
+
+$$
+\mathcal{H}^k_{\delta}(A) 
+= 
+\inf \left\{
+\sum_{j=1}^{+\infty} \alpha(k)\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
+\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
+A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
+\right\}
+$$
+où $\alpha(k)$ est le volume de la $k$-sphère unité dans $\R^k$([^G])
+$$
+\alpha(k) = \int_{\R^k} 1_{S_k}(x) \, dx 
+\; \mbox{ où } \; 
+S_k = \left\{x \in \R^k \; | \; x_1^2 + \dots + x_k^2 \leq 1 \right\}.
+$$
+
+La mesure de Hausdorff $\mathcal{H}^k(A)$ de dimension $k$ de l'ensemble
+$A \subset \R^n$ est définie par 
+$$
+\mathcal{H}^k(A) = \lim_{\delta \to 0} \mathcal{H}^k_{\delta}(A).
+$$
+
+[^G]: on a $$\alpha(k) = \frac{\pi^{k/2}}{\Gamma \left( \frac{k}{2}+1 \right)} 
+\; \mbox{ avec } \; 
+\Gamma(x) = \int_0^{+\infty} e^{-t} t^{x-1}\, dt.$$ 
+La fonction $\Gamma$ est caractérisée pour des valeurs entières et
+demi-entières par $\Gamma(1/2) = \sqrt{\pi}$, $\Gamma(1) = 1$ et généralement
+par $\Gamma(x+1)= x\Gamma(x)$.
 
 Mesure et intégrale
 ================================================================================
