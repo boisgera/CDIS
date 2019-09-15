@@ -278,7 +278,31 @@ on ne vas pas la jeter si ? Non !
 "Equivalence" intégrabilité Lebesgue et HK absolue (modulo gestion des
 valeurs infinies.)
 
+Exercices
+================================================================================
 
+### TODO -- Mesure image & changement de variables
+
+(définition, montrer qu'on a affaire à une mesure abstraite, 
+montrer le chgt de variables dans l'intégrale qui s'en déduit).
+
+### TODO -- Complétion d'une tribu
+
+(avec la différence symmétrique et ajout ensembles négligables ; 
+mq tjs une tribu ou tous les ensembles négligeables sont dans la tribu).
+
+### TODO -- Fonctions mesurables
+
+(pour des mesures "exotiques" ... mesure de comptage, densité uniforme,
+sur $[0, 1]$, mesure de dirac en $0$ ?)
+
+### TODO -- Mesures de Hausdorff
+
+Que faire ? Définir le volume, la surface et la longueur dans $\R^3$, 
+montrer que l'on a affaire à des mesures extérieures ?
+
+Solutions
+================================================================================
 
 Réferences
 ================================================================================
