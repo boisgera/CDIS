@@ -11,8 +11,10 @@
 
 Référence @Hun11 proprement.
 
-Mesure de grandeurs
+TODO -- Mesure de grandeurs
 ================================================================================
+
+### TODO ; refocus Lebesgue directement.
 
 Il est possible même au sein d'un espace unique comme $\R^3$ de vouloir
 mesurer différentes grandeurs attachées à un ensemble $A$. 
@@ -288,23 +290,23 @@ On définit la collection
 $$
 \mathcal{B} = \{B \subset Y \, | \, h^{-1}(B) \in \mathcal{A}\}
 $$
-et la fonction $h_* \mu: \mathcal{B} \to [0, +\infty]$ par
+et la fonction $\mu \circ h^{-1}: \mathcal{B} \to [0, +\infty]$ par
 $$
-h_* \mu(B) = \mu(h^{-1}(B)).
+\mu \circ h^{-1}(B) = \mu(h^{-1}(B)).
 $$
 
 ### Question 1 {.question #mi-1}
 Montrer que $\mathcal{B}$ est une tribu.
 
 ### Question 2 {.question #mi-2}
-Montrer que $h_* \mu$ est une mesure sur $\mathcal{B}$ ; 
+Montrer que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$ ; 
 on l'appelle la *mesure image de $\mu$ par $h$*.
 
 ### Question 3 {.question #mi-3}
-Montrer que la fonction $f:Y \to \R$ est $h_* \mu$-intégrable 
+Montrer que la fonction $f:Y \to \R$ est $\mu \circ h^{-1}$-intégrable 
 si et seulement si $f \circ h$ est $\mu$-intégrable et qu'alors,
 $$
-\int_Y f \, (h_* \mu)(dx) = \int_X (f \circ h) \mu(dx).
+\int_Y f \, (\mu \circ h^{-1})(dx) = \int_X (f \circ h) \mu(dx).
 $$
 
 
@@ -353,7 +355,7 @@ L'ensemble $\mathcal{B}$ est une tribu ; en effet :
     appartient donc à $\mathcal{B}$.
 
 ### Question 2 {.answer #answer-mi-2}
-Montrons que $h_* \mu$ est une mesure sur $\mathcal{B}$.
+Montrons que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$.
 
   - On a $h_*\mu(\varnothing) = \mu(h^{-1}(\varnothing)) = \mu(\varnothing) = 0$.
 
@@ -362,7 +364,7 @@ Montrons que $h_* \mu$ est une mesure sur $\mathcal{B}$.
     et sont disjoints. Comme $h^{-1}(\cup_k B_k) = \cup_k h^{-1}(B_k)$, on a
     $$
     \begin{split}
-    h_* \mu \left(\bigcup_k B_k \right)
+    \mu \circ h^{-1} \left(\bigcup_k B_k \right)
     &=
     \mu\left(h^{-1}\left(\bigcup_k B_k \right)\right) \\
     &=
@@ -370,7 +372,7 @@ Montrons que $h_* \mu$ est une mesure sur $\mathcal{B}$.
     &=
     \sum_k \mu\left(h^{-1}\left( B_k \right)\right) \\
     &=
-    \sum_k h_* \mu\left(B_k\right)
+    \sum_k \mu \circ h^{-1}\left(B_k\right)
     \end{split}
     $$
     
@@ -386,32 +388,45 @@ h^{-1} (f^{-1}(B)) = (f \circ h)^{-1}(B) \in \mathcal{A},
 $$
 c'est-à-dire si et seulement si $f \circ h$ est mesurable.
 
-La clé pour se convaincre que $f$ est $h_*\mu$-intégrable si et seulement
-$f \circ h$ est $\mu$-intégrable est de réaliser qu'une fonction
-$f: Y \to \R$ est positive, mesurable et étagée 
-(appartient à $\mathcal{F}_Y$) si et seulement si 
-$f \circ h$ est positive, mesurable et étagée (appartient à $\mathcal{F}_X$).
-Les fonctions $f$ de ce type sont de la forme
+Une fonction $f: Y \to \R$ est positive, mesurable et étagée 
+(appartient à $\mathcal{F}_Y$) si et seulement si elle est 
+de la forme
 $$
 f = \sum_{k=1}^n y_k \times 1_{B_k} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
 $$
-soit, en posant $A_k = h^{-1}(B_k) \in \mathcal{A}$, 
+On a donc, pour toute fonction mesurable et positive $f: Y \to \R$,
 $$
-f \circ h = \sum_{k=1}^n y_k \times 1_{A_k}.
+\int_Y f (h_*\mu) 
+= 
+\sup 
+\left\{
+\sum_{k=1}^n y_k \times (\mu \circ h^{-1})(B_k) 
+\, \left| \vphantom{\sum} \right. \, 
+\sum_{k=1}^n y_k \times 1_{B_k} \leq f, \, y_k \geq 0, \, B_k \in \mathcal{B}
+\right\}.
 $$
-Réciproquement, si
+Or, si $A_k := h^{-1}(B_k)$, $A_k \in \mathcal{A}$ et
 $$
-f \circ h = \sum_{k=1}^n y_k \times 1_{A_k} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
+\left(\sum_{k=1}^n y_k \times 1_{B_k}\right) \circ h = \sum_{k=1}^n y_k \times 1_{A_k}
+\; \mbox{ et } \;
+\sum_{k=1}^n y_k \times (\mu \circ h^{-1})(B_k) = \sum_{k=1}^n y_k \times \mu(A_k)
 $$
-alors 
+La fonction $\sum_{k=1}^n y_k \times 1_{A_k}$ est donc étagée, mesurable, 
+positive et inférieure à $f \circ h$. Si $f \circ h$ est intégrable, $f$ est
+donc intégrable et 
 $$
-f  = \sum_{k=1}^n y_k \times 1_{h(A_k)} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
+\int_Y f (\mu \circ h^{-1}) \leq \int_X (f\circ h) \mu.
+$$
+Par ailleurs, pour toute collection finie $A_k \in \mathcal{A}$, 
+$k\in\{1,\dots, n\}$, si 
+$$
+\sum_{k=1}^n y_k \times 1_{A_k} \leq f \circ h 
 $$
 
-**TODO (fuzzy)**
+**TODO:** finir !
 
-
-
+**TODO:** réécrire en utilisant le MCT, ou trouver la preuve à laquelle fait
+référence Tao *sans* le MCT.
 
 Réferences
 ================================================================================
