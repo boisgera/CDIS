@@ -281,10 +281,31 @@ valeurs infinies.)
 Exercices
 ================================================================================
 
-### TODO -- Mesure image & changement de variables
+### Mesure image 
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et $h: X \to Y$ une application.
+On définit la collection 
+$$
+\mathcal{B} = \{B \subset Y \, | \, h^{-1}(B) \in \mathcal{A}\}
+$$
+et la fonction $h_* \mu: \mathcal{B} \to [0, +\infty]$ par
+$$
+h_* \mu(B) = \mu(h^{-1}(B)).
+$$
 
-(définition, montrer qu'on a affaire à une mesure abstraite, 
-montrer le chgt de variables dans l'intégrale qui s'en déduit).
+### Question 1 {.question #mi-1}
+Montrer que $\mathcal{B}$ est une tribu.
+
+### Question 2 {.question #mi-2}
+Montrer que $h_* \mu$ est une mesure sur $\mathcal{B}$ ; 
+on l'appelle la *mesure image de $\mu$ par $h$*.
+
+### Question 3 {.question #mi-3}
+Montrer que la fonction $f:Y \to \R$ est $h_* \mu$-intégrable 
+si et seulement si $f \circ h$ est $\mu$-mesurable et qu'alors,
+$$
+\int_Y f \, (h_* \mu)(dx) = \int_X (f \circ h) \mu(dx).
+$$
+
 
 ### TODO -- Complétion d'une tribu
 
@@ -308,6 +329,9 @@ caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-not
 
 Solutions
 ================================================================================
+
+### TODO -- Mesure image 
+
 
 Réferences
 ================================================================================
