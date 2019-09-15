@@ -54,7 +54,7 @@ $$
 On pense a priori avoir amélioré notre approche pour définir le volume d'un
 ensemble $A$, puisque l'on a supprimé la limitation que l'ensemble $A$ soit 
 mesurable. Toutefois, la mesure $\mathcal{H}^3$ qui résulte de cette définition
-perd un propriété importante qui est implicitement attachée à toutes les
+perd une propriété importante qui est implicitement attachée à toutes les
 grandeurs que nous avons cité.
 
 Ce problème sera mis en évidence par le résultat suivant :
