@@ -201,7 +201,7 @@ tribu associée est la tribu de Borel, et lorsque $X = \R^n$
 que la tribu associée est la tribu de Lebesgue. 
 Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
 on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
-Il existe une bonne raison pour adopter cette convention:
+Il existe une bonne raison pour adopter cette convention :
 
 ### Mesurable ou mesurable ?
 Une fonction $f:\R^n \to \R^m$ est mesurable au sens du chapitre III,
