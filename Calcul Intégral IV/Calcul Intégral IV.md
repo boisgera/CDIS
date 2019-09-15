@@ -175,7 +175,6 @@ Lier au chapitre "Calcul Intégral III" en détail.
 On appelle *tribu de Borel* d'un espace topologique $X$ la plus petite tribu
 contenant tous les fermés (ou tous les ouverts) de $X$.
 
-
 ### Mesure {.definition}
 Une *mesure (positive)* $\mu$ sur un espace probabilisable $(X, \mathcal{A})$
 est une fonction de $\mathcal{A}$ dans $[0, +\infty]$ telle que $\mu(\varnothing)= 0$
@@ -281,7 +280,9 @@ valeurs infinies.)
 Exercices
 ================================================================================
 
-### Mesure image 
+Mesure image 
+--------------------------------------------------------------------------------
+
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et $h: X \to Y$ une application.
 On définit la collection 
 $$
@@ -301,7 +302,7 @@ on l'appelle la *mesure image de $\mu$ par $h$*.
 
 ### Question 3 {.question #mi-3}
 Montrer que la fonction $f:Y \to \R$ est $h_* \mu$-intégrable 
-si et seulement si $f \circ h$ est $\mu$-mesurable et qu'alors,
+si et seulement si $f \circ h$ est $\mu$-intégrable et qu'alors,
 $$
 \int_Y f \, (h_* \mu)(dx) = \int_X (f \circ h) \mu(dx).
 $$
@@ -330,7 +331,8 @@ caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-not
 Solutions
 ================================================================================
 
-### TODO -- Mesure image 
+TODO -- Mesure image 
+--------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-mi-1}
 L'ensemble $\mathcal{B}$ est une tribu ; en effet :
@@ -374,11 +376,41 @@ Montrons que $h_* \mu$ est une mesure sur $\mathcal{B}$.
     
 
 ### TODO -- Question 3 {.answer #answer-mi-3}
-Montrer que la fonction $f:Y \to \R$ est $h_* \mu$-intégrable 
-si et seulement si $f \circ h$ est $\mu$-mesurable et qu'alors,
+Montrons tout d'abord que la fonction $f:Y \to \R$ est mesurable 
+si et seulement si $f \circ h$ est mesurable. Par définition,
+$f$ est mesurable si pour tout ensemble borélien $B$ de $\R$,
+l'ensemble $f^{-1}(B)$ appartient $\mathcal{B}$, c'est-à-dire
+si et seulement si
 $$
-\int_Y f \, (h_* \mu)(dx) = \int_X (f \circ h) \mu(dx).
+h^{-1} (f^{-1}(B)) = (f \circ h)^{-1}(B) \in \mathcal{A},
 $$
+c'est-à-dire si et seulement si $f \circ h$ est mesurable.
+
+La clé pour se convaincre que $f$ est $h_*\mu$-intégrable si et seulement
+$f \circ h$ est $\mu$-intégrable est de réaliser qu'une fonction
+$f: Y \to \R$ est positive, mesurable et étagée 
+(appartient à $\mathcal{F}_Y$) si et seulement si 
+$f \circ h$ est positive, mesurable et étagée (appartient à $\mathcal{F}_X$).
+Les fonctions $f$ de ce type sont de la forme
+$$
+f = \sum_{k=1}^n y_k \times 1_{B_k} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
+$$
+soit, en posant $A_k = h^{-1}(B_k) \in \mathcal{A}$, 
+$$
+f \circ h = \sum_{k=1}^n y_k \times 1_{A_k}.
+$$
+Réciproquement, si
+$$
+f \circ h = \sum_{k=1}^n y_k \times 1_{A_k} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
+$$
+alors 
+$$
+f  = \sum_{k=1}^n y_k \times 1_{h(A_k)} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
+$$
+
+**TODO (fuzzy)**
+
+
 
 
 Réferences
