@@ -332,6 +332,54 @@ Solutions
 
 ### TODO -- Mesure image 
 
+### Question 1 {.answer #answer-mi-1}
+L'ensemble $\mathcal{B}$ est une tribu ; en effet :
+
+  - $\varnothing \in \mathcal{A}$ et $\varnothing = h^{-1}(\varnothing)$,
+    donc $\varnothing \in \mathcal{B}$.
+
+  - Si $B \in \mathcal{B}$, l'ensemble 
+    $A = h^{-1}(B)$ appartient à $\mathcal{A}$. 
+    Le complémentaire $Y \setminus B$ de $B$ dans $Y$
+    vérifie $h^{-1}(Y \setminus B) = X \setminus h^{-1}(B) = X \setminus A$
+    et appartient donc à $\mathcal{A}$. L'ensemble $Y \setminus B$ appartient
+    donc à $\mathcal{B}$.
+
+  - Si les ensembles $B_k$, $k \in N$ appartiennent à $\mathcal{B}$, 
+    comme $h^{-1}(\cup_k B_k) = \cup_k h^{-1}(B_k)$, cet ensemble
+    appartient à $\mathcal{A}$. L'union dénombrable $\cup_k B_k$
+    appartient donc à $\mathcal{B}$.
+
+### Question 2 {.answer #answer-mi-2}
+Montrons que $h_* \mu$ est une mesure sur $\mathcal{B}$.
+
+  - On a $h_*\mu(\varnothing) = \mu(h^{-1}(\varnothing)) = \mu(\varnothing) = 0$.
+
+  - Si les ensembles $B_k$, $k \in \N$, appartiennent à $\mathcal{B}$ et sont
+    disjoints, alors les ensembles $h^{-1}(B_k)$ appartiennent à $\mathcal{A}$,
+    et sont disjoints. Comme $h^{-1}(\cup_k B_k) = \cup_k h^{-1}(B_k)$, on a
+    $$
+    \begin{split}
+    h_* \mu \left(\bigcup_k B_k \right)
+    &=
+    \mu\left(h^{-1}\left(\bigcup_k B_k \right)\right) \\
+    &=
+    \mu\left(\bigcup_k h^{-1}\left( B_k \right)\right) \\
+    &=
+    \sum_k \mu\left(h^{-1}\left( B_k \right)\right) \\
+    &=
+    \sum_k h_* \mu\left(B_k\right)
+    \end{split}
+    $$
+    
+
+### TODO -- Question 3 {.answer #answer-mi-3}
+Montrer que la fonction $f:Y \to \R$ est $h_* \mu$-intégrable 
+si et seulement si $f \circ h$ est $\mu$-mesurable et qu'alors,
+$$
+\int_Y f \, (h_* \mu)(dx) = \int_X (f \circ h) \mu(dx).
+$$
+
 
 Réferences
 ================================================================================
