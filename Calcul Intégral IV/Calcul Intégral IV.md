@@ -301,6 +301,11 @@ sur $[0, 1]$, mesure de dirac en $0$ ?)
 Que faire ? Définir le volume, la surface et la longueur dans $\R^3$, 
 montrer que l'on a affaire à des mesures extérieures ?
 
+### TODO -- Extension
+Tribu générée à partir d'un anneau (e.g. ens. des intervalles $\left[a,\right[$]),
+extension d'une prémesure ? Problématique de non-unicité ? Unicité sous
+caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-notes-06.pdf> 
+
 Solutions
 ================================================================================
 
