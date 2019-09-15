@@ -7,7 +7,9 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+### TODO
 
+Référence @Hun11 proprement.
 
 Mesure de grandeurs
 ================================================================================
@@ -275,3 +277,8 @@ on ne vas pas la jeter si ? Non !
 ### TODO
 "Equivalence" intégrabilité Lebesgue et HK absolue (modulo gestion des
 valeurs infinies.)
+
+
+
+Réferences
+================================================================================
