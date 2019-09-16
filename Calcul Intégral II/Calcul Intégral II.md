@@ -368,7 +368,7 @@ $$
 $$
 dans le cas contraire (si $E$ mesurable mais pas de longueur finie).
 
-### Intérprétation {.remark}
+### Interprétation {.remark}
 Il faut comprendre le terme "mesurable" litéralement, 
 comme signifiant "dont on peut définir la mesure (de longueur)", 
 qui est un nombre fini ou infini. 
