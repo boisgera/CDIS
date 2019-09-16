@@ -11,7 +11,10 @@
 
 ### TODO
 
-Référence @Hun11 proprement.
+  - Référence @Hun11 proprement.
+
+  - ou explication que plusieurs "grandeurs additives" peuvent être utiles
+    simultanément ?
 
 TODO -- Mesure de Lebesgue dans $\R^n$
 ================================================================================
@@ -197,7 +200,10 @@ $\mathcal{A}$ est une mesure sur $X$.
 
 ### TODO: Lebesgue, étend bien le volume des rectangles
 
+Puis, raccorcher aux ensembles mesurables déjà définis (chap. II et III)
+et à la valeur du volume comme une intégrale.
 
+<!--
 TODO -- Mesure de grandeurs
 ================================================================================
 
@@ -305,6 +311,7 @@ $$
 La fonction $\Gamma$ est caractérisée pour des valeurs entières et
 demi-entières par $\Gamma(1/2) = \sqrt{\pi}$, $\Gamma(1) = 1$ et généralement
 par $\Gamma(x+1)= x\Gamma(x)$.
+-->
 
 Mesure et intégrale
 ================================================================================
