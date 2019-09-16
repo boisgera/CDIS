@@ -7,6 +7,8 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+\newcommand{\ds}{\mathbin{\Delta}}
+
 ### TODO
 
 Référence @Hun11 proprement.
@@ -310,10 +312,25 @@ $$
 $$
 
 
-### TODO -- Complétion d'une tribu
+### Complétion d'une tribu {#ct .question}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
+On note $A \ds B$ la différence symétrique
+de deux sous-ensembles $A$ et $B$ de $X$ l'ensemble défini par
+$$
+A \ds B = (A \cap B^c) \cup (A^c \cap B).
+$$
+Caractériser au moyen de la différence symétrique la tribu engendrée par 
+l'union entre $\mathcal{A}$ et la collection $\mathcal{N}$ 
+des ensembles négligeables pour $\mu$ :
+$$
+\mathcal{N} = 
+\{
+N \subset X 
+\; | \;
+\mbox{il existe $A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$.} 
+\}.
+$$
 
-(avec la différence symmétrique et ajout ensembles négligables ; 
-mq tjs une tribu ou tous les ensembles négligeables sont dans la tribu).
 
 ### TODO -- Fonctions mesurables
 
@@ -427,6 +444,8 @@ $$
 
 **TODO:** réécrire en utilisant le MCT, ou trouver la preuve à laquelle fait
 référence Tao *sans* le MCT.
+
+### TODO -- Complétion d'une tribu {#answer-ct .answer}
 
 Réferences
 ================================================================================
