@@ -393,7 +393,7 @@ Structure de $\delta$-ring pour les ensembles intégrables ?
 Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
 $\mathbb{N}$.
 
-### Propriétés élementaires {.theorem #pptés-tribu}
+### Propriétés élémentaires {.theorem #pptés-tribu}
 
  1. L'ensemble vide est mesurable.
 
