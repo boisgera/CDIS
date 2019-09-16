@@ -13,6 +13,191 @@
 
 Référence @Hun11 proprement.
 
+TODO -- Mesure de Lebesgue dans $\R^n$
+================================================================================
+
+Dans les volets [II](Calcul Intégral II.pdf) et [III](Calcul Intégral) 
+du "Calcul Intégral", 
+nous avons défini le volume d'un pavé 
+$$
+P = [a_1, b_1] \times \dots \times [a_n, b_n]
+$$
+au moyen de la formule
+$$
+v(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
+$$
+L'intégrable de Henstock-Kurzweil nous permet alors d'étendre la fonction
+$v$ en une fonction définie sur tous les ensembles mesurables $A$ de $\R^n$,
+par la relation
+$$
+v(A) = \int 1_A(x) dx
+$$
+si $1_A$ est intégrable et $v(A) = +\infty$ sinon.
+Cette approche n'est pas totalement satisfaisante intellectuellement : 
+d'une part on peut considérer l'usage de l'intégrale comme un chemin
+tortueux pour étendre $v$ ; d'autre part on peut avoir l'impression
+que cette approche -- qui ne permet pas de mesure le volume de tout
+ensemble de $\R^n$ -- n'atteint pas totalement son objectif. 
+Cette limitation pourrait être un artefact du passage par l'intégrale.
+Dans cette section, nous allons donner une méthode directe pour étendre
+la mesure du volume dans $\R^n$ au-delà des pavés.
+Quant à la seconde préoccupation, 
+malheureusement nous n'allons pas réussir à faire
+mieux que l'approche par l'intégrale par la méthode directe ;
+néanmoins, nous allons pouvoir établir précisement en quoi mesurer le volume
+de tous les ensembles de $\R^n$ est problématique.
+
+Un processus "raisonnable" pour évaluer le volume consiste à généraliser
+la démarche déjà entreprise dans la définition des ensembles négligeables : 
+nous nous basons sur le recouvrement d'un ensemble arbitraire par un 
+recouvrement dénombrable de pavés (pouvant se recouvrir entre eux) pour 
+obtenir une estimation supérieure du volume de l'ensemble. Formellement :
+
+### Mesure extérieure de Lebesgue {.definition}
+On appelle *mesure extérieure de Lebesgue* dans $\R^n$ la fonction
+qui a tout ensemble de $\R^n$ associe un nombre réel étendu positif
+$$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
+définie par
+$$
+v^*(A) 
+= 
+\inf 
+\left\{
+\sum_{k=1}^p v(P_k)
+\; \left| \vphantom{\bigcup_{k=1}^{+\infty}} \right. \; 
+\mbox{$P_k$ pavé de $\R^n$,} \, A \subset \bigcup_{k=1}^p P_k
+\right\},
+$$
+
+Cette définition "raisonnable" ne satisfait toutefois pas les propriétés que
+nous attendons (implicitement) d'un volume. Ce décalage est mise en évidence
+par un résultat paradoxal de la théorie des ensembles dans $\R^3$ :
+
+### Paradoxe de Banach-Tarski {.theorem}
+Il est possible de partitionner une sphère $S_0$ de rayon unitaire de $\R^3$ 
+en un nombre fini d'ensembles, qui, 
+après rotations et translations, 
+forment une partition de deux sphères $S_1$ et $S_2$ disjointes de rayon unitaire.
+
+Soient $A_1, \dots, A_p$([^how-many]) des ensembles disjoints et non vides
+de $\R^3$ tels que $S = A_1 \cup \dots\cup A_p$,
+tels que des ensembles disjoints $B_1, \dots, B_p$ 
+qui s'en déduisent par rotation et translation, 
+vérifient $S_1 \cup S_2 = B_1 \cup \dots \cup B_p$.
+
+[^how-many]: il est possible de prendre 6 morceaux d'après 
+la preuve originale de Banach et Tarski (1924) ; 
+Robinson a prouvé en 1947 que $p=5$ était suffisant.
+
+Si le résultat semble paradoxal, c'est qu'il nous semble intuitivement 
+que le volume devrait être préservé par les les opérations subies par 
+la sphère initiale. Or, le volume d'une sphère de rayon un et de deux 
+sphères disjointes de même rayon diffère d'un facteur $2$ ...
+Pour dépasser ce paradoxe, nous allons devoir examiner un par un les
+résultats qui nous semblent évidents dans ce raisonnement.
+
+Tout d'abord, on a bien
+$$
+v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3}.
+$$
+Les ensembles $S_0$, $S_1$ et $S_2$ sont intégrables et dans ce cas $v^*(A)$ 
+peut être évalué par l'intégrable de Henstock-Kurzweil, 
+ce qui fournit le résultat.
+
+On peut croire que le point critique dans notre définition est la préservation
+de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
+que si $B$ se déduit de $A$ par une translation, $v^*(A) = v^*(B)$, on peut douter
+du résultat pour les rotations. Après tout, la définition de $v^*(A)$ fait appel
+à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
+conservée par rotation. 
+Mais si le résultat n'est pas évident, il s'avère pourtant que
+la mesure $v^*$ est bien invariante par
+rotation (cf. (@Hun11, section 2.8).
+
+La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
+n'est pas additive ! Même si les ensembles $A_1, \dots, A_p$ sont disjoints,
+il est possible que 
+$$
+v^*(A_1 \cup \dots \cup A_p) \neq v^*(A_1) + \dots + v^*(A_p).
+$$
+On peut par contre établir avec la définition de $v^*$ qu'elle est 
+sous-additive : pour tous les ensembles $A_1, \dots, A_p$ (disjoints ou non),
+on a 
+$$
+v^*(A_1 \cup \dots \cup A_p) \leq v^*(A_1) + \dots + v^*(A_p).
+$$
+Elle est même $\sigma$-sous-additive : si $A_k$, $k \in \N$ sont des
+sous-ensembles de $\R^n$, 
+$$
+v^*\left(\bigcup_{k=1}^{+\infty} A_k\right)
+= \sum_{k=1}^n v^*\left(A_k\right).
+$$
+
+Cette propriété est caractéristique des mesures extérieures :
+
+### Mesure extérieure {.definition}
+On appelle *mesure extérieure* sur l'ensemble $X$ toute application
+$\mu^* :\mathcal{P}(X) \to [0, +\infty]$ telle que $\mu(\varnothing) = 0$
+et pour tous $A_k \subset X$, $k \in \N$, 
+$$
+\mu^*\left(\bigcup_{k=1}^{+\infty} A_k\right)
+= \sum_{k=1}^n \mu^*\left(A_k\right).
+$$
+
+Il existe un procédé général permettant de déduire d'une mesure extérieure
+une application qui soit additive -- à condition d'accepter de réduire
+son domaine de définition ; la fonction qui en résulte est non seulement
+additive, mais même $\sigma$-additive. Dans le cas de la mesure extérieure
+de Lebesgue, elle donne lieu à la mesure de Lebesgue.
+
+### Ensemble mesurable au sens de Carathédory
+Soit $\mu^*$ une mesure extérieure sur l'ensemble $X$ ;
+un ensemble $A \subset X$ est dit *$\mu^*$-mesurable* 
+si pour tout $B \subset X$, on a 
+$$
+\mu^*(B) = \mu^*(B \cap A) + \mu^*(B \setminus A).
+$$
+
+### {.post}
+Une façon alternative de voir les choses : si l'on note $\mu^*_{|A}$ 
+la trace de $\mu^*$ sur un ensemble $A$ de $X$, définie pour tout
+sous-ensemble $B$ de $X$ par
+$$\mu^*_{|A}(B) = \mu^*(B \cap A),$$
+alors l'ensemble $A$ est $\mu^*$ mesurable si et seulement si
+$$
+\mu^* = \mu^*_{|A} + \mu^*_{|A^c},
+$$
+
+
+### Tribu {.definition}
+Une *tribu* ou *$\sigma$-algèbre* $\mathcal{A}$ sur un ensemble $X$ est une 
+collection d'ensembles de $X$ contenant l'ensemble vide et stable par passage 
+au complémentaire et à l'union dénombrable. 
+Un ensemble de $\mathcal{A}$ est dit *mesurable* ; 
+l'ensemble $X$ muni de $\mathcal{A}$ est un *espace mesurable*.
+
+### Mesure {.definition}
+Une *mesure* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
+est une fonction de $\mathcal{A}$ dans $[0, +\infty]$ telle que $\mu(\varnothing)= 0$
+et pour toute collection dénombrable $\{A_1,\dots, A_k, \dots\}$ d'ensembles de
+$\mathcal{A}$ disjoints deux à deux, on ait
+$$
+\mu \left( \bigcup_{k} A_k \right) = \sum_{k} \mu(A_k) ;
+$$
+on dit que $\mu$ est *$\sigma$-additive*.
+L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
+
+### Mesure déduite d'une mesure extérieure {.theorem}
+Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
+La collection $\mathcal{A}$ des ensembles $\mu^*$-mesurables de $X$
+est une tribu sur $X$, et la restriction $\mu$ de $\mu^*$ à 
+$\mathcal{A}$ est une mesure sur $X$.
+
+### TODO -- Démonstration {.proof}
+
+### TODO: Lebesgue, étend bien le volume des rectangles
+
+
 TODO -- Mesure de grandeurs
 ================================================================================
 
@@ -65,14 +250,7 @@ grandeurs que nous avons cité.
 
 Ce problème sera mis en évidence par le résultat suivant :
 
-### Paradoxe de Banach-Tarski {.theorem}
-Il est possible de partitionner une sphère $S$ de rayon unitaire de $\R^3$ 
-en un nombre fini d'ensembles[^how-many], qui, 
-après rotations et translations, 
-forment une partition de deux sphères $S_1$ et $S_2$ disjointes de rayon unitaire.
 
-[^how-many]: 6 morceaux dans la preuve originale de Banach et Tarski (1924),
-un nombre abaissé à 5 par Robinson en 1947.
 
 Notons $A_1, \dots, A_n$ la partition de la sphère initiale
 et $B_1, \dots, B_n$ leurs images après rotation et translation.
@@ -180,7 +358,7 @@ On appelle *tribu de Borel* d'un espace topologique $X$ la plus petite tribu
 contenant tous les fermés (ou tous les ouverts) de $X$.
 
 ### Mesure {.definition}
-Une *mesure (positive)* $\mu$ sur un espace probabilisable $(X, \mathcal{A})$
+Une *mesure (positive)* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
 est une fonction de $\mathcal{A}$ dans $[0, +\infty]$ telle que $\mu(\varnothing)= 0$
 et pour toute collection dénombrable $\{A_1,\dots, A_k, \dots\}$ d'ensembles de
 $\mathcal{A}$ disjoints deux à deux, on ait
