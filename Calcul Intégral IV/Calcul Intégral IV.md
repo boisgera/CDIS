@@ -349,7 +349,7 @@ montrer que l'on a affaire à des mesures extérieures ?
 TODO -- Extension
 --------------------------------------------------------------------------------
 
-Tribu générée à partir d'un anneau (e.g. ens. des intervalles $\left[a,\right[$]),
+Tribu générée à partir d'un anneau (e.g. ens. des intervalles $\left[a,b\right[$),
 extension d'une prémesure ? Problématique de non-unicité ? Unicité sous
 caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-notes-06.pdf> 
 
@@ -451,8 +451,62 @@ $$
 **TODO:** réécrire en utilisant le MCT, ou trouver la preuve à laquelle fait
 référence Tao *sans* le MCT.
 
-TODO -- Complétion d'une tribu {.answer #answer-ct}
+Complétion d'une tribu {.answer #answer-ct}
 --------------------------------------------------------------------------------
+
+Nous allons établir que la tribu engendrée par $\mathcal{A} \cup \mathcal{N}$
+est l'ensemble
+$$
+\mathcal{B} = \{A \ds  N \; | \; A \in \mathcal{A}, N \in \mathcal{N}\}.
+$$
+Tout d'abord, comme tout $A \in \mathcal{A}$ et $N \in \mathcal{N}$ 
+appartiennent à cette tribu engendrée, $A^c$ et $N^c$ également et donc
+$(A \cap N^c) \cup (A^c \cap N) = A \ds N$ également. 
+L'ensemble $\mathcal{B}$ est donc inclus dans la tribu engendrée par 
+$\mathcal{A}$ et $\mathcal{N}$. Il suffit donc de montrer qu'il s'agit
+bien d'une tribu pour pouvoir conclure qu'elle est la tribu engendrée
+recherchée.
+
+Il est clair que $\varnothing$ appartient à $\mathcal{B}$,
+comme différence symétrique entre $\varnothing$ et $\varnothing$.
+Si $B = A \ds N$ appartient à $\mathcal{B}$, alors
+$$
+B^c = ((A \cap N^c) \cup (A^c \cap N))^c = (A^c \cup N) \cap (A \cup N^c).
+$$
+Comme $B^c = X \cap B^c = (A \cup A^c) \cap B^c$, par distributivité on a
+$$
+\begin{split}
+B^c &= (A \cap (A^c \cup N) \cap (A \cup N^c)) \cup (A^c \cap (A^c \cup N) \cap (A \cup N^c)) \\
+&=(A \cap N) \cup (A^c \cap N^c) \\
+&=((A^c) \cap N^c) \cup ((A^c)^c \cap N) \\
+&= A^c \ds N
+\end{split}
+$$
+et par conséquent $B^c \in \mathcal{B}$.
+
+Si les $A_k$, $k \in \N$, appartiennent $\mathcal{A}$ et les 
+$N_k$, $k \in \N$, appartiennent à $\mathcal{N}$, alors on pourra se
+convaincre que
+$$
+(\cup_k A_k) \setminus (\cup_k N_k) 
+\subset \cup_{k} (A_k \ds N_k)
+\subset (\cup_k A_k) \cup (\cup_k N_k),
+$$
+ce qui prouve que 
+$$
+\cup_k (A_k \ds N_k) = (\cup_k A_k) \ds M 
+\; \mbox{ avec } \;
+M \subset N:= \cup_k N_k.
+$$
+Comme $N_k \subset B_k \in \mathcal{A}$ avec $\mu(B_k) =0$,
+$$
+N = \cup_k N_k \subset \cup_k B_k \in \mathcal{A},
+$$
+avec $\mu(\cup_k B_k) = 0$ par $\sigma$-additivité de $\mu$.
+L'ensemble $N$ (et donc l'ensemble $M$) appartient donc à $\mathcal{N}$.
+Comme $\cup_k A_k \in \mathcal{A}$, on en déduit que $\mathcal{B}$ est stable
+par union dénombrable. Cet collection contient l'ensemble vide, est stable
+par passage au complémentaire et par union dénombrable ; c'est donc une tribu.
 
 Réferences
 ================================================================================
