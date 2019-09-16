@@ -312,12 +312,14 @@ $$
 $$
 
 
-### Complétion d'une tribu {#ct .question}
+Complétion d'une tribu {#ct .question}
+--------------------------------------------------------------------------------
+
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 On note $A \ds B$ la différence symétrique
 de deux sous-ensembles $A$ et $B$ de $X$ l'ensemble défini par
 $$
-A \ds B = (A \cap B^c) \cup (A^c \cap B).
+A \ds B = (A \setminus B) \cup (B \setminus A) = (A \cap B^c) \cup (A^c \cap B).
 $$
 Caractériser au moyen de la différence symétrique la tribu engendrée par 
 l'union entre $\mathcal{A}$ et la collection $\mathcal{N}$ 
@@ -332,17 +334,21 @@ N \subset X
 $$
 
 
-### TODO -- Fonctions mesurables
+TODO -- Fonctions mesurables
+--------------------------------------------------------------------------------
 
 (pour des mesures "exotiques" ... mesure de comptage, densité uniforme,
 sur $[0, 1]$, mesure de dirac en $0$ ?)
 
-### TODO -- Mesures de Hausdorff
+TODO -- Mesures de Hausdorff
+--------------------------------------------------------------------------------
 
 Que faire ? Définir le volume, la surface et la longueur dans $\R^3$, 
 montrer que l'on a affaire à des mesures extérieures ?
 
-### TODO -- Extension
+TODO -- Extension
+--------------------------------------------------------------------------------
+
 Tribu générée à partir d'un anneau (e.g. ens. des intervalles $\left[a,\right[$]),
 extension d'une prémesure ? Problématique de non-unicité ? Unicité sous
 caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-notes-06.pdf> 
@@ -445,7 +451,8 @@ $$
 **TODO:** réécrire en utilisant le MCT, ou trouver la preuve à laquelle fait
 référence Tao *sans* le MCT.
 
-### TODO -- Complétion d'une tribu {#answer-ct .answer}
+TODO -- Complétion d'une tribu {.answer #answer-ct}
+--------------------------------------------------------------------------------
 
 Réferences
 ================================================================================
