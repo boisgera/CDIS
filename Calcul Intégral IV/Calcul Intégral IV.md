@@ -378,6 +378,8 @@ L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
 ### TODO -- Pb
 Gérer "pb" des fonctions à valeurs étendues ? Non, il n'y en a pas ...
 
+
+
 ### Fonction mesurable
 Une fonction $f: X \to Y$ associée aux espaces mesurables $(X, \mathcal{A})$
 et $(Y,\mathcal{B})$ est *mesurable* si l'image réciproque $A =f^{-1}(B)$
@@ -410,6 +412,13 @@ On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
 l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
 prenne qu'un nombre fini de valeurs).
 
+### Fonction mesurable
+Une fonction $f: X \to \R$ associée aux espaces mesurables $(X, \mathcal{A})$
+et $(R,\mathcal{B}(\R))$ est *mesurable* si et seulement si $f$ est la limite
+simple de fonctions étagées $X \to \R$ mesurables.
+
+### TODO -- Démonstration {.proof}
+
 ### Intégrale d'une fonction étagée
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto \left[0, +\infty\right[$ une fonction étagée positive et mesurable.
@@ -430,6 +439,10 @@ la grandeur positive (finie ou infinie)
 $$
 \int_X f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}} \int_X g \mu.
 $$
+
+### TODO
+Passer du sup à la limite des intégrales d'une suite croissante de 
+fonctions simples et mesurables.
 
 ### Intégrale d'une fonction à valeurs réelles
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
@@ -465,6 +478,98 @@ on ne vas pas la jeter si ? Non !
 ### TODO
 "Equivalence" intégrabilité Lebesgue et HK absolue (modulo gestion des
 valeurs infinies.)
+
+Propriétés de l'intégrale
+================================================================================
+
+### TODO -- Linéarité {.theorem #lin}
+
+### TODO -- Démonstration {.proof}
+
+### TODO -- Positivité {.theorem #pos}
+
+### TODO -- Démonstration {.proof}
+
+### Théorème de convergence monotone {.theorem #TCM}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
+$f_k: X \to [0, +\infty]$, $k \in \N$ une suite croissante de fonctions 
+positives, c'est-à-dire telles que pour tout tout $x \in X$,
+$$
+0 \leq f_0(x) \leq \dots \leq f_{k}(x) \leq f_{k+1}(x) \leq \cdots
+$$
+Si $f: X \to [0, +\infty]$ désigne la limite simple des $f_k$,
+c'est-à-dire si pour tout $x \in X$,
+$$
+f_k(x) \to f(x) \mbox{ quand } k \to +\infty,
+$$
+alors
+$$
+\lim_{k \to +\infty} \int f_k(x) \, \mu(dx) = \int f(x) \, \mu(dx).
+$$
+
+### TODO -- Démonstration {.proof}
+
+### Théorème de convergence dominée {.theorem #TCD}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
+$f_k: X \to [-\infty, +\infty]$, $k \in \N$, une suite de fonctions 
+mesurables, dominées par la fonction intégrable $g: X \to [-\infty, +\infty]$
+c'est-à-dire telles que pour tout tout $k \in \N$ et tout $x \in X$,
+$$
+|f_k(x)| \leq g(x) \; \mbox{ et } \; \int g(x) \, \mu(dx) < +\infty.
+$$
+Si la suite des $f_k$ à une limite simple $f: X \to [0, +\infty]$
+c'est-à-dire si pour tout $x \in X$,
+$$
+f_k(x) \to f(x) \mbox{ quand } k \to +\infty,
+$$
+alors
+$$
+\lim_{k \to +\infty} \int f_k(x) \, \mu(dx) = \int f(x) \, \mu(dx).
+$$
+
+### TODO -- Démonstration {.proof}
+
+Fubini & co
+================================================================================
+
+### TODO -- Nota
+
+Le préalable permettant ne serait-ce que de définit la mesure produit
+est complexe ...
+
+### TODO -- Tribu produit
+
+### TODO -- Mesure produit
+
+### TODO -- Mesure $\sigma$-finie
+
+### TODO -- remark
+Gérer la subtilité que la première intégrale est définie uniquement
+presque partout, ce qui suffit à montrer que la seconde est définie
+(à détailler aussi en amont).
+
+### Théorème de Fubini {.theorem #fubini}
+Soit $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espaces
+mesurés $\sigma$-finis. Une fonction mesurable $f: X \times Y \to \R$
+est intégrable si et seulement l'intégrale itérée
+$$
+\int_Y \left(\int_X |f(x, y)| \mu(dx) \right) \nu(dy)
+$$
+est finie. Dans ce cas,
+$$
+\int_{X \times Y} f \, (\mu \otimes \nu)
+=
+\int_{X \times Y} f(x, y) \mu(dx)\nu(dy)
+=
+\int_Y \left(\int_X |f(x, y)| \mu(dx) \right) \nu(dy).
+$$
+
+### TODO -- remarque 
+remarque évidente sur l'autre intégrale itérée.
+
+### Démonstration {.proof}
+
+
 
 Exercices
 ================================================================================
