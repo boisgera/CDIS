@@ -1979,7 +1979,7 @@ constitue la norme d'opérateur $\|\cdot\|_{22}$ induite par la norme euclidienn
 $\|\cdot\|_2$ des vecteurs de $\R^n$, on constate au préalable que
 pour toute application orthogonale $U$,
 $$
-\|U \cdot x\|^2 = \sqrt{\left< U \cdot x, U \cdot x \right>}
+\|U \cdot x\| = \sqrt{\left< U \cdot x, U \cdot x \right>}
 = \sqrt{\left<U^* \cdot U \cdot x, x \right>}
 = \sqrt{\left<x, x\right>} = \|x\|_2,
 $$
