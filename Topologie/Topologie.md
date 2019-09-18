@@ -1989,7 +1989,7 @@ $$
 \|A\|_{22} &= \sup_{\|x\|_2 \leq 1} \|(U \cdot \Sigma \cdot V^*) \cdot x\|_2  \\
 &= \sup_{\|x\|_2 \leq 1} \|U \cdot (\Sigma \cdot (V^* \cdot x))\|_2 \\
 &= \sup_{\|y\|_2 \leq 1} \|\Sigma \cdot y\|_2 \\
-&= \sup_{\|y\|_2 \leq 1} \sqrt{\sigma_1^2 y_1^2 + \dots + \sigma_n y_{n}^2} \\
+&= \sup_{\|y\|_2 \leq 1} \sqrt{\sigma_1^2 y_1^2 + \dots + \sigma_n^2 y_{n}^2} \\
 &= \sigma_1.
 \end{split}
 $$
