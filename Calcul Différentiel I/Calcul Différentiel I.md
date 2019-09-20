@@ -3221,8 +3221,8 @@ $$
 f(x,y) 
 = \left|
 \begin{array}{cl}
-0 & \mbox{si } x\geq0 \mbox{ et } y=x^2, \\
-1 & \mbox{sinon.}
+1 & \mbox{si } x > 0 \mbox{ et } y=x^2, \\
+0 & \mbox{sinon.}
 \end{array}
 \right.
 $$
