@@ -677,6 +677,9 @@ montrer que l'on a affaire à des mesures extérieures ?
 Travailler sur une mesure de Hausdorff "rectangulaire" plutôt que sur 
 la "vraie" ?
 
+Ou mesure de Hausdorff de dimension 1/2 dans $\R$, telle que présentée
+dans <https://terrytao.wordpress.com/2009/05/19/245c-notes-5-hausdorff-dimension-optional/> ?
+
 TODO -- Extension
 --------------------------------------------------------------------------------
 
