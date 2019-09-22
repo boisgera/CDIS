@@ -425,6 +425,9 @@ l'espace d'arrivée $\R^m$ de la tribu de Borel.
 
 ### TODO -- Démonstration {.proof}
 
+### TODO : mesurabilité des fonctions prenant la valeur $+\infty$ ou 
+$-\infty$.
+
 ### TODO: composition de fcts mesurables
 Intérêt de fcts boréliennes dans ce schéma, lien avec Calcul Intégral III
 (généralisation résultats composition)
@@ -464,7 +467,9 @@ $$
 
 ### TODO
 Passer du sup à la limite des intégrales d'une suite croissante de 
-fonctions simples et mesurables.
+fonctions simples et mesurables. D'autant plus nécessaire que dans
+la définition avec le sup, on ne voit pas très bien pourquoi il faut
+supposer que la fonction $f$ elle-même est mesurable.
 
 ### Intégrale d'une fonction à valeurs réelles
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
