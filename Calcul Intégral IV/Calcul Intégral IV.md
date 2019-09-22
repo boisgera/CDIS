@@ -609,7 +609,8 @@ de l'ens à même mesure extérieure et intérieure.)
 (regarder en détail ce qu'il est nécessaire de connaître ... en particulier,
 comment montrer qu'un pavé est mesurable ? OK, nice. Nota : on peut prouver
 que tous les ens. mesurables au sens HK sont mesurables au sens de Carathédory,
-c'est un bon exercice -- preuve à mettre dans le cours. L'inverse sera admis).
+c'est un bon exercice -- preuve à mettre dans le cours. L'inverse sera admis ?
+Montrer que des ensembles "réguliers" sont mesurables ?).
 
 Mesure image 
 --------------------------------------------------------------------------------
@@ -672,6 +673,9 @@ TODO -- Mesures de Hausdorff
 
 Que faire ? Définir le volume, la surface et la longueur dans $\R^3$, 
 montrer que l'on a affaire à des mesures extérieures ?
+
+Travailler sur une mesure de Hausdorff "rectangulaire" plutôt que sur 
+la "vraie" ?
 
 TODO -- Extension
 --------------------------------------------------------------------------------
