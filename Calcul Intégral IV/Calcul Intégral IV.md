@@ -340,15 +340,6 @@ par $\Gamma(x+1)= x\Gamma(x)$.
 Mesure et intégrale
 ================================================================================
 
-On rappelle:
-
-### Tribu {.definition}
-Une *tribu* ou *$\sigma$-algèbre* $\mathcal{A}$ sur un ensemble $X$ est une 
-collection d'ensembles de $X$ contenant l'ensemble vide et stable par passage 
-au complémentaire et à l'union dénombrable. 
-Un ensemble de $\mathcal{A}$ est dit *mesurable* ; 
-l'ensemble $X$ muni de $\mathcal{A}$ est un *espace mesurable*.
-
 ### Tribu engendrée par une collection {.definition}
 Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
 $\mathcal{C}$ d'ensembles de $X$ la plus petite (au sens de l'inclusion) 
@@ -357,10 +348,17 @@ tribu $\mathcal{A} = \sigma(\mathcal{C})$ de $X$ contenant $\mathcal{C}$.
 ### Démonstration de l'existence de la tribu engendrée {.proof}
 Désignons par $\mathfrak{S}$ la (meta-)collection des tribus de 
 $X$ incluant $\mathcal{C}$ (contenant $\mathcal{C}$ comme sous-ensemble). 
+$$
+\mathfrak{S}
+=
+\{
+\mbox{$\mathcal{B}$ tribu de $X$} \; | \; \mathcal{C} \subset \mathcal{B} 
+\}
+$$
 Elle n'est pas vide : elle contient la collection $\mathcal{P}(X)$
 des ensembles de $X$ (qui de toute évidence est un sur-ensemble de $\mathcal{C}$
 et une tribu de $X$). Montrons que la plus petite tribu $\sigma(\mathcal{C})$
-de $X$ contenant $\mathcal{C}$ est l'intersection de $\mathfrak{S}$:
+de $X$ contenant $\mathcal{C}$ est l'intersection de $\mathfrak{S}$
 $$
 \sigma(\mathcal{C}) := \bigcap \mathfrak{S} = \bigcap_{\mathcal{A} \in \mathfrak{S}} \mathcal{A},
 $$
@@ -597,6 +595,16 @@ remarque évidente sur l'autre intégrale itérée.
 
 Exercices
 ================================================================================
+
+TODO -- Mesure intérieure
+--------------------------------------------------------------------------------
+
+Idée pour la mesure de Lebesgue, de définir mesure extérieure et intérieure
+d'un ensemble borné dans $\R^n$ : inclure l'ensemble dans un pavé, 
+montrer que la def ne dépend pas du pavé, montrer l'inégalité entre mesure 
+intérieure et extérieure, puis caractériser les ensembles où elle est égales.
+(au final, ens. mesurable ssi pour tout pavé compact de $\R^n$, la trace
+de l'ens à même mesure extérieure et intérieure.)
 
 Mesure image 
 --------------------------------------------------------------------------------
