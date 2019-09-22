@@ -470,6 +470,32 @@ Passer du sup à la limite des intégrales d'une suite croissante de
 fonctions simples et mesurables. D'autant plus nécessaire que dans
 la définition avec le sup, on ne voit pas très bien pourquoi il faut
 supposer que la fonction $f$ elle-même est mesurable.
+Rq qqpart plus bas que si l'on veut que le procédé marche pour
+toute suite $\varepsilon_k$, alors il est *nécessaire* que 
+$f$ soit mesurable.
+
+### Intégrale d'une fonction positive II {.theorem}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \mapsto [0, +\infty]$ une fonction mesurable.
+Soit $\varepsilon_k \geq 0$ une suite de valeurs telles que
+$$
+\lim_{k\to +\infty} \varepsilon_k  = 0 
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \varepsilon_k = +\infty.
+$$
+La suite des fonctions $f_k$ définies par $f_0=0$, puis
+$$
+f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
+E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
+$$
+est une suite croissante de fonction étagées positives et mesurables, 
+convergeant simplement vers $f$ et 
+$$
+\int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
+$$
+
+### TODO -- Démonstration {.proof}
+
 
 ### Intégrale d'une fonction à valeurs réelles
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
