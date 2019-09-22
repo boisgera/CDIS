@@ -415,6 +415,8 @@ Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
 on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
 Il existe une bonne raison pour adopter cette convention :
 
+### TODO : limite simple de fonctions mesurable est mesurable
+
 ### Mesurable ou mesurable ?
 Une fonction $f:\R^n \to \R^m$ est mesurable au sens du chapitre III,
 c'est-à-dire limite simple de fonctions intégrables 
@@ -457,12 +459,12 @@ $$
 ### Intégrale d'une fonction positive
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto [0, +\infty]$ une fonction mesurable.
-Soit $\mathcal{F}$ la collection des fonctions étagées positives et mesurables
+Soit $\mathcal{F}(f)$ la collection des fonctions étagées positives et mesurables
 inférieures à $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 la grandeur positive (finie ou infinie)
 $$
-\int_X f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}} \int_X g \mu.
+\int_X f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int_X g \mu.
 $$
 
 ### TODO
@@ -546,21 +548,66 @@ Propriétés de l'intégrale
 ### Théorème de convergence monotone {.theorem #TCM}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
 $f_k: X \to [0, +\infty]$, $k \in \N$ une suite croissante de fonctions 
-positives, c'est-à-dire telles que pour tout tout $x \in X$,
+mesurables et positives ; pour tout $x \in X$,
 $$
 0 \leq f_0(x) \leq \dots \leq f_{k}(x) \leq f_{k+1}(x) \leq \cdots
 $$
-Si $f: X \to [0, +\infty]$ désigne la limite simple des $f_k$,
-c'est-à-dire si pour tout $x \in X$,
+La limite simple $f: X \to [0, +\infty]$ des $f_k$,
+telle que pour tout $x \in X$,
 $$
 f_k(x) \to f(x) \mbox{ quand } k \to +\infty,
 $$
-alors
+est mesurable et
 $$
 \lim_{k \to +\infty} \int f_k(x) \, \mu(dx) = \int f(x) \, \mu(dx).
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+La fonction $f$ est mesurable comme limite simple de fonctions mesurables.
+La positivité de l'intégrale entraîne
+$$
+\int f_0 \mu \leq \dots \leq \int f_k \mu \leq \dots \int f_k \mu \leq \int f \mu.
+$$
+et donc
+$$
+\lim_{k\to+\infty} \int f_k\mu \leq \int f\mu.
+$$
+
+Soit $g: X \to \left[0, +\infty\right[$ une fonction étagée mesurable, donc
+de la forme
+$$
+g(x) = \sum_{j=0}^p c_j 1_{E_j}
+$$
+avec $c_k \in \left[0, +\infty\right[$ et $E_k$ mesurable.
+Soit $t \in \left[0, 1\right[$. Comme la suite des $f_k$ est croissante et 
+converge simplement vers $f$, les ensembles
+$A_k = \{x \in X \; | \; f_k(x) \geq t g(x) \}$
+vérifient
+$$
+A_0 \subset \cdots \subset A_k \subset \cdots 
+\; \mbox{ et } \;
+\bigcup_{k=0}^{+\infty} A_k = X.
+$$
+Les $f_k$ et $g$ étant mesurables, les ensembles $A_k$ sont mesurables.
+On a 
+$$
+\int f_k \mu \geq \int g 1_{A_k} = t\sum_{j=0}^p c_k \mu(A_k \cap E_j).
+$$
+et comme $\cup_{k=0}^{+\infty} A_k \cap E_j = E_j$, par $\sigma$-additivité
+de $\mu$,
+$$
+\lim_{k\to +\infty} \int f_k \mu \geq 
+t\lim_{k\to +\infty} \sum_{j=0}^p c_k \mu(A_k \cap E_j) = 
+t \left(\sum_{j=0}^p c_k \mu(E_j)\right) = t \int g\mu. 
+$$
+Cette inégalité étant valable pour tout $t \in \left[0, 1\right[$
+et pour toute fonction positive étagée et mesurable $g$, on en déduit
+$$
+\lim_{k\to +\infty} \int f_k \mu \geq \sup_{g \in \mathcal{F}(f)}\int g\mu
+= \int f\mu.
+$$
+
+
 
 ### Théorème de convergence dominée {.theorem #TCD}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
@@ -777,7 +824,7 @@ $$
 c'est-à-dire si et seulement si $f \circ h$ est mesurable.
 
 Une fonction $f: Y \to \R$ est positive, mesurable et étagée 
-(appartient à $\mathcal{F}_Y$) si et seulement si elle est 
+(appartient à $\mathcal{F}(f)$) si et seulement si elle est 
 de la forme
 $$
 f = \sum_{k=1}^n y_k \times 1_{B_k} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
