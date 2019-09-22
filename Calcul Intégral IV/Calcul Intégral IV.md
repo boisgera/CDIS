@@ -606,6 +606,11 @@ intérieure et extérieure, puis caractériser les ensembles où elle est égale
 (au final, ens. mesurable ssi pour tout pavé compact de $\R^n$, la trace
 de l'ens à même mesure extérieure et intérieure.)
 
+(regarder en détail ce qu'il est nécessaire de connaître ... en particulier,
+comment montrer qu'un pavé est mesurable ? OK, nice. Nota : on peut prouver
+que tous les ens. mesurables au sens HK sont mesurables au sens de Carathédory,
+c'est un bon exercice -- preuve à mettre dans le cours. L'inverse sera admis).
+
 Mesure image 
 --------------------------------------------------------------------------------
 
