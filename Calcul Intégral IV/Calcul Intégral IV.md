@@ -841,6 +841,24 @@ Tribu générée à partir d'un anneau (e.g. ens. des intervalles $\left[a,b\rig
 extension d'une prémesure ? Problématique de non-unicité ? Unicité sous
 caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-notes-06.pdf> 
 
+TODO -- Intégrale itérée
+--------------------------------------------------------------------------------
+
+Exemple classique (e.g. <https://en.wikipedia.org/wiki/Fubini's_theorem#Failure_of_Fubini's_theorem_for_non-integrable_functions>)
+de calcul et comparaison de 
+$$
+\int_0^1 \left( \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}\, dy\right) \, dx
+$$
+et
+$$
+\int_0^1 \left( \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}\, dx\right) \, dy.
+$$
+
+### TODO 
+check / version conditionnellement continue de Fubini. 
+Pourquoi ça ne marche pas ?
+
+
 Solutions
 ================================================================================
 
