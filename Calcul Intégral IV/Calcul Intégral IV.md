@@ -684,6 +684,13 @@ est complexe ...
 
 ### TODO -- Mesure produit
 
+### TODO 
+
+Pb que la mesure produit peut ne pas être complète même si les composantes
+le sont ; en particulier le produit des mesures de Lebesgue n'est pas la
+mesure de Lebesgue (ouch) ; la tribu produit est qqpart (strictement)
+entre la tribu de Borel et la tribu de Lebesgue.
+
 ### TODO -- Mesure $\sigma$-finie
 
 ### TODO -- remark
