@@ -689,7 +689,8 @@ est complexe ...
 Pb que la mesure produit peut ne pas être complète même si les composantes
 le sont ; en particulier le produit des mesures de Lebesgue n'est pas la
 mesure de Lebesgue (ouch) ; la tribu produit est qqpart (strictement)
-entre la tribu de Borel et la tribu de Lebesgue.
+entre la tribu de Borel et la tribu de Lebesgue. Le produit de mesure
+de Borel étant Borel, on n'a pas ce pb ...
 
 ### TODO -- Mesure $\sigma$-finie
 
@@ -713,6 +714,9 @@ $$
 =
 \int_Y \left(\int_X |f(x, y)| \mu(dx) \right) \nu(dy).
 $$
+
+### TODO -- Complétion
+Etudier <https://www.math.fsu.edu/~roberlin/maa5616.f15/homework9sln.pdf>
 
 ### TODO -- remarque 
 remarque évidente sur l'autre intégrale itérée.
