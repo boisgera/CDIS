@@ -220,7 +220,7 @@ La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue,
 produit la mesure de Lebesgue.
 
 ### Mesure de Lebesgue {.theorem .definition}
-La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{R}(\R^n) \to [0, +\infty]$
+La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{P}(\R^n) \to [0, +\infty]$
 précédemment définie est bien une mesure extérieure sur $\R^n$.
 On appelle *tribu de Lebesgue* et on note $\mathcal{L}(\R^n)$ la collection 
 des ensembles $v^*$-mesurables (au sens de Caratheodory) ; 
