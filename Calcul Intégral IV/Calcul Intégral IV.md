@@ -60,7 +60,7 @@ de pavés recouvrant ce sous-ensemble et nous utilisons chacun des ces
 recouvrements pour produire une estimation (supérieure) du volume
 de l'ensemble. Formellement :
 
-### Mesure extérieure de Lebesgue {.definition}
+### Mesure extérieure de Lebesgue {.definition #mel}
 On appelle *mesure extérieure de Lebesgue* dans $\R^n$ la fonction
 $$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
 qui a tout ensemble $A$ de $\R^n$ associe le nombre réel étendu positif
@@ -156,7 +156,8 @@ Cette propriété est caractéristique des mesures extérieures :
 ### Mesure extérieure {.definition}
 On appelle *mesure extérieure* sur l'ensemble $X$ toute application
 $$\mu^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que $\mu(\varnothing) = 0$
-et pour tout $A \subset X$ et $A_k \subset X$, $k \in \N$, 
+et qui soit *$\sigma$-subadditive* :
+pour tout $A \subset X$ et $A_k \subset X$, $k \in \N$, 
 $$
 \mbox{si } \, A \subset \bigcup_{k=0}^{+\infty} A_k, \; 
 \mbox{alors } \,
@@ -168,8 +169,7 @@ $$
 Il existe un procédé général permettant de déduire d'une mesure extérieure
 une application qui soit additive -- à condition d'accepter de réduire
 son domaine de définition ; la fonction qui en résulte est non seulement
-additive, mais même $\sigma$-additive. Si l'on utilise ce procédé
-avec la mesure extérieure de Lebesgue, on obtient la mesure de Lebesgue.
+additive, mais même $\sigma$-additive. 
 
 ### Ensemble mesurable 
 Soit $\mu^*$ une mesure extérieure sur l'ensemble $X$ ;
@@ -201,7 +201,6 @@ au complémentaire et à l'union dénombrable :
   3. Si pour tout $k \in \N$, $A_k \in \mathcal{A}$, alors
      $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}.$
 
-
 Un ensemble de $\mathcal{A}$ est dit *mesurable* ; 
 l'ensemble $X$ muni de $\mathcal{A}$ est un *espace mesurable*.
 
@@ -219,18 +218,65 @@ $$
 on dit que $\mu$ est *$\sigma$-additive*.
 L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
 
-### Mesure déduite d'une mesure extérieure {.theorem}
+### Mesure associée à une mesure extérieure {.theorem}
 Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
 La collection $\mathcal{A}$ des ensembles $\mu^*$-mesurables de $X$
 est une tribu sur $X$, et la restriction $\mu$ de $\mu^*$ à 
 $\mathcal{A}$ est une mesure sur $X$.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Cf. [@Hun11, théorème 2.9, pp. 15-17].
 
-### TODO: Lebesgue, étend bien le volume des rectangles
+### {.remark .ante}
+La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue,
+produit la mesure de Lebesgue.
 
-Puis, raccorcher aux ensembles mesurables déjà définis (chap. II et III)
-et à la valeur du volume comme une intégrale.
+### Mesure de Lebesgue {.theorem .definition}
+La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{R}(\R^n) \to [0, +\infty]$
+précédemment définie est bien une mesure extérieure sur $\R^n$.
+On appelle *tribu de Lebesgue* et on note $\mathcal{L}(\R^n)$ la collection 
+des ensembles $v^*$-mesurables (au sens de Caratheodory) ; 
+la mesure $v: \mathcal{L}(\R^n) \to [0, +\infty]$ qui lui est associée 
+est appelée *mesure de Lebesgue sur $\R^n$*. 
+La notation "$v$" pour cette mesure est dépourvue d'ambiguité car elle 
+prolonge la fonction $v$ initialement définie sur les pavés compacts.
+
+### Démonstration {.proof}
+Il est évident que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
+$[0,0]^n$ recouvre $\varnothing$ par exemple). Si $A \subset \R^n$
+et $A_k \subset \R^n$, pour tout $\varepsilon > 0$, il existe des 
+pavés compacts $P_{jk}$ tels que 
+$$
+A_k \subset \bigcup_{j=0}^{+\infty} P_{jk} 
+\; \mbox{ et } \;
+\sum_{j=0}^{+\infty} v(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
+\leq v^*(A_k) \leq \sum_{j=0}^{+\infty} v(P_{jk}).
+$$
+Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $A$, on a donc
+$$
+v^*(A) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
+\leq 
+\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^k}\right)
+= \left(\sum_{k=0}^{+\infty} v^*(A_k)\right) +\varepsilon.
+$$
+Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
+que $v^*$ est bien $\sigma$-subadditive.
+
+Nous renvoyons le lecteur intéressé par la preuve que la mesure de Lebesgue
+prolonge bien la mesure de volume des pavés compacts à [@Hun11, section 2.2].
+
+### {.remark .ante} 
+On admettra sans preuve le résultat suivant :
+
+### Mesure de Lebesgue et intégrale de Henstock-Kurzweil
+La tribu $\mathcal{L}(\R^n)$ coïncide avec la tribu des ensembles mesurables 
+définis au moyen de l'intégrale de Henstock-Kurzweil. La mesure de Lebesgue
+$v: \mathcal{L}(\R^n) \to [0, +\infty]$ vérifie
+$$
+v(A) = \int 1_A(x) \, dx
+$$ 
+si $1_A$ est intégrable au sens de Henstock-Kurzweil et
+$v(A)= +\infty$ sinon.
 
 <!--
 TODO -- Mesure de grandeurs
@@ -347,8 +393,9 @@ Mesure et intégrale
 
 ### Tribu engendrée par une collection {.definition}
 Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
-$\mathcal{C}$ d'ensembles de $X$ la plus petite (au sens de l'inclusion) 
-tribu $\mathcal{A} = \sigma(\mathcal{C})$ de $X$ contenant $\mathcal{C}$.
+$\mathcal{C}$ d'ensembles de $X$ la plus petite tribu 
+(au sens de l'inclusion) 
+$\mathcal{A} = \sigma(\mathcal{C})$ de $X$ contenant $\mathcal{C}$.
 
 ### Démonstration de l'existence de la tribu engendrée {.proof}
 Désignons par $\mathfrak{S}$ la (meta-)collection des tribus de 
@@ -375,6 +422,7 @@ Il nous suffit donc de montrer que $\cap \mathfrak{S}$ est une tribu de $X$
 pour conclure ; on vérifiera aisément que comme chaque élément de $\mathfrak{S}$
 est une tribu, cette intersection en est également une.
 
+<!--
 ### Tribu de Lebesgue {.definition}
 On appelle *tribu de Lebesgue* sur $\R^n$ la tribu composée des ensembles $E$
 tels que pour tout pavé $P$ de $\R^n$, la fonction caractéristique 
@@ -386,6 +434,7 @@ du chapitre "Calcul Intégral III".
 
 ### TODO -- Référence
 Lier au chapitre "Calcul Intégral III" en détail.
+-->
 
 ### Tribu de Borel {.definition}
 On appelle *tribu de Borel* d'un espace topologique $X$ la plus petite tribu
@@ -394,7 +443,7 @@ contenant tous les fermés (ou tous les ouverts) de $X$.
 ### Mesure {.definition}
 Une *mesure (positive)* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
 est une fonction de $\mathcal{A}$ dans $[0, +\infty]$ telle que $\mu(\varnothing)= 0$
-et pour toute collection dénombrable $\{A_1,\dots, A_k, \dots\}$ d'ensembles de
+et pour toute collection dénombrable $\{A_k\}$ d'ensembles de
 $\mathcal{A}$ disjoints deux à deux, on ait
 $$
 \mu \left( \bigcup_{k} A_k \right) = \sum_{k} \mu(A_k) ;
@@ -402,9 +451,10 @@ $$
 on dit que $\mu$ est *$\sigma$-additive*.
 L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
 
+<!--
 ### TODO -- Pb
 Gérer "pb" des fonctions à valeurs étendues ? Non, il n'y en a pas ...
-
+-->
 
 
 ### Fonction mesurable
@@ -446,7 +496,7 @@ prenne qu'un nombre fini de valeurs).
 
 ### Fonction mesurable
 Une fonction $f: X \to \R$ associée aux espaces mesurables $(X, \mathcal{A})$
-et $(R,\mathcal{B}(\R))$ est *mesurable* si et seulement si $f$ est la limite
+et $(\R,\mathcal{B}(\R))$ est *mesurable* si et seulement si $f$ est la limite
 simple de fonctions étagées $X \to \R$ mesurables.
 
 ### TODO -- Démonstration {.proof}
@@ -679,7 +729,7 @@ remarque évidente sur l'autre intégrale itérée.
 Exercices
 ================================================================================
 
-Ensembles non-mesurables
+Approximation par des ensembles mesurables
 --------------------------------------------------------------------------------
 
 Soit $A$ un sous-ensemble de $\R^n$.
@@ -790,7 +840,7 @@ caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-not
 Solutions
 ================================================================================
 
-Ensembles non-mesurables
+Approximation par des ensembles mesurables
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-enm-1}
