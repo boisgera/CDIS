@@ -823,6 +823,7 @@ h^{-1} (f^{-1}(B)) = (f \circ h)^{-1}(B) \in \mathcal{A},
 $$
 c'est-à-dire si et seulement si $f \circ h$ est mesurable.
 
+<!--
 Une fonction $f: Y \to \R$ est positive, mesurable et étagée 
 (appartient à $\mathcal{F}(f)$) si et seulement si elle est 
 de la forme
@@ -862,6 +863,8 @@ $$
 
 **TODO:** réécrire en utilisant le MCT, ou trouver la preuve à laquelle fait
 référence Tao *sans* le MCT.
+-->
+
 
 Complétion d'une tribu {.answer #answer-ct}
 --------------------------------------------------------------------------------
