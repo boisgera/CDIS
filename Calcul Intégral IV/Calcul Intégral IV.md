@@ -677,6 +677,21 @@ remarque évidente sur l'autre intégrale itérée.
 Exercices
 ================================================================================
 
+Ensembles non-mesurables
+--------------------------------------------------------------------------------
+
+Soit $\mu^* une mesure extérieure sur l'ensemble $X$ et $A$ un sous-ensemble
+de $X$
+
+### Question 1 {.question #enm-1}
+Montrer qu'il existe un ensemble mesurable $B$ contenant $A$ et tel que
+$\mu^*(A) = \mu^*(B)$.
+
+### Question 2 {.question #enm-2}
+A quelle condition sur $\mu^*(B \setminus A)$ l'ensemble $B$ est-il mesurable ?
+
+
+
 Mesure intérieure
 --------------------------------------------------------------------------------
 
@@ -691,13 +706,11 @@ $$
 Montrer que $\mu_*(A)$ ne dépend pas du choix du pavé $P$.
 
 ### Question 2 {.question #mi-2}
-Montrer que $\mu_*(A) \leq \mu^*(A)$. A quelle condition a-t'on l'égalité ?
+Montrer que $\mu_*(A) \leq \mu^*(A)$, avec égalité si $A$ est $\mu^*$-mesurable.
 
 ### Question 3 {.question #mi-3}
-Proposer une définition de la mesure intérieure $\mu_*$
-associée à une mesure extérieure $\sigma$-finie $\mu^*$ sur $X$, 
-définie pour tous les ensembles $A$ de $X$, puis reprendre la question 2.
-
+Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
+et $\mu_*(A) = \mu^*(A)$, alors $A$ est $\mu^*$-mesurable.
 
 Mesure image 
 --------------------------------------------------------------------------------
@@ -777,6 +790,16 @@ caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-not
 Solutions
 ================================================================================
 
+Ensembles non-mesurables
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-enm-1}
+Montrer qu'il existe un ensemble mesurable $B$ contenant $A$ et tel que
+$\mu^*(A) = \mu^*(B)$.
+
+### Question 2 {.answer #answer-enm-2}
+A quelle condition sur $\mu^*(B \setminus A)$ l'ensemble $B$ est-il mesurable ?
+
 
 TODO -- Mesure intérieure
 --------------------------------------------------------------------------------
@@ -806,12 +829,41 @@ $$
 \mu^*(P) - \mu^{*}(P \setminus A).
 $$
 
-
-
-
 ### TODO -- Question 2 {.answer #answer-mi-2}
 
+La fonction $\mu^*$ étant subadditive, on a
+$$
+\mu^*(P) \leq \mu^*(A) + \mu^*(P\setminus A)
+$$
+et donc $\mu_*(A) \leq \mu^*(A)$. Si $A$ est mesurable, l'inégalité initiale
+devient une égalité et donc $\mu_*(A) = \mu^*(A)$. 
+
 ### TODO -- Question 3 {.answer #answer-mi-3}
+
+Montrons que la réciproque
+est également vraie. Soit $A$ un ensemble borné de $\R^n$ tel que 
+$\mu_*(A) = \mu^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
+Nous cherchons à établir que $\mu^*(B) = \mu^*(A \cap B) + \mu^*(A^c \cap B)$.
+Remarquons tout d'abord que si le pavé compact $P$ -- qui est mesurable -- 
+contient $A$, on a
+$$
+\mu^*(B) = \mu^*(P \cap B) + \mu^*(P^c \cap B) \; ;
+$$
+si nous réussissons à établir que 
+$$\mu^*(P \cap B) = \mu^*(A \cap (P \cap B)) + \mu^*(A^c \cap (P \cap B)),$$
+on pourra alors conclure que
+$$
+\begin{split}
+\mu^*(B) &= \mu^*(P \cap B) + \mu^*(P^c \cap B) \\
+&= \mu^*(A \cap (P \cap B)) + \mu^*(A^c \cap (P \cap B)) + \mu^*(P^c \cap B) \\
+&= \mu^*(A \cap B) + \mu^*(P \cap (A^c \cap B)) + \mu^*(P^c \cap (A^c \cap B)) \\
+&= \mu^*(A \cap B) + \mu^*(A^c \cap B).
+\end{split}
+$$
+Autrement dit, il nous suffit d'établir le résultat cherché quand $B$ est un
+ensemble de $\R^n$ contenu dans le pavé compact $P$. Or dans ce cas, comme ...
+
+
 
 
 Mesure image 
