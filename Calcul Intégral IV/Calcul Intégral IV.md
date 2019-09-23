@@ -18,6 +18,9 @@ offertes par les mesures extérieures et le cadre abstrait de la
 mesure. PUIS seulement, s'attaquer à la multiplicité des mesures
 et à son intérêt.
 
+Enoncer / Montrer (?) qu'ens. mesurables au sens de Carathéodory pour la
+mesure extérieure de Lebesgue e tpour HK sont identiques ?
+
 
 TODO -- Mesure de Lebesgue dans $\R^n$
 ================================================================================
@@ -674,21 +677,26 @@ remarque évidente sur l'autre intégrale itérée.
 Exercices
 ================================================================================
 
-TODO -- Mesure intérieure
+Mesure intérieure
 --------------------------------------------------------------------------------
 
-Idée pour la mesure de Lebesgue, de définir mesure extérieure et intérieure
-d'un ensemble borné dans $\R^n$ : inclure l'ensemble dans un pavé, 
-montrer que la def ne dépend pas du pavé, montrer l'inégalité entre mesure 
-intérieure et extérieure, puis caractériser les ensembles où elle est égales.
-(au final, ens. mesurable ssi pour tout pavé compact de $\R^n$, la trace
-de l'ens à même mesure extérieure et intérieure.)
+Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact contenant $A$.
+On appelle mesure intérieure de $A$ la grandeur
+$$
+\mu_*(A) = \mu^*(P) - \mu^*(P \setminus A).
+$$
 
-(regarder en détail ce qu'il est nécessaire de connaître ... en particulier,
-comment montrer qu'un pavé est mesurable ? OK, nice. Nota : on peut prouver
-que tous les ens. mesurables au sens HK sont mesurables au sens de Carathédory,
-c'est un bon exercice -- preuve à mettre dans le cours. L'inverse sera admis ?
-Montrer que des ensembles "réguliers" sont mesurables ?).
+### Question 1 {.question #mi-1}
+Montrer que $\mu_*(A)$ ne dépend pas du choix du pavé $P$.
+
+### Question 2 {.question #mi-2}
+Montrer que $\mu_*(A) \leq \mu^*(A)$. A quelle condition a-t'on l'égalité ?
+
+### Question 3 {.question #mi-3}
+Proposer une définition de la mesure intérieure $\mu_*$
+associée à une mesure extérieure $\sigma$-finie $\mu^*$ sur $X$, 
+définie pour tous les ensembles $A$ de $X$ et reprendre la question 2.
+
 
 Mesure image 
 --------------------------------------------------------------------------------
