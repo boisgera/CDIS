@@ -680,8 +680,9 @@ Exercices
 Mesure intérieure
 --------------------------------------------------------------------------------
 
-Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact contenant $A$.
-On appelle mesure intérieure de $A$ la grandeur
+Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact de $\R^n$
+contenant $A$.
+On appelle *mesure intérieure de $A$* la grandeur
 $$
 \mu_*(A) = \mu^*(P) - \mu^*(P \setminus A).
 $$
@@ -695,7 +696,7 @@ Montrer que $\mu_*(A) \leq \mu^*(A)$. A quelle condition a-t'on l'égalité ?
 ### Question 3 {.question #mi-3}
 Proposer une définition de la mesure intérieure $\mu_*$
 associée à une mesure extérieure $\sigma$-finie $\mu^*$ sur $X$, 
-définie pour tous les ensembles $A$ de $X$ et reprendre la question 2.
+définie pour tous les ensembles $A$ de $X$, puis reprendre la question 2.
 
 
 Mesure image 
@@ -775,6 +776,43 @@ caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-not
 
 Solutions
 ================================================================================
+
+
+TODO -- Mesure intérieure
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-mi-1}
+Pour montrer que la définition de $\mu_*(A)$ ne dépend pas du choix du pavé
+$P$ contenant $A$, il suffit de prouver qu'on peut remplacer $P$ par un
+pavé compact $P'$ contenant $P$ sans changer la valeur de $\mu_*(A)$ (pour toute
+paire de pavés compacts on peut en effet trouver un pavé compact les contenant).
+
+Comme les pavés compacts $P$ et $P'$ sont mesurables (au sens de Carathéodory,
+pour la mesure extérieure $\mu^*$), l'ensemble $P' \setminus P$ l'est également 
+; on a donc
+$$
+\mu^*(P') = \mu^*(P' \setminus P) + \mu^{*}(P) 
+$$
+et
+$$
+\mu^{*}(P' \setminus A)
+=
+\mu^*(P' \setminus P) + \mu^*(P \setminus A),
+$$ 
+ce qui établit
+$$
+\mu^*(P') - \mu^{*}(P' \setminus A)
+=
+\mu^*(P) - \mu^{*}(P \setminus A).
+$$
+
+
+
+
+### TODO -- Question 2 {.answer #answer-mi-2}
+
+### TODO -- Question 3 {.answer #answer-mi-3}
+
 
 Mesure image 
 --------------------------------------------------------------------------------
