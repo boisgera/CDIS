@@ -9,19 +9,6 @@
 
 \newcommand{\ds}{\mathbin{\Delta}}
 
-### TODO
-
-Segmenter : d'abord justifier une approche "directe" de la construction
-du "volume" usuel (mesure de Lebesgue) sans passer par les intégrales ;
-en profiter pour exhiber les difficultés associées et les "solutions"
-offertes par les mesures extérieures et le cadre abstrait de la 
-mesure. PUIS seulement, s'attaquer à la multiplicité des mesures
-et à son intérêt.
-
-Enoncer / Montrer (?) qu'ens. mesurables au sens de Carathéodory pour la
-mesure extérieure de Lebesgue e tpour HK sont identiques ?
-
-
 TODO -- Mesure de Lebesgue dans $\R^n$
 ================================================================================
 
@@ -41,17 +28,26 @@ $$
 v(A) = \int 1_A(x) dx
 $$
 si $1_A$ est intégrable et $v(A) = +\infty$ sinon.
-Cette approche n'est pas totalement satisfaisante intellectuellement.
+Mais cette approche n'est pas totalement satisfaisante intellectuellement.
 D'une part on peut considérer l'usage de l'intégrale comme un chemin
 tortueux pour étendre $v$.
 D'autre part on peut avoir l'impression
 que cette approche -- qui ne permet pas de mesure le volume de tout
 ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
-cette limitation pourrait a être un artefact de la méthode choisie par l'intégrale.
+cette limitation pourrait a être un artefact de la méthode choisie
+plutôt qu'une limitation intrinsèque.
 Dans cette section, nous allons donner une autre méthode, plus directe, 
-qui nous permet de définir la mesure du volume de tout ensemble de $\R^n$.
-Cette approche nous permettra également de comprendre la raison pour laquelle
-notre construction initiale du volume se limite aux ensembles mesurables.
+due à Lebesgue et Carathéodory[^autz],
+qui nous permettra de définir la mesure du volume de tout ensemble de $\R^n$.
+Elle nous donnera également la raison pour laquelle
+notre construction initiale du volume se limite à la collection
+des ensembles qualifiés de "mesurables".
+
+[^autz]: Henri Lebesgue (1875-1941) était un mathématicien français
+et Constantin Carathéodory (1873-1950) un mathématicien grec entrenant
+des liens étroits avec l'Allemagne. Ils font partie des fondateurs de 
+la théorie abstraite de la mesure qui conduit à un renouveau de la théorie 
+de l'intégration au début du XXème siècle.
 
 Pour calculer le volume d'un sous-ensemble de $\R^n$, 
 nous généralisons la méthode utilisée pour définir les ensembles négligeables 
@@ -70,9 +66,9 @@ v^*(A)
 = 
 \inf 
 \left\{
-\sum_{k=1}^{+\infty} v(P_k)
-\; \left| \vphantom{\bigcup_{k=1}^{+\infty}} \right. \; 
-\mbox{$P_k$ pavé compact de $\R^n$,} \, A \subset \bigcup_{k=1}^{+\infty} P_k
+\sum_{k=0}^{+\infty} v(P_k)
+\; \left| \vphantom{\bigcup_{k=0}^{+\infty}} \right. \; 
+\mbox{$P_k$ pavé compact de $\R^n$,} \, A \subset \bigcup_{k=0}^{+\infty} P_k
 \right\},
 $$
 
@@ -86,51 +82,43 @@ en un nombre fini d'ensembles, qui,
 après rotations et translations, 
 forment une partition de deux sphères disjointes de rayon un.
 
-Autrement dit : si 
-$$
-S = \{(x_1, x_2, x_2) \in \R^3 \, | \, x_1^2 + x_2^2 + x_3^2 \leq 1\}
-$$
-et 
-$$
-S' = \{(x_1, x_2, x_2) \in \R^3 \, | \, (x_1 - 2)^2 + x_2^2 + x_3^2 \leq 1\}.
-$$
+--------------------------------------------------------------------------------
 
-#### TODO -- Dessin avant/après ?
 
-Soient $A_1, \dots, A_p$([^how-many]) des ensembles disjoints et non vides
-de $\R^3$ tels que $S = A_1 \cup \dots\cup A_p$,
-tels que des ensembles disjoints $B_1, \dots, B_p$ 
-qui s'en déduisent par rotation et translation, 
-vérifient $S_1 \cup S_2 = B_1 \cup \dots \cup B_p$.
-
-[^how-many]: il est possible de prendre 6 morceaux d'après 
-la preuve originale de Banach et Tarski (1924) ; 
-Robinson a prouvé en 1947 que $p=5$ était suffisant.
-
-Si le résultat semble paradoxal, c'est qu'il nous semble intuitivement 
+Si le résultat est qualifié de paradoxe, c'est qu'il nous semble intuitivement 
 que le volume devrait être préservé par les les opérations subies par 
 la sphère initiale. Or, le volume d'une sphère de rayon un et de deux 
 sphères disjointes de même rayon diffère d'un facteur $2$ ...
 Pour dépasser ce paradoxe, nous allons devoir examiner un par un les
 résultats qui nous semblent évidents dans ce raisonnement.
 
+Soient $A_1, \dots, A_p$ des ensembles disjoints et non vides
+de $\R^3$ dont la réunion forme la sphère initiale $S_0 = A_1 \cup \dots\cup A_p$,
+et tels que des ensembles disjoints $B_1, \dots, B_p$ 
+qui s'en déduisent par rotation et translation, 
+vérifient $S_1 \cup S_2 = B_1 \cup \dots \cup B_p$ où $S_1$ et $S_2$
+sont les deux sphère finales.
+
 Tout d'abord, on a bien
 $$
-v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3}.
+v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
 $$
-Les ensembles $S_0$, $S_1$ et $S_2$ sont intégrables et dans ce cas $v^*(A)$ 
-peut être évalué par l'intégrable de Henstock-Kurzweil, 
-ce qui fournit le résultat.
+car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
+(au sens de l'intégrale de Henstock-Kurzweil)
+et nous verrons ultérieurement que dans ce cas, la mesure extérieure
+$v^*$ coïncide avec celle de $v$ qui exploite l'intégrable de Henstock-Kurzweil.
+Un simple calcul intégral fournit alors le résultat.
 
 On peut croire que le point critique dans notre définition est la préservation
 de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
-que si $B$ se déduit de $A$ par une translation, $v^*(A) = v^*(B)$, on peut douter
-du résultat pour les rotations. Après tout, la définition de $v^*(A)$ fait appel
+que lorsque $B$ se déduit de $A$ par une translation, alors $v^*(A) = v^*(B)$, 
+on peut douter du résultat pour les rotations. 
+Après tout, la définition de $v^*(A)$ fait appel
 à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
 conservée par rotation. 
 Mais si le résultat n'est pas évident, il s'avère pourtant que
 la mesure $v^*$ est bien invariante par
-rotation (cf. (@Hun11, section 2.8).
+rotation (cf. [@Hun11, section 2.8]).
 
 La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
 n'est pas additive ! Même si les ensembles $A_1, \dots, A_p$ sont disjoints,
@@ -147,8 +135,8 @@ $$
 Elle est même $\sigma$-sous-additive : si $A_k$, $k \in \N$ sont des
 sous-ensembles de $\R^n$, 
 $$
-v^*\left(\bigcup_{k=1}^{+\infty} A_k\right)
-= \sum_{k=1}^n v^*\left(A_k\right).
+v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
+= \sum_{k=0}^n v^*\left(A_k\right).
 $$
 
 Cette propriété est caractéristique des mesures extérieures :
@@ -729,6 +717,11 @@ remarque évidente sur l'autre intégrale itérée.
 Exercices
 ================================================================================
 
+Anagrame {.question #BT}
+--------------------------------------------------------------------------------
+
+Quel est l'anagrame de "Banach-Tarski" ?
+
 Approximation par des ensembles mesurables
 --------------------------------------------------------------------------------
 
@@ -840,6 +833,11 @@ caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-not
 Solutions
 ================================================================================
 
+Anagrame {.answer #answer-BT}
+--------------------------------------------------------------------------------
+
+"Banach-Tarski Banach-Tarski".
+
 Approximation par des ensembles mesurables
 --------------------------------------------------------------------------------
 
@@ -847,7 +845,7 @@ Approximation par des ensembles mesurables
 Par définition de $v^*(A)$, pour tout $j \in \N$, il existe une collection
 dénombrable de pavés $P^j_k$ tels que
 $$
-v^*(A) \leq \sum_{k=1}^{+\infty} v^*(P^j_k) \leq v^*(A) + 2^{-j}.
+v^*(A) \leq \sum_{k=0}^{+\infty} v^*(P^j_k) \leq v^*(A) + 2^{-j}.
 $$
 
 **OUCH** trous dans la preuve dès ce stade : pas sûr la somme soit supérieure
@@ -856,7 +854,7 @@ et coïncidence entre $v$ et $v^*$ à établir pour les rectangles.
 Les ensembles $B_j = \cup_k P^j_k$ sont $v^*$-mesurables comme unions dénombrables
 d'ensembles mesurables. De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité
 $$
-v^*(A) \leq v^*(B_j) \leq \sum_{k=1}^{+\infty} v^*(P^j_k) \leq v^*(A) + 2^{-j}.
+v^*(A) \leq v^*(B_j) \leq \sum_{k=0}^{+\infty} v^*(P^j_k) \leq v^*(A) + 2^{-j}.
 $$
 
 ### Question 2 {.answer #answer-enm-2}
@@ -1037,7 +1035,7 @@ Une fonction $f: Y \to \R$ est positive, mesurable et étagée
 (appartient à $\mathcal{F}(f)$) si et seulement si elle est 
 de la forme
 $$
-f = \sum_{k=1}^n y_k \times 1_{B_k} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
+f = \sum_{k=0}^n y_k \times 1_{B_k} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
 $$
 On a donc, pour toute fonction mesurable et positive $f: Y \to \R$,
 $$
@@ -1045,18 +1043,18 @@ $$
 = 
 \sup 
 \left\{
-\sum_{k=1}^n y_k \times (\mu \circ h^{-1})(B_k) 
+\sum_{k=0}^n y_k \times (\mu \circ h^{-1})(B_k) 
 \, \left| \vphantom{\sum} \right. \, 
-\sum_{k=1}^n y_k \times 1_{B_k} \leq f, \, y_k \geq 0, \, B_k \in \mathcal{B}
+\sum_{k=0}^n y_k \times 1_{B_k} \leq f, \, y_k \geq 0, \, B_k \in \mathcal{B}
 \right\}.
 $$
 Or, si $A_k := h^{-1}(B_k)$, $A_k \in \mathcal{A}$ et
 $$
-\left(\sum_{k=1}^n y_k \times 1_{B_k}\right) \circ h = \sum_{k=1}^n y_k \times 1_{A_k}
+\left(\sum_{k=0}^n y_k \times 1_{B_k}\right) \circ h = \sum_{k=0}^n y_k \times 1_{A_k}
 \; \mbox{ et } \;
-\sum_{k=1}^n y_k \times (\mu \circ h^{-1})(B_k) = \sum_{k=1}^n y_k \times \mu(A_k)
+\sum_{k=0}^n y_k \times (\mu \circ h^{-1})(B_k) = \sum_{k=0}^n y_k \times \mu(A_k)
 $$
-La fonction $\sum_{k=1}^n y_k \times 1_{A_k}$ est donc étagée, mesurable, 
+La fonction $\sum_{k=0}^n y_k \times 1_{A_k}$ est donc étagée, mesurable, 
 positive et inférieure à $f \circ h$. Si $f \circ h$ est intégrable, $f$ est
 donc intégrable et 
 $$
@@ -1065,7 +1063,7 @@ $$
 Par ailleurs, pour toute collection finie $A_k \in \mathcal{A}$, 
 $k\in\{1,\dots, n\}$, si 
 $$
-\sum_{k=1}^n y_k \times 1_{A_k} \leq f \circ h 
+\sum_{k=0}^n y_k \times 1_{A_k} \leq f \circ h 
 $$
 
 **TODO:** finir !
