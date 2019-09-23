@@ -768,7 +768,7 @@ caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-not
 Solutions
 ================================================================================
 
-TODO -- Mesure image 
+Mesure image 
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-mi-1}
