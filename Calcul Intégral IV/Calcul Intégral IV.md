@@ -812,7 +812,7 @@ Montrons que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$.
     $$
     
 
-### TODO -- Question 3 {.answer #answer-mi-3}
+### Question 3 {.answer #answer-mi-3}
 Montrons tout d'abord que la fonction $f:Y \to \R$ est mesurable 
 si et seulement si $f \circ h$ est mesurable. Par définition,
 $f$ est mesurable si pour tout ensemble borélien $B$ de $\R$,
@@ -822,6 +822,55 @@ $$
 h^{-1} (f^{-1}(B)) = (f \circ h)^{-1}(B) \in \mathcal{A},
 $$
 c'est-à-dire si et seulement si $f \circ h$ est mesurable.
+
+Comme $(f \circ h)_+ = f_+ \circ h$ et $(f \circ h)_- = f_- \circ h$,
+il nous suffit de montrer que pour toute fonction mesurable
+$f: Y \to \left[0, +\infty\right]$, on a
+$$
+\int (f \circ h) \mu = \int f (\mu \circ h^{-1})
+$$
+pour pouvoir conclure que $f: Y \to \R$ est $\mu \circ h^{-1}$-intégrable si et
+seulement si $f \circ h$ est $\mu$-intégrable et que l'égalité ci-dessus
+est valable.
+
+Or pour une telle fonction $f$, il existe une suite croissante de fonctions 
+$f_k$ simples, positives et mesurables convergeant simplement vers $f$,
+et l'on a 
+$$
+\int f (\mu \circ h^{-1}) 
+=
+\lim_{k \to +\infty} \int f_k (\mu \circ h^{-1}).
+$$
+Comme 
+$$
+\begin{split}
+\int f_k (\mu \circ h^{-1}) 
+&= \sum_{y \in f_k(Y)} y \times (\mu \circ h^{-1})(f_k^{-1}(\{y\})) \\
+&= \sum_{y \in f_k(Y)} y \times \mu (h^{-1}(f_k^{-1}(\{y\})) \\
+&= \sum_{y \in f_k(Y)} y \times \mu ((f_k \circ h) ^{-1}(\{y\})) \\
+\end{split}
+$$
+si $y \in f_k(Y)$, mais $y \not \in f_k(h(X))$, alors 
+$\mu ((f_k \circ h) ^{-1}(\{y\})) = 0$. Par conséquent,
+$$
+\begin{split}
+\int f_k (\mu \circ h^{-1}) 
+&=
+\sum_{y \in (f_k \circ h)(X)} y \times \mu ((f_k \circ h) ^{-1}(\{y\})) \\
+&=
+\int (f_k \circ h) \mu.
+\end{split}
+$$
+Les fonctions $f_k \circ h$ sont simples, positives et mesurables,
+leur suite est croissante et converge simplement vers $f \circ h$.
+[Par le théorème de convergence monotone](#TCM), on a donc
+$$
+\int f (\mu \circ h^{-1}) 
+=
+\int (f \circ h) \mu.
+$$
+
+
 
 <!--
 Une fonction $f: Y \to \R$ est positive, mesurable et étagée 
