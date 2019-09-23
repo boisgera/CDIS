@@ -792,7 +792,7 @@ L'ensemble $\mathcal{B}$ est une tribu ; en effet :
 ### Question 2 {.answer #answer-mi-2}
 Montrons que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$.
 
-  - On a $h_*\mu(\varnothing) = \mu(h^{-1}(\varnothing)) = \mu(\varnothing) = 0$.
+  - On a $\mu\circ h^{-1}(\varnothing) = \mu(h^{-1}(\varnothing)) = \mu(\varnothing) = 0$.
 
   - Si les ensembles $B_k$, $k \in \N$, appartiennent à $\mathcal{B}$ et sont
     disjoints, alors les ensembles $h^{-1}(B_k)$ appartiennent à $\mathcal{A}$,
