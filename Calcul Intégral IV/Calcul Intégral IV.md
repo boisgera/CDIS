@@ -156,11 +156,13 @@ Cette propriété est caractéristique des mesures extérieures :
 ### Mesure extérieure {.definition}
 On appelle *mesure extérieure* sur l'ensemble $X$ toute application
 $$\mu^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que $\mu(\varnothing) = 0$
-et pour tous $A_k \subset X$, $k \in \N$, 
+et pour tout $A \subset X$ et $A_k \subset X$, $k \in \N$, 
 $$
-\mu^*\left(\bigcup_{k=1}^{+\infty} A_k\right)
+\mbox{si } \, A \subset \bigcup_{k=0}^{+\infty} A_k, \; 
+\mbox{alors } \,
+\mu^*\left(A\right)
 \leq 
-\sum_{k=1}^n \mu^*\left(A_k\right).
+\sum_{k=0}^{+\infty} \mu^*\left(A_k\right).
 $$
 
 Il existe un procédé général permettant de déduire d'une mesure extérieure
@@ -680,17 +682,15 @@ Exercices
 Ensembles non-mesurables
 --------------------------------------------------------------------------------
 
-Soit $\mu^* une mesure extérieure sur l'ensemble $X$ et $A$ un sous-ensemble
-de $X$
+Soit $A$ un sous-ensemble de $\R^n$.
 
 ### Question 1 {.question #enm-1}
 Montrer qu'il existe un ensemble mesurable $B$ contenant $A$ et tel que
-$\mu^*(A) = \mu^*(B)$.
+$v^*(A) = v^*(B)$.
 
 ### Question 2 {.question #enm-2}
-A quelle condition sur $\mu^*(B \setminus A)$ l'ensemble $B$ est-il mesurable ?
-
-
+A quelle condition portant sur $v^*(B \setminus A)$ l'ensemble $B$ est-il 
+$v^*$-mesurable ?
 
 Mesure intérieure
 --------------------------------------------------------------------------------
@@ -794,8 +794,20 @@ Ensembles non-mesurables
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-enm-1}
-Montrer qu'il existe un ensemble mesurable $B$ contenant $A$ et tel que
-$\mu^*(A) = \mu^*(B)$.
+Par définition de $v^*(A)$, pour tout $j \in \N$, il existe une collection
+dénombrable de pavés $P^j_k$ tels que
+$$
+v^*(A) \leq \sum_{k=1}^{+\infty} v^*(P^j_k) \leq v^*(A) + 2^{-j}.
+$$
+
+**OUCH** trous dans la preuve dès ce stade : pas sûr la somme soit supérieure
+et coïncidence entre $v$ et $v^*$ à établir pour les rectangles.
+
+Les ensembles $B_j = \cup_k P^j_k$ sont $v^*$-mesurables comme unions dénombrables
+d'ensembles mesurables. De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité
+$$
+v^*(A) \leq v^*(B_j) \leq \sum_{k=1}^{+\infty} v^*(P^j_k) \leq v^*(A) + 2^{-j}.
+$$
 
 ### Question 2 {.answer #answer-enm-2}
 A quelle condition sur $\mu^*(B \setminus A)$ l'ensemble $B$ est-il mesurable ?
