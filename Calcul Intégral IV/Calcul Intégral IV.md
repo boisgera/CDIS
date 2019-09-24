@@ -672,27 +672,58 @@ $$
 
 ### TODO -- Démonstration {.proof}
 
-Fubini & co
+Produit de mesures
 ================================================================================
 
-### TODO -- Nota
+### Tribu produit
+Soit $(X ,\mathcal{A})$ et $(Y, \mathcal{B})$ deux espaces mesurables.
+On appelle *tribu produit* de $\mathcal{A}$ et $\mathcal{B}$ 
+et l'on note $\mathcal{A} \otimes \mathcal{B}$
+la tribu sur le produit cartésien $X \times Y$ engendrée par les
+ensembles de la forme $A \times B$ où $A \in \mathcal{A}$ et
+$B \in \mathcal{B}$.
+$$
+\mathcal{A} \otimes \mathcal{B} := 
+\sigma 
+\left( 
+\left\{ A \times B \; | \; A \in \mathcal{A}, \; B \in \mathcal{B} \right\}
+\right).
+$$
 
-Le préalable permettant ne serait-ce que de définit la mesure produit
-est complexe ...
+### Mesure produit
+Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés.
+On appelle *mesure produit* de $\mu$ et $\nu$ et l'on note 
+$\mu \otimes \nu$ la fonction définie sur $\mathcal{A} \otimes \mathcal{B}$
+par
+$$
+(\mu \otimes \nu) (C) = \inf
+\left\{ 
+\sum_{k=0}^{+\infty} \mu(A_k) \nu(B_k) 
+\; \left| \vphantom{\sum_{k=0}^{+\infty}} \right. \;
+A_k \in \mathcal{A}, \ B_k \in \mathcal{B}, \, C \subset \bigcup_{k=0}^{+\infty} A_k \times B_k \right\}
+$$
 
-### TODO -- Tribu produit
+### TODO -- Démonstration : la "mesure produit" est une mesure {.proof}
 
-### TODO -- Mesure produit
+  - introduire $(\mu \otimes \nu)^* (C)$ pour tout $C$, montrer qu'on a 
+    affaire à une mesure extérieure.
 
-### TODO 
+  - montrer que tout ensemble de $\mathcal{A} \otimes \mathcal{B}$ et 
+    $(\mu \otimes \nu)^*$-mesurable (suffit de montrer que $A \times B$
+    est $(\mu \otimes \nu)^*$-mesurable).
+    
 
-Pb que la mesure produit peut ne pas être complète même si les composantes
-le sont ; en particulier le produit des mesures de Lebesgue n'est pas la
-mesure de Lebesgue (ouch) ; la tribu produit est qqpart (strictement)
-entre la tribu de Borel et la tribu de Lebesgue. Le produit de mesure
-de Borel étant Borel, on n'a pas ce pb ...
+### Intégrale dans un espace produit {.notation}
+Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés.
+Pour toute fonction $\mu \otimes \nu$-mesurable 
+$f: X \times Y \to [0, +\infty]$ ou toute fonction intégrable
+$f: X \times Y \to \R$, on notera
+$$
+\int f(x, y) \mu(dx)\nu(dy) := 
+\int f (\mu \otimes \nu).
+$$
 
-### TODO -- Mesure $\sigma$-finie
+### TODO -- Mesure $\sigma$-finie (plus tôt ? Bof.)
 
 ### TODO -- remark
 Gérer la subtilité que la première intégrale est définie uniquement
@@ -759,7 +790,7 @@ v_*(A) = v^*(P) - v^*(P \setminus A).
 $$
 
 ### Question 1 {.question #mi-1}
-Montrer que $v_*(A)$ ne dépend pas du choix du pavé $P$.
+Montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé $P$.
 
 ### Question 2 {.question #mi-2}
 Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
@@ -844,6 +875,17 @@ TODO -- Extension
 Tribu générée à partir d'un anneau (e.g. ens. des intervalles $\left[a,b\right[$),
 extension d'une prémesure ? Problématique de non-unicité ? Unicité sous
 caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-notes-06.pdf> 
+
+
+TODO -- Mesure produit
+--------------------------------------------------------------------------------
+
+### Question 1 
+Montrer que $\mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^m) \otimes \mathcal{B}(\R^n)$.
+
+### Question 2
+Est-ce que $\mathcal{L}(\R^{m+n}) = \mathcal{L}(\R^m) \otimes \mathcal{L}(\R^n)$ ?
+
 
 TODO -- Intégrale itérée
 --------------------------------------------------------------------------------
@@ -1048,7 +1090,6 @@ Montrons que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$.
     \end{split}
     $$
     
-
 ### Question 3 {.answer #answer-mi-3}
 Montrons tout d'abord que la fonction $f:Y \to \R$ est mesurable 
 si et seulement si $f \circ h$ est mesurable. Par définition,
