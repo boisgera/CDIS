@@ -143,7 +143,7 @@ Cette propriété est caractéristique des mesures extérieures :
 
 ### Mesure extérieure {.definition}
 On appelle *mesure extérieure* sur l'ensemble $X$ toute application
-$$\mu^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que $\mu(\varnothing) = 0$
+$$v^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que $\mu(\varnothing) = 0$
 et qui soit *$\sigma$-subadditive* :
 pour tout $A \subset X$ et $A_k \subset X$, $k \in \N$, 
 $$
@@ -718,6 +718,8 @@ $$
 ### TODO -- Complétion
 Etudier <https://www.math.fsu.edu/~roberlin/maa5616.f15/homework9sln.pdf>
 
+Aussi, <https://terrytao.wordpress.com/2010/10/30/245a-notes-6-outer-measures-pre-measures-and-product-measures/>
+
 ### TODO -- remarque 
 remarque évidente sur l'autre intégrale itérée.
 
@@ -739,11 +741,11 @@ Approximation par des ensembles mesurables
 Soit $A$ un sous-ensemble de $\R^n$.
 
 ### Question 1 {.question #enm-1}
-Montrer qu'il existe un ensemble mesurable $B$ contenant $A$ et tel que
+Montrer qu'il existe un ensemble $v^*$-mesurable $B$ contenant $A$ et tel que
 $v^*(A) = v^*(B)$.
 
 ### Question 2 {.question #enm-2}
-A quelle condition portant sur $v^*(B \setminus A)$ l'ensemble $B$ est-il 
+A quelle condition portant sur $v^*(B \setminus A)$ l'ensemble $A$ est-il 
 $v^*$-mesurable ?
 
 Mesure intérieure
@@ -753,18 +755,18 @@ Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact de $\R^n$
 contenant $A$.
 On appelle *mesure intérieure de $A$* la grandeur
 $$
-\mu_*(A) = \mu^*(P) - \mu^*(P \setminus A).
+v_*(A) = v^*(P) - v^*(P \setminus A).
 $$
 
 ### Question 1 {.question #mi-1}
-Montrer que $\mu_*(A)$ ne dépend pas du choix du pavé $P$.
+Montrer que $v_*(A)$ ne dépend pas du choix du pavé $P$.
 
 ### Question 2 {.question #mi-2}
-Montrer que $\mu_*(A) \leq \mu^*(A)$, avec égalité si $A$ est $\mu^*$-mesurable.
+Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
 
 ### Question 3 {.question #mi-3}
 Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
-et $\mu_*(A) = \mu^*(A)$, alors $A$ est $\mu^*$-mesurable.
+et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
 
 Mesure image 
 --------------------------------------------------------------------------------
@@ -796,6 +798,8 @@ $$
 
 Complétion d'une tribu {#ct .question}
 --------------------------------------------------------------------------------
+
+### TODO -- Prolongement de la mesure et définition de l'intégrale associée ?
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 On note $A \ds B$ la différence symétrique
@@ -867,92 +871,138 @@ Anagrame {.answer #answer-BT}
 
 "Banach-Tarski Banach-Tarski".
 
-Approximation par des ensembles mesurables
+Approximation par des ensembles mesurables {#aem}
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-enm-1}
 Par définition de $v^*(A)$, pour tout $j \in \N$, il existe une collection
 dénombrable de pavés $P^j_k$ tels que
 $$
-v^*(A) \leq \sum_{k=0}^{+\infty} v^*(P^j_k) \leq v^*(A) + 2^{-j}.
+v^*(A) \leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
 $$
-
-**OUCH** trous dans la preuve dès ce stade : pas sûr la somme soit supérieure
-et coïncidence entre $v$ et $v^*$ à établir pour les rectangles.
-
-Les ensembles $B_j = \cup_k P^j_k$ sont $v^*$-mesurables comme unions dénombrables
-d'ensembles mesurables. De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité
+Les ensembles $B_j = \cup_k P^j_k$ sont $v^*$-mesurables comme unions 
+dénombrables d'ensembles mesurables. 
+De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité de $v^*$
 $$
-v^*(A) \leq v^*(B_j) \leq \sum_{k=0}^{+\infty} v^*(P^j_k) \leq v^*(A) + 2^{-j}.
+v^*(A) 
+\leq v^*(B_j) 
+\leq \sum_{k=0}^{+\infty} v^*(P^j_k)
+\leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
 $$
+L'intersection $B = \cap_j B_j$ est un ensemble mesurable qui recouvre $A$ 
+et est contenu dans chaque $B_j$ ; par conséquent pour tout $j \in \N$,
+$$
+v^*(A) \leq v(B) \leq v(B_j) \leq v^*(A) + 2^{-j}.
+$$
+On en déduit donc que $A \subset B$ et $v^*(A) = v^*(B)$ avec $B$ mesurable. 
 
 ### Question 2 {.answer #answer-enm-2}
-A quelle condition sur $\mu^*(B \setminus A)$ l'ensemble $B$ est-il mesurable ?
+Notons au préalable que si $v^*(A) = +\infty$, alors $A$ est automatiquement 
+mesurable. Dans le cas contraire ($v^*(A) < +\infty$)
+l'ensemble $A$ est $v^*$-mesurable si et seulement si $v^*(B \setminus A) = 0$.
+En effet, si $A$ est $v^*$-mesurable et de mesure finie, comme $A \subset B$, on a 
+$$
+v^*(B) = v^*(A \cap B) + v^*(A^c \cap B) = v^*(A) + v^*(B \setminus A) = v^*(B) + v^*(B \setminus A).
+$$
+Comme la mesure $v^*(A)$ est finie, $v^*(B \setminus A) = 0$.
+Réciproquement, si $v^*(B \setminus A) = 0$, alors $B \setminus A$ (et donc $A$)
+est mesurable.
+En effet, pour tout ensemble $C$ de $\R^n$, on a d'une part 
+$$
+v^*(C) \leq v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C) 
+$$
+par subbadditivité de $v^*$.
+D'autre part, comme $(B \setminus A) \cap C \subset B \setminus A$, 
+$v^*((B \setminus A) \cap C) \leq v^*(B \setminus A) = 0$. 
+Par ailleurs, $C \supset (B \setminus A)^c \cap C$, donc
+$$
+v^*(C) \geq v^*((B \setminus A)^c \cap C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C).
+$$
+On a donc l'égalité $v^*(C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C)$ ;
+l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \setminus A)$.
+
+
 
 
 TODO -- Mesure intérieure
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-mi-1}
-Pour montrer que la définition de $\mu_*(A)$ ne dépend pas du choix du pavé
+Pour montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé
 $P$ contenant $A$, il suffit de prouver qu'on peut remplacer $P$ par un
-pavé compact $P'$ contenant $P$ sans changer la valeur de $\mu_*(A)$ (pour toute
+pavé compact $P'$ contenant $P$ sans changer la valeur de $v_*(A)$ (pour toute
 paire de pavés compacts on peut en effet trouver un pavé compact les contenant).
 
 Comme les pavés compacts $P$ et $P'$ sont mesurables (au sens de Carathéodory,
-pour la mesure extérieure $\mu^*$), l'ensemble $P' \setminus P$ l'est également 
+pour la mesure extérieure $v^*$), l'ensemble $P' \setminus P$ l'est également 
 ; on a donc
 $$
-\mu^*(P') = \mu^*(P' \setminus P) + \mu^{*}(P) 
+v^*(P') = v^*(P' \setminus P) + v^{*}(P) 
 $$
 et
 $$
-\mu^{*}(P' \setminus A)
+v^{*}(P' \setminus A)
 =
-\mu^*(P' \setminus P) + \mu^*(P \setminus A),
+v^*(P' \setminus P) + v^*(P \setminus A),
 $$ 
 ce qui établit
 $$
-\mu^*(P') - \mu^{*}(P' \setminus A)
+v^*(P') - v{*}(P' \setminus A)
 =
-\mu^*(P) - \mu^{*}(P \setminus A).
+v^*(P) - v^{*}(P \setminus A).
 $$
 
-### TODO -- Question 2 {.answer #answer-mi-2}
-
-La fonction $\mu^*$ étant subadditive, on a
+### Question 2 {.answer #answer-mi-2}
+La fonction $v^*$ étant subadditive, on a
 $$
-\mu^*(P) \leq \mu^*(A) + \mu^*(P\setminus A)
+v^*(P) \leq v^*(A) + v^*(P\setminus A)
 $$
-et donc $\mu_*(A) \leq \mu^*(A)$. Si $A$ est mesurable, l'inégalité initiale
-devient une égalité et donc $\mu_*(A) = \mu^*(A)$. 
+et donc $v_*(A) \leq v^*(A)$. Si $A$ est mesurable, l'inégalité initiale
+devient une égalité et donc $v_*(A) = v^*(A)$. 
 
-### TODO -- Question 3 {.answer #answer-mi-3}
-
-Montrons que la réciproque
-est également vraie. Soit $A$ un ensemble borné de $\R^n$ tel que 
-$\mu_*(A) = \mu^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
-Nous cherchons à établir que $\mu^*(B) = \mu^*(A \cap B) + \mu^*(A^c \cap B)$.
+### Question 3 {.answer #answer-mi-3}
+Montrons que la réciproque est également vraie. 
+Soit $A$ un ensemble borné de $\R^n$ tel que 
+$v_*(A) = v^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
+Nous cherchons à établir que $v^*(B) = v^*(A \cap B) + v^*(A^c \cap B)$.
 Remarquons tout d'abord que si le pavé compact $P$ -- qui est mesurable -- 
 contient $A$, on a
 $$
-\mu^*(B) = \mu^*(P \cap B) + \mu^*(P^c \cap B) \; ;
+v^*(B) = v^*(P \cap B) + v^*(P^c \cap B) \; ;
 $$
 si nous réussissons à établir que 
-$$\mu^*(P \cap B) = \mu^*(A \cap (P \cap B)) + \mu^*(A^c \cap (P \cap B)),$$
+$$v^*(P \cap B) = v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)),$$
 on pourra alors conclure que
 $$
 \begin{split}
-\mu^*(B) &= \mu^*(P \cap B) + \mu^*(P^c \cap B) \\
-&= \mu^*(A \cap (P \cap B)) + \mu^*(A^c \cap (P \cap B)) + \mu^*(P^c \cap B) \\
-&= \mu^*(A \cap B) + \mu^*(P \cap (A^c \cap B)) + \mu^*(P^c \cap (A^c \cap B)) \\
-&= \mu^*(A \cap B) + \mu^*(A^c \cap B).
+v^*(B) &= v^*(P \cap B) + v^*(P^c \cap B) \\
+&= v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)) + v^*(P^c \cap B) \\
+&= v^*(A \cap B) + v^*(P \cap (A^c \cap B)) + v^*(P^c \cap (A^c \cap B)) \\
+&= v^*(A \cap B) + v^*(A^c \cap B).
 \end{split}
 $$
 Autrement dit, il nous suffit d'établir le résultat cherché quand $B$ est un
-ensemble de $\R^n$ contenu dans le pavé compact $P$. Or dans ce cas, comme ...
+ensemble de $\R^n$ contenu dans le pavé compact $P$. 
 
-
+Pour cela, nous exploitons les résultats de l'exercice "[Approximation par des
+ensembles mesurables](#aem)". A l'ensemble $A$ on peut associer un sur-ensemble
+$v^*$-mesurable $B$ tel que $v^*(A) = v^*(B)$ ; quitte à remplacer $B$ par
+$P \cap B$, on peut également supposer que $B \subset P$. On a 
+$$
+v^*(P) = v^*(A) + v^*(P \setminus A) = v^*(B) + v^*(P \setminus B)
+$$
+et donc $v^*(P \setminus A) = v^*(P \setminus B)$. 
+D'autre part
+$$
+\begin{split}
+v^*(P) &= v^*(B) + v^*(P \setminus B) \\
+&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus B) \\
+&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus A) \\
+\end{split}
+$$
+et donc $v^*(B \setminus A) = 0$. Par les résultats de l'exercice 
+"[Approximation par des ensembles mesurables](#aem)", on en déduit que 
+$A$ est mesurable.
 
 
 Mesure image 
