@@ -454,7 +454,7 @@ du développement de Taylor de $\exp$ au premier ordre ;
 cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
 Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
 limitée par les erreurs d'*arrondi* dans les calculs, liée à la représentation
-approchée des nombres réels utilisée par le programme Python.
+approchée des nombres réels utilisée par le programme informatique.
 
 Arithmétique des ordinateurs
 --------------------------------------------------------------------------------
@@ -471,35 +471,35 @@ document classique
 ### Premier contact
 
 Dans un interpréteur Python, la façon la plus simple d'afficher un nombre
-consiste à invoquer son nom; par exemple
+consiste à invoquer son nom ; par exemple
 
     >>> pi
     3.141592653589793
 
-Cette information est non-ambiguë; par là nous voulons dire que nous disposons
+Cette information est non-ambiguë ; par là nous voulons dire que nous disposons
 d'assez d'information pour reconstituer le nombre initial:
 
     >>> pi == eval("3.141592653589793")
     True
 
-Mais cette représentation n'en est pas moins un mensonge:
+Mais cette représentation n'en est pas moins un mensonge :
 ça n'est pas une représentation décimale exacte du nombre `pi`
 stockée en mémoire. Pour avoir une représentation exacte de `pi`,
-nous pouvons demander l'affichage d'un grand nombre de décimales:
+nous pouvons demander l'affichage d'un grand nombre de décimales :
 
     >>> def all_digits(number):
-    ...     print("{0:.100g}".format(number))    
+    ...     print(f"{number:.100g}")    
     >>> all_digits(pi)
     3.141592653589793115997963468544185161590576171875
 
-Demander 100 chiffres après la virgule est suffisant: 
+Demander 100 chiffres après la virgule est suffisant : 
 seul 49 chiffres sont affichés car les suivants sont tous nuls.
 
 Remarquez que nous avons obtenu une représentation exacte du nombre flottant
 `pi` avec 49 chiffres. Cela ne signifie pas que tous ces chiffres
 -- ou même la plupart d'entre eux -- sont significatifs dans la représentation
 du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
-[mpmath] pour l'arithmétique flottante multi-précision, nous voyons que
+[mpmath] [@Joh13] pour l'arithmétique flottante multi-précision, nous voyons que
 
     >>> import mpmath
     >>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
@@ -515,13 +515,13 @@ et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre.
 Si la représentation des nombres flottants peut apparaître complexe à ce stade,
 c'est que nous avons insisté pour utiliser une représentation *décimale*
 quand ces nombres sont stockés avec une réprésentation *binaire*.
-En d'autres termes; au lieu d'utiliser une suite de chiffres décimaux
+En d'autres termes ; au lieu d'utiliser une suite de chiffres décimaux
 $f_i \in \{0,1,\dots,9\}$ pour représenter un nombre réel $x$ comme
   $$
   x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 10^{e} 
   $$
 nous devrions utiliser des *chiffres binaires* -- ou *bits* -- 
-$f_i \in \{0,1\}$ pour écrire:
+$f_i \in \{0,1\}$ pour écrire
   $$
   x = \pm (f_0.f_1f_2 \dots f_i \dots) \times 2^{e}.
   $$
@@ -539,13 +539,13 @@ ou alternativement comme `float64` dans NumPy.
 
 Un triplet de 
 
-  - *bit de signe:* $s \in \{0,1\},$ 
+  - *bit de signe* : $s \in \{0,1\},$ 
   
-  - *exposant (biaisé):* $e\in\{1,\dots, 2046\}$ (11-bit), 
+  - *exposant (biaisé)* : $e\in\{1,\dots, 2046\}$ (11-bit), 
 
-  - *fraction:* $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
+  - *fraction* : $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
 
-représente un double normalisé
+représente un double *normalisé*
   $$
   x = (-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52}).
   $$
@@ -553,7 +553,7 @@ représente un double normalisé
 [^IEEE754]: "Double" est un raccourci pour "format à virgule flottante de 
 précision double", comme défini dans le standard IEEE 754, cf. [@ANS85]. 
 Un format de simple précision est aussi défini, qui utilise uniquement
-32 bits; NumPy le propose sous le nom `float32`. 
+32 bits ; NumPy le propose sous le nom `float32`. 
 Après un abandon progressif des "singles" au profit des "doubles",
 plus précis et mieux supportés par le CPUs modernes, le format de simple
 précision revient en force avec le développement de l'usage des GPUs 
@@ -561,14 +561,14 @@ comme unités de calcul génériques.
 
 Les doubles qui ne sont pas normalisés sont *not-a-number* (`nan`),
 plus ou moins l'infini (`inf`) et zero (`0.0`) (en fait $\pm$ `0.0`;
-car il existe deux zéros distincts, qui différent par leur signe)
+car il existe deux zéros distincts, qui diffèrent par leur signe)
 et les nombres dits *dénormalisés*. Dans la suite, nous ne parlerons
 pas de ces cas particuliers.
 
 ### Précision
 
 Presque aucun nombre réel ne peut être représenté exactement comme un double.
-Pour faire façe à cette difficulté, il est raisonnable d'associer à un
+Pour faire face à cette difficulté, il est raisonnable d'associer à un
 nombre réel $x$ le double le plus proche $[x]$. Une telle méthode
 (*arrondi-au-plus-proche*) totalement spécifiée[^holes] dans le standard IEE754
 [@ANS85], ainsi que des modes alternatifs d'arrondi (arrondis "orientés").
@@ -580,9 +580,9 @@ ne nous préoccuperons pas dans la suite.
 
 Pour avoir la moindre confiance dans le résultats des calculs que nous 
 effectuons avec des doubles, nous devons être en mesure d'évaluer l'erreur
-faite par la représentation de $x$ par $[x]$. L'*epsilon machine* 
-$\varepsilon$ est une grandeur clé à cet égard: il est défini comme l'écart 
-entre $1.0$
+faite par la représentation de $x$ par $[x]$. 
+L'*epsilon machine* $\varepsilon$ est une grandeur clé à cet égard : 
+il est défini comme l'écart entre $1.0$
 -- qui peut être représenté exactement comme un double -- 
 et le double qui lui est immédiatement supérieur.
 
@@ -595,7 +595,7 @@ et le double qui lui est immédiatement supérieur.
     >>> all_digits(eps)
     2.220446049250313080847263336181640625e-16
 
-Ce nombre est également disponible comme un attribut de la class `finfo`
+Ce nombre est également disponible comme un attribut de la classe `finfo`
 de NumPy qui rassemble les constantes limites de l'arithmétique pour les
 types flottants.
 
@@ -603,17 +603,17 @@ types flottants.
     2.220446049250313080847263336181640625e-16
 
 Alternativement, l'examen de la structure des doubles normalisés fournit
-directement la valeur de $\varepsilon$: la fraction du nombre après $1.0$
+directement la valeur de $\varepsilon$ : la fraction du nombre après $1.0$
 est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ donc
-$\varepsilon =2^{-52},$ un résultat confirmé par:
+$\varepsilon =2^{-52},$ un résultat confirmé par le code suivant :
 
     >>> all_digits(2**(-52))
     2.220446049250313080847263336181640625e-16
 
 L'epsilon machine importe autant parce qu'il fournit une borne simple sur
 l'erreur relative de la représentation d'un nombre réel comme un double.
-En effet, pour n'importe quelle méthode d'arondi raisonnable, la structure
-des doubles normalisés fournit:
+En effet, pour n'importe quelle méthode d'arrondi raisonnable, la structure
+des doubles normalisés fournit :
     $$
     \frac{|[x] - x|}{|x|} \leq \varepsilon.
     $$
@@ -621,15 +621,15 @@ Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
 garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
 
 ### Chiffres significatifs
-L'erreur relative se traduit directement par combien de chiffres décimaux
-sont *significatifs* dans la meilleurs approximation d'un nombre réel par
-un double. Considéons la représentation de $[x]$ en notation scientifique:
+L'erreur relative détermine combien de chiffres décimaux sont significatifs 
+dans la meilleure approximation d'un nombre réel par un double. 
+Considérons la représentation de $[x]$ en notation scientifique :
     $$
     [x] = \pm (f_0.f_1 \dots f_{p-1} \dots) \times 10^{e}.
     $$
-On dira qu'elle est *significative jusqu'au $p$-ème chiffre* si
+On dira qu'elle est *significative jusqu'au $n$-ième chiffre* si
   $$
-  |x -  [x]| \leq \frac{10^{e-(p-1)}}{2}.
+  |x -  [x]| \leq \frac{10^{e-(n-1)}}{2}.
   $$
 D'autre part, la borne d'erreur sur $[x]$ fournit
   $$
@@ -637,10 +637,10 @@ D'autre part, la borne d'erreur sur $[x]$ fournit
   $$
 Ainsi, la précision souhaitée est obtenue tant que
   $$
-  p \leq - \log_{10} \varepsilon/2 = 52 \log_{10} 2 \approx 15.7.
+  n \geq - \log_{10} \varepsilon = 52 \log_{10} 2 \approx 15.7.
   $$
-Par conséquent, les doubles fournissent une approximation des nombres réels
-à 15 décimales.
+Par conséquent, les doubles fournissent une approximation des nombres 
+réels avec environ 15 ou 16 chiffres significatifs.
 
 ### Fonctions
 La plupart des nombres réels ne pouvant être représentés par des doubles,
@@ -655,21 +655,21 @@ $(x_1, \dots, x_n)$, on a
   [f](x_1,\dots,x_n) = [f([x_1], \dots, [x_n])].
   $$
 Autrement dit, tout se passe comme si le calcul de $[f](x_1,\dots,x_n)$
-était effectué de la façon suivante: approximation au plus proche 
+était effectué de la façon suivante : approximation au plus proche 
 des arguments par des doubles, calcul **exact** de $f$ sur ces arguments, 
-et approximation de cette valeur produite au plus proche par un double.
+et approximation de la valeur produite au plus proche par un double.
 Ou encore:
 $$
-[f] = [\, \cdot \,] \circ f \circ [\, \cdot \,].
+[f] = [\, \cdot \,] \circ f \circ ([\, \cdot \,], \dots, [\, \cdot \,]).
 $$
 
 Le standard IEEE 754 [@ANS85] impose que certaines fonctions aient des 
-implémentations correctement arrondies; 
+implémentations correctement arrondies ; 
 nommément, l'addition, la soustraction, la multiplication, la division, 
 le reste d'une division entière et la racine carrée.
 D'autres fonctions élémentaires 
 -- comme sinus, cosinus, exponentielle, logarithme, ... --
-ne sont en général pas correctement arrondies;
+ne sont en général pas correctement arrondies ;
 la conception d'algorithmes de calcul qui aient une performance décente et
 correctement arrondis est un problème difficile (cf. @FHL07).
 
@@ -680,7 +680,7 @@ Différences finies
 
 Soit $f$ une fonction à valeurs réelles définie sur un intervalle ouvert.
 Dans de nombreux cas concrets, on peut faire l'hypothèse que la fonction
-$f$ est indéfiniment dérivable sur son domaine de définition;
+$f$ est indéfiniment dérivable sur son domaine de définition ;
 le développement de Taylor avec reste intégral fournit alors
 localement à tout ordre $n$,
   $$
@@ -739,27 +739,28 @@ de Taylor.
 Toutefois, si nous prenons en compte la représentation des réels comme des
 doubles, nous pouvons expliquer et quantifier le phénomène. 
 Pour étudier exclusivement l'erreur d'arrondi, nous aimerions 
-nous débarrasser de l'erreur de troncature; à cette fin, dans les
-calculs qui suivent, au lieu de $\exp$, nous utilisons $\exp_1$,
+nous débarrasser de l'erreur de troncature ; 
+à cette fin, dans les calculs qui suivent, au lieu de $\exp$, 
+nous utilisons $\exp_1$,
 le développement de Taylor de $\exp$ à l'ordre $1$ à $x=0$,
 c'est-à-dire $\exp_1(x) := 1 + x$.
 
-Supposons que l'arrondi soit calculé au plus proche;
-sélectionnons un double $h>0$ et comparons-le à l'epsilon machine:
+Supposons que l'arrondi soit calculé au plus proche ;
+sélectionnons un double $h>0$ et comparons-le à l'epsilon machine :
 
   - Si $h \ll \varepsilon,$ alors $1 + h$ est proche de $1,$ en fait plus
     proche de $1$ que du double immédiatemment supérieur à $1$ qui est 
     $1 + \varepsilon.$ 
-    Par conséquent, on a $[\exp_0](h) = 1;$ une *annulation catastrophique*
-    survient:
+    Par conséquent, on a $[\exp_1](h) = 1$ ; 
+    une *annulation catastrophique* survient :
       $$
-      \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right] = 0.
+      \mathrm{FD}(\exp_1, 0, h) = \left[\frac{\left[ [\exp_1](h) - 1 \right]}{h}\right] = 0.
       $$
 
   - Si $h \approx \varepsilon,$ alors $1+h$ est plus proche  $1+\varepsilon$
-    que de $1,$ et donc $[\exp_0](h) = 1+\varepsilon$, ce qui entraîne
+    que de $1,$ et donc $[\exp_1](h) = 1+\varepsilon$, ce qui entraîne
       $$
-      \mathrm{FD}(\exp_0, 0, h) = \left[\frac{\left[ [\exp_0](h) - 1 \right]}{h}\right]
+      \mathrm{FD}(\exp_1, 0, h) = \left[\frac{\left[ [\exp_1](h) - 1 \right]}{h}\right]
       = \left[ \frac{\varepsilon}{h} \right].
       $$
 
@@ -768,17 +769,17 @@ sélectionnons un double $h>0$ et comparons-le à l'epsilon machine:
     (le symbole $\pm$ est utilisé ici pour défini un intervalle de confiance[^pm]). 
     Et donc
       $$
-      [[\exp_0](h) - 1] = h \pm \varepsilon \pm \varepsilon(2h + \varepsilon + \varepsilon h)
+      [[\exp_1](h) - 1] = h \pm \varepsilon \pm \varepsilon(2h + \varepsilon + \varepsilon h)
       $$
     et
       $$
-      \left[ \frac{[[\exp_0](h) - 1]}{h} \right] 
+      \left[ \frac{[[\exp_1](h) - 1]}{h} \right] 
       = 
       1 \pm \frac{\varepsilon}{h} + \frac{\varepsilon}{h}(3h + 2\varepsilon + 3h \varepsilon +\varepsilon^2 + \varepsilon^2 h)
       $$
     et par conséquent
       $$
-      \mathrm{FD}(\exp_0, 0, h)  = \exp_0'(0) \pm \frac{\varepsilon}{h}  \pm \varepsilon', \; \varepsilon' \ll \frac{\varepsilon}{h}.
+      \mathrm{FD}(\exp_1, 0, h)  = \exp_1'(0) \pm \frac{\varepsilon}{h}  \pm \varepsilon', \; \varepsilon' \ll \frac{\varepsilon}{h}.
       $$
       
 [^pm]: L'équation $a = b \pm c$ est à interpréter comme l'inégalité $|a - b| \leq |c|.$
@@ -788,11 +789,9 @@ sélectionnons un double $h>0$ et comparons-le à l'epsilon machine:
 Si l'on revient à $\mathrm{FD}(\exp, 0, h)$ et si l'on exploite des échelles
 log-log pour représenter l'erreur totale, on peut clairement distinguer la
 region ou l'erreur est dominée par l'erreur d'arrondi -- l'enveloppe de cette
-section du graphe est $h \mapsto \log(\varepsilon/h)$ -- et ou elle est dominée
+section du graphe est $h \mapsto \log(\varepsilon/h)$ -- et où elle est dominée
 par l'erreur de troncature -- une pente $1$ étant caractéristique des schémas
-d'ordre 1
-
-
+d'ordre 1.
 
 ### Schémas d'ordre supérieur
 
@@ -827,7 +826,7 @@ ou de façon équivalente en Python:
 [Le graphe d'erreur associé à la différence centrale](#cde) confirme qu'une 
 erreur de troncature d'ordre 2 améliore la précision. 
 Toutefois, il montre aussi que l'utilisation d'un schéma d'ordre plus
-élevé augmente également la région ou l'erreur est dominée par l'erreur
+élevé augmente également la région où l'erreur est dominée par l'erreur
 d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
 
 

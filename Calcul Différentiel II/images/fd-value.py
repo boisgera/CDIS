@@ -63,7 +63,7 @@ def fd_value():
     xticks([1e-16, 1e-12, 1e-8, 1e-4, 1e0])
     plot(h, FD(f, 0.0, h), "k", label="$\mathrm{FD}(\exp, 0, h)$")
     plot([h[0], h[-1]],[1.0, 1.0], "k--", label=r"$[\exp'(0)]$",alpha=1.0) 
-    plot(h, 2**(-52) / h, "k:", label=r"$[\epsilon/h]$")
+    plot(h, 2**(-52) / h, "k:", label=r"$[\varepsilon/h]$")
     legend()
     set_ratio(sqrt(3.0), bottom=0.1, top=0.1)
     title(r"Graphe de $h \mapsto \mathrm{FD}(\exp, 0, h)$")

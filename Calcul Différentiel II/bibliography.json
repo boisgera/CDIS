@@ -164,6 +164,29 @@
                     ]
             ]
     }
+},
+{
+  "id": "Joh13",
+  "type": "book",
+  "title": "mpmath: a Python library for arbitrary-precision floating-point arithmetic (version 0.18)",
+  "author": [
+          {
+                  "family": "Johansson",
+                  "given": "Fredrik"
+          },
+          {
+                  "literal": "others"
+          }
+  ],
+  "issued": {
+          "date-parts": [
+                  [
+                          "2013",
+                          12
+                  ]
+          ]
+  }
 }
+
 
 ]
