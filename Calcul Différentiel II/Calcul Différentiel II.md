@@ -67,7 +67,7 @@ Si le point $(x_0, y_0)$ de $W$ vérifie $f(x_0, y_0)= 0$,
 alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $y_0$ tels que
 $U \times V \subset W$ et
 une fonction implicite $\psi: U \to \mathbb{R}^m$, continûment différentiable, 
-telle que pour tous $x \in  U$ et $y \in V$,
+telle que pour tout $x \in  U$ et tout $y \in V$,
 $$
 f(x, y) = 0
 \; \Leftrightarrow \; 
