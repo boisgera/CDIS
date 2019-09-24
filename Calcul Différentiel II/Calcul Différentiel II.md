@@ -860,8 +860,8 @@ Introduction
 --------------------------------------------------------------------------------
 
 La différentiation automatique désigne une famille de méthodes numériques
-permettant de calculer dérivées et différentielles de fonctions numériques
-qui se positionne comme une alternative aux algorithmes de différences
+permettant de calculer dérivées et différentielles de fonctions numériques.
+Elle se positionne comme une alternative aux algorithmes de différences
 finies. Ces méthodes ont l'avantage majeur d'éliminer quasi-totalement les 
 erreurs d'arrondis -- l'erreur est aussi faible que dans une dérivation
 symbolique "manuelle" des expressions utilisées dans le calcul de la
@@ -873,11 +873,11 @@ différentes méthodes permettent de mettre en oeuvre la différentiation
 automatique. 
 Le typage dynamique (ou [*duck typing*](https://en.wikipedia.org/wiki/Duck_typing)) 
 de Python permet de mettre en oeuvre simplement le *tracing* des fonctions 
-numériques -- l'enregistrement des opérations du calcul effectués d'une 
-fonction lors de son exécution -- ce qui fournit un graphe de calcul à 
-partir duquel les différentielles peuvent être calculées mécaniquement 
-par la règle de dérivation en chaîne à partir de la différentielle 
-d'opérations primitives. 
+numériques -- l'enregistrement des opérations du calcul effectuées par une
+fonction lors de son exécution. A partir du graphe de calcul ainsi construit,
+les différentielles peuvent être calculées mécaniquement 
+par [la règle de différentiation en chaîne](Calcul Différentiel I.pdf#chain-rule) 
+à partir des différentielles des opérations élémentaires. 
  
 Tracer le graphe de calcul
 --------------------------------------------------------------------------------
@@ -905,7 +905,7 @@ ou même des types non-numériques comme des chaînes de caractères
     'undeux'
 
 Le tout est qu'à l'exécution, les objets `x` et `y` supportent l'opération
-d'addition binaire -- dans le cas contraire, une exception sera générée. 
+d'addition -- dans le cas contraire, une exception sera générée. 
 Notre fonction `add` est donc définie implicitement pour les objets 
 additionnables[^dt].
 
@@ -922,15 +922,17 @@ la fonction `add`, qui ne fait aucune référence au type des arguments
 
 
 [^dt]: les objets "additionnables" sont des "canards" dans le contexte 
-du terme *duck typing* de Python; 
-on ne demande pas qu'ils soient de "vrais" canards -- par exemple
-d'un type particulier -- mais juste qu'ils se comportent comme tels:
+du terme *duck typing* de Python ; 
+on ne demande pas qu'ils soient (ou dérivent) d'une classe particulière 
+comme `numpy.number` par exemple
+-- mais juste qu'ils se comportent de façon adéquate à l'exécution :
 "if it walks like a duck and it quacks like a duck, then it must be a duck".
 
 Dans le cas de l'addition, l'opération `x + y` 
 est déléguée à la méthode `__add__` de l'objet `x`. 
 Pour intercepter cet appel, il est donc nécessaire de modifier 
-le type de nombre flottant que nous allons utiliser:
+le type de nombre flottant que nous allons utiliser et de surcharger 
+la définition de cette méthode :
 
     class Float(float):
         def __add__(self, other):
@@ -955,14 +957,14 @@ effectuées
 non de `float` ! Pour commencer à généraliser cet usage, nous allons faire
 en sorte de générer des instances de `Float` dans la mesure du possible.
 Pour commencer, nous pouvons faire en sorte que les opérations sur nos 
-flottants renvoient notre propre type de flottant:
+flottants renvoient notre propre type de flottant :
 
     class Float(float):
         def __add__(self, other):
             print(f"trace: {self} + {other}")
             return Float(super().__add__(other))
 
-Mais cela n'est pas suffisant: les fonctions de la library `math` de Python
+Mais cela n'est pas suffisant : les fonctions de la library `math` de Python
 vont renvoyer des flottants classiques, il nous faut donc à nouveau les
 adapter ; avant tout importons le module `math`
 
@@ -989,7 +991,7 @@ pourtant très similaire `1.0 + cos(pi)`:
     0.0
 
 En effet, c'est la méthode `__add__` de `1.0`, une instance de `float` qui
-est appelée; cet appel n'est donc pas tracé. Pour réussir à gérer correctement 
+est appelée ; cet appel n'est donc pas tracé. Pour réussir à gérer correctement 
 ce type d'appel, il va falloir ... le faire échouer ! 
 La méthode appelée pour effectuer la somme jusqu'à présent confie l'opération 
 à la méthode `__add__` de `1.0` parce que cet objet sait prendre en charge 
@@ -997,9 +999,9 @@ l'opération, car il s'agit d'ajouter lui-même avec une autre instance
 (qui dérive) de `float`. 
 Si nous faisons en sorte que le membre de gauche soit incapable
 de prendre en charge cette opération, elle sera confiée au membre de 
-droite et à la méthode `__radd__`; 
-pour cela il nous suffit de remplacer `Float`, un type numérique
-par `Node`, une classe qui contient (encapsule) une valeur numérique:
+droite et à la méthode `__radd__` ; 
+pour cela il nous suffit de remplacer `Float`, un type numérique,
+par `Node`, une classe qui contient (encapsule) une valeur numérique :
 
     class Node:
         def __init__(self, value):
@@ -1009,7 +1011,7 @@ Nous n'allons pas nous attarder sur cette version 0 de `Node`.
 Si elle est ainsi nommée, c'est parce qu'elle va représenter un noeud
 dans un graphe de calculs. Au lieu d'afficher les opérations réalisées
 sur la sortie standard, nous allons enregistrer les 
-opérations que subit chaque variable et comment elles s'organisent;
+opérations que subit chaque variable et comment elles s'organisent ;
 chaque noeud issu d'une opération devra mémoriser quelle opération
 a été appliquée, et quels étaient les arguments de l'opération (eux-mêmes
 des noeuds). Pour supporter cette démarche, `Node` devient:
@@ -1021,9 +1023,9 @@ des noeuds). Pour supporter cette démarche, `Node` devient:
             self.args = args
 
 Il nous faut alors rendre les opérations usuelles compatibles avec la création
-de noeuds; en examinant les arguments de la fonction, on doit décider si
+de noeuds ; en examinant les arguments de la fonction, on doit décider si
 elle est dans un mode "normal" (recevant des valeurs numériques, produisant
-des valeurs numériques) ou en train de tracer les calculs. Par exemple:
+des valeurs numériques) ou en train de tracer les calculs. Par exemple :
 
     def cos(x):
         if isinstance(x, Node):
@@ -1048,13 +1050,13 @@ ou
 
 
 La fonction `add` ne sera sans doute pas utilisée directement, 
-mais appelée sous forme d'opérateur `+`; elle doit donc nous
-permettre de définir les méthodes `__add__` et `__radd__`:
+mais appelée au moyen de l'opérateur `+` ; 
+elle doit donc nous permettre de définir les méthodes `__add__` et `__radd__` :
 
     Node.__add__ = add
     Node.__radd__ = add
 
-On remarque de nombreuses similarités entre les deux codes;
+On remarque de nombreuses similarités entre les deux codes ;
 plutôt que de continuer cette démarche pour toutes les fonctions
 dont nous allons avoir besoin, au prix d'un effort d'abstraction,
 il serait possible de définir une fonction opérant automatiquement
@@ -1086,9 +1088,9 @@ en première lecture.
         autodiff_function.__qualname__ = function.__qualname__
         return autodiff_function
 
-Malgré sa complexité apparente, l'utilisation de cette fonction est simple; 
+Malgré sa complexité apparente, l'utilisation de cette fonction est simple ; 
 ainsi pour rendre la foncton `sin` et l'opérateur `*` compatible
-avec la gestion de noeuds, il suffit de faire:
+avec la gestion de noeuds, il suffit de faire :
 
     sin = autodiff(math.sin)
 
@@ -1100,13 +1102,13 @@ et
     Node.__mul__ = Node.__rmul__ = multiply
 
 ce que est sensiblement plus rapide et lisible 
-que la démarche entreprise pour `cos` et `+`; 
+que la démarche entreprise pour `cos` et `+` ; 
 mais encore une fois, le résultat est le même.
 
 Il est désormais possible d'implémenter le traceur. 
 Celui-ci encapsule les arguments de la fonction à tracer 
 dans des noeuds, puis appelle la fonction et renvoie le noeud associé
-à la valeur retournée par la fonction:
+à la valeur retournée par la fonction :
 
     >>> def trace(f, args):
     ...     args = [Node(arg) for arg in args]
@@ -1115,7 +1117,7 @@ dans des noeuds, puis appelle la fonction et renvoie le noeud associé
 
 Pour vérifier que tout se passe bien comme prévu,
 faisons en sorte d'afficher une représentation lisible 
-et sympathique des contenus des noeuds sous forme de chaîne de caractères:
+et sympathique des contenus des noeuds sous forme de chaîne de caractères :
 
     def node_str(node):
         if node.function is None:
@@ -1126,12 +1128,12 @@ et sympathique des contenus des noeuds sous forme de chaîne de caractères:
             return f"{function_name}({args_str})"
 
 Puis, faisons en sorte qu'elle soit utilisée quand on invoque
-la fonction `print`, plutôt que l'affichage standard: 
+la fonction `print`, plutôt que l'affichage standard : 
 
     Node.__str__ = node_str
 
 Nous complétons cette description par une seconde représentation, 
-plus explicite mais également plus verbeuse:
+plus explicite mais également plus verbeuse :
 
     def node_repr(node):
         reprs = [repr(node.value)]
@@ -1143,7 +1145,7 @@ plus explicite mais également plus verbeuse:
         return f"Node({args_repr})"
     Node.__repr__ = node_repr
 
-Nous sommes prêts à faire notre vérification:
+Nous sommes prêts à faire notre vérification :
 
     >>> def f(x):
     ...    return 1.0 + cos(x)
@@ -1153,12 +1155,12 @@ Nous sommes prêts à faire notre vérification:
     >>> print(end)
     add(cos(3.141592653589793), 1.0)
 
-Le résultat se lit de la façon suivante: le calcul de `f(pi)` produit 
+Le résultat se lit de la façon suivante : le calcul de `f(pi)` produit 
 la valeur `0.0`, issue de l'addition de `-1.0`, 
 calculé comme `cos(3.141592653589793)`, et de la constante `1.0`.
 Cela semble donc correct !
 
-Un autre exemple -- à deux arguments -- pour la route:
+Un autre exemple -- à deux arguments -- pour la route :
 
     >>> def f(x, y):
     ...     return x * (x + y)
@@ -1205,7 +1207,7 @@ $d (\cos(x)) = -\sin(x) dx$
 
 Mais il ne s'agit que d'un cas particulier de l'identité
 $d (f(x)) = f'(x) dx$. Nous pouvons nous doter d'une fonction qui 
-calculera la différentielle $df$ à partir de la dérivée $f'$:
+calculera la différentielle $df$ à partir de la dérivée $f'$ :
 
     def d_from_deriv(g):
         def d_f(x):
@@ -1252,7 +1254,7 @@ l'UE 11 niera avoir connaissance de vos activités.
 Le calcul de la différentielle en tant que tel ne consiste plus qu'à 
 propager la variation des arguments de noeud en noeud, en se basant
 sur la règle de différentiation en chaîne ; ces variations intermédiaires
-sont stockés dans l'attribut `d_value` des noeuds du graphe.
+sont stockées dans l'attribut `d_value` des noeuds du graphe.
 
     def d(f):
         def df(*args): # args=(x1, x2, ...)
@@ -1308,7 +1310,7 @@ $f'(x) = df(x) \cdot 1$.
 -->    
   
 Vérifions que le comportement de ces opérateurs de différentiation est
-conforme à nos attentes dans le cas de fonction d'une variable; 
+conforme à nos attentes dans le cas de fonction d'une variable ; 
 d'abord dans le cas d'une fonction constante
 
     >>> def f(x):
@@ -1331,7 +1333,7 @@ puis dans le cas d'une fonction affine
     >>> g(2.0)
     2.0
 
-et enfin dans le cas d'une fonction quadratique:
+et enfin dans le cas d'une fonction quadratique
 
     >>> def f(x):
     ...     return x * x + 2 * x + 1
@@ -1344,7 +1346,7 @@ et enfin dans le cas d'une fonction quadratique:
     6.0
 
 Pour finir dans ce cadre, testons deux fonctions utilisant les fonctions
-trigonométriques `sin` et `cos`:
+trigonométriques `sin` et `cos` :
 
     >>> def f(x):
     ...    return cos(x) * cos(x) + sin(x) * sin(x)
@@ -1369,7 +1371,7 @@ trigonométriques `sin` et `cos`:
     True
 
 Dans le cas général -- puisque nos fonctions sont toujours à valeurs réelles
--- nous pouvons déduire de la différentielle le gradient :
+-- nous pouvons déduire le gradient de la différentielle :
 
     def grad(f):
         df = d(f)
@@ -1384,7 +1386,7 @@ Dans le cas général -- puisque nos fonctions sont toujours à valeurs réelles
         return grad_f
 
 Les fonctions constantes, affines et quadratiques permettent là aussi de 
-réaliser des tests élémentaires:
+réaliser des tests élémentaires :
 
     >>> def f(x, y):
     ...     return 1.0
@@ -1433,7 +1435,7 @@ reposant sur [XLA](https://github.com/tensorflow/tensorflow/blob/master/tensorfl
 (pour *accelerated linear algebra*) est une autre option.
 
 [^wn]: "autograd" ou "autodiff" sont des termes plus ou moins génériques
-qu'utilisent de nombreuses de librairies.
+qu'utilisent de nombreuses librairies.
 
 La différentiation automatique fait également partie intégrante 
 de nombreuses plate-formes de calcul, qu'il s'agisse de machine learning 
