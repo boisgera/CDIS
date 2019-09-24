@@ -88,8 +88,8 @@ il peut exister 0 ou 2 solutions $y$.](images/implicit-function-theorem.tex)
 ### Extensions {.note}
 Il est possible d'affaiblir l'hypothèse concernant $\partial_y f$ en supposant 
 uniquement celle-ci inversible en $(x_0, y_0)$ au lieu d'inversible sur tout $W$.
-En effet, l'application qui a une application linéaire 
-$A: \mathbb{R}^m \to \mathbb{R}^m$ associe son inverse $A^{-1}$
+En effet, l'application qui a une application linéaire inversible
+$A: \mathbb{R}^m \to \mathbb{R}^m$ associe son inverse $A^{-1}$ 
 est définie sur un ouvert et continue[^inv]. 
 Comme l'application linéaire $\partial_y f(x_0, y_0)$ 
 est inversible et que l'application $\partial_y f$
@@ -137,7 +137,7 @@ car le déterminant ne fait intervenir que des produits et des sommes des
 coefficients de $[A]$.
 Par conséquent, les applications linéaires inversibles de 
 $\mathbb{R}^m \to \mathbb{R}^m$ sont l'image réciproque de l'ouvert 
-$\mathbb{R} \setminus \{0\}$ par une application continue:
+$\mathbb{R} \setminus \{0\}$ par une application continue :
 cet ensemble est donc ouvert. Quand $A$ est inversible, on a 
 $$
 [A]^{-1} = \frac{\mathrm{co}([A])^t}{\det [A]}
@@ -150,13 +150,15 @@ son domaine de définition.
 Pour établir l'existence de la fonction implicite $\psi$,
 nous allons pour une valeur $x$ suffisamment proche de $x_0$
 construire une suite convergente d'approximations $y_k$, 
-proches de $y_0$ dont la limite $y$ sera solution de 
+proches de $y_0$, dont la limite $y$ sera solution de 
 $f(x, y)=0$.
 
-L'idée de cette construction repose sur l'analyse suivante: si nous partons
-d'une valeur $y_k$ proche de $y_0$ (a priori telle que $f(x, y_k) \neq 0$)
+L'idée de cette construction repose sur l'analyse suivante : 
+si nous partons d'une valeur $y_k$ proche de $y_0$ 
+(a priori telle que $f(x, y_k) \neq 0$)
 et que nous recherchons une valeur $y_{k+1}$ proche, 
-qui soit une meilleure solution approchée de $f(x, y) = 0$ que ne l'est $y_k$,
+qui soit une solution approchée de $f(x, y) = 0$ 
+(meilleure que ne l'est $y_k$),
 comme au premier ordre
 $$
 f(x, y_{k+1}) \approx f(x, y_k) + \partial_y f(x, y_k) \cdot (y_{k+1} - y_k),
@@ -170,10 +172,11 @@ On peut espérer que répéter ce processus en partant de $y_0$
 détermine une suite convergente dont la limite soit une
 solution exacte $y$ de $f(x, y) = 0$.
 
-Le procédé décrit ci-dessus constitue la méthode de Newton de recherche de zéros.
+Le procédé décrit ci-dessus constitue la *méthode de Newton* 
+de recherche de zéros. 
 Nous allons prouver que cette heuristique est ici justifiée,
-à une modification mineure près: 
-nous allons lui substituer la méthode de Newton modifiée, 
+à une modification mineure près : 
+nous allons lui substituer la *méthode de Newton modifiée*, 
 qui n'utilise pas $\partial_y f(x, y_k)$ mais la valeur constante 
 $\partial_y f(x_0, y_0)$, c'est-à-dire qui définit la suite
 $$
@@ -201,13 +204,13 @@ $$
 & \leq \|Q^{-1}\| \times \|\partial_y f(x, y) - Q\|.
 \end{split}
 $$
-La fonction $f$ étant supposée continûment différentiable, il existe un $r>0$
-tel que tout couple $(x, y)$ tel que $\|x - x_0\| \leq r$ et
-$\|y - y_0\| \leq r$ appartienne à $W$ et vérifie 
+La fonction $f$ étant supposée continûment différentiable, 
+il existe un $r>0$ tel que tout couple $(x, y)$ tel que 
+$\|x - x_0\| \leq r$ et $\|y - y_0\| \leq r$ appartienne à $W$ et vérifie 
 $\|\partial_y f(x, y) - Q\| \leq \kappa \|Q^{-1}\|^{-1}$ avec par exemple 
 $\kappa = 1/2$, ce qui entraîne $\|d \phi_x(y)\| \leq \kappa$.
-Par le théorème des accroissements finis, la restriction de $\phi$
-à $\{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$
+Par [l'inégalité des accroissements finis](Calcul Différentiel I.pdf#TAF), 
+la restriction de $\phi$ à $\{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$
 (que l'on continuera à noter $\phi_x$)
 est $\kappa$-contractante:
 $$
@@ -240,9 +243,9 @@ implicite $\psi$ associée aux voisinages ouverts $U = B(x_0, r')$ et
 $V = B(y_0, r)$.
 
 Montrons la continuité de la fonction implicite $\psi$.
-Soit $x_1, x_2$ deux points de $V$; notons $y_1 = \psi(x_1)$
-et $y_2 = \psi(x_2)$. Ces valeurs sont des solutions des équations
-de point fixe
+Soit $x_1, x_2$ deux points de $V$ ; 
+notons $y_1 = \psi(x_1)$ et $y_2 = \psi(x_2)$. 
+Ces valeurs sont des solutions des équations de point fixe
 $$
 y_1 = \phi_{x_1}(y_1) \, \mbox{ et } \, y_2 = \phi_{x_2}(y_2).
 $$
@@ -261,8 +264,8 @@ $$
 \|y_2 - y_1\| \leq \frac{1}{1 - \kappa} \|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
 $$
 L'application $x \mapsto \phi_{x}(y_1)$ étant continue en $x_1$, 
-nous pouvons conclure que $y_2$ tend vers $y_1$ quand $x_2$ tend vers $x_1$;
-autrement dit: la fonction implicite $\psi$ est continue en $x_1$.
+nous pouvons conclure que $y_2$ tend vers $y_1$ quand $x_2$ tend vers $x_1$ ;
+autrement dit : la fonction implicite $\psi$ est continue en $x_1$.
 
 Montrons finalement la différentiabilité de $\psi$ en $x_1$. Pour cela,
 il suffit d'exploiter la différentiabilité de $f$ en $(x_1, y_1)$
@@ -276,8 +279,9 @@ f(x, y) &= f(x_1, y_1)
 & \phantom{=} + \varepsilon((x-x_1, y-y_1)) (\|x-x_1\| + \|y-y_1\|)
 \end{split}
 $$
-On a par construction $f(x_1, y_1) = 0$; en prenant $y = \psi(x)$,
-on annule également $f(x, y) = 0$. En notant $P = \partial_x f(x_1, y_1)$
+On a par construction $f(x_1, y_1) = 0$ ; 
+en prenant $y = \psi(x)$, on annule également $f(x, y) = 0$. 
+En notant $P = \partial_x f(x_1, y_1)$
 et $Q = \partial_y f(x_1, y_1)$, on obtient 
 $$
 \begin{split}
