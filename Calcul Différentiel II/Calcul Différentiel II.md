@@ -464,7 +464,7 @@ document classique
 
 [NumPy]: http://www.numpy.org/
 
-### Nombres flottants: premier contact
+### Premier contact
 
 Dans un interpréteur Python, la façon la plus simple d'afficher un nombre
 consiste à invoquer son nom; par exemple
@@ -1168,7 +1168,7 @@ Un autre exemple -- à deux arguments -- pour la route:
 Calcul automatique des dérivées
 --------------------------------------------------------------------------------
 
-### Différentielles des fonctions élémentaires
+### Différentielle des fonctions élémentaires
 Pour exploiter le graphe de calcul que nous savons désormais déterminer,
 il nous faut déclarer les différentielles des opérations et fonctions 
 primitives dans un "registre" de différentielles, indexées par la fonction
