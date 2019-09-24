@@ -344,13 +344,13 @@ Les fonctions $f$ et $f^{-1}$ sont différentiables et vérifient
 $$
 f \circ f^{-1} = I \; \mbox{ et } \; f^{-1} \circ f = I.
 $$
-La règle de différentiation en chaîne, 
+[La règle de différentiation en chaîne](Calcul Différentiel I.pdf#chain-rule), 
 appliquée en $y=f(x)$ et $x$ respectivement, 
 fournit donc
 $$
 df(x) \cdot df^{-1}(y) = I \; \mbox{ et } \; df^{-1}(y) \cdot  df(x)= I.
 $$
-La fonction $df(x)$ est donc inversible et est l'inverse de $d f^{-1}(y)$.
+La fonction $df(x)$ est donc inversible et son inverse est $d f^{-1}(y)$.
 
 ### Théorème d'inversion locale {.theorem #TIL}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ continûment différentiable
