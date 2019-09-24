@@ -1471,7 +1471,7 @@ $f(\theta_1, \theta_2) = (x, y)$.
 
 ### Question 1 {.question #crm-1}
 Supposons que $\ell_1 \neq \ell_2$.
-Déterminer l'ensemble des valeurs $(x, y)$ du plan qui ne corresponde 
+Déterminer l'ensemble des valeurs $(x, y)$ du plan qui ne correspondent
 à aucun couple $q$ de coordonnées articulaires et 
 l'ensemble de celles qui correspondent à des coordonnées articulaires.
 Quand $(x, y)$ appartient à l'intérieur $V$ de ce second ensemble, 
@@ -1567,7 +1567,7 @@ $$
 $$
 Si la fonction $f$ est deux fois continûment différentiable, 
 il n'est plus nécessaire de modifier la méthode de Newton pour 
-prouver le théorème: 
+prouver le théorème : 
 on peut exploiter directement la fonction
 $$
 \phi_x: y \mapsto y - (\partial_y f(x, y))^{-1} \cdot f(x, y)
@@ -1628,15 +1628,14 @@ $[|\ell_1 - \ell_2|, \ell_1 + \ell_2]$.
 Une fois $\theta_2$ sélectionné (modulo $2\pi$) pour atteindre la valeur 
 $r$, il est évident par rotation que l'on peut trouver un angle $\theta_1$
 tel que $f(\theta_1, \theta_2) = (x, y)$. Pour des raisons de symétrie,
-si $\theta$ est un angle de $(x, y)$ et $\theta_1$ convient, alors
-$2\theta - \theta_1$ également. Ces deux angles sont différents si
-$\theta_1$ différe de $\theta$ modulo $\pi$, c'est-à-dire si le bras
-manipulateur n'est ni totalement déplié, ni totalement plié.
+si $\theta$ est un angle de $(x, y)$ et $(\theta_1,\theta_2)$ convient, alors
+$(2\theta - \theta_1, -\theta_2)$ également. Ces deux paires sont différentes si
+si le bras manipulateur n'est ni totalement déplié, ni totalement plié.
 
-Pour résumer: les points $(x, y)$ tels que $r < |\ell_1 - \ell_2|$ ou
+Pour résumer : les points $(x, y)$ tels que $r < |\ell_1 - \ell_2|$ ou
 $\ell_1 + \ell_2 < r$ ne peuvent pas être atteints. Les points vérifiant
-les égalités correspondantes correspondent à exactement un jeu de 
-coordonnées articulaires. Et dans le cas restant, dans
+les égalités correspondantes sont associés à exactement un jeu de 
+coordonnées articulaires (modulo $2\pi$). Et dans le cas restant, dans
 $$
 V = \{(x, y) \in \R^2 \, | \, |\ell_1 - \ell_2| < \sqrt{x^2 + y^2} < \ell_1 + \ell_2\},
 $$
@@ -1678,15 +1677,16 @@ U = \R^2 \setminus (\R \times \pi \Z).
 $$
 En coordonnées cartésiennes, cela correspond aux points $(x, y)$ 
 à distance minimale $|\ell_1 - \ell_2|$
-ou maximale $\ell_1 + \ell_2$ de l'origine, soit $A_1$. 
-Les points à une distance intermédiaires $$|\ell_1 - \ell_2| < \sqrt{x^2+y^2} < \ell_1+\ell_2,$$
-soit $A_2$ en coordonnées cartésiennes, correspondent à une matrice jacobienne
-$J_f(q)$ inversible quel que soit l'antécédent $q$ de $(x, y)$ par $f$.
+ou maximale $\ell_1 + \ell_2$ de l'origine<!--, soit $A_1$-->. 
+Les points à une distance intermédiaire $$|\ell_1 - \ell_2| < \sqrt{x^2+y^2} < \ell_1+\ell_2$$
+<!--soit $A_2$ en coordonnées cartésiennes,--> soit $V$, 
+correspondent à une matrice jacobienne $J_f(q)$ inversible quel que soit 
+l'antécédent $q$ de $(x, y)$ par $f$.
 
 ### Question 3 {.answer #answer-crm-3}
-Si $q_0 = (\theta_{10}, \theta_{20}) \in U$ 
-Comme la matrice jacobienne de $f$ est inversible sur $U$, 
-[le théorème d'inversion locale](#TIL) s'applique: 
+Si $q_0 = (\theta_{10}, \theta_{20}) \in U$,
+comme la matrice jacobienne de $f$ est inversible sur $U$, 
+[le théorème d'inversion locale](#TIL) s'applique : 
 la fonction $f$ est un difféomorphisme sur un voisinage ouvert 
 $V \subset U$ de $q_0$, d'inverse $g: W \to U$ défini sur 
 l'ouvert $W = f(V)$. 
@@ -1756,7 +1756,7 @@ $$
 &\geq (1 - \kappa) \|x - y\|
 \end{split}
 $$
-et donc si $T(x) = T(y)$, $x=y$: $T$ est bien injective.
+et donc si $T(x) = T(y)$, $x=y$ : $T$ est bien injective.
 
 ### Question 2 {.answer #answer-d-2}
 La différentielle $dT(x)$ de $T$ en $x$ est une application 
@@ -1768,7 +1768,7 @@ Comme $\mathbb{R}^n$ est ouvert et que la fonction $h \mapsto dH(x) \cdot h$
 a pour différentielle en tout point $y$ de $\mathbb{R}^n$ la function
 $dH(x)$, 
 la fonction linéaire $h \mapsto dT(x) \cdot h$ est une perturbation de 
-l'identité; elle est donc injective, et inversible car elle est linéaire de
+l'identité ; elle est donc injective, et inversible car elle est linéaire de
 $\mathbb{R}^n$ dans $\mathbb{R}^n$. Les hypothèses du 
 [théorème d'inversion locale](#TIL) sont donc satisfaites 
 en tout point $x$ de $U$. La fonction $f$ est donc un difféomorphisme 
@@ -1781,7 +1781,7 @@ et par conséquent $f(U)$ est ouvert.
 La fonction $f$ est injective et surjective de $U$ dans $f(U)$,
 donc inversible. En tout point $y$ de $f(U)$, il existe $x \in U$
 tel que $f(x) = y$, et un voisinage ouvert $V_x$ de $x$ tel que
-$f$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = f(V_x)$; 
+$f$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = f(V_x)$ ; 
 la fonction
 $f^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
 C'est par conséquent un difféomorphisme global de $U$ dans $f(U)$.
@@ -1879,7 +1879,7 @@ d\mathrm{inv}(A)
 $$
 ou sous une forme plus compacte 
 $$
-d A^{-1} = -A^{-1} \times dA \times A^{-1}.
+d (A^{-1}) = -A^{-1} \times dA \times A^{-1}.
 $$
 
 Méthode de Newton {.answer #answer-mn}
@@ -1981,8 +1981,8 @@ Projet Numérique -- Lignes de niveau
 
 L'objectif de ce projet numérique est de développer un programme 
 Python permettant de calculer les lignes de niveau d'une fonction $f$ 
-de deux variables réelles et à valeurs réelles, 
-c'est-à-dire les ensembles de la forme
+de deux variables réelles et à valeurs réelles (supposée continûment
+différentiable), c'est-à-dire les ensembles de la forme
 $$
 \{(x, y) \in \R^2 \, | \, f(x, y) = c\} \, \mbox{ où } \, c \in \R.
 $$
@@ -2040,7 +2040,7 @@ def contour(f, c=0.0, xc=[0.0,1.0], yc=[0.0,1.0], delta=0.01):
     return xs, ys
 ```
 
-Le domaine de $f$ n'est plus nécessairement $[0, 1]\times[0, 1]$;
+Le domaine de $f$ n'est plus nécessairement $[0, 1]\times[0, 1]$ ;
 les arguments `xc` et `yc` sont des listes (ou tableaux 1d) croissantes 
 de nombres flottants qui découpent une portion rectangulaire de ce domaine 
 en cellules carrées, telles que `xc[i] <= x <= xc[i+1]` et `yc[j] <= y <= yc[j+1]`.
@@ -2049,7 +2049,7 @@ qui est $[0,1]^2$ ; il correspond donc au contexte de `simple_contour`.
 
 Dans chaque cellule, on exploitera le procédé utilisé dans `simple_contour`, 
 mais en recherchant des amorces sur toute la frontière de la cellule et plus 
-simplement sur son arête gauche.
+uniquement sur son arête gauche.
 
 Les tableaux 1d `xs` et `ys` renvoyés par la fonction `contour` ne décrivent pas
 un fragment de contour, mais un ensemble de tels fragments ; 
@@ -2068,12 +2068,10 @@ for x, y in zip(xs, ys):
 Le livrable de ce projet sera un notebook Jupyter. 
 Ce support doit vous permettre de documenter l'ensemble
 de votre démarche -- d'expliquer d'où viennent vos idées,
-comment vous les mettez en oeuvre, quelles expérimentations 
-permettent de les tester, quelles leçons vous tirez de 
-leur analyse pour améliorer l'idée initiale, 
-quelles améliorations possibles vous entrevoyez
-(même sans implémentation),
-etc.
+de mener les calculs théoriques associés, d'écrire 
+le code les mettant en oeuvre en pratique, de réaliser 
+des expériences pour tester ce code, puis de mener leur analyse critique,
+analyse qui peut mener à de nouvelles idées, etc.
 En particulier, les échecs -- quand ils sont instructifs -- 
 doivent être documentés !
 
