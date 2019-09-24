@@ -1575,7 +1575,7 @@ $$
 Montrer que $\phi_x$ est différentiable dans un voisinage de $(x_0, y_0)$ et
 vérifier que $d \phi_x(y)$ est nul si $f(x, y) = 0$.
 
-Différences finies : Domino & Longshot {.question #dfl}
+Différences finies -- erreur d'arrondi {.question #dfl}
 --------------------------------------------------------------------------------
  
 Non seulement les erreurs d'arrondis sont susceptibles de générer une erreur
@@ -1913,7 +1913,7 @@ $$
 En particulier, si $f(x, y) = 0$, on a bien $d \phi_x(y) = 0$.
 
 
-Différences finies : Domino & Longshot {.answer #answer-dfl}
+Différences finies -- erreur d'arrondi {.answer #answer-dfl}
 --------------------------------------------------------------------------------
 
 Tout d'abord, pour $x=1$ et un pas de l'ordre de $h=10^{-12}$, l'erreur faite en
