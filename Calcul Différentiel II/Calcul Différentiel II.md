@@ -361,7 +361,6 @@ la restriction de la fonction $f$ à $V$ soit un $C^1$-difféomorphisme
 de $V$ sur $W$.
 
 ### Démonstration {.proof}
-
 Considérons la fonction $\phi: U \times \mathbb{R}^n  \to \mathbb{R}^n$
 définie par
 $$
@@ -380,8 +379,8 @@ f(x) = y \; \Leftrightarrow \; x = \psi(y).
 $$
 Par continuité de $f$, $V := A \cap f^{-1}(B)$ est un sous-ensemble ouvert
 de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par 
-construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$;
-nous avons donc affaire à un  $C^1$-difféomorphisme de $V$ sur $W$.
+construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$ ;
+nous avons donc affaire à un $C^1$-difféomorphisme de $V$ sur $W$.
 
 Analyse numérique
 ================================================================================
@@ -403,8 +402,8 @@ Objectifs {.meta}
     le modèle de représentation des nombres flottants, etc.)
 -->
 Les exemples utilisés dans cette section exploitent la librairie numérique 
-Python [NumPy]; assurons-nous tout de suite d'avoir importé toutes ses 
-fonctionnalités:
+Python [NumPy] ; 
+assurons-nous tout de suite d'avoir importé tous ses symboles :
 
     >>> from numpy import *
 
@@ -413,22 +412,22 @@ Introduction
 
 Compte tenu de la définition de la dérivée d'une fonction, la méthode de 
 différentiation numérique la plus naturelle pour évaluer cette dérivée
-repose sur le schéma des différences finies de Newton, qui repose sur
+repose sur le schéma des *différences finies* de Newton, qui exploite
 l'approximation
   $$
-  f'(x) \approx \frac{f(x+h) - f(x)}{h}
+  f'(x) \approx \frac{f(x+h) - f(x)}{h},
   $$
-valable lorsque la valeur de $h$ est suffisamment faible.
+approximation valable lorsque la valeur du *pas* $h$ est suffisamment faible.
 
-L'implémentation de ce schéma en Python est simple:
+L'implémentation de ce schéma en Python est simple :
 
-    >>> def FD(f, x, h):
-    ...     return (f(x + h) - f(x)) / h
+    def FD(f, x, h):
+        return (f(x + h) - f(x)) / h
 
 Néanmoins, la relation entre la valeur du pas $h$ et la précision de
 cette évaluation -- c'est-à-dire l'écart entre la valeur de la dérivée
 et son estimation -- est plus complexe. 
-Considérons les échantillons de données suivants:
+Considérons les échantillons de données suivants :
 
 <!--
 Expression                    Valeur
@@ -448,13 +447,14 @@ $\exp'(0)$                    $1$
 
 La valeur théorique de $\exp'(0)$ étant $1.0$,
 la valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
-et uniquement 8 nombres après la virgule du résultat sont significatifs.
+et uniquement 8 nombres après la virgule du résultat sont *significatifs*.
 
 Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
-du développement de Taylor de $\exp$ au premier ordre; 
+du développement de Taylor de $\exp$ au premier ordre ; 
 cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
 Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
-limitée par les erreurs d'arrondi dans les calculs.
+limitée par les erreurs d'*arrondi* dans les calculs, liée à la représentation
+approchée des nombres réels utilisée par le programme Python.
 
 Arithmétique des ordinateurs
 --------------------------------------------------------------------------------
@@ -1575,6 +1575,37 @@ $$
 Montrer que $\phi_x$ est différentiable dans un voisinage de $(x_0, y_0)$ et
 vérifier que $d \phi_x(y)$ est nul si $f(x, y) = 0$.
 
+Différences finies : Domino & Longshot {.question #dfl}
+--------------------------------------------------------------------------------
+ 
+Non seulement les erreurs d'arrondis sont susceptibles de générer une erreur
+importante dans les schémas de différences finies, mais cette erreur est
+susceptible de varier très rapidement avec la valeur du pas, 
+d'une façon qui peut sembler aléatoire.
+Ainsi, si
+
+    >>> h = 1e-12
+    >>> FD(exp, 0.0, h)
+    1.000088900582341
+
+on a également
+
+    >>> h = 9.999778782798785e-13
+    >>> FD(exp, 0.0, h)
+    1.0001110247585212
+    
+soit une erreur 25% plus élevée, pour une variation de 0.002% du pas seulement.
+Inversement, avec
+
+    >>> h = 9.99866855977416e-13
+    >>> FD(exp, 0.0, h)
+    1.0
+
+soit une variation de 0.01% du pas, l'erreur disparaît purement et simplement !
+Pouvez-vous contrôler la chance et expliquer comment déterminer au voisinage de 
+$h=10^{-12}$ les valeurs du pas susceptibles d'annuler l'erreur et de générer
+l'erreur la plus élevée possible ?
+
 Solution des exercices
 ================================================================================
 
@@ -1881,6 +1912,69 @@ d \phi_x(y)=
 $$
 En particulier, si $f(x, y) = 0$, on a bien $d \phi_x(y) = 0$.
 
+
+Différences finies : Domino & Longshot {.answer #answer-dfl}
+--------------------------------------------------------------------------------
+
+Tout d'abord, pour $x=1$ et un pas de l'ordre de $h=10^{-12}$, l'erreur faite en
+approximant $\exp(x)$ par $1+x$ sera de l'ordre de 
+$$
+\exp''(0) \times (10^{-12})^2 / 2 = 5 \times 10^{-25},
+$$
+très petit par rapport au $\varepsilon$ machine 
+$$
+\varepsilon = 2^{-52} \approx 2.220446049250313 \times 10^{-16}.
+$$
+Dans la suite, on fera donc les calculs en faisant comme si l'on avait 
+$\exp(x) = 1+x$. Le numérateur de `FD(exp, 1.0, h)` évalue donc le nombre
+$$
+[[[1.0] + [h]] - [1.0]]  = [[1.0 + [h]] - 1.0]
+$$
+Pour un $h$ entre $0$ et $1$, le mieux qui puisse arriver est d'avoir un
+multiple de $\varepsilon$, car si c'est le cas, on a 
+$[h] = h$, puis $[1.0 + h] = 1.0 + h$,
+$$
+[[[1.0] + [h]] - [1.0]] = [h]
+$$
+et finalement
+$$
+\left[\frac{[[[1.0] + [h]] - [1.0]]}{[h]}\right] = [1.0] = 1.0,
+$$
+soit la valeur exacte de $\exp'(0)$.
+Pour obtenir une valeur de $h$ de ce type proche de $h=10^{-12}$, il suffit
+de calculer
+
+    >>> eps = 2**-52
+    >>> floor(1e-12 / eps) * eps
+    9.99866855977416e-13
+
+A l'inverse, pour maximiser l'erreur faite dans l'estimation de
+$1+h$ par $[1.0+[h]]$, il faut prendre un $h$ de la forme
+$h = (k+0.5) \times \varepsilon$ avec $k$ entier ; on aura alors
+$[h] = h$, puis
+$$
+|[1.0 + [h]] - (1.0 + h)| = \frac{\varepsilon}{2}
+$$
+et donc
+$$
+[[1.0+[h]] - 1.0] \approx h \pm\frac{\varepsilon}{2}
+$$
+soit au final
+$$
+\left[\frac{[[[1.0] + [h]] - [1.0]]}{[h]}\right] \approx 1.0 \pm \frac{\varepsilon}{2 h},
+$$
+soit ici une erreur faite par `FD(exp, 0.0, h)` de l'ordre de
+
+    >>> 0.5 * eps / 1e-12 
+    0.00011102230246251565
+
+Pour trouver un tel $h$ proche de $10^{-12}$, il suffit de calculer
+
+    >>> (floor(1e-12 / eps) + 0.5) * eps
+    9.999778782798785e-13
+
+
+
 Projet Numérique -- Lignes de niveau
 ================================================================================
 
@@ -2064,6 +2158,7 @@ Eventuellement en utilisant un "vrai" autodiff pour ne pas
 être bloqué par des étapes précédentes non réussies ? 
 
 -->
+
 
 Références
 ================================================================================
