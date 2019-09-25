@@ -834,7 +834,8 @@ Complétion d'une tribu {#ct .question}
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 On note $A \ds B$ la différence symétrique
-de deux sous-ensembles $A$ et $B$ de $X$ l'ensemble défini par
+de deux sous-ensembles $A$ et $B$ de $X$ l'ensemble, 
+définie par
 $$
 A \ds B = (A \setminus B) \cup (B \setminus A) = (A \cap B^c) \cup (A^c \cap B).
 $$
@@ -1199,7 +1200,7 @@ Complétion d'une tribu {.answer #answer-ct}
 Nous allons établir que la tribu engendrée par $\mathcal{A} \cup \mathcal{N}$
 est l'ensemble
 $$
-\mathcal{B} = \{A \ds  N \; | \; A \in \mathcal{A}, N \in \mathcal{N}\}.
+\mathcal{B} = \{A \ds  N \; | \; A \in \mathcal{A}, \, N \in \mathcal{N}\}.
 $$
 Tout d'abord, comme tout $A \in \mathcal{A}$ et $N \in \mathcal{N}$ 
 appartiennent à cette tribu engendrée, $A^c$ et $N^c$ également et donc
