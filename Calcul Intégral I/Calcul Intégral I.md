@@ -1684,7 +1684,7 @@ $$
 \left|S(f, \mathcal{D}) - \sum_k \int_{I_k} f(t) \, dt\right| \leq \varepsilon.
 $$
 
-### Preuve du [lemme de Henstock][Lemme de Henstock]
+### Démonstration du [lemme de Henstock][Lemme de Henstock] {.proof}
 Il existe une famille finie d'intervalles fermés $\{J_j\}$, 
 $j = 1, \dots, m$ 
 telle que l'union des familles $\{I_k\}$ et $\{J_j\}$ forme une subdivision
