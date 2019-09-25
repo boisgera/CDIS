@@ -1219,10 +1219,10 @@ $$
 Comme $B^c = X \cap B^c = (A \cup A^c) \cap B^c$, par distributivité on a
 $$
 \begin{split}
-B^c &= (A \cap (A^c \cup N) \cap (A \cup N^c)) \cup (A^c \cap (A^c \cup N) \cap (A \cup N^c)) \\
-&=(A \cap N) \cup (A^c \cap N^c) \\
-&=((A^c) \cap N^c) \cup ((A^c)^c \cap N) \\
-&= A^c \ds N
+B^c &= (A^c \cap A) \cup (A^c \cap N^c) \cup (N \cap A) \cup (N \cap N^c) \\
+    &= (A^c \cap N^c) \cup (A \cap N) \\
+    &= ((A^c) \cap N^c) \cup ((A^c)^c \cap N) \\
+    &= A^c \ds N 
 \end{split}
 $$
 et par conséquent $B^c \in \mathcal{B}$.
