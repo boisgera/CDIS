@@ -7,7 +7,7 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
-Somme et Intégrale de Riemann
+Somme et intégrale de Riemann
 ================================================================================
 
 ### Intervalle {.definition}
@@ -319,7 +319,7 @@ La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégral
 de Riemann classique. 
 Comme cette dernière, elle exploite des sommes de Riemann pour fournir une
 estimation de l'intégrale et contrôle la finesse des subdvisions employées
-pour améliorer la précision de cette estimation ; 
+pour améliorer la précision def cette estimation ; 
 mais contrairement à cette dernière, 
 elle permet de contrôler différemment cette finesse 
 en fonction de la zone de l'intervalle d'intégration considérée.
@@ -1648,7 +1648,7 @@ Le résultat dans les autres cas ($a=-\infty$ et $b$ fini, $a$ et $b$ finis)
 se démontrent de manière analogue.
 
 
-Subdivisions Partielles
+Subdivisions partielles
 ================================================================================
 
 ### Subdivision pointée partielle {.definition}
