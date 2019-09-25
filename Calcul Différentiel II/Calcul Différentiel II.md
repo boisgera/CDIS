@@ -1976,7 +1976,7 @@ Pour trouver un tel $h$ proche de $10^{-12}$, il suffit de calculer
 
 
 
-Projet Numérique -- Lignes de niveau
+Projet numérique : lignes de niveau
 ================================================================================
 
 L'objectif de ce projet numérique est de développer un programme 
