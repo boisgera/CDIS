@@ -2015,7 +2015,7 @@ qui renvoie un flottant éloigné d'au plus `eps` d'un tel $t$
 ou `None` si la condition évoquée ci-dessus n'est pas satisfaite.
 
 #### Propagation
-On souhaite implémenter une fonction dont la signature est:
+On souhaite implémenter une fonction dont la signature est :
 
 ``` {.discard}
 def simple_contour(f, c=0.0, delta=0.01):
