@@ -964,10 +964,7 @@ $$
 On a donc l'égalité $v^*(C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C)$ ;
 l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \setminus A)$.
 
-
-
-
-TODO -- Mesure intérieure
+Mesure intérieure
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-mi-1}
