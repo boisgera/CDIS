@@ -1,0 +1,2 @@
+g++ order_EDO.cpp -o EDO++ -funroll-loops -Wno-deprecated
+./EDO++
