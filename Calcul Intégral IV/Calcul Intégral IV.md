@@ -1313,9 +1313,30 @@ $$
 \mu(B) = \mu(A) - \mu(A \cap (N \ds M)) + \mu(A^c \cap (N \ds M)) = \mu(A).
 $$
 
-### TODO
 
 Il est ensuite nécessaire de prouver que $\overline{\mu}$ est bien une mesure.
+Soit $A_k \in \mathcal{A}$ et $N_k \in \mathcal{N}$ deux suites d'ensembles
+tels que les $A_k \ds N_k$ soient deux à deux disjoints.
+Soit $M_k$ un ensemble de $\mathcal{A}$ contenant $N_k$ et tel que
+$\mu(M_k) = 0$. L'ensemble $B_k :=  A_k \setminus M_k$ appartient $\mathcal{A}$
+et $\mu(B_k) = \mu(A_k)$ ; de plus, comme $B_k \subset A_k \ds N_k$, les
+$B_k$ sont disjoints deux à deux. On a déjà vu à la question précédente que
+$$
+\overline{\mu}(\cup_k A_k \ds N_k)
+= \overline{\mu}((\cup_k A_k) \ds N) \; \mbox{ où } \, N \in \mathcal{N},
+$$
+donc
+$$
+\begin{split}
+\overline{\mu}(\cup_k A_k \ds N_k)
+&= \mu(\cup_k A_k) = \mu(\cup_k B_k) \\
+&= \sum_k \mu(B_k) = \sum_k \mu(A_k) = \sum_k \overline{\mu}(A_k \ds N_k).
+\end{split}
+$$
+La fonction $\overline{\mu}$ est donc $\sigma$-additive.
+
+
+<!--
 Nous avons déjà évoqué le fait à la question précédente que si 
 les $A_k$, $k \in \N$, appartiennent $\mathcal{A}$ et les 
 $N_k$, $k \in \N$, appartiennent à $\mathcal{N}$, alors 
@@ -1351,7 +1372,7 @@ Par conséquent,
 $$
 \overline{mu}(\cup_k A_k \ds N_k) = \mu(\cup_k A_k) = \overline{\mu} ...
 $$
-
+-->
 
 Réferences
 ================================================================================
