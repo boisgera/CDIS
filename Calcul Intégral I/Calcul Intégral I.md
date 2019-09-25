@@ -56,7 +56,7 @@ constituée d'intervalles fermés inclus dans $I$, *sans chevauchement*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
 plus un point -- 
 et *recouvrant $I$* 
--- l'union de tous les intervalles $I_i$ est égale à $I$. 
+-- l'union de tous les intervalles $I_i$ inclut $I$. 
 Une *subdivision pointée* $\mathcal{D}$ de l'intervalle fermé $I = [a, b]$ 
 est une collection finie 
 $$
@@ -80,8 +80,8 @@ que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$
 vérifiant pour $(t, J) \in \mathcal{D}$, 
 $\ell(J) < \delta$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
-Le réel $A$ quand il existe est unique; il est appelé
-*intégrale de $f$ sur $[a, b]$* et noté
+Le réel $A$ quand il existe est unique ; 
+il est appelé *intégrale de $f$ sur $[a, b]$* et noté
 $$
 \int_a^b f(t) \, dt
 \, \mbox{ ou } \,
@@ -90,8 +90,9 @@ $$
 
 ### Quadrature {.example}
 
-Cette définition permet de garantir l'exactitude asymptotique de méthodes de 
-quadrature -- c'est-à-dire d'algorithmes de calcul numérique d'intégrales -- 
+Cette définition de l'intégrale permet de garantir l'exactitude asymptotique de 
+méthodes de quadrature 
+-- c'est-à-dire d'algorithmes de calcul numérique d'intégrales -- 
 comme la méthode des rectangles. 
 En effet, si $f:[a, b] \to \R$ est une fonction intégrable au sens de 
 Riemann, et $\mathcal{D}_m$ une subdivision pointée de $[a, b]$ de la forme
@@ -119,7 +120,7 @@ $$
 =
 \frac{b-a}{m}
 <
-\delta
+\delta.
 $$
 Par conséquent,
 $$
@@ -127,12 +128,12 @@ $$
 \to \int_a^b f(t) \, dt
 \, \mbox{ quand } \, m \to +\infty.
 $$
-La définition de l'intégrale de Riemann, ne se limite pas à une famille 
+La définition de l'intégrale de Riemann ne se limite pas à une famille 
 particulière de subdivisions -- comme ici à des subdivisions régulières de 
 $[a, b]$ où tous les intervalles sont de même longueur -- et n'impose 
 pas une position fixe au point $t_i$ dans l'intervalle $J_i$ -- 
 comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
-à la définition de l'intégrale; d'autres méthodes de quadratures pourront
+à la définition de l'intégrale ; d'autres méthodes de quadratures pourront
 être utilisées avec le même résultat asymptotique.
 
 ### {.remark .ante}
@@ -141,7 +142,7 @@ L'intégrale de Riemann possède des limitations qui en font un outil mathémati
 difficile à exploiter. 
 En particulier la classe des fonctions qui peuvent être intégrées est trop 
 restrictive pour certaines applications car les fonctions "trop grandes" ou 
-"trop irrégulières" ne peuvent être intégrables. 
+"trop irrégulières" ne sont pas intégrables. 
 Les deux théorèmes qui suivent précisent cette situation.
 
 ### Seules les fonctions bornées sont intégrables {.lemma}
@@ -153,12 +154,12 @@ Soit $\delta > 0$ tel que pour toute subdivision pointée $\mathcal{D}$ de
 $[a, b]$ vérifiant $\ell(J) < \delta$ pour tout $(t, J) \in \mathcal{D}$, 
 on ait
 $$\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq 1.$$
-Soit $\mathcal{D} = \{(t_i, [a_i, b_i])\}_{i=0}^{m-1}$ une telle subdivision;
+Soit $\mathcal{D} = \{(t_i, [a_i, b_i])\}_{i=0}^{m-1}$ une telle subdivision ;
 il est toujours possible de supposer en outre que $\mathcal{D}$ ne contient 
 aucun intervalle de longueur nulle (enlever de tels intervalles à $\mathcal{D}$
 génère une nouvelle subdivision dont la somme de Riemann est identique).
 
-Soit $J_i = [a_i, b_i]$ un intervalle de $\mathcal{D}$; 
+Soit $J_i = [a_i, b_i]$ un intervalle de $\mathcal{D}$ ; 
 si l'on définit $\mathcal{D}'$ à partir de $\mathcal{D}$ en remplaçant 
 $t_i$ par un $t$ de $J_i$ quelconque, on obtient
 $$
@@ -202,7 +203,7 @@ Si à l'issue de cette double surestimation la longueur évaluée est encore
 aussi petite que l'on veut, on peut légitimement considérer que l'ensemble 
 de départ est de longueur nulle[^me] 
 et que c'est donc ce que signifie "négligeable". 
-Nous verrons ultérieurement que cette intuition sera vérifiée.
+Nous verrons ultérieurement que cette intuition est valide.
 
 [^me]: plus exactement de mesure *extérieure* (de longueur) nulle.
 
@@ -319,7 +320,7 @@ La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégral
 de Riemann classique. 
 Comme cette dernière, elle exploite des sommes de Riemann pour fournir une
 estimation de l'intégrale et contrôle la finesse des subdvisions employées
-pour améliorer la précision def cette estimation ; 
+pour améliorer la précision de cette estimation ; 
 mais contrairement à cette dernière, 
 elle permet de contrôler différemment cette finesse 
 en fonction de la zone de l'intervalle d'intégration considérée.
@@ -361,8 +362,8 @@ mais dans un but bien précis
 -- l'étude des équations différentielles généralisées -- probablement sans
 réaliser totalement la portée de sa définition) 
 ou *intégrale de Denjoy-Perron-Kurzweil-Henstock* (Arnaud Denjoy et Oskar Perron
-ont introduit dès les années 1910 des intégrales équivalentes, mais dont la
-définition est beaucoup plus complexe et en apparence très différentes ; 
+ont introduit dès les années 1910 des intégrales équivalentes, mais dont les
+définitions sont beaucoup plus complexes et en apparence très différentes ; 
 en particulier, les sommes de Riemann n'interviennent pas dans 
 ces définitions).
 
