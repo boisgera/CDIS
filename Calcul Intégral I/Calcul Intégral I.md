@@ -319,7 +319,7 @@ $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégrale
 de Riemann classique. 
 Comme cette dernière, elle exploite des sommes de Riemann pour fournir une
-estimation de l'intégrale et contrôle la finesse des subdvisions employées
+estimation de l'intégrale et contrôle la finesse des subdivisions employées
 pour améliorer la précision de cette estimation ; 
 mais contrairement à cette dernière, 
 elle permet de contrôler différemment cette finesse 
@@ -369,7 +369,7 @@ ces définitions).
 
 ### Ordre des bornes de l'intégrale {.notation .remark}
 Comme dans le cas de l'intégrale de Riemann,
-la première notation peut être étendue sans difficulté au cas où $b < a$; 
+la première notation peut être étendue sans difficulté au cas où $b < a$ ; 
 on définit alors l'intégrale de $a$ à $b$ en se ramenant 
 au cas précédent, par
 $$
@@ -398,7 +398,7 @@ La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et
 l'intégrale associée est égale à son intégrale de Riemann.
 
 ### {.ante}
-Le résultat équivalent vaut pour l'intégrale de Newton :
+Un résultat similaire vaut aussi pour l'intégrale de Newton :
 
 ### Intégrale de Newton et de Henstock-Kurzweil {.corollary}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
@@ -407,7 +407,7 @@ est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident
 ### {.post .ante}
 L'énoncé précédent peut être reformulé de la façon suivante : 
 l'intégrale de Henstock-Kurzweil satisfait 
-[le théorème fondamental du calcul](#TCF) en toute généralité.
+[le théorème fondamental du calcul](#TFC) en toute généralité.
 
 ### Théorème fondamental du calcul {.theorem #TFC}
 Soit $[a, b]$ un intervalle compact de $\R$ ;
@@ -461,11 +461,10 @@ $$
 &\leq \sum_{i=0}^{m-1} \frac{\varepsilon}{b-a} (x_{i+1} - x_i) \\
 &= \frac{\varepsilon}{b-a} \sum_{i=0}^{m-1} (x_{i+1} - x_i) \\
 &= \frac{\varepsilon}{b-a} (b - a) \\
-&= \varepsilon \\
-\end{split},
+&= \varepsilon. \\
+\end{split}
 $$
-
-Fixons donc un $\varepsilon > 0$ arbitraire;
+Fixons donc un $\varepsilon > 0$ arbitraire ;
 comme pour tout $t \in [a, b],$ 
 $$f(t+h) = f(t) + f'(t) h + o(|h|),$$
 il existe un $\delta(t) > 0$ tel que si $|h| < \delta (t),$
@@ -486,7 +485,7 @@ L'inégalité triangulaire fournit alors
 $$
 |f'(t)(d - c) - (f(d) - f(c))| \leq \frac{\varepsilon}{b-a} (d - c).
 $$
-Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[;$
+Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[$ ;
 nous avons ainsi bien défini une fonction de jauge sur $[a, b]$.
 Si $\mathcal{D}$ est subordonnée à $\gamma$, 
 pour tout $i \in \{0, \dots, m-1\},$ 
@@ -549,7 +548,7 @@ $$
 \leq 
 \int_x^y |f(t) - f(s)| \, ds
 $$
-et par conséquent, comme par le théorème des accroissements finis
+et par conséquent, comme par [l'inégalité des des accroissements finis](Calcul Différentiel I.pdf#TAF)
 $$
 |f(t) - f(s)| 
 \leq \max_{z \in [x, y]} |f'(z)|  \times |t - s|
@@ -624,13 +623,13 @@ e^{t+\delta(t)} \times \delta(t) \leq \frac{\varepsilon}{b-a},
 $$
 Or la fonction 
 $\delta \in \left]0, +\infty\right[ \to \delta e^\delta \in \left]0, +\infty\right[$ est 
-croissante et bijective; notons $W$ son inverse[^W]. 
+croissante et bijective ; notons $W$ son inverse[^W]. 
 Le plus grand $\delta(t)$ satisfaisant 
 l'inégalité précédente est donc donné par
 $$
 \delta(t) = W \left(e^{-t}\frac{\varepsilon}{b-a}\right).
 $$
-En conclusion: pour tout $[0, 1]$ et tout $\varepsilon > 0$, 
+En conclusion : pour tout $[0, 1]$ et tout $\varepsilon > 0$, 
 la jauge $\gamma$ définie sur $[a, b]$ par
 $$
 \gamma(t) = 
@@ -640,7 +639,7 @@ t + W \left( e^{-t}\frac{\varepsilon}{b-a}\right)
 \right[
 $$
 est telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
-subordonnée à $\gamma$
+subordonnée à $\gamma$ on ait
 $$
 \left|
 S(x \in [a, b] \mapsto e^x, \mathcal{D}) 
@@ -667,8 +666,9 @@ f(x) =
 \right.
 $$
 
-On ne précise pas pour le moment la valeur de $f$ en $0$: elle est supposée
-arbitraire (mais finie). On verra que l'intégrale de $f$ sur $[0, 1]$ 
+On ne précise pas pour le moment la valeur de $f$ en $0$ : 
+elle est supposée arbitraire (mais finie). 
+On verra que l'intégrale de $f$ sur $[0, 1]$ 
 existe dans tous les cas et ne dépend pas de la valeur de $f$ en $0$
 (même si la sélection d'une jauge assurant une précision $\varepsilon$
 en dépend).
@@ -692,7 +692,7 @@ qui constraste avec celle de Riemann classique, c'est intéressant à contraster
 
 La difficulté de cet exemple est liée à la "singularité" de $f$ en $x=0$,
 où la fonction est à la fois discontinue et localement non-bornée. 
-Si au lieu de l'intervalle $[0,1]$, on considére l'intervalle
+Si au lieu de l'intervalle $[0,1]$, on considère l'intervalle
 $[a, 1]$ où $0 < a \leq 1$, comme la fonction $f$ restreinte à $[a, 1]$
 est continue, elle y admet une primitive, par exemple la fonction 
 $F: x \in [a, 1] \mapsto 2 \sqrt{x}$.
@@ -967,9 +967,10 @@ la somme des intégrales de $f$ et de $g$ sur $[a, b]$.
 
 De façon similaire, $S(\lambda f, \mathcal{D}) = \lambda S(f, \mathcal{D})$.
 Dans le cas où $\lambda = 0$, il est clair que $\lambda f$ est intégrable, 
-d'intégrale nulle;
+d'intégrale nulle ;
 dans le cas contraire, on peut trouver une jauge $\gamma$ sur $[a, b]$ telle
-que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$, on ait:
+que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$, 
+on ait :
 $$
 \left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| 
 \leq 
@@ -1001,10 +1002,10 @@ $$
 \left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
 $$
 Quelle que soit la subdivision pointée $\mathcal{D}$ de $[a, b]$,
-la somme de Riemann associeé 
+la somme de Riemann associée 
 $$
 S(f, \mathcal{D})
-= \sum_{\{(t,J) \in \mathcal{D}\}} f(t) \ell(J)
+= \sum_{(t,J) \in \mathcal{D}} f(t) \ell(J)
 $$ 
 est positive, ce qui entraîne par l'inégalité triangulaire
 $$
@@ -1027,7 +1028,8 @@ La fonction $f'g + f g'$ est la dérivée du produit $fg$,
 elle est donc intégrable. Par conséquent, si l'une des fonctions 
 $f'g$ ou $f g'$ est intégrable, l'autre est la différence de deux fonctions
 intégrables et elle est donc intégrable.
-Dans ce cas, le théorème fondamental du calcul appliqué à $(fg)'$ fournit
+Dans ce cas, [le théorème fondamental du calcul](#TFC) appliqué à $(fg)'$ 
+fournit
 $$
 \int_a^b (fg)'(t) \, dt
 =
@@ -1054,8 +1056,8 @@ $$
 
 ### Démonstration {.proof}
 Soit $h$ une primitive de $f$. La fonction $t \in [a, b] \mapsto h(g(t))$
-a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Par le théorème fondamental
-du calcul on a donc d'une part
+a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. 
+Par [le théorème fondamental du calcul](#TFC) on a donc d'une part
 $$
 \int_a^b f(g(t)) g'(t) \, dt
 =
@@ -1063,7 +1065,7 @@ $$
 $$
 et d'autre part
 $$
-\int_{g(a)}^{g(b)} f(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a));
+\int_{g(a)}^{g(b)} f(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
 $$
 les deux intégrales sont donc égales.
 
@@ -1110,7 +1112,7 @@ que
 $$
 S(f, \mathcal{D}) = S(f, \mathcal{D}_1) + S(f, \mathcal{D}_2).
 $$
-Elles sont également subordonnées à $\gamma_1$ et $\gamma_2$ respectivement;
+Elles sont également subordonnées à $\gamma_1$ et $\gamma_2$ respectivement ;
 par conséquent
 $$
 \left|
@@ -1135,17 +1137,17 @@ la somme de Riemann associée change
 (le terme $f(b) \ell([d_i, e_i])$ étant égal à 
 $f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
 La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
-l'hypothèse de non-chevauchement. Par conséquent l'inégalité
+l'hypothèse de non-chevauchement de $b$. Par conséquent l'inégalité
 ci-dessus est satisfaite dans le cas général.
 
 ### {.ante}
 Dans le cas où l'on souhaite établir l'intégrabilité sans savoir quelle
-est la valeur de l'intégrale, le test suivant d'intégrabilité est utile:
+est la valeur de l'intégrale, le test suivant d'intégrabilité est utile :
 
 ### Critère d'intégrabilité de Cauchy {#CIC .theorem}
 Une fonction $f: [a, b] \to \R$ est intégrable si et seulement si 
 pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur $[a, b]$ telle que 
-pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
+pour tout couple de subdivisions pointées $\mathcal{D}$ et $\mathcal{D}'$
 subordonnées à $\gamma$, on ait
 $$
 |S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
@@ -1154,19 +1156,19 @@ $$
 ### Démonstration {.proof}
 Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$, 
 il existe une jauge $\gamma$ sur $[a, b]$ telle que pour tout couple de 
-subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma$,
+subdivisions pointées $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma$,
 on ait
 $$
-|S(f, \mathcal{D}) - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}
 \; \mbox{ et } \;
-|S(f, \mathcal{D}') - \int_a^b f(t) \, dt| \leq \frac{\varepsilon}{2}.
+\left|S(f, \mathcal{D}') - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}.
 $$
 Par l'inégalité triangulaire, on a alors 
 $|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.$
 
 Réciproquement, si la fonction $f$ vérifie le critère du théorème,
 pour tout $k \in \N$ il existe une jauge $\gamma_{k}$ sur $[a, b]$ 
-telle que pour tout couple de subdvisions pointées 
+telle que pour tout couple de subdivisions pointées 
 $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma_k$, on ait
 $$
 |S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq 2^{-k}.
@@ -1182,7 +1184,7 @@ $\mathcal{D}_m$ et $\mathcal{D}_n$ sont subordonnées à $\gamma_k$, donc
 $$
 |S(f, \mathcal{D}_m) - S(f, \mathcal{D}_n)| \leq 2^{-k}.
 $$
-La suite des $S(f, \mathcal{D}_k)$ est donc de Cauchy; la droite des réels
+La suite des $S(f, \mathcal{D}_k)$ est donc de Cauchy ; la droite des réels
 étant complète, cette suite à une limite $A$. En passant à la limite sur
 $n$ dans l'inégalité $|S(f, \mathcal{D}) - S(f, \mathcal{D}_n)| \leq 2^{-k}$,
 valable quand $\mathcal{D}$ est subordonnée à $\gamma_k$, on obtient
@@ -1194,32 +1196,32 @@ La fonction $f$ est donc intégrable et d'intégrale $A$.
 ### {.ante}
 [La propriété d'additivité](#additivité) de l'intégrale -- 
 qui permet de prouver l'intégrabilité de l'intégrale sur un intervalle
-à partir de sont intégrabilité sur des intervalles qui la compose --
-admet une réciproque:
+à partir de son intégrabilité sur des intervalles qui la compose --
+admet une réciproque :
 
-### Restriction {.theorem}
+### Restriction {.theorem #restriction}
 Si $f$ est intégrable sur l'intervalle $[a, b]$, 
 elle est intégrable sur tout intervalle $[c, d]$ 
 inclus dans $[a, b]$.
 
 ### Démonstration {.proof}
-Nous démontrons en détail le cas où $c = a$; le cas où $d =b$ se prouve de
+Nous démontrons en détail le cas où $c = a$ ; le cas où $d=b$ se prouve de
 façon similaire et le cas général se déduit facilement de la combinaison 
 de ces deux cas particuliers.
 
 Soit $\varepsilon > 0$. Par le [critère d'intégrabilité de Cauchy](#CIC),
 il existe une jauge $\gamma$ sur $[a, b]$ telle
-que pour tout couple de subdvisions pointées $\mathcal{D}$ et $\mathcal{D}'$
+que pour tout couple de subdivisions pointées $\mathcal{D}$ et $\mathcal{D}'$
 subordonnées à $\gamma$, on ait
 $|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.$
 
 Considérons les restrictions $\gamma_1$ et $\gamma_2$ de $\gamma$ à $[a, d]$ et 
 $[d, b]$ respectivement. 
 Soient $\mathcal{D}_1$ et $\mathcal{D}_1'$ deux subdivisions pointées de 
-$[a, d]$ subordonnées à $\gamma_1$;
+$[a, d]$ subordonnées à $\gamma_1$ ;
 si $\mathcal{D}_2$ est une subdivision de $[d, b]$ subordonnée à $\gamma_2$,
 alors $\mathcal{D}_1 \cup \mathcal{D}_2$ et $\mathcal{D}'_1 \cup \mathcal{D}_2$
-sont des subdvisions pointées de $[a, b]$ subordonnées à $\gamma$.
+sont des subdivisions pointées de $[a, b]$ subordonnées à $\gamma$.
 Par conséquent,
 $$
 |S(f, \mathcal{D}_1 \cup \mathcal{D}_2) 
@@ -1281,7 +1283,7 @@ $$
 \sum_j \ell(J_j) \leq  \sum_i \ell(I_i) \leq \varepsilon.
 $$
 Il suffit par conséquent de choisir un $\varepsilon$ suffisamment petit
-initialement pour rendre la somme de Riemann associée arbitrairement petite;
+initialement pour rendre la somme de Riemann associée arbitrairement petite ;
 $f$ est donc intégrable d'intégrale nulle.
 
 [^why-open]: On peut trouver un recouvrement de $A$ par des
@@ -1344,7 +1346,7 @@ d'un intervalle non-borné comporte nécessairement un ou deux éléments
 de la forme $(t, I)$ où $I$ est un intervalle non-borné de $\R$,
 la longueur $\ell(I)$ associée est alors infinie.
 La somme de Riemann définie jusqu'à présent comporte alors 
-un ou deux termes de la forme $f(t) \times \infty$; 
+un ou deux termes de la forme $f(t) \times \infty$ ; 
 elle donc potentiellement infinie, 
 ou même indéfinie si les termes $-\infty$ et $+\infty$ apparaissent.
 
@@ -1356,13 +1358,13 @@ Pour pallier à ce problème, nous adoptons la stratégie suivante:
     autrement dit les intervalles fermés (ou ce qui revient au même,
     compacts) de la droite réelle achevée $[-\infty, +\infty]$.
     Nous définissons la longueur d'un intervalle de $[-\infty, +\infty]$ 
-    comme la longueur de sa restriction $\R$[^cp]
+    comme la longueur de son intersection avec $\R$([^cp]).
 
  2. **Fonctions.**
     Si les fonctions que nous souhaitons intégrer sont définies sur des 
     intervalles fermés mais non bornés dans $\R$, 
     nous leur assignons une valeur arbitraire en $-\infty$ et/ou en $+\infty$, 
-    par exemple la valeur $0$, pour les étendre à un intervalle qui soit
+    par exemple la valeur $0$, pour les prolonger à un intervalle qui soit
     fermé dans $[-\infty, +\infty]$.
 
  3. **Somme de Riemann.** Si $\mathcal{D}$ est une subdivision pointée de 
@@ -1386,13 +1388,13 @@ contributions des intervalles contenant $-\infty$ ou $+\infty$ (ce qui
 explique pourquoi les valeurs $f(\pm \infty)$ n'ont pas d'importance).
 
 Dans ce nouveau contexte, les définitions de jauge, de subdivision pointée, 
-d'intégrabilité et d'intégrale sur un intervalle fermés restent formellement 
+d'intégrabilité et d'intégrale sur un intervalle fermé restent formellement 
 inchangées[^6s]. Les résultats relatifs à la linéarité de l'intégrale, son
 additivité, sa restriction, l'égalité des intégrales de fonctions égales
-presque partout sont toujours vrais; des preuves formellement identiques
+presque partout sont toujours vrais ; des preuves formellement identiques
 sont valables.
 
-[^6s]: c'est l'effet "Shyamalan" ou "6ème sens": 
+[^6s]: c'est l'effet "Night Shyamalan" ou "6ème sens": 
 il faut relire le document, qui prend un nouveau sens compte tenu 
 de ce que l'on sait désormais.
 
@@ -1421,7 +1423,7 @@ La suite confirmera cette intuition.
 
 Nous souhaitons trouver pour tout $\varepsilon > 0$, une jauge $\gamma$ sur 
 $\left[1, +\infty \right]$
-tels que pour toute subdvision pointée $\mathcal{D}$ de $[1, +\infty]$ 
+tels que pour toute subdivision pointée $\mathcal{D}$ de $[1, +\infty]$ 
 subordonnée à $\gamma$ on ait
 $\left| S(f, \mathcal{D}) - 1 \right| \leq \varepsilon.$
 Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
@@ -1438,12 +1440,12 @@ $$
 &\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
 \end{split}
 $$
-Si l'on sélectionne une jauge telle $\gamma$ telle que
+Si l'on sélectionne une jauge $\gamma$ telle que
 pour tout $t \in \left[1, +\infty\right[$ on ait $\gamma(t) \subset \R$
-(et donc $+\infty \not \in \gamma(t)$),
-et si la subdvision pointée $\mathcal{D}$ est subordonnée à $\gamma$,
+(et donc $+\infty \not \in \gamma(t)$)
+et si la subdivision pointée $\mathcal{D}$ est subordonnée à $\gamma$,
 la valeur $t_m$ associée à $(t_m, [x_m, +\infty]) \in \mathcal{D}$
-vérifie nécessairement $t_m=+\infty$, et donc $[x_m,+\infty] \subset \gamma(+\infty)$.
+vérifie nécessairement $t_m=+\infty$ et donc $[x_m,+\infty] \subset \gamma(+\infty)$.
 Il suffit donc d'imposer par exemple $\gamma(+\infty) = \left]2/\varepsilon, +\infty\right]$
 pour garantir que $1/x_{m} \leq \varepsilon/2.$
 Si nous disposons ensuite d'un majorant pour chaque terme
@@ -1452,7 +1454,7 @@ $$
 $$
 choisi de telle sorte que leur somme soit également inférieure à $\varepsilon/2$, 
 nous pourrons alors conclure. 
-Toutefois la stratégie consistant à recherche un majorant proportionnel à 
+Toutefois, la stratégie consistant à recherche un majorant proportionnel à 
 la longueur de l'intervalle $[x, y]$ n'est plus applicable car l'intervalle
 $[0, x_{m}]$ peut être arbitrairement long. 
 Au lieu de cela, nous allons tâcher de trouver une jauge $\gamma$ telle que
@@ -1554,8 +1556,7 @@ qui ne serait pas définissable directement mais uniquement par
 un passage à la limite.
 
 [^CR]: sans garantie que ce nouvel objet -- l'intégrale de Cauchy-Riemann --
-partage les propriétés utiles de l'intégrale de Riemann sur les segments
-de $\R$.
+partage les propriétés utiles de l'intégrale de Riemann.
 
 
 ### Théorème de Hake {.theorem #hake}
@@ -1577,7 +1578,7 @@ Se reporter à [@Swa01].
 
 ### {.post}
 Le théorème de Hake permet d'étendre facilement certains résultats valables 
-sur des segments de la droite réelle. A titre d'exemple:
+sur des segments de la droite réelle. A titre d'exemple :
 
 ### Théorème fondamental du calcul (extension) {.theorem}
 Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
@@ -1587,18 +1588,17 @@ est intégrable sur $[a, b]$ et
 $$
 [f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
 $$
-Par continuité, le membre de gauche de cette équation à une limite quand
-$c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$. 
-[Le théorème de Hake](#hake) permet alors de conclure.
 
 ### Démonstration {.proof}
 [Le théorème fondamental du calcul](#TFC) dans le cadre borné nous fournit
-pour tout $c$ et $d$ tels que $a < c \leq d < b$ l'intégrabilité de $f'$
+pour tous $c$ et $d$ tels que $a < c \leq d < b$ l'intégrabilité de $f'$
 sur $[c, d]$ et la relation
 $$
 f(d) - f(c) = \int_c^d f'(t) \, dt.
 $$
-
+Par continuité, le membre de gauche de cette équation a une limite quand
+$c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$. 
+[Le théorème de Hake](#hake) permet alors de conclure.
 
 
 ### {.remark .ante}
@@ -1629,7 +1629,7 @@ $$
 ### Démonstration {.proof}
 Supposons que $a$ soit fini et que $b = +\infty$. 
 Si $g$ est intégrable sur $[-\infty, +\infty]$, 
-par restriction, $f$ est intégrable sur $[a, +\infty]$.
+par [restriction](#restriction), $f$ est intégrable sur $[a, +\infty]$.
 Réciproquement, si $f$ est intégrable sur $[a, +\infty]$,
 la fonction $g$ étant nulle sur $\left[-\infty, a\right]$ 
 à l'exception d'un point, elle y est intégrable ; 
@@ -1638,12 +1638,13 @@ Par additivité, $g$ est donc
 intégrable sur $[-\infty, +\infty]$.
 L'additivité fournit également
 $$
-\int_{\R} g(t) \, dt = \int_{-\infty}^a g(t) \, dt + \int_{a}^{+\infty} g(t) \,dt.
+\int_{-\infty}^{+\infty} g(t) \, dt = \int_{-\infty}^a g(t) \, dt + \int_{a}^{+\infty} g(t) \,dt.
 $$
-Comme $g$ est nulle sur $\left[-\infty, a\right]$ à l'exception d'un point,
+Comme $g$ est nulle sur $\left[-\infty, a\right]$ à l'exception au plus 
+d'un point,
 son intégrale sur $[-\infty, a]$ est nulle et comme $g=f$ sur $[a, +\infty]$,
 $$
-\int_{\R} g(t) \, dt = \int_{a}^{+\infty} f(t) \,dt.
+\int_{-\infty}^{+\infty} g(t) \, dt = \int_{a}^{+\infty} f(t) \,dt.
 $$
 Le résultat dans les autres cas ($a=-\infty$ et $b$ fini, $a$ et $b$ finis) 
 se démontrent de manière analogue.
@@ -1654,8 +1655,7 @@ Subdivisions partielles
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* $\mathcal{D}$ de l'intervalle fermé 
-$I = [a, b]$ (de $\R$ étendu par $\pm \infty$), 
-est une famille finie 
+$I = [a, b]$ de $[-\infty, +\infty]$ est une famille finie 
 $$
 \mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
@@ -1738,16 +1738,16 @@ $$
 \int_x^{x+h} f(t) \, dt
 $$
 tend vers $0$ quand $h>0$ tend vers $0$. Par restriction, la fonction $f$ est 
-intégrable sur $[x, x+\infty]$ : 
+intégrable sur $[x, +\infty]$ : 
 pour tout $\varepsilon > 0$, il existe une jauge
-$\gamma$ sur $[x, x+\infty]$ telle que pour toute subdivision pointée
-$\mathcal{D}$ de $[x, x+\infty]$ subordonnée à $\gamma$, 
+$\gamma$ sur $[x, +\infty]$ telle que pour toute subdivision pointée
+$\mathcal{D}$ de $[x, +\infty]$ subordonnée à $\gamma$, 
 l'écart entre la somme de Riemann
-$S(f,\mathcal{D})$ et l'intégrale de $f$ entre $0$ et $+\infty$ est au
+$S(f,\mathcal{D})$ et l'intégrale de $f$ entre $x$ et $+\infty$ est au
 plus $\varepsilon/2$. 
 
-On peut remplacer $\gamma$ par une jauge $\nu$ définie (partiellement en $x$)
-par $\nu(x) \subset \gamma(x)$ et $\nu(t) = \gamma(t) \cap \left]x,+\infty\right]$
+On peut remplacer $\gamma$ par une jauge $\nu$ vérifiant
+$\nu(x) \subset \gamma(x)$ et $\nu(t) = \gamma(t) \cap \left]x,+\infty\right]$
 sinon ; cela garantit que pour tout subdivision pointée $\mathcal{D}$ 
 subordonnée à $\nu$, $\mathcal{D}$ est subordonnée à $\gamma$ et si 
 $(t,J) \in \mathcal{D}$ et $x \in J$, alors $t=x$.
@@ -1787,18 +1787,19 @@ si pour tout couple de points $x$ et $y$ de $I$ on peut trouver un
 chemin de $I$ joignant $x$ à $y$, c'est-à-dire une fonction continue
 $\phi:[0, 1] \to I$, telle que $\phi(0) = x$ et $\phi(1) = y$.
 
-Subdvisions subordonnées à une jauge I {.question #subd-subor}
+Subdivisions subordonnées à une jauge I {.question #subd-subor}
 --------------------------------------------------------------------------------
+
+![Graphe de la jauge $\gamma$.](images/gauge-plot-squeeze.py)
 
 Soit $\gamma$ la jauge sur $[0, 1]$ définie par 
 $\gamma(0)= \left]-1/2, 1/2\right[$ et $\gamma(t) = \left]0,2t\right[$
 si $t>0$.
-
-![Graphe de la jauge $\gamma$.](images/gauge-plot-squeeze.py)
-
 Déterminer une subdivision pointée de $[0, 1]$ qui soit subordonnée à $\gamma$.
 
-Subdvisions subordonnées à une jauge II {.question #subd-subor-2}
+
+
+Subdivisions subordonnées à une jauge II {.question #subd-subor-2}
 --------------------------------------------------------------------------------
 
 Soit $[a, b]$ un intervalle compact de $\R$ ;
@@ -1814,7 +1815,7 @@ subordonnée à $\gamma$.
 L'intégrale de Riemann est absolue {.question #Rabs}
 --------------------------------------------------------------------------------
 
-Montrer que l'intégrale de Riemman est absolue: 
+Montrer que l'intégrale de Riemman est absolue : 
 si une fonction $f$ est intégrable au sens de Riemann, 
 sa valeur absolue $|f|$ l'est également.
 
@@ -1851,14 +1852,13 @@ Un ensemble de Cantor
 --------------------------------------------------------------------------------
 
 Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté
-par un développement décimal de la forme noté noté $x=0.a_1a_2a_3\cdots$
+par un développement décimal de la forme $x=0.a_1a_2a_3\cdots$
 où $a_i \in \{0,1, \dots, 9\}$, une notation qui signifie que
 $$
 x = \sum_{i=1}^{+\infty} a_i 10^{-i}.
 $$
-Ce développement est unique si on lui impose d'être propre, 
-c'est-à-dire qu'il n'y ait pas
-de séquences infinie de nombres $9$ consécutifs[^wp].
+Ce développement est unique si on lui impose d'être *propre*, 
+c'est-à-dire si l'on interdit les séquences infinie de nombres $9$ consécutifs[^wp].
 
 [^wp]: Dans le cas contraire, on pourrait par exemple représenter $x=1/2$ comme
 $0.5000\cdots$ ou comme $0.4999\cdots$.
@@ -1911,9 +1911,9 @@ $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Séries et intégrales {#si}
 --------------------------------------------------------------------------------
 
-Soit $a_k$, $k\geq 0$ une série de valeurs réelles ; 
-on lui associe la fonction $f:[0, +\infty] \to \R$ définie par
-$f(x) = a_k$ quand $k \leq x < k+1$. 
+Soit $a_k \in \R$  une suite de valeurs indexées par $k\in \N$ ; 
+on lui associe la fonction $f:\left[0, +\infty\right] \to \R$ définie par
+$f(x) = a_k$ quand $k \leq x < k+1$ (et $f(+\infty)=0$ par exemple). 
 
 ![Graphe de la fonction $f$ associée à la suite $a_k = (-1)^k / (k+1)$.](images/graph-series.py)
 
@@ -1943,18 +1943,18 @@ Supposons que $x$ et $y$ appartiennent à $I$ et que $x$
 soit inférieur ou égal à $y$. Alors pour tout $t \in [0,1]$, 
 $\phi(t) = (1-t) x + t y$ est un point intermédiaire entre $x$ et $y$,
 et par conséquent, appartient à $I$. La fonction $\phi$ ainsi définie 
-est clairement continue et vérifie $\phi(0) = x$ et $\phi(1) = y$; 
+est clairement continue et vérifie $\phi(0) = x$ et $\phi(1) = y$ ; 
 c'est donc un chemin de $I$ qui joint $x$ à $y$. Par conséquent,
 $I$ est connexe par arcs.
 
 Réciproquement, si $I$ est connexe par arcs et contient les points $x$
 et $y$, tout chemin de $I$ qui joint $x$ et $y$, continu et à valeurs réelles,
-vérifie le théorème des valeurs intermédiaires: pour toute valeur intermédiaire
+vérifie le théorème des valeurs intermédiaires : pour toute valeur intermédiaire
 $z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
-Comme $\phi$ est à valeurs dans $I$, $z \in I$; l'ensemble $I$ est donc un 
+Comme $\phi$ est à valeurs dans $I$, $z \in I$ ; l'ensemble $I$ est donc un 
 intervalle de $\R$.
 
-Subdvisions subordonnées à une jauge I {.answer #answer-subd-subor}
+Subdivisions subordonnées à une jauge I {.answer #answer-subd-subor}
 --------------------------------------------------------------------------------
 
 On applique pas à pas la démarche de la preuve du [lemme de Cousin](#cousin).
@@ -1988,7 +1988,7 @@ est subordonnée à $\gamma$.
 
 ![Graphe de la jauge $\gamma$ et de la subdivision pointée $\mathcal{D}$](images/gauge-plot-squeeze-solution.py)
 
-Subdvisions subordonnées à une jauge II {.answer #answer-subd-subor-2}
+Subdivisions subordonnées à une jauge II {.answer #answer-subd-subor-2}
 --------------------------------------------------------------------------------
 
 Sous l'hypothèse énoncée, il suffit de limiter la recherche aux subdivisions
@@ -2016,10 +2016,10 @@ La jauge $\mathcal{D}_m$ est donc subordonnée à $\gamma$.
 L'intégrale de Riemann est absolue {.answer #answer-Rabs}
 --------------------------------------------------------------------------------
 
-Nous exploitons le [critère de Lebesgue pour l'intégrabilité au sens de Riemann][Critère de Lebesgue pour l'intégrabilité au sens de Riemann]: si $f$ est intégrable au sens de Riemann,
+Nous exploitons le [critère de Lebesgue pour l'intégrabilité au sens de Riemann][Critère de Lebesgue pour l'intégrabilité au sens de Riemann] : si $f$ est intégrable au sens de Riemann,
 elle est bornée -- et donc $f$ également -- et continue presque partout
 -- et donc $|f|$ également ($|f|$ est continue en tout point où
-$f$ est continue comme composée de fonctions continues en un point). 
+$f$ est continue comme composée de fonctions continues en ce point). 
 Par conséquent, $|f|$ est intégrable au sens de Riemann.
 
 
@@ -2029,13 +2029,13 @@ Continuité presque partout
 ### Question 1 {.answer #answer-cpp-1}
 Une fonction égale presque partout à une fonction continue n'est pas 
 nécessairement presque partout continue. La fonction de Dirichlet 
-de [la question 2](#cpp-2) fournit un bon example: elle est égale à la
+de [la question 2](#cpp-2) fournit un bon exemple : elle est égale à la
 fonction identiquement nulle -- qui est continue -- sur tout $\R$ à
-l'exception des rationnels, et l'ensemble des rationnels est négligeable,
+l'exception des rationnels et l'ensemble des rationnels est négligeable,
 [car dénombrable](#edn). Mais elle n'est continue en aucun point, car
 tout nombre rationnel est limite de nombres irrationnels et réciproquement.
 
-La réciproque n'est pas vérifiée non plus: la fonction de Heaviside
+La réciproque n'est pas vérifiée non plus : la fonction de Heaviside
 $e:\R \to \R$ -- ou fonction indicatrice de $\left[0, +\infty \right[$, 
 définie par
 $$
@@ -2056,7 +2056,7 @@ pour un $\varepsilon > 0$, mais aucun de ces deux intervalles n'est négligeable
 La fonction de Dirichlet $1_{\Q}$ sur $[0, 1]$ est égale presque partout à la
 fonction identiquement nulle qui est continue, elle est donc intégrable au
 sens de Henstock-Kurzweil. Mais elle n'est pas continue presque partout,
-donc elle n'est pas intégrable au sens de Henstock-Kurzweil.
+donc elle n'est pas intégrable au sens de Riemann.
 
 Continuité par morceaux {.answer #answer-cpm}
 --------------------------------------------------------------------------------
@@ -2158,7 +2158,7 @@ nous avons établi que $A$ est négligeable.
 L'opération qui à $x=0.a_1a_2\cdots \in A$ associe
 $y=0.b_1b_2\cdots$ où $b_i = a_i/2$ est une bijection
 de $A$ sur $\left[0, 0.444\cdots\right[ = \left[0, 4/9\right[$,
-ce qui montre que $A$ à la puissance du continu (et donc n'est pas
+ce qui montre que $A$ a la puissance du continu (et donc n'est pas
 dénombrable).
 
 <!--
@@ -2175,8 +2175,8 @@ Séries et intégrales
 ### Question 1 {.answer #answer-si-1}
 Si $\sum_k a_k$ est divergente, $f$ ne satisfait pas 
 [le critère d'intégrabilité de Cauchy](#CIC).
-En effet, la série elle-même ne satisfait pas le critère de Cauchy: il existe donc
-un $\varepsilon > 0$ tel que pour tout entier $j$, il existe un
+En effet, la série elle-même ne satisfait pas le critère de Cauchy : 
+il existe donc un $\varepsilon > 0$ tel que pour tout entier $j$, il existe un
 entier $n$ tel que $$\left|\sum_{k=j}^{j+n} a_k\right| > \varepsilon.$$
 Soit $\gamma$ une jauge sur $[0, +\infty]$ et soit 
 $$\mathcal{D} = \{(t_k, [x_k, x_{k+1}]\}_{k=1}^m$$ une subdivision subordonnée
