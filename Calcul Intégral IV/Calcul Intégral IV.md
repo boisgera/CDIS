@@ -1346,7 +1346,7 @@ $$
 Donc $A_0$ et $A_1 \ds M_1$ sont disjoints et 
 $\overline{\mu}(A_1 \ds M_1) = \overline{\mu}(A_1)$. De proche en proche
 on peut ainsi construire une suite d'ensembles négligeables $M_k$ tels
-que les $A_k \ds M_k soient disjoints et $\cup_k A_k  = \cup_k A_k \ds M_k$.
+que les $A_k \ds M_k$ soient disjoints et $\cup_k A_k  = \cup_k A_k \ds M_k$.
 Par conséquent,
 $$
 \overline{mu}(\cup_k A_k \ds N_k) = \mu(\cup_k A_k) = \overline{\mu} ...
