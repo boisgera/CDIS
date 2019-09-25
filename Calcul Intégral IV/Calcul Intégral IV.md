@@ -154,6 +154,18 @@ $$
 \sum_{k=0}^{+\infty} \mu^*\left(A_k\right).
 $$
 
+### {.post .remark} 
+Alternativement, on peut caractériser une mesure extérieure par trois règles
+au lieu de deux:
+
+  1. $\mu^*(\varnothing) = 0$.
+
+  2. Si $A \subset B$, alors $\mu^*(A) \subset \mu^*(B)$.
+
+  3. $\mu^*\left(\cup_{k=0}^{+\infty}A_k\right) \leq \sum_{k=0}^{+\infty} \mu^*\left(A_k\right)$.
+
+-----
+
 Il existe un procédé général permettant de déduire d'une mesure extérieure
 une application qui soit additive -- à condition d'accepter de réduire
 son domaine de définition ; la fonction qui en résulte est non seulement
@@ -198,13 +210,29 @@ est une fonction
 $$
 \mu: \mathcal{A} \to [0, +\infty]
 $$ 
-telle que $\mu(\varnothing)= 0$ et telle que pour toute famille dénombrable 
-$\{A_k\}$ d'ensembles de $\mathcal{A}$ disjoints deux à deux, on ait
+telle que $\mu(\varnothing)= 0$ et telle que pour toute suite
+$A_k$, $k\in \N$, d'ensembles de $\mathcal{A}$ disjoints deux à deux, on ait
 $$
-\mu \left( \bigcup_{k} A_k \right) = \sum_{k} \mu(A_k) ;
+\mu \left( \bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k) ;
 $$
 on dit que $\mu$ est *$\sigma$-additive*.
 L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
+
+### {.remark .post}
+Notons qu'en prenant une suite de la forme 
+$A_0, \dots, A_n, \varnothing, \varnothing, \dots$, 
+on montre que pour toute
+suite finie $A_0, \dots, A_n$ d'ensembles disjoints de $\mathcal{A}$, on a
+$$
+\mu \left( \bigcup_{k=0}^n A_k \right) = \sum_{k=0}^n \mu(A_k) ;
+$$
+la mesure $\mu$ est donc *additive*. En particulier, si $A, B \in \mathcal{A}$
+et $A \subset B$, en exploitant ce résultat pour $A$ et $B \setminus A$, 
+qui sont deux ensembles disjoints de $\mathcal{A}$, on établit que
+$\mu(A) \subset \mu(B)$ ; $\mu$ est donc *croissante*[^mon].
+
+[^mon]: on trouvera également dans la littérature, le terme de *monotone* pour 
+désigner cette propriété.
 
 ### Mesure associée à une mesure extérieure {.theorem}
 Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
@@ -827,10 +855,8 @@ $$
 $$
 
 
-Complétion d'une tribu {#ct .question}
+Complétion d'une mesure
 --------------------------------------------------------------------------------
-
-### TODO -- Prolongement de la mesure et définition de l'intégrale associée ?
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 On note $A \ds B$ la différence symétrique
@@ -839,7 +865,10 @@ définie par
 $$
 A \ds B = (A \setminus B) \cup (B \setminus A) = (A \cap B^c) \cup (A^c \cap B).
 $$
-Caractériser au moyen de la différence symétrique la tribu engendrée par 
+
+### Question 1 {.question #cm-1}
+Caractériser au moyen de la différence symétrique $\ds$ 
+la tribu -- notée $\overline{\mathcal{A}}$ -- engendrée par 
 l'union entre $\mathcal{A}$ et la collection $\mathcal{N}$ 
 des ensembles négligeables pour $\mu$ :
 $$
@@ -850,6 +879,10 @@ N \subset X
 \mbox{il existe $A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$.} 
 \}.
 $$
+
+### Question 2 {.question #cm-2}
+Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
+mesure $\overline{\mu}$ définie sur $\overline{\mathcal{A}}$.
 
 
 TODO -- Fonctions mesurables
@@ -1191,9 +1224,10 @@ référence Tao *sans* le MCT.
 -->
 
 
-Complétion d'une tribu {.answer #answer-ct}
+Complétion d'une mesure
 --------------------------------------------------------------------------------
 
+### Question 1 {.answer #answer-cm-1}
 Nous allons établir que la tribu engendrée par $\mathcal{A} \cup \mathcal{N}$
 est l'ensemble
 $$
@@ -1247,6 +1281,77 @@ L'ensemble $N$ (et donc l'ensemble $M$) appartient donc à $\mathcal{N}$.
 Comme $\cup_k A_k \in \mathcal{A}$, on en déduit que $\mathcal{B}$ est stable
 par union dénombrable. Cet collection contient l'ensemble vide, est stable
 par passage au complémentaire et par union dénombrable ; c'est donc une tribu.
+
+### Question 2 {.answer #answer-cm-2}
+
+Supposons que $\overline{\mu}$ soit une mesure sur $\overline{\mathcal{A}}$
+qui prolonge $\mu$.
+Alors, nécessairement, pour tout ensemble $N \in \mathcal{N}$, on a
+$\overline{\mu}(N) = 0$. En effet, il existe un $A \in \mathcal{A}$ tel que
+$N \subset A$ et $\mu(A) = 0$, donc par croissance de $\overline{\mu}$,
+$$
+\overline{\mu}(N) \subset \overline{\mu}(A) = \mu(A) = 0.
+$$
+Soit alors $A \in \mathcal{A}$ et $N \in \mathcal{N}$. Les ensembles
+$N_1 := A \cap N$ et $N_2 = A^c \cap N$ sont inclus dans $N$ et donc 
+appartiennent à $\mathcal{N}$, par conséquent
+$$
+\overline{\mu}(A \ds N) = \overline{\mu}((A \setminus N_1) \cup N_2)
+= \overline{\mu}(A) - \overline{\mu}(N_1) + \overline{\mu}(N_2)
+= \overline{\mu}(A).
+$$ 
+Cette équation définit uniquement $\overline{\mu}$ ; 
+il faut toutefois s'assurer que cette définition est cohérente, c'est-à-dire
+que si $A \ds N = B \ds M$ où $A, B \in \mathcal{A}$ et $N, M \in \mathcal{N}$,
+alors $\mu(A) = \mu(B)$. En utilisant l'associativité de $\ds$, on montre que
+$$
+A \ds (N \ds M) = (A \ds N) \ds M = (B \ds M) \ds M = B \ds (M \ds M) = B.
+$$
+Par conséquent, $N \ds M \in \mathcal{A}$, et comme $N \ds M \subset
+N \cup M$, on en déduit que $\mu(N \ds M) = 0$, et donc
+$$
+\mu(B) = \mu(A) - \mu(A \cap (N \ds M)) + \mu(A^c \cap (N \ds M)) = \mu(A).
+$$
+
+### TODO
+
+Il est ensuite nécessaire de prouver que $\overline{\mu}$ est bien une mesure.
+Nous avons déjà évoqué le fait à la question précédente que si 
+les $A_k$, $k \in \N$, appartiennent $\mathcal{A}$ et les 
+$N_k$, $k \in \N$, appartiennent à $\mathcal{N}$, alors 
+$$
+\cup_k (A_k \ds N_k) = (\cup_k A_k) \ds N 
+\; \mbox{ avec } \;
+N \in \mathcal{N},
+$$
+donc
+$$
+\overline{\mu}(\cup_k (A_k \ds N_k)) = \overline{\mu}(\cup_k A_k).
+$$ 
+
+Si $A_0 \ds N_0$ et $A_1 \ds N_1$ sont disjoints, alors, comme l'intersection
+est distributive via-à-vis de la différence symétrique
+($A \cap (B \ds C) = (A\cap B) \ds (A \cap C)$), on a
+$$
+\begin{split}
+\varnothing &= (A_0 \ds N_0) \cap (A_1 \ds N_1) \\
+&=
+(A_0 \cap A_1) \ds ((A_0 \cap N_1) \ds (N_0 \cap A_1) \ds (N_0 \cap N_1))\\
+\end{split}
+$$  
+soit 
+$$
+A_0 \cap A_1 = M_1 :=  ((A_0 \cap N_1) \ds (N_0 \cap A_1) \ds (N_0 \cap N_1)) \in \mathcal{N}.
+$$
+Donc $A_0$ et $A_1 \ds M_1$ sont disjoints et 
+$\overline{\mu}(A_1 \ds M_1) = \overline{\mu}(A_1)$. De proche en proche
+on peut ainsi construire une suite d'ensembles négligeables $M_k$ tels
+que les $A_k \ds M_k soient disjoints et $\cup_k A_k  = \cup_k A_k \ds M_k$.
+Par conséquent,
+$$
+\overline{mu}(\cup_k A_k \ds N_k) = \mu(\cup_k A_k) = \overline{\mu} ...
+$$
+
 
 Réferences
 ================================================================================
