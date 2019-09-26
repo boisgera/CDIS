@@ -561,7 +561,7 @@ $$
 f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
 E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
 $$
-est une suite croissante de fonction étagées positives et mesurables, 
+est une suite croissante de fonctions étagées positives et mesurables, 
 convergeant simplement vers $f$ et 
 $$
 \int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
