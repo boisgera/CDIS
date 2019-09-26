@@ -475,7 +475,9 @@ Gérer "pb" des fonctions à valeurs étendues ? Non, il n'y en a pas ...
 
 ### Fonction mesurable
 Une fonction $f: X \to Y$ associée aux espaces mesurables $(X, \mathcal{A})$
-et $(Y,\mathcal{B})$ est *mesurable* si l'image réciproque $A =f^{-1}(B)$
+et $(Y,\mathcal{B})$ est *mesurable* 
+(ou *$\mathcal{A}/\mathcal{B}$-mesurable*)
+si l'image réciproque $A =f^{-1}(B)$
 de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
 ### Conventions
@@ -486,20 +488,24 @@ Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
 on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
 Il existe une bonne raison pour adopter cette convention :
 
-### TODO : limite simple de fonctions mesurable est mesurable
-
 ### Mesurable ou mesurable ?
-Une fonction $f:\R^n \to \R^m$ est mesurable au sens du chapitre III,
-c'est-à-dire limite simple de fonctions intégrables 
-au sens de Henstock-Kurzweil,
-si et seulement si elle est mesurable au sens de ce chapitre quand 
-l'espace de départ $\R^n$  est muni de la tribu de Lebesgue et 
-l'espace d'arrivée $\R^m$ de la tribu de Borel.
+Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
+au sens de Henstock-Kurzweil 
+-- c'est-à-dire "mesurable" au sens de ["Calcul Intégral III"](Calcul Intégral III.pdf) --
+si et seulement si elle est $\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
 
 ### TODO -- Démonstration {.proof}
+La fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
+au sens de Henstock-Kurzweil si et seulement si elle vérifie 
+le critère de l'image réciproque des sections II et III, 
+c'est-à-dire si l'image réciproque de tout ouvert de $\R^m$ est un
+ensemble $\mathcal{L}(\R^n)$-mesurable.
+C'est de toute évidence le cas si $f$ est 
+$\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
+Réciproquement, si l'image réciproque de tout ouvert de $\R^m$ est un
+ensemble $\mathcal{L}(\R^n)$-mesurable.
 
-### TODO : mesurabilité des fonctions prenant la valeur $+\infty$ ou 
-$-\infty$.
+### TODO : limite simple de fonctions mesurable est mesurable
 
 ### TODO: composition de fcts mesurables
 Intérêt de fcts boréliennes dans ce schéma, lien avec Calcul Intégral III
@@ -510,8 +516,13 @@ On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
 l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
 prenne qu'un nombre fini de valeurs).
 
+### TODO
+
+Examiner de plus près gestion valeurs infinies
+
 ### Fonction mesurable
-Une fonction $f: X \to \R$ associée aux espaces mesurables $(X, \mathcal{A})$
+Une fonction $f: X \to [-\infty, +\infty]$ associée aux espaces mesurables 
+$(X, \mathcal{A})$
 et $(\R,\mathcal{B}(\R))$ est *mesurable* si et seulement si $f$ est la limite
 simple de fonctions étagées $X \to \R$ mesurables.
 
@@ -546,29 +557,6 @@ supposer que la fonction $f$ elle-même est mesurable.
 Rq qqpart plus bas que si l'on veut que le procédé marche pour
 toute suite $\varepsilon_k$, alors il est *nécessaire* que 
 $f$ soit mesurable.
-
-### Intégrale d'une fonction positive II {.theorem}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \mapsto [0, +\infty]$ une fonction mesurable.
-Soit $\varepsilon_k \geq 0$ une suite de valeurs telles que
-$$
-\lim_{k\to +\infty} \varepsilon_k  = 0 
-\; \mbox{ et } \;
-\sum_{k=0}^{+\infty} \varepsilon_k = +\infty.
-$$
-La suite des fonctions $f_k$ définies par $f_0=0$, puis
-$$
-f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
-E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
-$$
-est une suite croissante de fonctions étagées positives et mesurables, 
-convergeant simplement vers $f$ et 
-$$
-\int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
-$$
-
-### TODO -- Démonstration {.proof}
-
 
 ### Intégrale d'une fonction à valeurs réelles
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
@@ -678,6 +666,31 @@ $$
 = \int f\mu.
 $$
 
+### {.remark .ante}
+[Le théorème de convergence monotone](#TCM) fournit une alternative concrète
+à la construction initiale de l'intégrale.
+
+### Intégrale d'une fonction positive II {.theorem}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \mapsto [0, +\infty]$ une fonction mesurable.
+Soit $\varepsilon_k \geq 0$ une suite de valeurs telles que
+$$
+\lim_{k\to +\infty} \varepsilon_k  = 0 
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \varepsilon_k = +\infty.
+$$
+La suite des fonctions $f_k$ définies par $f_0=0$, puis
+$$
+f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
+E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
+$$
+est une suite croissante de fonctions étagées positives et mesurables, 
+convergeant simplement vers $f$ et 
+$$
+\int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
+$$
+
+### TODO -- Démonstration {.proof}
 
 
 ### Théorème de convergence dominée {.theorem #TCD}
