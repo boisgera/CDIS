@@ -431,6 +431,7 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
             \frac{x-a}{b-a} & \text{si } a \leq x \leq b,\\
             1 & \text{si } x > b.
             \end{array}\right.$$
+    ![fonction de répartition](images/CdfUnif.tex)
 
  2. La *loi exponentielle* de paramètre $\theta$, notée $\mathcal{E}_\theta$, est la loi de densité
     $$f(x) = \left\{\begin{array}{ll}
@@ -442,16 +443,66 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
             0 & \text{si } x < 0,\\
             1 - e^{-\theta x} & \text{sinon}.
             \end{array}\right.$$
+    ![fonction de répartition](images/CdfExp.tex)
     Dans la pratique, on utilise fréquemment la loi exponentielle pour modéliser une durée de vie ou le temps d’attente avant l’arrivée d’un événement spécifique. Par exemple la durée de vie d’une bactérie, d'un composant électronique, la durée d’une conversation téléphonique ou le temps qui nous sépare du prochain tremblement de terre peuvent être considérées comme des variables aléatoires de loi exponentielle.
     
  3. La *loi normale* (ou de *Gauss* ou encore *gaussienne*) de paramètres $\mu$ et $\sigma^2$, notée $\mathcal{N}(\mu,\sigma^2)$, est la loi de densité
     $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$$
     Lorsque $\mu = 0$ et $\sigma^2$, on l'appelle la loi normale *centrée réduite* pour des raisons que nous expliciterons au prochain chapitre.
 
-    La distribution normale fut introduite par De Moivre en 1733. Celui-ci l’utilisa pour approximer une variable aléatoire binomiale quand le paramètre $n$ de celle-ci était grand. Ce résultat fut ensuite progressivement généralisé par Laplace et d’autres confrères pour devenir le théorème connu sous le nom de théorème de la limite centrale, qui sera démontré au Chapitre 4. Ce théorème est l’un des plus importants de la théorie des probabilités et prouve que de très nombreux phénomènes aléatoires suivent approximativement une loi normale. Nous pouvons citer à titre d’exemple la taille d’un individu choisi au hasard, les composantes de la vitesse d’une molécule de gaz ou l’erreur de mesure d’une quantité physique.   
+    La distribution normale fut introduite par De Moivre en 1733. Celui-ci l’utilisa pour approximer une variable aléatoire binomiale quand le paramètre $n$ de celle-ci était grand. Ce résultat fut ensuite progressivement généralisé par Laplace et d’autres confrères pour devenir le théorème connu sous le nom de théorème de la limite centrale, qui sera démontré au Chapitre 4. Ce théorème est l’un des plus importants de la théorie des probabilités et prouve que de très nombreux phénomènes aléatoires suivent approximativement une loi normale. Nous pouvons citer à titre d’exemple la taille d’un individu choisi au hasard, les composantes de la vitesse d’une molécule de gaz ou l’erreur de mesure d’une quantité physique.
+
+    Il est difficile de faire des calculs avec la loi normale car sa densité définie en n’admet pas de primitive explicite. Aussi des tables numériques ont-elles été construites pour permettre aux utilisateurs d’obtenir très rapidement des valeurs numériques. Elles sont disponibles dans la plupart des logiciels et permettent entre autre de représenter sa fonction de répartition.
+    
+    ![fonction de répartition](images/CdfGauss.tex)
 
 Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de probabilités avec densité.
 
 # Exercices
 
+## Propriétés élémentaires {.question #propelem}
+A partir de la [définition de la probabilité](#defproba) Démontrer les propriétés suivantes :
+ 1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
+ 2. $\forall\, A,B \in \A$, $A \subset B \Rightarrow \P(A) \leq \P(B)$.
+ 3. $\forall\, A,B \in \A$, $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
+ 4. Inégalité de Boole : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A, \P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i)$.
+ 5. Formule de Poincaré : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$
+ $$ \P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right).$$
 
+
+## Continuité monotone {.question #contmon}
+Soit une suite $(A_n)_{n\in\N}$ d'éléments de $\A$ croissante (au sens de l'inclusion). Montrer que 
+$$ \P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+
+
+## Une définition alternative de la probabilité {.question #altdef}
+Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ vérifie : 
+ 
+ 1. $\P(\Omega) = 1$, 
+ 2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$ $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
+ 3. Pour toute suite $(A_n)_{n\in\N}$ d'éléments de $\A$ croissante 
+    $$\P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+
+Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
+
+## Une définition alternative de la probabilité {.answer #answer-altdef}
+
+Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B_n = \cup_{p \leq n} A_n$ et $B = \cup_n A_n$. Comme $\P$ est additive, on a $\P(B_n) = \sum_{p \leq n} \P(A_n)$ 
+
+# Solutions
+
+## Propriétés élémentaires {.answer #answer-propelem}
+
+ 1. $\P(A) \in [0,1]$ est donné par la définition. Par ailleurs, on a $\Omega = A \cup A^c$ et $A\cap A^c = \varnothing$. En considérant la suite $A_1 = A$, $A_2 = A^c$ et $A_n = \varnothing$ pour $n > 2$, le point 2. de la définition nous donne $1 = \P(\Omega) = \P(A) + \P(A^c)$.
+
+ 2. Puisque $A \subset B$, on a l'union disjointe $B = (B\cap A) \cup (B\cap A^c) = A \cup (B\cap A^c)$. Comme $\P(B\cap A^c) \geq 0$ par définition, on en déduit le résultat.
+
+ 3. On a $(A\cup B) = B \cup (A\cap B^c)$, avec $B \cap (A\cap B^c) =\varnothing$ ainsi que $A = (A\cap B^c) \cup (A\cap B)$, où $(A\cap B^c) \cap (A\cap B) = \varnothing$. On en déduit $\P(A\cup B) = \P(B) + \P(A\cap B^c)$ et $\P(A) = \P(A\cap B^c) + \P(A\cap B)$, d'où le résultat.
+
+ 4. Par récurrence. On a déjà vu que $\P(A\cup B) \leq \P(A) + \P(B)$. Notant $B = \bigcup_{i=1}^n A_i$, alors $\P(\bigcup_{i=1}^{n+1} A_i) \leq \P(B) + \P(A_{n+1})$, et l'hypothèse de récurrence nous indique $\P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i)$, d'où le résultat.
+
+ 5. Par récurrence. On a déjà vu que $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
+
+## Continuité monotone {.answer #answer-contmon}
+On définit une suite $(B_n)_{n\in \N}$ telle que $B_0 = A_0$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 1$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
+$$ \P\left(\bigcup_{n\in\N} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=0}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
