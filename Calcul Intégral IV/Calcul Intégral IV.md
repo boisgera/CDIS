@@ -481,35 +481,129 @@ si l'image réciproque $A =f^{-1}(B)$
 de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
 ### Conventions
-Lorsque $Y$ a une structure topologique, on supposera par défaut que la 
-tribu associée est la tribu de Borel, et lorsque $X = \R^n$ 
+Lorsque l'ensemble d'arrivée $Y$ a une structure topologique, par exemple $Y = \R^m$ ou 
+$Y = [-\infty, +\infty]^m$, on supposera par défaut que la 
+tribu associée est la tribu de Borel. 
+Lorsque l'ensemble de départ est $X = \R^n$ on supposera par défaut 
 que la tribu associée est la tribu de Lebesgue. 
 Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
 on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
-Il existe une bonne raison pour adopter cette convention :
+Il existe une bonne raison pour adopter cette convention hybride (avec
+des tribus d'un type différent au départ et à l'arrivée) par défaut :
 
-### Mesurable ou mesurable ?
+### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
 Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
 au sens de Henstock-Kurzweil 
 -- c'est-à-dire "mesurable" au sens de ["Calcul Intégral III"](Calcul Intégral III.pdf) --
 si et seulement si elle est $\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
 
-### TODO -- Démonstration {.proof}
+La démonstration de ce résultat repose sur le lemme suivant :
+
+### Image réciproque et tribus engendrées {.lemma #irte}
+Soit $f : X \to Y$ une application, $\mathcal{B}$ une collection d'ensembles
+de $Y$ et $\mathcal{A} = \sigma(\mathcal{B})$ sa tribu engendrée dans $Y$.
+Alors 
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{A}\} =\sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}).
+$$
+
+<!--
+La tribu engendrée dans $X$ par l'ensemble des images réciproques par
+$f$ des ensembles $B \in \mathcal{B}$ est incluse dans
+la collection des images réciproques par $f$ des ensembles de la tribu engendrée 
+par $\mathcal{B}$ dans $Y$.
+$$
+\sigma\left(\{f^{-1}(B) \, | \, B \in \mathcal{B}\} \right)
+\subset
+\{f^{-1}(A) \, | \, A \in \sigma(\mathcal{B})\}.
+$$
+-->
+
+### Démonstration {.proof}
+Comme $\mathcal{B} \subset \mathcal{A}$, on a
+$$
+\{f^{-1}(B) \, | \, B \in \mathcal{B}\} \subset
+\{f^{-1}(A) \, | \, A \in \mathcal{A}\}.
+$$
+Si nous montrons que 
+$\mathcal{C}:=\{f^{-1}(A) \, | \, A \in \mathcal{A}\}$ est une tribu 
+nous pouvons en déduire que
+$$
+ \sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}) \subset \{f^{-1}(A) \; | \; A \in \mathcal{A}\}.
+$$
+L'ensemble vide appartient à $\mathcal{C}$ car 
+$\varnothing = f^{-1}(\varnothing)$. Si $A \in \mathcal{A}$,
+$X \setminus f^{-1}(A) = f^{-1}(Y \setminus A)$
+et $Y \setminus A \in \mathcal{A}$, donc $X \setminus f^{-1}(A) \in \mathcal{C}$.
+Finalement, si $A_0, A_1, \dots \in \mathcal{A}$, 
+$\cup_k f^{-1}(A_k) = f^{-1}(\cup_k A_k) \in \mathcal{C}$.
+La collection $\mathcal{C}$ est donc une tribu.
+
+Réciproquement, posons $\mathcal{E} = \sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\})$ 
+et considérons 
+$$
+\mathcal{D} = \{A \in Y \; | \; f^{-1}(A) \in \mathcal{E}\}.
+$$
+La collection $\mathcal{D}$ est également une tribu. En effet,
+$f^{-1}(\varnothing) \in \mathcal{E}$, si $f^{-1}(A) \in \mathcal{E}$ alors
+$f^{-1}(Y \setminus A) = X \setminus f^{-1}(A) \in \mathcal{E}$ et si 
+$f^{-1}(A_0), f^{-1}(A_1), \dots \in \mathcal{E}$, alors 
+$f^{-1}(\cup_k A_k) = \cup_k f^{-1}(A_k) \in \mathcal{E}$.
+Par conséquent, comme $\mathcal{B} \subset \mathcal{D}$,
+$\mathcal{A} = \sigma(\mathcal{B}) \subset \sigma(\mathcal{D}) = \mathcal{D}$.
+Donc pour tout $A \in \mathcal{A}$, on a $f^{-1}(A) \in \mathcal{E}$,
+soit
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{A}\} \subset \mathcal{E}  =\sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}).
+$$
+
+
+### Démonstration "L./B.-mesurable $\Leftrightarrow$ H.-K.-mesurable" {.proof}
 La fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
 au sens de Henstock-Kurzweil si et seulement si elle vérifie 
 le critère de l'image réciproque des sections II et III, 
-c'est-à-dire si l'image réciproque de tout ouvert de $\R^m$ est un
-ensemble $\mathcal{L}(\R^n)$-mesurable.
-C'est de toute évidence le cas si $f$ est 
-$\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
-Réciproquement, si l'image réciproque de tout ouvert de $\R^m$ est un
-ensemble $\mathcal{L}(\R^n)$-mesurable.
+c'est-à-dire si et seulement si l'image réciproque de tout ouvert 
+de $\R^m$ est un ensemble $\mathcal{L}(\R^n)$-mesurable.
 
-### TODO : limite simple de fonctions mesurable est mesurable
+De toute évidence, si $f$ est Lebesgue/Borel-mesurable, ce critère est 
+satisfait. Réciproquement, si l'image réciproque de tout ouvert de $\R^m$
+est Lebesgue-mesurable, alors la tribu engendrée par les images réciproques
+des ouverts de $\R^m$ est incluse dans la tribu de Lebesgue sur $\R^n$.
+Comme cette tribu est d'après [le lemme précédent](#irte) l'ensemble
+des images réciproques de la tribu engendrée par les ouverts dans $\R^m$,
+c'est-à-dire la tribu de Borel dans $\R^m$, l'image réciproque de tout
+borélien est un ensemble de la tribu de Lebesgue : la fonction 
+$f$ est Lebesgue/Borel-mesurable.
 
-### TODO: composition de fcts mesurables
-Intérêt de fcts boréliennes dans ce schéma, lien avec Calcul Intégral III
-(généralisation résultats composition)
+### Composition de fonctions mesurables
+Soient $(X, \mathcal{A})$, $(Y, \mathcal{B})$ et $(Z, \mathcal{C})$ des
+espaces mesurables.
+Soit $f: X\to Y$ une fonction $\mathcal{A}/\mathcal{B}$-mesurable et 
+$g: Y \to X$ une fonction $\mathcal{B}/\mathcal{C}$-mesurable.
+Alors la composition $g \circ f$ de $f$ et $g$ est 
+$\mathcal{A}/\mathcal{C}$-mesurable.
+
+### Démonstration {.proof}
+Pour tout ensemble $C \in \mathcal{C}$, on a $g^{-1}(C) \in \mathcal{B}$ 
+et donc $(g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C)) \in \mathcal{A}$.
+
+### Limite simple de fonctions mesurables
+Soit $(X, \mathcal{A})$ un espace mesurable et $Y$ un espace métrique,
+muni de la tribu de Borel $\mathcal{B}(Y)$. Si les fonctions $f_k: X \to Y$,
+$k \in \N$, sont mesurables et convergent simplement vers $f$, alors
+$f$ est mesurable.
+
+### Démonstration {.proof}
+Par [le lemme liant image réciproque et tribus engendrées](#irte),
+il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de $Y$
+appartient à $\mathcal{A}$.
+Il suffit pour cela de remarquer que $f(x) \in U$ si et seulement si $f_k(x) \in U$
+pour $k$ assez grand. Cette déclaration se traduit par la formule
+$$
+f^{-1}(U) = \bigcup_{j=0}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
+$$
+qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
+(dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
 
 ### Fonction étagée {.definition}
 On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
