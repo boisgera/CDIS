@@ -46,7 +46,7 @@ L'intérêt principal de travailler avec des variables aléatoires est de pouvoi
 \label{eq:loi_va}
 \P_X (B) = \P(X^{-1}(B)) = \P(\{\omega, X(\omega)\in B\})
 \end{equation}
-Cette formule défini une nouvelle probabilité, notée $\P_X$ et définie sur $E$, qui s'appelle la *loi de la variable* $X$.
+Cette formule définit une nouvelle probabilité, notée $\P_X$ et définie sur $E$, qui s'appelle la *loi de la variable* $X$.
 
 Comme $\P(A)$ n'est définie que pour les $A$ de la tribu $\A$, la formule \eqref{eq:loi_va} ne permet de définir $\P_X(B)$ que pour les ensembles $B$ tels que $X^{-1}(B) \in \A$, d’où l’importance de la proposition suivante :
 
@@ -71,7 +71,7 @@ $\P_X$ sera plus facile à caractériser que $\P$ puisque $E$ est un ensemble co
 La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Cela nous conduit à poser
 
 ### Définition {.definition #defvar}
-Soit l'espace d'état $\Omega$ munit de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B$ dans $\L_\R$.
+Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B$ dans $\L_\R$.
 
 On a alors le résultat très utile suivant que nous admettrons dans un premier temps.
 
@@ -101,7 +101,7 @@ Soit $X$ une variable aléatoire. On dit que $X$ a une *loi de densité $f$* (ou
 $$ \P(X\leq x) = \int_{-\infty}^x f(y) dy.$$
 
 ### Exemple {.example #ex.expo}
-La durée de fonctionnement d'un ordinateur avant sa première panne est une variable aléatoire positive de densité donnée par 
+La durée de fonctionnement, en heures, d'un ordinateur avant sa première panne est une variable aléatoire positive de densité donnée par 
 
 $$f(x) = \left\{ \begin{array}{ll}
         \frac{1}{100}\exp\left(-\frac{x}{100}\right) & x \geq 0, \\
@@ -181,8 +181,8 @@ Du fait de la linéarité de l'espérance, on a
 $$\cov(X,Y) = \Esp(XY) - \Esp(X)\Esp(Y)$$
 et d'ailleurs, on voit que la formule de calcul de la variance donnée plus haut est un cas particulier de cette formulation car $\V(X) = \cov(X,X)$. La linéarité de l'espérance nous donne encore pour $a,a',b,b' \in \R$
 \begin{align*} 
-\Esp((aX+b)(a'Y+b)) &= aa'\Esp(XY) + ab'\Esp(X) +a'b\Esp(Y) + bb'\\
-\Esp(aX+b)\Esp(a'Y+b) &= aa'\Esp(X)\Esp(Y) + ab'\Esp(X) +a'b\Esp(Y) + bb'
+\Esp((aX+b)(a'Y+b')) &= aa'\Esp(XY) + ab'\Esp(X) +a'b\Esp(Y) + bb'\\
+\Esp(aX+b)\Esp(a'Y+b') &= aa'\Esp(X)\Esp(Y) + ab'\Esp(X) +a'b\Esp(Y) + bb'
 \end{align*}
 On en déduit que la covariance est une forme bilinéaire sur l'espace vectoriel des variables aléatoires de carré intégrable, et nous avons
 $$\cov(aX+b,a'Y+b') = aa'Cov(X,Y)$$
@@ -194,20 +194,20 @@ On en déduit que les coefficients de corrélation de $X$ et $Y$ et de $aX+b$ et
 D'après ce qui précède, si $X$ est une variable aléatoire de carré intégrable, d'espérance $\Esp(X)$ et d'écart-type $\sigma_X >0$, alors la variable aléatoire $$\frac{X-\Esp(X)}{\sigma_X}$$
 est d'espérance nulle et de variance 1. On dira qu'une telle variable aléatoire est *centrée et réduite*.
 
-### Inégalité de Cauchy-Schwartz {.proposition #CS}
-Soit $X$ et $Y$ deux variables aléatoires de carré intégrable, alors on a *l'inégalité de Cauchy-Schwartz* :
+### Inégalité de Cauchy-Schwarz {.proposition #CS}
+Soit $X$ et $Y$ deux variables aléatoires de carré intégrable, alors on a *l'inégalité de Cauchy-Schwarz* :
         $$|\Esp(XY)| \leq \Esp(|XY|) \leq \sqrt{\Esp(X^2)\Esp(Y^2)}$$
 avec égalité si et seulement si $X$ et $Y$ sont presque-sûrement proportionnelles.
 
 ### Démonstration {.proof}
-La première inégalité est évidente. Pour la seconde, on a $\forall x \in \R$ d'après la linéarité de l'espérance :
+La première inégalité a été démontrée plus haut. Pour la seconde, on a $\forall x \in \R$ d'après la linéarité de l'espérance :
 $$x^2\Esp(X^2) + 2x\Esp(XY)+ \Esp(Y^2) = \Esp((xX+Y)^2) \geq 0.$$
 Mais ceci n'est possible que si ce trinôme en $x$ n'a au plus qu'une seul racine réelle ; son discriminant doit donc être négatif ou nul ce qui donne le résultat.
 
-Le discriminant est nul si et seulement si il admet une racine double $x_0$ et dans ce cas, $Y(\omega) = -x_0 X(\omega)$ pour presque tout $\omega$.
+Le discriminant est nul si et seulement si le trinôme admet une racine double $x_0$ et dans ce cas, $Y(\omega) = -x_0 X(\omega)$ pour presque tout $\omega$.
 
 ### Remarque {.remark}
-On déduit de l'inégalité de [Cauchy-Schwartz](#CS) que le coefficient de corrélation de $X$ et $Y$ vérifie
+On déduit de l'inégalité de [Cauchy-Schwarz](#CS) que le coefficient de corrélation de $X$ et $Y$ vérifie
 $$-1\leq \rho(X,Y) \leq 1.$$
 
 Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition](#composition).
@@ -263,7 +263,7 @@ $$\Esp(g(X)) = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} g(x_1,\l
 ## Moments d'un vecteur aléatoire
 
 ### Définition {.definition}
-Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont intégrables, nos pouvons définir le *vecteur espérance* 
+Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont intégrables, nous pouvons définir le *vecteur espérance* 
         $$\Esp(X) = (\Esp(X_1),\ldots,\Esp(X_n))$$
 Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont de carré intégrable, la *matrice de covariance* de $X$ est la matrice $C_X = (c_{i,j})_{1 \leq i \leq n , 1 \leq j \leq n}$ de taille $n \times n$ et dont les éléments valent
         $$c_{i,j} = \cov (X_i,X_j)$$
@@ -276,8 +276,8 @@ La symétrie est évidente. Non-négative signifie que pour tous réels $a_1,\ld
 $$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i).$$
 
 ### Exemple : Vecteur Gaussien $n$-dimensionel {.example}
-Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons en détail au cours suivant. Soient $m \in R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
-$$ f(x) = \frac{1}{(2\pi^{n/2})\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^tC^{-1})(x-m) $$
+Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons en détail au cours suivant. Soient $m \in \R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in \R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
+$$ f(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^tC^{-1}(x-m)) $$
 On a alors $\Esp(X) = m$ et $C_X =C$.
 
 **TODO** figure densité Gaussienne
@@ -286,7 +286,7 @@ On a alors $\Esp(X) = m$ et $C_X =C$.
 <!-- Lorsque l'on modélise plusieurs variables conjointement, une hypothèse importante est celle de l'indépendance. Ce caractère traduit l'absence de lien de causalité entre les variables. Par exemple, on fait naturellement l'hypothèse d'indépendance lorsque l'on considère une répétition d'une même expérience dans les mêmes conditions. ??? -->
 Dans ce paragraphe, on considère un couple $(X,Y)$ de vecteurs aléatoires respectivement à valeurs dans $\R^m$ et $\R^n$. Les résultats s'étendent sans peine à une famille finie quelconque. 
 
-On peut se ramener aux évènements pour caractériser l'indépendance de deux variables aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles mesurables de $\R^m$ et $\R^n$. On a vu que les évènements $X\in A$ et $Y \in B$ sont aléatoires si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quelques soient $A$ et $B$.
+On peut se ramener aux évènements pour caractériser l'indépendance de deux variables aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles mesurables de $\R^m$ et $\R^n$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quelques soient $A$ et $B$.
 
 ### Définition {.definition #defvai}
 Les vecteurs aléatoires $X$ et $Y$ sont *indépendants* si pour tous ensembles mesurables $A$ et $B$ dans les espaces correspondants, 
@@ -295,7 +295,7 @@ $$\P(X \in A, Y \in B) = \P(X \in A)\P(Y \in B)$$
 Cette définition se traduit en termes de densités dans la proposition suivante que l'on énonce pour un couple de variables aléatoires pour simplifier
 
 ### Proposition {.proposition}
-Soit $X$ et $Y$ deux variables aléatoires réelles de densités $f_x$ et $f_Y$. $X$ et $Y$ sont indépendantes si et seulement si 
+Soient $X$ et $Y$ deux variables aléatoires réelles de densités $f_X$ et $f_Y$. $X$ et $Y$ sont indépendantes si et seulement si 
 le couple $Z = (X,Y)$ a pour densité (sur $\R^2$) :
 $$f_Z(x,y) = f_X(x)f_Y(y).$$
 
@@ -318,8 +318,8 @@ $$ \Esp(g(X)h(Y)) = \Esp(g(X))\Esp(h(Y))$$
 ### Démonstration {.proof}
 La première assertion est évidente par définition de l'indépendance. Par ailleurs, si $g(X)$ et $h(Y)$ sont intégrables, en notant $f_{(X,Y)}$ la densité du couple $(X,Y)$, et en utilisant le théorème de Fubini, on a
 \begin{align*}
-\Esp(g(X)h(Y))  & = \int_\R^{m+n} g(x)h(y) f_{(X,Y)}(x,y) dx dy \\
-                & = \int_\R^m \int_{\R^n} g(x)h(y)f_X(x) f_Y(y) dx dy \\
+\Esp(g(X)h(Y))  & = \int_{\R^{m+n}} g(x)h(y) f_{(X,Y)}(x,y) dx dy \\
+                & = \int_{\R^m} \int_{\R^n} g(x)h(y)f_X(x) f_Y(y) dx dy \\
                 & = \left(\int_{\R^m}  g(x) f_X(x) dx \right) \left(\int_{\R^n} h(y) f_Y(y) dy\right)\\
                 & = \Esp(g(X))\Esp(h(Y))
 \end{align*}
@@ -334,7 +334,7 @@ Si les variables aléatoires réelles $X$ et $Y$ sont indépendantes et de carr�
 $\cov(X,Y) = 0$ et $\rho(X,Y) = 0$.
 
 ### Remarque
-Attention, la réciproque est fausse. Par exemple, si $X \sim \mathcal{U}_{[-1,1]}$ et $Y = X^2$. $X$ et $Y$ ne sont clairement pas indépendante mais on a
+Attention, la réciproque est fausse. Par exemple, si $X \sim \mathcal{U}_{[-1,1]}$ et $Y = X^2$. $X$ et $Y$ ne sont clairement pas indépendantes mais on a
 
 $$\cov(X,Y) = \cov(X,X^2) = \Esp(X^3) - \Esp(X)\Esp(X^2) = 0$$
 
@@ -351,7 +351,7 @@ $f_Y$, et une classe de fonctions $h$ suffisamment grande. La fonction $f_Y$ ser
 La [proposition](#esperanceg) implique
 $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_\R h \circ g(x) f_X(x) dx$$
 
-et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
+et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire, on appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
 
 ### Proposition {.proposition}
 Si il existe une fonction $f$ telle que pour toute fonction continue bornée $h$, 
