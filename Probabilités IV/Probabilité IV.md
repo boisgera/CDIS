@@ -41,7 +41,7 @@ $$ \omega = \sum_{i\in \N^\star} \frac{\omega_i}{2^i}, \omega_i \in \{0,1\}$$.
 L'application $X_i : \Omega \to \{0,1\}$, qui à $\omega$ associe $X_i(\omega) = \omega_i$ est une variable aléatoire sur $\Omega$. En effet, pour $x_i \in \{0,1\}$, $1\leq i \leq n$,
 $$ \{X_i = x_i\} = \bigcup_{x_1,\ldots, x_{i-1} \in \{0,1\}} \left[ \sum_{j=1}^i \frac{x_j}{2^j}, \sum_{j=1}^i \frac{x_j}{2^j} + \frac{1}{2^i}\right[, $$
 qui est bien un élément de la tribu borélienne de $\Omega = [0,1[$, et
-$$\P(\{X_i = x_i\}) = \frac{1}{2^i} \sum_{x_1,\ldots, x_{i-1} = 0}^1 1 = \frac{1}{2}.$$
+$$\P(\{X_i = x_i\}) = \frac{1}{2^i} \sum_{x_1,\ldots, x_{i-1} \in \{0,1\}} 1 = \frac{1}{2}.$$
 Montrons l'indépendance des variables aléatoires $(X_i)_{1\leq i \leq n}$. Nous avons 
 $$ \bigcap_{1\leq i \leq n} \{X_i = x_i\} = \left[ \sum_{i=1}^n \frac{x_i}{2^i}, \sum_{i=1}^n \frac{x_i}{2^i} + \frac{1}{2^n}\right[ $$
 si bien que 
@@ -70,13 +70,13 @@ On considère une suite $(X_n)_{n\in \N^\star}$ de vecteurs aléatoires, défini
 ### Remarque {.remark}
 La convergence presque sûre est la plus proche de la convergence simple des fonctions. Mais ici, nous permettons à certains $\omega$ de ne pas vérifier $X_n(\omega) \to X(\omega)$, si toutefois la probabilité de réalisation de l'ensemble de ces $\omega$ est nulle.
 
-Ces convergences ne sont pas équivalentes comme le montre les exemples suivants.
+Ces convergences ne sont pas équivalentes comme le montrent les exemples suivants.
 
 ### Exemples {.example}
 
  * Soit $(X_n)_{n\in \N^\star}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
  $$ \P(X_n=1) = \frac{1}{n} ; \P(X_n = 0) = 1- \frac{1}{n}.$$
- Pour tout $\epsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq 0) = \frac{1}{n}$ tend vers 0 quand $n tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\star}$ tend vers $X=0$ en probabilité. Comme $\Esp(\frac{1}{n}) = 0$, elle tend également en moyenne vers 0.
+ Pour tout $\epsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \epsilon) = \frac{1}{n}$ tend vers 0 quand $n tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\star}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
  Considérons maintenant une suite $(Y_n)_{n\in \N^\star}$ de variables aléatoires de Bernoulli ) valeurs dans $\{0,n^2\}$ telles que 
  $$ \P(Y_n=n^2) = \frac{1}{n} ; \P(Y_n = 0) = 1- \frac{1}{n}.$$
  Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\star}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
@@ -98,7 +98,7 @@ Soit $A_{n,\epsilon} = \{|X_n - X| > \epsilon \}$.
  * Supposons que $X_n \xrightarrow{\L^1} X$. Pour $\epsilon >0$, on a $1_{A_{n,\epsilon}} \leq \frac{1}{\epsilon}|X_n - X|$, donc 
  $$ \P(A_{n,\epsilon}) \leq \frac{1}{\epsilon}\Esp(|X_n - X|) \to 0.$$
 
-
+### {.anonymous}
 La convergence en probabilité n’entraîne pas la convergence en moyenne, comme nous l’avons vu dans l’exemple ci-dessus, ne serait-ce que parce qu'elle n'implique pas l'appartenance de $X_n$ et $X$ à $\L^1$. Si les $X_n$ ne sont “pas trop grands”, il y a cependant équivalence entre les deux modes de convergence. En voici un exemple :
 
 ### Proposition {.proposition #propconv2}
@@ -116,13 +116,13 @@ $$ \Esp(|X_n - X|) \leq \epsilon +2a \P(A_{n,\epsilon})$$
 On en déduit que $\lim \sup_n \Esp(|X_n - X|) \leq \epsilon$, et comme $\epsilon$ est arbitrairement proche de 0, on a le résultat souhaité.
 
 ### {.anonymous}
-Les rapports entre convergence presque-sûre et convergence en probabilité sont plus subtils. La première de ces deux convergences est plus forte que la seconde d’après la [proposition](#propconv2), mais “à peine plus”, comme le montre le résultat suivant.
+Les rapports entre convergence presque-sûre et convergence en probabilité sont plus subtils. La première de ces deux convergences est plus forte que la seconde d’après la [proposition](#propconv1), mais “à peine plus”, comme le montre le résultat suivant.
 
 ### Proposition {.proposition #propconv3}
 Si $X_n \xrightarrow{\P} X$, il existe une sous-suite $(n_k)$ telle que $X_{n_k} \to X$ p.s. quand $k \to \infty$.
 
 ### Démonstration {.proof}
-Comme la suite $(X_n)_{n\in \N^\star}$ concerge en probabilité vers $X$, on peut définir une sous-suite de la manière suivante : posons $n_1 = 1$, et soit
+Comme la suite $(X_n)_{n\in \N^\star}$ converge en probabilité vers $X$, on peut définir une sous-suite de la manière suivante : posons $n_1 = 1$, et soit
 $$ n_j = \inf \left\{ n > n_{j-1} ; \P \left(|X_r - X_s| > \frac{1}{2^j} \right) < \frac{1}{3^j}, \text{ pour } r,s \geq n \right\}.$$
 Il résulte alors de 
 $$\sum_j =\P \left(|X_{n_{j+1}} - X_{n_j}| > \frac{1}{2^j} \right) < \sum_j \frac{1}{3^j} < \infty$$
@@ -226,7 +226,7 @@ On considère des vecteurs aléatoires $X_n$ et $X$, tous à valeurs dans le mê
 
 ### Définition {.definition #defconvloi}
 On dit que la suite $(X_n)_{n\in \N^\star}$ *converge en loi* vers $X$ et on écrit $X_n \xrightarrow{\L} X$, si pour toute fonction $f$ continue bornée sur $\R^d$, 
-$$\Esp(f(X_n)) \xrightarrow{\L} \Esp(f(X)).$$
+$$\Esp(f(X_n)) \to \Esp(f(X)).$$
 
 ### Exemple {.example}
 Un cas très simple est celui où toutes les variables aléatoires $X_n$ prennent un nombre fini de valeurs $\{ x_i , 1 \leq i \leq N \}$. Alors, la suite $(X_n)_{n \in \N^\star}$ converge en loi vers $X$ si et seulement si 
@@ -260,7 +260,7 @@ Soient $X_n$ et $X$ des variables aléatoires réelles de fonctions de répartit
 
 Notons que puisque la fonction $F$ est continue à droite et croissante, l’ensemble
 des points où $F$ est continue est l’ensemble $D = \{x : F (x-) = F (x)\}$, et son
-complémentaire est au plus dénombrable. Ainsi, $D$ est dense dans $R$.
+complémentaire est au plus dénombrable. Ainsi, $D$ est dense dans $\R$.
 
 ### Démonstration {.proof}
 
@@ -297,9 +297,9 @@ Dans ce paragraphe, nous introduisons un outil important en calcul des probabili
 il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire,
 et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment très utile pour démontrer le théorème central limite.
 
-On notera $< x, y >$ le produit scalaire de deux vecteurs de $\R^n$ . Si $u \in \R^n$ , la fonction (complexe) $x \mapsto e^{i < u,x>}$ est continue, de module 1. Donc si $X$ est un vecteur aléatoire à valeurs dans $\R^n$ , nous pouvons considérer $e^{i < u,x>}$ comme une variable aléatoire à valeurs complexes. Ses parties réelle $Y = \cos(< u, X>)$ et imaginaire $Z = \sin(< u, X>)$ sont des variables aléatoires réelles. Ces variables aléatoires réelles
+On notera $< x, y >$ le produit scalaire de deux vecteurs de $\R^n$ . Si $u \in \R^n$ , la fonction (complexe) $x \mapsto e^{i < u,x>}$ est continue, de module 1. Donc si $X$ est un vecteur aléatoire à valeurs dans $\R^n$ , nous pouvons considérer $e^{i < u,X>}$ comme une variable aléatoire à valeurs complexes. Ses parties réelle $Y = \cos(< u, X>)$ et imaginaire $Z = \sin(< u, X>)$ sont des variables aléatoires réelles. Ces variables aléatoires réelles
 sont de plus bornées par 1, donc elles admettent une espérance. Il est alors naturel d’écrire que l’espérance de $e^{i < u,x>}$ est
-    $$\Esp(e^{i < u,x>}) = \Esp(Y) + i \Esp(Z) = \Esp(\cos< u, X>) + i\Esp(\sin< u, X>) $$
+    $$\Esp(e^{i < u,X>}) = \Esp(Y) + i \Esp(Z) = \Esp(\cos< u, X>) + i\Esp(\sin< u, X>) $$
 
 ### Définition {.definition}
 Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, sa *fonction caractéristique* est la fonction $\phi_X$ de $\R^n$ dans $\C$ définie par
@@ -326,7 +326,7 @@ Pour montrer la continuité, considérons une suite $u_p \xrightarrow[p \to \inf
 
 ### Proposition {.proposition #fct_carac_vec}
 Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, si $a \in \R^m$ et $A$ est une matrice réelle de taille $m \times n$, alors 
-    $$ \phi{a+AX}(u) = e^{i < u,a>} \phi_X (A^t u), \forall u \in \R^m$$
+    $$ \phi_{a+AX}(u) = e^{i < u,a>} \phi_X (A^t u), \forall u \in \R^m$$
 
 ### Démonstration {.proof}
 Nous avons $e^{i< u, a + AX>} = e^{i < u,a>}e^{i <A^tu, X>}$. En effet, $< u, A X> = < A^t u, X>$. On prend ensuite les espérances pour obtenir le résultat.
@@ -440,14 +440,14 @@ Soit $(X_n)_{n \in \N^\star}$ une suite de vecteurs aléatoires à valeurs dans 
 Ce théorème est aussi connu sous le nom de théorème de la limite centrale. Plus simplement, il apparaît souvent sous l’abréviation TCL.
 
 On considère une suite de variables aléatoire $(X_n)_{n \in \N^\star}$ indépendantes, de même loi et de carré intégrable. On note $m$ et $\sigma^2$ la moyenne et la variance commune aux variables $X_n$, et
-    $$S_n = X_1 + \ldots X_n$$
+    $$S_n = X_1 + \ldots + X_n$$
 ainsi ($S_n = n M_n$). On a vu que la loi des grands nombres assure que $M_n$ converge vers $m$ presque-sûrement et en moyenne. On va s'intéresser a la vitesse à laquelle cette convergence a lieu.
 
 Pour évaluer cette vitesse, c’est-à-dire trouver un équivalent de $\frac{S_n}{n} - m$, on est amenés à étudier la limite éventuelle de la suite $n^\alpha (\frac{S_n}{n} - m)$ pour différentes valeurs de $\alpha$ : si $\alpha$ est “petit” cette suite va encore tendre vers 0, et elle va “exploser” si $\alpha$est “grand”. On peut espérer que pour une (et alors nécessairement une seule) valeur de $\alpha$, cette suite converge vers une limite qui n’est ni infinie ni nulle.
 
 Il se trouve que la réponse à cette question a un aspect “négatif” : la suite $n^\alpha (\frac{S_n}{n} - m)$ ne converge au sens presque-sûr, ou même en probabilité, pour aucune valeur de $\alpha$. Elle a aussi un aspect “positif” : cette suite converge, au sens de la convergence en loi, pour la même valeur $\alpha = 1/2$ quelle que soit la loi des $X_n$, et toujours vers une loi normale.
 
-Ce résultat, qui peut sembler miraculeux, a été énoncé par Laplace (1749-1827) et démontré beaucoup plus tard par Lyapounov (1901). Il montre le caractère universel de la loi normal en probabilités (d'où son nom). Il fait l’objet du théorème suivant, appelé théorème central limite (TCL), ou de la limite centrale.
+Ce résultat, qui peut sembler miraculeux, a été énoncé par Laplace (1749-1827) et démontré beaucoup plus tard par Lyapounov (1901). Il montre le caractère universel de la loi normale en probabilités (d'où son nom). Il fait l’objet du théorème suivant, appelé théorème central limite (TCL), ou de la limite centrale.
 
 ### Théorème central limite {.theorem #TCL}
 Si les $X_n$ sont des variables aléatoires réelles, indépendantes et de même loi, de carré intégrable, de moyenne $m$ et de variance $\sigma^2 >0$, alors les variables
@@ -457,7 +457,7 @@ convergent en loi vers une variable aléatoire de loi $\No(0,1)$.
 En d'autres termes, $\sqrt{n}(M_n - m)$ converge vers une variable normale de loi $\No(0,\sigma^2)$.
 
 ### Démonstration {.proof}
-Soit $\phi$ la fonction caractéristique de $X_n - m $, et $Y_n = \frac{S_n -nm}{\sigma \sqrt{n}}$. D'après la [proposition](#fct_carac_vec) et la [proposition](#fct_carac_sum), la fonction caractéristique de $Y_n$ est 
+Soit $\phi$ la fonction caractéristique de $X_n - m$, et $Y_n = \frac{S_n -nm}{\sigma \sqrt{n}}$. D'après la [proposition](#fct_carac_vec) et la [proposition](#fct_carac_sum), la fonction caractéristique de $Y_n$ est 
     $$\phi_n(u) = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n .$$
 Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition](#fct_carac_deriv) entraîne 
     $$\phi(u) = 1 - \frac{u^2\sigma^2}{2} + u^2 o (|u|) \text{ quand } u \rightarrow 0.$$
