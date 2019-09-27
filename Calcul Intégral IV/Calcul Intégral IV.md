@@ -409,31 +409,33 @@ Mesure et intégrale
 
 ### Tribu engendrée par une collection {.definition}
 Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
-$\mathcal{C}$ d'ensembles de $X$ la plus petite tribu 
+$\mathcal{B}$ d'ensembles de $X$ la plus petite tribu 
 (au sens de l'inclusion) 
-$\mathcal{A} = \sigma(\mathcal{C})$ de $X$ contenant $\mathcal{C}$.
+$\mathcal{A} = \sigma(\mathcal{B})$ de $X$ contenant $\mathcal{C}$.
+Autrement dit, si $\mathcal{B} \subset \mathcal{C}$ et $\mathcal{C}$ est
+une tribu de $X$, alors $\sigma(\mathcal{B}) \subset \mathcal{C}$.
 
 ### Démonstration de l'existence de la tribu engendrée {.proof}
 Désignons par $\mathfrak{S}$ la (meta-)collection des tribus de 
-$X$ incluant $\mathcal{C}$ (contenant $\mathcal{C}$ comme sous-ensemble). 
+$X$ incluant $\mathcal{B}$ (contenant $\mathcal{B}$ comme sous-ensemble). 
 $$
 \mathfrak{S}
 =
 \{
-\mbox{$\mathcal{B}$ tribu de $X$} \; | \; \mathcal{C} \subset \mathcal{B} 
+\mbox{$\mathcal{C}$ tribu de $X$} \; | \; \mathcal{B} \subset \mathcal{C} 
 \}
 $$
 Elle n'est pas vide : elle contient la collection $\mathcal{P}(X)$
-des ensembles de $X$ (qui de toute évidence est un sur-ensemble de $\mathcal{C}$
-et une tribu de $X$). Montrons que la plus petite tribu $\sigma(\mathcal{C})$
-de $X$ contenant $\mathcal{C}$ est l'intersection de $\mathfrak{S}$
+des ensembles de $X$ (qui de toute évidence est un sur-ensemble de $\mathcal{B}$
+et une tribu de $X$). Montrons que la plus petite tribu $\sigma(\mathcal{B})$
+de $X$ contenant $\mathcal{B}$ est l'intersection de $\mathfrak{S}$
 $$
-\sigma(\mathcal{C}) := \bigcap \mathfrak{S} = \bigcap_{\mathcal{A} \in \mathfrak{S}} \mathcal{A},
+\sigma(\mathcal{B}) := \bigcap \mathfrak{S} = \bigcap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C},
 $$
 ou encore
-$\sigma(\mathcal{C}) = \{A \subset X \, | \, A \in \mathcal{A} \mbox{ pour tout } \mathcal{A} \in \mathfrak{S}\}.$
-Il est clair que si $\mathcal{A}$ est une tribu de $X$ contenant $\mathcal{C}$,
-alors $\mathfrak{S} \subset \mathcal{A}$, car alors $\mathcal{A} \in \mathfrak{S}$.
+$\sigma(\mathcal{B}) = \{A \subset X \, | \, A \in \mathcal{C} \mbox{ pour tout } \mathcal{C} \in \mathfrak{S}\}.$
+Il est clair que si $\mathcal{C}$ est une tribu de $X$ contenant $\mathcal{B}$,
+alors $\mathfrak{S} \subset \mathcal{C}$, car alors $\mathcal{C} \in \mathfrak{S}$.
 Il nous suffit donc de montrer que $\cap \mathfrak{S}$ est une tribu de $X$
 pour conclure ; on vérifiera aisément que comme chaque élément de $\mathfrak{S}$
 est une tribu, cette intersection en est également une.
