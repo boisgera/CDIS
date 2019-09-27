@@ -589,6 +589,12 @@ $\mathcal{A}/\mathcal{C}$-mesurable.
 Pour tout ensemble $C \in \mathcal{C}$, on a $g^{-1}(C) \in \mathcal{B}$ 
 et donc $(g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C)) \in \mathcal{A}$.
 
+### TODO -- Conséquence avec les fcts continues / boréliennes.
+Ex: combinaison linéaire, max, etc.
+
+### TODO
+Un intérêt ici à abstraire / espace métrique ? Bon ...
+
 ### Limite simple de fonctions mesurables
 Soit $(X, \mathcal{A})$ un espace mesurable et $Y$ un espace métrique,
 muni de la tribu de Borel $\mathcal{B}(Y)$. Si les fonctions $f_k: X \to Y$,
@@ -599,8 +605,8 @@ $f$ est mesurable.
 Par [le lemme liant image réciproque et tribus engendrées](#irte),
 il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de $Y$
 appartient à $\mathcal{A}$.
-Il suffit pour cela de remarquer que $f(x) \in U$ si et seulement si $f_k(x) \in U$
-pour $k$ assez grand. Cette déclaration se traduit par la formule
+Or $f(x) \in U$ si et seulement si $f_k(x) \in U$
+pour $k$ assez grand, ce qui se traduit par la formule
 $$
 f^{-1}(U) = \bigcup_{j=0}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
 $$
@@ -700,9 +706,13 @@ Propriétés de l'intégrale
 
 ### TODO -- Démonstration {.proof}
 
+### TODO
+Voir ce que Tao liste dans les pptés élémentaires (par exemple, 
+$\int f \mu = 0$ et $f\geq 0$ implique $f =0$ $\mu$-pp)
+
 ### Théorème de convergence monotone {.theorem #TCM}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
-$f_k: X \to [0, +\infty]$, $k \in \N$ une suite croissante de fonctions 
+$f_k: X \to [0, +\infty]$, $k \in \N$, une suite croissante de fonctions 
 mesurables et positives ; pour tout $x \in X$,
 $$
 0 \leq f_0(x) \leq \dots \leq f_{k}(x) \leq f_{k+1}(x) \leq \cdots
@@ -769,6 +779,13 @@ $$
 ### Intégrale d'une fonction positive II {.theorem}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto [0, +\infty]$ une fonction mesurable.
+Il existe une suite croissante de fonctions $f_k$ étagées positives et 
+mesurables, convergeant simplement vers $f$ ; pour toute suite de ce type, 
+$$
+\int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
+$$
+
+### Démonstration {.proof}
 Soit $\varepsilon_k \geq 0$ une suite de valeurs telles que
 $$
 \lim_{k\to +\infty} \varepsilon_k  = 0 
@@ -780,14 +797,13 @@ $$
 f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
 E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
 $$
-est une suite croissante de fonctions étagées positives et mesurables, 
-convergeant simplement vers $f$ et 
+est croissante, et composée de fonctions étagées positives et mesurables.
+Sa limite simple est la fonction $f$. 
+Par [le théorème de convergence monotone](#TCM), 
 $$
-\int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
+\lim_{k \to +\infty} \int f_k \mu  = \int f \mu
 $$
-
-### TODO -- Démonstration {.proof}
-
+pour toute suite de ce type.
 
 ### Théorème de convergence dominée {.theorem #TCD}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
