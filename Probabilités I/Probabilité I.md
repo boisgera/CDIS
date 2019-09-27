@@ -22,7 +22,7 @@ Le but de ce cours est de consolider et compléter les connaissances en théorie
 
 Elles sont aussi un préalable indispensable pour aborder l'analyse statistique des données et les méthodes d'apprentissage automatique.
 
-En CPGE, les probabilités ont été vues dans le cadre de phénomènes aléatoires qui admettent un nombre au plus dénombrable de résultats possibles. Ce cadre restreint est supposé connu. On pourra se reporter au chapitre 3 de @polygarnier ou aux deux premiers chapitres de @polyponts pour une éventuelle mise à niveau.
+En CPGE, les probabilités ont été vues dans le cadre de phénomènes aléatoires qui admettent un nombre au plus dénombrable de résultats possibles. Ce cadre restreint est supposé connu. On pourra se reporter au chapitre 3 du cours de @polygarnier ou aux deux premiers chapitres du cours de @polyponts pour une éventuelle mise à niveau.
 
 ## Exemple de la modélisation du climat
 
@@ -132,19 +132,17 @@ Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
 
 ### Exemples {.example}
  1. $\A = \{\varnothing,\Omega\}$ est la tribu *grossière* ou *triviale* : c'est la plus petite tribu de $\Omega$.
- 2. Dans le cas où $\Omega$ est au plus dénombrable, on choisit systématiquement l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$ dont on vérifie aisément qu'il s'agit d'une tribu ; c'est le cadre étudié en CPGE. On verra ultérieurement que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
+ 2. Dans le cas où $\Omega$ est au plus dénombrable, on choisit systématiquement l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$ dont on vérifie aisément qu'il s'agit d'une tribu ; c'est le cadre étudié en CPGE. On verra plus loin que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
  3. Si $\Omega = \R$, on peut le munir de la tribu formée des ensembles mesurables de $\R$, dite *tribu de Lebesgue*.
- 4. On verra par la suite qu'il est aisé de définir une tribu sur tout espace topologique.
+ 4. On verra ultérieurement qu'il est aisé de définir une tribu sur tout espace topologique.
 
 ## Notion de densité de probabilité
 
-Une des nouveautés majeures de ce cours par rapport au programme de CPGE est le cas où l'espace fondamental n'est plus fini ni dénombrable. On va voir ici que les outils développés dans le cours de calcul intégral vont nous permettre de définir une probabilité sur $\R$ muni de la tribu de ses ensembles mesurables.
+Une des nouveautés majeures de ce cours par rapport au programme de CPGE est le cas où l'espace fondamental n'est plus fini ni dénombrable. On va voir ici que les outils développés dans le cours de calcul intégral vont nous permettre de définir une probabilité sur $\R$ muni de la tribu des ensembles mesurables.
 
-<!-- ### Densité de Probabilité {.definition} -->
 Soit $\Omega = \R$ et $f : \Omega \to \R^+$ une fonction absolument intégrable telle que 
 $$ \int_\Omega f(x)\, dx =1. $$
 
-<!-- voir aussi issue #34 -->
 Soit $\A$ la collection des ensembles mesurables sur $\Omega$ ;
 [les propriétés élémentaires des ensembles mesurables (cf. "Calcul Intégral II")](Calcul Intégral II.pdf#pptés-tribu) établissent que $\mathcal{A}$ est une tribu, 
 sur laquelle on peut définir
@@ -173,7 +171,7 @@ Ces trois propriétés correspondent aux [axiomes de Kolmogorov](#defproba) qui 
 
 On pourra faire l'analogie entre la densité de probabilité et la loi de probabilité sur un univers discret, dans le sens où elle va "pondérer" les valeurs réelles, en remarquant cependant que :
 
- * $f(x)$ n'est pas nécessairement inférieur à 1,
+ * $f(x)$ n'est pas nécessairement inférieure à 1,
 
  * $\P(\{x\}) = \int_{\{x\}} f(x)\, dx = 0$ et plus généralement, $\P(A) = 0$ si $A$ est négligeable.
 
@@ -184,9 +182,9 @@ Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rig
 
  1. $\P(\Omega) = 1$,
  2. pour toute suite (dénombrable) $(A_n)_{n\in\N^\star}$ d'éléments de $\A$ **deux à deux disjoints**, on a 
- \begin{equation}
+ \begin{equation*}
  \P\left(\bigcup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n).
- \end{equation}
+ \end{equation*}
 
 Le triplet $(\Omega, \A, \P)$ est appelé *espace probabilisé*. La modélisation probabiliste consiste ainsi à décrire une expérience
 aléatoire par la donnée d’un espace probabilisé.
@@ -195,9 +193,7 @@ La définition suivante est fondamentale en théorie des probabilités. Elle int
 notion de “vrai ou faux” qui dépend de la probabilité choisie sur l’espace fondamental.
 
 ### Définition -- Propriété presque-sûre {.definition}
-Soit $(\Omega, \A, \P)$ un espace probabilisé.
-
-Une propriété est vraie $\P$-*presque-sûrement* (en abrégé $\P$-p.s.), si l'ensemble des $\omega \in \Omega$ pour lesquels elle est vraie est de probabilité égale à 1.
+Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A$ se réalise *P-presque sûrement* (en abrégé $\P$-p.s.) si P(A) = 1. 
 
 ### Proposition -- Propriétés élémentaires {.proposition #elemprop} 
  1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
@@ -208,34 +204,45 @@ Une propriété est vraie $\P$-*presque-sûrement* (en abrégé $\P$-p.s.), si l
  $$ \P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right).$$
 
 ### Demonstration {.proof}
-Exercice
+Exercice.
 
 ### Théorème de la continuité monotone {.theorem #continuitemonotone}
 Dans le cas d'une suite $(A_n)_{n\in\N}$ d'éléments de $\A$ croissante, on a 
 $$ \P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 ### Demonstration {.proof}
-Exercice
+Exercice.
 
 ### Remarque {.remark}
 Dans le cas d'une suite décroissante, on a 
 $$ \P\left(\bigcap_{n \in \N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
-**ou version plus complète avec l'équivalence de la $\sigma$-additivité??? - *Dans les compléments***
+Le second point de la [définition de la probabilité](#defproba) donne la probabilité de la réunion $\cup_n A_n$ en fonction des $\P(A_n)$ lorsque les événements sont deux à deux disjoints. Si ce n'est pas le cas, on a tout de même la majoration suivante, très utile dans la pratique :
 
-**Lemme de Borel-Cantelli ??? ou alors à la fin - *Dans les suites de va***
+### Proposition {.proposition}
+Soit $\P$ une probabilité et soit $(A_n)_{n\in \N}$ une famille dénombrable d'événements. On a alors
+    $$ \P(\cup_n A_n) \leq \sum_{n\in\N} \P(A_n) $$
+
+### Démonstration {.proof}
+Exercice.
 
 ## Probabilité conditionnelle 
 
-La construction d’un modèle probabiliste repose sur l’information connue **a priori** sur l’expérience aléatoire. Ce modèle permet de quantifier les probabilités de réalisation de certains résultats de l’expérience. Il est fondamental de remarquer que si l’information change, les probabilités de réalisation changent. L'outil qui va nous permettre d'introduire cette information est la probabilité conditionnelle dont nous donnons ici la définition.
+La construction d’un modèle probabiliste repose sur l’information connue **a priori** sur l’expérience aléatoire. Ce modèle permet de quantifier les probabilités de réalisation de certains résultats de l’expérience. Il est fondamental de remarquer que si l’information change, les probabilités de réalisation changent. 
 
-### Définition -- Probabilité conditionnelle {.definition}
+### Exemple {.example}
+On cherche pour un lancer de deux dés, la probabilité de l’événement “la somme est supérieure ou égale à 10”.
+Elle vaut 1/6 sans information supplémentaire, 1/2 si l’on sait que le résultat d’un des dés est 6, 0 si l’on sait a priori que le résultat d’un des dés est 2. Pour obtenir ces résultats, on a calculé dans chaque le rapport du nombre de résultats favorables sur le nombre de cas possibles. Il est ainsi indispensable de bien définir l’espace de probabilité lié à l’expérience munie de l’information a priori. On remarque également que l’information a priori a changé la valeur de la probabilité de l’événement.
+
+L'outil qui va nous permettre d'introduire de l'information est la probabilité conditionnelle dont nous donnons ici la définition.
+
+### Définition -- Probabilité conditionnelle {.definition #defprobacond}
 Soient $(\Omega, \A, \P)$ un espace probabilisé, $A, B \in \A$ tels que $\P(B)>0$. La *probabilité conditionnelle* de $A$ sachant $B$ est le nombre 
-\begin{equation}
+\begin{equation*}
 \P(A|B) = \frac{\P(A\cap B)}{\P(B)}.
-\end{equation}
+\end{equation*}
 
-Cela définit une probabilité. 
+Cela définit une probabilité comme le montre la proposition suivante.
 
 ### Proposition {.proposition}
  1. Soient $(\Omega, \A, \P)$ un espace probabilisé et $B \in \A$ tel que $\P(B)>0$. Alors l’application de $\A$ dans $[0, 1]$ qui à $A$ associe $\P(A|B)$ définit une nouvelle probabilité sur $\Omega$, appelée probabilité conditionnelle sachant $B$.
@@ -246,34 +253,44 @@ $$\P(A|B)\, \P(B) = \P(A \cap B) = \P(B|A)\, \P(A).$$
 Il est clair que $0 \leq \P(A|B) \leq 1$. Par ailleurs, les deux propriétés de la [définition de la probabilité](#defproba)
 pour $\P(\cdot|B)$ proviennent des mêmes propriétés pour $\P$ et des remarques suivantes :
 $\Omega \cap B = B$, et $(\bigcup_{n\in\N} A_n ) \cap B = \bigcup_{n\in\N} (A_n \cap B)$. De plus, si $A$ et $C$ sont disjoints, il en est
-de même de $A \cap B$ et $C \cap B$. L’assertion 2 est évidente, d'après la définition de la [Probabilité conditionnelle].
-
-### Exemple : approche bayésienne (subjective)
-
+de même de $A \cap B$ et $C \cap B$. L’assertion 2 est évidente, d'après la définition de la [Probabilité conditionnelle](#defprobacond).
 
 ### Formule des probabilités totales {.proposition}
 
 Soit $(B_n)_{n\in\N}$ une partition finie ou dénombrable d’événements de $\Omega$ (i.e. telle que $\bigcup_{n\in\N} B_n = \Omega$ et les $B_n$ sont deux-à-deux disjoints), telle que $\P(B_n ) > 0$ pour tout $n\in\N$. Pour tout $A \in \A$, on a alors
-\begin{equation}
+\begin{equation*}
 P(A) = \sum_{n\in\N} P(A \cap B_n ) = \sum_{n\in\N} P(A|B_n)\, P(B_n).
-\end{equation}
+\end{equation*}
 
 ### Démonstration {.proof}
 Nous avons $A = \bigcup_{n\in\N} (A\cap B_n)$. Par hypothèse, les ensembles $(A\cap B_n)$ sont deux-à-deux disjoints et de plus $\P(A\cap B_n) = \P(A|B_n)\,\P(B_n)$. Le résultat découle du deuxième point de la [définition de la probabilité](#defproba). 
 
 ### Formule de Bayes {.proposition}
 Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a 
-\begin{equation}
+\begin{equation*}
 \forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N} \P(A | B_n)\, \P(A)}.
-\end{equation}
+\end{equation*}
 
 ### Démonstration {.proof}
 Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales]. La définition de la [probabilité conditionnelle] implique :
-\begin{equation}
+\begin{equation*}
 \P(B_i | A) = \dfrac{\P(A \cap B_i)}{\P(A)} = \dfrac{\P(A | B_i) \P(B_i)}{\P(A)}.
-\end{equation}
+\end{equation*}
 
-### Exemple d'application **TODO**
+### Exemple {.example}
+Un individu est tiré au hasard dans une population où l’on trouve une proportion $10^{-4}$ de séropositifs. On lui fait passer un test de détection de la
+séropositivité. Par ailleurs, des expérimentations antérieures ont permis de savoir que les probabilités d’avoir un résultat positif lors de l’application du test si l’individu est séropositif, ou s’il ne l’est pas, sont respectivement égales à 0,99 (c’est la sensibilité du test) et à 0,001 (0,999 = 1 - 0,001 est la spécificité du test). Sachant que le test donne un résultat positif, quelle est la probabilité pour que l’individu soit effectivement séropositif ?
+
+On considère les événements $A$ “l’individu est séropositif”, et $B$ “le test de détection donne un résultat positif”. Les données ci-dessus nous indiquent $P(A) = 10^{-4}$ d’où $\P(A^c) = 0,9999$ , $\P(B|A) = 0,99$ et $\P(B|A^c) = 0,001$. Nous trouvons alors
+\begin{align*}
+\P(A|B) &= \frac{\P(A \cap B)}{\P(B)}\\
+        &= \frac{\P(B |A ) \P(A)}{\P(B |A)\P(A) + \P(B|A^c)\P(A^c)}\\
+        &= \frac{0,99 \times 10^{-4}}{0,99 \times 10^{-4} + 0,001 \times 0,9999}\\
+        &\approx 0,09.
+\end{align*}
+On remarque que contrairement à l’intuition, cette probabilité est petite.
+
+### Remarque : probabilités objectives/subjectives
 
 ## Indépendance des événements 
 La notion d’indépendance est absolument fondamentale en probabilités et nous verrons
@@ -282,22 +299,44 @@ par la suite toutes ses implications dans la modélisation de l’aléatoire.
 Intuitivement, deux événements $A$ et $B$ sont indépendants si le fait de savoir que $A$ est
 réalisé ne donne aucune information sur la réalisation de $B$ et réciproquement.
 
+Si $B$ est un événement de probabilité strictement positive, $A$ sera dit indépendant de $B$ si
+$$\P(A \cap B) = \frac{\P(A|B)}{\P(B)} = \P(A)$$
+On remarque que cette formule se symétrise et la notion d’indépendance se définit
+finalement comme suit.
+
 ### Définition -- Indépendance de deux événements {.definition}
 Deux événements $A$ et $B$ sont *indépendants* si et seulement si 
-\begin{equation}
+\begin{equation*}
 \P(A\cap B) = \P(A)\, \P(B).
-\end{equation}
+\end{equation*}
 
 ### Remarques {.remark}
 
  * La probabilité de voir $A$ réalisé ne dépend pas de la réalisation de $B$, et réciproquement.
+ * Cette notion est une notion liée au choix de la probabilité $\P$ et n’est pas une notion ensembliste. Cela n’a en particulier rien à voir avec le fait que $A$
+    et $B$ soient disjoints ou non.
  * Si $\P(A)>0$ et $\P(B)>0$, alors 
-    \begin{equation}
+    \begin{equation*}
     \P(A\cap B) = \P(A)\, \P(B) \Leftrightarrow \P(A) = \P(A|B) \Leftrightarrow \P(B) = \P(B|A).
-    \end{equation}
+    \end{equation*}
+
+Nous laissons en exercice (très simple à vérifier) la démonstration de la proposition
+suivante, dont le résultat est tout-à-fait intuitif.
 
 ### Proposition {.proposition}
 Si les événements $A$ et $B$ sont indépendants, alors il en est de même des couples $(A^c,B)$, $(A,B^c)$ et $(A^c,B^c)$.
+
+### Exemple {.example}
+
+ 1. On lance 3 fois un dé. Si $A_i$ est un événement qui ne dépend que du $i^\text{ème}$ lancer, alors $A_1$ , $A_2$ , $A_3$ sont indépendants.
+ 2. On tire une carte au hasard dans un jeude 52 cartes. Soit $A$ = \{la carte est une dame\} et $B$ = \{la carte est un coeur\}. 
+ Il est facile de voir que $\P(A) = 4/52$ et $\P(B) = 13/52$ et $\P(A \cap B) = \P( \{\text{la carte est la dame de coeur}\} ) = 1/52 = \P(A) \P(B)$.
+ Ainsi, les événements A et B sont indépendants pour la probabilité uniforme $\P$.
+ 3. On suppose maintenant que le jeu de cartes soit trafiqué. Soit $\widetilde{\P}$ la nouvelle probabilité correspondant au tirage de cartes. On suppose également que
+    $$ \widetilde{\P}(\{\text{As de trèfle}\} ) = \frac{1}{2} \, \widetilde{\P}(\{\text{As de trèfle}\}) = \frac{1}{2} \frac{1}{51} = \frac{1}{102}$$
+ Alors 
+    $$\widetilde{\P}(A \cap B) = \frac{1}{102} \neq \widetilde{\P}(A)\widetilde{\P}(B) = \frac{2}{51}\frac{13}{102}$$
+ Les événements $A$ et $B$ ne sont pas indépendants sous la probabilité $\widetilde{\P}$.
 
 # Probabilité sur $\R$
 
@@ -309,9 +348,9 @@ Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le
 
 ### Définition -- fonction de répartition {.definition #deffdr}
 La *fonction de répartition* de la probabilité $\P$ sur $\R$ est la fonction
-\begin{equation}
+\begin{equation*}
 F(x) = \P(\left]-\infty, x\right]),\ x \in \R.
-\end{equation}
+\end{equation*}
 
 ### Théorème {.theorem}
 La fonction de répartition $F$ caractérise la probabilité.
@@ -328,9 +367,9 @@ Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ 
 
 ### Démonstration {.proof}
 
-La première assertion est immédiate d'après la [définition](#deffdr). Pour la seconde, on remarque que si $x_n$ décroît vers $x$, alors $]-\infty,x_n]$ décroît vers $]-\infty,x]$ et donc $F(x_n)$ décroît vers $F(x)$ par le théorème de la continuité monotone. La troisième assertion se montre de manière analogue  en remarquant que $]-\infty,x]$ décroît vers $\varnothing$ (resp. croît vers $\R$) lorsque $x$ décroît vers $-\infty$ (resp. croît vers $+\infty$).
+La première assertion est immédiate d'après la [définition](#deffdr). Pour la seconde, on remarque que si $x_n$ décroît vers $x$, alors $]-\infty,x_n]$ décroît vers $]-\infty,x]$ et donc $F(x_n)$ décroît vers $F(x)$ par le [théorème de la continuité monotone](#continuitemonotone). La troisième assertion se montre de manière analogue  en remarquant que $]-\infty,x]$ décroît vers $\varnothing$ (resp. croît vers $\R$) lorsque $x$ décroît vers $-\infty$ (resp. croît vers $+\infty$).
 
-La réciproque est plus difficile à obtenir et nécessite des éléments de théorie de la mesure qui nous font pour l'instant défaut. Nous renvoyons donc sa démonstration à plus tard.
+La réciproque est plus difficile à obtenir et nécessite des éléments de théorie de la mesure qui nous font pour l'instant défaut. Nous renvoyons donc sa démonstration à un chapitre ultérieur.
 
 ### Remarque {.remark}
  Comme $F$ est croissante, elle admet une limite à gauche en chaque point notée $F(x^-)$. En remarquant que $]-\infty,y[\, = \lim\limits_{n \to +\infty}]-\infty,y_n[$ si $y_n$ tend vers $y$ par valeurs décroissantes, on obtient pour $x < y$ : 
@@ -344,7 +383,7 @@ En particulier, $\P(\{x\}) = F(x) - F(x^-)$ est le **saut** de la fonction $F$ a
 
 ### Remarque {.remark} 
 <!-- cf #32 -->
-Le théorème ci-dessus explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. Plus concrètement, considérons l'exemple suivant : soit $\Omega = [0,1]$ et $\P$ telle que $\P(]a,b]) = b-a$ pour $0\leq a\leq b\leq 1$ (il s'agit de la loi uniforme sur [0,1]). C'est une probabilité naturelle qui assigne à tout intervalle sa longueur comme probabilité. Supposons maintenant que l'on souhaite étendre de manière unique $\P$ au $2^{[0,1]}$ éléments de $\mathcal{P}(\R)$ de manière à ce que $\P(\Omega) =1$ et $\P\left(\cup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n)$ pour toute suite $(A_n)_{n\in\N^\star}$ tels que $\A_n\cap A_m = \varnothing$ pour $n \neq m$. On peut prouver qu'un tel $\P$ n'existe pas. $\mathcal{P}(\R)$ est trop "grand" pour définir un tel $\P$. Il contient en particulier des ensembles non mesurables.
+Le théorème ci-dessus explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. Plus concrètement, considérons l'exemple suivant : soit $\Omega = [0,1]$ et $\P$ telle que $\P(]a,b]) = b-a$ pour $0\leq a\leq b\leq 1$ (il s'agit de la loi uniforme sur [0,1]). C'est une probabilité naturelle qui assigne à tout intervalle sa longueur comme probabilité. Supposons maintenant que l'on souhaite étendre de manière unique $\P$ aux $2^{[0,1]}$ éléments de $\mathcal{P}(\R)$ de manière à ce que $\P(\Omega) =1$ et $\P\left(\cup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n)$ pour toute suite $(A_n)_{n\in\N^\star}$ tels que $\A_n\cap A_m = \varnothing$ pour $n \neq m$. On peut prouver qu'un tel $\P$ n'existe pas. $\mathcal{P}(\R)$ est trop "grand" pour définir un tel $\P$. Il contient en particulier des ensembles non mesurables.
 
 Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait que très peu de probabilités sur $\R$, à savoir les probabilités discrètes que l'on décrit rapidement ci-dessous.
 
@@ -352,26 +391,26 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
 
  1. Les masses de Dirac (ou **mesures** de Dirac). 
  
-    Soit $a \in \R$, on appelle mesure de Dirac en $a$, la probabilité $\P$ sur $\R$ qui vérifie pour $A \in \B_\R$
-    \begin{equation}
+    Soit $a \in \R$, on appelle mesure de Dirac en $a$, la probabilité $\P$ sur $\R$ qui vérifie pour $A \in \mathcal{P}(\R)$
+    \begin{equation*}
         \P(A) = \left\{ \begin{array}{ll}
         1  &\text{si } a \in A, \\
         0 &\text{sinon.}
         \end{array}
         \right.
-    \end{equation}
+    \end{equation*}
     Sa fonction de répartition est $F(x) = 1_{[a,+\infty[}(x)$.
 
  2. Les probabilités portées par $\N$.
 
     Comme $\N$ est une partie de $\R$, toute probabilité sur $\N$ peut être considérée comme une probabilité sur $\R$ qui ne "charge" que $\N$. Plus précisément, si $Q$ est une probabilité sur $\N$, on définit son "extension" $\P$ à $\R$ en posant $\P(A) = Q(A\cap \N)$. Si $q_n = Q(\{n\})$ pour $n \in \N$, la fonction de répartition $F$ de $\P$ est 
-    \begin{equation}
+    \begin{equation*}
     F(x) = \left\{ \begin{array}{ll}
     0  &\text{si } x <0, \\
     \sum_{i=0}^{\lfloor x \rfloor} q_i &\text{sinon,}
     \end{array}
     \right.
-    \end{equation}
+    \end{equation*}
     où $\lfloor \cdot \rfloor$ désigne la partie entière.
 
  3. Les probabilités discrètes.
@@ -380,11 +419,7 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
     $$F(x) = \sum_{\substack{i \in E \\ i \leq x}} q_i,$$
     avec la convention qu'une somme "vide" vaut 0. On retrouve bien l'exemple 2 si $E = \N$. On voit que $F$ est **purement discontinue** au sens où elle est complètement caractérisée par ses sauts $\triangle F(x) = F(x) - F(x^-)$ :
     $$F(x) = \sum_{\substack{y \in E \\ y\leq x}} q_i.$$
-    Notons aussi que l'ensemble $E$, bien qu'au plus dénombrable, peut tout à fait être partout dense dans $\R$, par exemple $E = \Q$ : si alors $q_i >0$ pour tout $i \in \Q$, la fonction $F$ est discontinue en tout rationnel.
-
-<!-- Nota SB: concept d'ensemble dense pas vu en Topo à ce stade, peut-être en 
-Calcul Diff 3, tard (et sans doute pas en CPGE) -->    
-
+    
 Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités avec densité.
 
 ## Densités de probabilités
@@ -408,7 +443,7 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
 
 <!-- le "f(x) +1" me perturbe un peu ... comme si ce choix particulier avait un
      rôle spécial ; bien sûr ça n'est pas le cas ! Est-ce qu'on peut éviter ce
-     "red herring" ? 
+     "red herring" ? j'ai ajouté un "par exemple" et j'y ferai gaffe en amphi !
   -->
 
  1. La fonction de répartition est entièrement déterminée par la probabilité $\P$. Il n'en est pas de même de la densité lorsqu'elle existe : si en effet on a $F(x) =\int_{-\infty}^x f(y)\, dy$ et si on pose $g(x) = f(x)$ si $x \notin E$ et $g(x) =f(x)+1$ (par exemple) si $x\in E$, où $E$ est un ensemble négligeable, alors $g$ est encore une densité de $\P$.
@@ -431,7 +466,7 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
             \frac{x-a}{b-a} & \text{si } a \leq x \leq b,\\
             1 & \text{si } x > b.
             \end{array}\right.$$
-    ![fonction de répartition](images/CdfUnif.tex)
+    ![fonction de répartition de la loi uniforme](images/CdfUnif.tex)
 
  2. La *loi exponentielle* de paramètre $\theta$, notée $\mathcal{E}_\theta$, est la loi de densité
     $$f(x) = \left\{\begin{array}{ll}
@@ -443,7 +478,7 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
             0 & \text{si } x < 0,\\
             1 - e^{-\theta x} & \text{sinon}.
             \end{array}\right.$$
-    ![fonction de répartition](images/CdfExp.tex)
+    ![fonction de répartition de la loi exponentielle](images/CdfExp.tex)
     Dans la pratique, on utilise fréquemment la loi exponentielle pour modéliser une durée de vie ou le temps d’attente avant l’arrivée d’un événement spécifique. Par exemple la durée de vie d’une bactérie, d'un composant électronique, la durée d’une conversation téléphonique ou le temps qui nous sépare du prochain tremblement de terre peuvent être considérées comme des variables aléatoires de loi exponentielle.
     
  3. La *loi normale* (ou de *Gauss* ou encore *gaussienne*) de paramètres $\mu$ et $\sigma^2$, notée $\mathcal{N}(\mu,\sigma^2)$, est la loi de densité
@@ -452,9 +487,9 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
 
     La distribution normale fut introduite par De Moivre en 1733. Celui-ci l’utilisa pour approximer une variable aléatoire binomiale quand le paramètre $n$ de celle-ci était grand. Ce résultat fut ensuite progressivement généralisé par Laplace et d’autres confrères pour devenir le théorème connu sous le nom de théorème de la limite centrale, qui sera démontré au Chapitre 4. Ce théorème est l’un des plus importants de la théorie des probabilités et prouve que de très nombreux phénomènes aléatoires suivent approximativement une loi normale. Nous pouvons citer à titre d’exemple la taille d’un individu choisi au hasard, les composantes de la vitesse d’une molécule de gaz ou l’erreur de mesure d’une quantité physique.
 
-    Il est difficile de faire des calculs avec la loi normale car sa densité définie en n’admet pas de primitive explicite. Aussi des tables numériques ont-elles été construites pour permettre aux utilisateurs d’obtenir très rapidement des valeurs numériques. Elles sont disponibles dans la plupart des logiciels et permettent entre autre de représenter sa fonction de répartition.
+    Il est difficile de faire des calculs avec la loi normale car sa densité n’admet pas de primitive explicite. Aussi des tables numériques ont-elles été construites pour permettre aux utilisateurs d’obtenir très rapidement des valeurs numériques. Elles sont disponibles dans la plupart des logiciels et permettent entre autre de représenter sa fonction de répartition.
     
-    ![fonction de répartition](images/CdfGauss.tex)
+    ![fonction de répartition de la loi normale](images/CdfGauss.tex)
 
 Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de probabilités avec densité.
 
@@ -462,6 +497,7 @@ Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de
 
 ## Propriétés élémentaires {.question #propelem}
 A partir de la [définition de la probabilité](#defproba) Démontrer les propriétés suivantes :
+
  1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
  2. $\forall\, A,B \in \A$, $A \subset B \Rightarrow \P(A) \leq \P(B)$.
  3. $\forall\, A,B \in \A$, $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
@@ -501,7 +537,16 @@ Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B
 
  4. Par récurrence. On a déjà vu que $\P(A\cup B) \leq \P(A) + \P(B)$. Notant $B = \bigcup_{i=1}^n A_i$, alors $\P(\bigcup_{i=1}^{n+1} A_i) \leq \P(B) + \P(A_{n+1})$, et l'hypothèse de récurrence nous indique $\P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i)$, d'où le résultat.
 
- 5. Par récurrence. On a déjà vu que $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
+ 5. Par récurrence. On a déjà vu que $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$. Notant $B = \bigcup_{i=1}^n A_i$, alors 
+    \begin{align*}
+        \P(\bigcup_{i=1}^{n+1} A_i) =& \P(B \cup A_{n+1}) \\
+                                    =& \P(B) + \P(A_{n+1}) - \P(B \cap A_{n+1}) \\
+                                    =& \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right) \\
+                                     &+ \P(A_{n+1})\\
+                                     &-\sum_{i=1}^n \P(A_i\cap A_{n+1}) + \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^{n+1} \P\left(\bigcap_{i=1}^n A_i\cap A_{n+1}\right)\\
+                                     =& \sum_{i=1}^{n+1} \P(A_i) - \sum_{1 \leq i < j \leq n +1 } \P(A_i \cap A_j) + \ldots + (-1)^{n+1} \P\left(\bigcap_{i=1}^{n+1} A_i\right).
+    \end{align*}
+
 
 ## Continuité monotone {.answer #answer-contmon}
 On définit une suite $(B_n)_{n\in \N}$ telle que $B_0 = A_0$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 1$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
