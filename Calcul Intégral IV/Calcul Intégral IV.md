@@ -739,6 +739,7 @@ car mesurable + inclus dans mesurable de mesure nulle est équivalent à
 exo caractérisation "nulle pp" avec une mesure qui ne soit pas Lebesgue
 (par exemple, la mesure de comptage). Fil rouge sur ce thème ? 
 (car fct mesurable, intégrale, ensembles négligeable, etc.? )
+Faire la même chose avec le dirac en 0 ?
 
 ### TODO
 Voir ce que Tao liste dans les pptés élémentaires (par exemple, 
@@ -1012,6 +1013,29 @@ si et seulement si $f \circ h$ est $\mu$-intégrable et qu'alors,
 $$
 \int_Y f \, (\mu \circ h^{-1})(dx) = \int_X (f \circ h) \mu(dx).
 $$
+
+Tribu engendrée
+--------------------------------------------------------------------------------
+
+Une collection $\mathcal{A}$ de sous-ensembles de $X$ est une 
+*algèbre (d'ensembles)* si elle contient $\varnothing$ et est stable
+par complémentation et par union finie.
+
+### Question 0 {.question #answer-te-0}
+Montrer que pour toute collection d'ensembles de $X$ il existe
+une plus petite algèbre qui la contient (au sens de l'inclusion) :
+c'est *l'algèbre engendrée* par cette collection.
+
+### Question 1  {.question #answer-te-1}
+Déterminer l'algèbre engendrée sur $\R$ par la collection
+$$
+\{\left[a, b\right[ \; | \; -\infty < a \leq b < +\infty\}
+$$
+
+### Question 2  {.question #answer-te-2}
+Déterminer la tribu engendrée (ou $\sigma$-algèbre) sur $\R$ par la même 
+collection.
+
 
 
 Complétion d'une mesure
@@ -1382,6 +1406,18 @@ $$
 référence Tao *sans* le MCT.
 -->
 
+
+
+TODO -- Tribu engendrée
+--------------------------------------------------------------------------------
+
+### TODO -- Question 0 {.answer #te-0}
+
+
+### TODO -- Question 1  {.answer #te-2}
+
+
+### TODO -- Question 2  {.answer #te-2}
 
 Complétion d'une mesure
 --------------------------------------------------------------------------------
