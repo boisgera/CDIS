@@ -698,17 +698,51 @@ valeurs infinies.)
 Propriétés de l'intégrale
 ================================================================================
 
+### TODO
+réfléchir au découpage intégrale non-signée / signée ...
+J'ai bien envie de mettre l'accent sur le non-signé en expliquant
+comment tjs s'y ramener. Dans le non signé, il faut expliquer le cas des
+intégrales indéfinies ($\infty - \infty$) et faire l'inégalité triangulaire. 
+
 ### TODO -- Linéarité {.theorem #lin}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
+L'intégrale par rapport à $\mu$ de fonctions positives (étendues) est
+homogène et additive :
+si $\lambda \in [0, +\infty]$ et $f, g: X \to [0, +\infty]$ sont deux
+applications $\mu$-mesurables,  
+$$
+\int \lambda f \mu = \lambda \int f\mu
+\; \mbox{ et } \;
+\int (f + g) \mu = \int f + \int g.
+$$
 
 ### TODO -- Démonstration {.proof}
 
-### TODO -- Positivité {.theorem #pos}
+### TODO -- Positivité et nullité {.theorem #pos}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré 
+et $f: X \to [0, +\infty]$ une fonction mesurable.
+L'intégrale de $f$ par rapport à $\mu$ est positive ; 
+elle est nulle si et seulement si
+$f$ est nulle $\mu$-presque partout :
+$$
+\int f\mu = 0 \; \Leftrightarrow \; \mu(\{x \in X \, | \, f(x) \neq 0\}) = 0.
+$$
+
+### TODO : 
+rk expliquer ici shift justifié entre négligeable et ce qui est exploité,
+car mesurable + inclus dans mesurable de mesure nulle est équivalent à
+être de mesure nulle.
 
 ### TODO -- Démonstration {.proof}
+
+### TODO 
+exo caractérisation "nulle pp" avec une mesure qui ne soit pas Lebesgue
+(par exemple, la mesure de comptage). Fil rouge sur ce thème ? 
+(car fct mesurable, intégrale, ensembles négligeable, etc.? )
 
 ### TODO
 Voir ce que Tao liste dans les pptés élémentaires (par exemple, 
-$\int f \mu = 0$ et $f\geq 0$ implique $f =0$ $\mu$-pp)
+$\int f \mu = 0$ et $f\geq 0$ implique $f =0$ $\mu$-pp) p. 100
 
 ### Théorème de convergence monotone {.theorem #TCM}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
