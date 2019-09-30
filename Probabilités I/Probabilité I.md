@@ -353,13 +353,13 @@ F(x) = \P(\left]-\infty, x\right]),\ x \in \R.
 \end{equation*}
 
 ### Théorème {.theorem}
-La fonction de répartition $F$ caractérise la probabilité sur ($\R$,\A).
+La fonction de répartition $F$ caractérise la probabilité sur ($\R,\A$).
 
 ### {.anonymous}
 Nous démontrerons ce résultat ultérieurement.
 
 ### Théorème {.theorem #theofdr}
-Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ sur ($\R,\A)$ si et seulement si elle vérifie les trois conditions suivantes :
+Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ sur $(\R,\A)$ si et seulement si elle vérifie les trois conditions suivantes :
 
  1. elle est croissante,
  2. elle est continue à droite,
@@ -412,6 +412,10 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
     \right.
     \end{equation*}
     où $\lfloor \cdot \rfloor$ désigne la partie entière.
+    A titre d'exemple, on représente ci-dessous les fonctions de répartitions de la loi binomiale et de la loi de Poisson.
+        ![fonction de répartition de la loi binomiale](images/CdfBinom.tex)
+        ![fonction de répartition de la loi de Poisson](images/CdfPoisson.tex)
+
 
  3. Les probabilités discrètes.
 
