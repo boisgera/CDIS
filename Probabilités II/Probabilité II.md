@@ -71,7 +71,7 @@ $\P_X$ sera plus facile à caractériser que $\P$ puisque $E$ est un ensemble co
 La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Cela nous conduit à poser
 
 ### Définition {.definition #defvar}
-Soit l'espace d'état $\Omega$ munit de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B$ dans $\L_\R$.
+Soit l'espace d'état $\Omega$ munit de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B$ mesurable de $\R$.
 
 On a alors le résultat très utile suivant que nous admettrons dans un premier temps.
 
