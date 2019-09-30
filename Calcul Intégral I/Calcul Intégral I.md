@@ -1333,7 +1333,7 @@ $$
 La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 
 
-Intégration sur des intervalle non-bornés
+Intégration sur des intervalles non-bornés
 ================================================================================
 
 ### 
