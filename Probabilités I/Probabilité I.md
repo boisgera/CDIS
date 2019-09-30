@@ -347,19 +347,19 @@ Le cas général fait l'objet de la théorie de la mesure et sera développé ul
 Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le cas où $\Omega = \R$ et où la tribu $\A$ est la tribu formée des ensembles mesurables.
 
 ### Définition -- fonction de répartition {.definition #deffdr}
-La *fonction de répartition* de la probabilité $\P$ sur $\R$ est la fonction
+La *fonction de répartition* de la probabilité $\P$ sur $(\R,\A)$ est la fonction
 \begin{equation*}
 F(x) = \P(\left]-\infty, x\right]),\ x \in \R.
 \end{equation*}
 
 ### Théorème {.theorem}
-La fonction de répartition $F$ caractérise la probabilité.
+La fonction de répartition $F$ caractérise la probabilité sur ($\R,\A$).
 
 ### {.anonymous}
 Nous démontrerons ce résultat ultérieurement.
 
 ### Théorème {.theorem #theofdr}
-Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ sur $\R$ muni de la tribu des ensembles mesurables si et seulement si elle vérifie les trois conditions suivantes :
+Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ sur $(\R,\A)$ si et seulement si elle vérifie les trois conditions suivantes :
 
  1. elle est croissante,
  2. elle est continue à droite,
@@ -412,6 +412,10 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
     \right.
     \end{equation*}
     où $\lfloor \cdot \rfloor$ désigne la partie entière.
+    A titre d'exemple, on représente ci-dessous les fonctions de répartitions de la loi binomiale et de la loi de Poisson.
+        ![fonction de répartition de la loi binomiale](images/CdfBinom.tex)
+        ![fonction de répartition de la loi de Poisson](images/CdfPoisson.tex)
+
 
  3. Les probabilités discrètes.
 
@@ -425,7 +429,7 @@ Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe
 ## Densités de probabilités
 
 ### Définition -- densité de probabilité {.definition}
-Une fonction réelle $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement *densité*) si elle est positive, intégrable et vérifie 
+Une fonction réelle $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement une *densité*) si elle est positive, intégrable et vérifie 
 $$\int_\R f(x)\, dx = 1.$$ 
 
 Si $f$ est une densité, la fonction 
@@ -454,12 +458,13 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
 
 ### Exemples de lois à densités {.example}
 
- 1. La *loi uniforme* sur $[a,b]$, avec $a,b \in \R$ tels que $ a < b $, notée $\mathcal{U}_{[a,b]}$, est la probabilité $\P$ qui admet la densité
+ 1. La *loi uniforme* sur $[a,b]$, avec $a,b \in \R$ tels que $a < b$, notée $\mathcal{U}_{[a,b]}$, est la probabilité $\P$ qui admet la densité
     $$f(x) = \left\{\begin{array}{ll}
             \frac{1}{b-a} & \text{si } a \leq x \leq b,\\
             0 & \text{sinon}.
             \end{array}\right.$$
-    En vertu de la remarque 1. ci-dessus, on aurait pu choisir $f(a) = f(b) = 0$. Au vu de l'interprétation 2. ci-dessus, le fait que $f$ soit constante sur $[a, b]$ exprime que si on choisit un point selon la probabilité uniforme, nous avons “autant de chances” de tomber au voisinage de chaque point de l’intervalle $[a, b]$. Cela explique le nom “uniforme”. On remarque aussi que $\P(\{x\}) = 0$ pour tout $x$ (comme pour toutes les probabilités à densité). Nous avons donc une probabilité nulle de tomber exactement en un point $x$ fixé à l’avance.
+    ![Densité de probabilité de la loi uniforme](images/PdfUnif.tex)
+    En vertu de la remarque 1. ci-dessus, on aurait pu choisir $f(a) = f(b) = 0$. Au vu de l'interprétation 2. ci-dessus, le fait que $f$ soit constante sur $[a, b]$ exprime que si on choisit un point selon la probabilité uniforme, on a “autant de chances” de tomber au voisinage de chaque point de l’intervalle $[a, b]$. Cela explique le nom “uniforme”. On remarque aussi que $\P(\{x\}) = 0$ pour tout $x$ (comme pour toutes les probabilités à densité). On a donc une probabilité nulle de tomber exactement en un point $x$ fixé à l’avance.
     On vérifie aisément que sa fonction de répartition est
     $$F(x) = \left\{\begin{array}{ll}
             0 & \text{si } x < a,\\
@@ -473,6 +478,7 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
             0 & \text{si } x < 0,\\
             \theta e^{-\theta x} & \text{sinon}.
             \end{array}\right.$$
+    ![Densité de probabilité de la loi exponentielle](images/PdfExp.tex)
     et de fonction de répartition 
     $$F(x) = \left\{\begin{array}{ll}
             0 & \text{si } x < 0,\\
@@ -482,10 +488,12 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
     Dans la pratique, on utilise fréquemment la loi exponentielle pour modéliser une durée de vie ou le temps d’attente avant l’arrivée d’un événement spécifique. Par exemple la durée de vie d’une bactérie, d'un composant électronique, la durée d’une conversation téléphonique ou le temps qui nous sépare du prochain tremblement de terre peuvent être considérées comme des variables aléatoires de loi exponentielle.
     
  3. La *loi normale* (ou de *Gauss* ou encore *gaussienne*) de paramètres $\mu$ et $\sigma^2$, notée $\mathcal{N}(\mu,\sigma^2)$, est la loi de densité
-    $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$$
+    
+    $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
+    ![Densité de probabilité de la loi normale](images/PdfGauss.tex)
     Lorsque $\mu = 0$ et $\sigma^2$, on l'appelle la loi normale *centrée réduite* pour des raisons que nous expliciterons au prochain chapitre.
 
-    La distribution normale fut introduite par De Moivre en 1733. Celui-ci l’utilisa pour approximer une variable aléatoire binomiale quand le paramètre $n$ de celle-ci était grand. Ce résultat fut ensuite progressivement généralisé par Laplace et d’autres confrères pour devenir le théorème connu sous le nom de théorème de la limite centrale, qui sera démontré au Chapitre 4. Ce théorème est l’un des plus importants de la théorie des probabilités et prouve que de très nombreux phénomènes aléatoires suivent approximativement une loi normale. Nous pouvons citer à titre d’exemple la taille d’un individu choisi au hasard, les composantes de la vitesse d’une molécule de gaz ou l’erreur de mesure d’une quantité physique.
+    La distribution normale fut introduite par De Moivre en 1733. Celui-ci l’utilisa pour approximer une variable aléatoire binomiale quand le paramètre $n$ de celle-ci était grand. Ce résultat fut ensuite progressivement généralisé par Laplace et d’autres confrères pour devenir le théorème connu sous le nom de théorème de la limite centrale, qui sera démontré au Chapitre 4. Ce théorème est l’un des plus importants de la théorie des probabilités et prouve que de très nombreux phénomènes aléatoires suivent approximativement une loi normale. On peut citer à titre d’exemple la taille d’un individu choisi au hasard, les composantes de la vitesse d’une molécule de gaz ou l’erreur de mesure d’une quantité physique.
 
     Il est difficile de faire des calculs avec la loi normale car sa densité n’admet pas de primitive explicite. Aussi des tables numériques ont-elles été construites pour permettre aux utilisateurs d’obtenir très rapidement des valeurs numériques. Elles sont disponibles dans la plupart des logiciels et permettent entre autre de représenter sa fonction de répartition.
     
