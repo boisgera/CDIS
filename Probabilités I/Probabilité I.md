@@ -255,7 +255,7 @@ pour $\P(\cdot|B)$ proviennent des mêmes propriétés pour $\P$ et des remarque
 $\Omega \cap B = B$, et $(\bigcup_{n\in\N} A_n ) \cap B = \bigcup_{n\in\N} (A_n \cap B)$. De plus, si $A$ et $C$ sont disjoints, il en est
 de même de $A \cap B$ et $C \cap B$. L’assertion 2 est évidente, d'après la définition de la [Probabilité conditionnelle](#defprobacond).
 
-### Formule des probabilités totales {.proposition}
+### Formule des probabilités totales {.proposition #formprobatot}
 
 Soit $(B_n)_{n\in\N}$ une partition finie ou dénombrable d’événements de $\Omega$ (i.e. telle que $\bigcup_{n\in\N} B_n = \Omega$ et les $B_n$ sont deux-à-deux disjoints), telle que $\P(B_n ) > 0$ pour tout $n\in\N$. Pour tout $A \in \A$, on a alors
 \begin{equation*}
@@ -272,10 +272,13 @@ Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a
 \end{equation*}
 
 ### Démonstration {.proof}
-Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales]. La définition de la [probabilité conditionnelle] implique :
+Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales](#formprobatot). La définition de la [probabilité conditionnelle](#defprobacond) implique :
 \begin{equation*}
 \P(B_i | A) = \dfrac{\P(A \cap B_i)}{\P(A)} = \dfrac{\P(A | B_i) \P(B_i)}{\P(A)}.
 \end{equation*}
+
+### Remarque {.remark}
+La formule de Bayes, simple conséquence des axiomes et de la définition de la probabilité conditionnelle, tient une place à part dans le calcul des probabilités en raison de son importance pratique considérable et des controverses auxquelles son application pratique a donné lieu : elle est à la base de toute une branche de la statistique appelée statistique bayésienne.
 
 ### Exemple {.example}
 Un individu est tiré au hasard dans une population où l’on trouve une proportion $10^{-4}$ de séropositifs. On lui fait passer un test de détection de la
@@ -289,8 +292,6 @@ On considère les événements $A$ “l’individu est séropositif”, et $B$ �
         &\approx 0,09.
 \end{align*}
 On remarque que contrairement à l’intuition, cette probabilité est petite.
-
-### Remarque : probabilités objectives/subjectives
 
 ## Indépendance des événements 
 La notion d’indépendance est absolument fondamentale en probabilités et nous verrons
@@ -337,6 +338,13 @@ Si les événements $A$ et $B$ sont indépendants, alors il en est de même des 
  Alors 
     $$\widetilde{\P}(A \cap B) = \frac{1}{102} \neq \widetilde{\P}(A)\widetilde{\P}(B) = \frac{2}{51}\frac{13}{102}$$
  Les événements $A$ et $B$ ne sont pas indépendants sous la probabilité $\widetilde{\P}$.
+
+### Remarque : réflexions sur le concept de probabilité 
+
+La théorie mathématiques des probabilités ne dit pas quelle loi de probabilité choisir sur un espace $(\Omega,\A)$ parmi toutes les lois possibles (elles sont généralement nombreuses...). Ce problème qui concerne ceux qui veulent appliquer le calcul des probabilités, renvoie à la nature "physique" du concept de probabilité qui formalise et quantifie le sentiment d'incertitude vis-à-vis d'un événement. Ce problème d'ordre conceptuel oppose deux écoles de pensée, la conception objectiviste et la conception subjectiviste.
+
+
+
 
 # Probabilité sur $\R$
 
@@ -529,10 +537,6 @@ Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ 
 
 Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
 
-## Une définition alternative de la probabilité {.answer #answer-altdef}
-
-Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B_n = \cup_{p \leq n} A_n$ et $B = \cup_n A_n$. Comme $\P$ est additive, on a $\P(B_n) = \sum_{p \leq n} \P(A_n)$ 
-
 # Solutions
 
 ## Propriétés élémentaires {.answer #answer-propelem}
@@ -559,3 +563,9 @@ Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B
 ## Continuité monotone {.answer #answer-contmon}
 On définit une suite $(B_n)_{n\in \N}$ telle que $B_0 = A_0$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 1$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
 $$ \P\left(\bigcup_{n\in\N} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=0}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
+
+## Une définition alternative de la probabilité {.answer #answer-altdef}
+
+Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B_n = \cup_{p \leq n} A_n$ et $B = \cup_n A_n$. Comme $\P$ est additive, on a $\P(B_n) = \sum_{p \leq n} \P(A_n)$ qui croît vers $\sum_n \P(A_n)$ et aussi vers $\P(B)$ d'après le point 3.
+
+En considérant les résultats de ces deux exercices, on obtient une définition alternative de la probabilité en substituant la [continuité monotone](#contmon) et l'additivité à la propriété de [$\sigma$-additivité](#defproba).

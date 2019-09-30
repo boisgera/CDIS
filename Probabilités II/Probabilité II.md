@@ -13,20 +13,15 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-
-
-**TODO : donner des exemples d'analogie avec le cas discret**
-
 # Variables aléatoires réelles
 
-En théorie moderne des probabilités, on préfère prendre un point de vue fonctionnel plutôt qu’ensembliste, et utiliser les variables aléatoires plutôt que les événements. Ce point de vue sera développé dans la suite du cours. Nous en donnons ici les idées de base.
-
-Une variable aléatoire est une grandeur qui dépend du résultat de l’expérience. Par exemple,
+En théorie moderne des probabilités, on préfère prendre un point de vue fonctionnel plutôt qu’ensembliste, et utiliser les variables aléatoires plutôt que les événements. Une variable aléatoire est une grandeur qui dépend du résultat de l’expérience. Par exemple,
 
  * le nombre de 6 obtenus dans un lancer de 3 dés,
  * le nombre d’appels dans un central téléphonique pendant une heure,
  * la distance du point d’atteinte d’une flèche au centre de la cible,
  * la valeur maximale d’un prix d’actif sur un intervalle de temps donné,
+ 
 sont des variables aléatoires.
 
 La définition formelle d'une variable aléatoire fait intervenir des éléments de la théorie de la mesure. On s'interessera dans un premier temps au cas d'une variable réelle dont on donne une définition partielle : 
@@ -68,7 +63,7 @@ Les 3 propriétés de la [définition d'une tribu](#deftribu) pour $\E$ ainsi qu
 
 $\P_X$ sera plus facile à caractériser que $\P$ puisque $E$ est un ensemble connu (on pourra en particulier utiliser ses propriétés topologiques) alors que $\Omega$ est un espace abstrait. Les variables que nous rencontrerons dans ce cours seront soit à valeurs dans un ensemble dénombrable, soit à valeurs dans $\R$ ou dans $\R^d$. Nous les appellerons respectivement des variables aléatoires discrètes, réelles ou des vecteurs aléatoires. Leurs lois seront alors des probabilités respectivement sur un ensemble dénombrable, sur $\R$ ou sur $\R^d$. Les probabilités sur un espace fini ou dénombrable sont considérées connues. 
 
-La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Cela nous conduit à poser
+La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Cela nous conduit à poser :
 
 ### Définition {.definition #defvar}
 Soit l'espace d'état $\Omega$ munit de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B$ mesurable de $\R$.
@@ -123,7 +118,12 @@ La densité de probabilité d'une variable aléatoire va nous permettre de calcu
 La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si $\int_\R |x|f(x) dx < +\infty$, autrement dit si le produit $x f(x)$ est absolument intégrable. On définit alors son *espérance* par 
         $$\Esp(X) = \int_\R x f(x)dx$$
 
-**note : pour introduire proprement l'espérance d'une variable aléatoire réelle, on a besoin de l'intégrale de Lebesgue -> CI 5**
+<!-- **note : pour introduire proprement l'espérance d'une variable aléatoire réelle, on a besoin de l'intégrale de Lebesgue -> CI 5** -->
+
+### Remarque {.remark} 
+$\Esp(X)$ est un nombre réel qui donne une valeur moyenne résumant la variable aléatoire $X$.
+
+L’espérance mathématique d’une variable aléatoire est un concept fondamental de la théorie des probabilités. La dénomination d’espérance pour cette quantité fait référence aux problèmes de jeux et d’espérance de gain. Cette terminologie imagée a été introduite par Pascal.
 
 On note $\L^1$ l'ensemble de toutes les variables réelles $X$ à densité intégrables. Les propriétés suivantes découlent directement des propriétés de l'intégrale.
 
@@ -134,9 +134,12 @@ On note $\L^1$ l'ensemble de toutes les variables réelles $X$ à densité inté
  * Si $X \geq 0$ et $X \in \L^1$, alors $\Esp(x) \geq 0.$
  * Si $X,Y \in \L^1$ sont telles que $X \leq Y$, alors
         $$ \Esp(X) \leq \Esp(Y).$$
+ * L'espérance d'une variable presque-sûrement constante est égale à cette constante :
+ $$ \text{Si } \P(X(\omega) = a ) = 1, \text{ alors } \Esp(X) = a.$$
  * Si $\exists b \in \R$ tel que $|X| \leq b$, alors $X \in \L^1$ et $\Esp(X) \leq b$.
 
-### **TODO** Remarque : analogie avec le cas discret 
+### Rappel : cas discret {.remark}
+Dans le cas d'une variable aléatoire discrète $Y$ à valeurs dans $\N$, son espérance est définie par la quantité $\Esp(Y) = \sum_{i\in\N} i\P(Y=i)$, pourvu que celle-ci soit finie. On voit immédiatement que les propriétés ci-dessus sont également vérifiées.
 
 Outre l'espace $\L^1$, nous pouvons définir l'espace $\L^2$ des variables aléatoires réelles dont le carré $X^2$ est dans $\L^1$.
 
@@ -153,7 +156,7 @@ $$|\Esp(X)| \leq \Esp(|X|) \leq \sqrt{\Esp(X^2)}$$
 ### Démonstration {.proof}
 Soient $X$ et $Y$ deux variables aléatoires réelles de $\L^2$ et $a \in \R$. Comme $(aX+ Y)^2 \leq 2 a^2 X^2 + 2 Y^2$, alors $aX + Y \in \L^2$. Ainsi, $\L^2$ est un espace vectoriel.
 
-L'inclusion $\L^2 \in \L^1$ découle de $|X| \leq 1 + |X^2|$ et de la [proposition précédente](#propl1).
+L'inclusion $\L^2 \subset \L^1$ découle de $|X| \leq 1 + |X^2|$ et de la [proposition précédente](#propl1).
 
 La première inégalité a déjà été vue [ci-dessus](#propl1). Pour la seconde, nous pouvons nous limiter au cas où $X$ est positive. Soit alors $a = \Esp(X)$ et $Y = X-a$. Par linéarité, on a 
         $$ \Esp(Y^2) = \Esp(X^2) - 2a \Esp(X) + a^2 = \Esp(X^2)-a^2.$$
@@ -302,7 +305,7 @@ $$f_Z(x,y) = f_X(x)f_Y(y).$$
 ### Démonstration {.proof}
 S'il y a indépendance, la [définition](#defvai) implique 
 $$P(X\leq x, Y\leq y) = P(X\leq x) \P(Y\leq y) = \int_{-\infty}^x f_X(u) du \int_{-\infty}^y f_Y(v) dv$$
-ce qui montre que $\P_Z$ vérifie la [définition](#defvect) avec $f_Z=f_X f_Y$.
+ce qui montre que $\P_Z$ vérifie la [définition d'un vecteur aléatoire à densité](#defvect) avec $f_Z=f_X f_Y$.
 
 Inversement, si $f_Z=f_X f_Y$, on a pour tous $A$, $B$ mesurables dans $\R$
 $$\P(X\in A, Y\in B) = \int_A \int_B f_X(x) f_Y(y) dxdy = \P(X \in A)\P(Y \in B)$$ 
@@ -318,14 +321,14 @@ $$ \Esp(g(X)h(Y)) = \Esp(g(X))\Esp(h(Y))$$
 ### Démonstration {.proof}
 La première assertion est évidente par définition de l'indépendance. Par ailleurs, si $g(X)$ et $h(Y)$ sont intégrables, en notant $f_{(X,Y)}$ la densité du couple $(X,Y)$, et en utilisant le théorème de Fubini, on a
 \begin{align*}
-\Esp(g(X)h(Y))  & = \int_\R^{m+n} g(x)h(y) f_{(X,Y)}(x,y) dx dy \\
-                & = \int_\R^m \int_{\R^n} g(x)h(y)f_X(x) f_Y(y) dx dy \\
+\Esp(g(X)h(Y))  & = \int_{\R^{m+n}} g(x)h(y) f_{(X,Y)}(x,y) dx dy \\
+                & = \int_{\R^m} \int_{\R^n} g(x)h(y)f_X(x) f_Y(y) dx dy \\
                 & = \left(\int_{\R^m}  g(x) f_X(x) dx \right) \left(\int_{\R^n} h(y) f_Y(y) dy\right)\\
                 & = \Esp(g(X))\Esp(h(Y))
 \end{align*}
 
 ### Remarque {.remark}
-Ce résultat est encore valable si $X$ et $Y$ n'admettent pas de densité mais nous ne disposons pas encore des outils de théorie de la mesure nécessaires àsa démonstration.
+Ce résultat est encore valable si $X$ et $Y$ n'admettent pas de densité mais nous ne disposons pas encore des outils de théorie de la mesure nécessaires à sa démonstration.
 
 On déduit de ce résultat et de la [définition de la covariance](#defcov) que :
 
