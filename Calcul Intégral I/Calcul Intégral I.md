@@ -766,12 +766,20 @@ $$
 \; \mbox{ soit } \;
 y \leq \left(\sqrt{t} +  \frac{\varepsilon}{2} t \right)^2.
 $$
-Par une méthode similaire, on pourra montrer que la seconde inégalité cherchée
-est satisfaite si
+Par une méthode en tout point identique, on montre que la seconde inégalité
+-- impliquant $x$ et $t$ -- est satisfaite si
+$$
+\sqrt{t} \leq \sqrt{x} + \frac{\varepsilon}{2} x,
+$$
+soit puisque $x \leq t$, si
+$$
+\sqrt{x} \geq \sqrt{t} - \frac{\varepsilon}{2} x \geq \sqrt{t} - \frac{\varepsilon}{2} t, 
+$$
+ce qui est le cas si
 $$
 x \geq \left(\sqrt{t} -  \frac{\varepsilon}{2} t \right)^2.
 $$
-La gauge $\gamma$ définie par
+La jauge $\gamma$ définie par
 $$
 \gamma(t) 
 = 
@@ -827,8 +835,10 @@ On remarquera que cette jauge $\gamma$ que nous avons construit
 -- et qui est en fait définie sur $\left]0, 1\right]$ --
 ne dépend pas de la valeur de $a$ dans $\left]0, 1\right]$.
 De plus, quand $\varepsilon$ est suffisamment petit -- 
-par exemple $\varepsilon \leq 1$ -- on constate
-que pour tout $t \in \left]0, 1\right]$, $0 \not \in \gamma(t)$.
+par exemple $\varepsilon/2 < 1$ -- on constate
+que pour tout $t \in \left]0, 1\right]$,
+comme $\sqrt{t} -  ({\varepsilon}/{2}) t > 0$, on a
+$0 \not \in \gamma(t)$.
 
 ### Intégrale sur $[0,1]$
 
