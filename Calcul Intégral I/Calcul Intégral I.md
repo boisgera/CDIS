@@ -1099,7 +1099,7 @@ $$
 \, \mbox{ et } \, 
 \left| S(f, \mathcal{D}_2) - \int_b^c f(t) \, dt\right| \leq \varepsilon/2.
 $$
-Définissons la fonction $\gamma: [a, b] \to \R$ par:
+Définissons la fonction $\gamma: [a, b] \to \mathcal{P}(\R)$ par:
 $$
 \gamma(x) = 
 \left| 
