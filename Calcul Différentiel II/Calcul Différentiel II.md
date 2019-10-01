@@ -1629,7 +1629,7 @@ Une fois $\theta_2$ sélectionné (modulo $2\pi$) pour atteindre la valeur
 $r$, il est évident par rotation que l'on peut trouver un angle $\theta_1$
 tel que $f(\theta_1, \theta_2) = (x, y)$. Pour des raisons de symétrie,
 si $\theta$ est un angle de $(x, y)$ et $(\theta_1,\theta_2)$ convient, alors
-$(2\theta - \theta_1, -\theta_2)$ également. Ces deux paires sont différentes si
+$(2\theta - \theta_1, -\theta_2)$ également. Ces deux paires sont différentes
 si le bras manipulateur n'est ni totalement déplié, ni totalement plié.
 
 Pour résumer : les points $(x, y)$ tels que $r < |\ell_1 - \ell_2|$ ou
@@ -1715,7 +1715,7 @@ $$
 \dot{y}
 \end{array}
 \right]
-= J_f(q_0) \times 
+= J_f(\theta_1,\theta_2) \times 
 \left[
 \begin{array}{c}
 \dot{\theta}_1\\
@@ -1729,7 +1729,7 @@ $$
 \dot{\theta}_2
 \end{array}
 \right]
-= J_f(q_0)^{-1} \times 
+= J_f(\theta_1,\theta_2)^{-1} \times 
 \left[
 \begin{array}{c}
 \dot{x}\\
