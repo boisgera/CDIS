@@ -613,6 +613,10 @@ $$
 qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
 (dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
 
+### TODO
+Voir s'il faut autoriser les fonction simples à prendre la valeur $+\infty$ ...
+et se tenir ensuite à la même convention partout.
+
 ### Fonction étagée {.definition}
 On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
 l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
@@ -704,19 +708,70 @@ J'ai bien envie de mettre l'accent sur le non-signé en expliquant
 comment tjs s'y ramener. Dans le non signé, il faut expliquer le cas des
 intégrales indéfinies ($\infty - \infty$) et faire l'inégalité triangulaire. 
 
-### TODO -- Linéarité {.theorem #lin}
+### Linéarité {.theorem #lin}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
 L'intégrale par rapport à $\mu$ de fonctions positives (étendues) est
 homogène et additive :
-si $\lambda \in [0, +\infty]$ et $f, g: X \to [0, +\infty]$ sont deux
+si $\lambda \in \left[0, +\infty\right[$ et $f, g: X \to [0, +\infty]$ sont deux
 applications $\mu$-mesurables,  
 $$
-\int \lambda f \mu = \lambda \int f\mu
+\int (\lambda f) \mu = \lambda \int f\mu
 \; \mbox{ et } \;
-\int (f + g) \mu = \int f + \int g.
+\int (f + g) \mu = \int f \mu + \int g \mu.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+La preuve de l'homogénéité est immédiate si $\lambda =0$ ; 
+dans le cas contraire, l'application
+$$
+h \in \mathcal{F}(f) \mapsto \lambda h \in \mathcal{F}(\lambda f)
+$$
+qui associe à une application $h$ mesurable, étagée et inférieure 
+à $f$ l'application $\lambda h$ qui est mesurable, étagée et 
+inférieure à $\lambda f$ est bijective.
+Par conséquent,
+$$
+\begin{split}
+\int (\lambda f) \mu &=
+\sup_{h \in \mathcal{F}(\lambda f)} \sum_{y \in h(X)} y \times \mu(g^{-1}(y)) \\
+&=
+\sup_{k \in \mathcal{F}(f)} \sum_{y \in (\lambda k)(X)} y \times \mu((\lambda k)^{-1}(y)) \\
+&=
+\sup_{k \in \mathcal{F}(f)} \sum_{z \in k(X)} (\lambda z) \times \mu((\lambda k)^{-1}(\lambda z)) \\
+&=
+\lambda \sup_{k \in \mathcal{F}(f)} \sum_{z \in k(X)} z \times \mu(k^{-1}(z)) \\
+&= \lambda \int f \mu.\\
+\end{split}
+$$
+
+L'application
+$$
+(h, k) \in \mathcal{F}(f) \times \mathcal{F}(g) \mapsto h+k \in \mathcal{F}(f + g)
+$$
+est également bien définie mais il n'est pas immédiat qu'elle soit bijective.
+Mais [la définition alternative à l'intégrale d'une fonction positive](#ifpII)
+nous fournit des suites croissantes de fonction positives, mesurables et étagées
+$f_k$ et $g_k$, convergeant respectivement vers $f$ et $g$. Pour ces suites,
+$$
+\lim_{k \to + \infty} \int f_k \mu = \int f\mu
+\; \mbox{ et } \;
+\lim_{k \to + \infty} \int g_k \mu = \int g\mu.
+$$
+La suite $h_k = f_k + g_k$ est croissante, composée de fonctions positives
+étagées et mesurable ; elle converge simplement vers $f+g$, par conséquent,
+par [le théorème de convergence monotone](#TCM), on a
+$$
+\int (f+g) \mu = \lim_{k \to +\infty} \int (f_k + g_k) \mu. 
+$$
+On pourra aisément se convaincre que l'intégrale limitée aux fonctions
+positives étagées et mesurable est additive ; par conséquent,
+$$
+\begin{split}
+\int (f+g) \mu &= \lim_{k \to +\infty} \int f_k \mu + \int g_k \mu \\
+&= \lim_{k \to +\infty} \int f_k \mu + \lim_{k \to +\infty} \int g_k \mu \\
+&= \int f\mu + \int g \mu. \\
+\end{split}
+$$
 
 ### TODO -- Positivité et nullité {.theorem #pos}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré 
@@ -811,7 +866,7 @@ $$
 [Le théorème de convergence monotone](#TCM) fournit une alternative concrète
 à la construction initiale de l'intégrale.
 
-### Intégrale d'une fonction positive II {.theorem}
+### Intégrale d'une fonction positive II {.theorem #ifpII}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto [0, +\infty]$ une fonction mesurable.
 Il existe une suite croissante de fonctions $f_k$ étagées positives et 
