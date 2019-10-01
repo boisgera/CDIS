@@ -10,16 +10,8 @@
 
 %----- FIGURES
 %---------------------------------------------------------------------------%
-\usepackage{color}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.13}
-
-%---------------------------------------------------------------------------%
-%                                MINES COLORS                               %
-%---------------------------------------------------------------------------%
-
-%---------- OFFICIAL COLORS
-\definecolor{MPTblue}{RGB}{0,94,158}
 
 \begin{document}
 
@@ -37,11 +29,11 @@ xmax = 15,
 ylabel near ticks,
 domain = -10:15
 ]
-\addplot[black, very thick, samples = 200] {(1/sqrt(2*pi))*exp(-x^2/2)};
+\addplot[black, samples = 200] {(1/sqrt(2*pi))*exp(-x^2/2)};
 %
-\addplot[black!50, very thick, samples = 200] {(1/sqrt(2*pi*25))*exp(-x^2/10)};
+\addplot[black!60, thick, samples = 200] {(1/sqrt(2*pi*25))*exp(-x^2/10)};
 %
-\addplot[MPTblue, very thick, samples = 200] {(1/sqrt(2*pi))*exp(-(x-5)^2/2)};
+\addplot[black!40, ultra thick, samples = 200] {(1/sqrt(2*pi))*exp(-(x-5)^2/2)};
 %
 \legend{{$\mu=0 \mid \sigma^2 = 1$}, {$\mu=0 \mid \sigma^2 = 25$}, {$\mu=5 \mid \sigma^2 = 1$}}
 \end{axis}

@@ -10,16 +10,8 @@
 
 %----- FIGURES
 %---------------------------------------------------------------------------%
-\usepackage{color}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.13}
-
-%---------------------------------------------------------------------------%
-%                                MINES COLORS                               %
-%---------------------------------------------------------------------------%
-
-%---------- OFFICIAL COLORS
-\definecolor{MPTblue}{RGB}{0,94,158}
 
 \begin{document}
 
@@ -39,17 +31,17 @@ yticklabels = {$0$, $\dfrac{1}{4}$, $\dfrac{1}{2}$, $\dfrac{3}{4}$, $1$},
 ylabel near ticks,
 domain = -21:21
 ]
-\addplot[black, very thick, samples = 2, domain = -10:-3, shorten >=-0.15ex] {(x+10)/7};
-\addplot[black, very thick, samples = 2, domain = -21:-10, shorten >=-0.15ex, forget plot] {0};
-\addplot[black, very thick, samples = 2, domain = -3:21, forget plot] {1};
+\addplot[black, samples = 2, domain = -10:-3, shorten >=-0.05ex] {(x+10)/7};
+\addplot[black, samples = 2, domain = -21:-10, shorten >=-0.05ex, forget plot] {0};
+\addplot[black, samples = 2, domain = -3:21, forget plot] {1};
 %
-\addplot[black!50, very thick, samples = 2, domain = 0:1, shorten >=-0.15ex] {x};
-\addplot[black!50, very thick, samples = 2, domain = -21:0, shorten >=-0.15ex, forget plot] {0};
-\addplot[black!50, very thick, samples = 2, domain = 1:21, forget plot] {1};
+\addplot[black!60, thick, samples = 2, domain = 0:1, shorten >=-0.1ex] {x};
+\addplot[black!60, thick, samples = 2, domain = -21:0, shorten >=-0.1ex, forget plot] {0};
+\addplot[black!60, thick, samples = 2, domain = 1:21, forget plot] {1};
 %
-\addplot[MPTblue, very thick, samples = 2, domain = -5:5, shorten >=-0.15ex] {(x+5)/10};
-\addplot[MPTblue, very thick, samples = 2, domain = -21:-5, shorten >=-0.15ex, forget plot] {0};
-\addplot[MPTblue, very thick, samples = 2, domain = 5:21, forget plot] {1};
+\addplot[black!40, ultra thick, samples = 2, domain = -5:5, shorten >=-0.175ex] {(x+5)/10};
+\addplot[black!40, ultra thick, samples = 2, domain = -21:-5, shorten >=-0.175ex, forget plot] {0};
+\addplot[black!40, ultra thick, samples = 2, domain = 5:21, forget plot] {1};
 
 %
 \legend{{$[a,b] = [-10,-3]$}, {$[a,b] = [0,1]$}, {$[a,b] = [-5,5]$}}

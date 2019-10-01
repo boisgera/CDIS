@@ -265,7 +265,7 @@ P(A) = \sum_{n\in\N} P(A \cap B_n ) = \sum_{n\in\N} P(A|B_n)\, P(B_n).
 ### Démonstration {.proof}
 Nous avons $A = \bigcup_{n\in\N} (A\cap B_n)$. Par hypothèse, les ensembles $(A\cap B_n)$ sont deux-à-deux disjoints et de plus $\P(A\cap B_n) = \P(A|B_n)\,\P(B_n)$. Le résultat découle du deuxième point de la [définition de la probabilité](#defproba). 
 
-### Formule de Bayes {.proposition}
+### Formule de Bayes {.proposition #bayes}
 Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a 
 \begin{equation*}
 \forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N} \P(A | B_n)\, \P(A)}.
@@ -339,11 +339,15 @@ Si les événements $A$ et $B$ sont indépendants, alors il en est de même des 
     $$\widetilde{\P}(A \cap B) = \frac{1}{102} \neq \widetilde{\P}(A)\widetilde{\P}(B) = \frac{2}{51}\frac{13}{102}$$
  Les événements $A$ et $B$ ne sont pas indépendants sous la probabilité $\widetilde{\P}$.
 
-### Remarque : réflexions sur le concept de probabilité 
+### Remarque : réflexion sur le concept de probabilité 
 
-La théorie mathématiques des probabilités ne dit pas quelle loi de probabilité choisir sur un espace $(\Omega,\A)$ parmi toutes les lois possibles (elles sont généralement nombreuses...). Ce problème qui concerne ceux qui veulent appliquer le calcul des probabilités, renvoie à la nature "physique" du concept de probabilité qui formalise et quantifie le sentiment d'incertitude vis-à-vis d'un événement. Ce problème d'ordre conceptuel oppose deux écoles de pensée, la conception objectiviste et la conception subjectiviste.
+La théorie mathématiques des probabilités ne dit pas quelle loi de probabilité choisir sur un espace $(\Omega,\A)$ parmi l'infinité de lois possibles. Ce problème qui concerne ceux qui veulent appliquer le calcul des probabilités, renvoie à la nature "physique" du concept de probabilité qui formalise et quantifie le sentiment d'incertitude vis-à-vis d'un événement. Ce problème d'ordre conceptuel oppose deux écoles de pensée, la conception objectiviste et la conception subjectiviste.
 
+Pour les tenants du premier point de vue, la probabilité d'un événement peut être déterminée de manière unique. Dans la vision classique, héritée des jeux de hasard, $\Omega$ est fini et on donne à chaque événement élémentaire la même probabilité. Le calcul des probabilités se résume alors à un problème de dénombrement et la probabilité d'un événement est le rapport du nombre de cas favorables sur le nombre de cas possibles. Dans le cas non fini, la vision fréquentiste repose sur la loi des grands nombres : si on répète un grand nombre de fois l'expérience, la proportion de fois où un événement sera réalisé va converger vers la probabilité de cet événement. Dans ce cadre, il est impossible de donner une valeur et même un sens à un événement non répétable comme "pleuvra-t-il demain ?". En outre, la répétition à l'infini d'une même expérience étant physiquement irréalisable, la loi des grands nombres étant un résultat qui suppose défini le concept de probabilité, la vision fréquentiste est logiquement intenable.
 
+Dans la conception subjectiviste, la probabilité objective d'un événement n'existe pas et n'est donc pas une grandeur mesurable analogue à la masse d'un corps,par exemple. C'est simplement une mesure d'incertitude qui reflète un degré de croyance pouvant varier avec les circonstances et l'observateur, donc subjective, la seule exigence étant qu'elle satisfasse aux axiomes du calcul des probabilités. Des méthodes ont alors été proposées pour passer d'un simple pré-ordre sur les événements, à une probabilité. Puisque la répétition n'est plus nécessaire, on peut probabiliser des événements non répétables et étendre ainsi le domaine d'application du calcul des probabilités, notamment pour orienter des prises de décisions. On notera que la [formule de Bayes](#bayes) permet d'intégrer facilement de l'information a priori, dans la mesure où celle-ci est probabilisée.
+
+On arrête ici ces quelques remarques sans prendre parti dans une querelle qui dure encore. L'un ou l'autre point de vue sera adopté selon les ouvrages rencontrés. Dans tous les cas, les outils mathématiques développés dans ce cours seront adaptés. On rappelle tout de même que la modélisation probabiliste a prouvé son efficacité dans de nombreuses applications mais que, comme tout modèle, ce n'est qu'une représentation simplificatrice de la réalité et que ses hypothèses doivent être mises à l'épreuve des faits. A ce titre, on citera Georges Matheron qui dans son essai sur la pratique des probabilités Estimer et Choisir (@matheron) écrit fort justement : "il n'y a pas de probabilités en soi. Il n'y que des modèles probabilistes".
 
 
 # Probabilité sur $\R$

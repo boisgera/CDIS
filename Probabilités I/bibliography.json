@@ -117,7 +117,34 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "matheron",
+		"type": "book",
+		"title": "Estimer et choisir: essai sur la pratique des probabilités",
+		"publisher": "Ecole nationale supérieure des mines de Paris",
+		"publisher-place": "Fontainebleau, France",
+		"number-of-pages": "175",
+		"source": "Library Catalog - www.sudoc.abes.fr",
+		"event-place": "Fontainebleau, France",
+		"URL": "http://cg.ensmp.fr/bibliotheque/public/MATHERON_Ouvrage_00208.pdf",
+		"title-short": "Estimer et choisir",
+		"language": "français",
+		"author": [
+			{
+				"family": "Matheron",
+				"given": "Georges"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1978"
+				]
+			]
+		}
 	}
+
 
 
 ]

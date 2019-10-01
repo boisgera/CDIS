@@ -10,17 +10,9 @@
 
 %----- FIGURES
 %---------------------------------------------------------------------------%
-\usepackage{color}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.13}
 \tikzset{declare function={	normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));	}}
-
-%---------------------------------------------------------------------------%
-%                                MINES COLORS                               %
-%---------------------------------------------------------------------------%
-
-%---------- OFFICIAL COLORS
-\definecolor{MPTblue}{RGB}{0,94,158}
 
 \begin{document}
 
@@ -42,11 +34,11 @@ domain = -21:21
 ]
 \draw[black!50, densely dotted] (0,-.1) -- (0,1.1);
 \draw[black!50, densely dotted] (5,-.1) -- (5,1.1);
-\addplot[black, very thick, samples = 200] {normcdf(x,0,1)};
+\addplot[black, samples = 200] {normcdf(x,0,1)};
 %
-\addplot[black!50, very thick, samples = 200] {normcdf(x,0,5)};
+\addplot[black!60, thick, samples = 200] {normcdf(x,0,5)};
 %
-\addplot[MPTblue, very thick, samples = 200] {normcdf(x,5,1)};
+\addplot[black!40, ultra thick, samples = 200] {normcdf(x,5,1)};
 %
 \legend{{$\mu=0 \mid \sigma^2 = 1$}, {$\mu=0 \mid \sigma^2 = 25$}, {$\mu=5 \mid \sigma^2 = 1$}}
 \end{axis}
