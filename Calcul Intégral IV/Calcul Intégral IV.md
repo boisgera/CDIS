@@ -773,7 +773,7 @@ $$
 \end{split}
 $$
 
-### TODO -- Positivité et nullité {.theorem #pos}
+### Positivité et nullité {.theorem #pos}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré 
 et $f: X \to [0, +\infty]$ une fonction mesurable.
 L'intégrale de $f$ par rapport à $\mu$ est positive ; 
@@ -781,6 +781,49 @@ elle est nulle si et seulement si
 $f$ est nulle $\mu$-presque partout :
 $$
 \int f\mu = 0 \; \Leftrightarrow \; \mu(\{x \in X \, | \, f(x) \neq 0\}) = 0.
+$$
+
+### Démonstration {.proof}
+Si $f$ est nulle presque partout, comme pour toute fonction $g$ positive,
+mesurable et étagée inférieure à $f$ et tout $y \in g(X)$, 
+soit $y =0$, soit
+$$
+g^{-1}(y) \subset f^{-1}(\left]0,+\infty \right]),
+$$
+et donc
+$$
+\mu(g^{-1}(y)) \leq \mu(f^{-1}(\left]0,+\infty \right])) = 0,
+$$
+l'intégrale de $g$ par rapport à $\mu$ vérifie
+$$
+\int g \mu = \sum_{y \in g(X)} y \times \mu(g^{-1}(y)) = 0.
+$$
+Par conséquent,
+$$
+\int f \mu = \sup_{g \in \mathcal{F}(f)} \int g \mu = 0.
+$$
+Réciproquement, si la fonction $f$ n'est pas nulle $\mu$-presque partout, 
+c'est-à-dire si $\mu(f^{-1}(\left]0, +\infty\right[)) \neq 0$,
+alors il existe nécessairement[^ns] un $n \in \N$ tel que
+$$
+\mu(f^{-1}(\left]2^{-n}, +\infty\right[))  > 0.
+$$
+Notons $A_n = f^{-1}(\left]2^{-n}, +\infty\right[)$ ; c'est un ensemble
+mesurable de mesure positive. La fonction $2^{-n}1_{A_n}$ est positive, étagée, 
+mesurable et inférieure à $f$. On a donc
+$$
+0 < 2^{-n}\mu(A_n) = \int 2^{-n}1_{A_n} \mu \leq 2^{-n}\int f\mu.
+$$
+L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
+
+[^ns]: En effet, les ensembles $f^{-1}(\left]2^{-n}, +\infty\right[)$
+forment une suite croissante d'ensembles mesurables dont l'union
+est $f^{-1}(\left]0, +\infty\right[)$. Par $\sigma$-additivité de
+la mesure, on a donc
+$$
+\lim_{n \to + \infty} \mu(f^{-1}(\left]2^{-n}, +\infty\right[))
+=
+\mu(f^{-1}(\left]0, +\infty\right[)).
 $$
 
 ### TODO : 
