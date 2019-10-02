@@ -65,7 +65,7 @@ $$
 où les $I_i$ forment une subdivision de $I$ et 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 
-### Somme de Riemman {.definition}
+### Somme de Riemann {.definition}
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
@@ -1360,7 +1360,7 @@ un ou deux termes de la forme $f(t) \times \infty$ ;
 elle donc potentiellement infinie, 
 ou même indéfinie si les termes $-\infty$ et $+\infty$ apparaissent.
 
-Pour pallier à ce problème, nous adoptons la stratégie suivante:
+Pour pallier ce problème, nous adoptons la stratégie suivante:
 
  1. **Intervalles.** 
     Nous considérons désormais l'intégration de fonctions sur des 
@@ -1825,7 +1825,7 @@ subordonnée à $\gamma$.
 L'intégrale de Riemann est absolue {.question #Rabs}
 --------------------------------------------------------------------------------
 
-Montrer que l'intégrale de Riemman est absolue : 
+Montrer que l'intégrale de Rieman est absolue : 
 si une fonction $f$ est intégrable au sens de Riemann, 
 sa valeur absolue $|f|$ l'est également.
 
@@ -1899,7 +1899,7 @@ sur $\R$ de façon élémentaire,
 sans avoir recours à la droite achevée.
 Le procédé en question est plus élémentaire[^es] ; 
 il revient à exiger que partir les subdivisions d'intervalles bornés
-exploitées par la somme de Riemman en plus d'être suffisamment "fines" 
+exploitées par la somme de Riemann en plus d'être suffisamment "fines" 
 soient suffisamment "étendues".
 
 [^es]: mais pas nécessairement plus simple ...

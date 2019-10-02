@@ -342,7 +342,7 @@ qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suf
 - L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la boîte de condition initiales, plus les solutions restent proches. Par contre, lorsqu'on augmente le "Integration Time" les solutions s'écartent.
 
 ### Chaos déterministe et exposant de Lyapunov {.remark #rem_chao}
-Même si la continuité des solutions par rapport aux paramètres et conditions initiales est une bonne nouvelle qui donne espoir de pouvoir simuler et prédire des systèmes physiques, elle est malheureusement parfois insuffisante. 
+Même si la continuité des solutions par rapport aux paramètres/conditions initiales donne l'espoir de pouvoir simuler et prédire l'évolution de systèmes physiques, elle est malheureusement parfois insuffisante. 
 Henri Poincaré continue:
 
 <!-- Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. -->
@@ -363,23 +363,23 @@ chaos que pour borné
 Propriétés asymptotiques
 -----------------------------
 
-Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce qu'il diverge ? est-ce qu'il tend vers un point en particulier ? vers un cycle limite ?
+Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce que les solutions divergent ? est-ce qu'elles tendent vers un point en particulier ? vers un cycle limite ?
 
-Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc un ouvert $\Omega$ de $\R^n$ et une fonction continue $f:\Omega\to \R^n$. Dans ce cas, on prend par défaut $t_0=0$. Puisque l'on souhaite étudir plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.
+Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc un ouvert $\Omega$ de $\R^n$ et une fonction continue $f:\Omega\to \R^n$. Dans ce cas, on prend par défaut $t_0=0$. Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.
 
 ### Point d'équilibre
 On appelle *point d'équilibre* un point $a\in \R^n$ tel que
 $$
 f(a) = 0  \ .
 $$
-En d'autres termes, la fonction constante $x\equiv a$ est solution.
+En d'autres termes, la fonction constante $x\equiv a$ est alors solution.
 
 ### Stabilité, stabilité asymptotique
 Un point d'équilibre $a$ est dit:
 
-- *stable* si l'*on peut rester arbitrairement proche de $a$ quitte à initialiser les solutions suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
+- *stable* si *les solutions restent arbitrairement proche de $a$ lorsqu'elles sont initialisées suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
 $$
-|x(0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in I \ .
+|x(0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in \Rgeq \ .
 $$
 
 - *instable* s'il n'est pas stable.
@@ -407,18 +407,26 @@ $$
 $$
 si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative.
 
-*Démonstration* La notion d'*asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, la stabilité asymptotique est équivalente à l'attractivité, c'est-à-dire que la stabilité vient gratuitement avec l'attractivité. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attrictivité de 0. On a vu que les solutions s'écrivent
+*Démonstration* La notion d'*asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, la stabilité asymptotique est équivalente à l'attractivité, c'est-à-dire que la stabilité vient gratuitement avec l'attractivité. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
 $$
 x(t)= e^{At} x_0 \ .
 $$
-Si $A$ était diagonale (réelle), on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit toute matrice $A$ n'est pas diagonalisable. Par contre, toute matrice est triangularisable. 
+Si $A$ était diagonale (réelle), on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit, toute matrice $A$ n'est pas diagonalisable. Par contre, toute matrice $A$ est transformable via changement de coordonnées en une forme triangulaire, dite *de Jordan*,
+$$
+J = D + N
+$$
+où $D$ est diagonale contenant les valeurs propres de $A$ et $N$ est nilpotente, c'est-à-dire qu'il existe $k\in \N$ tel que $N^k=0$. Il s'ensuit que
+$$
+e^{Jt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
+$$
+converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 \hfill $\blacksquare$
 
 Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C^0(I,\R^{n\times n})$ ait des valeurs propres à partie réelle strictement négative pour tout $t$ n'implique pas que le système
 $$
 \dot{x} = A(t) x 
 $$
-soit asymptotiquement stable. EXEMPLE ?
+soit asymptotiquement stable. EXEMPLE 
 
 ### Cas du plan : portrait de phase et théorème de Bendixon
 
