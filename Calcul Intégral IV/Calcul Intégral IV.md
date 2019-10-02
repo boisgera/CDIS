@@ -676,27 +676,38 @@ d'une sous-collection des $C_j$ ($C_j$ devant être inclus
 si et seulement si $z_j \in A$)
 et si $0 \in A$, de $X \setminus \cup_j C_j$.
 
-
-
-
-
-
-
 ### Intégrale d'une fonction étagée
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto \left[0, +\infty\right[$ une fonction étagée positive et mesurable.
-Soit $Y = f(X)$ l'ensemble des valeurs prises par $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
-la grandeur positive finie
+la grandeur positive (finie ou infinie)
 $$
-\int f \mu := \int_X f(x) \mu(dx) := \sum_{y \in Y} y \times \mu(f^{-1}(\{y\})).
+\int f \mu := \int_X f(x) \mu(dx) := \sum_{y \in \left[0, +\infty\right[} y \times \mu(f^{-1}(y))),
 $$
-Si $A_0, \dots, A_{n-1} \in \mathcal{A}$, $y_0, \dots, y_{n-1} \in \R$ et
-$f = \sum_{k=0}^{n-1} y_k 1_{A_k},$
-alors
+avec la convention que $0 \times (+\infty) = 0$.
+Si $A_0, \dots, A_{n-1} \in \mathcal{A}$ et
+$y_0, \dots, y_{n-1} \in \left[0, +\infty\right[$,
+alors cette définition se traduit par
 $$
+f = \sum_{k=0}^{n-1} y_k 1_{A_k} \rightarrow
 \int f \mu = \sum_{k=0}^{n-1} y_k \mu(A_k).
 $$
+
+### {.post}
+A noter que dans la somme définissant l'intégrale, si $y$ ne fait pas partie
+des valeurs prises par $f$, alors $\mu(f^{-1}(y)) = \mu(\varnothing) = 0$. 
+Comme $f$ est supposée simple, cette somme est donc composée d'un nombre 
+fini de termes non nuls. 
+Si l'on veut mettre cela mieux en évidence,
+on peut remplacer la somme dans l'énoncé ci-dessus par 
+$$
+\sum_{y \in f(X)} y \times \mu(f^{-1}(\{y\})),
+$$
+voire
+$$
+\sum_{y \in f(X) \setminus \{0\}} y \times \mu(f^{-1}(\{y\}))
+$$
+ce qui permet de se dispenser de la convention $0 \times (+\infty) = 0$.
 
 ### Intégrale d'une fonction positive
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
@@ -706,7 +717,7 @@ inférieures à $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 la grandeur positive (finie ou infinie)
 $$
-\int_X f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int_X g \mu.
+\int f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int_X g \mu.
 $$
 
 ### Intégrale d'une fonction à valeurs réelles
@@ -719,39 +730,59 @@ $f_+ = \max(f, 0)$ et $f_- = -\min(f, 0)$ sont finies.
 *L'intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 est alors la grandeur réelle (finie)
 $$
-\int_X f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
+\int f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
 $$ 
 
-### TODO 
-Noter intégrale de fcts positives "plus souple"  et fct pas considérée
-intégrable (même si on peut donner une valeur à son intégrale !) si
-l'intégrale est infinie; 
-mais on est obligé d'être plus restrictif pour les fonctions signées, 
-en raison du risque
-de $+\infty - \infty$. Evoquer certains auteurs qui tolèrent l'une ou
-l'autre des valeurs
+### Intégrales finies, infinies et indéfinies {.post}
+Une fonction positive peut avoir une intégrale bien définie --
+il faut et il suffit qu'elle soit mesurable -- sans être pour autant 
+intégrable : c'est le cas si (et seulement si) son intégrale est infinie. 
+Pour les fonctions positives, la formule
+$$
+\int f \mu < + \infty
+$$
+signifera donc à la fois "l'intégrale est bien définie" (mesurable)
+et "l'intégrale est finie" (c'est-à-dire : la fonction est intégrable).
+Pour les fonctions signées par contre, il est nécessaire d'être
+plus strict et l'intégrale n'est définie que pour les fonctions intégrables.
+En effet, même si on peut définir
+$$
+\int f_+\mu \; \mbox{ et } \; \int f_- \mu
+$$
+dès que $f$ est mesurable, il est possible que ce deux intégrales soit égales
+à $+\infty$ ; il n'y a alors pas de façon "raisonnable"
+de définir la différence des deux grandeurs[^tbh].
 
-### TODO
-Noter intégrale de Lebesgue absolue par construction.
+[^tbh]: sauf à introduire un nouveau nombre "indéfini" $\bot$, 
+absorbant pour l'addition, tel que $\bot = +\infty - \infty$
+(le [NaN ou *not-a-number* des numériciens](https://en.wikipedia.org/wiki/NaN) 
+est un concept très proche). Mais à ce stade nous n'allons pas explorer cette
+piste.
 
-### TODO
-aller vers la mesure de longueur. Par les mesures extérieures ? Yes.
-Mmmm, oui, mais-pas-que. On a déjà $\ell$ et les ensembles mesurables
-associés via la théorie HK (ou $v$ dans $\R^n$), 
-on ne vas pas la jeter si ? Non !
+### Une intégrale absolue
+On remarquera que l'essentiel de la complexité de l'intégrale de Lebesgue
+est encapsulée dans l'intégrale des fonctions positives ; la définition 
+(et les propriétés) de l'intégrale de fonctions signées s'en déduisent
+facilement. En particulier, comme la valeur absolue d'une fonction vérifie
+$|f| = f_+ + f_-$, on constate que si $f$ est intégrable, alors $|f|$
+également ; par construction, l'intégrale de Lebesgue est absolue,
+contrairement à l'intégrale de Henstock-Kurzweil sur $\R^n$.
+On a le résultat plus précis suivant, que l'on admettra :
 
-### TODO
-"Equivalence" intégrabilité Lebesgue et HK absolue (modulo gestion des
-valeurs infinies.)
+### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
+Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
+par rapport à la mesure de Lebesgue $v$ si et seulement si 
+$f$ est absolument intégrable ($f$ et $|f|$ sont intégrable) 
+pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
+deux intégrales sont égales.
 
 Propriétés de l'intégrale
 ================================================================================
 
-### TODO
-réfléchir au découpage intégrale non-signée / signée ...
-J'ai bien envie de mettre l'accent sur le non-signé en expliquant
-comment tjs s'y ramener. Dans le non signé, il faut expliquer le cas des
-intégrales indéfinies ($\infty - \infty$) et faire l'inégalité triangulaire. 
+### {.ante .remark}
+On mettra en avant dans cette section sur les propriétés de l'intégrale de
+fonctions positives ; les propriétés correspondantes de l'intégrale de fonctions
+signées s'en déduisent simplement.
 
 ### Linéarité {.theorem #lin}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
