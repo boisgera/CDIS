@@ -111,23 +111,22 @@ on sait que $\lambda f$ et $f + g$ sont intégrables par exemple quand
 $f$ et $g$ le sont, il n'est pas certain que le produit $f g$ soit 
 intégrable par exemple ! Et à ce stade, nous ne disposons pas des outils
 adaptés pour étudier cette intégrabilité.
-Or dans le cadre Riemannien, rien de plus simple: si $f$ et $g$ sont
+Or dans le cadre Riemannien, rien de plus simple : si $f$ et $g$ sont
 des fonctions intégrables au sens de Riemann sur un segment, le produit 
 $fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp]. 
 
-
-[^ii]: sans nécessiter de construction supplémentaire ; dans le cadre
+[^ii]: Sans nécessiter de construction supplémentaire ; dans le cadre
 de l'intégrale de Riemann, certaines de ces intégrales peuvent être
 calculées comme des intégrales *impropres*, par un passage à la limite
 d'intégrales de Riemann de fonctions définies sur un sous-ensemble.
 Mais l'intégrale qui en résulte 
 -- on parle parfois d'intégrale de *Cauchy-Riemann* -- 
 perd une bonne partie des propriétés de l'intégrale
-de Riemann qui la rende pratique.
+de Riemann qui la rendent pratique.
 
 [^cocpp]: En première approche on pourra s'en convaincre en remplaçant 
 "intégrables au sens de Riemann" par "continues". Dans le cas général,
-supposons $f$ et $g$ sont intégrables au sens de Riemann 
+supposons que $f$ et $g$ sont intégrables au sens de Riemann 
 sur un segment $[a, b]$, c'est-à-dire bornées et continues presque partout.
 De toute évidence, leur produit est borné. Si $f$ est continue en tout point
 de $[a, b]$ à l'exception de l'ensemble négligeable $A$ et $g$ en tout point
@@ -147,17 +146,17 @@ Heureusement, comme dans le cas de l'intégrale de Riemann,
 un critère d'intégrabilité des fonctions -- nécessaire et suffisant -- 
 existe pour établir ce type de résultat (et bien d'autres).
 Comme dans le cas de l'intégrale de Riemann, il se décompose en deux tests
-indépendants: pour être intégrable une fonction doit être "encadrée par des
+indépendants : pour être intégrable une fonction doit être "encadrée par des
 fonctions intégrables" et "suffisamment régulière". Bien sûr ici les 
 fonctions qui jouent le rôle de bornes devront être intégrables au sens
-de Henstock-Kurzweil (et non plus de Riemann); 
+de Henstock-Kurzweil (et non plus de Riemann) ; 
 quant à la régularité, il ne s'agira plus de tester la continuité presque
 partout, mais de vérifier la *mesurabilité* de la fonction considérée,
-un test que satisfait à peu près toute fonction "imaginable".
+une propriété que possèdent presque toutes les fonctions "imaginables".
 
 Bien que n'étant un cas particulier, 
 l'intégrabilité d'un produit revêt une importance particulière. 
-En effet dans ce chapitre pour des raison de simplicité, 
+En effet dans ce chapitre pour des raisons de simplicité, 
 nous mettrons l'accent sur les fonctions définies sur $\R$ ; 
 par défaut le symbole intégrale sans bornes désignera donc 
 l'intégrale entre $-\infty$ et $+\infty$:
@@ -179,7 +178,7 @@ Riemann un théorème de convergence dominée qui permet d'évaluer
 l'intégrale d'une fonction en calculant les intégrales d'une suite 
 de fonctions convergeant simplement. Contrairement au cadre de 
 l'intégrale de Riemann, il ne sera pas nécessaire de supposer que la
-limite des fonctions considérée soit intégrables -- les hypothèses
+limite des fonctions considérées soit intégrable -- les hypothèses
 du théorème fourniront automatiquement ce résultat.
 
 <!--
@@ -315,7 +314,7 @@ Ensembles mesurables
 Il existe un lien étroit entre la notions de longueur d'un ensemble de réels
 et le calcul intégral. Nous savons par exemple que pour tout intervalle 
 compact $E = [a, b]$, la longueur $b-a$ de l'intervalle peut être calculée
-par l'intégrale de la fonction caractéristique de $E$:
+par l'intégrale de la fonction caractéristique de $E$ :
 $$
 \ell(E) = \ell([a, b]):=  b - a  = \int_a^b \, dt = 
 \int 1_{[a, b]}(t) \, dt =
@@ -329,34 +328,36 @@ de l'ensemble.
 Il apparait donc légitime pour définir la longueur d'un sous-ensemble $E$
 de $\R$ aussi général que possible[^loop] de $\R$ de prendre cette 
 égalité comme une définition, ce qui suppose toutefois que la fonction 
-caractéristique soit intégrable; on parle alors d'*ensemble intégrable*. 
+caractéristique soit intégrable ; on parle alors d'*ensemble intégrable*. 
 Cette définition laisse toutefois de coté les ensembles "trop grands" 
 pour être intégrables, mais par ailleurs parfaitement inoffensifs, 
 comme $\R$ tout entier ou l'ensemble des réels positifs. 
-Nous préférons donc mettre l'accent sur la notion d'ensemble mesurable:
+Nous préférons donc mettre l'accent sur la notion d'ensemble *mesurable* :
 
 <!--
 ### TODO
 Insérer référence ens Vitali en annexe
 -->
 
-[^loop]: Il existe des ensembles dont on ne pas pas définir raisonnablement
+[^loop]: Il existe des ensembles dont on ne peut pas définir raisonnablement
 la longueur, sauf à accepter un concept de longueur aux propriétés
 très étranges. Cette situation ne résulte pas de la méthode de définition
 de la longueur par l'intégrale ; c'est au contraire une limitation intrinsèque
 de la théorie de la mesure que nous étudierons plus en détail par la suite.
-Malheureusement il n'existe aucune construction "facile" (constructive, explicite) 
-d'ensemble qui ne soit pas mesurable (et c'est une chose que l'on peut prouver).
-Finalement, du point de vue logique, supposer que tous les ensembles sont
-mesurables -- ce qui pourrait sembler relativement anodin -- 
-permet de prouver des propositions qui beaucoup plus perturbantes,
+Malheureusement pour la didactique, il n'existe aucun exemple explicite 
+(élaboré par un procédé constructif) d'ensemble qui ne soit pas 
+mesurable (et c'est une chose que l'on peut prouver !).
+On peut se consoler en apprenant que, du point de vue logique, 
+si l'on suppose que tous les ensembles sont
+mesurables -- ce qui peut sembler relativement anodin -- 
+on peut alors prouver des propositions beaucoup plus perturbantes,
 comme l'existence de partitions de $\R$ "strictement
 plus grandes" que $\R$ lui-même. 
 
 ### Ensemble mesurable {.definition}
 Un ensemble $E$ de $\R$ est *de longueur finie* si sa fonction 
-caractéristique $1_E$ est intégrable sur $\R$; 
-il est *mesurable* si sa fonction caractéristique est intégable 
+caractéristique $1_E$ est intégrable sur $\R$ ; 
+il est *mesurable* si sa fonction caractéristique est intégrable 
 sur tout intervalle compact $[a, b]$ de $\R$.
 La (mesure de) *longueur* d'un ensemble $E$ mesurable est définie par
 $$
@@ -374,7 +375,7 @@ comme signifiant "dont on peut définir la mesure (de longueur)",
 qui est un nombre fini ou infini. 
 Cette interprétation  est cohérente, puisque tous les ensembles 
 $E$ de longueur finie 
-sont bien mesurables;
+sont bien mesurables ;
 en effet si la fonction caractéristique $1_E$ est intégrable,
 sa restriction à tout intervalle compact $[a, b]$ également.
 
@@ -412,7 +413,7 @@ $$
 A^c = \{x \in X \, | \, x \not \in A\}.
 $$
 Pour être plus explicite, on peut utiliser la notation du complémentaire 
-relatif: le complémentaire de $A$ dans $B$ est l'ensemble des points de 
+relatif : le complémentaire de $A$ dans $B$ est l'ensemble des points de 
 $B$ qui n'appartiennent pas à $A$:
 $$
 B \setminus A = \{x \in B \, | \, x \not \in A\}.
@@ -424,9 +425,9 @@ A^c = X \setminus A.
 $$
 
 ### Démonstration des [propriétés élémentaires](#pptés-tribu) {.proof}
- 1. La fonction caractéristique $1_{\varnothing}$ est identiquement 
-    nulle; l'ensemble vide $\varnothing$ est donc intégrable et par
-    conséquent mesurable.
+ 1. La fonction caractéristique $1_{\varnothing}$ est identiquement nulle ; 
+    l'ensemble vide $\varnothing$ est donc intégrable et par conséquent 
+    mesurable.
 
  2. Si l'ensemble $A$ est mesurable et $B = \R \setminus A$,
     pour tout $[a, b]$, l'ensemble $A \cap [a, b]$ est intégrable.
@@ -435,7 +436,7 @@ $$
     $$
     1_{B \cap [a, b]} = 1_{[a, b]} - 1_{A \cap [a, b]},
     $$
-    l'ensemble $B \cap [a, b]$ est intégrable;
+    l'ensemble $B \cap [a, b]$ est intégrable ;
     l'ensemble $B$ est donc mesurable.
 
  3. Montrons tout d'abord que l'union d'une collection finie d'ensembles 
@@ -465,8 +466,8 @@ $$
     on peut supposer que $A_k \subset A_{k+1}$.
     Pour tout intervalle compact $[a, b]$, 
     $$
-    \left(\bigcup_{k=1}^{+\infty} A_k\right) \cap [a, b] = 
-    \bigcup_{k=1}^{+\infty} \left(A_k \cap [a, b]\right);$$
+    \left(\bigcup_{k=0}^{+\infty} A_k\right) \cap [a, b] = 
+    \bigcup_{k=0}^{+\infty} \left(A_k \cap [a, b]\right);$$
     les ensembles $A_k \cap [a, b]$ sont intégrables, 
     c'est-à-dire que $1_{A_k \cap [a, b]}$ est intégrable.
     Pour tout $k\in \N$, on a $0 \leq 1_{A_k \cap [a, b]} \leq 1_{[a, b]}$ ;
@@ -474,7 +475,7 @@ $$
     la suite des fonctions caractéristiques $1_{A_k \cap [a, b]}$ est croissante et
     pour tout réel $x$ on a donc
     $$
-    1_{\left(\cup_{k=1}^{+\infty} A_k\right) \cap [a, b]}(x)
+    1_{\left(\cup_{k=0}^{+\infty} A_k\right) \cap [a, b]}(x)
     = \lim_{k\to +\infty} 1_{A_k \cap [a, b]}(x)
     $$
     Par [le théorème de convergence dominée](#TCD),
@@ -519,15 +520,15 @@ Tout ensemble fermé (ou ouvert) est mesurable.
 ### Démonstration {.proof}
 Les ensembles fermés et ouverts étant complémentaires les uns des autres
 et le [complémentaire d'un ensemble mesurable étant mesurable](#pptés-tribu),
-on peut se contenter de démontrer le résultat pour les ouverts ou pour 
-les fermés ; la preuve s'avère plus simple dans le cas des ouverts.
+on peut se contenter de démontrer le résultat soit pour les ouverts 
+soit pour les fermés ; la preuve s'avère plus simple dans le cas des ouverts.
 
 Tout intervalle ouvert $I$ est mesurable : en effet, 
 son intersection avec un intervalle compact $[a, b]$ 
 est un intervalle inclus dans $[a, b]$.
 La fonction caractéristique associée est de la forme $1_{[c, d]}$,
-ou en diffère au plus en deux points; dans tous les cas, elle est
-intégrable.
+ou en diffère au plus en deux points ; 
+dans tous les cas, elle est intégrable.
 
 Si maintenant $U$ est un ensemble ouvert, pour chaque point $x$ de $U$ 
 on peut construire le plus grand intervalle ouvert $I_x$ contenant $x$ et inclus
@@ -577,7 +578,7 @@ S(1_A, \mathcal{D})
 $$
 Pour conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i$ 
 où les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement, 
-tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$ et tels que la famille des
+tels que pour tout $i$, $t_i \in A$, $I_i \subset \gamma(t_i)$ et tels que la famille des
 $I_i$ recouvre $A$. Si cette construction est acquise et que $\mathcal{D}_k$
 désigne la collection des $\{(t_i, I_i)\}$ pour $1 \leq i \leq k$, alors c'est
 une subdivision pointée partielle de $[a, b]$ subordonné à $\gamma$ et donc
@@ -626,7 +627,7 @@ on poursuit la dichotomie. Cette procédure définit par construction
 une famille dénombrable $\{(t_i, I_i)\}_i$ où les $I_i$ sont des intervalles
 compacts de $[a, b]$ sans chevauchement et 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$. 
-De plus, les $I_i$ recouvrent $A$: en effet si on considère $t \in A$,
+De plus, les $I_i$ recouvrent $A$ : en effet si l'on considère $t \in A$,
 il existe nécessairement un entier $k$ tel que tout intervalle compact
 $I$ de longueur inférieure ou égale à $(b-a)/2^k$ vérifie $I \subset \gamma(t)$.
 Par conséquent, $t$ appartient à l'un des intervalles inclus par le procédé
@@ -661,8 +662,8 @@ si chacune de ses composantes est mesurable.
 Nous nous limitons dans ce chapitre à l'étude des fonctions mesurables
 définies sur $\R$. La notion peut être très facilement étendue
 à une fonction $f$ définie sur un intervalle fermé $I$ de $\R$ de la
-façon suivante: on dira que $f$ est mesurable si son prolongement par $0$
-à l'extérieur de $I$ est mesurable. Nous laissons le soin au lecteur
+façon suivante : on dira que $f$ est mesurable si son prolongement par $0$
+dans le complémentaire de $I$ est mesurable. Nous laissons le soin au lecteur
 de généraliser en conséquence les énoncés qui vont suivre.
 
 ### Critère d'intégrabilité dominée {.theorem #CID}
@@ -679,7 +680,7 @@ par deux fonctions intégrables au sens de Riemann et continue presque partout.
 
 Dans le cas de l'intégrale de Riemann comme de Henstock-Kurzweil, 
 l'intégrabilité est donc caractérisée par une structure analogue qui
-repose sur deux propriétés distinctes:
+repose sur deux propriétés distinctes :
 être encadrée par deux fonctions intégrables (pour la notion d'intégrale
 considérée) et être "suffisamment régulière". 
 La différence est que dans le cas de l'intégrale de Riemann
@@ -696,7 +697,7 @@ en pratique ...
 
 ### {.ante}
 Plusieurs propriétés des fonctions mesurables se déduisent directement de
-leur définition:
+leur définition :
 
 ### Les fonctions intégrables sont mesurables {.proposition}
 
@@ -800,12 +801,12 @@ alors
 $$
 f^{-1}(U) = (g^{-1}(U) \setminus E) \cup F
 $$
-où $E$ et $F$ sont de mesure nulle (et donc mesurables puisque la mesure
-de Lebesgue est complète);
+où $E$ et $F$ sont négligeables (et donc mesurables puisque la mesure
+de Lebesgue est complète) ;
 par conséquent, $f^{-1}(U)$ est mesurable.
 
 ### Démonstration du [critère de l'image réciproque](#CIR) {.proof #pCIR}
-Il suffit de démontrer le critère soit pour les ouverts: 
+Il suffit de démontrer le critère pour les ensembles ouverts : 
 si une fonction satisfait le critère de d'image réciproque pour
 tout ouvert de $\R^n$, alors si $F$ est un fermé de $\R^n$, 
 en utilisant l'égalité $f^{-1}(F) = \R \setminus f^{-1}(\R^n \setminus F)$,
@@ -838,34 +839,34 @@ suite $f_k(x)$ décroissante.
 
 Montrons que la suite des $f_k$ est intégrable, ce qui concluera cette 
 section de la preuve.
-L'ensemble des valeurs $\{\alpha_j\}$ que prend chaque $f_k$ est bien fini;
-il comprend la valeurs $\alpha_0 = 0$ et la fonction 
+L'ensemble des valeurs $\{y_j\}$ que prend chaque $f_k$ est bien fini ;
+il comprend la valeur $y_0 = 0$ et la fonction 
 peut s'écrire sous la forme
 $$
-f_k = \sum_{j} \alpha_j 1_{A_j}
+f_k = \sum_{j} y_j 1_{A_j}
 $$
-où les $A_j = f_k^{-1}(\alpha_j)$ sont en nombre fini et disjoints.
+où les $A_j = f_k^{-1}(y_j)$ sont en nombre fini et disjoints.
 A part $A_0$, les $A_j$ sont également bornés, 
 car $f_k$ est nulle en dehors de $[-k, k]$.
 Montrons qu'à tout rang $k$, les ensembles $A_j$ sont mesurables, 
 ce qui prouvera que chaque $f_k$ est intégrable par le critère d'intégrabilité
 dominé.
 C'est évident au rang $0$ où 
-$\{\alpha_j\} = \{0\}$, et la collection des $A_j$ se réduit à 
-$\{A_0\} = \{\R\}$;
-supposons cette propriété valable au rang $k$. 
-L'ensemble $E$ des
+$\{y_j\} = \{0\}$ et la collection des $A_j$ se réduit à 
+$\{A_0\} = \{\R\}$.
+Supposons cette propriété valable au rang $k$ ;
+l'ensemble $E$ des
 réels $x$ tels que $f_k(x) + 1/k \leq f(x)$ et $|x| \leq k$
 peut être écrit comme
 $$
-E = \left(\bigcup_j \{x \in \R \, | \, \alpha_j + 1/k \leq f(x)\} \cap A_j\right) \cap [-k, k],
+E = \left(\bigcup_j \{x \in \R \, | \, y_j + 1/k \leq f(x)\} \cap A_j\right) \cap [-k, k],
 $$
 qui est mesurable. 
 De même, on peut montrer que l'ensemble $F$ des
 réels $x$ tels que $f(x) \leq f_k(x) - 1/k$ et $|x| \leq k$ est mesurable.
 On a alors par construction: 
 $$
-f_{k+1} = \sum_{j} \alpha_j 1_{A_j} + \frac{1}{k} 1_E - \frac{1}{k} 1_F
+f_{k+1} = \sum_{j} y_j 1_{A_j} + \frac{1}{k} 1_E - \frac{1}{k} 1_F
 $$
 qui est sous la forme souhaitée, à ceci près que les ensembles intervenant
 ne sont pas nécessairement disjoints. Mais pour toute valeur $y$ dans l'image
@@ -895,7 +896,7 @@ la fonction intégrable $f$ satisfait donc
 elle-même le critère de l'image réciproque.
 
 Finalement, une fonction mesurable étant limite simple
-d'une suite de fonctions intégrables, et les fonctions intégrables 
+d'une suite de fonctions intégrables et les fonctions intégrables 
 vérifient le critère de l'image réciproque, 
 par une nouvelle application du résultat de 
 [stabilité par passage à la limite](#SPL), 
@@ -906,9 +907,9 @@ fonction $f:\R \to \R^n$ satisfait le critère de l'image réciproque si et
 seulement si toutes ses composantes le satisfont. Pour le sens direct,
 il suffit de constater que 
 $$
-f_k^{-1}(U) = f^{-1}(\R \times \dots \times U \times \dots \R)
+f_k^{-1}(U) = f^{-1}(\R \times \cdots \times U \times \cdots \R)
 $$
-et que si $U$ est ouvert, $\R \times \dots \times \R \times \dots \R$ également.
+et que si $U$ est ouvert, $\R \times \cdots \times U \times \cdots \R$ également.
 Pour la réciproque, nous exploitons le fait[^demo] que tout ouvert de $\R^n$ peut être
 décomposé comme l'union d'une collection dénombrable $\mathcal{P}$ 
 de pavés ouverts de la forme
@@ -924,7 +925,7 @@ Comme $f^{-1}(U) = \cup_{P \in \mathcal{P}} f^{-1}(P)$ et que $\mathcal{P}$
 est dénombrable, l'image réciproque de $U$ par $f$ est bien mesurable.
 
 [^demo]: la démonstration est similaire à la décomposition d'un ouvert de
-$\R$ en une collection d'intervalle ouvert: pour chaque point $x$ de 
+$\R$ en une collection d'intervalle ouvert : pour chaque point $x$ de 
 $U \subset \R^n$ ouvert dont les coordonnées sont rationnelles, 
 on considère le plus grand pavé ouvert $P_x$ qui contienne $x$ ; 
 ces pavés forment une collection dénombrable et leur union 
@@ -978,7 +979,7 @@ Par continuité de l'application valeur absolue
 $|\, \cdot \,|: \R \to \R$.
 
 ### Démonstration du critère d'intégrabilité dominée {.proof}
-Le sens direct est évident:
+Le sens direct est évident :
 si la fonction $f$ est intégrable, elle est mesurable et satisfait
 les inégalités $f \leq f \leq f$. 
 
@@ -990,9 +991,9 @@ et donc $f$ est intégrable.
 
 Pour montrer la réciproque dans ce cas, nous approchons 
 la fonction mesurable $f$ par la suite de fonctions étagées $f_k$ 
-définie par le procédé de la [la démonstration du critère de l'image réciproque](#pCIR). 
+définie par le procédé de [la démonstration du critère de l'image réciproque](#pCIR). 
 La fonction $f$ apparaît comme une limite simple des
-fonction $f_k$, qui sont intégrables et
+fonctions $f_k$, qui sont intégrables et
 encadrées par les fonctions intégrables $0$ et $h$. 
 Par le théorème de convergence dominée, $f$ est intégrable.
 
@@ -1025,7 +1026,7 @@ et $g: \R \to \R$ est une fonction mesurable et bornée,
 alors le produit $fg$ est (absolument) intégrable.
 
 ### Preuve {.proof}
-Par hypothèse $f$ est intégrable donc mesurable; $g$ étant mesurable,
+Par hypothèse $f$ est intégrable donc mesurable ; $g$ étant mesurable,
 le produit $fg$ est mesurable. Par ailleurs, si $|g| \leq M$, on a
 $$
 - M |f| \leq f g \leq M |f|
@@ -1044,10 +1045,10 @@ L'ensemble des fonctions absolument intégrables
 Si $f$ et $g$ sont absolument intégrables et $\lambda \in \R$,
 alors $\lambda f$ est mesurable et $\lambda f$ comme $|\lambda f|$
 sont encadrées par les fonctions intégrables $-|\lambda||f|$ et
-$|\lambda||f|$; elle est donc absolument intégrable par le critère
+$|\lambda||f|$ ; $f$ est donc absolument intégrable par le critère
 d'intégrabilité dominée. La somme $f + g$ est également mesurable
 et $f+g$ comme $|f+g|$ sont encadrées par $-|f| - |g|$ et $|f| + |g|$ qui
-sont intégrables; la somme est donc intégrable par le même critère.
+sont intégrables ; la somme est donc intégrable par le même critère.
 
 ### Inégalité triangulaire {.theorem}
 Si $f: \R \to \R$ est absolument intégrable, alors
@@ -1095,14 +1096,14 @@ appliqué à la fonction $g:[0, 1] \to \R$ définie par
 $$
 g(x) = -\frac{x^2}{2} \sin \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, g(0) = 0.
 $$
-Cette fonction est dérivable en tout point de $[0,1]$; en $0$, sa dérivée est 
+Cette fonction est dérivable en tout point de $[0,1]$ ; en $0$, sa dérivée est 
 nulle[^dn] et quand $x>0$,
 $$
 \left[-\frac{x^2}{2} \sin \frac{1}{x^2} \right]' +
 x \sin \frac{1}{x^2} 
-= \frac{1}{x} \cos \frac{1}{x^2}
+= \frac{1}{x} \cos \frac{1}{x^2}.
 $$
-Par [le critère d'intégrabilité dominée](#CID), la fonction $h$ égale à
+Par [le critère d'intégrabilité dominée](#CID), la fonction $h(x)$ égale à
 $x \sin (1/x^2)$ si $x>0$ et nulle en zéro est absolument intégrable[^details].
 La fonction $g'$ étant également intégrable, $f = g' + h$ est intégrable comme
 somme de deux fonctions intégrables.
@@ -1128,7 +1129,7 @@ triangulaire son intégrale majorée par celle de $|g'|$.
 Or nous allons exhiber une suite de telles fonctions dont l'intégrale
 tend vers $+\infty$, ce qui établira la contradiction.
 
-Soit $k\geq 1$ un entier; on définit la function $\phi_k:[0,1] \to \R$ 
+Soit $k\geq 1$ un entier ; on définit la function $\phi_k:[0,1] \to \R$ 
 par
 $$
 \phi_k(x) = 
@@ -1146,11 +1147,11 @@ $$
 \beta_j = \frac{1}{\sqrt{2\pi(j - 1/4)}},
 $$
 
-L'idée sous-jacente est la suivante:
+L'idée sous-jacente est la suivante :
 les fonctions $\phi_k$ sont faites pour coïncider avec $g'$ dans les 
 plages de valeurs où $\cos 1/x^2$ est positif ; comme 
 $g'(x) = - x \sin {1}/{x^2} + (1/x)\cos {1} / {x^2}$,
-comme pour $x$ petit, $1/x$ est grand devant $x$, cela correspond 
+et que pour $x$ petit, $1/x$ est grand devant $x$, cela correspond 
 approximativement aux plages où $g'(x)$ est positif.
 
 ![...](images/g-prime.py)\
@@ -1191,7 +1192,7 @@ si et seulement si $f$ est (absolument) intégrable sur $E$
 pour tout ensemble mesurable $E$. 
 
 ### Démonstration {.proof}
-Si $f$ est absolument intégrable, elle est mesurable; si l'ensemble
+Si $f$ est absolument intégrable, elle est mesurable ; si l'ensemble
 $E$ est mesurable, sa fonction caractéristique $1_E$ est également
 mesurable. Par conséquent, le produit $f 1_E$ est mesurable, 
 comme sa valeur absolue $|f 1_E|$.
@@ -1204,7 +1205,7 @@ Réciproquement, supposons $f 1_E$ intégrable pour tout ensemble mesurable
 $E$. En prenant $E = \R$, on constate que $f$ est intégrable,
 et donc mesurable.
 Notons $E_+ = \{x \in \R \, | \, f(x) \geq 0 \}$ et 
-$E_- = \{x \in \R \, | \, f(x) \leq 0 \}$; ces deux ensembles sont
+$E_- = \{x \in \R \, | \, f(x) \leq 0 \}$ ; ces deux ensembles sont
 mesurables [comme images réciproques de fermés par une fonction mesurable](#CIR).
 La fonction $|f|$ satisfaisant
 $$
@@ -1261,7 +1262,7 @@ sont intégrables, la fonction $\max(f, g)$ est également intégrable.
 
 ### Démonstration {.proof}
 Pour simplifier le problème, on remarque tout d'abord que 
-$$\max(f, g) = f + \max(g - f, 0) = \max(f, g) = f + (g-f)_+$$ 
+$$\max(f, g) = f + \max(g - f, 0) = f + (g-f)_+$$ 
 où $x _+ = \max(x, 0)$ désigne la partie positive de $x$.
 Par linéarité, la fonction $g-f$ est intégrable et 
 $(g-f)_+ \leq g + f$ ; la fonction $g+f$ est également intégrable.
@@ -1278,7 +1279,7 @@ $$
 \sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
 $$
 où le supremum est calculé sur toutes les subdivisions pointées de $\R$.
-Tout d'abord, ce supremum est fini; en effet pour toute subdivision
+Tout d'abord, ce supremum est fini ; en effet pour toute subdivision
 $\mathcal{D}$, on a
 $$
 \begin{split}
@@ -1299,8 +1300,7 @@ S - \frac{\varepsilon}{2}
 \leq S.
 $$
 Soit $\lambda$ une jauge sur $\R$ assurant une précision $\varepsilon/2$
-dans le calcul de l'intégrale de $f$ pour toutes les sommes de Riemann
-de $f$ associées à une subdivision pointée subordonnée à $\gamma$.
+dans l'estimation de l'intégrale de $f$ par les sommes de Riemann.
 Soit $\nu$ une jauge sur $\R$ telle que si $(t, [a, b]) \in \mathcal{D}_0$
 et $t \in \left]a,b\right[$ alors $\nu(t) \subset \left]a,b\right[$ ;
 on note $\gamma$ la jauge définie par $\gamma(t) = \lambda(t) \cap \nu(t)$.
@@ -1325,7 +1325,7 @@ S - \frac{\varepsilon}{2} \leq
 \sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
 \leq S, 
 $$
-on a
+on obtient
 $$
 \left|
 \sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
@@ -1370,7 +1370,7 @@ S
 \leq 
 \frac{\varepsilon}{2};
 $$
-la fonction $f_+$ est donc intégrable, d'intégrale $S$.
+la fonction $f_+$ est donc intégrable, d'intégrale égale à $S$.
 
 Dérivabilité des intégrales indéterminées
 --------------------------------------------------------------------------------
