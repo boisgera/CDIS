@@ -127,7 +127,7 @@ Unicité des solutions
 Nous avons vu dans la partie précédente que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
 Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
 
 *Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. La preuve complète est donnée en appendice? L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale unique. L'ouverture de son intervalle de définition vient du fait qu'elle pourrait sinon être de nouveau prolongée *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
@@ -165,7 +165,7 @@ de sorte que $\Gamma(x)\in F$, i.e. $\Gamma:F\to F$. Ensuite, pour tout $(x_a,x_
 $$
 \|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq \left|\int_{t_0}^t \|f(s,x_a(s))-f(s,x_b(s))\| ds \right| \ .
 $$
-Soit $k=\max_\cC \left\|\frac{\partial f}{\partial x} \right\|$ (bien défini car $\cC$ est compact et $\frac{\partial f}{\partial x}$ est continue par hypothèse). Alors l'application du théorème des accroissement finis (REF) nous donne
+Soit $k=\max_\cC \left\|\partial_x f \right\|$ (bien défini car $\cC$ est compact et $\partial_x f$ est continue par hypothèse). Alors l'application du théorème des accroissement finis (REF) nous donne
 $$
 \|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq  \left|\int_{t_0}^t k\|x_a(s)-x_b(s)\| ds \right| \leq |t-t_0| k \|x_a-x_b\|_{\infty} 
 $$
@@ -203,7 +203,7 @@ Cette méthode de recherche de point fixe porte le nom d'*approximations success
 $$
 f(t,x) = a(t) x + b(t) \ ,
 $$
-admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$.
+admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $\partial_x f(t,x) = a(t)$ (en identifiant abusivement ici différentielle et matrice Jacobienne).
 - 
 
 
@@ -400,6 +400,7 @@ $$
 ### Caractérisation par Lyapunov
 
 
+
 ### Cas d'un système linéaire
 Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est  asymptotiquement stable pour le système
 $$
@@ -411,11 +412,11 @@ si et seulement si les valeurs propres de $A$ sont toutes à partie réelle stri
 $$
 x(t)= e^{At} x_0 \ .
 $$
-Si $A$ était diagonale (réelle), on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit, toute matrice $A$ n'est pas diagonalisable. Par contre, toute matrice $A$ est transformable via changement de coordonnées en une forme triangulaire, dite *de Jordan*,
+Si $A$ était diagonale (réelle), on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ inversible telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit, toute matrice $A$ n'est pas diagonalisable. Par contre, il existe toujours $P\in \R^{n\times n}$ inversible telle que
 $$
-J = D + N
+P^{-1} A P = D + N
 $$
-où $D$ est diagonale contenant les valeurs propres de $A$ et $N$ est nilpotente, c'est-à-dire qu'il existe $k\in \N$ tel que $N^k=0$. Il s'ensuit que
+où $D$ est diagonale contenant les valeurs propres de $A$, $N$ est nilpotente, c'est-à-dire qu'il existe $k\in \N$ tel que $N^k=0$, et $D$ et $N$ commutent. C'est la forme dite *de Jordan*. Il s'ensuit que
 $$
 e^{Jt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
@@ -426,7 +427,54 @@ Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C^0
 $$
 \dot{x} = A(t) x 
 $$
-soit asymptotiquement stable. EXEMPLE 
+soit asymptotiquement stable, où même stable. Par exemple, la matrice
+$$
+A(t) = \left( \begin{matrix} 
+-1+1.5\cos^2t & 1-1.5\sin t \cos t \\
+-1-1.5 \sin t \cos t & -1+\sin^2 t
+\end{matrix}
+\right)
+$$
+a des valeurs propres constantes égales à $-0.25\pm 0.25\sqrt{7}$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées for $x(0)$ aribitrairement proche de 0.
+
+### Lien entre stabilité et stabilité du linéarisant tangent
+Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si  $J_f(a)$ a ses valeurs propres à partie réelle strictement négative.
+
+Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
+
+\textit{Démonstration}: Voir en [annexe](#app_stab_linearise).  \hfill $\blacksquare$
+
+Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
+
+### Exemple
+L'évolution d'un pendule amorti dans le champ de l'apesanteur peut être décrit par une dynamique du type
+$$
+\ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
+$$
+avec$\rho>0$ un coefficient de frottement.
+En prenant $x=(\theta,\dot{\theta})$, on obtient le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2 \\
+\dot{x}_2 &=& - \frac{\rho}{m} x_2 -\frac{g}{\ell} \sin x_1
+\end{array}
+$$
+Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent soit à la position *basse* du pendule $\theta=0$ ou la position *haute* $\theta=\pi$, toutes deux à vitesse nulle $\dot{\theta}=0$. On a
+$$
+J_f(0,0) = \left( \begin{matrix} 
+0 & 1\\
+-\frac{g}{\ell} & - \frac{\rho}{m}
+\end{matrix}
+\right) 
+\qquad , \qquad 
+J_f(\pi,0)= \left( \begin{matrix} 
+0 & 1\\
+\frac{g}{\ell} & - \frac{\rho}{m}
+\end{matrix}
+\right) 
+$$
+Dans le premier cas, on a $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ a ses valeurs propres à partie réelle strictement négative. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
+Dans le deuxième cas par contre, on a le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la possition haute  $(\pi,0)$ est donc bien instable.
 
 ### Cas du plan : portrait de phase et théorème de Bendixon
 
@@ -446,9 +494,7 @@ où $g$ est la pesanteur.
 
 1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0$, résoudre le problème de Cauchy associé.
 
-2. Comment expliquer physiquement la multitude de solutions ? 
-
-3. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
+2. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
 
 -> [*Correction*](#correc_Torricelli)
 
@@ -476,11 +522,14 @@ $$
 
 -> [*Correction*](#correc_gronwall)
 
-### Proie/prédateur
-Cycle limite Bendixon ou exo cercle attractif
+### Critère de stabilité d'un système plan
+Montrer que le système linéaire $\dot{x} = Ax$ avec $A\in \R^{2\times 2}$ est asymptotiquement stable si et seulement si 
+$$
+\text{tr} A <0  \qquad \text{ et } \qquad \text{det} A >0 \ .
+$$
 
-### Masse/ressort {.exercice #exo_masse_ressort}
-Considérons une masse $m$ accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
+### Oscillateur {.exercice #exo_masse_ressort}
+Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
 
 1. Montrer que l'évolution de la position de la masse peut être décrite par  
 $$
@@ -495,6 +544,10 @@ où $\lambda$ est un coefficient de frottement. Que représente $x$ ?
 4. Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
 
 -> [*Correction*](#correc_masse_ressort)
+
+### Cycle limite
+
+
 
 ### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.exercice #exo_attrac_stab}
 Soit $A\in \R^{n\times n}$. Montrer que si 0 est localement attractif pour 
@@ -516,6 +569,20 @@ où $t\mapsto u(t)$ est une entrée à choisir.
 1. Comment se comporte le système si $u\equiv 0$ ?
 
 2. Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre asymptotiquement stable ?
+
+Plus généralement, considérons un système du type
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2 \\
+\dot{x}_2 &=& x_3 \\
+&\vdots&\\
+\dot{x}_{n-1} &=& x_n \\
+\dot{x}_n &=& \phi(x) + u(t)
+\end{array}
+$$
+avec $\phi:\R^n \to \R$ continue et $u:\R \to \R$ à choisir. 
+
+3. Si on mesure $t\mapsto x(t)$, montrer que l'on peut toujours choisir $t\mapsto u(t)$ pour rendre 0 asymptotiquement stable.
 
 -> [*Correction*](#correc_cont_lin)
 
@@ -580,7 +647,7 @@ ce qui donne
 $$
 |x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t |f(s,x(s))-f(s,x_\delta(s))|ds \qquad \forall t\in I\cap I_\delta
 $$
-Si $[t_0,\overline{t}]\subset I\cap I_\delta$, définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\frac{\partial f}{\partial x}$ est continue sur $U$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \frac{\partial f}{\partial x}$ est bien défini. On a donc par le théorème des accroissements finis
+Si $[t_0,\overline{t}]\subset I\cap I_\delta$, définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\partial_x f$ est continue sur $U$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \partial_x f$ est bien défini. On a donc par le théorème des accroissements finis
 $$
 |x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t M |x(s)-x_\delta(s)|ds \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
@@ -590,7 +657,7 @@ $$
 $$
 Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$. A FINIR !!!
 
-### Proie/prédateur {.correction #correc_proiePreda}
+### Cycle limite {.correction #correc_proiePreda}
 
 
 ### Masse/ressort {.correction #correc_masse_ressort}
@@ -619,16 +686,40 @@ $$
 On conclut que pour des conditions initiales suffisamment petites ($\eta <\frac{\varepsilon}{nM}$), les solutions restent inférieures à $\varepsilon$ en norme. Donc le système est stable.
 
 ### Contrôle d'un système linéaire {.correction #correc_cont_lin}
-Si $u\equiv 0$, les solutions sont $x(t) = e^t x_0$ donc le point d'équilibre 0 est instable et les solutions divergent. Si l'on mesure $x(t)$, on peut prendre $u(t) = - kx(t)$, ce qui donne
+1. Si $u\equiv 0$, les solutions sont $x(t) = e^t x_0$ donc le point d'équilibre 0 est instable et les solutions divergent. 
+
+2. Si l'on mesure $x(t)$, on peut prendre $u(t) = - kx(t)$, ce qui donne
 $$
 \dot{x} = -(k-1) x
 $$
-qui est donc asymptotiquement stable si $k>1$.
+pour lequel 0 est asymptotiquement stable si $k>1$.
+
+3. Prenons $u(t) = -k_1 x_1(t) - k_2 x_2(t) - \ldots - k_n x_n(t)$. Alors le système devient 
+$$
+\dot{x} = A x
+$$
+avec $A$ de la forme
+$$
+A = \left(
+\begin{array}{ccccc}
+0&1&0 & \ldots & 0 \\
+\vdots &\ddots & \ddots & & \vdots\\
+\vdots&&\ddots & 1  &0\\
+0&&&0&1 \\
+-k_1 &-k_2&\ldots& \ldots& -k_n
+\end{array}
+\right)
+$$
+qui admet pour polynôme caractéristique
+$$
+s^n + k_1 s^{n-1} + \ldots + k_2 s + k_1\ .
+$$
+Il suffit donc de choisir les coefficients $k_i$ tels que ce polynôme ait ses racines à partie réelle strictement négative. Ces dernières peuvent d'ailleurs être choisies à souhait.
 
 Annexes 
 =========================================================================
 
-### Preuve du théorème des bouts {.preuve #pr_theo_bouts}
+### Preuve du théorème des bouts {.app #pr_theo_bouts}
 Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset U$ tel que
 $$
  \forall t_K \in \left[t_0,\overline{t}\right[ \, , \, \exists t\in \left[t_K,\overline{t}\right[ \: : \: x(t)\in K
@@ -644,6 +735,9 @@ $$
 \cC:=\left[\overline{t}-2\tau,\overline{t}+2\tau \right]\times \overline{B}_{2r}(\overline{x})\subset U \quad , \quad \tau_m  \max_{\cC} \|f\| \leq r\ .
 $$
 Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset U$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
+
+
+### Stabilité locale et linéarisé tangent (.app #app_stab_linearise)
 
 
 
