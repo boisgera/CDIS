@@ -2,6 +2,7 @@
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
 \renewcommand{\P}{\mathbb{P}}
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
@@ -71,12 +72,17 @@ La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ so
 ### Définition -- variable aléatoire réelle {.definition #defvar}
 Soit l'espace d'état $\Omega$ munit de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \E_{\R}$.
 
+### Définition -- loi d'une variable aléatoire réelle {.definition #defloivar}
+La probabilité $\P_X$, définie sur $(\R,\E_{\R})$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \E_{\R}$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
+
 [^NB]: Nous n'avons pas les outils permettant de caractériser cette tribu pour le moment. On verra par la suite qu'elle est très similaire à la tribu des ensembles mesurables de $\R$, à une collection d'ensembles négligeables près.
 
 On a alors le résultat très utile suivant que nous admettrons dans un premier temps.
 
 ### Proposition {.proposition #composition}
-Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction continue par morceaux de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
+Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction continue par morceaux de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle[^note].
+
+[^note]: Ce résultat est en fait valable dans un cadre plus général que nous détaillerons dans la suite.
 
 Comme application de ce résultat, on a les propriétés suivantes :
 
@@ -89,10 +95,10 @@ Soient $X$, $Y$ et $(X_n)_{n \in \N^\star}$ des variables aléatoires réelles. 
  2. $\sup_{1\leq p} X_n$, $\inf_{1\leq p} X_n$, sont des variables aléatoires.
 
  3. $\sup_{n\geq 1} X_n$, $\inf_{n\geq 1} X_n$, sont des variables aléatoires.
+        
+ 4. Si $X_n(\omega) \xrightarrow{}{n \to \infty} Z(\omega)$, $\forall \omega$, alors la limite $Z$ est une variable aléatoire.
 
- 4. Si $X_n(\omega) \xrightarrow{n \to \infty} Z(\omega)$, $\forall \omega$, alors la limite $Z$ est une variable aléatoire.
-
- 5. $Z = 1_A$ est une variable aléatoire $\Leftrightarrow$ $A \in \A$
+ 5. $Z = 1_A$ est une variable aléatoire $\Leftrightarrow$ $A \in \A$.
 
 ### Définition -- variable aléatoire réelle à densité {.definition #va.densité}
 Soit $X$ une variable aléatoire. On dit que $X$ a une *loi de densité $f$* (ou par abus de language "est de densité $f$"), si $\P_X$ admet la densité $f$ et donc si pour tout réel $x$, 
@@ -118,9 +124,10 @@ $$ \P(X \leq 100) = \int_{0}^{100} \frac{1}{100}\exp\left(-\frac{x}{100}\right) 
 La densité de probabilité d'une variable aléatoire va nous permettre de calculer aisément des grandeurs caractéristiques telles que sa valeur moyenne et sa variance définies ci-dessous :
 
 ### Définition {.definition #defesp}
-La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si l'intégrale $\int_\R |x|f(x) dx$ est définie, autrement dit si le produit $x f(x)$ est absolument intégrable. On définit alors son *espérance* par 
+La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si l'intégrale $|x|f(x)$ est définie, autrement dit si le produit $x f(x)$ est absolument intégrable[^noteesp]. On définit alors son *espérance* par 
         $$\Esp(X) = \int_\R x f(x)dx$$
 
+[^noteesp]: Comme $f$ est positive, on peut en fait se convaincre que $xf(x)$ intégrable équivaut à $xf(x)$ absolument intégrable : si $x f(x)$ est intégrable, ses "restrictions" $g(x) = xf(x) 1_{\R_-}(x)$ et $h(x)=x f(x) 1_{\R_+}(x)$ sont intégrables (passer par la restriction aux intervalles $\R_-$ et $\R_+$ puis par le critère qui étend par 0 à $\R$ ; les deux opération préservent l'intégrabilité). Or $|x|f(x) = g(x) - h(x)$ (sauf en 0), donc elle est intégrable.
 <!-- **note : pour introduire proprement l'espérance d'une variable aléatoire réelle, on a besoin de l'intégrale de Lebesgue -> CI 5** -->
 
 ### Remarque {.remark} 
@@ -170,7 +177,7 @@ En vertu de cette [proposition](#propl2), $\V(X)$ est **positive** et sa racine 
 
 On a également 
         $$\V(X) = \Esp(X^2)-\Esp(X)^2$$
-que l'on obtient en développant $(X-\Esp(X))^2$. Cette manipulation anodine est fort utile dans la pratique. On retiendra que "La variance est égale à la moyenne des carrés moins le carré de la moyenne".
+que l'on obtient en développant $(X-\Esp(X))^2$. Cette manipulation anodine est fort utile dans la pratique. On retiendra que "La variance est égale à la moyenne des carrés moins le carré de la moyenne". On désigne le terme $\Esp(X^2)$ par l'expression *moment d'ordre deux* tandis que la variance est parfois appelée *moment centré d'ordre deux*.
 
 ### Exemple : **TODO illustration écart type**
 
@@ -208,7 +215,9 @@ avec égalité si et seulement si $X$ et $Y$ sont presque-sûrement proportionne
 ### Démonstration {.proof}
 La première inégalité est évidente. Pour la seconde, on a $\forall x \in \R$ d'après la linéarité de l'espérance :
 $$x^2\Esp(X^2) + 2x\Esp(XY)+ \Esp(Y^2) = \Esp((xX+Y)^2) \geq 0.$$
-Mais ceci n'est possible que si ce trinôme en $x$ n'a au plus qu'une seul racine réelle ; son discriminant doit donc être négatif ou nul ce qui donne le résultat.
+Mais ceci n'est possible que si ce trinôme en $x$ n'a au plus qu'une seul racine réelle ; son discriminant 
+        $$4\left((\Esp(XY))^2 - \Esp(X^2)\Esp(Y^2)\right)$$
+doit donc être négatif ou nul ce qui donne le résultat.
 
 Le discriminant est nul si et seulement si il admet une racine double $x_0$ et dans ce cas, $Y(\omega) = -x_0 X(\omega)$ pour presque tout $\omega$.
 
@@ -219,27 +228,58 @@ $$-1\leq \rho(X,Y) \leq 1.$$
 Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition](#composition).
 
 ### Proposition {.proposition #esperanceg}
-Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction continue par morceaux de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si 
-$$\int_\R |g(x)|f(x) dx \leq +\infty,$$
-et dans ce cas
+Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction continue par morceaux de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si l'intégrale
+$$\int_\R |g(x)|f(x) dx,$$
+est définie et dans ce cas
 $$\Esp(g(X)) = \int_R g(x)f(x) dx.$$
 
-Nous n'avons pas les éléments permettant de démontrer ce résultat, mais l'argument heuristique suivant permet de comprendre pourquoi il est vrai :
+Nous n'avons pas les éléments permettant de démontrer ce résultat, mais l'argument heuristique suivant permet de comprendre pourquoi il est vrai : supposons $f$ et $g$ continues. Posons $X_n = i/n$ si $i/n \leq X < (i+1/n)$, pour $i \in \Z$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow{}{n \to \infty} X(\omega)$ 
 ### **TODO** développer dans le cas de l'intégrale HK
 
+## Exemples
 
-# **TODO : à développer, notamment figures** Densités réelles usuelles
-Nous donnons ici quelques exemples de densités de probabilité. 
-### *loi uniforme* 
-        sur $[a,b]$, où $a < b$ et on note $X \sim \mathcal{U}_[a,b]$ si $X$ admet la densité
-        $$ \frac{1}{b-a} 1_{[a,b]} (x).$$
-### *loi exponentielle* de paramètre $\lambda > 0$ et on note $X \sim \mathcal{E}(\lambda)$ si $X$ admet la densité
-        $$ \lambda e^{-\lambda x} 1_{\{x>0\}}.$$
-### *loi gaussienne*
+Nous donnons ici quelques exemples de densités de probabilité. Nous reprenons en particulier les [trois exemples de densités donnés au premier cours](Probabilité I.pdf #exampledens) :
+
+### *loi uniforme*
+
+sur $[a,b]$, où $a < b$ et on note $X \sim \mathcal{U}_{[a,b]}$ si $X$ est de densité
+    $$ \frac{1}{b-a} 1_{[a,b]} (x).$$
+Son espérance vaut
+        $$ \Esp(X) = \int_a^b \frac{x}{b-a} dx = \frac{a+b}{2}$$
+et puisque
+        $$ \Esp(X^2) = \int_a^b \frac{x^2}{b-a} dx = \frac{a^2 + ab +b^2}{3},$$
+alors sa variance vaut
+        $$ \V(X) = \Esp(X^2) - \Esp(X)^2 = \frac{(b-a)^2}{12}.$$
+
+### *loi exponentielle*
+
+de paramètre $\theta > 0$ et on note $X \sim \mathcal{E}(\theta)$ si $X$ est de densité
+        $$ \theta e^{-\theta x} 1_{\{x>0\}}.$$
+Son espérance et sa variance se calculent aisément (exercice) et valent
+        $$ \Esp(X) = \frac{1}{\theta} \text{ et } \V(X) = \frac{1}{\theta^2}$$
+
+### *loi gamma*
+
+### *loi normale*
+
+de paramètres $\mu$ et $\sigma^2$ et on note $X \sim \mathcal{N}(\mu,\sigma^2)$ i $X$ est de densité[^verif]
+        $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
+Son espérance et sa variance valent
+        $$\Esp(X) =  \mu \text{ et } \V(X) = \sigma^2$$
+Pour le voir, on fait d'abord le calcul dans le cas centré réduit ($\mu = 0$ et $\sigma^2 =1$) puis on s'y ramène par le changement de variable $x \mapsto \frac{x-\mu}{\sigma}$.
+
+[^verif]: Pour s'assurer qu'il s'agit bien d'une densité, on remarque que  $I = \int_{-\infty}^{+\infty} f(x) dx$ vérifie 
+$$ I^2 = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x) f(y) dxdy = \int_{0}^{2\pi} d\theta\int_{0}^{+\infty}\frac{1}{2\pi} \rho e^{-\rho^2/2}d\rho $$
+(en passant en coordonnées polaires dans l'intégrale double). Le calcul est ensuite aisé et on obtient $I = 1$.
+
+### Remarque {.remark}
+Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétrées par des nombres réels (un ou deux dans nos exemples) qui sont liés directement aux valeurs de l’espérance et de la variance de la variable. C’est très important en statistique. En effet, si nous savons a priori que la loi de $X$ appartient à une certaine classe de lois (lois exponentielles, lois normales), nous pourrons trouver laquelle en estimant ses paramètres en fonction des observations de $X$. Dans le cas de la loi normale, la moyenne et la variance (empiriques) des échantillons fourniront ainsi directement des estimateurs des paramètres.
+
+Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l’exemple suivant.
+
 ### *loi de Cauchy*
-### *loi Gamma*
 
-**note : ajouter de jolies figures**
+
 
 # Vecteurs aléatoires à densité
 Nous allons généraliser ici la notion de variable aléatoire en considérant qu'elle peut prendre ses valeurs dans $\R^n$. Les vecteurs aléatoires se rencontrent naturellement lorsqu'on s'intéresse à plusieurs quantités conjointement, par exemple dans le cas de la météo, la température, la pluviométrie et la vitesse et la direction du vent.
@@ -372,7 +412,7 @@ Nous donnons ici quelques exemples d'application de cette méthode :
         $$ \Esp(h(Y)) = \int_\R h(ax+b) f_X(x) dx = \int_\R h(y) f_X(\frac{y-b}{a})\frac{1}{|a|} dy $$
  Donc 
         $$ f_Y(y) = f_X(\frac{y-b}{a})\frac{1}{|a|} $$
- * Soit $Y =X^2$. La fonction $g$ est décroissante sur $\R_-$ et croissante sur $\R^+$. Le changement de variable $y = x^2$ donne alors
+ * Soit $Y =X^2$. La fonction $g$ est décroissante sur $\R_-$ et croissante sur $\R_+$. Le changement de variable $y = x^2$ donne alors
         $$ \Esp(h(Y)) = \int_{-\infty}^0 h(x^2) f_X(x) dx + \int_{-\infty}^0 h(x^2) f_X(x) dx$$
 
 Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldots,X_n)$, un vecteur aléatoire de densité $f_X$ sur $\R^n$, $g$ une fonction de $\R^n$ dans $\R^m$ et $Y = g(X)$. Plusieurs cas sont à considérer :
@@ -403,3 +443,4 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
 
 # Exercices
 
+## Propriété de non vieillissement de la loi exponentielle

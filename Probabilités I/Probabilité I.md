@@ -95,11 +95,11 @@ Un *événement* est une propriété qui est vérifiée ou non une fois l'expér
 
  1. Jeu de Pile ou Face : $A = \{\text{pile}\}$. 
  2. Lancé de dés :  $A = \{1,3,5\}$.
- 3. Durée de vie d'une ampoule électrique : $A = [t_1,t_2] \subset \R^+$.
- 4. Température demain à 12h au sommet de la tour Eiffel (en degrés Kelvin) : $A = [T_1,T_2]\cup[T_3,T_4] \subset \R^+$.
- 5. Evolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2] \subset \R^+$ : 
+ 3. Durée de vie d'une ampoule électrique : $A = [t_1,t_2] \subset \R_+$.
+ 4. Température demain à 12h au sommet de la tour Eiffel (en degrés Kelvin) : $A = [T_1,T_2]\cup[T_3,T_4] \subset \R_+$.
+ 5. Evolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2] \subset \R_+$ : 
  $A = \{ f \in C([t_1,t_2], \R^3) : \|f-g\|_{\infty} \leq a \}$, où
- $g \in C([t_1,t_2],\R^3)$ et $a \in \R^+$.
+ $g \in C([t_1,t_2],\R^3)$ et $a \in \R_+$.
 
 
 Les événements étant des ensembles, les opérations ensemblistes classiques admettent une interprétation probabiliste.
@@ -140,7 +140,7 @@ Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
 
 Une des nouveautés majeures de ce cours par rapport au programme de CPGE est le cas où l'espace fondamental n'est plus fini ni dénombrable. On va voir ici que les outils développés dans le cours de calcul intégral vont nous permettre de définir une probabilité sur $\R$ muni de la tribu des ensembles mesurables.
 
-Soit $\Omega = \R$ et $f : \Omega \to \R^+$ une fonction absolument intégrable telle que 
+Soit $\Omega = \R$ et $f : \Omega \to \R_+$ une fonction intégrable telle que 
 $$ \int_\Omega f(x)\, dx =1. $$
 
 Soit $\A$ la collection des ensembles mesurables sur $\Omega$ ;
@@ -468,7 +468,7 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
  $$ f(x) \sim \frac{\P([x,x+dx])}{dx}.$$   
 
 
-### Exemples de lois à densités {.example}
+### Exemples de lois à densités {.example #exampledens}
 
  1. La *loi uniforme* sur $[a,b]$, avec $a,b \in \R$ tels que $a < b$, notée $\mathcal{U}_{[a,b]}$, est la probabilité $\P$ qui admet la densité
     $$f(x) = \left\{\begin{array}{ll}
