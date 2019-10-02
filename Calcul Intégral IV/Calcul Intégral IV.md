@@ -618,13 +618,9 @@ Voir s'il faut autoriser les fonction simples à prendre la valeur $+\infty$ ...
 et se tenir ensuite à la même convention partout.
 
 ### Fonction étagée {.definition}
-On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
-l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
+On appelle *fonction étagée* (ou *fonction simple*) toute fonction $f: X \to Y$ 
+telle que l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
 prenne qu'un nombre fini de valeurs).
-
-### TODO
-
-Examiner de plus près gestion valeurs infinies
 
 ### Fonction mesurable
 Une fonction $f: X \to [-\infty, +\infty]$ associée aux espaces mesurables 
@@ -634,6 +630,58 @@ simple de fonctions étagées $X \to \R$ mesurables.
 
 ### TODO -- Démonstration {.proof}
 
+### Fonction étagées mesurables
+Soit $(X, \mathcal{A})$ un espace mesurable.
+Une fonction $f: X \to \R$ est simple et mesurable 
+si et seulement s'il existe une collection finie d'ensembles mesurables
+$A_0, \dots, A_{n-1} \in \mathcal{A}$ et de valeurs 
+$y_0, \dots, y_{n-1} \in \R$ telles que
+$$
+f = \sum_{k=0}^{n-1} y_k 1_{A_k}. 
+$$
+
+### {.post}
+La preuve de ce résultat montre qu'il est possible d'être plus prescriptif 
+si nécessaire sur les ensembles $A_k$ et les valeurs $y_k$ : 
+une fonction est en effet simple et mesurables si et seulement 
+s'il existe une collection finie d'ensembles mesurable **disjoints**
+$A_0, \dots, A_{n-1} \in \mathcal{A}$ et de valeurs **distinctes et non nulles**
+$y_0, \dots, y_{n-1} \in \R$ telles que
+$$
+f = \sum_{k=0}^{n-1} y_k 1_{A_k}. 
+$$
+
+### Démonstration {.proof}
+Soit $f: X \to \R$ une fonction simple ;
+il existe donc des réels $y_0, \dots, y_{n-1}$ tels que
+$f(X) = \{y_0,\dots, y_{n-1}\}.$
+On a alors
+$$f = \sum_{k=0}^{n-1} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
+Si de plus $f$ est mesurable, les singletons de $\R$ étant (Lebesgue-)mesurables 
+(car fermés), les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
+
+Réciproquement, si $f$ est de la forme $f = \sum_{k=0}^{n-1} y_k 1_{A_k}$ où
+les ensembles $A_k$ sont mesurables, il est clair que la fonction $f$ est simple. 
+En considérant les ensembles 
+-- mesurables -- $B_k$ définis par $B_0 = A_0$ et $B_{k+1}= A_{k+1} \setminus A_k$
+on obtient une somme $\sum_k w_k 1_{B_k}$ du même type mais basée sur des 
+ensembles disjoints $B_k$. En faisant l'union $C_j$ des $B_k$ qui correspondent à
+des valeurs $z_j = w_k$ identiques, on peut de plus s'assurer d'avoir une somme
+$\sum_j z_j 1_{C_j}$ où les valeurs $z_j$ sont distinctes et les $C_j$ sont
+mesurable. Le cas échéant,
+si l'un des $z_j$ est nul, on peut omettre le terme correspondant de la somme.
+Il devient maintenant clair que $f$ est également mesurable : si $A$ est un
+ensemble mesurable de $\R$, l'image réciproque de $A$ par $f$ est l'union
+d'une sous-collection des $C_j$ ($C_j$ devant être inclus 
+si et seulement si $z_j \in A$)
+et si $0 \in A$, de $X \setminus \cup_j C_j$.
+
+
+
+
+
+
+
 ### Intégrale d'une fonction étagée
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto \left[0, +\infty\right[$ une fonction étagée positive et mesurable.
@@ -641,7 +689,13 @@ Soit $Y = f(X)$ l'ensemble des valeurs prises par $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 la grandeur positive finie
 $$
-\int_X f \mu := \int_X f(x) \mu(dx) := \sum_{y \in Y} y \times \mu(f^{-1}(\{y\})).
+\int f \mu := \int_X f(x) \mu(dx) := \sum_{y \in Y} y \times \mu(f^{-1}(\{y\})).
+$$
+Si $A_0, \dots, A_{n-1} \in \mathcal{A}$, $y_0, \dots, y_{n-1} \in \R$ et
+$f = \sum_{k=0}^{n-1} y_k 1_{A_k},$
+alors
+$$
+\int f \mu = \sum_{k=0}^{n-1} y_k \mu(A_k).
 $$
 
 ### Intégrale d'une fonction positive
@@ -654,15 +708,6 @@ la grandeur positive (finie ou infinie)
 $$
 \int_X f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int_X g \mu.
 $$
-
-### TODO
-Passer du sup à la limite des intégrales d'une suite croissante de 
-fonctions simples et mesurables. D'autant plus nécessaire que dans
-la définition avec le sup, on ne voit pas très bien pourquoi il faut
-supposer que la fonction $f$ elle-même est mesurable.
-Rq qqpart plus bas que si l'on veut que le procédé marche pour
-toute suite $\varepsilon_k$, alors il est *nécessaire* que 
-$f$ soit mesurable.
 
 ### Intégrale d'une fonction à valeurs réelles
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
@@ -816,14 +861,14 @@ $$
 $$
 L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
 
-[^ns]: En effet, les ensembles $f^{-1}(\left]2^{-n}, +\infty\right[)$
+[^ns]: En effet, les ensembles $f^{-1}\left(\left]2^{-n}, +\infty\right[\right)$
 forment une suite croissante d'ensembles mesurables dont l'union
-est $f^{-1}(\left]0, +\infty\right[)$. Par $\sigma$-additivité de
+est $f^{-1}\left(\left]0, +\infty\right[\right)$. Par $\sigma$-additivité de
 la mesure, on a donc
 $$
-\lim_{n \to + \infty} \mu(f^{-1}(\left]2^{-n}, +\infty\right[))
+\lim_{n \to + \infty} \mu\left(f^{-1}\left(\left]2^{-n}, +\infty\right[\right)\right)
 =
-\mu(f^{-1}(\left]0, +\infty\right[)).
+\mu\left(f^{-1}\left(\left]0, +\infty\right[\right)\right).
 $$
 
 ### TODO : 
