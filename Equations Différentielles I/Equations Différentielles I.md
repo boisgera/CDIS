@@ -365,7 +365,7 @@ Propriétés asymptotiques
 
 Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce que les solutions divergent ? est-ce qu'elles tendent vers un point en particulier ? vers un cycle limite ?
 
-Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc un ouvert $\Omega$ de $\R^n$ et une fonction continue $f:\Omega\to \R^n$. Dans ce cas, on prend par défaut $t_0=0$. Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.
+Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc une fonction continue $f:\R^n\to \R^n$, et on prend par défaut $t_0=0$. Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.
 
 ### Point d'équilibre
 On appelle *point d'équilibre* un point $a\in \R^n$ tel que
@@ -459,7 +459,7 @@ Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement
 
 Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
 
-\textit{Démonstration}: Voir en [annexe](#app_stab_linearise).  \hfill $\blacksquare$
+\textit{Démonstration}: Voir l'annexe [\textit{Stabilité locale et linéarisé tangent}](#app_stab_lin).  \hfill $\blacksquare$
 
 Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
 
@@ -502,7 +502,7 @@ $$
 $$ 
 alors $a$ est localement asymptotiquement stable.
 
-- Si $V$ est propre, $W=\R^n$, et
+- Si $V$ est propre[^def_propre], $W=\R^n$, et
 $$
 \langle\nabla V (x), f(x)\rangle < 0  \qquad \forall x\neq a
 $$ 
@@ -513,6 +513,8 @@ $$
 \langle\nabla V (x(t)), f(x(t))\rangle = \frac{d}{dt} V(x(t))
 $$  
 le long d'une trajectoire $t\mapsto x(t)$ de l'équation différentielle $\dot{x} = f(x)$. $V$ représente donc une grandeur positive qui décroît ou est conservée le long des trajectoires. Pour des systèmes physiques, elle est donc souvent reliée à l'énergie.
+
+\textit{Démonstration}: Voir l'annexe [\textit{Théorème de Lyapunov}](#app_theo_lyap).  \hfill $\blacksquare$
 
 
 ### Exemple
@@ -531,7 +533,6 @@ $$
 $$
 ce qui traduit la conservation de l'énergie en l'absence de frottement. On en déduit donc la stabilité du point d'équilibre $(0,0)$.
 
-### Cas du plan : portrait de phase et théorème de Bendixon
 
 
 Références
@@ -603,7 +604,21 @@ où $\lambda$ est un coefficient de frottement. Que représente $x$ ?
 -> [*Correction*](#correc_masse_ressort)
 
 ### Cycle limite
+Considérons le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_1+x_2-x_1(x_1^2 + x_2^2)\\
+\dot{x}_2 &=& -x_1+x_2-x_2(x_1^2 + x_2^2)\\
+\end{array}
+$$
 
+1. Montrer que ce système admet un seul point d'équilibre. Etudier sa stabilité.
+
+2. Posons $V(x) = x_1^2+x_2^2$. Etudier le signe de $\frac{d}{dt}V(x(t))$ le long des trajectoires du système. 
+
+3. En déduire le comportement des solutions en fonction de la condition initiale.
+
+-> [*Correction*](#correc_cycle_lim)
 
 
 ### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.exercice #exo_attrac_stab}
@@ -727,10 +742,67 @@ Si les valeurs propres sont réelles, les avoir toutes deux strictement négativ
 
 Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
 
-### Cycle limite {.correction #correc_proiePreda}
+### Oscillateur {.correction #correc_masse_ressort}
 
+### Cycle limite {.correction #correc_cycle_lim}
+On étudie le comportement des solutions de $\dot{x}=f(x)$ pour
+$$
+f(x) = 
+\left(
+\begin{array}{c}
+x_1+x_2-x_1(x_1^2+x_2^2) \\
+-2x_1+x_2-x_2(x_1^2+x_2^2) 
+\end{array}
+\right)
+$$
 
-### Masse/ressort {.correction #correc_masse_ressort}
+1. Chercher les points d'équilibre du système revient à résoudre
+$$
+\begin{array}{rcl}
+0&=& x_1+x_2-x_1(x_1^2+x_2^2) \\
+0&=& -2x_1+x_2-x_2(x_1^2+x_2^2) 
+\end{array}
+$$
+Multiplier la première ligne par $x_2$, la deuxième par $x_1$ et soustraire, donne $x_1x_2=0$, et dont soit $x_1=0$ soit $x_2=0$. Si $x_1=0$, on tire de la première ligne $x_2=0$. Si $x_2=0$, on tire de la deuxième que $x_1=0$. Donc nécessairement, $x_1=x_2=0$. Il n'y a donc qu'un point d'équilibre $(0,0)$.
+La jacobienne de la dynamique est donnée par
+$$
+J_f(x_1,x_2) = 
+\left(
+\begin{matrix}
+1-(x_1^2+x_2^2) -2 x_1^2 & 1-2 x_1x_2 \\
+-1-2 x_1x_2 & 1-(x_1^2+x_2^2)-2 x_2^2
+\end{matrix}
+\right)
+$$
+soit 
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+1  & 1 \\
+-1 & 1
+\end{matrix}
+\right)
+$$
+qui a pour valeurs propres $1\pm i$. Le point d'équilibre est donc instable.
+
+2. 
+\begin{align*}
+\frac{d}{dt}V(x) &= \langle \nabla V(x) , f(x) \rangle \\
+&= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
+& -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
+\end{align*}
+Donc $\frac{d}{dt}V(x)$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon.
+
+3. Les trajectoires initialisées sur le cercle y restent, suivant la dynamique d'un oscillateur
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2\\
+\dot{x}_2 &=& -x_1\\
+\end{array}
+$$
+Celles initialisées à l'extérieur du cercle convergent vers le cercle mais sans jamais l'atteindre car cela contradirait l'unicité des solutions en un point du cercle ($f$ est $C^1$ donc le théorème de Cauchy-Lipschitz s'applique); celles initialisées à l'intérieur (sauf en zero) de même. 
+Enfin, la trajectoire initialisée à zéro reste à zéro. PORTRAIT DE PHASE
 
 ### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.correction #corr_attrac_stab}
 
@@ -806,8 +878,10 @@ $$
 $$
 Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset U$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
 
+### Théorème de Lyapunov {.app #app_theo_lyap}
 
-### Stabilité locale et linéarisé tangent (.app #app_stab_linearise)
+
+### Stabilité locale et linéarisé tangent {.app #app_stab_lin}
 
 
 
@@ -856,3 +930,6 @@ $$
 \dot{x} = - \frac{1}{\sqrt{\left(\frac{S}{s}\right)^2-1}} \sqrt{2gx} \approx -\frac{s}{S} \sqrt{2gx}
 $$
 en supposant que $s\ll S$.
+
+[^def_propre]:
+ $V$ est dite propre si pour tout compact $K$, $V^{-1}(K)$ est compact. Ou de manière équivalente, $\lim_{\|x\|\to +\infty} V(x) = +\infty$.
