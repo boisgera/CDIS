@@ -374,10 +374,25 @@ f(a) = 0  \ .
 $$
 En d'autres termes, la fonction constante $x\equiv a$ est alors solution.
 
+### Exemple d'un pendule amorti {.exemple #ex_pendule}
+L'évolution d'un pendule amorti de longueur $\ell$ dans le champ de l'apesanteur peut être décrit par une dynamique du type
+$$
+\ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
+$$
+avec $\rho>0$ un coefficient de frottement.
+En prenant $x=(\theta,\dot{\theta})$, on obtient le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2 \\
+\dot{x}_2 &=& - \frac{\rho}{m} x_2 -\frac{g}{\ell} \sin x_1
+\end{array}
+$$
+Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent soit à la position *basse* du pendule $\theta=0$ ou la position *haute* $\theta=\pi$, toutes deux à vitesse nulle $\dot{\theta}=0$. Si le pendule est initialisé exactement à sa position haute ou basse à vitesse nulle alors il y reste indéfiniment.
+
 ### Stabilité, stabilité asymptotique
 Un point d'équilibre $a$ est dit:
 
-- *stable* si *les solutions restent arbitrairement proche de $a$ lorsqu'elles sont initialisées suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
+- *stable* si *les solutions restent arbitrairement proche de $a$ si elles sont initialisées suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
 $$
 |x(0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in \Rgeq \ .
 $$
@@ -395,9 +410,11 @@ $$
 
 
 ### Exemples
+- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse: l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc asymptotiquement stable.
 
+- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable.
 
-### Caractérisation par Lyapunov
+- Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Voir le système de Vinograd poour les curieux. REF ???
 
 
 
@@ -447,19 +464,7 @@ Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement pos
 Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
 
 ### Exemple
-L'évolution d'un pendule amorti dans le champ de l'apesanteur peut être décrit par une dynamique du type
-$$
-\ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
-$$
-avec$\rho>0$ un coefficient de frottement.
-En prenant $x=(\theta,\dot{\theta})$, on obtient le système
-$$
-\begin{array}{rcl}
-\dot{x}_1 &=& x_2 \\
-\dot{x}_2 &=& - \frac{\rho}{m} x_2 -\frac{g}{\ell} \sin x_1
-\end{array}
-$$
-Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent soit à la position *basse* du pendule $\theta=0$ ou la position *haute* $\theta=\pi$, toutes deux à vitesse nulle $\dot{\theta}=0$. On a
+Reprenons l'[exemple du pendule amorti](#ex_pendule_amorti). On a
 $$
 J_f(0,0) = \left( \begin{matrix} 
 0 & 1\\
@@ -473,8 +478,58 @@ J_f(\pi,0)= \left( \begin{matrix}
 \end{matrix}
 \right) 
 $$
-Dans le premier cas, on a $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ a ses valeurs propres à partie réelle strictement négative. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
-Dans le deuxième cas par contre, on a le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la possition haute  $(\pi,0)$ est donc bien instable.
+Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ a ses valeurs propres à partie réelle strictement négative. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
+Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
+
+Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
+
+### Caractérisation par Lyapunov
+Soit $a$ un point d'équilibre de $f$, et $W$ un voisinage de $a$.
+Soit $V\in C^1(W,\Rgeq)$ telle que 
+$$
+V(x)= 0 \qquad \Longleftrightarrow \qquad x=a  \ . 
+$$
+
+-  Si
+$$
+\langle\nabla V (x), f(x)\rangle \leq 0   \qquad \forall x\in W
+$$ 
+alors $a$ est stable.
+
+- Si 
+$$
+\langle \nabla V (x), f(x) \rangle < 0 \qquad \forall x\in W\setminus \{a\}
+$$ 
+alors $a$ est localement asymptotiquement stable.
+
+- Si $V$ est propre, $W=\R^n$, et
+$$
+\langle\nabla V (x), f(x)\rangle < 0  \qquad \forall x\neq a
+$$ 
+alors $a$ est globalement asymptotiquement stable.
+
+$V$ est alors appelée *fonction de Lyapunov*. En fait, 
+$$
+\langle\nabla V (x(t)), f(x(t))\rangle = \frac{d}{dt} V(x(t))
+$$  
+le long d'une trajectoire $t\mapsto x(t)$ de l'équation différentielle $\dot{x} = f(x)$. $V$ représente donc une grandeur positive qui décroît ou est conservée le long des trajectoires. Pour des systèmes physiques, elle est donc souvent reliée à l'énergie.
+
+
+### Exemple
+Reprenons le pendule mais cette fois-ci, non amorti, c'est-à-dire avec $\rho=0$. Nous n'avons pas pu prouver la stabilité du point d'équilibre $(0,0)$ par l'étude de la matrice Jacobienne car ses valeurs propres sont imaginaires pures. Essayons par analyse de Lyapunov. Inspirés par la physique, considérons $V:\left] -\pi, \pi\right[\times \R \to \Rgeq$ définie par
+$$
+V(x_1,x_2) = \frac{1}{2} m\ell^2 x_2^2 + mg\ell(1-\cos(x_1)) \ .
+$$
+Le premier terme correspond à l'énergie cinétique du pendule, et le deuxième son énergie potentielle/
+$V$ est $C^1$, à valeurs positives et telle que 
+$$
+V(x) = 0 \qquad \Longleftrightarrow \qquad x=0 \ .
+$$
+De plus,
+$$
+\langle\nabla V (x), f(x)\rangle = m\ell^2 x_2\left(-\frac{g}{\ell} \sin x_1\right) + mg \ell \sin x_1 x_2 = 0
+$$
+ce qui traduit la conservation de l'énergie en l'absence de frottement. On en déduit donc la stabilité du point d'équilibre $(0,0)$.
 
 ### Cas du plan : portrait de phase et théorème de Bendixon
 
@@ -522,11 +577,13 @@ $$
 
 -> [*Correction*](#correc_gronwall)
 
-### Critère de stabilité d'un système plan
+### Critère de stabilité d'un système plan {.exercice #exo_crit_stab_dim2}
 Montrer que le système linéaire $\dot{x} = Ax$ avec $A\in \R^{2\times 2}$ est asymptotiquement stable si et seulement si 
 $$
 \text{tr} A <0  \qquad \text{ et } \qquad \text{det} A >0 \ .
 $$
+
+-> [*Correction*](#correc_crti_stab_dim2)
 
 ### Oscillateur {.exercice #exo_masse_ressort}
 Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
@@ -656,6 +713,19 @@ $$
 |x(t)-x_\delta(t)|\leq |\delta|e^{M(t-t_0)} \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
 Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$. A FINIR !!!
+
+### Critère de stabilité en dimension 2 {.correction #correc_crti_stab_dim2}
+Soient $\lambda_1$ et $\lambda_2$ les valeurs propres d'une matrice $A$ de dimension 2. Son polynôme caractéristique est donné par
+$$
+s^2 - \text{tr} A s + \det A = (s-\lambda_1)(s-\lambda_2) = s^2 - (\lambda_1+\lambda_2)  s + \lambda_1\lambda_2 \ .
+$$
+Donc $\text{tr} A = \lambda_1+\lambda_2$ et $\det A = \lambda_1\lambda_2$. Il y a deux cas: soit les valeurs propres sont complexes conjuguées, soit elles sont réelles.
+
+Si $\lambda_i = \lambda_0 \pm j\omega$, alors $\lambda_1\lambda_2=\lambda_0^2+\omega^2$ et $\lambda_1+\lambda_2 = 2\lambda_0$. Donc $\lambda_0<0$ si et seulement si $\text{tr} A <0$ (et on a alors toujours $\det A>0$).
+
+Si les valeurs propres sont réelles, les avoir toutes deux strictement négatives implique que $\lambda_1\lambda_2>0$ et $\lambda_1+\lambda_2<0$. Réciproquement, si $\lambda_1\lambda_2>0$, elles sont non nulles et du même signe, et si de plus $\lambda_1+\lambda_2<0$, ce signe est nécessairement négatif.
+
+Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
 
 ### Cycle limite {.correction #correc_proiePreda}
 
