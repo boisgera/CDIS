@@ -511,7 +511,7 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
     
     ![fonction de répartition de la loi normale](images/CdfGauss.tex)
 
-Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de probabilités avec densité.
+Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de probabilités à densité.
 
 # Exercices
 
@@ -540,6 +540,24 @@ Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ 
     $$\P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
+
+## Indépendance et conditionnement
+
+### Question 1 {.question #ic-1}
+Dans quelles circonstances particulières deux événements $A$ et $B$ tels que $A\cup B$ soit presque sûr sont-ils indépendants ?
+
+### Question 2 {.question #ic-2}
+Soit $A$, $B$ et $C$ trois événements indépendants **2 à 2**, avec $\P(C)>0$. Donner une condition nécessaire et suffisante sur $A$, $B$ et $C$ pour que $A$ et $B$ soient indépendants relativement à la probabilité conditionnelle $\P(\,\,|C)$, à la place de $C$. 
+
+### Question 3 {.question #ic-3}
+Etablir que deux événements $A$ et $B$ sont indépendants ssi 
+$$ \P(A\cap B)\P(A^c \cap B^c) = \P(A \cap B^c)\P(A^c\cap B)$$
+
+## Problème de Monty Hall {.question #mh}
+Dans un jeu télévisé, vous êtes confrontés au problème suivant : devant vous se trouvent 3 portes fermées. Derrière l'une d'entre elle se trouve une voiture, derrière chacune des deux autres, une chèvre. Vous désignez au hasard l'une d'entre elle. Le présentateur, qui sait où se trouve la voiture, ouvre alors une porte, qui n'est ni celle que vous avez choisie, ni celle qui cache la voiture. Il vous offre alors la possibilité de réviser votre choix. Que choisissez-vous ?
+
+Calculer la probabilité de remporter la voiture selon les deux stratégies (changer ou non son choix de porte).
+
 
 # Solutions
 
@@ -573,3 +591,41 @@ $$ \P\left(\bigcup_{n\in\N} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \s
 Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B_n = \cup_{p \leq n} A_n$ et $B = \cup_n A_n$. Comme $\P$ est additive, on a $\P(B_n) = \sum_{p \leq n} \P(A_n)$ qui croît vers $\sum_n \P(A_n)$ et aussi vers $\P(B)$ d'après le point 3.
 
 En considérant les résultats de ces deux exercices, on obtient une définition alternative de la probabilité en substituant la [continuité monotone](#contmon) et l'additivité à la propriété de [$\sigma$-additivité](#defproba).
+
+## Indépendance et conditionnement
+
+### Question 1 {.answer #answer-ic-1}
+On a $1 = \P(A\cup B) = \P(A) + \P(B) - \P(A\cap B)$, donc $1 = \P(A) + \P(B) - \P(A)\P(B)$ si et seulement si $A$ et $B$ sont indépendants. Cette égalité se réécrit $(1-\P(A))(1-\P(B))=0$, qui est vérifiée ssi $A$ ou $B$ est presque sûr.
+
+### Question 2 {.answer #answer-ic-2}
+Par définition, on a $A$ et $B$ indépendants relativement à $\P(\,\,|C)$ ssi
+$$\P(A\cap B |C) = \P(A|C)\P(B|C) = \P(A)\P(B),$$
+car $A$ et $B$ sont chacun indépendants de $C$, d'où 
+$$\frac{\P(A\cap B \cap C)}{\P(C)} = \P(A)\P(B)$$ 
+par [définition](#defprobacond) ; et comme $A$, $B$ et $C$ sont indépendants 2 à 2, 
+$$\P(A\cap B \cap C) = \P(A)\P(B)\P(C)$$ 
+équivaut à $A$, $B$ et $C$ sont mutuellemnent indépendants.
+
+### Question 3 {.answer #answer-ic-3}
+On a $\P(A^c\cap B^c) = \P((A \cup B)^c) = 1 - \P(A) - \P(B) + \P(A\cap B)$, donc
+$$\P(A\cap B)\P(A^c \cap B^c) = \P(A\cap B) - \P(A\cap B)(\P(A) + \P(B) + \P(A\cap B))$$
+Par ailleurs, on a 
+$$\left\{ \begin{array}{ll}
+        \P(A \cap B^c)  & = \P(A \setminus (A\cap B)) = \P(A) - \P(A\cap B) \\
+        \P(A^c \cap B)  &=  \P(B \setminus (A\cap B)) = \P(B) - \P(A\cap B)
+        \end{array}
+        \right.$$
+Donc
+$$ \P(A \cap B^c)\P(A^c\cap B) = \P(A)\P(B) -\P(A\cap B)(\P(A) + \P(B)- \P(A\cap B))$$
+On a donc bien l'égalité ssi $\P(A)\P(B) = \P(A\cap B)$
+
+## Problème de Monty Hall {.answer #answer-mh}
+Considérons les événements $A$ = 'la première porte choisie en premier est la bonne' et $B$ = 'la dernière porte est la bonne'.
+
+On a évidemment $\P(A) = \frac{1}{3}$, puisque le choix initial se fait uniformément parmi les 3 portes.
+
+Pour $B$, on doit tenir compte de l'information donnée par le présentateur. On a 
+$$\P(B) = \P(B|A)\P(A) + \P(B|A^c)\P(A^c) = 0.\frac{1}{3} + 1.\frac{2}{3} = \frac{2}{3}$$
+En effet $\P(B|A^c) = 1$ car si la porte choisie initialement n'est pas la bonne, c'est nécessairement la dernière.
+
+Il convient donc de changer son choix compte tenu de la nouvelle information.
