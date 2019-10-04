@@ -565,6 +565,42 @@ Dans un jeu télévisé, vous êtes confrontés au problème suivant : devant vo
 
 Calculer la probabilité de remporter la voiture selon les deux stratégies (changer ou non son choix de porte).
 
+## Densité et fonction de répartition d'une loi Normale
+
+On considère la densité d'une loi Normale centrée réduite : $$f : x\in [-\infty,+\infty] \mapsto \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{x^2}{2}\right\},$$
+où $f(-\infty) := \lim\limits_{x\to-\infty} f(x)$ et $f(+\infty) := \lim\limits_{x\to+\infty} f(x)$.
+
+### Propriétés générales {.question #fdrgaussprop}
+
+1. Faire l'étude de $f$ (domaine, parité, limites aux bornes, dérivabilité, variations, convexité/concavité).
+
+2. Donner la définition de la fonction de répartition $F$ associée à $f$. En donner une expression faisant apparaître la *fonction d'erreur* (qui est une fonction spéciale) $$\text{erf} : x\in\R \mapsto \dfrac{2}{\sqrt{\pi}}\,\int_{0}^x e^{-u^2}\,du.$$
+
+### Encadrement de $1 - F(x)$ pour tout $x > 0$ {.question #fdrgaussenca}
+
+Nous allons maintenant démontrer la propriété suivante : $\forall\,x > 0$ $$ \dfrac{x}{1+x^2}\,f(x) \leq 1 - F(x) \leq \dfrac{f(x)}{x}. $$
+
+3. En observant que $u\geq x >0$ implique $\dfrac{u}{x} \geq 1$, montrer l'inégalité de droite.
+
+4. En observant que $u\geq x > 0$ implique $u^{-2} \leq x^{-2}$, montrer que $\forall\,x>0$, $$\left(1+\dfrac{1}{x^2}\right)\,\left(1-F(x)\right) \geq \dfrac{f(x)}{x}.$$ En déduire l'inégalité de gauche.
+
+### Equivalent de $1-F(x)$ quand $x\to+\infty$. {.question #fdrgaussequi}
+
+5. Déduire de l'encadrement prédédent un équivalent de $1-F(x)$ lorsque $x\to+\infty$. 
+
+### Remarque {.remark} 
+Pour $x\in\R$, le rapport $\dfrac{1-F(x)}{f(x)}$ est appelé *ratio de Mills*. Il est beaucoup utilisé en statistique, en particulier pour l'analyse des modèles de régression en présence de biais de sélection.
+
+6. Comparer ce résultat à celui de l'exercice sur les développements limités pour les fonctions de répartition. En particulier, $h:x\in[-\infty,+\infty] \mapsto x\,f(x)$ est-elle absolument intégrable ?
+
+### Loi Normale générale. {.question #fdrgaussgen}
+
+Considérons maintenant la densité plus générale $$g(x) = \dfrac{1}{\sqrt{2\,\pi}\,\sigma}\, \exp\left\{-\dfrac{(x-\mu)^2}{2\,\sigma^2} \right\},$$
+où $\mu \in \R$ et $\sigma^2 > 0$. On note $G$ sa fonction de répartition associée.
+
+7. En réécrivant $g$ en fonction de $f$, déduire des questions précédentes un équivalent de $1-G(x)$ lorsque $x\to+\infty$.
+
+---
 
 # Solutions
 
@@ -643,3 +679,56 @@ $$\P(B) = \P(B|A)\P(A) + \P(B|A^c)\P(A^c) = 0.\frac{1}{3} + 1.\frac{2}{3} = \fra
 En effet $\P(B|A^c) = 1$ car si la porte choisie initialement n'est pas la bonne, c'est nécessairement la dernière.
 
 Il convient donc de changer son choix compte tenu de la nouvelle information.
+
+
+## Densité et fonction de répartition d'une loi Normale
+
+### Propriétés générales {.answer #answer-fdrgaussprop}
+
+1. Faisons l'étude de $f$.
+
+* **Domaine.** $f : [-\infty,+\infty] \to \R^+$.
+* **Parité.** On remarque que $f$ est paire : $\forall\,x\in\R$, $f(x) = f(-x)$.
+* **Limites aux bornes.** $\lim\limits_{x\to-\infty} f(x) = \lim\limits_{x\to+\infty} f(x) = 0$. Ainsi, la parité est aussi vraie aux bornes.
+* **Dérivabilité.** $f$ est continue sur $[-\infty,+\infty]$ et infiniment dérivable sur $\R$ en tant que composée de fonctions infiniment dérivables. Pour tout $x\in\R$ sa dérivée première s'écrit $f^\prime(x) = -x\,f(x)$ et a dérivée seconde $f^{\prime\prime}(x) =(x^2 - 1)\,f(x)$. Ces deux dernières fonctions peuvent être étendues à la droite réelle achevée en posant $f^\prime(\pm\infty) := \lim\limits_{x\to\pm\infty} f^\prime(x) = 0$ et $f^{\prime\prime}(\pm\infty) := \lim\limits_{x\to\pm\infty} f^{\prime\prime}(x) = 0$.
+* **Variations.**  $f^\prime$ est strictement positive (resp. négative) ssi $-\infty < x < 0$ (resp. $+\infty > x > 0$). Elle est nulle en $0$, $+\infty$ et $-\infty$. Ainsi, $f$ est strictement croissante sur $]-\infty,0[$, vaut $\left(2\,\pi\right)^{-1/2}$ en $0$, puis est strictement décroissante sur $]0,+\infty[$. 
+* **Convexité/Concavité.** $f^{\prime\prime}$ est strictement positive (resp. négative) sur $\R\backslash\,]-1,1[$ (resp. $]-1,1[$). $f$ est donc convexe sur $\R\backslash\,]-1,1[$ et concave sur $]-1,1[$.
+
+2. Par définition, pour tout $x\in\R$ $$ F(x) = \int_{-\infty}^x \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du.$$ On pose $F(+\infty) = 1$ et $F(-\infty) = 0$. Lorsque $x = 0$, comme $f$ est paire et que son intégrale sur $[-\infty,+\infty]$ vaut $1$ (c'est une densité <!-- cf. Probabilités 1 -->), son intégrale sur $[-\infty,0]$ (i.e. $F(0)$) vaut $\dfrac{1}{2}$. Lorsque $x > 0$, en décomposant l'intégrale puis en utilisant un petit changement de variable <!-- cf. Calcul intégral 1 --> on obtient $$F(x) = \dfrac{1}{2} + \int_{0}^x \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du = \dfrac{1}{2} + \int_{0}^{\frac{x}{\sqrt{2}}} \dfrac{1}{\sqrt{\pi}}\,e^{-v^2}\,dv = \dfrac{1}{2} + \dfrac{1}{2}\,\text{erf}\left(\dfrac{x}{\sqrt{2}}\right).$$
+Lorsque $x<0$, on peut procéder de la même manière avec $1 - F(x)$ et obtenir la même égalité que ci-dessus.
+
+### Encadrement de $1 - F(x)$ pour tout $x > 0$ {.answer #answer-fdrgaussenca}
+
+3. Soit $x>0$. Par définition,
+$$1 - F(x) = \int_{-\infty}^{+\infty} f(u)\,du - \int_{-\infty}^x f(u)\,du = \int_{x}^{+\infty} \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du. $$
+Or pour tout $u\geq x$ on a $u/x \geq 1$, donc 
+$$1 - F(x) \leq \dfrac{1}{\sqrt{2\,\pi}}\,\int_{x}^{+\infty} \dfrac{u}{x}\, \exp\left\{-\dfrac{u^2}{2}\right\}\,du = \dfrac{-1}{x}\,\int_{x}^{+\infty} f^\prime(u)\,du. $$
+Or $f^\prime$ a pour primitive $f$ donc d'après le théorème fondamental du calcul (extension) <!-- cf. Calcul intégral 1 --> on a 
+$$1-F(x) \leq -\dfrac{f(+\infty) - f(x)}{x} = \dfrac{f(x)}{x}. $$
+
+
+4. Soit $x>0$. Par définition, $$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) = \int_x^{+\infty} \left(1 + \dfrac{1}{x^2} \right)\,f(u)\,du.$$
+Or pout tout $u \geq x$ on a $\dfrac{1}{u^2} \leq \dfrac{1}{x^2}$, d'où
+$$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) \geq \int_{x}^{+\infty} \left( 1 + \dfrac{1}{u^2} \right)\,f(u)\,du.$$
+Remarquons maintenant que d'après la question 1, $\left(\dfrac{f(x)}{x} \right)^\prime = \dfrac{-x^2\,f(x) - f(x)}{x^2} = -\left(1+\dfrac{1}{x^2}\right)\,f(x)$. En d'autres termes, $A : x\in\R \mapsto -\dfrac{f(x)}{x}$ est une primitive de $x\in\R \mapsto \left(1+\dfrac{1}{x^2}\right)\,f(x)$. On peut étendre ses valeurs à la droite réelle achevée en posant $A(\pm\infty) = \lim\limits_{x\to\pm\infty} A(x) = 0$. On obtient alors par le théorème fondamental du calcul (extension) <!-- cf. Calcul intégral 1 -->
+$$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) \geq - \left(A(+\infty) - A(x)\right) = A(x) = \dfrac{f(x)}{x}.$$
+On en déduit directement l'inégalité de gauche :
+$$ 1-F(x) \geq f(x)\,\dfrac{x^2}{(x^2+1)\,x} = f(x)\,\dfrac{x}{x^2+1}. $$
+
+### Equivalent de $1-F(x)$ quand $x\to+\infty$. {.answer #answer-fdrgaussequi}
+
+5. Soit $x>0$. L'encadrement que nous avons démontré peut être réécrit
+$$ \dfrac{x^2}{1+x^2} \leq \dfrac{1-F(x)}{\dfrac{f(x)}{x}} \leq 1, $$
+et comme $\dfrac{x^2}{1+x^2} \to 1$ lorsque $x\to+\infty$, on obtient que $1-F(x) \sim \dfrac{f(x)}{x}$ quand $x\to+\infty$.
+
+6. Pour tout $x \in [-\infty,+\infty]$ on a $\left|h(x)\right| = \left|x\,f(x)\right| = |x|\,f(x)$ puisque $f\geq 0$. Lorsque $x \in [0,+\infty]$, $\left|h(x)\right| = h(x)$, or d'après la question 1, $h$ admet pour primitive $-f$, qui vaut $0$ en $+\infty$ et $-\infty$ puis $(2\,\pi)^{-1/2}$ en $0$. Par conséquent, (d'après l'extension théorème fondamental du calcul <!-- cf. Calcul intégral 1 -->) l'intégrale de $\left|h\right|$ sur $[0,+\infty]$ existe, et vaut $(2\,\pi)^{-1/2}$. Or $\left|h\right|$ est paire, son intégrale sur $[-\infty,0]$ existe donc aussi et vaut $(2\,\pi)^{-1/2}$. On en conclut que $h$ est bien absolument intégrable sur $[-\infty,+\infty]$. En remarquant qu'elle est impaire, on obtient immédiatement que son intégrale vaut $0$.
+
+On est donc bien dans le cadre de l'exercice sur les queues de distributions. L'équivalent que nous avons trouvé implique bien que $1-F(x) = o\left(\dfrac{1}{x} \right)$ lorsque $x\to+\infty$. Il nous donne juste plus de précisions quant au comportement de $1-F(x)$ lorsque $x\to+\infty$ dans le cas spécifique de la loi Normale centrée réduite : on connaît sa vitesse de convergence.
+
+### Loi Normale générale. {.answer #answer-fdrgaussgen}
+
+7. Soit $x\in\R$. On remarque que $g(x) = \dfrac{1}{\sigma}\,f\left(\dfrac{x-\mu}{\sigma} \right)$. Cela implique en particulier que $$G(x) =  \int_{-\infty}^x \dfrac{1}{\sigma}\,f\left(\dfrac{u-\mu}{\sigma} \right)\,du = \int_{-\infty}^{\frac{x-\mu}{\sigma}} f(u)\,du = F\left(\dfrac{x-\mu}{\sigma}\right).$$
+On obtient alors l'encadrement suivant, pour tout $x>\mu$ :
+$$ \dfrac{x-\mu}{1 + \dfrac{(x-\mu)^2}{\sigma^2}}\,g(x) \leq 1 - G(x) \leq \dfrac{\sigma^2\,g(x)}{x-\mu}.  $$
+
+On en déduit que $1-G(x) \sim \dfrac{\sigma^2\,g(x)}{x-\mu} \sim \sigma^2\,\dfrac{g(x)}{x}$ lorsque $x\to+\infty$.
