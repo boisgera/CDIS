@@ -28,7 +28,7 @@ En CPGE, les probabilités ont été vues dans le cadre de phénomènes aléatoi
 
 Les prédictions de la météo et les projections du climat proviennent généralement de modèle numériques qui simulent les différents processus physiques à l'oeuvre. Les incertitudes dans la construction et l'application de ces modèles sont variées et peuvent être réparties en quatre groupes : les conditions initiales (on ne connaît jamais parfaitement l'ensemble des variables climatiques en tout point du globe), les conditions aux limites (par exemple lorsqu'on travaille à l'échelle d'un continent ou d'un pays), les valeurs des paramètres intervenant dans les modèles (constantes issues d'observations diverses), les incertitudes structurelles enfin qui relèvent des choix de modélisation. Pour tenir compte de ces incertitudes, les climatologues effectuent des ensembles de simulations, où les différentes quantités incertaines sont échantillonnées selon des modèles probabilistes (voir en particulier @tebaldi).
 
-L'incertitude sur les conditions initiales est particulièrement influente aux faibles échelles de temps. La météo est un système chaotique, les prévisions sont particulièrement sensibles aux variations des conditions initiales utilisées pour initialiser les modèles. Ces dernières sont en revanche connues de manière imparfaite. Il est ainsi nécessaire de tenir compte de cette incertitude. Ceci est rendu possible par la modélisation probabiliste. Les conditions aux limites font intervenir des **variables continues** (température, pression, vitesse du vent, etc.), ce qui représente la principale nouveauté par rapport au programme de CPGE, et il est nécessaire de caractériser leurs relations de **dépendance**. Il convient par ailleurs de tenir compte des observations (satellites, station de mesure, ...) en incluant cette information dans la modélisation probabiliste. On parle de **conditionnement** aux données. Il s'agit enfin d'en générer les valeurs via des algorithmes de **simulation stochastique**. La validité de l'approche est assurée par les **théorèmes limites**, qui garantissent la représentativité des ensembles générés.
+L'incertitude sur les conditions initiales est particulièrement influente aux faibles échelles de temps. La météo est un système chaotique, les prévisions sont extrêmement sensibles aux variations des conditions initiales utilisées pour initialiser les modèles. Ces dernières sont en revanche connues de manière imparfaite. Il est ainsi nécessaire de tenir compte de cette incertitude. Ceci est rendu possible par la modélisation probabiliste. Les conditions aux limites font intervenir des **variables continues** (température, pression, vitesse du vent, etc.), ce qui représente la principale nouveauté par rapport au programme de CPGE, et il est nécessaire de caractériser leurs relations de **dépendance**. Il convient par ailleurs de tenir compte des observations (satellites, station de mesure, ...) en incluant cette information dans la modélisation probabiliste. On parle de **conditionnement** aux données. Il s'agit enfin d'en générer les valeurs via des algorithmes de **simulation stochastique**. La validité de l'approche est assurée par les **théorèmes limites**, qui garantissent la représentativité des ensembles générés.
 
 ## Plan du cours
 
@@ -45,7 +45,7 @@ Des considérations analytiques ont forcé l'introduction de variables aléatoir
 
 Le XXe siècle voit également le développement de l'application de la théorie des probabilités dans plusieurs sciences.
 
-Avec la mécanique newtonienne, la théorie du champ électromagnétique ou la thermodynamique, la physique classique est la théorie utilisée jusqu'à la fin du XIXe siècle. En 1925, Erwin Schrödinger étudie l'équation qui détermine l'évolution d'une onde au cours du temps : l'équation de Schrödinger. Max Born utilise cette équation pour décrire une collision entre des particules telles que des électrons ou des atomes. Les observations de ces expériences l'amènent à supposer que la fonction d'onde est la probabilité que la particule soit détectée en un point de l'espace. C'est le début d'une nouvelle approche de la physique quantique.
+Avec la mécanique newtonienne, la théorie du champ électromagnétique ou la thermodynamique, la physique classique est la théorie utilisée jusqu'à la fin du XIXe siècle. En 1925, Erwin Schrödinger étudie l'équation qui détermine l'évolution d'une onde au cours du temps : l'équation de Schrödinger. Max Born utilise cette équation pour décrire une collision entre des particules telles que des électrons ou des atomes. Les observations de ces expériences l'amènent à supposer que le module de la fonction d'onde est la probabilité que la particule soit détectée en un point de l'espace. C'est le début d'une nouvelle approche de la physique quantique.
 
 En 1900, Louis Bachelier fut un des premiers mathématiciens à modéliser les variations de prix boursiers grâce à des variables aléatoires. « le marché n'obéit qu'à une seule loi : la loi du hasard ». Bachelier utilise alors le calcul stochastique pour étudier les variations boursières au cours du temps. En 1970, Fischer Black et Myron Scholes reprennent les idées de Bachelier pour modéliser les rendements d'une action.
 
@@ -155,9 +155,9 @@ On vérifie aisément que $\P$ vérifie les 3 propriétés suivantes :
 
  2. $\P(\Omega) = \int_\Omega f(x) dx = 1$.
 
- 3. Si $A_n$ désigne une suite (dénombrable) d'événements **disjoints** de $\A$, on a, en appliquant le théorème de convergence dominée à la suite de fonctions $f(x) 1_{\left\{\bigcup_{n=0}^m A_n\right\}}(x) = \sum_{n=0}^m f(x) 1_{A_n}(x)$ ($m \in \N^\ast$), majorée trivialement par $f$ intégrable :
+ 3. Si $A_n$ désigne une suite (dénombrable) d'événements **disjoints** de $\A$, on a, en appliquant le [théorème de convergence dominée](Calcul Intégral II.pdf #TCD) à la suite de fonctions $f(x) 1_{\left\{\bigcup_{n=0}^m A_n\right\}}(x) = \sum_{n=0}^m f(x) 1_{A_n}(x)$ ($m \in \N^\ast$), majorée trivialement par $f$ intégrable :
     \begin{align*}
-        \P\left(\bigcup_{n=0}^m A_n\right) &= \int_\Omega 1_{\left\{\bigcup_{n=0}^m A_n\right\}}\, f(x)\, dx\\
+        \P\left(\bigcup_{n\in \N} A_n\right) &= \int_\Omega \lim_{m \to +\infty} 1_{\left\{\bigcup_{n=0}^m A_n\right\}}\, f(x)\, dx\\
                           &= \lim_{m \to +\infty} \int_\Omega \sum_{n=0}^m 1_{A_n}\, f(x)\, dx\\
                           &= \lim_{m \to +\infty} \sum_{n=0}^m \int_\Omega 1_{A_n}\, f(x)\, dx\\
                           &= \lim_{m \to +\infty} \sum_{n=0}^m \P(A_n) \\
@@ -193,25 +193,26 @@ La définition suivante est fondamentale en théorie des probabilités. Elle int
 notion de “vrai ou faux” qui dépend de la probabilité choisie sur l’espace fondamental.
 
 ### Définition -- Propriété presque-sûre {.definition}
-Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A$ se réalise *P-presque sûrement* (en abrégé $\P$-p.s.) si P(A) = 1. 
+Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A$ se réalise *$\P$-presque sûrement* (en abrégé $\P$-p.s.) si P(A) = 1. 
 
 ### Proposition -- Propriétés élémentaires {.proposition #elemprop} 
  1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
  2. $\forall\, A,B \in \A$, $A \subset B \Rightarrow \P(A) \leq \P(B)$.
  3. $\forall\, A,B \in \A$, $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
- 4. Inégalité de Boole : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A, \P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i)$.
+ 4. Inégalité de Boole : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$, 
+ $$\P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i).$$
  5. Formule de Poincaré : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$
  $$ \P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right).$$
 
 ### Demonstration {.proof}
-Exercice.
+[Exercice.](#propelem)
 
 ### Théorème de la continuité monotone {.theorem #continuitemonotone}
 Dans le cas d'une suite $(A_n)_{n\in\N}$ d'éléments de $\A$ croissante, on a 
 $$ \P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 ### Demonstration {.proof}
-Exercice.
+[Exercice.](#contmon)
 
 ### Remarque {.remark}
 Dans le cas d'une suite décroissante, on a 
@@ -224,7 +225,7 @@ Soit $\P$ une probabilité et soit $(A_n)_{n\in \N}$ une famille dénombrable d'
     $$ \P(\cup_n A_n) \leq \sum_{n\in\N} \P(A_n) $$
 
 ### Démonstration {.proof}
-Exercice.
+[Exercice.](#boolinf)
 
 ## Probabilité conditionnelle 
 
@@ -541,6 +542,10 @@ Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ 
 
 Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
 
+## Généralisation de l'inégalité de Boole {.question #boolinf}
+Soit $\P$ une probabilité et soit $(A_n)_{n\in \N}$ une famille dénombrable d'événements. On a alors
+    $$ \P(\cup_n A_n) \leq \sum_{n\in\N} \P(A_n) $$
+
 ## Indépendance et conditionnement
 
 ### Question 1 {.question #ic-1}
@@ -591,6 +596,13 @@ $$ \P\left(\bigcup_{n\in\N} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \s
 Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B_n = \cup_{p \leq n} A_n$ et $B = \cup_n A_n$. Comme $\P$ est additive, on a $\P(B_n) = \sum_{p \leq n} \P(A_n)$ qui croît vers $\sum_n \P(A_n)$ et aussi vers $\P(B)$ d'après le point 3.
 
 En considérant les résultats de ces deux exercices, on obtient une définition alternative de la probabilité en substituant la [continuité monotone](#contmon) et l'additivité à la propriété de [$\sigma$-additivité](#defproba).
+
+## Généralisation de l'inégalité de Boole {.answer #answer-boolinf}
+On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=0}^n A_n$, qui croît vers l'ensemble $C = \cup_n A_n$.
+D'après [l'inégalité de Boole](#propelem), on a 
+   $$\P(B_n) \leq \sum_{i=0}^n \P(A_i)$$
+Mais $\P(B_n) \to_{n \to \infty} \P(C)$ d'après le [théorème de continuité monotone](#contmon), tandis que $\sum_{i=0}^n \P(A_i) \to_{n \to \infty} \sum_{n\in\N} \P(A_n)$. En passant à la limite, on obtient donc le résultat.
+
 
 ## Indépendance et conditionnement
 
