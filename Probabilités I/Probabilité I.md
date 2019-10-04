@@ -208,21 +208,21 @@ Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A
 [Exercice.](#propelem)
 
 ### Théorème de la continuité monotone {.theorem #continuitemonotone}
-Dans le cas d'une suite $(A_n)_{n\in\N}$ d'éléments de $\A$ croissante, on a 
-$$ \P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+Dans le cas d'une suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante, on a 
+$$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 ### Demonstration {.proof}
 [Exercice.](#contmon)
 
 ### Remarque {.remark}
 Dans le cas d'une suite décroissante, on a 
-$$ \P\left(\bigcap_{n \in \N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+$$ \P\left(\bigcap_{n \in \N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 Le second point de la [définition de la probabilité](#defproba) donne la probabilité de la réunion $\cup_n A_n$ en fonction des $\P(A_n)$ lorsque les événements sont deux à deux disjoints. Si ce n'est pas le cas, on a tout de même la majoration suivante, très utile dans la pratique :
 
 ### Proposition {.proposition}
-Soit $\P$ une probabilité et soit $(A_n)_{n\in \N}$ une famille dénombrable d'événements. On a alors
-    $$ \P(\cup_n A_n) \leq \sum_{n\in\N} \P(A_n) $$
+Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrable d'événements. On a alors
+    $$ \P(\cup_n A_n) \leq \sum_{n\in\N^\ast} \P(A_n) $$
 
 ### Démonstration {.proof}
 [Exercice.](#boolinf)
@@ -253,23 +253,23 @@ $$\P(A|B)\, \P(B) = \P(A \cap B) = \P(B|A)\, \P(A).$$
 ### Démonstration {.proof}
 Il est clair que $0 \leq \P(A|B) \leq 1$. Par ailleurs, les deux propriétés de la [définition de la probabilité](#defproba)
 pour $\P(\cdot|B)$ proviennent des mêmes propriétés pour $\P$ et des remarques suivantes :
-$\Omega \cap B = B$, et $(\bigcup_{n\in\N} A_n ) \cap B = \bigcup_{n\in\N} (A_n \cap B)$. De plus, si $A$ et $C$ sont disjoints, il en est
+$\Omega \cap B = B$, et $(\bigcup_{n\in\N^\ast} A_n ) \cap B = \bigcup_{n\in\N^\ast} (A_n \cap B)$. De plus, si $A$ et $C$ sont disjoints, il en est
 de même de $A \cap B$ et $C \cap B$. L’assertion 2 est évidente, d'après la définition de la [Probabilité conditionnelle](#defprobacond).
 
 ### Formule des probabilités totales {.proposition #formprobatot}
 
-Soit $(B_n)_{n\in\N}$ une partition finie ou dénombrable d’événements de $\Omega$ (i.e. telle que $\bigcup_{n\in\N} B_n = \Omega$ et les $B_n$ sont deux-à-deux disjoints), telle que $\P(B_n ) > 0$ pour tout $n\in\N$. Pour tout $A \in \A$, on a alors
+Soit $(B_n)_{n\in\N^\ast}$ une partition finie ou dénombrable d’événements de $\Omega$ (i.e. telle que $\bigcup_{n\in\N^\ast} B_n = \Omega$ et les $B_n$ sont deux-à-deux disjoints), telle que $\P(B_n ) > 0$ pour tout $n\in\N^\ast$. Pour tout $A \in \A$, on a alors
 \begin{equation*}
-P(A) = \sum_{n\in\N} P(A \cap B_n ) = \sum_{n\in\N} P(A|B_n)\, P(B_n).
+P(A) = \sum_{n\in\N^\ast} P(A \cap B_n ) = \sum_{n\in\N^\ast} P(A|B_n)\, P(B_n).
 \end{equation*}
 
 ### Démonstration {.proof}
-Nous avons $A = \bigcup_{n\in\N} (A\cap B_n)$. Par hypothèse, les ensembles $(A\cap B_n)$ sont deux-à-deux disjoints et de plus $\P(A\cap B_n) = \P(A|B_n)\,\P(B_n)$. Le résultat découle du deuxième point de la [définition de la probabilité](#defproba). 
+Nous avons $A = \bigcup_{n\in\N^\ast} (A\cap B_n)$. Par hypothèse, les ensembles $(A\cap B_n)$ sont deux-à-deux disjoints et de plus $\P(A\cap B_n) = \P(A|B_n)\,\P(B_n)$. Le résultat découle du deuxième point de la [définition de la probabilité](#defproba). 
 
 ### Formule de Bayes {.proposition #bayes}
 Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a 
 \begin{equation*}
-\forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N} \P(A | B_n)\, \P(A)}.
+\forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N^\ast} \P(A | B_n)\, \P(A)}.
 \end{equation*}
 
 ### Démonstration {.proof}
@@ -302,7 +302,7 @@ Intuitivement, deux événements $A$ et $B$ sont indépendants si le fait de sav
 réalisé ne donne aucune information sur la réalisation de $B$ et réciproquement.
 
 Si $B$ est un événement de probabilité strictement positive, $A$ sera dit indépendant de $B$ si
-$$\P(A \cap B) = \frac{\P(A|B)}{\P(B)} = \P(A)$$
+$$\P(A | B) = \frac{\P(A\cap B)}{\P(B)} = \P(A)$$
 On remarque que cette formule se symétrise et la notion d’indépendance se définit
 finalement comme suit.
 
@@ -315,7 +315,7 @@ Deux événements $A$ et $B$ sont *indépendants* si et seulement si
 ### Remarques {.remark}
 
  * La probabilité de voir $A$ réalisé ne dépend pas de la réalisation de $B$, et réciproquement.
- * Cette notion est une notion liée au choix de la probabilité $\P$ et n’est pas une notion ensembliste. Cela n’a en particulier rien à voir avec le fait que $A$
+ * Cette notion est liée au choix de la probabilité $\P$ et n’est pas une notion ensembliste. Cela n’a en particulier rien à voir avec le fait que $A$
     et $B$ soient disjoints ou non.
  * Si $\P(A)>0$ et $\P(B)>0$, alors 
     \begin{equation*}
@@ -333,22 +333,22 @@ Si les événements $A$ et $B$ sont indépendants, alors il en est de même des 
  1. On lance 3 fois un dé. Si $A_i$ est un événement qui ne dépend que du $i^\text{ème}$ lancer, alors $A_1$ , $A_2$ , $A_3$ sont indépendants.
  2. On tire une carte au hasard dans un jeude 52 cartes. Soit $A$ = \{la carte est une dame\} et $B$ = \{la carte est un coeur\}. 
  Il est facile de voir que $\P(A) = 4/52$ et $\P(B) = 13/52$ et $\P(A \cap B) = \P( \{\text{la carte est la dame de coeur}\} ) = 1/52 = \P(A) \P(B)$.
- Ainsi, les événements A et B sont indépendants pour la probabilité uniforme $\P$.
+ Ainsi, les événements $A$ et $B$ sont indépendants pour la probabilité uniforme $\P$.
  3. On suppose maintenant que le jeu de cartes soit trafiqué. Soit $\widetilde{\P}$ la nouvelle probabilité correspondant au tirage de cartes. On suppose également que
-    $$ \widetilde{\P}(\{\text{As de trèfle}\} ) = \frac{1}{2} \, \widetilde{\P}(\{\text{As de trèfle}\}) = \frac{1}{2} \frac{1}{51} = \frac{1}{102}$$
- Alors 
-    $$\widetilde{\P}(A \cap B) = \frac{1}{102} \neq \widetilde{\P}(A)\widetilde{\P}(B) = \frac{2}{51}\frac{13}{102}$$
+    $$ \widetilde{\P}(\{\text{As de trèfle}\} ) = \frac{1}{2}, \,\,\,\,\, \widetilde{\P}(\{\text{autre carte}\}) = \frac{1}{2} \frac{1}{51} = \frac{1}{102},$$
+ alors 
+    $$\widetilde{\P}(A \cap B) = \frac{1}{102} \neq \widetilde{\P}(A)\widetilde{\P}(B) = \frac{2}{51}\frac{13}{102}.$$
  Les événements $A$ et $B$ ne sont pas indépendants sous la probabilité $\widetilde{\P}$.
 
-### Remarque : réflexion sur le concept de probabilité 
+## Remarque : réflexion sur le concept de probabilité 
 
 La théorie mathématiques des probabilités ne dit pas quelle loi de probabilité choisir sur un espace $(\Omega,\A)$ parmi l'infinité de lois possibles. Ce problème qui concerne ceux qui veulent appliquer le calcul des probabilités, renvoie à la nature "physique" du concept de probabilité qui formalise et quantifie le sentiment d'incertitude vis-à-vis d'un événement. Ce problème d'ordre conceptuel oppose deux écoles de pensée, la conception objectiviste et la conception subjectiviste.
 
-Pour les tenants du premier point de vue, la probabilité d'un événement peut être déterminée de manière unique. Dans la vision classique, héritée des jeux de hasard, $\Omega$ est fini et on donne à chaque événement élémentaire la même probabilité. Le calcul des probabilités se résume alors à un problème de dénombrement et la probabilité d'un événement est le rapport du nombre de cas favorables sur le nombre de cas possibles. Dans le cas non fini, la vision fréquentiste repose sur la loi des grands nombres : si on répète un grand nombre de fois l'expérience, la proportion de fois où un événement sera réalisé va converger vers la probabilité de cet événement. Dans ce cadre, il est impossible de donner une valeur et même un sens à un événement non répétable comme "pleuvra-t-il demain ?". En outre, la répétition à l'infini d'une même expérience étant physiquement irréalisable, la loi des grands nombres étant un résultat qui suppose défini le concept de probabilité, la vision fréquentiste est logiquement intenable.
+Pour les tenants du premier point de vue, la probabilité d'un événement peut être déterminée de manière unique. Dans la vision dite classique, héritée des jeux de hasard, $\Omega$ est fini et on donne à chaque événement élémentaire la même probabilité. Le calcul des probabilités se résume alors à un problème de dénombrement et la probabilité d'un événement est le rapport du nombre de cas favorables sur le nombre de cas possibles. Dans le cas infini, la vision fréquentiste repose sur la loi des grands nombres : si on répète un grand nombre de fois l'expérience, la proportion de fois où un événement sera réalisé va converger vers la probabilité de cet événement. Dans ce cadre, il est impossible de donner une valeur et même un sens à un événement non répétable comme "pleuvra-t-il demain ?". En outre, la répétition à l'infini d'une même expérience étant physiquement irréalisable, la loi des grands nombres étant un résultat qui suppose défini le concept de probabilité, la vision fréquentiste est logiquement intenable.
 
 Dans la conception subjectiviste, la probabilité objective d'un événement n'existe pas et n'est donc pas une grandeur mesurable analogue à la masse d'un corps,par exemple. C'est simplement une mesure d'incertitude qui reflète un degré de croyance pouvant varier avec les circonstances et l'observateur, donc subjective, la seule exigence étant qu'elle satisfasse aux axiomes du calcul des probabilités. Des méthodes ont alors été proposées pour passer d'un simple pré-ordre sur les événements, à une probabilité. Puisque la répétition n'est plus nécessaire, on peut probabiliser des événements non répétables et étendre ainsi le domaine d'application du calcul des probabilités, notamment pour orienter des prises de décisions. On notera que la [formule de Bayes](#bayes) permet d'intégrer facilement de l'information a priori, dans la mesure où celle-ci est probabilisée.
 
-On arrête ici ces quelques remarques sans prendre parti dans une querelle qui dure encore. L'un ou l'autre point de vue sera adopté selon les ouvrages rencontrés. Dans tous les cas, les outils mathématiques développés dans ce cours seront adaptés. On rappelle tout de même que la modélisation probabiliste a prouvé son efficacité dans de nombreuses applications mais que, comme tout modèle, ce n'est qu'une représentation simplificatrice de la réalité et que ses hypothèses doivent être mises à l'épreuve des faits. A ce titre, on citera Georges Matheron qui dans son essai sur la pratique des probabilités Estimer et Choisir (@matheron) écrit fort justement : "il n'y a pas de probabilités en soi. Il n'y que des modèles probabilistes".
+On arrête ici ces quelques remarques sans prendre parti dans une querelle qui dure encore. L'un ou l'autre point de vue sera adopté selon les ouvrages rencontrés. Dans tous les cas, les outils mathématiques développés dans ce cours seront adaptés. On rappelle tout de même que la modélisation probabiliste a prouvé son efficacité dans de nombreuses applications mais que, comme tout modèle, ce n'est qu'une représentation simplificatrice de la réalité et que ses hypothèses doivent être mises à l'épreuve des faits. A ce titre, on citera Georges Matheron qui dans son essai sur la pratique des probabilités Estimer et Choisir (@matheron) écrit fort justement : "Il n'y a pas de probabilités en soi. Il n'y que des modèles probabilistes".
 
 
 # Probabilité sur $\R$
@@ -365,11 +365,11 @@ La *fonction de répartition* de la probabilité $\P$ sur $(\R,\A)$ est la fonct
 F(x) = \P(\left]-\infty, x\right]),\ x \in \R.
 \end{equation*}
 
-### Théorème {.theorem}
-La fonction de répartition $F$ caractérise la probabilité sur ($\R,\A$).
+### Théorème {.theorem #carac}
+La fonction de répartition $F$ caractérise la probabilité $\P$ sur ($\R,\A$).
 
 ### {.anonymous}
-Nous démontrerons ce résultat ultérieurement.
+Ce résultat sera démontré ultérieurement.
 
 ### Théorème {.theorem #theofdr}
 Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ sur $(\R,\A)$ si et seulement si elle vérifie les trois conditions suivantes :
@@ -396,7 +396,9 @@ En particulier, $\P(\{x\}) = F(x) - F(x^-)$ est le **saut** de la fonction $F$ a
 
 ### Remarque {.remark} 
 <!-- cf #32 -->
-Le théorème ci-dessus explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. Plus concrètement, considérons l'exemple suivant : soit $\Omega = [0,1]$ et $\P$ telle que $\P(]a,b]) = b-a$ pour $0\leq a\leq b\leq 1$ (il s'agit de la loi uniforme sur [0,1]). C'est une probabilité naturelle qui assigne à tout intervalle sa longueur comme probabilité. Supposons maintenant que l'on souhaite étendre de manière unique $\P$ aux $2^{[0,1]}$ éléments de $\mathcal{P}(\R)$ de manière à ce que $\P(\Omega) =1$ et $\P\left(\cup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n)$ pour toute suite $(A_n)_{n\in\N^\star}$ tels que $\A_n\cap A_m = \varnothing$ pour $n \neq m$. On peut prouver qu'un tel $\P$ n'existe pas. $\mathcal{P}(\R)$ est trop "grand" pour définir un tel $\P$. Il contient en particulier des ensembles non mesurables.
+Le [théorème ci-dessus](#carac) explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. 
+
+Plus concrètement, considérons l'exemple suivant : soit $\Omega = [0,1]$ et $\P$ telle que $\P(]a,b]) = b-a$ pour $0\leq a\leq b\leq 1$ (il s'agit de la loi uniforme sur [0,1]). C'est une probabilité naturelle qui assigne à tout intervalle sa longueur comme probabilité. Supposons maintenant que l'on souhaite étendre de manière unique $\P$ aux $2^{[0,1]}$ éléments de $\mathcal{P}([0,1])$ de manière à ce que $\P(\Omega) =1$ et $\P\left(\cup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n)$ pour toute suite $(A_n)_{n\in\N^\star}$ tels que $\A_n\cap A_m = \varnothing$ pour $n \neq m$. On peut prouver qu'un tel $\P$ n'existe pas. $\mathcal{P}([0,1])$ est trop "grand" pour définir un tel $\P$. Il contient en particulier des ensembles non mesurables.
 
 Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait que très peu de probabilités sur $\R$, à savoir les probabilités discrètes que l'on décrit rapidement ci-dessous.
 
@@ -437,7 +439,7 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
     avec la convention qu'une somme "vide" vaut 0. On retrouve bien l'exemple 2 si $E = \N$. On voit que $F$ est **purement discontinue** au sens où elle est complètement caractérisée par ses sauts $\triangle F(x) = F(x) - F(x^-)$ :
     $$F(x) = \sum_{\substack{y \in E \\ y\leq x}} q_i.$$
     
-Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités avec densité.
+Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités à densité.
 
 ## Densités de probabilités
 
@@ -448,7 +450,7 @@ $$\int_\R f(x)\, dx = 1.$$
 Si $f$ est une densité, la fonction 
    $$F(x) =\int_{-\infty}^x f(y)\, dy$$ 
 est la fonction de répartition d'une probabilité $\P$ sur $\R$. On dit que $f$ est la densité de $\P$ ou que $\P$ admet la densité $f$.
-Dans ce cas, $F$ est continue, de sorte que $\P(\{x\}) = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point ou $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
+Dans ce cas, $F$ est continue, de sorte que $\P(\{x\}) = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point où $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
 
 Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive intégrable et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
     $$ \int_\R f(x)\, dx + \sum_{i\in E} p_i = 1.$$
@@ -517,7 +519,7 @@ Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de
 # Exercices
 
 ## Propriétés élémentaires {.question #propelem}
-A partir de la [définition de la probabilité](#defproba) Démontrer les propriétés suivantes :
+A partir de la [définition de la probabilité](#defproba), démontrer les propriétés suivantes :
 
  1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
  2. $\forall\, A,B \in \A$, $A \subset B \Rightarrow \P(A) \leq \P(B)$.
@@ -528,8 +530,8 @@ A partir de la [définition de la probabilité](#defproba) Démontrer les propri
 
 
 ## Continuité monotone {.question #contmon}
-Soit une suite $(A_n)_{n\in\N}$ d'éléments de $\A$ croissante (au sens de l'inclusion). Montrer que 
-$$ \P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+Soit une suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante (au sens de l'inclusion). Montrer que 
+$$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 
 ## Une définition alternative de la probabilité {.question #altdef}
@@ -537,14 +539,14 @@ Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ 
  
  1. $\P(\Omega) = 1$, 
  2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$ $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
- 3. Pour toute suite $(A_n)_{n\in\N}$ d'éléments de $\A$ croissante 
-    $$\P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+ 3. Pour toute suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante 
+    $$\P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
 
 ## Généralisation de l'inégalité de Boole {.question #boolinf}
-Soit $\P$ une probabilité et soit $(A_n)_{n\in \N}$ une famille dénombrable d'événements. On a alors
-    $$ \P(\cup_n A_n) \leq \sum_{n\in\N} \P(A_n) $$
+Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrable d'événements. On a alors
+    $$ \P(\cup_n A_n) \leq \sum_{n\in\N^\ast} \P(A_n) $$
 
 ## Indépendance et conditionnement
 
@@ -588,8 +590,8 @@ Calculer la probabilité de remporter la voiture selon les deux stratégies (cha
 
 
 ## Continuité monotone {.answer #answer-contmon}
-On définit une suite $(B_n)_{n\in \N}$ telle que $B_0 = A_0$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 1$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
-$$ \P\left(\bigcup_{n\in\N} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=0}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
+On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_0 = A_0$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 1$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
+$$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=1}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
 
 ## Une définition alternative de la probabilité {.answer #answer-altdef}
 
@@ -598,10 +600,10 @@ Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B
 En considérant les résultats de ces deux exercices, on obtient une définition alternative de la probabilité en substituant la [continuité monotone](#contmon) et l'additivité à la propriété de [$\sigma$-additivité](#defproba).
 
 ## Généralisation de l'inégalité de Boole {.answer #answer-boolinf}
-On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=0}^n A_n$, qui croît vers l'ensemble $C = \cup_n A_n$.
+On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=1}^n A_n$, qui croît vers l'ensemble $C = \cup_n A_n$.
 D'après [l'inégalité de Boole](#propelem), on a 
-   $$\P(B_n) \leq \sum_{i=0}^n \P(A_i)$$
-Mais $\P(B_n) \to_{n \to \infty} \P(C)$ d'après le [théorème de continuité monotone](#contmon), tandis que $\sum_{i=0}^n \P(A_i) \to_{n \to \infty} \sum_{n\in\N} \P(A_n)$. En passant à la limite, on obtient donc le résultat.
+   $$\P(B_n) \leq \sum_{i=1}^n \P(A_i)$$
+Mais $\P(B_n) \to_{n \to \infty} \P(C)$ d'après le [théorème de continuité monotone](#contmon), tandis que $\sum_{i=1}^n \P(A_i) \to_{n \to \infty} \sum_{n\in\N^\ast} \P(A_n)$. En passant à la limite, on obtient donc le résultat.
 
 
 ## Indépendance et conditionnement
