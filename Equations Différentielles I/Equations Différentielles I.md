@@ -365,7 +365,8 @@ Propriétés asymptotiques
 
 Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce que les solutions divergent ? est-ce qu'elles tendent vers un point en particulier ? vers un cycle limite ?
 
-Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc un ouvert $\Omega$ de $\R^n$ et une fonction continue $f:\Omega\to \R^n$. Dans ce cas, on prend par défaut $t_0=0$. Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.
+Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc une fonction continue $f:\R^n\to \R^n$, et on prend par défaut $t_0=0$. 
+<!--Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.-->
 
 ### Point d'équilibre
 On appelle *point d'équilibre* un point $a\in \R^n$ tel que
@@ -374,19 +375,42 @@ f(a) = 0  \ .
 $$
 En d'autres termes, la fonction constante $x\equiv a$ est alors solution.
 
+### Exemple d'un pendule amorti {.exemple #ex_pendule}
+L'évolution d'un pendule amorti de longueur $\ell$ dans le champ de l'apesanteur peut être décrit par une dynamique du type
+$$
+\ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
+$$
+avec $\rho>0$ un coefficient de frottement.
+En prenant $x=(\theta,\dot{\theta})$, on obtient le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2 \\
+\dot{x}_2 &=& - \frac{\rho}{m} x_2 -\frac{g}{\ell} \sin x_1
+\end{array}
+$$
+Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent soit à la position *basse* du pendule $\theta=0$ ou la position *haute* $\theta=\pi$, toutes deux à vitesse nulle $\dot{\theta}=0$. Si le pendule est initialisé exactement à sa position haute ou basse à vitesse nulle alors il y reste indéfiniment.
+
 ### Stabilité, stabilité asymptotique
 Un point d'équilibre $a$ est dit:
 
-- *stable* si *les solutions restent arbitrairement proche de $a$ lorsqu'elles sont initialisées suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
-$$
+- *stable* si *les solutions restent arbitrairement proche de $a$ quand elles sont initialisées suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
+<!--$$
 |x(0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in \Rgeq \ .
+$$-->
+$$
+|x(t)-a|\leq \varepsilon \quad \forall t\in \Rgeq \ .
 $$
 
 - *instable* s'il n'est pas stable.
 
-- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
+- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
+<!--
 $$
 |x(0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
+$$
+-->
+$$
+\lim_{t\to+\infty} x(t)=a \ .
 $$
 
 - *globalement attractif* si *toutes les solutions convergent vers $a$*.
@@ -395,9 +419,11 @@ $$
 
 
 ### Exemples
+- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse: l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc asymptotiquement stable.
 
+- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable.
 
-### Caractérisation par Lyapunov
+- Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Voir le système de Vinograd poour les curieux. REF ???
 
 
 
@@ -442,24 +468,12 @@ Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement
 
 Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
 
-\textit{Démonstration}: Voir en [annexe](#app_stab_linearise).  \hfill $\blacksquare$
+\textit{Démonstration}: Voir l'annexe [\textit{Stabilité locale et linéarisé tangent}](#app_stab_lin).  \hfill $\blacksquare$
 
 Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
 
 ### Exemple
-L'évolution d'un pendule amorti dans le champ de l'apesanteur peut être décrit par une dynamique du type
-$$
-\ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
-$$
-avec$\rho>0$ un coefficient de frottement.
-En prenant $x=(\theta,\dot{\theta})$, on obtient le système
-$$
-\begin{array}{rcl}
-\dot{x}_1 &=& x_2 \\
-\dot{x}_2 &=& - \frac{\rho}{m} x_2 -\frac{g}{\ell} \sin x_1
-\end{array}
-$$
-Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent soit à la position *basse* du pendule $\theta=0$ ou la position *haute* $\theta=\pi$, toutes deux à vitesse nulle $\dot{\theta}=0$. On a
+Reprenons l'[exemple du pendule amorti](#ex_pendule_amorti). On a
 $$
 J_f(0,0) = \left( \begin{matrix} 
 0 & 1\\
@@ -473,10 +487,82 @@ J_f(\pi,0)= \left( \begin{matrix}
 \end{matrix}
 \right) 
 $$
-Dans le premier cas, on a $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ a ses valeurs propres à partie réelle strictement négative. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
-Dans le deuxième cas par contre, on a le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la possition haute  $(\pi,0)$ est donc bien instable.
+Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ a ses valeurs propres à partie réelle strictement négative. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
+Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
 
-### Cas du plan : portrait de phase et théorème de Bendixon
+Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
+
+### Caractérisation par Lyapunov
+Soit $f:\R^n \to \R^n$ de classe $C^1$, $a$ un point d'équilibre de $f$, et $W$ un voisinage de $a$.
+Soit $V\in C^1(W,\Rgeq)$ telle que 
+$$
+V(x)= 0 \qquad \Longleftrightarrow \qquad x=a  \ . 
+$$
+
+-  Si
+$$
+\langle\nabla V (x), f(x)\rangle \leq 0   \qquad \forall x\in W
+$$ 
+alors $a$ est stable.
+
+- Si 
+$$
+\langle \nabla V (x), f(x) \rangle < 0 \qquad \forall x\in W\setminus \{a\}
+$$ 
+alors $a$ est localement asymptotiquement stable.
+
+- Si $V$ est propre[^def_propre], $W=\R^n$, et
+$$
+\langle\nabla V (x), f(x)\rangle < 0  \qquad \forall x\neq a
+$$ 
+alors $a$ est globalement asymptotiquement stable.
+
+$V$ est alors appelée *fonction de Lyapunov*. En fait, 
+$$
+\langle\nabla V (x(t)), f(x(t))\rangle = \frac{d}{dt} V(x(t))
+$$  
+le long d'une trajectoire $t\mapsto x(t)$ de l'équation différentielle $\dot{x} = f(x)$. $V$ représente donc une grandeur positive qui décroît ou est conservée le long des trajectoires. Pour des systèmes physiques, elle est donc souvent reliée à l'énergie.
+
+\textit{Démonstration}:  Supposons d'abord que $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$. On a donc pour toute solution $t\mapsto x(t)$ initialisée dans $W$, $V(x(t))\leq V(x(0))$ tant que  $x(t)\in W$. Prenons $\varepsilon>0$ suffisamment petit tel que $\overline{B}_{2\varepsilon}(a)\subset W$. On veut montrer qu'il existe $\eta$ tel que toute trajectoire initialisée dans $B_{\eta}(a)$ reste dans $B_{\varepsilon}(a)\subset W$. Tout d'abord, il existe $\varepsilon_V>0$ tel que 
+$$
+\forall x\in \overline{B}_{2\varepsilon}(a) \ : \ V(x)\leq \varepsilon_V \ \Longrightarrow x\in B_{\varepsilon}(a) \ .
+$$
+En effet, sinon, il existerait une suite $(x_k)_{k\in \N}$ d'éléments de $\overline{B}_{2\varepsilon}(a)$ telle que pour tout $k>0$, $V(x_k)\leq \frac{1}{k}$ et $\|x_k-a\|\geq \varepsilon$. L'ensemble $\overline{B}_{2\varepsilon}(a)$ étant compact, on peut en extraire une sous-suite convergeant vers $x^\star$ qui vérifie nécessairement $V(x^\star)=0$  par continuité de $V$ et $\|x^\star-a\|\geq \varepsilon$, i.e. $x^\star \neq a$. Ceci est impossible par hypothèse. On a donc l'existence de $\varepsilon_V$. Maintenant, par continuité de $V$ en $a$ et puisque $V(a)=0$, il existe aussi $\eta>0$ tel que 
+$$
+x\in B_{\eta}(a)  \ \Longrightarrow V(x)\leq \varepsilon_V \ .
+$$
+Alors si $x(0)\in B_{\eta}(a)$, $V(x(t))\leq V(x(0))\leq \varepsilon_V$ donc $x(t)\in B_{\varepsilon}(a)\subset W$ pour tout $t$ tant qu'elle est définie. Par le [théorème des bouts](#theo_bouts), $x$ est définie sur $\Rgeq$. Ceci prouve la stabilité de $a$.
+
+Supposons maintenant $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$. Alors par le point précédent $a$ est stable. Il suffit de montrer l'attractivité locale. Par stabilité, si $x(0)\in B_{\eta}(a)$,  $x(t)\in B_{\varepsilon}(a)\subset W$ pour tout $t$ et $t\to V(x(t))$ est donc strictement décroissante. Comme elle est aussi bornée inférieurement par 0, elle converge vers $\ell \geq 0$. Supposons $\ell>0$. Alors, par continuité de $V$, il existe $0<\nu<\varepsilon$ et $\overline{t}>0$ tel que pour tout $t\geq \overline{t}$, $\|x(t)-a\| \geq \nu$. Soit 
+$$
+\gamma = \max_{\nu \max \|x(t)-a\| \leq \varepsilon} \langle\nabla V (x), f(x)\rangle   
+$$
+qui existe par continuité de $V$ sur un compact.  Puisque $\langle\nabla V (x), f(x)\rangle \leq 0$ sur $W$, $\gamma<0$. Alors, pour tout $t\geq \overline{t}$,
+$$
+V(x(t)) = V(x(\overline{t})) + \int_0^t \langle\nabla V (x(t)), f(x(t))\rangle \leq  V(x(\overline{t})) + \gamma (t-\overline{t}) \ .
+$$
+Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un certain temps, ce qui est impossible. Donc $\lim_{t\to +\infty} V(x(t))=0$. Finalement, reproduisant le même raisonnement que pour l'existence de $\varepsilon_V$, on peut garantir que $\|x-a\|$ est arbitrairement petit en prenant $V(x)$ suffisamment petit. Donc on en déduit que $\lim_{t\to +\infty} \|x(t)-a\|=0$.
+
+
+\hfill $\blacksquare$
+
+
+### Exemple
+Reprenons le pendule mais cette fois-ci, non amorti, c'est-à-dire avec $\rho=0$. Nous n'avons pas pu prouver la stabilité du point d'équilibre $(0,0)$ par l'étude de la matrice Jacobienne car ses valeurs propres sont imaginaires pures. Essayons par analyse de Lyapunov. Inspirés par la physique, considérons $V:\left] -\pi, \pi\right[\times \R \to \Rgeq$ définie par
+$$
+V(x_1,x_2) = \frac{1}{2} m\ell^2 x_2^2 + mg\ell(1-\cos(x_1)) \ .
+$$
+Le premier terme correspond à l'énergie cinétique du pendule, et le deuxième son énergie potentielle/
+$V$ est $C^1$, à valeurs positives et telle que 
+$$
+V(x) = 0 \qquad \Longleftrightarrow \qquad x=0 \ .
+$$
+De plus,
+$$
+\langle\nabla V (x), f(x)\rangle = m\ell^2 x_2\left(-\frac{g}{\ell} \sin x_1\right) + mg \ell \sin x_1 x_2 = 0
+$$
+ce qui traduit la conservation de l'énergie en l'absence de frottement. On en déduit donc la stabilité du point d'équilibre $(0,0)$.
+
 
 
 Références
@@ -522,11 +608,13 @@ $$
 
 -> [*Correction*](#correc_gronwall)
 
-### Critère de stabilité d'un système plan
+### Critère de stabilité d'un système plan {.exercice #exo_crit_stab_dim2}
 Montrer que le système linéaire $\dot{x} = Ax$ avec $A\in \R^{2\times 2}$ est asymptotiquement stable si et seulement si 
 $$
 \text{tr} A <0  \qquad \text{ et } \qquad \text{det} A >0 \ .
 $$
+
+-> [*Correction*](#correc_crti_stab_dim2)
 
 ### Oscillateur {.exercice #exo_masse_ressort}
 Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
@@ -546,7 +634,21 @@ où $\lambda$ est un coefficient de frottement. Que représente $x$ ?
 -> [*Correction*](#correc_masse_ressort)
 
 ### Cycle limite
+Considérons le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_1+x_2-x_1(x_1^2 + x_2^2)\\
+\dot{x}_2 &=& -x_1+x_2-x_2(x_1^2 + x_2^2)\\
+\end{array}
+$$
 
+1. Montrer que ce système admet un seul point d'équilibre. Etudier sa stabilité.
+
+2. Posons $V(x) = x_1^2+x_2^2$. Etudier le signe de $\frac{d}{dt}V(x(t))$ le long des trajectoires du système. 
+
+3. En déduire le comportement des solutions en fonction de la condition initiale.
+
+-> [*Correction*](#correc_cycle_lim)
 
 
 ### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.exercice #exo_attrac_stab}
@@ -657,10 +759,80 @@ $$
 $$
 Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$. A FINIR !!!
 
-### Cycle limite {.correction #correc_proiePreda}
+### Critère de stabilité en dimension 2 {.correction #correc_crti_stab_dim2}
+Soient $\lambda_1$ et $\lambda_2$ les valeurs propres d'une matrice $A$ de dimension 2. Son polynôme caractéristique est donné par
+$$
+s^2 - \text{tr} A s + \det A = (s-\lambda_1)(s-\lambda_2) = s^2 - (\lambda_1+\lambda_2)  s + \lambda_1\lambda_2 \ .
+$$
+Donc $\text{tr} A = \lambda_1+\lambda_2$ et $\det A = \lambda_1\lambda_2$. Il y a deux cas: soit les valeurs propres sont complexes conjuguées, soit elles sont réelles.
 
+Si $\lambda_i = \lambda_0 \pm j\omega$, alors $\lambda_1\lambda_2=\lambda_0^2+\omega^2$ et $\lambda_1+\lambda_2 = 2\lambda_0$. Donc $\lambda_0<0$ si et seulement si $\text{tr} A <0$ (et on a alors toujours $\det A>0$).
 
-### Masse/ressort {.correction #correc_masse_ressort}
+Si les valeurs propres sont réelles, les avoir toutes deux strictement négatives implique que $\lambda_1\lambda_2>0$ et $\lambda_1+\lambda_2<0$. Réciproquement, si $\lambda_1\lambda_2>0$, elles sont non nulles et du même signe, et si de plus $\lambda_1+\lambda_2<0$, ce signe est nécessairement négatif.
+
+Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
+
+### Oscillateur {.correction #correc_masse_ressort}
+
+### Cycle limite {.correction #correc_cycle_lim}
+On étudie le comportement des solutions de $\dot{x}=f(x)$ pour
+$$
+f(x) = 
+\left(
+\begin{array}{c}
+x_1+x_2-x_1(x_1^2+x_2^2) \\
+-2x_1+x_2-x_2(x_1^2+x_2^2) 
+\end{array}
+\right)
+$$
+
+1. Chercher les points d'équilibre du système revient à résoudre
+$$
+\begin{array}{rcl}
+0&=& x_1+x_2-x_1(x_1^2+x_2^2) \\
+0&=& -2x_1+x_2-x_2(x_1^2+x_2^2) 
+\end{array}
+$$
+Multiplier la première ligne par $x_2$, la deuxième par $x_1$ et soustraire, donne $x_1x_2=0$, et dont soit $x_1=0$ soit $x_2=0$. Si $x_1=0$, on tire de la première ligne $x_2=0$. Si $x_2=0$, on tire de la deuxième que $x_1=0$. Donc nécessairement, $x_1=x_2=0$. Il n'y a donc qu'un point d'équilibre $(0,0)$.
+La jacobienne de la dynamique est donnée par
+$$
+J_f(x_1,x_2) = 
+\left(
+\begin{matrix}
+1-(x_1^2+x_2^2) -2 x_1^2 & 1-2 x_1x_2 \\
+-1-2 x_1x_2 & 1-(x_1^2+x_2^2)-2 x_2^2
+\end{matrix}
+\right)
+$$
+soit 
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+1  & 1 \\
+-1 & 1
+\end{matrix}
+\right)
+$$
+qui a pour valeurs propres $1\pm i$. Le point d'équilibre est donc instable.
+
+2. 
+\begin{align*}
+\frac{d}{dt}V(x) &= \langle \nabla V(x) , f(x) \rangle \\
+&= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
+& -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
+\end{align*}
+Donc $\frac{d}{dt}V(x)$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon.
+
+3. Les trajectoires initialisées sur le cercle y restent, suivant la dynamique d'un oscillateur
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2\\
+\dot{x}_2 &=& -x_1\\
+\end{array}
+$$
+Celles initialisées à l'extérieur du cercle convergent vers le cercle mais sans jamais l'atteindre car cela contradirait l'unicité des solutions en un point du cercle ($f$ est $C^1$ donc le théorème de Cauchy-Lipschitz s'applique); celles initialisées à l'intérieur (sauf en zero) de même. 
+Enfin, la trajectoire initialisée à zéro reste à zéro. PORTRAIT DE PHASE
 
 ### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.correction #corr_attrac_stab}
 
@@ -737,7 +909,7 @@ $$
 Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset U$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
 
 
-### Stabilité locale et linéarisé tangent (.app #app_stab_linearise)
+### Stabilité locale et linéarisé tangent {.app #app_stab_lin}
 
 
 
@@ -786,3 +958,6 @@ $$
 \dot{x} = - \frac{1}{\sqrt{\left(\frac{S}{s}\right)^2-1}} \sqrt{2gx} \approx -\frac{s}{S} \sqrt{2gx}
 $$
 en supposant que $s\ll S$.
+
+[^def_propre]:
+ $V$ est dite propre si pour tout compact $K$, $V^{-1}(K)$ est compact. Ou de manière équivalente, $\lim_{\|x\|\to +\infty} V(x) = +\infty$.
