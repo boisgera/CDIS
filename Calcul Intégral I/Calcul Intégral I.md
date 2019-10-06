@@ -1684,8 +1684,8 @@ pour tout $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 ### Lemme de Henstock  {.theorem #henstock-lemma}
 Soit $[a, b]$ un intervalle fermé, 
 $f$ une fonction intégrable sur $[a, b]$ et $\gamma$ une jauge sur $[a, b]$ 
-telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$, 
-on ait
+telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée
+à $\gamma$, on ait
 $$
 \left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
 $$
