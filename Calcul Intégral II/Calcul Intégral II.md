@@ -593,18 +593,18 @@ Pour conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i
 où les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement, 
 tels que pour tout $i$, $t_i \in A$, $I_i \subset \gamma(t_i)$ et tels que la famille des
 $I_i$ recouvre $A$. Si cette construction est acquise et que $\mathcal{D}_k$
-désigne la collection des $\{(t_i, I_i)\}$ pour $1 \leq i \leq k$, alors c'est
-une subdivision pointée partielle de $[a, b]$ subordonné à $\gamma$ et donc
+désigne la collection des $\{(t_i, I_i)\}$ pour $0 \leq i \leq k-1$, alors c'est
+une subdivision pointée partielle de $[a, b]$ subordonnée à $\gamma$ et donc
 $$
 S(1_A, \mathcal{D}_k) 
 =
-\sum_{i=1}^k 1_A(t_i) \ell(I_i)
+\sum_{i=0}^{k-1} 1_A(t_i) \ell(I_i)
 =
-\sum_{i=1}^k \ell(I_i) \leq \varepsilon.
+\sum_{i=0}^{k-1} \ell(I_i) \leq \varepsilon.
 $$
 En passant à la limite sur $k$, cette inégalité fournit comme souhaité
 $$
-\sum_{i=1}^{+\infty} \ell(I_i) \leq \varepsilon.
+\sum_{i=0}^{+\infty} \ell(I_i) \leq \varepsilon.
 $$
 
 
@@ -635,14 +635,15 @@ alors on prend pour collection le singleton $\{(t, [a, b])\}$.
 Dans le cas contraire, on considère la décomposition de $[a, b]$ en
 $[a, (a+b)/2]$ et $[(a+b)/2, b]$. On examine chacun de ces intervalles $J$
 et s'il existe un $t \in A \cap J$ tel que $J \subset \gamma(t)$, 
-on inclut la paire $(t, J)$ dans la collection; dans le cas contraire,
+on inclut la paire $(t, J)$ dans la collection ; dans le cas contraire,
 on poursuit la dichotomie. Cette procédure définit par construction
-une famille dénombrable $\{(t_i, I_i)\}_i$ où les $I_i$ sont des intervalles
-compacts de $[a, b]$ sans chevauchement et 
+une famille dénombrable $\{(t_i, I_i)\}_i$ où $t_i \in A$ et 
+les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$. 
 De plus, les $I_i$ recouvrent $A$ : en effet si l'on considère $t \in A$,
 il existe nécessairement un entier $k$ tel que tout intervalle compact
-$I$ de longueur inférieure ou égale à $(b-a)/2^k$ vérifie $I \subset \gamma(t)$.
+$I$ de longueur inférieure ou égale à $(b-a)/2^k$ contenant $t$ 
+vérifie $I \subset \gamma(t)$.
 Par conséquent, $t$ appartient à l'un des intervalles inclus par le procédé
 au plus tard à l'étape $k$ de la dichotomie.
 
@@ -687,7 +688,7 @@ Nous nous limitons dans ce chapitre à l'étude des fonctions mesurables
 définies sur $\R$. La notion peut être très facilement étendue
 à une fonction $f$ définie sur un intervalle fermé $I$ de $\R$ de la
 façon suivante : on dira que $f$ est mesurable si son prolongement par $0$
-dans le complémentaire de $I$ est mesurable. Nous laissons le soin au lecteur
+dans le complémentaire de $I$ est mesurable. Nous vous laissons le soin
 de généraliser en conséquence les énoncés qui vont suivre.
 
 ### Critère d'intégrabilité dominée {.theorem #CID}
@@ -732,7 +733,7 @@ constante égale à $f$.
 ### Les fonctions mesurables forment un espace vectoriel  {.proposition}
 
 ### Démonstration {.proof}
-Si $f$, $g$ sont mesurables et $\lambda$ est un nombre réel, 
+Si $f$ et $g$ sont mesurables et $\lambda$ est un nombre réel, 
 il existe des suites $f_k$ et $g_k$ de fonctions intégrables
 convergeant simplement vers $f$ et $g$ respectivement.
 Les fonctions $f_k + g_k$ et $\lambda f_k$ sont intégrables
@@ -807,7 +808,7 @@ Il suffit pour cela de remarquer que comme $U$ est ouvert et que
 $f_k(x) \to f(x)$, $f(x) \in U$ si et seulement si $f_k(x) \in U$
 pour $k$ assez grand. Cette déclaration se traduit par la formule
 $$
-f^{-1}(U) = \bigcup_{j=1}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
+f^{-1}(U) = \bigcup_{j=0}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
 $$
 qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
 (dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
@@ -1102,7 +1103,7 @@ $$
 \leq S(|f|, \mathcal{D}) + \varepsilon /2
 \leq \int |f(t)| \, dt + \varepsilon,
 $$
-et donc en passant à la limite sur $\varepsilon$, l'inégalité cherchée.
+et en passant à la limite sur $\varepsilon$, l'inégalité cherchée.
 
 ### Une fonction conditionnellement intégrable {.example}
 
@@ -1128,7 +1129,9 @@ x \sin \frac{1}{x^2}
 = \frac{1}{x} \cos \frac{1}{x^2}.
 $$
 Par [le critère d'intégrabilité dominée](#CID), la fonction $h(x)$ égale à
-$x \sin (1/x^2)$ si $x>0$ et nulle en zéro est absolument intégrable[^details].
+$x \sin (1/x^2)$ si $x>0$ et nulle en zéro est absolument intégrable
+car continue sur $[0, 1]$.
+<!--[^details]-->
 La fonction $g'$ étant également intégrable, $f = g' + h$ est intégrable comme
 somme de deux fonctions intégrables.
 
@@ -1137,6 +1140,7 @@ $$
 \left| \frac{g(h) - g(0)}{h} \right| \leq \frac{|h|}{2} \to 0 \, \mbox{ quand } \, h \to 0.
 $$
 
+<!--
 [^details]: La  fonction $h$ est mesurable comme limite des 
 suite des fonctions continues $h_k$ -- et donc intégrables -- définies par 
 $h_k(x) = 0$ si 
@@ -1144,6 +1148,7 @@ $x \in [0, 1/\sqrt{2k\pi}]$ et $h_k(x) = h(x)$ sinon. De la même façon,
 $|h|$ est limite des fonctions intégrables $|h_k|$.
 Par ailleurs, $h$ comme $|h|$ sont encadrées par les deux fonctions intégrables
 $x\in [0,1] \mapsto -x$ et $x\in [0,1] \mapsto x$.
+-->
 
 La fonction $f$ n'est pourtant pas absolument intégrable, 
 car $h$ est absolument intégrable mais pas $g'$.
@@ -1418,7 +1423,7 @@ Exercices
 Théorème de convergence dominée {.question #exo-TCD}
 --------------------------------------------------------------------------------
 
-Montrer que la conclusion du [le théorème de convergence dominée](#TCD)
+Montrer que la conclusion [du théorème de convergence dominée](#TCD)
 est toujours valide si les fonctions $f_k$ ne satisfont 
 les hypothèses de convergence et d'encadrement que presque partout.
 
@@ -1453,7 +1458,7 @@ Montrer que toute fonction localement intégrable est mesurable.
 ### Question 2  {.question #il-2}
 La réciproque est-elle vraie ?
  
-Fonctions Mesurables 
+Fonctions mesurables 
 --------------------------------------------------------------------------------
 
 ### Question 1 {.question #fm-1}
