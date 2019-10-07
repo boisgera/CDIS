@@ -57,8 +57,6 @@ $$
 \dot{\underline{x}} = \underline{f}(t,\underline{x}) \ .
 $$
 
-*Démonstration* : \hfill $\blacksquare$
-
 Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de $x\in C^p(I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
 
 
@@ -130,7 +128,7 @@ Nous avons vu dans la partie précédente que des solutions locales au problème
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
 Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
 
-*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. La preuve complète est donnée en appendice? L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale unique. L'ouverture de son intervalle de définition vient du fait qu'elle pourrait sinon être de nouveau prolongée *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
+*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
 **Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
 $$
@@ -151,7 +149,7 @@ Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset U$ pour tout $s\in 
 $$
 \Gamma(x)(t) = x_0+\int_{t_0}^t f(s,x(s))ds \qquad \forall t\in \left[ t_0-\tau_m,t_0+\tau_m \right] \ .
 $$
-En fait, d'après la [représentation intégrale des solutions](#theo_eq_integrale), on sait qu'une fonction $x\in F$ est solution du problème de Cauchy sur $\left[ t_0-\tau_m,t_0+\tau_m \right]$ si et seulement si elle vérifie
+Or d'après la [représentation intégrale des solutions](#theo_eq_integrale), on sait qu'une fonction $x\in F$ est solution du problème de Cauchy sur $\left[ t_0-\tau_m,t_0+\tau_m \right]$ si et seulement si elle vérifie
 $$
 \Gamma(x)=x
 $$
@@ -296,11 +294,12 @@ Cependant, à la fin du XIXème siècle, on se rend vite compte que la réalité
 Sensibilité aux conditions initiales et erreurs de modèle
 --------------------------------------------------------
 
-La première question fut soulevée par Henri Poincaré à la fin du XIXème siècle alors qu'il s'attelle à la question de la stabilité du système solaire. Il écrit:
+La première question fut soulevée par Henri Poincaré à la fin du XIXème siècle alors qu'il s'attelle à la question de la stabilité du système solaire. 
+<!--Il écrit:
 
->Si un cône repose sur sa pointe, nous savons bien qu'il va tomber, mais nous ne savons pas de quel côté [...]. Si le cône était parfaitement symétrique, si son axe était parfaitement vertical, s'il n'était soumis à aucune autre force que la pesanteur, il ne tomberait pas du tout. Mais le moindre défaut de symétrie va le faire pencher légèrement d'un côté ou de l'autre, et dès qu'il penchera, si peu que ce soit, il tombera tout à fait de ce côté. Si même la symétrie est parfaite, une trépidation très légère, un souffle d'air pourra le faire incliner de quelques secondes d'arc [...]. 
+>Si un cône repose sur sa pointe, nous savons bien qu'il va tomber, mais nous ne savons pas de quel côté [...]. Si le cône était parfaitement symétrique, si son axe était parfaitement vertical, s'il n'était soumis à aucune autre force que la pesanteur, il ne tomberait pas du tout. Mais le moindre défaut de symétrie va le faire pencher légèrement d'un côté ou de l'autre, et dès qu'il penchera, si peu que ce soit, il tombera tout à fait de ce côté. Si même la symétrie est parfaite, une trépidation très légère, un souffle d'air pourra le faire incliner de quelques secondes d'arc [...]. -->
 
-Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais tout modéliser parfaitement.
+Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais modéliser tous les phénomènes parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
 Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
@@ -341,24 +340,35 @@ qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suf
 
 - L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la boîte de condition initiales, plus les solutions restent proches. Par contre, lorsqu'on augmente le "Integration Time" les solutions s'écartent.
 
-### Chaos déterministe et exposant de Lyapunov {.remark #rem_chao}
+### Chaos déterministe et horizon de Lyapunov {.remark #rem_chao}
 Même si la continuité des solutions par rapport aux paramètres/conditions initiales donne l'espoir de pouvoir simuler et prédire l'évolution de systèmes physiques, elle est malheureusement parfois insuffisante. 
-Henri Poincaré continue:
+Henri Poincaré écrit:
 
 <!-- Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. -->
-> Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible et nous avons le phénomène fortuit. 
+> Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible. 
 
-En fait, A FINIR + insister sur determinisme + anecdote poincaré, fin de l'espoir de Laplace
-chaos que pour borné
+En effet, le précédent théorème nous prouve seulement que des perturbations suffisamment petites donnent des solutions arbitrairement proches en temps fini. Mais, en pratique, il est rarement possible de choisir l'amplitude des perturbations (erreurs de capteurs, erreurs numérique etc.) et il se pourrait que l'ordre de grandeur des perturbations produisant des erreurs *acceptables* sur les solutions ne soit pas réalisable. Plus précisément, le théorème suggère qu'à perturbation $|\delta|$ donnée, l'écart entre les solutions pourrait croître exponentiellement vite. C'est le cas bien sûr des systèmes qui divergent exponentiellement (tels que $\dot{x}=x$), mais aussi de certains systèmes à trajectoires bornées, pour lesquels il existe $\overline{t}>0$ tel que
+$$
+\frac{|x(t)-x_\delta(t)|}{|\delta|} \approx e^{\lambda t}  \qquad \forall t\leq \overline{t} \ .
+$$
+Dans ce cas, $\frac{1}{\lambda}$ représente l'ordre de grandeur du temps maximal jusqu'auquel l'erreur sur les solutions reste du même ordre de grandeur que l'erreur initiale: on parle d'*horizon de Lyapunov*. Toute prédiction au delà de cet horizon est illusoire et le système est alors dit *chaotique*.
+
+Il est important d'insister sur le caractère *déterministe* de ce chaos : chaque cause entraîne un effet bien déterminé mais deux causes très proches peuvent avoir des effets très différents. 
+ + anecdote poincaré ????
 
 ### Exemples 
 
-- 1963 : l'attracteur de Lorenz, météo
+- En 1963, Edward Lorenz met en évidence pour la première fois le comportement possiblement chaotique de la météorologie à travers un modèle simplifié à trois dimensions de convection donné par 
+\begin{align*}
+\dot{x} &= \sigma (y-x) \\
+\dot{y} &= \rho \, x - y -xz \\
+\dot{z} &= xy-\beta z 
+\end{align*}
+où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires sautent de manière *chaotique* d'une aile à l'autre.
 
-- 1992 : Sussman\& Wisdom système solaire chaotique avec horizon de Lyapunov 200 million d'années
+- En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par les travaux de Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années. 
 
-- electricité, pendule forcé
-
+- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très diverts allant de l'économie à l'électricité parfois lors d'une excitation sinusoïdale à certaines fréquences: pendule forcé, oscillateur de Van der Pol, etc. REFFF
 
 Propriétés asymptotiques
 -----------------------------
