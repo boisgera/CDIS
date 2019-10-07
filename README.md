@@ -21,6 +21,8 @@ Calcul Différentiel, Intégral et Stochastique
 | Calcul Intégral 2/5 | [Calcul Intégral II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II.pdf) | [Calcul Intégral II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II%20(a4%2C%20recto-verso).pdf) |
 | ... | ... | ... |
 
+[Errata](https://github.com/boisgera/CDIS/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+label%3Abug+-label%3Awont-fix+-label%3Abuild)
+
 
 
 :calendar: Calendrier 2019 
