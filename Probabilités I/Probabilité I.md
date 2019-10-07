@@ -565,6 +565,45 @@ Dans un jeu télévisé, vous êtes confrontés au problème suivant : devant vo
 
 Calculer la probabilité de remporter la voiture selon les deux stratégies (changer ou non son choix de porte).
 
+## Queues de distributions {.question #dlfdr}
+
+Soit une densité $f$ sur $\R$ étendue à $[-\infty,+\infty]$ telle que la fonction $h: x \in [-\infty,+\infty] \mapsto x\,f(x)$ est absolument intégrable. Cette hypothèse sera appelée $(\mathcal{H})$. On note $F$ la fonction de répartition correspondante sur la droite réelle achevée. Nous allons montrer que[^o]
+$$\left|\begin{array}{rl} 1-F(x) \underset{x\to+\infty}{=} o\left(\dfrac{1}{x}\right), & (1)\\[1em] F(x) \underset{x\to-\infty}{=} o\left(\dfrac{1}{x}\right).& (2) \end{array} \right. $$ 
+
+### Etude en $+\infty$ {.question #dlfdr-pi}
+
+1. Vérifier que pour tout $u > 0$, $$\int_{-\infty}^{+\infty} h(x)\,dx \geq \int_{-\infty}^u h(x)\,dx + u\,\left(1-F(u)\right).$$
+
+2. En déduire $(1)$.
+
+[^o]: Soient $a \in [-\infty,+\infty]$ et $f$ et $g$ deux fonctions définies sur un même voisinage $I$ de $a$. On dit que $f$ est *négligeable* par rapport à $g$ (ou que $g$ est *prépondérante* par rapport à $f$) au voisinage de $a$ et on note note $f(x) \underset{x\to a}{=} o(g(x))$ s'il existe une fonction $\epsilon$ définie sur $I$ telle que $\epsilon(x) \xrightarrow[x\to a]{} 0$ et $f = \epsilon \times g$.
+
+### Etude en $-\infty$ {.question #dlfdr-mi}
+
+3. En vous inspirant du raisonnement précédent, montrer $(2)$.
+
+### Interprétation {.question #dlfdr-interpret}
+
+4. Proposez une interprétation de ce résultat.
+
+### Premiers pas vers la réciproque {.question #dlfdr-caspart}
+
+La réciproque de ce résultat sera étudiée au prochain TD. Nous pouvons cependant d'ores et déjà mettre en lumière quelques relations logiques entre $(\mathcal{H})$ et $(1)$, $(\mathcal{H})$ et $(2)$, puis $(1)$ et $(2)$.
+
+Pour cela, considérons dorénavant la fonction de répartition $$F: x \in \R \mapsto \left|\begin{array}{ll} 1 - \dfrac{1}{\ln(x)} & \text{si } x \geq e,\\ 0 & \text{si } x <e, \end{array}\right.$$
+que l'on étend à la droite réelle achevée en posant $F(-\infty) = 0$ et $F(+\infty) = 1$.
+
+5. Vérifier que cette fonction possède bien une densité $f$ et l'expliciter.
+
+6. La fonction $h$ correspondante est-elle absolument intégrable ?
+
+7. A-t-on les développements limités $(1)$ et $(2)$ ? 
+
+8. Qu'en est-il de la distribution de densité $g : x\in[-\infty,+\infty] \mapsto f(-x)$ ?
+
+9. Qu'en concluez-vous ?
+
+
 ## Densité et fonction de répartition d'une loi Normale
 
 On considère la densité d'une loi Normale centrée réduite : $$f : x\in [-\infty,+\infty] \mapsto \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{x^2}{2}\right\},$$
@@ -600,7 +639,9 @@ où $\mu \in \R$ et $\sigma^2 > 0$. On note $G$ sa fonction de répartition asso
 
 7. En réécrivant $g$ en fonction de $f$, déduire des questions précédentes un équivalent de $1-G(x)$ lorsque $x\to+\infty$.
 
+
 ---
+
 
 # Solutions
 
@@ -645,9 +686,11 @@ Mais $\P(B_n) \to_{n \to \infty} \P(C)$ d'après le [théorème de continuité m
 ## Indépendance et conditionnement
 
 ### Question 1 {.answer #answer-ic-1}
+
 On a $1 = \P(A\cup B) = \P(A) + \P(B) - \P(A\cap B)$, donc $1 = \P(A) + \P(B) - \P(A)\P(B)$ si et seulement si $A$ et $B$ sont indépendants. Cette égalité se réécrit $(1-\P(A))(1-\P(B))=0$, qui est vérifiée ssi $A$ ou $B$ est presque sûr.
 
 ### Question 2 {.answer #answer-ic-2}
+
 Par définition, on a $A$ et $B$ indépendants relativement à $\P(\,\,|C)$ ssi
 $$\P(A\cap B |C) = \P(A|C)\P(B|C) = \P(A)\P(B),$$
 car $A$ et $B$ sont chacun indépendants de $C$, d'où 
@@ -657,6 +700,7 @@ $$\P(A\cap B \cap C) = \P(A)\P(B)\P(C)$$
 équivaut à $A$, $B$ et $C$ sont mutuellemnent indépendants.
 
 ### Question 3 {.answer #answer-ic-3}
+
 On a $\P(A^c\cap B^c) = \P((A \cup B)^c) = 1 - \P(A) - \P(B) + \P(A\cap B)$, donc
 $$\P(A\cap B)\P(A^c \cap B^c) = \P(A\cap B) - \P(A\cap B)(\P(A) + \P(B) + \P(A\cap B))$$
 Par ailleurs, on a 
@@ -670,15 +714,88 @@ $$ \P(A \cap B^c)\P(A^c\cap B) = \P(A)\P(B) -\P(A\cap B)(\P(A) + \P(B)- \P(A\cap
 On a donc bien l'égalité ssi $\P(A)\P(B) = \P(A\cap B)$
 
 ## Problème de Monty Hall {.answer #answer-mh}
-Considérons les événements $A$ = 'la première porte choisie en premier est la bonne' et $B$ = 'la dernière porte est la bonne'.
+Considérons les événements $A$ = 'la porte choisie en premier est la bonne' et $B$ = 'la dernière porte est la bonne'.
 
 On a évidemment $\P(A) = \frac{1}{3}$, puisque le choix initial se fait uniformément parmi les 3 portes.
 
-Pour $B$, on doit tenir compte de l'information donnée par le présentateur. On a 
+Pour $B$, on doit tenir compte de l'information donnée par le présentateur. On a par [la formule des probabilités totales](#formprobatot)
 $$\P(B) = \P(B|A)\P(A) + \P(B|A^c)\P(A^c) = 0.\frac{1}{3} + 1.\frac{2}{3} = \frac{2}{3}$$
 En effet $\P(B|A^c) = 1$ car si la porte choisie initialement n'est pas la bonne, c'est nécessairement la dernière.
 
-Il convient donc de changer son choix compte tenu de la nouvelle information.
+Il convient donc de changer son choix compte tenu de la nouvelle information. 
+Pour se convaincre du résultat, on peut refaire le calcul avec disons 100 portes et le présentateur qui ouvre 98 autres porte après le choix du candidat.
+
+
+## Queues de distributions {.answer #answer-dlfdr}
+
+### Etude en $+\infty$ {.answer #answer-dlfdr-pi}
+
+1. Soit $u>0$. Comme $h$ est absolument intégrable, elle est intégrable et on peut écrire
+\begin{align*}
+\int_{-\infty}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} x\,f(x)\,dx & = \int_{-\infty}^{u} x\,f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
+&\geq \int_{-\infty}^{u} x\,f(x)\,dx + u\,\int_{u}^{+\infty} f(x)\,dx\\
+&= \int_{-\infty}^{u} h(x)\,dx + u\,\left(1- F(u)\right).
+\end{align*}
+
+<!-- On peut justifier que pour $f,g : \R \to \R$ intégrables telles que $f < g$ on a $\int f < \int g$ en utilisant la positivité et la linéarité de l'intégrale (qui sont vraies quand on passe à $[-\infty,+\infty]$ même si ce n'est pas explicitement mentionné dans le cours de calcul intégral 1 pour la positivité). En effet, dans ce cadre $g-f$ est intégrable par linéarité, positive ($g > f$) et on a donc $\int g - f = \int g - \int f > 0$. -->
+
+2. Soit toujours $u>0$. Toute fonction de répartition étant à valeurs dans $[0,1]$, on a $u\,\left(1-F(u)\right) \geq 0$. En utilisant la question précédente on obtient donc l'encadrement
+\begin{align*}
+0 \leq u\,\left(1-F(u)\right) & \leq \int_{-\infty}^{+\infty} h(x)\,dx - \int_{-\infty}^u h(x)\,dx\\
+&= \int_{u}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} h(x)\,1_{[u,+\infty]}(x)\,dx.
+\end{align*}
+Or pour tout $x\in[-\infty,+\infty]$ on a $\left|h(x)\,1_{[u,+\infty]}(x)\right| \leq \left|h(x)\right|$, qui est intégrable. On peut donc appliquer le théorème de convergence dominée, <!-- cf. Calcul intégral 2 --> qui nous donne :
+\begin{align*}
+\lim_{u\to+\infty} u\,(1-F(u)) & = \int_{-\infty}^{+\infty} h(x)\,\lim_{u\to+\infty} 1_{[u,+\infty]}(x)\,dx\\
+& = \int_{-\infty}^{+\infty} h(x)\,1_{\varnothing}(x)\,dx = 0.
+\end{align*}
+On en conclut que $1-F(x) = o\left(\dfrac{1}{x}\right)$ lorsque $x\to+\infty$.
+
+### Etude en $-\infty$ {.answer #answer-dlfdr-mi}
+
+3. Prenons maintenant $u<0$. Comme $h$ est (absolument) intégrable, on peut écrire
+\begin{align*}
+\int_{-\infty}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} x\,f(x)\,dx & = \int_{-\infty}^{u} x\,f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
+&\leq u\, \int_{-\infty}^{u} f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
+&= u\,F(u) + \int_{u}^{+\infty} h(x)\,dx.
+\end{align*}
+Or, comme $F$ prend ses valeurs dans $[0,1]$, $u\,F(u) \leq 0$. On obtient donc
+\begin{align*}
+0 \geq u\,F(u) & \geq \int_{-\infty}^{+\infty} h(x)\,dx - \int_{u}^{+\infty} h(x)\,dx\\
+&= \int_{-\infty}^{u} h(x)\,dx = \int_{-\infty}^{+\infty} h(x)\,1_{[-\infty,u]}(x)\,dx.
+\end{align*}
+Comme précédemment, cette dernière fonction sous l'intégrale est bornée par $-\left|h\right|$ (à gauche) et $\left|h\right|$ (à droite), toutes deux intégrables, donc d'après le théorème de convergence dominée <!-- cf. Calcul intégral 2 -->:
+\begin{align*}
+\lim_{u\to-\infty} u\,F(u) & = \int_{-\infty}^{+\infty} h(x)\,\lim_{u\to-\infty} 1_{[-\infty,u]}(x)\,dx\\
+& = \int_{-\infty}^{+\infty} h(x)\,1_{\varnothing}(x)\,dx = 0.
+\end{align*}
+On a donc bien $F(x) = o\left(\dfrac{1}{x}\right)$ lorsque $x\to-\infty$.
+
+### Interprétation {.answer #answer-dlfdr-interpret}
+
+4. L'hypothèse que $h$ est (absolument) intégrable nous donne une indication sur la vitesse de convergence de $1-F(x)$ et $F(x)$ lorsque $x$ tend respectivement vers $+\infty$ et $-\infty$ : elles convergent vers $0$ au moins aussi vite que $\dfrac{1}{x}$. On dit que les queues de la distribution sont "relativement" fines.
+
+Pour mieux comprendre l'impact de ce résultat, prenons un exemple pratique. Considérons un phénomène aléatoire comme la concentration en polluant dans l'air, modélisé par une loi de probabilité sur $\R$ de densité $f$ nulle sur $\R_-^\ast$. Etre capable de déterminer la probabilité que la concentration dépasse un seuil critique $x$ est alors très important pour les organismes de contrôle de la qualité de l'air. Or cet événement correspond mathématiquement à l'événement $[x,+\infty]$. Dans ce cas, $1 - F(x)$ nous donne cette probabilité selon le modèle considéré. Le résultat nous indique que si l'on choisit un modèle tel que $h$ est intégrable, alors cette probabilité décroît plus rapidement que $\dfrac{1}{x}$ lorsque le seuil $x$ augmente. En d'autres termes, les événements extrêmes (quand $x$ est grand) restent "assez" rares. L'impact du choix de modèle n'est donc pas négligeable : si on prend une distribution à queues trop fines alors que les pics de pollution ne sont en réalité pas si rares que ça, $1-F(x)$ risque de sous-estimer le risque réel de dépassement du seuil !
+
+### Premiers pas vers la réciproque {.answer #answer-dlfdr-caspart}
+
+5. La fonction $F$ considérée est continue et dérivable par morceaux sur $[-\infty,+\infty]$ ; le seul point où $F$ n'est pas dérivable est $e$ (le taux d'accroissement n'a pas les mêmes limites à gauche et à droite). Elle possède donc une densité, <!-- cf. Probabilités 1 --> qui s'obtient en dérivant chaque morceau : pour tout $x\in\R$, $$f(x) = \left|\begin{array}{ll} \dfrac{1}{x\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon.}\end{array}\right.$$
+<!-- Ici on peut leur montrer qu'on aurait pu prendre n'importe quelle valeur pour f en e, et ça marcherait quand même (idée qu'on n'a pas forcément une unique densité, mais qu'elles sont toutes égales p.p.) -->
+On peut l'étendre à la droite réelle achevée en posant $f(\pm\infty) = \lim\limits_{x\to\pm\infty}f(x) = 0$.
+
+6. Pour tout $x\in\R$, $$ h(x) = \left|h(x)\right| = \left|\begin{array}{ll} \dfrac{1}{\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon,} \end{array}\right.$$ et on pose $h(\pm\infty) = \lim\limits_{x\to\pm\infty}h(x) = 0$.
+Par conséquent, $h$ est clairement (absolument) intégrable sur $[-\infty,e]$, où elle est égale presque partout (partout sauf en $e$) à la fonction nulle. Pour savoir si $h$ est (absolument) intégrable sur toute la droite réelle achevée, il nous faut donc regarder si elle l'est sur $[e,+\infty]$. Pour cela, nous allons utiliser le théorème de Hake, <!-- cf. Calcul intégral 1 --> qui nous dit de vérifier que $h$ est intégrable sur tout segment $[a,b] \subsetneq [e,+\infty]$, puis que $\lim\limits_{t\to+\infty} \int_e^t h(x)\,dt$ existe. Remarquons d'abord que pour tout $x\geq e$, on a $1 \leq \ln(x) \leq \sqrt{x}$, ce qui implique que $1 \geq h(x) \geq \dfrac{1}{x} > 0$. Ainsi, pour tout $t>e$, $h$ est intégrable sur $[e,t]$ où elle est bornée <!-- cf. Calcul intégral 1 -->. Elle est donc intégrable sur tout $[a,b] \subsetneq [e,+\infty]$. Ensuite,
+$$\int_{e}^t h(x)\,dx \geq \int_e^t \dfrac{1}{x}\,dx = \left[\ln(x)\right]-e^t = \ln(t) - 1.$$
+Or cette dernière quantité tend vers $+\infty$ quand $t\to+\infty$. Donc $\int_{e}^t h(x)\,dx$ n'a pas de limite quand $t\to+\infty$. On en conclut que $h$ n'est pas (absolument) intégrable.
+
+7. On remarque que $x\,\left(1-F(x)\right) = \dfrac{x}{\ln(x)} \xrightarrow[x\to+\infty]{} +\infty$, donc le développement limité $(1)$ n'est pas vérifié. En revanche, comme $x\,F(x) = 0$ pour tout $x < e$, le développement limité $(2)$ est bien respecté.
+
+8. Posons $H : x\in [-\infty,+\infty] \mapsto x\,g(x) = x\,f(-x) = -h(-x)$. Elle est absolument intégrable sur $[-e,+\infty]$ où elle est nulle presque partout. En revanche, pour tout $t>0$ on a $$\int_{-t}^{-e} \left|H(x)\right|\,dx = \int_{-t}^{-e} h(-x)\,dx = \int_{e}^{t} h(x)\,dx $$ qui n'a pas de limite quand $t\to+\infty$. Donc, comme $h$, $H$ n'est pas absolument intégrable. Quant aux développements limités $(1)$ et $(2)$, prenons $x,t\in\R$, $t<x$ et notons $G$ la fonction de répartition associée à $g$. Alors par changement de variable $$G(x) - G(t) = \int_{t}^x f(-u)\,du = \int_{-x}^{-t} f(u)\,du = F(-t) - F(-x).$$ En faisant tendre $t$ vers $-\infty$, on obtient que pour tout $x\in[-\infty,+\infty]$, $G(x) = 1 - F(-x)$. En utilisant la question précédente, on en déduit que $$\lim_{x\to+\infty} x\,\left(1-G(x)\right) = \lim_{x\to+\infty} x\,F(-x) = \lim_{x\to-\infty} -x\,F(x) = 0, $$  puis que
+$$\lim_{x\to-\infty} x\,G(x) = \lim_{x\to-\infty} x\,\left(1 - F(-x)\right) = \lim_{x\to+\infty} -x\,\left(1 - F(x)\right) = -\infty. $$
+En d'autres termes, $G$ satisfait $(1)$ mais pas $(2)$, alors que $F$ satisfait $(2)$ mais pas $(1)$.
+
+9. A l'aide de contre-exemples, nous avons vu que $(\mathcal{H}) \Rightarrow (1)$ et $(\mathcal{H}) \Rightarrow (2)$ mais que les réciproques sont fausses. Nous avons aussi observé que $(1)$ n'implique pas $(2)$ et inversement.
+
 
 
 ## Densité et fonction de répartition d'une loi Normale
@@ -732,3 +849,6 @@ On obtient alors l'encadrement suivant, pour tout $x>\mu$ :
 $$ \dfrac{x-\mu}{1 + \dfrac{(x-\mu)^2}{\sigma^2}}\,g(x) \leq 1 - G(x) \leq \dfrac{\sigma^2\,g(x)}{x-\mu}.  $$
 
 On en déduit que $1-G(x) \sim \dfrac{\sigma^2\,g(x)}{x-\mu} \sim \sigma^2\,\dfrac{g(x)}{x}$ lorsque $x\to+\infty$.
+
+Références
+================================================================================
