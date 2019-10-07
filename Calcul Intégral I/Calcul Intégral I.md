@@ -1267,7 +1267,7 @@ nulle), alors elle est intégrable et d'intégrale nulle.
 Supposons dans un premier temps que $f$ soit bornée.
 Alors, pour tout $\varepsilon > 0$, il existe un recouvrement de
 $$
-A = f^{-1}(\{0\}) = \{x \in [a, b] \, | \, f(x) \neq 0\}
+A = f^{-1}(\R \setminus \{0\}) = \{x \in [a, b] \, | \, f(x) \neq 0\}
 $$ 
 par une collection dénombrable
 d'intervalles $I_i$ telle que $\sum_i \ell(I_i) \leq \varepsilon$.
