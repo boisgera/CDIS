@@ -105,12 +105,14 @@ présente l'avantage de pouvoir intégrer une plus grande gamme de fonctions
 que l'intégrale de Riemann : moins régulières, non bornées et/ou définies
 sur des intervalles non-bornés[^ii].
 
-Il faut néanmoins reconnaître à ce stade de notre exposé que l'intégrale
-de Riemann est plus pratique. Si avec l'intégrale de Henstock-Kurzweil,
-on sait que $\lambda f$ et $f + g$ sont intégrables par exemple quand
-$f$ et $g$ le sont, il n'est pas certain que le produit $f g$ soit 
-intégrable par exemple ! Et à ce stade, nous ne disposons pas des outils
-adaptés pour étudier cette intégrabilité.
+Il faut néanmoins reconnaître qu'à ce stade de notre exposé l'intégrale
+de Riemann est parfois plus pratique. 
+Par exemple : si avec l'intégrale de Henstock-Kurzweil,
+on sait que $\lambda f$ et $f + g$ sont intégrables quand
+$f$ et $g$ le sont, 
+il n'est pas certain que le produit $f g$ soit intégrable ;
+et nous ne disposons pas encore des outils adaptés pour étudier cette 
+intégrabilité.
 Or dans le cadre Riemannien, rien de plus simple : si $f$ et $g$ sont
 des fonctions intégrables au sens de Riemann sur un segment, le produit 
 $fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp]. 
@@ -121,21 +123,22 @@ calculées comme des intégrales *impropres*, par un passage à la limite
 d'intégrales de Riemann de fonctions définies sur un sous-ensemble.
 Mais l'intégrale qui en résulte 
 -- on parle parfois d'intégrale de *Cauchy-Riemann* -- 
-perd une bonne partie des propriétés de l'intégrale
-de Riemann qui la rendent pratique.
+perd une bonne partie des propriétés de l'intégrale de Riemann.
 
-[^cocpp]: En première approche on pourra s'en convaincre en remplaçant 
-"intégrables au sens de Riemann" par "continues". Dans le cas général,
+[^cocpp]: En première approche on pourra rapidement s'en convaincre 
+en remplaçant "intégrables au sens de Riemann" par "continues". 
+Dans le cas général, 
 supposons que $f$ et $g$ sont intégrables au sens de Riemann 
-sur un segment $[a, b]$, c'est-à-dire bornées et continues presque partout.
+sur un segment $[a, b]$ de $\R$, 
+c'est-à-dire bornées et continues presque partout.
 De toute évidence, leur produit est borné. Si $f$ est continue en tout point
 de $[a, b]$ à l'exception de l'ensemble négligeable $A$ et $g$ en tout point
 de $[a, b]$ à l'exception de l'ensemble négligeable $B$, l'ensemble
 $C$ des points de discontinuité de $fg$ est nécessairement dans $A\cup B$,
-donc négligeable.
+donc négligeable. Le produit $fg$ est donc intégrable au sens de Riemann.
 
 Cette remarque ne souligne pas à proprement parler un défaut de l'intégrale de 
-Henstock-Kurzweil mais une conséquence de sa généralité: en permettant
+Henstock-Kurzweil, mais plutôt une conséquence de sa généralité : en permettant
 d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/\sqrt{x}$ 
 (presque partout), on s'expose à devoir refuser d'intégrer le produit d'une 
 fonction par elle-même, ici $x \in [0,1] \mapsto 1/x$ (presque partout).
@@ -165,7 +168,7 @@ $$
 $$
 Si une fonction n'est définie que sur un sous-ensemble $A$ de $\R$
 -- qui pourra être un intervalle ou un ensemble plus complexe --
-il est naturel de lui associer la fonction définie sur $\R$ prenant
+il est naturel de l'étendre en une fonction définie sur $\R$ prenant
 la valeur $0$ en dehors de $A$ puisque dans le cas des intervalles,
 cette opération ne change pas la valeur de l'intégrale.
 Le mouvement inverse -- restreindre une fonction définie sur $\R$ à un 
@@ -173,13 +176,21 @@ sous-ensemble nécessite de considérer le produit $1_A f$
 de $f$ par la fonction caractéristique de $A$, ce qui soulève la question
 de l'étude de l'intégrabilité de ces fonctions caractéristiques.
 
+Mais notre première étape dans ce chapitre sera de nous doter d'un
+théorème de convergence dominée, qui permettra -- sous certaines
+conditions qui sont plus simples que dans le cadre Riemannien classique
+-- de calculer l'intégrale d'une fonction $f$ à partir
+des intégrales d'une suite de fonctions convergeant vers $f$.
+
+<!--
 Finalement, l'intégrale de Henstock-Kurzweil possède comme l'intégrale de
-Riemann un théorème de convergence dominée qui permet d'évaluer 
-l'intégrale d'une fonction en calculant les intégrales d'une suite 
-de fonctions convergeant simplement. Contrairement au cadre de 
+Riemann un théorème de convergence dominée, qui permet d'évaluer 
+l'intégrale d'une fonction $f$ en calculant les intégrales d'une suite 
+de fonctions convergeant simplement vers $f$. Contrairement au cadre de 
 l'intégrale de Riemann, il ne sera pas nécessaire de supposer que la
 limite des fonctions considérées soit intégrable -- les hypothèses
 du théorème fourniront automatiquement ce résultat.
+-->
 
 <!--
 --------------------------------------------------------------------------------
@@ -205,7 +216,7 @@ Théorèmes de Convergence
 ### Théorème de convergence dominée {#TCD .theorem}
 Si une suite de fonctions intégrables $f_k:\R \to \R$
 converge simplement vers la fonction $f$, c'est-à-dire si pour tout
-$x \in \R^n$,
+$x \in \R$,
 $$
 \lim_{k \to +\infty} f_k(x) = f(x)
 $$
@@ -229,7 +240,7 @@ Se reporter à @Dem11.
 
 ### Dérivation sous le signe somme {.theorem #DSS}
 Soit $I$ un intervalle de $\R$ et $f: I \times \R \to \R$ une fonction
-telle que:
+telle que :
 
  1. pour tout $\lambda \in I$, 
     la fonction $t \in \R \mapsto f(\lambda, t)$ est intégrable,
@@ -257,14 +268,14 @@ $$
 \frac{S(\lambda + h) - S(\lambda)}{h}
 = \int \frac{f(\lambda + h, t) - f(\lambda, t)}{h} \, dt.
 $$
-Soit $h_k$ une suite de réels tels que $\lambda + h_k \in I$ et $h_k \to 0$
+Soit $h_k$ une suite de réels non nuls tels que $\lambda + h_k \in I$ et $h_k \to 0$
 quand $k \to +\infty$. En raison de la dérivabilité de $f$ par rapport
 à son premier argument, pour tout $t \in \R$,
 $$
-\lim_{k \to +\infty} \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h}
+\lim_{k \to +\infty} \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k}
 = \partial_{\lambda} f(\lambda, t).
 $$
-De plus, par le théorème des accroissement finis, pour tout $k \in \N$,
+De plus, par l'inégalité des accroissement finis, pour tout $k \in \N$,
 $$
 \left|\frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k} \right|
 \leq \sup_{\mu \in I} |\partial_{\lambda} f(\mu, t)| \leq g(t),
@@ -273,7 +284,7 @@ et donc
 $$
 -g(t) \leq \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k} \leq g(t).
 $$
-Les taux d'accroissements sont donc encadrés par deux fonctions intégrables.
+Les taux d'accroissements de $f$ sont donc encadrés par deux fonctions intégrables.
 Par [le théorème de convergence dominée](#TCD), on conclut que
 $$
 \lim_{k \to +\infty} \frac{S(\lambda + h_k) - S(\lambda)}{h_k}
@@ -311,7 +322,7 @@ Se reporter à @Dem11.
 Ensembles mesurables
 ================================================================================
 
-Il existe un lien étroit entre la notions de longueur d'un ensemble de réels
+Il existe un lien étroit entre la notion de longueur d'un ensemble de réels
 et le calcul intégral. Nous savons par exemple que pour tout intervalle 
 compact $E = [a, b]$, la longueur $b-a$ de l'intervalle peut être calculée
 par l'intégrale de la fonction caractéristique de $E$ :
@@ -328,7 +339,8 @@ de l'ensemble.
 Il apparait donc légitime pour définir la longueur d'un sous-ensemble $E$
 de $\R$ aussi général que possible[^loop] de $\R$ de prendre cette 
 égalité comme une définition, ce qui suppose toutefois que la fonction 
-caractéristique soit intégrable ; on parle alors d'*ensemble intégrable*. 
+caractéristique soit intégrable ; on parle alors d'*ensemble intégrable*
+ou *de longueur finie*. 
 Cette définition laisse toutefois de coté les ensembles "trop grands" 
 pour être intégrables, mais par ailleurs parfaitement inoffensifs, 
 comme $\R$ tout entier ou l'ensemble des réels positifs. 
@@ -414,7 +426,7 @@ A^c = \{x \in X \, | \, x \not \in A\}.
 $$
 Pour être plus explicite, on peut utiliser la notation du complémentaire 
 relatif : le complémentaire de $A$ dans $B$ est l'ensemble des points de 
-$B$ qui n'appartiennent pas à $A$:
+$B$ qui n'appartiennent pas à $A$ :
 $$
 B \setminus A = \{x \in B \, | \, x \not \in A\}.
 $$
@@ -426,17 +438,17 @@ $$
 
 ### Démonstration des [propriétés élémentaires](#pptés-tribu) {.proof}
  1. La fonction caractéristique $1_{\varnothing}$ est identiquement nulle ; 
-    l'ensemble vide $\varnothing$ est donc intégrable et par conséquent 
+    l'ensemble vide $\varnothing$ est donc de longueur finie et par conséquent 
     mesurable.
 
  2. Si l'ensemble $A$ est mesurable et $B = \R \setminus A$,
-    pour tout $[a, b]$, l'ensemble $A \cap [a, b]$ est intégrable.
-    Par ailleurs, l'ensemble $[a, b]$ est intégrable. 
+    pour tout $[a, b]$, l'ensemble $A \cap [a, b]$ est de longueur finie.
+    Par ailleurs, l'ensemble $[a, b]$ est de longueur finie. 
     Donc, comme
     $$
     1_{B \cap [a, b]} = 1_{[a, b]} - 1_{A \cap [a, b]},
     $$
-    l'ensemble $B \cap [a, b]$ est intégrable ;
+    l'ensemble $B \cap [a, b]$ est de longueur finie ;
     l'ensemble $B$ est donc mesurable.
 
  3. Montrons tout d'abord que l'union d'une collection finie d'ensembles 
@@ -448,7 +460,7 @@ $$
     (A \cup B) \cap [a, b]
     = (A \cap [a, b]) \cup (B \cap [a, b]),
     $$
-    ce qui se traduit en terme de fonctions caractéristiques par la relation
+    ce qui se traduit au moyen des fonctions caractéristiques par la relation
     $$
     1_{(A \cup B) \cap [a, b]}  = \max \left(1_{A \cap [a, b]}, 1_{B \cap [a, b]} \right).
     $$
@@ -468,12 +480,12 @@ $$
     $$
     \left(\bigcup_{k=0}^{+\infty} A_k\right) \cap [a, b] = 
     \bigcup_{k=0}^{+\infty} \left(A_k \cap [a, b]\right);$$
-    les ensembles $A_k \cap [a, b]$ sont intégrables, 
+    les ensembles $A_k \cap [a, b]$ sont de longueur finie, 
     c'est-à-dire que $1_{A_k \cap [a, b]}$ est intégrable.
     Pour tout $k\in \N$, on a $0 \leq 1_{A_k \cap [a, b]} \leq 1_{[a, b]}$ ;
     les ensembles $A_k \cap [a, b]$ formant une suite croissante pour l'inclusion,
-    la suite des fonctions caractéristiques $1_{A_k \cap [a, b]}$ est croissante et
-    pour tout réel $x$ on a donc
+    la suite des fonctions caractéristiques $1_{A_k \cap [a, b]}$ est croissante 
+    et majorée par $1_{[a, b]}$ ; pour tout réel $x$ on a donc
     $$
     1_{\left(\cup_{k=0}^{+\infty} A_k\right) \cap [a, b]}(x)
     = \lim_{k\to +\infty} 1_{A_k \cap [a, b]}(x)
@@ -493,7 +505,7 @@ Les ensembles mesurables dans $\R$ forment donc une tribu.
 
 
 ### Intersection d'ensemble mesurables {.proposition #IEM}
-L'intersection d'une collection dénombrable d'ensemble mesurables est mesurable.
+L'intersection d'une collection dénombrable d'ensembles mesurables est mesurable.
 
 ### Démonstration {.proof}
 Notons que pour toute collection $\mathcal{A}$ d'ensembles de $\R$,
@@ -562,6 +574,7 @@ $I_i$ de $\R$ qui recouvre $A$ et telle que
 $$
 \sum_i \ell(I_i) \leq \varepsilon.
 $$
+
 Supposons temporairement que $A$ soit inclus dans un intervalle compact 
 $[a, b]$ de $\R$. 
 La fonction caractéristique $1_A$ de $A$ est intégrable, 
@@ -614,7 +627,7 @@ Il faudrait voir si ce "corollaire" du lemme de Henstock couvre l'ensemble
 des usage que l'on a en aval ...
 -->
 
-Procédons finalement à la construction de la collection de $(t_i, I_i)$,
+Procédons à la construction de la collection de $(t_i, I_i)$,
 par dichotomie.
 S'il existe un 
 $t \in [a, b]$ tel que $t \in A$ et $[a, b] \subset \gamma(t)$,
@@ -632,6 +645,17 @@ il existe nécessairement un entier $k$ tel que tout intervalle compact
 $I$ de longueur inférieure ou égale à $(b-a)/2^k$ vérifie $I \subset \gamma(t)$.
 Par conséquent, $t$ appartient à l'un des intervalles inclus par le procédé
 au plus tard à l'étape $k$ de la dichotomie.
+
+Finalement, supposons $A$ de longueur nulle mais plus nécessairement borné.
+Soit $\varepsilon > 0$.
+Pour tout $k \in \N$, l'ensemble $A \cap [-k, k]$ est de longueur nulle et borné ; 
+il peut donc être recouvert par une famille dénombrable d'intervalles dont
+la somme des longueurs est inférieure $\varepsilon / 2^{k+1}$. 
+Comme $A = \cup_{k=0}^{+\infty} (A \cap [-k, k])$, la collection 
+de tous ces intervalles recouvre $A$ ; la somme de leur 
+longueur est majorée par 
+$\sum_{k=0}^{+\infty} \varepsilon/2^{k+1} = \varepsilon.$
+L'ensemble $A$ est donc négligeable.
 
 ### Complétude de la longueur {.corollary}
 
