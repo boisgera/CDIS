@@ -1,0 +1,18 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\begin{tikzpicture}
+  \draw[help lines] (-3.5,-0.5) grid (3.5,2.5);
+  \draw [->] (-3.5,0) -- (3.5,0);
+  \draw [->] (0,-0.5) -- (0,2.5);
+  \begin{scope}
+    \clip (-3.5,0) rectangle (3.5,2.5);
+    \draw[thick] (0,1) circle [radius=1];
+  \end{scope}
+  \draw[thick] (-3.5,2) -- (3.5,2);
+
+  \draw[fill] (1,1) circle [radius=0.05];
+  \draw[fill] (2,2) circle [radius=0.05];
+  \draw[dashed] (0,0) -- (2,2);
+
+\end{tikzpicture}
+\end{document}
