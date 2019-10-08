@@ -89,6 +89,9 @@ Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisqu
 ### Classe plus générale de solutions {.remark}
 Relaxation de la continuité de $f$ et de la notion de solution de manière à ce que cette intégrale existe + ref à calcul intégral
 
+### Portrait de phase   
+En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ ) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. 
+
 
 Etude du problème de Cauchy
 ================================
@@ -202,7 +205,7 @@ $$
 f(t,x) = a(t) x + b(t) \ ,
 $$
 admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $\partial_x f(t,x) = a(t)$ (en identifiant abusivement ici différentielle et matrice Jacobienne).
-- 
+- ?????
 
 
 Solutions globales
@@ -370,7 +373,7 @@ où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour 
 
 - En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par les travaux de Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années. 
 
-- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très diverts allant de l'économie à l'électricité parfois lors d'une excitation sinusoïdale à certaines fréquences: pendule forcé, oscillateur de Van der Pol, etc. REFFF
+- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité parfois lors d'une excitation sinusoïdale à certaines fréquences: pendule forcé, oscillateur de Van der Pol, etc. REFFF
 
 Propriétés asymptotiques
 -----------------------------
@@ -435,9 +438,9 @@ $$
 
 - Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable.
 
-- Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Voir le système de Vinograd poour les curieux. REF ???
+- Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Un exemple célèbre est le système de [Vinograd](#fig_vinograd) dont le portrait de phase est représenté ci-dessous.
 
-
+![Portrait de phase du système de Vinograd](images/vinograd.py){#fig_vinograd}
 
 ### Cas d'un système linéaire
 Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est  asymptotiquement stable pour le système
@@ -554,8 +557,6 @@ $$
 V(x(t)) = V(x(\overline{t})) + \int_0^t \langle\nabla V (x(t)), f(x(t))\rangle \leq  V(x(\overline{t})) + \gamma (t-\overline{t}) \ .
 $$
 Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un certain temps, ce qui est impossible. Donc $\lim_{t\to +\infty} V(x(t))=0$. Finalement, reproduisant le même raisonnement que pour l'existence de $\varepsilon_V$, on peut garantir que $\|x-a\|$ est arbitrairement petit en prenant $V(x)$ suffisamment petit. Donc on en déduit que $\lim_{t\to +\infty} \|x(t)-a\|=0$.
-
-
 \hfill $\blacksquare$
 
 
