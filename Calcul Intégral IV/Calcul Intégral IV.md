@@ -409,31 +409,33 @@ Mesure et intégrale
 
 ### Tribu engendrée par une collection {.definition}
 Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
-$\mathcal{C}$ d'ensembles de $X$ la plus petite tribu 
+$\mathcal{B}$ d'ensembles de $X$ la plus petite tribu 
 (au sens de l'inclusion) 
-$\mathcal{A} = \sigma(\mathcal{C})$ de $X$ contenant $\mathcal{C}$.
+$\mathcal{A} = \sigma(\mathcal{B})$ de $X$ contenant $\mathcal{C}$.
+Autrement dit, si $\mathcal{B} \subset \mathcal{C}$ et $\mathcal{C}$ est
+une tribu de $X$, alors $\sigma(\mathcal{B}) \subset \mathcal{C}$.
 
 ### Démonstration de l'existence de la tribu engendrée {.proof}
 Désignons par $\mathfrak{S}$ la (meta-)collection des tribus de 
-$X$ incluant $\mathcal{C}$ (contenant $\mathcal{C}$ comme sous-ensemble). 
+$X$ incluant $\mathcal{B}$ (contenant $\mathcal{B}$ comme sous-ensemble). 
 $$
 \mathfrak{S}
 =
 \{
-\mbox{$\mathcal{B}$ tribu de $X$} \; | \; \mathcal{C} \subset \mathcal{B} 
+\mbox{$\mathcal{C}$ tribu de $X$} \; | \; \mathcal{B} \subset \mathcal{C} 
 \}
 $$
 Elle n'est pas vide : elle contient la collection $\mathcal{P}(X)$
-des ensembles de $X$ (qui de toute évidence est un sur-ensemble de $\mathcal{C}$
-et une tribu de $X$). Montrons que la plus petite tribu $\sigma(\mathcal{C})$
-de $X$ contenant $\mathcal{C}$ est l'intersection de $\mathfrak{S}$
+des ensembles de $X$ (qui de toute évidence est un sur-ensemble de $\mathcal{B}$
+et une tribu de $X$). Montrons que la plus petite tribu $\sigma(\mathcal{B})$
+de $X$ contenant $\mathcal{B}$ est l'intersection de $\mathfrak{S}$
 $$
-\sigma(\mathcal{C}) := \bigcap \mathfrak{S} = \bigcap_{\mathcal{A} \in \mathfrak{S}} \mathcal{A},
+\sigma(\mathcal{B}) := \bigcap \mathfrak{S} = \bigcap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C},
 $$
 ou encore
-$\sigma(\mathcal{C}) = \{A \subset X \, | \, A \in \mathcal{A} \mbox{ pour tout } \mathcal{A} \in \mathfrak{S}\}.$
-Il est clair que si $\mathcal{A}$ est une tribu de $X$ contenant $\mathcal{C}$,
-alors $\mathfrak{S} \subset \mathcal{A}$, car alors $\mathcal{A} \in \mathfrak{S}$.
+$\sigma(\mathcal{B}) = \{A \subset X \, | \, A \in \mathcal{C} \mbox{ pour tout } \mathcal{C} \in \mathfrak{S}\}.$
+Il est clair que si $\mathcal{C}$ est une tribu de $X$ contenant $\mathcal{B}$,
+alors $\mathfrak{S} \subset \mathcal{C}$, car alors $\mathcal{C} \in \mathfrak{S}$.
 Il nous suffit donc de montrer que $\cap \mathfrak{S}$ est une tribu de $X$
 pour conclure ; on vérifiera aisément que comme chaque élément de $\mathfrak{S}$
 est une tribu, cette intersection en est également une.
@@ -481,44 +483,144 @@ si l'image réciproque $A =f^{-1}(B)$
 de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
 ### Conventions
-Lorsque $Y$ a une structure topologique, on supposera par défaut que la 
-tribu associée est la tribu de Borel, et lorsque $X = \R^n$ 
+Lorsque l'ensemble d'arrivée $Y$ a une structure topologique, par exemple $Y = \R^m$ ou 
+$Y = [-\infty, +\infty]^m$, on supposera par défaut que la 
+tribu associée est la tribu de Borel. 
+Lorsque l'ensemble de départ est $X = \R^n$ on supposera par défaut 
 que la tribu associée est la tribu de Lebesgue. 
 Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
 on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
-Il existe une bonne raison pour adopter cette convention :
+Il existe une bonne raison pour adopter cette convention hybride (avec
+des tribus d'un type différent au départ et à l'arrivée) par défaut :
 
-### Mesurable ou mesurable ?
+### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
 Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
 au sens de Henstock-Kurzweil 
 -- c'est-à-dire "mesurable" au sens de ["Calcul Intégral III"](Calcul Intégral III.pdf) --
 si et seulement si elle est $\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
 
-### TODO -- Démonstration {.proof}
+La démonstration de ce résultat repose sur le lemme suivant :
+
+### Image réciproque et tribus engendrées {.lemma #irte}
+Soit $f : X \to Y$ une application, $\mathcal{B}$ une collection d'ensembles
+de $Y$ et $\mathcal{A} = \sigma(\mathcal{B})$ sa tribu engendrée dans $Y$.
+Alors 
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{A}\} =\sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}).
+$$
+
+<!--
+La tribu engendrée dans $X$ par l'ensemble des images réciproques par
+$f$ des ensembles $B \in \mathcal{B}$ est incluse dans
+la collection des images réciproques par $f$ des ensembles de la tribu engendrée 
+par $\mathcal{B}$ dans $Y$.
+$$
+\sigma\left(\{f^{-1}(B) \, | \, B \in \mathcal{B}\} \right)
+\subset
+\{f^{-1}(A) \, | \, A \in \sigma(\mathcal{B})\}.
+$$
+-->
+
+### Démonstration {.proof}
+Comme $\mathcal{B} \subset \mathcal{A}$, on a
+$$
+\{f^{-1}(B) \, | \, B \in \mathcal{B}\} \subset
+\{f^{-1}(A) \, | \, A \in \mathcal{A}\}.
+$$
+Si nous montrons que 
+$\mathcal{C}:=\{f^{-1}(A) \, | \, A \in \mathcal{A}\}$ est une tribu 
+nous pouvons en déduire que
+$$
+ \sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}) \subset \{f^{-1}(A) \; | \; A \in \mathcal{A}\}.
+$$
+L'ensemble vide appartient à $\mathcal{C}$ car 
+$\varnothing = f^{-1}(\varnothing)$. Si $A \in \mathcal{A}$,
+$X \setminus f^{-1}(A) = f^{-1}(Y \setminus A)$
+et $Y \setminus A \in \mathcal{A}$, donc $X \setminus f^{-1}(A) \in \mathcal{C}$.
+Finalement, si $A_0, A_1, \dots \in \mathcal{A}$, 
+$\cup_k f^{-1}(A_k) = f^{-1}(\cup_k A_k) \in \mathcal{C}$.
+La collection $\mathcal{C}$ est donc une tribu.
+
+Réciproquement, posons $\mathcal{E} = \sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\})$ 
+et considérons 
+$$
+\mathcal{D} = \{A \in Y \; | \; f^{-1}(A) \in \mathcal{E}\}.
+$$
+La collection $\mathcal{D}$ est également une tribu. En effet,
+$f^{-1}(\varnothing) \in \mathcal{E}$, si $f^{-1}(A) \in \mathcal{E}$ alors
+$f^{-1}(Y \setminus A) = X \setminus f^{-1}(A) \in \mathcal{E}$ et si 
+$f^{-1}(A_0), f^{-1}(A_1), \dots \in \mathcal{E}$, alors 
+$f^{-1}(\cup_k A_k) = \cup_k f^{-1}(A_k) \in \mathcal{E}$.
+Par conséquent, comme $\mathcal{B} \subset \mathcal{D}$,
+$\mathcal{A} = \sigma(\mathcal{B}) \subset \sigma(\mathcal{D}) = \mathcal{D}$.
+Donc pour tout $A \in \mathcal{A}$, on a $f^{-1}(A) \in \mathcal{E}$,
+soit
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{A}\} \subset \mathcal{E}  =\sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}).
+$$
+
+
+### Démonstration "L./B.-mesurable $\Leftrightarrow$ H.-K.-mesurable" {.proof}
 La fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
 au sens de Henstock-Kurzweil si et seulement si elle vérifie 
 le critère de l'image réciproque des sections II et III, 
-c'est-à-dire si l'image réciproque de tout ouvert de $\R^m$ est un
-ensemble $\mathcal{L}(\R^n)$-mesurable.
-C'est de toute évidence le cas si $f$ est 
-$\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
-Réciproquement, si l'image réciproque de tout ouvert de $\R^m$ est un
-ensemble $\mathcal{L}(\R^n)$-mesurable.
+c'est-à-dire si et seulement si l'image réciproque de tout ouvert 
+de $\R^m$ est un ensemble $\mathcal{L}(\R^n)$-mesurable.
 
-### TODO : limite simple de fonctions mesurable est mesurable
+De toute évidence, si $f$ est Lebesgue/Borel-mesurable, ce critère est 
+satisfait. Réciproquement, si l'image réciproque de tout ouvert de $\R^m$
+est Lebesgue-mesurable, alors la tribu engendrée par les images réciproques
+des ouverts de $\R^m$ est incluse dans la tribu de Lebesgue sur $\R^n$.
+Comme cette tribu est d'après [le lemme précédent](#irte) l'ensemble
+des images réciproques de la tribu engendrée par les ouverts dans $\R^m$,
+c'est-à-dire la tribu de Borel dans $\R^m$, l'image réciproque de tout
+borélien est un ensemble de la tribu de Lebesgue : la fonction 
+$f$ est Lebesgue/Borel-mesurable.
 
-### TODO: composition de fcts mesurables
-Intérêt de fcts boréliennes dans ce schéma, lien avec Calcul Intégral III
-(généralisation résultats composition)
+### Composition de fonctions mesurables
+Soient $(X, \mathcal{A})$, $(Y, \mathcal{B})$ et $(Z, \mathcal{C})$ des
+espaces mesurables.
+Soit $f: X\to Y$ une fonction $\mathcal{A}/\mathcal{B}$-mesurable et 
+$g: Y \to X$ une fonction $\mathcal{B}/\mathcal{C}$-mesurable.
+Alors la composition $g \circ f$ de $f$ et $g$ est 
+$\mathcal{A}/\mathcal{C}$-mesurable.
 
-### Fonction étagée {.definition}
-On appelle *fonction étagée* toute fonction $f: X \to Y$ telle que
-l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
-prenne qu'un nombre fini de valeurs).
+### Démonstration {.proof}
+Pour tout ensemble $C \in \mathcal{C}$, on a $g^{-1}(C) \in \mathcal{B}$ 
+et donc $(g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C)) \in \mathcal{A}$.
+
+### TODO -- Conséquence avec les fcts continues / boréliennes.
+Ex: combinaison linéaire, max, etc.
 
 ### TODO
+Un intérêt ici à abstraire / espace métrique ? Bon ...
 
-Examiner de plus près gestion valeurs infinies
+### Limite simple de fonctions mesurables
+Soit $(X, \mathcal{A})$ un espace mesurable et $Y$ un espace métrique,
+muni de la tribu de Borel $\mathcal{B}(Y)$. Si les fonctions $f_k: X \to Y$,
+$k \in \N$, sont mesurables et convergent simplement vers $f$, alors
+$f$ est mesurable.
+
+### Démonstration {.proof}
+Par [le lemme liant image réciproque et tribus engendrées](#irte),
+il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de $Y$
+appartient à $\mathcal{A}$.
+Or $f(x) \in U$ si et seulement si $f_k(x) \in U$
+pour $k$ assez grand, ce qui se traduit par la formule
+$$
+f^{-1}(U) = \bigcup_{j=0}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
+$$
+qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
+(dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
+
+### TODO
+Voir s'il faut autoriser les fonction simples à prendre la valeur $+\infty$ ...
+et se tenir ensuite à la même convention partout.
+
+### Fonction étagée {.definition}
+On appelle *fonction étagée* (ou *fonction simple*) toute fonction $f: X \to Y$ 
+telle que l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
+prenne qu'un nombre fini de valeurs).
 
 ### Fonction mesurable
 Une fonction $f: X \to [-\infty, +\infty]$ associée aux espaces mesurables 
@@ -528,15 +630,84 @@ simple de fonctions étagées $X \to \R$ mesurables.
 
 ### TODO -- Démonstration {.proof}
 
+### Fonction étagées mesurables
+Soit $(X, \mathcal{A})$ un espace mesurable.
+Une fonction $f: X \to \R$ est simple et mesurable 
+si et seulement s'il existe une collection finie d'ensembles mesurables
+$A_0, \dots, A_{n-1} \in \mathcal{A}$ et de valeurs 
+$y_0, \dots, y_{n-1} \in \R$ telles que
+$$
+f = \sum_{k=0}^{n-1} y_k 1_{A_k}. 
+$$
+
+### {.post}
+La preuve de ce résultat montre qu'il est possible d'être plus prescriptif 
+si nécessaire sur les ensembles $A_k$ et les valeurs $y_k$ : 
+une fonction est en effet simple et mesurables si et seulement 
+s'il existe une collection finie d'ensembles mesurable **disjoints**
+$A_0, \dots, A_{n-1} \in \mathcal{A}$ et de valeurs **distinctes et non nulles**
+$y_0, \dots, y_{n-1} \in \R$ telles que
+$$
+f = \sum_{k=0}^{n-1} y_k 1_{A_k}. 
+$$
+
+### Démonstration {.proof}
+Soit $f: X \to \R$ une fonction simple ;
+il existe donc des réels $y_0, \dots, y_{n-1}$ tels que
+$f(X) = \{y_0,\dots, y_{n-1}\}.$
+On a alors
+$$f = \sum_{k=0}^{n-1} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
+Si de plus $f$ est mesurable, les singletons de $\R$ étant (Lebesgue-)mesurables 
+(car fermés), les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
+
+Réciproquement, si $f$ est de la forme $f = \sum_{k=0}^{n-1} y_k 1_{A_k}$ où
+les ensembles $A_k$ sont mesurables, il est clair que la fonction $f$ est simple. 
+En considérant les ensembles 
+-- mesurables -- $B_k$ définis par $B_0 = A_0$ et $B_{k+1}= A_{k+1} \setminus A_k$
+on obtient une somme $\sum_k w_k 1_{B_k}$ du même type mais basée sur des 
+ensembles disjoints $B_k$. En faisant l'union $C_j$ des $B_k$ qui correspondent à
+des valeurs $z_j = w_k$ identiques, on peut de plus s'assurer d'avoir une somme
+$\sum_j z_j 1_{C_j}$ où les valeurs $z_j$ sont distinctes et les $C_j$ sont
+mesurable. Le cas échéant,
+si l'un des $z_j$ est nul, on peut omettre le terme correspondant de la somme.
+Il devient maintenant clair que $f$ est également mesurable : si $A$ est un
+ensemble mesurable de $\R$, l'image réciproque de $A$ par $f$ est l'union
+d'une sous-collection des $C_j$ ($C_j$ devant être inclus 
+si et seulement si $z_j \in A$)
+et si $0 \in A$, de $X \setminus \cup_j C_j$.
+
 ### Intégrale d'une fonction étagée
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto \left[0, +\infty\right[$ une fonction étagée positive et mesurable.
-Soit $Y = f(X)$ l'ensemble des valeurs prises par $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
-la grandeur positive finie
+la grandeur positive (finie ou infinie)
 $$
-\int_X f \mu := \int_X f(x) \mu(dx) := \sum_{y \in Y} y \times \mu(f^{-1}(\{y\})).
+\int f \mu := \int_X f(x) \mu(dx) := \sum_{y \in \left[0, +\infty\right[} y \times \mu(f^{-1}(y))),
 $$
+avec la convention que $0 \times (+\infty) = 0$.
+Si $A_0, \dots, A_{n-1} \in \mathcal{A}$ et
+$y_0, \dots, y_{n-1} \in \left[0, +\infty\right[$,
+alors cette définition se traduit par
+$$
+f = \sum_{k=0}^{n-1} y_k 1_{A_k} \rightarrow
+\int f \mu = \sum_{k=0}^{n-1} y_k \mu(A_k).
+$$
+
+### {.post}
+A noter que dans la somme définissant l'intégrale, si $y$ ne fait pas partie
+des valeurs prises par $f$, alors $\mu(f^{-1}(y)) = \mu(\varnothing) = 0$. 
+Comme $f$ est supposée simple, cette somme est donc composée d'un nombre 
+fini de termes non nuls. 
+Si l'on veut mettre cela mieux en évidence,
+on peut remplacer la somme dans l'énoncé ci-dessus par 
+$$
+\sum_{y \in f(X)} y \times \mu(f^{-1}(\{y\})),
+$$
+voire
+$$
+\sum_{y \in f(X) \setminus \{0\}} y \times \mu(f^{-1}(\{y\}))
+$$
+ce qui permet de se dispenser de la convention $0 \times (+\infty) = 0$.
 
 ### Intégrale d'une fonction positive
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
@@ -546,17 +717,8 @@ inférieures à $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 la grandeur positive (finie ou infinie)
 $$
-\int_X f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int_X g \mu.
+\int f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int_X g \mu.
 $$
-
-### TODO
-Passer du sup à la limite des intégrales d'une suite croissante de 
-fonctions simples et mesurables. D'autant plus nécessaire que dans
-la définition avec le sup, on ne voit pas très bien pourquoi il faut
-supposer que la fonction $f$ elle-même est mesurable.
-Rq qqpart plus bas que si l'on veut que le procédé marche pour
-toute suite $\varepsilon_k$, alors il est *nécessaire* que 
-$f$ soit mesurable.
 
 ### Intégrale d'une fonction à valeurs réelles
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
@@ -568,45 +730,198 @@ $f_+ = \max(f, 0)$ et $f_- = -\min(f, 0)$ sont finies.
 *L'intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 est alors la grandeur réelle (finie)
 $$
-\int_X f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
+\int f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
 $$ 
 
-### TODO 
-Noter intégrale de fcts positives "plus souple"  et fct pas considérée
-intégrable (même si on peut donner une valeur à son intégrale !) si
-l'intégrale est infinie; 
-mais on est obligé d'être plus restrictif pour les fonctions signées, 
-en raison du risque
-de $+\infty - \infty$. Evoquer certains auteurs qui tolèrent l'une ou
-l'autre des valeurs
+### Intégrales finies, infinies et indéfinies {.post}
+Une fonction positive peut avoir une intégrale bien définie --
+il faut et il suffit qu'elle soit mesurable -- sans être pour autant 
+intégrable : c'est le cas si (et seulement si) son intégrale est infinie. 
+Pour les fonctions positives, la formule
+$$
+\int f \mu < + \infty
+$$
+signifera donc à la fois "l'intégrale est bien définie" (mesurable)
+et "l'intégrale est finie" (c'est-à-dire : la fonction est intégrable).
+Pour les fonctions signées par contre, il est nécessaire d'être
+plus strict et l'intégrale n'est définie que pour les fonctions intégrables.
+En effet, même si on peut définir
+$$
+\int f_+\mu \; \mbox{ et } \; \int f_- \mu
+$$
+dès que $f$ est mesurable, il est possible que ce deux intégrales soit égales
+à $+\infty$ ; il n'y a alors pas de façon "raisonnable"
+de définir la différence des deux grandeurs[^tbh].
 
-### TODO
-Noter intégrale de Lebesgue absolue par construction.
+[^tbh]: sauf à introduire un nouveau nombre "indéfini" $\bot$, 
+absorbant pour l'addition, tel que $\bot = +\infty - \infty$
+(le [NaN ou *not-a-number* des numériciens](https://en.wikipedia.org/wiki/NaN) 
+est un concept très proche). Mais à ce stade nous n'allons pas explorer cette
+piste.
 
-### TODO
-aller vers la mesure de longueur. Par les mesures extérieures ? Yes.
-Mmmm, oui, mais-pas-que. On a déjà $\ell$ et les ensembles mesurables
-associés via la théorie HK (ou $v$ dans $\R^n$), 
-on ne vas pas la jeter si ? Non !
+### Une intégrale absolue
+On remarquera que l'essentiel de la complexité de l'intégrale de Lebesgue
+est encapsulée dans l'intégrale des fonctions positives ; la définition 
+(et les propriétés) de l'intégrale de fonctions signées s'en déduisent
+facilement. En particulier, comme la valeur absolue d'une fonction vérifie
+$|f| = f_+ + f_-$, on constate que si $f$ est intégrable, alors $|f|$
+également ; par construction, l'intégrale de Lebesgue est absolue,
+contrairement à l'intégrale de Henstock-Kurzweil sur $\R^n$.
+On a le résultat plus précis suivant, que l'on admettra :
 
-### TODO
-"Equivalence" intégrabilité Lebesgue et HK absolue (modulo gestion des
-valeurs infinies.)
+### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
+Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
+par rapport à la mesure de Lebesgue $v$ si et seulement si 
+$f$ est absolument intégrable ($f$ et $|f|$ sont intégrable) 
+pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
+deux intégrales sont égales.
 
 Propriétés de l'intégrale
 ================================================================================
 
-### TODO -- Linéarité {.theorem #lin}
+### {.ante .remark}
+On mettra en avant dans cette section sur les propriétés de l'intégrale de
+fonctions positives ; les propriétés correspondantes de l'intégrale de fonctions
+signées s'en déduisent simplement.
+
+### Linéarité {.theorem #lin}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
+L'intégrale par rapport à $\mu$ de fonctions positives (étendues) est
+homogène et additive :
+si $\lambda \in \left[0, +\infty\right[$ et $f, g: X \to [0, +\infty]$ sont deux
+applications $\mu$-mesurables,  
+$$
+\int (\lambda f) \mu = \lambda \int f\mu
+\; \mbox{ et } \;
+\int (f + g) \mu = \int f \mu + \int g \mu.
+$$
+
+### Démonstration {.proof}
+La preuve de l'homogénéité est immédiate si $\lambda =0$ ; 
+dans le cas contraire, l'application
+$$
+h \in \mathcal{F}(f) \mapsto \lambda h \in \mathcal{F}(\lambda f)
+$$
+qui associe à une application $h$ mesurable, étagée et inférieure 
+à $f$ l'application $\lambda h$ qui est mesurable, étagée et 
+inférieure à $\lambda f$ est bijective.
+Par conséquent,
+$$
+\begin{split}
+\int (\lambda f) \mu &=
+\sup_{h \in \mathcal{F}(\lambda f)} \sum_{y \in h(X)} y \times \mu(g^{-1}(y)) \\
+&=
+\sup_{k \in \mathcal{F}(f)} \sum_{y \in (\lambda k)(X)} y \times \mu((\lambda k)^{-1}(y)) \\
+&=
+\sup_{k \in \mathcal{F}(f)} \sum_{z \in k(X)} (\lambda z) \times \mu((\lambda k)^{-1}(\lambda z)) \\
+&=
+\lambda \sup_{k \in \mathcal{F}(f)} \sum_{z \in k(X)} z \times \mu(k^{-1}(z)) \\
+&= \lambda \int f \mu.\\
+\end{split}
+$$
+
+L'application
+$$
+(h, k) \in \mathcal{F}(f) \times \mathcal{F}(g) \mapsto h+k \in \mathcal{F}(f + g)
+$$
+est également bien définie mais il n'est pas immédiat qu'elle soit bijective.
+Mais [la définition alternative à l'intégrale d'une fonction positive](#ifpII)
+nous fournit des suites croissantes de fonction positives, mesurables et étagées
+$f_k$ et $g_k$, convergeant respectivement vers $f$ et $g$. Pour ces suites,
+$$
+\lim_{k \to + \infty} \int f_k \mu = \int f\mu
+\; \mbox{ et } \;
+\lim_{k \to + \infty} \int g_k \mu = \int g\mu.
+$$
+La suite $h_k = f_k + g_k$ est croissante, composée de fonctions positives
+étagées et mesurable ; elle converge simplement vers $f+g$, par conséquent,
+par [le théorème de convergence monotone](#TCM), on a
+$$
+\int (f+g) \mu = \lim_{k \to +\infty} \int (f_k + g_k) \mu. 
+$$
+On pourra aisément se convaincre que l'intégrale limitée aux fonctions
+positives étagées et mesurable est additive ; par conséquent,
+$$
+\begin{split}
+\int (f+g) \mu &= \lim_{k \to +\infty} \int f_k \mu + \int g_k \mu \\
+&= \lim_{k \to +\infty} \int f_k \mu + \lim_{k \to +\infty} \int g_k \mu \\
+&= \int f\mu + \int g \mu. \\
+\end{split}
+$$
+
+### Positivité et nullité {.theorem #pos}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré 
+et $f: X \to [0, +\infty]$ une fonction mesurable.
+L'intégrale de $f$ par rapport à $\mu$ est positive ; 
+elle est nulle si et seulement si
+$f$ est nulle $\mu$-presque partout :
+$$
+\int f\mu = 0 \; \Leftrightarrow \; \mu(\{x \in X \, | \, f(x) \neq 0\}) = 0.
+$$
+
+### Démonstration {.proof}
+Si $f$ est nulle presque partout, comme pour toute fonction $g$ positive,
+mesurable et étagée inférieure à $f$ et tout $y \in g(X)$, 
+soit $y =0$, soit
+$$
+g^{-1}(y) \subset f^{-1}(\left]0,+\infty \right]),
+$$
+et donc
+$$
+\mu(g^{-1}(y)) \leq \mu(f^{-1}(\left]0,+\infty \right])) = 0,
+$$
+l'intégrale de $g$ par rapport à $\mu$ vérifie
+$$
+\int g \mu = \sum_{y \in g(X)} y \times \mu(g^{-1}(y)) = 0.
+$$
+Par conséquent,
+$$
+\int f \mu = \sup_{g \in \mathcal{F}(f)} \int g \mu = 0.
+$$
+Réciproquement, si la fonction $f$ n'est pas nulle $\mu$-presque partout, 
+c'est-à-dire si $\mu(f^{-1}(\left]0, +\infty\right[)) \neq 0$,
+alors il existe nécessairement[^ns] un $n \in \N$ tel que
+$$
+\mu(f^{-1}(\left]2^{-n}, +\infty\right[))  > 0.
+$$
+Notons $A_n = f^{-1}(\left]2^{-n}, +\infty\right[)$ ; c'est un ensemble
+mesurable de mesure positive. La fonction $2^{-n}1_{A_n}$ est positive, étagée, 
+mesurable et inférieure à $f$. On a donc
+$$
+0 < 2^{-n}\mu(A_n) = \int 2^{-n}1_{A_n} \mu \leq 2^{-n}\int f\mu.
+$$
+L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
+
+[^ns]: En effet, les ensembles $f^{-1}\left(\left]2^{-n}, +\infty\right[\right)$
+forment une suite croissante d'ensembles mesurables dont l'union
+est $f^{-1}\left(\left]0, +\infty\right[\right)$. Par $\sigma$-additivité de
+la mesure, on a donc
+$$
+\lim_{n \to + \infty} \mu\left(f^{-1}\left(\left]2^{-n}, +\infty\right[\right)\right)
+=
+\mu\left(f^{-1}\left(\left]0, +\infty\right[\right)\right).
+$$
+
+### TODO : 
+rk expliquer ici shift justifié entre négligeable et ce qui est exploité,
+car mesurable + inclus dans mesurable de mesure nulle est équivalent à
+être de mesure nulle.
 
 ### TODO -- Démonstration {.proof}
 
-### TODO -- Positivité {.theorem #pos}
+### TODO 
+exo caractérisation "nulle pp" avec une mesure qui ne soit pas Lebesgue
+(par exemple, la mesure de comptage). Fil rouge sur ce thème ? 
+(car fct mesurable, intégrale, ensembles négligeable, etc.? )
+Faire la même chose avec le dirac en 0 ?
 
-### TODO -- Démonstration {.proof}
+### TODO
+Voir ce que Tao liste dans les pptés élémentaires (par exemple, 
+$\int f \mu = 0$ et $f\geq 0$ implique $f =0$ $\mu$-pp) p. 100
 
 ### Théorème de convergence monotone {.theorem #TCM}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
-$f_k: X \to [0, +\infty]$, $k \in \N$ une suite croissante de fonctions 
+$f_k: X \to [0, +\infty]$, $k \in \N$, une suite croissante de fonctions 
 mesurables et positives ; pour tout $x \in X$,
 $$
 0 \leq f_0(x) \leq \dots \leq f_{k}(x) \leq f_{k+1}(x) \leq \cdots
@@ -670,9 +985,16 @@ $$
 [Le théorème de convergence monotone](#TCM) fournit une alternative concrète
 à la construction initiale de l'intégrale.
 
-### Intégrale d'une fonction positive II {.theorem}
+### Intégrale d'une fonction positive II {.theorem #ifpII}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto [0, +\infty]$ une fonction mesurable.
+Il existe une suite croissante de fonctions $f_k$ étagées positives et 
+mesurables, convergeant simplement vers $f$ ; pour toute suite de ce type, 
+$$
+\int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
+$$
+
+### Démonstration {.proof}
 Soit $\varepsilon_k \geq 0$ une suite de valeurs telles que
 $$
 \lim_{k\to +\infty} \varepsilon_k  = 0 
@@ -684,14 +1006,13 @@ $$
 f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
 E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
 $$
-est une suite croissante de fonctions étagées positives et mesurables, 
-convergeant simplement vers $f$ et 
+est croissante, et composée de fonctions étagées positives et mesurables.
+Sa limite simple est la fonction $f$. 
+Par [le théorème de convergence monotone](#TCM), 
 $$
-\int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
+\lim_{k \to +\infty} \int f_k \mu  = \int f \mu
 $$
-
-### TODO -- Démonstration {.proof}
-
+pour toute suite de ce type.
 
 ### Théorème de convergence dominée {.theorem #TCD}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
@@ -866,6 +1187,29 @@ si et seulement si $f \circ h$ est $\mu$-intégrable et qu'alors,
 $$
 \int_Y f \, (\mu \circ h^{-1})(dx) = \int_X (f \circ h) \mu(dx).
 $$
+
+Tribu engendrée
+--------------------------------------------------------------------------------
+
+Une collection $\mathcal{A}$ de sous-ensembles de $X$ est une 
+*algèbre (d'ensembles)* si elle contient $\varnothing$ et est stable
+par complémentation et par union finie.
+
+### Question 0 {.question #answer-te-0}
+Montrer que pour toute collection d'ensembles de $X$ il existe
+une plus petite algèbre qui la contient (au sens de l'inclusion) :
+c'est *l'algèbre engendrée* par cette collection.
+
+### Question 1  {.question #answer-te-1}
+Déterminer l'algèbre engendrée sur $\R$ par la collection
+$$
+\{\left[a, b\right[ \; | \; -\infty < a \leq b < +\infty\}
+$$
+
+### Question 2  {.question #answer-te-2}
+Déterminer la tribu engendrée (ou $\sigma$-algèbre) sur $\R$ par la même 
+collection.
+
 
 
 Complétion d'une mesure
@@ -1236,6 +1580,18 @@ $$
 référence Tao *sans* le MCT.
 -->
 
+
+
+TODO -- Tribu engendrée
+--------------------------------------------------------------------------------
+
+### TODO -- Question 0 {.answer #te-0}
+
+
+### TODO -- Question 1  {.answer #te-2}
+
+
+### TODO -- Question 2  {.answer #te-2}
 
 Complétion d'une mesure
 --------------------------------------------------------------------------------

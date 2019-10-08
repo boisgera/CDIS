@@ -57,8 +57,6 @@ $$
 \dot{\underline{x}} = \underline{f}(t,\underline{x}) \ .
 $$
 
-*Démonstration* : \hfill $\blacksquare$
-
 Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de $x\in C^p(I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
 
 
@@ -127,10 +125,10 @@ Unicité des solutions
 Nous avons vu dans la partie précédente que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \frac{\partial f}{\partial x}(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
 Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
 
-*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. La preuve complète est donnée en appendice? L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale unique. L'ouverture de son intervalle de définition vient du fait qu'elle pourrait sinon être de nouveau prolongée *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
+*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
 **Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
 $$
@@ -151,7 +149,7 @@ Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset U$ pour tout $s\in 
 $$
 \Gamma(x)(t) = x_0+\int_{t_0}^t f(s,x(s))ds \qquad \forall t\in \left[ t_0-\tau_m,t_0+\tau_m \right] \ .
 $$
-En fait, d'après la [représentation intégrale des solutions](#theo_eq_integrale), on sait qu'une fonction $x\in F$ est solution du problème de Cauchy sur $\left[ t_0-\tau_m,t_0+\tau_m \right]$ si et seulement si elle vérifie
+Or d'après la [représentation intégrale des solutions](#theo_eq_integrale), on sait qu'une fonction $x\in F$ est solution du problème de Cauchy sur $\left[ t_0-\tau_m,t_0+\tau_m \right]$ si et seulement si elle vérifie
 $$
 \Gamma(x)=x
 $$
@@ -165,7 +163,7 @@ de sorte que $\Gamma(x)\in F$, i.e. $\Gamma:F\to F$. Ensuite, pour tout $(x_a,x_
 $$
 \|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq \left|\int_{t_0}^t \|f(s,x_a(s))-f(s,x_b(s))\| ds \right| \ .
 $$
-Soit $k=\max_\cC \left\|\frac{\partial f}{\partial x} \right\|$ (bien défini car $\cC$ est compact et $\frac{\partial f}{\partial x}$ est continue par hypothèse). Alors l'application du théorème des accroissement finis (REF) nous donne
+Soit $k=\max_\cC \left\|\partial_x f \right\|$ (bien défini car $\cC$ est compact et $\partial_x f$ est continue par hypothèse). Alors l'application du théorème des accroissement finis (REF) nous donne
 $$
 \|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq  \left|\int_{t_0}^t k\|x_a(s)-x_b(s)\| ds \right| \leq |t-t_0| k \|x_a-x_b\|_{\infty} 
 $$
@@ -203,7 +201,7 @@ Cette méthode de recherche de point fixe porte le nom d'*approximations success
 $$
 f(t,x) = a(t) x + b(t) \ ,
 $$
-admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$.
+admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $\partial_x f(t,x) = a(t)$ (en identifiant abusivement ici différentielle et matrice Jacobienne).
 - 
 
 
@@ -296,11 +294,12 @@ Cependant, à la fin du XIXème siècle, on se rend vite compte que la réalité
 Sensibilité aux conditions initiales et erreurs de modèle
 --------------------------------------------------------
 
-La première question fut soulevée par Henri Poincaré à la fin du XIXème siècle alors qu'il s'attelle à la question de la stabilité du système solaire. Il écrit:
+La première question fut soulevée par Henri Poincaré à la fin du XIXème siècle alors qu'il s'attelle à la question de la stabilité du système solaire. 
+<!--Il écrit:
 
->Si un cône repose sur sa pointe, nous savons bien qu'il va tomber, mais nous ne savons pas de quel côté [...]. Si le cône était parfaitement symétrique, si son axe était parfaitement vertical, s'il n'était soumis à aucune autre force que la pesanteur, il ne tomberait pas du tout. Mais le moindre défaut de symétrie va le faire pencher légèrement d'un côté ou de l'autre, et dès qu'il penchera, si peu que ce soit, il tombera tout à fait de ce côté. Si même la symétrie est parfaite, une trépidation très légère, un souffle d'air pourra le faire incliner de quelques secondes d'arc [...]. 
+>Si un cône repose sur sa pointe, nous savons bien qu'il va tomber, mais nous ne savons pas de quel côté [...]. Si le cône était parfaitement symétrique, si son axe était parfaitement vertical, s'il n'était soumis à aucune autre force que la pesanteur, il ne tomberait pas du tout. Mais le moindre défaut de symétrie va le faire pencher légèrement d'un côté ou de l'autre, et dès qu'il penchera, si peu que ce soit, il tombera tout à fait de ce côté. Si même la symétrie est parfaite, une trépidation très légère, un souffle d'air pourra le faire incliner de quelques secondes d'arc [...]. -->
 
-Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais tout modéliser parfaitement.
+Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais modéliser tous les phénomènes parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
 Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
@@ -341,52 +340,87 @@ qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suf
 
 - L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la boîte de condition initiales, plus les solutions restent proches. Par contre, lorsqu'on augmente le "Integration Time" les solutions s'écartent.
 
-### Chaos déterministe et exposant de Lyapunov {.remark #rem_chao}
-Même si la continuité des solutions par rapport aux paramètres et conditions initiales est une bonne nouvelle qui donne espoir de pouvoir simuler et prédire des systèmes physiques, elle est malheureusement parfois insuffisante. 
-Henri Poincaré continue:
+### Chaos déterministe et horizon de Lyapunov {.remark #rem_chao}
+Même si la continuité des solutions par rapport aux paramètres/conditions initiales donne l'espoir de pouvoir simuler et prédire l'évolution de systèmes physiques, elle est malheureusement parfois insuffisante. 
+Henri Poincaré écrit:
 
 <!-- Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. -->
-> Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible et nous avons le phénomène fortuit. 
+> Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible. 
 
-En fait, A FINIR + insister sur determinisme + anecdote poincaré, fin de l'espoir de Laplace
-chaos que pour borné
+En effet, le précédent théorème nous prouve seulement que des perturbations suffisamment petites donnent des solutions arbitrairement proches en temps fini. Mais, en pratique, il est rarement possible de choisir l'amplitude des perturbations (erreurs de capteurs, erreurs numérique etc.) et il se pourrait que l'ordre de grandeur des perturbations produisant des erreurs *acceptables* sur les solutions ne soit pas réalisable. Plus précisément, le théorème suggère qu'à perturbation $|\delta|$ donnée, l'écart entre les solutions pourrait croître exponentiellement vite. C'est le cas bien sûr des systèmes qui divergent exponentiellement (tels que $\dot{x}=x$), mais aussi de certains systèmes à trajectoires bornées, pour lesquels il existe $\overline{t}>0$ tel que
+$$
+\frac{|x(t)-x_\delta(t)|}{|\delta|} \approx e^{\lambda t}  \qquad \forall t\leq \overline{t} \ .
+$$
+Dans ce cas, $\frac{1}{\lambda}$ représente l'ordre de grandeur du temps maximal jusqu'auquel l'erreur sur les solutions reste du même ordre de grandeur que l'erreur initiale: on parle d'*horizon de Lyapunov*. Toute prédiction au delà de cet horizon est illusoire et le système est alors dit *chaotique*.
+
+Il est important d'insister sur le caractère *déterministe* de ce chaos : chaque cause entraîne un effet bien déterminé mais deux causes très proches peuvent avoir des effets très différents. 
+ + anecdote poincaré ????
 
 ### Exemples 
 
-- 1963 : l'attracteur de Lorenz, météo
+- En 1963, Edward Lorenz met en évidence pour la première fois le comportement possiblement chaotique de la météorologie à travers un modèle simplifié à trois dimensions de convection donné par 
+\begin{align*}
+\dot{x} &= \sigma (y-x) \\
+\dot{y} &= \rho \, x - y -xz \\
+\dot{z} &= xy-\beta z 
+\end{align*}
+où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires sautent de manière *chaotique* d'une aile à l'autre.
 
-- 1992 : Sussman\& Wisdom système solaire chaotique avec horizon de Lyapunov 200 million d'années
+- En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par les travaux de Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années. 
 
-- electricité, pendule forcé
-
+- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très diverts allant de l'économie à l'électricité parfois lors d'une excitation sinusoïdale à certaines fréquences: pendule forcé, oscillateur de Van der Pol, etc. REFFF
 
 Propriétés asymptotiques
 -----------------------------
 
-Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce qu'il diverge ? est-ce qu'il tend vers un point en particulier ? vers un cycle limite ?
+Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce que les solutions divergent ? est-ce qu'elles tendent vers un point en particulier ? vers un cycle limite ?
 
-Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc un ouvert $\Omega$ de $\R^n$ et une fonction continue $f:\Omega\to \R^n$. Dans ce cas, on prend par défaut $t_0=0$. Puisque l'on souhaite étudir plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.
+Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc une fonction continue $f:\R^n\to \R^n$, et on prend par défaut $t_0=0$. 
+<!--Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.-->
 
 ### Point d'équilibre
 On appelle *point d'équilibre* un point $a\in \R^n$ tel que
 $$
 f(a) = 0  \ .
 $$
-En d'autres termes, la fonction constante $x\equiv a$ est solution.
+En d'autres termes, la fonction constante $x\equiv a$ est alors solution.
+
+### Exemple d'un pendule amorti {.exemple #ex_pendule}
+L'évolution d'un pendule amorti de longueur $\ell$ dans le champ de l'apesanteur peut être décrit par une dynamique du type
+$$
+\ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
+$$
+avec $\rho>0$ un coefficient de frottement.
+En prenant $x=(\theta,\dot{\theta})$, on obtient le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2 \\
+\dot{x}_2 &=& - \frac{\rho}{m} x_2 -\frac{g}{\ell} \sin x_1
+\end{array}
+$$
+Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent soit à la position *basse* du pendule $\theta=0$ ou la position *haute* $\theta=\pi$, toutes deux à vitesse nulle $\dot{\theta}=0$. Si le pendule est initialisé exactement à sa position haute ou basse à vitesse nulle alors il y reste indéfiniment.
 
 ### Stabilité, stabilité asymptotique
 Un point d'équilibre $a$ est dit:
 
-- *stable* si l'*on peut rester arbitrairement proche de $a$ quitte à initialiser les solutions suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
+- *stable* si *les solutions restent arbitrairement proche de $a$ quand elles sont initialisées suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
+<!--$$
+|x(0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in \Rgeq \ .
+$$-->
 $$
-|x(0)-a|\leq \eta \qquad \Longrightarrow \qquad |x(t)-a|\leq \varepsilon \quad \forall t\in I \ .
+|x(t)-a|\leq \varepsilon \quad \forall t\in \Rgeq \ .
 $$
 
 - *instable* s'il n'est pas stable.
 
-- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que toute solution $x: \Rgeq\to \R$ vérifie
+- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
+<!--
 $$
 |x(0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
+$$
+-->
+$$
+\lim_{t\to+\infty} x(t)=a \ .
 $$
 
 - *globalement attractif* si *toutes les solutions convergent vers $a$*.
@@ -395,9 +429,12 @@ $$
 
 
 ### Exemples
+- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse: l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc asymptotiquement stable.
 
+- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable.
 
-### Caractérisation par Lyapunov
+- Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Voir le système de Vinograd poour les curieux. REF ???
+
 
 
 ### Cas d'un système linéaire
@@ -407,20 +444,135 @@ $$
 $$
 si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative.
 
-*Démonstration* La notion d'*asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, la stabilité asymptotique est équivalente à l'attractivité, c'est-à-dire que la stabilité vient gratuitement avec l'attractivité. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attrictivité de 0. On a vu que les solutions s'écrivent
+*Démonstration* La notion d'*asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, la stabilité asymptotique est équivalente à l'attractivité, c'est-à-dire que la stabilité vient gratuitement avec l'attractivité. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
 $$
 x(t)= e^{At} x_0 \ .
 $$
-Si $A$ était diagonale (réelle), on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit toute matrice $A$ n'est pas diagonalisable. Par contre, toute matrice est triangularisable. 
+Si $A$ était diagonale (réelle), on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ inversible telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit, toute matrice $A$ n'est pas diagonalisable. Par contre, il existe toujours $P\in \R^{n\times n}$ inversible telle que
+$$
+P^{-1} A P = D + N
+$$
+où $D$ est diagonale contenant les valeurs propres de $A$, $N$ est nilpotente, c'est-à-dire qu'il existe $k\in \N$ tel que $N^k=0$, et $D$ et $N$ commutent. C'est la forme dite *de Jordan*. Il s'ensuit que
+$$
+e^{Jt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
+$$
+converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 \hfill $\blacksquare$
 
 Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C^0(I,\R^{n\times n})$ ait des valeurs propres à partie réelle strictement négative pour tout $t$ n'implique pas que le système
 $$
 \dot{x} = A(t) x 
 $$
-soit asymptotiquement stable. EXEMPLE ?
+soit asymptotiquement stable, où même stable. Par exemple, la matrice
+$$
+A(t) = \left( \begin{matrix} 
+-1+1.5\cos^2t & 1-1.5\sin t \cos t \\
+-1-1.5 \sin t \cos t & -1+\sin^2 t
+\end{matrix}
+\right)
+$$
+a des valeurs propres constantes égales à $-0.25\pm 0.25\sqrt{7}$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées for $x(0)$ aribitrairement proche de 0.
 
-### Cas du plan : portrait de phase et théorème de Bendixon
+### Lien entre stabilité et stabilité du linéarisant tangent
+Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si  $J_f(a)$ a ses valeurs propres à partie réelle strictement négative.
+
+Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
+
+\textit{Démonstration}: Voir l'annexe [\textit{Stabilité locale et linéarisé tangent}](#app_stab_lin).  \hfill $\blacksquare$
+
+Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
+
+### Exemple
+Reprenons l'[exemple du pendule amorti](#ex_pendule_amorti). On a
+$$
+J_f(0,0) = \left( \begin{matrix} 
+0 & 1\\
+-\frac{g}{\ell} & - \frac{\rho}{m}
+\end{matrix}
+\right) 
+\qquad , \qquad 
+J_f(\pi,0)= \left( \begin{matrix} 
+0 & 1\\
+\frac{g}{\ell} & - \frac{\rho}{m}
+\end{matrix}
+\right) 
+$$
+Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ a ses valeurs propres à partie réelle strictement négative. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
+Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
+
+Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
+
+### Caractérisation par Lyapunov
+Soit $f:\R^n \to \R^n$ de classe $C^1$, $a$ un point d'équilibre de $f$, et $W$ un voisinage de $a$.
+Soit $V\in C^1(W,\Rgeq)$ telle que 
+$$
+V(x)= 0 \qquad \Longleftrightarrow \qquad x=a  \ . 
+$$
+
+-  Si
+$$
+\langle\nabla V (x), f(x)\rangle \leq 0   \qquad \forall x\in W
+$$ 
+alors $a$ est stable.
+
+- Si 
+$$
+\langle \nabla V (x), f(x) \rangle < 0 \qquad \forall x\in W\setminus \{a\}
+$$ 
+alors $a$ est localement asymptotiquement stable.
+
+- Si $V$ est propre[^def_propre], $W=\R^n$, et
+$$
+\langle\nabla V (x), f(x)\rangle < 0  \qquad \forall x\neq a
+$$ 
+alors $a$ est globalement asymptotiquement stable.
+
+$V$ est alors appelée *fonction de Lyapunov*. En fait, 
+$$
+\langle\nabla V (x(t)), f(x(t))\rangle = \frac{d}{dt} V(x(t))
+$$  
+le long d'une trajectoire $t\mapsto x(t)$ de l'équation différentielle $\dot{x} = f(x)$. $V$ représente donc une grandeur positive qui décroît ou est conservée le long des trajectoires. Pour des systèmes physiques, elle est donc souvent reliée à l'énergie.
+
+\textit{Démonstration}:  Supposons d'abord que $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$. On a donc pour toute solution $t\mapsto x(t)$ initialisée dans $W$, $V(x(t))\leq V(x(0))$ tant que  $x(t)\in W$. Prenons $\varepsilon>0$ suffisamment petit tel que $\overline{B}_{2\varepsilon}(a)\subset W$. On veut montrer qu'il existe $\eta$ tel que toute trajectoire initialisée dans $B_{\eta}(a)$ reste dans $B_{\varepsilon}(a)\subset W$. Tout d'abord, il existe $\varepsilon_V>0$ tel que 
+$$
+\forall x\in \overline{B}_{2\varepsilon}(a) \ : \ V(x)\leq \varepsilon_V \ \Longrightarrow x\in B_{\varepsilon}(a) \ .
+$$
+En effet, sinon, il existerait une suite $(x_k)_{k\in \N}$ d'éléments de $\overline{B}_{2\varepsilon}(a)$ telle que pour tout $k>0$, $V(x_k)\leq \frac{1}{k}$ et $\|x_k-a\|\geq \varepsilon$. L'ensemble $\overline{B}_{2\varepsilon}(a)$ étant compact, on peut en extraire une sous-suite convergeant vers $x^\star$ qui vérifie nécessairement $V(x^\star)=0$  par continuité de $V$ et $\|x^\star-a\|\geq \varepsilon$, i.e. $x^\star \neq a$. Ceci est impossible par hypothèse. On a donc l'existence de $\varepsilon_V$. Maintenant, par continuité de $V$ en $a$ et puisque $V(a)=0$, il existe aussi $\eta>0$ tel que 
+$$
+x\in B_{\eta}(a)  \ \Longrightarrow V(x)\leq \varepsilon_V \ .
+$$
+Alors si $x(0)\in B_{\eta}(a)$, $V(x(t))\leq V(x(0))\leq \varepsilon_V$ donc $x(t)\in B_{\varepsilon}(a)\subset W$ pour tout $t$ tant qu'elle est définie. Par le [théorème des bouts](#theo_bouts), $x$ est définie sur $\Rgeq$. Ceci prouve la stabilité de $a$.
+
+Supposons maintenant $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$. Alors par le point précédent $a$ est stable. Il suffit de montrer l'attractivité locale. Par stabilité, si $x(0)\in B_{\eta}(a)$,  $x(t)\in B_{\varepsilon}(a)\subset W$ pour tout $t$ et $t\to V(x(t))$ est donc strictement décroissante. Comme elle est aussi bornée inférieurement par 0, elle converge vers $\ell \geq 0$. Supposons $\ell>0$. Alors, par continuité de $V$, il existe $0<\nu<\varepsilon$ et $\overline{t}>0$ tel que pour tout $t\geq \overline{t}$, $\|x(t)-a\| \geq \nu$. Soit 
+$$
+\gamma = \max_{\nu \max \|x(t)-a\| \leq \varepsilon} \langle\nabla V (x), f(x)\rangle   
+$$
+qui existe par continuité de $V$ sur un compact.  Puisque $\langle\nabla V (x), f(x)\rangle \leq 0$ sur $W$, $\gamma<0$. Alors, pour tout $t\geq \overline{t}$,
+$$
+V(x(t)) = V(x(\overline{t})) + \int_0^t \langle\nabla V (x(t)), f(x(t))\rangle \leq  V(x(\overline{t})) + \gamma (t-\overline{t}) \ .
+$$
+Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un certain temps, ce qui est impossible. Donc $\lim_{t\to +\infty} V(x(t))=0$. Finalement, reproduisant le même raisonnement que pour l'existence de $\varepsilon_V$, on peut garantir que $\|x-a\|$ est arbitrairement petit en prenant $V(x)$ suffisamment petit. Donc on en déduit que $\lim_{t\to +\infty} \|x(t)-a\|=0$.
+
+
+\hfill $\blacksquare$
+
+
+### Exemple
+Reprenons le pendule mais cette fois-ci, non amorti, c'est-à-dire avec $\rho=0$. Nous n'avons pas pu prouver la stabilité du point d'équilibre $(0,0)$ par l'étude de la matrice Jacobienne car ses valeurs propres sont imaginaires pures. Essayons par analyse de Lyapunov. Inspirés par la physique, considérons $V:\left] -\pi, \pi\right[\times \R \to \Rgeq$ définie par
+$$
+V(x_1,x_2) = \frac{1}{2} m\ell^2 x_2^2 + mg\ell(1-\cos(x_1)) \ .
+$$
+Le premier terme correspond à l'énergie cinétique du pendule, et le deuxième son énergie potentielle/
+$V$ est $C^1$, à valeurs positives et telle que 
+$$
+V(x) = 0 \qquad \Longleftrightarrow \qquad x=0 \ .
+$$
+De plus,
+$$
+\langle\nabla V (x), f(x)\rangle = m\ell^2 x_2\left(-\frac{g}{\ell} \sin x_1\right) + mg \ell \sin x_1 x_2 = 0
+$$
+ce qui traduit la conservation de l'énergie en l'absence de frottement. On en déduit donc la stabilité du point d'équilibre $(0,0)$.
+
 
 
 Références
@@ -438,9 +590,7 @@ où $g$ est la pesanteur.
 
 1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0$, résoudre le problème de Cauchy associé.
 
-2. Comment expliquer physiquement la multitude de solutions ? 
-
-3. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
+2. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
 
 -> [*Correction*](#correc_Torricelli)
 
@@ -468,11 +618,16 @@ $$
 
 -> [*Correction*](#correc_gronwall)
 
-### Proie/prédateur
-Cycle limite Bendixon ou exo cercle attractif
+### Critère de stabilité d'un système plan {.exercice #exo_crit_stab_dim2}
+Montrer que le système linéaire $\dot{x} = Ax$ avec $A\in \R^{2\times 2}$ est asymptotiquement stable si et seulement si 
+$$
+\text{tr} A <0  \qquad \text{ et } \qquad \text{det} A >0 \ .
+$$
 
-### Masse/ressort {.exercice #exo_masse_ressort}
-Considérons une masse $m$ accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
+-> [*Correction*](#correc_crti_stab_dim2)
+
+### Oscillateur {.exercice #exo_masse_ressort}
+Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
 
 1. Montrer que l'évolution de la position de la masse peut être décrite par  
 $$
@@ -487,6 +642,24 @@ où $\lambda$ est un coefficient de frottement. Que représente $x$ ?
 4. Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
 
 -> [*Correction*](#correc_masse_ressort)
+
+### Cycle limite
+Considérons le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_1+x_2-x_1(x_1^2 + x_2^2)\\
+\dot{x}_2 &=& -x_1+x_2-x_2(x_1^2 + x_2^2)\\
+\end{array}
+$$
+
+1. Montrer que ce système admet un seul point d'équilibre. Etudier sa stabilité.
+
+2. Posons $V(x) = x_1^2+x_2^2$. Etudier le signe de $\frac{d}{dt}V(x(t))$ le long des trajectoires du système. 
+
+3. En déduire le comportement des solutions en fonction de la condition initiale.
+
+-> [*Correction*](#correc_cycle_lim)
+
 
 ### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.exercice #exo_attrac_stab}
 Soit $A\in \R^{n\times n}$. Montrer que si 0 est localement attractif pour 
@@ -508,6 +681,20 @@ où $t\mapsto u(t)$ est une entrée à choisir.
 1. Comment se comporte le système si $u\equiv 0$ ?
 
 2. Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre asymptotiquement stable ?
+
+Plus généralement, considérons un système du type
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2 \\
+\dot{x}_2 &=& x_3 \\
+&\vdots&\\
+\dot{x}_{n-1} &=& x_n \\
+\dot{x}_n &=& \phi(x) + u(t)
+\end{array}
+$$
+avec $\phi:\R^n \to \R$ continue et $u:\R \to \R$ à choisir. 
+
+3. Si on mesure $t\mapsto x(t)$, montrer que l'on peut toujours choisir $t\mapsto u(t)$ pour rendre 0 asymptotiquement stable.
 
 -> [*Correction*](#correc_cont_lin)
 
@@ -572,7 +759,7 @@ ce qui donne
 $$
 |x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t |f(s,x(s))-f(s,x_\delta(s))|ds \qquad \forall t\in I\cap I_\delta
 $$
-Si $[t_0,\overline{t}]\subset I\cap I_\delta$, définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\frac{\partial f}{\partial x}$ est continue sur $U$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \frac{\partial f}{\partial x}$ est bien défini. On a donc par le théorème des accroissements finis
+Si $[t_0,\overline{t}]\subset I\cap I_\delta$, définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\partial_x f$ est continue sur $U$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \partial_x f$ est bien défini. On a donc par le théorème des accroissements finis
 $$
 |x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t M |x(s)-x_\delta(s)|ds \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
@@ -582,10 +769,80 @@ $$
 $$
 Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$. A FINIR !!!
 
-### Proie/prédateur {.correction #correc_proiePreda}
+### Critère de stabilité en dimension 2 {.correction #correc_crti_stab_dim2}
+Soient $\lambda_1$ et $\lambda_2$ les valeurs propres d'une matrice $A$ de dimension 2. Son polynôme caractéristique est donné par
+$$
+s^2 - \text{tr} A s + \det A = (s-\lambda_1)(s-\lambda_2) = s^2 - (\lambda_1+\lambda_2)  s + \lambda_1\lambda_2 \ .
+$$
+Donc $\text{tr} A = \lambda_1+\lambda_2$ et $\det A = \lambda_1\lambda_2$. Il y a deux cas: soit les valeurs propres sont complexes conjuguées, soit elles sont réelles.
 
+Si $\lambda_i = \lambda_0 \pm j\omega$, alors $\lambda_1\lambda_2=\lambda_0^2+\omega^2$ et $\lambda_1+\lambda_2 = 2\lambda_0$. Donc $\lambda_0<0$ si et seulement si $\text{tr} A <0$ (et on a alors toujours $\det A>0$).
 
-### Masse/ressort {.correction #correc_masse_ressort}
+Si les valeurs propres sont réelles, les avoir toutes deux strictement négatives implique que $\lambda_1\lambda_2>0$ et $\lambda_1+\lambda_2<0$. Réciproquement, si $\lambda_1\lambda_2>0$, elles sont non nulles et du même signe, et si de plus $\lambda_1+\lambda_2<0$, ce signe est nécessairement négatif.
+
+Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
+
+### Oscillateur {.correction #correc_masse_ressort}
+
+### Cycle limite {.correction #correc_cycle_lim}
+On étudie le comportement des solutions de $\dot{x}=f(x)$ pour
+$$
+f(x) = 
+\left(
+\begin{array}{c}
+x_1+x_2-x_1(x_1^2+x_2^2) \\
+-2x_1+x_2-x_2(x_1^2+x_2^2) 
+\end{array}
+\right)
+$$
+
+1. Chercher les points d'équilibre du système revient à résoudre
+$$
+\begin{array}{rcl}
+0&=& x_1+x_2-x_1(x_1^2+x_2^2) \\
+0&=& -2x_1+x_2-x_2(x_1^2+x_2^2) 
+\end{array}
+$$
+Multiplier la première ligne par $x_2$, la deuxième par $x_1$ et soustraire, donne $x_1x_2=0$, et dont soit $x_1=0$ soit $x_2=0$. Si $x_1=0$, on tire de la première ligne $x_2=0$. Si $x_2=0$, on tire de la deuxième que $x_1=0$. Donc nécessairement, $x_1=x_2=0$. Il n'y a donc qu'un point d'équilibre $(0,0)$.
+La jacobienne de la dynamique est donnée par
+$$
+J_f(x_1,x_2) = 
+\left(
+\begin{matrix}
+1-(x_1^2+x_2^2) -2 x_1^2 & 1-2 x_1x_2 \\
+-1-2 x_1x_2 & 1-(x_1^2+x_2^2)-2 x_2^2
+\end{matrix}
+\right)
+$$
+soit 
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+1  & 1 \\
+-1 & 1
+\end{matrix}
+\right)
+$$
+qui a pour valeurs propres $1\pm i$. Le point d'équilibre est donc instable.
+
+2. 
+\begin{align*}
+\frac{d}{dt}V(x) &= \langle \nabla V(x) , f(x) \rangle \\
+&= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
+& -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
+\end{align*}
+Donc $\frac{d}{dt}V(x)$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon.
+
+3. Les trajectoires initialisées sur le cercle y restent, suivant la dynamique d'un oscillateur
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2\\
+\dot{x}_2 &=& -x_1\\
+\end{array}
+$$
+Celles initialisées à l'extérieur du cercle convergent vers le cercle mais sans jamais l'atteindre car cela contradirait l'unicité des solutions en un point du cercle ($f$ est $C^1$ donc le théorème de Cauchy-Lipschitz s'applique); celles initialisées à l'intérieur (sauf en zero) de même. 
+Enfin, la trajectoire initialisée à zéro reste à zéro. PORTRAIT DE PHASE
 
 ### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.correction #corr_attrac_stab}
 
@@ -611,16 +868,40 @@ $$
 On conclut que pour des conditions initiales suffisamment petites ($\eta <\frac{\varepsilon}{nM}$), les solutions restent inférieures à $\varepsilon$ en norme. Donc le système est stable.
 
 ### Contrôle d'un système linéaire {.correction #correc_cont_lin}
-Si $u\equiv 0$, les solutions sont $x(t) = e^t x_0$ donc le point d'équilibre 0 est instable et les solutions divergent. Si l'on mesure $x(t)$, on peut prendre $u(t) = - kx(t)$, ce qui donne
+1. Si $u\equiv 0$, les solutions sont $x(t) = e^t x_0$ donc le point d'équilibre 0 est instable et les solutions divergent. 
+
+2. Si l'on mesure $x(t)$, on peut prendre $u(t) = - kx(t)$, ce qui donne
 $$
 \dot{x} = -(k-1) x
 $$
-qui est donc asymptotiquement stable si $k>1$.
+pour lequel 0 est asymptotiquement stable si $k>1$.
+
+3. Prenons $u(t) = -k_1 x_1(t) - k_2 x_2(t) - \ldots - k_n x_n(t)$. Alors le système devient 
+$$
+\dot{x} = A x
+$$
+avec $A$ de la forme
+$$
+A = \left(
+\begin{array}{ccccc}
+0&1&0 & \ldots & 0 \\
+\vdots &\ddots & \ddots & & \vdots\\
+\vdots&&\ddots & 1  &0\\
+0&&&0&1 \\
+-k_1 &-k_2&\ldots& \ldots& -k_n
+\end{array}
+\right)
+$$
+qui admet pour polynôme caractéristique
+$$
+s^n + k_1 s^{n-1} + \ldots + k_2 s + k_1\ .
+$$
+Il suffit donc de choisir les coefficients $k_i$ tels que ce polynôme ait ses racines à partie réelle strictement négative. Ces dernières peuvent d'ailleurs être choisies à souhait.
 
 Annexes 
 =========================================================================
 
-### Preuve du théorème des bouts {.preuve #pr_theo_bouts}
+### Preuve du théorème des bouts {.app #pr_theo_bouts}
 Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset U$ tel que
 $$
  \forall t_K \in \left[t_0,\overline{t}\right[ \, , \, \exists t\in \left[t_K,\overline{t}\right[ \: : \: x(t)\in K
@@ -636,6 +917,9 @@ $$
 \cC:=\left[\overline{t}-2\tau,\overline{t}+2\tau \right]\times \overline{B}_{2r}(\overline{x})\subset U \quad , \quad \tau_m  \max_{\cC} \|f\| \leq r\ .
 $$
 Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset U$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
+
+
+### Stabilité locale et linéarisé tangent {.app #app_stab_lin}
 
 
 
@@ -684,3 +968,6 @@ $$
 \dot{x} = - \frac{1}{\sqrt{\left(\frac{S}{s}\right)^2-1}} \sqrt{2gx} \approx -\frac{s}{S} \sqrt{2gx}
 $$
 en supposant que $s\ll S$.
+
+[^def_propre]:
+ $V$ est dite propre si pour tout compact $K$, $V^{-1}(K)$ est compact. Ou de manière équivalente, $\lim_{\|x\|\to +\infty} V(x) = +\infty$.

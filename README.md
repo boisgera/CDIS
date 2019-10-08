@@ -10,7 +10,7 @@ Calcul Différentiel, Intégral et Stochastique
 :books: Documents
 --------------------------------------------------------------------------------
 
-:construction: **Travail en cours:** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
+
 
 | Chapitre      | PDF (e-book) | PDF (impression) |
 | ------------- | ------------- | --------------------- |
@@ -18,7 +18,15 @@ Calcul Différentiel, Intégral et Stochastique
 | Calcul Différentiel 1/3 | [Calcul Différentiel I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf) | [Calcul Différentiel I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I%20(a4%2C%20recto-verso).pdf) |
 | Calcul Différentiel 2/3 | [Calcul Différentiel II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II.pdf) | [Calcul Différentiel II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II%20(a4%2C%20recto-verso).pdf) |
 | Calcul Intégral 1/5 | [Calcul Intégral I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I.pdf) | [Calcul Intégral I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I%20(a4%2C%20recto-verso).pdf) |
+| Calcul Intégral 2/5 | [Calcul Intégral II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II.pdf) | [Calcul Intégral II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II%20(a4%2C%20recto-verso).pdf) |
+| Probabilités 1/5 | *coming soon* | *coming soon* | *coming soon* | 
 | ... | ... | ... |
+
+:construction: **Errata :** [problèmes résolus post-publication](https://github.com/boisgera/CDIS/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+label%3Abug+-label%3Awont-fix+-label%3Abuild) :construction:
+
+:construction: **Aperçu :** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
+
+
 
 
 

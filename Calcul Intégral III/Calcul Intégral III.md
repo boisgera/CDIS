@@ -402,7 +402,7 @@ g \circ T(y_1,\dots,f(y_1, \dots, y_{n-1})) \\
 $$
 ce qui garantit que dans $T(U \times I)$, $g(x) \leq 0$
 -- c'est-à-dire $x \in K$ --
-si et seulement si $x = T(y)$ et $f(y_1, \dots, y_{n-1}) \leq y_n$.
+si et seulement si $x = T(y)$ et $y_n \leq f(y_1, \dots, y_{n-1})$.
 
 ### Normale extérieure {.definition}
 Une *normale* à un compact à bord $C^1$ $K$ de $\R^n$

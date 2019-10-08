@@ -65,7 +65,7 @@ $$
 où les $I_i$ forment une subdivision de $I$ et 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 
-### Somme de Riemman {.definition}
+### Somme de Riemann {.definition}
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
@@ -766,12 +766,20 @@ $$
 \; \mbox{ soit } \;
 y \leq \left(\sqrt{t} +  \frac{\varepsilon}{2} t \right)^2.
 $$
-Par une méthode similaire, on pourra montrer que la seconde inégalité cherchée
-est satisfaite si
+Par une méthode en tout point identique, on montre que la seconde inégalité
+-- impliquant $x$ et $t$ -- est satisfaite si
+$$
+\sqrt{t} \leq \sqrt{x} + \frac{\varepsilon}{2} x,
+$$
+soit puisque $x \leq t$, si
+$$
+\sqrt{x} \geq \sqrt{t} - \frac{\varepsilon}{2} x \geq \sqrt{t} - \frac{\varepsilon}{2} t, 
+$$
+ce qui est le cas si
 $$
 x \geq \left(\sqrt{t} -  \frac{\varepsilon}{2} t \right)^2.
 $$
-La gauge $\gamma$ définie par
+La jauge $\gamma$ définie par
 $$
 \gamma(t) 
 = 
@@ -827,8 +835,10 @@ On remarquera que cette jauge $\gamma$ que nous avons construit
 -- et qui est en fait définie sur $\left]0, 1\right]$ --
 ne dépend pas de la valeur de $a$ dans $\left]0, 1\right]$.
 De plus, quand $\varepsilon$ est suffisamment petit -- 
-par exemple $\varepsilon \leq 1$ -- on constate
-que pour tout $t \in \left]0, 1\right]$, $0 \not \in \gamma(t)$.
+par exemple $\varepsilon/2 < 1$ -- on constate
+que pour tout $t \in \left]0, 1\right]$,
+comme $\sqrt{t} -  ({\varepsilon}/{2}) t > 0$, on a
+$0 \not \in \gamma(t)$.
 
 ### Intégrale sur $[0,1]$
 
@@ -1089,7 +1099,7 @@ $$
 \, \mbox{ et } \, 
 \left| S(f, \mathcal{D}_2) - \int_b^c f(t) \, dt\right| \leq \varepsilon/2.
 $$
-Définissons la fonction $\gamma: [a, b] \to \R$ par:
+Définissons la fonction $\gamma: [a, b] \to \mathcal{P}(\R)$ par:
 $$
 \gamma(x) = 
 \left| 
@@ -1257,7 +1267,7 @@ nulle), alors elle est intégrable et d'intégrale nulle.
 Supposons dans un premier temps que $f$ soit bornée.
 Alors, pour tout $\varepsilon > 0$, il existe un recouvrement de
 $$
-A = f^{-1}(\{0\}) = \{x \in [a, b] \, | \, f(x) \neq 0\}
+A = f^{-1}(\R \setminus \{0\}) = \{x \in [a, b] \, | \, f(x) \neq 0\}
 $$ 
 par une collection dénombrable
 d'intervalles $I_i$ telle que $\sum_i \ell(I_i) \leq \varepsilon$.
@@ -1333,7 +1343,7 @@ $$
 La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 
 
-Intégration sur des intervalle non-bornés
+Intégration sur des intervalles non-bornés
 ================================================================================
 
 ### 
@@ -1350,7 +1360,7 @@ un ou deux termes de la forme $f(t) \times \infty$ ;
 elle donc potentiellement infinie, 
 ou même indéfinie si les termes $-\infty$ et $+\infty$ apparaissent.
 
-Pour pallier à ce problème, nous adoptons la stratégie suivante:
+Pour pallier ce problème, nous adoptons la stratégie suivante:
 
  1. **Intervalles.** 
     Nous considérons désormais l'intégration de fonctions sur des 
@@ -1674,8 +1684,8 @@ pour tout $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 ### Lemme de Henstock  {.theorem #henstock-lemma}
 Soit $[a, b]$ un intervalle fermé, 
 $f$ une fonction intégrable sur $[a, b]$ et $\gamma$ une jauge sur $[a, b]$ 
-telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$, 
-on ait
+telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée
+à $\gamma$, on ait
 $$
 \left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
 $$
@@ -1815,7 +1825,7 @@ subordonnée à $\gamma$.
 L'intégrale de Riemann est absolue {.question #Rabs}
 --------------------------------------------------------------------------------
 
-Montrer que l'intégrale de Riemman est absolue : 
+Montrer que l'intégrale de Rieman est absolue : 
 si une fonction $f$ est intégrable au sens de Riemann, 
 sa valeur absolue $|f|$ l'est également.
 
@@ -1889,7 +1899,7 @@ sur $\R$ de façon élémentaire,
 sans avoir recours à la droite achevée.
 Le procédé en question est plus élémentaire[^es] ; 
 il revient à exiger que partir les subdivisions d'intervalles bornés
-exploitées par la somme de Riemman en plus d'être suffisamment "fines" 
+exploitées par la somme de Riemann en plus d'être suffisamment "fines" 
 soient suffisamment "étendues".
 
 [^es]: mais pas nécessairement plus simple ...

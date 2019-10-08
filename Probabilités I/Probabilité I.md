@@ -22,13 +22,13 @@ Le but de ce cours est de consolider et compléter les connaissances en théorie
 
 Elles sont aussi un préalable indispensable pour aborder l'analyse statistique des données et les méthodes d'apprentissage automatique.
 
-En CPGE, les probabilités ont été vues dans le cadre de phénomènes aléatoires qui admettent un nombre au plus dénombrable de résultats possibles. Ce cadre restreint est supposé connu. On pourra se reporter au chapitre 3 de @polygarnier ou aux deux premiers chapitres de @polyponts pour une éventuelle mise à niveau.
+En CPGE, les probabilités ont été vues dans le cadre de phénomènes aléatoires qui admettent un nombre au plus dénombrable de résultats possibles. Ce cadre restreint est supposé connu. On pourra se reporter au chapitre 3 du cours de @polygarnier ou aux deux premiers chapitres du cours de @polyponts pour une éventuelle mise à niveau.
 
 ## Exemple de la modélisation du climat
 
 Les prédictions de la météo et les projections du climat proviennent généralement de modèle numériques qui simulent les différents processus physiques à l'oeuvre. Les incertitudes dans la construction et l'application de ces modèles sont variées et peuvent être réparties en quatre groupes : les conditions initiales (on ne connaît jamais parfaitement l'ensemble des variables climatiques en tout point du globe), les conditions aux limites (par exemple lorsqu'on travaille à l'échelle d'un continent ou d'un pays), les valeurs des paramètres intervenant dans les modèles (constantes issues d'observations diverses), les incertitudes structurelles enfin qui relèvent des choix de modélisation. Pour tenir compte de ces incertitudes, les climatologues effectuent des ensembles de simulations, où les différentes quantités incertaines sont échantillonnées selon des modèles probabilistes (voir en particulier @tebaldi).
 
-L'incertitude sur les conditions initiales est particulièrement influente aux faibles échelles de temps. La météo est un système chaotique, les prévisions sont particulièrement sensibles aux variations des conditions initiales utilisées pour initialiser les modèles. Ces dernières sont en revanche connues de manière imparfaite. Il est ainsi nécessaire de tenir compte de cette incertitude. Ceci est rendu possible par la modélisation probabiliste. Les conditions aux limites font intervenir des **variables continues** (température, pression, vitesse du vent, etc.), ce qui représente la principale nouveauté par rapport au programme de CPGE, et il est nécessaire de caractériser leurs relations de **dépendance**. Il convient par ailleurs de tenir compte des observations (satellites, station de mesure, ...) en incluant cette information dans la modélisation probabiliste. On parle de **conditionnement** aux données. Il s'agit enfin d'en générer les valeurs via des algorithmes de **simulation stochastique**. La validité de l'approche est assurée par les **théorèmes limites**, qui garantissent la représentativité des ensembles générés.
+L'incertitude sur les conditions initiales est particulièrement influente aux faibles échelles de temps. La météo est un système chaotique, les prévisions sont extrêmement sensibles aux variations des conditions initiales utilisées pour initialiser les modèles. Ces dernières sont en revanche connues de manière imparfaite. Il est ainsi nécessaire de tenir compte de cette incertitude. Ceci est rendu possible par la modélisation probabiliste. Les conditions aux limites font intervenir des **variables continues** (température, pression, vitesse du vent, etc.), ce qui représente la principale nouveauté par rapport au programme de CPGE, et il est nécessaire de caractériser leurs relations de **dépendance**. Il convient par ailleurs de tenir compte des observations (satellites, station de mesure, ...) en incluant cette information dans la modélisation probabiliste. On parle de **conditionnement** aux données. Il s'agit enfin d'en générer les valeurs via des algorithmes de **simulation stochastique**. La validité de l'approche est assurée par les **théorèmes limites**, qui garantissent la représentativité des ensembles générés.
 
 ## Plan du cours
 
@@ -45,7 +45,7 @@ Des considérations analytiques ont forcé l'introduction de variables aléatoir
 
 Le XXe siècle voit également le développement de l'application de la théorie des probabilités dans plusieurs sciences.
 
-Avec la mécanique newtonienne, la théorie du champ électromagnétique ou la thermodynamique, la physique classique est la théorie utilisée jusqu'à la fin du XIXe siècle. En 1925, Erwin Schrödinger étudie l'équation qui détermine l'évolution d'une onde au cours du temps : l'équation de Schrödinger. Max Born utilise cette équation pour décrire une collision entre des particules telles que des électrons ou des atomes. Les observations de ces expériences l'amènent à supposer que la fonction d'onde est la probabilité que la particule soit détectée en un point de l'espace. C'est le début d'une nouvelle approche de la physique quantique.
+Avec la mécanique newtonienne, la théorie du champ électromagnétique ou la thermodynamique, la physique classique est la théorie utilisée jusqu'à la fin du XIXe siècle. En 1925, Erwin Schrödinger étudie l'équation qui détermine l'évolution d'une onde au cours du temps : l'équation de Schrödinger. Max Born utilise cette équation pour décrire une collision entre des particules telles que des électrons ou des atomes. Les observations de ces expériences l'amènent à supposer que le module de la fonction d'onde est la probabilité que la particule soit détectée en un point de l'espace. C'est le début d'une nouvelle approche de la physique quantique.
 
 En 1900, Louis Bachelier fut un des premiers mathématiciens à modéliser les variations de prix boursiers grâce à des variables aléatoires. « le marché n'obéit qu'à une seule loi : la loi du hasard ». Bachelier utilise alors le calcul stochastique pour étudier les variations boursières au cours du temps. En 1970, Fischer Black et Myron Scholes reprennent les idées de Bachelier pour modéliser les rendements d'une action.
 
@@ -95,11 +95,11 @@ Un *événement* est une propriété qui est vérifiée ou non une fois l'expér
 
  1. Jeu de Pile ou Face : $A = \{\text{pile}\}$. 
  2. Lancé de dés :  $A = \{1,3,5\}$.
- 3. Durée de vie d'une ampoule électrique : $A = [t_1,t_2] \subset \R^+$.
- 4. Température demain à 12h au sommet de la tour Eiffel (en degrés Kelvin) : $A = [T_1,T_2]\cup[T_3,T_4] \subset \R^+$.
- 5. Evolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2] \subset \R^+$ : 
+ 3. Durée de vie d'une ampoule électrique : $A = [t_1,t_2] \subset \R_+$.
+ 4. Température demain à 12h au sommet de la tour Eiffel (en degrés Kelvin) : $A = [T_1,T_2]\cup[T_3,T_4] \subset \R_+$.
+ 5. Evolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2] \subset \R_+$ : 
  $A = \{ f \in C([t_1,t_2], \R^3) : \|f-g\|_{\infty} \leq a \}$, où
- $g \in C([t_1,t_2],\R^3)$ et $a \in \R^+$.
+ $g \in C([t_1,t_2],\R^3)$ et $a \in \R_+$.
 
 
 Les événements étant des ensembles, les opérations ensemblistes classiques admettent une interprétation probabiliste.
@@ -132,19 +132,17 @@ Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
 
 ### Exemples {.example}
  1. $\A = \{\varnothing,\Omega\}$ est la tribu *grossière* ou *triviale* : c'est la plus petite tribu de $\Omega$.
- 2. Dans le cas où $\Omega$ est au plus dénombrable, on choisit systématiquement l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$ dont on vérifie aisément qu'il s'agit d'une tribu ; c'est le cadre étudié en CPGE. On verra ultérieurement que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
+ 2. Dans le cas où $\Omega$ est au plus dénombrable, on choisit systématiquement l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$ dont on vérifie aisément qu'il s'agit d'une tribu ; c'est le cadre étudié en CPGE. On verra plus loin que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
  3. Si $\Omega = \R$, on peut le munir de la tribu formée des ensembles mesurables de $\R$, dite *tribu de Lebesgue*.
- 4. On verra par la suite qu'il est aisé de définir une tribu sur tout espace topologique.
+ 4. On verra ultérieurement qu'il est aisé de définir une tribu sur tout espace topologique.
 
 ## Notion de densité de probabilité
 
-Une des nouveautés majeures de ce cours par rapport au programme de CPGE est le cas où l'espace fondamental n'est plus fini ni dénombrable. On va voir ici que les outils développés dans le cours de calcul intégral vont nous permettre de définir une probabilité sur $\R$ muni de la tribu de ses ensembles mesurables.
+Une des nouveautés majeures de ce cours par rapport au programme de CPGE est le cas où l'espace fondamental n'est plus fini ni dénombrable. On va voir ici que les outils développés dans le cours de calcul intégral vont nous permettre de définir une probabilité sur $\R$ muni de la tribu des ensembles mesurables.
 
-<!-- ### Densité de Probabilité {.definition} -->
-Soit $\Omega = \R$ et $f : \Omega \to \R^+$ une fonction absolument intégrable telle que 
+Soit $\Omega = \R$ et $f : \Omega \to \R_+$ une fonction intégrable telle que 
 $$ \int_\Omega f(x)\, dx =1. $$
 
-<!-- voir aussi issue #34 -->
 Soit $\A$ la collection des ensembles mesurables sur $\Omega$ ;
 [les propriétés élémentaires des ensembles mesurables (cf. "Calcul Intégral II")](Calcul Intégral II.pdf#pptés-tribu) établissent que $\mathcal{A}$ est une tribu, 
 sur laquelle on peut définir
@@ -157,9 +155,9 @@ On vérifie aisément que $\P$ vérifie les 3 propriétés suivantes :
 
  2. $\P(\Omega) = \int_\Omega f(x) dx = 1$.
 
- 3. Si $A_n$ désigne une suite (dénombrable) d'événements **disjoints** de $\A$, on a, en appliquant le théorème de convergence dominée à la suite de fonctions $f(x) 1_{\left\{\bigcup_{n=0}^m A_n\right\}}(x) = \sum_{n=0}^m f(x) 1_{A_n}(x)$ ($m \in \N^\ast$), majorée trivialement par $f$ intégrable :
+ 3. Si $A_n$ désigne une suite (dénombrable) d'événements **disjoints** de $\A$, on a, en appliquant le [théorème de convergence dominée](Calcul Intégral II.pdf #TCD) à la suite de fonctions $f(x) 1_{\left\{\bigcup_{n=0}^m A_n\right\}}(x) = \sum_{n=0}^m f(x) 1_{A_n}(x)$ ($m \in \N^\ast$), majorée trivialement par $f$ intégrable :
     \begin{align*}
-        \P\left(\bigcup_{n=0}^m A_n\right) &= \int_\Omega 1_{\left\{\bigcup_{n=0}^m A_n\right\}}\, f(x)\, dx\\
+        \P\left(\bigcup_{n\in \N} A_n\right) &= \int_\Omega \lim_{m \to +\infty} 1_{\left\{\bigcup_{n=0}^m A_n\right\}}\, f(x)\, dx\\
                           &= \lim_{m \to +\infty} \int_\Omega \sum_{n=0}^m 1_{A_n}\, f(x)\, dx\\
                           &= \lim_{m \to +\infty} \sum_{n=0}^m \int_\Omega 1_{A_n}\, f(x)\, dx\\
                           &= \lim_{m \to +\infty} \sum_{n=0}^m \P(A_n) \\
@@ -173,7 +171,7 @@ Ces trois propriétés correspondent aux [axiomes de Kolmogorov](#defproba) qui 
 
 On pourra faire l'analogie entre la densité de probabilité et la loi de probabilité sur un univers discret, dans le sens où elle va "pondérer" les valeurs réelles, en remarquant cependant que :
 
- * $f(x)$ n'est pas nécessairement inférieur à 1,
+ * $f(x)$ n'est pas nécessairement inférieure à 1,
 
  * $\P(\{x\}) = \int_{\{x\}} f(x)\, dx = 0$ et plus généralement, $\P(A) = 0$ si $A$ est négligeable.
 
@@ -184,9 +182,9 @@ Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rig
 
  1. $\P(\Omega) = 1$,
  2. pour toute suite (dénombrable) $(A_n)_{n\in\N^\star}$ d'éléments de $\A$ **deux à deux disjoints**, on a 
- \begin{equation}
+ \begin{equation*}
  \P\left(\bigcup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n).
- \end{equation}
+ \end{equation*}
 
 Le triplet $(\Omega, \A, \P)$ est appelé *espace probabilisé*. La modélisation probabiliste consiste ainsi à décrire une expérience
 aléatoire par la donnée d’un espace probabilisé.
@@ -195,47 +193,57 @@ La définition suivante est fondamentale en théorie des probabilités. Elle int
 notion de “vrai ou faux” qui dépend de la probabilité choisie sur l’espace fondamental.
 
 ### Définition -- Propriété presque-sûre {.definition}
-Soit $(\Omega, \A, \P)$ un espace probabilisé.
-
-Une propriété est vraie $\P$-*presque-sûrement* (en abrégé $\P$-p.s.), si l'ensemble des $\omega \in \Omega$ pour lesquels elle est vraie est de probabilité égale à 1.
+Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A$ se réalise *$\P$-presque sûrement* (en abrégé $\P$-p.s.) si P(A) = 1. 
 
 ### Proposition -- Propriétés élémentaires {.proposition #elemprop} 
  1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
  2. $\forall\, A,B \in \A$, $A \subset B \Rightarrow \P(A) \leq \P(B)$.
  3. $\forall\, A,B \in \A$, $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
- 4. Inégalité de Boole : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A, \P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i)$.
+ 4. Inégalité de Boole : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$, 
+ $$\P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i).$$
  5. Formule de Poincaré : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$
  $$ \P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right).$$
 
 ### Demonstration {.proof}
-Exercice
+[Exercice.](#propelem)
 
 ### Théorème de la continuité monotone {.theorem #continuitemonotone}
-Dans le cas d'une suite $(A_n)_{n\in\N}$ d'éléments de $\A$ croissante, on a 
-$$ \P\left(\bigcup_{n\in\N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+Dans le cas d'une suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante, on a 
+$$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 ### Demonstration {.proof}
-Exercice
+[Exercice.](#contmon)
 
 ### Remarque {.remark}
 Dans le cas d'une suite décroissante, on a 
-$$ \P\left(\bigcap_{n \in \N} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+$$ \P\left(\bigcap_{n \in \N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
-**ou version plus complète avec l'équivalence de la $\sigma$-additivité??? - *Dans les compléments***
+Le second point de la [définition de la probabilité](#defproba) donne la probabilité de la réunion $\cup_n A_n$ en fonction des $\P(A_n)$ lorsque les événements sont deux à deux disjoints. Si ce n'est pas le cas, on a tout de même la majoration suivante, très utile dans la pratique :
 
-**Lemme de Borel-Cantelli ??? ou alors à la fin - *Dans les suites de va***
+### Proposition {.proposition}
+Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrable d'événements. On a alors
+    $$ \P(\cup_n A_n) \leq \sum_{n\in\N^\ast} \P(A_n) $$
+
+### Démonstration {.proof}
+[Exercice.](#boolinf)
 
 ## Probabilité conditionnelle 
 
-La construction d’un modèle probabiliste repose sur l’information connue **a priori** sur l’expérience aléatoire. Ce modèle permet de quantifier les probabilités de réalisation de certains résultats de l’expérience. Il est fondamental de remarquer que si l’information change, les probabilités de réalisation changent. L'outil qui va nous permettre d'introduire cette information est la probabilité conditionnelle dont nous donnons ici la définition.
+La construction d’un modèle probabiliste repose sur l’information connue **a priori** sur l’expérience aléatoire. Ce modèle permet de quantifier les probabilités de réalisation de certains résultats de l’expérience. Il est fondamental de remarquer que si l’information change, les probabilités de réalisation changent. 
 
-### Définition -- Probabilité conditionnelle {.definition}
+### Exemple {.example}
+On cherche pour un lancer de deux dés, la probabilité de l’événement “la somme est supérieure ou égale à 10”.
+Elle vaut 1/6 sans information supplémentaire, 1/2 si l’on sait que le résultat d’un des dés est 6, 0 si l’on sait a priori que le résultat d’un des dés est 2. Pour obtenir ces résultats, on a calculé dans chaque le rapport du nombre de résultats favorables sur le nombre de cas possibles. Il est ainsi indispensable de bien définir l’espace de probabilité lié à l’expérience munie de l’information a priori. On remarque également que l’information a priori a changé la valeur de la probabilité de l’événement.
+
+L'outil qui va nous permettre d'introduire de l'information est la probabilité conditionnelle dont nous donnons ici la définition.
+
+### Définition -- Probabilité conditionnelle {.definition #defprobacond}
 Soient $(\Omega, \A, \P)$ un espace probabilisé, $A, B \in \A$ tels que $\P(B)>0$. La *probabilité conditionnelle* de $A$ sachant $B$ est le nombre 
-\begin{equation}
+\begin{equation*}
 \P(A|B) = \frac{\P(A\cap B)}{\P(B)}.
-\end{equation}
+\end{equation*}
 
-Cela définit une probabilité. 
+Cela définit une probabilité comme le montre la proposition suivante.
 
 ### Proposition {.proposition}
  1. Soient $(\Omega, \A, \P)$ un espace probabilisé et $B \in \A$ tel que $\P(B)>0$. Alors l’application de $\A$ dans $[0, 1]$ qui à $A$ associe $\P(A|B)$ définit une nouvelle probabilité sur $\Omega$, appelée probabilité conditionnelle sachant $B$.
@@ -245,35 +253,47 @@ $$\P(A|B)\, \P(B) = \P(A \cap B) = \P(B|A)\, \P(A).$$
 ### Démonstration {.proof}
 Il est clair que $0 \leq \P(A|B) \leq 1$. Par ailleurs, les deux propriétés de la [définition de la probabilité](#defproba)
 pour $\P(\cdot|B)$ proviennent des mêmes propriétés pour $\P$ et des remarques suivantes :
-$\Omega \cap B = B$, et $(\bigcup_{n\in\N} A_n ) \cap B = \bigcup_{n\in\N} (A_n \cap B)$. De plus, si $A$ et $C$ sont disjoints, il en est
-de même de $A \cap B$ et $C \cap B$. L’assertion 2 est évidente, d'après la définition de la [Probabilité conditionnelle].
+$\Omega \cap B = B$, et $(\bigcup_{n\in\N^\ast} A_n ) \cap B = \bigcup_{n\in\N^\ast} (A_n \cap B)$. De plus, si $A$ et $C$ sont disjoints, il en est
+de même de $A \cap B$ et $C \cap B$. L’assertion 2 est évidente, d'après la définition de la [Probabilité conditionnelle](#defprobacond).
 
-### Exemple : approche bayésienne (subjective)
+### Formule des probabilités totales {.proposition #formprobatot}
 
-
-### Formule des probabilités totales {.proposition}
-
-Soit $(B_n)_{n\in\N}$ une partition finie ou dénombrable d’événements de $\Omega$ (i.e. telle que $\bigcup_{n\in\N} B_n = \Omega$ et les $B_n$ sont deux-à-deux disjoints), telle que $\P(B_n ) > 0$ pour tout $n\in\N$. Pour tout $A \in \A$, on a alors
-\begin{equation}
-P(A) = \sum_{n\in\N} P(A \cap B_n ) = \sum_{n\in\N} P(A|B_n)\, P(B_n).
-\end{equation}
+Soit $(B_n)_{n\in\N^\ast}$ une partition finie ou dénombrable d’événements de $\Omega$ (i.e. telle que $\bigcup_{n\in\N^\ast} B_n = \Omega$ et les $B_n$ sont deux-à-deux disjoints), telle que $\P(B_n ) > 0$ pour tout $n\in\N^\ast$. Pour tout $A \in \A$, on a alors
+\begin{equation*}
+P(A) = \sum_{n\in\N^\ast} P(A \cap B_n ) = \sum_{n\in\N^\ast} P(A|B_n)\, P(B_n).
+\end{equation*}
 
 ### Démonstration {.proof}
-Nous avons $A = \bigcup_{n\in\N} (A\cap B_n)$. Par hypothèse, les ensembles $(A\cap B_n)$ sont deux-à-deux disjoints et de plus $\P(A\cap B_n) = \P(A|B_n)\,\P(B_n)$. Le résultat découle du deuxième point de la [définition de la probabilité](#defproba). 
+Nous avons $A = \bigcup_{n\in\N^\ast} (A\cap B_n)$. Par hypothèse, les ensembles $(A\cap B_n)$ sont deux-à-deux disjoints et de plus $\P(A\cap B_n) = \P(A|B_n)\,\P(B_n)$. Le résultat découle du deuxième point de la [définition de la probabilité](#defproba). 
 
-### Formule de Bayes {.proposition}
+### Formule de Bayes {.proposition #bayes}
 Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a 
-\begin{equation}
+
+\begin{equation*}
 \forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N} \P(A | B_n)\, \P(B_n)}.
-\end{equation}
+\end{equation*}
 
 ### Démonstration {.proof}
-Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales]. La définition de la [probabilité conditionnelle] implique :
-\begin{equation}
+Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales](#formprobatot). La définition de la [probabilité conditionnelle](#defprobacond) implique :
+\begin{equation*}
 \P(B_i | A) = \dfrac{\P(A \cap B_i)}{\P(A)} = \dfrac{\P(A | B_i) \P(B_i)}{\P(A)}.
-\end{equation}
+\end{equation*}
 
-### Exemple d'application **TODO**
+### Remarque {.remark}
+La formule de Bayes, simple conséquence des axiomes et de la définition de la probabilité conditionnelle, tient une place à part dans le calcul des probabilités en raison de son importance pratique considérable et des controverses auxquelles son application pratique a donné lieu : elle est à la base de toute une branche de la statistique appelée statistique bayésienne.
+
+### Exemple {.example}
+Un individu est tiré au hasard dans une population où l’on trouve une proportion $10^{-4}$ de séropositifs. On lui fait passer un test de détection de la
+séropositivité. Par ailleurs, des expérimentations antérieures ont permis de savoir que les probabilités d’avoir un résultat positif lors de l’application du test si l’individu est séropositif, ou s’il ne l’est pas, sont respectivement égales à 0,99 (c’est la sensibilité du test) et à 0,001 (0,999 = 1 - 0,001 est la spécificité du test). Sachant que le test donne un résultat positif, quelle est la probabilité pour que l’individu soit effectivement séropositif ?
+
+On considère les événements $A$ “l’individu est séropositif”, et $B$ “le test de détection donne un résultat positif”. Les données ci-dessus nous indiquent $P(A) = 10^{-4}$ d’où $\P(A^c) = 0,9999$ , $\P(B|A) = 0,99$ et $\P(B|A^c) = 0,001$. Nous trouvons alors
+\begin{align*}
+\P(A|B) &= \frac{\P(A \cap B)}{\P(B)}\\
+        &= \frac{\P(B |A ) \P(A)}{\P(B |A)\P(A) + \P(B|A^c)\P(A^c)}\\
+        &= \frac{0,99 \times 10^{-4}}{0,99 \times 10^{-4} + 0,001 \times 0,9999}\\
+        &\approx 0,09.
+\end{align*}
+On remarque que contrairement à l’intuition, cette probabilité est petite.
 
 ## Indépendance des événements 
 La notion d’indépendance est absolument fondamentale en probabilités et nous verrons
@@ -282,22 +302,55 @@ par la suite toutes ses implications dans la modélisation de l’aléatoire.
 Intuitivement, deux événements $A$ et $B$ sont indépendants si le fait de savoir que $A$ est
 réalisé ne donne aucune information sur la réalisation de $B$ et réciproquement.
 
+Si $B$ est un événement de probabilité strictement positive, $A$ sera dit indépendant de $B$ si
+$$\P(A | B) = \frac{\P(A\cap B)}{\P(B)} = \P(A)$$
+On remarque que cette formule se symétrise et la notion d’indépendance se définit
+finalement comme suit.
+
 ### Définition -- Indépendance de deux événements {.definition}
 Deux événements $A$ et $B$ sont *indépendants* si et seulement si 
-\begin{equation}
+\begin{equation*}
 \P(A\cap B) = \P(A)\, \P(B).
-\end{equation}
+\end{equation*}
 
 ### Remarques {.remark}
 
  * La probabilité de voir $A$ réalisé ne dépend pas de la réalisation de $B$, et réciproquement.
+ * Cette notion est liée au choix de la probabilité $\P$ et n’est pas une notion ensembliste. Cela n’a en particulier rien à voir avec le fait que $A$
+    et $B$ soient disjoints ou non.
  * Si $\P(A)>0$ et $\P(B)>0$, alors 
-    \begin{equation}
+    \begin{equation*}
     \P(A\cap B) = \P(A)\, \P(B) \Leftrightarrow \P(A) = \P(A|B) \Leftrightarrow \P(B) = \P(B|A).
-    \end{equation}
+    \end{equation*}
+
+Nous laissons en exercice (très simple à vérifier) la démonstration de la proposition
+suivante, dont le résultat est tout-à-fait intuitif.
 
 ### Proposition {.proposition}
 Si les événements $A$ et $B$ sont indépendants, alors il en est de même des couples $(A^c,B)$, $(A,B^c)$ et $(A^c,B^c)$.
+
+### Exemple {.example}
+
+ 1. On lance 3 fois un dé. Si $A_i$ est un événement qui ne dépend que du $i^\text{ème}$ lancer, alors $A_1$ , $A_2$ , $A_3$ sont indépendants.
+ 2. On tire une carte au hasard dans un jeude 52 cartes. Soit $A$ = \{la carte est une dame\} et $B$ = \{la carte est un coeur\}. 
+ Il est facile de voir que $\P(A) = 4/52$ et $\P(B) = 13/52$ et $\P(A \cap B) = \P( \{\text{la carte est la dame de coeur}\} ) = 1/52 = \P(A) \P(B)$.
+ Ainsi, les événements $A$ et $B$ sont indépendants pour la probabilité uniforme $\P$.
+ 3. On suppose maintenant que le jeu de cartes soit trafiqué. Soit $\widetilde{\P}$ la nouvelle probabilité correspondant au tirage de cartes. On suppose également que
+    $$ \widetilde{\P}(\{\text{As de trèfle}\} ) = \frac{1}{2}, \,\,\,\,\, \widetilde{\P}(\{\text{autre carte}\}) = \frac{1}{2} \frac{1}{51} = \frac{1}{102},$$
+ alors 
+    $$\widetilde{\P}(A \cap B) = \frac{1}{102} \neq \widetilde{\P}(A)\widetilde{\P}(B) = \frac{2}{51}\frac{13}{102}.$$
+ Les événements $A$ et $B$ ne sont pas indépendants sous la probabilité $\widetilde{\P}$.
+
+## Remarque : réflexion sur le concept de probabilité 
+
+La théorie mathématiques des probabilités ne dit pas quelle loi de probabilité choisir sur un espace $(\Omega,\A)$ parmi l'infinité de lois possibles. Ce problème qui concerne ceux qui veulent appliquer le calcul des probabilités, renvoie à la nature "physique" du concept de probabilité qui formalise et quantifie le sentiment d'incertitude vis-à-vis d'un événement. Ce problème d'ordre conceptuel oppose deux écoles de pensée, la conception objectiviste et la conception subjectiviste.
+
+Pour les tenants du premier point de vue, la probabilité d'un événement peut être déterminée de manière unique. Dans la vision dite classique, héritée des jeux de hasard, $\Omega$ est fini et on donne à chaque événement élémentaire la même probabilité. Le calcul des probabilités se résume alors à un problème de dénombrement et la probabilité d'un événement est le rapport du nombre de cas favorables sur le nombre de cas possibles. Dans le cas infini, la vision fréquentiste repose sur la loi des grands nombres : si on répète un grand nombre de fois l'expérience, la proportion de fois où un événement sera réalisé va converger vers la probabilité de cet événement. Dans ce cadre, il est impossible de donner une valeur et même un sens à un événement non répétable comme "pleuvra-t-il demain ?". En outre, la répétition à l'infini d'une même expérience étant physiquement irréalisable, la loi des grands nombres étant un résultat qui suppose défini le concept de probabilité, la vision fréquentiste est logiquement intenable.
+
+Dans la conception subjectiviste, la probabilité objective d'un événement n'existe pas et n'est donc pas une grandeur mesurable analogue à la masse d'un corps,par exemple. C'est simplement une mesure d'incertitude qui reflète un degré de croyance pouvant varier avec les circonstances et l'observateur, donc subjective, la seule exigence étant qu'elle satisfasse aux axiomes du calcul des probabilités. Des méthodes ont alors été proposées pour passer d'un simple pré-ordre sur les événements, à une probabilité. Puisque la répétition n'est plus nécessaire, on peut probabiliser des événements non répétables et étendre ainsi le domaine d'application du calcul des probabilités, notamment pour orienter des prises de décisions. On notera que la [formule de Bayes](#bayes) permet d'intégrer facilement de l'information a priori, dans la mesure où celle-ci est probabilisée.
+
+On arrête ici ces quelques remarques sans prendre parti dans une querelle qui dure encore. L'un ou l'autre point de vue sera adopté selon les ouvrages rencontrés. Dans tous les cas, les outils mathématiques développés dans ce cours seront adaptés. On rappelle tout de même que la modélisation probabiliste a prouvé son efficacité dans de nombreuses applications mais que, comme tout modèle, ce n'est qu'une représentation simplificatrice de la réalité et que ses hypothèses doivent être mises à l'épreuve des faits. A ce titre, on citera Georges Matheron qui dans son essai sur la pratique des probabilités Estimer et Choisir (@matheron) écrit fort justement : "Il n'y a pas de probabilités en soi. Il n'y que des modèles probabilistes".
+
 
 # Probabilité sur $\R$
 
@@ -308,19 +361,19 @@ Le cas général fait l'objet de la théorie de la mesure et sera développé ul
 Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le cas où $\Omega = \R$ et où la tribu $\A$ est la tribu formée des ensembles mesurables.
 
 ### Définition -- fonction de répartition {.definition #deffdr}
-La *fonction de répartition* de la probabilité $\P$ sur $\R$ est la fonction
-\begin{equation}
+La *fonction de répartition* de la probabilité $\P$ sur $(\R,\A)$ est la fonction
+\begin{equation*}
 F(x) = \P(\left]-\infty, x\right]),\ x \in \R.
-\end{equation}
+\end{equation*}
 
-### Théorème {.theorem}
-La fonction de répartition $F$ caractérise la probabilité.
+### Théorème {.theorem #carac}
+La fonction de répartition $F$ caractérise la probabilité $\P$ sur ($\R,\A$).
 
 ### {.anonymous}
-Nous démontrerons ce résultat ultérieurement.
+Ce résultat sera démontré ultérieurement.
 
 ### Théorème {.theorem #theofdr}
-Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ sur $\R$ muni de la tribu des ensembles mesurables si et seulement si elle vérifie les trois conditions suivantes :
+Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ sur $(\R,\A)$ si et seulement si elle vérifie les trois conditions suivantes :
 
  1. elle est croissante,
  2. elle est continue à droite,
@@ -328,9 +381,9 @@ Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ 
 
 ### Démonstration {.proof}
 
-La première assertion est immédiate d'après la [définition](#deffdr). Pour la seconde, on remarque que si $x_n$ décroît vers $x$, alors $]-\infty,x_n]$ décroît vers $]-\infty,x]$ et donc $F(x_n)$ décroît vers $F(x)$ par le théorème de la continuité monotone. La troisième assertion se montre de manière analogue  en remarquant que $]-\infty,x]$ décroît vers $\varnothing$ (resp. croît vers $\R$) lorsque $x$ décroît vers $-\infty$ (resp. croît vers $+\infty$).
+La première assertion est immédiate d'après la [définition](#deffdr). Pour la seconde, on remarque que si $x_n$ décroît vers $x$, alors $]-\infty,x_n]$ décroît vers $]-\infty,x]$ et donc $F(x_n)$ décroît vers $F(x)$ par le [théorème de la continuité monotone](#continuitemonotone). La troisième assertion se montre de manière analogue  en remarquant que $]-\infty,x]$ décroît vers $\varnothing$ (resp. croît vers $\R$) lorsque $x$ décroît vers $-\infty$ (resp. croît vers $+\infty$).
 
-La réciproque est plus difficile à obtenir et nécessite des éléments de théorie de la mesure qui nous font pour l'instant défaut. Nous renvoyons donc sa démonstration à plus tard.
+La réciproque est plus difficile à obtenir et nécessite des éléments de théorie de la mesure qui nous font pour l'instant défaut. Nous renvoyons donc sa démonstration à un chapitre ultérieur.
 
 ### Remarque {.remark}
  Comme $F$ est croissante, elle admet une limite à gauche en chaque point notée $F(x^-)$. En remarquant que $]-\infty,y[\, = \lim\limits_{n \to +\infty}]-\infty,y_n[$ si $y_n$ tend vers $y$ par valeurs décroissantes, on obtient pour $x < y$ : 
@@ -344,7 +397,9 @@ En particulier, $\P(\{x\}) = F(x) - F(x^-)$ est le **saut** de la fonction $F$ a
 
 ### Remarque {.remark} 
 <!-- cf #32 -->
-Le théorème ci-dessus explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. Plus concrètement, considérons l'exemple suivant : soit $\Omega = [0,1]$ et $\P$ telle que $\P(]a,b]) = b-a$ pour $0\leq a\leq b\leq 1$ (il s'agit de la loi uniforme sur [0,1]). C'est une probabilité naturelle qui assigne à tout intervalle sa longueur comme probabilité. Supposons maintenant que l'on souhaite étendre de manière unique $\P$ au $2^{[0,1]}$ éléments de $\mathcal{P}(\R)$ de manière à ce que $\P(\Omega) =1$ et $\P\left(\cup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n)$ pour toute suite $(A_n)_{n\in\N^\star}$ tels que $\A_n\cap A_m = \varnothing$ pour $n \neq m$. On peut prouver qu'un tel $\P$ n'existe pas. $\mathcal{P}(\R)$ est trop "grand" pour définir un tel $\P$. Il contient en particulier des ensembles non mesurables.
+Le [théorème ci-dessus](#carac) explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. 
+
+Plus concrètement, considérons l'exemple suivant : soit $\Omega = [0,1]$ et $\P$ telle que $\P(]a,b]) = b-a$ pour $0\leq a\leq b\leq 1$ (il s'agit de la loi uniforme sur [0,1]). C'est une probabilité naturelle qui assigne à tout intervalle sa longueur comme probabilité. Supposons maintenant que l'on souhaite étendre de manière unique $\P$ aux $2^{[0,1]}$ éléments de $\mathcal{P}([0,1])$ de manière à ce que $\P(\Omega) =1$ et $\P\left(\cup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n)$ pour toute suite $(A_n)_{n\in\N^\star}$ tels que $\A_n\cap A_m = \varnothing$ pour $n \neq m$. On peut prouver qu'un tel $\P$ n'existe pas. $\mathcal{P}([0,1])$ est trop "grand" pour définir un tel $\P$. Il contient en particulier des ensembles non mesurables.
 
 Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait que très peu de probabilités sur $\R$, à savoir les probabilités discrètes que l'on décrit rapidement ci-dessous.
 
@@ -352,27 +407,31 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
 
  1. Les masses de Dirac (ou **mesures** de Dirac). 
  
-    Soit $a \in \R$, on appelle mesure de Dirac en $a$, la probabilité $\P$ sur $\R$ qui vérifie pour $A \in \B_\R$
-    \begin{equation}
+    Soit $a \in \R$, on appelle mesure de Dirac en $a$, la probabilité $\P$ sur $\R$ qui vérifie pour $A \in \mathcal{P}(\R)$
+    \begin{equation*}
         \P(A) = \left\{ \begin{array}{ll}
         1  &\text{si } a \in A, \\
         0 &\text{sinon.}
         \end{array}
         \right.
-    \end{equation}
+    \end{equation*}
     Sa fonction de répartition est $F(x) = 1_{[a,+\infty[}(x)$.
 
  2. Les probabilités portées par $\N$.
 
     Comme $\N$ est une partie de $\R$, toute probabilité sur $\N$ peut être considérée comme une probabilité sur $\R$ qui ne "charge" que $\N$. Plus précisément, si $Q$ est une probabilité sur $\N$, on définit son "extension" $\P$ à $\R$ en posant $\P(A) = Q(A\cap \N)$. Si $q_n = Q(\{n\})$ pour $n \in \N$, la fonction de répartition $F$ de $\P$ est 
-    \begin{equation}
+    \begin{equation*}
     F(x) = \left\{ \begin{array}{ll}
     0  &\text{si } x <0, \\
     \sum_{i=0}^{\lfloor x \rfloor} q_i &\text{sinon,}
     \end{array}
     \right.
-    \end{equation}
+    \end{equation*}
     où $\lfloor \cdot \rfloor$ désigne la partie entière.
+    A titre d'exemple, on représente ci-dessous les fonctions de répartitions de la loi binomiale et de la loi de Poisson.
+        ![fonction de répartition de la loi binomiale](images/CdfBinom.tex)
+        ![fonction de répartition de la loi de Poisson](images/CdfPoisson.tex)
+
 
  3. Les probabilités discrètes.
 
@@ -380,23 +439,19 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
     $$F(x) = \sum_{\substack{i \in E \\ i \leq x}} q_i,$$
     avec la convention qu'une somme "vide" vaut 0. On retrouve bien l'exemple 2 si $E = \N$. On voit que $F$ est **purement discontinue** au sens où elle est complètement caractérisée par ses sauts $\triangle F(x) = F(x) - F(x^-)$ :
     $$F(x) = \sum_{\substack{y \in E \\ y\leq x}} q_i.$$
-    Notons aussi que l'ensemble $E$, bien qu'au plus dénombrable, peut tout à fait être partout dense dans $\R$, par exemple $E = \Q$ : si alors $q_i >0$ pour tout $i \in \Q$, la fonction $F$ est discontinue en tout rationnel.
-
-<!-- Nota SB: concept d'ensemble dense pas vu en Topo à ce stade, peut-être en 
-Calcul Diff 3, tard (et sans doute pas en CPGE) -->    
-
-Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités avec densité.
+    
+Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités à densité.
 
 ## Densités de probabilités
 
 ### Définition -- densité de probabilité {.definition}
-Une fonction réelle $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement *densité*) si elle est positive, intégrable et vérifie 
+Une fonction réelle $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement une *densité*) si elle est positive, intégrable et vérifie 
 $$\int_\R f(x)\, dx = 1.$$ 
 
 Si $f$ est une densité, la fonction 
    $$F(x) =\int_{-\infty}^x f(y)\, dy$$ 
 est la fonction de répartition d'une probabilité $\P$ sur $\R$. On dit que $f$ est la densité de $\P$ ou que $\P$ admet la densité $f$.
-Dans ce cas, $F$ est continue, de sorte que $\P(\{x\}) = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point ou $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
+Dans ce cas, $F$ est continue, de sorte que $\P(\{x\}) = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point où $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
 
 Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive non nulle intégrable et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
     $$ \int_\R f(x)\, dx + \sum_{i\in E} p_i = 1.$$
@@ -408,7 +463,7 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
 
 <!-- le "f(x) +1" me perturbe un peu ... comme si ce choix particulier avait un
      rôle spécial ; bien sûr ça n'est pas le cas ! Est-ce qu'on peut éviter ce
-     "red herring" ? 
+     "red herring" ? j'ai ajouté un "par exemple" et j'y ferai gaffe en amphi !
   -->
 
  1. La fonction de répartition est entièrement déterminée par la probabilité $\P$. Il n'en est pas de même de la densité lorsqu'elle existe : si en effet on a $F(x) =\int_{-\infty}^x f(y)\, dy$ et si on pose $g(x) = f(x)$ si $x \notin E$ et $g(x) =f(x)+1$ (par exemple) si $x\in E$, où $E$ est un ensemble négligeable, alors $g$ est encore une densité de $\P$.
@@ -417,41 +472,386 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
  $$ f(x) \sim \frac{\P([x,x+dx])}{dx}.$$   
 
 
-### Exemples de lois à densités {.example}
+### Exemples de lois à densités {.example #exampledens}
 
- 1. La *loi uniforme* sur $[a,b]$, avec $a,b \in \R$ tels que $ a < b $, notée $\mathcal{U}_{[a,b]}$, est la probabilité $\P$ qui admet la densité
+ 1. La *loi uniforme* sur $[a,b]$, avec $a,b \in \R$ tels que $a < b$, notée $\mathcal{U}_{[a,b]}$, est la probabilité $\P$ qui admet la densité
     $$f(x) = \left\{\begin{array}{ll}
             \frac{1}{b-a} & \text{si } a \leq x \leq b,\\
             0 & \text{sinon}.
             \end{array}\right.$$
-    En vertu de la remarque 1. ci-dessus, on aurait pu choisir $f(a) = f(b) = 0$. Au vu de l'interprétation 2. ci-dessus, le fait que $f$ soit constante sur $[a, b]$ exprime que si on choisit un point selon la probabilité uniforme, nous avons “autant de chances” de tomber au voisinage de chaque point de l’intervalle $[a, b]$. Cela explique le nom “uniforme”. On remarque aussi que $\P(\{x\}) = 0$ pour tout $x$ (comme pour toutes les probabilités à densité). Nous avons donc une probabilité nulle de tomber exactement en un point $x$ fixé à l’avance.
+    ![Densité de probabilité de la loi uniforme](images/PdfUnif.tex)
+    En vertu de la remarque 1. ci-dessus, on aurait pu choisir $f(a) = f(b) = 0$. Au vu de l'interprétation 2. ci-dessus, le fait que $f$ soit constante sur $[a, b]$ exprime que si on choisit un point selon la probabilité uniforme, on a “autant de chances” de tomber au voisinage de chaque point de l’intervalle $[a, b]$. Cela explique le nom “uniforme”. On remarque aussi que $\P(\{x\}) = 0$ pour tout $x$ (comme pour toutes les probabilités à densité). On a donc une probabilité nulle de tomber exactement en un point $x$ fixé à l’avance.
     On vérifie aisément que sa fonction de répartition est
     $$F(x) = \left\{\begin{array}{ll}
             0 & \text{si } x < a,\\
             \frac{x-a}{b-a} & \text{si } a \leq x \leq b,\\
             1 & \text{si } x > b.
             \end{array}\right.$$
+    ![fonction de répartition de la loi uniforme](images/CdfUnif.tex)
 
  2. La *loi exponentielle* de paramètre $\theta$, notée $\mathcal{E}_\theta$, est la loi de densité
     $$f(x) = \left\{\begin{array}{ll}
             0 & \text{si } x < 0,\\
             \theta e^{-\theta x} & \text{sinon}.
             \end{array}\right.$$
+    ![Densité de probabilité de la loi exponentielle](images/PdfExp.tex)
     et de fonction de répartition 
     $$F(x) = \left\{\begin{array}{ll}
             0 & \text{si } x < 0,\\
             1 - e^{-\theta x} & \text{sinon}.
             \end{array}\right.$$
+    ![fonction de répartition de la loi exponentielle](images/CdfExp.tex)
     Dans la pratique, on utilise fréquemment la loi exponentielle pour modéliser une durée de vie ou le temps d’attente avant l’arrivée d’un événement spécifique. Par exemple la durée de vie d’une bactérie, d'un composant électronique, la durée d’une conversation téléphonique ou le temps qui nous sépare du prochain tremblement de terre peuvent être considérées comme des variables aléatoires de loi exponentielle.
     
  3. La *loi normale* (ou de *Gauss* ou encore *gaussienne*) de paramètres $\mu$ et $\sigma^2$, notée $\mathcal{N}(\mu,\sigma^2)$, est la loi de densité
-    $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$$
+    
+    $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
+    ![Densité de probabilité de la loi normale](images/PdfGauss.tex)
     Lorsque $\mu = 0$ et $\sigma^2$, on l'appelle la loi normale *centrée réduite* pour des raisons que nous expliciterons au prochain chapitre.
 
-    La distribution normale fut introduite par De Moivre en 1733. Celui-ci l’utilisa pour approximer une variable aléatoire binomiale quand le paramètre $n$ de celle-ci était grand. Ce résultat fut ensuite progressivement généralisé par Laplace et d’autres confrères pour devenir le théorème connu sous le nom de théorème de la limite centrale, qui sera démontré au Chapitre 4. Ce théorème est l’un des plus importants de la théorie des probabilités et prouve que de très nombreux phénomènes aléatoires suivent approximativement une loi normale. Nous pouvons citer à titre d’exemple la taille d’un individu choisi au hasard, les composantes de la vitesse d’une molécule de gaz ou l’erreur de mesure d’une quantité physique.   
+    La distribution normale fut introduite par De Moivre en 1733. Celui-ci l’utilisa pour approximer une variable aléatoire binomiale quand le paramètre $n$ de celle-ci était grand. Ce résultat fut ensuite progressivement généralisé par Laplace et d’autres confrères pour devenir le théorème connu sous le nom de théorème de la limite centrale, qui sera démontré au Chapitre 4. Ce théorème est l’un des plus importants de la théorie des probabilités et prouve que de très nombreux phénomènes aléatoires suivent approximativement une loi normale. On peut citer à titre d’exemple la taille d’un individu choisi au hasard, les composantes de la vitesse d’une molécule de gaz ou l’erreur de mesure d’une quantité physique.
 
-Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de probabilités avec densité.
+    Il est difficile de faire des calculs avec la loi normale car sa densité n’admet pas de primitive explicite. Aussi des tables numériques ont-elles été construites pour permettre aux utilisateurs d’obtenir très rapidement des valeurs numériques. Elles sont disponibles dans la plupart des logiciels et permettent entre autre de représenter sa fonction de répartition.
+    
+    ![fonction de répartition de la loi normale](images/CdfGauss.tex)
+
+Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de probabilités à densité.
 
 # Exercices
 
+## Propriétés élémentaires {.question #propelem}
+A partir de la [définition de la probabilité](#defproba), démontrer les propriétés suivantes :
 
+ 1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
+ 2. $\forall\, A,B \in \A$, $A \subset B \Rightarrow \P(A) \leq \P(B)$.
+ 3. $\forall\, A,B \in \A$, $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
+ 4. Inégalité de Boole : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A, \P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i)$.
+ 5. Formule de Poincaré : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$
+ $$ \P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right).$$
+
+
+## Continuité monotone {.question #contmon}
+Soit une suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante (au sens de l'inclusion). Montrer que 
+$$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+
+
+## Une définition alternative de la probabilité {.question #altdef}
+Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ vérifie : 
+ 
+ 1. $\P(\Omega) = 1$, 
+ 2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$ $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
+ 3. Pour toute suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante 
+    $$\P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+
+Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
+
+## Généralisation de l'inégalité de Boole {.question #boolinf}
+Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrable d'événements. On a alors
+    $$ \P(\cup_n A_n) \leq \sum_{n\in\N^\ast} \P(A_n) $$
+
+## Indépendance et conditionnement
+
+### Question 1 {.question #ic-1}
+Dans quelles circonstances particulières deux événements $A$ et $B$ tels que $A\cup B$ soit presque sûr sont-ils indépendants ?
+
+### Question 2 {.question #ic-2}
+Soit $A$, $B$ et $C$ trois événements indépendants **2 à 2**, avec $\P(C)>0$. Donner une condition nécessaire et suffisante sur $A$, $B$ et $C$ pour que $A$ et $B$ soient indépendants relativement à la probabilité conditionnelle $\P(\,\,|C)$, à la place de $C$. 
+
+### Question 3 {.question #ic-3}
+Etablir que deux événements $A$ et $B$ sont indépendants ssi 
+$$ \P(A\cap B)\P(A^c \cap B^c) = \P(A \cap B^c)\P(A^c\cap B)$$
+
+## Problème de Monty Hall {.question #mh}
+Dans un jeu télévisé, vous êtes confrontés au problème suivant : devant vous se trouvent 3 portes fermées. Derrière l'une d'entre elle se trouve une voiture, derrière chacune des deux autres, une chèvre. Vous désignez au hasard l'une d'entre elle. Le présentateur, qui sait où se trouve la voiture, ouvre alors une porte, qui n'est ni celle que vous avez choisie, ni celle qui cache la voiture. Il vous offre alors la possibilité de réviser votre choix. Que choisissez-vous ?
+
+Calculer la probabilité de remporter la voiture selon les deux stratégies (changer ou non son choix de porte).
+
+## Queues de distributions {.question #dlfdr}
+
+Soit une densité $f$ sur $\R$ étendue à $[-\infty,+\infty]$ telle que la fonction $h: x \in [-\infty,+\infty] \mapsto x\,f(x)$ est absolument intégrable. Cette hypothèse sera appelée $(\mathcal{H})$. On note $F$ la fonction de répartition correspondante sur la droite réelle achevée. Nous allons montrer que[^o]
+$$\left|\begin{array}{rl} 1-F(x) \underset{x\to+\infty}{=} o\left(\dfrac{1}{x}\right), & (1)\\[1em] F(x) \underset{x\to-\infty}{=} o\left(\dfrac{1}{x}\right).& (2) \end{array} \right. $$ 
+
+### Etude en $+\infty$ {.question #dlfdr-pi}
+
+1. Vérifier que pour tout $u > 0$, $$\int_{-\infty}^{+\infty} h(x)\,dx \geq \int_{-\infty}^u h(x)\,dx + u\,\left(1-F(u)\right).$$
+
+2. En déduire $(1)$.
+
+[^o]: Soient $a \in [-\infty,+\infty]$ et $f$ et $g$ deux fonctions définies sur un même voisinage $I$ de $a$. On dit que $f$ est *négligeable* par rapport à $g$ (ou que $g$ est *prépondérante* par rapport à $f$) au voisinage de $a$ et on note note $f(x) \underset{x\to a}{=} o(g(x))$ s'il existe une fonction $\epsilon$ définie sur $I$ telle que $\epsilon(x) \xrightarrow[x\to a]{} 0$ et $f = \epsilon \times g$.
+
+### Etude en $-\infty$ {.question #dlfdr-mi}
+
+3. En vous inspirant du raisonnement précédent, montrer $(2)$.
+
+### Interprétation {.question #dlfdr-interpret}
+
+4. Proposez une interprétation de ce résultat.
+
+### Etude de la réciproque {.question #dlfdr-reciproque}
+
+Considérons maintenant la fonction de répartition 
+$$ F: x \in \R \mapsto \left|\begin{array}{ll} 1 - \dfrac{e}{x\,\ln(x)} & \text{si } x \geq e,\\ 0 & \text{si } x <e, \end{array}\right. $$
+que l'on étend à la droite réelle achevée en posant $F(-\infty) = 0$ et $F(+\infty) = 1$.
+
+5. Vérifier que cette fonction possède bien une densité $f$ et l'expliciter.
+
+6. A-t-on les développements asymptotiques $(1)$ et $(2)$ ? 
+
+7. La fonction $h$ correspondante est-elle absolument intégrable ?
+
+8. Qu'en concluez-vous ?
+
+### Liens entre les développements asymptotiques {.question #dlfdr-liensdl}
+
+Soient les fonctions de répartition $$F: x\in\R \mapsto \left|\begin{array}{ll} 1 - \dfrac{1}{\ln(x)} & \text{si } x \geq e,\\ 0 & \text{sinon,}\end{array}\right.$$ et $G : x\in\R \mapsto 1 - F(-x)$, toutes deux étendues à la droite réelle achevée en posant $\lim\limits_{x\to-\infty} F(x) = \lim\limits_{x\to-\infty} G(x) = 0$ et $\lim\limits_{x\to+\infty} F(x) = \lim\limits_{x\to+\infty} G(x) = 1$.
+
+9. Que peut-on dire sur les éventuels liens entre $(1)$ et $(2)$ à l'aide de ces deux fonctions ?
+
+
+## Densité et fonction de répartition d'une loi Normale
+
+On considère la densité d'une loi Normale centrée réduite : $$f : x\in [-\infty,+\infty] \mapsto \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{x^2}{2}\right\},$$
+où $f(-\infty) := \lim\limits_{x\to-\infty} f(x)$ et $f(+\infty) := \lim\limits_{x\to+\infty} f(x)$.
+
+### Propriétés générales {.question #fdrgaussprop}
+
+1. Faire l'étude de $f$ (domaine, parité, limites aux bornes, dérivabilité, variations, convexité/concavité).
+
+2. Donner la définition de la fonction de répartition $F$ associée à $f$. En donner une expression faisant apparaître la *fonction d'erreur* (qui est une fonction spéciale) $$\text{erf} : x\in\R \mapsto \dfrac{2}{\sqrt{\pi}}\,\int_{0}^x e^{-u^2}\,du.$$
+
+### Encadrement de $1 - F(x)$ pour tout $x > 0$ {.question #fdrgaussenca}
+
+Nous allons maintenant démontrer la propriété suivante : $\forall\,x > 0$ $$ \dfrac{x}{1+x^2}\,f(x) \leq 1 - F(x) \leq \dfrac{f(x)}{x}. $$
+
+3. En observant que $u\geq x >0$ implique $\dfrac{u}{x} \geq 1$, montrer l'inégalité de droite.
+
+4. En observant que $u\geq x > 0$ implique $u^{-2} \leq x^{-2}$, montrer que $\forall\,x>0$, $$\left(1+\dfrac{1}{x^2}\right)\,\left(1-F(x)\right) \geq \dfrac{f(x)}{x}.$$ En déduire l'inégalité de gauche.
+
+### Equivalent de $1-F(x)$ quand $x\to+\infty$. {.question #fdrgaussequi}
+
+5. Déduire de l'encadrement prédédent un équivalent de $1-F(x)$ lorsque $x\to+\infty$. 
+
+### Remarque {.remark} 
+Pour $x\in\R$, le rapport $\dfrac{1-F(x)}{f(x)}$ est appelé *ratio de Mills*. Il est beaucoup utilisé en statistique, en particulier pour l'analyse des modèles de régression en présence de biais de sélection.
+
+6. Comparer ce résultat à celui de l'exercice sur les développements limités pour les fonctions de répartition. En particulier, $h:x\in[-\infty,+\infty] \mapsto x\,f(x)$ est-elle absolument intégrable ?
+
+### Loi Normale générale. {.question #fdrgaussgen}
+
+Considérons maintenant la densité plus générale $$g(x) = \dfrac{1}{\sqrt{2\,\pi}\,\sigma}\, \exp\left\{-\dfrac{(x-\mu)^2}{2\,\sigma^2} \right\},$$
+où $\mu \in \R$ et $\sigma^2 > 0$. On note $G$ sa fonction de répartition associée.
+
+7. En réécrivant $g$ en fonction de $f$, déduire des questions précédentes un équivalent de $1-G(x)$ lorsque $x\to+\infty$.
+
+
+---
+
+
+# Solutions
+
+## Propriétés élémentaires {.answer #answer-propelem}
+
+ 1. $\P(A) \in [0,1]$ est donné par la définition. Par ailleurs, on a $\Omega = A \cup A^c$ et $A\cap A^c = \varnothing$. En considérant la suite $A_1 = A$, $A_2 = A^c$ et $A_n = \varnothing$ pour $n > 2$, le point 2. de la définition nous donne $1 = \P(\Omega) = \P(A) + \P(A^c)$.
+
+ 2. Puisque $A \subset B$, on a l'union disjointe $B = (B\cap A) \cup (B\cap A^c) = A \cup (B\cap A^c)$. Comme $\P(B\cap A^c) \geq 0$ par définition, on en déduit le résultat.
+
+ 3. On a $(A\cup B) = B \cup (A\cap B^c)$, avec $B \cap (A\cap B^c) =\varnothing$ ainsi que $A = (A\cap B^c) \cup (A\cap B)$, où $(A\cap B^c) \cap (A\cap B) = \varnothing$. On en déduit $\P(A\cup B) = \P(B) + \P(A\cap B^c)$ et $\P(A) = \P(A\cap B^c) + \P(A\cap B)$, d'où le résultat.
+
+ 4. Par récurrence. On a déjà vu que $\P(A\cup B) \leq \P(A) + \P(B)$. Notant $B = \bigcup_{i=1}^n A_i$, alors $\P(\bigcup_{i=1}^{n+1} A_i) \leq \P(B) + \P(A_{n+1})$, et l'hypothèse de récurrence nous indique $\P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i)$, d'où le résultat.
+
+ 5. Par récurrence. On a déjà vu que $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$. Notant $B = \bigcup_{i=1}^n A_i$, alors 
+    \begin{align*}
+        \P(\bigcup_{i=1}^{n+1} A_i) =& \P(B \cup A_{n+1}) \\
+                                    =& \P(B) + \P(A_{n+1}) - \P(B \cap A_{n+1}) \\
+                                    =& \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right) \\
+                                     &+ \P(A_{n+1})\\
+                                     &-\sum_{i=1}^n \P(A_i\cap A_{n+1}) + \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^{n+1} \P\left(\bigcap_{i=1}^n A_i\cap A_{n+1}\right)\\
+                                     =& \sum_{i=1}^{n+1} \P(A_i) - \sum_{1 \leq i < j \leq n +1 } \P(A_i \cap A_j) + \ldots + (-1)^{n+1} \P\left(\bigcap_{i=1}^{n+1} A_i\right).
+    \end{align*}
+
+
+## Continuité monotone {.answer #answer-contmon}
+On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_0 = A_0$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 1$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
+$$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=1}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
+
+## Une définition alternative de la probabilité {.answer #answer-altdef}
+
+Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B_n = \cup_{p \leq n} A_n$ et $B = \cup_n A_n$. Comme $\P$ est additive, on a $\P(B_n) = \sum_{p \leq n} \P(A_n)$ qui croît vers $\sum_n \P(A_n)$ et aussi vers $\P(B)$ d'après le point 3.
+
+En considérant les résultats de ces deux exercices, on obtient une définition alternative de la probabilité en substituant la [continuité monotone](#contmon) et l'additivité à la propriété de [$\sigma$-additivité](#defproba).
+
+## Généralisation de l'inégalité de Boole {.answer #answer-boolinf}
+On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=1}^n A_n$, qui croît vers l'ensemble $C = \cup_n A_n$.
+D'après [l'inégalité de Boole](#propelem), on a 
+   $$\P(B_n) \leq \sum_{i=1}^n \P(A_i)$$
+Mais $\P(B_n) \to_{n \to \infty} \P(C)$ d'après le [théorème de continuité monotone](#contmon), tandis que $\sum_{i=1}^n \P(A_i) \to_{n \to \infty} \sum_{n\in\N^\ast} \P(A_n)$. En passant à la limite, on obtient donc le résultat.
+
+
+## Indépendance et conditionnement
+
+### Question 1 {.answer #answer-ic-1}
+
+On a $1 = \P(A\cup B) = \P(A) + \P(B) - \P(A\cap B)$, donc $1 = \P(A) + \P(B) - \P(A)\P(B)$ si et seulement si $A$ et $B$ sont indépendants. Cette égalité se réécrit $(1-\P(A))(1-\P(B))=0$, qui est vérifiée ssi $A$ ou $B$ est presque sûr.
+
+### Question 2 {.answer #answer-ic-2}
+
+Par définition, on a $A$ et $B$ indépendants relativement à $\P(\,\,|C)$ ssi
+$$\P(A\cap B |C) = \P(A|C)\P(B|C) = \P(A)\P(B),$$
+car $A$ et $B$ sont chacun indépendants de $C$, d'où 
+$$\frac{\P(A\cap B \cap C)}{\P(C)} = \P(A)\P(B)$$ 
+par [définition](#defprobacond) ; et comme $A$, $B$ et $C$ sont indépendants 2 à 2, 
+$$\P(A\cap B \cap C) = \P(A)\P(B)\P(C)$$ 
+équivaut à $A$, $B$ et $C$ sont mutuellemnent indépendants.
+
+### Question 3 {.answer #answer-ic-3}
+
+On a $\P(A^c\cap B^c) = \P((A \cup B)^c) = 1 - \P(A) - \P(B) + \P(A\cap B)$, donc
+$$\P(A\cap B)\P(A^c \cap B^c) = \P(A\cap B) - \P(A\cap B)(\P(A) + \P(B) + \P(A\cap B))$$
+Par ailleurs, on a 
+$$\left\{ \begin{array}{ll}
+        \P(A \cap B^c)  & = \P(A \setminus (A\cap B)) = \P(A) - \P(A\cap B) \\
+        \P(A^c \cap B)  &=  \P(B \setminus (A\cap B)) = \P(B) - \P(A\cap B)
+        \end{array}
+        \right.$$
+Donc
+$$ \P(A \cap B^c)\P(A^c\cap B) = \P(A)\P(B) -\P(A\cap B)(\P(A) + \P(B)- \P(A\cap B))$$
+On a donc bien l'égalité ssi $\P(A)\P(B) = \P(A\cap B)$
+
+## Problème de Monty Hall {.answer #answer-mh}
+Considérons les événements $A$ = 'la porte choisie en premier est la bonne' et $B$ = 'la dernière porte est la bonne'.
+
+On a évidemment $\P(A) = \frac{1}{3}$, puisque le choix initial se fait uniformément parmi les 3 portes.
+
+Pour $B$, on doit tenir compte de l'information donnée par le présentateur. On a par [la formule des probabilités totales](#formprobatot)
+$$\P(B) = \P(B|A)\P(A) + \P(B|A^c)\P(A^c) = 0.\frac{1}{3} + 1.\frac{2}{3} = \frac{2}{3}$$
+En effet $\P(B|A^c) = 1$ car si la porte choisie initialement n'est pas la bonne, c'est nécessairement la dernière.
+
+Il convient donc de changer son choix compte tenu de la nouvelle information. 
+Pour se convaincre du résultat, on peut refaire le calcul avec disons 100 portes et le présentateur qui ouvre 98 autres porte après le choix du candidat.
+
+
+## Queues de distributions {.answer #answer-dlfdr}
+
+### Etude en $+\infty$ {.answer #answer-dlfdr-pi}
+
+1. Soit $u>0$. Comme $h$ est absolument intégrable, elle est intégrable et on peut écrire
+\begin{align*}
+\int_{-\infty}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} x\,f(x)\,dx & = \int_{-\infty}^{u} x\,f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
+&\geq \int_{-\infty}^{u} x\,f(x)\,dx + u\,\int_{u}^{+\infty} f(x)\,dx\\
+&= \int_{-\infty}^{u} h(x)\,dx + u\,\left(1- F(u)\right).
+\end{align*}
+
+<!-- On peut justifier que pour $f,g : \R \to \R$ intégrables telles que $f < g$ on a $\int f < \int g$ en utilisant la positivité et la linéarité de l'intégrale (qui sont vraies quand on passe à $[-\infty,+\infty]$ même si ce n'est pas explicitement mentionné dans le cours de calcul intégral 1 pour la positivité). En effet, dans ce cadre $g-f$ est intégrable par linéarité, positive ($g > f$) et on a donc $\int g - f = \int g - \int f > 0$. -->
+
+2. Soit toujours $u>0$. Toute fonction de répartition étant à valeurs dans $[0,1]$, on a $u\,\left(1-F(u)\right) \geq 0$. En utilisant la question précédente on obtient donc l'encadrement
+\begin{align*}
+0 \leq u\,\left(1-F(u)\right) & \leq \int_{-\infty}^{+\infty} h(x)\,dx - \int_{-\infty}^u h(x)\,dx\\
+&= \int_{u}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} h(x)\,1_{[u,+\infty]}(x)\,dx.
+\end{align*}
+Or pour tout $x\in[-\infty,+\infty]$ on a $\left|h(x)\,1_{[u,+\infty]}(x)\right| \leq \left|h(x)\right|$, qui est intégrable. On peut donc appliquer le théorème de convergence dominée, <!-- cf. Calcul intégral 2 --> qui nous donne :
+\begin{align*}
+\lim_{u\to+\infty} u\,(1-F(u)) & = \int_{-\infty}^{+\infty} h(x)\,\lim_{u\to+\infty} 1_{[u,+\infty]}(x)\,dx\\
+& = \int_{-\infty}^{+\infty} h(x)\,1_{\varnothing}(x)\,dx = 0.
+\end{align*}
+On en conclut que $1-F(x) = o\left(\dfrac{1}{x}\right)$ lorsque $x\to+\infty$.
+
+### Etude en $-\infty$ {.answer #answer-dlfdr-mi}
+
+3. Prenons maintenant $u<0$. Comme $h$ est (absolument) intégrable, on peut écrire
+\begin{align*}
+\int_{-\infty}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} x\,f(x)\,dx & = \int_{-\infty}^{u} x\,f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
+&\leq u\, \int_{-\infty}^{u} f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
+&= u\,F(u) + \int_{u}^{+\infty} h(x)\,dx.
+\end{align*}
+Or, comme $F$ prend ses valeurs dans $[0,1]$, $u\,F(u) \leq 0$. On obtient donc
+\begin{align*}
+0 \geq u\,F(u) & \geq \int_{-\infty}^{+\infty} h(x)\,dx - \int_{u}^{+\infty} h(x)\,dx\\
+&= \int_{-\infty}^{u} h(x)\,dx = \int_{-\infty}^{+\infty} h(x)\,1_{[-\infty,u]}(x)\,dx.
+\end{align*}
+Comme précédemment, cette dernière fonction sous l'intégrale est bornée par $-\left|h\right|$ (à gauche) et $\left|h\right|$ (à droite), toutes deux intégrables, donc d'après le théorème de convergence dominée <!-- cf. Calcul intégral 2 -->:
+\begin{align*}
+\lim_{u\to-\infty} u\,F(u) & = \int_{-\infty}^{+\infty} h(x)\,\lim_{u\to-\infty} 1_{[-\infty,u]}(x)\,dx\\
+& = \int_{-\infty}^{+\infty} h(x)\,1_{\varnothing}(x)\,dx = 0.
+\end{align*}
+On a donc bien $F(x) = o\left(\dfrac{1}{x}\right)$ lorsque $x\to-\infty$.
+
+### Interprétation {.answer #answer-dlfdr-interpret}
+
+4. L'hypothèse que $h$ est (absolument) intégrable nous donne une indication sur la vitesse de convergence de $1-F(x)$ et $F(x)$ lorsque $x$ tend respectivement vers $+\infty$ et $-\infty$ : elles convergent vers $0$ au moins aussi vite que $\dfrac{1}{x}$. On dit que les queues de la distribution sont "relativement" fines.
+
+Pour mieux comprendre l'impact de ce résultat, prenons un exemple pratique. Considérons un phénomène aléatoire comme la concentration en polluant dans l'air, modélisé par une loi de probabilité sur $\R$ de densité $f$ nulle sur $\R_-^\ast$. Etre capable de déterminer la probabilité que la concentration dépasse un seuil critique $x$ est alors très important pour les organismes de contrôle de la qualité de l'air. Or cet événement correspond mathématiquement à l'événement $[x,+\infty]$. Dans ce cas, $1 - F(x)$ nous donne cette probabilité selon le modèle considéré. Le résultat nous indique que si l'on choisit un modèle tel que $h$ est intégrable, alors cette probabilité décroît plus rapidement que $\dfrac{1}{x}$ lorsque le seuil $x$ augmente. En d'autres termes, les événements extrêmes (quand $x$ est grand) restent "assez" rares. L'impact du choix de modèle n'est donc pas négligeable : si on prend une distribution à queues trop fines alors que les pics de pollution ne sont en réalité pas si rares que ça, $1-F(x)$ risque de sous-estimer le risque réel de dépassement du seuil !
+
+### Etude de la réciproque {.answer #answer-dlfdr-reciproque}
+
+5. La fonction $F$ considérée est continue et dérivable par morceaux sur $[-\infty,+\infty]$ ; le seul point où $F$ n'est pas dérivable est $e$ (le taux d'accroissement n'a pas les mêmes limites à gauche et à droite). Elle possède donc une densité, <!-- cf. Probabilités 1 --> qui s'obtient en dérivant chaque morceau : pour tout $x\in\R$, $$f(x) = \left|\begin{array}{ll} e\,\dfrac{\ln(x) + 1}{x^2\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon.}\end{array}\right.$$
+<!-- Ici on peut leur montrer qu'on aurait pu prendre n'importe quelle valeur pour f en e, et ça marcherait quand même (idée qu'on n'a pas forcément une unique densité, mais qu'elles sont toutes égales p.p.) -->
+On peut l'étendre à la droite réelle achevée en posant $f(\pm\infty) = \lim\limits_{x\to\pm\infty}f(x) = 0$.
+
+6. On remarque que pour tout $x\geq e$, $x\,\left(1-F(x)\right) = \dfrac{e}{\ln(x)} \xrightarrow[x\to+\infty]{} 0$, donc le développement asymptotique $(1)$ est bien vérifié. En outre, comme $x\,F(x) = 0$ pour tout $x < e$, le développement asymptotique $(2)$ est aussi bien respecté.
+
+7. Pour tout $x\in\R$, $$ h(x) = \left|h(x)\right| = \left|\begin{array}{ll} e\,\dfrac{\ln(x) + 1}{x\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon,} \end{array}\right.$$ et on pose $h(\pm\infty) = \lim\limits_{x\to\pm\infty}h(x) = 0$.
+Par conséquent, $h$ est clairement (absolument) intégrable sur $[-\infty,e]$, où elle est égale presque partout (partout sauf en $e$) à la fonction nulle. Pour savoir si $h$ est (absolument) intégrable sur toute la droite réelle achevée, il nous faut donc regarder si elle l'est sur $[e,+\infty]$. Pour cela, nous allons utiliser le [théorème de Hake](Calcul Intégral I.pdf #hake), qui nous dit de vérifier que $h$ est intégrable sur tout segment $[a,b] \subsetneq [e,+\infty]$, puis que $\lim\limits_{t\to+\infty} \int_e^t h(x)\,dx$ existe et est finie. Remarquons d'abord que $h$ est continue, donc elle est intégrable sur tout segment strictement inclus dans $[e,+\infty]$; le premier point est vérifié. On remarque en outre que pour tout $x\geq e$, $$h(x) \geq \dfrac{1}{x\,\ln(x)}. $$ Par conséquent, pour tout $t > e$ on a:
+$$\int_{e}^t h(x)\,dx \geq \int_e^t \dfrac{1}{x\,\ln(x)}\,dx = \left[\ln(\ln(x))\right]_e^t = \ln(\ln(t)).$$
+Or cette dernière quantité tend vers $+\infty$ quand $t\to+\infty$. Donc $\int_{e}^t h(x)\,dx$ n'a pas de limite finie quand $t\to+\infty$. On en conclut que $h$ n'est pas (absolument) intégrable.
+
+8. La fonction de répartition $F$ considérée respecte bien les développements asymptotiques $(1)$ et $(2)$, mais la fonction $h$ associée n'est pas (absolument) intégrable. Nous avons donc montré que la réciproque de la propriété est fausse.
+
+### Liens entre les développements asymptotiques {.answer #answer-dlfdr-liensdl}
+
+9. On remarque que $F$ satisfait $(2)$ mais pas $(1)$, tandis que $G$ satisfait $(1)$ mais pas $(2)$. On en conclut que $(1)$ n'implique pas $(2)$ et inversement.
+
+
+## Densité et fonction de répartition d'une loi Normale
+
+### Propriétés générales {.answer #answer-fdrgaussprop}
+
+1. Faisons l'étude de $f$.
+
+* **Domaine.** $f : [-\infty,+\infty] \to \R^+$.
+* **Parité.** On remarque que $f$ est paire : $\forall\,x\in\R$, $f(x) = f(-x)$.
+* **Limites aux bornes.** $\lim\limits_{x\to-\infty} f(x) = \lim\limits_{x\to+\infty} f(x) = 0$. Ainsi, la parité est aussi vraie aux bornes.
+* **Dérivabilité.** $f$ est continue sur $[-\infty,+\infty]$ et infiniment dérivable sur $\R$ en tant que composée de fonctions infiniment dérivables. Pour tout $x\in\R$ sa dérivée première s'écrit $f^\prime(x) = -x\,f(x)$ et a dérivée seconde $f^{\prime\prime}(x) =(x^2 - 1)\,f(x)$. Ces deux dernières fonctions peuvent être étendues à la droite réelle achevée en posant $f^\prime(\pm\infty) := \lim\limits_{x\to\pm\infty} f^\prime(x) = 0$ et $f^{\prime\prime}(\pm\infty) := \lim\limits_{x\to\pm\infty} f^{\prime\prime}(x) = 0$.
+* **Variations.**  $f^\prime$ est strictement positive (resp. négative) ssi $-\infty < x < 0$ (resp. $+\infty > x > 0$). Elle est nulle en $0$, $+\infty$ et $-\infty$. Ainsi, $f$ est strictement croissante sur $]-\infty,0[$, vaut $\left(2\,\pi\right)^{-1/2}$ en $0$, puis est strictement décroissante sur $]0,+\infty[$. 
+* **Convexité/Concavité.** $f^{\prime\prime}$ est strictement positive (resp. négative) sur $\R\backslash\,]-1,1[$ (resp. $]-1,1[$). $f$ est donc convexe sur $\R\backslash\,]-1,1[$ et concave sur $]-1,1[$.
+
+2. Par définition, pour tout $x\in\R$ $$ F(x) = \int_{-\infty}^x \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du.$$ On pose $F(+\infty) = 1$ et $F(-\infty) = 0$. Lorsque $x = 0$, comme $f$ est paire et que son intégrale sur $[-\infty,+\infty]$ vaut $1$ (c'est une densité <!-- cf. Probabilités 1 -->), son intégrale sur $[-\infty,0]$ (i.e. $F(0)$) vaut $\dfrac{1}{2}$. Lorsque $x > 0$, en décomposant l'intégrale puis en utilisant un petit changement de variable <!-- cf. Calcul intégral 1 --> on obtient $$F(x) = \dfrac{1}{2} + \int_{0}^x \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du = \dfrac{1}{2} + \int_{0}^{\frac{x}{\sqrt{2}}} \dfrac{1}{\sqrt{\pi}}\,e^{-v^2}\,dv = \dfrac{1}{2} + \dfrac{1}{2}\,\text{erf}\left(\dfrac{x}{\sqrt{2}}\right).$$
+Lorsque $x<0$, on peut procéder de la même manière avec $1 - F(x)$ et obtenir la même égalité que ci-dessus.
+
+### Encadrement de $1 - F(x)$ pour tout $x > 0$ {.answer #answer-fdrgaussenca}
+
+3. Soit $x>0$. Par définition,
+$$1 - F(x) = \int_{-\infty}^{+\infty} f(u)\,du - \int_{-\infty}^x f(u)\,du = \int_{x}^{+\infty} \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du. $$
+Or pour tout $u\geq x$ on a $u/x \geq 1$, donc 
+$$1 - F(x) \leq \dfrac{1}{\sqrt{2\,\pi}}\,\int_{x}^{+\infty} \dfrac{u}{x}\, \exp\left\{-\dfrac{u^2}{2}\right\}\,du = \dfrac{-1}{x}\,\int_{x}^{+\infty} f^\prime(u)\,du. $$
+Or $f^\prime$ a pour primitive $f$ donc d'après le théorème fondamental du calcul (extension) <!-- cf. Calcul intégral 1 --> on a 
+$$1-F(x) \leq -\dfrac{f(+\infty) - f(x)}{x} = \dfrac{f(x)}{x}. $$
+
+
+4. Soit $x>0$. Par définition, $$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) = \int_x^{+\infty} \left(1 + \dfrac{1}{x^2} \right)\,f(u)\,du.$$
+Or pout tout $u \geq x$ on a $\dfrac{1}{u^2} \leq \dfrac{1}{x^2}$, d'où
+$$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) \geq \int_{x}^{+\infty} \left( 1 + \dfrac{1}{u^2} \right)\,f(u)\,du.$$
+Remarquons maintenant que d'après la question 1, $\left(\dfrac{f(x)}{x} \right)^\prime = \dfrac{-x^2\,f(x) - f(x)}{x^2} = -\left(1+\dfrac{1}{x^2}\right)\,f(x)$. En d'autres termes, $A : x\in\R \mapsto -\dfrac{f(x)}{x}$ est une primitive de $x\in\R \mapsto \left(1+\dfrac{1}{x^2}\right)\,f(x)$. On peut étendre ses valeurs à la droite réelle achevée en posant $A(\pm\infty) = \lim\limits_{x\to\pm\infty} A(x) = 0$. On obtient alors par le théorème fondamental du calcul (extension) <!-- cf. Calcul intégral 1 -->
+$$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) \geq - \left(A(+\infty) - A(x)\right) = A(x) = \dfrac{f(x)}{x}.$$
+On en déduit directement l'inégalité de gauche :
+$$ 1-F(x) \geq f(x)\,\dfrac{x^2}{(x^2+1)\,x} = f(x)\,\dfrac{x}{x^2+1}. $$
+
+### Equivalent de $1-F(x)$ quand $x\to+\infty$. {.answer #answer-fdrgaussequi}
+
+5. Soit $x>0$. L'encadrement que nous avons démontré peut être réécrit
+$$ \dfrac{x^2}{1+x^2} \leq \dfrac{1-F(x)}{\dfrac{f(x)}{x}} \leq 1, $$
+et comme $\dfrac{x^2}{1+x^2} \to 1$ lorsque $x\to+\infty$, on obtient que $1-F(x) \sim \dfrac{f(x)}{x}$ quand $x\to+\infty$.
+
+6. Pour tout $x \in [-\infty,+\infty]$ on a $\left|h(x)\right| = \left|x\,f(x)\right| = |x|\,f(x)$ puisque $f\geq 0$. Lorsque $x \in [0,+\infty]$, $\left|h(x)\right| = h(x)$, or d'après la question 1, $h$ admet pour primitive $-f$, qui vaut $0$ en $+\infty$ et $-\infty$ puis $(2\,\pi)^{-1/2}$ en $0$. Par conséquent, (d'après l'extension théorème fondamental du calcul <!-- cf. Calcul intégral 1 -->) l'intégrale de $\left|h\right|$ sur $[0,+\infty]$ existe, et vaut $(2\,\pi)^{-1/2}$. Or $\left|h\right|$ est paire, son intégrale sur $[-\infty,0]$ existe donc aussi et vaut $(2\,\pi)^{-1/2}$. On en conclut que $h$ est bien absolument intégrable sur $[-\infty,+\infty]$. En remarquant qu'elle est impaire, on obtient immédiatement que son intégrale vaut $0$.
+
+On est donc bien dans le cadre de l'exercice sur les queues de distributions. L'équivalent que nous avons trouvé implique bien que $1-F(x) = o\left(\dfrac{1}{x} \right)$ lorsque $x\to+\infty$. Il nous donne juste plus de précisions quant au comportement de $1-F(x)$ lorsque $x\to+\infty$ dans le cas spécifique de la loi Normale centrée réduite : on connaît sa vitesse de convergence.
+
+### Loi Normale générale. {.answer #answer-fdrgaussgen}
+
+7. Soit $x\in\R$. On remarque que $g(x) = \dfrac{1}{\sigma}\,f\left(\dfrac{x-\mu}{\sigma} \right)$. Cela implique en particulier que $$G(x) =  \int_{-\infty}^x \dfrac{1}{\sigma}\,f\left(\dfrac{u-\mu}{\sigma} \right)\,du = \int_{-\infty}^{\frac{x-\mu}{\sigma}} f(u)\,du = F\left(\dfrac{x-\mu}{\sigma}\right).$$
+On obtient alors l'encadrement suivant, pour tout $x>\mu$ :
+$$ \dfrac{x-\mu}{1 + \dfrac{(x-\mu)^2}{\sigma^2}}\,g(x) \leq 1 - G(x) \leq \dfrac{\sigma^2\,g(x)}{x-\mu}.  $$
+
+On en déduit que $1-G(x) \sim \dfrac{\sigma^2\,g(x)}{x-\mu} \sim \sigma^2\,\dfrac{g(x)}{x}$ lorsque $x\to+\infty$.
+
+Références
+================================================================================
