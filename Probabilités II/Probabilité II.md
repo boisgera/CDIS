@@ -71,7 +71,7 @@ La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ so
 
 
 ### Définition -- variable aléatoire réelle {.definition #defvar}
-Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \E_{\R}.
+Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \E_{\R}$.
 
 ### Définition -- loi d'une variable aléatoire réelle {.definition #defloivar}
 La probabilité $\P_X$, définie sur $(\R,\E_{\R})$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \E_{\R}$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
