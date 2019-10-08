@@ -15,12 +15,12 @@
 
 # Densités marginales et conditionnelles
 
-Nous étudié précédemment l'indépendance des variables aléatoires. Nous allons nous intéresser ici à caractériser la dépendance entre variables aléatoires et en particulier le conditionnement.
+Nous avons étudié précédemment l'indépendance des variables aléatoires. Nous allons nous intéresser ici à caractériser la dépendance entre variables aléatoires et en particulier le conditionnement.
 
 On se limite pour simplifier à énoncer les résultats pour un couple $Z=(X,Y)$ de variables aléatoires. Ils se généralisent aisément à une dimension supérieure.
 
 ### Proposition {.proposition}
-Supposons que $Z$ admette une densité $f$. Alors $X$ et $Y$ admettent les densités $f_x$ et $f_Y$ données par
+Supposons que $Z$ admette une densité $f$. Alors $X$ et $Y$ admettent les densités $f_X$ et $f_Y$ données par
 $$f_X(x) = \int_\R f(x,y) dy, f_Y(y) = \int_\R f(x,y) dx.$$
 Les fonctions $f_X$ et $f_Y$ s'appellent les *densités marginales* de $f$.
 
@@ -85,7 +85,7 @@ Puisque $f_{Y|X=x}$ est une densité, on peut définir l'espérance qui lui est 
 ### Définition {.definition #defespcond}
 Soit $Y$ une variable aléatoire intégrable.
 
- 1. L'*espérance conditionnelle de $Y$ sachant $\{X=x\}* est définie par 
+ 1. L'*espérance conditionnelle de $Y$ sachant $\{X=x\}$* est définie par 
     $$\Esp(Y|X=x) = \int_\R y f_{Y|X=x} (y) dy.$$
  2. L'*espérance conditionnelle de $Y$ sachant $X$* est la **variable aléatoire** définie par :
     $$\Esp(Y|X) = \psi(X), \text{ avec } \psi(x) = \Esp(Y|X=x).$$
@@ -95,10 +95,10 @@ On peut étendre cette définition à toute variable de la forme $h(X,Y)$.
 ### Définition {.definition #defespcondh}
 Soit $Y$ une variable aléatoire et $h$ une fonction continue par morceaux positive ou bornée sur $\R^2$.
 
- 1. L'*espérance conditionnelle de $h(X,Y)$ sachant $\{X=x\}* est définie par 
+ 1. L'*espérance conditionnelle de $h(X,Y)$ sachant $\{X=x\}$* est définie par 
     $$\Esp(h(X,Y)|X=x) = \int_\R y f_{h(x,y)|X=x} (y) dy.$$
  2. L'*espérance conditionnelle de $h(X,Y)$ sachant $X$* est la **variable aléatoire** définie par :
-    $$\Esp(h(X,Y)|X) = \psi(X), \text{ avec } \psi(h(X,Y)) = \Esp(Y|X=x).$$
+    $$\Esp(h(X,Y)|X) = \psi(X), \text{ avec } \psi(x) = \Esp(h(X,Y)|X=x).$$
 
 ### Remarques {.remark}
 
@@ -149,7 +149,7 @@ Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T
 
 La densité marginale de $X$ est donnée par $f_X(x) = \int f_{X,Y}(x,y) dy = 1_{]0,1[}(x)$ et pour $x \in ]0,1[$,
 $$ f_{Y|X=x} (y) = \frac{1}{x} 1_{]0,x[}(y) $$
-Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$. Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(X|Y) = \frac{X}{2}$.
+Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$. Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(Y|X) = \frac{X}{2}$.
 
 ### note bofbof cet exemple...
 
@@ -169,7 +169,7 @@ L'annulation des dérivées partielles par rapport à $a$ et $b$ entraîne que l
 
 \begin{align*}
 a & = \frac{\cov(X,Y)}{\V(X)} = \rho(X,Y)\frac{\sigma_Y}{\sigma_X} \\
-b & = \E(Y)  - a \Esp(X)
+b & = \Esp(Y)  - a \Esp(X)
 \end{align*}
 
 On vérifie aisément que ces valeurs donnent bien un minimum pour $\Esp((Y - (aX + b))^2)$, et déterminent ainsi la meilleure approximation linéaire de $Y$ basée sur $X$ au sens de la distance quadratique moyenne.
