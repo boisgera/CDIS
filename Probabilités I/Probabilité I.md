@@ -453,7 +453,7 @@ Si $f$ est une densité, la fonction
 est la fonction de répartition d'une probabilité $\P$ sur $\R$. On dit que $f$ est la densité de $\P$ ou que $\P$ admet la densité $f$.
 Dans ce cas, $F$ est continue, de sorte que $\P(\{x\}) = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point où $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
 
-Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive non nulle intégrable et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
+Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive intégrable et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
     $$ \int_\R f(x)\, dx + \sum_{i\in E} p_i = 1.$$
 Alors la fonction 
     $$ F(x) = \int_{-\infty}^x f(x)\, dx + \sum_{\substack{i\in E \\ i \leq x}} p_i$$
