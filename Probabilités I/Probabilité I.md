@@ -269,7 +269,7 @@ Nous avons $A = \bigcup_{n\in\N^\ast} (A\cap B_n)$. Par hypothèse, les ensemble
 ### Formule de Bayes {.proposition #bayes}
 Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a 
 \begin{equation*}
-\forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N^\ast} \P(A | B_n)\, \P(A)}.
+\forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N^\ast} \P(A | B_n)\, \P(B_n)}.
 \end{equation*}
 
 ### Démonstration {.proof}
