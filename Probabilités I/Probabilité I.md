@@ -586,22 +586,25 @@ $$\left|\begin{array}{rl} 1-F(x) \underset{x\to+\infty}{=} o\left(\dfrac{1}{x}\r
 
 4. Proposez une interprétation de ce résultat.
 
-### Premiers pas vers la réciproque {.question #dlfdr-caspart}
+### Etude de la réciproque {.question #dlfdr-reciproque}
 
-La réciproque de ce résultat sera étudiée au prochain TD. Nous pouvons cependant d'ores et déjà mettre en lumière quelques relations logiques entre $(\mathcal{H})$ et $(1)$, $(\mathcal{H})$ et $(2)$, puis $(1)$ et $(2)$.
-
-Pour cela, considérons dorénavant la fonction de répartition $$F: x \in \R \mapsto \left|\begin{array}{ll} 1 - \dfrac{1}{\ln(x)} & \text{si } x \geq e,\\ 0 & \text{si } x <e, \end{array}\right.$$
+Considérons maintenant la fonction de répartition 
+$$ F: x \in \R \mapsto \left|\begin{array}{ll} 1 - \dfrac{e}{x\,\ln(x)} & \text{si } x \geq e,\\ 0 & \text{si } x <e, \end{array}\right. $$
 que l'on étend à la droite réelle achevée en posant $F(-\infty) = 0$ et $F(+\infty) = 1$.
 
 5. Vérifier que cette fonction possède bien une densité $f$ et l'expliciter.
 
-6. La fonction $h$ correspondante est-elle absolument intégrable ?
+6. A-t-on les développements asymptotiques $(1)$ et $(2)$ ? 
 
-7. A-t-on les développements limités $(1)$ et $(2)$ ? 
+7. La fonction $h$ correspondante est-elle absolument intégrable ?
 
-8. Qu'en est-il de la distribution de densité $g : x\in[-\infty,+\infty] \mapsto f(-x)$ ?
+8. Qu'en concluez-vous ?
 
-9. Qu'en concluez-vous ?
+### Liens entre les développements asymptotiques {.question #dlfdr-liensdl}
+
+Soient les fonctions de répartition $$F: x\in\R \mapsto \left|\begin{array}{ll} 1 - \dfrac{1}{\ln(x)} & \text{si } x \geq e,\\ 0 & \text{sinon,}\end{array}\right.$$ et $G : x\in\R \mapsto 1 - F(-x)$, toutes deux étendues à la droite réelle achevée en posant $\lim\limits_{x\to-\infty} F(x) = \lim\limits_{x\to-\infty} G(x) = 0$ et $\lim\limits_{x\to+\infty} F(x) = \lim\limits_{x\to+\infty} G(x) = 1$.
+
+9. Que peut-on dire sur les éventuels liens entre $(1)$ et $(2)$ à l'aide de ces deux fonctions ?
 
 
 ## Densité et fonction de répartition d'une loi Normale
@@ -777,25 +780,24 @@ On a donc bien $F(x) = o\left(\dfrac{1}{x}\right)$ lorsque $x\to-\infty$.
 
 Pour mieux comprendre l'impact de ce résultat, prenons un exemple pratique. Considérons un phénomène aléatoire comme la concentration en polluant dans l'air, modélisé par une loi de probabilité sur $\R$ de densité $f$ nulle sur $\R_-^\ast$. Etre capable de déterminer la probabilité que la concentration dépasse un seuil critique $x$ est alors très important pour les organismes de contrôle de la qualité de l'air. Or cet événement correspond mathématiquement à l'événement $[x,+\infty]$. Dans ce cas, $1 - F(x)$ nous donne cette probabilité selon le modèle considéré. Le résultat nous indique que si l'on choisit un modèle tel que $h$ est intégrable, alors cette probabilité décroît plus rapidement que $\dfrac{1}{x}$ lorsque le seuil $x$ augmente. En d'autres termes, les événements extrêmes (quand $x$ est grand) restent "assez" rares. L'impact du choix de modèle n'est donc pas négligeable : si on prend une distribution à queues trop fines alors que les pics de pollution ne sont en réalité pas si rares que ça, $1-F(x)$ risque de sous-estimer le risque réel de dépassement du seuil !
 
-### Premiers pas vers la réciproque {.answer #answer-dlfdr-caspart}
+### Etude de la réciproque {.answer #answer-dlfdr-reciproque}
 
-5. La fonction $F$ considérée est continue et dérivable par morceaux sur $[-\infty,+\infty]$ ; le seul point où $F$ n'est pas dérivable est $e$ (le taux d'accroissement n'a pas les mêmes limites à gauche et à droite). Elle possède donc une densité, <!-- cf. Probabilités 1 --> qui s'obtient en dérivant chaque morceau : pour tout $x\in\R$, $$f(x) = \left|\begin{array}{ll} \dfrac{1}{x\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon.}\end{array}\right.$$
+5. La fonction $F$ considérée est continue et dérivable par morceaux sur $[-\infty,+\infty]$ ; le seul point où $F$ n'est pas dérivable est $e$ (le taux d'accroissement n'a pas les mêmes limites à gauche et à droite). Elle possède donc une densité, <!-- cf. Probabilités 1 --> qui s'obtient en dérivant chaque morceau : pour tout $x\in\R$, $$f(x) = \left|\begin{array}{ll} e\,\dfrac{\ln(x) + 1}{x^2\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon.}\end{array}\right.$$
 <!-- Ici on peut leur montrer qu'on aurait pu prendre n'importe quelle valeur pour f en e, et ça marcherait quand même (idée qu'on n'a pas forcément une unique densité, mais qu'elles sont toutes égales p.p.) -->
 On peut l'étendre à la droite réelle achevée en posant $f(\pm\infty) = \lim\limits_{x\to\pm\infty}f(x) = 0$.
 
-6. Pour tout $x\in\R$, $$ h(x) = \left|h(x)\right| = \left|\begin{array}{ll} \dfrac{1}{\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon,} \end{array}\right.$$ et on pose $h(\pm\infty) = \lim\limits_{x\to\pm\infty}h(x) = 0$.
-Par conséquent, $h$ est clairement (absolument) intégrable sur $[-\infty,e]$, où elle est égale presque partout (partout sauf en $e$) à la fonction nulle. Pour savoir si $h$ est (absolument) intégrable sur toute la droite réelle achevée, il nous faut donc regarder si elle l'est sur $[e,+\infty]$. Pour cela, nous allons utiliser le théorème de Hake, <!-- cf. Calcul intégral 1 --> qui nous dit de vérifier que $h$ est intégrable sur tout segment $[a,b] \subsetneq [e,+\infty]$, puis que $\lim\limits_{t\to+\infty} \int_e^t h(x)\,dt$ existe. Remarquons d'abord que pour tout $x\geq e$, on a $1 \leq \ln(x) \leq \sqrt{x}$, ce qui implique que $1 \geq h(x) \geq \dfrac{1}{x} > 0$. Ainsi, pour tout $t>e$, $h$ est intégrable sur $[e,t]$ où elle est bornée <!-- cf. Calcul intégral 1 -->. Elle est donc intégrable sur tout $[a,b] \subsetneq [e,+\infty]$. Ensuite,
-$$\int_{e}^t h(x)\,dx \geq \int_e^t \dfrac{1}{x}\,dx = \left[\ln(x)\right]-e^t = \ln(t) - 1.$$
-Or cette dernière quantité tend vers $+\infty$ quand $t\to+\infty$. Donc $\int_{e}^t h(x)\,dx$ n'a pas de limite quand $t\to+\infty$. On en conclut que $h$ n'est pas (absolument) intégrable.
+6. On remarque que pour tout $x\geq e$, $x\,\left(1-F(x)\right) = \dfrac{e}{\ln(x)} \xrightarrow[x\to+\infty]{} 0$, donc le développement asymptotique $(1)$ est bien vérifié. En outre, comme $x\,F(x) = 0$ pour tout $x < e$, le développement asymptotique $(2)$ est aussi bien respecté.
 
-7. On remarque que $x\,\left(1-F(x)\right) = \dfrac{x}{\ln(x)} \xrightarrow[x\to+\infty]{} +\infty$, donc le développement limité $(1)$ n'est pas vérifié. En revanche, comme $x\,F(x) = 0$ pour tout $x < e$, le développement limité $(2)$ est bien respecté.
+7. Pour tout $x\in\R$, $$ h(x) = \left|h(x)\right| = \left|\begin{array}{ll} e\,\dfrac{\ln(x) + 1}{x\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon,} \end{array}\right.$$ et on pose $h(\pm\infty) = \lim\limits_{x\to\pm\infty}h(x) = 0$.
+Par conséquent, $h$ est clairement (absolument) intégrable sur $[-\infty,e]$, où elle est égale presque partout (partout sauf en $e$) à la fonction nulle. Pour savoir si $h$ est (absolument) intégrable sur toute la droite réelle achevée, il nous faut donc regarder si elle l'est sur $[e,+\infty]$. Pour cela, nous allons utiliser le [théorème de Hake](Calcul Intégral I.pdf #hake), qui nous dit de vérifier que $h$ est intégrable sur tout segment $[a,b] \subsetneq [e,+\infty]$, puis que $\lim\limits_{t\to+\infty} \int_e^t h(x)\,dx$ existe et est finie. Remarquons d'abord que $h$ est continue, donc elle est intégrable sur tout segment strictement inclus dans $[e,+\infty]$; le premier point est vérifié. On remarque en outre que pour tout $x\geq e$, $$h(x) \geq \dfrac{1}{x\,\ln(x)}. $$ Par conséquent, pour tout $t > e$ on a:
+$$\int_{e}^t h(x)\,dx \geq \int_e^t \dfrac{1}{x\,\ln(x)}\,dx = \left[\ln(\ln(x))\right]_e^t = \ln(\ln(t)).$$
+Or cette dernière quantité tend vers $+\infty$ quand $t\to+\infty$. Donc $\int_{e}^t h(x)\,dx$ n'a pas de limite finie quand $t\to+\infty$. On en conclut que $h$ n'est pas (absolument) intégrable.
 
-8. Posons $H : x\in [-\infty,+\infty] \mapsto x\,g(x) = x\,f(-x) = -h(-x)$. Elle est absolument intégrable sur $[-e,+\infty]$ où elle est nulle presque partout. En revanche, pour tout $t>0$ on a $$\int_{-t}^{-e} \left|H(x)\right|\,dx = \int_{-t}^{-e} h(-x)\,dx = \int_{e}^{t} h(x)\,dx $$ qui n'a pas de limite quand $t\to+\infty$. Donc, comme $h$, $H$ n'est pas absolument intégrable. Quant aux développements limités $(1)$ et $(2)$, prenons $x,t\in\R$, $t<x$ et notons $G$ la fonction de répartition associée à $g$. Alors par changement de variable $$G(x) - G(t) = \int_{t}^x f(-u)\,du = \int_{-x}^{-t} f(u)\,du = F(-t) - F(-x).$$ En faisant tendre $t$ vers $-\infty$, on obtient que pour tout $x\in[-\infty,+\infty]$, $G(x) = 1 - F(-x)$. En utilisant la question précédente, on en déduit que $$\lim_{x\to+\infty} x\,\left(1-G(x)\right) = \lim_{x\to+\infty} x\,F(-x) = \lim_{x\to-\infty} -x\,F(x) = 0, $$  puis que
-$$\lim_{x\to-\infty} x\,G(x) = \lim_{x\to-\infty} x\,\left(1 - F(-x)\right) = \lim_{x\to+\infty} -x\,\left(1 - F(x)\right) = -\infty. $$
-En d'autres termes, $G$ satisfait $(1)$ mais pas $(2)$, alors que $F$ satisfait $(2)$ mais pas $(1)$.
+8. La fonction de répartition $F$ considérée respecte bien les développements asymptotiques $(1)$ et $(2)$, mais la fonction $h$ associée n'est pas (absolument) intégrable. Nous avons donc montré que la réciproque de la propriété est fausse.
 
-9. A l'aide de contre-exemples, nous avons vu que $(\mathcal{H}) \Rightarrow (1)$ et $(\mathcal{H}) \Rightarrow (2)$ mais que les réciproques sont fausses. Nous avons aussi observé que $(1)$ n'implique pas $(2)$ et inversement.
+### Liens entre les développements asymptotiques {.answer #answer-dlfdr-liensdl}
 
+9. On remarque que $F$ satisfait $(2)$ mais pas $(1)$, tandis que $G$ satisfait $(1)$ mais pas $(2)$. On en conclut que $(1)$ n'implique pas $(2)$ et inversement.
 
 
 ## Densité et fonction de répartition d'une loi Normale
