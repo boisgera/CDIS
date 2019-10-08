@@ -1,0 +1,2 @@
+g++ arrondi_EDO.cpp -o EDO++ -funroll-loops -Wno-deprecated -O 
+./EDO++

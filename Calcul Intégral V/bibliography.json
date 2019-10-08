@@ -1,0 +1,31 @@
+[
+  {
+          "id": "MAA18",
+          "type": "book",
+          "title": "Kurzweil-stieltjes Integral: Theory And Applications",
+          "collection-title": "Series In Real Analysis",
+          "publisher": "World Scientific Publishing Company",
+          "ISBN": "978-981-4641-79-1",
+          "author": [
+                  {
+                          "family": "Milan",
+                          "given": "T."
+                  },
+                  {
+                          "family": "Antunes",
+                          "given": "M.G."
+                  },
+                  {
+                          "family": "Antonin",
+                          "given": "S."
+                  }
+          ],
+          "issued": {
+                  "date-parts": [
+                          [
+                                  "2018"
+                          ]
+                  ]
+          }
+  }
+]
