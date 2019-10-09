@@ -382,7 +382,7 @@ $$
 dans le cas contraire (si $E$ mesurable mais pas de longueur finie).
 
 ### Interprétation {.remark}
-Il faut comprendre le terme "mesurable" litéralement, 
+Il faut comprendre le terme "mesurable" littéralement, 
 comme signifiant "dont on peut définir la mesure (de longueur)", 
 qui est un nombre fini ou infini. 
 Cette interprétation  est cohérente, puisque tous les ensembles 
