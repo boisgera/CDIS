@@ -233,7 +233,7 @@ La construction d’un modèle probabiliste repose sur l’information connue **
 
 ### Exemple {.example}
 On cherche pour un lancer de deux dés, la probabilité de l’événement “la somme est supérieure ou égale à 10”.
-Elle vaut 1/6 sans information supplémentaire, 1/2 si l’on sait que le résultat d’un des dés est 6, 0 si l’on sait a priori que le résultat d’un des dés est 2. Pour obtenir ces résultats, on a calculé dans chaque le rapport du nombre de résultats favorables sur le nombre de cas possibles. Il est ainsi indispensable de bien définir l’espace de probabilité lié à l’expérience munie de l’information a priori. On remarque également que l’information a priori a changé la valeur de la probabilité de l’événement.
+Elle vaut 1/6 sans information supplémentaire, 1/2 si l’on sait que le résultat d’un des dés est 6, 0 si l’on sait a priori que le résultat d’un des dés est 2. Pour obtenir ces résultats, on a calculé dans chaque cas le rapport du nombre de résultats favorables sur le nombre de cas possibles. Il est ainsi indispensable de bien définir l’espace de probabilité lié à l’expérience munie de l’information a priori. On remarque également que l’information a priori a changé la valeur de la probabilité de l’événement.
 
 L'outil qui va nous permettre d'introduire de l'information est la probabilité conditionnelle dont nous donnons ici la définition.
 
@@ -438,7 +438,7 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
     Plus généralement, si $E$ est une partie finie ou dénombrable de $\R$, toute probabilité $Q$ sur $E$ peut être considérée comme une probabilité $\P$ sur $\R$, via la formule $\P(A) = Q(A\cap E)$. Si pour tout $i \in E$, on pose $q_i = Q(\{i\})$, la fonction de répartition $F$ de $\P$ est alors 
     $$F(x) = \sum_{\substack{i \in E \\ i \leq x}} q_i,$$
     avec la convention qu'une somme "vide" vaut 0. On retrouve bien l'exemple 2 si $E = \N$. On voit que $F$ est **purement discontinue** au sens où elle est complètement caractérisée par ses sauts $\triangle F(x) = F(x) - F(x^-)$ :
-    $$F(x) = \sum_{\substack{y \in E \\ y\leq x}} q_i.$$
+    $$F(x) = \sum_{y\leq x} \triangle F(y).$$
     
 Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités à densité.
 
@@ -453,7 +453,7 @@ Si $f$ est une densité, la fonction
 est la fonction de répartition d'une probabilité $\P$ sur $\R$. On dit que $f$ est la densité de $\P$ ou que $\P$ admet la densité $f$.
 Dans ce cas, $F$ est continue, de sorte que $\P(\{x\}) = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point où $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
 
-Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive, intégrable et non identiquement nulle et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
+Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive, intégrable et d'intégrale strictement positive et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
     $$ \int_\R f(x)\, dx + \sum_{i\in E} p_i = 1.$$
 Alors la fonction 
     $$ F(x) = \int_{-\infty}^x f(x)\, dx + \sum_{\substack{i\in E \\ i \leq x}} p_i$$
