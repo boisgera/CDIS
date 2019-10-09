@@ -268,6 +268,7 @@ Nous avons $A = \bigcup_{n\in\N^\ast} (A\cap B_n)$. Par hypothèse, les ensemble
 
 ### Formule de Bayes {.proposition #bayes}
 Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a 
+
 \begin{equation*}
 \forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N^\ast} \P(A | B_n)\, \P(B_n)}.
 \end{equation*}
@@ -452,7 +453,7 @@ Si $f$ est une densité, la fonction
 est la fonction de répartition d'une probabilité $\P$ sur $\R$. On dit que $f$ est la densité de $\P$ ou que $\P$ admet la densité $f$.
 Dans ce cas, $F$ est continue, de sorte que $\P(\{x\}) = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point où $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
 
-Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive intégrable et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
+Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive, intégrable et non identiquement nulle et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
     $$ \int_\R f(x)\, dx + \sum_{i\in E} p_i = 1.$$
 Alors la fonction 
     $$ F(x) = \int_{-\infty}^x f(x)\, dx + \sum_{\substack{i\in E \\ i \leq x}} p_i$$
