@@ -727,7 +727,7 @@ leur définition :
 ### Les fonctions intégrables sont mesurables {.proposition}
 
 ### Démonstration {.proof}
-Si $f$ est une fonction mesurable, elle est la limite simple de la suite
+Si $f$ est une fonction intégrable, elle est la limite simple de la suite
 constante égale à $f$.
 
 ### Les fonctions mesurables forment un espace vectoriel  {.proposition}
