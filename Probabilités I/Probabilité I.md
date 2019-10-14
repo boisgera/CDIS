@@ -539,7 +539,7 @@ $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n
 Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ vérifie : 
  
  1. $\P(\Omega) = 1$, 
- 2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$ $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
+ 2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$, $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
  3. Pour toute suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante 
     $$\P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
@@ -555,7 +555,7 @@ Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrab
 Dans quelles circonstances particulières deux événements $A$ et $B$ tels que $A\cup B$ soit presque sûr sont-ils indépendants ?
 
 ### Question 2 {.question #ic-2}
-Soit $A$, $B$ et $C$ trois événements indépendants **2 à 2**, avec $\P(C)>0$. Donner une condition nécessaire et suffisante sur $A$, $B$ et $C$ pour que $A$ et $B$ soient indépendants relativement à la probabilité conditionnelle $\P(\,\,|C)$, à la place de $C$. 
+Soit $A$, $B$ et $C$ trois événements indépendants **2 à 2**, avec $\P(C)>0$. Donner une condition nécessaire et suffisante sur $A$, $B$ et $C$ pour que $A$ et $B$ soient indépendants relativement à la probabilité conditionnelle $\P(\,\,|C)$, à la place de $\P$. 
 
 ### Question 3 {.question #ic-3}
 Etablir que deux événements $A$ et $B$ sont indépendants ssi 
@@ -671,7 +671,7 @@ où $\mu \in \R$ et $\sigma^2 > 0$. On note $G$ sa fonction de répartition asso
 
 
 ## Continuité monotone {.answer #answer-contmon}
-On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_0 = A_0$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 1$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
+On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_1 = A_1$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 2$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
 $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=1}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
 
 ## Une définition alternative de la probabilité {.answer #answer-altdef}
@@ -681,7 +681,7 @@ Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B
 En considérant les résultats de ces deux exercices, on obtient une définition alternative de la probabilité en substituant la [continuité monotone](#contmon) et l'additivité à la propriété de [$\sigma$-additivité](#defproba).
 
 ## Généralisation de l'inégalité de Boole {.answer #answer-boolinf}
-On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=1}^n A_n$, qui croît vers l'ensemble $C = \cup_n A_n$.
+On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=1}^n A_i$, qui croît vers l'ensemble $C = \cup_n A_n$.
 D'après [l'inégalité de Boole](#propelem), on a 
    $$\P(B_n) \leq \sum_{i=1}^n \P(A_i)$$
 Mais $\P(B_n) \to_{n \to \infty} \P(C)$ d'après le [théorème de continuité monotone](#contmon), tandis que $\sum_{i=1}^n \P(A_i) \to_{n \to \infty} \sum_{n\in\N^\ast} \P(A_n)$. En passant à la limite, on obtient donc le résultat.
