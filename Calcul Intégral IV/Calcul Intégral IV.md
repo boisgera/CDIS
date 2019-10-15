@@ -621,7 +621,7 @@ Soit $(X, \mathcal{A})$ un espace mesurable et $Y=\left[-\infty, +\infty\right]$
 muni de la tribu de Borel. 
 Si les fonctions $f_k: X \to Y$,
 $k \in \N$, sont mesurables et convergent simplement vers $f$, 
-alors $f$ est mesurable.
+alors $f$ est mesurable. 
 
 ### Démonstration {.proof}
 Par [le lemme liant image réciproque et tribus engendrées](#irte),
