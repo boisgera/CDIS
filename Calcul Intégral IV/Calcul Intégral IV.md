@@ -25,7 +25,7 @@ L'intégrable de Henstock-Kurzweil nous permet de prolonger la fonction $v$ en
 une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
 par la relation
 $$
-v(A) = \int 1_A(x) dx
+v(A) = \int 1_A(x) \, dx
 $$
 si $1_A$ est intégrable et $v(A) = +\infty$ sinon.
 Mais cette approche n'est pas totalement satisfaisante intellectuellement.
@@ -38,7 +38,8 @@ cette limitation pourrait a être un artefact de la méthode choisie
 plutôt qu'une limitation intrinsèque.
 Dans cette section, nous allons donner une autre méthode, plus directe, 
 due à Lebesgue et Carathéodory[^autz],
-qui nous permettra de définir la mesure du volume de tout ensemble de $\R^n$.
+qui nous permettra de définir la mesure (extérieure) du volume de tout ensemble 
+de $\R^n$.
 Elle nous donnera également la raison pour laquelle
 notre construction initiale du volume se limite à la collection
 des ensembles qualifiés de "mesurables".
@@ -73,7 +74,7 @@ v^*(A)
 $$
 
 Cette définition "raisonnable" ne satisfait toutefois pas les propriétés que
-nous attendons (implicitement) d'un volume. Ce décalage est mise en évidence
+nous attendons (implicitement) d'un volume. Ce décalage est mis en évidence
 par un résultat paradoxal de la théorie des ensembles dans $\R^3$ :
 
 ### Paradoxe de Banach-Tarski {.theorem}
@@ -88,9 +89,10 @@ forment une partition de deux sphères disjointes de rayon un.
 Si le résultat est qualifié de paradoxe, c'est qu'il nous semble intuitivement 
 que le volume devrait être préservé par les les opérations subies par 
 la sphère initiale. Or, le volume d'une sphère de rayon un et de deux 
-sphères disjointes de même rayon diffère d'un facteur $2$ ...
+sphères disjointes de même rayon diffère d'un facteur $2$.
 Pour dépasser ce paradoxe, nous allons devoir examiner un par un les
-résultats qui nous semblent évidents dans ce raisonnement.
+résultats qui nous semblent "évidents" dans ce raisonnement pour débusquer
+notre erreur.
 
 Soient $A_1, \dots, A_p$ des ensembles disjoints et non vides
 de $\R^3$ dont la réunion forme la sphère initiale $S_0 = A_1 \cup \dots\cup A_p$,
@@ -106,10 +108,10 @@ $$
 car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
 (au sens de l'intégrale de Henstock-Kurzweil)
 et nous verrons ultérieurement que dans ce cas, la mesure extérieure
-$v^*$ coïncide avec celle de $v$ qui exploite l'intégrable de Henstock-Kurzweil.
+$v^*$ coïncide avec $v$ dont la définition exploite l'intégrable de Henstock-Kurzweil.
 Un simple calcul intégral fournit alors le résultat.
 
-On peut croire que le point critique dans notre définition est la préservation
+On peut croire que le point faible de notre raisonnement est la préservation
 de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
 que lorsque $B$ se déduit de $A$ par une translation, alors $v^*(A) = v^*(B)$, 
 on peut douter du résultat pour les rotations. 
@@ -121,8 +123,8 @@ la mesure $v^*$ est bien invariante par
 rotation (cf. [@Hun11, section 2.8]).
 
 La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
-n'est pas additive ! Même si les ensembles $A_1, \dots, A_p$ sont disjoints,
-il est possible que 
+n'est tout simplement pas additive ! Même si les ensembles 
+$A_1, \dots, A_p$ sont disjoints, il est possible que 
 $$
 v^*(A_1 \cup \dots \cup A_p) \neq v^*(A_1) + \dots + v^*(A_p).
 $$
@@ -136,44 +138,31 @@ Elle est même $\sigma$-sous-additive : si $A_k$, $k \in \N$ sont des
 sous-ensembles de $\R^n$, 
 $$
 v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
-= \sum_{k=0}^n v^*\left(A_k\right).
+\leq \sum_{k=0}^{+\infty} v^*\left(A_k\right).
 $$
 
-Cette propriété est caractéristique des mesures extérieures :
+Cette propriété est une caractéristique des *mesures extérieures* :
 
 ### Mesure extérieure {.definition}
 On appelle *mesure extérieure* sur l'ensemble $X$ toute application
-$$v^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que $\mu(\varnothing) = 0$
-et qui soit *$\sigma$-subadditive* :
-pour tout $A \subset X$ et $A_k \subset X$, $k \in \N$, 
-$$
-\mbox{si } \, A \subset \bigcup_{k=0}^{+\infty} A_k, \; 
-\mbox{alors } \,
-\mu^*\left(A\right)
-\leq 
-\sum_{k=0}^{+\infty} \mu^*\left(A_k\right).
-$$
+$$v^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que :
 
-### {.post .remark} 
-Alternativement, on peut caractériser une mesure extérieure par trois règles
-au lieu de deux:
+  1. $\mu^*(\varnothing) = 0$ (*nullité en $\varnothing$*).
 
-  1. $\mu^*(\varnothing) = 0$.
+  2. $A \subset B \Rightarrow \mu^*(A) \subset \mu^*(B)$ (*croissance*).
 
-  2. Si $A \subset B$, alors $\mu^*(A) \subset \mu^*(B)$.
-
-  3. $\mu^*\left(\cup_{k=0}^{+\infty}A_k\right) \leq \sum_{k=0}^{+\infty} \mu^*\left(A_k\right)$.
+  3. $\mu^*\left(\cup_{k=0}^{+\infty}A_k\right) \leq \sum_{k=0}^{+\infty} \mu^*\left(A_k\right)$ (*$\sigma$-subadditivité*).
 
 -----
 
 Il existe un procédé général permettant de déduire d'une mesure extérieure
 une application qui soit additive -- à condition d'accepter de réduire
-son domaine de définition ; la fonction qui en résulte est non seulement
-additive, mais même $\sigma$-additive. 
+son domaine de définition ; la fonction qui en résulte est additive -- 
+et même $\sigma$-additive. 
 
 ### Ensemble mesurable 
-Soit $\mu^*$ une mesure extérieure sur l'ensemble $X$ ;
-un ensemble $A \subset X$ est dit *$\mu^*$-mesurable* (au sens de Carathéodory) 
+Soit $\mu^*$ une mesure extérieure sur l'ensemble $X$.
+Un ensemble $A \subset X$ est dit *$\mu^*$-mesurable* (au sens de Carathéodory) 
 si pour tout $B \subset X$, on a 
 $$
 \mu^*(B) = \mu^*(B \cap A) + \mu^*(B \setminus A).
@@ -227,12 +216,9 @@ $$
 \mu \left( \bigcup_{k=0}^n A_k \right) = \sum_{k=0}^n \mu(A_k) ;
 $$
 la mesure $\mu$ est donc *additive*. En particulier, si $A, B \in \mathcal{A}$
-et $A \subset B$, en exploitant ce résultat pour $A$ et $B \setminus A$, 
+et $A \subset B$, en exploitant ce résultat pour $A$ et $B \setminus A$
 qui sont deux ensembles disjoints de $\mathcal{A}$, on établit que
-$\mu(A) \subset \mu(B)$ ; $\mu$ est donc *croissante*[^mon].
-
-[^mon]: on trouvera également dans la littérature, le terme de *monotone* pour 
-désigner cette propriété.
+$\mu(A) \subset \mu(B)$ ; $\mu$ est donc *croissante*.
 
 ### Mesure associée à une mesure extérieure {.theorem}
 Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
@@ -254,38 +240,44 @@ On appelle *tribu de Lebesgue* et on note $\mathcal{L}(\R^n)$ la collection
 des ensembles $v^*$-mesurables (au sens de Caratheodory) ; 
 la mesure $v: \mathcal{L}(\R^n) \to [0, +\infty]$ qui lui est associée 
 est appelée *mesure de Lebesgue sur $\R^n$*. 
-La notation "$v$" pour cette mesure est dépourvue d'ambiguité car elle 
-prolonge la fonction $v$ initialement définie sur les pavés compacts.
 
-### Démonstration {.proof}
-Il est évident que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
-$[0,0]^n$ recouvre $\varnothing$ par exemple). Si $A \subset \R^n$
-et $A_k \subset \R^n$, pour tout $\varepsilon > 0$, il existe des 
-pavés compacts $P_{jk}$ tels que 
+### Démonstration (partielle : $v^*$ est une mesure extérieure.) {.proof}
+Il est clair que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
+$[0,0]^n$ recouvre $\varnothing$ par exemple). 
+Si $A \subset B \subset \R^n$, alors tout recouvrement de $B$ par des
+pavés compacts recouvre également $A$ ; par conséquent $v^*(A) \leq v^*(B)$.
+Finalement, pour tout $A_k \subset \R^n$, $k \in \N$, et pour tout $\varepsilon > 0$, 
+il existe des pavés compacts $P_{jk}$ tels que 
 $$
 A_k \subset \bigcup_{j=0}^{+\infty} P_{jk} 
 \; \mbox{ et } \;
 \sum_{j=0}^{+\infty} v(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
 \leq v^*(A_k) \leq \sum_{j=0}^{+\infty} v(P_{jk}).
 $$
-Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $A$, on a donc
+Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $\cup_{k=0}^{+\infty} A_k$, 
+on a donc
 $$
-v^*(A) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
+v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
 \leq 
-\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^k}\right)
+\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
 = \left(\sum_{k=0}^{+\infty} v^*(A_k)\right) +\varepsilon.
 $$
 Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
 que $v^*$ est bien $\sigma$-subadditive.
 
+<!--
+### {.post}
 Nous renvoyons le lecteur intéressé par la preuve que la mesure de Lebesgue
 prolonge bien la mesure de volume des pavés compacts à [@Hun11, section 2.2].
+-->
 
 ### {.remark .ante} 
-On admettra sans preuve le résultat suivant :
+On admettra également sans preuve le résultat suivant, qui montre que la notation
+"$v$" que nous avons employé deux fois est dépourvue d'ambiguité :
 
 ### Mesure de Lebesgue et intégrale de Henstock-Kurzweil
-La tribu $\mathcal{L}(\R^n)$ coïncide avec la tribu des ensembles mesurables 
+La tribu $\mathcal{L}(\R^n)$ des ensembles $v^*$-mesurables 
+au sens de Caratheodory coïncide avec la tribu des ensembles mesurables 
 définis au moyen de l'intégrale de Henstock-Kurzweil. La mesure de Lebesgue
 $v: \mathcal{L}(\R^n) \to [0, +\infty]$ vérifie
 $$
@@ -412,12 +404,15 @@ Dans un ensemble $X$, on appelle *tribu engendrée* par une collection
 $\mathcal{B}$ d'ensembles de $X$ la plus petite tribu 
 (au sens de l'inclusion) 
 $\mathcal{A} = \sigma(\mathcal{B})$ de $X$ contenant $\mathcal{C}$.
-Autrement dit, si $\mathcal{B} \subset \mathcal{C}$ et $\mathcal{C}$ est
-une tribu de $X$, alors $\sigma(\mathcal{B}) \subset \mathcal{C}$.
+Autrement dit : 
 
-### Démonstration de l'existence de la tribu engendrée {.proof}
-Désignons par $\mathfrak{S}$ la (meta-)collection des tribus de 
-$X$ incluant $\mathcal{B}$ (contenant $\mathcal{B}$ comme sous-ensemble). 
+  - $\sigma(B)$ est une tribu.
+  
+  - si $\mathcal{B} \subset \mathcal{C}$ et $\mathcal{C}$ est une tribu de $X$, alors $\sigma(\mathcal{B}) \subset \mathcal{C}$.
+
+### Démonstration (existence de la tribu engendrée) {.proof}
+Désignons par $\mathfrak{S}$ la collection des tribus de 
+contenant $\mathcal{B}$ comme sous-ensemble. 
 $$
 \mathfrak{S}
 =
@@ -428,16 +423,15 @@ $$
 Elle n'est pas vide : elle contient la collection $\mathcal{P}(X)$
 des ensembles de $X$ (qui de toute évidence est un sur-ensemble de $\mathcal{B}$
 et une tribu de $X$). Montrons que la plus petite tribu $\sigma(\mathcal{B})$
-de $X$ contenant $\mathcal{B}$ est l'intersection de $\mathfrak{S}$
-$$
-\sigma(\mathcal{B}) := \bigcap \mathfrak{S} = \bigcap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C},
-$$
-ou encore
-$\sigma(\mathcal{B}) = \{A \subset X \, | \, A \in \mathcal{C} \mbox{ pour tout } \mathcal{C} \in \mathfrak{S}\}.$
-Il est clair que si $\mathcal{C}$ est une tribu de $X$ contenant $\mathcal{B}$,
-alors $\mathfrak{S} \subset \mathcal{C}$, car alors $\mathcal{C} \in \mathfrak{S}$.
+de $X$ contenant $\mathcal{B}$ est l'intersection de toutes les tribus de 
+$\mathfrak{S}$, c'est-à-dire que
+$$\sigma(\mathcal{B}) = \bigcap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C} 
+= \{A \subset X \, | \, A \in \mathcal{C} \mbox{ pour tout } \mathcal{C} \in \mathfrak{S}\}.$$
+Il est clair que si $\mathcal{A}$ est une tribu de $X$ contenant $\mathcal{B}$,
+alors $\cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C} \subset \mathcal{A}$, 
+car $\mathcal{A} \in \mathfrak{S}$.
 Il nous suffit donc de montrer que $\cap \mathfrak{S}$ est une tribu de $X$
-pour conclure ; on vérifiera aisément que comme chaque élément de $\mathfrak{S}$
+pour pouvoir conclure ; on vérifiera aisément que comme chaque élément de $\mathfrak{S}$
 est une tribu, cette intersection en est également une.
 
 <!--
@@ -461,7 +455,7 @@ contenant tous les fermés (ou tous les ouverts) de $X$.
 ### Mesure {.definition}
 Une *mesure (positive)* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
 est une fonction de $\mathcal{A}$ dans $[0, +\infty]$ telle que $\mu(\varnothing)= 0$
-et pour toute collection dénombrable $\{A_k\}$ d'ensembles de
+et pour toute collection dénombrable d'ensembles $A_k$ de
 $\mathcal{A}$ disjoints deux à deux, on ait
 $$
 \mu \left( \bigcup_{k} A_k \right) = \sum_{k} \mu(A_k) ;
@@ -474,7 +468,6 @@ L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
 Gérer "pb" des fonctions à valeurs étendues ? Non, il n'y en a pas ...
 -->
 
-
 ### Fonction mesurable
 Une fonction $f: X \to Y$ associée aux espaces mesurables $(X, \mathcal{A})$
 et $(Y,\mathcal{B})$ est *mesurable* 
@@ -483,15 +476,44 @@ si l'image réciproque $A =f^{-1}(B)$
 de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
 ### Conventions
-Lorsque l'ensemble d'arrivée $Y$ a une structure topologique, par exemple $Y = \R^m$ ou 
-$Y = [-\infty, +\infty]^m$, on supposera par défaut que la 
-tribu associée est la tribu de Borel. 
-Lorsque l'ensemble de départ est $X = \R^n$ on supposera par défaut 
+Lorsque l'ensemble d'arrivée $Y$ de $f$ a une structure topologique, 
+par exemple $Y = \R^m$ ou $Y = [-\infty, +\infty]^m$, 
+on supposera par défaut que la tribu associée est la tribu de Borel. 
+Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera par défaut 
 que la tribu associée est la tribu de Lebesgue. 
-Lorsque l'on souhaitera munir également $X$ de la tribu de Borel,
-on parlera de fonctions *borélienne* (tribu de Borel au départ et à l'arrivée).
+Lorsque l'on souhaitera plutôt munir $X$ et $Y$ de la tribu de Borel,
+on parlera de fonction *borélienne* (tribu de Borel au départ et à l'arrivée).
 Il existe une bonne raison pour adopter cette convention hybride (avec
 des tribus d'un type différent au départ et à l'arrivée) par défaut :
+
+### L'infini
+Dans le cadre abstrait de l'intégration selon Lebesgue, il sera fréquent
+de considérer des fonctions à valeurs dans $Y = [-\infty, +\infty]$
+plutôt que dans $Y=\R$([^inv]), c'est-à-dire des fonctions pouvant 
+éventuellement prendre des valeurs infinies. Le cas des fonctions à valeurs
+finies s'en déduira comme un cas particulier.
+
+[^inv]: dans le cadre de l'intégration de Henstock-Kurzweil, c'est pour 
+l'ensemble de départ que nous avions l'habitude de prendre $[-\infty, +\infty]$
+(avec l'intégrale de Lebesgue il n'est pas nécessaire d'étendre $\R$ comme 
+ensemble de départ).
+La théorie de Henstock-Kurzweil accepte volontiers les fonctions dont les 
+**arguments** sont infinis -- $f(+\infty) = 0$ par exemple a du sens -- mais 
+est "allergique" aux fonctions à **valeurs** infinies. Par exemple, 
+si l'on essayait de calculer l'intégrale de Henstock-Kurzweil de la fonction
+$$
+f(x) = 
+\left|
+\begin{array}{rl}
++\infty & \mbox{si } x= 0, \\
+1 / \sqrt{x} & \mbox{si } x \in \left]0, 1\right] \\
+\end{array}
+\right.
+$$
+on obtiendrait $+\infty$, alors même que l'intégrale vaut $2$ pour toute valeur 
+finie de $f(0)$. L'intégrale de Lebesgue n'a pas cette difficulté, et produira
+la valeur $2$ dans tous les cas.
+
 
 ### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
 Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
@@ -589,17 +611,17 @@ $\mathcal{A}/\mathcal{C}$-mesurable.
 Pour tout ensemble $C \in \mathcal{C}$, on a $g^{-1}(C) \in \mathcal{B}$ 
 et donc $(g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C)) \in \mathcal{A}$.
 
-### TODO -- Conséquence avec les fcts continues / boréliennes.
-Ex: combinaison linéaire, max, etc.
+### TODO -- Les fonctions continues sont boréliennes
+(Quel cadre/généralité ?)
 
-### TODO
-Un intérêt ici à abstraire / espace métrique ? Bon ...
+### TODO -- Démonstration {.proof}
 
 ### Limite simple de fonctions mesurables
-Soit $(X, \mathcal{A})$ un espace mesurable et $Y$ un espace métrique,
-muni de la tribu de Borel $\mathcal{B}(Y)$. Si les fonctions $f_k: X \to Y$,
-$k \in \N$, sont mesurables et convergent simplement vers $f$, alors
-$f$ est mesurable.
+Soit $(X, \mathcal{A})$ un espace mesurable et $Y=\left[-\infty, +\infty\right]$, 
+muni de la tribu de Borel. 
+Si les fonctions $f_k: X \to Y$,
+$k \in \N$, sont mesurables et convergent simplement vers $f$, 
+alors $f$ est mesurable.
 
 ### Démonstration {.proof}
 Par [le lemme liant image réciproque et tribus engendrées](#irte),
