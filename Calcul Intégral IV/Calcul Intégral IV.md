@@ -475,16 +475,6 @@ et $(Y,\mathcal{B})$ est *mesurable*
 si l'image réciproque $A =f^{-1}(B)$
 de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
-### Conventions
-Lorsque l'ensemble d'arrivée $Y$ de $f$ a une structure topologique, 
-par exemple $Y = \R^m$ ou $Y = [-\infty, +\infty]^m$, 
-on supposera par défaut que la tribu associée est la tribu de Borel. 
-Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera par défaut 
-que la tribu associée est la tribu de Lebesgue. 
-Lorsque l'on souhaitera plutôt munir $X$ et $Y$ de la tribu de Borel,
-on parlera de fonction *borélienne* (tribu de Borel au départ et à l'arrivée).
-Il existe une bonne raison pour adopter cette convention hybride (avec
-des tribus d'un type différent au départ et à l'arrivée) par défaut :
 
 ### L'infini
 Dans le cadre abstrait de l'intégration selon Lebesgue, il sera fréquent
@@ -514,6 +504,16 @@ on obtiendrait $+\infty$, alors même que l'intégrale vaut $2$ pour toute valeu
 finie de $f(0)$. L'intégrale de Lebesgue n'a pas cette difficulté, et produira
 la valeur $2$ dans tous les cas.
 
+### Conventions
+Lorsque l'ensemble d'arrivée $Y$ de $f$ a une structure topologique, 
+par exemple $Y = \R^m$ ou $Y = [-\infty, +\infty]^m$, 
+on supposera par défaut que la tribu associée est la tribu de Borel. 
+Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera par défaut 
+que la tribu associée est la tribu de Lebesgue. 
+Lorsque l'on souhaitera plutôt munir $X$ et $Y$ de la tribu de Borel,
+on parlera de fonction *borélienne* (tribu de Borel au départ et à l'arrivée).
+Il existe une bonne raison pour adopter cette convention hybride (avec
+des tribus d'un type différent au départ et à l'arrivée) par défaut :
 
 ### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
 Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
