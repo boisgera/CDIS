@@ -483,7 +483,8 @@ de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 Dans le cadre abstrait de l'intégration selon Lebesgue, on pourra si nécessaire
 considérer des fonctions prenant (éventuellement) des valeurs infinies,
 c'est-à-dire travailler avec des fonctions à valeurs dans $Y = [-\infty, +\infty]$
-plutôt que dans $Y=\R$([^inv]). 
+plutôt que dans $Y=\R$([^inv]). Cette extension simplifiera notamment
+l'énoncé du [théorème de Fubini](#fubini).
 
 [^inv]: dans le cadre de l'intégration de Henstock-Kurzweil, c'est pour 
 l'ensemble de départ que nous avions l'habitude de prendre $[-\infty, +\infty]$ ;
@@ -669,11 +670,13 @@ On appelle *fonction étagée* <!-- (ou *fonction simple*) --> toute fonction $f
 qui ne prenne qu'un nombre fini de valeurs distinctes 
 (ou telle que l'image réciproque de $Y$ par $f$ soit finie).
 
+### TODO -- retarder l'apparition du résultat suivant ?
+
 ### Fonction mesurable
-Une fonction $f: X \to [-\infty, +\infty]$ associée aux espaces mesurables 
-$(X, \mathcal{A})$
-et $(\R,\mathcal{B}(\R))$ est *mesurable* si et seulement si $f$ est la limite
-simple de fonctions étagées $X \to \R$ mesurables.
+Soit $\mathcal{A}$ une tribu sur l'ensemble $X$.
+Une fonction $f: X \to [-\infty, +\infty]$ est
+$\mathcal{A}/$Borel- mesurable si et seulement si $f$ est la limite
+simple de fonctions étagées $X \to \R$ qui soient $\mathcal{A}$/Borel-mesurables.
 
 ### TODO -- Démonstration {.proof}
 
@@ -704,7 +707,7 @@ il existe donc des réels $y_0, \dots, y_{n-1}$ tels que
 $f(X) = \{y_0,\dots, y_{n-1}\}.$
 On a alors
 $$f = \sum_{k=0}^{n-1} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
-Si de plus $f$ est mesurable, les singletons de $\R$ étant (Lebesgue-)mesurables 
+Si de plus $f$ est mesurable, les singletons de $\R$ étant (Borel-)mesurables 
 (car fermés), les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
 
 Réciproquement, si $f$ est de la forme $f = \sum_{k=0}^{n-1} y_k 1_{A_k}$ où
@@ -714,12 +717,12 @@ En considérant les ensembles
 on obtient une somme $\sum_k w_k 1_{B_k}$ du même type mais basée sur des 
 ensembles disjoints $B_k$. En faisant l'union $C_j$ des $B_k$ qui correspondent à
 des valeurs $z_j = w_k$ identiques, on peut de plus s'assurer d'avoir une somme
-$\sum_j z_j 1_{C_j}$ où les valeurs $z_j$ sont distinctes et les $C_j$ sont
-mesurable. Le cas échéant,
-si l'un des $z_j$ est nul, on peut omettre le terme correspondant de la somme.
+de la forme $f = \sum_j z_j 1_{C_j}$ où les valeurs $z_j$ sont distinctes et les $C_j$ sont
+mesurables. 
+Le cas échéant, si l'un des $z_j$ est nul, on peut même omettre le terme correspondant de la somme.
 Il devient maintenant clair que $f$ est également mesurable : si $A$ est un
 ensemble mesurable de $\R$, l'image réciproque de $A$ par $f$ est l'union
-d'une sous-collection des $C_j$ ($C_j$ devant être inclus 
+d'une sous-collection des $C_j$ ($C_j$ étant inclus dans la collection 
 si et seulement si $z_j \in A$)
 et si $0 \in A$, de $X \setminus \cup_j C_j$.
 
@@ -737,8 +740,10 @@ $y_0, \dots, y_{n-1} \in \left[0, +\infty\right[$,
 alors cette définition se traduit par
 $$
 f = \sum_{k=0}^{n-1} y_k 1_{A_k} \rightarrow
-\int f \mu = \sum_{k=0}^{n-1} y_k \mu(A_k).
+\int f \mu = \sum_{k=0}^{n-1} y_k \times \mu(A_k).
 $$
+
+----
 
 ### {.post}
 A noter que dans la somme définissant l'intégrale, si $y$ ne fait pas partie
@@ -754,17 +759,17 @@ voire
 $$
 \sum_{y \in f(X) \setminus \{0\}} y \times \mu(f^{-1}(\{y\}))
 $$
-ce qui permet de se dispenser de la convention $0 \times (+\infty) = 0$.
+ce qui permet également de se dispenser de la convention $0 \times (+\infty) = 0$.
 
 ### Intégrale d'une fonction positive
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \mapsto [0, +\infty]$ une fonction mesurable.
-Soit $\mathcal{F}(f)$ la collection des fonctions étagées positives et mesurables
-inférieures à $f$.
+$f: X \to [0, +\infty]$ une fonction mesurable.
+Soit $\mathcal{F}(f)$ la collection des fonctions étagées positives (à valeurs 
+finies) et mesurables qui soient inférieures à $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 la grandeur positive (finie ou infinie)
 $$
-\int f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int_X g \mu.
+\int f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int g \mu.
 $$
 
 ### Intégrale d'une fonction à valeurs réelles
@@ -783,7 +788,8 @@ $$
 ### Intégrales finies, infinies et indéfinies {.post}
 Une fonction positive peut avoir une intégrale bien définie --
 il faut et il suffit qu'elle soit mesurable -- sans être pour autant 
-intégrable : c'est le cas si (et seulement si) son intégrale est infinie. 
+intégrable. Elle est intégrable si et seulement si elle est mesurable et que 
+son intégrale est finie. 
 Pour les fonctions positives, la formule
 $$
 \int f \mu < + \infty
@@ -792,11 +798,11 @@ signifera donc à la fois "l'intégrale est bien définie" (mesurable)
 et "l'intégrale est finie" (c'est-à-dire : la fonction est intégrable).
 Pour les fonctions signées par contre, il est nécessaire d'être
 plus strict et l'intégrale n'est définie que pour les fonctions intégrables.
-En effet, même si on peut définir
+En effet, même si l'on peut définir
 $$
 \int f_+\mu \; \mbox{ et } \; \int f_- \mu
 $$
-dès que $f$ est mesurable, il est possible que ce deux intégrales soit égales
+dès que $f$ est mesurable, il est possible que ces deux intégrales soit égales
 à $+\infty$ ; il n'y a alors pas de façon "raisonnable"
 de définir la différence des deux grandeurs[^tbh].
 
@@ -819,7 +825,7 @@ On a le résultat plus précis suivant, que l'on admettra :
 ### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
 Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
 par rapport à la mesure de Lebesgue $v$ si et seulement si 
-$f$ est absolument intégrable ($f$ et $|f|$ sont intégrable) 
+$f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
 pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
 deux intégrales sont égales.
 
@@ -833,8 +839,8 @@ signées s'en déduisent simplement.
 
 ### Linéarité {.theorem #lin}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
-L'intégrale par rapport à $\mu$ de fonctions positives (étendues) est
-homogène et additive :
+L'intégrale par rapport à $\mu$ de fonctions positives (à valeurs finies ou
+infinies) est homogène et additive :
 si $\lambda \in \left[0, +\infty\right[$ et $f, g: X \to [0, +\infty]$ sont deux
 applications $\mu$-mesurables,  
 $$
@@ -842,6 +848,12 @@ $$
 \; \mbox{ et } \;
 \int (f + g) \mu = \int f \mu + \int g \mu.
 $$
+
+### TODO -- Pb causalité
+
+La preuve utilise la version "concrête" de l'intégrale, par les suites,
+qui n'est vue que plus tard. Même chose pour TCM. Au minimum, en ante,
+pointer sur cette inversion.
 
 ### Démonstration {.proof}
 La preuve de l'homogénéité est immédiate si $\lambda =0$ ; 
@@ -856,13 +868,13 @@ Par conséquent,
 $$
 \begin{split}
 \int (\lambda f) \mu &=
-\sup_{h \in \mathcal{F}(\lambda f)} \sum_{y \in h(X)} y \times \mu(g^{-1}(y)) \\
+\sup_{h \in \mathcal{F}(\lambda f)} \sum_{y \in \left[0, +\infty\right[} y \times \mu(g^{-1}(y)) \\
 &=
-\sup_{k \in \mathcal{F}(f)} \sum_{y \in (\lambda k)(X)} y \times \mu((\lambda k)^{-1}(y)) \\
+\sup_{k \in \mathcal{F}(f)} \sum_{y \in \left[0, +\infty\right[} y \times \mu((\lambda k)^{-1}(y)) \\
 &=
-\sup_{k \in \mathcal{F}(f)} \sum_{z \in k(X)} (\lambda z) \times \mu((\lambda k)^{-1}(\lambda z)) \\
+\sup_{k \in \mathcal{F}(f)} \sum_{z \in \left[0, +\infty\right[} (\lambda z) \times \mu((\lambda k)^{-1}(\lambda z)) \\
 &=
-\lambda \sup_{k \in \mathcal{F}(f)} \sum_{z \in k(X)} z \times \mu(k^{-1}(z)) \\
+\lambda \sup_{k \in \mathcal{F}(f)} \sum_{z \in \left[0, +\infty\right[} z \times \mu(k^{-1}(z)) \\
 &= \lambda \int f \mu.\\
 \end{split}
 $$
@@ -872,8 +884,8 @@ $$
 (h, k) \in \mathcal{F}(f) \times \mathcal{F}(g) \mapsto h+k \in \mathcal{F}(f + g)
 $$
 est également bien définie mais il n'est pas immédiat qu'elle soit bijective.
-Mais [la définition alternative à l'intégrale d'une fonction positive](#ifpII)
-nous fournit des suites croissantes de fonction positives, mesurables et étagées
+Mais heureusement, [la définition alternative, concrête, à l'intégrale d'une fonction positive](#ifpII)
+nous fournit des suites croissantes de fonctions positives, mesurables et étagées
 $f_k$ et $g_k$, convergeant respectivement vers $f$ et $g$. Pour ces suites,
 $$
 \lim_{k \to + \infty} \int f_k \mu = \int f\mu
@@ -886,8 +898,8 @@ par [le théorème de convergence monotone](#TCM), on a
 $$
 \int (f+g) \mu = \lim_{k \to +\infty} \int (f_k + g_k) \mu. 
 $$
-On pourra aisément se convaincre que l'intégrale limitée aux fonctions
-positives étagées et mesurable est additive ; par conséquent,
+On pourra aisément se convaincre que l'intégrale des fonctions
+positives étagées et mesurables est additive ; par conséquent,
 $$
 \begin{split}
 \int (f+g) \mu &= \lim_{k \to +\infty} \int f_k \mu + \int g_k \mu \\
@@ -903,12 +915,13 @@ L'intégrale de $f$ par rapport à $\mu$ est positive ;
 elle est nulle si et seulement si
 $f$ est nulle $\mu$-presque partout :
 $$
-\int f\mu = 0 \; \Leftrightarrow \; \mu(\{x \in X \, | \, f(x) \neq 0\}) = 0.
+\int f\mu = 0 \; \Leftrightarrow \; \mu(\{x \in X \; | \; f(x) > 0\}) = 0.
 $$
 
 ### Démonstration {.proof}
+La positivité est évidente par construction.
 Si $f$ est nulle presque partout, comme pour toute fonction $g$ positive,
-mesurable et étagée inférieure à $f$ et tout $y \in g(X)$, 
+mesurable et étagée inférieure à $f$ et tout $y \in \left[0, +\infty\right[$, 
 soit $y =0$, soit
 $$
 g^{-1}(y) \subset f^{-1}(\left]0,+\infty \right]),
@@ -919,35 +932,37 @@ $$
 $$
 l'intégrale de $g$ par rapport à $\mu$ vérifie
 $$
-\int g \mu = \sum_{y \in g(X)} y \times \mu(g^{-1}(y)) = 0.
+\int g \mu = \sum_{y \in \left[0, +\infty\right[} y \times \mu(g^{-1}(y)) = 0.
 $$
 Par conséquent,
 $$
 \int f \mu = \sup_{g \in \mathcal{F}(f)} \int g \mu = 0.
 $$
 Réciproquement, si la fonction $f$ n'est pas nulle $\mu$-presque partout, 
-c'est-à-dire si $\mu(f^{-1}(\left]0, +\infty\right[)) \neq 0$,
-alors il existe nécessairement[^ns] un $n \in \N$ tel que
+c'est-à-dire si $\mu(f^{-1}(\left]0, +\infty\right])) \neq 0$,
+alors il existe nécessairement un $n \in \N$ tel que
 $$
-\mu(f^{-1}(\left]2^{-n}, +\infty\right[))  > 0.
+\mu(f^{-1}([2^{-n}, +\infty]))  > 0.
 $$
-Notons $A_n = f^{-1}(\left]2^{-n}, +\infty\right[)$ ; c'est un ensemble
+En effet, les ensembles $f^{-1}\left([2^{-n}, +\infty]\right)$
+forment une suite croissante d'ensembles mesurables dont l'union
+est $f^{-1}\left(\left]0, +\infty\right]\right)$. Par $\sigma$-additivité de
+la mesure $\mu$, on a donc
+$$
+\lim_{n \to + \infty} \mu\left(f^{-1}\left([2^{-n}, +\infty]\right)\right)
+=
+\mu\left(f^{-1}\left(\left]0, +\infty\right]\right)\right).
+$$
+
+Notons $A_n = f^{-1}([2^{-n}, +\infty])$ ; c'est un ensemble
 mesurable de mesure positive. La fonction $2^{-n}1_{A_n}$ est positive, étagée, 
 mesurable et inférieure à $f$. On a donc
 $$
-0 < 2^{-n}\mu(A_n) = \int 2^{-n}1_{A_n} \mu \leq 2^{-n}\int f\mu.
+0 < 2^{-n}\mu(A_n) = \int 2^{-n}1_{A_n} \mu \leq \int f\mu.
 $$
 L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
 
-[^ns]: En effet, les ensembles $f^{-1}\left(\left]2^{-n}, +\infty\right[\right)$
-forment une suite croissante d'ensembles mesurables dont l'union
-est $f^{-1}\left(\left]0, +\infty\right[\right)$. Par $\sigma$-additivité de
-la mesure, on a donc
-$$
-\lim_{n \to + \infty} \mu\left(f^{-1}\left(\left]2^{-n}, +\infty\right[\right)\right)
-=
-\mu\left(f^{-1}\left(\left]0, +\infty\right[\right)\right).
-$$
+
 
 ### TODO : 
 rk expliquer ici shift justifié entre négligeable et ce qui est exploité,
@@ -980,12 +995,12 @@ f_k(x) \to f(x) \mbox{ quand } k \to +\infty,
 $$
 est mesurable et
 $$
-\lim_{k \to +\infty} \int f_k(x) \, \mu(dx) = \int f(x) \, \mu(dx).
+\lim_{k \to +\infty} \int f_k \mu = \int f \mu.
 $$
 
 ### Démonstration {.proof}
 La fonction $f$ est mesurable comme limite simple de fonctions mesurables.
-La positivité de l'intégrale entraîne
+La positivité et la linéarité de l'intégrale entraînent
 $$
 \int f_0 \mu \leq \dots \leq \int f_k \mu \leq \dots \int f_k \mu \leq \int f \mu.
 $$
@@ -997,29 +1012,29 @@ $$
 Soit $g: X \to \left[0, +\infty\right[$ une fonction étagée mesurable, donc
 de la forme
 $$
-g(x) = \sum_{j=0}^p c_j 1_{E_j}
+g(x) = \sum_{j=0}^{n-1} y_j 1_{A_j}
 $$
-avec $c_k \in \left[0, +\infty\right[$ et $E_k$ mesurable.
+avec $y_j \in \left[0, +\infty\right[$ et $A_j$ mesurable.
 Soit $t \in \left[0, 1\right[$. Comme la suite des $f_k$ est croissante et 
 converge simplement vers $f$, les ensembles
-$A_k = \{x \in X \; | \; f_k(x) \geq t g(x) \}$
+$E_k = \{x \in X \; | \; f_k(x) \geq t g(x) \}$
 vérifient
 $$
-A_0 \subset \cdots \subset A_k \subset \cdots 
+E_0 \subset \cdots \subset E_k \subset \cdots 
 \; \mbox{ et } \;
-\bigcup_{k=0}^{+\infty} A_k = X.
+\bigcup_{k=0}^{+\infty} E_k = X.
 $$
-Les $f_k$ et $g$ étant mesurables, les ensembles $A_k$ sont mesurables.
+Les $f_k$ et $g$ étant mesurables, les ensembles $E_k$ sont mesurables.
 On a 
 $$
-\int f_k \mu \geq \int g 1_{A_k} = t\sum_{j=0}^p c_k \mu(A_k \cap E_j).
+\int f_k \mu \geq \int t g 1_{E_k} = t\sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k).
 $$
-et comme $\cup_{k=0}^{+\infty} A_k \cap E_j = E_j$, par $\sigma$-additivité
+et comme $\cup_{k=0}^{+\infty} A_j \cap E_k = A_j$, par $\sigma$-additivité
 de $\mu$,
 $$
 \lim_{k\to +\infty} \int f_k \mu \geq 
-t\lim_{k\to +\infty} \sum_{j=0}^p c_k \mu(A_k \cap E_j) = 
-t \left(\sum_{j=0}^p c_k \mu(E_j)\right) = t \int g\mu. 
+t\lim_{k\to +\infty} \sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k) = 
+t \left(\sum_{j=0}^{n-1} y_j \mu(A_j)\right) = t \int g\mu. 
 $$
 Cette inégalité étant valable pour tout $t \in \left[0, 1\right[$
 et pour toute fonction positive étagée et mesurable $g$, on en déduit
@@ -1034,11 +1049,11 @@ $$
 
 ### Intégrale d'une fonction positive II {.theorem #ifpII}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \mapsto [0, +\infty]$ une fonction mesurable.
-Il existe une suite croissante de fonctions $f_k$ étagées positives et 
+$f: X \to [0, +\infty]$ une fonction mesurable.
+Il existe une suite croissante de fonctions $f_k$ étagées positives finies et 
 mesurables, convergeant simplement vers $f$ ; pour toute suite de ce type, 
 $$
-\int f(x) \mu(dx) = \lim_{k\to +\infty} \int f_k(x) \mu(dx). 
+\lim_{k\to +\infty} \int f_k \mu = \int f \mu
 $$
 
 ### Démonstration {.proof}
@@ -1063,26 +1078,26 @@ pour toute suite de ce type.
 
 ### Théorème de convergence dominée {.theorem #TCD}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
-$f_k: X \to [-\infty, +\infty]$, $k \in \N$, une suite de fonctions 
-mesurables, dominées par la fonction intégrable $g: X \to [-\infty, +\infty]$
+$f_k: X \to [0, +\infty]$, $k \in \N$, une suite de fonctions 
+mesurables, dominées par la fonction intégrable $g: X \to [0, +\infty]$
 c'est-à-dire telles que pour tout tout $k \in \N$ et tout $x \in X$,
 $$
-|f_k(x)| \leq g(x) \; \mbox{ et } \; \int g(x) \, \mu(dx) < +\infty.
+0 \leq f_k(x) \leq g(x) \; \mbox{ et } \; \int_X g \mu < +\infty.
 $$
-Si la suite des $f_k$ à une limite simple $f: X \to [0, +\infty]$
+Si la suite des $f_k$ à une limite simple $f: X \to [0, +\infty]$,
 c'est-à-dire si pour tout $x \in X$,
-$$
-f_k(x) \to f(x) \mbox{ quand } k \to +\infty,
-$$
+$f_k(x) \to f(x) \mbox{ quand } k \to +\infty,$
 alors
 $$
-\lim_{k \to +\infty} \int f_k(x) \, \mu(dx) = \int f(x) \, \mu(dx).
+\lim_{k \to +\infty} \int f_k \mu  = \int f \mu.
 $$
 
 ### TODO -- Démonstration {.proof}
 
 Produit de mesures
 ================================================================================
+
+
 
 ### Tribu produit
 Soit $(X ,\mathcal{A})$ et $(Y, \mathcal{B})$ deux espaces mesurables.
@@ -1093,14 +1108,27 @@ ensembles de la forme $A \times B$ où $A \in \mathcal{A}$ et
 $B \in \mathcal{B}$.
 $$
 \mathcal{A} \otimes \mathcal{B} := 
-\sigma 
+\sigma_{X \times Y}
 \left( 
 \left\{ A \times B \; | \; A \in \mathcal{A}, \; B \in \mathcal{B} \right\}
 \right).
 $$
 
+### Produit des boréliens
+On peut montrer que pour tout couple d'entiers $m$ et $n$, la tribu des
+boréliens sur $\R^{m+n}$ est le produit des tribus des boréliens sur 
+$\R^m$ et $\R^n$ :
+$$
+\mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n}).
+$$
+Le résultat analogue n'est pas vrai pour la mesure de Lebesgue : il est 
+nécessaire de compléter la tribu produit $\mathcal{L}(\R^m) \otimes \mathcal{L}(\R^n)$
+par rapport à la mesure de Lebesgue sur $\R^{m+n}$
+pour obtenir $\mathcal{L}(\R^{m+n})$ (cf. [exercice "Complétion d'une mesure"](#complétion)).
+
+
 ### Mesure produit
-Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés.
+Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espaces mesurés.
 On appelle *mesure produit* de $\mu$ et $\nu$ et l'on note 
 $\mu \otimes \nu$ la fonction définie sur $\mathcal{A} \otimes \mathcal{B}$
 par
@@ -1109,9 +1137,14 @@ $$
 \left\{ 
 \sum_{k=0}^{+\infty} \mu(A_k) \nu(B_k) 
 \; \left| \vphantom{\sum_{k=0}^{+\infty}} \right. \;
-A_k \in \mathcal{A}, \ B_k \in \mathcal{B}, \, C \subset \bigcup_{k=0}^{+\infty} A_k \times B_k \right\}
+A_k \in \mathcal{A}, \ B_k \in \mathcal{B}, \, C \subset \bigcup_{k=0}^{+\infty} A_k \times B_k \right\}.
 $$
 
+### Démonstration {.proof}
+Cf. @Hun11.
+
+
+<!--
 ### TODO -- Démonstration : la "mesure produit" est une mesure {.proof}
 
   - introduire $(\mu \otimes \nu)^* (C)$ pour tout $C$, montrer qu'on a 
@@ -1120,41 +1153,69 @@ $$
   - montrer que tout ensemble de $\mathcal{A} \otimes \mathcal{B}$ et 
     $(\mu \otimes \nu)^*$-mesurable (suffit de montrer que $A \times B$
     est $(\mu \otimes \nu)^*$-mesurable).
-    
+-->    
+
 
 ### Intégrale dans un espace produit {.notation}
 Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés.
 Pour toute fonction $\mu \otimes \nu$-mesurable 
-$f: X \times Y \to [0, +\infty]$ ou toute fonction intégrable
+$f: X \times Y \to [0, +\infty]$ ou toute fonction $\mu \otimes \nu$-intégrable
 $f: X \times Y \to \R$, on notera
 $$
-\int f(x, y) \mu(dx)\nu(dy) := 
+\int_{X \times Y} f(x, y) \mu(dx)\nu(dy) := 
 \int f (\mu \otimes \nu).
 $$
 
-### TODO -- Mesure $\sigma$-finie (plus tôt ? Bof.)
+### Mesure $\sigma$-finie
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. On dit que la mesure $\mu$
+est $\sigma$-finie s'il existe une suite d'ensembles mesurables 
+$A_k \in \mathcal{A}$, $k \in \N$, telle que 
+$$
+\bigcup_{k=0}^{+\infty} A_k = X 
+\; \mbox{ et } \; 
+\forall \, k \in \N, \mu(A_k) < +\infty.
+$$
 
+<!--
 ### TODO -- remark
 Gérer la subtilité que la première intégrale est définie uniquement
 presque partout, ce qui suffit à montrer que la seconde est définie
 (à détailler aussi en amont).
+-->
 
 ### Théorème de Fubini {.theorem #fubini}
-Soit $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espaces
-mesurés $\sigma$-finis. Une fonction mesurable $f: X \times Y \to \R$
+Soit $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés,
+tels que les mesures $\mu$ et $\nu$ soient $\sigma$-finies.
+Une fonction mesurable $f: X \times Y \to \R$
 est intégrable si et seulement l'intégrale itérée
 $$
 \int_Y \left(\int_X |f(x, y)| \mu(dx) \right) \nu(dy)
 $$
 est finie. Dans ce cas,
 $$
-\int_{X \times Y} f \, (\mu \otimes \nu)
+\int f \, (\mu \otimes \nu)
 =
-\int_{X \times Y} f(x, y) \mu(dx)\nu(dy)
-=
-\int_Y \left(\int_X |f(x, y)| \mu(dx) \right) \nu(dy).
+\int_Y \left(\int_X f(x, y) \mu(dx) \right) \nu(dy).
 $$
 
+### Démonstration {.proof}
+cf @Hun11.
+
+### Symmétrie
+Le rôle joué par $X$ et $Y$ étant symétrique dans l'énoncé du théorème de
+Fubini,on peut également dire qu'une fonction mesurable $f: X \times Y \to \R$
+est intégrable si et seulement l'intégrale itérée
+$$
+\int_X \left(\int_Y |f(x, y)| \nu(dy) \right) \mu(dx)
+$$
+est finie et que dans ce cas,
+$$
+\int f \, (\mu \otimes \nu)
+=
+\int_X \left(\int_Y f(x, y) \nu(dy) \right) \mu(dx).
+$$
+
+<!--
 ### TODO -- Complétion
 Etudier <https://www.math.fsu.edu/~roberlin/maa5616.f15/homework9sln.pdf>
 
@@ -1163,9 +1224,8 @@ Aussi, <https://terrytao.wordpress.com/2010/10/30/245a-notes-6-outer-measures-pr
 ### TODO -- remarque 
 remarque évidente sur l'autre intégrale itérée.
 
-### Démonstration {.proof}
 
-
+-->
 
 Exercices
 ================================================================================
@@ -1259,7 +1319,7 @@ collection.
 
 
 
-Complétion d'une mesure
+Complétion d'une mesure {#complétion}
 --------------------------------------------------------------------------------
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
