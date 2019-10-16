@@ -618,10 +618,32 @@ $\mathcal{A}/\mathcal{C}$-mesurable.
 Pour tout ensemble $C \in \mathcal{C}$, on a $g^{-1}(C) \in \mathcal{B}$ 
 et donc $(g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C)) \in \mathcal{A}$.
 
-### TODO -- Les fonctions continues sont boréliennes
-(Quel cadre/généralité ?)
+### Les fonctions continues sont boréliennes
+Soient $X$ et $Y$ deux espaces topologiques.
+Toute fonction continue $f : X \to Y$ est borélienne.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Notons $\mathcal{F}_X$ et $\mathcal{F}_Y$ les collections de tous les ensembles 
+fermés de $X$ et $Y$ respectivement.
+Comme les boréliens de $Y$ sont engendrés par les fermés de $\mathcal{F}_Y$, on a
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} = \{f^{-1}(A) \; | \; A \in \sigma_Y(\mathcal{F}_Y)\}
+$$
+et par conséquent, par [commutativité](#irte),
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} = \sigma_X (\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\}).
+$$
+Or la fonction $f$ étant continue, 
+$\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\} \subset \mathcal{F}_X$ et par 
+conséquent
+$$
+\sigma_X(\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\}) \subset \sigma_X(\mathcal{F}_X) = \mathcal{B}(X).
+$$
+Au final, 
+$\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} \subset \mathcal{B}(X)$
+et la fonction $f$ est bien $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable, 
+c'est-à-dire borélienne.
+
 
 ### Limite simple de fonctions mesurables
 Soit $(X, \mathcal{A})$ un espace mesurable et $Y=\left[-\infty, +\infty\right]$, 
