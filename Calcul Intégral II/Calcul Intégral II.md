@@ -382,7 +382,7 @@ $$
 dans le cas contraire (si $E$ mesurable mais pas de longueur finie).
 
 ### Interprétation {.remark}
-Il faut comprendre le terme "mesurable" litéralement, 
+Il faut comprendre le terme "mesurable" littéralement, 
 comme signifiant "dont on peut définir la mesure (de longueur)", 
 qui est un nombre fini ou infini. 
 Cette interprétation  est cohérente, puisque tous les ensembles 
@@ -727,7 +727,7 @@ leur définition :
 ### Les fonctions intégrables sont mesurables {.proposition}
 
 ### Démonstration {.proof}
-Si $f$ est une fonction mesurable, elle est la limite simple de la suite
+Si $f$ est une fonction intégrable, elle est la limite simple de la suite
 constante égale à $f$.
 
 ### Les fonctions mesurables forment un espace vectoriel  {.proposition}
@@ -751,12 +751,32 @@ on n'utilise pas autre chose ...
 
 ### Démonstration {.proof}
 
-Soit $f:\R \to \R$ une fonction continue presque
-partout. Pour tout entier $k$, la fonction $f_k$ égale à $f$ sur
-l'intervalle $[-k, k]$ et zéro en dehors de cet intervalle
-est intégrable (car Riemann-intégrable sur $[-k, k]$)
-et la suite des $f_k$ converge simplement vers $f$, 
-qui est donc mesurable. 
+Soit $f:\R \to \R$ une fonction continue presque partout. 
+Soit $k \in \N$ ; on note $\sigma_k:\R \to \R$ la fonction
+définie par
+$$
+\sigma_k(x)
+=
+\left|
+\begin{array}{rl}
+-k & \mbox{si $x \in \left]-\infty, -k\right]$,} \\
+x  & \mbox{si $x \in \left]-k, k\right[$,} \\
+k & \mbox{si $x \in \left[k, +\infty\right[$.} \\
+\end{array}
+\right.
+$$
+
+Comme $\sigma_k$ est continue et bornée, 
+la fonction $g_k : [-k, k] \to \R$ définie par 
+$$
+x \in [-k, k] \mapsto (\sigma_k \circ f)(x)
+$$
+est continue presque partout sur $[-k, k]$ et bornée.
+Par conséquent, elle est intégrable au sens de Riemann -- 
+et donc de Henstock-Kurzweil -- sur $[-k, k]$. Son extension
+$f_k$ par zéro au reste de $\R$ est donc intégrable au sens de
+Henstock-Kurzweil. De plus, la suite des $f_k$ converge simplement vers $f$ ;
+la fonction $f$ est donc mesurable. 
 
 ### Critère de l'image réciproque {.theorem #CIR}
 Une fonction $f:\R \to \R^n$ est mesurable si et seulement

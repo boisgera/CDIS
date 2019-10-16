@@ -17,6 +17,7 @@ before_install:
   - export PATH=$HOME/conda/bin:$PATH
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
+  - conda install setuptools # hack against the conda "RemoveError" in update
   - conda update conda
   - conda info -a # debugging
   - conda env create -v -f environment.yml -p env

@@ -233,7 +233,7 @@ La construction d’un modèle probabiliste repose sur l’information connue **
 
 ### Exemple {.example}
 On cherche pour un lancer de deux dés, la probabilité de l’événement “la somme est supérieure ou égale à 10”.
-Elle vaut 1/6 sans information supplémentaire, 1/2 si l’on sait que le résultat d’un des dés est 6, 0 si l’on sait a priori que le résultat d’un des dés est 2. Pour obtenir ces résultats, on a calculé dans chaque le rapport du nombre de résultats favorables sur le nombre de cas possibles. Il est ainsi indispensable de bien définir l’espace de probabilité lié à l’expérience munie de l’information a priori. On remarque également que l’information a priori a changé la valeur de la probabilité de l’événement.
+Elle vaut 1/6 sans information supplémentaire, 1/2 si l’on sait que le résultat d’un des dés est 6, 0 si l’on sait a priori que le résultat d’un des dés est 2. Pour obtenir ces résultats, on a calculé dans chaque cas le rapport du nombre de résultats favorables sur le nombre de cas possibles. Il est ainsi indispensable de bien définir l’espace de probabilité lié à l’expérience munie de l’information a priori. On remarque également que l’information a priori a changé la valeur de la probabilité de l’événement.
 
 L'outil qui va nous permettre d'introduire de l'information est la probabilité conditionnelle dont nous donnons ici la définition.
 
@@ -270,7 +270,7 @@ Nous avons $A = \bigcup_{n\in\N^\ast} (A\cap B_n)$. Par hypothèse, les ensemble
 Selon les mêmes hypothèses que ci-dessus et si $\P(A) > 0$, on a 
 
 \begin{equation*}
-\forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N} \P(A | B_n)\, \P(B_n)}.
+\forall\, i \in \{1,\dots,n\},\  \P(B_i | A) = \dfrac{\P(A | B_i)\, \P(B_i)}{\sum_{n\in\N^\ast} \P(A | B_n)\, \P(B_n)}.
 \end{equation*}
 
 ### Démonstration {.proof}
@@ -438,7 +438,7 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
     Plus généralement, si $E$ est une partie finie ou dénombrable de $\R$, toute probabilité $Q$ sur $E$ peut être considérée comme une probabilité $\P$ sur $\R$, via la formule $\P(A) = Q(A\cap E)$. Si pour tout $i \in E$, on pose $q_i = Q(\{i\})$, la fonction de répartition $F$ de $\P$ est alors 
     $$F(x) = \sum_{\substack{i \in E \\ i \leq x}} q_i,$$
     avec la convention qu'une somme "vide" vaut 0. On retrouve bien l'exemple 2 si $E = \N$. On voit que $F$ est **purement discontinue** au sens où elle est complètement caractérisée par ses sauts $\triangle F(x) = F(x) - F(x^-)$ :
-    $$F(x) = \sum_{\substack{y \in E \\ y\leq x}} q_i.$$
+    $$F(x) = \sum_{y\leq x} \triangle F(y).$$
     
 Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe suivant est consacré à un exemple très important, celui des probabilités à densité.
 
@@ -453,7 +453,7 @@ Si $f$ est une densité, la fonction
 est la fonction de répartition d'une probabilité $\P$ sur $\R$. On dit que $f$ est la densité de $\P$ ou que $\P$ admet la densité $f$.
 Dans ce cas, $F$ est continue, de sorte que $\P(\{x\}) = 0$ pour tout $x$, et elle est même dérivable et de dérivée $f$ en tout point où $f$ est continue. A l'inverse, si la fonction de répartition d'une probabilité $\P$ est dérivable, ou seulement continue partout et dérivable par morceaux, alors $\P$ admet une densité.
 
-Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive intégrable et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
+Il existe bien sûr des fonctions de répartitions qui n'ont pas de densité : c'est le cas des probabilités discrètes données en exemple [ci-dessus]{#ex.discret}. Il existe des cas "mixtes" : soient d'une part $f$ une fonction positive, intégrable et d'intégrale strictement positive et d'autre part une partie finie ou dénombrable $E$ de $\R$ et des poids $p_i>0$ indexés par $i \in E$, tels que :
     $$ \int_\R f(x)\, dx + \sum_{i\in E} p_i = 1.$$
 Alors la fonction 
     $$ F(x) = \int_{-\infty}^x f(x)\, dx + \sum_{\substack{i\in E \\ i \leq x}} p_i$$
@@ -539,7 +539,7 @@ $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n
 Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ vérifie : 
  
  1. $\P(\Omega) = 1$, 
- 2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$ $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
+ 2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$, $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
  3. Pour toute suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante 
     $$\P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
@@ -555,7 +555,7 @@ Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrab
 Dans quelles circonstances particulières deux événements $A$ et $B$ tels que $A\cup B$ soit presque sûr sont-ils indépendants ?
 
 ### Question 2 {.question #ic-2}
-Soit $A$, $B$ et $C$ trois événements indépendants **2 à 2**, avec $\P(C)>0$. Donner une condition nécessaire et suffisante sur $A$, $B$ et $C$ pour que $A$ et $B$ soient indépendants relativement à la probabilité conditionnelle $\P(\,\,|C)$, à la place de $C$. 
+Soit $A$, $B$ et $C$ trois événements indépendants **2 à 2**, avec $\P(C)>0$. Donner une condition nécessaire et suffisante sur $A$, $B$ et $C$ pour que $A$ et $B$ soient indépendants relativement à la probabilité conditionnelle $\P(\,\,|C)$, à la place de $\P$. 
 
 ### Question 3 {.question #ic-3}
 Etablir que deux événements $A$ et $B$ sont indépendants ssi 
@@ -671,7 +671,7 @@ où $\mu \in \R$ et $\sigma^2 > 0$. On note $G$ sa fonction de répartition asso
 
 
 ## Continuité monotone {.answer #answer-contmon}
-On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_0 = A_0$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 1$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
+On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_1 = A_1$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 2$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
 $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=1}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
 
 ## Une définition alternative de la probabilité {.answer #answer-altdef}
@@ -681,7 +681,7 @@ Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B
 En considérant les résultats de ces deux exercices, on obtient une définition alternative de la probabilité en substituant la [continuité monotone](#contmon) et l'additivité à la propriété de [$\sigma$-additivité](#defproba).
 
 ## Généralisation de l'inégalité de Boole {.answer #answer-boolinf}
-On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=1}^n A_n$, qui croît vers l'ensemble $C = \cup_n A_n$.
+On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=1}^n A_i$, qui croît vers l'ensemble $C = \cup_n A_n$.
 D'après [l'inégalité de Boole](#propelem), on a 
    $$\P(B_n) \leq \sum_{i=1}^n \P(A_i)$$
 Mais $\P(B_n) \to_{n \to \infty} \P(C)$ d'après le [théorème de continuité monotone](#contmon), tandis que $\sum_{i=1}^n \P(A_i) \to_{n \to \infty} \sum_{n\in\N^\ast} \P(A_n)$. En passant à la limite, on obtient donc le résultat.
