@@ -177,6 +177,28 @@ Avec absorption c'est plus simple quand même ...
 ### TODO 
 $f$ $\mu-$intégrable à valeurs réelles fois $\mu$ défini une mesure signée
 
+### TODO -- Mesure de Radon (ref. Arverson)
+Une mesure de Borel positive $\mu : \mathcal{B}(\R) \to [0, +\infty]$ est *de Radon* si :
+
+  1. Pour tout compact $K \subset \R$, $\mu(K) < +\infty$ (*localement finie*).
+
+  2. Pour tout $A \in \mathcal{B}(\R)$, 
+     $$
+     \mu(A) = \sup \{\mu(K) \; | \; \mbox{$K$ compact de $\R$}, \, K \subset A\}.
+     $$
+    (régularité intérieure).
+
+  3. Pour tout $A \in \mathcal{B}(\R)$,
+     $$
+      \mu(A) = \inf \{\mu(V) \; | \; \mbox{$V$ ouvert de $\R$}, \, A \subset V\}.
+     $$
+    (régularité extérieure).
+
+### TODO
+(dans le cas réel, 2. et 3. sont gratuits ? Chercher. Je crois oui, cf
+<https://www.lpsm.paris/cours/processus-html/node6.html> par exemple).
+Supprimer de la def donc ... (éventuellement, faire une rq sur la régularité).
+
 ### TODO -- mesure de Radon (signée)
 + lien avec 
 
