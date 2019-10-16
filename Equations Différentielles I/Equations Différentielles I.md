@@ -87,7 +87,20 @@ $$
 Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $U$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.$\hfill\blacksquare$
 
 ### Classe plus générale de solutions {.remark}
-Relaxation de la continuité de $f$ et de la notion de solution de manière à ce que cette intégrale existe + ref à calcul intégral
+La définition sous forme intégrale des solutions montre que l'hypothèse de continuité de $f$ pourrait être relachée: il suffit de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Par exemple, un contexte plus large consiste à supposer seulement que dans un voisinage de $(t_0,x_0)$,
+
+- pour tout $t$, $x\mapsto f(t,x)$ est continue ;
+
+- pour tout $x$, $t\mapsto f(t,x)$ est mesurable ; 
+
+- il existe une fonction intégrable $t\mapsto b(t)$ telle que $|f(t,x)|\leq b(t)$ pour tout $(t,x)$.
+
+ Sous ses conditions plus faibles, dites de *Carathéodory*, l'existence de solutions *généralisées* sous forme intégrale est toujours bien garantie. Un cadre encore plus général consisterait à autoriser des discontinuités de $f$ en $x$ mais l'étude des solutions passerait alors par celle des *inclusions différentielles* du type $\dot{x} \in F(t,x)$, ce qui nous amèneraient bien trop loin de ce cours.  
+
+### Portrait de phase   
+En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. 
+
+![Portraits de phase d'un pendule non amorti à gauche et amorti à droite. $x_1$ représente l'angle du pendule et $x_2$ sa vitesse de rotation.](images/pendule.py){#fig_pendule}
 
 
 Etude du problème de Cauchy
@@ -116,13 +129,13 @@ $$
 \dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0)
 $$ 
 permettant de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli*.
-La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc on sait que ce problème de Cauchy admet au moins une solution. En fait, on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales.
+La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc ce problème de Cauchy admet au moins une solution. En fait, on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales.
 
 
 Unicité des solutions
 -------------------------------
 
-Nous avons vu dans la partie précédente que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
+Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
@@ -202,7 +215,7 @@ $$
 f(t,x) = a(t) x + b(t) \ ,
 $$
 admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $\partial_x f(t,x) = a(t)$ (en identifiant abusivement ici différentielle et matrice Jacobienne).
-- 
+- ?????
 
 
 Solutions globales
@@ -338,10 +351,10 @@ $$
 $$
 qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suffisamment petits. On voit bien ici que cette différence est bornée en temps fini, mais pas forcément aymptotiquement en particulier si $a>0$.
 
-- L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la boîte de condition initiales, plus les solutions restent proches. Par contre, lorsqu'on augmente le "Integration Time" les solutions s'écartent.
+- L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la *boîte* de condition initiales, plus les solutions restent proches. Par contre, lorsque l'on augmente le "Integration Time" les solutions s'écartent.
 
 ### Chaos déterministe et horizon de Lyapunov {.remark #rem_chao}
-Même si la continuité des solutions par rapport aux paramètres/conditions initiales donne l'espoir de pouvoir simuler et prédire l'évolution de systèmes physiques, elle est malheureusement parfois insuffisante. 
+Même si la continuité des solutions par rapport aux paramètres/conditions initiales donne à espérer de pouvoir simuler et prédire l'évolution de systèmes physiques, elle est malheureusement parfois insuffisante. 
 Henri Poincaré écrit:
 
 <!-- Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. -->
@@ -364,11 +377,13 @@ Il est important d'insister sur le caractère *déterministe* de ce chaos : chaq
 \dot{y} &= \rho \, x - y -xz \\
 \dot{z} &= xy-\beta z 
 \end{align*}
-où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires sautent de manière *chaotique* d'une aile à l'autre.
+où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires *sautent* de manière *chaotique* d'une aile à l'autre, comme représenté sur la [figure](#fig_attracteur_lorenz) ci-dessous.
+
+![Trajectoire de l'oscillateur de Lorenz](images/attracteur_lorenz.py){#fig_attracteur_lorenz}
 
 - En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par les travaux de Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années. 
 
-- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très diverts allant de l'économie à l'électricité parfois lors d'une excitation sinusoïdale à certaines fréquences: pendule forcé, oscillateur de Van der Pol, etc. REFFF
+- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité parfois lors d'une excitation sinusoïdale à certaines fréquences: pendule forcé, oscillateur de Van der Pol, etc. REFFF
 
 Propriétés asymptotiques
 -----------------------------
@@ -385,12 +400,12 @@ f(a) = 0  \ .
 $$
 En d'autres termes, la fonction constante $x\equiv a$ est alors solution.
 
-### Exemple d'un pendule amorti {.exemple #ex_pendule}
-L'évolution d'un pendule amorti de longueur $\ell$ dans le champ de l'apesanteur peut être décrit par une dynamique du type
+### Exemple d'un pendule {.exemple #ex_pendule}
+L'évolution d'un pendule de longueur $\ell$ dans le champ de l'apesanteur peut être décrit par une dynamique du type
 $$
 \ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
 $$
-avec $\rho>0$ un coefficient de frottement.
+avec $\rho\geq 0$ un coefficient de frottement.
 En prenant $x=(\theta,\dot{\theta})$, on obtient le système
 $$
 \begin{array}{rcl}
@@ -429,13 +444,13 @@ $$
 
 
 ### Exemples
-- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse: l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc asymptotiquement stable.
+- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse: l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule amorti](#fig_pendule) donné plus haut.  
 
-- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable.
+- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule) donné plus haut.  
 
-- Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Voir le système de Vinograd poour les curieux. REF ???
+- Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Un exemple célèbre est le système de [Vinograd](#fig_vinograd) dont le portrait de phase est représenté ci-dessous.
 
-
+![Portrait de phase du système de Vinograd](images/vinograd.py){#fig_vinograd}
 
 ### Cas d'un système linéaire
 Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est  asymptotiquement stable pour le système
@@ -552,8 +567,6 @@ $$
 V(x(t)) = V(x(\overline{t})) + \int_0^t \langle\nabla V (x(t)), f(x(t))\rangle \leq  V(x(\overline{t})) + \gamma (t-\overline{t}) \ .
 $$
 Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un certain temps, ce qui est impossible. Donc $\lim_{t\to +\infty} V(x(t))=0$. Finalement, reproduisant le même raisonnement que pour l'existence de $\varepsilon_V$, on peut garantir que $\|x-a\|$ est arbitrairement petit en prenant $V(x)$ suffisamment petit. Donc on en déduit que $\lim_{t\to +\infty} \|x(t)-a\|=0$.
-
-
 \hfill $\blacksquare$
 
 
