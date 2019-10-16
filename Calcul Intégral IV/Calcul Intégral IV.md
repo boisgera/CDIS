@@ -410,6 +410,9 @@ Autrement dit :
   
   - si $\mathcal{B} \subset \mathcal{C}$ et $\mathcal{C}$ est une tribu de $X$, alors $\sigma(\mathcal{B}) \subset \mathcal{C}$.
 
+ Quand il y a une ambiguité sur l'ensemble $X$ hébergeant la collection 
+ $\mathcal{B}$, on pourra noter la tribu engendrée $\sigma_X(\mathcal{B})$.
+
 ### Démonstration (existence de la tribu engendrée) {.proof}
 Désignons par $\mathfrak{S}$ la collection des tribus de 
 contenant $\mathcal{B}$ comme sous-ensemble. 
@@ -477,17 +480,18 @@ de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
 
 ### L'infini
-Dans le cadre abstrait de l'intégration selon Lebesgue, il sera fréquent
-de considérer des fonctions à valeurs dans $Y = [-\infty, +\infty]$
-plutôt que dans $Y=\R$([^inv]), c'est-à-dire des fonctions pouvant 
-éventuellement prendre des valeurs infinies. Le cas des fonctions à valeurs
-finies s'en déduira comme un cas particulier.
+Dans le cadre abstrait de l'intégration selon Lebesgue, on pourra si nécessaire
+considérer des fonctions prenant (éventuellement) des valeurs infinies,
+c'est-à-dire travailler avec des fonctions à valeurs dans $Y = [-\infty, +\infty]$
+plutôt que dans $Y=\R$([^inv]). 
 
 [^inv]: dans le cadre de l'intégration de Henstock-Kurzweil, c'est pour 
-l'ensemble de départ que nous avions l'habitude de prendre $[-\infty, +\infty]$
-(avec l'intégrale de Lebesgue il n'est pas nécessaire d'étendre $\R$ comme 
-ensemble de départ).
-La théorie de Henstock-Kurzweil accepte volontiers les fonctions dont les 
+l'ensemble de départ que nous avions l'habitude de prendre $[-\infty, +\infty]$ ;
+il s'agissait d'une "astuce" technique qui permettait d'intégrer des fonctions
+définies au départ sur $\R$ avec des techniques déjà développées pour les
+intervalles compacts $[a, b]$ de $\R$. Avec l'intégrale de Lebesgue 
+il n'est plus nécessaire d'étendre $\R$ comme ensemble de départ.  
+La théorie de Henstock-Kurzweil accepte donc volontiers les fonctions dont les 
 **arguments** sont infinis -- $f(+\infty) = 0$ par exemple a du sens -- mais 
 est "allergique" aux fonctions à **valeurs** infinies. Par exemple, 
 si l'on essayait de calculer l'intégrale de Henstock-Kurzweil de la fonction
@@ -512,8 +516,9 @@ Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera par défaut
 que la tribu associée est la tribu de Lebesgue. 
 Lorsque l'on souhaitera plutôt munir $X$ et $Y$ de la tribu de Borel,
 on parlera de fonction *borélienne* (tribu de Borel au départ et à l'arrivée).
-Il existe une bonne raison pour adopter cette convention hybride (avec
-des tribus d'un type différent au départ et à l'arrivée) par défaut :
+Il existe une bonne raison pour adopter par défaut la convention hybride (avec
+des tribus d'un type différent au départ et à l'arrivée) pour la définition
+de "mesurable" :
 
 ### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
 Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
@@ -524,12 +529,13 @@ si et seulement si elle est $\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
 La démonstration de ce résultat repose sur le lemme suivant :
 
 ### Image réciproque et tribus engendrées {.lemma #irte}
-Soit $f : X \to Y$ une application, $\mathcal{B}$ une collection d'ensembles
-de $Y$ et $\mathcal{A} = \sigma(\mathcal{B})$ sa tribu engendrée dans $Y$.
-Alors 
+Soit $f : X \to Y$ une application et $\mathcal{B}$ une collection d'ensembles
+de $Y$. Alors 
 $$
-\{f^{-1}(A) \; | \; A \in \mathcal{A}\} =\sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}).
+\mathcal{F} := \sigma_X(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}) = \{f^{-1}(A) \; | \; A \in \sigma_Y(\mathcal{B})\}.
 $$
+
+![Ce diagramme est *commutatif*.](images/commutative-diagram.tex)
 
 <!--
 La tribu engendrée dans $X$ par l'ensemble des images réciproques par
@@ -544,6 +550,7 @@ $$
 -->
 
 ### Démonstration {.proof}
+Notons $\mathcal{A} = \sigma(\mathcal{B})$.
 Comme $\mathcal{B} \subset \mathcal{A}$, on a
 $$
 \{f^{-1}(B) \, | \, B \in \mathcal{B}\} \subset
