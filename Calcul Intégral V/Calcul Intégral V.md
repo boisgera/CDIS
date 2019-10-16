@@ -204,6 +204,10 @@ Une mesure de Borel positive $\mu : \mathcal{B}(\R) \to [0, +\infty]$ est *de Ra
 <https://www.lpsm.paris/cours/processus-html/node6.html> par exemple).
 Supprimer de la def donc ... (éventuellement, faire une rq sur la régularité).
 
+### TODO
+Représentation "concrête" des mesures de Radon dans $\R$ (via les fcts 
+de variation localement bornée)
+
 ### TODO -- mesure de Radon (signée)
 + lien avec 
 
