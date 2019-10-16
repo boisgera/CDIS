@@ -664,10 +664,6 @@ $$
 qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
 (dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
 
-### TODO
-Voir s'il faut autoriser les fonction simples à prendre la valeur $+\infty$ ...
-et se tenir ensuite à la même convention partout.
-
 ### Fonction étagée {.definition}
 On appelle *fonction étagée* (ou *fonction simple*) toute fonction $f: X \to Y$ 
 telle que l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
