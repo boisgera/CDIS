@@ -168,8 +168,13 @@ Avec absorption c'est plus simple quand même ...
 ### TODO -- Décomposition de Hahn
 (trivial, mais bon)
 
-### TODO -- Variation totale
+### TODO -- Variation d'une mesure
 
+
+### TODO -- rk
+
+Souligner parallèle avec valeur absolue, considérer le
+cas particulier à densité.
 
 ### TODO -- $\sigma$-additivité
 
