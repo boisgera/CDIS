@@ -666,8 +666,8 @@ qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union
 
 ### Fonction étagée {.definition}
 On appelle *fonction étagée* <!-- (ou *fonction simple*) --> toute fonction $f: X \to Y$ 
-telle que l'image réciproque de $Y$ par $f$ soit finie (telle que $f$ ne
-prenne qu'un nombre fini de valeurs).
+qui ne prenne qu'un nombre fini de valeurs distinctes 
+(ou telle que l'image réciproque de $Y$ par $f$ soit finie).
 
 ### Fonction mesurable
 Une fonction $f: X \to [-\infty, +\infty]$ associée aux espaces mesurables 
