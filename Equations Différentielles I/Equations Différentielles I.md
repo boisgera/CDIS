@@ -87,10 +87,20 @@ $$
 Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $U$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.$\hfill\blacksquare$
 
 ### Classe plus générale de solutions {.remark}
-Relaxation de la continuité de $f$ et de la notion de solution de manière à ce que cette intégrale existe + ref à calcul intégral
+La définition sous forme intégrale des solutions montre que l'hypothèse de continuité de $f$ pourrait être relachée: il suffit de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Par exemple, un contexte plus large consiste à supposer seulement que dans un voisinage de $(t_0,x_0)$,
+
+- pour tout $t$, $x\mapsto f(t,x)$ est continue ;
+
+- pour tout $x$, $t\mapsto f(t,x)$ est mesurable ; 
+
+- il existe une fonction intégrable $t\mapsto b(t)$ telle que $|f(t,x)|\leq b(t)$ pour tout $(t,x)$.
+
+ Sous ses conditions plus faibles, dites de *Carathéodory*, l'existence de solutions *généralisées* sous forme intégrale est toujours bien garantie. Un cadre encore plus général consisterait à autoriser des discontinuités de $f$ en $x$ mais l'étude des solutions passerait alors par celle des *inclusions différentielles* du type $\dot{x} \in F(t,x)$, ce qui nous amèneraient bien trop loin de ce cours.  
 
 ### Portrait de phase   
-En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ ) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. 
+En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. 
+
+![Portraits de phase d'un pendule non amorti à gauche et amorti à droite. $x_1$ représente l'angle du pendule et $x_2$ sa vitesse de rotation.](images/pendule.py){#fig_pendule}
 
 
 Etude du problème de Cauchy
@@ -390,12 +400,12 @@ f(a) = 0  \ .
 $$
 En d'autres termes, la fonction constante $x\equiv a$ est alors solution.
 
-### Exemple d'un pendule amorti {.exemple #ex_pendule}
-L'évolution d'un pendule amorti de longueur $\ell$ dans le champ de l'apesanteur peut être décrit par une dynamique du type
+### Exemple d'un pendule {.exemple #ex_pendule}
+L'évolution d'un pendule de longueur $\ell$ dans le champ de l'apesanteur peut être décrit par une dynamique du type
 $$
 \ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
 $$
-avec $\rho>0$ un coefficient de frottement.
+avec $\rho\geq 0$ un coefficient de frottement.
 En prenant $x=(\theta,\dot{\theta})$, on obtient le système
 $$
 \begin{array}{rcl}
@@ -434,9 +444,9 @@ $$
 
 
 ### Exemples
-- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse: l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc asymptotiquement stable.
+- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse: l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule amorti](#fig_pendule) donné plus haut.  
 
-- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable.
+- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule) donné plus haut.  
 
 - Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Un exemple célèbre est le système de [Vinograd](#fig_vinograd) dont le portrait de phase est représenté ci-dessous.
 
