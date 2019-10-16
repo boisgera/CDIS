@@ -34,17 +34,26 @@ On peut retourner le problème et définir une nouvelle notion,
 généralisée de dérivée, à partir de l'intégrale.
 
 ### Dérivée faible {.definition}
-La fonction $f:\R \to \R$ est *faiblement dérivable*, 
-de dérivée (faible) la fonction localement intégrable 
-$g: \R \to \R$ s'il existe une constante $c$ telle que
-pour tout $x \in \R$, 
+La fonction $f:\R \to \R$ est *faiblement dérivable*, s'il existe une 
+fonction $g:\R \to \R$ localement absolument intégrable
+c'est-à-dire mesurable et telle que $|g|$ soit intégrable sur
+tout intervalle compact $[a, b] \subset \R$,
+$$
+\int_a^b |g(x)|\, dx < + \infty,
+$$
+et une constante $c \in \R$ 
+telles que pour tout $x \in \R$, 
 $$
 f(x) = c + \int_0^x g(t) \, dt.
 $$
+La fonction $g$ est alors définie uniquement presque partout ; 
+elle est appelée *dérivée faible* de $f$ et pourra être notée $f'$.
+
+### TODO -- Démonstration {.proof}
 
 ### TODO -- extension "p.p." ?
 Aka fct de départ définie pp ? Bof ... Mmm quand même nécessaire pour la
-suite.
+suite. (euh, mais où ça ?)
 
 ### TODO -- Terminologie
 Opter pour "généralisée" en 1ere instance ?
@@ -57,21 +66,57 @@ est égale à la dérivée faible
 ### TODO -- Exemples
 $x \mapsto |x|$ ?
 
-### TODO -- Warning
+### Dérivabilité classique et faible 
+Si $f: \R \to \R$ admet une dérivée faible $g$, alors $f$ est dérivable
+presque partout et $f'=g$ presque partout.
+
+### TODO
+Lien du truc dessus avec unicité pp de $g$ évoquée plus haut.
+
+### TODO -- Warning, pas de réciproque
 attention: dérivée classique définie pp suffit pas à avoir dérivée
 faible (ex: fct de Heaviside).
 Dérivée faible implique dérivée pp, réciproque pas vraie, même si on ajoute
 continue (idée qui vient naturellement quand on construit un contre-exemple).
 Exemple avec ensembles de Cantor / devil's staircase.
+Même dérivable partout ne suffit pas ...
 
-### TODO -- Continuité absolue {.definition}
+### Absolue continuité {.definition}
+Une fonction $f:\R \to \R$ est *absolument continue* si et seulement si
+pour tout $\varepsilon > 0$, il existe un $\delta > 0$ tel que pour toute
+collection finie d'intervalles compacts $([a_k, b_k])_{k=0}^{n-1}$ de $\R$ 
+ne se chevauchant pas, on ait
+$$
+\sum_{k=0}^{n-1} (b_k - a_k) \leq \delta
+\; \Rightarrow \; 
+\sum_{k=0}^n |f(b_n) - f(a_n)| \leq \varepsilon.
+$$
 
-### TODO -- Existence de dérivée faible {.proposition}
-(équiv abs. cont. si dérivée faible est localement absolument intégrable)
+### TODO 
+ne se chevauchant pas est nécessaire (note Bartle : c'est crucial) ? 
+Pas suffisant de se limiter aux subdivisions complètes ?
+
+### Existence de dérivée faible {.proposition}
+Une fonction $f:\R \to \R$ admet une dérivée faible si et seulement si
+elle est absolument continue.
+
+### TODO -- Démonstration
 
 ### TODO -- Rk
-On peut ne pas se limiter au dérivée loclt abs cont, mais alors la classe
-des fcts est $AC^*$ ... Grpmh.
+Il serait possible d'élargir la notion de fonction faiblement dérivable en exigeant
+uniquement que $g$ soit localement intégrable au sens de Henstock-Kurzweil,
+et non localement absolument intégrable. Comme toute dérivée est localement
+intégrable au sens de Henstock-Kurzweil, cette extension aurait le mérite
+de proposer une notion de dérivée faible qui soit une *vraie* extension de la
+notion de dérivée classique (en l'état, il est possible qu'une fonction ait
+une dérivée en tout point mais pas de dérivée faible ...).  
+Néanmoins, aussi séduisante soit-elle, 
+nous ne considérerons pas cette extension, car la classe des fonctions
+faiblement dérivables serait alors sensiblement plus complexe à caractériser
+que dans le cadre absolument continu que nous avons choisi[^ACG].
+
+[^ACG]: Il s'agit d'une classe de fonctions absolument continues 
+mais **généralisées**, notée $\mathrm{ACG}_*$, cf. [@Bar01, pp. 242-243].
 
 ### TODO -- Dérivation faible et IPP
 (équivalence)
@@ -138,14 +183,18 @@ $f$ $\mu-$intégrable à valeurs réelles fois $\mu$ défini une mesure signée
 ### TODO -- fct localement intégrable
 ... définie ("est") une mesure de Radon. Et la mesure détermine
 
+### TODO
+
+def intégrale fonction des bornes "dans le mauvais sens" ...
+
 ### Dérivée généralisée comme mesure
 La fonction $f:\R \to \R$ admet comme *dérivée généralisée* la mesure de
 Radon $\mu$ sur $\R$ s'il existe une constante $c$ telle que
 pour tout $x \in \R$, 
 $$
-f(x) = c + \int_0^x d\mu(t).
+f(x) = c + \int_0^x \mu(dt).
 $$
-$$
+
 
 ### TODO -- extension "p.p." ?
 Aka fct de départ définie pp ? Là peut-être plus légitime que pour les

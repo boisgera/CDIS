@@ -1,4 +1,27 @@
 [
+{
+        "id": "Bar01",
+        "type": "book",
+        "title": "A modern theory of integration.",
+        "publisher": "Providence, RI: American Mathematical Society (AMS)",
+        "volume": "32",
+        "number-of-pages": "xiv + 458",
+        "ISBN": "0-8218-0845-1",
+        "language": "English",
+        "author": [
+                {
+                        "family": "Bartle",
+                        "given": "Robert G."
+                }
+        ],
+        "issued": {
+                "date-parts": [
+                        [
+                                "2001"
+                        ]
+                ]
+        }
+},
   {
           "id": "MAA18",
           "type": "book",
