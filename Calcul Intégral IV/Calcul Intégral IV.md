@@ -506,7 +506,7 @@ la valeur $2$ dans tous les cas.
 
 ### Conventions
 Lorsque l'ensemble d'arrivée $Y$ de $f$ a une structure topologique, 
-par exemple $Y = \R^m$ ou $Y = [-\infty, +\infty]^m$, 
+par exemple $Y = [-\infty, +\infty]$ ou $Y = [-\infty, +\infty]^m$, 
 on supposera par défaut que la tribu associée est la tribu de Borel. 
 Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera par défaut 
 que la tribu associée est la tribu de Lebesgue. 
@@ -517,7 +517,7 @@ des tribus d'un type différent au départ et à l'arrivée) par défaut :
 
 ### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
 Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
-au sens de Henstock-Kurzweil 
+au sens de Henstock-Kurzweil
 -- c'est-à-dire "mesurable" au sens de ["Calcul Intégral III"](Calcul Intégral III.pdf) --
 si et seulement si elle est $\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
 
