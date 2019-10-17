@@ -47,12 +47,12 @@ Une *subdivision pointée* du pavé fermé $I$ de
 $[-\infty,+\infty]^n$ est 
 une famille finie 
 $$
-\{(t_i, I_i) \; | \; \; 0 \leq i \leq k-1\}
+\{(t_i, J_i) \; | \; \; 0 \leq i \leq k-1\}
 $$
-où les $I_i$ sont des pavés fermés de $I$ sans chevauchement
+où les $J_i$ sont des pavés fermés de $I$ sans chevauchement
 -- les intersections deux à deux de leurs intérieurs sont vides --
-qui recouvrent $I$, et tels que 
-$t_i \in I_i$ pour tout $i \in \{0, \dots, k-1\}.$
+qui recouvrent $I$ et tels que 
+$t_i \in J_i$ pour tout $i \in \{0, \dots, k-1\}.$
 
 
 ### Somme de Riemman {.definition}
@@ -61,7 +61,7 @@ où $I$ est un pavé fermé de $[-\infty,+\infty]^n$
 et à la subdivision pointée $\mathcal{D}$ 
 de $I$ est la grandeur
 $$
-S(f, \mathcal{D}) = \sum f(t) v(I), \; (t, I) \in \mathcal{D}, \, v(I) < + \infty.
+S(f, \mathcal{D}) = \sum f(t) v(J), \; (t, J) \in \mathcal{D}, \, v(J) < + \infty.
 $$
 
 ### Jauge {.definition}
@@ -82,8 +82,8 @@ $[-\infty,+\infty]^n$ telle que pour
 toute subdivision pointée $\mathcal{D}$ de $[-\infty,+\infty]^n$
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
-Le réel $A$ quand il existe est unique; il est appelé
-*intégrale de $f$ sur $\R^n$* et noté
+Le réel $A$ quand il existe est unique ; 
+il est appelé *intégrale de $f$ sur $\R^n$* et noté
 $$
 \int f \; \mbox{ ou } \;
 \int_{\R^n} f(x) \, dx \; \mbox{ ou } \; \int_{\R^n} f(x_1,\dots, x_n) \, dx_1\dots dx_n.
@@ -92,8 +92,9 @@ $$
 ### {.post}
 Comme dans le cas réel, la définition supposerait que $f$ soit a priori
 définie sur $[-\infty,+\infty]^n$ plutôt que sur $\R^n$ ; 
-mais on peut étendre $f$ par des valeurs à l'infini sans 
-que l'intégrabilité de cette extension ou la valeur de son intégrale
+mais on peut étendre $f$ pour des arguments à l'infini 
+(dont au moins l'une des composantes est infinie) 
+sans que l'intégrabilité de cette extension ou la valeur de son intégrale
 ne soient affectés par le choix de ces valeurs.
 
 Propriétés élémentaires
@@ -124,8 +125,8 @@ La notion d'ensemble mesurable est inchangée (modulo le remplacement des
 intervalles compact de $\R$ par les pavés compacts de $\R^n$) ; les trois
 propriétés élémentaires de la collection des ensembles mesurables de $\R^n$
 sont toujours vérifiées (la collection est une tribu), cette famille contient
-tous les ouverts et "négligeable" et "mesurable-de-volume-nul" sont 
-toujours synonymes.
+tous les fermés (et tous les ouverts) et "négligeable" et 
+"(mesurable et) de volume nul" sont toujours synonymes.
 
 Les fonctions mesurables ont la même definition (limite simple de fonctions
 intégrables) ; le critère de mesurabilité par l'image réciproque est toujours
@@ -167,7 +168,7 @@ Se reporter à @Swa01.
 On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
 a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
 déduire l'intégrabilité de l'examen des intégrales itérées. Le théorème
-de Fubini peut alors être complété utilement par le théorème de Tonelli:
+de Fubini peut alors être complété utilement par le théorème de Tonelli :
 
 ### Théorème de Tonelli {.theorem #Tonelli}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ une fonction
@@ -187,9 +188,9 @@ Changement de variables
 
 ### Changement de variables {.theorem}
 Soient $D_1$ et $D_2$ des ouverts de $\mathbb{R}^n$ et 
-$h: D_1 \to D_2$ une fonction continûment différentiable
-ayant une fonction inverse $h^{-1}: D_2 \to D_1$ également 
-continûment différentiable. 
+$h: D_1 \to D_2$ un $C^1$-difféomorphisme de $D_1$ sur $D_2$ :
+une fonction continûment différentiable et bijective
+dont l'inverse $h^{-1}: D_2 \to D_1$ également continûment différentiable. 
 La matrice de Jacobi associée à la différentielle de $h$ étant notée $J_h$,
 la fonction $f: D_2 \to \mathbb{R}$ est absolument intégrable
 si et seulement si la fonction $(f \circ h) |\det J_h| : D_1 \to \mathbb{R}$ 
@@ -209,7 +210,7 @@ On peut en effet exhiber une fonction $f:\R^2 \to \R$ qui soit intégrable,
 mais telle que quand $h$ désigne la rotation centrée à l'origine d'angle
 $\pi/4$, la fonction $f \circ h$ ne soit pas intégrable[^ref-ai].
 Comme dans ce cas on a $|\det J_h| = 1$ sur tout $\R^2$, cela contredit
-le résultat du théorème de changement de variables.
+la conclusion du théorème de changement de variables.
 
 [^ref-ai]: cf. [@Swa01, ex. 29, p. 98].
 
@@ -225,9 +226,10 @@ $$
 Par contre, si $\sum_k a_k$ est conditionnellement convergente 
 (c'est-à-dire convergente, mais telle que $\sum_k |a_k|$ soit divergente ; 
 par exemple, $a_k = (-1)^k / (k+1)$), il existe un réordonnancement 
-$\sigma$ tel que $\sum_k a_{\sigma(k)}$ n'ait ni limite finie ni infinie.
+$\sigma$ tel que $\sum_k a_{\sigma(k)}$ n'ait pas de limite 
+(ni finie ni infinie).
 Pour toute valeur limite 
-$\ell \in \R \cup \{-\infty, +\infty\}$ souhaitée de la somme, 
+$\ell \in [-\infty, +\infty]$ souhaitée de la somme, 
 on peut aussi construire un réordonnancement $\sigma$ tel que
 $$
 \sum_{k=0}^{+\infty} a_{\sigma(k)} = \ell.
@@ -337,7 +339,7 @@ g(x) = y_n - f(y_1, \dots, y_{n-1}) \, \mbox{ où } \,
 $$
 on obtient la caractérisation implicite souhaitée.
 La seule vérification qui n'est pas évidente par construction 
-est le caractère non-nul de la différentielle $dg$. 
+est le caractère non-nul de la différentielle $dg$ en $x_0$. 
 Si $T(x) =  A \cdot x + b$ où $A$ est une application linéaire 
 (nécessairement inversible) et $b \in \mathbb{R}^n$, 
 en posant $\phi(y) = y_n - f(y_1, \dots, y_{n-1})$, on
@@ -346,21 +348,23 @@ $$
 dg(x) = d (\phi \circ T^{-1})(x) = d\phi(T^{-1}(x)) \cdot dT^{-1}(x) 
 = d\phi(T^{-1}(x)) \cdot A^{-1}.
 $$
-Or, $\partial_n \phi(y) = 1$ en tout point $y$ de $V$. 
+Or, $\partial_n \phi(y) = 1$ en tout point $y$ de $U \times I$. 
 L'application $A^{-1}$ étant inversible, 
 il existe un vecteur $h$ de $\mathbb{R}^n$ tel que
 $A^{-1} \cdot h = (0, \dots, 0, 1)$ ; 
 pour un tel vecteur on a donc
 $$
 dg(x) \cdot h = d\phi(T^{-1}(x)) \cdot A^{-1} \cdot h = 
-\sum_{i} \partial_i \phi(T^{-1}(x)) (A^{-1} \cdot h)_i = 1.
+\sum_{i=1}^n \partial_i \phi(T^{-1}(x)) (A^{-1} \cdot h)_i = 1.
 $$
-La différentielle de $g$ est donc bien non-nulle.
+La différentielle de $g$ est donc bien non-nulle en tout point de $V$
+(et donc a fortiori en $x_0$).
 
 Réciproquement, considérons un $x_0 \in \partial K$ et supposons qu'il existe 
 une fonction $g: V \to \mathbb{R}$ satisfaisant les propriétés de l'énoncé. 
-La différentielle de $g$ étant non nulle en $x_0$, il exists un vecteur de $u$ 
-de $\mathbb{R}^n$ tel que 
+La différentielle de $g$ étant non nulle en $x_0$, par continuité de
+l'application $x \mapsto dg(x) \cdot u$ pour tout $u \in \R^n$, 
+il existe un vecteur de $u$ de $\R^n$ tel que 
 $$
 dg(x) \cdot u > 0
 $$
@@ -373,14 +377,14 @@ $$
 \begin{split}
 \partial_n (g \circ T)(y) &= dg(T(y)) \cdot dT(y) \cdot e_n \\
 &= dg(T(y)) \cdot A \cdot e_n  \\
-&= dg(T(y)) \cdot u > 0 \\
+&= dg(T(y)) \cdot u > 0. \\
 \end{split}
 $$
-L'application du théorème des fonctions implicite fournit
+L'application du théorème des fonctions implicites fournit
 un ouvert non vide $U \times I$ inclus dans $T^{-1}(V')$ 
-où $U \subset \mathbb{R}^{n-1}$ 
-et $I$ est un intervalle ouvert de $\mathbb{R}$ 
-et une fonction $f: U \to I$ continûment différentiable telle que
+où $U \subset \mathbb{R}^{n-1}$ et
+$I$ est un intervalle ouvert de $\mathbb{R}$, 
+ainsi qu'une fonction $f: U \to I$ continûment différentiable telle que
 dans $U \times I$,
 $$
 g \circ T(y_1,\dots,y_n) = 0 
@@ -411,14 +415,20 @@ $n(x) \in \R^n$ unitaire (de norme $1$) tel que
 $$
 \lim_{\substack{y \to x \\ y \in \partial K}} \left<n(x), \frac{y-x}{\|y-x\|}\right> = 0.
 $$
-Elle est *extérieure* si pour $\varepsilon>0$ assez petit, 
+Cette normale $n(x)$ est *extérieure* si pour $\varepsilon>0$ assez petit, 
 $x + \varepsilon n(x) \not \in K$.
+
+### {.post .ante}
+On admettra l'unicité de la normale extérieure ainsi définie ; 
+son expression peut être calculée simplement dans le cas d'une représentation
+implicite ou explicite (comme hypographe) du compact à bord.
+
 
 ### Normale extérieure et caractérisation implicite {.proposition #neci}
 Si $K$ est un compact à bord $C^1$ caractérisé au voisinage de 
 $x_0 \in \partial K$ par l'inégalité $g(x) \leq 0$, 
 où $V$ est un voisinage ouvert de $x$ et $g: V \to \mathbb{R}$
-est continûment différentiable de différentielle non nulle, 
+est continûment différentiable de différentielle non nulle sur $V$, 
 alors la *normale extérieure* de $K$ en $x \in \partial K \cap V$ 
 est le vecteur de $\mathbb{R}^n$ donné par
 $$
@@ -501,6 +511,15 @@ l'hypographe. Sur $x^2 + y^2 - 1 \leq 0$ par exemple.
 
 -->
 
+### {.ante}
+Nous allons maintenant définir l'intégrale de surface d'une fonction continue
+sur la frontière d'un compact à bord. Pour arriver à nos fins, nous allons
+tout d'abord définir l'intégrale de surface pour des fonctions continues
+nulles en dehors d'un voisinage -- arbitrairement petit -- d'un point du 
+compact.
+Le résultat suivant de partition de l'unité nous permettra de 
+"recoller" ces contributions à l'intégrale globale.
+
 ### Partition de l'unité {.definition .proposition #pu}
 Pour toute famille finie d'ouverts $V_i$ de $\R^n$ recouvrant un ensemble
 compact $K$, il existe une famille $\rho_i: \R^n \to \left[0, +\infty\right[$ 
@@ -540,7 +559,7 @@ $$
 \int_{U}
 \phi(z, f(z)) \sqrt{1 + \|\nabla f(z)\|^2}\, dz. 
 $$
-Si les $V_i$ sont des tels ouverts consituant un recouvrement fini de $\partial K$
+Si les $V_i$ sont de tels ouverts consituant un recouvrement fini de $\partial K$
 et les $\rho_i$ [une partition de l'unité associée](#lrl),
 alors *l'intégrale de surface de $\phi$ sur $\partial K$* 
 est définie par
@@ -551,18 +570,18 @@ $$
 
 ### {.post}
 On admettra que cette définition est indépendante du choix de la 
-décomposition choisie de $\partial K$.
+décomposition de $\partial K$.
 
 
 ### Définition {.definition}
+Soit $V$ un ouvert de $\R^n$. 
 On appelle *divergence* d'une fonction différentiable 
 $$
-v: V \subset \mathbb{R}^n \to \mathbb{R}^n,
+v: V \to \mathbb{R}^n,
 \;
 v=(v_1, \dots, v_n)
 $$
-où $V$ est un ouvert, la fonction $\mbox{div} \, v: V \to \mathbb{R}$
-définie par
+la fonction $\mbox{div} \, v: V \to \mathbb{R}$ définie par
 $$
 \mbox{div} \, v(x) = \sum_{i=1}^n \partial_i v_i(x)
 $$
@@ -572,7 +591,7 @@ $$
 Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
 où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
 Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
-de classe $C^1$ de support compact dans son domaine de définition[^sc]. 
+de classe $C^1$ de support compact dans $U \times \R^n$([^sc]). 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
 -- soit $\Omega = \{(y, z) \, | \, y \in U, \, z \in \R, \, z < f(y)\}$ --
 et $\Gamma$ le graphe de $f$
@@ -582,15 +601,15 @@ on a la relation
 $$
 \int_{\Omega} \mbox{div} \, v(x) \, dx
 =
-\int_{\Gamma} \left<v(x), n(x) \right> \, \sigma(dx)
+\int_{\Gamma} \left<v(x), n(x) \right> \, \sigma(dx).
 $$
 
-[^sc]: La fonction $v$ étant définie dans un ouvert de $\R^n$ 
-($\mbox{dom}(v) = U \times \mathbb{R}$), 
+[^sc]: La fonction $v$ étant continue et définie dans un ouvert 
+($U \times \mathbb{R}$), 
 son support est compact dans cet ensemble
 si et seulement si l'ensemble $\{x \, | \, v(x) \neq 0\}$ 
 est borné et sa distance au complémentaire de $U\times \mathbb{R}$ 
-dans $\mathbb{R}^n$ est positive.
+dans $\mathbb{R}^n$ est strictement positive.
 
 ### Démonstration {.proof}
 On remarque que si $v = w e_i$ où $w: U \times \mathbb{R} \to \mathbb{R}$ est
