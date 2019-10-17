@@ -1,0 +1,546 @@
+%--------------------------------------------------
+\section{Approximation par les méthodes à un pas}
+\label{sec:methodes_un_pas}
+
+On va à présent décrire des méthodes numériques pour approcher la solution de~\eqref{eq:Cauchy} sur un intervalle de temps fini~$[0,T]$. Plus précisément, on va considérer des temps $t_0 = 0 < t_1 < \dots < t_N = T$, et on va noter $y^n$ l'approximation numérique de la solution exacte $y(t_n)$. Par la suite, on notera $\Delta t_n = t_{n+1}-t_n$ les incréments de temps strictement positifs. Souvent, on choisira un pas de temps uniforme $\Delta t > 0$, auquel cas $t_n = n\Delta t$, le nombre total de pas d'intégration étant\footnote{On suppose que ce nombre est entier~; sinon on peut toujours changer un peu le pas de temps pour que ce soit le cas.} $N = T/\Delta t$.
+
+Pour rester le plus simple possible, nous évoquerons seulement les méthodes à un pas, et non les méthodes multi-pas, bien qu'elles soient en général plus précises à coût de calcul fixé (cependant, leur stabilité demande une attention particulière, voir l'Exercice~\ref{exo:multi_pas} pour une illustration).
+
+\subsection{Principe de l'approximation}
+ 
+La construction des méthodes à un pas repose sur une discrétisa\-tion de la formulation intégrale~\eqref{eq:Cauchy_integrale} sur l'intervalle de temps $[t_n,t_{n+1}]$ par une règle de quadrature. De manière abstraite, on peut ainsi écrire une relation de récurrence permettant de calculer itérativement la trajectoire numérique
+\begin{equation}
+  \label{eq:methode_EDO}
+  y^{n+1} = y^n + \Delta t_n \Phi_{\dt_n}(t_n,y^n),
+\end{equation}
+où $\Phi_{\dt_n}(t_n,y^n)$ est une approximation de  
+\[
+\frac{1}{t_{n+1}-t_n}\int_{t_n}^{t_{n+1}} f\Big(s,y(s)\Big)ds.
+\]
+Les méthodes ainsi obtenues sont appelées méthodes de Runge--Kutta. Elles sont décomposées en deux catégories selon qu'elles sont \emph{explicites} (la nouvelle configuration peut être obtenue directement de la précédente) ou \emph{implicites} (pour obtenir la nouvelle configuration, il faut résoudre un problème linéaire ou nonlinéaire en fonction de la dépendance de $f$ en $y$). 
+%Dans le cas implicite, le schéma numérique n'est pas spontanément écrit sous la forme~\eqref{eq:methode_EDO}. Toutefois, on préfère toujours écrire l'incrément $y^{n+1} - y^n$ comme une fonction de $y^n$ seulement pour mettre en exergue le fait qu'un schéma numérique pour les EDOs fonctionne de manière itérative~: il suffit de connaitre une approximation de l'état du système $y^n$ au temps~$t_n$, et l'incrément de temps~$\dt_n$, pour en déduire une approximation de l'état au temps $t_n + \dt_n$. 
+
+\subsection{Exemples de méthodes numériques}
+\label{sec:EDO:ex_schemas}
+
+\begin{enumerate}[(1)]
+\item Méthodes explicites~:
+  \begin{enumerate}[(i)]
+  \item Euler explicite~: $y^{n+1} = y^n + \Delta t_n \, f(t_n,y^n)$~;
+  \item méthode de Heun : $\dps y^{n+1} = y^n + \frac{\Delta t_n}{2}\Big( f(t_n,y^n) + f\big(t_{n+1},y^n+\Delta t_n f(t_n,y^n)\big)\Big)$.
+  %\item schéma de Runge--Kutta d'ordre~4~: on calcule les points intermédiaires
+  %  \[
+  %  \left\{\begin{aligned}
+  %  F_1 & = f(t_n,y^{n}) \\
+  %  F_2 & = f\left(t_n+\frac{\Delta t_n}{2}, y^{n} + \frac{\Delta t_n}{2} F_1\right) \\
+  %  F_3 & = f\left(t_n+\frac{\Delta t_n}{2}, y^{n} + \frac{\Delta t_n}{2} F_2\right) \\
+  %  F_4 & = f(t_n + \Delta t_n, y^n + \Delta t_n F_3),
+  %  \end{aligned}\right.
+  %  \]
+  %  et on pose 
+  %  \[
+  %  %\begin{equation}
+  %  %\label{eq:RK4}
+  %  y^{n+1} = y^{n} + \Delta t \, \frac{F_1 + 2F_2 + 2F_3 + F_4}{6}~;
+  %  \]
+  %  %\end{equation}
+  \end{enumerate}
+\item Méthodes implicites~:
+  \begin{enumerate}[(i)]
+  \item Euler implicite : $y^{n+1} = y^n + \Delta t_n \, f(t_{n+1},y^{n+1})$~;
+  \item méthode des trapèzes (ou Crank--Nicolson) : 
+    $\dps y^{n+1} = y^n + \frac{\Delta t_n}{2} \, \Big( f(t_n,y^n) + f(t_{n+1},y^{n+1}) \Big)$~;
+  \item méthode du point milieu : $\dps y^{n+1} = y^n + \Delta t_n f\left(\frac{t_n+t_{n+1}}{2}, \frac{y^n+y^{n+1}}{2}\right)$.
+  \end{enumerate}
+\end{enumerate}
+On peut bien sûr construire des méthodes plus compliquées et plus précises, voir par exemple~\cite{HLW} pour des méthodes de Runge--Kutta d'ordre supérieur (explicites ou implicites). 
+
+\begin{remark}
+  Pour les méthodes explicites, on identifie assez simplement la fonction d'incrément~$\Phi_{\dt}$ dans~\eqref{eq:methode_EDO}. Pour les schémas implicites, cette tâche est moins facile. Prenons l'exemple du schéma d'Euler implicite~: l'application~$\Phi_{\dt}$ est définie de manière implicite par la relation
+\[
+\Phi_{\dt_n}(t_n,y^n) = f\Big(t_n + \dt_n, y^n + \dt_n\Phi_{\dt_n}(t_n,y^n) \Big).
+\]
+Comme nous allons le montrer dans le point suivant, on peut s'assurer que~$\Phi_{\dt_n}(t_n,y^n)$ est bien définie si $\dt_n$ est assez petit.
+\end{remark}
+
+\subsection{Implémentation pratique des schémas implicites (complément)}
+
+Dans les schémas implicites, il faut résoudre une équation nonlinéaire pour obtenir l'approximation $y^{n+1}$ partant de $y^n$. Il y a donc un surcoût de calcul dans l'utilisation de ces schémas, mais qui vaut souvent le coup car on a une stabilité accrue et on peut utiliser des pas de temps plus grands.
+
+Avant de chercher à résoudre numériquement l'équation donnant $y^{n+1}$, il faut déjà garantir que $y^{n+1}$ existe et est unique~! On peut utiliser pour ce faire le théorème de point-fixe de Picard. Par exemple, le schéma d'Euler implicite $y^{n+1} = y^n + \Delta t_n \, f(t_{n+1},y^{n+1})$ peut se réécrire
+\[
+y^{n+1} = F(y^{n+1}), \qquad F(y) = y^n + \Delta t_n f(t_{n+1},y).
+\]
+On a existence et unicité de $y^{n+1}$ lorsque la fonction $f(t_{n+1},\cdot)$ est globalement Lipschitzienne de constante $\Lambda_f(t_{n+1})$:
+\[
+\left| f(t_{n+1},y_1)-f(t_{n+1},y_2) \right| \leq \Lambda_f(t_{n+1}) |y_1 - y_2|,
+\]
+et que le pas de temps est suffisamment petit pour satisfaire
+\begin{equation} \label{eq:dt_Lambda}
+\Delta t_n \Lambda_f(t_{n+1}) < 1.
+\end{equation}
+En effet, cette propriété implique que l'application $F$ est contractante sur~$\RR^d$~:
+\[
+|F(y_1)-F(y_2)| \leq \Delta t_n \Lambda_f(t_{n+1}) \, |y_1-y_2|.
+\]
+On conclut ensuite avec le Théorème~\ref{thm:point_fixe_Picard}. La condition~\eqref{eq:dt_Lambda} impose donc une borne supérieure sur les pas de temps admissibles.
+%Notons qu'une analyse plus fine permettrait de remplacer la norme $L^\infty$ 
+%globale par une majoration locale au voisinage du point $y^n$, 
+%et de considérer des incréments de temps variables. %(voir Section~\ref{sec:adaptatif} pour des stratégies de pas de temps adaptatifs).
+
+Le calcul pratique des itérations d'un schéma implicite peut se faire par une méthode numérique s'inspirant de la stratégie de point fixe utilisée pour montrer l'existence et l'unicité de $y^{n+1}$~: on part d'un premier essai obtenu par une méthode explicite, que l'on affine ensuite par des itérations de point-fixe, d'où le nom de  stratégie {\og}prédicteur/correcteur{\fg}. Illustrons cela pour le schéma d'Euler implicite. On peut partir d'un état obtenu par un schéma d'Euler explicite 
+\[
+z^{n+1,0} = y^n + \Delta t_n f(t_n,y^n),
+\]
+et le corriger ensuite par des itérations de point-fixe selon
+\[
+z^{n+1,k+1} = y^n + \Delta t_n f(t_{n+1},z^{n+1,k}).
+\]
+Sous les bonnes hypothèses précédentes, on a $z^{n+1,k} \xrightarrow[k \to +\infty]{} y^{n+1}$, avec une erreur qui décroît de manière exponentielle. En pratique, on n'effectue qu'un nombre fini d'itérations de point-fixe, en utilisant un critère de convergence tel que 
+\[
+| z^{n+1,k+1}-z^{n+1,k} | \leq \varepsilon|z^{n+1,0}|
+\]
+pour une tolérance $\varepsilon > 0$ donnée (le facteur multiplicatif $|z^{n+1,0}|$ à droite permet de considérer un critère de convergence indépendant de l'échelle ou unités de la variable $y$). On observe souvent une très bonne convergence dans les itérations de point-fixe, avec des erreurs relatives de l'ordre de $10^{-8}$ en quelques itérations. Une alternative aux itérations de point-fixe est d'utiliser un algorithme de Newton, qui a une convergence plus rapide, mais qui demande que l'on parte suffisamment près de la solution $y^{n+1}$.
+
+\section{Analyse d'erreur}
+\label{sec:apriori_direct_EDO}
+
+L'objectif de l'analyse d'erreur \textit{a priori} est de donner une estimation de l'erreur commise par la méthode numérique en fonction des paramètres du problème (temps d'intégration, pas de temps, champ de force). L'idée générale est de remarquer qu'à chaque pas de temps on commet une erreur d'intégration locale (erreur de troncature dans la discrétisation de l'intégrale, à laquelle s'ajoutent souvent des erreurs d'arrondi), et que ces erreurs locales s'accumulent. Le contrôle de cette accumulation demande l'introduction d'une notion de stabilité adéquate, alors que les erreurs locales sont liées à une notion de consistance. On peut montrer qu'une méthode numérique stable et consistante est convergente. 
+%Insistons sur le fait que ce type résultat, quoique courant en analyse numérique, est un pilier de l'analyse d'erreur \textit{a priori}. Pour mesurer l'erreur, on choisit une norme sur $\RR^d$ que l'on note $|{\cdot}|$; toutes les normes étant équivalentes en dimension finie et la dimension étant fixée, le choix particulier de la norme n'est pas essentiel ici. 
+
+\subsection{Erreur de troncature locale}
+
+L'erreur de troncature locale est l'erreur résiduelle que l'on obtiendrait si 
+on appliquait le schéma numérique à la solution exacte. Elle est donc
+définie à l'itération~$n$ comme la différence entre la solution exacte à
+l'itération suivante, à savoir $y(t_{n+1})$, et l'approximation
+numérique obtenue en partant de $y(t_n)$, à savoir $y(t_n) + \Delta t_n
+\Phi_{\dt_n}(t_n,y(t_n))$, le tout divisé par $\dt_n$. Ainsi, l'erreur de troncature locale vaut par définition
+\begin{equation}
+\label{eq:erreur_troncature_locale}
+\eta^{n+1} := \frac{y(t_{n+1}) - y(t_n) - \Delta t_n \Phi_{\dt_n}(t_n,y(t_n))}{\dt_n}.
+\end{equation}
+Notons que l'erreur de troncature a la même dimension physique que la dérivée en temps de $y$. La normalisation que nous employons dans ce cours permet d'interpréter~$\eta$ comme une erreur par unité de temps.
+
+\begin{definition}[Consistance]
+On note $\dt = \max_{0\le n\le N-1} \dt_n$ le pas de temps maximal.
+On dit qu'un méthode numérique est consistante si 
+\begin{equation}
+\lim_{\dt\to0} \left( \max_{1\le n\le N} |\eta^{n}| \right) = 0,
+\end{equation} 
+et qu'elle est consistante d'ordre~$p$ s'il existe une constante $C$
+telle que, pour tout $0\le n\le N-1$, 
+\begin{equation}
+|\eta^{n+1}| \le C(\Delta t_n)^{p}.
+\end{equation} 
+La constante $C$ dépend en général de la régularité de la solution exacte.
+\end{definition}
+
+Les preuves de consistance reposent sur des développements de Taylor de la solution exacte, et demandent donc de la régularité sur le champ de force~$f$. On supposera toujours que le champ de force est aussi régulier que nécessaire par la suite. Notons que la régularité de la solution $y$ découle de celle du champ de force. En effet, si $f$ est continue, alors la solution de~\eqref{eq:Cauchy} est $C^1$. Si $f$ est $C^1$, on voit alors que le membre de droite de~\eqref{eq:Cauchy} est $C^1$ (par composition) et donc que la solution~$y$ est $C^2$ (par intégration). On peut itérer cet argument et montrer ainsi que $y \in C^{l+1}$ si $f \in C^l$.
+
+\begin{example}
+Le schéma d'Euler explicite est consistant d'ordre~1. L'erreur de troncature s'écrit
+\[
+\eta^{n+1} = \frac{y(t_n + \Delta t_n) - \Big( y(t_n) + \Delta t_n \, f(t_n,y(t_n)) \Big)}{\dt_n}.
+\]
+Or, par application d'une formule de Taylor avec reste exact autour de $y(t_n)$, on voit qu'il existe $\theta^n \in [0,1]$ tel que
+\begin{equation}
+\label{eq:error_euler_1}
+y(t_n + \Delta t_n) - \Big( y(t_n) + \Delta t f(t_n,y(t_n)) \Big) = 
+\frac{\Delta t_n^2}{2} y''(t_n + \theta^n \Delta t_n).
+\end{equation}
+Par ailleurs, la dérivée seconde $y''(t)$ peut s'exprimer en fonction des dérivées 
+de $f$ en dérivant~\eqref{eq:Cauchy} par rapport au temps, ce qui donne
+\begin{equation}
+\label{eq:error_euler_2}
+y''(\tau) = \partial_t f(\tau,y(\tau)) + \partial_y f(\tau,y(\tau)) \cdot f(\tau,y(\tau)).
+\end{equation}
+On voit ainsi que $y''$ est uniformément borné en temps sur tout intervalle de la forme $[0,T]$ ($T < +\infty$) si la fonction $f$ et ses dérivées sont continues (la trajectoire restant bornée dans ce cas). On en déduit finalement que
+\[
+\left| \eta^{n+1} \right| \leq C \dt_n, 
+\]
+avec la constante $C = \frac12 \sup_{t\in[0,T]} |y''(t)|$.
+\end{example}
+
+\begin{exercise}[Etude de consistance pour le schéma de Heun]
+  \label{exo:consistance_Heun}
+  \be[(1)]
+  \item Ecrire le développement limité de la solution exacte en puissances de $\dt$~:
+  \[
+  y(\dt) = y^0 + \dt\, Y_1 + \dt^2 \, Y_2 + \mathrm{O}(\dt^3),
+  \]
+  avec des coefficients $Y_1,Y_2$ que l'on précisera en fonction des valeurs de $f$ et de ses dérivées au point $(0,y^0)$. 
+  \item Faire de même pour $y(t_{n+1})$, dont on donnera l'expression en fonction de $f$ et de ses dérivées au temps~$t_n$ et au point $y(t_n)$.
+  \item Montrer finalement que le schéma de Heun 
+  \[
+  y^{n+1} = y^n + \frac{\Delta t}{2}\Big( f(t_n,y^n) + f\big(t_{n+1},y^n+\Delta t f(t_n,y^n)\big)\Big)
+  \]
+  est d'ordre~2.
+\ee
+\end{exercise}
+
+\begin{corrige}
+\begin{correction}
+\be[(1)]
+\item On utilise une formule de Taylor et l'expression suivante pour la dérivée seconde en temps~:
+\[
+\ddot{y}(t) = \frac{d}{dt}\Big( f(t,y(t)) \Big) = \partial_t f(t,y(t))+ \partial_y f(t,y(t)) \dot{y}(t) = \partial_t f(t,y(t))+ \partial_y f(t,y(t)) f(t,y(t)).
+\]
+Ainsi, 
+\[
+\begin{aligned}
+y(\dt) & = y^0 + \dt \dot{y}(\dt) + \frac{\dt^2}{2} \ddot{y}(\dt) + \mathrm{O}(\dt^3) \\
+& = y^0 + \dt f(0,y^0) + \frac{\dt^2}{2} \Big( \partial_t f(0,y^0) + \partial_y f(0,y^0) f(0,y^0) \Big) + \mathrm{O}(\dt^3).
+\end{aligned}
+\]
+\item On obtient de même
+\begin{equation}
+\label{eq:DL_sol_exacte}
+\begin{aligned}
+y(t_{n+1}) = y(t_n) & + \dt f(t_n,y(t_n)) \\
+& + \frac{\dt^2}{2} \Big( \partial_t f(t_n,y(t_n)) + \partial_y f(t_n,y(t_n)) f(t_n,y(t_n)) \Big) + \mathrm{O}(\dt^3).
+\end{aligned}
+\end{equation}
+\item On compare la formule donnant $y(t_{n+1})$ aux développements en puissances de~$\dt$ de la solution numérique~$y^{n+1}$, partant de $y(t_n)$. Pour la méthode de Heun, 
+\[
+\eta^{n+1} = \frac{1}{\dt}\left( y(t_{n+1}) - y(t_n) - \frac{\dt}{2}\left[ f(t_n,y(t_n)) + f\Big(t_{n+1},y(t_n)+\dt f(t_n,y(t_n)) \Big) \right]\right). 
+\]
+Or, 
+\[
+\begin{aligned}
+f\Big(t_{n+1},y(t_n)+\dt f(t_n,y(t_n)) \Big) & = f(t_n,y(t_n)) \\
+& \ + \dt \Big( \partial_t f(t_n,y(t_n)) + \partial_y f(t_n,y(t_n)) f(t_n,y(t_n)) \Big) + \mathrm{O}(\dt^2).
+\end{aligned}
+\]
+On en déduit immédiatement que $\eta^{n+1} = \mathrm{O}(\dt^2)$ en utilisant~\eqref{eq:DL_sol_exacte}.
+\ee
+\end{correction}
+\end{corrige}
+
+\begin{exercise}
+  \label{exo:consistance_EI}
+  Montre que le schéma d'Euler implicite 
+  \[
+  y^{n+1} = y^n + \Delta t \, f(t_{n+1},y^{n+1})
+  \]
+  est d'ordre~1 (on supposera que le pas de temps est suffisamment petit pour que le schéma soit bien défini). 
+\end{exercise}
+
+\begin{corrige}
+\begin{correction}
+  Pour le schéma d'Euler implicite~:
+  \[
+  \eta^{n+1} = \frac{\dps y(t_{n+1}) - y(t_n) - \Delta t f(t_n,y^{n+1})}{\dt},
+  \]
+  où $y^{n+1}$ est la solution numérique partant de $y^n = y(t_n)$~:
+  \[
+  y^{n+1} = y(t_n) + \dt f\left(t_{n+1},y^{n+1}\right).
+  \]
+  On écrit que $y^{n+1} = y(t_n) + \mathrm{O}(\dt)$ et donc $f(t_{n+1},y^{n+1}) = f(t_n,y(t_n)) + \mathrm{O}(\dt)$. Ainsi, toujours au vu de~\eqref{eq:DL_sol_exacte},
+  \[
+  \eta^{n+1} = \frac{1}{\dt}\left[ y(t_{n+1}) - \Big( y(t_n) + \Delta t f(t_n,y(t_n)) + \mathrm{O}(\dt^2) \Big) \right]= \mathrm{O}(\dt).
+  \]
+\end{correction}
+\end{corrige}
+
+\begin{exercise}
+Montrer que la méthode des trapèzes 
+\[
+y^{n+1} = y^n + \frac{\Delta t}{2} \, \Big( f(t_n,y^n) + f(t_{n+1},y^{n+1}) \Big)
+\]
+et le schéma du point milieu 
+\[
+y^{n+1} = y^n + \Delta t \, f\left(\frac{t_n+t_{n+1}}{2}, \frac{y^n+y^{n+1}}{2}\right)
+\]
+sont d'ordre~2.
+\end{exercise}
+
+\begin{corrige}
+\begin{correction}
+En fait, les calculs des exercices précédents montrent qu'il suffit d'obtenir des estimations pour $t=0$ partant de $y(0) = y^0$, les calculs de l'erreur au temps~$t_n$ partant de $y(t_n)$ étant similaires. Dans cette correction, on prend donc $n=0$.
+
+Pour la méthode des trapèzes, on a l'erreur
+\[
+\eta^1 = \frac{1}{\dt}\left( y(\dt) - y^0 - \frac{\dt}{2}\left[ f(0,y^0) + f\Big(\dt,y(\dt)\Big) \right] \right). 
+\]
+Or, comme $y(\dt) = y^0 + \dt f(y^0) + \mathrm{O}(\dt^2)$ (schéma d'Euler explicite), on voit que 
+\[
+f\Big(\dt,y(\dt)\Big) = f\Big(\dt,y^0+\dt f(0,y^0) \Big) + \mathrm{O}(\dt^2).
+\]
+Ainsi, l'erreur de la méthode des trapèzes est, à un terme $\mathrm{O}(\dt^2)$ près, la même que celle de la méthode de Heun, soit $\eta^1 = \mathrm{O}(\dt^2)$.
+
+Enfin, pour la méthode du point milieu, l'erreur est
+\[
+\eta^1 = \frac{1}{\dt}\left( y(\dt) - y^0 - \dt f\left(\frac{\dt}{2},\frac{y^0 + y^1}{2}\right) \right),
+\]
+où $y^1$ est définie par l'équation non-linéaire
+\[
+y^1 = y^0 + \dt f\left(\frac{\dt}{2},\frac{y^0 + y^1}{2}\right).
+\]
+En utilisant $y^1 = y^0 + \dt f(0,y^0) + \mathrm{O}(\dt^2)$, on a 
+\[
+\frac{y^0 + y^1}{2} = y^0 + \frac{\dt}{2} f(0,y^0) + \mathrm{O}(\dt^2),
+\]
+et donc
+\[
+\begin{aligned}
+f\left(\frac{\dt}{2},\frac{y^0 + y^1}{2}\right) & = f\left(\frac{\dt}{2},y^0 + \frac{\dt}{2} f(0,y^0)\right) + \mathrm{O}(\dt^2) \\
+& = f(0,y^0) + \frac{\dt}{2} \Big( \partial_t f(0,y^0) + \partial_y f(0,y^0) f(0,y^0) \Big) + \mathrm{O}(\dt^2).
+\end{aligned}
+\]
+Ceci permet de montrer que $\eta^1 = \mathrm{O}(\dt^2)$.
+\end{correction}
+\end{corrige}
+
+\subsection{Stabilité}
+ 
+La notion de stabilité quantifie la robustesse de l'approximation numérique par rapport à des perturbations. On donne ici la définition pour des schémas à pas fixe. On fixe un intervalle de temps $[0,T]$ et un pas de temps $\Delta t > 0$ constant pour simplifier, et on note $N = T/\Delta t$ le nombre d'itérations correspondantes.
+
+\begin{definition}[Stabilité]
+On dit qu'une méthode numérique~\eqref{eq:methode_EDO} est stable 
+s'il existe une constante $S(T) > 0$ (qui dépend du temps d'intégration 
+$T=N\Delta t$ mais pas de $N$ ou de $\Delta t$ tout seul) 
+telle que, pour toute suites $y = \{ y^n \}_{1 \leq n \leq N}$ et $z = \{ z^n \}_{1 \leq n \leq N}$ partant de la même condition initiale
+$z^0 = y^0$ et vérifiant
+\begin{equation}
+\label{eq:stabilite_EDO}
+\left\{ \begin{aligned}
+y^{n+1} & = y^n + \Delta t \Phi_{\dt}(t_n,y^n), \\
+z^{n+1} & = z^n + \Delta t \Phi_{\dt}(t_n,z^n) + \dt\, \delta^{n+1},
+\end{aligned} \right.
+\end{equation}
+on ait 
+\begin{equation} \label{eq:stab_EDO}
+\max_{1 \leq n \leq N} | y^n - z^n| \leq S(T) \, \dt \sum_{n = 1}^N |\delta^n|.
+\end{equation}
+\end{definition}
+
+\begin{remark}
+  L'extension de la notion de stabilité au cas des pas de temps variables est très simple : la majoration~\eqref{eq:stab_EDO} devient $\max_{1 \leq n \leq N} | y^n - z^n| \leq S(T)\, \sum_{n = 1}^N \dt_n |\delta^n|$.
+\end{remark}
+
+Intéressons nous à présent à l'obtention de conditions suffisantes de stabilité. Un cas simple est celui où $\Phi_{\dt}$ est uniformément Lipschitzienne en $y$, c'est-à-dire qu'il existe $\Lambda_{\Phi} > 0$ tel que, pour tout $y_1,y_2 \in \mathbb{R}^d$, on ait
+\[
+| \Phi_{\dt}(t,y_1) - \Phi_{\dt}(t,y_2) | \leq \Lambda_{\Phi} |y_1 - y_2|.
+\]
+On peut alors prendre $S(T) = \mathrm{e}^{\Lambda_{\Phi} T}$.
+Cette assertion repose sur l'estimation suivante~:
+\[
+| y^{n+1} - z^{n+1} | \leq \dt | \delta^{n+1} | + (1 + \Delta t \Lambda_{\Phi}) | y^{n} - z^{n} |,
+\]
+et l'utilisation d'un lemme de Gronwall discret (voir Exercice~\ref{ex:Gronwall_discret}) qui fournit l'estimation
+\[
+| y^{n} - z^{n} | \leq \mathrm{e}^{\Lambda_{\Phi} T} \dt \sum_{m=1}^n |\delta^m|.
+\]
+
+\begin{exercise}[Lemme de Gronwall discret]
+\label{ex:Gronwall_discret}
+Montrer que si une suite $(r_n)_{n \geq 0}$ satisfait la relation de récurrence
+\[
+0 \leq r_{n+1} \leq \delta \dt + (1 + \Delta t \Lambda) r_n,
+\]
+avec $\delta \geq 0$, $\Lambda \geq 0$ et $r_0\geq0$, alors on a la borne supérieure
+\[
+0 \leq r_n \leq \mathrm{e}^{\Lambda n\dt} \Big( r_0 + \Lambda^{-1} \delta\Big).
+\]
+\end{exercise}
+
+\begin{corrige}
+\begin{correction}
+Une récurrence immédiate montre que, pour $n \geq 1$, 
+\[
+0 \leq r_n \leq (1+\Lambda \dt)^n\, r_0 + \Big(1 + (1+\Lambda \dt)  + \dots + (1+\Lambda \dt)^{n-1}\Big)\delta \dt.
+\]
+Comme
+\[
+1 + (1+\Lambda \dt)  + \dots + (1+\Lambda \dt)^{n-1} = \frac{(1+\Lambda \dt)^n - 1}{\Lambda \dt} \leq \frac{(1+\Lambda \dt)^n}{\Lambda \dt},
+\]
+on en déduit que
+\[
+0 \leq r_n \leq (1+\Lambda \dt)^n\, \left( r_0 + \Lambda^{-1} \delta \right).
+\]
+On conclut en notant que $1+\Lambda \dt \leq \mathrm{e}^{\Lambda \dt}$ et donc $(1+\Lambda \dt)^n \leq \mathrm{e}^{n\Lambda \dt}$.
+\end{correction}
+\end{corrige}
+
+\begin{remark}
+  Noter que les constantes de stabilité qui apparaissent croissent \textit{a priori} de manière exponentielle avec le temps. Pour des systèmes ayant des propriétés particulières (par exemple les les systèmes linéaires dissipatifs), on peut montrer que les constantes de stabilité restent bornées.
+%En fait, $\Lambda_{\Phi}^{-1}$ peut être interprété comme un temps caractéristique de variation du système. La constante de stabilité peut donc être très grande si on intègre la dynamique sur des temps~$T$ bien supérieurs à~$\Lambda_{\Phi}^{-1}$. 
+\end{remark}
+
+\begin{exercise}[Stabilité des méthodes multi-pas]
+  \label{exo:multi_pas}
+  On considère la méthode à 2~pas suivante (dite de Nystr\"om) dans le cas d'un champ de vecteurs autonome~$f$ et d'un pas de temps $\Delta t$ fixé~:
+  \[
+  y^{n+1} = y^{n-1} + 2 \Delta t \, f(y^n) = \Psi(y^n,y^{n-1}),
+  \]
+  avec la condition initiale $y^0$ fixée et la valeur $y^1$ obtenue par une méthode à un pas, par exemple la méthode de Heun.
+\begin{enumerate}[(1)]
+\item Calculer l'erreur de consistance $\eta^{n+1}$ et déterminer l'ordre de consistance.
+\item On va à présent discuter la stabilité sur un cas concret. On considère l'équation différentielle $\dot{y}(t) = -y(t)$ et $y^0 = 1$. 
+  Donner l'expression analytique de $y^n$ en fonction de $\Delta t$, et montrer que la solution numérique est la somme de deux termes~: un qui approche bien la solution analytique, et un terme qui diverge en temps long. Conclure.
+\end{enumerate}
+La morale de cet exercice est que les méthodes multi-pas permettent souvent de gagner facilement en ordre, mais que leur stabilité est en général délicate à assurer -- alors que les méthodes à un pas sont en général stables, mais il est plus difficile d'assurer leur montée en ordre.
+\end{exercise}
+
+\begin{corrige}
+\begin{correction}
+\begin{enumerate}[(1)]
+\item Pour calculer l'erreur de consistance, on évalue 
+\[
+\eta^{n+1} = y(t_n + \dt) - y(t_n - \dt) - 2\dt f(y(t_n)),
+\]
+en se fondant sur le développement
+\[
+y(t_n \pm \dt) = y(t_n) \pm \dt f(y(t_n)) + \frac{\dt^2}{2} \partial_y f \cdot f(y(t_n)) + \mathrm{O}(\dt^3).
+\]
+Ceci donne $\eta^{n+1} = \mathrm{O}(\dt^3)$, ce qui montre que le schéma est d'ordre~2.
+\item Dans le cas d'une force linéaire, on $y^{n+1} = y^{n-1} - 2 \dt \, y^n$, avec les valeurs initiales $y^0 = 1$ et 
+\[
+y^1 = y^0 - \frac{\dt}{2} \Big(y^0 + (y^0-\dt \, y^0)\Big) = y^0\left(1-\dt+\frac{\dt^2}{2}\right).
+\]
+Le polynôme associé à la relation de récurrence est $P(x) = x^2 + 2 \dt \, x - 1$. Ses racines sont $r_\pm = -\dt \pm \sqrt{1+\dt^2}$. On en déduit que la solution~$y^n$ est de la forme
+\[
+y^n = \alpha r_-^n + \beta r_+^n.
+\] 
+Un calcul quelque peu fastidieux montre que, en utilisant $y^0 = 1 = \alpha + \beta$ et $y^1 = r_+ + \alpha(r_--r_+)$, on obient
+\[
+\alpha = \frac{r_+-y^1}{r_+-r_-} = \frac{\sqrt{1+\dt^2}-1-\dt^2/2}{2\sqrt{1+\dt^2}} \simeq -\frac{\dt^4}{16} + \mathrm{O}(\dt^6),
+\]
+et donc $\beta = 1 + \mathrm{O}(\dt^4)$. Ceci montre que $y^n \simeq r_+^n \simeq (1-\dt)^n \simeq \mathrm{e}^{-n\dt}$ est une bonne approximation de la solution seulement si $\dt^4 r_-^n$ reste négligeable. On a en fait un schéma instable à cause de ce terme divergent $r_-^n$.
+\end{enumerate}
+\end{correction}
+\end{corrige}
+
+
+\subsection{Convergence}
+
+\begin{definition}[Convergence]
+Une méthode numérique est convergente si l'erreur globale vérifie
+\[
+\max_{1 \leq n \leq N} |y^n - y(t_n)| \to 0
+\]
+lorsque $y^0 = y(t_0)$ et $\dps \Delta t = \max_{0 \leq n \leq N-1} |t_{n+1}-t_n| \to 0$. 
+\end{definition}
+
+%On néglige dans cette section les erreurs d'arrondis dues à la représentation machine des nombres réels (ceci sera traité plus loin). On a alors le résultat suivant.
+
+\begin{theorem}
+\label{thm:cv_EDO}
+Une méthode stable et consistante est convergente.
+\end{theorem}
+
+La preuve de ce résultat est très simple~: on remplace $z^n$ dans~\eqref{eq:stabilite_EDO} par la solution exacte $y(t_n)$, ce qui correspond à choisir 
+$\delta^{n+1} = \eta^{n+1}$, l'erreur de troncature locale définie en~\eqref{eq:erreur_troncature_locale}. On part en revanche de la même condition initiale. La stabilité donne donc
+\begin{equation}
+\label{eq:stabilite_preuve}
+\max_{1 \leq n \leq N} |y^n - y(t_n)| \leq S(T) \, \dt \sum_{n=1}^{N}
+\left | \eta^{n} \right| \le S(T)\, T\, \max_{1\le n\le N} |\eta^n|.
+\end{equation}
+Par définition de la consistance, on voit que le membre de droite tend
+vers zéro avec $\dt$. De plus, si la méthode numérique est consistante
+d'ordre $p$, alors l'erreur globale est également d'ordre~$\Delta t^p$ puisque
+\begin{equation}
+  \label{eq:erreur_approx_EDO}
+  \max_{1 \leq n \leq N} |y^n - y(t_n)| \leq S(T)\, T\, C \, \Delta t^p.
+\end{equation}
+On peut même vérifier numériquement que l'erreur globale se comporte dans beaucoup de situations vraiment en $C \Delta t^p$ (\textit{i.e.}, la borne supérieure sur l'erreur ne peut pas être améliorée). Des estimations similaires peuvent être obtenues avec des pas de temps variables.
+
+\begin{exercise}
+  Etudier la convergence du schéma de Heun et du schéma d'Euler implicite lorsque le champ de force~$f$ est uniformémement Lipschitzien par rapport à la variable d'espace, avec une constante de Lipschitz indépendante du temps~: pour tout $t \geq 0$,
+  \[
+  |f(t,y_1)-f(t,y_2)| \leq \Lambda_f |y_1-y_2|.
+  \]
+  On commencera par montrer que les méthodes numériques sont uniformément Lipschitziennes avec une constante de Lipschitz que l'on déterminera en fonction de $\Lambda_f$ et~$\dt$.
+\end{exercise}
+
+\begin{corrige}
+\begin{correction}
+La consistance étant donnée par les Exercices~\ref{exo:consistance_Heun} et~\ref{exo:consistance_EI}, il suffit de montrer que les méthodes numériques sont stables pour conclure à la convergence. Pour ce faire, il suffit de montrer que les applications $\Phi_{\Delta t}(t_n,\cdot)$ (définies par $y^{n+1} = y^n + \dt\, \Phi_{\Delta t}(t_n,y^n)$) sont uniformément Lipschitziennes par rapport à la variable d'espace, avec une constante de Lipschitz qui ne dépend pas du temps. 
+\begin{enumerate}
+\item Pour le schéma de Heun, 
+\[
+\Phi_{\Delta t}(t,y) = \frac{1}{2}\Big( f(t,y) + f\big(t+\dt,y+\Delta t \, f(t,y)\big)\Big).
+\]
+Or, 
+\[
+\begin{aligned}
+& \left| f(t+\dt,y_1+\dt f(t,y_1)) - f(t+\dt,y_2+\dt f(t,y_2)) \right| \\
+& \qquad\qquad \leq \Lambda_f \left| y_1+\dt f(t,y_1) -  \big( y_2+\dt f(t,y_2) \big) \right| \\
+& \qquad\qquad \leq \Lambda_f \Big( |y_1-y_2| + \dt |f(t,y_1)-f(t,y_2)|\Big) \\
+& \qquad\qquad \leq \Lambda_f (1 + \dt \, \Lambda_f)\, |y_1-y_2|,
+\end{aligned}
+\]
+et donc
+\[
+\left| \Phi_{\Delta t}(t,y_1) - \Phi_{\Delta t}(t,y_2 )\right| \leq \Lambda_f \left(1 + \frac{\dt}{2}\, \Lambda_f\right) |y_1-y_2|,
+\]
+ce qui montre que $\Phi_\dt$ est uniformément Lipschitzienne de constante $\Lambda_f (1 + \dt \, \Lambda_f/2)$~;
+\item pour le schéma d'Euler implicite, l'application $\Phi_\dt(t,y)$ est définie de manière implicite, pour des pas de temps suffisamment petits, par la relation
+  \[
+  \Phi_\dt(t,y) = \frac{z-y}{\dt}, \qquad z = y + \dt \, f(t,z).
+  \]
+  On a ainsi 
+  \[
+  \Phi_\dt(t,y) = f(t+\dt,z) = f(t+\dt,y+\dt\,\Phi_\dt(t,y)),
+  \]
+  et donc
+  \[
+  \begin{aligned}
+  \left| \Phi_\dt(t,y_1)-\Phi_\dt(t,y_2) \right| & \leq \Lambda_f \left|y_1+\dt\,\Phi_\dt(t,y_1) - \Big( y_2+\dt\,\Phi_\dt(t,y_2) \Big)\right| \\
+  & \leq \Lambda_f \Big( |y_1-y_2| + \dt \,\left| \Phi_\dt(t,y_1)-\Phi_\dt(t,y_2) \right| \Big),
+  \end{aligned}
+  \]
+  d'où, pour $\dt < 1/\Lambda_f$, 
+  \[
+  \left| \Phi_\dt(t,y_1)-\Phi_\dt(t,y_2) \right| \leq \frac{\Lambda_f}{1-\Lambda_f \dt} |y_1-y_2|,
+  \]
+  ce qui montre que $\Phi_\dt$ est uniformément Lipschitzienne de constante $\Lambda_f / (1-\Lambda_f\dt)$. 
+\end{enumerate}
+\end{correction}
+\end{corrige}
+
+\begin{exercise}[Influence des erreurs d'arrondi]
+Dans les calculs effectués en pratique sur un ordinateur, chaque opération arithmétique est entâchée d'erreurs d'arrondi informatiques liées à la représentation machine des nombres. L'objectif de cet exercice est de quantifier l'impact de l'accumulation de ces erreurs par une analyse de stabilité, dans le cas où l'application $\Phi_\dt$ est uniformément Lipschitzienne. 
+\begin{enumerate}[(1)]
+\item L'erreur d'arrondi globale est définie comme la différence entre la solution numérique idéale $y^n$ et celle calculée en pratique, notée $\widetilde{y}^n$ dans la suite. Les écarts ont deux origines~: les opérations arithmétiques nécessaires à l'évaluation à chaque pas de temps de l'incrément $\Phi_{\dt_n}(t_n,\widetilde{y}^n)$ et les opérations arithmétiques liées au calcul de l'itéré suivant. Ainsi, pour une méthode à pas de temps fixes $\dt_n = \dt$, on peut écrire
+\[
+\widetilde{y}^{n+1} = \widetilde{y}^n + \Delta t 
+\Big( \Phi_{\dt}(t_n,\widetilde{y}^n) + \rho_n \Big) + \sigma_n.
+\]
+On suppose que $|\rho_n| \leq \rho$ et $|\sigma_n| \leq \sigma$. Typiquement, $\sigma$ est de l'ordre de la précision machine\footnote{Pour estimer l'ordre de grandeur de la précision machine, par exemple pour les opérations effectuées sur votre téléphone portable, on peut calculer ${\tt (4/3-1)*3-1}$, qui est de l'ordre de $10^{-16}$ lorsque les opérations sont effectuées avec le format {\tt double}.} $\varepsilon_{\rm machine}$ alors que $\rho \sim \kappa \varepsilon_{\rm machine}$ pour un certain nombre $\kappa > 0$ (appelé conditionnement de la méthode numérique).
+Montrer que si la méthode numérique est stable, alors
+\[
+\max_{1 \leq n \leq N} \left| \widetilde{y}^n - y^n \right| \leq S \left(\rho + \frac{\sigma}{\Delta t}\right).
+\]
+\item L'erreur numérique totale est majorée par la somme de l'erreur d'approximation et de l'erreur d'arrondi~:
+\[
+e(\dt) = \max_{1 \leq n \leq N} \left| y(t_n) - y^n \right| + \max_{1 \leq n \leq N} \left| \widetilde{y}^n - y^n \right|.
+\]
+En ne retenant que le terme principal de l'erreur d'arrondi et en supposant que l'erreur d'approximation est d'ordre $C_T \Delta t^p$, on obtient
+\[
+e(\dt) = C_T \Delta t^p + \frac{S\sigma}{\Delta t}.
+\]
+Donner le pas de temps optimal pour lequel l'erreur numérique totale est minimale.
+\end{enumerate}
+\end{exercise}
+
+\begin{corrige}
+\begin{correction}
+\be[(1)]
+\item Par définition de la stabilité,
+  \[
+  \max_{1 \leq n \leq N} \left| \widetilde{y}^n - y^n \right| \leq S \max_{1 \leq n \leq N} \left|\frac{\sigma_n}{\dt} + \rho_n \right| \leq S \left( \frac{\sigma}{\dt} + \rho\right), 
+  \]
+  ce qui donne le résultat.
+\item On voit que $e(\Delta t) \to +\infty$ lorsque $\dt \to 0$ ou $\dt \to +\infty$. On calcule
+  \[
+  e'(\delta) = pC_T \, \delta^{p-1} - \frac{S\sigma}{\delta^2}, 
+  \]
+  d'où on déduit qu'il existe un seul point pas de temps critique (\textit{i.e.} $e'(\Delta t_{\rm opt}) = 0$), qui est nécessairement associé à un minimum global de l'erreur. Un calcul simple montre que 
+  \[
+  \Delta t_{\rm opt} = \left(\frac{S\sigma}{pC_T}\right)^{1/(p+1)}.
+  \]
+\ee
+\end{correction}
+\end{corrige}

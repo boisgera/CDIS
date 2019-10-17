@@ -1,0 +1,80 @@
+%---------------------------------------
+%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{PPRgabi}[2007/02/06]
+\typeout{Le style Gabriel Stoltz pour Prosper...}
+%
+%---------------------------------------
+
+\IfFileExists{pst-grad}{\RequirePackage{pst-grad}}{\RequirePackage{gradient}}
+\RequirePackage{amssymb}
+
+\newrgbcolor{titlegray}{0.8 0.8 0.8}
+\newrgbcolor{footergray}{0.8 0.8 0.8}
+\newrgbcolor{shadowbegin}{0.3 0.3 0.3}
+\newrgbcolor{shadowend}{1 1 1}
+
+\ifinColor
+\newrgbcolor{darkblue}{0.27843137 0.27058824 0.5372549} % (RGB 8 bit: 71,69,137) (RGB hexa: #474589)
+\newrgbcolor{darkred}{0.5372549 0.27843137 0.27058824} % (RGB 8 bit: 137,71,69) (RGB hexa: #894745)
+
+\else
+\newrgbcolor{darkblue}{0.28 0.24 0.55}
+\newrgbcolor{darkred}{0 0 0}
+
+\fi
+
+\ifinColor
+\let\colC=\darkblue
+\else
+\let\colC=\black
+\fi
+
+
+\FontTitle{%
+  \usefont{T1}{phv}{m}{sl}\fontsize{20pt}{20pt}\selectfont\darkblue}{%
+  \usefont{T1}{ptm}{b}{n}\fontsize{20pt}{20pt}\selectfont\lightgray}
+\FontText{\black\usefont{T1}{phv}{m}{n}\fontsize{12pt}{12pt}\selectfont}{%
+  \colC\usefont{T1}{phv}{m}{n}\fontsize{13pt}{13pt}\selectfont}
+
+\ColorFoot{\black}
+
+%% From the bug-report page : prevents the title from moving
+%% up and down when using or not descenders. Great !
+
+\newcommand{\slidetitle}[1]{\rput[lB](-1.0,4.25){\makebox{\fontTitle{#1}}}}
+
+\newcommand{\numero}[1]{\rput[rt](12.3,1.65){\makebox{\fontTitle{#1}}}\vspace{-0.25cm}}
+                     
+\def\labelitemi{{\small\colC\ensuremath{\blacksquare}}}
+\def\labelitemii{{\small\colC\ensuremath{\blacklozenge}}}
+
+%\LogoPosition{-1.1,-1.28}
+
+\newcommand{\TheseFrame}[1]{%
+%% A frame for the title
+  \psframe[linestyle=none,fillstyle=gradient,gradbegin=shadowbegin,gradend=shadowend,gradmidpoint=1,gradangle=0](-2,7.65)(13,7.4)
+  \psframe[linestyle=none,fillstyle=solid,fillcolor=titlegray](-2,8.5)(13,7.6)
+  
+%% A frame for the footer
+ \psframe[linestyle=none,fillstyle=gradient,gradbegin=shadowbegin,gradend=shadowend,gradmidpoint=1,gradangle=0](-2,-1.1)(13,-1.25)
+  % \psframe[linestyle=none,fillstyle=solid,fillcolor=footergray](-2,-0.85)(13,-1.12)
+   \PutLogo % Mandatory
+   {#1}}
+
+\myitem{1}{\includegraphics[width=.3cm]{red-bullet-on-white.ps}}
+\myitem{2}{\includegraphics[width=.2cm]{green-bullet-on-white.ps}}
+\myitem{3}{\includegraphics[width=.2cm]{yellow-bullet-on-white.ps}}
+
+\NewSlideStyle[12.2cm]{t}{5.5,3.0}{TheseFrame}
+
+\RequirePackage{semhelv}
+
+\PDFCroppingBox{10 40 594 820}
+
+\endinput
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

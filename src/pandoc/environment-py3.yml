@@ -1,0 +1,11 @@
+name: python3-pandoc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  - pandoc=2.5
+  - plumbum
+  - ply
+  - pip:
+    - mkdocs
+    - mkdocs-material

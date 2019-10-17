@@ -1,0 +1,45 @@
+[
+  {
+    "id": "Lev08",
+    "type": "report",
+    "title": "The Euler spiral: a mathematical history",
+    "author": [
+            {
+                    "family": "Levien",
+                    "given": "Raph"
+            }
+    ],
+    "issued": {
+            "date-parts": [
+                    [
+                            "2008"
+                    ]
+            ]
+    }
+},
+{
+  "id": "Sat59",
+  "type": "article-journal",
+  "title": "Theory of hyperfunctions. I.",
+  "container-title": "Journal of the Faculty of Science. Section I",
+  "page": "139–193",
+  "volume": "8",
+  "ISSN": "0368-2269; 0371-7720",
+  "journalAbbreviation": "J. Fac. Sci., Univ. Tokyo, Sect. I",
+  "language": "English",
+  "author": [
+    {
+      "family": "Sato",
+      "given": "Mikio"
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        "1959"
+      ]
+    ]
+  }
+}
+
+]
