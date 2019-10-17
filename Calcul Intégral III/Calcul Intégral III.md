@@ -14,7 +14,7 @@ Définitions
 --------------------------------------------------------------------------------
 
 ### {.remark .ante}
-Les pavés joueront dans $\R^n$ le rôle dévolu aux intervalles dans $\R$:
+Les pavés joueront dans $\R^n$ le rôle dévolu aux intervalles dans $\R$ :
 
 ### Pavés {.definition}
 On appelle *pavé* de $[-\infty,+\infty]^n$ tout ensemble $I$ de la forme
