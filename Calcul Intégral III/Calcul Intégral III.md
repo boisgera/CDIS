@@ -523,7 +523,7 @@ Le résultat suivant de partition de l'unité nous permettra de
 ### Partition de l'unité {.definition .proposition #pu}
 Pour toute famille finie d'ouverts $V_i$ de $\R^n$ recouvrant un ensemble
 compact $K$, il existe une famille $\rho_i: \R^n \to \left[0, +\infty\right[$ 
-de fonctions continues dont le *support*
+de fonctions continûment différentiables dont le *support*
 $$
 \mbox{supp}(\rho_i) 
 =
@@ -591,7 +591,7 @@ $$
 Soit $f: U \to \mathbb{R}$ une fonction de classe $C^1$
 où $U$ est un pavé ouvert borné de $\mathbb{R}^{n-1}$. 
 Soit $v: U \times \mathbb{R} \to \mathbb{R}^n$ une fonction
-de classe $C^1$ de support compact dans $U \times \R^n$([^sc]). 
+de classe $C^1$ de support compact dans $U \times \R^{n-1}$([^sc]). 
 L'ensemble $\Omega$ désignant l'hypographe strict de $f$
 -- soit $\Omega = \{(y, z) \, | \, y \in U, \, z \in \R, \, z < f(y)\}$ --
 et $\Gamma$ le graphe de $f$
@@ -605,7 +605,7 @@ $$
 $$
 
 [^sc]: La fonction $v$ étant continue et définie dans un ouvert 
-($U \times \mathbb{R}$), 
+($U \times \R^{n-1}$), 
 son support est compact dans cet ensemble
 si et seulement si l'ensemble $\{x \, | \, v(x) \neq 0\}$ 
 est borné et sa distance au complémentaire de $U\times \mathbb{R}$ 
@@ -660,8 +660,8 @@ $$
 \begin{split}
 \int_{\Omega} \partial_i w(x) \, dx
 &= \int_{h(U \times \left]-\infty, 0\right[)} \partial_i w(x) \, dx \\
-&= \int_{U \times \left]-\infty, 0\right[} 
-\partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
+&= \int_{U \times \left]-\infty, 0\right[} \partial_i w(h(x)) |\det J_h(x)| \, dx \\
+&= \int_{U \times \left]-\infty, 0\right[} \partial_i w(x_1, \dots, x_{n-1}, x_n + f(x_1, \dots, x_{n-1})) 
 \, dx
 \end{split}
 $$
@@ -817,16 +817,16 @@ $$
 $$
 
 ### Théorème de la divergence {.theorem #div-theorem}
-Soit $U$ un ouvert borné de $\R^n$ et $K$ un ensemble compact 
-$K$ à bord $C^1$ de $U$. Pour toute fonction $v: U \to \mathbb{R}^n$ 
-de classe $C^1$,
+Soit $U$ un ouvert de $\R^n$ et $K$ un ensemble compact 
+$K$ à bord $C^1$ inclus dans $U$. 
+Pour toute fonction $v: U \to \mathbb{R}^n$ continûment différentiable,
 $$
 \int_{K} \mbox{div} \, v(x) \, dx
 =
 \int_{\partial K} \left<v(x), n(x) \right> \, \sigma(dx).
 $$
-et pour toute fonction $f: U \to \mathbb{R}$ de classe $C^1$ 
-et tout $i \in \{1,\dots, n\}$, 
+Pour toute fonction $f: U \to \mathbb{R}$ continûment différentiable
+et tout $i \in \{1,\dots, n\}$,
 $$
 \int_{K} \partial_i f(x) \, dx
 =
@@ -845,7 +845,7 @@ $T_x(U_x \times I_x)$ soit un voisinage de $x$ et
 $K \cap T_x(U_x \times I_x)$ soit l'image de l'hypographe de $f_x$ par $T_x$.
 Si $x \in \mathring{K}$, il existe un pavé ouvert borné $U_x$ de $\R^{n-1}$ et
 un intervalle ouvert $I_x$ de $\R$ tels que $U_x \times I_x \subset \mathring{K}$ ;
-on prendra ici $T_x=I$ et pour $f_x: U_x \to \R$ une fonction constante dont
+on prendra ici $T_x=I$ (l'identité) et pour $f_x: U_x \to \R$ une fonction constante dont
 la valeur soit un majorant de $I_x$.
 
 Par compacité, $K$ peut être recouvert par un nombre fini des
