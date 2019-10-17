@@ -1027,7 +1027,7 @@ Montrer que l'ensemble
 $$
 T(K) = \{x + T(x) \, | \, x \in K\}
 $$
-est un compact à bords $C^1$ de $\R^n$.
+est un compact à bord $C^1$ de $\R^n$.
 
 Ovales de Cassini {.question #oc}
 --------------------------------------------------------------------------------
@@ -1072,7 +1072,7 @@ Rétraction
 
 Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$ et 
 $f: B \to B$ une fonction de classe $C^2$
-(c'est-à-dire admettant une extension de classe $C^2$ à un ouvert $U$ 
+(c'est-à-dire admettant un prolongement de classe $C^2$ sur un ouvert $U$ 
 contenant $B$). Une telle fonction $f$ est une *rétraction* de $B$
 sur $\partial B$ si $f(B) = \partial B$ et pour tout $x\in \partial B$,
 $f(x) = x$.
@@ -1279,7 +1279,7 @@ $$
 le point $(x, y)$ n'appartient pas à $K$ ; l'ensemble $K$ est donc borné.
 Fermé et borné dans $\R^2$, l'ensemble $K$ est donc compact.
 
-Pour montrer que l'on a affaire à un ensemble compact à bords $C^1$, nous
+Pour montrer que l'on a affaire à un ensemble compact à bord $C^1$, nous
 souhaitons utiliser le résultat sur [la caractérisation implicite de ces
 ensembles](#cbr-implicit). La fonction $g$ de ce théorème prend bien
 sûr ici la forme
@@ -1382,7 +1382,7 @@ On calcule la matrice jacobienne
 $$
 J_{\phi}(r, \theta) = 
 \left[ 
-\begin{array}{cc}
+\begin{array}{cr}
 \cos \theta & -r \sin \theta \\
 \sin \theta & r \cos \theta
 \end{array}
@@ -1458,7 +1458,12 @@ Source: [@Kan81]
 
 ### Question 1  {.answer #answer-pfb-1}
 On déduit de l'identité $\|f(x)\|^2=\left<f(x), f(x)\right> =1$ valable sur $B$
-la relation $J_f(x) f(x) = 0$. La valeur $f(x)$ étant non nulle, cela
+que pour tout $h \in \R^2$,
+$$
+\left<df(x) \cdot h, f(x) \right> + \left<f(x), df(x) \cdot h \right>=
+2 \left<df(x)^* \cdot f(x), h \right> = 0
+$$
+et donc la relation $J_f(x)^t f(x) = 0$. La valeur $f(x)$ étant non nulle, cela
 entraîne la non-inversibilité de la matrice jacobienne $J_f(x)$,
 ou ce qui est équivalent, la nullité du déterminant jacobien
 $\det J_f(x)$. En conséquence,
@@ -1487,7 +1492,7 @@ $$
 &=\int_{\partial B} f_1 \left<\nabla f_2, t\right> \sigma
 \end{split}
 $$
-où $t(x)$ désigne le vecteur tangent à $\partial B$ en $x$:
+où $t(x)$ désigne le vecteur tangent à $\partial B$ en $x$ :
 $$
 t(x) = (-n_2(x), n_1(x)).
 $$
@@ -1510,12 +1515,12 @@ Intégration par parties {.answer #answer-IPP-n}
 On obtient le théorème d'intégration par parties en appliquant le théorème
 fondamental du calcul à la dérivée du produit $fg$.
 
-Supposons de façon analogue que $U$ est un ouvert borné de $\R^n$,
+Supposons de façon analogue que $U$ est un ouvert de $\R^n$,
 $K$ un ensemble compact à bord $C^1$ de $U$ et que $f, g: U \to \mathbb{R}$ 
 sont deux fonctions de classe $C^1$. Le produit $fg$ est également de classe 
 $C^1$ et pour tout $i \in \{1,\dots, n\}$, 
 $$
-\int_{K} \partial_i f(x)g(x) \, dx
+\int_{K} \partial_i (fg) (x) \, dx
 =
 \int_{\partial K} n_i(x) f(x)g(x) \, \sigma(dx),
 $$
@@ -1534,7 +1539,7 @@ par le théorème de la divergence appliqué à $fv$ on obtient
 $$
 \int_{K} \left<\nabla f(x), v(x)\right> \, dx
 =
-\int_{\partial K} \left<v(x), n(x) \right> \, \sigma(dx)
+\int_{\partial K} f(x) \left<v(x), n(x) \right> \, \sigma(dx)
 -\int_{K} f(x) \mathrm{div} \, v(x) \, dx.
 $$
 
