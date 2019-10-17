@@ -895,11 +895,11 @@ Annexes
 Partition de l'unité {#proof-pu}
 --------------------------------------------------------------------------------
 
-La preuve de l'existence d'une partition de l'unité repose sur le lemme suivant:
+La preuve de l'existence d'une partition de l'unité repose sur le lemme suivant :
 
 ### Lemme de recouvrement de Lebesgue {.lemma #lrl}
-Soit $K$ un compact de $\R^n$ et $V_i$ une famille d'ouverts $V_i$ recouvrant
-$K$. Alors il existe $r>0$ tel que pour tout $x \in K$, il existe un
+Soit $K$ un compact de $\R^n$ et une famille arbitraire d'ouverts $V_i$ recouvrant
+$K$. Alors il existe un rayon $r>0$ tel que pour tout $x \in K$, il existe un
 indice $i$ telle que la boule ouverte $B(x, r)$ de rayon $r$ centrée en $x$
 soit incluse dans $V_i$.
 
@@ -909,8 +909,8 @@ pour tout indice $i$, la distance entre $x$ et le complémentaire de $V_i$
 soit (strictement) inférieure à $r$.
 Soit $x_k$ une suite de points de $K$ tels que pour tout $i$,
 $d(x_k, \R^n \setminus V_i) \leq 2^{-k}$ ; par compacité de $K$,
-il existe une suite extraire des $x_k$ qui converge vers un $\ell \in K$.
-En passant à la limite sur cette suite extraire on établit que pour tout 
+il existe une suite extraite des $x_k$ qui converge vers un $\ell \in K$.
+En passant à la limite sur cette suite, on établit que pour tout 
 indice $i$ on a $d(\ell, \R^n \setminus V_i) = 0$, 
 soit $x \in \R^n \setminus V_i$ puisque $\R^n \setminus V_i$ est fermé.
 Par conséquent, pour tout $i$, $x \not \in V_i$, ce qui contredit l'hypothèse
@@ -920,9 +920,10 @@ que les $V_i$ forment un recouvrement de $K$.
 
 Nous allons initialement établir l'existence
 d'une suite de fonctions $\rho_i:\R^n \to \R$ 
-continues, nulles en dehors de $V_i$ dont la somme vaut $1$, 
+continues, nulles en dehors de $V_i$ dont la somme vaut $1$ sur un voisinage
+ouvert $V$ de $K$, 
 puis déduire de cette construction l'existence de fonctions
-satisfaisant le théorème.
+continûment différentiables $\rho'_i$ satisfaisant satisfaisant le théorème.
 
 Notons $V=\cup_i V_i$ ; l'ensemble $V_i$ étant ouvert, la fonction 
 $x \in V \mapsto d(x, \R^n \setminus V_i)$, qui est continue, 
@@ -941,8 +942,8 @@ $B(x, r) \subset V_i$. Notons $V'_i$ l'union des boules ouverts $B(x,r)$
 pour lequel l'incide $i$ convient quand $x$ décrit $K$. Par construction,
 les $V'_i$ sont ouverts et recouvrent $K$ ; de plus, les adhérences
 $\overline{V'_i}$ sont bornées
-(il sont des sous-ensembles de $\{x \in K \, | \, d(x, K) \leq r\}$)
-et vérifient $d(\overline{V}'_i, \R^n \setminus V_i) \geq r$.
+(ce sont des sous-ensembles de $\{x \in K \, | \, d(x, K) \leq r\}$)
+et vérifient $d(\overline{V'}_i, \R^n \setminus V_i) \geq r$.
 
 Considérons les fonctions $\rho_i$ de l'étape initiale 
 associées à la famille des $V'_i$ et prolongées par
@@ -951,7 +952,7 @@ les fonctions $\rho'_i:\R^n \to \left[0, +\infty \right[$ par
 $$
 \rho'_i(x) = \int_{\R^n} \rho_i(y) \phi(x-y) \, dy
 $$
-où $\phi:\R^n \to \left[0, +\infty\right[$ est une fonction indéfiniment 
+où $\phi:\R^n \to \left[0, +\infty\right[$ est une fonction continûment 
 différentiable, de support inclus dans $\overline{B}(0, r/2)$ et 
 telle que 
 $$
@@ -963,10 +964,14 @@ le support de $\rho'_i$ est inclus dans $V'_i + \overline{B}(x, r/2)$,
 ce qui garantit que $\mathrm{supp}(\rho'_i) \subset V_i$. Finalement,
 pour tout $x \in K$,
 $$
-\sum_{i} \rho'_i(x) = 
-\int_{\R^n} \sum_i \rho_i(y) \phi(x-y) \, dy
-= 
-\int_{\R^n} \phi(x-y) \, dy = 1.
+\begin{split}
+\sum_{i} \rho'_i(x) &= 
+\sum_i \int_{\R^n} \rho_i(y) \phi(x-y) \, dy \\
+&= 
+\int_{\R^n} \sum_i \rho_i(y) \phi(x-y) \, dy \\
+&= 
+\int_{\R^n} \phi(x-y) \, dy \\ &= 1. \\
+\end{split}
 $$
 
 Exercices
@@ -992,7 +997,7 @@ où $h \in \R$.
 Soit $f:\R^n \to \R$ une fonction absolument intégrable.
 Soient $i, j \in \{1,\dots, n\}$, $i\neq j$ et $\lambda$ un réel non nul.
 Montrer que les intégrales suivantes existent et les calculer en fonction
-de l'intégrale de $f$:
+de l'intégrale de $f$ :
 $$
 S_1 = \int_{\R^n} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx,
 $$
