@@ -124,7 +124,11 @@ mais **généralisées**, notée $\mathrm{ACG}_*$, cf. [@Bar01, pp. 242-243].
 Mesures signées
 ================================================================================
 
-Aka section "dérivée est une mesure"
+### TODO
+Perspective fonction sans dérivée faible fonction (ex: fct avec saut),
+mais qui peut être dérivée comme une mesure. Perspective de patch :
+analyse de l'IPP pour les dérivées faibles et comment le rhs est une
+forme linéaire sur $C_c$.
 
 ### Note
 Sauf erreur, la définition "naturelle" (ressemblant) de mesure à valeurs
@@ -138,18 +142,33 @@ qui n'admet pas de décompo de Hahn)
 
 
 ### TODO -- Mesure signée {.definition} 
-Une *mesure signée* $\nu$ sur la tribu $\mathcal{A}$ de $X$ est une application
-de $\mathcal{A}$ dans $\R \cup \{\bot\}$ pour laquelle
-il existe une mesure positive $\mu$ sur $\mathcal{A}$ et une application
-$\mu$-mesurable $\nu: X \to \{-1, +1\}$ telles que
+Soit $(X, \mathcal{A})$ un ensemble mesurable.
+Une *mesure signée* $\nu$ sur $(X, \mathcal{A})$ est une application
+$$
+\nu : \mathcal{A} \to \left]-\infty, +\infty\right[ \cup \{\bot\}
+$$
+pour laquelle il existe une mesure positive $\mu$ sur $\mathcal{A}$ et 
+une application $\mu$-mesurable $\sigma: X \to \{-1, +1\}$ telles que
+pour tout $A \in \mathcal{A}$,
 $$
 \nu(A) := \sigma \mu(A) := \int_A \sigma(x) \, \mu(dx)
 $$
-si l'application $1_A \times \sigma$ est $\mu$-intégrable 
+si l'application $1_A \sigma$ est $\mu$-intégrable 
 et $\nu(A) = \bot$ sinon.
 
 ### TODO -- Mesure positive vers mesure signée
-"Conversion" de $\inf$ vers $\bot$.
+Expliquer "conversion" de $\inf$ vers $\bot$, règles de calcul avec $\bot$.
+
+### TODO -- Variation d'une mesure signée.
+Soit $\nu$ une mesure signée sur $(X, \mathcal{A})$.
+Il existe une mesure positive $\mu$ sur $(X, \mathcal{A})$ et 
+une unique application une application $\mu$-mesurable 
+$\sigma: X \to \{-1, +1\}$ telle que 
+$\nu = \sigma \mu$. On appelle $\mu$ la *variation de $\nu$* et on la note
+$|\nu|$.
+
+### TODO -- Check pptés usuelles mesure ($\sigma$-add, etc.)
+Warning : plus de monotonie !
 
 ### TODO
 Comment on a défini $\mu$-intégrable dans le chapitre précédent ?
@@ -182,7 +201,14 @@ cas particulier à densité.
 ### TODO 
 $f$ $\mu-$intégrable à valeurs réelles fois $\mu$ défini une mesure signée
 
-### TODO -- Mesure de Radon (ref. Arverson)
+### TODO -- Intégrale par rapport à une mesure signée
+
+### TODO -- Mesure de Radon
+On appelle *mesure de Radon* (signée) sur $\R$ toute mesure signée sur
+$(\R,\mathcal{B}(\R))$ telle que pour tout compact $K$ de $\R$,
+$|\mu|(K) < +\infty$, c'est-à-dire $\mu(K) \neq \bot$.
+
+<!--
 Une mesure de Borel positive $\mu : \mathcal{B}(\R) \to [0, +\infty]$ est *de Radon* si :
 
   1. Pour tout compact $K \subset \R$, $\mu(K) < +\infty$ (*localement finie*).
@@ -203,10 +229,66 @@ Une mesure de Borel positive $\mu : \mathcal{B}(\R) \to [0, +\infty]$ est *de Ra
 (dans le cas réel, 2. et 3. sont gratuits ? Chercher. Je crois oui, cf
 <https://www.lpsm.paris/cours/processus-html/node6.html> par exemple).
 Supprimer de la def donc ... (éventuellement, faire une rq sur la régularité).
+-->
+
+
+### Fonctions tests continues
+On note $D^0(\R)$ l'espace des fonctions continues $\varphi: \R \to \R$
+dont le support
+$$\mbox{supp } \varphi := \overline{\{x \in \R \; | \; \varphi(x) \neq 0\}}$$
+est compact.
+
+### Formes linéaires continues sur $D^0(\R)$.
+Une application linéaire $T: D^0(\R) \to \R$ 
+-- c'est-à-dire une *forme linéaire* sur $D^0(\R)$ --
+est dite *continue* si pour tout
+intervalle compact $[a, b]$ de $\R$ et toute fonction $\varphi \in D^0(\R)$ dont
+le support soit inclus dans $[a, b]$, il existe une constante $K$ telle que
+$$
+|T \cdot \phi| \leq K \sup_{x \in [a, b]} |\varphi(x)| = K \|\varphi|_{[a, b]}\|_{\infty}
+$$
+
+
+### Théorème de Riesz-Markov-Kakutani
+Il existe une bijection entre l'ensemble des applications linéaire continues 
+$T : D^0(\R) \to \R$ et l'ensemble des mesures de Radon $\mu$ sur $\R$, 
+déterminée par la relation 
+$$
+\forall \, \varphi \in D^0(\R), \; T \cdot \varphi = \int \varphi \mu.
+$$
+
+### TODO -- Démonstration {.proof}
+Si $\mu$ est une mesure de Radon sur $\R$, de la forme
+$\mu = \sigma |\mu|$ où $\sigma$ ess une fonction borélienne à valeurs
+dans $\{-1, 1\}$, alors la fonction
+$$
+T: \varphi \in D^0(\R) \mapsto \int \varphi \mu  = \int \varphi \sigma |\mu| \in \R
+$$
+est bien définie : $\varphi$ est continue donc $|\mu|$-mesurable ainsi que 
+le produit $\varphi \sigma$ et si le support de $\varphi$ est inclus dans le compact 
+$[a, b]$, alors
+$$
+|\varphi(y) \sigma(y)| \leq 1_{[a, b]}(y) \times \sup_{x \in [a, b]} |\varphi(x)|.
+$$ 
+Comme la mesure $\mu$ est de Radon, $|\mu|([a, b]) < +\infty$, donc
+la fonction $\varphi \sigma$ est dominée par une fonction $|\mu|$-intégrable.
+Elle est donc $|\mu|$-intégrable.
+
+La fonction $T$ ainsi définie est également linéaire par linéarité de l'intégrale. 
+De plus, si le support de $\varphi$ est inclus dans $[a, b]$, alors
+$$
+|T \cdot \varphi| 
+\leq \int |\varphi| |\mu|
+\leq \int \left(\sup_{x \in [a, b]}|\varphi(x)|\right) |\mu|
+= |\mu|(A) \left(\sup_{x \in [a, b]}|\varphi(x)|\right).
+$$
+Elle est donc continue sur $D^0(\R)$.
+
+TODO -- Renvoyer à un ref (Arverson ?) pour le reste.
 
 ### TODO
 Représentation "concrête" des mesures de Radon dans $\R$ (via les fcts 
-de variation localement bornée)
+de variation localement bornée) ??? Ou pas ?
 
 ### TODO -- mesure de Radon (signée)
 + lien avec 
