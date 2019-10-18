@@ -150,7 +150,9 @@ $$
 
 L'erreur de consistance se calcule souvent par des développements de Taylor des solutions lorsque celles-ci sont suffisamment régulières, et $C$ s'exprime alors comme une borne des dérivées des solutions. En fait, on remarque que lorsque $f$ est continue, la solution est $C^1$ (par définition de nos solutions). Mais puisque $\dot{x}(t)=f(t,x(t))$, $\dot{x}$ hérite de la régularité de $f$: si $f$ est $C^k$ alors les solutions $x$ sont $C^{k+1}$. 
 
-### Consistance du schéma d'Euler explicite
+### Condition suffisante
+
+###  Consistance du schéma d'Euler explicite
  L'erreur de troncature s'écrit
 $$
 \eta^{j+1} = \frac{x(t_j + \Delta t_j) - \Big( x(t_j) + \Delta t_j \, f(t_j,x(t_j)) \Big)}{\Delta t_j}.
@@ -174,7 +176,136 @@ $$
 $$
 et on peut exprimer $C$ en fonction de bornes sur $x$ et sur les dérivées de $f$.
 
+## Stabilité
 
+La notion de stabilité quantifie la robustesse de l'approximation numérique par rapport à l'accumulation des erreurs locales et perturbations. 
+<!-- On donne ici la définition pour des schémas à pas fixe. On fixe un pas de temps $\Delta t > 0$ constant pour simplifier, et un intervalle de temps $[0,T]$ avec $T = J \Delta t$. -->
+
+### Définition
+
+On dit qu'une méthode numérique est *stable* s'il existe une constante $S(T) > 0$ 
+(indépendente des $\Delta t_j$)
+telle que, pour toutes suites $x = \{ x^j \}_{1 \leq j \leq J}$ et $z = \{ z^j \}_{1 \leq j \leq J}$ 
+<!-- partant de la même condition initiale  $z^0 = x^0$ et  -->
+vérifiant
+$$
+\left\{ \begin{aligned}
+x^{j+1} & = x^j + \Delta t_j \Phi_{\Delta t_j}(t_j,x^j), \\
+z^{j+1} & = z^j + \Delta t_j \Phi_{\Delta t_j}(t_j,z^j) + \Delta t_j\, \delta^{j+1},
+\end{aligned} \right.
+$$
+on ait 
+$$
+\max_{1 \leq j \leq J} | x^j - z^j| \leq S(T) \, \Big( |x^0 -z^0| + \sum_{j = 1}^J \Delta t_{j-1} |\delta^j| \Big).
+$$
+
+### Condition suffisante
+Si les $\Phi_{\Delta t_j}$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$,  et tout $(x_a,x_b)\in \R^n \times \R^n$, 
+$$
+|\Phi_{\Delta t_j}(t_j,x_a)-\Phi_{\Delta t_j}(t_j,x_b)|\leq L |x_a-x_b|
+$$
+alors le schéma est stable avec $S(T)=e^{L T}$.
+
+*Démonstration*: On a alors
+$$
+| x^{j+1} - z^{j+1} | \leq \Delta t_j | \delta^{j+1} | + (1 + \Delta t_j L) | x^{j} - z^{j} | \leq e^{\Delta t_j L} | x^{j} - z^{j} | 
+$$
+puisque $1+x \leq e^{x}$ pour tout $x\in \R$. Par récurrence, on montre alors que pour tout $1\leq j \leq J$, 
+$$
+| x^{j} - z^{j} | \leq e^{(t_j-t_0) L} |x^0 -z^0| + \sum_{k=1}^j e^{(t_j-t_k)L} \Delta t_{k-1} | \delta^{k} |  \ .
+$$
+Il s'ensuit que 
+$$
+| x^{j} - z^{j} | \leq e^{TL}\left(|x^0 -z^0|+ \sum_{k=1}^j  \Delta t_{k-1} | \delta^{k} |\right) \ ,
+$$
+ce qui donne le résultat.
+$\hfill\blacksquare$ 
+
+
+## Convergence
+
+La combinaison de consistance et de stabilité donne une propriété dite de *convergence* qui dit que l'erreur commise par le schéma par rapport à la vraie solution converge vers 0 lorsque le pas de temps converge vers 0.
+
+### Définition
+Soit $\Delta t = \max_{0 \leq j \leq J-1} \Delta t_j$.
+Un schéma numérique est *convergent* si 
+$$
+\lim_{\Delta t \to 0} \max_{1 \leq j \leq J} |x^j - x(t_j)| = 0
+$$
+lorsque $x^0 = x(t_0)$. S'il existe $p\in \N_{>0}$ et $C>0$ (indépendent de $\Delta t$) tel que
+$$
+\max_{1 \leq j \leq J} \leq C (\Delta t)^{p}
+$$
+on dit que le schéma est *convergent à l'ordre $p$*. 
+
+
+### Théorème de Lax
+Une méthode stable et consistante (à l'ordre $p$) est convergente (à l'ordre $p$).
+
+*Démonstration*: Notons $z^j=x(t_j)$. On remarque que 
+$$
+z^{j+1}  = z^j + \Delta t_j \Phi_{\Delta t_j}(t_j,z^j) + \Delta t_j\, \eta^{j+1},
+$$
+où $\eta$ est l'erreur de consistance. D'après la propriété de stabilité, on a donc
+$$
+|x^j - x(t_j)| \leq S(T) \,  \sum_{j = 1}^J \Delta t_{j-1}\, |\eta^j| \ ,
+$$
+et par consistance
+$$
+|x^j - x(t_j)| \leq S(T) \,  C \,  \sum_{j = 1}^J \Delta t_{j-1}\, (\Delta t_{j-1})^{p} \leq  C \, S(T) \, T \, (\Delta t)^{p}  \ . \hfill \blacksquare
+$$
+
+### Relaxation de la stabilité
+Relaxation du théorème avec Lipschitz dans compact plutôt que global ?
+
+### Erreurs d'arrondi et pas optimal
+
+A chaque itération, lorsque la machine calcule $x^{j+1}$, elle commet des erreurs d'arrondi de l'ordre de la précision machine. La solution obtenue est donc donnée par
+$$
+\hat{x}^{j+1} = \hat{x}^j + \Delta t_j \Phi_{\Delta t_j}(t_j,\hat{x}^j) + \varepsilon^{j+1}
+$$
+au lieu de 
+$$
+x^{j+1} = x^j + \Delta t_j \Phi_{\Delta t_j}(t_j,x^j) \ .
+$$
+La stabilité nous donne alors l'écart 
+$$
+|x^j-\hat{x}^j| \leq 
+$$
+
+
+Exercices
+================================================================================
+
+## Consistance de schémas {.exo #exo_consist}
+
+Montrer que :
+
+1. le schéma d'Euler implicite est consistant d'ordre 1 (en supposant que le pas est suffisamment petit pour que le schéma soit défini)
+
+2. le schéma de Heun est consistant d'ordre 2.
+
+3. le schéma du point milieu est consistant d'ordre 2.
+
+4. la méthodes des trapèzes est consistante d'ordre 2.
+
+
+##   Convergence de schémas 
+Supposons $f$ uniformémement Lipschitzien par rapport à $x$, c'est-à-dire qu'il existe $L_f$ tel que pour tout $t \geq 0$, pour tout $(x_a,x_b)\in \R^n \times \R^n$,
+$$
+|f(t,x_a)-f(t,x_b)| \leq L_f |x_a -x_b|.
+$$
+Montrer que le schéma de Heun et d'Euler implicite sont convergents.
+
+
+
+Corrections
+=================================================================================
+
+## Consistance de schémas {.correc #correc_consist}
+
+
+## Convergence de schémas
 
 Références
 ================================================================================
