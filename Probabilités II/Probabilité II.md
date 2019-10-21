@@ -494,7 +494,32 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
 
 ## Loi de vie et de mort 
 
-La durée de vie d'un être vivant 
+La durée de vie d'un être vivant ou d'un matériel peut-être assimilée à une variable aléatoire strictement positive $T$.
+Dans ce cadre, on peut définir les notions suivantes :
+
+* Loi de vie a priori : il s'agit de la loi du temps $T$ caractérisée par fonction de répartition complémentaire
+        $$G(t) = \P(T>t)$$
+* Loi de survie après $t_0 \geq 0$ : il s'agit de la loi du temps $T-t_0$ qu'il lui reste à vivre, sachant qu'il était encore en vie à t_0, de fonction de répartition complémentaire
+        $$G_{t_0}(t) =\P(T>t+t_0|T>t_0)$$
+
+On dira que la loi de vie satisfait la propriété de non vieillissement (ou d'absence de mémoire) si la loi de survie et la loi de vie sont égales :
+        $$\forall t \geq 0 \text{ et } \forall t_0 \geq 0, G_{t_0}(t) = G(t)$$
+
+### Question 1 {.question #viemort1}
+
+Exprimer la loi de survie à partir de la loi a priori
+
+### Question 2 {.question #viemort2}
+
+Montrer qu'une variable aléatoire $T$ satisfait la propriété de non-vieillissement si et seulement si elle est de loi exponentielle.
+
+### Question 3 {.question #viemort3}
+On suppose que $T$ admet une densité continue sur $\R_+^\ast$. Montrer que l'on peut définir le taux de mort à l'instant $t$ par 
+        $$D(t) = \lim_{\Delta t \to 0} \frac{1}{\Delta t}\P(t < T \leq t + \Delta t | T >t)$$
+et exprimer $G$ en fonction de $D$.
+
+Quelles lois correspondent-elles à $D$ constant ?
+
 
 ## Loi bêta {.question #loibeta}
 
@@ -520,7 +545,30 @@ Toujours selon les mêmes hypothèses, calculer la médiane de $Y$. La comparer 
 
 
 
-#Solutions
+# Solutions
+
+## Loi de vie et de mort 
+
+### Question 1 {.answer #answer-viemort1}
+
+Par définition, on a 
+$$ G_{t_0}(t) = \P(T>t+t_0|T>t_0) = \frac{\P(T>t+t_0,T>t)}{\P(T>t)} = \frac{G(t+t_0)}{G(t)}$$
+
+### Question 2 {.answer #answer-viemort2}
+
+D'après la question précédente, $G$ vérifie alors $G(t_0+t) = G(t)G(t_0)$ pour tous $t, t_0 > 0$. Comme $G$ est décroissante, continue à gauche et tend vers 0 à l'infini, on en déduit que $G(t) = e ^{-\theta t}$, pour un $\theta > 0$. On reconnaît la fonction de répartition complémentaire d'une loi exponentielle de paramètre $\theta$.
+
+### Question 3 {.answer #answer-viemort3}
+\begin{align*}
+D(t) &= \lim_{\Delta t \to 0} \frac{1}{\Delta t}\P(t < T \leq t + \Delta t | T >t)\\
+     &= \lim_{\Delta t \to 0} \frac{1}{\Delta t}\frac{\P(t < T \leq t + \Delta t)}{\P(T >t)}\\
+     &= \frac{1}{G(t)} \lim_{\Delta t \to 0} \frac{G(t) - G(t + \Delta t)}{\Delta t}\\
+     &= -\frac{g(t)}{G(t)}
+\end{align*}
+Ainsi, $D(t) = \frac{d}{dt}(-\ln G(t))$ et comme $G(0) = 1$, alors on a pour $t >0$
+        $$G(t) = \exp\left(-\int_0^tD(s) ds\right)$$
+Si $D$ est constant, on retrouve une loi exponentielle.
+
 
 ## Loi bêta {.answer #answer-loibeta}
 On note d'abord que la dimension de $Y$ est plus petite que celle de $X$. On va donc compléter $Y$ en prenant par exemple $Y' = (Y,Z)$, avec $Z=U+V$, ce qui correspond à $g(u,v) = \left(\frac{u}{u+v},u+v\right)$. Cette application est bijective de $A = \left]0,+\infty\right[^2$ dans $B = \left]0,1\right[ \times \left]0,+\infty\right[$, d'inverse $g^{-1}(y,z) = (yz,z(1-y))$, qui a pour jacobien $z$.
