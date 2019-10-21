@@ -978,18 +978,6 @@ $$
 $$
 L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
 
-### TODO -- Démonstration {.proof}
-
-### TODO 
-exo caractérisation "nulle pp" avec une mesure qui ne soit pas Lebesgue
-(par exemple, la mesure de comptage). Fil rouge sur ce thème ? 
-(car fct mesurable, intégrale, ensembles négligeable, etc.? )
-Faire la même chose avec le dirac en 0 ?
-
-### TODO
-Voir ce que Tao liste dans les pptés élémentaires (par exemple, 
-$\int f \mu = 0$ et $f\geq 0$ implique $f =0$ $\mu$-pp) p. 100
-
 ### Théorème de convergence monotone {.theorem #TCM}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
 $f_k: X \to [0, +\infty]$, $k \in \N$, une suite croissante de fonctions 
