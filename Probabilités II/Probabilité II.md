@@ -38,16 +38,14 @@ En pratique, l’ensemble $E$ pourra être un ensemble fini ou dénombrable ou $
 La terminologie, consacrée par l'usage, peut être trompeuse. Une variable aléatoire n'est pas une variable (au sens de l'analyse) mais une fonction. Cette terminologie est apparentée à la notion de variable en physique ou en sciences humaines où on désigne volontiers par "variable" la valeur prise par une fonction de l'état du système étudié.
 
 L'intérêt principal de travailler avec des variables aléatoires est de pouvoir substituer à l'espace abstrait $\Omega$ des résultats de l'expérience l'espace $E$, mieux connu dans la pratique. Ainsi, grâce à une variable aléatoire $X$, nous pouvons transporter la structure abstraite du modèle probabiliste $(\Omega, \A, \P)$ sur l'espace d'arrivée $E$, en posant pour $B \subset E$
-\begin{equation}
-\label{eq:loi_va}
-\P_X (B) = \P(X^{-1}(B)) = \P(\{\omega, X(\omega)\in B\})
-\end{equation}
+$$\P_X (B) = \P(X^{-1}(B)) = \P(\{\omega, X(\omega)\in B\})$$
+
 Cette formule définit une nouvelle probabilité, notée $\P_X$ et définie sur $E$, qui s'appelle la *loi de la variable* $X$.
 
-### NOTATION {.remark}
+### Notation {.remark}
 Il est usuel de noter l'ensemble $X^{-1}(B) = \{\omega \in \Omega, X(\omega) \in B\}$ par $\{X \in B\}$, ce qui allège les écritures. On se rappelera néanmoins que cette notation désigne un sous-ensemble de $\Omega$.
 
-Comme $\P(A)$ n'est définie que pour les $A$ de la tribu $\A$, la formule \eqref{eq:loi_va} ne permet de définir $\P_X(B)$ que pour les ensembles $B$ tels que $X^{-1}(B) \in \A$, d’où l’importance de la proposition suivante :
+Comme $\P(A)$ n'est définie que pour les $A$ de la tribu $\A$, la formule ci-dessus ne permet de définir $\P_X(B)$ que pour les ensembles $B$ tels que $X^{-1}(B) \in \A$, d’où l’importance de la proposition suivante :
 
 ### Proposition {.proposition #propva.tribu}
 
@@ -95,7 +93,7 @@ Soient $X$, $Y$ et $(X_n)_{n \in \N^\star}$ des variables aléatoires réelles. 
 
  1. $X + Y$, $XY$, $\frac{X}{Y}$ si $Y \neq O$, sont des variables aléatoires.
  
- 2. $\sup_{1\leq p} X_n$, $\inf_{1\leq p} X_n$, sont des variables aléatoires.
+ 2. $\sup_{1\leq p \leq n} X_p$, $\inf_{1\leq p \leq n} X_p$, sont des variables aléatoires.
 
  3. $\sup_{n\geq 1} X_n$, $\inf_{n\geq 1} X_n$, sont des variables aléatoires.
         
@@ -236,8 +234,19 @@ $$\int_\R |g(x)|f(x) dx,$$
 est définie et dans ce cas
 $$\Esp(g(X)) = \int_R g(x)f(x) dx.$$
 
-Nous n'avons pas les éléments permettant de démontrer ce résultat, mais l'argument heuristique suivant permet de comprendre pourquoi il est vrai : supposons $f$ et $g$ continues. Posons $X_n = i/n$ si $i/n \leq X < (i+1/n)$, pour $i \in \Z$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow{}{n \to \infty} X(\omega)$ 
-### **TODO** développer dans le cas de l'intégrale HK
+Nous n'avons pas tous les éléments permettant de démontrer ce résultat, mais l'argument heuristique suivant permet de comprendre pourquoi il est vrai : supposons $g$ continue telle que $|g|f$ soit intégrable. Alors il existe une jauge $\gamma(t)$, sur $[-\infty, +\infty]$ telle que, si la subdivision pointée (totale ou partielle) $\mathcal{D} =\{(t_i, I_i)\}_i$ est subordonnée à $\gamma$, on a
+$$
+S(|g|f, \mathcal{D}) = \left|S(|g|f, \mathcal{D}) - \int _\R |g(x)|f(x) dx \right| 
+\leq 
+\varepsilon.
+$$ 
+Posons $X_i = t_i$ si $X \in I_i$, pour $i \in \{0,\ldots,n-1\}$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow{n \to \infty} X(\omega)$ et par continuité de $g$, on a $g(X_n) \xrightarrow[n \to \infty]{} g(X)$. Comme $X_n$ est une variable aléatoire discrète, on a
+$$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-1}g(t_i)f(t_i)$$
+et ce dernier terme permet une apprximation de $\int _\R |g(x)|f(x) dx$ à une précision $\varepsilon$ près.
+
+### Remarque {.remark}
+L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \E_\R$ :
+$$\Esp(1_A(X)) = \int_A f(x)dx = \P(X\in A)$$
 
 ## Exemples
 
@@ -466,7 +475,7 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
         $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n.$$
     Nous reviendrons sur cette notion au chapitre suivant.
 
-### Exemple
+### Exemples
 
  1. **Coordonnées polaires**
     Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, et $Y = (R,\Theta)$ ses coordonnées polaires. La transformation $g$ est un difféomorphisme de $A = \R^2\setminus\{0\}$ dans $B = \left]0,+\infty\right[\times \left]0,2\pi\right]$, et son inverse $g^{-1}$ s'écrit : $u = r\cos \theta,\, v= r\sin \theta$.
@@ -481,16 +490,37 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
     La fonction $f_Z$ est appelée *le produit de convolution* des des fonctions $f_U$ et $f_V$.
 
 
-
-
-
 # Exercices
 
-## Propriété de non vieillissement de la loi exponentielle
+## Loi de vie et de mort 
+
+La durée de vie d'un être vivant 
 
 ## Loi bêta {.question #loibeta}
 
 Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, avec $U$ et $V$ indépendantes de lois $\Gamma(\alpha,\theta)$ et $\Gamma(\beta,\theta)$. Identifier la densité de $\frac{U}{U+V}$.
+
+## Crues centennales de la Seine
+On suppose que la hauteur d’eau maximale au cours de l’année $n$ est décrite par une variable aléatoire $X_n$ de densité $f(x)$ et de fonction de répartition $F(x)$, identique pour toutes les $X_n$, que l'on suppose également indépendantes.
+
+### Question 1 {.question #crue1}
+Calculer la fonction de répartition du maximum sur $n$ années $Y = \max(X_1,\ldots,X_n)$.
+
+### Question 2 {.question #crue2}
+En déduire la densité de $Y$.
+
+### Question 3 {.question #crue3}
+Expliciter la densité de $Y$ lorsque les $X_i$ sont de loi uniforme sur $[0,1]$. 
+
+### Question 4 {.question #crue4}
+Selon mêmes hypothèses, calculer la hauteur minimale des quais pour que la probabilité de voir la Seine déborder sur une période de $n$ années soit inférieure à 1/1000.
+
+### Question 5 {.question #crue5}
+Toujours selon les mêmes hypothèses, calculer la médiane de $Y$. La comparer avec celle des $X_i$. Commenter.
+
+
+
+#Solutions
 
 ## Loi bêta {.answer #answer-loibeta}
 On note d'abord que la dimension de $Y$ est plus petite que celle de $X$. On va donc compléter $Y$ en prenant par exemple $Y' = (Y,Z)$, avec $Z=U+V$, ce qui correspond à $g(u,v) = \left(\frac{u}{u+v},u+v\right)$. Cette application est bijective de $A = \left]0,+\infty\right[^2$ dans $B = \left]0,1\right[ \times \left]0,+\infty\right[$, d'inverse $g^{-1}(y,z) = (yz,z(1-y))$, qui a pour jacobien $z$.
@@ -511,6 +541,45 @@ La loi bêta apparaît naturellement dans une expérience d'urnes, donnée par G
 Nous obtenons aussi facilement la densité de $Z$. En effet, on a $f_{Y'}(y,z) = f_Y(y)f_Z(z)$ ($Y$ et $Z$ sont donc indépendantes), où
 $$f_Z(z) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha+\beta)}z^{\alpha+\beta -1}e^{-\theta z}1_{\left]0,+\infty\right[}$$
 On a ainsi démontré que si $U$ et $V$ sont deux variables aléatoires indépendantes de lois respectives $\Gamma(\alpha,\theta)$ et $\Gamma(\beta,\theta)$, alors $U+V$ suit la loi $\Gamma(\alpha+\beta,\theta)$ et est indépendante de $\frac{U}{U+V}$ qui suit une loi bêta de paramètres $(\alpha,\beta)$.
+
+## Crues centennales de la Seine
+
+### Question 1 {.answer #answer-crue1}
+Soit $x\in \R$
+\begin{align*}
+F_Y(x) = F(Y\leq x) &= F(X_1\leq x,\ldots,X_n\leq x)\\
+           &= \prod_{i=1}^n F(X_i\leq x) \\
+           &= F(x)^n
+\end{align*}
+puisque les $X_i$ sont indépendantes et de même loi
+
+### Question 2 {.answer #answer-crue2}
+Soit $x\in \R$
+\begin{align*}
+f_Y(x) &= \frac{\partial}{\partial x} F_Y(x)\\
+       &= \frac{\partial}{\partial x} F(x)^n\\
+       &= nf(x)F(x)^{n-1}
+\end{align*}
+
+### Question 3 {.answer #answer-crue3}
+On a alors $f(x) = 1_{[0,1]}(x)$ et $F(x) = x 1_{[0,1]}(x)$. On en déduit
+$$ f_Y(x) = n x^{n-1}1_{[0,1]} $$
+
+### Question 4 {.answer #answer-crue4}
+
+On cherche à déterminer $x$ tel que $\P(Y > x) \leq \frac{1}{1000}$. Or,
+$$ \P(Y > x) = 1-\P(Y \leq x) = 1 - F_Y(x) = 1 - F(x)^n = 1-x^n $$
+Ainsi
+$$ 1-x^n \leq \frac{1}{1000} \Leftrightarrow (1-\frac{1}{1000})^{1/n} \leq x $$
+
+### Question 5 {.answer #answer-crue5}
+On rappelle que la médiane est le réel $m$ tel que $\frac{1}{2} = \P(Y \leq m) = F_Y(m)$.
+
+On cherche donc $m$ tel que $m^n = \frac{1}{2}$, soit $m = \frac{1}{2^{1/n}}$.
+
+On voit que cette valeur est plus élevée que la médiane des $X_i$ qui vaut $\frac{1}{2}$. Elle tend même vers 1 lorsque $n$ tend vers l'infini.
+
+
 
 Références
 ================================================================================
