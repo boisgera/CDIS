@@ -35,7 +35,7 @@ généralisée de dérivée, à partir de l'intégrale.
 
 ### Dérivée faible {.definition}
 La fonction $f:\R \to \R$ est *faiblement dérivable*, s'il existe une 
-fonction $g:\R \to \R$ localement absolument intégrable
+fonction $g:\R \to \R$ localement absolument[^foo] intégrable
 c'est-à-dire mesurable et telle que $|g|$ soit intégrable sur
 tout intervalle compact $[a, b] \subset \R$,
 $$
@@ -50,6 +50,15 @@ La fonction $g$ est alors définie uniquement presque partout ;
 elle est appelée *dérivée faible* de $f$ et pourra être notée $f'$.
 
 ### TODO -- Démonstration {.proof}
+
+[^foo]: si $f$ est conditionnellement intégrable, l'application
+$$
+\phi \in D^0(\R) \mapsto \int f \phi 
+$$
+n'est pas (nécessairement ?) bornée, $f$ ne peut donc pas être représentée
+comme une mesure, contrairement aux fonctions absolument continue. 
+C'est trop tôt à ce stade pour parler de ça, mais la motivation est 
+importante pour se limiter aux fonction absolument continues ...
 
 ### TODO -- extension "p.p." ?
 Aka fct de départ définie pp ? Bof ... Mmm quand même nécessaire pour la
