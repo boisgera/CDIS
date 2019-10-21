@@ -1335,18 +1335,17 @@ Une collection $\mathcal{A}$ de sous-ensembles de $X$ est une
 *algèbre (d'ensembles)* si elle contient $\varnothing$ et est stable
 par complémentation et par union finie.
 
-### Question 0 {.question #answer-te-0}
-Montrer que pour toute collection d'ensembles de $X$ il existe
-une plus petite algèbre qui la contient (au sens de l'inclusion) :
-c'est *l'algèbre engendrée* par cette collection.
+De manière similaire au cas des tribus, pour toute collection d'ensembles 
+de $X$ il existe une plus petite (au sens de l'inclusion) algèbre qui la 
+contient : c'est *l'algèbre engendrée* par cette collection.
 
-### Question 1  {.question #answer-te-1}
+### Question 1  {.question #te-1}
 Déterminer l'algèbre engendrée sur $\R$ par la collection
 $$
-\{\left[a, b\right[ \; | \; -\infty < a \leq b < +\infty\}
+\{\left[a, b\right[ \; | \; -\infty < a \leq b \leq +\infty\}
 $$
 
-### Question 2  {.question #answer-te-2}
+### Question 2  {.question #te-2}
 Déterminer la tribu engendrée (ou $\sigma$-algèbre) sur $\R$ par la même 
 collection.
 
@@ -1794,16 +1793,35 @@ référence Tao *sans* le MCT.
 
 
 
-TODO -- Tribu engendrée
+Tribu engendrée
 --------------------------------------------------------------------------------
 
-### TODO -- Question 0 {.answer #te-0}
+### Question 1  {.answer #answer-te-1}
+Si $\mathcal{A}$ est une algèbre de $X$ contenant tous les intervalles
+$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors 
+par complémentation de $\left[a, +\infty\right[$, 
+elle contient nécessairement les ensembles de la forme $\left]-\infty, a\right[$ 
+et donc par union finie tous les ensembles de la forme
+$$
+\left]-\infty, a_0\right[ \cup \dots \cup \left[a_k, b_k\right[ \cup \dots \cup \left[a_m, +\infty\right[
+$$
+où les $a_k$ et les $b_k$ sont finis et le premier et dernier terme de cette union
+peuvent être omis. On vérifiera alors que cet ensemble est stable par union
+finie et par complémentation : c'est une algèbre de $\R$. Par conséquent, 
+c'est la plus petite algèbre de $\R$ qui contienne la collection initiale ;
+c'est donc l'algèbre engendrée recherchée.
 
-
-### TODO -- Question 1  {.answer #te-2}
-
-
-### TODO -- Question 2  {.answer #te-2}
+### Question 2  {.answer #answer-te-2}
+Si $\mathcal{A}$ est une tribu de $X$ contenant tous les intervalles
+$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors
+elle contient aussi
+$$
+\left]a, b\right[ = \bigcup_{k=0}^{+\infty} \left[a+\frac{b-a}{2^k}, b\right[
+$$
+et donc tout ouvert de $\R$ puisqu'un tel ensemble est une réunion dénombrable
+d'intervalles ouverts de $\R$. Par conséquent, elle contient tous les Boréliens.
+Comme l'ensemble des Boréliens est une tribu de $\R$, c'est donc la tribu
+engendrée par la collection initiale.
 
 Complétion d'une mesure
 --------------------------------------------------------------------------------
