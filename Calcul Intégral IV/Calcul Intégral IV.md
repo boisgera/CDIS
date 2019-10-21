@@ -1235,6 +1235,38 @@ Anagrame {.question #BT}
 
 Quel est l'anagrame de "Banach-Tarski" ?
 
+Mesures de Dirac
+--------------------------------------------------------------------------------
+
+Soit $x \in \R$. Soit $\delta_x^*: \mathcal{P}(\R) \to [0, +\infty]$ l'application
+définie par
+$$
+\delta_x^*(A) = \left|
+\begin{array}{rl}
+1 & \mbox{si $x \in A$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+
+### Question 1 {.question #d1}
+Montrer que $\delta^*_x$ est une mesure extérieure sur $\R$.
+
+### Question 2 {.question #d2}
+Déterminer les ensembles mesurables associés.
+
+### {.remark}
+On note $\delta_x$ la mesure correspondante que l'on appelle
+*mesure de Dirac en $x$*.
+ 
+### Question 2 {.question #d3}
+A quelle condition la fonction $f: \R \to [-\infty, +\infty]$ est-elle 
+$\delta_x$-mesurable ? $\delta_x$-intégrable ? Calculer alors
+$$
+\int f \delta_x.
+$$
+
+
 Approximation par des ensembles mesurables
 --------------------------------------------------------------------------------
 
@@ -1410,6 +1442,69 @@ Anagrame {.answer #answer-BT}
 --------------------------------------------------------------------------------
 
 "Banach-Tarski Banach-Tarski".
+
+Mesures de Dirac
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-d1}
+Le réel $x$ n'appartient pas à l'ensemble vide, 
+donc $\delta^*_x(\varnothing) = 0$. Si $A \subset B \subset \R$
+et si $x \in A$, alors $x \in B$ ; on a donc 
+$\delta^*_x(A) \leq \delta^*_x(B)$. Finalement, 
+si $A = \cup_{k=0}^{+\infty} A_k$ et si $x \in A$, alors il existe un $k \in \N$
+tel que $x \in A_k$, donc $1 \leq \sum_{k=0}^{+\infty} \delta_x^*(A_k)$ ;
+en conséquence, $\delta_x^*(A) \leq \sum_{k=0}^{+\infty} \delta_x^* (A_k)$.
+La fonction $\delta_x^*$ est donc une mesure extérieure sur $\R$.
+
+### Question 2 {.answer #answer-d2}
+Soient $A, B \in \mathcal{P}(\R)$. Si $x \not \in B$, alors
+$x \not \in A\cap B \subset B$ et $x \not \in A^c \cap B \subset B$, donc
+$$
+\delta_x^*(A \cap B) + \delta_x^*(A^c \cap B) = \delta_x^*(B) = 0.
+$$
+Dans le cas contraire, $x$ appartient $A\cap B$ ou à $A^c \cap B$, mais
+pas au deux ensembles simultanément car ils sont disjoints ; on a donc
+$$
+\delta_x^*(A \cap B) + \delta_x^*(A^c \cap B) = \delta_x^*(B) = 0.
+$$
+Tous les sous-ensembles de $\R$ sont donc $\delta_x^*$-mesurables.
+ 
+### Question 3 {.answer #answer-d3}
+Quelle que soit la fonction $f: \R \to [-\infty, +\infty]$ et l'ouvert 
+$U$ de $\mathbb{R}$, $f^{-1}(U) \in \mathcal{P}(\R)$ et donc est 
+$\delta_x$-mesurable. La fonction $f$ est donc mesurable.
+Elle est intégrable si et seulement si $f_+$ et $f_-$ sont d'intégrales
+finies. Or, les fonctions simples positives et $\delta_x$-mesurable 
+inférieure $f_{+}$ sont de la forme
+$$
+g(y) = \sum_{k=0}^{n-1} y_k 1_{A_k}(y) 
+\; \mbox{ où } \;
+g(y) = \sum_{k=0}^{n-1} y_k 1_{A_k}(y) \leq f_{+}(y)
+$$
+avec $y_k \geq 0$ et $A_k \in \mathcal{P}(\R)$.
+On a donc
+$$
+\int g \delta_x = \sum_{k=0}^{n-1} y_k 1_{A_k}(x) \leq  f_{+}(x).
+$$
+Comme par ailleurs, la fonction $g  =f_+(x) 1_{\{x\}}$ est 
+simple, positive, $\delta_x$-mesurable, inférieure à $f_{+}$ et vérifie
+$$
+\int g \delta_x = f_+(x),
+$$
+on a par conséquent
+$$
+\int f_+ \delta_x  = \sup_{g \in \mathcal{F}(f_+)} \int g \delta_x = f_+(x).
+$$
+De façon similaire, on peut montrer que 
+$$
+\int f_- \delta_x  = f_-(x).
+$$
+La fonction $f$ est donc $\delta_x^*$-intégrable si et seulement si 
+les valeurs $f_-(x)$ et $f_+(x)$ sont finies, c'est-à-dire si et seulement
+si $f(x) \not \in \{-\infty, +\infty\}$. On a alors
+$$
+\int f \delta_x = f_+(x) - f_-(x) = f(x).
+$$
 
 Approximation par des ensembles mesurables {#aem}
 --------------------------------------------------------------------------------
