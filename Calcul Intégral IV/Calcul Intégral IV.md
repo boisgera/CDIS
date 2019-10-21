@@ -9,7 +9,7 @@
 
 \newcommand{\ds}{\mathbin{\Delta}}
 
-TODO -- Mesure de Lebesgue dans $\R^n$
+Mesure de Lebesgue dans $\R^n$
 ================================================================================
 
 Dans les volets précédents du "Calcul Intégral", 
