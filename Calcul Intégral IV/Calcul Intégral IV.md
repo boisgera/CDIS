@@ -9,7 +9,7 @@
 
 \newcommand{\ds}{\mathbin{\Delta}}
 
-TODO -- Mesure de Lebesgue dans $\R^n$
+Mesure de Lebesgue dans $\R^n$
 ================================================================================
 
 Dans les volets précédents du "Calcul Intégral", 
@@ -398,6 +398,16 @@ par $\Gamma(x+1)= x\Gamma(x)$.
 
 Mesure et intégrale
 ================================================================================
+
+### Ensemble négligeable {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un ensemble mesuré. Un ensemble $N \subset X$
+est *$\mu$-négligeable* s'il existe un ensemble mesurable $A \in \mathcal{A}$ 
+tel que $N \subset A$ et $\mu(A) = 0$.
+
+### Presque partout {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un ensemble mesuré. Une propriété $P$ dépendant 
+d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
+où elle est fausse est un ensemble négligeable.
 
 ### Tribu engendrée par une collection {.definition}
 Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
@@ -918,6 +928,12 @@ $$
 \int f\mu = 0 \; \Leftrightarrow \; \mu(\{x \in X \; | \; f(x) > 0\}) = 0.
 $$
 
+### {.remark}
+Notons que comme l'ensemble 
+$\{x \in X \; | \; f(x) > 0\}$ -- c'est-à-dire $f^{-1}(\left]0, +\infty\right[)$ -- 
+est mesurable par construction, "négligeable" est bien équivalent à "de mesure nulle"
+le concernant.
+
 ### Démonstration {.proof}
 La positivité est évidente par construction.
 Si $f$ est nulle presque partout, comme pour toute fonction $g$ positive,
@@ -961,25 +977,6 @@ $$
 0 < 2^{-n}\mu(A_n) = \int 2^{-n}1_{A_n} \mu \leq \int f\mu.
 $$
 L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
-
-
-
-### TODO : 
-rk expliquer ici shift justifié entre négligeable et ce qui est exploité,
-car mesurable + inclus dans mesurable de mesure nulle est équivalent à
-être de mesure nulle.
-
-### TODO -- Démonstration {.proof}
-
-### TODO 
-exo caractérisation "nulle pp" avec une mesure qui ne soit pas Lebesgue
-(par exemple, la mesure de comptage). Fil rouge sur ce thème ? 
-(car fct mesurable, intégrale, ensembles négligeable, etc.? )
-Faire la même chose avec le dirac en 0 ?
-
-### TODO
-Voir ce que Tao liste dans les pptés élémentaires (par exemple, 
-$\int f \mu = 0$ et $f\geq 0$ implique $f =0$ $\mu$-pp) p. 100
 
 ### Théorème de convergence monotone {.theorem #TCM}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
@@ -1258,8 +1255,12 @@ Déterminer les ensembles mesurables associés.
 ### {.remark}
 On note $\delta_x$ la mesure correspondante que l'on appelle
 *mesure de Dirac en $x$*.
- 
-### Question 2 {.question #d3}
+
+### Question 3 {.question #d3}
+Qu'est-ce qu'un ensemble négligeable sur $\R$ pour la mesure de Dirac en $x$ ?
+A quelle condition une fonction $f :\R \to \R$ est-elle nulle presque partout ?
+
+### Question 4 {.question #d4}
 A quelle condition la fonction $f: \R \to [-\infty, +\infty]$ est-elle 
 $\delta_x$-mesurable ? $\delta_x$-intégrable ? Calculer alors
 $$
@@ -1334,18 +1335,17 @@ Une collection $\mathcal{A}$ de sous-ensembles de $X$ est une
 *algèbre (d'ensembles)* si elle contient $\varnothing$ et est stable
 par complémentation et par union finie.
 
-### Question 0 {.question #answer-te-0}
-Montrer que pour toute collection d'ensembles de $X$ il existe
-une plus petite algèbre qui la contient (au sens de l'inclusion) :
-c'est *l'algèbre engendrée* par cette collection.
+De manière similaire au cas des tribus, pour toute collection d'ensembles 
+de $X$ il existe une plus petite (au sens de l'inclusion) algèbre qui la 
+contient : c'est *l'algèbre engendrée* par cette collection.
 
-### Question 1  {.question #answer-te-1}
+### Question 1  {.question #te-1}
 Déterminer l'algèbre engendrée sur $\R$ par la collection
 $$
-\{\left[a, b\right[ \; | \; -\infty < a \leq b < +\infty\}
+\{\left[a, b\right[ \; | \; -\infty < a \leq b \leq +\infty\}
 $$
 
-### Question 2  {.question #answer-te-2}
+### Question 2  {.question #te-2}
 Déterminer la tribu engendrée (ou $\sigma$-algèbre) sur $\R$ par la même 
 collection.
 
@@ -1380,6 +1380,7 @@ $$
 Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
 mesure $\overline{\mu}$ définie sur $\overline{\mathcal{A}}$.
 
+<!--
 
 TODO -- Fonctions mesurables
 --------------------------------------------------------------------------------
@@ -1433,6 +1434,7 @@ $$
 ### TODO 
 check / version conditionnellement continue de Fubini. 
 Pourquoi ça ne marche pas ?
+-->
 
 
 Solutions
@@ -1470,6 +1472,13 @@ $$
 Tous les sous-ensembles de $\R$ sont donc $\delta_x^*$-mesurables.
  
 ### Question 3 {.answer #answer-d3}
+Comme tout ensemble $A$ de $\R$ est mesurable, $A$ est négligeable pour
+la mesure de Dirac en $x$ si et seulement si $\delta_x(A) = 0$, c'est-à-dire
+si et seulement si $x \not \in A$. La fonction $f: \R \to \R$ est donc nulle
+presque partout si et seulement si $f(x) = 0$.
+
+
+### Question 4 {.answer #answer-d4}
 Quelle que soit la fonction $f: \R \to [-\infty, +\infty]$ et l'ouvert 
 $U$ de $\mathbb{R}$, $f^{-1}(U) \in \mathcal{P}(\R)$ et donc est 
 $\delta_x$-mesurable. La fonction $f$ est donc mesurable.
@@ -1784,16 +1793,35 @@ référence Tao *sans* le MCT.
 
 
 
-TODO -- Tribu engendrée
+Tribu engendrée
 --------------------------------------------------------------------------------
 
-### TODO -- Question 0 {.answer #te-0}
+### Question 1  {.answer #answer-te-1}
+Si $\mathcal{A}$ est une algèbre de $X$ contenant tous les intervalles
+$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors 
+par complémentation de $\left[a, +\infty\right[$, 
+elle contient nécessairement les ensembles de la forme $\left]-\infty, a\right[$ 
+et donc par union finie tous les ensembles de la forme
+$$
+\left]-\infty, a_0\right[ \cup \dots \cup \left[a_k, b_k\right[ \cup \dots \cup \left[a_m, +\infty\right[
+$$
+où les $a_k$ et les $b_k$ sont finis et le premier et dernier terme de cette union
+peuvent être omis. On vérifiera alors que cet ensemble est stable par union
+finie et par complémentation : c'est une algèbre de $\R$. Par conséquent, 
+c'est la plus petite algèbre de $\R$ qui contienne la collection initiale ;
+c'est donc l'algèbre engendrée recherchée.
 
-
-### TODO -- Question 1  {.answer #te-2}
-
-
-### TODO -- Question 2  {.answer #te-2}
+### Question 2  {.answer #answer-te-2}
+Si $\mathcal{A}$ est une tribu de $X$ contenant tous les intervalles
+$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors
+elle contient aussi
+$$
+\left]a, b\right[ = \bigcup_{k=0}^{+\infty} \left[a+\frac{b-a}{2^k}, b\right[
+$$
+et donc tout ouvert de $\R$ puisqu'un tel ensemble est une réunion dénombrable
+d'intervalles ouverts de $\R$. Par conséquent, elle contient tous les Boréliens.
+Comme l'ensemble des Boréliens est une tribu de $\R$, c'est donc la tribu
+engendrée par la collection initiale.
 
 Complétion d'une mesure
 --------------------------------------------------------------------------------
