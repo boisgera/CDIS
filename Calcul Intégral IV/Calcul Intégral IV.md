@@ -1381,6 +1381,7 @@ $$
 Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
 mesure $\overline{\mu}$ définie sur $\overline{\mathcal{A}}$.
 
+<!--
 
 TODO -- Fonctions mesurables
 --------------------------------------------------------------------------------
@@ -1434,6 +1435,7 @@ $$
 ### TODO 
 check / version conditionnellement continue de Fubini. 
 Pourquoi ça ne marche pas ?
+-->
 
 
 Solutions
