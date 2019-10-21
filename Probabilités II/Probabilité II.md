@@ -76,15 +76,16 @@ Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une appli
 ### Définition -- loi d'une variable aléatoire réelle {.definition #defloivar}
 La probabilité $\P_X$, définie sur $(\R,\E_{\R})$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \E_{\R}$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
 
-[^NB]: Nous n'avons pas les outils permettant de caractériser cette tribu pour le moment. On verra par la suite que, dans le cas des variables aléatoires réelles, elle est très similaire à la tribu des ensembles mesurables de $\R$, à une collection d'ensembles négligeables près.
+[^NB]: Nous n'avons pas les outils permettant de caractériser cette tribu pour le moment. On verra par la suite que, dans le cas des variables aléatoires réelles à densité, elle est très similaire à la tribu des ensembles mesurables de $\R$, à une collection d'ensembles négligeables près.
 
 
-On a alors le résultat très utile suivant que nous admettrons dans un premier temps.
+On a alors le résultat très utile suivant :
 
 ### Proposition {.proposition #composition}
-Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction continue par morceaux de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle[^note].
+Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction mesurable de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
 
-[^note]: Ce résultat est en fait valable dans un cadre plus général que nous détaillerons dans la suite.
+### Démonstration (idée) {#proof}
+Puisque $g$ est mesurable, le critère de l'image réciproque implique que $\forall A \in \E_{\R}$, $g^{-1}(A) \in \E_{\R^n}$. Par composition, on en déduit que $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire.
 
 Comme application de ce résultat, on a les propriétés suivantes :
 
@@ -98,7 +99,7 @@ Soient $X$, $Y$ et $(X_n)_{n \in \N^\star}$ des variables aléatoires réelles. 
 
  3. $\sup_{n\geq 1} X_n$, $\inf_{n\geq 1} X_n$, sont des variables aléatoires.
         
- 4. Si $X_n(\omega) \xrightarrow{}{n \to \infty} Z(\omega)$, $\forall \omega$, alors la limite $Z$ est une variable aléatoire.
+ 4. Si $X_n(\omega) \xrightarrow[n \to \infty]{} Z(\omega)$, $\forall \omega$, alors la limite $Z$ est une variable aléatoire.
 
  5. $Z = 1_A$ est une variable aléatoire $\Leftrightarrow$ $A \in \A$.
 
@@ -127,10 +128,10 @@ $$ \P(X \leq 100) = \int_{0}^{100} \frac{1}{100}\exp\left(-\frac{x}{100}\right) 
 La densité de probabilité d'une variable aléatoire va nous permettre de calculer aisément des grandeurs caractéristiques telles que sa valeur moyenne et sa variance définies ci-dessous :
 
 ### Définition {.definition #defesp}
-La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si l'intégrale $|x|f(x)$ est définie, autrement dit si le produit $x f(x)$ est absolument intégrable[^noteesp]. On définit alors son *espérance* par 
+La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si l'intégrale $\int_\R |x|f(x) dx$ est définie, autrement dit si le produit $x f(x)$ est absolument intégrable[^noteesp]. On définit alors son *espérance* par 
         $$\Esp(X) = \int_\R x f(x)dx$$
 
-[^noteesp]: Comme $f$ est positive, on peut en fait se convaincre que $xf(x)$ intégrable équivaut à $xf(x)$ absolument intégrable : si $x f(x)$ est intégrable, ses "restrictions" $g(x) = xf(x) 1_{\R_-}(x)$ et $h(x)=x f(x) 1_{\R_+}(x)$ sont intégrables (passer par la restriction aux intervalles $\R_-$ et $\R_+$ puis par le critère qui étend par 0 à $\R$ ; les deux opération préservent l'intégrabilité). Or $|x|f(x) = h(x) - g(x)$ (sauf en 0), donc elle est intégrable.
+[^noteesp]: Comme $f$ est positive, on peut en fait se convaincre que $xf(x)$ intégrable équivaut à $xf(x)$ absolument intégrable : si $x f(x)$ est intégrable, ses "restrictions" $g(x) = xf(x) 1_{\R_-}(x)$ et $h(x)=x f(x) 1_{\R_+}(x)$ sont intégrables (passer par la restriction aux intervalles $\R_-$ et $\R_+$ puis par le critère qui étend par 0 à $\R$ ; les deux opérations préservent l'intégrabilité). Or $|x|f(x) = h(x) - g(x)$ (sauf en 0), donc elle est intégrable.
 <!-- **note : pour introduire proprement l'espérance d'une variable aléatoire réelle, on a besoin de l'intégrale de Lebesgue -> CI 5** -->
 
 ### Remarque {.remark} 
@@ -152,12 +153,12 @@ On note $\L^1$ l'ensemble de toutes les variables réelles $X$ à densité inté
  * Si $\exists b \in \R_+$ tel que $|X| \leq b$, alors $X \in \L^1$ et $\Esp(X) \leq b$.
 
 ### Rappel : cas discret {.remark}
-Dans le cas d'une variable aléatoire discrète $Y$ à valeurs dans $\N^\ast$, son espérance est définie par la quantité $\Esp(Y) = \sum_{i\in\N^ast} i\P(Y=i)$, pourvu que celle-ci soit finie. On voit immédiatement que les propriétés ci-dessus sont également vérifiées.
+Dans le cas d'une variable aléatoire discrète $Y$ à valeurs dans $\N^\ast$, son espérance est définie par la quantité $\Esp(Y) = \sum_{i\in\N^\ast} i\P(Y=i)$, pourvu que celle-ci soit finie. On voit immédiatement que les propriétés ci-dessus sont également vérifiées.
 
 Outre l'espace $\L^1$, nous pouvons définir l'espace $\L^2$ des variables aléatoires réelles dont le carré $X^2$ est dans $\L^1$.
 
 ### Définition {.definition #defvar}
-La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite *de carré intégrable* si $\Esp(X^2) = \int_\R x^2 f(x)dx < +\infty$, autrement dit si le produit $x^2 f(x)$ est intégrable. Sa *variance* est définie par
+La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite *de carré intégrable* si $\Esp(X^2) = \int_\R x^2 f(x)dx$ est définie, autrement dit si le produit $x^2 f(x)$ est intégrable. Sa *variance* est définie par
         $$\V(X) = \Esp((X-\Esp(X))^2)$$
 
 
@@ -169,7 +170,7 @@ $$|\Esp(X)| \leq \Esp(|X|) \leq \sqrt{\Esp(X^2)}$$
 ### Démonstration {.proof}
 Soient $X$ et $Y$ deux variables aléatoires réelles de $\L^2$ et $a \in \R$. Comme $(aX+ Y)^2 \leq 2 a^2 X^2 + 2 Y^2$, alors $aX + Y \in \L^2$. Ainsi, $\L^2$ est un espace vectoriel.
 
-L'inclusion $\L^2 \subset \L^1$ découle de $|X| \leq 1 + |X^2|$ et de la [proposition précédente](#propl1) (linéarité).
+L'inclusion $\L^2 \subset \L^1$ découle de $|X| \leq 1 + X^2$ et de la [proposition précédente](#propl1) (linéarité).
 
 La première inégalité a déjà été vue [ci-dessus](#propl1). Pour la seconde, nous pouvons nous limiter au cas où $X$ est positive. Soit alors $a = \Esp(X)$ et $Y = X-a$. Par linéarité, on a 
         $$ \Esp(Y^2) = \Esp(X^2) - 2a \Esp(X) + a^2 = \Esp(X^2)-a^2.$$
@@ -227,10 +228,10 @@ Le discriminant est nul si et seulement si le trinôme admet une racine double $
 On déduit de l'inégalité de [Cauchy-Schwarz](#CS) que le coefficient de corrélation de $X$ et $Y$ vérifie
 $$-1\leq \rho(X,Y) \leq 1.$$
 
-Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition](#composition).
+Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction mesurable d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition vue plus haut](#composition).
 
 ### Proposition {.proposition #esperanceg}
-Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction continue par morceaux de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si l'intégrale
+Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction mesurable de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si l'intégrale
 $$\int_\R |g(x)|f(x) dx,$$
 est définie et dans ce cas
 $$\Esp(g(X)) = \int_R g(x)f(x) dx.$$
@@ -245,7 +246,7 @@ Nous donnons ici quelques exemples de densités de probabilité. Nous reprenons 
 ### *Loi uniforme*
 
 sur $[a,b]$, où $a < b$ et on note $X \sim \mathcal{U}_{[a,b]}$ si $X$ est de densité
-    $$ \frac{1}{b-a} 1_{[a,b]} (x).$$
+    $$ f(x) = \frac{1}{b-a} 1_{[a,b]} (x).$$
 Son espérance vaut
         $$ \Esp(X) = \int_a^b \frac{x}{b-a} dx = \frac{a+b}{2}$$
 et puisque
@@ -256,15 +257,27 @@ alors sa variance vaut
 ### *Loi exponentielle*
 
 de paramètre $\theta > 0$ et on note $X \sim \mathcal{E}(\theta)$ si $X$ est de densité
-        $$ \theta e^{-\theta x} 1_{\{x>0\}}.$$
-Son espérance et sa variance se calculent aisément (exercice) et valent
+        $$ f(x) = \theta e^{-\theta x} 1_{\{x>0\}}.$$
+Son espérance et sa variance se calculent aisément et valent
         $$ \Esp(X) = \frac{1}{\theta} \text{ et } \V(X) = \frac{1}{\theta^2}$$
 
 ### *Loi gamma*
 
+On rappelle tout d'abord que la fonction gamma est définie pour $\alpha \in \left] 0, + \infty \right[$ par 
+        $$\Gamma(\alpha) = \int_0^{+\infty} x^{\alpha-1}e^{-x} dx.$$
+En intégrant par partie, on obtient la relation $\Gamma(\alpha+1) = \alpha \Gamma(\alpha)$, et on a $\Gamma(1) = 1$. On en déduit que $\Gamma(n) = (n-1)!$.
+
+Une variable aléatoire $X$ suit une loi gamma de paramètre d'échelle $\theta$ et d'indice $\alpha$ et on note $X \sim \Gamma(\alpha,\theta)$, si sa loi admet la densité
+        $$f(x) = \frac{1}{\Gamma(\alpha)}\theta^\alpha x^{\alpha -1} e^{-\theta x}.$$
+Son espérance et sa variance s'obtiennent en utilisant le changement de variable $x \mapsto \theta x$ et la définition de la fonction gamma :
+        $$\Esp(X) = \frac{\alpha}{\theta} \text{ et } \V(X) = \frac{\alpha}{\theta^2}.$$
+On remarquera que $\Gamma(1,\theta)$ est la loi exponentielle de paramètre $\theta$. 
+
+Lorsque $\alpha$ est entier, la loi gamma permet de modéliser le temps d'attente avant la $n$-ième occurence d'événements indépendants de loi exponentielle de paramètre $\theta$.
+
 ### *Loi normale*
 
-de paramètres $\mu$ et $\sigma^2$ et on note $X \sim \mathcal{N}(\mu,\sigma^2)$ i $X$ est de densité[^verif]
+de paramètres $\mu$ et $\sigma^2$ et on note $X \sim \mathcal{N}(\mu,\sigma^2)$ si $X$ est de densité[^verif]
         $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
 Son espérance et sa variance valent
         $$\Esp(X) =  \mu \text{ et } \V(X) = \sigma^2$$
@@ -275,24 +288,37 @@ $$ I^2 = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x) f(y) dxdy = \int
 (en passant en coordonnées polaires dans l'intégrale double). Le calcul est ensuite aisé et on obtient $I = 1$.
 
 ### Remarque {.remark}
-Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétrées par des nombres réels (un ou deux dans nos exemples) qui sont liés directement aux valeurs de l’espérance et de la variance de la variable. C’est très important en statistique. En effet, si nous savons a priori que la loi de $X$ appartient à une certaine classe de lois (lois exponentielles, lois normales), nous pourrons trouver laquelle en estimant ses paramètres en fonction des observations de $X$. Dans le cas de la loi normale, la moyenne et la variance (empiriques) des échantillons fourniront ainsi directement des estimateurs des paramètres.
+Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétrées par des nombres réels qui sont liés directement aux valeurs de l’espérance et de la variance de la variable. C’est très utile en statistique où l'on cherchera à estimer la valeur de ces paramètres à partir des observations disponibles. Dans le cas de la loi normale, la moyenne et la variance (empiriques) des échantillons fourniront ainsi directement des estimateurs des paramètres.
 
 Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l’exemple suivant.
 
 ### *loi de Cauchy*
 
+Un gyrophare envoie un flash lumineux dans une direction aléatoire uniforme d’angle $\theta$. On cherche la distribution de l'abscisse $X$ du point d'impact du rayon lumineux sur un écran plan infini situé à distance 1 du gyrophare.
 
+L'angle $\theta$ est une variable aléatoire uniforme sur $[-\pi/2,\pi/2]$, de densité $g(\theta) = \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta)$. L'abscisse $X$ est donnée par $X = \tan \theta$, c'est donc une variable aléatoire, de fonction de répartition
+\begin{align*}        
+F(x) & = \P(X \leq x) \\
+     & = \P(\theta \leq \arctan x) \\
+     & = \int_{-\infty}^{\arctan x} \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta) d\theta \\
+     & = \frac{1}{\pi} \arctan x + \frac{1}{2}.
+\end{align*}
+
+$F$ est de classe $C^1$ de dérivée
+        $$f(x) = \frac{1}{\pi(1+x^2)}, x \in \R$$
+
+C'est la densité de la loi de Cauchy. Une variable aléatoire $X$ de loi de Cauchy n'admet pas d'espérance. En effet, $\frac{x}{\pi(1+x^2)} \sim_{x\to \infty} \frac{1}{x}$ n'est pas intégrable.
 
 # Vecteurs aléatoires à densité
 Nous allons généraliser ici la notion de variable aléatoire en considérant qu'elle peut prendre ses valeurs dans $\R^n$. Les vecteurs aléatoires se rencontrent naturellement lorsqu'on s'intéresse à plusieurs quantités conjointement, par exemple dans le cas de la météo, la température, la pluviométrie et la vitesse et la direction du vent.
 
 ## Définitions
 
-Une variable aléatoire $X$ à valeurs dans $\R^n$ (ou vecteur aléatoire) est simplement une collection de $n$ variables réelles définies sur le même espace probabilisé $(\Omega, \A, \P)$, qui sont les *composantes* de $X$ : on écrit $X = (X_1,\ldots,X_n)$.
+Une variable aléatoire $X$ à valeurs dans $\R^n$ (ou vecteur aléatoire) est simplement une collection de $n$ variables réelles définies sur le même espace probabilisé $(\Omega, \A, \P)$, qui sont les *composantes* de $X$. On écrit $X = (X_1,\ldots,X_n)$.
 
 De même qu'en dimension 1, la loi de $X$ est caractérisée par la fonction de répartition multi-dimensionnelle $F : \R^n \to \R$ définie par 
 $$F(x_1,\ldots,x_n) = \P_X(X_1\leq x_1,\ldots,X_n\leq x_n)$$
-Mais caractériser les fonctions de répartition sur $\R^n$ est assez délicat, de sorte que cette notion est rarement utilisée. Nous allons plus particulièrement nous intéresser aux vecteurs aléatoires à densité.
+Mais caractériser les fonctions de répartition sur $\R^n$ est délicat, de sorte que cette notion est rarement utilisée. Nous allons plus particulièrement nous intéresser aux vecteurs aléatoires à densité.
 
 ### Définition {.definition #defvect}
 On dit que $X$ admet la densité $f$ si la fonction réelle $f$ sur $\R^n$ est positive, intégrable et vérifie 
@@ -300,18 +326,18 @@ $$\int_{\R^n} f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty}
 et si
 $$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} f(x_1,\ldots,x_n) dx_1 \ldots dx_n$$
 
-De la même manière que dans la [proposition](#esperanceg), on a :
+De la même manière que dans la [proposition vue plus haut](#esperanceg), on a :
 
 ### Proposition {.proposition #esperancegvect}
-Soit $X$ un vecteur aléatoire de densité $f$, et soit $g$ une fonction de $\R^n$ dans $\R$, continue par morceaux (i.e. continue sauf sur une "bonne" surface de dimension au plus $n-1$). On a alors $g(X)\in \L^1$ si et seulement si 
-$$\int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} |g(x_1,\ldots,x_n)|f(x_1,\ldots,x_n) dx_1 \ldots dx_n < \infty,$$
-et dans ce cas, on a 
+Soit $X$ un vecteur aléatoire de densité $f$, et soit $g$ une fonction de $\R^n$ dans $\R$, mesurable. On a alors $g(X)\in \L^1$ si et seulement si 
+$$\int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} |g(x_1,\ldots,x_n)|f(x_1,\ldots,x_n) dx_1 \ldots dx_n,$$
+est définie et dans ce cas, on a 
 $$\Esp(g(X)) = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} g(x_1,\ldots,x_n)f(x_1,\ldots,x_n) dx_1 \ldots dx_n.$$
 
 ## Moments d'un vecteur aléatoire
 
 ### Définition {.definition}
-Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont intégrables, nous pouvons définir le *vecteur espérance* 
+Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont intégrables, on peut définir le *vecteur espérance* 
         $$\Esp(X) = (\Esp(X_1),\ldots,\Esp(X_n))$$
 Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont de carré intégrable, la *matrice de covariance* de $X$ est la matrice $C_X = (c_{i,j})_{1 \leq i \leq n , 1 \leq j \leq n}$ de taille $n \times n$ et dont les éléments valent
         $$c_{i,j} = \cov (X_i,X_j)$$
@@ -324,7 +350,7 @@ La symétrie est évidente. Non-négative signifie que pour tous réels $a_1,\ld
 $$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i).$$
 
 ### Exemple : Vecteur Gaussien $n$-dimensionel {.example}
-Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons en détail au cours suivant. Soient $m \in \R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in \R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
+Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons en détail au chapitre suivant. Soient $m \in \R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in \R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
 $$ f(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^tC^{-1}(x-m)) $$
 On a alors $\Esp(X) = m$ et $C_X =C$.
 
@@ -335,13 +361,13 @@ On a alors $\Esp(X) = m$ et $C_X =C$.
 Dans ce paragraphe, on considère un couple $(X,Y)$ de vecteurs aléatoires respectivement à valeurs dans $\R^m$ et $\R^n$. Les résultats s'étendent sans peine à une famille finie quelconque. 
 
 
-On peut se ramener aux évènements pour caractériser l'indépendance de deux variables aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles dans $\E_{\R^m}$ et $\E_{\R^n}$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quelques soient $A$ et $B$.
+On peut se ramener aux évènements pour caractériser l'indépendance de deux vecteurs aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles dans $\E_{\R^m}$ et $\E_{\R^n}$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quelques soient $A$ et $B$.
 
 ### Définition {.definition #defvai}
 Les vecteurs aléatoires $X$ et $Y$ sont *indépendants* si pour tous ensembles $A$ et $B$ des tribus correspondantes, 
 $$\P(X \in A, Y \in B) = \P(X \in A)\P(Y \in B)$$
 
-Cette définition se traduit en termes de densités dans la proposition suivante que l'on énonce pour un couple de variables aléatoires pour simplifier
+Cette définition se traduit en termes de densités dans la proposition suivante que l'on énonce sans perte de généralité pour un couple de variables aléatoires.
 
 ### Proposition {.proposition}
 Soient $X$ et $Y$ deux variables aléatoires réelles de densités $f_X$ et $f_Y$. $X$ et $Y$ sont indépendantes si et seulement si 
@@ -355,10 +381,11 @@ ce qui montre que $\P_Z$ vérifie la [définition d'un vecteur aléatoire à den
 
 Inversement, si $f_Z=f_X f_Y$, on a pour tous $A$, $B$ de $\E_{\R}$
 $$\P(X\in A, Y\in B) = \int_A \int_B f_X(x) f_Y(y) dxdy = \P(X \in A)\P(Y \in B)$$ 
+où on a utilisé le théorème de Fubini.
 
 ### {.anonymous}
 
-Considérons maintenant deux fonctions $g$ et $h$ définies sur $\R^m$ et $\R^n$ telles que $g(X)$ et $h(Y)$ soient aussi des variables aléatoires (par exemple continues par morceaux). 
+Considérons maintenant deux fonctions $g$ et $h$ définies sur $\R^m$ et $\R^n$ telles que $g(X)$ et $h(Y)$ soient aussi des variables aléatoires. 
 
 ### Proposition {.proposition #indep_fct}
 Avec les notations précédentes, si $X$ et $Y$ sont indépendantes de densités respectives $f_X$ et $f_Y$, les variables aléatoires $g(X)$ et $h(Y)$ sont aussi indépendantes. Si de plus $g(X)$ et $h(Y)$ sont intégrables, alors le produit $g(X)h(Y)$ est aussi intégrable, et on a 
@@ -389,7 +416,7 @@ $$\cov(X,Y) = \cov(X,X^2) = \Esp(X^3) - \Esp(X)\Esp(X^2) = 0$$
 
 # Identification de densité
 
-Un problème important est le suivant. Soit $X$ une variable aléatoire réelle, admettant la densité $f_X$. Soit $g$ une fonction continue par morceaux, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
+Un problème important est le suivant. Soit $X$ une variable aléatoire réel, admettant la densité $f_X$. Soit $g$ une fonction mesurable, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
 
 On peut déjà remarquer que cette densité n’existe pas toujours. Si par exemple $g(x) = a$ pour tout $x$, la loi de $Y$ est la masse de Dirac en $a$, qui n’a
 pas de densité.
@@ -398,16 +425,16 @@ Pour résoudre ce problème, l’idée consiste à essayer de mettre $E(h(Y )) =
 $f_Y$, et une classe de fonctions $h$ suffisamment grande. La fonction $f_Y$ sera alors la densité cherchée.
 
 La [proposition](#esperanceg) implique
-$$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_\R h \circ g(x) f_X(x) dx$$
+$$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R} h \circ g(x) f_X(x) dx$$
 
 et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire, on appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
 
 ### Proposition {.proposition}
-Si il existe une fonction $f$ telle que pour toute fonction continue bornée $h$, 
+Si il existe une fonction $f$ telle que pour toute fonction mesurable $h$ telle que $h(x) f(x)$ soit absolument intégrable, 
 $$\Esp(h(X)) = \int_\R h(x) f(x) dx$$
 alors la loi de $X$ admet la densité $f$.
 
-L’idée de la preuve repose sur le fait que les fonctions continues bornées peuvent approcher une fonction $h = 1_{]-\infty,y]}$, pour laquelle la formule précédente donne la fonction de répartition de $f$.
+L’idée de la preuve repose sur le fait que parmi ces fonctions se trouvent les $h = 1_{]-\infty,y]}$, pour laquelle la formule précédente donne la fonction de répartition de $f$.
 
 Nous donnons ici quelques exemples d'application de cette méthode :
 
@@ -416,29 +443,42 @@ Nous donnons ici quelques exemples d'application de cette méthode :
  Donc 
         $$ f_Y(y) = f_X(\frac{y-b}{a})\frac{1}{|a|} $$
  * Soit $Y =X^2$. La fonction $g$ est décroissante sur $\R_-$ et croissante sur $\R_+$. Le changement de variable $y = x^2$ donne alors
-        $$ \Esp(h(Y)) = \int_{-\infty}^0 h(x^2) f_X(x) dx + \int_{-\infty}^0 h(x^2) f_X(x) dx$$
+        \begin{align*}
+        \Esp(h(Y)) &= \int_{-\infty}^0 h(x^2) f_X(x) dx + \int_0^{+\infty} h(x^2) f_X(x) dx\\
+                   &= \int_0^{+\infty} h(y) f_X(-\sqrt{y})\frac{1}{2\sqrt{y}} dy + \int_0^{+\infty} h(y) f_X(\sqrt{y})\frac{1}{2\sqrt{y}}dy
+        \end{align*}
+   et on en déduit
+        $$f_Y(y) = (f_X(-\sqrt{y})+f_X(\sqrt{y}))\frac{1}{2\sqrt{y}}1_{\left]0,+\infty\right[}$$
 
 Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldots,X_n)$, un vecteur aléatoire de densité $f_X$ sur $\R^n$, $g$ une fonction de $\R^n$ dans $\R^m$ et $Y = g(X)$. Plusieurs cas sont à considérer :
 
- 1. $m > n$, le vecteur $Y$ n'admet pas de densité
+ 1. $m > n$, le vecteur $Y$ n'admet pas de densité.
  2. $m=n$, on utilise comme dans le cas unidimensionel le changement de variable $y = g(x)$ dans 
         $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R^n} h \circ g(x) f_X(x) dx $$
-    Supposons d'abord que $g$ soit une bijection continûment différentiable de $A$ dans $B$, ouverts de $\R^n$. Le [théorème de changement de variable](Calcul Intégral III.pdf #) nous assure :
-        $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1}(y) \frac{1}{|\det Dg (y)|}, dy$$ 
-    où $Dg$ désigne la matrice de Jacobi associée à la différentielle de $g$. Dans le cas où $f_X(x) = 0$ en dehors de $A$, on obtient que $Y$ admet la densité
+    Supposons d'abord que $g$ soit une bijection continûment différentiable de $A$ dans $B$, ouverts de $\R^n$. Sous l'hypothèse que $h \circ g(x) f_X(x)$ soit absolument intégrable, le [théorème de changement de variable](Calcul Intégral III.pdf) nous assure :
+        $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1}(y) \frac{1}{|\det J_g (y)|} dy,$$ 
+    où $J_g$ désigne la matrice de Jacobi associée à la différentielle de $g$. Dans le cas où $f_X(x) = 0$ en dehors de $A$, on obtient que $Y$ admet la densité
         $$ f_Y(y) = 1_B(y)f_X \circ g^{-1}(y)\frac{1}{|\det Dg (y)|}.$$
     Lorsque $g$ est simplement continûment différentiable, il existe souvent une partition finie $(A_i)_{1\leq i \leq n}$ de l'ensemble $\{x ; f(x) >0\}$, telle que $g$ soit injective sur chaque $A_i$. On note alors $B_i = g(A_i)$ l'image de $A_i$ par $g$. On découpe alors l'intégrale selon les $A_i$, on applique la formule précédente à chaque morceau et on somme pour obtenir :
-        $$ f_Y(y) = \sum_{i=1}^n 1_{B_i}(y)f_X \circ g^{-1}(y) \frac{1}{|\det Dg (y)|},$$
+        $$ f_Y(y) = \sum_{i=1}^n 1_{B_i}(y)f_X \circ g^{-1}(y) \frac{1}{|\det J_g (y)|},$$
     où $g^{-1}$ est bien définie sur chaque $B_i$ comme image réciproque de la restriction de g à $A_i$.
- 3. $m < n$, on commence par "compléter" $Y$, en essayant de construire une application $g'$ de $\R^n$ dans $\R^n$ dont les $m$ premières composantes coïncident    avec les composantes de $g$ et pour laquelle on peut appliquer l'une des deux formules précédentes. On obtient ainsi la densité $f_Y'$ de $Y' = g'(X)$ puis     on obtient la densité de $Y$ en calculant sa *loi marginale* :
-        $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n$$
+ 3. $m < n$, on commence par "compléter" $Y$, en essayant de construire une application $g'$ de $\R^n$ dans $\R^n$ dont les $m$ premières composantes coïncident avec les composantes de $g$ et pour laquelle on peut appliquer l'une des deux formules précédentes. On obtient ainsi la densité $f_Y'$ de $Y' = g'(X)$ puis     on obtient la densité de $Y$ en calculant sa *loi marginale* :
+        $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n.$$
+    Nous reviendrons sur cette notion au chapitre suivant.
 
-### TODO Exemples ou exercices ?
+### Exemple
 
  1. **Coordonnées polaires**
- 2. **Loi Beta**
- 3. **Somme de deux variables aléatoires indépendantes**
-
+    Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, et $Y = (R,\Theta)$ ses coordonnées polaires. La transformation $g$ est un difféomorphisme de $A = \R^2\setminus\{0\}$ dans $B = \left]0,+\infty\right[\times \left]0,2\pi\right]$, et son inverse $g^{-1}$ s'écrit : $u = r\cos \theta,\, v= r\sin \theta$.
+    Le Jacobien de $g^{-1}$ au point $(r,\theta)$ vaut $r$, donc le point 2. ci-dessus entraîne que 
+        $$ f_Y(r,\theta) = r f_X(r\cos\theta,r\sin\theta)1_B(r,\theta)$$
+    Par exemple, si $U$ et $V$ sont indépendantes et de loi $\No(0,1)$, on a $f_X(u,v) = \frac{1}{2\pi}\exp\left(-\frac{u^2+v^2}{2}\right)$ et donc
+        $$ f_Y(r,\theta) = \frac{1}{2\pi} r\left(-\frac{r^2}{2}\right)1_{\left]0,+\infty\right[ }(r)1_{\left]0,2\pi\right]}(\theta).$$
+    En particulier, on remarque que $R$ et $\Theta$ sont indépendantes de densités respectives $r\exp\left(-\frac{r^2}{2}\right)1_{\left]0,+\infty\right[}(r)$ et $1_{\left]0,2\pi\right]}(\theta)$.
+ 2. **Somme de deux variables aléatoires indépendantes**
+    Soient $U$ et $V$ indépendantes et admettant les densités $f_U$ et $f_V$, on cherche la densité de la somme $Z = U+V$. On commence par compléter $Z$ en le couple $T = (U,Z)$ (par exemple), correspondant à la bijection $g(u,v) = (u, u+v)$ sur $\R^2$ dont le jacobien est 1 et d'inverse $g^{-1}(x,y) = (x,x-y)$. Appliquant le point 3. ci-dessus, on obtient :
+        $$f_Z(z) = \int_{\R}f_U(u)f_V(z-u) du = \int_{\R}f_U(z-v)f_V(v)dv.$$
+    La fonction $f_Z$ est appelée *le produit de convolution* des des fonctions $f_U$ et $f_V$.
 
 
 
@@ -447,6 +487,30 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
 # Exercices
 
 ## Propriété de non vieillissement de la loi exponentielle
+
+## Loi bêta {.question #loibeta}
+
+Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, avec $U$ et $V$ indépendantes de lois $\Gamma(\alpha,\theta)$ et $\Gamma(\beta,\theta)$. Identifier la densité de $\frac{U}{U+V}$.
+
+## Loi bêta {.answer #answer-loibeta}
+On note d'abord que la dimension de $Y$ est plus petite que celle de $X$. On va donc compléter $Y$ en prenant par exemple $Y' = (Y,Z)$, avec $Z=U+V$, ce qui correspond à $g(u,v) = \left(\frac{u}{u+v},u+v\right)$. Cette application est bijective de $A = \left]0,+\infty\right[^2$ dans $B = \left]0,1\right[ \times \left]0,+\infty\right[$, d'inverse $g^{-1}(y,z) = (yz,z(1-y))$, qui a pour jacobien $z$.
+
+Comme $f_X(u,v) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}u^{\alpha-1}v^{\beta-1}e^{-\theta(u+v)}1_A(u,v)$, on a 
+        $$f_{Y'}(y,z) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}z^{\alpha+\beta -1}y^{\alpha-1}(1-y)^{\beta-1}e^{-\theta z}1_B(y,z).$$
+On obtient alors la densité de Y en intégrant $f_{Y'}(y,z)$ par rapport à $z\in \left]0,+\infty\right[$ :
+\begin{align*}
+f_Y(y) &= \int_0^{+\infty} f_{Y'}(y,z) dz\\
+       &= \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}y^{\alpha-1}(1-y)^{\beta-1}1_{\left]0,1\right[}(y)\int_0^{+\infty}z^{\alpha+\beta -1}e^{-\theta(z)}dz\\
+       &= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}y^{\alpha-1}(1-y)^{\beta-1}1_{\left]0,1\right[}(y),
+\end{align*}
+où on a utilisé la définition de la fonction gamma et le changement de variable linéaire $z \mapsto \theta z$.
+On appelle loi bêta de paramètres $\alpha$ et $\beta$ la loi admettant cette densité. Admettant une grande variété de formes, elle permet de modéliser de nombreuses distributions à support fini.
+
+La loi bêta apparaît naturellement dans une expérience d'urnes, donnée par George Pólya dans un article de 1930, [*Sur quelques points de la théorie des probabilités*](http://www.numdam.org/article/AIHP_1930__1_2_117_0.pdf). Il décrit l'expérience suivante : on se donne une urne contenant initialement $r$ boules rouges et $b$ boules bleues, on tire une boule dans l'urne, puis on la remet dans l'urne avec une deuxième boule de même couleur. Alors la proportion de boules rouges tend vers une variable aléatoire de loi Beta$(r,b)$, et, inversement, la proportion de boules bleues tend vers une variable aléatoire de loi Beta$(b,r)$. 
+
+Nous obtenons aussi facilement la densité de $Z$. En effet, on a $f_{Y'}(y,z) = f_Y(y)f_Z(z)$ ($Y$ et $Z$ sont donc indépendantes), où
+$$f_Z(z) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha+\beta)}z^{\alpha+\beta -1}e^{-\theta z}1_{\left]0,+\infty\right[}$$
+On a ainsi démontré que si $U$ et $V$ sont deux variables aléatoires indépendantes de lois respectives $\Gamma(\alpha,\theta)$ et $\Gamma(\beta,\theta)$, alors $U+V$ suit la loi $\Gamma(\alpha+\beta,\theta)$ et est indépendante de $\frac{U}{U+V}$ qui suit une loi bêta de paramètres $(\alpha,\beta)$.
 
 Références
 ================================================================================
