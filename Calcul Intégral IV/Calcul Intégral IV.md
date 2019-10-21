@@ -399,6 +399,16 @@ par $\Gamma(x+1)= x\Gamma(x)$.
 Mesure et intégrale
 ================================================================================
 
+### Ensemble négligeable {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un ensemble mesuré. Un ensemble $N \subset X$
+est *$\mu$-négligeable* s'il existe un ensemble mesurable $A \in \mathcal{A}$ 
+tel que $N \subset A$ et $\mu(A) = 0$.
+
+### Presque partout {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un ensemble mesuré. Une propriété $P$ dépendant 
+d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
+où elle est fausse est un ensemble négligeable.
+
 ### Tribu engendrée par une collection {.definition}
 Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
 $\mathcal{B}$ d'ensembles de $X$ la plus petite tribu 
@@ -918,6 +928,12 @@ $$
 \int f\mu = 0 \; \Leftrightarrow \; \mu(\{x \in X \; | \; f(x) > 0\}) = 0.
 $$
 
+### {.remark}
+Notons que comme l'ensemble 
+$\{x \in X \; | \; f(x) > 0\}$ -- c'est-à-dire $f^{-1}(\left]0, +\infty\right[)$ -- 
+est mesurable par construction, "négligeable" est bien équivalent à "de mesure nulle"
+le concernant.
+
 ### Démonstration {.proof}
 La positivité est évidente par construction.
 Si $f$ est nulle presque partout, comme pour toute fonction $g$ positive,
@@ -961,13 +977,6 @@ $$
 0 < 2^{-n}\mu(A_n) = \int 2^{-n}1_{A_n} \mu \leq \int f\mu.
 $$
 L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
-
-
-
-### TODO : 
-rk expliquer ici shift justifié entre négligeable et ce qui est exploité,
-car mesurable + inclus dans mesurable de mesure nulle est équivalent à
-être de mesure nulle.
 
 ### TODO -- Démonstration {.proof}
 
