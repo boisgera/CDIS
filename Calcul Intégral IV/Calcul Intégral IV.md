@@ -1255,8 +1255,12 @@ Déterminer les ensembles mesurables associés.
 ### {.remark}
 On note $\delta_x$ la mesure correspondante que l'on appelle
 *mesure de Dirac en $x$*.
- 
-### Question 2 {.question #d3}
+
+### Question 3 {.question #d3}
+Qu'est-ce qu'un ensemble négligeable sur $\R$ pour la mesure de Dirac en $x$ ?
+A quelle condition une fonction $f :\R \to \R$ est-elle nulle presque partout ?
+
+### Question 4 {.question #d4}
 A quelle condition la fonction $f: \R \to [-\infty, +\infty]$ est-elle 
 $\delta_x$-mesurable ? $\delta_x$-intégrable ? Calculer alors
 $$
@@ -1467,6 +1471,13 @@ $$
 Tous les sous-ensembles de $\R$ sont donc $\delta_x^*$-mesurables.
  
 ### Question 3 {.answer #answer-d3}
+Comme tout ensemble $A$ de $\R$ est mesurable, $A$ est négligeable pour
+la mesure de Dirac en $x$ si et seulement si $\delta_x(A) = 0$, c'est-à-dire
+si et seulement si $x \not \in A$. La fonction $f: \R \to \R$ est donc nulle
+presque partout si et seulement si $f(x) = 0$.
+
+
+### Question 4 {.answer #answer-d4}
 Quelle que soit la fonction $f: \R \to [-\infty, +\infty]$ et l'ouvert 
 $U$ de $\mathbb{R}$, $f^{-1}(U) \in \mathcal{P}(\R)$ et donc est 
 $\delta_x$-mesurable. La fonction $f$ est donc mesurable.
