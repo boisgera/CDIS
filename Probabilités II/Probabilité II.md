@@ -343,6 +343,36 @@ $$\int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} |g(x_1,\ldots,x_n)|f(
 est définie et dans ce cas, on a 
 $$\Esp(g(X)) = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} g(x_1,\ldots,x_n)f(x_1,\ldots,x_n) dx_1 \ldots dx_n.$$
 
+Pour revenir à la densité d'une composante d'un vecteur aléatoire, on intègre par rapport aux autres variables. On le présente ici dans le cas d'un couple $Z=(X,Y)$ de variables aléatoires. On généralise aisément à une dimension supérieure.
+
+### Proposition {.proposition}
+Supposons que $Z$ admette une densité $f$. Alors $X$ et $Y$ admettent les densités $f_X$ et $f_Y$ données par
+$$f_X(x) = \int_\R f(x,y) dy, f_Y(y) = \int_\R f(x,y) dx.$$
+Les fonctions $f_X$ et $f_Y$ s'appellent les *densités marginales* de $f$.
+
+### Démonstration {.prooof}
+Pour tout $x \in \R$, on a par définition
+$$ \P(X \leq x) = \P(Z \in ]-\infty,x] \times \R) = \int_{-\infty}^x du \left(\int_\R f(u,v) dv\right).$$
+Donc si $f_X$ est définie par $f_X(x) = \int_\R f(x,y) dy$, nous obtenons que $\P(X \leq x) = \int_{-\infty}^x f_X(u) du$, ce qui montre que $f_X$ est la densité de $X$. Le raisonnement est analogue pour $Y$.
+
+### Remarque {.remark}
+La réciproque de cette proposition est fausse en revanche : les variables aléatoires $X$ et $Y$ peuvent avoir des densités sans que le couple $Z = (X, Y )$ en ait une.
+
+Supposons par exemple que $X = Y$. Si $\Delta = \{(x,x) ; x\in \R\}$ est la diagonale de $\R^2$, nous avons évidemment $\P_Z(\Delta) = 1$ mais si la [proposition précédente](#esperancegvect) était valide pour $\P_Z$, on aurait $\P_Z(\Delta) = \Esp(1_\Delta) = \int_{\R^2} 1_\Delta f_Z(z)dz = 0$ car $\Delta$ est de volume nul dans $\R^2$.
+
+En particulier, il faut faire attention au fait que dans le cas général, la densité d'un couple de variables aléatoires n'est pas le produit des densités.
+
+### Exemple
+On lance une fléchette sur une cible circulaire de rayon unité. Le joueur est suffisamment maladroit pour que le point $M$ d’impact de la fléchette
+soit supposé uniformément distribué sur la cible (On décide de n’observer que les lancés qui atteignent la cible).
+
+Les coordonnées cartésiennes de $M \in D = \{(x,y) \in \R^2 , x^2+y^2 \leq 1\}$ constituent un couple de variables aléatoires de densité
+$$f_{(X,Y)}(x,y) = \frac{1}{\pi}1_{D} (x,y)$$
+uniforme sur le disque, par hypothèse. L'abscisse de $X$ est distribuée selon la densité marginale
+$$f_X(x) = \int f_{(X,Y)}(x,y) dy = \frac{2}{\pi} (1-x^2) 1_{[-1,1]}(x).$$
+La loi de $Y$ a la même densité.
+
+
 ## Moments d'un vecteur aléatoire
 
 ### Définition {.definition}
