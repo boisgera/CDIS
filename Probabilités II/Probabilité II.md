@@ -91,7 +91,7 @@ Comme application de ce résultat, on a les propriétés suivantes :
 
 Soient $X$, $Y$ et $(X_n)_{n \in \N^\star}$ des variables aléatoires réelles. On a 
 
- 1. $X + Y$, $XY$, $\frac{X}{Y}$ si $Y \neq O$, sont des variables aléatoires.
+ 1. $X + Y$, $XY$, $\frac{X}{Y}$ si $Y \neq 0$, sont des variables aléatoires.
  
  2. $\sup_{1\leq p \leq n} X_p$, $\inf_{1\leq p \leq n} X_p$, sont des variables aléatoires.
 
@@ -107,7 +107,7 @@ $$ \P(X\leq x) = \int_{-\infty}^x f(y) dy.$$
 
 ### Exemple {.example #ex.expo}
 
-La durée de fonctionnement, en heures, d'un ordinateur avant sa première panne est une variable aléatoire positive de loi exponentielle de paramètre 1/100, de densité donnée par 
+On suppose que la durée de fonctionnement, en heures, d'un ordinateur avant sa première panne est une variable aléatoire positive de loi exponentielle de paramètre 1/100, de densité donnée par 
 
 $$f(x) = \left\{ \begin{array}{ll}
         \frac{1}{100}\exp\left(-\frac{x}{100}\right) & x \geq 0, \\
@@ -240,9 +240,9 @@ S(|g|f, \mathcal{D}) = \left|S(|g|f, \mathcal{D}) - \int _\R |g(x)|f(x) dx \righ
 \leq 
 \varepsilon.
 $$ 
-Posons $X_i = t_i$ si $X \in I_i$, pour $i \in \{0,\ldots,n-1\}$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow{n \to \infty} X(\omega)$ et par continuité de $g$, on a $g(X_n) \xrightarrow[n \to \infty]{} g(X)$. Comme $X_n$ est une variable aléatoire discrète, on a
+Posons $X_i = t_i$ si $X \in I_i$, pour $i \in \{0,\ldots,n-1\}$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow[n \to \infty]{} X(\omega)$ et par continuité de $g$, on a $g(X_n) \xrightarrow[n \to \infty]{} g(X)$. Comme $X_n$ est une variable aléatoire discrète, on a
 $$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-1}g(t_i)f(t_i)$$
-et ce dernier terme permet une apprximation de $\int _\R |g(x)|f(x) dx$ à une précision $\varepsilon$ près.
+et ce dernier terme permet une approximation de $\int _\R |g(x)|f(x) dx$ à la précision $\varepsilon$.
 
 ### Remarque {.remark}
 L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \E_\R$ :
@@ -301,7 +301,7 @@ Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétr�
 
 Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l’exemple suivant.
 
-### *loi de Cauchy*
+### *Loi de Cauchy*
 
 Un gyrophare envoie un flash lumineux dans une direction aléatoire uniforme d’angle $\theta$. On cherche la distribution de l'abscisse $X$ du point d'impact du rayon lumineux sur un écran plan infini situé à distance 1 du gyrophare.
 
@@ -333,9 +333,9 @@ Mais caractériser les fonctions de répartition sur $\R^n$ est délicat, de sor
 On dit que $X$ admet la densité $f$ si la fonction réelle $f$ sur $\R^n$ est positive, intégrable et vérifie 
 $$\int_{\R^n} f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n) dx_1 \ldots dx_n= 1$$
 et si
-$$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} f(x_1,\ldots,x_n) dx_1 \ldots dx_n$$
+$$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} f(x_1,\ldots,x_n) dx_1 \ldots dx_n.$$
 
-De la même manière que dans la [proposition vue plus haut](#esperanceg), on a :
+De la même manière que dans le [cas unidimensionnel](#esperanceg), on a :
 
 ### Proposition {.proposition #esperancegvect}
 Soit $X$ un vecteur aléatoire de densité $f$, et soit $g$ une fonction de $\R^n$ dans $\R$, mesurable. On a alors $g(X)\in \L^1$ si et seulement si 
@@ -347,7 +347,8 @@ Pour revenir à la densité d'une composante d'un vecteur aléatoire, on intègr
 
 ### Proposition {.proposition #loimarg}
 Supposons que $Z$ admette une densité $f$. Alors $X$ et $Y$ admettent les densités $f_X$ et $f_Y$ données par
-$$f_X(x) = \int_\R f(x,y) dy, f_Y(y) = \int_\R f(x,y) dx.$$
+$$f_X(x) = \int_\R f(x,y) dy,\,\,\, f_Y(y) = \int_\R f(x,y) dx.$$
+
 Les fonctions $f_X$ et $f_Y$ s'appellent les *densités marginales* de $f$.
 
 ### Démonstration {.prooof}
@@ -370,7 +371,7 @@ soit supposé uniformément distribué sur la cible (On décide de n’observer 
 Les coordonnées cartésiennes de $M \in D = \{(x,y) \in \R^2 , x^2+y^2 \leq 1\}$ constituent un couple de variables aléatoires de densité
 $$f_{(X,Y)}(x,y) = \frac{1}{\pi}1_{D} (x,y)$$
 uniforme sur le disque, par hypothèse. L'abscisse de $X$ est distribuée selon la densité marginale
-$$f_X(x) = \int f_{(X,Y)}(x,y) dy = \frac{2}{\pi} (1-x^2) 1_{[-1,1]}(x).$$
+$$f_X(x) = \int f_{(X,Y)}(x,y) dy = \frac{2}{\pi} (1-x^2)^{1/2} 1_{[-1,1]}(x).$$
 La loi de $Y$ a la même densité.
 
 
@@ -393,8 +394,6 @@ $$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i).$$
 Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons en détail au chapitre suivant. Soient $m \in \R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in \R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
 $$ f(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^tC^{-1}(x-m)) $$
 On a alors $\Esp(X) = m$ et $C_X =C$.
-
-**TODO** figure densité Gaussienne
 
 ## Variables aléatoires indépendantes
 <!-- Lorsque l'on modélise plusieurs variables conjointement, une hypothèse importante est celle de l'indépendance. Ce caractère traduit l'absence de lien de causalité entre les variables. Par exemple, on fait naturellement l'hypothèse d'indépendance lorsque l'on considère une répétition d'une même expérience dans les mêmes conditions. ??? -->
@@ -441,7 +440,7 @@ La première assertion est évidente par définition de l'indépendance. Par ail
 \end{align*}
 
 ### Remarque {.remark}
-Ce résultat est encore valable si $X$ et $Y$ n'admettent pas de densité mais nous ne disposons pas encore des outils de théorie de la mesure nécessaires à sa démonstration.
+Ce résultat est encore valable $X$ et $Y$ dans le cas général (sans densité) mais nous ne disposons pas encore des outils de théorie de la mesure nécessaires à sa démonstration.
 
 On déduit de ce résultat et de la [définition de la covariance](#defcov) que :
 
@@ -498,13 +497,12 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
     Supposons d'abord que $g$ soit une bijection continûment différentiable de $A$ dans $B$, ouverts de $\R^n$. Sous l'hypothèse que $h \circ g(x) f_X(x)$ soit absolument intégrable, le [théorème de changement de variable](Calcul Intégral III.pdf) nous assure :
         $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1}(y) \frac{1}{|\det J_g (y)|} dy,$$ 
     où $J_g$ désigne la matrice de Jacobi associée à la différentielle de $g$. Dans le cas où $f_X(x) = 0$ en dehors de $A$, on obtient que $Y$ admet la densité
-        $$ f_Y(y) = 1_B(y)f_X \circ g^{-1}(y)\frac{1}{|\det Dg (y)|}.$$
+        $$ f_Y(y) = 1_B(y)f_X \circ g^{-1}(y)\frac{1}{|\det J_g (y)|}.$$
     Lorsque $g$ est simplement continûment différentiable, il existe souvent une partition finie $(A_i)_{1\leq i \leq n}$ de l'ensemble $\{x ; f(x) >0\}$, telle que $g$ soit injective sur chaque $A_i$. On note alors $B_i = g(A_i)$ l'image de $A_i$ par $g$. On découpe alors l'intégrale selon les $A_i$, on applique la formule précédente à chaque morceau et on somme pour obtenir :
         $$ f_Y(y) = \sum_{i=1}^n 1_{B_i}(y)f_X \circ g^{-1}(y) \frac{1}{|\det J_g (y)|},$$
     où $g^{-1}$ est bien définie sur chaque $B_i$ comme image réciproque de la restriction de g à $A_i$.
- 3. $m < n$, on commence par "compléter" $Y$, en essayant de construire une application $g'$ de $\R^n$ dans $\R^n$ dont les $m$ premières composantes coïncident avec les composantes de $g$ et pour laquelle on peut appliquer l'une des deux formules précédentes. On obtient ainsi la densité $f_Y'$ de $Y' = g'(X)$ puis     on obtient la densité de $Y$ en calculant sa *loi marginale* :
+ 3. $m < n$, on commence par "compléter" $Y$, en essayant de construire une application $g'$ de $\R^n$ dans $\R^n$ dont les $m$ premières composantes coïncident avec les composantes de $g$ et pour laquelle on peut appliquer l'une des deux formules précédentes. On obtient ainsi la densité $f_Y'$ de $Y' = g'(X)$ puis     on obtient la densité de $Y$ en calculant sa loi marginale :
         $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n.$$
-    Nous reviendrons sur cette notion au chapitre suivant.
 
 ### Exemples
 
