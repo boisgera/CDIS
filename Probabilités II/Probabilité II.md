@@ -345,14 +345,15 @@ $$\Esp(g(X)) = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} g(x_1,\l
 
 Pour revenir à la densité d'une composante d'un vecteur aléatoire, on intègre par rapport aux autres variables. On le présente ici dans le cas d'un couple $Z=(X,Y)$ de variables aléatoires. On généralise aisément à une dimension supérieure.
 
-### Proposition {.proposition}
+### Proposition {.proposition #loimarg}
 Supposons que $Z$ admette une densité $f$. Alors $X$ et $Y$ admettent les densités $f_X$ et $f_Y$ données par
 $$f_X(x) = \int_\R f(x,y) dy, f_Y(y) = \int_\R f(x,y) dx.$$
 Les fonctions $f_X$ et $f_Y$ s'appellent les *densités marginales* de $f$.
 
 ### Démonstration {.prooof}
 Pour tout $x \in \R$, on a par définition
-$$ \P(X \leq x) = \P(Z \in ]-\infty,x] \times \R) = \int_{-\infty}^x du \left(\int_\R f(u,v) dv\right).$$
+$$ \P(X \leq x) = \P(Z \in ]-\infty,x] \times \R) = \Esp(1_{]-\infty,x] \times \R}(Z)) = \int_{-\infty}^x du \left(\int_\R f(u,v) dv\right),$$
+où l'on a utilisé le théorème de Fubini pour $1_{]-\infty,x] \times \R}(u,v)$ intégrable.
 Donc si $f_X$ est définie par $f_X(x) = \int_\R f(x,y) dy$, nous obtenons que $\P(X \leq x) = \int_{-\infty}^x f_X(u) du$, ce qui montre que $f_X$ est la densité de $X$. Le raisonnement est analogue pour $Y$.
 
 ### Remarque {.remark}
@@ -714,15 +715,6 @@ f_Z(x,y) &= \dfrac{1}{2\pi\,\sqrt{\sigma_X^2\,\sigma_Y^2 - c^2}}\,\exp\biggl\{ \
 \end{align*}
 
 ### Question 2 {.answer #answer-covindepgauss-marg}
-
-La fonction de répartition d'une variable aléatoire caractérisant sa loi, nous allons commencer par expliciter celle de $X$. Soit $u \in \R$. On remarque que $P\left(X \leq u \right) = \Esp\left( g(Z) \right)$ pour $$g : z=(x,y) \in\R^2 \mapsto 1_{]-\infty,u]}(x) \in \{0,1\}.$$
-Comme $|g|\times f_Z \leq f_Z$ absolument intégrable, on a bien $g(Z) \in \mathcal{L}^1$ et on peut écrire en utilisant Fubini :
-\begin{align*}
-P\left(X \leq u \right) & = \Esp\left( g(Z) \right) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y)\,f_Z(x,y)\,dy\,dx\\
-&= \int_{-\infty}^u \left(\int_{-\infty}^{+\infty} f_Z(x,y)\,dy \right)\,dx.
-\end{align*}
-La variable aléatoire $X$ admet donc une densité : $$f_X : x\in\R \mapsto \int_{-\infty}^{+\infty} f_Z(x,y)\,dy.$$
-Ce résultat est vrai pour tout vecteur aléatoire à densité, pas uniquement les vecteurs gaussiens. Il montre que si l'on connaît la loi jointe, alors on peut aisément retrouver les lois marginales.
 
 Ici, pour $x,y \in \R^2$, on remarque que :
 \begin{align*}
