@@ -395,6 +395,8 @@ Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous é
 $$ f(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^tC^{-1}(x-m)) $$
 On a alors $\Esp(X) = m$ et $C_X =C$.
 
+![Densité de probabilité de la loi normale bivariée centrée, réduite, de coefficient de corrélation 1/2](images/PdfGauss3D.tex)
+
 ## Variables aléatoires indépendantes
 <!-- Lorsque l'on modélise plusieurs variables conjointement, une hypothèse importante est celle de l'indépendance. Ce caractère traduit l'absence de lien de causalité entre les variables. Par exemple, on fait naturellement l'hypothèse d'indépendance lorsque l'on considère une répétition d'une même expérience dans les mêmes conditions. ??? -->
 Dans ce paragraphe, on considère un couple $(X,Y)$ de vecteurs aléatoires respectivement à valeurs dans $\R^m$ et $\R^n$. Les résultats s'étendent sans peine à une famille finie quelconque. 
