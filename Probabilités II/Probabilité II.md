@@ -574,6 +574,42 @@ Selon mêmes hypothèses, calculer la hauteur minimale des quais pour que la pro
 Toujours selon les mêmes hypothèses, calculer la médiane de $Y$. La comparer avec celle des $X_i$. Commenter.
 
 
+## Indépendance et vecteurs gaussiens
+
+Soit $Z := (X,Y)$ un vecteur gaussien (i.e. qui suit une loi Normale bi-variée) d'espérance $m$ et de matrice de covariance définie positive $C$. Notons $f_Z$ sa densité.
+
+### Question 1 {.question #covindepgauss-joint}
+
+Rappeler la forme de $f_Z$ et en donner une expression non matricielle faisant apparaître le coefficient de corrélation noté $\rho$.
+
+### Question 2 {.question #covindepgauss-marg}
+
+Expliciter les lois marginales de $X$ et de $Y$.
+
+### Question 3 {.question #covindepgauss-indep}
+
+Montrer que $X$ et $Y$ sont indépendantes ssi $\text{Cov}\left(X,Y\right) = 0$.
+
+## Combinaisons linéaires de variables Gaussiennes indépendantes
+
+Soit $X$ une variable aléatoire de loi Normale centrée réduite, dont on note $f$ la densité et $F$ la fonction de répartition.
+
+### Préliminaires {.question #CLIGauss-pre}
+
+Rappeler la loi de la variable aléatoire $s\,X + m$, où $s, m \in \R$.
+
+### Combinaisons linéaires {.question #CLIGauss-cl}
+
+Soient maintenant $n\in\mathbb{N}^\ast$ variables aléatoires $X_1,\dots,X_n$ indépendantes et de même loi que $X$ (on dit que ce sont des *copies indépendantes* de $X$). Pour tout vecteur $a = (a_1,\dots,a_n) \in \R^{*n}$ on pose $S_n^a := \sum_{i = 1}^n a_i\,X_i$. 
+
+2. Montrer que pour $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$ (on pourra raisonner par récurrence sur $n$).
+
+3. Soient $a,b\in\R^{n*}$. Sous quelle condition a-t-on $\text{Cov}\left(S_n^a, S_n^b\right) = 0$ ?
+
+
+
+
+---
 
 # Solutions
 
@@ -657,7 +693,117 @@ On cherche donc $m$ tel que $m^n = \frac{1}{2}$, soit $m = \frac{1}{2^{1/n}}$.
 
 On voit que cette valeur est plus élevée que la médiane des $X_i$ qui vaut $\frac{1}{2}$. Elle tend même vers 1 lorsque $n$ tend vers l'infini.
 
+## Indépendance et vecteurs gaussiens
+
+### Question 1 {.answer #answer-covindepgauss-joint}
+
+D'après le cours, en interprétant les éléments de $\R^2$ comme des vecteurs colonnes, pour tout $z =(x,y)\in\R^2$ on a
+$$
+f_Z(z) = \dfrac{1}{2\pi\,\sqrt{\det(C)}}\,\exp\left\{ -\dfrac{1}{2}\,\left(z - m\right)^t\,C^{-1}\,\left(z - m\right) \right\}.
+$$
+Or par construction $C$ peut s'écrire
+$$C = \left( \begin{array}{cc} \sigma_X^2 & c\\ c & \sigma_Y^2 \end{array}\right), $$
+où $\sigma_X^2 := \mathbb{V}\left(X\right)$, $\sigma_Y^2 := \mathbb{V}\left(Y\right)$ et $c = \text{Cov}\left(X,Y\right)$. Comme $C$ est définie positive elle est inversible, avec $\det(C) = \sigma_X^2\,\sigma_Y^2 - c^2 > 0$ et
+$$C^{-1} = \dfrac{1}{\sigma_X^2\,\sigma_Y^2 - c^2}\,\left( \begin{array}{cc} \sigma_Y^2 & -c\\ -c & \sigma_X^2 \end{array}\right).$$
+En outre, $m = \left(m_X, m_Y \right)$ avec $m_X := \Esp(X)$ et $m_Y := \Esp(Y)$. On en déduit que
+\begin{align*}
+f_Z(x,y) &= \dfrac{1}{2\pi\,\sqrt{\sigma_X^2\,\sigma_Y^2 - c^2}}\,\exp\biggl\{ \dfrac{-1}{2\,\left(\sigma_X^2\,\sigma_Y^2 - c^2 \right)}\times\\
+&\ \ \ \left( \sigma_Y^2\,(x-m_X)^2 - 2c\,(x-m_X)\,(y-m_Y) + \sigma_X^2\,(y-m_Y)^2 \right) \biggr\}\\
+&= \dfrac{1}{2\pi\,\sigma_X\,\sigma_Y\,\sqrt{1-\rho^2}}\,\,\exp\biggl\{ \dfrac{-1}{2\,\left( 1 - \rho^2 \right)}\times\\
+&\ \ \ \left( \dfrac{(x-m_X)^2}{\sigma_X^2} - 2\rho\,\dfrac{(x-m_X)}{\sigma_X}\,\dfrac{(y-m_Y)}{\sigma_Y} + \dfrac{(y-m_Y)^2}{\sigma_Y^2} \right) \biggr\}.
+\end{align*}
+
+### Question 2 {.answer #answer-covindepgauss-marg}
+
+La fonction de répartition d'une variable aléatoire caractérisant sa loi, nous allons commencer par expliciter celle de $X$. Soit $u \in \R$. On remarque que $P\left(X \leq u \right) = \Esp\left( g(Z) \right)$ pour $$g : z=(x,y) \in\R^2 \mapsto 1_{]-\infty,u]}(x) \in \{0,1\}.$$
+Comme $|g|\times f_Z \leq f_Z$ absolument intégrable, on a bien $g(Z) \in \mathcal{L}^1$ et on peut écrire en utilisant Fubini :
+\begin{align*}
+P\left(X \leq u \right) & = \Esp\left( g(Z) \right) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y)\,f_Z(x,y)\,dy\,dx\\
+&= \int_{-\infty}^u \left(\int_{-\infty}^{+\infty} f_Z(x,y)\,dy \right)\,dx.
+\end{align*}
+La variable aléatoire $X$ admet donc une densité : $$f_X : x\in\R \mapsto \int_{-\infty}^{+\infty} f_Z(x,y)\,dy.$$
+Ce résultat est vrai pour tout vecteur aléatoire à densité, pas uniquement les vecteurs gaussiens. Il montre que si l'on connaît la loi jointe, alors on peut aisément retrouver les lois marginales.
+
+Ici, pour $x,y \in \R^2$, on remarque que :
+\begin{align*}
+f_Z(x,y) &= \dfrac{1}{2\pi\,\sigma_X\,\sigma_Y\,\sqrt{1-\rho^2}}\,\,\exp\biggl\{ \dfrac{-1}{2\,\left( 1 - \rho^2 \right)}\times\\
+&\ \ \ \left( \left(\dfrac{y-m_Y}{\sigma_Y} - \rho\,\dfrac{x-m_X}{\sigma_X}\right)^2 + (1 - \rho^2)\,\dfrac{(x-m_X)^2}{\sigma_X^2} \right) \biggr\}\\
+& = \dfrac{1}{\sqrt{2\pi}\,\sigma_X}\,\exp\left\{-\dfrac{(x-m_X)^2}{2\,\sigma_X^2} \right\}\times\\
+&\ \ \ \dfrac{1}{\sqrt{2\pi}\,\sigma_Y\,\sqrt{1-\rho^2}}\,\exp\left\{-\dfrac{1}{2\,(1-\rho^2)}\,\left(\dfrac{y-m_Y}{\sigma_Y} - \rho\,\dfrac{x-m_X}{\sigma_X}\right)^2 \right\}.
+\end{align*}
+Ainsi, avec le changement de variable $u = \dfrac{y-m_Y}{\sigma_Y}$ on obtient
+\begin{align*}
+f_X(x) &= \int_{-\infty}^{+\infty} f_Z(x,y)\,dy\\
+&= \dfrac{1}{\sqrt{2\pi}\,\sigma_X}\,\exp\left\{-\dfrac{(x-m_X)^2}{2\,\sigma_X^2} \right\}\times\\
+&\ \ \ \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2\pi}\,\sqrt{1-\rho^2}}\,\exp\left\{-\dfrac{1}{2\,(1-\rho^2)}\,\left(u - \rho\,\dfrac{x-m_X}{\sigma_X}\right)^2 \right\}\,du,
+\end{align*}
+et on reconnaît dans cette dernière intégrale la densité d'une loi Normale d'espérance $\rho\,\dfrac{x-m_X}{\sigma_X}$ et de variance $1-\rho^2$. Cette intégrale vaut donc $1$ et on conclut que
+$$f_X(x) = \dfrac{1}{\sqrt{2\pi}\,\sigma_X}\,\exp\left\{-\dfrac{(x-m_X)^2}{2\,\sigma_X^2} \right\}, $$
+qui correspond à la densité d'une loi Normale d'espérance $m_X$ et de variance $\sigma_X^2$.
+
+En procédant de manière symétrique, on obtient de même que $Y$ suit une loi Normale d'espérance $m_Y$ et de variance $\sigma_Y^2$.
+
+### Question 3 {.answer #answer-covindepgauss-indep}
+Le premier sens est évident : si $X$ et $Y$ sont indépendantes, alors nous avons vu dans le cours que $\text{Cov}\left(X,Y\right) = 0$, et ce que l'on soit gaussien ou non.
+
+Supposons maintenant que $\text{Cov}\left(X,Y\right) = 0$, et montrons l'indépendance entre $X$ et $Y$. En reprenant la formule de la question 1 et en remplaçant $\rho$ par $0$, pour tout $(x,y) \in \R^2$ on a:
+\begin{align*}
+f_Z(x,y) &= \dfrac{1}{2\,\pi\,\sigma_X\,\sigma_Y}\,\exp\left\{ -\dfrac{1}{2}\,\left( \dfrac{(x-\mu_X)^2}{\sigma_X^2} + \dfrac{(y-\mu_Y)^2}{\sigma_Y^2} \right) \right\}\\
+&= \dfrac{1}{\sqrt{2\pi}\,\sigma_X}\,\exp\left\{ -\dfrac{(x-m_X)^2}{2\,\sigma_X^2} \right\} \times \dfrac{1}{\sqrt{2\pi}\,\sigma_Y}\,\exp\left\{ -\dfrac{(y-m_Y)^2}{2\,\sigma_Y^2} \right\}\\
+&= f_X(x)\times f_Y(y)
+\end{align*}
+d'après la question 2. On en conclut que $X$ et $Y$ sont bien indépendantes.
 
 
-Références
-================================================================================
+##  Combinaisons linéaires de variables Gaussiennes indépendantes
+
+### Préliminaires {.answer #answer-CLIGauss-pre}
+
+Cette question a été traitée de manière générale dans le cours. Nous en proposons une preuve alternative, basée sur le calcul de la fonction de répartition de la variable aléatoire $s\,X + m$, qui caractérise sa loi. Elle dépend clairement des valeurs de $s$.
+
+* Si $s = 0$, alors $s\,X + m$ est toujours égale à $m$ : sa loi est une masse de Dirac en $\{m\}$ et pour tout $x\in\R$ on a $\P\left(s\,X +m \leq x\right) = 1_{[m,+\infty[}(x)$.
+
+* Si $s\neq 0$, alors pour tout $x\in\R$ on a
+$$\P\left( s\,X + m \leq x \right) = \left|\begin{array}{ll}\displaystyle\P\left( X \leq \dfrac{x-m}{s} \right) = \int_{-\infty}^{\frac{x-m}{s}} f(u)\,du & \text{si } s>0,\\[1em] \displaystyle \P\left( X \geq \dfrac{x-m}{s} \right) = \int_{\frac{x-m}{s}}^{+\infty} f(u)\,du & \text{si } s<0,\end{array}\right.$$
+qui en posant le changement de variable $v = s\,x+m$ donne
+$$\P\left( s\,X + m \leq x \right) = \int_{-\infty}^{x} \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s} \right)\,dx.$$
+<!-- On pourra remarquer que cela revient à utiliser la méthode avec E(h(X)) du cours, pour h l'indicatrice qu'on est plus petit que x, car P(X in A) = E(1\_A(X)) -->
+Ainsi, $s\,X+m$ admet une densité, qui pour tout $x\in\R$ est égale à
+$$ \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s}\right) = \dfrac{1}{\sqrt{2\,\pi}\,|s|}\,\exp\left\{-\dfrac{(x-m)^2}{2\,s^2} \right\}.$$
+On reconnaît la densité d'une loi Normale d'espérance $m$ et de variance $s^2$.
+
+### Combinaisons linéaires {.answer #answer-CLIGauss-cl}
+
+2. Commençons par supposer que pour tout $n\in\mathbb{N}^\ast$, $a\in\R^n$ est tel qu'aucune de ses composantes n'est nulle. Nous allons montrer par récurrence sur $n$ que $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$. On note cette propriété $(\mathcal{P}_n)$. 
+
+**Initialisation.**
+
+* Si $n = 1$ et $a_1 \neq 0$, alors $S_1^a = a_1\,X_1$ suit une loi Normale centrée de variance $a_1^2$ d'après la question 1; $(\mathcal{P}_1)$ est donc vraie.
+
+* Si $n=2$ et $a_1,a_2 \neq 0$, alors d'après le cours $S_2^a = a_1\,X_1 + a_2\,X_2$ admet une densité, notée $f_n^a$, égale au produit de convolution des densités $f_1$ de $a_1\,X_1$ et $f_2$ de $a_2\,X_2$. En outre, d'après la question 1, pour tout $x\in\R$ on a $f_1(x) = \dfrac{1}{|a_1|}\,f\left(\dfrac{x}{a_1} \right)$ et $f_2(x) = \dfrac{1}{|a_2|}\,f\left(\dfrac{x}{a_2} \right)$. Par conséquent, pour tout $x\in\R$,
+\begin{align*}
+f_2^a(x) &= \int_{\R} f_1(x-u)\,f_2(u)\,du = \int_\R \dfrac{1}{|a_1|\,|a_2|}\,f\left(\dfrac{x - u}{a_1}\right)\,f\left(\dfrac{u}{a_2}\right)\,du\\
+&= \dfrac{1}{\sqrt{a_1^2 +a_2^2}}\,f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)\, \int_{\R} \dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}\,\dfrac{f\left(\dfrac{x - u}{a_1}\right)}{f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)}\,f\left(\dfrac{u}{a_2}\right)\,du.
+\end{align*}
+Or pour tout $x,u\in\R$ on a
+\begin{align*}
+\dfrac{f\left(\dfrac{x - u}{a_1}\right)}{f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)}\,f\left(\dfrac{u}{a_2}\right) & = \dfrac{1}{\sqrt{2\pi}}\,\dfrac{\exp\left\{-\dfrac{(x-u)^2}{2\,a_1^2} \right\}}{\exp\left\{ -\dfrac{x^2}{2\,(a_1^2+a_2^2)} \right\}}\,\exp\left\{ -\dfrac{u^2}{2\,a_2^2} \right\}\\
+& = \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{-\dfrac{1}{2}\,\left( \dfrac{(x-u)^2}{a_1^2} + \dfrac{u^2}{a_2^2} - \dfrac{x^2}{a_1^2+a_2^2} \right) \right\}\\
+&= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{ -\dfrac{\left(a_2^2\,x - (a_1^2 + a_2^2)\,u\right)^2}{2\,a_1^2\,a_2^2\,(a_1^2+a_2^2)} \right\}\\
+&= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{-\dfrac{\left(u - \dfrac{a_2^2\,x}{a_1^2 + a_2^2}\right)^2}{2\,\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}}\right\},
+\end{align*}
+qui multiplié par $\dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}$ correspond à la densité d'une loi Normale d'espérance $\dfrac{a_2^2\,x}{a_1^2+a_2^2}$ et de variance $\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}$. La précédente intégrale vaut donc $1$ et $(\mathcal{P}_2)$ est vraie.
+
+**Héritage.** Soit maintenant $n\geq 2$, et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $S_n^a = S_{n-1}^{a_{-n}} + a_n\,X_n$, où $a_{-n} := (a_1,\dots,a_{n-1})$. Or $S_{n-1}^{a_{-n}}$ et $a_n\,X_n$ sont des variables gaussiennes centrées, de variances respectives $\sum_{i = 1}^{n-1} a_i^2$ d'après $(\mathcal{P}_{n-1})$ et $a_n^2$ d'après la question 1. Par $(\mathcal{P}_2)$, $S_n^a$ suit donc une loi Normale centrée de variance $\sum_{i = 1}^n a_i^2$.
+
+**Conclusion.** On en conclut que $(\mathcal{P}_n)$ est vraie pour tout $n\in\mathbb{N}^\ast$.
+
+
+3. Calculons cette covariance :
+\begin{align*}
+\text{Cov}\left(S_n^a, S_n^b\right) &= \text{Cov}\left(\sum_{i =1}^n a_i\,X_i, \sum_{j = 1}^n b_j\,X_j\right)\\
+&= \sum_{i = 1}^n a_i\,b_i\,\mathbb{V}\left(X_i\right) + \sum_{1\leq i\neq j \leq n} a_i\,b_j\,\text{Cov}\left(X_i,X_j\right).
+\end{align*}
+Or par hypothèse $\mathbb{V}\left(X_i\right) = 1$ pour tout $i\in\{1,\dots,n\}$ et par indépendance on a $\text{Cov}\left(X_i,X_j\right) = 0$ pour tous $i,j \in \{1,\dots,n\}$ tels que $i\neq j$. Ainsi,
+$$ \text{Cov}\left(S_n^a, S_n^b\right) = \sum_{i = 1}^n a_i\,b_i $$
+qui est nulle ssi $a$ et $b$ sont orthogonaux.
