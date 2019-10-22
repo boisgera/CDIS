@@ -465,7 +465,7 @@ pas de densité.
 Pour résoudre ce problème, l’idée consiste à essayer de mettre $E(h(Y )) = E(h \circ g(X))$ sous la forme $\int h(y)f_Y (y)dy$ pour une fonction convenable 
 $f_Y$, et une classe de fonctions $h$ suffisamment grande. La fonction $f_Y$ sera alors la densité cherchée.
 
-La [proposition](#esperanceg) implique
+La [proposition qui assure que $g(X)$ est intégrable pour une variable aléatoire réelle $X$](#esperanceg) implique
 $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R} h \circ g(x) f_X(x) dx$$
 
 et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire, on appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
@@ -619,7 +619,7 @@ Soit $X$ une variable aléatoire de loi Normale centrée réduite, dont on note 
 
 ### Préliminaires {.question #CLIGauss-pre}
 
-Rappeler la loi de la variable aléatoire $s\,X + m$, où $s, m \in \R$.
+1. Rappeler la loi de la variable aléatoire $s\,X + m$, où $s, m \in \R$.
 
 ### Combinaisons linéaires {.question #CLIGauss-cl}
 
