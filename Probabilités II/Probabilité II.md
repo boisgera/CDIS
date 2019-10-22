@@ -589,6 +589,28 @@ Expliciter les lois marginales de $X$ et de $Y$.
 
 Montrer que $X$ et $Y$ sont indépendantes ssi $\text{Cov}\left(X,Y\right) = 0$.
 
+## Loi du $\chi^2$
+
+On considère une variable aléatoire $X$ gaussienne centrée réduite. On note $f$ sa densité et $F$ sa fonction de répartition.
+
+### A 1 degré de liberté {.question #khi2-1dl}
+
+1. Calculer la densité de la variable aléatoire $Y := X^2$. En donner une expression faisant apparaître la fonction gamma (on rappelle que $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$).
+
+On dit que $Y$ suit une *loi du $\chi^2$ à $1$ degré de liberté*, et on note $Y \sim \chi^2$.
+
+### A n degrés de liberté {.question #khi2-ndl}
+
+Soient maintenant $n\in\mathbb{N}^\ast$ et $X_1,\dots,X_n$ des copies indépendantes de $X$. Pour tout $i \in \{1,\dots,n\}$ on pose $Y_i := X_i^2$.
+
+2. Montrer que la variable aléatoire $Y := \sum_{i = 1}^n Y_i$ admet pour densité
+$$ f_Y : x\in\R \mapsto \left|\begin{array}{ll} \dfrac{x^{\frac{n}{2} - 1}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{n}{2}\right)}\,\exp\left\{ -\dfrac{x}{2} \right\} & \text{si } x> 0,\\ 0 & \text{si } x \leq 0. \end{array}\right.$$
+On pourra procéder par récurrence sur $n$.
+
+On dit que $Y$ suit une *loi du $\chi^2$ à $n$ degrés de liberté* et on note $Y \sim \chi^2_n$.
+
+
+
 ## Combinaisons linéaires de variables Gaussiennes indépendantes
 
 Soit $X$ une variable aléatoire de loi Normale centrée réduite, dont on note $f$ la densité et $F$ la fonction de répartition.
@@ -797,3 +819,59 @@ qui multiplié par $\dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}$ correspond à la d
 Or par hypothèse $\mathbb{V}\left(X_i\right) = 1$ pour tout $i\in\{1,\dots,n\}$ et par indépendance on a $\text{Cov}\left(X_i,X_j\right) = 0$ pour tous $i,j \in \{1,\dots,n\}$ tels que $i\neq j$. Ainsi,
 $$ \text{Cov}\left(S_n^a, S_n^b\right) = \sum_{i = 1}^n a_i\,b_i $$
 qui est nulle ssi $a$ et $b$ sont orthogonaux.
+
+
+## Loi du $\chi^2$
+
+### A 1 degré de liberté {.answer #answer-khi2-1dl}
+
+1. Soit $h : \R \to \R$ une fonction mesurable telle que $h\times f$ est absolument intégrable. Alors en opérant le changement de variable $u = x^2$ on a
+\begin{align*}
+\Esp\left( h(Y) \right) &= \Esp\left(h(X^2)\right) = \int_{\R} h(x^2)\,f(x)\,dx\\
+& = \int_{-\infty}^{0} h(x^2)\,f(x)\,dx + \int_{0}^{+\infty} h(x^2)\,f(x)\,dx\\
+&= \int_{0}^{+\infty} h(u)\,f\left(-\sqrt{u}\right)\,\dfrac{1}{2\,\sqrt{u}} \,du + \int_{0}^{+\infty} h(u)\,f\left(\sqrt{u}\right)\,\dfrac{1}{2\,\sqrt{u}} \,du.
+\end{align*}
+Or $f$ est paire, donc pour tout $u \in \R^+$ on a $f\left(-\sqrt{u}\right) = f\left(\sqrt{u}\right)$ et
+\begin{align*}
+\Esp\left( h(Y) \right) &= \int_{\R_+} h(u)\,f\left(\sqrt{u}\right)\,\dfrac{1}{\sqrt{u}} \,du.
+\end{align*}
+Par propriété $Y$ possède donc une densité $f_Y$ valant pour tout $x\in\R$
+$$f_Y(x) = \left|\begin{array}{ll} f\left(\sqrt{x}\right)\,\dfrac{1}{\sqrt{x}} = \dfrac{x^{-\frac{1}{2}}}{2^{\frac{1}{2}}\,\Gamma\left(\frac{1}{2}\right)}\,\exp\left\{-\dfrac{x}{2}\right\} & \text{si } x > 0,\\ 0 & \text{si } x \leq 0. \end{array}\right. $$
+
+**Remarque.** La fonction $f_Y$ est bien une densité : elle est continue par morceaux donc mesurable, puis positive, et son intégrale sur $\R$ vaut bien $1$ :
+\begin{align*}
+\int_{\R} f_Y(x)\,dx &= \dfrac{1}{2\,\Gamma\left(\frac{1}{2}\right)}\,\int_{0}^{+\infty} \left(\dfrac{x}{2}\right)^{\frac{1}{2}-1}\,\exp\left\{-\dfrac{x}{2}\right\}\,dx \\
+&= \dfrac{1}{\Gamma\left(\frac{1}{2}\right)}\,\int_{0}^{+\infty} u^{\frac{1}{2}-1}\,e^{-u}\,du = \dfrac{\Gamma\left(\frac{1}{2}\right)}{\Gamma\left(\frac{1}{2}\right)} = 1.
+\end{align*}
+
+### A n degrés de liberté {.answer #answer-khi2-ndl}
+
+2. On note $(\mathcal{P}_n)$ la propriété à démonter au rang $n$.
+
+**Initialisation.** Nous avons vu à la question précédente que $(\mathcal{P}_1)$ est vraie.
+
+**Hérédité.** Soit maintenant $n \geq 2$ et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $Y = \sum_{i = 1}^{n-1}Y_i + Y_n$ est la somme de deux variables aléatoires indépendantes, dont la première suit un $\chi_{n-1}^2$ de densité notée $f_{n-1}$ et la seconde un $\chi_1^2$ de densité notée $f_1$. Elle possède donc une densité, égale au produit de convolution de $f_{n-1}$ et $f_1$ : pour tout $x\in\R$
+$$f_Y(x) = \int_{\R} f_1(x-u)\,f_{n-1}(u)\,du.$$
+Or pour tout $x,u\in\R$ on a $f_1(x-u) = 0$ ssi $x \leq u$ et $f_{n-1}(u) = 0$ ssi $u \leq 0$. Donc leur produit est strictement positif ssi $x > u > 0$, nul sinon. La densité $f_Y$ est par conséquent nulle sur $\R^-$ et nous allons maintenant exhiber son expression sur $\R_+^\ast$. Soit $x > 0$, alors
+\begin{align*}
+f_Y(x) &= \int_{0}^{x} \dfrac{(x-u)^{-\frac{1}{2}}}{\sqrt{2}\,\Gamma\left(\frac{1}{2}\right)}\,\exp\left\{-\dfrac{x-u}{2}\right\}\,\dfrac{u^{\frac{n-1}{2}-1}}{2^{\frac{n-1}{2}}\,\Gamma\left(\frac{n-1}{2}\right)}\,\exp\left\{-\dfrac{u}{2}\right\} \,du\\
+&= \dfrac{\exp\left\{-\dfrac{x}{2} \right\}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n-1}{2}\right)} \,\int_0^x \left(x-u\right)^{-\frac{1}{2}}\,u^{\frac{n-3}{2}}\,du.
+\end{align*}
+Avec le changement de variable $v=\dfrac{u}{x}$ on obtient
+\begin{align*}
+f_Y(x) &= \dfrac{x^{\frac{n}{2}-1}\,\exp\left\{-\dfrac{x}{2} \right\}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n-1}{2}\right)} \,\int_0^{1} v^{\frac{n-3}{2}}\,\left(1 - v\right)^{-\frac{1}{2}} \,dv.
+\end{align*}
+Or $f_Y$ est une densité, son intégrale vaut donc $1$ :
+\begin{align*}
+\int_{\R} f_Y(x)\,dx &= \int_0^{+\infty} \dfrac{x^{\frac{n}{2}-1}\,\exp\left\{-\dfrac{x}{2} \right\}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n-1}{2}\right)}\,\left(\int_0^{1} v^{\frac{n-3}{2}}\,\left(1 - v\right)^{-\frac{1}{2}} \,dv\right)\,dx\\
+&= \left(\int_0^{1} v^{\frac{n-3}{2}}\,\left(1 - v\right)^{-\frac{1}{2}} \,dv\right)\,\left(\int_0^{+\infty} \dfrac{x^{\frac{n}{2}-1}\,\exp\left\{-\dfrac{x}{2} \right\}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n-1}{2}\right)}\,dx\right)\\
+& \left(\int_0^{1} v^{\frac{n-3}{2}}\,\left(1 - v\right)^{-\frac{1}{2}} \,dv\right)\,\left(\int_0^{+\infty} \dfrac{x^{\frac{n}{2}-1}\,\exp\left\{-x \right\}}{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n-1}{2}\right)}\,dx\right)\\
+&= \left(\int_0^{1} v^{\frac{n-3}{2}}\,\left(1 - v\right)^{-\frac{1}{2}} \,dv\right)\,\left( \dfrac{\Gamma\left(\frac{n}{2}\right)}{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n-1}{2}\right)}\right) = 1.
+\end{align*}
+
+On en déduit que $$ \int_0^{1} v^{\frac{n-3}{2}}\,\left(1 - v\right)^{-\frac{1}{2}} \,dv = \dfrac{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n-1}{2}\right)}{\Gamma\left(\frac{n}{2}\right)}, $$
+et finalement que pour tout $x\in\R$
+$$f_Y(x) = \left|\begin{array}{ll} \dfrac{x^{\frac{n}{2}-1}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{n}{2}\right)}\,\exp\left\{-\dfrac{x}{2}\right\} & \text{si } x> 0,\\ 0 & \text{sinon;}\end{array}\right.$$
+$(\mathcal{P}_n)$ est donc vraie.
+
+**Conclusion.** La propriété est vraie pour tout $n\in\mathbb{N}^\ast$.
