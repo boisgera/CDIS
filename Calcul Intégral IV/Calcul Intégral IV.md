@@ -1821,7 +1821,7 @@ $$
 et donc tout ouvert de $\R$ puisqu'un tel ensemble est une réunion dénombrable
 d'intervalles ouverts de $\R$. Par conséquent, elle contient tous les Boréliens.
 Comme l'ensemble des Boréliens est une tribu de $\R$, c'est donc la tribu
-engendrée par la collection initiale. 
+engendrée par la collection initiale.  
 
 Complétion d'une mesure
 --------------------------------------------------------------------------------
