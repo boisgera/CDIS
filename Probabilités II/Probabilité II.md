@@ -574,7 +574,6 @@ Selon mêmes hypothèses, calculer la hauteur minimale des quais pour que la pro
 ### Question 5 {.question #crue5}
 Toujours selon les mêmes hypothèses, calculer la médiane de $Y$. La comparer avec celle des $X_i$. Commenter.
 
-
 ## Indépendance et vecteurs gaussiens
 
 Soit $Z := (X,Y)$ un vecteur gaussien (i.e. qui suit une loi Normale bi-variée) d'espérance $m$ et de matrice de covariance définie positive $C$. Notons $f_Z$ sa densité.
@@ -590,6 +589,29 @@ Expliciter les lois marginales de $X$ et de $Y$.
 ### Question 3 {.question #covindepgauss-indep}
 
 Montrer que $X$ et $Y$ sont indépendantes ssi $\text{Cov}\left(X,Y\right) = 0$.
+
+
+## Symétrie de la gaussienne
+
+Soit $X$ une variable aléatoire réelle de loi Normale centrée réduite, dont la densité est notée $f$ et la fonction de répartition $F$. Pour tout $c>0$ on pose 
+        $$X_c := \left|\begin{array}{ll} X & \text{si } |X| > c,\\ -X & \text{si } |X| \leq c.\end{array}\right.$$
+
+### Question 1 {.question #gausssym-loi}
+
+Déterminer la loi de $X_c$. 
+
+### Question 2 {.question #gausssym-cov}
+
+Calculer la covariance de $X$ et de $X_c$ et montrer qu'il existe une valeur $c_0$ de $c$ qui l'annule. 
+
+### Question 3 {.question #gausssym-indep}
+
+Les deux variables $X$ et $X_{c_0}$ sont-elles indépendantes ? 
+
+### Question 4 {.question #gausssym-vecgauss}
+
+Le vecteur aléatoire $(X,X_{c_0})$ est-il gaussien ? 
+
 
 ## Loi du $\chi^2$
 
@@ -768,6 +790,73 @@ f_Z(x,y) &= \dfrac{1}{2\,\pi\,\sigma_X\,\sigma_Y}\,\exp\left\{ -\dfrac{1}{2}\,\l
 \end{align*}
 d'après la question 2. On en conclut que $X$ et $Y$ sont bien indépendantes.
 
+## Symétrie de la gaussienne
+
+### Question 1 {.answer #answer-gausssym-loi}
+
+Nous avons admis dans le cours que la fonction de répartition $F_c$ de $X_c$ caractérisait sa loi. Nous allons donc l'expliciter. Soit $x \in \R$. Par définition de la fonction de répartition d'une variable aléatoire et d'après la formule des probabilités totales, on a
+\begin{align*}
+F_c(x) &= \P\left(X_c \leq x\right) = \P\left( X_c \leq x, |X| > c \right) + \P\left( X_c \leq x, |X| \leq c\right)\\
+&= \P\left( X\leq x, |X| > c \right) + \P\left(-X \leq x, |X| \leq c\right)\\
+&= \P\left( X\leq x, X > c \right) + \P\left(X \leq x, X < -c \right) + \P\left( X \geq -x, -c \leq X \leq c\right).
+\end{align*}
+Or $$\P\left( X\leq x, X > c \right) = \left|\begin{array}{ll} \P\left(c < X \leq x \right) = F(x) - F(c) & \text{si } x > c,\\ 0 & \text{si } x\leq c,\end{array}\right.$$
+$$ \P\left(X \leq x, X < -c \right) = \P\left( X \leq \min\{-c,x\} \right) = F\left(\min\{-c,x\}\right), $$
+$$ \P\left( X \geq -x, -c \leq X \leq c\right) = \left|\begin{array}{ll} \P\left(-c \leq X \leq c \right) = F(c) - F(-c) & \text{si } x > c, \\ \P\left(-x \leq X \leq c \right) = F(c) - F(-x) & \text{si } -c \leq x \leq c,\\ 0 & \text{si } x<-c. \end{array}\right.$$
+Ainsi,
+
+* si $x > c$ alors $\min\{-c,x\} = -c$ et
+$$F_c(x) = F(x) - F(c) + F\left(\min\{-c,x\}\right) + F(c) - F(-c) = F(x),$$
+
+* si $-c \leq x \leq c$ alors $\min\{-c,x\} = -c$ et
+$$F_c(x) = F\left(\min\{-c,x\}\right) + F(c) - F(-x) = 1 - F(c) + F(c) - 1 + F(x) = F(x)$$
+car la densité de la loi Normale centrée réduite est paire, ce qui implique que $F(-x) = 1 - F(x)$ pour tout $x\in\R$,
+
+* si $x < -c$ alors $\min\{-c,x\} = x$ et
+$$F_c(x) =  F\left(\min\{-c,x\}\right) = F(x).$$
+
+On en conclut que $F_c = F$ : $X_c$ a la même loi que $X$. Ce résultat est dû à la symétrie de la densité de la loi Normale centrée réduite. On remarque d'ailleurs que le résultat resterait inchangé si l'on prenait n'importe quelle autre loi de densité paire !
+
+### Question 2 {.answer #answer-gausssym-cov}
+
+Tout d'abord, par définition, $$\text{Cov}\left(X,X_c\right) = \Esp\left( \left(X - \Esp\left(X\right)\right)\,\left(X_c - \Esp\left(X_c\right) \right) \right) = \Esp\left(X\,X_c \right) $$
+puisque $X$ et $X_c$ sont gaussiennes centrées (d'espérance nulle) réduites. Or on remarque que l'on peut écrire $X_c = X\,1_{\R\backslash[-c,c]}(X) - X\,\,1_{[-c,c]}(X)$. On déduit par linéarité de l'espérance que
+\begin{align*}
+\Esp\left(X\,X_c\right) &= \Esp\left(X^2\,1_{\R\backslash[-c,c]}(X) - X^2\,1_{[-c,c]}(X)\right)\\
+&= \Esp\left(X^2\,\left(1_{\R\backslash[-c,c]}(X) + 1_{[-c,c]}(X) - 1_{[-c,c]}(X)\right) - X^2\,1_{[-c,c]}(X)\right)\\
+&= \Esp\left(X^2\right) - 2\,\Esp\left(X^2\,1_{[-c,c]}(X)\right).
+\end{align*}
+Etant donné que $X$ est de loi Normale centrée réduite, on a directement que $\Esp\left(X^2\right)=1$; il suffit donc de calculer la dernière espérance pour obtenir le résultat. Comme $x\mapsto x^2\,1_{[-c,c]}(x)$ est bornée et continue sur $\R\backslash\{-c,c\}$ (donc continue presque partout), elle est intégrable et
+$$\Esp\left(X^2\,1_{[-c,c]}(X)\right) = \int_{-\infty}^{+\infty} x^2\,1_{[-c,c]}\,f(x)\,dx = \int_{-c}^c x^2\,f(x)\,dx. $$
+Or on pourra remarquer que $f^\prime(x) = -x\,f(x)$ puis que $f^{\prime\prime}(x) = (x^2-1)\,f(x)$. Puisque $f$, $f^\prime$ et $f^{\prime\prime}$ sont continues et bornées (voir l'exercice *Densité et fonction de répartition d'une loi Normale* du chapitre Probabilités I) elles sont intégrables sur des segments. On en déduit que
+\begin{align*}
+\Esp\left(X^2\,1_{[-c,c]}(X)\right) &= \int_{-c}^c (x^2-1)\,f(x)\,dx + \int_{-c}^c f(x)\,dx\\
+&= \left[-x\,f(x) \right]_{-c}^c + F(c) - F(-c)\\
+&= -c\,\left(f(c) + f(-c)\right) + F(c) - F(-c)\\
+&= 2\,\left(F(c) - c\,f(c)\right) - 1
+\end{align*}
+par parité de $f$. On en conclut que $\text{Cov}\left(X,X_c\right) = 3 + 4\,\left(c\,f(c) - F(c)\right)$.
+
+La fonction $g : c\in\R_+^\ast \mapsto 3+4\,\left(c\,f(c) - F(c)\right)$ est continue, infiniment dérivable et pour tout $c > 0$ on a $g^\prime(c) = -4\,c^2\,f(c) < 0$. Par conséquent, $g$ est strictement décroissante, avec $\lim\limits_{c\to0^+} g(c) = 1$ et $\lim\limits_{c\to+\infty} g(c) = -1$. Le théorème des valeurs intermédiaires nous permet de conclure qu'il existe bien un unique $c_0 > 0$ tel que $g(c_0) = 0$.
+
+### Question 3 {.answer #answer-gausssym-indep}
+
+Les variables aléatoires $X$ et $X_{c_0}$ sont indépendantes ssi pour tous ensembles $A,B \in \mathcal{E}_\R$ on a
+$$\P\left(X \in A, X_{c_0} \in B \right) = \P\left(X \in A\right)\,\P\left(X_{c_0} \in B \right).$$
+
+Or si l'on prend $A = B = ]-\infty, x]$ où $x < -c_0$, alors
+\begin{align*}
+\P\left( X \leq x, X_{c_0} \leq x \right) &= \P\left( X \leq x, X < -c_0 \right) + \P\left( X \leq x, X > c_0 \right)\\
+&\ \ \ + \P\left( X\leq x, X \geq -x, -c_0 \leq X \leq c_0 \right)\\
+&= \P\left( X \leq x \right) +0 + 0 = F(x)\\
+& \neq F(x)\,F(x) = \P\left( X \leq x \right)\,\P\left(X_{c_0} \leq x \right).
+\end{align*}
+
+On en conclut que bien que $\text{Cov}\left(X,X_{c_0}\right) = 0$, $X$ et $X_{c_0}$ ne sont pas indépendantes.
+
+### Question 4 {.answer #answer-gausssym-vecgauss}
+
+Supposons que $(X,X_{c_0})$ soit un vecteur gaussien. Alors, puisque $\text{Cov}\left(X,X_{c_0}\right) = 0$, $X$ et $X_{c_0}$ sont nécessairement indépendantes. Or nous venons de voir que ce n'était pas le cas; nous avons donc contradiction. On en conclut que $(X,X_{c_0})$ n'est pas gaussien.
 
 ##  Combinaisons linéaires de variables Gaussiennes indépendantes
 
