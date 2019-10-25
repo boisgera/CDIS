@@ -236,13 +236,12 @@ $$\Esp(g(X)) = \int_R g(x)f(x) dx.$$
 
 Nous n'avons pas tous les éléments permettant de démontrer ce résultat, mais l'argument heuristique suivant permet de comprendre pourquoi il est vrai : supposons $g$ continue telle que $|g|f$ soit intégrable. Alors il existe une jauge $\gamma(t)$, sur $[-\infty, +\infty]$ telle que, si la subdivision pointée (totale ou partielle) $\mathcal{D} =\{(t_i, I_i)\}_i$ est subordonnée à $\gamma$, on a
 $$
-S(|g|f, \mathcal{D}) = \left|S(|g|f, \mathcal{D}) - \int _\R |g(x)|f(x) dx \right| 
+S(gf, \mathcal{D}) = \left|S(gf, \mathcal{D}) - \int _\R g(x)f(x) dx \right| 
 \leq 
 \varepsilon.
 $$ 
-Posons $X_i = t_i$ si $X \in I_i$, pour $i \in \{0,\ldots,n-1\}$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow[n \to \infty]{} X(\omega)$ et par continuité de $g$, on a $g(X_n) \xrightarrow[n \to \infty]{} g(X)$. Comme $X_n$ est une variable aléatoire discrète, on a
-$$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-1}g(t_i)f(t_i)$$
-et ce dernier terme permet une approximation de $\int _\R |g(x)|f(x) dx$ à la précision $\varepsilon$.
+Posons $X_n = t_i$ si $X \in I_i$, pour $i \in \{0,\ldots,n-1\}$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow[n \to \infty]{} X(\omega)$ et par continuité de $g$, on a $g(X_n) \xrightarrow[n \to \infty]{} g(X)$. Comme $X_n$ est une variable aléatoire discrète, on a
+$$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-1}g(t_i)f(t_i).$$
 
 ### Remarque {.remark}
 L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \E_\R$ :
