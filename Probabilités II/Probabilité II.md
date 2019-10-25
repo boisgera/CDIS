@@ -496,11 +496,11 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
  2. $m=n$, on utilise comme dans le cas unidimensionel le changement de variable $y = g(x)$ dans 
         $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R^n} h \circ g(x) f_X(x) dx $$
     Supposons d'abord que $g$ soit une bijection continûment différentiable de $A$ dans $B$, ouverts de $\R^n$. Sous l'hypothèse que $h \circ g(x) f_X(x)$ soit absolument intégrable, le [théorème de changement de variable](Calcul Intégral III.pdf) nous assure :
-        $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1}(y) \frac{1}{|\det J_g (y)|} dy,$$ 
+        $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1}(y) \frac{1}{|\det J_g (g^{-1}(y))|} dy,$$ 
     où $J_g$ désigne la matrice de Jacobi associée à la différentielle de $g$. Dans le cas où $f_X(x) = 0$ en dehors de $A$, on obtient que $Y$ admet la densité
-        $$ f_Y(y) = 1_B(y)f_X \circ g^{-1}(y)\frac{1}{|\det J_g (y)|}.$$
+        $$ f_Y(y) = 1_B(y)f_X \circ g^{-1}(y)\frac{1}{|\det J_g (g^{-1}(y))|}.$$
     Lorsque $g$ est simplement continûment différentiable, il existe souvent une partition finie $(A_i)_{1\leq i \leq n}$ de l'ensemble $\{x ; f(x) >0\}$, telle que $g$ soit injective sur chaque $A_i$. On note alors $B_i = g(A_i)$ l'image de $A_i$ par $g$. On découpe alors l'intégrale selon les $A_i$, on applique la formule précédente à chaque morceau et on somme pour obtenir :
-        $$ f_Y(y) = \sum_{i=1}^n 1_{B_i}(y)f_X \circ g^{-1}(y) \frac{1}{|\det J_g (y)|},$$
+        $$ f_Y(y) = \sum_{i=1}^n 1_{B_i}(y)f_X \circ g^{-1}(y) \frac{1}{|\det J_g (g^{-1}(y))|},$$
     où $g^{-1}$ est bien définie sur chaque $B_i$ comme image réciproque de la restriction de g à $A_i$.
  3. $m < n$, on commence par "compléter" $Y$, en essayant de construire une application $g'$ de $\R^n$ dans $\R^n$ dont les $m$ premières composantes coïncident avec les composantes de $g$ et pour laquelle on peut appliquer l'une des deux formules précédentes. On obtient ainsi la densité $f_Y'$ de $Y' = g'(X)$ puis     on obtient la densité de $Y$ en calculant sa loi marginale :
         $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n.$$
