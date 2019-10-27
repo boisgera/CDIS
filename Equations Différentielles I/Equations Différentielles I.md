@@ -13,15 +13,28 @@
 
 \newcommand{\inter}{\mathop{\rm int}\nolimits}
 
-Notations à définir/uniformiser
+Historique
+=====================
 
-- $C^k(I, \R)$
-- boule ouverte/fermée
-- interieur 
+L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et la modélisation du mouvement des planètes par Kepler et Newton. Le premier réflexe est alors de chercher des solutions exactes (Newton, Leibniz), mais on se rend progressivement compte que cela est généralement impossible mis à part des cas très particuliers comme les équations différentielles linéaires. 
 
-Un peu d'histoire
-=========================== 
+Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on commence à chercher à charactériser les propriétés des solutions sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
+Laplace qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
 
+Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
+
+En parallèle, la thèse de Lyapunov en 1892 lance la théorie de l'étude de la stabilité et du comportement asymptotique des solutions.
+
+
+**Notations** 
+
+- $C^k(U, V)$ : ensemble des fonctions $f:U\to V$ continûment différentiables d'ordre $k$.
+
+- $B_r(x)$ : boule ouverte centrée en $x$ et de rayon $r$.
+
+- $\overline{B}_r(x)$ : boule fermée centrée en $x$ et de rayon $r$.
+
+- interieur ?
 
 
 Cadre de l'étude
