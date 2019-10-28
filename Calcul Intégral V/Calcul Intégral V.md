@@ -68,6 +68,10 @@ suite. (euh, mais où ça ?)
 Opter pour "généralisée" en 1ere instance ?
 dérivée généralisée, dérivable au sens des distributions (cf. + tard)
 
+### TODO -- Nota
+Si $f$ a une dérivée faible $g$, alors $f$ est dérivable p.p. et $g=f'$ p.p.
+Mais pas assez (cf + loin)
+
 ### TODO -- Dérivable faiblement implique dérivable pp {.proposition}
 Corollaire: dérivable faiblement implique dérivée classique existe pp et
 est égale à la dérivée faible
@@ -126,6 +130,27 @@ que dans le cadre absolument continu que nous avons choisi[^ACG].
 
 [^ACG]: Il s'agit d'une classe de fonctions absolument continues 
 mais **généralisées**, notée $\mathrm{ACG}_*$, cf. [@Bar01, pp. 242-243].
+
+
+
+### TODO -- Warning
+Les fonctions continues, dérivables presque partout et de dérivée localement
+intégrables ne sont pas nécessairement absolument continues.
+
+Ex: fonction de Cantor $f:[0,1] \to [0, 1]$, déterminée comme la limite des
+suites de fonctions $f_n$ définies par $f_0(x) = x$ et
+$$
+f_{n+1}(x) = \left|
+\begin{array}{rl}
+0.5 \times f_n(3x) & \mbox{si $x\leq 1/3$}, \\
+0.5 & \mbox{si $1/3 < x \leq 2/3$}, \\
+0.5 + 0.5 \times f_n(3x-2) & \mbox{si $2/3 < x$}.
+\end{array}
+\right.
+$$
+
+![Approximation d'ordre $5 de la fonction de Cantor](images/devil-staircase.py)
+
 
 ### TODO -- Dérivation faible et IPP
 (équivalence)
