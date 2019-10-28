@@ -73,9 +73,9 @@ où $(u_\alpha,u_\beta)$ est la tension appliquée au stator, $(i_\alpha,i_\beta
 
 - La mécanique Newtonienne ou Lagrangienne amène typiquement à des équations du type
 $$
-J \ddot{x} = \sum_k F_k(t,x,\dot{x})
+J \ddot{p} = \sum_k F_k(t,p,\dot{p})
 $$
-où $x\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\dot{x}$ sa vitesse et $\ddot{x}$ son accélération, avec $J$ la matrice d'inertie, et $F_k$ les forces/couples agissant sur le système.  
+où $p\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\dot{p}$ sa vitesse et $\ddot{p}$ son accélération, avec $J$ la matrice d'inertie, et $F_k$ les forces/couples agissant sur le système.  
 
 - Hamiltonien?
 
@@ -91,6 +91,9 @@ $$
 $$
 
 Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de $x\in C^p(I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
+
+### Exemples
+Dans les exemples plus haut, on prendrait donc $x=(u,\dot{u})\in \R^2$, $x=(i_\alpha,i_\beta,\omega,\theta)\in \R^4$, $x=(p,\dot{p})$ respectivement, pour se ramener à une équation différentielle d'ordre 1.
 
 
 ### Problème de Cauchy (*Initial Value Problem*) {.definition #def_cauchy}
@@ -250,7 +253,7 @@ f(t,x) = a(t) x + b(t) \ ,
 $$
 admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $\partial_x f(t,x) = a(t)$ (en identifiant abusivement ici différentielle et matrice Jacobienne).
 
-- Les équations décrivant l'évolution de la tension dans un circuit RLC, et celles d'un moteur électrique données au début de ce cours admettent une unique solution au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,x,\dot{x})$ sont $C^1$ par rapport à la position et la vitesse $(x,\dot{x})$.
+- Les équations décrivant l'évolution de la tension dans un circuit RLC, et celles d'un moteur électrique données au début de ce cours admettent une unique solution au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,p,\dot{p})$ sont $C^1$ par rapport à la position et la vitesse $(p,\dot{p})$.
 
 
 Solutions globales
@@ -969,6 +972,38 @@ Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|<
 
 ### Stabilité locale et linéarisé tangent {.app #app_stab_lin}
 
+Soit $a$ un point d'équilibre de $f$. Définissons
+$$
+\Delta(x) = f(x)-f(a) - J_f(a)(x-a) = f(x)- J_f(a)(x-a)\ ,
+$$
+puisque $f(a)=0$.
+Par la définition de la différentiabilité de $f$, on sait que $\Delta(x) = o(\|x-a\|)$, i.e. $\lim_{x\to a} \frac{\Delta(x)}{\|x-a\|}=0$. Donc il existe $\varepsilon>0$ et $a>0$ tels que  
+$$
+\|\Delta(x)\| \leq a \|x-a\|^2 \qquad \forall x\in B_\varepsilon(a) \ .
+$$
+
+La preuve repose ensuite sur un lemme dû à Lyapunov qui dit que pour toute matrice $A\in \R^{n\times n}$ à valeurs propres à parties réelles strictement négatives, et pour toute matrice symmétrique définie positive $Q\in \R^{n\times n}$, il existe une (unique) matrice symmétrique définie positive $P\in \R^{n\times n}$ telle que 
+$$
+A^\top P +P A = - Q \ .
+$$
+En effet, la solution est alors donnée par $P=\int_0^{+\infty}\left(e^{As}\right)^\top Q e^{As}ds$.
+
+Supposons donc que $J_f(a)$ ait ses valeurs propres à partie réelle strictement négative. Il existe alors $P=P^\top>0$ telle que 
+$$
+J_f(a)^\top P +P J_f(a) = -I \ .
+$$
+Considérons alors $V(x) = (x-a)^\top P (x-a)$ qui est bien positive, et nulle seulement pour $x=a$. Pour tout $x\in B_\varepsilon(a)$,
+\begin{align*}
+\left< \nabla V(x), f(x) \right> & = (x-a)^\top P f(x) + f(x)^\top P(x-a) \\
+&= (x-a)^\top\left( J_f(a)^\top P +P J_f(a)\right) (x-a) + 2 (x-a)^\top P\Delta(x) \\
+&\leq - \|x-a\|^2 + 2 \|x-a\| \|P\| \|\Delta(x)\| \\
+&\leq - \|x-a\|^2\left(1- 2a\|P\|\|x-a\| \right)
+\end{align*}
+Donc $\left< \nabla V(x), f(x) \right><0$ pour tout $x\in B_{\epsilon'}(a)$ avec
+$$
+\epsilon' = \min \left\{ \varepsilon , \frac{1}{2a\|P\|} \right\} 
+$$
+D'après le théorème de Lyapunov, $a$ est donc localement asymptotiquement stable.
 
 
 <!-- Footnotes -->
