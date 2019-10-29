@@ -47,38 +47,47 @@ def FD(f, x, h):
     "Forward Difference"
     return (f(x+h) - f(x)) / h
 
-# Test Function
-# ------------------------------------------------------------------------------
-def f(n):
-    def f_n(x):
-        if n == 0:
-            return x * (0 <= x) * (x <= 1) + (1 < x)
-        else:
-            return 0.5 * f(n-1)(3*x) * (x <= 1/3) + \
-                0.5 * (1/3 < x) * (x <= 2/3) + \
-                (0.5 + 0.5 * f(n-1)(3*x - 2)) * (2/3 < x)           
-    return f_n
 # Graph
 # ------------------------------------------------------------------------------
 def main():
-    x = np.linspace(-0.5, 1.5, 10000)
+    x = np.linspace(-1.5, 1.5, 1000)
 
     figure()    
-
-
+    fig, (ax1, ax2) = subplots(1,2, sharex=True, sharey=True)
     #plot(x, f(1)(x), "k:", alpha=0.5)
     #plot(x, f(3)(x), "k--", alpha=0.75)
-    plot(x, f(5)(x), "k", label="$y=f_5(x)$")
-    xlim(-0.5, 1.5)
-    ylim(-0.1, 1.1)
-    #title("Graphe de $f$")
-    xlabel("$x$")
-    ylabel("$y$")
-    legend()
-    title('Fonction de Cantor (escalier du diable)')
-    set_ratio(16/9, scale=1, left=0.1, bottom=0.15, top=0.1)
-    grid(True)
-    gca().set_aspect("equal")
+    ax1.plot(x, abs(x), "k", label="$|x|")
+    ax1.set_aspect("equal")
+    ax1.set_xlim(-1.5, 1.5)
+    ax1.set_ylim(-1.5, 1.5)
+    ax1.set_xticks([-1, 0, 1])
+    ax1.set_yticks([-1, 0, 1])
+    ax1.grid(True)
+    ax1.set_title("$y = f(x) = |x|$")
+
+    xp = x[x>=0]
+    xn = x[x<=0]
+    ax2.plot(xp, sign(xp), "k")
+    ax2.plot(xn, sign(xn), "k")
+    ax2.plot(0, 0, "k.")
+    ax2.set_aspect("equal")
+    ax2.set_xlim(-1.5, 1.5)
+    ax2.set_ylim(-1.5, 1.5)
+    ax2.set_xticks([-1, 0, 1])
+    ax2.set_yticks([-1, 0, 1])
+    ax2.grid(True)
+    ax2.set_title("$y = f'(x) = \mbox{sgn}(x) \, \mbox{ p.p.}$")
+
+
+
+    # #xlim(0.0, 1.0)
+    # #ylim(0.0, 1.0)
+    # #title("Graphe de $f$")
+    # xlabel("$x$")
+    # ylabel("$y$")
+    # legend()
+    #title("Escalier du diable (fonction de Cantor)")
+    set_ratio(2, scale=1, left=0.1, bottom=0.05, top=0.1)
     save()
 
 if __name__ == "__main__":
