@@ -18,17 +18,19 @@ Historique
 
 L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et la modélisation du mouvement des planètes par Kepler et Newton. Le premier réflexe est alors de chercher des solutions exactes (Newton, Leibniz), mais on se rend progressivement compte que cela est généralement impossible mis à part des cas très particuliers comme les équations différentielles linéaires. 
 
-Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on commence à chercher à charactériser les propriétés des solutions sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
+Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on commence à chercher à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
 Laplace qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
 
 Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
 
-En parallèle, la thèse de Lyapunov lance en 1892 la théorie de l'étude de la stabilité et du comportement asymptotique des solutions. 
+En parallèle, la thèse de Lyapunov lance à la fin du  XIX$^e$ siècle la théorie de l'étude de la stabilité et du comportement asymptotique des solutions. 
 
 
 **Notations** 
 
-- $C^k(U, V)$ : ensemble des fonctions $f:U\to V$ continûment différentiables d'ordre $k$.
+- $C^0(U, V)$ : ensemble des fonctions continues $f:U\to V$
+
+- $C^k(U, V)$ : ensemble des fonctions $f:U\to V$ continûment différentiables d'ordre $k\geq 1$.
 
 - $B_r(x)$ : boule ouverte centrée en $x$ et de rayon $r$.
 
@@ -148,9 +150,9 @@ Existence de solutions locales
 Le théorème suivant assure l'existence locale de solutions au [problème de Cauchy](#def_cauchy) sous une simple hypothèse de continuité de $f$.
 
 ### Théorème de Peano-Arzelà {.theorem  #theo_peano}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$. Pour tout $(t_0,x_0)\in U$, il existe $\epsilon >0$ et $x\in C^1([t_0-\epsilon,t_0+\epsilon],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$. Pour tout $(t_0,x_0)\in U$, il existe $\tau_m >0$ et $x\in C^1([t_0-\tau_m,t_0+\tau_m],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
 
-*Démonstration*: La démonstration de ce résultat est hors-programme car elle fait appel au théorème d'Ascoli(-Arzelà) qui sera abordé dans les notions avancées de Calcul Différentiel III. Seule la connaissance et compréhension du résultat est exigible. Pour les curieux, preuve en appendice? $\hfill\blacksquare$
+*Démonstration*: La démonstration de ce résultat est hors-programme car elle fait appel au théorème d'Ascoli(-Arzelà) qui sera abordé dans les notions avancées de Calcul Différentiel III? Seule la connaissance et compréhension du résultat est exigible. Pour les curieux, la preuve est données en [annexe](#app_peano) $\hfill\blacksquare$
 
 ### Solution maximale {.definition #def_sol_max}
 Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$. On dit que $x\in C^1(I,\R^n)$ est une solution *maximale* de l'équation différentielle 
@@ -202,7 +204,7 @@ Or d'après la [représentation intégrale des solutions](#theo_eq_integrale), o
 $$
 \Gamma(x)=x
 $$
-c'est-à-dire $x$ est un point fixe de $\Gamma$. Par ailleurs, on peut prouver[^solutionF]  que pour tout $x\in S_f(t_0,x_0)$ définie sur $\left[t_0-\tau_m,t_0+\tau_m \right]$, $x$ est dans $F$: c'est donc un point fixe $x^*$ de $\Gamma$ sur $F$. L'idée de la preuve est donc de montrer que $\Gamma$ (ou une de ses itérées) est contractante pour utiliser le théorème de point fixe sur un espace de Banach et en déduire l'existence et l'unicité de ce point fixe (REF?).
+c'est-à-dire $x$ est un point fixe de $\Gamma$. Par ailleurs, on peut prouver[^solutionF]  que pour tout $x\in S_f(t_0,x_0)$ définie sur $\left[t_0-\tau_m,t_0+\tau_m \right]$, $x$ est dans $F$: c'est donc un point fixe $x^*$ de $\Gamma$ sur $F$. L'idée de la preuve est donc de montrer que $\Gamma$ (ou une de ses itérées) est contractante pour utiliser le théorème de point fixe sur un espace de Banach et en déduire l'existence et l'unicité de ce point fixe.
 
 D'abord, pour tout $x\in F$, pour tout $t\in \left[t_0-\tau_m,t_0+\tau_m \right]$,
 $$
@@ -952,6 +954,49 @@ Il suffit donc de choisir les coefficients $k_i$ tels que ce polynôme ait ses r
 Annexes 
 =========================================================================
 
+### Preuve du théorème de Peano-Arzelà (Hors-programme) {.app #app_peano}
+
+Cette preuve repose sur le théorème d'Ascoli :
+
+> Soient $X$ un espace métrique compact, $Y$ un espace métrique complet, et $S\subset C^0(X,Y)$. Les deux propriétés suivantes sont équivalentes :
+>
+> 1. $S$ est *relativement compact* dans $C^0(X,Y)$
+>
+> 2. $S$ est *équicontinu* et pour tout $x\in X$, $\{f(x) \ , \ f\in S \}$ est *relativement compacte* dans $Y$.
+
+On dit qu'un ensemble est *relativement compact* si son adhérence est compacte. En dimension finie, vue que "compact" est équivalent à "fermé-borné" et que l'adhérence est fermée par définition, "relativement compact" est équivalent à "borné". Mais ce n'est pas le cas en dimension finie (en particulier $C^0(X,Y)$) où  "relativement compact" est alors équivalent au fait de pouvoir extraire des suites convergentes dans l'adhérence de l'ensemble. 
+
+Ici, puisque $X$ est compact et $Y$ complet, on peut montrer que $C^0(X,Y)$ muni de la norme uniforme $\|\cdot\|_\infty$ est complet, donc fermé. Il s'ensuit que  "$S$ est relativement compact dans $C^0(X,Y)$" implique pouvoir extraire de toute suite de $S$ une sous-suite convergente dans $C^0(X,Y)$ (au sens de $\|\cdot\|_\infty$). C'est ce que nous allons utiliser pour prouver l'existence d'une solution au problème de Cauchy.
+
+Maintenant, le deuxième terme nécessitant des explications est l'*équicontinuité* de $S$. Cette notion veut simplement dire que les fonctions dans $S$ sont toutes continues *au même rythme*, i.e., plus précisément, 
+$$
+\forall \varepsilon >0 \ \exists \delta \ , \quad \ d_X(x_a,x_b)\leq \delta \; \Longrightarrow \;\forall f\in S \ , \  d_Y(f(x_a),f(x_b)) \leq \varepsilon \ ,
+$$
+où $d_X$ et $d_Y$ sont les distances sur $X$ et $Y$ respectivement.
+
+Revenons maintenant à nos moutons. On suppose donc $f$ continue sur $U$ et on veut montrer que $S_f(t_0,x_0)\neq \emptyset$. Soient d'abord $\tau >0$ et $r>0$, tels que $\cC := [t_0-\tau,t_0+\tau]\times \overline{B}_r(x_0) \subset U$. Soit $\tau_m\in]0, \tau]$ tel que $\tau_m\max_\cC \|f\|\leq r$. On va montrer l'existence d'une solution définie par sa forme intégrale 
+$$
+x(t) = x_0 + \int_{t_0}^t f(s,x(s)) ds
+$$
+sur $[t_0,t_0+\tau_m]$ et la preuve sur $[t_0-\tau_m,t_0]$ se fait de la même façon. 
+
+L'idée est d'approximer de plus en plus finement la forme intégrale et montrer ce procédé converge. On définit donc pour $\epsilon \in ]0,1[$ la fonction
+\begin{align*}
+x_\epsilon(t) &= x_0 & \forall t\in [t_0-1,t_0] \\
+&= x_0 + \int_{t_0}^t f(s,x_\epsilon(s-\epsilon)) ds & \forall t\in [t_0,t_0+\tau_m]
+\end{align*}
+Ces fonctions sont clairement définies et continues sur $[t_0-1,t_0]$. Puis sur $[t_0,t_0+\epsilon]\cap[t_0,t_0+\tau_m]$, on voit que l'intégrale ne dépend que de $x_\epsilon$ sur $[t_0-1,t_0]$, donc elle est toujours bien définie et continue. De proche en proche, $x_\epsilon$ est donc bien définie et continue sur $[t_0-1,t_0+\tau_m]$. En fait, $\epsilon$ représente un petit retard introduit dans l'intégrale pour la rendre explicite. Si l'on arrive à montrer que ces fonctions converge vers une fonction continues lorsque $\epsilon$ tend vers 0, cette limite sera solution de l'équation intégrale sur $[t_0,t_0+\tau_m]$ et sera donc solution. 
+
+La première étape est de montrer de proche en proche, grâce au retard, que $x_\epsilon(t)\in \overline{B}_r(x_0)$ pour tout $t\in [t_0-1,t_0+\tau_m]$ puisque $\tau_m\max_\cC \|f\|\leq r$. Donc
+$$
+\forall \epsilon \in ]0,1[ \ , \ x_\epsilon \in E:=C^0([t_0-1,t_0+\tau_m],\overline{B}_r(x_0)) \ .
+$$
+De plus, pour tout $\epsilon \in ]0,1[$ et pour tout $(t,t')\in [t_0-1,t_0+\tau_m]^2$,
+$$
+\|x_\epsilon(t) - x_\epsilon(t') \| \leq \max_\cC \|f\| \, |t-t'|
+$$
+donc la famille $S:=\{x_\epsilon , \ \epsilon \in ]0,1[ \}$ est équicontinue. De plus, vu que leur image est bornée dans $\overline{B}_r(x_0)$ de dimension finie, elle est bien bien relativement compacte. Le théorème d'Ascoli nous dit alors que $S$ est relativement compacte dans $E$. Il existe donc une sous suite $x_{\epsilon_k}$ telle que $\lim_{k\to +\infty} \epsilon_k =0$ et $\lim_{k\to +\infty} x_{\epsilon_k} = x^\star \in E$ au sense de la norme uniforme $\|\cdot \|$. Par uniforme continuité de $f$ sur le compact $\cC$, on en déduit alors que pour tout $s\in [t_0,t_0+\tau_m]$, $\lim_{k\to +\infty} f(s,x_{\epsilon_k}(s-\epsilon_k))= f(s,x^\star(s))$ et donc que $x^\star$ est bien solution de l'équation intégrale, ce qui donne le résultat.
+
 ### Preuve du théorème des bouts {.app #pr_theo_bouts}
 Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset U$ tel que
 $$
@@ -970,7 +1015,7 @@ $$
 Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset U$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
 
 
-### Stabilité locale et linéarisé tangent {.app #app_stab_lin}
+### Stabilité et linéarisé tangent {.app #app_stab_lin}
 
 Soit $a$ un point d'équilibre de $f$. Définissons
 $$
@@ -982,10 +1027,13 @@ $$
 \|\Delta(x)\| \leq a \|x-a\|^2 \qquad \forall x\in B_\varepsilon(a) \ .
 $$
 
-La preuve repose ensuite sur un lemme dû à Lyapunov qui dit que pour toute matrice $A\in \R^{n\times n}$ à valeurs propres à parties réelles strictement négatives, et pour toute matrice symmétrique définie positive $Q\in \R^{n\times n}$, il existe une (unique) matrice symmétrique définie positive $P\in \R^{n\times n}$ telle que 
-$$
-A^\top P +P A = - Q \ .
-$$
+La preuve repose ensuite sur le lemme suivant dû à Lyapunov :  
+
+> Pour toute matrice $A\in \R^{n\times n}$ à valeurs propres à parties réelles strictement négatives, et pour toute matrice symmétrique définie positive $Q\in \R^{n\times n}$, il existe une (unique) matrice symmétrique définie positive $P\in \R^{n\times n}$ telle que 
+>$$
+>A^\top P +P A = - Q \ .
+>$$
+
 En effet, la solution est alors donnée par $P=\int_0^{+\infty}\left(e^{As}\right)^\top Q e^{As}ds$.
 
 Supposons donc que $J_f(a)$ ait ses valeurs propres à partie réelle strictement négative. Il existe alors $P=P^\top>0$ telle que 
