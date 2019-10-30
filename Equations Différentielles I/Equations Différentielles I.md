@@ -13,17 +13,17 @@
 
 \newcommand{\inter}{\mathop{\rm int}\nolimits}
 
-Historique
+Un peu d'histoire
 =====================
 
-L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et la modélisation du mouvement des planètes par Kepler et Newton. Le premier réflexe est alors de chercher des solutions exactes (Newton, Leibniz), mais on se rend progressivement compte que cela est généralement impossible mis à part des cas très particuliers comme les équations différentielles linéaires. 
+L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et la modélisation du mouvement des planètes par Kepler et Newton. Le premier réflexe est alors de chercher des solutions exactes, par exemple sous forme de série (Leibniz), mais l'on se rend progressivement compte des limites de ces méthodes, mis à part dans des cas très particuliers. 
 
 Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on commence à chercher à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
-Laplace qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
+Laplace, qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
 
 Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
 
-En parallèle, la thèse de Lyapunov lance à la fin du  XIX$^e$ siècle la théorie de l'étude de la stabilité et du comportement asymptotique des solutions. 
+En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens Ruth, Hurwitz,etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des sytèmes non linéaires qui sera ensuite étayée tout au long du XX$^e$ et XXI$^e$ siècles.
 
 
 **Notations** 
@@ -355,11 +355,11 @@ La première question fut soulevée par Henri Poincaré à la fin du XIXème si�
 Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais modéliser tous les phénomènes parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
+Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe[^relax_hypo_contCI] $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
-On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*.
+On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
 
 *Démonstration* Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall) \hfill $\blacksquare$
 
@@ -641,9 +641,11 @@ $$
 $$
 où $g$ est la pesanteur.
 
-1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0$, résoudre le problème de Cauchy associé.
+1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0\geq 0$, résoudre le problème de Cauchy associé en se restreignant aux solutions $x(t)\geq 0$.
 
-2. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
+2. Comment s'interprète physiquement la multitude de solutions trouvées ?
+
+3. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
 
 -> [*Correction*](#correc_Torricelli)
 
@@ -664,10 +666,8 @@ $$
 *Indice : poser $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ et étudier la dérivée de $v(t)\exp\left(-\int_{t_0}^t\beta(r)dr\right)$*.
 
 2. Utiliser le Lemme de Grönwall pour montrer le [théorème d'existence globale de solutions](#theo_exist_glob). 
-*Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*.
 
-3. Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI).
-*Indice : utiliser la [représentation intégrale des solutions](#theo_eq_integrale)*.
+3. Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI) dans le cas où les solutions sont globales.
 
 -> [*Correction*](#correc_gronwall)
 
@@ -757,6 +757,37 @@ Correction des exercices
 
 ### Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
+1. Soit d'abord $x_0>0$. Tant que $x(t)>0$, on a
+$$
+\dot{x}=-\sqrt{|x|} \quad \Leftrightarrow \quad \frac{\dot{x}}{\sqrt{|x|}}=-1  \quad \Leftrightarrow \quad x(t) = \left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2
+$$
+Donc tant que $x(t)>0$, la solution est unique et par continuité, elle atteint 0 en $t=t_0+2\sqrt{x_0}$. A partir de là, vu que $\dot{x}\leq 0$, la seule solution possible qui reste positive est la solution constamment égale à 0 : le réservoir est vide et le reste. Donc pour $(t_0,x_0)$ avec $x_0>0$, il existe une unique solution maximale positive au problème de Cauchy définie par
+$$
+x(t)= 
+\left\{
+\begin{array}{ll}
+\left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2 & \forall t\in ]-\infty,t_0+2\sqrt{x_0}] \\
+0 & \forall t\in [t_0+2\sqrt{x_0},+\infty[
+\end{array}
+\right.
+$$
+Ceci est bien conforme au théorème de Cauchy-Lipschitz car $f(x)=-\sqrt{|x|}$ est $C^1$ en 0.
+
+Maintenant si $x_0=0$. $f$ n'est pas $C^1$ en 0 (ni même lipschitzienne) donc le théorème de Cauchy-Lipschitz ne s'applique pas. Par contre, $f$ est continue donc le théorème de Peano nous garantie l'existence de solutions. Pour $t\geq t_0$, la seule possibilité est de rester à 0. En temps rétrograde, soit $x$ reste à 0 soit il existe $t_1 < t_0$ tel que $x(t_1)>0$. Alors la solution correspondante est unique et donnée par la formule ci-dessus en remplaçant $(t_0,x_0)$ par $(t_1,x(t_1))$. Donc les solutions maximales s'écrivent
+$$
+x(t)= 
+\left\{
+\begin{array}{ll}
+\left(\sqrt{x_1}-\frac{1}{2}(t-t_1)\right)^2 & \forall t\in ]-\infty,t_1+2\sqrt{x_1}] \\
+0 & \forall t\in [t_1+2\sqrt{x_1},+\infty[
+\end{array}
+\right.
+$$
+pour tout $(t_1,x_1)\in \R \times \R_{>0}$ tels que  $t_1+2\sqrt{x_1}\leq t_0$. Il y a donc une infinité de solutions.
+
+2. La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir vide à $t_0$ on ne sait pas depuis quand il est vide.
+
+3. Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale. Par contre, si $x_0=0$, une solution est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\overline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. En ce sens, on n'a pas la continuité des solutions en temps rétrograde. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
 
 ### Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
@@ -803,16 +834,17 @@ $$
 $$
 avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $I$. D'après le [théoreme des bouts](#theo_bouts), nécessairement $]\underline{t},\overline{t}[=I$.
 
-3. Soient $x:I\to \R^n$ et $x_\delta:I_\delta\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$. On sait que
+3. Soient $x:I\to \R^n$ et $x_\delta:I_\delta\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset I$. On sait que
 \begin{align*}
 x(t)&=x_0  + \int_{t_0}^t f(s,x(s))ds & \forall t\in I\\
-x_\delta(t)&=x_0 +\delta  + \int_{t_0}^t f(s,x_\delta(s))ds &\forall t\in I_\delta
+x_\delta(t)&=x_0 +\delta  + \int_{t_0}^t f(s,x_\delta(s))ds &\forall t\in I
 \end{align*}
 ce qui donne
 $$
-|x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t |f(s,x(s))-f(s,x_\delta(s))|ds \qquad \forall t\in I\cap I_\delta
+|x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t |f(s,x(s))-f(s,x_\delta(s))|ds \qquad \forall t\in I
 $$
-Si $[t_0,\overline{t}]\subset I\cap I_\delta$, définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\partial_x f$ est continue sur $U$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \partial_x f$ est bien défini. On a donc par le théorème des accroissements finis
+<!-- Si $[t_0,\overline{t}]\subset I\cap I_\delta$, -->
+Définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\partial_x f$ est continue sur $U$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \partial_x f$ est bien défini. On a donc par le théorème des accroissements finis
 $$
 |x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t M |x(s)-x_\delta(s)|ds \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
@@ -820,7 +852,7 @@ Donc par le Lemme de Grönwall,
 $$
 |x(t)-x_\delta(t)|\leq |\delta|e^{M(t-t_0)} \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
-Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$. A FINIR !!!
+<!--Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$.-->
 
 ### Critère de stabilité en dimension 2 {.correction #correc_crti_stab_dim2}
 Soient $\lambda_1$ et $\lambda_2$ les valeurs propres d'une matrice $A$ de dimension 2. Son polynôme caractéristique est donné par
@@ -1102,3 +1134,4 @@ en supposant que $s\ll S$.
 
 [^def_propre]:
  $V$ est dite propre si pour tout compact $K$, $V^{-1}(K)$ est compact. Ou de manière équivalente, $\lim_{\|x\|\to +\infty} V(x) = +\infty$.
+
