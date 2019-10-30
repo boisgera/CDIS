@@ -34,8 +34,8 @@ On peut retourner le problème et définir une nouvelle notion,
 généralisée de dérivée, à partir de l'intégrale.
 
 ### Dérivée faible {.definition}
-La fonction $f:\R \to \R$ est *faiblement dérivable*, s'il existe une 
-fonction $g:\R \to \R$ localement absolument[^foo] intégrable
+La fonction $f:\R \to \R$ est *faiblement dérivable* s'il existe une 
+fonction $g:\R \to \R$ localement absolument<!--[^foo]--> intégrable
 c'est-à-dire mesurable et telle que $|g|$ soit intégrable sur
 tout intervalle compact $[a, b] \subset \R$,
 $$
@@ -46,11 +46,29 @@ telles que pour tout $x \in \R$,
 $$
 f(x) = c + \int_0^x g(t) \, dt.
 $$
-La fonction $g$ est alors définie uniquement presque partout ; 
-elle est appelée *dérivée faible* de $f$ et pourra être notée $f'$.
+La fonction $g$ est alors appelée *dérivée faible* de $f$.
 
-### TODO -- Démonstration {.proof}
+### Les fonction absolument continues sont continues.
 
+### TODO -- Démonstration.
+
+### Dérivée faible et classique
+Si une fonction $f: \R \to \R$ est faiblement dérivable, de dérivée faible $g$,
+alors elle est dérivable (classiquement) presque partout, et $f' = g$ presque
+partout. On a donc pour tout $x \in \R$,
+$$
+f(x) = f(0) + \int_0^x f'(t) \, dt.
+$$
+
+### 
+En particulier, la dérivée faible d'une fonction, si elle existe, est unique
+presque partout.
+
+### Démonstration {.proof}
+Une conséquence directe du résultat de 
+[dérivation des intégrales indéterminée](Calcul Intégral II.pdf/#DII).
+
+<!--
 [^foo]: si $f$ est conditionnellement intégrable, l'application
 $$
 \phi \in D^0(\R) \mapsto \int f \phi 
@@ -59,63 +77,131 @@ n'est pas (nécessairement ?) bornée, $f$ ne peut donc pas être représentée
 comme une mesure, contrairement aux fonctions absolument continue. 
 C'est trop tôt à ce stade pour parler de ça, mais la motivation est 
 importante pour se limiter aux fonction absolument continues ...
+-->
 
-### TODO -- extension "p.p." ?
-Aka fct de départ définie pp ? Bof ... Mmm quand même nécessaire pour la
-suite. (euh, mais où ça ?)
+### Valeur absolue {.example #example-abs}
+La fonction valeur absolue $|\cdot|: x \in \R \mapsto |x|$ est faiblement dérivable.
+En effet, elle est dérivable presque partout (sauf en $0$),
+sa dérivée classique valant $1$ quand $x>0$ et $-1$ quand $x < 0$.
+Ses seules dérivées faibles potentielles sont dont les fonctions
+égales presque partout à la fonction signe
+$$
+\mbox{sgn}(x) := \left| 
+\begin{array}{rl}
+-1 & \mbox{si $x<0$,} \\
+0 & \mbox{si $x=0$,} \\
++1 & \mbox{si $x>0$.}
+\end{array}
+\right.
+$$
+De plus, pour tout $x\geq 0$ on a bien
+$$
+|x| = x = \int_0^x dt = |0| + \int_0^x \mbox{sgn}(t) \, dt
+$$
+et pour $x < 0$, 
+$$
+|x| = -x = \int_0^x - dt = |0| + \int_0^x \mbox{sgn}(t) \, dt.
+$$
+La fonction $|\cdot|$ est bien faiblement dérivable, de dérivée faible la fonction 
+$\mbox{sgn}$.
 
-### TODO -- Terminologie
-Opter pour "généralisée" en 1ere instance ?
-dérivée généralisée, dérivable au sens des distributions (cf. + tard)
+![](images/abs.py)\ 
 
-### TODO -- Nota
-Si $f$ a une dérivée faible $g$, alors $f$ est dérivable p.p. et $g=f'$ p.p.
-Mais pas assez (cf + loin)
+On peut remarquer que la fonction signe n'est pas elle-même faiblement
+dérivable. Elle est bien dérivable presque partout (sauf en $0$) ;
+sa dérivée est nulle presque partout. Si elle était faiblement dérivable,
+on aurait donc pour tout $x \in \R$,
+$$
+\mbox{sgn}(x) = \mbox{sgn}(0) + \int_0^x 0 \, dt = 0,
+$$
+ce qui n'est pas le cas.
 
-### TODO -- Dérivable faiblement implique dérivable pp {.proposition}
-Corollaire: dérivable faiblement implique dérivée classique existe pp et
-est égale à la dérivée faible
+### Fonctions régulières par morceaux {.theorem}
+Toute fonction $f: \R \to \R$ continue et continûment différentiable par
+morceaux est faiblement dérivable.
 
-### TODO -- Exemples
-$x \mapsto |x|$ ?
+### {.post}
+On rappelle qu'une fonction $f: \R \to \R$ est continûment différentiable par 
+morceaux s'il existe une collection dénombrable d'intervalles compacts $[a_k, b_k]$
+recouvrant $\R$ telle que la restriction de $f$ à $\left]a_k, b_k\right[$ puisse
+être prolongée en une fonction continûment différentiable sur $[a_k, b_k]$.
+A noter que l'on peut être continûment différentiable par morceaux mais pas
+continue -- la fonction signe de [l'exemple consacré à la dérivée faible de
+la valeur absolue est un bon exemple](#example-abs).
+Sans la continuité, le caractère continûment différentiable par morceaux
+ne suffit pas à garantir l'existence d'une dérivée faible.
 
-### Dérivabilité classique et faible 
-Si $f: \R \to \R$ admet une dérivée faible $g$, alors $f$ est dérivable
-presque partout et $f'=g$ presque partout.
+### TODO -- Démonstration {.proof}
 
-### TODO
-Lien du truc dessus avec unicité pp de $g$ évoquée plus haut.
 
-### TODO -- Warning, pas de réciproque
-attention: dérivée classique définie pp suffit pas à avoir dérivée
-faible (ex: fct de Heaviside).
-Dérivée faible implique dérivée pp, réciproque pas vraie, même si on ajoute
-continue (idée qui vient naturellement quand on construit un contre-exemple).
-Exemple avec ensembles de Cantor / devil's staircase.
-Même dérivable partout ne suffit pas ...
+### Fonction de Cantor {.remark}
+On pourrait croire en prenant connaissance des contre-exemples simples
+à l'existence d'une dérivée faible que dès lors qu'une fonction est continue
+a une dérivée presque partout et que cette dérivée est localement absolument 
+intégrable, elle est faiblement dérivable. Mais ça n'est pas le cas !
+
+Ainsi la fonction de Cantor $f:\R \to \R$ est un exemple de fonction
+continue, de dérivée (classique) définie et nulle presque partout et
+pourtant telle que $f(0)=0$ et $f(1)=1$, ce qui contredit la relation
+$$
+f(1) = f(0) + \int_0^1 0\, dt
+$$
+qu'elle devrait vérifier si elle était faiblement dérivable.
+
+La fonction de Cantor $f$ est définie comme la limite des
+suites de fonctions $f_n:\R \to \R$ données par 
+$$
+f_0(x) = 
+\left|
+\begin{array}{rl}
+0 & \mbox{si $x<0$,} \\
+x & \mbox{si $0\leq x\leq 1$,} \\
+0 & \mbox{si $1< x$.} \\
+\end{array}
+\right.
+$$
+et pour tout $n\geq 1$
+$$
+f_{n+1}(x) = \left|
+\begin{array}{rl}
+0.5 \times f_n(3x) & \mbox{si $x < 1/3$}, \\
+0.5 & \mbox{si $1/3 \leq x < 2/3$}, \\
+0.5 + 0.5 \times f_n(3x-2) & \mbox{si $2/3 \leq x$}.
+\end{array}
+\right.
+$$
+
+![Approximation d'ordre $5$ de la fonction de Cantor](images/devil-staircase.py)
+
+### {.ante}
 
 ### Absolue continuité {.definition}
-Une fonction $f:\R \to \R$ est *absolument continue* si et seulement si
+Soit $I$ un intervalle de $\R$.
+Une fonction $f:I \to \R$ est *absolument continue* si et seulement si
 pour tout $\varepsilon > 0$, il existe un $\delta > 0$ tel que pour toute
-collection finie d'intervalles compacts $([a_k, b_k])_{k=0}^{n-1}$ de $\R$ 
+collection finie d'intervalles compacts $([a_k, b_k])_{k=0}^{n-1}$ de $I$ 
 ne se chevauchant pas, on ait
 $$
 \sum_{k=0}^{n-1} (b_k - a_k) \leq \delta
 \; \Rightarrow \; 
 \sum_{k=0}^n |f(b_n) - f(a_n)| \leq \varepsilon.
 $$
+Elle est *localement absolument continue* si sa restriction à tout intervalle
+compact $K$ de $I$ est absolument continue. 
 
 ### TODO 
 ne se chevauchant pas est nécessaire (note Bartle : c'est crucial) ? 
 Pas suffisant de se limiter aux subdivisions complètes ?
 
-### Existence de dérivée faible {.proposition}
+### Existence de dérivée faible et absolue continuité {.proposition}
 Une fonction $f:\R \to \R$ admet une dérivée faible si et seulement si
-elle est absolument continue.
+elle est localement absolument continue.
 
 ### TODO -- Démonstration
 
-### TODO -- Rk
+### TODO -- exploitation (/ dérivée faible) et exemple de fct abs cont
+
+### TODO -- Une notion plus permissive de dérivée faible ?
 Il serait possible d'élargir la notion de fonction faiblement dérivable en exigeant
 uniquement que $g$ soit localement intégrable au sens de Henstock-Kurzweil,
 et non localement absolument intégrable. Comme toute dérivée est localement
@@ -128,32 +214,37 @@ nous ne considérerons pas cette extension, car la classe des fonctions
 faiblement dérivables serait alors sensiblement plus complexe à caractériser
 que dans le cadre absolument continu que nous avons choisi[^ACG].
 
+**TODO:** référence concrête à un exemple de dérivée non absolument intégrable
+déjà traité.
+
+**TODO:** faire le lien par exemple avec l'approche par IPP ou fct test 
+(forme lin sur); qui ne marche pas avec conditionnellement intégrable.
+Du coup, peut-être retarder la remarque ? Appendice ?
+
 [^ACG]: Il s'agit d'une classe de fonctions absolument continues 
 mais **généralisées**, notée $\mathrm{ACG}_*$, cf. [@Bar01, pp. 242-243].
 
+### TODO
 
+Contexte du résultat à venir, notamment, motiver que ça ressemble à une IPP.
 
-### TODO -- Warning
-Les fonctions continues, dérivables presque partout et de dérivée localement
-intégrables ne sont pas nécessairement absolument continues.
+### Fonctions tests
+On note $D^k(\R)$ l'espace des fonctions continues $\varphi: \R \to \R$
+dont le support
+$$\mbox{supp } \varphi := \overline{\{x \in \R \; | \; \varphi(x) \neq 0\}}$$
+est compact et qui sont $k$ fois continûment différentiables ou simplement
+continues dans le cas $k=0$.
 
-Ex: fonction de Cantor $f:[0,1] \to [0, 1]$, déterminée comme la limite des
-suites de fonctions $f_n$ définies par $f_0(x) = x$ et
+### TODO -- Dérivation faible et fonction test
+Une fonction $f:\R \to \R$ est faiblement dérivable de dérivée faible 
+$g : \R \to \R$ si et seulement si pour tout $\varphi \in D^1(\R)$, on a
 $$
-f_{n+1}(x) = \left|
-\begin{array}{rl}
-0.5 \times f_n(3x) & \mbox{si $x\leq 1/3$}, \\
-0.5 & \mbox{si $1/3 < x \leq 2/3$}, \\
-0.5 + 0.5 \times f_n(3x-2) & \mbox{si $2/3 < x$}.
-\end{array}
-\right.
+\int_{-\infty}^{+\infty} g(t) \varphi(t) \, dt
+=
+-\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt.
 $$
 
-![Approximation d'ordre $5 de la fonction de Cantor](images/devil-staircase.py)
-
-
-### TODO -- Dérivation faible et IPP
-(équivalence)
+### TODO -- Démonstration {.proof}
 
 Mesures signées
 ================================================================================
@@ -266,11 +357,7 @@ Supprimer de la def donc ... (éventuellement, faire une rq sur la régularité)
 -->
 
 
-### Fonctions tests continues
-On note $D^0(\R)$ l'espace des fonctions continues $\varphi: \R \to \R$
-dont le support
-$$\mbox{supp } \varphi := \overline{\{x \in \R \; | \; \varphi(x) \neq 0\}}$$
-est compact.
+
 
 ### Formes linéaires continues sur $D^0(\R)$.
 Une application linéaire $T: D^0(\R) \to \R$ 
@@ -414,6 +501,15 @@ Probab $\Omega \neq \R^n$
 
 Exercices
 ================================================================================
+
+Dérivée faible
+--------------------------------------------------------------------------------
+
+Est-ce que la fonction $f: \R \to \R$ définie par $f(0)=0$ et
+$$
+f(x) = \sqrt{|x|} \, \mbox{ si $x\neq 0$}
+$$
+est faiblement dérivable ? Quelle est dans ce cas sa dérivée ?
 
 Fonctions lipschitzienne
 --------------------------------------------------------------------------------
