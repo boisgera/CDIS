@@ -116,22 +116,117 @@ $$
 $$
 ce qui n'est pas le cas.
 
-### Fonctions régulières par morceaux {.theorem}
-Toute fonction $f: \R \to \R$ continue et continûment différentiable par
-morceaux est faiblement dérivable.
+### Fonction dérivable par morceaux {.definition}
+On dira qu'une fonction $f: \R \to \R$ est différentiable par 
+morceaux s'il existe une collection dénombrable d'intervalles compacts $[a_k, b_k]$
+sans chevauchements recouvrant $\R$ telle que la restriction de $f$ à 
+tout $\left]a_k, b_k\right[$ puisse être prolongée en une fonction différentiable 
+sur $[a_k, b_k]$.
 
 ### {.post}
-On rappelle qu'une fonction $f: \R \to \R$ est continûment différentiable par 
-morceaux s'il existe une collection dénombrable d'intervalles compacts $[a_k, b_k]$
-recouvrant $\R$ telle que la restriction de $f$ à $\left]a_k, b_k\right[$ puisse
-être prolongée en une fonction continûment différentiable sur $[a_k, b_k]$.
-A noter que l'on peut être continûment différentiable par morceaux mais pas
+A noter que l'on peut être différentiable par morceaux mais pas
 continue -- la fonction signe de [l'exemple consacré à la dérivée faible de
 la valeur absolue est un bon exemple](#example-abs).
-Sans la continuité, le caractère continûment différentiable par morceaux
+Sans la continuité, le caractère différentiable par morceaux
 ne suffit pas à garantir l'existence d'une dérivée faible.
 
-### TODO -- Démonstration {.proof}
+### Les fonctions dérivables par morceaux sont faiblement différentiables {.theorem}
+Toute fonction $f: \R \to \R$ continue et dérivable par morceaux est faiblement dérivable.
+
+
+### Démonstration {.proof}
+On trouve dans [@Tao11, prop. 1.6.41, p. 176] la clé de la démonstration,
+à savoir que si une fonction $f: [a, b] \to \R$ est différentiable 
+et de dérivée absolument intégrable, alors 
+$$
+f(b) - f(a) = \int_a^b f'(x) \, dx. 
+$$
+Nous omettons cette portion (critique) de la démonstration ; 
+en déduire le résultat cherché est beaucoup plus simple. 
+
+Notons $f(b^-)$ et $f(a^+)$ les limites à gauche de $f$ en $b$ et
+à droite de $f$ en $a$ respectivement.
+On déduit de l'énoncé précédent que si $f$ est dérivable sur $\R$ et 
+de dérivée localement absolument intégrable, et si $x \in [a_k, b_k]$, 
+alors
+$$
+\int_{a_k}^{b_k} f'(x) \, dx = f(b^-) - f(a^+) = f(b) - f(a)
+$$
+et si $a_k < x < b_k$,
+$$
+f(x) - f(a) = f(x) - f(a^+) = \int_a^x f'(t) \, dt
+$$
+et 
+$$
+f(x) - f(b) = - (f(b^-) - f(x)) = - \int_x^b f'(t) \, dt = \int_b^x f'(t) \, dt.
+$$
+Suppons que les intervalles $[a_k, b_k]$ soient indexés par des entiers relatifs 
+$k$ consécutifs et ordonnées de façon croissante.
+Alors, si $x$ est réel positif, que $0 \in [a_i, b_i]$ et que $x \in [a_j, b_j]$,
+on a
+$$
+\begin{split}
+f(x) - f(0) &= (f(x) - f(a_j)) + (f(b_{j-1}) - f(a_{j-1})) + \dots + (f(a_i) - f(0)) \\
+& = \int^x_{a_j} f'(t) \, dt + \int_{a_{j-1}}^{b_{j-1}} f'(t) \, dt + \dots + \int_0^{a_i} f'(t) \, dt.
+\end{split} 
+$$
+et donc
+$$
+f(x) = f(0) + \int_0^x f'(t) \, dt.
+$$
+Le cas d'un réel $x$ négatif se traite de façon similaire.
+
+### Fonction de répartition
+
+La fonction $F: \R \to \R$ définie par 
+$$
+F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt
+$$
+est une fonction de répartition, associée à la loi normale centrée réduite. 
+Elle est faiblement dérivable ; en effet, son intégrande est localement absolument intégrable 
+(il est positif et intégrable sur $\R$, d'intégrale $1$) 
+et l'on a par additivité de l'intégrale pour tout $x\in\R$
+$$
+F(x) = F(0) + \int_{0}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt.
+$$
+Cett relation montre également que la fonction 
+$$
+f : t \in \R \mapsto  \frac{\exp (-{t^2}/{2})}{2\pi}
+$$
+est une dérivée faible de $F$([^eaf]). 
+
+![skdjslkdjs](images/gauss.py)\ 
+
+
+Le même argument, appliqué à
+la fonction $F: \R \to \R$ définie par 
+$$
+F(x) = \int_{-\infty}^x f(t) \, dt
+$$
+où $f:\R \to \R$ est positive et intégrable, démontre
+que si une probabilité $\mathbb{P}$ sur $\mathbb{R}$
+admet une densité $f$, sa fonction de répartition $F$ est faiblement dérivable
+de dérivée faible $f$. La réciproque est également vraie : si une fonction
+de répartition $F$ admet $f$ comme dérivée faible, cette fonction $f$ est 
+une densité associée à $F$, c'est-à-dire que 
+$$
+F(x) = \int_{-\infty}^x f(t) \, dt.
+$$
+
+### TODO -- preuve en exercice ? Y réfléchir.
+
+[^eaf]: Cette fonction $f$ est aussi la dérivée classique de $F$ en tout point
+(et pas seulement presque partout comme la théorie nous le garantit).
+En effet la fonction $f$ est continue en tout point $x \in \R$. On a donc
+$$
+\begin{split}
+\left|\frac{F(x+h) - F(x)}{h} - f(x)\right| &=  
+\left|\frac{1}{h}\int_x^{x+h} (f(t) - f(x)) \, dt \right| \\
+& \leq 
+\frac{1}{h}\int_x^{x+h} |f(t) - f(x)| \, dt \to 0 \, \mbox{ quand } \, h \to 0.
+\end{split}
+$$
+Le taux d'accroissement de $F$ en $x$ tend donc vers $f(x)$ quand $h$ tend vers $0$.
 
 
 ### Fonction de Cantor {.remark}
@@ -173,7 +268,11 @@ $$
 
 ![Approximation d'ordre $5$ de la fonction de Cantor](images/devil-staircase.py)
 
-### {.ante}
+### TODO -- interprétation probabiliste.
+
+(y compris -- ou plutôt surtout -- pour les fonctions intermédiaires 
+qui sont "uniformes par morceaux". L'interprétation de la limite n'a
+pas besoin d'être formalisée.)
 
 ### Absolue continuité {.definition}
 Soit $I$ un intervalle de $\R$.
