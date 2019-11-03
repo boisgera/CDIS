@@ -23,7 +23,7 @@ Laplace, qui s'intéresse alors à la mécanique céleste, s'émerveille devant 
 
 Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
 
-En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens Ruth, Hurwitz,etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des sytèmes non linéaires qui sera ensuite étayée tout au long du XX$^e$ et XXI$^e$ siècles.
+En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des sytèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
 
 
 **Notations** 
@@ -35,6 +35,8 @@ En parallèle, l'étude de la stabilité et du comportement asymptotique des sol
 - $B_r(x)$ : boule ouverte centrée en $x$ et de rayon $r$.
 
 - $\overline{B}_r(x)$ : boule fermée centrée en $x$ et de rayon $r$.
+
+- Pour $x:I\subset\R\to \R^n$, $\dot{x}(t)=\frac{dx}{dt}(t)$ et $\ddot{x}(t)=\frac{d^2x}{dt^2}(t)$.
 
 
 Cadre de l'étude
@@ -355,7 +357,7 @@ La première question fut soulevée par Henri Poincaré à la fin du XIXème si�
 Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais modéliser tous les phénomènes parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe[^relax_hypo_contCI] $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
+Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
@@ -407,7 +409,6 @@ $$
 Dans ce cas, $\frac{1}{\lambda}$ représente l'ordre de grandeur du temps maximal jusqu'auquel l'erreur sur les solutions reste du même ordre de grandeur que l'erreur initiale: on parle d'*horizon de Lyapunov*. Toute prédiction au delà de cet horizon est illusoire et le système est alors dit *chaotique*.
 
 Il est important d'insister sur le caractère *déterministe* de ce chaos : chaque cause entraîne un effet bien déterminé mais deux causes très proches peuvent avoir des effets très différents. 
- + anecdote poincaré ????
 
 ### Exemples 
 
@@ -497,7 +498,7 @@ Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est  asymptotiquement stable
 $$
 \dot{x} = Ax
 $$
-si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative.
+si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative. On dit alors que la matrice est *Hurwitz*, du nom du mathématicien allemand Adolf Hurwitz.
 
 *Démonstration* La notion d'*asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, la stabilité asymptotique est équivalente à l'attractivité, c'est-à-dire que la stabilité vient gratuitement avec l'attractivité. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
 $$
@@ -514,7 +515,7 @@ $$
 converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 \hfill $\blacksquare$
 
-Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C^0(I,\R^{n\times n})$ ait des valeurs propres à partie réelle strictement négative pour tout $t$ n'implique pas que le système
+Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C^0(I,\R^{n\times n})$ soit Hurwitz pour tout $t$ n'implique pas que le système
 $$
 \dot{x} = A(t) x 
 $$
@@ -529,7 +530,7 @@ $$
 a des valeurs propres constantes égales à $-0.25\pm 0.25\sqrt{7}$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées for $x(0)$ aribitrairement proche de 0.
 
 ### Lien entre stabilité et stabilité du linéarisant tangent
-Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si  $J_f(a)$ a ses valeurs propres à partie réelle strictement négative.
+Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si  $J_f(a)$ est Hurwitz.
 
 Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
 
@@ -552,7 +553,7 @@ J_f(\pi,0)= \left( \begin{matrix}
 \end{matrix}
 \right) 
 $$
-Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ a ses valeurs propres à partie réelle strictement négative. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
+Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ est Hurwitz. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
 Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
 
 Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
@@ -641,11 +642,13 @@ $$
 $$
 où $g$ est la pesanteur.
 
-1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0\geq 0$, résoudre le problème de Cauchy associé en se restreignant aux solutions $x(t)\geq 0$.
+1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0\geq 0$, justifier sans calcul que le problème de Cauchy associé admet des solutions et que les solutions maximales sont globales. Pour quelles valeurs de $x_0$ pouvons-nous dire qu'elles sont uniques ?
 
-2. Comment s'interprète physiquement la multitude de solutions trouvées ?
+2. Pour $(t_0,x_0)\in \R\times \R_{\geq0}$, résoudre le problème de Cauchy associé en se restreignant aux solutions $x(t)\geq 0$.
 
-3. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
+3. Comment s'interprète physiquement la multitude de solutions trouvées ?
+
+4. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
 
 -> [*Correction*](#correc_Torricelli)
 
@@ -677,7 +680,7 @@ $$
 \text{tr} A <0  \qquad \text{ et } \qquad \text{det} A >0 \ .
 $$
 
--> [*Correction*](#correc_crti_stab_dim2)
+-> [*Correction*](#correc_crit_stab_dim2)
 
 ### Oscillateur {.exercice #exo_masse_ressort}
 Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
@@ -757,11 +760,14 @@ Correction des exercices
 
 ### Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
-1. Soit d'abord $x_0>0$. Tant que $x(t)>0$, on a
+1. $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$ donc le théorème de Peano nous garantie l'existence de solutions au problème de Cauchy pour toute condition initiale. De plus, 
+$\sqrt{|x|}\leq 1+|x|$ pour tout $x\in \R$ donc $f$ est linéairement bornée et toute solution maximale est globale, donc ici définie sur $\R$. Enfin, $f$ est $C^1$ sur $\R\times (\R\setminus \{0\})$ donc lorsque $x_0\neq 0$, il existe une unique solution maximale dans $\R\setminus \{0\}$. Lorsque $x_0=0$ par contre, $f$ n'est pas $C^1$ en 0 (ni même lipschitzienne) donc le théorème de Cauchy-Lipschitz ne s'applique pas.
+
+2. Soit d'abord $x_0>0$. Tant que $x(t)>0$, on a
 $$
-\dot{x}=-\sqrt{|x|} \quad \Leftrightarrow \quad \frac{\dot{x}}{\sqrt{|x|}}=-1  \quad \Leftrightarrow \quad x(t) = \left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2
+\dot{x}=-\sqrt{|x|} \quad \Leftrightarrow \quad \frac{\dot{x}}{\sqrt{x}}=-1  \quad \Leftrightarrow \quad x(t) = \left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2
 $$
-Donc tant que $x(t)>0$, la solution est unique et par continuité, elle atteint 0 en $t=t_0+2\sqrt{x_0}$. A partir de là, vu que $\dot{x}\leq 0$, la seule solution possible qui reste positive est la solution constamment égale à 0 : le réservoir est vide et le reste. Donc pour $(t_0,x_0)$ avec $x_0>0$, il existe une unique solution maximale positive au problème de Cauchy définie par
+Donc tant que $x(t)>0$, la solution est unique (comme prévu dans la question précédente) et par continuité, elle atteint 0 en $t=t_0+2\sqrt{x_0}$. A partir de là, vu que $\dot{x}\leq 0$, la seule solution possible qui reste positive est la solution constamment égale à 0 : le réservoir est vide et le reste. Donc pour $(t_0,x_0)$ avec $x_0>0$, il existe une unique solution maximale positive au problème de Cauchy définie par
 $$
 x(t)= 
 \left\{
@@ -771,9 +777,8 @@ x(t)=
 \end{array}
 \right.
 $$
-Ceci est bien conforme au théorème de Cauchy-Lipschitz car $f(x)=-\sqrt{|x|}$ est $C^1$ en 0.
 
-Maintenant si $x_0=0$. $f$ n'est pas $C^1$ en 0 (ni même lipschitzienne) donc le théorème de Cauchy-Lipschitz ne s'applique pas. Par contre, $f$ est continue donc le théorème de Peano nous garantie l'existence de solutions. Pour $t\geq t_0$, la seule possibilité est de rester à 0. En temps rétrograde, soit $x$ reste à 0 soit il existe $t_1 < t_0$ tel que $x(t_1)>0$. Alors la solution correspondante est unique et donnée par la formule ci-dessus en remplaçant $(t_0,x_0)$ par $(t_1,x(t_1))$. Donc les solutions maximales s'écrivent
+Maintenant si $x_0=0$.  Pour $t\geq t_0$, la seule possibilité est de rester à 0. En temps rétrograde, soit $x$ reste à 0 soit il existe $t_1 < t_0$ tel que $x(t_1)>0$. Alors la solution correspondante est unique et donnée par la formule ci-dessus en remplaçant $(t_0,x_0)$ par $(t_1,x(t_1))$. Donc les solutions maximales s'écrivent
 $$
 x(t)= 
 \left\{
@@ -785,9 +790,21 @@ x(t)=
 $$
 pour tout $(t_1,x_1)\in \R \times \R_{>0}$ tels que  $t_1+2\sqrt{x_1}\leq t_0$. Il y a donc une infinité de solutions.
 
-2. La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir vide à $t_0$ on ne sait pas depuis quand il est vide.
+*Remarque*: si l'on s'était intéressé aux solutions négatives, on aurait trouvé une infinité de solutions au problème de Cauchy pour $x_0>0$. En effet, à partir de $x_0=0$, on a aussi de manière symmétrique, les solutions
+$$
+x(t)= 
+\left\{
+\begin{array}{ll}
+0 & \forall t\in [t_0, t_1-2\sqrt{-x_1}[\\
+-\left(\sqrt{-x_1}+\frac{1}{2}(t-t_1)\right)^2 & \forall t\in [t_1-2\sqrt{-x_1},+\infty[
+\end{array}
+\right.
+$$
+pour tout $(t_1,x_1)\in \R \times \R_{<0}$ tels que  $t_1-2\sqrt{x_1}\geq t_0$. Ceci ne contredit pas le théorème de Cauchy Lispchitz. En effet, celui-ci ne garantie l'unicité de la solution maximale que dans le domaine où $f$ est $C^1$ par rapport à $x$, c'est-à-dire ici tant qu'elle est non nulle, plus précisément sur l'intervalle ouvert $]-\infty,t_0+2\sqrt{x_0}[$. 
 
-3. Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale. Par contre, si $x_0=0$, une solution est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\overline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. En ce sens, on n'a pas la continuité des solutions en temps rétrograde. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
+3. La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir vide à $t_0$ on ne sait pas depuis quand il est vide.
+
+4. Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\overline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions en temps rétrograde. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
 
 ### Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
@@ -820,7 +837,7 @@ u(t) &\leq \alpha +\alpha \left[-\exp\left(\int_s^t\beta(r)dr \right) \right]_{t
 \end{align*}
 ce qui donne le résultat.
 
-2. Soit $x:]\underline{t},\overline{t}[\subseteq I\to \R^n$ une solution au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale), 
+2. Soit $x:]\underline{t},\overline{t}[\subseteq I\to \R^n$ une solution maximale au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale), 
 $$
 x(t)=x_0 + \int_{t_0}^t f(s,x(s))ds \ ,
 $$
@@ -832,7 +849,7 @@ Sur tout segment $[t^-,t^+]\subset ]\underline{t},\overline{t}[$, on peut donc a
 $$
 \|x(t)\| \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right)
 $$
-avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $I$. D'après le [théoreme des bouts](#theo_bouts), nécessairement $]\underline{t},\overline{t}[=I$.
+avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $I$. D'après le [théoreme des bouts](#theo_bouts), puisque $U=I\times\R^n$, nécessairement $]\underline{t},\overline{t}[=I$.
 
 3. Soient $x:I\to \R^n$ et $x_\delta:I_\delta\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset I$. On sait que
 \begin{align*}
@@ -854,7 +871,7 @@ $$
 $$
 <!--Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$.-->
 
-### Critère de stabilité en dimension 2 {.correction #correc_crti_stab_dim2}
+### Critère de stabilité en dimension 2 {.correction #correc_crit_stab_dim2}
 Soient $\lambda_1$ et $\lambda_2$ les valeurs propres d'une matrice $A$ de dimension 2. Son polynôme caractéristique est donné par
 $$
 s^2 - \text{tr} A s + \det A = (s-\lambda_1)(s-\lambda_2) = s^2 - (\lambda_1+\lambda_2)  s + \lambda_1\lambda_2 \ .
