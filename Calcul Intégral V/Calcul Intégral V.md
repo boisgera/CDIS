@@ -203,7 +203,7 @@ Plus généralement, on a :
 Une fonction de répartition $F:\R \to \R$ admet une densité si et seulement
 si elle est faiblement dérivable. Une fonction $f:\R \to \R$ est une densité 
 associée à $F$ si et seulement si elle est une dérivée faible de $F$
-(elle est donc déterminée uniquement presque partout).
+(elle est donc déterminée uniquement presque partout par $F$).
 
 ### Démonstration {.proof}
 La preuve du sens direct et du fait que dérivée faible et densité coïncident
