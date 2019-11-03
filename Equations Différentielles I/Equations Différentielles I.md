@@ -28,7 +28,7 @@ En parallèle, l'étude de la stabilité et du comportement asymptotique des sol
 
 **Notations** 
 
-- $C^0(U, V)$ : ensemble des fonctions continues $f:U\to V$
+- $C(U, V)$ : ensemble des fonctions continues $f:U\to V$
 
 - $C^k(U, V)$ : ensemble des fonctions $f:U\to V$ continûment différentiables d'ordre $k\geq 1$.
 
@@ -85,7 +85,7 @@ où $p\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\
 
 
 ### Réduction à l'ordre 1
-Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times (\R^n)^p$ et $f\in C^0(U,\R^n)$, définissons l'application $\underline{f} \in C^0(U,\R^n)$ par
+Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times (\R^n)^p$ et $f\in C(U,\R^n)$, définissons l'application $\underline{f} \in C(U,\R^n)$ par
 $$
 \underline{f}(t,x_0,x_1,\ldots,x_{p-1}) = (x_1,x_2,\ldots,x_{p-1},f(t,x_0,\ldots,x_{p-1})) \ .
 $$
@@ -135,7 +135,7 @@ La définition sous forme intégrale des solutions montre que l'hypothèse de co
 
 - il existe une fonction intégrable $t\mapsto b(t)$ telle que $|f(t,x)|\leq b(t)$ pour tout $(t,x)$.
 
- Sous ses conditions plus faibles, dites de *Carathéodory*, l'existence de solutions *généralisées* sous forme intégrale est toujours bien garantie. Un cadre encore plus général consisterait à autoriser des discontinuités de $f$ en $x$ mais l'étude des solutions passerait alors par celle des *inclusions différentielles* du type $\dot{x} \in F(t,x)$, ce qui nous amèneraient bien trop loin de ce cours.  
+ Sous ses conditions plus faibles, dites de *Carathéodory*, l'existence de solutions *généralisées* sous forme intégrale est toujours bien garantie. Un cadre encore plus général consisterait à autoriser des discontinuités de $f$ en $x$ mais l'étude des solutions passerait alors par celle des *inclusions différentielles* du type $\dot{x} \in F(t,x)$, ce qui nous amènerait bien trop loin de ce cours.  
 
 ### Portrait de phase   
 En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. Voir [Figure](#fig_pendule) dans le cas d'un pendule.
@@ -178,12 +178,12 @@ Unicité des solutions
 Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
 Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
 
-*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contradirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
+*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
-**Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
+**Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
 $$
 \cC:=\left[t_0-\tau,t_0+\tau \right]\times \overline{B}_{r}(x_0)\subset U \ .
 $$
@@ -193,7 +193,7 @@ f_m := \max_{\cC} f \quad , \quad \tau_m := \min\left\{\tau,\frac{r}{f_m} \right
 $$--->
 il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+\tau_m]$. 
 
-*Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous que $E:=C^0([t_0-\tau_m,t_0+\tau_m],\R^n)$  est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
+*Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$  est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
 $$
 F = \{x\in E \: : \: x(\left[t_0-\tau_m,t_0+\tau_m \right])\subseteq \overline{B}_{r}(x_0) \} \ .
 $$
@@ -251,7 +251,7 @@ Cette méthode de recherche de point fixe porte le nom d'*approximations success
 
 ### Exemples {.example #ex_lips}
 
-- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C^0(\R,\R^{n\times n})$ et $b\in C^0(\R,\R^n)$ telles que
+- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C(\R,\R^{n\times n})$ et $b\in C(\R,\R^n)$ telles que
 $$
 f(t,x) = a(t) x + b(t) \ ,
 $$
@@ -282,10 +282,10 @@ En fait, le théorème suivant montre que pour toute solution maximale, la paire
 $$
 \lim_{t\to \overline{t}} \|x(t)\|=+\infty \ ,
 $$
-Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger.
+Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger. C'est ce qui est formalisé dans le théorème suivant.
 
 ### Théorème des bouts {.theorem #theo_bouts}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$. Soient $(t_0,x_0)\in U$ et $x:\left]\underline{t},\overline{t}\right[\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in \left[-\infty,t_0\right[$ et $\overline{t}\in \left]t_0,+\infty\right]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in \left[t_0,\overline{t}\right[$ and $t_K^-\in \left]\underline{t},t_0 \right]$) tels que
+Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$. Soient $(t_0,x_0)\in U$ et $x:\left]\underline{t},\overline{t}\right[\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in \left[-\infty,t_0\right[$ et $\overline{t}\in \left]t_0,+\infty\right]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in \left[t_0,\overline{t}\right[$ and $t_K^-\in \left]\underline{t},t_0 \right]$) tels que
 $$
 (t,x(t))\notin K \qquad \forall t\in \left[t_K^+,\overline{t} \right[ \cup  \left]\underline{t},t_K^- \right] 
 $$
@@ -293,7 +293,7 @@ $$
 *Démonstration* : Voir en [annexe](#pr_theo_bouts).  $\hfill\blacksquare$
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
-Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C^0(U,\R^n)$. S'il existe $a,b:I\to \R$ telles que  
+Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$. S'il existe $a,b:I\to \R$ telles que  
 $$
 \|f(t,x)\|\leq a(t) \|x\| + b(t) \quad \forall (t,x)\in I\times \R^n \ ,
 $$
@@ -303,7 +303,7 @@ alors toute[^uniCritExGlob] solution maximale au problème de Cauchy associé es
 
 
 ### Exemples
-- Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A\in C^0(I,\R^{n\times n})$ et $b\in C^0(I,\R^n)$ telles que
+- Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A\in C(I,\R^{n\times n})$ et $b\in C(I,\R^n)$ telles que
 $$
 f(t,x) = A(t) x + b(t) \ .
 $$
@@ -357,7 +357,7 @@ La première question fut soulevée par Henri Poincaré à la fin du XIXème si�
 Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais modéliser tous les phénomènes parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C^0(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
+Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
@@ -515,7 +515,7 @@ $$
 converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 \hfill $\blacksquare$
 
-Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C^0(I,\R^{n\times n})$ soit Hurwitz pour tout $t$ n'implique pas que le système
+Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C(I,\R^{n\times n})$ soit Hurwitz pour tout $t$ n'implique pas que le système
 $$
 \dot{x} = A(t) x 
 $$
@@ -654,7 +654,7 @@ où $g$ est la pesanteur.
 
 ### Autour du Lemme de Grönwall {.exercice #exo_gronwall}
 
-1. (Lemme de Grönwall) Soient $t^-, t^+\in \R$, $u,\alpha, \beta\in C^0([t^-,t^+],\Rgeq)$, tels que
+1. (Lemme de Grönwall) Soient $t^-, t^+\in \R$, $u,\alpha, \beta\in C([t^-,t^+],\Rgeq)$, tels que
 $$
 u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t^-,t^+] \ .
 $$
@@ -1007,15 +1007,15 @@ Annexes
 
 Cette preuve repose sur le théorème d'Ascoli :
 
-> Soient $X$ un espace métrique compact, $Y$ un espace métrique complet, et $S\subset C^0(X,Y)$. Les deux propriétés suivantes sont équivalentes :
+> Soient $X$ un espace métrique compact, $Y$ un espace métrique complet, et $S\subset C(X,Y)$. Les deux propriétés suivantes sont équivalentes :
 >
-> 1. $S$ est *relativement compact* dans $C^0(X,Y)$
+> 1. $S$ est *relativement compact* dans $C(X,Y)$
 >
 > 2. $S$ est *équicontinu* et pour tout $x\in X$, $\{f(x) \ , \ f\in S \}$ est *relativement compacte* dans $Y$.
 
-On dit qu'un ensemble est *relativement compact* si son adhérence est compacte. En dimension finie, vue que "compact" est équivalent à "fermé-borné" et que l'adhérence est fermée par définition, "relativement compact" est équivalent à "borné". Mais ce n'est pas le cas en dimension finie (en particulier $C^0(X,Y)$) où  "relativement compact" est alors équivalent au fait de pouvoir extraire des suites convergentes dans l'adhérence de l'ensemble. 
+On dit qu'un ensemble est *relativement compact* si son adhérence est compacte. En dimension finie, vue que "compact" est équivalent à "fermé-borné" et que l'adhérence est fermée par définition, "relativement compact" est équivalent à "borné". Mais ce n'est pas le cas en dimension finie (en particulier $C(X,Y)$) où  "relativement compact" est alors équivalent au fait de pouvoir extraire des suites convergentes dans l'adhérence de l'ensemble. 
 
-Ici, puisque $X$ est compact et $Y$ complet, on peut montrer que $C^0(X,Y)$ muni de la norme uniforme $\|\cdot\|_\infty$ est complet, donc fermé. Il s'ensuit que  "$S$ est relativement compact dans $C^0(X,Y)$" implique pouvoir extraire de toute suite de $S$ une sous-suite convergente dans $C^0(X,Y)$ (au sens de $\|\cdot\|_\infty$). C'est ce que nous allons utiliser pour prouver l'existence d'une solution au problème de Cauchy.
+Ici, puisque $X$ est compact et $Y$ complet, on peut montrer que $C(X,Y)$ muni de la norme uniforme $\|\cdot\|_\infty$ est complet, donc fermé. Il s'ensuit que  "$S$ est relativement compact dans $C(X,Y)$" implique pouvoir extraire de toute suite de $S$ une sous-suite convergente dans $C(X,Y)$ (au sens de $\|\cdot\|_\infty$). C'est ce que nous allons utiliser pour prouver l'existence d'une solution au problème de Cauchy.
 
 Maintenant, le deuxième terme nécessitant des explications est l'*équicontinuité* de $S$. Cette notion veut simplement dire que les fonctions dans $S$ sont toutes continues *au même rythme*, i.e., plus précisément, 
 $$
@@ -1038,7 +1038,7 @@ Ces fonctions sont clairement définies et continues sur $[t_0-1,t_0]$. Puis sur
 
 La première étape est de montrer de proche en proche, grâce au retard, que $x_\epsilon(t)\in \overline{B}_r(x_0)$ pour tout $t\in [t_0-1,t_0+\tau_m]$ puisque $\tau_m\max_\cC \|f\|\leq r$. Donc
 $$
-\forall \epsilon \in ]0,1[ \ , \ x_\epsilon \in E:=C^0([t_0-1,t_0+\tau_m],\overline{B}_r(x_0)) \ .
+\forall \epsilon \in ]0,1[ \ , \ x_\epsilon \in E:=C([t_0-1,t_0+\tau_m],\overline{B}_r(x_0)) \ .
 $$
 De plus, pour tout $\epsilon \in ]0,1[$ et pour tout $(t,t')\in [t_0-1,t_0+\tau_m]^2$,
 $$
