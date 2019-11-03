@@ -176,8 +176,7 @@ f(x) = f(0) + \int_0^x f'(t) \, dt.
 $$
 Le cas d'un réel $x$ négatif se traite de façon similaire.
 
-### Fonction de répartition
-
+### Fonction de répartition et densité de probabilité
 La fonction $F: \R \to \R$ définie par 
 $$
 F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt
@@ -193,41 +192,76 @@ Cett relation montre également que la fonction
 $$
 f : t \in \R \mapsto  \frac{\exp (-{t^2}/{2})}{2\pi}
 $$
-est une dérivée faible de $F$([^eaf]). 
+est une dérivée faible de $F$<!--([^eaf])-->. 
 
 ![skdjslkdjs](images/gauss.py)\ 
 
+### {.ante .post}
+Plus généralement, on a :
 
-Le même argument, appliqué à
-la fonction $F: \R \to \R$ définie par 
+### Densité et dérivée faible {.proposition}
+Une fonction de répartition $F:\R \to \R$ admet une densité si et seulement
+si elle est faiblement dérivable. Une fonction $f:\R \to \R$ est une densité 
+associée à $F$ si et seulement si elle est une dérivée faible de $F$
+(elle est donc déterminée uniquement presque partout).
+
+### Démonstration {.proof}
+La preuve du sens direct et du fait que dérivée faible et densité coïncident
+presque partout reprend exactement les étapes utilisées pour
+montrer que l'application
+$$
+F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt
+$$
+est faiblement dérivable de dérivée faible $t \mapsto {\exp (-{t^2}/{2})}/{2\pi}$.
+
+Réciproquement, si $F$ est une fonction de répartition faiblement dérivable,
+c'est-à-dire s'il existe une fonction $f:\R \to \R$ localement absolument
+intégrable et une constante $c$ telle que pour tout $x\in\R$,
+$$
+F(x) = c + \int_0^x f(t) \, dt,
+$$
+alors pour toute paire de réels $a \leq b$, on a
+$$
+F(b) - F(a) = \int_a^b f(t) \, dt.
+$$
+La fonction $f$ est donc positive presque partout : en effet la fonction $F$
+en presque tout point $x \in \R$, $F$ est dérivable de dérivée $f(x)$. 
+Si l'on avait $f(x) < 0$, alors pour $h>0$ suffisamment petit, on aurait
+donc
+$$
+\frac{F(x+h) - F(x)}{h} < 0,
+$$
+ce qui contredirait l'hypothèse que $F$ est croissante. On obtient alors
+la relation
 $$
 F(x) = \int_{-\infty}^x f(t) \, dt
 $$
-où $f:\R \to \R$ est positive et intégrable, démontre
-que si une probabilité $\mathbb{P}$ sur $\mathbb{R}$
-admet une densité $f$, sa fonction de répartition $F$ est faiblement dérivable
-de dérivée faible $f$. La réciproque est également vraie : si une fonction
-de répartition $F$ admet $f$ comme dérivée faible, cette fonction $f$ est 
-une densité associée à $F$, c'est-à-dire que 
+en passant posant $x=b$ et en passant à la limite $a \to -\infty$ ; 
+le résultat est justifié par le théorème de convergence monotone 
+car $F$ à pour limite $0$ en $-\infty$. 
+Le passage à la limite $x \to +\infty$ fournit alors 
 $$
-F(x) = \int_{-\infty}^x f(t) \, dt.
+\int_{-\infty}^{+\infty} f(t) \, dt = 1,
 $$
+à nouveau par application du théorème de convergence monotone, en exploitant
+le fait que $F$ à pour limite $1$ en $+\infty$.
 
-### TODO -- preuve en exercice ? Y réfléchir.
 
-[^eaf]: Cette fonction $f$ est aussi la dérivée classique de $F$ en tout point
-(et pas seulement presque partout comme la théorie nous le garantit).
-En effet la fonction $f$ est continue en tout point $x \in \R$. On a donc
+<!--
+[^eaf]: Cette fonction $f$ est ici la dérivée classique de $F$ en tout point
+(et pas seulement presque partout), car la fonction $f$ est continue en tout 
+point $x \in \R$. On a donc
 $$
 \begin{split}
 \left|\frac{F(x+h) - F(x)}{h} - f(x)\right| &=  
 \left|\frac{1}{h}\int_x^{x+h} (f(t) - f(x)) \, dt \right| \\
 & \leq 
-\frac{1}{h}\int_x^{x+h} |f(t) - f(x)| \, dt \to 0 \, \mbox{ quand } \, h \to 0.
+\frac{1}{h}\int_x^{x+h} |f(t) - f(x)| \, dt \\
+&\leq \max \, \{ |f(t) - f(x)| \; | \; t \in [x - |h|, x + |h|]\} 
 \end{split}
 $$
 Le taux d'accroissement de $F$ en $x$ tend donc vers $f(x)$ quand $h$ tend vers $0$.
-
+-->
 
 ### Fonction de Cantor {.remark}
 On pourrait croire en prenant connaissance des contre-exemples simples
