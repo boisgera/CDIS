@@ -48,9 +48,14 @@ f(x) = c + \int_0^x g(t) \, dt.
 $$
 La fonction $g$ est alors appelée *dérivée faible* de $f$.
 
-### Les fonction absolument continues sont continues.
+### Les fonction faiblement dérivables sont continues.
+
+### TODO  
+faire écho à ça plus tard, quand (si ?) on introduit la notion de fonction
+*absolument* continue ?
 
 ### TODO -- Démonstration.
+(cf ce qui existe dans les volets précédents de calcul intégral)
 
 ### Dérivée faible et classique
 Si une fonction $f: \R \to \R$ est faiblement dérivable, de dérivée faible $g$,
@@ -116,23 +121,43 @@ $$
 $$
 ce qui n'est pas le cas.
 
-### Fonction dérivable par morceaux {.definition}
-On dira qu'une fonction $f: \R \to \R$ est différentiable par 
-morceaux s'il existe une collection dénombrable d'intervalles compacts $[a_k, b_k]$
+### Fonction régulières par morceaux {.definition}
+On dira qu'une fonction $f: \R \to \R$ est *dérivable par 
+morceaux* -- respectivement, *continûment dérivable par morceaux* --
+s'il existe une collection dénombrable d'intervalles compacts $[a_k, b_k]$
 sans chevauchements recouvrant $\R$ telle que la restriction de $f$ à 
 tout $\left]a_k, b_k\right[$ puisse être prolongée en une fonction différentiable 
-sur $[a_k, b_k]$.
+-- respectivement continûment dérivable -- sur $[a_k, b_k]$. 
+
+### Une condition suffisante à la dérivabilité faible {.theorem}
+Toute fonction $f: \R \to \R$ continue, dérivable par morceaux et dont
+la dérivée (définie presque partout) est localement absolument intégrable 
+est faiblement dérivable. En particulier, une fonction continue et
+continûment dérivable par morceaux est faiblement dérivable.
 
 ### {.post}
 A noter que l'on peut être différentiable par morceaux mais pas
-continue -- la fonction signe de [l'exemple consacré à la dérivée faible de
-la valeur absolue est un bon exemple](#example-abs).
-Sans la continuité, le caractère différentiable par morceaux
-ne suffit pas à garantir l'existence d'une dérivée faible.
+continue ; dans ce cas on ne peut pas être faiblement dérivable.
+La fonction signe de [l'exemple consacré à la dérivée faible de
+la valeur absolue](#example-abs) est un bon exemple de fonction
+dérivable par morceaux et de dérivée localement absolument intégrable
+mais qui n'est pas faiblement dérivable.
 
-### Les fonctions dérivables par morceaux sont faiblement différentiables {.theorem}
-Toute fonction $f: \R \to \R$ continue et dérivable par morceaux est faiblement dérivable.
-
+### {.post}
+Une fonction peut également être continue et dérivable par morceaux, mais de dérivée
+non localement absolument intégrable, auquel cas elle n'est pas non plus
+faiblement dérivable. Ainsi, la fonction $f:\R \to \R$ définie par
+$$
+f(x) = \left|
+\begin{array}{cl}
+x^2 \sin 1/x^2 & \mbox{si $x\geq 0$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est dérivable en tout point (et donc continue), mais sa dérivée n'est
+que conditionnellement intégrable sur $[0, 1]$ par exemple, pas absolument
+intégrable (cf. [Calcul Intégral II](Calcul Intégral II.pdf)).
 
 ### Démonstration {.proof}
 On trouve dans [@Tao11, prop. 1.6.41, p. 176] la clé de la démonstration,
@@ -141,8 +166,8 @@ et de dérivée absolument intégrable, alors
 $$
 f(b) - f(a) = \int_a^b f'(x) \, dx. 
 $$
-Nous omettons cette portion (critique) de la démonstration ; 
-en déduire le résultat cherché est beaucoup plus simple. 
+Nous omettons ici cette portion critique ; 
+la suite de la démonstration est beaucoup plus simple. 
 
 Notons $f(b^-)$ et $f(a^+)$ les limites à gauche de $f$ en $b$ et
 à droite de $f$ en $a$ respectivement.
@@ -203,7 +228,7 @@ Plus généralement, on a :
 Une fonction de répartition $F:\R \to \R$ admet une densité si et seulement
 si elle est faiblement dérivable. Une fonction $f:\R \to \R$ est une densité 
 associée à $F$ si et seulement si elle est une dérivée faible de $F$
-(elle est donc déterminée uniquement presque partout).
+(elle est donc déterminée uniquement presque partout par $F$).
 
 ### Démonstration {.proof}
 La preuve du sens direct et du fait que dérivée faible et densité coïncident
