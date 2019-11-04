@@ -357,6 +357,7 @@ La première question fut soulevée par Henri Poincaré à la fin du XIXème si�
 Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais modéliser tous les phénomènes parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
+
 Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
@@ -393,7 +394,7 @@ $$
 $$
 qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suffisamment petits. On voit bien ici que cette différence est bornée en temps fini, mais pas forcément aymptotiquement en particulier si $a>0$.
 
-- L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales : à "Integration Time" fixé, plus on réduit la *boîte* de condition initiales, plus les solutions restent proches. Par contre, lorsque l'on augmente le "Integration Time" les solutions s'écartent.
+- L'outil [Fibre](https://portsmouth.github.io/fibre/)[^linkFibre] permet d'observer en dimension 3 cette continuité des solutions par rapport aux conditions initiales, en affichant les trajectoires pour un ensemble de conditions initiales dont la taille est contrôlée à la souris: à "Integration Time" fixé, plus on réduit la *boîte* de condition initiales, plus les solutions se rapprochent les unes des autres. Par contre, lorsque l'on augmente le "Integration Time" les solutions s'écartent.
 
 ### Chaos déterministe et horizon de Lyapunov {.remark #rem_chao}
 Même si la continuité des solutions par rapport aux paramètres/conditions initiales donne à espérer de pouvoir simuler et prédire l'évolution de systèmes physiques, elle est malheureusement parfois insuffisante. 
@@ -420,11 +421,11 @@ Il est important d'insister sur le caractère *déterministe* de ce chaos : chaq
 \end{align*}
 où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires *sautent* de manière *chaotique* d'une aile à l'autre, comme représenté sur la [figure](#fig_attracteur_lorenz) ci-dessous.
 
-![Trajectoire de l'oscillateur de Lorenz](images/attracteur_lorenz.py){#fig_attracteur_lorenz}
-
 - En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années. 
 
 - Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité parfois lors d'une excitation sinusoïdale à certaines fréquences: pendule forcé, oscillateur de Van der Pol, etc. REFFF
+
+![Trajectoire de l'oscillateur de Lorenz](images/attracteur_lorenz.py){#fig_attracteur_lorenz}
 
 Propriétés asymptotiques
 -----------------------------
@@ -469,7 +470,7 @@ $$
 
 - *instable* s'il n'est pas stable.
 
-- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
+- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ sont globales et convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
 <!--
 $$
 |x(0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
@@ -479,7 +480,7 @@ $$
 \lim_{t\to+\infty} x(t)=a \ .
 $$
 
-- *globalement attractif* si *toutes les solutions convergent vers $a$*.
+- *globalement attractif* si *toutes les solutions sont globales et convergent vers $a$*.
 
 - *localement (resp. globalement) asymptotiquement stable* s'il est à la fois stable et localement (resp. globalement) attractif. 
 
@@ -494,13 +495,13 @@ $$
 ![Portrait de phase du système de Vinograd](images/vinograd.py){#fig_vinograd}
 
 ### Cas d'un système linéaire
-Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est  asymptotiquement stable pour le système
+Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est globalement asymptotiquement stable pour le système
 $$
 \dot{x} = Ax
 $$
 si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative. On dit alors que la matrice est *Hurwitz*, du nom du mathématicien allemand Adolf Hurwitz.
 
-*Démonstration* La notion d'*asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, la stabilité asymptotique est équivalente à l'attractivité, c'est-à-dire que la stabilité vient gratuitement avec l'attractivité. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
+*Démonstration* La notion de *globalement asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité globale. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, elles sont équivalentes à l'attractivité (locale), c'est-à-dire que la stabilité et la globalité viennent gratuitement. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
 $$
 x(t)= e^{At} x_0 \ .
 $$
@@ -519,7 +520,7 @@ Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C(I
 $$
 \dot{x} = A(t) x 
 $$
-soit asymptotiquement stable, où même stable. Par exemple, la matrice
+soit localement asymptotiquement stable, où même stable. Par exemple, la matrice
 $$
 A(t) = \left( \begin{matrix} 
 -1+1.5\cos^2t & 1-1.5\sin t \cos t \\
@@ -565,23 +566,11 @@ $$
 V(x)= 0 \qquad \Longleftrightarrow \qquad x=a  \ . 
 $$
 
--  Si
-$$
-\langle\nabla V (x), f(x)\rangle \leq 0   \qquad \forall x\in W
-$$ 
-alors $a$ est stable.
+-  Si $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$ alors $a$ est stable.
 
-- Si 
-$$
-\langle \nabla V (x), f(x) \rangle < 0 \qquad \forall x\in W\setminus \{a\}
-$$ 
-alors $a$ est localement asymptotiquement stable.
+- Si $\langle \nabla V (x), f(x) \rangle < 0$ pour tout $x\in W\setminus \{a\}$ alors $a$ est localement asymptotiquement stable.
 
-- Si $V$ est propre[^def_propre], $W=\R^n$, et
-$$
-\langle\nabla V (x), f(x)\rangle < 0  \qquad \forall x\neq a
-$$ 
-alors $a$ est globalement asymptotiquement stable.
+- Si $V$ est propre[^def_propre], $W=\R^n$, et $\langle\nabla V (x), f(x)\rangle < 0$ pour tout  $x\neq a$ alors $a$ est globalement asymptotiquement stable.
 
 $V$ est alors appelée *fonction de Lyapunov*. En fait, 
 $$
@@ -599,15 +588,17 @@ x\in B_{\eta}(a)  \ \Longrightarrow V(x)\leq \varepsilon_V \ .
 $$
 Alors si $x(0)\in B_{\eta}(a)$, $V(x(t))\leq V(x(0))\leq \varepsilon_V$ donc $x(t)\in B_{\varepsilon}(a)\subset W$ pour tout $t$ tant qu'elle est définie. Par le [théorème des bouts](#theo_bouts), $x$ est définie sur $\Rgeq$. Ceci prouve la stabilité de $a$.
 
-Supposons maintenant $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$. Alors par le point précédent $a$ est stable. Il suffit de montrer l'attractivité locale. Par stabilité, si $x(0)\in B_{\eta}(a)$,  $x(t)\in B_{\varepsilon}(a)\subset W$ pour tout $t$ et $t\to V(x(t))$ est donc strictement décroissante. Comme elle est aussi bornée inférieurement par 0, elle converge vers $\ell \geq 0$. Supposons $\ell>0$. Alors, par continuité de $V$, il existe $0<\nu<\varepsilon$ et $\overline{t}>0$ tel que pour tout $t\geq \overline{t}$, $\|x(t)-a\| \geq \nu$. Soit 
+Supposons maintenant $\langle\nabla V (x), f(x)\rangle < 0$ pour tout $x\in W\setminus \{a\}$. Alors par le point précédent $a$ est stable. Il suffit de montrer l'attractivité locale. Par stabilité, si $x(0)\in B_{\eta}(a)$,  $x(t)\in B_{\varepsilon}(a)\subset W$ pour tout $t$ et $t\to V(x(t))$ est donc strictement décroissante. Comme elle est aussi bornée inférieurement par 0, elle converge vers $\ell \geq 0$. Supposons $\ell>0$. Alors, par continuité de $V$, il existe $0<\nu<\varepsilon$ et $\overline{t}>0$ tel que pour tout $t\geq \overline{t}$, $\|x(t)-a\| \geq \nu$. Soit 
 $$
-\gamma = \max_{\nu \max \|x(t)-a\| \leq \varepsilon} \langle\nabla V (x), f(x)\rangle   
+\gamma = \max_{\nu \leq \max \|x(t)-a\| \leq \varepsilon} \langle\nabla V (x), f(x)\rangle   
 $$
-qui existe par continuité de $V$ sur un compact.  Puisque $\langle\nabla V (x), f(x)\rangle \leq 0$ sur $W$, $\gamma<0$. Alors, pour tout $t\geq \overline{t}$,
+qui existe par continuité de $V$ sur un compact.  Puisque $\langle\nabla V (x), f(x)\rangle < 0$ sur $W\setminus \{a\}$, $\gamma<0$. Alors, pour tout $t\geq \overline{t}$,
 $$
 V(x(t)) = V(x(\overline{t})) + \int_0^t \langle\nabla V (x(t)), f(x(t))\rangle \leq  V(x(\overline{t})) + \gamma (t-\overline{t}) \ .
 $$
 Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un certain temps, ce qui est impossible. Donc $\lim_{t\to +\infty} V(x(t))=0$. Finalement, reproduisant le même raisonnement que pour l'existence de $\varepsilon_V$, on peut garantir que $\|x-a\|$ est arbitrairement petit en prenant $V(x)$ suffisamment petit. Donc on en déduit que $\lim_{t\to +\infty} \|x(t)-a\|=0$.
+
+Supposons enfin que $V$ est propre et $W=\R^n$. Alors $V(x(t))< V(x(0))$ pour tout $t\in I$ donc $x(t)\in V^{-1}(\left[ 0,V(x(0)) \right])$ pour tout $t$, qui est compact puisque $V$ est propre. Par le théorème des bouts, nécessairement $x(t)$ est défini pour tout $t\geq 0$, et reste dans ce compact. Alors on peut reproduire le même raisonnement que plus haut et obtenir la convergence de $x$ vers $a$.
 \hfill $\blacksquare$
 
 
@@ -675,7 +666,7 @@ $$
 -> [*Correction*](#correc_gronwall)
 
 ### Critère de stabilité d'un système plan {.exercice #exo_crit_stab_dim2}
-Montrer que le système linéaire $\dot{x} = Ax$ avec $A\in \R^{2\times 2}$ est asymptotiquement stable si et seulement si 
+Montrer que $A\in \R^{2\times 2}$ est Hurwitz si et seulement si 
 $$
 \text{tr} A <0  \qquad \text{ et } \qquad \text{det} A >0 \ .
 $$
@@ -683,19 +674,15 @@ $$
 -> [*Correction*](#correc_crit_stab_dim2)
 
 ### Oscillateur {.exercice #exo_masse_ressort}
-Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un ressort de raideur $k$, lui-même fixé à un mur. 
-
-1. Montrer que l'évolution de la position de la masse peut être décrite par  
+Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
 $$
-m\ddot{x} = - \lambda \dot{x} -k x \ ,
+m\ddot{p} = - \lambda \dot{p} -k p \ ,
 $$
-où $\lambda$ est un coefficient de frottement. Que représente $x$ ?
+où $\lambda$ est un coefficient de frottement. 
 
-2. Réduire l'équation différentielle à l'ordre $1$.
+1. Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'équilibre.
 
-3. Déterminer les points d'équilibre.
-
-4. Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
+2. Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
 
 -> [*Correction*](#correc_masse_ressort)
 
@@ -736,7 +723,7 @@ où $t\mapsto u(t)$ est une entrée à choisir.
 
 1. Comment se comporte le système si $u\equiv 0$ ?
 
-2. Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre asymptotiquement stable ?
+2. Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre globalement asymptotiquement stable ?
 
 Plus généralement, considérons un système du type
 $$
@@ -750,7 +737,7 @@ $$
 $$
 avec $\phi:\R^n \to \R$ continue et $u:\R \to \R$ à choisir. 
 
-3. Si on mesure $t\mapsto x(t)$, montrer que l'on peut toujours choisir $t\mapsto u(t)$ pour rendre 0 asymptotiquement stable.
+3. Si on mesure $t\mapsto x(t)$, montrer que l'on peut toujours choisir $t\mapsto u(t)$ pour rendre 0 globalement asymptotiquement stable.
 
 -> [*Correction*](#correc_cont_lin)
 
@@ -886,6 +873,41 @@ Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives �
 
 ### Oscillateur {.correction #correc_masse_ressort}
 
+1. Prenons $x=(p,\dot{p})$ qui vérifie
+$$
+\dot{x} = 
+\left(
+\begin{matrix}
+x_2\\
+-\frac{k}{m} x_1 &-\frac{\lambda}{m} x_2
+\end{matrix}
+\right) 
+=
+A x
+$$
+avec $A=\left(
+\begin{matrix}
+0&1\\
+-\frac{k}{m}&-\frac{\lambda}{m}
+\end{matrix}
+\right)$.
+Le seul point d'équilibre est donc $x=(0,0)$, c'est-à-dire sa position d'équilibre à vitesse nulle.
+
+2. Si $\lambda>0$, on a $\text{tr}(A)= -\frac{\lambda}{m}<0$ et $\text{det}(A)=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#correc_crit_stab_dim2), $A$ est Hurwitz donc le système est globalement asymptotiquement stable. En fait, les frottements permettent de ramener le ressort à l'équilibre.
+Lorsque $\lambda=0$, les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$ donc 0 n'est plus asymptotiquement stable. En fait l'énergie du système
+$$
+V(x)
+= \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2
+$$
+est conservée le long des trajectoires, c'est-à-dire, 
+$$
+\dot{\overline{V(x)}} = kx_1x_2 -kx_1x_2 = 0 \ .
+$$ 
+D'après le théorème de Lyapunov, puisque $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_osci) ci-dessous.
+
+![Plan de phase d'un oscillateur amorti à droite et non amorti à gauche](images/oscillateur.py){#fig_osci}
+
+
 ### Cycle limite {.correction #correc_cycle_lim}
 On étudie le comportement des solutions de $\dot{x}=f(x)$ pour
 $$
@@ -930,7 +952,7 @@ qui a pour valeurs propres $1\pm i$. Le point d'équilibre est donc instable.
 
 2. 
 \begin{align*}
-\frac{d}{dt}V(x) &= \langle \nabla V(x) , f(x) \rangle \\
+\frac{d}{dt}V(x(t)) &= \langle \nabla V(x) , f(x) \rangle \\
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
 & -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
 \end{align*}
@@ -944,7 +966,9 @@ $$
 \end{array}
 $$
 Celles initialisées à l'extérieur du cercle convergent vers le cercle mais sans jamais l'atteindre car cela contradirait l'unicité des solutions en un point du cercle ($f$ est $C^1$ donc le théorème de Cauchy-Lipschitz s'applique); celles initialisées à l'intérieur (sauf en zero) de même. 
-Enfin, la trajectoire initialisée à zéro reste à zéro. PORTRAIT DE PHASE
+Enfin, la trajectoire initialisée à zéro reste à zéro. Le portrait de phase est donné [ci-dessous](#fig_cycle_limite).
+
+![Portrait de phase de l'exercice Cycle Limite](images/cycle_limite.py){#fig_cycle_limite}
 
 ### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.correction #corr_attrac_stab}
 
@@ -976,7 +1000,7 @@ On conclut que pour des conditions initiales suffisamment petites ($\eta <\frac{
 $$
 \dot{x} = -(k-1) x
 $$
-pour lequel 0 est asymptotiquement stable si $k>1$.
+pour lequel 0 est globalement asymptotiquement stable si $k>1$.
 
 3. Prenons $u(t) = -k_1 x_1(t) - k_2 x_2(t) - \ldots - k_n x_n(t)$. Alors le système devient 
 $$
@@ -1136,7 +1160,7 @@ En l'absence d'outils d'analyse fonctionnelle à cette époque, la preuve de Cau
 Si $f$ est de classe $C^1$ par rapport à $x$, cette solution est unique. Mais ce théorème est aussi valable pour $f$ seulement continue.
 
 [^linkFibre]:
-https://portsmouth.github.io/fibre/ + details
+https://portsmouth.github.io/fibre/ 
 
 [^Torricelli]:
 Sous l'hypothèse d'incompressibilité du fluide, la loi de Bernoulli dit que 
