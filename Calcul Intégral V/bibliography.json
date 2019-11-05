@@ -50,5 +50,28 @@
                           ]
                   ]
           }
-  }
+  },
+  {
+        "id": "Tao11",
+        "type": "book",
+        "title": "An Introduction to Measure Theory",
+        "collection-title": "Graduate studies in mathematics",
+        "publisher": "American Mathematical Society",
+        "URL": "https://terrytao.files.wordpress.com/2011/01/measure-book1.pdf",
+        "ISBN": "978-0-8218-6919-2",
+        "note": "LCCN: 2011018926",
+        "author": [
+                {
+                        "family": "Tao",
+                        "given": "T."
+                }
+        ],
+        "issued": {
+                "date-parts": [
+                        [
+                                "2011"
+                        ]
+                ]
+        }
+}  
 ]

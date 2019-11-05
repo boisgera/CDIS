@@ -43,21 +43,11 @@ def set_ratio(ratio, bottom=0.1, top=0.1, left=0.1, right=0.1):
 
 # Function
 # ------------------------------------------------------------------------------
-def f(theta_d_theta):
-    m=1.0; b=0.0; l=1.0; g=9.81
-    theta, d_theta = theta_d_theta
-    J = m * l * l
-    d2_theta  = - b / J * d_theta 
-    d2_theta += - g / l * sin(theta)
-    return array([d_theta, d2_theta])
-
-def f_amorti(theta_d_theta):
-    m=1.0; b=3.0; l=1.0; g=9.81
-    theta, d_theta = theta_d_theta
-    J = m * l * l
-    d2_theta  = - b / J * d_theta 
-    d2_theta += - g / l * sin(theta)
-    return array([d_theta, d2_theta])
+def f(x):
+    x1, x2 = x
+    dx1  = x1+x2-x1*(x1**2+x2**2)
+    dx2  = -2*x1+x2-x2*(x1**2+x2**2)
+    return array([dx1, dx2])
 
 def Q(f, xs, ys):
     X, Y = meshgrid(xs, ys)
@@ -67,21 +57,13 @@ def Q(f, xs, ys):
 
 # Value Graph
 # ------------------------------------------------------------------------------
-def pendule():
+def cycle_limite():
     fig = figure()
-    theta = linspace(-1.5 * pi, 1.5 * pi, 100)
-    d_theta = linspace(-5.0, 5.0, 100)
-    fig.add_subplot(2,1,1)
+    x1 = linspace(-2, 2, 1000)
+    x2 = linspace(-2, 2, 1000)
     grid(True)
-    xticks([-pi, 0, pi], [r"$-\pi$", "$0$", r"$\pi$"])
-    streamplot(*Q(f, theta, d_theta), color="k") 
-    xlabel('$x_1$')
-    ylabel('$x_2$')
-    #set_ratio(4/3, bottom=0.2, top=0.1, left=0.2)
-    fig.add_subplot(2,1,2)
-    grid(True)
-    xticks([-pi, 0, pi], [r"$-\pi$", "$0$", r"$\pi$"])
-    streamplot(*Q(f_amorti, theta, d_theta), color="k") 
+    axis('equal')
+    streamplot(*Q(f, x1, x2), color="k") 
     xlabel('$x_1$')
     ylabel('$x_2$')
     #set_ratio(4/3, bottom=0.2, top=0.1, left=0.2)
@@ -89,4 +71,4 @@ def pendule():
 
 
 if __name__ == "__main__":
-  pendule()
+  cycle_limite()

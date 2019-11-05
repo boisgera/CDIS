@@ -191,12 +191,12 @@ vérifiant
 $$
 \left\{ \begin{aligned}
 x^{j+1} & = x^j + \Delta t_j \Phi_{\Delta t_j}(t_j,x^j), \\
-z^{j+1} & = z^j + \Delta t_j \Phi_{\Delta t_j}(t_j,z^j) + \Delta t_j\, \delta^{j+1},
+z^{j+1} & = z^j + \Delta t_j \Phi_{\Delta t_j}(t_j,z^j) + \delta^{j+1},
 \end{aligned} \right.
 $$
 on ait 
 $$
-\max_{1 \leq j \leq J} | x^j - z^j| \leq S(T) \, \Big( |x^0 -z^0| + \sum_{j = 1}^J \Delta t_{j-1} |\delta^j| \Big).
+\max_{1 \leq j \leq J} | x^j - z^j| \leq S(T) \, \Big( |x^0 -z^0| + \sum_{j = 1}^J  |\delta^j| \Big).
 $$
 
 ### Condition suffisante
@@ -208,15 +208,15 @@ alors le schéma est stable avec $S(T)=e^{L T}$.
 
 *Démonstration*: On a alors
 $$
-| x^{j+1} - z^{j+1} | \leq \Delta t_j | \delta^{j+1} | + (1 + \Delta t_j L) | x^{j} - z^{j} | \leq e^{\Delta t_j L} | x^{j} - z^{j} | 
+| x^{j+1} - z^{j+1} | \leq  | \delta^{j+1} | + (1 + \Delta t_j L) | x^{j} - z^{j} | \leq | \delta^{j+1} | +  e^{\Delta t_j L} | x^{j} - z^{j} | 
 $$
 puisque $1+x \leq e^{x}$ pour tout $x\in \R$. Par récurrence, on montre alors que pour tout $1\leq j \leq J$, 
 $$
-| x^{j} - z^{j} | \leq e^{(t_j-t_0) L} |x^0 -z^0| + \sum_{k=1}^j e^{(t_j-t_k)L} \Delta t_{k-1} | \delta^{k} |  \ .
+| x^{j} - z^{j} | \leq e^{(t_j-t_0) L} |x^0 -z^0| + \sum_{k=1}^j e^{(t_j-t_k)L} | \delta^{k} |  \ .
 $$
 Il s'ensuit que 
 $$
-| x^{j} - z^{j} | \leq e^{TL}\left(|x^0 -z^0|+ \sum_{k=1}^j  \Delta t_{k-1} | \delta^{k} |\right) \ ,
+| x^{j} - z^{j} | \leq e^{TL}\left(|x^0 -z^0|+ \sum_{k=1}^j | \delta^{k} |\right) \ ,
 $$
 ce qui donne le résultat.
 $\hfill\blacksquare$ 
@@ -234,7 +234,7 @@ $$
 $$
 lorsque $x^0 = x(t_0)$. S'il existe $p\in \N_{>0}$ et $C>0$ (indépendent de $\Delta t$) tel que
 $$
-\max_{1 \leq j \leq J} \leq C (\Delta t)^{p}
+\max_{1 \leq j \leq J} |x^j - x(t_j)| \leq C (\Delta t)^{p}
 $$
 on dit que le schéma est *convergent à l'ordre $p$*. 
 
@@ -252,8 +252,9 @@ $$
 $$
 et par consistance
 $$
-|x^j - x(t_j)| \leq S(T) \,  C \,  \sum_{j = 1}^J \Delta t_{j-1}\, (\Delta t_{j-1})^{p} \leq  C \, S(T) \, T \, (\Delta t)^{p}  \ . \hfill \blacksquare
+|x^j - x(t_j)| \leq S(T) \,  C \,  \sum_{j = 1}^J \Delta t_{j-1}\, (\Delta t_{j-1})^{p} \leq  C \, S(T) \, T \, (\Delta t)^{p}  \ . 
 $$
+$\hfill \blacksquare$
 
 ### Relaxation de la stabilité
 Relaxation du théorème avec Lipschitz dans compact plutôt que global ?
@@ -262,17 +263,30 @@ Relaxation du théorème avec Lipschitz dans compact plutôt que global ?
 
 A chaque itération, lorsque la machine calcule $x^{j+1}$, elle commet des erreurs d'arrondi de l'ordre de la précision machine. La solution obtenue est donc donnée par
 $$
-\hat{x}^{j+1} = \hat{x}^j + \Delta t_j \Phi_{\Delta t_j}(t_j,\hat{x}^j) + \varepsilon^{j+1}
+\hat{x}^{j+1} = \hat{x}^j + \Delta t_j \left( \Phi_{\Delta t_j}(t_j,\hat{x}^j) + \rho^{j+1} \right)+ \varepsilon^{j+1}
 $$
 au lieu de 
 $$
-x^{j+1} = x^j + \Delta t_j \Phi_{\Delta t_j}(t_j,x^j) \ .
+x^{j+1} = x^j + \Delta t_j \Phi_{\Delta t_j}(t_j,x^j) \ ,
 $$
+où $\rho$ modélise l'erreur commise sur le calcul de $\Phi_{\Delta t_j}$ et $\epsilon$ l'erreur sur l'addition finale.
 La stabilité nous donne alors l'écart 
 $$
-|x^j-\hat{x}^j| \leq 
+\max_{0\leq j \leq J} |x^j-\hat{x}^j| \leq S(T) \sum_{j=1}^J \Delta t_{j-1} |\rho^{j}| + |\varepsilon^{j}| \ .
 $$
-
+En considérant une borne $\varepsilon$ des $\varepsilon^{j}$ et $\rho$ des $\rho^{j}$, on obtient
+$$
+\max_{0\leq j \leq J} |x^j-\hat{x}^j| \leq S(T) (T\rho + J \varepsilon) \leq S(T) T \left(\rho + \frac{\varepsilon}{\min \Delta t_j} \right) \ ,
+$$
+et donc finalement, en supposant l'algorithme convergent d'ordre $p$,
+\begin{align*}
+\max_{0\leq j \leq J} |x(t_j)-\hat{x}^j| &\leq \max_{0\leq j \leq J} |x(t_j)-x^j| + |x^j - \hat{x}^j| \\
+&\leq C (\max_j \Delta t_j)^p +  S(T) T \left(\rho + \frac{\varepsilon}{\min_j \Delta t_j} \right) \ .
+\end{align*}
+Les paramètres $\varepsilon$ et $\rho$ sont typiquement petits de l'ordre d'un facteur de la précision machine. Cependant, on voit que plus le pas de temps décroit, plus il y a d'itérations et plus les erreurs d'arrondi se propagent. D'un autre côté, plus il augmente, plus les erreurs de quadrature augmentent. En supposant le pas constant, il y a donc un pas ``optimal'' donné par
+$$
+\Delta t_{opt} = \left( \frac{S(T) T\varepsilon}{Cp}\right)^{\frac{1}{p+1}} \ .
+$$
 
 Exercices
 ================================================================================
@@ -298,6 +312,11 @@ $$
 Montrer que le schéma de Heun et d'Euler implicite sont convergents.
 
 
+## Explicite ou implicite ?
+
+Comparer les performances des schémas d'Euler implicites et explicites à pas fixe dans le cas de  $\dot{x} = -\lambda x$, $x(0)=1$, et $\dot{x} = \lambda x$, $x(0)=1$, sur un horizon de temps $T$ donné. 
+
+
 
 Corrections
 =================================================================================
@@ -306,6 +325,50 @@ Corrections
 
 
 ## Convergence de schémas
+
+
+## Explicite ou implicite ?
+
+Prenons d'abord $\dot{x}= -\lambda x$, $x(0)=1$, dont la solution exacte est $x(t)=e^{-\lambda t}$.
+
+Le schéma d'Euler explicite donne
+$$
+x^{j+1} = x^j - \lambda\Delta t x^j =(1-\lambda\Delta t)^j
+$$
+soit 
+$$
+x^{J} = (1-\lambda\Delta t)^J = (1-\lambda\Delta t)^{\frac{T}{\Delta t}} = \left((1-\lambda\Delta t)^{\frac{T}{\lambda\Delta t}} \right)^\lambda \ .
+$$
+On a bien
+$$
+\lim_{\Delta t \to 0} x^{J} = e^{-\lambda T} \ .
+$$
+Cependant, $\lambda\Delta t$ doit être pris petit pour avoir une simulation acceptable. Par exemple pour $\lambda\Delta = 2$, $x^J = (-1)^J$. Ceci peut poser problème lorsque l'on simule des systèmes sur des temps long, ou de manière équivalent lorsque $\lambda$ est grand. On voit aussi bien ici qu'il faut adapter $\Delta t$ à la constante de temps $\lambda$ du système.
+
+De l'autre côté, le schéma d'Euler implicite donne
+$$
+x^{j+1} = x^j - \lambda\Delta t x^{j+1} 
+$$
+soit 
+$$
+x^J = \frac{1}{(1+\lambda \Delta t)^J} =  \frac{1}{(1+\lambda \Delta t)^\frac{T}{\Delta t}}
+$$
+ce qui permet d'autoriser des pas $\lambda \Delta>1$, pratique pour les temps longs.
+
+Prenons maintenant $\dot{x}= \lambda x$, $x(0)=1$, dont la solution exacte est $x(t)=e^{\lambda t}$.
+
+Cette fois-ci, Euler explicite donne
+$$
+x^{J} = (1+\lambda\Delta t)^{\frac{T}{\Delta t}}
+$$
+qui fait maintenant sens même pour des pas grands. Par contre,  Euler implicite donne
+$$
+x^J =   \frac{1}{(1-\lambda \Delta t)^\frac{T}{\Delta t}}
+$$
+qui n'est pas défini pour $\lambda \Delta t=1$ et qui explose pour des valeurs proche de 1. 
+
+
+
 
 Références
 ================================================================================

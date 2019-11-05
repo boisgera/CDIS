@@ -34,59 +34,62 @@ def save():
 
 # Layout Helper
 # ------------------------------------------------------------------------------
-def set_ratio(ratio, bottom=0.1, top=0.1, left=0.1, right=0.1):
+def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
     # The width of the standard LaTeX document is 345.0 pt.
-    width_in = 345.0 / 100.0
+    width_in = 345.0 / 72.0 * scale
     height_in = (1.0 - left - right)/(1.0 - bottom - top) * width_in / ratio
     gcf().set_size_inches((width_in, height_in))
     gcf().subplots_adjust(bottom=bottom, top=1.0-top, left=left, right=1.0-right)
 
-# Function
+# Forward Differentiation Scheme
 # ------------------------------------------------------------------------------
-def f(theta_d_theta):
-    m=1.0; b=0.0; l=1.0; g=9.81
-    theta, d_theta = theta_d_theta
-    J = m * l * l
-    d2_theta  = - b / J * d_theta 
-    d2_theta += - g / l * sin(theta)
-    return array([d_theta, d2_theta])
+def FD(f, x, h):
+    "Forward Difference"
+    return (f(x+h) - f(x)) / h
 
-def f_amorti(theta_d_theta):
-    m=1.0; b=3.0; l=1.0; g=9.81
-    theta, d_theta = theta_d_theta
-    J = m * l * l
-    d2_theta  = - b / J * d_theta 
-    d2_theta += - g / l * sin(theta)
-    return array([d_theta, d2_theta])
-
-def Q(f, xs, ys):
-    X, Y = meshgrid(xs, ys)
-    fx = vectorize(lambda x, y: f([x, y])[0])
-    fy = vectorize(lambda x, y: f([x, y])[1])
-    return X, Y, fx(X, Y), fy(X, Y)
-
-# Value Graph
+# Graph
 # ------------------------------------------------------------------------------
-def pendule():
-    fig = figure()
-    theta = linspace(-1.5 * pi, 1.5 * pi, 100)
-    d_theta = linspace(-5.0, 5.0, 100)
-    fig.add_subplot(2,1,1)
-    grid(True)
-    xticks([-pi, 0, pi], [r"$-\pi$", "$0$", r"$\pi$"])
-    streamplot(*Q(f, theta, d_theta), color="k") 
-    xlabel('$x_1$')
-    ylabel('$x_2$')
-    #set_ratio(4/3, bottom=0.2, top=0.1, left=0.2)
-    fig.add_subplot(2,1,2)
-    grid(True)
-    xticks([-pi, 0, pi], [r"$-\pi$", "$0$", r"$\pi$"])
-    streamplot(*Q(f_amorti, theta, d_theta), color="k") 
-    xlabel('$x_1$')
-    ylabel('$x_2$')
-    #set_ratio(4/3, bottom=0.2, top=0.1, left=0.2)
+def main():
+    x = np.linspace(-1.5, 1.5, 1000)
+
+    figure()    
+    fig, (ax1, ax2) = subplots(1,2, sharex=True, sharey=True)
+    #plot(x, f(1)(x), "k:", alpha=0.5)
+    #plot(x, f(3)(x), "k--", alpha=0.75)
+    ax1.plot(x, abs(x), "k", label="$|x|")
+    ax1.set_aspect("equal")
+    ax1.set_xlim(-1.5, 1.5)
+    ax1.set_ylim(-1.5, 1.5)
+    ax1.set_xticks([-1, 0, 1])
+    ax1.set_yticks([-1, 0, 1])
+    ax1.grid(True)
+    ax1.set_title("$y = f(x) = |x|$")
+
+    xp = x[x>=0]
+    xn = x[x<=0]
+    ax2.plot(xp, sign(xp), "k")
+    ax2.plot(xn, sign(xn), "k")
+    ax2.plot(0, 0, "k.")
+    ax2.set_aspect("equal")
+    ax2.set_xlim(-1.5, 1.5)
+    ax2.set_ylim(-1.5, 1.5)
+    ax2.set_xticks([-1, 0, 1])
+    ax2.set_yticks([-1, 0, 1])
+    ax2.grid(True)
+    ax2.set_title("$y = f'(x) = \mbox{sgn}(x) \, \mbox{ p.p.}$")
+
+
+
+    # #xlim(0.0, 1.0)
+    # #ylim(0.0, 1.0)
+    # #title("Graphe de $f$")
+    # xlabel("$x$")
+    # ylabel("$y$")
+    # legend()
+    #title("Escalier du diable (fonction de Cantor)")
+    set_ratio(2, scale=1, left=0.1, bottom=0.05, top=0.1)
     save()
 
-
 if __name__ == "__main__":
-  pendule()
+  main()
+

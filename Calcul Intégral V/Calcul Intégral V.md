@@ -34,8 +34,8 @@ On peut retourner le problème et définir une nouvelle notion,
 généralisée de dérivée, à partir de l'intégrale.
 
 ### Dérivée faible {.definition}
-La fonction $f:\R \to \R$ est *faiblement dérivable*, s'il existe une 
-fonction $g:\R \to \R$ localement absolument[^foo] intégrable
+La fonction $f:\R \to \R$ est *faiblement dérivable* s'il existe une 
+fonction $g:\R \to \R$ localement absolument<!--[^foo]--> intégrable
 c'est-à-dire mesurable et telle que $|g|$ soit intégrable sur
 tout intervalle compact $[a, b] \subset \R$,
 $$
@@ -46,11 +46,34 @@ telles que pour tout $x \in \R$,
 $$
 f(x) = c + \int_0^x g(t) \, dt.
 $$
-La fonction $g$ est alors définie uniquement presque partout ; 
-elle est appelée *dérivée faible* de $f$ et pourra être notée $f'$.
+La fonction $g$ est alors appelée *dérivée faible* de $f$.
 
-### TODO -- Démonstration {.proof}
+### Les fonction faiblement dérivables sont continues.
 
+### TODO  
+faire écho à ça plus tard, quand (si ?) on introduit la notion de fonction
+*absolument* continue ?
+
+### TODO -- Démonstration.
+(cf ce qui existe dans les volets précédents de calcul intégral)
+
+### Dérivée faible et classique
+Si une fonction $f: \R \to \R$ est faiblement dérivable, de dérivée faible $g$,
+alors elle est dérivable (classiquement) presque partout, et $f' = g$ presque
+partout. On a donc pour tout $x \in \R$,
+$$
+f(x) = f(0) + \int_0^x f'(t) \, dt.
+$$
+
+### 
+En particulier, la dérivée faible d'une fonction, si elle existe, est unique
+presque partout.
+
+### Démonstration {.proof}
+Une conséquence directe du résultat de 
+[dérivation des intégrales indéterminée](Calcul Intégral II.pdf/#DII).
+
+<!--
 [^foo]: si $f$ est conditionnellement intégrable, l'application
 $$
 \phi \in D^0(\R) \mapsto \int f \phi 
@@ -59,59 +82,284 @@ n'est pas (nécessairement ?) bornée, $f$ ne peut donc pas être représentée
 comme une mesure, contrairement aux fonctions absolument continue. 
 C'est trop tôt à ce stade pour parler de ça, mais la motivation est 
 importante pour se limiter aux fonction absolument continues ...
+-->
 
-### TODO -- extension "p.p." ?
-Aka fct de départ définie pp ? Bof ... Mmm quand même nécessaire pour la
-suite. (euh, mais où ça ?)
+### Valeur absolue {.example #example-abs}
+La fonction valeur absolue $|\cdot|: x \in \R \mapsto |x|$ est faiblement dérivable.
+En effet, elle est dérivable presque partout (sauf en $0$),
+sa dérivée classique valant $1$ quand $x>0$ et $-1$ quand $x < 0$.
+Ses seules dérivées faibles potentielles sont dont les fonctions
+égales presque partout à la fonction signe
+$$
+\mbox{sgn}(x) := \left| 
+\begin{array}{rl}
+-1 & \mbox{si $x<0$,} \\
+0 & \mbox{si $x=0$,} \\
++1 & \mbox{si $x>0$.}
+\end{array}
+\right.
+$$
+De plus, pour tout $x\geq 0$ on a bien
+$$
+|x| = x = \int_0^x dt = |0| + \int_0^x \mbox{sgn}(t) \, dt
+$$
+et pour $x < 0$, 
+$$
+|x| = -x = \int_0^x - dt = |0| + \int_0^x \mbox{sgn}(t) \, dt.
+$$
+La fonction $|\cdot|$ est bien faiblement dérivable, de dérivée faible la fonction 
+$\mbox{sgn}$.
 
-### TODO -- Terminologie
-Opter pour "généralisée" en 1ere instance ?
-dérivée généralisée, dérivable au sens des distributions (cf. + tard)
+![](images/abs.py)\ 
 
-### TODO -- Dérivable faiblement implique dérivable pp {.proposition}
-Corollaire: dérivable faiblement implique dérivée classique existe pp et
-est égale à la dérivée faible
+On peut remarquer que la fonction signe n'est pas elle-même faiblement
+dérivable. Elle est bien dérivable presque partout (sauf en $0$) ;
+sa dérivée est nulle presque partout. Si elle était faiblement dérivable,
+on aurait donc pour tout $x \in \R$,
+$$
+\mbox{sgn}(x) = \mbox{sgn}(0) + \int_0^x 0 \, dt = 0,
+$$
+ce qui n'est pas le cas.
 
-### TODO -- Exemples
-$x \mapsto |x|$ ?
+### Fonction régulières par morceaux {.definition}
+On dira qu'une fonction $f: \R \to \R$ est *dérivable par 
+morceaux* -- respectivement, *continûment dérivable par morceaux* --
+s'il existe une collection dénombrable d'intervalles compacts $[a_k, b_k]$
+sans chevauchements recouvrant $\R$ telle que la restriction de $f$ à 
+tout $\left]a_k, b_k\right[$ puisse être prolongée en une fonction différentiable 
+-- respectivement continûment dérivable -- sur $[a_k, b_k]$. 
 
-### Dérivabilité classique et faible 
-Si $f: \R \to \R$ admet une dérivée faible $g$, alors $f$ est dérivable
-presque partout et $f'=g$ presque partout.
+### Une condition suffisante à la dérivabilité faible {.theorem}
+Toute fonction $f: \R \to \R$ continue, dérivable par morceaux et dont
+la dérivée (définie presque partout) est localement absolument intégrable 
+est faiblement dérivable. En particulier, une fonction continue et
+continûment dérivable par morceaux est faiblement dérivable.
 
-### TODO
-Lien du truc dessus avec unicité pp de $g$ évoquée plus haut.
+### {.post}
+A noter que l'on peut être différentiable par morceaux mais pas
+continue ; dans ce cas on ne peut pas être faiblement dérivable.
+La fonction signe de [l'exemple consacré à la dérivée faible de
+la valeur absolue](#example-abs) est un bon exemple de fonction
+dérivable par morceaux et de dérivée localement absolument intégrable
+mais qui n'est pas faiblement dérivable.
 
-### TODO -- Warning, pas de réciproque
-attention: dérivée classique définie pp suffit pas à avoir dérivée
-faible (ex: fct de Heaviside).
-Dérivée faible implique dérivée pp, réciproque pas vraie, même si on ajoute
-continue (idée qui vient naturellement quand on construit un contre-exemple).
-Exemple avec ensembles de Cantor / devil's staircase.
-Même dérivable partout ne suffit pas ...
+### {.post}
+Une fonction peut également être continue et dérivable par morceaux, mais de dérivée
+non localement absolument intégrable, auquel cas elle n'est pas non plus
+faiblement dérivable. Ainsi, la fonction $f:\R \to \R$ définie par
+$$
+f(x) = \left|
+\begin{array}{cl}
+x^2 \sin 1/x^2 & \mbox{si $x\geq 0$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est dérivable en tout point (et donc continue), mais sa dérivée n'est
+que conditionnellement intégrable sur $[0, 1]$ par exemple, pas absolument
+intégrable (cf. [Calcul Intégral II](Calcul Intégral II.pdf)).
+
+### Démonstration {.proof}
+On trouve dans [@Tao11, prop. 1.6.41, p. 176] la clé de la démonstration,
+à savoir que si une fonction $f: [a, b] \to \R$ est différentiable 
+et de dérivée absolument intégrable, alors 
+$$
+f(b) - f(a) = \int_a^b f'(x) \, dx. 
+$$
+Nous omettons ici cette portion critique ; 
+la suite de la démonstration est beaucoup plus simple. 
+
+Notons $f(b^-)$ et $f(a^+)$ les limites à gauche de $f$ en $b$ et
+à droite de $f$ en $a$ respectivement.
+On déduit de l'énoncé précédent que si $f$ est dérivable sur $\R$ et 
+de dérivée localement absolument intégrable, et si $x \in [a_k, b_k]$, 
+alors
+$$
+\int_{a_k}^{b_k} f'(x) \, dx = f(b^-) - f(a^+) = f(b) - f(a)
+$$
+et si $a_k < x < b_k$,
+$$
+f(x) - f(a) = f(x) - f(a^+) = \int_a^x f'(t) \, dt
+$$
+et 
+$$
+f(x) - f(b) = - (f(b^-) - f(x)) = - \int_x^b f'(t) \, dt = \int_b^x f'(t) \, dt.
+$$
+Suppons que les intervalles $[a_k, b_k]$ soient indexés par des entiers relatifs 
+$k$ consécutifs et ordonnées de façon croissante.
+Alors, si $x$ est réel positif, que $0 \in [a_i, b_i]$ et que $x \in [a_j, b_j]$,
+on a
+$$
+\begin{split}
+f(x) - f(0) &= (f(x) - f(a_j)) + (f(b_{j-1}) - f(a_{j-1})) + \dots + (f(a_i) - f(0)) \\
+& = \int^x_{a_j} f'(t) \, dt + \int_{a_{j-1}}^{b_{j-1}} f'(t) \, dt + \dots + \int_0^{a_i} f'(t) \, dt.
+\end{split} 
+$$
+et donc
+$$
+f(x) = f(0) + \int_0^x f'(t) \, dt.
+$$
+Le cas d'un réel $x$ négatif se traite de façon similaire.
+
+### Fonction de répartition et densité de probabilité
+La fonction $F: \R \to \R$ définie par 
+$$
+F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt
+$$
+est une fonction de répartition, associée à la loi normale centrée réduite. 
+Elle est faiblement dérivable ; en effet, son intégrande est localement absolument intégrable 
+(il est positif et intégrable sur $\R$, d'intégrale $1$) 
+et l'on a par additivité de l'intégrale pour tout $x\in\R$
+$$
+F(x) = F(0) + \int_{0}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt.
+$$
+Cett relation montre également que la fonction 
+$$
+f : t \in \R \mapsto  \frac{\exp (-{t^2}/{2})}{2\pi}
+$$
+est une dérivée faible de $F$<!--([^eaf])-->. 
+
+![skdjslkdjs](images/gauss.py)\ 
+
+### {.ante .post}
+Plus généralement, on a :
+
+### Densité et dérivée faible {.proposition}
+Une fonction de répartition $F:\R \to \R$ admet une densité si et seulement
+si elle est faiblement dérivable. Une fonction $f:\R \to \R$ est une densité 
+associée à $F$ si et seulement si elle est une dérivée faible de $F$
+(elle est donc déterminée uniquement presque partout par $F$).
+
+### Démonstration {.proof}
+La preuve du sens direct et du fait que dérivée faible et densité coïncident
+presque partout reprend exactement les étapes utilisées pour
+montrer que l'application
+$$
+F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt
+$$
+est faiblement dérivable de dérivée faible $t \mapsto {\exp (-{t^2}/{2})}/{2\pi}$.
+
+Réciproquement, si $F$ est une fonction de répartition faiblement dérivable,
+c'est-à-dire s'il existe une fonction $f:\R \to \R$ localement absolument
+intégrable et une constante $c$ telle que pour tout $x\in\R$,
+$$
+F(x) = c + \int_0^x f(t) \, dt,
+$$
+alors pour toute paire de réels $a \leq b$, on a
+$$
+F(b) - F(a) = \int_a^b f(t) \, dt.
+$$
+La fonction $f$ est donc positive presque partout : en effet la fonction $F$
+en presque tout point $x \in \R$, $F$ est dérivable de dérivée $f(x)$. 
+Si l'on avait $f(x) < 0$, alors pour $h>0$ suffisamment petit, on aurait
+donc
+$$
+\frac{F(x+h) - F(x)}{h} < 0,
+$$
+ce qui contredirait l'hypothèse que $F$ est croissante. On obtient alors
+la relation
+$$
+F(x) = \int_{-\infty}^x f(t) \, dt
+$$
+en passant posant $x=b$ et en passant à la limite $a \to -\infty$ ; 
+le résultat est justifié par le théorème de convergence monotone 
+car $F$ à pour limite $0$ en $-\infty$. 
+Le passage à la limite $x \to +\infty$ fournit alors 
+$$
+\int_{-\infty}^{+\infty} f(t) \, dt = 1,
+$$
+à nouveau par application du théorème de convergence monotone, en exploitant
+le fait que $F$ à pour limite $1$ en $+\infty$.
+
+
+<!--
+[^eaf]: Cette fonction $f$ est ici la dérivée classique de $F$ en tout point
+(et pas seulement presque partout), car la fonction $f$ est continue en tout 
+point $x \in \R$. On a donc
+$$
+\begin{split}
+\left|\frac{F(x+h) - F(x)}{h} - f(x)\right| &=  
+\left|\frac{1}{h}\int_x^{x+h} (f(t) - f(x)) \, dt \right| \\
+& \leq 
+\frac{1}{h}\int_x^{x+h} |f(t) - f(x)| \, dt \\
+&\leq \max \, \{ |f(t) - f(x)| \; | \; t \in [x - |h|, x + |h|]\} 
+\end{split}
+$$
+Le taux d'accroissement de $F$ en $x$ tend donc vers $f(x)$ quand $h$ tend vers $0$.
+-->
+
+### Fonction de Cantor {.remark}
+On pourrait croire en prenant connaissance des contre-exemples simples
+à l'existence d'une dérivée faible que dès lors qu'une fonction est continue
+a une dérivée presque partout et que cette dérivée est localement absolument 
+intégrable, elle est faiblement dérivable. Mais ça n'est pas le cas !
+
+Ainsi la fonction de Cantor $f:\R \to \R$ est un exemple de fonction
+continue, de dérivée (classique) définie et nulle presque partout et
+pourtant telle que $f(0)=0$ et $f(1)=1$, ce qui contredit la relation
+$$
+f(1) = f(0) + \int_0^1 0\, dt
+$$
+qu'elle devrait vérifier si elle était faiblement dérivable.
+
+La fonction de Cantor $f$ est définie comme la limite des
+suites de fonctions $f_n:\R \to \R$ données par 
+$$
+f_0(x) = 
+\left|
+\begin{array}{rl}
+0 & \mbox{si $x<0$,} \\
+x & \mbox{si $0\leq x\leq 1$,} \\
+0 & \mbox{si $1< x$.} \\
+\end{array}
+\right.
+$$
+et pour tout $n\geq 1$
+$$
+f_{n+1}(x) = \left|
+\begin{array}{rl}
+0.5 \times f_n(3x) & \mbox{si $x < 1/3$}, \\
+0.5 & \mbox{si $1/3 \leq x < 2/3$}, \\
+0.5 + 0.5 \times f_n(3x-2) & \mbox{si $2/3 \leq x$}.
+\end{array}
+\right.
+$$
+
+![Approximation d'ordre $5$ de la fonction de Cantor](images/devil-staircase.py)
+
+### TODO -- interprétation probabiliste.
+
+(y compris -- ou plutôt surtout -- pour les fonctions intermédiaires 
+qui sont "uniformes par morceaux". L'interprétation de la limite n'a
+pas besoin d'être formalisée.)
 
 ### Absolue continuité {.definition}
-Une fonction $f:\R \to \R$ est *absolument continue* si et seulement si
+Soit $I$ un intervalle de $\R$.
+Une fonction $f:I \to \R$ est *absolument continue* si et seulement si
 pour tout $\varepsilon > 0$, il existe un $\delta > 0$ tel que pour toute
-collection finie d'intervalles compacts $([a_k, b_k])_{k=0}^{n-1}$ de $\R$ 
+collection finie d'intervalles compacts $([a_k, b_k])_{k=0}^{n-1}$ de $I$ 
 ne se chevauchant pas, on ait
 $$
 \sum_{k=0}^{n-1} (b_k - a_k) \leq \delta
 \; \Rightarrow \; 
 \sum_{k=0}^n |f(b_n) - f(a_n)| \leq \varepsilon.
 $$
+Elle est *localement absolument continue* si sa restriction à tout intervalle
+compact $K$ de $I$ est absolument continue. 
 
 ### TODO 
 ne se chevauchant pas est nécessaire (note Bartle : c'est crucial) ? 
 Pas suffisant de se limiter aux subdivisions complètes ?
 
-### Existence de dérivée faible {.proposition}
+### Existence de dérivée faible et absolue continuité {.proposition}
 Une fonction $f:\R \to \R$ admet une dérivée faible si et seulement si
-elle est absolument continue.
+elle est localement absolument continue.
 
 ### TODO -- Démonstration
 
-### TODO -- Rk
+### TODO -- exploitation (/ dérivée faible) et exemple de fct abs cont
+
+### TODO -- Une notion plus permissive de dérivée faible ?
 Il serait possible d'élargir la notion de fonction faiblement dérivable en exigeant
 uniquement que $g$ soit localement intégrable au sens de Henstock-Kurzweil,
 et non localement absolument intégrable. Comme toute dérivée est localement
@@ -124,11 +372,37 @@ nous ne considérerons pas cette extension, car la classe des fonctions
 faiblement dérivables serait alors sensiblement plus complexe à caractériser
 que dans le cadre absolument continu que nous avons choisi[^ACG].
 
+**TODO:** référence concrête à un exemple de dérivée non absolument intégrable
+déjà traité.
+
+**TODO:** faire le lien par exemple avec l'approche par IPP ou fct test 
+(forme lin sur); qui ne marche pas avec conditionnellement intégrable.
+Du coup, peut-être retarder la remarque ? Appendice ?
+
 [^ACG]: Il s'agit d'une classe de fonctions absolument continues 
 mais **généralisées**, notée $\mathrm{ACG}_*$, cf. [@Bar01, pp. 242-243].
 
-### TODO -- Dérivation faible et IPP
-(équivalence)
+### TODO
+
+Contexte du résultat à venir, notamment, motiver que ça ressemble à une IPP.
+
+### Fonctions tests
+On note $D^k(\R)$ l'espace des fonctions continues $\varphi: \R \to \R$
+dont le support
+$$\mbox{supp } \varphi := \overline{\{x \in \R \; | \; \varphi(x) \neq 0\}}$$
+est compact et qui sont $k$ fois continûment différentiables ou simplement
+continues dans le cas $k=0$.
+
+### TODO -- Dérivation faible et fonction test
+Une fonction $f:\R \to \R$ est faiblement dérivable de dérivée faible 
+$g : \R \to \R$ si et seulement si pour tout $\varphi \in D^1(\R)$, on a
+$$
+\int_{-\infty}^{+\infty} g(t) \varphi(t) \, dt
+=
+-\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt.
+$$
+
+### TODO -- Démonstration {.proof}
 
 Mesures signées
 ================================================================================
@@ -241,11 +515,7 @@ Supprimer de la def donc ... (éventuellement, faire une rq sur la régularité)
 -->
 
 
-### Fonctions tests continues
-On note $D^0(\R)$ l'espace des fonctions continues $\varphi: \R \to \R$
-dont le support
-$$\mbox{supp } \varphi := \overline{\{x \in \R \; | \; \varphi(x) \neq 0\}}$$
-est compact.
+
 
 ### Formes linéaires continues sur $D^0(\R)$.
 Une application linéaire $T: D^0(\R) \to \R$ 
@@ -389,6 +659,15 @@ Probab $\Omega \neq \R^n$
 
 Exercices
 ================================================================================
+
+Dérivée faible
+--------------------------------------------------------------------------------
+
+Est-ce que la fonction $f: \R \to \R$ définie par $f(0)=0$ et
+$$
+f(x) = \sqrt{|x|} \, \mbox{ si $x\neq 0$}
+$$
+est faiblement dérivable ? Quelle est dans ce cas sa dérivée ?
 
 Fonctions lipschitzienne
 --------------------------------------------------------------------------------
