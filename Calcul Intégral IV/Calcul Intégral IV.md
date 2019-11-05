@@ -1227,10 +1227,10 @@ remarque évidente sur l'autre intégrale itérée.
 Exercices
 ================================================================================
 
-Anagrame {.question #BT}
+Anagramme {.question #BT}
 --------------------------------------------------------------------------------
 
-Quel est l'anagrame de "Banach-Tarski" ?
+Quel est l'anagramme de "Banach-Tarski" ?
 
 Mesures de Dirac
 --------------------------------------------------------------------------------
@@ -1440,7 +1440,7 @@ Pourquoi ça ne marche pas ?
 Solutions
 ================================================================================
 
-Anagrame {.answer #answer-BT}
+Anagramme {.answer #answer-BT}
 --------------------------------------------------------------------------------
 
 "Banach-Tarski Banach-Tarski".
