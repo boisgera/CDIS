@@ -144,10 +144,10 @@ On note $\L^1$ l'ensemble de toutes les variables réelles $X$ à densité inté
         $$\Esp(aX + bY) = a\Esp(X) + b\Esp(Y).$$
  * $X \in \L^1 \Leftrightarrow |X| \in \L^1$, et dans ce cas $$|\Esp(X)| \leq \Esp(|X|).$$
  * Si $X \geq 0$ et $X \in \L^1$, alors $\Esp(X) \geq 0.$
- * Si $X,Y \in \L^1$ sont telles que $X \leq Y$, alors
+ <!-- * Si $X,Y \in \L^1$ sont telles que $X \leq Y$, alors
         $$ \Esp(X) \leq \Esp(Y).$$
  * L'espérance d'une variable presque-sûrement constante est égale à cette constante :
- $$ \text{Si } \P(X(\omega) = a ) = 1, \text{ alors } \Esp(X) = a.$$
+ $$ \text{Si } \P(X(\omega) = a ) = 1, \text{ alors } \Esp(X) = a.$$ -->
  * Si $\exists b \in \R_+$ tel que $|X| \leq b$, alors $X \in \L^1$ et $\Esp(X) \leq b$.
 
 ### Rappel : cas discret {.remark}
@@ -353,8 +353,8 @@ Les fonctions $f_X$ et $f_Y$ s'appellent les *densités marginales* de $f$.
 ### Démonstration {.prooof}
 Pour tout $x \in \R$, on a par définition
 $$ \P(X \leq x) = \P(Z \in ]-\infty,x] \times \R) = \Esp(1_{]-\infty,x] \times \R}(Z)) = \int_{-\infty}^x du \left(\int_\R f(u,v) dv\right),$$
-où l'on a utilisé le théorème de Fubini pour $1_{]-\infty,x] \times \R}(u,v)$ intégrable.
-Donc si $f_X$ est définie par $f_X(x) = \int_\R f(x,y) dy$, nous obtenons que $\P(X \leq x) = \int_{-\infty}^x f_X(u) du$, ce qui montre que $f_X$ est la densité de $X$. Le raisonnement est analogue pour $Y$.
+où l'on a utilisé le théorème de Fubini pour $1_{]-\infty,x] \times \R}(u,v)f(u,v)$ intégrable.
+Donc si $f_X$ est définie par $f_X(x) = \int_\R f(x,y) dy$, on obtient que $\P(X \leq x) = \int_{-\infty}^x f_X(u) du$, ce qui montre que $f_X$ est la densité de $X$. Le raisonnement est analogue pour $Y$.
 
 ### Remarque {.remark}
 La réciproque de cette proposition est fausse en revanche : les variables aléatoires $X$ et $Y$ peuvent avoir des densités sans que le couple $Z = (X, Y )$ en ait une.
@@ -529,7 +529,7 @@ Dans ce cadre, on peut définir les notions suivantes :
 
 * Loi de vie a priori : il s'agit de la loi du temps $T$ caractérisée par fonction de répartition complémentaire
         $$G(t) = \P(T>t)$$
-* Loi de survie après $t_0 \geq 0$ : il s'agit de la loi du temps $T-t_0$ qu'il lui reste à vivre, sachant qu'il était encore en vie à t_0, de fonction de répartition complémentaire
+* Loi de survie après $t_0 \geq 0$ : il s'agit de la loi du temps $T-t_0$ qu'il lui reste à vivre, sachant qu'il était encore en vie à $t_0$, de fonction de répartition complémentaire
         $$G_{t_0}(t) =\P(T>t+t_0|T>t_0)$$
 
 On dira que la loi de vie satisfait la propriété de non vieillissement (ou d'absence de mémoire) si la loi de survie et la loi de vie sont égales :
@@ -537,7 +537,7 @@ On dira que la loi de vie satisfait la propriété de non vieillissement (ou d'a
 
 ### Question 1 {.question #viemort1}
 
-Exprimer la loi de survie à partir de la loi a priori
+Exprimer la loi de survie à partir de la loi de vie a priori.
 
 ### Question 2 {.question #viemort2}
 
@@ -714,13 +714,13 @@ puisque les $X_i$ sont indépendantes et de même loi
 ### Question 2 {.answer #answer-crue2}
 Soit $x\in \R$
 \begin{align*}
-f_Y(x) &= \frac{\partial}{\partial x} F_Y(x)\\
-       &= \frac{\partial}{\partial x} F(x)^n\\
+f_Y(x) &= \frac{d}{d x} F_Y(x)\\
+       &= \frac{d}{d x} F(x)^n\\
        &= nf(x)F(x)^{n-1}
 \end{align*}
 
 ### Question 3 {.answer #answer-crue3}
-On a alors $f(x) = 1_{[0,1]}(x)$ et $F(x) = x 1_{[0,1]}(x)$. On en déduit
+On a alors $f(x) = 1_{[0,1]}(x)$ et $F(x) = x 1_{[0,1]}(x) + 1_{[1,+\infty]}$. On en déduit
 $$ f_Y(x) = n x^{n-1}1_{[0,1]} $$
 
 ### Question 4 {.answer #answer-crue4}

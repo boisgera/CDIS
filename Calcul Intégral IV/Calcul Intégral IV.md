@@ -32,9 +32,9 @@ Mais cette approche n'est pas totalement satisfaisante intellectuellement.
 D'une part on peut considérer l'usage de l'intégrale comme un chemin
 tortueux pour étendre $v$.
 D'autre part on peut avoir l'impression
-que cette approche -- qui ne permet pas de mesure le volume de tout
+que cette approche -- qui ne permet pas de mesurer le volume de tout
 ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
-cette limitation pourrait a être un artefact de la méthode choisie
+cette limitation pourrait être un artefact de la méthode choisie
 plutôt qu'une limitation intrinsèque.
 Dans cette section, nous allons donner une autre méthode, plus directe, 
 due à Lebesgue et Carathéodory[^autz],
@@ -416,7 +416,7 @@ $\mathcal{B}$ d'ensembles de $X$ la plus petite tribu
 $\mathcal{A} = \sigma(\mathcal{B})$ de $X$ contenant $\mathcal{C}$.
 Autrement dit : 
 
-  - $\sigma(B)$ est une tribu.
+  - $\sigma(\mathcal{B})$ est une tribu.
   
   - si $\mathcal{B} \subset \mathcal{C}$ et $\mathcal{C}$ est une tribu de $X$, alors $\sigma(\mathcal{B}) \subset \mathcal{C}$.
 
@@ -1198,7 +1198,7 @@ $$
 ### Démonstration {.proof}
 cf @Hun11.
 
-### Symmétrie
+### Symétrie
 Le rôle joué par $X$ et $Y$ étant symétrique dans l'énoncé du théorème de
 Fubini,on peut également dire qu'une fonction mesurable $f: X \times Y \to \R$
 est intégrable si et seulement l'intégrale itérée

@@ -13,12 +13,11 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-# Densités marginales et conditionnelles
+# Densités conditionnelles
 
-Nous avons étudié précédemment l'indépendance des variables aléatoires. Nous allons nous intéresser ici à caractériser la dépendance entre variables aléatoires et en particulier le conditionnement.
+Nous avons étudié précédemment l'indépendance des variables aléatoires à densité. Nous allons nous intéresser ici à caractériser la dépendance entre variables aléatoires à densité et en particulier au problème du conditionnement.
 
-
-On peut maintenant s'intéresser à caractériser la densité de la variable $Y$ connaissant la valeur prise par la variable $X$, c'est la *densité conditionnelle* de $Y$ sachant $\{X = x\}$ :
+On s'intéresse à caractériser la densité de la variable $Y$ connaissant la valeur prise par la variable $X$, c'est la *densité conditionnelle* de $Y$ sachant $\{X = x\}$ :
 
 ### Proposition {.proposition #defdenscond}
 La formule suivante définit une densité sur $\R$, pour tout $x$ tel que $f_X(x) > 0$ :
@@ -27,7 +26,7 @@ Cette fonction s'appelle la *densité conditionnelle de $Y$ sachant $\{X = x\}$*
 
 La preuve est immédiate puisque $f_{Y|X=x}$ est une fonction positive d'intégrale 1.
 
-L’interprétation de cette définition est la suivante : la fonction $f(Y|X=x)$ est la densité de la “loi conditionnelle de Y sachant que X = x”. Bien sûr, nous avons $\P(X = x) = 0$ puisque $X$ admet une densité, donc la phrase ci-dessus n’a pas réellement de sens, mais elle se justifie heuristiquement ainsi : $dx$ et $dy$ étant de “petits” accroissements des variables $x$ et $y$ et lorsque $f$ est continue :
+L’interprétation de cette définition est la suivante : la fonction $f(Y|X=x)$ est la densité de la “loi conditionnelle de $Y$ sachant que $X = x$”. Bien sûr, nous avons $\P(X = x) = 0$ puisque $X$ admet une densité, donc la phrase ci-dessus n’a pas réellement de sens, mais elle se justifie heuristiquement ainsi : $dx$ et $dy$ étant de “petits” accroissements des variables $x$ et $y$ et lorsque $f$ est continue :
 \begin{align*}
 f_X(x) dx & \approx \P(X \in [x, x+dx])\\
 f_(x,y) dx dy & \approx \P(X \in [x, x+dx], Y \in [y, y+dy])\\
@@ -124,6 +123,8 @@ $$ f_{Y|X=x} (y) = \frac{1}{x} 1_{]0,x[}(y) $$
 Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$. Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(Y|X) = \frac{X}{2}$.
 
 ### note bofbof cet exemple...
+
+# Cas général
 
 # Vecteurs Gaussiens
 Dans cette partie, on s'intéresse à l'exemple canonique des vecteurs gaussiens. Les vecteurs gaussiens (et leur extension que sont les fonctions aléatoires gaussiennes, qui, une fois discrétisées, se ramènent à des vecteurs) se rencontrent dans un grand nombre d'applications. L'ubiquité de la loi gaussienne se justifie également du fait du théorème central limite que nous verrons au prochain chapitre.
