@@ -617,7 +617,7 @@ c'est-à-dire la tribu de Borel dans $\R^m$, l'image réciproque de tout
 borélien est un ensemble de la tribu de Lebesgue : la fonction 
 $f$ est Lebesgue/Borel-mesurable.
 
-### Composition de fonctions mesurables
+### Composition de fonctions mesurables {.proposition #compfoncmes}
 Soient $(X, \mathcal{A})$, $(Y, \mathcal{B})$ et $(Z, \mathcal{C})$ des
 espaces mesurables.
 Soit $f: X\to Y$ une fonction $\mathcal{A}/\mathcal{B}$-mesurable et 
@@ -812,7 +812,7 @@ En effet, même si l'on peut définir
 $$
 \int f_+\mu \; \mbox{ et } \; \int f_- \mu
 $$
-dès que $f$ est mesurable, il est possible que ces deux intégrales soit égales
+dès que $f$ est mesurable, il est possible que ces deux intégrales soient égales
 à $+\infty$ ; il n'y a alors pas de façon "raisonnable"
 de définir la différence des deux grandeurs[^tbh].
 
@@ -1267,6 +1267,8 @@ $$
 \int f \delta_x.
 $$
 
+### TODO Question 5 {.question #d5}
+qqch sur la mesure de comptage 
 
 Approximation par des ensembles mesurables
 --------------------------------------------------------------------------------

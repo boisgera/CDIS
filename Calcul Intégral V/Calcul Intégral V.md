@@ -5,7 +5,12 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Esp}{\mathbb{E}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
 \renewcommand{\C}{\mathbb{C}}
+\renewcommand{\L}{\mathcal{L}}
 
 Misc.
 ================================================================================
@@ -204,18 +209,18 @@ Le cas d'un réel $x$ négatif se traite de façon similaire.
 ### Fonction de répartition et densité de probabilité
 La fonction $F: \R \to \R$ définie par 
 $$
-F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt
+F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{\sqrt{2\pi}} \, dt
 $$
 est une fonction de répartition, associée à la loi normale centrée réduite. 
 Elle est faiblement dérivable ; en effet, son intégrande est localement absolument intégrable 
 (il est positif et intégrable sur $\R$, d'intégrale $1$) 
 et l'on a par additivité de l'intégrale pour tout $x\in\R$
 $$
-F(x) = F(0) + \int_{0}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt.
+F(x) = F(0) + \int_{0}^x \frac{\exp (-{t^2}/{2})}{\sqrt{2\pi}} \, dt.
 $$
 Cett relation montre également que la fonction 
 $$
-f : t \in \R \mapsto  \frac{\exp (-{t^2}/{2})}{2\pi}
+f : t \in \R \mapsto  \frac{\exp (-{t^2}/{2})}{\sqrt{2\pi}}
 $$
 est une dérivée faible de $F$<!--([^eaf])-->. 
 
@@ -235,9 +240,9 @@ La preuve du sens direct et du fait que dérivée faible et densité coïncident
 presque partout reprend exactement les étapes utilisées pour
 montrer que l'application
 $$
-F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{2\pi} \, dt
+F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{\sqrt{2\pi}} \, dt
 $$
-est faiblement dérivable de dérivée faible $t \mapsto {\exp (-{t^2}/{2})}/{2\pi}$.
+est faiblement dérivable de dérivée faible $t \mapsto {\exp (-{t^2}/{2})}/{\sqrt{2\pi}}$.
 
 Réciproquement, si $F$ est une fonction de répartition faiblement dérivable,
 c'est-à-dire s'il existe une fonction $f:\R \to \R$ localement absolument
@@ -654,8 +659,23 @@ notation $\mu (= df)$ (Lebesgue-Stieltjes) ?
 Lien notation avec somme de Riemman-Stieltjes pour l'intégration de fcts
 continues ?
 
-Probab $\Omega \neq \R^n$
+Probabilités --- cadre général
 ================================================================================
+
+Les éléments de théorie de la mesure donnés au [chapitre précédent](Calcul Intégral IV.pdf) permettent une relecture des chapitres de probabilités dans ce cadre. Le principal avantage est que les différents cas de figures déjà évoqués : lois de probabilités discrètes, à densité, mixtes vont pouvoir être traités dans un cadre unifié. On peut déjà s'apercevoir qu'une [probabilité](Probabilité I.pdf #defproba) $\P$ définie sur un espace probabilisable (mesurable) $(\Omega, \A)$ est une mesure positive *finie* au sens où $\P(\Omega) = 1$ et hérite ainsi de ses propriétés. De même, une [variable aléatoire réelle](Probabilité II.pdf #defvar), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$. Le fait que la composition d'un vecteur aléatoire par une application $\B(\R^n)/\R$ mesurable est une variable aléatoire s'obtient immédiatement par le résultat du chapitre précédent portant sur la [composition de fonctions mesurables](Calcul Intégral IV.pdf #compfoncmes). Les résultats portant sur les espaces $\L^1$ et $\L^2$ sont vrais en toute généralité. En particulier, on peut réécrire [la proposition portant sur l'espérance de la composée d'une variable aléatoire et d'une fonction mesurable](Probabilité II.pdf #esperanceg) avec l'intégrale de Lebesgue :
+
+### Proposition {.proposition #esperanceg2}
+Soit $X$ une variable aléatoire réelle de loi $\P_X$ et $g$ une fonction $\B(\R)/\B(\R)$-mesurable (borélienne). Alors $g(X)$ est intégrable si et seulement si l'intégrale
+$$\int_\R |g(x)| \P_X(dx) = \int_\Omega |g(X(\omega))|\P(d\omega),$$
+est finie et dans ce cas
+$$\Esp(g(X)) = \int_R g(x) \P(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
+
+ce résultat a été démontré en exercice au chapitre précédent.
+
+On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peut ainsi caractériser l'indépendance de deux variables aléatoires quelconques au moyen du théorème de Fubini.
+
+### TODO indépendance : besoin de l'unicité de la mesure produit dans le cas $\sigma-fini$ (à inclure dans Fubini ?)
+
 
 Exercices
 ================================================================================
@@ -686,6 +706,54 @@ Fonction distance
 --------------------------------------------------------------------------------
 
 Dérivées seconde fonction distance, squelette, courbure, etc ?
+
+Lemme de Borel-Cantelli
+--------------------------------------------------------------------------------
+
+Soit $A_n$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
+
+### Question 1 {.question #bc1}
+
+On suppose que $\sum_{i=1}^n \P(A_n) < \infty$. Montrer que $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_n \right) =0$.
+
+### Question 2 {.question #bc2}
+
+On suppose maintenant que les événements $A_n$ sont mutuellement indépendants. Montrer que si $\sum_{i=1}^n \P(A_n) = \infty$, alors on a $\P(\lim \sup_{n \to \infty} A_n) = 1$.
+
+### Question 3 {.question #bc3}
+
+Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \infty} A_n) < 1$ quand les $A_n$ ne sont pas indépendants.
+
+Solutions
+=================================================================================
+
+Lemme de Borel-Cantelli
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-bc1}
+
+On voit dans un premier temps que $\bigcap_{n\geq 0} \bigcup_{k \geq n} A_n \in \A$ par unions et intersections dénombrables.
+On a 
+$$\P(\lim \sup_n A_n ) = \lim_{p \to \infty} P(\cup_{n\geq p} A n) \leq \lim \P(A_n),$$
+où on remarque que les deux suites sont décroissantes.
+
+Si la série $\sum_n \P(A_n)$ est convergente, le reste de cette série tend vers 0 et l'inégalité implique que $\P(\lim \sup_n A n) = 0$.
+
+### Question 2 {.answer #answer-bc2}
+
+Supposons maintenant que les $A_n$ soient indépendants et que la série diverge. Soit $m$ un nombre entier. Nous avons
+\begin{align*}
+\P(\cup_{i=p}^m A i) &= 1- \P(\cap_{i=p}^m A_i^c) = 1- \prod_{i=p}^m \P(A_i^c) \text{ par indépendance}\\
+& = 1- \prod_{i=p}^m (1-\P(A_i)) \geq 1- e^{-\sum_{i=p}^m\P(A_i)}
+\end{align*}
+du fait de l’inégalité $1 - x \leq e^{-x}$ pour $x \geq 0$. Ainsi,
+$$ \P(\cup_{i=p}^{\infty} A_i) \geq 1- e^{-\sum_{i=p}^{\infty} \P(A_i)} = 1 $$
+et l’on conclut finalement que pour tout $p$, $\P(\cup_{i=p}^{\infty} A_i) = 1$, ce qui implique finalement
+que $\P(\lim \sup_{n \to \infty} A_n) = 1$.
+
+### Question 3 {.answer #answer-bc3}
+
+Prendre tous les $A_n$ égauw à un même événement $A$ de probabilité $\P(A) \in \left]0,1\right[$.
 
 Références
 ================================================================================
