@@ -178,7 +178,7 @@ $$
 \mu^* = \mu^*|_A + \mu^*|_{A^c}.
 $$
 
-### Tribu {.definition}
+### Tribu et espace mesurable {.definition}
 Une *tribu* ou *$\sigma$-algèbre* $\mathcal{A}$ sur un ensemble $X$ est une 
 collection d'ensembles de $X$ contenant l'ensemble vide et stable par passage 
 au complémentaire et à l'union dénombrable :
@@ -193,7 +193,7 @@ au complémentaire et à l'union dénombrable :
 Un ensemble de $\mathcal{A}$ est dit *mesurable* ; 
 l'ensemble $X$ muni de $\mathcal{A}$ est un *espace mesurable*.
 
-### Mesure {.definition}
+### Mesure et espace mesuré {.definition}
 Une *mesure* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
 est une fonction 
 $$
@@ -400,12 +400,12 @@ Mesure et intégrale
 ================================================================================
 
 ### Ensemble négligeable {.definition}
-Soit $(X, \mathcal{A}, \mu)$ un ensemble mesuré. Un ensemble $N \subset X$
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Un ensemble $N \subset X$
 est *$\mu$-négligeable* s'il existe un ensemble mesurable $A \in \mathcal{A}$ 
 tel que $N \subset A$ et $\mu(A) = 0$.
 
 ### Presque partout {.definition}
-Soit $(X, \mathcal{A}, \mu)$ un ensemble mesuré. Une propriété $P$ dépendant 
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Une propriété $P$ dépendant 
 d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
 où elle est fausse est un ensemble négligeable.
 
