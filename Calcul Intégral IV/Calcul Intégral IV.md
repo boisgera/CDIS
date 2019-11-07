@@ -962,13 +962,46 @@ $$
 $$
 En effet, les ensembles $f^{-1}\left([2^{-n}, +\infty]\right)$
 forment une suite croissante d'ensembles mesurables dont l'union
-est $f^{-1}\left(\left]0, +\infty\right]\right)$. Par $\sigma$-additivité de
-la mesure $\mu$, on a donc
-$$
-\lim_{n \to + \infty} \mu\left(f^{-1}\left([2^{-n}, +\infty]\right)\right)
+est $f^{-1}\left(\left]0, +\infty\right]\right)$ donc
+par [le théorème de continuité monotone (cf. annexe)](#cont-monot)
+$\lim_{n \to + \infty} \mu\left(f^{-1}\left([2^{-n}, +\infty]\right)\right)
 =
-\mu\left(f^{-1}\left(\left]0, +\infty\right]\right)\right).
-$$
+\mu\left(f^{-1}\left(\left]0, +\infty\right]\right)\right)$.
+
+<!--
+[^cup]: l'ensemble $\left]0, +\infty\right]$ peut être partitionné de façon
+dénombrable comme
+  $$
+  \left]0, +\infty\right] =
+  \left[1, +\infty \right] \cup
+  \bigcup_{n=0}^{+\infty} \left[2^{-(n+1)},2^{-n}\right[
+  $$
+ce qui induit directement la décomposition suivante de $f^{-1}(\left]0, +\infty\right])$
+en une collection dénombrable d'ensemble disjoints mesurables
+  $$
+  f^{-1}(\left]0, +\infty\right]) =
+  f^{-1}(\left[1, +\infty \right]) \cup
+  \bigcup_{n=0}^{+\infty} f^{-1}\left( \left[2^{-(n+1)},2^{-n}\right[ \right) 
+  $$
+  Par $\sigma$-additivité de $\mu$, on a donc
+  $$
+  \mu\left(f^{-1}\left(\left]0, +\infty\right]\right)\right) =
+  \mu(f^{-1}(\left[1, +\infty \right])) 
+  + 
+  \sum_{n=0}^{+\infty} \mu \left( f^{-1}\left(  \left[2^{-(n+1)},2^{-n}\right[   \right)\right)
+  $$
+  et par conséquent
+  $$
+  \lim_{n \to + \infty} \mu\left(f^{-1}\left([2^{-n}, +\infty]\right)\right)
+  = 
+  \lim_{n \to + \infty}
+  \mu(f^{-1}(\left[1, +\infty \right])) 
+  + 
+  \sum_{n=0}^{+\infty} \mu \left( f^{-1}\left(  \left[2^{-(n+1)},2^{-n}\right[   \right)\right)
+  =
+  \mu\left(f^{-1}\left(\left]0, +\infty\right]\right)\right).
+  $$
+-->
 
 Notons $A_n = f^{-1}([2^{-n}, +\infty])$ ; c'est un ensemble
 mesurable de mesure positive. La fonction $2^{-n}1_{A_n}$ est positive, étagée, 
@@ -1223,6 +1256,90 @@ remarque évidente sur l'autre intégrale itérée.
 
 
 -->
+
+Annexe
+================================================================================
+
+### Théorème de continuité monotone {.theorem #cont-monot}
+Soit $(X ,\mathcal{A}, \mu)$ un espace mesuré et $(A_n)_{n \in \N}$ une
+suite d'ensembles de $\mathcal{A}$. Si la suite $A_n$ est
+croissante, c'est-à-dire si $A_n \subset A_{n+1}$ pour tout $n\in\N$,
+alors
+$$
+\lim_{n \to +\infty} \mu(A_n) = \mu \left(\bigcup_{n=0}^{+\infty} A_n \right).
+$$
+Si $\mu(A_0) < +\infty$ et que $A_n$ est décroissante, c'est-à-dire si 
+$A_{n+1} \subset A_{n}$ pour tout $n\in\N$, alors
+$$
+\lim_{n \to +\infty} \mu(A_n) = \mu \left(\bigcap_{n=0}^{+\infty} A_n \right).
+$$
+
+-----
+
+### {.post} 
+Il est assez facile de se convaincre que sans une hypothèse de type
+$\mu(A_0) < +\infty$, le volet décroissant du théorème est faux. 
+Ainsi pour la mesure $\mu=\ell$
+de longueur dans $\R$ (mesure de Lebesgue), pour tout $n \in \N$ on a
+$\ell(\left[n, +\infty\right[)  =+\infty$
+et pourtant
+$$
+\ell\left(\bigcap_{n=0}^{+\infty} \left[n, +\infty\right[\right) = 
+\ell(\varnothing)  = 0.
+$$
+Toutefois, dans le cas particulier des mesures finies 
+(vérifiant $\mu(A) < +\infty$ pour tout $A \in \mathcal{A}$) 
+et en particulier des mesures de probabilité, 
+la condition $\mu(A_0) < +\infty$ est automatiquement vérifiée. 
+
+### Démonstration {.proof}
+Si $(A_n)_{n \in \N}$ est une suite croissante d'ensembles de $\mathcal{A}$, 
+alors les ensembles $B_n$ définis par $B_0 = A_0$ puis 
+$B_{n+1} = A_{n+1} \setminus A_n$ appartiennent à $\mathcal{A}$ et sont disjoints.
+Comme par construction on a $\cup_{k=0}^n B_k = A_n$ par 
+(additivité et) $\sigma$-additivité
+de $\mu$ on a d'une part
+$$
+\sum_{k=0}^n \mu(B_k) =  \mu(A_n) 
+$$
+et d'autre part 
+$$
+\sum_{k=0}^{+\infty} \mu(B_k) = \mu\left( \bigcup_{k=0}^{+\infty} B_k \right) 
+= \mu \left( \bigcup_{n=0}^{+\infty} A_n \right).
+$$
+Par conséquent, 
+$$
+\lim_{n \to +\infty} \mu(A_n) = \mu \left(\bigcup_{n=0}^{+\infty} A_n \right).
+$$
+Si désormais $(A_n)_{n \in \N}$ est une suite décroissante d'ensembles de 
+$\mathcal{A}$ vérifiant $\mu(A_0) < +\infty$, les ensembles $B_n$ définis
+par $B_n = A_0 \setminus A_n$ forment une suite croissante d'ensembles,
+par conséquent
+$$
+\lim_{n \to +\infty} \mu(A_0 \setminus A_n) = 
+\mu \left(\bigcup_{n=0}^{+\infty} (A_0 \setminus A_n) \right)
+= \mu \left(A_0 \setminus \bigcap_{n=0}^{+\infty} A_n \right).
+$$
+Tous les ensembles $A_n$ étant inclus dans $A_0$, on a également
+$\mu(A_0 \setminus A_n) + \mu(A_n) = \mu(A_0)$ et
+$$
+\mu \left(A_0 \setminus \bigcap_{n=0}^{+\infty} A_n \right)
++
+\mu \left(\bigcap_{n=0}^{+\infty} A_n \right)
+= \mu(A_0)
+$$
+et par conséquent
+$$
+\mu(A_0) - \lim_{n \to +\infty} \mu(A_n) = 
+\mu(A_0) - \mu \left(\bigcap_{n=0}^{+\infty} A_n \right).
+$$
+Comme $\mu(A_0)$ est fini, on peut le simplifier de part et d'autre de 
+l'égalité et en déduire finalement
+$$
+\lim_{n \to +\infty} \mu(A_n) = 
+\mu \left(\bigcap_{n=0}^{+\infty} A_n \right).
+$$
+
 
 Exercices
 ================================================================================
