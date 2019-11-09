@@ -29,8 +29,8 @@ Calcul Différentiel, Intégral et Stochastique
 
 | Examen écrit  | PDF (e-book) | PDF (impression) |
 | ------------- | ------------- | --------------------- |
-| Enoncé | [Examen.pdf](https://boisgera.github.io/CDIS/output/Examen.pdf) | [Examen (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Examen(a4%2C%20recto-verso).pdf) |
-| Corrigé | [Examen-corrigé.pdf](https://boisgera.github.io/CDIS/output/Examen-corrigé.pdf) | [Examen-corrigé (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Examen-corrigé(a4%2C%20recto-verso).pdf) |
+| Enoncé | [Examen.pdf](https://boisgera.github.io/CDIS/output/Examen.pdf) | [Examen (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Examen%20(a4%2C%20recto-verso).pdf) |
+| Corrigé | [Examen-corrigé.pdf](https://boisgera.github.io/CDIS/output/Examen-corrigé.pdf) | [Examen-corrigé (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Examen-corrigé%20(a4%2C%20recto-verso).pdf) |
 
 :construction: **Aperçu :** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
 
