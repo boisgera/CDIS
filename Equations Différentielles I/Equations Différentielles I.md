@@ -63,50 +63,94 @@ où $(u_\alpha,u_\beta)$ est la tension appliquée au stator, $(i_\alpha,i_\beta
 
 - La mécanique Newtonienne ou Lagrangienne amène typiquement à des équations du type
 $$
-J \ddot{y} = \sum_k F_k(t,y,\dot{y})
+M \ddot{y} = \sum_k F_k(t,y,\dot{y})
 $$
-où $y\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\dot{y}$ sa vitesse et $\ddot{y}$ son accélération, avec $J$ la matrice d'inertie, et $F_k$ les forces/couples agissant sur le système.  Ici il s'agit d'une équation différentielle d'ordre 2.
+où $y\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\dot{y}$ sa vitesse et $\ddot{y}$ son accélération, avec $M$ la matrice d'inertie, et $F_k$ les forces/couples agissant sur le système.  Ici il s'agit d'une équation différentielle d'ordre 2.
 
 Dans tous ces cas, on s'intéresse aux signaux du temps $t$ qui vérifient ces équations. Ceci est formalisé dans la définition suivante.
 
 
 ### Equation différentielle d'ordre $p$  {.definition}
-Soient $n\in \N^*$, $p\in\N^*$, $J$ ouvert de $\R$, $Y_i$ ouverts de $\R^n$ et $\psi:J\times Y_0\times Y_1 \times \ldots \times Y_{p-1} \to \R^n$ une application continue. Une fonction $y:I\to \R^n$ sur un intervalle de temps $I\subseteq \R$ non réduit[^intI] à un point, est dite *solution (sur[^solsurI] $I$)* de *l'équation différentielle d'ordre $p$* 
+Soient $n\in \N^*$, $p\in\N^*$, $J$ ouvert de $\R$, $Y$ ouvert de $\R^{np}$ et $\psi:J\times Y \to \R^n$ une application continue. Une fonction $y:I\to \R^n$ sur un intervalle de temps $I\subseteq \R$ non réduit[^intI] à un point, est dite *solution (sur[^solsurI] $I$)* de *l'équation différentielle d'ordre $p$* 
 $$
 y^{(p)} = \psi(t,y,\dot{y},\ldots, y^{(p-1)})
 $$
 si $y$ est de classe $C^p$ sur $I$ et pour tout $t\in \mathring{\overline{I}}$,
 
-- $(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t)) \in J\times Y_0\times Y_1 \times \ldots \times Y_{p-1}$
+- $(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t)) \in J\times Y$
 
 - $y^{(p)}(t) = \psi(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t))$.
 
-On dira que l'équation différentielle est *autonome* si l'application $\psi$ ne dépend pas de $t$. Dans ce cas, on peut définir directement $f: Y_0\times Y_1 \times \ldots \times Y_{p-1} \to \R^n$.
+On dira que l'équation différentielle est *autonome* si l'application $\psi$ ne dépend pas de $t$. Dans ce cas, on peut définir directement $f: Y \to \R^n$. 
+
+Lorsque l'intervalle de temps $I$ de définition de la solution est $J$ entier, on dira que la solution est globale. Mais l'on verra qu'il peut parfois arriver qu'une solution n'existe que sur un intervalle de temps fini, plus *petit* que $J$, par exemple si elle explose avant, ou si elle s'apprête à quitter $Y$.
+
+Notons que $f$ sera souvent définie globalement avec $J=\R$ et $Y = \R^{np}$. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|}$ n'est définie que pour $y_a\neq y_b$.
 
 
 
 ### Réduction à l'ordre 1
-Etant donnés $p\in\N^*$, $U$ un ouvert de $\R\times (\R^n)^p$ et $f\in C(U,\R^n)$, définissons l'application $\underline{f} \in C(U,\R^n)$ par
+Soient $p\in\N^*$, $J$ ouvert de $\R$, $Y$ ouvert de $\R^{np}$ et $\psi:J\times Y  \to \R^n$ une application continue. 
+Alors $y$ est solution de l'équation différentielle d'ordre $p$ 
 $$
-\underline{f}(t,x_0,x_1,\ldots,x_{p-1}) = (x_1,x_2,\ldots,x_{p-1},f(t,x_0,\ldots,x_{p-1})) \ .
+y^{(p)} = \psi(t,y,\dot{y},\ldots, y^{(p-1)})
 $$
-Alors $x\in C^p(I,\R^n)$ est solution de l'équation différentielle d'ordre $p$ définie par $f$ si et seulement si $(x,\dot{x},\ldots,x^{(p-1)})$ est solution de l'équation différentielle d'ordre 1
+si et seulement si $x=(y,\dot{y},\ldots,y^{(p-1)})$ est solution de l'équation différentielle d'ordre 1
 $$
-\dot{\underline{x}} = \underline{f}(t,\underline{x}) \ .
+\dot{x} = f(t,x) \ , 
+$$
+où $f\in C(J\times Y, \R^{np})$ est définie par
+$$
+f(t,y_0,y_1,\ldots,y_{p-1}) = (y_1,y_2,\ldots,y_{p-1},\psi(t,y_0,\ldots,y_{p-1})) \ .
 $$
 
-Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $(x,\dot{x},\ldots,x^{(p-1)})\in C^1(I,\R^{\underline{n}})$ avec $\underline{n}=np$, au lieu de $x\in C^p(I,\R^n)$.  Dans la suite de ce cours nous nous restreignons donc à $p=1$.
+Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $x=(y,\dot{y},\ldots,y^{(p-1)})\in C^1(I,\R^{np})$, au lieu de $y\in C^p(I,\R^n)$.  Dans la suite de ce cours, nous nous restreignons donc à $p=1$. $x$ est appelé l'*état* du système.
 
 ### Exemples
-Dans les exemples plus haut, on prendrait donc $x=(u,\dot{u})\in \R^2$, $x=(i_\alpha,i_\beta,\omega,\theta)\in \R^4$, $x=(p,\dot{p})$ respectivement, pour se ramener à une équation différentielle d'ordre 1.
+Reprenons les exemples plus haut :
 
+- pour un circuit RLC, on prend $x=(u_c,\dot{u}_c)\in \R^2$, et 
+$$
+f(t,x_1,x_2) = 
+\left[
+    \begin{matrix}
+        x_2\\
+        -\frac{R}{L} x_2 - \frac{1}{LC} x_1 + u(t)
+    \end{matrix}
+\right] \ .
+$$
+
+- pour le moteur électrique, $x=(i_\alpha,i_\beta,\theta,\omega)\in \R^4$ et
+$$
+f(t,x_1,x_2,x_3,x_4) = \left[
+    \begin{matrix}
+        \frac{1}{L}(-Rx_1 + x_4 \phi \sin x_3 +u_\alpha(t))\\
+        \frac{1}{L}(-R x_2 - x_4 \phi \cos x_3 +u_\beta(t)  ) \\
+        x_4 \\
+        \frac{1}{J}(p\phi(-x_1\sin x_3 + x_2 \cos x_3) - a \, x_4 -\tau(t))
+    \end{matrix}
+\right]
+$$
+
+- en mécanique, $x=(y,\dot{y})$ et
+$$
+f(t,x_1,x_2) = 
+\left[
+    \begin{matrix}
+        x_2\\
+        M^{-1} \sum_k F_k(t,x_1,x_2)
+    \end{matrix}
+\right] \ .
+$$
+
+En physique, on est souvent intéressé par les solutions partant d'une *condition initiale* donnée, ce qui porte le nom de *Problème de Cauchy*. 
 
 ### Problème de Cauchy (*Initial Value Problem*) {.definition #def_cauchy}
-Soient $U$ un ouvert de $\R\times \R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$. Le *problème de Cauchy* fait référence au système
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $(t_0,x_0)\in J\times X$ et $f\in C(J\times X,\R^n)$. Le *problème de Cauchy* associé fait référence au système
 $$
 \dot{x}=f(t,x) \quad , \quad x(t_0)=x_0 \ .
 $$
-On dira donc que $x:I\to \R^n$ est solution du problème de Cauchy défini par $f$ et $(t_0,x_0)$ (sur un intervalle $I$ non réduit à un point) si
+On dira donc que $x:I\to \R^n$ est solution du problème de Cauchy défini par $f$ et $(t_0,x_0)$ si
 
 - $t_0\in I$ et $x(t_0)=x_0$
 
@@ -115,8 +159,10 @@ On dira donc que $x:I\to \R^n$ est solution du problème de Cauchy défini par $
 
 On notera alors $x\in S_f(t_0,x_0)$.
 
+Afin d'étudier les solutions d'un problème de Cauchy, il est crucial d'abord de remarquer la charactérisation qui suit.
+
 ### Représentation intégrale des solutions {.theorem #theo_eq_integrale}
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$, $I$ un intervalle de $\R$ non réduit à un point, $(t_0,x_0)\in U$ tel que $t_0\in I$, et $x\in C(I,\R^n)$ telle que $(t,x(t))\in U$ pour tout $t\in I$. Alors, $x\in S_f(t_0,x_0)$ si et seulement si $x$ est solution de l'équation intégrale
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$, $I\subset J$ un intervalle de $\R$ non réduit à un point, $t_0\in I$, $x_0\in X$, et $x\in C(I,\R^n)$ telle que $x(t)\in X$ pour tout $t\in I$. Alors, $x\in S_f(t_0,x_0)$ si et seulement si $x$ est solution de l'équation intégrale
 $$
 x(t) = x_0 + \int_{t_0}^t f(s,x(s))ds \qquad \forall t\in I \ .
 $$
