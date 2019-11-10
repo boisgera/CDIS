@@ -42,29 +42,15 @@ En parallèle, l'étude de la stabilité et du comportement asymptotique des sol
 Cadre de l'étude
 ============================
 
-Soit $n\in \N^*$. 
-
-### Equation différentielle de degré $p$  {.definition}
-Soient $p\in\N^*$, $U$ ouvert de $\R\times (\R^n)^p$ et $f:U \to \R^n$ une application continue sur $U$. Une application $x:I\to \R^n$ continue sur un intervalle $I\subseteq \R$ non réduit[^intI] à un point, est dite *solution (sur[^solsurI] $I$)* de *l'équation différentielle d'ordre $p$* 
-$$
-x^{(p)} = f(t,x,\dot{x},\ldots, x^{(p-1)})
-$$
-si $x$ est de classe $C^p$ sur $I$ et pour tout $t\in \mathring{\overline{I}}$,
-
-- $(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t)) \in U$
-
-- $x^{(p)}(t) = f(t,x(t),\dot{x}(t),\ldots, x^{(p-1)}(t))$.
-
-On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$. Dans ce cas, on pourrait définir $U$ directement comme un ouvert de $(\R^n)^p$ et $f: U\subseteq(\R^n)^p \to \R^n$.
-
+Les équations différentielles apparaissent couramment en physique pour décrire l'évolution des grandeurs décrivant le système.
 
 ### Quelques exemples {.exemple}
 
-- La tension aux bornes d'un circuit RLC en série évolue selon 
+- La tension $u_c$ aux bornes d'un condensateur dans un circuit RLC en série évolue selon 
 $$
-\ddot{u} = -\frac{R}{L} \dot{u} - \frac{1}{LC} u + U(t)
+\ddot{u}_c = -\frac{R}{L} \dot{u}_c - \frac{1}{LC} u_c + u(t)
 $$
-où $R$, $L$, $C$ notent la résistance, inductance et capacité respectivement et $U$ la tension appliquée par le générateur.
+où $R$, $L$, $C$ notent la résistance, inductance et capacité respectivement, et $u$ la tension appliquée par le générateur. Cette équation différentielle implique les dérivées de $u_c$ jusqu'à l'ordre 2, donc on parle d'équation différentielle d'ordre 2.
 
 - Un moteur électrique à aimant permanent évolue selon
 \begin{align*}
@@ -73,15 +59,30 @@ L \dot{\overline{i_\beta}} &= -Ri_\beta - \omega \phi \cos\theta +u_\beta(t) \\
 J\dot{\omega} &= p\phi(-i_\alpha\sin\theta + i_\beta \cos\theta) - a \, \omega -\tau(t) \\
 \dot{\theta} &= \omega
 \end{align*}
-où $(u_\alpha,u_\beta)$ est la tension appliquée au stator, $(i_\alpha,i_\beta)$ l'intensité du courant dans le stator, $R$ et $L$ sa résistance et son inductance respectivement, $\phi$ l'intensité du champ électromagnétique créé par l'aimant, $\theta$ l'angle du moteur, $\omega$ sa vitesse, $a$ un paramètre de frottement et $\tau$ la charge.
+où $(u_\alpha,u_\beta)$ est la tension appliquée au stator, $(i_\alpha,i_\beta)$ l'intensité du courant dans le stator, $R$ et $L$ sa résistance et son inductance respectivement, $\phi$ l'intensité du champ électromagnétique créé par l'aimant, $\theta$ l'angle du moteur, $\omega$ sa vitesse, $a$ un paramètre de frottement et $\tau$ la charge. Ici, seules dérivées d'ordre 1 apparaissent donc c'est une équation différentielle d'ordre 1.
 
 - La mécanique Newtonienne ou Lagrangienne amène typiquement à des équations du type
 $$
-J \ddot{p} = \sum_k F_k(t,p,\dot{p})
+J \ddot{y} = \sum_k F_k(t,y,\dot{y})
 $$
-où $p\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\dot{p}$ sa vitesse et $\ddot{p}$ son accélération, avec $J$ la matrice d'inertie, et $F_k$ les forces/couples agissant sur le système.  
+où $y\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\dot{y}$ sa vitesse et $\ddot{y}$ son accélération, avec $J$ la matrice d'inertie, et $F_k$ les forces/couples agissant sur le système.  Ici il s'agit d'une équation différentielle d'ordre 2.
 
-- Hamiltonien?
+Dans tous ces cas, on s'intéresse aux signaux du temps $t$ qui vérifient ces équations. Ceci est formalisé dans la définition suivante.
+
+
+### Equation différentielle d'ordre $p$  {.definition}
+Soient $n\in \N^*$, $p\in\N^*$, $J$ ouvert de $\R$, $Y_i$ ouverts de $\R^n$ et $\psi:J\times Y_0\times Y_1 \times \ldots \times Y_{p-1} \to \R^n$ une application continue. Une fonction $y:I\to \R^n$ sur un intervalle de temps $I\subseteq \R$ non réduit[^intI] à un point, est dite *solution (sur[^solsurI] $I$)* de *l'équation différentielle d'ordre $p$* 
+$$
+y^{(p)} = \psi(t,y,\dot{y},\ldots, y^{(p-1)})
+$$
+si $y$ est de classe $C^p$ sur $I$ et pour tout $t\in \mathring{\overline{I}}$,
+
+- $(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t)) \in J\times Y_0\times Y_1 \times \ldots \times Y_{p-1}$
+
+- $y^{(p)}(t) = \psi(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t))$.
+
+On dira que l'équation différentielle est *autonome* si l'application $\psi$ ne dépend pas de $t$. Dans ce cas, on peut définir directement $f: Y_0\times Y_1 \times \ldots \times Y_{p-1} \to \R^n$.
+
 
 
 ### Réduction à l'ordre 1
@@ -120,11 +121,12 @@ $$
 x(t) = x_0 + \int_{t_0}^t f(s,x(s))ds \qquad \forall t\in I \ .
 $$
 
-*Démonstration* : Supposons $x\in S_f(t_0,x_0)$. Alors $x\in C^1(I,\R^n)$, and pour tout $t\in I$,
+### Démonstration {.proof} 
+Supposons $x\in S_f(t_0,x_0)$. Alors $x\in C^1(I,\R^n)$, et pour tout $t\in I$,
 $$
 x_0 + \int_{t_0}^t f(s,x(s))ds = x(t_0)  + \int_{t_0}^t \dot{x}(s) ds = x(t) \ .
 $$
-Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $U$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.$\hfill\blacksquare$
+Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $U$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.
 
 ### Classe plus générale de solutions {.remark}
 La définition sous forme intégrale des solutions montre que l'hypothèse de continuité de $f$ pourrait être relachée: il suffit de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Par exemple, un contexte plus large consiste à supposer seulement que dans un voisinage de $(t_0,x_0)$,
@@ -154,7 +156,8 @@ Le théorème suivant assure l'existence locale de solutions au [problème de Ca
 ### Théorème de Peano-Arzelà {.theorem  #theo_peano}
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$. Pour tout $(t_0,x_0)\in U$, il existe $\tau_m >0$ et $x\in C^1([t_0-\tau_m,t_0+\tau_m],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
 
-*Démonstration*: La démonstration de ce résultat est hors-programme car elle fait appel au théorème d'Ascoli(-Arzelà) qui sera abordé dans les notions avancées de Calcul Différentiel III? Seule la connaissance et compréhension du résultat est exigible. Pour les curieux, la preuve est données en [annexe](#app_peano) $\hfill\blacksquare$
+### Démonstration {.proof}
+La démonstration de ce résultat est hors-programme et fait appel au théorème d'Ascoli(-Arzelà). Seule la connaissance et la compréhension du résultat est exigible. Pour les curieux, la preuve est données en [annexe](#app_peano).
 
 ### Solution maximale {.definition #def_sol_max}
 Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$. On dit que $x\in C^1(I,\R^n)$ est une solution *maximale* de l'équation différentielle 
@@ -181,7 +184,9 @@ Nous venons de voir que des solutions locales au problème de Cauchy existent to
 Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
 Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
 
-*Démonstration* Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
+### Démonstration {.proof} 
+
+Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
 **Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
 $$
@@ -193,7 +198,9 @@ f_m := \max_{\cC} f \quad , \quad \tau_m := \min\left\{\tau,\frac{r}{f_m} \right
 $$--->
 il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+\tau_m]$. 
 
-*Démonstration* Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$  est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
+**Démonstration**
+
+Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous du cours de Topologie que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$  est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
 $$
 F = \{x\in E \: : \: x(\left[t_0-\tau_m,t_0+\tau_m \right])\subseteq \overline{B}_{r}(x_0) \} \ .
 $$
@@ -227,8 +234,6 @@ $$
 $$
 en notant $\Gamma^p = \underbrace{\Gamma \circ \Gamma \circ \ldots \circ \Gamma}_{p \text{ fois }}$.
 Donc pour tout $p\in \N$, $\|\Gamma^p(x_a)-\Gamma^p(x_b)\|_\infty \leq \frac{(\tau_m k)^p}{p!} \|x_a-x_b\|_{\infty}$. Il existe donc $m$ tel que $\Gamma^{m}$ est contractante. D'après le théorème de point fixe de Banach, $\Gamma$ admet un unique point fixe $x^*$ dans $F$. 
-$\hfill\blacksquare$
-
 
 
 
@@ -265,14 +270,14 @@ Solutions globales
 
 Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ par rapport à $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. Mais cet intervalle n'est pas nécessairement $\R$ entier même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la solution n'est pas *globale*. 
 
-### Example d'explosion en temps fini
+### Exemple d'explosion en temps fini
 Par exemple, considérons le problème de Cauchy
 $$
 \dot{x} = x^2 \quad , \qquad (t_0,x_0)\in \R^2 \ .
 $$
 La fonction $f:(t,x)\mapsto x^2$ est de classe $C^1$ sur $U=\R^2$, donc il existe une unique solution maximale. On peut vérifier par le calcul que celle-ci s'écrit  
 $$
-x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left(-\infty,t_0+\frac{1}{x_0}\right) \ .
+x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left]-\infty,t_0+\frac{1}{x_0}\right[ \ .
 $$
 Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en temps fini*. 
 
@@ -290,16 +295,18 @@ $$
 (t,x(t))\notin K \qquad \forall t\in \left[t_K^+,\overline{t} \right[ \cup  \left]\underline{t},t_K^- \right] 
 $$
 
-*Démonstration* : Voir en [annexe](#pr_theo_bouts).  $\hfill\blacksquare$
+### Démonstration {.proof} 
+Voir en [annexe](#pr_theo_bouts). 
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
-Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$. S'il existe $a,b:I\to \R$ telles que  
+Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$. S'il existe $a,b\in C(I,\R)$ telles que  
 $$
 \|f(t,x)\|\leq a(t) \|x\| + b(t) \quad \forall (t,x)\in I\times \R^n \ ,
 $$
 alors toute[^uniCritExGlob] solution maximale au problème de Cauchy associé est définie sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
 
-*Démonstration* : Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).  $\hfill\blacksquare$
+### Démonstration {.proof} 
+Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall). 
 
 
 ### Exemples
@@ -333,17 +340,17 @@ Régularité et stabilité des solutions
 ==========================================
 
 Depuis l'apparition de la mécanique Newtonienne au XVIIème sciècle, l'étude des équations différentielles a toujours été motivée par l'espoir de compréhension et de prédiction du comportement futur ou passé de systèmes physiques.
-En particulier, une question ayant taraudé et divisé les scientifiques au cours des siècles est celle de la stabilité du système à trois corps (Terre-Lune-Soleil), ou plus généralement du système solaire.  Enchanté devant les avancées de la mécanique céleste, Pierre-Simon Laplace écrit en 1814:
+En particulier, une question ayant taraudé et divisé les scientifiques au cours des siècles est celle de la stabilité du système à trois corps (Terre-Lune-Soleil), ou plus généralement du système solaire.  Enchanté devant les avancées de la mécanique céleste, Pierre-Simon Laplace écrit en 1814 :
 
 >Nous devons donc envisager l'état présent de l'univers comme l'effet de son état antérieur, et comme la cause de celui qui va suivre. Une intelligence qui pour un instant donné connaîtrait toutes les forces dont la nature est animée et la situation respective des êtres qui la composent, si d'ailleurs elle était assez vaste pour soumettre ses données à l'analyse, embrasserait dans la même formule les mouvements des plus grands corps de l'univers et ceux du plus léger atome : rien ne serait incertain pour elle, et l'avenir comme le passé serait présent à ses yeux.
 
 Cette conviction *déterministe*, c'est-à-dire que les phénomènes physiques passés ou futurs sont entièrement déterminés par leur condition initiale, fut confirmée par le théorème de Cauchy-Lipschitz quelques années plus tard. Ce dernier suggère en effet que l'on peut prévoir l'évolution des systèmes physiques par la seule connaissance de leur condition initiale et de leur modèle physique. 
 
-Cependant, à la fin du XIXème siècle, on se rend vite compte que la réalité est en fait toute autre:
+Cependant, à la fin du XIXème siècle, on se rend vite compte que la réalité est en fait toute autre :
 
-- d'une part, la condition initiale et le modèle ne sont jamais parfaitement connus: quelle est alors la qualité de notre prédiction?  
+- d'une part, la condition initiale et le modèle ne sont jamais parfaitement connus: quelle est alors la qualité de notre prédiction ?  
 
-- d'autre part, ne pouvant généralement pas calculer explicitement la solution, comment anticiper son comportement sur des temps longs, voire son comportement asymptotique?
+- d'autre part, ne pouvant généralement pas calculer explicitement la solution, comment anticiper son comportement sur des temps longs, voire son comportement asymptotique ?
 
 
 Sensibilité aux conditions initiales et erreurs de modèle
@@ -364,7 +371,8 @@ $$
 $$
 On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
 
-*Démonstration* Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall) \hfill $\blacksquare$
+### Démonstration {.proof} 
+Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
 
 ### Exemples
 - Si $\lambda<0$, l'erreur commise sur la condition initiale disparait au cours du temps dans les solutions : on dit qu'elles ``oublient'' leur condition initiales et que le système est *contractant*. 
@@ -398,7 +406,7 @@ qui peut être rendu aussi faible que voulu si $\delta_a$ et $\delta_c$ sont suf
 
 ### Chaos déterministe et horizon de Lyapunov {.remark #rem_chao}
 Même si la continuité des solutions par rapport aux paramètres/conditions initiales donne à espérer de pouvoir simuler et prédire l'évolution de systèmes physiques, elle est malheureusement parfois insuffisante. 
-Henri Poincaré écrit:
+Henri Poincaré écrit :
 
 <!-- Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. -->
 > Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible. 
@@ -501,7 +509,8 @@ $$
 $$
 si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative. On dit alors que la matrice est *Hurwitz*, du nom du mathématicien allemand Adolf Hurwitz.
 
-*Démonstration* La notion de *globalement asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité globale. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, elles sont équivalentes à l'attractivité (locale), c'est-à-dire que la stabilité et la globalité viennent gratuitement. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
+### Démonstration {.proof} 
+La notion de *globalement asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité globale. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, elles sont équivalentes à l'attractivité (locale), c'est-à-dire que la stabilité et la globalité viennent gratuitement. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
 $$
 x(t)= e^{At} x_0 \ .
 $$
@@ -514,7 +523,6 @@ $$
 e^{Jt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
 converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
-\hfill $\blacksquare$
 
 Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C(I,\R^{n\times n})$ soit Hurwitz pour tout $t$ n'implique pas que le système
 $$
@@ -578,7 +586,8 @@ $$
 $$  
 le long d'une trajectoire $t\mapsto x(t)$ de l'équation différentielle $\dot{x} = f(x)$. $V$ représente donc une grandeur positive qui décroît ou est conservée le long des trajectoires. Pour des systèmes physiques, elle est donc souvent reliée à l'énergie.
 
-\textit{Démonstration}:  Supposons d'abord que $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$. On a donc pour toute solution $t\mapsto x(t)$ initialisée dans $W$, $V(x(t))\leq V(x(0))$ tant que  $x(t)\in W$. Prenons $\varepsilon>0$ suffisamment petit tel que $\overline{B}_{2\varepsilon}(a)\subset W$. On veut montrer qu'il existe $\eta$ tel que toute trajectoire initialisée dans $B_{\eta}(a)$ reste dans $B_{\varepsilon}(a)\subset W$. Tout d'abord, il existe $\varepsilon_V>0$ tel que 
+### Démonstration {.proof}  
+Supposons d'abord que $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$. On a donc pour toute solution $t\mapsto x(t)$ initialisée dans $W$, $V(x(t))\leq V(x(0))$ tant que  $x(t)\in W$. Prenons $\varepsilon>0$ suffisamment petit tel que $\overline{B}_{2\varepsilon}(a)\subset W$. On veut montrer qu'il existe $\eta$ tel que toute trajectoire initialisée dans $B_{\eta}(a)$ reste dans $B_{\varepsilon}(a)\subset W$. Tout d'abord, il existe $\varepsilon_V>0$ tel que 
 $$
 \forall x\in \overline{B}_{2\varepsilon}(a) \ : \ V(x)\leq \varepsilon_V \ \Longrightarrow x\in B_{\varepsilon}(a) \ .
 $$
@@ -599,7 +608,6 @@ $$
 Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un certain temps, ce qui est impossible. Donc $\lim_{t\to +\infty} V(x(t))=0$. Finalement, reproduisant le même raisonnement que pour l'existence de $\varepsilon_V$, on peut garantir que $\|x-a\|$ est arbitrairement petit en prenant $V(x)$ suffisamment petit. Donc on en déduit que $\lim_{t\to +\infty} \|x(t)-a\|=0$.
 
 Supposons enfin que $V$ est propre et $W=\R^n$. Alors $V(x(t))< V(x(0))$ pour tout $t\in I$ donc $x(t)\in V^{-1}(\left[ 0,V(x(0)) \right])$ pour tout $t$, qui est compact puisque $V$ est propre. Par le théorème des bouts, nécessairement $x(t)$ est défini pour tout $t\geq 0$, et reste dans ce compact. Alors on peut reproduire le même raisonnement que plus haut et obtenir la convergence de $x$ vers $a$.
-\hfill $\blacksquare$
 
 
 ### Exemple
