@@ -25,6 +25,38 @@ Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses con
 
 En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des sytèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
 
+Objectifs
+========================
+
+En première lecture :
+
+- savoir réduire une équation différentielle à l'ordre 1.
+
+- savoir justifier l'existence de solutions par le théorème de Peano lorsque "$f$ est continue", et l'unicité des solutions maximales par le théorème de Cauchy-Lipschitz lorsque "$f$ est $C^1$ par rapport à $x$".
+
+- comprendre que les solutions ne sont pas toujours définie globalement si elles "explosent en temps fini" où atteignent le bord du domaine où l'équation différentielle est définie. Savoir faire appel au critère "linéairement borné" pour justifier la globalité des solutions.
+
+- comprendre (qualitativement) dans quelle mesure une erreur sur la condition initiale se répercute sur les solutions en temps fini. 
+
+- savoir trouver les points d'équilibre.
+
+- savoir déterminer si un système linéaire est globalement asymptotiquement stable en regardant le signe de la partie réelle de ses valeurs propres.
+
+- savoir déterminer si un point d'équilibre est localement asymptotiquement stable/instable par les valeurs propres de sa matrice Jacobienne.
+
+- savoir calculer la dérivée  d'une fonction de Lyapunov le long des trajectoires et en déduire qu'un point d'équilibre est stable ou  localement/globalement asymptotiquement stable.
+
+
+En deuxième lecture :
+
+- comprendre la preuve du théorème de Cauchy-Lipschitz en voyant la solution comme un point fixe de la représentation intégrale des solutions.
+
+- savoir que l'on peut relâcher l'hypothèse du théorème de Cauchy-Lipschitz à "$f$ Lipschitzienne par rapport à $x$". 
+
+- comprendre ce que représente l'exposant de Lyapunov d'un système chaotique.
+
+- comprendre ce que la notion de stabilité apporte en plus de l'attractivité dans la notion de stabilité asymptotique.
+
 
 **Notations** 
 
@@ -415,7 +447,9 @@ Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de c
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
-On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini : plus l'erreur de condition initiale $\delta$ est petite, plus l'erreur sur la trajectoire à horizon $\overline{t}$ est petite. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
+
+La présence du facteur exponentiel n'est pas crucial ici, et servira dans la suite. Ce qui est important, c'est que plus l'erreur de condition initiale $\delta$ est faible, plus l'erreur sur la trajectoire à horizon de temps fini $\overline{t}$ est faible.
+On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
 
 ### Démonstration {.proof} 
 Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
@@ -511,6 +545,21 @@ $$
 $$
 Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent soit à la position *basse* du pendule $\theta=0$ ou la position *haute* $\theta=\pi$, toutes deux à vitesse nulle $\dot{\theta}=0$. Si le pendule est initialisé exactement à sa position haute ou basse à vitesse nulle alors il y reste indéfiniment.
 
+### Attractivité
+
+Un point d'équilibre $a$ est dit *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ sont globales et convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
+<!--
+$$
+|x(0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
+$$
+-->
+$$
+\lim_{t\to+\infty} x(t)=a \ .
+$$
+De plus, $a$ est dit *globalement attractif* si *toutes les solutions sont globales et convergent vers $a$*.
+
+Cette notion intuitive ne dit rien sur le comportement des solutions pendant le transitoire, c'est-à-dire avant de converger vers $a$. Des solutions initialisées proche de $a$ pourraient s'en éloigner arbitrairement loin avant de converger, ou mettre un temps arbitrairement long pour revenir dans un voisinage de $a$. Pour garantir une certaine uniformité et robustesse de cette attractivité par rapport à la condition initiale, on a recours à une notion plus forte qui est la *stabilité asymptotique*. 
+
 ### Stabilité, stabilité asymptotique
 Un point d'équilibre $a$ est dit:
 
@@ -524,19 +573,7 @@ $$
 
 - *instable* s'il n'est pas stable.
 
-- *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ sont globales et convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
-<!--
-$$
-|x(0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
-$$
--->
-$$
-\lim_{t\to+\infty} x(t)=a \ .
-$$
-
-- *globalement attractif* si *toutes les solutions sont globales et convergent vers $a$*.
-
-- *localement (resp. globalement) asymptotiquement stable* s'il est à la fois stable et localement (resp. globalement) attractif. 
+- *localement (resp. globalement) asymptotiquement stable* s'il est à la fois stable en plus d'être localement (resp. globalement) attractif. 
 
 
 ### Exemples
@@ -544,9 +581,10 @@ $$
 
 - Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule) donné plus haut.  
 
-- Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Un exemple célèbre est le système de [Vinograd](#fig_vinograd) dont le portrait de phase est représenté ci-dessous.
+<!-- - Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Un exemple célèbre est le système de [Vinograd](#fig_vinograd) dont le portrait de phase est représenté ci-dessous.
 
 ![Portrait de phase du système de Vinograd](images/vinograd.py){#fig_vinograd}
+-->
 
 ### Cas d'un système linéaire
 Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est globalement asymptotiquement stable pour le système
@@ -589,7 +627,8 @@ Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement
 
 Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
 
-\textit{Démonstration}: Voir l'annexe [\textit{Stabilité locale et linéarisé tangent}](#app_stab_lin).  \hfill $\blacksquare$
+### Démonstration {.proof}
+Voir l'annexe [\textit{Stabilité locale et linéarisé tangent}](#app_stab_lin).  
 
 Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
 
@@ -661,7 +700,7 @@ Reprenons le pendule mais cette fois-ci, non amorti, c'est-à-dire avec $\rho=0$
 $$
 V(x_1,x_2) = \frac{1}{2} m\ell^2 x_2^2 + mg\ell(1-\cos(x_1)) \ .
 $$
-Le premier terme correspond à l'énergie cinétique du pendule, et le deuxième son énergie potentielle/
+Le premier terme correspond à l'énergie cinétique du pendule, et le deuxième son énergie potentielle.
 $V$ est $C^1$, à valeurs positives et telle que 
 $$
 V(x) = 0 \qquad \Longleftrightarrow \qquad x=0 \ .
