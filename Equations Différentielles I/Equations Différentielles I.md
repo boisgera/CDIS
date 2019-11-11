@@ -172,7 +172,7 @@ Supposons $x\in S_f(t_0,x_0)$. Alors $x\in C^1(I,\R^n)$, et pour tout $t\in I$,
 $$
 x_0 + \int_{t_0}^t f(s,x(s))ds = x(t_0)  + \int_{t_0}^t \dot{x}(s) ds = x(t) \ .
 $$
-Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $U$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.
+Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $I\times X$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.
 
 ### Classe plus générale de solutions {.remark}
 La définition sous forme intégrale des solutions montre que l'hypothèse de continuité de $f$ pourrait être relachée: il suffit de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Par exemple, un contexte plus large consiste à supposer seulement que dans un voisinage de $(t_0,x_0)$,
@@ -200,17 +200,17 @@ Existence de solutions locales
 Le théorème suivant assure l'existence locale de solutions au [problème de Cauchy](#def_cauchy) sous une simple hypothèse de continuité de $f$.
 
 ### Théorème de Peano-Arzelà {.theorem  #theo_peano}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$. Pour tout $(t_0,x_0)\in U$, il existe $\tau_m >0$ et $x\in C^1([t_0-\tau_m,t_0+\tau_m],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$. Pour tout $(t_0,x_0)\in J\times X$, il existe $\tau_m >0$ et $x\in C^1([t_0-\tau_m,t_0+\tau_m],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
 
 ### Démonstration {.proof}
 La démonstration de ce résultat est hors-programme et fait appel au théorème d'Ascoli(-Arzelà). Seule la connaissance et la compréhension du résultat est exigible. Pour les curieux, la preuve est données en [annexe](#app_peano).
 
 ### Solution maximale {.definition #def_sol_max}
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$. On dit que $x\in C^1(I,\R^n)$ est une solution *maximale* de l'équation différentielle 
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$. On dit que $x\in C^1(I,\R^n)$ est une solution *maximale* de l'équation différentielle 
 $$
 \dot{x}=f(t,x)
 $$
-si pour toute autre solution $y\in C^1(J,\R^n)$ telle que $I\subseteq J$ et $x_{|I}\equiv y_{|I}$, on a nécessairement $I=J$ et $x\equiv y$. En d'autres termes, elle n'est pas *prolongeable*.
+si elle n'est pas *prolongeable*, c'est-à-dire, pour toute autre solution $x'\in C^1(I',\R^n)$ telle que $I'\subseteq I$ et $x_{|I'}\equiv x'_{|I}$, on a nécessairement $I=I'$ et $x\equiv x'$. 
 
 ### Exemple
 Considérons le problème de Cauchy
@@ -218,7 +218,7 @@ $$
 \dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0)
 $$ 
 permettant de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli*.
-La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $U=\R\times \R$, donc ce problème de Cauchy admet au moins une solution. En fait, on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales.
+La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. En fait, on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales.
 
 
 Unicité des solutions
@@ -227,16 +227,16 @@ Unicité des solutions
 Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $U$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
-Alors pour tout $(t_0,x_0)\in U$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $J\times X$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
+Alors pour tout $(t_0,x_0)\in J\times X$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
 
 ### Démonstration {.proof} 
 
-Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $U$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
+Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $J\times X$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
-**Théorème de Cauchy-Lipschitz local** Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in U$. Soient $\tau>0$ et $r>0$ tels que 
+**Théorème de Cauchy-Lipschitz local** Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in J\times X$. Soient $\tau>0$ et $r>0$ tels que 
 $$
-\cC:=\left[t_0-\tau,t_0+\tau \right]\times \overline{B}_{r}(x_0)\subset U \ .
+\cC:=\left[t_0-\tau,t_0+\tau \right]\times \overline{B}_{r}(x_0)\subset J\times X \ .
 $$
 Pour tout $\tau_m\in \left[0,\tau \right]$ tel que $\tau_m  \max_{\cC} \|f\| \leq r$,
 <!--- $$
@@ -251,7 +251,7 @@ $$
 F = \{x\in E \: : \: x(\left[t_0-\tau_m,t_0+\tau_m \right])\subseteq \overline{B}_{r}(x_0) \} \ .
 $$
 On peut montrer que[^Fferme] $F$ est un sous-ensemble fermé de $E$. $F$ est donc complet  (toujours pour la norme uniforme $\|\cdot\|_\infty$). 
-Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset U$ pour tout $s\in \left[t_0-\tau_m,t_0+\tau_m \right]$ ; on peut donc définir l'opérateur $\Gamma : F\to E$ par
+Pour tout $x\in F$, par définition, $(s,x(s))\in \cC\subset J\times X$ pour tout $s\in \left[t_0-\tau_m,t_0+\tau_m \right]$ ; on peut donc définir l'opérateur $\Gamma : F\to E$ par
 $$
 \Gamma(x)(t) = x_0+\int_{t_0}^t f(s,x(s))ds \qquad \forall t\in \left[ t_0-\tau_m,t_0+\tau_m \right] \ .
 $$
@@ -314,14 +314,14 @@ admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)
 Solutions globales
 --------------------------------
 
-Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ par rapport à $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. Mais cet intervalle n'est pas nécessairement $\R$ entier même si $U=\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la solution n'est pas *globale*. 
+Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ par rapport à $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. Mais cet intervalle n'est pas nécessairement $\R$ entier même si $f$ est définie globalement sur $\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la solution n'est pas *globale*. 
 
 ### Exemple d'explosion en temps fini
 Par exemple, considérons le problème de Cauchy
 $$
 \dot{x} = x^2 \quad , \qquad (t_0,x_0)\in \R^2 \ .
 $$
-La fonction $f:(t,x)\mapsto x^2$ est de classe $C^1$ sur $U=\R^2$, donc il existe une unique solution maximale. On peut vérifier par le calcul que celle-ci s'écrit  
+La fonction $f:(t,x)\mapsto x^2$ est de classe $C^1$ sur $\R^2$, donc il existe une unique solution maximale. On peut vérifier par le calcul que celle-ci s'écrit  
 $$
 x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left]-\infty,t_0+\frac{1}{x_0}\right[ \ .
 $$
@@ -329,27 +329,27 @@ Cette solution diverge au temps $t_0+\frac{1}{x_0}$, on dit qu'elle *explose en 
 
 ![Solutions à $\dot{x} = x^2$ pour $t_0=0$ et différentes valeurs de $x_0$](images/explosion_temps_fini.py){#fig_explo_temps_fini}
 
-En fait, le théorème suivant montre que pour toute solution maximale, la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $U$ au bout d'un certain temps. Dans le cas usuel où $U=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $\left[0,\overline{t}\right[$ avec $\overline{t}<+\infty$, explose en temps fini, c'est-à-dire
+En fait, le théorème suivant montre que pour toute solution maximale, la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $J\times X$ au bout d'un certain temps. Dans le cas usuel où $J\times X=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $\left[0,\overline{t}\right[$ avec $\overline{t}<+\infty$, explose en temps fini, c'est-à-dire
 $$
 \lim_{t\to \overline{t}} \|x(t)\|=+\infty \ ,
 $$
-Dans le cas où $U$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $U$ sans nécessairement diverger. C'est ce qui est formalisé dans le théorème suivant.
+Dans le cas où $J\times X$ ne serait pas l'espace entier, une solution non globale pourrait aussi tendre en temps fini vers le "bord" de $J\times X$ sans nécessairement diverger. C'est ce qui est formalisé dans le théorème suivant.
 
 ### Théorème des bouts {.theorem #theo_bouts}
-Soient $U$ un ouvert de $\R\times \R^n$ et $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$. Soient $(t_0,x_0)\in U$ et $x:\left]\underline{t},\overline{t}\right[\to \R^n$ la solution maximale au problème de Cauchy correspondant, avec $\underline{t}\in \left[-\infty,t_0\right[$ et $\overline{t}\in \left]t_0,+\infty\right]$.  Alors pour tout compact $K\subset U$, il existe $t_K^+ \in \left[t_0,\overline{t}\right[$ and $t_K^-\in \left]\underline{t},t_0 \right]$) tels que
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de classe $C^1$ par rapport à $x$. Soient $(t_0,x_0)\in J\times X$ et $x:\left]\underline{t},\overline{t}\right[\to \R^n$ la solution maximale au problème de Cauchy correspondant.  Alors pour tout compact $K\subset J\times X$, il existe $t_K^+ \in \left[t_0,\overline{t}\right[$ and $t_K^-\in \left]\underline{t},t_0 \right]$) tels que
 $$
-(t,x(t))\notin K \qquad \forall t\in \left[t_K^+,\overline{t} \right[ \cup  \left]\underline{t},t_K^- \right] 
+(t,x(t))\notin K \qquad \forall t\in \left]\underline{t},t_K^- \right] \cup \left[t_K^+,\overline{t} \right[ 
 $$
 
 ### Démonstration {.proof} 
 Voir en [annexe](#pr_theo_bouts). 
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
-Soient $I$ un intervalle ouvert de $\R$, $U=I\times\R^n$, $(t_0,x_0)\in U$ et $f\in C(U,\R^n)$. S'il existe $a,b\in C(I,\R)$ telles que  
+Soient $J$ un intervalle ouvert de $\R$, $(t_0,x_0)\in J\times\R^n$ et $f\in C(J\times\R^n,\R^n)$. S'il existe $a,b\in C(J,\R)$ telles que  
 $$
-\|f(t,x)\|\leq a(t) \|x\| + b(t) \quad \forall (t,x)\in I\times \R^n \ ,
+\|f(t,x)\|\leq a(t) \|x\| + b(t) \quad \forall (t,x)\in J\times \R^n \ ,
 $$
-alors toute[^uniCritExGlob] solution maximale au problème de Cauchy associé est définie sur $I$ entier. On dit alors que $f$ a une *croissance au plus affine*.
+alors toute[^uniCritExGlob] solution maximale au problème de Cauchy associé est définie sur $J$ entier. On dit alors que $f$ a une *croissance au plus affine*.
 
 ### Démonstration {.proof} 
 Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall). 
@@ -411,7 +411,7 @@ Le théorème suivant nous montre que pour un horizon de temps fini donné, on p
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
 
-Soient $U$ un ouvert de $\R\times \R^n$, $f\in C(U,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in U$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
@@ -878,7 +878,7 @@ u(t) &\leq \alpha +\alpha \left[-\exp\left(\int_s^t\beta(r)dr \right) \right]_{t
 \end{align*}
 ce qui donne le résultat.
 
-2. Soit $x:]\underline{t},\overline{t}[\subseteq I\to \R^n$ une solution maximale au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale), 
+2. Soit $x:I\subseteq J\to \R^n$ une solution maximale au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale), 
 $$
 x(t)=x_0 + \int_{t_0}^t f(s,x(s))ds \ ,
 $$
@@ -886,11 +886,11 @@ et donc, utilisant l'hypothèse de borne au plus affine de $f$,
 $$
 \|x(t)\| \leq \|x_0\| + \int_{t_0}^t |b(s)| + |a(s)|\|x(s)\|ds \ .
 $$
-Sur tout segment $[t^-,t^+]\subset ]\underline{t},\overline{t}[$, on peut donc appliquer le Lemme de Grönwall, ce qui donne
+Sur tout segment $[t^-,t^+]\subset I$, on peut donc appliquer le Lemme de Grönwall, ce qui donne
 $$
 \|x(t)\| \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right)
 $$
-avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $I$. D'après le [théoreme des bouts](#theo_bouts), puisque $U=I\times\R^n$, nécessairement $]\underline{t},\overline{t}[=I$.
+avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $J$. Donc $x$ ne peut pas exploser pour $t\in J$, donc d'après le [théoreme des bouts](#theo_bouts), vu que $f$ est définie sur $J\times\R^n$, nécessairement $I=J$.
 
 3. Soient $x:I\to \R^n$ et $x_\delta:I_\delta\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset I$. On sait que
 \begin{align*}
@@ -902,7 +902,7 @@ $$
 |x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t |f(s,x(s))-f(s,x_\delta(s))|ds \qquad \forall t\in I
 $$
 <!-- Si $[t_0,\overline{t}]\subset I\cap I_\delta$, -->
-Définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\partial_x f$ est continue sur $U$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \partial_x f$ est bien défini. On a donc par le théorème des accroissements finis
+Définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\partial_x f$ est continue sur $J\times X$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \partial_x f$ est bien défini. On a donc par le théorème des accroissements finis
 $$
 |x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t M |x(s)-x_\delta(s)|ds \qquad \forall t\in [t_0,\overline{t}] \ .
 $$
@@ -1101,7 +1101,7 @@ $$
 $$
 où $d_X$ et $d_Y$ sont les distances sur $X$ et $Y$ respectivement.
 
-Revenons maintenant à nos moutons. On suppose donc $f$ continue sur $U$ et on veut montrer que $S_f(t_0,x_0)\neq \emptyset$. Soient d'abord $\tau >0$ et $r>0$, tels que $\cC := [t_0-\tau,t_0+\tau]\times \overline{B}_r(x_0) \subset U$. Soit $\tau_m\in]0, \tau]$ tel que $\tau_m\max_\cC \|f\|\leq r$. On va montrer l'existence d'une solution définie par sa forme intégrale 
+Revenons maintenant à nos moutons. On suppose donc $f$ continue sur $J\times X$ et on veut montrer que $S_f(t_0,x_0)\neq \emptyset$. Soient d'abord $\tau >0$ et $r>0$, tels que $\cC := [t_0-\tau,t_0+\tau]\times \overline{B}_r(x_0) \subset J\times X$. Soit $\tau_m\in]0, \tau]$ tel que $\tau_m\max_\cC \|f\|\leq r$. On va montrer l'existence d'une solution définie par sa forme intégrale 
 $$
 x(t) = x_0 + \int_{t_0}^t f(s,x(s)) ds
 $$
@@ -1125,7 +1125,7 @@ $$
 donc la famille $S:=\{x_\epsilon , \ \epsilon \in ]0,1[ \}$ est équicontinue. De plus, vu que leur image est bornée dans $\overline{B}_r(x_0)$ de dimension finie, elle est bien bien relativement compacte. Le théorème d'Ascoli nous dit alors que $S$ est relativement compacte dans $E$. Il existe donc une sous suite $x_{\epsilon_k}$ telle que $\lim_{k\to +\infty} \epsilon_k =0$ et $\lim_{k\to +\infty} x_{\epsilon_k} = x^\star \in E$ au sense de la norme uniforme $\|\cdot \|$. Par uniforme continuité de $f$ sur le compact $\cC$, on en déduit alors que pour tout $s\in [t_0,t_0+\tau_m]$, $\lim_{k\to +\infty} f(s,x_{\epsilon_k}(s-\epsilon_k))= f(s,x^\star(s))$ et donc que $x^\star$ est bien solution de l'équation intégrale, ce qui donne le résultat.
 
 ### Preuve du théorème des bouts {.app #pr_theo_bouts}
-Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset U$ tel que
+Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset J\times X$ tel que
 $$
  \forall t_K \in \left[t_0,\overline{t}\right[ \, , \, \exists t\in \left[t_K,\overline{t}\right[ \: : \: x(t)\in K
 $$
@@ -1137,9 +1137,9 @@ On a donc $\lim_{p\to+\infty} t_p = \overline{t}$, et par compacité de $K$, on 
 
 Soient $\tau>0$, $r>0$ et $\tau_m\in \left(0,\tau \right]$ tels que 
 $$
-\cC:=\left[\overline{t}-2\tau,\overline{t}+2\tau \right]\times \overline{B}_{2r}(\overline{x})\subset U \quad , \quad \tau_m  \max_{\cC} \|f\| \leq r\ .
+\cC:=\left[\overline{t}-2\tau,\overline{t}+2\tau \right]\times \overline{B}_{2r}(\overline{x})\subset J\times X \quad , \quad \tau_m  \max_{\cC} \|f\| \leq r\ .
 $$
-Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset U$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
+Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset J\times X$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
 
 
 ### Stabilité et linéarisé tangent {.app #app_stab_lin}
