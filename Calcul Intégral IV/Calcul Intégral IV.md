@@ -81,7 +81,7 @@ $\sigma$-additives mais telles que $\mu(\varnothing) \neq 0$ ?
 
 ### Exercice -- Ca commence par un $\mathbb{P}$ {.exercice}
 Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
-$\mu(X) = 1$ ?
+$\mu(X) = 1$ ? Une fois que vous avez deviné, justifier la réponse.
 
 ### Mesure de Lebesgue
 Les ensembles mesurables de $\R^n$ (au sens du chapitre "Calcul Intégral III"[^rapp])
@@ -156,12 +156,96 @@ simplement vers $1_A$.
 
 Nous avons bien démontré la $\sigma$-additivité de $v$.
 
-### TODO -- Mesure de Dirac
+### Exercice -- Mesure de Lebesgue d'un pavé 
+Déterminer la mesure de Lebesgue du pavé compact 
+$P = [a_1,b_1] \times \dots \times [a_n, b_n]$.
 
-### TODO -- Mesure de comptage
+### Mesure de Dirac
+Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
+de $X$ (l'ensemble des sous-ensembles de $X$)
+et soit $x \in X$. On appelle *mesure de Dirac* en $x$ la fonction 
+$\delta_x : \mathcal{P}(X) \to [0, +\infty]$ définie par
+$$
+\delta_x(A) = \left|
+\begin{array}{rl}
+1 & \mbox{si $x \in A$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right. 
+$$
+
+### Exercice -- Démonstration
+Montrer que $\delta_x$ est bien une mesure sur $(X, \mathcal{P}(X))$.
+
+### Exercice -- Et en changeant de point de vue ?
+Quand on considère $\delta_x(A)$ comme une fonction de $x$ à $A$ fixé,
+qu'obtient-on ?
 
 
-Mesure de Lebesgue dans $\R^n$
+### Mesure de comptage
+Soit $X$ et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
+de $\R^n$. On appelle *mesure de comptage* sur $X$ la fonction 
+$c : \mathcal{P}(X) \to [0, +\infty]$ définie par
+$$
+c(A) = \left|
+\begin{array}{rl}
+\mathrm{card}(A) & \mbox{si $A$ est fini} \\
++\infty & \mbox{sinon.}
+\end{array}
+\right. 
+$$
+La notation $\mathrm{card}(A)$ désigne le cardinal de $A$ -- c'est-à-dire dans
+le cas d'un ensemble fini, le nombre d'éléments de $A$.
+
+### Exercice -- Démonstration
+Montrer que $c$ est bien une mesure sur $(X, \mathcal{P}(X))$.
+
+Intégrale (redux)
+================================================================================
+
+### Fonction mesurable
+Soit $(X, \mathcal{A})$ un espace mesuré.
+Une fonction $f: X \to \R^n$ (ou éventuellement $f: X \to [-\infty,+\infty]^n$) 
+est *mesurable* (ou *$\mathcal{A}$-mesurable* pour lever toute ambiguité) 
+si l'image réciproque 
+de tout fermé (ou de tout ouvert) de $\R^n$ par $f$ est un ensemble mesurable
+(qui appartient à $\mathcal{A}$).
+
+### Exercice -- Ensemble des parties de $X$
+Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
+une fonction $f: X \to \mathbb{R}^n$ est-elle $\mathcal{A}$-mesurable ?
+
+### Exercice -- Fonctions étagées
+Soit $(X, \mathcal{A})$ un espace mesuré. A quelle condition
+une fonction $f: X \to \mathbb{R}^n$ qui ne prend 
+qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
+
+### Intégrale d'une fonction positive (propriétés descriptives)
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. L'intégrale associée à $\mu$
+est l'unique application qui à toute application mesurable positive 
+$f : X \to [0, +\infty]$ associe la grandeur
+$$
+\int f(x) \, \mu(dx) \in [0, +\infty]
+$$
+caractérisée par
+
+ 1. Pour tout ensemble $A \in \mathcal{A}$,
+    $$
+    \int 1_A(x) \, \mu(dx) = \mu(A).
+    $$
+
+ 2. L'intégrale de $f$ par rapport à $\mu$ 
+    $$
+    \int f(x) \mu(dx)
+    $$
+    est linéaire par rapport à $f$.
+
+ 3. Si la suite de fonctions $f_n$ est croissante et converge simplement vers $f$, 
+    $$
+    \int f(x) \, \mu(dx) = \lim_{n \to +\infty} \int f_n(x) \, \mu(dx).
+    $$
+
+Mesure de Lebesgue -- une approche directe
 ================================================================================
 
 Dans les volets précédents du "Calcul Intégral", 
@@ -598,7 +682,6 @@ et $(Y,\mathcal{B})$ est *mesurable*
 (ou *$\mathcal{A}/\mathcal{B}$-mesurable*)
 si l'image réciproque $A =f^{-1}(B)$
 de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
-
 
 ### L'infini
 Dans le cadre abstrait de l'intégration selon Lebesgue, on pourra si nécessaire
