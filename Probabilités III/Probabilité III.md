@@ -13,9 +13,30 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-# Densités conditionnelles
+Nous nous sommes intéressé jusqu'à présent à l'étude de variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendantes les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. Nous allons nous attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont nous permettre de résumer l'information apportée par une variable (ou vecteur) sur une autre et nous intéresser en particulier à l'**espérance conditionnelle** qui nous indiquera le comportement moyen d'une variable conditionnellement à une autre.
 
-Nous avons étudié précédemment l'indépendance des variables aléatoires à densité. Nous allons nous intéresser ici à caractériser la dépendance entre variables aléatoires à densité et en particulier au problème du conditionnement.
+# Lois conditionnelles dans un couple
+
+Soient deux variables aléatoire $X$ et $Y$ définies sur le même espace probabilisé $(\Omega, \A, \P)$. Dans le cas où $X$ et $Y$ sont indépendantes, on a vu que pour tous boréliens de $\R$ $B_1$ et $B_2$$, on a 
+$$\P(X\in\B_1, Y\in\B_2)= \P(X\in\B_1)\P(Y\in\B_2) = \P_X(B_1)\P_Y(B_2) = \int_{B_1}\P_Y(B_2)\P_X(dx),$$
+où l'on a utilisé la représentation intégrale $\P_X(B_1) = \int_{B_1}\P_X(dx)$.
+
+Du fait de l'indépendance, on a aussi $\P_Y(B_2) = \P(Y\in B_2) = \P(Y \in B_2 | X \in B_1) = \P_Y(B_2|X \in B_1)$ ce qui exprime que pour tout borélien $B_1$, la loi conditionnelle de $Y$ sachant $X\in B_1$ est identique à la loi de $Y$.
+
+Dans le cas général, on va généraliser l'égalité ci-dessus en
+$$\P(X\in\B_1, Y\in\B_2) = \P_X(B_1)\P_Y(B_2 |X\in B_1) = \int_{B_1}\P_Y(B_2|X = x)\P_X(dx)$$
+et s'intéresser à caractériser la loi conditionnelle de $Y$ sachant $X=x$.
+
+De même, on a pour toute application $g : \R^2 \to \R$ borélienne telle que $g(X,Y)$ admette une espérance, on pourra écrire :
+$$\Esp(g(X,Y)) = \int_{\R} \P_X(dx) \int_{\R} g(x,y) \P_Y(dy|X = x)$$
+
+La théorie générale 
+
+## Cas discret
+
+## Densités conditionnelles
+
+Nous avons étudié précédemment l'indépendance des variables aléatoires à densité. Nous allons nous intéresser ici à caractériser la dépendance entre variables aléatoires à densité et en particulier au problème du conditionnement.  
 
 On s'intéresse à caractériser la densité de la variable $Y$ connaissant la valeur prise par la variable $X$, c'est la *densité conditionnelle* de $Y$ sachant $\{X = x\}$ :
 
@@ -29,7 +50,7 @@ La preuve est immédiate puisque $f_{Y|X=x}$ est une fonction positive d'intégr
 L’interprétation de cette définition est la suivante : la fonction $f(Y|X=x)$ est la densité de la “loi conditionnelle de $Y$ sachant que $X = x$”. Bien sûr, nous avons $\P(X = x) = 0$ puisque $X$ admet une densité, donc la phrase ci-dessus n’a pas réellement de sens, mais elle se justifie heuristiquement ainsi : $dx$ et $dy$ étant de “petits” accroissements des variables $x$ et $y$ et lorsque $f$ est continue :
 \begin{align*}
 f_X(x) dx & \approx \P(X \in [x, x+dx])\\
-f_(x,y) dx dy & \approx \P(X \in [x, x+dx], Y \in [y, y+dy])\\
+f_{X,Y}(x,y) dx dy & \approx \P(X \in [x, x+dx], Y \in [y, y+dy])\\
 \end{align*}
 Par suite 
 \begin{align*}
@@ -64,10 +85,10 @@ Soit $Y$ une variable aléatoire intégrable.
 On peut étendre cette définition à toute variable de la forme $h(X,Y)$.
 
 ### Définition {.definition #defespcondh}
-Soit $Y$ une variable aléatoire et $h$ une fonction continue par morceaux positive ou bornée sur $\R^2$.
+Soit $Y$ une variable aléatoire et $h$ une fonction mesurable positive ou bornée sur $\R^2$.
 
  1. L'*espérance conditionnelle de $h(X,Y)$ sachant $\{X=x\}$* est définie par 
-    $$\Esp(h(X,Y)|X=x) = \int_\R y f_{h(x,y)|X=x} (y) dy.$$
+    $$\Esp(h(X,Y)|X=x) = \int_\R h(x,y) f_{Y|X=x} (y) dy.$$
  2. L'*espérance conditionnelle de $h(X,Y)$ sachant $X$* est la **variable aléatoire** définie par :
     $$\Esp(h(X,Y)|X) = \psi(X), \text{ avec } \psi(x) = \Esp(h(X,Y)|X=x).$$
 
@@ -99,7 +120,7 @@ où avons utilisé ici le théorème de Fubini dont l'application est justifiée
 Ce résultat permet de calculer $\Esp( Y )$ en conditionnant par une variable auxiliaire $X$ :
 $$ \Esp( Y ) = \int_\R \Esp(Y | X = x) f_X(x) dx$$
 
-Il généralise la [formule des probabilités totales](), qui correspond ici à $Y = 1_A$ , et $B_x = \{X = x\}$ où les $B_x$ forment cette fois une partition non dénombrable de $\R$. On l’écrit souvent sous forme
+Il généralise la [formule des probabilités totales](Probabilité I.pdf #formprobatot), qui correspond ici à $Y = 1_A$ , et $B_x = \{X = x\}$ où les $B_x$ forment cette fois une partition non dénombrable de $\R$. On l’écrit souvent sous forme
 $$ \Esp \left( \Esp(Y | X) \right) = \Esp( Y )$$
 
 L’espérance conditionnelle étant définie comme l’espérance de la loi conditionnelle,
@@ -145,7 +166,7 @@ a & = \frac{\cov(X,Y)}{\V(X)} = \rho(X,Y)\frac{\sigma_Y}{\sigma_X} \\
 b & = \Esp(Y)  - a \Esp(X)
 \end{align*}
 
-On vérifie aisément que ces valeurs donnent bien un minimum pour $\Esp((Y - (aX + b))^2)$, et déterminent ainsi la meilleure approximation linéaire de $Y$ basée sur $X$ au sens de la distance quadratique moyenne.
+On vérifie aisément que ces valeurs donnent bien un minimum pour $\Esp((Y - (aX + b))^2)$, et déterminent ainsi la meilleure approximation linéaire de $Y$ basée sur $X$ au sens de l'erreur quadratique moyenne.
 
 Cette approximation linéaire vaut
 $$ \Esp(Y) + \rho(X,Y)\frac{\sigma_Y}{\sigma_X} (X -\Esp(X))$$

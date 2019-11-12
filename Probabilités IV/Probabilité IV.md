@@ -15,10 +15,10 @@
 \newcommand{\cov}{\text{Cov}}
 
 
-Nous allons présenter dans ce chapitre l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Philosophique tout d’abord, puisqu’il permet de voir le monde déterministe comme la limite macroscopique d’une accumulation de phénomènes élémentaires microscopiques aléatoires. Portée numérique aussi, car nous verrons que ce théorème est à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique ou en Mathématiques Financières.
+On présente dans ce chapitre l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique ou en Mathématiques Financières.
 Plus généralement, nous allons étudier les suites de variables aléatoires indépendantes et les notions de convergence de variables aléatoires. Nous verrons que plusieurs notions sont possibles, non équivalentes, ce qui enrichit mais complique aussi la description des comportements asymptotiques.
 
-Nous nous plaçons dans le cadre général des variables aléatoires réelles qui n'admettent pas nécessairement de densité.
+On se place désormais dans le cadre général des variables aléatoires réelles qui n'admettent pas nécessairement de densité.
 
 # Suites de variables aléatoires indépendantes 
 On considère une suite **infinie** $(X_n)_{n\in \N^\star}$ de variables aléatoires définies sur l'espace de probabilité $(\Omega, \A, \P)$.
@@ -37,7 +37,7 @@ L'indépendance de la suite $(X_n)_{n\in \N^\star}$ entraîne celle de
 
 ### Exemple {.example}
 Nous considérons l’ensemble $\Omega = [0, 1[$ muni de la tribu borélienne restreinte à cet ensemble, et de la mesure de Lebesgue. A chaque réel $\omega$, nous associons son développement dyadique (unique si l’on impose que les $\omega_i$ ne soient pas tous égaux à 1 à partir d’un certain rang) :
-$$ \omega = \sum_{i\in \N^\star} \frac{\omega_i}{2^i}, \omega_i \in \{0,1\}$$.
+$$ \omega = \sum_{i\in \N^\star} \frac{\omega_i}{2^i}, \omega_i \in \{0,1\}.$$
 L'application $X_i : \Omega \to \{0,1\}$, qui à $\omega$ associe $X_i(\omega) = \omega_i$ est une variable aléatoire sur $\Omega$. En effet, pour $x_i \in \{0,1\}$, $1\leq i \leq n$,
 $$ \{X_i = x_i\} = \bigcup_{x_1,\ldots, x_{i-1} \in \{0,1\}} \left[ \sum_{j=1}^i \frac{x_j}{2^j}, \sum_{j=1}^i \frac{x_j}{2^j} + \frac{1}{2^i}\right[, $$
 qui est bien un élément de la tribu borélienne de $\Omega = [0,1[$, et
@@ -49,26 +49,24 @@ $$ \P\left(\bigcap_{1\leq i \leq n} \{X_i = x_i\}\right) = \frac{1}{2^n} = \prod
 Cela démontre que les variables aléatoires $X_i$ sont indépendantes et de loi de Bernoulli de paramètre $\frac{1}{2}$ . Ainsi, nous venons de construire sur $\Omega$ une suite de variables aléatoires telle que toute sous-suite finie est constituée de variables aléatoires indépendantes. C’est donc une suite de
 variables aléatoires indépendantes de loi de Bernoulli de paramètre $\frac{1}{2}$ .
 
-# Inégalités de concentrations -> demi amphi théorie de la mesure (en lien avec l'espérance)
-
 # Convergences et loi des grands nombres
 
 ## Convergences de variables aléatoires
-Dans ce paragraphe, nous allons étudier des modes de convergence impliquant la proximité des variables aléatoires elles-mêmes, contrairement au cas de la convergence en loi qui sera étudiée ultérieurement.
+Dans ce paragraphe, on étudie des modes de convergence impliquant la proximité des variables aléatoires elles-mêmes.
 
-On considère une suite $(X_n)_{n\in \N^\star}$ de vecteurs aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme dans $\R^d$.
+On considère une suite $(X_n)_{n\in \N^\star}$ de vecteurs aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
 
 ### Définition {.definition}
 
  1. La suite $(X_n)_{n\in \N^\star}$ converge *presque sûrement* vers $X$, ce qui s'écrit $X_n \to X$ p.s., s'il existe un ensemble $N \in \A$ de probabilité nulle tel que
- $$ X_n (\omega) \xrightarrow[n \to \infty]{}  X(\omega) \forall \omega \notin N.$$
+ $$ X_n (\omega) \xrightarrow[n \to \infty]{}  X(\omega),\,\,\, \forall \omega \notin N.$$
  2. La suite $(X_n)_{n\in \N^\star}$ converge *en probabilité* vers $X$, ce qui s'écrit $X_n \xrightarrow{\P} X$, si $\forall \epsilon >0$ on a
  $$ \P(|X_n-X| \geq \epsilon) \xrightarrow[n \to \infty]{}  0. $$
  3. La suite $(X_n)_{n\in \N^\star}$ converge *en moyenne* vers $X$, ce qui s'écrit $X_n \xrightarrow{\L^1} X$, si $X_n$ et $X$ sont dans $\L^1$ et si
  $$ \Esp(|X_n - X|) \xrightarrow[n \to \infty]{}  0 .$$
 
 ### Remarque {.remark}
-La convergence presque sûre est la plus proche de la convergence simple des fonctions. Mais ici, nous permettons à certains $\omega$ de ne pas vérifier $X_n(\omega) \to X(\omega)$, si toutefois la probabilité de réalisation de l'ensemble de ces $\omega$ est nulle.
+La convergence presque sûre est la plus proche de la convergence simple des fonctions. Mais ici, nous permettons à certains $\omega$ de ne pas vérifier $X_n(\omega) \to X(\omega)$, si toutefois la probabilité de réalisation de l'ensemble de ces $\omega$ est nulle. C'est l'équivalent probabiliste du *presque partout* vu en calcul intégral.
 
 Ces convergences ne sont pas équivalentes comme le montrent les exemples suivants.
 
@@ -76,8 +74,8 @@ Ces convergences ne sont pas équivalentes comme le montrent les exemples suivan
 
  * Soit $(X_n)_{n\in \N^\star}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
  $$ \P(X_n=1) = \frac{1}{n} ; \P(X_n = 0) = 1- \frac{1}{n}.$$
- Pour tout $\epsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \epsilon) = \frac{1}{n}$ tend vers 0 quand $n tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\star}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
- Considérons maintenant une suite $(Y_n)_{n\in \N^\star}$ de variables aléatoires de Bernoulli ) valeurs dans $\{0,n^2\}$ telles que 
+ Pour tout $\epsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \epsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\star}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
+ Considérons maintenant une suite $(Y_n)_{n\in \N^\star}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
  $$ \P(Y_n=n^2) = \frac{1}{n} ; \P(Y_n = 0) = 1- \frac{1}{n}.$$
  Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\star}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
  * Soit $U$ une variable aléatoire uniforme sur $[0 , 1]$. Posons $Z_n = 1_{\{ U \leq \frac{1}{n}\} }$. Alors
@@ -92,7 +90,7 @@ La convergence p.s. et la convergence en moyenne entraînent la convergence en p
 ### Démonstration {.proof}
 Soit $A_{n,\epsilon} = \{|X_n - X| > \epsilon \}$.
 
- * Supposons que $X_n \to X$ p.s. et soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \to X(\omega)$. Si $\omega \notin N$, on a $\omega \notin A_{n,\epsilon}$ pour tout $n \geq n_0$, où $n_0$ dépende de $\omega$ et de $\epsilon$, ce qui implique que les variables aléatoires $Y_{n,\epsilon} = 1_{N^c\cap A_{n,\epsilon}}$ tendent simplement vers 0 lorsque $n \to \infty$. Comme on a aussi $0 \leq Y_{n,\epsilon} \leq 1$ le théorème de convergence dominée implique que $\Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$ Mais
+ * Supposons que $X_n \to X$ p.s. et soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \to X(\omega)$. Si $\omega \notin N$, on a $\omega \notin A_{n,\epsilon}$ pour tout $n \geq n_0$, où $n_0$ dépend de $\omega$ et de $\epsilon$, ce qui implique que les variables aléatoires $Y_{n,\epsilon} = 1_{N^c\cap A_{n,\epsilon}}$ tendent simplement vers 0 lorsque $n \to \infty$. Comme on a aussi $0 \leq Y_{n,\epsilon} \leq 1$ le théorème de convergence dominée implique que $\Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$ Mais
  $$\P(A_{n,\epsilon}) \leq \P(N^c \cap A_{n,\epsilon}) + \P(N) = \P(N^c \cap A_{n,\epsilon}) = \Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$$
 
  * Supposons que $X_n \xrightarrow{\L^1} X$. Pour $\epsilon >0$, on a $1_{A_{n,\epsilon}} \leq \frac{1}{\epsilon}|X_n - X|$, donc 
