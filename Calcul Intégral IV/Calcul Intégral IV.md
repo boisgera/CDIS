@@ -100,10 +100,7 @@ L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$
 -- c'est-à-dire formellement le triplet $(X, \mathcal{A}, \mu)$ -- 
 est un *espace mesuré*.
 
------
-
-
-### Exercice -- Les mesures sont (finiment) additives {.exercice}
+### Exercice -- Les mesures sont (finiment) additives {.exercise}
 Vérifier que tout mesure $\mu$ sur $(X, \mathcal{A})$ est additive, 
 c'est-à-dire que si les ensembles $A_0, A_1, A_2, \dots, A_j$ de $\mathcal{A}$
 sont deux à deux disjoints, alors
@@ -111,16 +108,16 @@ $$
 \mu \left( \bigcup_{k=0}^{j} A_k \right) = \sum_{k=0}^{j} \mu(A_k).
 $$
 
-### Exercice -- Monotonie {.exercice}
+### Exercice -- Monotonie {.exercise}
 Vérifier que tout mesure est *croissante* (on dit aussi *monotone*), 
 c'est-à-dire que si $A, B \in \mathcal{A}$
 et $A \subset B$, $\mu(A) \subset \mu(B)$.
 
-### Exercice -- Cas dégénéré {.exercice} 
+### Exercice -- Cas dégénéré {.exercise} 
 Existe-t'il des fonctions $\mu: \mathcal{A} \to [0, +\infty]$ qui soient
 $\sigma$-additives mais telles que $\mu(\varnothing) \neq 0$ ?
 
-### Exercice -- Ca commence par un $\mathbb{P}$ {.exercice}
+### Exercice -- Ca commence par un $\mathbb{P}$ {.exercise}
 Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
 $\mu(X) = 1$ ? Une fois que vous avez deviné, justifier la réponse.
 
@@ -197,7 +194,7 @@ simplement vers $1_A$.
 
 Nous avons bien démontré la $\sigma$-additivité de $v$.
 
-### Exercice -- Mesure de Lebesgue d'un pavé 
+### Exercice -- Mesure de Lebesgue d'un pavé {.exercise}
 Déterminer la mesure de Lebesgue du pavé compact 
 $P = [a_1,b_1] \times \dots \times [a_n, b_n]$.
 
@@ -215,13 +212,12 @@ $$
 \right. 
 $$
 
-### Exercice -- Démonstration
+### Exercice -- Démonstration {.exercise}
 Montrer que les mesures de Dirac sont bien des mesures.
 
-### Exercice -- Et en changeant de point de vue ?
+### Exercice -- Et en changeant de point de vue ? {.exercise}
 Quand on considère $\delta_x(A)$ comme une fonction de $x$ à $A$ fixé,
 qu'obtient-on ?
-
 
 ### Mesure de comptage
 Soit $X$ et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
@@ -238,10 +234,10 @@ $$
 La notation $\mathrm{card}(A)$ désigne le cardinal de $A$ -- c'est-à-dire dans
 le cas d'un ensemble fini, le nombre d'éléments de $A$.
 
-### Exercice -- Démonstration
+### Exercice -- Démonstration {.exercise}
 Montrer que les mesures de comptage sont bien des mesures.
 
-Intégrale (redux)
+Intégrale
 ================================================================================
 
 ### Fonction mesurable
@@ -253,11 +249,11 @@ si l'image réciproque
 de tout fermé (ou de tout ouvert) de $\R^n$ par $f$ est un ensemble mesurable
 (qui appartient à $\mathcal{A}$).
 
-### Exercice -- Ensemble des parties de $X$
+### Exercice -- Ensemble des parties de $X$ {.exercise}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
 une fonction $f: X \to \mathbb{R}^n$ est-elle $\mathcal{A}$-mesurable ?
 
-### Exercice -- Fonctions étagées
+### Exercice -- Fonctions étagées {.exercise}
 Soit $(X, \mathcal{A})$ un espace mesuré. A quelle condition
 une fonction $f: X \to \mathbb{R}^n$ qui ne prend 
 qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
@@ -302,11 +298,11 @@ $$
 \int f \mu = \int_X f(x) \, \mu(dx) := \int_X f_+(x) \, \mu(dx) - \int_X f_-(x) \, \mu(dx) \in \R.
 $$
 
-### Exercice -- Absolue intégrabilité
+### Exercice -- Absolue intégrabilité {.exercise}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
 est intégrable alors $|f|$ est également intégrable.
 
-### Exercice -- Fonctions étagées
+### Exercice -- Fonctions étagées {.exercise}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré, soient $A_0, A_1, \dots, A_{n-1}$ 
 des ensemble mesurables disjoints et $y_0, \dots, y_{n-1} \in \R \setminus \{0\}$. 
 A quelle condition la fonction
@@ -323,10 +319,11 @@ pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
 deux intégrales sont égales.
 
 
-### TODO -- Rah compliqué, il faut parler d'ensemble négligeable 
+### TODO 
+Rah compliqué, il faut parler d'ensemble négligeable 
 ... et de l'impact sur l'intégrale. Bon, bascule en exo ?
 
-### Exercice -- Fonctions à valeurs infinies
+### Exercice -- Fonctions à valeurs infinies {.exercise}
 Soit $f: \R^n \to [-\infty,+\infty]$. Montrer que si $f$ est intégrable par 
 rapport à la mesure de Lebesgue $v$ alors 
 $$
@@ -335,7 +332,7 @@ $$
 **TODO**
 
 
-Mesure de Lebesgue -- une approche directe
+Mesure de Lebesgue -- Approche directe
 ================================================================================
 
 Dans les volets précédents du "Calcul Intégral", 

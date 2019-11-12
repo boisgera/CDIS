@@ -32,10 +32,11 @@ def transform(doc):
     remove_html(doc)
     divify(doc)
     proofify(doc)
+
     add_font_awesome(doc)
     add_link_to_answers(doc)
 
-    demote_proofs_questions_and_answers(doc) # -> level 4
+    demote_proofs_questions_answers_and_exercises(doc) # -> level 4
     make_level_4_section_headings_inline(doc)
 
     # make_level_4_section_headings_inline(doc) # was: 
@@ -321,13 +322,13 @@ def make_level_4_section_headings_inline(doc):
         inlines.insert(0, RawInline("latex", r"\vspace{3.25ex plus 1ex minus .2ex}"))
         inlines.insert(1, span)
 
-def demote_proofs_questions_and_answers(doc):
+def demote_proofs_questions_answers_and_exercises(doc):
     for elt in pandoc.iter(doc):
         if isinstance(elt, Header):
             header = elt
             level, attr, inlines = header[:]
             identifier, classes, kv_pairs = attr
-            if "proof" in classes or "question" in classes or "answer" in classes:
+            if "proof" in classes or "question" in classes or "answer" in classes or "exercise" in classes:
                 if level == 3:
                     level = 4
                     header[:] = level, attr, inlines
