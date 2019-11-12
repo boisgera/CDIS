@@ -9,6 +9,137 @@
 
 \newcommand{\ds}{\mathbin{\Delta}}
 
+Objectifs
+================================================================================
+
+### Basique
+
+  - tribu et mesure (définitions)
+
+### Standard
+
+### Avancé
+
+### Hors-programme
+
+Mesure
+================================================================================
+
+### Tribu et espace mesurable {.definition}
+Une *tribu* (ou *$\sigma$-algèbre*) $\mathcal{A}$ sur un ensemble $X$ est une 
+collection d'ensembles de $X$ contenant l'ensemble vide et stable par passage 
+au complémentaire et à l'union dénombrable :
+
+  1. $\varnothing \in \mathcal{A}$.
+
+  2. Si $A \in \mathcal{A}$, $A^c = X \setminus A \in \mathcal{A}$.
+
+  3. Si pour tout $k \in \N$, $A_k \in \mathcal{A}$, alors
+     $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}.$
+
+Un ensemble $A \in \mathcal{A}$ est dit *mesurable* 
+(relativement à la tribu $\mathcal{A}$ ou $\mathcal{A}$-mesurable).
+L'ensemble $X$ muni de $\mathcal{A}$ 
+-- c'est-à-dire formellement la paire $(X,\mathcal{A})$ -- 
+est un *espace mesurable*.
+
+### Mesure et espace mesuré {.definition}
+Une *mesure* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
+est une fonction 
+$$
+\mu: \mathcal{A} \to [0, +\infty]
+$$ 
+telle que $\mu(\varnothing)= 0$ et telle que pour toute suite
+$(A_k)_{k\in \N}$ d'ensembles de $\mathcal{A}$ disjoints deux à deux, on ait
+$$
+\mu \left( \bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k) ;
+$$
+on dit que $\mu$ est *$\sigma$-additive*.
+L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ 
+-- c'est-à-dire formellement le triplet $(X, \mathcal{A}, \mu)$ -- 
+est un *espace mesuré*.
+
+-----
+
+### {.exercice}
+Vérifier que tout mesure est additive
+
+Notons qu'en prenant une suite de la forme 
+$A_0, \dots, A_n, \varnothing, \varnothing, \dots$, 
+on montre que pour toute
+suite finie $A_0, \dots, A_n$ d'ensembles disjoints de $\mathcal{A}$, on a
+$$
+\mu \left( \bigcup_{k=0}^n A_k \right) = \sum_{k=0}^n \mu(A_k) ;
+$$
+la mesure $\mu$ est donc *additive*. 
+
+### {.exercice}
+Vérifier que tout mesure est *croissante*, c'est-à-dire que ...
+
+En particulier, si $A, B \in \mathcal{A}$
+et $A \subset B$, en exploitant ce résultat pour $A$ et $B \setminus A$
+qui sont deux ensembles disjoints de $\mathcal{A}$, on établit que
+$\mu(A) \subset \mu(B)$ ; $\mu$ est donc *croissante*.
+
+### {.exercice}
+Vérifier qu'une mesure ... probabilité ?
+
+### Mesure de Lebesgue
+Les ensembles mesurables de $\R^n$ (au sens du chapitre "Calcul Intégral III"[^rapp])
+forment une tribu qui est notée $\mathcal{L}(\R^n)$ et est appelée *tribu de Lebesgue*
+sur $\R^n$. 
+La fonction $v$ qui a un ensemble mesurable $A$ associe
+$$
+v(A) = \left|
+\begin{array}{cl}
+\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
++\infty & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est une mesure nommé *mesure de Lebesgue* sur $\R^n$.
+
+[^rapp]: c'est-à-dire les ensembles $A$ de $\R^n$ tels que pour tout pavé compact $P$ de 
+$\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Henstock-Kurzweil.
+
+### TODO -- Démonstration {.proof}
+La démonstration que les ensembles mesurables forment une tribu a été fournie 
+dans le chapitre "Calcul Intégral II" dans $\R$ 
+(cf. "Propriétés élémentaires" des ensembles mesurables) ; 
+la démonstration dans le cas général de $\R^n$ est tout à fait similaire.
+La fonction $v$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing$,
+$$
+v(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
+$$
+Soit $(A_k)_{k\in \N}$ une suite d'ensembles de $\mathcal{L}(\R^n)$ 
+disjoints deux à deux. Posons $A = \cup_{k=0}^{+\infty} A_k$, $f = 1_A$
+et considérons la suite des fonctions caractéristiques 
+$$f_j = 1_{\cup_{k=0}^j A_k}.$$ 
+
+<!--
+
+Cette suite est croissante ; supposons temporairement toutes les fonctions
+$f_k$ soient intégrable.
+$$
+\sum_{k=0}^j v(A_k) = \int 1_{\cup_{k=0}^j A_k}(x) \,dx = \sum_{k=0}^j \int 1_{A_k}(x) \,dx
+= \sum_{k=0}^j v(A_k)
+$$
+
+
+$f_k$ n'est pas intégrable, par le critère d'intégrabilité dominée
+$f$ n'est pas non plus intégrable.
+
+-->
+
+
+
+
+
+### TODO -- Mesure de Dirac
+
+### TODO -- Mesure de comptage
+
+
 Mesure de Lebesgue dans $\R^n$
 ================================================================================
 
@@ -178,47 +309,6 @@ $$
 \mu^* = \mu^*|_A + \mu^*|_{A^c}.
 $$
 
-### Tribu et espace mesurable {.definition}
-Une *tribu* ou *$\sigma$-algèbre* $\mathcal{A}$ sur un ensemble $X$ est une 
-collection d'ensembles de $X$ contenant l'ensemble vide et stable par passage 
-au complémentaire et à l'union dénombrable :
-
-  1. $\varnothing \in \mathcal{A}$.
-
-  2. Si $A \in \mathcal{A}$, $A^c = X \setminus A \in \mathcal{A}$.
-
-  3. Si pour tout $k \in \N$, $A_k \in \mathcal{A}$, alors
-     $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}.$
-
-Un ensemble de $\mathcal{A}$ est dit *mesurable* ; 
-l'ensemble $X$ muni de $\mathcal{A}$ est un *espace mesurable*.
-
-### Mesure et espace mesuré {.definition}
-Une *mesure* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
-est une fonction 
-$$
-\mu: \mathcal{A} \to [0, +\infty]
-$$ 
-telle que $\mu(\varnothing)= 0$ et telle que pour toute suite
-$A_k$, $k\in \N$, d'ensembles de $\mathcal{A}$ disjoints deux à deux, on ait
-$$
-\mu \left( \bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k) ;
-$$
-on dit que $\mu$ est *$\sigma$-additive*.
-L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
-
-### {.remark .post}
-Notons qu'en prenant une suite de la forme 
-$A_0, \dots, A_n, \varnothing, \varnothing, \dots$, 
-on montre que pour toute
-suite finie $A_0, \dots, A_n$ d'ensembles disjoints de $\mathcal{A}$, on a
-$$
-\mu \left( \bigcup_{k=0}^n A_k \right) = \sum_{k=0}^n \mu(A_k) ;
-$$
-la mesure $\mu$ est donc *additive*. En particulier, si $A, B \in \mathcal{A}$
-et $A \subset B$, en exploitant ce résultat pour $A$ et $B \setminus A$
-qui sont deux ensembles disjoints de $\mathcal{A}$, on établit que
-$\mu(A) \subset \mu(B)$ ; $\mu$ est donc *croissante*.
 
 ### Mesure associée à une mesure extérieure {.theorem}
 Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
