@@ -14,35 +14,44 @@ Objectifs
 
 Ou mesure image et intégrale associée ? Ou mesures construites à partir
 d'une mesure de référence et d'une fonction positive ?
+Ou ensemble négligeable et impact sur l'intégrale ... et positivité et nullité ? 
 
 ### TODO -- Basique
 
-  - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions)
+  - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions + application directe)
 
-  - Mesures de Lebesgue, de Dirac et de comptage (définitions)
+  - Définitions des mesures classiques 
+    (de Lebesgue, de Dirac et de comptage)
 
-  - Fonction $\mathcal{A}$-mesurable (définition)
+  - Fonction $\mathcal{A}$-mesurable (définition + caractérisation comme des
+    limites simples de fonction étagées mesurables)
 
   - ...
 
 ### TODO -- Standard
 
-  - Intégrale d'une fonction positive (propriétés caractéristiques)
+  - Intégrale d'une fonction positive par rapport à une mesure $\mu$ 
+    (propriétés caractéristiques)
 
-  - Intégrabilité et intégrale des fonctions signées (définition)
+  - Intégrabilité et intégrale des fonctions signées par rapport à une mesure 
+    $\mu$ 
+    (définition)
 
-  - ...
+  - Intégrale de Lebesgue et de Henstock-Kurzweil.
 
 ### TODO -- Avancé
 
   - Construction de l'intégrale par rapport à $\mu$.
 
+  - Tribu engendrée
+
   - ...
 
 ### TODO -- Hors-programme
 
-  - Démonstration que l'intégrale par rapport à $\mu$ satisfait les
-    propriétés caractéristiques.
+  - Construction directe (sans l'intégrale de H.-K.) de la mesure de Lebesgue.
+
+  - Démonstration des propriétés caractéristiques de l'intégrale.
 
   - Notion de mesure extérieure
 
@@ -302,6 +311,26 @@ $$
 f = \sum_{j=0}^k y_k 1_{A_k}
 $$
 est-elle intégrable ? Quelle est alors la valeur de son intégrale ?
+
+### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
+Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
+par rapport à la mesure de Lebesgue $v$ si et seulement si 
+$f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
+pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
+deux intégrales sont égales.
+
+
+### TODO -- Rah compliqué, il faut parler d'ensemble négligeable 
+... et de l'impact sur l'intégrale.
+
+### Exercice -- Fonctions à valeurs infinies
+Soit $f: \R^n \to [-\infty,+\infty]$. Montrer que si $f$ est intégrable par 
+rapport à la mesure de Lebesgue $v$ alors 
+$$
+v(f^{-1}(+\infty)) = v(f^{-1}(-\infty)) = 0.
+$$
+**TODO**
+
 
 Mesure de Lebesgue -- une approche directe
 ================================================================================
