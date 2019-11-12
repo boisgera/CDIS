@@ -12,15 +12,44 @@
 Objectifs
 ================================================================================
 
-### Basique
+Ou mesure image et intégrale associée ? Ou mesures construites à partir
+d'une mesure de référence et d'une fonction positive ?
 
-  - tribu et mesure (définitions)
+### TODO -- Basique
 
-### Standard
+  - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions)
 
-### Avancé
+  - Mesures de Lebesgue, de Dirac et de comptage (définitions)
 
-### Hors-programme
+  - Fonction $\mathcal{A}$-mesurable (définition)
+
+  - ...
+
+### TODO -- Standard
+
+  - Intégrale d'une fonction positive (propriétés caractéristiques)
+
+  - Intégrabilité et intégrale des fonctions signées (définition)
+
+  - ...
+
+### TODO -- Avancé
+
+  - Construction de l'intégrale par rapport à $\mu$.
+
+  - ...
+
+### TODO -- Hors-programme
+
+  - Démonstration que l'intégrale par rapport à $\mu$ satisfait les
+    propriétés caractéristiques.
+
+  - Notion de mesure extérieure
+
+  - Mesure de Hausdorff
+
+  - ...
+
 
 Mesure
 ================================================================================
@@ -175,7 +204,7 @@ $$
 $$
 
 ### Exercice -- Démonstration
-Montrer que $\delta_x$ est bien une mesure sur $(X, \mathcal{P}(X))$.
+Montrer que les mesures de Dirac sont bien des mesures.
 
 ### Exercice -- Et en changeant de point de vue ?
 Quand on considère $\delta_x(A)$ comme une fonction de $x$ à $A$ fixé,
@@ -198,15 +227,16 @@ La notation $\mathrm{card}(A)$ désigne le cardinal de $A$ -- c'est-à-dire dans
 le cas d'un ensemble fini, le nombre d'éléments de $A$.
 
 ### Exercice -- Démonstration
-Montrer que $c$ est bien une mesure sur $(X, \mathcal{P}(X))$.
+Montrer que les mesures de comptage sont bien des mesures.
 
 Intégrale (redux)
 ================================================================================
 
 ### Fonction mesurable
 Soit $(X, \mathcal{A})$ un espace mesuré.
-Une fonction $f: X \to \R^n$ (ou éventuellement $f: X \to [-\infty,+\infty]^n$) 
-est *mesurable* (ou *$\mathcal{A}$-mesurable* pour lever toute ambiguité) 
+Une fonction $f: X \to [-\infty,+\infty]^n$ est *mesurable* 
+(on trouvera aussi les terminologies *$\mathcal{A}$-mesurable* 
+ou $\mu$-mesurable pour lever toute ambiguité) 
 si l'image réciproque 
 de tout fermé (ou de tout ouvert) de $\R^n$ par $f$ est un ensemble mesurable
 (qui appartient à $\mathcal{A}$).
@@ -220,30 +250,58 @@ Soit $(X, \mathcal{A})$ un espace mesuré. A quelle condition
 une fonction $f: X \to \mathbb{R}^n$ qui ne prend 
 qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
 
-### Intégrale d'une fonction positive (propriétés descriptives)
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. L'intégrale associée à $\mu$
+### Intégrale d'une fonction positive -- Propriétés caractéristiques
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. L'intégrale par rapport à $\mu$
 est l'unique application qui à toute application mesurable positive 
-$f : X \to [0, +\infty]$ associe la grandeur
+$f : X \to [0, +\infty]$ associe la grandeur notée
 $$
-\int f(x) \, \mu(dx) \in [0, +\infty]
+\int f\mu = \int_X f(x) \, \mu(dx) \in [0, +\infty]
 $$
-caractérisée par
+et qui est caractérisée par
 
  1. Pour tout ensemble $A \in \mathcal{A}$,
     $$
-    \int 1_A(x) \, \mu(dx) = \mu(A).
+    \int_X 1_A(x) \, \mu(dx) = \mu(A).
     $$
 
  2. L'intégrale de $f$ par rapport à $\mu$ 
     $$
-    \int f(x) \mu(dx)
+    \int_X f(x) \mu(dx)
     $$
     est linéaire par rapport à $f$.
 
- 3. Si la suite de fonctions $f_n$ est croissante et converge simplement vers $f$, 
+ 3. Si la suite de fonctions mesurables $f_n:X \to [0, +\infty]$ est croissante 
+    et converge simplement vers $f$, alors
     $$
-    \int f(x) \, \mu(dx) = \lim_{n \to +\infty} \int f_n(x) \, \mu(dx).
+    \int_X f(x) \, \mu(dx) = \lim_{n \to +\infty} \int_X f_n(x) \, \mu(dx).
     $$
+
+### Intégrale d'une fonction signée
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
+Soit $f : X \to [-\infty, +\infty]$ une fonction mesurable.
+On dit que $f$ est *intégrable* (par rapport à $\mu$ ou $\mu$-intégrable) 
+si les intégrales des fonctions positives
+$$
+f_+ := \max(f, 0) \; \mbox{ et } f_- = -\min(f, 0) \;
+$$
+sont finies et on définit alors l'intégrale de $f$ par rapport à $\mu$
+comme
+$$
+\int f \mu = \int_X f(x) \, \mu(dx) := \int_X f_+(x) \, \mu(dx) - \int_X f_-(x) \, \mu(dx) \in \R.
+$$
+
+### Exercice -- Absolue intégrabilité
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
+est intégrable alors $|f|$ est également intégrable.
+
+### Exercice -- Fonctions étagées
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré, soient $A_0, A_1, \dots, A_{n-1}$ 
+des ensemble mesurables disjoints et $y_0, \dots, y_{n-1} \in \R \setminus \{0\}$. 
+A quelle condition la fonction
+$$
+f = \sum_{j=0}^k y_k 1_{A_k}
+$$
+est-elle intégrable ? Quelle est alors la valeur de son intégrale ?
 
 Mesure de Lebesgue -- une approche directe
 ================================================================================
