@@ -30,7 +30,7 @@ Ou ensemble négligeable et impact sur l'intégrale ... et positivité et nullit
 
 ### TODO -- Standard
 
-  - Intégrale d'une fonction positive
+  - Intégrale des fonctions positives
     (propriétés caractéristiques)
 
   - Intégrale des fonctions signées 
