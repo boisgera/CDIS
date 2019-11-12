@@ -20,10 +20,10 @@ Ou ensemble négligeable et impact sur l'intégrale ... et positivité et nullit
 
   - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions + application directe)
 
-  - Définitions des mesures classiques 
+  - Mesures classiques 
     (de Lebesgue, de Dirac et de comptage)
 
-  - Fonction $\mathcal{A}$-mesurable (définition + caractérisation comme des
+  - Fonctions mesurables (définition + caractérisation comme des
     limites simples de fonction étagées mesurables)
 
   - ...
@@ -41,6 +41,7 @@ Ou ensemble négligeable et impact sur l'intégrale ... et positivité et nullit
 
   - Intégrale de Lebesgue et de Henstock-Kurzweil.
 
+  - ...
 
 ### TODO -- Avancé
 
@@ -49,6 +50,8 @@ Ou ensemble négligeable et impact sur l'intégrale ... et positivité et nullit
   - Tribu engendrée, Boréliens
 
   - Mesure produit, Fubini
+
+  - ...
 
 ### TODO -- Hors-programme
 
