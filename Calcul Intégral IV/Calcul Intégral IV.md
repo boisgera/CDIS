@@ -61,28 +61,27 @@ est un *espace mesuré*.
 
 -----
 
-### {.exercice}
-Vérifier que tout mesure est additive
 
-Notons qu'en prenant une suite de la forme 
-$A_0, \dots, A_n, \varnothing, \varnothing, \dots$, 
-on montre que pour toute
-suite finie $A_0, \dots, A_n$ d'ensembles disjoints de $\mathcal{A}$, on a
+### Exercice -- Les mesures sont (finiment) additives {.exercice}
+Vérifier que tout mesure $\mu$ sur $(X, \mathcal{A})$ est additive, 
+c'est-à-dire que si les ensembles $A_0, A_1, A_2, \dots, A_j$ de $\mathcal{A}$
+sont deux à deux disjoints, alors
 $$
-\mu \left( \bigcup_{k=0}^n A_k \right) = \sum_{k=0}^n \mu(A_k) ;
+\mu \left( \bigcup_{k=0}^{j} A_k \right) = \sum_{k=0}^{j} \mu(A_k).
 $$
-la mesure $\mu$ est donc *additive*. 
 
-### {.exercice}
-Vérifier que tout mesure est *croissante*, c'est-à-dire que ...
+### Exercice -- Monotonie {.exercice}
+Vérifier que tout mesure est *croissante* (on dit aussi *monotone*), 
+c'est-à-dire que si $A, B \in \mathcal{A}$
+et $A \subset B$, $\mu(A) \subset \mu(B)$.
 
-En particulier, si $A, B \in \mathcal{A}$
-et $A \subset B$, en exploitant ce résultat pour $A$ et $B \setminus A$
-qui sont deux ensembles disjoints de $\mathcal{A}$, on établit que
-$\mu(A) \subset \mu(B)$ ; $\mu$ est donc *croissante*.
+### Exercice -- Cas dégénéré {.exercice} 
+Existe-t'il des fonctions $\mu: \mathcal{A} \to [0, +\infty]$ qui soient
+$\sigma$-additives mais telles que $\mu(\varnothing) \neq 0$ ?
 
-### {.exercice}
-Vérifier qu'une mesure ... probabilité ?
+### Exercice -- Ca commence par un $\mathbb{P}$ {.exercice}
+Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
+$\mu(X) = 1$ ?
 
 ### Mesure de Lebesgue
 Les ensembles mesurables de $\R^n$ (au sens du chapitre "Calcul Intégral III"[^rapp])
@@ -102,7 +101,7 @@ est une mesure nommé *mesure de Lebesgue* sur $\R^n$.
 [^rapp]: c'est-à-dire les ensembles $A$ de $\R^n$ tels que pour tout pavé compact $P$ de 
 $\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Henstock-Kurzweil.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
 La démonstration que les ensembles mesurables forment une tribu a été fournie 
 dans le chapitre "Calcul Intégral II" dans $\R$ 
 (cf. "Propriétés élémentaires" des ensembles mesurables) ; 
@@ -111,29 +110,51 @@ La fonction $v$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing
 $$
 v(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
 $$
+
+Reste à montrer la $\sigma$-additivité de $v$.
 Soit $(A_k)_{k\in \N}$ une suite d'ensembles de $\mathcal{L}(\R^n)$ 
-disjoints deux à deux. Posons $A = \cup_{k=0}^{+\infty} A_k$, $f = 1_A$
-et considérons la suite des fonctions caractéristiques 
-$$f_j = 1_{\cup_{k=0}^j A_k}.$$ 
+disjoints deux à deux. Trois cas uniquement peuvent se produirent :
 
-<!--
+  1. La somme $\sum_{k=0}^{+\infty} v(A_k)$ est finie.
 
-Cette suite est croissante ; supposons temporairement toutes les fonctions
-$f_k$ soient intégrable.
-$$
-\sum_{k=0}^j v(A_k) = \int 1_{\cup_{k=0}^j A_k}(x) \,dx = \sum_{k=0}^j \int 1_{A_k}(x) \,dx
-= \sum_{k=0}^j v(A_k)
-$$
+  2. Pour tout $k \in \N$, $v(A_k) < +\infty$ mais $\sum_{k=0}^{+\infty} v(A_k) = +\infty$.
 
+  3. Il existe un $k \in \N$ tel que $v(A_k) = +\infty$.
 
-$f_k$ n'est pas intégrable, par le critère d'intégrabilité dominée
-$f$ n'est pas non plus intégrable.
+Posons 
+$$A = \cup_{k=0}^{+\infty} A_k \; \mbox{ et } \; f_j = 1_{\cup_{k=0}^j A_k}.$$ 
+La suite des $f_j$ est croissante, composée de fonctions mesurables et converge
+simplement vers $1_A$.
 
--->
+ 1. Dans le premier cas, comme $f_j = \sum_{k=0}^j 1_{A_k}$ que chaque 
+    fonction caractéristique $1_{A_k}$ est intégrable, $f_j$ est intégrable.
+    Par ailleurs,
+    $$
+    \int f_j(x) \, dx = \sum_{k=0}^j \int 1_{A_k}(x) \, dx = \sum_{k=0}^j v(A_k) \leq \sum_{k=0}^{+\infty} v(A_k) < +\infty.
+    $$
+    Par le théorème de convergence monotone, on a donc
+    $$
+    v(A) = \int 1_A(x) \, dx = \lim_{j \to +\infty} \int f_j(x) \, dx =  \sum_{k=0}^{+\infty} v(A_k).
+    $$
 
+ 2. Dans le second cas, comme
+    $$
+    \sup_j \int f_j(x) \, dx = \sum_{k=0}^{+\infty} v(A_k) = + \infty,
+    $$
+    le théorème de convergence monotone nous affirme que $1_A$ n'est pas intégrable.
+    Par définition de $v(A)$, on a donc $v(A) = +\infty$ et donc on a également
+    $$
+    v(A) = \sum_{k=0}^{+\infty} v(A_k).
+    $$
 
+ 3. Dans le dernier cas, par le critère d'intégrabilité dominée, 
+    si $v(A_k)=+\infty$, $f_k$ n'est pas intégrable et donc $1_A$ non plus,
+    ce qui entraîne $v(A) = +\infty$. On a donc à nouveau
+    $$
+    v(A) = \sum_{k=0}^{+\infty} v(A_k).
+    $$
 
-
+Nous avons bien démontré la $\sigma$-additivité de $v$.
 
 ### TODO -- Mesure de Dirac
 
