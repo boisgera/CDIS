@@ -30,22 +30,25 @@ Ou ensemble négligeable et impact sur l'intégrale ... et positivité et nullit
 
 ### TODO -- Standard
 
-  - Intégrale d'une fonction positive par rapport à une mesure $\mu$ 
+  - Intégrale d'une fonction positive
     (propriétés caractéristiques)
 
-  - Intégrabilité et intégrale des fonctions signées par rapport à une mesure 
-    $\mu$ 
+  - Intégrale des fonctions signées 
     (définition)
 
+  - Construction de nouvelles mesures et intégrales associées
+    (mesure image, restrictions, mesure via l'intégrale)
+
   - Intégrale de Lebesgue et de Henstock-Kurzweil.
+
 
 ### TODO -- Avancé
 
   - Construction de l'intégrale par rapport à $\mu$.
 
-  - Tribu engendrée
+  - Tribu engendrée, Boréliens
 
-  - ...
+  - Mesure produit, Fubini
 
 ### TODO -- Hors-programme
 
