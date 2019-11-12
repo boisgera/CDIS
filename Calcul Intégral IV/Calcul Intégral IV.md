@@ -321,7 +321,7 @@ deux intégrales sont égales.
 
 
 ### TODO -- Rah compliqué, il faut parler d'ensemble négligeable 
-... et de l'impact sur l'intégrale.
+... et de l'impact sur l'intégrale. Bon, bascule en exo ?
 
 ### Exercice -- Fonctions à valeurs infinies
 Soit $f: \R^n \to [-\infty,+\infty]$. Montrer que si $f$ est intégrable par 
