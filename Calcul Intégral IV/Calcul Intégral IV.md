@@ -82,7 +82,7 @@ au complémentaire et à l'union dénombrable :
      $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}.$
 
 Un ensemble $A \in \mathcal{A}$ est dit *mesurable* 
-(relativement à la tribu $\mathcal{A}$ ou $\mathcal{A}$-mesurable).
+(relativement à la tribu $\mathcal{A}$) ou *$\mathcal{A}$-mesurable*.
 L'ensemble $X$ muni de $\mathcal{A}$ 
 -- c'est-à-dire formellement la paire $(X,\mathcal{A})$ -- 
 est un *espace mesurable*.
@@ -93,12 +93,12 @@ est une fonction
 $$
 \mu: \mathcal{A} \to [0, +\infty]
 $$ 
-telle que $\mu(\varnothing)= 0$ et telle que pour toute suite
+telle que $\mu(\varnothing)= 0$ (*nullité en $0$*) et telle que pour toute suite
 $(A_k)_{k\in \N}$ d'ensembles de $\mathcal{A}$ disjoints deux à deux, on ait
 $$
 \mu \left( \bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k) ;
 $$
-on dit que $\mu$ est *$\sigma$-additive*.
+on dit que $\mu$ est *$\sigma$-additive* (on dit aussi *dénombrablement additive*).
 L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ 
 -- c'est-à-dire formellement le triplet $(X, \mathcal{A}, \mu)$ -- 
 est un *espace mesuré*.
@@ -118,7 +118,7 @@ et $A \subset B$, $\mu(A) \subset \mu(B)$.
 
 ### Exercice -- Cas dégénéré {.exercise} 
 Existe-t'il des fonctions $\mu: \mathcal{A} \to [0, +\infty]$ qui soient
-$\sigma$-additives mais telles que $\mu(\varnothing) \neq 0$ ?
+$\sigma$-additives mais pas nulles en $0$ ?
 
 ### Exercice -- Ca commence par un $\mathbb{P}$ {.exercise}
 Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
@@ -244,13 +244,19 @@ Intégrale
 ================================================================================
 
 ### Fonction mesurable
-Soit $(X, \mathcal{A})$ un espace mesuré.
+Soit $(X, \mathcal{A})$ un espace mesuré et $n \in \N^*$.
 Une fonction $f: X \to [-\infty,+\infty]^n$ est *mesurable* 
 (on trouvera aussi les terminologies *$\mathcal{A}$-mesurable* 
 ou $\mu$-mesurable pour lever toute ambiguité) 
 si l'image réciproque 
-de tout fermé (ou de tout ouvert) de $\R^n$ par $f$ est un ensemble mesurable
-(qui appartient à $\mathcal{A}$).
+de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]^n$ par 
+$f$ est un ensemble mesurable (qui appartient à $\mathcal{A}$).
+
+### {.remark .post}
+Cette définition est directement applicable si $f$ est scalaire 
+-- c'est-à-dire si $f: X \to [-\infty, +\infty]$ -- ce qui le cas le plus 
+fréquent. Elle est bien sûr également applicable sans modification 
+si $f$ est à valeurs finies -- c'est-à-dire si $f(X) \subset \R^n$.
 
 ### Exercice -- Ensemble des parties de $X$ {.exercise}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
@@ -290,16 +296,24 @@ et qui est caractérisée par
 ### Intégrale d'une fonction signée
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 Soit $f : X \to [-\infty, +\infty]$ une fonction mesurable.
-On dit que $f$ est *intégrable* (par rapport à $\mu$ ou $\mu$-intégrable) 
-si les intégrales des fonctions positives
+L'intégrale de $f$ (par rapport à $\mu$) est définie si au moins l'une
+des intégrales des fonctions positives
 $$
 f_+ := \max(f, 0) \; \mbox{ et } f_- = -\min(f, 0) \;
 $$
-sont finies et on définit alors l'intégrale de $f$ par rapport à $\mu$
-comme
+est finie. On définit alors l'intégrale de $f$ par rapport à $\mu$ comme
 $$
-\int f \mu = \int_X f(x) \, \mu(dx) := \int_X f_+(x) \, \mu(dx) - \int_X f_-(x) \, \mu(dx) \in \R.
+\int f \mu = \int_X f(x) \, \mu(dx) 
+:= \int_X f_+(x) \, \mu(dx) - \int_X f_-(x) \, \mu(dx) \in [-\infty, +\infty].
 $$
+On dit que $f$ est *intégrable* (par rapport à $\mu$) ou *$\mu$-intégrable* 
+si les intégrales de $f_+$ et de $f_-$ sont toutes les deux finies ou, 
+ce qui revient au même, si l'intégrale de $f$ est définie et réelle :
+$$
+\int f \mu = \int_X f(x) \, \mu(dx) \in \R.
+$$
+
+### {.post .remark}
 
 ### Exercice -- Absolue intégrabilité {.exercise}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
@@ -316,10 +330,13 @@ est-elle intégrable ? Quelle est alors la valeur de son intégrale ?
 
 ### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
 Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
-par rapport à la mesure de Lebesgue $v$ si et seulement si 
+par rapport à la mesure de Lebesgue si et seulement si 
 $f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
 pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
-deux intégrales sont égales.
+deux intégrales sont égales :
+$$
+\int_{\R^n} f(x) \, v(dx) = \int_{\R^n} f(x) \, dx.
+$$
 
 
 ### TODO 
@@ -338,8 +355,8 @@ $$
 Mesure de Lebesgue -- Approche directe
 ================================================================================
 
-Dans les volets précédents du "Calcul Intégral", 
-nous avons défini le volume d'un pavé compact de $\R^n$ 
+Dans les volets précédents du "Calcul Intégral", il nous a semblé naturel
+de définir le volume d'un pavé compact de $\R^n$ 
 $$
 P = [a_1, b_1] \times \dots \times [a_n, b_n]
 $$
@@ -347,13 +364,17 @@ au moyen de la formule
 $$
 v(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
 $$
-L'intégrable de Henstock-Kurzweil nous permet de prolonger la fonction $v$ en 
-une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
+L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $v$ 
+en une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
 par la relation
 $$
-v(A) = \int 1_A(x) \, dx
+v(A) = \left|
+\begin{array}{cl}
+\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
++\infty & \mbox{sinon.}
+\end{array}
+\right.
 $$
-si $1_A$ est intégrable et $v(A) = +\infty$ sinon.
 Mais cette approche n'est pas totalement satisfaisante intellectuellement.
 D'une part on peut considérer l'usage de l'intégrale comme un chemin
 tortueux pour étendre $v$.
@@ -362,9 +383,9 @@ que cette approche -- qui ne permet pas de mesurer le volume de tout
 ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
 cette limitation pourrait être un artefact de la méthode choisie
 plutôt qu'une limitation intrinsèque.
-Dans cette section, nous allons donner une autre méthode, plus directe, 
-due à Lebesgue et Carathéodory[^autz],
-qui nous permettra de définir la mesure (extérieure) du volume de tout ensemble 
+Dans cette section, nous allons donner une autre méthode de définition, 
+plus directe et géométrique, due à Lebesgue et Carathéodory[^autz],
+de définition de la mesure (extérieure) du volume de tout ensemble 
 de $\R^n$.
 Elle nous donnera également la raison pour laquelle
 notre construction initiale du volume se limite à la collection
@@ -377,14 +398,14 @@ la théorie abstraite de la mesure qui conduit à un renouveau de la théorie
 de l'intégration au début du XXème siècle.
 
 Pour calculer le volume d'un sous-ensemble de $\R^n$, 
-nous généralisons la méthode utilisée pour définir les ensembles négligeables 
+nous généralisons la méthode déjà utilisée pour définir les ensembles négligeables 
 (de volume nul) : nous considérons l'ensemble des collections dénombrables
 de pavés recouvrant ce sous-ensemble et nous utilisons chacun des ces 
 recouvrements pour produire une estimation (supérieure) du volume
 de l'ensemble. Formellement :
 
 ### Mesure extérieure de Lebesgue {.definition #mel}
-On appelle *mesure extérieure de Lebesgue* dans $\R^n$ la fonction
+On appelle *mesure extérieure de Lebesgue* sur $\R^n$ la fonction
 $$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
 qui a tout ensemble $A$ de $\R^n$ associe le nombre réel étendu positif
 défini par
@@ -434,19 +455,19 @@ $$
 car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
 (au sens de l'intégrale de Henstock-Kurzweil)
 et nous verrons ultérieurement que dans ce cas, la mesure extérieure
-$v^*$ coïncide avec $v$ dont la définition exploite l'intégrable de Henstock-Kurzweil.
+$v^*$ coïncide avec $v$.
 Un simple calcul intégral fournit alors le résultat.
 
 On peut croire que le point faible de notre raisonnement est la préservation
 de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
-que lorsque $B$ se déduit de $A$ par une translation, alors $v^*(A) = v^*(B)$, 
+que lorsque $B$ se déduit de $A$ par une translation alors $v^*(A) = v^*(B)$, 
 on peut douter du résultat pour les rotations. 
 Après tout, la définition de $v^*(A)$ fait appel
 à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
 conservée par rotation. 
 Mais si le résultat n'est pas évident, il s'avère pourtant que
-la mesure $v^*$ est bien invariante par
-rotation (cf. [@Hun11, section 2.8]).
+la mesure extérieure $v^*$ est bien invariante par rotation 
+(cf. [@Hun11, section 2.8]).
 
 La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
 n'est tout simplement pas additive ! Même si les ensembles 
@@ -460,14 +481,14 @@ on a
 $$
 v^*(A_1 \cup \dots \cup A_p) \leq v^*(A_1) + \dots + v^*(A_p).
 $$
-Elle est même $\sigma$-sous-additive : si $A_k$, $k \in \N$ sont des
-sous-ensembles de $\R^n$, 
+Elle est même $\sigma$-sous-additive : si $(A_k)_{k \in \N}$ est une suite
+de sous-ensembles de $\R^n$, 
 $$
 v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
 \leq \sum_{k=0}^{+\infty} v^*\left(A_k\right).
 $$
 
-Cette propriété est une caractéristique des *mesures extérieures* :
+Cette propriété est la caractéristique centrale des *mesures extérieures* :
 
 ### Mesure extérieure {.definition}
 On appelle *mesure extérieure* sur l'ensemble $X$ toute application
@@ -496,35 +517,33 @@ $$
 
 ### {.post}
 Une façon alternative de voir les choses : si l'on note $\mu^*|_A$ 
-la trace de $\mu^*$ sur un ensemble $A$ de $X$, définie pour tout
+la *trace* de $\mu^*$ sur un ensemble $A$ de $X$, définie pour tout
 sous-ensemble $B$ de $X$ par
-$$\mu^*|_A(B) = \mu^*(B \cap A),$$
-alors l'ensemble $A$ est $\mu^*$ mesurable si et seulement si
+$$\mu^*|_A(B) = \mu^*(A \cap B),$$
+alors l'ensemble $A$ est $\mu^*$-mesurable si et seulement si
 $$
 \mu^* = \mu^*|_A + \mu^*|_{A^c}.
 $$
 
-
 ### Mesure associée à une mesure extérieure {.theorem}
 Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
 La collection $\mathcal{A}$ des ensembles $\mu^*$-mesurables de $X$
-est une tribu sur $X$, et la restriction $\mu$ de $\mu^*$ à 
+est une tribu sur $X$ et la restriction $\mu$ de $\mu^*$ à 
 $\mathcal{A}$ est une mesure sur $X$.
 
 ### Démonstration {.proof}
 Cf. [@Hun11, théorème 2.9, pp. 15-17].
 
 ### {.remark .ante}
-La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue,
+La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue
 produit la mesure de Lebesgue.
 
 ### Mesure de Lebesgue {.theorem .definition}
 La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{P}(\R^n) \to [0, +\infty]$
-précédemment définie est bien une mesure extérieure sur $\R^n$.
-On appelle *tribu de Lebesgue* et on note $\mathcal{L}(\R^n)$ la collection 
-des ensembles $v^*$-mesurables (au sens de Caratheodory) ; 
-la mesure $v: \mathcal{L}(\R^n) \to [0, +\infty]$ qui lui est associée 
-est appelée *mesure de Lebesgue sur $\R^n$*. 
+est bien une mesure extérieure sur $\R^n$.
+La collection des ensembles $v^*$-mesurables (au sens de Caratheodory)
+est identique à la tribu de Lebesgue $\mathcal{L}(\R^n)$ ; 
+la mesure $v$ associée à $v^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
 
 ### Démonstration (partielle : $v^*$ est une mesure extérieure.) {.proof}
 Il est clair que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
@@ -556,6 +575,7 @@ Nous renvoyons le lecteur intéressé par la preuve que la mesure de Lebesgue
 prolonge bien la mesure de volume des pavés compacts à [@Hun11, section 2.2].
 -->
 
+<!--
 ### {.remark .ante} 
 On admettra également sans preuve le résultat suivant, qui montre que la notation
 "$v$" que nous avons employé deux fois est dépourvue d'ambiguité :
@@ -570,6 +590,8 @@ v(A) = \int 1_A(x) \, dx
 $$ 
 si $1_A$ est intégrable au sens de Henstock-Kurzweil et
 $v(A)= +\infty$ sinon.
+
+-->
 
 <!--
 TODO -- Mesure de grandeurs
@@ -1120,8 +1142,11 @@ On a le résultat plus précis suivant, que l'on admettra :
 Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
 par rapport à la mesure de Lebesgue $v$ si et seulement si 
 $f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
-pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
-deux intégrales sont égales.
+au sens de Henstock-Kurzweil. Dans ce cas, les
+deux intégrales sont égales :
+$$
+\int_{\R^n} f(x) v(dx) = \int_{\R^n} f(x) dx.
+$$
 
 Propriétés de l'intégrale
 ================================================================================
