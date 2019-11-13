@@ -16,6 +16,11 @@ Ou mesure image et intégrale associée ? Ou mesures construites à partir
 d'une mesure de référence et d'une fonction positive ?
 Ou ensemble négligeable et impact sur l'intégrale ... et positivité et nullité ? 
 
+Enoncé TCM et théorème de continuité monotone vont ensemble ? Mmmm non,
+continuité monotone est facile à RETROUVER à partir du TCM (même si niveau
+démo, ça se passe dans l'autre sens). Par contre les deux preuves sont de 
+même nature (TCM un cran au-dessus).
+
 ### TODO -- Basique
 
   - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions + application directe)
@@ -1322,8 +1327,8 @@ L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
 
 ### Théorème de convergence monotone {.theorem #TCM}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
-$f_k: X \to [0, +\infty]$, $k \in \N$, une suite croissante de fonctions 
-mesurables et positives ; pour tout $x \in X$,
+$f_k: X \to [0, +\infty]$, une suite croissante de fonctions 
+mesurables et positives indexées par $k \in \N$ ; pour tout $x \in X$,
 $$
 0 \leq f_0(x) \leq \dots \leq f_{k}(x) \leq f_{k+1}(x) \leq \cdots
 $$
@@ -1339,22 +1344,25 @@ $$
 
 ### Démonstration {.proof}
 La fonction $f$ est mesurable comme limite simple de fonctions mesurables.
-La positivité et la linéarité de l'intégrale entraînent
+Pour deux fonctions positives mesurables $g$ et $h$ telles que $g\leq h$,
+on a $\mathcal{F}(g) \subset \mathcal{F}(h)$ et donc par définition
+de l'intégrale, l'intégrale de $g$ par rapport à $\mu$ est inférieure à 
+l'intégrale de $h$ par rapport à $\mu$. En conséquence ici,
 $$
-\int f_0 \mu \leq \dots \leq \int f_k \mu \leq \dots \int f_k \mu \leq \int f \mu.
+\int f_0 \mu \leq \dots \leq \int f_k \mu \leq \int f_{k+1} \mu \leq \cdots \leq \int f \mu
 $$
 et donc
 $$
 \lim_{k\to+\infty} \int f_k\mu \leq \int f\mu.
 $$
 
-Soit $g: X \to \left[0, +\infty\right[$ une fonction étagée mesurable, donc
-de la forme
+Soit $g: X \to \left[0, +\infty\right[$ une fonction inférieure à $f$ qui
+soit étagée et mesurable, c'est-à-dire de la forme
 $$
-g(x) = \sum_{j=0}^{n-1} y_j 1_{A_j}
+g = \sum_{j=0}^{n-1} y_j 1_{A_j}
 $$
 avec $y_j \in \left[0, +\infty\right[$ et $A_j$ mesurable.
-Soit $t \in \left[0, 1\right[$. Comme la suite des $f_k$ est croissante et 
+Soit $t \in \left[0, 1\right[$ ; comme la suite des $f_k$ est croissante et 
 converge simplement vers $f$, les ensembles
 $E_k = \{x \in X \; | \; f_k(x) \geq t g(x) \}$
 vérifient
@@ -1366,17 +1374,21 @@ $$
 Les $f_k$ et $g$ étant mesurables, les ensembles $E_k$ sont mesurables.
 On a 
 $$
-\int f_k \mu \geq \int t g 1_{E_k} = t\sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k).
+\int f_k \mu \geq \int t g 1_{E_k} \mu = 
+\int t \sum_{j=0}^{n-1} y_j 1_{A_j} 1_{E_k} \mu
+=
+t\sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k).
 $$
-et comme $\cup_{k=0}^{+\infty} A_j \cap E_k = A_j$, par $\sigma$-additivité
-de $\mu$,
+Comme $\cup_{k=0}^{+\infty} A_j \cap E_k = A_j$, 
+par [le théorème de continuité monotone (cf annexe)](#cont-monot),
 $$
 \lim_{k\to +\infty} \int f_k \mu \geq 
 t\lim_{k\to +\infty} \sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k) = 
 t \left(\sum_{j=0}^{n-1} y_j \mu(A_j)\right) = t \int g\mu. 
 $$
 Cette inégalité étant valable pour tout $t \in \left[0, 1\right[$
-et pour toute fonction positive étagée et mesurable $g$, on en déduit
+et pour toute fonction positive étagée et mesurable $g$ inférieure à $f$, 
+on en déduit
 $$
 \lim_{k\to +\infty} \int f_k \mu \geq \sup_{g \in \mathcal{F}(f)}\int g\mu
 = \int f\mu.
