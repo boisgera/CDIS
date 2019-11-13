@@ -1093,6 +1093,8 @@ $$
 \int f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int g \mu.
 $$
 
+<!--
+
 ### Intégrale d'une fonction à valeurs réelles
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \mapsto [-\infty, +\infty]$ une fonction mesurable.
@@ -1105,8 +1107,9 @@ est alors la grandeur réelle (finie)
 $$
 \int f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
 $$ 
+-->
 
-### Intégrales finies, infinies et indéfinies {.post}
+### TODO -- Recycler -- Intégrales finies, infinies et indéfinies {.post}
 Une fonction positive peut avoir une intégrale bien définie --
 il faut et il suffit qu'elle soit mesurable -- sans être pour autant 
 intégrable. Elle est intégrable si et seulement si elle est mesurable et que 
@@ -1133,6 +1136,8 @@ absorbant pour l'addition, tel que $\bot = +\infty - \infty$
 est un concept très proche). Mais à ce stade nous n'allons pas explorer cette
 piste.
 
+<!--
+
 ### Une intégrale absolue
 On remarquera que l'essentiel de la complexité de l'intégrale de Lebesgue
 est encapsulée dans l'intégrale des fonctions positives ; la définition 
@@ -1153,18 +1158,157 @@ $$
 \int_{\R^n} f(x) v(dx) = \int_{\R^n} f(x) dx.
 $$
 
+-->
+
 Propriétés de l'intégrale
 ================================================================================
 
 ### {.ante .remark}
-On mettra en avant dans cette section sur les propriétés de l'intégrale de
-fonctions positives ; les propriétés correspondantes de l'intégrale de fonctions
-signées s'en déduisent simplement.
+On mettra l'accent dans cette section sur les propriétés de l'intégrale de
+fonctions positives ; les propriétés correspondantes de l'intégrale 
+de fonctions signées s'en déduisent simplement.
+
+Nous démontrons tout d'abord que l'intégrale que nous avons construite
+satisfait bien les propriétés caractéristiques souhaitées, en commençant
+-- après l'énoncé du lemme de croissance -- par
+le lien entre mesure d'un ensemble et intégrale de sa fonction
+caractéristique.
+
+### Lemme de croissance {#lemme-croissance}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
+$g, h: X \to \left[0, +\infty\right[$ deux fonction mesurables telles 
+que $g\leq h$. Alors
+$$
+\int g \mu \leq \int h \mu.
+$$
+
+### Démonstration {.proof}
+L'inclusion $\mathcal{F}(g) \subset \mathcal{F}(h)$ découle des hypothèses,
+en conséquence,
+$$
+\sup_{k \in \mathcal{F}(g)} \int k\mu \leq \sup_{k \in \mathcal{F}(h)}  \int k\mu,
+$$
+ce qui est l'égalité entre intégrales souhaitée.
+
+### Intégrale et mesure
+Pour tout ensemble $A \in \mathcal{A}$, 
+$$
+\int_X 1_A (x) \mu(dx) = \mu(A).
+$$
+
+### Démonstration {.proof}
+La fonction caractéristique $1_A$ est mesurable, positive et inférieure à $1_A$. 
+C'est de toute évidence la plus grande fonction ayant toute ces propriétés,
+donc par [le lemme de croissance](#lemme-croissance),
+$$
+\sup_{g \in \mathcal{F}(1_A)} \int g \mu = \mu(A).
+$$
+
+### Théorème de convergence monotone {.theorem #TCM}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
+$f_k: X \to [0, +\infty]$, $k \in \N$, une suite croissante de fonctions 
+mesurables et positives ; pour tout $x \in X$,
+$$
+0 \leq f_0(x) \leq \dots \leq f_{k}(x) \leq f_{k+1}(x) \leq \cdots
+$$
+La limite simple $f: X \to [0, +\infty]$ des $f_k$,
+telle que pour tout $x \in X$,
+$$
+f_k(x) \to f(x) \mbox{ quand } k \to +\infty,
+$$
+est mesurable et
+$$
+\lim_{k \to +\infty} \int f_k \mu = \int f \mu.
+$$
+
+### Démonstration {.proof}
+La fonction $f$ est mesurable comme limite simple de fonctions mesurables.
+Par [le lemme de croissance](#lemme-croissance),
+$$
+\int f_0 \mu \leq \dots \leq \int f_k \mu \leq \int f_{k+1} \mu \leq \cdots \leq \int f \mu
+$$
+et donc
+$$
+\lim_{k\to+\infty} \int f_k\mu \leq \int f\mu.
+$$
+
+Soit $g: X \to \left[0, +\infty\right[$ une fonction inférieure à $f$ qui
+soit étagée et mesurable, c'est-à-dire de la forme
+$$
+g = \sum_{j=0}^{n-1} y_j 1_{A_j}
+$$
+avec $y_j \in \left[0, +\infty\right[$ et $A_j$ mesurable.
+Soit $t \in \left[0, 1\right[$ ; comme la suite des $f_k$ est croissante et 
+converge simplement vers $f$, les ensembles
+$E_k = \{x \in X \; | \; f_k(x) \geq t g(x) \}$
+vérifient
+$$
+E_0 \subset \cdots \subset E_k \subset \cdots 
+\; \mbox{ et } \;
+\bigcup_{k=0}^{+\infty} E_k = X.
+$$
+Les $f_k$ et $g$ étant mesurables, les ensembles $E_k$ sont mesurables.
+On a 
+$$
+\int f_k \mu \geq \int t g 1_{E_k} \mu = 
+\int t \sum_{j=0}^{n-1} y_j 1_{A_j} 1_{E_k} \mu
+=
+t\sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k).
+$$
+Comme $\cup_{k=0}^{+\infty} A_j \cap E_k = A_j$, 
+par [le théorème de continuité monotone (cf annexe)](#cont-monot),
+$$
+\lim_{k\to +\infty} \int f_k \mu \geq 
+t\lim_{k\to +\infty} \sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k) = 
+t \left(\sum_{j=0}^{n-1} y_j \mu(A_j)\right) = t \int g\mu. 
+$$
+Cette inégalité étant valable pour tout $t \in \left[0, 1\right[$
+et pour toute fonction positive étagée et mesurable $g$ inférieure à $f$, 
+on en déduit
+$$
+\lim_{k\to +\infty} \int f_k \mu \geq \sup_{g \in \mathcal{F}(f)}\int g\mu
+= \int f\mu.
+$$
+
+### {.remark .ante}
+[Le théorème de convergence monotone](#TCM) fournit une alternative,
+plus concrète, à la construction initiale de l'intégrale.
+Dance cette nouvelle version, on substitue au $\sup$ de la définition 
+initiale la limite d'une suite d'intégrales de fonctions étagées.
+
+### Intégrale d'une fonction positive II {.theorem #ifpII}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \to [0, +\infty]$ une fonction mesurable.
+Il existe une suite croissante de fonctions $f_k$ étagées positives finies et 
+mesurables, convergeant simplement vers $f$ ; pour toute suite de ce type, 
+$$
+\lim_{k\to +\infty} \int f_k \mu = \int f \mu
+$$
+
+### Démonstration {.proof}
+Soit $\varepsilon_k \geq 0$ une suite de valeurs telles que
+$$
+\lim_{k\to +\infty} \varepsilon_k  = 0 
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \varepsilon_k = +\infty.
+$$
+La suite des fonctions $f_k$ définies par $f_0=0$, puis
+$$
+f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
+E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
+$$
+est croissante, et composée de fonctions étagées positives et mesurables.
+Sa limite simple est la fonction $f$. 
+Par [le théorème de convergence monotone](#TCM), 
+$$
+\lim_{k \to +\infty} \int f_k \mu  = \int f \mu
+$$
+pour toute suite de ce type.
 
 ### Linéarité {.theorem #lin}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
-L'intégrale par rapport à $\mu$ de fonctions positives (à valeurs finies ou
-infinies) est homogène et additive :
+L'intégrale par rapport à $\mu$ de fonctions mesurables positives 
+(à valeurs finies ou infinies) est homogène et additive :
 si $\lambda \in \left[0, +\infty\right[$ et $f, g: X \to [0, +\infty]$ sont deux
 applications $\mu$-mesurables,  
 $$
@@ -1173,13 +1317,22 @@ $$
 \int (f + g) \mu = \int f \mu + \int g \mu.
 $$
 
-### TODO -- Pb causalité
-
-La preuve utilise la version "concrête" de l'intégrale, par les suites,
-qui n'est vue que plus tard. Même chose pour TCM. Au minimum, en ante,
-pointer sur cette inversion.
-
 ### Démonstration {.proof}
+Soit $f_k, g_k: X \to \left[0, +\infty\right[$ une paire de suites croissantes 
+de fonctions étagées, mesurables et convergeant simplement vers $f$ et $g$
+respectivement. On peut se convaincre sans difficultés que l'intégrale
+des fonctions étagées et mesurables est additive et homogène et donc que
+$$
+\int (\lambda f_k) \mu = \lambda \int f_k\mu
+\; \mbox{ et } \;
+\int (f_k + g_k) \mu = \int f_k \mu + \int g_k \mu.
+$$
+Comme les suites $\lambda f_k$ et $f_k+g_k$ sont croissantes et 
+convergent simplement vers $\lambda f$ et $f+g$ respectivement, 
+par [le théorème de convergence monotone](#TCM) on en déduit
+les égalités cherchées.
+
+<!--
 La preuve de l'homogénéité est immédiate si $\lambda =0$ ; 
 dans le cas contraire, l'application
 $$
@@ -1232,6 +1385,10 @@ $$
 \end{split}
 $$
 
+-->
+
+
+
 ### Positivité et nullité {.theorem #pos}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré 
 et $f: X \to [0, +\infty]$ une fonction mesurable.
@@ -1244,9 +1401,8 @@ $$
 
 ### {.remark}
 Notons que comme l'ensemble 
-$\{x \in X \; | \; f(x) > 0\}$ -- c'est-à-dire $f^{-1}(\left]0, +\infty\right[)$ -- 
-est mesurable par construction, "négligeable" est bien équivalent à "de mesure nulle"
-le concernant.
+$\{x \in X \; | \; f(x) > 0\}$ -- c'est-à-dire $f^{-1}(\left]0, +\infty\right])$ -- 
+est mesurable par construction, "négligeable" est bien équivalent à "de mesure nulle" ici.
 
 ### Démonstration {.proof}
 La positivité est évidente par construction.
@@ -1325,115 +1481,48 @@ $$
 $$
 L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
 
-### Théorème de convergence monotone {.theorem #TCM}
+### {.ante}
+La théorie générale de l'intégration possède aussi son théorème de convergence
+dominée. Pour le démontrer, le corollaire du théorème de convergence monotone
+suivant, appelée lemme de Fatou, est utile. On rappelle que 
+$\liminf_{k\to +\infty} x_k$ désigne l'infimum des limites possibles,
+parmi toutes les suites extraites de $x_k$ ayant une limite (finie ou infinie).
+
+### Lemme de Fatou {.lemma #Fatou}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
-$f_k: X \to [0, +\infty]$, une suite croissante de fonctions 
-mesurables et positives indexées par $k \in \N$ ; pour tout $x \in X$,
+$f_k: X \to [0, +\infty]$, $k \in \N$, une suite de fonctions 
+mesurables. Alors
 $$
-0 \leq f_0(x) \leq \dots \leq f_{k}(x) \leq f_{k+1}(x) \leq \cdots
-$$
-La limite simple $f: X \to [0, +\infty]$ des $f_k$,
-telle que pour tout $x \in X$,
-$$
-f_k(x) \to f(x) \mbox{ quand } k \to +\infty,
-$$
-est mesurable et
-$$
-\lim_{k \to +\infty} \int f_k \mu = \int f \mu.
+\int (\liminf_{k \to +\infty} f_k) \mu \leq \liminf_{k\to +\infty} \int f_k \mu.
 $$
 
-### Démonstration {.proof}
-La fonction $f$ est mesurable comme limite simple de fonctions mesurables.
-Pour deux fonctions positives mesurables $g$ et $h$ telles que $g\leq h$,
-on a $\mathcal{F}(g) \subset \mathcal{F}(h)$ et donc par définition
-de l'intégrale, l'intégrale de $g$ par rapport à $\mu$ est inférieure à 
-l'intégrale de $h$ par rapport à $\mu$. En conséquence ici,
+### Démonstration {.proof} 
+La suite des fonctions $\inf_{j \geq k} f_j$, $k \in \N$, est croissante,
+composée de fonctions mesurables, et converge simplement vers la limite 
+inférieure de la suite des $f_k$ :
 $$
-\int f_0 \mu \leq \dots \leq \int f_k \mu \leq \int f_{k+1} \mu \leq \cdots \leq \int f \mu
+\lim_{k\to +\infty} \left(\inf_{j\geq k} f_j\right) = \liminf_{k\to +\infty} f_k.
 $$
-et donc
+Par [le théorème de convergence monotone](#TCM) on a donc
 $$
-\lim_{k\to+\infty} \int f_k\mu \leq \int f\mu.
+\lim_{k\to +\infty} \int \inf_{j \geq k} f_j \mu = \int (\liminf_{k \to +\infty} f_k) \mu.
 $$
+De plus pour tout $k \in \N$ et tout $\ell \geq k$, on a $\inf_{j \geq k} f_j \leq f_{\ell}$, donc
+par [le lemme de croissance](#lemme-croissance),
+$$
+\int \inf_{j \geq k} f_j \mu \leq \liminf_{\ell \to +\infty} \int f_{\ell} \mu.
+$$
+Puisque le second membre est indépendant de $k$, on en déduit le résultat
+cherché en faisant tendre $k$ vers $+\infty$.
 
-Soit $g: X \to \left[0, +\infty\right[$ une fonction inférieure à $f$ qui
-soit étagée et mesurable, c'est-à-dire de la forme
-$$
-g = \sum_{j=0}^{n-1} y_j 1_{A_j}
-$$
-avec $y_j \in \left[0, +\infty\right[$ et $A_j$ mesurable.
-Soit $t \in \left[0, 1\right[$ ; comme la suite des $f_k$ est croissante et 
-converge simplement vers $f$, les ensembles
-$E_k = \{x \in X \; | \; f_k(x) \geq t g(x) \}$
-vérifient
-$$
-E_0 \subset \cdots \subset E_k \subset \cdots 
-\; \mbox{ et } \;
-\bigcup_{k=0}^{+\infty} E_k = X.
-$$
-Les $f_k$ et $g$ étant mesurables, les ensembles $E_k$ sont mesurables.
-On a 
-$$
-\int f_k \mu \geq \int t g 1_{E_k} \mu = 
-\int t \sum_{j=0}^{n-1} y_j 1_{A_j} 1_{E_k} \mu
-=
-t\sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k).
-$$
-Comme $\cup_{k=0}^{+\infty} A_j \cap E_k = A_j$, 
-par [le théorème de continuité monotone (cf annexe)](#cont-monot),
-$$
-\lim_{k\to +\infty} \int f_k \mu \geq 
-t\lim_{k\to +\infty} \sum_{j=0}^{n-1} y_j \mu(A_j \cap E_k) = 
-t \left(\sum_{j=0}^{n-1} y_j \mu(A_j)\right) = t \int g\mu. 
-$$
-Cette inégalité étant valable pour tout $t \in \left[0, 1\right[$
-et pour toute fonction positive étagée et mesurable $g$ inférieure à $f$, 
-on en déduit
-$$
-\lim_{k\to +\infty} \int f_k \mu \geq \sup_{g \in \mathcal{F}(f)}\int g\mu
-= \int f\mu.
-$$
-
-### {.remark .ante}
-[Le théorème de convergence monotone](#TCM) fournit une alternative concrète
-à la construction initiale de l'intégrale.
-
-### Intégrale d'une fonction positive II {.theorem #ifpII}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \to [0, +\infty]$ une fonction mesurable.
-Il existe une suite croissante de fonctions $f_k$ étagées positives finies et 
-mesurables, convergeant simplement vers $f$ ; pour toute suite de ce type, 
-$$
-\lim_{k\to +\infty} \int f_k \mu = \int f \mu
-$$
-
-### Démonstration {.proof}
-Soit $\varepsilon_k \geq 0$ une suite de valeurs telles que
-$$
-\lim_{k\to +\infty} \varepsilon_k  = 0 
-\; \mbox{ et } \;
-\sum_{k=0}^{+\infty} \varepsilon_k = +\infty.
-$$
-La suite des fonctions $f_k$ définies par $f_0=0$, puis
-$$
-f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
-E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
-$$
-est croissante, et composée de fonctions étagées positives et mesurables.
-Sa limite simple est la fonction $f$. 
-Par [le théorème de convergence monotone](#TCM), 
-$$
-\lim_{k \to +\infty} \int f_k \mu  = \int f \mu
-$$
-pour toute suite de ce type.
 
 ### Théorème de convergence dominée {.theorem #TCD}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
-$f_k: X \to [0, +\infty]$, $k \in \N$, une suite de fonctions 
+$f_k: X \to [-\infty, +\infty]$, $k \in \N$, une suite de fonctions 
 mesurables, dominées par la fonction intégrable $g: X \to [0, +\infty]$
 c'est-à-dire telles que pour tout tout $k \in \N$ et tout $x \in X$,
 $$
-0 \leq f_k(x) \leq g(x) \; \mbox{ et } \; \int_X g \mu < +\infty.
+0 \leq f_k(x) \leq g(x) \; \mbox{ et } \; \int g \mu < +\infty.
 $$
 Si la suite des $f_k$ à une limite simple $f: X \to [0, +\infty]$,
 c'est-à-dire si pour tout $x \in X$,
@@ -1443,7 +1532,33 @@ $$
 \lim_{k \to +\infty} \int f_k \mu  = \int f \mu.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Comme $f_k + g$ est positif pour tout $k \in \N$, [le lemme de Fatou](#Fatou)
+fournit
+$$
+\begin{split}
+\int f \mu + \int g \mu &=
+\int (f+ g) \mu  \\
+&= \int (\liminf_{k \to +\infty} f_k + g) \mu \\
+&\leq \liminf_{k\to +\infty} \int f_k + g \mu \\
+&=\left(\liminf_{k\to +\infty} \int f_k \mu \right)+ \int g \mu
+\end{split}
+$$
+et donc
+$$
+\int f \mu  \leq \liminf_{k\to +\infty} \int f_k \mu.
+$$
+Comme les fonctions $-f_k + g$ sont également positives pour tout $k \in \N$,
+un raisonnement analogue fournit
+$$
+-\int f \mu  \leq \liminf_{k\to +\infty} \int - f_k \mu = - \limsup_{k\to +\infty} \int f_k \mu.
+$$
+On a finalement la double inégalité
+$$
+\limsup_{k\to +\infty} \int f_k \mu \leq \int f \mu  \leq \liminf_{k\to +\infty} \int f_k \mu,
+$$
+dont on déduit le résultat cherché.
+
 
 Produit de mesures
 ================================================================================
