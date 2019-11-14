@@ -392,6 +392,17 @@ mesurable. La fonction composée $F_+ = \max(f, 0) = \max(\cdot, 0) \circ f$ est
 mesurable.
 Le cas de la fonction $f_-$  est similaire.
 
+### TODO -- Mesurable $\circ$ cont.
+Le seul "problème" ce sont les valeurs infinies qui requièrent parfois des hacks,
+en tout cas qui supposent que la fonction continue ne soit pas globale
+(même avec + par exemple, $[-\infty, +\infty]^2$ pose problème ...) et donc
+il faut considérer une restriction, mais pour que ça marche (facilement), 
+ce sous-ensemble doit être ouvert (ou fermé), c'est totalement naze non ?
+Le vrai truc qui colle, c'est un sous-ensemble Borélien, mais pour expliquer
+ça il faut avoir fait l'extension au cadre général de la mesurabilité
+tribu-tribu ... Alors attendre ? Ou citer le cas global (suffit pour $\max$
+par exemple) ? Ou le cas ouvert/fermé ?
+
 ### TODO -- Exercice (combi lin sont mesurables)
 Deux cas : cas réel, combi lin arbitraire. Et/ou cas positif étendu.
 
@@ -1293,7 +1304,7 @@ c'est-à-dire telles que pour tout tout $k \in \N$ et tout $x \in X$,
 $$
 0 \leq f_k(x) \leq g(x) \; \mbox{ et } \; \int g \mu < +\infty.
 $$
-Si la suite des $f_k$ à une limite simple $f: X \to [0, +\infty]$,
+Si la suite des $f_k$ à une limite simple $f: X \to [-\infty, +\infty]$,
 c'est-à-dire si pour tout $x \in X$,
 $f_k(x) \to f(x) \mbox{ quand } k \to +\infty,$
 alors
