@@ -245,11 +245,21 @@ le cas d'un ensemble fini, le nombre d'éléments de $A$.
 ### Exercice -- Démonstration {.exercise}
 Montrer que les mesures de comptage sont bien des mesures.
 
+### Ensemble négligeable {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Un ensemble $N \subset X$
+est *$\mu$-négligeable* s'il existe un ensemble mesurable $A \in \mathcal{A}$ 
+tel que $N \subset A$ et $\mu(A) = 0$.
+
+### Presque partout {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Une propriété $P$ dépendant 
+d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
+où elle est fausse est un ensemble négligeable.
+
 Intégrale
 ================================================================================
 
 ### Fonction mesurable
-Soit $(X, \mathcal{A})$ un espace mesuré et $n \in \N^*$.
+Soit $(X, \mathcal{A})$ un espace mesurable et $n \in \N^*$.
 Une fonction $f: X \to [-\infty,+\infty]^n$ est *mesurable* 
 (on trouvera aussi les terminologies *$\mathcal{A}$-mesurable* 
 ou $\mu$-mesurable pour lever toute ambiguité) 
@@ -267,10 +277,42 @@ si $f$ est à valeurs finies -- c'est-à-dire si $f(X) \subset \R^n$.
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
 une fonction $f: X \to \mathbb{R}^n$ est-elle $\mathcal{A}$-mesurable ?
 
+### Exercice -- Fonction caractéristique
+Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
+A quelle condition (nécessaire et suffisante) la fonction $1_A: X \to \R$ 
+est-elle mesurable ?
+
 ### Exercice -- Fonctions étagées {.exercise}
 Soit $(X, \mathcal{A})$ un espace mesuré. A quelle condition
+(nécessaire et suffisante)
 une fonction $f: X \to \mathbb{R}^n$ qui ne prend 
 qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
+
+### Limite simple de fonctions mesurables
+Soit $(X, \mathcal{A})$ un espace mesurable. 
+Si les fonctions $f_k: X \to \left[-\infty, +\infty\right]^n$,
+$k \in \N$, sont mesurables et convergent simplement vers $f$, 
+alors $f$ est mesurable. 
+
+### Démonstration {.proof}
+Il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de 
+$\left[-\infty, +\infty\right]^n$ appartient à $\mathcal{A}$.
+Or $f(x) \in U$ si et seulement si $f_k(x) \in U$
+pour $k$ assez grand, ce qui se traduit par la formule
+$$
+f^{-1}(U) = \bigcup_{j=0}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
+$$
+qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
+(dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
+
+### TODO -- Lim simple/croissante fonction étagée
+(Fct mesurable ssi limit fcts étagées finies mesurables ; optionnellement
+limite croissante quand f pos. Commencer par le cas f pos.)
+
+### TODO -- Exercice (combi lin sont mesurables)
+Deux cas : cas réel, combi lin arbitraire. Et/ou cas positif étendu.
+
+
 
 ### Intégrale d'une fonction positive -- Propriétés caractéristiques
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. L'intégrale par rapport à $\mu$
@@ -343,6 +385,9 @@ $$
 \int_{\R^n} f(x) \, v(dx) = \int_{\R^n} f(x) \, dx.
 $$
 
+### TODO
+Démontrer ou admis ? C'est faisable à ce stade ? Ou un peu plus tard ?
+
 
 ### TODO 
 Rah compliqué, il faut parler d'ensemble négligeable 
@@ -357,369 +402,10 @@ $$
 **TODO**
 
 
-Mesure de Lebesgue -- Approche directe
-================================================================================
-
-Dans les volets précédents du "Calcul Intégral", il nous a semblé naturel
-de définir le volume d'un pavé compact de $\R^n$ 
-$$
-P = [a_1, b_1] \times \dots \times [a_n, b_n]
-$$
-au moyen de la formule
-$$
-v(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
-$$
-L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $v$ 
-en une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
-par la relation
-$$
-v(A) = \left|
-\begin{array}{cl}
-\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
-+\infty & \mbox{sinon.}
-\end{array}
-\right.
-$$
-Mais cette approche n'est pas totalement satisfaisante intellectuellement.
-D'une part on peut considérer l'usage de l'intégrale comme un chemin
-tortueux pour étendre $v$.
-D'autre part on peut avoir l'impression
-que cette approche -- qui ne permet pas de mesurer le volume de tout
-ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
-cette limitation pourrait être un artefact de la méthode choisie
-plutôt qu'une limitation intrinsèque.
-Dans cette section, nous allons donner une autre méthode de définition, 
-plus directe et géométrique, due à Lebesgue et Carathéodory[^autz],
-de définition de la mesure (extérieure) du volume de tout ensemble 
-de $\R^n$.
-Elle nous donnera également la raison pour laquelle
-notre construction initiale du volume se limite à la collection
-des ensembles qualifiés de "mesurables".
-
-[^autz]: Henri Lebesgue (1875-1941) était un mathématicien français
-et Constantin Carathéodory (1873-1950) un mathématicien grec entrenant
-des liens étroits avec l'Allemagne. Ils font partie des fondateurs de 
-la théorie abstraite de la mesure qui conduit à un renouveau de la théorie 
-de l'intégration au début du XXème siècle.
-
-Pour calculer le volume d'un sous-ensemble de $\R^n$, 
-nous généralisons la méthode déjà utilisée pour définir les ensembles négligeables 
-(de volume nul) : nous considérons l'ensemble des collections dénombrables
-de pavés recouvrant ce sous-ensemble et nous utilisons chacun des ces 
-recouvrements pour produire une estimation (supérieure) du volume
-de l'ensemble. Formellement :
-
-### Mesure extérieure de Lebesgue {.definition #mel}
-On appelle *mesure extérieure de Lebesgue* sur $\R^n$ la fonction
-$$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
-qui a tout ensemble $A$ de $\R^n$ associe le nombre réel étendu positif
-défini par
-$$
-v^*(A) 
-= 
-\inf 
-\left\{
-\sum_{k=0}^{+\infty} v(P_k)
-\; \left| \vphantom{\bigcup_{k=0}^{+\infty}} \right. \; 
-\mbox{$P_k$ pavé compact de $\R^n$,} \, A \subset \bigcup_{k=0}^{+\infty} P_k
-\right\},
-$$
-
-Cette définition "raisonnable" ne satisfait toutefois pas les propriétés que
-nous attendons (implicitement) d'un volume. Ce décalage est mis en évidence
-par un résultat paradoxal de la théorie des ensembles dans $\R^3$ :
-
-### Paradoxe de Banach-Tarski {.theorem}
-Il est possible de partitionner une sphère de rayon un de $\R^3$ 
-en un nombre fini d'ensembles, qui, 
-après rotations et translations, 
-forment une partition de deux sphères disjointes de rayon un.
-
---------------------------------------------------------------------------------
-
-
-Si le résultat est qualifié de paradoxe, c'est qu'il nous semble intuitivement 
-que le volume devrait être préservé par les les opérations subies par 
-la sphère initiale. Or, le volume d'une sphère de rayon un et de deux 
-sphères disjointes de même rayon diffère d'un facteur $2$.
-Pour dépasser ce paradoxe, nous allons devoir examiner un par un les
-résultats qui nous semblent "évidents" dans ce raisonnement pour débusquer
-notre erreur.
-
-Soient $A_1, \dots, A_p$ des ensembles disjoints et non vides
-de $\R^3$ dont la réunion forme la sphère initiale $S_0 = A_1 \cup \dots\cup A_p$,
-et tels que des ensembles disjoints $B_1, \dots, B_p$ 
-qui s'en déduisent par rotation et translation, 
-vérifient $S_1 \cup S_2 = B_1 \cup \dots \cup B_p$ où $S_1$ et $S_2$
-sont les deux sphère finales.
-
-Tout d'abord, on a bien
-$$
-v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
-$$
-car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
-(au sens de l'intégrale de Henstock-Kurzweil)
-et nous verrons ultérieurement que dans ce cas, la mesure extérieure
-$v^*$ coïncide avec $v$.
-Un simple calcul intégral fournit alors le résultat.
-
-On peut croire que le point faible de notre raisonnement est la préservation
-de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
-que lorsque $B$ se déduit de $A$ par une translation alors $v^*(A) = v^*(B)$, 
-on peut douter du résultat pour les rotations. 
-Après tout, la définition de $v^*(A)$ fait appel
-à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
-conservée par rotation. 
-Mais si le résultat n'est pas évident, il s'avère pourtant que
-la mesure extérieure $v^*$ est bien invariante par rotation 
-(cf. [@Hun11, section 2.8]).
-
-La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
-n'est tout simplement pas additive ! Même si les ensembles 
-$A_1, \dots, A_p$ sont disjoints, il est possible que 
-$$
-v^*(A_1 \cup \dots \cup A_p) \neq v^*(A_1) + \dots + v^*(A_p).
-$$
-On peut par contre établir avec la définition de $v^*$ qu'elle est 
-sous-additive : pour tous les ensembles $A_1, \dots, A_p$ (disjoints ou non),
-on a 
-$$
-v^*(A_1 \cup \dots \cup A_p) \leq v^*(A_1) + \dots + v^*(A_p).
-$$
-Elle est même $\sigma$-sous-additive : si $(A_k)_{k \in \N}$ est une suite
-de sous-ensembles de $\R^n$, 
-$$
-v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
-\leq \sum_{k=0}^{+\infty} v^*\left(A_k\right).
-$$
-
-Cette propriété est la caractéristique centrale des *mesures extérieures* :
-
-### Mesure extérieure {.definition}
-On appelle *mesure extérieure* sur l'ensemble $X$ toute application
-$$v^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que :
-
-  1. $\mu^*(\varnothing) = 0$ (*nullité en $\varnothing$*).
-
-  2. $A \subset B \Rightarrow \mu^*(A) \subset \mu^*(B)$ (*croissance*).
-
-  3. $\mu^*\left(\cup_{k=0}^{+\infty}A_k\right) \leq \sum_{k=0}^{+\infty} \mu^*\left(A_k\right)$ (*$\sigma$-subadditivité*).
-
------
-
-Il existe un procédé général permettant de déduire d'une mesure extérieure
-une application qui soit additive -- à condition d'accepter de réduire
-son domaine de définition ; la fonction qui en résulte est additive -- 
-et même $\sigma$-additive. 
-
-### Ensemble mesurable 
-Soit $\mu^*$ une mesure extérieure sur l'ensemble $X$.
-Un ensemble $A \subset X$ est dit *$\mu^*$-mesurable* (au sens de Carathéodory) 
-si pour tout $B \subset X$, on a 
-$$
-\mu^*(B) = \mu^*(B \cap A) + \mu^*(B \setminus A).
-$$
-
-### {.post}
-Une façon alternative de voir les choses : si l'on note $\mu^*|_A$ 
-la *trace* de $\mu^*$ sur un ensemble $A$ de $X$, définie pour tout
-sous-ensemble $B$ de $X$ par
-$$\mu^*|_A(B) = \mu^*(A \cap B),$$
-alors l'ensemble $A$ est $\mu^*$-mesurable si et seulement si
-$$
-\mu^* = \mu^*|_A + \mu^*|_{A^c}.
-$$
-
-### Mesure associée à une mesure extérieure {.theorem}
-Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
-La collection $\mathcal{A}$ des ensembles $\mu^*$-mesurables de $X$
-est une tribu sur $X$ et la restriction $\mu$ de $\mu^*$ à 
-$\mathcal{A}$ est une mesure sur $X$.
-
-### Démonstration {.proof}
-Cf. [@Hun11, théorème 2.9, pp. 15-17].
-
-### {.remark .ante}
-La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue
-produit la mesure de Lebesgue.
-
-### Mesure de Lebesgue {.theorem .definition}
-La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{P}(\R^n) \to [0, +\infty]$
-est bien une mesure extérieure sur $\R^n$.
-La collection des ensembles $v^*$-mesurables (au sens de Caratheodory)
-est identique à la tribu de Lebesgue $\mathcal{L}(\R^n)$ ; 
-la mesure $v$ associée à $v^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
-
-### Démonstration (partielle : $v^*$ est une mesure extérieure.) {.proof}
-Il est clair que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
-$[0,0]^n$ recouvre $\varnothing$ par exemple). 
-Si $A \subset B \subset \R^n$, alors tout recouvrement de $B$ par des
-pavés compacts recouvre également $A$ ; par conséquent $v^*(A) \leq v^*(B)$.
-Finalement, pour tout $A_k \subset \R^n$, $k \in \N$, et pour tout $\varepsilon > 0$, 
-il existe des pavés compacts $P_{jk}$ tels que 
-$$
-A_k \subset \bigcup_{j=0}^{+\infty} P_{jk} 
-\; \mbox{ et } \;
-\sum_{j=0}^{+\infty} v(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
-\leq v^*(A_k) \leq \sum_{j=0}^{+\infty} v(P_{jk}).
-$$
-Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $\cup_{k=0}^{+\infty} A_k$, 
-on a donc
-$$
-v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
-\leq 
-\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
-= \left(\sum_{k=0}^{+\infty} v^*(A_k)\right) +\varepsilon.
-$$
-Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
-que $v^*$ est bien $\sigma$-subadditive.
-
-<!--
-### {.post}
-Nous renvoyons le lecteur intéressé par la preuve que la mesure de Lebesgue
-prolonge bien la mesure de volume des pavés compacts à [@Hun11, section 2.2].
--->
-
-<!--
-### {.remark .ante} 
-On admettra également sans preuve le résultat suivant, qui montre que la notation
-"$v$" que nous avons employé deux fois est dépourvue d'ambiguité :
-
-### Mesure de Lebesgue et intégrale de Henstock-Kurzweil
-La tribu $\mathcal{L}(\R^n)$ des ensembles $v^*$-mesurables 
-au sens de Caratheodory coïncide avec la tribu des ensembles mesurables 
-définis au moyen de l'intégrale de Henstock-Kurzweil. La mesure de Lebesgue
-$v: \mathcal{L}(\R^n) \to [0, +\infty]$ vérifie
-$$
-v(A) = \int 1_A(x) \, dx
-$$ 
-si $1_A$ est intégrable au sens de Henstock-Kurzweil et
-$v(A)= +\infty$ sinon.
-
--->
-
-<!--
-TODO -- Mesure de grandeurs
-================================================================================
-
-### TODO ; refocus Lebesgue directement.
-
-Il est possible même au sein d'un espace unique comme $\R^3$ de vouloir
-mesurer différentes grandeurs attachées à un ensemble $A$. 
-On peut ainsi vouloir compter le nombre de points que contient $A$
-(sa "mesure de comptage"), sa longueur, sa surface ou encore son volume.
-
-L'exemple du volume a déjà été traité avec l'intégrale de Henstock-Kurzweil
-dans $\R^3$. L'exemple de la surface, a été partiellement traité, 
-dans un cas très limité (la frontière de compacts à bord réguliers) 
-et au prix d'un processus complexe
-permettant de se ramener à des calculs d'intégrale dans $\R^2$.
-Il est en fait possible de traiter ces quatres type de grandeurs, 
-ces quatre *mesures* différentes de façon similaire, et sans requérir
-à la notion d'intégrale. 
-
-Détaillons tous d'abord le cas de la mesure du volume dans $\R^3$.
-Le volume de la sphère de même diamètre qu'un ensemble $B$ arbitraire 
-est donnée par
-$$
-\frac{4 \pi}{3} \left(\frac{\mathrm{diam} \, B}{2}\right)^3.
-$$
-On peut alors calculer pour tout $\delta > 0$ estimer le volume d'un ensemble
-$A$ à partir de tous les recouvrements dénombrables de $A$ par des ensembles
-de diamètre inférieur ou égal à $\delta$ par
-$$
-\mathcal{H}^3_{\delta}(A) =
-\inf \left\{
-\sum_{j=1}^{+\infty} \frac{4\pi}{3} \left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
-\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
-A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
-\right\},
-$$
-puis passer à la limite sur $\delta$. 
-Il s'avère que le résultat
--- on parle de *mesure de Hausdorff* de dimension $3$ de $A$ --
-est identique à l'approche par l'intégrale de Henstock-Kurzweil quand
-l'ensemble $A$ est mesurable :
-$$
-\mathcal{H}^3(A) = \int_A \, dx.
-$$
-On pense a priori avoir amélioré notre approche pour définir le volume d'un
-ensemble $A$, puisque l'on a supprimé la limitation que l'ensemble $A$ soit 
-mesurable. Toutefois, la mesure $\mathcal{H}^3$ qui résulte de cette définition
-perd une propriété importante qui est implicitement attachée à toutes les
-grandeurs que nous avons cité.
-
-Ce problème sera mis en évidence par le résultat suivant :
-
-
-
-Notons $A_1, \dots, A_n$ la partition de la sphère initiale
-et $B_1, \dots, B_n$ leurs images après rotation et translation.
-Comme par construction la mesure $\mathcal{H}^3$ est invariante par
-rotation et translation, il semble que l'on doive avoir
-$$
-\mathcal{H}^3(S) = \sum_{i=1}^n \mathcal{H}^3(A_i)
-= \sum_{i=1}^n \mathcal{H}^3(B_i) = \mathcal{H}^3(S_1) + \mathcal{H}(S_2)
-=2 \times \mathcal{H}^3(S),
-$$ 
-une contradiction puisque $\mathcal{H}^3(S) = 4\pi/3$.
-
-**TODO** négation de l'additivité, comment la retrouver (ensembles qui
-"splittent" proprement la mesure) et on retombe sur les ensembles
-mesurables.
-
-Généralisation de la démarche : le procédé utilisée, qq soit la mesure
-élémentaire, génère une fct sous-additive appelée mesure extérieures. 
-Les ensembles qui splittent proprement la mesure sont appelés ensembles
-mesurables, la restriction de la mesure à ces ensembles est additive,
-et même $\sigma$-additive.
-
-Et on "reboote" la théorie abstraite de la mesure à ce point.
-
---------------------------------------------------------------------------------
-
-$$
-\mathcal{H}^k_{\delta}(A) 
-= 
-\inf \left\{
-\sum_{j=1}^{+\infty} \alpha(k)\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
-\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
-A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
-\right\}
-$$
-où $\alpha(k)$ est le volume de la $k$-sphère unité dans $\R^k$([^G])
-$$
-\alpha(k) = \int_{\R^k} 1_{S_k}(x) \, dx 
-\; \mbox{ où } \; 
-S_k = \left\{x \in \R^k \; | \; x_1^2 + \dots + x_k^2 \leq 1 \right\}.
-$$
-
-La mesure de Hausdorff $\mathcal{H}^k(A)$ de dimension $k$ de l'ensemble
-$A \subset \R^n$ est définie par 
-$$
-\mathcal{H}^k(A) = \lim_{\delta \to 0} \mathcal{H}^k_{\delta}(A).
-$$
-
-[^G]: on a $$\alpha(k) = \frac{\pi^{k/2}}{\Gamma \left( \frac{k}{2}+1 \right)} 
-\; \mbox{ avec } \; 
-\Gamma(x) = \int_0^{+\infty} e^{-t} t^{x-1}\, dt.$$ 
-La fonction $\Gamma$ est caractérisée pour des valeurs entières et
-demi-entières par $\Gamma(1/2) = \sqrt{\pi}$, $\Gamma(1) = 1$ et généralement
-par $\Gamma(x+1)= x\Gamma(x)$.
--->
-
 Mesure et intégrale
 ================================================================================
 
-### Ensemble négligeable {.definition}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Un ensemble $N \subset X$
-est *$\mu$-négligeable* s'il existe un ensemble mesurable $A \in \mathcal{A}$ 
-tel que $N \subset A$ et $\mu(A) = 0$.
 
-### Presque partout {.definition}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Une propriété $P$ dépendant 
-d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
-où elle est fausse est un ensemble négligeable.
 
 ### Tribu engendrée par une collection {.definition}
 Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
@@ -1696,6 +1382,9 @@ remarque évidente sur l'autre intégrale itérée.
 Annexe
 ================================================================================
 
+Continuité Monotone
+--------------------------------------------------------------------------------
+
 ### Théorème de continuité monotone {.theorem #cont-monot}
 Soit $(X ,\mathcal{A}, \mu)$ un espace mesuré et $(A_n)_{n \in \N}$ une
 suite d'ensembles de $\mathcal{A}$. Si la suite $A_n$ est
@@ -1775,6 +1464,358 @@ $$
 \lim_{n \to +\infty} \mu(A_n) = 
 \mu \left(\bigcap_{n=0}^{+\infty} A_n \right).
 $$
+
+
+Mesure de Lebesgue -- Approche directe
+--------------------------------------------------------------------------------
+
+Dans les volets précédents du "Calcul Intégral", il nous a semblé naturel
+de définir le volume d'un pavé compact de $\R^n$ 
+$$
+P = [a_1, b_1] \times \dots \times [a_n, b_n]
+$$
+au moyen de la formule
+$$
+v(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
+$$
+L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $v$ 
+en une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
+par la relation
+$$
+v(A) = \left|
+\begin{array}{cl}
+\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
++\infty & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Mais cette approche n'est pas totalement satisfaisante intellectuellement.
+D'une part on peut considérer l'usage de l'intégrale comme un chemin
+tortueux pour étendre $v$.
+D'autre part on peut avoir l'impression
+que cette approche -- qui ne permet pas de mesurer le volume de tout
+ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
+cette limitation pourrait être un artefact de la méthode choisie
+plutôt qu'une limitation intrinsèque.
+Dans cette section, nous allons donner une autre méthode de définition, 
+plus directe et géométrique, due à Lebesgue et Carathéodory[^autz],
+de définition de la mesure (extérieure) du volume de tout ensemble 
+de $\R^n$.
+Elle nous donnera également la raison pour laquelle
+notre construction initiale du volume se limite à la collection
+des ensembles qualifiés de "mesurables".
+
+[^autz]: Henri Lebesgue (1875-1941) était un mathématicien français
+et Constantin Carathéodory (1873-1950) un mathématicien grec entrenant
+des liens étroits avec l'Allemagne. Ils font partie des fondateurs de 
+la théorie abstraite de la mesure qui conduit à un renouveau de la théorie 
+de l'intégration au début du XXème siècle.
+
+Pour calculer le volume d'un sous-ensemble de $\R^n$, 
+nous généralisons la méthode déjà utilisée pour définir les ensembles négligeables 
+(de volume nul) : nous considérons l'ensemble des collections dénombrables
+de pavés recouvrant ce sous-ensemble et nous utilisons chacun des ces 
+recouvrements pour produire une estimation (supérieure) du volume
+de l'ensemble. Formellement :
+
+### Mesure extérieure de Lebesgue {.definition #mel}
+On appelle *mesure extérieure de Lebesgue* sur $\R^n$ la fonction
+$$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
+qui a tout ensemble $A$ de $\R^n$ associe le nombre réel étendu positif
+défini par
+$$
+v^*(A) 
+= 
+\inf 
+\left\{
+\sum_{k=0}^{+\infty} v(P_k)
+\; \left| \vphantom{\bigcup_{k=0}^{+\infty}} \right. \; 
+\mbox{$P_k$ pavé compact de $\R^n$,} \, A \subset \bigcup_{k=0}^{+\infty} P_k
+\right\},
+$$
+
+Cette définition "raisonnable" ne satisfait toutefois pas les propriétés que
+nous attendons (implicitement) d'un volume. Ce décalage est mis en évidence
+par un résultat paradoxal de la théorie des ensembles dans $\R^3$ :
+
+### Paradoxe de Banach-Tarski {.theorem}
+Il est possible de partitionner une sphère de rayon un de $\R^3$ 
+en un nombre fini d'ensembles, qui, 
+après rotations et translations, 
+forment une partition de deux sphères disjointes de rayon un.
+
+--------------------------------------------------------------------------------
+
+
+Si le résultat est qualifié de paradoxe, c'est qu'il nous semble intuitivement 
+que le volume devrait être préservé par les les opérations subies par 
+la sphère initiale. Or, le volume d'une sphère de rayon un et de deux 
+sphères disjointes de même rayon diffère d'un facteur $2$.
+Pour dépasser ce paradoxe, nous allons devoir examiner un par un les
+résultats qui nous semblent "évidents" dans ce raisonnement pour débusquer
+notre erreur.
+
+Soient $A_1, \dots, A_p$ des ensembles disjoints et non vides
+de $\R^3$ dont la réunion forme la sphère initiale $S_0 = A_1 \cup \dots\cup A_p$,
+et tels que des ensembles disjoints $B_1, \dots, B_p$ 
+qui s'en déduisent par rotation et translation, 
+vérifient $S_1 \cup S_2 = B_1 \cup \dots \cup B_p$ où $S_1$ et $S_2$
+sont les deux sphère finales.
+
+Tout d'abord, on a bien
+$$
+v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
+$$
+car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
+(au sens de l'intégrale de Henstock-Kurzweil)
+et nous verrons ultérieurement que dans ce cas, la mesure extérieure
+$v^*$ coïncide avec $v$.
+Un simple calcul intégral fournit alors le résultat.
+
+On peut croire que le point faible de notre raisonnement est la préservation
+de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
+que lorsque $B$ se déduit de $A$ par une translation alors $v^*(A) = v^*(B)$, 
+on peut douter du résultat pour les rotations. 
+Après tout, la définition de $v^*(A)$ fait appel
+à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
+conservée par rotation. 
+Mais si le résultat n'est pas évident, il s'avère pourtant que
+la mesure extérieure $v^*$ est bien invariante par rotation 
+(cf. [@Hun11, section 2.8]).
+
+La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
+n'est tout simplement pas additive ! Même si les ensembles 
+$A_1, \dots, A_p$ sont disjoints, il est possible que 
+$$
+v^*(A_1 \cup \dots \cup A_p) \neq v^*(A_1) + \dots + v^*(A_p).
+$$
+On peut par contre établir avec la définition de $v^*$ qu'elle est 
+sous-additive : pour tous les ensembles $A_1, \dots, A_p$ (disjoints ou non),
+on a 
+$$
+v^*(A_1 \cup \dots \cup A_p) \leq v^*(A_1) + \dots + v^*(A_p).
+$$
+Elle est même $\sigma$-sous-additive : si $(A_k)_{k \in \N}$ est une suite
+de sous-ensembles de $\R^n$, 
+$$
+v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
+\leq \sum_{k=0}^{+\infty} v^*\left(A_k\right).
+$$
+
+Cette propriété est la caractéristique centrale des *mesures extérieures* :
+
+### Mesure extérieure {.definition}
+On appelle *mesure extérieure* sur l'ensemble $X$ toute application
+$$v^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que :
+
+  1. $\mu^*(\varnothing) = 0$ (*nullité en $\varnothing$*).
+
+  2. $A \subset B \Rightarrow \mu^*(A) \subset \mu^*(B)$ (*croissance*).
+
+  3. $\mu^*\left(\cup_{k=0}^{+\infty}A_k\right) \leq \sum_{k=0}^{+\infty} \mu^*\left(A_k\right)$ (*$\sigma$-subadditivité*).
+
+-----
+
+Il existe un procédé général permettant de déduire d'une mesure extérieure
+une application qui soit additive -- à condition d'accepter de réduire
+son domaine de définition ; la fonction qui en résulte est additive -- 
+et même $\sigma$-additive. 
+
+### Ensemble mesurable 
+Soit $\mu^*$ une mesure extérieure sur l'ensemble $X$.
+Un ensemble $A \subset X$ est dit *$\mu^*$-mesurable* (au sens de Carathéodory) 
+si pour tout $B \subset X$, on a 
+$$
+\mu^*(B) = \mu^*(B \cap A) + \mu^*(B \setminus A).
+$$
+
+### {.post}
+Une façon alternative de voir les choses : si l'on note $\mu^*|_A$ 
+la *trace* de $\mu^*$ sur un ensemble $A$ de $X$, définie pour tout
+sous-ensemble $B$ de $X$ par
+$$\mu^*|_A(B) = \mu^*(A \cap B),$$
+alors l'ensemble $A$ est $\mu^*$-mesurable si et seulement si
+$$
+\mu^* = \mu^*|_A + \mu^*|_{A^c}.
+$$
+
+### Mesure associée à une mesure extérieure {.theorem}
+Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
+La collection $\mathcal{A}$ des ensembles $\mu^*$-mesurables de $X$
+est une tribu sur $X$ et la restriction $\mu$ de $\mu^*$ à 
+$\mathcal{A}$ est une mesure sur $X$.
+
+### Démonstration {.proof}
+Cf. [@Hun11, théorème 2.9, pp. 15-17].
+
+### {.remark .ante}
+La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue
+produit la mesure de Lebesgue.
+
+### Mesure de Lebesgue {.theorem .definition}
+La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{P}(\R^n) \to [0, +\infty]$
+est bien une mesure extérieure sur $\R^n$.
+La collection des ensembles $v^*$-mesurables (au sens de Caratheodory)
+est identique à la tribu de Lebesgue $\mathcal{L}(\R^n)$ ; 
+la mesure $v$ associée à $v^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
+
+### Démonstration (partielle : $v^*$ est une mesure extérieure.) {.proof}
+Il est clair que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
+$[0,0]^n$ recouvre $\varnothing$ par exemple). 
+Si $A \subset B \subset \R^n$, alors tout recouvrement de $B$ par des
+pavés compacts recouvre également $A$ ; par conséquent $v^*(A) \leq v^*(B)$.
+Finalement, pour tout $A_k \subset \R^n$, $k \in \N$, et pour tout $\varepsilon > 0$, 
+il existe des pavés compacts $P_{jk}$ tels que 
+$$
+A_k \subset \bigcup_{j=0}^{+\infty} P_{jk} 
+\; \mbox{ et } \;
+\sum_{j=0}^{+\infty} v(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
+\leq v^*(A_k) \leq \sum_{j=0}^{+\infty} v(P_{jk}).
+$$
+Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $\cup_{k=0}^{+\infty} A_k$, 
+on a donc
+$$
+v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
+\leq 
+\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
+= \left(\sum_{k=0}^{+\infty} v^*(A_k)\right) +\varepsilon.
+$$
+Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
+que $v^*$ est bien $\sigma$-subadditive.
+
+<!--
+### {.post}
+Nous renvoyons le lecteur intéressé par la preuve que la mesure de Lebesgue
+prolonge bien la mesure de volume des pavés compacts à [@Hun11, section 2.2].
+-->
+
+<!--
+### {.remark .ante} 
+On admettra également sans preuve le résultat suivant, qui montre que la notation
+"$v$" que nous avons employé deux fois est dépourvue d'ambiguité :
+
+### Mesure de Lebesgue et intégrale de Henstock-Kurzweil
+La tribu $\mathcal{L}(\R^n)$ des ensembles $v^*$-mesurables 
+au sens de Caratheodory coïncide avec la tribu des ensembles mesurables 
+définis au moyen de l'intégrale de Henstock-Kurzweil. La mesure de Lebesgue
+$v: \mathcal{L}(\R^n) \to [0, +\infty]$ vérifie
+$$
+v(A) = \int 1_A(x) \, dx
+$$ 
+si $1_A$ est intégrable au sens de Henstock-Kurzweil et
+$v(A)= +\infty$ sinon.
+
+-->
+
+<!--
+TODO -- Mesure de grandeurs
+================================================================================
+
+### TODO ; refocus Lebesgue directement.
+
+Il est possible même au sein d'un espace unique comme $\R^3$ de vouloir
+mesurer différentes grandeurs attachées à un ensemble $A$. 
+On peut ainsi vouloir compter le nombre de points que contient $A$
+(sa "mesure de comptage"), sa longueur, sa surface ou encore son volume.
+
+L'exemple du volume a déjà été traité avec l'intégrale de Henstock-Kurzweil
+dans $\R^3$. L'exemple de la surface, a été partiellement traité, 
+dans un cas très limité (la frontière de compacts à bord réguliers) 
+et au prix d'un processus complexe
+permettant de se ramener à des calculs d'intégrale dans $\R^2$.
+Il est en fait possible de traiter ces quatres type de grandeurs, 
+ces quatre *mesures* différentes de façon similaire, et sans requérir
+à la notion d'intégrale. 
+
+Détaillons tous d'abord le cas de la mesure du volume dans $\R^3$.
+Le volume de la sphère de même diamètre qu'un ensemble $B$ arbitraire 
+est donnée par
+$$
+\frac{4 \pi}{3} \left(\frac{\mathrm{diam} \, B}{2}\right)^3.
+$$
+On peut alors calculer pour tout $\delta > 0$ estimer le volume d'un ensemble
+$A$ à partir de tous les recouvrements dénombrables de $A$ par des ensembles
+de diamètre inférieur ou égal à $\delta$ par
+$$
+\mathcal{H}^3_{\delta}(A) =
+\inf \left\{
+\sum_{j=1}^{+\infty} \frac{4\pi}{3} \left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
+\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
+A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
+\right\},
+$$
+puis passer à la limite sur $\delta$. 
+Il s'avère que le résultat
+-- on parle de *mesure de Hausdorff* de dimension $3$ de $A$ --
+est identique à l'approche par l'intégrale de Henstock-Kurzweil quand
+l'ensemble $A$ est mesurable :
+$$
+\mathcal{H}^3(A) = \int_A \, dx.
+$$
+On pense a priori avoir amélioré notre approche pour définir le volume d'un
+ensemble $A$, puisque l'on a supprimé la limitation que l'ensemble $A$ soit 
+mesurable. Toutefois, la mesure $\mathcal{H}^3$ qui résulte de cette définition
+perd une propriété importante qui est implicitement attachée à toutes les
+grandeurs que nous avons cité.
+
+Ce problème sera mis en évidence par le résultat suivant :
+
+
+
+Notons $A_1, \dots, A_n$ la partition de la sphère initiale
+et $B_1, \dots, B_n$ leurs images après rotation et translation.
+Comme par construction la mesure $\mathcal{H}^3$ est invariante par
+rotation et translation, il semble que l'on doive avoir
+$$
+\mathcal{H}^3(S) = \sum_{i=1}^n \mathcal{H}^3(A_i)
+= \sum_{i=1}^n \mathcal{H}^3(B_i) = \mathcal{H}^3(S_1) + \mathcal{H}(S_2)
+=2 \times \mathcal{H}^3(S),
+$$ 
+une contradiction puisque $\mathcal{H}^3(S) = 4\pi/3$.
+
+**TODO** négation de l'additivité, comment la retrouver (ensembles qui
+"splittent" proprement la mesure) et on retombe sur les ensembles
+mesurables.
+
+Généralisation de la démarche : le procédé utilisée, qq soit la mesure
+élémentaire, génère une fct sous-additive appelée mesure extérieures. 
+Les ensembles qui splittent proprement la mesure sont appelés ensembles
+mesurables, la restriction de la mesure à ces ensembles est additive,
+et même $\sigma$-additive.
+
+Et on "reboote" la théorie abstraite de la mesure à ce point.
+
+--------------------------------------------------------------------------------
+
+$$
+\mathcal{H}^k_{\delta}(A) 
+= 
+\inf \left\{
+\sum_{j=1}^{+\infty} \alpha(k)\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
+\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
+A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
+\right\}
+$$
+où $\alpha(k)$ est le volume de la $k$-sphère unité dans $\R^k$([^G])
+$$
+\alpha(k) = \int_{\R^k} 1_{S_k}(x) \, dx 
+\; \mbox{ où } \; 
+S_k = \left\{x \in \R^k \; | \; x_1^2 + \dots + x_k^2 \leq 1 \right\}.
+$$
+
+La mesure de Hausdorff $\mathcal{H}^k(A)$ de dimension $k$ de l'ensemble
+$A \subset \R^n$ est définie par 
+$$
+\mathcal{H}^k(A) = \lim_{\delta \to 0} \mathcal{H}^k_{\delta}(A).
+$$
+
+[^G]: on a $$\alpha(k) = \frac{\pi^{k/2}}{\Gamma \left( \frac{k}{2}+1 \right)} 
+\; \mbox{ avec } \; 
+\Gamma(x) = \int_0^{+\infty} e^{-t} t^{x-1}\, dt.$$ 
+La fonction $\Gamma$ est caractérisée pour des valeurs entières et
+demi-entières par $\Gamma(1/2) = \sqrt{\pi}$, $\Gamma(1) = 1$ et généralement
+par $\Gamma(x+1)= x\Gamma(x)$.
+-->
 
 
 Exercices
