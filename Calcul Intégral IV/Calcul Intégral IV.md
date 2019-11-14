@@ -21,6 +21,9 @@ continuité monotone est facile à RETROUVER à partir du TCM (même si niveau
 démo, ça se passe dans l'autre sens). Par contre les deux preuves sont de 
 même nature (TCM un cran au-dessus).
 
+TODO : démo qui comptent : approximation des fonctions mesurables par des
+fonctions étagées.
+
 ### TODO -- Basique
 
   - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions + application directe)
@@ -261,8 +264,8 @@ Intégrale
 ### Fonction mesurable
 Soit $(X, \mathcal{A})$ un espace mesurable et $n \in \N^*$.
 Une fonction $f: X \to [-\infty,+\infty]^n$ est *mesurable* 
-(on trouvera aussi les terminologies *$\mathcal{A}$-mesurable* 
-ou $\mu$-mesurable pour lever toute ambiguité) 
+(ou *$\mathcal{A}$-mesurable* 
+pour lever toute ambiguité) 
 si l'image réciproque 
 de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]^n$ par 
 $f$ est un ensemble mesurable (qui appartient à $\mathcal{A}$).
@@ -275,18 +278,11 @@ si $f$ est à valeurs finies -- c'est-à-dire si $f(X) \subset \R^n$.
 
 ### Exercice -- Ensemble des parties de $X$ {.exercise}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
-une fonction $f: X \to \mathbb{R}^n$ est-elle $\mathcal{A}$-mesurable ?
+une fonction $f: X \to [-\infty, +\infty]^n$ est-elle $\mathcal{A}$-mesurable ?
 
 ### Exercice -- Fonction caractéristique
 Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
-A quelle condition (nécessaire et suffisante) la fonction $1_A: X \to \R$ 
-est-elle mesurable ?
-
-### Exercice -- Fonctions étagées {.exercise}
-Soit $(X, \mathcal{A})$ un espace mesuré. A quelle condition
-(nécessaire et suffisante)
-une fonction $f: X \to \mathbb{R}^n$ qui ne prend 
-qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
+A quelle condition la fonction $1_A: X \to \R$ est-elle mesurable ?
 
 ### Limite simple de fonctions mesurables
 Soit $(X, \mathcal{A})$ un espace mesurable. 
@@ -305,9 +301,60 @@ $$
 qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
 (dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
 
-### TODO -- Lim simple/croissante fonction étagée
-(Fct mesurable ssi limit fcts étagées finies mesurables ; optionnellement
-limite croissante quand f pos. Commencer par le cas f pos.)
+### Fonction étagée
+Une fonction $f: X \to [-\infty, +\infty]$ est *étagée* si et seulement
+l'image de $X$ par $f$ ne comporte qu'un nombre fini de valeurs distinctes.
+
+### Exercice -- Fonction étagée {.exercise}
+Soit $(X, \mathcal{A})$ un espace mesurable. 
+A quelle condition une fonction $f: X \to [-\infty, +\infty]$ qui ne prend 
+qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
+
+### Approximation par des fonctions étagées positives {.theorem}
+Soit $(X, \mathcal{A})$ un espace mesurable. 
+Soit $f: X \to [0, +\infty]$ une fonction mesurable positive
+(à valeurs finies ou infinies). Il existe une suite croissante de fonctions 
+étagées mesurables positives $f_k : X \to \left[0, +\infty\right[$ (à valeurs
+finies) convergeant simplement vers $f$.
+$$
+0 \leq f_0(x) \leq f_1(x) \leq \dots \leq f_k(x) \to f(x)
+$$
+
+
+
+### Démonstration {.proof}
+Soit $\varepsilon_k \geq 0$ une suite de valeurs réelles positives.
+La suite des fonctions $f_k$ définies par $f_0=0$, puis
+$$
+f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
+E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
+$$
+est croissante et composée de fonctions étagées positives finies et mesurables.
+
+![Approximation de la fonction 
+$f : x \in [0,\pi] \mapsto \sin x$ au moyen des fonctions étagées $f_k$ associées
+à la suite $\varepsilon_k = 1.25/(k+1)$.](images/étagées.py)
+
+Si la suite $\varepsilon_k$ est choisie telle que
+$$
+\lim_{k\to +\infty} \varepsilon_k  = 0 
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \varepsilon_k = +\infty,
+$$
+alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
+
+
+
+### Approximation par des fonctions étagées
+Soit $(X, \mathcal{A})$ un espace mesurable. 
+Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable
+(à valeurs finies ou infinies). Il existe une suite de fonctions 
+étagées mesurables $f_k : X \to \left[0, +\infty\right[$ (à valeurs
+finies) dont les valeurs absolues $|f_k|$ sont croissantes et 
+convergeant simplement vers $f$.
+
+### TODO -- Démonstration {.proof}
+
 
 ### TODO -- Exercice (combi lin sont mesurables)
 Deux cas : cas réel, combi lin arbitraire. Et/ou cas positif étendu.
