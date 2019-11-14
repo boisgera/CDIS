@@ -1304,7 +1304,7 @@ c'est-à-dire telles que pour tout tout $k \in \N$ et tout $x \in X$,
 $$
 0 \leq f_k(x) \leq g(x) \; \mbox{ et } \; \int g \mu < +\infty.
 $$
-Si la suite des $f_k$ à une limite simple $f: X \to [-\infty, +\infty]$,
+Si la suite des $f_k$ a une limite simple $f: X \to [-\infty, +\infty]$,
 c'est-à-dire si pour tout $x \in X$,
 $f_k(x) \to f(x) \mbox{ quand } k \to +\infty,$
 alors
