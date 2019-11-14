@@ -312,15 +312,13 @@ qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
 
 ### Approximation par des fonctions étagées positives {.theorem}
 Soit $(X, \mathcal{A})$ un espace mesurable. 
-Soit $f: X \to [0, +\infty]$ une fonction mesurable positive
-(à valeurs finies ou infinies). Il existe une suite croissante de fonctions 
+Soit $f: X \to [0, +\infty]$ une fonction mesurable positive. 
+Il existe une suite croissante de fonctions 
 étagées mesurables positives $f_k : X \to \left[0, +\infty\right[$ (à valeurs
 finies) convergeant simplement vers $f$.
 $$
 0 \leq f_0(x) \leq f_1(x) \leq \dots \leq f_k(x) \to f(x)
 $$
-
-
 
 ### Démonstration {.proof}
 Soit $\varepsilon_k \geq 0$ une suite de valeurs réelles positives.
@@ -329,11 +327,31 @@ $$
 f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
 E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
 $$
-est croissante et composée de fonctions étagées positives finies et mesurables.
+est croissante et composée de fonctions étagées positives finies.
 
 ![Approximation de la fonction 
 $f : x \in [0,\pi] \mapsto \sin x$ au moyen des fonctions étagées $f_k$ associées
 à la suite $\varepsilon_k = 1.25/(k+1)$.](images/étagées.py)
+
+De plus, on peut prouver par récurrence que ces fonctions $f_k$ sont 
+mesurables. En effet, $f_0$ est évidemment mesurable (et étagée) ;
+supposons que $f_k$ soit mesurable (et étagée), et donc de la 
+forme $f_k = \sum_{j=0}^{n-1}y_j 1_{A_j}$ où les $A_j$ sont mesurables,
+forment une partition de $X$ et $0 \leq y_0 < y_1 < \dots < y_{n-1} < +\infty$. 
+Alors,
+$$
+\begin{split}
+E_k &= \{x \in X \; | \; f(x) \geq f_k(x) + \varepsilon_k\} \\
+&= \bigcup_{j=0}^{n-1} \{x \in A_j \; | \; f(x) \geq f_k(x) + \varepsilon_k\} \\
+&= \bigcup_{j=0}^{n-1} \{x \in A_j \; | \; f(x) \geq y_j + \varepsilon_k\} \\
+&= \bigcup_{j=0}^{n-1} f^{-1}([y_j+\varepsilon_k,+\infty]) \cap A_j.
+\end{split}
+$$
+La fonction $f$ étant mesurable, chaque ensemble $f^{-1}([y_j+\varepsilon_k,+\infty])$
+est mesurable ; l'ensemble $E_k$ est donc mesurable comme union finie d'intersection
+finie d'ensemble mesurables. La fonction $f_{k+1} = f_k + \varepsilon_k 1_{E_k}$
+est donc mesurable (et étagée).
+
 
 Si la suite $\varepsilon_k$ est choisie telle que
 $$
@@ -347,14 +365,32 @@ alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$.
 
 ### Approximation par des fonctions étagées
 Soit $(X, \mathcal{A})$ un espace mesurable. 
-Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable
-(à valeurs finies ou infinies). Il existe une suite de fonctions 
+Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable. 
+Il existe une suite de fonctions 
 étagées mesurables $f_k : X \to \left[0, +\infty\right[$ (à valeurs
-finies) dont les valeurs absolues $|f_k|$ sont croissantes et 
-convergeant simplement vers $f$.
+finies) dont la suite des valeurs absolues $|f_k|$ est croissante 
+$$
+0 \leq |f_0| \leq \cdots \leq |f_k| \leq |f_{k+1}| \leq \cdots
+$$
+et convergent simplement vers $f$.
 
-### TODO -- Démonstration {.proof}
 
+### Démonstration {.proof}
+Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ sont mesurables[^hh].
+Elle sont également positives, telles que $f = f_+ - f_-$ et $|f| = f_+ + f_-$. 
+Il existe donc deux suites croissantes de fonctions $f_{k+}$ et $f_{k-}$ 
+de fonctions étagées mesurables positives telles $f_{k+} \to f_+$ et 
+$f_{k-} \to f_-$ et donc $f_k := f_{k+} - f_{k-} \to f$ quand $k \to +\infty$.
+Par construction, $|f_{k}| = f_{k+} + f_{k-}$ est également croissante comme
+somme de deux suites croissantes. 
+
+[^hh]: En effet la fonction $\max(\cdot, 0): [-\infty, +\infty] \to [0, +\infty]$
+est continue. Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
+$U$ par $\max(\cdot, 0)$ est donc un ouvert de $[-\infty, +\infty]$ et comme 
+$f$ est mesurable, l'image réciproque de cet ensemble par $f$ est un ensemble
+mesurable. La fonction composée $F_+ = \max(f, 0) = \max(\cdot, 0) \circ f$ est donc
+mesurable.
+Le cas de la fonction $f_-$  est similaire.
 
 ### TODO -- Exercice (combi lin sont mesurables)
 Deux cas : cas réel, combi lin arbitraire. Et/ou cas positif étendu.
