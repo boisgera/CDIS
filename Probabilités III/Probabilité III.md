@@ -15,10 +15,13 @@
 \newcommand{\cov}{\text{Cov}}
 
 
-On présente dans ce chapitre l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique ou en Mathématiques Financières.
-Plus généralement, nous allons étudier les suites de variables aléatoires indépendantes et les notions de convergence de variables aléatoires. Nous verrons que plusieurs notions sont possibles, non équivalentes, ce qui enrichit mais complique aussi la description des comportements asymptotiques.
+On présente dans ce chapitre l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique, en Mathématiques Financières, dans les méthodes de quantification d'incertitudes.
 
-On se place désormais dans le cadre général des variables aléatoires réelles qui n'admettent pas nécessairement de densité.
+Plus généralement, on va étudier les suites de variables aléatoires indépendantes[^notind] et les notions de convergence de variables aléatoires. On verra que plusieurs notions sont possibles, non équivalentes, ce qui enrichit mais complique aussi la description des comportements asymptotiques.
+
+[^notind] Dans ce chapitre, sauf mention contraire, **indépendant$\cdot$e$\cdot$s** signifie **mutuellement indépendant$\cdot$e$\cdot$s**.
+
+On se place désormais dans le cadre général des variables aléatoires réelles n'admettant pas nécessairement de densité (elles peuvent être discrètes, mixtes,...).
 
 # Suites de variables aléatoires indépendantes 
 On considère une suite **infinie** $(X_n)_{n\in \N^\star}$ de variables aléatoires définies sur l'espace de probabilité $(\Omega, \A, \P)$.

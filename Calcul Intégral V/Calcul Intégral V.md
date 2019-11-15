@@ -687,7 +687,7 @@ Soit $X$ une variable aléatoire. $X$ est intégrable et on note $X \in \L^1$, o
 ### Définition --- Espace $\L^2$ {.definition}
 Soit $X$ une variable aléatoire. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
 
-Les propriétés des espaces $\L^1$ et $\L^2$ sont vrais en toute généralité. On peut par ailleurs étendre ces définitions pour un $p \in N^\star$ quelconque.
+Les propriétés des espaces $\L^1$ et $\L^2$ sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in N^\star$ quelconque.
 
 ### Définition --- Espace $\L^p$ {.definition}
 Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|^p) = \int_{\Omega} |X|^p(\omega)\P(d\omega) < +\infty$.
@@ -695,7 +695,7 @@ Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^1(\Omega,\A,\P)$,
 Si $X \in \L^p$, on dit qu'elle admet un moment d'ordre $p$. Du fait que $\P$ est une mesure finie, on a :
 
 ### Proposition {.proposition}
-Soit $p \in \N^star$, on a l'inclusion :
+Soit $p \in \N^\star$, on a l'inclusion :
 $$ \L^{p+1}(\Omega,\A,\P) \subset \L^p(\Omega,\A,\P)$$
 
 ### Démonstration {.proof}
@@ -726,7 +726,6 @@ C'est une application immédiate de [l'inégalité de Markov](#inegmarkov) à $(
 
 L'inégalité de Chebyshev est très utile en pratique. Elle permet de mesurer la probabilité des grands écarts entre $X$ et sa moyenne. Par exemple, avec $a = 10 \sigma X$, il en résulte qu’il est improbable qu’une variable aléatoire $X$ dévie de son espérance $\Esp(X)$ de plus de 10 fois son écart-type
 (probabilité inférieure à 0.01). Cette inégalité, tout à fait générale, n’est cependant pas très précise, et surestime très souvent en pratique le membre de gauche. On préférera, quand c'est possible, calculer directement ces probabilités à partir de la loi de $X$.
-
 
 On peut également réécrire [la proposition portant sur l'espérance de la composée d'une variable aléatoire et d'une fonction mesurable](Probabilité II.pdf #esperanceg) avec l'intégrale de Lebesgue :
 
