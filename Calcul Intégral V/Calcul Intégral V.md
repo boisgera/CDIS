@@ -1229,6 +1229,29 @@ Fonction distance
 
 Dérivées seconde fonction distance, squelette, courbure, etc ?
 
+
+Tribu engendrée
+--------------------------------------------------------------------------------
+
+Une collection $\mathcal{A}$ de sous-ensembles de $X$ est une 
+*algèbre (d'ensembles)* si elle contient $\varnothing$ et est stable
+par complémentation et par union finie.
+
+De manière similaire au cas des tribus, pour toute collection d'ensembles 
+de $X$ il existe une plus petite (au sens de l'inclusion) algèbre qui la 
+contient : c'est *l'algèbre engendrée* par cette collection.
+
+### Question 1  {.question #te-1}
+Déterminer l'algèbre engendrée sur $\R$ par la collection
+$$
+\{\left[a, b\right[ \; | \; -\infty < a \leq b \leq +\infty\}
+$$
+
+### Question 2  {.question #te-2}
+Déterminer la tribu engendrée (ou $\sigma$-algèbre) sur $\R$ par la même 
+collection.
+
+
 Lemme de Borel-Cantelli
 --------------------------------------------------------------------------------
 
@@ -1256,6 +1279,38 @@ Chernoff, Hoeffding ?
 
 Solutions
 =================================================================================
+
+
+
+Tribu engendrée
+--------------------------------------------------------------------------------
+
+### Question 1  {.answer #answer-te-1}
+Si $\mathcal{A}$ est une algèbre de $X$ contenant tous les intervalles
+$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors 
+par complémentation de $\left[a, +\infty\right[$, 
+elle contient nécessairement les ensembles de la forme $\left]-\infty, a\right[$ 
+et donc par union finie tous les ensembles de la forme
+$$
+\left]-\infty, a_0\right[ \cup \dots \cup \left[a_k, b_k\right[ \cup \dots \cup \left[a_m, +\infty\right[
+$$
+où les $a_k$ et les $b_k$ sont finis et le premier et dernier terme de cette union
+peuvent être omis. On vérifiera alors que cet ensemble est stable par union
+finie et par complémentation : c'est une algèbre de $\R$. Par conséquent, 
+c'est la plus petite algèbre de $\R$ qui contienne la collection initiale ;
+c'est donc l'algèbre engendrée recherchée.
+
+### Question 2  {.answer #answer-te-2}
+Si $\mathcal{A}$ est une tribu de $X$ contenant tous les intervalles
+$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors
+elle contient aussi
+$$
+\left]a, b\right[ = \bigcup_{k=0}^{+\infty} \left[a+\frac{b-a}{2^k}, b\right[
+$$
+et donc tout ouvert de $\R$ puisqu'un tel ensemble est une réunion dénombrable
+d'intervalles ouverts de $\R$. Par conséquent, elle contient tous les Boréliens.
+Comme l'ensemble des Boréliens est une tribu de $\R$, c'est donc la tribu
+engendrée par la collection initiale.  
 
 Lemme de Borel-Cantelli
 --------------------------------------------------------------------------------

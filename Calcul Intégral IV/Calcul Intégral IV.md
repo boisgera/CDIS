@@ -1520,7 +1520,7 @@ par $\Gamma(x+1)= x\Gamma(x)$.
 
 Exercices
 ================================================================================
-
+<!--
 Anagramme {.question #BT}
 --------------------------------------------------------------------------------
 
@@ -1597,6 +1597,8 @@ Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
 Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
 et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
 
+-->
+
 Mesure image 
 --------------------------------------------------------------------------------
 
@@ -1624,27 +1626,6 @@ $$
 \int_Y f \, (\mu \circ h^{-1})(dx) = \int_X (f \circ h) \mu(dx).
 $$
 
-Tribu engendrée
---------------------------------------------------------------------------------
-
-Une collection $\mathcal{A}$ de sous-ensembles de $X$ est une 
-*algèbre (d'ensembles)* si elle contient $\varnothing$ et est stable
-par complémentation et par union finie.
-
-De manière similaire au cas des tribus, pour toute collection d'ensembles 
-de $X$ il existe une plus petite (au sens de l'inclusion) algèbre qui la 
-contient : c'est *l'algèbre engendrée* par cette collection.
-
-### Question 1  {.question #te-1}
-Déterminer l'algèbre engendrée sur $\R$ par la collection
-$$
-\{\left[a, b\right[ \; | \; -\infty < a \leq b \leq +\infty\}
-$$
-
-### Question 2  {.question #te-2}
-Déterminer la tribu engendrée (ou $\sigma$-algèbre) sur $\R$ par la même 
-collection.
-
 
 
 Complétion d'une mesure {#complétion}
@@ -1652,17 +1633,11 @@ Complétion d'une mesure {#complétion}
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 On note $A \ds B$ la différence symétrique
-de deux sous-ensembles $A$ et $B$ de $X$ l'ensemble, 
-définie par
+de deux sous-ensembles $A$ et $B$ de $X$, c'est-à-dire l'ensemble défini par
 $$
 A \ds B = (A \setminus B) \cup (B \setminus A) = (A \cap B^c) \cup (A^c \cap B).
 $$
-
-### Question 1 {.question #cm-1}
-Caractériser au moyen de la différence symétrique $\ds$ 
-la tribu -- notée $\overline{\mathcal{A}}$ -- engendrée par 
-l'union entre $\mathcal{A}$ et la collection $\mathcal{N}$ 
-des ensembles négligeables pour $\mu$ :
+On note $\mathcal{N}$ la collection des ensembles négligeables pour $\mu$ :
 $$
 \mathcal{N} = 
 \{
@@ -1671,6 +1646,15 @@ N \subset X
 \mbox{il existe $A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$.} 
 \}.
 $$
+
+### Question 1 {.question #cm-1}
+Montrer que la collection $\overline{\mathcal{A}}$ définie par
+$$
+\overline{\mathcal{A}} 
+= 
+\{A \ds N \; | \; A \in \mathcal{A}, \; N \in \mathcal{N}\}
+$$
+est une tribu.
 
 ### Question 2 {.question #cm-2}
 Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
@@ -1735,6 +1719,8 @@ Pourquoi ça ne marche pas ?
 
 Solutions
 ================================================================================
+
+<!--
 
 Anagramme {.answer #answer-BT}
 --------------------------------------------------------------------------------
@@ -1941,9 +1927,26 @@ et donc $v^*(B \setminus A) = 0$. Par les résultats de l'exercice
 "[Approximation par des ensembles mesurables](#aem)", on en déduit que 
 $A$ est mesurable.
 
+-->
 
-Mesure image 
+TODO -- Mesure à partir de l'intégrale
 --------------------------------------------------------------------------------
+
+$mu$, $f$ fixées (positive), montrer que 
+$$
+A \in \mathcal{A} \mapsto \int 1_A f \, \mu
+$$
+est une mesure.
+
+TODO -- Fonctions intégrables à valeurs $+\infty$
+--------------------------------------------------------------------------------
+
+Zeroing des infini, tjs possible quand $f$ est intégrable.
+
+TODO -- Mesure image 
+--------------------------------------------------------------------------------
+
+**TODO:** exemple en question 0
 
 ### Question 1 {.answer #answer-mi-1}
 L'ensemble $\mathcal{B}$ est une tribu ; en effet :
@@ -2089,40 +2092,11 @@ référence Tao *sans* le MCT.
 
 
 
-Tribu engendrée
---------------------------------------------------------------------------------
-
-### Question 1  {.answer #answer-te-1}
-Si $\mathcal{A}$ est une algèbre de $X$ contenant tous les intervalles
-$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors 
-par complémentation de $\left[a, +\infty\right[$, 
-elle contient nécessairement les ensembles de la forme $\left]-\infty, a\right[$ 
-et donc par union finie tous les ensembles de la forme
-$$
-\left]-\infty, a_0\right[ \cup \dots \cup \left[a_k, b_k\right[ \cup \dots \cup \left[a_m, +\infty\right[
-$$
-où les $a_k$ et les $b_k$ sont finis et le premier et dernier terme de cette union
-peuvent être omis. On vérifiera alors que cet ensemble est stable par union
-finie et par complémentation : c'est une algèbre de $\R$. Par conséquent, 
-c'est la plus petite algèbre de $\R$ qui contienne la collection initiale ;
-c'est donc l'algèbre engendrée recherchée.
-
-### Question 2  {.answer #answer-te-2}
-Si $\mathcal{A}$ est une tribu de $X$ contenant tous les intervalles
-$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors
-elle contient aussi
-$$
-\left]a, b\right[ = \bigcup_{k=0}^{+\infty} \left[a+\frac{b-a}{2^k}, b\right[
-$$
-et donc tout ouvert de $\R$ puisqu'un tel ensemble est une réunion dénombrable
-d'intervalles ouverts de $\R$. Par conséquent, elle contient tous les Boréliens.
-Comme l'ensemble des Boréliens est une tribu de $\R$, c'est donc la tribu
-engendrée par la collection initiale.  
-
 Complétion d'une mesure
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cm-1}
+<!--
 Nous allons établir que la tribu engendrée par $\mathcal{A} \cup \mathcal{N}$
 est l'ensemble
 $$
@@ -2134,11 +2108,11 @@ $(A \cap N^c) \cup (A^c \cap N) = A \ds N$ également.
 L'ensemble $\mathcal{B}$ est donc inclus dans la tribu engendrée par 
 $\mathcal{A}$ et $\mathcal{N}$. Il suffit donc de montrer qu'il s'agit
 bien d'une tribu pour pouvoir conclure qu'elle est la tribu engendrée
-recherchée.
+recherchée. -->
 
-Il est clair que $\varnothing$ appartient à $\mathcal{B}$,
+Il est clair que $\varnothing$ appartient à $\overline{\mathcal{A}}$,
 comme différence symétrique entre $\varnothing$ et $\varnothing$.
-Si $B = A \ds N$ appartient à $\mathcal{B}$, alors
+Si $B = A \ds N$ appartient à $\overline{\mathcal{A}}$, alors
 $$
 B^c = ((A \cap N^c) \cup (A^c \cap N))^c = (A^c \cup N) \cap (A \cup N^c).
 $$
@@ -2151,7 +2125,7 @@ B^c &= (A^c \cap A) \cup (A^c \cap N^c) \cup (N \cap A) \cup (N \cap N^c) \\
     &= A^c \ds N 
 \end{split}
 $$
-et par conséquent $B^c \in \mathcal{B}$.
+et par conséquent $B^c \in \overline{\mathcal{A}}$.
 
 Si les $A_k$, $k \in \N$, appartiennent $\mathcal{A}$ et les 
 $N_k$, $k \in \N$, appartiennent à $\mathcal{N}$, alors on pourra se
@@ -2173,7 +2147,7 @@ N = \cup_k N_k \subset \cup_k B_k \in \mathcal{A},
 $$
 avec $\mu(\cup_k B_k) = 0$ par $\sigma$-additivité de $\mu$.
 L'ensemble $N$ (et donc l'ensemble $M$) appartient donc à $\mathcal{N}$.
-Comme $\cup_k A_k \in \mathcal{A}$, on en déduit que $\mathcal{B}$ est stable
+Comme $\cup_k A_k \in \mathcal{A}$, on en déduit que $\overline{\mathcal{A}}$ est stable
 par union dénombrable. Cet collection contient l'ensemble vide, est stable
 par passage au complémentaire et par union dénombrable ; c'est donc une tribu.
 
