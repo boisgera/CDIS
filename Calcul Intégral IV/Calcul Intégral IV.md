@@ -362,8 +362,6 @@ $$
 $$
 alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
 
-
-
 ### Approximation par des fonctions étagées
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable. 
@@ -374,7 +372,6 @@ $$
 0 \leq |f_0| \leq \cdots \leq |f_k| \leq |f_{k+1}| \leq \cdots
 $$
 et convergent simplement vers $f$.
-
 
 ### Démonstration {.proof}
 Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ sont mesurables[^hh].
@@ -418,21 +415,23 @@ $$
 $$
 et qui est caractérisée par
 
- 1. Pour tout ensemble $A \in \mathcal{A}$,
+ 1. *Intégrale et mesure:* pour tout ensemble $A \in \mathcal{A}$,
     $$
-    \int_X 1_A(x) \, \mu(dx) = \mu(A).
+    \int 1_A \, \mu = \mu(A).
     $$
 
- 2. L'intégrale de $f$ par rapport à $\mu$ 
+ 2. *Linéarité :* si $\lambda \in \left]0, +\infty\right[$ et $f, g: X \to [0, +\infty]$
+    sont mesurables, alors 
     $$
-    \int_X f(x) \mu(dx)
+    \int (\lambda f) \, \mu  = \lambda \int f \, \mu
+    \; \mbox{ et } \;
+    \int (f+g) \, \mu = \int f \, \mu + \int g \, \mu.
     $$
-    est linéaire par rapport à $f$.
 
- 3. Si la suite de fonctions mesurables $f_n:X \to [0, +\infty]$ est croissante 
+ 3. *Convergence monotone :* si la suite de fonctions mesurables $f_n:X \to [0, +\infty]$ est croissante 
     et converge simplement vers $f$, alors
     $$
-    \int_X f(x) \, \mu(dx) = \lim_{n \to +\infty} \int_X f_n(x) \, \mu(dx).
+    \int f \, \mu = \lim_{n \to +\infty} \int f_n \, \mu.
     $$
 
 ### {.post}
@@ -453,7 +452,7 @@ $$
 est finie. On définit alors l'intégrale de $f$ par rapport à $\mu$ comme
 $$
 \int f \mu = \int_X f(x) \, \mu(dx) 
-:= \int_X f_+(x) \, \mu(dx) - \int_X f_-(x) \, \mu(dx) \in [-\infty, +\infty].
+:= \int f_+ \, \mu - \int f_- \, \mu \in [-\infty, +\infty].
 $$
 On dit que $f$ est *intégrable* (par rapport à $\mu$) ou *$\mu$-intégrable* 
 si les intégrales de $f_+$ et de $f_-$ sont toutes les deux finies ou, 
@@ -606,7 +605,7 @@ où les ensembles $A_1, \dots, A_{n}$ sont mesurables ($\in \mathcal{A}$) et
 $y_1, \dots, y_{n} \in \left]0, +\infty\right[$. Alors on définit l'intégrale
 de $f$ par rapport à $\mu$ comme
 $$
-\int f \mu := \sum_{k=1}^{n} y_k \, \mu(A_k).
+\int f \, \mu := \sum_{k=1}^{n} y_k \, \mu(A_k).
 $$
 <!--
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
@@ -644,7 +643,33 @@ positives (à valeurs finies) qui soient inférieures à $f$.
 On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
 la grandeur positive (finie ou infinie)
 $$
-\int f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int g \mu.
+\int f \, \mu := \int_X f(x) \, \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int g \, \mu.
+$$
+
+### {.post}
+On pourra se convaincre que cette définition de l'intégrale est bien la seule
+possible si l'on souhaite se doter d'une intégrale ayant la propriété de 
+convergence monotone[^pro].
+
+[^pro]: En effet, dans ce cas, 
+comme pour toute fonction mesurable $f: X \to [0, +\infty]$,
+il existe une suite croissante de fonctions étagées mesurables positives 
+$f_k : X \to \left[0, +\infty\right[$ convergeant 
+simplement vers $f$, notre définition de l'intégrale doit nécessairement vérifier
+$$
+\int f \mu \leq \sup_{g \in \mathcal{F}(f)} \int g \mu.
+$$
+Réciproquement, si $g_k: X \to \left[0, +\infty\right[$ est une suite 
+de fonctions étagées mesurables positives (à valeurs finies)
+inférieures à $f$ telles que
+$$
+\lim_{k\to+\infty} \int g_k \, \mu =  \sup_{g \in \mathcal{F}(f)} \int g \, \mu,
+$$
+alors la suite $h_k = \max(g_0,\dots, g_k, f_k)$ est une suite croissante 
+de fonctions étagées mesurables positives (à valeurs finies) convergeant
+vers $f$ mais supérieures à $g_k$ et vérifiant donc nécessairement
+$$
+\int f \, \mu = \lim_{k\to+\infty} \int h_k \, \mu \geq \sup_{g \in \mathcal{F}(f)} \int g \, \mu.
 $$
 
 <!--
