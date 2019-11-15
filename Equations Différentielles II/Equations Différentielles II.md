@@ -118,7 +118,7 @@ $$
 $$
 devienne inférieure à un seuil choisi par l'utilisateur. Puisque la suite $(x^{j,k})_{k\in \N}$ est de Cauchy, on sait que cette algorithme s'arrête en un nombre fini d'itérations.
 
-Un tel schéma est plus lourd en terme de calculs qu'un algorithme explicite mais il apporte en général plus de stabilité et permet souvent d'utiliser un pas plus grand. EXO ? 
+Un tel schéma est plus lourd en terme de calculs qu'un algorithme explicite mais il apporte en général plus de stabilité et permet souvent d'utiliser un pas plus grand. C'est en particulier utile lorsque le système comporte des constantes de temps très différentes et où le pas nécessaire à simuler la partie rapide est trop faible pour permettre d'observer le phénomène lent en des temps de simulation raisonnables. Ces systèmes, dits *raides*, apparaissent notamment en chimie ou en biologie. Ce phénomène est illustré dans l'exercice [*Explicite ou Implicite?*](#exo_exp_impl). 
 
 
 
@@ -206,7 +206,9 @@ $$
 $$
 alors le schéma est stable avec $S(T)=e^{L T}$.
 
-*Démonstration*: On a alors
+### Démonstration {.proof}
+
+On a alors
 $$
 | x^{j+1} - z^{j+1} | \leq  | \delta^{j+1} | + (1 + \Delta t_j L) | x^{j} - z^{j} | \leq | \delta^{j+1} | +  e^{\Delta t_j L} | x^{j} - z^{j} | 
 $$
@@ -242,7 +244,9 @@ on dit que le schéma est *convergent à l'ordre $p$*.
 ### Théorème de Lax
 Une méthode stable et consistante (à l'ordre $p$) est convergente (à l'ordre $p$).
 
-*Démonstration*: Notons $z^j=x(t_j)$. On remarque que 
+### Démonstration {.proof}
+
+Notons $z^j=x(t_j)$. On remarque que 
 $$
 z^{j+1}  = z^j + \Delta t_j \Phi_{\Delta t_j}(t_j,z^j) + \Delta t_j\, \eta^{j+1},
 $$
@@ -305,6 +309,7 @@ Montrer que :
 
 
 ##   Convergence de schémas 
+
 Supposons $f$ uniformémement Lipschitzien par rapport à $x$, c'est-à-dire qu'il existe $L_f$ tel que pour tout $t \geq 0$, pour tout $(x_a,x_b)\in \R^n \times \R^n$,
 $$
 |f(t,x_a)-f(t,x_b)| \leq L_f |x_a -x_b|.
@@ -312,11 +317,41 @@ $$
 Montrer que le schéma de Heun et d'Euler implicite sont convergents.
 
 
-## Explicite ou implicite ?
+## Explicite ou implicite ? {.exo #exo_exp_impl}
 
-Comparer les performances des schémas d'Euler implicites et explicites à pas fixe dans le cas de  $\dot{x} = -\lambda x$, $x(0)=1$, et $\dot{x} = \lambda x$, $x(0)=1$, sur un horizon de temps $T$ donné. 
+1. Comparer les performances des schémas d'Euler implicites et explicites à pas fixe dans le cas de  $\dot{x} = -\lambda x$, $x(0)=1$, et $\dot{x} = \lambda x$, $x(0)=1$, sur un horizon de temps $T$ donné. 
+
+2. Lorsqu'on modélise des systèmes chimiques ou biologiques, on obtient souvent des réactions aux constantes de temps très différentes. Vaut-il mieux utiliser un schéma d'Euler implicite ou explicite pour simuler
+$$
+\dot{x} = \left(
+  \begin{matrix}
+  -1 & 0 \\
+  0 & -\mu
+  \end{matrix}
+  \right) x 
+$$
+avec $\mu >> 1$ ?
 
 
+## Schéma simplectique
+
+Pour $\omega>0$ donné, considérons le système
+$$
+\dot{x}_1 \;=\;  \omega x_2
+\quad ,\qquad 
+\dot{x}_2(t)\;=\; -\omega^2 x_1
+$$
+de condition initiale $x(0)\;=\; (1,0)$.
+
+1. Montrer que pour n'importe quel pas $\Delta t$ fixé, un schéma d'Euler explicite donne une solution divergente, et un schéma d'Euler implicite donne une solution qui converge vers 0. Lequel a raison ? Est-ce contradictoire avec les résultats du cours ?
+
+On définit maintenant le schéma suivant qui ``mélange'' les schémas d'Euler implicites et explicites :
+\begin{align}
+x^{j+1}_1 &= x^{j}_1 + \Delta t x^{j}_2 \\
+x^{j+1}_2 &= x^{j}_2 - \Delta t \omega^2 x^{j+1}_1
+\end{align}
+
+2. Montrer que la quantité  $x_1^2 + x_2^2 -\Delta t \omega^2 x_1x_2$ est conservée. 
 
 Corrections
 =================================================================================
@@ -343,7 +378,7 @@ On a bien
 $$
 \lim_{\Delta t \to 0} x^{J} = e^{-\lambda T} \ .
 $$
-Cependant, $\lambda\Delta t$ doit être pris petit pour avoir une simulation acceptable. Par exemple pour $\lambda\Delta = 2$, $x^J = (-1)^J$. Ceci peut poser problème lorsque l'on simule des systèmes sur des temps long, ou de manière équivalent lorsque $\lambda$ est grand. On voit aussi bien ici qu'il faut adapter $\Delta t$ à la constante de temps $\lambda$ du système.
+Cependant, $\lambda\Delta t$ doit être pris petit pour avoir une simulation acceptable. Par exemple pour $\lambda\Delta t = 2$, $x^J = (-1)^J$, qui n'a rien à voir avec la solution. Pire, pour $\lambda\Delta t = 2$, l'algorithme diverge. Il faut donc adapter $\Delta t$ à la constante de temps $\lambda$ du système. Ceci peut poser problème lorsque l'on simule des systèmes sur des temps longs (par rapport à $\lambda$)
 
 De l'autre côté, le schéma d'Euler implicite donne
 $$
@@ -356,7 +391,6 @@ $$
 ce qui permet d'autoriser des pas $\lambda \Delta>1$, pratique pour les temps longs.
 
 Prenons maintenant $\dot{x}= \lambda x$, $x(0)=1$, dont la solution exacte est $x(t)=e^{\lambda t}$.
-
 Cette fois-ci, Euler explicite donne
 $$
 x^{J} = (1+\lambda\Delta t)^{\frac{T}{\Delta t}}
