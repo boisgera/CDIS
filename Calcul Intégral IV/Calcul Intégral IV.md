@@ -21,6 +21,9 @@ continuité monotone est facile à RETROUVER à partir du TCM (même si niveau
 démo, ça se passe dans l'autre sens). Par contre les deux preuves sont de 
 même nature (TCM un cran au-dessus).
 
+TODO : démo qui comptent : approximation des fonctions mesurables par des
+fonctions étagées.
+
 ### TODO -- Basique
 
   - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions + application directe)
@@ -245,14 +248,24 @@ le cas d'un ensemble fini, le nombre d'éléments de $A$.
 ### Exercice -- Démonstration {.exercise}
 Montrer que les mesures de comptage sont bien des mesures.
 
+### Ensemble négligeable {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Un ensemble $N \subset X$
+est *$\mu$-négligeable* s'il existe un ensemble mesurable $A \in \mathcal{A}$ 
+tel que $N \subset A$ et $\mu(A) = 0$.
+
+### Presque partout {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Une propriété $P$ dépendant 
+d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
+où elle est fausse est un ensemble négligeable.
+
 Intégrale
 ================================================================================
 
 ### Fonction mesurable
-Soit $(X, \mathcal{A})$ un espace mesuré et $n \in \N^*$.
+Soit $(X, \mathcal{A})$ un espace mesurable et $n \in \N^*$.
 Une fonction $f: X \to [-\infty,+\infty]^n$ est *mesurable* 
-(on trouvera aussi les terminologies *$\mathcal{A}$-mesurable* 
-ou $\mu$-mesurable pour lever toute ambiguité) 
+(ou *$\mathcal{A}$-mesurable* 
+pour lever toute ambiguité) 
 si l'image réciproque 
 de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]^n$ par 
 $f$ est un ensemble mesurable (qui appartient à $\mathcal{A}$).
@@ -265,719 +278,21 @@ si $f$ est à valeurs finies -- c'est-à-dire si $f(X) \subset \R^n$.
 
 ### Exercice -- Ensemble des parties de $X$ {.exercise}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
-une fonction $f: X \to \mathbb{R}^n$ est-elle $\mathcal{A}$-mesurable ?
-
-### Exercice -- Fonctions étagées {.exercise}
-Soit $(X, \mathcal{A})$ un espace mesuré. A quelle condition
-une fonction $f: X \to \mathbb{R}^n$ qui ne prend 
-qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
-
-### Intégrale d'une fonction positive -- Propriétés caractéristiques
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. L'intégrale par rapport à $\mu$
-est l'unique application qui à toute application mesurable positive 
-$f : X \to [0, +\infty]$ associe la grandeur notée
-$$
-\int f\mu = \int_X f(x) \, \mu(dx) \in [0, +\infty]
-$$
-et qui est caractérisée par
-
- 1. Pour tout ensemble $A \in \mathcal{A}$,
-    $$
-    \int_X 1_A(x) \, \mu(dx) = \mu(A).
-    $$
-
- 2. L'intégrale de $f$ par rapport à $\mu$ 
-    $$
-    \int_X f(x) \mu(dx)
-    $$
-    est linéaire par rapport à $f$.
-
- 3. Si la suite de fonctions mesurables $f_n:X \to [0, +\infty]$ est croissante 
-    et converge simplement vers $f$, alors
-    $$
-    \int_X f(x) \, \mu(dx) = \lim_{n \to +\infty} \int_X f_n(x) \, \mu(dx).
-    $$
-
-### Intégrale d'une fonction signée
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
-Soit $f : X \to [-\infty, +\infty]$ une fonction mesurable.
-L'intégrale de $f$ (par rapport à $\mu$) est définie si au moins l'une
-des intégrales des fonctions positives
-$$
-f_+ := \max(f, 0) \; \mbox{ et } f_- = -\min(f, 0) \;
-$$
-est finie. On définit alors l'intégrale de $f$ par rapport à $\mu$ comme
-$$
-\int f \mu = \int_X f(x) \, \mu(dx) 
-:= \int_X f_+(x) \, \mu(dx) - \int_X f_-(x) \, \mu(dx) \in [-\infty, +\infty].
-$$
-On dit que $f$ est *intégrable* (par rapport à $\mu$) ou *$\mu$-intégrable* 
-si les intégrales de $f_+$ et de $f_-$ sont toutes les deux finies ou, 
-ce qui revient au même, si l'intégrale de $f$ est définie et réelle :
-$$
-\int f \mu = \int_X f(x) \, \mu(dx) \in \R.
-$$
-
-### {.post .remark}
-
-### Exercice -- Absolue intégrabilité {.exercise}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
-est intégrable alors $|f|$ est également intégrable.
-
-### Exercice -- Fonctions étagées {.exercise}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré, soient $A_0, A_1, \dots, A_{n-1}$ 
-des ensemble mesurables disjoints et $y_0, \dots, y_{n-1} \in \R \setminus \{0\}$. 
-A quelle condition la fonction
-$$
-f = \sum_{j=0}^k y_k 1_{A_k}
-$$
-est-elle intégrable ? Quelle est alors la valeur de son intégrale ?
-
-### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
-Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
-par rapport à la mesure de Lebesgue si et seulement si 
-$f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
-pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
-deux intégrales sont égales :
-$$
-\int_{\R^n} f(x) \, v(dx) = \int_{\R^n} f(x) \, dx.
-$$
-
-
-### TODO 
-Rah compliqué, il faut parler d'ensemble négligeable 
-... et de l'impact sur l'intégrale. Bon, bascule en exo ?
-
-### Exercice -- Fonctions à valeurs infinies {.exercise}
-Soit $f: \R^n \to [-\infty,+\infty]$. Montrer que si $f$ est intégrable par 
-rapport à la mesure de Lebesgue $v$ alors 
-$$
-v(f^{-1}(+\infty)) = v(f^{-1}(-\infty)) = 0.
-$$
-**TODO**
-
-
-Mesure de Lebesgue -- Approche directe
-================================================================================
-
-Dans les volets précédents du "Calcul Intégral", il nous a semblé naturel
-de définir le volume d'un pavé compact de $\R^n$ 
-$$
-P = [a_1, b_1] \times \dots \times [a_n, b_n]
-$$
-au moyen de la formule
-$$
-v(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
-$$
-L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $v$ 
-en une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
-par la relation
-$$
-v(A) = \left|
-\begin{array}{cl}
-\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
-+\infty & \mbox{sinon.}
-\end{array}
-\right.
-$$
-Mais cette approche n'est pas totalement satisfaisante intellectuellement.
-D'une part on peut considérer l'usage de l'intégrale comme un chemin
-tortueux pour étendre $v$.
-D'autre part on peut avoir l'impression
-que cette approche -- qui ne permet pas de mesurer le volume de tout
-ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
-cette limitation pourrait être un artefact de la méthode choisie
-plutôt qu'une limitation intrinsèque.
-Dans cette section, nous allons donner une autre méthode de définition, 
-plus directe et géométrique, due à Lebesgue et Carathéodory[^autz],
-de définition de la mesure (extérieure) du volume de tout ensemble 
-de $\R^n$.
-Elle nous donnera également la raison pour laquelle
-notre construction initiale du volume se limite à la collection
-des ensembles qualifiés de "mesurables".
-
-[^autz]: Henri Lebesgue (1875-1941) était un mathématicien français
-et Constantin Carathéodory (1873-1950) un mathématicien grec entrenant
-des liens étroits avec l'Allemagne. Ils font partie des fondateurs de 
-la théorie abstraite de la mesure qui conduit à un renouveau de la théorie 
-de l'intégration au début du XXème siècle.
-
-Pour calculer le volume d'un sous-ensemble de $\R^n$, 
-nous généralisons la méthode déjà utilisée pour définir les ensembles négligeables 
-(de volume nul) : nous considérons l'ensemble des collections dénombrables
-de pavés recouvrant ce sous-ensemble et nous utilisons chacun des ces 
-recouvrements pour produire une estimation (supérieure) du volume
-de l'ensemble. Formellement :
-
-### Mesure extérieure de Lebesgue {.definition #mel}
-On appelle *mesure extérieure de Lebesgue* sur $\R^n$ la fonction
-$$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
-qui a tout ensemble $A$ de $\R^n$ associe le nombre réel étendu positif
-défini par
-$$
-v^*(A) 
-= 
-\inf 
-\left\{
-\sum_{k=0}^{+\infty} v(P_k)
-\; \left| \vphantom{\bigcup_{k=0}^{+\infty}} \right. \; 
-\mbox{$P_k$ pavé compact de $\R^n$,} \, A \subset \bigcup_{k=0}^{+\infty} P_k
-\right\},
-$$
-
-Cette définition "raisonnable" ne satisfait toutefois pas les propriétés que
-nous attendons (implicitement) d'un volume. Ce décalage est mis en évidence
-par un résultat paradoxal de la théorie des ensembles dans $\R^3$ :
-
-### Paradoxe de Banach-Tarski {.theorem}
-Il est possible de partitionner une sphère de rayon un de $\R^3$ 
-en un nombre fini d'ensembles, qui, 
-après rotations et translations, 
-forment une partition de deux sphères disjointes de rayon un.
-
---------------------------------------------------------------------------------
-
-
-Si le résultat est qualifié de paradoxe, c'est qu'il nous semble intuitivement 
-que le volume devrait être préservé par les les opérations subies par 
-la sphère initiale. Or, le volume d'une sphère de rayon un et de deux 
-sphères disjointes de même rayon diffère d'un facteur $2$.
-Pour dépasser ce paradoxe, nous allons devoir examiner un par un les
-résultats qui nous semblent "évidents" dans ce raisonnement pour débusquer
-notre erreur.
-
-Soient $A_1, \dots, A_p$ des ensembles disjoints et non vides
-de $\R^3$ dont la réunion forme la sphère initiale $S_0 = A_1 \cup \dots\cup A_p$,
-et tels que des ensembles disjoints $B_1, \dots, B_p$ 
-qui s'en déduisent par rotation et translation, 
-vérifient $S_1 \cup S_2 = B_1 \cup \dots \cup B_p$ où $S_1$ et $S_2$
-sont les deux sphère finales.
-
-Tout d'abord, on a bien
-$$
-v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
-$$
-car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
-(au sens de l'intégrale de Henstock-Kurzweil)
-et nous verrons ultérieurement que dans ce cas, la mesure extérieure
-$v^*$ coïncide avec $v$.
-Un simple calcul intégral fournit alors le résultat.
-
-On peut croire que le point faible de notre raisonnement est la préservation
-de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
-que lorsque $B$ se déduit de $A$ par une translation alors $v^*(A) = v^*(B)$, 
-on peut douter du résultat pour les rotations. 
-Après tout, la définition de $v^*(A)$ fait appel
-à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
-conservée par rotation. 
-Mais si le résultat n'est pas évident, il s'avère pourtant que
-la mesure extérieure $v^*$ est bien invariante par rotation 
-(cf. [@Hun11, section 2.8]).
-
-La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
-n'est tout simplement pas additive ! Même si les ensembles 
-$A_1, \dots, A_p$ sont disjoints, il est possible que 
-$$
-v^*(A_1 \cup \dots \cup A_p) \neq v^*(A_1) + \dots + v^*(A_p).
-$$
-On peut par contre établir avec la définition de $v^*$ qu'elle est 
-sous-additive : pour tous les ensembles $A_1, \dots, A_p$ (disjoints ou non),
-on a 
-$$
-v^*(A_1 \cup \dots \cup A_p) \leq v^*(A_1) + \dots + v^*(A_p).
-$$
-Elle est même $\sigma$-sous-additive : si $(A_k)_{k \in \N}$ est une suite
-de sous-ensembles de $\R^n$, 
-$$
-v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
-\leq \sum_{k=0}^{+\infty} v^*\left(A_k\right).
-$$
-
-Cette propriété est la caractéristique centrale des *mesures extérieures* :
-
-### Mesure extérieure {.definition}
-On appelle *mesure extérieure* sur l'ensemble $X$ toute application
-$$v^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que :
-
-  1. $\mu^*(\varnothing) = 0$ (*nullité en $\varnothing$*).
-
-  2. $A \subset B \Rightarrow \mu^*(A) \subset \mu^*(B)$ (*croissance*).
-
-  3. $\mu^*\left(\cup_{k=0}^{+\infty}A_k\right) \leq \sum_{k=0}^{+\infty} \mu^*\left(A_k\right)$ (*$\sigma$-subadditivité*).
-
------
-
-Il existe un procédé général permettant de déduire d'une mesure extérieure
-une application qui soit additive -- à condition d'accepter de réduire
-son domaine de définition ; la fonction qui en résulte est additive -- 
-et même $\sigma$-additive. 
-
-### Ensemble mesurable 
-Soit $\mu^*$ une mesure extérieure sur l'ensemble $X$.
-Un ensemble $A \subset X$ est dit *$\mu^*$-mesurable* (au sens de Carathéodory) 
-si pour tout $B \subset X$, on a 
-$$
-\mu^*(B) = \mu^*(B \cap A) + \mu^*(B \setminus A).
-$$
-
-### {.post}
-Une façon alternative de voir les choses : si l'on note $\mu^*|_A$ 
-la *trace* de $\mu^*$ sur un ensemble $A$ de $X$, définie pour tout
-sous-ensemble $B$ de $X$ par
-$$\mu^*|_A(B) = \mu^*(A \cap B),$$
-alors l'ensemble $A$ est $\mu^*$-mesurable si et seulement si
-$$
-\mu^* = \mu^*|_A + \mu^*|_{A^c}.
-$$
-
-### Mesure associée à une mesure extérieure {.theorem}
-Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
-La collection $\mathcal{A}$ des ensembles $\mu^*$-mesurables de $X$
-est une tribu sur $X$ et la restriction $\mu$ de $\mu^*$ à 
-$\mathcal{A}$ est une mesure sur $X$.
-
-### Démonstration {.proof}
-Cf. [@Hun11, théorème 2.9, pp. 15-17].
-
-### {.remark .ante}
-La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue
-produit la mesure de Lebesgue.
-
-### Mesure de Lebesgue {.theorem .definition}
-La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{P}(\R^n) \to [0, +\infty]$
-est bien une mesure extérieure sur $\R^n$.
-La collection des ensembles $v^*$-mesurables (au sens de Caratheodory)
-est identique à la tribu de Lebesgue $\mathcal{L}(\R^n)$ ; 
-la mesure $v$ associée à $v^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
-
-### Démonstration (partielle : $v^*$ est une mesure extérieure.) {.proof}
-Il est clair que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
-$[0,0]^n$ recouvre $\varnothing$ par exemple). 
-Si $A \subset B \subset \R^n$, alors tout recouvrement de $B$ par des
-pavés compacts recouvre également $A$ ; par conséquent $v^*(A) \leq v^*(B)$.
-Finalement, pour tout $A_k \subset \R^n$, $k \in \N$, et pour tout $\varepsilon > 0$, 
-il existe des pavés compacts $P_{jk}$ tels que 
-$$
-A_k \subset \bigcup_{j=0}^{+\infty} P_{jk} 
-\; \mbox{ et } \;
-\sum_{j=0}^{+\infty} v(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
-\leq v^*(A_k) \leq \sum_{j=0}^{+\infty} v(P_{jk}).
-$$
-Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $\cup_{k=0}^{+\infty} A_k$, 
-on a donc
-$$
-v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
-\leq 
-\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
-= \left(\sum_{k=0}^{+\infty} v^*(A_k)\right) +\varepsilon.
-$$
-Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
-que $v^*$ est bien $\sigma$-subadditive.
-
-<!--
-### {.post}
-Nous renvoyons le lecteur intéressé par la preuve que la mesure de Lebesgue
-prolonge bien la mesure de volume des pavés compacts à [@Hun11, section 2.2].
--->
-
-<!--
-### {.remark .ante} 
-On admettra également sans preuve le résultat suivant, qui montre que la notation
-"$v$" que nous avons employé deux fois est dépourvue d'ambiguité :
-
-### Mesure de Lebesgue et intégrale de Henstock-Kurzweil
-La tribu $\mathcal{L}(\R^n)$ des ensembles $v^*$-mesurables 
-au sens de Caratheodory coïncide avec la tribu des ensembles mesurables 
-définis au moyen de l'intégrale de Henstock-Kurzweil. La mesure de Lebesgue
-$v: \mathcal{L}(\R^n) \to [0, +\infty]$ vérifie
-$$
-v(A) = \int 1_A(x) \, dx
-$$ 
-si $1_A$ est intégrable au sens de Henstock-Kurzweil et
-$v(A)= +\infty$ sinon.
-
--->
-
-<!--
-TODO -- Mesure de grandeurs
-================================================================================
-
-### TODO ; refocus Lebesgue directement.
-
-Il est possible même au sein d'un espace unique comme $\R^3$ de vouloir
-mesurer différentes grandeurs attachées à un ensemble $A$. 
-On peut ainsi vouloir compter le nombre de points que contient $A$
-(sa "mesure de comptage"), sa longueur, sa surface ou encore son volume.
-
-L'exemple du volume a déjà été traité avec l'intégrale de Henstock-Kurzweil
-dans $\R^3$. L'exemple de la surface, a été partiellement traité, 
-dans un cas très limité (la frontière de compacts à bord réguliers) 
-et au prix d'un processus complexe
-permettant de se ramener à des calculs d'intégrale dans $\R^2$.
-Il est en fait possible de traiter ces quatres type de grandeurs, 
-ces quatre *mesures* différentes de façon similaire, et sans requérir
-à la notion d'intégrale. 
-
-Détaillons tous d'abord le cas de la mesure du volume dans $\R^3$.
-Le volume de la sphère de même diamètre qu'un ensemble $B$ arbitraire 
-est donnée par
-$$
-\frac{4 \pi}{3} \left(\frac{\mathrm{diam} \, B}{2}\right)^3.
-$$
-On peut alors calculer pour tout $\delta > 0$ estimer le volume d'un ensemble
-$A$ à partir de tous les recouvrements dénombrables de $A$ par des ensembles
-de diamètre inférieur ou égal à $\delta$ par
-$$
-\mathcal{H}^3_{\delta}(A) =
-\inf \left\{
-\sum_{j=1}^{+\infty} \frac{4\pi}{3} \left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
-\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
-A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
-\right\},
-$$
-puis passer à la limite sur $\delta$. 
-Il s'avère que le résultat
--- on parle de *mesure de Hausdorff* de dimension $3$ de $A$ --
-est identique à l'approche par l'intégrale de Henstock-Kurzweil quand
-l'ensemble $A$ est mesurable :
-$$
-\mathcal{H}^3(A) = \int_A \, dx.
-$$
-On pense a priori avoir amélioré notre approche pour définir le volume d'un
-ensemble $A$, puisque l'on a supprimé la limitation que l'ensemble $A$ soit 
-mesurable. Toutefois, la mesure $\mathcal{H}^3$ qui résulte de cette définition
-perd une propriété importante qui est implicitement attachée à toutes les
-grandeurs que nous avons cité.
-
-Ce problème sera mis en évidence par le résultat suivant :
-
-
-
-Notons $A_1, \dots, A_n$ la partition de la sphère initiale
-et $B_1, \dots, B_n$ leurs images après rotation et translation.
-Comme par construction la mesure $\mathcal{H}^3$ est invariante par
-rotation et translation, il semble que l'on doive avoir
-$$
-\mathcal{H}^3(S) = \sum_{i=1}^n \mathcal{H}^3(A_i)
-= \sum_{i=1}^n \mathcal{H}^3(B_i) = \mathcal{H}^3(S_1) + \mathcal{H}(S_2)
-=2 \times \mathcal{H}^3(S),
-$$ 
-une contradiction puisque $\mathcal{H}^3(S) = 4\pi/3$.
-
-**TODO** négation de l'additivité, comment la retrouver (ensembles qui
-"splittent" proprement la mesure) et on retombe sur les ensembles
-mesurables.
-
-Généralisation de la démarche : le procédé utilisée, qq soit la mesure
-élémentaire, génère une fct sous-additive appelée mesure extérieures. 
-Les ensembles qui splittent proprement la mesure sont appelés ensembles
-mesurables, la restriction de la mesure à ces ensembles est additive,
-et même $\sigma$-additive.
-
-Et on "reboote" la théorie abstraite de la mesure à ce point.
-
---------------------------------------------------------------------------------
-
-$$
-\mathcal{H}^k_{\delta}(A) 
-= 
-\inf \left\{
-\sum_{j=1}^{+\infty} \alpha(k)\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
-\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
-A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
-\right\}
-$$
-où $\alpha(k)$ est le volume de la $k$-sphère unité dans $\R^k$([^G])
-$$
-\alpha(k) = \int_{\R^k} 1_{S_k}(x) \, dx 
-\; \mbox{ où } \; 
-S_k = \left\{x \in \R^k \; | \; x_1^2 + \dots + x_k^2 \leq 1 \right\}.
-$$
-
-La mesure de Hausdorff $\mathcal{H}^k(A)$ de dimension $k$ de l'ensemble
-$A \subset \R^n$ est définie par 
-$$
-\mathcal{H}^k(A) = \lim_{\delta \to 0} \mathcal{H}^k_{\delta}(A).
-$$
-
-[^G]: on a $$\alpha(k) = \frac{\pi^{k/2}}{\Gamma \left( \frac{k}{2}+1 \right)} 
-\; \mbox{ avec } \; 
-\Gamma(x) = \int_0^{+\infty} e^{-t} t^{x-1}\, dt.$$ 
-La fonction $\Gamma$ est caractérisée pour des valeurs entières et
-demi-entières par $\Gamma(1/2) = \sqrt{\pi}$, $\Gamma(1) = 1$ et généralement
-par $\Gamma(x+1)= x\Gamma(x)$.
--->
-
-Mesure et intégrale
-================================================================================
-
-### Ensemble négligeable {.definition}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Un ensemble $N \subset X$
-est *$\mu$-négligeable* s'il existe un ensemble mesurable $A \in \mathcal{A}$ 
-tel que $N \subset A$ et $\mu(A) = 0$.
-
-### Presque partout {.definition}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Une propriété $P$ dépendant 
-d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
-où elle est fausse est un ensemble négligeable.
-
-### Tribu engendrée par une collection {.definition}
-Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
-$\mathcal{B}$ d'ensembles de $X$ la plus petite tribu 
-(au sens de l'inclusion) 
-$\mathcal{A} = \sigma(\mathcal{B})$ de $X$ contenant $\mathcal{C}$.
-Autrement dit : 
-
-  - $\sigma(\mathcal{B})$ est une tribu.
-  
-  - si $\mathcal{B} \subset \mathcal{C}$ et $\mathcal{C}$ est une tribu de $X$, alors $\sigma(\mathcal{B}) \subset \mathcal{C}$.
-
- Quand il y a une ambiguité sur l'ensemble $X$ hébergeant la collection 
- $\mathcal{B}$, on pourra noter la tribu engendrée $\sigma_X(\mathcal{B})$.
-
-### Démonstration (existence de la tribu engendrée) {.proof}
-Désignons par $\mathfrak{S}$ la collection des tribus de 
-contenant $\mathcal{B}$ comme sous-ensemble. 
-$$
-\mathfrak{S}
-=
-\{
-\mbox{$\mathcal{C}$ tribu de $X$} \; | \; \mathcal{B} \subset \mathcal{C} 
-\}
-$$
-Elle n'est pas vide : elle contient la collection $\mathcal{P}(X)$
-des ensembles de $X$ (qui de toute évidence est un sur-ensemble de $\mathcal{B}$
-et une tribu de $X$). Montrons que la plus petite tribu $\sigma(\mathcal{B})$
-de $X$ contenant $\mathcal{B}$ est l'intersection de toutes les tribus de 
-$\mathfrak{S}$, c'est-à-dire que
-$$\sigma(\mathcal{B}) = \bigcap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C} 
-= \{A \subset X \, | \, A \in \mathcal{C} \mbox{ pour tout } \mathcal{C} \in \mathfrak{S}\}.$$
-Il est clair que si $\mathcal{A}$ est une tribu de $X$ contenant $\mathcal{B}$,
-alors $\cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C} \subset \mathcal{A}$, 
-car $\mathcal{A} \in \mathfrak{S}$.
-Il nous suffit donc de montrer que $\cap \mathfrak{S}$ est une tribu de $X$
-pour pouvoir conclure ; on vérifiera aisément que comme chaque élément de $\mathfrak{S}$
-est une tribu, cette intersection en est également une.
-
-<!--
-### Tribu de Lebesgue {.definition}
-On appelle *tribu de Lebesgue* sur $\R^n$ la tribu composée des ensembles $E$
-tels que pour tout pavé $P$ de $\R^n$, la fonction caractéristique 
-de $E \cap P$ soit intégrable (au sens de Henstock-Kurzweil).
-
-### {.post}
-La tribu de Lebesgue est donc composée des ensembles mesurables au sens
-du chapitre "Calcul Intégral III".
-
-### TODO -- Référence
-Lier au chapitre "Calcul Intégral III" en détail.
--->
-
-### Tribu de Borel {.definition}
-On appelle *tribu de Borel* d'un espace topologique $X$ la plus petite tribu
-contenant tous les fermés (ou tous les ouverts) de $X$.
-
-### Mesure {.definition}
-Une *mesure (positive)* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
-est une fonction de $\mathcal{A}$ dans $[0, +\infty]$ telle que $\mu(\varnothing)= 0$
-et pour toute collection dénombrable d'ensembles $A_k$ de
-$\mathcal{A}$ disjoints deux à deux, on ait
-$$
-\mu \left( \bigcup_{k} A_k \right) = \sum_{k} \mu(A_k) ;
-$$
-on dit que $\mu$ est *$\sigma$-additive*.
-L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
-
-<!--
-### TODO -- Pb
-Gérer "pb" des fonctions à valeurs étendues ? Non, il n'y en a pas ...
--->
-
-### Fonction mesurable
-Une fonction $f: X \to Y$ associée aux espaces mesurables $(X, \mathcal{A})$
-et $(Y,\mathcal{B})$ est *mesurable* 
-(ou *$\mathcal{A}/\mathcal{B}$-mesurable*)
-si l'image réciproque $A =f^{-1}(B)$
-de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
-
-### L'infini
-Dans le cadre abstrait de l'intégration selon Lebesgue, on pourra si nécessaire
-considérer des fonctions prenant (éventuellement) des valeurs infinies,
-c'est-à-dire travailler avec des fonctions à valeurs dans $Y = [-\infty, +\infty]$
-plutôt que dans $Y=\R$([^inv]). Cette extension simplifiera notamment
-l'énoncé du [théorème de Fubini](#fubini).
-
-[^inv]: dans le cadre de l'intégration de Henstock-Kurzweil, c'est pour 
-l'ensemble de départ que nous avions l'habitude de prendre $[-\infty, +\infty]$ ;
-il s'agissait d'une "astuce" technique qui permettait d'intégrer des fonctions
-définies au départ sur $\R$ avec des techniques déjà développées pour les
-intervalles compacts $[a, b]$ de $\R$. Avec l'intégrale de Lebesgue 
-il n'est plus nécessaire d'étendre $\R$ comme ensemble de départ.  
-La théorie de Henstock-Kurzweil accepte donc volontiers les fonctions dont les 
-**arguments** sont infinis -- $f(+\infty) = 0$ par exemple a du sens -- mais 
-est "allergique" aux fonctions à **valeurs** infinies. Par exemple, 
-si l'on essayait de calculer l'intégrale de Henstock-Kurzweil de la fonction
-$$
-f(x) = 
-\left|
-\begin{array}{rl}
-+\infty & \mbox{si } x= 0, \\
-1 / \sqrt{x} & \mbox{si } x \in \left]0, 1\right] \\
-\end{array}
-\right.
-$$
-on obtiendrait $+\infty$, alors même que l'intégrale vaut $2$ pour toute valeur 
-finie de $f(0)$. L'intégrale de Lebesgue n'a pas cette difficulté, et produira
-la valeur $2$ dans tous les cas.
-
-### Conventions
-Lorsque l'ensemble d'arrivée $Y$ de $f$ a une structure topologique, 
-par exemple $Y = [-\infty, +\infty]$ ou $Y = [-\infty, +\infty]^m$, 
-on supposera par défaut que la tribu associée est la tribu de Borel. 
-Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera par défaut 
-que la tribu associée est la tribu de Lebesgue. 
-Lorsque l'on souhaitera plutôt munir $X$ et $Y$ de la tribu de Borel,
-on parlera de fonction *borélienne* (tribu de Borel au départ et à l'arrivée).
-Il existe une bonne raison pour adopter par défaut la convention hybride (avec
-des tribus d'un type différent au départ et à l'arrivée) pour la définition
-de "mesurable" :
-
-### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
-Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
-au sens de Henstock-Kurzweil
--- c'est-à-dire "mesurable" au sens de ["Calcul Intégral III"](Calcul Intégral III.pdf) --
-si et seulement si elle est $\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
-
-La démonstration de ce résultat repose sur le lemme suivant :
-
-### Image réciproque et tribus engendrées {.lemma #irte}
-Soit $f : X \to Y$ une application et $\mathcal{B}$ une collection d'ensembles
-de $Y$. Alors 
-$$
-\mathcal{F} := \sigma_X(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}) = \{f^{-1}(A) \; | \; A \in \sigma_Y(\mathcal{B})\}.
-$$
-
-![Ce diagramme est *commutatif*.](images/commutative-diagram.tex)
-
-<!--
-La tribu engendrée dans $X$ par l'ensemble des images réciproques par
-$f$ des ensembles $B \in \mathcal{B}$ est incluse dans
-la collection des images réciproques par $f$ des ensembles de la tribu engendrée 
-par $\mathcal{B}$ dans $Y$.
-$$
-\sigma\left(\{f^{-1}(B) \, | \, B \in \mathcal{B}\} \right)
-\subset
-\{f^{-1}(A) \, | \, A \in \sigma(\mathcal{B})\}.
-$$
--->
-
-### Démonstration {.proof}
-Notons $\mathcal{A} = \sigma(\mathcal{B})$.
-Comme $\mathcal{B} \subset \mathcal{A}$, on a
-$$
-\{f^{-1}(B) \, | \, B \in \mathcal{B}\} \subset
-\{f^{-1}(A) \, | \, A \in \mathcal{A}\}.
-$$
-Si nous montrons que 
-$\mathcal{C}:=\{f^{-1}(A) \, | \, A \in \mathcal{A}\}$ est une tribu 
-nous pouvons en déduire que
-$$
- \sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}) \subset \{f^{-1}(A) \; | \; A \in \mathcal{A}\}.
-$$
-L'ensemble vide appartient à $\mathcal{C}$ car 
-$\varnothing = f^{-1}(\varnothing)$. Si $A \in \mathcal{A}$,
-$X \setminus f^{-1}(A) = f^{-1}(Y \setminus A)$
-et $Y \setminus A \in \mathcal{A}$, donc $X \setminus f^{-1}(A) \in \mathcal{C}$.
-Finalement, si $A_0, A_1, \dots \in \mathcal{A}$, 
-$\cup_k f^{-1}(A_k) = f^{-1}(\cup_k A_k) \in \mathcal{C}$.
-La collection $\mathcal{C}$ est donc une tribu.
-
-Réciproquement, posons $\mathcal{E} = \sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\})$ 
-et considérons 
-$$
-\mathcal{D} = \{A \in Y \; | \; f^{-1}(A) \in \mathcal{E}\}.
-$$
-La collection $\mathcal{D}$ est également une tribu. En effet,
-$f^{-1}(\varnothing) \in \mathcal{E}$, si $f^{-1}(A) \in \mathcal{E}$ alors
-$f^{-1}(Y \setminus A) = X \setminus f^{-1}(A) \in \mathcal{E}$ et si 
-$f^{-1}(A_0), f^{-1}(A_1), \dots \in \mathcal{E}$, alors 
-$f^{-1}(\cup_k A_k) = \cup_k f^{-1}(A_k) \in \mathcal{E}$.
-Par conséquent, comme $\mathcal{B} \subset \mathcal{D}$,
-$\mathcal{A} = \sigma(\mathcal{B}) \subset \sigma(\mathcal{D}) = \mathcal{D}$.
-Donc pour tout $A \in \mathcal{A}$, on a $f^{-1}(A) \in \mathcal{E}$,
-soit
-$$
-\{f^{-1}(A) \; | \; A \in \mathcal{A}\} \subset \mathcal{E}  =\sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}).
-$$
-
-
-### Démonstration "L./B.-mesurable $\Leftrightarrow$ H.-K.-mesurable" {.proof}
-La fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
-au sens de Henstock-Kurzweil si et seulement si elle vérifie 
-le critère de l'image réciproque des sections II et III, 
-c'est-à-dire si et seulement si l'image réciproque de tout ouvert 
-de $\R^m$ est un ensemble $\mathcal{L}(\R^n)$-mesurable.
-
-De toute évidence, si $f$ est Lebesgue/Borel-mesurable, ce critère est 
-satisfait. Réciproquement, si l'image réciproque de tout ouvert de $\R^m$
-est Lebesgue-mesurable, alors la tribu engendrée par les images réciproques
-des ouverts de $\R^m$ est incluse dans la tribu de Lebesgue sur $\R^n$.
-Comme cette tribu est d'après [le lemme précédent](#irte) l'ensemble
-des images réciproques de la tribu engendrée par les ouverts dans $\R^m$,
-c'est-à-dire la tribu de Borel dans $\R^m$, l'image réciproque de tout
-borélien est un ensemble de la tribu de Lebesgue : la fonction 
-$f$ est Lebesgue/Borel-mesurable.
-
-### Composition de fonctions mesurables {.proposition #compfoncmes}
-Soient $(X, \mathcal{A})$, $(Y, \mathcal{B})$ et $(Z, \mathcal{C})$ des
-espaces mesurables.
-Soit $f: X\to Y$ une fonction $\mathcal{A}/\mathcal{B}$-mesurable et 
-$g: Y \to X$ une fonction $\mathcal{B}/\mathcal{C}$-mesurable.
-Alors la composition $g \circ f$ de $f$ et $g$ est 
-$\mathcal{A}/\mathcal{C}$-mesurable.
-
-### Démonstration {.proof}
-Pour tout ensemble $C \in \mathcal{C}$, on a $g^{-1}(C) \in \mathcal{B}$ 
-et donc $(g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C)) \in \mathcal{A}$.
-
-### Les fonctions continues sont boréliennes
-Soient $X$ et $Y$ deux espaces topologiques.
-Toute fonction continue $f : X \to Y$ est borélienne.
-
-### Démonstration {.proof}
-Notons $\mathcal{F}_X$ et $\mathcal{F}_Y$ les collections de tous les ensembles 
-fermés de $X$ et $Y$ respectivement.
-Comme les boréliens de $Y$ sont engendrés par les fermés de $\mathcal{F}_Y$, on a
-$$
-\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} = \{f^{-1}(A) \; | \; A \in \sigma_Y(\mathcal{F}_Y)\}
-$$
-et par conséquent, par [commutativité](#irte),
-$$
-\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} = \sigma_X (\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\}).
-$$
-Or la fonction $f$ étant continue, 
-$\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\} \subset \mathcal{F}_X$ et par 
-conséquent
-$$
-\sigma_X(\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\}) \subset \sigma_X(\mathcal{F}_X) = \mathcal{B}(X).
-$$
-Au final, 
-$\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} \subset \mathcal{B}(X)$
-et la fonction $f$ est bien $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable, 
-c'est-à-dire borélienne.
-
+une fonction $f: X \to [-\infty, +\infty]^n$ est-elle $\mathcal{A}$-mesurable ?
+
+### Exercice -- Fonction caractéristique
+Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
+A quelle condition la fonction $1_A: X \to \R$ est-elle mesurable ?
 
 ### Limite simple de fonctions mesurables
-Soit $(X, \mathcal{A})$ un espace mesurable et $Y=\left[-\infty, +\infty\right]$, 
-muni de la tribu de Borel. 
-Si les fonctions $f_k: X \to Y$,
+Soit $(X, \mathcal{A})$ un espace mesurable. 
+Si les fonctions $f_k: X \to \left[-\infty, +\infty\right]^n$,
 $k \in \N$, sont mesurables et convergent simplement vers $f$, 
 alors $f$ est mesurable. 
 
 ### Démonstration {.proof}
-Par [le lemme liant image réciproque et tribus engendrées](#irte),
-il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de $Y$
-appartient à $\mathcal{A}$.
+Il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de 
+$\left[-\infty, +\infty\right]^n$ appartient à $\mathcal{A}$.
 Or $f(x) \in U$ si et seulement si $f_k(x) \in U$
 pour $k$ assez grand, ce qui se traduit par la formule
 $$
@@ -986,142 +301,195 @@ $$
 qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
 (dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
 
-### Fonction étagée {.definition}
-On appelle *fonction étagée* <!-- (ou *fonction simple*) --> toute fonction $f: X \to Y$ 
-qui ne prenne qu'un nombre fini de valeurs distinctes 
-(ou telle que l'image réciproque de $Y$ par $f$ soit finie).
+### Fonction étagée
+Une fonction $f: X \to [-\infty, +\infty]$ est *étagée* si et seulement
+l'image de $X$ par $f$ ne comporte qu'un nombre fini de valeurs distinctes.
 
-### TODO -- retarder l'apparition du résultat suivant ?
+### Exercice -- Fonction étagée {.exercise}
+Soit $(X, \mathcal{A})$ un espace mesurable. 
+A quelle condition une fonction $f: X \to [-\infty, +\infty]$ qui ne prend 
+qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
 
-### Fonction mesurable
-Soit $\mathcal{A}$ une tribu sur l'ensemble $X$.
-Une fonction $f: X \to [-\infty, +\infty]$ est
-$\mathcal{A}/$Borel- mesurable si et seulement si $f$ est la limite
-simple de fonctions étagées $X \to \R$ qui soient $\mathcal{A}$/Borel-mesurables.
-
-### TODO -- Démonstration {.proof}
-
-### Fonction étagées mesurables
-Soit $(X, \mathcal{A})$ un espace mesurable.
-Une fonction $f: X \to \R$ est simple et mesurable 
-si et seulement s'il existe une collection finie d'ensembles mesurables
-$A_0, \dots, A_{n-1} \in \mathcal{A}$ et de valeurs 
-$y_0, \dots, y_{n-1} \in \R$ telles que
+### Approximation par des fonctions étagées positives {.theorem}
+Soit $(X, \mathcal{A})$ un espace mesurable. 
+Soit $f: X \to [0, +\infty]$ une fonction mesurable positive. 
+Il existe une suite croissante de fonctions 
+étagées mesurables positives $f_k : X \to \left[0, +\infty\right[$ (à valeurs
+finies) convergeant simplement vers $f$.
 $$
-f = \sum_{k=0}^{n-1} y_k 1_{A_k}. 
-$$
-
-### {.post}
-La preuve de ce résultat montre qu'il est possible d'être plus prescriptif 
-si nécessaire sur les ensembles $A_k$ et les valeurs $y_k$ : 
-une fonction est en effet simple et mesurables si et seulement 
-s'il existe une collection finie d'ensembles mesurable **disjoints**
-$A_0, \dots, A_{n-1} \in \mathcal{A}$ et de valeurs **distinctes et non nulles**
-$y_0, \dots, y_{n-1} \in \R$ telles que
-$$
-f = \sum_{k=0}^{n-1} y_k 1_{A_k}. 
+0 \leq f_0(x) \leq f_1(x) \leq \dots \leq f_k(x) \to f(x)
 $$
 
 ### Démonstration {.proof}
-Soit $f: X \to \R$ une fonction simple ;
-il existe donc des réels $y_0, \dots, y_{n-1}$ tels que
-$f(X) = \{y_0,\dots, y_{n-1}\}.$
-On a alors
-$$f = \sum_{k=0}^{n-1} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
-Si de plus $f$ est mesurable, les singletons de $\R$ étant (Borel-)mesurables 
-(car fermés), les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
+Soit $\varepsilon_k \geq 0$ une suite de valeurs réelles positives.
+La suite des fonctions $f_k$ définies par $f_0=0$, puis
+$$
+f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
+E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
+$$
+est croissante et composée de fonctions étagées positives finies.
 
-Réciproquement, si $f$ est de la forme $f = \sum_{k=0}^{n-1} y_k 1_{A_k}$ où
-les ensembles $A_k$ sont mesurables, il est clair que la fonction $f$ est simple. 
-En considérant les ensembles 
--- mesurables -- $B_k$ définis par $B_0 = A_0$ et $B_{k+1}= A_{k+1} \setminus A_k$
-on obtient une somme $\sum_k w_k 1_{B_k}$ du même type mais basée sur des 
-ensembles disjoints $B_k$. En faisant l'union $C_j$ des $B_k$ qui correspondent à
-des valeurs $z_j = w_k$ identiques, on peut de plus s'assurer d'avoir une somme
-de la forme $f = \sum_j z_j 1_{C_j}$ où les valeurs $z_j$ sont distinctes et les $C_j$ sont
-mesurables. 
-Le cas échéant, si l'un des $z_j$ est nul, on peut même omettre le terme correspondant de la somme.
-Il devient maintenant clair que $f$ est également mesurable : si $A$ est un
-ensemble mesurable de $\R$, l'image réciproque de $A$ par $f$ est l'union
-d'une sous-collection des $C_j$ ($C_j$ étant inclus dans la collection 
-si et seulement si $z_j \in A$)
-et si $0 \in A$, de $X \setminus \cup_j C_j$.
+![Approximation de la fonction 
+$f : x \in [0,\pi] \mapsto \sin x$ au moyen des fonctions étagées $f_k$ associées
+à la suite $\varepsilon_k = 1.25/(k+1)$.](images/étagées.py)
 
-### Intégrale d'une fonction étagée
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \mapsto \left[0, +\infty\right[$ une fonction étagée positive et mesurable.
-On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
-la grandeur positive (finie ou infinie)
+De plus, on peut prouver par récurrence que ces fonctions $f_k$ sont 
+mesurables. En effet, $f_0$ est évidemment mesurable (et étagée) ;
+supposons que $f_k$ soit mesurable (et étagée), et donc de la 
+forme $f_k = \sum_{j=1}^{n}y_j 1_{A_j}$ où les $A_j$ sont mesurables,
+non vides, disjoints et $0 < y_1 < y_1 < \dots < y_{n-1} < +\infty$. 
+Si l'on pose $y_0 = 0$ et $A_0 = X \setminus \cup_{j=1}^n A_j$, 
+on a donc
 $$
-\int f \mu := \int_X f(x) \mu(dx) := \sum_{y \in \left[0, +\infty\right[} y \times \mu(f^{-1}(y))),
+\begin{split}
+E_k &= \{x \in X \; | \; f(x) \geq f_k(x) + \varepsilon_k\} \\
+&= \bigcup_{j=0}^{n-1} \{x \in A_j \; | \; f(x) \geq f_k(x) + \varepsilon_k\} \\
+&= \bigcup_{j=0}^{n-1} \{x \in A_j \; | \; f(x) \geq y_j + \varepsilon_k\} \\
+&= \bigcup_{j=0}^{n-1} f^{-1}([y_j+\varepsilon_k,+\infty]) \cap A_j.
+\end{split}
 $$
-avec la convention que $0 \times (+\infty) = 0$.
-Si $A_0, \dots, A_{n-1} \in \mathcal{A}$ et
-$y_0, \dots, y_{n-1} \in \left[0, +\infty\right[$,
-alors cette définition se traduit par
-$$
-f = \sum_{k=0}^{n-1} y_k 1_{A_k} \rightarrow
-\int f \mu = \sum_{k=0}^{n-1} y_k \times \mu(A_k).
-$$
+La fonction $f$ étant mesurable, chaque ensemble $f^{-1}([y_j+\varepsilon_k,+\infty])$
+est mesurable ; l'ensemble $E_k$ est donc mesurable comme union finie d'intersection
+finie d'ensemble mesurables. La fonction $f_{k+1} = f_k + \varepsilon_k 1_{E_k}$
+est donc mesurable (et étagée).
 
-----
+
+Si la suite $\varepsilon_k$ est choisie telle que
+$$
+\lim_{k\to +\infty} \varepsilon_k  = 0 
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \varepsilon_k = +\infty,
+$$
+alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
+
+### Approximation par des fonctions étagées
+Soit $(X, \mathcal{A})$ un espace mesurable. 
+Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable. 
+Il existe une suite de fonctions 
+étagées mesurables $f_k : X \to \left[0, +\infty\right[$ (à valeurs
+finies) dont la suite des valeurs absolues $|f_k|$ est croissante 
+$$
+0 \leq |f_0| \leq \cdots \leq |f_k| \leq |f_{k+1}| \leq \cdots
+$$
+et convergent simplement vers $f$.
+
+### Démonstration {.proof}
+Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ sont mesurables[^hh].
+Elle sont également positives, telles que $f = f_+ - f_-$ et $|f| = f_+ + f_-$. 
+Il existe donc deux suites croissantes de fonctions $f_{k+}$ et $f_{k-}$ 
+de fonctions étagées mesurables positives telles $f_{k+} \to f_+$ et 
+$f_{k-} \to f_-$ et donc $f_k := f_{k+} - f_{k-} \to f$ quand $k \to +\infty$.
+Par construction, $|f_{k}| = f_{k+} + f_{k-}$ est également croissante comme
+somme de deux suites croissantes. 
+
+[^hh]: En effet la fonction $\max(\cdot, 0): [-\infty, +\infty] \to [0, +\infty]$
+est continue. Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
+$U$ par $\max(\cdot, 0)$ est donc un ouvert de $[-\infty, +\infty]$ et comme 
+$f$ est mesurable, l'image réciproque de cet ensemble par $f$ est un ensemble
+mesurable. La fonction composée $F_+ = \max(f, 0) = \max(\cdot, 0) \circ f$ est donc
+mesurable.
+Le cas de la fonction $f_-$  est similaire.
+
+### TODO -- Mesurable $\circ$ cont.
+Le seul "problème" ce sont les valeurs infinies qui requièrent parfois des hacks,
+en tout cas qui supposent que la fonction continue ne soit pas globale
+(même avec + par exemple, $[-\infty, +\infty]^2$ pose problème ...) et donc
+il faut considérer une restriction, mais pour que ça marche (facilement), 
+ce sous-ensemble doit être ouvert (ou fermé), c'est totalement naze non ?
+Le vrai truc qui colle, c'est un sous-ensemble Borélien, mais pour expliquer
+ça il faut avoir fait l'extension au cadre général de la mesurabilité
+tribu-tribu ... Alors attendre ? Ou citer le cas global (suffit pour $\max$
+par exemple) ? Ou le cas ouvert/fermé ?
+
+### TODO -- Exercice (combi lin sont mesurables)
+Deux cas : cas réel, combi lin arbitraire. Et/ou cas positif étendu.
+
+
+
+### Intégrale d'une fonction positive -- Propriétés caractéristiques {#carac}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. *L'intégrale (de Lebesgue)
+par rapport à la mesure $\mu$* est l'unique application qui à toute fonction
+mesurable positive $f : X \to [0, +\infty]$ associe la grandeur notée
+$$
+\int f\mu = \int_X f(x) \, \mu(dx) \in [0, +\infty]
+$$
+et qui est caractérisée par
+
+ 1. *Intégrale et mesure:* pour tout ensemble $A \in \mathcal{A}$,
+    $$
+    \int 1_A \, \mu = \mu(A).
+    $$
+
+ 2. *Linéarité :* si $\lambda \in \left]0, +\infty\right[$ et $f, g: X \to [0, +\infty]$
+    sont mesurables, alors 
+    $$
+    \int (\lambda f) \, \mu  = \lambda \int f \, \mu
+    \; \mbox{ et } \;
+    \int (f+g) \, \mu = \int f \, \mu + \int g \, \mu.
+    $$
+
+ 3. *Convergence monotone :* si la suite de fonctions mesurables $f_n:X \to [0, +\infty]$ est croissante 
+    et converge simplement vers $f$, alors
+    $$
+    \int f \, \mu = \lim_{n \to +\infty} \int f_n \, \mu.
+    $$
 
 ### {.post}
-A noter que dans la somme définissant l'intégrale, si $y$ ne fait pas partie
-des valeurs prises par $f$, alors $\mu(f^{-1}(y)) = \mu(\varnothing) = 0$. 
-Comme $f$ est supposée simple, cette somme est donc composée d'un nombre 
-fini de termes non nuls. 
-Si l'on veut mettre cela mieux en évidence,
-on peut remplacer la somme dans l'énoncé ci-dessus par 
-$$
-\sum_{y \in f(X)} y \times \mu(f^{-1}(\{y\})),
-$$
-voire
-$$
-\sum_{y \in f(X) \setminus \{0\}} y \times \mu(f^{-1}(\{y\}))
-$$
-ce qui permet également de se dispenser de la convention $0 \times (+\infty) = 0$.
+La construction explicite de l'intégrale de Lebesgue associée à la mesure $\mu$
+-- construction qui complète l'approche descriptive ci-dessus --
+sera donnée dans le reste de cette section. La preuve que l'intégrale ainsi 
+construite satisfait bien les trois propriétés caractéristiques ci-dessus 
+sera donnée dans la section suivante. 
 
-### Intégrale d'une fonction positive
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \to [0, +\infty]$ une fonction mesurable.
-Soit $\mathcal{F}(f)$ la collection des fonctions étagées positives (à valeurs 
-finies) et mesurables qui soient inférieures à $f$.
-On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
-la grandeur positive (finie ou infinie)
+### Intégrale d'une fonction signée
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
+Soit $f : X \to [-\infty, +\infty]$ une fonction mesurable.
+*L'intégrale (de Lebesgue) de $f$ par rapport à la mesure $\mu$* 
+est définie si au moins l'une des intégrales des fonctions positives
 $$
-\int f \mu := \int_X f(x) \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int g \mu.
+f_+ := \max(f, 0) \; \mbox{ et } f_- = -\min(f, 0) \;
+$$
+est finie. On définit alors l'intégrale de $f$ par rapport à $\mu$ comme
+$$
+\int f \mu = \int_X f(x) \, \mu(dx) 
+:= \int f_+ \, \mu - \int f_- \, \mu \in [-\infty, +\infty].
+$$
+On dit que $f$ est *intégrable* (par rapport à $\mu$) ou *$\mu$-intégrable* 
+si les intégrales de $f_+$ et de $f_-$ sont toutes les deux finies ou, 
+ce qui revient au même, si l'intégrale de $f$ est définie et réelle :
+$$
+\int f \mu = \int_X f(x) \, \mu(dx) \in \R.
 $$
 
-<!--
 
-### Intégrale d'une fonction à valeurs réelles
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \mapsto [-\infty, +\infty]$ une fonction mesurable.
-On dit que la fonction $f$ est *intégrable au sens de Lebesgue 
-relativement à la mesure $\mu$* si elle est mesurable et que 
-les intégrales des fonctions positives 
-$f_+ = \max(f, 0)$ et $f_- = -\min(f, 0)$ sont finies. 
-*L'intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
-est alors la grandeur réelle (finie)
+### Exercice -- Absolue intégrabilité {.exercise}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
+est intégrable alors $|f|$ est également intégrable.
+
+### Exercice -- Fonctions étagées {.exercise}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et soient $A_1, \dots, A_n$ 
+des ensemble mesurables disjoints non vides et 
+$y_1, \dots, y_{n-1} \in [-\infty, +\infty] \setminus \{0\}$. 
+A quelle condition la fonction
 $$
-\int f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
-$$ 
--->
+f = \sum_{k=1}^n y_k 1_{A_k}
+$$
+est-elle intégrable ? Quelle est alors la valeur de son intégrale ?
 
-### TODO -- Recycler -- Intégrales finies, infinies et indéfinies {.post}
-Une fonction positive peut avoir une intégrale bien définie --
-il faut et il suffit qu'elle soit mesurable -- sans être pour autant 
+### Intégrales finies, infinies et indéfinies {.post}
+Une fonction positive peut avoir une intégrale bien définie (finie ou infinie) 
+-- il faut et il suffit qu'elle soit mesurable -- sans être pour autant 
 intégrable. Elle est intégrable si et seulement si elle est mesurable et que 
 son intégrale est finie. 
+<!--
 Pour les fonctions positives, la formule
 $$
 \int f \mu < + \infty
 $$
 signifera donc à la fois "l'intégrale est bien définie" (mesurable)
-et "l'intégrale est finie" (c'est-à-dire : la fonction est intégrable).
-Pour les fonctions signées par contre, il est nécessaire d'être
-plus strict et l'intégrale n'est définie que pour les fonctions intégrables.
+et "l'intégrale est finie" (c'est-à-dire : la fonction est intégrable).-->
+Par contre, dans le cadre des fonctions signées, une fonction mesurable
+peut avoir une intégrale indéfinie.
 En effet, même si l'on peut définir
 $$
 \int f_+\mu \; \mbox{ et } \; \int f_- \mu
@@ -1136,28 +504,179 @@ absorbant pour l'addition, tel que $\bot = +\infty - \infty$
 est un concept très proche). Mais à ce stade nous n'allons pas explorer cette
 piste.
 
-<!--
+### Exercice {.exercise}
+Construire une fonction $f:\R \to \R$ mesurable par rapport à la tribu de 
+Lebesgue $\mathcal{L}(\R)$ mais pas intégrable pour la mesure de Lebesgue $v$.
 
-### Une intégrale absolue
-On remarquera que l'essentiel de la complexité de l'intégrale de Lebesgue
-est encapsulée dans l'intégrale des fonctions positives ; la définition 
-(et les propriétés) de l'intégrale de fonctions signées s'en déduisent
-facilement. En particulier, comme la valeur absolue d'une fonction vérifie
-$|f| = f_+ + f_-$, on constate que si $f$ est intégrable, alors $|f|$
-également ; par construction, l'intégrale de Lebesgue est absolue,
-contrairement à l'intégrale de Henstock-Kurzweil sur $\R^n$.
-On a le résultat plus précis suivant, que l'on admettra :
 
 ### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
 Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
-par rapport à la mesure de Lebesgue $v$ si et seulement si 
+par rapport à la mesure de Lebesgue si et seulement si 
 $f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
-au sens de Henstock-Kurzweil. Dans ce cas, les
+pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
 deux intégrales sont égales :
 $$
-\int_{\R^n} f(x) v(dx) = \int_{\R^n} f(x) dx.
+\int_{\R^n} f(x) \, v(dx) = \int_{\R^n} f(x) \, dx.
 $$
 
+### TODO -- Démonstration {.proof}
+Démontrer ou admis ? C'est faisable à ce stade ? Ou un peu plus tard ?
+
+
+### TODO 
+Rah compliqué, il faut *aussi* parler d'ensemble négligeable 
+... et de l'impact sur l'intégrale. Bon, bascule en exo ? Oui.
+
+### Exercice -- Fonctions à valeurs infinies {.exercise}
+Soit $f: \R^n \to [-\infty,+\infty]$. Montrer que si $f$ est intégrable par 
+rapport à la mesure de Lebesgue $v$ alors 
+$$
+v(f^{-1}(+\infty)) = v(f^{-1}(-\infty)) = 0.
+$$
+**TODO**
+
+
+### Fonction étagées mesurables
+Soit $(X, \mathcal{A})$ un espace mesurable.
+Une fonction $f: X \to \R$ est étagée et mesurable 
+si et seulement s'il existe une collection finie d'ensembles mesurables
+$A_1, \dots, A_{n} \in \mathcal{A}$ et de valeurs 
+$y_1, \dots, y_{n} \in \R$ telles que
+$$
+f = \sum_{k=1}^{n} y_k 1_{A_k}. 
+$$
+
+### {.post}
+La démonstration de ce résultat montre qu'il est possible d'être plus prescriptif 
+si nécessaire sur les ensembles $A_k$ et les valeurs $y_k$ : 
+une fonction est en effet étagée et mesurables si et seulement 
+s'il existe une collection finie d'ensembles mesurable **disjoints**
+et **non vides** $A_1, \dots, A_{n} \in \mathcal{A}$ et de valeurs 
+**distinctes et non nulles**
+$y_1, \dots, y_{n} \in \R$ telles que
+$$
+f = \sum_{k=1}^{n} y_k 1_{A_k}. 
+$$
+
+### Démonstration {.proof}
+Soit $f: X \to \R$ une fonction étagée ;
+il existe donc des réels $y_1, \dots, y_{n}$ distincts non nuls tels que
+$f(X) \setminus \{0\}= \{y_1,\dots, y_{n-1}\}.$
+On a alors
+$$f = \sum_{k=1}^{n} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
+Si de plus $f$ est mesurable, les singletons de $\R$ étant fermés, 
+les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
+
+Réciproquement, si $f$ est de la forme $f = \sum_{k=1}^{n} y_k 1_{A_k}$ où
+les ensembles $A_k$ sont mesurables, il est clair que la fonction $f$ est simple
+car $f$ ne peut prendre comme valeurs que les sommes partielles des $y_k$, 
+sommes qui sont en nombre fini. 
+En considérant les ensembles 
+-- mesurables -- $B_k$ définis par $B_1 = A_1$ et $B_{k+1}= A_{k+1} \setminus A_k$
+on obtient une somme $\sum_k w_k 1_{B_k}$ du même type mais basée sur des 
+ensembles mesurables disjoints $B_k$. En faisant l'union $C_j$ des $B_k$ qui correspondent à
+des valeurs $z_j = w_k$ identiques, on peut de plus s'assurer d'avoir une somme
+de la forme $f = \sum_j z_j 1_{C_j}$ où les valeurs $z_j$ sont distinctes et les $C_j$ sont
+mesurables et non vides. 
+Le cas échéant, si l'un des $z_j$ est nul, on peut même omettre le terme correspondant de la somme.
+Il devient maintenant clair que $f$ est également mesurable : si $U$ est un
+ensemble ouvert de $\R$ (l'argument vaut en fait pour n'importe quel ensemble), 
+l'image réciproque de $U$ par $f$ est l'union
+d'une sous-collection des $C_j$ ($C_j$ étant inclus dans la collection 
+si et seulement si $z_j \in A$)
+et si $0 \in U$, de $X \setminus \cup_j C_j$.
+
+### {.ante}
+[Les propriétés caractéristiques](#carac) que nous souhaitons obtenir 
+pour l'intégrale par rapport à la mesure $\mu$ ne nous laissent 
+pas le choix sur la façon de procéder. 
+Le lien entre intégrale et mesure d'une part et la linéarité
+de l'intégrale imposent la façon de calculer l'intégrale de fonctions
+étagées mesurables positives (à valeurs finies),
+puis la propriété de convergence monotone détermine de façon unique 
+l'intégrale des fonctions mesurables positives (à valeurs finies ou infinies).
+
+### Intégrale d'une fonction étagée positive {.definition}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \to \left[0, +\infty\right[$ une fonction étagée positive et mesurable,
+de la forme
+$$f = \sum_{k=1}^{n} y_k 1_{A_k}$$
+où les ensembles $A_1, \dots, A_{n}$ sont mesurables ($\in \mathcal{A}$) et
+$y_1, \dots, y_{n} \in \left]0, +\infty\right[$. Alors on définit l'intégrale
+de $f$ par rapport à $\mu$ comme
+$$
+\int f \, \mu := \sum_{k=1}^{n} y_k \, \mu(A_k).
+$$
+<!--
+On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
+la grandeur positive (finie ou infinie)
+$$
+\int f \mu := \int_X f(x) \mu(dx) := \sum_{y \in \left[0, +\infty\right[} y \times \mu(f^{-1}(y))),
+$$
+avec la convention que $0 \times (+\infty) = 0$.
+-->
+
+<!--
+### {.post}
+A noter que dans la somme définissant l'intégrale, si $y$ ne fait pas partie
+des valeurs prises par $f$, alors $\mu(f^{-1}(y)) = \mu(\varnothing) = 0$. 
+Comme $f$ est supposée simple, cette somme est donc composée d'un nombre 
+fini de termes non nuls. 
+Si l'on veut mettre cela mieux en évidence,
+on peut remplacer la somme dans l'énoncé ci-dessus par 
+$$
+\sum_{y \in f(X)} y \times \mu(f^{-1}(\{y\})),
+$$
+voire
+$$
+\sum_{y \in f(X) \setminus \{0\}} y \times \mu(f^{-1}(\{y\}))
+$$
+Noter
+ce qui permet également de se dispenser de la convention $0 \times (+\infty) = 0$.
+-->
+
+### Intégrale d'une fonction positive
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \to [0, +\infty]$ une fonction mesurable.
+Soit $\mathcal{F}(f)$ la collection des fonctions étagées mesurables 
+positives (à valeurs finies) qui soient inférieures à $f$.
+On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
+la grandeur positive (finie ou infinie)
+$$
+\int f \, \mu := \int_X f(x) \, \mu(dx) := \sup_{g \in \mathcal{F}(f)} \int g \, \mu.
+$$
+
+### {.post}
+On pourra se convaincre que cette définition de l'intégrale est bien la seule
+possible si l'on souhaite se doter d'une intégrale ayant la propriété de 
+convergence monotone[^pro].
+
+[^pro]: En effet, dans ce cas, 
+comme pour toute fonction mesurable $f: X \to [0, +\infty]$,
+il existe une suite croissante de fonctions étagées mesurables positives 
+$f_k : X \to \left[0, +\infty\right[$ convergeant 
+simplement vers $f$, notre définition de l'intégrale doit nécessairement vérifier
+$$
+\int f \mu \leq \sup_{g \in \mathcal{F}(f)} \int g \mu.
+$$
+Réciproquement, si $g_k: X \to \left[0, +\infty\right[$ est une suite 
+de fonctions étagées mesurables positives (à valeurs finies)
+inférieures à $f$ telles que
+$$
+\lim_{k\to+\infty} \int g_k \, \mu =  \sup_{g \in \mathcal{F}(f)} \int g \, \mu,
+$$
+alors la suite $h_k = \max(g_0,\dots, g_k, f_k)$ est une suite croissante 
+de fonctions étagées mesurables positives (à valeurs finies) convergeant
+vers $f$ mais supérieures à $g_k$ et vérifiant donc nécessairement
+$$
+\int f \, \mu = \lim_{k\to+\infty} \int h_k \, \mu \geq \sup_{g \in \mathcal{F}(f)} \int g \, \mu.
+$$
+
+<!--
+### {.post}
+Il ne nous reste plus qu'à vérifier que cette construction satisfait bien
+[les propriétés caractéristiques](#carac) que nous souhaitions pour l'intégrale,
+ce que nous ferons dans la section suivante.
 -->
 
 Propriétés de l'intégrale
@@ -1169,7 +688,7 @@ fonctions positives ; les propriétés correspondantes de l'intégrale
 de fonctions signées s'en déduisent simplement.
 
 Nous démontrons tout d'abord que l'intégrale que nous avons construite
-satisfait bien les propriétés caractéristiques souhaitées, en commençant
+satisfait bien [les propriétés caractéristiques souhaitées](#carac), en commençant
 -- après l'énoncé du lemme de croissance -- par
 le lien entre mesure d'un ensemble et intégrale de sa fonction
 caractéristique.
@@ -1524,7 +1043,7 @@ c'est-à-dire telles que pour tout tout $k \in \N$ et tout $x \in X$,
 $$
 0 \leq f_k(x) \leq g(x) \; \mbox{ et } \; \int g \mu < +\infty.
 $$
-Si la suite des $f_k$ à une limite simple $f: X \to [0, +\infty]$,
+Si la suite des $f_k$ a une limite simple $f: X \to [-\infty, +\infty]$,
 c'est-à-dire si pour tout $x \in X$,
 $f_k(x) \to f(x) \mbox{ quand } k \to +\infty,$
 alors
@@ -1560,141 +1079,11 @@ $$
 dont on déduit le résultat cherché.
 
 
-Produit de mesures
-================================================================================
-
-
-
-### Tribu produit
-Soit $(X ,\mathcal{A})$ et $(Y, \mathcal{B})$ deux espaces mesurables.
-On appelle *tribu produit* de $\mathcal{A}$ et $\mathcal{B}$ 
-et l'on note $\mathcal{A} \otimes \mathcal{B}$
-la tribu sur le produit cartésien $X \times Y$ engendrée par les
-ensembles de la forme $A \times B$ où $A \in \mathcal{A}$ et
-$B \in \mathcal{B}$.
-$$
-\mathcal{A} \otimes \mathcal{B} := 
-\sigma_{X \times Y}
-\left( 
-\left\{ A \times B \; | \; A \in \mathcal{A}, \; B \in \mathcal{B} \right\}
-\right).
-$$
-
-### Produit des boréliens
-On peut montrer que pour tout couple d'entiers $m$ et $n$, la tribu des
-boréliens sur $\R^{m+n}$ est le produit des tribus des boréliens sur 
-$\R^m$ et $\R^n$ :
-$$
-\mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n}).
-$$
-Le résultat analogue n'est pas vrai pour la mesure de Lebesgue : il est 
-nécessaire de compléter la tribu produit $\mathcal{L}(\R^m) \otimes \mathcal{L}(\R^n)$
-par rapport à la mesure de Lebesgue sur $\R^{m+n}$
-pour obtenir $\mathcal{L}(\R^{m+n})$ (cf. [exercice "Complétion d'une mesure"](#complétion)).
-
-
-### Mesure produit
-Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espaces mesurés.
-On appelle *mesure produit* de $\mu$ et $\nu$ et l'on note 
-$\mu \otimes \nu$ la fonction définie sur $\mathcal{A} \otimes \mathcal{B}$
-par
-$$
-(\mu \otimes \nu) (C) = \inf
-\left\{ 
-\sum_{k=0}^{+\infty} \mu(A_k) \nu(B_k) 
-\; \left| \vphantom{\sum_{k=0}^{+\infty}} \right. \;
-A_k \in \mathcal{A}, \ B_k \in \mathcal{B}, \, C \subset \bigcup_{k=0}^{+\infty} A_k \times B_k \right\}.
-$$
-
-### Démonstration {.proof}
-Cf. @Hun11.
-
-
-<!--
-### TODO -- Démonstration : la "mesure produit" est une mesure {.proof}
-
-  - introduire $(\mu \otimes \nu)^* (C)$ pour tout $C$, montrer qu'on a 
-    affaire à une mesure extérieure.
-
-  - montrer que tout ensemble de $\mathcal{A} \otimes \mathcal{B}$ et 
-    $(\mu \otimes \nu)^*$-mesurable (suffit de montrer que $A \times B$
-    est $(\mu \otimes \nu)^*$-mesurable).
--->    
-
-
-### Intégrale dans un espace produit {.notation}
-Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés.
-Pour toute fonction $\mu \otimes \nu$-mesurable 
-$f: X \times Y \to [0, +\infty]$ ou toute fonction $\mu \otimes \nu$-intégrable
-$f: X \times Y \to \R$, on notera
-$$
-\int_{X \times Y} f(x, y) \mu(dx)\nu(dy) := 
-\int f (\mu \otimes \nu).
-$$
-
-### Mesure $\sigma$-finie
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. On dit que la mesure $\mu$
-est $\sigma$-finie s'il existe une suite d'ensembles mesurables 
-$A_k \in \mathcal{A}$, $k \in \N$, telle que 
-$$
-\bigcup_{k=0}^{+\infty} A_k = X 
-\; \mbox{ et } \; 
-\forall \, k \in \N, \mu(A_k) < +\infty.
-$$
-
-<!--
-### TODO -- remark
-Gérer la subtilité que la première intégrale est définie uniquement
-presque partout, ce qui suffit à montrer que la seconde est définie
-(à détailler aussi en amont).
--->
-
-### Théorème de Fubini {.theorem #fubini}
-Soit $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés,
-tels que les mesures $\mu$ et $\nu$ soient $\sigma$-finies.
-Une fonction mesurable $f: X \times Y \to \R$
-est intégrable si et seulement l'intégrale itérée
-$$
-\int_Y \left(\int_X |f(x, y)| \mu(dx) \right) \nu(dy)
-$$
-est finie. Dans ce cas,
-$$
-\int f \, (\mu \otimes \nu)
-=
-\int_Y \left(\int_X f(x, y) \mu(dx) \right) \nu(dy).
-$$
-
-### Démonstration {.proof}
-cf @Hun11.
-
-### Symétrie
-Le rôle joué par $X$ et $Y$ étant symétrique dans l'énoncé du théorème de
-Fubini,on peut également dire qu'une fonction mesurable $f: X \times Y \to \R$
-est intégrable si et seulement l'intégrale itérée
-$$
-\int_X \left(\int_Y |f(x, y)| \nu(dy) \right) \mu(dx)
-$$
-est finie et que dans ce cas,
-$$
-\int f \, (\mu \otimes \nu)
-=
-\int_X \left(\int_Y f(x, y) \nu(dy) \right) \mu(dx).
-$$
-
-<!--
-### TODO -- Complétion
-Etudier <https://www.math.fsu.edu/~roberlin/maa5616.f15/homework9sln.pdf>
-
-Aussi, <https://terrytao.wordpress.com/2010/10/30/245a-notes-6-outer-measures-pre-measures-and-product-measures/>
-
-### TODO -- remarque 
-remarque évidente sur l'autre intégrale itérée.
-
-
--->
-
 Annexe
 ================================================================================
+
+Continuité Monotone
+--------------------------------------------------------------------------------
 
 ### Théorème de continuité monotone {.theorem #cont-monot}
 Soit $(X ,\mathcal{A}, \mu)$ un espace mesuré et $(A_n)_{n \in \N}$ une
@@ -1777,9 +1166,361 @@ $$
 $$
 
 
-Exercices
+Mesure de Lebesgue -- Approche directe
+--------------------------------------------------------------------------------
+
+Dans les volets précédents du "Calcul Intégral", il nous a semblé naturel
+de définir le volume d'un pavé compact de $\R^n$ 
+$$
+P = [a_1, b_1] \times \dots \times [a_n, b_n]
+$$
+au moyen de la formule
+$$
+v(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
+$$
+L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $v$ 
+en une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
+par la relation
+$$
+v(A) = \left|
+\begin{array}{cl}
+\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
++\infty & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Mais cette approche n'est pas totalement satisfaisante intellectuellement.
+D'une part on peut considérer l'usage de l'intégrale comme un chemin
+tortueux pour étendre $v$.
+D'autre part on peut avoir l'impression
+que cette approche -- qui ne permet pas de mesurer le volume de tout
+ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
+cette limitation pourrait être un artefact de la méthode choisie
+plutôt qu'une limitation intrinsèque.
+Dans cette section, nous allons donner une autre méthode de définition, 
+plus directe et géométrique, due à Lebesgue et Carathéodory[^autz],
+de définition de la mesure (extérieure) du volume de tout ensemble 
+de $\R^n$.
+Elle nous donnera également la raison pour laquelle
+notre construction initiale du volume se limite à la collection
+des ensembles qualifiés de "mesurables".
+
+[^autz]: Henri Lebesgue (1875-1941) était un mathématicien français
+et Constantin Carathéodory (1873-1950) un mathématicien grec entrenant
+des liens étroits avec l'Allemagne. Ils font partie des fondateurs de 
+la théorie abstraite de la mesure qui conduit à un renouveau de la théorie 
+de l'intégration au début du XXème siècle.
+
+Pour calculer le volume d'un sous-ensemble de $\R^n$, 
+nous généralisons la méthode déjà utilisée pour définir les ensembles négligeables 
+(de volume nul) : nous considérons l'ensemble des collections dénombrables
+de pavés recouvrant ce sous-ensemble et nous utilisons chacun des ces 
+recouvrements pour produire une estimation (supérieure) du volume
+de l'ensemble. Formellement :
+
+### Mesure extérieure de Lebesgue {.definition #mel}
+On appelle *mesure extérieure de Lebesgue* sur $\R^n$ la fonction
+$$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
+qui a tout ensemble $A$ de $\R^n$ associe le nombre réel étendu positif
+défini par
+$$
+v^*(A) 
+= 
+\inf 
+\left\{
+\sum_{k=0}^{+\infty} v(P_k)
+\; \left| \vphantom{\bigcup_{k=0}^{+\infty}} \right. \; 
+\mbox{$P_k$ pavé compact de $\R^n$,} \, A \subset \bigcup_{k=0}^{+\infty} P_k
+\right\},
+$$
+
+Cette définition "raisonnable" ne satisfait toutefois pas les propriétés que
+nous attendons (implicitement) d'un volume. Ce décalage est mis en évidence
+par un résultat paradoxal de la théorie des ensembles dans $\R^3$ :
+
+### Paradoxe de Banach-Tarski {.theorem}
+Il est possible de partitionner une sphère de rayon un de $\R^3$ 
+en un nombre fini d'ensembles, qui, 
+après rotations et translations, 
+forment une partition de deux sphères disjointes de rayon un.
+
+--------------------------------------------------------------------------------
+
+
+Si le résultat est qualifié de paradoxe, c'est qu'il nous semble intuitivement 
+que le volume devrait être préservé par les les opérations subies par 
+la sphère initiale. Or, le volume d'une sphère de rayon un et de deux 
+sphères disjointes de même rayon diffère d'un facteur $2$.
+Pour dépasser ce paradoxe, nous allons devoir examiner un par un les
+résultats qui nous semblent "évidents" dans ce raisonnement pour débusquer
+notre erreur.
+
+Soient $A_1, \dots, A_p$ des ensembles disjoints et non vides
+de $\R^3$ dont la réunion forme la sphère initiale $S_0 = A_1 \cup \dots\cup A_p$,
+et tels que des ensembles disjoints $B_1, \dots, B_p$ 
+qui s'en déduisent par rotation et translation, 
+vérifient $S_1 \cup S_2 = B_1 \cup \dots \cup B_p$ où $S_1$ et $S_2$
+sont les deux sphère finales.
+
+Tout d'abord, on a bien
+$$
+v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
+$$
+car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
+(au sens de l'intégrale de Henstock-Kurzweil)
+et nous verrons ultérieurement que dans ce cas, la mesure extérieure
+$v^*$ coïncide avec $v$.
+Un simple calcul intégral fournit alors le résultat.
+
+On peut croire que le point faible de notre raisonnement est la préservation
+de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
+que lorsque $B$ se déduit de $A$ par une translation alors $v^*(A) = v^*(B)$, 
+on peut douter du résultat pour les rotations. 
+Après tout, la définition de $v^*(A)$ fait appel
+à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
+conservée par rotation. 
+Mais si le résultat n'est pas évident, il s'avère pourtant que
+la mesure extérieure $v^*$ est bien invariante par rotation 
+(cf. [@Hun11, section 2.8]).
+
+La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
+n'est tout simplement pas additive ! Même si les ensembles 
+$A_1, \dots, A_p$ sont disjoints, il est possible que 
+$$
+v^*(A_1 \cup \dots \cup A_p) \neq v^*(A_1) + \dots + v^*(A_p).
+$$
+On peut par contre établir avec la définition de $v^*$ qu'elle est 
+sous-additive : pour tous les ensembles $A_1, \dots, A_p$ (disjoints ou non),
+on a 
+$$
+v^*(A_1 \cup \dots \cup A_p) \leq v^*(A_1) + \dots + v^*(A_p).
+$$
+Elle est même $\sigma$-sous-additive : si $(A_k)_{k \in \N}$ est une suite
+de sous-ensembles de $\R^n$, 
+$$
+v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
+\leq \sum_{k=0}^{+\infty} v^*\left(A_k\right).
+$$
+
+Cette propriété est la caractéristique centrale des *mesures extérieures* :
+
+### Mesure extérieure {.definition}
+On appelle *mesure extérieure* sur l'ensemble $X$ toute application
+$$v^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que :
+
+  1. $\mu^*(\varnothing) = 0$ (*nullité en $\varnothing$*).
+
+  2. $A \subset B \Rightarrow \mu^*(A) \subset \mu^*(B)$ (*croissance*).
+
+  3. $\mu^*\left(\cup_{k=0}^{+\infty}A_k\right) \leq \sum_{k=0}^{+\infty} \mu^*\left(A_k\right)$ (*$\sigma$-subadditivité*).
+
+-----
+
+Il existe un procédé général permettant de déduire d'une mesure extérieure
+une application qui soit additive -- à condition d'accepter de réduire
+son domaine de définition ; la fonction qui en résulte est additive -- 
+et même $\sigma$-additive. 
+
+### Ensemble mesurable 
+Soit $\mu^*$ une mesure extérieure sur l'ensemble $X$.
+Un ensemble $A \subset X$ est dit *$\mu^*$-mesurable* (au sens de Carathéodory) 
+si pour tout $B \subset X$, on a 
+$$
+\mu^*(B) = \mu^*(B \cap A) + \mu^*(B \setminus A).
+$$
+
+### {.post}
+Une façon alternative de voir les choses : si l'on note $\mu^*|_A$ 
+la *trace* de $\mu^*$ sur un ensemble $A$ de $X$, définie pour tout
+sous-ensemble $B$ de $X$ par
+$$\mu^*|_A(B) = \mu^*(A \cap B),$$
+alors l'ensemble $A$ est $\mu^*$-mesurable si et seulement si
+$$
+\mu^* = \mu^*|_A + \mu^*|_{A^c}.
+$$
+
+### Mesure associée à une mesure extérieure {.theorem}
+Soit $X$ un ensemble et $\mu^*$ une mesure extérieure sur $X$.
+La collection $\mathcal{A}$ des ensembles $\mu^*$-mesurables de $X$
+est une tribu sur $X$ et la restriction $\mu$ de $\mu^*$ à 
+$\mathcal{A}$ est une mesure sur $X$.
+
+### Démonstration {.proof}
+Cf. [@Hun11, théorème 2.9, pp. 15-17].
+
+### {.remark .ante}
+La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue
+produit la mesure de Lebesgue.
+
+### Mesure de Lebesgue {.theorem .definition}
+La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{P}(\R^n) \to [0, +\infty]$
+est bien une mesure extérieure sur $\R^n$.
+La collection des ensembles $v^*$-mesurables (au sens de Caratheodory)
+est identique à la tribu de Lebesgue $\mathcal{L}(\R^n)$ ; 
+la mesure $v$ associée à $v^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
+
+### Démonstration (partielle : $v^*$ est une mesure extérieure.) {.proof}
+Il est clair que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
+$[0,0]^n$ recouvre $\varnothing$ par exemple). 
+Si $A \subset B \subset \R^n$, alors tout recouvrement de $B$ par des
+pavés compacts recouvre également $A$ ; par conséquent $v^*(A) \leq v^*(B)$.
+Finalement, pour tout $A_k \subset \R^n$, $k \in \N$, et pour tout $\varepsilon > 0$, 
+il existe des pavés compacts $P_{jk}$ tels que 
+$$
+A_k \subset \bigcup_{j=0}^{+\infty} P_{jk} 
+\; \mbox{ et } \;
+\sum_{j=0}^{+\infty} v(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
+\leq v^*(A_k) \leq \sum_{j=0}^{+\infty} v(P_{jk}).
+$$
+Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $\cup_{k=0}^{+\infty} A_k$, 
+on a donc
+$$
+v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
+\leq 
+\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
+= \left(\sum_{k=0}^{+\infty} v^*(A_k)\right) +\varepsilon.
+$$
+Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
+que $v^*$ est bien $\sigma$-subadditive.
+
+<!--
+### {.post}
+Nous renvoyons le lecteur intéressé par la preuve que la mesure de Lebesgue
+prolonge bien la mesure de volume des pavés compacts à [@Hun11, section 2.2].
+-->
+
+<!--
+### {.remark .ante} 
+On admettra également sans preuve le résultat suivant, qui montre que la notation
+"$v$" que nous avons employé deux fois est dépourvue d'ambiguité :
+
+### Mesure de Lebesgue et intégrale de Henstock-Kurzweil
+La tribu $\mathcal{L}(\R^n)$ des ensembles $v^*$-mesurables 
+au sens de Caratheodory coïncide avec la tribu des ensembles mesurables 
+définis au moyen de l'intégrale de Henstock-Kurzweil. La mesure de Lebesgue
+$v: \mathcal{L}(\R^n) \to [0, +\infty]$ vérifie
+$$
+v(A) = \int 1_A(x) \, dx
+$$ 
+si $1_A$ est intégrable au sens de Henstock-Kurzweil et
+$v(A)= +\infty$ sinon.
+
+-->
+
+<!--
+TODO -- Mesure de grandeurs
 ================================================================================
 
+### TODO ; refocus Lebesgue directement.
+
+Il est possible même au sein d'un espace unique comme $\R^3$ de vouloir
+mesurer différentes grandeurs attachées à un ensemble $A$. 
+On peut ainsi vouloir compter le nombre de points que contient $A$
+(sa "mesure de comptage"), sa longueur, sa surface ou encore son volume.
+
+L'exemple du volume a déjà été traité avec l'intégrale de Henstock-Kurzweil
+dans $\R^3$. L'exemple de la surface, a été partiellement traité, 
+dans un cas très limité (la frontière de compacts à bord réguliers) 
+et au prix d'un processus complexe
+permettant de se ramener à des calculs d'intégrale dans $\R^2$.
+Il est en fait possible de traiter ces quatres type de grandeurs, 
+ces quatre *mesures* différentes de façon similaire, et sans requérir
+à la notion d'intégrale. 
+
+Détaillons tous d'abord le cas de la mesure du volume dans $\R^3$.
+Le volume de la sphère de même diamètre qu'un ensemble $B$ arbitraire 
+est donnée par
+$$
+\frac{4 \pi}{3} \left(\frac{\mathrm{diam} \, B}{2}\right)^3.
+$$
+On peut alors calculer pour tout $\delta > 0$ estimer le volume d'un ensemble
+$A$ à partir de tous les recouvrements dénombrables de $A$ par des ensembles
+de diamètre inférieur ou égal à $\delta$ par
+$$
+\mathcal{H}^3_{\delta}(A) =
+\inf \left\{
+\sum_{j=1}^{+\infty} \frac{4\pi}{3} \left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
+\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
+A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
+\right\},
+$$
+puis passer à la limite sur $\delta$. 
+Il s'avère que le résultat
+-- on parle de *mesure de Hausdorff* de dimension $3$ de $A$ --
+est identique à l'approche par l'intégrale de Henstock-Kurzweil quand
+l'ensemble $A$ est mesurable :
+$$
+\mathcal{H}^3(A) = \int_A \, dx.
+$$
+On pense a priori avoir amélioré notre approche pour définir le volume d'un
+ensemble $A$, puisque l'on a supprimé la limitation que l'ensemble $A$ soit 
+mesurable. Toutefois, la mesure $\mathcal{H}^3$ qui résulte de cette définition
+perd une propriété importante qui est implicitement attachée à toutes les
+grandeurs que nous avons cité.
+
+Ce problème sera mis en évidence par le résultat suivant :
+
+
+
+Notons $A_1, \dots, A_n$ la partition de la sphère initiale
+et $B_1, \dots, B_n$ leurs images après rotation et translation.
+Comme par construction la mesure $\mathcal{H}^3$ est invariante par
+rotation et translation, il semble que l'on doive avoir
+$$
+\mathcal{H}^3(S) = \sum_{i=1}^n \mathcal{H}^3(A_i)
+= \sum_{i=1}^n \mathcal{H}^3(B_i) = \mathcal{H}^3(S_1) + \mathcal{H}(S_2)
+=2 \times \mathcal{H}^3(S),
+$$ 
+une contradiction puisque $\mathcal{H}^3(S) = 4\pi/3$.
+
+**TODO** négation de l'additivité, comment la retrouver (ensembles qui
+"splittent" proprement la mesure) et on retombe sur les ensembles
+mesurables.
+
+Généralisation de la démarche : le procédé utilisée, qq soit la mesure
+élémentaire, génère une fct sous-additive appelée mesure extérieures. 
+Les ensembles qui splittent proprement la mesure sont appelés ensembles
+mesurables, la restriction de la mesure à ces ensembles est additive,
+et même $\sigma$-additive.
+
+Et on "reboote" la théorie abstraite de la mesure à ce point.
+
+--------------------------------------------------------------------------------
+
+$$
+\mathcal{H}^k_{\delta}(A) 
+= 
+\inf \left\{
+\sum_{j=1}^{+\infty} \alpha(k)\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
+\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
+A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
+\right\}
+$$
+où $\alpha(k)$ est le volume de la $k$-sphère unité dans $\R^k$([^G])
+$$
+\alpha(k) = \int_{\R^k} 1_{S_k}(x) \, dx 
+\; \mbox{ où } \; 
+S_k = \left\{x \in \R^k \; | \; x_1^2 + \dots + x_k^2 \leq 1 \right\}.
+$$
+
+La mesure de Hausdorff $\mathcal{H}^k(A)$ de dimension $k$ de l'ensemble
+$A \subset \R^n$ est définie par 
+$$
+\mathcal{H}^k(A) = \lim_{\delta \to 0} \mathcal{H}^k_{\delta}(A).
+$$
+
+[^G]: on a $$\alpha(k) = \frac{\pi^{k/2}}{\Gamma \left( \frac{k}{2}+1 \right)} 
+\; \mbox{ avec } \; 
+\Gamma(x) = \int_0^{+\infty} e^{-t} t^{x-1}\, dt.$$ 
+La fonction $\Gamma$ est caractérisée pour des valeurs entières et
+demi-entières par $\Gamma(1/2) = \sqrt{\pi}$, $\Gamma(1) = 1$ et généralement
+par $\Gamma(x+1)= x\Gamma(x)$.
+-->
+
+
+Exercices
+================================================================================
+<!--
 Anagramme {.question #BT}
 --------------------------------------------------------------------------------
 
@@ -1856,8 +1597,32 @@ Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
 Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
 et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
 
-Mesure image 
+-->
+
+
+TODO -- Mesure à partir de l'intégrale
 --------------------------------------------------------------------------------
+
+$\mu$, $f$ fixées (positive), montrer que 
+$$
+A \in \mathcal{A} \mapsto \int 1_A f \, \mu
+$$
+est une mesure.
+
+TODO -- Fonctions intégrables à valeurs $+\infty$
+--------------------------------------------------------------------------------
+
+Zeroing des infini, tjs possible quand $f$ est intégrable.
+
+TODO -- Peignes de Dirac
+--------------------------------------------------------------------------------
+
+(intégrale associée, fct mesurables, lien avec série AC, etc. etc.)
+
+TODO -- Mesure image 
+--------------------------------------------------------------------------------
+
+**TODO:** exemple en question 0 ?
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et $h: X \to Y$ une application.
 On définit la collection 
@@ -1883,27 +1648,6 @@ $$
 \int_Y f \, (\mu \circ h^{-1})(dx) = \int_X (f \circ h) \mu(dx).
 $$
 
-Tribu engendrée
---------------------------------------------------------------------------------
-
-Une collection $\mathcal{A}$ de sous-ensembles de $X$ est une 
-*algèbre (d'ensembles)* si elle contient $\varnothing$ et est stable
-par complémentation et par union finie.
-
-De manière similaire au cas des tribus, pour toute collection d'ensembles 
-de $X$ il existe une plus petite (au sens de l'inclusion) algèbre qui la 
-contient : c'est *l'algèbre engendrée* par cette collection.
-
-### Question 1  {.question #te-1}
-Déterminer l'algèbre engendrée sur $\R$ par la collection
-$$
-\{\left[a, b\right[ \; | \; -\infty < a \leq b \leq +\infty\}
-$$
-
-### Question 2  {.question #te-2}
-Déterminer la tribu engendrée (ou $\sigma$-algèbre) sur $\R$ par la même 
-collection.
-
 
 
 Complétion d'une mesure {#complétion}
@@ -1911,17 +1655,11 @@ Complétion d'une mesure {#complétion}
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 On note $A \ds B$ la différence symétrique
-de deux sous-ensembles $A$ et $B$ de $X$ l'ensemble, 
-définie par
+de deux sous-ensembles $A$ et $B$ de $X$, c'est-à-dire l'ensemble défini par
 $$
 A \ds B = (A \setminus B) \cup (B \setminus A) = (A \cap B^c) \cup (A^c \cap B).
 $$
-
-### Question 1 {.question #cm-1}
-Caractériser au moyen de la différence symétrique $\ds$ 
-la tribu -- notée $\overline{\mathcal{A}}$ -- engendrée par 
-l'union entre $\mathcal{A}$ et la collection $\mathcal{N}$ 
-des ensembles négligeables pour $\mu$ :
+On note $\mathcal{N}$ la collection des ensembles négligeables pour $\mu$ :
 $$
 \mathcal{N} = 
 \{
@@ -1930,6 +1668,15 @@ N \subset X
 \mbox{il existe $A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$.} 
 \}.
 $$
+
+### Question 1 {.question #cm-1}
+Montrer que la collection $\overline{\mathcal{A}}$ définie par
+$$
+\overline{\mathcal{A}} 
+= 
+\{A \ds N \; | \; A \in \mathcal{A}, \; N \in \mathcal{N}\}
+$$
+est une tribu.
 
 ### Question 2 {.question #cm-2}
 Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
@@ -1994,6 +1741,8 @@ Pourquoi ça ne marche pas ?
 
 Solutions
 ================================================================================
+
+<!--
 
 Anagramme {.answer #answer-BT}
 --------------------------------------------------------------------------------
@@ -2200,9 +1949,13 @@ et donc $v^*(B \setminus A) = 0$. Par les résultats de l'exercice
 "[Approximation par des ensembles mesurables](#aem)", on en déduit que 
 $A$ est mesurable.
 
+-->
 
-Mesure image 
+
+TODO -- Mesure image 
 --------------------------------------------------------------------------------
+
+**TODO:** exemple en question 0
 
 ### Question 1 {.answer #answer-mi-1}
 L'ensemble $\mathcal{B}$ est une tribu ; en effet :
@@ -2348,40 +2101,11 @@ référence Tao *sans* le MCT.
 
 
 
-Tribu engendrée
---------------------------------------------------------------------------------
-
-### Question 1  {.answer #answer-te-1}
-Si $\mathcal{A}$ est une algèbre de $X$ contenant tous les intervalles
-$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors 
-par complémentation de $\left[a, +\infty\right[$, 
-elle contient nécessairement les ensembles de la forme $\left]-\infty, a\right[$ 
-et donc par union finie tous les ensembles de la forme
-$$
-\left]-\infty, a_0\right[ \cup \dots \cup \left[a_k, b_k\right[ \cup \dots \cup \left[a_m, +\infty\right[
-$$
-où les $a_k$ et les $b_k$ sont finis et le premier et dernier terme de cette union
-peuvent être omis. On vérifiera alors que cet ensemble est stable par union
-finie et par complémentation : c'est une algèbre de $\R$. Par conséquent, 
-c'est la plus petite algèbre de $\R$ qui contienne la collection initiale ;
-c'est donc l'algèbre engendrée recherchée.
-
-### Question 2  {.answer #answer-te-2}
-Si $\mathcal{A}$ est une tribu de $X$ contenant tous les intervalles
-$\left[a, b\right[$ quand $-\infty < a \leq b \leq +\infty$, alors
-elle contient aussi
-$$
-\left]a, b\right[ = \bigcup_{k=0}^{+\infty} \left[a+\frac{b-a}{2^k}, b\right[
-$$
-et donc tout ouvert de $\R$ puisqu'un tel ensemble est une réunion dénombrable
-d'intervalles ouverts de $\R$. Par conséquent, elle contient tous les Boréliens.
-Comme l'ensemble des Boréliens est une tribu de $\R$, c'est donc la tribu
-engendrée par la collection initiale.  
-
 Complétion d'une mesure
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cm-1}
+<!--
 Nous allons établir que la tribu engendrée par $\mathcal{A} \cup \mathcal{N}$
 est l'ensemble
 $$
@@ -2393,11 +2117,11 @@ $(A \cap N^c) \cup (A^c \cap N) = A \ds N$ également.
 L'ensemble $\mathcal{B}$ est donc inclus dans la tribu engendrée par 
 $\mathcal{A}$ et $\mathcal{N}$. Il suffit donc de montrer qu'il s'agit
 bien d'une tribu pour pouvoir conclure qu'elle est la tribu engendrée
-recherchée.
+recherchée. -->
 
-Il est clair que $\varnothing$ appartient à $\mathcal{B}$,
+Il est clair que $\varnothing$ appartient à $\overline{\mathcal{A}}$,
 comme différence symétrique entre $\varnothing$ et $\varnothing$.
-Si $B = A \ds N$ appartient à $\mathcal{B}$, alors
+Si $B = A \ds N$ appartient à $\overline{\mathcal{A}}$, alors
 $$
 B^c = ((A \cap N^c) \cup (A^c \cap N))^c = (A^c \cup N) \cap (A \cup N^c).
 $$
@@ -2410,7 +2134,7 @@ B^c &= (A^c \cap A) \cup (A^c \cap N^c) \cup (N \cap A) \cup (N \cap N^c) \\
     &= A^c \ds N 
 \end{split}
 $$
-et par conséquent $B^c \in \mathcal{B}$.
+et par conséquent $B^c \in \overline{\mathcal{A}}$.
 
 Si les $A_k$, $k \in \N$, appartiennent $\mathcal{A}$ et les 
 $N_k$, $k \in \N$, appartiennent à $\mathcal{N}$, alors on pourra se
@@ -2432,7 +2156,7 @@ N = \cup_k N_k \subset \cup_k B_k \in \mathcal{A},
 $$
 avec $\mu(\cup_k B_k) = 0$ par $\sigma$-additivité de $\mu$.
 L'ensemble $N$ (et donc l'ensemble $M$) appartient donc à $\mathcal{N}$.
-Comme $\cup_k A_k \in \mathcal{A}$, on en déduit que $\mathcal{B}$ est stable
+Comme $\cup_k A_k \in \mathcal{A}$, on en déduit que $\overline{\mathcal{A}}$ est stable
 par union dénombrable. Cet collection contient l'ensemble vide, est stable
 par passage au complémentaire et par union dénombrable ; c'est donc une tribu.
 
