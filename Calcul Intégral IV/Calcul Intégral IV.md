@@ -1599,8 +1599,30 @@ et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
 
 -->
 
-Mesure image 
+
+TODO -- Mesure à partir de l'intégrale
 --------------------------------------------------------------------------------
+
+$\mu$, $f$ fixées (positive), montrer que 
+$$
+A \in \mathcal{A} \mapsto \int 1_A f \, \mu
+$$
+est une mesure.
+
+TODO -- Fonctions intégrables à valeurs $+\infty$
+--------------------------------------------------------------------------------
+
+Zeroing des infini, tjs possible quand $f$ est intégrable.
+
+TODO -- Peignes de Dirac
+--------------------------------------------------------------------------------
+
+(intégrale associée, fct mesurables, lien avec série AC, etc. etc.)
+
+TODO -- Mesure image 
+--------------------------------------------------------------------------------
+
+**TODO:** exemple en question 0 ?
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et $h: X \to Y$ une application.
 On définit la collection 
@@ -1929,19 +1951,6 @@ $A$ est mesurable.
 
 -->
 
-TODO -- Mesure à partir de l'intégrale
---------------------------------------------------------------------------------
-
-$mu$, $f$ fixées (positive), montrer que 
-$$
-A \in \mathcal{A} \mapsto \int 1_A f \, \mu
-$$
-est une mesure.
-
-TODO -- Fonctions intégrables à valeurs $+\infty$
---------------------------------------------------------------------------------
-
-Zeroing des infini, tjs possible quand $f$ est intégrable.
 
 TODO -- Mesure image 
 --------------------------------------------------------------------------------
