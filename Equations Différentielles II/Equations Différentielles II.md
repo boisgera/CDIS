@@ -337,13 +337,13 @@ avec $\mu >> 1$ ?
 
 Pour $\omega>0$ donné, considérons le système
 $$
-\dot{x}_1 \;=\;  \omega x_2
+\dot{x}_1 \;=\;  x_2
 \quad ,\qquad 
 \dot{x}_2(t)\;=\; -\omega^2 x_1
 $$
 de condition initiale $x(0)\;=\; (1,0)$.
 
-1. Montrer que pour n'importe quel pas $\Delta t$ fixé, un schéma d'Euler explicite donne une solution divergente, et un schéma d'Euler implicite donne une solution qui converge vers 0. Lequel a raison ? Est-ce contradictoire avec les résultats du cours ?
+1. Montrer que pour n'importe quel pas $\Delta t$ fixé, un schéma d'Euler explicite donne une solution divergente, et un schéma d'Euler implicite donne une solution qui converge vers 0. Lequel a raison ? 
 
 On définit maintenant le schéma suivant qui ``mélange'' les schémas d'Euler implicites et explicites :
 \begin{align}
@@ -351,7 +351,14 @@ x^{j+1}_1 &= x^{j}_1 + \Delta t x^{j}_2 \\
 x^{j+1}_2 &= x^{j}_2 - \Delta t \omega^2 x^{j+1}_1
 \end{align}
 
-2. Montrer que la quantité  $x_1^2 + x_2^2 -\Delta t \omega^2 x_1x_2$ est conservée. 
+2. Montrer que la quantité  $\omega^2 x_1^2 + x_2^2 +\Delta t \omega^2 x_1x_2$ est conservée. Quelle est donc la forme des solutions obtenues dans le plan de phase ? On parle alors de schéma  *simplectique*, car il conserve les volumes.
+
+3. Plus généralement, en déduire un schéma pour simuler un système Hamiltonien du type
+\begin{align}
+\dot{q} &= \partial_p \mathcal{H}(q,p) \\
+\dot{p} &= - \partial_q \mathcal{H}(q,p)
+\end{align}
+où $(q,p)\in \R^N \times \R^N$ sont les positions et vitesses généralisées et $\mathcal{H}$ est le Hamiltonien conservé le long des trajectoires.
 
 Corrections
 =================================================================================
