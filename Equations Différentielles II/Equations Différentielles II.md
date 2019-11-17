@@ -7,7 +7,42 @@
 \newcommand{\Rgeq}{\R_{\geq 0}}
 \renewcommand{\C}{\mathbb{C}}
 
-# Introduction
+
+Ce chapitre est consacré à la résolution numérique d'équations différentielles
+$$
+\dot{x} = f(t,x) \qquad , \qquad x(t_0)=x_0 \ .
+$$
+La nécessité de développer des méthodes d'intégration numériques vient du constat que seule une infime partie des équations différentielles sont résolvables exactement. Or, on a parfois besoin de connaître le plus précisément possible le comportement futur d'un système dynamique :
+
+- soit en temps fini, par exemple pour déterminer la trajectoire d'une fusée pour la mise en orbite d'un satellite;
+
+- soit en temps *long*, par exemple pour déterminer un cycle limite asymptotique (dynamique de population) ou bien se prononcer sur la stabilité de notre système solaire.
+
+La méthode la plus connue est la *méthode d'Euler* datant de 1768, qui consiste à implémenter 
+$$
+x^{j+1} = x^j + \Delta t \, f(t_j,x^j) \qquad x^0 = x_0 
+$$
+pour un pas de temps $\Delta t$ suffisamment petit. Cette méthode appartient à la famille des méthodes *explicites*, c'est-à-dire que $x^{j+1}$ est directement et explicitement défini en fonction de $x^{j}$. En 1824, Cauchy montre la convergence de cette méthode lorsque le pas de temps $\Delta t$ tend vers 0, et prouve ainsi l'existence et l'unicité des solutions (en fait, il utilise plutôt la version *implicite* de la méthode d'Euler).
+
+Même si la méthode d'Euler suffit dans les cas simples, elle exige parfois de recourir à des pas très faibles pour obtenir une précision acceptable sur des temps longs (voir [Systèmes raides](#sec_systRaides) plus bas). Parfois, le compromis entre précision à chaque itération et accumulation des erreurs d'arrondis devient même impossible. De plus, cette méthode n'est pas adaptée à la simulation de certains systèmes dont certaines proprétés cruciales (comme la conservation de l'énergie) ne sont pas préservées (voir [Systèmes Hamiltoniens](#sec_systHamiltoniens) plus bas). Au cours des derniers siècles, les scientifiques ont donc progressivement développé des méthodes de plus en plus complexes et performantes : schémas multi-pas d'ordre supérieur, méthodes implicites, variation du pas, schémas simplectiques etc.
+
+En fait, dans l'histoire des équations différentielles, c'est souvent la mécanique céleste qui a été motrice des plus grandes avancées. Au milieu du XIX$^e$ siècle, les astronomes Adams et Le Verrier prédisent mathématiquement l'existence et la position de la planète Neptune et l'on entend parler pour la première fois de méthodes multi-pas. Ensuite, les progrès se sont enchaînés au rythme des modèles physiques. En voici quelques exemples clés. En 1895, Runge publie la première méthode de Runge-Kutta, et en 1901, Kutta introduit la populaire méthode de Runge-Kutta d'ordre 4. En 1910, Richardson découvre une méthode d'extrapolation qui permet la montée en ordre et donc le recours à des pas plus grand pour une même précision, connue sous le nom d'*extrapolation de Richardson*. En 1952, Hirschfelder introduit la notion de *systèmes raides* qui ont ensuite suscité une étude particulière (Dahlquist etc.)
+
+# Limites du schéma d'Euler
+
+Nous présentons ici deux exemples célèbres exhibant les limites d'un schéma d'Euler.
+
+## Systèmes raides : cinétique chimique {.section #sec_systRaides}
+
+Robertson (1966)
+\begin{align*}
+A & \stackrel{\Longrightarrow}{$0.04$} & B \\ 
+B + B & \stackrel{\Longrightarrow}{$3 \times 10^7$} B + C \\
+B + C & \stackrel{\Longrightarrow}{$10^4$} A + C 
+\end{align*}
+
+## Systèmes hamiltoniens : mécanique céleste {.section #sec_systHamiltoniens}
+
 
 # Méthodes à un pas
 
@@ -129,9 +164,8 @@ L'objectif de l'analyse d'erreur *a priori* est de donner une estimation de l'er
 
 ## Erreur de troncature locale
 
-L'erreur de troncature locale est l'erreur résiduelle que l'on obtiendrait si 
-on appliquait le schéma numérique à la solution exacte. En d'autres termes, c'est l'erreur due à l'approximation de l'intégrale et aux erreurs d'arrondi de l'ordinateur.  Elle est
-ainsi définie comme
+L'erreur de troncature locale à l'itération $j$ est l'erreur résiduelle que l'on obtiendrait si 
+l'on appliquait le schéma numérique à la solution exacte $x(t_j)$. En d'autres termes, c'est l'erreur due à l'approximation de l'intégrale.  Elle est ainsi définie comme
 $$
 \eta^{j+1} := \frac{x(t_{j+1}) - x(t_j) - \Delta t_j \Phi_{\Delta t_j}(t_j,x(t_j))}{\Delta t_j}.
 $$
@@ -221,7 +255,6 @@ $$
 | x^{j} - z^{j} | \leq e^{TL}\left(|x^0 -z^0|+ \sum_{k=1}^j | \delta^{k} |\right) \ ,
 $$
 ce qui donne le résultat.
-$\hfill\blacksquare$ 
 
 
 ## Convergence
@@ -258,7 +291,7 @@ et par consistance
 $$
 |x^j - x(t_j)| \leq S(T) \,  C \,  \sum_{j = 1}^J \Delta t_{j-1}\, (\Delta t_{j-1})^{p} \leq  C \, S(T) \, T \, (\Delta t)^{p}  \ . 
 $$
-$\hfill \blacksquare$
+
 
 ### Relaxation de la stabilité
 Relaxation du théorème avec Lipschitz dans compact plutôt que global ?
