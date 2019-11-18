@@ -262,23 +262,25 @@ Intégrale
 ================================================================================
 
 ### Fonction mesurable
-Soit $(X, \mathcal{A})$ un espace mesurable et $n \in \N^*$.
-Une fonction $f: X \to [-\infty,+\infty]^n$ est *mesurable* 
+Soit $(X, \mathcal{A})$ un espace mesurable<!-- et $n \in \N^*$-->.
+Une fonction $f: X \to [-\infty,+\infty]$ <!--$f: X \to [-\infty,+\infty]^n$--> est *mesurable* 
 (ou *$\mathcal{A}$-mesurable* 
 pour lever toute ambiguité) 
 si l'image réciproque 
-de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]^n$ par 
+de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]$ <!--$[-\infty,+\infty]^n$--> par 
 $f$ est un ensemble mesurable (qui appartient à $\mathcal{A}$).
 
 ### {.remark .post}
-Cette définition est directement applicable si $f$ est scalaire 
--- c'est-à-dire si $f: X \to [-\infty, +\infty]$ -- ce qui le cas le plus 
-fréquent. Elle est bien sûr également applicable sans modification 
-si $f$ est à valeurs finies -- c'est-à-dire si $f(X) \subset \R^n$.
+Cette définition est directement applicable <!-- si $f$ est scalaire 
+c'est-à-dire si $f: X \to [-\infty, +\infty]$ -- ce qui le cas le plus 
+fréquent. Elle est bien sûr également applicable sans modification --> 
+si $f$ est à valeurs positives ($f(X) \subset [0, +\infty]$) ou finies
+($f(X) \subset \R$), voire les deux simultanément 
+($f(X) \subset \left[0, +\infty \right[$).
 
 ### Exercice -- Ensemble des parties de $X$ {.exercise}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
-une fonction $f: X \to [-\infty, +\infty]^n$ est-elle $\mathcal{A}$-mesurable ?
+une fonction $f: X \to [-\infty, +\infty]$ est-elle $\mathcal{A}$-mesurable ?
 
 ### Exercice -- Fonction caractéristique
 Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
@@ -286,13 +288,13 @@ A quelle condition la fonction $1_A: X \to \R$ est-elle mesurable ?
 
 ### Limite simple de fonctions mesurables
 Soit $(X, \mathcal{A})$ un espace mesurable. 
-Si les fonctions $f_k: X \to \left[-\infty, +\infty\right]^n$,
+Si les fonctions $f_k: X \to \left[-\infty, +\infty\right]$,
 $k \in \N$, sont mesurables et convergent simplement vers $f$, 
 alors $f$ est mesurable. 
 
 ### Démonstration {.proof}
 Il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de 
-$\left[-\infty, +\infty\right]^n$ appartient à $\mathcal{A}$.
+$\left[-\infty, +\infty\right]$ appartient à $\mathcal{A}$.
 Or $f(x) \in U$ si et seulement si $f_k(x) \in U$
 pour $k$ assez grand, ce qui se traduit par la formule
 $$
@@ -309,6 +311,58 @@ l'image de $X$ par $f$ ne comporte qu'un nombre fini de valeurs distinctes.
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 A quelle condition une fonction $f: X \to [-\infty, +\infty]$ qui ne prend 
 qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
+
+
+
+### Fonction étagées mesurables
+Soit $(X, \mathcal{A})$ un espace mesurable.
+Une fonction $f: X \to \R$ est étagée et mesurable 
+si et seulement s'il existe une collection finie d'ensembles mesurables
+$A_1, \dots, A_{n} \in \mathcal{A}$ et de valeurs 
+$y_1, \dots, y_{n} \in \R$ telles que
+$$
+f = \sum_{k=1}^{n} y_k 1_{A_k}. 
+$$
+
+### {.post}
+La démonstration de ce résultat montre qu'il est possible d'être plus prescriptif 
+si nécessaire sur les ensembles $A_k$ et les valeurs $y_k$ : 
+une fonction est en effet étagée et mesurables si et seulement 
+s'il existe une collection finie d'ensembles mesurable **disjoints**
+et **non vides** $A_1, \dots, A_{n} \in \mathcal{A}$ et de valeurs 
+**distinctes et non nulles**
+$y_1, \dots, y_{n} \in \R$ telles que
+$$
+f = \sum_{k=1}^{n} y_k 1_{A_k}. 
+$$
+
+### Démonstration {.proof}
+Soit $f: X \to \R$ une fonction étagée ;
+il existe donc des réels $y_1, \dots, y_{n}$ distincts non nuls tels que
+$f(X) \setminus \{0\}= \{y_1,\dots, y_{n-1}\}.$
+On a alors
+$$f = \sum_{k=1}^{n} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
+Si de plus $f$ est mesurable, les singletons de $\R$ étant fermés, 
+les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
+
+Réciproquement, si $f$ est de la forme $f = \sum_{k=1}^{n} y_k 1_{A_k}$ où
+les ensembles $A_k$ sont mesurables, il est clair que la fonction $f$ est simple
+car $f$ ne peut prendre comme valeurs que les sommes partielles des $y_k$, 
+sommes qui sont en nombre fini. 
+En considérant les ensembles 
+-- mesurables -- $B_k$ définis par $B_1 = A_1$ et $B_{k+1}= A_{k+1} \setminus A_k$
+on obtient une somme $\sum_k w_k 1_{B_k}$ du même type mais basée sur des 
+ensembles mesurables disjoints $B_k$. En faisant l'union $C_j$ des $B_k$ qui correspondent à
+des valeurs $z_j = w_k$ identiques, on peut de plus s'assurer d'avoir une somme
+de la forme $f = \sum_j z_j 1_{C_j}$ où les valeurs $z_j$ sont distinctes et les $C_j$ sont
+mesurables et non vides. 
+Le cas échéant, si l'un des $z_j$ est nul, on peut même omettre le terme correspondant de la somme.
+Il devient maintenant clair que $f$ est également mesurable : si $U$ est un
+ensemble ouvert de $\R$ (l'argument vaut en fait pour n'importe quel ensemble), 
+l'image réciproque de $U$ par $f$ est l'union
+d'une sous-collection des $C_j$ ($C_j$ étant inclus dans la collection 
+si et seulement si $z_j \in A$)
+et si $0 \in U$, de $X \setminus \cup_j C_j$.
 
 ### Approximation par des fonctions étagées positives {.theorem}
 Soit $(X, \mathcal{A})$ un espace mesurable. 
@@ -362,6 +416,33 @@ $$
 $$
 alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
 
+### Exercice -- "Restriction" de fonction
+Soient $f: X \to [0, +\infty]$ une fonction mesurable positive
+(à valeurs finies ou infinies) et soit $A \in \mathcal{A}$.
+Montrer que $1_A f$ est mesurable.
+
+### Exercice -- Somme de fonctions
+Soient $f, g : X \to [0, +\infty]$ deux fonctions mesurables positives
+(à valeurs finies ou infinies). Montrer que $f+g$ est mesurable.
+
+### Composition par une fonction continue
+Soit $(X, \mathcal{A})$ un espace mesurable.
+Si la fonction $f: X \to [-\infty, +\infty]$ est mesurable et
+la fonction $h : [-\infty, +\infty] \to [-\infty,+\infty]$ est continue, 
+la function composée $h \circ f$ est mesurable. 
+<!--
+Si $f, g: X \to [-\infty, +\infty]$ sont mesurables et 
+$h_2: [-\infty, +\infty]^2 \to [-\infty, +\infty]$ 
+est continue, 
+alors la composée $h_2 \circ (f, g)$ est mesurable.
+-->
+
+### Démonstration {.proof}
+Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
+$U$ par $h$ est un ouvert de $[-\infty, +\infty]$ et comme 
+$f$ est mesurable, l'image réciproque de cet ensemble par $f$ est un ensemble
+mesurable. La fonction composée $h \circ f$ est donc mesurable.
+
 ### Approximation par des fonctions étagées
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable. 
@@ -374,7 +455,8 @@ $$
 et convergent simplement vers $f$.
 
 ### Démonstration {.proof}
-Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ sont mesurables[^hh].
+Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ sont mesurables
+comme composées de fonctions mesurables et de fonctions continues.
 Elle sont également positives, telles que $f = f_+ - f_-$ et $|f| = f_+ + f_-$. 
 Il existe donc deux suites croissantes de fonctions $f_{k+}$ et $f_{k-}$ 
 de fonctions étagées mesurables positives telles $f_{k+} \to f_+$ et 
@@ -382,6 +464,7 @@ $f_{k-} \to f_-$ et donc $f_k := f_{k+} - f_{k-} \to f$ quand $k \to +\infty$.
 Par construction, $|f_{k}| = f_{k+} + f_{k-}$ est également croissante comme
 somme de deux suites croissantes. 
 
+<!--
 [^hh]: En effet la fonction $\max(\cdot, 0): [-\infty, +\infty] \to [0, +\infty]$
 est continue. Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
 $U$ par $\max(\cdot, 0)$ est donc un ouvert de $[-\infty, +\infty]$ et comme 
@@ -389,7 +472,9 @@ $f$ est mesurable, l'image réciproque de cet ensemble par $f$ est un ensemble
 mesurable. La fonction composée $F_+ = \max(f, 0) = \max(\cdot, 0) \circ f$ est donc
 mesurable.
 Le cas de la fonction $f_-$  est similaire.
+-->
 
+<!--
 ### TODO -- Mesurable $\circ$ cont.
 Le seul "problème" ce sont les valeurs infinies qui requièrent parfois des hacks,
 en tout cas qui supposent que la fonction continue ne soit pas globale
@@ -400,11 +485,16 @@ Le vrai truc qui colle, c'est un sous-ensemble Borélien, mais pour expliquer
 ça il faut avoir fait l'extension au cadre général de la mesurabilité
 tribu-tribu ... Alors attendre ? Ou citer le cas global (suffit pour $\max$
 par exemple) ? Ou le cas ouvert/fermé ?
+-->
 
-### TODO -- Exercice (combi lin sont mesurables)
-Deux cas : cas réel, combi lin arbitraire. Et/ou cas positif étendu.
+### Exercice -- Calculs et infinis
+Quand $f, g$ sont deux fonctions $X \to [-\infty, +\infty]$, 
+les fonctions $f+g$, $fg$ et $\max(f,g)$ sont-elles bien définies ?
 
-
+### Exercice -- Combinaison linéaire
+Soit $\lambda \in \R$ et soient $f, g : X \to \left[0, +\infty\right[$ 
+deux fonctions mesurables à valeurs finies. Montrer que les fonctions
+$\lambda f$ et $f+g$ sont mesurables.
 
 ### Intégrale d'une fonction positive -- Propriétés caractéristiques {#carac}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. *L'intégrale (de Lebesgue)
@@ -441,6 +531,15 @@ sera donnée dans le reste de cette section. La preuve que l'intégrale ainsi
 construite satisfait bien les trois propriétés caractéristiques ci-dessus 
 sera donnée dans la section suivante. 
 
+### Exercice -- Intégrale et mesures de Dirac
+Soit $x \in \R$ et $f:\R \to [0, +\infty]$. Sachant que 
+$f$ est limite simple d'une suite croissante de fonctions étagées
+$f_k : \R \to \left[0, +\infty\right[$, en déduire, en exploitant
+les propriétés caractéristiques de l'intégrale, la valeur de
+$$
+\int f \, \delta_x.
+$$
+
 ### Intégrale d'une fonction signée
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 Soit $f : X \to [-\infty, +\infty]$ une fonction mesurable.
@@ -460,7 +559,6 @@ ce qui revient au même, si l'intégrale de $f$ est définie et réelle :
 $$
 \int f \mu = \int_X f(x) \, \mu(dx) \in \R.
 $$
-
 
 ### Exercice -- Absolue intégrabilité {.exercise}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
@@ -535,56 +633,6 @@ v(f^{-1}(+\infty)) = v(f^{-1}(-\infty)) = 0.
 $$
 **TODO**
 
-
-### Fonction étagées mesurables
-Soit $(X, \mathcal{A})$ un espace mesurable.
-Une fonction $f: X \to \R$ est étagée et mesurable 
-si et seulement s'il existe une collection finie d'ensembles mesurables
-$A_1, \dots, A_{n} \in \mathcal{A}$ et de valeurs 
-$y_1, \dots, y_{n} \in \R$ telles que
-$$
-f = \sum_{k=1}^{n} y_k 1_{A_k}. 
-$$
-
-### {.post}
-La démonstration de ce résultat montre qu'il est possible d'être plus prescriptif 
-si nécessaire sur les ensembles $A_k$ et les valeurs $y_k$ : 
-une fonction est en effet étagée et mesurables si et seulement 
-s'il existe une collection finie d'ensembles mesurable **disjoints**
-et **non vides** $A_1, \dots, A_{n} \in \mathcal{A}$ et de valeurs 
-**distinctes et non nulles**
-$y_1, \dots, y_{n} \in \R$ telles que
-$$
-f = \sum_{k=1}^{n} y_k 1_{A_k}. 
-$$
-
-### Démonstration {.proof}
-Soit $f: X \to \R$ une fonction étagée ;
-il existe donc des réels $y_1, \dots, y_{n}$ distincts non nuls tels que
-$f(X) \setminus \{0\}= \{y_1,\dots, y_{n-1}\}.$
-On a alors
-$$f = \sum_{k=1}^{n} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
-Si de plus $f$ est mesurable, les singletons de $\R$ étant fermés, 
-les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
-
-Réciproquement, si $f$ est de la forme $f = \sum_{k=1}^{n} y_k 1_{A_k}$ où
-les ensembles $A_k$ sont mesurables, il est clair que la fonction $f$ est simple
-car $f$ ne peut prendre comme valeurs que les sommes partielles des $y_k$, 
-sommes qui sont en nombre fini. 
-En considérant les ensembles 
--- mesurables -- $B_k$ définis par $B_1 = A_1$ et $B_{k+1}= A_{k+1} \setminus A_k$
-on obtient une somme $\sum_k w_k 1_{B_k}$ du même type mais basée sur des 
-ensembles mesurables disjoints $B_k$. En faisant l'union $C_j$ des $B_k$ qui correspondent à
-des valeurs $z_j = w_k$ identiques, on peut de plus s'assurer d'avoir une somme
-de la forme $f = \sum_j z_j 1_{C_j}$ où les valeurs $z_j$ sont distinctes et les $C_j$ sont
-mesurables et non vides. 
-Le cas échéant, si l'un des $z_j$ est nul, on peut même omettre le terme correspondant de la somme.
-Il devient maintenant clair que $f$ est également mesurable : si $U$ est un
-ensemble ouvert de $\R$ (l'argument vaut en fait pour n'importe quel ensemble), 
-l'image réciproque de $U$ par $f$ est l'union
-d'une sous-collection des $C_j$ ($C_j$ étant inclus dans la collection 
-si et seulement si $z_j \in A$)
-et si $0 \in U$, de $X \setminus \cup_j C_j$.
 
 ### {.ante}
 [Les propriétés caractéristiques](#carac) que nous souhaitons obtenir 
@@ -792,7 +840,7 @@ $$
 ### {.remark .ante}
 [Le théorème de convergence monotone](#TCM) fournit une alternative,
 plus concrète, à la construction initiale de l'intégrale.
-Dance cette nouvelle version, on substitue au $\sup$ de la définition 
+Dans cette nouvelle version, on substitue au $\sup$ de la définition 
 initiale la limite d'une suite d'intégrales de fonctions étagées.
 
 ### Intégrale d'une fonction positive II {.theorem #ifpII}
@@ -1577,37 +1625,53 @@ $v^*(A) = v^*(B)$.
 A quelle condition portant sur $v^*(B \setminus A)$ l'ensemble $A$ est-il 
 $v^*$-mesurable ?
 
-Mesure intérieure
---------------------------------------------------------------------------------
 
-Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact de $\R^n$
-contenant $A$.
-On appelle *mesure intérieure de $A$* la grandeur
-$$
-v_*(A) = v^*(P) - v^*(P \setminus A).
-$$
-
-### Question 1 {.question #mi-1}
-Montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé $P$.
-
-### Question 2 {.question #mi-2}
-Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
-
-### Question 3 {.question #mi-3}
-Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
-et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
 
 -->
 
-
-TODO -- Mesure à partir de l'intégrale
+Intégrales et séries
 --------------------------------------------------------------------------------
 
-$\mu$, $f$ fixées (positive), montrer que 
+Soit $c$ la mesure de comptage sur $\N$.
+
+### Question 1 {.question #is-1}
+A quelle condition (nécessaire et suffisante) une fonction 
+$f:\N \to [-\infty, +\infty]$ est-elle mesurable 
+(vis-à-vis de la tribu associée à la mesure de comptage sur $\N$) ?
+
+### Question 2 {.question #is-2}
+Soit $f:\N \to [0, +\infty]$ une fonction mesurable.
+Montrer que l'intégrale de $f$ par rapport à la mesure de comptage vérifie
 $$
-A \in \mathcal{A} \mapsto \int 1_A f \, \mu
+\int f c = \sum_{n \in \N} f(n).
 $$
-est une mesure.
+
+### Question 3 {.question #is-3}
+Soit $f:\N \to [-\infty, +\infty]$ une fonction mesurable.
+A quelle condition (nécessaire et suffisante) la fonction $f$ est-elle intégrable ? 
+Calculer alors son intégrale.
+
+
+
+Mesure définie par une intégrale
+--------------------------------------------------------------------------------
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Soit $f:X \to [0, +\infty]$ une
+fonction mesurable positive. 
+
+### Question 1 {.question #mdi-1}
+Montrer que pour tout $A \in \mathcal{A}$, la fonction $1_A f$ est mesurable.
+
+### Question 2 {.question #mdi-2}
+Montrer que la fonction notée $f \mu$ définie par
+$$
+f \mu : A \in \mathcal{A} \mapsto \int_A f \, \mu := \int 1_A f \, \mu \in [0, +\infty].
+$$
+est une mesure sur $(X, \mathcal{A})$.
+
+### TODO -- Question 3 {.question #mdi-3}
+Exemples ? Construction de l'intégrale associée ?
+
+
 
 TODO -- Fonctions intégrables à valeurs $+\infty$
 --------------------------------------------------------------------------------
@@ -1681,6 +1745,26 @@ est une tribu.
 ### Question 2 {.question #cm-2}
 Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
 mesure $\overline{\mu}$ définie sur $\overline{\mathcal{A}}$.
+
+Mesure intérieure
+--------------------------------------------------------------------------------
+
+Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact de $\R^n$
+contenant $A$.
+On appelle *mesure intérieure de $A$* la grandeur
+$$
+v_*(A) = v^*(P) - v^*(P \setminus A).
+$$
+
+### Question 1 {.question #mi-1}
+Montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé $P$.
+
+### Question 2 {.question #mi-2}
+Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
+
+### Question 3 {.question #mi-3}
+Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
+et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
 
 <!--
 
@@ -1868,86 +1952,6 @@ v^*(C) \geq v^*((B \setminus A)^c \cap C) = v^*((B \setminus A) \cap C) + v^*((B
 $$
 On a donc l'égalité $v^*(C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C)$ ;
 l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \setminus A)$.
-
-Mesure intérieure
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-mi-1}
-Pour montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé
-$P$ contenant $A$, il suffit de prouver qu'on peut remplacer $P$ par un
-pavé compact $P'$ contenant $P$ sans changer la valeur de $v_*(A)$ (pour toute
-paire de pavés compacts on peut en effet trouver un pavé compact les contenant).
-
-Comme les pavés compacts $P$ et $P'$ sont mesurables (au sens de Carathéodory,
-pour la mesure extérieure $v^*$), l'ensemble $P' \setminus P$ l'est également 
-; on a donc
-$$
-v^*(P') = v^*(P' \setminus P) + v^{*}(P) 
-$$
-et
-$$
-v^{*}(P' \setminus A)
-=
-v^*(P' \setminus P) + v^*(P \setminus A),
-$$ 
-ce qui établit
-$$
-v^*(P') - v{*}(P' \setminus A)
-=
-v^*(P) - v^{*}(P \setminus A).
-$$
-
-### Question 2 {.answer #answer-mi-2}
-La fonction $v^*$ étant subadditive, on a
-$$
-v^*(P) \leq v^*(A) + v^*(P\setminus A)
-$$
-et donc $v_*(A) \leq v^*(A)$. Si $A$ est mesurable, l'inégalité initiale
-devient une égalité et donc $v_*(A) = v^*(A)$. 
-
-### Question 3 {.answer #answer-mi-3}
-Montrons que la réciproque est également vraie. 
-Soit $A$ un ensemble borné de $\R^n$ tel que 
-$v_*(A) = v^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
-Nous cherchons à établir que $v^*(B) = v^*(A \cap B) + v^*(A^c \cap B)$.
-Remarquons tout d'abord que si le pavé compact $P$ -- qui est mesurable -- 
-contient $A$, on a
-$$
-v^*(B) = v^*(P \cap B) + v^*(P^c \cap B) \; ;
-$$
-si nous réussissons à établir que 
-$$v^*(P \cap B) = v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)),$$
-on pourra alors conclure que
-$$
-\begin{split}
-v^*(B) &= v^*(P \cap B) + v^*(P^c \cap B) \\
-&= v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)) + v^*(P^c \cap B) \\
-&= v^*(A \cap B) + v^*(P \cap (A^c \cap B)) + v^*(P^c \cap (A^c \cap B)) \\
-&= v^*(A \cap B) + v^*(A^c \cap B).
-\end{split}
-$$
-Autrement dit, il nous suffit d'établir le résultat cherché quand $B$ est un
-ensemble de $\R^n$ contenu dans le pavé compact $P$. 
-
-Pour cela, nous exploitons les résultats de l'exercice "[Approximation par des
-ensembles mesurables](#aem)". A l'ensemble $A$ on peut associer un sur-ensemble
-$v^*$-mesurable $B$ tel que $v^*(A) = v^*(B)$ ; quitte à remplacer $B$ par
-$P \cap B$, on peut également supposer que $B \subset P$. On a 
-$$
-v^*(P) = v^*(A) + v^*(P \setminus A) = v^*(B) + v^*(P \setminus B)
-$$
-et donc $v^*(P \setminus A) = v^*(P \setminus B)$. 
-D'autre part
-$$
-\begin{split}
-v^*(P) &= v^*(B) + v^*(P \setminus B) \\
-&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus B) \\
-&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus A) \\
-\end{split}
-$$
-et donc $v^*(B \setminus A) = 0$. Par les résultats de l'exercice 
-"[Approximation par des ensembles mesurables](#aem)", on en déduit que 
-$A$ est mesurable.
 
 -->
 
@@ -2251,6 +2255,88 @@ $$
 \overline{mu}(\cup_k A_k \ds N_k) = \mu(\cup_k A_k) = \overline{\mu} ...
 $$
 -->
+
+
+Mesure intérieure
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-mi-1}
+Pour montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé
+$P$ contenant $A$, il suffit de prouver qu'on peut remplacer $P$ par un
+pavé compact $P'$ contenant $P$ sans changer la valeur de $v_*(A)$ (pour toute
+paire de pavés compacts on peut en effet trouver un pavé compact les contenant).
+
+Comme les pavés compacts $P$ et $P'$ sont mesurables (au sens de Carathéodory,
+pour la mesure extérieure $v^*$), l'ensemble $P' \setminus P$ l'est également 
+; on a donc
+$$
+v^*(P') = v^*(P' \setminus P) + v^{*}(P) 
+$$
+et
+$$
+v^{*}(P' \setminus A)
+=
+v^*(P' \setminus P) + v^*(P \setminus A),
+$$ 
+ce qui établit
+$$
+v^*(P') - v{*}(P' \setminus A)
+=
+v^*(P) - v^{*}(P \setminus A).
+$$
+
+### Question 2 {.answer #answer-mi-2}
+La fonction $v^*$ étant subadditive, on a
+$$
+v^*(P) \leq v^*(A) + v^*(P\setminus A)
+$$
+et donc $v_*(A) \leq v^*(A)$. Si $A$ est mesurable, l'inégalité initiale
+devient une égalité et donc $v_*(A) = v^*(A)$. 
+
+### Question 3 {.answer #answer-mi-3}
+Montrons que la réciproque est également vraie. 
+Soit $A$ un ensemble borné de $\R^n$ tel que 
+$v_*(A) = v^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
+Nous cherchons à établir que $v^*(B) = v^*(A \cap B) + v^*(A^c \cap B)$.
+Remarquons tout d'abord que si le pavé compact $P$ -- qui est mesurable -- 
+contient $A$, on a
+$$
+v^*(B) = v^*(P \cap B) + v^*(P^c \cap B) \; ;
+$$
+si nous réussissons à établir que 
+$$v^*(P \cap B) = v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)),$$
+on pourra alors conclure que
+$$
+\begin{split}
+v^*(B) &= v^*(P \cap B) + v^*(P^c \cap B) \\
+&= v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)) + v^*(P^c \cap B) \\
+&= v^*(A \cap B) + v^*(P \cap (A^c \cap B)) + v^*(P^c \cap (A^c \cap B)) \\
+&= v^*(A \cap B) + v^*(A^c \cap B).
+\end{split}
+$$
+Autrement dit, il nous suffit d'établir le résultat cherché quand $B$ est un
+ensemble de $\R^n$ contenu dans le pavé compact $P$. 
+
+Pour cela, nous exploitons les résultats de l'exercice "[Approximation par des
+ensembles mesurables](#aem)". A l'ensemble $A$ on peut associer un sur-ensemble
+$v^*$-mesurable $B$ tel que $v^*(A) = v^*(B)$ ; quitte à remplacer $B$ par
+$P \cap B$, on peut également supposer que $B \subset P$. On a 
+$$
+v^*(P) = v^*(A) + v^*(P \setminus A) = v^*(B) + v^*(P \setminus B)
+$$
+et donc $v^*(P \setminus A) = v^*(P \setminus B)$. 
+D'autre part
+$$
+\begin{split}
+v^*(P) &= v^*(B) + v^*(P \setminus B) \\
+&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus B) \\
+&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus A) \\
+\end{split}
+$$
+et donc $v^*(B \setminus A) = 0$. Par les résultats de l'exercice 
+"[Approximation par des ensembles mesurables](#aem)", on en déduit que 
+$A$ est mesurable.
+
 
 Réferences
 ================================================================================
