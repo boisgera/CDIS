@@ -95,6 +95,17 @@ L'ensemble $X$ muni de $\mathcal{A}$
 -- c'est-à-dire formellement la paire $(X,\mathcal{A})$ -- 
 est un *espace mesurable*.
 
+### Exercice -- Ensemble des parties {.exercise}
+Montrer que pour tout ensemble $X$, la collection $\mathcal{A} = \mathcal{P}(X)$
+des parties (sous-ensembles) de $X$ est une tribu sur $X$.
+
+### Exercice -- Intersection de tribus {.exercise}
+Montrer que pour tout ensemble $X$, l'intersection de deux tribus
+$\mathcal{A}_1$ et $\mathcal{A}_2$ sur $X$ -- c'est-à-dire la collection 
+$\mathcal{A}$ définie par
+$\mathcal{A} = \{A \subset X \; | \; A \in \mathcal{A}_1 \mbox{ et } A \in \mathcal{A}_2\}$ 
+-- est une tribu sur $X$. 
+
 ### Mesure et espace mesuré {.definition}
 Une *mesure* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
 est une fonction 
@@ -131,6 +142,19 @@ $\sigma$-additives mais pas nulles en $0$ ?
 ### Exercice -- Ca commence par un $\mathbb{P}$ {.exercise}
 Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
 $\mu(X) = 1$ ? Une fois que vous avez deviné, justifier la réponse.
+
+### Exercice -- Trace d'une mesure  {.exercise}
+Soit $\mu$ une mesure sur $(X, \mathcal{A})$. Montrer que pour tout 
+$A \in \mathcal{A}$, la *trace* $\mu|_A$ de $\mu$ sur $A$, définie
+comme
+$$
+\mu|_A: B \in \mathcal{A} \mapsto \mu(A \cap B)
+$$ 
+est également une mesure sur $(X, \mathcal{A})$.
+
+### Exercice -- Somme de mesures {.exercise}
+Montrer que la somme de deux mesures $\mu_1$ et $\mu_2$ sur un espace mesurable 
+$(X, \mathcal{A})$ est une mesure sur $(X, \mathcal{A})$.
 
 ### Mesure de Lebesgue
 Les ensembles mesurables de $\R^n$ (au sens du chapitre "Calcul Intégral III"[^rapp])
@@ -1568,6 +1592,7 @@ par $\Gamma(x+1)= x\Gamma(x)$.
 
 Exercices
 ================================================================================
+
 <!--
 Anagramme {.question #BT}
 --------------------------------------------------------------------------------
@@ -1632,6 +1657,9 @@ $v^*$-mesurable ?
 Intégrales et séries
 --------------------------------------------------------------------------------
 
+Dans cet exercice, on montre que la théorie générale de l'intégration fournit 
+un cadre permettant d'étudier les séries et leur somme.
+
 Soit $c$ la mesure de comptage sur $\N$.
 
 ### Question 1 {.question #is-1}
@@ -1643,7 +1671,7 @@ $f:\N \to [-\infty, +\infty]$ est-elle mesurable
 Soit $f:\N \to [0, +\infty]$ une fonction mesurable.
 Montrer que l'intégrale de $f$ par rapport à la mesure de comptage vérifie
 $$
-\int f c = \sum_{n \in \N} f(n).
+\int f \, c = \sum_{n \in \N} f(n).
 $$
 
 ### Question 3 {.question #is-3}
@@ -1683,10 +1711,32 @@ TODO -- Peignes de Dirac
 
 (intégrale associée, fct mesurables, lien avec série AC, etc. etc.)
 
-TODO -- Mesure image 
+Mesure image 
 --------------------------------------------------------------------------------
 
-**TODO:** exemple en question 0 ?
+### Question 0 {.question #mim-0}
+Soit $\mu$ une mesure sur $\R$ muni de la tribu de Lebesgue $\mathcal{L}(\R)$.
+Soit $h: \R \to \R$ la fonction définie par
+$$
+h(x) = \left|
+\begin{array}{rl}
+-1 & \mbox{si $x \leq -1$,} \\
+x & \mbox{si $-1 < x <+1$,} \\
++1 & \mbox{si $+1 \leq x$.}
+\end{array}
+\right.
+$$
+![](images/mesure-image.py)
+Montrer que la fonction
+$$
+\nu : A \in \mathcal{L}(\R) \to \mu(h^{-1}(A))
+$$
+est bien définie et est une mesure sur $(\R,\mathcal{L}(\R))$. 
+Indication : on essaiera d'exprimer $\nu$ comme la somme de trois mesures.
+
+### {.ante}
+
+----
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et $h: X \to Y$ une application.
 On définit la collection 
@@ -1698,21 +1748,23 @@ $$
 \mu \circ h^{-1}(B) = \mu(h^{-1}(B)).
 $$
 
-### Question 1 {.question #mi-1}
+### Question 1 {.question #mim-1}
 Montrer que $\mathcal{B}$ est une tribu.
 
-### Question 2 {.question #mi-2}
+### Question 2 {.question #mim-2}
 Montrer que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$ ; 
 on l'appelle la *mesure image de $\mu$ par $h$*.
 
-### Question 3 {.question #mi-3}
-Montrer que la fonction $f:Y \to \R$ est $\mu \circ h^{-1}$-intégrable 
+### Question 3 {.question #mim-3}
+Montrer que la fonction $f:Y \to [-\infty,\infty]$ est 
+$\mathcal{B}$-mesurable si et seulement si $f \circ h$ est 
+$\mathcal{A}$-mesurable.
+Montrer ensuite que
+$f:Y \to [-\infty, +\infty]$ est $\mu \circ h^{-1}$-intégrable 
 si et seulement si $f \circ h$ est $\mu$-intégrable et qu'alors,
 $$
-\int_Y f \, (\mu \circ h^{-1})(dx) = \int_X (f \circ h) \mu(dx).
+\int_Y f \, (\mu \circ h^{-1})(dx) = \int_X (f \circ h) \, \mu(dx).
 $$
-
-
 
 Complétion d'une mesure {#complétion}
 --------------------------------------------------------------------------------
@@ -1825,6 +1877,76 @@ Pourquoi ça ne marche pas ?
 
 Solutions
 ================================================================================
+
+Intégrales et séries
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-is-1}
+La tribu associée à la mesure de comptage $c$ sur $\N$ est l'ensemble des
+parties de $\N$ notée $\mathcal{P}(\N)$. 
+Or toute fonction $f: \N \to [-\infty, +\infty]$ est $\mathcal{P}(\N)$-mesurable.
+En effet, quel que soit l'ouvert $U \subset [-\infty, +\infty]$, 
+$f^{-1}(U)$ est un sous-ensemble de $\N$, c'est-à-dire un élément de 
+$\mathcal{P}(\N)$.
+
+### Question 2 {.answer #answer-is-2}
+Toute fonction $f:\N \to [0, +\infty]$ est $\mathcal{P}(\N)$-mesurable.
+Pour tout $k \in \N$, la fonction $f_k:\N \to [0, +\infty]$ définie
+par
+$$
+f_k(n) = \left|
+\begin{array}{rl}
+f(n) & \mbox{si $k \leq n$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est également mesurable, positive et étagée (elle prend au plus $k+1$ valeurs
+différentes). De plus, il est clair que la suite des $f_k$ est croissante et
+que pour tout $n \in \N$, $\lim_{k \to +\infty} f_k(n) = f(n)$.
+La propriété de convergence monotone de l'intégrale nous assure alors que
+$$
+\lim_{k \to +\infty} \int f_k \, c = \int f\, c.
+$$
+Or, comme la fonction étagée $f_k$ prend la forme
+$$
+f_k  = \sum_{n=0}^k f(n) 1_{\{n\}}
+$$
+et que le lien entre intégrale et mesure nous fournit
+$$
+\int 1_{\{n\}} \, c = c(\{n\}) = 1,
+$$
+la linéarité de l'intégrale nous permet de conclure que
+$$
+\int f_k \, c = \sum_{n=0}^k f(n).
+$$
+Par conséquent,
+$$
+\int f\, c = \sum_{n=0}^{+\infty} f(n).
+$$
+
+### Question 3 {.answer #answer-is-3}
+Toute fonction $f:\N \to [-\infty, +\infty]$ est $\mathcal{P}(\N)$-mesurable.
+Elle est $c$-intégrable si $f_+$ et $f_-$ ont des intégrales finies, 
+c'est-à-dire si
+$$
+\sum_{n=0}^{+\infty} f_+(n) < + \infty \; \mbox{ et } \;
+\sum_{n=0}^{+\infty} f_-(n) < + \infty,
+$$
+ce qui est le cas si et seulement si 
+$$
+\sum_{n=0}^{+\infty} f_+(n) + f_-(n) =
+\sum_{n=0}^{+\infty} |f|(n) < + \infty,
+$$
+autrement dit si et seulement si la suite des $f(n)$ est absolument convergente.
+Dans ce cas, on a 
+$$
+\int f\, c = \int f_+ \, c + \int f_- \, c = 
+\sum_{n=0}^{+\infty} f_+(n) + \sum_{n=0}^{+\infty} f_-(n)
+= \sum_{n=0}^{+\infty} |f|(n).
+$$
+
+
 
 <!--
 
@@ -1956,12 +2078,32 @@ l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \se
 -->
 
 
-TODO -- Mesure image 
+Mesure image 
 --------------------------------------------------------------------------------
 
-**TODO:** exemple en question 0
+### Question 0 {.answer #answer-mim-0}
+Pour tout $A \subset \R$,
+$h^{-1}(A) \cap \left]-1, 1\right[ = A \cap \left]-1, 1\right[,$
+$h^{-1}(A) \cap \left]-\infty, -1\right] = \{-1\}$ ou $\varnothing$ selon que
+$-1$ appartienne ou non à $A$ et $h^{-1}(A) \cap \left[+1, +\infty\right[ = \{+1\}$ 
+ou $\varnothing$ selon que $+1$ appartienne ou non à $A$.
 
-### Question 1 {.answer #answer-mi-1}
+Par conséquent, si $A \in \mathcal{L}(\R)$, l'ensemble 
+$$h^{-1}(A) = (h^{-1}(A) \cap \left]-\infty, -1\right]) \cup (h^{-1}(A) \cap \left]-1, 1\right[)   \cup (h^{-1}(A) \cap \left[+1, +\infty\right[)$$ est 
+l'union de trois ensembles de $\mathcal{L}(\R)$ ; il appartient donc à $\mathcal{L}(\R)$
+et la fonction $\nu$ est bien définie.
+
+En utilisant l'additivité de $\mu$, on constate alors que
+$$
+\nu(A) = \mu(h^{-1}(A) = \delta_{-1}(A) + \mu|_{\left]-1,1\right[} (A) + \delta_{1}(A)
+$$
+où $\mu|_{\left]-1,1\right[}$ est la mesure
+trace de $\mu$ sur $\left]-1,1\right[$,
+définie par $\mu|_{\left]-1,1\right[} (A) = \mu(\left]-1,1\right[ \cap A)$.
+La fonction $\nu(A)$ est donc une mesure sur $(\R, \mathcal{L}(\R))$ comme somme
+de trois mesures sur  $(\R, \mathcal{L}(\R))$.
+
+### Question 1 {.answer #answer-mim-1}
 L'ensemble $\mathcal{B}$ est une tribu ; en effet :
 
   - $\varnothing \in \mathcal{A}$ et $\varnothing = h^{-1}(\varnothing)$,
@@ -1974,12 +2116,12 @@ L'ensemble $\mathcal{B}$ est une tribu ; en effet :
     et appartient donc à $\mathcal{A}$. L'ensemble $Y \setminus B$ appartient
     donc à $\mathcal{B}$.
 
-  - Si les ensembles $B_k$, $k \in N$ appartiennent à $\mathcal{B}$, 
+  - Si les ensembles $B_k$, $k \in \N$ appartiennent à $\mathcal{B}$, 
     comme $h^{-1}(\cup_k B_k) = \cup_k h^{-1}(B_k)$, cet ensemble
     appartient à $\mathcal{A}$. L'union dénombrable $\cup_k B_k$
     appartient donc à $\mathcal{B}$.
 
-### Question 2 {.answer #answer-mi-2}
+### Question 2 {.answer #answer-mim-2}
 Montrons que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$.
 
   - On a $\mu\circ h^{-1}(\varnothing) = \mu(h^{-1}(\varnothing)) = \mu(\varnothing) = 0$.
@@ -2001,14 +2143,16 @@ Montrons que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$.
     \end{split}
     $$
     
-### Question 3 {.answer #answer-mi-3}
-Montrons tout d'abord que la fonction $f:Y \to \R$ est mesurable 
-si et seulement si $f \circ h$ est mesurable. Par définition,
-$f$ est mesurable si pour tout ensemble borélien $B$ de $\R$,
-l'ensemble $f^{-1}(B)$ appartient $\mathcal{B}$, c'est-à-dire
+### Question 3 {.answer #answer-mim-3}
+Montrons tout d'abord que la fonction $f:Y \to [-\infty,+\infty]$ est 
+$\mathcal{B}$-mesurable si et seulement si $f \circ h$ est 
+$\mathcal{A}$-mesurable.
+Par définition,
+$f$ est mesurable si pour tout ouvert $U$ de $\R$,
+l'ensemble $f^{-1}(U)$ appartient $\mathcal{B}$, c'est-à-dire
 si et seulement si
 $$
-h^{-1} (f^{-1}(B)) = (f \circ h)^{-1}(B) \in \mathcal{A},
+h^{-1} (f^{-1}(U)) = (f \circ h)^{-1}(U) \in \mathcal{A},
 $$
 c'est-à-dire si et seulement si $f \circ h$ est mesurable.
 
@@ -2018,45 +2162,39 @@ $f: Y \to \left[0, +\infty\right]$, on a
 $$
 \int (f \circ h) \mu = \int f (\mu \circ h^{-1})
 $$
-pour pouvoir conclure que $f: Y \to \R$ est $\mu \circ h^{-1}$-intégrable si et
+pour pouvoir conclure que $f: Y \to  [-\infty,+\infty]$ est $\mu \circ h^{-1}$-intégrable si et
 seulement si $f \circ h$ est $\mu$-intégrable et que l'égalité ci-dessus
-est valable.
+est valable également dans le cas des fonctions signées.
 
-Or pour une telle fonction $f$, il existe une suite croissante de fonctions 
-$f_k$ simples, positives et mesurables convergeant simplement vers $f$,
+Or pour une telle fonction positive $f$, il existe une suite croissante de fonctions 
+$f_k$ étagées, positives et mesurables convergeant simplement vers $f$,
 et l'on a 
 $$
 \int f (\mu \circ h^{-1}) 
 =
 \lim_{k \to +\infty} \int f_k (\mu \circ h^{-1}).
 $$
-Comme 
+Si à $k$ fixé, on explicite $f_k$ comme
+$$
+f_k = \sum_{j=1}^{n} y_j 1_{B_j}
+$$
+où les $B_j$ sont des ensembles mesurables et $y_j > 0$, alors
 $$
 \begin{split}
 \int f_k (\mu \circ h^{-1}) 
-&= \sum_{y \in f_k(Y)} y \times (\mu \circ h^{-1})(f_k^{-1}(\{y\})) \\
-&= \sum_{y \in f_k(Y)} y \times \mu (h^{-1}(f_k^{-1}(\{y\})) \\
-&= \sum_{y \in f_k(Y)} y \times \mu ((f_k \circ h) ^{-1}(\{y\})) \\
+&= \sum_{j=1}^{n} y_j (\mu \circ h^{-1})(B_j)  \\
+&= \sum_{j=1}^{n} y_j \mu(h^{-1}(B_j)) \\
+&= \int \sum_{j=1}^n y_j 1_{h^{-1}(B_j)} \, \mu \\
+&= \int f \circ h^{-1} \, \mu \\
 \end{split}
 $$
-si $y \in f_k(Y)$, mais $y \not \in f_k(h(X))$, alors 
-$\mu ((f_k \circ h) ^{-1}(\{y\})) = 0$. Par conséquent,
-$$
-\begin{split}
-\int f_k (\mu \circ h^{-1}) 
-&=
-\sum_{y \in (f_k \circ h)(X)} y \times \mu ((f_k \circ h) ^{-1}(\{y\})) \\
-&=
-\int (f_k \circ h) \mu.
-\end{split}
-$$
-Les fonctions $f_k \circ h$ sont simples, positives et mesurables,
+Les fonctions $f_k \circ h$ sont étagées, positives et mesurables,
 leur suite est croissante et converge simplement vers $f \circ h$.
-[Par le théorème de convergence monotone](#TCM), on a donc
+[Par le théorème de convergence monotone](#TCM), on a donc comme souhaité
 $$
-\int f (\mu \circ h^{-1}) 
+\int f \, (\mu \circ h^{-1}) 
 =
-\int (f \circ h) \mu.
+\int (f \circ h) \, \mu.
 $$
 
 
