@@ -1113,7 +1113,7 @@ $f_k: X \to [-\infty, +\infty]$, $k \in \N$, une suite de fonctions
 mesurables, dominées par la fonction intégrable $g: X \to [0, +\infty]$
 c'est-à-dire telles que pour tout tout $k \in \N$ et tout $x \in X$,
 $$
-0 \leq f_k(x) \leq g(x) \; \mbox{ et } \; \int g \mu < +\infty.
+0 \leq |f_k(x)| \leq g(x) \; \mbox{ et } \; \int g \mu < +\infty.
 $$
 Si la suite des $f_k$ a une limite simple $f: X \to [-\infty, +\infty]$,
 c'est-à-dire si pour tout $x \in X$,
@@ -1676,15 +1676,19 @@ $$
 
 ### Question 3 {.question #is-3}
 Soit $f:\N \to [-\infty, +\infty]$ une fonction mesurable.
-A quelle condition (nécessaire et suffisante) la fonction $f$ est-elle intégrable ? 
+A quelle condition (nécessaire et suffisante) la fonction $f$ est-elle $c$-intégrable ? 
 Calculer alors son intégrale.
+
+### Question 4 {.question #is-4}
+Formuler le théorème de convergence dominée associé à la mesure de comptage 
+$c$ sur $\N$ comme un résultat portant sur les séries.
 
 
 
 Mesure définie par une intégrale
 --------------------------------------------------------------------------------
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Soit $f:X \to [0, +\infty]$ une
-fonction mesurable positive. 
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Soit $f:X \to \left[0, +\infty\right[$ 
+une fonction mesurable positive à valeurs finies. 
 
 ### Question 1 {.question #mdi-1}
 Montrer que pour tout $A \in \mathcal{A}$, la fonction $1_A f$ est mesurable.
@@ -1696,11 +1700,7 @@ f \mu : A \in \mathcal{A} \mapsto \int_A f \, \mu := \int 1_A f \, \mu \in [0, +
 $$
 est une mesure sur $(X, \mathcal{A})$.
 
-### TODO -- Question 3 {.question #mdi-3}
-Exemples ? Construction de l'intégrale associée ?
-
-
-
+<!--
 TODO -- Fonctions intégrables à valeurs $+\infty$
 --------------------------------------------------------------------------------
 
@@ -1710,6 +1710,8 @@ TODO -- Peignes de Dirac
 --------------------------------------------------------------------------------
 
 (intégrale associée, fct mesurables, lien avec série AC, etc. etc.)
+
+-->
 
 Mesure image 
 --------------------------------------------------------------------------------
@@ -1805,8 +1807,9 @@ Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact de $\R^n$
 contenant $A$.
 On appelle *mesure intérieure de $A$* la grandeur
 $$
-v_*(A) = v^*(P) - v^*(P \setminus A).
+v_*(A) = v^*(P) - v^*(P \setminus A)
 $$
+où $v^*$ désigne la mesure extérieure de Lebesgue sur $\R^n$.
 
 ### Question 1 {.question #mi-1}
 Montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé $P$.
@@ -1946,7 +1949,22 @@ $$
 = \sum_{n=0}^{+\infty} |f|(n).
 $$
 
+### Question 4 {.answer #answer-is-4}
+Le théorème de convergence dominée dans le cas de la mesure de comptage
+$c$ sur $\N$ devient le résultat suivant sur les (suites de) séries : 
 
+Soit $f_k: \N \to [-\infty, +\infty]$, $k \in \N$, une suite de fonctions 
+dominées par la fonction intégrable $g: \N \to [0, +\infty]$
+c'est-à-dire telles que pour tout tout $k \in \N$ et tout $n \in \N$,
+$$
+0 \leq |f_k(n)| \leq g(n) \; \mbox{ et } \; \sum_{n=0}^{+\infty} g(n) < +\infty.
+$$
+Si pour tout $n \in \N$,
+$f_k(n) \to f(n) \mbox{ quand } k \to +\infty,$
+alors
+$$
+\lim_{k \to +\infty} \sum_{n=0}^{+\infty} f_k(n)  = \sum_{n=0}^{+\infty} f_k(n).
+$$
 
 <!--
 
@@ -2077,6 +2095,29 @@ l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \se
 
 -->
 
+
+Mesure définie par une intégrale
+--------------------------------------------------------------------------------
+<!--
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Soit $f:X \to [0, +\infty]$ une
+fonction mesurable positive. 
+-->
+
+### Question 1 {.answer #answer-mdi-1}
+Pour tout $A \in \mathcal{A}$, la fonction $1_A$ est mesurable, car
+l'image réciproque par $1_A$ d'un ouvert de $[0, +\infty]$ est soit 
+$A$ soit $\varnothing$. Si $f: X \to \left[0, +\infty\right[$ est mesurable,
+on peut l'écrire comme une limite simple et croissante de fonctions 
+$f_k: X \to \left[0, +\infty\right[$ mesurables et étagées. La suite 
+$1_A f_k$ est de même nature et converge simplement vers $1_A f$ ; la
+fonction $1_A f$ est donc mesurable.
+
+### Question 2 {.answer #answer-mdi-2}
+Montrer que la fonction notée $f \mu$ définie par
+$$
+f \mu : A \in \mathcal{A} \mapsto \int_A f \, \mu := \int 1_A f \, \mu \in [0, +\infty].
+$$
+est une mesure sur $(X, \mathcal{A})$.
 
 Mesure image 
 --------------------------------------------------------------------------------
