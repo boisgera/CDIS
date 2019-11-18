@@ -282,7 +282,7 @@ si $f$ est à valeurs positives ($f(X) \subset [0, +\infty]$) ou finies
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
 une fonction $f: X \to [-\infty, +\infty]$ est-elle $\mathcal{A}$-mesurable ?
 
-### Exercice -- Fonction caractéristique
+### Exercice -- Fonction caractéristique {.exercise}
 Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
 A quelle condition la fonction $1_A: X \to \R$ est-elle mesurable ?
 
@@ -416,12 +416,12 @@ $$
 $$
 alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
 
-### Exercice -- "Restriction" de fonction
+### Exercice -- "Restriction" de fonction {.exercise}
 Soient $f: X \to [0, +\infty]$ une fonction mesurable positive
 (à valeurs finies ou infinies) et soit $A \in \mathcal{A}$.
 Montrer que $1_A f$ est mesurable.
 
-### Exercice -- Somme de fonctions
+### Exercice -- Somme de fonctions {.exercise}
 Soient $f, g : X \to [0, +\infty]$ deux fonctions mesurables positives
 (à valeurs finies ou infinies). Montrer que $f+g$ est mesurable.
 
@@ -487,11 +487,11 @@ tribu-tribu ... Alors attendre ? Ou citer le cas global (suffit pour $\max$
 par exemple) ? Ou le cas ouvert/fermé ?
 -->
 
-### Exercice -- Calculs et infinis
+### Exercice -- Calculs et infinis {.exercise}
 Quand $f, g$ sont deux fonctions $X \to [-\infty, +\infty]$, 
 les fonctions $f+g$, $fg$ et $\max(f,g)$ sont-elles bien définies ?
 
-### Exercice -- Combinaison linéaire
+### Exercice -- Combinaison linéaire {.exercise}
 Soit $\lambda \in \R$ et soient $f, g : X \to \left[0, +\infty\right[$ 
 deux fonctions mesurables à valeurs finies. Montrer que les fonctions
 $\lambda f$ et $f+g$ sont mesurables.
@@ -531,13 +531,13 @@ sera donnée dans le reste de cette section. La preuve que l'intégrale ainsi
 construite satisfait bien les trois propriétés caractéristiques ci-dessus 
 sera donnée dans la section suivante. 
 
-### Exercice -- Intégrale et mesures de Dirac
+### Exercice -- Intégrale et mesures de Dirac {.exercise}
 Soit $x \in \R$ et $f:\R \to [0, +\infty]$. Sachant que 
 $f$ est limite simple d'une suite croissante de fonctions étagées
 $f_k : \R \to \left[0, +\infty\right[$, en déduire, en exploitant
 les propriétés caractéristiques de l'intégrale, la valeur de
 $$
-\int f \, \delta_x.
+\int f \, \delta_x = \int_{\R} f(y) \, \delta_x(dy).
 $$
 
 ### Intégrale d'une fonction signée
@@ -609,7 +609,7 @@ Lebesgue $\mathcal{L}(\R)$ mais pas intégrable pour la mesure de Lebesgue $v$.
 
 ### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
 Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
-par rapport à la mesure de Lebesgue si et seulement si 
+par rapport à la mesure de Lebesgue $v$ si et seulement si 
 $f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
 pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
 deux intégrales sont égales :
