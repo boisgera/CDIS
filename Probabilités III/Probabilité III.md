@@ -419,7 +419,7 @@ Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, sa *fonction caractéri
 ### Remarque {.remark}
 La fonction caractéristique ne dépend en fait **que de la loi $\P_X$ de $X$** : c’est la “transformée de Fourier” de la loi $\P_X$.
 
-Nous verrons que cette fonction porte bien son nom, au sens où elle caractérise la loi $\P_X$. C’est une notion qui, de ce point de vue, généralise la fonction génératrice $G$ qui a été vue en CPGE. Elle vérifie
+Nous verrons que cette fonction porte bien son nom, au sens où elle caractérise la loi $\P_X$. C’est une notion qui, de ce point de vue, généralise la fonction génératrice $G$, vue en CPGE. Elle vérifie
     $$\phi_X(u) = G_X(e^{iu}) = \Esp(e^{iuX}) $$
 pour une variable $X$ à valeurs dans $\N$.
 
@@ -433,7 +433,7 @@ $|z|$ désigne le module d'un nombre complexe $z$.
 Comme $\Esp(Y)^2 \leq \Esp(Y^2)$ pour toute variable réelle $Y$, on a :
 $$ |\phi_X(u)|^2 = \Esp(\cos< u, X>)^2 + \Esp(\sin< u, X>)^2 \leq \Esp(\cos^2< u, X> + \sin^2< u, X>) = 1.$$
 
-Pour montrer la continuité, considérons une suite $u_p \xrightarrow[p \to \infty]{} u$. Il y a convergence simple de $e^{i < u_p,X>}$ vers $e^{i < u,X>}$. Comme ces variables aléatoires sont de module borné par 1, le théorème de convergence dominée assure que $\phi_X(u_p) \xrightarrow[p \to \infty]{} \phi_X(u)$. $\phi_X$ est donc continue.
+Pour montrer la continuité, considérons une suite $u_p \xrightarrow[p \to \infty]{} u$. Il y a convergence simple de $e^{i < u_p,X>}$ vers $e^{i < u,X>}$. Comme ces variables aléatoires sont de module inférieur à 1, le théorème de convergence dominée assure que $\phi_X(u_p) \xrightarrow[p \to \infty]{} \phi_X(u)$. $\phi_X$ est donc continue.
 
 ### Proposition {.proposition #fct_carac_vec}
 Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, si $a \in \R^m$ et $A$ est une matrice réelle de taille $m \times n$, alors 
@@ -462,8 +462,8 @@ Soient les fonctions suivantes avec $\sigma > 0$ :
     $$ f_\sigma (x) = \frac{1}{(2\pi \sigma^2)^{n/2}}\exp\left(-\frac{|x|^2}{2\sigma^2}\right) \text{ et } \widehat{f}_\sigma (u)= \exp\left(-\frac{|u|^2}{2\sigma^2}\right).$$
 On a 
 \begin{align*}
-\int f_\sigma (x) e^{i < u,x>} dx &= \int{\R^n} \prod_{j=1}^n \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{x_j^2}{2\sigma^2}+iu_j x_j\right) dx_1\ldots dx_n \\
-                                  &= \prod_{j=1}^n \int{\R} \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{t^2}{2\sigma^2}+iu_j t\right) dt = \widehat{f}_\sigma(u)
+\int f_\sigma (x) e^{i < u,x>} dx &= \int_{\R^n} \prod_{j=1}^n \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{x_j^2}{2\sigma^2}+iu_j x_j\right) dx_1\ldots dx_n \\
+                                  &= \prod_{j=1}^n \int_{\R} \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{t^2}{2\sigma^2}+iu_j t\right) dt = \widehat{f}_\sigma(u)
 \end{align*}
 d'après l'exemple 5 [ci-dessus](ex) et en utilisant le théorème de Fubini. On remarque ainsi que
 $$ f_\sigma (u-v) = \frac{1}{(2\pi \sigma^2)^{n/2}} \widehat{f}_\sigma(\frac{u-v}{\sigma^2}) = \frac{1}{(2\pi \sigma^2)^{n/2}} \int f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx.$$
@@ -499,10 +499,10 @@ Si $X$ et $Y$ sont deux vecteurs aléatoires indépendants à valeurs dans $\R^n
 Comme $e^{i< u, X+Y>}=e^{i< u, X>}e^{i< u, Y>}$, il suffit d'appliquer la [proposition](Probabilité II.pdf #indep_fct).
 
 ### Exemples :
-Soient $X$ et $Y deux variables aléatoires réelles indépendantes et $Z = X+Y$ :
+Soient $X$ et $Y$ deux variables aléatoires réelles indépendantes et $Z = X+Y$ :
 
- 1. Si $X$ suit la loi normale $\No(m,\sigma^2)$ et $Y$ suit $\No(m',\sigma'^2)$, alors $Z$ suit une loi $\No(m+m',\sigma^2+\sigma'^2)$, d'après l'[exemple](#ex) point 6. et la [proposition](#fct_carac_sum).
- 2. Si $X$ et $Y$ suivent des lois de Poisson de paramètres $\theta$ et $\theta'$, alors $Z$ suit une loi de Poisson de paramètre $\theta + \theta'$, d'après l'[exemple](#ex) point 2. et la [proposition](#fct_carac_sum).
+ 1. Si $X$ suit la loi normale $\No(m,\sigma^2)$ et $Y$ suit $\No(m',\sigma'^2)$, alors $Z$ suit une loi $\No(m+m',\sigma^2+\sigma'^2)$, d'après l'[exemple](#ex) point 6. et la [proposition ci-dessus](#fct_carac_sum).
+ 2. Si $X$ et $Y$ suivent des lois de Poisson de paramètres $\theta$ et $\theta'$, alors $Z$ suit une loi de Poisson de paramètre $\theta + \theta'$, d'après l'[exemple](#ex) point 2. et la [proposition ci-dessus](#fct_carac_sum).
  3. Si $X$ suit une loi binomiale $\mathcal{B}(n,p)$ et $Y$ la loi biomiale $\mathcal{B}(m,p)$, alors $Z$ suit une loi binomiale $\mathcal{B}(n+m,p)$, d'après l'[exemple](#ex) point 1. et la [proposition](#fct_carac_sum).
 
 ### Proposition {.proposition #fct_carac_deriv}
@@ -514,8 +514,8 @@ où les $X_j$ sont les composantes de $X$.
 Le résultat se démontre par application itérée du théorème de dérivation sous le signe somme.
 
 ### Remarque {.remark}
-En prenant $u=0$ dans la [proposition](#fct_carac_sum), la formule permet de calculer $\Esp(X_{i_1}\ldots X_{i_m})$ en fonction des dérivées à l'origine de $\phi_X$, autrement dit de calculer tous les moments du vecteur $X$, s'ils existent. Par exemple, si $X$ est à valeurs réelles et est intégrable (respectivement de carré intégrable), nous avons
-    $$ \Esp(X) = i \phi'_X(0), (\text{resp.} \Esp(X^2) = \phi"_X(0))$$
+En prenant $u=0$ dans la [proposition](#fct_carac_sum), la formule permet de calculer $\Esp(X_{i_1}\ldots X_{i_m})$ en fonction des dérivées à l'origine de $\phi_X$, autrement dit de calculer tous les moments du vecteur $X$, s'ils existent. Par exemple, si $X$ est à valeurs réelles et est intégrable (respectivement de carré intégrable), on a
+    $$ \Esp(X) = i \phi'_X(0), \,\,\,(\text{resp.} \Esp(X^2) = \phi"_X(0))$$
 
 ### Théorème {.theorem #fct_carac_gauss}
 $X$ est un vecteur gaussien si et seulement si sa fonction caractéristique s'écrit
@@ -545,7 +545,7 @@ Soit $(X_n)_{n \in \N^\star}$ une suite de vecteurs aléatoires à valeurs dans 
 ### Démonstration {.proof}
 
  1. On remarque que $\phi_{X_n}(u) = \Esp(g_u(X_n))$ et $\phi_X(u) = \Esp(g_u(X))$ où $g_u$ est la fonction continue bornée $g_u(x) = e^{i < u,x>}$. On applique alors la [définition](#defconvloi).
- 2. Admis.
+ 2. Se reporter à @Jacod.
 
 ## Théorème central limite
 Ce théorème est aussi connu sous le nom de théorème de la limite centrale. Plus simplement, il apparaît souvent sous l’abréviation TCL.
@@ -554,11 +554,11 @@ On considère une suite de variables aléatoire $(X_n)_{n \in \N^\star}$ indépe
     $$S_n = X_1 + \ldots + X_n$$
 ainsi ($S_n = n M_n$). On a vu que la loi des grands nombres assure que $M_n$ converge vers $m$ presque-sûrement et en moyenne. On va s'intéresser a la vitesse à laquelle cette convergence a lieu.
 
-Pour évaluer cette vitesse, c’est-à-dire trouver un équivalent de $\frac{S_n}{n} - m$, on est amenés à étudier la limite éventuelle de la suite $n^\alpha (\frac{S_n}{n} - m)$ pour différentes valeurs de $\alpha$ : si $\alpha$ est “petit” cette suite va encore tendre vers 0, et elle va “exploser” si $\alpha$est “grand”. On peut espérer que pour une (et alors nécessairement une seule) valeur de $\alpha$, cette suite converge vers une limite qui n’est ni infinie ni nulle.
+Pour évaluer cette vitesse, c’est-à-dire trouver un équivalent de $\frac{S_n}{n} - m$, on est amenés à étudier la limite éventuelle de la suite $n^\alpha (\frac{S_n}{n} - m)$ pour différentes valeurs de $\alpha$ : si $\alpha$ est “petit” cette suite va encore tendre vers 0, et elle va “exploser” si $\alpha$ est “grand”. On peut espérer que pour une (et alors nécessairement une seule) valeur de $\alpha$, cette suite converge vers une limite qui n’est ni infinie ni nulle.
 
 Il se trouve que la réponse à cette question a un aspect “négatif” : la suite $n^\alpha (\frac{S_n}{n} - m)$ ne converge au sens presque-sûr, ou même en probabilité, pour aucune valeur de $\alpha$. Elle a aussi un aspect “positif” : cette suite converge, au sens de la convergence en loi, pour la même valeur $\alpha = 1/2$ quelle que soit la loi des $X_n$, et toujours vers une loi normale.
 
-Ce résultat, qui peut sembler miraculeux, a été énoncé par Laplace (1749-1827) et démontré beaucoup plus tard par Lyapounov (1901). Il montre le caractère universel de la loi normale en probabilités (d'où son nom). Il fait l’objet du théorème suivant, appelé théorème central limite (TCL), ou de la limite centrale.
+Ce résultat, qui peut sembler miraculeux, a été énoncé par Laplace (1749-1827) et démontré beaucoup plus tard par Lyapounov (1901). Il montre le caractère universel de la loi normale en probabilités (d'où son nom). 
 
 ### Théorème central limite {.theorem #TCL}
 Si les $X_n$ sont des variables aléatoires réelles, indépendantes et de même loi, de carré intégrable, de moyenne $m$ et de variance $\sigma^2 >0$, alors les variables
@@ -568,15 +568,31 @@ convergent en loi vers une variable aléatoire de loi $\No(0,1)$.
 En d'autres termes, $\sqrt{n}(M_n - m)$ converge vers une variable normale de loi $\No(0,\sigma^2)$.
 
 ### Démonstration {.proof}
-Soit $\phi$ la fonction caractéristique de $X_n - m$, et $Y_n = \frac{S_n -nm}{\sigma \sqrt{n}}$. D'après la [proposition](#fct_carac_vec) et la [proposition](#fct_carac_sum), la fonction caractéristique de $Y_n$ est 
-    $$\phi_n(u) = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n .$$
-Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition](#fct_carac_deriv) entraîne 
-    $$\phi(u) = 1 - \frac{u^2\sigma^2}{2} + u^2 o (|u|) \text{ quand } u \rightarrow 0.$$
+Soit $\phi$ la fonction caractéristique de $X_n - m$, et $Y_n = \frac{S_n -nm}{\sigma \sqrt{n}}$. Comme les $X_n$ sont indépendantes, la [proposition vue plus haut](#fct_carac_sum) entraîne que la fonction caractéristique de $Y_n$ est 
+\begin{align*}
+    \phi_{Y_n}(u) & = \phi_{\frac{1}{\sigma\sqrt{n}}\sum_{j=1}^n(X_j-m)}(u) \\
+                  & = \phi_{\sum_{j=1}^n(X_j-m)}\left(\frac{u}{\sigma\sqrt{n}}\right) \\
+                  & = \prod_{j=1}^n \phi \left(\frac{u}{\sigma\sqrt{n}}\right)\\
+                  & = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n
+\end{align*}
+Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition portant sur la dérivée des](#fct_carac_deriv) entraîne que
+    $$\phi'(0) = 0 \text{     et } \phi''(0) = -\sigma^2$$
+Si on fait le développement de Taylor à l'ordre 2 au voisinage de zéro, on obtient
+    $$\phi(u) = 1 - \frac{u^2\sigma^2}{2} + u^2 h(|u|),$$
+où $h(u) \to 0$ quand $u \to 0$. On a ainsi
+\begin{align*}
+    \phi_{Y_n}(u) & = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n \\
+                  & = e^{n\log \phi\left(\frac{u}{\sigma\sqrt{n}}\right)} \\
+                  & = e^{n\log (1 - \frac{u^2}{2n} + \frac{u^2}{n\sigma^2} h(\frac{u}{\sigma\sqrt{n}}))}
+\end{align*}
+où $\log$ désigne la valeur principale du logarithme complexe[^logcplx] (elle vaut 0 au point 1 et est continue dans le cercle complexe de centre 1 et de rayon 1/2 et admet le même développement limité au voisinage de $z=1$ que le logarithme réel).
 Comme $\phi(0) = 1$ et que $\phi$ est continue en 0, on a  que pour $u$ fixé et $n$ assez grand,
-    $$ \left| \phi\left(\frac{u}{\sigma\sqrt{n}}\right)-1\right| \leq 1/2. $$
-Il est possible de généraliser la notion de logarithme aux complexes $z$ tels que $|z  -1| \leq 1/2$. La fonction $\log z$ définie sur le disque $\{z\in \C; |z  -1| \leq 1/2\}$ admet le même développement limité au voisinage de $z = 1$ que le logarithme réel. Ainsi
-    $$ \phi_n(u) = \exp \left( n \log\left(1 - \frac{u^2}{2n} + \frac{1}{n}\epsilon_n(u) \right)\right),$$
-où $\epsilon_n(u)$ tend vers 0 quand $n$ tend vers l'infini, et on en déduit que $\phi_n(u)$ tend vers $\exp(-u^2/2)$. Le résultat découle alors du [théorème de Lévy](#levytheorem).
+    $$\left| \phi\left(\frac{u}{\sigma\sqrt{n}}\right)-1\right| \leq 1/2.$$
+En faisant $n \to \infty$, on obtient
+    $$\lim_{n \to \infty} \phi_n(u) = \exp -\frac{u^2}{2}$$
+Le [théorème de Lévy](#levytheorem) implique alors que $Y_n$ converge en loi vers $Z$ de fonction caractéristique $\phi_Z(u) = e^{-u^2/2}$ où l'on reconnaît la fonction caractéristique de la loi $\No(0,1)$.
+
+[^logcplx]: voir par exemple https://fr.wikipedia.org/wiki/Logarithme_complexe
 
 ### Remarque {.remark}
 
@@ -608,6 +624,9 @@ Le [théorème](#TCL) admet une version multidimensionnelle, de preuve similaire
 
 ### Théorème central limite multi-dimensionnel {.theorem}
 Les vecteurs aléatoires $\frac{S_n-nm}{\sqrt{n}}$ convergent en loi vers un vecteur aléatoire gaussien centré (i.e. de moyenne nulle), de matrice $C$.
+
+### Remarque {.remark}
+Il est important de noter ici que la vitesse de convergence ne dépend pas de la dimension des vecteurs $X_n$.
 
 Exercices
 ===============================================================================
