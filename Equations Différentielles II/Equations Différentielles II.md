@@ -7,6 +7,7 @@
 \newcommand{\Rgeq}{\R_{\geq 0}}
 \renewcommand{\C}{\mathbb{C}}
 
+# Introduction
 
 Ce chapitre est consacré à la résolution numérique d'équations différentielles
 $$
@@ -26,23 +27,61 @@ pour un pas de temps $\Delta t$ suffisamment petit. Cette méthode appartient à
 
 Même si la méthode d'Euler suffit dans les cas simples, elle exige parfois de recourir à des pas très faibles pour obtenir une précision acceptable sur des temps longs (voir [Systèmes raides](#sec_systRaides) plus bas). Parfois, le compromis entre précision à chaque itération et accumulation des erreurs d'arrondis devient même impossible. De plus, cette méthode n'est pas adaptée à la simulation de certains systèmes dont certaines proprétés cruciales (comme la conservation de l'énergie) ne sont pas préservées (voir [Systèmes Hamiltoniens](#sec_systHamiltoniens) plus bas). Au cours des derniers siècles, les scientifiques ont donc progressivement développé des méthodes de plus en plus complexes et performantes : schémas multi-pas d'ordre supérieur, méthodes implicites, variation du pas, schémas simplectiques etc.
 
-En fait, dans l'histoire des équations différentielles, c'est souvent la mécanique céleste qui a été motrice des plus grandes avancées. Au milieu du XIX$^e$ siècle, les astronomes Adams et Le Verrier prédisent mathématiquement l'existence et la position de la planète Neptune et l'on entend parler pour la première fois de méthodes multi-pas. Ensuite, les progrès se sont enchaînés au rythme des modèles physiques. En voici quelques exemples clés. En 1895, Runge publie la première méthode de Runge-Kutta, et en 1901, Kutta introduit la populaire méthode de Runge-Kutta d'ordre 4. En 1910, Richardson découvre une méthode d'extrapolation qui permet la montée en ordre et donc le recours à des pas plus grand pour une même précision, connue sous le nom d'*extrapolation de Richardson*. En 1952, Hirschfelder introduit la notion de *systèmes raides* qui ont ensuite suscité une étude particulière (Dahlquist etc.)
+En fait, dans l'histoire des équations différentielles, c'est souvent la mécanique céleste qui a été motrice des plus grandes avancées. Au milieu du XIX$^e$ siècle, les astronomes Adams et Le Verrier prédisent mathématiquement l'existence et la position de la planète Neptune et l'on entend parler pour la première fois de méthodes multi-pas. Ensuite, les progrès se sont enchaînés au rythme des modèles physiques. La première tendance a été de rechercher des schémas permettant toujours plus de précision à pas plus grand. Parmi les dates clés, on peut citer la publication en 1895 de la première méthode de Runge-Kutta par Runge, puis en 1901, de la populaire méthode de Runge-Kutta d'ordre 4 par Kutta, et ensuite en 1910, de l'*extrapolation de Richardson* permettant la montée en ordre et donc le recours à des pas plus grand pour une même précision. Mais au milieu du XX$^e$ siècle, on découvre des systèmes, dits *raides* (Hirschfelder, 1952), pour lesquels cette montée en ordre ne suffit pas et pour lesquels il faut repenser de nouveaux schémas (Dalquist, 1968). Enfin, à partir des années 80, les scientifiques développent l'intégration numérique *géométrique*, c'est-à-dire qui préservent les propriétés structurelles du système (symmétrie, conservation d'énergie etc.), utile en particulier pour la simulation des systèmes hamiltoniens. 
 
 # Limites du schéma d'Euler
 
-Nous présentons ici deux exemples célèbres exhibant les limites d'un schéma d'Euler.
+La première limite du schéma d'Euler est qu'il est d'ordre 1, c'est-à-dire qu'il produit une erreur en $\Delta t^2$ à chaque pas. Nous verrons dans la suite d'autres algorithmes d'ordre supérieur qui permettent d'utiliser  un pas plus grand pour une précision donnée. Mais au delà de cette problématique, il existe des systèmes pour lesquels de telles méthodes (même d'ordre supérieur) échouent. En voici  deux exemples célèbres.
 
-## Systèmes raides : cinétique chimique {.section #sec_systRaides}
+## Systèmes raides {.section #sec_systRaides}
 
-Robertson (1966)
+La dénomination *systèmes raides* a été introduite en 1952 par Hirschfelder pour désigner des systèmes comprenant des dynamiques aux constantes de temps très différentes. Dans ce cas, le pas nécessaire pour simuler avec précision les dynamiques très rapides est si petit, qu'il est alors impossible de simuler assez longtemps pour observer les parties lentes. La particularité de ces systèmes est que cette décroissance du pas apparaît alors que la solution est parfaitement régulière, et non pas proche de singularités. C'est le cas des systèmes linéaires
+$$
+\dot{x} = A x + b
+$$
+avec $A$ Hurwitz quand le rapport entre les parties réelles maximales et minimales des valeurs propres devient très grand. Ce phénomène peut notamment apparaître dans un simple système masse/ressort
+$$
+m\ddot{y} = -\rho \dot{y} - k y
+$$
+dont la matrice $A$ correspondante est donnée par 
+$\left(\begin{smallmatrix} 0&1\\-\frac{k}{m} & -\frac{\rho}{m} \end{smallmatrix}\right)$. 
+En effet, lorsque les valeurs propres sont réelles  (i.e. $\rho>2\sqrt{mk}$), leur rapport est donné par
+$$
+\frac{1+\sqrt{1-4\frac{mk}{\rho^2}}}{1-\sqrt{1-4\frac{mk}{\rho^2}}}
+$$
+qui explose lorsque $\frac{mk}{\rho^2}$ tend vers 0. Par exemple, lorsque la raideur du ressort est très grande et $\rho \approx k$, ou bien lorsque les frottements sont très grand par rapport à la raideur du ressort.
+
+Plus généralement, la coexistence de dynamiques très lentes à très rapides apparaît en cinétique chimique ou en biologie. La réaction de Robertson (1966)
 \begin{align*}
-A & \stackrel{\Longrightarrow}{$0.04$} & B \\ 
-B + B & \stackrel{\Longrightarrow}{$3 \times 10^7$} B + C \\
-B + C & \stackrel{\Longrightarrow}{$10^4$} A + C 
+A & \stackrel{0.04}{\longrightarrow}  B \quad \text{(lente)} \\ 
+B + B & \stackrel{3 \times 10^7}{\longrightarrow}  B + C \quad \text{(très rapide)}  \\
+B + C & \stackrel{10^4}{\longrightarrow}  A + C  \quad \text{(rapide)} 
 \end{align*}
+modélisée par 
+\begin{align*}
+\dot{x}_a &= -0.04 x_b + 10^4 x_bx_c \\
+\dot{x}_b &= 0.04 x_a - 10^4 x_bx_c - 3\times 10^7 x_b^2\\
+\dot{x}_c &= 3\times 10^7 x_b^2
+\end{align*}
+en est un exemple classique, souvent utilisée pour tester les schémas numériques. Il s'avère que pour ces systèmes, des schémas dits *implicites* performent beaucoup mieux car ils autorise l'utilisation de pas plus grands pour une même précision et plus de stabilité (voir l'exercice [*Explicite ou Implicite?*](#exo_exp_impl)).  Pour plus de détails voir [@Hairer96].
 
-## Systèmes hamiltoniens : mécanique céleste {.section #sec_systHamiltoniens}
+## Systèmes hamiltoniens {.section #sec_systHamiltoniens}
 
+La mécanique hamiltonienne permet de modéliser le comportement de systèmes dont une certaine énergie est conservée au cours du temps. Il peut s'agir par exemple de planètes en interaction gravitationnelle, de particules en interaction électromagnétique, etc. 
+
+Dans un problème à $N$ corps en intéraction gravitationnelle, le hamiltonien est donné par la somme de l'énergie cinétique et potentielle, et s'écrit
+$$
+H(q,p) = \sum_{i=1}^{N} \frac{1}{2 m_i}p_i^\top p_i  - \sum_{1\leq i< k \leq N} G\frac{m_i m_j}{\|q_i-q_k\|}
+$$
+où $q_i\in \R^3$ désigne la position de chaque corps, $m_i$ sa masse, et $p_i=m_iv_i\in \R^3$ sa quantité de mouvement. 
+Le comportement de chaque corps est alors régi par la dynamique Hamiltonienne
+\begin{align*}
+\dot{q}_i &= \nabla_{p_i} H(q,p) = \frac{1}{m_i} p_i \\
+\dot{p}_i &= \nabla_{q_i} H(q,p)
+\end{align*}
+Il est aisé de vérifier que la l'énergie $H(q,p)$ est conservée le long des trajectoires.
+
+Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même l'implémentation de schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps ``courts'' sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *simplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma simplectique*](#exo_simplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10].
 
 # Méthodes à un pas
 
@@ -153,7 +192,7 @@ $$
 $$
 devienne inférieure à un seuil choisi par l'utilisateur. Puisque la suite $(x^{j,k})_{k\in \N}$ est de Cauchy, on sait que cette algorithme s'arrête en un nombre fini d'itérations.
 
-Un tel schéma est plus lourd en terme de calculs qu'un algorithme explicite mais il apporte en général plus de stabilité et permet souvent d'utiliser un pas plus grand. C'est en particulier utile lorsque le système comporte des constantes de temps très différentes et où le pas nécessaire à simuler la partie rapide est trop faible pour permettre d'observer le phénomène lent en des temps de simulation raisonnables. Ces systèmes, dits *raides*, apparaissent notamment en chimie ou en biologie. Ce phénomène est illustré dans l'exercice [*Explicite ou Implicite?*](#exo_exp_impl). 
+Un tel schéma est plus lourd en terme de calculs qu'un algorithme explicite mais il apporte en général plus de stabilité et permet souvent d'utiliser un pas plus grand. C'est en particulier utile pour les systèmes raides, comme illustré dans l'exercice [*Explicite ou Implicite?*](#exo_exp_impl). 
 
 
 
@@ -338,7 +377,7 @@ Montrer que :
 
 3. le schéma du point milieu est consistant d'ordre 2.
 
-4. la méthodes des trapèzes est consistante d'ordre 2.
+4. la méthode des trapèzes est consistante d'ordre 2.
 
 
 ##   Convergence de schémas 
@@ -366,7 +405,7 @@ $$
 avec $\mu >> 1$ ?
 
 
-## Schéma simplectique
+## Schéma simplectique {.exo #exo_simplectique}
 
 Pour $\omega>0$ donné, considérons le système
 $$
@@ -379,19 +418,19 @@ de condition initiale $x(0)\;=\; (1,0)$.
 1. Montrer que pour n'importe quel pas $\Delta t$ fixé, un schéma d'Euler explicite donne une solution divergente, et un schéma d'Euler implicite donne une solution qui converge vers 0. Lequel a raison ? 
 
 On définit maintenant le schéma suivant qui ``mélange'' les schémas d'Euler implicites et explicites :
-\begin{align}
+\begin{align*}
 x^{j+1}_1 &= x^{j}_1 + \Delta t x^{j}_2 \\
 x^{j+1}_2 &= x^{j}_2 - \Delta t \omega^2 x^{j+1}_1
-\end{align}
+\end{align*}
 
 2. Montrer que la quantité  $\omega^2 x_1^2 + x_2^2 +\Delta t \omega^2 x_1x_2$ est conservée. Quelle est donc la forme des solutions obtenues dans le plan de phase ? On parle alors de schéma  *simplectique*, car il conserve les volumes.
 
 3. Plus généralement, en déduire un schéma pour simuler un système Hamiltonien du type
-\begin{align}
-\dot{q} &= \partial_p \mathcal{H}(q,p) \\
-\dot{p} &= - \partial_q \mathcal{H}(q,p)
-\end{align}
-où $(q,p)\in \R^N \times \R^N$ sont les positions et vitesses généralisées et $\mathcal{H}$ est le Hamiltonien conservé le long des trajectoires.
+\begin{align*}
+\dot{q} &= \nabla_p \mathcal{H}(q,p) \\
+\dot{p} &= - \nabla_q \mathcal{H}(q,p)
+\end{align*}
+où $(q,p)\in \R^N \times \R^N$ sont les positions généralisées et quantités de mouvement et $\mathcal{H}$ est le Hamiltonien conservé le long des trajectoires.
 
 Corrections
 =================================================================================
