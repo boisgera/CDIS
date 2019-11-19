@@ -56,7 +56,7 @@ généralisée de dérivée, à partir de l'intégrale.
 
 ### Fonctions localement absolument intégrables
 Dans la suite une fonction $f: \R \to \R$ sera dite *localement absolument
-intégrable* (ou parfois simplement *ordinairre*) si elle est 
+intégrable* (ou parfois simplement *ordinaire*) si elle est 
 absolument intégrable sur tout intervalle compact $[a, b]$ :
 $$
 \int_a^b f(t) \, dt \in \R \; \mbox{ et } \; \int_a^b |f(t)| \, dt < +\infty.
