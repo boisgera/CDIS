@@ -1307,6 +1307,11 @@ f(x) = \sqrt{|x|} \, \mbox{ si $x\neq 0$}
 $$
 est faiblement dérivable ? Quelle est dans ce cas sa dérivée ?
 
+TODO -- $vp(1/x)$
+--------------------------------------------------------------------------------
+
+$1/x$ pas ordinaire, patch, dérivée.
+
 Fonctions lipschitzienne
 --------------------------------------------------------------------------------
 
