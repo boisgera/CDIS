@@ -644,11 +644,11 @@ Soit $X$ une variable aléatoire de loi Normale centrée réduite, dont on note 
 
 ### Combinaisons linéaires {.question #CLIGauss-cl}
 
-Soient maintenant $n\in\mathbb{N}^\ast$ variables aléatoires $X_1,\dots,X_n$ indépendantes et de même loi que $X$ (on dit que ce sont des *copies indépendantes* de $X$). Pour tout vecteur $a = (a_1,\dots,a_n) \in \R^{*n}$ on pose $S_n^a := \sum_{i = 1}^n a_i\,X_i$. 
+Soient maintenant $n\in\mathbb{N}^\ast$ variables aléatoires $X_1,\dots,X_n$ indépendantes et de même loi que $X$ (on dit que ce sont des *copies indépendantes* de $X$). Pour tout vecteur $a = (a_1,\dots,a_n) \in (\R^{*})^n$ on pose $S_n^a := \sum_{i = 1}^n a_i\,X_i$. 
 
 2. Montrer que pour $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$ (on pourra raisonner par récurrence sur $n$).
 
-3. Soient $a,b\in\R^{n*}$. Sous quelle condition a-t-on $\text{Cov}\left(S_n^a, S_n^b\right) = 0$ ?
+3. Soient $a,b\in(\R^{*})^n$. Sous quelle condition a-t-on $\text{Cov}\left(S_n^a, S_n^b\right) = 0$ ?
 
 
 

@@ -69,7 +69,7 @@ $$|X|^p \geq a^p 1_{[a, +\infty[}(|X|)$$
 prenant l'espérance, on obtient ainsi
 $$\Esp(|X|^p) \geq a^p \Esp(1_{[a, +\infty[}(|X|)) = a^p \P(|X|>a).$$
 
-### Inégalité de Bienaymé - Chebyshev {.corollary #inegbc}
+### Inégalité de Bienaymé-Chebyshev {.corollary #inegbc}
 Soit $X \in \L^2$, on a
 $$\P(|X-\Esp(X)| > a) \leq \frac{\V(X)}{a^2}$$
 
@@ -78,7 +78,7 @@ C'est une application immédiate de [l'inégalité de Markov](#inegmarkov) à $(
 
 ### Remarque {.remark}
 
-L'inégalité de Chebyshev est très utile en pratique. Elle permet de mesurer la probabilité des grands écarts entre $X$ et sa moyenne. Par exemple, avec $a = 10 \sigma X$, il en résulte qu’il est improbable qu’une variable aléatoire $X$ dévie de son espérance $\Esp(X)$ de plus de 10 fois son écart-type
+L'inégalité de Bienaymé-Chebyshev est très utile en pratique. Elle permet de mesurer la probabilité des grands écarts entre $X$ et sa moyenne. Par exemple, avec $a = 10 \sigma X$, il en résulte qu’il est improbable qu’une variable aléatoire $X$ dévie de son espérance $\Esp(X)$ de plus de 10 fois son écart-type
 (probabilité inférieure à 0.01). Cette inégalité, tout à fait générale, n’est cependant pas très précise, et surestime très souvent en pratique le membre de gauche. On préférera, quand c'est possible, calculer directement ces probabilités à partir de la loi de $X$.
 
 On peut également réécrire [la proposition portant sur l'espérance de la composée d'une variable aléatoire et d'une fonction mesurable](Probabilité II.pdf #esperanceg) avec l'intégrale de Lebesgue :
@@ -96,12 +96,23 @@ On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peu
 ## TODO indépendance : besoin de l'unicité de la mesure produit dans le cas $\sigma-fini$ (à inclure dans Fubini cf CI IV?)
 puis cas infini
 
+### Lemme de Borel-Cantelli {.lemma #BC}
+
+Soit $A_n$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
+
+1. Si $\sum_{i=1}^n \P(A_n) < \infty$, alors $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_n \right) =0$.
+
+2. Si $\sum_{i=1}^n \P(A_n) = \infty$ et si les événements $A_n$ sont mutuellement indépendants, alors on a $\P(\lim \sup_{n \to \infty} A_n) = 1$.
+
+### Démonstration {.proof}
+
+Exercice.
 
 On présente maintenant l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique, en Mathématiques Financières, dans les méthodes de quantification d'incertitudes.
 
 Plus généralement, on va étudier les suites de variables aléatoires indépendantes[^notind] et les notions de convergence de variables aléatoires. On verra que plusieurs notions sont possibles, non équivalentes, ce qui enrichit mais complique aussi la description des comportements asymptotiques.
 
-[^notind] Dans ce chapitre, sauf mention contraire, **indépendant$\cdot$e$\cdot$s** signifie **mutuellement indépendant$\cdot$e$\cdot$s**.
+[^notind]: Dans ce chapitre, sauf mention contraire, **indépendant$\cdot$e$\cdot$s** signifie **mutuellement indépendant$\cdot$e$\cdot$s**.
 
 On se place désormais dans le cadre général des variables aléatoires réelles n'admettant pas nécessairement de densité (elles peuvent être discrètes, mixtes,...).
 
@@ -147,30 +158,36 @@ On considère une suite $(X_n)_{n\in \N^\star}$ de vecteurs aléatoires, défini
  $$ X_n (\omega) \xrightarrow[n \to \infty]{}  X(\omega),\,\,\, \forall \omega \notin N.$$
  2. La suite $(X_n)_{n\in \N^\star}$ converge *en probabilité* vers $X$, ce qui s'écrit $X_n \xrightarrow{\P} X$, si $\forall \epsilon >0$ on a
  $$ \P(|X_n-X| \geq \epsilon) \xrightarrow[n \to \infty]{}  0. $$
- 3. La suite $(X_n)_{n\in \N^\star}$ converge *en moyenne* vers $X$, ce qui s'écrit $X_n \xrightarrow{\L^1} X$, si $X_n$ et $X$ sont dans $\L^1$ et si
+ 3. La suite $(X_n)_{n\in \N^\star}$ converge *en moyenne* (ou dans $\L^1$) vers $X$, ce qui s'écrit $X_n \xrightarrow{\L^1} X$, si $X_n$ et $X$ sont dans $\L^1$ et si
  $$ \Esp(|X_n - X|) \xrightarrow[n \to \infty]{}  0 .$$
 
 ### Remarque {.remark}
-La convergence presque sûre est la plus proche de la convergence simple des fonctions. Mais ici, nous permettons à certains $\omega$ de ne pas vérifier $X_n(\omega) \to X(\omega)$, si toutefois la probabilité de réalisation de l'ensemble de ces $\omega$ est nulle. C'est l'équivalent probabiliste du *presque partout* vu en calcul intégral.
+
+* La convergence presque sûre est la plus proche de la convergence simple des fonctions. Mais ici, nous permettons à certains $\omega$ de ne pas vérifier $X_n(\omega) \to X(\omega)$, si toutefois la probabilité de réalisation de l'ensemble de ces $\omega$ est nulle. C'est l'équivalent probabiliste du *presque partout* vu en calcul intégral.
+
+* La définition de la convergence dans $\L^1$ se généralise aux ordres supérieurs, pour $p \in \N\star$, on parle de convergence dans $\L^p$ (en moyenne quadratique si $p=2$) ce qui s'écrit $X_n \xrightarrow{\L^p} X$, si $X_n$ et $X$ sont dans $\L^p$ et si
+ $$ \Esp(|X_n - X|^p) \xrightarrow[n \to \infty]{}  0 .$$
 
 Ces convergences ne sont pas équivalentes comme le montrent les exemples suivants.
 
 ### Exemples {.example}
 
  * Soit $(X_n)_{n\in \N^\star}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
- $$ \P(X_n=1) = \frac{1}{n} ; \P(X_n = 0) = 1- \frac{1}{n}.$$
+ $$ \P(X_n=1) = \frac{1}{n} ;\,\,\,\, \P(X_n = 0) = 1- \frac{1}{n}.$$
  Pour tout $\epsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \epsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\star}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
- Considérons maintenant une suite $(Y_n)_{n\in \N^\star}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
- $$ \P(Y_n=n^2) = \frac{1}{n} ; \P(Y_n = 0) = 1- \frac{1}{n}.$$
- Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\star}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
+ 
+   Mais si on considère maintenant une suite $(Y_n)_{n\in \N^\star}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
+   $$ \P(Y_n=n^2) = \frac{1}{n} ;\,\,\,\, \P(Y_n = 0) = 1- \frac{1}{n}.$$
+   Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\star}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
+
  * Soit $U$ une variable aléatoire uniforme sur $[0 , 1]$. Posons $Z_n = 1_{\{ U \leq \frac{1}{n}\} }$. Alors
- $$ \P(Z_n = 1)= \frac{1}{n} ; \P(Z_n = 0) = 1 - \frac{1}{n}$$
+ $$ \P(Z_n = 1)= \frac{1}{n} ;\,\,\,\, \P(Z_n = 0) = 1 - \frac{1}{n}$$
  Si $\omega \in \{U > 0\}$ est fixé, alors $\exists n_0 \in \N$ tel que $U(\omega) > \frac{1}{n_0}$, et donc tel que $Z_n(\omega) = 0$ pour tout $n \geq n_0$. Comme $\P(U>0)=1$, ceci montre que la suite $(Z_n)_{n\in \N^\star}$ converge presque sûrement vers 0.
 
-Etudions maintenant les liens entre ces différentes convergences.
+On étudie maintenant les liens entre ces différentes convergences.
 
 ### Proposition {.proposition #propconv1}
-La convergence p.s. et la convergence en moyenne entraînent la convergence en probabilité.
+La convergence presque sûre et la convergence en moyenne entraînent la convergence en probabilité.
 
 ### Démonstration {.proof}
 Soit $A_{n,\epsilon} = \{|X_n - X| > \epsilon \}$.
@@ -209,7 +226,7 @@ Comme la suite $(X_n)_{n\in \N^\star}$ converge en probabilité vers $X$, on peu
 $$ n_j = \inf \left\{ n > n_{j-1} ; \P \left(|X_r - X_s| > \frac{1}{2^j} \right) < \frac{1}{3^j}, \text{ pour } r,s \geq n \right\}.$$
 Il résulte alors de 
 $$\sum_j =\P \left(|X_{n_{j+1}} - X_{n_j}| > \frac{1}{2^j} \right) < \sum_j \frac{1}{3^j} < \infty$$
-que la suite $(X_{n_j})_{j\in \N^\star}$ converge presque-sûrement. C'est en effet une conséquence du [lemme de Borel-Cantelli]() appliqué aux ensembles 
+que la suite $(X_{n_j})_{j\in \N^\star}$ converge presque-sûrement. C'est en effet une conséquence du [lemme de Borel-Cantelli](#BC) appliqué aux ensembles 
 $$A_j =\left\{|X_{n_{j+1}} - X_{n_j}| > \frac{1}{2^j} \right\}.$$
 
 ### Exemple {.example}
@@ -225,7 +242,12 @@ Soit $f$ une fonction continue de $\R^d$ dans $\R$.
  2. Si $X_n \xrightarrow{\P} X$, alors $f(X_n) \xrightarrow{\P} f(X)$.
 
 ### Démonstration {.proof}
-Le point 1. est évident. Pour 2., remarquons d'abord que si $K >0$ et $\epsilon >0$,
+
+1. Soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \to X(\omega)$. Si $\omega \notin N$, il vient 
+$$ \lim_{n \to \infty}f(X_n(\omega)) = f(\lim_{n \to \infty}X_n(\omega)) = f(X(\omega))$$
+par continuité de $f$, d'où le résultat.
+
+2. On remarqe d'abord que si $K >0$ et $\epsilon >0$,
 $$\{|f(X_n)-f(X)| \geq \epsilon\} \subset \{|X| > K\}\cup\{|X| \leq K, |f(X_n)-f(X)| \geq \epsilon\}.$$
 La fonction $f$ est uniformément continue sur $\{x : |x| \leq K\}$, donc il existe $\eta > 0$ tel que $|x-y| <\epsilon$ et $|x| \leq K$ et $y\leq K$ impliquent 
 $|f(x) - f(y)| <\epsilon$. On a donc
@@ -235,6 +257,7 @@ $$\P(|f(X_n)-f(X)| \geq \epsilon) \leq \P(|X| > K) + \P(|X_n-X| \geq \eta).$$
 Par hypothèse, il vient
 $$ \lim \sup_n \P(|f(X_n)-f(X)| \geq \epsilon) \leq \P(|X| > K) .$$
 Enfin, $\lim_{K\to +\infty} \P(|X| > K) = 0$ (par convergence dominée) et donc la $\lim \sup$ ci-dessus est nulle. On a ainsi le résultat.
+
 
 ## La loi des grands nombres 
 
@@ -251,11 +274,11 @@ $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini. Elle converge donc aussi en probabilité. On a même convergence en *moyenne quadratique*, à savoir que :
 $$ \Esp((M_n - m)^2) \xrightarrow[n \to \infty]{} 0.$$
 
-Le résultat sur la convergence en probabilité est appelé *loi faible des grands nombres*. Sa preuve est presque immédiate. Elle résulte de l’inégalité de Bienaymé-Chebyshev (exercice). Le résultat est peu informatif et permet d’obtenir certains contrôles d’erreurs. Le résultat prouvant la convergence presque-sûre est appelé *loi forte des grands nombres*. Sa preuve est plus délicate et utilise le lemme de Borel-Cantelli.
+Le résultat sur la convergence en probabilité est appelé *loi faible des grands nombres*. Sa preuve est presque immédiate. Elle résulte de l’[inégalité de Bienaymé-Chebyshev](#inegbc) (exercice). Le résultat est peu informatif et permet d’obtenir certains contrôles d’erreurs. Le résultat prouvant la convergence presque-sûre est appelé *loi forte des grands nombres*. Sa preuve est plus délicate et utilise le [lemme de Borel-Cantelli](#BC).
 
 ### Démonstration
 Notons $\sigma^2$ la variance des variables $X_n$, bien définie puisqu'on les a supposées de carré intégrable. En vertu de la linéarité de l'espérance, on a
-$$ \Esp(M_n) = m, \Esp((M_n-m)^2) = \V(M_n) = \frac{\sigma^2}{n},$$
+$$ \Esp(M_n) = m,\,\,\,\, \Esp((M_n-m)^2) = \V(M_n) = \frac{\sigma^2}{n},$$
 d'où la convergence en moyenne quadratique.
 
 Comme $\Esp(Y)^2 \leq \Esp(Y^2)$, on en déduit que $\Esp(|M_n -m|)\to 0$, donc on a aussi la convergence en moyenne.
@@ -266,10 +289,12 @@ Quitte à remplacer $X_n$ par $X_n - m$ (et donc $M_n$ par $M_n - m$), nous pouv
 
 Montrons tout d’abord que la sous-suite $(M_{n^2})_{n \in \N^\star}$ converge presque-sûrement vers 0.
 
-D'après l'inégalité de Bienaymé-Chebyshev et ce qui précède, on a pour $q\in \N^\star$
-$$\P(|M_n^2|\geq \frac{1}{q}) \leq \frac{\sigma^2 q^2}{n^2}$$
+La convergence dans $\L^1$ impliquant la convergence en probabilité, on sait qu'on peut extraire de $(M_n)_n$ une sous-suite convergeant p.s. vers 0. Cependant, cela ne suffit pas puisqu'on veut que la suite $(M_n)_n$ elle-même converge p.s. Pour le montrer, on construit d'abord une sous suite-particulière qui converge p.s. puis on traite les termes qui se trouvent entre deux éléments successifs de la sous-suite.
 
-Donc si $A_{n,q} = \{|M_n^2|\geq \frac{1}{q}\}$, nous obtenons que $\sum_{n\geq 1} \P(A_{n,q}) < \infty$. Posons ensuite $B_{n,q} = \cup_{m\geq n} A_{m,q}$ et $C_q = \cap_{n \geq 1} B_{n,q} = \lim\sup_n A_{n,q}$. En appliquant le lemme de Borel-Cantelli, on obtient que $\P(C_q) = 0$. En conséquence, si on pose $N = \cup_{q \in \N^\star} C_q$, on obtient $\P(N) \leq \sum_{q\in\N^\star} = 0$.
+D'après l'[inégalité de Bienaymé-Chebyshev](#inegbc) et ce qui précède, on a pour $q\in \N^\star$
+$$\P(|M_{n^2}|\geq \frac{1}{q}) \leq \frac{\sigma^2 q^2}{n^2}$$
+
+Donc si $A_{n,q} = \{|M_{n^2}|\geq \frac{1}{q}\}$, nous obtenons que $\sum_{n\geq 1} \P(A_{n,q}) < \infty$. Posons ensuite $B_{n,q} = \cup_{m\geq n} A_{m,q}$ et $C_q = \cap_{n \geq 1} B_{n,q} = \lim\sup_n A_{n,q}$. En appliquant le [lemme de Borel-Cantelli](#BC), on obtient que $\P(C_q) = 0$. En conséquence, si on pose $N = \cup_{q \in \N^\star} C_q$, on obtient $\P(N) \leq \sum_{q\in\N^\star} \P(C_q)= 0$.
 
 Si $\omega \notin N$, alors $\omega \in \cap_{q \in \N^\star} (C_q)^c$. Ainsi, $\omega \notin C_q$ pour tout $q \geq 1$, et donc $\omega \notin B_{n,q}$ pour $n$ assez grand (car $B_{n,q}$ est décroissant en $n$). Cela siginfie que pour tout $\omega \notin N$, pour tout $q \geq 1$, il existe un $n$ assez grand tel que $M_{k^2} \leq \frac{1}{q}$ dès que $k \geq n$. Autrement dit, $M_{n^2} \to 0$ si $\omega \notin N$, avec $\P(N) = 0$, d'où
 $$ M_{n^2} \xrightarrow[n \to \infty]{} 0 \text{ p.s.}$$
@@ -281,24 +306,25 @@ $$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} = \frac{1}{n} \sum_{p = p(n)^2+1}^{n} X_p,$$
 et puique les variables aléatoires de la somme sont indépendantes, il vient
 \begin{align*}
 \Esp\left(\left(M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right)^2\right) & = \frac{n-p(n)^2}{n^2}\sigma^2 \\
-                                                                 & \leq \frac{2p(n)+1}{n^2} \sigma^2 \leq \frac{2\sqrt{n}+1}{n^2} \sigma^2
+                                                                 & \leq \frac{2p(n)+1}{n^2} \sigma^2 \\
+                                                                 & \leq \frac{2\sqrt{n}+1}{n^2} \sigma^2 \leq \frac{3}{n^{3/2}}\sigma^2
 \end{align*}
 
-En appliquant de nouveau l'inégalité de Bienaymé-Chebyshev, on obtient
-$$ \P(\left|M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right|>a) \leq \frac{2\sqrt{n}+1}{n^2} \frac{\sigma^2}{a^2}$$
+où on a utilisé le fait que $p(n) \leq \sqrt(n)$.
+
+En appliquant de nouveau l'[inégalité de Bienaymé-Chebyshev](#inegbc), on obtient
+$$ \P\left(\left|M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right|>a\right) \leq \frac{2\sqrt{n}+1}{n^2} \frac{\sigma^2}{a^2}$$
 Comme la série $\sum_n \frac{2\sqrt{n}+1}{n^2}$ converge, le même raisonnement que pour $M_{n^2}$ décrit ci-dessus, montre que
 $$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} \to 0 \text{ p.s.}$$
-Par ailleurs, on a déjà montré que $M_{p(n)^2} \to 0$ p.s. et $\frac{p(n)^2}{n} \to 1$. On en déduit que $M_n \to 0$ p.s.$
+Par ailleurs, on a déjà montré que $M_{p(n)^2} \to 0$ p.s. et $\frac{p(n)^2}{n} \to 1$. On en déduit que $M_n \to 0$ p.s.
 
 ### {.anonymous}
-Plus généralement, on a le résultat suivant (se référer par exemple à @Jacod pour la démonstration)
+Plus généralement, le théorème suivant donne les hypothèses minimales assurant la validité de la loi des grands nombres, à savoir que les $X_n$ sont dans $\L_1$ (on se référera par exemple à [ce document en ligne](https://perso.univ-rennes1.fr/ismael.bailleul/AGREG/COURS/LFGN.pdf) ou à @Jacod pour la démonstration).
 
 ### Théorème {.theorem}
 Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et **intégrables**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
-
-### Exemple **TODO cf garnier** {.example}
 
 # Convergence en loi --- fonction caractéristique --- théorème central limite
 Nous allons introduire maintenant une nouvelle notion de convergence de suites de variables aléatoires. La convergence en loi définie dans ce paragraphe va concerner les lois des variables aléatoires. Elle signifiera que les lois sont asymptotiquement “proches”, sans que les variables aléatoires elles-mêmes le soient nécessairement. 
@@ -308,16 +334,20 @@ Nous allons introduire maintenant une nouvelle notion de convergence de suites d
 On considère des vecteurs aléatoires $X_n$ et $X$, tous à valeurs dans le même espace $\R^d$, mais pouvant éventuellement être définis sur des espaces de probabilité différents.
 
 ### Définition {.definition #defconvloi}
-On dit que la suite $(X_n)_{n\in \N^\star}$ *converge en loi* vers $X$ et on écrit $X_n \xrightarrow{\L} X$, si pour toute fonction $f$ continue bornée sur $\R^d$, 
+On dit que la suite $(X_n)_{n\in \N^\star}$ *converge en loi* vers $X$ et on écrit $X_n \xrightarrow{\L} X$, si pour toute fonction réelle $f$ **continue bornée** sur $\R^d$, 
 $$\Esp(f(X_n)) \to \Esp(f(X)).$$
 
 ### Exemple {.example}
 Un cas très simple est celui où toutes les variables aléatoires $X_n$ prennent un nombre fini de valeurs $\{ x_i , 1 \leq i \leq N \}$. Alors, la suite $(X_n)_{n \in \N^\star}$ converge en loi vers $X$ si et seulement si 
-$$\lim_{n \to +\infty} \P(X_n = x_i ) = \P(X = x_i), \forall 1 \leq i \leq N$$
+$$\lim_{n \to +\infty} \P(X_n = x_i ) = \P(X = x_i),\,\,\, \forall 1 \leq i \leq N$$
 Il suffit d’écrire pour $f$ continue bornée
 $$ \Esp(f (X_n)) = \sum_{i=1}^N f (x_i ) P(X_n = x_i) $$
 
-Dans l’exemple ci-dessus, $N$ est fini et fixé. Mais nous avons un résultat analogue (en faisant tendre $N$ vers l’infini) si les variables aléatoires ont un nombre dénombrable de valeurs. Le cas de la convergence de la loi binomiale vers la loi de Poisson est notamment traité en CPGE.
+Dans l’exemple ci-dessus, $N$ est fini et fixé. Mais nous avons un résultat analogue (en faisant tendre $N$ vers l’infini) si les variables aléatoires ont un nombre dénombrable de valeurs. En particulier, le cas de la convergence de la loi binomiale vers la loi de Poisson a été traité en CPGE.
+
+### Remarque {.remark}
+
+Dans la [définition](#defconvloi), les v.a. $X_n$ et $X$ peuvent être définies sur des univers distincts puisque seules leurs lois sont en cause. Il arrive même qu'une suite $X_n$ converge vers une limite $X$ qui ne peut pas exister sur les espaces sur lesquels sont définies les $X_n$, parce que ceux-ci sont trop "petits" : par exemple, si $X_n$ est une variable binomiale à $n$ modalités, convenablement normalisée, et la limite $X$ est gaussienne (on pourra justifier ceci par le [théorème central limite](#TCL)); l'espace naturel sur lequel est définie $X_n$ contient $n+1$ points, et sur un tel espace toutes les v.a. sont discrètes. La convergence en loi permet donc une sorte de convergence pour des v.a. pour lesquelles toute autre forme de convergence serait impossible.
 
 ### Exemple {.example}
 Soit $(X_n)_{n \in \N^\star}$ et $X$ des variables aléatoires de lois respectives $\No (0,\sigma^2_n)$ et $\No (0,\sigma^2)$. On suppose que la suite de réels positifs $(\sigma_n)_{n\in \N^\star}$ converge vers $\sigma > 0$ quand $n$ tend vers l'infini. Alors la suite $(X_n)_{n \in \N^\star}$ converge en loi vers $X$. En effet, soit $f$ une fonction continue bornée sur $\R$. On a
@@ -330,13 +360,13 @@ où l'on a utilisée le théorème de convergence dominée.
 La convergence en loi est plus faible que la convergence en probabilité et donc aussi que les convergences presque-sûre et en moyenne.
 
 ### Proposition {.proposition}
-Si $X_n \xrightarrow{\P} X$, alors $X_n\xrightarrow{\L} X$.
+Soient $X_n$ et $X$ des v.a., toutes définies sur le même espace de probabilité $(\Omega, \A, \P)$. Si $X_n \xrightarrow{\P} X$, alors $X_n\xrightarrow{\L} X$.
 
 ### Démonstration {.proof}
-Soit $f$ une fonction continue bornée. D'après la [proposition](#propconv4), on a $f(X_n) \xrightarrow{\P} f(X)$ et donc $f(X_n)$ converge aussi en moyenne vers $f(X)$ par la [proposition](#propconv2). Comme $|\Esp(Y)|\leq \Esp(|Y|)$ pour toute variable aléatoire réelle $Y$, on en déduit $\Esp(f(X_n)) \to \Esp(f(X))$.
+Soit $f$ une fonction réelle continue bornée. D'après la [proposition](#propconv4), on a $f(X_n) \xrightarrow{\P} f(X)$ et donc $f(X_n)$ converge aussi en moyenne vers $f(X)$ par la [proposition](#propconv2). Comme $|\Esp(Y)|\leq \Esp(|Y|)$ pour toute variable aléatoire réelle $Y$, on en déduit $\Esp(f(X_n)) \to \Esp(f(X))$.
 
 ### {.anonymous}
-Un moyen efficace de caractériser la convergence en loi passe par l'étude de la suite des fonctions de répartition.
+Un moyen efficace de caractériser la convergence en loi des variables aléatoires réelles passe par l'étude de la suite des fonctions de répartition.
 
 ### Proposition {.proposition}
 Soient $X_n$ et $X$ des variables aléatoires réelles de fonctions de répartition respectives $F_n$ et $F$. Pour que $X_n \xrightarrow{\L} X$, il faut et il suffit que $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x$ en lequel $F$ est continue.
@@ -348,11 +378,11 @@ complémentaire est au plus dénombrable. Ainsi, $D$ est dense dans $\R$.
 ### Démonstration {.proof}
 
  1. Supposons d'abord que $X_n \xrightarrow{\L} X$. Soit $a \in \R$ tel que $F(a-)=F(a)$. Pour tout $p \in \N^\star$ et tout $b \in \R$, il existe une fonction $f_{p,b}$ continue bornée sur $\R$ telle que 
- $$ 1_{]-\infty,b} \leq f_{p,b} \leq 1_{]-\infty,b + \frac{1}{p}}.$$
+ $$ 1_{]-\infty,b]} \leq f_{p,b} \leq 1_{]-\infty,b + \frac{1}{p}]}.$$
  Alors, par définition, $\Esp(f_{p,b}(X_n)) \to \Esp(f_{p,b}(X))$ quand $n$ tend vers l'infini.
  L'inégalité ci-dessus implique que $F_n(a) = \P(X_n \leq a) \leq \Esp(f_{p,a}(X_n))$ et $\Esp(f_{p,a}(X)) \leq F(a+1/p)$ ; 
  donc $\lim\sup_n F_n(a) \leq F(a+1/p)$ pour tout $p$ et donc on a aussi $\lim\sup_n F_n(a) \leq F(a)$.
- On a également que $F_n(a) \geq \Esp(f_{p,a-1/p}(X_n))$ et $\Esp(f_{p,a-1/p}(X)) \geq F(a-1/p)$ ; donc $\lim\inf_n F_n(a) \geq F(a-1/p)$ pour tout $p$ et donc aussi $\lim\inf_n F_n(a) \geq F(a)$, puique $F(a-)=F(a)$. Ces deux résultas impliquent que $F_n(a) \xrightarrow[n\to \infty]{} F(a)$.
+ On a également que $F_n(a) \geq \Esp(f_{p,a-1/p}(X_n))$ et $\Esp(f_{p,a-1/p}(X)) \geq F(a-1/p)$ ; donc $\lim\inf_n F_n(a) \geq F(a-1/p)$ pour tout $p$ et donc aussi $\lim\inf_n F_n(a) \geq F(a)$, puique $F(a-)=F(a)$. Ces deux résultats impliquent que $F_n(a) \xrightarrow[n\to \infty]{} F(a)$.
  2. Inversement, supposons $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x\in T$, où $T$ est une partie dense de $\R$. Soit $f$ une fonction continue bornée sur $\R$ et $\epsilon > 0$. Soient $a,b \in T$ avec $F(a) \leq \epsilon$ et $F(b) \geq 1-\epsilon$. Il existe $n_0$ tel que 
  $$ n\geq n_0 \Rightarrow \P(X_n\notin ]a,b]) = 1-F_n(b)+F_n(a) \leq 3\epsilon.$$
  La fonction $f$ est uniformément continue sur $[a,b]$, donc il existe un nombre fini de points $a_0 = a < a_1 < \ldots < a_k = b$ appartenant tous à $T$, et tels que $|f(x) - f(a_i)|\leq \epsilon$ si $a_{i-1} \leq x \leq a_i$. Donc
@@ -370,11 +400,9 @@ Si la suite $(X_n)_{n\in\N^\star}$ de variables aléatoires réelles converge en
 $$ \P(X_n \in ]a,b]) \xrightarrow[n\to \infty]{} \P(X\in]a,b]).$$
 
 ### Démonstration {.proof}
-La fonction de répartition de $X$ est alors continue en tout point. (Mais pas nécessairement celles des variables aléatoires $X_n$.)
+La fonction de répartition de $X$ est alors continue en tout point. (Mais pas nécessairement celle des variables aléatoires $X_n$.)
 
-**Slutsky ???? voir avec CAA -> stat/ML**
-
-## Fonction caractéristique
+## Fonctions caractéristiques
 
 Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités :
 il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire,
@@ -602,7 +630,11 @@ On suppose maintenant que les événements $A_n$ sont mutuellement indépendants
 
 Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \infty} A_n) < 1$ quand les $A_n$ ne sont pas indépendants.
 
+Loi faible des grands nombres
+---------------------------------------------------------------------------------
 
+Théorème de Slustsky
+---------------------------------------------------------------------------------
 
 Inégalités de concentration 
 ---------------------------------------------------------------------------------
