@@ -63,7 +63,7 @@ modélisée par
 \dot{x}_b &= 0.04 x_a - 10^4 x_bx_c - 3\times 10^7 x_b^2\\
 \dot{x}_c &= 3\times 10^7 x_b^2
 \end{align*}
-en est un exemple classique, souvent utilisée pour tester les schémas numériques. Il s'avère que pour ces systèmes, des schémas dits *implicites* performent beaucoup mieux car ils autorise l'utilisation de pas plus grands pour une même précision et plus de stabilité (voir l'exercice [*Explicite ou Implicite?*](#exo_exp_impl)).  Pour plus de détails voir [@Hairer96].
+en est un exemple classique, souvent utilisée pour tester les schémas numériques. Il s'avère que pour ces systèmes, des schémas dits *implicites* performent beaucoup mieux car ils autorisent l'utilisation de pas plus grands pour une même précision et plus de stabilité (voir l'exercice [*Explicite ou Implicite?*](#exo_exp_impl)).  Pour plus de détails voir [@Hairer96].
 
 ## Systèmes hamiltoniens {.section #sec_systHamiltoniens}
 
@@ -81,7 +81,9 @@ Le comportement de chaque corps est alors régi par la dynamique Hamiltonienne
 \end{align*}
 Il est aisé de vérifier que la l'énergie $H(q,p)$ est conservée le long des trajectoires.
 
-Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même l'implémentation de schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps ``courts'' sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *simplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma simplectique*](#exo_simplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10].
+Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même des schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps ``courts'' sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *simplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma simplectique*](#exo_simplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10].
+
+FIGURE
 
 # Méthodes à un pas
 
@@ -176,9 +178,9 @@ alors $F_j:\R^n \to \R^n$ est contractante pour un pas de temps $\Delta t_j$ suf
 $$
 |F_j(x_a)-F_j(x_b)| \leq  \Delta t_j L_j |x_a-x_b| \ .
 $$
-Puisque $\R^n$ est complet, on déduit par le théorème du point fixe que $x^{j+1}$ existe bien et est bien défini. 
+Puisque $\R^n$ est complet, on déduit par le théorème du point fixe que $x^{j+1}$ existe bien.
 
-En pratique, on peut utiliser la méthode itérative de construction de se point fixe donnée par la preuve du théorème pour approcher $x^{j+1}$. Une stratégie est de partir de la valeur donnée par le schéma d'Euler explicite
+En pratique, on peut utiliser la méthode itérative de construction de ce point fixe donnée par la preuve du théorème pour approcher $x^{j+1}$. Une stratégie est de partir de la valeur donnée par le schéma d'Euler explicite
 $$
 x^{j,0} = x^{j} + \Delta t_j f(t_j,x^{j})
 $$
@@ -221,11 +223,55 @@ $$
 |\eta^{j+1}| \le C(\Delta t_j)^{p} \ .
 $$
 
-L'erreur de consistance se calcule souvent par des développements de Taylor des solutions lorsque celles-ci sont suffisamment régulières, et $C$ s'exprime alors comme une borne des dérivées des solutions. En fait, on remarque que lorsque $f$ est continue, la solution est $C^1$ (par définition de nos solutions). Mais puisque $\dot{x}(t)=f(t,x(t))$, $\dot{x}$ hérite de la régularité de $f$: si $f$ est $C^k$ alors les solutions $x$ sont $C^{k+1}$. 
-
 ### Condition suffisante
 
-###  Consistance du schéma d'Euler explicite
+Si $(\Delta t,t,x)\mapsto\Phi_{\Delta t}(t,x)$ est continue et telle que
+$$
+\Phi_0(t,x) = f(t,x) \qquad \forall (t,x)\in \left[ 0,\overline{t} \right]\times \R^n
+$$
+alors le schéma est consistant.
+
+### Démonstration {.proof}
+
+Soit $C$ un ensemble compact tel que $x(t)\in C$ pour tout $t\in \left[ 0,\overline{t} \right]$. On note toujours $\Delta t = \max_{0\le j\le J-1} \Delta t_j$.
+Par la représentation intégrale des solutions, 
+$$
+x(t_{j+1}) = x(t_j) + \int_{t_j}^{t_{j+1}} f(x(s),s)ds
+$$
+l'erreur de troncature locale s'écrit
+$$
+\eta^{j+1} = \frac{1}{\Delta t_j}  \int_{t_j}^{t_{j+1}} \Big( f(s,x(s)) - \Phi_{\Delta t_j}(t_j,x(t_j)) \Big)ds \ .
+$$
+On doit montrer que ces erreurs tendent vers 0 lorsque $\Delta t$ tend vers 0 (uniformément en $j=1,\hdots,N$). Soit $\varepsilon >0$. Par la continuité de $\Phi$ et $f$ et puisque $\Phi_0=f$, il existe $\Delta_1 >0$ tel que si $\Delta t\leq \Delta_1$, alors 
+$$
+|\Phi_{\Delta t_j}(t,x) -f(t,x) | \leq \varepsilon \qquad \forall (t,x) \in \left[ 0,\overline{t} \right]\times C \quad \forall j=1,\hdots,N \ .
+$$
+Donc 
+$$
+|\eta^{j+1}| \leq  \varepsilon + \frac{1}{\Delta t_j}  \int_{t_j}^{t_{j+1}} \big| f(s,x(s)) - f(t_j,x(t_j)) \big|ds \ .
+$$
+Puisque $s\mapsto f(s,x(s))$ est continue sur le compact $\left[ 0,\overline{t} \right]$, elle y est uniformément continue, donc il existe $\Delta_2 >0$ tel que si $\Delta t \leq \Delta_2$,
+$$
+\big| f(s,x(s)) - f(t_j,x(t_j)) \big| \leq \varepsilon \qquad \forall s \in \left[ t_j,t_{j+1} \right]\quad \forall j=1,\hdots,N
+$$
+et donc $|\eta^{j+1}|\leq 2 \varepsilon$ pour tout $j$. Le schéma est donc bien consistant. 
+
+### Exemples
+
+Reprenons les exemples donnés plus haut.
+
+- Euler explicite : $\Phi_{\Delta t_j}(t,x)= f(t,x)$ indépendamment de $\Delta t_j$ donc la condition est trivialement satisfaite.
+
+- Méthode de Heun : 
+$\Phi_{\Delta t_j}(t,x) = \frac{f(t,x) + f(t,x+\Delta t f(t,x))}{2}$ donne bien $f(t,x)$ si $\Delta t=0$.
+
+- Runge Kutta d'ordre 4 : lorsque $\Delta t=0$, $F_1=F_2=F_3=F_4=f(t,x)$ donc $\Phi_{\Delta t_j}(t,x) = \frac{F_1+2F_2+2F_3+F_4}{6}=f(t,x)$.
+
+De même, la consistance des méthodes implicites s'obtiennent en remarquant que $x^{j+1}=x^{j}$ lorsque $\Delta t=0$.
+
+Cette condition suffisante permet donc de prouver facilement le caractère consistant d'un schéma. Cependant, en pratique, on s'intéresse surtout à son ordre de consistance. Pour cela, l'erreur de consistance se calcule souvent par des développements de Taylor des solutions lorsque celles-ci sont suffisamment régulières, et la constante $C$ s'exprime alors comme une borne sur les dérivées des solutions. En fait, on remarque que lorsque $f$ est continue, la solution est $C^1$ (par définition de nos solutions). Mais puisque $\dot{x}(t)=f(t,x(t))$, $\dot{x}$ hérite de la régularité de $f$: si $f$ est $C^k$ alors les solutions $x$ sont $C^{k+1}$. Le calcul de l'ordre de consistance dans le cas dus schéma d'Euler explicite est donné ci-dessous. Pour les autres schémas, voir l'exercice [*Consistance de schémas*](#exo_consist)
+
+###  Ordre de consistance du schéma d'Euler explicite
  L'erreur de troncature s'écrit
 $$
 \eta^{j+1} = \frac{x(t_j + \Delta t_j) - \Big( x(t_j) + \Delta t_j \, f(t_j,x(t_j)) \Big)}{\Delta t_j}.
@@ -364,14 +410,59 @@ $$
 \Delta t_{opt} = \left( \frac{S(T) T\varepsilon}{Cp}\right)^{\frac{1}{p+1}} \ .
 $$
 
+
+# Projet numérique : adaptation du pas
+
+Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\Delta t_j$, sans jamais dire comment les choisir. Le plus simple est de choisir un pas $\Delta t$ fixe mais il est difficile de savoir à l'avance quel pas est nécessaire. En particulier, comment savoir si la solution obtenue est suffisamment précise, sans connaître la vraie ?
+
+Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les resultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. Cette méthode exploite la convergence des schémas, mais 
+
+- on est limité dans le pas que l'on peut prendre pour un temps de simulation raisonnable et l'on n'est jamais sûr d'avoir la bonne solution.
+
+- l'utilisation d'un pas très petit peut n'être nécessaire qu'autour de certains points *sensibles* (proches de singularités par exemple) et consomme des ressources inutiles ailleurs.
+
+On pourrait aussi directement choisir le pas $\Delta t_{opt}$ obtenue plus haut en prenant en compte les erreurs d'arrondis. Mais les constantes $C$ et $S(T)$ sont souvent mal connues et conservative. Surtout, les deux mêmes problèmes subsistent.
+
+L'idée serait donc plutôt d'adapter la valeur du pas $\Delta t_j$ à chaque itération. En d'autres termes, on se fixe une tolérance d'erreur que l'on juge acceptable et on modifie le pas de temps en ligne, selon si l'on estime être au-dessus ou en-dessous du seuil d'erreur. Mais cela suppose d'avoir une idée de l'erreur commise... Il existe justement des moyens de l'estimer.
+
+Tout d'abord, de quelle erreur parle-t-on ?
+
+- erreur *globale* ? L'idéal serait de contrôler $\max_{0\leq j\leq N} |x^j - x(t_j)|$. Or la stabilité nous dit que 
+$$
+\max_{0\leq j\leq N} |x^j - x(t_j)| \leq S(T) \,  \sum_{j = 1}^J \Delta t_{j-1}\, |\eta^j|
+$$
+Donc si on se fixe une tolérance sur l'erreur globale $\texttt{Tol}_g$, on a 
+$$
+|\eta^j| \leq \frac{\texttt{Tol}_g}{TS(T)} \qquad \Longrightarrow \qquad \max_{0\leq j\leq N} |x^j - x(t_j)| \leq \texttt{Tol}_g \ .
+$$
+En d'autre termes, $\texttt{Tol}_g$ nous fixe une erreur maximale *locale*, à chaque itération. Notons cependant que cette borne ne prend pas en compte la propagation des erreurs d'arrondis : plus $\Delta t$ diminue, plus l'erreur globale risque d'augmenter. Ce phénomène devrait donc en toute rigueur aussi nous donner un pas de temps minimal $\Delta t_{\min}$. Notons que tous ces calculs dépendent des constantes $C$ et $S(T)$ qui sont souvent mal connues ou très conservatives. 
+
+- erreur (absolue) *locale* ? Que ce soit après une étude préalable de stabilité ou non, il est nécessaire d'assurer à chaque itération une erreur locale $\Delta t_j \eta^{j+1}$ suffisamment faible, où $\eta$ est l'erreur de consistance. On se donne donc une tolérance d'erreur locale $$
+\Delta t_j |\eta^{j+1}| \leq \texttt{Tol}_{abs} \ .
+$$
+
+- erreur *relative* ? Fixer une erreur absolue est parfois trop contraignant et n'a de sens que si les solutions gardent un certain ordre de grandeur. Sinon, l'erreur acceptable quand la solution vaut 1000 n'est peut-être pas la même que lorsqu'elle vaut 1. On peut donc plutôt exiger une certaine erreur relative $\texttt{Tol}_{rel}$, i.e., 
+$$
+\frac{\Delta t_j |\eta^{j+1}|}{|x^j|}\leq \texttt{Tol}_{rel} \ .
+$$
+
+Mais pour cela nous devons trouver un moyen d'estimer l'erreur de consistance. C'est souvent fait en utilisant une même méthode à deux pas différents (par exemple $\Delta t_j$ et $\Delta t_j/2$), ou bien en imbriquant des schémas de Runge-Kutta d'ordres différents. Par exemple, montrer que pour un schéma d'Euler explicite, on a 
+$$
+|\eta^{j+1}| = \frac{\big|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big|}{2} + O(\Delta t_j^2) \ .
+$$
+
+A partir de ces éléments, on est capable de coder un solver Euler explicite à pas variable prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\Delta t_{min}$, $\Delta t_{max}$ sur le pas de temps, une tolérance absolue  \texttt{Tol}_{abs} et/ou une tolérance relative \texttt{Tol}_{rel} ; et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque l'erreur estimée est supérieure à la tolérance, on diminue le pas, lorsqu'elle est (suffisamment) inférieure, on l'augmente, tout en restant dans l'intervalle $\left[\Delta t_{\min}, \Delta t_{\max} \right]$. Lorsque le pas nécessaire est inférieur à $\Delta t_{\min}$ le solver s'arrête avec un message d'erreur.
+
+On pourra tester ce solveur sur une équation différentielle connue, et comparer ses performances à un Euler pas fixe, et à la fonction **solve_ivp** de python.
+
 Exercices
 ================================================================================
 
-## Consistance de schémas {.exo #exo_consist}
+## Consistance et ordre de schémas {.exo #exo_consist}
 
 Montrer que :
 
-1. le schéma d'Euler implicite est consistant d'ordre 1 (en supposant que le pas est suffisamment petit pour que le schéma soit défini)
+1. le schéma d'Euler implicite est consistant d'ordre 1 
 
 2. le schéma de Heun est consistant d'ordre 2.
 
@@ -379,14 +470,16 @@ Montrer que :
 
 4. la méthode des trapèzes est consistante d'ordre 2.
 
+On supposera le pas suffisamment petit pour que les schémas implicites soient définies.
 
-##   Convergence de schémas 
+<!--##   Convergence de schémas 
 
-Supposons $f$ uniformémement Lipschitzien par rapport à $x$, c'est-à-dire qu'il existe $L_f$ tel que pour tout $t \geq 0$, pour tout $(x_a,x_b)\in \R^n \times \R^n$,
+Supposons $f$ uniformémement Lipschitzienne par rapport à $x$, c'est-à-dire qu'il existe $L_f$ tel que pour tout $t \geq 0$, pour tout $(x_a,x_b)\in \R^n \times \R^n$,
 $$
 |f(t,x_a)-f(t,x_b)| \leq L_f |x_a -x_b|.
 $$
 Montrer que le schéma de Heun et d'Euler implicite sont convergents.
+-->
 
 
 ## Explicite ou implicite ? {.exo #exo_exp_impl}
