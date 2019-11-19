@@ -54,15 +54,17 @@ des fonctions qui ne sont *pas* des dérivées (exemple).
 On peut retourner le problème et définir une nouvelle notion,
 généralisée de dérivée, à partir de l'intégrale.
 
+### Fonctions localement absolument intégrables
+Dans la suite une fonction $f: \R \to \R$ sera dite *localement absolument
+intégrable* (ou parfois simplement *ordinairre*) si elle est 
+absolument intégrable sur tout intervalle compact $[a, b]$ :
+$$
+\int_a^b f(t) \, dt \in \R \; \mbox{ et } \; \int_a^b |f(t)| \, dt < +\infty.
+$$
+
 ### Dérivée faible {.definition}
 La fonction $f:\R \to \R$ est *dérivable faiblement* s'il existe une 
-fonction $g:\R \to \R$ localement absolument<!--[^foo]--> intégrable,
-c'est-à-dire mesurable et dont la valeur absolue soit intégrable sur
-tout intervalle compact $[a, b] \subset \R$
-$$
-\int_a^b |g(x)|\, dx < + \infty,
-$$
-et une constante $c \in \R$ 
+fonction $g:\R \to \R$ localement absolument intégrable et une constante $c \in \R$ 
 telles que pour tout $x \in \R$, 
 $$
 f(x) = c + \int_0^x g(t) \, dt.
@@ -70,6 +72,9 @@ $$
 La fonction $g$ est alors appelée *dérivée faible* de $f$.
 
 ### Les fonctions faiblement dérivables sont continues.
+
+### {.post}
+En particulier, une fonction dérivable est localement absolument intégrable.
 
 ### Démonstration {.proof}
 La continuité des intégrales indéterminées, de la forme
@@ -239,7 +244,8 @@ $$
 F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{\sqrt{2\pi}} \, dt
 $$
 est une fonction de répartition, associée à la loi normale centrée réduite. 
-Elle est faiblement dérivable ; en effet, son intégrande est localement absolument intégrable 
+Elle est faiblement dérivable ; en effet, son intégrande est 
+localement absolument intégrable 
 (il est positif et intégrable sur $\R$, d'intégrale $1$) 
 et l'on a par additivité de l'intégrale pour tout $x\in\R$
 $$
@@ -557,6 +563,31 @@ de façon similaire. La fonction $f$ admet donc $g$ comme dérivée faible.
 Mesures signées et distributions
 ================================================================================
 
+### TODO 
+Expliquer opposition fonction "ordinaires" (loc abs int) et généralisée, concept nécessaire
+pour définir une notion de dérivée plus générale encore.
+
+### Formes linéaires continues sur $D^0(\R)$.
+On dira qu'une application linéaire $T: D^0(\R) \to \R$ 
+-- c'est-à-dire une *forme linéaire* sur $D^0(\R)$ --
+est *continue* si pour tout
+intervalle compact $[a, b]$ de $\R$ et toute fonction $\varphi \in D^0(\R)$ dont
+le support soit inclus dans $[a, b]$, il existe une constante $K$ telle que
+$$
+|T \cdot \phi| \leq K \sup_{x \in [a, b]} |\varphi(x)|
+$$
+<!--  = K \|\varphi|_{[a, b]}\|_{\infty} -->
+
+### Cas des fonctions {.theorem}
+Si $f:\R \to \R$ est localement absolument intégrable, l'opérateur
+$$
+T[f] : \phi \in D^0(\R) \mapsto \int_{-\infty}^{+\infty} f(t) \, dt 
+$$
+est continu. 
+De plus, l'opérateur $T[f]$ détermine la fonction $f$ uniquement presque partout.
+
+### TODO -- Démonstration {.proof}
+
 <!--
 ### TODO
 Perspective fonction sans dérivée faible fonction (ex: fct avec saut),
@@ -678,16 +709,6 @@ Supprimer de la def donc ... (éventuellement, faire une rq sur la régularité)
 
 
 
-### Formes linéaires continues sur $D^0(\R)$.
-Une application linéaire $T: D^0(\R) \to \R$ 
--- c'est-à-dire une *forme linéaire* sur $D^0(\R)$ --
-est dite *continue* si pour tout
-intervalle compact $[a, b]$ de $\R$ et toute fonction $\varphi \in D^0(\R)$ dont
-le support soit inclus dans $[a, b]$, il existe une constante $K$ telle que
-$$
-|T \cdot \phi| \leq K \sup_{x \in [a, b]} |\varphi(x)| = K \|\varphi|_{[a, b]}\|_{\infty}
-$$
-
 
 ### Théorème de Riesz-Markov-Kakutani
 Il existe une bijection entre l'ensemble des applications linéaire continues 
@@ -726,6 +747,7 @@ Elle est donc continue sur $D^0(\R)$.
 
 TODO -- Renvoyer à un ref (Arverson ?) pour le reste.
 
+<!--
 ### TODO
 Représentation "concrête" des mesures de Radon dans $\R$ (via les fcts 
 de variation localement bornée) ??? Ou pas ?
@@ -787,6 +809,7 @@ Si on intègre des fcts continues, la notation prend du sens.
 ### TODO -- Carac mesures par les fcts test (Riesz)
 Aka mesure de Radon défini des opérateurs continus de $C^0_0([a, b])$
 dans $\R$ et l'inverse aussi (si prolongements compatibles).
+-->
 
 ### TODO -- Formule des sauts
 
