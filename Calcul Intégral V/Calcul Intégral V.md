@@ -556,7 +556,7 @@ et donc
 $$
 f(x^-) = f(0^+) + \int_0^x g(t) \, dt.
 $$
-Le second membre étant continu par rapport à $x$ et $f$ supposé continue par
+Le second membre étant continu par rapport à $x$ et $f$ supposée continue par
 morceaux, elle est en fait continue et $f(x) = f(x^-)$. Le cas $x<0$ se traite
 de façon similaire. La fonction $f$ admet donc $g$ comme dérivée faible.
 
