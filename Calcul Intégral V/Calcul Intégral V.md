@@ -665,7 +665,7 @@ pour tout $A \in \mathcal{A}$,
 $$
 \nu(A) := \sigma \mu(A) := \left|
 \begin{array}{rl}
-\displaystyle \int_A \sigma(x) \, \mu(dx) & \mbox{si $1_A \sigma$ est $\mu$-intégrable,} \\
+\displaystyle \int_A \sigma(x) \, \mu(dx) = \int 1_A \sigma \, \mu & \mbox{si $1_A \sigma$ est $\mu$-intégrable,} \\
 \bot & \mbox{sinon.}
 \end{array}
 \right.
@@ -678,6 +678,11 @@ absorbant, c'est-à-dire que pour tout $x$ réel ou indéfini,
 $$
 x+ \bot = \bot + x = \bot.
 $$
+Dans ce contexte, on considérera également que les séries sans limites 
+dans $\R$ ont pour limite $\bot$.
+
+### TODO -- Exercice
+ce qui n'est plus vrai (ou encore vrai ?) avec les mesures signées.
 
 ### Les mesure (positives) sont des mesures signées
 Toute mesure classique (dans le contexte des mesures signées, en cas d'ambiguité,
@@ -694,6 +699,16 @@ $$
 \right.
 $$
 
+### Intégrale associée à une mesure signée {.definition}
+Soit $\nu = \sigma \mu$ une mesure signée sur $(X, \mathcal{A})$.
+La fonction $\mathcal{A}$-mesurable $f: \R \to [-\infty, +\infty]$ est 
+$\nu$-intégrable si la fonction $f \sigma$ est $\mu$-intégrable.
+L'intégrale de $f$ par rapport à $\nu$ est alors définie comme
+$$
+\int f \nu = \int_{-\infty}^{+\infty} f(t) \, \nu(dt) := \int f \sigma \, \mu \in \R.
+$$
+
+<!--
 ### Mesures de Dirac
 
 ### Mesure positive vers mesure signée
@@ -714,6 +729,7 @@ $|\nu|$ ; on appelle $\sigma$ la fonction signe de $\nu$.
 
 Souligner parallèle avec valeur absolue, considérer le
 cas particulier à densité.
+-->
 
 
 
@@ -733,6 +749,7 @@ Disons pas d'absorption par défaut ? A voir, y réfléchir.
 Avec absorption c'est plus simple quand même ...
 -->
 
+<!--
 ### TODO -- Décomposition de Hahn
 (trivial, mais bon)
 
@@ -746,6 +763,18 @@ $f$ $\mu-$intégrable à valeurs réelles fois $\mu$ défini une mesure signée
 
 ### TODO -- Intégrale par rapport à une mesure signée
 
+-->
+
+### Mesures de Radon {.definition}
+Une mesure signée $\mu$ est une *mesure de Radon* si pour tout
+fonction $\varphi \in D^0(\R)$, l'intégrale
+$$
+T[\mu] \cdot \varphi := \int \varphi \, \mu 
+$$
+est bien définie et que l'opérateur $T[\mu] : D^0(\R) \to \R$ est linéaire continu.
+
+<!--
+
 ### TODO
 Downplay mesure de Radon à ce stade (boréliens pas connus).
 Insister sur manip via les fonctions tests, exemples, etc. et uniquement
@@ -757,6 +786,7 @@ ne pas mettre ça sur le chemin critique.
 On appelle *mesure de Radon* sur $\R$ toute mesure signée sur
 $(\R,\mathcal{B}(\R))$ telle que pour tout compact $K$ de $\R$,
 $|\mu|(K) < +\infty$, c'est-à-dire $\mu(K) \neq \bot$.
+-->
 
 <!--
 Une mesure de Borel positive $\mu : \mathcal{B}(\R) \to [0, +\infty]$ est *de Radon* si :
@@ -782,7 +812,7 @@ Supprimer de la def donc ... (éventuellement, faire une rq sur la régularité)
 -->
 
 
-
+<!--
 
 
 ### Théorème de Riesz-Markov-Kakutani
@@ -821,6 +851,8 @@ $$
 Elle est donc continue sur $D^0(\R)$.
 
 TODO -- Renvoyer à un ref (Arverson ?) pour le reste.
+
+-->
 
 <!--
 ### TODO
@@ -886,7 +918,25 @@ Aka mesure de Radon défini des opérateurs continus de $C^0_0([a, b])$
 dans $\R$ et l'inverse aussi (si prolongements compatibles).
 -->
 
+### TODO -- Exemples
+
+mesures de Dirac, fonctions ordinaires (???). Arf oui, il est nécessaire
+d'en parler et de faire l'identification ...
+
+### Dérivée mesure {.definition}
+Une fonction $f: \R \to \R$ localement absolument intégrable admet 
+comme dérivée la mesure de Radon $\mu$ si pour toute fonction test
+$\varphi \in D^0(\R)$ on a 
+$$
+\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
+= 
+- \int _{-\infty}^{+\infty}\varphi(t) \, \mu(dt).
+$$
+
 ### TODO -- Formule des sauts
+
+
+<!--
 
 Distributions
 --------------------------------------------------------------------------------
@@ -913,7 +963,7 @@ notation $\mu (= df)$ (Lebesgue-Stieltjes) ?
 Lien notation avec somme de Riemman-Stieltjes pour l'intégration de fcts
 continues ?
 
-
+-->
 
 Tribus engendrées & co
 ================================================================================
