@@ -13,14 +13,28 @@
 \renewcommand{\L}{\mathcal{L}}
 \newcommand{\V}{\mathbb{V}}
 
-
-Misc.
+Objectifs
 ================================================================================
 
-  - fcts définies dans $\R$, au moins dans un premier temps
+
+### TODO -- Basique
+
+
+### TODO -- Standard
+
+
+### TODO -- Avancé
+
+
+### TODO -- Hors-programme
+
+
 
 Dérivées faibles
 ================================================================================
+
+**Intro à creuser.** "Généraliser" la dérivée mais pourquoi ? Quels uses cases ?
+
 
 **Motivation:** étendre la notion de dérivation pour traiter des uses cases 
 comme les équations différentielles avec second membre discontinu en $t$, 
@@ -40,29 +54,43 @@ des fonctions qui ne sont *pas* des dérivées (exemple).
 On peut retourner le problème et définir une nouvelle notion,
 généralisée de dérivée, à partir de l'intégrale.
 
+### Fonctions localement absolument intégrables
+Dans la suite une fonction $f: \R \to \R$ sera dite *localement absolument
+intégrable* (ou parfois simplement *ordinaire*) si elle est 
+absolument intégrable sur tout intervalle compact $[a, b]$ :
+$$
+\int_a^b f(t) \, dt \in \R \; \mbox{ et } \; \int_a^b |f(t)| \, dt < +\infty.
+$$
+
 ### Dérivée faible {.definition}
-La fonction $f:\R \to \R$ est *faiblement dérivable* s'il existe une 
-fonction $g:\R \to \R$ localement absolument<!--[^foo]--> intégrable
-c'est-à-dire mesurable et telle que $|g|$ soit intégrable sur
-tout intervalle compact $[a, b] \subset \R$,
-$$
-\int_a^b |g(x)|\, dx < + \infty,
-$$
-et une constante $c \in \R$ 
+La fonction $f:\R \to \R$ est *dérivable faiblement* s'il existe une 
+fonction $g:\R \to \R$ localement absolument intégrable et une constante $c \in \R$ 
 telles que pour tout $x \in \R$, 
 $$
 f(x) = c + \int_0^x g(t) \, dt.
 $$
 La fonction $g$ est alors appelée *dérivée faible* de $f$.
 
-### Les fonction faiblement dérivables sont continues.
+### Les fonctions faiblement dérivables sont continues.
 
-### TODO  
-faire écho à ça plus tard, quand (si ?) on introduit la notion de fonction
-*absolument* continue ?
+### {.post}
+En particulier, une fonction dérivable est localement absolument intégrable.
 
-### TODO -- Démonstration.
-(cf ce qui existe dans les volets précédents de calcul intégral)
+### Démonstration {.proof}
+La continuité des intégrales indéterminées, de la forme
+$$
+x \in \R \mapsto \int_a^x h(t) \, dt
+$$
+est prouvée dans le chapitre "Calcul Intégral I" au moyen du lemme de Henstock, 
+sous l'hypothèse que $h$ est intégrable (pour un réel étendu $a$ arbitraire). 
+Or tout $r>0$, la fonction $h = g 1_{[-r,r]}$ est intégrable. 
+Comme pour tout $x \in \left]-r, r\right[$,
+$$
+\int_0^x g(t) \, dt = \int_0^x h(t) \, dt,
+$$
+l'intégrale indéterminée de $g$, et donc $f$, est continue en $x$. 
+Le choix de $r$ étant arbitraire, $f$ est continue sur $\R$ tout entier.
+
 
 ### Dérivée faible et classique
 Si une fonction $f: \R \to \R$ est faiblement dérivable, de dérivée faible $g$,
@@ -108,11 +136,11 @@ $$
 $$
 De plus, pour tout $x\geq 0$ on a bien
 $$
-|x| = x = \int_0^x dt = |0| + \int_0^x \mbox{sgn}(t) \, dt
+|x| = x = \int_0^x dt = 0 + \int_0^x \mbox{sgn}(t) \, dt
 $$
 et pour $x < 0$, 
 $$
-|x| = -x = \int_0^x - dt = |0| + \int_0^x \mbox{sgn}(t) \, dt.
+|x| = -x = \int_0^x - dt = 0 + \int_0^x \mbox{sgn}(t) \, dt.
 $$
 La fonction $|\cdot|$ est bien faiblement dérivable, de dérivée faible la fonction 
 $\mbox{sgn}$.
@@ -126,8 +154,10 @@ on aurait donc pour tout $x \in \R$,
 $$
 \mbox{sgn}(x) = \mbox{sgn}(0) + \int_0^x 0 \, dt = 0,
 $$
-ce qui n'est pas le cas.
+ce qui n'est pas le cas. On peut aussi remarquer qu'elle n'est pas continue
+et par conséquent qu'elle ne peut pas être faiblement dérivable.
 
+<!--
 ### Fonction régulières par morceaux {.definition}
 On dira qu'une fonction $f: \R \to \R$ est *dérivable par 
 morceaux* -- respectivement, *continûment dérivable par morceaux* --
@@ -135,38 +165,23 @@ s'il existe une collection dénombrable d'intervalles compacts $[a_k, b_k]$
 sans chevauchements recouvrant $\R$ telle que la restriction de $f$ à 
 tout $\left]a_k, b_k\right[$ puisse être prolongée en une fonction différentiable 
 -- respectivement continûment dérivable -- sur $[a_k, b_k]$. 
+-->
 
-### Une condition suffisante à la dérivabilité faible {.theorem}
-Toute fonction $f: \R \to \R$ continue, dérivable par morceaux et dont
-la dérivée (définie presque partout) est localement absolument intégrable 
-est faiblement dérivable. En particulier, une fonction continue et
-continûment dérivable par morceaux est faiblement dérivable.
+### Fonctions continûment différentiables par morceaux {.theorem}
+Toute fonction $f: \R \to \R$  continue et continûment dérivable par morceaux 
+est faiblement dérivable.
 
 ### {.post}
 A noter que l'on peut être différentiable par morceaux mais pas
 continue ; dans ce cas on ne peut pas être faiblement dérivable.
 La fonction signe de [l'exemple consacré à la dérivée faible de
 la valeur absolue](#example-abs) est un bon exemple de fonction
-dérivable par morceaux et de dérivée localement absolument intégrable
-mais qui n'est pas faiblement dérivable.
+continûment dérivable par morceaux mais qui n'est continue et donc
+pas faiblement dérivable.
 
-### {.post}
-Une fonction peut également être continue et dérivable par morceaux, mais de dérivée
-non localement absolument intégrable, auquel cas elle n'est pas non plus
-faiblement dérivable. Ainsi, la fonction $f:\R \to \R$ définie par
-$$
-f(x) = \left|
-\begin{array}{cl}
-x^2 \sin 1/x^2 & \mbox{si $x\geq 0$,} \\
-0 & \mbox{sinon.}
-\end{array}
-\right.
-$$
-est dérivable en tout point (et donc continue), mais sa dérivée n'est
-que conditionnellement intégrable sur $[0, 1]$ par exemple, pas absolument
-intégrable (cf. [Calcul Intégral II](Calcul Intégral II.pdf)).
 
 ### Démonstration {.proof}
+<!--
 On trouve dans [@Tao11, prop. 1.6.41, p. 176] la clé de la démonstration,
 à savoir que si une fonction $f: [a, b] \to \R$ est différentiable 
 et de dérivée absolument intégrable, alors 
@@ -175,12 +190,27 @@ f(b) - f(a) = \int_a^b f'(x) \, dx.
 $$
 Nous omettons ici cette portion critique ; 
 la suite de la démonstration est beaucoup plus simple. 
-
+-->
 Notons $f(b^-)$ et $f(a^+)$ les limites à gauche de $f$ en $b$ et
 à droite de $f$ en $a$ respectivement.
-On déduit de l'énoncé précédent que si $f$ est dérivable sur $\R$ et 
-de dérivée localement absolument intégrable, et si $x \in [a_k, b_k]$, 
-alors
+Remarquons tout d'abord que si la fonction $f$ est continûment dérivable sur 
+$\left]a, b\right[$ et que sa dérivée y est prolongeable par continuité sur
+$[a, b]$, alors on peut prolonger la restriction de $f$ à $\left]a, b\right[$
+en une fonction (continûment) dérivable sur $\R$. L'application du 
+théorème fondamental du calcul fournit alors
+$$
+f(b^-) - f(a^+) 
+= 
+\int_{a}^{b} f'(x) \, dx.
+$$
+
+Supposons désormais que $\R$ soit recouvert par des intervalles 
+$[a_k, b_k]$ sans chevauchement, indexés par des entiers relatifs 
+$k$ consécutifs ordonnés de façon croissante et que sur chaque 
+$\left]a_k, b_k\right[$ la fonction $f$ soit dérivable, avec une dérivée ayant un prolongement
+par continuité à $[a_k, b_k]$.
+
+On déduit de l'énoncé précédent que 
 $$
 \int_{a_k}^{b_k} f'(x) \, dx = f(b^-) - f(a^+) = f(b) - f(a)
 $$
@@ -192,10 +222,10 @@ et
 $$
 f(x) - f(b) = - (f(b^-) - f(x)) = - \int_x^b f'(t) \, dt = \int_b^x f'(t) \, dt.
 $$
-Suppons que les intervalles $[a_k, b_k]$ soient indexés par des entiers relatifs 
-$k$ consécutifs et ordonnées de façon croissante.
-Alors, si $x$ est réel positif, que $0 \in [a_i, b_i]$ et que $x \in [a_j, b_j]$,
-on a
+<!-- Suppons que les intervalles $[a_k, b_k]$ soient indexés par des entiers relatifs 
+$k$ consécutifs et ordonnées de façon croissante. -->
+Si $x$ est réel positif, que $0 \in [a_i, b_i]$ et que $x \in [a_j, b_j]$, 
+on a donc
 $$
 \begin{split}
 f(x) - f(0) &= (f(x) - f(a_j)) + (f(b_{j-1}) - f(a_{j-1})) + \dots + (f(a_i) - f(0)) \\
@@ -214,7 +244,8 @@ $$
 F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{\sqrt{2\pi}} \, dt
 $$
 est une fonction de répartition, associée à la loi normale centrée réduite. 
-Elle est faiblement dérivable ; en effet, son intégrande est localement absolument intégrable 
+Elle est faiblement dérivable ; en effet, son intégrande est 
+localement absolument intégrable 
 (il est positif et intégrable sur $\R$, d'intégrale $1$) 
 et l'on a par additivité de l'intégrale pour tout $x\in\R$
 $$
@@ -238,13 +269,13 @@ associée à $F$ si et seulement si elle est une dérivée faible de $F$
 (elle est donc déterminée uniquement presque partout par $F$).
 
 ### Démonstration {.proof}
-La preuve du sens direct et du fait que dérivée faible et densité coïncident
-presque partout reprend exactement les étapes utilisées pour
-montrer que l'application
+Sachant qu'une densité est localement absolument intégrable (car positive et
+intégrable), la preuve qu'une fonction de répartition admettant une densité est 
+faiblement dérivable et que les deux fonctions coïncident résulte directement de
+l'égalité
 $$
-F(x) = \int_{-\infty}^x \frac{\exp (-{t^2}/{2})}{\sqrt{2\pi}} \, dt
+F(x) = \int_{-\infty}^x f(t) \,dt = \int_{-\infty}^0 f(t)\, dt + \int_0^x f(t) \, dt.
 $$
-est faiblement dérivable de dérivée faible $t \mapsto {\exp (-{t^2}/{2})}/{\sqrt{2\pi}}$.
 
 Réciproquement, si $F$ est une fonction de répartition faiblement dérivable,
 c'est-à-dire s'il existe une fonction $f:\R \to \R$ localement absolument
@@ -257,26 +288,27 @@ $$
 F(b) - F(a) = \int_a^b f(t) \, dt.
 $$
 La fonction $f$ est donc positive presque partout : en effet la fonction $F$
-en presque tout point $x \in \R$, $F$ est dérivable de dérivée $f(x)$. 
-Si l'on avait $f(x) < 0$, alors pour $h>0$ suffisamment petit, on aurait
-donc
+est dérivable en presque tout point $x \in \R$, de dérivée $f(x)$. 
+Si l'on avait $f(x) < 0$, alors pour $h>0$ suffisamment petit, 
+on aurait donc
 $$
 \frac{F(x+h) - F(x)}{h} < 0,
 $$
-ce qui contredirait l'hypothèse que $F$ est croissante. On obtient alors
+ce qui contredirait le fait que $F$ est croissante. On obtient alors
 la relation
 $$
 F(x) = \int_{-\infty}^x f(t) \, dt
 $$
-en passant posant $x=b$ et en passant à la limite $a \to -\infty$ ; 
-le résultat est justifié par le théorème de convergence monotone 
-car $F$ à pour limite $0$ en $-\infty$. 
+en posant $x=b$ et en passant à la limite $a \to -\infty$ en exploitant le
+fait que $F$ a pour limite $0$ en $-\infty$ ; 
+le résultat est justifié par le théorème de convergence monotone.
+ 
 Le passage à la limite $x \to +\infty$ fournit alors 
 $$
 \int_{-\infty}^{+\infty} f(t) \, dt = 1,
 $$
-à nouveau par application du théorème de convergence monotone, en exploitant
-le fait que $F$ à pour limite $1$ en $+\infty$.
+à nouveau justifié par application du théorème de convergence monotone, 
+en exploitant le fait que $F$ a pour limite $1$ en $+\infty$.
 
 
 <!--
@@ -294,6 +326,24 @@ $$
 $$
 Le taux d'accroissement de $F$ en $x$ tend donc vers $f(x)$ quand $h$ tend vers $0$.
 -->
+
+
+### Warning {.post}
+Une fonction peut également être continue et dérivable par morceaux, 
+mais de dérivée non localement absolument intégrable, 
+auquel cas elle n'est pas non plus faiblement dérivable. 
+Ainsi, la fonction $f:\R \to \R$ définie par
+$$
+f(x) = \left|
+\begin{array}{cl}
+x^2 \sin 1/x^2 & \mbox{si $x\geq 0$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est dérivable en tout point (et donc continue), mais sa dérivée n'est
+que conditionnellement intégrable sur $[0, 1]$ par exemple, pas absolument
+intégrable (cf. [Calcul Intégral II](Calcul Intégral II.pdf)).
 
 ### Fonction de Cantor {.remark}
 On pourrait croire en prenant connaissance des contre-exemples simples
@@ -340,6 +390,7 @@ $$
 qui sont "uniformes par morceaux". L'interprétation de la limite n'a
 pas besoin d'être formalisée.)
 
+<!--
 ### Absolue continuité {.definition}
 Soit $I$ un intervalle de $\R$.
 Une fonction $f:I \to \R$ est *absolument continue* si et seulement si
@@ -389,31 +440,202 @@ Du coup, peut-être retarder la remarque ? Appendice ?
 [^ACG]: Il s'agit d'une classe de fonctions absolument continues 
 mais **généralisées**, notée $\mathrm{ACG}_*$, cf. [@Bar01, pp. 242-243].
 
-### TODO
+-->
 
-Contexte du résultat à venir, notamment, motiver que ça ressemble à une IPP.
+
+### {.ante}
+Il existe une façon alternative pour caractériser les fonctions faiblement
+dérivables qui repose sur l'usage de fonctions tests. Cette nouvelle approche
+se prêtera mieux à la généralisation encore plus "aggressive" de la notion
+de dérivée que nous allons aborder, la dérivation au sens des distributions.
 
 ### Fonctions tests
 On note $D^k(\R)$ l'espace des fonctions continues $\varphi: \R \to \R$
 dont le support
 $$\mbox{supp } \varphi := \overline{\{x \in \R \; | \; \varphi(x) \neq 0\}}$$
-est compact et qui sont $k$ fois continûment différentiables ou simplement
-continues dans le cas $k=0$.
+est compact et qui sont continues si $k=0$ ou $k$ fois continûment différentiables
+quand $k \geq 1$.
 
-### TODO -- Dérivation faible et fonction test
-Une fonction $f:\R \to \R$ est faiblement dérivable de dérivée faible 
-$g : \R \to \R$ si et seulement si pour tout $\varphi \in D^1(\R)$, on a
+
+### Dérivation faible et fonctions tests {#dfft}
+Une fonction localement absolument intégrable $f:\R \to \R$ 
+est faiblement dérivable de dérivée faible la fonction 
+localement absolument intégrable $g : \R \to \R$ 
+si et seulement si pour tout $\varphi \in D^1(\R)$, on a
 $$
 \int_{-\infty}^{+\infty} g(t) \varphi(t) \, dt
 =
 -\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt.
 $$
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+Nous admettrons la démonstration dans le cas général et nous limitons à
+la preuve du cas des fonctions $f$ et $g$ continûment différentiables par morceaux.
+Dans ce cadre, une fonction est faiblement dérivable 
+si et seulement si seulement si elle continue.
 
-Mesures signées
+Supposons que cela soit le cas pour la fonction $f$.
+Alors, si $\varphi \in D^1(\R)$,
+le produit $f \varphi$ est continûment différentiable par morceaux et 
+continu, de dérivée définie classiquement presque partout $f' \varphi + f \varphi'$.
+Les deux termes de cette expression sont intégrables. De plus, pour $r>0$
+assez grand et $|t| \geq r$, on a $\varphi(t) = 0$, donc
+$$
+\int_{-\infty}^{+\infty} f'(t) \varphi(t) \, dt 
++ \int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
+=
+\int_{-r}^{+r} (f \varphi)'(t) \, dt
+= 
+[f \varphi]^{+r}_{-r} = 0.
+$$
+Réciproquement, supposons que $f$ et $g$ sont continûment différentiables et 
+vérifient pour toute fonction $\varphi \in D^1(\R)$ l'égalité
+$$
+\int_{-\infty}^{+\infty} g(t) \varphi(t) \, dt
+=
+-\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt.
+$$
+Soit $x>0$. Pour $0 < \varepsilon < x/2$, on définit la fonction 
+$\psi_{\varepsilon} : \R \to \R$ par
+$$
+\psi_{\varepsilon}(t) =
+\left| 
+\begin{array}{rl}
+-6 / \varepsilon^3  \times t  (t - \varepsilon) & \mbox{si $0 \leq t \leq \varepsilon$,} \\
+6 / \varepsilon^3  \times (t - x + \varepsilon)  (t - x) & \mbox{si $x - \varepsilon \leq t \leq x$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+puis $\varphi_{\varepsilon} : \R \to \R$ par
+$$
+\varphi_{\varepsilon}(t) = \int_{-\infty}^t \psi_{\varepsilon}(s) \, ds.
+$$
+
+![Représentation de $\varphi_{\varepsilon}$ de sa dérivée quand $x=1$ et $\varepsilon=0.2$.](images/test-function.py) 
+
+On vérifiera que les fonctions $\psi_{\varepsilon}$ ainsi construites 
+appartiennent bien à $D^1(\R)$. Lorsque l'on fait tendre $\varepsilon$ vers $0$, 
+le théorème de convergence dominée nous fournit
+$$
+\int_{-\infty}^{+\infty} g(t) \varphi_{\varepsilon}(t) \, dt
+\to \int_{-\infty}^{+\infty} g(t) 1_{[0, x]}(t) \, dt
+=
+\int_0^{x} g(t) \, dt.
+$$
+D'autre part, on a 
+\begin{multline*}
+-\int_{-\infty}^{+\infty} f(t) \varphi'_{\varepsilon}(t) \, dt
+= \\
+\frac{6}{\varepsilon^3}
+\left[\int_{0}^{\varepsilon} f(t) t  (t - \varepsilon) \, dt 
+- \int_{x -\varepsilon}^x f(t) (t - x + \varepsilon)  (t - x) \, dt\right].
+\end{multline*}
+Le changement de variable $s = t / \varepsilon$ nous fournit
+$$
+\frac{6}{\varepsilon^3}
+\int_{0}^{\varepsilon} f(t) t  (t - \varepsilon) \, dt
+=
+6
+\int_{0}^{1} f(\varepsilon s) s (s - 1) \, ds
+$$
+et donc par le théorème de convergence dominée, 
+en faisant tendre $\varepsilon$ vers $0$, 
+$$
+\frac{6}{\varepsilon^3}
+\int_{0}^{\varepsilon} f(t) t  (t - \varepsilon) \, dt 
+\to f(0^+) \times \left(6 \int_0^1 s(s-1) \, ds\right) = - f(0^+).
+$$
+En analysant de façon similaire le second terme, on aboutit à
+$$
+-\int_{-\infty}^{+\infty} f(t) \varphi'_{\varepsilon}(t) \, dt
+\to 
+f(x^-) - f(0^+),
+$$
+et donc
+$$
+f(x^-) = f(0^+) + \int_0^x g(t) \, dt.
+$$
+Le second membre étant continu par rapport à $x$ et $f$ supposée continue par
+morceaux, elle est en fait continue et $f(x) = f(x^-)$. Le cas $x<0$ se traite
+de façon similaire. La fonction $f$ admet donc $g$ comme dérivée faible.
+
+Mesures signées et dérivées
 ================================================================================
 
+### {.ante}
+Aller plus loin dans la dérivation des fonctions -- pouvoir dériver des
+fonctions discontinues par exemple -- suppose d'accepter que des dérivées
+qui ne soient pas des fonctions ordinaires, mais des fonctions *généralisées*.
+Nous montrerons dans cette section comment des opérateurs linéaires agissant 
+sur des fonctions tests peuvent remplir ce rôle et établiront le lien entre
+ces opérateurs et les mesures signées.
+
+### Formes linéaires continues sur $D^0(\R)$.
+On dira qu'une application linéaire $T: D^0(\R) \to \R$ 
+-- c'est-à-dire une *forme linéaire* sur $D^0(\R)$ --
+est *continue* si pour tout
+intervalle compact $[a, b]$ de $\R$ et toute fonction $\varphi \in D^0(\R)$ dont
+le support soit inclus dans $[a, b]$, il existe une constante $K$ telle que
+$$
+|T \cdot \phi| \leq K \sup_{x \in \R} |\varphi(x)|
+$$
+<!--  = K \|\varphi|_{[a, b]}\|_{\infty} -->
+
+### Cas des fonctions {.theorem}
+Si $f:\R \to \R$ est localement absolument intégrable, l'opérateur
+$$
+T[f] : \phi \in D^0(\R) \mapsto \int_{-\infty}^{+\infty} f(t) \phi(t) \, dt 
+$$
+est linéaire continu. 
+De plus, si $g :\R \to \R$ est localement absolument intégrable, 
+$T[f] = T[g]$ si et seulement si $f=g$ presque partout.
+
+### Démonstration {.proof}
+La fonction $f$ est localement intégrable donc mesurable et la fonction
+$\varphi$ est continue donc mesurable. Le produit $f \varphi$ est donc mesurable.
+Soit $[a, b]$ un intervalle compact contenant le support de $\varphi$ et 
+$M$ un majorant de $|\varphi|$ sur ce compact. Alors le produit $|f \varphi|$ est
+dominé par la fonction $|f|M 1_{[a, b]}$ qui est intégrable ; le produit 
+$f \varphi$ est donc absolument intégrable et par l'inégalité triangulaire, 
+$$
+\left|\int_{-\infty}^{+\infty} f(t) \varphi(t) \, dt\right|
+\leq 
+\left(\int_{-\infty}^{+\infty} |f(t)| \, dt\right) \sup_{x \in \R} |\varphi(x)|.
+$$
+L'opérateur $T[f]$ est donc continu. Par ailleurs, la linéarité de 
+$f \mapsto T[f]$ résulte de la linéarité de l'intégrale.
+
+La fonction 
+$$
+\int_{-\infty}^x f(t) \,dt
+$$
+est dérivable presque partout, de dérivée $f(x)$. 
+En tout point $x$ de ce type on a donc
+$$
+f(x) = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \, dt.
+$$
+Or, on peut construire une famille de fonction $\varphi_{h, \varepsilon} \in D^1(\R)$,
+de support inclus dans $[x, x+h]$, vérifiant pour tout $t \in [x, x+h]$,
+$0 \leq \varphi_{h,\varepsilon}(t) \leq 1$ et telle que
+$$
+\lim_{\varepsilon \to 0} \varphi_{h, \varepsilon} = 1_{\left]x, x+h\right[}.
+$$
+(on pourra s'inspirer des fonctions tests utilisées dans la démonstration de 
+["Dérivation faible et fonctions tests"](#dfft)).
+Par le théorème de convergence dominée, on a donc pour presque tout $x$
+$$
+\begin{split}
+f(x) &= \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \, dt \\
+&= \lim_{h \to 0} \lim_{\varepsilon \to 0}\frac{1}{h} \int_{-\infty}^{+\infty} f(t) \varphi_{h, \varepsilon}(t) \, dt \\
+&= 
+\lim_{h \to 0} \lim_{\varepsilon \to 0}\frac{1}{h} T[f] \cdot \varphi_{h, \varepsilon}.
+\end{split}
+$$
+La fonction $f$ est donc déterminée uniquement presque partout par la donnée de 
+$T[f]$.
+
+<!--
 ### TODO
 Perspective fonction sans dérivée faible fonction (ex: fct avec saut),
 mais qui peut être dérivée comme une mesure. Perspective de patch :
@@ -429,37 +651,89 @@ d'insister sur une définition de mesure signée, prenant comme base une
 mesure et une fonction de signe.
 (à plus long-terme, j'aimerais un exemple de mesure à valeurs réelles
 qui n'admet pas de décompo de Hahn)
+-->
 
-
-### TODO -- Mesure signée {.definition} 
+### Mesure signée {.definition} 
 Soit $(X, \mathcal{A})$ un ensemble mesurable.
 Une *mesure signée* $\nu$ sur $(X, \mathcal{A})$ est une application
 $$
-\nu : \mathcal{A} \to \left]-\infty, +\infty\right[ \cup \{\bot\}
+\nu : \mathcal{A} \to \R \cup \{\bot\}
 $$
-pour laquelle il existe une mesure positive $\mu$ sur $\mathcal{A}$ et 
-une application $\mu$-mesurable $\sigma: X \to \{-1, +1\}$ telles que
+pour laquelle il existe une mesure $\mu : \mathcal{A} \to [0, +\infty]$ 
+et une application $\mu$-mesurable $\sigma: X \to \{-1, +1\}$ telles que
 pour tout $A \in \mathcal{A}$,
 $$
-\nu(A) := \sigma \mu(A) := \int_A \sigma(x) \, \mu(dx)
+\nu(A) := \sigma \mu(A) := \left|
+\begin{array}{rl}
+\displaystyle \int_A \sigma(x) \, \mu(dx) = \int 1_A \sigma \, \mu & \mbox{si $1_A \sigma$ est $\mu$-intégrable,} \\
+\bot & \mbox{sinon.}
+\end{array}
+\right.
 $$
-si l'application $1_A \sigma$ est $\mu$-intégrable 
-et $\nu(A) = \bot$ sinon.
 
-### TODO -- Mesure positive vers mesure signée
+### {.post}
+Le symbole $\bot$ peut être interprété comme "valeur réelle indéfinie" ou
+plus simplement "indéfini". Dans les calculs, on conviendra que $\bot$ est
+absorbant, c'est-à-dire que pour tout $x$ réel ou indéfini,
+$$
+x+ \bot = \bot + x = \bot.
+$$
+Dans ce contexte, on considérera également que les séries sans limites 
+dans $\R$ ont pour limite $\bot$.
+
+### TODO -- Exercice
+ce qui n'est plus vrai (ou encore vrai ?) avec les mesures signées.
+
+### Les mesure (positives) sont des mesures signées
+Toute mesure classique (dans le contexte des mesures signées, en cas d'ambiguité,
+on parlera de mesure *positive* pour les désigner) $\mu: \mathcal{A} \to [0, +\infty]$
+peut être "convertie" en mesure signée $\nu$ : il suffit de lui associer 
+la mesure $\mu$ et la fonction de signe $\sigma$ constante égale à $+1$.
+On a alors
+$$
+\nu(A) = \left|
+\begin{array}{rl}
+\mu(A) & \mbox{si $\mu(A) < +\infty$,} \\
+\bot & \mbox{si $\mu(A) = +\infty$.}
+\end{array}
+\right.
+$$
+
+### Intégrale associée à une mesure signée {.definition}
+Soit $\nu = \sigma \mu$ une mesure signée sur $(X, \mathcal{A})$.
+La fonction $\mathcal{A}$-mesurable $f: \R \to [-\infty, +\infty]$ est 
+$\nu$-intégrable si la fonction $f \sigma$ est $\mu$-intégrable.
+L'intégrale de $f$ par rapport à $\nu$ est alors définie comme
+$$
+\int f \nu = \int_{-\infty}^{+\infty} f(t) \, \nu(dt) := \int f \sigma \, \mu \in \R.
+$$
+
+<!--
+### Mesures de Dirac
+
+### Mesure positive vers mesure signée
 Expliquer "conversion" de $\inf$ vers $\bot$, règles de calcul avec $\bot$.
-
-### TODO -- Variation d'une mesure signée.
-Soit $\nu$ une mesure signée sur $(X, \mathcal{A})$.
-Il existe une mesure positive $\mu$ sur $(X, \mathcal{A})$ et 
-une unique application une application $\mu$-mesurable 
-$\sigma: X \to \{-1, +1\}$ telle que 
-$\nu = \sigma \mu$. On appelle $\mu$ la *variation de $\nu$* et on la note
-$|\nu|$.
+terminologie mesure positive.
 
 ### TODO -- Check pptés usuelles mesure ($\sigma$-add, etc.)
 Warning : plus de monotonie !
 
+### TODO -- Variation d'une mesure signée.
+Soit $\nu = \sigma \mu$ une mesure signée sur $(X, \mathcal{A})$.
+La mesure positive $\mu$ est uniquement déterminée par $\nu$.
+La fonction $\sigma$ est déterminée $\mu$-presque partout par $\nu$.
+On appelle $\mu$ la *variation de $\nu$* et on la note
+$|\nu|$ ; on appelle $\sigma$ la fonction signe de $\nu$.
+
+### TODO -- rk
+
+Souligner parallèle avec valeur absolue, considérer le
+cas particulier à densité.
+-->
+
+
+
+<!--
 ### TODO
 Comment on a défini $\mu$-intégrable dans le chapitre précédent ?
 Précisément, est-ce qu'une intégrale avec "une valeur infinie" est
@@ -473,17 +747,13 @@ cas simples (comme fct mesurable positive non intégrable par exemple).
 ### TODO -- Convention $\bot$, absorption $\inf$ ou non ?
 Disons pas d'absorption par défaut ? A voir, y réfléchir.
 Avec absorption c'est plus simple quand même ...
+-->
 
+<!--
 ### TODO -- Décomposition de Hahn
 (trivial, mais bon)
 
-### TODO -- Variation d'une mesure
 
-
-### TODO -- rk
-
-Souligner parallèle avec valeur absolue, considérer le
-cas particulier à densité.
 
 ### TODO -- $\sigma$-additivité
 
@@ -493,10 +763,30 @@ $f$ $\mu-$intégrable à valeurs réelles fois $\mu$ défini une mesure signée
 
 ### TODO -- Intégrale par rapport à une mesure signée
 
+-->
+
+### Mesures de Radon {.definition}
+Une mesure signée $\mu$ est une *mesure de Radon* si pour tout
+fonction $\varphi \in D^0(\R)$, l'intégrale
+$$
+T[\mu] \cdot \varphi := \int \varphi \, \mu 
+$$
+est bien définie et que l'opérateur $T[\mu] : D^0(\R) \to \R$ est linéaire continu.
+
+<!--
+
+### TODO
+Downplay mesure de Radon à ce stade (boréliens pas connus).
+Insister sur manip via les fonctions tests, exemples, etc. et uniquement
+à la fin parler de Radon et de théorème de Riesz, en renvoyant à la seconde
+partie. Ou même mettre ça dans la seconde partie ? Bref quoi qu'il en soit,
+ne pas mettre ça sur le chemin critique.
+
 ### TODO -- Mesure de Radon
-On appelle *mesure de Radon* (signée) sur $\R$ toute mesure signée sur
+On appelle *mesure de Radon* sur $\R$ toute mesure signée sur
 $(\R,\mathcal{B}(\R))$ telle que pour tout compact $K$ de $\R$,
 $|\mu|(K) < +\infty$, c'est-à-dire $\mu(K) \neq \bot$.
+-->
 
 <!--
 Une mesure de Borel positive $\mu : \mathcal{B}(\R) \to [0, +\infty]$ est *de Radon* si :
@@ -522,17 +812,7 @@ Supprimer de la def donc ... (éventuellement, faire une rq sur la régularité)
 -->
 
 
-
-
-### Formes linéaires continues sur $D^0(\R)$.
-Une application linéaire $T: D^0(\R) \to \R$ 
--- c'est-à-dire une *forme linéaire* sur $D^0(\R)$ --
-est dite *continue* si pour tout
-intervalle compact $[a, b]$ de $\R$ et toute fonction $\varphi \in D^0(\R)$ dont
-le support soit inclus dans $[a, b]$, il existe une constante $K$ telle que
-$$
-|T \cdot \phi| \leq K \sup_{x \in [a, b]} |\varphi(x)| = K \|\varphi|_{[a, b]}\|_{\infty}
-$$
+<!--
 
 
 ### Théorème de Riesz-Markov-Kakutani
@@ -572,6 +852,9 @@ Elle est donc continue sur $D^0(\R)$.
 
 TODO -- Renvoyer à un ref (Arverson ?) pour le reste.
 
+-->
+
+<!--
 ### TODO
 Représentation "concrête" des mesures de Radon dans $\R$ (via les fcts 
 de variation localement bornée) ??? Ou pas ?
@@ -633,11 +916,41 @@ Si on intègre des fcts continues, la notation prend du sens.
 ### TODO -- Carac mesures par les fcts test (Riesz)
 Aka mesure de Radon défini des opérateurs continus de $C^0_0([a, b])$
 dans $\R$ et l'inverse aussi (si prolongements compatibles).
+-->
+
+### TODO -- Exemples
+
+mesures de Dirac, fonctions ordinaires (???). Arf oui, il est nécessaire
+d'en parler et de faire l'identification ...
+
+### Dérivée mesure {.definition}
+Une fonction $f: \R \to \R$ localement absolument intégrable admet 
+comme dérivée la mesure de Radon $\mu$ si pour toute fonction test
+$\varphi \in D^0(\R)$ on a 
+$$
+\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
+= 
+- \int _{-\infty}^{+\infty}\varphi(t) \, \mu(dt).
+$$
 
 ### TODO -- Formule des sauts
 
+### TODO -- Applis contexte proba
+
+Suppose de dire que toute fonction de répartition à une dérivée mesure
+(la loi). C'est prouvable avec ce que l'on a ? MMm pas évident sans
+Riesz-Markov-Kakutani ... y réfléchir un peu, sinon juste l'énoncer.
+Ou même cadre fct variation localement bornée ? Qui est une autre façon d'énoncer
+Riesz dans le cas $\R$. Oui, c'est pas mal : dire pour
+quelle classe de fonctions on sait qu'une dérivée mesure existe.
+(Note: la réciproque est vraie, mais modulo un clean-up pp).
+Enoncer comme : une fct local abs int admet une dérivée mesure ssi elle
+est égale pp à une fonction localement absolument intégrable (à définir).
+
+<!--
+
 Distributions
-================================================================================
+--------------------------------------------------------------------------------
 
 ### TODO -- Distribution {.definition}
 distribution d'ordre $k$ uniquement. Fonctionnelle définie sur les fcts
@@ -660,6 +973,8 @@ notation $\mu (= df)$ (Lebesgue-Stieltjes) ?
 
 Lien notation avec somme de Riemman-Stieltjes pour l'intégration de fcts
 continues ?
+
+-->
 
 Tribus engendrées & co
 ================================================================================
@@ -1116,8 +1431,6 @@ remarque évidente sur l'autre intégrale itérée.
 -->
 
 
-
-
 Exercices
 ================================================================================
 
@@ -1129,6 +1442,11 @@ $$
 f(x) = \sqrt{|x|} \, \mbox{ si $x\neq 0$}
 $$
 est faiblement dérivable ? Quelle est dans ce cas sa dérivée ?
+
+TODO -- $vp(1/x)$
+--------------------------------------------------------------------------------
+
+$1/x$ pas ordinaire, patch, dérivée.
 
 Fonctions lipschitzienne
 --------------------------------------------------------------------------------
