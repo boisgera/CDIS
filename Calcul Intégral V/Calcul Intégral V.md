@@ -958,7 +958,7 @@ bornée.
 
 ### Fonction de répartition
 Une fonction de répartition $F:\R \to \R$ a une dérivée mesure $\mathbb{P}$ 
-qui est la loi de probabilité associée à $F$, c'est-à-dire vérifie 
+qui vérifie 
 $$\forall x \in \R, \, F(x) = \mathbb{P}(\left]-\infty, x\right[).$$
 
 ### Démonstration {.proof}
