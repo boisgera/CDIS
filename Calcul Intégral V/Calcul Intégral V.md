@@ -937,6 +937,10 @@ $$
 
 ### TODO -- Applis contexte proba
 
+Suppose de dire que toute fonction de répartition à une dérivée mesure
+(la loi). C'est prouvable avec ce que l'on a ? MMm pas évident sans
+Riesz-Markov-Kakutani ... y réfléchir un peu, sinon juste l'énoncer.
+
 <!--
 
 Distributions
