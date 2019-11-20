@@ -582,7 +582,7 @@ $$
 $$
 <!--  = K \|\varphi|_{[a, b]}\|_{\infty} -->
 
-### Cas des fonctions {.theorem}
+### Cas des fonctions ordinaires {.theorem}
 Si $f:\R \to \R$ est localement absolument intégrable, l'opérateur
 $$
 T[f] : \phi \in D^0(\R) \mapsto \int_{-\infty}^{+\infty} f(t) \phi(t) \, dt 
@@ -698,6 +698,8 @@ $$
 \end{array}
 \right.
 $$
+L'identification inverse est possible si $\nu$ ne prend que des valeurs
+positives ou indéfinies, en convertissant les valeurs indéfinies en $+\infty$.
 
 ### Intégrale associée à une mesure signée {.definition}
 Soit $\nu = \sigma \mu$ une mesure signée sur $(X, \mathcal{A})$.
@@ -926,7 +928,7 @@ d'en parler et de faire l'identification ...
 ### Dérivée mesure {.definition}
 Une fonction $f: \R \to \R$ localement absolument intégrable admet 
 comme dérivée la mesure de Radon $\mu$ si pour toute fonction test
-$\varphi \in D^0(\R)$ on a 
+$\varphi \in D^1(\R)$ on a 
 $$
 \int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
 = 
@@ -935,17 +937,116 @@ $$
 
 ### TODO -- Formule des sauts
 
-### TODO -- Applis contexte proba
+### Fonction de variation bornée {.definition}
+Une fonction $f:[a, b] \subset \R \to \R$ est de *variation bornée* s'il
+existe un réel $M > 0$ tel que pour tout $n \in \N^*$ et tout $n+1$-uplet
+$a \leq x_0 \leq \dots \leq x_n \leq b$, 
+$$
+\sum_{i=0}^{n-1} |f(x_{i+1}) - f(x_i)| \leq M.
+$$
+Le plus petit $M$ qui convienne est la *variation de $f$ sur $[a, b]$*.
+Une fonction $f:\R \to \R$ est *localement de variation bornée* si
+sa restriction à tout intervalle compact $[a, b]$ de variation bornée.
 
-Suppose de dire que toute fonction de répartition à une dérivée mesure
-(la loi). C'est prouvable avec ce que l'on a ? MMm pas évident sans
-Riesz-Markov-Kakutani ... y réfléchir un peu, sinon juste l'énoncer.
-Ou même cadre fct variation localement bornée ? Qui est une autre façon d'énoncer
-Riesz dans le cas $\R$. Oui, c'est pas mal : dire pour
-quelle classe de fonctions on sait qu'une dérivée mesure existe.
-(Note: la réciproque est vraie, mais modulo un clean-up pp).
-Enoncer comme : une fct local abs int admet une dérivée mesure ssi elle
-est égale pp à une fonction localement absolument intégrable (à définir).
+### {.ante}
+Nous admettrons le résultat suivant :
+
+### Théorème de représentation de Riesz
+Une fonction ordinaire $f:\R \to \R$ a une dérivée mesure si et seulement
+elle est égale presque partout à une fonction localement à variation 
+bornée.
+
+### Fonction de répartition
+Une fonction de répartition $F:\R \to \R$ a une dérivée mesure $\mathbb{P}$ 
+qui est la loi de probabilité associée à $F$, c'est-à-dire vérifie 
+$$\forall x \in \R, \, F(x) = \mathbb{P}(\left]-\infty, x\right[).$$
+
+### Démonstration {.proof}
+La fonction de répartition $F$ est croissante ; par conséquent, si
+$a \leq x_0 \leq \dots \leq x_n \leq b$
+$$
+\sum_{i=0}^{n-1} |F(x_{i+1}) - F(x_i)| = \sum_{i=0}^{n-1} (F(x_{i+1}) - F(x_i))
+= F(b) - F(a).
+$$
+Par conséquent, la fonction $F$ est localement de variation bornée ; 
+elle a donc une dérivée mesure $\mu$, 
+qui satisfait pour tout $\varphi \in D^1(\R)$
+$$
+- \int_{-\infty}^{+\infty} F(t) \varphi'(t) \, dt
+= 
+\int _{-\infty}^{+\infty}\varphi(t) \, \mu(dt).
+$$
+De façon similaire à la démonstration de ["Dérivation faible et fonctions tests"](#dfft) 
+introduisons pour tout intervalle compact $[a, b]$ et pour $\varepsilon>0$ suffisamment
+petit les fonctions
+$\psi_{\varepsilon} : \R \to \R$ définies par
+$$
+\psi_{\varepsilon}(t) =
+\left| 
+\begin{array}{rl}
+-6 / \varepsilon^3  \times (t - a)  (t - a - \varepsilon) & \mbox{si $a \leq t \leq a+\varepsilon$,} \\
+6 / \varepsilon^3  \times (t - b + \varepsilon)  (t - b) & \mbox{si $b - \varepsilon \leq t \leq b$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+puis $\varphi_{\varepsilon} \in D^1(\R)$ par
+$$
+\varphi_{\varepsilon}(t) = \int_{-\infty}^t \psi_{\varepsilon}(s) \, ds.
+$$
+Comme dans la démonstration de ["Dérivation faible et fonctions tests"](#dfft),
+en utilisant un changement de variable et le théorème de convergence dominée,
+on peut montrer que quand $\varepsilon \to 0$,
+$$
+-\int_{-\infty}^{+\infty} F(t) \varphi_{\varepsilon}'(t) \, dt
+\to F(b^-) - F(a^+).
+$$
+Par ailleurs, quand $\varepsilon \to 0$, les fonctions $\varphi_{\varepsilon}$ 
+convergent simplement vers $1_{\left]a, b\right[}$. Notons $\mu = \sigma \nu$
+ou $\nu$ est positive et $\sigma$ est la fonction de signe associée.
+Comme les fonctions $\varphi_{\varepsilon}$ peuvent être encadrée par une 
+fonction $\nu$-intégrable -- toute fonction positive de $D^1(\R)$ valant plus 
+que $1$ sur $[a, b]$ -- par le théorème de convergence dominée on obtient
+$$
+\int _{-\infty}^{+\infty}\varphi_{\varepsilon}(t) \, \mu(dt) 
+\to \int _{-\infty}^{+\infty} 1_{\left]a, b\right[}(t) \, \mu(dt)
+= \mu(\left]a, b\right[).
+$$
+En passant à la limite $a\to -\infty$ **ON A LE DROIT ? SI C'EST TCM, c'est NIET**,
+**NOTA: ** j'ai l'impression qu'avec une décompo de type Hahn on y arrive
+(note: on peut être juste sur l'union disjointe dénombrable ici, ça suffit).
+
+on obtient donc
+$$
+F(b^-) = \mu(\left]-\infty, b\right[)
+$$
+**TODO** PUIS, même chose ici, pour conclure c'est encore variante TCM non ?
+
+
+### TODO
+En gros avec des fcts test appropriées le truc serait bouclé -- on pourrait 
+prouver que
+$$
+F(b^-) - F(a^+) = \mu(\left]a, b \right[)
+$$
+ce qui sauf erreur suffit -- si l'on pouvait appliquer un théorème de 
+cgce monotone, mais il faudrait savoir que $\mu$ est positive (ce qui est
+compliqué sans aller aux boréliens)
+
+### TODO
+Tjs un gap ici intéressant : on n'a pas explicité TOTALEMENT la mesure,
+en particulier la tribu associée. On l'a caractérisé partiellement et
+implicitement à travers le fait d'impose que toute fonction continue
+à support compact est $\mathcal{A}$-mesurable. Et ça suffit pour que
+tout ouvert soit nécesairement mesurable, mais ça n'empêche pas d'avoir
+des mesures définies sur des tribus plus grandes ... (ce qui peut apparaitre
+comme une restriction artificielle, quand on considère un dirac par
+exemple.)
+
+Le pb ici c'est que $\mu$ n'est pas déterminée de façon unique si on ne 
+se restreint pas aux Boréliens (et si on se restreint aux Boréliens,
+comment montrer que la mesure est définie de façon unique ; d'abord les
+ouverts par TCM et après ?).
 
 <!--
 
