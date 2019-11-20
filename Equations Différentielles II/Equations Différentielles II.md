@@ -25,7 +25,7 @@ x^{j+1} = x^j + \Delta t \, f(t_j,x^j) \qquad x^0 = x_0
 $$
 pour un pas de temps $\Delta t$ suffisamment petit. Cette méthode appartient à la famille des méthodes *explicites*, c'est-à-dire que $x^{j+1}$ est directement et explicitement défini en fonction de $x^{j}$. En 1824, Cauchy montre la convergence de cette méthode lorsque le pas de temps $\Delta t$ tend vers 0, et prouve ainsi l'existence et l'unicité des solutions (en fait, il utilise plutôt la version *implicite* de la méthode d'Euler).
 
-Même si la méthode d'Euler suffit dans les cas simples, elle exige parfois de recourir à des pas très faibles pour obtenir une précision acceptable sur des temps longs (voir [Systèmes raides](#sec_systRaides) plus bas). Parfois, le compromis entre précision à chaque itération et accumulation des erreurs d'arrondis devient même impossible. De plus, cette méthode n'est pas adaptée à la simulation de certains systèmes dont certaines proprétés cruciales (comme la conservation de l'énergie) ne sont pas préservées (voir [Systèmes Hamiltoniens](#sec_systHamiltoniens) plus bas). Au cours des derniers siècles, les scientifiques ont donc progressivement développé des méthodes de plus en plus complexes et performantes : schémas multi-pas d'ordre supérieur, méthodes implicites, variation du pas, schémas simplectiques etc.
+Même si la méthode d'Euler suffit dans les cas simples, elle exige parfois de recourir à des pas très faibles pour obtenir une précision acceptable sur des temps longs (voir [Systèmes raides](#sec_systRaides) plus bas). Parfois, le compromis entre précision à chaque itération et accumulation des erreurs d'arrondis devient même impossible. De plus, cette méthode n'est pas adaptée à la simulation de certains systèmes dont certaines proprétés cruciales (comme la conservation de l'énergie) ne sont pas préservées (voir [Systèmes Hamiltoniens](#sec_systHamiltoniens) plus bas). Au cours des derniers siècles, les scientifiques ont donc progressivement développé des méthodes de plus en plus complexes et performantes : schémas multi-pas d'ordre supérieur, méthodes implicites, variation du pas, schémas symplectiques etc.
 
 En fait, dans l'histoire des équations différentielles, c'est souvent la mécanique céleste qui a été motrice des plus grandes avancées. Au milieu du XIX$^e$ siècle, les astronomes Adams et Le Verrier prédisent mathématiquement l'existence et la position de la planète Neptune et l'on entend parler pour la première fois de méthodes multi-pas. Ensuite, les progrès se sont enchaînés au rythme des modèles physiques. La première tendance a été de rechercher des schémas permettant toujours plus de précision à pas plus grand. Parmi les dates clés, on peut citer la publication en 1895 de la première méthode de Runge-Kutta par Runge, puis en 1901, de la populaire méthode de Runge-Kutta d'ordre 4 par Kutta, et ensuite en 1910, de l'*extrapolation de Richardson* permettant la montée en ordre et donc le recours à des pas plus grand pour une même précision. Mais au milieu du XX$^e$ siècle, on découvre des systèmes, dits *raides* (Hirschfelder, 1952), pour lesquels cette montée en ordre ne suffit pas et pour lesquels il faut repenser de nouveaux schémas (Dalquist, 1968). Enfin, à partir des années 80, les scientifiques développent l'intégration numérique *géométrique*, c'est-à-dire qui préservent les propriétés structurelles du système (symmétrie, conservation d'énergie etc.), utile en particulier pour la simulation des systèmes hamiltoniens. 
 
@@ -67,7 +67,7 @@ en est un exemple classique, souvent utilisée pour tester les schémas numériq
 
 ## Systèmes hamiltoniens {.section #sec_systHamiltoniens}
 
-La mécanique hamiltonienne permet de modéliser le comportement de systèmes dont une certaine énergie est conservée au cours du temps. Il peut s'agir par exemple de planètes en interaction gravitationnelle, de particules en interaction électromagnétique, etc. 
+La mécanique hamiltonienne permet de modéliser le comportement de systèmes dont une certaine énergie est conservée au cours du temps. Il peut s'agir par exemple de planètes en intéraction gravitationnelle, de particules en intéraction électromagnétique, etc. 
 
 Dans un problème à $N$ corps en intéraction gravitationnelle, le hamiltonien est donné par la somme de l'énergie cinétique et potentielle, et s'écrit
 $$
@@ -81,7 +81,7 @@ Le comportement de chaque corps est alors régi par la dynamique Hamiltonienne
 \end{align*}
 Il est aisé de vérifier que la l'énergie $H(q,p)$ est conservée le long des trajectoires.
 
-Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même des schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps ``courts'' sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *simplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma simplectique*](#exo_simplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10].
+Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même des schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps ``courts'' sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *symplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma symplectique*](#exo_symplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10].
 
 FIGURE
 
@@ -217,10 +217,10 @@ On dit qu'une méthode numérique est *consistante* si
 $$
 \lim_{\Delta t\to 0} \left( \max_{1\le j\le J} |\eta^{j}| \right) = 0 \ ,
 $$
-et qu'elle est *consistante d'ordre $p$* s'il existe une constante $C$
+et qu'elle est *consistante d'ordre $p$* s'il existe une constante $c_s$
 telle que, pour tout $0\le j\le J-1$, 
 $$
-|\eta^{j+1}| \le C(\Delta t_j)^{p} \ .
+|\eta^{j+1}| \le c_s \, (\Delta t_j)^{p} \ .
 $$
 
 ### Condition suffisante
@@ -269,7 +269,7 @@ $\Phi_{\Delta t_j}(t,x) = \frac{f(t,x) + f(t,x+\Delta t f(t,x))}{2}$ donne bien 
 
 De même, la consistance des méthodes implicites s'obtiennent en remarquant que $x^{j+1}=x^{j}$ lorsque $\Delta t=0$.
 
-Cette condition suffisante permet donc de prouver facilement le caractère consistant d'un schéma. Cependant, en pratique, on s'intéresse surtout à son ordre de consistance. Pour cela, l'erreur de consistance se calcule souvent par des développements de Taylor des solutions lorsque celles-ci sont suffisamment régulières, et la constante $C$ s'exprime alors comme une borne sur les dérivées des solutions. En fait, on remarque que lorsque $f$ est continue, la solution est $C^1$ (par définition de nos solutions). Mais puisque $\dot{x}(t)=f(t,x(t))$, $\dot{x}$ hérite de la régularité de $f$: si $f$ est $C^k$ alors les solutions $x$ sont $C^{k+1}$. Le calcul de l'ordre de consistance dans le cas dus schéma d'Euler explicite est donné ci-dessous. Pour les autres schémas, voir l'exercice [*Consistance de schémas*](#exo_consist)
+Cette condition suffisante permet donc de prouver facilement le caractère consistant d'un schéma. Cependant, en pratique, on s'intéresse surtout à son ordre de consistance. Pour cela, l'erreur de consistance se calcule souvent par des développements de Taylor des solutions lorsque celles-ci sont suffisamment régulières, et la constante $c_s$ s'exprime alors comme une borne sur les dérivées des solutions. En fait, on remarque que lorsque $f$ est continue, la solution est $C^1$ (par définition de nos solutions). Mais puisque $\dot{x}(t)=f(t,x(t))$, $\dot{x}$ hérite de la régularité de $f$: si $f$ est $C^k$ alors les solutions $x$ sont $C^{k+1}$. Le calcul de l'ordre de consistance dans le cas dus schéma d'Euler explicite est donné ci-dessous. Pour les autres schémas, voir l'exercice [*Consistance de schémas*](#exo_consist)
 
 ###  Ordre de consistance du schéma d'Euler explicite
  L'erreur de troncature s'écrit
@@ -286,14 +286,14 @@ $$
 $$
 Le schéma d'Euler explicite est donc consistant d'ordre 1 avec
 $$
-C= \frac{\max_{t\in [0,T]} \|\ddot{x}(t)\|}{2} \ .
+c_s= \frac{\max_{t\in [0,T]} \|\ddot{x}(t)\|}{2} \ .
 $$
 
 Notons qu'en utilisant $\dot{x}(t) = f(t,x(t))$,
 $$
 \ddot{x}(t) = \partial_t f(t,x(t)) + \partial_x f(t,x(t)) \cdot f(t,x(t)),
 $$
-et on peut exprimer $C$ en fonction de bornes sur $x$ et sur les dérivées de $f$.
+et on peut exprimer $c_s$ en fonction de bornes sur $x$ et sur les dérivées de $f$.
 
 ## Stabilité
 
@@ -318,7 +318,7 @@ $$
 \max_{1 \leq j \leq J} | x^j - z^j| \leq S(T) \, \Big( |x^0 -z^0| + \sum_{j = 1}^J  |\delta^j| \Big).
 $$
 
-### Condition suffisante
+### c_sondition suffisante
 Si les $\Phi_{\Delta t_j}$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$,  et tout $(x_a,x_b)\in \R^n \times \R^n$, 
 $$
 |\Phi_{\Delta t_j}(t_j,x_a)-\Phi_{\Delta t_j}(t_j,x_b)|\leq L |x_a-x_b|
@@ -352,9 +352,9 @@ Un schéma numérique est *convergent* si
 $$
 \lim_{\Delta t \to 0} \max_{1 \leq j \leq J} |x^j - x(t_j)| = 0
 $$
-lorsque $x^0 = x(t_0)$. S'il existe $p\in \N_{>0}$ et $C>0$ (indépendent de $\Delta t$) tel que
+lorsque $x^0 = x(t_0)$. S'il existe $p\in \N_{>0}$ et $c_v>0$ (indépendent de $\Delta t$) tel que
 $$
-\max_{1 \leq j \leq J} |x^j - x(t_j)| \leq C (\Delta t)^{p}
+\max_{1 \leq j \leq J} |x^j - x(t_j)| \leq c_v (\Delta t)^{p}
 $$
 on dit que le schéma est *convergent à l'ordre $p$*. 
 
@@ -374,7 +374,7 @@ $$
 $$
 et par consistance
 $$
-|x^j - x(t_j)| \leq S(T) \,  C \,  \sum_{j = 1}^J \Delta t_{j-1}\, (\Delta t_{j-1})^{p} \leq  C \, S(T) \, T \, (\Delta t)^{p}  \ . 
+|x^j - x(t_j)| \leq S(T) \,  c_s \,  \sum_{j = 1}^J \Delta t_{j-1}\, (\Delta t_{j-1})^{p} \leq  c_s \, S(T) \, T \, (\Delta t)^{p}  \ . 
 $$
 
 
@@ -403,11 +403,11 @@ $$
 et donc finalement, en supposant l'algorithme convergent d'ordre $p$,
 \begin{align*}
 \max_{0\leq j \leq J} |x(t_j)-\hat{x}^j| &\leq \max_{0\leq j \leq J} |x(t_j)-x^j| + |x^j - \hat{x}^j| \\
-&\leq C (\max_j \Delta t_j)^p +  S(T) T \left(\rho + \frac{\varepsilon}{\min_j \Delta t_j} \right) \ .
+&\leq c_v (\max_j \Delta t_j)^p +  S(T) T \left(\rho + \frac{\varepsilon}{\min_j \Delta t_j} \right) \ .
 \end{align*}
 Les paramètres $\varepsilon$ et $\rho$ sont typiquement petits de l'ordre d'un facteur de la précision machine. Cependant, on voit que plus le pas de temps décroit, plus il y a d'itérations et plus les erreurs d'arrondi se propagent. D'un autre côté, plus il augmente, plus les erreurs de quadrature augmentent. En supposant le pas constant, il y a donc un pas ``optimal'' donné par
 $$
-\Delta t_{opt} = \left( \frac{S(T) T\varepsilon}{Cp}\right)^{\frac{1}{p+1}} \ .
+\Delta t_{opt} = \left( \frac{S(T) T\varepsilon}{c_vp}\right)^{\frac{1}{p+1}} \ .
 $$
 
 
@@ -415,9 +415,19 @@ $$
 
 Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\Delta t_j$, sans jamais dire comment les choisir. Le plus simple est de choisir un pas $\Delta t$ fixe mais il est difficile de savoir à l'avance quel pas est nécessaire. En particulier, comment savoir si la solution obtenue est suffisamment précise, sans connaître la vraie ?
 
-Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les resultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. Cette méthode exploite la convergence des schémas, mais 
+Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les resultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. 
 
-- on est limité dans le pas que l'on peut prendre pour un temps de simulation raisonnable et l'on n'est jamais sûr d'avoir la bonne solution.
+**Consigne** : Coder une fonction 
+
+  def solve_euler_explicit(f,x0,dt):
+    ...
+    return t, sol
+
+prenant en entrée une fonction $f$, une condition initiale $x_0$ et un pas de temps $dt$, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite correspondant.  Tester les performances de votre solver sur une équation différentielle que vous savez résoudre. On pourra par exemple illustrer la convergence du schéma à l'ordre 1. Faire de même avec un schéma d'ordre 2 de votre choix.
+
+Cette méthode exploite la convergence des schémas, mais 
+
+- on ne peut pas prendre un pas de temps arbitrairement petit pour des temps de simulation raisonnable et l'on n'est jamais sûr d'avoir la bonne solution.
 
 - l'utilisation d'un pas très petit peut n'être nécessaire qu'autour de certains points *sensibles* (proches de singularités par exemple) et consomme des ressources inutiles ailleurs.
 
@@ -435,7 +445,7 @@ Donc si on se fixe une tolérance sur l'erreur globale $\texttt{Tol}_g$, on a
 $$
 |\eta^j| \leq \frac{\texttt{Tol}_g}{TS(T)} \qquad \Longrightarrow \qquad \max_{0\leq j\leq N} |x^j - x(t_j)| \leq \texttt{Tol}_g \ .
 $$
-En d'autre termes, $\texttt{Tol}_g$ nous fixe une erreur maximale *locale*, à chaque itération. Notons cependant que cette borne ne prend pas en compte la propagation des erreurs d'arrondis : plus $\Delta t$ diminue, plus l'erreur globale risque d'augmenter. Ce phénomène devrait donc en toute rigueur aussi nous donner un pas de temps minimal $\Delta t_{\min}$. Notons que tous ces calculs dépendent des constantes $C$ et $S(T)$ qui sont souvent mal connues ou très conservatives. 
+En d'autre termes, $\texttt{Tol}_g$ nous fixe une erreur maximale *locale*, à chaque itération. Notons cependant que cette borne ne prend pas en compte la propagation des erreurs d'arrondis : plus $\Delta t$ diminue, plus l'erreur globale risque d'augmenter. Ce phénomène devrait donc en toute rigueur aussi nous donner un pas de temps minimal $\Delta t_{\min}$. Notons que tous ces calculs dépendent des constantes $c_v$ et $S(T)$ qui sont souvent mal connues ou très conservatives. 
 
 - erreur (absolue) *locale* ? Que ce soit après une étude préalable de stabilité ou non, il est nécessaire d'assurer à chaque itération une erreur locale $\Delta t_j \eta^{j+1}$ suffisamment faible, où $\eta$ est l'erreur de consistance. On se donne donc une tolérance d'erreur locale $$
 \Delta t_j |\eta^{j+1}| \leq \texttt{Tol}_{abs} \ .
@@ -446,12 +456,14 @@ $$
 \frac{\Delta t_j |\eta^{j+1}|}{|x^j|}\leq \texttt{Tol}_{rel} \ .
 $$
 
-Mais pour cela nous devons trouver un moyen d'estimer l'erreur de consistance. C'est souvent fait en utilisant une même méthode à deux pas différents (par exemple $\Delta t_j$ et $\Delta t_j/2$), ou bien en imbriquant des schémas de Runge-Kutta d'ordres différents. Par exemple, montrer que pour un schéma d'Euler explicite, on a 
+Mais pour cela nous devons trouver un moyen d'estimer l'erreur de consistance. C'est souvent fait en utilisant une même méthode à deux pas différents (par exemple $\Delta t_j$ et $\Delta t_j/2$), ou bien en imbriquant des schémas de Runge-Kutta d'ordres différents. 
+
+**Consigne** Montrer que pour un schéma d'Euler explicite, on a 
 $$
 |\eta^{j+1}| = \frac{\big|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big|}{2} + O(\Delta t_j^2) \ .
 $$
 
-A partir de ces éléments, on est capable de coder un solver Euler explicite à pas variable prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\Delta t_{min}$, $\Delta t_{max}$ sur le pas de temps, une tolérance absolue  \texttt{Tol}_{abs} et/ou une tolérance relative \texttt{Tol}_{rel} ; et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque l'erreur estimée est supérieure à la tolérance, on diminue le pas, lorsqu'elle est (suffisamment) inférieure, on l'augmente, tout en restant dans l'intervalle $\left[\Delta t_{\min}, \Delta t_{\max} \right]$. Lorsque le pas nécessaire est inférieur à $\Delta t_{\min}$ le solver s'arrête avec un message d'erreur.
+A partir de ces éléments, on est capable de coder un solver Euler explicite à pas variable prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\Delta t_{\min}$, $\Delta t_{\max}$ sur le pas de temps, une tolérance absolue  $\texttt{Tol}_{abs}$ et/ou une tolérance relative $\texttt{Tol}_{rel}$ ; et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque l'erreur estimée est supérieure à la tolérance, on diminue le pas, lorsqu'elle est (suffisamment) inférieure, on l'augmente, tout en restant dans l'intervalle $\left[\Delta t_{\min}, \Delta t_{\max} \right]$. Lorsque le pas nécessaire est inférieur à $\Delta t_{\min}$ le solver s'arrête avec un message d'erreur.
 
 On pourra tester ce solveur sur une équation différentielle connue, et comparer ses performances à un Euler pas fixe, et à la fonction **solve_ivp** de python.
 
@@ -498,7 +510,7 @@ $$
 avec $\mu >> 1$ ?
 
 
-## Schéma simplectique {.exo #exo_simplectique}
+## Euler symplectique {.exo #exo_symplectique}
 
 Pour $\omega>0$ donné, considérons le système
 $$
@@ -506,24 +518,32 @@ $$
 \quad ,\qquad 
 \dot{x}_2(t)\;=\; -\omega^2 x_1
 $$
-de condition initiale $x(0)\;=\; (1,0)$.
+de condition initiale $x(0)\;=\; (1,0)$. On rappelle que pour une suite de la forme $x^{j+1}=A x^j$ converge vers 0 si les valeurs propres de $A$ sont à l'intérieur du cercle unité et diverge si au moins une valeur propre est à l'extérieur.
 
 1. Montrer que pour n'importe quel pas $\Delta t$ fixé, un schéma d'Euler explicite donne une solution divergente, et un schéma d'Euler implicite donne une solution qui converge vers 0. Lequel a raison ? 
 
 On définit maintenant le schéma suivant qui ``mélange'' les schémas d'Euler implicites et explicites :
 \begin{align*}
-x^{j+1}_1 &= x^{j}_1 + \Delta t x^{j}_2 \\
-x^{j+1}_2 &= x^{j}_2 - \Delta t \omega^2 x^{j+1}_1
+x^{j+1}_1 &= x^{j}_1 + \Delta t \, x^{j}_2 \\
+x^{j+1}_2 &= x^{j}_2 - \Delta t \, \omega^2 x^{j+1}_1
 \end{align*}
 
-2. Montrer que la quantité  $\omega^2 x_1^2 + x_2^2 +\Delta t \omega^2 x_1x_2$ est conservée. Quelle est donc la forme des solutions obtenues dans le plan de phase ? On parle alors de schéma  *simplectique*, car il conserve les volumes.
+2. Montrer que la quantité  $\omega^2 x_1^2 + x_2^2 +\Delta t \, \omega^2 x_1x_2$ est conservée. Quelle est alors la forme des solutions obtenues dans le plan de phase si $\omega \Delta t <2$ ? En déduire la pertinence de ce schéma.  On parle de schéma  *symplectique*, car il conserve les volumes.
 
-3. Plus généralement, en déduire un schéma pour simuler un système Hamiltonien du type
+3. En écrivant le schéma sous la forme $x^{j+1}=Ax^j$, montrer qu'il diverge par contre si $\Delta t \, \omega > 2$.
+
+4. Plus généralement, proposer un schéma pour simuler un système Hamiltonien du type
 \begin{align*}
-\dot{q} &= \nabla_p \mathcal{H}(q,p) \\
-\dot{p} &= - \nabla_q \mathcal{H}(q,p)
+\dot{q} &= \nabla_p H(q,p) = \nabla T(p) \\
+\dot{p} &= - \nabla_q H(q,p) = - \nabla V(q)
 \end{align*}
-où $(q,p)\in \R^N \times \R^N$ sont les positions généralisées et quantités de mouvement et $\mathcal{H}$ est le Hamiltonien conservé le long des trajectoires.
+où $(q,p)\in \R^N \times \R^N$ sont les positions généralisées et quantités de mouvement, $H$ est le Hamiltonien conservé le long des trajectoires donné par
+$$
+H(q,p) = T(p) + V(q) 
+$$
+avec $T$ et $V$ les énergies cinétiques et potentielles respectivement.
+
+A noter que les conclusions de cet exercice sont les mêmes si on avait utilisé un Euler implicite sur la première composante et un Euler explicite sur la deuxième. Ces deux schémas s'appellent respectivement Euler symplectique A et B.
 
 Corrections
 =================================================================================
@@ -550,7 +570,7 @@ On a bien
 $$
 \lim_{\Delta t \to 0} x^{J} = e^{-\lambda T} \ .
 $$
-Cependant, $\lambda\Delta t$ doit être pris petit pour avoir une simulation acceptable. Par exemple pour $\lambda\Delta t = 2$, $x^J = (-1)^J$, qui n'a rien à voir avec la solution. Pire, pour $\lambda\Delta t = 2$, l'algorithme diverge. Il faut donc adapter $\Delta t$ à la constante de temps $\lambda$ du système. Ceci peut poser problème lorsque l'on simule des systèmes sur des temps longs (par rapport à $\lambda$)
+Cependant, il faut $|1-\lambda\Delta t|<1$ pour que la solution converge au moins vers 0. Sinon, pour $\lambda\Delta t = 2$, $x^J = (-1)^J$, qui n'a rien à voir avec la solution. Pire, pour $\lambda\Delta t = 2$, l'algorithme diverge. Il faut donc adapter $\Delta t$ à la constante de temps $\lambda$ du système. Ceci peut poser problème lorsque l'on simule des systèmes sur des temps longs (par rapport à $\lambda$)
 
 De l'autre côté, le schéma d'Euler implicite donne
 $$
@@ -560,7 +580,7 @@ soit
 $$
 x^J = \frac{1}{(1+\lambda \Delta t)^J} =  \frac{1}{(1+\lambda \Delta t)^\frac{T}{\Delta t}}
 $$
-ce qui permet d'autoriser des pas $\lambda \Delta>1$, pratique pour les temps longs.
+qui tend vers 0 quelque soit le pas $\Delta t$ ! On parle de stabilité inconditionnelle. Ceci est très pratique pour des simulations sur temps longs, où la condition $\lambda\Delta t<1$ est trop contraignante.
 
 Prenons maintenant $\dot{x}= \lambda x$, $x(0)=1$, dont la solution exacte est $x(t)=e^{\lambda t}$.
 Cette fois-ci, Euler explicite donne
@@ -573,6 +593,82 @@ x^J =   \frac{1}{(1-\lambda \Delta t)^\frac{T}{\Delta t}}
 $$
 qui n'est pas défini pour $\lambda \Delta t=1$ et qui explose pour des valeurs proche de 1. 
 
+Maintenant, lorsque l'on a deux dynamiques asymptotiquement stables aux constantes de temps très différentes la condition de stabilité de Euler explicite exige de choisir un pas câlé sur la plus petite constante de temps, i.e. il faut $\Delta t<\frac{1}{mu}$. Ceci est très exigeant car il faut attendre un nombre d'itérations de l'ordre de $\mu$ pour voir l'évolution du système lent. Par contre, une méthode implicite permet de choisir librement le pas de temps en fonction des performances souhaitées.
+
+
+## Euler symplectique
+
+1. Dans le cas d'Euler explicite, $x^{j+1}=Ax^j$ avec 
+$$
+A = \left(
+\begin{matrix}
+1 & \Delta t \\
+-\Delta t \, \omega^2 & 1
+\end{matrix}
+\right)
+$$
+dont les valeur propres sont $1 \pm i\omega \Delta t$ de norme $\sqrt{1+\Delta t^2 \, \omega^2}>1$. Donc les solutions divergent. 
+
+Dans le cas d'Euler implicite, $x^{j+1}=Ax^j$ avec 
+$$
+A = \frac{1}{1+\Delta t^2 \, \omega^2} \left(
+\begin{matrix}
+1 & \Delta t \\
+-\Delta t \, \omega^2 & 1
+\end{matrix}
+\right)
+$$
+dont les valeurs propres sont $1/(1 \pm i\omega \Delta t)$ de norme $1/\sqrt{1+\Delta t^2 \, \omega^2}<1$. Donc les solutions convergent vers 0. 
+
+Or on peut vérifier que le long des vraies solutions, l'énergie $\omega^2 x_1^2 + x_2^2$ est constante donc les trajectoires sont bornées et ne peuvent pas converger vers zéro. Aucun des deux schémas n'approxime les solutions correctement sur le long-terme.
+
+2. On vérifie par le calcul que 
+$$
+\omega^2 x_1^2 + x_2^2 +\Delta t \, \omega^2 x_1x_2 = 
+x^\top
+\left( 
+  \begin{matrix}
+  \omega^2 & \frac{\Delta t  \, w^2}{2} \\
+  \frac{\Delta t \, w^2}{2} & 1
+  \end{matrix}
+\right)
+x
+$$ 
+est constante. Pour $\omega^2-\frac{\Delta t^2 \omega^4}{4}>0$, soit $\omega \Delta t <2$, cette matrice est définie positive, donc les solutions restent sur une ellipse. Cette ellipse se rapproche de la vraie solution lorsque $\Delta t$ tend vers 0. Ce schéma est donc approprié pour simuler les trajectoires sur un temps long.
+
+3. L'algorithme symplectique est décrit par $x^{j+1}=Ax^j$ avec 
+$$
+A = \left(
+\begin{matrix}
+1 & \Delta t \\
+-\Delta t \, \omega^2 & 1-\Delta t^2 \, \omega^2
+\end{matrix}
+\right)
+$$
+dont le polynôme caractéristique s'écrit
+$$
+s^2 - (2-\Delta t^2 \, \omega^2) s + 1
+$$
+On a les cas suivants :
+
+- si $(1-\Delta t^2 \, \omega^2)^2 -4 <0$, i.e., si $\omega \Delta t <2$, les valeurs propres sont imaginaires conjuguées et de module 1.
+
+- si $\omega \Delta t > 2$, les valeurs propres sont réelles de produit 1, donc l'une est supérieure à 1 est le schéma diverge.
+
+- dans le cas extrême où $\omega \Delta t = 2$, il y a une valeur propre double en -1.
+
+
+4. Pour un système hamiltonien, on peut donc proposer
+\begin{align*}
+q^{j+1} &= q^{j} + \Delta t \, \nabla T(p^{j}) \\
+p^{j+1} &= p^{j} - \Delta t \, \nabla V(q^{j+1})
+\end{align*}
+ou bien 
+\begin{align*}
+q^{j+1} &= q^{j} + \Delta t \, \nabla T(p^{j+1}) \\
+p^{j+1} &= p^{j} - \Delta t \, \nabla V(q^{j})
+\end{align*}
+pour $\Delta t$ suffisamment petit. 
 
 
 
