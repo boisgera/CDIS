@@ -940,6 +940,12 @@ $$
 Suppose de dire que toute fonction de répartition à une dérivée mesure
 (la loi). C'est prouvable avec ce que l'on a ? MMm pas évident sans
 Riesz-Markov-Kakutani ... y réfléchir un peu, sinon juste l'énoncer.
+Ou même cadre fct variation localement bornée ? Qui est une autre façon d'énoncer
+Riesz dans le cas $\R$. Oui, c'est pas mal : dire pour
+quelle classe de fonctions on sait qu'une dérivée mesure existe.
+(Note: la réciproque est vraie, mais modulo un clean-up pp).
+Enoncer comme : une fct local abs int admet une dérivée mesure ssi elle
+est égale pp à une fonction localement absolument intégrable (à définir).
 
 <!--
 
