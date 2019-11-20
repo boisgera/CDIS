@@ -457,7 +457,7 @@ est compact et qui sont continues si $k=0$ ou $k$ fois continûment différentia
 quand $k \geq 1$.
 
 
-### Dérivation faible et fonctions tests
+### Dérivation faible et fonctions tests {#dfft}
 Une fonction localement absolument intégrable $f:\R \to \R$ 
 est faiblement dérivable de dérivée faible la fonction 
 localement absolument intégrable $g : \R \to \R$ 
@@ -560,12 +560,16 @@ Le second membre étant continu par rapport à $x$ et $f$ supposée continue par
 morceaux, elle est en fait continue et $f(x) = f(x^-)$. Le cas $x<0$ se traite
 de façon similaire. La fonction $f$ admet donc $g$ comme dérivée faible.
 
-Mesures signées et distributions
+Mesures signées et dérivées
 ================================================================================
 
-### TODO 
-Expliquer opposition fonction "ordinaires" (loc abs int) et généralisée, concept nécessaire
-pour définir une notion de dérivée plus générale encore.
+### {.ante}
+Aller plus loin dans la dérivation des fonctions -- pouvoir dériver des
+fonctions discontinues par exemple -- suppose d'accepter que des dérivées
+qui ne soient pas des fonctions ordinaires, mais des fonctions *généralisées*.
+Nous montrerons dans cette section comment des opérateurs linéaires agissant 
+sur des fonctions tests peuvent remplir ce rôle et établiront le lien entre
+ces opérateurs et les mesures signées.
 
 ### Formes linéaires continues sur $D^0(\R)$.
 On dira qu'une application linéaire $T: D^0(\R) \to \R$ 
@@ -574,19 +578,62 @@ est *continue* si pour tout
 intervalle compact $[a, b]$ de $\R$ et toute fonction $\varphi \in D^0(\R)$ dont
 le support soit inclus dans $[a, b]$, il existe une constante $K$ telle que
 $$
-|T \cdot \phi| \leq K \sup_{x \in [a, b]} |\varphi(x)|
+|T \cdot \phi| \leq K \sup_{x \in \R} |\varphi(x)|
 $$
 <!--  = K \|\varphi|_{[a, b]}\|_{\infty} -->
 
 ### Cas des fonctions {.theorem}
 Si $f:\R \to \R$ est localement absolument intégrable, l'opérateur
 $$
-T[f] : \phi \in D^0(\R) \mapsto \int_{-\infty}^{+\infty} f(t) \, dt 
+T[f] : \phi \in D^0(\R) \mapsto \int_{-\infty}^{+\infty} f(t) \phi(t) \, dt 
 $$
-est continu. 
-De plus, l'opérateur $T[f]$ détermine la fonction $f$ uniquement presque partout.
+est linéaire continu. 
+De plus, si $g :\R \to \R$ est localement absolument intégrable, 
+$T[f] = T[g]$ si et seulement si $f=g$ presque partout.
 
-### TODO -- Démonstration {.proof}
+### Démonstration {.proof}
+La fonction $f$ est localement intégrable donc mesurable et la fonction
+$\varphi$ est continue donc mesurable. Le produit $f \varphi$ est donc mesurable.
+Soit $[a, b]$ un intervalle compact contenant le support de $\varphi$ et 
+$M$ un majorant de $|\varphi|$ sur ce compact. Alors le produit $|f \varphi|$ est
+dominé par la fonction $|f|M 1_{[a, b]}$ qui est intégrable ; le produit 
+$f \varphi$ est donc absolument intégrable et par l'inégalité triangulaire, 
+$$
+\left|\int_{-\infty}^{+\infty} f(t) \varphi(t) \, dt\right|
+\leq 
+\left(\int_{-\infty}^{+\infty} |f(t)| \, dt\right) \sup_{x \in \R} |\varphi(x)|.
+$$
+L'opérateur $T[f]$ est donc continu. Par ailleurs, la linéarité de 
+$f \mapsto T[f]$ résulte de la linéarité de l'intégrale.
+
+La fonction 
+$$
+\int_{-\infty}^x f(t) \,dt
+$$
+est dérivable presque partout, de dérivée $f(x)$. 
+En tout point $x$ de ce type on a donc
+$$
+f(x) = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \, dt.
+$$
+Or, on peut construire une famille de fonction $\varphi_{h, \varepsilon} \in D^1(\R)$,
+de support inclus dans $[x, x+h]$, vérifiant pour tout $t \in [x, x+h]$,
+$0 \leq \varphi_{h,\varepsilon}(t) \leq 1$ et telle que
+$$
+\lim_{\varepsilon \to 0} \varphi_{h, \varepsilon} = 1_{\left]x, x+h\right[}.
+$$
+(on pourra s'inspirer des fonctions tests utilisées dans la démonstration de 
+["Dérivation faible et fonctions tests"](#dfft)).
+Par le théorème de convergence dominée, on a donc pour presque tout $x$
+$$
+\begin{split}
+f(x) &= \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t) \, dt \\
+&= \lim_{h \to 0} \lim_{\varepsilon \to 0}\frac{1}{h} \int_{-\infty}^{+\infty} f(t) \varphi_{h, \varepsilon}(t) \, dt \\
+&= 
+\lim_{h \to 0} \lim_{\varepsilon \to 0}\frac{1}{h} T[f] \cdot \varphi_{h, \varepsilon}.
+\end{split}
+$$
+La fonction $f$ est donc déterminée uniquement presque partout par la donnée de 
+$T[f]$.
 
 <!--
 ### TODO
@@ -606,22 +653,50 @@ mesure et une fonction de signe.
 qui n'admet pas de décompo de Hahn)
 -->
 
-### TODO -- Mesure signée {.definition} 
+### Mesure signée {.definition} 
 Soit $(X, \mathcal{A})$ un ensemble mesurable.
 Une *mesure signée* $\nu$ sur $(X, \mathcal{A})$ est une application
 $$
-\nu : \mathcal{A} \to \left]-\infty, +\infty\right[ \cup \{\bot\}
+\nu : \mathcal{A} \to \R \cup \{\bot\}
 $$
 pour laquelle il existe une mesure $\mu : \mathcal{A} \to [0, +\infty]$ 
 et une application $\mu$-mesurable $\sigma: X \to \{-1, +1\}$ telles que
 pour tout $A \in \mathcal{A}$,
 $$
-\nu(A) := \sigma \mu(A) := \int_A \sigma(x) \, \mu(dx)
+\nu(A) := \sigma \mu(A) := \left|
+\begin{array}{rl}
+\displaystyle \int_A \sigma(x) \, \mu(dx) & \mbox{si $1_A \sigma$ est $\mu$-intégrable,} \\
+\bot & \mbox{sinon.}
+\end{array}
+\right.
 $$
-si l'application $1_A \sigma$ est $\mu$-intégrable 
-et $\nu(A) = \bot$ sinon.
 
-### TODO -- Mesure positive vers mesure signée
+### {.post}
+Le symbole $\bot$ peut être interprété comme "valeur réelle indéfinie" ou
+plus simplement "indéfini". Dans les calculs, on conviendra que $\bot$ est
+absorbant, c'est-à-dire que pour tout $x$ réel ou indéfini,
+$$
+x+ \bot = \bot + x = \bot.
+$$
+
+### Les mesure (positives) sont des mesures signées
+Toute mesure classique (dans le contexte des mesures signées, en cas d'ambiguité,
+on parlera de mesure *positive* pour les désigner) $\mu: \mathcal{A} \to [0, +\infty]$
+peut être "convertie" en mesure signée $\nu$ : il suffit de lui associer 
+la mesure $\mu$ et la fonction de signe $\sigma$ constante égale à $+1$.
+On a alors
+$$
+\nu(A) = \left|
+\begin{array}{rl}
+\mu(A) & \mbox{si $\mu(A) < +\infty$,} \\
+\bot & \mbox{si $\mu(A) = +\infty$.}
+\end{array}
+\right.
+$$
+
+### Mesures de Dirac
+
+### Mesure positive vers mesure signée
 Expliquer "conversion" de $\inf$ vers $\bot$, règles de calcul avec $\bot$.
 terminologie mesure positive.
 
