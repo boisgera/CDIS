@@ -20,7 +20,7 @@ Probabilités --- cadre général
 
 ## Interprétation
 
-Les éléments de théorie de la mesure donnés au [chapitre précédent](Calcul Intégral IV.pdf) permettent une relecture des chapitres de probabilités dans ce cadre. Le principal avantage est que les différents cas de figures déjà évoqués : lois de probabilités discrètes, à densité, mixtes vont pouvoir être traités dans un cadre unifié. On peut déjà s'apercevoir qu'une [probabilité](Probabilité I.pdf #defproba) $\P$ définie sur un espace probabilisable (mesurable) $(\Omega, \A)$ est une mesure positive *finie* au sens où $\P(\Omega) = 1$ et hérite ainsi de ses propriétés, on parle ainsi de *mesure de probabilité*. 
+Les éléments de théorie de la mesure donnés en calcul intégral permettent une relecture des chapitres de probabilités. Le principal avantage est que les différents cas de figures déjà évoqués : lois de probabilités discrètes, à densité, mixtes vont pouvoir être traités dans un cadre unifié. On peut déjà s'apercevoir qu'une [probabilité](Probabilité I.pdf #defproba) $\P$ définie sur un espace probabilisable (mesurable) $(\Omega, \A)$ est une mesure positive *finie* au sens où $\P(\Omega) = 1$ et hérite ainsi de ses propriétés, on parle aussi de *mesure de probabilité*. 
 
 ### Remarque {.remark}
 
@@ -29,11 +29,11 @@ Les éléments de théorie de la mesure donnés au [chapitre précédent](Calcul
   où $\sum_{\omega \in \Omega} w_{\omega} =1$
 * Dans le cas à densité ($\Omega = \R^n$, $n\in\N^\star$), la mesure de probabilité s'écrit :
   $$\P = f(x)\mu,$$
-  où $f$ est une densité et $\mu$ la mesure de Lebesgue sur $\R^n$
+  où $f$ est une densité et $\mu$ la mesure de Lebesgue sur $\R^n$. On dit que $\P$ admet une densité par rapport à la mesure de Lebesgue.
 
 Une [variable aléatoire réelle](Probabilité II.pdf #defvar), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$.
 
-Le fait que la composition d'un vecteur aléatoire réelle par une application $\B(\R^n)/\R$ mesurable est une variable aléatoire s'obtient immédiatement par le résultat du chapitre précédent portant sur la [composition de fonctions mesurables](Calcul Intégral IV.pdf #compfoncmes). On peut généraliser la définition des espaces vectoriels $\L^1$ et $\L^2$ de la manière suivante :
+Le fait que la composition d'un vecteur aléatoire réel par une application $\B(\R^n)/\R$ mesurable est une variable aléatoire s'obtient immédiatement par le résultat du chapitre précédent de calcul intégral portant sur la [composition de fonctions mesurables](Calcul Intégral V.pdf #compfoncmes). On peut généraliser la définition des espaces vectoriels $\L^1$ et $\L^2$ de la manière suivante :
 
 ### Définition --- Espace $\L^1$ {.definition}
 Soit $X$ une variable aléatoire. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\Omega} X(\omega)\P(d\omega) < +\infty$.
@@ -41,7 +41,7 @@ Soit $X$ une variable aléatoire. $X$ est intégrable et on note $X \in \L^1$, o
 ### Définition --- Espace $\L^2$ {.definition}
 Soit $X$ une variable aléatoire. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
 
-Les propriétés des espaces $\L^1$ et $\L^2$ sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in N^\star$ quelconque.
+Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in N^\star$ quelconque.
 
 ### Définition --- Espace $\L^p$ {.definition}
 Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|^p) = \int_{\Omega} |X|^p(\omega)\P(d\omega) < +\infty$.
@@ -58,6 +58,8 @@ $$|X|^p \leq \max(1,|X|^{p+1}) = 1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}.$$
 Le terme de droite est intégrable, en effet :
 $$\Esp(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}) \leq \int_\Omega \P(d\omega) + \int_\Omega |X|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}.$$
 donc $|X|^p$ est intégrable.
+
+On donne ici dans le cas général les inégalités de Markov et de Bienaymé-Chebyshev, déjà vues en CPGE.
 
 ### Inégalité de Markov {.theorem #inegmarkov}
 Soit $p \in \N^\star$ et $a \in \R^\star$. Soit $X \in \L^p(\Omega,\A,\P)$, on a
@@ -107,6 +109,8 @@ Soit $A_n$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
 ### Démonstration {.proof}
 
 Exercice.
+
+
 
 On présente maintenant l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique, en Mathématiques Financières, dans les méthodes de quantification d'incertitudes.
 
@@ -414,18 +418,18 @@ sont de plus bornées par 1, donc elles admettent une espérance. Il est alors n
 
 ### Définition {.definition}
 Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, sa *fonction caractéristique* est la fonction $\phi_X$ de $\R^n$ dans $\C$ définie par
-    $$ \phi_X(u) = \Esp(e^{i < u,x>}).$$
+    $$ \phi_X(u) = \Esp(e^{i < u,x>}) = \int_{\R^n} e^{i < u,x>} \P_X(dx).$$
 
 ### Remarque {.remark}
 La fonction caractéristique ne dépend en fait **que de la loi $\P_X$ de $X$** : c’est la “transformée de Fourier” de la loi $\P_X$.
 
-Nous verrons que cette fonction porte bien son nom, au sens où elle caractérise la loi $\P_X$. C’est une notion qui, de ce point de vue, généralise la fonction génératrice $G$, vue en CPGE. Elle vérifie
+Nous verrons que cette fonction porte bien son nom, au sens où elle caractérise la loi $\P_X$. C’est une notion qui, de ce point de vue, généralise la fonction génératrice $G$, vue en CPGE dans le cas discret. Elle vérifie
     $$\phi_X(u) = G_X(e^{iu}) = \Esp(e^{iuX}) $$
 pour une variable $X$ à valeurs dans $\N$.
 
 ### Proposition {.proposition}
 $\phi_X$ est de module inférieur à 1, continue, avec
-    $$ \phi(0) = 1 ; \phi_X(-u) = \overline{\phi_X(u)}.$$
+    $$ \phi(0) = 1 ;\,\,\, \phi_X(-u) = \overline{\phi_X(u)}.$$
 
 ### Démonstration {.proof}
 $|z|$ désigne le module d'un nombre complexe $z$.
@@ -459,22 +463,38 @@ La fonction caractéristique $\phi_X$ caractérise la loi du vecteur aléatoire 
 
 ### Démonstration {.proof}
 Soient les fonctions suivantes avec $\sigma > 0$ :
-    $$ f_\sigma (x) = \frac{1}{(2\pi \sigma^2)^{n/2}}\exp\left(-\frac{|x|^2}{2\sigma^2}\right) \text{ et } \widehat{f}_\sigma (u)= \exp\left(-\frac{|u|^2}{2\sigma^2}\right).$$
+    $$ f_\sigma (x) = \frac{1}{(2\pi \sigma^2)^{n/2}}\exp\left(-\frac{|x|^2}{2\sigma^2}\right) \text{ et } \widehat{f}_\sigma (u)= \exp\left(-\frac{|u|^2\sigma^2}{2}\right).$$
+On note que $f_\sigma$ est la densité d'un vecteur gaussien $Z$ de dimension $n$, centré et de matrice de covariance $\sigma^2 I_n$, autrement dit dont les composantes sont indépendantes, centrées, de variances $\sigma^2$.
+
 On a 
 \begin{align*}
-\int f_\sigma (x) e^{i < u,x>} dx &= \int_{\R^n} \prod_{j=1}^n \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{x_j^2}{2\sigma^2}+iu_j x_j\right) dx_1\ldots dx_n \\
-                                  &= \prod_{j=1}^n \int_{\R} \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{t^2}{2\sigma^2}+iu_j t\right) dt = \widehat{f}_\sigma(u)
+\Esp(e^{i < u,Z>}) = \int f_\sigma (x) e^{i < u,x>} dx &= \int_{\R^n} \prod_{j=1}^n \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{x_j^2}{2\sigma^2}+iu_j x_j\right) dx_1\ldots dx_n \\
+                                  &= \prod_{j=1}^n \int_{\R} \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{t^2}{2\sigma^2}+iu_j t\right) dt \\
+                                  &= \prod_{j=1}^n e^{-u_j^2\sigma^2/2}\\
+                                  & = \widehat{f}_\sigma(u)
 \end{align*}
 d'après l'exemple 5 [ci-dessus](ex) et en utilisant le théorème de Fubini. On remarque ainsi que
-$$ f_\sigma (u-v) = \frac{1}{(2\pi \sigma^2)^{n/2}} \widehat{f}_\sigma(\frac{u-v}{\sigma^2}) = \frac{1}{(2\pi \sigma^2)^{n/2}} \int f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx.$$
+$$ f_\sigma (u-v) = \frac{1}{(2\pi \sigma^2)^{n/2}} \widehat{f}_{\sigma}\left(\frac{u-v}{\sigma^2}\right) = \frac{1}{(2\pi \sigma^2)^{n/2}} \int f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx.$$
 
-Supposons que $X$ et $X'$ admettent la même fonction caractéristique $\phi_X = \phi_{X'}$. En utilisant le théorème de Fubini, on a 
+Supposons que $X$ et $Y$ admettent la même fonction caractéristique $\phi_X = \phi_{Y}$. En utilisant le théorème de Fubini, on a 
 \begin{align*}
-\int f_\sigma (u-v) \P_X (du) &= \int_{\R^n} \frac{1}{(2\pi \sigma^2)^{n/2}} \left( \int_{\R^n} f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx \right) \P_X (du)\\
-                              &= \int_{\R^n} f_\sigma (x) \frac{1}{(2\pi \sigma^2)^{n/2}} \phi_X(\frac{x}{\sigma^2}) e^{-i < v ,x>/\sigma^2} dx,
+\Esp_X(f_\sigma (X-v)) &= \int f_\sigma (u-v) \P_X (du) \\
+                       &= \int_{\R^n} \frac{1}{(2\pi \sigma^2)^{n/2}} \left( \int_{\R^n} f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx \right) \P_X (du)\\
+                       &= \int_{\R^n} f_\sigma (x) \frac{1}{(2\pi \sigma^2)^{n/2}} \left( \int_{\R^n}  e^{i < u ,x/\sigma^2>} \P_X(du) \right) e^{-i < v ,x>/\sigma^2} dx\\
+                       &= \int_{\R^n} f_\sigma (x) \frac{1}{(2\pi \sigma^2)^{n/2}} \phi_X\left(\frac{x}{\sigma^2}\right) e^{-i < v ,x>/\sigma^2} dx,
 \end{align*}
 
-et la même égalité reste vraie pour $\P_{X'}$. Par suite $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g$ de l'espace vectoriel de fonction engendrées par $u \mapsto f_\sigma (u-v)$. D'après le théorème de Stone-Weiertrass, cet espace est dense dans l'ensemble $C_0$ des fonctions continues sur $\R^n$ et ayant une limite nulle à l'infini, pour la topologie de la convergence uniforme. Par suite, $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g \in C_0$. Comme l'indicatrice de tout ouvert est limite croissante de fonctions de $C_0$, on en déduit que $\P_X(A) = \Esp(1_A (X))$ est égal à $\P_{X'}(A) = \Esp(1_A (X'))$ pour tout ouvert $A$, ce qui implique $P_X = P_{X'}$.
+et la même égalité reste vraie pour $\P_{Y}$. On en déduit que
+$$\Esp(g(X)) = \int g(u) \P_X (du) = \int g(u) \P_Y (du) = \Esp(g(X'))$$ 
+pour toute fonction $g$ de l'espace vectoriel de fonction engendrées par $u \mapsto f_\sigma (u-v)$. 
+
+D'après le théorème de Stone-Weiertrass[^SW], cet espace est dense[^dense] dans l'ensemble $C_0$ des fonctions continues sur $\R^n$ et ayant une limite nulle à l'infini, pour la topologie de la convergence uniforme (la norme est le sup sur $\R^n$). 
+
+Par suite, $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g \in C_0$. Comme l'indicatrice de tout ouvert est limite croissante de fonctions de $C_0$, on en déduit que $\P_X(A) = \Esp(1_A (X))$ est égal à $\P_{X'}(A) = \Esp(1_A (X'))$ pour tout ouvert $A$, ce qui implique $P_X = P_{X'}$.
+
+[^dense]: Soient $\Omega$ un espace topologique et $A$ une partie de $\Omega$. On dit que $A$ est *dense* dans $\Omega$ si l'une des propriétés équivalentes est satisfaite : tout ouvert non vide de $\Omega$ contient des éléments de $A$ ; l'adhérence de $A$ est égale à $\Omega$ ; tout point de $\Omega$ est adhérent à $A$ ; le complémentaire de $A$ est d'intérieur vide.
+
+[^SW]: voir par exemple @Simmons p.160.
 
 ### {.anonymous}
 La fonction caractéristique offre également un moyen commode de caractériser l'indépendance.
@@ -631,6 +651,39 @@ Il est important de noter ici que la vitesse de convergence ne dépend pas de la
 Exercices
 ===============================================================================
 
+Inégalités de concentration 
+---------------------------------------------------------------------------------
+
+### Question 1 {.question #idc1}
+Soit $(X_n)_n$ une suite de variables aléatoires indépendantes et identiquement distribuées d'espérance $\Esp(X_i) = m$ et de variance $\V(X_i) = \sigma^2 \leq 1$. Montrer que pour tout $\delta \in \left]0,1\right[$, avec probabilité au moins $1-\delta$ on a
+$$\left|\frac{1}{n}\sum_{i=1}^n X_i - m \right| \leq \sqrt{\frac{1}{\delta n}}$$
+
+On peut trouver des bornes à décroissance beaucoup plus rapide dans des cas particuliers.
+
+### Question 2 {.question #idc2}
+On suppose désormais que les $X_i$ sont de loi $\No (m, \sigma^2 )$.
+
+ i) On pose pour $u \in \R : M(u) = \Esp(e^{u(X_1 -m)})$. Calculer $M (u)$.
+
+ ii) On pose $S_n = X_1 + \ldots + X_n$ . Montrer que $\forall a \in \R, \forall u \in \R_+$,
+    $$\P(S_n - nm > a) \leq e^{-ua} (M(u))^n,$$
+   et que $\forall a \in \R, \forall u \in \R_-$,
+    $$\P(S_n - nm < -a) \leq e^{ua} (M(u))^n.$$
+ iii) Soit $Y_n =\frac{S_n}{n}$. Montrer que $\forall \epsilon >0$, 
+    $$\P(|Y_n - m| > \epsilon) \leq 2 \exp\left(\frac{-n\epsilon^2}{2\sigma^2}\right).$$
+    Cette inégalité est appelée inégalité de Chernov. 
+    
+On peut dériver ce type d'inégalités pour différentes lois de probabilité. On voit qu'ici la concentration auprès de la moyenne se fait à vitesse exponentielle. On a le même type de résultats pour la loi de Bernoulli par exemple ce qui est très utile en apprentissage statistique dans les problèmes de classification.
+
+ iv) On suppose que $m = 1$ et que $\sigma^2 = 10$. Quelle taille d’échantillon doit-on choisir pour obtenir
+    $$\P(|Y_n - m| < \epsilon) \geq \alpha,$$
+    avec $\alpha = 0,95$ et $\epsilon = 0,05$,
+    
+        * en utilisant l’inégalité de Bienaymé-Chebyshev ?
+        * en utilisant l’inégalité de Chernov ?
+
+
+
 
 Lemme de Borel-Cantelli
 --------------------------------------------------------------------------------
@@ -651,17 +704,48 @@ Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \i
 
 Loi faible des grands nombres
 ---------------------------------------------------------------------------------
+Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Montrer que la suite $(M_n)_{n\in\N^\star}$ définie par
+$$M_n = \frac{X_1 + \ldots + X_n}{n}$$
+converge vers $m$ en probabilité quand $n$ tend vers l'infini.
 
 Théorème de Slustsky
 ---------------------------------------------------------------------------------
 
-Inégalités de concentration 
----------------------------------------------------------------------------------
 
-Chernoff, Hoeffding ?
+
+-----------------------------------------------------------
 
 Solutions
 =================================================================================
+
+Inégalités de concentration 
+---------------------------------------------------------------------------------
+### Question 1 {.answer #answer-idc1}
+L'inégalité de Chebyshev nous donne pour tout $a>0$
+$$\P\left(\left|\frac{1}{n}\sum_{i=1}^n X_i - m \right| > a\right) \leq \frac{\V(X_1)}{n a^2}$$
+Prenant, $\frac{\V(X_1)}{n a^2} = \delta$, on obtient $a = \frac{1}{\sqrt{n\delta}}$, d'où le résultat.
+On retrouve au passage la même vitesse de convergence que celle donnée par le TCL.
+
+### Question 2 {.answer #answer-idc2}
+
+i) $M(u) = \Esp(e^{u(X_1 -m)}) = e^{u^2/\sigma^2}$.
+ii) On a $e^{u(M_n-nm)} \geq e^{ua} 1_{S_n -nm \geq a}$, d'où
+    $$\P(S_n -nm \geq a) \leq \frac{\Esp(e^{u(M_n-nm)})}{e^{ua}} = e^{-ua}M(u)^n$$
+    par indépendance des $X_i$.
+iii) 
+\begin{align*}
+\P(|Y_n - m| \geq \epsilon) &= \P(S_n - nm \geq n\epsilon) + P(S_n - nm \leq -n\epsilon) \\
+                            &\leq e^{-nu\epsilon} (M (u))^n + e^{-n(-u)(-\epsilon)} (M (-u))^n = 2e^{-nu\epsilon}(M (u))^n \\
+                            &\leq 2e^{-nu\epsilon}e^{u^2/\sigma^2}, \,\,\, \forall u \geq 0
+\end{align*}
+La meilleure majoration va être obtenue en minimisant l’exposant, c’est-à-dire pour $u = \epsilon$. Nous en déduisons l’inégalité de Chernov.
+iv) Par l’inégalité de Bienaymé-Chebyshev, $\P(|Y n - m| > \epsilon) \leq \frac{\V(Y_n)}{\epsilon^2} = \frac{\sigma^2}{n\epsilon^2}$.
+
+Ainsi, $\P(|Y_n - m| \leq \epsilon)\leq \alpha$ dès que $1-\frac{\sigma^2}{n\epsilon^2}$. Avec $\epsilon = 0,05$, il vient $n \geq 80000$.
+
+Par l’inégalité de Chernov, nous obtenons $2e^{- n\epsilon^2/20} \leq 0, 05$. Il vient que $n \geq 29512$. Pour avoir une évaluation du même ordre de la probabilité cherchée, nous pouvons donc prendre un échantillon beaucoup plus petit si nous utilisons l’inégalité de Chernov. A taille d’échantillon fixée, nous aurons une meilleure évaluation avec cette inégalité.
+
+
 Lemme de Borel-Cantelli
 --------------------------------------------------------------------------------
 
@@ -689,6 +773,11 @@ que $\P(\lim \sup_{n \to \infty} A_n) = 1$.
 ### Question 3 {.answer #answer-bc3}
 
 Prendre tous les $A_n$ égaux à un même événement $A$ de probabilité $\P(A) \in \left]0,1\right[$.
+
+Loi faible des grands nombres
+---------------------------------------------------------------------------------
+Appliquer L'inégalité de Bienaymé-Chebyshev à la variable aléatoire $M_n$.
+
 
 Références
 ================================================================================
