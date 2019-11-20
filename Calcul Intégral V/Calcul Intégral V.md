@@ -959,7 +959,7 @@ bornée.
 ### Fonction de répartition
 Une fonction de répartition $F:\R \to \R$ a une dérivée mesure $\mathbb{P}$ 
 qui vérifie 
-$$\forall x \in \R, \, F(x) = \mathbb{P}(\left]-\infty, x\right[).$$
+$$\forall a\leq b \in \R, \, F(b) - F(a)= \mathbb{P}(\left]a, b\right]).$$
 
 ### Démonstration {.proof}
 La fonction de répartition $F$ est croissante ; par conséquent, si
@@ -968,7 +968,7 @@ $$
 \sum_{i=0}^{n-1} |F(x_{i+1}) - F(x_i)| = \sum_{i=0}^{n-1} (F(x_{i+1}) - F(x_i))
 = F(b) - F(a).
 $$
-Par conséquent, la fonction $F$ est localement de variation bornée ; 
+La fonction $F$ est donc localement de variation bornée ; 
 elle a donc une dérivée mesure $\mu$, 
 qui satisfait pour tout $\varphi \in D^1(\R)$
 $$
@@ -996,7 +996,7 @@ $$
 $$
 Comme dans la démonstration de ["Dérivation faible et fonctions tests"](#dfft),
 en utilisant un changement de variable et le théorème de convergence dominée,
-on peut montrer que quand $\varepsilon \to 0$,
+on établit que quand $\varepsilon \to 0$,
 $$
 -\int_{-\infty}^{+\infty} F(t) \varphi_{\varepsilon}'(t) \, dt
 \to F(b^-) - F(a^+).
@@ -1004,7 +1004,7 @@ $$
 Par ailleurs, quand $\varepsilon \to 0$, les fonctions $\varphi_{\varepsilon}$ 
 convergent simplement vers $1_{\left]a, b\right[}$. Notons $\mu = \sigma \nu$
 ou $\nu$ est positive et $\sigma$ est la fonction de signe associée.
-Comme les fonctions $\varphi_{\varepsilon}$ peuvent être encadrée par une 
+Comme les fonctions $\varphi_{\varepsilon}$ peuvent être encadrées par une 
 fonction $\nu$-intégrable -- toute fonction positive de $D^1(\R)$ valant plus 
 que $1$ sur $[a, b]$ -- par le théorème de convergence dominée on obtient
 $$
@@ -1012,6 +1012,20 @@ $$
 \to \int _{-\infty}^{+\infty} 1_{\left]a, b\right[}(t) \, \mu(dt)
 = \mu(\left]a, b\right[).
 $$
+En considérant des intervalles de la forme $\left]a, b\right] \subset \left]a, c\right[$
+et en faisant tendre $c$ vers $b^+$, on a d'une part 
+$$
+F(c^-) - F(a^+) \to F(b^+) - F(a^+)
+$$
+et d'autre part
+$$
+\mu(\left]a, c\right[) = \int 1_{\left]a, c\right[} \mu \to \int 1_{\left]a, b\right]} \mu
+= \mu(\left]a, b\right])
+$$
+par le théorème de convergence dominée. On en déduit, comme $F$ est continue
+à droite, que $F(b) - F(a) = \mu(\left]a, b\right])$ comme désiré.
+
+<!--
 En passant à la limite $a\to -\infty$ **ON A LE DROIT ? SI C'EST TCM, c'est NIET**,
 **NOTA: ** j'ai l'impression qu'avec une décompo de type Hahn on y arrive
 (note: on peut être juste sur l'union disjointe dénombrable ici, ça suffit).
@@ -1047,6 +1061,7 @@ Le pb ici c'est que $\mu$ n'est pas déterminée de façon unique si on ne
 se restreint pas aux Boréliens (et si on se restreint aux Boréliens,
 comment montrer que la mesure est définie de façon unique ; d'abord les
 ouverts par TCM et après ?).
+-->
 
 <!--
 
