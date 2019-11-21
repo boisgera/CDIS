@@ -30,9 +30,54 @@ Objectifs
 
 
 
+
 Dérivées faibles
 ================================================================================
 
+Nous généralisons dans cette section la notion classique de dérivée de fonction,
+pour répondre aux besoins de disciplines variées : les probabilités, 
+les équations différentielles (et aux dérivées partielles), le 
+traitement du signal, etc.
+
+Dans un premier temps, nous nous intéressons au cas où une fonction ordinaire
+joue effectivement le rôle de la dérivée mais sans en être une stricto sensu.
+L'exemple basique serait la "solution" $x: \R \to \R$, "initialement au repos"
+($x(t)=0$ pour $t \leq 0$) de l'équation différentielle
+$$
+\dot{x}(t) = e(t), \, t \in \R
+$$
+où $e(t)$ est l'échelon unitaire, défini par
+$$
+e(t) = 1_{\left[0, +\infty\right[} = \left|
+\begin{array}{rl}
+0 &\mbox{si $t<0$,} \\
+1 & \mbox{si $t\geq 0$.}
+\end{array}
+\right.
+$$
+Cette équation peut être considérée par exemple comme un modèle simpliste de 
+l'évolution de la température $x$ en fonction du temps $t$ d'un système thermique 
+que l'on décide de chauffer (avec un flux de chaleur constant) à partir de $t=0$.
+
+![](images/step.py)\
+
+La "solution" physiquement raisonnable $x(t) = t e(t)$ n'est toutefois pas dérivable
+classiquement pour $t=0$ et il est nécessaire d'invoquer un 
+"principe de continuité" pour "recoller" les deux fragments de solutions 
+de l'équation différentielle pour $t<0$ et $t>0$. 
+Nous pourrons bientôt adopter un discours plus clair et à l'issue de cette
+section, énoncer que la fonction $x: t \mapsto te(t)$ a pour *dérivée faible* 
+la fonction $e: t \mapsto e(t)$ sur tout $\R$. Dans ce cadre, la continuité de
+$x$ résultera du cadre mathématique adopté plutôt que de devoir être rajoutée
+comme une hypothèse supplémentaire. 
+
+<!-- Le même cadre nous permettra
+également de considérer si nécessaire des fonctions des fonctions plus 
+irrégulières que des fonctions continûment différentiables par morceaux
+où la continuité résultera du cadre mathématique choisi. 
+-->
+
+<!--
 **Intro à creuser.** "Généraliser" la dérivée mais pourquoi ? Quels uses cases ?
 
 
@@ -53,10 +98,11 @@ l'intégration est une opération inverse, mais sait aussi intégrer
 des fonctions qui ne sont *pas* des dérivées (exemple).
 On peut retourner le problème et définir une nouvelle notion,
 généralisée de dérivée, à partir de l'intégrale.
+-->
 
 ### Fonctions localement absolument intégrables
-Dans la suite une fonction $f: \R \to \R$ sera dite *localement absolument
-intégrable* (ou parfois simplement *ordinaire*) si elle est 
+Une fonction $f: \R \to \R$ est *localement absolument
+intégrable* (ou *ordinaire*) si elle est 
 absolument intégrable sur tout intervalle compact $[a, b]$ :
 $$
 \int_a^b f(t) \, dt \in \R \; \mbox{ et } \; \int_a^b |f(t)| \, dt < +\infty.
@@ -74,7 +120,8 @@ La fonction $g$ est alors appelée *dérivée faible* de $f$.
 ### Les fonctions faiblement dérivables sont continues.
 
 ### {.post}
-En particulier, une fonction dérivable est localement absolument intégrable.
+En particulier, une fonction faiblement dérivable est nécessairement 
+localement absolument intégrable.
 
 ### Démonstration {.proof}
 La continuité des intégrales indéterminées, de la forme
@@ -83,7 +130,7 @@ x \in \R \mapsto \int_a^x h(t) \, dt
 $$
 est prouvée dans le chapitre "Calcul Intégral I" au moyen du lemme de Henstock, 
 sous l'hypothèse que $h$ est intégrable (pour un réel étendu $a$ arbitraire). 
-Or tout $r>0$, la fonction $h = g 1_{[-r,r]}$ est intégrable. 
+Or pour tout $r>0$, la fonction $h = g 1_{[-r,r]}$ est intégrable. 
 Comme pour tout $x \in \left]-r, r\right[$,
 $$
 \int_0^x g(t) \, dt = \int_0^x h(t) \, dt,
@@ -106,7 +153,7 @@ presque partout.
 
 ### Démonstration {.proof}
 Une conséquence directe du résultat de 
-[dérivation des intégrales indéterminée](Calcul Intégral II.pdf/#DII).
+[dérivation des intégrales indéterminée de "Calcul Intégral II"](Calcul Intégral II.pdf/#DII).
 
 <!--
 [^foo]: si $f$ est conditionnellement intégrable, l'application
@@ -154,43 +201,44 @@ on aurait donc pour tout $x \in \R$,
 $$
 \mbox{sgn}(x) = \mbox{sgn}(0) + \int_0^x 0 \, dt = 0,
 $$
-ce qui n'est pas le cas. On peut aussi remarquer qu'elle n'est pas continue
-et par conséquent qu'elle ne peut pas être faiblement dérivable.
+ce qui n'est pas le cas. Alternativement, on peut aussi remarquer 
+qu'elle n'est pas continue et par conséquent qu'elle ne peut pas être 
+faiblement dérivable.
 
-<!--
-### Fonction régulières par morceaux {.definition}
-On dira qu'une fonction $f: \R \to \R$ est *dérivable par 
-morceaux* -- respectivement, *continûment dérivable par morceaux* --
-s'il existe une collection dénombrable d'intervalles compacts $[a_k, b_k]$
-sans chevauchements recouvrant $\R$ telle que la restriction de $f$ à 
-tout $\left]a_k, b_k\right[$ puisse être prolongée en une fonction différentiable 
--- respectivement continûment dérivable -- sur $[a_k, b_k]$. 
--->
+### Attention ! {.post}
+Une fonction peut également être dérivable en tout point de $\R$ 
+mais de dérivée non localement absolument intégrable, 
+auquel cas elle n'est pas faiblement dérivable[^Tao]. 
+Ainsi, la fonction $f:\R \to \R$ définie par
+$$
+f(x) = \left|
+\begin{array}{cl}
+x^2 \sin 1/x^2 & \mbox{si $x\geq 0$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est dérivable en tout point (et donc continue), mais sa dérivée n'est
+que conditionnellement intégrable sur $[0, 1]$ par exemple, et donc
+elle n'est pas localement absolument intégrable (cf. [Calcul Intégral II](Calcul Intégral II.pdf)).
+
+[^Tao]: C'est la seule obstruction possible : une fonction qui serait dérivable 
+**en tout point de $\R$**
+et dont la dérivée classique est localement absolument intégrable est
+automatiquement faiblement dérivable [@Tao11, prop. 1.6.41, p. 176].
 
 ### Fonctions continûment différentiables par morceaux {.theorem}
 Toute fonction $f: \R \to \R$  continue et continûment dérivable par morceaux 
 est faiblement dérivable.
 
 ### {.post}
-A noter que l'on peut être différentiable par morceaux mais pas
+A noter que l'on peut être continûment différentiable par morceaux mais pas
 continue ; dans ce cas on ne peut pas être faiblement dérivable.
-La fonction signe de [l'exemple consacré à la dérivée faible de
-la valeur absolue](#example-abs) est un bon exemple de fonction
-continûment dérivable par morceaux mais qui n'est continue et donc
-pas faiblement dérivable.
-
+La fonction signe est un bon exemple de fonction
+continûment dérivable par morceaux mais qui n'est pas continue (et donc
+pas faiblement dérivable).
 
 ### Démonstration {.proof}
-<!--
-On trouve dans [@Tao11, prop. 1.6.41, p. 176] la clé de la démonstration,
-à savoir que si une fonction $f: [a, b] \to \R$ est différentiable 
-et de dérivée absolument intégrable, alors 
-$$
-f(b) - f(a) = \int_a^b f'(x) \, dx. 
-$$
-Nous omettons ici cette portion critique ; 
-la suite de la démonstration est beaucoup plus simple. 
--->
 Notons $f(b^-)$ et $f(a^+)$ les limites à gauche de $f$ en $b$ et
 à droite de $f$ en $a$ respectivement.
 Remarquons tout d'abord que si la fonction $f$ est continûment dérivable sur 
@@ -207,8 +255,8 @@ $$
 Supposons désormais que $\R$ soit recouvert par des intervalles 
 $[a_k, b_k]$ sans chevauchement, indexés par des entiers relatifs 
 $k$ consécutifs ordonnés de façon croissante et que sur chaque 
-$\left]a_k, b_k\right[$ la fonction $f$ soit dérivable, avec une dérivée ayant un prolongement
-par continuité à $[a_k, b_k]$.
+$\left]a_k, b_k\right[$ la fonction $f$ soit continûment dérivable, 
+avec une dérivée ayant un prolongement par continuité à $[a_k, b_k]$.
 
 On déduit de l'énoncé précédent que 
 $$
@@ -222,8 +270,6 @@ et
 $$
 f(x) - f(b) = - (f(b^-) - f(x)) = - \int_x^b f'(t) \, dt = \int_b^x f'(t) \, dt.
 $$
-<!-- Suppons que les intervalles $[a_k, b_k]$ soient indexés par des entiers relatifs 
-$k$ consécutifs et ordonnées de façon croissante. -->
 Si $x$ est réel positif, que $0 \in [a_i, b_i]$ et que $x \in [a_j, b_j]$, 
 on a donc
 $$
@@ -255,12 +301,30 @@ Cett relation montre également que la fonction
 $$
 f : t \in \R \mapsto  \frac{\exp (-{t^2}/{2})}{\sqrt{2\pi}}
 $$
-est une dérivée faible de $F$<!--([^eaf])-->. 
+est une dérivée faible de $F$. 
+
 
 ![skdjslkdjs](images/gauss.py)\ 
 
+
+### Exercice -- Loi de probabilité uniforme {.exercise}
+Montrer que la fonction de répartion $F$ associée la loi de probabilité
+uniforme sur $[0, 1]$, définie par
+$$
+F(x) = \left|
+\begin{array}{rl}
+0 & \mbox{si $x < 0$,} \\
+x & \mbox{si $0 \leq x < 1$,} \\
+1 & \mbox{si $1 \leq x$.} \\
+\end{array}
+\right.
+$$
+est faiblement dérivable et calculer (presque partout) sa dérivée faible.
+
 ### {.ante .post}
 Plus généralement, on a :
+
+
 
 ### Densité et dérivée faible {.proposition}
 Une fonction de répartition $F:\R \to \R$ admet une densité si et seulement
@@ -328,22 +392,7 @@ Le taux d'accroissement de $F$ en $x$ tend donc vers $f(x)$ quand $h$ tend vers 
 -->
 
 
-### Warning {.post}
-Une fonction peut également être continue et dérivable par morceaux, 
-mais de dérivée non localement absolument intégrable, 
-auquel cas elle n'est pas non plus faiblement dérivable. 
-Ainsi, la fonction $f:\R \to \R$ définie par
-$$
-f(x) = \left|
-\begin{array}{cl}
-x^2 \sin 1/x^2 & \mbox{si $x\geq 0$,} \\
-0 & \mbox{sinon.}
-\end{array}
-\right.
-$$
-est dérivable en tout point (et donc continue), mais sa dérivée n'est
-que conditionnellement intégrable sur $[0, 1]$ par exemple, pas absolument
-intégrable (cf. [Calcul Intégral II](Calcul Intégral II.pdf)).
+
 
 <!--
 ### Fonction de Cantor {.remark}
@@ -450,7 +499,8 @@ mais **généralisées**, notée $\mathrm{ACG}_*$, cf. [@Bar01, pp. 242-243].
 Il existe une façon alternative pour caractériser les fonctions faiblement
 dérivables qui repose sur l'usage de fonctions tests. Cette nouvelle approche
 se prêtera mieux à la généralisation encore plus "aggressive" de la notion
-de dérivée que nous allons aborder, la dérivation au sens des distributions.
+de dérivée que nous allons aborder ou les dérivées ne seront plus
+nécessairement des fonctions, mais des fonctions "généralisées".
 
 ### Fonctions tests
 On note $D^k(\R)$ l'espace des fonctions continues $\varphi: \R \to \R$
@@ -480,8 +530,8 @@ si et seulement si seulement si elle continue.
 Supposons que cela soit le cas pour la fonction $f$.
 Alors, si $\varphi \in D^1(\R)$,
 le produit $f \varphi$ est continûment différentiable par morceaux et 
-continu, de dérivée définie classiquement presque partout $f' \varphi + f \varphi'$.
-Les deux termes de cette expression sont intégrables. De plus, pour $r>0$
+continu, de dérivée classique presque partout égale à $f' \varphi + f \varphi'$.
+Les deux termes de cette somme sont intégrables. De plus, pour $r>0$
 assez grand et $|t| \geq r$, on a $\varphi(t) = 0$, donc
 $$
 \int_{-\infty}^{+\infty} f'(t) \varphi(t) \, dt 
@@ -578,10 +628,11 @@ ces opérateurs et les mesures signées.
 On dira qu'une application linéaire $T: D^0(\R) \to \R$ 
 -- c'est-à-dire une *forme linéaire* sur $D^0(\R)$ --
 est *continue* si pour tout
-intervalle compact $[a, b]$ de $\R$ et toute fonction $\varphi \in D^0(\R)$ dont
-le support soit inclus dans $[a, b]$, il existe une constante $K$ telle que
+intervalle compact $[a, b]$ de $\R$ il existe une constante $K$ telle que pour 
+toute fonction $\varphi \in D^0(\R)$ dont le support soit inclus dans $[a, b]$, 
+on ait
 $$
-|T \cdot \phi| \leq K \sup_{x \in \R} |\varphi(x)|
+|T \cdot \varphi| \leq K \sup_{x \in \R} |\varphi(x)|
 $$
 <!--  = K \|\varphi|_{[a, b]}\|_{\infty} -->
 
@@ -676,8 +727,9 @@ $$
 
 ### {.post}
 Le symbole $\bot$ peut être interprété comme "valeur réelle indéfinie" ou
-plus simplement "indéfini". Dans les calculs, on conviendra que $\bot$ est
-absorbant, c'est-à-dire que pour tout $x$ réel ou indéfini,
+plus simplement "indéfini". Dans les calculs, on conviendra toute opération
+impliquant $\bot$ résulte en $\bot$ ; par exemple $\bot$ est absorbant pour
+l'addition, c'est-à-dire que pour tout $x$ réel ou indéfini,
 $$
 x+ \bot = \bot + x = \bot.
 $$
@@ -707,7 +759,7 @@ positives ou indéfinies, en convertissant les valeurs indéfinies en $+\infty$.
 ### Intégrale associée à une mesure signée {.definition}
 Soit $\nu = \sigma \mu$ une mesure signée sur $(X, \mathcal{A})$.
 La fonction $\mathcal{A}$-mesurable $f: \R \to [-\infty, +\infty]$ est 
-$\nu$-intégrable si la fonction $f \sigma$ est $\mu$-intégrable.
+dite *$\nu$-intégrable* si la fonction $f$ (ou $f\sigma$) est $\mu$-intégrable.
 L'intégrale de $f$ par rapport à $\nu$ est alors définie comme
 $$
 \int f \nu = \int_{-\infty}^{+\infty} f(t) \, \nu(dt) := \int f \sigma \, \mu \in \R.
@@ -923,10 +975,61 @@ Aka mesure de Radon défini des opérateurs continus de $C^0_0([a, b])$
 dans $\R$ et l'inverse aussi (si prolongements compatibles).
 -->
 
-### TODO -- Exemples
+### Les fonctions ordinaires sont (identifiables à) des mesures de Radon
+Soit $f:\R \to \R$ une fonction localement absolument intégrable.
+Alors si $\ell$ désigne la mesure de Lebesgue sur $\R$, la mesure
+signée $f \ell$, telle que pour tout $A \in \mathcal{L}(\R)$,
+$$
+f\ell(A) := \left|
+\begin{array}{rl}
+\displaystyle \int 1_A f \, \ell = \int 1_A(x) f(x) \, dx & \mbox{si $1_A f$ est $\ell$-intégrable,} \\
+\bot & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est une mesure de Radon.
 
-mesures de Dirac, fonctions ordinaires (???). Arf oui, il est nécessaire
-d'en parler et de faire l'identification ...
+### {.post}
+Ce résultat nous permet d'identifier implicitement 
+une fonction ordinaire $f$ à la mesure de Radon $f \ell$, notamment
+quand des calculs impliquant fonctions et mesures rendront cette démarche
+nécessaire.
+
+### Démonstration {.proof}
+Soit $[a, b]$ un intervalle compact de $\R$. Pour tout $\varphi \in D^0(\R)$ 
+dont le support est inclus dans $[a, b]$, $\varphi$ est mesurable et bornée
+par la fonction $(\sup_{x\in \R} |\varphi(x)|) 1_{[a, b]}$, donc $\ell$-intégrable.
+$$
+|T \cdot \varphi| = \left|\int_{a}^b \varphi \, \ell \right| 
+\leq \int_a^b |\varphi| \ell \leq \sup_{x\in \R} |\varphi(x)| \int_a^b \ell
+= (b-a) \sup_{x\in \R} |\varphi(x)|.
+$$
+
+
+
+### Les mesures de Dirac sont de Radon
+La mesure (positive) $\delta_x$ de Dirac en $x \in \R$ est une mesure de
+Radon. En effet, toute fonction $f :\R\to\R$ est intégrable pour la mesure
+de Dirac, d'intégrale
+$$
+\int f \, \delta_x  = f(x).
+$$
+En particulier, si $\varphi \in D^1(\R)$, $\varphi$ est $\delta_x$-intégrable
+et de plus
+$$
+|T[\delta_x] \cdot \varphi| = |\varphi(x)| \leq \sup_{x \in \R} |\varphi(x)|.
+$$
+L'opérateur $T[\delta_x]$ est donc continu.
+
+### Exercice -- Peigne de Dirac {.exercise}
+Soit $c_k$, une famille de réels indexés par $k \in \Z$. 
+Montrer que la mesure signée
+$\mu = \sum_{k \in \Z} c_k \delta_k$
+est de Radon.
+
+### Exercice -- Somme de fonction et de mesure {.exercise}
+Comment interpréter $\mu = 1_{[0, 1]} - \delta_1$ comme une mesure de Radon ?
+Calculer $\mu([0, 1/2])$, $\mu([1/2, 1])$ et $\mu([1, 3/2])$.
 
 ### Dérivée mesure {.definition}
 Une fonction $f: \R \to \R$ localement absolument intégrable admet 
@@ -935,10 +1038,59 @@ $\varphi \in D^1(\R)$ on a
 $$
 \int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
 = 
-- \int _{-\infty}^{+\infty}\varphi(t) \, \mu(dt).
+- \int_{-\infty}^{+\infty}\varphi(t) \, \mu(dt).
 $$
 
+### Exercice -- Dérivée de l'échelon unitaire {.exercise}
+Montrer que l'échelon unitaire $e = 1_{\left[0, +\infty\right[}$ admet pour 
+dérivée la mesure de Dirac $\delta_0$.
+
+### {.post}
+On remarque que si $f$ admet $g$ comme dérivée faible alors
+$$
+\begin{split}
+\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
+&= 
+- \int _{-\infty}^{+\infty} g(t) \varphi(t) \, dt \\
+&=
+- \int _{-\infty}^{+\infty} g(t) \varphi(t)  \, \ell(dt) \\
+&= -\int_{-\infty}^{+\infty}\varphi(t) \, g \ell(dt). 
+\end{split}
+$$
+donc $f$ admet $g\ell$ comme dérivée mesure : la convention que nous avons
+choisie pour identifier fonctions ordinaires et mesures de Radon
+est telle que la notion de dérivée mesure étende celle de dérivée faible.
+
+### Exercice -- Dérivée de l'échelon unitaire {.exercise}
+Montrer que l'échelon unitaire $e = 1_{\left[0, +\infty\right[}$ admet pour 
+dérivée la mesure de Dirac $\delta_0$.
+
 ### TODO -- Formule des sauts
+Soit $f:\R \to \R$ une fonction continûment différentiable par morceaux
+discontinue aux points $x_k$. Soit 
+$\sigma_k = f(x_k^+) - f(x_k^-)$
+le *saut de $f$ en $x_k$*. 
+La fonction $f$ admet comme dérivée mesure la somme de la fonction.
+Si l'on désigne par $f'_{\rm pp}$ la fonction ordinaire égale à la dérivée 
+classique de $f$ presque partout, alors $f$ admet comme dérivée mesure 
+la somme
+$$
+f'_{\rm pp} + \sum_{k} \sigma_k \delta_{x_k}.
+$$
+
+### TODO -- Démonstration
+
+### Exercice -- Fonction signe {.exercise}
+Déterminer la dérivée mesure de la fonction signe.
+
+### Exercice -- Escalier {.exercise}
+Déterminer la dérivée mesure de la fonction partie entière.
+
+### Exercice -- "Primitive" {.exercise}
+Trouver une fonction continument dérivable par morceaux $f$ dont la dérivée 
+mesure soit $\mu = 1_{[0, 1]} - \delta_1$.
+
+-----
 
 ### Fonction de variation bornée {.definition}
 Une fonction $f:[a, b] \subset \R \to \R$ est de *variation bornée* s'il
