@@ -377,7 +377,9 @@ Soient $X_n$ et $X$ des variables aléatoires réelles de fonctions de répartit
 
 Notons que puisque la fonction $F$ est continue à droite et croissante, l’ensemble
 des points où $F$ est continue est l’ensemble $D = \{x : F (x-) = F (x)\}$, et son
-complémentaire est au plus dénombrable. Ainsi, $D$ est dense dans $\R$.
+complémentaire est au plus dénombrable. Ainsi, $D$ est dense[^dense] dans $\R$.
+
+[^dense]: Soient $\Omega$ un espace topologique et $A$ une partie de $\Omega$. On dit que $A$ est *dense* dans $\Omega$ si l'une des propriétés équivalentes est satisfaite : tout ouvert non vide de $\Omega$ contient des éléments de $A$ ; l'adhérence de $A$ est égale à $\Omega$ ; tout point de $\Omega$ est adhérent à $A$ ; le complémentaire de $A$ est d'intérieur vide.
 
 ### Démonstration {.proof}
 
@@ -488,11 +490,9 @@ et la même égalité reste vraie pour $\P_{Y}$. On en déduit que
 $$\Esp(g(X)) = \int g(u) \P_X (du) = \int g(u) \P_Y (du) = \Esp(g(X'))$$ 
 pour toute fonction $g$ de l'espace vectoriel de fonction engendrées par $u \mapsto f_\sigma (u-v)$. 
 
-D'après le théorème de Stone-Weiertrass[^SW], cet espace est dense[^dense] dans l'ensemble $C_0$ des fonctions continues sur $\R^n$ et ayant une limite nulle à l'infini, pour la topologie de la convergence uniforme (la norme est le sup sur $\R^n$). 
+D'après le théorème de Stone-Weiertrass[^SW], cet espace est dense dans l'ensemble $C_0$ des fonctions continues sur $\R^n$ et ayant une limite nulle à l'infini, pour la topologie de la convergence uniforme (la norme est le sup sur $\R^n$). 
 
 Par suite, $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g \in C_0$. Comme l'indicatrice de tout ouvert est limite croissante de fonctions de $C_0$, on en déduit que $\P_X(A) = \Esp(1_A (X))$ est égal à $\P_{X'}(A) = \Esp(1_A (X'))$ pour tout ouvert $A$, ce qui implique $P_X = P_{X'}$.
-
-[^dense]: Soient $\Omega$ un espace topologique et $A$ une partie de $\Omega$. On dit que $A$ est *dense* dans $\Omega$ si l'une des propriétés équivalentes est satisfaite : tout ouvert non vide de $\Omega$ contient des éléments de $A$ ; l'adhérence de $A$ est égale à $\Omega$ ; tout point de $\Omega$ est adhérent à $A$ ; le complémentaire de $A$ est d'intérieur vide.
 
 [^SW]: voir par exemple @Simmons p.160.
 
@@ -708,7 +708,7 @@ Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, d
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$ en probabilité quand $n$ tend vers l'infini.
 
-Théorème de Slustsky
+Théorème de Slutsky
 ---------------------------------------------------------------------------------
 
 
