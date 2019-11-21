@@ -345,6 +345,7 @@ est dérivable en tout point (et donc continue), mais sa dérivée n'est
 que conditionnellement intégrable sur $[0, 1]$ par exemple, pas absolument
 intégrable (cf. [Calcul Intégral II](Calcul Intégral II.pdf)).
 
+<!--
 ### Fonction de Cantor {.remark}
 On pourrait croire en prenant connaissance des contre-exemples simples
 à l'existence d'une dérivée faible que dès lors qu'une fonction est continue
@@ -389,6 +390,8 @@ $$
 (y compris -- ou plutôt surtout -- pour les fonctions intermédiaires 
 qui sont "uniformes par morceaux". L'interprétation de la limite n'a
 pas besoin d'être formalisée.)
+
+-->
 
 <!--
 ### Absolue continuité {.definition}
