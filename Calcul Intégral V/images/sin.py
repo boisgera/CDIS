@@ -45,29 +45,27 @@ def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
 # Graph
 # ------------------------------------------------------------------------------
 def main():
-    x = np.linspace(-1, 2, 10000)
+
     #y = scipy.stats.norm.cdf(x,0,1.0)
 
     figure()    
-
+    for i in [-1, 0, 1]:
+        x = np.linspace(i, i+1, 1000)
+        plot(x, sin(x % 1), "k-")
 
     #plot(x, f(1)(x), "k:", alpha=0.5)
     #plot(x, f(3)(x), "k--", alpha=0.75)
-    plot([-1,0], [0.0, 0.0], "k-")
-    plot([0.0, 1.0],[1.0, 1.0], "k-")
-    plot([1,2], [0.0, 0.0], "k-")
-    plot([1.0, 1.0],[0.0, -1], "k-", lw=1)
-    plot(1.0, -1.0, "kv")
 
     xlim(-1, 2)
-    ylim(-1.1, 1.1)
+    ylim(-0.1, 1.1)
     xticks([-1, 0, 1, 2])
-    yticks([-1, -.5, 0, 0.5, 1])
+    yticks([0, 0.5, 1])
     #title("Graphe de $f$")
-    xlabel("$x$")
+    xlabel("$t$")
+    ylabel("$y = f(t)$")
     #ylabel("$y=F(x)$")
     #legend()
-    title(r'Représentation de la ``fonction généralisée" $\mu = 1_{[0, 1]} - \delta_1$')
+    title(r"Graphe de la fonction $f$ quand $\tau=1$")
     set_ratio(16/9, scale=1, left=0.15, bottom=0.15, top=0.1)
     grid(True)
     #gca().set_aspect("equal")

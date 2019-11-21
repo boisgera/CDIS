@@ -725,23 +725,23 @@ $$
 \right.
 $$
 
-### TODO: mesures de Dirac
 
-![](images/dirac.py)\
-
-### {.post}
+### A propos du symbole $\bot$ {.post}
 Le symbole $\bot$ peut être interprété comme "valeur réelle indéfinie" ou
-plus simplement "indéfini". Dans les calculs, on conviendra toute opération
-impliquant $\bot$ résulte en $\bot$ ; par exemple $\bot$ est absorbant pour
+plus simplement "indéfini"[^nan]. Dans les calculs, on conviendra toute opération
+impliquant $\bot$ à pour résultat $\bot$ ; par exemple $\bot$ est absorbant pour
 l'addition, c'est-à-dire que pour tout $x$ réel ou indéfini,
 $$
 x+ \bot = \bot + x = \bot.
 $$
 Dans ce contexte, on considérera également que les séries sans limites 
-dans $\R$ ont pour limite $\bot$.
+dans $\R$ ont pour limite $\bot$. Le symbole $\bot$ joue un rôle très
+similaire à $+\infty$ dans le cas des calculs impliquant des nombres
+positifs.
 
-### TODO -- Exercice
-ce qui n'est plus vrai (ou encore vrai ?) avec les mesures signées.
+[^nan]: concept assez similaire au "non-nombre" `nan` (*not-a-number*) des 
+numériciens, que l'on obtient par exemple avec NumPy en calculant `inf - inf`.
+
 
 ### Les mesure (positives) sont des mesures signées
 Toute mesure classique (dans le contexte des mesures signées, en cas d'ambiguité,
@@ -759,6 +759,38 @@ $$
 $$
 L'identification inverse est possible si $\nu$ ne prend que des valeurs
 positives ou indéfinies, en convertissant les valeurs indéfinies en $+\infty$.
+
+
+
+### Exercice -- Une mesure signée {.exercise}
+Soit $\ell$ la mesure de Lebesgue dans $\R$.
+Montrer que la fonction qui a un ensemble $A$ de $\mathcal{L}(\R)$ associe
+$$
+\mu(A) = \ell|_{\R_+} (A) - \ell|_{\R_-}(A)  =\ell(\left[0, +\infty\right[\cap A) - \ell(\left]-\infty, 0\right]\cap A)
+$$
+est une mesure signée.
+
+### Exercice -- Propriétés des mesures signées {.exercise}
+Les mesure signées sont-elles comme les mesures positives nulles en $0$
+(telles que $\mu(\varnothing)=0$) ? Croissantes (telles que $\mu(A) \leq \mu(B)$
+quand $A \subset B$) ? 
+
+### {.post}
+Contrairement aux mesures positives, les combinaisons linéaires à coefficients
+réels (et pas seulement positifs) de mesures signées sont des mesures signées.
+On peut ainsi par exemple combiner des mesures de Dirac positives $\delta_x$
+et par exemple construire la mesure $\mu = \delta_0 - 1/2 \times \delta_1$, 
+qui associe à l'ensemble $A \subset \R$ la quantité
+$$
+\mu(A) = (\delta_0 - 1/2 \times \delta_1)(A) = 1_A(0) - 1/2 \times 1_A(1).
+$$
+
+![Les combinaisons linéaires de Dirac sont souvent représentées comme des "pics"
+surmontés d'un triangle ou d'un rond. La mesure de Dirac $\alpha \delta_x$ 
+est représentée par un pic à l'abscisse $x$ et de hauteur $\alpha$ (positive ou negative).](images/dirac.py)
+
+
+
 
 ### Intégrale associée à une mesure signée {.definition}
 Soit $\nu = \sigma \mu$ une mesure signée sur $(X, \mathcal{A})$.
@@ -979,25 +1011,6 @@ Aka mesure de Radon défini des opérateurs continus de $C^0_0([a, b])$
 dans $\R$ et l'inverse aussi (si prolongements compatibles).
 -->
 
-### Les fonctions ordinaires sont (identifiables à) des mesures de Radon
-Soit $f:\R \to \R$ une fonction localement absolument intégrable.
-Alors si $\ell$ désigne la mesure de Lebesgue sur $\R$, la mesure
-signée $f \ell$, telle que pour tout $A \in \mathcal{L}(\R)$,
-$$
-f\ell(A) := \left|
-\begin{array}{rl}
-\displaystyle \int 1_A f \, \ell = \int 1_A(x) f(x) \, dx & \mbox{si $1_A f$ est $\ell$-intégrable,} \\
-\bot & \mbox{sinon.}
-\end{array}
-\right.
-$$
-est une mesure de Radon.
-
-### {.post}
-Ce résultat nous permet d'identifier implicitement 
-une fonction ordinaire $f$ à la mesure de Radon $f \ell$, notamment
-quand des calculs impliquant fonctions et mesures rendront cette démarche
-nécessaire.
 
 ### Démonstration {.proof}
 Soit $[a, b]$ un intervalle compact de $\R$. Pour tout $\varphi \in D^0(\R)$ 
@@ -1023,19 +1036,44 @@ $$
 $$
 L'opérateur $T[\delta_x]$ est donc continu.
 
-
-
 ### Exercice -- Peigne de Dirac {.exercise}
 Soit $c_k$, une famille de réels indexés par $k \in \Z$. 
 Montrer que la mesure signée
 $\mu = \sum_{k \in \Z} c_k \delta_k$
 est de Radon.
 
+### Exercice -- Mesure de comptage {.exercise}
+La mesure de comptage $c$ est-elle une mesure de Radon ?
+
+
+### Les fonctions ordinaires sont (identifiables à) des mesures de Radon
+Soit $f:\R \to \R$ une fonction localement absolument intégrable.
+Alors si $\ell$ désigne la mesure de Lebesgue sur $\R$, la mesure
+signée $f \ell$, telle que pour tout $A \in \mathcal{L}(\R)$,
+$$
+f\ell(A) := \left|
+\begin{array}{rl}
+\displaystyle \int 1_A f \, \ell = \int 1_A(x) f(x) \, dx & \mbox{si $1_A f$ est $\ell$-intégrable,} \\
+\bot & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est une mesure de Radon.
+
+### {.post}
+Ce résultat nous permet d'identifier implicitement 
+une fonction ordinaire $f$ à la mesure de Radon $f \ell$, notamment
+quand des calculs impliquant fonctions et mesures rendront cette démarche
+nécessaire.
+
 ### Exercice -- Somme de fonction et de mesure {.exercise}
 Comment interpréter $\mu = 1_{[0, 1]} - \delta_1$ comme une mesure de Radon ?
 Calculer $\mu([0, 1/2])$, $\mu([1/2, 1])$ et $\mu([1, 3/2])$.
 
-![](images/dirac2.py)\
+![Une représentation d'une mesure signée combinant fonction ordinaire $f$ 
+(identifiée à la mesure $f\ell$ ou $\ell$ est la mesure de Lebesgue) et
+mesure de Dirac. La partie fonction est représentée par le graphique
+habituel et la partie Dirac par les pics déjà décrits.](images/dirac2.py)
 
 ### Dérivée mesure {.definition}
 Une fonction $f: \R \to \R$ localement absolument intégrable admet 
@@ -1067,16 +1105,12 @@ donc $f$ admet $g\ell$ comme dérivée mesure : la convention que nous avons
 choisie pour identifier fonctions ordinaires et mesures de Radon
 est telle que la notion de dérivée mesure étende celle de dérivée faible.
 
-### Exercice -- Dérivée de l'échelon unitaire {.exercise}
-Montrer que l'échelon unitaire $e = 1_{\left[0, +\infty\right[}$ admet pour 
-dérivée la mesure de Dirac $\delta_0$.
 
-### TODO -- Formule des sauts
+### Formule des sauts
 Soit $f:\R \to \R$ une fonction continûment différentiable par morceaux
 discontinue aux points $x_k$. Soit 
 $\sigma_k = f(x_k^+) - f(x_k^-)$
 le *saut de $f$ en $x_k$*. 
-La fonction $f$ admet comme dérivée mesure la somme de la fonction.
 Si l'on désigne par $f'_{\rm pp}$ la fonction ordinaire égale à la dérivée 
 classique de $f$ presque partout, alors $f$ admet comme dérivée mesure 
 la somme
@@ -1084,7 +1118,55 @@ $$
 f'_{\rm pp} + \sum_{k} \sigma_k \delta_{x_k}.
 $$
 
-### TODO -- Démonstration
+### Démonstration
+Soit $\varphi \in D^1(\R)$ et $[a, b]$ un intervalle compact contenant le
+support de $\varphi$. Soient $x_j, x_{j+1}, \dots, x_{j+n}$ ceux des 
+$x_k$ qui appartiennent à $[a, b]$ (ils sont nécessairement en
+nombre fini). Alors on a
+$$
+\begin{split}
+\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
+&=
+\int_a^{x_j} f(t) \varphi'(t)\, dt
++
+\sum_{i=0}^{n-1} \int_{x_{j+i}}^{x_{j+i+1}} f(t) \varphi'(t)\, dt
++
+\int_{x_{j+n}}^{b} f(t) \varphi'(t)\, dt \\
+\end{split}
+$$
+et donc par intégration par parties, en utilisant sur chaque segment le
+prolongement continument différentiable de $f$ :
+$$
+\begin{split}
+\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
+&=
+- \int_a^{x_j} f'(t)\varphi(t) \, dt
++[f\varphi]_a^{x_j^-} \\
+&\phantom{=} -
+\sum_{i=0}^{n-1} \int_{x_{j+i}}^{x_{j+i+1}} f'(t) \varphi(t)\, dt
++ [f \varphi]_{x_{j+i}^+}^{x_{i+j+1}^-} \\
+&\phantom{=} -
+\int_{x_j}^{b} f'(t)\varphi(t) \, dt
++[f\varphi]_{x_j^+}^{b}
+\end{split}
+$$
+et par conséquent
+$$
+\begin{split}
+\int_{-\infty}^{+\infty} f(t) \varphi'(t) \, dt
+&=
+- \int_{a}^b f'(t)\varphi(t) \, dt  \\
+&\phantom{=} + f(x_j^-)\varphi(x_j) - f(x_j^+)\varphi(x_j) + \cdots \\
+&\phantom{=} + f(x_{j+n}^-)\varphi(x_{j+n}) - f(x_{j+n}^+)\varphi(x_{j+n}).
+\end{split}
+$$
+Il suffit alors de constater que
+$$
+(f(x_{j+i}^-) - f(x_{j+i}^+)) \varphi(x_{j+i})
+= -\sigma_{x_{j+i}} \varphi(x_{j+i})
+= - \sigma_{x_{j+i}} \int \varphi \, \delta_{x_{j+i}}
+$$
+pour conclure.
 
 ### Exercice -- Fonction signe {.exercise}
 Déterminer la dérivée mesure de la fonction signe.
@@ -1710,10 +1792,10 @@ remarque évidente sur l'autre intégrale itérée.
 -->
 
 
-Exercices
+Exercices corrigés
 ================================================================================
 
-Dérivée faible
+Dérivée faible {.question #dr}
 --------------------------------------------------------------------------------
 
 Est-ce que la fonction $f: \R \to \R$ définie par $f(0)=0$ et
@@ -1722,12 +1804,47 @@ f(x) = \sqrt{|x|} \, \mbox{ si $x\neq 0$}
 $$
 est faiblement dérivable ? Quelle est dans ce cas sa dérivée ?
 
-Dérivée mesure
+Mesure signée et $\sigma$-additivité {.question #mssa}
+--------------------------------------------------------------------------------
+Les mesures signées sont-elles comme les mesures positives
+$\sigma$-additives, c'est-à-dire telles que 
+$$
+\mu\left(\bigcup_{k=0}^{+\infty}A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k)
+$$ 
+quand les $A_k$ sont disjoints ? 
+Indication : on pourra étudier 
+$\mu = \ell|_{\R_+} - \ell_{\R_-}$, définie pour tout $A \in \mathcal{L}(\R)$
+par
+$$
+\mu(A) =
+\ell(\left[0, +\infty\right[\cap A) - \ell(\left]-\infty, 0\right]\cap A)
+$$
+et rechercher une partition dénombrable
+de $\R$ par des $A_k$ tels que $\mu(A_k) = 0$.
+
+
+Etudier à nouveau le problème sous l'hypothèse supplémentaire que 
+$\mu\left(\bigcup_{k=0}^{+\infty}A_k \right)$ est réel.
+
+
+Dérivée mesure {.question #dm}
 --------------------------------------------------------------------------------
 
-$\sin^2$, $\sin$ périodisée et demander quand est-ce qu'elle admet une
-dérivée faible (fct ordinaire) ?
+Soit $\tau > 0$. On considère la fonction $f:\R\to\R$ qui est $\tau$-périodique
+et telle que 
+$$
+\forall t \in \left[0, \tau \right[, \; f(t) = \sin t.
+$$ 
 
+![](images/sin.py)
+
+Montrer que $f$ admet une dérivée mesure que l'on déterminera. A quelle
+condition sur $\tau$ cette mesure est-elle une fonction ordinaire (et $f$
+est-elle dérivable faiblement) ?
+La fonction $f$ est-elle pour autant dérivable classiquement en tout
+point $t$ de $\R$ ?
+
+<!--
 
 Fonctions convexes
 --------------------------------------------------------------------------------
@@ -1739,6 +1856,7 @@ Fonction distance
 
 Dérivées seconde fonction distance, squelette, courbure, etc ?
 
+-->
 
 Tribu engendrée
 --------------------------------------------------------------------------------
@@ -1765,6 +1883,87 @@ collection.
 Solutions
 =================================================================================
 
+
+Dérivée faible {.answer #answer-dr}
+--------------------------------------------------------------------------------
+
+Si $f$ admet une dérivée faible, elle est nécessairement égale presque partout
+à la dérivée classique de $f$, qui vaut
+$$
+g(x) := f'(x) = \frac{\mathrm{sgn}(x)}{2\sqrt{x}}.
+$$
+On peut compléter la dérivée faible potentielle $g$ en posant $g(0)=0$.
+Il faut ensuite vérifier que pour tout $x \in \R$ on a bien
+$$
+f(x) = f(0) + \int_0^x g(t) \, dt.
+$$
+Pour $x >0$ par exemple, on peut déduire de
+$$
+\int_{\varepsilon}^x g(t) \, dt = \int_{\varepsilon}^x \frac{dt}{2\sqrt{t}}
+= \sqrt{t} - \sqrt{\varepsilon}
+$$
+et du théorème de convergence monotone la relation souhaitée. 
+La situation est similaire pour $x < 0$. La fonction $f$ initiale est
+donc bien faiblement dérivable.
+
+
+Mesure signée et $\sigma$-additivité {.answer #answer-mssa}
+--------------------------------------------------------------------------------
+
+La réponse est non, les mesures signées ne sont pas nécessairement
+$\sigma$-additives. Considérons en effet
+$\mu = \ell|_{\R_+} - \ell|_{\R_-}$ et les ensembles mesurables
+$$
+A_0 = \{0\} \, \mbox{ puis } \, A_k = \left[-k-1, -k\right[ \cup \left]k, k+1\right] \, \mbox{ pour $k\geq 1$}.
+$$
+Tous ces ensembles sont de mesure $\mu$ nulle et donc 
+$$
+\sum_{k=0}^{+\infty} \mu(A_k) = 0.
+$$
+Pourtant ils forment une partition dénombrable de $\R$ et comme la fonction
+$\mathrm{sgn}$ n'est pas $\ell$-intégrable sur $\R$, on a 
+$$
+\mu\left(\cup_{k=0}^{+\infty} A_k\right) = \mu(\R) = \bot.
+$$
+
+Par contre, si l'on sait que $A := \cup_{k=0}^{+\infty} A_k$ est de mesure 
+$\mu = \sigma \nu$
+réelle, cela signifie que la fonction caractéristique $1_A$ est $\nu$-intégrable. 
+Les fonctions $f_j$ définies par
+$$
+f_j \sigma = 1_{\cup_{k=0}^j A_k} \sigma = \sum_{k=0}^j 1_{A_k} \sigma
+$$
+sont $\nu$-mesurables, dominées en valeur absolue par $1_A$ et 
+$f_j \sigma$ converge simplement vers $1_A \sigma$. 
+On a donc par le théorème de convergence dominée
+$$
+\sum_{k=0}^{+\infty} \mu(A_k) = \lim_{j \to +\infty} \int f_j \sigma \, \nu
+=
+\int 1_A \sigma \, \nu = \mu(A).
+$$
+
+
+Dérivée mesure {.answer #dm}
+--------------------------------------------------------------------------------
+
+La fonction $f$ est continûment dérivable par morceaux donc elle admet une
+dérivée mesure donnée par la formule des sauts, en l'occurence si l'on 
+nomme $g la fonction $\tau$-périodique telle que 
+$$
+\forall t \in \left[0, \tau \right[, \; g(t) = \cos t.
+$$ 
+alors comme les seuls sauts possibles de $f$ sont en $k\tau$ pour
+$k \in \Z$ et valent
+$$
+\sigma_{k\tau}  = \sin 0 - \sin \tau = \sin \tau
+$$
+cette dérivée mesure est
+$$
+g + \sum_{k \in \Z} (\sin \tau) \delta_{k \tau}.
+$$
+C'est une fonction ordinaire si et seulement si $\sin \tau$ est nul, 
+c'est-à-dire si $\tau \in \pi \Z$. Mais la fonction $f$ n'est dérivable
+en tout point que si $\tau \in 2\pi \Z$ (c'est-à-dire si $f=\sin$).
 
 
 Tribu engendrée

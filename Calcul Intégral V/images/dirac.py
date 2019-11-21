@@ -66,7 +66,7 @@ def main():
     xlabel("$x$")
     #ylabel("$y=F(x)$")
     #legend()
-    title(r"Représentation de la mesure signée $\mu = \delta_{0} - 1/2 \delta_1$")
+    title(r"Représentation de la mesure signée $\mu = \delta_{0} - 1/2 \times \delta_1$")
     set_ratio(16/9, scale=1, left=0.15, bottom=0.15, top=0.1)
     grid(True)
     #gca().set_aspect("equal")
