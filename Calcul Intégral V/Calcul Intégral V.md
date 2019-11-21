@@ -1714,18 +1714,12 @@ f(x) = \sqrt{|x|} \, \mbox{ si $x\neq 0$}
 $$
 est faiblement dérivable ? Quelle est dans ce cas sa dérivée ?
 
-TODO -- $vp(1/x)$
+Dérivée mesure
 --------------------------------------------------------------------------------
 
-$1/x$ pas ordinaire, patch, dérivée.
+$\sin^2$, $\sin$ périodisée et demander quand est-ce qu'elle admet une
+dérivée faible (fct ordinaire) ?
 
-Fonctions lipschitzienne
---------------------------------------------------------------------------------
-
-(d'une variable). Montrer qu'elles ont une dérivée faible (et donc pp),
-en utilisante leur caractère absolument continu (cf. Evans-Gariepy dans
-le cas multivariable) et que la dérivée (faible) est de norme plus petite
-que la constante de Lipschitz.
 
 Fonctions convexes
 --------------------------------------------------------------------------------
