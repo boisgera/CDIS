@@ -77,7 +77,7 @@ où $q_i\in \R^3$ désigne la position de chaque corps, $m_i$ sa masse, et $p_i=
 Le comportement de chaque corps est alors régi par la dynamique Hamiltonienne
 \begin{align*}
 \dot{q}_i &= \nabla_{p_i} H(q,p) = \frac{1}{m_i} p_i \\
-\dot{p}_i &= \nabla_{q_i} H(q,p)
+\dot{p}_i &= \nabla_{q_i} H(q,p) 
 \end{align*}
 Il est aisé de vérifier que la l'énergie $H(q,p)$ est conservée le long des trajectoires.
 
@@ -318,7 +318,7 @@ $$
 \max_{1 \leq j \leq J} | x^j - z^j| \leq S(T) \, \Big( |x^0 -z^0| + \sum_{j = 1}^J  |\delta^j| \Big).
 $$
 
-### c_sondition suffisante
+### Condition suffisante
 Si les $\Phi_{\Delta t_j}$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$,  et tout $(x_a,x_b)\in \R^n \times \R^n$, 
 $$
 |\Phi_{\Delta t_j}(t_j,x_a)-\Phi_{\Delta t_j}(t_j,x_b)|\leq L |x_a-x_b|
@@ -415,23 +415,25 @@ $$
 
 Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\Delta t_j$, sans jamais dire comment les choisir. Le plus simple est de choisir un pas $\Delta t$ fixe mais il est difficile de savoir à l'avance quel pas est nécessaire. En particulier, comment savoir si la solution obtenue est suffisamment précise, sans connaître la vraie ?
 
-Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les resultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. 
+Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les resultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. On pourrait aussi directement choisir le pas $\Delta t_{opt}$ obtenu plus haut en prenant en compte les erreurs d'arrondis. Mais les constantes $c_v$ et $S(T)$ sont souvent mal connues et conservatives.
 
-**Consigne** : Coder une fonction 
+**Consigne** Coder une fonction 
 
-  def solve_euler_explicit(f,x0,dt):
-    ...
-    return t, sol
+    def solve_euler_explicit(f,x0,dt):
+      ...
+      return t, x
 
-prenant en entrée une fonction $f$, une condition initiale $x_0$ et un pas de temps $dt$, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite correspondant.  Tester les performances de votre solver sur une équation différentielle que vous savez résoudre. On pourra par exemple illustrer la convergence du schéma à l'ordre 1. Faire de même avec un schéma d'ordre 2 de votre choix.
+prenant en entrée une fonction $f$, une condition initiale $x_0$ et un pas de temps $dt$, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(x)$.  Tester les performances de votre solver sur une équation différentielle que vous savez résoudre. On pourra par exemple illustrer la convergence du schéma à l'ordre 1. 
 
-Cette méthode exploite la convergence des schémas, mais 
+**Bonus** Faire de même et comparer la convergence avec un schéma d'ordre 2 de votre choix.
 
-- on ne peut pas prendre un pas de temps arbitrairement petit pour des temps de simulation raisonnable et l'on n'est jamais sûr d'avoir la bonne solution.
+Cette méthode à pas fixe exploite la convergence des schémas, mais 
+
+- on ne peut pas prendre un pas de temps arbitrairement petit car on est contraint par le temps de simulation. 
+
+- on n'a aucune idée de l'erreur commise et on n'est jamais sûr d'avoir la bonne solution.
 
 - l'utilisation d'un pas très petit peut n'être nécessaire qu'autour de certains points *sensibles* (proches de singularités par exemple) et consomme des ressources inutiles ailleurs.
-
-On pourrait aussi directement choisir le pas $\Delta t_{opt}$ obtenue plus haut en prenant en compte les erreurs d'arrondis. Mais les constantes $C$ et $S(T)$ sont souvent mal connues et conservative. Surtout, les deux mêmes problèmes subsistent.
 
 L'idée serait donc plutôt d'adapter la valeur du pas $\Delta t_j$ à chaque itération. En d'autres termes, on se fixe une tolérance d'erreur que l'on juge acceptable et on modifie le pas de temps en ligne, selon si l'on estime être au-dessus ou en-dessous du seuil d'erreur. Mais cela suppose d'avoir une idée de l'erreur commise... Il existe justement des moyens de l'estimer.
 
@@ -441,31 +443,59 @@ Tout d'abord, de quelle erreur parle-t-on ?
 $$
 \max_{0\leq j\leq N} |x^j - x(t_j)| \leq S(T) \,  \sum_{j = 1}^J \Delta t_{j-1}\, |\eta^j|
 $$
+avec $\eta^j$ les erreurs de consistances locales.
 Donc si on se fixe une tolérance sur l'erreur globale $\texttt{Tol}_g$, on a 
 $$
 |\eta^j| \leq \frac{\texttt{Tol}_g}{TS(T)} \qquad \Longrightarrow \qquad \max_{0\leq j\leq N} |x^j - x(t_j)| \leq \texttt{Tol}_g \ .
 $$
-En d'autre termes, $\texttt{Tol}_g$ nous fixe une erreur maximale *locale*, à chaque itération. Notons cependant que cette borne ne prend pas en compte la propagation des erreurs d'arrondis : plus $\Delta t$ diminue, plus l'erreur globale risque d'augmenter. Ce phénomène devrait donc en toute rigueur aussi nous donner un pas de temps minimal $\Delta t_{\min}$. Notons que tous ces calculs dépendent des constantes $c_v$ et $S(T)$ qui sont souvent mal connues ou très conservatives. 
+En d'autre termes, $\texttt{Tol}_g$ nous fixe une erreur maximale *locale* sur $\eta^j$, à chaque itération. Notons cependant que cette borne ne prend pas en compte la propagation des erreurs d'arrondis : plus $\Delta t$ diminue, plus l'erreur globale risque d'augmenter. Ce phénomène devrait donc en toute rigueur aussi nous donner un pas de temps minimal $\Delta t_{\min}$. Notons que tous ces calculs dépendent des constantes $c_v$ et $S(T)$ qui sont souvent mal connues ou très conservatives. 
 
-- erreur (absolue) *locale* ? Que ce soit après une étude préalable de stabilité ou non, il est nécessaire d'assurer à chaque itération une erreur locale $\Delta t_j \eta^{j+1}$ suffisamment faible, où $\eta$ est l'erreur de consistance. On se donne donc une tolérance d'erreur locale $$
-\Delta t_j |\eta^{j+1}| \leq \texttt{Tol}_{abs} \ .
+- erreur (absolue) *locale* ? A chaque itération, une erreur locale est commise dûe à l'approximation de l'intégrale. Cette erreur est donnée par
+$$
+e^{j+1} = \left(x^j + \int_{t_j}^{t_{j+1}} f(s,x(s))ds\right) -x^{j+1} 
+$$
+<!--= \int_{t_j}^{t_{j+1}} f(s,x(s))ds - \Delta t_j \Phi_{\Delta t_j}(t_j,x^j) -->
+Notons que si on avait $x^j=x(t_j)$, on aurait exactement $e^{j+1}=\Delta t_j \eta^{j+1}$ l'erreur de constistance.
+<!-- Que ce soit après une étude préalable de stabilité ou non, il est nécessaire d'assurer à chaque itération une erreur locale $\Delta t_j \eta^{j+1}$ suffisamment faible, où $\eta$ est l'erreur de consistance. -->
+On se donne donc une tolérance d'erreur locale 
+$$
+|e^{j+1}| \leq \texttt{Tol}_{abs} \ .
 $$
 
-- erreur *relative* ? Fixer une erreur absolue est parfois trop contraignant et n'a de sens que si les solutions gardent un certain ordre de grandeur. Sinon, l'erreur acceptable quand la solution vaut 1000 n'est peut-être pas la même que lorsqu'elle vaut 1. On peut donc plutôt exiger une certaine erreur relative $\texttt{Tol}_{rel}$, i.e., 
+- erreur *relative* ? Fixer une erreur absolue est parfois trop contraignant et n'a de sens que si les solutions gardent un certain ordre de grandeur. En effet, l'erreur acceptable quand la solution vaut 1000 n'est peut-être pas la même que lorsqu'elle vaut 1. On peut donc plutôt exiger une certaine erreur relative $\texttt{Tol}_{rel}$, i.e., 
 $$
-\frac{\Delta t_j |\eta^{j+1}|}{|x^j|}\leq \texttt{Tol}_{rel} \ .
-$$
-
-Mais pour cela nous devons trouver un moyen d'estimer l'erreur de consistance. C'est souvent fait en utilisant une même méthode à deux pas différents (par exemple $\Delta t_j$ et $\Delta t_j/2$), ou bien en imbriquant des schémas de Runge-Kutta d'ordres différents. 
-
-**Consigne** Montrer que pour un schéma d'Euler explicite, on a 
-$$
-|\eta^{j+1}| = \frac{\big|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big|}{2} + O(\Delta t_j^2) \ .
+\frac{|e^{j+1}|}{|x^j|}\leq \texttt{Tol}_{rel} \ .
 $$
 
-A partir de ces éléments, on est capable de coder un solver Euler explicite à pas variable prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\Delta t_{\min}$, $\Delta t_{\max}$ sur le pas de temps, une tolérance absolue  $\texttt{Tol}_{abs}$ et/ou une tolérance relative $\texttt{Tol}_{rel}$ ; et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque l'erreur estimée est supérieure à la tolérance, on diminue le pas, lorsqu'elle est (suffisamment) inférieure, on l'augmente, tout en restant dans l'intervalle $\left[\Delta t_{\min}, \Delta t_{\max} \right]$. Lorsque le pas nécessaire est inférieur à $\Delta t_{\min}$ le solver s'arrête avec un message d'erreur.
+Mais pour cela nous devons trouver un moyen d'estimer l'erreur locale. C'est souvent fait en utilisant une même méthode à deux pas différents (par exemple $\Delta t_j$ et $\Delta t_j/2$), ou bien en imbriquant des schémas de Runge-Kutta d'ordres différents. 
 
-On pourra tester ce solveur sur une équation différentielle connue, et comparer ses performances à un Euler pas fixe, et à la fonction **solve_ivp** de python.
+**Consigne** Montrer que si $f$ est $C^1$, on a pour un schéma d'Euler explicite
+$$
+|e^{j+1}| = \Delta t \, \frac{\big|f(t_{j+1},x(t_{j+1})) - f(t_j,x(t_{j}))\big|}{2} + O(\Delta t_j^3) \ 
+$$
+
+On peut donc estimer à chaque itération l'erreur commise $e^{j+1}$ et adapter le pas selon si celle-ci est inférieure ou supérieure au seuil de tolérance.  
+
+**Bonus** Montrer que par ailleurs il existe $c>0$ telle que
+$$
+|e^{j+1}| \leq c \Delta t_j^2 \ . 
+$$
+En déduire qu'une possible stratégie d'adaptation est de prendre  
+$$
+\Delta t_{new} = dt \sqrt{\texttt{Tol}_{abs}}{|e^{j+1}|}
+$$
+(éventuellement avec une marge de sécurité)
+
+**Consigne** Coder une fonction 
+
+    def solve_euler_explicit_variable(f,x0,dtmin,dtmax,Tolabs):
+      ...
+      return t, x
+
+ prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\Delta t_{\min}$, $\Delta t_{\max}$ sur le pas de temps, une tolérance absolue  $\texttt{Tol}_{abs}$ et/ou une tolérance relative $\texttt{Tol}_{rel}$, et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque le pas nécessaire est inférieur à $\Delta t_{\min}$ le solver s'arrête avec un message d'erreur.
+Tester ce solveur et comparer ses performances à Euler pas fixe. 
+
+**Consigne** Comparer à la fonction `solve_ivp` de python.
 
 Exercices
 ================================================================================
@@ -550,8 +580,7 @@ Corrections
 
 ## Consistance de schémas {.correc #correc_consist}
 
-
-## Convergence de schémas
+A FAIRE
 
 
 ## Explicite ou implicite ?
