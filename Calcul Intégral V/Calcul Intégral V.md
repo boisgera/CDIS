@@ -725,6 +725,10 @@ $$
 \right.
 $$
 
+### TODO: mesures de Dirac
+
+![](images/dirac.py)\
+
 ### {.post}
 Le symbole $\bot$ peut être interprété comme "valeur réelle indéfinie" ou
 plus simplement "indéfini". Dans les calculs, on conviendra toute opération
@@ -1005,8 +1009,6 @@ $$
 = (b-a) \sup_{x\in \R} |\varphi(x)|.
 $$
 
-
-
 ### Les mesures de Dirac sont de Radon
 La mesure (positive) $\delta_x$ de Dirac en $x \in \R$ est une mesure de
 Radon. En effet, toute fonction $f :\R\to\R$ est intégrable pour la mesure
@@ -1021,6 +1023,8 @@ $$
 $$
 L'opérateur $T[\delta_x]$ est donc continu.
 
+
+
 ### Exercice -- Peigne de Dirac {.exercise}
 Soit $c_k$, une famille de réels indexés par $k \in \Z$. 
 Montrer que la mesure signée
@@ -1030,6 +1034,8 @@ est de Radon.
 ### Exercice -- Somme de fonction et de mesure {.exercise}
 Comment interpréter $\mu = 1_{[0, 1]} - \delta_1$ comme une mesure de Radon ?
 Calculer $\mu([0, 1/2])$, $\mu([1/2, 1])$ et $\mu([1, 3/2])$.
+
+![](images/dirac2.py)\
 
 ### Dérivée mesure {.definition}
 Une fonction $f: \R \to \R$ localement absolument intégrable admet 
@@ -1323,6 +1329,8 @@ L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
 ### TODO -- Pb
 Gérer "pb" des fonctions à valeurs étendues ? Non, il n'y en a pas ...
 -->
+
+
 
 ### Fonction mesurable
 Une fonction $f: X \to Y$ associée aux espaces mesurables $(X, \mathcal{A})$
