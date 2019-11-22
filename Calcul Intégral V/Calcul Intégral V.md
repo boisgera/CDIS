@@ -1181,16 +1181,16 @@ mesure soit $\mu = 1_{[0, 1]} - \delta_1$.
 
 -----
 
-### Fonction à variation bornée {.definition}
-Une fonction $f:[a, b] \subset \R \to \R$ est à *variation bornée* s'il
+### Fonction de variation bornée {.definition}
+Une fonction $f:[a, b] \subset \R \to \R$ est de *variation bornée* s'il
 existe un réel $M > 0$ tel que pour tout $n \in \N^*$ et tout $n+1$-uplet
 $a \leq x_0 \leq \dots \leq x_n \leq b$, 
 $$
 \sum_{i=0}^{n-1} |f(x_{i+1}) - f(x_i)| \leq M.
 $$
 Le plus petit $M$ qui convienne est la *variation de $f$ sur $[a, b]$*.
-Une fonction $f:\R \to \R$ est *localement à variation bornée* si
-sa restriction à tout intervalle compact $[a, b]$ est à variation bornée.
+Une fonction $f:\R \to \R$ est *localement de variation bornée* si
+sa restriction à tout intervalle compact $[a, b]$ de variation bornée.
 
 ### {.ante}
 Nous admettrons le résultat suivant :
