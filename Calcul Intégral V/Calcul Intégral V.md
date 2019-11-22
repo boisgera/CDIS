@@ -525,7 +525,7 @@ $$
 Nous admettrons la démonstration dans le cas général et nous limitons à
 la preuve du cas des fonctions $f$ et $g$ continûment différentiables par morceaux.
 Dans ce cadre, une fonction est faiblement dérivable 
-si et seulement si seulement si elle continue.
+si et seulement si elle continue.
 
 Supposons que cela soit le cas pour la fonction $f$.
 Alors, si $\varphi \in D^1(\R)$,
@@ -541,7 +541,7 @@ $$
 = 
 [f \varphi]^{+r}_{-r} = 0.
 $$
-Réciproquement, supposons que $f$ et $g$ sont continûment différentiables et 
+Réciproquement, supposons que $f$ et $g$ soient continûment différentiables et 
 vérifient pour toute fonction $\varphi \in D^1(\R)$ l'égalité
 $$
 \int_{-\infty}^{+\infty} g(t) \varphi(t) \, dt
@@ -619,7 +619,7 @@ Mesures signées et dérivées
 ### {.ante}
 Aller plus loin dans la dérivation des fonctions -- pouvoir dériver des
 fonctions discontinues par exemple -- suppose d'accepter que des dérivées
-qui ne soient pas des fonctions ordinaires, mais des fonctions *généralisées*.
+ne soient pas des fonctions ordinaires, mais des fonctions *généralisées*.
 Nous montrerons dans cette section comment des opérateurs linéaires agissant 
 sur des fonctions tests peuvent remplir ce rôle et établiront le lien entre
 ces opérateurs et les mesures signées.
@@ -728,8 +728,8 @@ $$
 
 ### A propos du symbole $\bot$ {.post}
 Le symbole $\bot$ peut être interprété comme "valeur réelle indéfinie" ou
-plus simplement "indéfini"[^nan]. Dans les calculs, on conviendra toute opération
-impliquant $\bot$ à pour résultat $\bot$ ; par exemple $\bot$ est absorbant pour
+plus simplement "indéfini"[^nan]. Dans les calculs, on conviendra que toute opération
+impliquant $\bot$ a pour résultat $\bot$ ; par exemple $\bot$ est absorbant pour
 l'addition, c'est-à-dire que pour tout $x$ réel ou indéfini,
 $$
 x+ \bot = \bot + x = \bot.
@@ -1011,6 +1011,7 @@ Aka mesure de Radon défini des opérateurs continus de $C^0_0([a, b])$
 dans $\R$ et l'inverse aussi (si prolongements compatibles).
 -->
 
+### La mesure de Lebesgue est de Radon {.proposition}
 
 ### Démonstration {.proof}
 Soit $[a, b]$ un intervalle compact de $\R$. Pour tout $\varphi \in D^0(\R)$ 
@@ -1180,16 +1181,16 @@ mesure soit $\mu = 1_{[0, 1]} - \delta_1$.
 
 -----
 
-### Fonction de variation bornée {.definition}
-Une fonction $f:[a, b] \subset \R \to \R$ est de *variation bornée* s'il
+### Fonction à variation bornée {.definition}
+Une fonction $f:[a, b] \subset \R \to \R$ est à *variation bornée* s'il
 existe un réel $M > 0$ tel que pour tout $n \in \N^*$ et tout $n+1$-uplet
 $a \leq x_0 \leq \dots \leq x_n \leq b$, 
 $$
 \sum_{i=0}^{n-1} |f(x_{i+1}) - f(x_i)| \leq M.
 $$
 Le plus petit $M$ qui convienne est la *variation de $f$ sur $[a, b]$*.
-Une fonction $f:\R \to \R$ est *localement de variation bornée* si
-sa restriction à tout intervalle compact $[a, b]$ de variation bornée.
+Une fonction $f:\R \to \R$ est *localement à variation bornée* si
+sa restriction à tout intervalle compact $[a, b]$ est à variation bornée.
 
 ### {.ante}
 Nous admettrons le résultat suivant :
