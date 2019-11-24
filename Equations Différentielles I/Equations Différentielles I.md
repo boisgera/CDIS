@@ -478,10 +478,12 @@ Le théorème suivant nous montre que pour un horizon de temps fini donné, on p
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
 
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $[t_0,\overline{t}]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $[t_0,\overline{t}]$ et vérifie
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $\left[ t_0,\overline{t} \right]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $\left[ t_0,\overline{t} \right]$ et vérifie
 $$
-|x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in [t_0,\overline{t}] \ .
+|x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in \left[ t_0,\overline{t} \right] \ .
 $$
+
+Notons que le même résultat s'obtient en temps rétrograde, i.e. sur $\left[ \underline{t},t_0 \right]$.
 
 La présence du facteur exponentiel n'est pas crucial ici, et servira dans la suite. Ce qui est important, c'est que plus l'erreur de condition initiale $\delta$ est faible, plus l'erreur sur la trajectoire à horizon de temps fini $\overline{t}$ est faible.
 On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
@@ -756,7 +758,9 @@ Références
 Exercices 
 ==============================================================================
 
-## Ecoulement dans un réservoir {.exercice #exo_Torricelli}
+Les exercices à maîtriser sont marqués d'un (+). 
+
+## Ecoulement dans un réservoir (+) {.exercice #exo_Torricelli}
 Considérons un réservoir cylindrique de section $S$ qui se vide par une ouverture de section $s$ située à sa base. On note $x$ la hauteur de liquide dans le réservoir. D'après la *loi de Torricelli*[^Torricelli], l'équation d'évolution de $x$ est donnée par 
 $$
 \dot{x}=-k\sqrt{|x|} \qquad k = \frac{s}{S}\sqrt{2g}
@@ -772,7 +776,7 @@ Pour $(t_0,x_0)\in \R\times \R_{\geq0}$, résoudre le problème de Cauchy associ
 ### Question 3 {.question #tor-3} 
 Comment s'interprète physiquement la multitude de solutions trouvées ?
 
-### Question 4 {.question #tor-4}
+### Question 4 (plus dur) {.question #tor-4}
 Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
 
 
@@ -812,10 +816,10 @@ $$
 
 
 
-## Oscillateur {.exercice #exo_masse_ressort}
+## Oscillateur (+) {.exercice #exo_masse_ressort}
 Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
 $$
-m\ddot{p} = - \lambda \dot{p} -k p \ ,
+m\ddot{y} = - \lambda \dot{y} -k y \ ,
 $$
 où $\lambda$ est un coefficient de frottement. 
 
@@ -823,10 +827,15 @@ où $\lambda$ est un coefficient de frottement.
 Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'équilibre.
 
 ### Question 2 {.question #ressort-2}
-Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
+Justifier que les solutions sont uniques et globales quelque soit la condition initiale $(y(0),\dot{y}(0))$.
+
+### Question 3 {.question #ressort-3}
+Etudier leur stabilité et le comportement des solutions pour $\lambda>0$ et $\lambda = 0$. Les dessiner sur un portrait de phase. 
+
+*Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2$)*
 
 
-## Cycle limite
+## Cycle limite (+)
 Considérons le système
 $$
 \begin{array}{rcl}
@@ -891,8 +900,11 @@ Correction des exercices
 ## Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
 ### Question 1 {.answer #answer-tor-1}
-$f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$ donc le théorème de Peano nous garantie l'existence de solutions au problème de Cauchy pour toute condition initiale. De plus, 
-$\sqrt{|x|}\leq 1+|x|$ pour tout $x\in \R$ donc $f$ est linéairement bornée et toute solution maximale est globale, donc ici définie sur $\R$. Enfin, $f$ est $C^1$ sur $\R\times (\R\setminus \{0\})$ donc lorsque $x_0\neq 0$, il existe une unique solution maximale dans $\R\setminus \{0\}$. Lorsque $x_0=0$ par contre, $f$ n'est pas $C^1$ en 0 (ni même lipschitzienne) donc le théorème de Cauchy-Lipschitz ne s'applique pas.
+$f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$ donc le théorème de Peano nous garantie l'existence de solutions au problème de Cauchy pour toute condition initiale. 
+
+De plus, $\sqrt{|x|}\leq 1+|x|$ pour tout $x\in \R$ donc $f$ est linéairement bornée et toute solution maximale est globale, donc ici définie sur $\R$. 
+
+Enfin, $f$ est $C^1$ sur $\R\times (\R\setminus \{0\})$ donc lorsque $x_0\neq 0$, il existe une unique solution maximale dans $\R\setminus \{0\}$ d'après le théorème de Cauchy-Lipschitz. Lorsque $x_0=0$ par contre, $f$ n'est pas $C^1$ en 0 (ni même lipschitzienne) donc le théorème de Cauchy-Lipschitz ne s'applique pas.
 
 ### Question 2 {.answer #answer-tor-2}
 Soit d'abord $x_0>0$. Tant que $x(t)>0$, on a
@@ -940,7 +952,7 @@ La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir v
 
 ### Question 4 {.answer #answer-tor-4}
 
-Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\overline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions en temps rétrograde. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
+Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0+\delta}-\frac{1}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\underline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions en temps rétrograde. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
 
 ## Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
@@ -993,7 +1005,8 @@ avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont co
 
 ### Question 3 {.anwser #answer-gro-3}
 
-Soient $x:I\to \R^n$ et $x_\delta:I_\delta\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset I$. On sait que
+Supposons que les solutions soient globales.
+Soient $x:J\to \R^n$ et $x_\delta : J\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset J$. On sait que
 \begin{align*}
 x(t)&=x_0  + \int_{t_0}^t f(s,x(s))ds & \forall t\in I\\
 x_\delta(t)&=x_0 +\delta  + \int_{t_0}^t f(s,x_\delta(s))ds &\forall t\in I
@@ -1030,7 +1043,7 @@ Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives �
 ## Oscillateur {.correction #correc_masse_ressort}
 
 ### Question 1 {.answer #answer-ressort-1}
-Prenons $x=(p,\dot{p})$ qui vérifie
+Prenons $x=(y,\dot{y})$ qui vérifie
 $$
 \dot{x} = 
 \left(
@@ -1048,12 +1061,17 @@ avec $A=\left(
 -\frac{k}{m}&-\frac{\lambda}{m}
 \end{matrix}
 \right)$.
-Le seul point d'équilibre est donc $x=(0,0)$, c'est-à-dire sa position d'équilibre à vitesse nulle.
+Puisque $A$ est inversible ($\text{det} A=\frac{k}{m}\neq 0$), le seul point d'équilibre est $x=(0,0)$.
 
 ### Question 2 {.answer #answer-ressort-2}
 
-Si $\lambda>0$, on a $\text{tr}(A)= -\frac{\lambda}{m}<0$ et $\text{det}(A)=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz donc le système est globalement asymptotiquement stable. En fait, les frottements permettent de ramener le ressort à l'équilibre.
-Lorsque $\lambda=0$, les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$ donc 0 n'est plus asymptotiquement stable. En fait l'énergie du système
+$x\mapsto Ax$ est $C^1$ donc d'après le théorème de Cauchy-Lipschitz, les solutions sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions sont définies pour tout $t$ par $x(t)=e^{At}x_0$.
+
+### Question 3 {.answer #answer-ressort-3}
+
+Si $\lambda>0$, on a $\text{tr} A= -\frac{\lambda}{m}<0$ et $\text{det} A=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz et il s'ensuit que 0 est globalement asymptotiquement stable. On pourrait aussi calculer explicitement les valeurs propres et vérifier qu'elles sont à partie réelle strictement négative. 
+
+Lorsque $\lambda=0$, les frottements sont absents et les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$. Donc 0 n'est plus asymptotiquement stable. Dans ce cas, l'énergie du système
 $$
 V(x)
 = \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2
@@ -1062,7 +1080,9 @@ est conservée le long des trajectoires, c'est-à-dire,
 $$
 \dot{\overline{V(x)}} = kx_1x_2 -kx_1x_2 = 0 \ .
 $$ 
-D'après le théorème de Lyapunov, puisque $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_osci) ci-dessous.
+D'après le théorème de Lyapunov, puisque $V$ est à valeurs positives, $C^1$ et telle que $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. 
+
+Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_osci) ci-dessous.
 
 ![Plan de phase d'un oscillateur amorti à droite et non amorti à gauche](images/oscillateur.py){#fig_osci}
 
@@ -1109,26 +1129,32 @@ J_f(0,0) =
 \end{matrix}
 \right)
 $$
-qui a pour valeurs propres $1\pm i$. Le point d'équilibre est donc instable.
+qui a pour valeurs propres $1\pm i$. La partie réelle étant positive, le point d'équilibre est  instable.
 
 ### Question 2 {.answer #answer-cycle-lim-2}
 \begin{align*}
 \frac{d}{dt}V(x(t)) &= \langle \nabla V(x) , f(x) \rangle \\
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
-& -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
+&= -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
 \end{align*}
-Donc $\frac{d}{dt}V(x)$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon.
+Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon.
 
 ### Question 3 {.answer #answer-cycle-lim-3}
-Les trajectoires initialisées sur le cercle y restent, suivant la dynamique d'un oscillateur
+Si $V(x(0))=x_1(0)^2+x_2(0)^2=1$, alors $V$ est constant donc les trajectoires initialisées sur le cercle de rayon 1 y restent. Sur le cercle, la dynamique suit celle d'un oscillateur
 $$
 \begin{array}{rcl}
 \dot{x}_1 &=& x_2\\
 \dot{x}_2 &=& -x_1\\
 \end{array}
 $$
-Celles initialisées à l'extérieur du cercle convergent vers le cercle mais sans jamais l'atteindre car cela contradirait l'unicité des solutions en un point du cercle ($f$ est $C^1$ donc le théorème de Cauchy-Lipschitz s'applique); celles initialisées à l'intérieur (sauf en zero) de même. 
-Enfin, la trajectoire initialisée à zéro reste à zéro. Le portrait de phase est donné [ci-dessous](#fig_cycle_limite).
+
+Si $V(x(0))=x_1(0)^2+x_2(0)^2>1$ alors $V$ décroit strictement tant qu'il reste plus grand que 1. Donc les trajectoires initialisées à l'extérieur du cercle s'en approchent. En fait, on peut montrer qu'elles ne l'atteignent jamais. Car sinon on aurait une solution initialisée sur le cercle qui le quitterait en temps rétrograde. Or il existe une autre solution qui reste sur le cercle en temps rétrograde, ce qui est impossible par le théorème de Cauchy Lipschitz ($f$ est $C^1$) 
+
+Si $0< V(x(0))=x_1(0)^2+x_2(0)^2<1$ alors $V$ croit strictement tant qu'il reste plus petit que 1.
+
+Enfin, la trajectoire initialisée à zéro reste à zéro. 
+
+Le portrait de phase est donné [ci-dessous](#fig_cycle_limite).
 
 ![Portrait de phase de l'exercice Cycle Limite](images/cycle_limite.py){#fig_cycle_limite}
 
