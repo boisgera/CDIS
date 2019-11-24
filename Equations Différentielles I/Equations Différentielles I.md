@@ -16,16 +16,16 @@
 Un peu d'histoire
 =====================
 
-L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et la modélisation du mouvement des planètes par Kepler et Newton. Le premier réflexe est alors de chercher des solutions exactes, par exemple sous forme de série (Leibniz), mais l'on se rend progressivement compte des limites de ces méthodes, mis à part dans des cas très particuliers. 
+L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et de la modélisation du mouvement par Kepler et Newton. Le premier réflexe est alors de chercher des solutions exactes, par exemple sous forme de série (Leibniz), mais ces méthodes atteignent vite leurs limites, mis à part dans des cas très particuliers. 
 
-Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on commence à chercher à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
+Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on cherche à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
 Laplace, qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
 
 Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
 
-En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des sytèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
+En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens comme Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des sytèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
 
-Objectifs
+Objectifs du cours
 ========================
 
 En première lecture :
@@ -34,7 +34,7 @@ En première lecture :
 
 - savoir justifier l'existence de solutions par le théorème de Peano lorsque "$f$ est continue", et l'unicité des solutions maximales par le théorème de Cauchy-Lipschitz lorsque "$f$ est $C^1$ par rapport à $x$".
 
-- comprendre que les solutions ne sont pas toujours définie globalement si elles "explosent en temps fini" où atteignent le bord du domaine où l'équation différentielle est définie. Savoir faire appel au critère "linéairement borné" pour justifier la globalité des solutions.
+- comprendre que les solutions ne sont pas toujours définies globalement si elles "explosent en temps fini" où atteignent le bord du domaine où l'équation différentielle est définie. Savoir faire appel au critère "linéairement borné" pour justifier la globalité des solutions.
 
 - comprendre (qualitativement) dans quelle mesure une erreur sur la condition initiale se répercute sur les solutions en temps fini. 
 
@@ -42,7 +42,7 @@ En première lecture :
 
 - savoir déterminer si un système linéaire est globalement asymptotiquement stable en regardant le signe de la partie réelle de ses valeurs propres.
 
-- savoir déterminer si un point d'équilibre est localement asymptotiquement stable/instable par les valeurs propres de sa matrice Jacobienne.
+- savoir déterminer si un point d'équilibre est localement asymptotiquement stable/instable par les valeurs propres de la matrice Jacobienne associée.
 
 - savoir calculer la dérivée  d'une fonction de Lyapunov le long des trajectoires et en déduire qu'un point d'équilibre est stable ou  localement/globalement asymptotiquement stable.
 
@@ -52,6 +52,8 @@ En deuxième lecture :
 - comprendre la preuve du théorème de Cauchy-Lipschitz en voyant la solution comme un point fixe de la représentation intégrale des solutions.
 
 - savoir que l'on peut relâcher l'hypothèse du théorème de Cauchy-Lipschitz à "$f$ Lipschitzienne par rapport à $x$". 
+
+- comprendre le théorème des bouts.
 
 - comprendre ce que représente l'exposant de Lyapunov d'un système chaotique.
 
@@ -84,7 +86,7 @@ $$
 $$
 où $R$, $L$, $C$ notent la résistance, inductance et capacité respectivement, et $u$ la tension appliquée par le générateur. Cette équation différentielle implique les dérivées de $u_c$ jusqu'à l'ordre 2, donc on parle d'équation différentielle d'ordre 2.
 
-- Un moteur électrique à aimant permanent évolue selon
+<!--- Un moteur électrique à aimant permanent évolue selon
 \begin{align*}
 L \dot{\overline{i_\alpha}} &= -Ri_\alpha + \omega \phi \sin\theta +u_\alpha(t) \\
 L \dot{\overline{i_\beta}} &= -Ri_\beta - \omega \phi \cos\theta +u_\beta(t) \\
@@ -92,18 +94,31 @@ J\dot{\omega} &= p\phi(-i_\alpha\sin\theta + i_\beta \cos\theta) - a \, \omega -
 \dot{\theta} &= \omega
 \end{align*}
 où $(u_\alpha,u_\beta)$ est la tension appliquée au stator, $(i_\alpha,i_\beta)$ l'intensité du courant dans le stator, $R$ et $L$ sa résistance et son inductance respectivement, $\phi$ l'intensité du champ électromagnétique créé par l'aimant, $\theta$ l'angle du moteur, $\omega$ sa vitesse, $a$ un paramètre de frottement et $\tau$ la charge. Ici, seules dérivées d'ordre 1 apparaissent donc c'est une équation différentielle d'ordre 1.
+-->
+
+- En cinétique chimique, les concentrations des espèces chimiques intervenant dans une réaction
+$$
+A+ B \overset{k}{\underset{k'}{\leftrightarrows}}  C 
+$$
+sont régies par une équation différentielle d'ordre 1 donnée par
+\begin{align*}
+\dot{c}_A &= -k \, c_Ac_B + k'c_C \\
+\dot{c}_B &= -k \, c_Ac_B + k'c_C\\
+\dot{c}_C &= k \, c_Ac_B - k'c_C
+\end{align*}
+avec $k,k'$ les constantes de réaction. Cette équation différentielle n'a pas de terme extérieur variant avec le temps. On dit qu'elle est *autonome*.
 
 - La mécanique Newtonienne ou Lagrangienne amène typiquement à des équations du type
 $$
-M \ddot{y} = \sum_k F_k(t,y,\dot{y})
+M \ddot{q} = \sum_k F_k(t,q,\dot{q})
 $$
-où $y\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\dot{y}$ sa vitesse et $\ddot{y}$ son accélération, avec $M$ la matrice d'inertie, et $F_k$ les forces/couples agissant sur le système.  Ici il s'agit d'une équation différentielle d'ordre 2.
+où $q\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\dot{q}$ sa vitesse et $\ddot{q}$ son accélération, avec $M$ la matrice d'inertie, et $F_k$ les forces/couples agissant sur le système. Ici il s'agit d'une équation différentielle d'ordre 2.
 
 Dans tous ces cas, on s'intéresse aux signaux du temps $t$ qui vérifient ces équations. Ceci est formalisé dans la définition suivante.
 
 
 ### Equation différentielle d'ordre $p$  {.definition}
-Soient $n\in \N^*$, $p\in\N^*$, $J$ ouvert de $\R$, $Y$ ouvert de $\R^{np}$ et $\psi:J\times Y \to \R^n$ une application continue. Une fonction $y:I\to \R^n$ sur un intervalle de temps $I\subseteq \R$ non réduit[^intI] à un point, est dite *solution (sur[^solsurI] $I$)* de *l'équation différentielle d'ordre $p$* 
+Soient $n\in \N^*$, $p\in\N^*$, $J$ ouvert de $\R$, $Y$ ouvert de $\R^{np}$ et $\psi:J\times Y \to \R^n$ une application continue. Une fonction $y:I\to \R^n$ sur un intervalle de temps $I\subseteq \R$ non réduit[^intI] à un point, est dite *solution[^solsurI]* de *l'équation différentielle d'ordre $p$* 
 $$
 y^{(p)} = \psi(t,y,\dot{y},\ldots, y^{(p-1)})
 $$
@@ -117,9 +132,9 @@ On dira que l'équation différentielle est *autonome* si l'application $\psi$ n
 
 Lorsque l'intervalle de temps $I$ de définition de la solution est $J$ entier, on dira que la solution est globale. Mais l'on verra qu'il peut parfois arriver qu'une solution n'existe que sur un intervalle de temps fini, plus *petit* que $J$, par exemple si elle explose avant, ou si elle s'apprête à quitter $Y$.
 
-Notons que $f$ sera souvent définie globalement avec $J=\R$ et $Y = \R^{np}$. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|}$ n'est définie que pour $y_a\neq y_b$.
+Notons que $f$ sera souvent définie globalement avec $J=\R$ et $Y = \R^{np}$. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|^2}$ n'est définie que pour $y_a\neq y_b$.
 
-
+Même si la physique nous donne souvent des équations différentielles d'ordre supérieur, il est toujours possible de se ramener à l'ordre 1. Cette réduction doit être systématique et sera cruciale dans la suite pour l'étude des propriétés des solutions.
 
 ### Réduction à l'ordre 1
 Soient $p\in\N^*$, $J$ ouvert de $\R$, $Y$ ouvert de $\R^{np}$ et $\psi:J\times Y  \to \R^n$ une application continue. 
@@ -152,7 +167,7 @@ f(t,x_1,x_2) =
 \right] \ .
 $$
 
-- pour le moteur électrique, $x=(i_\alpha,i_\beta,\theta,\omega)\in \R^4$ et
+<!-- - pour le moteur électrique, $x=(i_\alpha,i_\beta,\theta,\omega)\in \R^4$ et
 $$
 f(t,x_1,x_2,x_3,x_4) = \left[
     \begin{matrix}
@@ -163,8 +178,20 @@ f(t,x_1,x_2,x_3,x_4) = \left[
     \end{matrix}
 \right]
 $$
+-->
 
-- en mécanique, $x=(y,\dot{y})$ et
+- en cinétique chimique, $x=(c_A,c_B,c_C)\in \R^3$ et 
+$$
+f(t,x_1,x_2,x_3) = \left[
+    \begin{matrix}
+         -k \, x_1x_2 + k'x_3 \\
+         -k \, x_1x_2 + k'x_3\\
+         k \, x_1x_2 - k'x_3
+    \end{matrix}
+\right]
+$$
+
+- en mécanique, $x=(q,\dot{q})$ et
 $$
 f(t,x_1,x_2) = 
 \left[
@@ -191,13 +218,15 @@ On dira donc que $x:I\to \R^n$ est solution du problème de Cauchy défini par $
 
 On notera alors $x\in S_f(t_0,x_0)$.
 
-Afin d'étudier les solutions d'un problème de Cauchy, il est crucial d'abord de remarquer la charactérisation qui suit.
+Avant d'étudier les solutions d'un problème de Cauchy, il est crucial de remarquer la charactérisation qui suit.
 
 ### Représentation intégrale des solutions {.theorem #theo_eq_integrale}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$, $I\subset J$ un intervalle de $\R$ non réduit à un point, $t_0\in I$, $x_0\in X$, et $x\in C(I,\R^n)$ telle que $x(t)\in X$ pour tout $t\in I$. Alors, $x\in S_f(t_0,x_0)$ si et seulement si $x$ est solution de l'équation intégrale
 $$
 x(t) = x_0 + \int_{t_0}^t f(s,x(s))ds \qquad \forall t\in I \ .
 $$
+
+Notons que cette caractérisation n'aurait pas été possible si l'on avait gardé une équation différentielle d'ordre $p>1$.
 
 ### Démonstration {.proof} 
 Supposons $x\in S_f(t_0,x_0)$. Alors $x\in C^1(I,\R^n)$, et pour tout $t\in I$,
@@ -207,18 +236,11 @@ $$
 Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $I\times X$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.
 
 ### Classe plus générale de solutions {.remark}
-La définition sous forme intégrale des solutions montre que l'hypothèse de continuité de $f$ pourrait être relachée: il suffit de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Par exemple, un contexte plus large consiste à supposer seulement que dans un voisinage de $(t_0,x_0)$,
+La définition sous forme intégrale des solutions montre que la recherche de solutions $C^1$ et l'hypothèse de continuité de $f$ pourraient être relachées: il suffirait de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Mais il est souhaitable tout de même d'assurer un minimum de propriétés telles que l'existence de solutions, comme nous allons le voir dans la section suivante.
 
-- pour tout $t$, $x\mapsto f(t,x)$ est continue ;
-
-- pour tout $x$, $t\mapsto f(t,x)$ est mesurable ; 
-
-- il existe une fonction intégrable $t\mapsto b(t)$ telle que $|f(t,x)|\leq b(t)$ pour tout $(t,x)$.
-
- Sous ses conditions plus faibles, dites de *Carathéodory*, l'existence de solutions *généralisées* sous forme intégrale est toujours bien garantie. Un cadre encore plus général consisterait à autoriser des discontinuités de $f$ en $x$ mais l'étude des solutions passerait alors par celle des *inclusions différentielles* du type $\dot{x} \in F(t,x)$, ce qui nous amènerait bien trop loin de ce cours.  
 
 ### Portrait de phase   
-En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. Voir [Figure](#fig_pendule) dans le cas d'un pendule.
+En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. Voir [Figure](#fig_pendule) ci-dessous dans le cas d'un pendule.
 
 ![Portraits de phase d'un pendule non amorti à gauche et amorti à droite. $x_1$ représente l'angle du pendule et $x_2$ sa vitesse de rotation.](images/pendule.py){#fig_pendule}
 
@@ -252,6 +274,17 @@ $$
 permettant de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli*.
 La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. En fait, on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales.
 
+### Classe plus générale de solutions (pour la culture) {.remark}
+L'existence de solutions $C^1$ est garantie lorsque $f$ est continue. Il s'avère que l'existence de solutions *absolument continues*, est garantie sous les hypothèses plus faibles suivantes dans un voisinage de $(t_0,x_0)$ :
+
+- pour tout $t$, $x\mapsto f(t,x)$ est continue ;
+
+- pour tout $x$, $t\mapsto f(t,x)$ est mesurable ; 
+
+- il existe une fonction intégrable $t\mapsto b(t)$ telle que $|f(t,x)|\leq b(t)$ pour tout $(t,x)$.
+
+ Ce sont les conditions de *Carathéodory*. Un cadre encore plus général consisterait à autoriser des discontinuités de $f$ en $x$ mais l'étude des solutions passerait alors par celle des *inclusions différentielles* du type $\dot{x} \in F(t,x)$, ce qui nous amènerait bien trop loin de ce cours.  
+
 
 Unicité des solutions
 -------------------------------
@@ -264,7 +297,7 @@ Alors pour tout $(t_0,x_0)\in J\times X$, il existe une unique solution maximale
 
 ### Démonstration {.proof} 
 
-Nous donnons ici le principe de la preuve qu'il est important de comprendre. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $J\times X$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
+Nous donnons ici le principe de la preuve qui peut être passée en première lecture, mais qu'il est intéressant de comprendre d'un point de vue scientifique. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $J\times X$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
 **Théorème de Cauchy-Lipschitz local** Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in J\times X$. Soient $\tau>0$ et $r>0$ tels que 
 $$
@@ -277,6 +310,8 @@ $$--->
 il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+\tau_m]$. 
 
 **Démonstration**
+
+La preuve consiste à voir les solutions comme des points fixes d'un certain opérateur intégral, obtenu par la représentation intégrale des solutions. Le théorème du point fixe de Banach permet ensuite de montrer l'existence et l'unicité de ce point fixe.
 
 Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous du cours de Topologie que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$  est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
 $$
@@ -291,7 +326,7 @@ Or d'après la [représentation intégrale des solutions](#theo_eq_integrale), o
 $$
 \Gamma(x)=x
 $$
-c'est-à-dire $x$ est un point fixe de $\Gamma$. Par ailleurs, on peut prouver[^solutionF]  que pour tout $x\in S_f(t_0,x_0)$ définie sur $\left[t_0-\tau_m,t_0+\tau_m \right]$, $x$ est dans $F$: c'est donc un point fixe $x^*$ de $\Gamma$ sur $F$. L'idée de la preuve est donc de montrer que $\Gamma$ (ou une de ses itérées) est contractante pour utiliser le théorème de point fixe sur un espace de Banach et en déduire l'existence et l'unicité de ce point fixe.
+c'est-à-dire $x$ est un point fixe de $\Gamma$. Par ailleurs, on peut prouver[^solutionF]  que pour tout $x\in S_f(t_0,x_0)$ définie sur $\left[t_0-\tau_m,t_0+\tau_m \right]$, $x$ est dans $F$ : c'est donc un point fixe $x^*$ de $\Gamma$ sur $F$. L'idée de la preuve est donc de montrer que $\Gamma$ (ou une de ses itérées) est contractante pour utiliser le théorème de point fixe sur un espace de Banach et en déduire l'existence et l'unicité de ce point fixe.
 
 D'abord, pour tout $x\in F$, pour tout $t\in \left[t_0-\tau_m,t_0+\tau_m \right]$,
 $$
@@ -321,7 +356,7 @@ La première preuve d'existence et unicité locale de solutions sous l'hypothès
 $$
 \|f(t,x_a)-f(t,x_b)\|\leq k \|x_a-x_b\| \qquad \forall t\in \left[t_0-\tau_m,t_0+\tau_m \right], \forall (x_a,x_b)\in \overline{B}_r(x_0) \ ,
 $$
-c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendante: d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement que $x\mapsto f(t,x)$ soit lipschitzienne au voisinage de $(t_0,x_0)$, au lieu de différentiable. Par exemple, $x\mapsto \|x\|$ est lipschitzienne (mais pas $C^1$) et $\dot{x}=\|x\|$ admet donc une unique solution maximale quel que soit la condition initiale.
+c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendante : d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement que $x\mapsto f(t,x)$ soit lipschitzienne au voisinage de $(t_0,x_0)$, au lieu de différentiable. Par exemple, $x\mapsto \|x\|$ est lipschitzienne (mais pas $C^1$) et $\dot{x}=\|x\|$ admet donc une unique solution maximale quelque soit la condition initiale.
 
 ### Approximations successives {.remarque #rem_approx_succ}
 Mise à part quelques formes particulières de $f$, il est très rare de savoir résoudre explicitement une équation différentielle. Cependant, la preuve (dans sa forme moderne donnée plus haut) caractérise la solution comme le point fixe de l'opérateur $\Gamma$. Or, on sait par la preuve du théorème du point fixe de Banach que ce point fixe est la limite uniforme de la suite des itérées de $\Gamma$. En pratique, on peut donc s'approcher arbitrairement proche  de la solution   sur l'intervalle $\left[t_0-\tau_m,t_0+\tau_m \right]$ (au sens de la norme uniforme), en calculant la suite $x_{p+1} = \Gamma(x_p)$ définie par
@@ -334,13 +369,13 @@ Cette méthode de recherche de point fixe porte le nom d'*approximations success
 
 ### Exemples {.example #ex_lips}
 
-- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $a\in C(\R,\R^{n\times n})$ et $b\in C(\R,\R^n)$ telles que
+- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A\in C(\R,\R^{n\times n})$ et $b\in C(\R,\R^n)$ telles que
 $$
-f(t,x) = a(t) x + b(t) \ ,
+f(t,x) = A(t) x + b(t) \ ,
 $$
-admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $\partial_x f(t,x) = a(t)$ (en identifiant abusivement ici différentielle et matrice Jacobienne).
+admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $\partial_x f(t,x) = A(t)$ (en identifiant abusivement ici différentielle et matrice Jacobienne).
 
-- Les équations décrivant l'évolution de la tension dans un circuit RLC, et celles d'un moteur électrique données au début de ce cours admettent une unique solution au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,p,\dot{p})$ sont $C^1$ par rapport à la position et la vitesse $(p,\dot{p})$.
+- Les équations décrivant l'évolution de la tension dans un circuit RLC ou la cinétique chimique données au début de ce cours admettent une unique solution au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,q,\dot{q})$ sont $C^1$ par rapport à la position et la vitesse $(q,\dot{q})$.
 
 
 Solutions globales
@@ -426,7 +461,7 @@ Cette conviction *déterministe*, c'est-à-dire que les phénomènes physiques p
 
 Cependant, à la fin du XIXème siècle, on se rend vite compte que la réalité est en fait toute autre :
 
-- d'une part, la condition initiale et le modèle ne sont jamais parfaitement connus: quelle est alors la qualité de notre prédiction ?  
+- d'une part, la condition initiale et le modèle ne sont jamais parfaitement connus : quelle est alors la qualité de notre prédiction ?  
 
 - d'autre part, ne pouvant généralement pas calculer explicitement la solution, comment anticiper son comportement sur des temps longs, voire son comportement asymptotique ?
 
@@ -439,7 +474,7 @@ La première question fut soulevée par Henri Poincaré à la fin du XIXème si�
 
 >Si un cône repose sur sa pointe, nous savons bien qu'il va tomber, mais nous ne savons pas de quel côté [...]. Si le cône était parfaitement symétrique, si son axe était parfaitement vertical, s'il n'était soumis à aucune autre force que la pesanteur, il ne tomberait pas du tout. Mais le moindre défaut de symétrie va le faire pencher légèrement d'un côté ou de l'autre, et dès qu'il penchera, si peu que ce soit, il tombera tout à fait de ce côté. Si même la symétrie est parfaite, une trépidation très légère, un souffle d'air pourra le faire incliner de quelques secondes d'arc [...]. -->
 
-Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *régulière* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais modéliser tous les phénomènes parfaitement.
+Le théorème suivant nous montre que pour un horizon de temps fini donné, on peut obtenir une solution arbitrairement précise si le système est initialisé suffisamment précisément et si les perturbations (ou erreurs de modèle) sont suffisamment faibles. En d'autres termes, la solution est *continue* par rapport aux perturbations en temps fini. Ceci est crucial en physique puisque l'on ne peut jamais modéliser tous les phénomènes parfaitement.
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
 
@@ -491,11 +526,11 @@ Henri Poincaré écrit :
 <!-- Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir, et alors nous disons que cet effet est dû au hasard. -->
 > Si nous connaissions exactement les lois de la nature et la situation de l'univers à l'instant initial, nous pourrions prédire exactement la situation de ce même univers à un instant ultérieur. Mais, lors même que les lois naturelles n'auraient plus de secret pour nous, nous ne pourrions connaître la situation qu'approximativement. Si cela nous permet de prévoir la situation ultérieure avec la même approximation, c'est tout ce qu'il nous faut, nous disons que le phénomène a été prévu, qu'il est régi par des lois ; mais il n'en est pas toujours ainsi, il peut arriver que de petites différences dans les conditions initiales en engendrent de très grandes dans les phénomènes finaux ; une petite erreur sur les premières produirait une erreur énorme sur les derniers. La prédiction devient impossible. 
 
-En effet, le précédent théorème nous prouve seulement que des perturbations suffisamment petites donnent des solutions arbitrairement proches en temps fini. Mais, en pratique, il est rarement possible de choisir l'amplitude des perturbations (erreurs de capteurs, erreurs numérique etc.) et il se pourrait que l'ordre de grandeur des perturbations produisant des erreurs *acceptables* sur les solutions ne soit pas réalisable. Plus précisément, le théorème suggère qu'à perturbation $|\delta|$ donnée, l'écart entre les solutions pourrait croître exponentiellement vite. C'est le cas bien sûr des systèmes qui divergent exponentiellement (tels que $\dot{x}=x$), mais aussi de certains systèmes à trajectoires bornées, pour lesquels il existe $\overline{t}>0$ tel que
+En effet, le précédent théorème nous prouve seulement que des perturbations suffisamment petites donnent des solutions arbitrairement proches en temps fini. Mais, en pratique, il est rarement possible de choisir l'amplitude des perturbations (erreurs de capteurs, erreurs numériques etc.) et il se pourrait que l'ordre de grandeur des perturbations produisant des erreurs *acceptables* sur les solutions ne soit pas réalisable. Plus précisément, le théorème suggère qu'à perturbation $|\delta|$ donnée, l'écart entre les solutions pourrait croître exponentiellement vite. C'est le cas bien sûr des systèmes qui divergent exponentiellement (tels que $\dot{x}=x$), mais aussi de certains systèmes à trajectoires bornées, pour lesquels il existe $\overline{t}>0$ tel que
 $$
 \frac{|x(t)-x_\delta(t)|}{|\delta|} \approx e^{\lambda t}  \qquad \forall t\leq \overline{t} \ .
 $$
-Dans ce cas, $\frac{1}{\lambda}$ représente l'ordre de grandeur du temps maximal jusqu'auquel l'erreur sur les solutions reste du même ordre de grandeur que l'erreur initiale: on parle d'*horizon de Lyapunov*. Toute prédiction au delà de cet horizon est illusoire et le système est alors dit *chaotique*.
+Dans ce cas, $\frac{1}{\lambda}$ représente l'ordre de grandeur du temps maximal jusqu'auquel l'erreur sur les solutions reste du même ordre de grandeur que l'erreur initiale : on parle d'*horizon de Lyapunov*. Toute prédiction au delà de cet horizon est illusoire et le système est alors dit *chaotique*.
 
 Il est important d'insister sur le caractère *déterministe* de ce chaos : chaque cause entraîne un effet bien déterminé mais deux causes très proches peuvent avoir des effets très différents. 
 
@@ -511,7 +546,7 @@ où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour 
 
 - En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années. 
 
-- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité parfois lors d'une excitation sinusoïdale à certaines fréquences: pendule forcé, oscillateur de Van der Pol, etc. REFFF
+- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité, la mécanique. Parfois, le comportement chaotique apparaît seulement lorsque le système est soumis à certaines excitations, par exemple sinusoïdales : pendule forcé, oscillateur de Van der Pol, etc. REFFF
 
 ![Trajectoire de l'oscillateur de Lorenz](images/attracteur_lorenz.py){#fig_attracteur_lorenz}
 
@@ -528,10 +563,10 @@ On appelle *point d'équilibre* un point $a\in \R^n$ tel que
 $$
 f(a) = 0  \ .
 $$
-En d'autres termes, la fonction constante $x\equiv a$ est alors solution.
+En d'autres termes, la fonction constante $x\equiv a$ est alors solution de $\dot{x}=f(x)$.
 
 ### Exemple d'un pendule {.exemple #ex_pendule}
-L'évolution d'un pendule de longueur $\ell$ dans le champ de l'apesanteur peut être décrit par une dynamique du type
+L'évolution d'un pendule de longueur $\ell$ et de masse $m$ dans le champ de l'apesanteur $g$ peut être décrit par une dynamique du type
 $$
 \ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
 $$
@@ -577,9 +612,9 @@ $$
 
 
 ### Exemples
-- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse: l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule amorti](#fig_pendule) donné plus haut.  
+- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse : l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc localement asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule amorti](#fig_pendule) donné plus haut.  
 
-- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante: la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule) donné plus haut.  
+- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante : la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule) donné plus haut.  
 
 <!-- - Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Un exemple célèbre est le système de [Vinograd](#fig_vinograd) dont le portrait de phase est représenté ci-dessous.
 
@@ -594,11 +629,11 @@ $$
 si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative. On dit alors que la matrice est *Hurwitz*, du nom du mathématicien allemand Adolf Hurwitz.
 
 ### Démonstration {.proof} 
-La notion de *globalement asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité globale. On montrera en [exercice](#exo_attrac_stab) que pour un système linéaire, elles sont équivalentes à l'attractivité (locale), c'est-à-dire que la stabilité et la globalité viennent gratuitement. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
+La notion de *globalement asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité globale. On montrera en [exercice](#attrac_stab) que pour un système linéaire, elles sont équivalentes à l'attractivité (locale), c'est-à-dire que la stabilité et la globalité viennent gratuitement. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
 $$
 x(t)= e^{At} x_0 \ .
 $$
-Si $A$ était diagonale (réelle), on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ inversible telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit, toute matrice $A$ n'est pas diagonalisable. Par contre, il existe toujours $P\in \R^{n\times n}$ inversible telle que
+Si $A$ était diagonale, on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ inversible telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit, toute matrice $A$ n'est pas diagonalisable. Par contre, il existe toujours $P\in \R^{n\times n}$ inversible telle que
 $$
 P^{-1} A P = D + N
 $$
@@ -608,7 +643,7 @@ e^{Jt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
 converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 
-Attention ce critère n'est valable que pour $A$ constant. Le fait que $A\in C(I,\R^{n\times n})$ soit Hurwitz pour tout $t$ n'implique pas que le système
+Attention ce critère n'est valable que pour $A$ constant. Le fait que $A(t)$ soit Hurwitz pour tout $t$ n'implique pas que le système
 $$
 \dot{x} = A(t) x 
 $$
@@ -620,7 +655,7 @@ A(t) = \left( \begin{matrix}
 \end{matrix}
 \right)
 $$
-a des valeurs propres constantes égales à $-0.25\pm 0.25\sqrt{7}$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées for $x(0)$ aribitrairement proche de 0.
+a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ aribitrairement proche de 0.
 
 ### Lien entre stabilité et stabilité du linéarisant tangent
 Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si  $J_f(a)$ est Hurwitz.
@@ -647,7 +682,7 @@ J_f(\pi,0)= \left( \begin{matrix}
 \end{matrix}
 \right) 
 $$
-Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#exo_crit_stab_dim2), ceci implique que $J_f(0,0)$ est Hurwitz. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
+Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#answer-crit_stab_dim2), ceci implique que $J_f(0,0)$ est Hurwitz. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
 Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
 
 Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
@@ -663,13 +698,15 @@ $$
 
 - Si $\langle \nabla V (x), f(x) \rangle < 0$ pour tout $x\in W\setminus \{a\}$ alors $a$ est localement asymptotiquement stable.
 
-- Si $V$ est propre[^def_propre], $W=\R^n$, et $\langle\nabla V (x), f(x)\rangle < 0$ pour tout  $x\neq a$ alors $a$ est globalement asymptotiquement stable.
+- Si $\lim_{\|x\|\to +\infty} V(x) = +\infty$, $W=\R^n$, et $\langle\nabla V (x), f(x)\rangle < 0$ pour tout  $x\neq a$ alors $a$ est globalement asymptotiquement stable.
 
 $V$ est alors appelée *fonction de Lyapunov*. En fait, 
 $$
-\langle\nabla V (x(t)), f(x(t))\rangle = \frac{d}{dt} V(x(t))
+\langle\nabla V (x(t)), f(x(t))\rangle = \langle\nabla V (x(t)), \dot{x}(t)\rangle = \frac{d}{dt} V(x(t))
 $$  
-le long d'une trajectoire $t\mapsto x(t)$ de l'équation différentielle $\dot{x} = f(x)$. $V$ représente donc une grandeur positive qui décroît ou est conservée le long des trajectoires. Pour des systèmes physiques, elle est donc souvent reliée à l'énergie.
+le long d'une trajectoire $t\mapsto x(t)$ de l'équation différentielle $\dot{x} = f(x)$. $V$ représente donc une grandeur positive qui décroît ou est conservée le long des trajectoires. Pour des systèmes physiques, elle est souvent reliée à l'énergie.
+
+Le fait que $\lim_{\|x\|\to +\infty} V(x)= +\infty$ sert à montrer que toute les trajectoires sont bornées et donc définies pour tout $t$. Sans cette hypothèse, et même si $V$ décroit strictement le long de toutes les trajectoires, on pourrait avoir des trajectoires qui explosent en temps fini.
 
 ### Démonstration {.proof}  
 Supposons d'abord que $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$. On a donc pour toute solution $t\mapsto x(t)$ initialisée dans $W$, $V(x(t))\leq V(x(0))$ tant que  $x(t)\in W$. Prenons $\varepsilon>0$ suffisamment petit tel que $\overline{B}_{2\varepsilon}(a)\subset W$. On veut montrer qu'il existe $\eta$ tel que toute trajectoire initialisée dans $B_{\eta}(a)$ reste dans $B_{\varepsilon}(a)\subset W$. Tout d'abord, il existe $\varepsilon_V>0$ tel que 
@@ -692,7 +729,7 @@ V(x(t)) = V(x(\overline{t})) + \int_0^t \langle\nabla V (x(t)), f(x(t))\rangle \
 $$
 Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un certain temps, ce qui est impossible. Donc $\lim_{t\to +\infty} V(x(t))=0$. Finalement, reproduisant le même raisonnement que pour l'existence de $\varepsilon_V$, on peut garantir que $\|x-a\|$ est arbitrairement petit en prenant $V(x)$ suffisamment petit. Donc on en déduit que $\lim_{t\to +\infty} \|x(t)-a\|=0$.
 
-Supposons enfin que $V$ est propre et $W=\R^n$. Alors $V(x(t))< V(x(0))$ pour tout $t\in I$ donc $x(t)\in V^{-1}(\left[ 0,V(x(0)) \right])$ pour tout $t$, qui est compact puisque $V$ est propre. Par le théorème des bouts, nécessairement $x(t)$ est défini pour tout $t\geq 0$, et reste dans ce compact. Alors on peut reproduire le même raisonnement que plus haut et obtenir la convergence de $x$ vers $a$.
+Supposons enfin que $\lim_{\|x\|\to +\infty} V(x) = +\infty$ et $W=\R^n$. Alors $V(x(t))< V(x(0))$ pour tout $t\in I$ donc $x(t)\in V^{-1}(\left[ 0,V(x(0)) \right])$ pour tout $t$. Le fait que $\lim_{\|x\|\to +\infty} V(x) = +\infty$ est équivalent au fait que l'image réciproque de toute compact est compact (on dit que $V$ est propre). Donc $V^{-1}(\left[ 0,V(x(0)) \right])$ est compact  et par le théorème des bouts, nécessairement $x(t)$ est défini pour tout $t\geq 0$, et reste dans ce compact. Alors on peut reproduire le même raisonnement que plus haut et obtenir la convergence de $x$ vers $a$.
 
 
 ### Exemple
@@ -719,26 +756,30 @@ Références
 Exercices 
 ==============================================================================
 
-### Ecoulement dans un réservoir {.exercice #exo_Torricelli}
+## Ecoulement dans un réservoir {.exercice #exo_Torricelli}
 Considérons un réservoir cylindrique de section $S$ qui se vide par une ouverture de section $s$ située à sa base. On note $x$ la hauteur de liquide dans le réservoir. D'après la *loi de Torricelli*[^Torricelli], l'équation d'évolution de $x$ est donnée par 
 $$
 \dot{x}=-k\sqrt{|x|} \qquad k = \frac{s}{S}\sqrt{2g}
 $$
 où $g$ est la pesanteur.
 
-1. Etant donné un temps initial $t_0$ et une hauteur initiale $x_0\geq 0$, justifier sans calcul que le problème de Cauchy associé admet des solutions et que les solutions maximales sont globales. Pour quelles valeurs de $x_0$ pouvons-nous dire qu'elles sont uniques ?
+### Question 1 {.question #tor-1}
+Etant donné un temps initial $t_0$ et une hauteur initiale $x_0\geq 0$, justifier sans calcul que le problème de Cauchy associé admet des solutions et que les solutions maximales sont globales. Pour quelles valeurs de $x_0$ pouvons-nous dire qu'elles sont uniques ?
 
-2. Pour $(t_0,x_0)\in \R\times \R_{\geq0}$, résoudre le problème de Cauchy associé en se restreignant aux solutions $x(t)\geq 0$.
+### Question 2 {.question #tor-2}
+Pour $(t_0,x_0)\in \R\times \R_{\geq0}$, résoudre le problème de Cauchy associé en se restreignant aux solutions $x(t)\geq 0$.
 
-3. Comment s'interprète physiquement la multitude de solutions trouvées ?
+### Question 3 {.question #tor-3} 
+Comment s'interprète physiquement la multitude de solutions trouvées ?
 
-4. Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
+### Question 4 {.question #tor-4}
+Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
 
--> [*Correction*](#correc_Torricelli)
 
-### Autour du Lemme de Grönwall {.exercice #exo_gronwall}
+## Autour du Lemme de Grönwall {.exercice #exo_gronwall}
 
-1. (Lemme de Grönwall) Soient $t^-, t^+\in \R$, $u,\alpha, \beta\in C([t^-,t^+],\Rgeq)$, tels que
+### Question 1 (Lemme de Grönwall) {.question #gro-1}
+Soient $t^-, t^+\in \R$, $u,\alpha, \beta\in C([t^-,t^+],\Rgeq)$, tels que
 $$
 u(t) \leq \alpha(t) + \int_{t_0}^{t}\beta(s) u(s)ds \qquad \forall t\in [t^-,t^+] \ .
 $$
@@ -752,34 +793,40 @@ u(t) \leq \alpha \exp\left(\int_{t_0}^t\beta(r)dr \right) \qquad \forall t\in [t
 $$
 *Indice : poser $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ et étudier la dérivée de $v(t)\exp\left(-\int_{t_0}^t\beta(r)dr\right)$*.
 
-2. Utiliser le Lemme de Grönwall pour montrer le [théorème d'existence globale de solutions](#theo_exist_glob). 
+### Question 2 {.question #gro-2}
 
-3. Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI) dans le cas où les solutions sont globales.
+Utiliser le Lemme de Grönwall pour montrer le [théorème d'existence globale de solutions](#theo_exist_glob). 
 
--> [*Correction*](#correc_gronwall)
+### Question 3 {.question #gro-3}
 
-### Critère de stabilité d'un système plan {.exercice #exo_crit_stab_dim2}
+Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI) dans le cas où les solutions sont globales.
+
+
+
+## Critère de stabilité d'un système plan {.question #crit_stab_dim2}
+
 Montrer que $A\in \R^{2\times 2}$ est Hurwitz si et seulement si 
 $$
 \text{tr} A <0  \qquad \text{ et } \qquad \text{det} A >0 \ .
 $$
 
--> [*Correction*](#correc_crit_stab_dim2)
 
-### Oscillateur {.exercice #exo_masse_ressort}
+
+## Oscillateur {.exercice #exo_masse_ressort}
 Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
 $$
 m\ddot{p} = - \lambda \dot{p} -k p \ ,
 $$
 où $\lambda$ est un coefficient de frottement. 
 
-1. Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'équilibre.
+### Question 1 {.question #ressort-1}
+Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'équilibre.
 
-2. Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
+### Question 2 {.question #ressort-2}
+Etudier leur stabilité et le comportement des solutions pour $\lambda=0$ et $\lambda>0$. Les dessiner sur un portrait de phase.
 
--> [*Correction*](#correc_masse_ressort)
 
-### Cycle limite
+## Cycle limite
 Considérons le système
 $$
 \begin{array}{rcl}
@@ -788,35 +835,37 @@ $$
 \end{array}
 $$
 
-1. Montrer que ce système admet un seul point d'équilibre. Etudier sa stabilité.
+### Question 1 {.question #cycle-lim-1}
+Montrer que ce système admet un seul point d'équilibre. Etudier sa stabilité.
 
-2. Posons $V(x) = x_1^2+x_2^2$. Etudier le signe de $\frac{d}{dt}V(x(t))$ le long des trajectoires du système. 
+### Question 2 {.question #cycle-lim-2}
+Posons $V(x) = x_1^2+x_2^2$. Etudier le signe de $\frac{d}{dt}V(x(t))$ le long des trajectoires du système. 
 
-3. En déduire le comportement des solutions en fonction de la condition initiale.
+### Question 3 {.question #cycle-lim-3}
+En déduire le comportement des solutions en fonction de la condition initiale.
 
--> [*Correction*](#correc_cycle_lim)
 
-
-### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.exercice #exo_attrac_stab}
+## Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.question #attrac_stab}
 Soit $A\in \R^{n\times n}$. Montrer que si 0 est localement attractif pour 
 $$
 \dot{x} = Ax
 $$
 alors il l'est globalement et 0 est stable.
 
--> [*Correction*](#correc_attrac_stab)
 
 
-### Contrôle d'un système linéaire {.exercice #exo_cont_lin}
+## Contrôle d'un système linéaire {.exercice #exo_cont_lin}
 Soit le système décrit par
 $$
 \dot{x} = x + u(t)
 $$
 où $t\mapsto u(t)$ est une entrée à choisir.
 
-1. Comment se comporte le système si $u\equiv 0$ ?
+### Question 1 {.question #cont-lin-1}
+Comment se comporte le système si $u\equiv 0$ ?
 
-2. Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre globalement asymptotiquement stable ?
+### Question 2 {.question #cont-lin-2}
+Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre globalement asymptotiquement stable ?
 
 Plus généralement, considérons un système du type
 $$
@@ -830,20 +879,23 @@ $$
 $$
 avec $\phi:\R^n \to \R$ continue et $u:\R \to \R$ à choisir. 
 
-3. Si on mesure $t\mapsto x(t)$, montrer que l'on peut toujours choisir $t\mapsto u(t)$ pour rendre 0 globalement asymptotiquement stable.
+### Question 3 {.question #cont-lin-3}
 
--> [*Correction*](#correc_cont_lin)
+Si on mesure $t\mapsto x(t)$, montrer que l'on peut toujours choisir $t\mapsto u(t)$ pour rendre 0 globalement asymptotiquement stable.
+
 
 
 Correction des exercices
 ===============================
 
-### Ecoulement dans un réservoir {.correction #correc_Torricelli}
+## Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
-1. $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$ donc le théorème de Peano nous garantie l'existence de solutions au problème de Cauchy pour toute condition initiale. De plus, 
+### Question 1 {.answer #answer-tor-1}
+$f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$ donc le théorème de Peano nous garantie l'existence de solutions au problème de Cauchy pour toute condition initiale. De plus, 
 $\sqrt{|x|}\leq 1+|x|$ pour tout $x\in \R$ donc $f$ est linéairement bornée et toute solution maximale est globale, donc ici définie sur $\R$. Enfin, $f$ est $C^1$ sur $\R\times (\R\setminus \{0\})$ donc lorsque $x_0\neq 0$, il existe une unique solution maximale dans $\R\setminus \{0\}$. Lorsque $x_0=0$ par contre, $f$ n'est pas $C^1$ en 0 (ni même lipschitzienne) donc le théorème de Cauchy-Lipschitz ne s'applique pas.
 
-2. Soit d'abord $x_0>0$. Tant que $x(t)>0$, on a
+### Question 2 {.answer #answer-tor-2}
+Soit d'abord $x_0>0$. Tant que $x(t)>0$, on a
 $$
 \dot{x}=-\sqrt{|x|} \quad \Leftrightarrow \quad \frac{\dot{x}}{\sqrt{x}}=-1  \quad \Leftrightarrow \quad x(t) = \left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2
 $$
@@ -882,13 +934,19 @@ x(t)=
 $$
 pour tout $(t_1,x_1)\in \R \times \R_{<0}$ tels que  $t_1-2\sqrt{x_1}\geq t_0$. Ceci ne contredit pas le théorème de Cauchy Lispchitz. En effet, celui-ci ne garantie l'unicité de la solution maximale que dans le domaine où $f$ est $C^1$ par rapport à $x$, c'est-à-dire ici tant qu'elle est non nulle, plus précisément sur l'intervalle ouvert $]-\infty,t_0+2\sqrt{x_0}[$. 
 
-3. La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir vide à $t_0$ on ne sait pas depuis quand il est vide.
+### Question 3 {.answer #answer-tor-3} 
 
-4. Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\overline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions en temps rétrograde. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
+La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir vide à $t_0$ on ne sait pas depuis quand il est vide.
 
-### Autour du Lemme de Grönwall {.correction #correc_gronwall}
+### Question 4 {.answer #answer-tor-4}
 
-1. Soit $v$ l'application définie par $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ sur $[t^-,t^+]$. Elle vérifie
+Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\overline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions en temps rétrograde. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
+
+## Autour du Lemme de Grönwall {.correction #correc_gronwall}
+
+### Question 1 (Lemme de Grönwall) {.anwser #answer-gro-1}
+
+Soit $v$ l'application définie par $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ sur $[t^-,t^+]$. Elle vérifie
 $$
 \dot{v}(t) = \beta(t)u(t) \quad , \quad u(t) \leq \alpha(t)+v(t) \ ,
 $$
@@ -917,7 +975,9 @@ u(t) &\leq \alpha +\alpha \left[-\exp\left(\int_s^t\beta(r)dr \right) \right]_{t
 \end{align*}
 ce qui donne le résultat.
 
-2. Soit $x:I\subseteq J\to \R^n$ une solution maximale au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale), 
+### Question 2 {.anwser #answer-gro-2}
+
+Soit $x:I\subseteq J\to \R^n$ une solution maximale au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale), 
 $$
 x(t)=x_0 + \int_{t_0}^t f(s,x(s))ds \ ,
 $$
@@ -931,7 +991,9 @@ $$
 $$
 avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $J$. Donc $x$ ne peut pas exploser pour $t\in J$, donc d'après le [théoreme des bouts](#theo_bouts), vu que $f$ est définie sur $J\times\R^n$, nécessairement $I=J$.
 
-3. Soient $x:I\to \R^n$ et $x_\delta:I_\delta\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset I$. On sait que
+### Question 3 {.anwser #answer-gro-3}
+
+Soient $x:I\to \R^n$ et $x_\delta:I_\delta\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset I$. On sait que
 \begin{align*}
 x(t)&=x_0  + \int_{t_0}^t f(s,x(s))ds & \forall t\in I\\
 x_\delta(t)&=x_0 +\delta  + \int_{t_0}^t f(s,x_\delta(s))ds &\forall t\in I
@@ -951,7 +1013,8 @@ $$
 $$
 <!--Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$.-->
 
-### Critère de stabilité en dimension 2 {.correction #correc_crit_stab_dim2}
+## Critère de stabilité en dimension 2 {.answer #answer-crit_stab_dim2}
+
 Soient $\lambda_1$ et $\lambda_2$ les valeurs propres d'une matrice $A$ de dimension 2. Son polynôme caractéristique est donné par
 $$
 s^2 - \text{tr} A s + \det A = (s-\lambda_1)(s-\lambda_2) = s^2 - (\lambda_1+\lambda_2)  s + \lambda_1\lambda_2 \ .
@@ -964,9 +1027,10 @@ Si les valeurs propres sont réelles, les avoir toutes deux strictement négativ
 
 Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
 
-### Oscillateur {.correction #correc_masse_ressort}
+## Oscillateur {.correction #correc_masse_ressort}
 
-1. Prenons $x=(p,\dot{p})$ qui vérifie
+### Question 1 {.answer #answer-ressort-1}
+Prenons $x=(p,\dot{p})$ qui vérifie
 $$
 \dot{x} = 
 \left(
@@ -986,7 +1050,9 @@ avec $A=\left(
 \right)$.
 Le seul point d'équilibre est donc $x=(0,0)$, c'est-à-dire sa position d'équilibre à vitesse nulle.
 
-2. Si $\lambda>0$, on a $\text{tr}(A)= -\frac{\lambda}{m}<0$ et $\text{det}(A)=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#correc_crit_stab_dim2), $A$ est Hurwitz donc le système est globalement asymptotiquement stable. En fait, les frottements permettent de ramener le ressort à l'équilibre.
+### Question 2 {.answer #answer-ressort-2}
+
+Si $\lambda>0$, on a $\text{tr}(A)= -\frac{\lambda}{m}<0$ et $\text{det}(A)=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz donc le système est globalement asymptotiquement stable. En fait, les frottements permettent de ramener le ressort à l'équilibre.
 Lorsque $\lambda=0$, les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$ donc 0 n'est plus asymptotiquement stable. En fait l'énergie du système
 $$
 V(x)
@@ -1001,7 +1067,7 @@ D'après le théorème de Lyapunov, puisque $V(x)=0$ est équivalent à $x=0$, l
 ![Plan de phase d'un oscillateur amorti à droite et non amorti à gauche](images/oscillateur.py){#fig_osci}
 
 
-### Cycle limite {.correction #correc_cycle_lim}
+## Cycle limite {.correction #correc_cycle_lim}
 On étudie le comportement des solutions de $\dot{x}=f(x)$ pour
 $$
 f(x) = 
@@ -1013,7 +1079,9 @@ x_1+x_2-x_1(x_1^2+x_2^2) \\
 \right)
 $$
 
-1. Chercher les points d'équilibre du système revient à résoudre
+### Question 1 {.answer #answer-cycle-lim-1}
+
+Chercher les points d'équilibre du système revient à résoudre
 $$
 \begin{array}{rcl}
 0&=& x_1+x_2-x_1(x_1^2+x_2^2) \\
@@ -1043,7 +1111,7 @@ J_f(0,0) =
 $$
 qui a pour valeurs propres $1\pm i$. Le point d'équilibre est donc instable.
 
-2. 
+### Question 2 {.answer #answer-cycle-lim-2}
 \begin{align*}
 \frac{d}{dt}V(x(t)) &= \langle \nabla V(x) , f(x) \rangle \\
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
@@ -1051,7 +1119,8 @@ qui a pour valeurs propres $1\pm i$. Le point d'équilibre est donc instable.
 \end{align*}
 Donc $\frac{d}{dt}V(x)$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon.
 
-3. Les trajectoires initialisées sur le cercle y restent, suivant la dynamique d'un oscillateur
+### Question 3 {.answer #answer-cycle-lim-3}
+Les trajectoires initialisées sur le cercle y restent, suivant la dynamique d'un oscillateur
 $$
 \begin{array}{rcl}
 \dot{x}_1 &=& x_2\\
@@ -1063,7 +1132,7 @@ Enfin, la trajectoire initialisée à zéro reste à zéro. Le portrait de phase
 
 ![Portrait de phase de l'exercice Cycle Limite](images/cycle_limite.py){#fig_cycle_limite}
 
-### Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.correction #corr_attrac_stab}
+## Attractivité locale implique stabilité asymptotique globale pour un système linéaire {.answer #answer-attrac_stab}
 
 Tout d'abord, montrons que l'attractivité locale de 0 implique l'attractivité globale. Ceci est dû à la propriété d'*homogénéité* des systèmes linéaires: si $x$ une solution initialisée à $x_0\in\R$, alors $\lambda x$ est solution initialisée à $\lambda x_0$ puisque 
 $$
@@ -1086,16 +1155,20 @@ $$
 $$
 On conclut que pour des conditions initiales suffisamment petites ($\eta <\frac{\varepsilon}{nM}$), les solutions restent inférieures à $\varepsilon$ en norme. Donc le système est stable.
 
-### Contrôle d'un système linéaire {.correction #correc_cont_lin}
-1. Si $u\equiv 0$, les solutions sont $x(t) = e^t x_0$ donc le point d'équilibre 0 est instable et les solutions divergent. 
+## Contrôle d'un système linéaire {.correction #correc_cont_lin}
 
-2. Si l'on mesure $x(t)$, on peut prendre $u(t) = - kx(t)$, ce qui donne
+### Question 1 {.answer #answer-cont-lin-1}
+Si $u\equiv 0$, les solutions sont $x(t) = e^t x_0$ donc le point d'équilibre 0 est instable et les solutions divergent. 
+
+### Question 2 {.answer #answer-cont-lin-2}
+Si l'on mesure $x(t)$, on peut prendre $u(t) = - kx(t)$, ce qui donne
 $$
 \dot{x} = -(k-1) x
 $$
 pour lequel 0 est globalement asymptotiquement stable si $k>1$.
 
-3. Prenons $u(t) = -k_1 x_1(t) - k_2 x_2(t) - \ldots - k_n x_n(t)$. Alors le système devient 
+### Question 3 {.answer #answer-cont-lin-3}
+Prenons $u(t) = -k_1 x_1(t) - k_2 x_2(t) - \ldots - k_n x_n(t)$. Alors le système devient 
 $$
 \dot{x} = A x
 $$
@@ -1120,7 +1193,7 @@ Il suffit donc de choisir les coefficients $k_i$ tels que ce polynôme ait ses r
 Annexes 
 =========================================================================
 
-### Preuve du théorème de Peano-Arzelà (Hors-programme) {.app #app_peano}
+## Preuve du théorème de Peano-Arzelà (Hors-programme) {.app #app_peano}
 
 Cette preuve repose sur le théorème d'Ascoli :
 
@@ -1163,7 +1236,7 @@ $$
 $$
 donc la famille $S:=\{x_\epsilon , \ \epsilon \in ]0,1[ \}$ est équicontinue. De plus, vu que leur image est bornée dans $\overline{B}_r(x_0)$ de dimension finie, elle est bien bien relativement compacte. Le théorème d'Ascoli nous dit alors que $S$ est relativement compacte dans $E$. Il existe donc une sous suite $x_{\epsilon_k}$ telle que $\lim_{k\to +\infty} \epsilon_k =0$ et $\lim_{k\to +\infty} x_{\epsilon_k} = x^\star \in E$ au sense de la norme uniforme $\|\cdot \|$. Par uniforme continuité de $f$ sur le compact $\cC$, on en déduit alors que pour tout $s\in [t_0,t_0+\tau_m]$, $\lim_{k\to +\infty} f(s,x_{\epsilon_k}(s-\epsilon_k))= f(s,x^\star(s))$ et donc que $x^\star$ est bien solution de l'équation intégrale, ce qui donne le résultat.
 
-### Preuve du théorème des bouts {.app #pr_theo_bouts}
+## Preuve du théorème des bouts {.app #pr_theo_bouts}
 Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset J\times X$ tel que
 $$
  \forall t_K \in \left[t_0,\overline{t}\right[ \, , \, \exists t\in \left[t_K,\overline{t}\right[ \: : \: x(t)\in K
@@ -1181,7 +1254,7 @@ $$
 Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}_{r}(x(t_p))\subset J\times X$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
 
 
-### Stabilité et linéarisé tangent {.app #app_stab_lin}
+## Stabilité et linéarisé tangent {.app #app_stab_lin}
 
 Soit $a$ un point d'équilibre de $f$. Définissons
 $$
@@ -1226,20 +1299,17 @@ D'après le théorème de Lyapunov, $a$ est donc localement asymptotiquement sta
 Certaines références autorisent les  solutions définies sur un intervalle d'intérieur vide, c'est-à-dire réduit à un point, qui sont dîtes "triviales". Mais cela n'a pas grand intérêt ici et nous supposons donc que les solutions sont définies au moins "pendant un certain temps" autour de $t_0$.
 
 [^solsurI]:
-On pourra omettre de préciser l'intervalle $I$ sur lequel $x$ est solution lorsque $I$ est l'ensemble de définition naturel (ou clairement défini) de $x$. Lorsque celui-ci est ambigue ou bien lorsque l'on veut insister sur l'intervalle de définition, on dira *solution sur $I$*.
+On omet de préciser l'intervalle $I$ sur lequel $x$ est solution lorsque $I$ est l'ensemble de définition naturel (ou clairement défini) de $x$. Lorsque celui-ci est ambigue ou bien lorsque l'on veut insister sur l'intervalle de définition, on dira *solution sur $I$*.
 
 [^Fferme]: 
 Pour toute suite $(x_n)$ d'éléments de $F$ convergeant vers $x^*$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
 $$
-|x_n(t)-x^*(t)|\leq |x_n-x^*|_{\infty} \quad \longrightarrow_{n\to \infty} 0
+|x_n(t)-x^*(t)|\leq |x_n-x^*|_{\infty} \quad \underset{n\to \infty}{\longrightarrow} 0
 $$
 donc la suite $(x_n(t))$ d'éléments du fermé $\overline{B}_{x_0}(r)$  converge dans $\R^n$ vers $x^*(t)$ qui est donc dans $\overline{B}_{x_0}(r)$. Ceci implique $x^*\in F$.
 
 [^solutionF]:
-Il suffit de montrer que $x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B}_r(x_0)$. Supposons le contraire et sans perdre en généralité supposons que
-$$
-S := \{ t\in [t_0,t_0+\tau_m] \: : \: |x(t)-x_0|>r \} \neq \emptyset \ .
-$$
+Il suffit de montrer que $x([t_0-\tau_m,t_0+\tau_m])\subseteq \overline{B}_r(x_0)$. Supposons le contraire et sans perdre en généralité supposons que $S := \{ t\in [t_0,t_0+\tau_m] \: : \: |x(t)-x_0|>r \}$ est non vide.
 Soit $t^*=\inf S$. Nécessairement $t_0 < t^* < t_0+\tau_m$. Donc par la [représentation intégrale](#theo_eq_integrale), 
 $$
 |x(t^*)-x_0|\leq (t^*-t_0) \max_{s\in [t_0,t^*]} f(s,x(s)) < \tau_m \max_\cC|f|< r \ .
