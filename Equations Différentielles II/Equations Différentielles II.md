@@ -43,13 +43,12 @@ avec $A$ Hurwitz quand le rapport entre les parties réelles maximales et minima
 $$
 m\ddot{y} = -\rho \dot{y} - k y
 $$
-dont la matrice $A$ correspondante est donnée par 
-$\left(\begin{smallmatrix} 0&1\\-\frac{k}{m} & -\frac{\rho}{m} \end{smallmatrix}\right)$. 
-En effet, lorsque les valeurs propres sont réelles  (i.e. $\rho>2\sqrt{mk}$), leur rapport est donné par
+qui se met sous la forme précédente avec $x=(y,\dot{y})\in \R^2$ et $A=\left(\begin{smallmatrix} 0&1\\-\frac{k}{m} & -\frac{\rho}{m} \end{smallmatrix}\right)$. 
+Lorsque les valeurs propres sont réelles  (i.e. $\rho>2\sqrt{mk}$), leur rapport est donné par
 $$
 \frac{1+\sqrt{1-4\frac{mk}{\rho^2}}}{1-\sqrt{1-4\frac{mk}{\rho^2}}}
 $$
-qui explose lorsque $\frac{mk}{\rho^2}$ tend vers 0. Par exemple, lorsque la raideur du ressort est très grande et $\rho \approx k$, ou bien lorsque les frottements sont très grand par rapport à la raideur du ressort.
+qui explose lorsque $\frac{mk}{\rho^2}$ tend vers 0. Par exemple, lorsque les frottements sont très grands par rapport à la raideur du ressort, ou bien lorsque $\rho$ et $k$ sont du même ordre et très grands.
 
 Plus généralement, la coexistence de dynamiques très lentes à très rapides apparaît en cinétique chimique ou en biologie. La réaction de Robertson (1966)
 \begin{align*}
@@ -67,19 +66,34 @@ en est un exemple classique, souvent utilisée pour tester les schémas numériq
 
 ## Systèmes hamiltoniens {.section #sec_systHamiltoniens}
 
-La mécanique hamiltonienne permet de modéliser le comportement de systèmes dont une certaine énergie est conservée au cours du temps. Il peut s'agir par exemple de planètes en intéraction gravitationnelle, de particules en intéraction électromagnétique, etc. 
+La mécanique hamiltonienne permet typiquement de modéliser le comportement de systèmes dont une certaine énergie est conservée au cours du temps. Il peut s'agir par exemple de planètes en interaction gravitationnelle, de particules en interaction électromagnétique, etc. 
 
-Dans un problème à $N$ corps en intéraction gravitationnelle, le hamiltonien est donné par la somme de l'énergie cinétique et potentielle, et s'écrit
+Par exemple, dans un problème à $N$ corps en interaction gravitationnelle, l'hamiltonien s'écrit[^hamil]
 $$
 H(q,p) = \sum_{i=1}^{N} \frac{1}{2 m_i}p_i^\top p_i  - \sum_{1\leq i< k \leq N} G\frac{m_i m_j}{\|q_i-q_k\|}
 $$
-où $q_i\in \R^3$ désigne la position de chaque corps, $m_i$ sa masse, et $p_i=m_iv_i\in \R^3$ sa quantité de mouvement. 
-Le comportement de chaque corps est alors régi par la dynamique Hamiltonienne
+où $q_i\in \R^3$ désigne la position de chaque corps, $m_i$ sa masse, et $p_i=m_i\dot{q}_i\in \R^3$ sa quantité de mouvement. 
+Le comportement de chaque corps est alors régi par la dynamique hamiltonienne[^Newton]
 \begin{align*}
 \dot{q}_i &= \nabla_{p_i} H(q,p) = \frac{1}{m_i} p_i \\
-\dot{p}_i &= \nabla_{q_i} H(q,p) 
+\dot{p}_i &= -\nabla_{q_i} H(q,p) = -G \sum_{k\neq i} \frac{m_i m_j}{\|q_i-q_k\|^3}(q_i-q_k)
 \end{align*}
-Il est aisé de vérifier que la l'énergie $H(q,p)$ est conservée le long des trajectoires.
+On a alors le long des trajectoires
+$$
+\frac{d}{dt}H(q(t),p(t)) = \left< \nabla_q H(t,q(t),p(t)), \dot{q} \right> + \left< \nabla_p H(t,q(t),p(t)), \dot{p} \right> = 0
+$$
+et l'énergie $H(q,p)$ est donc conservée.
+
+[^hamil]:
+Pour obtenir l'hamiltonien, on commence par définir le lagrangien $L(t,q,\dot{q})$, puis la quantité de mouvement $p = \nabla_{\dot{q}} L(t,q,\dot{q})$, et enfin l'hamiltonien  $H(t,q,p)$ est obtenu par transformée de Legendre. Notons que dans ce cas général où $H$ peut dépendre explicitement du temps (par exemple si de l'énergie est injectée ou prélevée par une action extérieure au système), on a
+$\frac{d}{dt}H(t,q(t),p(t)) = \nabla_t H(t,q(t),p(t))$, donc l'hamiltonien varie selon cet effet extérieur, et n'est plus constant.
+
+[^Newton]:
+L'application des lois de Newton donnerait directement
+$$
+m_i a_i = m_i \ddot{q_i} =  \sum_{k\neq i} F_k = -G \sum_{k\neq i} \frac{m_i m_j}{\|q_i-q_k\|^2}\frac{(q_i-q_k)}{\|q_i-q_k\|}
+$$
+où $F_k$ sont les forces de gravitation exercées par chaque corps $k$ sur le corps $i$.
 
 Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même des schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps ``courts'' sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *symplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma symplectique*](#exo_symplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10].
 
@@ -476,13 +490,13 @@ $$
 
 On peut donc estimer à chaque itération l'erreur commise $e^{j+1}$ et adapter le pas selon si celle-ci est inférieure ou supérieure au seuil de tolérance.  
 
-**Bonus** Montrer que par ailleurs il existe $c>0$ telle que
+**Consigne** Montrer que par ailleurs il existe $c>0$ telle que
 $$
 |e^{j+1}| \leq c \Delta t_j^2 \ . 
 $$
 En déduire qu'une possible stratégie d'adaptation est de prendre  
 $$
-\Delta t_{new} = dt \sqrt{\texttt{Tol}_{abs}}{|e^{j+1}|}
+\Delta t_{new} = dt \sqrt{\frac{\texttt{Tol}_{abs}}{|e^{j+1}|}}
 $$
 (éventuellement avec une marge de sécurité)
 
@@ -567,11 +581,7 @@ x^{j+1}_2 &= x^{j}_2 - \Delta t \, \omega^2 x^{j+1}_1
 \dot{q} &= \nabla_p H(q,p) = \nabla T(p) \\
 \dot{p} &= - \nabla_q H(q,p) = - \nabla V(q)
 \end{align*}
-où $(q,p)\in \R^N \times \R^N$ sont les positions généralisées et quantités de mouvement, $H$ est le Hamiltonien conservé le long des trajectoires donné par
-$$
-H(q,p) = T(p) + V(q) 
-$$
-avec $T$ et $V$ les énergies cinétiques et potentielles respectivement.
+où $(q,p)\in \R^N \times \R^N$ sont les positions généralisées et quantités de mouvement, $H$ est le Hamiltonien que l'on pourra vérifier être conservé le long des trajectoires.
 
 A noter que les conclusions de cet exercice sont les mêmes si on avait utilisé un Euler implicite sur la première composante et un Euler explicite sur la deuxième. Ces deux schémas s'appellent respectivement Euler symplectique A et B.
 
