@@ -202,7 +202,9 @@ f(t,x_1,x_2) =
 \right] \ .
 $$
 
-En physique, on est souvent intéressé par les solutions partant d'une *condition initiale* donnée, ce qui porte le nom de *Problème de Cauchy*. 
+En physique, on est souvent intéressé par les solutions partant d'une *condition initiale* donnée. La recherche de ces solutions particulières est dûe à Cauchy et porte le nom de *Problème de Cauchy* :
+
+> Dans mes leçons données à l'École Polytechnique, comme dans la plupart des ouvrages ou mémoires que j'ai publiés sur le calcul intégral, j'ai cru devoir placer en premier lieu la recherche, non pas des intégrales générales, mais des particulières ; en sorte que la détermination des constantes ou des fonctions arbitraires ne fût plus séparée de la recherche des intégrales.
 
 ### Problème de Cauchy (*Initial Value Problem*) {.definition #def_cauchy}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $(t_0,x_0)\in J\times X$ et $f\in C(J\times X,\R^n)$. Le *problème de Cauchy* associé fait référence au système
@@ -289,7 +291,7 @@ L'existence de solutions $C^1$ est garantie lorsque $f$ est continue. Il s'avèr
 Unicité des solutions
 -------------------------------
 
-Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$.
+Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$. Le théorème et la preuve de l'époque de Cauchy est disponible en ligne dans des notes de cours [@cauchy].
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $J\times X$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
@@ -538,6 +540,8 @@ Il est important d'insister sur le caractère *déterministe* de ce chaos : chaq
 
 ### Exemples 
 
+- Henri Poincaré met en évidence le premier un comportement chaotique des solutions du problème à 3 corps. Ses livres sont disponibles en ligne [@poincare].
+
 - En 1963, Edward Lorenz met en évidence pour la première fois le comportement possiblement chaotique de la météorologie à travers un modèle simplifié à trois dimensions de convection donné par 
 \begin{align*}
 \dot{x} &= \sigma (y-x) \\
@@ -546,16 +550,16 @@ Il est important d'insister sur le caractère *déterministe* de ce chaos : chaq
 \end{align*}
 où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires *sautent* de manière *chaotique* d'une aile à l'autre, comme représenté sur la [figure](#fig_attracteur_lorenz) ci-dessous.
 
-- En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années. 
+- En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années [@SussWis]. 
 
-- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité, la mécanique. Parfois, le comportement chaotique apparaît seulement lorsque le système est soumis à certaines excitations, par exemple sinusoïdales : pendule forcé, oscillateur de Van der Pol, etc. REFFF
+- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité, la mécanique. Parfois, le comportement chaotique apparaît seulement lorsque le système est soumis à certaines excitations, par exemple une excitation sinusoïdale du pendule ou de oscillateur de Van der Pol [@HolRand].
 
 ![Trajectoire de l'oscillateur de Lorenz](images/attracteur_lorenz.py){#fig_attracteur_lorenz}
 
 Propriétés asymptotiques
 -----------------------------
 
-Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. Nous voulons des critères sur la fonction $f$ qui nous permettent de prédire ce comportement: est-ce que les solutions divergent ? est-ce qu'elles tendent vers un point en particulier ? vers un cycle limite ?
+Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. L'étude théorique asymptotique des solutions prend ses origines dans la thèse de Lyapunov [@lyap]. Le but est de rechercher des critères sur la fonction $f$ qui nous permettent de prédire ce comportement : est-ce que les solutions divergent ? est-ce qu'elles tendent vers un point en particulier ? vers un cycle limite ? 
 
 Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc une fonction continue $f:\R^n\to \R^n$, et on prend par défaut $t_0=0$. 
 <!--Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.-->
@@ -751,9 +755,7 @@ $$
 ce qui traduit la conservation de l'énergie en l'absence de frottement. On en déduit donc la stabilité du point d'équilibre $(0,0)$.
 
 
-
-Références
-================================================================================
+On peut se demander s'il existe toujours une fonction de Lyapunov autour d'un point d'équilibre stable/asymptotiquement stable. C'est une question délicate étudiée en détail dans [@BacRos].
 
 Exercices 
 ==============================================================================
@@ -1365,3 +1367,6 @@ en supposant que $s\ll S$.
 [^def_propre]:
  $V$ est dite propre si pour tout compact $K$, $V^{-1}(K)$ est compact. Ou de manière équivalente, $\lim_{\|x\|\to +\infty} V(x) = +\infty$.
 
+
+Références
+================================================================================
