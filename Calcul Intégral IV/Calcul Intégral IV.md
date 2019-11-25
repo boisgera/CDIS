@@ -12,46 +12,56 @@
 Objectifs
 ================================================================================
 
-Ou mesure image et intégrale associée ? Ou mesures construites à partir
-d'une mesure de référence et d'une fonction positive ?
-Ou ensemble négligeable et impact sur l'intégrale ... et positivité et nullité ? 
-
-Enoncé TCM et théorème de continuité monotone vont ensemble ? Mmmm non,
-continuité monotone est facile à RETROUVER à partir du TCM (même si niveau
-démo, ça se passe dans l'autre sens). Par contre les deux preuves sont de 
-même nature (TCM un cran au-dessus).
-
-TODO : démo qui comptent : approximation des fonctions mesurables par des
-fonctions étagées.
-
 ### Tribu
 
-  - terminologie : tribu, ensemble mesurable, espace mesurable
+  - terminologie : tribu $\mathcal{A}$, ensemble $\mathcal{A}$-mesurable, espace mesurable $(X ,\mathcal{A})$.
 
-  - connaître : la tribu $\mathcal{P}(\R^n)$ des parties de $X$, la tribu de Lebesgue $\mathcal{L}(\R^n)$ sur $\R^n$.
+  - connaître : la tribu $\mathcal{P}(X)$ des parties de $X$, la tribu de Lebesgue $\mathcal{L}(\R^n)$.
 
-  - savoir caractériser si une collection d'ensembles est une tribu ou non.
+  - calcul ensembliste :
+  
+      - si $A, B \in \mathcal{A}$, $A\cap B \in \mathcal{A}$ et
+        $A\setminus B \in \mathcal{A}$.
 
-  - savoir déterminer quand des opérations ensemblistes appliquées à des
-    ensembles mesurables produisent des ensembles mesurables.
+      - savoir déterminer quand un ensemble $C$, 
+        produit par des opérations ensemblistes, 
+        appartient à la tribu $\mathcal{A}$.
+
+  - savoir caractériser si une collection d'ensembles est une tribu.
+
 
 ### Mesure
 
-  - terminologie : mesure, espace mesuré.
+  - savoir : chaque mesure est définie sur une tribu.
 
-  - savoir caractériser quand une fonction est une mesure.
-
-  - savoir : les mesures sont additive et croissantes.
-
-  - calculer avec les mesures
-
-  - théorème de continuité monotone
+  - terminologie : mesure $\mu$, espace mesuré $(X, \mathcal{A}, \mu)$.
 
   - connaître : la mesure de Dirac, la mesure de comptage, la mesure de Lebesgue, 
 
-  - terminologie : ensemble négligeable, propriété vraie presque partout.
+  - savoir caractériser quand une fonction est une mesure.
 
-### Intégrale
+  - savoir : les mesures sont (finiment) additives et croissantes.
+
+  - calculer avec les mesures
+
+  - savoir construire de nouvelles mesures : par restriction, au moyen de l'intégrale,
+    avec la mesure image.
+
+  - terminologie : ensemble négligeable et propriété vraie presque partout.
+
+### Intégrale de fonctions positives
+
+  - savoir : chaque mesure détermine une intégrale.
+
+  - terminologie : $\mu$-intégrale, intégrale par rapport à $\mu$.
+
+  - en faisant abstraction la notion de fonction mesurable,
+    savoir exploiter les trois propriétés caractéristiques 
+    de l'intégrale associée à une mesure $\mu$.
+    
+  - les fonctions positives dont la $\mu$-intégrale est définie
+    (finie ou infinie)
+    sont les fonctions $\mu$-mesurables positives.
 
   - terminologie : fonction étagée
 
@@ -64,9 +74,17 @@ fonctions étagées.
 
   - savoir calculer l'intégrale d'une fonction étagée $\mu$-mesurable
 
+  - savoir exploitrer les techniques d'approximation des fonctions mesurables 
+    par des fonctions étagées mesurables.
+
   - intégrale d'une fonction (mesurable) positive (sup)
 
-  - fonctions mesurables
+  - savoir caractériser les fonctions $\mu$-mesurables
+
+  - savoir construire l'intégrale d'une mesure $\mu$
+
+  - ou ? Lien HK et intégrale / mesure de Lebesgue
+
 
 ### Propriétés de l'intégrale
 
@@ -74,11 +92,17 @@ fonctions étagées.
 
   - Lien entre la mesure $\mu(A)$ et la $\mu$-intégrale de $1_A$.
 
-  - Intégrale et combinaison linéaire
+  - Intégrale et combinaison linéaire 
 
-  - Théorème de convergence monotone
+  -  Positivité et nullité
 
-  - Théorème de convergence dominée
+### Intégrale de fonction signées
+
+  - intégrabilité des fonctions positive et signée.
+
+  - définition de l'intégrale de fonction signée
+
+  - savoir exploiter le théorème de convergence dominée.
 
 --------------------------------------------------------------------------------
 
@@ -137,7 +161,7 @@ Mesure
 
 ### Tribu et espace mesurable {.definition}
 Une *tribu* (ou *$\sigma$-algèbre*) $\mathcal{A}$ sur un ensemble $X$ est une 
-collection d'ensembles de $X$ contenant l'ensemble vide et stable par passage 
+collection d'ensembles de $X$ contenant l'ensemble vide et fermé par passage 
 au complémentaire et à l'union dénombrable :
 
   1. $\varnothing \in \mathcal{A}$.
@@ -1195,38 +1219,9 @@ L'intégrale de $f$ par rapport $\mu$ est donc strictement positive.
 
 ### {.ante}
 La théorie générale de l'intégration possède aussi son théorème de convergence
-dominée. Pour le démontrer, le corollaire du théorème de convergence monotone
-suivant, appelée lemme de Fatou, est utile. On rappelle que 
-$\liminf_{k\to +\infty} x_k$ désigne l'infimum des limites possibles,
-parmi toutes les suites extraites de $x_k$ ayant une limite (finie ou infinie).
-
-### Lemme de Fatou {.lemma #Fatou}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
-$f_k: X \to [0, +\infty]$, $k \in \N$, une suite de fonctions 
-mesurables. Alors
-$$
-\int (\liminf_{k \to +\infty} f_k) \mu \leq \liminf_{k\to +\infty} \int f_k \mu.
-$$
-
-### Démonstration {.proof} 
-La suite des fonctions $\inf_{j \geq k} f_j$, $k \in \N$, est croissante,
-composée de fonctions mesurables, et converge simplement vers la limite 
-inférieure de la suite des $f_k$ :
-$$
-\lim_{k\to +\infty} \left(\inf_{j\geq k} f_j\right) = \liminf_{k\to +\infty} f_k.
-$$
-Par [le théorème de convergence monotone](#TCM) on a donc
-$$
-\lim_{k\to +\infty} \int \inf_{j \geq k} f_j \mu = \int (\liminf_{k \to +\infty} f_k) \mu.
-$$
-De plus pour tout $k \in \N$ et tout $\ell \geq k$, on a $\inf_{j \geq k} f_j \leq f_{\ell}$, donc
-par [le lemme de croissance](#lemme-croissance),
-$$
-\int \inf_{j \geq k} f_j \mu \leq \liminf_{\ell \to +\infty} \int f_{\ell} \mu.
-$$
-Puisque le second membre est indépendant de $k$, on en déduit le résultat
-cherché en faisant tendre $k$ vers $+\infty$.
-
+dominée. Pour le démontrer, un corollaire du théorème de convergence monotone, 
+appelée lemme de Fatou, est utile ; ce [lemme technique](#Fatou) est présenté 
+en annexe.
 
 ### Théorème de convergence dominée {.theorem #TCD}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
@@ -1357,6 +1352,40 @@ $$
 \lim_{n \to +\infty} \mu(A_n) = 
 \mu \left(\bigcap_{n=0}^{+\infty} A_n \right).
 $$
+
+Lemme de Fatou
+--------------------------------------------------------------------------------
+
+On rappelle que 
+$\liminf_{k\to +\infty} x_k$ désigne l'infimum des limites possibles,
+parmi toutes les suites extraites de $x_k$ ayant une limite (finie ou infinie).
+
+### Lemme de Fatou {.lemma #Fatou}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
+$f_k: X \to [0, +\infty]$, $k \in \N$, une suite de fonctions 
+mesurables. Alors
+$$
+\int (\liminf_{k \to +\infty} f_k) \mu \leq \liminf_{k\to +\infty} \int f_k \mu.
+$$
+
+### Démonstration {.proof} 
+La suite des fonctions $\inf_{j \geq k} f_j$, $k \in \N$, est croissante,
+composée de fonctions mesurables, et converge simplement vers la limite 
+inférieure de la suite des $f_k$ :
+$$
+\lim_{k\to +\infty} \left(\inf_{j\geq k} f_j\right) = \liminf_{k\to +\infty} f_k.
+$$
+Par [le théorème de convergence monotone](#TCM) on a donc
+$$
+\lim_{k\to +\infty} \int \inf_{j \geq k} f_j \mu = \int (\liminf_{k \to +\infty} f_k) \mu.
+$$
+De plus pour tout $k \in \N$ et tout $\ell \geq k$, on a $\inf_{j \geq k} f_j \leq f_{\ell}$, donc
+par [le lemme de croissance](#lemme-croissance),
+$$
+\int \inf_{j \geq k} f_j \mu \leq \liminf_{\ell \to +\infty} \int f_{\ell} \mu.
+$$
+Puisque le second membre est indépendant de $k$, on en déduit le résultat
+cherché en faisant tendre $k$ vers $+\infty$.
 
 
 Mesure de Lebesgue -- Approche directe
@@ -2461,7 +2490,7 @@ $$
 avec $\mu(\cup_k B_k) = 0$ par $\sigma$-additivité de $\mu$.
 L'ensemble $N$ (et donc l'ensemble $M$) appartient donc à $\mathcal{N}$.
 Comme $\cup_k A_k \in \mathcal{A}$, on en déduit que $\overline{\mathcal{A}}$ est stable
-par union dénombrable. Cet collection contient l'ensemble vide, est stable
+par union dénombrable. Cet collection contient l'ensemble vide, est fermé
 par passage au complémentaire et par union dénombrable ; c'est donc une tribu.
 
 ### Question 2 {.answer #answer-cm-2}
