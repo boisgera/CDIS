@@ -14,21 +14,20 @@ Objectifs
 
 ### Tribu
 
-  - terminologie : tribu $\mathcal{A}$, ensemble $\mathcal{A}$-mesurable, espace mesurable $(X ,\mathcal{A})$.
+  - terminologie : tribu $\mathcal{A}$, ensemble $\mathcal{A}$-mesurable, espace mesurable $(X ,\mathcal{A})$ ($\bullet$).
 
-  - connaître : la tribu $\mathcal{P}(X)$ des parties de $X$, la tribu de Lebesgue $\mathcal{L}(\R^n)$.
+  - connaître : la tribu $\mathcal{P}(X)$ des parties de $X$, la tribu de Lebesgue $\mathcal{L}(\R^n)$ ($\bullet$).
 
   - calcul ensembliste :
   
       - si $A, B \in \mathcal{A}$, $A\cap B \in \mathcal{A}$ et
-        $A\setminus B \in \mathcal{A}$.
+        $A\setminus B \in \mathcal{A}$ ($\bullet\bullet$).
 
       - savoir déterminer quand un ensemble $C$, 
         produit par des opérations ensemblistes, 
-        appartient à la tribu $\mathcal{A}$.
+        appartient à la tribu $\mathcal{A}$ ($\bullet\bullet$).
 
-  - savoir caractériser si une collection d'ensembles est une tribu.
-
+  - savoir caractériser si une collection d'ensembles est une tribu ($\bullet\!\bullet\!\bullet$).
 
 ### Mesure
 
@@ -45,9 +44,9 @@ Objectifs
   - calculer avec les mesures
 
   - savoir construire de nouvelles mesures : par restriction, au moyen de l'intégrale,
-    avec la mesure image.
+    avec la mesure image. ($\bullet\!\bullet\!\bullet$)
 
-  - terminologie : ensemble négligeable et propriété vraie presque partout.
+  - terminologie : ensemble négligeable et propriété vraie presque partout. ($\bullet\bullet$)
 
 ### Intégrale de fonctions positives
 
@@ -57,15 +56,17 @@ Objectifs
 
   - en faisant abstraction la notion de fonction mesurable,
     savoir exploiter les trois propriétés caractéristiques 
-    de l'intégrale associée à une mesure $\mu$.
-    
+    de l'intégrale associée à une mesure $\mu$ ($\bullet\bullet$).
+
+  - définition : fonction $\mu$-mesurable ($\bullet\bullet$)
+
   - les fonctions positives dont la $\mu$-intégrale est définie
     (finie ou infinie)
     sont les fonctions $\mu$-mesurables positives.
 
   - terminologie : fonction étagée
 
-  - fonction positive à valeur finies ou infinies
+  - fonction positive à valeur finies ou infinies ($\bullet$)
 
   - savoir expliciter une fonction étagée positive comme une combinaison de
     fonctions caractéristique
@@ -74,7 +75,7 @@ Objectifs
 
   - savoir calculer l'intégrale d'une fonction étagée $\mu$-mesurable
 
-  - savoir exploitrer les techniques d'approximation des fonctions mesurables 
+  - savoir exploiter les techniques d'approximation des fonctions mesurables 
     par des fonctions étagées mesurables.
 
   - intégrale d'une fonction (mesurable) positive (sup)
@@ -98,11 +99,11 @@ Objectifs
 
 ### Intégrale de fonction signées
 
-  - intégrabilité des fonctions positive et signée.
+  - terminologie : $\mu$-intégrabilité (fonctions positives et signées) ($\bullet$).
 
-  - définition de l'intégrale de fonction signée
+  - définition : intégrale d'une fonction signée ($\bullet$)
 
-  - savoir exploiter le théorème de convergence dominée.
+  - savoir exploiter le théorème de convergence dominée ($\bullet\bullet$).
 
 --------------------------------------------------------------------------------
 
