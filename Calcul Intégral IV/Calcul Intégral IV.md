@@ -94,6 +94,9 @@ d'assimiler le cours, au même titre que la résolution d'exercices.
 
   - savoir construire l'intégrale d'une mesure $\mu$
 
+  - approximation par des fonctions étagées (abstraite + comment ça marche
+    en vrai dans la preuve, juste en faisant abstraction de mesurabilité)
+
   - ou ? Lien HK et intégrale / mesure de Lebesgue
 
 
