@@ -24,6 +24,64 @@ même nature (TCM un cran au-dessus).
 TODO : démo qui comptent : approximation des fonctions mesurables par des
 fonctions étagées.
 
+### Tribu
+
+  - terminologie : tribu, ensemble mesurable, espace mesurable
+
+  - connaître : la tribu $\mathcal{P}(\R^n)$ des parties de $X$, la tribu de Lebesgue $\mathcal{L}(\R^n)$ sur $\R^n$.
+
+  - savoir caractériser si une collection d'ensembles est une tribu ou non.
+
+  - savoir déterminer quand des opérations ensemblistes appliquées à des
+    ensembles mesurables produisent des ensembles mesurables.
+
+### Mesure
+
+  - terminologie : mesure, espace mesuré.
+
+  - savoir caractériser quand une fonction est une mesure.
+
+  - savoir : les mesures sont additive et croissantes.
+
+  - calculer avec les mesures
+
+  - théorème de continuité monotone
+
+  - connaître : la mesure de Dirac, la mesure de comptage, la mesure de Lebesgue, 
+
+  - terminologie : ensemble négligeable, propriété vraie presque partout.
+
+### Intégrale
+
+  - terminologie : fonction étagée
+
+  - fonction positive à valeur finies ou infinies
+
+  - savoir expliciter une fonction étagée positive comme une combinaison de
+    fonctions caractéristique
+
+  - savoir quand une telle fonction est $\mu$-mesurable
+
+  - savoir calculer l'intégrale d'une fonction étagée $\mu$-mesurable
+
+  - intégrale d'une fonction (mesurable) positive (sup)
+
+  - fonctions mesurables
+
+### Propriétés de l'intégrale
+
+  - Propriétés caractéristiques de l'intégrale
+
+  - Lien entre la mesure $\mu(A)$ et la $\mu$-intégrale de $1_A$.
+
+  - Intégrale et combinaison linéaire
+
+  - Théorème de convergence monotone
+
+  - Théorème de convergence dominée
+
+--------------------------------------------------------------------------------
+
 ### TODO -- Basique
 
   - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions + application directe)
@@ -95,9 +153,23 @@ L'ensemble $X$ muni de $\mathcal{A}$
 -- c'est-à-dire formellement la paire $(X,\mathcal{A})$ -- 
 est un *espace mesurable*.
 
+### Exemple -- Tribu de Lebesgue dans $\R^n$
+Dans le chapitre "Calcul Intégral III" nous avons montré que les ensembles 
+que nous avions alors qualifiés de "mesurables"[^rapp] avaient les propriétés 
+caractéristiques d'une tribu. Elle est notée $\mathcal{L}(\R^n)$ et est 
+appelée *tribu de Lebesgue* sur $\R^n$. Il est donc équivalent de dire
+d'un ensemble qu'il est mesurable au sens du chapitre "Calcul Intégral III"
+ou qu'il est $\mathcal{L}(\R^n)$-mesurable.
+
+[^rapp]: c'est-à-dire les ensembles $A$ de $\R^n$ tels que pour tout pavé compact $P$ de 
+$\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Henstock-Kurzweil.
+
 ### Exercice -- Ensemble des parties {.exercise}
 Montrer que pour tout ensemble $X$, la collection $\mathcal{A} = \mathcal{P}(X)$
 des parties (sous-ensembles) de $X$ est une tribu sur $X$.
+
+### Exercice -- Ensembles fermés {.exercise}
+La collection des ensembles fermés de $\R^n$ est-elle une tribu sur $\R^n$ ?
 
 ### Exercice -- Intersection de tribus {.exercise}
 Montrer que pour tout ensemble $X$, l'intersection de deux tribus
@@ -105,6 +177,14 @@ $\mathcal{A}_1$ et $\mathcal{A}_2$ sur $X$ -- c'est-à-dire la collection
 $\mathcal{A}$ définie par
 $\mathcal{A} = \{A \subset X \; | \; A \in \mathcal{A}_1 \mbox{ et } A \in \mathcal{A}_2\}$ 
 -- est une tribu sur $X$. 
+
+### Exercice -- Opérations ensemblistes {.exercise}
+Montrer que si $A$ et $B$ appartiennent à une tribu $\mathcal{A}$, alors
+$A \cup B$, $A \setminus B$ et $A \cap B$ appartiennent également à $\mathcal{A}$.
+
+### Exercice -- Intersection dénombrable {.exercise}
+Montrer que si pour tout $k \in \N$, $A_k \in \mathcal{A}$, alors
+$\cap_{k=0}^{+\infty} A_k \in \mathcal{A}.$
 
 ### Mesure et espace mesuré {.definition}
 Une *mesure* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
@@ -157,9 +237,6 @@ Montrer que la somme de deux mesures $\mu_1$ et $\mu_2$ sur un espace mesurable
 $(X, \mathcal{A})$ est une mesure sur $(X, \mathcal{A})$.
 
 ### Mesure de Lebesgue
-Les ensembles mesurables de $\R^n$ (au sens du chapitre "Calcul Intégral III"[^rapp])
-forment une tribu qui est notée $\mathcal{L}(\R^n)$ et est appelée *tribu de Lebesgue*
-sur $\R^n$. 
 La fonction $v$ qui a un ensemble mesurable $A$ associe
 $$
 v(A) = \left|
@@ -170,9 +247,6 @@ v(A) = \left|
 \right.
 $$
 est une mesure nommé *mesure de Lebesgue* sur $\R^n$.
-
-[^rapp]: c'est-à-dire les ensembles $A$ de $\R^n$ tels que pour tout pavé compact $P$ de 
-$\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Henstock-Kurzweil.
 
 ### Démonstration {.proof}
 La démonstration que les ensembles mesurables forment une tribu a été fournie 
@@ -641,9 +715,54 @@ $$
 \int_{\R^n} f(x) \, v(dx) = \int_{\R^n} f(x) \, dx.
 $$
 
-### TODO -- Démonstration {.proof}
-Démontrer ou admis ? C'est faisable à ce stade ? Ou un peu plus tard ?
+### Démonstration {.proof}
+Par construction, la fonction $f$ est intégrable par rapport à la mesure de 
+Lebesgue $v$ si et seulement si les fonctions $f_+ = \max(f, 0)$ et 
+$f_- = -\min(f, 0)$ sont intégrables par rapport à $v$. Comme
+$$
+f_+ = \frac{f+|f|}{2}, \, f_- = \frac{f - |f|}{2} \; \mbox{ et } \;
+f = f_+ - f_-, \, |f| = f_+ + f_-,
+$$
+les fonctions $f_+$ et $f_-$ sont HK-intégrables si et seulement 
+si $f$ et $|f|$ sont HK-intégrables, c'est-à-dire si et seulement
+si $f$ est absolument HK-intégrable. Il nous suffit donc de démontrer le
+résultat pour les fonctions positives.
 
+Remarquons qu'une fonction étagée positive
+$$
+g = \sum_{k=1}^{n} y_k 1_{A_k}
+$$
+où les ensembles $A_1, \dots, A_{n} \in \mathcal{A}$ sont disjoints,
+et $y_1, \dots, y_{n} \in \left]0, +\infty\right[$ est $v$-intégrable
+si et seulement si $v(A_k) < +\infty$ pour tout $k$. 
+Par définition de la mesure de Lebesgue $v$, c'est équivalent à l'HK-intégrabilité 
+de chaque $1_{A_k}$ et donc de $g$ ; 
+l'intégrale de $g$ par rapport à $v$ vaut alors
+$$
+\int g\, v =
+\sum_{k=1}^n y_k \, v(A_k)
+=\sum_{k=1} y_k \int 1_{A_k}(x) \, dx
+= \int \sum_{k=1} y_k 1_{A_k}(x) \, dx
+=\int g(x) \, dx.
+$$
+
+Si une fonction $f$ positive est $v$-intégrable, elle est la 
+limite simple d'une suite croissante telles fonctions étagées positives et 
+$v$-intégrables à valeurs finies et son intégrale par rapport à $v$ est la limite
+des intégrales par rapport à $v$ des fonctions étagées. D'après
+le résultat précédente, elle est donc la limite des intégrales au sens de
+Henstock-Kurzweil de ces fonctions, qui, d'après le résultat des convergence
+monotone de l'intégrale de Henstock-Kurzweil, converge vers l'intégrale de
+Henstock-Kurzweil de $f$. Réciproquement, si $f$ est HK-intégrable, elle
+est mesurable -- mesurable au sens de Henstock-Kurzweil et donc par le critère 
+de l'image réciproque, également $\mathcal{L}(\R)$-mesurable --
+et le même procédé d'approximation par une suite croissante de fonctions étagées
+positives est donc applicable. Les théorèmes de convergence monotone, 
+pour l'intégrale de Henstock-Kurzweil et pour l'intégrale associée à $v$, 
+permettent alors de conclure.
+
+
+<!--
 
 ### TODO 
 Rah compliqué, il faut *aussi* parler d'ensemble négligeable 
@@ -656,6 +775,8 @@ $$
 v(f^{-1}(+\infty)) = v(f^{-1}(-\infty)) = 0.
 $$
 **TODO**
+
+-->
 
 
 ### {.ante}
