@@ -12,6 +12,14 @@
 Objectifs
 ================================================================================
 
+Niveaux : ($\bullet$) Basique ($\bullet\bullet$) Standard ($\bullet\!\bullet\!\bullet$) Avancé
+($\circ$) Hors-programme
+
+Les résultats en annexe sont systématiquement hors-programme. 
+Sauf mention contraire, les démonstrations de ce document 
+sont également hors-programme ; leur étude peut constituer un moyen
+d'assimiler le cours, au même titre que la résolution d'exercices.
+
 ### Tribu
 
   - terminologie : tribu $\mathcal{A}$, ensemble $\mathcal{A}$-mesurable, espace mesurable $(X ,\mathcal{A})$ ($\bullet$).
@@ -41,9 +49,11 @@ Objectifs
 
   - savoir : les mesures sont (finiment) additives et croissantes.
 
-  - calculer avec les mesures
+  - calculer avec les mesures. **QUOI** calculer des mesures dans des cas
+    précis, ou bien ? in abstracto ?
 
-  - savoir construire de nouvelles mesures : par restriction, au moyen de l'intégrale,
+  - connaitre des méthodes de construction de nouvelles mesures : 
+    par restriction, au moyen de l'intégrale d'une fonction positive,
     avec la mesure image. ($\bullet\!\bullet\!\bullet$)
 
   - terminologie : ensemble négligeable et propriété vraie presque partout. ($\bullet\bullet$)
@@ -105,6 +115,7 @@ Objectifs
 
   - savoir exploiter le théorème de convergence dominée ($\bullet\bullet$).
 
+<!--
 --------------------------------------------------------------------------------
 
 ### TODO -- Basique
@@ -155,6 +166,8 @@ Objectifs
   - Mesure de Hausdorff
 
   - ...
+
+-->
 
 
 Mesure
