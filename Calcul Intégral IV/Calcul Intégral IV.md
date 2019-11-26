@@ -17,10 +17,10 @@ d'apprentissages associés au chapitre. Ces objectifs sont organisés en
 paliers :
 
 ($\bullet$) Fondamental ($\bullet\bullet$) Standard ($\bullet\!\bullet\!\bullet$) Avancé
-($\circ$) Expert (hors-programme)
+($\circ$) Expert (non exigible)
 
-Sauf mention particulière, les démonstrations sont hors-programme[^hp] ;
-les résultats en annexe sont tous hors-programme et ne sont pas listés.
+Sauf mention particulière, la connaissance des démonstrations du document 
+n'est pas exigible[^hp] ; les notions développées en annexe sont toutes hors-programme.
 
 [^hp]: l'étude des démonstrations du cours peut toutefois 
 contribuer à votre apprentissage du cours, au même titre que la résolution 
@@ -97,9 +97,10 @@ d'exercices.
   - calcul : savoir exploiter la propriété de convergence monotone pour calculer l'intégrale de
     fonctions mesurables ($\bullet\bullet$).
 
-  - connaître la définition formelle de la $\mu$-intégrale (avec le sup) ($\bullet\!\bullet\!\bullet$) ;
-    savoir montrer que cette définition est bien conforme aux trois propriétés caractéristiques
-    de l'intégrale ($\circ$).
+  - connaître la définition formelle de la $\mu$-intégrale (avec le sup des intégrales
+    des fonctions étagées) ($\bullet\!\bullet\!\bullet$) ;
+    savoir démontrer qu'avec cette définition les trois propriétés caractéristiques
+    de l'intégrale sont bien vérifiées ($\circ$).
 
   - savoir à quelle condition l'intégrale d'une fonction est nulle (cf. positivité et nullité) ($\bullet\bullet$).
 
