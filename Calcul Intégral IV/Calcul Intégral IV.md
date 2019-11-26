@@ -64,9 +64,9 @@ d'exercices.
 
   - savoir calculer des mesures d'ensemble mesurables ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
 
-  - terminologie : ensemble négligeable, propriété vraie presque partout. ($\bullet$)
+  - terminologie : ensemble $\mu$-négligeable, propriété vraie $\mu$-presque partout ($\bullet$).
 
-  - savoir caractériser un ensemble négligeable pour une mesure donnée ($\bullet\bullet$)
+  - savoir déterminer si un ensemble est $\mu$-négligeable ($\bullet\bullet$).
 
 ### Intégrale de fonctions positives
 
@@ -406,13 +406,14 @@ Montrer que les mesures de comptage sont bien des mesures.
 
 ### Ensemble négligeable {.definition}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Un ensemble $N \subset X$
-est *$\mu$-négligeable* s'il existe un ensemble mesurable $A \in \mathcal{A}$ 
-tel que $N \subset A$ et $\mu(A) = 0$.
+est *négligeable* (ou *$\mu$-négligeable*) s'il existe un ensemble mesurable 
+$A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$.
 
 ### Presque partout {.definition}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Une propriété $P$ dépendant 
-d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
-où elle est fausse est un ensemble négligeable.
+d'un $x \in X$ est vraie *presque partout* (ou *$\mu$-presque partout*) 
+si l’ensemble des éléments $x$ 
+où elle est fausse est un ensemble $\mu$-négligeable.
 
 ### Exercice -- Négligeable pour la mesure de comptage {.exercise}
 Caractériser les ensembles négligeables pour la mesure de comptage $c$.
