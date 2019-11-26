@@ -12,111 +12,116 @@
 Objectifs
 ================================================================================
 
-Niveaux : ($\bullet$) Basique ($\bullet\bullet$) Standard ($\bullet\!\bullet\!\bullet$) Avancé
-($\circ$) Hors-programme
+Cette section -- expérimentale -- s'efforce d'expliciter les acquis 
+d'apprentissages associés au chapitre. Ces objectifs sont organisés en
+paliers :
 
-Les résultats en annexe sont systématiquement hors-programme. 
-Sauf mention contraire, les démonstrations de ce document 
-sont également hors-programme ; leur étude peut constituer un moyen
-d'assimiler le cours, au même titre que la résolution d'exercices.
+($\bullet$) Fondamental ($\bullet\bullet$) Standard ($\bullet\!\bullet\!\bullet$) Avancé
+($\circ$) Expert (hors-programme)
+
+Sauf mention particulière, les démonstrations sont hors-programme[^hp] ;
+les résultats en annexe sont tous hors-programme et ne sont pas listés.
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage du cours, au même titre que la résolution 
+d'exercices.
+
+
 
 ### Tribu
 
-  - terminologie : tribu $\mathcal{A}$, ensemble $\mathcal{A}$-mesurable, espace mesurable $(X ,\mathcal{A})$ ($\bullet$).
+  - terminologie : tribu $\mathcal{A}$, ensemble mesurable, espace mesurable. ($\bullet$).
 
-  - connaître : la tribu $\mathcal{P}(X)$ des parties de $X$, la tribu de Lebesgue $\mathcal{L}(\R^n)$ ($\bullet$).
+  - connaître : tribu $\mathcal{P}(X)$ des parties de $X$, tribu de Lebesgue $\mathcal{L}(\R^n)$ ($\bullet$).
 
-  - calcul ensembliste :
-  
-      - si $A, B \in \mathcal{A}$, $A\cap B \in \mathcal{A}$ et
-        $A\setminus B \in \mathcal{A}$ ($\bullet\bullet$).
+  - savoir exploiter que si $A, B \in \mathcal{A}$, $A\cup B \in \mathcal{A}$, $A\cap B \in \mathcal{A}$ et
+    $A\setminus B \in \mathcal{A}$ ($\bullet$).
 
-      - savoir déterminer quand un ensemble $C$, 
-        produit par des opérations ensemblistes, 
-        appartient à la tribu $\mathcal{A}$ ($\bullet\bullet$).
+  - savoir exploiter que si $A_k \in \mathcal{A}$, alors
+    $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}$ et 
+    $\cap_{k=0}^{+\infty} A_k \in \mathcal{A}$ ($\bullet\bullet$).
+
+  - plus généralement, savoir déterminer quand un ensemble, 
+    produit par des opérations ensemblistes à partir d'ensembles de $\mathcal{A}$, 
+    appartient à $\mathcal{A}$ ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
 
   - savoir caractériser si une collection d'ensembles est une tribu ($\bullet\!\bullet\!\bullet$).
 
+  - savoir que la raison d'être d'une tribu est d'être le domaine de définition d'une mesure ($\bullet$).
+
 ### Mesure
 
-  - savoir : chaque mesure est définie sur une tribu.
+  - terminologie : mesure $\mu$, espace mesuré ($\bullet$).
 
-  - terminologie : mesure $\mu$, espace mesuré $(X, \mathcal{A}, \mu)$.
+  - connaître : mesures de Dirac, de comptage, de Lebesgue ($\bullet$).
 
-  - connaître : la mesure de Dirac, la mesure de comptage, la mesure de Lebesgue, 
+  - savoir caractériser quand une fonction est une mesure 
+    ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
 
-  - savoir caractériser quand une fonction est une mesure.
+  - savoir exploiter que les mesures sont nulle en zéro, additives et croissantes ($\bullet$).
 
-  - savoir : les mesures sont (finiment) additives et croissantes.
+  - savoir exploiter la $\sigma$-additivité des mesures ($\bullet\bullet$).
 
-  - calculer avec les mesures. **QUOI** calculer des mesures dans des cas
-    précis, ou bien ? in abstracto ?
+  - savoir calculer des mesures d'ensemble mesurables ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
 
-  - connaitre des méthodes de construction de nouvelles mesures : 
-    par restriction, au moyen de l'intégrale d'une fonction positive,
-    avec la mesure image. ($\bullet\!\bullet\!\bullet$)
+  - terminologie : ensemble négligeable, propriété vraie presque partout. ($\bullet$)
 
-  - terminologie : ensemble négligeable et propriété vraie presque partout. ($\bullet\bullet$)
+  - savoir caractériser un ensemble négligeable pour une mesure donnée ($\bullet\bullet$)
 
 ### Intégrale de fonctions positives
 
-  - savoir : chaque mesure détermine une intégrale.
+  - savoir : chaque mesure détermine une intégrale ($\bullet$).
 
-  - terminologie : $\mu$-intégrale, intégrale par rapport à $\mu$.
+  - terminologie : intégrale par rapport à $\mu$ ($\mu$-intégrale) ($\bullet$).
 
-  - en faisant abstraction la notion de fonction mesurable,
-    savoir exploiter les trois propriétés caractéristiques 
-    de l'intégrale associée à une mesure $\mu$ ($\bullet\bullet$).
+  - savoir : si $f\geq 0$, la $\mu$-intégrale de $f$ est définie $\leftrightarrow$ $f$ est $\mu$-mesurable ($\bullet$).
 
-  - définition : fonction $\mu$-mesurable ($\bullet\bullet$)
+  - terminologie : fonction $\mathcal{A}$-mesurable (ou $\mu$-mesurable) ($\bullet\bullet$)
 
-  - les fonctions positives dont la $\mu$-intégrale est définie
-    (finie ou infinie)
-    sont les fonctions $\mu$-mesurables positives.
+  - connaître les trois propriétés caractéristiques d'une $\mu$-intégrale ($\bullet$).
+ 
+  - terminologie : fonction étagée (positive) ($\bullet$)
 
-  - terminologie : fonction étagée
+  - calcul : savoir exploiter la forme $\sum_{k=1}^n y_k 1_{A_k}$ des fonctions étagées ($\bullet$)
 
-  - fonction positive à valeur finies ou infinies ($\bullet$)
+  - savoir caractériser les fonctions étagées mesurables ($\bullet$).
 
-  - savoir expliciter une fonction étagée positive comme une combinaison de
-    fonctions caractéristique
+  - savoir calculer la $\mu$-intégrale d'une fonction étagée $\mu$-mesurable ($\bullet$).
 
-  - savoir quand une telle fonction est $\mu$-mesurable
+  - savoir que limite simple de fonctions mesurables est mesurable ($\bullet\bullet$)
 
-  - savoir calculer l'intégrale d'une fonction étagée $\mu$-mesurable
+  - savoir exploiter le résultat d'approximation des fonctions mesurables par des fonctions étagées mesurables
+    pour montrer la mesurabilité de fonctions 
+    ($\bullet\bullet$) ; connaître la suite de fonctions étagées utilisée dans sa démonstration ($\bullet\!\bullet\!\bullet$).
 
-  - savoir exploiter les techniques d'approximation des fonctions mesurables 
-    par des fonctions étagées mesurables.
+  - calcul : savoir exploiter la propriété de convergence monotone pour calculer l'intégrale de
+    fonctions mesurables ($\bullet\bullet$).
 
-  - intégrale d'une fonction (mesurable) positive (sup)
+  - connaître la définition formelle de la $\mu$-intégrale (avec le sup) ($\bullet\!\bullet\!\bullet$) ;
+    savoir montrer que cette définition est bien conforme aux trois propriétés caractéristiques
+    de l'intégrale ($\circ$).
 
-  - savoir caractériser les fonctions $\mu$-mesurables
-
-  - savoir construire l'intégrale d'une mesure $\mu$
-
-  - approximation par des fonctions étagées (abstraite + comment ça marche
-    en vrai dans la preuve, juste en faisant abstraction de mesurabilité)
-
-  - ou ? Lien HK et intégrale / mesure de Lebesgue
-
-
-### Propriétés de l'intégrale
-
-  - Propriétés caractéristiques de l'intégrale
-
-  - Lien entre la mesure $\mu(A)$ et la $\mu$-intégrale de $1_A$.
-
-  - Intégrale et combinaison linéaire 
-
-  -  Positivité et nullité
+  - savoir à quelle condition l'intégrale d'une fonction est nulle (cf. positivité et nullité) ($\bullet\bullet$).
 
 ### Intégrale de fonction signées
+  
+  - terminologie : $\mu$-intégrale, $\mu$-intégrabilité ($\bullet$).
 
-  - terminologie : $\mu$-intégrabilité (fonctions positives et signées) ($\bullet$).
+  - savoir : seules l'intégrale des fonctions signées mesurables est susceptible
+    d'être calculée ; mais cette intégrale peut être infinie ou indéfinie ($\bullet$).
+
+  - savoir : une fonction est intégrable si son intégrale est bien définie et
+    réelle ($\bullet$).
 
   - définition : intégrale d'une fonction signée ($\bullet$)
 
-  - savoir exploiter le théorème de convergence dominée ($\bullet\bullet$).
+  - compétence : savoir transposer les résultats du calcul intégral 
+    des fonctions positives au contexte des fonctions signées ($\bullet\bullet$).
+
+  - calcul : savoir utiliser le théorème de convergence dominée ($\bullet\bullet$).
+
+  - connaître le lien entre intégrale associée à la mesure de Lebesgue 
+    et au sens de Henstock-Kurzweil dans $\R^n$ ($\bullet\bullet$).
 
 <!--
 --------------------------------------------------------------------------------
@@ -179,7 +184,11 @@ Mesure
 ### Tribu et espace mesurable {.definition}
 Une *tribu* (ou *$\sigma$-algèbre*) $\mathcal{A}$ sur un ensemble $X$ est une 
 collection d'ensembles de $X$ contenant l'ensemble vide et fermé par passage 
-au complémentaire et à l'union dénombrable :
+au complémentaire et à l'union dénombrable[^fp] :
+
+[^fp]: c'est-à-dire que ces opérations, 
+appliquées à des ensembles de $\mathcal{A}$, produisent des ensembles qui
+sont également dans $\mathcal{A}$.
 
   1. $\varnothing \in \mathcal{A}$.
 
@@ -211,6 +220,10 @@ des parties (sous-ensembles) de $X$ est une tribu sur $X$.
 
 ### Exercice -- Ensembles fermés {.exercise}
 La collection des ensembles fermés de $\R^n$ est-elle une tribu sur $\R^n$ ?
+
+### Exercice -- Tribu née sous $X$ {.exercise}
+Supposons que la collection $\mathcal{A}$ soit une tribu sur l'ensemble $X$ mais 
+que $X$ soit inconnu. Comment peut-on déduire $X$ de la collection $\mathcal{A}$ ?
 
 ### Exercice -- Intersection de tribus {.exercise}
 Montrer que pour tout ensemble $X$, l'intersection de deux tribus
@@ -244,17 +257,17 @@ L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$
 est un *espace mesuré*.
 
 ### Exercice -- Les mesures sont (finiment) additives {.exercise}
-Vérifier que tout mesure $\mu$ sur $(X, \mathcal{A})$ est additive, 
-c'est-à-dire que si les ensembles $A_0, A_1, A_2, \dots, A_j$ de $\mathcal{A}$
+Vérifier que toute mesure $\mu$ sur $(X, \mathcal{A})$ est additive, 
+c'est-à-dire que si les ensembles $A_0, A_1, A_2, \dots, A_n$ de $\mathcal{A}$
 sont deux à deux disjoints, alors
 $$
-\mu \left( \bigcup_{k=0}^{j} A_k \right) = \sum_{k=0}^{j} \mu(A_k).
+\mu \left( \bigcup_{k=0}^{n} A_k \right) = \sum_{k=0}^{n} \mu(A_k).
 $$
 
 ### Exercice -- Monotonie {.exercise}
-Vérifier que tout mesure est *croissante* (on dit aussi *monotone*), 
+Vérifier que toute mesure est *croissante* (on dit aussi *monotone*), 
 c'est-à-dire que si $A, B \in \mathcal{A}$
-et $A \subset B$, $\mu(A) \subset \mu(B)$.
+et $A \subset B$, alors $\mu(A) \leq \mu(B)$.
 
 ### Exercice -- Cas dégénéré {.exercise} 
 Existe-t'il des fonctions $\mu: \mathcal{A} \to [0, +\infty]$ qui soient
@@ -278,7 +291,7 @@ Montrer que la somme de deux mesures $\mu_1$ et $\mu_2$ sur un espace mesurable
 $(X, \mathcal{A})$ est une mesure sur $(X, \mathcal{A})$.
 
 ### Mesure de Lebesgue
-La fonction $v$ qui a un ensemble mesurable $A$ associe
+La fonction $v$ qui a un ensemble $A \in \mathcal{L}(\R^n)$ associe
 $$
 v(A) = \left|
 \begin{array}{cl}
@@ -290,10 +303,12 @@ $$
 est une mesure nommé *mesure de Lebesgue* sur $\R^n$.
 
 ### Démonstration {.proof}
+<!--
 La démonstration que les ensembles mesurables forment une tribu a été fournie 
 dans le chapitre "Calcul Intégral II" dans $\R$ 
 (cf. "Propriétés élémentaires" des ensembles mesurables) ; 
 la démonstration dans le cas général de $\R^n$ est tout à fait similaire.
+-->
 La fonction $v$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing$,
 $$
 v(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
@@ -310,7 +325,7 @@ disjoints deux à deux. Trois cas uniquement peuvent se produirent :
   3. Il existe un $k \in \N$ tel que $v(A_k) = +\infty$.
 
 Posons 
-$$A = \cup_{k=0}^{+\infty} A_k \; \mbox{ et } \; f_j = 1_{\cup_{k=0}^j A_k}.$$ 
+$$A = \cup_{k=0}^{+\infty} A_k \; \mbox{ et } \; f_j = 1_{\cup_{k=0}^j A_k} = \sum_{k=0}^j 1_{A_k}.$$ 
 La suite des $f_j$ est croissante, composée de fonctions mesurables et converge
 simplement vers $1_A$.
 
@@ -350,8 +365,9 @@ $P = [a_1,b_1] \times \dots \times [a_n, b_n]$.
 
 ### Mesure de Dirac
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
-de $X$ (l'ensemble des sous-ensembles de $X$)
-et soit $x \in X$. On appelle *mesure de Dirac* en $x$ la fonction 
+de $X$ (la collection des sous-ensembles de $X$ : $A \in \mathcal{P}(X)$ si 
+et seulement si $A \subset X$.)
+Soit $x \in X$ ; on appelle *mesure de Dirac* en $x$ la fonction 
 $\delta_x : \mathcal{P}(X) \to [0, +\infty]$ définie par
 $$
 \delta_x(A) = \left|
@@ -370,7 +386,7 @@ Quand on considère $\delta_x(A)$ comme une fonction de $x$ à $A$ fixé,
 qu'obtient-on ?
 
 ### Mesure de comptage
-Soit $X$ et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
+Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
 de $\R^n$. On appelle *mesure de comptage* sur $X$ la fonction 
 $c : \mathcal{P}(X) \to [0, +\infty]$ définie par
 $$
@@ -397,6 +413,16 @@ Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Une propriété $P$ dépendant
 d'un $x \in X$ est vraie *presque partout* si l’ensemble des éléments $x$ 
 où elle est fausse est un ensemble négligeable.
 
+### Exercice -- Négligeable pour la mesure de comptage {.exercise}
+Caractériser les ensembles négligeables pour la mesure de comptage $c$.
+
+### Exercice -- Négligeable pour la mesure de Dirac {.exercise}
+Caractériser les ensembles négligeables pour la mesure de Dirac $\delta_x$.
+
+### Exercice -- Négligeable et mesurable {.exercise}
+Montrer qu'un ensemble mesurable est négligeable si et seulement si il
+est de mesure nulle.
+
 Intégrale
 ================================================================================
 
@@ -408,6 +434,11 @@ pour lever toute ambiguité)
 si l'image réciproque 
 de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]$ <!--$[-\infty,+\infty]^n$--> par 
 $f$ est un ensemble mesurable (qui appartient à $\mathcal{A}$).
+
+### {.post}
+Quand la tribu $\mathcal{A}$ est le domaine de définition d'une mesure $\mu$,
+on trouvera également le terme *$\mu$-mesurable* utilisé pour désigner une
+fonction $\mathcal{A}$-mesurable.
 
 ### {.remark .post}
 Cette définition est directement applicable <!-- si $f$ est scalaire 
@@ -530,20 +561,20 @@ De plus, on peut prouver par récurrence que ces fonctions $f_k$ sont
 mesurables. En effet, $f_0$ est évidemment mesurable (et étagée) ;
 supposons que $f_k$ soit mesurable (et étagée), et donc de la 
 forme $f_k = \sum_{j=1}^{n}y_j 1_{A_j}$ où les $A_j$ sont mesurables,
-non vides, disjoints et $0 < y_1 < y_1 < \dots < y_{n-1} < +\infty$. 
+non vides, disjoints et $0 < y_1 < y_1 < \dots < y_{n} < +\infty$. 
 Si l'on pose $y_0 = 0$ et $A_0 = X \setminus \cup_{j=1}^n A_j$, 
 on a donc
 $$
 \begin{split}
 E_k &= \{x \in X \; | \; f(x) \geq f_k(x) + \varepsilon_k\} \\
-&= \bigcup_{j=0}^{n-1} \{x \in A_j \; | \; f(x) \geq f_k(x) + \varepsilon_k\} \\
-&= \bigcup_{j=0}^{n-1} \{x \in A_j \; | \; f(x) \geq y_j + \varepsilon_k\} \\
-&= \bigcup_{j=0}^{n-1} f^{-1}([y_j+\varepsilon_k,+\infty]) \cap A_j.
+&= \bigcup_{j=0}^{n} \{x \in A_j \; | \; f(x) \geq f_k(x) + \varepsilon_k\} \\
+&= \bigcup_{j=0}^{n} \{x \in A_j \; | \; f(x) \geq y_j + \varepsilon_k\} \\
+&= \bigcup_{j=0}^{n} f^{-1}([y_j+\varepsilon_k,+\infty]) \cap A_j.
 \end{split}
 $$
 La fonction $f$ étant mesurable, chaque ensemble $f^{-1}([y_j+\varepsilon_k,+\infty])$
-est mesurable ; l'ensemble $E_k$ est donc mesurable comme union finie d'intersection
-finie d'ensemble mesurables. La fonction $f_{k+1} = f_k + \varepsilon_k 1_{E_k}$
+est mesurable ; l'ensemble $E_k$ est donc mesurable comme union finie d'intersections
+finies d'ensembles mesurables. La fonction $f_{k+1} = f_k + \varepsilon_k 1_{E_k}$
 est donc mesurable (et étagée).
 
 
@@ -555,7 +586,7 @@ $$
 $$
 alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
 
-### Exercice -- "Restriction" de fonction {.exercise}
+### Exercice -- Trace de fonction {.exercise}
 Soient $f: X \to [0, +\infty]$ une fonction mesurable positive
 (à valeurs finies ou infinies) et soit $A \in \mathcal{A}$.
 Montrer que $1_A f$ est mesurable.
@@ -591,7 +622,7 @@ finies) dont la suite des valeurs absolues $|f_k|$ est croissante
 $$
 0 \leq |f_0| \leq \cdots \leq |f_k| \leq |f_{k+1}| \leq \cdots
 $$
-et convergent simplement vers $f$.
+et qui convergent simplement vers $f$.
 
 ### Démonstration {.proof}
 Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ sont mesurables
@@ -637,8 +668,9 @@ $\lambda f$ et $f+g$ sont mesurables.
 
 ### Intégrale d'une fonction positive -- Propriétés caractéristiques {#carac}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. *L'intégrale (de Lebesgue)
-par rapport à la mesure $\mu$* est l'unique application qui à toute fonction
-mesurable positive $f : X \to [0, +\infty]$ associe la grandeur notée
+par rapport à la mesure $\mu$* (ou *$\mu$-intégrale*) est l'unique application 
+qui à toute fonction mesurable positive $f : X \to [0, +\infty]$ associe la 
+grandeur notée
 $$
 \int f\mu = \int_X f(x) \, \mu(dx) \in [0, +\infty]
 $$
@@ -683,9 +715,10 @@ $$
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
 Soit $f : X \to [-\infty, +\infty]$ une fonction mesurable.
 *L'intégrale (de Lebesgue) de $f$ par rapport à la mesure $\mu$* 
+(où *$\mu$-intégrale*) 
 est définie si au moins l'une des intégrales des fonctions positives
 $$
-f_+ := \max(f, 0) \; \mbox{ et } f_- = -\min(f, 0) \;
+f_+ := \max(f, 0) \; \mbox{ et } f_- := -\min(f, 0) \;
 $$
 est finie. On définit alors l'intégrale de $f$ par rapport à $\mu$ comme
 $$
@@ -738,12 +771,12 @@ de définir la différence des deux grandeurs[^tbh].
 [^tbh]: sauf à introduire un nouveau nombre "indéfini" $\bot$, 
 absorbant pour l'addition, tel que $\bot = +\infty - \infty$
 (le [NaN ou *not-a-number* des numériciens](https://en.wikipedia.org/wiki/NaN) 
-est un concept très proche). Mais à ce stade nous n'allons pas explorer cette
-piste.
+est un concept très proche). Mais nous n'allons pas explorer cette piste ici.
 
 ### Exercice {.exercise}
 Construire une fonction $f:\R \to \R$ mesurable par rapport à la tribu de 
-Lebesgue $\mathcal{L}(\R)$ mais pas intégrable pour la mesure de Lebesgue $v$.
+Lebesgue $\mathcal{L}(\R)$ mais dont l'intégrale n'est pas définie par rapport à
+la mesure de Lebesgue $v$ (ni finie ni infinie).
 
 
 ### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
@@ -1023,6 +1056,7 @@ $$
 = \int f\mu.
 $$
 
+<!--
 ### {.remark .ante}
 [Le théorème de convergence monotone](#TCM) fournit une alternative,
 plus concrète, à la construction initiale de l'intégrale.
@@ -1057,6 +1091,8 @@ $$
 \lim_{k \to +\infty} \int f_k \mu  = \int f \mu
 $$
 pour toute suite de ce type.
+
+-->
 
 ### Linéarité {.theorem #lin}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
@@ -2130,7 +2166,7 @@ Si pour tout $n \in \N$,
 $f_k(n) \to f(n) \mbox{ quand } k \to +\infty,$
 alors
 $$
-\lim_{k \to +\infty} \sum_{n=0}^{+\infty} f_k(n)  = \sum_{n=0}^{+\infty} f_k(n).
+\lim_{k \to +\infty} \sum_{n=0}^{+\infty} f_k(n)  = \sum_{n=0}^{+\infty} f(n).
 $$
 
 <!--
