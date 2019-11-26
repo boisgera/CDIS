@@ -22,6 +22,7 @@ Calcul Différentiel, Intégral et Stochastique
 | Probabilités 1/5 | [Probabilités I.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20I.pdf) | [Probabilités I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20I%20(a4%2C%20recto-verso).pdf) |  
 | Calcul Intégral 3/5 | [Calcul Intégral III.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20III.pdf) | [Calcul Intégral III (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20III%20(a4%2C%20recto-verso).pdf) |
 | Probabilités 2/5 | [Probabilités II.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20II.pdf) | [Probabilités II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20II%20(a4%2C%20recto-verso).pdf) | 
+| Calcul Intégral 4/5 | [Calcul Intégral IV.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20IV.pdf) | [Calcul Intégral IV (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20IV%20(a4%2C%20recto-verso).pdf) |
 <!--| ... | ... | ... |-->
  
 
