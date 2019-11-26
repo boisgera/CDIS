@@ -1,0 +1,59 @@
+[
+	{
+		"id": "UPS",
+		"type": "webpage",
+		"title": "Programmes.",
+		"container-title": "Prepa.org, le site de l'UPS pour les classes préparatoires aux grandes écoles",
+    "URL": "https://prepas.org/ups.php?entree=programmes",
+    "author": {"literal": "Union des Professeurs de classes préparatoires Scientifiques"},
+    "issued": "2019",
+    "accessed": "2019"
+	},
+	{
+		"id": "Gau78",
+		"type": "book",
+		"title": "Nearness - a better approach to topology.",
+		"note": "Published: Math. Chronicle 7, 84-90 (1978).",
+		"language": "English",
+		"author": [
+						{
+										"family": "Gauld",
+										"given": "David B."
+						}
+		],
+		"issued": {
+						"date-parts": [
+										[
+														"1978"
+										]
+						]
+		}
+},
+{
+	"id": "Bar96",
+	"type": "article-journal",
+	"title": "Return to the Riemann integral.",
+	"container-title": "American Mathematical Monthly",
+	"page": "625–632",
+	"volume": "103",
+	"issue": "8",
+	"ISSN": "0002-9890",
+	"journalAbbreviation": "Am. Math. Mon.",
+	"language": "English",
+	"author": [
+					{
+									"family": "Bartle",
+									"given": "Robert G."
+					}
+	],
+	"issued": {
+					"date-parts": [
+									[
+													"1996"
+									]
+					]
+	}
+}
+
+
+]
