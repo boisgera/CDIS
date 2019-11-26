@@ -12,9 +12,9 @@
 Objectifs
 ================================================================================
 
-Cette section -- expérimentale -- s'efforce d'expliciter les acquis 
-d'apprentissages associés au chapitre. Ces objectifs sont organisés en
-paliers :
+Cette section -- expérimentale -- s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
 
 ($\bullet$) Fondamental ($\bullet\bullet$) Standard ($\bullet\!\bullet\!\bullet$) Avancé
 ($\circ$) Expert (non exigible)
@@ -23,7 +23,7 @@ Sauf mention particulière, la connaissance des démonstrations du document
 n'est pas exigible[^hp] ; les notions développées en annexe sont toutes hors-programme.
 
 [^hp]: l'étude des démonstrations du cours peut toutefois 
-contribuer à votre apprentissage du cours, au même titre que la résolution 
+contribuer à votre apprentissage, au même titre que la résolution 
 d'exercices.
 
 
@@ -55,14 +55,14 @@ d'exercices.
 
   - connaître : mesures de Dirac, de comptage, de Lebesgue ($\bullet$).
 
-  - savoir caractériser quand une fonction est une mesure 
+  - savoir déterminer si une fonction est une mesure 
     ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
 
-  - savoir exploiter que les mesures sont nulle en zéro, additives et croissantes ($\bullet$).
+  - savoir exploiter que les mesures sont nulles en zéro, additives et croissantes ($\bullet$).
 
   - savoir exploiter la $\sigma$-additivité des mesures ($\bullet\bullet$).
 
-  - savoir calculer des mesures d'ensemble mesurables ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
+  - savoir calculer des mesures d'ensembles ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
 
   - terminologie : ensemble $\mu$-négligeable, propriété vraie $\mu$-presque partout ($\bullet$).
 
@@ -76,25 +76,25 @@ d'exercices.
 
   - savoir : si $f\geq 0$, la $\mu$-intégrale de $f$ est définie $\leftrightarrow$ $f$ est $\mu$-mesurable ($\bullet$).
 
-  - terminologie : fonction $\mathcal{A}$-mesurable (ou $\mu$-mesurable) ($\bullet\bullet$)
+  - terminologie : fonction mesurable (ou $\mathcal{A}$-mesurable ou $\mu$-mesurable) ($\bullet\bullet$)
 
-  - connaître les trois propriétés caractéristiques d'une $\mu$-intégrale ($\bullet$).
+  - connaître les trois propriétés caractéristiques de la $\mu$-intégrale ($\bullet$).
  
-  - terminologie : fonction étagée (positive) ($\bullet$)
+  - terminologie : fonction étagée ($\bullet$)
 
-  - calcul : savoir exploiter la forme $\sum_{k=1}^n y_k 1_{A_k}$ des fonctions étagées ($\bullet$)
+  - savoir exploiter la forme $\sum_{k=1}^n y_k 1_{A_k}$ des fonctions étagées ($\bullet$)
 
   - savoir caractériser les fonctions étagées mesurables ($\bullet$).
 
   - savoir calculer la $\mu$-intégrale d'une fonction étagée $\mu$-mesurable ($\bullet$).
 
-  - savoir que limite simple de fonctions mesurables est mesurable ($\bullet\bullet$)
+  - savoir que la limite simple de fonctions mesurables est mesurable ($\bullet\bullet$)
 
-  - savoir exploiter le résultat d'approximation des fonctions mesurables par des fonctions étagées mesurables
-    pour montrer la mesurabilité de fonctions 
+  - savoir exploiter le résultat d'approximation des fonctions mesurables par des fonctions étagées
+    (en particulier pour montrer la mesurabilité d'une fonction)
     ($\bullet\bullet$) ; connaître la suite de fonctions étagées utilisée dans sa démonstration ($\bullet\!\bullet\!\bullet$).
 
-  - calcul : savoir exploiter la propriété de convergence monotone pour calculer l'intégrale de
+  - savoir exploiter la propriété de convergence monotone pour calculer l'intégrale de
     fonctions mesurables ($\bullet\bullet$).
 
   - connaître la définition formelle de la $\mu$-intégrale (avec le sup des intégrales
@@ -108,18 +108,18 @@ d'exercices.
   
   - terminologie : $\mu$-intégrale, $\mu$-intégrabilité ($\bullet$).
 
-  - savoir : seules l'intégrale des fonctions signées mesurables est susceptible
-    d'être calculée ; mais cette intégrale peut être infinie ou indéfinie ($\bullet$).
+  - savoir : seule l'intégrale des fonctions signées qui sont mesurables est susceptible
+    d'être définie ; mais cette intégrale peut être finie, infinie ou indéfinie ($\bullet$).
 
-  - savoir : une fonction est intégrable si son intégrale est bien définie et
+  - savoir : une fonction est intégrable si son intégrale est définie et
     réelle ($\bullet$).
 
-  - définition : intégrale d'une fonction signée ($\bullet$)
+  - calcul de l'intégrale d'une fonction $f$ à partir de celle de $f_+$ et $f_-$ ($\bullet$).
 
   - compétence : savoir transposer les résultats du calcul intégral 
     des fonctions positives au contexte des fonctions signées ($\bullet\bullet$).
 
-  - calcul : savoir utiliser le théorème de convergence dominée ($\bullet\bullet$).
+  - savoir utiliser le théorème de convergence dominée ($\bullet\bullet$).
 
   - connaître le lien entre intégrale associée à la mesure de Lebesgue 
     et au sens de Henstock-Kurzweil dans $\R^n$ ($\bullet\bullet$).
@@ -178,6 +178,7 @@ d'exercices.
 
 -->
 
+\newpage
 
 Mesure
 ================================================================================
@@ -1841,23 +1842,9 @@ $$
 
 ### TODO Question 5 {.question #d5}
 qqch sur la mesure de comptage 
-
-Approximation par des ensembles mesurables
---------------------------------------------------------------------------------
-
-Soit $A$ un sous-ensemble de $\R^n$.
-
-### Question 1 {.question #enm-1}
-Montrer qu'il existe un ensemble $v^*$-mesurable $B$ contenant $A$ et tel que
-$v^*(A) = v^*(B)$.
-
-### Question 2 {.question #enm-2}
-A quelle condition portant sur $v^*(B \setminus A)$ l'ensemble $A$ est-il 
-$v^*$-mesurable ?
-
-
-
 -->
+
+
 
 Intégrales et séries
 --------------------------------------------------------------------------------
@@ -1970,7 +1957,7 @@ Montrer ensuite que
 $f:Y \to [-\infty, +\infty]$ est $\mu \circ h^{-1}$-intégrable 
 si et seulement si $f \circ h$ est $\mu$-intégrable et qu'alors,
 $$
-\int_Y f \, (\mu \circ h^{-1})(dx) = \int_X (f \circ h) \, \mu(dx).
+\int_Y f(y) \, (\mu \circ h^{-1})(dy) = \int_X (f \circ h)(x) \, \mu(dx).
 $$
 
 Complétion d'une mesure {#complétion}
@@ -2005,7 +1992,21 @@ est une tribu.
 Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
 mesure $\overline{\mu}$ définie sur $\overline{\mathcal{A}}$.
 
-Mesure intérieure
+
+Approximation par des ensembles mesurables (hors-programme)
+--------------------------------------------------------------------------------
+
+Soit $A$ un sous-ensemble de $\R^n$.
+
+### Question 1 {.question #enm-1}
+Montrer qu'il existe un ensemble $v^*$-mesurable $B$ contenant $A$ et tel que
+$v^*(A) = v^*(B)$.
+
+### Question 2 {.question #enm-2}
+A quelle condition portant sur $v^*(B \setminus A)$ l'ensemble $A$ est-il 
+$v^*$-mesurable ?
+
+Mesure intérieure (hors-programme)
 --------------------------------------------------------------------------------
 
 Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact de $\R^n$
@@ -2247,57 +2248,6 @@ si $f(x) \not \in \{-\infty, +\infty\}$. On a alors
 $$
 \int f \delta_x = f_+(x) - f_-(x) = f(x).
 $$
-
-Approximation par des ensembles mesurables {#aem}
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-enm-1}
-Par définition de $v^*(A)$, pour tout $j \in \N$, il existe une collection
-dénombrable de pavés $P^j_k$ tels que
-$$
-v^*(A) \leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
-$$
-Les ensembles $B_j = \cup_k P^j_k$ sont $v^*$-mesurables comme unions 
-dénombrables d'ensembles mesurables. 
-De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité de $v^*$
-$$
-v^*(A) 
-\leq v^*(B_j) 
-\leq \sum_{k=0}^{+\infty} v^*(P^j_k)
-\leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
-$$
-L'intersection $B = \cap_j B_j$ est un ensemble mesurable qui recouvre $A$ 
-et est contenu dans chaque $B_j$ ; par conséquent pour tout $j \in \N$,
-$$
-v^*(A) \leq v(B) \leq v(B_j) \leq v^*(A) + 2^{-j}.
-$$
-On en déduit donc que $A \subset B$ et $v^*(A) = v^*(B)$ avec $B$ mesurable. 
-
-### Question 2 {.answer #answer-enm-2}
-Notons au préalable que si $v^*(A) = +\infty$, alors $A$ est automatiquement 
-mesurable. Dans le cas contraire ($v^*(A) < +\infty$)
-l'ensemble $A$ est $v^*$-mesurable si et seulement si $v^*(B \setminus A) = 0$.
-En effet, si $A$ est $v^*$-mesurable et de mesure finie, comme $A \subset B$, on a 
-$$
-v^*(B) = v^*(A \cap B) + v^*(A^c \cap B) = v^*(A) + v^*(B \setminus A) = v^*(B) + v^*(B \setminus A).
-$$
-Comme la mesure $v^*(A)$ est finie, $v^*(B \setminus A) = 0$.
-Réciproquement, si $v^*(B \setminus A) = 0$, alors $B \setminus A$ (et donc $A$)
-est mesurable.
-En effet, pour tout ensemble $C$ de $\R^n$, on a d'une part 
-$$
-v^*(C) \leq v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C) 
-$$
-par subbadditivité de $v^*$.
-D'autre part, comme $(B \setminus A) \cap C \subset B \setminus A$, 
-$v^*((B \setminus A) \cap C) \leq v^*(B \setminus A) = 0$. 
-Par ailleurs, $C \supset (B \setminus A)^c \cap C$, donc
-$$
-v^*(C) \geq v^*((B \setminus A)^c \cap C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C).
-$$
-On a donc l'égalité $v^*(C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C)$ ;
-l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \setminus A)$.
-
 -->
 
 
@@ -2318,11 +2268,27 @@ $1_A f_k$ est de même nature et converge simplement vers $1_A f$ ; la
 fonction $1_A f$ est donc mesurable.
 
 ### Question 2 {.answer #answer-mdi-2}
-Montrer que la fonction notée $f \mu$ définie par
+La fonction notée $f \mu$ définie par
 $$
-f \mu : A \in \mathcal{A} \mapsto \int_A f \, \mu := \int 1_A f \, \mu \in [0, +\infty].
+f \mu : A \in \mathcal{A} \mapsto \int_A f \, \mu := \int 1_A f \, \mu \in [0, +\infty]
 $$
-est une mesure sur $(X, \mathcal{A})$.
+est de tout évidence à valeurs dans $[0, +\infty]$ et nulle en zéro.
+
+Si les ensembles de la suite $(A_k)_{k \in N}$ sont mesurables et disjoints, 
+les fonctions 
+$$
+g_k = 1_{\cup_{j=0}^k A_k} = \sum_{j=0}^k 1_{A_k}
+$$
+forment une suite croissante de fonctions mesurables et $g_k f$ converge
+simplement vers $1_{\cup_{k=0}^{+\infty} A_k} f$. Par le théorème de
+croissance monotone, on a donc
+$$
+f\mu\left(\bigcup_{k=0}^{+\infty} A_k\right)
+= \int 1_{\cup_{k=0}^{+\infty} A_k} f =
+\sum_{k=0}^{+\infty} \int 1_{A_k} f = \sum_{k=0}^{+\infty} f\mu(A_k).
+$$
+La fonction $f \mu$ est donc $\sigma$-additive. C'est donc une mesure sur
+$(X,\mathcal{A})$.
 
 Mesure image 
 --------------------------------------------------------------------------------
@@ -2341,7 +2307,7 @@ et la fonction $\nu$ est bien définie.
 
 En utilisant l'additivité de $\mu$, on constate alors que
 $$
-\nu(A) = \mu(h^{-1}(A) = \delta_{-1}(A) + \mu|_{\left]-1,1\right[} (A) + \delta_{1}(A)
+\nu(A) = \mu(h^{-1}(A)) = \delta_{-1}(A) + \mu|_{\left]-1,1\right[} (A) + \delta_{1}(A)
 $$
 où $\mu|_{\left]-1,1\right[}$ est la mesure
 trace de $\mu$ sur $\left]-1,1\right[$,
@@ -2641,7 +2607,58 @@ $$
 -->
 
 
-Mesure intérieure
+
+Approximation par des ensembles mesurables (hors-programme) {#aem}
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-enm-1}
+Par définition de $v^*(A)$, pour tout $j \in \N$, il existe une collection
+dénombrable de pavés $P^j_k$ tels que
+$$
+v^*(A) \leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
+$$
+Les ensembles $B_j = \cup_k P^j_k$ sont $v^*$-mesurables comme unions 
+dénombrables d'ensembles mesurables. 
+De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité de $v^*$
+$$
+v^*(A) 
+\leq v^*(B_j) 
+\leq \sum_{k=0}^{+\infty} v^*(P^j_k)
+\leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
+$$
+L'intersection $B = \cap_j B_j$ est un ensemble mesurable qui recouvre $A$ 
+et est contenu dans chaque $B_j$ ; par conséquent pour tout $j \in \N$,
+$$
+v^*(A) \leq v(B) \leq v(B_j) \leq v^*(A) + 2^{-j}.
+$$
+On en déduit donc que $A \subset B$ et $v^*(A) = v^*(B)$ avec $B$ mesurable. 
+
+### Question 2 {.answer #answer-enm-2}
+Notons au préalable que si $v^*(A) = +\infty$, alors $A$ est automatiquement 
+mesurable. Dans le cas contraire ($v^*(A) < +\infty$)
+l'ensemble $A$ est $v^*$-mesurable si et seulement si $v^*(B \setminus A) = 0$.
+En effet, si $A$ est $v^*$-mesurable et de mesure finie, comme $A \subset B$, on a 
+$$
+v^*(B) = v^*(A \cap B) + v^*(A^c \cap B) = v^*(A) + v^*(B \setminus A) = v^*(B) + v^*(B \setminus A).
+$$
+Comme la mesure $v^*(A)$ est finie, $v^*(B \setminus A) = 0$.
+Réciproquement, si $v^*(B \setminus A) = 0$, alors $B \setminus A$ (et donc $A$)
+est mesurable.
+En effet, pour tout ensemble $C$ de $\R^n$, on a d'une part 
+$$
+v^*(C) \leq v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C) 
+$$
+par subbadditivité de $v^*$.
+D'autre part, comme $(B \setminus A) \cap C \subset B \setminus A$, 
+$v^*((B \setminus A) \cap C) \leq v^*(B \setminus A) = 0$. 
+Par ailleurs, $C \supset (B \setminus A)^c \cap C$, donc
+$$
+v^*(C) \geq v^*((B \setminus A)^c \cap C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C).
+$$
+On a donc l'égalité $v^*(C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C)$ ;
+l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \setminus A)$.
+
+Mesure intérieure (hors-programme)
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-mi-1}
