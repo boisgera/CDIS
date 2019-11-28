@@ -1336,10 +1336,8 @@ continues ?
 
 -->
 
-Tribus engendrées & co
+Tribus engendrées
 ================================================================================
-
-
 
 ### Tribu engendrée par une collection {.definition}
 Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
@@ -1660,9 +1658,13 @@ $$
 -->
 
 Produit de mesures
---------------------------------------------------------------------------------
+================================================================================
 
-
+Dans cette section, nous affirmons sans preuve quelques résultats fondamentaux 
+associés aux produits de mesures et aux intégrales associées. 
+Le lecteur cherchant plus d'informations sur ce volet 
+-- dont les démonstrations sont techniques -- 
+pourra consulter @Hun11 ou @Tao11.
 
 ### Tribu produit
 Soit $(X ,\mathcal{A})$ et $(Y, \mathcal{B})$ deux espaces mesurables.
@@ -1678,25 +1680,45 @@ $$
 \left\{ A \times B \; | \; A \in \mathcal{A}, \; B \in \mathcal{B} \right\}
 \right).
 $$
+L'espace mesurable $(X \times Y, \mathcal{A} \otimes \mathcal{B})$ est appelé 
+*espace produit* des espaces mesurables $(X, \mathcal{A})$ et 
+$(Y, \mathcal{B})$.
 
-### Produit des boréliens
-On peut montrer que pour tout couple d'entiers $m$ et $n$, la tribu des
-boréliens sur $\R^{m+n}$ est le produit des tribus des boréliens sur 
+### Exercice -- Produit d'ensemble de parties {.exercise}
+Montrer que $\mathcal{P}(\N) \otimes \mathcal{P}(\N) = \mathcal{P}(\N \times \N)$.
+
+### Produit des tribus de Borel
+La tribu de Borel sur $\R^{m+n}$ est le produit des tribus de Borel sur 
 $\R^m$ et $\R^n$ :
 $$
 \mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n}).
 $$
-Le résultat analogue n'est pas vrai pour la mesure de Lebesgue : il est 
-nécessaire de compléter la tribu produit $\mathcal{L}(\R^m) \otimes \mathcal{L}(\R^n)$
-par rapport à la mesure de Lebesgue sur $\R^{m+n}$
-pour obtenir $\mathcal{L}(\R^{m+n})$ (cf. [exercice "Complétion d'une mesure"](#complétion)).
 
+### Produit et tribu de Lebesgue
+Notons que le résultat similaire est faux pour la mesure de Lebesgue : 
+  $$
+  \mathcal{L}(\R^{m+n}) \neq \mathcal{L}(\R^{m}) \otimes \mathcal{L}(\R^{n}).
+  $$
+Pour obtenir $\mathcal{L}(\R^{m+n})$, 
+il est nécessaire de compléter la tribu produit $\mathcal{L}(\R^m) \otimes \mathcal{L}(\R^n)$
+par rapport à la mesure de Lebesgue sur $\R^{m+n}$, c'est-à-dire de rajouter les
+ensembles négligeables pour la tribu de Lebesgue à la collection, 
+puis de construire la tribu engendrée
+(cf. [exercice "Complétion d'une mesure" du chapitre IV](Calcul Intégral IV.pdf#complétion)).
+
+### {.post}
+Pour pallier cette difficulté technique, une autre option consiste 
+à restreindre la mesure de Lebesgue aux boréliens.
+
+### Mesure de Borel-Lebesgue {.definition}
+On appelle *mesure de Borel-Lebesgue sur $\R^n$* la restriction de la mesure
+de Lebesgue de $\mathcal{L}(\R^n)$ a $\mathcal{B}(\R^n)$.
 
 ### Mesure produit
 Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espaces mesurés.
-On appelle *mesure produit* de $\mu$ et $\nu$ et l'on note 
-$\mu \otimes \nu$ la fonction définie sur $\mathcal{A} \otimes \mathcal{B}$
-par
+On appelle *mesure produit* de $\mu$ et $\nu$ 
+et l'on note $\mu \otimes \nu$ la mesure définie sur 
+$\mathcal{A} \otimes \mathcal{B}$ par
 $$
 (\mu \otimes \nu) (C) = \inf
 \left\{ 
@@ -1704,49 +1726,77 @@ $$
 \; \left| \vphantom{\sum_{k=0}^{+\infty}} \right. \;
 A_k \in \mathcal{A}, \ B_k \in \mathcal{B}, \, C \subset \bigcup_{k=0}^{+\infty} A_k \times B_k \right\}.
 $$
+L'espace mesuré $(X \times Y, \mathcal{A} \otimes \mathcal{B}, \mu \otimes \nu)$ est appelé 
+*espace produit* des espaces mesurés $(X, \mathcal{A}, \mu)$ et 
+$(Y, \mathcal{B}, \nu)$.
 
-### Démonstration {.proof}
-Cf. @Hun11.
 
 
-<!--
-### TODO -- Démonstration : la "mesure produit" est une mesure {.proof}
+### Exercice -- Produit de Diracs {.exercise}
+Soit $m, n \in \N$ et $\delta_m, \delta_n$ les mesures de Dirac associées sur
+$\N$. Calculer $\delta_m \otimes \delta_n$.
 
-  - introduire $(\mu \otimes \nu)^* (C)$ pour tout $C$, montrer qu'on a 
-    affaire à une mesure extérieure.
+### Exercice -- Produit de mesures de comptage {.exercise}
+Soit $c$ la mesure de comptage sur $X$.
+Déterminer la valeur de 
+$(c \otimes c)(A)$ pour tout $A \in \mathcal{P}(X) \otimes \mathcal{P}(X)$.
 
-  - montrer que tout ensemble de $\mathcal{A} \otimes \mathcal{B}$ et 
-    $(\mu \otimes \nu)^*$-mesurable (suffit de montrer que $A \times B$
-    est $(\mu \otimes \nu)^*$-mesurable).
--->    
-
+### Mesure extérieure produit {.post}
+On remarquera que l'expression ci-dessus qui définit $(\mu \otimes \nu) (C)$ a du sens
+pour tout ensemble $C$ de $\R^{m+n}$, pas uniquement pour les ensembles de
+$\mathcal{A} \otimes \mathcal{B}$. On peut prouver sans difficulté que cette
+expression définit en fait une mesure extérieure $(\mu \otimes \nu)^*$
+(un concept qui a été introduit dans l'annexe de "Calcul Intégral IV"). 
+Pour prouver le théorème ci-dessus il suffit alors d'établir que 
+tout produit $A \times B$ où $A \in \mathcal{A}$ et $B \in \mathcal{B}$ est 
+$(\mu \otimes \nu)^*$-mesurable.
 
 ### Intégrale dans un espace produit {.notation}
-Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés.
+Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espaces mesurés.
 Pour toute fonction $\mu \otimes \nu$-mesurable 
 $f: X \times Y \to [0, +\infty]$ ou toute fonction $\mu \otimes \nu$-intégrable
-$f: X \times Y \to \R$, on notera
+$f: X \times Y \to [-\infty, +\infty]$, on notera
 $$
 \int_{X \times Y} f(x, y) \mu(dx)\nu(dy) := 
 \int f (\mu \otimes \nu).
 $$
 
-### Mesure $\sigma$-finie
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. On dit que la mesure $\mu$
-est $\sigma$-finie s'il existe une suite d'ensembles mesurables 
-$A_k \in \mathcal{A}$, $k \in \N$, telle que 
+### Mesures finies et $\sigma$-finie
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. La mesure $\mu$ est *finie* si
+$\mu(X) < +\infty$ ; elle est *$\sigma$-finie* s'il existe une suite d'ensembles 
+mesurables $A_k \in \mathcal{A}$, $k \in \N$, telle que 
 $$
 \bigcup_{k=0}^{+\infty} A_k = X 
 \; \mbox{ et } \; 
-\forall \, k \in \N, \mu(A_k) < +\infty.
+\forall \, k \in \N, \, \mu(A_k) < +\infty.
 $$
 
-<!--
-### TODO -- remark
-Gérer la subtilité que la première intégrale est définie uniquement
-presque partout, ce qui suffit à montrer que la seconde est définie
-(à détailler aussi en amont).
--->
+### Exercice -- Mesure de probabilité {.exercise}
+Une mesure de probabilité est-elle finie, $\sigma$-finie ?
+
+### Exercice -- Mesures $\sigma$-finies {.exercise}
+Etudier si les mesures suivantes sur $\R^n$ sont ou non finies et/ou $\sigma$-finies : 
+les mesures de Dirac, la mesure de comptage, la mesure de Lebesgue.
+
+
+### Unicité de la mesure produit {.theorem}
+Soit $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés,
+tels que les mesures $\mu$ et $\nu$ soient $\sigma$-finies.
+Alors la mesure produit $\mu \otimes \nu$ est l'unique mesure sur 
+$(X \times Y, \mathcal{A} \otimes \mathcal{B})$ telle que
+$$
+\forall A\in \mathcal{A}, \, \forall B \in \mathcal{B}, 
+\, (\mu \otimes \nu) (A \times B) = \mu(A) \times \mu(B).
+$$
+
+### Exercice -- Mesure de Borel-Lebesgue
+Soit $\ell$ la mesure de Borel-Lebesgue sur $\R$. 
+Soit $A = [-2,2] \times [-1,1] \cup [-1,1] \times [-2,2]$  ;
+calculer $(\ell \otimes \ell) (A)$.
+
+### Mesure de Borel-Lebesgue
+La mesure de Borel-Lebesgue sur $\R^{m+n}$ est le produit des mesures 
+de Borel-Lebesgue sur $\R^m$ et $\R^n$.
 
 ### Théorème de Fubini {.theorem #fubini}
 Soit $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espace mesurés,
@@ -1763,12 +1813,9 @@ $$
 \int_Y \left(\int_X f(x, y) \mu(dx) \right) \nu(dy).
 $$
 
-### Démonstration {.proof}
-cf @Hun11.
-
 ### Symétrie
 Le rôle joué par $X$ et $Y$ étant symétrique dans l'énoncé du théorème de
-Fubini,on peut également dire qu'une fonction mesurable $f: X \times Y \to \R$
+Fubini, on peut également dire qu'une fonction mesurable $f: X \times Y \to \R$
 est intégrable si et seulement l'intégrale itérée
 $$
 \int_X \left(\int_Y |f(x, y)| \nu(dy) \right) \mu(dx)
@@ -1779,19 +1826,6 @@ $$
 =
 \int_X \left(\int_Y f(x, y) \nu(dy) \right) \mu(dx).
 $$
-
-<!--
-### TODO -- Complétion
-Etudier <https://www.math.fsu.edu/~roberlin/maa5616.f15/homework9sln.pdf>
-
-Aussi, <https://terrytao.wordpress.com/2010/10/30/245a-notes-6-outer-measures-pre-measures-and-product-measures/>
-
-### TODO -- remarque 
-remarque évidente sur l'autre intégrale itérée.
-
-
--->
-
 
 Exercices corrigés
 ================================================================================
