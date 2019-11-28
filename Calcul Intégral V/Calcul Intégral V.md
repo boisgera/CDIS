@@ -1685,7 +1685,9 @@ L'espace mesurable $(X \times Y, \mathcal{A} \otimes \mathcal{B})$ est appelé
 $(Y, \mathcal{B})$.
 
 ### Exercice -- Produit d'ensemble de parties {.exercise}
-Montrer que $\mathcal{P}(\N) \otimes \mathcal{P}(\N) = \mathcal{P}(\N \times \N)$.
+Montrer que $\mathcal{P}(\N) \otimes \mathcal{P}(\N) = \mathcal{P}(\N \times \N)$
+(attention : [le résultat n'est pas vrai si l'on remplace $\N$ par un ensemble
+$X$ "trop grand" !](https://math.stackexchange.com/questions/3029309/product-sigma-algebra-of-power-sets)).
 
 ### Produit des tribus de Borel
 La tribu de Borel sur $\R^{m+n}$ est le produit des tribus de Borel sur 
@@ -1693,6 +1695,9 @@ $\R^m$ et $\R^n$ :
 $$
 \mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n}).
 $$
+
+### Exercice -- Produit de parties et tribu de Borel  {.exercise}
+Montrer que $\mathcal{P}(\R^m) \otimes \mathcal{P}(\R^n) \subset \mathcal{B}(\R^{m+n})$.
 
 ### Produit et tribu de Lebesgue
 Notons que le résultat similaire est faux pour la mesure de Lebesgue : 
@@ -1708,11 +1713,33 @@ puis de construire la tribu engendrée
 
 ### {.post}
 Pour pallier cette difficulté technique, une autre option consiste 
-à restreindre la mesure de Lebesgue aux boréliens.
+à systématiquement restreindre les mesures que l'on considère aux boréliens.
 
-### Mesure de Borel-Lebesgue {.definition}
-On appelle *mesure de Borel-Lebesgue sur $\R^n$* la restriction de la mesure
+### Mesure de Borel {.definition}
+On appel *mesure de Borel* sur un espace topologique $X$ toute mesure 
+définie sur la tribu des boréliens $\mathcal{B}(X)$.
+
+### {.post}
+A toute mesure $\mu$ définie sur une tribu $\mathcal{A}$ de $X$ contenant 
+$\mathcal{B}(X)$ on peut associer une tribu de Borel $\nu$ en restreignant
+$\mu$ à $\mathcal{B}(X)$. 
+$$
+\nu :\mathcal{B}(X) \to [0, +\infty] \; \mbox{ et } \; \forall A \in \mathcal{B}(X), \, \nu(A) := \mu(A).
+$$
+En particulier on appelle 
+*mesure de Borel-Lebesgue sur $\R^n$* la restriction de la mesure
 de Lebesgue de $\mathcal{L}(\R^n)$ a $\mathcal{B}(\R^n)$.
+
+### Exercice -- Mesures de Borel classiques {.exercise}
+Peut-on associer une mesure de Borel à une mesure de Dirac $\delta_x$ sur $\R^n$ ?
+A la mesure de comptage sur $\R^n$ ?
+
+### Exercice -- Mesure de Borel ? {.exercise}
+Soit $\mathcal{A} = \{\varnothing, \R\}$ et $\mu: \mathcal{A} \to [0, +\infty]$
+définie par $\mu(\varnothing)=0$ et $\mu(\R) = 1$. Montrer que $\mu$ est une
+mesure sur $(\R, \mathcal{A})$ ; peut-on lui associer une mesure de Borel sur
+$\R$ ?
+
 
 ### Mesure produit
 Soient $(X, \mathcal{A}, \mu)$ et $(Y, \mathcal{B}, \nu)$ deux espaces mesurés.
@@ -1734,12 +1761,35 @@ $(Y, \mathcal{B}, \nu)$.
 
 ### Exercice -- Produit de Diracs {.exercise}
 Soit $m, n \in \N$ et $\delta_m, \delta_n$ les mesures de Dirac associées sur
-$\N$. Calculer $\delta_m \otimes \delta_n$.
+$\N$. Montrer que $\delta_m \otimes \delta_n = \delta_{(m, n)}$, c'est-à-dire
+que pour tout $C \in \N^2$,
+$$
+\delta_{(m, n)} (C) = \left|
+\begin{array}{rl}
+1 & \mbox{si $(m, n) \in A$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
 
 ### Exercice -- Produit de mesures de comptage {.exercise}
-Soit $c$ la mesure de comptage sur $X$.
-Déterminer la valeur de 
-$(c \otimes c)(A)$ pour tout $A \in \mathcal{P}(X) \otimes \mathcal{P}(X)$.
+Soit $c_X$ la mesure de comptage sur $X$.
+Montrer que pour tout $C \in \mathcal{P}(X) \otimes \mathcal{P}(Y)$,
+$(c_X \otimes c_Y)(C) = c_{X \times Y}(C).$
+(indication[^ind])
+
+[^ind]: Montrer que pour tout ensemble fini
+$C \subset X \times Y$,
+$\sum_{(a,b) \in C} c_X(\{a\}) c(\{b\}) = \mbox{card}(C)$ ;
+En déduire que si les $A_k \times B_k$ recouvrent $C$, 
+alors $\sum_{k=0}^{+\infty} c_X(A_k) c_Y(B_k) \geq \mbox{card}(C)$
+et conclure et calculant $(c_X \otimes c_Y)(C)$ lorsque $C$ est fini
+puis infini.
+
+
+<!--si $A\in\mathcal{P}(X)$, $B \in \mathcal{P}(Y)$, $a \in A$ et
+$b \in B$, alors 
+$$A \times B = (\{a\} \times \{b\}) \cup ((A \setminus \{a\}) \times \{b\}) \cup (A \times (B \setminus \{b\})).$$-->
 
 ### Mesure extérieure produit {.post}
 On remarquera que l'expression ci-dessus qui définit $(\mu \otimes \nu) (C)$ a du sens
@@ -1792,7 +1842,8 @@ $$
 ### Exercice -- Mesure de Borel-Lebesgue
 Soit $\ell$ la mesure de Borel-Lebesgue sur $\R$. 
 Soit $A = [-2,2] \times [-1,1] \cup [-1,1] \times [-2,2]$  ;
-calculer $(\ell \otimes \ell) (A)$.
+montrer que $A$ est un borélien de $\R^2$ et calculer 
+$(\ell \otimes \ell) (A)$.
 
 ### Mesure de Borel-Lebesgue
 La mesure de Borel-Lebesgue sur $\R^{m+n}$ est le produit des mesures 
@@ -1826,6 +1877,38 @@ $$
 =
 \int_X \left(\int_Y f(x, y) \nu(dy) \right) \mu(dx).
 $$
+
+### Exercice -- Convolution de Dirac {.exercise}
+Soit $a, b \in \R$ et $C \subset \R$. Justifier l'existence et calculer
+la fonction $?$ de $C$ telle que
+$$
+?(C) = \int 1_C(x + y) \, \delta_a(dx) \delta_b(dy).
+$$
+Indication : si l'on note $C - v = \{c - v \; | \; c \in C \}$, alors on
+a $1_C(u + v) = 1_{C-v} (u)$.
+
+### Exercice -- Intégrale et séries doubles {.exercise}
+Soit $f : \N \times \N\to \R$ une fonction telle que 
+$$
+\sum_{n=0}^{+\infty} \left(\sum_{m=0}^{+\infty} |f(m, n)| \right) < +\infty.
+$$
+Montrer que
+$$
+\sum_{n=0}^{+\infty} \left(\sum_{m=0}^{+\infty} f(m, n) \right)
+=
+\sum_{m=0}^{+\infty} \left(\sum_{n=0}^{+\infty} f(m, n) \right).
+$$
+
+### Exercice -- Asymétrie {.exercise}
+Soit $\ell$ la mesure de Lebesgue sur $\R$ et $c$ la mesure de comptage sur
+$\R$. On note $D = \{(x, x) \; | \; x \in [0,1]\}$. Calculer (en justifiant
+l'existence des termes)
+$$
+\int \left(\int 1_D(x, y) \, \ell(dx) \right)  c(dy)
+\; \mbox{ et } \;
+\int \left(\int 1_D(x, y) \, c(dy) \right)  \ell(dx)
+$$
+et comparer ces deux valeurs. Comment expliquez-vous ce résultat ?
 
 Exercices corrigés
 ================================================================================
