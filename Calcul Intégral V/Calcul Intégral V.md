@@ -1374,52 +1374,58 @@ Il est clair que si $\mathcal{A}$ est une tribu de $X$ contenant $\mathcal{B}$,
 alors $\cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C} \subset \mathcal{A}$, 
 car $\mathcal{A} \in \mathfrak{S}$.
 Il nous suffit donc de montrer que $\cap \mathfrak{S}$ est une tribu de $X$
-pour pouvoir conclure ; on vérifiera aisément que comme chaque élément de $\mathfrak{S}$
-est une tribu, cette intersection en est également une.
+pour pouvoir conclure. Or
 
-<!--
-### Tribu de Lebesgue {.definition}
-On appelle *tribu de Lebesgue* sur $\R^n$ la tribu composée des ensembles $E$
-tels que pour tout pavé $P$ de $\R^n$, la fonction caractéristique 
-de $E \cap P$ soit intégrable (au sens de Henstock-Kurzweil).
+  - pour tout $\mathcal{C} \in \mathfrak{S}$, $\varnothing \in \mathcal{C}$,
+    donc $\varnothing \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$ ;
 
-### {.post}
-La tribu de Lebesgue est donc composée des ensembles mesurables au sens
-du chapitre "Calcul Intégral III".
+  - si $A \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$, alors 
+    pour tout $\mathcal{C} \in \mathfrak{S}$, $A \in \mathcal{C}$, donc
+    $X \setminus A \in \mathcal{C}$ et par conséquent 
+    $X \setminus A \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$ ;
 
-### TODO -- Référence
-Lier au chapitre "Calcul Intégral III" en détail.
--->
+  - si pour tout $k \in \N$, $A_k \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$,
+    alors pour tout $\mathcal{C} \in \mathfrak{S}$, $A_k \in \mathcal{C}$, donc
+    $\cup_{k=0}^{+\infty} A_k \in \mathcal{C}$ et par conséquent
+    $\cup_{k=0}^{+\infty} A_k \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$.
+
+### Exercice -- Singletons de $\N$ {.exercise}
+Montrer que la collection des singletons de $\N$ $\{\{n\} \; | \; n \in \N\}$
+engendre dans $\N$ la tribu des parties $\mathcal{P}(\N)$.
+
+### Exercice -- Tribu engendrée par une collection finie {.exercise}
+Montrer que si $\mathcal{B} = \{A_1, A_2\}$ où $A_1$ et $A_2$ sont des
+ensembles de $X$, alors la tribu engendrée par $\mathcal{B}$ dans $X$
+contient au plus 16 ensembles. Que devient le résultat quand 
+$\mathcal{B} = \{A_1, A_2, A_3\}$ ?
+
+### Exercice -- Tribu engendrée par les ensembles dénombrables {.exercise}
+Montrer que la tribu engendrée par les ensembles dénombrables de $\R$ est la
+collection des ensembles de $\R$ qui sont dénombrables ou dont le
+complémentaire est dénombrable.
 
 ### Tribu de Borel {.definition}
-On appelle *tribu de Borel* d'un espace topologique $X$ la plus petite tribu
-contenant tous les fermés (ou tous les ouverts) de $X$.
+On appelle *tribu de Borel* d'un espace topologique $X$ la tribu
+notée $\mathcal{B}(X)$ engendrée
+par les ensembles fermés (ou les ensembles ouverts) de $X$.
 
-### Mesure {.definition}
-Une *mesure (positive)* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
-est une fonction de $\mathcal{A}$ dans $[0, +\infty]$ telle que $\mu(\varnothing)= 0$
-et pour toute collection dénombrable d'ensembles $A_k$ de
-$\mathcal{A}$ disjoints deux à deux, on ait
-$$
-\mu \left( \bigcup_{k} A_k \right) = \sum_{k} \mu(A_k) ;
-$$
-on dit que $\mu$ est *$\sigma$-additive*.
-L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ est un *espace mesuré*.
+### Exercice -- Ouverts ou fermés {.exercise}
+Montrer que la tribu engendrée par les ensembles ouverts de $X$ est bien
+identique à la tribu engendrée par les ensembles fermés de $X$.
 
-<!--
-### TODO -- Pb
-Gérer "pb" des fonctions à valeurs étendues ? Non, il n'y en a pas ...
--->
+### {.ante}
+Nous généralisons désormais la notion de fonction $\mathcal{A}$-mesurable du 
+chapitre précédent en tenant désormais explicitement compte d'une tribu dans 
+l'ensemble d'arrivée de la fonction :
 
-
-
-### Fonction mesurable
+### Fonction $\mathcal{A}/\mathcal{B}$-mesurable
 Une fonction $f: X \to Y$ associée aux espaces mesurables $(X, \mathcal{A})$
 et $(Y,\mathcal{B})$ est *mesurable* 
 (ou *$\mathcal{A}/\mathcal{B}$-mesurable*)
 si l'image réciproque $A =f^{-1}(B)$
 de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
 
+<!--
 ### L'infini
 Dans le cadre abstrait de l'intégration selon Lebesgue, on pourra si nécessaire
 considérer des fonctions prenant (éventuellement) des valeurs infinies,
@@ -1450,23 +1456,53 @@ on obtiendrait $+\infty$, alors même que l'intégrale vaut $2$ pour toute valeu
 finie de $f(0)$. L'intégrale de Lebesgue n'a pas cette difficulté, et produira
 la valeur $2$ dans tous les cas.
 
-### Conventions
-Lorsque l'ensemble d'arrivée $Y$ de $f$ a une structure topologique, 
-par exemple $Y = [-\infty, +\infty]$ ou $Y = [-\infty, +\infty]^m$, 
-on supposera par défaut que la tribu associée est la tribu de Borel. 
-Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera par défaut 
-que la tribu associée est la tribu de Lebesgue. 
-Lorsque l'on souhaitera plutôt munir $X$ et $Y$ de la tribu de Borel,
-on parlera de fonction *borélienne* (tribu de Borel au départ et à l'arrivée).
-Il existe une bonne raison pour adopter par défaut la convention hybride (avec
-des tribus d'un type différent au départ et à l'arrivée) pour la définition
-de "mesurable" :
+-->
 
+<!--
+### Conventions
+Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera sauf
+mention contraire que la tribu associée est la tribu de Lebesgue :
+$$
+\mathcal{A} = \mathcal{L}(\R^n)
+\, \mbox{ et } 
+\mathcal{B} = ?.
+$$
+Lorsque l'ensemble d'arrivée $Y$ de $f$ a une structure topologique
+-- par exemple $Y = [-\infty, +\infty]$ ou $Y = [-\infty, +\infty]^m$ -- 
+on supposera par défaut que la tribu associée est la tribu de Borel :
+$$
+\mathcal{A} = ? \, \mbox{ et } 
+\mathcal{B} = \mathcal{B}(Y).
+$$
+Lorsque l'on souhaitera munir $X$ et $Y$ de la tribu de Borel,
+on parlera de fonction *borélienne* :
+$$
+\mathcal{A} = \mathcal{B}(X) \, \mbox{ et } \, \mathcal{B} = \mathcal{B}(Y).
+$$
+Il existe une bonne raison pour favoriser par défaut la convention hybride 
+(avec tribu de Lebesgue au départ et de Borel à l'arrivée) pour la définition
+de "mesurable" :
+-->
+
+
+<!--
 ### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
 Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
 au sens de Henstock-Kurzweil
 -- c'est-à-dire "mesurable" au sens de ["Calcul Intégral III"](Calcul Intégral III.pdf) --
 si et seulement si elle est $\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
+-->
+
+### {.ante}
+La notions de $\mathcal{A}$-mesurabilité du chapitre précédent correspond
+implicitement à la notion plus générale de mesurabilité quand la tribu de Borel 
+est sélectionnée sur l'espace d'arrivée :
+
+### $\mathcal{A}$-mesurable équivaut à $\mathcal{A}/\mathcal{B}(Y)$-mesurable.
+Soit $(X, \mathcal{A})$ un espace mesurable et $Y$ un espace topologique.
+Une fonction $f: X \to Y$ est $\mathcal{A}$-mesurable -- au sens où
+l'image réciproque par $f$ de tout ouvert (ou fermé) de $Y$ appartient 
+à $\mathcal{A}$ -- si et seulement si elle est $\mathcal{A}/\mathcal{B}(Y)$-mesurable.
 
 La démonstration de ce résultat repose sur le lemme suivant :
 
@@ -1531,22 +1567,19 @@ $$
 $$
 
 
-### Démonstration "L./B.-mesurable $\Leftrightarrow$ H.-K.-mesurable" {.proof}
-La fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
-au sens de Henstock-Kurzweil si et seulement si elle vérifie 
-le critère de l'image réciproque des sections II et III, 
-c'est-à-dire si et seulement si l'image réciproque de tout ouvert 
-de $\R^m$ est un ensemble $\mathcal{L}(\R^n)$-mesurable.
+### Démonstration "$\mathcal{A}$-mesurable $\leftrightarrow$ $\mathcal{A}/\mathcal{B}(Y)$-mesurable" {.proof}
+De toute évidence, si $f$ est $\mathcal{A}/\mathcal{B}(Y)$-mesurable, 
+comme tout ouvert appartient à la tribu de Borel, l'image réciproque par
+$f$ de tout ouvert de $Y$ appartient bien à $\mathcal{A}$.
 
-De toute évidence, si $f$ est Lebesgue/Borel-mesurable, ce critère est 
-satisfait. Réciproquement, si l'image réciproque de tout ouvert de $\R^m$
-est Lebesgue-mesurable, alors la tribu engendrée par les images réciproques
-des ouverts de $\R^m$ est incluse dans la tribu de Lebesgue sur $\R^n$.
+Réciproquement, si l'image réciproque de tout ouvert de $Y$
+est $\mathcal{A}$-mesurable, alors la tribu engendrée par les images réciproques
+des ouverts de $Y$ est incluse dans $\mathcal{A}$.
 Comme cette tribu est d'après [le lemme précédent](#irte) l'ensemble
-des images réciproques de la tribu engendrée par les ouverts dans $\R^m$,
-c'est-à-dire la tribu de Borel dans $\R^m$, l'image réciproque de tout
-borélien est un ensemble de la tribu de Lebesgue : la fonction 
-$f$ est Lebesgue/Borel-mesurable.
+des images réciproques par $f$ de la tribu engendrée par les ouverts dans $Y$,
+c'est-à-dire la tribu de Borel dans $Y$, l'image réciproque de tout
+borélien est un ensemble de $\mathcal{A}$ : la fonction 
+$f$ est $\mathcal{A}/\mathcal{B}(Y)$-mesurable.
 
 ### Composition de fonctions mesurables {.proposition #compfoncmes}
 Soient $(X, \mathcal{A})$, $(Y, \mathcal{B})$ et $(Z, \mathcal{C})$ des
@@ -1559,6 +1592,10 @@ $\mathcal{A}/\mathcal{C}$-mesurable.
 ### Démonstration {.proof}
 Pour tout ensemble $C \in \mathcal{C}$, on a $g^{-1}(C) \in \mathcal{B}$ 
 et donc $(g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C)) \in \mathcal{A}$.
+
+### Fonction boréliennes
+Soit $X$ et $Y$ deux espaces topologiques. Une fonction $f : X \to Y$ est
+*borélienne* si elle est $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable.
 
 ### Les fonctions continues sont boréliennes
 Soient $X$ et $Y$ deux espaces topologiques.
@@ -1586,7 +1623,7 @@ $\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} \subset \mathcal{B}(X)$
 et la fonction $f$ est bien $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable, 
 c'est-à-dire borélienne.
 
-
+<!--
 ### Limite simple de fonctions mesurables
 Soit $(X, \mathcal{A})$ un espace mesurable et $Y=\left[-\infty, +\infty\right]$, 
 muni de la tribu de Borel. 
@@ -1615,6 +1652,7 @@ simple de fonctions étagées $X \to \R$ qui soient $\mathcal{A}$/Borel-mesurabl
 
 ### TODO -- Démonstration {.proof}
 
+-->
 
 <!--
 
