@@ -13,6 +13,7 @@
 \renewcommand{\L}{\mathcal{L}}
 \newcommand{\V}{\mathbb{V}}
 
+<!--
 Objectifs
 ================================================================================
 
@@ -28,7 +29,7 @@ Objectifs
 
 ### TODO -- Hors-programme
 
-
+-->
 
 
 Dérivées faibles
@@ -499,8 +500,8 @@ mais **généralisées**, notée $\mathrm{ACG}_*$, cf. [@Bar01, pp. 242-243].
 Il existe une façon alternative pour caractériser les fonctions faiblement
 dérivables qui repose sur l'usage de fonctions tests. Cette nouvelle approche
 se prêtera mieux à la généralisation encore plus "aggressive" de la notion
-de dérivée que nous allons aborder ou les dérivées ne seront plus
-nécessairement des fonctions, mais des fonctions "généralisées".
+de dérivée que nous allons aborder où les dérivées ne seront plus
+nécessairement des fonctions "ordinaires", mais des fonctions "généralisées".
 
 ### Fonctions tests
 On note $D^k(\R)$ l'espace des fonctions continues $\varphi: \R \to \R$
@@ -1404,6 +1405,13 @@ Montrer que la tribu engendrée par les ensembles dénombrables de $\R$ est la
 collection des ensembles de $\R$ qui sont dénombrables ou dont le
 complémentaire est dénombrable.
 
+### Exercice -- Calculs avec les tribus engendrés {.exercise}
+Soit $\mathcal{A}$ et $\mathcal{B}$ deux collections d'ensembles de $X$.
+Montrer que $\sigma(\sigma(\mathcal{A})) = \sigma(\mathcal{A})$ et que
+si $\mathcal{A} \subset \mathcal{B}$, alors $\sigma(A) \subset \sigma(B)$.
+En déduire que si $\mathcal{A} \subset \mathcal{B} \subset \sigma(\mathcal{A})$, 
+alors $\sigma(\mathcal{A})  = \sigma(\mathcal{B})$.
+
 ### Tribu de Borel {.definition}
 On appelle *tribu de Borel* d'un espace topologique $X$ la tribu
 notée $\mathcal{B}(X)$ engendrée
@@ -1412,6 +1420,16 @@ par les ensembles fermés (ou les ensembles ouverts) de $X$.
 ### Exercice -- Ouverts ou fermés {.exercise}
 Montrer que la tribu engendrée par les ensembles ouverts de $X$ est bien
 identique à la tribu engendrée par les ensembles fermés de $X$.
+
+### Exercice -- Tribu engendrée par les pavés compacts {.exercise}
+Montrer que la tribu engendrée par la collection des pavés compacts
+$[a_1, b_1] \times \dots \times [a_n, b_n]$ de $\R^n$ est la tribu
+de Borel de $\R^n$. (indication[^up])
+
+[^up]: Commencer par montrer que tout ouvert de $\R^n$ s'écrit une union 
+dénombrable de pavés compacts de la forme
+$[k_1/2^m, (k_1+1)/2^m] \times \dots \times [k_n/2^m, (k_n+1)/2^m]$ où
+$m \in \N^*$ et $(k_1, \dots, k_n) \in \Z^n$.
 
 ### {.ante}
 Nous généralisons désormais la notion de fonction $\mathcal{A}$-mesurable du 
@@ -1570,7 +1588,8 @@ $$
 ### Démonstration "$\mathcal{A}$-mesurable $\leftrightarrow$ $\mathcal{A}/\mathcal{B}(Y)$-mesurable" {.proof}
 De toute évidence, si $f$ est $\mathcal{A}/\mathcal{B}(Y)$-mesurable, 
 comme tout ouvert appartient à la tribu de Borel, l'image réciproque par
-$f$ de tout ouvert de $Y$ appartient bien à $\mathcal{A}$.
+$f$ de tout ouvert de $Y$ appartient bien à $\mathcal{A}$ donc
+$f$ est $\mathcal{A}$-mesurable.
 
 Réciproquement, si l'image réciproque de tout ouvert de $Y$
 est $\mathcal{A}$-mesurable, alors la tribu engendrée par les images réciproques
@@ -1622,6 +1641,12 @@ Au final,
 $\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} \subset \mathcal{B}(X)$
 et la fonction $f$ est bien $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable, 
 c'est-à-dire borélienne.
+
+### Exercice -- Fonctions continues ou croissantes {.exercise}
+Soit $f: \R \to \R$ ; montrer que si l'image réciproque par $f$
+de tout intervalle compact est un intervalle compact alors $f$ est borélienne.
+En déduire que si $f$ est continue alors $f$ est borélienne. Peut-on tirer
+la même conclusion quand $f$ est croissante (mais pas nécessairement continue) ?
 
 <!--
 ### Limite simple de fonctions mesurables
@@ -1917,12 +1942,14 @@ $$
 $$
 
 ### Exercice -- Convolution de Dirac {.exercise}
-Soit $a, b \in \R$ et $C \subset \R$. Justifier l'existence et calculer
-la fonction $?$ de $C$ telle que
+Soit $a, b \in \R$ et $C \subset \R$. Montrer que
 $$
 ?(C) = \int 1_C(x + y) \, \delta_a(dx) \delta_b(dy).
 $$
-Indication : si l'on note $C - v = \{c - v \; | \; c \in C \}$, alors on
+est bien défini et calculer sa valeur.
+(indication[^Cv]) 
+
+[^Cv]: Si l'on note $C - v = \{c - v \; | \; c \in C \}$, alors on
 a $1_C(u + v) = 1_{C-v} (u)$.
 
 ### Exercice -- Intégrale et séries doubles {.exercise}
