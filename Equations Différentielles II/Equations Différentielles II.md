@@ -31,7 +31,26 @@ En fait, dans l'histoire des équations différentielles, c'est souvent la méca
 
 # Objectifs du cours
 
-Ce cours a pour but de sensibiliser aux problèmes apparaissant lors de la simulation numérique des solutions d'équations différentielles, et de donner les bases d'analyse d'erreur numérique. Pour un exposé plus approffondi, on pourra par exemple se referrer à [@Dem06].
+Ce cours a pour but de sensibiliser aux problèmes apparaissant lors de la simulation numérique des solutions d'équations différentielles, et de donner les bases d'analyse d'erreur numérique. Pour un exposé plus approfondi, on pourra par exemple se referrer à [@Dem06].
+
+En première lecture :
+
+- comprendre les limites d'un schéma d'Euler
+
+- comprendre qu'un schéma numérique à un pas consiste à discrétiser une intégrale, en connaître quelques-uns autres que le schéma d'Euler
+
+- comprendre les notions de consistance/convergence d'un schéma et leur ordre. Savoir montrer que le schéma d'Euler explicite est convergent d'ordre 1.
+
+En deuxième lecture :
+
+- comprendre comment fonctionne un schéma implicite et comment l'implémenter 
+
+- comprendre que la convergence est la combinaison de deux concepts : la consistance et la stabilité
+
+- savoir montrer la convergence de schémas de base, tels que ceux donnés en exercice
+
+- comprendre l'apport de schémas symplectiques pour les systèmes hamiltoniens.
+
 
 # Limites du schéma d'Euler
 
@@ -399,22 +418,24 @@ $$
 
 ### Condition suffisante de convergence
 
-L'inconvénient du théorème de Lax est qu'il faut prouver la stabilité pour obtenir la convergence. Or la seule condition suffisante dont nous disposions à cet effet, est le caractère globalement Lipschitzien de $x\mapsto \Phi_{\Delta t}(t,x)$. Mais il s'agit d'une condition très forte.  En fait, il est possible de prouver la convergence sous la condition plus faible que $x\mapsto \Phi_{\Delta t}(t,x)$ est $C^1$ ou "localement Lipschitzienne" : 
+L'inconvénient du théorème de Lax est qu'il faut prouver la stabilité pour obtenir la convergence. Or la seule condition suffisante dont nous disposions à cet effet, est le caractère globalement Lipschitzien de $x\mapsto \Phi_{\Delta t}(t,x)$. Mais il s'agit d'une condition très forte.  En fait, il est possible de prouver la convergence sous la condition plus faible que $x\mapsto \Phi_{\Delta t}(t,x)$ est "localement Lipschitzienne" : 
 
 Si 
 
 1. le schéma est consistant d'ordre $p$, 
 
-2. pour tout compact $C$ de $\R^n$, il existe $L>0$, $\Delta t_m>0$ tels que pour tout $t\in \left[ 0,T \right]$ et pour tout $\Delta t \in \left[ 0, \Delta t_m \right]$,
+2. pour tout boule fermée $B$ de $\R^n$, il existe $L>0$, $\Delta t_m>0$ tels que pour tout $t\in \left[ 0,T \right]$ et pour tout $\Delta t \in \left[ 0, \Delta t_m \right]$,
 $$
-|\Phi_{\Delta t_j}(t_j,x_a)-\Phi_{\Delta t_j}(t_j,x_b)|\leq L |x_a-x_b| \qquad \forall (x_a,x_b)\in C\times C
+|\Phi_{\Delta t_j}(t_j,x_a)-\Phi_{\Delta t_j}(t_j,x_b)|\leq L |x_a-x_b| \qquad \forall (x_a,x_b)\in B\times B 
 $$
 
 Alors il existe un pas de temps maximal $\Delta t_{\max}>0$ tel que le schéma est convergent d'ordre $p$.
 
+L'hypothèse 2. est en particulier vérifiée si $x\mapsto \Phi_{\Delta t}(t,x)$ est $C^1$ d'après une version un peu plus générale du théorème des accroissement finis.
 
 
-### Erreurs d'arrondi et pas optimal
+
+## Erreurs d'arrondi et pas optimal
 
 A chaque itération, lorsque la machine calcule $x^{j+1}$, elle commet des erreurs d'arrondi de l'ordre de la précision machine. La solution obtenue est donc donnée par
 $$
@@ -515,7 +536,7 @@ $$
 $$
 En déduire qu'une possible stratégie d'adaptation est de prendre  
 $$
-\Delta t_{new} = dt \sqrt{\frac{\texttt{Tol}_{abs}}{|e^{j+1}|}}
+\Delta t_{new} = \Delta t \sqrt{\frac{\texttt{Tol}_{abs}}{|e^{j+1}|}}
 $$
 (éventuellement avec une marge de sécurité)
 
