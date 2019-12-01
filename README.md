@@ -12,17 +12,18 @@ Calcul Différentiel, Intégral et Stochastique
 
 
 
-| Chapitre      | PDF (e-book) | PDF (impression) |
-| ------------- | ------------- | --------------------- |
-| Topologie 1/1  | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Topologie%20(a4%2C%20recto-verso).pdf) |
-| Calcul Différentiel 1/3 | [Calcul Différentiel I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf) | [Calcul Différentiel I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I%20(a4%2C%20recto-verso).pdf) |
-| Calcul Différentiel 2/3 | [Calcul Différentiel II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II.pdf) | [Calcul Différentiel II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II%20(a4%2C%20recto-verso).pdf) |
-| Calcul Intégral 1/5 | [Calcul Intégral I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I.pdf) | [Calcul Intégral I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I%20(a4%2C%20recto-verso).pdf) |
-| Calcul Intégral 2/5 | [Calcul Intégral II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II.pdf) | [Calcul Intégral II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II%20(a4%2C%20recto-verso).pdf) |
-| Probabilités 1/5 | [Probabilités I.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20I.pdf) | [Probabilités I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20I%20(a4%2C%20recto-verso).pdf) |  
-| Calcul Intégral 3/5 | [Calcul Intégral III.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20III.pdf) | [Calcul Intégral III (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20III%20(a4%2C%20recto-verso).pdf) |
-| Probabilités 2/5 | [Probabilités II.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20II.pdf) | [Probabilités II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20II%20(a4%2C%20recto-verso).pdf) | 
-| Calcul Intégral 4/5 | [Calcul Intégral IV.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20IV.pdf) | [Calcul Intégral IV (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20IV%20(a4%2C%20recto-verso).pdf) |
+| Chapitre      | PDF (e-book) | PDF (impression) | Notebook | 
+| ------------- | ------------- | --------------------- | -------- |
+| Topologie 1/1  | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Topologie%20(a4%2C%20recto-verso).pdf) |   |
+| Calcul Différentiel 1/3 | [Calcul Différentiel I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf) | [Calcul Différentiel I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I%20(a4%2C%20recto-verso).pdf) |  |
+| Calcul Différentiel 2/3 | [Calcul Différentiel II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II.pdf) | [Calcul Différentiel II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II%20(a4%2C%20recto-verso).pdf) |  |
+| Calcul Intégral 1/5 | [Calcul Intégral I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I.pdf) | [Calcul Intégral I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I%20(a4%2C%20recto-verso).pdf) |  |
+| Calcul Intégral 2/5 | [Calcul Intégral II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II.pdf) | [Calcul Intégral II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II%20(a4%2C%20recto-verso).pdf) |   |
+| Probabilités 1/5 | [Probabilités I.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20I.pdf) | [Probabilités I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20I%20(a4%2C%20recto-verso).pdf) |    |
+| Calcul Intégral 3/5 | [Calcul Intégral III.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20III.pdf) | [Calcul Intégral III (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20III%20(a4%2C%20recto-verso).pdf) |  |
+| Probabilités 2/5 | [Probabilités II.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20II.pdf) | [Probabilités II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20II%20(a4%2C%20recto-verso).pdf) |   |
+| Calcul Intégral 4/5 | [Calcul Intégral IV.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20IV.pdf) | [Calcul Intégral IV (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20IV%20(a4%2C%20recto-verso).pdf) |  |
+| Equation Différentielles 1/2 | [Equations Différentielles I.pdf](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20I.pdf) | [Equations Différentielles I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20I%20(a4%2C%20recto-verso).pdf) | [Equations Différentielles I](https://boisgera.github.io/CDIS/Equations%20%Différentielles%20I/Equations%20Différentielles%20I.ipynb) |
 <!--| ... | ... | ... |-->
  
 
