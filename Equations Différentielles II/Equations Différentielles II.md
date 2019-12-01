@@ -52,7 +52,7 @@ Lorsque les valeurs propres sont réelles  (i.e. $\rho>2\sqrt{mk}$), leur rappor
 $$
 \frac{1+\sqrt{1-4\frac{mk}{\rho^2}}}{1-\sqrt{1-4\frac{mk}{\rho^2}}}
 $$
-qui explose lorsque $\frac{mk}{\rho^2}$ tend vers 0. Par exemple, lorsque les frottements sont très grands par rapport à la raideur du ressort, ou bien lorsque $\rho$ et $k$ sont du même ordre et très grands.
+qui explose lorsque $\frac{mk}{\rho^2}$ tend vers 0. Par exemple, lorsque les frottements sont très grands par rapport à la raideur du ressort, ou bien lorsque $\rho$ et $k$ sont du même ordre de grandeur et très grands.
 
 Plus généralement, la coexistence de dynamiques très lentes à très rapides apparaît en cinétique chimique ou en biologie. La réaction de Robertson (1966)
 \begin{align*}
@@ -337,9 +337,10 @@ $$
 $$
 
 ### Condition suffisante
-Si les $\Phi_{\Delta t_j}$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$,  et tout $(x_a,x_b)\in \R^n \times \R^n$, 
+
+Si les $\Phi_{\Delta t_j}$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$, 
 $$
-|\Phi_{\Delta t_j}(t_j,x_a)-\Phi_{\Delta t_j}(t_j,x_b)|\leq L |x_a-x_b|
+|\Phi_{\Delta t_j}(t_j,x_a)-\Phi_{\Delta t_j}(t_j,x_b)|\leq L |x_a-x_b| \qquad \forall (x_a,x_b)\in \R^n \times \R^n
 $$
 alors le schéma est stable avec $S(T)=e^{L T}$.
 
@@ -362,7 +363,7 @@ ce qui donne le résultat.
 
 ## Convergence
 
-La combinaison de consistance et de stabilité donne une propriété dite de *convergence* qui dit que l'erreur commise par le schéma par rapport à la vraie solution converge vers 0 lorsque le pas de temps converge vers 0.
+La combinaison de consistance et de stabilité donne une propriété dite de *convergence* qui dit que l'erreur commise par le schéma par rapport à la vraie solution converge vers 0 lorsque le pas de temps converge vers 0. C'est une propriété cruciale pour un schéma numérique.
 
 ### Définition
 Soit $\Delta t = \max_{0 \leq j \leq J-1} \Delta t_j$.
@@ -396,8 +397,22 @@ $$
 $$
 
 
-### Relaxation de la stabilité
-Relaxation du théorème avec Lipschitz dans compact plutôt que global ?
+### Condition suffisante de convergence
+
+L'inconvénient du théorème de Lax est qu'il faut prouver la stabilité pour obtenir la convergence. Or la seule condition suffisante dont nous disposions à cet effet, est le caractère globalement Lipschitzien de $x\mapsto \Phi_{\Delta t}(t,x)$. Mais il s'agit d'une condition très forte.  En fait, il est possible de prouver la convergence sous la condition plus faible que $x\mapsto \Phi_{\Delta t}(t,x)$ est $C^1$ ou "localement Lipschitzienne" : 
+
+Si 
+
+1. le schéma est consistant d'ordre $p$, 
+
+2. pour tout compact $C$ de $\R^n$, il existe $L>0$, $\Delta t_m>0$ tels que pour tout $t\in \left[ 0,T \right]$ et pour tout $\Delta t \in \left[ 0, \Delta t_m \right]$,
+$$
+|\Phi_{\Delta t_j}(t_j,x_a)-\Phi_{\Delta t_j}(t_j,x_b)|\leq L |x_a-x_b| \qquad \forall (x_a,x_b)\in C\times C
+$$
+
+Alors il existe un pas de temps maximal $\Delta t_{\max}>0$ tel que le schéma est convergent d'ordre $p$.
+
+
 
 ### Erreurs d'arrondi et pas optimal
 
