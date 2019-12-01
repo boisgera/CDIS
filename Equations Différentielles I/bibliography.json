@@ -136,5 +136,25 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "Hale",
+		"type": "book",
+		"title": "Ordinary Differential Equations",
+		"publisher": "Dover Publication Inc.",
+		"author": [
+			{
+				"family": "Hale",
+				"given": "J. K."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2009"
+				]
+			]
+		}
 	}
+	
 ]

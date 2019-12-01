@@ -82,4 +82,24 @@
 			]
 		}
 	}
+	{
+		"id": "Dem06",
+		"type": "book",
+		"title": "Analyse numérique et équations différentielles",
+		"collection-title": "Grenoble Sciences",
+		"edition": "EDP Sciences",
+		"author": [
+			{
+				"family": "Demailly",
+				"given": "J.-P."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2006"
+				]
+			]
+		}
+	}
 ]

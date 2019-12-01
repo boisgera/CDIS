@@ -16,7 +16,7 @@
 Un peu d'histoire
 =====================
 
-L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et de la modélisation du mouvement par Kepler et Newton. Le premier réflexe est alors de chercher des solutions exactes, par exemple sous forme de série (Leibniz), mais ces méthodes atteignent vite leurs limites, mis à part dans des cas très particuliers. 
+L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et de la modélisation du mouvement par Kepler et Newton. Avec Leibniz, leur premier réflexe est alors de chercher des solutions exactes, par exemple par des primitives de fonctions conues ou bien sous forme de série, mais ces méthodes atteignent vite leurs limites, mis à part dans des cas très particuliers. 
 
 Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on cherche à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
 Laplace, qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
@@ -28,7 +28,7 @@ En parallèle, l'étude de la stabilité et du comportement asymptotique des sol
 Objectifs du cours
 ========================
 
-En première lecture :
+Ce cours est une introduction à l'étude non linéaire des équations différentielles. Pour une étude plus complète voir par exemple [@Hale]. En première lecture, les objectifs ``opérationnels'' sont les suivants :
 
 - savoir réduire une équation différentielle à l'ordre 1.
 
@@ -52,8 +52,6 @@ En deuxième lecture :
 - comprendre la preuve du théorème de Cauchy-Lipschitz en voyant la solution comme un point fixe de la représentation intégrale des solutions.
 
 - savoir que l'on peut relâcher l'hypothèse du théorème de Cauchy-Lipschitz à "$f$ Lipschitzienne par rapport à $x$". 
-
-- comprendre le théorème des bouts.
 
 - comprendre ce que représente l'exposant de Lyapunov d'un système chaotique.
 
@@ -202,7 +200,7 @@ f(t,x_1,x_2) =
 \right] \ .
 $$
 
-En physique, on est souvent intéressé par les solutions partant d'une *condition initiale* donnée. La recherche de ces solutions particulières est dûe à Cauchy et porte le nom de *Problème de Cauchy* :
+En physique, on s'intéresse souvent aux solutions partant d'une *condition initiale* donnée. La recherche et l'étude de ces solutions particulières est dûe à Cauchy et porte le nom de *Problème de Cauchy* :
 
 > Dans mes leçons données à l'École Polytechnique, comme dans la plupart des ouvrages ou mémoires que j'ai publiés sur le calcul intégral, j'ai cru devoir placer en premier lieu la recherche, non pas des intégrales générales, mais des particulières ; en sorte que la détermination des constantes ou des fonctions arbitraires ne fût plus séparée de la recherche des intégrales.
 
@@ -220,7 +218,7 @@ On dira donc que $x:I\to \R^n$ est solution du problème de Cauchy défini par $
 
 On notera alors $x\in S_f(t_0,x_0)$.
 
-Avant d'étudier les solutions d'un problème de Cauchy, il est crucial de remarquer la charactérisation qui suit.
+Avant d'étudier les solutions d'un problème de Cauchy, il est crucial de remarquer la caractérisation qui suit.
 
 ### Représentation intégrale des solutions {.theorem #theo_eq_integrale}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$, $I\subset J$ un intervalle de $\R$ non réduit à un point, $t_0\in I$, $x_0\in X$, et $x\in C(I,\R^n)$ telle que $x(t)\in X$ pour tout $t\in I$. Alors, $x\in S_f(t_0,x_0)$ si et seulement si $x$ est solution de l'équation intégrale
@@ -238,13 +236,13 @@ $$
 Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $I\times X$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.
 
 ### Classe plus générale de solutions {.remark}
-La définition sous forme intégrale des solutions montre que la recherche de solutions $C^1$ et l'hypothèse de continuité de $f$ pourraient être relachées: il suffirait de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Mais il est souhaitable tout de même d'assurer un minimum de propriétés telles que l'existence de solutions, comme nous allons le voir dans la section suivante.
+La définition sous forme intégrale des solutions montre que la recherche de solutions $C^1$ et l'hypothèse de continuité de $f$ pourraient être relachées : il suffirait de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Mais il est souhaitable tout de même d'assurer un minimum de propriétés telles que l'existence de solutions, comme nous allons le voir dans la section suivante.
 
 
 ### Portrait de phase   
 En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. Voir [Figure](#fig_pendule) ci-dessous dans le cas d'un pendule.
 
-![Portraits de phase d'un pendule non amorti à gauche et amorti à droite. $x_1$ représente l'angle du pendule et $x_2$ sa vitesse de rotation.](images/pendule.py){#fig_pendule}
+![Portraits de phase d'un pendule non amorti à gauche et amorti à droite. $x_1$ représente l'angle du pendule en abscisse et $x_2$ sa vitesse de rotation en ordonnée. Le pendule sera décrit et étudié plus en détail dans la suite du cours.](images/pendule.py){#fig_pendule}
 
 
 Etude du problème de Cauchy
@@ -253,7 +251,7 @@ Etude du problème de Cauchy
 Existence de solutions locales
 --------------------------------
 
-Le théorème suivant assure l'existence locale de solutions au [problème de Cauchy](#def_cauchy) sous une simple hypothèse de continuité de $f$.
+Notre point de départ est le théorème suivant établi à la fin du XIX$^e$ siècle, qui assure l'existence locale de solutions au [problème de Cauchy](#def_cauchy) sous une simple hypothèse de continuité de $f$. En d'autres termes, dans le cadre de ce cours où $f$ est supposée continue, il existe toujours des solutions pour toute condition initiale, définies au moins pour un certain temps.
 
 ### Théorème de Peano-Arzelà {.theorem  #theo_peano}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$. Pour tout $(t_0,x_0)\in J\times X$, il existe $\tau_m >0$ et $x\in C^1([t_0-\tau_m,t_0+\tau_m],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
@@ -267,14 +265,6 @@ $$
 \dot{x}=f(t,x)
 $$
 si elle n'est pas *prolongeable*, c'est-à-dire, pour toute autre solution $x'\in C^1(I',\R^n)$ telle que $I'\subseteq I$ et $x_{|I'}\equiv x'_{|I}$, on a nécessairement $I=I'$ et $x\equiv x'$. 
-
-### Exemple
-Considérons le problème de Cauchy
-$$
-\dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0)
-$$ 
-permettant de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli*.
-La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. En fait, on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales.
 
 ### Classe plus générale de solutions (pour la culture) {.remark}
 L'existence de solutions $C^1$ est garantie lorsque $f$ est continue. Il s'avère que l'existence de solutions *absolument continues*, est garantie sous les hypothèses plus faibles suivantes dans un voisinage de $(t_0,x_0)$ :
@@ -291,7 +281,18 @@ L'existence de solutions $C^1$ est garantie lorsque $f$ est continue. Il s'avèr
 Unicité des solutions
 -------------------------------
 
-Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue mais qu'elles ne sont pas nécessairement uniques. Le théorème suivant montre que l'unicité des solutions est garantie si $f$ est de classe $C^1$ par rapport à la variable $x$. Le théorème et la preuve de l'époque de Cauchy est disponible en ligne dans des notes de cours [@cauchy].
+Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue. Par contre, elles ne sont pas toujours uniques. 
+
+### Exemple de non-unicité des solutions
+Considérons le problème de Cauchy
+$$
+\dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0) \ .
+$$ 
+Ce système permet en particulier de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli* (voir [exercice](#exo_Torricelli) correspondant).
+La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. Mais on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales. Plus de détails sont donnés dans le notebook Equations Différentielles.ipynb.
+
+
+Le théorème suivant, dit de *Cauchy-Lipschitz*, montre que l'unicité des solutions est garantie si $f$ est de plus de classe $C^1$ par rapport à la variable $x$. On voit que ce n'est pas le cas de $x\mapsto -\sqrt{|x|}$ en 0. Le théorème et la preuve de l'époque est disponible en ligne dans des notes de cours [@cauchy].
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $J\times X$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
@@ -480,12 +481,11 @@ Le théorème suivant nous montre que pour un horizon de temps fini donné, on p
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
 
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\overline{t}$ tel que $\left[ t_0,\overline{t} \right]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $\left[ t_0,\overline{t} \right]$ et vérifie
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\underline{t},\overline{t}$ tel que $t_0\in\left[\underline{t},\overline{t} \right]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $\left[\underline{t},\overline{t} \right]$ et vérifie
 $$
-|x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in \left[ t_0,\overline{t} \right] \ .
+|x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in \left[\underline{t},\overline{t} \right] \ .
 $$
 
-Notons que le même résultat s'obtient en temps rétrograde, i.e. sur $\left[ \underline{t},t_0 \right]$.
 
 La présence du facteur exponentiel n'est pas crucial ici, et servira dans la suite. Ce qui est important, c'est que plus l'erreur de condition initiale $\delta$ est faible, plus l'erreur sur la trajectoire à horizon de temps fini $\overline{t}$ est faible.
 On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
@@ -544,11 +544,11 @@ Il est important d'insister sur le caractère *déterministe* de ce chaos : chaq
 
 - En 1963, Edward Lorenz met en évidence pour la première fois le comportement possiblement chaotique de la météorologie à travers un modèle simplifié à trois dimensions de convection donné par 
 \begin{align*}
-\dot{x} &= \sigma (y-x) \\
-\dot{y} &= \rho \, x - y -xz \\
-\dot{z} &= xy-\beta z 
+\dot{x}_1 &= \sigma (x_2-x_1) \\
+\dot{x}_2 &= \rho \, x_1 - x_2 -x_1x_3 \\
+\dot{x}_3 &= x_1x_2-\beta x_3 
 \end{align*}
-où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires *sautent* de manière *chaotique* d'une aile à l'autre, comme représenté sur la [figure](#fig_attracteur_lorenz) ci-dessous.
+où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires *sautent* de manière *chaotique* d'une aile à l'autre, comme représenté sur la [figure](#fig_attracteur_lorenz) ci-dessous. La croissance exponentielle de l'erreur se visualise en simulation : voir pour cela le notebook Equations Différentielles.ipynb.
 
 - En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années [@SussWis]. 
 
@@ -627,6 +627,10 @@ $$
 ![Portrait de phase du système de Vinograd](images/vinograd.py){#fig_vinograd}
 -->
 
+### Robustesse vis-à-vis des perturbations (pour la culture)
+
+L'avantage de la propriété de *stabilité asymptotique* par rapport à la simple *attractivité* est qu'elle apporte de la robustesse par rapport aux perturbations. En effet, lorsque qu'un point d'équilibre est asymptotiquement stable, on peut montrer qu'en présence d'une perturbation de la dynamique, les solutions restent asymptotiquement arbitrairement proche de ce point d'équilibre si la perturbation est suffisamment petite. Il y a donc une sorte de continuité des solutions par rapport aux perturbations en temps infini (contrairement au résultat général de continuité par rapport aux conditions initiales qui n'est qu'en temps fini). Cette propriété n'est pas garantie lorsque le point d'équilibre n'est qu'attractif et c'est la raison pour laquelle en pratique, on essaye toujours d'assurer la stabilité asymptotique d'un système : on sait alors que même en présence de perturbations (inévitables en physique), le comportement du système sera proche du comportement voulu.
+
 ### Cas d'un système linéaire
 Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est globalement asymptotiquement stable pour le système
 $$
@@ -663,15 +667,16 @@ A(t) = \left( \begin{matrix}
 $$
 a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ aribitrairement proche de 0.
 
-### Lien entre stabilité et stabilité du linéarisant tangent
-Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si  $J_f(a)$ est Hurwitz.
+### Lien entre stabilité et stabilité du linéarisé tangent
+Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si la matrice jacobienne  $J_f(a)$ est Hurwitz.
 
 Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
+
+Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
 
 ### Démonstration {.proof}
 Voir l'annexe [\textit{Stabilité locale et linéarisé tangent}](#app_stab_lin).  
 
-Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
 
 ### Exemple
 Reprenons l'[exemple du pendule amorti](#ex_pendule_amorti). On a
@@ -760,9 +765,9 @@ On peut se demander s'il existe toujours une fonction de Lyapunov autour d'un po
 Exercices 
 ==============================================================================
 
-Les exercices à maîtriser sont marqués d'un (+). 
+Les exercices à maîtriser sont marqués d'un ($+$). 
 
-## Ecoulement dans un réservoir (+) {.exercice #exo_Torricelli}
+## Ecoulement dans un réservoir ($+$) {.exercice #exo_Torricelli}
 Considérons un réservoir cylindrique de section $S$ qui se vide par une ouverture de section $s$ située à sa base. On note $x$ la hauteur de liquide dans le réservoir. D'après la *loi de Torricelli*[^Torricelli], l'équation d'évolution de $x$ est donnée par 
 $$
 \dot{x}=-k\sqrt{|x|} \qquad k = \frac{s}{S}\sqrt{2g}
@@ -818,7 +823,7 @@ $$
 
 
 
-## Oscillateur (+) {.exercice #exo_masse_ressort}
+## Oscillateur ($+$) {.exercice #exo_masse_ressort}
 Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
 $$
 m\ddot{y} = - \lambda \dot{y} -k y \ ,
@@ -834,10 +839,10 @@ Justifier que les solutions sont uniques et globales quelque soit la condition i
 ### Question 3 {.question #ressort-3}
 Etudier leur stabilité et le comportement des solutions pour $\lambda>0$ et $\lambda = 0$. Les dessiner sur un portrait de phase. 
 
-*Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2$)*
+*Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 +\frac{1}{2} m x_2^2$)*
 
 
-## Cycle limite (+)
+## Cycle limite 
 Considérons le système
 $$
 \begin{array}{rcl}
@@ -902,7 +907,7 @@ Correction des exercices
 ## Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
 ### Question 1 {.answer #answer-tor-1}
-$f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$ donc le théorème de Peano nous garantie l'existence de solutions au problème de Cauchy pour toute condition initiale. 
+$f:(t,x)\mapsto -k\sqrt{|x|}$ est continue sur $\R\times \R$ donc le théorème de Peano nous garantie l'existence de solutions au problème de Cauchy pour toute condition initiale. 
 
 De plus, $\sqrt{|x|}\leq 1+|x|$ pour tout $x\in \R$ donc $f$ est linéairement bornée et toute solution maximale est globale, donc ici définie sur $\R$. 
 
@@ -911,42 +916,42 @@ Enfin, $f$ est $C^1$ sur $\R\times (\R\setminus \{0\})$ donc lorsque $x_0\neq 0$
 ### Question 2 {.answer #answer-tor-2}
 Soit d'abord $x_0>0$. Tant que $x(t)>0$, on a
 $$
-\dot{x}=-\sqrt{|x|} \quad \Leftrightarrow \quad \frac{\dot{x}}{\sqrt{x}}=-1  \quad \Leftrightarrow \quad x(t) = \left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2
+\dot{x}=-k\sqrt{|x|} \quad \Leftrightarrow \quad \frac{\dot{x}}{\sqrt{x}}=-k  \quad \Leftrightarrow \quad x(t) = \left(\sqrt{x_0}-\frac{k}{2}(t-t_0)\right)^2
 $$
-Donc tant que $x(t)>0$, la solution est unique (comme prévu dans la question précédente) et par continuité, elle atteint 0 en $t=t_0+2\sqrt{x_0}$. A partir de là, vu que $\dot{x}\leq 0$, la seule solution possible qui reste positive est la solution constamment égale à 0 : le réservoir est vide et le reste. Donc pour $(t_0,x_0)$ avec $x_0>0$, il existe une unique solution maximale positive au problème de Cauchy définie par
+Donc tant que $x(t)>0$, la solution est unique (comme prévu dans la question précédente) et par continuité, elle atteint 0 en $t=t_0+2\sqrt{x_0}/k$. A partir de là, vu que $\dot{x}\leq 0$, la seule solution possible qui reste positive est la solution constamment égale à 0 : le réservoir est vide et le reste. Donc pour $(t_0,x_0)$ avec $x_0>0$, il existe une unique solution maximale positive au problème de Cauchy définie par
 $$
 x(t)= 
 \left\{
 \begin{array}{ll}
-\left(\sqrt{x_0}-\frac{1}{2}(t-t_0)\right)^2 & \forall t\in ]-\infty,t_0+2\sqrt{x_0}] \\
-0 & \forall t\in [t_0+2\sqrt{x_0},+\infty[
+\left(\sqrt{x_0}-\frac{k}{2}(t-t_0)\right)^2 & \forall t\in ]-\infty,t_0+2\sqrt{x_0}/k] \\
+0 & \forall t\in [t_0+2\sqrt{x_0}/k,+\infty[
 \end{array}
 \right.
 $$
 
-Maintenant si $x_0=0$.  Pour $t\geq t_0$, la seule possibilité est de rester à 0. En temps rétrograde, soit $x$ reste à 0 soit il existe $t_1 < t_0$ tel que $x(t_1)>0$. Alors la solution correspondante est unique et donnée par la formule ci-dessus en remplaçant $(t_0,x_0)$ par $(t_1,x(t_1))$. Donc les solutions maximales s'écrivent
+Maintenant si $x_0=0$.  Pour $t\geq t_0$, la seule possibilité est de rester à 0. En temps rétrograde, soit $x$ reste à 0 soit il existe $t_1 < t_0$ tel que $x(t_1)>0$. Alors la solution correspondante est unique et donnée par la formule ci-dessus en remplaçant $(t_0,x_0)$ par $(t_1,x(t_1))$. Après réécriture, les solutions maximales s'écrivent en fait
 $$
 x(t)= 
 \left\{
 \begin{array}{ll}
-\left(\sqrt{x_1}-\frac{1}{2}(t-t_1)\right)^2 & \forall t\in ]-\infty,t_1+2\sqrt{x_1}] \\
-0 & \forall t\in [t_1+2\sqrt{x_1},+\infty[
+\frac{k^2}{4}(t-t^-)^2 & \forall t\in ]-\infty,t^-] \\
+0 & \forall t\in [t^-,+\infty[
 \end{array}
 \right.
 $$
-pour tout $(t_1,x_1)\in \R \times \R_{>0}$ tels que  $t_1+2\sqrt{x_1}\leq t_0$. Il y a donc une infinité de solutions.
+pour chaque $t^-\leq t_0$. Il y a donc une infinité de solutions.
 
-*Remarque*: si l'on s'était intéressé aux solutions négatives, on aurait trouvé une infinité de solutions au problème de Cauchy pour $x_0>0$. En effet, à partir de $x_0=0$, on a aussi de manière symmétrique, les solutions
+*Remarque*: si l'on s'était intéressé aux solutions négatives, on aurait trouvé une infinité de solutions au problème de Cauchy pour $x_0>0$. En effet, à partir de $x_0=0$, on a aussi de manière symétrique, les solutions
 $$
 x(t)= 
 \left\{
 \begin{array}{ll}
-0 & \forall t\in [t_0, t_1-2\sqrt{-x_1}[\\
--\left(\sqrt{-x_1}+\frac{1}{2}(t-t_1)\right)^2 & \forall t\in [t_1-2\sqrt{-x_1},+\infty[
+0 & \forall t\in [t_0, t^+[\\
+-\frac{k^2}{4}(t-t^+)^2 & \forall t\in [t^+,+\infty[
 \end{array}
 \right.
 $$
-pour tout $(t_1,x_1)\in \R \times \R_{<0}$ tels que  $t_1-2\sqrt{x_1}\geq t_0$. Ceci ne contredit pas le théorème de Cauchy Lispchitz. En effet, celui-ci ne garantie l'unicité de la solution maximale que dans le domaine où $f$ est $C^1$ par rapport à $x$, c'est-à-dire ici tant qu'elle est non nulle, plus précisément sur l'intervalle ouvert $]-\infty,t_0+2\sqrt{x_0}[$. 
+pour tout $t^+\geq t_0$. Ceci ne contredit pas le théorème de Cauchy Lispchitz. En effet, celui-ci ne garantie l'unicité de la solution maximale que dans le domaine où $f$ est $C^1$ par rapport à $x$, c'est-à-dire ici tant qu'elle est non nulle, plus précisément sur l'intervalle ouvert $]-\infty,t_0+2\sqrt{x_0}/k[$. 
 
 ### Question 3 {.answer #answer-tor-3} 
 
@@ -954,11 +959,11 @@ La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir v
 
 ### Question 4 {.answer #answer-tor-4}
 
-Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0+\delta}-\frac{1}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\underline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions en temps rétrograde. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
+Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0+\delta}-\frac{k}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\underline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions par rapport à la condition initiale. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
 
 ## Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
-### Question 1 (Lemme de Grönwall) {.anwser #answer-gro-1}
+### Question 1 (Lemme de Grönwall) {.answer #answer-gro-1}
 
 Soit $v$ l'application définie par $v(t)=\int_{t_0}^t\beta(s)u(s)ds$ sur $[t^-,t^+]$. Elle vérifie
 $$
@@ -989,7 +994,7 @@ u(t) &\leq \alpha +\alpha \left[-\exp\left(\int_s^t\beta(r)dr \right) \right]_{t
 \end{align*}
 ce qui donne le résultat.
 
-### Question 2 {.anwser #answer-gro-2}
+### Question 2 {.answer #answer-gro-2}
 
 Soit $x:I\subseteq J\to \R^n$ une solution maximale au problème de Cauchy. Par le théorème de [représentation intégrale des solutions](#theo_eq_integrale), 
 $$
@@ -1005,7 +1010,7 @@ $$
 $$
 avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $J$. Donc $x$ ne peut pas exploser pour $t\in J$, donc d'après le [théoreme des bouts](#theo_bouts), vu que $f$ est définie sur $J\times\R^n$, nécessairement $I=J$.
 
-### Question 3 {.anwser #answer-gro-3}
+### Question 3 {.answer #answer-gro-3}
 
 Supposons que les solutions soient globales.
 Soient $x:J\to \R^n$ et $x_\delta : J\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset J$. On sait que
@@ -1067,7 +1072,7 @@ Puisque $A$ est inversible ($\text{det} A=\frac{k}{m}\neq 0$), le seul point d'�
 
 ### Question 2 {.answer #answer-ressort-2}
 
-$x\mapsto Ax$ est $C^1$ donc d'après le théorème de Cauchy-Lipschitz, les solutions sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions sont définies pour tout $t$ par $x(t)=e^{At}x_0$.
+$x\mapsto Ax$ est $C^1$ donc d'après le théorème de Cauchy-Lipschitz, les solutions sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions sont définies pour tout $t$. Les solutions sont données par $x(t)=e^{At}x_0$.
 
 ### Question 3 {.answer #answer-ressort-3}
 
@@ -1149,6 +1154,7 @@ $$
 \dot{x}_2 &=& -x_1\\
 \end{array}
 $$
+donc les trajectoires "tournent" sur le cercle.
 
 Si $V(x(0))=x_1(0)^2+x_2(0)^2>1$ alors $V$ décroit strictement tant qu'il reste plus grand que 1. Donc les trajectoires initialisées à l'extérieur du cercle s'en approchent. En fait, on peut montrer qu'elles ne l'atteignent jamais. Car sinon on aurait une solution initialisée sur le cercle qui le quitterait en temps rétrograde. Or il existe une autre solution qui reste sur le cercle en temps rétrograde, ce qui est impossible par le théorème de Cauchy Lipschitz ($f$ est $C^1$) 
 

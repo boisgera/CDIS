@@ -60,7 +60,7 @@ def explosion_temps_fini():
       new_legend = array(["$x_0=$ "+ str(x0)])
       list_legend = concatenate([list_legend,new_legend])  
     yticks([0.0, 1.0, 2.0, 5.0,10.0])
-    axis([0,1,0,15])
+    axis([0,1,-0.1,15])
     legend(list_legend)
     xlabel('$t$')
     ylabel('$x(t)$')

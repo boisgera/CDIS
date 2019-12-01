@@ -64,9 +64,9 @@ def attracteur_lorenz():
     fig = figure()
     ax = fig.gca(projection='3d')
     ax.plot(x_1,x_2,x_3)
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_zlabel('z')
+    ax.set_xlabel('$x_1$')
+    ax.set_ylabel('$x_2$')
+    ax.set_zlabel('$x_3$')
     save()
 
 
