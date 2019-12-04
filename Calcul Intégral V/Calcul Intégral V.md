@@ -1759,8 +1759,8 @@ $$
 $$
 
 <!--
-### Exercice -- Produit de parties et tribu de Borel  {.exercise}
-Montrer que $\mathcal{P}(\R^m) \otimes \mathcal{P}(\R^n) \subset \mathcal{B}(\R^{m+n})$.
+### Exercice -- Produit de tribus de Borel  {.exercise}
+Montrer que $\mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n}) \subset \mathcal{B}(\R^{m+n})$.
 -->
 
 ### Produit et tribu de Lebesgue
