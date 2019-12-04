@@ -142,7 +142,7 @@ Le choix de $r$ étant arbitraire, $f$ est continue sur $\R$ tout entier.
 
 ### Dérivée faible et classique
 Si une fonction $f: \R \to \R$ est faiblement dérivable, de dérivée faible $g$,
-alors elle est dérivable (classiquement) presque partout, et $f' = g$ presque
+alors elle est dérivable (classiquement) presque partout et $f' = g$ presque
 partout. On a donc pour tout $x \in \R$,
 $$
 f(x) = f(0) + \int_0^x f'(t) \, dt.
@@ -154,7 +154,7 @@ presque partout.
 
 ### Démonstration {.proof}
 Une conséquence directe du résultat de 
-[dérivation des intégrales indéterminée de "Calcul Intégral II"](Calcul Intégral II.pdf/#DII).
+[dérivation des intégrales indéterminées de "Calcul Intégral II"](Calcul Intégral II.pdf/#DII).
 
 <!--
 [^foo]: si $f$ est conditionnellement intégrable, l'application
@@ -640,7 +640,7 @@ $$
 ### Cas des fonctions ordinaires {.theorem}
 Si $f:\R \to \R$ est localement absolument intégrable, l'opérateur
 $$
-T[f] : \phi \in D^0(\R) \mapsto \int_{-\infty}^{+\infty} f(t) \phi(t) \, dt 
+T[f] : \varphi \in D^0(\R) \mapsto \int_{-\infty}^{+\infty} f(t) \varphi(t) \, dt 
 $$
 est linéaire continu. 
 De plus, si $g :\R \to \R$ est localement absolument intégrable, 
