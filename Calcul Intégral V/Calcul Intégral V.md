@@ -1405,10 +1405,10 @@ Montrer que la tribu engendrée par les ensembles dénombrables de $\R$ est la
 collection des ensembles de $\R$ qui sont dénombrables ou dont le
 complémentaire est dénombrable.
 
-### Exercice -- Calculs avec les tribus engendrés {.exercise}
+### Exercice -- Calculs avec les tribus engendrées {.exercise}
 Soit $\mathcal{A}$ et $\mathcal{B}$ deux collections d'ensembles de $X$.
 Montrer que $\sigma(\sigma(\mathcal{A})) = \sigma(\mathcal{A})$ et que
-si $\mathcal{A} \subset \mathcal{B}$, alors $\sigma(A) \subset \sigma(B)$.
+si $\mathcal{A} \subset \mathcal{B}$, alors $\sigma(\mathcal{A}) \subset \sigma(\mathcal{B})$.
 En déduire que si $\mathcal{A} \subset \mathcal{B} \subset \sigma(\mathcal{A})$, 
 alors $\sigma(\mathcal{A})  = \sigma(\mathcal{B})$.
 
