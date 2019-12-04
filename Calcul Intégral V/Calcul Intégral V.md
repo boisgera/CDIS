@@ -1944,7 +1944,7 @@ $$
 $$
 
 ### Exercice -- Convolution de Dirac {.exercise}
-Soit $a, b \in \R$ et $C \subset \R$. Montrer que
+Soit $a, b \in \R$ et $C \in \mathcal{B}(\R)$. Montrer que
 $$
 ?(C) = \int 1_C(x + y) \, \delta_a(dx) \delta_b(dy).
 $$
