@@ -1831,7 +1831,7 @@ que pour tout $C \in \N^2$,
 $$
 \delta_{(m, n)} (C) = \left|
 \begin{array}{rl}
-1 & \mbox{si $(m, n) \in A$,} \\
+1 & \mbox{si $(m, n) \in C$,} \\
 0 & \mbox{sinon.}
 \end{array}
 \right.
