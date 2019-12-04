@@ -106,7 +106,7 @@ Une fonction $f: \R \to \R$ est *localement absolument
 intégrable* (ou *ordinaire*) si elle est 
 absolument intégrable sur tout intervalle compact $[a, b]$ :
 $$
-\int_a^b f(t) \, dt \in \R \; \mbox{ et } \; \int_a^b |f(t)| \, dt < +\infty.
+\int_a^b f(t) \, dt \in \R \; \mbox{ et } \; \int_a^b |f(t)| \, dt \in \R_+.
 $$
 
 ### Dérivée faible {.definition}
