@@ -1781,7 +1781,7 @@ Pour pallier cette difficulté technique, une autre option consiste
 à systématiquement restreindre les mesures que l'on considère aux boréliens.
 
 ### Mesure de Borel {.definition}
-On appel *mesure de Borel* sur un espace topologique $X$ toute mesure 
+On appelle *mesure de Borel* sur un espace topologique $X$ toute mesure 
 définie sur la tribu des boréliens $\mathcal{B}(X)$.
 
 ### {.post}
@@ -1793,7 +1793,7 @@ $$
 $$
 En particulier on appelle 
 *mesure de Borel-Lebesgue sur $\R^n$* la restriction de la mesure
-de Lebesgue de $\mathcal{L}(\R^n)$ a $\mathcal{B}(\R^n)$.
+de Lebesgue de $\mathcal{L}(\R^n)$ à $\mathcal{B}(\R^n)$.
 
 ### Exercice -- Mesures de Borel classiques {.exercise}
 Peut-on associer une mesure de Borel à une mesure de Dirac $\delta_x$ sur $\R^n$ ?
