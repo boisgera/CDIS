@@ -1416,6 +1416,7 @@ alors $\sigma(\mathcal{A})  = \sigma(\mathcal{B})$.
 On appelle *tribu de Borel* d'un espace topologique $X$ la tribu
 notée $\mathcal{B}(X)$ engendrée
 par les ensembles fermés (ou les ensembles ouverts) de $X$.
+Les ensembles qu'elle contient sont appelés les *boréliens*.
 
 ### Exercice -- Ouverts ou fermés {.exercise}
 Montrer que la tribu engendrée par les ensembles ouverts de $X$ est bien
