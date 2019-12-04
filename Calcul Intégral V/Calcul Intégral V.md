@@ -1758,8 +1758,10 @@ $$
 \mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n}).
 $$
 
+<!--
 ### Exercice -- Produit de parties et tribu de Borel  {.exercise}
 Montrer que $\mathcal{P}(\R^m) \otimes \mathcal{P}(\R^n) \subset \mathcal{B}(\R^{m+n})$.
+-->
 
 ### Produit et tribu de Lebesgue
 Notons que le résultat similaire est faux pour la mesure de Lebesgue : 
