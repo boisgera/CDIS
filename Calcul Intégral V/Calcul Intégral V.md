@@ -1642,11 +1642,10 @@ $\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} \subset \mathcal{B}(X)$
 et la fonction $f$ est bien $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable, 
 c'est-à-dire borélienne.
 
-### Exercice -- Fonctions continues ou croissantes {.exercise}
+### Exercice -- Fonctions croissantes {.exercise}
 Soit $f: \R \to \R$ ; montrer que si l'image réciproque par $f$
 de tout intervalle compact est un intervalle compact alors $f$ est borélienne.
-En déduire que si $f$ est continue alors $f$ est borélienne. Peut-on tirer
-la même conclusion quand $f$ est croissante (mais pas nécessairement continue) ?
+En déduire que si $f$ est croissante alors $f$ est borélienne.
 
 <!--
 ### Limite simple de fonctions mesurables
