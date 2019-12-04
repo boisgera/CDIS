@@ -1426,8 +1426,8 @@ Montrer que la tribu engendrée par la collection des pavés compacts
 $[a_1, b_1] \times \dots \times [a_n, b_n]$ de $\R^n$ est la tribu
 de Borel de $\R^n$. (indication[^up])
 
-[^up]: Commencer par montrer que tout ouvert de $\R^n$ s'écrit une union 
-dénombrable de pavés compacts de la forme
+[^up]: Commencer par montrer que tout ouvert de $\R^n$ s'écrit comme 
+une union dénombrable de pavés compacts de la forme
 $[k_1/2^m, (k_1+1)/2^m] \times \dots \times [k_n/2^m, (k_n+1)/2^m]$ où
 $m \in \N^*$ et $(k_1, \dots, k_n) \in \Z^n$.
 
