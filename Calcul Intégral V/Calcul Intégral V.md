@@ -47,7 +47,7 @@ L'exemple basique serait la "solution" $x: \R \to \R$, "initialement au repos"
 $$
 \dot{x}(t) = e(t), \, t \in \R
 $$
-où $e(t)$ est l'échelon unitaire, défini par
+où $e(t)$ est l'échelon unitaire (ou fonction d'Heaviside), défini par
 $$
 e(t) = 1_{\left[0, +\infty\right[} = \left|
 \begin{array}{rl}
@@ -104,10 +104,22 @@ généralisée de dérivée, à partir de l'intégrale.
 ### Fonctions localement absolument intégrables
 Une fonction $f: \R \to \R$ est *localement absolument
 intégrable* (ou *ordinaire*) si elle est 
-absolument intégrable sur tout intervalle compact $[a, b]$ :
+absolument intégrable au sens de Henstock-Kurzweil sur tout intervalle compact $[a, b]$ :
 $$
 \int_a^b f(t) \, dt \in \R \; \mbox{ et } \; \int_a^b |f(t)| \, dt \in \R_+.
 $$
+
+### {.post}
+Compte tenu des liens entre intégrale de Henstock-Kurzweil et de Lebesgue,
+si $\ell$ désigne la mesure de Lebesgue sur $\R$, cela équivaut à dire que
+$f$ est $\ell$-intégrable sur tout intervalle compact $[a, b]$ :
+$$
+\int_{[a, b]} f(t) \, \ell(dt)=
+\int 1_{[a, b]} f \, \ell \in \R.
+$$
+
+
+
 
 ### Dérivée faible {.definition}
 La fonction $f:\R \to \R$ est *dérivable faiblement* s'il existe une 
@@ -1109,16 +1121,19 @@ est telle que la notion de dérivée mesure étende celle de dérivée faible.
 
 
 ### Formule des sauts
-Soit $f:\R \to \R$ une fonction continûment différentiable par morceaux
-discontinue aux points $x_k$. Soit 
-$\sigma_k = f(x_k^+) - f(x_k^-)$
-le *saut de $f$ en $x_k$*. 
-Si l'on désigne par $f'_{\rm pp}$ la fonction ordinaire égale à la dérivée 
+Soit $f:\R \to \R$ une fonction continûment différentiable par morceaux.
+Soit $S$ l'ensemble (dénombrable) des points de discontinuité de $f$ et 
+$$
+\sigma(x) := f(x_+) - f(x_-) = \lim_{y \to x_+} f(y) - \lim_{y \to x_-} f(y)
+$$
+le *saut de $f$ en $x$*. 
+Si l'on désigne par $f'_{\rm pp}$ une fonction ordinaire égale à la dérivée 
 classique de $f$ presque partout, alors $f$ admet comme dérivée mesure 
 la somme
 $$
-f'_{\rm pp} + \sum_{k} \sigma_k \delta_{x_k}.
+f'_{\rm pp} + \sum_{x \in S} \sigma(x) \delta_{x}.
 $$
+
 
 ### Démonstration
 Soit $\varphi \in D^1(\R)$ et $[a, b]$ un intervalle compact contenant le
@@ -1165,8 +1180,8 @@ $$
 Il suffit alors de constater que
 $$
 (f(x_{j+i}^-) - f(x_{j+i}^+)) \varphi(x_{j+i})
-= -\sigma_{x_{j+i}} \varphi(x_{j+i})
-= - \sigma_{x_{j+i}} \int \varphi \, \delta_{x_{j+i}}
+= -\sigma({x_{j+i}}) \varphi(x_{j+i})
+= - \sigma({x_{j+i}}) \int \varphi \, \delta_{x_{j+i}}
 $$
 pour conclure.
 
@@ -1182,16 +1197,16 @@ mesure soit $\mu = 1_{[0, 1]} - \delta_1$.
 
 -----
 
-### Fonction de variation bornée {.definition}
-Une fonction $f:[a, b] \subset \R \to \R$ est de *variation bornée* s'il
+### Fonction à variation bornée {.definition}
+Une fonction $f:[a, b] \subset \R \to \R$ est à *variation bornée* s'il
 existe un réel $M > 0$ tel que pour tout $n \in \N^*$ et tout $n+1$-uplet
 $a \leq x_0 \leq \dots \leq x_n \leq b$, 
 $$
 \sum_{i=0}^{n-1} |f(x_{i+1}) - f(x_i)| \leq M.
 $$
 Le plus petit $M$ qui convienne est la *variation de $f$ sur $[a, b]$*.
-Une fonction $f:\R \to \R$ est *localement de variation bornée* si
-sa restriction à tout intervalle compact $[a, b]$ de variation bornée.
+Une fonction $f:\R \to \R$ est *localement à variation bornée* si
+sa restriction à tout intervalle compact $[a, b]$ à variation bornée.
 
 ### {.ante}
 Nous admettrons le résultat suivant :
@@ -1213,7 +1228,7 @@ $$
 \sum_{i=0}^{n-1} |F(x_{i+1}) - F(x_i)| = \sum_{i=0}^{n-1} (F(x_{i+1}) - F(x_i))
 = F(b) - F(a).
 $$
-La fonction $F$ est donc localement de variation bornée ; 
+La fonction $F$ est donc localement à variation bornée ; 
 elle a donc une dérivée mesure $\mu$, 
 qui satisfait pour tout $\varphi \in D^1(\R)$
 $$
