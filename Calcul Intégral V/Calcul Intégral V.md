@@ -792,7 +792,7 @@ quand $A \subset B$) ?
 Contrairement aux mesures positives, les combinaisons linéaires à coefficients
 réels (et pas seulement positifs) de mesures signées sont des mesures signées.
 On peut ainsi par exemple combiner des mesures de Dirac positives $\delta_x$
-et par exemple construire la mesure $\mu = \delta_0 - 1/2 \times \delta_1$, 
+et construire la mesure $\mu = \delta_0 - 1/2 \times \delta_1$, 
 qui associe à l'ensemble $A \subset \R$ la quantité
 $$
 \mu(A) = (\delta_0 - 1/2 \times \delta_1)(A) = 1_A(0) - 1/2 \times 1_A(1).
@@ -811,7 +811,7 @@ La fonction $\mathcal{A}$-mesurable $f: \R \to [-\infty, +\infty]$ est
 dite *$\nu$-intégrable* si la fonction $f$ (ou $f\sigma$) est $\mu$-intégrable.
 L'intégrale de $f$ par rapport à $\nu$ est alors définie comme
 $$
-\int f \nu = \int_{-\infty}^{+\infty} f(t) \, \nu(dt) := \int f \sigma \, \mu \in \R.
+\int f \nu = \int_X f(x) \, \nu(dx) := \int f \sigma \, \mu \in \R.
 $$
 
 <!--
@@ -872,8 +872,8 @@ $f$ $\mu-$intégrable à valeurs réelles fois $\mu$ défini une mesure signée
 -->
 
 ### Mesures de Radon {.definition}
-Une mesure signée $\mu$ est une *mesure de Radon* si pour tout
-fonction $\varphi \in D^0(\R)$, l'intégrale
+Une mesure signée $\mu$ sur $(\R, \mathcal{A})$ est une *mesure de Radon* 
+si pour tout fonction $\varphi \in D^0(\R)$, l'intégrale
 $$
 T[\mu] \cdot \varphi := \int \varphi \, \mu 
 $$
@@ -2148,7 +2148,7 @@ Dérivée mesure {.answer #dm}
 
 La fonction $f$ est continûment dérivable par morceaux donc elle admet une
 dérivée mesure donnée par la formule des sauts, en l'occurence si l'on 
-nomme $g la fonction $\tau$-périodique telle que 
+nomme $g$ la fonction $\tau$-périodique telle que 
 $$
 \forall t \in \left[0, \tau \right[, \; g(t) = \cos t.
 $$ 
