@@ -749,8 +749,8 @@ x+ \bot = \bot + x = \bot.
 $$
 Dans ce contexte, on considérera également que les séries sans limites 
 dans $\R$ ont pour limite $\bot$. Le symbole $\bot$ joue un rôle très
-similaire à $+\infty$ dans le cas des calculs impliquant des nombres
-positifs.
+similaire à celui que joue $+\infty$ dans le cas des calculs impliquant 
+des nombres positifs.
 
 [^nan]: concept assez similaire au "non-nombre" `nan` (*not-a-number*) des 
 numériciens, que l'on obtient par exemple avec NumPy en calculant `inf - inf`.
