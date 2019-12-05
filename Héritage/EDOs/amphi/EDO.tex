@@ -1,0 +1,833 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+
+\usepackage{epsfig}
+\usepackage{color}
+\usepackage{pstricks,pst-node,pst-text,pst-3d}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,bbm}
+\usepackage{graphicx,psfrag} %Ligne PS
+\usepackage{multimedia,,mathrsfs}
+\usepackage[francais,english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{mathrsfs}
+\usepackage{amstext}
+\usepackage{amsopn}
+\usepackage{amsxtra}
+%\usepackage{graphicx}
+\usepackage{pst-all}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{esint}
+\usepackage{wasysym}
+
+\setbeamertemplate{navigation symbols}{}
+%\newcmykcolor{prune}{0.26 1 1 0.3}
+%\newcmykcolor{prune}{0 1 1 0.3} %c'est rouge en fait
+\newrgbcolor{dblue}{.2 .36 .77}
+\newrgbcolor{Cviolet}{0.4 0 0.4}
+\newcmykcolor{drouge}{0 1 1 0.3}
+\newrgbcolor{grey}{.5 .5 .5}
+
+%-------- commandes de mise en page ---------
+\newcommand{\dps}{\displaystyle}
+\newcommand{\ri}{\mathrm{i}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\dt}{{\Delta t}}
+\newcommand\centerequation[1]{\par\smallskip\par \centerline{$\displaystyle #1$}\par \smallskip\par}
+
+%--------- styles ------------
+\usecolortheme{rose}     % 'orchid' or 'lily' or 'rose'
+\usecolortheme{seahorse}  % 'dolphin' or 'whale' or 'seahorse'
+
+%----------- compteurs et titres -----------------
+\setcounter{tocdepth}{1}
+
+\title[]{}
+\author{Gabriel Stoltz}
+\institute{ENPC/INRIA} 
+\date{Ecole des Mines, oct. 2018}
+
+%------------------------- debut -------------------
+\begin{document}
+
+%------------- premiere page ---------------
+\frame{
+\vspace{0.3cm}
+%--- logos ---
+\begin{center}
+\begin{tabular}{ccc}
+  \includegraphics[width=2cm]{figures/ENPC.eps} 
+  & \hspace{1cm}
+  \includegraphics[width=3cm]{figures/MATHERIALS.eps} 
+  & \hspace{1cm}
+  \includegraphics[width=3cm]{figures/INRIA_centered.eps}
+\end{tabular}
+\end{center}
+\bigskip
+\begin{center}
+{\Large \textbf{Intégration numérique des EDOs}} \\
+\bigskip
+\bigskip
+\medskip
+\textbf{Gabriel STOLTZ}\\
+\medskip
+\texttt{\small gabriel.stoltz@enpc.fr}\\
+\medskip
+{\small (CERMICS, Ecole des Ponts \& Equipe-projet MATHERIALS, INRIA Paris)}\\
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+\medskip
+{\footnotesize Cours Ecole des Mines, 1ère année, octobre 2017}\\
+\end{center}
+}
+%---------- end title ----------------
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Un exemple : la dynamique céleste}
+
+$\bullet$ Système solaire réduit : Soleil et petites planètes ($q_0$), 
+  Jupiter, Saturne, Uranus, Neptune, Pluton ($q_1$ à $q_5$) 
+
+\medskip
+
+$\bullet$ Energie $\dps H(q,p) = V(q) + \sum_{i=1}^N \frac{p_i^2}{2m_i}$ avec
+$\dps 
+V(q) = -\sum_{0 \leq i < j \leq 5} G\frac{m_i m_j}{| q_i - q_j|}
+$
+
+\medskip
+
+$\bullet$ {\blue Unités réduites} : 
+{\red masse} du soleil, {\red longueur} = distance Terre-Soleil, 
+{\red temps} = 1 jour 
+
+
+\begin{block}{Dynamique Hamiltonienne}
+\centerequation{\begin{aligned}
+\dot{q}_i(t) & = \phantom{-} \frac{\partial H}{\partial p_i} = \frac{p_i(t)}{m_i} \\
+\dot{p}_i(t) & = - \frac{\partial H}{\partial q_i} = -\nabla_{q_i} V(q(t))
+\end{aligned}}
+\end{block}
+
+Préservation de l'énergie  $H(q(t),p(t)) = H(q_0,p_0)$ \\
+$\to$ Notion de stabilité : conservation de l'{\blue énergie en temps long}
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}{Autres motivations~~~}
+
+$\bullet$ Champ de vecteurs $f \, : \mathbb{R}^d \to \mathbb{R}^d$, temps $t \geq 0$
+(parfois $t \in \mathbb{R}$)
+\begin{block}{Problème de Cauchy}
+\centerequation{\dot{y}(t) = f(t,y(t)), \qquad y(0) = y_0}
+\end{block}
+
+\smallskip
+
+$\bullet$ Applications
+\bi
+\item Intégration de trajectoires (satellites, missiles, ...)~: {\red précision}
+\item Dynamique des populations : Lokta-Volterra
+\item Cinétique chimique~: systèmes {\red raides}
+\item Dynamique Hamiltonienne~: comportement
+  en {\red temps long}
+\ei
+
+\bigskip
+
+$\bullet$ Extension au cas des 
+\bi
+\item {\blue EDPs} (météorologie, mécanique quantique,...)
+\item {\blue équations différentielles stochastiques} (finance, phys. stat. num.)
+\ei
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Intégration des équations différentielles ordinaires~~~}
+
+$\bullet$ Etude du {\blue problème continu} (``bien posé'')
+
+\bigskip
+
+$\bullet$ Approximation {\blue numérique} par méthodes à un pas
+\bi
+\item Exemples et mise en oeuvre
+\item Analyse \emph{a priori} directe~: convergence (consistance + stabilité)
+\begin{block}{}
+\begin{center}
+consistance + stabilité = convergence
+\end{center}
+\end{block}
+\ei
+
+\bigskip
+
+$\bullet$ Compléments
+\bi
+\item Systèmes {\red linéaires}
+\item Influence des {\red erreurs d'arrondi}
+\item {\red Pas de temps adaptatif} (analyse a posteriori)
+\item {\red Analyse rétrograde}
+\ei
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}
+\bc
+\Huge{Etude du problème continu} 
+\ec
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Existence et unicité des solutions (problème continu)~~~}
+
+$\bullet$ Existence {\blue locale} et unicité si $f$ {\red localement Lipschitz} (Cauchy-Lipschitz)
+  \begin{block}{}
+    \centerequation{\forall (t,y_1,y_2) \in ]t_0-\tau,t_0+\tau[ \times B(y_0,r)^2
+    \quad
+    |f(t,y_1)-f(t,y_2)| \leq L|y_1-y_2|}
+    \end{block}
+où $|{\cdot}|$ est une norme sur $\RR^d$ (toutes les normes sont équivalentes)
+
+\bigskip
+
+$\bullet$ Si on n'a pas de solution globale, alors $|y(t)| \to +\infty$ lorsque $t \to T_{\rm max}$
+
+\bigskip
+
+$\bullet$ Existence/unicité de la solution {\blue globale} si...
+
+\bigskip
+
+$\bullet$ Stabilité si...
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}
+\bc
+\Huge{Approximation numérique : \\
+théorie générale} 
+\ec
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Approximation numérique~~~}
+
+$\bullet$ Approximation $y^n$ de la solution exacte $y(t_n)$, avec un pas de temps 
+\bi
+\item {\red fixe} $\Delta t > 0$, auquel cas $t_n = n\Delta t$
+\item {\red variable} $\Delta t_n = t_{n+1}-t_n$
+\item nombre de pas de temps $N$ (=$T/\dt$ dans les cas simples)
+\ei
+
+\medskip
+
+$\bullet$ {\blue Méthodes à un pas} : discrétisation de la 
+  formulation intégrale par une règle de quadrature $\to$ méthodes de {\red Runge-Kutta}
+\[
+ y(t_{n+1}) = y(t_n) + \int_{t_n}^{t_{n+1}} f(s,y(s)) \, ds
+\]
+\vspace{-0.4cm}
+\begin{block}{Méthode à un pas}
+\centerequation{y^{n+1} = y^n + \Delta t_n \, \Phi_{\Delta t_n}(t_n,y^n)}
+\end{block}
+
+\bigskip
+
+$\bullet$ Méthodes {\blue multi-pas} (approcher $y^n$ en utilisant $y^{n-1},y^{n-2},\dots$)~: plus précise à coût de calcul fixé, mais attention à la {\red stabilité}
+
+\end{frame}
+
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Méthodes d'Euler~~~}
+
+\begin{block}{Méthode d'Euler {\red explicite}}
+\[
+y^{n+1} = y^n + \Delta t_n \, f(t_n,y^n)
+\]
+\end{block}
+\medskip
+$\bullet$ Application $\Phi_{\Delta t_n}$ définie de manière explicite : $\Phi_{\Delta t_n}(t_n,y^n) = f(t_n,y^n)$
+
+
+\bigskip
+
+\begin{block}{Méthode d'Euler {\red implicite}}
+\[
+y^{n+1} = y^n + \Delta t_n \, f(t_{n+1},y^{n+1})
+\]
+\end{block}
+\medskip
+$\bullet$ Application $\Phi_{\Delta t_n}$ définie de manière implicite : pour tout $(t^n,y^n)$, $\Phi:=\Phi_{\Delta t_n}(t_n,y^n)=f(t_{n+1},y^{n+1})$ est solution de
+\[
+\Phi = f(t_{n+1},y^n+\dt_n \Phi)
+\] 
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Autres exemples~~~}
+
+$\bullet$ Méthodes {\red explicites}
+\bi
+\item Heun : $\dps y^{n+1} = y^n + \frac{\Delta t_n}{2}\Big( f(t_n,y^n) + 
+  f\big(t_{n+1},y^n+\Delta t_n f(y^n)\big)\Big)$ 
+%\item Runge-Kutta d'ordre~4
+\ei
+
+\bigskip
+
+$\bullet$ Méthodes {\red implicites}
+\bi
+\item Trapèzes : %(Cranck-Nicholson) : 
+  $\dps y^{n+1} = y^n + \frac{\Delta t_n}{2} \, \Big( f(t_n,y^n) + f(t_{n+1},y^{n+1}) \Big)$
+\item Point milieu : $\dps y^{n+1} = y^n + \Delta t_n f\left(\frac{t_n+t_{n+1}}{2},
+  \frac{y^n+y^{n+1}}{2}\right)$
+\ei
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Un mot sur l'implémentation des schémas implicites~~~}
+
+$\bullet$ Beaucoup de ``bonnes'' méthodes sont implicites ({\red stabilité accrue})
+
+\bigskip
+
+$\bullet$ Il faut déjà garantir que la méthode est {\blue bien définie}~!
+
+\bigskip
+
+$\bullet$ Exemple du schéma d'Euler implicite $y^{n+1} = y^n + \Delta t_n \, f(t_{n+1},y^{n+1})$
+\bi
+\item existence/unicité de $y^{n+1}$ lorsque {\red $\Delta t_n
+    \Lambda_f(t_{n+1}) < 1$} où
+\[
+\forall y_1,y_2\in\RR^d, \qquad |f(t_{n+1},y_1)-f(t_{n+1},y_2)| \le
+\Lambda_f(t_{n+1})|y_1-y_2|
+\]
+\item construction numérique de la solution par {\blue itérations de point fixe}
+\smallskip
+\bi 
+\item condition initiale : schéma explicite $\dps z^{n+1,0} = y^n + \Delta t_n f(t_n,y^n)$
+\smallskip
+\item itérations selon
+\centerequation{z^{n+1,k+1} = y^n + \Delta t_n \, f(t_{n+1},z^{n+1,k})}
+\ei
+On a $z^{n+1,k} \xrightarrow[k \to +\infty]{} y^{n+1}$. En pratique, nombre {\blue fini} d'itérations
+%et critère de convergence typique $| z^{n+1,k+1}-z^{n+1,k} | \leq \varepsilon$
+
+\ei
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Analyse d'erreur : consistance~~~}
+
+$\bullet$ {\red Erreur de troncature locale} = erreur résiduelle 
+si l'on glisse la solution {\bf exacte} dans le schéma
+\begin{block}{}
+\centerequation{\eta^{n+1} := \frac{y(t_{n+1}) - \Big( y(t_n) + \dt_n\,\Phi_{\dt_n}(t_n,y(t_n))\Big) }{\dt_n}}
+\end{block}
+
+\medskip
+
+$\bullet$ Consistance si {\red $\max_{0\le n\le N-1} |\eta^{n+1}| \to 0$ lorsque $\Delta t \to 0$} 
+
+\medskip
+
+$\bullet$ Consistance d'ordre~$p$ si {\red $\max_{0\le n\le N-1} |\eta^{n+1}| \le C_y\dt^p$}
+
+\medskip
+
+$\bullet$ Preuves : {\blue développements de Taylor} (régularité de la sol.~exacte $y$)
+
+\medskip
+
+$\bullet$ {\bf Exemple~:} le schéma d'Euler explicite est d'ordre~1 ($t=t_n$, $\dt=\dt_n$)
+\vspace{-0.2cm}
+\[
+y(t+\Delta t) - \Big( y(t) + \Delta t \, \underbrace{f(t,y(t)}_{=y'(t)}) \Big) = 
+\Delta t^2 \int_0^1 (1-\theta) y''(t + \theta \Delta t) \, d\theta
+\]
+%avec $y''(\tau) = \partial_t f(\tau,y(\tau)) + \partial_y f(\tau,y(\tau)) \cdot f(\tau,y(\tau))$
+D'où $\dps \max_{0\le n\le N-1} |\eta^{n+1}| \le \left(\frac12 \sup_{t\in [0,T]}|y''(t)|\right) \dt$
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Analyse d'erreur : consistance}
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{figures/consistance_EDO.pdf}
+  \end{center}
+\end{figure}
+
+Trajectoire exacte $t \mapsto y(t)$ vs. trajectoire numérique $y^0,y^1,y^2,\dots$ \\
+
+Erreur de consistance = sur {\blue un pas}, en {\red partant de la trajectoire exacte}
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Analyse d'erreur : stabilité~~~}
+
+\begin{block}{Stabilité ($\dt$ fixé pour simplifier)} 
+Il existe une constante $S(T)>0$ telle que, 
+pour toute suite $z = \{ z^n \}_{1 \leq n \leq N}$ partant de la même valeur $z^0 = y^0$ et vérifiant
+\[
+\left\{ \begin{aligned}
+y^{n+1} & = y^n + \Delta t \Phi_{\dt}(t_n,y^n) \\
+z^{n+1} & = z^n + \Delta t \Phi_{\dt}(t_n,z^n) + \dt\, \delta^{n+1}
+\end{aligned} \right.
+\]
+on a la majoration $\dps \max_{1 \leq n \leq N} | y^n - z^n| \leq S(T) \, \dt \sum_{n = 1}^N |\delta^n|$
+\end{block}
+
+\medskip
+
+$\bullet$ $S(T)$ ne dépend que du {\red temps de simulation $T = N\dt$} (pas de $\dt$ ou $N$ seuls)
+
+%\medskip
+%
+%$\bullet$ Forme condensée : suites $y = \{ y^n \}_{1 \leq n \leq N}$ et $\delta = \{ \delta^n \}_{1 \leq n \leq N}$ et normes 
+%\[
+%\| y-z \|_{\ell^\infty_t} = \max_{1 \leq n \leq N} \left|y^n-z^n\right|, 
+%\qquad
+%\| \delta \|_{\ell^1_t} = \dt \sum_{n = 1}^N \left|\delta^n\right|.
+%\]
+%On peut reformuler la stabilité selon {\red $\dps \left\| y - z \right\|_{\ell^\infty_t} \leq S(T) \| \delta \|_{\ell^1_t}$}
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Condition suffisante de stabilité~~~}
+
+\begin{block}{}
+Supposons $\Phi_{\dt}$ {\red Lipschitzienne} en $y$
+\[
+| \Phi_{\dt}(t,y_1) - \Phi_{\dt}(t,y_2) | \leq \Lambda_\Phi |y_1 - y_2|
+\]
+\end{block}
+
+\medskip
+
+$\bullet$ Dans ce cas, $| y^{n+1} - z^{n+1} | \leq (1 + \Lambda_\Phi\dt) | y^{n} - z^{n} | + \dt | \delta^{n+1} |$
+
+\medskip
+
+$\bullet$ {\bf Lemme de Gronwall discret :} suite {\red $0\le a^{n+1} \le (1+\lambda)a^n + b^{n+1}$} avec $\lambda>0$, $b^n\ge0$ et $a^0=0$; par récurrence
+\[
+a^n \le \sum_{k=0}^{n-1} (1+\lambda)^k b^{n-k} \le (1+\lambda)^{n-1} \sum_{l=1}^n b^l
+\]
+Ici, $(1+\lambda)^{n-1} =(1+\Lambda_\Phi\dt)^{n-1}\le(1+\Lambda_\Phi\dt)^N\le e^{N\Lambda_\Phi\dt} = e^{\Lambda_\Phi T}$
+
+\medskip
+
+$\bullet$ {\bf Conclusion :} stabilité avec {\red $S(T) = \mathrm{e}^{\Lambda_\Phi T}$}
+\bi
+\item $\Lambda_\Phi$ $\simeq$ inverse de la plus petite échelle de temps physique
+\item $T$ $=$ temps de simulation
+\ei
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Analyse d'erreur : convergence~~~}
+
+$\bullet$ Une méthode est {\red convergente} si l'erreur globale vérifie 
+\[
+\text{
+$\max_{0 \leq n \leq N} |y^n - y(t_n)| \to 0$ lorsque $\dt\to 0$}
+\]
+
+
+$\bullet$ Principe général de l'étude de convergence
+\bi
+\item erreur {\blue locale} à chaque pas de temps : consistance
+\item {\blue accumulation} des erreurs : stabilité
+\ei
+
+\medskip
+
+
+\begin{block}{Théorème fondamental (Lax)}
+Une méthode stable et consistante est convergente \\
+Si la méthode est consistante d'ordre $p$, alors 
+\[
+\max_{0 \leq n \leq N} |y^n - y(t_n)| \le C\Delta t^p
+\]
+\end{block}
+
+\smallskip
+
+$\bullet$ On peut vérifier ces ordres numériquement {\bf [DEMO]}
+
+\end{frame}
+
+\begin{frame}\frametitle{Preuve du théorème de Lax}
+
+$\bullet$ Prendre pour $z^n$ la solution exacte $y(t_n)$, auquel cas 
+\begin{align*}
+z^{n+1} = y(t_{n+1}) &=  y(t_n) + \dt_n\Phi_{\dt_n}(t_n,y(t_n))+\dt_n\eta^{n+1}\\
+&= z^n + \dt_n\Phi_{\dt_n}(t_n,z^n)+\dt_n\eta^{n+1}
+\end{align*}
+
+\smallskip
+
+$\bullet$ Par stabilité avec $\delta^{n+1} = \eta^{n+1}$,
+\[
+{\red e := \max_{1 \leq n \leq N} | y^n - y(t_n) | \leq S(T) \, \dt \sum_{n = 1}^N \left|\eta^{n}\right| \le S(T)T\left(\max_{1\le n\le N}|\eta^n|\right)}
+\]
+
+\smallskip
+
+$\bullet$ {\bf Conclusions :}
+\bi
+\item méthode consistante~: $e\le S(T)T\left(\max_{1\le n\le N}|\eta^n|\right) \to 0$
+\item méthode consistante d'ordre $p$~: 
+\[
+e\le S(T)\dt\sum_{n=1}^N C\dt^p = S(T)TC \dt^p
+\]
+\ei
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}
+\bc
+\Huge{Compléments}
+\ec
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Stabilité des schémas linéaires~~~}
+
+$\bullet$ Etude de stabilité pour le schéma linéaire {\red $y^{n+1}=By^n$} avec $B\in\RR^{d{\times}d}$
+
+\medskip
+
+$\bullet$ On considère les suites
+\[
+\left\{ \begin{aligned}
+y^{n+1} & = By^n \\
+z^{n+1} & = Bz^n + \dt\, \delta^{n+1}
+\end{aligned} \right.
+\]
+
+$\bullet$ Par récurrence et linéarité, il vient $y^n-z^n = \dt \dps \sum_{k=0}^{n-1} B^k \delta^{n-k}$
+
+\medskip
+
+$\bullet$ Une condition suffisante de stabilité est 
+\[{\red |B|\le 1}\]
+où $|{\cdot}|$ désigne une norme sur $\RR^d$ et la norme matricielle induite
+
+\medskip
+
+$\bullet$ On obtient {\red $S=1$} (à comparer au cas général où $S$ croît exponentiellement avec le temps~$T$)
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Systèmes linéaires dissipatifs~~~}
+
+$\bullet$ Systèmes linéaires dissipatifs $\dot{y}(t) = - Ay(t)$ avec {\red $A \in \mathbb{R}^{d {\times}d}$ positive}\\
+$\to$ pratique d'utiliser la {\red norme euclidienne} $\|{\cdot}\|_{\ell^2}$ pour l'étude de stabilité
+
+\bigskip
+
+$\bullet$ Schéma d'Euler implicite $y^{n+1}=y^n-\dt Ay^{n+1}$, soit
+\[\text{$y^{n+1} = B_I y^n$ avec $B_I:=(\mathrm{Id}+\Delta t A)^{-1}$}\]
+$\to$ la matrice $\mathrm{Id}+\Delta t A$ est bien inversible car définie positive $\forall\dt$\\
+$\to$ stabilité {\red inconditionnelle} ($\forall \dt$)
+
+\bigskip
+
+$\bullet$ Schéma d'Euler explicite $y^{n+1}=y^n-\dt Ay^n$, soit
+\[\text{$y^{n+1} = B_E y^n$ avec $B_E:=\mathrm{Id}-\Delta t A$}\]
+$\to$ stabilité {\red conditionnelle}~: $\dt \leq 2 \gamma$ où, pour $A$ symétrique, $\gamma$ est l'inverse du rayon spectral de $A$ 
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Influence des erreurs d'arrondi~(1)~~}
+
+$\bullet$ On calcule en fait une {\blue valeur approchée de la solution numérique} \\
+$\to$ {\red pas trop d'opérations} arithmétiques sinon l'erreur d'arrondi domine
+
+\medskip
+
+$\bullet$ Trois {\red sources d'erreurs} 
+\bi
+\item condition initiale $\widetilde{y}^0 = y^0 + \delta y^0$
+\item évaluation de $\Phi(t_n,\widetilde{y}^n;\Delta t_n)$ $\to$ $\rho_n$
+\item calcul de la nouvelle position $\to$ $\sigma_n$
+\ei
+\begin{block}{}    
+\centerequation{\widetilde{y}^{n+1} = \widetilde{y}^n + \Delta t_n 
+  \Big( \Phi(t_n,\widetilde{y}^n;\Delta t_n) + \rho_n \Big) + \sigma_n}
+\end{block}
+
+\smallskip
+
+$\bullet$ On suppose que $|\rho_n| \leq \rho$ et $|\sigma_n| \leq \sigma$.
+
+\bigskip
+
+$\bullet$ Typiquement, $\sigma \sim \varepsilon_{\rm machine}$ et $\rho \sim \kappa 
+\varepsilon_{\rm machine}$
+(où $\kappa$ conditionnement $\Phi$)
+
+\end{frame}
+
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Influence des erreurs d'arrondi~(2)~~}
+
+Pour une méthode stable et $N = [T/\Delta t]$ pas de temps ($\Delta t$ fixé), 
+l'{\blue erreur d'arrondi globale} est
+\vspace{-0.2cm}
+\[
+\begin{aligned}
+\max_{0 \leq n \leq N} \left\| \widetilde{y}^n - y^n \right\| & \leq M \left(
+\| \delta y^0 \| + \sum_{n=0}^{N-1} \| \sigma_n \| + \Delta t_n \| \rho_n \| \right) \\
+& \leq M\left(\| \delta y^0 \| + \frac{T \sigma}{\Delta t} + T \rho \right)
+\end{aligned}
+\]
+
+\bigskip
+
+$\bullet$ {\red Erreur totale} = erreur arrondi totale + erreur approximation $C_T \Delta t^p$. 
+
+\begin{block}{Pas de temps donnant la précision maximale}
+\centerequation{\Delta t_{\rm opt} = \left(\frac{T\sigma}{pC_T}\right)^{1/(p+1)}}
+\end{block}
+
+\smallskip
+
+$\bullet$ On peut vérifier ce résultat numériquement sur $\dot{y} = y$ {\bf [DEMO]}
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Contrôle du pas d'intégration~(analyse \emph{a posteriori})~~}
+
+$\bullet$ Fixer erreur totale $\dps
+\max_{0 \leq n \leq N} \|y^n - y(t_n)\| \leq S \sum_{n=0}^{N-1} \left \| e(t_n,y(t_n);t_{n+1}) \right\| \leq \varepsilon$
+
+\bigskip
+
+$\bullet$ Augmentation ou réduction {\blue prudente} de $\Delta t_n$ pour que 
+\vspace{-0.2cm}
+\[
+\| e(t_n,y(t_n);t_{n+1}) \| \leq \eta \, \varepsilon \, \frac{\Delta t_n}{T}
+\]
+
+\smallskip
+
+$\bullet$ Utilise une {\blue estimation \emph{a posteriori}} de l'erreur de troncature
+  (estimation \emph{a priori} compliquée car demande le calcul de dérivées de~$f$)
+
+\bigskip
+
+$\bullet$ Approches générales : méthode avec {\red deux pas de temps différents} 
+  ($\Delta t_n$ et $\Delta t_n/2$), méthodes de Runge-Kutta {\red emboîtées}
+
+\bigskip
+
+$\bullet$ Cas particulier~: schéma d'Euler explicite
+%\vspace{-0.2cm}
+%\begin{align*}
+%f(t_{n+1},y^{n+1}) - f(t_n,y^n) & = \Delta t_n \Big( \partial_t f(t_n,y^n) + \partial_y f(%t_n,y^n)
+%\cdot f(t_n,y^n) \Big) + \mathrm{O}(\Delta t_n^2) \\ 
+%& = 2 \frac{e(t_n,y^n;\Delta t_n)}{\Delta t_n} + \mathrm{O}(\Delta t_n^2)
+%\end{align*}
+%soit estimation $\dps 
+\[
+\frac{\| e(t_n,y(t_n);t_{n+1}) \|}{\Delta t_n} \simeq 
+\frac{\dps \left\|f(t_{n+1},y^{n+1}) - f(t_n,y^n)\right\|}{2}
+\]
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Analyse \emph{a priori} r\'etrograde~(1)~~}
+
+$\bullet$ Philosophie : la solution numérique...
+\bi
+\item est une solution {\red approchée de la dynamique exacte} 
+\item est la solution {\blue exacte d'une dynamique modifiée}~: $y^n = z(t_n)$
+\ei
+\begin{block}{Dynamique modifiée (cas autonome, pas constant)}
+\centerequation{
+  \dot{z} = f_{\Delta t}(z) = f(z) + \Delta t F_1(z) + \Delta t^2 F_2(z) + ...,
+  \qquad
+  z(0) = y^0
+ }
+\end{block}
+
+$\bullet$ Développement limité de la solution exacte de la dynamique modifiée
+  \vspace{-0.1cm}
+  \[
+  z(\Delta t) = z(0) + \Delta t \dot{z}(0) + \frac{\Delta t^2}{2} \ddot{z}(0) + ...
+  \]
+  avec $\dot{z}(0) = f(z(0)) + \Delta t F_1(z(0)) + \mathrm{O}(\Delta t^2)$ et
+  \[
+  \ddot{z}(0) = \partial_z f_{\Delta t}\big(z(0)\big) \cdot \dot{z}(0) = 
+  \partial_z f(z(0)) \cdot f(z(0))
+  + \mathrm{O}(\Delta t)
+  \]
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Analyse \emph{a priori} r\'etrograde~(2)~~}
+
+$\bullet$ Cas de la méthode d'Euler explicite : $y^1 = y^0 + \Delta t \, f(y^0)$
+
+\begin{block}{Dynamique modifiée à l'ordre~2}
+\centerequation{z(\Delta t) = y^0 + \Delta t \, f(y^0) + \Delta t ^2 \left(F_1(y^0)+\frac12 \partial_z f(y^0) f(y^0)\right) + \mathrm{O}(\Delta t^3)}
+\end{block}
+
+\smallskip
+
+$\bullet$ Avec le choix {\blue $\dps F_1(z) = - \frac12 \partial_z f(z) f(z)$} on a donc
+\[
+\| y^1 - z(\Delta t)\| = \mathrm{O}(\Delta t^3)
+\] 
+% repertoire amphi/exemples/EDO/backward_EDO/
+au lieu de $\| y^1 - y(\Delta t)\| = \mathrm{O}(\Delta t^2)$
+
+\bigskip
+
+$\bullet$ On peut itérer l'argument (formellement)~: propriétés du schéma numérique
+  déduites des {\red propriétés de $\dot{z} = f_{\Delta t}(z)$}
+
+\bigskip 
+
+$\bullet$ Exemple~: $\dot{y} = y^2$, solution $y(t) = y^0/(1-ty^0)$ et $\dot{z}(t) = z^2 \pm \Delta t \, z^3$ pour les schémas d'Euler
+
+\end{frame}
+
+%--------------------------------------------------------------
+%                                  SLIDE 
+%-------------------------------------------------------------
+
+\begin{frame}\frametitle{Conclusion : retour au début~~~}
+
+$\bullet$ Etude du {\blue problème continu} (``bien posé'')
+
+\bigskip
+
+$\bullet$ Approximation {\blue numérique} par méthodes à un pas
+\bi
+\item Exemples et mise en oeuvre
+\item Analyse \emph{a priori} directe~: convergence (consistance + stabilité)
+\ei
+
+\bigskip
+
+$\bullet$ Compléments
+\bi
+\item Systèmes {\blue linéaires}
+\item Influence des {\red erreurs d'arrondi}
+\item {\red Pas de temps adaptatif} (analyse a posteriori)
+\item {\red Analyse rétrograde}
+\ei
+
+\bigskip
+
+$\bullet$ {\blue A vous de jouer !} (notamment en TP... et voici quelques instructions pour bien démarrer, et des images de simulation)
+
+\end{frame}
+
+
+%----------- fin --------------
+\end{document}
