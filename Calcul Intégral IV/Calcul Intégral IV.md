@@ -2150,9 +2150,9 @@ $$
 autrement dit si et seulement si la suite des $f(n)$ est absolument convergente.
 Dans ce cas, on a 
 $$
-\int f\, c = \int f_+ \, c + \int f_- \, c = 
-\sum_{n=0}^{+\infty} f_+(n) + \sum_{n=0}^{+\infty} f_-(n)
-= \sum_{n=0}^{+\infty} |f|(n).
+\int f\, c = \int f_+ \, c - \int f_- \, c = 
+\sum_{n=0}^{+\infty} f_+(n) - \sum_{n=0}^{+\infty} f_-(n)
+= \sum_{n=0}^{+\infty} f(n).
 $$
 
 ### Question 4 {.answer #answer-is-4}
