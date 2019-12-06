@@ -2296,8 +2296,8 @@ Mesure image
 ### Question 0 {.answer #answer-mim-0}
 Pour tout $A \subset \R$,
 $h^{-1}(A) \cap \left]-1, 1\right[ = A \cap \left]-1, 1\right[,$
-$h^{-1}(A) \cap \left]-\infty, -1\right] = \{-1\}$ ou $\varnothing$ selon que
-$-1$ appartienne ou non à $A$ et $h^{-1}(A) \cap \left[+1, +\infty\right[ = \{+1\}$ 
+$h^{-1}(A) \cap \left]-\infty, -1\right] = \left]-\infty, -1\right]$ ou $\varnothing$ selon que
+$-1$ appartienne ou non à $A$ et $h^{-1}(A) \cap \left[+1, +\infty\right[ = \left[+1, +\infty\right[$ 
 ou $\varnothing$ selon que $+1$ appartienne ou non à $A$.
 
 Par conséquent, si $A \in \mathcal{L}(\R)$, l'ensemble 
@@ -2307,9 +2307,10 @@ et la fonction $\nu$ est bien définie.
 
 En utilisant l'additivité de $\mu$, on constate alors que
 $$
-\nu(A) = \mu(h^{-1}(A)) = \delta_{-1}(A) + \mu|_{\left]-1,1\right[} (A) + \delta_{1}(A)
+\nu(A) = \mu(h^{-1}(A)) = \alpha \delta_{-1}(A) + \mu|_{\left]-1,1\right[} (A) + \beta \delta_{1}(A)
 $$
-où $\mu|_{\left]-1,1\right[}$ est la mesure
+où $\alpha= \mu(\left]-\infty, -1\right])$, $\beta = \mu(\left[+1, +\infty\right[)$
+et $\mu|_{\left]-1,1\right[}$ est la mesure
 trace de $\mu$ sur $\left]-1,1\right[$,
 définie par $\mu|_{\left]-1,1\right[} (A) = \mu(\left]-1,1\right[ \cap A)$.
 La fonction $\nu(A)$ est donc une mesure sur $(\R, \mathcal{L}(\R))$ comme somme
