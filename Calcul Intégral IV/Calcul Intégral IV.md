@@ -2284,8 +2284,8 @@ simplement vers $1_{\cup_{k=0}^{+\infty} A_k} f$. Par le théorème de
 croissance monotone, on a donc
 $$
 f\mu\left(\bigcup_{k=0}^{+\infty} A_k\right)
-= \int 1_{\cup_{k=0}^{+\infty} A_k} f =
-\sum_{k=0}^{+\infty} \int 1_{A_k} f = \sum_{k=0}^{+\infty} f\mu(A_k).
+= \int 1_{\cup_{k=0}^{+\infty} A_k} f \, \mu =
+\sum_{k=0}^{+\infty} \int 1_{A_k} f \, \mu = \sum_{k=0}^{+\infty} f\mu(A_k).
 $$
 La fonction $f \mu$ est donc $\sigma$-additive. C'est donc une mesure sur
 $(X,\mathcal{A})$.
