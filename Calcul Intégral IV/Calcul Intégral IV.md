@@ -519,7 +519,7 @@ Si de plus $f$ est mesurable, les singletons de $\R$ étant fermés,
 les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
 
 Réciproquement, si $f$ est de la forme $f = \sum_{k=1}^{n} y_k 1_{A_k}$ où
-les ensembles $A_k$ sont mesurables, il est clair que la fonction $f$ est simple
+les ensembles $A_k$ sont mesurables, il est clair que la fonction $f$ est étagée
 car $f$ ne peut prendre comme valeurs que les sommes partielles des $y_k$, 
 sommes qui sont en nombre fini. 
 En considérant les ensembles 
