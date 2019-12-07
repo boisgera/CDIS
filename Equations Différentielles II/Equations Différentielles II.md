@@ -7,7 +7,7 @@
 \newcommand{\Rgeq}{\R_{\geq 0}}
 \renewcommand{\C}{\mathbb{C}}
 
-\newcommand{\dt}{\Delta t}
+\newcommand{\dt}{{\Delta t}}
 
 # Introduction
 
@@ -435,7 +435,9 @@ Alors il existe un pas de temps maximal $\dt_{\max}>0$ tel que le schéma est co
 
 L'hypothèse 2. est en particulier vérifiée si $x\mapsto \Phi_{\dt}(t,x)$ est $C^1$ d'après une version un peu plus générale du théorème des accroissement finis.
 
+### Convergence du schéma d'Euler explicite
 
+On a déjà montré que le schéma d'Euler explicite est consistant d'ordre 1. Par ailleurs, si $f$ est $C^1$ par rapport à $x$, alors $x\mapsto \Phi_{\dt}(t,x) = f(t,x)$ est $C^1$. Donc d'après le théorème précédent, le schéma est convergent d'ordre 1.
 
 ## Erreurs d'arrondi et pas optimal
 
@@ -579,14 +581,15 @@ la méthode des trapèzes est consistante d'ordre 2.
 ### 
 On supposera le pas suffisamment petit pour que les schémas implicites soient définies.
 
-<!--##   Convergence de schémas 
+## Convergence de schémas {.question #conv}
 
-Supposons $f$ uniformémement Lipschitzienne par rapport à $x$, c'est-à-dire qu'il existe $L_f$ tel que pour tout $t \geq 0$, pour tout $(x_a,x_b)\in \R^n \times \R^n$,
+<!--Supposons $f$ uniformémement Lipschitzienne par rapport à $x$, c'est-à-dire qu'il existe $L_f$ tel que pour tout $t \geq 0$, pour tout $(x_a,x_b)\in \R^n \times \R^n$,
 $$
 |f(t,x_a)-f(t,x_b)| \leq L_f |x_a -x_b|.
 $$
-Montrer que le schéma de Heun et d'Euler implicite sont convergents.
 -->
+
+Sous l'hypothèse que $f$ est $C^1$ par rapport à $x$, montrer que les schémas de Heun et d'Euler implicite sont convergents.
 
 
 ## Explicite ou implicite ? {.exo #exo_exp_impl}
@@ -620,6 +623,7 @@ de condition initiale $x(0)\;=\; (1,0)$. On rappelle que pour une suite de la fo
 ### Question 1 {.question #symp-1}
 Montrer que pour n'importe quel pas $\dt$ fixé, un schéma d'Euler explicite donne une solution divergente, et un schéma d'Euler implicite donne une solution qui converge vers 0. Lequel a raison ? 
 
+### 
 On définit maintenant le schéma suivant qui ``mélange'' les schémas d'Euler implicites et explicites :
 \begin{align*}
 x^{j+1}_1 &= x^{j}_1 + \dt \, x^{j}_2 \\
@@ -635,13 +639,13 @@ En écrivant le schéma sous la forme $x^{j+1}=Ax^j$, montrer qu'il diverge par 
 ### Question 4 {.question #symp-4}
 Plus généralement, proposer un schéma pour simuler un système Hamiltonien du type
 \begin{align*}
-\dot{q} &= \nabla_p H(q,p) = \nabla T(p) \\
-\dot{p} &= - \nabla_q H(q,p) = - \nabla V(q)
+\dot{q} &= \nabla_p H(q,p) \\
+\dot{p} &= - \nabla_q H(q,p)
 \end{align*}
 où $(q,p)\in \R^N \times \R^N$ sont les positions généralisées et quantités de mouvement, $H$ est le Hamiltonien que l'on pourra vérifier être conservé le long des trajectoires.
 
 ### 
-A noter que les conclusions de cet exercice sont les mêmes si on avait utilisé un Euler implicite sur la première composante et un Euler explicite sur la deuxième. Ces deux schémas s'appellent respectivement Euler symplectique A et B.
+A noter que les conclusions de cet exercice sont les mêmes si l'on utilise un schéma d'Euler implicite sur la première composante et un schéma d'Euler explicite sur la deuxième. Ces deux schémas s'appellent respectivement Euler symplectique A et B.
 
 Corrections
 =================================================================================
@@ -742,6 +746,37 @@ $$
 x^{j+1} = x(t_j) + \dt f(t_j,x(t_j) + \frac{\dt^2}{2} (\partial_t f(t_j,x(t_j)) + \partial_x f(t_j,x(t_j))) + \mathrm{O}(\dt^3)
 $$
 On en déduit donc $\eta^{j+1}=\mathrm{O}(\dt^2)$.
+
+## Convergence de schémas {.answer #answer-conv}
+
+Tout d'abord, dans l'exercice précédent, nous avons montré que les schémas de Heun et d'Euler implicite étaient consistants d'ordre 2 et 1 respectivement. Il ne nous reste donc plus qu'à montrer que $\Phi_\dt$ est localement lipschitzienne (ou $C^1$) par rapport à $x$ pour $\dt$ suffisamment petit, pour en déduire la convergence à l'ordre 2 et 1 respectivement.
+
+Pour le schéma de Heun, 
+$$
+\Phi_\dt(t,x) = \frac{1}{2}\Big(f(t,x) + f\big(t+\dt,x+\dt f(t,x)\big)\Big)
+$$
+donc $\Phi_\dt$ est $C^1$ par rapport à $x$ si $f$ l'est.
+
+Prenons maintenant le schéma d'Euler implicite. Pour $\dt\leq \dt_m$, $\Phi_\dt$ est définie par
+$$
+\Phi_{\dt}(t,x) = f\Big(t+ \dt, x + \dt\Phi_{\dt}(t,x) \Big).
+$$
+Soit $B$ un compact de $\R^n$. Soit $B'$ un compact tel que $x + \dt\Phi_{\dt}(t,x) \in B'$ pour tout $x\in B$, tout  $t\in [ 0,T ]$ et tout $\dt\in [ 0,\dt_m ]$. Puisque $f$ est continue, et $C^1$ par rapport à $x$, il existe $L_f>0$ tel que 
+$$
+\|f(t,x_a) - f(t,x_b) \| \leq L_f \|x_a-x_b\| \qquad \forall (x_a,x_b,t)\in B'\times B' \times [ 0,T+\dt_m ] \ . 
+$$
+Ceci est vrai par le théorème des accroissements finis appliqué à $x\mapsto f(t,x)$ et pour $t$ dans un compact.
+Prenons maintenant $(x_a,x_b)\in B\times B$, $t\in [ 0,T ]$ et $\dt\in [ 0,\dt_m ]$, alors
+\begin{align*}
+\|\Phi_{\dt}(t,x_a)-\Phi_{\dt}(t,x_b) \| &= \| f\Big(t+ \dt, x_a + \dt\Phi_{\dt}(t,x_a) \Big)-f\Big(t+ \dt, x_b + \dt\Phi_{\dt}(t,x_b) \Big) \|\\
+&\leq L_f \left( \|x_a-x_b \| + \dt\|\Phi_{\dt}(t,x_a)-\Phi_{\dt}(t,x_b) \| \right)
+\end{align*}
+soit
+$$
+\|\Phi_{\dt}(t,x_a)-\Phi_{\dt}(t,x_b) \| \leq \frac{L_f}{1-L_f \dt} \|x_a-x_b \|
+$$
+si $\dt < 1/L_f$. Donc $\Phi_{\dt}$ est bien localement lipschitzienne par rapport à $x$.
+
 
 ## Explicite ou implicite ?
 
