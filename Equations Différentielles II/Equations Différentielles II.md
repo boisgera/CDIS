@@ -122,7 +122,6 @@ où $F_k$ sont les forces de gravitation exercées par chaque corps $k$ sur le c
 
 Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même des schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps ``courts'' sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *symplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma symplectique*](#exo_symplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10].
 
-FIGURE
 
 # Méthodes à un pas
 
@@ -211,11 +210,11 @@ F_j(x) = x^j + \dt_j \, f(t_{j+1},x) \ .
 $$
 à $x^j$, $\dt_j$, $t_{j+1}$ fixés. L'existence (et l'unicité) de ce point fixe peut alors être démontrée par le théorème de point fixe de Banach. Si $x\mapsto  f(t_{j+1},x)$ est Lipschitzienne, c'est-à-dire s'il existe $L_j$ tel que
 $$
-|f(t_{j+1},x_a)-f(t_{j+1},x_b)| \leq L_j |x_a-x_b| \qquad \forall (x_a,x_b)\in \R^n\times \R^n \ ,
+\|f(t_{j+1},x_a)-f(t_{j+1},x_b)\| \leq L_j \|x_a-x_b\| \qquad \forall (x_a,x_b)\in \R^n\times \R^n \ ,
 $$
 alors $F_j:\R^n \to \R^n$ est contractante pour un pas de temps $\dt_j$ suffisamment petit puisque
 $$
-|F_j(x_a)-F_j(x_b)| \leq  \dt_j L_j |x_a-x_b| \ .
+\|F_j(x_a)-F_j(x_b)\| \leq  \dt_j L_j \|x_a-x_b\| \ .
 $$
 Puisque $\R^n$ est complet, on déduit par le théorème du point fixe que $x^{j+1}$ existe bien.
 
@@ -254,12 +253,12 @@ $$
 On note $\dt = \max_{0\le j\le J-1} \dt_j$ le pas de temps maximal.
 On dit qu'une méthode numérique est *consistante* si 
 $$
-\lim_{\dt\to 0} \left( \max_{1\le j\le J} |\eta^{j}| \right) = 0 \ ,
+\lim_{\dt\to 0} \left( \max_{1\le j\le J} \|\eta^{j}\| \right) = 0 \ ,
 $$
 et qu'elle est *consistante d'ordre $p$* s'il existe une constante $c_s$
 telle que, pour tout $0\le j\le J-1$, 
 $$
-|\eta^{j+1}| \le c_s \, (\dt_j)^{p} \ .
+\|\eta^{j+1}\| \le c_s \, (\dt_j)^{p} \ .
 $$
 
 ### Condition suffisante
@@ -283,17 +282,17 @@ $$
 $$
 On doit montrer que ces erreurs tendent vers 0 lorsque $\dt$ tend vers 0 (uniformément en $j=1,\hdots,N$). Soit $\varepsilon >0$. Par la continuité de $\Phi$ et $f$ et puisque $\Phi_0=f$, il existe $\Delta_1 >0$ tel que si $\dt\leq \Delta_1$, alors 
 $$
-|\Phi_{\dt_j}(t,x) -f(t,x) | \leq \varepsilon \qquad \forall (t,x) \in \left[ 0,T \right]\times C \quad \forall j=1,\hdots,N \ .
+\|\Phi_{\dt_j}(t,x) -f(t,x) \| \leq \varepsilon \qquad \forall (t,x) \in \left[ 0,T \right]\times C \quad \forall j=1,\hdots,N \ .
 $$
 Donc 
 $$
-|\eta^{j+1}| \leq  \varepsilon + \frac{1}{\dt_j}  \int_{t_j}^{t_{j+1}} \big| f(s,x(s)) - f(t_j,x(t_j)) \big|ds \ .
+\|\eta^{j+1}\| \leq  \varepsilon + \frac{1}{\dt_j}  \int_{t_j}^{t_{j+1}} \big\| f(s,x(s)) - f(t_j,x(t_j)) \big\|ds \ .
 $$
 Puisque $s\mapsto f(s,x(s))$ est continue sur le compact $\left[ 0,T \right]$, elle y est uniformément continue, donc il existe $\Delta_2 >0$ tel que si $\dt \leq \Delta_2$,
 $$
-\big| f(s,x(s)) - f(t_j,x(t_j)) \big| \leq \varepsilon \qquad \forall s \in \left[ t_j,t_{j+1} \right]\quad \forall j=1,\hdots,N
+\big\| f(s,x(s)) - f(t_j,x(t_j)) \big\| \leq \varepsilon \qquad \forall s \in \left[ t_j,t_{j+1} \right]\quad \forall j=1,\hdots,N
 $$
-et donc $|\eta^{j+1}|\leq 2 \varepsilon$ pour tout $j$. Le schéma est donc bien consistant. 
+et donc $\|\eta^{j+1}\|\leq 2 \varepsilon$ pour tout $j$. Le schéma est donc bien consistant. 
 
 ### Exemples
 
@@ -321,7 +320,7 @@ x(t_j + \dt_j) =  x(t_j) + \dt f(t_j,x(t_j))  + \dt_j^2 \int_{0}^{1} \ddot{x}(t_
 $$
 en utilisant $\dot{x}(t_j)=f(t_j,x(t_j))$. Ceci donne donc
 $$
-|\eta^{j+1}| \leq \dt_j  \int_{0}^{1} \ddot{x}(t_j+s\dt_j)  (1-s) ds \leq \frac{\dt_j}{2} \max_{t\in [t_j,t_{j+1}]} \|\ddot{x}(t)\| \leq \frac{\dt_j}{2} \max_{t\in [0,T]} \|\ddot{x}(t)\| \ .
+\|\eta^{j+1}\| \leq \dt_j  \int_{0}^{1} \ddot{x}(t_j+s\dt_j)  (1-s) ds \leq \frac{\dt_j}{2} \max_{t\in [t_j,t_{j+1}]} \|\ddot{x}(t)\| \leq \frac{\dt_j}{2} \max_{t\in [0,T]} \|\ddot{x}(t)\| \ .
 $$
 Le schéma d'Euler explicite est donc consistant d'ordre 1 avec
 $$
@@ -354,14 +353,14 @@ z^{j+1} & = z^j + \dt_j \Phi_{\dt_j}(t_j,z^j) + \delta^{j+1},
 $$
 on ait 
 $$
-\max_{1 \leq j \leq J} | x^j - z^j| \leq S(T) \, \Big( |x^0 -z^0| + \sum_{j = 1}^J  |\delta^j| \Big).
+\max_{1 \leq j \leq J} \| x^j - z^j\| \leq S(T) \, \Big( \|x^0 -z^0\| + \sum_{j = 1}^J  \|\delta^j\| \Big).
 $$
 
 ### Condition suffisante
 
 Si les $\Phi_{\dt_j}$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$, 
 $$
-|\Phi_{\dt_j}(t_j,x_a)-\Phi_{\dt_j}(t_j,x_b)|\leq L |x_a-x_b| \qquad \forall (x_a,x_b)\in \R^n \times \R^n
+\|\Phi_{\dt_j}(t_j,x_a)-\Phi_{\dt_j}(t_j,x_b)\|\leq L \|x_a-x_b\| \qquad \forall (x_a,x_b)\in \R^n \times \R^n
 $$
 alors le schéma est stable avec $S(T)=e^{L T}$.
 
@@ -369,15 +368,15 @@ alors le schéma est stable avec $S(T)=e^{L T}$.
 
 On a alors
 $$
-| x^{j+1} - z^{j+1} | \leq  | \delta^{j+1} | + (1 + \dt_j L) | x^{j} - z^{j} | \leq | \delta^{j+1} | +  e^{\dt_j L} | x^{j} - z^{j} | 
+\| x^{j+1} - z^{j+1} \| \leq  \| \delta^{j+1} \| + (1 + \dt_j L) \| x^{j} - z^{j} \| \leq \| \delta^{j+1} \| +  e^{\dt_j L} \| x^{j} - z^{j} \| 
 $$
 puisque $1+x \leq e^{x}$ pour tout $x\in \R$. Par récurrence, on montre alors que pour tout $1\leq j \leq J$, 
 $$
-| x^{j} - z^{j} | \leq e^{(t_j-t_0) L} |x^0 -z^0| + \sum_{k=1}^j e^{(t_j-t_k)L} | \delta^{k} |  \ .
+\| x^{j} - z^{j} \| \leq e^{(t_j-t_0) L} \|x^0 -z^0\| + \sum_{k=1}^j e^{(t_j-t_k)L} \| \delta^{k} \|  \ .
 $$
 Il s'ensuit que 
 $$
-| x^{j} - z^{j} | \leq e^{TL}\left(|x^0 -z^0|+ \sum_{k=1}^j | \delta^{k} |\right) \ ,
+\| x^{j} - z^{j} \| \leq e^{TL}\left(\|x^0 -z^0\|+ \sum_{k=1}^j \| \delta^{k} \|\right) \ ,
 $$
 ce qui donne le résultat.
 
@@ -390,11 +389,11 @@ La combinaison de consistance et de stabilité donne une propriété dite de *co
 Soit $\dt = \max_{0 \leq j \leq J-1} \dt_j$.
 Un schéma numérique est *convergent* si 
 $$
-\lim_{\dt \to 0} \max_{1 \leq j \leq J} |x^j - x(t_j)| = 0
+\lim_{\dt \to 0} \max_{1 \leq j \leq J} \|x^j - x(t_j)\| = 0
 $$
 lorsque $x^0 = x(t_0)$. S'il existe $p\in \N_{>0}$ et $c_v>0$ (indépendent de $\dt$) tel que
 $$
-\max_{1 \leq j \leq J} |x^j - x(t_j)| \leq c_v (\dt)^{p}
+\max_{1 \leq j \leq J} \|x^j - x(t_j)\| \leq c_v (\dt)^{p}
 $$
 on dit que le schéma est *convergent à l'ordre $p$*. 
 
@@ -410,11 +409,11 @@ z^{j+1}  = z^j + \dt_j \Phi_{\dt_j}(t_j,z^j) + \dt_j\, \eta^{j+1},
 $$
 où $\eta$ est l'erreur de consistance. D'après la propriété de stabilité, on a donc
 $$
-|x^j - x(t_j)| \leq S(T) \,  \sum_{j = 1}^J \dt_{j-1}\, |\eta^j| \ ,
+\|x^j - x(t_j)\| \leq S(T) \,  \sum_{j = 1}^J \dt_{j-1}\, \|\eta^j\| \ ,
 $$
 et par consistance
 $$
-|x^j - x(t_j)| \leq S(T) \,  c_s \,  \sum_{j = 1}^J \dt_{j-1}\, (\dt_{j-1})^{p} \leq  c_s \, S(T) \, T \, (\dt)^{p}  \ . 
+\|x^j - x(t_j)\| \leq S(T) \,  c_s \,  \sum_{j = 1}^J \dt_{j-1}\, (\dt_{j-1})^{p} \leq  c_s \, S(T) \, T \, (\dt)^{p}  \ . 
 $$
 
 
@@ -428,7 +427,7 @@ Si
 
 2. pour tout boule fermée $B$ de $\R^n$, il existe $L>0$, $\dt_m>0$ tels que pour tout $t\in \left[ 0,T \right]$ et pour tout $\dt \in \left[ 0, \dt_m \right]$,
 $$
-|\Phi_{\dt_j}(t_j,x_a)-\Phi_{\dt_j}(t_j,x_b)|\leq L |x_a-x_b| \qquad \forall (x_a,x_b)\in B\times B 
+\|\Phi_{\dt_j}(t_j,x_a)-\Phi_{\dt_j}(t_j,x_b)\|\leq L \|x_a-x_b\| \qquad \forall (x_a,x_b)\in B\times B 
 $$
 
 Alors il existe un pas de temps maximal $\dt_{\max}>0$ tel que le schéma est convergent d'ordre $p$.
@@ -452,15 +451,15 @@ $$
 où $\rho$ modélise l'erreur commise sur le calcul de $\Phi_{\dt_j}$ et $\epsilon$ l'erreur sur l'addition finale.
 La stabilité nous donne alors l'écart 
 $$
-\max_{0\leq j \leq J} |x^j-\hat{x}^j| \leq S(T) \sum_{j=1}^J \dt_{j-1} |\rho^{j}| + |\varepsilon^{j}| \ .
+\max_{0\leq j \leq J} \|x^j-\hat{x}^j\| \leq S(T) \sum_{j=1}^J \dt_{j-1} \|\rho^{j}\| + \|\varepsilon^{j}\| \ .
 $$
 En considérant une borne $\varepsilon$ des $\varepsilon^{j}$ et $\rho$ des $\rho^{j}$, on obtient
 $$
-\max_{0\leq j \leq J} |x^j-\hat{x}^j| \leq S(T) (T\rho + J \varepsilon) \leq S(T) T \left(\rho + \frac{\varepsilon}{\min \dt_j} \right) \ ,
+\max_{0\leq j \leq J} \|x^j-\hat{x}^j\| \leq S(T) (T\rho + J \varepsilon) \leq S(T) T \left(\rho + \frac{\varepsilon}{\min \dt_j} \right) \ ,
 $$
 et donc finalement, en supposant l'algorithme convergent d'ordre $p$,
 \begin{align*}
-\max_{0\leq j \leq J} |x(t_j)-\hat{x}^j| &\leq \max_{0\leq j \leq J} |x(t_j)-x^j| + |x^j - \hat{x}^j| \\
+\max_{0\leq j \leq J} \|x(t_j)-\hat{x}^j\| &\leq \max_{0\leq j \leq J} \|x(t_j)-x^j\| + \|x^j - \hat{x}^j\| \\
 &\leq c_v (\max_j \dt_j)^p +  S(T) T \left(\rho + \frac{\varepsilon}{\min_j \dt_j} \right) \ .
 \end{align*}
 Les paramètres $\varepsilon$ et $\rho$ sont typiquement petits de l'ordre d'un facteur de la précision machine. Cependant, on voit que plus le pas de temps décroit, plus il y a d'itérations et plus les erreurs d'arrondi se propagent. D'un autre côté, plus il augmente, plus les erreurs de quadrature augmentent. En supposant le pas constant, il y a donc un pas ``optimal'' donné par
@@ -479,7 +478,7 @@ Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas 
 
 **Consigne** Coder une fonction 
 
-    def solve_euler_explicit(f,x0,dt):
+    def solve_euler_explicit(f, x0, dt):
       ...
       return t, x
 
@@ -501,14 +500,14 @@ L'idée serait donc plutôt d'adapter la valeur du pas $\dt_j$ à chaque itérat
 
 Tout d'abord, de quelle erreur parle-t-on ?
 
-- erreur *globale* ? L'idéal serait de contrôler $\max_{0\leq j\leq N} |x^j - x(t_j)|$. Or la stabilité nous dit que 
+- erreur *globale* ? L'idéal serait de contrôler $\max_{0\leq j\leq N} \|x^j - x(t_j)\|$. Or la stabilité nous dit que 
 $$
-\max_{0\leq j\leq N} |x^j - x(t_j)| \leq S(T) \,  \sum_{j = 1}^J \dt_{j-1}\, |\eta^j|
+\max_{0\leq j\leq N} \|x^j - x(t_j)\| \leq S(T) \,  \sum_{j = 1}^J \dt_{j-1}\, \|\eta^j\|
 $$
 avec $\eta^j$ les erreurs de consistances locales.
 Donc si on se fixe une tolérance sur l'erreur globale $\texttt{Tol}_g$, on a 
 $$
-|\eta^j| \leq \frac{\texttt{Tol}_g}{TS(T)} \qquad \Longrightarrow \qquad \max_{0\leq j\leq N} |x^j - x(t_j)| \leq \texttt{Tol}_g \ .
+\|\eta^j\| \leq \frac{\texttt{Tol}_g}{TS(T)} \qquad \Longrightarrow \qquad \max_{0\leq j\leq N} \|x^j - x(t_j)\| \leq \texttt{Tol}_g \ .
 $$
 En d'autre termes, $\texttt{Tol}_g$ nous fixe une erreur maximale *locale* sur $\eta^j$, à chaque itération. Notons cependant que cette borne ne prend pas en compte la propagation des erreurs d'arrondis : plus $\dt$ diminue, plus l'erreur globale risque d'augmenter. Ce phénomène devrait donc en toute rigueur aussi nous donner un pas de temps minimal $\dt_{\min}$. Notons que tous ces calculs dépendent des constantes $c_v$ et $S(T)$ qui sont souvent mal connues ou très conservatives. 
 
@@ -516,48 +515,54 @@ En d'autre termes, $\texttt{Tol}_g$ nous fixe une erreur maximale *locale* sur $
 $$
 e^{j+1} = \left(x^j + \int_{t_j}^{t_{j+1}} f(s,x(s))ds\right) -x^{j+1} 
 $$
+où le premier terme représente la valeur de la vraie solution au temps $t_{j+1}$ si elle était initialisée à $x^j$ au temps $t_j$.
 <!--= \int_{t_j}^{t_{j+1}} f(s,x(s))ds - \dt_j \Phi_{\dt_j}(t_j,x^j) -->
-Notons que si on avait $x^j=x(t_j)$, on aurait exactement $e^{j+1}=\dt_j \eta^{j+1}$ l'erreur de consistance.
+Notons que si on avait $x^j=x(t_j)$, on aurait exactement $e^{j+1}=\dt_j \eta^{j+1}$, où $\eta^{j+1}$ est l'erreur de consistance.
 <!-- Que ce soit après une étude préalable de stabilité ou non, il est nécessaire d'assurer à chaque itération une erreur locale $\dt_j \eta^{j+1}$ suffisamment faible, où $\eta$ est l'erreur de consistance. -->
 On se donne donc une tolérance d'erreur locale 
 $$
-|e^{j+1}| \leq \texttt{Tol}_{abs} \ .
+\|e^{j+1}\| \leq \texttt{Tol}_{abs} \ .
 $$
 
 - erreur *relative* ? Fixer une erreur absolue est parfois trop contraignant et n'a de sens que si les solutions gardent un certain ordre de grandeur. En effet, l'erreur acceptable quand la solution vaut 1000 n'est peut-être pas la même que lorsqu'elle vaut 1. On peut donc plutôt exiger une certaine erreur relative $\texttt{Tol}_{rel}$, i.e., 
 $$
-\frac{|e^{j+1}|}{|x^j|}\leq \texttt{Tol}_{rel} \ .
+\frac{\|e^{j+1}\|}{\|x^j\|}\leq \texttt{Tol}_{rel} \ .
 $$
+
+En général, les solvers assurent (approxivement) 
+$$
+\|e^{j+1}\| \leq \texttt{Tol}_{abs} + \texttt{Tol}_{rel} \|x^j\| \ .
+$$
+Par défaut, dans les solvers de Numpy, $\texttt{Tol}_{abs} = 10^{-6}$ et $\texttt{Tol}_{rel}= 10^{-3}$.
 
 Mais pour cela nous devons trouver un moyen d'estimer l'erreur locale. C'est souvent fait en utilisant une même méthode à deux pas différents (par exemple $\dt_j$ et $\dt_j/2$), ou bien en imbriquant des schémas de Runge-Kutta d'ordres différents. 
 
 **Consigne** Montrer que si $f$ est $C^1$, on a pour un schéma d'Euler explicite
 $$
-|e^{j+1}| = \dt \, \frac{\big|f(t_{j+1},x(t_{j+1})) - f(t_j,x(t_{j}))\big|}{2} + O(\dt_j^3) \ 
+\|e^{j+1}\| = \dt \, \frac{\big\|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big\|}{2} + O(\dt_j^3) \ 
 $$
 
 On peut donc estimer à chaque itération l'erreur commise $e^{j+1}$ et adapter le pas selon si celle-ci est inférieure ou supérieure au seuil de tolérance.  
 
-**Consigne** Montrer que par ailleurs il existe $c>0$ telle que
+**Consigne** En justifiant que par ailleurs 
+$e^{j+1} =  O(\dt_j^2)$,
+en déduire qu'une possible stratégie d'adaptation est de prendre  
 $$
-|e^{j+1}| \leq c \dt_j^2 \ . 
-$$
-En déduire qu'une possible stratégie d'adaptation est de prendre  
-$$
-\dt_{new} = \dt \sqrt{\frac{\texttt{Tol}_{abs}}{|e^{j+1}|}}
+\dt_{new} = \dt \sqrt{\frac{\texttt{Tol}_{abs}}{\|e^{j+1}\|}}
 $$
 (éventuellement avec une marge de sécurité)
 
-**Consigne** Coder une fonction 
+La fonction correspondante
 
-    def solve_euler_explicit_variable(f,x0,dtmin,dtmax,Tolabs):
+    def solve_euler_explicit_variable_step(f, x0, t0, tf, dtmin, dtmax, atol):
       ...
       return t, x
 
- prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\dt_{\min}$, $\dt_{\max}$ sur le pas de temps, une tolérance absolue  $\texttt{Tol}_{abs}$ et/ou une tolérance relative $\texttt{Tol}_{rel}$, et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque le pas nécessaire est inférieur à $\dt_{\min}$ le solver s'arrête avec un message d'erreur.
-Tester ce solveur et comparer ses performances à Euler pas fixe. 
+est fournie dans le notebook Equations Differentielles II.ipynb.
 
-**Consigne** Comparer à la fonction `solve_ivp` de python.
+ <!-- prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\dt_{\min}$, $\dt_{\max}$ sur le pas de temps, une tolérance absolue  $\texttt{aTol}$ et/ou une tolérance relative $\texttt{Tol}_{rel}$, et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque le pas nécessaire est inférieur à $\dt_{\min}$ le solver s'arrête avec un message d'erreur.-->
+
+**Consigne** Expliquer le fonctionnement de ce solveur. Comparer ses performances aux autres schémas et à la fonction `solve_ivp` de python.
 
 Exercices
 ================================================================================
@@ -585,7 +590,7 @@ On supposera le pas suffisamment petit pour que les schémas implicites soient d
 
 <!--Supposons $f$ uniformémement Lipschitzienne par rapport à $x$, c'est-à-dire qu'il existe $L_f$ tel que pour tout $t \geq 0$, pour tout $(x_a,x_b)\in \R^n \times \R^n$,
 $$
-|f(t,x_a)-f(t,x_b)| \leq L_f |x_a -x_b|.
+\|f(t,x_a)-f(t,x_b)\| \leq L_f \|x_a -x_b\|.
 $$
 -->
 
