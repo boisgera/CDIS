@@ -562,7 +562,7 @@ est fournie dans le notebook Equations Differentielles II.ipynb.
 
  <!-- prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\dt_{\min}$, $\dt_{\max}$ sur le pas de temps, une tolérance absolue  $\texttt{aTol}$ et/ou une tolérance relative $\texttt{Tol}_{rel}$, et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque le pas nécessaire est inférieur à $\dt_{\min}$ le solver s'arrête avec un message d'erreur.-->
 
-**Consigne** Expliquer le fonctionnement de ce solveur. Comparer ses performances aux autres schémas et à la fonction `solve_ivp` de python.
+**Consigne** Expliquer et illustrer le fonctionnement de ce solveur.
 
 Exercices
 ================================================================================
