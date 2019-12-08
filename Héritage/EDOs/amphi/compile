@@ -1,0 +1,2 @@
+latex EDO.tex
+dvipdf EDO.dvi

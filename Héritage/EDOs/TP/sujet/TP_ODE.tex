@@ -1,0 +1,126 @@
+\documentclass[a4paper,10pt,twoside]{article}
+
+%-----------------------------------
+%
+%   Urbana, 28 janvier 2014
+%  denière modif Gabriel STOLTZ
+%
+%----------------------------------
+
+\usepackage[latin1]{inputenc} %Ligne PS
+\usepackage[T1]{fontenc} %Ligne PS
+\usepackage[french]{babel}
+\usepackage{a4wide}
+\usepackage{amsmath,amsthm}
+\usepackage{amssymb}
+\usepackage{a4wide}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{epic,vmargin}
+\usepackage{enumerate}
+
+%----- definitions --------
+\newcommand{\dps}{\displaystyle}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\C}{\mathrm{C}}
+\newcommand{\ri}{\mathrm{i}}
+\newcommand{\rme}{\mathrm{e}}
+\newcommand{\mC}{\mathcal{C}}
+\newcommand{\dt}{{\Delta t}}
+
+%------- marges ----------
+\newenvironment{changemargin}[2]{\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{0pt}%
+\setlength{\rightmargin}{0pt}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{0pt plus 1pt}%
+\addtolength{\leftmargin}{#1}%
+\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+
+\bibliographystyle{plain}
+
+
+%-------------
+%   d\'ebut
+%-------------
+
+\begin{document}
+
+\noindent
+Nom : \\
+Pr\'enom : \\
+Num\'ero de groupe :
+
+\vspace{0.2cm}
+
+\begin{center}
+{\Large \bf Maths1 - TP1} \\
+%18 septembre 2012 \\
+\end{center}
+
+\vspace{0.2cm}
+
+\begin{changemargin}{-1.2cm}{-1.2cm}   
+
+\noindent 
+Sous Linux, ouvrez un terminal (``Applications'' $\to$ ``Outils système'' $\to$ ``Terminal''), récupérez avec un navigateur web le script {\tt http}:{//cermics.enpc.fr/$\sim$stoltz/Cours/Mines/launch\_Maths1\_TP1.txt}, et copiez-collez les instructions du script dans le terminal (ce qui ira plus vite que de les retaper). Cela téléchargera les sources du code, créera le répertoire d'accès et ouvrira les applications nécessaires. Le code s'exécute ensuite avec l'instruction {\tt python EDO.py} dans le terminal.
+
+\paragraph{Contexte théorique et informatique.}
+L'objectif de ce sujet de TP est d'implémenter et de tester la qualité de plusieurs intégrateurs numériques pour les EDOs, sur un cas test simple en dimension~1~:
+\[
+\dot{y}(t) = y(t)^2.
+\]
+
+\paragraph{Question~1.} Déterminer la solution analytique partant d'une condition initiale $y(0)=y_0$. Cette solution permettra par la suite de comparer les itérations du schéma et la trajectoire exacte, et ainsi assurer que le schéma numérique est bien implémenté. 
+
+\medskip
+
+\noindent
+{\bf R\'eponse~:}
+\vspace{2cm}
+
+\paragraph{Question~2.} Etudier numériquement la convergence du schéma d'Euler explicite (qui est donné par défaut dans le code), pour un temps d'intégration $T= 0.99$ partant de $y_0 = 1$. On calculera pour ce faire l'erreur $e(\dt) = |y(T) - y^{T/\dt}|$ sur la position finale prédite par le schéma, pour divers pas de temps. On s'attachera à trouver l'exposant~$p$ tel que $e(\dt) \simeq C \dt^p$.
+
+\medskip
+
+\noindent
+{\bf R\'eponse~:}
+\vspace{3cm}
+
+\paragraph{Question~3.} Coder le schéma de Heun et reprendre l'étude de convergence de la question précédente. 
+
+\medskip
+
+\noindent
+{\bf R\'eponse~:}
+\vspace{3cm}
+
+\paragraph{Question~4.} Faire de même pour le schéma d'Euler implicite. On utilisera une méthode de point fixe pour déterminer $y^{n+1}$ en fonction de $y^n$, ainsi que décrite dans le poly. On pourra optionnellement ajouter une boucle permettant de limiter le nombre maximal d'itérations de point fixe. Pour chaque pas de temps, on évaluera le nombre moyen d'itérations nécessaires à la convergence pour une erreur sur les positions de l'ordre de $10^{-6}$ ou $10^{-10}$.
+
+\medskip
+
+\noindent
+{\bf R\'eponse~:}
+\vspace{4cm}
+
+\paragraph{Question~5.} Pour chaque méthode codée, dire si le temps d'explosion est sur-estimé ou sous-estimé (une réponse qualitative suffit).
+
+\medskip
+
+\noindent
+{\bf R\'eponse~:}
+\vspace{2cm}
+
+\paragraph{Question subsidiaires.} 
+Si vous avez encore du temps et de l'énergie, vous pouvez tester d'autres schémas numériques parmi ceux donnés en cours -- ou d'autres~! Vous pouvez également considérer ce qui se passe pour un autre champ de force, pour lequel vous connaissez la solution analytique ou pas.
+
+\end{changemargin}
+
+\end{document}
