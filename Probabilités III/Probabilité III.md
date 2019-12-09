@@ -100,7 +100,7 @@ On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peu
 
 ### Proposition {.proposition}
 
-Soit $X$ et $Y$ deux variables aléatoires réelles sur $(\Omega,\A,\P)$. Le couple $Z = (X,Y)$ peut-être considéré comme un vecteur aléatoire à valeurs dans $(\R^2, \B(\R)\otimes \B(\R)), et les deux variables aléatoires $X$ et $Y$ sont indépendantes si et seulement si la loi $\P_{X,Y}$ du couple est égale au produit $\P_X \otimes \P_Y$ des lois de $X$ et $Y$.
+Soit $X$ et $Y$ deux variables aléatoires réelles sur $(\Omega,\A,\P)$. Le couple $Z = (X,Y)$ peut-être considéré comme un vecteur aléatoire à valeurs dans $(\R^2, \B(\R)\otimes \B(\R))$, et les deux variables aléatoires $X$ et $Y$ sont indépendantes si et seulement si la loi $\P_{X,Y}$ du couple est égale au produit $\P_X \otimes \P_Y$ des lois de $X$ et $Y$.
 
 ### Démonstration {.proof}
 
