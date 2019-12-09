@@ -18,28 +18,30 @@
 Probabilités --- cadre général
 ================================================================================
 
-## Interprétation
+## Interprétation 
 
-Les éléments de théorie de la mesure donnés en calcul intégral permettent une relecture des chapitres de probabilités. Le principal avantage est que les différents cas de figures déjà évoqués : lois de probabilités discrètes, à densité, mixtes vont pouvoir être traités dans un cadre unifié. On peut déjà s'apercevoir qu'une [probabilité](Probabilité I.pdf #defproba) $\P$ définie sur un espace probabilisable (mesurable) $(\Omega, \A)$ est une mesure positive *finie* au sens où $\P(\Omega) = 1$ et hérite ainsi de ses propriétés, on parle aussi de *mesure de probabilité*. 
+Les éléments de théorie de la mesure donnés en calcul intégral permettent une relecture des premiers chapitres de probabilités. Le principal avantage est que les différents cas de figures déjà évoqués : lois de probabilités discrètes, à densité, mixtes vont pouvoir être traités dans un cadre unifié. On peut déjà s'apercevoir qu'une [probabilité](Probabilité I.pdf #defproba) $\P$ définie sur un espace probabilisable (mesurable) $(\Omega, \A)$ est une mesure positive *finie* au sens où $\P(\Omega) = 1$ et hérite ainsi de ses propriétés, on parle aussi de *mesure de probabilité*. 
 
 ### Remarque {.remark}
 
 * Dans le cas discret ($\Omega$ au plus dénombrable), la mesure de probabilité est une somme pondérée de mesures de Dirac :
-  $$\P = \sum_{\omega \in \Omega} w_{\omega} \delta_{\omega},$$
-  où $\sum_{\omega \in \Omega} w_{\omega} =1$
+  $$\P = \sum_{\omega \in \Omega} p_{\omega} \delta_{\omega},$$
+  où $\sum_{\omega \in \Omega} p_{\omega} =1$
 * Dans le cas à densité ($\Omega = \R^n$, $n\in\N^\star$), la mesure de probabilité s'écrit :
   $$\P = f(x)\mu,$$
   où $f$ est une densité et $\mu$ la mesure de Lebesgue sur $\R^n$. On dit que $\P$ admet une densité par rapport à la mesure de Lebesgue.
 
-Une [variable aléatoire réelle](Probabilité II.pdf #defvar), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$.
+Une [variable aléatoire réelle](Probabilité II.pdf #defvar), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$. 
 
-Le fait que la composition d'un vecteur aléatoire réel par une application $\B(\R^n)/\R$ mesurable est une variable aléatoire s'obtient immédiatement par le résultat du chapitre précédent de calcul intégral portant sur la [composition de fonctions mesurables](Calcul Intégral V.pdf #compfoncmes). On peut généraliser la définition des espaces vectoriels $\L^1$ et $\L^2$ de la manière suivante :
+Le fait que la composition d'un vecteur aléatoire réel par une application $\B(\R^n)/\B(\R)$ mesurable est une variable aléatoire s'obtient immédiatement par le résultat du chapitre précédent de calcul intégral relatif à la [composition de fonctions mesurables](Calcul Intégral V.pdf #compfoncmes). 
+
+On peut généraliser la définition des espaces vectoriels $\L^1$ et $\L^2$ de la manière suivante :
 
 ### Définition --- Espace $\L^1$ {.definition}
-Soit $X$ une variable aléatoire. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\Omega} X(\omega)\P(d\omega) < +\infty$.
+Soit $X$ une variable aléatoire réelle. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\R} x \P(dx) = \int_{\Omega} X(\omega)\P(d\omega) < +\infty$.
 
 ### Définition --- Espace $\L^2$ {.definition}
-Soit $X$ une variable aléatoire. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
+Soit $X$ une variable aléatoire réelle. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\R} x^2 \P(dx) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
 
 Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in N^\star$ quelconque.
 
@@ -56,7 +58,7 @@ $$ \L^{p+1}(\Omega,\A,\P) \subset \L^p(\Omega,\A,\P)$$
 Supposons $X \in \L^{p+1}(\Omega,\A,\P)$. On a
 $$|X|^p \leq \max(1,|X|^{p+1}) = 1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}.$$
 Le terme de droite est intégrable, en effet :
-$$\Esp(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}) \leq \int_\Omega \P(d\omega) + \int_\Omega |X|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}.$$
+$$\Esp(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}) \leq \int_\Omega \P(d\omega) + \int_\Omega |X|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}).$$
 donc $|X|^p$ est intégrable.
 
 On donne ici dans le cas général les inégalités de Markov et de Bienaymé-Chebyshev, déjà vues en CPGE.
@@ -89,14 +91,46 @@ On peut également réécrire [la proposition portant sur l'espérance de la com
 Soit $X$ une variable aléatoire réelle de loi $\P_X$ et $g$ une fonction $\B(\R)/\B(\R)$-mesurable (borélienne). Alors $g(X)$ est intégrable si et seulement si l'intégrale
 $$\int_\R |g(x)| \P_X(dx) = \int_\Omega |g(X(\omega))|\P(d\omega),$$
 est finie et dans ce cas
-$$\Esp(g(X)) = \int_R g(x) \P(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
+$$\Esp(g(X)) = \int_R g(x) \P_X(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
 
-ce résultat a été démontré en exercice au chapitre précédent.
+ce résultat a été démontré en exercice au chapitre IV de calcul intégral (mesure image).
 
-On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peut ainsi caractériser l'indépendance de deux variables aléatoires quelconques au moyen du théorème de Fubini.
+## Indépendance
+On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peut ainsi caractériser l'indépendance de deux variables aléatoires quelconques au moyen du théorème de Fubini et du résultat d'unicité de la mesure produit donné au chapitre V de calcul intégral.
 
-## TODO indépendance : besoin de l'unicité de la mesure produit dans le cas $\sigma-fini$ (à inclure dans Fubini cf CI IV?)
-puis cas infini
+### Proposition {.proposition}
+
+Soit $X$ et $Y$ deux variables aléatoires réelles sur $(\Omega,\A,\P)$. Le couple $Z = (X,Y)$ peut-être considéré comme un vecteur aléatoire à valeurs dans $(\R^2, \B(\R)\otimes \B(\R)), et les deux variables aléatoires $X$ et $Y$ sont indépendantes si et seulement si la loi $\P_{X,Y}$ du couple est égale au produit $\P_X \otimes \P_Y$ des lois de $X$ et $Y$.
+
+### Démonstration {.proof}
+
+Soit $A$ et $B$ deux boréliens de $\R$. On a évidemment $Z^{-1}(A \times B) = X^{-1}(A) \cap Y^{-1}(B) \in \A$ et donc la mesurabilité ($\A/\B(\R)\otimes \B(\R)$)de $Z$ découle de [la définition de la tribu produit de Borel]().
+
+L'indépendance de $X$ et $Y$ revient au fait que pour tous boréliens $A$ et $B$ de $\R$, on ait
+    $$\P((X,Y) \in A\times B) = \P(X\in A)\P(Y \in B),$$
+ce qui équivaut à 
+    $$\P_{X,Y}(A \times B) = \P_X(A)\P_Y(B),$$
+qui est assuré par l'unicité de la mesure (de probabilité) produit.
+
+### {.anonymous}
+Ce résultat nous indique que l'on peut effectivement construire des couples (et même des n-uplets) de variables aléatoires réelles indépendantes en considérant l'espace produit, munis des tribus produit et des (mesures de) probabilités produit. Il est malheureusement beaucoup plus délicat, mais indispensable pour les applications (en particulier la loi des grands nombres), de construire une **suite infinie de variables indépendantes** de lois données.
+
+Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie sur le même espace de probabilité $(\Omega_n,\A_n,\P_n)$, à valeurs dans $(\R,\B(\R))$ et de loi $\P_{X_n}$ (pour construire chaque $X_n$, on peut procéder comme ci-dessus). Ensuite, on pose
+\begin{align*}
+\Omega &= \prod_{n=1}^{infty}\Omega_n \text{        (produit cartésien dénombrable)}\\
+\A = \bigotimes_{n=1}^{infty}\A_n,
+\end{align*}
+où $\bigotimes_{n=1}^{infty}\A_n$ désigne la plus petite tribu de $\Omega$ à laquelle appartienne tous les ensembles de la forme 
+$$A_1 \times A_2 \times \ldots\times A_k \times \Omega_{k+1} \times \Omega_{k+2} \times \ldots, \,\,\, A_i \in \A_i, \,\,\, k \in \N^\star$$
+
+On a alors le théorème suivant, que l'on admettra, qui constitue un résultat non trivial de la théorie de la mesure et qui généralise le théorème d'unicité de la mesure produit.
+
+### Théorème {.theorem #probaespaceden}
+Avec les notations ci-dessus, il existe une unique probabilité $\P$ sur $(\Omega,\A)$, telle que
+$$\P(A_1 \times \ldots\times A_k \times \Omega_{k+1} \times \ldots) =\prod_{i=1}^k \P_i(A_i)$$
+pour tous $k \in \N^star$ et $A_i \in \A_i$.
+
+On note enfin le résultat très utile suivant portant sur les suites d'événements indépendants.
 
 ### Lemme de Borel-Cantelli {.lemma #BC}
 
@@ -110,7 +144,7 @@ Soit $A_n$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
 
 Exercice.
 
-
+# Suites de variables aléatoires indépendantes 
 
 On présente maintenant l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique, en Mathématiques Financières, dans les méthodes de quantification d'incertitudes.
 
@@ -120,8 +154,7 @@ Plus généralement, on va étudier les suites de variables aléatoires indépen
 
 On se place désormais dans le cadre général des variables aléatoires réelles n'admettant pas nécessairement de densité (elles peuvent être discrètes, mixtes,...).
 
-# Suites de variables aléatoires indépendantes 
-On considère une suite **infinie** $(X_n)_{n\in \N^\star}$ de variables aléatoires définies sur l'espace de probabilité $(\Omega, \A, \P)$.
+On considère une suite **infinie** $(X_n)_{n\in \N^\star}$ de variables aléatoires définies sur l'espace de probabilité $(\Omega, \A, \P)$. Le [théorème ci-dessus](#probaespaceden) nous amène à définir une telle suite de la manière suivante :
 
 ### Définition {.definition}
 La suite $(X_n)_{n\in \N^\star}$ de variables aléatoires est dite *indépendante* si pour tout $n$, la famille finie $X_1,\ldots,X_n$ est indépendante.

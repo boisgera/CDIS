@@ -262,7 +262,7 @@ $$ \Esp (Y g(X) | X) = g(X) \Esp (Y | X) $$
 
 est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$.
 
-## Vecteurs Gaussiens à Densité
+## Vecteurs Gaussiens à densité
 Dans le cas des vecteurs gaussiens, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On verra en particulier que les lois conditionelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
 
 
