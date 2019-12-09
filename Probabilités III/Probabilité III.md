@@ -43,12 +43,12 @@ Soit $X$ une variable aléatoire réelle. $X$ est intégrable et on note $X \in 
 ### Définition --- Espace $\L^2$ {.definition}
 Soit $X$ une variable aléatoire réelle. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\R} x^2 \P(dx) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
 
-Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in N^\star$ quelconque.
+Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in \N^\star$ quelconque.
 
 ### Définition --- Espace $\L^p$ {.definition}
-Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|^p) = \int_{\Omega} |X|^p(\omega)\P(d\omega) < +\infty$.
+Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^p(\Omega,\A,\P)$, si et seulement si $\Esp(|X|^p) = \int_\R |x[^p \P_X(dx) = \int_{\Omega} |X|^p(\omega)\P(d\omega) < +\infty$.
 
-Si $X \in \L^p$, on dit qu'elle admet un moment d'ordre $p$. Du fait que $\P$ est une mesure finie, on a :
+Si $X \in \L^p$, on dit qu'elle admet un moment d'ordre $p$. Du fait que $\P$ est une mesure finie, on a la stabilité par inclusion suivante :
 
 ### Proposition {.proposition}
 Soit $p \in \N^\star$, on a l'inclusion :
@@ -60,6 +60,8 @@ $$|X|^p \leq \max(1,|X|^{p+1}) = 1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}.$$
 Le terme de droite est intégrable, en effet :
 $$\Esp(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}) \leq \int_\Omega \P(d\omega) + \int_\Omega |X|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}).$$
 donc $|X|^p$ est intégrable.
+
+### {.anonymous}
 
 On donne ici dans le cas général les inégalités de Markov et de Bienaymé-Chebyshev, déjà vues en CPGE.
 
@@ -95,16 +97,16 @@ $$\Esp(g(X)) = \int_R g(x) \P_X(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
 
 ce résultat a été démontré en exercice au chapitre IV de calcul intégral (mesure image).
 
-## Indépendance
+## Indépendance et suites de variables indépendantes
 On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peut ainsi caractériser l'indépendance de deux variables aléatoires quelconques au moyen du théorème de Fubini et du résultat d'unicité de la mesure produit donné au chapitre V de calcul intégral.
 
 ### Proposition {.proposition}
 
-Soit $X$ et $Y$ deux variables aléatoires réelles sur $(\Omega,\A,\P)$. Le couple $Z = (X,Y)$ peut-être considéré comme un vecteur aléatoire à valeurs dans $(\R^2, \B(\R)\otimes \B(\R))$, et les deux variables aléatoires $X$ et $Y$ sont indépendantes si et seulement si la loi $\P_{X,Y}$ du couple est égale au produit $\P_X \otimes \P_Y$ des lois de $X$ et $Y$.
+Soient $X$ et $Y$ deux variables aléatoires réelles définies toutes deux sur $(\Omega,\A,\P)$. Le couple $Z = (X,Y)$ peut-être considéré comme un vecteur aléatoire à valeurs dans $(\R^2, \B(\R)\otimes \B(\R))$, et les deux variables aléatoires $X$ et $Y$ sont indépendantes si et seulement si la loi $\P_{X,Y}$ du couple est égale au produit $\P_X \otimes \P_Y$ des lois de $X$ et $Y$.
 
 ### Démonstration {.proof}
 
-Soit $A$ et $B$ deux boréliens de $\R$. On a évidemment $Z^{-1}(A \times B) = X^{-1}(A) \cap Y^{-1}(B) \in \A$ et donc la mesurabilité ($\A/\B(\R)\otimes \B(\R)$)de $Z$ découle de [la définition de la tribu produit de Borel]().
+Soit $A$ et $B$ deux boréliens de $\R$. On a évidemment $Z^{-1}(A \times B) = X^{-1}(A) \cap Y^{-1}(B) \in \A$ et donc la mesurabilité ($\A/ \left(\B(\R)\otimes \B(\R)\right)$)de $Z$ découle de [la définition de la tribu produit de Borel]().
 
 L'indépendance de $X$ et $Y$ revient au fait que pour tous boréliens $A$ et $B$ de $\R$, on ait
     $$\P((X,Y) \in A\times B) = \P(X\in A)\P(Y \in B),$$
@@ -113,14 +115,14 @@ ce qui équivaut à
 qui est assuré par l'unicité de la mesure (de probabilité) produit.
 
 ### {.anonymous}
-Ce résultat nous indique que l'on peut effectivement construire des couples (et même des n-uplets) de variables aléatoires réelles indépendantes en considérant l'espace produit, munis des tribus produit et des (mesures de) probabilités produit. Il est malheureusement beaucoup plus délicat, mais indispensable pour les applications (en particulier la loi des grands nombres), de construire une **suite infinie de variables indépendantes** de lois données.
+Ce résultat nous indique que l'on peut effectivement construire des couples (et même des $n$-uplets en itérant) de variables aléatoires réelles indépendantes en considérant l'espace produit, munis des tribus produit et des (mesures de) probabilités produit. Il est malheureusement beaucoup plus délicat, mais indispensable pour les applications (en particulier la loi des grands nombres), de construire une **suite infinie de variables indépendantes** de lois données.
 
 Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie sur le même espace de probabilité $(\Omega_n,\A_n,\P_n)$, à valeurs dans $(\R,\B(\R))$ et de loi $\P_{X_n}$ (pour construire chaque $X_n$, on peut procéder comme ci-dessus). Ensuite, on pose
 \begin{align*}
-\Omega &= \prod_{n=1}^{infty}\Omega_n \text{        (produit cartésien dénombrable)}\\
-\A = \bigotimes_{n=1}^{infty}\A_n,
+\Omega &= \prod_{n=1}^{\infty}\Omega_n \text{        (produit cartésien dénombrable)}\\
+\A &= \bigotimes_{n=1}^{\infty}\A_n,
 \end{align*}
-où $\bigotimes_{n=1}^{infty}\A_n$ désigne la plus petite tribu de $\Omega$ à laquelle appartienne tous les ensembles de la forme 
+où $\bigotimes_{n=1}^{\infty}\A_n$ désigne la plus petite tribu de $\Omega$ à laquelle appartienne tous les ensembles de la forme 
 $$A_1 \times A_2 \times \ldots\times A_k \times \Omega_{k+1} \times \Omega_{k+2} \times \ldots, \,\,\, A_i \in \A_i, \,\,\, k \in \N^\star$$
 
 On a alors le théorème suivant, que l'on admettra, qui constitue un résultat non trivial de la théorie de la mesure et qui généralise le théorème d'unicité de la mesure produit.
@@ -130,31 +132,7 @@ Avec les notations ci-dessus, il existe une unique probabilité $\P$ sur $(\Omeg
 $$\P(A_1 \times \ldots\times A_k \times \Omega_{k+1} \times \ldots) =\prod_{i=1}^k \P_i(A_i)$$
 pour tous $k \in \N^star$ et $A_i \in \A_i$.
 
-On note enfin le résultat très utile suivant portant sur les suites d'événements indépendants.
-
-### Lemme de Borel-Cantelli {.lemma #BC}
-
-Soit $A_n$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
-
-1. Si $\sum_{i=1}^n \P(A_n) < \infty$, alors $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_n \right) =0$.
-
-2. Si $\sum_{i=1}^n \P(A_n) = \infty$ et si les événements $A_n$ sont mutuellement indépendants, alors on a $\P(\lim \sup_{n \to \infty} A_n) = 1$.
-
-### Démonstration {.proof}
-
-Exercice.
-
-# Suites de variables aléatoires indépendantes 
-
-On présente maintenant l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique, en Mathématiques Financières, dans les méthodes de quantification d'incertitudes.
-
-Plus généralement, on va étudier les suites de variables aléatoires indépendantes[^notind] et les notions de convergence de variables aléatoires. On verra que plusieurs notions sont possibles, non équivalentes, ce qui enrichit mais complique aussi la description des comportements asymptotiques.
-
-[^notind]: Dans ce chapitre, sauf mention contraire, **indépendant$\cdot$e$\cdot$s** signifie **mutuellement indépendant$\cdot$e$\cdot$s**.
-
-On se place désormais dans le cadre général des variables aléatoires réelles n'admettant pas nécessairement de densité (elles peuvent être discrètes, mixtes,...).
-
-On considère une suite **infinie** $(X_n)_{n\in \N^\star}$ de variables aléatoires définies sur l'espace de probabilité $(\Omega, \A, \P)$. Le [théorème ci-dessus](#probaespaceden) nous amène à définir une telle suite de la manière suivante :
+Nous sommes maintenant en mesure de définir une suite de variables aléatoires toutes définies sur le même espace de probabilité $(\Omega, \A, \P)$.
 
 ### Définition {.definition}
 La suite $(X_n)_{n\in \N^\star}$ de variables aléatoires est dite *indépendante* si pour tout $n$, la famille finie $X_1,\ldots,X_n$ est indépendante.
@@ -182,27 +160,54 @@ $$ \P\left(\bigcap_{1\leq i \leq n} \{X_i = x_i\}\right) = \frac{1}{2^n} = \prod
 Cela démontre que les variables aléatoires $X_i$ sont indépendantes et de loi de Bernoulli de paramètre $\frac{1}{2}$ . Ainsi, nous venons de construire sur $\Omega$ une suite de variables aléatoires telle que toute sous-suite finie est constituée de variables aléatoires indépendantes. C’est donc une suite de
 variables aléatoires indépendantes de loi de Bernoulli de paramètre $\frac{1}{2}$ .
 
+On note enfin le résultat très utile suivant portant sur les suites d'événements indépendants.
+
+### Lemme de Borel-Cantelli {.lemma #BC}
+
+Soit $A_n$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
+
+1. Si $\sum_{i=1}^n \P(A_n) < \infty$, alors $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_n \right) =0$.
+
+2. Si $\sum_{i=1}^n \P(A_n) = \infty$ et si les événements $A_n$ sont mutuellement indépendants, alors on a $\P(\lim \sup_{n \to \infty} A_n) = 1$.
+
+### Démonstration {.proof}
+
+Exercice.
+
 # Convergences et loi des grands nombres
 
-## Convergences de variables aléatoires
-Dans ce paragraphe, on étudie des modes de convergence impliquant la proximité des variables aléatoires elles-mêmes.
+## Convergences des variables aléatoires
+Dans ce paragraphe, on va décrire les notions de convergence de variables (on y inclut les vecteurs) aléatoires. On verra que plusieurs notions sont possibles, non équivalentes, ce qui enrichit mais complique aussi la description des comportements asymptotiques.
 
-On considère une suite $(X_n)_{n\in \N^\star}$ de vecteurs aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
+En calcul intégral, on a beaucoup étudié le cas de suites de fonctions convergeant simplement. Une variable aléatoire étant une fonction, on a donc la même notion qui revient à écrire qu'une suite $X_n$ de variables aléatoires converge simplement vers $X$ si $\lim_{n \to \infty} X_n(\omega) = X(\omega)$ pour tout $\omega \in \Omega$. Cette définition naturelle est malheureusement à peu près inutile en probabilité, comme l'illustre l'exemple suivant :
+
+### Exemple {.example}
+
+Soit $(X_n)_{n\in \N^\star}$, une suite de v.a. réelles qui sont indépendantes et de même loi (on notera *i.i.d* pour *indépendantes et identiquement distribuées*), avec $\P(X_n = 1) = p$ et $\P(X_n=0) = 1-p$. Ce sont donc des v.a. de loi de Bernoulli de paramètre $p$ qui modélisent par exemple les résultats d'un jeu de pile ou face. Lorsque $n$ est grand, on s'attend à ce que la proportion de faces ($X_n=1$) soit à peu près égale à $p$ (c'est l'essence de la conception objectiviste des probabilités). Mathématiquement, on voudrait que
+$$\lim_{n \to \infty} \frac{X_1(\omega) + \ldots +X_n(\omega)}{n} = p \text{   pour tout }\omega\in\Omega.$$
+C'est en fait complètement faux. En effet, si on considère par exemple la suite $\omega_0 = {p,p,p,\ldots}$ qui ne contient que des piles, on obtient
+$$\lim_{n \to \infty} \frac{X_1(\omega_0) + \ldots +X_n(\omega_0)}{n} = 0$$
+et plus généralement, on a $\lim_{n \to \infty} \frac{1}{n}\sum_{i=1}^n X_i(\omega) = 0$ pour tout $\omega$ dans l'ensemble $A = \{\omega : \text{ il n'y a qu'un nombre fini de faces}\}$. On peut même trouver des $\omega$ pour lesquels la fréquence converge vers n'importe quel nombre fixé dans $[0,1]$ ! Bien entendu, l'événement $A$ est invraisemblable et on peut montrer qu'il vérifie $\P(A) = 0$[^NBpf]. On verra cependant que la **loi des grands nombres** assure :
+$$\P\left(\left\{\omega , \lim_{n \to \infty} \frac{1}{n}\sum_{i=1}^n X_i(\omega) = p\right\}\right)=1.$$
+Ce type de convergence, pour lequel on n'a pas convergence pour tout $\omega$, mais seulement pour presque tout $\omega$ (autrement dit $\P$-presque partout) est typiquement ce qui arrive pour des variables aléatoires.
+
+
+[^NBpf]: Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}, puis on montre que $\sum_{n=1}^\infty \P(A_n) = \infty$ et on conclut en invoquant le lemme de Borel-Cantelli.
+
+On considère une suite $(X_n)_{n\in \N^\star}$ de variables aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
 
 ### Définition {.definition}
 
- 1. La suite $(X_n)_{n\in \N^\star}$ converge *presque sûrement* vers $X$, ce qui s'écrit $X_n \to X$ p.s., s'il existe un ensemble $N \in \A$ de probabilité nulle tel que
+ 1. La suite $(X_n)_{n\in \N^\star}$ *converge presque sûrement* vers $X$, ce qui s'écrit $X_n \to X$ p.s., s'il existe un ensemble $N \in \A$ de probabilité nulle tel que
  $$ X_n (\omega) \xrightarrow[n \to \infty]{}  X(\omega),\,\,\, \forall \omega \notin N.$$
- 2. La suite $(X_n)_{n\in \N^\star}$ converge *en probabilité* vers $X$, ce qui s'écrit $X_n \xrightarrow{\P} X$, si $\forall \epsilon >0$ on a
- $$ \P(|X_n-X| \geq \epsilon) \xrightarrow[n \to \infty]{}  0. $$
- 3. La suite $(X_n)_{n\in \N^\star}$ converge *en moyenne* (ou dans $\L^1$) vers $X$, ce qui s'écrit $X_n \xrightarrow{\L^1} X$, si $X_n$ et $X$ sont dans $\L^1$ et si
+ 2. La suite $(X_n)_{n\in \N^\star}$ *converge en probabilité* vers $X$, ce qui s'écrit $X_n \xrightarrow{\P} X$, si $\forall \varepsilon >0$ on a
+ $$ \P(|X_n-X| \geq \varepsilon) \xrightarrow[n \to \infty]{}  0. $$
+ 3. La suite $(X_n)_{n\in \N^\star}$ *converge en moyenne* (ou dans $\L^1$) vers $X$, ce qui s'écrit $X_n \xrightarrow{\L^1} X$, si $X_n$ et $X$ sont dans $\L^1$ et si
  $$ \Esp(|X_n - X|) \xrightarrow[n \to \infty]{}  0 .$$
 
 ### Remarque {.remark}
 
-* La convergence presque sûre est la plus proche de la convergence simple des fonctions. Mais ici, nous permettons à certains $\omega$ de ne pas vérifier $X_n(\omega) \to X(\omega)$, si toutefois la probabilité de réalisation de l'ensemble de ces $\omega$ est nulle. C'est l'équivalent probabiliste du *presque partout* vu en calcul intégral.
-
-* La définition de la convergence dans $\L^1$ se généralise aux ordres supérieurs, pour $p \in \N\star$, on parle de convergence dans $\L^p$ (en moyenne quadratique si $p=2$) ce qui s'écrit $X_n \xrightarrow{\L^p} X$, si $X_n$ et $X$ sont dans $\L^p$ et si
+La définition de la convergence dans $\L^1$ se généralise aux ordres supérieurs, pour $p \in \N\star$, on parle de convergence dans $\L^p$ (en moyenne quadratique si $p=2$) ce qui s'écrit $X_n \xrightarrow{\L^p} X$, si $X_n$ et $X$ sont dans $\L^p$ et si
  $$ \Esp(|X_n - X|^p) \xrightarrow[n \to \infty]{}  0 .$$
 
 Ces convergences ne sont pas équivalentes comme le montrent les exemples suivants.
@@ -211,7 +216,7 @@ Ces convergences ne sont pas équivalentes comme le montrent les exemples suivan
 
  * Soit $(X_n)_{n\in \N^\star}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
  $$ \P(X_n=1) = \frac{1}{n} ;\,\,\,\, \P(X_n = 0) = 1- \frac{1}{n}.$$
- Pour tout $\epsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \epsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\star}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
+ Pour tout $\varepsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \varepsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\star}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
  
    Mais si on considère maintenant une suite $(Y_n)_{n\in \N^\star}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
    $$ \P(Y_n=n^2) = \frac{1}{n} ;\,\,\,\, \P(Y_n = 0) = 1- \frac{1}{n}.$$
@@ -227,13 +232,13 @@ On étudie maintenant les liens entre ces différentes convergences.
 La convergence presque sûre et la convergence en moyenne entraînent la convergence en probabilité.
 
 ### Démonstration {.proof}
-Soit $A_{n,\epsilon} = \{|X_n - X| > \epsilon \}$.
+Soit $A_{n,\varepsilon} = \{|X_n - X| > \varepsilon \}$.
 
- * Supposons que $X_n \to X$ p.s. et soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \to X(\omega)$. Si $\omega \notin N$, on a $\omega \notin A_{n,\epsilon}$ pour tout $n \geq n_0$, où $n_0$ dépend de $\omega$ et de $\epsilon$, ce qui implique que les variables aléatoires $Y_{n,\epsilon} = 1_{N^c\cap A_{n,\epsilon}}$ tendent simplement vers 0 lorsque $n \to \infty$. Comme on a aussi $0 \leq Y_{n,\epsilon} \leq 1$ le théorème de convergence dominée implique que $\Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$ Mais
- $$\P(A_{n,\epsilon}) \leq \P(N^c \cap A_{n,\epsilon}) + \P(N) = \P(N^c \cap A_{n,\epsilon}) = \Esp(Y_{n,\epsilon}) \xrightarrow[n \to \infty]{} 0.$$
+ * Supposons que $X_n \to X$ p.s. et soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \to X(\omega)$. Si $\omega \notin N$, on a $\omega \notin A_{n,\varepsilon}$ pour tout $n \geq n_0$, où $n_0$ dépend de $\omega$ et de $\varepsilon$, ce qui implique que les variables aléatoires $Y_{n,\varepsilon} = 1_{N^c\cap A_{n,\varepsilon}}$ tendent simplement vers 0 lorsque $n \to \infty$. Comme on a aussi $0 \leq Y_{n,\varepsilon} \leq 1$ le théorème de convergence dominée implique que $\Esp(Y_{n,\varepsilon}) \xrightarrow[n \to \infty]{} 0.$ Mais
+ $$\P(A_{n,\varepsilon}) \leq \P(N^c \cap A_{n,\varepsilon}) + \P(N) = \P(N^c \cap A_{n,\varepsilon}) = \Esp(Y_{n,\varepsilon}) \xrightarrow[n \to \infty]{} 0.$$
 
- * Supposons que $X_n \xrightarrow{\L^1} X$. Pour $\epsilon >0$, on a $1_{A_{n,\epsilon}} \leq \frac{1}{\epsilon}|X_n - X|$, donc 
- $$ \P(A_{n,\epsilon}) \leq \frac{1}{\epsilon}\Esp(|X_n - X|) \to 0.$$
+ * Supposons que $X_n \xrightarrow{\L^1} X$. Pour $\varepsilon >0$, on a $1_{A_{n,\varepsilon}} \leq \frac{1}{\varepsilon}|X_n - X|$, donc 
+ $$ \P(A_{n,\varepsilon}) \leq \frac{1}{\varepsilon}\Esp(|X_n - X|) \to 0.$$
 
 ### {.anonymous}
 La convergence en probabilité n’entraîne pas la convergence en moyenne, comme nous l’avons vu dans l’exemple ci-dessus, ne serait-ce que parce qu'elle n'implique pas l'appartenance de $X_n$ et $X$ à $\L^1$. Si les $X_n$ ne sont “pas trop grands”, il y a cependant équivalence entre les deux modes de convergence. En voici un exemple :
@@ -244,13 +249,13 @@ S'il existe une constante $a$ telle que $|X_n| \leq a$ presque sûrement, il y a
 ### Démonstration {.proof}
 Etant donnée la [proposition précédente](#propconv1), dont on reprend les notations, il suffit de montrer que la convergence en probabilité implique la convergence en moyenne lorsque $|X_n| \leq a$.
 
-Comme $|X_n| \leq a$, on a $\{|X| > a +\epsilon\} \subset A_{n,\epsilon}$, et donc $\P(|X| > a +\epsilon ) \leq \P(A_{n,\epsilon})$. En faisant $n \to \infty$, on en déduit que $\P(|X| > a + \epsilon) = 0$. Ceci est vrai pour tout $\epsilon$ et donc
+Comme $|X_n| \leq a$, on a $\{|X| > a +\varepsilon\} \subset A_{n,\varepsilon}$, et donc $\P(|X| > a +\varepsilon ) \leq \P(A_{n,\varepsilon})$. En faisant $n \to \infty$, on en déduit que $\P(|X| > a + \varepsilon) = 0$. Ceci est vrai pour tout $\varepsilon$ et donc
 $$\P(|X|> a) = 0.$$
 Comme $|X_n| \leq a$, on a aussi
-$$ |X_n -X| \leq \epsilon + (X_n + X) 1_{A_{n,\epsilon}} \leq \epsilon + 2a 1_{A_{n,\epsilon}}$$
+$$ |X_n -X| \leq \varepsilon + (X_n + X) 1_{A_{n,\varepsilon}} \leq \varepsilon + 2a 1_{A_{n,\varepsilon}}$$
 sur l'ensemble $\{|X| \leq a \}$ qui est de probabilité 1. On a ainsi 
-$$ \Esp(|X_n - X|) \leq \epsilon +2a \P(A_{n,\epsilon})$$
-On en déduit que $\lim \sup_n \Esp(|X_n - X|) \leq \epsilon$, et comme $\epsilon$ est arbitrairement proche de 0, on a le résultat souhaité.
+$$ \Esp(|X_n - X|) \leq \varepsilon +2a \P(A_{n,\varepsilon})$$
+On en déduit que $\lim \sup_n \Esp(|X_n - X|) \leq \varepsilon$, et comme $\varepsilon$ est arbitrairement proche de 0, on a le résultat souhaité.
 
 ### {.anonymous}
 Les rapports entre convergence presque-sûre et convergence en probabilité sont plus subtils. La première de ces deux convergences est plus forte que la seconde d’après la [proposition](#propconv1), mais “à peine plus”, comme le montre le résultat suivant.
@@ -259,17 +264,24 @@ Les rapports entre convergence presque-sûre et convergence en probabilité sont
 Si $X_n \xrightarrow{\P} X$, il existe une sous-suite $(n_k)$ telle que $X_{n_k} \to X$ p.s. quand $k \to \infty$.
 
 ### Démonstration {.proof}
+On remarque d'abord que l'on peut réécrire la définition de la convergence en probabilité de la manière suivante : $\forall \varepsilon >0$ et $\delta > 0$, il existe $N = N(\delta,\varepsilon)$ tel que
+$$n\geq N \Rightarrow \P(|X_n-X| > \varepsilon ) < \delta$$
+
 Comme la suite $(X_n)_{n\in \N^\star}$ converge en probabilité vers $X$, on peut définir une sous-suite de la manière suivante : posons $n_1 = 1$, et soit
-$$ n_j = \inf \left\{ n > n_{j-1} ; \P \left(|X_r - X_s| > \frac{1}{2^j} \right) < \frac{1}{3^j}, \text{ pour } r,s \geq n \right\}.$$
-Il résulte alors de 
-$$\sum_j =\P \left(|X_{n_{j+1}} - X_{n_j}| > \frac{1}{2^j} \right) < \sum_j \frac{1}{3^j} < \infty$$
-que la suite $(X_{n_j})_{j\in \N^\star}$ converge presque-sûrement. C'est en effet une conséquence du [lemme de Borel-Cantelli](#BC) appliqué aux ensembles 
-$$A_j =\left\{|X_{n_{j+1}} - X_{n_j}| > \frac{1}{2^j} \right\}.$$
+$$n_j = \inf \left\{ n > n_{j-1} ; \P \left(|X_m - X| > \frac{1}{2^j} \right) < \frac{1}{3^j}, \text{ pour } m \geq n \right\}.$$
+On a alors 
+$$\sum_j \P \left(|X_{n_j} - X| > \frac{1}{2^j} \right) < \sum_j \frac{1}{3^j} < \infty$$
+Et en appliquant le [lemme de Borel-Cantelli](#BC) aux ensembles 
+$$A_j =\left\{|X_{n_{j}} - X| > \frac{1}{2^j} \right\},$$
+on obtient que la suite $(X_{n_j})_{j\in \N^\star}$ converge presque-sûrement. 
 
 ### Exemple {.example}
 
 Soient $\Omega = \R$ muni de sa tribu borélienne et $\P$ la probabilité uniforme sur [0, 1]. Soit $X_n = 1_{A_n}$ , où $A_n$ est un intervalle de [0, 1] de longueur $\frac{1}{n}$.
-Ainsi, $\Esp(X_n) = \frac{1}{n}$, et la suite $X_n$ tend vers $X = 0$ en moyenne, et donc en probabilité. Supposons que les $A_n$ soient placés bout-à-bout, en recommençant en 0 chaque fois qu’on arrive au point 1. Il est clair que l’on parcourt indéfiniment l’intervalle [0, 1] (car la série de terme général 1/n diverge). Ainsi la suite numérique $X_n (\omega)$ ne converge pour aucun $\omega$, et on n’a pas $X_n \to X$ presque-sûrement ; cependant comme
+
+Ainsi, $\Esp(X_n) = \frac{1}{n}$, et la suite $X_n$ tend vers $X = 0$ en moyenne, et donc en probabilité. Supposons que les $A_n$ soient placés bout-à-bout, en recommençant en 0 chaque fois qu’on arrive au point 1. Il est clair que l’on parcourt indéfiniment l’intervalle [0, 1] (car la série de terme général 1/n diverge). 
+
+Ainsi la suite numérique $X_n (\omega)$ ne converge pour aucun $\omega$, et on n’a pas $X_n \to X$ presque-sûrement ; cependant comme
 la série $\sum_n 1/n^2$ converge, il s’en suit que $X_{n^2} \to X = 0$ presque-sûrement. Nous avons donc la convergence presque-sûre de la sous-suite $(X_{n^2})_{n\in \N^\star}$.
 
 ### Proposition {.proposition #propconv4}
@@ -284,24 +296,26 @@ Soit $f$ une fonction continue de $\R^d$ dans $\R$.
 $$ \lim_{n \to \infty}f(X_n(\omega)) = f(\lim_{n \to \infty}X_n(\omega)) = f(X(\omega))$$
 par continuité de $f$, d'où le résultat.
 
-2. On remarqe d'abord que si $K >0$ et $\epsilon >0$,
-$$\{|f(X_n)-f(X)| \geq \epsilon\} \subset \{|X| > K\}\cup\{|X| \leq K, |f(X_n)-f(X)| \geq \epsilon\}.$$
-La fonction $f$ est uniformément continue sur $\{x : |x| \leq K\}$, donc il existe $\eta > 0$ tel que $|x-y| <\epsilon$ et $|x| \leq K$ et $y\leq K$ impliquent 
-$|f(x) - f(y)| <\epsilon$. On a donc
-$$\{|f(X_n)-f(X)| \geq \epsilon\} \subset \{|X| > K\}\cup\{|X_n-X| \geq \eta\}$$
+2. On remarqe d'abord que si $K >0$ et $\varepsilon >0$,
+$$\{|f(X_n)-f(X)| \geq \varepsilon\} \subset \{|X| > K\}\cup\{|X| \leq K, |f(X_n)-f(X)| \geq \varepsilon\}.$$
+La fonction $f$ est uniformément continue sur $\{x : |x| \leq K\}$, donc il existe $\eta > 0$ tel que $|x-y| <\eta$ et $|x| \leq 2K$ et $|y|\leq 2K$ impliquent 
+$|f(x) - f(y)| <\varepsilon$. On a donc
+$$\{|f(X_n)-f(X)| \geq \varepsilon\} \subset \{|X| > K\}\cup\{|X_n-X| \geq \eta\}$$
 d'où
-$$\P(|f(X_n)-f(X)| \geq \epsilon) \leq \P(|X| > K) + \P(|X_n-X| \geq \eta).$$
+$$\P(|f(X_n)-f(X)| \geq \varepsilon) \leq \P(|X| > K) + \P(|X_n-X| \geq \eta).$$
 Par hypothèse, il vient
-$$ \lim \sup_n \P(|f(X_n)-f(X)| \geq \epsilon) \leq \P(|X| > K) .$$
-Enfin, $\lim_{K\to +\infty} \P(|X| > K) = 0$ (par convergence dominée) et donc la $\lim \sup$ ci-dessus est nulle. On a ainsi le résultat.
+$$ \lim_{n \to \infty} \P(|f(X_n)-f(X)| \geq \varepsilon) \leq \P(|X| > K) .$$
+Enfin, $\lim_{K\to +\infty} \P(|X| > K) = 0$ (par convergence dominée) et donc la limite ci-dessus est nulle. On a ainsi le résultat.
 
 
 ## La loi des grands nombres 
 
+On présente maintenant l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge p.s. vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique, en Mathématiques Financières, dans les méthodes de quantification d'incertitudes.
+
 Dans ce paragraphe, on considère une suite $(X_n)_{n\in\N^\star}$ de variables aléatoires **indépendantes et de même loi** (ou indépendantes et identiquement distribuées, i.i.d. en abrégé). On considère la "moyenne" des $n$ premières variables aléatoires :
 $$ M_n = \frac{X_1 + \ldots + X_n}{n},$$
 et notre objectif est de montrer que $M_n$ converge vers l'espérance des $X_n$ lorsque celle-ci existe (comme les $X_n$ ont même loi, cette espérance est la
-même pour tout $n$). Il s’agit là d’un des résultats essentiels de toute la théorie des probabilités, connu sous le nom de **loi des grands nombres**.
+même pour tout $n$). 
 
 Nous allons démontrer dans un premier temps la loi des grands nombres pour des variables aléatoires de carré intégrable.
 
@@ -422,17 +436,17 @@ complémentaire est au plus dénombrable. Ainsi, $D$ est dense[^dense] dans $\R$
  L'inégalité ci-dessus implique que $F_n(a) = \P(X_n \leq a) \leq \Esp(f_{p,a}(X_n))$ et $\Esp(f_{p,a}(X)) \leq F(a+1/p)$ ; 
  donc $\lim\sup_n F_n(a) \leq F(a+1/p)$ pour tout $p$ et donc on a aussi $\lim\sup_n F_n(a) \leq F(a)$.
  On a également que $F_n(a) \geq \Esp(f_{p,a-1/p}(X_n))$ et $\Esp(f_{p,a-1/p}(X)) \geq F(a-1/p)$ ; donc $\lim\inf_n F_n(a) \geq F(a-1/p)$ pour tout $p$ et donc aussi $\lim\inf_n F_n(a) \geq F(a)$, puique $F(a-)=F(a)$. Ces deux résultats impliquent que $F_n(a) \xrightarrow[n\to \infty]{} F(a)$.
- 2. Inversement, supposons $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x\in T$, où $T$ est une partie dense de $\R$. Soit $f$ une fonction continue bornée sur $\R$ et $\epsilon > 0$. Soient $a,b \in T$ avec $F(a) \leq \epsilon$ et $F(b) \geq 1-\epsilon$. Il existe $n_0$ tel que 
- $$ n\geq n_0 \Rightarrow \P(X_n\notin ]a,b]) = 1-F_n(b)+F_n(a) \leq 3\epsilon.$$
- La fonction $f$ est uniformément continue sur $[a,b]$, donc il existe un nombre fini de points $a_0 = a < a_1 < \ldots < a_k = b$ appartenant tous à $T$, et tels que $|f(x) - f(a_i)|\leq \epsilon$ si $a_{i-1} \leq x \leq a_i$. Donc
+ 2. Inversement, supposons $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x\in T$, où $T$ est une partie dense de $\R$. Soit $f$ une fonction continue bornée sur $\R$ et $\varepsilon > 0$. Soient $a,b \in T$ avec $F(a) \leq \varepsilon$ et $F(b) \geq 1-\varepsilon$. Il existe $n_0$ tel que 
+ $$ n\geq n_0 \Rightarrow \P(X_n\notin ]a,b]) = 1-F_n(b)+F_n(a) \leq 3\varepsilon.$$
+ La fonction $f$ est uniformément continue sur $[a,b]$, donc il existe un nombre fini de points $a_0 = a < a_1 < \ldots < a_k = b$ appartenant tous à $T$, et tels que $|f(x) - f(a_i)|\leq \varepsilon$ si $a_{i-1} \leq x \leq a_i$. Donc
  $$ g(x) = \sum_{i=1}^k f(a_i)1_{]a_{i-1},a_i]}(x)$$
- vérifie $|f-g| \leq \epsilon$ sur $]a,b]$. Si $M = \sup_x |f(x)|$, il vient alors
- $$|\Esp(f(X_n))-\Esp(g(X_n))| \leq M \P(X_n \notin [a,b]) + \epsilon,$$
+ vérifie $|f-g| \leq \varepsilon$ sur $]a,b]$. Si $M = \sup_x |f(x)|$, il vient alors
+ $$|\Esp(f(X_n))-\Esp(g(X_n))| \leq M \P(X_n \notin [a,b]) + \varepsilon,$$
  de même pour $X$. Enfin, $\Esp(g(X_n)) = \sum_{i=1}^k f(a_i)(F_n(a_i) - F_n(a_{i-1})$, et de même pour $X$ par définition de $g$. Comme $(F_n(a_i))_{n \in \N^\star}$ converge vers $F(a_i)$ pour tout $i$, on en déduit l'existence de $n_1$ tel que 
- $$ n\geq n_1 \Rightarrow |\Esp(g(X_n)) - \Esp(g(X))|\leq \epsilon.$$
+ $$ n\geq n_1 \Rightarrow |\Esp(g(X_n)) - \Esp(g(X))|\leq \varepsilon.$$
  Finalement, on a 
- $$ n \geq \sup(n_0,n_1) \Rightarrow |\Esp(f(X_n))-\Esp(f(X))|\leq 3\epsilon + 5 M \epsilon .$$ 
- Vu l'arbitraire sur $\epsilon$, on en déduit que $\Esp(f(X_n))$ converge vers $\Esp(f(X))$, d'où le résultat.
+ $$ n \geq \sup(n_0,n_1) \Rightarrow |\Esp(f(X_n))-\Esp(f(X))|\leq 3\varepsilon + 5 M \varepsilon .$$ 
+ Vu l'arbitraire sur $\varepsilon$, on en déduit que $\Esp(f(X_n))$ converge vers $\Esp(f(X))$, d'où le résultat.
 
 ### Corollaire {.corollary}
 Si la suite $(X_n)_{n\in\N^\star}$ de variables aléatoires réelles converge en loi vers $X$, et si la loi de $X$ admet une densité, alors pour tous $a< b$,
@@ -441,11 +455,9 @@ $$ \P(X_n \in ]a,b]) \xrightarrow[n\to \infty]{} \P(X\in]a,b]).$$
 ### Démonstration {.proof}
 La fonction de répartition de $X$ est alors continue en tout point. (Mais pas nécessairement celle des variables aléatoires $X_n$.)
 
-## Fonctions caractéristiques
+## Fonctions caractéristiques 
 
-Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités :
-il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire,
-et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment très utile pour démontrer le théorème central limite.
+Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités : il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire, et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment très utile pour démontrer le théorème central limite.
 
 On notera $< x, y >$ le produit scalaire de deux vecteurs de $\R^n$ . Si $u \in \R^n$ , la fonction (complexe) $x \mapsto e^{i < u,x>}$ est continue, de module 1. Donc si $X$ est un vecteur aléatoire à valeurs dans $\R^n$ , nous pouvons considérer $e^{i < u,X>}$ comme une variable aléatoire à valeurs complexes. Ses parties réelle $Y = \cos(< u, X>)$ et imaginaire $Z = \sin(< u, X>)$ sont des variables aléatoires réelles. Ces variables aléatoires réelles
 sont de plus bornées par 1, donc elles admettent une espérance. Il est alors naturel d’écrire que l’espérance de $e^{i < u,x>}$ est
@@ -458,7 +470,7 @@ Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, sa *fonction caractéri
 ### Remarque {.remark}
 La fonction caractéristique ne dépend en fait **que de la loi $\P_X$ de $X$** : c’est la “transformée de Fourier” de la loi $\P_X$.
 
-Nous verrons que cette fonction porte bien son nom, au sens où elle caractérise la loi $\P_X$. C’est une notion qui, de ce point de vue, généralise la fonction génératrice $G$, vue en CPGE dans le cas discret. Elle vérifie
+Nous verrons que cette fonction porte bien son nom, au sens où elle caractérise la loi $\P_X$. C’est une notion qui, de ce point de vue, généralise la fonction génératrice $G_X(s) = \Esp(s^X), \, s \in [0,1]$, vue en CPGE dans le cas discret. Elle vérifie
     $$\phi_X(u) = G_X(e^{iu}) = \Esp(e^{iuX}) $$
 pour une variable $X$ à valeurs dans $\N$.
 
@@ -487,11 +499,10 @@ Nous avons $e^{i< u, a + AX>} = e^{i < u,a>}e^{i <A^tu, X>}$. En effet, $< u, A 
  2. $X$ suit une loi de Poisson $\mathcal{P}(\theta)$ : $\phi_X(u) = e^{\theta (e^{iu}-1)}$.
  3. $X$ suit une loi uniforme $\mathcal{U}_{[a,b]}$ :$\phi_X(u) = \frac{e^{iua} - e^{iub}}{iu(b-a)}$.
  4. $X$ suit une loi exponentielle $\mathcal{E}(\lambda)$, $\lambda > 0$ : $\phi_X(u) = \frac{\lambda}{\lambda - iu}$.
- 5. $X$ suit une loi normale $\No(0,1)$ : $\phi_X(u) = e^{-u^2/2}$.
- 6. $X$ suit une loi normale $\No(\mu,\sigma^2)$ : $\phi_X(u) = e^{iu\mu -u^2\sigma^2/2}$.
+ 5. $X$ suit une loi normale $\No(0,1)$ : $\phi_X(u) = e^{-u^2/2}$. ([calcul en annexe](#fctcaracgauss))
+ 6. $X$ suit une loi normale $\No(\mu,\sigma^2)$ : $\phi_X(u) = e^{iu\mu -u^2\sigma^2/2}$. (application directe de [la proposition ci-dessus](#fct_carac_vec))
 
-L’intérêt majeur de la fonction caractéristique réside dans le fait qu’elle caractérise la
-loi de la variable aléatoire (d'où son nom).
+L’intérêt majeur de la fonction caractéristique réside dans le fait qu’elle caractérise la loi de la variable aléatoire (d'où son nom).
 
 ### Théorème {.theorem #caracfc}
 La fonction caractéristique $\phi_X$ caractérise la loi du vecteur aléatoire $X$. Ainsi, si deux vecteurs aléatoires $X$ et $Y$ ont même fonction caractéristique, ils ont même loi.
@@ -535,10 +546,10 @@ La fonction caractéristique offre également un moyen commode de caractériser 
 ### Corollaire {.corollary}
 Soit $X = (X_1,\ldots,X_n)$ un vecteur aléatoire à valeurs dans $\R^n$. Ses composantes $X_i$ sont indépendantes si et seulement si pour tous $u_1, \ldots, u_n \in \R$, 
     $$ \phi_X(u_1,\ldots,u_n) = \prod_{j=1}^n \phi_{X_j}(u_j) $$
-où $\phi_X$ désigne la fonction caractéristique du vecteur aléatoire $X$, et $\phi_{X_j}$ celle de la composante $X_j$ opur chaque $j$.
+où $\phi_X$ désigne la fonction caractéristique du vecteur aléatoire $X$, et $\phi_{X_j}$ celle de la composante $X_j$ pour chaque $j$.
 
 ### Démonstration {.proof}
-On a $< u,X> = \sum_{j=1}^n u_j X_j$. Si les $X_i$ sont indépendantes, et comme $e^{i < u,x>} = \prod_j e^{i u_j x_j}$, nous obtenons directement le résultat en utilisant la [proposition](Probabilité II.pdf #indep_fct).
+On a $< u,X> = \sum_{j=1}^n u_j X_j$. Si les $X_i$ sont indépendantes, et comme $e^{i < u,x>} = \prod_j e^{i u_j x_j}$, nous obtenons directement le résultat en utilisant la [proposition](Probabilité II.pdf #indep_fct) (valable dans le cas général) qui montre que l'espérance du produit de fonctions de variables aléatoires indépendantes est égal au produit des espérances.
 
 Supposons inversement qu'on ait $\phi_X (u_1,\ldots,u_n) = \prod_{j=1}^n \phi_{X_j}(u_j)$. On peut alors construire des variables aléatoires $X'_j$ indépendantes, telles que $X'_j$ et $X_j$ aient même loi pour tout $j$ et donc telles que $\phi_{X'_j} = \phi_{X_j}$. Si $X' = (X'_1,\ldots,X'_n)$, on a donc $\phi_{X'} = \phi_X$. Donc $X$ et $X'$ ont même loi, ce qui entraîne que pour tous boréliens $A_j$, on ait
 $$ \P(\bigcap_j \{X_j \in A_j\}) = \P(\bigcap_j \{X'_j \in A_j\}) = \prod_j \P(\{X'_j \in A_j\}) = \prod_j \P(\{X_j \in A_j\})$$
@@ -549,16 +560,16 @@ Si $X$ et $Y$ sont deux vecteurs aléatoires indépendants à valeurs dans $\R^n
     $$ \phi_{X+Y} = \phi_X\phi_Y$$
 
 ### Démonstration {.proof}
-Comme $e^{i< u, X+Y>}=e^{i< u, X>}e^{i< u, Y>}$, il suffit d'appliquer la [proposition](Probabilité II.pdf #indep_fct).
+Comme $e^{i< u, X+Y>}=e^{i< u, X>}e^{i< u, Y>}$, il suffit d'appliquer la [proposition](Probabilité II.pdf #indep_fct) déjà utilisée dans la preuve du corollaire ci-dessus.
 
 ### Exemples :
 Soient $X$ et $Y$ deux variables aléatoires réelles indépendantes et $Z = X+Y$ :
 
- 1. Si $X$ suit la loi normale $\No(m,\sigma^2)$ et $Y$ suit $\No(m',\sigma'^2)$, alors $Z$ suit une loi $\No(m+m',\sigma^2+\sigma'^2)$, d'après l'[exemple](#ex) point 6. et la [proposition ci-dessus](#fct_carac_sum).
- 2. Si $X$ et $Y$ suivent des lois de Poisson de paramètres $\theta$ et $\theta'$, alors $Z$ suit une loi de Poisson de paramètre $\theta + \theta'$, d'après l'[exemple](#ex) point 2. et la [proposition ci-dessus](#fct_carac_sum).
- 3. Si $X$ suit une loi binomiale $\mathcal{B}(n,p)$ et $Y$ la loi biomiale $\mathcal{B}(m,p)$, alors $Z$ suit une loi binomiale $\mathcal{B}(n+m,p)$, d'après l'[exemple](#ex) point 1. et la [proposition](#fct_carac_sum).
+ 1. Si $X$ suit la loi normale $\No(m,\sigma^2)$ et $Y$ suit $\No(m',\sigma'^2)$, alors $Z$ suit une loi $\No(m+m',\sigma^2+\sigma'^2)$, d'après l'[exemple ci-dessus](#ex) point 6. et la [proposition ci-dessus](#fct_carac_sum).
+ 2. Si $X$ et $Y$ suivent des lois de Poisson de paramètres $\theta$ et $\theta'$, alors $Z$ suit une loi de Poisson de paramètre $\theta + \theta'$, d'après l'[exemple ci-dessus](#ex) point 2. et la [proposition ci-dessus](#fct_carac_sum).
+ 3. Si $X$ suit une loi binomiale $\mathcal{B}(n,p)$ et $Y$ la loi biomiale $\mathcal{B}(m,p)$, alors $Z$ suit une loi binomiale $\mathcal{B}(n+m,p)$, d'après l'[exemple ci-dessus ](#ex) point 1. et la [proposition](#fct_carac_sum).
 
-### Proposition {.proposition #fct_carac_deriv}
+### Proposition --- fonction caractéristique et moments {.proposition #fct_carac_deriv}
 Soit $X$ un vecteur aléatoire de $\R^n$. Si la variable $|X|^m$ (ou $|\cdot|$ désigne la norme euclidienne) est intégrable pour un entier $m$, la fonction $\phi_X$ est $m$ fois continûment différentiable sur $\R^n$ et pour tout choix des indices $i_1,\ldots, i_m$, 
     $$ \frac{\partial^m}{\partial u_{i_1}\ldots \partial u_{i_m}} \phi_X(u) = i^m \Esp (e^{i < u,X >}X_{i_1}\ldots X_{i_m}),$$
 où les $X_j$ sont les composantes de $X$.
@@ -567,13 +578,18 @@ où les $X_j$ sont les composantes de $X$.
 Le résultat se démontre par application itérée du théorème de dérivation sous le signe somme.
 
 ### Remarque {.remark}
-En prenant $u=0$ dans la [proposition](#fct_carac_sum), la formule permet de calculer $\Esp(X_{i_1}\ldots X_{i_m})$ en fonction des dérivées à l'origine de $\phi_X$, autrement dit de calculer tous les moments du vecteur $X$, s'ils existent. Par exemple, si $X$ est à valeurs réelles et est intégrable (respectivement de carré intégrable), on a
-    $$ \Esp(X) = i \phi'_X(0), \,\,\,(\text{resp.} \Esp(X^2) = \phi"_X(0))$$
+En prenant $u=0$ dans la [proposition ci-dessus](#fct_carac_sum), la formule permet de calculer $\Esp(X_{i_1}\ldots X_{i_m})$ en fonction des dérivées à l'origine de $\phi_X$, autrement dit de calculer tous les moments du vecteur $X$, s'ils existent. Par exemple, si $X$ est à valeurs réelles et est intégrable (respectivement de carré intégrable), on a
+    $$ \Esp(X) = i \phi'_X(0), \,\,\,(\text{resp. } \Esp(X^2) = \phi"_X(0))$$
+
+On donne ici la définition générale d'un vecteur gaussien, qui nous sera utile pour la démonstration du théorème central limite. 
+
+### Définition {.definition #gauss_vec}
+Un vecteur aléatoire $X=(X_1,\ldots,X_n)$ à valeurs dans $\R^n$ est dit gaussien si toute combinaison linéaire de ses composantes, soit $\sum_{j=1}^n a_j X_j$ où $a_j \in \R$, suit une loi normale uni-dimensionnelle (éventuellement dégénérée, par exemple si on prend $a_j = 0$ pour tout j).
 
 ### Théorème {.theorem #fct_carac_gauss}
 $X$ est un vecteur gaussien si et seulement si sa fonction caractéristique s'écrit
     $$\phi_X(u) = e^{i< u,m> - \frac{1}{2}< u,Cu>}$$
-où $m = \Esp(X) \in \R^n$ et $C$ est la matrice de covariance de $X$.
+où $m = \Esp(X) \in \R^n$ et $C$ est la matrice de covariance de $X$ qui est donc semi-définie positive.
 
 ### Démonstration {.proof}
 
@@ -585,6 +601,8 @@ où $m = \Esp(X) \in \R^n$ et $C$ est la matrice de covariance de $X$.
     Par hypothèse, $Y$ suit une loi normale donc vu le point 6. de l'[exemple plus haut](#ex), sa fonction caractéristique est
         $$ \phi_Y(v) = e^{iv< a ,m> - \frac{v^2}{2}< a,Ca>} $$
     Mais $\phi_Y(1) = \phi_{< a,X>} (1) = \Esp (e^{i < a, X>}) = \phi_X(a)$, d'où le résultat.
+
+### {.anonymous}
 
 Le théorème suivant caractérise la convergence en loi à l’aide des fonctions caractéristiques. C’est un critère extrêmement utile dans la pratique.
 
@@ -681,6 +699,27 @@ Les vecteurs aléatoires $\frac{S_n-nm}{\sqrt{n}}$ convergent en loi vers un vec
 ### Remarque {.remark}
 Il est important de noter ici que la vitesse de convergence ne dépend pas de la dimension des vecteurs $X_n$.
 
+Annexe
+===============================================================================
+
+Fonction caractéristique d'une variable gaussienne {#fctcaracgauss}
+-------------------------------------------------------------------------------
+Soit $X \sim \No(0,1)$. On a
+\begin{align*}
+\phi_X(u) = \Esp(e^{iuX}) &= \int_\R e^{iux}\frac{1}{\sqrt{2\pi}}e^{-x^2/2}dx \\
+                          &= \int_\R \frac{\cos(ux)}{\sqrt{2\pi}}e^{-x^2/2}dx + \int_\R \frac{i\sin(ux)}{\sqrt{2\pi}}e^{-x^2/2}dx
+\end{align*}
+Comme $x \mapsto \frac{\sin(ux)}{\sqrt{2\pi}}e^{-x^2/2}$ est impaire et intégrable, son intégrale est nulle, d'où
+$$\phi_X(u) = \int_\R \frac{\cos(ux)}{\sqrt{2\pi}}e^{-x^2/2}dx.$$
+D'après la [proposition sur la dérivation de la fonction caractéristique](#fct_carac_deriv), on peut dériver les deux membres par rapport à $u$, et on obtient
+$$\phi'_X(u) = \frac{1}{\sqrt{2\pi}}\int_\R -x\sin(ux)e^{-x^2/2}dx$$
+puis par intégration par parties 
+$$\phi'_X(u) = -\frac{1}{\sqrt{2\pi}}\int_\R u\cos(ux)e^{-x^2/2}dx = -u\phi_X(u).$$
+Ainsi, $\phi_X$ satisfait à l'équation différentielle $\phi'_X(u) = -u\phi_X(u)$, dont la solution générale est 
+$$\phi_X(u) = C e^{-u^2/2}.$$
+Comme $phi_X(0) = 1,$ on en déduit finalement que
+$$\phi_X(u) = e^{-u^2/2}.$$
+
 Exercices
 ===============================================================================
 
@@ -702,15 +741,15 @@ On suppose désormais que les $X_i$ sont de loi $\No (m, \sigma^2 )$.
     $$\P(S_n - nm > a) \leq e^{-ua} (M(u))^n,$$
    et que $\forall a \in \R, \forall u \in \R_-$,
     $$\P(S_n - nm < -a) \leq e^{ua} (M(u))^n.$$
- iii) Soit $Y_n =\frac{S_n}{n}$. Montrer que $\forall \epsilon >0$, 
-    $$\P(|Y_n - m| > \epsilon) \leq 2 \exp\left(\frac{-n\epsilon^2}{2\sigma^2}\right).$$
+ iii) Soit $Y_n =\frac{S_n}{n}$. Montrer que $\forall \varepsilon >0$, 
+    $$\P(|Y_n - m| > \varepsilon) \leq 2 \exp\left(\frac{-n\varepsilon^2}{2\sigma^2}\right).$$
     Cette inégalité est appelée inégalité de Chernov. 
     
 On peut dériver ce type d'inégalités pour différentes lois de probabilité. On voit qu'ici la concentration auprès de la moyenne se fait à vitesse exponentielle. On a le même type de résultats pour la loi de Bernoulli par exemple ce qui est très utile en apprentissage statistique dans les problèmes de classification.
 
  iv) On suppose que $m = 1$ et que $\sigma^2 = 10$. Quelle taille d’échantillon doit-on choisir pour obtenir
-    $$\P(|Y_n - m| < \epsilon) \geq \alpha,$$
-    avec $\alpha = 0,95$ et $\epsilon = 0,05$,
+    $$\P(|Y_n - m| < \varepsilon) \geq \alpha,$$
+    avec $\alpha = 0,95$ et $\varepsilon = 0,05$,
     
         * en utilisant l’inégalité de Bienaymé-Chebyshev ?
         * en utilisant l’inégalité de Chernov ?
@@ -767,16 +806,16 @@ ii) On a $e^{u(M_n-nm)} \geq e^{ua} 1_{S_n -nm \geq a}$, d'où
     par indépendance des $X_i$.
 iii) 
 \begin{align*}
-\P(|Y_n - m| \geq \epsilon) &= \P(S_n - nm \geq n\epsilon) + P(S_n - nm \leq -n\epsilon) \\
-                            &\leq e^{-nu\epsilon} (M (u))^n + e^{-n(-u)(-\epsilon)} (M (-u))^n = 2e^{-nu\epsilon}(M (u))^n \\
-                            &\leq 2e^{-nu\epsilon}e^{u^2/\sigma^2}, \,\,\, \forall u \geq 0
+\P(|Y_n - m| \geq \varepsilon) &= \P(S_n - nm \geq n\varepsilon) + P(S_n - nm \leq -n\varepsilon) \\
+                            &\leq e^{-nu\varepsilon} (M (u))^n + e^{-n(-u)(-\varepsilon)} (M (-u))^n = 2e^{-nu\varepsilon}(M (u))^n \\
+                            &\leq 2e^{-nu\varepsilon}e^{u^2/\sigma^2}, \,\,\, \forall u \geq 0
 \end{align*}
-La meilleure majoration va être obtenue en minimisant l’exposant, c’est-à-dire pour $u = \epsilon$. Nous en déduisons l’inégalité de Chernov.
-iv) Par l’inégalité de Bienaymé-Chebyshev, $\P(|Y n - m| > \epsilon) \leq \frac{\V(Y_n)}{\epsilon^2} = \frac{\sigma^2}{n\epsilon^2}$.
+La meilleure majoration va être obtenue en minimisant l’exposant, c’est-à-dire pour $u = \varepsilon$. Nous en déduisons l’inégalité de Chernov.
+iv) Par l’inégalité de Bienaymé-Chebyshev, $\P(|Y n - m| > \varepsilon) \leq \frac{\V(Y_n)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}$.
 
-Ainsi, $\P(|Y_n - m| \leq \epsilon)\leq \alpha$ dès que $1-\frac{\sigma^2}{n\epsilon^2}$. Avec $\epsilon = 0,05$, il vient $n \geq 80000$.
+Ainsi, $\P(|Y_n - m| \leq \varepsilon)\leq \alpha$ dès que $1-\frac{\sigma^2}{n\varepsilon^2}$. Avec $\varepsilon = 0,05$, il vient $n \geq 80000$.
 
-Par l’inégalité de Chernov, nous obtenons $2e^{- n\epsilon^2/20} \leq 0, 05$. Il vient que $n \geq 29512$. Pour avoir une évaluation du même ordre de la probabilité cherchée, nous pouvons donc prendre un échantillon beaucoup plus petit si nous utilisons l’inégalité de Chernov. A taille d’échantillon fixée, nous aurons une meilleure évaluation avec cette inégalité.
+Par l’inégalité de Chernov, nous obtenons $2e^{- n\varepsilon^2/20} \leq 0, 05$. Il vient que $n \geq 29512$. Pour avoir une évaluation du même ordre de la probabilité cherchée, nous pouvons donc prendre un échantillon beaucoup plus petit si nous utilisons l’inégalité de Chernov. A taille d’échantillon fixée, nous aurons une meilleure évaluation avec cette inégalité.
 
 
 Lemme de Borel-Cantelli
