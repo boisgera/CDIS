@@ -38,10 +38,10 @@ Le fait que la composition d'un vecteur aléatoire réel par une application $\B
 On peut généraliser la définition des espaces vectoriels $\L^1$ et $\L^2$ de la manière suivante :
 
 ### Définition --- Espace $\L^1$ {.definition}
-Soit $X$ une variable aléatoire réelle. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\R} x \P(dx) = \int_{\Omega} X(\omega)\P(d\omega) < +\infty$.
+Soit $X$ une variable aléatoire réelle. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\R} x \P_X(dx) = \int_{\Omega} X(\omega)\P(d\omega) < +\infty$.
 
 ### Définition --- Espace $\L^2$ {.definition}
-Soit $X$ une variable aléatoire réelle. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\R} x^2 \P(dx) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
+Soit $X$ une variable aléatoire réelle. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\R} x^2 \P_X(dx) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
 
 Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in \N^\star$ quelconque.
 
@@ -58,7 +58,7 @@ $$ \L^{p+1}(\Omega,\A,\P) \subset \L^p(\Omega,\A,\P)$$
 Supposons $X \in \L^{p+1}(\Omega,\A,\P)$. On a
 $$|X|^p \leq \max(1,|X|^{p+1}) = 1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}.$$
 Le terme de droite est intégrable, en effet :
-$$\Esp(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}) \leq \int_\Omega \P(d\omega) + \int_\Omega |X|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}).$$
+$$\Esp(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}) \leq \int_\Omega \P(d\omega) + \int_\Omega |X(\omega)|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}).$$
 donc $|X|^p$ est intégrable.
 
 ### {.anonymous}
