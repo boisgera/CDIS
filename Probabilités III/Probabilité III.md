@@ -417,6 +417,11 @@ Soient $X_n$ et $X$ des v.a., toutes définies sur le même espace de probabilit
 Soit $f$ une fonction réelle continue bornée. D'après la [proposition de continuité](#propconv4), on a $f(X_n) \xrightarrow{\P} f(X)$ et donc $f(X_n)$ converge aussi en moyenne vers $f(X)$ par la [proposition --- cas borné](#propconv2). Comme $|\Esp(Y)|\leq \Esp(|Y|)$ pour toute variable aléatoire réelle $Y$, on en déduit $\Esp(f(X_n)) \to \Esp(f(X))$.
 
 ### {.anonymous}
+
+On peut finalement résumer les implications entre les différentes mode de convergence à l'aide de la figure suivante :
+
+![Relations entre modes de convergence](images/cvgces.tex)
+
 Un moyen efficace de caractériser la convergence en loi des variables aléatoires réelles passe par l'étude de la suite des fonctions de répartition.
 
 ### Proposition --- convergence en loi et fonction de répartition {.proposition #cvceloifdr}
@@ -872,21 +877,21 @@ Il suffit de montrer que dans la preuve de [la proposition sur la convergence de
 
 ### Question 2 {.answer #answer-slut2}
 
-Du fait du résultat de la question 1, il suffit de montrer que $\lim_{n \to \infty} \Esp(f (Y_n)) = \Esp(f (X))$, pour toute fonction lipschitzienne bornée. Soit $f$ une telle fonction. On a alors $|f (x)| \leq k$ et $|f (x) − f (y)| \leq C|x − y|$, pour des constantes $k$ et $C$. 
+Du fait du résultat de la question 1, il suffit de montrer que $\lim_{n \to \infty} \Esp(f (Y_n)) = \Esp(f (X))$, pour toute fonction lipschitzienne bornée. Soit $f$ une telle fonction. On a alors $|f (x)| \leq k$ et $|f (x) -f (y)| \leq C|x - y|$, pour des constantes $k$ et $C$. 
 
 Soit $\varepsilon > 0$ donné. On a
 \begin{align*}
-|\Esp(f (Y_n )) − \Esp(f (X_n ))| &\leq \Esp(|f (Y_n) − f (X_n )|) \\
-                                  &\leq \Esp(|f (Y_n) − f (X_n )|(1_{|Y_n-X_n|\leq \varepsilon} + 1_{|Y_n-X_n| > \varepsilon}))\\
+|\Esp(f (Y_n )) - \Esp(f (X_n ))| &\leq \Esp(|f (Y_n) - f (X_n )|) \\
+                                  &\leq \Esp(|f (Y_n) - f (X_n )|(1_{|Y_n-X_n|\leq \varepsilon} + 1_{|Y_n-X_n| > \varepsilon}))\\
                                   &\leq C \varepsilon + 2k P(|X_n - Y_n | > \varepsilon)
 \end{align*}
-Le deuxième terme du membre de droite tend vers 0 quand $n$ tend vers l’infini, car $(X_n − Y_n )_n$ converge en probabilité vers 0. Comme $\varepsilon$ est arbitrairement petit, nous en déduisons que $\lim_{n\to\infty}|\Esp(f (Y_n )) − \Esp(f (X_n ))| = 0$, d’où le résultat.
+Le deuxième terme du membre de droite tend vers 0 quand $n$ tend vers l’infini, car $(X_n - Y_n )_n$ converge en probabilité vers 0. Comme $\varepsilon$ est arbitrairement petit, nous en déduisons que $\lim_{n\to\infty}|\Esp(f (Y_n )) - \Esp(f (X_n ))| = 0$, d’où le résultat.
 
 ### Question 3 {.answer #answer-slut3}
 Soit $u \in R^d$ . On a :
-$$|\phi_{Y_n} (u) − \phi_X (u)| \leq |\phi_{Y_n} (u) − \phi_{X_n} (u)| + |\phi_{X_n} (u) − \phi_{X} (u)|$$
-D’une part, le [théorème de Lévy](#levytheorem) partie 1. montre que $|\phi_{X_n}(u) − \phi_X (u)|$ tend vers 0 quand $n \to \infty$. D’autre part,
-$$|\phi_{Y_n} (u) − \phi_{X_n} (u)| = |\Esp(e^{i<u,Y_n>} − e^{i<u,X_n>})| \leq \E(|e^{i<u,Y_n -X_n>} − 1|)$$
+$$|\phi_{Y_n} (u) - \phi_X (u)| \leq |\phi_{Y_n} (u) - \phi_{X_n} (u)| + |\phi_{X_n} (u) - \phi_{X} (u)|$$
+D’une part, le [théorème de Lévy](#levytheorem) partie 1. montre que $|\phi_{X_n}(u) - \phi_X (u)|$ tend vers 0 quand $n \to \infty$. D’autre part,
+$$|\phi_{Y_n} (u) - \phi_{X_n} (u)| = |\Esp(e^{i<u,Y_n>} - e^{i<u,X_n>})| \leq \E(|e^{i<u,Y_n -X_n>} - 1|)$$
 tend vers 0 quand $n \to \infty$ d’après [la proposition --- cas borné](#propconv2).
 
 
