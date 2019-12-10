@@ -100,7 +100,7 @@ ce résultat a été démontré en exercice au chapitre IV de calcul intégral (
 ## Indépendance et suites de variables indépendantes
 On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peut ainsi caractériser l'indépendance de deux variables aléatoires quelconques au moyen du théorème de Fubini et du résultat d'unicité de la mesure produit donné au chapitre V de calcul intégral.
 
-### Proposition {.proposition}
+### Proposition --- indépendance d'un couple de variables aléatoires {.proposition}
 
 Soient $X$ et $Y$ deux variables aléatoires réelles définies toutes deux sur $(\Omega,\A,\P)$. Le couple $Z = (X,Y)$ peut-être considéré comme un vecteur aléatoire à valeurs dans $(\R^2, \B(\R)\otimes \B(\R))$, et les deux variables aléatoires $X$ et $Y$ sont indépendantes si et seulement si la loi $\P_{X,Y}$ du couple est égale au produit $\P_X \otimes \P_Y$ des lois de $X$ et $Y$.
 
@@ -127,19 +127,19 @@ $$A_1 \times A_2 \times \ldots\times A_k \times \Omega_{k+1} \times \Omega_{k+2}
 
 On a alors le théorème suivant, que l'on admettra, qui constitue un résultat non trivial de la théorie de la mesure et qui généralise le théorème d'unicité de la mesure produit.
 
-### Théorème {.theorem #probaespaceden}
+### Théorème --- mesure produit sur un espace de dimension infinie {.theorem #probaespaceden}
 Avec les notations ci-dessus, il existe une unique probabilité $\P$ sur $(\Omega,\A)$, telle que
 $$\P(A_1 \times \ldots\times A_k \times \Omega_{k+1} \times \ldots) =\prod_{i=1}^k \P_i(A_i)$$
 pour tous $k \in \N^star$ et $A_i \in \A_i$.
 
 Nous sommes maintenant en mesure de définir une suite de variables aléatoires toutes définies sur le même espace de probabilité $(\Omega, \A, \P)$.
 
-### Définition {.definition}
+### Définition --- suites de variables aléatoires indépendantes {.definition}
 La suite $(X_n)_{n\in \N^\star}$ de variables aléatoires est dite *indépendante* si pour tout $n$, la famille finie $X_1,\ldots,X_n$ est indépendante.
 
 Il est facile de vérifier que l’indépendance est préservée par certaines transformations.
 
-### Proposition {.proposition}
+### Proposition --- conséquences {.proposition}
 L'indépendance de la suite $(X_n)_{n\in \N^\star}$ entraîne celle de 
 
  1. toute sous-suite $(X_{i_k})_{k\in \N^\star}$,
@@ -196,7 +196,7 @@ Ce type de convergence, pour lequel on n'a pas convergence pour tout $\omega$, m
 
 On considère une suite $(X_n)_{n\in \N^\star}$ de variables aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
 
-### Définition {.definition}
+### Définition --- convergences {.definition}
 
  1. La suite $(X_n)_{n\in \N^\star}$ *converge presque sûrement* vers $X$, ce qui s'écrit $X_n \to X$ p.s., s'il existe un ensemble $N \in \A$ de probabilité nulle tel que
  $$ X_n (\omega) \xrightarrow[n \to \infty]{}  X(\omega),\,\,\, \forall \omega \notin N.$$
@@ -228,7 +228,7 @@ Ces convergences ne sont pas équivalentes comme le montrent les exemples suivan
 
 On étudie maintenant les liens entre ces différentes convergences.
 
-### Proposition {.proposition #propconv1}
+### Proposition --- p.s. / $\L^1$ $\Rightarrow$ en proba {.proposition #propconv1}
 La convergence presque sûre et la convergence en moyenne entraînent la convergence en probabilité.
 
 ### Démonstration {.proof}
@@ -243,7 +243,7 @@ Soit $A_{n,\varepsilon} = \{|X_n - X| > \varepsilon \}$.
 ### {.anonymous}
 La convergence en probabilité n’entraîne pas la convergence en moyenne, comme nous l’avons vu dans l’exemple ci-dessus, ne serait-ce que parce qu'elle n'implique pas l'appartenance de $X_n$ et $X$ à $\L^1$. Si les $X_n$ ne sont “pas trop grands”, il y a cependant équivalence entre les deux modes de convergence. En voici un exemple :
 
-### Proposition {.proposition #propconv2}
+### Proposition --- cas borné {.proposition #propconv2}
 S'il existe une constante $a$ telle que $|X_n| \leq a$ presque sûrement, il y a équivalence entre $X_n \xrightarrow{\P} X$ et $X_n \xrightarrow{\L^1} X$.
 
 ### Démonstration {.proof}
@@ -258,9 +258,9 @@ $$ \Esp(|X_n - X|) \leq \varepsilon +2a \P(A_{n,\varepsilon})$$
 On en déduit que $\lim \sup_n \Esp(|X_n - X|) \leq \varepsilon$, et comme $\varepsilon$ est arbitrairement proche de 0, on a le résultat souhaité.
 
 ### {.anonymous}
-Les rapports entre convergence presque-sûre et convergence en probabilité sont plus subtils. La première de ces deux convergences est plus forte que la seconde d’après la [proposition](#propconv1), mais “à peine plus”, comme le montre le résultat suivant.
+Les rapports entre convergence presque-sûre et convergence en probabilité sont plus subtils. La première de ces deux convergences est plus forte que la seconde d’après la [proposition plus haut](#propconv1), mais “à peine plus”, comme le montre le résultat suivant.
 
-### Proposition {.proposition #propconv3}
+### Proposition --- Existence d'une sous-suite convergente {.proposition #propconv3}
 Si $X_n \xrightarrow{\P} X$, il existe une sous-suite $(n_k)$ telle que $X_{n_k} \to X$ p.s. quand $k \to \infty$.
 
 ### Démonstration {.proof}
@@ -284,7 +284,7 @@ Ainsi, $\Esp(X_n) = \frac{1}{n}$, et la suite $X_n$ tend vers $X = 0$ en moyenne
 Ainsi la suite numérique $X_n (\omega)$ ne converge pour aucun $\omega$, et on n’a pas $X_n \to X$ presque-sûrement ; cependant comme
 la série $\sum_n 1/n^2$ converge, il s’en suit que $X_{n^2} \to X = 0$ presque-sûrement. Nous avons donc la convergence presque-sûre de la sous-suite $(X_{n^2})_{n\in \N^\star}$.
 
-### Proposition {.proposition #propconv4}
+### Proposition --- continuité {.proposition #propconv4}
 Soit $f$ une fonction continue de $\R^d$ dans $\R$.
 
  1. Si $X_n \to X$ presque-sûrement, alors $f(X_n) \to f(X)$ presque-sûrement.
@@ -319,7 +319,7 @@ même pour tout $n$).
 
 Nous allons démontrer dans un premier temps la loi des grands nombres pour des variables aléatoires de carré intégrable.
 
-### Théorème {.theorem}
+### Théorème --- loi des grands nombres cas $\L^2${.theorem}
 Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini. Elle converge donc aussi en probabilité. On a même convergence en *moyenne quadratique*, à savoir que :
@@ -372,7 +372,7 @@ Par ailleurs, on a déjà montré que $M_{p(n)^2} \to 0$ p.s. et $\frac{p(n)^2}{
 ### {.anonymous}
 Plus généralement, le théorème suivant donne les hypothèses minimales assurant la validité de la loi des grands nombres, à savoir que les $X_n$ sont dans $\L_1$ (on se référera par exemple à [ce document en ligne](https://perso.univ-rennes1.fr/ismael.bailleul/AGREG/COURS/LFGN.pdf) ou à @Jacod pour la démonstration).
 
-### Théorème {.theorem}
+### Théorème --- loi des grands nombres cas $\L^1$ {.theorem}
 Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et **intégrables**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
@@ -410,11 +410,11 @@ où l'on a utilisée le théorème de convergence dominée.
 
 La convergence en loi est plus faible que la convergence en probabilité et donc aussi que les convergences presque-sûre et en moyenne.
 
-### Proposition {.proposition}
+### Proposition --- en proba $\Rightarrow$ en loi {.proposition}
 Soient $X_n$ et $X$ des v.a., toutes définies sur le même espace de probabilité $(\Omega, \A, \P)$. Si $X_n \xrightarrow{\P} X$, alors $X_n\xrightarrow{\L} X$.
 
 ### Démonstration {.proof}
-Soit $f$ une fonction réelle continue bornée. D'après la [proposition](#propconv4), on a $f(X_n) \xrightarrow{\P} f(X)$ et donc $f(X_n)$ converge aussi en moyenne vers $f(X)$ par la [proposition](#propconv2). Comme $|\Esp(Y)|\leq \Esp(|Y|)$ pour toute variable aléatoire réelle $Y$, on en déduit $\Esp(f(X_n)) \to \Esp(f(X))$.
+Soit $f$ une fonction réelle continue bornée. D'après la [proposition de continuité](#propconv4), on a $f(X_n) \xrightarrow{\P} f(X)$ et donc $f(X_n)$ converge aussi en moyenne vers $f(X)$ par la [proposition --- cas borné](#propconv2). Comme $|\Esp(Y)|\leq \Esp(|Y|)$ pour toute variable aléatoire réelle $Y$, on en déduit $\Esp(f(X_n)) \to \Esp(f(X))$.
 
 ### {.anonymous}
 Un moyen efficace de caractériser la convergence en loi des variables aléatoires réelles passe par l'étude de la suite des fonctions de répartition.
@@ -422,9 +422,7 @@ Un moyen efficace de caractériser la convergence en loi des variables aléatoir
 ### Proposition --- convergence en loi et fonction de répartition {.proposition #cvceloifdr}
 Soient $X_n$ et $X$ des variables aléatoires réelles de fonctions de répartition respectives $F_n$ et $F$. Pour que $X_n \xrightarrow{\L} X$, il faut et il suffit que $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x$ en lequel $F$ est continue.
 
-Notons que puisque la fonction $F$ est continue à droite et croissante, l’ensemble
-des points où $F$ est continue est l’ensemble $D = \{x : F (x-) = F (x)\}$, et son
-complémentaire est au plus dénombrable. Ainsi, $D$ est dense[^dense] dans $\R$.
+Notons que puisque la fonction $F$ est continue à droite et croissante, l’ensemble des points où $F$ est continue est l’ensemble $D = \{x : F (x-) = F (x)\}$, et son complémentaire est au plus dénombrable. Ainsi, $D$ est dense[^dense] dans $\R$.
 
 [^dense]: Soient $\Omega$ un espace topologique et $A$ une partie de $\Omega$. On dit que $A$ est *dense* dans $\Omega$ si l'une des propriétés équivalentes est satisfaite : tout ouvert non vide de $\Omega$ contient des éléments de $A$ ; l'adhérence de $A$ est égale à $\Omega$ ; tout point de $\Omega$ est adhérent à $A$ ; le complémentaire de $A$ est d'intérieur vide.
 
@@ -455,7 +453,7 @@ $$ \P(X_n \in ]a,b]) \xrightarrow[n\to \infty]{} \P(X\in]a,b]).$$
 ### Démonstration {.proof}
 La fonction de répartition de $X$ est alors continue en tout point. (Mais pas nécessairement celle des variables aléatoires $X_n$.)
 
-## Fonctions caractéristiques 
+## Fonctions caractéristiques
 
 Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités : il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire, et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment très utile pour démontrer le théorème central limite.
 
@@ -474,7 +472,7 @@ Nous verrons que cette fonction porte bien son nom, au sens où elle caractéris
     $$\phi_X(u) = G_X(e^{iu}) = \Esp(e^{iuX}) $$
 pour une variable $X$ à valeurs dans $\N$.
 
-### Proposition {.proposition}
+### Proposition --- propriétés de la fonction caractéristique {.proposition}
 $\phi_X$ est de module inférieur à 1, continue, avec
     $$ \phi(0) = 1 ;\,\,\, \phi_X(-u) = \overline{\phi_X(u)}.$$
 
@@ -486,7 +484,7 @@ $$ |\phi_X(u)|^2 = \Esp(\cos< u, X>)^2 + \Esp(\sin< u, X>)^2 \leq \Esp(\cos^2< u
 
 Pour montrer la continuité, considérons une suite $u_p \xrightarrow[p \to \infty]{} u$. Il y a convergence simple de $e^{i < u_p,X>}$ vers $e^{i < u,X>}$. Comme ces variables aléatoires sont de module inférieur à 1, le théorème de convergence dominée assure que $\phi_X(u_p) \xrightarrow[p \to \infty]{} \phi_X(u)$. $\phi_X$ est donc continue.
 
-### Proposition {.proposition #fct_carac_vec}
+### Proposition --- transformation linéaire {.proposition #fct_carac_vec}
 Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, si $a \in \R^m$ et $A$ est une matrice réelle de taille $m \times n$, alors 
     $$ \phi_{a+AX}(u) = e^{i < u,a>} \phi_X (A^t u), \forall u \in \R^m$$
 
@@ -504,7 +502,7 @@ Nous avons $e^{i< u, a + AX>} = e^{i < u,a>}e^{i <A^tu, X>}$. En effet, $< u, A 
 
 L’intérêt majeur de la fonction caractéristique réside dans le fait qu’elle caractérise la loi de la variable aléatoire (d'où son nom).
 
-### Théorème {.theorem #caracfc}
+### Théorème --- caractérisation {.theorem #caracfc}
 La fonction caractéristique $\phi_X$ caractérise la loi du vecteur aléatoire $X$. Ainsi, si deux vecteurs aléatoires $X$ et $Y$ ont même fonction caractéristique, ils ont même loi.
 
 ### Démonstration {.proof}
@@ -555,7 +553,7 @@ Supposons inversement qu'on ait $\phi_X (u_1,\ldots,u_n) = \prod_{j=1}^n \phi_{X
 $$ \P(\bigcap_j \{X_j \in A_j\}) = \P(\bigcap_j \{X'_j \in A_j\}) = \prod_j \P(\{X'_j \in A_j\}) = \prod_j \P(\{X_j \in A_j\})$$
 d'où l'indépendance.
 
-### Proposition {.proposition #fct_carac_sum}
+### Proposition --- somme {.proposition #fct_carac_sum}
 Si $X$ et $Y$ sont deux vecteurs aléatoires indépendants à valeurs dans $\R^n$, la fonction caractéristique de la somme $X+Y$ est donnée par
     $$ \phi_{X+Y} = \phi_X\phi_Y$$
 
@@ -567,7 +565,7 @@ Soient $X$ et $Y$ deux variables aléatoires réelles indépendantes et $Z = X+Y
 
  1. Si $X$ suit la loi normale $\No(m,\sigma^2)$ et $Y$ suit $\No(m',\sigma'^2)$, alors $Z$ suit une loi $\No(m+m',\sigma^2+\sigma'^2)$, d'après l'[exemple ci-dessus](#ex) point 6. et la [proposition ci-dessus](#fct_carac_sum).
  2. Si $X$ et $Y$ suivent des lois de Poisson de paramètres $\theta$ et $\theta'$, alors $Z$ suit une loi de Poisson de paramètre $\theta + \theta'$, d'après l'[exemple ci-dessus](#ex) point 2. et la [proposition ci-dessus](#fct_carac_sum).
- 3. Si $X$ suit une loi binomiale $\mathcal{B}(n,p)$ et $Y$ la loi biomiale $\mathcal{B}(m,p)$, alors $Z$ suit une loi binomiale $\mathcal{B}(n+m,p)$, d'après l'[exemple ci-dessus ](#ex) point 1. et la [proposition](#fct_carac_sum).
+ 3. Si $X$ suit une loi binomiale $\mathcal{B}(n,p)$ et $Y$ la loi biomiale $\mathcal{B}(m,p)$, alors $Z$ suit une loi binomiale $\mathcal{B}(n+m,p)$, d'après l'[exemple ci-dessus ](#ex) point 1. et la [proposition ci-dessus](#fct_carac_sum).
 
 ### Proposition --- fonction caractéristique et moments {.proposition #fct_carac_deriv}
 Soit $X$ un vecteur aléatoire de $\R^n$. Si la variable $|X|^m$ (ou $|\cdot|$ désigne la norme euclidienne) est intégrable pour un entier $m$, la fonction $\phi_X$ est $m$ fois continûment différentiable sur $\R^n$ et pour tout choix des indices $i_1,\ldots, i_m$, 
@@ -578,7 +576,7 @@ où les $X_j$ sont les composantes de $X$.
 Le résultat se démontre par application itérée du théorème de dérivation sous le signe somme.
 
 ### Remarque {.remark}
-En prenant $u=0$ dans la [proposition ci-dessus](#fct_carac_sum), la formule permet de calculer $\Esp(X_{i_1}\ldots X_{i_m})$ en fonction des dérivées à l'origine de $\phi_X$, autrement dit de calculer tous les moments du vecteur $X$, s'ils existent. Par exemple, si $X$ est à valeurs réelles et est intégrable (respectivement de carré intégrable), on a
+En prenant $u=0$ dans la [proposition --- somme](#fct_carac_sum), la formule permet de calculer $\Esp(X_{i_1}\ldots X_{i_m})$ en fonction des dérivées à l'origine de $\phi_X$, autrement dit de calculer tous les moments du vecteur $X$, s'ils existent. Par exemple, si $X$ est à valeurs réelles et est intégrable (respectivement de carré intégrable), on a
     $$ \Esp(X) = i \phi'_X(0), \,\,\,(\text{resp. } \Esp(X^2) = \phi"_X(0))$$
 
 On donne ici la définition générale d'un vecteur gaussien, qui nous sera utile pour la démonstration du théorème central limite. 
@@ -639,14 +637,14 @@ convergent en loi vers une variable aléatoire de loi $\No(0,1)$.
 En d'autres termes, $\sqrt{n}(M_n - m)$ converge vers une variable normale de loi $\No(0,\sigma^2)$.
 
 ### Démonstration {.proof}
-Soit $\phi$ la fonction caractéristique de $X_n - m$, et $Y_n = \frac{S_n -nm}{\sigma \sqrt{n}}$. Comme les $X_n$ sont indépendantes, la [proposition vue plus haut](#fct_carac_sum) entraîne que la fonction caractéristique de $Y_n$ est 
+Soit $\phi$ la fonction caractéristique de $X_n - m$, et $Y_n = \frac{S_n -nm}{\sigma \sqrt{n}}$. Comme les $X_n$ sont indépendantes, la [proposition --- somme](#fct_carac_sum) entraîne que la fonction caractéristique de $Y_n$ est 
 \begin{align*}
     \phi_{Y_n}(u) & = \phi_{\frac{1}{\sigma\sqrt{n}}\sum_{j=1}^n(X_j-m)}(u) \\
                   & = \phi_{\sum_{j=1}^n(X_j-m)}\left(\frac{u}{\sigma\sqrt{n}}\right) \\
                   & = \prod_{j=1}^n \phi \left(\frac{u}{\sigma\sqrt{n}}\right)\\
                   & = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n
 \end{align*}
-Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition portant sur la dérivée des](#fct_carac_deriv) entraîne que
+Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition --- fonction carctéristique et moments](#fct_carac_deriv) entraîne que
     $$\phi'(0) = 0 \text{     et } \phi''(0) = -\sigma^2$$
 Si on fait le développement de Taylor à l'ordre 2 au voisinage de zéro, on obtient
     $$\phi(u) = 1 - \frac{u^2\sigma^2}{2} + u^2 h(|u|),$$
@@ -889,7 +887,7 @@ Soit $u \in R^d$ . On a :
 $$|\phi_{Y_n} (u) − \phi_X (u)| \leq |\phi_{Y_n} (u) − \phi_{X_n} (u)| + |\phi_{X_n} (u) − \phi_{X} (u)|$$
 D’une part, le [théorème de Lévy](#levytheorem) partie 1. montre que $|\phi_{X_n}(u) − \phi_X (u)|$ tend vers 0 quand $n \to \infty$. D’autre part,
 $$|\phi_{Y_n} (u) − \phi_{X_n} (u)| = |\Esp(e^{i<u,Y_n>} − e^{i<u,X_n>})| \leq \E(|e^{i<u,Y_n -X_n>} − 1|)$$
-tend vers 0 quand $n \to \infty$ d’après [la proposition](#propconv2).
+tend vers 0 quand $n \to \infty$ d’après [la proposition --- cas borné](#propconv2).
 
 
 
