@@ -181,7 +181,7 @@ Dans ce paragraphe, on va décrire les notions de convergence de variables (on y
 
 En calcul intégral, on a beaucoup étudié le cas de suites de fonctions convergeant simplement. Une variable aléatoire étant une fonction, on a donc la même notion qui revient à écrire qu'une suite $X_n$ de variables aléatoires converge simplement vers $X$ si $\lim_{n \to \infty} X_n(\omega) = X(\omega)$ pour tout $\omega \in \Omega$. Cette définition naturelle est malheureusement à peu près inutile en probabilité, comme l'illustre l'exemple suivant :
 
-### Exemple {.example}
+### Exemple {.example #pfinf}
 
 Soit $(X_n)_{n\in \N^\star}$, une suite de v.a. réelles qui sont indépendantes et de même loi (on notera *i.i.d* pour *indépendantes et identiquement distribuées*), avec $\P(X_n = 1) = p$ et $\P(X_n=0) = 1-p$. Ce sont donc des v.a. de loi de Bernoulli de paramètre $p$ qui modélisent par exemple les résultats d'un jeu de pile ou face. Lorsque $n$ est grand, on s'attend à ce que la proportion de faces ($X_n=1$) soit à peu près égale à $p$ (c'est l'essence de la conception objectiviste des probabilités). Mathématiquement, on voudrait que
 $$\lim_{n \to \infty} \frac{X_1(\omega) + \ldots +X_n(\omega)}{n} = p \text{   pour tout }\omega\in\Omega.$$
@@ -419,7 +419,7 @@ Soit $f$ une fonction réelle continue bornée. D'après la [proposition](#propc
 ### {.anonymous}
 Un moyen efficace de caractériser la convergence en loi des variables aléatoires réelles passe par l'étude de la suite des fonctions de répartition.
 
-### Proposition {.proposition}
+### Proposition --- convergence en loi et fonction de répartition {.proposition #cvceloifdr}
 Soient $X_n$ et $X$ des variables aléatoires réelles de fonctions de répartition respectives $F_n$ et $F$. Pour que $X_n \xrightarrow{\L} X$, il faut et il suffit que $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x$ en lequel $F$ est continue.
 
 Notons que puisque la fonction $F$ est continue à droite et croissante, l’ensemble
@@ -747,6 +747,7 @@ On suppose désormais que les $X_i$ sont de loi $\No (m, \sigma^2 )$.
     
 On peut dériver ce type d'inégalités pour différentes lois de probabilité. On voit qu'ici la concentration auprès de la moyenne se fait à vitesse exponentielle. On a le même type de résultats pour la loi de Bernoulli par exemple ce qui est très utile en apprentissage statistique dans les problèmes de classification.
 
+### Question 3 {.question #idc3}
  iv) On suppose que $m = 1$ et que $\sigma^2 = 10$. Quelle taille d’échantillon doit-on choisir pour obtenir
     $$\P(|Y_n - m| < \varepsilon) \geq \alpha,$$
     avec $\alpha = 0,95$ et $\varepsilon = 0,05$,
@@ -774,6 +775,11 @@ On suppose maintenant que les événements $A_n$ sont mutuellement indépendants
 
 Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \infty} A_n) < 1$ quand les $A_n$ ne sont pas indépendants.
 
+### Question 4 {.question bc4}
+
+On considère le jeu de pile ou face infini de [l'exemple en début de cours](#pfinf). Montrer que  l'événement $A = \{\omega : \text{ il n'y a qu'un nombre fini de faces}\}$ est de probabilité nulle. (Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}, puis montrer que $\sum_{n=1}^\infty \P(A_n) = \infty$).
+
+
 Loi faible des grands nombres
 ---------------------------------------------------------------------------------
 Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Montrer que la suite $(M_n)_{n\in\N^\star}$ définie par
@@ -782,7 +788,15 @@ converge vers $m$ en probabilité quand $n$ tend vers l'infini.
 
 Théorème de Slutsky
 ---------------------------------------------------------------------------------
+### Question 1 {.question #slut1}
+Soient $(X_n)_n$ et $X$ des variables aléatoires. Montrer que $X_n \xrightarrow{\L} X$ si et seulement si $\Esp(f(X_n)) \xrightarrow[n\to\infty]{} \Esp(f(X))$ pour toute fonction $f$ lipschitzienne bornée.
 
+### Question 2 {.question #slut2}
+
+Soient $(X_n)_n$ et $(Y_n)_n$ deux suites de variables aléatoires définies sur le même espace de probabilité. On suppose que $(X_n)_n$ converge en loi vers $X$ et que $(X_n - Y_n)_n$ converge vers 0 en probabilité. Montrer que $(Y_n)_n$ converge en loi vers $X$.
+
+### Question 3 {.question #slut3}
+Montrer ce résultat à l'aide du [théorème de Lévy](#levytheorem).
 
 
 -----------------------------------------------------------
@@ -811,7 +825,8 @@ iii)
                             &\leq 2e^{-nu\varepsilon}e^{u^2/\sigma^2}, \,\,\, \forall u \geq 0
 \end{align*}
 La meilleure majoration va être obtenue en minimisant l’exposant, c’est-à-dire pour $u = \varepsilon$. Nous en déduisons l’inégalité de Chernov.
-iv) Par l’inégalité de Bienaymé-Chebyshev, $\P(|Y n - m| > \varepsilon) \leq \frac{\V(Y_n)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}$.
+### Question 3 {.answer #answer-idc3}
+Par l’inégalité de Bienaymé-Chebyshev, $\P(|Y n - m| > \varepsilon) \leq \frac{\V(Y_n)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}$.
 
 Ainsi, $\P(|Y_n - m| \leq \varepsilon)\leq \alpha$ dès que $1-\frac{\sigma^2}{n\varepsilon^2}$. Avec $\varepsilon = 0,05$, il vient $n \geq 80000$.
 
@@ -849,6 +864,33 @@ Prendre tous les $A_n$ égaux à un même événement $A$ de probabilité $\P(A)
 Loi faible des grands nombres
 ---------------------------------------------------------------------------------
 Appliquer L'inégalité de Bienaymé-Chebyshev à la variable aléatoire $M_n$.
+
+Théorème de Slutsky
+---------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-slut1}
+
+Il suffit de montrer que dans la preuve de [la proposition sur la convergence des f.d.r.](#cvceloifdr), on peut remplacer les fonctions continues bornées $f_{p,b}$ approchant $1_{\left]-\infty,b\right]}$ par des fonctions lipschitziennes bornées, ce qui est immédiat.
+
+### Question 2 {.answer #answer-slut2}
+
+Du fait du résultat de la question 1, il suffit de montrer que $\lim_{n \to \infty} \Esp(f (Y_n)) = \Esp(f (X))$, pour toute fonction lipschitzienne bornée. Soit $f$ une telle fonction. On a alors $|f (x)| \leq k$ et $|f (x) − f (y)| \leq C|x − y|$, pour des constantes $k$ et $C$. 
+
+Soit $\varepsilon > 0$ donné. On a
+\begin{align*}
+|\Esp(f (Y_n )) − \Esp(f (X_n ))| &\leq \Esp(|f (Y_n) − f (X_n )|) \\
+                                  &\leq \Esp(|f (Y_n) − f (X_n )|(1_{|Y_n-X_n|\leq \varepsilon} + 1_{|Y_n-X_n| > \varepsilon}))\\
+                                  &\leq C \varepsilon + 2k P(|X_n - Y_n | > \varepsilon)
+\end{align*}
+Le deuxième terme du membre de droite tend vers 0 quand $n$ tend vers l’infini, car $(X_n − Y_n )_n$ converge en probabilité vers 0. Comme $\varepsilon$ est arbitrairement petit, nous en déduisons que $\lim_{n\to\infty}|\Esp(f (Y_n )) − \Esp(f (X_n ))| = 0$, d’où le résultat.
+
+### Question 3 {.answer #answer-slut3}
+Soit $u \in R^d$ . On a :
+$$|\phi_{Y_n} (u) − \phi_X (u)| \leq |\phi_{Y_n} (u) − \phi_{X_n} (u)| + |\phi_{X_n} (u) − \phi_{X} (u)|$$
+D’une part, le [théorème de Lévy](#levytheorem) partie 1. montre que $|\phi_{X_n}(u) − \phi_X (u)|$ tend vers 0 quand $n \to \infty$. D’autre part,
+$$|\phi_{Y_n} (u) − \phi_{X_n} (u)| = |\Esp(e^{i<u,Y_n>} − e^{i<u,X_n>})| \leq \E(|e^{i<u,Y_n -X_n>} − 1|)$$
+tend vers 0 quand $n \to \infty$ d’après [la proposition](#propconv2).
+
 
 
 Références
