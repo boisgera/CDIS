@@ -130,7 +130,7 @@ On a alors le théorème suivant, que l'on admettra, qui constitue un résultat 
 ### Théorème --- mesure produit sur un espace de dimension infinie {.theorem #probaespaceden}
 Avec les notations ci-dessus, il existe une unique probabilité $\P$ sur $(\Omega,\A)$, telle que
 $$\P(A_1 \times \ldots\times A_k \times \Omega_{k+1} \times \ldots) =\prod_{i=1}^k \P_i(A_i)$$
-pour tous $k \in \N^star$ et $A_i \in \A_i$.
+pour tous $k \in \N^{\star}$ et $A_i \in \A_i$.
 
 Nous sommes maintenant en mesure de définir une suite de variables aléatoires toutes définies sur le même espace de probabilité $(\Omega, \A, \P)$.
 
@@ -589,7 +589,8 @@ On donne ici la définition générale d'un vecteur gaussien, qui nous sera util
 ### Définition {.definition #gauss_vec}
 Un vecteur aléatoire $X=(X_1,\ldots,X_n)$ à valeurs dans $\R^n$ est dit gaussien si toute combinaison linéaire de ses composantes, soit $\sum_{j=1}^n a_j X_j$ où $a_j \in \R$, suit une loi normale uni-dimensionnelle (éventuellement dégénérée, par exemple si on prend $a_j = 0$ pour tout j).
 
-### Théorème {.theorem #fct_carac_gauss}
+
+### Théorème --- cas gaussien{.theorem #fct_carac_gauss}
 $X$ est un vecteur gaussien si et seulement si sa fonction caractéristique s'écrit
     $$\phi_X(u) = e^{i< u,m> - \frac{1}{2}< u,Cu>}$$
 où $m = \Esp(X) \in \R^n$ et $C$ est la matrice de covariance de $X$ qui est donc semi-définie positive.
@@ -649,7 +650,7 @@ Soit $\phi$ la fonction caractéristique de $X_n - m$, et $Y_n = \frac{S_n -nm}{
                   & = \prod_{j=1}^n \phi \left(\frac{u}{\sigma\sqrt{n}}\right)\\
                   & = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n
 \end{align*}
-Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition --- fonction carctéristique et moments](#fct_carac_deriv) entraîne que
+Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition --- fonction caractéristique et moments](#fct_carac_deriv) entraîne que
     $$\phi'(0) = 0 \text{     et } \phi''(0) = -\sigma^2$$
 Si on fait le développement de Taylor à l'ordre 2 au voisinage de zéro, on obtient
     $$\phi(u) = 1 - \frac{u^2\sigma^2}{2} + u^2 h(|u|),$$
@@ -714,7 +715,7 @@ Soit $X \sim \No(0,1)$. On a
 \end{align*}
 Comme $x \mapsto \frac{\sin(ux)}{\sqrt{2\pi}}e^{-x^2/2}$ est impaire et intégrable, son intégrale est nulle, d'où
 $$\phi_X(u) = \int_\R \frac{\cos(ux)}{\sqrt{2\pi}}e^{-x^2/2}dx.$$
-D'après la [proposition sur la dérivation de la fonction caractéristique](#fct_carac_deriv), on peut dériver les deux membres par rapport à $u$, et on obtient
+D'après la [proposition --- fonction caractéristique et moments](#fct_carac_deriv), on peut dériver les deux membres par rapport à $u$, et on obtient
 $$\phi'_X(u) = \frac{1}{\sqrt{2\pi}}\int_\R -x\sin(ux)e^{-x^2/2}dx$$
 puis par intégration par parties 
 $$\phi'_X(u) = -\frac{1}{\sqrt{2\pi}}\int_\R u\cos(ux)e^{-x^2/2}dx = -u\phi_X(u).$$
@@ -759,8 +760,6 @@ On peut dériver ce type d'inégalités pour différentes lois de probabilité. 
         * en utilisant l’inégalité de Chernov ?
 
 
-
-
 Lemme de Borel-Cantelli
 --------------------------------------------------------------------------------
 
@@ -788,6 +787,8 @@ Loi faible des grands nombres
 Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Montrer que la suite $(M_n)_{n\in\N^\star}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$ en probabilité quand $n$ tend vers l'infini.
+
+
 
 Théorème de Slutsky
 ---------------------------------------------------------------------------------
