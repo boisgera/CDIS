@@ -459,7 +459,7 @@ La fonction de répartition de $X$ est alors continue en tout point. (Mais pas n
 
 ## Fonctions caractéristiques
 
-Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités : il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire, et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment très utile pour démontrer le théorème central limite.
+Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités : il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire, et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment nécessaire, via le théorème de Lévy, pour démontrer le théorème central limite. L'essentiel de cette section peut être considéré hors programme, dans le sens où, bien que très utile en pratique, sa connaissance ne sera pas évaluée à l'examen.
 
 On notera $< x, y >$ le produit scalaire de deux vecteurs de $\R^n$ . Si $u \in \R^n$ , la fonction (complexe) $x \mapsto e^{i < u,x>}$ est continue, de module 1. Donc si $X$ est un vecteur aléatoire à valeurs dans $\R^n$ , nous pouvons considérer $e^{i < u,X>}$ comme une variable aléatoire à valeurs complexes. Ses parties réelle $Y = \cos(< u, X>)$ et imaginaire $Z = \sin(< u, X>)$ sont des variables aléatoires réelles. Ces variables aléatoires réelles
 sont de plus bornées par 1, donc elles admettent une espérance. Il est alors naturel d’écrire que l’espérance de $e^{i < u,x>}$ est
@@ -780,6 +780,27 @@ Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \i
 
 On considère le jeu de pile ou face infini de [l'exemple en début de cours](#pfinf). Montrer que  l'événement $A = \{\omega : \text{ il n'y a qu'un nombre fini de faces}\}$ est de probabilité nulle. (Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}, puis montrer que $\sum_{n=1}^\infty \P(A_n) = \infty$).
 
+Convergence vers une constante
+----------------------------------------------------------------------------------
+
+Soient $\left(X_n\right)_{n\in\N^\ast}$ une suite de variables aléatoires réelles, $X$ une autre variable aléatoire réelle et $a \in \R$.
+
+### Convergence $\mathcal{L}^2$ {.question #cvtocst-l2}
+
+On suppose que $X$ et chaque $X_n$, $n\in\N^\ast$, sont de carré intégrable. 
+
+1. Montrer l'implication 
+
+$$X_n \xrightarrow[n\to+\infty]{\mathcal{L}^2} X \Rightarrow \left|\begin{array}{ll} \Esp\left(X_n\right) \xrightarrow[n\to+\infty]{} \Esp(X),\\ \mathbb{V}\left(X_n\right) \xrightarrow[n\to+\infty]{} \mathbb{V}(X). \end{array}\right.$$
+
+
+2. Vérifier l'équivalence $$X_n \xrightarrow[n\to+\infty]{\mathcal{L}^2} a \Leftrightarrow \left|\begin{array}{ll} \Esp\left(X_n\right) \xrightarrow[n\to+\infty]{} a,\\ \mathbb{V}\left(X_n\right) \xrightarrow[n\to+\infty]{} 0. \end{array}\right.$$
+
+### Convergences en loi et probabilité {.question #cvtocst-loiprob}
+
+Montrer que si $X_n$ converge en loi vers $a$ quand $n\to+\infty$, alors elle converge aussi en probabilité vers $a$.
+
+
 
 Loi faible des grands nombres
 ---------------------------------------------------------------------------------
@@ -893,6 +914,63 @@ Loi faible des grands nombres
 ---------------------------------------------------------------------------------
 Appliquer L'inégalité de Bienaymé-Chebyshev à la variable aléatoire $M_n$.
 
+Convergence vers une constante
+----------------------------------------------------------------------------------
+
+### Convergence $\mathcal{L}^2$ {.answer #answer-cvtocst-l2}
+
+1. Supposons $X_n \overset{\mathcal{L}^2}{\longrightarrow} X$ quand $n\to+\infty$, i.e. $\Esp\left(\left(X_n - X\right)^2\right) \xrightarrow[n\to+\infty]{} 0$.
+
+Par positivité de la variance, on a tout d'abord
+$$\Esp\left(\left(X_n - X\right)^2\right) \geq \left(\Esp\left(X_n-X\right)\right)^2 \geq 0,$$
+qui garantit que $\left|\Esp\left(X_n-X\right)\right| = \left|\Esp(X_n) - \Esp(X)\right| \to 0$ quand $n\to+\infty$.
+
+Ensuite, par inégalité triangulaire on a
+\begin{align*}
+\left|\mathbb{V}\left(X_n\right) - \mathbb{V}\left(X\right)\right| &= \left|\Esp\left(X_n^2\right) - \Esp(X_n)^2 - \Esp\left(X^2\right) + \Esp(X)^2 \right|\\
+& \leq \left|\Esp\left(X_n^2 - X^2\right)\right| + \left|\Esp(X_n)^2 - \Esp(X)^2\right|.
+\end{align*}
+
+Or, comme nous avons vu que $\Esp(X_n) \xrightarrow[n\to+\infty]{} \Esp(X)$, on a directement que $\left|\Esp(X_n)^2 - \Esp(X)^2\right| \xrightarrow[n\to+\infty]{} 0$. Par ailleurs,
+\begin{align*}
+\left|\Esp\left(X_n^2 - X^2\right)\right| &= \left|\Esp\left( \left(X_n-X\right)^2 \right) - 2\Esp\left(X^2\right) + 2\Esp\left(X\,X_n\right)\right|\\
+&= \left|\Esp\left( \left(X_n-X\right)^2 \right) + 2\Esp\left(X\,(X_n-X)\right)\right|\\
+&\leq \Esp\left( \left(X_n-X\right)^2 \right) + 2\left|\Esp\left(X\,(X_n-X)\right)\right|.
+\end{align*}
+Par l'inégalité de Cauchy-Schwartz on a
+$$\left|\Esp\left(X\,(X_n-X)\right)\right|^2 \leq \Esp\left(X^2\right)\,\Esp\left( \left(X_n-X\right)^2 \right),$$
+donc
+$$\left|\Esp\left(X_n^2 - X^2\right)\right| \leq \Esp\left( \left(X_n-X\right)^2 \right) + 2\sqrt{\Esp\left(X^2\right)}\,\sqrt{\Esp\left( \left(X_n-X\right)^2 \right)},$$
+qui tend bien vers $0$ quand $n\to+\infty$ par hypothèse.
+On en conclut que $\left|\mathbb{V}\left(X_n\right) - \mathbb{V}\left(X\right)\right|\xrightarrow[n\to+\infty]{} 0.$ 
+
+2. Par définition, $X_n \overset{\mathcal{L}^2}{\longrightarrow} a$ quand $n\to+\infty$ ssi $\Esp\left(\left(X_n - a\right)^2\right) \xrightarrow[n\to+\infty]{} 0$. 
+
+Le premier sens de l'équivalence est immédiatement obtenu par la question précédente, en prenant $X = a$ presque-sûrement.
+
+Réciproquement, pour tout $n\in\N^\ast$, par linéarité de l'espérance on a
+\begin{align*}
+\Esp\left( \left(X_n-a\right)^2 \right) &= \Esp\left( X_n^2 + a^2 - 2aX_n \right) = \Esp\left(X_n^2\right) + a^2 - 2a\Esp\left(X_n\right)\\
+&= \mathbb{V}\left(X_n\right) + a^2 - 2a\Esp\left(X_n\right) + \Esp\left(X_n\right)^2\\
+&= \mathbb{V}\left(X_n\right) + \left(\Esp(X_n) - a\right)^2.
+\end{align*}
+On en déduit immédiatement le deuxième sens de l'équivalence.
+
+### Convergences en loi et probabilité {.answer #answer-cvtocst-loiprob}
+
+Supposons que $X_n \overset{\mathcal{L}}{\longrightarrow} a$ quand $n\to+\infty$. Cela revient à dire que $X_n$ tend en loi vers la variable aléatoire $X = a$ p.s. quand $n\to+\infty$. Dans ce cas, $X$ a pour fonction de répartition $x\in\R \mapsto 1_{[a,+\infty[}(x)$ et pour tout $x \in \R\backslash\{a\}$, on a $$\P\left(X_n \leq x \right) \xrightarrow[n\to+\infty]{} 1_{[a,+\infty[}(x).$$
+
+Soit maintenant $\varepsilon > 0$. D'après la croissance de la fonction de répartition et l'hypothèse de convergence en loi, on a
+\begin{align*}
+\P\left(\left|X_n - a\right| \geq \varepsilon \right) &= \P\left(X_n \geq a + \varepsilon \right) + \P\left(X_n \leq a - \varepsilon \right)\\
+&= 1 - \P\left(X_n < a + \varepsilon \right) + \P\left(X_n \leq a - \varepsilon \right)\\
+&\leq 1 - \P\left(X_n \leq a + \frac{\varepsilon}{2} \right) + \P\left(X_n \leq a - \varepsilon \right)\\
+& \xrightarrow[n\to+\infty]{} 1 - 1_{[a,+\infty[}\left(a+\frac{\varepsilon}{2}\right) + 1_{[a,+\infty[}\left(a-\varepsilon\right) = 0.
+\end{align*}
+
+Ainsi, on a bien $X_n \overset{\P}{\longrightarrow} a$ quand $n\to+\infty$.
+
+
 Fonction de répartition empirique
 -----------------------------------------------------------------------
 
@@ -934,6 +1012,9 @@ On en conclut que $F_n(x) \overset{\mathcal{L}^2}{\longrightarrow} F(x)$ quand $
 ### Consistance {.answer #answer-fdremp-ps}
 
 On remarque que pour tout $n\in\N^\ast$, $F_n(x)$ n'est autre que la moyenne de $n$ variables aléatoires indépendantes de même loi de Bernoulli de paramètre $F(x)$. La loi forte des grands nombres nous assure donc qu'elle converge presque-sûrement vers l'espérance de cette loi, qui n'est autre que $F(x)$.
+
+### Remarque
+On peut en fait aller plus loin et montrer que l'on a la convergence presque sûre uniformément sur $\R$ voir par exemple [ce document](http://math.univ-lyon1.fr/~gelineau/devagreg/Theoreme_Dini.pdf), c'est le théorème de Glivenko-Cantelli très utile en statistiques.
 
 
 Théorème de Slutsky
