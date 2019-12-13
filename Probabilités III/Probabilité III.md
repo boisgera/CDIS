@@ -14,7 +14,6 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-
 Probabilités --- cadre général
 ================================================================================
 
@@ -788,6 +787,31 @@ Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$ en probabilité quand $n$ tend vers l'infini.
 
+Fonction de répartition empirique
+-------------------------------------------------------------------
+
+Soient $X$ une variable aléatoire réelle de fonction de répartition $F$ et $\left(X_n\right)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi que $X$. Pour tout $n\in\N^\ast$ on définit la fonction de répartition empirique comme suit :
+$$F_n : x \in \R \mapsto \dfrac{1}{n}\,\sum_{i = 1}^n 1_{]-\infty,x]}(X_i).$$
+
+Son nom est issu de la modélisation probabiliste en statistique. Lorsque l'on souhaite étudier une variable physique dont on n'est pas à même de prédire parfaitement les valeurs (e.g. la hauteur d'eau de la Seine à la station d'Austerlitz), le statisticien va la considérer comme une variable aléatoire $X$. Pour en retrouver les propriétés, il va observer un certain nombre $n\in\N^\ast$ de réalisations de cette variable (en réalisant des mesures sur le terrain), qu'il va à nouveau considérer comme des variables aléatoires $X_1,\dots,X_n$ de même loi que $X$. Lorsque cette hypothèse est raisonnable, il va supposer que ces dernières sont même indépendantes. Nous allons voir dans cet exercice que pour tout $x\in\R$, $F_n(x)$, calculée à partir des données de terrain (d'où le nom attribué à $F_n$), approche bien la quantité théorique $F(x) = \P(X\leq x)$.
+
+On considère $x\in\R$ fixé.
+
+### Préliminaire {.question #fdremp-loi}
+
+Quelle est la loi de la variable aléatoire $1_{]-\infty,x]}(X)$ ? Expliciter son espérance et sa variance.
+
+### Biais {.question #fdremp-biais}
+
+Soit $n\in\N^\ast$. Calculer l'espérance de $F_n(x)$. On dit que $F_n(x)$ est un *estimateur sans biais* de $F(x)$.
+
+### Erreur quadratique moyenne {.question #fdremp-mse}
+
+Montrer que $F_n(x) \overset{\mathcal{L}^2}{\longrightarrow} F(x)$ quand $n\to+\infty$.
+
+### Consistance {.question #fdremp-ps}
+
+Montrer que $F_n(x) \to F(x)$ p.s. quand $n\to+\infty$. On dit que $F_n(x)$ est un *estimateur fortement consistant* de $F(x)$.
 
 
 Théorème de Slutsky
@@ -868,6 +892,49 @@ Prendre tous les $A_n$ égaux à un même événement $A$ de probabilité $\P(A)
 Loi faible des grands nombres
 ---------------------------------------------------------------------------------
 Appliquer L'inégalité de Bienaymé-Chebyshev à la variable aléatoire $M_n$.
+
+Fonction de répartition empirique
+-----------------------------------------------------------------------
+
+### Préliminaire {.answer #answer-fdremp-loi}
+
+La variable aléatoire $1_{]-\infty,x]}(X)$ est à valeurs dans $\{0,1\}$ et 
+$$\P\left( 1_{]-\infty,x]}(X) = 1\right) = F(x) = 1 - \P\left( 1_{]-\infty,x]}(X) = 0\right).$$
+On reconnaît une loi de Bernoulli de paramètre $F(x)$. On en déduit directement que $\Esp(1_{]-\infty,x]}(X)) = F(x)$ et $\mathbb{V}(1_{]-\infty,x]}(X)) = F(x)\,(1-F(x))$.
+
+### Biais {.answer #answer-fdremp-biais}
+
+Sous les hypothèses de l'exercice, on a
+\begin{align*}
+\Esp\left(F_n(x) \right) &= \dfrac{1}{n}\,\sum_{i = 1}^n \Esp\left( 1_{]-\infty,x]}(X_i) \right) \hspace{1em}\text{par linéarité de l'espérance,}\\
+& = \dfrac{1}{n}\,\sum_{i = 1}^n \Esp\left( 1_{]-\infty,x]}(X) \right) \hspace{1em}\text{car $X_1,\dots,X_n$ ont même loi que $X$,}\\
+& = \dfrac{1}{n}\,\sum_{i = 1}^n F(x) \hspace{1em}\text{d'après la première question,}\\
+& = F(x).
+\end{align*}
+
+### Erreur quadratique moyenne {.answer #answer-fdremp-mse}
+
+Soit $n\in\N^\ast$. Par linéarité de l'espérance et d'après la question précédente, on a
+\begin{align*}
+\Esp\left( \left(F_n(x) - F(x)\right)^2 \right) &= \Esp\left(F_n(x)^2 + F(x)^2 - 2\,F_n(x)\,F(x)\right)\\
+&=  \Esp\left(F_n(x)^2\right) + F(x)^2 -2\,F(x)\,\Esp\left(F_n(x)\right)\\
+&= \Esp\left(F_n(x)^2\right) - F(x)^2 = \mathbb{V}\left(F_n(x)\right).
+\end{align*}
+
+Or
+\begin{align*}
+\mathbb{V}\left(F_n(x)\right) &= \dfrac{1}{n^2}\,\sum_{i = 1}^n \mathbb{V}\left(1_{]-\infty,x]}(X_i)\right) \hspace{1em}\text{par indépendance des variables,}\\
+&= \dfrac{1}{n^2}\,\sum_{i = 1}^n \mathbb{V}\left(1_{]-\infty,x]}(X)\right) \hspace{1em}\text{car $X_1,\dots,X_n$ ont même loi que $X$,}\\
+&= \dfrac{1}{n^2}\,\sum_{i = 1}^n F(x)\,(1-F(x)) \hspace{1em}\text{d'après la première question,}\\
+&= \dfrac{1}{n}\, F(x)\,(1-F(x)) \xrightarrow[n\to+\infty]{} 0.
+\end{align*}
+
+On en conclut que $F_n(x) \overset{\mathcal{L}^2}{\longrightarrow} F(x)$ quand $n\to+\infty$.
+
+### Consistance {.answer #answer-fdremp-ps}
+
+On remarque que pour tout $n\in\N^\ast$, $F_n(x)$ n'est autre que la moyenne de $n$ variables aléatoires indépendantes de même loi de Bernoulli de paramètre $F(x)$. La loi forte des grands nombres nous assure donc qu'elle converge presque-sûrement vers l'espérance de cette loi, qui n'est autre que $F(x)$.
+
 
 Théorème de Slutsky
 ---------------------------------------------------------------------------------
