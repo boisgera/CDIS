@@ -20,13 +20,12 @@ Les méthodes de simulation sont basées sur la production de nombres aléatoire
 Dans de nombreuses applications, pour une certaine fonction $h$, on souhaite calculer, pour une variable aléatoire $X$ de loi $\P_X$
 $$ \mathcal{I}=\E\left[h(X)\right]=\int_\R h(x) \P_X(dx),$$
 
-En général, même si l'on sait évaluer $h$ en tout point, on ne peut pas calculer formellement l'intégrale $\mathcal{I}$. Le calcul
+<!-- En général, même si l'on sait évaluer $h$ en tout point, on ne peut pas calculer formellement l'intégrale $\mathcal{I}$. Le calcul
 d'intégrale par la méthode Monte-Carlo consiste dans sa version la plus simple à générer $(X_1,\ldots,X_n) \sim_{i.i.d.}\P_X$, et à
 approcher $\mathcal{I}$ par la moyenne empirique 
 $$S_n(h)=\frac{1}{n}\sum_{i=1}^{n}h(x_i)$$
 , où i.i.d signifie indépendant et identiquement distribué. En effet, d'après la loi forte des grands nombres, si $h(x)$ est $\P_X$ intégrable, on a l'assurance que
 $$S_n(h) \rightarrow_{p.s.} \int h(x)\pi(x)\ud x$$
-\end{equation}
 où p.s. signifie presque sûrement. Si de plus, $h(x)^2$ est $\P_X$ intégrable
 la vitesse de convergence de $S_n(h)$ peut être évaluée,
 puisque la variance
@@ -52,7 +51,7 @@ $\sqrt{n}$ et ce indépendamment de la dimension du problème. Cela
 explique l'efficacité de cette méthode par rapport aux méthodes
 d'intégration numérique déterministes dont les vitesses de
 convergence décroissent
-rapidement avec la dimension du problème.\\
+rapidement avec la dimension du problème.\\ -->
 
 
 # Génération de nombres pseudo-aléatoires
