@@ -13,7 +13,7 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-Nous nous sommes intéressé jusqu'à présent à l'étude de (suites de) variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendantes les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. Nous allons nous attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont nous permettre de résumer l'information apportée par une variable (ou vecteur) sur une autre et nous intéresser en particulier à l'**espérance conditionnelle** qui nous indiquera le comportement moyen d'une variable conditionnellement à une autre. Ce dernier cas pose le cadre probabiliste d'un des problèmes fondamentaux en apprentissage statistique : l'apprentissage supervisé, où on dispose d'un ensemble de réalisations d'une variable dont on cherche à prédire le comportement à partir d'un ensemble de variables dites explicatives (ou prédicteurs).
+Nous nous sommes consacré jusqu'à présent à l'étude de (suites de) variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendantes les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. Nous allons nous attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont nous permettre de résumer l'information apportée par une variable (ou vecteur) sur une autre et nous intéresser en particulier à l'**espérance conditionnelle** qui nous indiquera le comportement moyen d'une variable conditionnellement à une autre. Ce dernier cas pose le cadre probabiliste d'un des problèmes fondamentaux en apprentissage statistique : l'apprentissage supervisé, où on dispose d'un ensemble de réalisations d'une variable dont on cherche à prédire le comportement à partir d'un ensemble de variables dites explicatives (ou prédicteurs).
 
 # Lois conditionnelles dans un couple
 
@@ -57,7 +57,7 @@ La formule ci-dessus s'écrit $\P_{X,Y}(B_1 \times B_2) = \int_{B_1} \P(Y \in B_
 
 où $B_x = \{y\in \R, (x,y) \in B\}$. Ainsi, pour tout $B$ borélien de $\R^2$,
 
-$$\Esp(1_B(X,Y)) = \int_{\R^2} 1_B(x,y)\P_{X,Y}(dx dy) = \P_{X,Y}(B) = \int_\R \left(\int_R 1_B(x,y) \P_Y(dy|X = x)\right)  \P_X(dx)$$
+$$\Esp(1_B(X,Y)) = \int_{\R^2} 1_B(x,y)\P_{X,Y}(dx dy) = \P_{X,Y}(B) = \int_\R \left(\int_\R 1_B(x,y) \P_Y(dy|X = x)\right)  \P_X(dx)$$
 
 Par linéarité de l'espérance (héritée de celle de l'intégrale), on peut ainsi exprimer l'espérance d'une fonction étagée. Pour avoir le résultat pour une fonction positive, on exprime celle-ci comme limite simple d'une suite croissante de fonctions étagées, et on applique le théorème de convergence monotone. Enfin, on applique cette construction à $g_+$ et $g_-$ pour une fonction $g$ de signe quelconque $\P_{X,Y}$-intégrable. En d'autres termes, on reprend le procédé de construction de l'intégrale de Lebesgue. On obtient ainsi la formule souhaitée :
 $$\Esp(g(X,Y)) = \int_{\R} \left( \int_{\R} g(x,y) \P_Y(dy|X = x)\right) \P_X(dx).$$
@@ -76,9 +76,9 @@ $\P_{X,Y}$ est bien une probabilité sur $\R^2$ puisque par convergence monotone
 \end{align*}               
 où on aura reconnu la loi exponentielle de paramètre $(1-\alpha)$.
 
-Comme $\forall n \in \N$, 
+$\forall n \in \N$, 
 $$ \int_{\R_+^\star}e^{-t}\frac{t^n}{n!}dt = \int_{\R_+^\star}e^{-t}\frac{t^{(n-1)}}{(n-1)!}dt = \ldots = \int_{\R_+^\star}e^{-t}dt =1$$
-par intégration par parties itérée, la loi marginale de $X$ s'écrit :
+par intégration par parties itérée. la loi marginale de $X$ s'écrit donc :
 $$\forall n \in \N, \P(X=n) = \P_{X,Y} (\{n\}\times \R_+^\star) = (1-\alpha)\alpha^n,$$ 
 loi géométrique de paramètre $(1-\alpha)$. On en déduit la loi conditionnelle de $Y$ sachant $X = x$ :
 $$\P_{Y|X=x}(B_2) = \P(Y \in B_2 | X=x) = \frac{\P_{X,Y} (\{n\}\times B_2)}{\P(X=n)} = \int_{B_2 \cap \R_+^\star} e^{-t}\frac{t^n}{n!}dt$$
@@ -87,7 +87,7 @@ et $\P_{Y|X=x}$ est la donc la loi gamma de paramètre $(n+1,1)$.
 
 ## Densités conditionnelles
 
-On suppose maintenant que le couple $(X,Y)$ admet une densité $f_{X,Y}$ (par rapport à la mesure de Borel-Lebesgue). On note $f_X(x) = \int_\R f_{X,Y}(x,y)dy$ la (respectivement $f_Y(y) = \int_\R f_{X,Y}(x,y)dx$) la loi marginale de $X$ (resp. de $Y$). On s'intéresse à caractériser la densité de la variable $Y$ connaissant la valeur prise par la variable $X$, c'est la *densité conditionnelle* de $Y$ sachant $\{X = x\}$ :
+On suppose maintenant que le couple $(X,Y)$ admet une densité $f_{X,Y}$ (par rapport à la mesure de Borel-Lebesgue). On note $f_X(x) = \int_\R f_{X,Y}(x,y)dy$ (respectivement $f_Y(y) = \int_\R f_{X,Y}(x,y)dx$) la loi marginale de $X$ (resp. de $Y$). On s'intéresse à caractériser la densité de la variable $Y$ connaissant la valeur prise par la variable $X$, c'est la *densité conditionnelle* de $Y$ sachant $\{X = x\}$ :
 
 ### Proposition {.proposition #defdenscond}
 La formule suivante définit une densité sur $\R$, pour tout $x \in \R$ tel que $f_X(x) > 0$ :
@@ -123,7 +123,7 @@ On a
              &= \int_{\R^2} g(x,y) f_{Y|X=x}(y)f_X(x) dy dx \\
              &= \int_\R \left( \int_\R g(x,y)f_{Y|X=x}(y) dy \right) f_X(x)dx,
 \end{align*}
-les calculs étant licites par application du théorème de Fubini et du fait que l'application $x \mapsto \int_\R g(x,y)f_{Y|X=x}(y) dy$ est définie pour $X >0$, soit presque partout relativement à la mesure $\P_x = f(x)dx$.
+les calculs étant licites par application du théorème de Fubini et du fait que l'application $x \mapsto \int_\R g(x,y)f_{Y|X=x}(y) dy$ est définie pour $f_X(x) >0$, soit presque partout relativement à la mesure $\P_X = f(x)dx$.
 
 ## Cas général **TODO : ajouter ref -> Neveu ?**
 On peut établir le résultat suivant que l'on admettra :
@@ -144,23 +144,23 @@ $$\Esp(g(X,Y)) = \int_\R \left( \int_\R g(x,y)\P_{Y|X=x}(dy) \right) \P_X(dx).$$
 * Dans tout ce qui précède, les rôles de $X$ et $Y$ peuvent évidemment être inversés. 
 
 ## Conséquences
-Le [théorème précédent](#fubinicond) a deux conséquences majeures. Il fournit d'une part un moyen efficace d'identifier la loi marginale de $Y$ connaissant la loi marginale de $X$ et la loi de $Y$ sachant $X$. En effet, en notant que pour tout borélien $B$ de $\R$, $\P_Y(B) = \P_{X,Y}(\R \times B)$ en appliquant ce théorème, on a la proposition suivante :
+Le [théorème précédent](#fubinicond) a deux conséquences majeures. Il fournit d'une part un moyen efficace d'identifier la loi marginale de $Y$ connaissant la loi marginale de $X$ et la loi de $Y$ sachant $X$. En effet, en notant que pour tout borélien $B$ de $\R$, $\P_Y(B) = \P_{X,Y}(\R \times B)$ et en appliquant ce théorème, on a la proposition suivante :
 
 ### Proposition {.proposition #balcond}
 
 * La loi marginale $\P_Y$ de $Y$ s’exprime comme la moyenne des lois conditionnelles $\P_{Y|X=x}$ pondérée par la loi de $X$. Pour tout $B$ borélien de $\R$
-$$\P_Y(B) = \int_\R \left( \int_{B_2} \P_{Y|X=x}(dy) \right) \P_X(dx) = \int_\R \P_{Y|X=x}(B) \P_X(dx)$$
+$$\P_Y(B) = \int_\R \left( \int_{B} \P_{Y|X=x}(dy) \right) \P_X(dx) = \int_\R \P_{Y|X=x}(B) \P_X(dx)$$
 * Dans le cas où $X$ est discrète (à valeurs dans $I$ dénombrable), on retrouve une expression de la formule des probabilités totales et composées :
 $$\P_Y(B) = \P(Y\in B) = \sum_{x \in I} \P(Y \in B | X = x)\P(X=x)$$
-* Dans le cas où le couple $(X,Y)$ admet une densité, puisque l'on a $f_{X,Y}(x,y) = f_{Y | X=x}(y)f_X(x)$, on obtient l'expression suivante pour la loi marginale :
+* Dans le cas où le couple $(X,Y)$ admet une densité, puisqu'on a $f_{X,Y}(x,y) = f_{Y | X=x}(y)f_X(x)$, on obtient l'expression suivante pour la loi marginale :
 $$f_Y(y) = \int_\R f_{X,Y}(x,y)dx = \int_\R f_{Y | X=x}(y)f_X(x) dx$$
  On a dans ce cadre la *formule de Bayes pour les densités* : pour tout $x$ tel que $f_X(x) > 0$ et tout $y$ tel que $f_Y(y)) > 0$ :
-    $$ f_{X|Y=y}(x) = \frac{f(x,y)}{f_Y(y)} = \frac{f_{Y|X=x}(y)f_X(x)}{f_Y(y)} .$$
+    $$ f_{X|Y=y}(x) = \frac{f_{X,Y}(x,y)}{f_Y(y)} = \frac{f_{Y|X=x}(y)f_X(x)}{f_Y(y)} .$$
 
 
 ### Exemple {.example}
 Poursuivons [l'exemple vu ci-dessus](#ex1). On rappelle qu'on a déjà identifié la loi marginale de $X$ ainsi que la loi conditionnelle de $Y$ sachant $X=n$ pour $n\in\N$ que l'on rappelle ci-dessous :
-$$\P(X=n) = (1-\alpha)\alpha^n,\,n\in\N \text{ et pour tout } B \in \B(\R), \, \P_{Y|X=x}(B) = \int_{B \cap \R_+^\star} e^{-t}\frac{t^n}{n!}dt$$
+$$\P(X=n) = (1-\alpha)\alpha^n,\,n\in\N \text{ et }\forall  B \in \B(\R), \, \P_{Y|X=x}(B) = \int_{B \cap \R_+^\star} e^{-t}\frac{t^n}{n!}dt$$
 On peut en déduire la loi marginale de $Y$ en utilisant la [proposition ci-dessus](#balcond) et le théorème de convergence monotone :
 \begin{align*}
 \P_Y(B)  &= \sum_{n \in \N} (1-\alpha)\alpha^n \int_{B \cap \R_+^\star} e^{-t}\frac{t^n}{n!} dt\\
@@ -212,7 +212,7 @@ Soit $Y$ une variable aléatoire intégrable.
 ### Remarques {.remark}
 
  1. $\psi(x)$ n'est définie que pour $x \notin B$, avec $\P(X\in B) = 0$. Par conséquent, la [définition](#defespcond) définit bien l'espérance conditionnelle $\psi(X) = \Esp(Y|X)$ $\P_X$-presque sûrement, autrement dit avec probabilité 1.
- 2. $\Esp(\Esp(|Y||X)) = \int_\R \left( \int_R |y|  \frac{f(x,y)}{f_X(x)} dy \right) f_X(x) dx = \Esp(|Y|)$ où nous avons utilisé le [théorème de Fubini](Calcul Intégral V.pdf #fubini). L'espérance conditionnelle de $Y$ sachant $X$ est bien définie dès que $Y$ est intégrable. 
+ 2. $\Esp(\Esp(|Y||X)) = \int_\R \left( \int_\R |y|  \frac{f(x,y)}{f_X(x)} dy \right) f_X(x) dx = \Esp(|Y|)$ où nous avons utilisé le [théorème de Fubini](Calcul Intégral V.pdf #fubini). L'espérance conditionnelle de $Y$ sachant $X$ est bien définie dès que $Y$ est intégrable. 
  3. Lorsque $(X,Y)$ admet une densité, l'espérance conditionnelle de $Y$ sachant $\{X=x\}$ s'écrit
  $$\Esp(Y|X=x) = \int_\R y f_{Y|X=x}(y) dy.$$
 
@@ -236,8 +236,8 @@ On a
 
 \begin{align*}
 \Esp(\psi(X)) & = \int_\R \psi(x)f_X(x) dx \\
-& = \int_\R \left( \int_R y f_{Y|X=x} dy \right) f_X(x) dx \\
-& = \int_\R \left( \int_R |y|  \frac{f(x,y)}{f_X(x)} dy \right) f_X(x) dx  \\
+& = \int_\R \left( \int_\R y f_{Y|X=x} dy \right) f_X(x) dx \\
+& = \int_\R \left( \int_\R |y|  \frac{f(x,y)}{f_X(x)} dy \right) f_X(x) dx  \\
 & = \Esp(Y).\\
 \end{align*}
 

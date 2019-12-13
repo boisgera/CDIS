@@ -27,23 +27,23 @@ Les éléments de théorie de la mesure donnés en calcul intégral permettent u
 * Dans le cas discret ($\Omega$ au plus dénombrable), la mesure de probabilité est une somme pondérée de mesures de Dirac :
   $$\P = \sum_{\omega \in \Omega} p_{\omega} \delta_{\omega},$$
   où $\sum_{\omega \in \Omega} p_{\omega} =1$
-* Dans le cas à densité ($\Omega = \R^n$, $n\in\N^\star$), la mesure de probabilité s'écrit :
-  $$\P = f(x)\mu,$$
-  où $f$ est une densité et $\mu$ la mesure de Lebesgue sur $\R^n$. On dit que $\P$ admet une densité par rapport à la mesure de Lebesgue.
+* Dans le cas à densité ($\Omega = \R^n$, $n\in\N^\ast$), la mesure de probabilité s'écrit :
+  $$\P = f\mu,$$
+  où $f$ est une densité et $\mu$ la mesure de (Borel-)Lebesgue sur $\R^n$. On dit que $\P$ admet une densité par rapport à la mesure de (Borel-)Lebesgue.
 
-Une [variable aléatoire réelle](Probabilité II.pdf #defvar), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$. 
+Une [variable aléatoire réelle](Probabilité II.pdf #defvar) (v.a.r), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$. 
 
 Le fait que la composition d'un vecteur aléatoire réel par une application $\B(\R^n)/\B(\R)$ mesurable est une variable aléatoire s'obtient immédiatement par le résultat du chapitre précédent de calcul intégral relatif à la [composition de fonctions mesurables](Calcul Intégral V.pdf #compfoncmes). 
 
 On peut généraliser la définition des espaces vectoriels $\L^1$ et $\L^2$ de la manière suivante :
 
 ### Définition --- Espace $\L^1$ {.definition}
-Soit $X$ une variable aléatoire réelle. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\R} x \P_X(dx) = \int_{\Omega} X(\omega)\P(d\omega) < +\infty$.
+Soit $X$ une variable aléatoire réelle. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\R} |x| \P_X(dx) = \int_{\Omega} |X|(\omega)\P(d\omega) < +\infty$.
 
 ### Définition --- Espace $\L^2$ {.definition}
 Soit $X$ une variable aléatoire réelle. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\R} x^2 \P_X(dx) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
 
-Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in \N^\star$ quelconque.
+Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in \N^\ast$ quelconque.
 
 ### Définition --- Espace $\L^p$ {.definition}
 Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^p(\Omega,\A,\P)$, si et seulement si $\Esp(|X|^p) = \int_\R |x[^p \P_X(dx) = \int_{\Omega} |X|^p(\omega)\P(d\omega) < +\infty$.
@@ -51,7 +51,7 @@ Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^p(\Omega,\A,\P)$,
 Si $X \in \L^p$, on dit qu'elle admet un moment d'ordre $p$. Du fait que $\P$ est une mesure finie, on a la stabilité par inclusion suivante :
 
 ### Proposition {.proposition}
-Soit $p \in \N^\star$, on a l'inclusion :
+Soit $p \in \N^\ast$, on a l'inclusion :
 $$ \L^{p+1}(\Omega,\A,\P) \subset \L^p(\Omega,\A,\P)$$
 
 ### Démonstration {.proof}
@@ -66,7 +66,7 @@ donc $|X|^p$ est intégrable.
 On donne ici dans le cas général les inégalités de Markov et de Bienaymé-Chebyshev, déjà vues en CPGE.
 
 ### Inégalité de Markov {.theorem #inegmarkov}
-Soit $p \in \N^\star$ et $a \in \R^\star$. Soit $X \in \L^p(\Omega,\A,\P)$, on a
+Soit $p \in \N^\ast$ et $a \in \R^\ast$. Soit $X \in \L^p(\Omega,\A,\P)$, on a
 $$\P(|X|> a) \leq \frac{\Esp(|X|^p)}{a^p}$$
 
 ### Démonstration {.proof}
@@ -123,32 +123,32 @@ Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie
 \A &= \bigotimes_{n=1}^{\infty}\A_n,
 \end{align*}
 où $\bigotimes_{n=1}^{\infty}\A_n$ désigne la plus petite tribu de $\Omega$ à laquelle appartienne tous les ensembles de la forme 
-$$A_1 \times A_2 \times \ldots\times A_k \times \Omega_{k+1} \times \Omega_{k+2} \times \ldots, \,\,\, A_i \in \A_i, \,\,\, k \in \N^\star$$
+$$A_1 \times A_2 \times \ldots\times A_k \times \Omega_{k+1} \times \Omega_{k+2} \times \ldots, \,\,\, A_i \in \A_i, \,\,\, k \in \N^\ast$$
 
 On a alors le théorème suivant, que l'on admettra, qui constitue un résultat non trivial de la théorie de la mesure et qui généralise le théorème d'unicité de la mesure produit.
 
 ### Théorème --- mesure produit sur un espace de dimension infinie {.theorem #probaespaceden}
 Avec les notations ci-dessus, il existe une unique probabilité $\P$ sur $(\Omega,\A)$, telle que
 $$\P(A_1 \times \ldots\times A_k \times \Omega_{k+1} \times \ldots) =\prod_{i=1}^k \P_i(A_i)$$
-pour tous $k \in \N^{\star}$ et $A_i \in \A_i$.
+pour tous $k \in \N^{\ast}$ et $A_i \in \A_i$.
 
 Nous sommes maintenant en mesure de définir une suite de variables aléatoires toutes définies sur le même espace de probabilité $(\Omega, \A, \P)$.
 
 ### Définition --- suites de variables aléatoires indépendantes {.definition}
-La suite $(X_n)_{n\in \N^\star}$ de variables aléatoires est dite *indépendante* si pour tout $n$, la famille finie $X_1,\ldots,X_n$ est indépendante.
+La suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires est dite *indépendante* si pour tout $n$, la famille finie $X_1,\ldots,X_n$ est indépendante.
 
 Il est facile de vérifier que l’indépendance est préservée par certaines transformations.
 
 ### Proposition --- conséquences {.proposition}
-L'indépendance de la suite $(X_n)_{n\in \N^\star}$ entraîne celle de 
+L'indépendance de la suite $(X_n)_{n\in \N^\ast}$ entraîne celle de 
 
- 1. toute sous-suite $(X_{i_k})_{k\in \N^\star}$,
+ 1. toute sous-suite $(X_{i_k})_{k\in \N^\ast}$,
  2. toute suite de vecteurs issus de $X_n$,
- 3. toute suite de la forme $(f_n(X_n))_{n\in \N^\star}$, où les fonctions $f_n$ sont des fonctions mesurables.
+ 3. toute suite de la forme $(f_n(X_n))_{n\in \N^\ast}$, où les fonctions $f_n$ sont des fonctions mesurables.
 
 ### Exemple {.example}
 Nous considérons l’ensemble $\Omega = [0, 1[$ muni de la tribu borélienne restreinte à cet ensemble, et de la mesure de Lebesgue. A chaque réel $\omega$, nous associons son développement dyadique (unique si l’on impose que les $\omega_i$ ne soient pas tous égaux à 1 à partir d’un certain rang) :
-$$ \omega = \sum_{i\in \N^\star} \frac{\omega_i}{2^i}, \omega_i \in \{0,1\}.$$
+$$ \omega = \sum_{i\in \N^\ast} \frac{\omega_i}{2^i}, \omega_i \in \{0,1\}.$$
 L'application $X_i : \Omega \to \{0,1\}$, qui à $\omega$ associe $X_i(\omega) = \omega_i$ est une variable aléatoire sur $\Omega$. En effet, pour $x_i \in \{0,1\}$, $1\leq i \leq n$,
 $$ \{X_i = x_i\} = \bigcup_{x_1,\ldots, x_{i-1} \in \{0,1\}} \left[ \sum_{j=1}^i \frac{x_j}{2^j}, \sum_{j=1}^i \frac{x_j}{2^j} + \frac{1}{2^i}\right[, $$
 qui est bien un élément de la tribu borélienne de $\Omega = [0,1[$, et
@@ -183,7 +183,7 @@ En calcul intégral, on a beaucoup étudié le cas de suites de fonctions conver
 
 ### Exemple {.example #pfinf}
 
-Soit $(X_n)_{n\in \N^\star}$, une suite de v.a. réelles qui sont indépendantes et de même loi (on notera *i.i.d* pour *indépendantes et identiquement distribuées*), avec $\P(X_n = 1) = p$ et $\P(X_n=0) = 1-p$. Ce sont donc des v.a. de loi de Bernoulli de paramètre $p$ qui modélisent par exemple les résultats d'un jeu de pile ou face. Lorsque $n$ est grand, on s'attend à ce que la proportion de faces ($X_n=1$) soit à peu près égale à $p$ (c'est l'essence de la conception objectiviste des probabilités). Mathématiquement, on voudrait que
+Soit $(X_n)_{n\in \N^\ast}$, une suite de v.a. réelles qui sont indépendantes et de même loi (on notera *i.i.d* pour *indépendantes et identiquement distribuées*), avec $\P(X_n = 1) = p$ et $\P(X_n=0) = 1-p$. Ce sont donc des v.a. de loi de Bernoulli de paramètre $p$ qui modélisent par exemple les résultats d'un jeu de pile ou face. Lorsque $n$ est grand, on s'attend à ce que la proportion de faces ($X_n=1$) soit à peu près égale à $p$ (c'est l'essence de la conception objectiviste des probabilités). Mathématiquement, on voudrait que
 $$\lim_{n \to \infty} \frac{X_1(\omega) + \ldots +X_n(\omega)}{n} = p \text{   pour tout }\omega\in\Omega.$$
 C'est en fait complètement faux. En effet, si on considère par exemple la suite $\omega_0 = {p,p,p,\ldots}$ qui ne contient que des piles, on obtient
 $$\lim_{n \to \infty} \frac{X_1(\omega_0) + \ldots +X_n(\omega_0)}{n} = 0$$
@@ -194,37 +194,37 @@ Ce type de convergence, pour lequel on n'a pas convergence pour tout $\omega$, m
 
 [^NBpf]: Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}, puis on montre que $\sum_{n=1}^\infty \P(A_n) = \infty$ et on conclut en invoquant le lemme de Borel-Cantelli.
 
-On considère une suite $(X_n)_{n\in \N^\star}$ de variables aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
+On considère une suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
 
 ### Définition --- convergences {.definition}
 
- 1. La suite $(X_n)_{n\in \N^\star}$ *converge presque sûrement* vers $X$, ce qui s'écrit $X_n \to X$ p.s., s'il existe un ensemble $N \in \A$ de probabilité nulle tel que
+ 1. La suite $(X_n)_{n\in \N^\ast}$ *converge presque sûrement* vers $X$, ce qui s'écrit $X_n \to X$ p.s., s'il existe un ensemble $N \in \A$ de probabilité nulle tel que
  $$ X_n (\omega) \xrightarrow[n \to \infty]{}  X(\omega),\,\,\, \forall \omega \notin N.$$
- 2. La suite $(X_n)_{n\in \N^\star}$ *converge en probabilité* vers $X$, ce qui s'écrit $X_n \xrightarrow{\P} X$, si $\forall \varepsilon >0$ on a
+ 2. La suite $(X_n)_{n\in \N^\ast}$ *converge en probabilité* vers $X$, ce qui s'écrit $X_n \xrightarrow{\P} X$, si $\forall \varepsilon >0$ on a
  $$ \P(|X_n-X| \geq \varepsilon) \xrightarrow[n \to \infty]{}  0. $$
- 3. La suite $(X_n)_{n\in \N^\star}$ *converge en moyenne* (ou dans $\L^1$) vers $X$, ce qui s'écrit $X_n \xrightarrow{\L^1} X$, si $X_n$ et $X$ sont dans $\L^1$ et si
+ 3. La suite $(X_n)_{n\in \N^\ast}$ *converge en moyenne* (ou dans $\L^1$) vers $X$, ce qui s'écrit $X_n \xrightarrow{\L^1} X$, si $X_n$ et $X$ sont dans $\L^1$ et si
  $$ \Esp(|X_n - X|) \xrightarrow[n \to \infty]{}  0 .$$
 
 ### Remarque {.remark}
 
-La définition de la convergence dans $\L^1$ se généralise aux ordres supérieurs, pour $p \in \N\star$, on parle de convergence dans $\L^p$ (en moyenne quadratique si $p=2$) ce qui s'écrit $X_n \xrightarrow{\L^p} X$, si $X_n$ et $X$ sont dans $\L^p$ et si
+La définition de la convergence dans $\L^1$ se généralise aux ordres supérieurs, pour $p \in \N\ast$, on parle de convergence dans $\L^p$ (en moyenne quadratique si $p=2$) ce qui s'écrit $X_n \xrightarrow{\L^p} X$, si $X_n$ et $X$ sont dans $\L^p$ et si
  $$ \Esp(|X_n - X|^p) \xrightarrow[n \to \infty]{}  0 .$$
 
 Ces convergences ne sont pas équivalentes comme le montrent les exemples suivants.
 
 ### Exemples {.example}
 
- * Soit $(X_n)_{n\in \N^\star}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
+ * Soit $(X_n)_{n\in \N^\ast}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
  $$ \P(X_n=1) = \frac{1}{n} ;\,\,\,\, \P(X_n = 0) = 1- \frac{1}{n}.$$
- Pour tout $\varepsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \varepsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\star}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
+ Pour tout $\varepsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \varepsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\ast}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
  
-   Mais si on considère maintenant une suite $(Y_n)_{n\in \N^\star}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
+   Mais si on considère maintenant une suite $(Y_n)_{n\in \N^\ast}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
    $$ \P(Y_n=n^2) = \frac{1}{n} ;\,\,\,\, \P(Y_n = 0) = 1- \frac{1}{n}.$$
-   Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\star}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
+   Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\ast}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
 
  * Soit $U$ une variable aléatoire uniforme sur $[0 , 1]$. Posons $Z_n = 1_{\{ U \leq \frac{1}{n}\} }$. Alors
  $$ \P(Z_n = 1)= \frac{1}{n} ;\,\,\,\, \P(Z_n = 0) = 1 - \frac{1}{n}$$
- Si $\omega \in \{U > 0\}$ est fixé, alors $\exists n_0 \in \N$ tel que $U(\omega) > \frac{1}{n_0}$, et donc tel que $Z_n(\omega) = 0$ pour tout $n \geq n_0$. Comme $\P(U>0)=1$, ceci montre que la suite $(Z_n)_{n\in \N^\star}$ converge presque sûrement vers 0.
+ Si $\omega \in \{U > 0\}$ est fixé, alors $\exists n_0 \in \N$ tel que $U(\omega) > \frac{1}{n_0}$, et donc tel que $Z_n(\omega) = 0$ pour tout $n \geq n_0$. Comme $\P(U>0)=1$, ceci montre que la suite $(Z_n)_{n\in \N^\ast}$ converge presque sûrement vers 0.
 
 On étudie maintenant les liens entre ces différentes convergences.
 
@@ -267,13 +267,13 @@ Si $X_n \xrightarrow{\P} X$, il existe une sous-suite $(n_k)$ telle que $X_{n_k}
 On remarque d'abord que l'on peut réécrire la définition de la convergence en probabilité de la manière suivante : $\forall \varepsilon >0$ et $\delta > 0$, il existe $N = N(\delta,\varepsilon)$ tel que
 $$n\geq N \Rightarrow \P(|X_n-X| > \varepsilon ) < \delta$$
 
-Comme la suite $(X_n)_{n\in \N^\star}$ converge en probabilité vers $X$, on peut définir une sous-suite de la manière suivante : posons $n_1 = 1$, et soit
+Comme la suite $(X_n)_{n\in \N^\ast}$ converge en probabilité vers $X$, on peut définir une sous-suite de la manière suivante : posons $n_1 = 1$, et soit
 $$n_j = \inf \left\{ n > n_{j-1} ; \P \left(|X_m - X| > \frac{1}{2^j} \right) < \frac{1}{3^j}, \text{ pour } m \geq n \right\}.$$
 On a alors 
 $$\sum_j \P \left(|X_{n_j} - X| > \frac{1}{2^j} \right) < \sum_j \frac{1}{3^j} < \infty$$
 Et en appliquant le [lemme de Borel-Cantelli](#BC) aux ensembles 
 $$A_j =\left\{|X_{n_{j}} - X| > \frac{1}{2^j} \right\},$$
-on obtient que la suite $(X_{n_j})_{j\in \N^\star}$ converge presque-sûrement. 
+on obtient que la suite $(X_{n_j})_{j\in \N^\ast}$ converge presque-sûrement. 
 
 ### Exemple {.example}
 
@@ -282,7 +282,7 @@ Soient $\Omega = \R$ muni de sa tribu borélienne et $\P$ la probabilité unifor
 Ainsi, $\Esp(X_n) = \frac{1}{n}$, et la suite $X_n$ tend vers $X = 0$ en moyenne, et donc en probabilité. Supposons que les $A_n$ soient placés bout-à-bout, en recommençant en 0 chaque fois qu’on arrive au point 1. Il est clair que l’on parcourt indéfiniment l’intervalle [0, 1] (car la série de terme général 1/n diverge). 
 
 Ainsi la suite numérique $X_n (\omega)$ ne converge pour aucun $\omega$, et on n’a pas $X_n \to X$ presque-sûrement ; cependant comme
-la série $\sum_n 1/n^2$ converge, il s’en suit que $X_{n^2} \to X = 0$ presque-sûrement. Nous avons donc la convergence presque-sûre de la sous-suite $(X_{n^2})_{n\in \N^\star}$.
+la série $\sum_n 1/n^2$ converge, il s’en suit que $X_{n^2} \to X = 0$ presque-sûrement. Nous avons donc la convergence presque-sûre de la sous-suite $(X_{n^2})_{n\in \N^\ast}$.
 
 ### Proposition --- continuité {.proposition #propconv4}
 Soit $f$ une fonction continue de $\R^d$ dans $\R$.
@@ -312,7 +312,7 @@ Enfin, $\lim_{K\to +\infty} \P(|X| > K) = 0$ (par convergence dominée) et donc 
 
 On présente maintenant l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge p.s. vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique, en Mathématiques Financières, dans les méthodes de quantification d'incertitudes.
 
-Dans ce paragraphe, on considère une suite $(X_n)_{n\in\N^\star}$ de variables aléatoires **indépendantes et de même loi** (ou indépendantes et identiquement distribuées, i.i.d. en abrégé). On considère la "moyenne" des $n$ premières variables aléatoires :
+Dans ce paragraphe, on considère une suite $(X_n)_{n\in\N^\ast}$ de variables aléatoires **indépendantes et de même loi** (ou indépendantes et identiquement distribuées, i.i.d. en abrégé). On considère la "moyenne" des $n$ premières variables aléatoires :
 $$ M_n = \frac{X_1 + \ldots + X_n}{n},$$
 et notre objectif est de montrer que $M_n$ converge vers l'espérance des $X_n$ lorsque celle-ci existe (comme les $X_n$ ont même loi, cette espérance est la
 même pour tout $n$). 
@@ -320,7 +320,7 @@ même pour tout $n$).
 Nous allons démontrer dans un premier temps la loi des grands nombres pour des variables aléatoires de carré intégrable.
 
 ### Théorème --- loi des grands nombres cas $\L^2${.theorem}
-Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
+Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\ast}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini. Elle converge donc aussi en probabilité. On a même convergence en *moyenne quadratique*, à savoir que :
 $$ \Esp((M_n - m)^2) \xrightarrow[n \to \infty]{} 0.$$
@@ -338,19 +338,19 @@ La preuve de la convergence presque-sûre est plus délicate.
 
 Quitte à remplacer $X_n$ par $X_n - m$ (et donc $M_n$ par $M_n - m$), nous pouvons supposer que $m = 0$.
 
-Montrons tout d’abord que la sous-suite $(M_{n^2})_{n \in \N^\star}$ converge presque-sûrement vers 0.
+Montrons tout d’abord que la sous-suite $(M_{n^2})_{n \in \N^\ast}$ converge presque-sûrement vers 0.
 
 La convergence dans $\L^1$ impliquant la convergence en probabilité, on sait qu'on peut extraire de $(M_n)_n$ une sous-suite convergeant p.s. vers 0. Cependant, cela ne suffit pas puisqu'on veut que la suite $(M_n)_n$ elle-même converge p.s. Pour le montrer, on construit d'abord une sous suite-particulière qui converge p.s. puis on traite les termes qui se trouvent entre deux éléments successifs de la sous-suite.
 
-D'après l'[inégalité de Bienaymé-Chebyshev](#inegbc) et ce qui précède, on a pour $q\in \N^\star$
+D'après l'[inégalité de Bienaymé-Chebyshev](#inegbc) et ce qui précède, on a pour $q\in \N^\ast$
 $$\P(|M_{n^2}|\geq \frac{1}{q}) \leq \frac{\sigma^2 q^2}{n^2}$$
 
-Donc si $A_{n,q} = \{|M_{n^2}|\geq \frac{1}{q}\}$, nous obtenons que $\sum_{n\geq 1} \P(A_{n,q}) < \infty$. Posons ensuite $B_{n,q} = \cup_{m\geq n} A_{m,q}$ et $C_q = \cap_{n \geq 1} B_{n,q} = \lim\sup_n A_{n,q}$. En appliquant le [lemme de Borel-Cantelli](#BC), on obtient que $\P(C_q) = 0$. En conséquence, si on pose $N = \cup_{q \in \N^\star} C_q$, on obtient $\P(N) \leq \sum_{q\in\N^\star} \P(C_q)= 0$.
+Donc si $A_{n,q} = \{|M_{n^2}|\geq \frac{1}{q}\}$, nous obtenons que $\sum_{n\geq 1} \P(A_{n,q}) < \infty$. Posons ensuite $B_{n,q} = \cup_{m\geq n} A_{m,q}$ et $C_q = \cap_{n \geq 1} B_{n,q} = \lim\sup_n A_{n,q}$. En appliquant le [lemme de Borel-Cantelli](#BC), on obtient que $\P(C_q) = 0$. En conséquence, si on pose $N = \cup_{q \in \N^\ast} C_q$, on obtient $\P(N) \leq \sum_{q\in\N^\ast} \P(C_q)= 0$.
 
-Si $\omega \notin N$, alors $\omega \in \cap_{q \in \N^\star} (C_q)^c$. Ainsi, $\omega \notin C_q$ pour tout $q \geq 1$, et donc $\omega \notin B_{n,q}$ pour $n$ assez grand (car $B_{n,q}$ est décroissant en $n$). Cela siginfie que pour tout $\omega \notin N$, pour tout $q \geq 1$, il existe un $n$ assez grand tel que $M_{k^2} \leq \frac{1}{q}$ dès que $k \geq n$. Autrement dit, $M_{n^2} \to 0$ si $\omega \notin N$, avec $\P(N) = 0$, d'où
+Si $\omega \notin N$, alors $\omega \in \cap_{q \in \N^\ast} (C_q)^c$. Ainsi, $\omega \notin C_q$ pour tout $q \geq 1$, et donc $\omega \notin B_{n,q}$ pour $n$ assez grand (car $B_{n,q}$ est décroissant en $n$). Cela siginfie que pour tout $\omega \notin N$, pour tout $q \geq 1$, il existe un $n$ assez grand tel que $M_{k^2} \leq \frac{1}{q}$ dès que $k \geq n$. Autrement dit, $M_{n^2} \to 0$ si $\omega \notin N$, avec $\P(N) = 0$, d'où
 $$ M_{n^2} \xrightarrow[n \to \infty]{} 0 \text{ p.s.}$$
 
-Montrons maintenant que la suite $(M_n)_{n\in\N^\star}$ tend presque-sûrement vers 0.
+Montrons maintenant que la suite $(M_n)_{n\in\N^\ast}$ tend presque-sûrement vers 0.
 
 Pour tout entier $n$, notons $p(n)$, l'entier tel que $p(n)^2 \leq n \leq (p(n)+1)^2$. Alors, 
 $$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} = \frac{1}{n} \sum_{p = p(n)^2+1}^{n} X_p,$$
@@ -373,7 +373,7 @@ Par ailleurs, on a déjà montré que $M_{p(n)^2} \to 0$ p.s. et $\frac{p(n)^2}{
 Plus généralement, le théorème suivant donne les hypothèses minimales assurant la validité de la loi des grands nombres, à savoir que les $X_n$ sont dans $\L_1$ (on se référera par exemple à [ce document en ligne](https://perso.univ-rennes1.fr/ismael.bailleul/AGREG/COURS/LFGN.pdf) ou à @Jacod pour la démonstration).
 
 ### Théorème --- loi des grands nombres cas $\L^1$ {.theorem}
-Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et **intégrables**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\star}$ définie par
+Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi et **intégrables**, et $m = \Esp(X_n)$ leur moyenne. Alors la suite $(M_n)_{n\in\N^\ast}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
 
@@ -385,11 +385,11 @@ Nous allons introduire maintenant une nouvelle notion de convergence de suites d
 On considère des vecteurs aléatoires $X_n$ et $X$, tous à valeurs dans le même espace $\R^d$, mais pouvant éventuellement être définis sur des espaces de probabilité différents.
 
 ### Définition {.definition #defconvloi}
-On dit que la suite $(X_n)_{n\in \N^\star}$ *converge en loi* vers $X$ et on écrit $X_n \xrightarrow{\L} X$, si pour toute fonction réelle $f$ **continue bornée** sur $\R^d$, 
+On dit que la suite $(X_n)_{n\in \N^\ast}$ *converge en loi* vers $X$ et on écrit $X_n \xrightarrow{\L} X$, si pour toute fonction réelle $f$ **continue bornée** sur $\R^d$, 
 $$\Esp(f(X_n)) \to \Esp(f(X)).$$
 
 ### Exemple {.example}
-Un cas très simple est celui où toutes les variables aléatoires $X_n$ prennent un nombre fini de valeurs $\{ x_i , 1 \leq i \leq N \}$. Alors, la suite $(X_n)_{n \in \N^\star}$ converge en loi vers $X$ si et seulement si 
+Un cas très simple est celui où toutes les variables aléatoires $X_n$ prennent un nombre fini de valeurs $\{ x_i , 1 \leq i \leq N \}$. Alors, la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$ si et seulement si 
 $$\lim_{n \to +\infty} \P(X_n = x_i ) = \P(X = x_i),\,\,\, \forall 1 \leq i \leq N$$
 Il suffit d’écrire pour $f$ continue bornée
 $$ \Esp(f (X_n)) = \sum_{i=1}^N f (x_i ) P(X_n = x_i) $$
@@ -401,7 +401,7 @@ Dans l’exemple ci-dessus, $N$ est fini et fixé. Mais nous avons un résultat 
 Dans la [définition](#defconvloi), les v.a. $X_n$ et $X$ peuvent être définies sur des univers distincts puisque seules leurs lois sont en cause. Il arrive même qu'une suite $X_n$ converge vers une limite $X$ qui ne peut pas exister sur les espaces sur lesquels sont définies les $X_n$, parce que ceux-ci sont trop "petits" : par exemple, si $X_n$ est une variable binomiale à $n$ modalités, convenablement normalisée, et la limite $X$ est gaussienne (on pourra justifier ceci par le [théorème central limite](#TCL)); l'espace naturel sur lequel est définie $X_n$ contient $n+1$ points, et sur un tel espace toutes les v.a. sont discrètes. La convergence en loi permet donc une sorte de convergence pour des v.a. pour lesquelles toute autre forme de convergence serait impossible.
 
 ### Exemple {.example}
-Soit $(X_n)_{n \in \N^\star}$ et $X$ des variables aléatoires de lois respectives $\No (0,\sigma^2_n)$ et $\No (0,\sigma^2)$. On suppose que la suite de réels positifs $(\sigma_n)_{n\in \N^\star}$ converge vers $\sigma > 0$ quand $n$ tend vers l'infini. Alors la suite $(X_n)_{n \in \N^\star}$ converge en loi vers $X$. En effet, soit $f$ une fonction continue bornée sur $\R$. On a
+Soit $(X_n)_{n \in \N^\ast}$ et $X$ des variables aléatoires de lois respectives $\No (0,\sigma^2_n)$ et $\No (0,\sigma^2)$. On suppose que la suite de réels positifs $(\sigma_n)_{n\in \N^\ast}$ converge vers $\sigma > 0$ quand $n$ tend vers l'infini. Alors la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$. En effet, soit $f$ une fonction continue bornée sur $\R$. On a
 \begin{align*}
 \Esp(f(X_n)) &= \int_\R f(y) \frac{1}{\sqrt{2\pi}\sigma_n} \exp\left(-\frac{y^2}{2\sigma^2_n}\right) dy \\
              &\to \int_\R f(y) \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{y^2}{2\sigma^2}\right) dy
@@ -433,7 +433,7 @@ Notons que puisque la fonction $F$ est continue à droite et croissante, l’ens
 
 ### Démonstration {.proof}
 
- 1. Supposons d'abord que $X_n \xrightarrow{\L} X$. Soit $a \in \R$ tel que $F(a-)=F(a)$. Pour tout $p \in \N^\star$ et tout $b \in \R$, il existe une fonction $f_{p,b}$ continue bornée sur $\R$ telle que 
+ 1. Supposons d'abord que $X_n \xrightarrow{\L} X$. Soit $a \in \R$ tel que $F(a-)=F(a)$. Pour tout $p \in \N^\ast$ et tout $b \in \R$, il existe une fonction $f_{p,b}$ continue bornée sur $\R$ telle que 
  $$ 1_{]-\infty,b]} \leq f_{p,b} \leq 1_{]-\infty,b + \frac{1}{p}]}.$$
  Alors, par définition, $\Esp(f_{p,b}(X_n)) \to \Esp(f_{p,b}(X))$ quand $n$ tend vers l'infini.
  L'inégalité ci-dessus implique que $F_n(a) = \P(X_n \leq a) \leq \Esp(f_{p,a}(X_n))$ et $\Esp(f_{p,a}(X)) \leq F(a+1/p)$ ; 
@@ -445,14 +445,14 @@ Notons que puisque la fonction $F$ est continue à droite et croissante, l’ens
  $$ g(x) = \sum_{i=1}^k f(a_i)1_{]a_{i-1},a_i]}(x)$$
  vérifie $|f-g| \leq \varepsilon$ sur $]a,b]$. Si $M = \sup_x |f(x)|$, il vient alors
  $$|\Esp(f(X_n))-\Esp(g(X_n))| \leq M \P(X_n \notin [a,b]) + \varepsilon,$$
- de même pour $X$. Enfin, $\Esp(g(X_n)) = \sum_{i=1}^k f(a_i)(F_n(a_i) - F_n(a_{i-1})$, et de même pour $X$ par définition de $g$. Comme $(F_n(a_i))_{n \in \N^\star}$ converge vers $F(a_i)$ pour tout $i$, on en déduit l'existence de $n_1$ tel que 
+ de même pour $X$. Enfin, $\Esp(g(X_n)) = \sum_{i=1}^k f(a_i)(F_n(a_i) - F_n(a_{i-1})$, et de même pour $X$ par définition de $g$. Comme $(F_n(a_i))_{n \in \N^\ast}$ converge vers $F(a_i)$ pour tout $i$, on en déduit l'existence de $n_1$ tel que 
  $$ n\geq n_1 \Rightarrow |\Esp(g(X_n)) - \Esp(g(X))|\leq \varepsilon.$$
  Finalement, on a 
  $$ n \geq \sup(n_0,n_1) \Rightarrow |\Esp(f(X_n))-\Esp(f(X))|\leq 3\varepsilon + 5 M \varepsilon .$$ 
  Vu l'arbitraire sur $\varepsilon$, on en déduit que $\Esp(f(X_n))$ converge vers $\Esp(f(X))$, d'où le résultat.
 
 ### Corollaire {.corollary}
-Si la suite $(X_n)_{n\in\N^\star}$ de variables aléatoires réelles converge en loi vers $X$, et si la loi de $X$ admet une densité, alors pour tous $a< b$,
+Si la suite $(X_n)_{n\in\N^\ast}$ de variables aléatoires réelles converge en loi vers $X$, et si la loi de $X$ admet une densité, alors pour tous $a< b$,
 $$ \P(X_n \in ]a,b]) \xrightarrow[n\to \infty]{} \P(X\in]a,b]).$$
 
 ### Démonstration {.proof}
@@ -611,9 +611,9 @@ où $m = \Esp(X) \in \R^n$ et $C$ est la matrice de covariance de $X$ qui est do
 Le théorème suivant caractérise la convergence en loi à l’aide des fonctions caractéristiques. C’est un critère extrêmement utile dans la pratique.
 
 ### Théorème de Lévy {.theorem #levytheorem}
-Soit $(X_n)_{n \in \N^\star}$ une suite de vecteurs aléatoires à valeurs dans $\R^d$.
+Soit $(X_n)_{n \in \N^\ast}$ une suite de vecteurs aléatoires à valeurs dans $\R^d$.
 
- 1. Si la suite $(X_n)_{n \in \N^\star}$ converge en loi vers $X$, alors $\phi_{X_n}$ converge simplement vers $\phi_X$.
+ 1. Si la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$, alors $\phi_{X_n}$ converge simplement vers $\phi_X$.
 
  2. Si les $\phi_{X_n}$ convergent simplement vers une fonction (complexe) $\phi$ sur $\R^d$ et si cette fonction est **continue** en 0, alors c'est la fonction caractéristique d'une variable aléatoire $X$ et $X_n \xrightarrow{\L} X$.
 
@@ -625,7 +625,7 @@ Soit $(X_n)_{n \in \N^\star}$ une suite de vecteurs aléatoires à valeurs dans 
 ## Théorème central limite
 Ce théorème est aussi connu sous le nom de théorème de la limite centrale. Plus simplement, il apparaît souvent sous l’abréviation TCL.
 
-On considère une suite de variables aléatoire $(X_n)_{n \in \N^\star}$ indépendantes, de même loi et de carré intégrable. On note $m$ et $\sigma^2$ la moyenne et la variance commune aux variables $X_n$, et
+On considère une suite de variables aléatoire $(X_n)_{n \in \N^\ast}$ indépendantes, de même loi et de carré intégrable. On note $m$ et $\sigma^2$ la moyenne et la variance commune aux variables $X_n$, et
     $$S_n = X_1 + \ldots + X_n$$
 ainsi ($S_n = n M_n$). On a vu que la loi des grands nombres assure que $M_n$ converge vers $m$ presque-sûrement et en moyenne. On va s'intéresser a la vitesse à laquelle cette convergence a lieu.
 
@@ -784,7 +784,7 @@ On considère le jeu de pile ou face infini de [l'exemple en début de cours](#p
 
 Loi faible des grands nombres
 ---------------------------------------------------------------------------------
-Soit $(X_n)_{n\in\N^\star}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Montrer que la suite $(M_n)_{n\in\N^\star}$ définie par
+Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Montrer que la suite $(M_n)_{n\in\N^\ast}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$ en probabilité quand $n$ tend vers l'infini.
 
