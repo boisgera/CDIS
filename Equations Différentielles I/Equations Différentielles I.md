@@ -1101,7 +1101,7 @@ f(x) =
 \left(
 \begin{array}{c}
 x_1+x_2-x_1(x_1^2+x_2^2) \\
--2x_1+x_2-x_2(x_1^2+x_2^2) 
+-x_1+x_2-x_2(x_1^2+x_2^2) 
 \end{array}
 \right)
 $$
@@ -1112,10 +1112,10 @@ Chercher les points d'équilibre du système revient à résoudre
 $$
 \begin{array}{rcl}
 0&=& x_1+x_2-x_1(x_1^2+x_2^2) \\
-0&=& -2x_1+x_2-x_2(x_1^2+x_2^2) 
+0&=& -x_1+x_2-x_2(x_1^2+x_2^2) 
 \end{array}
 $$
-Multiplier la première ligne par $x_2$, la deuxième par $x_1$ et soustraire, donne $x_1x_2=0$, et dont soit $x_1=0$ soit $x_2=0$. Si $x_1=0$, on tire de la première ligne $x_2=0$. Si $x_2=0$, on tire de la deuxième que $x_1=0$. Donc nécessairement, $x_1=x_2=0$. Il n'y a donc qu'un point d'équilibre $(0,0)$.
+Multiplier la première ligne par $x_2$, la deuxième par $x_1$ et soustraire, donne $x_1^2+x_2^2=0$, soit $x_1=x_2=0$. Il n'y a donc qu'un point d'équilibre $(0,0)$.
 La jacobienne de la dynamique est donnée par
 $$
 J_f(x_1,x_2) = 
