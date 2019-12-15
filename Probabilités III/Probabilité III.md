@@ -834,6 +834,35 @@ Montrer que $F_n(x) \overset{\mathcal{L}^2}{\longrightarrow} F(x)$ quand $n\to+\
 
 Montrer que $F_n(x) \to F(x)$ p.s. quand $n\to+\infty$. On dit que $F_n(x)$ est un *estimateur fortement consistant* de $F(x)$.
 
+## Théorème de Weierstrass sur $[0,1]$
+
+Le théorème de Weierstrass est un résultat classique d'analyse dont l'énoncé est le suivant : soient $I$ un segment de $\R$ et $f : I \to \R$ une fonction continue. Alors il existe une suite $(P_n)_{n\in\N^\ast}$ de polynômes $\R \to\R$ convergeant uniformément vers $f$ sur $I$.
+
+Dans cet exercice, nous allons voir une démonstration constructive de ce théorème dans le cas particulier où $I = [0,1]$.
+
+### Préliminaires {.question #weier-prelim}
+
+Nous allons avoir besoin de deux résultats intermédiaires pour établir la preuve du théorème de Weierstrass sur $[0,1]$. 
+
+    * **Théorème de convergence dominée.** Soient $(\Omega,\mathcal{A},\mu)$ un espace mesuré, $(f_n)_{n\in\N^\ast}$ une suite de fonctions mesurables $\Omega \to [-\infty,+\infty]$ et $g : \Omega \to [-\infty,+\infty]$ une fonction intégrable, telles que pour tout $n\in\N^\ast$ on a $|f_n| \leq g$ $\mu$-**presque partout**. Supposons qu'il existe $f : \Omega \to [-\infty,+\infty]$ telle que $f_n$ converge simplement vers $f$ $\mu$-**presque partout** quand $n\to+\infty$. Alors $f$ est intégrable et $$\int_\Omega f_n(\omega)\,\mu(d\omega) \xrightarrow[n\to+\infty]{} \int_\Omega f(\omega)\,\mu(d\omega).$$
+    On admettra ce premier résultat, qui généralise celui du cours de Calcul Intégral V.
+
+
+    * **Inégalité de Jensen.** Soient $(\Omega,\mathcal{A},\P)$ un espace probabilisé, $X : \Omega \to \R$ une variable aléatoire  intégrable et $f : \R \to \R$ une fonction mesurable convexe, telle que $f(X) \in \mathcal{L}^1$. Alors $$f\left(\Esp(X)\right) \leq \Esp\left(f(X)\right).$$
+    Démontrer ce résultat.
+    
+### Preuve du théorème. {.question #weier-thm}
+
+Soit $\left(X_n\right)_{n\in\N^\ast}$ une suite de variable aléatoires indépendantes, suivant toutes la même loi de Bernoulli de paramètre $x \in ]0,1[$. Pour tout $n\in\N^\ast$ on pose $M_n := \frac{1}{n}\,\sum_{i = 1}^n X_i$. On considère une fonction $f : [0,1] \to \R$ continue.
+
+1. Soit $n\in\N^\ast$. Vérifier que $\Esp\left( f(M_n) \right)$ peut s'écrire sous forme de polynôme.
+
+2. Montrer que $\Esp\left( f(M_n)  \right) \xrightarrow[n\to+\infty]{} f(x).$
+
+3. En déduire qu'il existe une suite de polynômes $[0,1] \to \R$ qui convergent simplement vers $f$.
+
+4. Montrer que la suite de polynômes exhibée à la question précédente converge même uniformément vers $f$.
+
 
 Théorème de Slutsky
 ---------------------------------------------------------------------------------
@@ -1016,6 +1045,60 @@ On remarque que pour tout $n\in\N^\ast$, $F_n(x)$ n'est autre que la moyenne de 
 ### Remarque
 On peut en fait aller plus loin et montrer que l'on a la convergence presque sûre uniformément sur $\R$ voir par exemple [ce document](http://math.univ-lyon1.fr/~gelineau/devagreg/Theoreme_Dini.pdf), c'est le théorème de Glivenko-Cantelli très utile en statistiques.
 
+
+## Théorème de Weierstrass sur $[0,1]$ 
+
+### Préliminaires {.answer #answer-weier-prelim}
+
+Puisque $f$ est convexe, pour tout $a \in \R$ il existe $\lambda_a \in \R$ tel que pour tout $x\in\R$ on a $$f(x) \geq f(a) + \lambda_a\,(x-a).$$ C'est une conséquence directe de la caractérisation de la convexité par les inégalités des pentes. C'est vrai en particulier pour $x =X(\omega)$, $\omega \in \Omega$, et $a = \Esp(X)$ : pour tout $\omega \in \Omega$,
+$$f\left(X(\omega)\right) \geq f\left(\Esp(X)\right) + \lambda_{\Esp(X)}\,\left(X(\omega) - \Esp(X)\right).$$
+En intégrant de chaque côté de l'inégalité, on obtient bien
+\begin{align*}
+\int_\Omega f\left(X(\omega)\right) \,\P(d\omega) = \Esp\left(f(X)\right) &\geq f\left(\Esp(X)\right) + \lambda_{\Esp(X)}\,\left(\int_\Omega X(\omega)\,\P(d\omega) - \Esp(X)\right)\\
+& = f\left(\Esp(X)\right) + \lambda_{\Esp(X)}\,\left(\Esp(X) - \Esp(X)\right)\\
+& = f\left(\Esp(X)\right).
+\end{align*}
+
+### Preuve du théorème. {.answer #answer-weier-thm}
+
+1. Comme $X_1,\dots,X_n$ sont indépendantes de même loi de Bernoulli de paramètre $x\in]0,1[$, $M_n$ est à valeurs dans $\bigl\{\frac{k}{n} : k \in \{0,\dots,n\} \bigr\}$ et pour tout $k\in\{0,\dots,n\}$ on a
+$$\P\left(M_n = \dfrac{k}{n}\right) = \binom{k}{n} x^k\,(1-x)^{n-k}.$$
+Ainsi,
+$$\Esp\left(f(M_n)\right) = \sum_{k=0}^{n} \binom{k}{n} f\left(\dfrac{k}{n}\right)\, x^k\,(1-x)^{n-k}.$$
+
+Les polynômes de la forme $B_{n,k} : u\in [0,1] \mapsto \binom{n}{k} u^k\,(1-u)^{n-k}$ sont appelés *polynômes de Bernstein*.
+
+2. Comme une variable de Bernoulli admet une espérance égale à son paramètre, la loi (forte) des grands nombres nous assure que $M_n \to x$ p.s. quand $n\to+\infty$. Puisque $f$ est continue, on a de même $f\left(M_n\right) \to f(x)$ p.s. quand $n\to+\infty$. 
+
+Par ailleurs, la continuité de $f$ sur $[0,1]$ nous assure que $f$ est bornée (l'image d'un compact par une fonction continue $\R \to \R$ est un compact). Ainsi, pour tout $n\in\N^\ast$, la variable aléatoire $f\left(M_n\right)$ l'est également. Cela nous permet d'appliquer le théorème de convergence dominée de la question 1 : en notant $(\Omega,\mathcal{A},\P)$ l'espace probabilisé sur lequel sont définies nos variables aléatoires,
+
+$$\Esp\left( f\left(M_n\right) \right) = \int_{\Omega} f\left(M_n(\omega)\right)\,\P(d\omega) \xrightarrow[n\to+\infty]{} \int_{\Omega} f(x)\,\P(d\omega) = f(x).$$
+
+3. En combinant les résultats des deux questions précédentes, on obtient que la suite $\left(P_n\right)_{n\in\N^\ast}$ des polynômes définis pour tout $n\in\N^\ast$ par $$P_n : x \in ]0,1[ \mapsto \sum_{k=0}^{n} \binom{k}{n} f\left(\dfrac{k}{n}\right)\, x^k\,(1-x)^{n-k}$$ converge simplement vers $f(x)$. On étend simplement ce résultat à $[0,1]$ en remarquant que pour tout $n\in\N^\ast$ on a directement l'égalité
+$$P_n(0) = f\left(\dfrac{0}{n}\right) = f(0) \text{ et } P_n(1) = f\left(\dfrac{n}{n}\right) = f(1).$$
+On a même toujours l'égalité $P_n(x) = \Esp\left( f\left(M_n\right) \right)$ pour $x\in[0,1]$ si l'on remarque qu'une loi de Bernoulli de paramètre $a\in \{0,1\}$ n'est autre d'une Dirac en $\{a\}$, ce qui signifie que $M_n = a$ p.s. et donc que $\Esp\left(f(M_n)\right) = f(a) = P_n(a)$.
+
+4. On souhaite montrer que $$\forall\,\varepsilon > 0 \ \exists\,N_\varepsilon\in\N^\ast : \left(n\geq N_\varepsilon\right) \Rightarrow \left(\forall\,x\in[0,1] : \left|P_n(x) - f(x)\right|\leq \varepsilon\right).$$
+
+Remarquons tout d'abord que la fonction $f$ étant bornée, elle admet un maximum sur $[0,1]$, que l'on note $K$. Puisqu'elle est continue sur un segment réel, elle est aussi uniformément continue : $$\forall\,\varepsilon > 0\ \ \exists\,\delta_{\varepsilon} > 0 : \forall\,(x,y) \in ]0,1[^2,\ \ |x-y| < \delta_\varepsilon \Rightarrow \left|f(x) - f(y)\right| < \varepsilon.$$
+Soient $\varepsilon > 0$, puis $\delta = \delta_{\varepsilon/2} > 0$ pour lequel l'implication précédente est vraie avec $\dfrac{\varepsilon}{2}$. Alors pour tous $n\in\N^\ast$ et $x\in]0,1[$ on a
+\begin{align*}
+\left|\Esp\left( f(M_n) \right) - f(x)\right| & \leq \Esp\left( \left|f(M_n) - f(x) \right| \right) \hspace{1em}\text{par l'inégalité de Jensen,}\\
+& = \Esp\left( \left|f(M_n) - f(x) \right|\,1_{[0,\delta[}\left(\left|M_n - x\right|\right) \right)\\
+&\ \ \ + \Esp\left( \left|f(M_n) - f(x) \right|\,1_{[\delta,+\infty[}\left(\left|M_n - x\right|\right) \right)\\
+&\leq \dfrac{\varepsilon}{2} + 2|K|\,\P\left(\left|M_n-x\right|\geq \delta\right) \hspace{1em}\text{par inégalité triangulaire,}\\
+&\leq \dfrac{\varepsilon}{2} + 2|K|\,\dfrac{\mathbb{V}(M_n)}{\delta^2} \hspace{1em}\text{par Bienaymé-Chebyshev.}
+\end{align*}
+Or pour tout $n\in\N^\ast$
+\begin{align*}
+\mathbb{V}(M_n) &= \mathbb{V}\left(\dfrac{1}{n}\,\sum_{i = 1}^n X_i \right)\\
+&= \dfrac{1}{n^2}\,\sum_{i = 1}^n \mathbb{V}(X_i) \hspace{1em}\text{par indépendance de $X_1,\dots,X_n$,}\\
+&= \dfrac{1}{n^2}\,\sum_{i = 1}^n x(1-x) \hspace{1em}\text{car $X_1,\dots,X_n$ suivent la même loi de Bernoulli},\\
+&= \dfrac{x(1-x)}{n} < \dfrac{1}{4n} \hspace{1em}\text{car $x \in ]0,1[$.}
+\end{align*}
+Par conséquent, pour tout $n\in\N^\ast$,
+$$\left|\Esp\left( f(M_n) \right) - f(x)\right| < \dfrac{\varepsilon}{2} + \dfrac{|K|}{2n\delta^2}.$$
+En prenant $N_\varepsilon$ le plus petit entier naturel supérieur ou égal à $\dfrac{|K|}{\varepsilon\,\delta^2}$, on obtient alors que pour tout $n\geq N_\varepsilon$, $\left|\Esp\left( f(M_n) \right) - f(x)\right| < \varepsilon.$ Comme $\varepsilon$ et $N_\varepsilon$ sont les mêmes quel que soit $x \in [0,1]$, on obtient bien la convergence uniforme désirée.
 
 Théorème de Slutsky
 ---------------------------------------------------------------------------------
