@@ -1,0 +1,2 @@
+g++ adaptatif.cpp -o adap++ -funroll-loops -Wno-deprecated -O 
+./adap++
