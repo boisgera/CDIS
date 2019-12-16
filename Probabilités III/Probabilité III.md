@@ -776,7 +776,7 @@ On suppose maintenant que les événements $A_n$ sont mutuellement indépendants
 
 Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \infty} A_n) < 1$ quand les $A_n$ ne sont pas indépendants.
 
-### Question 4 {.question bc4}
+### Question 4 {.question #bc4}
 
 On considère le jeu de pile ou face infini de [l'exemple en début de cours](#pfinf). Montrer que  l'événement $A = \{\omega : \text{ il n'y a qu'un nombre fini de faces}\}$ est de probabilité nulle. (Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}, puis montrer que $\sum_{n=1}^\infty \P(A_n) = \infty$).
 
@@ -844,12 +844,10 @@ Dans cet exercice, nous allons voir une démonstration constructive de ce théor
 
 Nous allons avoir besoin de deux résultats intermédiaires pour établir la preuve du théorème de Weierstrass sur $[0,1]$. 
 
-    * **Théorème de convergence dominée.** Soient $(\Omega,\mathcal{A},\mu)$ un espace mesuré, $(f_n)_{n\in\N^\ast}$ une suite de fonctions mesurables $\Omega \to [-\infty,+\infty]$ et $g : \Omega \to [-\infty,+\infty]$ une fonction intégrable, telles que pour tout $n\in\N^\ast$ on a $|f_n| \leq g$ $\mu$-**presque partout**. Supposons qu'il existe $f : \Omega \to [-\infty,+\infty]$ telle que $f_n$ converge simplement vers $f$ $\mu$-**presque partout** quand $n\to+\infty$. Alors $f$ est intégrable et $$\int_\Omega f_n(\omega)\,\mu(d\omega) \xrightarrow[n\to+\infty]{} \int_\Omega f(\omega)\,\mu(d\omega).$$
-    On admettra ce premier résultat, qui généralise celui du cours de Calcul Intégral V.
-
-
-    * **Inégalité de Jensen.** Soient $(\Omega,\mathcal{A},\P)$ un espace probabilisé, $X : \Omega \to \R$ une variable aléatoire  intégrable et $f : \R \to \R$ une fonction mesurable convexe, telle que $f(X) \in \mathcal{L}^1$. Alors $$f\left(\Esp(X)\right) \leq \Esp\left(f(X)\right).$$
-    Démontrer ce résultat.
+* **Théorème de convergence dominée.** Soient $(X,\mathcal{A},\mu)$ un espace mesuré, $(f_n)_{n\in\N^\ast}$ une suite de fonctions mesurables $X \to [-\infty,+\infty]$ et $g : X \to [-\infty,+\infty]$ une fonction intégrable, telles que pour tout $n\in\N^\ast$ on a $|f_n| \leq g$ $\mu$-**presque partout**. Supposons qu'il existe $f : X \to [-\infty,+\infty]$ telle que $f_n$ converge simplement vers $f$ $\mu$-**presque partout** quand $n\to+\infty$. Alors $f$ est intégrable et $$\int_X f_n\mu \xrightarrow[n\to+\infty]{} \int_X f\mu.$$
+    
+* **Inégalité de Jensen.** Soient $(\Omega,\mathcal{A},\P)$ un espace probabilisé, $X : \Omega \to \R$ une variable aléatoire  intégrable et $f : \R \to \R$ une fonction mesurable convexe, telle que $f(X) \in \mathcal{L}^1$. Alors $$f\left(\Esp(X)\right) \leq \Esp\left(f(X)\right).$$
+Démontrer ce résultat.
     
 ### Preuve du théorème. {.question #weier-thm}
 
@@ -939,9 +937,13 @@ que $\P(\lim \sup_{n \to \infty} A_n) = 1$.
 
 Prendre tous les $A_n$ égaux à un même événement $A$ de probabilité $\P(A) \in \left]0,1\right[$.
 
+### Question 4 {.answer #answer-bc4}
+
+En suivant l'indication, on a $\P(A_n) = p$, d'où $\sum_{n=1}^\infty \P(A_n) = \infty$. Le lemme de Borel-Cantelli nous indique alors que $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\cap_{n\geq 1} \cup_{k \geq n} A_n \right) = 1$. Autrement dit, on a presque sûrement un nombre infini de faces. En passant au complémentaire, on en déduit que l'événement $A$ est de probabilité nulle.
+
 Loi faible des grands nombres
 ---------------------------------------------------------------------------------
-Appliquer L'inégalité de Bienaymé-Chebyshev à la variable aléatoire $M_n$.
+Appliquer l'inégalité de Bienaymé-Chebyshev à la variable aléatoire $M_n$.
 
 Convergence vers une constante
 ----------------------------------------------------------------------------------
@@ -1049,6 +1051,17 @@ On peut en fait aller plus loin et montrer que l'on a la convergence presque sû
 ## Théorème de Weierstrass sur $[0,1]$ 
 
 ### Préliminaires {.answer #answer-weier-prelim}
+
+Puisque $f_n$ converge vers $f$ $\mu$-presque partout, il existe un ensemble $E$ mesurable et négligeable tel que
+$$f_n(x) \to f(x),\,\,\, \forall x \in X \setminus E$$
+De même, puisque $|f_n(x)|\leq g(x)$ $\mu$-presque partout, les ensembles $F_n = \{x \in X; |f(x)| > g(x) \}$ sont mesurables et négligeables pour tout $n \in \N^\ast$. Alors $N = E \cup_{n\in\N^\ast}$ est mesurable et négligeable.
+
+Soit $\tilde{f}_n = 1_{N^c}f_n$ et $\tilde{f}=1_{N^c}f$, les restrictions à $N^c$ des $f_n$ et $f$. Alors le théorème de convergence dominée s'applique à la suite des $\tilde{f}_\{n\in\N^\ast\}$. On a ainsi que $\tilde{f}$ est intégrable et 
+$$\int_X \tilde{f} \mu = \lim_{n\to\infty}\int_X \tilde{f}_n \mu.$$
+
+Puisque $f = \tilde{f}$ $\mu$-p.p. et $f_n = \tilde{f}_n$ $\mu$-p.p., on a $\int_X f \mu = \int_X \tilde{f} \mu$ et $\int_X f_n \mu = \int_X \tilde{f}_n \mu$. Alors $f$ est intégrable et 
+$$\int_X f_n\mu \xrightarrow[n\to+\infty]{} \int_X f\mu.$$
+
 
 Puisque $f$ est convexe, pour tout $a \in \R$ il existe $\lambda_a \in \R$ tel que pour tout $x\in\R$ on a $$f(x) \geq f(a) + \lambda_a\,(x-a).$$ C'est une conséquence directe de la caractérisation de la convexité par les inégalités des pentes. C'est vrai en particulier pour $x =X(\omega)$, $\omega \in \Omega$, et $a = \Esp(X)$ : pour tout $\omega \in \Omega$,
 $$f\left(X(\omega)\right) \geq f\left(\Esp(X)\right) + \lambda_{\Esp(X)}\,\left(X(\omega) - \Esp(X)\right).$$
