@@ -360,7 +360,7 @@ et puique les variables aléatoires de la somme sont indépendantes, il vient
                                                                  & \leq \frac{2\sqrt{n}+1}{n^2} \sigma^2 \leq \frac{3}{n^{3/2}}\sigma^2
 \end{align*}
 
-où on a utilisé le fait que $p(n) \leq \sqrt(n)$.
+où on a utilisé le fait que $p(n) \leq \sqrt{n}$.
 
 En appliquant de nouveau l'[inégalité de Bienaymé-Chebyshev](#inegbc), on obtient
 $$ \P\left(\left|M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right|>a\right) \leq \frac{2\sqrt{n}+1}{n^2} \frac{\sigma^2}{a^2}$$
