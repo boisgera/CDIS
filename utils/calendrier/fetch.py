@@ -21,7 +21,7 @@ events.sort()
 for i, event in enumerate(events):
     print(f"{i+1:2d}) {event.name}")
     assert event.begin.date() == event.end.date()
-    assert event.duration.seconds == 1.5 * 3600
+    #assert event.duration.seconds == 1.5 * 3600
     begin = event.begin.to("Europe/Paris")
     end = event.end.to("Europe/Paris")
     print("    " + begin.format("dddd DD MMMM YYYY", locale="fr_FR"), end=", ")
