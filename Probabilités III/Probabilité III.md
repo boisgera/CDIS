@@ -916,7 +916,7 @@ Lemme de Borel-Cantelli
 
 On voit dans un premier temps que $\bigcap_{n\geq 0} \bigcup_{k \geq n} A_n \in \A$ par unions et intersections dénombrables.
 On a 
-$$\P(\lim \sup_n A_n ) = \lim_{p \to \infty} P(\cup_{n\geq p} A n) \leq \lim \P(A_n),$$
+$$\P(\lim \sup_n A_n ) = \lim_{p \to \infty} \P(\cup_{n\geq p} A_n) \leq_{p \to \infty} \sum_{n \geq p} \P(A_n),$$
 où on remarque que les deux suites sont décroissantes.
 
 Si la série $\sum_n \P(A_n)$ est convergente, le reste de cette série tend vers 0 et l'inégalité implique que $\P(\lim \sup_n A n) = 0$.
@@ -925,7 +925,7 @@ Si la série $\sum_n \P(A_n)$ est convergente, le reste de cette série tend ver
 
 Supposons maintenant que les $A_n$ soient indépendants et que la série diverge. Soit $m$ un nombre entier. Nous avons
 \begin{align*}
-\P(\cup_{i=p}^m A i) &= 1- \P(\cap_{i=p}^m A_i^c) = 1- \prod_{i=p}^m \P(A_i^c) \text{ par indépendance}\\
+\P(\cup_{i=p}^m A_i) &= 1- \P(\cap_{i=p}^m A_i^c) = 1- \prod_{i=p}^m \P(A_i^c) \text{ par indépendance}\\
 & = 1- \prod_{i=p}^m (1-\P(A_i)) \geq 1- e^{-\sum_{i=p}^m\P(A_i)}
 \end{align*}
 du fait de l’inégalité $1 - x \leq e^{-x}$ pour $x \geq 0$. Ainsi,
