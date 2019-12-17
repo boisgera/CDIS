@@ -116,7 +116,7 @@ qui est assuré par l'unicité de la mesure (de probabilité) produit.
 ### {.anonymous}
 Ce résultat nous indique que l'on peut effectivement construire des couples (et même des $n$-uplets en itérant) de variables aléatoires réelles indépendantes en considérant l'espace produit, munis des tribus produit et des (mesures de) probabilités produit. Il est malheureusement beaucoup plus délicat, mais indispensable pour les applications (en particulier la loi des grands nombres), de construire une **suite infinie de variables indépendantes** de lois données.
 
-Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie sur le même espace de probabilité $(\Omega_n,\A_n,\P_n)$, à valeurs dans $(\R,\B(\R))$ et de loi $\P_{X_n}$ (pour construire chaque $X_n$, on peut procéder comme ci-dessus). Ensuite, on pose
+Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie sur un espace de probabilité $(\Omega_n,\A_n,\P_n)$, à valeurs dans $(\R,\B(\R))$ et de loi $\P_{X_n}$ (pour construire chaque $X_n$, on peut procéder comme ci-dessus). Ensuite, on pose
 \begin{align*}
 \Omega &= \prod_{n=1}^{\infty}\Omega_n \text{        (produit cartésien dénombrable),}\\
 \A &= \bigotimes_{n=1}^{\infty}\A_n,
@@ -467,7 +467,7 @@ sont de plus bornées par 1, donc elles admettent une espérance. Il est alors n
 
 ### Définition {.definition}
 Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, sa *fonction caractéristique* est la fonction $\phi_X$ de $\R^n$ dans $\C$ définie par
-    $$ \phi_X(u) = \Esp(e^{i < u,x>}) = \int_{\R^n} e^{i < u,x>} \P_X(dx).$$
+    $$ \phi_X(u) = \Esp(e^{i < u,X>}) = \int_{\R^n} e^{i < u,x>} \P_X(dx).$$
 
 ### Remarque {.remark}
 La fonction caractéristique ne dépend en fait **que de la loi $\P_X$ de $X$** : c’est la “transformée de Fourier” de la loi $\P_X$.
@@ -1056,7 +1056,7 @@ Puisque $f_n$ converge vers $f$ $\mu$-presque partout, il existe un ensemble $E$
 $$f_n(x) \to f(x),\,\,\, \forall x \in X \setminus E$$
 De même, puisque $|f_n(x)|\leq g(x)$ $\mu$-presque partout, les ensembles $F_n = \{x \in X; |f(x)| > g(x) \}$ sont mesurables et négligeables pour tout $n \in \N^\ast$. Alors $N = E \cup_{n\in\N^\ast}$ est mesurable et négligeable.
 
-Soit $\tilde{f}_n = 1_{N^c}f_n$ et $\tilde{f}=1_{N^c}f$, les restrictions à $N^c$ des $f_n$ et $f$. Alors le théorème de convergence dominée s'applique à la suite des $\tilde{f}_\{n\in\N^\ast\}$. On a ainsi que $\tilde{f}$ est intégrable et 
+Soit $\tilde{f}_n = 1_{N^c}f_n$ et $\tilde{f}=1_{N^c}f$, les restrictions à $N^c$ des $f_n$ et $f$. Alors le théorème de convergence dominée s'applique à la suite des $\tilde{f}_{\{n\in\N^\ast\}}$. On a ainsi que $\tilde{f}$ est intégrable et 
 $$\int_X \tilde{f} \mu = \lim_{n\to\infty}\int_X \tilde{f}_n \mu.$$
 
 Puisque $f = \tilde{f}$ $\mu$-p.p. et $f_n = \tilde{f}_n$ $\mu$-p.p., on a $\int_X f \mu = \int_X \tilde{f} \mu$ et $\int_X f_n \mu = \int_X \tilde{f}_n \mu$. Alors $f$ est intégrable et 
