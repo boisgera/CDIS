@@ -194,7 +194,7 @@ On distingue donc les méthodes *explicites* où $\Phi_{\dt_j}(t_j,x^j)$ est éc
 
 On peut bien sûr construire des méthodes plus compliquées et plus précises pour des méthodes de Runge--Kutta d'ordre supérieur (explicites ou implicites). 
 
-## Définition implicite de $\Phi$
+## Définition implicite de $\Phi$ {.section #sec_def_impl}
 
 Dans les schémas implicites, l'application $\Phi_{\dt}$ est définie de manière implicite. Par exemple, pour le schéma d'Euler, on a :
 $$
@@ -696,7 +696,20 @@ où $x^{j+1}$ est solution de
 $$
 x^{j+1} = x(t_j) + \dt f\left(t_{j+1},x^{j+1}\right).
 $$
-On a donc $x^{j+1} = x(t_j) + \mathrm{O}(\dt)$ et 
+Comme vu dans la section [Définition implicite de $\Phi$](#sec_def_impl), cette définition implicite de $x^{j+1}$ admet une unique solution pour $\dt$ suffisamment petit si $f$ est Lipschitzienne par rapport à $x$. On aimerait dire ici que $x^{j+1} = x(t_j) + \mathrm{O}(\dt)$ pour $\dt$ suffisamment petit. Pour faire ça proprement, fixons $(t_j,x(t_j))$ et posons
+$$
+F(x,\dt) = x - \big(x(t_j) + \dt f\left(t_j+\dt,x\right)\big) 
+$$
+qui est de classe $C^1$.
+On a alors
+$$
+F(x(t_j),0) = 0 \quad , \quad F(x^{j+1},\dt)=0 \ .
+$$
+Puisque $\partial_x F(x(t_j),0) = \text{Id}$ est inversible, le théorème des fonctions implicites nous dit que pour $\Delta t$ suffisamment petit, il existe une fonction $\psi$ de classe $C^1$ telle que 
+$$
+F(x^{j+1},\dt)=0 \qquad , \qquad x^{j+1} = \psi(\dt) 
+$$
+au voisinage de $(x(t_j),0)$. Puisque $\psi$ est continue, il s'ensuit donc bien que $x^{j+1} = x(t_j) + \mathrm{O}(\dt)$. On a donc
 \begin{align*}
 f(t_{j+1},x^{j+1}) &= f(t_j,x(t_j)) + \partial_t f(t_j,x(t_j)) (t_{j+1}-t_j) +  \partial_x f(t_j,x(t_j))(x^{j+1} - x(t_j)) + \mathrm{O}(\|h\|^2) \\
 &= f(t_j,x(t_j)) + \mathrm{O}(\dt)
@@ -717,11 +730,34 @@ où $x^{j+1}$ est solution de
 $$
 x^{j+1} = x(t_j) + \frac{\dt}{2} \left(f(t_j,x(t_j))+ f(t_{j+1},x^{j+1})\right) .
 $$
-On a donc $x^{j+1} = x(t_j)+ \mathrm{O}(\dt)$ et  
+Cette fois-ci on voudrait montrer que $x^{j+1} = x(t_j)+\dt f(t_j, x(t_j)) + \mathrm{O}(\dt^2)$. Pour cela, on redéfinit 
+$$
+F(x,\dt) = x - \big(x(t_j) +\frac{\dt}{2} \left(f(t_j,x(t_j))+ f(t_{j}+\dt,x^{j+1})\right) \big) 
+$$
+qui est de classe $C^1$.
+On a alors
+$$
+F(x(t_j),0) = 0 \quad , \quad F(x^{j+1},\dt)=0 \ .
+$$
+Puisque $\partial_x F(x(t_j),0) = \text{Id}$ est inversible, le théorème des fonctions implicites nous dit que pour $\Delta t$ suffisamment petit, il existe une fonction $\psi$ de classe $C^1$ telle que 
+$$
+F(x^{j+1},\dt)=0 \qquad , \qquad x^{j+1} = \psi(\dt) 
+$$
+au voisinage de $(x(t_j),0)$ et de plus,
+$$
+\psi'(0) = \text{Id}^{-1} \cdot \partial_{\Delta t} F(x(t_j),0) = f(t_j,x(t_j)) \ .
+$$
+Puisque $\psi$ est de classe $C^1$, on a donc bien
+$$
+x^{j+1} = x(t_j)+\dt f(t_j, x(t_j)) + \mathrm{O}(\dt^2) \ .
+$$
+<!--On a donc $x^{j+1} = x(t_j)+ \mathrm{O}(\dt)$ et  
 $$
 f(t_{j+1},x^{j+1}) = f(t_j, x(t_j)) + \mathrm{O}(\dt) .
 $$
 Il s'ensuit qu'en fait $x^{j+1} = x(t_j)+\dt f(t_j, x(t_j)) + \mathrm{O}(\dt^2)$ et donc
+-->
+Il s'ensuit que
 $$
 f(t_{j+1},x^{j+1}) = f(t_j, x(t_j)) + \dt \left(\partial_t f(t_j,x(t_j)) + \partial_x f(t_j,x(t_j))f(t_j, x(t_j))\right) + \mathrm{O}(\dt^2)
 $$
@@ -740,11 +776,13 @@ où $x^{j+1}$ est solution de
 $$
 x^{j+1} = x(t_j) + \dt f\left(t_j+\frac{\dt}{2},\frac{x(t_j)+x^{j+1}}{2}\right) .
 $$
-On a donc de même $\frac{x(t_j)+x^{j+1}}{2} = x(t_j)+ \mathrm{O}(\dt)$ et  
+<!--On a donc de même $\frac{x(t_j)+x^{j+1}}{2} = x(t_j)+ \mathrm{O}(\dt)$ et  
 $$
 f\left(t_j+\frac{\dt}{2},\frac{x(t_j)+x^{j+1}}{2}\right)= f\left(t_j+\frac{\dt}{2},x(t_j)+ \mathrm{O}(\dt)\right)= f(t_j, x(t_j)) + \mathrm{O}(\dt) .
 $$
-Il s'ensuit qu'on a toujours $x^{j+1} = x(t_j)+\dt f(t_j, x(t_j)) + \mathrm{O}(\dt^2)$ et donc
+Il s'ensuit qu'on a toujours 
+-->
+On montre de la même façon qu'à la question précédente que pour $\dt$ suffisamment petit, $x^{j+1} = x(t_j)+\dt f(t_j, x(t_j)) + \mathrm{O}(\dt^2)$ et donc
 \begin{align*}
 f\left(t_j+\frac{\dt}{2},\frac{x(t_j)+x^{j+1}}{2}\right) &= f(t_j,x(t_j)) + \partial_t f(t_j,x(t_j)) \frac{\dt}{2} +  \partial_x f(t_j,x(t_j))\left(\frac{x(t_j)+x^{j+1}}{2} - x(t_j)\right) + \mathrm{O}(\|h\|^2) \\
 &= f(t_j, x(t_j)) + \frac{\dt}{2} (\partial_t f(t_j,x(t_j)) + \partial_x f(t_j,x(t_j))f(t_j,x(t_j))) + \mathrm{O}(\dt^2)
