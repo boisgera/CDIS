@@ -212,7 +212,7 @@ Soit $Y$ une variable aléatoire intégrable.
 ### Remarques {.remark}
 
  1. $\psi(x)$ n'est définie que pour $x \notin B$, avec $\P(X\in B) = 0$. Par conséquent, la [définition](#defespcond) définit bien l'espérance conditionnelle $\psi(X) = \Esp(Y|X)$ $\P_X$-presque sûrement, autrement dit avec probabilité 1.
- 2. $\Esp(\Esp(|Y||X)) = \int_\R \left( \int_\R |y|  \frac{f(x,y)}{f_X(x)} dy \right) f_X(x) dx = \Esp(|Y|)$ où nous avons utilisé le [théorème de Fubini](Calcul Intégral V.pdf #fubini). L'espérance conditionnelle de $Y$ sachant $X$ est bien définie dès que $Y$ est intégrable. 
+ 2. $\Esp(\Esp(|Y||X)) = \Esp(|Y|)$ comme conséquence directe du [théorème de Fubini conditionnel](#fubinicond). L'espérance conditionnelle de $Y$ sachant $X$ est bien définie dès que $Y$ est intégrable. 
  3. Lorsque $(X,Y)$ admet une densité, l'espérance conditionnelle de $Y$ sachant $\{X=x\}$ s'écrit
  $$\Esp(Y|X=x) = \int_\R y f_{Y|X=x}(y) dy.$$
 
@@ -232,22 +232,13 @@ Si $Y$ est intégrable, alors $\psi(X) = \Esp(Y | X)$ est intégrable, et
 $$\Esp( \psi(X)) = E( Y ) .$$
 
 ### Démonstration {.proof} 
-On a
-
-\begin{align*}
-\Esp(\psi(X)) & = \int_\R \psi(x)f_X(x) dx \\
-& = \int_\R \left( \int_\R y f_{Y|X=x} dy \right) f_X(x) dx \\
-& = \int_\R \left( \int_\R |y|  \frac{f(x,y)}{f_X(x)} dy \right) f_X(x) dx  \\
-& = \Esp(Y).\\
-\end{align*}
-
-où avons utilisé ici le théorème de Fubini dont l'application est justifiée par la remarque ci-dessus.
+C'est une conséquence directe du [théorème de Fubini conditionnel](#fubinicond).
 
 ### {.anonyomous}
 Ce résultat permet de calculer $\Esp( Y )$ en conditionnant par une variable auxiliaire $X$ :
 $$ \Esp( Y ) = \int_\R \Esp(Y | X = x) \P_X(dx) dx$$
 
-Il généralise la [formule des probabilités totales](Probabilité I.pdf #formprobatot), qui correspond ici à $Y = 1_A$ , et $B_x = \{X = x\}$ où les $B_x$ forment cette fois une partition non dénombrable de $\R$. On l’écrit souvent sous forme
+Il généralise la [formule des probabilités totales](Probabilité I.pdf #formprobatot), qui correspond ici à $Y = 1_A$ , et $B_x = \{X = x\}$ où les $B_x$ forment cette fois une partition non dénombrable de $\R$. On l’écrit souvent sous la forme
 $$ \Esp \left( \Esp(Y | X) \right) = \Esp( Y )$$
 et on l'appelle la *formule de l'espérance totale*.
 
@@ -262,8 +253,11 @@ $$ \Esp (Y g(X) | X) = g(X) \Esp (Y | X) $$
 
 est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$.
 
+
 ## Vecteurs Gaussiens à densité
 Dans le cas des vecteurs gaussiens, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On verra en particulier que les lois conditionelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
+
+On considère un vecteur gaussien dans $\R^n$ d'espérance $m$ et de matrice de covariance $C$ inversible. On 
 
 
 # Régression et espérance conditionnelle des variables de carré intégrable

@@ -890,7 +890,7 @@ On retrouve au passage la même vitesse de convergence que celle donnée par le 
 
 ### Question 2 {.answer #answer-idc2}
 
-i) $M(u) = \Esp(e^{u(X_1 -m)}) = e^{u^2/\sigma^2}$.
+i) $M(u) = \Esp(e^{u(X_1 -m)}) = \phi_{X_1}(-iu) = e^{u^2 \sigma^2/2}$, où $\phi_{X_1}$ est la fonction caractéristique de $X_1$.
 ii) On a $e^{u(M_n-nm)} \geq e^{ua} 1_{S_n -nm \geq a}$, d'où
     $$\P(S_n -nm \geq a) \leq \frac{\Esp(e^{u(M_n-nm)})}{e^{ua}} = e^{-ua}M(u)^n$$
     par indépendance des $X_i$.
@@ -898,11 +898,12 @@ iii)
 \begin{align*}
 \P(|Y_n - m| \geq \varepsilon) &= \P(S_n - nm \geq n\varepsilon) + P(S_n - nm \leq -n\varepsilon) \\
                             &\leq e^{-nu\varepsilon} (M (u))^n + e^{-n(-u)(-\varepsilon)} (M (-u))^n = 2e^{-nu\varepsilon}(M (u))^n \\
-                            &\leq 2e^{-nu\varepsilon}e^{u^2/\sigma^2}, \,\,\, \forall u \geq 0
+                            &\leq 2e^{-nu\varepsilon}e^{nu^2\sigma^2/2}, \,\,\, \forall u \geq 0
 \end{align*}
-La meilleure majoration va être obtenue en minimisant l’exposant, c’est-à-dire pour $u = \varepsilon$. Nous en déduisons l’inégalité de Chernov.
+La meilleure majoration va être obtenue en minimisant l’exposant, c’est-à-dire pour $u = \varepsilon/\sigma^2$. Nous en déduisons l’inégalité de Chernov.
+
 ### Question 3 {.answer #answer-idc3}
-Par l’inégalité de Bienaymé-Chebyshev, $\P(|Y n - m| > \varepsilon) \leq \frac{\V(Y_n)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}$.
+Par l’inégalité de Bienaymé-Chebyshev, $\P(|Y_n - m| > \varepsilon) \leq \frac{\V(Y_n)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}$.
 
 Ainsi, $\P(|Y_n - m| \leq \varepsilon)\leq \alpha$ dès que $1-\frac{\sigma^2}{n\varepsilon^2}$. Avec $\varepsilon = 0,05$, il vient $n \geq 80000$.
 
@@ -916,7 +917,7 @@ Lemme de Borel-Cantelli
 
 On voit dans un premier temps que $\bigcap_{n\geq 0} \bigcup_{k \geq n} A_n \in \A$ par unions et intersections dénombrables.
 On a 
-$$\P(\lim \sup_n A_n ) = \lim_{p \to \infty} \P(\cup_{n\geq p} A_n) \leq_{p \to \infty} \sum_{n \geq p} \P(A_n),$$
+$$\P(\lim \sup_n A_n ) = \lim_{p \to \infty} \P(\cup_{n\geq p} A_n) \leq \lim_{p \to \infty} \sum_{n \geq p} \P(A_n),$$
 où on remarque que les deux suites sont décroissantes.
 
 Si la série $\sum_n \P(A_n)$ est convergente, le reste de cette série tend vers 0 et l'inégalité implique que $\P(\lim \sup_n A n) = 0$.
@@ -1023,12 +1024,9 @@ Sous les hypothèses de l'exercice, on a
 
 ### Erreur quadratique moyenne {.answer #answer-fdremp-mse}
 
-Soit $n\in\N^\ast$. Par linéarité de l'espérance et d'après la question précédente, on a
-\begin{align*}
-\Esp\left( \left(F_n(x) - F(x)\right)^2 \right) &= \Esp\left(F_n(x)^2 + F(x)^2 - 2\,F_n(x)\,F(x)\right)\\
-&=  \Esp\left(F_n(x)^2\right) + F(x)^2 -2\,F(x)\,\Esp\left(F_n(x)\right)\\
-&= \Esp\left(F_n(x)^2\right) - F(x)^2 = \mathbb{V}\left(F_n(x)\right).
-\end{align*}
+Soit $n\in\N^\ast$. D'après la question précédente, on a
+
+$\Esp\left( \left(F_n(x) - F(x)\right)^2 \right) =  \Esp\left( \left(F_n(x) - \Esp(F_n(x))\right)^2 \right) = \mathbb{V}\left(F_n(x)\right).$
 
 Or
 \begin{align*}
@@ -1052,18 +1050,19 @@ On peut en fait aller plus loin et montrer que l'on a la convergence presque sû
 
 ### Préliminaires {.answer #answer-weier-prelim}
 
-Puisque $f_n$ converge vers $f$ $\mu$-presque partout, il existe un ensemble $E$ mesurable et négligeable tel que
-$$f_n(x) \to f(x),\,\,\, \forall x \in X \setminus E$$
-De même, puisque $|f_n(x)|\leq g(x)$ $\mu$-presque partout, les ensembles $F_n = \{x \in X; |f(x)| > g(x) \}$ sont mesurables et négligeables pour tout $n \in \N^\ast$. Alors $N = E \cup_{n\in\N^\ast}$ est mesurable et négligeable.
 
-Soit $\tilde{f}_n = 1_{N^c}f_n$ et $\tilde{f}=1_{N^c}f$, les restrictions à $N^c$ des $f_n$ et $f$. Alors le théorème de convergence dominée s'applique à la suite des $\tilde{f}_{\{n\in\N^\ast\}}$. On a ainsi que $\tilde{f}$ est intégrable et 
+**Théorème de convergence dominée presque partout** --- Puisque $f_n$ converge vers $f$ $\mu$-presque partout, il existe un ensemble $E$ mesurable et négligeable tel que
+$$f_n(x) \to f(x),\,\,\, \forall x \in X \setminus E$$
+De même, puisque $|f_n(x)|\leq g(x)$ $\mu$-presque partout, les ensembles $F_n = \{x \in X; |f(x)| > g(x) \}$ sont mesurables et négligeables pour tout $n \in \N^\ast$. Alors $N = E \cup_{n\in\N^\ast} F_n$ est mesurable et négligeable.
+
+Soit $\tilde{f}_n = 1_{N^c}f_n$ et $\tilde{f}=1_{N^c}f$, les restrictions à $N^c$ des $f_n$ et $f$. Alors le théorème de convergence dominée s'applique à la suite des $(\tilde{f}_n)_{n\in\N^\ast}$. On a ainsi que $\tilde{f}$ est intégrable et 
 $$\int_X \tilde{f} \mu = \lim_{n\to\infty}\int_X \tilde{f}_n \mu.$$
 
 Puisque $f = \tilde{f}$ $\mu$-p.p. et $f_n = \tilde{f}_n$ $\mu$-p.p., on a $\int_X f \mu = \int_X \tilde{f} \mu$ et $\int_X f_n \mu = \int_X \tilde{f}_n \mu$. Alors $f$ est intégrable et 
 $$\int_X f_n\mu \xrightarrow[n\to+\infty]{} \int_X f\mu.$$
 
 
-Puisque $f$ est convexe, pour tout $a \in \R$ il existe $\lambda_a \in \R$ tel que pour tout $x\in\R$ on a $$f(x) \geq f(a) + \lambda_a\,(x-a).$$ C'est une conséquence directe de la caractérisation de la convexité par les inégalités des pentes. C'est vrai en particulier pour $x =X(\omega)$, $\omega \in \Omega$, et $a = \Esp(X)$ : pour tout $\omega \in \Omega$,
+**Inégalité de Jensen** --- Puisque $f$ est convexe, pour tout $a \in \R$ il existe $\lambda_a \in \R$ tel que pour tout $x\in\R$ on a $$f(x) \geq f(a) + \lambda_a\,(x-a).$$ C'est une conséquence directe de la caractérisation de la convexité par les inégalités des pentes. C'est vrai en particulier pour $x =X(\omega)$, $\omega \in \Omega$, et $a = \Esp(X)$ : pour tout $\omega \in \Omega$,
 $$f\left(X(\omega)\right) \geq f\left(\Esp(X)\right) + \lambda_{\Esp(X)}\,\left(X(\omega) - \Esp(X)\right).$$
 En intégrant de chaque côté de l'inégalité, on obtient bien
 \begin{align*}
@@ -1136,8 +1135,8 @@ Le deuxième terme du membre de droite tend vers 0 quand $n$ tend vers l’infin
 Soit $u \in R^d$ . On a :
 $$|\phi_{Y_n} (u) - \phi_X (u)| \leq |\phi_{Y_n} (u) - \phi_{X_n} (u)| + |\phi_{X_n} (u) - \phi_{X} (u)|$$
 D’une part, le [théorème de Lévy](#levytheorem) partie 1. montre que $|\phi_{X_n}(u) - \phi_X (u)|$ tend vers 0 quand $n \to \infty$. D’autre part,
-$$|\phi_{Y_n} (u) - \phi_{X_n} (u)| = |\Esp(e^{i<u,Y_n>} - e^{i<u,X_n>})| \leq \E(|e^{i<u,Y_n -X_n>} - 1|)$$
-tend vers 0 quand $n \to \infty$ d’après [la proposition --- cas borné](#propconv2).
+$$|\phi_{Y_n} (u) - \phi_{X_n} (u)|  = |\Esp(e^{i< u, Y_n>} - e^{i< u, X_n>})| = |\Esp(e^{i<u,X_n>} (e^{i<u,Y_n-X_n>} - 1))|\leq \Esp(|e^{i<u,Y_n-X_n>} - 1|)$$
+tend vers 0 quand $n \to \infty$ d’après [la proposition --- cas borné](#propconv2) appliquée aux variables aléatoires $e^{i<u,Y_n -X_n>}-1$ dont la convergence en proba vers 0 est assurée par la [propriété de continuité](#propconv4).
 
 
 
