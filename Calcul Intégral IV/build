@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 
 # Python 3 Standard Library
 import datetime
@@ -567,7 +567,7 @@ _docs = [path.stem for path in list(root.glob("*.md"))]
 _docs = [doc for doc in _docs if not doc.startswith("_")]
 if len(_docs) != 1:
     error = "cannot identify the main document "
-    error += f"(found {len(docs)} markdown files)"
+    error += f"(found {len(_docs)} markdown files)"
     raise RuntimeError(error)
 doc = _docs[0]
 doc_md = doc + ".md"
