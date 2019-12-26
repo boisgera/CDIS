@@ -255,9 +255,42 @@ est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, q
 
 
 ## Vecteurs Gaussiens à densité
-Dans le cas des vecteurs gaussiens, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On verra en particulier que les lois conditionelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
+Dans le cas des vecteurs gaussiens à densité, dont la matrice de covariance est définie positive, et donc inversible, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On va voir en particulier que les lois conditionnelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
 
-On considère un vecteur gaussien dans $\R^n$ d'espérance $m$ et de matrice de covariance $C$ inversible. On 
+On considère un vecteur gaussien $X = (X_1,\ldots,X_n)$ à valeurs dans $\R^n$ d'espérance $m$ et de matrice de covariance $C$ définie positive. On a vu au chapitre 2 que la densité du vecteur s'écrit pour $x\in\R^d$ :
+$$f_X(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^t C^{-1}(x-m))$$
+
+Soit $1 \leq k \leq n$ un entier. On souhaite exprimer $f_{Y|Z=z}$, la densité conditionnelle de $Y = (X_1,\ldots,X_{k-1})$ sachant $Z = (X_k,\ldots,X_n) = (x_k,\ldots,x_n) = z$. On a vu que 
+$$f_X = f_{Y|Z=z} f_Z,$$
+où $f_Z$ est la densité marginale de $Z$. On cherche donc à décomposer $f_X$ de la sorte. On note $m = (m_Y,m_Z)$ et on remarque que $C$ peut se décomposer en blocs :
+\begin{equation*}
+C = \left(\begin{array}{cc} C_Y & C_{Y,Z} \\ C_{Z,Y} & C_Z \end{array}\right)
+\end{equation*}
+où $C_Y = \cov(Y,Y)$, $C_Z = \cov(Z,Z)$ et $C_{Y,Z} = \cov(Y,Z)$. Le *complément de Schur*[^mckbk] du bloc $C_Y$ est la matrice 
+$$CS_Y = C_Y - C_{Y,Z}C_Z^{-1}C_{Z,Y}$$
+et permet d'exprimer l'inverse de $C$ comme :
+\begin{equation*}
+C^{-1} = \left(\begin{array}{cc} CS_Y^{-1} & -CS_Y^{-1}C_{Y,Z}C_Z^{-1} \\ -C_Z^{-1}C_{Z,Y}CS_Y^{-1}  & C_Z^{-1} + C_Z^{-1}C_{Z,Y}CS_Y^{-1}C_{Y,Z}C_Z^{-1} \end{array}\right)
+\end{equation*}
+On peut alors réarranger les termes de la forme quadratique dans $f_X$ et on obtient :
+\begin{align*}
+(x-m)^t C^{-1}(x-m) =& \left(y - (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))\right)^t CS_Y^{-1}\left(y - (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))\right)\\
+ &+ (z-m_Z)^t C_Z^{-1}(z-m_Z)
+\end{align*}
+Pour la constante, on peut remarquer que :
+$$ \det (C) = \det(CS_Y)\det(C_Z).$$
+On en déduit ainsi que 
+<!-- \begin{align*}
+f_{Y|Z=z}(y) =& \frac{1}{(2\pi)^{n/2}\sqrt{\det (CS_Y)}}\\
+&\exp \left(-\frac{1}{2}\left(y - \psi(z)\right)^t CS_Y^{-1}\left(y - \psi(z))\right)\right)
+\end{align*} -->
+$$f_{Y|Z=z}(y) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (CS_Y)}}\exp \left(-\frac{1}{2}\left(y - \psi(z)\right)^t CS_Y^{-1}\left(y - \psi(z))\right)\right)$$
+
+
+C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_{Y|Z=z} = \psi(z) = (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))$ et de matrice de covariance $CS_Y = C_Y - C_{Y,Z}C_Z^{-1}C_{Z,Y}$. Autrement dit, l'espérance conditionnelle de $Y$ sachant $Z$ est la variable aléatoire $\Esp(Y|Z) = \psi(Z) =(m_Y - C_{Y,Z}C_Z^{-1}(Z-m_Z))$. On notera que la covariance conditionnelle donnée par $CS_Y$ ne dépend pas de la valeur prise par $Z$.
+
+[^mckbk]: voir par exemple l'indispensable [matrix cookbook](https://www.ics.uci.edu/~welling/teaching/KernelsICS273B/MatrixCookBook.pdf).
+
 
 
 # Régression et espérance conditionnelle des variables de carré intégrable
@@ -303,6 +336,7 @@ Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T
 ## Mélanges de loi
 mélanges de gaussienne, cf silvere-schmidt
 
+## Variance et covariance totales
 
 ## Lois conjuguées
 exemples utiles en bayésien : gauss-gauss, gauss-gamma,...
