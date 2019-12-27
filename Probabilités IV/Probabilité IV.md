@@ -13,13 +13,13 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-Nous nous sommes consacré jusqu'à présent à l'étude de (suites de) variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendantes les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. Nous allons nous attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont nous permettre de résumer l'information apportée par une variable (ou vecteur) sur une autre et nous intéresser en particulier à l'**espérance conditionnelle** qui nous indiquera le comportement moyen d'une variable conditionnellement à une autre. Ce dernier cas pose le cadre probabiliste d'un des problèmes fondamentaux en apprentissage statistique : l'apprentissage supervisé, où on dispose d'un ensemble de réalisations d'une variable dont on cherche à prédire le comportement à partir d'un ensemble de variables dites explicatives (ou prédicteurs).
+On s'est consacré jusqu'à présent à l'étude de (suites de) variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendantes les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. On va s'attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont permettre de résumer l'information apportée par une variable (ou un vecteur) sur une autre et s'intéresser en particulier à l'**espérance conditionnelle** qui indiquera le comportement moyen d'une variable conditionnellement à une autre. Ce dernier cas pose le cadre probabiliste d'un des problèmes fondamentaux en apprentissage statistique : l'apprentissage supervisé, où on dispose d'un ensemble de réalisations d'une variable dont on cherche à prédire le comportement à partir d'un ensemble de variables dites explicatives (ou prédicteurs).
 
 # Lois conditionnelles dans un couple
 
-Soient deux variables aléatoire $X$ et $Y$ définies sur le même espace probabilisé $(\Omega, \A, \P)$. Dans le cas où $X$ et $Y$ sont indépendantes, on a vu que pour tous boréliens de $\R$ $B_1$ et $B_2$, on a 
+Soient deux variables aléatoire $X$ et $Y$ définies sur le même espace probabilisé $(\Omega, \A, \P)$. Dans le cas où $X$ et $Y$ sont indépendantes, on a vu que pour tous boréliens $B_1$ et $B_2$ de $\R$, on a 
 $$\P(X\in B_1, Y\in B_2)= \P(X\in B_1)\P(Y\in B_2) = \P_X(B_1)\P_Y(B_2) = \int_{B_1}\P_Y(B_2)\P_X(dx),$$
-où on a utilisé la représentation intégrale $\P_X(B_1) = \int_{B_1}\P_X(dx)$ et le théorème de Fubini (les mesures de probabiltés sont finies, donc $\sigma$-finies et positives).
+où on a utilisé le théorème de Fubini (les mesures de probabiltés sont finies, donc $\sigma$-finies).
 
 Du fait de l'indépendance, on a aussi $\P_Y(B_2) = \P(Y\in B_2) = \P(Y \in B_2 | X \in B_1) = \P_Y(B_2|X \in B_1)$ ce qui exprime que pour tout borélien $B_1$, la loi conditionnelle de $Y$ sachant $X\in B_1$ est identique à la loi de $Y$.
 
@@ -35,7 +35,7 @@ Pour bien fixer les idées, on va décrire spécifiquement les cas où $X$ est d
 ## Cas où $X$ est discrète
 Dans ce paragraphe, on suppose que la variable aléatoire réelle $X$ est discrète, c'est-à-dire que l'ensemble $X(\Omega) \subset \R$ des valeurs $x_k$ prises par $X$ est au plus dénombrable.
 
-On peut imposer que $\forall x \in X(\Omega)$ on ait $\P(X=x) > 0$, quitte à modifier $X$ sur un ensemble de probabilité nulle. On va ainsi pouvoir utiliser la définition d'une probabilité conditionnelle pour des événements de la forme $\{X =x\}$. Ceci permet d'écrire pour tous boréliens $B_1$ et $B_2$ de $\R$ :
+On peut imposer que $\forall x \in X(\Omega)$ on ait $\P(X=x) > 0$, quitte à modifier $X$ sur un ensemble de probabilité nulle. On va ainsi pouvoir utiliser la définition de la probabilité conditionnelle pour des événements de la forme $\{X =x\}$. Ceci permet d'écrire pour tous boréliens $B_1$ et $B_2$ de $\R$ :
 \begin{align*}
 \P(X \in B_1, Y \in B_2) &= \sum_{x \in X(\Omega)\cap B_1} \P(X=x, Y\in B_2)\\
                          &= \sum_{x \in X(\Omega)\cap B_1} \P(X=x) \P(Y \in B_2 | X=x)\\
@@ -47,19 +47,19 @@ $$\P_{Y|X=x}(B_2) = \P(Y \in B_2 | X=x),\,\,\,\forall x \in X(\Omega), \forall B
 ### Remarque {.remark}
 $\P_{Y|X=x}$ ainsi définie est simplement la probabilité sur $(\R,\B(\R))$ image par $Y$ de la probabilité conditionnelle $\P(\cdot|X=x)$ définie sur $(\Omega,\A)$, autrement dit, la **loi de $Y$ relative à $\P(\cdot|X=x)$** et non à $\P$.
 
-La formule ci-dessus s'écrit $\P_{X,Y}(B_1 \times B_2) = \int_{B_1} \P(Y \in B_2 | X=x) \P_X(dx)$, où $\P_{X,Y}$ est la loi du couple. Elle se généralise à tout borélien de $B \subset \R^2$ de la manière suivante :
+La formule ci-dessus s'écrit $\P_{X,Y}(B_1 \times B_2) = \int_{B_1} \P(Y \in B_2 | X=x) \P_X(dx)$, où $\P_{X,Y}$ est la loi du couple. Elle se généralise à tout borélien $B$ de $\R^2$ de la manière suivante :
 
 \begin{align*}
-\P_{X,Y}(B) &= \P((X,Y)\in B) = \sum_{x \in X(\Omega)\cap B_1} \P(X=x, (x,Y) \in B) \\
-      &= \sum_{x \in X(\Omega)\cap B_1} \P(X=x) \P((x,Y) \in B | X=x) \\
-      &= \sum_{x \in X(\Omega)\cap B_1} \P(X=x) \P_{Y|X=x}(B_x),
+\P_{X,Y}(B) &= \P((X,Y)\in B) = \sum_{x \in X(\Omega)} \P(X=x, (x,Y) \in B) \\
+      &= \sum_{x \in X(\Omega)} \P(X=x) \P((x,Y) \in B | X=x) \\
+      &= \sum_{x \in X(\Omega)} \P(X=x) \P_{Y|X=x}(B_x),
 \end{align*}
 
 où $B_x = \{y\in \R, (x,y) \in B\}$. Ainsi, pour tout $B$ borélien de $\R^2$,
 
-$$\Esp(1_B(X,Y)) = \int_{\R^2} 1_B(x,y)\P_{X,Y}(dx dy) = \P_{X,Y}(B) = \int_\R \left(\int_\R 1_B(x,y) \P_Y(dy|X = x)\right)  \P_X(dx)$$
+$$\Esp(1_B(X,Y)) = \int_{\R^2} 1_B(x,y)\P_{X,Y}(dx dy) = \int_\R \left(\int_\R 1_B(x,y) \P_Y(dy|X = x)\right)  \P_X(dx)$$
 
-Par linéarité de l'espérance (héritée de celle de l'intégrale), on peut ainsi exprimer l'espérance d'une fonction étagée. Pour avoir le résultat pour une fonction positive, on exprime celle-ci comme limite simple d'une suite croissante de fonctions étagées, et on applique le théorème de convergence monotone. Enfin, on applique cette construction à $g_+$ et $g_-$ pour une fonction $g$ de signe quelconque $\P_{X,Y}$-intégrable. En d'autres termes, on reprend le procédé de construction de l'intégrale de Lebesgue. On obtient ainsi la formule souhaitée :
+Par linéarité de l'espérance, on peut ainsi exprimer l'espérance d'une fonction étagée. Pour avoir le résultat pour une fonction positive, on exprime celle-ci comme limite simple d'une suite croissante de fonctions étagées, et on applique le théorème de convergence monotone. Enfin, on applique cette construction à $g_+$ et $g_-$ pour une fonction $g$ de signe quelconque $\P_{X,Y}$-intégrable. En d'autres termes, on reprend le procédé de construction de l'intégrale de Lebesgue. On obtient ainsi la formule souhaitée :
 $$\Esp(g(X,Y)) = \int_{\R} \left( \int_{\R} g(x,y) \P_Y(dy|X = x)\right) \P_X(dx).$$
 
 ### Exemple {.example #ex1}
@@ -75,7 +75,6 @@ $\P_{X,Y}$ est bien une probabilité sur $\R^2$ puisque par convergence monotone
                 &= (1-\alpha)\int_{\R_+^\star}e^{-(1-\alpha)t} dt = 1
 \end{align*}               
 où on aura reconnu la loi exponentielle de paramètre $(1-\alpha)$.
-
 $\forall n \in \N$, 
 $$ \int_{\R_+^\star}e^{-t}\frac{t^n}{n!}dt = \int_{\R_+^\star}e^{-t}\frac{t^{(n-1)}}{(n-1)!}dt = \ldots = \int_{\R_+^\star}e^{-t}dt =1$$
 par intégration par parties itérée. la loi marginale de $X$ s'écrit donc :
@@ -90,11 +89,12 @@ et $\P_{Y|X=x}$ est la donc la loi gamma de paramètre $(n+1,1)$.
 On suppose maintenant que le couple $(X,Y)$ admet une densité $f_{X,Y}$ (par rapport à la mesure de Borel-Lebesgue). On note $f_X(x) = \int_\R f_{X,Y}(x,y)dy$ (respectivement $f_Y(y) = \int_\R f_{X,Y}(x,y)dx$) la loi marginale de $X$ (resp. de $Y$). On s'intéresse à caractériser la densité de la variable $Y$ connaissant la valeur prise par la variable $X$, c'est la *densité conditionnelle* de $Y$ sachant $\{X = x\}$ :
 
 ### Proposition {.proposition #defdenscond}
-La formule suivante définit une densité sur $\R$, pour tout $x \in \R$ tel que $f_X(x) > 0$ :
+La formule suivante définit une densité sur $\R$, pour tout $x \in \R$ tel que $f_X(x) > 0$.
 $$ f_{Y|X=x}(y) = \frac{f_{X,Y}(x,y)}{f_X(x)}.$$
 Cette fonction s'appelle la *densité conditionnelle de $Y$ sachant $\{X = x\}$*.
-La probabilité conditionnelle de $Y$ sachant $\{X = x\}$ s'écrit ainsi $\P_{Y|X=x} = f_{Y|X=x}(y)dy$, où $dy$ représente la mesure de Borel-Lebesgue.
+La probabilité conditionnelle de $Y$ sachant $\{X = x\}$ s'écrit ainsi $\P_{Y|X=x} = f_{Y|X=x}l$, où $l$ représente la mesure de Borel-Lebesgue.
 
+### Démonstration {.proof}
 La preuve est immédiate puisque $f_{Y|X=x}$ est une fonction positive d'intégrale 1.
 
 L’interprétation de cette définition est la suivante : la fonction $f(Y|X=x)$ est la densité de la “loi conditionnelle de $Y$ sachant que $X = x$”. Bien sûr, nous avons $\P(X = x) = 0$ puisque $X$ admet une densité, donc la phrase ci-dessus n’a pas réellement de sens, mais elle se justifie heuristiquement ainsi : $dx$ et $dy$ étant de “petits” accroissements des variables $x$ et $y$ et lorsque $f$ et $f_X$ sont continues et strictement positives respectivement en $(x,y)$ et $x$ :
@@ -123,14 +123,14 @@ On a
              &= \int_{\R^2} g(x,y) f_{Y|X=x}(y)f_X(x) dy dx \\
              &= \int_\R \left( \int_\R g(x,y)f_{Y|X=x}(y) dy \right) f_X(x)dx,
 \end{align*}
-les calculs étant licites par application du théorème de Fubini et du fait que l'application $x \mapsto \int_\R g(x,y)f_{Y|X=x}(y) dy$ est définie pour $f_X(x) >0$, soit presque partout relativement à la mesure $\P_X = f(x)dx$.
+les calculs étant licites par application du théorème de Fubini et du fait que l'application $x \mapsto \int_\R g(x,y)f_{Y|X=x}(y) dy$ est définie pour $f_X(x) >0$, soit presque partout relativement à la mesure $\P_X = f_X l$.
 
-## Cas général **TODO : ajouter ref -> Neveu ?**
-On peut établir le résultat suivant que l'on admettra :
+## Cas général
+On peut établir le résultat suivant, qui complète le théorème de Fubini et le résultat d'existence et d'unicité des mesures produits, et que l'on admettra.
 
 ### Théorème {.theorem #fubinicond}
-Soit un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$, il existe une famille $\P_{Y|X=x}$ de probabilités sur $(\R,\B(\R))$, unique à une égalité $\P_X$-presque sûrement près[^footequi], qui vérifie pour tous $B_1, B_2$, boréliens de $\R$ :
-$$ \P_{X,Y}(B_1 \times B_2) = \int_{B_1} \left( \int_{B_2} \P_{Y|X=x}(dy) \right) \P_X(dx)$$
+Soit un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$, il existe une famille $\P_{Y|X=x}$ de probabilités sur $(\R,\B(\R))$, unique à une égalité $\P_X$-presque partout près[^footequi], qui vérifie pour tous $B_1, B_2$ boréliens de $\R$ :
+$$ \P_{X,Y}(B_1 \times B_2) = \int_{B_1} \left( \int_{B_2} \P_{Y|X=x}(dy) \right) \P_X(dx).$$
 Ces probabilités sont appelées *lois conditionnelles* de $Y$ sachant $X =x$. On a de plus pour toute application $g : \R^2 \to \R$ telle que $g(X,Y)$ admette une espérance :
 $$\Esp(g(X,Y)) = \int_\R \left( \int_\R g(x,y)\P_{Y|X=x}(dy) \right) \P_X(dx).$$ 
 
@@ -138,7 +138,7 @@ $$\Esp(g(X,Y)) = \int_\R \left( \int_\R g(x,y)\P_{Y|X=x}(dy) \right) \P_X(dx).$$
 
 ### Remarques {.remark}
 
-* Ce résultat peut être interprété comme un **théorème de Fubini conditionnel**, dans le sens où il permet une intégration séquentielle, mais où la mesure de probabilité du couple $(X,Y)$ s'exprime comme un produit de mesures dont l'un des termes dépend de la variable d'intégration de l'autre.
+* Ce résultat peut être interprété comme un **théorème de Fubini conditionnel**, dans le sens où il permet une intégration séquentielle, mais ici la mesure de probabilité du couple $(X,Y)$ s'exprime comme un produit de mesures dont l'un des termes dépend de la variable d'intégration de l'autre. En particulier, si on change l'ordre d'intégration, on change les mesures qui interviennent.
 * Fréquemment, dans les applications, la famille des lois conditionnelles est une donnée du modèle considéré, et leur existence ne pose donc pas de problème !
 * On retrouve les cas vus précédemment en notant que pour tout borélien $B_1$ de $\R$ on a $\P_x(B_1) = \int_{B_1}\P_X(dx) = \sum_{x \in \B_1} \P(X=x)$ lorsque $X$ est discrète, et que pour tous boréliens $B_1$ et $B_2$ de $\R$ on a $\P_X(B_1) = \int_{B_1} f_X(x)dx$ et $\P_{X,Y}(B_1 \times B_2) = \int_{B_1 \times B_2}f_{X,Y}(x,y) dx dy$.
 * Dans tout ce qui précède, les rôles de $X$ et $Y$ peuvent évidemment être inversés. 
@@ -152,14 +152,14 @@ Le [théorème précédent](#fubinicond) a deux conséquences majeures. Il fourn
 $$\P_Y(B) = \int_\R \left( \int_{B} \P_{Y|X=x}(dy) \right) \P_X(dx) = \int_\R \P_{Y|X=x}(B) \P_X(dx)$$
 * Dans le cas où $X$ est discrète (à valeurs dans $I$ dénombrable), on retrouve une expression de la formule des probabilités totales et composées :
 $$\P_Y(B) = \P(Y\in B) = \sum_{x \in I} \P(Y \in B | X = x)\P(X=x)$$
-* Dans le cas où le couple $(X,Y)$ admet une densité, puisqu'on a $f_{X,Y}(x,y) = f_{Y | X=x}(y)f_X(x)$, on obtient l'expression suivante pour la loi marginale :
-$$f_Y(y) = \int_\R f_{X,Y}(x,y)dx = \int_\R f_{Y | X=x}(y)f_X(x) dx$$
- On a dans ce cadre la *formule de Bayes pour les densités* : pour tout $x$ tel que $f_X(x) > 0$ et tout $y$ tel que $f_Y(y)) > 0$ :
+* Dans le cas où le couple $(X,Y)$ admet une densité, puisqu'on a $f_{X,Y}(x,y) = f_{Y | X=x}(y)f_X(x)$, on obtient l'expression suivante pour la densité marginale :
+$$f_Y(y) = \int_\R f_{X,Y}(x,y)dx = \int_\R f_{Y | X=x}(y)f_X(x) dx.$$
+ On a en particulier la *formule de Bayes pour les densités* : pour tout $x$ tel que $f_X(x) > 0$ et tout $y$ tel que $f_Y(y) > 0$ :
     $$ f_{X|Y=y}(x) = \frac{f_{X,Y}(x,y)}{f_Y(y)} = \frac{f_{Y|X=x}(y)f_X(x)}{f_Y(y)} .$$
 
 
 ### Exemple {.example}
-Poursuivons [l'exemple vu ci-dessus](#ex1). On rappelle qu'on a déjà identifié la loi marginale de $X$ ainsi que la loi conditionnelle de $Y$ sachant $X=n$ pour $n\in\N$ que l'on rappelle ci-dessous :
+Poursuivons [l'exemple vu ci-dessus](#ex1). On rappelle qu'on a déjà identifié la loi marginale de $X$ ainsi que la loi conditionnelle de $Y$ sachant $X=n$ pour $n\in\N$ que l'on rappelle ici :
 $$\P(X=n) = (1-\alpha)\alpha^n,\,n\in\N \text{ et }\forall  B \in \B(\R), \, \P_{Y|X=x}(B) = \int_{B \cap \R_+^\star} e^{-t}\frac{t^n}{n!}dt$$
 On peut en déduire la loi marginale de $Y$ en utilisant la [proposition ci-dessus](#balcond) et le théorème de convergence monotone :
 \begin{align*}
@@ -172,7 +172,7 @@ de sorte que $Y$ suit une loi exponentielle de paramètre $(1-\alpha)$.
 En inversant les rôles, on va pouvoir identifier la loi de $X$ sachant $Y \in B$ en notant que
 \begin{align*}
 \P_{X,Y}(\{n\} \times B) &= \P_X(\{n\})\P_{Y|X=n}(B) \\
-                         &= \int_B \frac{(\alpha t)^n}{n!} e^{-\alpha t} dt\\
+                         &= \int_B \frac{(\alpha t)^n}{n!} e^{-\alpha t} \P_Y(dt)\\
                          &= \int_B \P_{X = n | Y =t}(\{n\}) \P_Y(dt)
 \end{align*}
 où l'on reconnaît que $\P_{X =n | Y =t}(\{n\}) = \frac{(\alpha t)^n}{n!} e^{-\alpha t}$, c'est-à-dire que $X$ sachant $Y = t$ suit une loi de Poisson de paramètre $\alpha t$ pour $\P_Y$-presque tout $t$.
@@ -181,7 +181,7 @@ En utilisant, le [théorème précédent](#fubinicond), on obtient une nouvelle 
 
 ### Proposition (critère d'indépendance) {.proposition}
 
-1. $X$ et $Y$ sont indépendantes si et seulement si, pour $\P_x$-presque tout $x$, $\P_{Y |X = x}$ ne dépend pas de $x$ et dans ce cas, on a $\P_{Y |X = x} = \P_Y$, c'est-à-dire que la loi conditionnelle est identique à la loi marginale.
+1. $X$ et $Y$ sont indépendantes si et seulement si, pour $\P_X$-presque tout $x$, $\P_{Y |X = x}$ ne dépend pas de $x$ et dans ce cas, on a $\P_{Y |X = x} = \P_Y$, c'est-à-dire que la loi conditionnelle est identique à la loi marginale.
 
 2. Dans le cas où $(X,Y)$ admet une densité, $X$ et $Y$ sont indépendantes si et seulement si la densité conditionnelle de $Y$ sachant $\{X = x\}$ ne dépend pas de $x$.
 
@@ -211,20 +211,20 @@ Soit $Y$ une variable aléatoire intégrable.
 
 ### Remarques {.remark}
 
- 1. $\psi(x)$ n'est définie que pour $x \notin B$, avec $\P(X\in B) = 0$. Par conséquent, la [définition](#defespcond) définit bien l'espérance conditionnelle $\psi(X) = \Esp(Y|X)$ $\P_X$-presque sûrement, autrement dit avec probabilité 1.
+ 1. $\psi(x)$ n'est définie que pour $x \notin B$, avec $\P(X\in B) = 0$. Par conséquent, la [définition](#defespcond) définit bien l'espérance conditionnelle $\psi(X) = \Esp(Y|X)$ $\P_X$-presque partout, autrement dit avec probabilité 1, ou encore presque sûrement.
  2. $\Esp(\Esp(|Y||X)) = \Esp(|Y|)$ comme conséquence directe du [théorème de Fubini conditionnel](#fubinicond). L'espérance conditionnelle de $Y$ sachant $X$ est bien définie dès que $Y$ est intégrable. 
  3. Lorsque $(X,Y)$ admet une densité, l'espérance conditionnelle de $Y$ sachant $\{X=x\}$ s'écrit
  $$\Esp(Y|X=x) = \int_\R y f_{Y|X=x}(y) dy.$$
 
-On peut étendre cette définition à toute variable de la forme $h(X,Y)$.
+On peut étendre cette définition aux variables de la forme $g(X,Y)$.
 
 ### Définition {.definition #defespcondh}
-Soit $Y$ une variable aléatoire et $h$ une fonction mesurable positive ou $\P_{X,Y}$-intégrable sur $\R^2$.
+Soit $Y$ une variable aléatoire et $g$ une fonction mesurable positive ou $\P_{X,Y}$-intégrable sur $\R^2$.
 
- 1. L'*espérance conditionnelle de $h(X,Y)$ sachant $\{X=x\}$* est définie par 
-    $$\Esp(h(X,Y)|X=x) = \int_\R h(x,y) f_{Y|X=x} (y) dy.$$
- 2. L'*espérance conditionnelle de $h(X,Y)$ sachant $X$* est la **variable aléatoire** définie par :
-    $$\Esp(h(X,Y)|X) = \psi(X), \text{ avec } \psi(x) = \Esp(h(X,Y)|X=x).$$
+ 1. L'*espérance conditionnelle de $g(X,Y)$ sachant $\{X=x\}$* est définie par 
+    $$\Esp(g(X,Y)|X=x) = \int_\R g(x,y) f_{Y|X=x} (y) dy.$$
+ 2. L'*espérance conditionnelle de $g(X,Y)$ sachant $X$* est la **variable aléatoire** définie par :
+    $$\Esp(g(X,Y)|X) = \psi(X), \text{ avec } \psi(x) = \Esp(g(X,Y)|X=x).$$
 
 
 ### Théorème {.theorem} 
@@ -255,10 +255,10 @@ est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, q
 
 
 ## Vecteurs Gaussiens à densité
-Dans le cas des vecteurs gaussiens à densité, dont la matrice de covariance est définie positive, et donc inversible, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On va voir en particulier que les lois conditionnelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
+Dans le cas des vecteurs gaussiens à densité, c'est-à-dire dont la matrice de covariance est définie positive, et donc inversible, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On va voir en particulier que les lois conditionnelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
 
-On considère un vecteur gaussien $X = (X_1,\ldots,X_n)$ à valeurs dans $\R^n$ d'espérance $m$ et de matrice de covariance $C$ définie positive. On a vu au chapitre 2 que la densité du vecteur s'écrit pour $x\in\R^d$ :
-$$f_X(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^t C^{-1}(x-m))$$
+On considère un vecteur gaussien $X = (X_1,\ldots,X_n)$ à valeurs dans $\R^n$ d'espérance $m$ et de matrice de covariance $C$ définie positive. On a vu au chapitre 2 que la densité du vecteur $X$ s'écrit pour $x\in\R^d$ :
+$$f_X(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp \left(-\frac{1}{2}(x-m)^t C^{-1}(x-m)\right)$$
 
 Soit $1 \leq k \leq n$ un entier. On souhaite exprimer $f_{Y|Z=z}$, la densité conditionnelle de $Y = (X_1,\ldots,X_{k-1})$ sachant $Z = (X_k,\ldots,X_n) = (x_k,\ldots,x_n) = z$. On a vu que 
 $$f_X = f_{Y|Z=z} f_Z,$$
@@ -284,29 +284,29 @@ On en déduit ainsi que
 f_{Y|Z=z}(y) =& \frac{1}{(2\pi)^{n/2}\sqrt{\det (CS_Y)}}\\
 &\exp \left(-\frac{1}{2}\left(y - \psi(z)\right)^t CS_Y^{-1}\left(y - \psi(z))\right)\right)
 \end{align*} -->
-$$f_{Y|Z=z}(y) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (CS_Y)}}\exp \left(-\frac{1}{2}\left(y - \psi(z)\right)^t CS_Y^{-1}\left(y - \psi(z))\right)\right)$$
+$$f_{Y|Z=z}(y) = \frac{1}{(2\pi)^{k/2}\sqrt{\det (CS_Y)}}\exp \left(-\frac{1}{2}\left(y - \psi(z)\right)^t CS_Y^{-1}\left(y - \psi(z))\right)\right)$$
 
 
-C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_{Y|Z=z} = \psi(z) = (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))$ et de matrice de covariance $CS_Y = C_Y - C_{Y,Z}C_Z^{-1}C_{Z,Y}$. Autrement dit, l'espérance conditionnelle de $Y$ sachant $Z$ est la variable aléatoire $\Esp(Y|Z) = \psi(Z) =(m_Y - C_{Y,Z}C_Z^{-1}(Z-m_Z))$. On notera que la covariance conditionnelle donnée par $CS_Y$ ne dépend pas de la valeur prise par $Z$.
+C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_{Y|Z=z} = \psi(z) = m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z)$ et de matrice de covariance $CS_Y = C_Y - C_{Y,Z}C_Z^{-1}C_{Z,Y}$. Autrement dit, l'espérance conditionnelle de $Y$ sachant $Z$ est la variable aléatoire $\Esp(Y|Z) = \psi(Z) =(m_Y - C_{Y,Z}C_Z^{-1}(Z-m_Z))$. On notera que la covariance conditionnelle donnée par $CS_Y$ ne dépend pas de la valeur prise par $Z$.
 
-[^mckbk]: voir par exemple l'indispensable [matrix cookbook](https://www.ics.uci.edu/~welling/teaching/KernelsICS273B/MatrixCookBook.pdf).
+[^mckbk]: voir par exemple l'excellent [matrix cookbook](https://www.ics.uci.edu/~welling/teaching/KernelsICS273B/MatrixCookBook.pdf).
 
 
 
 # Régression et espérance conditionnelle des variables de carré intégrable
-La régression est un ensemble de méthodes d'apprentissage statistique très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variable mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable. On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
+La régression est un ensemble de méthodes d'apprentissage statistique très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variables mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable. On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
 
 ## Régression linéaire
-On considère deux variables aléatoires de carré intégrable dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est à dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
-$$\Esp((Y - (aX + b))^2) = \Esp(Y^2) -2a\Esp(XY) +a^2\Esp(X^2) +2ab\Esp(X) +b^2$$
-L'annulation des dérivées partielles par rapport à $a$ et $b$ entraîne que les solutions sont
+On considère deux variables aléatoires de carré intégrable dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est-à-dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
+$$\Esp((Y - (aX + b))^2) = \Esp(Y^2) -2a\Esp(XY) +a^2\Esp(X^2) +2ab\Esp(X) +b^2.$$
+L'annulation de ses dérivées partielles en à $a$ et $b$ entraîne que les solutions sont
 
 \begin{align*}
 a & = \frac{\cov(X,Y)}{\V(X)} = \rho(X,Y)\frac{\sigma_Y}{\sigma_X} \\
 b & = \Esp(Y)  - a \Esp(X)
 \end{align*}
 
-On vérifie aisément que ces valeurs donnent bien un minimum pour $\Esp((Y - (aX + b))^2)$, et déterminent ainsi la meilleure approximation linéaire de $Y$ basée sur $X$ au sens de l'erreur quadratique moyenne.
+On vérifie aisément que ces valeurs donnent bien un minimum pour $\Esp((Y - (aX + b))^2)$ qui est convexe, et déterminent ainsi la meilleure approximation linéaire de $Y$ basée sur $X$ au sens de l'erreur quadratique moyenne.
 
 Cette approximation linéaire vaut
 $$ \Esp(Y) + \rho(X,Y)\frac{\sigma_Y}{\sigma_X} (X -\Esp(X))$$
@@ -318,9 +318,10 @@ et l'erreur quadratique moyenne vaut alors
 
 On voit ainsi que cette erreur est proche de 0 lorsque $|\rho(X,Y)| \approx 1$ tandis qu'elle est proche de $\V(Y) = \sigma^2_Y$ lorsque $\rho(X,Y) \approx 0$. 
 
-Dans ce paragraphe, on s'est intéressé à caractériser la relation linéaire entre deux variables aléatoires de carré intégrable. On va montrer dans ce paragraphe que la meilleure approximation, au sens des l'erreur quadratique moyenne, de $Y$ par une fonction de $X$ est précisément donnée par $\Esp(Y|X)$. 
 
 ## Espace de Hilbert des variables aléatoires de carré intégrable
+
+Dans le paragraphe précédent, on s'est intéressé à approximer linéairement une variable aléatoire $Y$ de carré intégrable par une autre variable $X$ également de carré intégrable.  On va montrer dans ce paragraphe que la meilleure approximation, au sens des l'erreur quadratique moyenne, de $Y$ par une fonction de $X$ est précisément donnée par $\Esp(Y|X)$. 
 
 
 Exercices
@@ -341,9 +342,10 @@ mélanges de gaussienne, cf silvere-schmidt
 ## Lois conjuguées
 exemples utiles en bayésien : gauss-gauss, gauss-gamma,...
 
-
 ## Randomisation
 exemple de somme aléatoire de v.a.r.
+
+## Modèle graphique --- indépendance conditionnelle
 
 -----------------------------------------------------------
 
