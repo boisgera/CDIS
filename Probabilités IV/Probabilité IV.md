@@ -218,7 +218,7 @@ Soit $Y$ une variable aléatoire intégrable.
 
 On peut étendre cette définition aux variables de la forme $g(X,Y)$.
 
-### Définition {.definition #defespcondh}
+### Définition {.definition #defespcondg}
 Soit $Y$ une variable aléatoire et $g$ une fonction mesurable positive ou $\P_{X,Y}$-intégrable sur $\R^2$.
 
  1. L'*espérance conditionnelle de $g(X,Y)$ sachant $\{X=x\}$* est définie par 
@@ -297,7 +297,7 @@ C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_
 La régression est un ensemble de méthodes d'apprentissage statistique très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variables mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable. On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
 
 ## Régression linéaire
-On considère deux variables aléatoires de carré intégrable dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est-à-dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
+On considère deux variables aléatoires rélles, de carré intégrable, définies sur le même espace de probabilité $(\Omega,\A,\P)$, et dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est-à-dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
 $$\Esp((Y - (aX + b))^2) = \Esp(Y^2) -2a\Esp(XY) +a^2\Esp(X^2) +2ab\Esp(X) +b^2.$$
 L'annulation de ses dérivées partielles en à $a$ et $b$ entraîne que les solutions sont
 
@@ -318,10 +318,53 @@ et l'erreur quadratique moyenne vaut alors
 
 On voit ainsi que cette erreur est proche de 0 lorsque $|\rho(X,Y)| \approx 1$ tandis qu'elle est proche de $\V(Y) = \sigma^2_Y$ lorsque $\rho(X,Y) \approx 0$. 
 
+### Remarque {.remark}
+L'hypothèse d'une relation linéaire est très forte et pas nécessairement toujours adaptée pour expliquer des relations de dépendances entre variables. Soit en effet une variable aléatoire réelle $X$ de $\L^3$ symétrique, c'est-à-dire telle que $X$ et $-X$ soient de même loi. On a alors $\Esp(X) = -\Esp(X) = 0$. Les variables $X$ et $X^2$ ne sont clairement pas indépendantes. Pour autant, on a $\cov(X,X^2) = \Esp(X^3) = -\Esp(X^3) = 0$ et le coefficient de régression ci-dessus est nul. 
+
 
 ## Espace de Hilbert des variables aléatoires de carré intégrable
 
-Dans le paragraphe précédent, on s'est intéressé à approximer linéairement une variable aléatoire $Y$ de carré intégrable par une autre variable $X$ également de carré intégrable.  On va montrer dans ce paragraphe que la meilleure approximation, au sens des l'erreur quadratique moyenne, de $Y$ par une fonction de $X$ est précisément donnée par $\Esp(Y|X)$. 
+Dans le paragraphe précédent, on s'est intéressé à approximer linéairement une variable aléatoire $Y$ de carré intégrable par une autre variable $X$ également de carré intégrable. On va montrer ici que la meilleure approximation, au sens de l'erreur quadratique moyenne, de $Y$ par une fonction $\psi$ de $X$ est précisément donnée par $\psi(X) = \Esp(Y|X)$. Ce paragraphe fait appel à des notions hors programme et est par conséquent non exigible. Il fournit néanmoins une interprétation géométrique particulièrement éclairante de l'espérance conditionnelle.
+
+On a besoin en pratique de travailler sur un espace un peu plus petit que $\L^2$ tout entier. En effet, les outils que nous allons utiliser ne nous permettent pas de distinguer entre deux variables $X$ et $Y$ égales presque sûrement, c'est-à-dire telles que $\exists N \in \A$, tel que $\P(N) = 0$ et $\forall \omega \in N^c,\,\, X(\omega) = Y(\omega)$. Cette notion d'égalité presque sûre est une relation d'équivalence. On va ainsi travailler avec l'espace $L^2$ des classes de variables pour l'égalité presque sûre, c'est-à-dire que $L^2$ contiendra un unique représentant de chacune de ces classes. Dans ce cadre, au lieu d'écrire $X=0$ p.s., on écrit simplement $X=0$.
+
+On peut  d'abord montrer que l'espace vectoriel $L^2$ des variables aléatoires de carré intégrable forme un espace de Hilbert si on le munit du produit scalaire :
+$$<X,Y > = \Esp(XY) \text{   et de la norme associée   } \|X\| = \Esp(X^2)^{1/2}.$$
+L'écart-type est ainsi la norme des variables centrées et la covariance le produit scalaire des variables centrées. 
+
+Ce produit scalaire est bien défini pour tout couple $(X,Y)$ de variables de $L^2$ puisque par l'inégalité de Cauchy-Schwartz :
+$$\Esp(XY)^2 \leq \Esp(X^2)\Esp(Y^2)$$
+et on a bien $\|X\| = 0$ si et seulement si $X=0$. On peut enfin montrer que $L^2$ est complet pour la norme définie ci-dessus (voir @Jacod pour la démonstration). 
+
+Soit maintenant $X$ et $Y \in L^2(\Omega,\A,\P)$ et $L^2_X$ le sous-espace de $L^2$ constitué des (classes d'équivalence) des variables aléatoires fonctions seulement de $X$ du type $\phi(X)$ (avec $\phi$ borélienne): $L^2_X$ est convexe et fermé.
+
+Alors, l'espérance conditionnelle de $Y$ sachant $X$, $\Esp(Y|X)$ s'interprète comme la projection orthogonale de $Y$ sur $L^2_X$.
+
+Soit en effet l'opérateur qui à $Y \in\L^2$ associe $\Esp(Y|X)$. On a vu que c'est un opérateur linéaire. Pour montrer qu'il s'agit d'un projecteur orthogonal, on peut vérifier qu'il est idempotent et auto-adjoint :
+
+- on a bien $\Esp(\Esp(Y|X)|X) = \Esp(Y|X)$
+- et pour $Z\in L^2$, $<Z,\Esp(Y|X) > = \Esp(Z\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y)) = <\Esp(Z|X),Y>$.
+
+Le théorème de projection de Hilbert[^rmbf] assure alors que 
+$$\arg\min_{\phi(X)} \|Y-\phi(X)\|^2 = \arg\min_{\phi(X)} \Esp((Y-\phi(X))^2) = \Esp(Y|X) = \psi(X)$$
+
+[^rmbf]: voir les [Rappels mathématiques pour la mécanique quantique de Bruno Figliuzzi](https://discourse.mines-paristech.fr/uploads/short-url/v4CxgD6KzWUZpmQWbvckL7eaP7C.pdf)
+
+Ainsi, $\Esp(Y|X)$ est la meilleure approximation (au sens des moindres carrés) de $Y$ par une fonction de $X$.
+
+ <!-- C'est la solution théorique au problème de la régression par moindres carrés, que l'on sait résoudre dans certains cas particulier, notamment dans le cas des vecteurs gaussiens. Le problème de la régression en statistique se traduit donc en  -->
+
+
+Il est alors immédiat que le "résidu" $Y-\Esp(Y|X)$ est non corrélé avec $X$ du fait de l'orthogonalité. On en déduit la *formule de la variance totale* :
+
+\begin{align*}
+\V(Y) = \|Y - \Esp(Y)\|^2 &=  \|Y - \Esp(Y|X) + \Esp(Y|X) - \Esp(Y)\|^2 \\
+                          &=  \|Y - \Esp(Y|X)\|^2 + \|\Esp(Y|X) - \Esp(Y)\|^2 \\
+                          &=  \Esp((Y - \Esp(Y|X))^2) + \Esp((\Esp(Y|X) - \Esp(Y))^2)\\
+                          &= \Esp(\Esp((Y - \Esp(Y|X))^2|X)) + \V(\Esp(Y|X))\\
+                          &= \Esp(\V(Y|X)) + \V(\Esp(Y|X)).
+\end{align*}
+où on a utilisé la formule de l'espérance totale et introduit la variable aléatoire variance conditionnelle $\V(Y|X) = \Esp((Y - \Esp(Y|X))^2|X)$ comme cas particulier de la [définition vue plus haut](#defespcondg).
 
 
 Exercices
@@ -337,15 +380,15 @@ Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T
 ## Mélanges de loi
 mélanges de gaussienne, cf silvere-schmidt
 
-## Variance et covariance totales
-
 ## Lois conjuguées
 exemples utiles en bayésien : gauss-gauss, gauss-gamma,...
 
 ## Randomisation
 exemple de somme aléatoire de v.a.r.
 
-## Modèle graphique --- indépendance conditionnelle
+## Modèles graphiques --- indépendance conditionnelle
+
+## Covariance totale
 
 -----------------------------------------------------------
 
@@ -358,3 +401,7 @@ Solutions
 La densité marginale de $X$ est donnée par $f_X(x) = \int f_{X,Y}(x,y) dy = 1_{]0,1[}(x)$ et pour $x \in ]0,1[$,
 $$ f_{Y|X=x} (y) = \frac{1}{x} 1_{]0,x[}(y) $$
 Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$. Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(Y|X) = \frac{X}{2}$.
+
+
+Références
+===============================================================================
