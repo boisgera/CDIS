@@ -13,7 +13,7 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-On s'est consacré jusqu'à présent à l'étude de (suites de) variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendantes les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. On va s'attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont permettre de résumer l'information apportée par une variable (ou un vecteur) sur une autre et s'intéresser en particulier à l'**espérance conditionnelle** qui indiquera le comportement moyen d'une variable conditionnellement à une autre. Ce dernier cas pose le cadre probabiliste d'un des problèmes fondamentaux en apprentissage statistique : l'apprentissage supervisé, où on dispose d'un ensemble de réalisations d'une variable dont on cherche à prédire le comportement à partir d'un ensemble de variables dites explicatives (ou prédicteurs).
+On s'est consacré jusqu'à présent à l'étude de (suites de) variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendant les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. Dans les approches bayésiennes, on résume l'information disponible sur l'état du système étudié par la **loi a priori** et on met à jour notre connaissance du système en incorporant de l'information supplémentaire (par exemple des observations). On cherche alors à caractériser la **loi a posteriori** de l'état du système, qui est la loi de l'état sachant l'information supplémentaire. On va ainsi s'attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont permettre de résumer l'information apportée par une variable (ou un vecteur) sur une autre et s'intéresser en particulier à l'**espérance conditionnelle** qui indiquera le comportement moyen d'une variable conditionnellement à une autre. Ce dernier cas pose le cadre probabiliste d'un des problèmes fondamentaux en apprentissage statistique : l'apprentissage supervisé, où on dispose d'un ensemble de réalisations d'une variable dont on cherche à prédire le comportement à partir d'un ensemble de variables dites explicatives (ou prédicteurs).
 
 # Lois conditionnelles dans un couple
 
@@ -340,12 +340,12 @@ Soit maintenant $X$ et $Y \in L^2(\Omega,\A,\P)$ et $L^2_X$ le sous-espace de $L
 
 Alors, l'espérance conditionnelle de $Y$ sachant $X$, $\Esp(Y|X)$ s'interprète comme la projection orthogonale de $Y$ sur $L^2_X$.
 
-Soit en effet l'opérateur qui à $Y \in\L^2$ associe $\Esp(Y|X)$. On a vu que c'est un opérateur linéaire. Pour montrer qu'il s'agit d'un projecteur orthogonal, on peut vérifier qu'il est idempotent et auto-adjoint :
+Soit en effet l'opérateur qui à $Y \in L^2$ associe $\Esp(Y|X) \in L^2_X$. On a vu que c'est un opérateur linéaire. Pour montrer qu'il s'agit d'un projecteur orthogonal, on peut vérifier qu'il est idempotent et auto-adjoint :
 
 - on a bien $\Esp(\Esp(Y|X)|X) = \Esp(Y|X)$
 - et pour $Z\in L^2$, $<Z,\Esp(Y|X) > = \Esp(Z\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y)) = <\Esp(Z|X),Y>$.
 
-Le théorème de projection de Hilbert[^rmbf] assure alors que 
+Le théorème de projection sur un convexe fermé dans les espaces de Hilbert[^rmbf] assure alors que 
 $$\arg\min_{\phi(X)} \|Y-\phi(X)\|^2 = \arg\min_{\phi(X)} \Esp((Y-\phi(X))^2) = \Esp(Y|X) = \psi(X)$$
 
 [^rmbf]: voir les [Rappels mathématiques pour la mécanique quantique de Bruno Figliuzzi](https://discourse.mines-paristech.fr/uploads/short-url/v4CxgD6KzWUZpmQWbvckL7eaP7C.pdf)
