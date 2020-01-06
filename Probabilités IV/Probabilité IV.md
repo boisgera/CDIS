@@ -371,24 +371,74 @@ Exercices
 ===============================================================================
 
 ## Un exercice tout bête {.question #etb} 
+
 Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T$ est le triangle $T = \{0< y< x < 1\}$.
 
 1. Calculer la densité marginale de $X$
 2. Calculer la densité conditionnelle de $Y$ sachant $X=x$.
 3. En déduire l'espérance conditionnelle de $Y$ sachant $X$.
 
-## Mélanges de loi
-mélanges de gaussienne, cf silvere-schmidt
+## Mélanges de lois {.question #melloi}
 
-## Lois conjuguées
-exemples utiles en bayésien : gauss-gauss, gauss-gamma,...
+*Extrait du cours de probabilités de S. Bonnabel et M. Schmidt (MINES ParisTech).*
 
-## Randomisation
-exemple de somme aléatoire de v.a.r.
+Pour modéliser un phénomène multimodal, on utilise souvent des mélanges de gaussiennes. Soient $n\in\N^\ast$ et $K$ une variable aléatoire prenant les valeurs $1,\dots,n$ avec les probabilités non nulles $p_1,\dots,p_n$ telles que $\sum_{i = 1}^n p_i = 1$. Soient $X_1,\dots,X_n$ des variables aléatoires gaussiennes mutuellement indépendantes, d'espérances respectives $m_1,\dots,m_n \in \R$ et de variances respectives $\sigma_1^2,\dots,\sigma_n^2 \in\R_+^\ast$, toutes indépendantes de $K$. On appelle mélange de gaussiennes la variable aléatoire $X = X_K$. Pour tout $i\in\{1,\dots,n\}$, on pourra noter $f_i$ la densité de la variable aléatoire $X_i$.
 
-## Modèles graphiques --- indépendance conditionnelle
+1. Soit $i \in \{1,\dots,n\}$. Quelle est la densité $f_{X\mid K = i}$ de $X$ conditionnellement à l'événement $\{K = i\}$ ?
 
-## Covariance totale
+2. Calculer la densité de probabilité de la variable $X$.
+
+3. Calculer $\Esp(X)$. Montrer que $\V(X) = \sum_{i = 1}^n p_i\sigma_i^2 + \bar{\sigma}^2$, où ce dernier terme peut être interprété comme la dispersion des espérances.
+
+4. Comment approximeriez-vous le mélange par une unique gaussienne ? Faire un schéma dans le cas $m = 2$.
+
+## Lois conjuguées {.question #loiconj}
+
+Soit un vecteur aléatoire $(X,Y)$ de loi jointe $\P_{X,Y}$. Expliciter la loi conditionnelle de $Y$ sachant $\{X=x\}$ dans les situations suivantes, en prenant soin d'expliciter pour quelles valeurs de $x$ ces dernières ont du sens.
+
+### Situation 1 {.question #loiconj-expexp}
+
+$Y$ suit une loi Exponentielle de paramètre $\lambda \in\R_+^\ast$ et pour tout $y\in\R_+^\ast$, la variable aléatoire $X$ sachant $\{Y=y\}$ suit une loi Exponentielle de paramètre $y$.
+
+### Situation 2 {.question #loiconj-gampoi}
+
+$Y$ suit une loi Gamma de paramètres $\alpha,\theta \in \R_+^\ast$ et pour tout $y\in\R_+^\ast$, la variable aléatoire $X$ sachant $\{Y=y\}$ suit une loi de Poisson de paramètre $y$.
+
+## Randomisation {.question #randomize}
+
+*Extrait du cours de probabilités de S. Bonnabel et M. Schmidt (MINES ParisTech).*
+
+Des clients arrivent à la boutique SNCF du boulevard Saint-Michel à des instants aléatoires. On note $T_0$ l'heure d'ouverture puis $T_1, T_2, \dots$ les temps successifs d'arrivée des clients jusqu'à l'heure de fermeture. Les études statistiques montrent qu'on peut, dans une tranche horaire donnée, supposer que les temps d'attente $X_1 = T_1 -T_0, X_2 = T_2 -T_1,\dots$ peuvent être modélisés par des variables aléatoires indépendantes et de même loi qu'une variable aléatoire positive $X$. Par ailleurs, une loterie interne décide que chaque jour dans la tranche horaire considérée, le $N^{\text{ème}}$ client sera l'heureux gagnant d'un trajet gratuit Paris-La Ciotat, où $N$ est une variable aléatoire bornée dont la loi dépend du processus de loterie (e.g. tous les clients entre le
+premier et le $30^{\text{ème}}$ ont une chance $1/30$ d'être tirés au sort, en supposant qu'on est sûr d'avoir au moins $30$ clients dans la tranche horaire).
+
+On se demande alors : quel est le temps d'attente moyen avant d'obtenir un gagnant ?
+
+## Modèles graphiques --- indépendance conditionnelle {.question #modgr}
+
+## Covariance totale {.question #covtot}
+
+Soient $X$, $Y$ et $Z$ trois variables aléatoires réelles de carré intégrable. La covariance conditionnelle de $X$ et $Y$ sachant $Z$ est définie comme la variable aléatoire
+$$\cov(X,Y \mid Z) = \Esp\Bigl( \bigl( X - \Esp(X\mid Z) \bigr)\bigl( Y - \Esp(Y\mid Z) \bigr) \Bigm| Z  \Bigr).$$
+
+Montrer la formule de la covariance totale : $$\cov(X,Y) = \Esp\bigl(\cov(X,Y\mid Z)\bigr) + \cov\bigl( \Esp(X\mid Z), \Esp(Y\mid Z) \bigr).$$
+
+## Non-réponse {.question #nonrep}
+*Inspiré du cours de probabilité de M. Christine (Ensae ParisTech).*
+
+Un questionnaire est diffusé aux $n\in\N^\ast$ étudiants de l'école pour savoir combien de temps ils ont consacré à l'étude des probabilités ce semestre. On note $Y_i$ le temps de travail de l'étudiant $i \in \{1,\dots,n\}$ et $X_i$ la variable valant $1$ s'il a répondu au questionnaire et $0$ sinon. Il est supposé que $(X_1,Y_1),\dots,(X_n,Y_n)$ sont des vecteurs aléatoires indépendants de même distribution qu'un vecteur générique $(X,Y)$ tel que
+* $X$ est une variable de Bernoulli de paramètre $p\in\,]0,1[$ indiquant la probabilité de réponse,
+* $Y$ est positive, de carré intégrable, d'espérance $m\in\R_+$ et de variance $\sigma^2 \in\R_+^\ast$.
+Le coefficient de corrélation entre $X$ et $Y$ est enfin noté $\rho \in [-1,1]$.
+
+1. En reprenant la définition de l'espérance conditionnelle $\Esp(Y\mid X)$ comme meilleure approximation au sens des moindres carrés de $Y$ par une fonction de $X$, montrer qu'elle coïncide ici avec l'approximation affine de $Y$ par $X$ puis l'écrire en fonction de $m$, $\rho$, $\sigma$ et $p$.
+
+2. On pose $m_0 := \Esp(Y\mid X = 0)$ et $m_1 = \Esp(Y\mid X = 1)$. Calculer $m_0$ et $m_1$ en fonction de $m$, $\rho$, $\sigma$ et $p$.
+
+3. On pose $\sigma^2_0 := \V\left(Y\mid X = 0\right)$ et $\sigma^2_1 := \V\left(Y\mid X = 1\right)$. Vérifier l'égalité $$\sigma^2 = \dfrac{(1-p)\,\sigma^2_0 + p\,\sigma^2_1}{1-\rho^2}.$$
+
+4. Que dire des résultats obtenus aux questions 2 et 3 lorsque :
+* $X$ et $Y$ sont non corrélées,
+* $X$ et $Y$ sont indépendantes ?
 
 -----------------------------------------------------------
 
@@ -397,10 +447,144 @@ Solutions
 ===============================================================================
 
 
-## Un exercice tout bête {.answer #etb} 
+## Un exercice tout bête {.answer #answer-etb} 
+
 La densité marginale de $X$ est donnée par $f_X(x) = \int f_{X,Y}(x,y) dy = 1_{]0,1[}(x)$ et pour $x \in ]0,1[$,
-$$ f_{Y|X=x} (y) = \frac{1}{x} 1_{]0,x[}(y) $$
+$$f_{Y|X=x} (y) = \frac{1}{x} 1_{]0,x[}(y)$$
 Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$. Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(Y|X) = \frac{X}{2}$.
+
+## Mélanges de lois {.answer #answer-melloi}
+
+1. Soit $B$ un borélien. Par indépendance de $K$ avec $X_i$, on a $$\P(X \in B \mid K = i) = \P(X_i \in B \mid K = i) = \P(X_i \in B).$$ La loi de $X$ sachant $\{K = i\}$ est donc la même que celle de $X_i$, d'où $$f_{X\mid K = i} : x\in\R \mapsto f_i(x) = \dfrac{1}{\sqrt{2\pi}\sigma_i}\,\exp\left\{- \dfrac{(x-m_i)^2}{2\sigma_i^2} \right\}.$$
+
+2. Soit $B$ un borélien. D'après la formule des probabilités totales et la question précédente, on a $$\P(X\in B) = \sum_{i = 1}^n p_i\,\P(X \in B \mid K = i) = \sum_{i = 1}^n p_i\,\P(X_i \in B).$$ La variable aléatoire $X$ admet donc une densité, qui vaut
+$$f_X : x\in\R \mapsto \sum_{i = 1}^n p_i\,f_i(x).$$
+
+3. D'après la question précédente, $X$ a pour espérance
+\begin{align*}
+\Esp(X) &= \int_\R x\,f_X(x)\,dx = \int_\R x \sum_{i = 1}^n p_i\, f_i(x)\,dx =  \sum_{i = 1}^n p_i \int_\R x\,f_i(x)\,dx\\
+& = \sum_{i = 1}^n p_i\,m_i.
+\end{align*}
+Quand à la variance de $X$, en utilisant l'égalité $\sum_{i= 1}^n p_i = 1$, elle vaut
+\begin{align*}
+\V(X) &= \Esp\left(X^2\right) - \Esp(X)^2 = \int_\R x^2\,f_X(x)\,dx - \left(\sum_{i = 1}^n p_i\,m_i\right)^2\\
+&= \sum_{i = 1}^n p_i (\sigma_i^2 + m_i^2) - \sum_{i = 1}^n p_i\left(\sum_{j = 1}^n p_j\,m_j\right)^2\\
+&= \sum_{i = 1}^n p_i\,\sigma_i^2 + \sum_{i = 1}^n p_i \left(m_i - \sum_{j=1}^n p_j\,m_j \right)^2.
+\end{align*}
+On retrouve bien la forme désirée, avec la dispersion des espérances
+$$\bar{\sigma}^2 := \sum_{i = 1}^n p_i \left(m_i - \sum_{j=1}^n p_j\,m_j \right)^2.$$
+
+4. Si l'on souhaite approcher la loi de $X$ avec une unique Gaussienne, et non un mélange, les questions précédentes suggèrent de prendre celle d'espérance $\sum_{i =1}^n p_i\,m_i$ et de variance $\sum_{i = 1}^n p_i\,\sigma^2_i + \bar{\sigma}^2$. 
+
+## Lois conjuguées {.answer #answer-loiconj}
+
+On considère dans tout cet exercice $B_1$ et $B_2$ des Boréliens.
+
+### Situation 1 {.answer #answer-loiconj-expexp}
+
+D'après les hypothèses on a
+\begin{align*}
+\P_{X,Y}(B_1\times B_2) &= \int_{B_2} \left(\int_{B_1} \P_{X\mid Y = y}(dx) \right) \P_Y(dy) \hspace{1em}\text{par théorème,}\\
+&= \int_{B_2} \left(\int_{B_1} y\,e^{-y x}\,1_{\R_+^\ast}(x)\,dx \right) \lambda\,e^{-\lambda y}\,1_{\R_+^\ast}(y)\,dy\\
+&= \int_{B_1} \int_{B_2} \lambda\, y\,e^{-(x+\lambda)\,y}1_{\R_+^\ast}(x)\,1_{\R_+^\ast}(y) \,dy\, dx \hspace{1em}\text{par Fubini.}
+\end{align*}
+Le vecteur aléatoire $(X,Y)$ possède donc une densité jointe
+$$f_{X,Y} : (x,y) \in\R^2 \mapsto \lambda\, y\,e^{-(x+\lambda)\,y}1_{\R_+^\ast}(x)\,1_{\R_+^\ast}(y).$$
+La variable aléatoire $X$ a donc aussi une densité : pour tout $x\in\R$
+\begin{align*}
+f_X(x) &= \int_{\R} f_{X,Y}(x,y)\,dy = \int_\R \lambda\, y\,e^{-(x+\lambda)\,y}1_{\R_+^\ast}(x)\,1_{\R_+^\ast}(y)\,dy\\
+&= \left|\begin{array}{ll}\displaystyle \dfrac{\lambda}{x+\lambda} \int_{0}^{+\infty} y\,(x+\lambda)\,e^{-(x+\lambda)\,y}\,dy & \text{si } x>0,\\[1em] 0 & \text{sinon.} \end{array}\right.
+\end{align*}
+On reconnaît dans cette dernière intégrale la formule de l'espérance d'une loi Exponentielle de paramètre $x+\lambda$, et on en déduit que pour tout $x\in\R$
+$$f_X(x) = \dfrac{\lambda}{(x+\lambda)^2}\,1_{\R_+^\ast}(x).$$
+Pour tout $x\in\R_+^\ast$ la variable $Y$ sachant $\{X=x\}$ admet donc aussi une densité, que l'on explicite avec la formule de Bayes : pour tout $y\in\R$
+\begin{align*}
+f_{Y\mid X=x}(y) &= \dfrac{f_{X,Y}(x,y)}{f_X(x)} = \dfrac{\lambda\, y\,e^{-(x+\lambda)\,y}\,1_{\R_+^\ast}(y)}{\dfrac{\lambda}{(x+\lambda)^2}}\\
+&= (x+\lambda)^2\,y\,e^{-(x+\lambda)\,y}\,1_{\R_+\ast}(y).
+\end{align*}
+Comme $\Gamma(2) = 1$, on reconnaît ici la densité d'une loi Gamma d'indice $2$ et de paramètre d'échelle $x+\lambda$.
+
+### Situation 2 {.answer #answer-loiconj-gampoi}
+
+D'après les hypothèses, en procédant comme précédemment, on a
+\begin{align*}
+\P_{X,Y}(B_1\times B_2) &= \int_{B_2} \left(\int_{B_1} \P_{X\mid Y = y}(dx) \right) \P_Y(dy)\\
+&= \int_{B_2} \left(\sum_{x\in B_1} \dfrac{y^{x}}{x!}\,e^{-y}\,1_{\N}(x) \right) \dfrac{\theta^{\alpha}}{\Gamma(\alpha)}\,y^{\alpha-1}e^{-\theta y}\,1_{\R_+}(y)\,dy\\
+&= \sum_{x\in B_1\cap\N} \left(\dfrac{1}{x!} \int_{B_2\cap\R_+} \dfrac{\theta^{\alpha}}{\Gamma(\alpha)}\,y^{x+\alpha-1}e^{-(\theta+1) y}\,dy\right)\\
+&= \sum_{x\in B_1\cap\N} \biggl(\dfrac{\Gamma(x+\alpha)\,\theta^\alpha}{x!\,\Gamma(\alpha)\,(\theta+1)^{x+\alpha}}\\
+&\hspace{5em} \times \int_{B_2\cap\R_+} \dfrac{(\theta+1)^{x+\alpha}}{\Gamma(x+\alpha)}\,y^{x+\alpha-1}e^{-(\theta+1) y}\,dy\biggr).
+\end{align*}
+On reconnaît dans cette dernière intégrale la densité d'une loi Gamma d'indice $x+\alpha$ et de paramètre d'échelle $\theta+1$, qui correspond exactement à la loi conditionnelle de $Y$ sachant $\{X=x\}$ pour $x\in\N$. En effet, on a d'une part
+\begin{align*}
+\P_X(B_1) &= \P_{X,Y}(B_1 \times \R) = \sum_{x\in B_1\cap\N} \dfrac{\theta^\alpha}{\Gamma(\alpha)}\, \dfrac{\Gamma(x+\alpha)}{x!\,(\theta+1)^{x+\alpha}},
+\end{align*}
+ce qui donne bien pour tout $x\in\N$ :
+\begin{align*}
+\P_{Y\mid X=x} (B_2) &= \P\left(Y \in B_2 \mid X = x\right) = \dfrac{\P_{X,Y}\left(\{x\}\times B_2\right)}{\P_X(\{x\})}\\
+&= \int_{B_2\cap\R_+} \dfrac{(\theta+1)^{x+\alpha}}{\Gamma(x+\alpha)}\,y^{x+\alpha-1}\,e^{-(\theta+1)y}\,dy.
+\end{align*}
+
+## Randomisation {.answer #answer-randomize}
+
+En termes probabilistes et selon les notations de l'exercice, il s'agit de calculer $\Esp(T_N - T_0)$, où la variable aléatoire $T_N$ peut s'écrire en fonction d'une somme aléatoire de variables aléatoires indépendantes : $$T_N = \sum_{i = 1}^N X_i + T_0.$$
+Comme la boutique ferme au bout d'un certain temps, toutes les variables aléatoires figurant dans l'équation précédente sont bornées, donc intégrables. On peut ainsi calculer $\Esp(T_N-T_0)$ à l'aide de la formule de l'espérance totale : $$\Esp\left(T_N - T_0\right) = \Esp\left(\Esp\left(T_N \mid N\right)\right) - T_0.$$
+Pour tout $n\in\N^\ast$ l'énoncé suggère que $N$ est indépendante de $X_1,\dots,X_n$, elles-mêmes indépendantes et de même loi que $X$, d'où :
+$$\Esp\left(T_n \mid N = n\right) = \sum_{i = 1}^n \Esp(X_i\mid N = n) = \sum_{i = 1}^n \Esp(X_i) = n\Esp(X).$$
+Ainsi, en posant $\psi : n \in\N^\ast \mapsto n \Esp(X)$, on obtient
+$$\Esp\left(T_N - T_0\right) = \Esp\left(\psi(N)\right) - T_0 = \Esp(N)\Esp(X) - T_0.$$
+C'était prévisible : en posant arbitrairement $T_0 = 0$, le temps d'attente moyen est le temps d'attente moyen entre deux arrivées, multiplié par le numéro moyen du gagnant. Si la loterie dépendait des temps d'arrivées, par exemple en faisant gagner le premier client qui arrive au moins 10 minutes après le client précédent, $\psi$, et donc le résultat, seraient différents.
+
+## Modèles graphiques --- indépendance conditionnelle {.answer #answer-modgr}
+
+
+## Covariance totale {.answer #answer-covtot}
+
+Tout d'abord, par linéarité de l'espérance conditionnelle on a :
+\begin{align*}
+\cov(X,Y \mid Z) &= \Esp\Bigl( \bigl( X - \Esp(X\mid Z) \bigr)\bigl( Y - \Esp(Y\mid Z) \bigr) \Bigm| Z  \Bigr)\\
+&= \Esp\Bigl( XY - X\Esp(Y\mid Z) - Y\Esp(X\mid Z) + \Esp(X\mid Z)\Esp(Y\mid Z) \Bigm| Z  \Bigr)\\
+&= \Esp(XY \mid Z) - \Esp(X\mid Z)\Esp(Y\mid Z).
+\end{align*}
+
+En utilisant la formule de l'espérance totale et la linéarité de l'espérance, on obtient alors
+\begin{align*}
+\cov(X,Y) &= \Esp(XY) - \Esp(X)\Esp(Y)\\
+&= \Esp\bigl( \Esp(XY \mid Z) \bigr) - \Esp\bigl( \Esp(X \mid Z) \bigr)\Esp\bigl( \Esp(Y \mid Z) \bigr)\\
+&= \Esp\bigl( \Esp(XY \mid Z) - \Esp(X\mid Z)\Esp(Y\mid Z) \bigr)\\
+&\ \ \  + \Esp\bigl( \Esp(X\mid Z)\Esp(Y\mid Z) \bigr) - \Esp\bigl( \Esp(X \mid Z) \bigr)\Esp\bigl( \Esp(Y \mid Z) \bigr)\\
+&= \Esp\bigl(\cov(X,Y\mid Z)\bigr) + \cov\bigl( \Esp(X\mid Z), \Esp(Y\mid Z) \bigr).
+\end{align*}
+
+## Non-réponse {.answer #answer-nonrep}
+
+1. L'espérance conditionnelle de $Y$ sachant $X$ peut s'écrire comme la solution au problème de minimisation
+$$\min_{\phi(X)\in L^2_X} \Esp\left(\left(Y-\phi(X)\right)^2\right).$$
+Or pour $\phi(X)\in L^2_X$ on a ici
+$$\Esp\left(\left(Y-\phi(X)\right)^2\right) = \Esp\left( \left(Y - \phi(1)\right)^2 1_{\{1\}}(X) \right) + \Esp\left( \left(Y - \phi(0)\right)^2 1_{\{0\}}(X) \right),$$
+il suffit donc de résoudre pour tout $x\in\{0,1\}$
+$$\min_{\lambda \in \R} \Esp\left(\left(Y-\lambda\right)^2 1_{\{x\}}(X)\right).$$
+Soit $x\in\{0,1\}$ et posons $f_x : \lambda\in\R \mapsto \Esp\left(\left(Y-\lambda\right)^2 1_{\{x\}}(X)\right)$. Alors pour tout $\lambda\in\R$
+$$f_x(\lambda) = \Esp\left(Y^21_{\{x\}}(X)\right) + \lambda^2\,\P(X=x) -2\lambda\,\Esp\left(Y1_{\{x\}}(X)\right)$$
+et sa dérivée
+$$f_x^\prime(\lambda) = 2\lambda\,\P(X=x) -2\,\Esp\left(Y1_{\{x\}}(X)\right)$$
+s'annule en $$\lambda_x := \dfrac{\Esp\left(Y1_{\{x\}}(X)\right)}{\P(X=x)} = \Esp(Y\mid X = x).$$
+On en conclut que $$\Esp(Y\mid X) = \Esp(Y\mid X = 1)1_{\{1\}}(X) + \Esp(Y\mid X = 0)1_{\{0\}}(X).$$
+Or on remarque que $1_{\{1\}}(X) = X$ et $1_{\{0\}}(X) = 1 - X$, ce qui fait de $\Esp(Y\mid X)$ une fonction affine de $X$. Elle est par définition la meilleure approximation de $Y$ par une fonction de $X$, elle coïncide donc avec l'approximation affine de $Y$ par $X$:
+$$\Esp(Y\mid X) = m + \dfrac{\rho\,\sigma}{\sqrt{p(1-p)}}\,(X - p).$$
+
+2. D'après la question précédente, on a $\Esp(Y\mid X) = m_0 + (m_1 - m_0) X$, la meilleure approximation affine de $Y$ par $X$. Ainsi, $m_0$ et $m_1$ satisfont
+$$\left|\begin{array}{l} m_1 - m_0 = \dfrac{\rho\sigma}{\sqrt{p(1-p)}},\\[1em] m_0 = m - (m_1-m_0)p,  \end{array}\right. \Leftrightarrow \left|\begin{array}{l} m_1 = m + \rho\sigma\sqrt{\dfrac{1-p}{p}},\\[1em] m_0 = m - \rho\sigma\sqrt{\dfrac{p}{1-p}}.  \end{array}\right.$$
+
+3. Par la formule de la variance totale et d'après la question 1, on a
+\begin{align*}
+\sigma^2 &= \V\left(Y\right) = \Esp\bigl(\V\left(Y\mid X\right)\bigr) + \V\bigl(\Esp(Y\mid X)\bigr)\\
+&= p\,\sigma^2_1 + (1-p)\,\sigma^2_0 + \dfrac{\rho^2\sigma^2}{p\,(1-p)}\V(X)\\
+&= p\,\sigma^2_1 + (1-p)\,\sigma^2_0 + \rho^2\sigma^2.
+\end{align*}
+Cette égalité se simplifie et donne bien
+$$\sigma^2 = \dfrac{(1-p)\,\sigma_0^2 + p\,\sigma_1^2}{1-\rho^2}.$$
+
+4. Lorsque $X$ et $Y$ sont non corrélées, i.e. $\rho = 0$, on obtient $m_0 = m_1 = m$ puis $\sigma^2 = (1-p)\,\sigma_0^2 + p\,\sigma_1^2$. En d'autres termes, $\Esp(Y\mid X) = m$ est une variable aléatoire constante, et $\Esp\bigl(\V(Y\mid X)\bigr) = \sigma^2$. Dans ce cas, la non-réponse n'affecte pas l'espérance, mais potentiellement la variance (la dispersion du temps de travail peut être différente chez les répondants et les non-répondants). Ces deux propriétés sont encore vraies en cas d'indépendance entre $X$ et $Y$, puisque l'indépendance implique la non corrélation, mais nous avons de plus $\V(Y\mid X) = \sigma^2 = \sigma^2_1 = \sigma^2_0$; la variable aléatoire $\V(Y\mid X)$ est elle aussi constante. Cette fois-ci, la dispersion est la même chez les répondants et les non-répondants : la non-réponse n'affecte pas la variance.
 
 
 Références
