@@ -65,22 +65,22 @@ $$\Esp(g(X,Y)) = \int_{\R} \left( \int_{\R} g(x,y) \P_Y(dy|X = x)\right) \P_X(dx
 ### Exemple {.example #ex1}
 
 Soit $X \geq 0$ une variable aléatoire à valeurs dans $\N$ et $Y$ une variable aléatoire réelle positive telle que la loi du couple $\P_{X,Y}$ vérifie pour tout $n\in\N$ et tout borélien $B_2$ de $\R$ :
-$$\P_{X,Y} (\{n\}\times B_2) = (1-\alpha)\alpha^n \int_{B_2 \cap \R_+^\star}e^{-t}\frac{t^n}{n!}dt,\,\,\, 0 < \alpha <1$$
+$$\P_{X,Y} (\{n\}\times B_2) = (1-\alpha)\alpha^n \int_{B_2 \cap \R_+^\ast}e^{-t}\frac{t^n}{n!}dt,\,\,\, 0 < \alpha <1$$
 $\P_{X,Y}$ est bien une probabilité sur $\R^2$ puisque par convergence monotone :
 \begin{align*}
 \P_{X,Y} (\R^2) &= \P_{X,Y}(\N \times \R) \\
                 &= \sum_{n\in\N} \P_{X,Y} (\{n\}\times \R)\\
-                &= \sum_{n\in\N} (1-\alpha)\alpha^n \int_{\R_+^\star}e^{-t}\frac{t^n}{n!}dt \\
-                &= (1-\alpha)\int_{\R_+^\star}e^{-t} \sum_{n\in\N} \frac{\alpha t^n}{n!}dt \\
-                &= (1-\alpha)\int_{\R_+^\star}e^{-(1-\alpha)t} dt = 1
+                &= \sum_{n\in\N} (1-\alpha)\alpha^n \int_{\R_+^\ast}e^{-t}\frac{t^n}{n!}dt \\
+                &= (1-\alpha)\int_{\R_+^\ast}e^{-t} \sum_{n\in\N} \frac{\alpha t^n}{n!}dt \\
+                &= (1-\alpha)\int_{\R_+^\ast}e^{-(1-\alpha)t} dt = 1
 \end{align*}               
 où on aura reconnu la loi exponentielle de paramètre $(1-\alpha)$.
 $\forall n \in \N$, 
-$$ \int_{\R_+^\star}e^{-t}\frac{t^n}{n!}dt = \int_{\R_+^\star}e^{-t}\frac{t^{(n-1)}}{(n-1)!}dt = \ldots = \int_{\R_+^\star}e^{-t}dt =1$$
-par intégration par parties itérée. la loi marginale de $X$ s'écrit donc :
-$$\forall n \in \N, \P(X=n) = \P_{X,Y} (\{n\}\times \R_+^\star) = (1-\alpha)\alpha^n,$$ 
+$$ \int_{\R_+^\ast}e^{-t}\frac{t^n}{n!}dt = \int_{\R_+^\ast}e^{-t}\frac{t^{(n-1)}}{(n-1)!}dt = \ldots = \int_{\R_+^\ast}e^{-t}dt =1$$
+par intégrations par parties itérées. La loi marginale de $X$ s'écrit donc :
+$$\forall n \in \N, \P(X=n) = \P_{X,Y} (\{n\}\times \R_+^\ast) = (1-\alpha)\alpha^n,$$ 
 loi géométrique de paramètre $(1-\alpha)$. On en déduit la loi conditionnelle de $Y$ sachant $X = x$ :
-$$\P_{Y|X=x}(B_2) = \P(Y \in B_2 | X=x) = \frac{\P_{X,Y} (\{n\}\times B_2)}{\P(X=n)} = \int_{B_2 \cap \R_+^\star} e^{-t}\frac{t^n}{n!}dt$$
+$$\P_{Y|X=x}(B_2) = \P(Y \in B_2 | X=x) = \frac{\P_{X,Y} (\{n\}\times B_2)}{\P(X=n)} = \int_{B_2 \cap \R_+^\ast} e^{-t}\frac{t^n}{n!}dt$$
 et $\P_{Y|X=x}$ est la donc la loi gamma de paramètre $(n+1,1)$.
 
 
@@ -97,7 +97,9 @@ La probabilité conditionnelle de $Y$ sachant $\{X = x\}$ s'écrit ainsi $\P_{Y|
 ### Démonstration {.proof}
 La preuve est immédiate puisque $f_{Y|X=x}$ est une fonction positive d'intégrale 1.
 
-L’interprétation de cette définition est la suivante : la fonction $f(Y|X=x)$ est la densité de la “loi conditionnelle de $Y$ sachant que $X = x$”. Bien sûr, nous avons $\P(X = x) = 0$ puisque $X$ admet une densité, donc la phrase ci-dessus n’a pas réellement de sens, mais elle se justifie heuristiquement ainsi : $dx$ et $dy$ étant de “petits” accroissements des variables $x$ et $y$ et lorsque $f$ et $f_X$ sont continues et strictement positives respectivement en $(x,y)$ et $x$ :
+### {.anonymous}
+
+L’interprétation de cette définition est la suivante : la fonction $f_{Y|X=x}$ est la densité de la “loi conditionnelle de $Y$ sachant que $X = x$”. Bien sûr, nous avons $\P(X = x) = 0$ puisque $X$ admet une densité, donc la phrase ci-dessus n’a pas réellement de sens, mais elle se justifie heuristiquement ainsi : $dx$ et $dy$ étant de “petits” accroissements des variables $x$ et $y$ et lorsque $f$ et $f_X$ sont continues et strictement positives respectivement en $(x,y)$ et $x$ :
 \begin{align*}
 f_X(x) dx & \approx \P(X \in [x, x+dx])\\
 f_{X,Y}(x,y) dx dy & \approx \P(X \in [x, x+dx], Y \in [y, y+dy])\\
@@ -140,11 +142,11 @@ $$\Esp(g(X,Y)) = \int_\R \left( \int_\R g(x,y)\P_{Y|X=x}(dy) \right) \P_X(dx).$$
 
 * Ce résultat peut être interprété comme un **théorème de Fubini conditionnel**, dans le sens où il permet une intégration séquentielle, mais ici la mesure de probabilité du couple $(X,Y)$ s'exprime comme un produit de mesures dont l'un des termes dépend de la variable d'intégration de l'autre. En particulier, si on change l'ordre d'intégration, on change les mesures qui interviennent.
 * Fréquemment, dans les applications, la famille des lois conditionnelles est une donnée du modèle considéré, et leur existence ne pose donc pas de problème !
-* On retrouve les cas vus précédemment en notant que pour tout borélien $B_1$ de $\R$ on a $\P_x(B_1) = \int_{B_1}\P_X(dx) = \sum_{x \in \B_1} \P(X=x)$ lorsque $X$ est discrète, et que pour tous boréliens $B_1$ et $B_2$ de $\R$ on a $\P_X(B_1) = \int_{B_1} f_X(x)dx$ et $\P_{X,Y}(B_1 \times B_2) = \int_{B_1 \times B_2}f_{X,Y}(x,y) dx dy$.
+* On retrouve les cas vus précédemment en notant que pour tout borélien $B_1$ de $\R$ on a $\P_X(B_1) = \int_{B_1}\P_X(dx) = \sum_{x \in B_1} \P(X=x)$ lorsque $X$ est discrète, et que pour tous boréliens $B_1$ et $B_2$ de $\R$ on a $\P_X(B_1) = \int_{B_1} f_X(x)dx$ et $\P_{X,Y}(B_1 \times B_2) = \int_{B_1 \times B_2}f_{X,Y}(x,y) dx dy$.
 * Dans tout ce qui précède, les rôles de $X$ et $Y$ peuvent évidemment être inversés. 
 
 ## Conséquences
-Le [théorème précédent](#fubinicond) a deux conséquences majeures. Il fournit d'une part un moyen efficace d'identifier la loi marginale de $Y$ connaissant la loi marginale de $X$ et la loi de $Y$ sachant $X$. En effet, en notant que pour tout borélien $B$ de $\R$, $\P_Y(B) = \P_{X,Y}(\R \times B)$ et en appliquant ce théorème, on a la proposition suivante :
+Le [théorème précédent](#fubinicond) a deux conséquences majeures. Il fournit d'une part un moyen efficace d'identifier la loi marginale de $Y$ connaissant la loi marginale de $X$ et la loi de $Y$ sachant $X = x$. En effet, en notant que pour tout borélien $B$ de $\R$, $\P_Y(B) = \P_{X,Y}(\R \times B)$ et en appliquant ce théorème, on a la proposition suivante :
 
 ### Proposition {.proposition #balcond}
 
@@ -158,13 +160,14 @@ $$f_Y(y) = \int_\R f_{X,Y}(x,y)dx = \int_\R f_{Y | X=x}(y)f_X(x) dx.$$
     $$ f_{X|Y=y}(x) = \frac{f_{X,Y}(x,y)}{f_Y(y)} = \frac{f_{Y|X=x}(y)f_X(x)}{f_Y(y)} .$$
 
 
+
 ### Exemple {.example}
-Poursuivons [l'exemple vu ci-dessus](#ex1). On rappelle qu'on a déjà identifié la loi marginale de $X$ ainsi que la loi conditionnelle de $Y$ sachant $X=n$ pour $n\in\N$ que l'on rappelle ici :
-$$\P(X=n) = (1-\alpha)\alpha^n,\,n\in\N \text{ et }\forall  B \in \B(\R), \, \P_{Y|X=x}(B) = \int_{B \cap \R_+^\star} e^{-t}\frac{t^n}{n!}dt$$
-On peut en déduire la loi marginale de $Y$ en utilisant la [proposition ci-dessus](#balcond) et le théorème de convergence monotone :
+Poursuivons [l'exemple vu plus haut](#ex1). On rappelle qu'on a déjà identifié la loi marginale de $X$ ainsi que la loi conditionnelle de $Y$ sachant $X=n$ pour $n\in\N$ que l'on rappelle ici :
+$$\P(X=n) = (1-\alpha)\alpha^n,\,n\in\N \text{ et }\forall  B \in \B(\R), \, \P_{Y|X=x}(B) = \int_{B \cap \R_+^\ast} e^{-t}\frac{t^n}{n!}dt$$
+On peut en déduire la loi marginale de $Y$ en utilisant la [proposition précédente](#balcond) et le théorème de convergence monotone :
 \begin{align*}
-\P_Y(B)  &= \sum_{n \in \N} (1-\alpha)\alpha^n \int_{B \cap \R_+^\star} e^{-t}\frac{t^n}{n!} dt\\
-         &= (1-\alpha) \int_{B \cap \R_+^\star} e^{-t} \sum_{n \in \N} \frac{(\alpha t)^n}{n!} dt \\
+\P_Y(B)  &= \sum_{n \in \N} (1-\alpha)\alpha^n \int_{B \cap \R_+^\ast} e^{-t}\frac{t^n}{n!} dt\\
+         &= (1-\alpha) \int_{B \cap \R_+^\ast} e^{-t} \sum_{n \in \N} \frac{(\alpha t)^n}{n!} dt \\
          &= \int_B 1_{\R_+}(t)(1-\alpha) e^{-(1-\alpha)t} dt,
 \end{align*}
 de sorte que $Y$ suit une loi exponentielle de paramètre $(1-\alpha)$.
@@ -173,11 +176,11 @@ En inversant les rôles, on va pouvoir identifier la loi de $X$ sachant $Y \in B
 \begin{align*}
 \P_{X,Y}(\{n\} \times B) &= \P_X(\{n\})\P_{Y|X=n}(B) \\
                          &= \int_B \frac{(\alpha t)^n}{n!} e^{-\alpha t} \P_Y(dt)\\
-                         &= \int_B \P_{X = n | Y =t}(\{n\}) \P_Y(dt)
+                         &= \int_B \P_{X | Y =t}(\{n\}) \P_Y(dt)
 \end{align*}
 où l'on reconnaît que $\P_{X =n | Y =t}(\{n\}) = \frac{(\alpha t)^n}{n!} e^{-\alpha t}$, c'est-à-dire que $X$ sachant $Y = t$ suit une loi de Poisson de paramètre $\alpha t$ pour $\P_Y$-presque tout $t$.
 
-En utilisant, le [théorème précédent](#fubinicond), on obtient une nouvelle caractérisation de l'indépendance de deux variables aléatoires faisant intervenir les lois conditionnelles.
+En utilisant, le [théorème précédent](#fubinicond), on obtient également une nouvelle caractérisation de l'indépendance de deux variables aléatoires faisant intervenir les lois conditionnelles.
 
 ### Proposition (critère d'indépendance) {.proposition}
 
@@ -187,15 +190,13 @@ En utilisant, le [théorème précédent](#fubinicond), on obtient une nouvelle 
 
 ### Démonstration {.proof}
 
-1. Si $X$ et $Y$ sont indépendantes, pour tous $B_1$, $B_2$ boréliens de $\R$, $\P_{X,Y} (B_1 \times B_2) = \P_X(B_1)\P_Y(B_2) = \int_{B_1}\P_Y(B_2)\P_X(dx) = \int_{B_2}\P_X(B_1) \P_Y(dy)$. Le résultat d'unicité du [théorème ci-dessus](#fubinicond) (à une égalité $\P_X$-presque sûre près), nous indique alors que $\P_{Y|X=x}(B_2) = \P_Y(B_2)$.
+1. Si $X$ et $Y$ sont indépendantes, pour tous $B_1$, $B_2$ boréliens de $\R$, $\P_{X,Y} (B_1 \times B_2) = \P_X(B_1)\P_Y(B_2) = \int_{B_1}\P_Y(B_2)\P_X(dx) = \int_{B_2}\P_X(B_1) \P_Y(dy)$. Le résultat d'unicité du [théorème de Fubini conditionnel](#fubinicond) (à une égalité $\P_X$-presque sûre près), nous indique alors que $\P_{Y|X=x}(B_2) = \P_Y(B_2)$.
 
    Inversement, si $\P_{Y |X = x} = \P_Y$, alors $\P_{X,Y} (B_1 \times B_2) = \int_{B_1}\P_{Y|X=x}(B_2)\P_X(dx) = \int_{B_1}\P_Y(B_2)\P_X(dx) = \P_X(B_1)\P_Y(B_2)$.
 
 2. Si $X$ et $Y$ sont indépendantes, $f_{X,Y} (x,y) = f_X(x) f_Y(y)$, d'où $f_{Y|X=x}(y) = f_Y(y)$.
 
    Inversement, si $f_{Y|X=x}(y) = f_Y(y)$ alors $f_{X,Y}(x,y) = f_{Y|X=x}(y) f_X(x) = f_Y(y)f_X(x)$ et $X$ et $Y$ sont indépendantes.
-
-### {.anonymous}
 
 # Espérance conditionnelle
 
@@ -211,7 +212,7 @@ Soit $Y$ une variable aléatoire intégrable.
 
 ### Remarques {.remark}
 
- 1. $\psi(x)$ n'est définie que pour $x \notin B$, avec $\P(X\in B) = 0$. Par conséquent, la [définition](#defespcond) définit bien l'espérance conditionnelle $\psi(X) = \Esp(Y|X)$ $\P_X$-presque partout, autrement dit avec probabilité 1, ou encore presque sûrement.
+ 1. $\psi(x)$ n'est définie que pour $x \notin N$, avec $\P(X\in N) = 0$. Par conséquent, la [définition](#defespcond) définit bien l'espérance conditionnelle $\psi(X) = \Esp(Y|X)$ $\P_X$-presque partout, autrement dit avec probabilité 1, ou encore presque sûrement.
  2. $\Esp(\Esp(|Y||X)) = \Esp(|Y|)$ comme conséquence directe du [théorème de Fubini conditionnel](#fubinicond). L'espérance conditionnelle de $Y$ sachant $X$ est bien définie dès que $Y$ est intégrable. 
  3. Lorsque $(X,Y)$ admet une densité, l'espérance conditionnelle de $Y$ sachant $\{X=x\}$ s'écrit
  $$\Esp(Y|X=x) = \int_\R y f_{Y|X=x}(y) dy.$$
@@ -255,12 +256,12 @@ est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, q
 
 
 ## Vecteurs Gaussiens à densité
-Dans le cas des vecteurs gaussiens à densité, c'est-à-dire dont la matrice de covariance est définie positive, et donc inversible, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On va voir en particulier que les lois conditionnelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
+Dans le cas des vecteurs gaussiens à densité, c'est-à-dire dont la matrice de covariance est définie positive et donc inversible, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On va voir en particulier que les lois conditionnelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
 
 On considère un vecteur gaussien $X = (X_1,\ldots,X_n)$ à valeurs dans $\R^n$ d'espérance $m$ et de matrice de covariance $C$ définie positive. On a vu au chapitre 2 que la densité du vecteur $X$ s'écrit pour $x\in\R^d$ :
 $$f_X(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp \left(-\frac{1}{2}(x-m)^t C^{-1}(x-m)\right)$$
 
-Soit $1 \leq k \leq n$ un entier. On souhaite exprimer $f_{Y|Z=z}$, la densité conditionnelle de $Y = (X_1,\ldots,X_{k-1})$ sachant $Z = (X_k,\ldots,X_n) = (x_k,\ldots,x_n) = z$. On a vu que 
+Soit $1 \leq k < n$ un entier. On souhaite exprimer $f_{Y|Z=z}$, la densité conditionnelle de $Y = (X_1,\ldots,X_{k-1})$ sachant $Z = (X_k,\ldots,X_n) = (x_k,\ldots,x_n) = z$. On a vu que 
 $$f_X = f_{Y|Z=z} f_Z,$$
 où $f_Z$ est la densité marginale de $Z$. On cherche donc à décomposer $f_X$ de la sorte. On note $m = (m_Y,m_Z)$ et on remarque que $C$ peut se décomposer en blocs :
 \begin{equation*}
@@ -274,7 +275,8 @@ C^{-1} = \left(\begin{array}{cc} CS_Y^{-1} & -CS_Y^{-1}C_{Y,Z}C_Z^{-1} \\ -C_Z^{
 \end{equation*}
 On peut alors réarranger les termes de la forme quadratique dans $f_X$ et on obtient :
 \begin{align*}
-(x-m)^t C^{-1}(x-m) =& \left(y - (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))\right)^t CS_Y^{-1}\left(y - (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))\right)\\
+(x-m)^t C^{-1}(x-m) =& \left(y - (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))\right)^t CS_Y^{-1}\\
+&.\left(y - (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))\right)\\
  &+ (z-m_Z)^t C_Z^{-1}(z-m_Z)
 \end{align*}
 Pour la constante, on peut remarquer que :
@@ -294,7 +296,7 @@ C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_
 
 
 # Régression et espérance conditionnelle des variables de carré intégrable
-La régression est un ensemble de méthodes d'apprentissage statistique très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variables mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable. On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
+La régression est un ensemble de méthodes d'apprentissage statistique très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variables mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable (ou dans $\L^2$). On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
 
 ## Régression linéaire
 On considère deux variables aléatoires rélles, de carré intégrable, définies sur le même espace de probabilité $(\Omega,\A,\P)$, et dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est-à-dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
@@ -316,15 +318,15 @@ et l'erreur quadratique moyenne vaut alors
                         & = \sigma^2_Y(1-\rho^2(X,Y)).
 \end{align*}
 
-On voit ainsi que cette erreur est proche de 0 lorsque $|\rho(X,Y)| \approx 1$ tandis qu'elle est proche de $\V(Y) = \sigma^2_Y$ lorsque $\rho(X,Y) \approx 0$. 
+On voit ainsi que cette erreur est proche de 0 lorsque $|\rho(X,Y)| \approx 1$ tandis qu'elle est proche de $\V(Y) = \sigma^2_Y$ lorsque $\rho(X,Y) \approx 0$. On notera au passage qu'on obtient que la meilleure approximation de $Y$ par une constante est son espérance.
 
 ### Remarque {.remark}
-L'hypothèse d'une relation linéaire est très forte et pas nécessairement toujours adaptée pour expliquer des relations de dépendances entre variables. Soit en effet une variable aléatoire réelle $X$ de $\L^3$ symétrique, c'est-à-dire telle que $X$ et $-X$ soient de même loi. On a alors $\Esp(X) = -\Esp(X) = 0$. Les variables $X$ et $X^2$ ne sont clairement pas indépendantes. Pour autant, on a $\cov(X,X^2) = \Esp(X^3) = -\Esp(X^3) = 0$ et le coefficient de régression ci-dessus est nul. 
+L'hypothèse d'une relation linéaire est très forte et pas nécessairement toujours adaptée pour expliquer des relations de dépendances entre variables. Soit en effet une variable aléatoire réelle $X$ de $\L^3$ symétrique, c'est-à-dire telle que $X$ et $-X$ soient de même loi. On a alors $\Esp(X) = -\Esp(X) = 0$. Les variables $X$ et $X^2$ ne sont clairement pas indépendantes. Pour autant, on a $\cov(X,X^2) = \Esp(X^3) = -\Esp(X^3) = 0$ et le coefficient de régression $a$ ci-dessus est nul. 
 
 
 ## Espace de Hilbert des variables aléatoires de carré intégrable
 
-Dans le paragraphe précédent, on s'est intéressé à approximer linéairement une variable aléatoire $Y$ de carré intégrable par une autre variable $X$ également de carré intégrable. On va montrer ici que la meilleure approximation, au sens de l'erreur quadratique moyenne, de $Y$ par une fonction $\psi$ de $X$ est précisément donnée par $\psi(X) = \Esp(Y|X)$. Ce paragraphe fait appel à des notions hors programme et est par conséquent non exigible. Il fournit néanmoins une interprétation géométrique particulièrement éclairante de l'espérance conditionnelle.
+Dans le paragraphe précédent, on s'est intéressé à approximer linéairement une variable aléatoire $Y$ de carré intégrable par une autre variable $X$ également de carré intégrable. On va montrer ici que la meilleure approximation, au sens de l'erreur quadratique moyenne, de $Y$ par une fonction de $X$ est précisément donnée par $\psi(X) = \Esp(Y|X)$. Ce paragraphe fait appel à des notions hors programme et est par conséquent non exigible. Il fournit néanmoins une interprétation géométrique particulièrement frappante de l'espérance conditionnelle.
 
 On a besoin en pratique de travailler sur un espace un peu plus petit que $\L^2$ tout entier. En effet, les outils que nous allons utiliser ne nous permettent pas de distinguer entre deux variables $X$ et $Y$ égales presque sûrement, c'est-à-dire telles que $\exists N \in \A$, tel que $\P(N) = 0$ et $\forall \omega \in N^c,\,\, X(\omega) = Y(\omega)$. Cette notion d'égalité presque sûre est une relation d'équivalence. On va ainsi travailler avec l'espace $L^2$ des classes de variables pour l'égalité presque sûre, c'est-à-dire que $L^2$ contiendra un unique représentant de chacune de ces classes. Dans ce cadre, au lieu d'écrire $X=0$ p.s., on écrit simplement $X=0$.
 
@@ -336,9 +338,9 @@ Ce produit scalaire est bien défini pour tout couple $(X,Y)$ de variables de $L
 $$\Esp(XY)^2 \leq \Esp(X^2)\Esp(Y^2)$$
 et on a bien $\|X\| = 0$ si et seulement si $X=0$. On peut enfin montrer que $L^2$ est complet pour la norme définie ci-dessus (voir @Jacod pour la démonstration). 
 
-Soit maintenant $X$ et $Y \in L^2(\Omega,\A,\P)$ et $L^2_X$ le sous-espace de $L^2$ constitué des (classes d'équivalence) des variables aléatoires fonctions seulement de $X$ du type $\phi(X)$ (avec $\phi$ borélienne): $L^2_X$ est convexe et fermé.
+Soient maintenant $X$ et $Y \in L^2(\Omega,\A,\P)$. On onsidère $L^2_X$ le sous-espace de $L^2$ constitué des (classes d'équivalence) des variables aléatoires fonctions seulement de $X$ du type $\phi(X)$ (avec $\phi$ telle que $\phi(X) \in L^2$). On peut montrer que $L^2_X$ est convexe et fermé.
 
-Alors, l'espérance conditionnelle de $Y$ sachant $X$, $\Esp(Y|X)$ s'interprète comme la projection orthogonale de $Y$ sur $L^2_X$.
+Alors, l'espérance conditionnelle de $Y$ sachant $X$, $\Esp(Y|X)$ s'interprète comme **la projection orthogonale** de $Y$ sur $L^2_X$.
 
 Soit en effet l'opérateur qui à $Y \in L^2$ associe $\Esp(Y|X) \in L^2_X$. On a vu que c'est un opérateur linéaire. Pour montrer qu'il s'agit d'un projecteur orthogonal, on peut vérifier qu'il est idempotent et auto-adjoint :
 
@@ -346,9 +348,9 @@ Soit en effet l'opérateur qui à $Y \in L^2$ associe $\Esp(Y|X) \in L^2_X$. On 
 - et pour $Z\in L^2$, $<Z,\Esp(Y|X) > = \Esp(Z\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y)) = <\Esp(Z|X),Y>$.
 
 Le théorème de projection sur un convexe fermé dans les espaces de Hilbert[^rmbf] assure alors que 
-$$\arg\min_{\phi(X)} \|Y-\phi(X)\|^2 = \arg\min_{\phi(X)} \Esp((Y-\phi(X))^2) = \Esp(Y|X) = \psi(X)$$
+$$\arg\min_{\phi(X) \in L^2_X} \|Y-\phi(X)\|^2 = \arg\min_{\phi(X)\in L^2_X} \Esp((Y-\phi(X))^2) = \Esp(Y|X) = \psi(X)$$
 
-[^rmbf]: voir les [Rappels mathématiques pour la mécanique quantique de Bruno Figliuzzi](https://discourse.mines-paristech.fr/uploads/short-url/v4CxgD6KzWUZpmQWbvckL7eaP7C.pdf)
+[^rmbf]: voir par exemple les [Rappels mathématiques pour la mécanique quantique de Bruno Figliuzzi](https://discourse.mines-paristech.fr/uploads/short-url/v4CxgD6KzWUZpmQWbvckL7eaP7C.pdf)
 
 Ainsi, $\Esp(Y|X)$ est la meilleure approximation (au sens des moindres carrés) de $Y$ par une fonction de $X$.
 
@@ -378,29 +380,33 @@ Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T
 2. Calculer la densité conditionnelle de $Y$ sachant $X=x$.
 3. En déduire l'espérance conditionnelle de $Y$ sachant $X$.
 
-## Mélanges de lois {.question #melloi}
+## Mélanges de lois 
 
-*Extrait du cours de probabilités de S. Bonnabel et M. Schmidt (MINES ParisTech).*
+*Adapté du cours de probabilités de S. Bonnabel et M. Schmidt (MINES ParisTech).*
 
-Pour modéliser un phénomène multimodal, on utilise souvent des mélanges de gaussiennes. Soient $n\in\N^\ast$ et $K$ une variable aléatoire prenant les valeurs $1,\dots,n$ avec les probabilités non nulles $p_1,\dots,p_n$ telles que $\sum_{i = 1}^n p_i = 1$. Soient $X_1,\dots,X_n$ des variables aléatoires gaussiennes mutuellement indépendantes, d'espérances respectives $m_1,\dots,m_n \in \R$ et de variances respectives $\sigma_1^2,\dots,\sigma_n^2 \in\R_+^\ast$, toutes indépendantes de $K$. On appelle mélange de gaussiennes la variable aléatoire $X = X_K$. Pour tout $i\in\{1,\dots,n\}$, on pourra noter $f_i$ la densité de la variable aléatoire $X_i$.
+Pour modéliser un phénomène multimodal, on utilise souvent des mélanges de gaussiennes. C'est le cas notamment en classification non-supervisée, où on fait l'hypothèse que chacune des classes suit une loi gaussienne. Soient $n\in\N^\ast$ et $K$ une variable aléatoire prenant les valeurs $1,\dots,n$ avec les probabilités non nulles $p_1,\dots,p_n$ telles que $\sum_{i = 1}^n p_i = 1$. Soient $X_1,\dots,X_n$ des variables aléatoires gaussiennes mutuellement indépendantes, d'espérances respectives $m_1,\dots,m_n \in \R$ et de variances respectives $\sigma_1^2,\dots,\sigma_n^2 \in\R_+^\ast$, toutes indépendantes de $K$. On appelle mélange de gaussiennes la loi de la variable aléatoire $X = X_K$. Pour tout $i\in\{1,\dots,n\}$, on notera $f_i$ la densité de la variable aléatoire $X_i$.
 
-1. Soit $i \in \{1,\dots,n\}$. Quelle est la densité $f_{X\mid K = i}$ de $X$ conditionnellement à l'événement $\{K = i\}$ ?
+### Question 1 {.question #melloi1} 
+Soit $i \in \{1,\dots,n\}$. Quelle est la densité $f_{X\mid K = i}$ de $X$ conditionnellement à l'événement $\{K = i\}$ ?
 
-2. Calculer la densité de probabilité de la variable $X$.
+### Question 2 {.question #melloi2} 
+Calculer la densité de probabilité de la variable $X$.
 
-3. Calculer $\Esp(X)$. Montrer que $\V(X) = \sum_{i = 1}^n p_i\sigma_i^2 + \bar{\sigma}^2$, où ce dernier terme peut être interprété comme la dispersion des espérances.
+### Question 3 {.question #melloi3} 
+Calculer $\Esp(X)$. Montrer que $\V(X) = \sum_{i = 1}^n p_i\sigma_i^2 + \bar{\sigma}^2$, où ce dernier terme peut être interprété comme la dispersion des espérances.
 
-4. Comment approximeriez-vous le mélange par une unique gaussienne ? Faire un schéma dans le cas $m = 2$.
+### Question 4 {.question #melloi4} 
+Comment approximeriez-vous le mélange par une unique gaussienne ? Faire un schéma dans le cas $m = 2$.
 
-## Lois conjuguées {.question #loiconj}
+## Lois conjuguées
 
 Soit un vecteur aléatoire $(X,Y)$ de loi jointe $\P_{X,Y}$. Expliciter la loi conditionnelle de $Y$ sachant $\{X=x\}$ dans les situations suivantes, en prenant soin d'expliciter pour quelles valeurs de $x$ ces dernières ont du sens.
 
-### Situation 1 {.question #loiconj-expexp}
+### Question 1 {.question #loiconj-expexp}
 
 $Y$ suit une loi Exponentielle de paramètre $\lambda \in\R_+^\ast$ et pour tout $y\in\R_+^\ast$, la variable aléatoire $X$ sachant $\{Y=y\}$ suit une loi Exponentielle de paramètre $y$.
 
-### Situation 2 {.question #loiconj-gampoi}
+### QUestion 2 {.question #loiconj-gampoi}
 
 $Y$ suit une loi Gamma de paramètres $\alpha,\theta \in \R_+^\ast$ et pour tout $y\in\R_+^\ast$, la variable aléatoire $X$ sachant $\{Y=y\}$ suit une loi de Poisson de paramètre $y$.
 
@@ -420,23 +426,29 @@ On se demande alors : quel est le temps d'attente moyen avant d'obtenir un gagna
 Soient $X$, $Y$ et $Z$ trois variables aléatoires réelles de carré intégrable. La covariance conditionnelle de $X$ et $Y$ sachant $Z$ est définie comme la variable aléatoire
 $$\cov(X,Y \mid Z) = \Esp\Bigl( \bigl( X - \Esp(X\mid Z) \bigr)\bigl( Y - \Esp(Y\mid Z) \bigr) \Bigm| Z  \Bigr).$$
 
-Montrer la formule de la covariance totale : $$\cov(X,Y) = \Esp\bigl(\cov(X,Y\mid Z)\bigr) + \cov\bigl( \Esp(X\mid Z), \Esp(Y\mid Z) \bigr).$$
+Etablir la formule de la covariance totale : $$\cov(X,Y) = \Esp\bigl(\cov(X,Y\mid Z)\bigr) + \cov\bigl( \Esp(X\mid Z), \Esp(Y\mid Z) \bigr).$$
 
-## Non-réponse {.question #nonrep}
-*Inspiré du cours de probabilité de M. Christine (Ensae ParisTech).*
+## Non-réponse 
+*Inspiré du cours de probabilité de M. Christine (E   NSAE ParisTech).*
 
-Un questionnaire est diffusé aux $n\in\N^\ast$ étudiants de l'école pour savoir combien de temps ils ont consacré à l'étude des probabilités ce semestre. On note $Y_i$ le temps de travail de l'étudiant $i \in \{1,\dots,n\}$ et $X_i$ la variable valant $1$ s'il a répondu au questionnaire et $0$ sinon. Il est supposé que $(X_1,Y_1),\dots,(X_n,Y_n)$ sont des vecteurs aléatoires indépendants de même distribution qu'un vecteur générique $(X,Y)$ tel que
+Un questionnaire est diffusé aux $n\in\N^\ast$ étudiants de l'école pour savoir combien de temps ils ont consacré à l'étude des probabilités ce semestre. On note $Y_i$ le temps de travail de l'étudiant $i \in \{1,\dots,n\}$ et $X_i$ la variable valant $1$ s'il a répondu au questionnaire et $0$ sinon. On suppose que les $(X_1,Y_1),\dots,(X_n,Y_n)$ sont des vecteurs aléatoires indépendants de même distribution qu'un vecteur générique $(X,Y)$ tel que
+
 * $X$ est une variable de Bernoulli de paramètre $p\in\,]0,1[$ indiquant la probabilité de réponse,
 * $Y$ est positive, de carré intégrable, d'espérance $m\in\R_+$ et de variance $\sigma^2 \in\R_+^\ast$.
 Le coefficient de corrélation entre $X$ et $Y$ est enfin noté $\rho \in [-1,1]$.
 
-1. En reprenant la définition de l'espérance conditionnelle $\Esp(Y\mid X)$ comme meilleure approximation au sens des moindres carrés de $Y$ par une fonction de $X$, montrer qu'elle coïncide ici avec l'approximation affine de $Y$ par $X$ puis l'écrire en fonction de $m$, $\rho$, $\sigma$ et $p$.
+### Question 1 {.question #nonrep1}
+En reprenant la définition de l'espérance conditionnelle $\Esp(Y\mid X)$ comme meilleure approximation au sens des moindres carrés de $Y$ par une fonction de $X$, montrer qu'elle coïncide ici avec l'approximation affine de $Y$ par $X$ puis l'écrire en fonction de $m$, $\rho$, $\sigma$ et $p$.
 
-2. On pose $m_0 := \Esp(Y\mid X = 0)$ et $m_1 = \Esp(Y\mid X = 1)$. Calculer $m_0$ et $m_1$ en fonction de $m$, $\rho$, $\sigma$ et $p$.
+### Question 2 {.question #nonrep2}
+On pose $m_0 := \Esp(Y\mid X = 0)$ et $m_1 = \Esp(Y\mid X = 1)$. Calculer $m_0$ et $m_1$ en fonction de $m$, $\rho$, $\sigma$ et $p$.
 
-3. On pose $\sigma^2_0 := \V\left(Y\mid X = 0\right)$ et $\sigma^2_1 := \V\left(Y\mid X = 1\right)$. Vérifier l'égalité $$\sigma^2 = \dfrac{(1-p)\,\sigma^2_0 + p\,\sigma^2_1}{1-\rho^2}.$$
+### Question 3 {.question #nonrep3}
+On pose $\sigma^2_0 := \V\left(Y\mid X = 0\right)$ et $\sigma^2_1 := \V\left(Y\mid X = 1\right)$. Vérifier l'égalité $$\sigma^2 = \dfrac{(1-p)\,\sigma^2_0 + p\,\sigma^2_1}{1-\rho^2}.$$
 
-4. Que dire des résultats obtenus aux questions 2 et 3 lorsque :
+### Question 4 {.question #nonrep4}
+Que dire des résultats obtenus aux questions 2 et 3 lorsque :
+
 * $X$ et $Y$ sont non corrélées,
 * $X$ et $Y$ sont indépendantes ?
 
@@ -453,14 +465,17 @@ La densité marginale de $X$ est donnée par $f_X(x) = \int f_{X,Y}(x,y) dy = 1_
 $$f_{Y|X=x} (y) = \frac{1}{x} 1_{]0,x[}(y)$$
 Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$. Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(Y|X) = \frac{X}{2}$.
 
-## Mélanges de lois {.answer #answer-melloi}
+## Mélanges de lois
 
-1. Soit $B$ un borélien. Par indépendance de $K$ avec $X_i$, on a $$\P(X \in B \mid K = i) = \P(X_i \in B \mid K = i) = \P(X_i \in B).$$ La loi de $X$ sachant $\{K = i\}$ est donc la même que celle de $X_i$, d'où $$f_{X\mid K = i} : x\in\R \mapsto f_i(x) = \dfrac{1}{\sqrt{2\pi}\sigma_i}\,\exp\left\{- \dfrac{(x-m_i)^2}{2\sigma_i^2} \right\}.$$
+### Question 1 {.answer #answer-melloi1}
+Soit $B$ un borélien. Par indépendance de $K$ avec $X_i$, on a $$\P(X \in B \mid K = i) = \P(X_i \in B \mid K = i) = \P(X_i \in B).$$ La loi de $X$ sachant $\{K = i\}$ est donc la même que celle de $X_i$, d'où $$f_{X\mid K = i} : x\in\R \mapsto f_i(x) = \dfrac{1}{\sqrt{2\pi}\sigma_i}\,\exp\left\{- \dfrac{(x-m_i)^2}{2\sigma_i^2} \right\}.$$
 
-2. Soit $B$ un borélien. D'après la formule des probabilités totales et la question précédente, on a $$\P(X\in B) = \sum_{i = 1}^n p_i\,\P(X \in B \mid K = i) = \sum_{i = 1}^n p_i\,\P(X_i \in B).$$ La variable aléatoire $X$ admet donc une densité, qui vaut
+### Question 2 {.answer #answer-melloi2}
+Soit $B$ un borélien. D'après la formule des probabilités totales et la question précédente, on a $$\P(X\in B) = \sum_{i = 1}^n p_i\,\P(X \in B \mid K = i) = \sum_{i = 1}^n p_i\,\P(X_i \in B).$$ La variable aléatoire $X$ admet donc une densité, qui vaut
 $$f_X : x\in\R \mapsto \sum_{i = 1}^n p_i\,f_i(x).$$
 
-3. D'après la question précédente, $X$ a pour espérance
+### Question 3 {.answer #answer-melloi3}
+D'après la question précédente, $X$ a pour espérance
 \begin{align*}
 \Esp(X) &= \int_\R x\,f_X(x)\,dx = \int_\R x \sum_{i = 1}^n p_i\, f_i(x)\,dx =  \sum_{i = 1}^n p_i \int_\R x\,f_i(x)\,dx\\
 & = \sum_{i = 1}^n p_i\,m_i.
@@ -474,13 +489,16 @@ Quand à la variance de $X$, en utilisant l'égalité $\sum_{i= 1}^n p_i = 1$, e
 On retrouve bien la forme désirée, avec la dispersion des espérances
 $$\bar{\sigma}^2 := \sum_{i = 1}^n p_i \left(m_i - \sum_{j=1}^n p_j\,m_j \right)^2.$$
 
-4. Si l'on souhaite approcher la loi de $X$ avec une unique Gaussienne, et non un mélange, les questions précédentes suggèrent de prendre celle d'espérance $\sum_{i =1}^n p_i\,m_i$ et de variance $\sum_{i = 1}^n p_i\,\sigma^2_i + \bar{\sigma}^2$. 
+### Question 4 {.answer #answer-melloi4}
+Si l'on souhaite approcher la loi de $X$ avec une unique Gaussienne, et non un mélange, les questions précédentes suggèrent de prendre celle d'espérance $\sum_{i =1}^n p_i\,m_i$ et de variance $\sum_{i = 1}^n p_i\,\sigma^2_i + \bar{\sigma}^2$. 
+
+![Illustration](images/PdfMelGauss.tex)
 
 ## Lois conjuguées {.answer #answer-loiconj}
 
 On considère dans tout cet exercice $B_1$ et $B_2$ des Boréliens.
 
-### Situation 1 {.answer #answer-loiconj-expexp}
+### Question 1 {.answer #answer-loiconj-expexp}
 
 D'après les hypothèses on a
 \begin{align*}
@@ -504,7 +522,7 @@ f_{Y\mid X=x}(y) &= \dfrac{f_{X,Y}(x,y)}{f_X(x)} = \dfrac{\lambda\, y\,e^{-(x+\l
 \end{align*}
 Comme $\Gamma(2) = 1$, on reconnaît ici la densité d'une loi Gamma d'indice $2$ et de paramètre d'échelle $x+\lambda$.
 
-### Situation 2 {.answer #answer-loiconj-gampoi}
+### Question 2 {.answer #answer-loiconj-gampoi}
 
 D'après les hypothèses, en procédant comme précédemment, on a
 \begin{align*}
@@ -532,7 +550,7 @@ Pour tout $n\in\N^\ast$ l'énoncé suggère que $N$ est indépendante de $X_1,\d
 $$\Esp\left(T_n \mid N = n\right) = \sum_{i = 1}^n \Esp(X_i\mid N = n) = \sum_{i = 1}^n \Esp(X_i) = n\Esp(X).$$
 Ainsi, en posant $\psi : n \in\N^\ast \mapsto n \Esp(X)$, on obtient
 $$\Esp\left(T_N - T_0\right) = \Esp\left(\psi(N)\right) - T_0 = \Esp(N)\Esp(X) - T_0.$$
-C'était prévisible : en posant arbitrairement $T_0 = 0$, le temps d'attente moyen est le temps d'attente moyen entre deux arrivées, multiplié par le numéro moyen du gagnant. Si la loterie dépendait des temps d'arrivées, par exemple en faisant gagner le premier client qui arrive au moins 10 minutes après le client précédent, $\psi$, et donc le résultat, seraient différents.
+C'était prévisible : en posant arbitrairement $T_0 = 0$, le temps d'attente moyen est le temps d'attente moyen entre deux arrivées, multiplié par le rang moyen du gagnant. Si la loterie dépendait des temps d'arrivées, par exemple en faisant gagner le premier client qui arrive au moins 10 minutes après le client précédent, $\psi$, et donc le résultat, seraient différents.
 
 ## Modèles graphiques --- indépendance conditionnelle {.answer #answer-modgr}
 
@@ -555,27 +573,30 @@ En utilisant la formule de l'espérance totale et la linéarité de l'espérance
 &= \Esp\bigl(\cov(X,Y\mid Z)\bigr) + \cov\bigl( \Esp(X\mid Z), \Esp(Y\mid Z) \bigr).
 \end{align*}
 
-## Non-réponse {.answer #answer-nonrep}
+## Non-réponse 
 
-1. L'espérance conditionnelle de $Y$ sachant $X$ peut s'écrire comme la solution au problème de minimisation
+### Question 1 {.answer #answer-nonrep1}
+L'espérance conditionnelle de $Y$ sachant $X$ peut s'écrire comme la solution au problème de minimisation
 $$\min_{\phi(X)\in L^2_X} \Esp\left(\left(Y-\phi(X)\right)^2\right).$$
 Or pour $\phi(X)\in L^2_X$ on a ici
 $$\Esp\left(\left(Y-\phi(X)\right)^2\right) = \Esp\left( \left(Y - \phi(1)\right)^2 1_{\{1\}}(X) \right) + \Esp\left( \left(Y - \phi(0)\right)^2 1_{\{0\}}(X) \right),$$
 il suffit donc de résoudre pour tout $x\in\{0,1\}$
 $$\min_{\lambda \in \R} \Esp\left(\left(Y-\lambda\right)^2 1_{\{x\}}(X)\right).$$
-Soit $x\in\{0,1\}$ et posons $f_x : \lambda\in\R \mapsto \Esp\left(\left(Y-\lambda\right)^2 1_{\{x\}}(X)\right)$. Alors pour tout $\lambda\in\R$
-$$f_x(\lambda) = \Esp\left(Y^21_{\{x\}}(X)\right) + \lambda^2\,\P(X=x) -2\lambda\,\Esp\left(Y1_{\{x\}}(X)\right)$$
+Soit $x\in\{0,1\}$ et posons $J_x : \lambda\in\R \mapsto \Esp\left(\left(Y-\lambda\right)^2 1_{\{x\}}(X)\right)$. Alors pour tout $\lambda\in\R$
+$$J_x(\lambda) = \Esp\left(Y^21_{\{x\}}(X)\right) + \lambda^2\,\P(X=x) -2\lambda\,\Esp\left(Y1_{\{x\}}(X)\right)$$
 et sa dérivée
-$$f_x^\prime(\lambda) = 2\lambda\,\P(X=x) -2\,\Esp\left(Y1_{\{x\}}(X)\right)$$
+$$J_x^\prime(\lambda) = 2\lambda\,\P(X=x) -2\,\Esp\left(Y1_{\{x\}}(X)\right)$$
 s'annule en $$\lambda_x := \dfrac{\Esp\left(Y1_{\{x\}}(X)\right)}{\P(X=x)} = \Esp(Y\mid X = x).$$
 On en conclut que $$\Esp(Y\mid X) = \Esp(Y\mid X = 1)1_{\{1\}}(X) + \Esp(Y\mid X = 0)1_{\{0\}}(X).$$
 Or on remarque que $1_{\{1\}}(X) = X$ et $1_{\{0\}}(X) = 1 - X$, ce qui fait de $\Esp(Y\mid X)$ une fonction affine de $X$. Elle est par définition la meilleure approximation de $Y$ par une fonction de $X$, elle coïncide donc avec l'approximation affine de $Y$ par $X$:
 $$\Esp(Y\mid X) = m + \dfrac{\rho\,\sigma}{\sqrt{p(1-p)}}\,(X - p).$$
 
-2. D'après la question précédente, on a $\Esp(Y\mid X) = m_0 + (m_1 - m_0) X$, la meilleure approximation affine de $Y$ par $X$. Ainsi, $m_0$ et $m_1$ satisfont
+### Question 2 {.answer #answer-nonrep2}
+D'après la question précédente, on a $\Esp(Y\mid X) = m_0 + (m_1 - m_0) X$, la meilleure approximation affine de $Y$ par $X$. Ainsi, $m_0$ et $m_1$ satisfont
 $$\left|\begin{array}{l} m_1 - m_0 = \dfrac{\rho\sigma}{\sqrt{p(1-p)}},\\[1em] m_0 = m - (m_1-m_0)p,  \end{array}\right. \Leftrightarrow \left|\begin{array}{l} m_1 = m + \rho\sigma\sqrt{\dfrac{1-p}{p}},\\[1em] m_0 = m - \rho\sigma\sqrt{\dfrac{p}{1-p}}.  \end{array}\right.$$
 
-3. Par la formule de la variance totale et d'après la question 1, on a
+### Question 3 {.answer #answer-nonrep3}
+Par la formule de la variance totale et d'après la question 1, on a
 \begin{align*}
 \sigma^2 &= \V\left(Y\right) = \Esp\bigl(\V\left(Y\mid X\right)\bigr) + \V\bigl(\Esp(Y\mid X)\bigr)\\
 &= p\,\sigma^2_1 + (1-p)\,\sigma^2_0 + \dfrac{\rho^2\sigma^2}{p\,(1-p)}\V(X)\\
@@ -584,7 +605,8 @@ $$\left|\begin{array}{l} m_1 - m_0 = \dfrac{\rho\sigma}{\sqrt{p(1-p)}},\\[1em] m
 Cette égalité se simplifie et donne bien
 $$\sigma^2 = \dfrac{(1-p)\,\sigma_0^2 + p\,\sigma_1^2}{1-\rho^2}.$$
 
-4. Lorsque $X$ et $Y$ sont non corrélées, i.e. $\rho = 0$, on obtient $m_0 = m_1 = m$ puis $\sigma^2 = (1-p)\,\sigma_0^2 + p\,\sigma_1^2$. En d'autres termes, $\Esp(Y\mid X) = m$ est une variable aléatoire constante, et $\Esp\bigl(\V(Y\mid X)\bigr) = \sigma^2$. Dans ce cas, la non-réponse n'affecte pas l'espérance, mais potentiellement la variance (la dispersion du temps de travail peut être différente chez les répondants et les non-répondants). Ces deux propriétés sont encore vraies en cas d'indépendance entre $X$ et $Y$, puisque l'indépendance implique la non corrélation, mais nous avons de plus $\V(Y\mid X) = \sigma^2 = \sigma^2_1 = \sigma^2_0$; la variable aléatoire $\V(Y\mid X)$ est elle aussi constante. Cette fois-ci, la dispersion est la même chez les répondants et les non-répondants : la non-réponse n'affecte pas la variance.
+### Question 4 {.answer #answer-nonrep4}
+Lorsque $X$ et $Y$ sont non corrélées, i.e. $\rho = 0$, on obtient $m_0 = m_1 = m$ puis $\sigma^2 = (1-p)\,\sigma_0^2 + p\,\sigma_1^2$. En d'autres termes, $\Esp(Y\mid X) = m$ est une variable aléatoire constante, et $\Esp\bigl(\V(Y\mid X)\bigr) = \sigma^2$. Dans ce cas, la non-réponse n'affecte pas l'espérance, mais potentiellement la variance (la dispersion du temps de travail peut être différente chez les répondants et les non-répondants). Ces deux propriétés sont encore vraies en cas d'indépendance entre $X$ et $Y$, puisque l'indépendance implique la non corrélation, mais nous avons de plus $\V(Y\mid X) = \sigma^2 = \sigma^2_1 = \sigma^2_0$; la variable aléatoire $\V(Y\mid X)$ est elle aussi constante. Cette fois-ci, la dispersion est la même chez les répondants et les non-répondants : la non-réponse n'affecte pas la variance.
 
 
 Références
