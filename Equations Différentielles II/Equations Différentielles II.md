@@ -476,13 +476,13 @@ Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\dt_
 
 Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les resultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. On pourrait aussi directement choisir le pas $\dt_{opt}$ obtenu plus haut en prenant en compte les erreurs d'arrondis. Mais les constantes $c_v$ et $S(T)$ sont souvent mal connues et conservatives.
 
-**Consigne** Coder une fonction 
+**Consigne** Coder une fonction du type
 
-    def solve_euler_explicit(f, x0, dt):
+    def solve_euler_explicit(f, x0, dt, t0 = 0, tf):
       ...
       return t, x
 
-prenant en entrée une fonction $f$, une condition initiale $x_0$ et un pas de temps $dt$, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(x)$.  Tester les performances de votre solver sur une équation différentielle que vous savez résoudre. Illustrer la convergence du schéma à l'ordre 1. 
+prenant en entrée une fonction $f$, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(x)$.  Tester les performances de votre solver sur une équation différentielle que vous savez résoudre. Illustrer la convergence du schéma à l'ordre 1. 
 
 **Consigne** Faire de même et comparer la convergence avec un schéma d'ordre 2 de votre choix.
 
@@ -539,7 +539,7 @@ Mais pour cela nous devons trouver un moyen d'estimer l'erreur locale. C'est sou
 
 **Consigne** Montrer que si $f$ est $C^1$, on a pour un schéma d'Euler explicite
 $$
-\|e^{j+1}\| = \dt \, \frac{\big\|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big\|}{2} + O(\dt_j^3) \ 
+\|e^{j+1}\| = \dt_j \, \frac{\big\|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big\|}{2} + O(\dt_j^3) \ 
 $$
 
 On peut donc estimer à chaque itération l'erreur commise $e^{j+1}$ et adapter le pas selon si celle-ci est inférieure ou supérieure au seuil de tolérance.  
@@ -548,7 +548,7 @@ On peut donc estimer à chaque itération l'erreur commise $e^{j+1}$ et adapter 
 $e^{j+1} =  O(\dt_j^2)$,
 en déduire qu'une possible stratégie d'adaptation est de prendre  
 $$
-\dt_{new} = \dt \sqrt{\frac{\texttt{Tol}_{abs}}{\|e^{j+1}\|}}
+\dt_{new} = \dt_j \sqrt{\frac{\texttt{Tol}_{abs}}{\|e^{j+1}\|}}
 $$
 (éventuellement avec une marge de sécurité)
 
