@@ -419,7 +419,19 @@ premier et le $30^{\text{ème}}$ ont une chance $1/30$ d'être tirés au sort, e
 
 On se demande alors : quel est le temps d'attente moyen avant d'obtenir un gagnant ?
 
-## Modèles graphiques --- indépendance conditionnelle {.question #modgr}
+## Etats cachés --- indépendance conditionnelle 
+
+Soucieux de l'évolution du potager de l'école, des élèves à la main verte s'intéressent à l'évolution de la température dans le jardin côté Luxembourg. Ils récupèrent pour cela un thermomètre dans un laboratoire, l'installent près du potager, et en relèvent les mesures à intervalles de temps réguliers. Les résultats les surprennent rapidement : les températures affichées ne correspondent pas à celles prévues par météo-France. Leur thermomètre est sans doute déréglé.
+
+On se propose de les aider à comprendre le phénomène dont ils sont témoins à l'aide d'un modèle probabiliste particulier, nommé *modèle de Markov caché*. Précisément, on considère la suite des vraies températures que l'on aurait souhaité relever comme une suite de v.a.r. non indépendantes $(X_n)_{n\in\N^\ast}$, dite *d'états cachés* (on ne les observe pas directement). Les erreurs commises par le thermomètre sont quant à elles modélisées par une suite de v.a.r. $(\epsilon_n)_{n\in\N^\ast}$, toutes indépendantes et de même loi admettant une densité $f_\epsilon$. Elles sont supposées indépendantes de la suite $(X_n)_{n\in\N^\ast}$ (l'erreur du thermomètre lui est propre et ne dépend pas de la température réelle). A chaque instant $n\in\N^\ast$, on suppose que la mesure du thermomètre est la variable aléatoire $$Y_n = X_n + \epsilon_n,$$
+et que le vecteur aléatoire $(X_1,\dots,X_n)$ possède une densité jointe notée $f_{1:n}$.
+
+### Question 1 {.question #ec1}
+Montrer que pour tout $n \in \N^\ast$ et tout $x\in\R$, la loi de $Y_n$ sachant $\{X_n = x\}$ admet une densité, que l'on explicitera.
+
+### Question 2 {.question #ec2}
+Montrer que les $n\in\N^\ast$ relevés de température $Y_1,\dots,Y_n$ sont indépendants **conditionnellement** aux états cachés $X_1,\dots,X_n$.
+
 
 ## Covariance totale {.question #covtot}
 
@@ -552,7 +564,31 @@ Ainsi, en posant $\psi : n \in\N^\ast \mapsto n \Esp(X)$, on obtient
 $$\Esp\left(T_N - T_0\right) = \Esp\left(\psi(N)\right) - T_0 = \Esp(N)\Esp(X) - T_0.$$
 C'était prévisible : en posant arbitrairement $T_0 = 0$, le temps d'attente moyen est le temps d'attente moyen entre deux arrivées, multiplié par le rang moyen du gagnant. Si la loterie dépendait des temps d'arrivées, par exemple en faisant gagner le premier client qui arrive au moins 10 minutes après le client précédent, $\psi$, et donc le résultat, seraient différents.
 
-## Modèles graphiques --- indépendance conditionnelle {.answer #answer-modgr}
+## Etats cachés --- indépendance conditionnelle 
+
+### Question 1 {.answer #answer-ec1}
+Soit $n\in\N^\ast$. Quels que soient $x\in\R$ et $B$ borélien on a
+\begin{align*}
+\P_{Y_n \mid X_n = x}(B) &= \Esp\left(1_B(X_n+\epsilon_n) \mid X_n = x \right)\\
+&= \int_\R 1_B(x+y)\,\P_{\epsilon_n\mid X_n = x}(dy)\\
+& = \int_\R 1_B(x+y)\,f_\epsilon(y)\,dy \hspace{1em}\text{par indépendance de $X_n$ et $\epsilon_n$}\\
+&= \int_B f_\epsilon(y-x)\,dy.
+\end{align*}
+Ainsi, $\P_{Y_n\mid X_n =x}$ admet bien une densité : $$f_{Y_n\mid X_n=x} : y \in\R \mapsto f_\epsilon(y - x).$$
+
+### Question 2 {.answer #answer-ec2}
+Soient $n\in\N^\ast$, $(x_1,\dots,x_n)\in\R^n$ et $B_1,\dots,B_n$ des boréliens. Pour simplifier les écritures, on note $x_{1:n}$ tout vecteur $(x_1,\dots,x_n)$ de $\R^n$. Alors
+\begin{align*}
+&\P_{Y_{1:n}\mid X_{1:n}=x_{1:n}}(B_1\times\dots\times B_n)
+=\Esp\left(\prod_{i = 1}^n 1_{B_i}(X_i + \epsilon_i) \Bigm\vert X_{1:n} = x_{1:n} \right)\\
+&= \int_{\R^n} \prod_{i = 1}^n 1_{B_i}(x_i + y_i)\,\P_{\epsilon_{1:n}\mid X_{1:n} = x_{1:n}}(dy_{1:n})\\
+&= \int_{\R^n} \prod_{i = 1}^n 1_{B_i}(x_i + y_i)\,\P_{\epsilon_{1:n}}(dy_{1:n}) \ \text{par indépendance des $\epsilon_i$ et $X_j$,}\\
+&= \prod_{i = 1}^n \int_{\R} 1_{B_i}(x_i + y_i)\,f_\epsilon(x_i)\,dy_{i} \ \text{par Fubini et indépendance et même loi des $\epsilon_i$,}\\
+&= \prod_{i = 1}^n \int_{\R} 1_{B_i}(y_i)\,f_\epsilon(y_i - x_i)\,dy_i\\
+& = \prod_{i = 1}^n \int_{\R} 1_{B_i}(y_i)\,f_{Y_i\mid X_i = x_i}(y_i)\,dy_i\ \text{par la question 1,}\\
+&= \prod_{i = 1}^n \P_{Y_i\mid X_i = x_i}(B_i).
+\end{align*}
+Les $n$ relevés de température sont donc bien indépendants conditionnellement aux états cachés.
 
 
 ## Covariance totale {.answer #answer-covtot}
