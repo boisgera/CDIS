@@ -13,6 +13,7 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
+
 On s'est consacré jusqu'à présent à l'étude de (suites de) variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendant les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. Dans les approches bayésiennes, on résume l'information disponible sur l'état du système étudié par la **loi a priori** et on met à jour notre connaissance du système en incorporant de l'information supplémentaire (par exemple des observations). On cherche alors à caractériser la **loi a posteriori** de l'état du système, qui est la loi de l'état sachant l'information supplémentaire. On va ainsi s'attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont permettre de résumer l'information apportée par une variable (ou un vecteur) sur une autre et s'intéresser en particulier à l'**espérance conditionnelle** qui indiquera le comportement moyen d'une variable conditionnellement à une autre. Ce dernier cas pose le cadre probabiliste d'un des problèmes fondamentaux en apprentissage statistique : l'apprentissage supervisé, où on dispose d'un ensemble de réalisations d'une variable dont on cherche à prédire le comportement à partir d'un ensemble de variables dites explicatives (ou prédicteurs).
 
 # Lois conditionnelles dans un couple
@@ -92,7 +93,7 @@ On suppose maintenant que le couple $(X,Y)$ admet une densité $f_{X,Y}$ (par ra
 La formule suivante définit une densité sur $\R$, pour tout $x \in \R$ tel que $f_X(x) > 0$.
 $$ f_{Y|X=x}(y) = \frac{f_{X,Y}(x,y)}{f_X(x)}.$$
 Cette fonction s'appelle la *densité conditionnelle de $Y$ sachant $\{X = x\}$*.
-La probabilité conditionnelle de $Y$ sachant $\{X = x\}$ s'écrit ainsi $\P_{Y|X=x} = f_{Y|X=x}l$, où $l$ représente la mesure de Borel-Lebesgue.
+La probabilité conditionnelle de $Y$ sachant $\{X = x\}$ s'écrit ainsi $\P_{Y|X=x} = f_{Y|X=x}\ell$, où $\ell$ représente la mesure de Borel-Lebesgue.
 
 ### Démonstration {.proof}
 La preuve est immédiate puisque $f_{Y|X=x}$ est une fonction positive d'intégrale 1.
@@ -131,7 +132,7 @@ les calculs étant licites par application du théorème de Fubini et du fait qu
 On peut établir le résultat suivant, qui complète le théorème de Fubini et le résultat d'existence et d'unicité des mesures produits, et que l'on admettra.
 
 ### Théorème {.theorem #fubinicond}
-Soit un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$, il existe une famille $\P_{Y|X=x}$ de probabilités sur $(\R,\B(\R))$, unique à une égalité $\P_X$-presque partout près[^footequi], qui vérifie pour tous $B_1, B_2$ boréliens de $\R$ :
+Soit un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$, il existe une famille $\left(\P_{Y|X=x}\right)_{x\in\R}$ de probabilités sur $(\R,\B(\R))$, unique à une égalité $\P_X$-presque partout près[^footequi], qui vérifie pour tous $B_1, B_2$ boréliens de $\R$ :
 $$ \P_{X,Y}(B_1 \times B_2) = \int_{B_1} \left( \int_{B_2} \P_{Y|X=x}(dy) \right) \P_X(dx).$$
 Ces probabilités sont appelées *lois conditionnelles* de $Y$ sachant $X =x$. On a de plus pour toute application $g : \R^2 \to \R$ telle que $g(X,Y)$ admette une espérance :
 $$\Esp(g(X,Y)) = \int_\R \left( \int_\R g(x,y)\P_{Y|X=x}(dy) \right) \P_X(dx).$$ 
@@ -237,7 +238,7 @@ C'est une conséquence directe du [théorème de Fubini conditionnel](#fubinicon
 
 ### {.anonyomous}
 Ce résultat permet de calculer $\Esp( Y )$ en conditionnant par une variable auxiliaire $X$ :
-$$ \Esp( Y ) = \int_\R \Esp(Y | X = x) \P_X(dx) dx$$
+$$\Esp( Y ) = \int_\R \Esp(Y | X = x) \P_X(dx)$$
 
 Il généralise la [formule des probabilités totales](Probabilité I.pdf #formprobatot), qui correspond ici à $Y = 1_A$ , et $B_x = \{X = x\}$ où les $B_x$ forment cette fois une partition non dénombrable de $\R$. On l’écrit souvent sous la forme
 $$ \Esp \left( \Esp(Y | X) \right) = \Esp( Y )$$
@@ -296,7 +297,7 @@ C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_
 
 
 # Régression et espérance conditionnelle des variables de carré intégrable
-La régression est un ensemble de méthodes d'apprentissage statistique très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variables mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable (ou dans $\L^2$). On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
+La régression est un ensemble de méthodes (d'apprentissage) statistiques très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variables mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable (ou dans $\L^2$). On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
 
 ## Régression linéaire
 On considère deux variables aléatoires rélles, de carré intégrable, définies sur le même espace de probabilité $(\Omega,\A,\P)$, et dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est-à-dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
@@ -321,7 +322,7 @@ et l'erreur quadratique moyenne vaut alors
 On voit ainsi que cette erreur est proche de 0 lorsque $|\rho(X,Y)| \approx 1$ tandis qu'elle est proche de $\V(Y) = \sigma^2_Y$ lorsque $\rho(X,Y) \approx 0$. On notera au passage qu'on obtient que la meilleure approximation de $Y$ par une constante est son espérance.
 
 ### Remarque {.remark}
-L'hypothèse d'une relation linéaire est très forte et pas nécessairement toujours adaptée pour expliquer des relations de dépendances entre variables. Soit en effet une variable aléatoire réelle $X$ de $\L^3$ symétrique, c'est-à-dire telle que $X$ et $-X$ soient de même loi. On a alors $\Esp(X) = -\Esp(X) = 0$. Les variables $X$ et $X^2$ ne sont clairement pas indépendantes. Pour autant, on a $\cov(X,X^2) = \Esp(X^3) = -\Esp(X^3) = 0$ et le coefficient de régression $a$ ci-dessus est nul. 
+L'hypothèse d'une relation linéaire est très forte et pas nécessairement toujours adaptée pour expliquer des relations de dépendances entre variables. Soit en effet une variable aléatoire réelle $X$ de $\L^3$ symétrique, c'est-à-dire telle que $X$ et $-X$ sont de même loi. On a alors $\Esp(X) = -\Esp(X) = 0$. Les variables $X$ et $X^2$ ne sont clairement pas indépendantes. Pour autant, on a $\cov(X,X^2) = \Esp(X^3) = -\Esp(X^3) = 0$ et le coefficient de régression $a$ ci-dessus est nul. 
 
 
 ## Espace de Hilbert des variables aléatoires de carré intégrable
@@ -348,7 +349,7 @@ Soit en effet l'opérateur qui à $Y \in L^2$ associe $\Esp(Y|X) \in L^2_X$. On 
 - et pour $Z\in L^2$, $<Z,\Esp(Y|X) > = \Esp(Z\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y)) = <\Esp(Z|X),Y>$.
 
 Le théorème de projection sur un convexe fermé dans les espaces de Hilbert[^rmbf] assure alors que 
-$$\arg\min_{\phi(X) \in L^2_X} \|Y-\phi(X)\|^2 = \arg\min_{\phi(X)\in L^2_X} \Esp((Y-\phi(X))^2) = \Esp(Y|X) = \psi(X)$$
+$$\underset{\phi(X) \in L^2_X}{\mathrm{arg}\,\mathrm{min}} \|Y-\phi(X)\|^2 = \underset{\phi(X) \in L^2_X}{{\mathrm{arg}\,\mathrm{min}}} \Esp((Y-\phi(X))^2) = \Esp(Y|X) = \psi(X)$$
 
 [^rmbf]: voir par exemple les [Rappels mathématiques pour la mécanique quantique de Bruno Figliuzzi](https://discourse.mines-paristech.fr/uploads/short-url/v4CxgD6KzWUZpmQWbvckL7eaP7C.pdf)
 
