@@ -249,9 +249,9 @@ elle hérite des propriétés usuelles de l’espérance :
  1. si $Y$ et $Z$ sont intégrables, $\Esp (aY + bZ | X) = a \Esp (Y | X) + b \Esp(Z | X)$,
  2. $\Esp (Y | X) \geq 0$ si $Y \geq 0$,
  3. $\Esp (1 | X) = 1$.
+
 De plus, si $g$ est mesurable positive ou $\P_X$-intégrable,
 $$ \Esp (Y g(X) | X) = g(X) \Esp (Y | X) $$
-
 est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$.
 
 
