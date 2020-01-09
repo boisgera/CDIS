@@ -1,0 +1,49 @@
+[
+	{
+		"id": "Lehmer",
+		"type": "article-journal",
+		"container-title": "Annu. Comput. Lab. Harvard Univ.",
+		"page": "141–146",
+		"source": "Google Scholar",
+		"title": "Mathematical methods in large-scale computing units",
+		"volume": "26",
+		"author": [
+			{
+				"family": "Lehmer",
+				"given": "Derrick H."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1951"
+				]
+			]
+		}
+	},
+	{
+		"id": "roca",
+		"type": "book",
+		"edition": "2nd edition,",
+		"event-place": "Berlin",
+		"publisher": "Springer",
+		"publisher-place": "Berlin",
+		"title": "Monte-Carlo Statistical Methods",
+		"author": [
+			{
+				"literal": "C. P. Robert"
+			},
+			{
+				"literal": "G. Casella"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004"
+				]
+			]
+		}
+	}
+
+]

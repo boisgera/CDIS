@@ -453,7 +453,7 @@ $$\cov(X,Y \mid Z) = \Esp\Bigl( \bigl( X - \Esp(X\mid Z) \bigr)\bigl( Y - \Esp(Y
 Etablir la formule de la covariance totale : $$\cov(X,Y) = \Esp\bigl(\cov(X,Y\mid Z)\bigr) + \cov\bigl( \Esp(X\mid Z), \Esp(Y\mid Z) \bigr).$$
 
 ## Non-réponse 
-*Inspiré du cours de probabilité de M. Christine (E   NSAE ParisTech).*
+*Inspiré du cours de probabilité de M. Christine (ENSAE ParisTech).*
 
 Un questionnaire est diffusé aux $n\in\N^\ast$ étudiants de l'école pour savoir combien de temps ils ont consacré à l'étude des probabilités ce semestre. On note $Y_i$ le temps de travail de l'étudiant $i \in \{1,\dots,n\}$ et $X_i$ la variable valant $1$ s'il a répondu au questionnaire et $0$ sinon. On suppose que les $(X_1,Y_1),\dots,(X_n,Y_n)$ sont des vecteurs aléatoires indépendants de même distribution qu'un vecteur générique $(X,Y)$ tel que
 
@@ -504,7 +504,7 @@ D'après la question précédente, $X$ a pour espérance
 \Esp(X) &= \int_\R x\,f_X(x)\,dx = \int_\R x \sum_{i = 1}^n p_i\, f_i(x)\,dx =  \sum_{i = 1}^n p_i \int_\R x\,f_i(x)\,dx\\
 & = \sum_{i = 1}^n p_i\,m_i.
 \end{align*}
-Quand à la variance de $X$, en utilisant l'égalité $\sum_{i= 1}^n p_i = 1$, elle vaut
+Quant à la variance de $X$, en utilisant l'égalité $\sum_{i= 1}^n p_i = 1$, elle vaut
 \begin{align*}
 \V(X) &= \Esp\left(X^2\right) - \Esp(X)^2 = \int_\R x^2\,f_X(x)\,dx - \left(\sum_{i = 1}^n p_i\,m_i\right)^2\\
 &= \sum_{i = 1}^n p_i (\sigma_i^2 + m_i^2) - \sum_{i = 1}^n p_i\left(\sum_{j = 1}^n p_j\,m_j\right)^2\\
@@ -514,7 +514,7 @@ On retrouve bien la forme désirée, avec la dispersion des espérances
 $$\bar{\sigma}^2 := \sum_{i = 1}^n p_i \left(m_i - \sum_{j=1}^n p_j\,m_j \right)^2.$$
 
 ### Question 4 {.answer #answer-melloi4}
-Si l'on souhaite approcher la loi de $X$ avec une unique Gaussienne, et non un mélange, les questions précédentes suggèrent de prendre celle d'espérance $\sum_{i =1}^n p_i\,m_i$ et de variance $\sum_{i = 1}^n p_i\,\sigma^2_i + \bar{\sigma}^2$. 
+Si l'on souhaite approcher la loi de $X$ avec une unique Gaussienne, et non un mélange, les questions précédentes suggèrent de prendre celle d'espérance $\sum_{i =1}^n p_i\,m_i$ et de variance $\sum_{i = 1}^n p_i\,\sigma^2_i + \bar{\sigma}^2$. Voir figure ci-dessous.
 
 ![Illustration](images/PdfMelGauss.tex)
 
