@@ -224,7 +224,7 @@ On peut étendre cette définition aux variables de la forme $g(X,Y)$.
 Soit $Y$ une variable aléatoire et $g$ une fonction mesurable positive ou $\P_{X,Y}$-intégrable sur $\R^2$.
 
  1. L'*espérance conditionnelle de $g(X,Y)$ sachant $\{X=x\}$* est définie par 
-    $$\Esp(g(X,Y)|X=x) = \int_\R g(x,y) f_{Y|X=x} (y) dy.$$
+    $$\Esp(g(X,Y)|X=x) = \int_\R g(x,y) \P_{Y|X=x} (dy).$$
  2. L'*espérance conditionnelle de $g(X,Y)$ sachant $X$* est la **variable aléatoire** définie par :
     $$\Esp(g(X,Y)|X) = \psi(X), \text{ avec } \psi(x) = \Esp(g(X,Y)|X=x).$$
 
@@ -253,10 +253,21 @@ elle hérite des propriétés usuelles de l’espérance :
 
 De plus, si $g$ est mesurable positive ou $\P_X$-intégrable,
 $$ \Esp (Y g(X) | X) = g(X) \Esp (Y | X) $$
-est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$.
+est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$. Enfin, on déduit directement du [théorème de Fubini conditionnel]{#fubinicond} la proposition suivante.
+
+### Proposition --- transfert conditionnel {.proposition}
+Soient un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$ et $g$ une fonction mesurable positive ou $\P_{X,Y}$-intégrable sur $\R^2$. On a pour $\P_X$-presque tout $x$ dans $\R$
+$$\Esp(g(X,Y)|X=x) = \Esp(g(x,Y)|X=x) = \int_{\R}g(x,y) \P_{Y|X=x} (dy)$$
+Si de plus $X$ et $Y$ sont indépendantes, on a :
+$$\Esp(g(X,Y)|X=x) = \Esp(g(x,Y)|X=x) = \int_{\R}g(x,y) \P_Y(dy).$$
+
+Autrement dit, lorsqu'on conditionne par l'événement $\{X=x\}$, cela revient à fixer la valeur de la variable aléatoire $X$ à la constante $x$.
 
 
-## Vecteurs Gaussiens à densité
+# Vecteurs Gaussiens à densité
+
+Dans ce qui précède, on a décrit les lois et les espérances conditionnelles dans le cas d'un couple de variables aléatoires à valeurs dans $\R^2$. Ces résultats sont aussi valables pour des couples de vecteurs, dont on décrit ici un cas particulier.
+
 Dans le cas des vecteurs gaussiens à densité, c'est-à-dire dont la matrice de covariance est définie positive et donc inversible, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On va voir en particulier que les lois conditionnelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
 
 On considère un vecteur gaussien $X = (X_1,\ldots,X_n)$ à valeurs dans $\R^n$ d'espérance $m$ et de matrice de covariance $C$ définie positive. On a vu au chapitre 2 que la densité du vecteur $X$ s'écrit pour $x\in\R^d$ :
@@ -407,7 +418,7 @@ Soit un vecteur aléatoire $(X,Y)$ de loi jointe $\P_{X,Y}$. Expliciter la loi c
 
 $Y$ suit une loi Exponentielle de paramètre $\lambda \in\R_+^\ast$ et pour tout $y\in\R_+^\ast$, la variable aléatoire $X$ sachant $\{Y=y\}$ suit une loi Exponentielle de paramètre $y$.
 
-### QUestion 2 {.question #loiconj-gampoi}
+### Question 2 {.question #loiconj-gampoi}
 
 $Y$ suit une loi Gamma de paramètres $\alpha,\theta \in \R_+^\ast$ et pour tout $y\in\R_+^\ast$, la variable aléatoire $X$ sachant $\{Y=y\}$ suit une loi de Poisson de paramètre $y$.
 
