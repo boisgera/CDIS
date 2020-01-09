@@ -44,6 +44,31 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "ripley",
+		"type": "book",
+		"abstract": "This guide to simulation methods with explicit recommendations of methods and algorithms covers both the technical aspects of the subject, such as the generation of random numbers, non-uniform random variates and stochastic processes, and the use of simulation.",
+		"event-place": "New York",
+		"ISBN": "978-0-471-81884-7",
+		"language": "English",
+		"note": "OCLC: 13822487",
+		"publisher": "Wiley",
+		"publisher-place": "New York",
+		"source": "Open WorldCat",
+		"title": "Stochastic simulation",
+		"author": [
+			{
+				"family": "Ripley",
+				"given": "Brian D"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1987"
+				]
+			]
+		}
 	}
-
 ]
