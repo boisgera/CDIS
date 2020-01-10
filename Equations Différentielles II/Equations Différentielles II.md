@@ -482,7 +482,7 @@ Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas 
       ...
       return t, x
 
-prenant en entrée une fonction $f$, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(x)$.  Tester les performances de votre solver sur une équation différentielle que vous savez résoudre. Illustrer la convergence du schéma à l'ordre 1. 
+prenant en entrée une fonction $f$, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$.  Tester les performances de votre solver sur une équation différentielle que vous savez résoudre. Illustrer la convergence du schéma à l'ordre 1. 
 
 **Consigne** Faire de même et comparer la convergence avec un schéma d'ordre 2 de votre choix.
 
