@@ -371,7 +371,7 @@ Par ailleurs, on a déjà montré que $M_{p(n)^2} \to 0$ p.s. et $\frac{p(n)^2}{
 ### {.anonymous}
 Plus généralement, le théorème suivant donne les hypothèses minimales assurant la validité de la loi des grands nombres, à savoir que les $X_n$ sont dans $\L_1$ (on se référera par exemple à [ce document en ligne](https://perso.univ-rennes1.fr/ismael.bailleul/AGREG/COURS/LFGN.pdf) ou à @Jacod pour la démonstration).
 
-### Théorème --- loi des grands nombres cas $\L^1$ {.theorem}
+### Théorème --- loi des grands nombres cas $\L^1$ {.theorem #lfgn}
 Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi et **intégrables**, et $m = \Esp(X_n)$ leur espérance. Alors la suite $(M_n)_{n\in\N^\ast}$ définie par
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
