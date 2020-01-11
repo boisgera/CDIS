@@ -145,7 +145,60 @@ Donner un algorithme de simulation d'une v.a.r $X$ suivant une loi
 ### Limitations 
 La méthode d'inversion peut sembler universelle pour simuler toute v.a.r. $X$ à partir de $U \sim \mathcal{U}_{]0,1[}$. Cependant, elle nécessite en pratique de disposer d'une expression analytique de $F_X$ pour pouvoir en déduire sa réciproque généralisée. Or ce n'est typiquement pas le cas de nombreuses lois usuelles comme la loi Normale ! On va donc déterminer d'autres procédures pour simuler des variables suivant de telles lois.
 
-## Méthode du rejet
+## Méthode de rejet
+
+La méthode de rejet est une alternative populaire à la méthode d'inversion, lorsque cette dernière ne peut être utilisée directement et que **la loi cible possède une densité**. On la doit à von Neumann @vonNeumann. Pour en comprendre le fondement, il nous faut d'abord introduire une généralisation naturelle de la loi Uniforme dans $\R$ à tout $\R^d$ ($d\in\N^\ast$). On notera $\ell$ la mesure de Borel-Lebesgue.
+
+### Définition {.definition}
+La loi Uniforme sur un borélien $A\subset\R^d$ de volume $\ell(A) > 0$ est une loi de probabilité admettant pour densité $$f : x\in\R^d \mapsto \dfrac{1_A(x)}{\ell(A)}.$$
+
+### Exercice -- Loi Uniforme sur un pavé {.exercise}
+Comment simuleriez-vous un vecteur aléatoire $(U_1,\dots,U_d)$ de loi Uniforme sur un pavé non vide $[a_1,b_1]\times\dots\times[a_d,b_d] \subset \R^d$ ?
+
+Une propriété fondamentale de cette loi est qu'elle reste stable par conditionnement, dans le sens suivant.
+
+### Propriété {.proposition #stabunif}
+Soit $U$ un vecteur aléatoire de loi Uniforme sur un borélien $A\subset\R^d$ de volume $\ell(A) > 0$. Alors pour tout borélien $B \subset A$ de volume $\ell(B) > 0$, la loi conditionnelle $\P_{U\mid U\in B}$ de $U$ sachant que $U \in B$ est Uniforme sur $B$.
+
+### Démonstration {.proof}
+La preuve, élémentaire, est laissée en exercice.
+
+### Exercice {.exercise}
+Déduire de la propriété précédente une méthode pour simuler un vecteur aléatoire de loi Uniforme sur un borélien $B \subset \R^d$ **borné** et de volume $\ell(B) > 0$.
+
+Il est même possible de simuler un vecteur aléatoire de loi Uniforme sur certains boréliens non vides et non bornés, comme l'établit la proposition ci-dessous.
+
+### Proposition {.proposition #simunifdens} 
+Soient une densité $f : \R \to \R$, une v.a.r. $X$ et une variable $U$ uniforme sur $]0,1[$, indépendante de $X$. On note $A_f := \left\{ (x,y) \in \R \times \R_+ : f(x) \geq y \right\}$ le domaine limité par le graphe de $f$ et l'axe des abscisses (souvent appelé sous-graphe de $f$). Si $X$ est de densité $f$, alors le couple $(X,Uf(X))$ suit une loi Uniforme sur $A_f$. 
+
+### Démonstration {.proof}
+Commençons par remarquer que $\ell(A_f) = 1$. Quel que soit $(z,v)\R^2$, par Fubini on a 
+\begin{align*}
+\P\left( X \leq z, Uf(X) \leq v \right) &= \int_\R \int_\R 1_{]-\infty,z]}(x)\,1_{]-\infty,v]}(uf(x))\,1_{]0,1[}(u)\,f(x)\,du\,dx\\
+&= \int_{-\infty}^z \left(\int_\R 1_{]-\infty,v]\cap ]0,f(x)[}(uf(x))\,f(x)\,du\right)\,dx\\
+&= \int_{-\infty}^z \int_{-\infty}^v 1_{]0,f(x)[}(u)\,du\,dx\\
+& = \int_{-\infty}^z \int_{-\infty}^v 1_{A_f}(x,u)\,du\,dx.
+\end{align*}
+Ainsi, $(X,Uf(X))$ admet pour densité $1_{A_f}$, qui correspond bien à celle d'une loi Uniforme sur $A_f$.
+### {.anonyomous}
+
+Pour simuler un vecteur uniforme $(X,Y)$ sur un ensemble $A_f$ tel que défini à la proposition précédente, il suffit donc de simuler une v.a.r. $X$ de densité $f$, puis une variable $U$ uniforme sur $]0,1[$, et de poser $Y = f(X)U$.
+
+### Exercice {.exercise}
+En reprenant les notations de la proposition précédente et en prenant $a \in \R_+^\ast$, expliciter la loi du couple $(X,aUf(X))$.
+
+En combinant les résultats des propriété et proposition précédentes, on obtient la méthode de rejet, illustrée sur la figure ci-dessous.
+
+### Méthode de rejet
+On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Supposons que l'on sait simuler une variable $U$ uniforme sur $]0,1[$, ainsi qu'une v.a.r. $Y$ (par exemple avec la méthode d'inversion) de densité $f_Y$ telle qu'il existe un réel $a > 0$ pour lequel on a $\forall x \in \R f_X(x) \leq a\,f_Y(x)$. On note $A_Y := \left\{ (x,y) \in \R \times \R_+ : y \leq f_Y(x) \right\}$. Il suffit alors de suivre l'algorithme suivant :
+1. simuler $Y$ et $U$,
+2. si $aUf_Y(Y) > f_X(Y)$, recommencer à l'étape 1.
+3. poser $X = Y$.
+
+![Méthode du rejet](images/MetRej.tex)
+
+### Limitations de la méthode
+La méthode de rejet a l'avantage non négligeable de permettre de simuler des variables aléatoires à densité dont la fonction de répartition n'a pas de forme analytique, rendant la méthode d'inversion inapplicable. Néanmoins, pour pouvoir l'appliquer il faut absolument connaître une densité auxiliaire qui, multipliée par un réel positif, majore la densité cible, et que l'on peut simuler. Quand bien même ce serait le cas, selon le volume de la zone de rejet, l'algorithme peut prendre beaucoup de temps à tourner. 
 
 
 ## Simulation de variables aléatoires gaussiennes : Box-Muller
@@ -266,7 +319,7 @@ On a montré qu'à partir d'un échantillon on peut construire un intervalle de 
 
 ## Preuve de la méthode d'inversion
 
-Pour pouvoir démontrer le [théorème de la méthode d'inversion](#invgen), il faut d'abord établir un certain nombre de propriétés de la réciproque généralisée d'une fonction de répartition. Elle peuvent être visualisées sur la figure REF ICI.
+Pour pouvoir démontrer le [théorème de la méthode d'inversion](#invgen), il faut d'abord établir un certain nombre de propriétés de la réciproque généralisée d'une fonction de répartition. Elle peuvent être visualisées sur la figure ci-dessous.
 
 ### Proposition {.proposition #proprecgen}
 Soit $F$ une fonction de répartition. Alors sa réciproque généralisée $F^-$ satisfait les propriétés suivantes.
@@ -297,7 +350,7 @@ Nous avons donc bien $F\circ F^-(u) \geq u$.
 
 ### {.anonyomous}
 
-FIGURE ICI
+![Réciproque généralisée d'une fonction de répartition](images/RecGen.tex)
 
 Nous pouvons maintenant établir la preuve du [théorème de la méthode d'inversion](#invgen).
 
