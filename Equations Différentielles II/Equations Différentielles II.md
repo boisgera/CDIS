@@ -539,7 +539,7 @@ Mais pour cela nous devons trouver un moyen d'estimer l'erreur locale. C'est sou
 
 **Consigne** Montrer que si $f$ est $C^1$, on a pour un schéma d'Euler explicite
 $$
-\|e^{j+1}\| = \dt_j \, \frac{\big\|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big\|}{2} + O(\dt_j^3) \ 
+\|e^{j+1}\| = \dt_j \, \frac{\big\|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big\|}{2} + o(\dt_j^2) \ 
 $$
 
 On peut donc estimer à chaque itération l'erreur commise $e^{j+1}$ et adapter le pas selon si celle-ci est inférieure ou supérieure au seuil de tolérance.  
