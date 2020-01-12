@@ -513,9 +513,9 @@ En d'autre termes, $\texttt{Tol}_g$ nous fixe une erreur maximale *locale* sur $
 
 - erreur (absolue) *locale* ? A chaque itération, une erreur locale est commise dûe à l'approximation de l'intégrale. Cette erreur est donnée par
 $$
-e^{j+1} = \left(x^j + \int_{t_j}^{t_{j+1}} f(s,x(s))ds\right) -x^{j+1} 
+e^{j+1} = \tilde{x}(t_{j+1}) -x^{j+1} = \left(x^j + \int_{t_j}^{t_{j+1}} f(s,\tilde{x}(s))ds\right)
 $$
-où le premier terme représente la valeur de la vraie solution au temps $t_{j+1}$ si elle était initialisée à $x^j$ au temps $t_j$.
+où $\tilde{x}$ est la solution de $\dot{x}=f(t,x)$ qui serait initialisée à $x^j$ au temps $t_j$.
 <!--= \int_{t_j}^{t_{j+1}} f(s,x(s))ds - \dt_j \Phi_{\dt_j}(t_j,x^j) -->
 Notons que si on avait $x^j=x(t_j)$, on aurait exactement $e^{j+1}=\dt_j \eta^{j+1}$, où $\eta^{j+1}$ est l'erreur de consistance.
 <!-- Que ce soit après une étude préalable de stabilité ou non, il est nécessaire d'assurer à chaque itération une erreur locale $\dt_j \eta^{j+1}$ suffisamment faible, où $\eta$ est l'erreur de consistance. -->
