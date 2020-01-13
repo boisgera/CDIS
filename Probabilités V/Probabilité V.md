@@ -23,14 +23,14 @@ au célèbre casino du fait du caractère aléatoire de ces méthodes.
 
 Les méthodes de simulation sont basées sur la production de nombres aléatoires, distribués selon une certaine loi de probabilité. 
 Dans de nombreuses applications, pour une certaine fonction $h$, on souhaite calculer, pour une variable aléatoire $X$ de loi $\P_X$
-$$\mathcal{I}=\Esp\left(h(X)\right)=\int_{\R^d} h(x) \P_X(dx),$$
+$$\mathcal{I}=\Esp\left(h(X)\right)=\int h(x)\, \P_X(dx).$$
 
 En général, même si on sait évaluer $h$ en tout point, on ne peut pas calculer formellement l'intégrale $\mathcal{I}$. Le calcul d'intégrale par la méthode Monte-Carlo consiste dans sa version la plus simple à générer un *échantillon* $(X_1,\ldots,X_n) \sim_{i.i.d.}\P_X$, et à
 estimer $\mathcal{I}$ par la moyenne empirique 
 $$M_n(h)=\frac{1}{n}\sum_{i=1}^{n}h(X_i),$$
-où i.i.d signifie indépendant et identiquement distribué. En effet, d'après la [loi forte des grands nombres](Probabilité III.pdf #lfgn), si $h(x)$ est $\P_X$-intégrable, on a l'assurance que
+où i.i.d signifie indépendant et identiquement distribué. En effet, d'après la [loi forte des grands nombres](Probabilité III.pdf #lfgn), si $h(x)$ est $\P_X$-intégrable, on a l'assurance que quand $n \to +\infty$,
 $$M_n(h) \rightarrow \int h(x)\P_X(dx) \text{ p.s.}$$
-Si de plus, $h(X)^4$ est intégrable la vitesse de convergence de $M_n(h)$ peut être évaluée,
+Si de plus $h(X)^4$ est intégrable, la vitesse de convergence de $M_n(h)$ peut être évaluée,
 puisque la variance
 $$\V(M_n(h)) = \frac{1}{n} \int \left(h(x)-\mathcal{I}\right)^2 \P_X(dx)$$
 peut également être estimée à partir de l'échantillon
@@ -41,9 +41,9 @@ $$\frac{M_n(h)-\mathcal{I}}{\sigma_n}$$
 suit approximativement une loi $\No(0,1)$[^foot1]. Cette propriété conduit à la construction de tests de convergence et de bornes de
 confiance asymptotiques pour $M_n(h)$. Par exemple, on aura
 $$\P\left(\mathcal{I} \in \left[M_n(h) - 1.96 \sigma_n,M_n(h) + 1.96 \sigma_n\right]\right) \approx 0.95,$$
-où $1.96 = \Phi^{-1}(0,975)$ avec $\Phi$ la fonction de répartition de la loi normale centrée réduite.
+où $1.96 \approx \Phi^{-1}(0,975)$ avec $\Phi$ la fonction de répartition de la loi normale centrée réduite.
 
-En outre, cette propriété indique que la vitesse de convergence de $M_n(h)$ est de l'ordre de $\sqrt{n}$ et ce indépendamment de la dimension du problème. Cela explique la supériorité de cette méthode par rapport aux méthodes d'intégration numérique déterministes dont les vitesses de convergence décroissent rapidement (exponentiellement) avec la dimension du problème.
+En outre, cette propriété indique que la vitesse de convergence de $M_n(h)$ est de l'ordre de $\sqrt{n}$, et ce indépendamment de la dimension du problème. Cela explique la supériorité de cette méthode par rapport aux méthodes d'intégration numérique déterministes dont les vitesses de convergence décroissent rapidement (exponentiellement) avec la dimension du problème.
 
 [^foot1]: ce résultat sera démontré dans le cours de science des données au second semestre.
 
@@ -57,26 +57,26 @@ a state of sin. As has been pointed out several times, there is no such thing as
 strict arithmetic procedure of course is not such a method. "
 
 ### Définition --- Générateur de nombres uniformes pseudo-aléatoires {.definition} 
-Un *générateur de nombres uniformes pseudo-aléatoires* est un algorithme qui étant donné une valeur initiale $u_0$ et une transformation $T$ produit une séquence $u_i=T^i(u_0),\,\,\,i \in\N$ de valeurs dans ]0,1[. 
+Un *générateur de nombres uniformes pseudo-aléatoires* est un algorithme qui étant donné une valeur initiale $u_0$ et une transformation $T$ produit une séquence $u_i=T^i(u_0)$, $i \in\N^\ast$, de valeurs dans $]0,1[$. 
 
-Pour tout $n$, les valeurs $(u_1,\ldots,u_n)$ reproduisent le comportement d'une suite de variables aléatoires $(V_1,\ldots,V_n)$ i.i.d de loi uniforme sur ]0,1[, lorsqu'on les compare au travers d'un ensemble de tests statistiques[^diehard], par exemple que la corrélation entre deux nombres successifs soit suffisamment faible.
+Pour tout $n\in\N^\ast$, les valeurs $(u_1,\ldots,u_n)$ reproduisent le comportement d'une suite de variables aléatoires $(V_1,\ldots,V_n)$ i.i.d de loi uniforme sur ]0,1[, lorsqu'on les compare au travers d'un ensemble de tests statistiques[^diehard], vérifiant par exemple que la corrélation entre deux nombres successifs est suffisamment faible.
 
 [^diehard]: Par exemple, la suite de tests [Die Hard](https://en.wikipedia.org/wiki/Diehard_tests), due à Marsaglia.
 
 ### Exemple : la méthode des congruences {.example}
 Cet algorithme, dû à @Lehmer, est l'un des premiers à avoir été proposé et implémenté. Il repose sur 2 paramètres :
  
- - le multiplicateur $a$
- - le modulo $m$
+ - le multiplicateur $a\in\N^\ast$,
+ - le modulo $m\in\N^\ast$.
 
-Etant donné $u_0\in ]0,1[$, la séquence de nombres est générée par la transformation suivante :
-$$u_{n+1} = \frac{(m\,a\,u_{n}) \mathrm{\,mod\,} m}{m}$$
+Etant donné un entier $k_0$ tel que $1 \leq k_0 \leq m-1$, la séquence de nombres est générée par la transformation suivante : pour tout $n\in\N^\ast$ on définit l'entier $k_{n+1} = a\,k_n\,\mathrm{\,mod\,} m$ puis on pose
+$$u_{n+1} = \frac{k_{n+1}}{m},\hspace{1em} u_0 = \frac{k_0}{m}.$$
 
 On peut remarquer que l'algorithme va produire une séquence de valeurs qui sera périodique, c'est-à-dire qu'après un certain nombre d'itérations, la suite se répétera, et qu'il pourra fournir au plus $m-1$ valeurs différentes. Ce trait est commun à tous les générateurs de nombre aléatoires et est lié aux limitations matérielles des ordinateurs (on ne peut représenter qu'un nombre fini de nombres). Le choix des valeurs de $a$ et $m$ est par conséquent crucial. Il existe des critères qui permettent de s'assurer du bon comportement de cette suite :
 
- * $m$ est un nombre premier (le plus grand possible)
- * $p = m-1 /2$ est un nombre premier
- * $a^p = -1 \mathrm{\,mod\,} m$
+ * $m$ est un nombre premier (le plus grand possible),
+ * $p = (m-1) /2$ est un nombre premier,
+ * $a^p = -1 \mathrm{\,mod\,} m$.
 
 Ce critère assure une période pleine et donc que tous les nombres $(1/m,\ldots,(m-1)/m)$ seront générés. Cependant, les nombres générés ne sont pas indépendants, pas même non corrélés. On peut montrer que la corrélation entre 2 nombres successifs vaut approximativement $1/a$. Il convient donc de choisir $a$ suffisamment grand pour que celle-ci devienne négligeable. Par exemple, en prenant $a=1000$ et $m=2001179$, on obtient une période de $2001178$ et une corrélation de l'ordre de $10^{-3}$.
 
@@ -90,17 +90,17 @@ On a vu au chapitre II du cours de Probabilités que l'on pouvait transformer de
 
 ## Méthode d'inversion
 
-L'objectif de ce paragraphe est de définir quand et comment il est possible de simuler une variable aléatoire réelle $X$ de fonction de répartition (f.d.r.) $F_X$ en transformant la simulation d'une variable aléatoire $U$ de loi Uniforme sur $]0,1[$. En d'autres termes, on cherche à déterminer les conditions sous lesquelles il est possible d'identifier une fonction borélienne $\psi :]0,1[ \to \R$ telle que $X \overset{\L}{=} \psi(U)$.
+L'objectif de ce paragraphe est de définir quand et comment il est possible de simuler une variable aléatoire réelle $X$ de fonction de répartition (f.d.r.) $F_X$ en transformant la simulation d'une variable aléatoire $U$ de loi Uniforme sur $]0,1[$. En d'autres termes, on cherche à déterminer les conditions sous lesquelles il est possible d'identifier une fonction borélienne $\psi :\,]0,1[ \to \R$ telle que $X \overset{\L}{=} \psi(U)$.
 
 Commençons par un cadre simple, où $F_X$ est **bijective** d'un intervalle non vide de $\R$ sur $]0,1[$.
 
 ### Proposition {.proposition #invbij}
-Soient $X$ une variable aléatoire réelle de fonction de répartition $F_X$ et $U$ une variable uniforme sur $]0,1[$. S'il existe un intervalle non vide $]a,b[ \subset \R$ tel que $F_X :\, ]a,b[ \to ]0,1[$ est bijective, de bijection réciproque $F_X^{-1} :\, ]0,1[ \to ]a,b[$, alors $F_X^{-1}(U) \overset{\L}{=} X$ et $F_X(X) \overset{\L}{=} U$.
+Soient $X$ une variable aléatoire réelle de fonction de répartition $F_X$ et $U$ une variable uniforme sur $]0,1[$. S'il existe un intervalle non vide $]a,b[ \subset \R$ tel que $F_X :\, ]a,b[ \to \,]0,1[$ est bijective, de bijection réciproque $F_X^{-1} :\, ]0,1[ \to ]a,b[$, alors $F_X^{-1}(U) \overset{\L}{=} X$ et $F_X(X) \overset{\L}{=} U$.
 
 ### Démonstration {.proof}
 Le premier résultat est immédiat : pour tout $x\in\R$, par croissance de $F_X$ et donc de $F_X^{-1}$, on a
 $$\P\left(F_X^{-1}(U)\leq x\right) = \P\left(U \leq F_X(x) \right) = F_X(x).$$
-Concernant le second, notons $G$ la fonction de répartition de la variable aléatoire $F_X(X)$. Comme $F_X(X)$ est à valeurs dans $]0,1[$, pour tout $x\in\R$ on a bien
+Concernant le second, notons $G$ la fonction de répartition de la variable aléatoire $F_X(X)$. La croissance de $F_X$ garantit que $\P\left(F_X(X) \in\, ]0,1[\right) = 1$. Ainsi, pour tout $x\in\R$ on a bien
 $$G(x) = \left|\begin{array}{ll} 1 & \text{si } x \geq 1,\\ \P\left(F_X(X)\leq x\right) = \P\left( X \leq F_X^{-1}(x) \right) = x & \text{si } 0 < x < 1,\\ 0 & \text{sinon.}\end{array}\right.$$
 
 ### Exercice -- Exemples d'application {.exercise}
@@ -121,11 +121,11 @@ On a déjà vu au chapitre II que les fonctions de répartition de v.a.r. possè
 
 ### Définition {.definition #defrecgen}
 Soit $F$ une fonction de répartition. On définit sa *réciproque généralisée* (aussi appelée *inverse généralisée* ou *pseudo-inverse*) comme la fonction
-$$F^{-} : u \in\, ]0,1[ \mapsto \inf\left\{ x \in \R : F(x) \geq u \right\} \in \R.$$
+$$F^{-} : u \in\, ]0,1[\, \mapsto \inf\left\{ x \in \R : F(x) \geq u \right\} \in \R.$$
 
 ### Remarques {.remark} 
 
-* Cette fonction est bien définie sur tout $]0,1[$, car quel que soit $u$ dans cet intervalle, l'ensemble $\inf\left\{ x \in \R : F(x) \geq u \right\}$ n'est ni vide ni égal à $\R$ tout entier. S'il était vide ou égal à tout $\R$ pour un certain $u_0\in]0,1[$, pour tout $x \in \R$ on aurait dans le premier cas $F(x) < u_0 < 0$ et dans le second $F(x) \geq u_0 > 1$. L'une comme l'autre de ces inégalités est impossible pour une fonction de répartition.
+* Cette fonction est bien définie sur tout $]0,1[$, car quel que soit $u$ dans cet intervalle, l'ensemble $\left\{ x \in \R : F(x) \geq u \right\}$ est non vide et minoré. S'il était vide ou non minoré pour un certain $u_0\in\,]0,1[$, pour tout $x \in \R$ on aurait dans le premier cas $F(x) < u_0 < 0$ et dans le second $F(x) \geq u_0 > 1$. L'une comme l'autre de ces inégalités est impossible pour une fonction de répartition.
 * La réciproque généralisée de la f.d.r. $F_X$ d'une v.a.r. $X$ est aussi appelée *fonction quantile*. On pourra notamment remarquer que $F_X^{-}\left(\frac{1}{2}\right)$ n'est autre que la médiane de $X$.
 * Lorsque $F$ réalise une bijection d'un intervalle non vide $I\subset \R$ sur $]0,1[$, sa réciproque généralisée coïncide avec sa bijection réciproque.
 
@@ -136,7 +136,7 @@ Soient $U$ une variable uniforme sur $]0,1[$ ainsi que $X$ une variable aléatoi
 
 ### Exercice -- Exemples d'application {.exercise}
 
-Donner un algorithme de simulation d'une v.a.r $X$ suivant une loi
+Donner un algorithme de simulation d'une v.a.r. $X$ suivant une loi
 
 * Binomiale de paramètres $n\in\N^\ast$ et $p \in\, ]0,1[$,
 * de Poisson de paramètre $\lambda \in \R_+^\ast$,
@@ -147,7 +147,7 @@ La méthode d'inversion peut sembler universelle pour simuler toute v.a.r. $X$ �
 
 ## Méthode de rejet
 
-La méthode de rejet est une alternative populaire à la méthode d'inversion, lorsque cette dernière ne peut être utilisée directement et que **la loi cible possède une densité**. On la doit à von Neumann @vonNeumann. Pour en comprendre le fondement, il nous faut d'abord introduire une généralisation naturelle de la loi Uniforme dans $\R$ à tout $\R^d$ ($d\in\N^\ast$). On notera $\ell$ la mesure de Borel-Lebesgue.
+La méthode de rejet est une alternative populaire à la méthode d'inversion, lorsque cette dernière ne peut être utilisée directement et que **la loi cible possède une densité**. On la doit à @vonNeumann. Pour en comprendre le fondement, il nous faut d'abord introduire une généralisation naturelle de la loi Uniforme dans $\R$ à tout $\R^d$ ($d\in\N^\ast$). On notera $\ell$ la mesure de Borel-Lebesgue sur $\R^d$.
 
 ### Définition {.definition}
 La loi Uniforme sur un borélien $A\subset\R^d$ de volume $\ell(A) > 0$ est une loi de probabilité admettant pour densité $$f : x\in\R^d \mapsto \dfrac{1_A(x)}{\ell(A)}.$$
@@ -172,7 +172,7 @@ Il est même possible de simuler un vecteur aléatoire de loi Uniforme sur certa
 Soient une densité $f : \R \to \R$, une v.a.r. $X$ et une variable $U$ uniforme sur $]0,1[$, indépendante de $X$. On note $A_f := \left\{ (x,y) \in \R \times \R_+ : f(x) \geq y \right\}$ le domaine limité par le graphe de $f$ et l'axe des abscisses (souvent appelé sous-graphe de $f$). Si $X$ est de densité $f$, alors le couple $(X,Uf(X))$ suit une loi Uniforme sur $A_f$. 
 
 ### Démonstration {.proof}
-Commençons par remarquer que $\ell(A_f) = 1$. Quel que soit $(z,v)\R^2$, par Fubini on a 
+Commençons par remarquer que $\ell(A_f) = 1$. Quel que soit $(z,v)\in\R^2$, par indépendance de $X$ et $U$ et par Fubini on a 
 \begin{align*}
 \P\left( X \leq z, Uf(X) \leq v \right) &= \int_\R \int_\R 1_{]-\infty,z]}(x)\,1_{]-\infty,v]}(uf(x))\,1_{]0,1[}(u)\,f(x)\,du\,dx\\
 &= \int_{-\infty}^z \left(\int_\R 1_{]-\infty,v]\cap ]0,f(x)[}(uf(x))\,f(x)\,du\right)\,dx\\
@@ -180,7 +180,7 @@ Commençons par remarquer que $\ell(A_f) = 1$. Quel que soit $(z,v)\R^2$, par Fu
 & = \int_{-\infty}^z \int_{-\infty}^v 1_{A_f}(x,u)\,du\,dx.
 \end{align*}
 Ainsi, $(X,Uf(X))$ admet pour densité $1_{A_f}$, qui correspond bien à celle d'une loi Uniforme sur $A_f$.
-### {.anonyomous}
+### {.anonymous}
 
 Pour simuler un vecteur uniforme $(X,Y)$ sur un ensemble $A_f$ tel que défini à la proposition précédente, il suffit donc de simuler une v.a.r. $X$ de densité $f$, puis une variable $U$ uniforme sur $]0,1[$, et de poser $Y = f(X)U$.
 
@@ -190,13 +190,15 @@ En reprenant les notations de la proposition précédente et en prenant $a \in \
 En combinant les résultats des propriété et proposition précédentes, on obtient la méthode de rejet, illustrée sur la figure ci-dessous.
 
 ### Méthode de rejet
-On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Supposons que l'on sait simuler une variable $U$ uniforme sur $]0,1[$, ainsi qu'une v.a.r. $Y$ (par exemple avec la méthode d'inversion) de densité $f_Y$ telle qu'il existe un réel $a > 0$ pour lequel on a $\forall x \in \R f_X(x) \leq a\,f_Y(x)$. On note $A_Y := \left\{ (x,y) \in \R \times \R_+ : y \leq f_Y(x) \right\}$. Il suffit alors de suivre l'algorithme suivant :
+On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Supposons que l'on sait simuler une variable $U$ uniforme sur $]0,1[$, ainsi qu'une v.a.r. $Y$ (par exemple avec la méthode d'inversion) de densité $f_Y$ telle qu'il existe un réel $a > 0$ pour lequel on a $\forall x \in \R$ : $f_X(x) \leq a\,f_Y(x)$. On note $A_Y := \left\{ (x,y) \in \R \times \R_+ : y \leq f_Y(x) \right\}$. Il suffit alors de suivre l'algorithme suivant :
 
 1. simuler $Y$ et $U$,
+
 2. si $aUf_Y(Y) > f_X(Y)$, recommencer à l'étape 1.
+
 3. poser $X = Y$.
 
-![Méthode du rejet](images/MetRej.tex)
+![Méthode de rejet](images/MetRej.tex)
 
 ### Limitations de la méthode
 La méthode de rejet a l'avantage non négligeable de permettre de simuler des variables aléatoires à densité dont la fonction de répartition n'a pas de forme analytique, rendant la méthode d'inversion inapplicable. Néanmoins, pour pouvoir l'appliquer il faut absolument connaître une densité auxiliaire qui, multipliée par un réel positif, majore la densité cible, et que l'on peut simuler. Quand bien même ce serait le cas, selon le volume de la zone de rejet, l'algorithme peut prendre beaucoup de temps à tourner. 
@@ -222,27 +224,27 @@ En d'autres termes, pour tout $r\in\R$, $$F_R(r) = \left|\begin{array}{ll} 1 - e
 qui correspond exactement à la fonction de répartition de $\widetilde{R}$ : quel que soit $r\in\R$
 $$\int_{-\infty}^r f_{\widetilde{R}}(x)\,dx = \left|\begin{array}{ll}\displaystyle \int_0^r x\,e^{-\frac{x^2}{2}}\,dx = \left[-e^{-\frac{x^2}{2}} \right]_0^r = 1 - e^{-\frac{r^2}{2}}  & \text{si } r>0,\\[1em] 0 & \text{sinon.} \end{array}\right.$$
 
-* Regardons maintenant la loi de $\Theta$, de fonction de répartition $F_\Theta$. Puisque la fonction $v \in ]0,1[ \mapsto 2\pi v \in ]0,2\pi[$ est bijective strictement croissante, on a directement que pour tout $\theta \in \R$
-$$F_\Theta(\theta) = \left|\begin{array}{ll} 1 & \text{si } \theta \geq 2\pi,\\ \P\left(V\leq \frac{\theta}{2\pi} \right) = \dfrac{\theta}{2\pi} & \text{si } \theta \in ]0,2\pi[,\\ 0 & \text{si } \theta \leq 0,\end{array}\right.$$
+* Regardons maintenant la loi de $\Theta$, de fonction de répartition $F_\Theta$. Puisque la fonction $v \in\, ]0,1[\, \mapsto 2\pi v \in\, ]0,2\pi[$ est bijective strictement croissante, on a directement que pour tout $\theta \in \R$
+$$F_\Theta(\theta) = \left|\begin{array}{ll} 1 & \text{si } \theta \geq 2\pi,\\ \P\left(V\leq \frac{\theta}{2\pi} \right) = \dfrac{\theta}{2\pi} & \text{si } \theta \in\, ]0,2\pi[,\\ 0 & \text{si } \theta \leq 0,\end{array}\right.$$
 qui n'est autre que la fonction de répartition d'une loi uniforme sur $]0,2\pi[$.
 
-### {.anonyomous}
+### {.anonymous}
 
 Cette méthode permet de simuler directement deux variables gaussiennes centrées réduites indépendantes à partir de deux variables uniformes indépendantes. Pour simuler une variable gaussienne d'espérance $m \in \R$ et de variance $\sigma^2 \in \R_+^\ast$ quelconques, il suffit de se rappeler le résultat préliminaire de l'exercice *Combinaisons linéaires de variables aléatoires Gaussiennes indépendantes* du cours Probabilités II : si $X$ suit une loi normale centrée réduite, alors $\sigma X + m$ suit une loi normale d'espérance $m$ et de variance $\sigma^2$.
 
 
 # Simulation d'un vecteur gaussien à densité
-La simulation d'un vecteur gaussien dont la matrice de covariance est inversible est extrêmement aisée. En effet, on souhaite simuler un vecteur gaussien $X = (X_1,\ldots,X_d)$ à valeurs dans $\R^d$ d'espérance $m$ et de matrice de covariance $C$ définie positive donnés. 
+La simulation d'un vecteur gaussien dont la matrice de covariance est inversible est extrêmement aisée. En effet, on souhaite simuler un vecteur gaussien $X = (X_1,\ldots,X_d)$ à valeurs dans $\R^d$ d'espérance $m$ et de matrice de covariance $C$ définie positive données. 
 
 Puisque la matrice $C$ est inversible, elle admet une racine carrée, c'est-à-dire qu'il existe une matrice $N$ telle que $C = N\,N^t$. En effet, on peut par exemple décomposer $C$ de la manière suivante :
-$$C = V\,D\,V^t$$
+$$C = V\,D\,V^t,$$
 où $V$ est une matrice orthogonale et $D$ est la matrice diagonale dont les termes diagonaux sont les valeurs propres (toutes strictement positives) de $C$. Il suffit alors de prendre $N = V\,D^{1/2}$, où $D^{1/2}$ est la matrice diagonale dont les termes diagonaux sont les racines carrées des valeurs propres. 
 
 En pratique, il est coûteux numériquement d'effectuer le calcul des valeurs propres et des vecteurs propres de $C$. On va plutôt calculer sa [*décomposition ou factorisation de Cholesky*](https://fr.wikipedia.org/wiki/Factorisation_de_Cholesky) qui permet d'écrire
 $$C = L\,L^t$$
 avec $L$ une matrice triangulaire inférieure [^chol].
 
-[^chol]: Cette décomposition est très utile dans la résolution de systèmes linéaires de la forme $A\,x = b$, où $b$ est connu, $x$ inconnu et $A$ est définie positive. Cela revient à résoudre $L\,L^t\,x = b$. On pose alors $y = L^t\,x$ et on résoud d'abord $Ly=b$, ce qui est très rapide puisque $L$ est triangulaire inférieure (on commence par $y_1 = b_1/L_{11}$, puis $y_2 = (b_2 - L{21}y_1)/L_{22}, etc. en descendant). On résoud ensuite $L^t\,x = y$, ce qui est aussi très rapide pour la même raison (on commence par $x_n = y_n/L_{nn}$ puis on remonte).
+[^chol]: Cette décomposition est très utile dans la résolution de systèmes linéaires de la forme $A\,x = b$, où $b$ est connu, $x$ inconnu et $A$ est définie positive. Cela revient à résoudre $L\,L^t\,x = b$. On pose alors $y = L^t\,x$ et on résout d'abord $Ly=b$, ce qui est très rapide puisque $L$ est triangulaire inférieure (on commence par $y_1 = b_1/L_{11}$, puis $y_2 = (b_2 - L{21}y_1)/L_{22}$, etc. en descendant). On résoud ensuite $L^t\,x = y$, ce qui est aussi très rapide pour la même raison (on commence par $x_n = y_n/L_{nn}$ puis on remonte).
 
 Soit maintenant un autre vecteur gaussien $Y = (Y_1,\ldots,Y_d)$ à valeurs dans $\R^d$ et de matrice de covariance l'identité, notée $I_d$. Autrement dit, les $Y_i$ sont des variables aléatoires gaussiennes centrées, réduites et indépendantes.
 
@@ -253,9 +255,9 @@ Alors, le vecteur $Z = m + L\,Y$ est gaussien, d'espérance $m$ et de matrice de
 On introduit dans cette section la méthode d'échantillonnage d'importance (importance sampling en anglais), que l'on appelle aussi, de manière plus intuitive, échantillonnage préférentiel, pour les lois à densité. Pour ce faire, nous allons commencer par un exemple qui montre qu'il peut être plus efficace de simuler des valeurs selon une loi différente de celle d'intérêt, autrement dit de modifier la représentation de l'intégrale $\mathcal{I}$ sous la forme d'une espérance calculée selon une autre densité.
 
 ### Exemple {.example}
-Supposons que l'on s'intéresse à calculer la probabilité $p$ qu'une variable $X$ de loi de Cauchy standard soit plus grande que 2 (on peut le calculer directement et p=0.15)
-$$p = \int_2^{+\infty} \frac{1}{\pi(1+x^2)}dx$$
-Si on estime $p$ directement à partir d'un échantillon $(X_1,\ldots,X_n)$ simulé selon la loi de Cauchy standard soit
+Supposons que l'on s'intéresse à calculer la probabilité $p$ qu'une variable $X$ de loi de Cauchy standard soit plus grande que 2 (on peut le calculer directement et $p=0.15$)
+$$p = \int_2^{+\infty} \frac{1}{\pi(1+x^2)}dx.$$
+Si on estime $p$ directement à partir d'un échantillon $(X_1,\ldots,X_n)$ simulé selon la loi de Cauchy standard, soit
 $$\widehat{p}_1 = \frac{1}{n}\sum_{i=1}^n 1_{X_i > 2},$$
 la *variance de l'estimateur* $\V(\widehat{p}_1) = p(1-p)/n = 0.127/n$, puisque $\widehat{p}_1$ suit une loi binomiale de paramètre $(n,p)$. On peut réduire cette variance (et donc améliorer la qualité de l'estimateur) en tirant parti de la symétrie de la densité de la loi de Cauchy, en formant un second estimateur
 $$\widehat{p}_2 = \frac{1}{n}\sum_{i=1}^n 1_{|X_i| > 2},$$
@@ -270,7 +272,7 @@ qui peut être vue comme $\Esp\left(\frac{V^{-2}}{2\pi(1+V^{-2})}\right)$ avec $
 
 On a ainsi vu sur ce cas particulier que l'estimation d'une intégrale de la forme 
 $$\mathcal{I}=\Esp\left(h(X)\right)=\int_{\R^d} h(x) f(x) dx,$$
-peut s'écrire de différentes manières, en faisant varier $h$ et $f$. Par conséquent, un estimateur "optimal" devrait tenir compte de l'ensemble de ces possibilités. C'est justement l'idée développée dans la méthode d'échantillonnage d'importance dont le principe est décrit dans la définition suivante :
+peut s'écrire de différentes manières, en faisant varier $h$ et $f$. Par conséquent, un estimateur "optimal" devrait tenir compte de l'ensemble de ces possibilités. C'est justement l'idée développée dans la méthode d'échantillonnage d'importance dont le principe est décrit dans la définition suivante.
 
 ### Définition {.definition #is}
 La méthode d'*échantillonnage d'importance* est une évaluation de $\mathcal{I}$ basée sur la simulation d'un
@@ -333,22 +335,22 @@ Soit $F$ une fonction de répartition. Alors sa réciproque généralisée $F^-$
 4. $\forall\, (u,x) \in\, ]0,1[\, \times \R$ : $\left\{F(x) \geq u\right\} \Leftrightarrow \left\{x \geq F^-(u)\right\}$ et  $\left\{F(x) < u\right\} \Rightarrow \left\{x \leq F^-(u)\right\}$.
 
 ### Démonstration {.proof}
-Pour tout $u \in ]0,1[$ on note $\mathcal{X}_u = \left\{x \in \R : F(x) \geq u\right\}$ l'image réciproque de $[u,1[$ par $F$.
+Pour tout $u \in\, ]0,1[$ on note $F^{-1}\left([u,1]\right) := \left\{x \in \R : F(x) \geq u\right\}$ l'image réciproque de $[u,1]$ par $F$.
 
-1. Soit $(u,v) \in ]0,1[^2$. Si $u < v$ alors $\mathcal{X}_v \subset \mathcal{X}_u$ d'où $F^-(u) = \inf\mathcal{X}_u \leq \inf\mathcal{X}_v = F^-(v)$. La fonction $F^-$ est donc bien croissante.
+1. Soit $(u,v) \in\, ]0,1[^2$. Si $u < v$ alors $F^{-1}\left([v,1]\right) \subset F^{-1}\left([u,1]\right)$ d'où $F^-(u) = \inf F^{-1}\left([u,1]\right) \leq \inf F^{-1}\left([v,1]\right) = F^-(v)$. La fonction $F^-$ est donc bien croissante.
 
-2. Soit $x \in \R$, alors $F^- \circ F(x) = \inf \bigl\{ z \in \R : F(z) \geq F(x) \bigr\} = \inf \mathcal{X}_{F(x)}$. Comme $F$ est croissante sur $\R$ on a $[x,+\infty[\, \subseteq \mathcal{X}_{F(x)}$ donc $F^- \circ F(x) = \inf\mathcal{X}_{F(x)} \leq \inf [x,+\infty[\, = x$.
+2. Soit $x \in \R$, alors $F^- \circ F(x) = \inf \bigl\{ z \in \R : F(z) \geq F(x) \bigr\} = \inf F^{-1}\left(\left[F(x),1\right]\right)$. Comme $F$ est croissante sur $\R$ on a $[x,+\infty[\, \subseteq F^{-1}\left(\left[F(x),1\right]\right)$ donc $F^- \circ F(x) = \inf F^{-1}\left(\left[F(x),1\right]\right) \leq \inf [x,+\infty[\, = x$.
 
-3. Soit $u \in ]0,1[$. 
-* Puisque $\mathcal{X}_u$ est nécessairement non vide, il existe une suite décroissante $(x_n)_{n\in\N} \subseteq \mathcal{X}_u$ convergeant vers $\inf\mathcal{X}_u = F^-(u)$. La croissance de $F$ implique que la suite $\bigl(F(x_n)\bigr)_{n\in\N}$ est elle aussi décroissante, minorée par $u$ car $(x_n)_{n\in\N} \subseteq \mathcal{X}_u$ donc convergente. Sa limite est de même supérieure ou égale à $u$. Comme $F$ est continue à droite, cette dernière n'est autre que $$\lim_{n \rightarrow +\infty} F(x_n) = F\left(\lim_{n\rightarrow+\infty} x_n\right) = F \circ F^-(u).$$
+3. Soit $u \in\, ]0,1[$. 
+* Puisque $F^{-1}\left([u,1]\right)$ est nécessairement non vide, il existe une suite décroissante $(x_n)_{n\in\N} \subseteq F^{-1}\left([u,1]\right)$ convergeant vers $\inf F^{-1}\left([u,1]\right) = F^-(u)$. La croissance de $F$ implique que la suite $\bigl(F(x_n)\bigr)_{n\in\N}$ est elle aussi décroissante, minorée par $u$ car $(x_n)_{n\in\N} \subseteq F^{-1}\left([u,1]\right)$ donc convergente. Sa limite est de même supérieure ou égale à $u$. Comme $F$ est continue à droite, cette dernière n'est autre que $$\lim_{n \rightarrow +\infty} F(x_n) = F\left(\lim_{n\rightarrow+\infty} x_n\right) = F \circ F^-(u).$$
 Nous avons donc bien $F\circ F^-(u) \geq u$.
-* Supposons maintenant que $u \in F(\R)$. Alors $\mathcal{X}_u^\ast = \left\{x \in \R : F(x) = u\right\} \neq \varnothing$. Il existe donc une suite décroissante $(x_n)_{n\in\N} \subseteq \mathcal{X}_u^\ast$ convergeant vers $\inf\mathcal{X}_u^\ast = F^-(u)$ par croissance de $F$. Comme $F$ est continue à droite en tout point de $\R$ et $F(x_n) = u$ pour tout $n \in \N$, on a bien $$u = \lim_{n \rightarrow +\infty} F(x_n) = F\left(\lim_{n\rightarrow+\infty} x_n\right) = F \circ F^-(u).$$
+* Supposons maintenant que $u \in F(\R)$. Alors $F^{-1}\left(\{u\}\right) := \left\{x \in \R : F(x) = u\right\} \neq \varnothing$. Il existe donc une suite décroissante $(x_n)_{n\in\N} \subseteq F^{-1}\left(\{u\}\right)$ convergeant vers $\inf F^{-1}\left(\{u\}\right) = F^-(u)$ par croissance de $F$. Comme $F$ est continue à droite en tout point de $\R$ et $F(x_n) = u$ pour tout $n \in \N$, on a bien $$u = \lim_{n \rightarrow +\infty} F(x_n) = F\left(\lim_{n\rightarrow+\infty} x_n\right) = F \circ F^-(u).$$
 
 4. Soit $(u,x) \in\, ]0,1[\, \times \R$.
 * **Equivalence.** Supposons $F(x) \geq u$. On a $F^- \circ F(x) \geq F^-(u)$ par croissance de $F^-$ (propriété 1.) et $F^- \circ F(x) \leq x$ d'après la propriété 2. Réciproquement, supposons que $x \geq F^-(u)$. Alors par croissance de $F$ on a $F(x) \geq F \circ F^-(u)$ puis $F \circ F^-(u) \geq u$ d'après la propriété 3.
-* **Implication.** Supposons $F(x) < u$. Tout $z \in \mathcal{X}_u$ vérifie $F(z) \geq u > F(x)$. Comme $F$ est croissante sur $\R$ on a donc $z \geq x$, ce qui implique $x \leq \inf\mathcal{X}_u = F^-(y)$.
+* **Implication.** Supposons $F(x) < u$. Tout $z \in F^{-1}\left([u,1]\right)$ vérifie $F(z) \geq u > F(x)$. Comme $F$ est croissante sur $\R$ on a donc $z \geq x$, ce qui implique $x \leq \inf F^{-1}\left([u,1]\right) = F^-(y)$.
 
-### {.anonyomous}
+### {.anonymous}
 
 ![Réciproque généralisée d'une fonction de répartition](images/RecGen.tex)
 
