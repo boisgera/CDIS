@@ -86,7 +86,7 @@ Pour certains usages, cet algorithme n'est cependant pas recommandé du fait de 
 
 # Méthodes de simulation de variables aléatoires réelles
 
-On a vu au chapitre II du cours Probabilités que l'on pouvait transformer des variables aléatoires réelles suivant certaines lois pour obtenir  de nouvelles. Par exemple, si $X_1,\dots,X_n$ sont $n\in\N^\ast$ variables gaussiennes centrées réduites indépendantes, alors $X_1^2+\dots,X_n^2$ suit une loi du $\chi^2$ à $n$ degrés de liberté. Dans le même esprit, on va voir ici comment simuler des v.a.r. de lois diverses à partir de la simulation de variables uniformes sur $]0,1[$. On introduit une notation qui sera utile dans la suite : pour spécifier que deux v.a.r. $X$ et $Y$ ont même loi, on écrira $X \overset{\L}{=} Y$.
+On a vu au chapitre II du cours de Probabilités que l'on pouvait transformer des variables aléatoires réelles suivant certaines lois pour obtenir  de nouvelles. Par exemple, si $X_1,\dots,X_n$ sont $n\in\N^\ast$ variables gaussiennes centrées réduites indépendantes, alors $X_1^2+\dots,X_n^2$ suit une loi du $\chi^2$ à $n$ degrés de liberté. Dans le même esprit, on va voir ici comment simuler des v.a.r. de lois diverses à partir de la simulation de variables uniformes sur $]0,1[$. On introduit une notation qui sera utile dans la suite : pour spécifier que deux v.a.r. $X$ et $Y$ ont même loi, on écrira $X \overset{\L}{=} Y$.
 
 ## Méthode d'inversion
 
@@ -191,6 +191,7 @@ En combinant les résultats des propriété et proposition précédentes, on obt
 
 ### Méthode de rejet
 On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Supposons que l'on sait simuler une variable $U$ uniforme sur $]0,1[$, ainsi qu'une v.a.r. $Y$ (par exemple avec la méthode d'inversion) de densité $f_Y$ telle qu'il existe un réel $a > 0$ pour lequel on a $\forall x \in \R f_X(x) \leq a\,f_Y(x)$. On note $A_Y := \left\{ (x,y) \in \R \times \R_+ : y \leq f_Y(x) \right\}$. Il suffit alors de suivre l'algorithme suivant :
+
 1. simuler $Y$ et $U$,
 2. si $aUf_Y(Y) > f_X(Y)$, recommencer à l'étape 1.
 3. poser $X = Y$.
@@ -200,12 +201,11 @@ On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Suppo
 ### Limitations de la méthode
 La méthode de rejet a l'avantage non négligeable de permettre de simuler des variables aléatoires à densité dont la fonction de répartition n'a pas de forme analytique, rendant la méthode d'inversion inapplicable. Néanmoins, pour pouvoir l'appliquer il faut absolument connaître une densité auxiliaire qui, multipliée par un réel positif, majore la densité cible, et que l'on peut simuler. Quand bien même ce serait le cas, selon le volume de la zone de rejet, l'algorithme peut prendre beaucoup de temps à tourner. 
 
-
 ## Simulation de variables aléatoires gaussiennes : Box-Muller
 
-Nous avons vu que la méthode d'inversion est inappropriée pour simuler une variable gaussienne, puisqu'elle requiert une expression analytique de la fonction de répartition cible. Il existe des méthodes basées sur une intégration numérique de la densité gaussienne puis une inversion de cette approximation de la f.d.r. mais elle ne sont pas optimales en temps de calcul. La méthode du rejet est quant à elle sous-optimale, dans le sens où toutes les variables uniformes générées ne sont pas directement utilisées (une partie, potentiellement grande, est rejetée). La loi normale étant fondamentale en probabilité, il est plus que souhaitable de pouvoir en trouver une méthode de simulation exacte et efficace.
+On a vu que la méthode d'inversion est inappropriée pour simuler une variable gaussienne, puisqu'elle requiert l'expression analytique de la fonction de répartition cible. Il existe des méthodes basées sur une intégration numérique de la densité gaussienne puis une inversion de cette approximation de la f.d.r. mais elle ne sont pas optimales en temps de calcul. La méthode du rejet est quant à elle sous-optimale, dans le sens où toutes les variables uniformes générées ne sont pas directement utilisées (une partie, potentiellement grande, est rejetée). La loi normale étant fondamentale en probabilité, il est plus que souhaitable de pouvoir en trouver une méthode de simulation exacte et efficace.
 
-George E. P. Box et Mervin E. Muller ont proposé en 1958 une telle méthode. Elle exploite la propriété d'invariance par rotation de la densité d'un couple de variables gaussiennes indépendantes centrées réduites.
+George E. P. Box et Mervin E. Muller ont proposé en 1958 une telle méthode (@BoxMuller). Elle exploite la propriété d'invariance par rotation de la densité d'un couple de variables gaussiennes indépendantes centrées réduites.
 
 ### Proposition {.proposition #boxmuller}
 Soient $U$ et $V$ deux variables indépendantes, de loi Uniforme sur $]0,1[$. Alors les variables aléatoires $X = \sqrt{-2\ln(U)}\cos\left(2\pi V\right)$ et $Y = \sqrt{-2\ln(U)}\sin\left(2\pi V\right)$ sont indépendantes et suivent toutes deux une loi normale centrée réduite.
