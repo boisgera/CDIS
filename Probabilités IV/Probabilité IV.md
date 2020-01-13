@@ -58,7 +58,7 @@ La formule ci-dessus s'écrit $\P_{X,Y}(B_1 \times B_2) = \int_{B_1} \P(Y \in B_
 
 où $B_x = \{y\in \R, (x,y) \in B\}$. Ainsi, pour tout $B$ borélien de $\R^2$,
 
-$$\Esp(1_B(X,Y)) = \int_{\R^2} 1_B(x,y)\P_{X,Y}(dx dy) = \int_\R \left(\int_\R 1_B(x,y) \P_{Y|X=x)(dy)\right)  \P_X(dx)$$
+$$\Esp(1_B(X,Y)) = \int_{\R^2} 1_B(x,y)\P_{X,Y}(dx dy) = \int_\R \left(\int_\R 1_B(x,y) \P_{Y|X=x}(dy)\right)  \P_X(dx)$$
 
 Par linéarité de l'espérance, on peut ainsi exprimer l'espérance d'une fonction étagée. Pour avoir le résultat pour une fonction borélienne positive, on exprime celle-ci comme limite simple d'une suite croissante de fonctions étagées, et on applique le théorème de convergence monotone. Enfin, on applique cette construction à $g_+$ et $g_-$ pour une fonction $g$ de signe quelconque $\P_{X,Y}$-intégrable. En d'autres termes, on reprend le procédé de construction de l'intégrale de Lebesgue. On obtient ainsi la formule souhaitée :
 $$\Esp(g(X,Y)) = \int_{\R} \left( \int_{\R} g(x,y) \P_{Y|X=x}(dy)\right) \P_X(dx).$$
