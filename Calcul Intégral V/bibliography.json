@@ -1,0 +1,97 @@
+[
+{
+        "id": "Bar01",
+        "type": "book",
+        "title": "A modern theory of integration.",
+        "publisher": "Providence, RI: American Mathematical Society (AMS)",
+        "volume": "32",
+        "number-of-pages": "xiv + 458",
+        "ISBN": "0-8218-0845-1",
+        "language": "English",
+        "author": [
+                {
+                        "family": "Bartle",
+                        "given": "Robert G."
+                }
+        ],
+        "issued": {
+                "date-parts": [
+                        [
+                                "2001"
+                        ]
+                ]
+        }
+},
+  {
+          "id": "MAA18",
+          "type": "book",
+          "title": "Kurzweil-stieltjes Integral: Theory And Applications",
+          "collection-title": "Series In Real Analysis",
+          "publisher": "World Scientific Publishing Company",
+          "ISBN": "978-981-4641-79-1",
+          "author": [
+                  {
+                          "family": "Milan",
+                          "given": "T."
+                  },
+                  {
+                          "family": "Antunes",
+                          "given": "M.G."
+                  },
+                  {
+                          "family": "Antonin",
+                          "given": "S."
+                  }
+          ],
+          "issued": {
+                  "date-parts": [
+                          [
+                                  "2018"
+                          ]
+                  ]
+          }
+  },
+  {
+        "id": "Tao11",
+        "type": "book",
+        "title": "An Introduction to Measure Theory",
+        "collection-title": "Graduate studies in mathematics",
+        "publisher": "American Mathematical Society",
+        "URL": "https://terrytao.files.wordpress.com/2011/01/measure-book1.pdf",
+        "ISBN": "978-0-8218-6919-2",
+        "note": "LCCN: 2011018926",
+        "author": [
+                {
+                        "family": "Tao",
+                        "given": "T."
+                }
+        ],
+        "issued": {
+                "date-parts": [
+                        [
+                                "2011"
+                        ]
+                ]
+        }
+},
+{
+        "id": "Hun11",
+        "type": "book",
+        "title": "Measure Theory",
+        "URL": "https://www.math.ucdavis.edu/~hunter/measure_theory/measure_theory.html",
+        "author": [
+                {
+                        "family": "Hunter",
+                        "given": "John K."
+                }
+        ],
+        "issued": {
+                "date-parts": [
+                        [
+                                "2011"
+                        ]
+                ]
+        },
+        "publisher": "Department of Mathematics, University of California at Davis"
+}
+]

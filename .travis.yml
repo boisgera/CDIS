@@ -1,0 +1,51 @@
+dist: xenial
+language: bash
+
+branches:
+  only:
+  - master
+
+env:
+  global:
+    - CONDA=https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes --force-yes install texlive-full
+  - curl $CONDA > conda.sh
+  - bash conda.sh -b -p $HOME/conda
+  - export PATH=$HOME/conda/bin:$PATH
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda install setuptools # hack against the conda "RemoveError" in update
+  - conda update conda
+  - conda info -a # debugging
+  - conda env create -v -f environment.yml -p env
+  - source activate ./env
+  - curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+  - sudo bash nodesource_setup.sh
+  - sudo apt-get install nodejs
+  - sudo npm install --unsafe-perm -g decktape
+  # easiest way to get the dependencies of chromium right is to (re-)install it
+  - sudo apt-get install chromium-browser
+
+install:
+  - echo "fetching calendar ..."
+  - mkdir -p Calendrier 
+  - python utils/calendrier/fetch.py > Calendrier/calendrier.txt
+  - echo "install started ..."
+  - ./build
+  - cd Extra/"Comité Pédagogique 23-05-2019" && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
+  # now prepare deployment to gh-pages
+  - rm -rf env
+  - mv .gitignore .gitignore.bak 
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  
+  on:
+    branch: master  
+
+
+
