@@ -668,7 +668,7 @@ $$
 a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ aribitrairement proche de 0.
 
 ### Lien entre stabilité et stabilité du linéarisé tangent
-Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si la matrice jacobienne  $J_f(a)$ est Hurwitz.
+Soit $f:\R^n \to \R^n$ de classe $C^1$. Si la matrice jacobienne $J_f(a)$ est Hurwitz alors $a$ est localement asymptotiquement stable.
 
 Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
 
