@@ -860,7 +860,7 @@ Etudier la stabilité des points d'équilibre et le comportement des solutions p
 
 *Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 +\frac{1}{2} m x_2^2$)*
 
-## Stabilité asymptotique globale
+## Stabilité asymptotique globale ($+$) {.exercice #exo_stab_glob}
 
 ### Question 1 {.question #asymp_glob-1}
 Montrer que le point d'équilibre $(0,0)$ est localement asymptotiquement stable pour le système
