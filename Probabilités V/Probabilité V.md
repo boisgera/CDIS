@@ -180,6 +180,7 @@ Commençons par remarquer que $\ell(A_f) = 1$. Quel que soit $(z,v)\in\R^2$, par
 & = \int_{-\infty}^z \int_{-\infty}^v 1_{A_f}(x,u)\,du\,dx.
 \end{align*}
 Ainsi, $(X,Uf(X))$ admet pour densité $1_{A_f}$, qui correspond bien à celle d'une loi Uniforme sur $A_f$.
+
 ### {.anonymous}
 
 Pour simuler un vecteur uniforme $(X,Y)$ sur un ensemble $A_f$ tel que défini à la proposition précédente, il suffit donc de simuler une v.a.r. $X$ de densité $f$, puis une variable $U$ uniforme sur $]0,1[$, et de poser $Y = f(X)U$.
@@ -316,7 +317,7 @@ vers l'intégrale d'intérêt
 $$\mathcal{I}=\Esp\left(h(X)\right)=\int_{\R^d} h(x) \P_X(dx).$$
 On a montré qu'à partir d'un échantillon on peut construire un intervalle de confiance asymptotique à 95\% pour la quantité $\mathcal{I}$. En revanche,  -->
 
-# Projet numérique : cable sous-marin
+# Projet numérique : câble sous-marin
 
 ## Enoncé du problème
 
@@ -349,7 +350,7 @@ On supposera que la matrice de covariance ainsi
 générée est définie-positive (en fait, $C$ sera choisie parmi les fonctions qui, 
 appliquées aux termes d'une matrice de distance, produisent des matrices définie-positives). 
 
-Si on note $L$ la variable aléatoire donnant la longueur de cable nécessaire : 
+Si on note $L$ la variable aléatoire donnant la longueur de câble nécessaire : 
 $$L=\sum_{i=1}^N\sqrt{\Delta^2+(Z(x_i)-Z(x_{i-1}))^2},$$
 un bon estimateur de $L$ est fourni par l'espérance conditionnelle 
 
