@@ -28,6 +28,7 @@ Calcul Différentiel, Intégral et Stochastique
 | Equations Différentielles 2/2 | [Equations Différentielles II.pdf](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20II.pdf) | [Equations Différentielles II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20II%20(a4%2C%20recto-verso).pdf) | [:eye:](https://github.com/boisgera/CDIS/blob/master/Equations%20Diff%C3%A9rentielles%20II/Equations%20Differentielles%20II.ipynb) [:arrow_down:](https://boisgera.github.io/CDIS/Equations%20Différentielles%20II/Equations%20Differentielles%20II.ipynb) |
 | Probabilités 3/5 | [Probabilités III.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20III.pdf) | [Probabilités III (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20III%20(a4%2C%20recto-verso).pdf) |   |
 | Probabilités 4/5 | [Probabilités IV.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20IV.pdf) | [Probabilités IV (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20IV%20(a4%2C%20recto-verso).pdf) |   |
+| Probabilités 4/5 | [Probabilités V.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20V.pdf) | [Probabilités V (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20V%20(a4%2C%20recto-verso).pdf) | [:eye:](https://github.com/boisgera/CDIS/blob/master/Probabilités%20V/Probabilité%20V.ipynb) [:arrow_down:](https://boisgera.github.io/CDIS/Probabilité%20V/Probabilité%20V.ipynb)  |
 <!--| ... | ... | ... |-->
   
 
