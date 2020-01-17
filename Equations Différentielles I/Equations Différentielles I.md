@@ -264,7 +264,7 @@ Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$. On 
 $$
 \dot{x}=f(t,x)
 $$
-si elle n'est pas *prolongeable*, c'est-à-dire, pour toute autre solution $x'\in C^1(I',\R^n)$ telle que $I'\subseteq I$ et $x_{|I'}\equiv x'_{|I}$, on a nécessairement $I=I'$ et $x\equiv x'$. 
+si elle n'est pas *prolongeable* en une solution définie plus longtemps. En d'autres termes, pour toute autre solution $x'\in C^1(I',\R^n)$ telle que $I'\subseteq I$ et $x_{|I'}=x'_{|I}$, on a nécessairement $I=I'$ et $x=x'$. 
 
 ### Classe plus générale de solutions (pour la culture) {.remark}
 L'existence de solutions $C^1$ est garantie lorsque $f$ est continue. Il s'avère que l'existence de solutions *absolument continues*, est garantie sous les hypothèses plus faibles suivantes dans un voisinage de $(t_0,x_0)$ :
