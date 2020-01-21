@@ -264,7 +264,7 @@ Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$. On 
 $$
 \dot{x}=f(t,x)
 $$
-si elle n'est pas *prolongeable*, c'est-à-dire, pour toute autre solution $x'\in C^1(I',\R^n)$ telle que $I'\subseteq I$ et $x_{|I'}\equiv x'_{|I}$, on a nécessairement $I=I'$ et $x\equiv x'$. 
+si elle n'est pas *prolongeable* en une solution définie plus longtemps. En d'autres termes, pour toute autre solution $x'\in C^1(I',\R^n)$ telle que $I'\subseteq I$ et $x_{|I'}=x'_{|I}$, on a nécessairement $I=I'$ et $x=x'$. 
 
 ### Classe plus générale de solutions (pour la culture) {.remark}
 L'existence de solutions $C^1$ est garantie lorsque $f$ est continue. Il s'avère que l'existence de solutions *absolument continues*, est garantie sous les hypothèses plus faibles suivantes dans un voisinage de $(t_0,x_0)$ :
@@ -668,15 +668,22 @@ $$
 a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ aribitrairement proche de 0.
 
 ### Lien entre stabilité et stabilité du linéarisé tangent
-Soit $f:\R^n \to \R^n$ de classe $C^1$. Un point d'équilibre $a$ est localement asymptotiquement stable si et seulement si la matrice jacobienne  $J_f(a)$ est Hurwitz.
+Soit $f:\R^n \to \R^n$ de classe $C^1$. 
 
-Par ailleurs, si  $J_f(a)$ a une valeur propre à partie réelle strictement positive, $a$ est instable.
+Si la matrice jacobienne $J_f(a)$ est Hurwitz alors $a$ est localement asymptotiquement stable.
 
-Notons cependant que rien ne peut être conclu quant à la stabilité de $a$ si $J_f(a)$ a des valeurs propres imaginaires pures.
+Si  $J_f(a)$ a au moins une valeur propre à partie réelle strictement positive, alors $a$ est instable.
 
 ### Démonstration {.proof}
 Voir l'annexe [\textit{Stabilité locale et linéarisé tangent}](#app_stab_lin).  
 
+###
+
+Notons cependant que rien ne peut être conclu quant à la stabilité (ou stabilité asymptotique) de $a$ si les parties réelles de $J_f(a)$ sont négatives ou nulles : on peut avoir asymptotiquement stable, seulement stable ou instable. Par exemple, 0 est globalement asymptotiquement stable pour
+$$
+\dot{x} = - x^3
+$$
+dont le linéarisé est pourtant nul en zéro.
 
 ### Exemple
 Reprenons l'[exemple du pendule amorti](#ex_pendule_amorti). On a
@@ -697,6 +704,8 @@ Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme 
 Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
 
 Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
+
+Lorsque le linéarisé ne permet pas de conclure sur la stabilité asymptotique locale, ou que l'on veut un résultat global, on a recours à la caractérisation non linéaire suivante.
 
 ### Caractérisation par Lyapunov
 Soit $f:\R^n \to \R^n$ de classe $C^1$, $a$ un point d'équilibre de $f$, et $W$ un voisinage de $a$.
@@ -786,6 +795,16 @@ Comment s'interprète physiquement la multitude de solutions trouvées ?
 ### Question 4 (plus dur) {.question #tor-4}
 Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
 
+## Solutions globales (+) {.question #glob_sol}
+
+Justifier que pour toute condition initiale, le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& \sin x_1 - x_2 \\
+\dot{x}_2 &=& \sqrt{1+x_1^2}
+\end{array}
+$$
+admet une unique solution maximale définie pour tout $t\in \R$.
 
 ## Autour du Lemme de Grönwall {.exercice #exo_gronwall}
 
@@ -837,17 +856,37 @@ Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'
 Justifier que les solutions sont uniques et globales quelque soit la condition initiale $(y(0),\dot{y}(0))$.
 
 ### Question 3 {.question #ressort-3}
-Etudier leur stabilité et le comportement des solutions pour $\lambda>0$ et $\lambda = 0$. Les dessiner sur un portrait de phase. 
+Etudier la stabilité des points d'équilibre et le comportement des solutions pour $\lambda>0$ et $\lambda = 0$. Les dessiner sur un portrait de phase. 
 
 *Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 +\frac{1}{2} m x_2^2$)*
 
+## Stabilité asymptotique globale ($+$) {.exercice #exo_stab_glob}
+
+### Question 1 {.question #asymp_glob-1}
+Montrer que le point d'équilibre $(0,0)$ est localement asymptotiquement stable pour le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2(1-x_2^2)\\
+\dot{x}_2 &=& -(x_1+x_2)(1-x_1^2)
+\end{array}
+$$
+L'est-il globalement ?
+
+### Question 2 {.question #asymp_glob-2}
+Même question pour le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2\\
+\dot{x}_2 &=& -x_1^3-x_2
+\end{array}
+$$
 
 ## Cycle limite 
 Considérons le système
 $$
 \begin{array}{rcl}
 \dot{x}_1 &=& x_1+x_2-x_1(x_1^2 + x_2^2)\\
-\dot{x}_2 &=& -x_1+x_2-x_2(x_1^2 + x_2^2)\\
+\dot{x}_2 &=& -x_1+x_2-x_2(x_1^2 + x_2^2)
 \end{array}
 $$
 
@@ -960,6 +999,16 @@ La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir v
 ### Question 4 {.answer #answer-tor-4}
 
 Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0+\delta}-\frac{k}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\underline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions par rapport à la condition initiale. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
+
+## Solutions globales {.answer #answer-glob_sol}
+
+Fixons une condition initiale dans $\R^2$. La fonction $f:(x_1,x_2)\mapsto (\sin x_1 - x_2 ,\sqrt{1+x_1^2})$ est de classe $C^1$ sur $\R^2$. Donc d'après le théorème de Cauchy-Lipschitz, le problème de Cauchy admet une unique solution maximale définie sur un intervalle de temps $I$ ouvert. 
+
+Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
+$$
+|f_1(x)| \leq 1 + |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
+$$
+et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions sont donc globales, i.e. $I=\R$.
 
 ## Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
@@ -1093,6 +1142,57 @@ Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_
 
 ![Plan de phase d'un oscillateur amorti à droite et non amorti à gauche](images/oscillateur.py){#fig_osci}
 
+## Stabilité asymptotique globale 
+
+### Question 1 {.answer #answer-asymp_glob-1}
+
+La jacobienne de la dynamique est donnée par
+$$
+J_f(x_1,x_2) = 
+\left(
+\begin{matrix}
+0 & 1-3x_2^2 \\
+-1+3x_1^2 & -(1-x_1^2)
+\end{matrix}
+\right)
+$$
+soit
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+0 & 1 \\
+-1 & -1
+\end{matrix}
+\right)
+$$
+qui est Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est bien localement asymptotiquement stable. Cependant, il ne l'est pas globalement car $(1,1)$ est aussi un point d'équilibre : la fonction constante égale à $(1,1)$ est solution (et ne tend pas vers 0).
+
+### Question 2 {.answer #answer-glob-2}
+
+La jacobienne de la dynamique est donnée par
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+0 & 1 \\
+0 & -1
+\end{matrix}
+\right)
+$$
+qui admet 0 et -1 comme valeurs propres. Nous ne pouvons donc rien conclure sur la stabilité de 0 par le linéarisé.
+
+Considérons plutôt la fonction $V:\R^2\to \R_{\geq 0}$ définie par
+$$
+V(x_1,x_2)= x_1^4 + x_2^2 + (x_1+x_2)^2
+$$
+$V$ est $C^1$, positive et ne s'annule qu'en $x=0$. De plus, elle vérifie
+\begin{align*}
+\langle \nabla V(x) , f(x) \rangle 
+&= 4x_1^3x_2 - 2 x_1^3x_2 - 2x_2^2 + 2(x_1+x_2)(x_2-x_1^3-x_2)\\
+&= -2x_2^2 -2 x_1^4 \qquad <0 \quad \forall x\neq 0
+\end{align*}
+$V$ est donc une fonction de Lyapunov et on a bien la stabilité asymptotique locale. De plus, $V$ est propre, i.e., $\lim_{\|x\|\to +\infty} V(x) = +\infty$, donc la stabilité asymptotique est globale.
 
 ## Cycle limite {.correction #correc_cycle_lim}
 On étudie le comportement des solutions de $\dot{x}=f(x)$ pour
