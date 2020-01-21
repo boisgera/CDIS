@@ -30,7 +30,7 @@ estimer $\mathcal{I}$ par la moyenne empirique
 $$M_n(h)=\frac{1}{n}\sum_{i=1}^{n}h(X_i),$$
 où i.i.d signifie indépendant et identiquement distribué. En effet, d'après la [loi forte des grands nombres](Probabilité III.pdf #lfgn), si $h(x)$ est $\P_X$-intégrable, on a l'assurance que quand $n \to +\infty$,
 $$M_n(h) \rightarrow \int h(x)\P_X(dx) \text{ p.s.}$$
-Si de plus $h(X)^4$ est intégrable, la vitesse de convergence de $M_n(h)$ peut être évaluée,
+Si de plus $h(X)^2$ est intégrable, la vitesse de convergence de $M_n(h)$ peut être évaluée,
 puisque la variance
 $$\V(M_n(h)) = \frac{1}{n} \int \left(h(x)-\mathcal{I}\right)^2 \P_X(dx)$$
 peut également être estimée à partir de l'échantillon
@@ -408,7 +408,6 @@ où $|h|$ correspond à la distance entre deux points, $a=50$ et $\sigma^2=12$.
 #Chargement de dépendances
 
 import numpy as np
-import math
 import matplotlib.pyplot as plt
 
 #Discrétisation

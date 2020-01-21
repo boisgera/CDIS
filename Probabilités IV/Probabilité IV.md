@@ -287,8 +287,8 @@ C^{-1} = \left(\begin{array}{cc} CS_Y^{-1} & -CS_Y^{-1}C_{Y,Z}C_Z^{-1} \\ -C_Z^{
 \end{equation*}
 On peut alors réarranger les termes de la forme quadratique dans $f_X$ et on obtient :
 \begin{align*}
-(x-m)^t C^{-1}(x-m) =& \left(y - (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))\right)^t CS_Y^{-1}\\
-&.\left(y - (m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z))\right)\\
+(x-m)^t C^{-1}(x-m) =& \left(y - (m_Y + C_{Y,Z}C_Z^{-1}(z-m_Z))\right)^t CS_Y^{-1}\\
+&.\left(y - (m_Y + C_{Y,Z}C_Z^{-1}(z-m_Z))\right)\\
  &+ (z-m_Z)^t C_Z^{-1}(z-m_Z)
 \end{align*}
 Pour la constante, on peut remarquer que :
@@ -301,7 +301,7 @@ f_{Y|Z=z}(y) =& \frac{1}{(2\pi)^{n/2}\sqrt{\det (CS_Y)}}\\
 $$f_{Y|Z=z}(y) = \frac{1}{(2\pi)^{k/2}\sqrt{\det (CS_Y)}}\exp \left(-\frac{1}{2}\left(y - \psi(z)\right)^t CS_Y^{-1}\left(y - \psi(z))\right)\right)$$
 
 
-C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_{Y|Z=z} = \psi(z) = m_Y - C_{Y,Z}C_Z^{-1}(z-m_Z)$ et de matrice de covariance $CS_Y = C_Y - C_{Y,Z}C_Z^{-1}C_{Z,Y}$. Autrement dit, l'espérance conditionnelle de $Y$ sachant $Z$ est la variable aléatoire $\Esp(Y|Z) = \psi(Z) =(m_Y - C_{Y,Z}C_Z^{-1}(Z-m_Z))$. On notera que la covariance conditionnelle donnée par $CS_Y$ ne dépend pas de la valeur prise par $Z$.
+C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_{Y|Z=z} = \psi(z) = m_Y + C_{Y,Z}C_Z^{-1}(z-m_Z)$ et de matrice de covariance $CS_Y = C_Y - C_{Y,Z}C_Z^{-1}C_{Z,Y}$. Autrement dit, l'espérance conditionnelle de $Y$ sachant $Z$ est la variable aléatoire $\Esp(Y|Z) = \psi(Z) =(m_Y + C_{Y,Z}C_Z^{-1}(Z-m_Z))$. On notera que la covariance conditionnelle donnée par $CS_Y$ ne dépend pas de la valeur prise par $Z$.
 
 [^mckbk]: voir par exemple l'excellent [matrix cookbook](https://www.ics.uci.edu/~welling/teaching/KernelsICS273B/MatrixCookBook.pdf).
 
