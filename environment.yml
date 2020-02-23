@@ -5,7 +5,7 @@ channels:
 dependencies:
   - python=3.7
   - pip
-  - pandoc=2.5
+  - pandoc=2.8.1
   - numpy
   - scipy
   - mpmath
@@ -16,4 +16,4 @@ dependencies:
 #  - predictmd-pdf2svg # Linux only ...
   - pip:
     - ics==0.4
-    - "-e git+https://github.com/boisgera/pandoc@fd5c60f3db9f167e6924a2ce42112b127a8fd08b#egg=pandoc"
+    - "-e git+https://github.com/boisgera/pandoc@3e16b7046fcc7ce1610b041d3b5add15e4df12ac#egg=pandoc"

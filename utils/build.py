@@ -36,7 +36,7 @@ def transform(doc):
     add_page_to_link(doc)
 
     demote_proofs_questions_answers_and_exercises(doc)  # -> level 4
-    make_level_4_section_headings_inline(doc)
+    #___make_level_4_section_headings_inline(doc)
 
     # make_level_4_section_headings_inline(doc) # was:
     # fucks up the index; the TOC is still good on print but the index is wrong
@@ -266,17 +266,25 @@ def print_sections(doc):
 
 
 # Deprecated: titlesec won't work with hyperref used for links (toc, etc.)
-def _make_level_4_section_headings_inline(doc):
+def ___make_level_4_section_headings_inline(doc):
     # Enable titlesec and configure level 4 sections as runin
     # --------------------------------------------------------------------------
     # workaround: can't just parse the LaTeX command, the "[.]" is not
     # recognized as raw LaTeX by pandoc.
-    inlines = [
-        RawInline("tex", r"\usepackage{titlesec}"),
-        # SoftBreak(),
-        # RawInline("tex", r"\titleformat{\subsubsubsection}[runin]{\bfseries}{}{}{}[.]")
-    ]
-    add_latex_header(doc, [Para(inlines)])
+
+    # BUG : some issue here.
+
+    blocks = [RawBlock(Format('tex'), '\\usepackage{titlesec}\n\\titleformat{\\subsubsubsection}[runin]{\\bfseries}{}{}{}[.]')]
+
+#    inlines = [
+#        RawInline("tex", r"\usepackage{titlesec}"),
+        #SoftBreak(),
+        #RawInline("tex", r"\titleformat{\subsubsubsection}[runin]{\bfseries}{}{}{}[.]")
+#    ]
+#    add_latex_header(doc, [Para(inlines)])
+    add_latex_header(doc, blocks)
+
+# STILL BUGGY ...
 
 
 # Deprecated
@@ -447,7 +455,7 @@ def add_page_to_link(doc):
     for holder, i, link in found:
         url = link[2][0]
         if url.startswith("#"):
-            print(f"\\pageref{{{url[1:]}}}")
+            #print(f"\\pageref{{{url[1:]}}}")
             latex_id = f"\\pageref{{{url[1:]}}}"
             latex_id = latex_id.replace("é", "uxe9")
             # quick hack ; would need to see in general how pandoc mangles the
@@ -464,6 +472,14 @@ def add_page_to_link(doc):
             # Make some tests on small documents. to begin with : with
             # a direct pandoc transformation to latex of a pandoc document
             # which has a span with id.
+
+            # Update: AFAICT, pageref works with latex labels ; and while
+            # labels are automatically generated for sections, they are
+            # not generated for spans. Which makes the approach problematic
+            # since our demotion of exercices/answers uses spans.
+
+            # Have another go at titlesec to have a proper section with a runin
+            # so that we can still have a label and use pageref then ?
 
 
 def transform_image_format(doc):
@@ -695,7 +711,10 @@ PDF_options = options.copy()
 # To use package titlesec, see <https://stackoverflow.com/questions/42916124/not-able-to-use-titlesec-with-markdown-and-pandoc>
 # Update: titlesec is off limit anyway with pandoc,
 # as it is not compatible with hyperref
-# PDF_options += ["--variable", "subparagraph"]
+# UPDATE : it *was* not compatible, with with a more recent TeXLive, it may work.
+# UPDATE : no, it is still borked. But we don't care, we don't need titlesec in
+# the end, the subparagraph option alone does the job ennit?
+PDF_options += ["--variable", "subparagraph"]
 PDF_PRINT_options = PDF_options.copy()
 PDF_PRINT_options += ["-Vpapersize=a4", "-Vclassoption=twoside"]
 
@@ -721,6 +740,8 @@ if code is not None:
 
 
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
+pandoc.write(doc, file=doc_md_md, options=PDF_options)
+
 
 # PDF Output (Print)
 pandoc.write(doc, file=doc_pdf_print, options=PDF_PRINT_options)
