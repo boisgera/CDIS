@@ -932,7 +932,7 @@ $f$ n'est pas ouvert :
     de la différentielle de $f$ en $x$, mais est suffisante dans
     des cas importants. Par exemple, elle permet d'étudier la
     [différentiabilité (ou dérivabilité) de fonctions d'une variable 
-    scalaire sur des intervalles fermés de $\mathbb{R}$](#intervalle-fermé).
+    scalaire sur des intervalles fermés de $\mathbb{R}$](#dif).
 
 ### Différencier une expression
 L'expression $df(x) \cdot h$ dépend de trois éléments : la fonction $f$,
@@ -1424,7 +1424,7 @@ f(a+h) - f(a) - \sum_i \partial_i f(a) h_i = \\
 Par continuité des dérivées partielles en $a$, si $r$ est choisi de telle sorte
 que $|\partial_i f(b) - \partial_i f(a)| \leq \varepsilon / n$ 
 quand $|b-a| \leq r$, alors l'inégalité triangulaire et 
-[la majoration des intégrales](#ML-memma) ci-dessus
+[la majoration des intégrales](#ML-lemma) ci-dessus
 conduisent à
 $$
 \left|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right|

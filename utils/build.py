@@ -33,6 +33,8 @@ def transform(doc):
     add_font_awesome(doc)
     add_link_to_answers(doc)
 
+    add_page_to_link(doc)
+
     demote_proofs_questions_answers_and_exercises(doc)  # -> level 4
     make_level_4_section_headings_inline(doc)
 
@@ -434,6 +436,34 @@ def add_link_to_answers(doc):
             last_block = blocks[-1]
             inlines = last_block[0]
             inlines.append(link)
+
+def add_page_to_link(doc):
+    found = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Link):
+            link = elt
+            holder, i = path[-1]
+            found.insert(0, (holder, i, link))
+    for holder, i, link in found:
+        url = link[2][0]
+        if url.startswith("#"):
+            print(f"\\pageref{{{url[1:]}}}")
+            latex_id = f"\\pageref{{{url[1:]}}}"
+            latex_id = latex_id.replace("é", "uxe9")
+            # quick hack ; would need to see in general how pandoc mangles the
+            # ids for theme to be used in LaTeX
+            pageref = RawInline(Format("tex"), latex_id)
+            holder[i+1:i+1] = [Space(), Str("(p."), Space(), pageref, Str(")")]
+            # TODO ?: insert the pageref inside the link, not after ?
+
+            # BUG: ATM, the pageref stuff doesn't play well with the run-ins.
+            # The run-in transform seem to generate an empty hypertarget in
+            # the end and that may not work.
+            # TODO: re-read the run-in transform ; we embed the link into a 
+            # span AFAICT. Is it the stuff that makes pageref not work ?
+            # Make some tests on small documents. to begin with : with
+            # a direct pandoc transformation to latex of a pandoc document
+            # which has a span with id.
 
 
 def transform_image_format(doc):
