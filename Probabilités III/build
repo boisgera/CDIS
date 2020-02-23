@@ -456,7 +456,7 @@ def add_page_to_link(doc):
         url = link[2][0]
         if url.startswith("#"):
             #print(f"\\pageref{{{url[1:]}}}")
-            latex_id = f"\\pageref{{{url[1:]}}}"
+            latex_id = f"\\pageref*{{{url[1:]}}}"
             latex_id = latex_id.replace("é", "uxe9")
             # quick hack ; would need to see in general how pandoc mangles the
             # ids for theme to be used in LaTeX
