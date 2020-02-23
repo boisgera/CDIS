@@ -29,6 +29,7 @@ def transform(doc):
     #         holder, i = todo
     #         holder[i] = Header(3, ("", [], []), [])
 
+
     remove_html(doc)
     divify(doc)
     proofify(doc)
@@ -55,6 +56,8 @@ def transform(doc):
     insert_authors(doc)
 
     tt_url(doc)
+
+    handle_typed_sections(doc)
 
     return doc
 
@@ -471,6 +474,39 @@ def _solve_toc_nesting(doc): # fuck you LaTeX!
     metamap["header-includes"] = MetaList(
         [MetaBlocks([RawBlock(Format("tex"), "\\usepackage{bookmark}")])]
     )
+
+# ------------------------------------------------------------------------------
+def handle_typed_sections(doc):
+    types = {"theorem": "Théorème", "definition": "Définition", "lemma": "Lemme", "proposition": "Proposition"}
+    levels = {1: "section", 2: "subsection", 3: "subsubsection", 4:"paragraph", 5:"subparagraph"}
+    todos = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Header):
+            header = elt
+            level, attr, inlines = header
+            id_, classes, kvs = attr
+            shared = [type_ for type_ in classes if type_ in types]
+            if shared:
+                classes.extend(["unnumbered", "unlisted"])
+                holder, index = path[-1]
+                minidoc = Pandoc(Meta(map()), [Para(inlines)])
+                latex_title = pandoc.write(minidoc, format="latex").strip()
+                todos.append([holder, index, level, latex_title])
+                type_ = shared[0]
+                inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
+                header[2] = inlines
+    for holder, index, level, latex_title in todos:
+        latex_code = r"\addcontentsline{toc}{" + levels[level] + "}{" + latex_title +"}"
+        holder.insert(index+1, Para([RawInline("latex", latex_code)]))
+
+
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, (RawInline, RawBlock)):
+            format = elt[0]
+            if format[0] == "html":
+                holder, i = path[-1]
+                found.insert(0, (holder, i))
+
 
 def add_font_awesome(doc):
     add_latex_header(doc, r"\usepackage{fontawesome}")
