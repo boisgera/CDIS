@@ -2420,7 +2420,7 @@ Si $A_k \to A$ et $C_k \to C$, comme
 $d[A_k+C_k, A+C] \leq d[A, A_k] + d[C, C_k]$, on en déduit que
 $A_k + C_k \to A + C$. La somme de Minkowski est donc continue.
 
- [Plongement de Kuratowski]
+Plongement de Kuratowski
 --------------------------------------------------------------------------------
 
 ### Question 1 {#answer-pk-1 .answer}
@@ -2576,8 +2576,7 @@ $f(x_0) \in \left[1, +\infty\right[$ ; par conséquent le résultat
 vaut non seulement pour tout $x_0 \in \left[1, +\infty\right[$ mais
 bien pour tout $x_0 \in \left]0, +\infty\right[$.
 
-
- [Spirale d'Euler]
+Spirale d'Euler
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-se-1}
@@ -2670,7 +2669,7 @@ La suite des $(x_k, y_k)$ est donc de Cauchy.
 
 
 
- [Point fixe]
+Point fixe
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-pf-1}

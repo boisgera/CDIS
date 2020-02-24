@@ -31,8 +31,8 @@ def transform(doc):
     proofify(doc)
 
     add_font_awesome(doc)
-    add_link_to_answers(doc)
 
+    add_link_to_answers(doc)
     add_page_to_link(doc)
 
     demote_proofs_questions_answers_and_exercises(doc)  # -> level 4
@@ -421,29 +421,28 @@ def add_link_to_answers(doc):
         _, attributes, _ = header[:]
         identifier, _, _ = attributes
         if identifier:
-            # symbol_no_space = RawInline(Format("tex"), r"\faQuestionCircle")
-            symbol_no_space = Strong([Str("(?)")])
-            # symbol = RawInline(Format("tex"), r"\; \faQuestionCircle")
-            # symbol = RawInline(Format("tex"), r"\; $\to$")
-            symbol = Strong([Space(), Str("(?)")])
+            need_space = True
             if blocks == [] or not isinstance(blocks[-1], (Plain, Para)):
                 blocks.append(Plain([]))
-                symbol = symbol_no_space
+                need_space = False
             elif isinstance(blocks[-1], Para):
                 para = blocks[-1]
                 if isinstance(para[0][-1], Image):
                     blocks.append(Para([]))
-                    symbol = symbol_no_space
+                    need_space = False
                 elif isinstance(para[0][-1], Math) and para[0][-1][0] == DisplayMath():
                     blocks.append(Para([]))
-                    symbol = symbol_no_space
+                    need_space = False
 
-            attr = ("", [], [])
+            attr = ("", ["no-parenthesis"], [])
             target = ("#answer-" + identifier, "")
-            link = Link(attr, [symbol], target)
+            link = Link(attr, [Str("Solution")], target)
+            link_wrapper = [Str("("), link, Str(".)")]
+            if need_space:
+                link_wrapper = [Space()] + link_wrapper
             last_block = blocks[-1]
             inlines = last_block[0]
-            inlines.append(link)
+            inlines.extend(link_wrapper)
 
 def add_page_to_link(doc):
     # Page references use labels as anchors but spans, even with an id,
@@ -466,6 +465,7 @@ def add_page_to_link(doc):
             found.insert(0, (holder, i, link))
     for holder, i, link in found:
         url = link[2][0]
+        no_paren = "no-parenthesis" in link[0][1]
         if url.startswith("#"):
             #print(f"\\pageref{{{url[1:]}}}")
             latex_id = f"\\pageref*{{{url[1:]}}}"
@@ -473,7 +473,10 @@ def add_page_to_link(doc):
             # quick hack ; would need to see in general how pandoc mangles the
             # ids for theme to be used in LaTeX
             pageref = RawInline(Format("tex"), latex_id)
-            holder[i+1:i+1] = [Space(), Str("(p."), Space(), pageref, Str(")")]
+            if no_paren:
+                holder[i+1:i+1] = [Space(), Str("p."), Space(), pageref]
+            else:
+                holder[i+1:i+1] = [Space(), Str("(p."), Space(), pageref, Str(")")]
             # TODO ?: insert the pageref inside the link, not after ?
 
             # BUG: ATM, the pageref stuff doesn't play well with the run-ins.
