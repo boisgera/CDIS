@@ -471,30 +471,14 @@ def add_page_to_link(doc):
             latex_id = f"\\pageref*{{{url[1:]}}}"
             latex_id = latex_id.replace("é", "uxe9")
             # quick hack ; would need to see in general how pandoc mangles the
-            # ids for theme to be used in LaTeX
+            # ids for theme to be used in LaTeX ; at the very least, consider
+            # "à" ?
             pageref = RawInline(Format("tex"), latex_id)
             if no_paren:
-                holder[i+1:i+1] = [Space(), Str("p."), Space(), pageref]
+                link[1].extend([Space(), Str("p."), Space(), pageref])
             else:
-                holder[i+1:i+1] = [Space(), Str("(p."), Space(), pageref, Str(")")]
+                link[1].extend([Space(), Str("(p."), Space(), pageref, Str(")")])
             # TODO ?: insert the pageref inside the link, not after ?
-
-            # BUG: ATM, the pageref stuff doesn't play well with the run-ins.
-            # The run-in transform seem to generate an empty hypertarget in
-            # the end and that may not work.
-            # TODO: re-read the run-in transform ; we embed the link into a 
-            # span AFAICT. Is it the stuff that makes pageref not work ?
-            # Make some tests on small documents. to begin with : with
-            # a direct pandoc transformation to latex of a pandoc document
-            # which has a span with id.
-
-            # Update: AFAICT, pageref works with latex labels ; and while
-            # labels are automatically generated for sections, they are
-            # not generated for spans. Which makes the approach problematic
-            # since our demotion of exercices/answers uses spans.
-
-            # Have another go at titlesec to have a proper section with a runin
-            # so that we can still have a label and use pageref then ?
 
 
 def transform_image_format(doc):
