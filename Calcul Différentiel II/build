@@ -446,6 +446,18 @@ def add_link_to_answers(doc):
             inlines.append(link)
 
 def add_page_to_link(doc):
+    # Page references use labels as anchors but spans, even with an id,
+    # don't generate such labels, so we need to add them manually.
+    for elt in pandoc.iter(doc):
+        if isinstance(elt, Span):
+            span = elt
+            attr, inlines = span[:]
+            id_, _, _ = attr
+            if id_ != "":
+                latex_id = id_.replace("é", "uxe9") # Hack (see below)
+                label = RawInline(Format("tex"), f"\\label{{{latex_id}}}")
+                inlines.append(label)
+
     found = []
     for elt, path in pandoc.iter(doc, path=True):
         if isinstance(elt, Link):
