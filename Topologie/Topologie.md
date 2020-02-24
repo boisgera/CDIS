@@ -2667,8 +2667,6 @@ $$
 $$
 La suite des $(x_k, y_k)$ est donc de Cauchy.
 
-
-
 Point fixe
 --------------------------------------------------------------------------------
 
@@ -2752,7 +2750,7 @@ $$
 \max_{i=1\dots n} \sum_{j=1}^n  |b_{ij}| < 1.
 $$
 On reconnait au membre de gauche de cette inégalité la norme d'opérateur 
-$\|B\|_{\infty}$ de l'exercice "[Normes d'opérateurs]" ;
+$\|B\|_{\infty}$ de l'exercice ["Normes d'opérateurs"](#no) ;
 on a donc pour tout $x \in \R^n$,
 $$
 \|B \cdot x\|_{\infty} \leq \kappa \|x\|_{\infty}
