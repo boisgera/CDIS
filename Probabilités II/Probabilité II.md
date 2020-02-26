@@ -514,7 +514,7 @@ La matrice de covariance est symétrique non-négative (ou encore semi-définie 
 La symétrie est évidente. Non-négative signifie que pour tous réels $a_1,\ldots,a_n$, on a $\sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} \geq 0$. Un calcul simple montre que
 $$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i).$$
 
-### Exemple : Vecteur Gaussien $n$-dimensionel {.example}
+### Exemple : Vecteur gaussien $n$-dimensionel {.example}
 Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons en détail au chapitre suivant. Soient $m \in \R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in \R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
 $$ f(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^tC^{-1}(x-m)) $$
 On a alors $\Esp(X) = m$ et $C_X =C$.
@@ -754,7 +754,7 @@ Toujours selon les mêmes hypothèses, calculer la médiane de $Y$. La comparer 
 
 ## Indépendance et vecteurs gaussiens
 
-Soit $Z := (X,Y)$ un vecteur gaussien (i.e. qui suit une loi Normale bi-variée) d'espérance $m$ et de matrice de covariance définie positive $C$. Notons $f_Z$ sa densité.
+Soit $Z := (X,Y)$ un vecteur gaussien (i.e. qui suit une loi normale bi-variée) d'espérance $m$ et de matrice de covariance définie positive $C$. Notons $f_Z$ sa densité.
 
 ### Question 1 {.question #covindepgauss-joint}
 
@@ -771,7 +771,7 @@ Montrer que $X$ et $Y$ sont indépendantes ssi $\text{Cov}\left(X,Y\right) = 0$.
 
 ## Symétrie de la gaussienne
 
-Soit $X$ une variable aléatoire réelle de loi Normale centrée réduite, dont la densité est notée $f$ et la fonction de répartition $F$. Pour tout $c>0$ on pose 
+Soit $X$ une variable aléatoire réelle de loi normale centrée réduite, dont la densité est notée $f$ et la fonction de répartition $F$. Pour tout $c>0$ on pose 
         $$X_c := \left|\begin{array}{ll} X & \text{si } |X| > c,\\ -X & \text{si } |X| \leq c.\end{array}\right.$$
 
 ### Question 1 {.question #gausssym-loi}
@@ -795,44 +795,39 @@ Le vecteur aléatoire $(X,X_{c_0})$ est-il gaussien ?
 
 On considère une variable aléatoire $X$ gaussienne centrée réduite. On note $f$ sa densité et $F$ sa fonction de répartition.
 
-### A 1 degré de liberté {.question #khi2-1dl}
+### Question 1 -- Un degré de liberté {.question #khi2-1dl}
 
-1. Calculer la densité de la variable aléatoire $Y := X^2$. En donner une expression faisant apparaître la fonction gamma (on rappelle que $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$).
+Calculer la densité de la variable aléatoire $Y := X^2$. En donner une expression faisant apparaître la fonction gamma (on rappelle que $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$).
 
 On dit que $Y$ suit une *loi du $\chi^2$ à $1$ degré de liberté*, et on note $Y \sim \chi^2$.
 
-### A n degrés de liberté {.question #khi2-ndl}
+### Question 2 -- Multiples degrés de liberté {.question #khi2-ndl}
 
 Soient maintenant $n\in\mathbb{N}^\ast$ et $X_1,\dots,X_n$ des copies indépendantes de $X$. Pour tout $i \in \{1,\dots,n\}$ on pose $Y_i := X_i^2$.
 
-2. Montrer que la variable aléatoire $Y := \sum_{i = 1}^n Y_i$ admet pour densité
+Montrer que la variable aléatoire $Y := \sum_{i = 1}^n Y_i$ admet pour densité
 $$ f_Y : x\in\R \mapsto \left|\begin{array}{ll} \dfrac{x^{\frac{n}{2} - 1}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{n}{2}\right)}\,\exp\left\{ -\dfrac{x}{2} \right\} & \text{si } x> 0,\\ 0 & \text{si } x \leq 0. \end{array}\right.$$
 On pourra procéder par récurrence sur $n$.
 
 On dit que $Y$ suit une *loi du $\chi^2$ à $n$ degrés de liberté* et on note $Y \sim \chi^2_n$.
 
+## Combinaisons linéaires de variables gaussiennes indépendantes
 
+Soit $X$ une variable aléatoire de loi normale centrée réduite, dont on note $f$ la densité et $F$ la fonction de répartition.
 
-## Combinaisons linéaires de variables Gaussiennes indépendantes
+### Question 1 -- Préliminaires {.question #CLIGauss-pre}
 
-Soit $X$ une variable aléatoire de loi Normale centrée réduite, dont on note $f$ la densité et $F$ la fonction de répartition.
+Rappeler la loi de la variable aléatoire $s\,X + m$, où $s, m \in \R$.
 
-### Préliminaires {.question #CLIGauss-pre}
-
-1. Rappeler la loi de la variable aléatoire $s\,X + m$, où $s, m \in \R$.
-
-### Combinaisons linéaires {.question #CLIGauss-cl}
+### Question 2 -- Loi {.question #CLIGauss-loi}
 
 Soient maintenant $n\in\mathbb{N}^\ast$ variables aléatoires $X_1,\dots,X_n$ indépendantes et de même loi que $X$ (on dit que ce sont des *copies indépendantes* de $X$). Pour tout vecteur $a = (a_1,\dots,a_n) \in (\R^{*})^n$ on pose $S_n^a := \sum_{i = 1}^n a_i\,X_i$. 
 
-2. Montrer que pour $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$ (on pourra raisonner par récurrence sur $n$).
+Montrer que pour $S_n^a$ suit une loi normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$ (on pourra raisonner par récurrence sur $n$). 
 
-3. Soient $a,b\in(\R^{*})^n$. Sous quelle condition a-t-on $\text{Cov}\left(S_n^a, S_n^b\right) = 0$ ?
+### Question 3 -- Covariance {.question #CLIGauss-covariance}
 
-
-
-
----
+Soient $a,b\in(\R^{*})^n$. Sous quelle condition a-t-on $\text{Cov}\left(S_n^a, S_n^b\right) = 0$ ?
 
 # Solutions
 
@@ -951,11 +946,11 @@ f_X(x) &= \int_{-\infty}^{+\infty} f_Z(x,y)\,dy\\
 &= \dfrac{1}{\sqrt{2\pi}\,\sigma_X}\,\exp\left\{-\dfrac{(x-m_X)^2}{2\,\sigma_X^2} \right\}\times\\
 &\ \ \ \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2\pi}\,\sqrt{1-\rho^2}}\,\exp\left\{-\dfrac{1}{2\,(1-\rho^2)}\,\left(u - \rho\,\dfrac{x-m_X}{\sigma_X}\right)^2 \right\}\,du,
 \end{align*}
-et on reconnaît dans cette dernière intégrale la densité d'une loi Normale d'espérance $\rho\,\dfrac{x-m_X}{\sigma_X}$ et de variance $1-\rho^2$. Cette intégrale vaut donc $1$ et on conclut que
+et on reconnaît dans cette dernière intégrale la densité d'une loi normale d'espérance $\rho\,\dfrac{x-m_X}{\sigma_X}$ et de variance $1-\rho^2$. Cette intégrale vaut donc $1$ et on conclut que
 $$f_X(x) = \dfrac{1}{\sqrt{2\pi}\,\sigma_X}\,\exp\left\{-\dfrac{(x-m_X)^2}{2\,\sigma_X^2} \right\}, $$
-qui correspond à la densité d'une loi Normale d'espérance $m_X$ et de variance $\sigma_X^2$.
+qui correspond à la densité d'une loi normale d'espérance $m_X$ et de variance $\sigma_X^2$.
 
-En procédant de manière symétrique, on obtient de même que $Y$ suit une loi Normale d'espérance $m_Y$ et de variance $\sigma_Y^2$.
+En procédant de manière symétrique, on obtient de même que $Y$ suit une loi normale d'espérance $m_Y$ et de variance $\sigma_Y^2$.
 
 ### Question 3 {.answer #answer-covindepgauss-indep}
 Le premier sens est évident : si $X$ et $Y$ sont indépendantes, alors nous avons vu dans le cours que $\text{Cov}\left(X,Y\right) = 0$, et ce que l'on soit gaussien ou non.
@@ -988,12 +983,12 @@ $$F_c(x) = F(x) - F(c) + F\left(\min\{-c,x\}\right) + F(c) - F(-c) = F(x),$$
 
 * si $-c \leq x \leq c$ alors $\min\{-c,x\} = -c$ et
 $$F_c(x) = F\left(\min\{-c,x\}\right) + F(c) - F(-x) = 1 - F(c) + F(c) - 1 + F(x) = F(x)$$
-car la densité de la loi Normale centrée réduite est paire, ce qui implique que $F(-x) = 1 - F(x)$ pour tout $x\in\R$,
+car la densité de la loi normale centrée réduite est paire, ce qui implique que $F(-x) = 1 - F(x)$ pour tout $x\in\R$,
 
 * si $x < -c$ alors $\min\{-c,x\} = x$ et
 $$F_c(x) =  F\left(\min\{-c,x\}\right) = F(x).$$
 
-On en conclut que $F_c = F$ : $X_c$ a la même loi que $X$. Ce résultat est dû à la symétrie de la densité de la loi Normale centrée réduite. On remarque d'ailleurs que le résultat resterait inchangé si l'on prenait n'importe quelle autre loi de densité paire !
+On en conclut que $F_c = F$ : $X_c$ a la même loi que $X$. Ce résultat est dû à la symétrie de la densité de la loi normale centrée réduite. On remarque d'ailleurs que le résultat resterait inchangé si l'on prenait n'importe quelle autre loi de densité paire !
 
 ### Question 2 {.answer #answer-gausssym-cov}
 
@@ -1004,9 +999,9 @@ puisque $X$ et $X_c$ sont gaussiennes centrées (d'espérance nulle) réduites. 
 &= \Esp\left(X^2\,\left(1_{\R\backslash[-c,c]}(X) + 1_{[-c,c]}(X) - 1_{[-c,c]}(X)\right) - X^2\,1_{[-c,c]}(X)\right)\\
 &= \Esp\left(X^2\right) - 2\,\Esp\left(X^2\,1_{[-c,c]}(X)\right).
 \end{align*}
-Etant donné que $X$ est de loi Normale centrée réduite, on a directement que $\Esp\left(X^2\right)=1$; il suffit donc de calculer la dernière espérance pour obtenir le résultat. Comme $x\mapsto x^2\,1_{[-c,c]}(x)$ est bornée et continue sur $\R\backslash\{-c,c\}$ (donc continue presque partout), elle est intégrable et
+Etant donné que $X$ est de loi normale centrée réduite, on a directement que $\Esp\left(X^2\right)=1$; il suffit donc de calculer la dernière espérance pour obtenir le résultat. Comme $x\mapsto x^2\,1_{[-c,c]}(x)$ est bornée et continue sur $\R\backslash\{-c,c\}$ (donc continue presque partout), elle est intégrable et
 $$\Esp\left(X^2\,1_{[-c,c]}(X)\right) = \int_{-\infty}^{+\infty} x^2\,1_{[-c,c]}\,f(x)\,dx = \int_{-c}^c x^2\,f(x)\,dx. $$
-Or on pourra remarquer que $f^\prime(x) = -x\,f(x)$ puis que $f^{\prime\prime}(x) = (x^2-1)\,f(x)$. Puisque $f$, $f^\prime$ et $f^{\prime\prime}$ sont continues et bornées (voir l'exercice *Densité et fonction de répartition d'une loi Normale* du chapitre Probabilités I) elles sont intégrables sur des segments. On en déduit que
+Or on pourra remarquer que $f^\prime(x) = -x\,f(x)$ puis que $f^{\prime\prime}(x) = (x^2-1)\,f(x)$. Puisque $f$, $f^\prime$ et $f^{\prime\prime}$ sont continues et bornées (voir l'exercice *Densité et fonction de répartition d'une loi normale* du chapitre Probabilités I) elles sont intégrables sur des segments. On en déduit que
 \begin{align*}
 \Esp\left(X^2\,1_{[-c,c]}(X)\right) &= \int_{-c}^c (x^2-1)\,f(x)\,dx + \int_{-c}^c f(x)\,dx\\
 &= \left[-x\,f(x) \right]_{-c}^c + F(c) - F(-c)\\
@@ -1036,32 +1031,35 @@ On en conclut que bien que $\text{Cov}\left(X,X_{c_0}\right) = 0$, $X$ et $X_{c_
 
 Supposons que $(X,X_{c_0})$ soit un vecteur gaussien. Alors, puisque $\text{Cov}\left(X,X_{c_0}\right) = 0$, $X$ et $X_{c_0}$ sont nécessairement indépendantes. Or nous venons de voir que ce n'était pas le cas; nous avons donc contradiction. On en conclut que $(X,X_{c_0})$ n'est pas gaussien.
 
-##  Combinaisons linéaires de variables Gaussiennes indépendantes
+##  Combinaisons linéaires de variables gaussiennes indépendantes
 
-### Préliminaires {.answer #answer-CLIGauss-pre}
+### Question 1 -- Préliminaires {.answer #answer-CLIGauss-pre}
 
 Cette question a été traitée de manière générale dans le cours. Nous en proposons une preuve alternative, basée sur le calcul de la fonction de répartition de la variable aléatoire $s\,X + m$, qui caractérise sa loi. Elle dépend clairement des valeurs de $s$.
 
-* Si $s = 0$, alors $s\,X + m$ est toujours égale à $m$ : sa loi est une masse de Dirac en $\{m\}$ et pour tout $x\in\R$ on a $\P\left(s\,X +m \leq x\right) = 1_{[m,+\infty[}(x)$.
+Si $s = 0$, alors $s\,X + m$ est toujours égale à $m$ : sa loi est une masse de Dirac en $\{m\}$ et pour tout $x\in\R$ on a $\P\left(s\,X +m \leq x\right) = 1_{[m,+\infty[}(x)$.
 
-* Si $s\neq 0$, alors pour tout $x\in\R$ on a
+Si $s\neq 0$, alors pour tout $x\in\R$ on a
 $$\P\left( s\,X + m \leq x \right) = \left|\begin{array}{ll}\displaystyle\P\left( X \leq \dfrac{x-m}{s} \right) = \int_{-\infty}^{\frac{x-m}{s}} f(u)\,du & \text{si } s>0,\\[1em] \displaystyle \P\left( X \geq \dfrac{x-m}{s} \right) = \int_{\frac{x-m}{s}}^{+\infty} f(u)\,du & \text{si } s<0,\end{array}\right.$$
 qui en posant le changement de variable $v = s\,x+m$ donne
 $$\P\left( s\,X + m \leq x \right) = \int_{-\infty}^{x} \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s} \right)\,dx.$$
 <!-- On pourra remarquer que cela revient à utiliser la méthode avec E(h(X)) du cours, pour h l'indicatrice qu'on est plus petit que x, car P(X in A) = E(1\_A(X)) -->
 Ainsi, $s\,X+m$ admet une densité, qui pour tout $x\in\R$ est égale à
 $$ \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s}\right) = \dfrac{1}{\sqrt{2\,\pi}\,|s|}\,\exp\left\{-\dfrac{(x-m)^2}{2\,s^2} \right\}.$$
-On reconnaît la densité d'une loi Normale d'espérance $m$ et de variance $s^2$.
+On reconnaît la densité d'une loi normale d'espérance $m$ et de variance $s^2$.
 
-### Combinaisons linéaires {.answer #answer-CLIGauss-cl}
+### Question 2 -- Loi {.answer #answer-CLIGauss-loi}
 
-2. Commençons par supposer que pour tout $n\in\mathbb{N}^\ast$, $a\in\R^n$ est tel qu'aucune de ses composantes n'est nulle. Nous allons montrer par récurrence sur $n$ que $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$. On note cette propriété $(\mathcal{P}_n)$. 
+Commençons par supposer que pour tout $n\in\mathbb{N}^\ast$, $a\in\R^n$ est tel qu'aucune de ses composantes n'est nulle. Nous allons montrer par récurrence sur $n$ que $S_n^a$ suit une loi normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$. On note cette propriété $(\mathcal{P}_n)$. 
 
-**Initialisation.**
+#### Initialisation
 
-* Si $n = 1$ et $a_1 \neq 0$, alors $S_1^a = a_1\,X_1$ suit une loi Normale centrée de variance $a_1^2$ d'après la question 1; $(\mathcal{P}_1)$ est donc vraie.
+Si $n = 1$ et $a_1 \neq 0$, alors $S_1^a = a_1\,X_1$ suit une loi normale centrée de variance $a_1^2$ d'après la question 1; $(\mathcal{P}_1)$ est donc vraie.
 
-* Si $n=2$ et $a_1,a_2 \neq 0$, alors d'après le cours $S_2^a = a_1\,X_1 + a_2\,X_2$ admet une densité, notée $f_n^a$, égale au produit de convolution des densités $f_1$ de $a_1\,X_1$ et $f_2$ de $a_2\,X_2$. En outre, d'après la question 1, pour tout $x\in\R$ on a $f_1(x) = \dfrac{1}{|a_1|}\,f\left(\dfrac{x}{a_1} \right)$ et $f_2(x) = \dfrac{1}{|a_2|}\,f\left(\dfrac{x}{a_2} \right)$. Par conséquent, pour tout $x\in\R$,
+Si $n=2$ et $a_1,a_2 \neq 0$, alors d'après le cours $S_2^a = a_1\,X_1 + a_2\,X_2$ admet une densité, notée $f_n^a$, égale au produit de convolution des densités $f_1$ de $a_1\,X_1$ et $f_2$ de $a_2\,X_2$. En outre, d'après la question 1, pour tout $x\in\R$, on a 
+$$
+f_1(x) = \dfrac{1}{|a_1|}\,f\left(\dfrac{x}{a_1} \right) \; \mbox{ et } \; f_2(x) = \dfrac{1}{|a_2|}\,f\left(\dfrac{x}{a_2} \right).$$ 
+Par conséquent, pour tout $x\in\R$,
 \begin{align*}
 f_2^a(x) &= \int_{\R} f_1(x-u)\,f_2(u)\,du = \int_\R \dfrac{1}{|a_1|\,|a_2|}\,f\left(\dfrac{x - u}{a_1}\right)\,f\left(\dfrac{u}{a_2}\right)\,du\\
 &= \dfrac{1}{\sqrt{a_1^2 +a_2^2}}\,f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)\, \int_{\R} \dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}\,\dfrac{f\left(\dfrac{x - u}{a_1}\right)}{f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)}\,f\left(\dfrac{u}{a_2}\right)\,du.
@@ -1073,14 +1071,21 @@ Or pour tout $x,u\in\R$ on a
 &= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{ -\dfrac{\left(a_2^2\,x - (a_1^2 + a_2^2)\,u\right)^2}{2\,a_1^2\,a_2^2\,(a_1^2+a_2^2)} \right\}\\
 &= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{-\dfrac{\left(u - \dfrac{a_2^2\,x}{a_1^2 + a_2^2}\right)^2}{2\,\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}}\right\},
 \end{align*}
-qui multiplié par $\dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}$ correspond à la densité d'une loi Normale d'espérance $\dfrac{a_2^2\,x}{a_1^2+a_2^2}$ et de variance $\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}$. La précédente intégrale vaut donc $1$ et $(\mathcal{P}_2)$ est vraie.
+qui -- à une constante multiplicative près -- <!-- multiplié par $\dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}$ -->
+correspond à la densité d'une loi normale d'espérance $m$ et de variance $\sigma^2$, avec 
+$$m = \dfrac{a_2^2\,x}{a_1^2+a_2^2}
+\; \mbox{ et } \; \sigma^2 = \dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}.$$ 
+La précédente intégrale vaut donc $1$ et $(\mathcal{P}_2)$ est vraie.
 
-**Héritage.** Soit maintenant $n\geq 2$, et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $S_n^a = S_{n-1}^{a_{-n}} + a_n\,X_n$, où $a_{-n} := (a_1,\dots,a_{n-1})$. Or $S_{n-1}^{a_{-n}}$ et $a_n\,X_n$ sont des variables gaussiennes centrées, de variances respectives $\sum_{i = 1}^{n-1} a_i^2$ d'après $(\mathcal{P}_{n-1})$ et $a_n^2$ d'après la question 1. Par $(\mathcal{P}_2)$, $S_n^a$ suit donc une loi Normale centrée de variance $\sum_{i = 1}^n a_i^2$.
+#### Hérédité
+Soit maintenant $n\geq 2$, et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $S_n^a = S_{n-1}^{a_{-n}} + a_n\,X_n$, où $a_{-n} := (a_1,\dots,a_{n-1})$. Or $S_{n-1}^{a_{-n}}$ et $a_n\,X_n$ sont des variables gaussiennes centrées, de variances respectives $\sum_{i = 1}^{n-1} a_i^2$ d'après $(\mathcal{P}_{n-1})$ et $a_n^2$ d'après la question 1. Par $(\mathcal{P}_2)$, $S_n^a$ suit donc une loi normale centrée de variance $\sum_{i = 1}^n a_i^2$.
 
-**Conclusion.** On en conclut que $(\mathcal{P}_n)$ est vraie pour tout $n\in\mathbb{N}^\ast$.
+#### Conclusion
+On en conclut que $(\mathcal{P}_n)$ est vraie pour tout $n\in\mathbb{N}^\ast$.
 
+### Question 3 -- Covariance {.answer #answer-CLIGauss-covariance}
 
-3. Calculons cette covariance :
+Calculons la covariance de l'énoncé :
 \begin{align*}
 \text{Cov}\left(S_n^a, S_n^b\right) &= \text{Cov}\left(\sum_{i =1}^n a_i\,X_i, \sum_{j = 1}^n b_j\,X_j\right)\\
 &= \sum_{i = 1}^n a_i\,b_i\,\mathbb{V}\left(X_i\right) + \sum_{1\leq i\neq j \leq n} a_i\,b_j\,\text{Cov}\left(X_i,X_j\right).
@@ -1092,9 +1097,9 @@ qui est nulle ssi $a$ et $b$ sont orthogonaux.
 
 ## Loi du $\chi^2$
 
-### A 1 degré de liberté {.answer #answer-khi2-1dl}
+### Question 1 -- Un degré de liberté {.answer #answer-khi2-1dl}
 
-1. Soit $h : \R \to \R$ une fonction mesurable telle que $h\times f$ est absolument intégrable. Alors en opérant le changement de variable $u = x^2$ on a
+Soit $h : \R \to \R$ une fonction mesurable telle que $h\times f$ est absolument intégrable. Alors en opérant le changement de variable $u = x^2$ on a
 \begin{align*}
 \Esp\left( h(Y) \right) &= \Esp\left(h(X^2)\right) = \int_{\R} h(x^2)\,f(x)\,dx\\
 & = \int_{-\infty}^{0} h(x^2)\,f(x)\,dx + \int_{0}^{+\infty} h(x^2)\,f(x)\,dx\\
@@ -1107,19 +1112,25 @@ Or $f$ est paire, donc pour tout $u \in \R^+$ on a $f\left(-\sqrt{u}\right) = f\
 Par propriété $Y$ possède donc une densité $f_Y$ valant pour tout $x\in\R$
 $$f_Y(x) = \left|\begin{array}{ll} f\left(\sqrt{x}\right)\,\dfrac{1}{\sqrt{x}} = \dfrac{x^{-\frac{1}{2}}}{2^{\frac{1}{2}}\,\Gamma\left(\frac{1}{2}\right)}\,\exp\left\{-\dfrac{x}{2}\right\} & \text{si } x > 0,\\ 0 & \text{si } x \leq 0. \end{array}\right. $$
 
-**Remarque.** La fonction $f_Y$ est bien une densité : elle est continue par morceaux donc mesurable, puis positive, et son intégrale sur $\R$ vaut bien $1$ :
+#### Remarque
+
+La fonction $f_Y$ est bien une densité : elle est continue par morceaux donc mesurable, puis positive, et son intégrale sur $\R$ vaut bien $1$ :
 \begin{align*}
 \int_{\R} f_Y(x)\,dx &= \dfrac{1}{2\,\Gamma\left(\frac{1}{2}\right)}\,\int_{0}^{+\infty} \left(\dfrac{x}{2}\right)^{\frac{1}{2}-1}\,\exp\left\{-\dfrac{x}{2}\right\}\,dx \\
 &= \dfrac{1}{\Gamma\left(\frac{1}{2}\right)}\,\int_{0}^{+\infty} u^{\frac{1}{2}-1}\,e^{-u}\,du = \dfrac{\Gamma\left(\frac{1}{2}\right)}{\Gamma\left(\frac{1}{2}\right)} = 1.
 \end{align*}
 
-### A n degrés de liberté {.answer #answer-khi2-ndl}
+### Question 2 -- Multiples degrés de liberté {.answer #answer-khi2-ndl}
 
-2. On note $(\mathcal{P}_n)$ la propriété à démonter au rang $n$.
+On note $(\mathcal{P}_n)$ la propriété à démonter au rang $n$.
 
-**Initialisation.** Nous avons vu à la question précédente que $(\mathcal{P}_1)$ est vraie.
+#### Initialisation 
 
-**Hérédité.** Soit maintenant $n \geq 2$ et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $Y = \sum_{i = 1}^{n-1}Y_i + Y_n$ est la somme de deux variables aléatoires indépendantes, dont la première suit un $\chi_{n-1}^2$ de densité notée $f_{n-1}$ et la seconde un $\chi_1^2$ de densité notée $f_1$. Elle possède donc une densité, égale au produit de convolution de $f_{n-1}$ et $f_1$ : pour tout $x\in\R$
+Nous avons vu à la question précédente que $(\mathcal{P}_1)$ est vraie.
+
+#### Hérédité 
+
+Soit maintenant $n \geq 2$ et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $Y = \sum_{i = 1}^{n-1}Y_i + Y_n$ est la somme de deux variables aléatoires indépendantes, dont la première suit un $\chi_{n-1}^2$ de densité notée $f_{n-1}$ et la seconde un $\chi_1^2$ de densité notée $f_1$. Elle possède donc une densité, égale au produit de convolution de $f_{n-1}$ et $f_1$ : pour tout $x\in\R$
 $$f_Y(x) = \int_{\R} f_1(x-u)\,f_{n-1}(u)\,du.$$
 Or pour tout $x,u\in\R$ on a $f_1(x-u) = 0$ ssi $x \leq u$ et $f_{n-1}(u) = 0$ ssi $u \leq 0$. Donc leur produit est strictement positif ssi $x > u > 0$, nul sinon. La densité $f_Y$ est par conséquent nulle sur $\R^-$ et nous allons maintenant exhiber son expression sur $\R_+^\ast$. Soit $x > 0$, alors
 \begin{align*}
@@ -1143,4 +1154,6 @@ et finalement que pour tout $x\in\R$
 $$f_Y(x) = \left|\begin{array}{ll} \dfrac{x^{\frac{n}{2}-1}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{n}{2}\right)}\,\exp\left\{-\dfrac{x}{2}\right\} & \text{si } x> 0,\\ 0 & \text{sinon;}\end{array}\right.$$
 $(\mathcal{P}_n)$ est donc vraie.
 
-**Conclusion.** La propriété est vraie pour tout $n\in\mathbb{N}^\ast$.
+#### Conclusion 
+
+La propriété est vraie pour tout $n\in\mathbb{N}^\ast$.
