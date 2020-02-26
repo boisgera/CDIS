@@ -37,6 +37,44 @@ En pratique, l’ensemble $E$ pourra être un ensemble fini ou dénombrable ou $
 ### Remarque {.remark}
 La terminologie, consacrée par l'usage, peut être trompeuse. Une variable aléatoire n'est pas une variable (au sens de l'analyse) mais une fonction. Cette terminologie est apparentée à la notion de variable en physique ou en sciences humaines où on désigne volontiers par "variable" la valeur prise par une fonction de l'état du système étudié.
 
+**TODO[^adap]**
+
+[^adap]: Si l'on limite l'étude des probabilités au cas à densité
+dans $\Omega=\mathbb{R}^d$, 
+on ne peut plus définir $\mathbb{P}_X(\cdot) := \mathbb{P}(X \in \cdot)$ en 
+général comme une probabilité ;
+on doit limiter cette définition au cas des va à densité -- alors qu'on n'a
+aucun mal à parler de $\mathbb{P}(X \in B)$ pour une va $X$ générale tant que
+$B$ est borélien. 
+Même dans le cas des va à densité, selon la définition choisie
+pour "va à densité" il peut y avoir du travail à faire pour transporter la
+proba (et il faut se demander si ça vaut le coup). 
+Ainsi, si une va a densité est caractérisée par l'existence
+d'une densité $f_X$ dans l'espace des valeurs telle que
+$$
+\mathbb{P}(X \in B) = \int 1_{B}(x) f_X(x) \, dx
+$$
+pour tout $B$ borélien -- et uniquement $B$ borélien -- 
+pour rentrer dans les clous de la définition de "proba à densité dans
+$\Omega=\R^d$", il faut alors "passer une seconde couche" en définissant
+$$
+\mathbb{P}_X(A) := \int 1_{A}(x) f_X(x) \, dx
+$$
+pour tout $A$ tel que le membre de droite soit défini. Ce qui suppose au 
+passage d'avoir montré que $\mathbb{P}(X \in B)$ détermine bien $f_X$ presque
+partout (c'est vrai). Je vois sans mal l'intérêt d'une remarque à ce propos,
+avec les arguments ci-dessus (ça peut résonner chez les plus matheux qui
+voient que les morphismes transportent les structures), mais je réfléchirais 
+soigneusement avant de mettre le principe de proba transportée par une va 
+(à densité) sur le chemin critique.
+Je n'ai pas l'impression (sans avoir vraiment étudié la question) que se passer
+du concept de proba transportée par une va (ou "changer d'univers") pose un 
+problème. $\to$ **Essayer de se passer de $\mathbb{P}_X$**.
+
+Mais, c'est une limitation un impact pratique limité : la grandeur
+$\mathbb{P}(X \in B)$ est bien définie dès que $X$ est une va (à densité
+ou non) et que $B$ est borélien. (SB)
+
 L'intérêt principal de travailler avec des variables aléatoires est de pouvoir substituer à l'espace abstrait $\Omega$ des résultats de l'expérience l'espace $E$, mieux connu dans la pratique. Ainsi, grâce à une variable aléatoire $X$, nous pouvons transporter la structure abstraite du modèle probabiliste $(\Omega, \A, \P)$ sur l'espace d'arrivée $E$, en posant pour $B \subset E$
 $$\P_X (B) = \P(X^{-1}(B)) = \P(\{\omega, X(\omega)\in B\})$$
 
@@ -68,16 +106,30 @@ $\P_X$ sera plus facile à caractériser que $\P$ puisque $E$ est un ensemble co
 La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Dans le cas où $E = \R$, on notera $\E_\R$ la tribu associée[^NB]. Cela nous conduit à poser :
 
 
-### Définition -- variable aléatoire réelle {.definition #defvar}
+### Variable aléatoire réelle {.definition #defvar}
 Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \E_{\R}$.
 
-### Définition -- loi d'une variable aléatoire réelle {.definition #defloivar}
+**TODO**[^lva]
+
+[^lva]: cf supra pour les pbs liés à $\P_X$ ; mais on peut continuer
+à désigner sous le terme "loi de la variable $X$" la fonction 
+$\mathbb{P}(X \in \cdot)$ définie pour tous les boréliens de $\mathbb{R}$ 
+(sans conséquences fâcheuses ?) (SB).
+
+### Loi d'une variable aléatoire réelle {.definition #defloivar}
 La probabilité $\P_X$, définie sur $(\R,\E_{\R})$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \E_{\R}$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
 
 [^NB]: Nous n'avons pas les outils permettant de caractériser cette tribu pour le moment. On verra par la suite que, dans le cas des variables aléatoires réelles à densité, elle est très similaire à la tribu des ensembles mesurables de $\R$, à une collection d'ensembles négligeables près.
 
 
 On a alors le résultat très utile suivant :
+
+**TODO**[^bor]
+
+[^bor]: ce résultat devient la définition (opérationnelle) de fonction borélienne
+$g$ dans la version "à fondation frugales" (au passage ça ne marche pas avec 
+$g$ uniquement "mesurable" au sens usuel ici ; il faut borélienne, ce qui
+est plus exigeant) (SB) .
 
 ### Proposition {.proposition #composition}
 Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction mesurable de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
@@ -101,7 +153,61 @@ Soient $X$, $Y$ et $(X_n)_{n \in \N^\star}$ des variables aléatoires réelles. 
 
  5. $Z = 1_A$ est une variable aléatoire $\Leftrightarrow$ $A \in \A$.
 
-### Définition -- variable aléatoire réelle à densité {.definition #va.densité}
+**TODO[^motivation-va-densité]** **TODO[^val-or-vec]** **TODO[^définition-vad-alter]**
+
+[^motivation-va-densité]: quelle motivation(s) pour l'étude des v.a. à densité ? 
+Pourquoi on s'y intéresse plus particulièrement (SB)
+
+[^val-or-vec]: pas 100% convaincu que la duplication des définitions "à densité"
+pour les variables et les vecteurs ait un bénéfice. Il faut voir avec l'ordre
+global. Une version plus faible de la même question (à ordre constant de présentation) : 
+est-ce qu'on n'a pas intérêt à favoriser une définition de "à densité" pour les 
+valeurs aléatoires qui soit immédiatement généralisable aux vecteurs aléatoires ? 
+(C'est le cas de la définition que je préconise ci-dessous.) (SB)
+
+[^définition-vad-alter]: Cf TODO plus haut sur la complexité induite par 
+$\mathbb{P}_X$ à reconsidérer.
+Si on laisse ce point de coté, j'ai l'impression qu'il y a trois définitions
+équivalentes mathématiquement qu'on peut considérer : demander 
+$$
+\P(X\leq x) = \int_{-\infty}^x f_X(y) \, dy
+$$
+(c'est-à-dire ce qui est proposé) ou
+$$ 
+\P(X\in B) = \int_B f_X(x) \, dx
+\; \mbox{ ou } \;
+\Esp(h(X)) = \int h(x) f_X(x) \, dx.
+$$
+(pour tout $B$ borélien et $h$ borélienne telle que $h f_X$ soit intégrable).
+Je suis favorable à la troisième option : s'il ne doit rester qu'un seul
+résultat (où si un étudiant ne doit mémoriser qu'un résultat), 
+c'est le plus utile dans le use cas commun (j'ai une variable aléatoire $X$
+dont je connais la densité, j'ai une espérance -- ou une proba, ou une variance -- 
+associée à une grandeur se déduisante de $X$) et la définition fournie ici n'est pas 
+exploitable **directement**.
+Il va de soi que le second cas -- calcul d'une proba --
+se déduit simplement du 3eme avec $h=1_B$ si on en a besoin ; on peut
+imaginer un corollaire dédié, ou mieux, faire en sorte que le meme "quand je 
+sais calculer $\Esp$, je sais calculer $\P$ (et $\V$)" ait déjà percolé avant (?).
+Le cas particulier de la forme $\P(X\leq x)$ est plus directement lié à 
+l'approche par les fonctions de répartition ; je le vois plus comme un
+sous-corollaire (d'autant qu'il devient bien moins naturel quand on passe
+aux vecteurs aléatoires). 
+**Update:** dans certains use cases -- cf exemple "Loi de Cauchy" -- le sous-corollaire est 
+utilisé ; mais en l'espèce, la définition avec $\Esp(h(X))$ marche aussi bien :
+on montre aisément que
+$$
+\Esp(h(\tan \Theta)) = \frac{1}{\pi} \int_{-\pi/2}^{\pi/2} 
+\frac{h(\tan \theta)}{1 +\tan^2 \theta} (1 + \tan^2 \theta) \, d\theta,
+$$
+et l'on déduit donc que $X = \tan \Theta$ vérifie
+$$
+\Esp(h(X)) = \frac{1}{\pi} \int_{-\infty}^{+\infty} 
+\frac{h(x)}{1 +x^2} \, dx.
+$$
+(SB)
+
+### Variable aléatoire à densité {.definition #va.densité}
 Soit $X$ une variable aléatoire. On dit que $X$ a une *loi de densité $f$* (ou par abus de language "est de densité $f$"), si $\P_X$ admet la densité $f$ et donc si pour tout réel $x$, 
 $$ \P(X\leq x) = \int_{-\infty}^x f(y) dy.$$
 
@@ -155,7 +261,7 @@ Dans le cas d'une variable aléatoire discrète $Y$ à valeurs dans $\N^\ast$, s
 
 Outre l'espace $\L^1$, nous pouvons définir l'espace $\L^2$ des variables aléatoires réelles dont le carré $X^2$ est dans $\L^1$.
 
-### Définition {.definition #defvar}
+### Variable aléatoire de carré intégrable {.definition #defvar}
 La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite *de carré intégrable* si $\Esp(X^2) = \int_\R x^2 f(x)dx$ est définie, autrement dit si le produit $x^2 f(x)$ est intégrable. Sa *variance* est définie par
         $$\V(X) = \Esp((X-\Esp(X))^2)$$
 
@@ -247,14 +353,23 @@ $$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-
 L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \E_\R$ :
 $$\Esp(1_A(X)) = \int_A f(x)dx = \P(X\in A)$$
 
-## Exemples
+# Exemples
 
-Nous donnons ici quelques exemples de densités de probabilité. Nous reprenons en particulier les [trois exemples de densités donnés au premier cours](Probabilité I.pdf #exampledens) :
+**TODO**[^l]
 
-### *Loi uniforme*
+[^l]: reconsidérer nom & niveau de la section. 
+Migrer dans un section "va à densité ?" (SB).
 
-sur $[a,b]$, où $a < b$ et on note $X \sim \mathcal{U}_{[a,b]}$ si $X$ est de densité
-    $$ f(x) = \frac{1}{b-a} 1_{[a,b]} (x).$$
+Nous donnons ici quelques exemples de densités de probabilité. 
+Nous reprenons en particulier les [trois exemples de densités 
+donnés au premier cours](Probabilité I.pdf #exampledens) :
+
+### Loi uniforme
+La variable $X$ suit la loi uniforme sur $[a,b]$, où $a < b$, ce que l'on note  
+$X \sim \mathcal{U}_(a,b)$, si $X$ est de densité
+$$
+f(x) = \frac{1}{b-a} 1_{[a,b]} (x).
+$$
 Son espérance vaut
         $$ \Esp(X) = \int_a^b \frac{x}{b-a} dx = \frac{a+b}{2}$$
 et puisque
@@ -262,14 +377,15 @@ et puisque
 alors sa variance vaut
         $$ \V(X) = \Esp(X^2) - \Esp(X)^2 = \frac{(b-a)^2}{12}.$$
 
-### *Loi exponentielle*
-
-de paramètre $\theta > 0$ et on note $X \sim \mathcal{E}(\theta)$ si $X$ est de densité
+### Loi exponentielle
+La variable $X$ suit la loi exponentielle 
+de paramètre $\theta > 0$, ce que l'on note $X \sim \mathcal{E}(\theta)$, 
+si $X$ est de densité
         $$ f(x) = \theta e^{-\theta x} 1_{\{x>0\}}.$$
 Son espérance et sa variance se calculent aisément et valent
         $$ \Esp(X) = \frac{1}{\theta} \text{ et } \V(X) = \frac{1}{\theta^2}$$
 
-### *Loi gamma*
+### Loi gamma
 
 On rappelle tout d'abord que la fonction gamma est définie pour $\alpha \in \left] 0, + \infty \right[$ par 
         $$\Gamma(\alpha) = \int_0^{+\infty} x^{\alpha-1}e^{-x} dx.$$
@@ -283,9 +399,11 @@ On remarquera que $\Gamma(1,\theta)$ est la loi exponentielle de paramètre $\th
 
 Lorsque $\alpha$ est entier, la loi gamma permet de modéliser le temps d'attente avant la $n$-ième occurence d'événements indépendants de loi exponentielle de paramètre $\theta$.
 
-### *Loi normale*
-
-de paramètres $\mu$ et $\sigma^2$ et on note $X \sim \mathcal{N}(\mu,\sigma^2)$ si $X$ est de densité[^verif]
+### Loi normale
+La variable $X$ suit la loi normale
+de paramètres $\mu$ et $\sigma^2$, 
+ce que l'on note $X \sim \mathcal{N}(\mu,\sigma^2)$, 
+si $X$ est de densité[^verif]
         $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
 Son espérance et sa variance valent
         $$\Esp(X) =  \mu \text{ et } \V(X) = \sigma^2$$
@@ -300,14 +418,20 @@ Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétr�
 
 Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l’exemple suivant.
 
-### *Loi de Cauchy*
+### Loi de Cauchy
 
-Un gyrophare envoie un flash lumineux dans une direction aléatoire uniforme d’angle $\theta$. On cherche la distribution de l'abscisse $X$ du point d'impact du rayon lumineux sur un écran plan infini situé à distance 1 du gyrophare.
+Un gyrophare envoie un flash lumineux dans une direction aléatoire uniforme d’angle $\Theta$. 
+On cherche la distribution de l'abscisse $X$ du point d'impact du rayon lumineux sur un écran plan infini situé à distance 1 du gyrophare.
 
-L'angle $\theta$ est une variable aléatoire uniforme sur $[-\pi/2,\pi/2]$, de densité $g(\theta) = \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta)$. L'abscisse $X$ est donnée par $X = \tan \theta$, c'est donc une variable aléatoire, de fonction de répartition
+L'angle $\Theta$ est une variable aléatoire uniforme sur $[-\pi/2,\pi/2]$, de densité 
+$$
+g(\theta) = \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta).
+$$ 
+L'abscisse $X$ est donnée par $X = \tan \Theta$, 
+c'est donc une variable aléatoire, de fonction de répartition
 \begin{align*}        
 F(x) & = \P(X \leq x) \\
-     & = \P(\theta \leq \arctan x) \\
+     & = \P(\Theta \leq \arctan x) \\
      & = \int_{-\infty}^{\arctan x} \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta) d\theta \\
      & = \frac{1}{\pi} \arctan x + \frac{1}{2}.
 \end{align*}
@@ -328,11 +452,12 @@ De même qu'en dimension 1, la loi de $X$ est caractérisée par la fonction de 
 $$F(x_1,\ldots,x_n) = \P_X(X_1\leq x_1,\ldots,X_n\leq x_n)$$
 Mais caractériser les fonctions de répartition sur $\R^n$ est délicat, de sorte que cette notion est rarement utilisée. Nous allons plus particulièrement nous intéresser aux vecteurs aléatoires à densité.
 
-### Définition {.definition #defvect}
+### Variable aléatoire à densité {.definition #defvect}
 On dit que $X$ admet la densité $f$ si la fonction réelle $f$ sur $\R^n$ est positive, intégrable et vérifie 
 $$\int_{\R^n} f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n) dx_1 \ldots dx_n= 1$$
 et si
 $$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} f(x_1,\ldots,x_n) dx_1 \ldots dx_n.$$
+
 
 De la même manière que dans le [cas unidimensionnel](#esperanceg), on a :
 
@@ -456,7 +581,24 @@ $$\cov(X,Y) = \cov(X,X^2) = \Esp(X^3) - \Esp(X)\Esp(X^2) = 0$$
 
 # Identification de densité
 
-Un problème important est le suivant. Soit $X$ une variable aléatoire réel, admettant la densité $f_X$. Soit $g$ une fonction mesurable, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
+Un problème important est le suivant **TODO**[^ao]. Soit $X$ une variable aléatoire réel, admettant la densité $f_X$. Soit $g$ une fonction mesurable, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
+
+[^ao]: Ah ouais ? ;) Pas que je ne sois pas d'accord hein, mais ici comme ailleurs,
+c'est "Show, don't tell" qui doit prédominer. Si à ce point on a réussi à convaincre
+que les va a densité sont plus "cool" à gérer que des va plus "générales" ET que
+l'on a fait comprendre que faire des calculs avec des grandeurs aléatoires 
+c'est fondamentalement *composer* des va par des fonctions boréliennes (puis
+calculer des probas, espérances, variances, etc.), 
+alors on est sur le bon chemin pour expliquer pourquoi
+on devrait s'intéresser à ce problème. Ca devra probablement être fait en amont
+(notamment parce que pour justifier l'intérêt de "fonction borélienne" il faut
+déjà avoir compris ça),
+mais j'imagine que ça n'est pas 100% immédiat pour tout le monde que "mener des calculs
+avec des grandeurs", c'est mathématiquement "faire des compositions de fonctions" ;
+si je dis ça c'est que la même abstraction se retrouve quand on fait de la 
+diff auto et que l'usage généralisé de la chain rule n'était pas évident pour
+tous (SB).
+
 
 On peut déjà remarquer que cette densité n’existe pas toujours. Si par exemple $g(x) = a$ pour tout $x$, la loi de $Y$ est la masse de Dirac en $a$, qui n’a
 pas de densité.
@@ -469,12 +611,40 @@ $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R} h \circ g(x) f_X(x) dx$$
 
 et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire, on appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
 
+**TODO.** [^ok]
+
+[^ok]: Cette proposition est a priori devenue une **définition** de va a densité,
+donc on est confort à ce stade.
+
 ### Proposition {.proposition}
 Si il existe une fonction $f$ telle que pour toute fonction mesurable $h$ telle que $h(x) f(x)$ soit absolument intégrable, 
 $$\Esp(h(X)) = \int_\R h(x) f(x) dx$$
 alors la loi de $X$ admet la densité $f$.
 
 L’idée de la preuve repose sur le fait que parmi ces fonctions se trouvent les $h = 1_{]-\infty,y]}$, pour laquelle la formule précédente donne la fonction de répartition de $f$.
+
+**TODO.**[^hierar]
+
+[^hierar]: J'aime bien tout ce qu'il y a ici, mais j'essaierais de le
+hiérarchiser un peu plus et de ne pas forcément tout essayer de faire passer comme
+"résultat général" (mais plutôt de se limiter aux exemples pour 
+"donner l'idée" si la formalisation générale est trop lourde).
+En particulier, à mon avis, il y a ici trois techniques : "changement de
+variable", "découpage" et "marginalisation". S'il n'y en a qu'une
+a retenir à mon avis (le plus "fondamental / utile / propre") c'est la 1ère. 
+Si $Y = g(X)$ et que $g$ est un $C^1$-diffeo
+qui va bien, alors si $X$ est à densité, $Y$ aussi et -- sauf erreur 
+de ma part -- on a
+$$
+f_Y(y) = f_X(g^{-1}(y)) |\det J_{g^{-1}}(y)|.
+$$
+Je mettrais bien ça en avant comme une jolie petite proposition avant de
+présenter comme on peut étendre les hypothèses par "découpage" et 
+"marginalisation" sur des exemples (le découpage, pour l'énoncer de 
+façon générale, il faudrait s'embêter à se ramener à des ouverts, donc
+dire des choses sur le caractère négligeable des frontières, pas vrai en
+général, c'est affreux ...)
+
 
 Nous donnons ici quelques exemples d'application de cette méthode :
 
@@ -506,6 +676,15 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
         $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n.$$
 
 ### Exemples
+
+**TODO.**[^cp]
+
+[^cp]: Dans l'exemple des coordonnées polaires, il faut travailler un peu
+plus pour pouvoir invoquer un changement de variable, car le cadre 
+présenté en calcul intégral III se limite aux ouverts. Il suffit a 
+priori de "retirer" la contribution aux intégrales dans $\R^2$
+la ligne $\mathbb{R}^- \times \{0\}$ (car négligeable) pour pouvoir
+travailler avec un difféo entre ouverts. (SB)
 
  1. **Coordonnées polaires**
     Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, et $Y = (R,\Theta)$ ses coordonnées polaires. La transformation $g$ est un difféomorphisme de $A = \R^2\setminus\{0\}$ dans $B = \left]0,+\infty\right[\times \left]0,2\pi\right]$, et son inverse $g^{-1}$ s'écrit : $u = r\cos \theta,\, v= r\sin \theta$.
