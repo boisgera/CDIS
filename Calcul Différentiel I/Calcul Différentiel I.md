@@ -159,6 +159,46 @@ Donc un volet à rajouter ici ?
 
 -->
 
+TODO
+================================================================================
+
+Changelog :
+
+  -
+
+TODO :
+
+  - **Supression annexe intégrale de Newton. Réviser résultat Théo fond. du
+    calcul et variation d'une fonction pour se limiter à des fonctions 
+    "intégrables".** Préciser éventuellement dans une remarque (ou pas)
+    que les résultats sont vrais sans hypothèse supplémentaire.
+    Ca peut prendre la forme suivante : énoncer le résultat, PUIS expliquer
+    qu'on peut comprendre "intégrable" comme "Riemann-intégrable" ou
+    (ou même "continue par morceaux")
+    ou "Lebesgue-intégrable" ou même HK-intégrable (hors-programme).  
+    Le cas HK-intégrable est nécessaire pour prouver le théorème des
+    accroissements finis et uniquement là ; la réference à "TFC vrai pour HK"
+    pourrait même être locale et donc se limiter à cette preuve pour ne pas 
+    compliquer le texte. A voir ...
+
+    Bref, propager les conséquences de ce changement.
+
+  - **Atténuer différence applis lin / matrices.** Dans les notations, etc.
+    "Incarner" beaucoup plutôt les choses dans des matrices pour que 
+    l'interprétation concrête soit toujours possible (tout est "calculable"
+    à chaque étape), accepter en contrepartie qu'une notation soit (un peu) 
+    ambigue dans son interprétation. Du coup, notation unique,
+    par exemple $D f(x)$ pour désigner aussi bien la matrice jacobienne que
+    la différentielle ? Y réfléchir, mais ça semble raisonnable ...
+    Il est toujours possible de distinguer les objets en introduisant 
+    $df(x)$ et $J_f(x)$ a posteriori  si besoin (mais si c'est vraiment le
+    cas, c'est un échec non ?). De toute façon, il sera nécessaire d'expliquer
+    pourquoi on peut écrire / comment interpréter $Dg(y) Df(x)$ vs
+    $Dg(y) \cdot Df(x)$ vs $Dg(y) \circ Df(x)$.
+
+  - **Commencer par les dérivées partielles, insister sur le cadre $C^1$**.
+    Passer de la dérivée aux dérivées par
+
 Notations
 ================================================================================
 
