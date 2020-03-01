@@ -196,6 +196,8 @@ TODO :
     pourquoi on peut écrire / comment interpréter $Dg(y) Df(x)$ vs
     $Dg(y) \cdot Df(x)$ vs $Dg(y) \circ Df(x)$.
 
+    Ou conserver la notation $df(x)$ pour la matrice également ?
+
   - **Commencer par les dérivées partielles, insister sur le cadre $C^1$**.
     Passer de la dérivée aux dérivées partielles (sur un point intérieur du
     domaine), puis définir le gradient, la matrice jacobienne. 
