@@ -197,7 +197,30 @@ TODO :
     $Dg(y) \cdot Df(x)$ vs $Dg(y) \circ Df(x)$.
 
   - **Commencer par les dérivées partielles, insister sur le cadre $C^1$**.
-    Passer de la dérivée aux dérivées ... **TODO**
+    Passer de la dérivée aux dérivées partielles (sur un point intérieur du
+    domaine), puis définir le gradient, la matrice jacobienne. 
+    Dire qu'une fonction est différentiable en un point si la matrice 
+    jacobienne de $f$ en $x$ fournit une approximation au 1er ordre de $f(x+h)$,
+    c'est-à-dire si 
+    $$
+    f(x+h) = f(x) + Df(x) \cdot h + o(\|h\|)
+    $$
+    et qu'alors on appelle différentielle l'application de $f$ en $x$ 
+    l'application linéaire $h \mapsto Df(x) \cdot h$ -- ou "$Df(x)$".
+    (A noter que l'on peut faire l'impasse sur l'unicité de l'opérateur
+    ainsi défini et que l'on n'a pas *a posteriori* à découvrir comment
+    il est lié à la matrice jacobienne ; mais cela peut faire l'objet d'un
+    exercice embarqué à cet endroit.)
+    Exemples bien choisi pour montrer que ce développement au 1er ordre
+    n'existe pas forcément même si la matrice jacobienne est bien définie. 
+
+    La qualification de "continûment différentiable" est alors définie 
+    comme la continuité de
+    l'application $x \mapsto Df(x) \in \mathbb{R}^{n \times n}$.
+    Que continûment différentiable implique différentiable est un théorème
+    (facile à retenir avec la terminologie choisie).
+
+
 
 Notations
 ================================================================================
