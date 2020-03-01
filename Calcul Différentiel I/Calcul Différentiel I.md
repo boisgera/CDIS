@@ -197,7 +197,7 @@ TODO :
     $Dg(y) \cdot Df(x)$ vs $Dg(y) \circ Df(x)$.
 
   - **Commencer par les dérivées partielles, insister sur le cadre $C^1$**.
-    Passer de la dérivée aux dérivées par
+    Passer de la dérivée aux dérivées ... **TODO**
 
 Notations
 ================================================================================
