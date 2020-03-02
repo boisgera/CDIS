@@ -1364,18 +1364,10 @@ la somme de Riemann et l'intégrale est au plus $\varepsilon$.
 Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
 une subdivision pointée qui y soit subordonnée.
 
-### Choix des normes {.remark .three}
+### Choix des normes I {.remark .three}
 On peut se convaincre en examinant la démonstration ci-dessus qu'elle est 
 valide pour toute norme $\|\cdot\| := \|\cdot\|_{\R^n}$ sur $\R^n$
-et pas uniquement la norme euclidienne $\|\cdot\|_2$. 
-De la même manière, la version ci-dessous 
-de l'inégalité des accroissement finis -- avec un ensemble de départ dans
-$\R^n$  et un ensemble d'arrivée dans $\R^m$ -- vaut pour tout norme d'opérateur, définie par
-$$
-\|df(x)\| := \sup_{h \neq 0} \frac{\|df(x)\cdot h\|_{\R^m}}{\|h\|_{\R^n}}
-$$
-où $\|\cdot\|_{\R^m}$  et $\|\cdot\|_{\R^n}$ sont des normes arbitraires sur 
-$\R^m$ et $\R^n$ respectivement.
+et pas uniquement la norme euclidienne $\|\cdot\| := \|\cdot\|_2$. 
 
 ### TODO -- Exo preuve plus simple avec $\|\cdot\|_2$ & démo Mitchener ?
 
@@ -1392,6 +1384,17 @@ Alors
 $$
 \|f(a+h) - f(a)\| \leq M \|h\|.
 $$
+
+### Choix des normes II {.remark .three}
+Comme pour [la version I de l'inégalité des accroissements finis](#TAF),
+dans cette version II, on peut adopter des normes arbitraires 
+$\|\cdot\|_{\R^m}$  et $\|\cdot\|_{\R^n}$ 
+dans $\R^m$ et $\R^n$ respectivement, puis définir la norme d'opérateur associée
+$$
+\|df(x)\|_{\R^m\R^n} := \sup_{h \neq 0} \frac{\|df(x)\cdot h\|_{\R^m}}{\|h\|_{\R^n}}.
+$$
+Si $\|df(x)\|_{\R^m\R^n} \leq M$, on peut  conclure que 
+$\|f(a+h) - f(a)\|_{\R^m} \leq M \|h\|_{\R^n}.$
 
 ### Démonstration {.proof}
 Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
