@@ -525,6 +525,7 @@ def handle_typed_sections(doc):
         "definition": "Définition",
         "lemma": "Lemme",
         "proposition": "Proposition",
+        "remark": "Remarque",
     }
     levels = {
         1: "section",
@@ -548,6 +549,14 @@ def handle_typed_sections(doc):
                 todos.append([holder, index, level, latex_title])
                 type_ = shared[0]
                 inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
+                if "one" in classes:
+                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"), Str(")")] 
+                if "two" in classes:
+                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"*2), Str(")")] 
+                if "three" in classes:
+                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"*3), Str(")")] 
+                if "four" in classes:
+                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"*4), Str(")")] 
                 header[2] = inlines
     for holder, index, level, latex_title in todos:
         latex_code = (

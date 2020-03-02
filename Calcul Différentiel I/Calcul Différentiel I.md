@@ -1213,24 +1213,22 @@ si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
 de relier $f(a+h)$ à $f(a)$ en intégrant les variations infinitésimales 
 de $f$ le long de $[a, a+h]$. 
 
-### Théorème fondamental du calcul {.theorem #TFC}
+### Théorème fondamental du calcul {.theorem #TFC .one}
 Si $f: [a, b] \to \R$ est dérivable et que $f'$ est intégrable alors
 $$
 f(b) - f(a)  = \int_a^b f'(x) \, dx.
 $$
 
-### A propos du terme "intégrable" {.remark}
+### A propos du terme "intégrable" {.remark .three}
 Dans ce chapitre, sauf précision contraire, le terme "intégrable" doit être compris 
-comme "intégrable au sens de Lebesgue". Sa définition -- ainsi que la preuve du
-théorème fondamental du calcul -- seront fournies dans le volet calcul intégral 
-de l'enseignement.  
+comme "intégrable au sens de Lebesgue". La définition de ce concept 
+-- ainsi que la preuve du théorème fondamental du calcul -- 
+seront fournies dans le volet calcul intégral de l'enseignement.  
 A ce stade, vous pouvez retenir que si $f'$ est "continue", 
 "continue par morceaux" ou même "intégrable au sens de Riemann", 
 elle est "intégrable" (au sens de Lebesgue) et appliquer le théorème.
 
-\newcommand\mybullet{\mathord{\bullet}}
-
-### Extension au théorème fondamental du calcul ($\mybullet \mybullet\mybullet\mybullet$) {.remark}
+### Théorème fondamental du calcul : forme générale {.remark .four #TFCE}
 Si l'on adopte au lieu de l'intégrale de Lebesgue l'intégrale encore
 plus générale de Henstock-Kurzweil (cf. calcul intégral), 
 alors toute fonction dérivée est automatiquement 
@@ -1250,7 +1248,7 @@ si l'on utilise l'intégrale de Henstock-Kurzweil, il sera inutile
 de vérifier que l'application 
 $t \mapsto df(a+th)  \cdot h$ est intégrable pour appliquer le théorème.
 
-### Variation d'une fonction {.proposition #VF}
+### Variation d'une fonction {.proposition #VF .two}
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
 soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
   $$
@@ -1291,7 +1289,7 @@ f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt
                                   = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-### Inégalité des accroissements finis I {.theorem #TAFS}
+### Inégalité des accroissements finis I {.theorem #TAFS .two}
 Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
 $h \in \left[0, +\infty\right[$.
 Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
@@ -1305,19 +1303,18 @@ $$
 $$
 
 ### Démonstration {.proof}
-Par construction, la fonction $f'$ est intégrable au sens de Newton et
+Par [la forme générale du théorème fondamental du calcul](#TFCE),
+la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
 $$
-f(a+h) - f(a) = \int_a^b f'(t) \, dt.
+f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
 $$
-Elle est donc également intégrable au sens de Henstock-Kurzweil
-(cf. [chapitre "Calcul Intégral I"](Calcul Intégral I.pdf)) ;
-en combinant [la définition de l'intégrale de Henstock-Kurzweil](Calcul Intégral I.pdf#HK) 
+En combinant [la définition de l'intégrale de Henstock-Kurzweil](Calcul Intégral I.pdf#HK) 
 et [le lemme de Cousin](Calcul Intégral I.pdf#cousin), 
 on peut trouver des approximations arbitrairement
 précises de l'intégrale de $f'$ par des sommes de Riemann[^hklc] :
 pour tout $\varepsilon > 0$, 
 il existe une subdivision pointée $\mathcal{D}$
-de l'intervalle $[a,b]$ telle que 
+de l'intervalle $[a,a+h]$ telle que 
 $$
 \left\| f(a+h) - f(a) -  S(f', \mathcal{D}) \right\| 
 =
@@ -1367,7 +1364,22 @@ la somme de Riemann et l'intégrale est au plus $\varepsilon$.
 Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
 une subdivision pointée qui y soit subordonnée.
 
-### Inégalité des accroissements finis II {.theorem #TAF}
+### Normes arbitraires {.remark .three}
+On peut se convaincre en examinant la démonstration ci-dessus qu'elle est 
+valide pour toute norme $\|\cdot\| := \|\cdot\|_{\R^n}$ sur $\R^n$
+et pas uniquement la norme euclidienne $\|\cdot\|_2$. 
+De la même manière, la version ci-dessous 
+de l'inégalité des accroissement finis -- avec un ensemble de départ dans
+$\R^n$  et un ensemble d'arrivée dans $\R^m$ -- vaut pour tout norme d'opérateur, définie par
+$$
+\|df(x)\| := \sup_{h \neq 0} \frac{\|df(x)\cdot h\|_{\R^m}}{\|h\|_{\R^n}}
+$$
+où $\|\cdot\|_{\R^m}$  et $\|\cdot\|_{\R^n}$ sont des normes arbitraires sur 
+$\R^m$ et $\R^n$ respectivement.
+
+### TODO -- Exo preuve plus simple avec $\|\cdot\|_2$ & démo Mitchener ?
+
+### Inégalité des accroissements finis II {.theorem #TAF .two}
 
 Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
 supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
