@@ -1364,7 +1364,7 @@ la somme de Riemann et l'intégrale est au plus $\varepsilon$.
 Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
 une subdivision pointée qui y soit subordonnée.
 
-### Normes arbitraires {.remark .three}
+### Choix des normes {.remark .three}
 On peut se convaincre en examinant la démonstration ci-dessus qu'elle est 
 valide pour toute norme $\|\cdot\| := \|\cdot\|_{\R^n}$ sur $\R^n$
 et pas uniquement la norme euclidienne $\|\cdot\|_2$. 
