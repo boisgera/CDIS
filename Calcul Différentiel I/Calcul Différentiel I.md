@@ -197,6 +197,7 @@ TODO :
     $Dg(y) \cdot Df(x)$ vs $Dg(y) \circ Df(x)$.
 
     Ou conserver la notation $df(x)$ pour la matrice également ?
+    On a envie de pouvoir conserver les identités comme $dx^2 = 2x dx$ ...
 
   - **Commencer par les dérivées partielles, insister sur le cadre $C^1$**.
     Passer de la dérivée aux dérivées partielles (sur un point intérieur du
