@@ -1852,7 +1852,11 @@ $f: (\theta_1, \theta_2) \in \R^2 \mapsto (x, y) \in \R^2$
 est différentiable et déterminer sa matrice jacobienne.
 
 **TODO.** Variation des angles, en déduire déplacement max de l'effecteur
-final.
+final. Mmm "compliqué" dans la mesure où on voudrait probablement travailler
+en norme d'opérateur $\|\cdot\|_{2\infty}$ ! Ou au moins $\|\cdot\|_{\infty\infty}$ ...
+Dans ce dernier cas, le calcul montre que quand les variations de $\theta_1$ et
+$\theta_2$ sont majorées par $\delta$, l'effecteur reste dans un carré de
+"rayon" au plus $\ell_1 + 2 \ell_2$ centré en ce point.
 
 Différentiation matricielle
 --------------------------------------------------------------------------------
