@@ -223,330 +223,14 @@ TODO :
     Que continûment différentiable implique différentiable est un théorème
     (facile à retenir avec la terminologie choisie).
 
+  - Renvoyer en annexe les rappels d'algèbre linéaire (matrices,
+    et applications linéaires, vecteurs, etc.). Puis la simplifier
+    (notamment, les notations sur les applications linéaires).
 
 
-Notations
-================================================================================
-
-Préambule
---------------------------------------------------------------------------------
-
-Les fragments de code de ce document utilisent le langage Python 3.
-La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
-
-    >>> from numpy import *
-
-Ensembles et fonctions
---------------------------------------------------------------------------------
-
-La notation classique $f: A \to B$ pour désigner une fonction $f$ d'un
-ensemble $A$ dans un ensemble $B$ suggère d'utiliser $A \to B$ 
-pour désigner l'ensemble des fonctions de $A$ dans $B$.
-Avec cette convention, $f: A \to B$ signifie la
-même chose que $f \in A \to B$.
-
-La convention que nous adoptons a vocation à simplifier la manipulation
-de fonctions dont les valeurs sont des fonctions, un schéma très fréquent
-en calcul différentiel.
-Si $f: A \to B$ et $g: B \to C$, la composée des fonctions $f$ et $g$,
-notée $g \circ f$, appartient à $A \to C$ et est définie par
-$$
-(g \circ f) (x) = g(f(x)).
-$$
-Si l'on applique bien $f$ à $x$, puis $g$ au résultat, il est néanmoins
-naturel d'inverser l'ordre d'apparition des fonctions dans la notation $g \circ f$;
-il faut en effet s'adapter à la notation classique (infixe ou polonaise) 
-qui désigne par $f(x)$ l'image de $x$ par $f$. 
-Pour cette même raison, il pourra être utile de
-d'utiliser $B \leftarrow A$ comme une variante de la notation $A \to B$.
-On pourra alors utiliser la règle
-$$
-g: C \leftarrow B, \; f: B \leftarrow A \; \implies \; g \circ f: C \leftarrow A
-$$
-où les notations des ensembles et fonctions $g$, $f$, $A$, $B$ et $C$
-restent dans le même ordre d'apparition et les deux occurrences de 
-l'ensemble intermédiaire $B$ se touchent.
-
-Applications linéaires et calcul matriciel
---------------------------------------------------------------------------------
-
-### Multiplication scalaire-vecteur
-Pour tout scalaire $\lambda \in \mathbb{R}$ et vecteur $x \in \mathbb{R}^n$,
-on notera $\lambda x$ ou parfois $x \lambda$ la multiplication du vecteur $x$ 
-par le scalaire $\lambda$. Lorsque $\lambda$ est non nul, on
-notera également $x / \lambda$ le vecteur $(1 / \lambda) x$.
-
-Un vecteur de $\mathbb{R}^n$ est représenté dans NumPy par un tableau à une
-dimension :
-
-    >>> x = array([1, 2, 3])
-    >>> x.ndim
-    1
-    >>> shape(x)
-    (3,)
-    >>> size(x)
-    3
-
-La multiplication d'un scalaire et d'un vecteur est désignée par le symbole
-`*`:
-
-    >>> 2 * x
-    array([2, 4, 6])
-
-### Matrices
-
-Nous noterons $\mathbb{R}^{m \times n}$ l'ensemble des matrices à 
-$m$ lignes et $n$ colonnes à coefficients réels. 
-Une matrice telle que
-
-$$
-\left[
-\begin{array}{ccc}
-1 & 2 & 3 \\
-4 & 5 & 6
-\end{array}
-\right] \in \mathbb{R}^{2 \times 3}
-$$
-
-sera représentée avec NumPy par un tableau bi-dimensionnel:
-
-    >>> A = array([[1, 2, 3], [4, 5, 6]])
-    >>> A
-    array([[1, 2, 3],
-           [4, 5, 6]])
-    >>> A.ndim
-    2
-    >>> shape(A)
-    (2, 3)
-    >>> size(A)
-    6
-
-### Mise à plat des matrices {.warning #flatten}
-Dans la notation $\mathbb{R}^{m \times n}$, 
-$\times$ est un symbole de séparation, purement syntactique : 
-$\mathbb{R}^{2 \times 3}$ désigne ainsi 
-l'ensemble des matrices à 2 lignes et 3 colonnes à coefficients réels 
-et diffère de $\mathbb{R}^6$ qui
-désigne l'ensemble des $6$-uplets à coefficients réels. 
-
-Ces deux ensembles sont toutefois similaires: pour toute matrice 
-$A \in \mathbb{R}^{m\times n}$, on peut construire un $mn$-uplet en 
-listant tous les coefficients de la matrices en parcourant l'ensemble 
-des lignes de la matrice de haut en bas et chaque ligne de gauche à
-droite; cette façon de faire définit un vecteur de $\mathbb{R}^{mn}$.
-L'opération ainsi définie sera notée $\pi_{m\times n}$ (voire $\pi$
-s'il n'y a pas d'ambiguité).
-Par exemple :
-
-$$
-\pi_{2 \times 3}: 
-\left[
-\begin{array}{ccc}
-1 & 2 & 3 \\
-4 & 5 & 6
-\end{array}
-\right] \in \mathbb{R}^{2 \times 3}
-\; \mapsto \;
-(1,2,3,4,5,6) \in \mathbb{R}^6
-$$
-
-Cette opération est bijective ; elle-même ainsi que son inverse sont linéaires.
-$\mathbb{R}^{m \times n}$ et $\mathbb{R}^{m n}$ sont donc isomorphes (en tant
-qu'espace vectoriels), ce que l'on notera :
-
-$$
-\mathbb{R}^{m \times n} \, \cong \, \mathbb{R}^{mn}
-$$
-
-Le passage de la forme matrice à la forme vecteur se fait de la façon suivante
-avec NumPy:
-
-    >>> A
-    array([[1, 2, 3],
-           [4, 5, 6]])
-    >>> a = reshape(A, (6,))
-    >>> a
-    array([1, 2, 3, 4, 5, 6])
-    >>> reshape(a, (2, 3))
-    array([[1, 2, 3],
-           [4, 5, 6]])
-
-### Applications linéaires
-
-Notons
-$$
-\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m
-\; \mbox{ ou } \;
-\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
-$$ 
-l'ensemble des applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
-La raison d'être des matrices $\mathbb{R}^{m \times n}$ est de représenter
-ces applications linéaires.
-
-Si $A$ désigne  une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$,
-on peut la décomposer en $m$ composantes $A_i$, 
-des applications de $\mathbb{R}^n$ dans $\mathbb{R}$ 
-telles que pour tout $x$ dans $\mathbb{R}^n$, on ait
-$A(x) = (A_1(x), A_2(x), \dots, A_m(x))$, ce que l'on note
-simplement
-$$
-A = (A_1, A_2, \dots, A_m).
-$$
-Si l'on désigne maintenant par $e_j$ le $j$-ème vecteur de la base canonique de 
-$\mathbb{R}^n$
-$$
-e_1 = (1, 0, 0, \dots, 0), \; e_2 = (0,1,0,\dots, 0), \; \dots \;, \;
-e_n = (0,0,0,\dots, 1),
-$$
-il est possible d'associer à l'application linéaire 
-$A: \mathbb{R}^n \to \mathbb{R}^m$ la matrice
-$$
-[A] :=
-[A_i(e_j)]_{ij}=
-\left[ 
-\begin{array}{ccccc}
-A_1(e_1) & A_1(e_2) & \cdots & A_1(e_n) \\
-\vdots & \vdots & \vdots & \vdots\\
-A_m(e_1) & A_m(e_2) & \cdots & A_m(e_n)
-\end{array}
-\right] \in \mathbb{R}^{m \times n}.
-$$
-Réciproquement, étant donné une matrice
-$$
-[a_{ij}]_{ij}=
-\left[ 
-\begin{array}{ccccc}
-a_{11} & a_{12} & \cdots & a_{1n} \\
-\vdots & \vdots & \vdots & \vdots\\
-a_{m1} & a_{m2} & \cdots & a_{mn}
-\end{array}
-\right] \in \mathbb{R}^{m \times n},
-$$
-il est possible de définir une application linéaire 
-$A: \mathbb{R}^n \to \mathbb{R}^m$ par la relation
-$$
-(A x)_i := \sum_{j} a_{ij} x_j
-$$
-et cette opération est l'inverse de la précédente.
-
-Cette correspondance établit un isomorphisme d'espaces vectoriels entre 
-les applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et 
-les matrices de taille $m \times n$ à coefficients réels :
-$$
-\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
-\, \cong \,
-\mathbb{R}^{m \times n} 
-$$
-
-### Composition d'applications linéaires
- 
-Si $A$ et $B$ désignent des applications linéaires de 
-$\mathbb{R}^p$ dans $\mathbb{R}^n$ et de $\mathbb{R}^n$ dans $\mathbb{R}^m$ 
-respectivement, la fonction composée $C = B \circ A$ est une application
-linéaire qui vérifie
-  $$
-  C_{ij} = \sum_{k} B_{ik} A_{kj}.
-  $$
-Autrement dit, la composition de fonction linéaires se traduit par la
-multiplication des matrices associées.
-
-Dans la suite on évitera en général l'utilisation du symbole $\circ$ pour
-désigner la composition d'applications linéaires, en lui préférant le
-symbole $\cdot$ ("point"). 
-<!--
-Le même symbole sera utilisé pour désigner le produit
-entre deux matrices (on évitera dans la mesure du possible de désigner
-le produit de deux matrices par simple juxtaposition des symboles).
--->
-
-La méthode `dot` des tableaux NumPy permet de calculer ce produit matriciel :
-
-    >>> A = array([[1, 2, 3], [4, 5, 6]])
-    >>> B = array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-    >>> A.dot(B)
-    array([[1, 2, 3],
-           [4, 5, 6]])
-
-### Adjoint d'un opérateur {.definition}
-Lorsque $A: \R^n \to \R^m$ est un opérateur linéaire, on peut définir de
-façon unique l'opérateur *adjoint* $A^* : \R^m \to \R^n$ comme l'unique
-opérateur tel que pour tout $x \in \R^n$ et tout $y \in \R^m$, on ait
-$$
-\left<y, A \cdot x \right> = \left<A^* \cdot y, x \right>.
-$$
-La matrice représentant $A^*$ est la transposée de la matrice représentant $A$ :
-
-    >>> A
-    array([[1, 2, 3],
-           [4, 5, 6]])
-    >>> transpose(A)
-    array([[1, 4],
-           [2, 5],
-           [3, 6]])
 
 
-### Vecteurs colonnes et vecteur lignes
-Dans le cadre du calcul matriciel, on associe souvent à un vecteur 
-$x=(x_1, \dots, x_n)$ de $\mathbb{R}^n$ le vecteur colonne
-$$
-\left[ 
-\begin{array}{c}
-x_1 \\
-\vdots \\
-x_n
-\end{array}
-\right] \in \mathbb{R}^{n \times 1}.
-$$
-Dans cette terminologie, un vecteur colonne n'est pas, 
-malgré son nom, un vecteur de $\mathbb{R}^n$, mais bien 
-une matrice de taille $n \times 1$. 
-Formellement, on a associé à $x$
-une matrice
-$X \in \mathbb{R}^{n\times 1}$, telle que $X_{i1} = x_i$.
-Le produit entre une matrice et un vecteur colonne de taille compatible
-n'est rien d'autre qu'un produit matriciel classique. 
-
-Le vecteur $x$ étant associé à une matrice, on peut se demander quel
-opérateur linéaire est associé à cette matrice. La réponse est simple:
-il s'agit de l'application
-$$
-\lambda \in \R \mapsto \lambda x \in \R^n.
-$$
-Identifier un vecteur et son opérateur linéaire de $\R \to \R^n$
-permet par exemple de disposer "gratuitement" de la définition 
-$x^*$ (l'adjoint de l'opérateur associé à $x$) : il s'agit
-de l'application linéaire de $\R^n$ dans $\R$ dont la matrice
-est la transposée du vecteur colonne associé à $x$, autrement dit,
-la représentation de $x$ comme vecteur ligne.
-
-L'intérêt de la représentation des vecteurs comme vecteurs colonnes : 
-si $A$ est une application linéaire de $\mathbb{R}^n$ dans
-$\mathbb{R}^m$ et $x$ un vecteur de $\mathbb{R}^n$, le vecteur
-image $y=A \cdot x \in \mathbb{R}^m$ de $x$ par $A$ est représenté par 
-le vecteur colonne qui est le produit entre 
-la représentation de $A$ comme matrice et la représentation de
-$x$ comme vecteur colonne.
-
-Concrêtement, NumPy ne nécessite pas qu'un vecteur soit d'abord 
-transformé en matrice pour réaliser un produit matrice-vecteur.
-La méthode `dot` des tableaux peut être utilisée ici aussi 
-pour réaliser cette opération:
-
-    >>> A = array([[1, 2, 3], [4, 5, 6]])
-    >>> x = array([7, 8, 9])
-    >>> A.dot(x)
-    array([ 50, 122])
-
-Le produit matriciel étant associatif, tant que l'on manipule des matrices
-et des vecteurs, il n'y a pas lieu de préciser si $A \cdot B \cdot C$ 
-désigne $(A \cdot B) \cdot C$ (association à gauche) ou $A \cdot (B \cdot C)$
-(association à droite).
-Comme le produit matrice-vecteur est un produit matriciel classique,
-quand $x$ est un vecteur, 
-$A \cdot B \cdot x$ désigne indifféremment $(A \cdot B) \cdot x$ ou
-$A \cdot (B \cdot x)$.
-
-Notation de Landau
+TODO -- Notation de Landau  ; retarder au point d'usage
 --------------------------------------------------------------------------------
 
 <!--
@@ -1059,7 +743,7 @@ de fonction continûment différentiable et de différentielle d'ordre supérieu
 Sous les hypothèses ad hoc, la différentielle de $f$ et $g$ en $x$ 
 est la composée des différentielles de $f$ en $x$ et de $g$ en $y=f(x)$.
 
-### Règle de différentiation en chaîne {#chain-rule}
+### Règle de différentiation en chaîne {.theorem #chain-rule}
 
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
@@ -1528,49 +1212,80 @@ Toutefois, dans cette situation,
 si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
 de relier $f(a+h)$ à $f(a)$ en intégrant les variations infinitésimales 
 de $f$ le long de $[a, a+h]$. 
-La seule notion d'intégrale dont nous avons besoin,
-minimaliste et construite exclusivement au service du calcul différentiel,
-est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton) ;
-dans de ce chapitre, c'est toujours cette intégrale dont nous ferons
-usage implicitement.
 
 ### Théorème fondamental du calcul {.theorem #TFC}
-Si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable et
+Si $f: [a, b] \to \R$ est dérivable et que $f'$ est intégrable alors
 $$
 f(b) - f(a)  = \int_a^b f'(x) \, dx.
 $$
 
-### Démonstration {.proof}
-Cf. [l'annexe consacrée à l'intégrale de Newton](#intégrale-Newton).
+### A propos du terme "intégrable" {.remark}
+Dans ce chapitre, sauf précision contraire, le terme "intégrable" doit être compris 
+comme "intégrable au sens de Lebesgue". Sa définition -- ainsi que la preuve du
+théorème fondamental du calcul -- seront fournies dans le volet calcul intégral 
+de l'enseignement.  
+A ce stade, vous pouvez retenir que si $f'$ est "continue", 
+"continue par morceaux" ou même "intégrable au sens de Riemann", 
+elle est "intégrable" (au sens de Lebesgue) et appliquer le théorème.
 
-### Variation d'une fonction {.theorem}
+\newcommand\mybullet{\mathord{\bullet}}
+
+### Extension au théorème fondamental du calcul ($\mybullet \mybullet\mybullet\mybullet$) {.remark}
+Si l'on adopte au lieu de l'intégrale de Lebesgue l'intégrale encore
+plus générale de Henstock-Kurzweil (cf. calcul intégral), 
+alors toute fonction dérivée est automatiquement 
+intégrable. 
+Le théorème fondamental du calcul est alors valable en toute généralité ; 
+il prend la forme suivante :
+si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable 
+(au sens de Henstock-Kurzweil) et
+$$
+f(b) - f(a)  = \int_a^b f'(x) \, dx.
+$$
+Cette forme avancée du théorème est toutefois rarement nécessaire ; 
+elle est néanmoins utile pour prouver 
+[l'inégalité des accroissements finis](#TAFS) en toute généralité.
+Cette extension est aussi applicable au théorème ci-dessous : 
+si l'on utilise l'intégrale de Henstock-Kurzweil, il sera inutile
+de vérifier que l'application 
+$t \mapsto df(a+th)  \cdot h$ est intégrable pour appliquer le théorème.
+
+### Variation d'une fonction {.proposition #VF}
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
 soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
   $$
   [a, a+h] = \{a + th \; | \; t \in [0,1]\}
   $$
-soit inclus dans $U$. Si $f$ est différentiable en tout point de $[a, a+h]$,
+soit inclus dans $U$. Si $f$ est différentiable en tout point de $[a, a+h]$
+et que l'application $t \in [0,1] \mapsto df(a+th) \cdot h \in \R^m$ 
+est intégrable, alors
 $$
 f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-### Démonstration
-Considérons la fonction $\phi: [0,1] \to \mathbb{R}^n$ définie par
+### Démonstration {.proof}
+L'ensemble $U$ étant ouvert, il existe un $\varepsilon > 0$ tel que
+l'intervalle ouvert $I := \left]-\varepsilon, 1+\varepsilon \right[$ 
+soit inclus dans $U$. 
+On note $\phi$ la fonction $I \to \mathbb{R}^n$ 
+définie par
 $$
 \phi(t) = f(a + th)
 $$
-La fonction $\phi$ est dérivable sur $[0,1]$ comme composée des fonctions 
-différentiables $f$ et $t \mapsto a + th$ ; sa dérivée est donnée par
+La fonction $\phi$ est différentiable -- et donc dérivable -- 
+en tout point de $[0,1]$ [comme composée des fonctions 
+différentiables $f$ et $t \mapsto a + th$](#chain-rule) ; 
+sa dérivée est donnée par
 $$
 \begin{split}
-\phi'(t) &= d\phi(t) \cdot 1 \\
-         &= (df(a+th) \cdot d(t\mapsto a+th)) \cdot 1 \\
-         &= df(a+th) \cdot (d(t\mapsto a+th) \cdot 1) \\
+\phi'(t) &= d\phi(t) \\
+         &= df(a+th) \cdot d(t\mapsto a+th) \\
          &= df(a+th) \cdot (t \mapsto a+th)' \\
          &= df(a+th) \cdot h
 \end{split}
 $$
-Par le théorème fondamental du calcul, on a donc
+Par [le théorème fondamental du calcul](#TFC), comme par hypothèse $\phi'$ 
+est intégrable sur $[0, 1]$, on a donc
 $$
 f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt 
                                   = \int_0^1 df(a+th) \cdot h \, dt.
@@ -1667,9 +1382,9 @@ $$
 $$
 
 ### Démonstration {.proof}
-Considérons la fonction $\phi: t \in [0,1] \mapsto f(a+th)$.
-Nous avons déjà montré dans la démonstration de "[Variation d'une fonction]"
-que cette fonction est dérivable, de dérivée $\phi'(t) = df(a+th) \cdot h$.
+Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
+dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
+cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
 De plus, 
 $$
 \|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
@@ -1680,919 +1395,326 @@ $$
 \leq M \|h\| \times 1 = M \|h\|.
 $$
 
-
-Différentielles d'ordre supérieur
+Annexe -- Algèbre linéaire
 ================================================================================
 
+Préambule
+--------------------------------------------------------------------------------
+
+Les fragments de code de ce document utilisent le langage Python 3.
+La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
+
+    >>> from numpy import *
+
+Ensembles et fonctions
+--------------------------------------------------------------------------------
+
+La notation classique $f: A \to B$ pour désigner une fonction $f$ d'un
+ensemble $A$ dans un ensemble $B$ suggère d'utiliser $A \to B$ 
+pour désigner l'ensemble des fonctions de $A$ dans $B$.
+Avec cette convention, $f: A \to B$ signifie la
+même chose que $f \in A \to B$.
+
+La convention que nous adoptons a vocation à simplifier la manipulation
+de fonctions dont les valeurs sont des fonctions, un schéma très fréquent
+en calcul différentiel.
+Si $f: A \to B$ et $g: B \to C$, la composée des fonctions $f$ et $g$,
+notée $g \circ f$, appartient à $A \to C$ et est définie par
+$$
+(g \circ f) (x) = g(f(x)).
+$$
+Si l'on applique bien $f$ à $x$, puis $g$ au résultat, il est néanmoins
+naturel d'inverser l'ordre d'apparition des fonctions dans la notation $g \circ f$;
+il faut en effet s'adapter à la notation classique (infixe ou polonaise) 
+qui désigne par $f(x)$ l'image de $x$ par $f$. 
+Pour cette même raison, il pourra être utile de
+d'utiliser $B \leftarrow A$ comme une variante de la notation $A \to B$.
+On pourra alors utiliser la règle
+$$
+g: C \leftarrow B, \; f: B \leftarrow A \; \implies \; g \circ f: C \leftarrow A
+$$
+où les notations des ensembles et fonctions $g$, $f$, $A$, $B$ et $C$
+restent dans le même ordre d'apparition et les deux occurrences de 
+l'ensemble intermédiaire $B$ se touchent.
+
+Applications linéaires et calcul matriciel
+--------------------------------------------------------------------------------
+
+### Multiplication scalaire-vecteur
+Pour tout scalaire $\lambda \in \mathbb{R}$ et vecteur $x \in \mathbb{R}^n$,
+on notera $\lambda x$ ou parfois $x \lambda$ la multiplication du vecteur $x$ 
+par le scalaire $\lambda$. Lorsque $\lambda$ est non nul, on
+notera également $x / \lambda$ le vecteur $(1 / \lambda) x$.
+
+Un vecteur de $\mathbb{R}^n$ est représenté dans NumPy par un tableau à une
+dimension :
+
+    >>> x = array([1, 2, 3])
+    >>> x.ndim
+    1
+    >>> shape(x)
+    (3,)
+    >>> size(x)
+    3
+
+La multiplication d'un scalaire et d'un vecteur est désignée par le symbole
+`*`:
+
+    >>> 2 * x
+    array([2, 4, 6])
+
+### Matrices
+
+Nous noterons $\mathbb{R}^{m \times n}$ l'ensemble des matrices à 
+$m$ lignes et $n$ colonnes à coefficients réels. 
+Une matrice telle que
+
+$$
+\left[
+\begin{array}{ccc}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{array}
+\right] \in \mathbb{R}^{2 \times 3}
+$$
+
+sera représentée avec NumPy par un tableau bi-dimensionnel:
+
+    >>> A = array([[1, 2, 3], [4, 5, 6]])
+    >>> A
+    array([[1, 2, 3],
+           [4, 5, 6]])
+    >>> A.ndim
+    2
+    >>> shape(A)
+    (2, 3)
+    >>> size(A)
+    6
+
+### Mise à plat des matrices {.warning #flatten}
+Dans la notation $\mathbb{R}^{m \times n}$, 
+$\times$ est un symbole de séparation, purement syntactique : 
+$\mathbb{R}^{2 \times 3}$ désigne ainsi 
+l'ensemble des matrices à 2 lignes et 3 colonnes à coefficients réels 
+et diffère de $\mathbb{R}^6$ qui
+désigne l'ensemble des $6$-uplets à coefficients réels. 
+
+Ces deux ensembles sont toutefois similaires: pour toute matrice 
+$A \in \mathbb{R}^{m\times n}$, on peut construire un $mn$-uplet en 
+listant tous les coefficients de la matrices en parcourant l'ensemble 
+des lignes de la matrice de haut en bas et chaque ligne de gauche à
+droite; cette façon de faire définit un vecteur de $\mathbb{R}^{mn}$.
+L'opération ainsi définie sera notée $\pi_{m\times n}$ (voire $\pi$
+s'il n'y a pas d'ambiguité).
+Par exemple :
+
+$$
+\pi_{2 \times 3}: 
+\left[
+\begin{array}{ccc}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{array}
+\right] \in \mathbb{R}^{2 \times 3}
+\; \mapsto \;
+(1,2,3,4,5,6) \in \mathbb{R}^6
+$$
+
+Cette opération est bijective ; elle-même ainsi que son inverse sont linéaires.
+$\mathbb{R}^{m \times n}$ et $\mathbb{R}^{m n}$ sont donc isomorphes (en tant
+qu'espace vectoriels), ce que l'on notera :
+
+$$
+\mathbb{R}^{m \times n} \, \cong \, \mathbb{R}^{mn}
+$$
+
+Le passage de la forme matrice à la forme vecteur se fait de la façon suivante
+avec NumPy:
+
+    >>> A
+    array([[1, 2, 3],
+           [4, 5, 6]])
+    >>> a = reshape(A, (6,))
+    >>> a
+    array([1, 2, 3, 4, 5, 6])
+    >>> reshape(a, (2, 3))
+    array([[1, 2, 3],
+           [4, 5, 6]])
+
+### Applications linéaires
+
+Notons
+$$
+\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m
+\; \mbox{ ou } \;
+\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
+$$ 
+l'ensemble des applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
+La raison d'être des matrices $\mathbb{R}^{m \times n}$ est de représenter
+ces applications linéaires.
+
+Si $A$ désigne  une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$,
+on peut la décomposer en $m$ composantes $A_i$, 
+des applications de $\mathbb{R}^n$ dans $\mathbb{R}$ 
+telles que pour tout $x$ dans $\mathbb{R}^n$, on ait
+$A(x) = (A_1(x), A_2(x), \dots, A_m(x))$, ce que l'on note
+simplement
+$$
+A = (A_1, A_2, \dots, A_m).
+$$
+Si l'on désigne maintenant par $e_j$ le $j$-ème vecteur de la base canonique de 
+$\mathbb{R}^n$
+$$
+e_1 = (1, 0, 0, \dots, 0), \; e_2 = (0,1,0,\dots, 0), \; \dots \;, \;
+e_n = (0,0,0,\dots, 1),
+$$
+il est possible d'associer à l'application linéaire 
+$A: \mathbb{R}^n \to \mathbb{R}^m$ la matrice
+$$
+[A] :=
+[A_i(e_j)]_{ij}=
+\left[ 
+\begin{array}{ccccc}
+A_1(e_1) & A_1(e_2) & \cdots & A_1(e_n) \\
+\vdots & \vdots & \vdots & \vdots\\
+A_m(e_1) & A_m(e_2) & \cdots & A_m(e_n)
+\end{array}
+\right] \in \mathbb{R}^{m \times n}.
+$$
+Réciproquement, étant donné une matrice
+$$
+[a_{ij}]_{ij}=
+\left[ 
+\begin{array}{ccccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{array}
+\right] \in \mathbb{R}^{m \times n},
+$$
+il est possible de définir une application linéaire 
+$A: \mathbb{R}^n \to \mathbb{R}^m$ par la relation
+$$
+(A x)_i := \sum_{j} a_{ij} x_j
+$$
+et cette opération est l'inverse de la précédente.
+
+Cette correspondance établit un isomorphisme d'espaces vectoriels entre 
+les applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et 
+les matrices de taille $m \times n$ à coefficients réels :
+$$
+\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
+\, \cong \,
+\mathbb{R}^{m \times n} 
+$$
+
+### Composition d'applications linéaires
+ 
+Si $A$ et $B$ désignent des applications linéaires de 
+$\mathbb{R}^p$ dans $\mathbb{R}^n$ et de $\mathbb{R}^n$ dans $\mathbb{R}^m$ 
+respectivement, la fonction composée $C = B \circ A$ est une application
+linéaire qui vérifie
+  $$
+  C_{ij} = \sum_{k} B_{ik} A_{kj}.
+  $$
+Autrement dit, la composition de fonction linéaires se traduit par la
+multiplication des matrices associées.
+
+Dans la suite on évitera en général l'utilisation du symbole $\circ$ pour
+désigner la composition d'applications linéaires, en lui préférant le
+symbole $\cdot$ ("point"). 
 <!--
-
-Do's and don't {.note}
---------------------------------------------------------------------------------
-
-Ne pas expliciter la correspondance avec les applis $n$-linéaires en général
-(l'isomorphisme de trop). Une notation serait probablement la bienvenue,
-mais la collection des $\cdot h \cdot h \dots$ en $(h, h, \dots)$ peut
-être ambigu (pourrait être lue comme la décomposition d'un vecteur ...).
-Trouver une solution ici. OK, on se contente de multiplier les dots,
-avec convention association à gauche ("greedy")
-
-Ce qui importe:
-
-  - comprendre comment "passer à l'échelle" de la diff à la diff d'ordre 2,
-    qu'il n'y a "rien de nouveau" si l'on a déja compris comment différencier
-    une fonction à valeurs matricielle (/tensorielle).
-
-  - donc dvlper en préambule le calcul diff appliqué aux fcts à valeurs 
-    fonctionnelles/tensorielles. Ne pas faire l'équivalent pour les arguments,
-    cela n'est pas nécessaire pour traiter du calcul différentiel d'ordre
-    supérieur.
-
-  - comprendre comment calculer $d^2f(x)\cdot k \cdot h$ quand on sait
-    qu'il existe sans "monter dans les étages" (trick: différencier
-    $df(x)\cdot h$).
-
-  - comprendre quel terme représente $d^2f(x)\cdot k \cdot h$ en pratique,
-    quelle approximation ce terme fait. (Nota: au passage 
-    c'est crucial pour établir la symétrie !).
-
-  - représentation tensorielle, dérivées partielles. Application au Hessien.
-
-  - Sommes de Taylor (avec o, avec reste intégral)
-
-Nota: peut-être opportun de minimiser le coté diff par les valeurs matricielles.
-Idées serait de caractériser $df$ en vérifiant la différentiabilité de
-$x \mapsto df(x)\cdot h$ pour tout $h$: on ne "monte" pas en rang et
-on peut définit $d^2f(x) \cdot k \cdot h := d(x \mapsto df(x)\cdot h)(x) \cdot k$
-
-Différentielles d'ordre supérieur
---------------------------------------------------------------------------------
-
-### Note {.speaker-note}
-
-La démarche pour présenter les différentielles d'ordre supérieur a été
-simplifié, mais le narratif peut profiter des "échecs" qui mène à notre
-solution finale:
-
-  1. On a envie de définir $d^2f(x)$ comme $d(x \mapsto df(x))(x)$.
-     C'est *exactement* la même démarche que la dérivée, et c'est
-     une démarche légitime que l'on adoptera pour le cadre de la dimension
-     infinie. Seul "problème", l'objet $df(x)$ appartient aux applis
-     linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et à ce stade on ne
-     sait différencier que des fonctions à valeurs dans $\mathbb{R}^p$.
-
-  2. On "patche" la démarche précédente: ok, $df(x)$ est linéaire de
-     $\mathbb{R}^n$ dans $\mathbb{R}^m$, mais c'est isomorphe (via les
-    matrices, plus la "mise à plat") à $\mathbb{R}^p$ pour $p=mn$.
-    Si on note $\pi$ cette correspondance, on peut étudier la diff
-    de $\pi \circ df$ et quand ça existe, le seul pb est que l'objet
-    associé produit des valeurs dans $\mathbb{R}^p$ au lieu de
-    trucs dans $\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m$, 
-    mais c'est pas grave, on peut inverser la transformation, ce qui
-    donne comme définition
-    $$
-    d^2 f(x) = \pi^{-1} \circ d(\pi \circ df)(x).
-    $$
-    c'est-à-dire
-    $$
-    d^2 f(x) \cdot h \cdot k = (\pi^{-1} (d(\pi \circ df)(x) \cdot h)) \cdot k
-    $$
-    (attention ici, "$\cdot$" ou "$\circ$" deviennent dangereux à utiliser
-    sans parenthèse, on a basculé dans du higher-order avec $\pi$; et la
-    convention que je pensais utiliser en remplaçant $\circ$ par
-    $\cdot$ quand l'application est linéaire déconne avec $\pi$ parce
-    qu'il y a des applications non-linéaire "plus bas"; le cadre ou 
-    "$\cdot$" fait le job sans ambiguité serait à restreindre/préciser ...).
-    Bon, voilà pourquoi je crois que même si c'est tentant sur le principe, 
-    il ne faut pas présenter les choses comme ça au final.
-    Mais ça peut faire l'objet d'exercices intéressants.
-
-  3. La version final, hyper simple: on se refuse à différencier un objet
-     fonctionnel, on l'évalue sur une direction / variation de l'argument
-     et là on s'est ramené au cadre usuel, donc on requière la diff et on
-     constate que le résultat est linéaire par rapport à la première 
-     variation choisie, et on en déduit l'"anatomie" de la différentielle
-     d'ordre 2 (c'est donc moins une construction qu'une découverte ...).
-     Au passage, par linéarité, on peut se convaincre facilement que notre
-     définition de la différentielle d'ordre 2 revient à vérifier que 
-     chaque dérivée partielle (d'une fonction différentiable)
-     est différentiable. Donc on vérifie l'existence avec la différentielle,
-     mais on peut utiliser les dérivées partielles pour les calculs
-     intermédiaires.
-
-
-### Note {.design-note}
-
-Notre définition simplifie la vie en dimension finie en se ramenant 
-directement à chaque étape de la façon la plus simple au cadre de la 
-différentielle de fonctions de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
-Mais elle n'est probablement pas adapté au cadre de la dimension
-finie; l'adaptation la plus simple consisterait à écrire l'expression
-qui fait que $df(x) \cdot h$ existe en terme de limite par rapport
-à un terme $k$, mais à requérir en plus que cette limite existe
-uniformément par rapport à l'argument $h$ tant que $h$ reste borné
-(voir par exemple [ici](https://en.wikipedia.org/wiki/Fr%C3%A9chet_derivative#Higher_derivatives)).
-
-A ce stade, le cadre abstrait classique devient probablement préférable,
-car simplificateur, mais
-
-  - un contre-exemple qui montre que notre définition ne "marche pas"
-    en dimension infinie (absence d'équivalence avec la classique)
-    serait intéressant
-
-  - une note / un exercice sur cette définition alternative au cadre
-    abstrait, plus proche de la démarche que nous avons choisi pour 
-    la dimension finie pourrait être intéressant
-
+Le même symbole sera utilisé pour désigner le produit
+entre deux matrices (on évitera dans la mesure du possible de désigner
+le produit de deux matrices par simple juxtaposition des symboles).
 -->
 
-### Différentielle d'ordre 2 {.definition #d2}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
-dans un voisinage d'un point $x$ de $U$. 
-On dira que $f$ est *deux fois différentiable en $x$* 
-si pour tout vecteur $h$ de $\mathbb{R}^n$,
-la fonction $x \mapsto df(x) \cdot h$ est différentiable en $x$.
-La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
-est définie comme l'application linéaire telle que pour tout $h$ 
-dans $\mathbb{R}^n$,
-$$
-d^2 f(x) \cdot h := d(x\mapsto df(x)\cdot h)(x),
-$$
-c'est-à-dire pour tout vecteur $k$ de $\mathbb{R}^n$,
-$$
-d^2f(x) \cdot h \cdot k = d(x\mapsto df(x)\cdot h)(x) \cdot k.
-$$
-
-### Remarques
-
-  - On peut vérifier que le terme $d(x\mapsto df(x)\cdot h)(x)$ dépend 
-    bien linéairement de $h$, ce qui justifie l'assertion que $d^2f(x)$
-    est linéaire et la notation "$\cdot$" lorsqu'elle est appliquée à un
-    argument $h$.
-
-  - Par construction, le terme $d(x\mapsto df(x)\cdot h)(x)$ 
-    est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
-    donc la fonction $d^2f(x)$
-    associe linéairement à un vecteur de $\mathbb{R}^n$ une application
-    linéaire de $\mathbb{R}^n \to \mathbb{R}^m$. Autrement dit,
-    $$
-    d^2f(x) \in (\mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m)),
-    $$
-    ce qui se décline successivement en
-    $$
-    d^2f(x) \cdot h \in (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m),
-    \; \mbox{ et } \;
-    (d^2f(x) \cdot h) \cdot k \in \mathbb{R}^m.
-    $$
-
-  - Pour alléger ces notations, on pourra considérer que dans les notations
-    d'espace fonctionnels, le symbole "$\to$" associe à droite, par exemple:
-    $$
-    A \to B \to C := A \to (B \to C),
-    $$
-    $$    
-    A \to B \to C \to D := A \to (B \to (C \to D)).
-    $$
-    La convention associée -- utilisée dans la définition de la différentielle
-    d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
-    le symbole "$\cdot$" associe à gauche, par exemple:
-    $$
-    L \cdot h \cdot k :=  (L \cdot h) \cdot k,
-    $$
-    $$
-    L \cdot h \cdot k \cdot l := ((L \cdot h) \cdot k) \cdot l.
-    $$
-
-
-### Variation de la différentielle I {.proposition #LVD} 
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
-deux fois différentiable en $x \in U$,
-$$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
-$$
-
-### Interprétation du $o(\|k\|)$ {.remark}
-L'équation ci-dessus s'applique à des fonctions linéaires de $\R^n$
-dans $\R^m$. Elle doit donc être interprétée comme l'existence
-d'une fonction $E$, définie dans un voisinage de $0$ dans $\R^n$, 
-vérifiant
-$$
-E(k) \in \R^n \stackrel{\ell}{\to} \R^m \; \mbox{ et } \;
-\lim_{h \to 0} E(k) = E(0) = 0,
-$$
-telle que
-$$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + E(k) \|k\|.
-$$
-
-### Démonstration {.proof}
-Par [définition de la différentielle d'ordre 2 en $x$](#d2), 
-pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, on a, 
-pour tout vecteur $k$ de $\mathbb{R}^n$,
-$$
-df(x+k) \cdot h = df(x) \cdot h + d^2f(x) \cdot h \cdot k + o(\|k\|),
-$$
-c'est-à-dire qu'il existe pour tout $h$ une fonction $\varepsilon_h$, 
-définie dans un voisinage de $0 \in \mathbb{R}^n$, nulle et continue
-en $0$, telle que
-$$
-df(x+k) \cdot h 
-= 
-df(x) \cdot h + d^2f(x) \cdot h \cdot k + \varepsilon_{h}(k) \|k\|,
-$$
-Pour tout vecteur $k$ non nul, on a
-$$
-\varepsilon_{h}(k) = \frac{1}{\|k\|}\left(df(x+k) \cdot h - df(x) \cdot h - d^2f(x) \cdot h \cdot k \right),
-$$
-le terme $\varepsilon_{h}(k)$ est donc linéaire en $h$ ; 
-notons $E(k)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
-qui est nulle quand $k=0$ et définie dans le cas contraire
-par $E(k) \cdot h = \varepsilon_h (k)$. On a donc pour tout $h$
-$$
-df(x+k) \cdot h 
-= 
-df(x) \cdot h + d^2f(x) \cdot h \cdot k + (E(k)\cdot h) \|k\|,
-$$
-soit 
-$$
-df(x+k)
-= 
-df(x) + (h \mapsto d^2f(x) \cdot h \cdot k) + E(k) \|k\|,
-$$
-Par ailleurs, pour tout couple de 
-vecteurs $h$ et $k$ de $\mathbb{R}^n$, on a
-$$
-\begin{split}
-\|E(k) \cdot h\| &= \left\| E(k) \cdot \left(\sum_i h_i e_i \right) \right\| \\
-&\leq \sum_i \|E(k) \cdot e_i\| |h_i| \\
-&\leq \left(\sum_i \|E(k) \cdot e_i\|\right) \|h\| 
-= \left(\sum_i \|\varepsilon_{e_i}(k)\|\right) \|h\|
-\end{split}
-$$
-donc la norme d'opérateur de $E(k)$ vérifie
-$$
-\|E(k)\| \leq \sum_i \|\varepsilon_{e_i}(k)\| \to 0
-\, \mbox{ quand } k \, \to 0,
-$$
-ce qui prouve le résultat cherché.
-
-### Variation d'ordre $2$
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
-Quand cette expression est définie, on appelle *variation d'ordre 2*
-de $f$ en $x$, associée aux variations $h$ et $k$ de l'argument,
-la grandeur
-$$
-\begin{split}
-\Delta^2 f(x, h, k) &=\Delta(x \mapsto \Delta f(x, h))(x, k) \\
-&= \Delta f(x+k, h) - \Delta f(x, h).
-\end{split}
-$$
-
-### Variation et différentielle d'ordre deux {.theorem #D2d2}
-Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
-$\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
-$$
-\left\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k \right\| \leq \varepsilon (\|h\| + \|k\|)^2.
-$$
-
-### Démonstration  {.proof}
-Considérons des vecteurs $h$ et $k$ tels que $x+h$, $x+k$ et $x+h+k$ soient
-dans le domaine de définition de $f$.
-La différence $e$ entre $\Delta^2 f(x,h, k)$ et $d^2 f(x) \cdot h \cdot k$
-vaut
-$$
-\begin{split}
-e &= (f(x+h+k) - f(x+k)) - (f(x+h) - f(x))) - d^2f(x)\cdot h\cdot k \\
-  &= (f(x+h+k) - f(x+h) - d^2f(x) \cdot h \cdot k) \\
-  &\phantom{=} - (f(x+k) - f(x) - d^2f(x) \cdot 0 \cdot k)
-\end{split}
-$$
-Par conséquent, si l'on définit $g$ par
-$$
-g(u) = f(x+u+k) - f(x+u) - d^2f(x) \cdot u \cdot k,
-$$
-la différence vaut $e = g(h) - g(0)$. 
-Cette différence peut être majorée par [l'inégalité des accroissements finis](#TAF) : 
-$g$ est différentiable sur le segment $[0, h]$ et
-$$
-dg(u) = df(x+u+k) - df(x+u) - (h \mapsto d^2f(x) \cdot h \cdot k). 
-$$
-Comme
-$$
-\begin{split}
-dg(u) &= (df(x+u+k) - df(x) - (h \mapsto d^2f(x) \cdot h \cdot (u+k)) )\\
-      &\phantom{=} - (df(x+u) - df(x) - (h \mapsto d^2f(x) \cdot h \cdot u)),
-\end{split}
-$$
-par le théorème controllant la [variation de la différentielle][Variation de la différentielle I],
-pour $\varepsilon > 0$ quelconque, comme
-$\|u+k\| \leq \|h\| + \|k\|$ et $\|u\| \leq \|h\|$, 
-on peut trouver un $\eta > 0$ tel que si $\|h\| < \eta$ et $\|k\| < \eta,$ 
-alors 
-$$
-\|dg(u)\| \leq \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|.
-$$
-Par conséquent, [le théorème des accroissements finis](#TAF) fournit
-$$
-\|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
-$$
-
-### Symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-deux fois différentiable en un point $x$ de $U$. Pour tout couple
-de vecteur $h$ et $k$ de $\mathbb{R}^n$, on a
-$$
-d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
-$$
-
-### Démonstration {.proof}
-Notons au préalable que
-$$
-\begin{split}
-\Delta^2 f(x, h, k) &= (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)) \\
-&= f(x+h+k) - f(x+h) - f(x+k) + f(x) \\
-&= (f(x+k+h) - f(x+h)) - (f(x+k) - f(x)) \\
-&= \Delta^2 f(x, k, h).
-\end{split}
-$$
-La variation d'ordre $2$ de $f$ en $x$ est donc
-symétrique par rapport à ses arguments $h$ et $k$.
-On peut alors exploiter [la relation entre variation d'ordre $2$ et 
-différentielle d'ordre 2](#D2d2) en notant que
-\begin{multline*}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
-\leq \\
-\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
-\end{multline*}
-On obtient pour tout $\varepsilon > 0$ et quand $h$ et $k$ sont suffisamment petits,
-$$
-\begin{split}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \| 
-\leq 2\varepsilon (\|h\|+\|k\|)^2.
-\end{split}
-$$
-Si $h$ et $k$ sont arbitraires, en substituant $th$ à $h$ et $tk$ à $k$
-pour un $t>0$ suffisamment petit pour que l'inégalité ci-dessus soit valable,
-comme 
-$$
-d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th
-=t^2 \times (d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h)
-$$
-et 
-$$
-2 \varepsilon (\|th\|+\|tk\|)^2 = t^2 \times 2 (\|h\|+\|k\|)^2,
-$$
-on voit que l'inégalité est en fait valable pour des $h$ et $k$ arbitraires.
-On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h = 0.$
-
-### Variation de la différentielle II {.theorem} 
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
-deux fois différentiable en $x \in U$,
-$$
-df(x+k) = df(x) + d^2 f(x) \cdot k + o(\|k\|)
-$$
-
-### Démonstration {.proof}
-Par le [lemme sur la variation de la différentielle](#LVD), on sait que
-$$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
-$$
-La [différentielle d'ordre 2 étant symétrique](#SD2), 
-$$
-d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h,
-$$
-ce qui fournit l'égalité cherchée.
-
-### Dérivées partielles d'ordre 2 {.definition}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Soient $i$ et $j$ deux indices dans $\{1,\dots, n\}$.
-Lorsque la $j$-ème dérivée partielle de $f$ est définie sur $U$ et
-admet en $x$ une $i$-ème dérivée partielle, on l'appelle 
-*dérivée partielle d'ordre 2* de $f$ en $x$ par rapport aux $j$-ème 
-et $i$-ème variables et on la note $\partial^2_{ij} f(x)$:
-$$
-\partial^2_{ij} f(x) := \partial_i (x \mapsto \partial_j f(x))(x).
-$$
-
-### Symétrie des dérivées partielles d'ordre 2 {.proposition #sdp2}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Si $f$ est deux fois différentiable en $x$, alors pour
-toute paire d'indice $i$ et $j$ la dérivée partielle $\partial_{ij} f(x)$
-existe et 
-$$
-\partial_{ij} f(x) = \partial_{ji} f(x) = d^2 f(x) \cdot e_i \cdot e_j.
-$$
-
-### Démonstration {.proof}
-Si $f$ est deux fois différentiable, on a $\partial_j f(x) = d(f(x)) \cdot e_j$,
-puis $\partial^2_{ij} f(x) = d(d(f(x)) \cdot e_j) \cdot e_i$. 
-Par [définition de la différentielle d'ordre 2](#d2),
-$$d^2f(x) \cdot e_j \cdot e_i = d(d(f(x)) \cdot e_j) \cdot e_i,$$
-on en déduit donc que $\partial^2_{ij} f(x) = d^2f(x) \cdot e_j \cdot e_i$.
-Par [symétrie de la différentielle d'ordre 2](#SD2), 
-$\partial^2_{ij} f(x) = \partial^2_{ji} f(x)$.
-
-### Hessienne {.definition}
-Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
-$x \in U$. On appelle *Hessienne* de $f$ et $x$ et l'on note
-$\nabla^2f(x)$ l'application linéaire $\R^n \to \R^n$ telle 
-que pour tout couple de vecteurs $h$ et $k$ de $\R^n$
-$$
-d^2f(x) \cdot h \cdot k = \left<\nabla^2f(x) \cdot h, k \right>.
-$$
-La *matrice hessienne $H_f(x)$* est la matrice associée à cette application
-linéaire ; elle est donnée par 
-$$
-(H_f(x))_{ij} = \partial^2_{ij} f(x).
-$$
-
-### Démonstration (expression de la matrice hessienne) {.proof}
-Elle résulte directement de la définition de $\nabla^2 f(x)$ et des liens entre
-$d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition 
-["Symétrie des dérivées partielles d'ordre 2"](#sdp2).
-
-
-### {.ante}
-La notion de différentielle d'ordre $2$ se généralise sans difficulté
-à un ordre plus élevé, par induction sur l'ordre de la différentielle.
-
-### Différentielle d'ordre $k$ {.definition #dos}
-
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
-à l'ordre $k-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
-*$k$ fois différentiable en $x$* si pour tous vecteurs $h_1, \dots, h_{k-1}$ 
-de $\mathbb{R}^n$, 
-la fonction 
-$$x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1}$$ 
-est différentiable en $x$.
-La *différentielle d'ordre $k$ de $f$ en $x$*, notée $d^k f(x)$ 
-est définie comme l'application linéaire telle que pour tout 
-$h_1, \dots, h_{k-1}$ de $\mathbb{R}^n$,
-$$
-d^k f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x)
-$$
-ou de façon équivalente
-$$
-d^k f(x) \cdot h_1 \cdot h_2 \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
-$$
-
-### Remarque
-On a 
-$$
-d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
-$$
-
-
-### Stratification {.lemma #stratification}
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
-$k$ fois différentiable en un point $x$ de $U$, pour tous vecteurs 
-$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, et tout $p \in \{0,\dots, k\}$,
-on a
-$$
-d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
-=
-d^{k-p} (x \mapsto d^p f(x) \cdot h_1 \cdot \hdots \cdot h_{p})(x) \cdot h_{p+1} \cdot \hdots \cdot h_k.
-$$
-
-### Démonstration {.proof}
-Faisons l'hypothèse que le théorème est satisfait lorsque la fonction est $j$
-fois différentiable pour tout $j \leq k$. C'est de toute évidence le cas
-pour $k=0, 1, 2$ ; montrons qu'il est encore vrai pour $j=k+1$.
-
-Notons tout d'abord que si $p=0$, le résultat est évident ; on supposera
-donc dans la suite que $p \in \{1,\dots,k+1\}$.
-Par [définition des différentielles d'ordre supérieur](#dos),
-$$
-d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
-= d (d^k f(x) \cdot h_1 \cdot \hdots \cdot h_{k}) \cdot h_{k+1}.
-$$
-Or, par l'hypothèse de récurrence à l'ordre $k$,
-$$
-d^k f(x) \cdot h_1 \cdot \hdots \cdot h_{k}
-= d^{k-p} (d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p) \cdot h_{p+1} \cdot \hdots \cdot h_k
-$$
-donc si l'on pose $g(x) = d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p$ et 
-que l'on applique l'hypothèse de récurrence à l'ordre $k+1-p$
-(un nombre compris entre $0$ et $k$), on obtient
-$$
-\begin{split}
-d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
-&=
-d(d^{k-p} g(x) \cdot h_{p+1} \cdot \hdots \cdot h_k)\cdot h_{k+1} \\
-&=
-d^{k+1-p} g(x) \cdot h_{p+1} \cdot \hdots \cdot h_k \cdot h_{k+1}
-\end{split}
-$$
-et donc au final
-$$
-d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
-=
-d^{k+1-p} (d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p) \cdot h_{p+1} \cdot \hdots \cdot h_k \cdot h_{k+1}.
-$$
-L'hypothèse de récurrence est donc prouvée au rang $k+1$, 
-ce qui établit le résultat.
-
-### Symétrie des différentielles d'ordre supérieur {.proposition #sdos}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-$k$ fois différentiable en un point $x$ de $U$. Pour toute permutation
-$\sigma$ de $\{1,\dots, n\}$
-et pour tous vecteurs 
-$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, on a:
-$$
-d^k f(x) \cdot h_{\sigma(1)} \cdot \hdots \cdot h_{\sigma(i)} \cdot \hdots \cdot h_{\sigma(k)}
-=
-d^k f(x) \cdot h_{1} \cdot \hdots \cdot h_{i} \cdot \hdots \cdot h_{k}.
-$$
-
-### Démonstration {.proof}
-Toute permutation peut être décomposée en une succession de transpositions
-$\tau_{ij}$, où $\tau_{ij}(i) = j$, $\tau_{ij}(j)=i$ et $\tau_{ij}(k) = k$
-si $k$ diffère de $i$ et de $j$.
-Il suffit donc d'établir le résultat quand $\sigma$ est une transposition.
-Nous procédons par récurrence sur $k$. Le résultat dans le cas $k=2$ résulte
-de [la symétrie de la différentielle d'ordre 2](#SD2). Supposons désormais 
-le résultat établi au rang $k \geq 2$. 
-En utilisant [la stratification de
-$d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_k \cdot h_{k+1}$
-pour $p=1$ et $p=k$](#stratification), on peut établir le résultat si $i$ et $j$
-appartiennent tous les deux à $\{2,\dots, k+1\}$ ou à $\{1,\dots, k\}$.
-Dans l'unique cas restant, on peut décomposer $\tau_{1(k+1)}$ en
-$\tau_{2(k+1)} \circ \tau_{12} \circ \tau_{2(k+1)}$ et se ramener 
-au cas précédent.
-
-### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
-Les dérivées partielles d'ordre supérieur se définissent par récurrence,
-de manière similaire aux dérivées partielles d'ordre $2$. Pour simplifier
-la notation $\partial^k_{i_1 \dots i_k} f(x)$, on exploite le fait que
-si $f$ est $k$ fois différentiable en $x$,
-$$
-\partial^k_{i_1 \dots i_k} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
-$$
-Compte tenu de la symétrie de $d^k f(x)$, peu importe l'ordre de $i_1$, $\dots$, $i_k$, 
-seul le nombre de fois où un indice apparaît compte. 
-Cette remarque fonde une notation basée sur les multi-indices 
-$\alpha=(\alpha_1, \dots, \alpha_n) \in \N^n$ où $\alpha_i$ détermine le
-nombre de fois où l'indice $i$ apparait. 
-Formellement, le symbole $\partial^{\alpha} f(x)$ désigne $f(x)$ si 
-$\alpha = (0, \dots, 0)$ et dans le cas contraire:
-$$
-\partial^{(\alpha_1, \cdots, \alpha_i + 1, \cdots, \alpha_n)} f(x) = \partial_i (\partial^{\alpha} f)(x).
-$$
-
-
-<!--
-
-Fonctions à valeurs matricielles/tensorielles
---------------------------------------------------------------------------------
-
-+1Objectif: étendre les constructions du calcul différentielle aux fonctions
-$f: U \subset \mathbb{R}^p \to \mathbb{R}^{m \times n}$ (après valeurs
-scalaires et vectorielles, matricielles).
-
-Etape 1: valeurs interprétée indifférement comme une matrice de taille
-$m \times n$ ou comme une application linéaire de $\mathbb{R}^n$ dans
-$\mathbb{R}^m$.
-
-### Examples {#ex-vm .example}
-
-On peut associer à tout vecteur $x$ non nul de $\mathbb{R}^n$ la projection 
-orthogonale sur $x$; c'est une application linéaire $P(x)$ qui a tout vecteur
-$y$ de $\mathbb{R}^n$ associe le vecteur 
-$$
-P(x) \cdot y = \left<\frac{x}{\|x\|}, y\right> \frac{x}{\|x\|}
-= \frac{x}{\|x\|} \cdot \left(\frac{x}{\|x\|}\right)^* \cdot y
-$$
-
-Produit scalaire, exp matrice, etc ?
-
-### Définition
-
-**TODO:** motiver la nature de $dF$ quand $F$ est à valeurs fonctionnelles.
-
-
-Si $F: U \subset \mathbb{R}^n \to \mathbb{R}^{p \times m}$, 
-la différentielle de $F$ au point $x \in \mathbb{R}^n$ 
-est l'application $dF(x)$ telle que $dF(x)\cdot h$ soit 
-la meilleure approximation, linéaire en $h$, de $F(x+h) - F(x)$
-pour de petites valeurs de $h$
-$$
-F(x+h) = F(x) + dF(x) \cdot h + o(h)
-$$
-
-L'application $dF(x)$ est donc une application linéaire de 
-$\mathbb{R}^n$ dans les applications linéaires de 
-$\mathbb{R}^m$ dans $\mathbb{R}^p$:
-$$
-dF(x): \mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^m \stackrel{\ell}{\to} \mathbb{R}^p)
-$$
-On peut associer à cette application un tenseur de rang 3, 
-**TODO, def etc.**
-
-$$
-[dF(x) \cdot e_k \cdot e_j]_i
-$$
-
-**TODO** $\cdot$ désigne la contraction tensorielle, composition, etc.
-Généraliser le cas matriciel, montrer les correspondances avec le cadre
-fonctionnel. Isomorphisme
-
-$$
-\mathbb{R}^{m \times n \times n}
-\; \simeq \;
-\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n \stackrel{\ell}{\leftarrow} \mathbb{R}^n
-$$
-
-**TODO:** régle du produit:
-
-$H(x) = G(x) \cdot F(x)$,
-$$
-dH(x) \cdot h = (dG(x) \cdot h) F(x) + (dF(x) \cdot h) G(x)
-$$
-
-
-
-
-
-
-
-Misc.
---------------------------------------------------------------------------------
-$f: U \subset \mathbb{R}^n \to \mathbb{R}^m$
-
-$df: U \subset \mathbb{R}^n \to (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m)$
-
-$$
-d^2 f: 
-U \subset \mathbb{R}^n 
-\to 
-(\mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m))
-$$
-
-
-
-Tensor stuff
-
-
---------------------------------------------------------------------------------
-
-**TODO:** définition. Il va falloir être malin ...
-
-
-### Théorème 
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est deux fois différentiable
-en $x$, pour tout $h \in \mathbb{R}^n$ et $k \in \mathbb{R}^n$,
-$$
-d^2 f(x) \cdot k \cdot h = d(x \mapsto df(x) \cdot k) \cdot h.
-$$
-
-### Preuve
-**TODO**
-
-### Théorème
-
--->
-
-### Puissance symbolique
-Comme les différentielles d'ordre supérieure sont fréquemment évaluées 
-lorsque les termes $h_1$, $h_2$, $\dots$, sont égaux, on adoptera la notation
-(purement syntaxique) suivante :
-$$
-(\cdot \, h)^k := \overbrace{\cdot h \cdot \hdots \cdot h}^{k \; \mathrm{termes}}.
-$$
-
-### Développement limité d'ordre supérieur {.theorem #dl}
-Soit $f: U \subset \R^n \to \R^m$ une fonction $j$ fois différentiable au point
-$x \in U$. Alors
-$$
-f(x+h) = \sum_{i=0}^{j}  \frac{d^i f(x)}{i!} (\cdot \, h)^i
-+ o(\|h\|^j).
-$$
-
-### Démonstration {.proof}
-Le résultat est clair pour $j=0$. Supposons le vrai à un rang $j-1$ arbitraire
-pour toute fonction $j-1$ fois différentiable
-et supposons que $f$ est $j$ fois différentiable. Formons le reste 
-d'ordre $j$ associé à $f$:
-$$
-r(h) = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} (\cdot \, h)^i.
-$$
-Il nous faut montrer que $r(h)$ est un $o(\|h\|^j)$, ce qui 
-nous allons accomplir en établissant que $\|dr(h)\| = o(\|h\|^{j-1})$.
-En effet, si $dr(h) = E(h) \|h\|^{j-1}$ où l'application linéaire $E$
-est un $o(1)$, alors pour tout $\varepsilon > 0$ et $h$ assez proche de $0$ 
-on a $\|E(h)\| \leq \varepsilon$ et donc par [le théorème des accroissements
-finis](#TAF),
-$$
-\|r(h)\| = \|r(h) - r(0)\| \leq \varepsilon \|h\|^{j-1} \times \|h\|
-= \varepsilon \|h\|^j,
-$$
-ce qui établit que $r(h) = o(\|h\|^j)$.
-
-Etablissons donc que $r(h)$ est un $o(\|h\|^j)$.
-Les termes $d^i f(x)\cdot h_1 \cdot \hdots \cdot h_i$ 
-sont linéaires par rapport à chacun des $h_j$, donc pour tout vecteur 
-$k$, compte tenu de la symétrie de $d^i f(x)$,
-$$
-d^i f(x) (\cdot \, (h+k))^i
-= 
-d^i f(x) (\cdot \, h)^i
-+ i d^i f(x) (\cdot \, h)^{i-1} \cdot k
-+ o(\|k\|).
-$$
-La différentielle de 
-$h \mapsto {d^i f(x)} (\cdot \, h)^i$
-vaut donc $id^i f(x) (\cdot \, h)^{i-1}$ et
-$$
-d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k - 
-d^2f(x) \cdot h\cdot k - \dots -
-\frac{d^i f(x)}{(i-1)!} (\cdot \, h)^{i-1} \cdot k.
-$$
-Par [le lemme de stratification](#stratification) et 
-[la symétrie des différentielles d'ordre supérieur](#sdos), on obtient 
-\begin{multline*}
-d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k  \\ 
-- d(x \mapsto df(x) \cdot k)(x) \cdot h - \dots -
-\frac{d^{i-1} (x \mapsto df(x) \cdot k)(x)}{(i-1)!} (\cdot \, h)^{i-1}.
-\end{multline*}
-soit en posant $\phi(x) = df(x) \cdot k$,
-$$
-d r(h) \cdot k = \phi(x+h) - \phi(x) - 
-d \phi(x) \cdot h - \dots -
-\frac{d^{i-1} \phi(x)}{(i-1)!} (\cdot h)^{i-1}.
-$$
-L'hypothèse de récurrence nous garantit donc que 
-$d r(h) \cdot k = o(\|h\|^{j-1})$ à $k$ fixé, ce qui, 
-combiné avec la linéarité de $d r(h)$, fournit
-$\|dr(h)\| = o(\|h\|^{j-1})$.
-
-
-
-### Développement de Taylor avec reste intégral I {#DTRI-I}
-Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
-$h \in \left[0, +\infty\right[$.
-Si $f$ est $j+1$ fois dérivable sur $[a,a+h]$,
-$$
-f(a+h)  = \sum_{i=0}^n \frac{f^{(i)}(a)}{i!} h^i + \int_a^{a+h} \frac{f^{(j+1)}(t)}{j!} (a+h-t)^j \, dt.
-$$
-
-### Démonstration {.proof}
-A l'ordre $j=0$, la relation à prouver est
-$$
-f(a+h) = f(a) + \int_a^{a+h} f'(t) \, dt
-$$
-qui n'est autre que [le théorème fondamental du calcul](#TFC).
-Si l'on suppose la relation vérifiée à l'ordre $j$, et $f$ $j+2$ fois dérivable,
-par [intégration par parties](#IPP), on obtient
-\begin{multline*}
-\int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
-= \\
-\left[ f^{(j+1)}(t) \times \left( -\frac{(a+h-t)^{j+1}}{(j+1)!} \right) \right]_a^{a+h} \\
-- 
-\int_a^{a+h} f^{(j+2)}(t) \left( -\frac{(a+h-t)^{j+1}}{(j+1)!} \right) \, dt,
-\end{multline*}
-soit 
-\begin{multline*}
-\int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
-= \\
-f^{(j+1)}(a) \times \frac{h^{j+1}}{(j+1)!}
-+ 
-\int_a^{a+h} f^{(j+2)}(t) \frac{(a+h-t)^{j+1}}{(j+1)!} \, dt,
-\end{multline*}
-ce qui achève la preuve par récurrence.
-
-### Développement de Taylor avec reste intégral II {#DTRI-II}
-Si $f: U \subset \R^n \to \R^m$ est $j+1$ fois différentiable et $[a, a+h] \subset U$,
-$$
-f(a+h)  = \sum_{i=0}^{j} \frac{df^{(i)}(a)}{i!} (\cdot \, h)^i
-+ \int_0^{1} \frac{df^{(j+1)}(a+th)}{j!} (\cdot \, h)^{j+1} (1-t)^j\, dt.
-$$
-
-### Démonstration {.proof}
-La démonstration découle directement du [développement de 
-Taylor avec reste intégral dans le cas d'une fonction d'une variable réelle](#DTRI-I),
-appliqué à la fonction $\phi: t \in [0, 1] \mapsto f(a+th) \in \R^m$.
-Il nous suffit de montrer que $\phi$ est $j+1$ fois différentiable 
-et que pour tout entier $i$ inférieur ou égal à $j+1$,
-$\phi^{(i)}(t) = df^{(i)}(a+th) (\cdot \, h)^i$. 
-
-Cette relation est évidemment satisfaite pour 
-$i=0$. Supposons qu'elle soit vérifiée au rang $i \leq j$. 
-La fonction $f$ étant $i+1$ fois différentiable, la fonction
-$g:x \in U \mapsto df^{(i)}(x) (\cdot \, h)^i$ est différentiable, et
-$$
-dg(x) \cdot h = df^{(i+1)}(x) (\cdot \, h)^{i+1}.
-$$
-Par dérivation en chaîne, la fonction 
-$t \mapsto df^{(i)}(a+th) (\cdot \, h)^i$
-est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
-$df^{(i+1)}(a+th) (\cdot \, h)^{i+1}.$
-
-
-Annexe -- Intégrale de Newton {#intégrale-Newton}
-================================================================================
-
-### Intégrale de Newton {.definition}
-Soit $f:[a, b] \to \mathbb{R}^m$. On dit que $f$ 
-est *intégrable au sens de Newton* si elle admet une primitive 
-$F: [a, b] \to \mathbb{R}^m$. L'intégrale de $f$ entre $a$ et $b$ est
-alors définie par
-$$
-\int_a^b f(x) \, dx = F(b) - F(a).
-$$
-La primitive $F$ de $f$ quand elle existe étant déterminée à une constante près,
-cette définition est non-ambiguë.
-
-### {.remark}
-Une autre façon de voir les choses : l'intégrale de Newton est définie de telle
-sorte que [le théorème fondamental du calcul](#TFC) soit trivialement satisfait, 
-en toute généralité.
-Pour d'autres intégrales, comme l'intégrale de Riemann ou l'intégrale
-de Lebesgue, il sera nécessaire de faire des hypothèses supplémentaires
-sur la fonction $f'$ (par exemple, $f'$ continue) pour que ce résultat 
-soit valable. L'intégrale de Henstock-Kurzweil, qui sera exposée dans
-le cours de calcul intégral, vérifie bien le théorème fondamental du
-calcul en toute généralité : elle étend donc l'intégrale de Newton
-(et celle de Riemann, ainsi que celle de Lebesgue).
-
-### {.ante}
-L'intégrale de Newton est un outil assez primitif[^smjm] et difficile 
-à exploiter ; elle vérifie tout de même quelques propriétés bien utiles.
-
-[^smjm]: sans mauvais jeu de mots ...
-
-### Linéarité {.proposition}
-Soit $f:[a, b] \to \mathbb{R}^m$, $g:[a, b] \to \mathbb{R}^m$, et 
-$\lambda$, $\mu$ deux constantes réelles. Si $f$ et $g$ sont intégrables
-au sens de Newton, $\lambda f + \mu g$ également et
-$$
-\int_a^b \lambda f(x) + \mu g(x) \, dx
-=
-\lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
-$$
-
-### Démonstration {.proof}
-Par hypothèse, $f$ a une primitive $F$, $g$ a une primitive $G$,
-$$
-\int_a^b f(x) \, dx = F(b) - F(a)
-\; \mbox{ et } \; 
-\int_a^b g(x) \, dx = G(b) - G(a).
-$$
-La fonction $\lambda F + \mu G$ est une primitive de $\lambda f + \mu g$
-et donc
-$$
-\begin{split}
-\int_a^b \lambda f(x) + \mu g(x) \, dx
-&=
-(\lambda F(b) + \mu G(b)) - (\lambda F(a) + \mu G(a))\\
-&=
-\lambda (F(b) - F(a)) + \mu (G(b) - G(a)) \\
-&=
-\lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
-\end{split}
-$$
-
-### Majoration {.theorem #ML-lemma}
-Si $f:[a, b] \to \mathbb{R}$ est une fonction intégrable au sens de Newton 
-telle que $|f| \leq M,$
-$$
-\left| \int_a^b f(x) \, dx \right| \leq M (b-a).
-$$
-
-### Démonstration {.proof}
-La fonction $g: x \in [a, b] \mapsto f(x) - M$ est intégrable au sens de Newton
-et négative. Si $G$ est une primitive de $g$, elle est donc décroissante.
-Par conséquent,
-$$
-\int_a^b (f(x) - M) \, dx = \int_a^b f(x) \, dx - M(b-a) = G(b) - G(0) \leq 0.
-$$
-On peut de même montrer en intégrant la fonction $x \in [a, b] \to f(x) + M$ 
-que 
-$$
-\int_a^b f(x) \, dx + M(b-a) \geq 0,
-$$
-ce qui fournit le résultat cherché.
-
-### Intégration par parties {.theorem #IPP}
-Soit $f:[a, b] \to \mathbb{R}$ et $g:[a, b] \to \mathbb{R}$ deux fonctions
-dérivables. Si la fonction $f g'$ est intégrable au sens de Newton, 
-la fonction $f' g$ également et
-$$
-\int_a^b f'(x) g(x) \, dx = (f(b) g(b) - f(a) g(a)) -\int_a^b f(x) g'(x) \, dx.
-$$
-
-### Démonstration {.proof}
-Comme $(fg)' = f'g + fg'$, on a $f'g = (fg)' - fg'$. 
-Or, $(fg)'$ est intégrable au sens de Newton ($fg$ est une de ses primitives), 
-$fg'$ est intégrable au sens de Newton par hypothèse, 
-donc $f'g$ est intégrable comme combinaison linéaire de fonctions intégrables. 
-De plus, 
-$$
-\begin{split}
-\int_a^b f'(x) g(x) \,dx 
-&= 
-\int_a^b (fg)'(x) \, dx - \int_a^b f(x) g'(x) \, dx \\
-&= (f(b) g(b) - f(a) g(a)) - \int_a^b f(x) g'(x) \, dx.
-\end{split}
-$$
+La méthode `dot` des tableaux NumPy permet de calculer ce produit matriciel :
+
+    >>> A = array([[1, 2, 3], [4, 5, 6]])
+    >>> B = array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    >>> A.dot(B)
+    array([[1, 2, 3],
+           [4, 5, 6]])
+
+### Adjoint d'un opérateur {.definition}
+Lorsque $A: \R^n \to \R^m$ est un opérateur linéaire, on peut définir de
+façon unique l'opérateur *adjoint* $A^* : \R^m \to \R^n$ comme l'unique
+opérateur tel que pour tout $x \in \R^n$ et tout $y \in \R^m$, on ait
+$$
+\left<y, A \cdot x \right> = \left<A^* \cdot y, x \right>.
+$$
+La matrice représentant $A^*$ est la transposée de la matrice représentant $A$ :
+
+    >>> A
+    array([[1, 2, 3],
+           [4, 5, 6]])
+    >>> transpose(A)
+    array([[1, 4],
+           [2, 5],
+           [3, 6]])
+
+
+### Vecteurs colonnes et vecteur lignes
+Dans le cadre du calcul matriciel, on associe souvent à un vecteur 
+$x=(x_1, \dots, x_n)$ de $\mathbb{R}^n$ le vecteur colonne
+$$
+\left[ 
+\begin{array}{c}
+x_1 \\
+\vdots \\
+x_n
+\end{array}
+\right] \in \mathbb{R}^{n \times 1}.
+$$
+Dans cette terminologie, un vecteur colonne n'est pas, 
+malgré son nom, un vecteur de $\mathbb{R}^n$, mais bien 
+une matrice de taille $n \times 1$. 
+Formellement, on a associé à $x$
+une matrice
+$X \in \mathbb{R}^{n\times 1}$, telle que $X_{i1} = x_i$.
+Le produit entre une matrice et un vecteur colonne de taille compatible
+n'est rien d'autre qu'un produit matriciel classique. 
+
+Le vecteur $x$ étant associé à une matrice, on peut se demander quel
+opérateur linéaire est associé à cette matrice. La réponse est simple:
+il s'agit de l'application
+$$
+\lambda \in \R \mapsto \lambda x \in \R^n.
+$$
+Identifier un vecteur et son opérateur linéaire de $\R \to \R^n$
+permet par exemple de disposer "gratuitement" de la définition 
+$x^*$ (l'adjoint de l'opérateur associé à $x$) : il s'agit
+de l'application linéaire de $\R^n$ dans $\R$ dont la matrice
+est la transposée du vecteur colonne associé à $x$, autrement dit,
+la représentation de $x$ comme vecteur ligne.
+
+L'intérêt de la représentation des vecteurs comme vecteurs colonnes : 
+si $A$ est une application linéaire de $\mathbb{R}^n$ dans
+$\mathbb{R}^m$ et $x$ un vecteur de $\mathbb{R}^n$, le vecteur
+image $y=A \cdot x \in \mathbb{R}^m$ de $x$ par $A$ est représenté par 
+le vecteur colonne qui est le produit entre 
+la représentation de $A$ comme matrice et la représentation de
+$x$ comme vecteur colonne.
+
+Concrêtement, NumPy ne nécessite pas qu'un vecteur soit d'abord 
+transformé en matrice pour réaliser un produit matrice-vecteur.
+La méthode `dot` des tableaux peut être utilisée ici aussi 
+pour réaliser cette opération:
+
+    >>> A = array([[1, 2, 3], [4, 5, 6]])
+    >>> x = array([7, 8, 9])
+    >>> A.dot(x)
+    array([ 50, 122])
+
+Le produit matriciel étant associatif, tant que l'on manipule des matrices
+et des vecteurs, il n'y a pas lieu de préciser si $A \cdot B \cdot C$ 
+désigne $(A \cdot B) \cdot C$ (association à gauche) ou $A \cdot (B \cdot C)$
+(association à droite).
+Comme le produit matrice-vecteur est un produit matriciel classique,
+quand $x$ est un vecteur, 
+$A \cdot B \cdot x$ désigne indifféremment $(A \cdot B) \cdot x$ ou
+$A \cdot (B \cdot x)$.
 
 Exercices
 ================================================================================
@@ -2710,8 +1832,8 @@ Robot manipulateur {.question #rm}
 --------------------------------------------------------------------------------
 
 Les coordonnées cartésiennes $x$ et $y$ de l'effecteur final 
-d'un robot dans le plan, composé de deux corps rigides de longueur
-$\ell_1$ et $\ell_2$ et d'articulation rotoïdes sont données
+d'un robot dans le plan, composé de deux barres rigides de longueur
+$\ell_1$ et $\ell_2$ et d'articulations rotoïdes sont données
 par
 $$
 \left|
@@ -2723,9 +1845,14 @@ y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
 $$
 où $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
 
+![$\ell_1 = 3$, $\ell_2 = 2$, $\theta_1 = \pi/4$, $\theta_2 = - \pi/4$.](images/robot.tex){#robot}
+
 Montrer que l'application 
 $f: (\theta_1, \theta_2) \in \R^2 \mapsto (x, y) \in \R^2$ 
 est différentiable et déterminer sa matrice jacobienne.
+
+**TODO.** Variation des angles, en déduire déplacement max de l'effecteur
+final.
 
 Différentiation matricielle
 --------------------------------------------------------------------------------
