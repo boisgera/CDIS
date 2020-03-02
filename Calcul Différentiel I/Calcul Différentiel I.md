@@ -290,7 +290,7 @@ $$
 \nabla f(x) := J_f(x)^*.
 $$
 
-### Petit o de Landau {.definition}
+### Petit o de Landau {.definition .three}
 La notation $o(\|h\|^k)$, 
 où $h \in \mathbb{R}^n$ et $k \in \mathbb{N}$,
 désigne une expression de la forme
@@ -328,11 +328,6 @@ Si $f$ est différentiable en tout point $x$ de $U$ on dit que $f$ est
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 On dit que $f$ est *continûment différentiable*
-si l'application 
-$$
-x \in U \mapsto J_f(x) \in \R^{m\times n}
-$$
-est définie et continue en tout point de $U$ ou, alternativement, 
 si pour tout $i \in \{1,\dots, m\}$
 et $j \in \{1,\dots, n\}$, l'application dérivée partielle
 $$
