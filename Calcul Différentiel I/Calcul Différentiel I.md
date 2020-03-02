@@ -164,11 +164,15 @@ TODO
 
 Changelog :
 
-  -
+  - Supression intégrale de Newton
+
+  - Forme classique du théorème fondamental du calcul (avec hypothèse
+    d'intégrabilité de $f'$).
 
 TODO :
 
-  - **Supression annexe intégrale de Newton. Réviser résultat Théo fond. du
+  - **Supression annexe intégrale de Newton. 
+    Réviser résultat Théo fondamental du
     calcul et variation d'une fonction pour se limiter à des fonctions 
     "intégrables".** Préciser éventuellement dans une remarque (ou pas)
     que les résultats sont vrais sans hypothèse supplémentaire.
@@ -180,7 +184,6 @@ TODO :
     accroissements finis et uniquement là ; la réference à "TFC vrai pour HK"
     pourrait même être locale et donc se limiter à cette preuve pour ne pas 
     compliquer le texte. A voir ...
-
     Bref, propager les conséquences de ce changement.
 
   - **Atténuer différence applis lin / matrices.** Dans les notations, etc.
@@ -229,6 +232,166 @@ TODO :
 
 
 
+\newpage
+
+Dérivées partielles et matrice jacobienne
+================================================================================
+
+### Dérivées partielles {.definition .one}
+Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
+$x=(x_1, \cdots, x_n) \in U$. Lorsque la $i$-ème fonction partielle de $f$
+$$
+y_i \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)
+$$
+est dérivable en $y_i = x_i$, on appelle $i$-ème *dérivée partielle
+de $f$ en $x$*
+et on note $\partial_i f(x) \in \mathbb{R}^m$ sa dérivée.
+$$
+\partial_i f(x) := \left(y_i \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)\right)'(x_i)
+$$
+Alternativement, quand le second membre existe,
+$$
+\begin{split}
+\partial_i f(x)
+&= \lim_{t \to 0} \frac{f(x + t e_i) - f(x)}{t} \\
+&= \lim_{t \to 0} \frac{f(x_1, \dots, x_i + t, \dots, x_n) - f(x_1, \dots, x_n)}{t}. 
+\end{split}
+$$
+
+### Matrice jacobienne {.definition .one}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$, 
+c'est-à-dire telles que
+$f(x) = (f_1(x), \dots, f_m(x)).$
+Si toutes les dérivées partielles des fonctions $f_i$ existent en $x$,
+on définit la *matrice jacobienne de $f$ en $x$*, notée $J_f(x)$, comme
+la matrice de $\R^{m \times n}$ telle que
+$$
+[J_f(x)]_{ij} = \partial_{j} f_i(x),
+$$
+c'est-à-dire
+$$
+J_f(x) = \left[
+\begin{array}{cccc}
+\partial_1 f_1 (x) & \partial_2 f_1 (x) & \cdots & \partial_n f_1 (x) \\
+\partial_1 f_2 (x) & \partial_2 f_2 (x) & \cdots & \partial_n f_2 (x) \\
+\vdots & \vdots & \vdots & \vdots \\
+\partial_1 f_m (x) & \partial_2 f_m (x) & \cdots & \partial_n f_m (x) \\
+\end{array}
+\right]
+$$
+
+### Gradient {.definition .one}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
+$x$ un point de $U$. Si toutes les dérivées partielles de $f$ existent en $x$,
+on appelle *gradient de $f$ en $x$* et l'on note $\nabla f(x)$ le vecteur
+de $\R^n$ défini comme la transposée de la matrice jacobienne de $f$ en $x$ :
+$$
+\nabla f(x) := J_f(x)^*.
+$$
+
+### Petit o de Landau {.definition}
+La notation $o(\|h\|^k)$, 
+où $h \in \mathbb{R}^n$ et $k \in \mathbb{N}$,
+désigne une expression de la forme
+$$
+o(\|h\|^k) := \varepsilon(h) \|h\|^k
+$$
+où $\varepsilon$ est une fonction définie dans un voisinage de $h=0$ 
+et telle que 
+$$
+\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
+$$
+
+### Différentiabilité {.definition .three}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
+On dit que $f$ est *différentiable en $x$* si 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + o(\|h\|).
+$$
+On note alors $df(x)$ l'application linéaire associée 
+à la matrice jacobienne :
+$$
+df(x): \R^n \to \R^m, \; df(x) (h) = J_f(x) \cdot h,
+$$
+voire la matrice jacobienne elle-même, ce qui permet d'écrire
+$$
+f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
+$$
+Si $f$ est différentiable en tout point $x$ de $U$ on dit que $f$ est
+*différentiable sur $U$*.
+
+
+
+### Continue différentiabilité {.definition .two}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
+On dit que $f$ est *continûment différentiable*
+si l'application 
+$$
+x \in U \mapsto J_f(x) \in \R^{m\times n}
+$$
+est définie et continue en tout point de $U$ ou, alternativement, 
+si pour tout $i \in \{1,\dots, m\}$
+et $j \in \{1,\dots, n\}$, l'application dérivée partielle
+$$
+x \in U \mapsto \partial_j f_i(x) \in \R
+$$
+est définie et continue en tout point de $U$.
+
+### Continue différentiabilité implique différentiabilité {.proposition .two}
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
+Si $f$ est continûment différentiable sur $U$, $f$ est différentiable sur $U$.
+
+### Démonstration {.proof} 
+**TODO.** adapter/reprendre preuve.
+Soit $f: U \subset \R^n \to \R$ une fonction continûment différentiable
+Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
+$r$ soit dans $U$ ; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
+La variation de $f$ entre $a$ et $a+h$ satisfait
+$$
+f(a+h) - f(a) = \sum_{i=1}^n f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)). 
+$$
+Or, par [le théorème fondamental du calcul](#TFC), 
+comme pour tout $i$ la fonction
+$$t \in [0,1] \mapsto f(a+(h_1, \dots, th_i, 0, \dots))$$
+est dérivable de dérivée
+$\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) h_i$, on a
+\begin{multline*}
+f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)) = \\
+h_i \int_0^1 \partial_i f(a+(h_1, \dots, th_i, 0, \dots)) \, dt.
+\end{multline*}
+Par ailleurs, comme
+$$
+\partial_i f(a) h_i
+=
+h_i \int_0^1 \partial_i f(a) \, dt,
+$$
+on a 
+\begin{multline*}
+f(a+h) - f(a) - \sum_i \partial_i f(a) h_i = \\
+\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) - \partial_i f(a) \right] \, dt. 
+\end{multline*}
+Par continuité des dérivées partielles en $a$, si $r$ est choisi de telle sorte
+que $|\partial_i f(b) - \partial_i f(a)| \leq \varepsilon / n$ 
+quand $|b-a| \leq r$, alors l'inégalité triangulaire et 
+[la majoration des intégrales](#ML-lemma) ci-dessus
+conduisent à
+$$
+\left|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right|
+\leq
+\sum_{i=1}^n |h_i| {\varepsilon}/{n}
+\leq \varepsilon \|h\|.
+$$
+La fonction $f$ est donc différentiable en $a$, de différentielle
+$h \mapsto \sum_i \partial_i f(a) h_i$. La matrice (jacobienne) 
+représentant $df(x)$ ayant pour coefficients les dérivées partielles
+de $f$ en $x$, elle est une fonction continue de $x$, comme $df(x)$.
+
+La preuve dans le cas d'une fonction à valeurs vectorielles se déduit 
+directement du résultat que nous venons de démontrer dans le cas 
+des fonctions scalaires. **TODO.** développer
 
 TODO -- Notation de Landau  ; retarder au point d'usage
 --------------------------------------------------------------------------------
