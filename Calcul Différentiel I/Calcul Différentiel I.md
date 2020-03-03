@@ -320,7 +320,7 @@ $$
 f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
 $$
 Si $f$ est différentiable en tout point $x$ de $U$ on dit que $f$ est
-*différentiable sur $U$*.
+*différentiable (sur $U$)*.
 
 
 
