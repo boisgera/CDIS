@@ -238,14 +238,43 @@ TODO :
 \newpage
 -->
 
-### Préambule
+### Conventions
 
-**TODO.** 
-$\|\cdot\| = \|\cdot\|_2$ ou 
-$\|\cdot\|_{22}$ sauf mention
-contraire, identification matrices et applis lin (cf annexe),
-notation $AB$, $\cdot$, etc.
+Un vecteur $x \in \R^n$
+sera implicitement identifié, dans le contexte d'un calcul matriciel, 
+au vecteur colonne
+$$
+\left[ \begin{array}{c}
+x_1 \\
+\vdots \\
+x_n
+\end{array}
+\right] \in \R^{n \times 1}.
+$$
+Une application linéaire $A: \R^m \to \R^n$, sera quant à elle
+implicitement identifiée avec la matrice à $m$ lignes et $n$ colonnes
+représentant l'application linéaire dans les bases canoniques de 
+$\R^m$ et $\R^n$
+$$
+\left[ 
+\begin{array}{ccccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{array}
+\right] \in \mathbb{R}^{m \times n}.
+$$
 
+Dans ce document, nous utiliserons le point "$\cdot$" pour 
+désigner le produit entre matrices. Les identifications que nous venons
+d'exposer nous incitent donc à noter $A \cdot x$ l'image du vecteur $x$ 
+par l'application linéaire $A$ et $A \cdot B$ la composition des 
+applications linéaires $B$ par $A$. 
+
+Sauf mention contraire, $\|x\|$ désignera
+la norme euclidienne $\|x\|_2$ de $x$ dans $\R^n$ ;  
+$\|A\|$ désignera la norme d'opérateur $\|A\|_{22}$ de $A$, 
+induite par les normes euclidiennes sur $\R^m$ et sur $\R^n$.
 
 Matrice jacobienne et différentielle
 ================================================================================
@@ -476,6 +505,14 @@ $$
 $$
 La fonction $f$ est donc différentiable en $x$.
 
+### Fonction quadratique {.question #fq .exercise}
+Soit $A \in \R^{n \times n}$. En utilisant le résultat ci-dessus, 
+montrer que la fonction 
+$$
+f : x \in \R^n \mapsto x^{\top} \cdot A \cdot x
+$$
+est différentiable et déterminer l'application $df(x)$.
+
 Calcul Différentiel
 ================================================================================
 
@@ -545,7 +582,7 @@ $$
 le résultat est donc acquis.
 
 
-### Simplification des notations
+### Notations compactes
 
 L'expression $df(x) \cdot h$ dépend de trois éléments : la fonction $f$,
 le point de référence $x$ et la variation de l'argument $h$. Cette notation
@@ -2454,6 +2491,16 @@ $$
 \partial_j f_i(x) = \lim_{t \to 0} \frac{f_i(x + t e_j) - f_i(x)}{t} = A_{ij}.
 $$
 La matrice jacobienne $J_f(x)$ de $f$ en $x$ existe donc et est égale à $A$.
+
+### TODO -- Fonction quadratique {#answer-fq .answer}
+Comme
+$$
+f(x) = x^T \cdot A \cdot x = \sum_{i=1}^{n} \sum_{k=1}^n x_i A_{ik} x_k,
+$$
+pour tout $j \in \{1,\dots, n\}$ on a ... **TODO**
+
+
+
 
 <!--
 Vecteurs, vecteurs colonnes, vecteurs lignes
