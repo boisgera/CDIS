@@ -441,9 +441,9 @@ h_i \int_0^1 \partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) \, dt.
 Par ailleurs, comme
 $$
 J_f(x) \cdot h =
-\sum_i \partial_i f(x) h_i
+\sum_{i=1}^n \partial_i f(x) h_i
 =
-\sum_i h_i \int_0^1 \partial_i f(x) \, dt,
+\sum_{i=1}^n h_i \int_0^1 \partial_i f(x) \, dt,
 $$
 on a 
 \begin{multline*}
