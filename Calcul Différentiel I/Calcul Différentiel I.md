@@ -159,6 +159,7 @@ Donc un volet à rajouter ici ?
 
 -->
 
+<!--
 TODO
 ================================================================================
 
@@ -235,6 +236,16 @@ TODO :
 
 
 \newpage
+-->
+
+### Préambule
+
+**TODO.** 
+$\|\cdot\| = \|\cdot\|_2$ ou 
+$\|\cdot\|_{22}$ sauf mention
+contraire, identification matrices et applis lin (cf annexe),
+notation $AB$, $\cdot$, etc.
+
 
 Matrice jacobienne et différentielle
 ================================================================================
@@ -289,11 +300,9 @@ $x$ un point de $U$. Si toutes les dérivées partielles de $f$ existent en $x$,
 on appelle *gradient de $f$ en $x$* et l'on note $\nabla f(x)$ le vecteur
 de $\R^n$ défini comme la transposée de la matrice jacobienne de $f$ en $x$ :
 $$
-\nabla f(x) := J_f(x)^*.
+\nabla f(x) := J_f(x)^{\top}.
 $$
 
-**TODO.** Considérer de plus près $\|\cdot\|$ ou $\|\cdot\|_2$. Convention
-$\|\cdot\| = \|\cdot\|_2$ sauf mention contraire ?
 
 <!--
 ### Petit o de Landau {.definition .three}
@@ -458,21 +467,413 @@ fournit
 \left\|\int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt \right\|_2 \leq \\
 \int_0^1 \left\|\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right\|_2 \, dt \leq \varepsilon/n
 \end{multline*}
-et donc, par inégalité triangulaire, comme $|h_i| \leq \|h\|_2$,
+et donc, toujours par inégalité triangulaire, comme $|h_i| \leq \|h\|_2$,
 $$
-\left\|f(x+h) - f(x) - \sum_i \partial_i f(x) h_i \right\|_2
+\left\|f(x+h) - f(x) - \sum_{i=1}^n \partial_i f(x) h_i \right\|_2
 \leq
 \sum_{i=1}^n |h_i| {\varepsilon}/{n}
 \leq \varepsilon \|h\|_2.
 $$
-La fonction $f$ est donc différentiable en $x$, de différentielle
-$h \mapsto \sum_i \partial_i f(x) h_i$. La matrice (jacobienne) 
-représentant $df(x)$ ayant pour coefficients les dérivées partielles
-de $f$ en $x$, elle est une fonction continue de $x$, comme $df(x)$.
+La fonction $f$ est donc différentiable en $x$.
 
-La preuve dans le cas d'une fonction à valeurs vectorielles se déduit 
-directement du résultat que nous venons de démontrer dans le cas 
-des fonctions scalaires. **TODO.** développer
+Calcul Différentiel
+================================================================================
+
+### Règle de différentiation en chaîne {.theorem #chain-rule .two}
+Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
+$g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
+sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
+Si $f$ est différentiable en $x \in U$ et $g$ est différentiable en $f(x) \in V$,
+alors la composée $g \circ f$ est différentiable en $x$ et
+$$
+d(g \circ f)(x) = dg(y) \cdot df(x) \; \mbox{ où } \; y = f(x).
+$$
+
+### Démonstration {.proof}
+L'objectif de la preuve est de montrer que
+$$
+g(f(x+h)) - g(f(x)) =  (dg(f(x)) \cdot df(x)) \cdot h + o(\|h\|).
+$$
+La fonction $g$ étant différentiable en $f(x)$, il existe une fonction
+$\varepsilon_1$ qui soit un $o(1)$ et telle que
+$$
+g(f(x)+k) - g(f(x)) = dg(f(x)) \cdot k + \varepsilon_1(k) \|k\|.
+$$
+Choisissons $k=f(x+h) - f(x)$ dans cette équation, de telle sorte que
+$$
+g(f(x)+k) = g(f(x) + (f(x+h) - f(x)) = g(f(x+h)).
+$$
+Nous obtenons donc
+$$
+g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (f(x+h)-f(x)) + \varepsilon_1(k) \|k\|.
+$$
+
+Notons que la fonction $\varepsilon_2(h) := \varepsilon_1(f(x+h) - f(x))$
+est définie dans un voisinage de l'origine et que par continuité de $f$ en 
+$x$, $f(x+h) - f(x)$ tend vers $0$ quand $h$ tend vers $0$, et par conséquent
+$\varepsilon_2(h) \to \varepsilon_2(0) = 0$ quand $h\to 0$ ; 
+la fonction $\varepsilon_2$ est donc un $o(1)$.
+Avec cette notation, on a
+$$
+\begin{split}
+g(f(x+h)) - g(f(x)) &= dg(f(x)) \cdot (f(x+h)-f(x)) \\
+                    &\phantom{=} + \varepsilon_2(h) \|f(x+h)-f(x)\|.
+\end{split}
+$$
+Comme $f$ est également différentiable en $x$, il existe une fonction 
+$\varepsilon_3$ qui soit un $o(1)$ et telle que
+$$
+f(x+h) - f(x) = df(x) \cdot h + \varepsilon_3(h) \|h\|.
+$$
+En substituant cette relation dans la précédente, nous obtenons
+$$
+g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (df(x) \cdot h) + \varepsilon(h) \|h\|
+$$
+où $\varepsilon(0) = 0$ et dans le cas contraire,
+$$
+\varepsilon(h) =  dg(f(x)) \cdot \varepsilon_3(h) + \varepsilon_2(h) 
+\left\|df(x) \cdot \frac{h}{\|h\|} + \varepsilon_3(h) \right\|.
+$$
+Il suffit pour conclure de prouver que $\varepsilon(h) \to 0$ quand $h \to 0$.
+Or, 
+$$
+\begin{split}
+\|\varepsilon(h)\| & \leq \|dg(f(x)) \cdot \varepsilon_3(h)\| + \|\varepsilon_2(h)\| \times \|df(x) \cdot (h / \|h\|) \| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|   \\
+& \leq \|dg(f(x))\| \times \|\varepsilon_3(h)\| + \|\varepsilon_2(h)\|  \times \|df(x)\| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|,  
+\end{split}
+$$
+le résultat est donc acquis.
+
+
+### Simplification des notations
+
+L'expression $df(x) \cdot h$ dépend de trois éléments : la fonction $f$,
+le point de référence $x$ et la variation de l'argument $h$. Cette notation
+est sans ambiguité mais peut parfois être lourde à manipuler.
+Dans le calcul des dérivées, nous avons l'habitude, pour signifier que
+la dérivée de la fonction $x \mapsto x^2$ en tout point $x$ de $\mathbb{R}$
+est $2x$, d'écrire simplement
+  $$
+  (x^2)' = 2x.
+  $$
+Le membre de gauche désigne la dérivée de la fonction $x \mapsto x^2$, 
+évaluée en $x$.
+Avec notre notation pour la différentielle, à ce stade 
+il nous faudrait écrire:
+$$
+d (x \in \mathbb{R} \to x^2)(x) \cdot h = 2 x h.
+$$
+Si l'on accepte de regrouper la fonction à différencier et le point où
+elle est calculée en un terme unique dans cette notation, qui est une
+expression de $x$, on peut alors écrire:
+$$
+d x^2 \cdot h = 2 x h,
+$$
+ce qui est un progrès, même si la notation n'est pas totalement dénuée 
+d'ambiguité[^amb].
+On remarque alors qu'en exploitant cette convention, le terme $dx$
+vient à désigner $d(x \mapsto x)(x)$; comme $(x)' = 1$,
+on a donc $dx \cdot h = 1 \times h = h$. 
+Par conséquent, on peut réécrire l'équation ci-dessus sous la forme
+mémorable
+$$
+dx^2 = 2 x dx.
+$$
+
+[^amb]: par exemple: est-ce que $df(x^2)$ désigne désormais la différentielle
+de la fonction $f$ évaluée en $x^2$ ou la différentielle de la fonction 
+$x \mapsto f(x^2)$ évaluée en $x$ ? Les deux grandeurs ne sont pas égales ...
+Il faut donc savoir si l'on différencie une fonction en un point ou bien
+une expression par rapport à une variable. On pourra rajouter des parenthèses
+pour lever l'ambiguité si nécessaire, avec $d(f)(x^2)$ dans le premier cas
+et $d(f(x^2))$ dans le second. Par défaut, nous supposerons dans la suite
+que $df(x^2)$ désigne la notation "stricte" $d(f)(x^2)$.
+
+
+
+### Règle de la somme {.theorem #sum-rule}
+La somme
+$(x, y) \in \mathbb{R}^2 \mapsto x + y \in \mathbb{R}$ 
+est différentiable en tout point et
+$$
+d(x+y) = dx + dy.
+$$
+
+### Démonstration {.proof}
+Pour tout $(x, y) \in \mathbb{R}^2$ et tout $(h_1, h_2) \in \mathbb{R}^2$, on a
+$$
+(x + h_1) + (y + h_2) = (x + y) + (h_1 + h_2).
+$$
+L'application somme est donc différentiable et sa différentielle
+est l'application $(h_1, h_2) \to h_1 + h_2$, c'est-à-dire 
+$dx + dy$.
+
+### Règle du produit {.theorem #product-rule}
+L'application produit 
+$(x, y) \in \mathbb{R}^2 \mapsto xy  \in \mathbb{R}$
+est différentiable en tout point et
+$$
+d xy = x dy + y dx
+$$
+
+### Démonstration {.proof}
+Soit $(x, y) \in \mathbb{R}^2$. Pour tout $h = (h_1, h_2) \in \mathbb{R}^2$,
+on a 
+$$
+(x+h_1) (y+h_2) = x y + x h_2 + y h_1 + h_1 h_2.
+$$
+Comme $|h_1 h_2| \leq \|h\|^2$, le produit $h_1 h_2$ est un $o(h)$.
+Par conséquent, l'application produit
+est différentiable en tout point $(x, y)$ de $\mathbb{R}^2$ 
+et sa différentielle est l'application
+$(h_1, h_2) \to x h_2 + y h_1,$
+c'est-à-dire $x dy + y dx$.
+
+### Linéarité de la différentielle {.corollary}
+Soit $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et 
+$g: U \to \mathbb{R}^m$, différentiables en $x \in U$. 
+Pour tous réels $\lambda$ et $\mu$, l'application 
+$\lambda f + \mu g$ est différentiable en $x$ et
+$$
+d(\lambda f + \mu g)(x) = \lambda df(x) + \mu dg(x).
+$$
+
+### Démonstration {.proof}
+Compte tenu du résultat concernant [la différentiation composante par composante](#dcpc),
+il suffit d'établir le résultat pour $f$ et $g$ à valeurs réelles.
+Or, l'application $x \in \mathbb{R}^n \mapsto (\lambda, f(x))$ est différentiable
+en $x$ car ses composantes sont différentiables ; 
+sa différentielle -- calculée composante par composante -- 
+est l'application $h \mapsto (0, df(x) \cdot h)$.
+L'application $\lambda f$ étant le produit de $\lambda$ et $f$,
+par [la règle de différentiation en chaîne](#chain-rule), 
+elle est différentiable en $x$ et 
+$$
+d (\lambda f)(x) = \lambda df(x) + f(x) \times (h \to 0) = \lambda df(x).
+$$
+De même, $\mu g$ est différentiable en $x$ et $d(\mu g)(x) = \mu dg(x)$.
+Par la règle de la somme, la combinaison linéaire $\lambda f + \mu g$ est
+donc différentiable en $x$ et 
+$d(\lambda f + \mu g)(x) = \lambda df(x) + \mu dg(x)$.
+
+
+Variation des fonctions
+================================================================================
+
+### {.remark}
+Lorsque la fonction $f$ est différentiable en $x$, 
+nous disposons de l'égalité $f(x + h) - f(x) = f'(x) h + \varepsilon(h) \|h\|$.
+Mais cette relation est asymptotique :
+pour maîtriser l'écart entre
+$f(x+h)$ et $f(x)$, 
+nous devons être en mesure de faire tendre $h$ vers $0$ ;
+si la grandeur $h$ est fixée, cette relation est inexploitable. 
+
+Mais tout n'est pas perdu : si $f$ est maintenant différentiable sur tout 
+le segment $[x,x+h]$, il est possible de comparer $f(x)$ et $f(x+h)$ 
+en intégrant les variations infinitésimales 
+de $f$ le long de $[x, x+h]$. 
+
+### Théorème fondamental du calcul {.theorem #TFC .one}
+Si $f: [a, b] \to \R$ est dérivable et que $f'$ est intégrable alors
+$$
+f(b) - f(a)  = \int_a^b f'(x) \, dx.
+$$
+
+### A propos du terme "intégrable" {.remark .three}
+Dans ce chapitre, sauf précision contraire, le terme "intégrable" doit être compris 
+comme "intégrable au sens de Lebesgue". La définition de ce concept 
+-- ainsi que la preuve du théorème fondamental du calcul -- 
+seront fournies dans le volet calcul intégral de l'enseignement.  
+A ce stade, vous pouvez retenir que si $f'$ est "continue", 
+"continue par morceaux" ou même "intégrable au sens de Riemann", 
+elle est "intégrable" (au sens de Lebesgue) et appliquer le théorème.
+
+### Théorème fondamental du calcul : forme générale {.remark .four #TFCE}
+Si l'on adopte au lieu de l'intégrale de Lebesgue l'intégrale encore
+plus générale de Henstock-Kurzweil (cf. calcul intégral), 
+alors toute fonction dérivée est automatiquement 
+intégrable. 
+Le théorème fondamental du calcul est alors valable en toute généralité ; 
+il prend la forme suivante :
+si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable 
+(au sens de Henstock-Kurzweil) et
+$$
+f(b) - f(a)  = \int_a^b f'(x) \, dx.
+$$
+Cette forme avancée du théorème est toutefois rarement nécessaire ; 
+elle est néanmoins utile pour prouver 
+[l'inégalité des accroissements finis](#TAFS) en toute généralité.
+Cette extension est aussi applicable au théorème ci-dessous : 
+si l'on utilise l'intégrale de Henstock-Kurzweil, il sera inutile
+de vérifier que l'application 
+$t \mapsto df(a+th)  \cdot h$ est intégrable pour appliquer le théorème.
+
+### Variation d'une fonction {.proposition #VF .two}
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
+soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
+  $$
+  [a, a+h] = \{a + th \; | \; t \in [0,1]\}
+  $$
+soit inclus dans $U$. Si $f$ est différentiable en tout point de $[a, a+h]$
+et que l'application $t \in [0,1] \mapsto df(a+th) \cdot h \in \R^m$ 
+est intégrable, alors
+$$
+f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
+$$
+
+### Démonstration {.proof}
+L'ensemble $U$ étant ouvert, il existe un $\varepsilon > 0$ tel que
+l'intervalle ouvert $I := \left]-\varepsilon, 1+\varepsilon \right[$ 
+soit inclus dans $U$. 
+On note $\phi$ la fonction $I \to \mathbb{R}^n$ 
+définie par
+$$
+\phi(t) = f(a + th)
+$$
+La fonction $\phi$ est différentiable -- et donc dérivable -- 
+en tout point de $[0,1]$ [comme composée des fonctions 
+différentiables $f$ et $t \mapsto a + th$](#chain-rule) ; 
+sa dérivée est donnée par
+$$
+\begin{split}
+\phi'(t) &= d\phi(t) \\
+         &= df(a+th) \cdot d(t\mapsto a+th) \\
+         &= df(a+th) \cdot (t \mapsto a+th)' \\
+         &= df(a+th) \cdot h
+\end{split}
+$$
+Par [le théorème fondamental du calcul](#TFC), comme par hypothèse $\phi'$ 
+est intégrable sur $[0, 1]$, on a donc
+$$
+f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt 
+                                  = \int_0^1 df(a+th) \cdot h \, dt.
+$$
+
+### Inégalité des accroissements finis I {.theorem #TAFS .two}
+Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
+$h \in \left[0, +\infty\right[$.
+Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
+c'est-à-dire si
+$$
+\mbox{pour tout } t \in [a, b], \;\|f'(t)\| \leq M.
+$$
+Alors 
+$$
+\|f(a+h) - f(a)\| \leq M h.
+$$
+
+### Démonstration {.proof}
+Par [la forme générale du théorème fondamental du calcul](#TFCE),
+la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
+$$
+f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
+$$
+En combinant [la définition de l'intégrale de Henstock-Kurzweil](Calcul Intégral I.pdf#HK) 
+et [le lemme de Cousin](Calcul Intégral I.pdf#cousin), 
+on peut trouver des approximations arbitrairement
+précises de l'intégrale de $f'$ par des sommes de Riemann[^hklc] :
+pour tout $\varepsilon > 0$, 
+il existe une subdivision pointée $\mathcal{D}$
+de l'intervalle $[a,a+h]$ telle que 
+$$
+\left\| f(a+h) - f(a) -  S(f', \mathcal{D}) \right\| 
+=
+\left\| \int_a^{a+h} f'(t) \, dt -  S(f', \mathcal{D}) \right\| 
+\leq 
+\varepsilon.
+$$
+En exploitant l'inégalité triangulaire, on obtient donc
+$$
+\|f(a+h) - f(a)\|
+\leq 
+\|S(f', \mathcal{D})\| + \varepsilon.
+$$
+Supposons que 
+$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; 0 \leq i \leq k-1 \}$.
+En utilisant à nouveau l'inégalité triangulaire, 
+on peut majorer en norme la somme de Riemann $S(f',\mathcal{D})$:
+$$
+\|S(f', \mathcal{D})\|
+=
+\left\|\sum_{i=0}^{k-1} f'(t_i) (x_{i+1} - x_i)\right\|
+\leq 
+\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|.
+$$
+Comme $\|f'(t_i)\| \leq M$ pour tout $i \in \{0,\dots,k-1\},$
+$$
+\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|
+\leq
+\sum_{i=0}^{k-1} M |x_{i+1} - x_i|
+\leq M \sum_{i=0}^{k-1} |x_{i+1} - x_i|
+$$
+Finalement, comme $a=x_0 \leq x_1 \leq \dots x_k = a+h$,
+$$
+\sum_{i=0}^{k-1} |x_{i+1} - x_i| = \sum_{i=0}^{k-1} (x_{i+1} - x_i) =
+x_p - x_0 = (a+h) - a = h
+$$ 
+et donc 
+$\|S(f', \mathcal{D})\| \leq Mh.$
+Par conséquent, $\|f(a+h) - f(a)\| \leq M h + \varepsilon$
+et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
+le résultat cherché : $\|f(a+h) - f(a)\| \leq M h.$
+
+[^hklc]: l'intégrabilité de $f'$ signifie que quelle que soit la
+précision $\varepsilon>0$ cherchée on pourra trouver une jauge telle que
+pour toute subdvision pointée subordonnée à cette jauge, l'écart entre
+la somme de Riemann et l'intégrale est au plus $\varepsilon$. 
+Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
+une subdivision pointée qui y soit subordonnée.
+
+### Choix des normes I {.remark .three}
+On peut se convaincre en examinant la démonstration ci-dessus qu'elle est 
+valide pour toute norme $\|\cdot\| := \|\cdot\|_{\R^n}$ sur $\R^n$
+et pas uniquement la norme euclidienne $\|\cdot\| := \|\cdot\|_2$. 
+
+### TODO -- Exo preuve plus simple avec $\|\cdot\|_2$ & démo Mitchener ?
+
+### Inégalité des accroissements finis II {.theorem #TAF .two}
+
+Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
+supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
+dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
+c'est-à-dire telle que
+$$
+\mbox{pour tout } x \in [a, a+h], \;\|df(x)\| \leq M.
+$$
+Alors 
+$$
+\|f(a+h) - f(a)\| \leq M \|h\|.
+$$
+
+### Choix des normes II {.remark .three}
+Comme pour [la version I de l'inégalité des accroissements finis](#TAF),
+dans cette version II, on peut adopter des normes arbitraires 
+$\|\cdot\|_{\R^m}$  et $\|\cdot\|_{\R^n}$ 
+dans $\R^m$ et $\R^n$ respectivement, puis définir la norme d'opérateur associée
+$$
+\|df(x)\|_{\R^m\R^n} := \sup_{h \neq 0} \frac{\|df(x)\cdot h\|_{\R^m}}{\|h\|_{\R^n}}.
+$$
+Si $\|df(x)\|_{\R^m\R^n} \leq M$, on peut  conclure que 
+$\|f(a+h) - f(a)\|_{\R^m} \leq M \|h\|_{\R^n}.$
+
+### Démonstration {.proof}
+Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
+dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
+cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
+De plus, 
+$$
+\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
+$$
+Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
+$$
+\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
+\leq M \|h\| \times 1 = M \|h\|.
+$$
+
+
+Old Stuff below
+================================================================================
 
 Différentielle
 ================================================================================
@@ -1357,222 +1758,6 @@ S'il l'on adopte la définition étendue de jacobien de la remarque
 continûment différentiable peut être reformulée comme
 "la matrice jacobienne existe et est continue".
 
-
-Variation des fonctions
-================================================================================
-
-### Différentielle et intégrale
-
-Pour comparer $f(a+h)$ et $f(a)$, 
-lorsque la fonction $f$ est continue en $a$, 
-nous disposons de l'égalité $f(a + h) = f(a) + o(1)$,
-mais cette relation est asymptotique. 
-Pour maîtriser l'écart entre
-$f(a+h)$ et $f(a)$ au moyen de cette formule, 
-nous devons être en mesure de faire tendre $h$ vers $0$. 
-Si la grandeur $h$ est fixée, cette relation est inexploitable. 
-
-Toutefois, dans cette situation, 
-si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
-de relier $f(a+h)$ à $f(a)$ en intégrant les variations infinitésimales 
-de $f$ le long de $[a, a+h]$. 
-
-### Théorème fondamental du calcul {.theorem #TFC .one}
-Si $f: [a, b] \to \R$ est dérivable et que $f'$ est intégrable alors
-$$
-f(b) - f(a)  = \int_a^b f'(x) \, dx.
-$$
-
-### A propos du terme "intégrable" {.remark .three}
-Dans ce chapitre, sauf précision contraire, le terme "intégrable" doit être compris 
-comme "intégrable au sens de Lebesgue". La définition de ce concept 
--- ainsi que la preuve du théorème fondamental du calcul -- 
-seront fournies dans le volet calcul intégral de l'enseignement.  
-A ce stade, vous pouvez retenir que si $f'$ est "continue", 
-"continue par morceaux" ou même "intégrable au sens de Riemann", 
-elle est "intégrable" (au sens de Lebesgue) et appliquer le théorème.
-
-### Théorème fondamental du calcul : forme générale {.remark .four #TFCE}
-Si l'on adopte au lieu de l'intégrale de Lebesgue l'intégrale encore
-plus générale de Henstock-Kurzweil (cf. calcul intégral), 
-alors toute fonction dérivée est automatiquement 
-intégrable. 
-Le théorème fondamental du calcul est alors valable en toute généralité ; 
-il prend la forme suivante :
-si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable 
-(au sens de Henstock-Kurzweil) et
-$$
-f(b) - f(a)  = \int_a^b f'(x) \, dx.
-$$
-Cette forme avancée du théorème est toutefois rarement nécessaire ; 
-elle est néanmoins utile pour prouver 
-[l'inégalité des accroissements finis](#TAFS) en toute généralité.
-Cette extension est aussi applicable au théorème ci-dessous : 
-si l'on utilise l'intégrale de Henstock-Kurzweil, il sera inutile
-de vérifier que l'application 
-$t \mapsto df(a+th)  \cdot h$ est intégrable pour appliquer le théorème.
-
-### Variation d'une fonction {.proposition #VF .two}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
-soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
-  $$
-  [a, a+h] = \{a + th \; | \; t \in [0,1]\}
-  $$
-soit inclus dans $U$. Si $f$ est différentiable en tout point de $[a, a+h]$
-et que l'application $t \in [0,1] \mapsto df(a+th) \cdot h \in \R^m$ 
-est intégrable, alors
-$$
-f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
-$$
-
-### Démonstration {.proof}
-L'ensemble $U$ étant ouvert, il existe un $\varepsilon > 0$ tel que
-l'intervalle ouvert $I := \left]-\varepsilon, 1+\varepsilon \right[$ 
-soit inclus dans $U$. 
-On note $\phi$ la fonction $I \to \mathbb{R}^n$ 
-définie par
-$$
-\phi(t) = f(a + th)
-$$
-La fonction $\phi$ est différentiable -- et donc dérivable -- 
-en tout point de $[0,1]$ [comme composée des fonctions 
-différentiables $f$ et $t \mapsto a + th$](#chain-rule) ; 
-sa dérivée est donnée par
-$$
-\begin{split}
-\phi'(t) &= d\phi(t) \\
-         &= df(a+th) \cdot d(t\mapsto a+th) \\
-         &= df(a+th) \cdot (t \mapsto a+th)' \\
-         &= df(a+th) \cdot h
-\end{split}
-$$
-Par [le théorème fondamental du calcul](#TFC), comme par hypothèse $\phi'$ 
-est intégrable sur $[0, 1]$, on a donc
-$$
-f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt 
-                                  = \int_0^1 df(a+th) \cdot h \, dt.
-$$
-
-### Inégalité des accroissements finis I {.theorem #TAFS .two}
-Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
-$h \in \left[0, +\infty\right[$.
-Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
-c'est-à-dire si
-$$
-\mbox{pour tout } t \in [a, b], \;\|f'(t)\| \leq M.
-$$
-Alors 
-$$
-\|f(a+h) - f(a)\| \leq M h.
-$$
-
-### Démonstration {.proof}
-Par [la forme générale du théorème fondamental du calcul](#TFCE),
-la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
-$$
-f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
-$$
-En combinant [la définition de l'intégrale de Henstock-Kurzweil](Calcul Intégral I.pdf#HK) 
-et [le lemme de Cousin](Calcul Intégral I.pdf#cousin), 
-on peut trouver des approximations arbitrairement
-précises de l'intégrale de $f'$ par des sommes de Riemann[^hklc] :
-pour tout $\varepsilon > 0$, 
-il existe une subdivision pointée $\mathcal{D}$
-de l'intervalle $[a,a+h]$ telle que 
-$$
-\left\| f(a+h) - f(a) -  S(f', \mathcal{D}) \right\| 
-=
-\left\| \int_a^{a+h} f'(t) \, dt -  S(f', \mathcal{D}) \right\| 
-\leq 
-\varepsilon.
-$$
-En exploitant l'inégalité triangulaire, on obtient donc
-$$
-\|f(a+h) - f(a)\|
-\leq 
-\|S(f', \mathcal{D})\| + \varepsilon.
-$$
-Supposons que 
-$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; 0 \leq i \leq k-1 \}$.
-En utilisant à nouveau l'inégalité triangulaire, 
-on peut majorer en norme la somme de Riemann $S(f',\mathcal{D})$:
-$$
-\|S(f', \mathcal{D})\|
-=
-\left\|\sum_{i=0}^{k-1} f'(t_i) (x_{i+1} - x_i)\right\|
-\leq 
-\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|.
-$$
-Comme $\|f'(t_i)\| \leq M$ pour tout $i \in \{0,\dots,k-1\},$
-$$
-\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|
-\leq
-\sum_{i=0}^{k-1} M |x_{i+1} - x_i|
-\leq M \sum_{i=0}^{k-1} |x_{i+1} - x_i|
-$$
-Finalement, comme $a=x_0 \leq x_1 \leq \dots x_k = a+h$,
-$$
-\sum_{i=0}^{k-1} |x_{i+1} - x_i| = \sum_{i=0}^{k-1} (x_{i+1} - x_i) =
-x_p - x_0 = (a+h) - a = h
-$$ 
-et donc 
-$\|S(f', \mathcal{D})\| \leq Mh.$
-Par conséquent, $\|f(a+h) - f(a)\| \leq M h + \varepsilon$
-et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
-le résultat cherché : $\|f(a+h) - f(a)\| \leq M h.$
-
-[^hklc]: l'intégrabilité de $f'$ signifie que quelle que soit la
-précision $\varepsilon>0$ cherchée on pourra trouver une jauge telle que
-pour toute subdvision pointée subordonnée à cette jauge, l'écart entre
-la somme de Riemann et l'intégrale est au plus $\varepsilon$. 
-Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
-une subdivision pointée qui y soit subordonnée.
-
-### Choix des normes I {.remark .three}
-On peut se convaincre en examinant la démonstration ci-dessus qu'elle est 
-valide pour toute norme $\|\cdot\| := \|\cdot\|_{\R^n}$ sur $\R^n$
-et pas uniquement la norme euclidienne $\|\cdot\| := \|\cdot\|_2$. 
-
-### TODO -- Exo preuve plus simple avec $\|\cdot\|_2$ & démo Mitchener ?
-
-### Inégalité des accroissements finis II {.theorem #TAF .two}
-
-Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
-supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
-dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
-c'est-à-dire telle que
-$$
-\mbox{pour tout } x \in [a, a+h], \;\|df(x)\| \leq M.
-$$
-Alors 
-$$
-\|f(a+h) - f(a)\| \leq M \|h\|.
-$$
-
-### Choix des normes II {.remark .three}
-Comme pour [la version I de l'inégalité des accroissements finis](#TAF),
-dans cette version II, on peut adopter des normes arbitraires 
-$\|\cdot\|_{\R^m}$  et $\|\cdot\|_{\R^n}$ 
-dans $\R^m$ et $\R^n$ respectivement, puis définir la norme d'opérateur associée
-$$
-\|df(x)\|_{\R^m\R^n} := \sup_{h \neq 0} \frac{\|df(x)\cdot h\|_{\R^m}}{\|h\|_{\R^n}}.
-$$
-Si $\|df(x)\|_{\R^m\R^n} \leq M$, on peut  conclure que 
-$\|f(a+h) - f(a)\|_{\R^m} \leq M \|h\|_{\R^n}.$
-
-### Démonstration {.proof}
-Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
-dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
-cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
-De plus, 
-$$
-\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
-$$
-Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
-$$
-\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
-\leq M \|h\| \times 1 = M \|h\|.
-$$
 
 Annexe -- Algèbre linéaire
 ================================================================================
