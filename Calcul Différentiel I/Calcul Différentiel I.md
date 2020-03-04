@@ -516,6 +516,10 @@ est différentiable et déterminer l'application $df(x)$.
 Calcul Différentiel
 ================================================================================
 
+### TODO
+
+Expliquer que fondamentalement, calcul = composition de fonctions.
+
 ### Règle de différentiation en chaîne {.theorem #chain-rule .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
