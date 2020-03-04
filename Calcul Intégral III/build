@@ -526,6 +526,7 @@ def handle_typed_sections(doc):
         "lemma": "Lemme",
         "proposition": "Proposition",
         "remark": "Remarque",
+        "exercise": "Exercice",
     }
     levels = {
         1: "section",

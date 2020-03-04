@@ -230,31 +230,33 @@ TODO :
     et applications linéaires, vecteurs, etc.). Puis la simplifier
     (notamment, les notations sur les applications linéaires).
 
+  - TODO: renvoyer dérivée en annexe (y compris dérivée à droite et à gauche 
+    dans un style extension sur ouvert ?)
 
 
 \newpage
 
-Dérivées partielles et matrice jacobienne
+Matrice jacobienne et différentielle
 ================================================================================
 
 ### Dérivées partielles {.definition .one}
 Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
-$x=(x_1, \cdots, x_n) \in U$. Lorsque la $i$-ème fonction partielle de $f$
+$x=(x_1, \cdots, x_n) \in U$. Lorsque la $j$-ème fonction partielle de $f$
 $$
-y_i \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)
+y_j \mapsto f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)
 $$
-est dérivable en $y_i = x_i$, on appelle $i$-ème *dérivée partielle
+est dérivable en $y_j = x_j$, on appelle $j$-ème *dérivée partielle
 de $f$ en $x$*
-et on note $\partial_i f(x) \in \mathbb{R}^m$ sa dérivée.
+et on note $\partial_j f(x) \in \mathbb{R}^m$ sa dérivée.
 $$
-\partial_i f(x) := \left(y_i \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)\right)'(x_i)
+\partial_j f(x) := \left(y_j \mapsto f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)\right)'(x_j)
 $$
 Alternativement, quand le second membre existe,
 $$
 \begin{split}
-\partial_i f(x)
-&= \lim_{t \to 0} \frac{f(x + t e_i) - f(x)}{t} \\
-&= \lim_{t \to 0} \frac{f(x_1, \dots, x_i + t, \dots, x_n) - f(x_1, \dots, x_n)}{t}. 
+\partial_j f(x)
+&= \lim_{t \to 0} \frac{f(x + t e_j) - f(x)}{t} \\
+&= \lim_{t \to 0} \frac{f(x_1, \dots, x_j + t, \dots, x_n) - f(x_1, \dots, x_n)}{t}. 
 \end{split}
 $$
 
@@ -290,46 +292,116 @@ $$
 \nabla f(x) := J_f(x)^*.
 $$
 
+**TODO.** Considérer de plus près $\|\cdot\|$ ou $\|\cdot\|_2$. Convention
+$\|\cdot\| = \|\cdot\|_2$ sauf mention contraire ?
+
+<!--
 ### Petit o de Landau {.definition .three}
-La notation $o(\|h\|^k)$, 
-où $h \in \mathbb{R}^n$ et $k \in \mathbb{N}$,
-désigne une expression de la forme
+Dans ce document, la notation $o(g(h))$ désigne une expression 
+de la forme
 $$
-o(\|h\|^k) := \varepsilon(h) \|h\|^k
+o(g(h)) := \varepsilon(h) g(h) \in \R^m
 $$
-où $\varepsilon$ est une fonction définie dans un voisinage de $h=0$ 
-et telle que 
+où $g et $\varepsilon$ sont des fonctions définies dans un voisinage $V$ 
+de $h=0$, $g$ est scalaire, $\varepsilon$ est à valeurs dans $\R^m$ et
 $$
 \lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
 $$
+En particulier, un "petit o de $1$" désigne une expression de la forme
+$$
+o(1) := \varepsilon(h)
+$$
+et un "petit o de $\|h\|$" fait référence à
+$$
+o(\|h\|) := \varepsilon(h) \|h\| = o(1) \|h\|.
+$$
+-->
+
+### {.remark}
+En l'absence d'information supplémentaire, l'existence de la matrice jacobienne
+en $x$ offre très peu de garanties. Il est ainsi possible que la fonction
+$f$ ne soit pas même pas continue en $x$. La matrice jacobienne ne devient 
+réellement utile que lorsqu'elle fournit un développement limité 
+au premier ordre de la fonction $f$ au voisinage de $x$ ; cette propriété, qui n'est pas 
+systématiquement vraie, est la *différentiabilité* de $f$ en $x$.
+
+### Fonction discontinue {.exercise .one #discont}
+Exhiber une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
+mais qui soit discontinue en $(0,0)$.
+
+
 
 ### Différentiabilité {.definition .three}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
-On dit que $f$ est *différentiable en $x$* si 
+On dit que $f$ est *différentiable en $x$* si dans un voisinage de
+$h=0$ on a
 $$
-f(x+h) = f(x) + J_f(x) \cdot h + o(\|h\|).
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|
 $$
-On note alors $df(x)$ l'application linéaire associée 
-à la matrice jacobienne :
+où
+$\varepsilon$ est une fonction définie dans ce voisinage de $h=0$, 
+à valeurs dans $\R^m$ et vérifiant
 $$
-df(x): \R^n \to \R^m, \; df(x) (h) = J_f(x) \cdot h,
+\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
 $$
-voire la matrice jacobienne elle-même, ce qui permet d'écrire
+On dit que $f$ est *différentiable (sur $U$)* si elle est différentiable 
+en tout point $x$ de $U$.
+
+### Fonctions affines {.exercise .question #fa .one}
+Soit $A \in \R^{m\times n}$ et $b \in \R^m$. 
+Calculer la matrice jacobienne de la fonction $f:\R^n \to \R^m$ définie par 
+$f(x) = A \cdot x + b$ et montrer que cette fonction est différentiable.
+
+### {.remark}
+L'existence de la matrice jacobienne de $f$ en $x$ ne garantit pas
+l'existence d'un développement au premier ordre de $f$ en $x$.
+Par contre, si un tel développement existe, il est nécessairement
+obtenu à partir de la matrice jacobienne comme le montre l'exercice suivant.
+
+### Développement limité au premier ordre {.exercise .question #dlmj .two}
+Montrer que si 
+$A \in \R^{m \times n}$ vérifie dans un voisinage de $h=0$
 $$
-f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
+f(x+h) = f(x) + A \cdot h + \varepsilon(h) \|h\|
 $$
-Si $f$ est différentiable en tout point $x$ de $U$ on dit que $f$ est
-*différentiable (sur $U$)*.
+avec $\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0$
+alors $J_f(x)$ existe et $A = J_f(x)$.
+
+### Différentielle {.definition .two}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
+Si $f$ est différentiable en $x$ on appelle alors *différentielle de $f$ en $x$* 
+l'application linéaire 
+$df(x): \R^n \to \R^m$ associée à la matrice jacobienne, vérifiant
+$$
+df(x) := h \mapsto J_f(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i,
+$$
+et par extension, la matrice jacobienne elle-même.
+
+### TODO -- Définitions alternatives {.remark .three}
 
 
+En exploitant la linéarité de la différentielle
+$$
+\lim_{h \to 0} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0.
+$$
+
+plus la version $\varepsilon-\delta$.
+
+
+### {.remark .ante}
+Il n'est pas toujours facile d'établir directement la différentiabilité 
+d'une fonction. Néanmoins, on peut fréquemment établir sa
+*continue différentiabilité* sans trop de difficultés, 
+ce qui prouve indirectement sa différentiabilité.
 
 ### Continue différentiabilité {.definition .two}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 On dit que $f$ est *continûment différentiable*
 si pour tout $i \in \{1,\dots, m\}$
-et $j \in \{1,\dots, n\}$, l'application dérivée partielle
+et $j \in \{1,\dots, n\}$, la dérivée partielle
 $$
 x \in U \mapsto \partial_j f_i(x) \in \R
 $$
@@ -337,136 +409,70 @@ est définie et continue en tout point de $U$.
 
 ### Continue différentiabilité implique différentiabilité {.proposition .two}
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
-Si $f$ est continûment différentiable sur $U$, $f$ est différentiable sur $U$.
+Si $f$ est continûment différentiable, $f$ est différentiable.
 
 ### Démonstration {.proof} 
-**TODO.** adapter/reprendre preuve.
-Soit $f: U \subset \R^n \to \R$ une fonction continûment différentiable
-Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
-$r$ soit dans $U$ ; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
-La variation de $f$ entre $a$ et $a+h$ satisfait
+Supposons $f: U \subset \R^m \to \R^n$ continûment différentiable.
+Soit $x \in U$ et $r>0$ telle que la boule fermée centrée en $x$ et de rayon
+$r$ soit incluse dans $U$
 $$
-f(a+h) - f(a) = \sum_{i=1}^n f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)). 
+\overline{B}(x, r) =
+\{y \in \R^n \; | \; \|y - x\|_2 \leq r\} \subset U
 $$
-Or, par [le théorème fondamental du calcul](#TFC), 
-comme pour tout $i$ la fonction
-$$t \in [0,1] \mapsto f(a+(h_1, \dots, th_i, 0, \dots))$$
-est dérivable de dérivée
-$\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) h_i$, on a
+et soit $h \in \R^n$ tel que $\|h\|_2 \leq r$. 
+La variation de $f$ entre $x$ et $x+h$ satisfait
 \begin{multline*}
-f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)) = \\
-h_i \int_0^1 \partial_i f(a+(h_1, \dots, th_i, 0, \dots)) \, dt.
+f(x+h) - f(x) = \\ 
+\sum_{i=1}^n f(x+(h_1, \dots,h_{i-1}, h_i, 0, \dots)) - f(x + (h_1, \dots, h_{i-1}, 0, 0, \dots)). 
+\end{multline*}
+
+![Ligne brisée joignant $x$ et $x+h$.](images/cont-diff.tex){#cont-diff}
+
+Or comme pour tout $i$ la fonction
+$$t \in [0,1] \mapsto f(x+(h_1, \dots, th_i, 0, \dots))$$
+est dérivable de dérivée
+$\partial_i f(x+(h_1, \dots, th_i, 0, \dots)) h_i$ et que cette expression
+est une fonction continue -- et donc intégrable -- de la variable $t$, 
+par [le théorème fondamental du calcul](#TFC), on obtient
+\begin{multline*}
+f(x+(h_1, \dots, h_{i-1},h_i, 0, \dots)) - f(x + (h_1, \dots, h_{i-1}, 0, 0, \dots)) = \\
+h_i \int_0^1 \partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) \, dt.
 \end{multline*}
 Par ailleurs, comme
 $$
-\partial_i f(a) h_i
+J_f(x) \cdot h =
+\sum_i \partial_i f(x) h_i
 =
-h_i \int_0^1 \partial_i f(a) \, dt,
+\sum_i h_i \int_0^1 \partial_i f(x) \, dt,
 $$
 on a 
 \begin{multline*}
-f(a+h) - f(a) - \sum_i \partial_i f(a) h_i = \\
-\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) - \partial_i f(a) \right] \, dt. 
+f(x+h) - f(x) - \sum_i \partial_i f(x) h_i = \\
+\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt. 
 \end{multline*}
-Par continuité des dérivées partielles en $a$, si $r$ est choisi de telle sorte
-que $|\partial_i f(b) - \partial_i f(a)| \leq \varepsilon / n$ 
-quand $|b-a| \leq r$, alors l'inégalité triangulaire et 
-[la majoration des intégrales](#ML-lemma) ci-dessus
-conduisent à
+Par continuité des dérivées partielles en $x$, si $r$ est choisi suffisamment 
+petit pour que $\|\partial_i f(y) - \partial_i f(x)\|_2 \leq \varepsilon / n$ 
+quand $\|y-x\|_2 \leq r$, alors l'inégalité triangulaire
+fournit
+\begin{multline*}
+\left\|\int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt \right\|_2 \leq \\
+\int_0^1 \left\|\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right\|_2 \, dt \leq \varepsilon/n
+\end{multline*}
+et donc, par inégalité triangulaire, comme $|h_i| \leq \|h\|_2$,
 $$
-\left|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right|
+\left\|f(x+h) - f(x) - \sum_i \partial_i f(x) h_i \right\|_2
 \leq
 \sum_{i=1}^n |h_i| {\varepsilon}/{n}
-\leq \varepsilon \|h\|.
+\leq \varepsilon \|h\|_2.
 $$
-La fonction $f$ est donc différentiable en $a$, de différentielle
-$h \mapsto \sum_i \partial_i f(a) h_i$. La matrice (jacobienne) 
+La fonction $f$ est donc différentiable en $x$, de différentielle
+$h \mapsto \sum_i \partial_i f(x) h_i$. La matrice (jacobienne) 
 représentant $df(x)$ ayant pour coefficients les dérivées partielles
 de $f$ en $x$, elle est une fonction continue de $x$, comme $df(x)$.
 
 La preuve dans le cas d'une fonction à valeurs vectorielles se déduit 
 directement du résultat que nous venons de démontrer dans le cas 
 des fonctions scalaires. **TODO.** développer
-
-TODO -- Notation de Landau  ; retarder au point d'usage
---------------------------------------------------------------------------------
-
-<!--
-### Objectif {.meta}
-
-Présenté volontairement dans le cadre le plus étroit possible qui satisfasse
-nos besoins (notamment, comparaison par rapport $\|h\|^k$) suffit, ce qui 
-évite un grand nombre de subtilités. Pas jugé d'un grand intérêt en tant que
-tel, nous ne développons absolument pas le "calcul des o"; il s'agit juste
-d'avoir une notation pratique pour noter des résultats, dans le cadre bien
-précis du calcul différentiel et des propriétés des restes dans les 
-développements limités. 
-Toutes les démonstrations commencent par la traduction des $o$ en fonctions;
-on est donc presque dans la situation ou l'on pourrait se passer de la 
-notation; on aurait en contrepartie des résultats un peu plus lourd à énoncer,
-les conséquences seraient limitées à ça.
-
-**TODO:** remarque sur rôle du $o(1)$ et comment on pourrait tout ramener à
-ça ... retenir au moins que $o(\|h\|) = o(1) \|h\|$ ? La notation $o(1)$
-est pratique pour désigner $\varepsilon$ directement, sans avoir à rappeler
-les hypothèses en détail.
--->
-
-### Petit o de Landau
-La notation $o(\|h\|^k)$, 
-où $h \in \mathbb{R}^n$ et $k \in \mathbb{N}$,
-désigne une expression de la forme
-$$
-o(\|h\|^k) := \varepsilon(h) \|h\|^k
-$$
-où $\varepsilon$ est une fonction définie dans un voisinage de $0$ 
-et telle que 
-$$
-\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
-$$
-En particulier, dans le cas $k=0$, la notation $o(1)$
-désigne un terme de la forme $\varepsilon(h)$
-où $\varepsilon$ est une fonction du type défini ci-dessus.
-Le cas général peut toujours être réduit à ce cas particulier
-puisque l'on a $o(\|h\|^k) = o(1)\|h\|^k$.
-
-En dehors de tout contexte, cette notation est très ambiguë puisque l'on ne
-précise même pas à quel ensemble appartiennent les valeurs de $\varepsilon$.
-Les choses se précisent lorsqu'elle est utilisée dans une équation donnée,
-comme
-$$
-\phi(h) = o(\|h\|^k)
-$$
-où la fonction $\phi$ est connue.
-Cette relation signifie alors: la fonction $\phi$ est définie dans un
-voisinage de $0$ et vérifie:
-$$
-\lim_{h \to 0} \frac{\phi(h)}{\|h\|^k} = 0.
-$$
-La fonction $\varepsilon$ est alors définie de façon unique 
-sur ce voisinage de $0$ par la relation
-$$
-\varepsilon(h) 
-= 
-\frac{\phi(h)}{\|h\|^k} \, \mbox{ si } \, h \neq 0
-\, \mbox{ et } \,
-\varepsilon(0) = 0.
-$$
-
-### Continuité {.example}
-
-Si $f$ est une fonction définie d'un sous-ensemble de $\mathbb{R}^n$
-et que $x \in \mathbb{R}^n$, la notation
-$$
-f(x+h) = f(x) + o(1)
-$$
-signifie donc que $f$ définie dans un voisinage de $x$ et que
-$$
-\lim_{h \to 0} f(x + h) = f(x),
-$$
-autrement dit que $x$ appartient à l'intérieur du domaine de définition de
-$f$ et que $f$ est continue en ce point.
-
 
 Différentielle
 ================================================================================
@@ -2189,6 +2195,80 @@ calcul plan tangent ?
 
 Solutions
 ================================================================================
+
+Exercices courts
+--------------------------------------------------------------------------------
+
+### Fonction discontinue {.answer #answer-discont}
+La fonction $f: \R^2 \to \R$ définie par :
+$$
+f(x,y) = \left|
+\begin{array}{rl}
+0 & \mbox{si $x=0$ ou $y=0$,} \\
+1 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est discontinue en $(0,0)$, car $f(2^{-n}, 2^{-n}) = 1$ pour tout $n \in \N$,
+donc
+$$
+\lim_{n \to +\infty} f(2^{-n}, 2^{-n}) = 1 \neq 0 = f(0,0).
+$$
+Par contre, les deux fonctions partielles de $f$ en $(0,0)$
+$$
+x_1 \mapsto f(x_1, 0) \; \mbox{ et } \; x_2 \mapsto f(0, x_2)
+$$
+sont constantes et égales à $0$. Les dérivées partielles $\partial_1 f(0,0)$
+et $\partial_2 f(0,0)$ existent donc et sont nulles. Le gradient de $f$ en
+$(0,0)$ est donc définie (et nul).
+
+### Fonctions affines {.answer #answer-fa}
+Comme $f(x) = A \cdot x + b$, la $i$-ème composante de $f$ satisfait
+$$
+f_i(x) = \sum_{k=1}^n A_{ik} x_k + b_i
+$$
+et donc la $j$-ème fonction partielle de $f_i$ en $x$ est la fonction 
+de la variable $y_j$ dont la valeur est
+\begin{multline*}
+f_i(x_1, \dots, x_{j-1}, y_i, x_{j+1}, \dots, x_n) = \\
+A_{i1} x_1 + \dots + A_{i,j-1} x_{j-1} + A_{ij} y_j + A_{i,j+1} x_{j+1} + b_i.
+\end{multline*}
+C'est une fonction affine de $y_j$ qui est dérivable, de dérivée
+$A_{ij}$. On a donc
+$\partial_j f_i(x) = A_{ij}$ ; la matrice jacobienne $J_f(x)$ existe en tout
+point $x \in \R^n$ et vérifie $J_f(x) = A$.
+
+Pour tout $x \in \R^n$ et $h \in \R^n$, on a donc
+$$
+f(x+h) -  f(x) - J_f(x) \cdot h = A \cdot (x+h) - A \cdot x - A\cdot h = 0,
+$$
+ce que l'on peut écrire sous la forme
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|
+$$
+en prenant pour fonction $\varepsilon$ la fonction de $\R^n$ dans $\R^m$ 
+identiquement nulle. La fonction $f$ est donc différentiable sur $\R^n$.
+
+### Développement limité au premier ordre {.exercise .answer #answer-dlmj}
+De l'hypothèse 
+$$
+f(x+h) = f(x) + A \cdot h + \varepsilon(h) \|h\|
+$$
+on peut déduire que pour tout $i \in \{1,\dots, n\}$, on a 
+$$f_i(x+h) = f_i(x) + [A \cdot h]_i + \varepsilon_i(h) \|h\|$$ et donc
+\begin{align*}
+\frac{f_i(x + t e_j) - f_i(x)}{t} 
+&= \frac{f_i(x) + [A \cdot te_j]_i + \varepsilon_i(te_j) \|te_j\| - f_i(x)}{t} \\
+&= [A \cdot e_j]_i + \varepsilon_i(t e_j) \\
+&= A_{ij} + \varepsilon_i(t e_j).
+\end{align*}
+Comme $\lim_{h \to 0}\varepsilon(h) = \varepsilon(0) = 0$,
+cette expression a une limite quand $t \to 0$, donc
+$\partial_j f_i(x)$ existe et vérifie
+$$
+\partial_j f_i(x) = \lim_{t \to 0} \frac{f_i(x + t e_j) - f_i(x)}{t} = A_{ij}.
+$$
+La matrice jacobienne $J_f(x)$ de $f$ en $x$ existe donc et est égale à $A$.
 
 <!--
 Vecteurs, vecteurs colonnes, vecteurs lignes
