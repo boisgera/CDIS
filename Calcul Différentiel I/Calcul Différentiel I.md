@@ -291,12 +291,12 @@ et on note $\partial_j f(x) \in \mathbb{R}^m$ sa dérivée.
 $$
 \partial_j f(x) := \left(y_j \mapsto f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)\right)'(x_j)
 $$
-Alternativement, quand le second membre existe,
+Alternativement,
 $$
 \begin{split}
 \partial_j f(x)
-&= \lim_{t \to 0} \frac{f(x + t e_j) - f(x)}{t} \\
-&= \lim_{t \to 0} \frac{f(x_1, \dots, x_j + t, \dots, x_n) - f(x_1, \dots, x_n)}{t}. 
+&:= \lim_{t \to 0} \frac{f(x + t e_j) - f(x)}{t} \\
+&\phantom{:}= \lim_{t \to 0} \frac{f(x_1, \dots, x_j + t, \dots, x_n) - f(x_1, \dots, x_n)}{t}. 
 \end{split}
 $$
 
