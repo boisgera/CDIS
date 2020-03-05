@@ -329,7 +329,15 @@ $x$ un point de $U$. Si toutes les dérivées partielles de $f$ existent en $x$,
 on appelle *gradient de $f$ en $x$* et l'on note $\nabla f(x)$ le vecteur
 de $\R^n$ défini comme la transposée de la matrice jacobienne de $f$ en $x$ :
 $$
-\nabla f(x) := J_f(x)^{\top}.
+\nabla f(x) := J_f(x)^{\top} = 
+\left[ 
+\begin{array}{c}
+\partial_1 f(x) \\
+\partial_2 f(x) \\
+\vdots \\
+\partial_n f(x)
+\end{array}
+\right].
 $$
 
 
@@ -434,7 +442,7 @@ d'une fonction. Néanmoins, on peut fréquemment établir sa
 *continue différentiabilité* sans trop de difficultés, 
 ce qui prouve indirectement sa différentiabilité.
 
-### Continue différentiabilité {.definition .two}
+### Continue différentiabilité {.definition .two #cdiff}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 On dit que $f$ est *continûment différentiable*
@@ -445,7 +453,7 @@ x \in U \mapsto \partial_j f_i(x) \in \R
 $$
 est définie et continue en tout point de $U$.
 
-### Continue différentiabilité implique différentiabilité {.proposition .two}
+### Continue différentiabilité implique différentiabilité {.proposition .two #cdid}
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
 Si $f$ est continûment différentiable, $f$ est différentiable.
 
@@ -703,12 +711,17 @@ Variation des fonctions
 
 ### {.remark}
 Lorsque la fonction $f$ est différentiable en $x$, 
-nous disposons de l'égalité $f(x + h) - f(x) = f'(x) h + \varepsilon(h) \|h\|$.
-Mais cette relation est asymptotique :
+nous disposons de l'égalité 
+$$
+f(x + h) - f(x) = f'(x) h + \varepsilon(h) \|h\|
+$$
+avec $\lim_{h \to 0}\varepsilon(h) = \varepsilon(0) = 0$. 
+Cette égalité est de nature asymptotique :
 pour maîtriser l'écart entre
 $f(x+h)$ et $f(x)$, 
 nous devons être en mesure de faire tendre $h$ vers $0$ ;
-si la grandeur $h$ est fixée, cette relation est inexploitable. 
+si la grandeur $h$ est fixée -- même petite -- cette relation ne
+nous fournit aucune information. 
 
 Mais tout n'est pas perdu : si $f$ est maintenant différentiable sur tout 
 le segment $[x,x+h]$, il est possible de comparer $f(x)$ et $f(x+h)$ 
@@ -716,7 +729,7 @@ en intégrant les variations infinitésimales
 de $f$ le long de $[x, x+h]$. 
 
 ### Théorème fondamental du calcul {.theorem #TFC .one}
-Si $f: [a, b] \to \R$ est dérivable et que $f'$ est intégrable alors
+Si $f: [a, b] \subset \R \to \R$ est dérivable et que $f'$ est intégrable alors
 $$
 f(b) - f(a)  = \int_a^b f'(x) \, dx.
 $$
@@ -760,7 +773,7 @@ soit inclus dans $U$. Si $f$ est différentiable en tout point de $[a, a+h]$
 et que l'application $t \in [0,1] \mapsto df(a+th) \cdot h \in \R^m$ 
 est intégrable, alors
 $$
-f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
+f(a + h) - f(a) = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
 ### Démonstration {.proof}
@@ -1800,6 +1813,22 @@ continûment différentiable peut être reformulée comme
 "la matrice jacobienne existe et est continue".
 
 
+Annexe -- Dérivée
+================================================================================
+
+**TODO** Rappels :
+
+  - dérivées sur un ouvert ; valeurs vectorielles et dérivation par composante
+
+  - dérivées à gauche et à droite sur un intervalle, équivalence / extension
+
+  - dérivée et dvlpt limité au 1er ordre
+
+Dans le corps du document, relier dérivée et différentielle (quand $n=1$):
+$f'(x) = df(x)$.
+
+
+
 Annexe -- Algèbre linéaire
 ================================================================================
 
@@ -2496,12 +2525,35 @@ $$
 $$
 La matrice jacobienne $J_f(x)$ de $f$ en $x$ existe donc et est égale à $A$.
 
-### TODO -- Fonction quadratique {#answer-fq .answer}
+### Fonction quadratique {#answer-fq .answer}
 Comme
 $$
-f(x) = x^T \cdot A \cdot x = \sum_{i=1}^{n} \sum_{k=1}^n x_i A_{ik} x_k,
+f(x) = x^{\top} \cdot A \cdot x = \sum_{i=1}^{n} \sum_{k=1}^n x_i A_{ik} x_k,
 $$
-pour tout $j \in \{1,\dots, n\}$ on a ... **TODO**
+pour tout $j \in \{1,\dots, n\}$ on a 
+$$
+f(x) = x_j A_{jj} x_j + \sum_{\substack{k=1 \\ k\neq j}}^n x_j  A_{jk} x_k +  \sum_{\substack{i=1\\i\neq j}}^n x_i A_{ij} x_j
++ \sum_{\substack{i=1\\i\neq j}}^{n} \sum_{\substack{k=1\\k\neq j}}^n x_i A_{ik} x_k.
+$$
+Par conséquent, la dérivée partielle $\partial_j f(x)$ existe et vérifie
+\begin{align*}
+\partial_j f(x) &= 2 A_{jj} x_{j} + \sum_{\substack{k=1 \\ k\neq j}}^n A_{jk} x_k + \sum_{\substack{i=1\\i\neq j}}^n x_i A_{ij} \\
+&= \sum_{k=1}^n A_{jk} x_k + \sum_{i=1}^n x_i A_{ij} \\
+&= [A \cdot x]_j + [A^{\top} \cdot x]_j \\
+&= [(A + A^{\top}) \cdot x]_j.
+\end{align*}
+Toute ces dérivées partielles sont des fonctions linéaires de $x$, 
+elles sont donc continues et la fonction $f$ est continûment différentiable ;
+[elle est donc différentiable](#cdid).
+De plus, l'égalité ci-dessus nous fournit
+$$
+J_f(x)^{\top} = \nabla f(x) = (A + A^{\top}) \cdot x,
+$$
+et donc la différentielle de $f$ en $x$ est l'application déterminée par
+$$
+df(x) \cdot h = J_f(x) \cdot h = ((A + A^{\top}) \cdot x)^{\top} \cdot h
+= x^{\top} \cdot (A + A^{\top}) \cdot h.
+$$
 
 
 
