@@ -883,6 +883,10 @@ $$
 $$
 
 ### Démonstration {.proof}
+
+**TODO.** adopter convention $\phi$ déf sur $[0,1]$ plus proche de ce qui
+précède et qui suit ?
+
 Considérons l'application
 $$
 \phi: t \in [a, a+h] \mapsto \left<f(a+h) - f(a), f(t) \right> \in \R.
