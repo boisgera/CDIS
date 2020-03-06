@@ -919,6 +919,58 @@ $$
 $$
 Puisque $\|f'(\tau)\| \leq M$, on en déduit que $\|f(a+h) - f(a)\| \leq M h.$
 
+
+
+
+
+### Inégalité des accroissements finis II {.theorem #TAF .two}
+
+Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
+supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
+dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
+c'est-à-dire telle que
+$$
+\mbox{pour tout } x \in [a, a+h], \;\|df(x)\| \leq M.
+$$
+Alors 
+$$
+\|f(a+h) - f(a)\| \leq M \|h\|.
+$$
+
+
+### Démonstration {.proof}
+Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
+dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
+cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
+De plus, 
+$$
+\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
+$$
+Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
+$$
+\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
+\leq M \|h\| \times 1 = M \|h\|.
+$$
+
+### {.remark}
+Ces deux versions de l'inégalité des accroissement finis peuvent être 
+généralisées à d'autres normes que la norme euclidienne.
+
+### Inégalité des accroissements finis III {.theorem #TAFS-III .three}
+Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
+$h \in \left[0, +\infty\right[$.
+Soit $\|\cdot\|_m$ une norme sur $\R^m$. 
+Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|_m$,
+c'est-à-dire si
+$$
+\mbox{pour tout } t \in [a, b], \;\|f'(t)\|_m \leq M.
+$$
+Alors 
+$$
+\|f(a+h) - f(a)\|_m \leq M h.
+$$
+
+
 ### Démonstration {.proof}
 Par [la forme générale du théorème fondamental du calcul](#TFCE),
 la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
@@ -981,35 +1033,21 @@ la somme de Riemann et l'intégrale est au plus $\varepsilon$.
 Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
 une subdivision pointée qui y soit subordonnée.
 
-### Choix des normes I {.remark .three}
-On peut se convaincre en examinant la démonstration ci-dessus qu'elle est 
-valide pour toute norme $\|\cdot\| := \|\cdot\|_{\R^n}$ sur $\R^n$
-et pas uniquement la norme euclidienne $\|\cdot\| := \|\cdot\|_2$. 
-
-### Inégalité des accroissements finis II {.theorem #TAF .two}
-
+### Inégalité des accroissements finis IV {.theorem #TAF-IV .three}
 Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
-supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
-dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
+Soit $\|\cdot\|_m$ une norme sur $\R^m$, $\|\cdot\|_n$ une norme sur
+$\R^n$ et $\|\cdot\|_{mn}$ la norme d'opérateur de $\R^n$ dans
+$\R^n$ associée. 
+Si $f$ est différentiable en tout point d'un segment $[a, a+h]$ inclus 
+dans $U$ et que la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
 c'est-à-dire telle que
 $$
-\mbox{pour tout } x \in [a, a+h], \;\|df(x)\| \leq M.
+\mbox{pour tout } x \in [a, a+h], \;\|df(x)\|_{mn} \leq M.
 $$
 Alors 
 $$
-\|f(a+h) - f(a)\| \leq M \|h\|.
+\|f(a+h) - f(a)\|_m \leq M \|h\|_n.
 $$
-
-### Choix des normes II {.remark .three}
-Comme pour [la version I de l'inégalité des accroissements finis](#TAF),
-dans cette version II, on peut adopter des normes arbitraires 
-$\|\cdot\|_{\R^m}$  et $\|\cdot\|_{\R^n}$ 
-dans $\R^m$ et $\R^n$ respectivement, puis définir la norme d'opérateur associée
-$$
-\|df(x)\|_{\R^m\R^n} := \sup_{h \neq 0} \frac{\|df(x)\cdot h\|_{\R^m}}{\|h\|_{\R^n}}.
-$$
-Si $\|df(x)\|_{\R^m\R^n} \leq M$, on peut  conclure que 
-$\|f(a+h) - f(a)\|_{\R^m} \leq M \|h\|_{\R^n}.$
 
 ### Démonstration {.proof}
 Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
@@ -1017,13 +1055,14 @@ dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
 cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
 De plus, 
 $$
-\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
+\|\phi'(t)\|_m = \| df(a+th) \cdot h \|_n \leq \| df(a+th) \|_{mn}\|h\|_n \leq M \|h\|_n.
 $$
-Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
+Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS-III), 
 $$
-\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
-\leq M \|h\| \times 1 = M \|h\|.
+\|f(a+h) - f(a)\|_m = \|\phi(1) - \phi(0)\|_m
+\leq M \|h\|_n \times 1 = M \|h\|_n.
 $$
+
 
 
 Old Stuff below
