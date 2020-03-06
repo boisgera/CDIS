@@ -349,14 +349,14 @@ $x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$,
 c'est-à-dire telles que
 $f(x) = (f_1(x), \dots, f_m(x)).$
 Si toutes les dérivées partielles des fonctions $f_i$ existent en $x$,
-on définit la *matrice jacobienne de $f$ en $x$*, notée $J_f(x)$, comme
+on définit la *matrice jacobienne de $f$ en $x$*, notée $f'(x)$, comme
 la matrice de $\R^{m \times n}$ telle que
 $$
-[J_f(x)]_{ij} = \partial_{j} f_i(x),
+[f'(x)]_{ij} = \partial_{j} f_i(x),
 $$
 c'est-à-dire
 $$
-J_f(x) = \left[
+f'(x) = \left[
 \begin{array}{cccc}
 \partial_1 f_1 (x) & \partial_2 f_1 (x) & \cdots & \partial_n f_1 (x) \\
 \partial_1 f_2 (x) & \partial_2 f_2 (x) & \cdots & \partial_n f_2 (x) \\
@@ -372,7 +372,7 @@ $x$ un point de $U$. Si toutes les dérivées partielles de $f$ existent en $x$,
 on appelle *gradient de $f$ en $x$* et l'on note $\nabla f(x)$ le vecteur
 de $\R^n$ défini comme la transposée de la matrice jacobienne de $f$ en $x$ :
 $$
-\nabla f(x) := J_f(x)^{\top} = 
+\nabla f(x) := f'(x)^{\top} = 
 \left[ 
 \begin{array}{c}
 \partial_1 f(x) \\
@@ -424,7 +424,7 @@ $x$ un point de $U$.
 On dit que $f$ est *différentiable en $x$* si dans un voisinage de
 $h=0$ on a
 $$
-f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|
+f(x+h) = f(x) + f'(x) \cdot h + \varepsilon(h) \|h\|
 $$
 où
 $\varepsilon$ est une fonction définie dans ce voisinage de $h=0$, 
@@ -455,25 +455,33 @@ $$
 f(x+h) = f(x) + A \cdot h + \varepsilon(h) \|h\|
 $$
 avec $\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0$
-alors $J_f(x)$ existe et $A = J_f(x)$.
+alors $f'(x)$ existe et $A = f'(x)$.
 
 ### Différentielle {.definition .two}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 Si $f$ est différentiable en $x$ on appelle alors *différentielle de $f$ en $x$* 
 l'application linéaire 
-$df(x): \R^n \to \R^m$ associée à la matrice jacobienne, vérifiant
+$df(x)$ associée à la matrice jacobienne 
 $$
-df(x) := h \mapsto J_f(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i,
+df(x) := \left(h \in \R^n \mapsto f'(x) \cdot h \in \R^m \right)
 $$
-et par extension, la matrice jacobienne elle-même.
+soit l'application caractérisée pour tout $h \in \R^n$ par
+$$
+df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
+$$
+Si l'on identifie applications linéaires et matrices, la différentielle
+en vient à désigner la matrice jacobienne elle-même :
+$$
+df(x) = f'(x).
+$$
 
 ### TODO -- Définitions alternatives {.remark .three}
 
 
 En exploitant la linéarité de la différentielle
 $$
-\lim_{h \to 0} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0.
+\lim_{h \to 0} \left(\frac{f(x+h) - f(x)}{\|h\|} - f'(x) \cdot \frac{h}{\|h\|}\right) = 0.
 $$
 
 plus la version $\varepsilon-\delta$.
@@ -529,7 +537,7 @@ h_i \int_0^1 \partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) \, dt.
 \end{multline*}
 Par ailleurs, comme
 $$
-J_f(x) \cdot h =
+f'(x) \cdot h =
 \sum_{i=1}^n \partial_i f(x) h_i
 =
 \sum_{i=1}^n h_i \int_0^1 \partial_i f(x) \, dt,
@@ -579,7 +587,7 @@ $d(A \cdot x) = A  \cdot dx$ ?
 ### TODO Liste d'autres identités ?
 
 $d(f(x)) = f'(x) \cdot dx$ (quand $x \in \R$),
-plus généralement $d(f(x)) = J_f(x) \cdot dx$. 
+
 
 Ooof, tenté du coup de prendre $f'(x)$ comme notation pour la jacobienne
 et $df(x)$ pour la différentielle. Ce qui fournirait un magnifique 
