@@ -285,10 +285,32 @@ La fonction $f$ est *dérivable en $x$* si la limite du taux d'accroissement
 de $f$ en $x$ existe ; cette limite est appelée dérivée de $f$ en $x$ et
 notée $f'(x)$ :
 $$
-f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
+f'(x) = \lim_{\substack{h \to 0 \\ h \neq 0}} \frac{f(x+h) - f(x)}{h}.
 $$
 La fonction $f$ est *dérivable (sur $U$)* si elle est dérivable en tout point
 $x$ de $U$.
+
+### Dérivée sur un intervalle fermé {.definition .zero}
+Si la fonction $f$ est définie sur un intervalle fermé $[a, b]$ de $\R$
+et à valeurs dans $\R^m$, on dira que $f$ est *dérivable sur $[a, b]$* 
+si elle est dérivable sur l'intervalle ouvert $U = \left]a, b\right[$ 
+et que les dérivées de $f$ à droite en $a$ et à gauche en $b$ existent
+$$
+f'(a) := \lim_{\substack{h \to 0 \\ h > 0}} \frac{f(a+h) - f(a)}{h}
+\; \mbox{ et } \;
+f'(b) := \lim_{\substack{h \to 0 \\ h < 0}} \frac{f(b+h) - f(b)}{h}.
+$$
+
+### {.remark}
+Alternativement -- au prix d'une pirouette -- il est également possible de définir la dérivée
+d'une fonction définie sur un intervalle fermé en se ramenant au cas ouvert,
+sans introduire la notion de dérivée à gauche et à droite :
+
+### Dérivée sur un intervalle fermé {.exercise .question #dif .one}
+Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
+si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
+$f$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tels que $g$ soit dérivable.
+Montrer qu'alors, on a $f' = g'|_{[a, b]}$.
 
 ### Développement limité {.proposition .zero}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
@@ -299,12 +321,6 @@ f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
 $$
 où $\varepsilon$ est définie dans un voisinage de $0$ et
 telle que $\lim_{h \to 0}\varepsilon(h)= \varepsilon(0) = 0$.
-
-### TODO
-
-  - valeurs vectorielles et dérivation par composante
-
-  - dérivées à gauche et à droite sur un intervalle, équivalence / extension
 
 ### Dérivées partielles {.definition .one}
 Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
@@ -402,8 +418,6 @@ systématiquement vraie, est la *différentiabilité* de $f$ en $x$.
 Exhiber une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
 mais qui soit discontinue en $(0,0)$.
 
-
-
 ### Différentiabilité {.definition .three}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
@@ -420,6 +434,8 @@ $$
 $$
 On dit que $f$ est *différentiable (sur $U$)* si elle est différentiable 
 en tout point $x$ de $U$.
+
+### TODO -- cas monovariable
 
 ### Fonctions affines {.exercise .question #fa .one}
 Soit $A \in \R^{m\times n}$ et $b \in \R^m$. 
@@ -490,9 +506,9 @@ Soit $x \in U$ et $r>0$ telle que la boule fermée centrée en $x$ et de rayon
 $r$ soit incluse dans $U$
 $$
 \overline{B}(x, r) =
-\{y \in \R^n \; | \; \|y - x\|_2 \leq r\} \subset U
+\{y \in \R^n \; | \; \|y - x\| \leq r\} \subset U
 $$
-et soit $h \in \R^n$ tel que $\|h\|_2 \leq r$. 
+et soit $h \in \R^n$ tel que $\|h\| \leq r$. 
 La variation de $f$ entre $x$ et $x+h$ satisfait
 \begin{multline*}
 f(x+h) - f(x) = \\ 
@@ -524,19 +540,19 @@ f(x+h) - f(x) - \sum_i \partial_i f(x) h_i = \\
 \sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt. 
 \end{multline*}
 Par continuité des dérivées partielles en $x$, si $r$ est choisi suffisamment 
-petit pour que $\|\partial_i f(y) - \partial_i f(x)\|_2 \leq \varepsilon / n$ 
-quand $\|y-x\|_2 \leq r$, alors l'inégalité triangulaire
+petit pour que $\|\partial_i f(y) - \partial_i f(x)\| \leq \varepsilon / n$ 
+quand $\|y-x\| \leq r$, alors l'inégalité triangulaire
 fournit
 \begin{multline*}
-\left\|\int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt \right\|_2 \leq \\
-\int_0^1 \left\|\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right\|_2 \, dt \leq \varepsilon/n
+\left\|\int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt \right\| \leq \\
+\int_0^1 \left\|\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right\| \, dt \leq \varepsilon/n
 \end{multline*}
-et donc, toujours par inégalité triangulaire, comme $|h_i| \leq \|h\|_2$,
+et donc, toujours par inégalité triangulaire, comme $|h_i| \leq \|h\|$,
 $$
-\left\|f(x+h) - f(x) - \sum_{i=1}^n \partial_i f(x) h_i \right\|_2
+\left\|f(x+h) - f(x) - \sum_{i=1}^n \partial_i f(x) h_i \right\|
 \leq
 \sum_{i=1}^n |h_i| {\varepsilon}/{n}
-\leq \varepsilon \|h\|_2.
+\leq \varepsilon \|h\|.
 $$
 La fonction $f$ est donc différentiable en $x$.
 
@@ -865,6 +881,39 @@ Alors
 $$
 \|f(a+h) - f(a)\| \leq M h.
 $$
+
+### Démonstration {.proof}
+Considérons l'application
+$$
+\phi: t \in [a, a+h] \mapsto \left<f(a+h) - f(a), f(t) \right> \in \R.
+$$
+Comme
+$$
+\frac{\phi(t+s) - \phi(t)}{s} 
+= 
+\left<f(a+h) - f(a), \frac{f(t+s) - f(t)}{s}\right>,
+$$
+la fonction $\phi$ est dérivable en tout point $t\in [a,a+h]$ et
+$$
+\phi'(t) = \left<f(a+h) - f(a), f'(t) \right>.
+$$
+La fonction $f$ étant à valeurs réelles, 
+le théorème des valeurs intermédiaires est applicable : il existe un 
+$\tau \in [a,a+h]$ tel que
+$$
+\phi(a+h) - \phi(a) = \phi'(\tau) h = \left<f(a+h) - f(a), f'(\tau) \right> h.
+$$
+Comme par ailleurs
+\begin{align*}
+\phi(a+h) - \phi(a) &= 
+\left<f(a+h) - f(a), f(a+h) \right> - \left<f(a+h) - f(a), f(a) \right>  \\
+&= \|f(a+h) - f(a)\|^2,
+\end{align*}
+on a 
+$$
+\|f(a+h) - f(a)\|^2 = \left<f(a+h) - f(a), f'(\tau) \right> h \leq \|f(b) - f(a)\| \|f'(\tau)\| h.
+$$
+Puisque $\|f'(\tau)\| \leq M$, on en déduit que $\|f(a+h) - f(a)\| \leq M h.$
 
 ### Démonstration {.proof}
 Par [la forme générale du théorème fondamental du calcul](#TFCE),
@@ -2221,15 +2270,6 @@ $\to$ [Solution](#sol-vvcvl-2)
 
 -->
 
-Dérivée sur un intervalle fermé {.question #dif}
---------------------------------------------------------------------------------
-
-Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
--- $f'(a)$ et $f'(b)$ désignant alors les dérivées à droite de $f$ en $a$
-et à gauche de $f$ en $b$ --
-si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
-$f$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable
-et qu'alors, $f' = g'|_{[a, b]}$.
 
 
 Différentiation en chaîne {#dec}
@@ -2486,6 +2526,27 @@ Solutions
 Exercices courts
 --------------------------------------------------------------------------------
 
+### Dérivée sur un intervalle fermé {.answer #answer-dif}
+
+Si une fonction $g$ dérivable sur $\left]a-\varepsilon, b+\varepsilon \right[$
+étend la fonction $f$ définie sur $[a, b]$,
+il est clair que $f$ est dérivable en tout point de $[a, b]$ et que
+$g'|_{[a, b]} = f'$.
+
+Réciproquement, si $f$ est dérivable sur $[a, b]$ (à droite en $a$ et à gauche
+en $b$), alors la fonction $g: \left]a-1, b+1 \right[$ définie par 
+$$
+g(x) = \left|
+\begin{array}{rl}
+f(a) + f'(a) \times (x-a) & \mbox{si } x < a \\
+f(x) & \mbox{si } x \in [a, b] \\
+f(b) + f'(b) \times (x-b) & \mbox{si } x > b
+\end{array}
+\right.
+$$
+étend $f$ et est dérivable par construction.
+
+
 ### Fonction discontinue {.answer #answer-discont}
 La fonction $f: \R^2 \to \R$ définie par :
 $$
@@ -2614,27 +2675,6 @@ soit $B h = \left< x, h \right>$ ou $\left<\cdot, \cdot\right>$
 désigne le produit scalaire dans $\mathbb{R}^n$. 
 
 -->
-
-Dérivée sur un intervalle fermé {.answer #answer-dif}
---------------------------------------------------------------------------------
-
-Si une fonction $g$ dérivable sur $\left]a-\varepsilon, b+\varepsilon \right[$
-étend la fonction $f$ définie sur $[a, b]$,
-il est clair que $f$ est dérivable en tout point de $[a, b]$ et que
-$g'|_{[a, b]} = f'$.
-
-Réciproquement, si $f$ est dérivable sur $[a, b]$ (à droite en $a$ et à gauche
-en $b$), alors la fonction $g: \left]a-1, b+1 \right[$ définie par 
-$$
-g(x) = \left|
-\begin{array}{rl}
-f(a) + f'(a) \times (x-a) & \mbox{si } x < a \\
-f(x) & \mbox{si } x \in [a, b] \\
-f(b) + f'(b) \times (x-b) & \mbox{si } x > b
-\end{array}
-\right.
-$$
-étend $f$ et est dérivable par construction.
 
 Différentiation en chaîne 
 --------------------------------------------------------------------------------
