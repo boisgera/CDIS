@@ -638,6 +638,28 @@ pour lever l'ambiguité si nécessaire, avec $d(f)(x^2)$ dans le premier cas
 et $d(f(x^2))$ dans le second. Par défaut, nous supposerons dans la suite
 que $df(x^2)$ désigne la notation "stricte" $d(f)(x^2)$.
 
+**TODO.** (avant ?). Variables nommées
+
+**TODO.** Notations compactes et cas multivariable (que signifie $dy$ ...
+en fonction du contexte, par exemple s'il y a 2 variables $x$ et $y$ et
+que $y\in\R^n$).
+
+**TODO.** Notations compactes et chain rule. 
+En déduire que si $dg(y) = h(y) \in \R^{n \times m}$, alors on peut noter cela
+$$
+d (g(y)) = h(y) \cdot dy
+$$
+(car $y$ représente ici l'ensemble des variables considérées, 
+donc $dy$ est l'identité de $\R^n$ dans $\R^n$ !) et que si $f$ et $g$
+sont différentiables sur leur domaine de définition, la règle de 
+différentiation en chaîne fournit alors
+$$
+d(g(f(x)) = h(f(x)) \cdot d(f(x)).
+$$
+Autrement dit, il suffit de "remplacer $y$ par $f(x)$" ... 
+
+
+
 
 
 ### Règle de la somme {.theorem #sum-rule}
