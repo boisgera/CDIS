@@ -550,6 +550,8 @@ def handle_typed_sections(doc):
                 todos.append([holder, index, level, latex_title])
                 type_ = shared[0]
                 inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
+                if "zero" in classes:
+                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\circ}"), Str(")")] 
                 if "one" in classes:
                     inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"), Str(")")] 
                 if "two" in classes:

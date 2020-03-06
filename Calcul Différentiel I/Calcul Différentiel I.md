@@ -279,6 +279,33 @@ induite par les normes euclidiennes sur $\R^m$ et sur $\R^n$.
 Matrice jacobienne et différentielle
 ================================================================================
 
+### Dérivée {.definition .zero}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+La fonction $f$ est *dérivable en $x$* si la limite du taux d'accroissement
+de $f$ en $x$ existe ; cette limite est appelée dérivée de $f$ en $x$ et
+notée $f'(x)$ :
+$$
+f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
+$$
+La fonction $f$ est *dérivable (sur $U$)* si elle est dérivable en tout point
+$x$ de $U$.
+
+### Développement limité {.proposition .zero}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+Si la fonction $f$ est dérivable en $x$ alors dans un voisinage de $x$
+on a
+$$
+f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
+$$
+où $\varepsilon$ est définie dans un voisinage de $0$ et
+telle que $\lim_{h \to 0}\varepsilon(h)= \varepsilon(0) = 0$.
+
+### TODO
+
+  - valeurs vectorielles et dérivation par composante
+
+  - dérivées à gauche et à droite sur un intervalle, équivalence / extension
+
 ### Dérivées partielles {.definition .one}
 Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
 $x=(x_1, \cdots, x_n) \in U$. Lorsque la $j$-ème fonction partielle de $f$
@@ -1833,23 +1860,6 @@ S'il l'on adopte la définition étendue de jacobien de la remarque
 "[Matrice jacobienne, gradient et dérivées partielles]", la définition de 
 continûment différentiable peut être reformulée comme
 "la matrice jacobienne existe et est continue".
-
-
-Annexe -- Dérivée
-================================================================================
-
-**TODO** Rappels :
-
-  - dérivées sur un ouvert ; valeurs vectorielles et dérivation par composante
-
-  - dérivées à gauche et à droite sur un intervalle, équivalence / extension
-
-  - dérivée et dvlpt limité au 1er ordre
-
-Dans le corps du document, relier dérivée et différentielle (quand $n=1$):
-$f'(x) = df(x)$.
-
-
 
 Annexe -- Algèbre linéaire
 ================================================================================
