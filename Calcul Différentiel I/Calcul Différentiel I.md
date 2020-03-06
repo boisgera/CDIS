@@ -303,10 +303,10 @@ $$
 
 ### {.remark}
 Alternativement -- au prix d'une pirouette -- il est également possible de définir la dérivée
-d'une fonction définie sur un intervalle fermé en se ramenant au cas ouvert,
+d'une fonction définie sur un intervalle fermé en se ramenant au cexplias ouvert,
 sans introduire la notion de dérivée à gauche et à droite :
 
-### Dérivée sur un intervalle fermé {.exercise .question #dif .one}
+### Dérivée sur un intervalle fermé {.exercice .question #dif .one}
 Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
 si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
 $f$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tels que $g$ soit dérivable.
@@ -570,6 +570,22 @@ Calcul Différentiel
 ### TODO
 
 Expliquer que fondamentalement, calcul = composition de fonctions.
+
+### TODO
+
+Déduire régle de la somme et linéarité de l'identité 
+$d(A \cdot x) = A  \cdot dx$ ? 
+
+### TODO Liste d'autres identités ?
+
+$d(f(x)) = f'(x) \cdot dx$ (quand $x \in \R$),
+plus généralement $d(f(x)) = J_f(x) \cdot dx$. 
+
+Ooof, tenté du coup de prendre $f'(x)$ comme notation pour la jacobienne
+et $df(x)$ pour la différentielle. Ce qui fournirait un magnifique 
+$df(x) = f'(x) \cdot dx$.
+
+
 
 ### Règle de différentiation en chaîne {.theorem #chain-rule .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
