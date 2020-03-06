@@ -982,8 +982,6 @@ On peut se convaincre en examinant la démonstration ci-dessus qu'elle est
 valide pour toute norme $\|\cdot\| := \|\cdot\|_{\R^n}$ sur $\R^n$
 et pas uniquement la norme euclidienne $\|\cdot\| := \|\cdot\|_2$. 
 
-### TODO -- Exo preuve plus simple avec $\|\cdot\|_2$ & démo Mitchener ?
-
 ### Inégalité des accroissements finis II {.theorem #TAF .two}
 
 Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
