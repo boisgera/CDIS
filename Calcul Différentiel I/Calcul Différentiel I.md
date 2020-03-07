@@ -1050,6 +1050,8 @@ $$
 \leq M \|h\| \times 1 = M \|h\|.
 $$
 
+### TODO -- exo variation du log (plan coupé)
+
 ### {.remark}
 Ces deux versions de l'inégalité des accroissement finis peuvent être 
 généralisées à d'autres normes que la norme euclidienne.
