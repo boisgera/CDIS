@@ -980,6 +980,8 @@ $$
 \|f(a+h) - f(a)\| \leq M h.
 $$
 
+### TODO -- basculer en exo, mettre preuve générale ici.
+
 ### Démonstration {.proof}
 
 **TODO.** adopter convention $\phi$ déf sur $[0,1]$ plus proche de ce qui
