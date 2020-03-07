@@ -2404,7 +2404,7 @@ $\to$ [Solution](#sol-vvcvl-2)
 
 ### TODO
 
-Pt spline / point de contôle.
+Pt spline / point de contôle. Avec dessin
 
 Différentiation en chaîne {#dec}
 --------------------------------------------------------------------------------
