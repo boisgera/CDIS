@@ -1600,6 +1600,8 @@ $$
 d(g \circ f)(x) = dg(y) \cdot df(x) \; \mbox{ où } \; y = f(x).
 $$
 
+### TODO -- Exercice. Trois fonctions
+
 ### Notations {.note}
 
 La formule précédente peut s'écrire de façon plus compacte sans
