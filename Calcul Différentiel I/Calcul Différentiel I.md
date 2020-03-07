@@ -303,10 +303,10 @@ $$
 
 ### {.remark}
 Alternativement -- au prix d'une pirouette -- il est également possible de définir la dérivée
-d'une fonction définie sur un intervalle fermé en se ramenant au cexplias ouvert,
+d'une fonction définie sur un intervalle fermé en se ramenant au cas ouvert,
 sans introduire la notion de dérivée à gauche et à droite :
 
-### Dérivée sur un intervalle fermé {.exercice .question #dif .one}
+### Dérivée sur un intervalle fermé {.exercise .question #dif .one}
 Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
 si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
 $f$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tels que $g$ soit dérivable.
@@ -320,7 +320,15 @@ $$
 f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
 $$
 où $\varepsilon$ est définie dans un voisinage de $0$ et
-telle que $\lim_{h \to 0}\varepsilon(h)= \varepsilon(0) = 0$.
+telle que 
+$$
+\lim_{h \to 0}\varepsilon(h) = 0.
+$$
+Réciproquement, s'il existe un $\ell \in \R^m$ tel que
+$$
+f(x+h) = f(x) + \ell h + \varepsilon(h)|h|
+$$
+alors $f$ est dérivable en $x$ et $f'(x) = \ell$.
 
 ### Dérivées partielles {.definition .one}
 Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
@@ -421,21 +429,32 @@ mais qui soit discontinue en $(0,0)$.
 ### Différentiabilité {.definition .three}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
-On dit que $f$ est *différentiable en $x$* si dans un voisinage de
-$h=0$ on a
+On dit que $f$ est *différentiable en $x$* si la matrice jacobienne de $f$ en
+$x$ existe et que dans un voisinage de $h=0$ on a
 $$
 f(x+h) = f(x) + f'(x) \cdot h + \varepsilon(h) \|h\|
 $$
 où
-$\varepsilon$ est une fonction définie dans ce voisinage de $h=0$, 
-à valeurs dans $\R^m$ et vérifiant
+$\varepsilon$ est une fonction à valeurs dans $\R^m$ et vérifiant
 $$
 \lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
 $$
-On dit que $f$ est *différentiable (sur $U$)* si elle est différentiable 
-en tout point $x$ de $U$.
+On dit que $f$ est *différentiable* (ou *différentiable sur $U$*)
+si elle est différentiable en tout point $x$ de $U$.
 
-### TODO -- cas monovariable
+<!--
+### Convention de Landau {.definition .four}
+Toute fonction $\varepsilon : V \subset \R^n \mapsto \R^m$ définie sur 
+un voisinage de $0 \in \R^n$ telle que 
+$$
+\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0
+$$
+est appelée "un $o(1)$", ce que l'on note $\varepsilon(h)  = o(1)$.
+La fonction $h \in V \mapsto \varepsilon(h)\|h\|$ est un $o(h)$
+$\varepsilon(h)\|h\| = o(h)$.
+-->
+
+### TODO -- cas monovariable (dérivabilité équiv diff)
 
 ### Fonctions affines {.exercise .question #fa .one}
 Soit $A \in \R^{m\times n}$ et $b \in \R^m$. 
@@ -476,6 +495,12 @@ $$
 df(x) = f'(x).
 $$
 
+### TODO
+
+Un mot sur ce que le terme $df(x) \cdot h$ (et ses composants) *représente* :
+un approximation (au premier ordre) de la variation de $f$ en $x$ quand 
+l'argument varie de $h$.
+
 ### TODO -- Définitions alternatives {.remark .three}
 
 
@@ -486,6 +511,9 @@ $$
 
 plus la version $\varepsilon-\delta$.
 
+
+### TODO
+Diff implique cont, existence des dérivées directionnelles
 
 ### {.remark .ante}
 Il n'est pas toujours facile d'établir directement la différentiabilité 
@@ -581,10 +609,43 @@ Expliquer que fondamentalement, calcul = composition de fonctions.
 
 ### TODO
 
+Expliquer interêt variables nommées, et usage $dx$, $dy$, etc. qui donnent
+des identités valables même quand le jeu de variables est "inconnu".
+
+### TODO
+
 Déduire régle de la somme et linéarité de l'identité 
-$d(A \cdot x) = A  \cdot dx$ ? 
+$$d(A \cdot x) = A  \cdot dx$$ ? 
+Déduire la régle du produit de
+$$
+d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\top} \cdot dx
+$$
+(csq exo : difff $\left<x, y\right>$ et $\|x\|$ (si $x \neq 0$))
+
+### Différentielle de la norme euclidienne {.exercice .question #diff-norm}
+En exploitant la règle de différentiation en chaîne, montrer que l'application 
+$$
+f: x \in \R^n\setminus\{0\} \mapsto \|x\| \in \R
+$$ 
+est différentiable, puis calculer son gradient $\nabla f$.
+
+### Différentiabilité de la norme euclidienne {.answer #answer-diff-norm}
+Pour tout $x \in \R^n$ on a
+$$
+\|x\| = \sqrt{\|x\|^2} = \sqrt{x^{\top} \cdot x},
+$$
+La fonction $x \in \R^n \setminus \{0\}$ peut donc s'écrire comme la composée
+des trois fonctions
+\begin{align*}
+f &: x \in \R^n \setminus \{0\} \mapsto (x, x) \in \R^{n} \times \R^n \\
+g &: (x, y) \in (\R^n \setminus \{0\}) \times (\R^n \setminus \{0\}) \mapsto x^{\top} \cdot y \in \R \\
+h &: x \in \R\setminus\{0\} \mapsto \sqrt{x} \in \R.
+\end{align*}
+
+**TODO*
 
 ### TODO Liste d'autres identités ?
+
 
 $d(f(x)) = f'(x) \cdot dx$ (quand $x \in \R$),
 
@@ -605,19 +666,23 @@ $$
 d(g \circ f)(x) = dg(y) \cdot df(x) \; \mbox{ où } \; y = f(x).
 $$
 
+
 ### Démonstration {.proof}
-L'objectif de la preuve est de montrer que
+L'objectif de la preuve est de montrer que dans un voisinage de $h=0$,
 $$
-g(f(x+h)) - g(f(x)) =  (dg(f(x)) \cdot df(x)) \cdot h + o(\|h\|).
+g(f(x+h)) - g(f(x)) =  (dg(f(x)) \cdot df(x)) \cdot h + \varepsilon(h)\|h\|
 $$
+où $\lim_{h \to 0} \varepsilon(h) = 0$.
 La fonction $g$ étant différentiable en $f(x)$, il existe une fonction
-$\varepsilon_1$ qui soit un $o(1)$ et telle que
+$\varepsilon_1$ définie dans un voisinage de $0$ et telle que
+$\lim_{h \to 0} \varepsilon_1(h) = 0$, 
+vérifiant
 $$
 g(f(x)+k) - g(f(x)) = dg(f(x)) \cdot k + \varepsilon_1(k) \|k\|.
 $$
 Choisissons $k=f(x+h) - f(x)$ dans cette équation, de telle sorte que
 $$
-g(f(x)+k) = g(f(x) + (f(x+h) - f(x)) = g(f(x+h)).
+g(f(x)+k) = g\left(f(x) + (f(x+h) - f(x))\right) = g(f(x+h)).
 $$
 Nous obtenons donc
 $$
@@ -625,10 +690,9 @@ g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (f(x+h)-f(x)) + \varepsilon_1(k) \|k\|.
 $$
 
 Notons que la fonction $\varepsilon_2(h) := \varepsilon_1(f(x+h) - f(x))$
-est définie dans un voisinage de l'origine et que par continuité de $f$ en 
+est définie dans un voisinage de $0$ et que par continuité de $f$ en 
 $x$, $f(x+h) - f(x)$ tend vers $0$ quand $h$ tend vers $0$, et par conséquent
-$\varepsilon_2(h) \to \varepsilon_2(0) = 0$ quand $h\to 0$ ; 
-la fonction $\varepsilon_2$ est donc un $o(1)$.
+$\varepsilon_2(h) \to 0$ quand $h\to 0$.
 Avec cette notation, on a
 $$
 \begin{split}
@@ -637,7 +701,8 @@ g(f(x+h)) - g(f(x)) &= dg(f(x)) \cdot (f(x+h)-f(x)) \\
 \end{split}
 $$
 Comme $f$ est également différentiable en $x$, il existe une fonction 
-$\varepsilon_3$ qui soit un $o(1)$ et telle que
+$\varepsilon_3$ définie dans un voisinage de $0$ et telle que
+$\lim_{h \to 0} \varepsilon(h) = 0$ vérifiant
 $$
 f(x+h) - f(x) = df(x) \cdot h + \varepsilon_3(h) \|h\|.
 $$
@@ -802,18 +867,19 @@ Variation des fonctions
 Lorsque la fonction $f$ est différentiable en $x$, 
 nous disposons de l'égalité 
 $$
-f(x + h) - f(x) = f'(x) h + \varepsilon(h) \|h\|
+f(x + h) - f(x) = df(x) \cdot h + \varepsilon(h) \|h\|
 $$
-avec $\lim_{h \to 0}\varepsilon(h) = \varepsilon(0) = 0$. 
-Cette égalité est de nature asymptotique :
+avec $\lim_{h \to 0}\varepsilon(h) = 0$. 
+Cette égalité est de nature asymptotique, ce qui veut dire que
 pour maîtriser l'écart entre
 $f(x+h)$ et $f(x)$, 
 nous devons être en mesure de faire tendre $h$ vers $0$ ;
-si la grandeur $h$ est fixée -- même petite -- cette relation ne
-nous fournit aucune information. 
+si la grandeur $h$ est fixée cette relation ne
+nous fournit aucune information, même si $h$ est "très petit". 
 
-Mais tout n'est pas perdu : si $f$ est maintenant différentiable sur tout 
-le segment $[x,x+h]$, il est possible de comparer $f(x)$ et $f(x+h)$ 
+Mais tout n'est pas perdu : si nous savons que $f$ est différentiable 
+non pas uniquement en $x$ mais sur tout le segment $[x,x+h]$, 
+il est possible de calculer la différence entre $f(x+h)$ et $f(x)$ 
 en intégrant les variations infinitésimales 
 de $f$ le long de $[x, x+h]$. 
 
@@ -822,6 +888,9 @@ Si $f: [a, b] \subset \R \to \R$ est dérivable et que $f'$ est intégrable alor
 $$
 f(b) - f(a)  = \int_a^b f'(x) \, dx.
 $$
+
+### Démonstration {.proof}
+Voir l'enseignement de calcul intégral.
 
 ### A propos du terme "intégrable" {.remark .three}
 Dans ce chapitre, sauf précision contraire, le terme "intégrable" doit être compris 
@@ -832,7 +901,7 @@ A ce stade, vous pouvez retenir que si $f'$ est "continue",
 "continue par morceaux" ou même "intégrable au sens de Riemann", 
 elle est "intégrable" (au sens de Lebesgue) et appliquer le théorème.
 
-### Théorème fondamental du calcul : forme générale {.remark .four #TFCE}
+### Théorème fondamental du calcul : extension {.remark .four #TFCE}
 Si l'on adopte au lieu de l'intégrale de Lebesgue l'intégrale encore
 plus générale de Henstock-Kurzweil (cf. calcul intégral), 
 alors toute fonction dérivée est automatiquement 
@@ -852,7 +921,7 @@ si l'on utilise l'intégrale de Henstock-Kurzweil, il sera inutile
 de vérifier que l'application 
 $t \mapsto df(a+th)  \cdot h$ est intégrable pour appliquer le théorème.
 
-### Variation d'une fonction {.proposition #VF .two}
+### Théorème fondamental du calcul (multivariable) {.theorem #VF .two}
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
 soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
   $$
@@ -893,7 +962,7 @@ f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt
                                   = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-### Inégalité des accroissements finis I {.theorem #TAFS .two}
+### Inégalité des accroissements finis (monovariable) {.theorem #TAFS .two}
 Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
 $h \in \left[0, +\infty\right[$.
 Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
@@ -947,14 +1016,14 @@ Puisque $\|f'(\tau)\| \leq M$, on en déduit que $\|f(a+h) - f(a)\| \leq M h.$
 
 
 
-### Inégalité des accroissements finis II {.theorem #TAF .two}
+### Inégalité des accroissements finis (multivariable) {.theorem #TAF .two}
 
 Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
 supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
 dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
 c'est-à-dire telle que
 $$
-\mbox{pour tout } x \in [a, a+h], \;\|df(x)\| \leq M.
+\mbox{pour tout } x \in [a, a+h], \;\|f'(x)\| \leq M.
 $$
 Alors 
 $$
@@ -1061,12 +1130,12 @@ une subdivision pointée qui y soit subordonnée.
 Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
 Soit $\|\cdot\|_m$ une norme sur $\R^m$, $\|\cdot\|_n$ une norme sur
 $\R^n$ et $\|\cdot\|_{mn}$ la norme d'opérateur de $\R^n$ dans
-$\R^n$ associée. 
+$\R^m$ associée. 
 Si $f$ est différentiable en tout point d'un segment $[a, a+h]$ inclus 
 dans $U$ et que la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
 c'est-à-dire telle que
 $$
-\mbox{pour tout } x \in [a, a+h], \;\|df(x)\|_{mn} \leq M.
+\mbox{pour tout } x \in [a, a+h], \;\|f'(x)\|_{mn} \leq M.
 $$
 Alors 
 $$
@@ -1559,12 +1628,15 @@ $$
 $$
 
 ### Démonstration {.proof}
-L'objectif de la preuve est de montrer que
+L'objectif de la preuve est de montrer que dans un voisinage de $0$,
 $$
-g(f(x+h)) - g(f(x)) =  (dg(f(x)) \cdot df(x)) \cdot h + o(\|h\|).
+g(f(x+h)) - g(f(x)) =  (dg(f(x)) \cdot df(x)) \cdot h + \varepsilon(h)\|h\|
 $$
+où $\lim_{h \to 0} \varepsilon(h) = 0$.
 La fonction $g$ étant différentiable en $f(x)$, il existe une fonction
-$\varepsilon_1$ qui soit un $o(1)$ et telle que
+$\varepsilon_1$ définie dans un voisinage de $0$ et telle que
+$\lim_{h \to 0} \varepsilon_1(h) = 0$,  
+vérifiant
 $$
 g(f(x)+k) - g(f(x)) = dg(f(x)) \cdot k + \varepsilon_1(k) \|k\|.
 $$
@@ -1578,10 +1650,9 @@ g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (f(x+h)-f(x)) + \varepsilon_1(k) \|k\|.
 $$
 
 Notons que la fonction $\varepsilon_2(h) := \varepsilon_1(f(x+h) - f(x))$
-est définie dans un voisinage de l'origine et que par continuité de $f$ en 
+est définie dans un voisinage de $0$ et que par continuité de $f$ en 
 $x$, $f(x+h) - f(x)$ tend vers $0$ quand $h$ tend vers $0$, et par conséquent
-$\varepsilon_2(h) \to \varepsilon_2(0) = 0$ quand $h\to 0$ ; 
-la fonction $\varepsilon_2$ est donc un $o(1)$.
+$\varepsilon_2(h) \to= 0$ quand $h\to 0$.
 Avec cette notation, on a
 $$
 \begin{split}
@@ -1590,7 +1661,8 @@ g(f(x+h)) - g(f(x)) &= dg(f(x)) \cdot (f(x+h)-f(x)) \\
 \end{split}
 $$
 Comme $f$ est également différentiable en $x$, il existe une fonction 
-$\varepsilon_3$ qui soit un $o(1)$ et telle que
+$\varepsilon_3$ définie dans un voisinage de $0$ et telle que
+$\lim_{h \to 0} \varepsilon(h) = 0$ vérifiant
 $$
 f(x+h) - f(x) = df(x) \cdot h + \varepsilon_3(h) \|h\|.
 $$

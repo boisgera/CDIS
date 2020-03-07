@@ -551,7 +551,7 @@ def handle_typed_sections(doc):
                 type_ = shared[0]
                 inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
                 if "zero" in classes:
-                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\circ}"), Str(")")] 
+                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\boldsymbol{\circ}}"), Str(")")] 
                 if "one" in classes:
                     inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"), Str(")")] 
                 if "two" in classes:
@@ -559,7 +559,7 @@ def handle_typed_sections(doc):
                 if "three" in classes:
                     inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"*3), Str(")")] 
                 if "four" in classes:
-                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\infty}"), Str(")")] 
+                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\pmb{\infty}}"), Str(")")] 
                 header[2] = inlines
     for holder, index, level, latex_title in todos:
         latex_code = (
