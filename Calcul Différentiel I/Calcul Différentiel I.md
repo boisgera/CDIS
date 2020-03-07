@@ -939,6 +939,8 @@ $$
 f(a + h) - f(a) = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
+### TODO -- dessin cacahuete
+
 ### Démonstration {.proof}
 L'ensemble $U$ étant ouvert, il existe un $\varepsilon > 0$ tel que
 l'intervalle ouvert $I := \left]-\varepsilon, 1+\varepsilon \right[$ 
@@ -980,100 +982,14 @@ $$
 \|f(a+h) - f(a)\| \leq M h.
 $$
 
-### TODO -- basculer en exo, mettre preuve générale ici.
-
-### Démonstration {.proof}
-
-**TODO.** adopter convention $\phi$ déf sur $[0,1]$ plus proche de ce qui
-précède et qui suit ?
-
-Considérons l'application
-$$
-\phi: t \in [a, a+h] \mapsto \left<f(a+h) - f(a), f(t) \right> \in \R.
-$$
-Comme
-$$
-\frac{\phi(t+s) - \phi(t)}{s} 
-= 
-\left<f(a+h) - f(a), \frac{f(t+s) - f(t)}{s}\right>,
-$$
-la fonction $\phi$ est dérivable en tout point $t\in [a,a+h]$ et
-$$
-\phi'(t) = \left<f(a+h) - f(a), f'(t) \right>.
-$$
-La fonction $f$ étant à valeurs réelles, 
-le théorème des valeurs intermédiaires est applicable : il existe un 
-$\tau \in [a,a+h]$ tel que
-$$
-\phi(a+h) - \phi(a) = \phi'(\tau) h = \left<f(a+h) - f(a), f'(\tau) \right> h.
-$$
-Comme par ailleurs
-\begin{align*}
-\phi(a+h) - \phi(a) &= 
-\left<f(a+h) - f(a), f(a+h) \right> - \left<f(a+h) - f(a), f(a) \right>  \\
-&= \|f(a+h) - f(a)\|^2,
-\end{align*}
-on a 
-$$
-\|f(a+h) - f(a)\|^2 = \left<f(a+h) - f(a), f'(\tau) \right> h \leq \|f(b) - f(a)\| \|f'(\tau)\| h.
-$$
-Puisque $\|f'(\tau)\| \leq M$, on en déduit que $\|f(a+h) - f(a)\| \leq M h.$
-
-
-
-
-
-### Inégalité des accroissements finis (multivariable) {.theorem #TAF .two}
-
-Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
-supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
-dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
-c'est-à-dire telle que
-$$
-\mbox{pour tout } x \in [a, a+h], \;\|f'(x)\| \leq M.
-$$
-Alors 
-$$
-\|f(a+h) - f(a)\| \leq M \|h\|.
-$$
 
 
 ### Démonstration {.proof}
-Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
-dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
-cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
-De plus, 
-$$
-\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
-$$
-Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
-$$
-\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
-\leq M \|h\| \times 1 = M \|h\|.
-$$
 
-### TODO -- exo variation du log (plan coupé)
+**TODO:** basculer début en footnote, reprendre au moment ou on a une
+somme de Riemann arbitrairement proche de l'intégrale. Nécessaire également
+de définir plus en détail notation somme de Riemann et subdivision pointée.
 
-### {.remark}
-Ces deux versions de l'inégalité des accroissement finis peuvent être 
-généralisées à d'autres normes que la norme euclidienne.
-
-### Inégalité des accroissements finis III {.theorem #TAFS-III .three}
-Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
-$h \in \left[0, +\infty\right[$.
-Soit $\|\cdot\|_m$ une norme sur $\R^m$. 
-Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|_m$,
-c'est-à-dire si
-$$
-\mbox{pour tout } t \in [a, b], \;\|f'(t)\|_m \leq M.
-$$
-Alors 
-$$
-\|f(a+h) - f(a)\|_m \leq M h.
-$$
-
-
-### Démonstration {.proof}
 Par [la forme générale du théorème fondamental du calcul](#TFCE),
 la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
 $$
@@ -1134,6 +1050,76 @@ pour toute subdvision pointée subordonnée à cette jauge, l'écart entre
 la somme de Riemann et l'intégrale est au plus $\varepsilon$. 
 Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
 une subdivision pointée qui y soit subordonnée.
+
+
+### {.remark}
+Il existe une démonstration alternative, plus simple, de 
+l'inégalité des accroissements finis. 
+Elle ne repose pas sur le théorème fondamental du calcul (et le calcul intégral),
+mais exploite la forme spécifique de la norme euclidienne.
+
+### Inégalité des accroissements finis (version euclidienne)  {.exercise #mitch .question .two}
+Soit $\phi: t \in [a, a+h] \to \R$ la fonction définie par
+$$
+\phi(t) = \left<f(a+h) - f(a), f(t) \right>.
+$$
+En appliquant le théorème des valeurs intermédiaires à $\phi$, 
+prouver [l'inégalité des accroissements finis](#TAFS).
+
+
+
+
+
+### Inégalité des accroissements finis (multivariable) {.theorem #TAF .two}
+
+Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
+supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
+dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
+c'est-à-dire telle que
+$$
+\mbox{pour tout } x \in [a, a+h], \;\|f'(x)\| \leq M.
+$$
+Alors 
+$$
+\|f(a+h) - f(a)\| \leq M \|h\|.
+$$
+
+
+### Démonstration {.proof}
+Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
+dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
+cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
+De plus, 
+$$
+\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
+$$
+Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
+$$
+\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
+\leq M \|h\| \times 1 = M \|h\|.
+$$
+
+### TODO -- exo variation du log (plan coupé)
+
+### {.remark}
+Ces deux versions de l'inégalité des accroissement finis peuvent être 
+généralisées à d'autres normes que la norme euclidienne.
+
+### Inégalité des accroissements finis III {.theorem #TAFS-III .three}
+Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
+$h \in \left[0, +\infty\right[$.
+Soit $\|\cdot\|_m$ une norme sur $\R^m$. 
+Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|_m$,
+c'est-à-dire si
+$$
+\mbox{pour tout } t \in [a, b], \;\|f'(t)\|_m \leq M.
+$$
+Alors 
+$$
+\|f(a+h) - f(a)\|_m \leq M h.
+$$
+
+
 
 ### Inégalité des accroissements finis IV {.theorem #TAF-IV .three}
 Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
@@ -2416,7 +2402,9 @@ $\to$ [Solution](#sol-vvcvl-2)
 
 -->
 
+### TODO
 
+Pt spline / point de contôle.
 
 Différentiation en chaîne {#dec}
 --------------------------------------------------------------------------------
@@ -2794,6 +2782,37 @@ df(x) \cdot h = J_f(x) \cdot h = ((A + A^{\top}) \cdot x)^{\top} \cdot h
 = x^{\top} \cdot (A + A^{\top}) \cdot h.
 $$
 
+
+### Inégalité des accroissements finis (version euclidienne) {.answer #answer-mitch}
+**TODO.** adopter convention $\phi$ déf sur $[0,1]$ plus proche de ce qui
+précède et qui suit ?
+Comme
+$$
+\frac{\phi(t+s) - \phi(t)}{s} 
+= 
+\left<f(a+h) - f(a), \frac{f(t+s) - f(t)}{s}\right>,
+$$
+la fonction $\phi$ est dérivable en tout point $t\in [a,a+h]$ et
+$$
+\phi'(t) = \left<f(a+h) - f(a), f'(t) \right>.
+$$
+La fonction $f$ étant à valeurs réelles, 
+le théorème des valeurs intermédiaires est applicable : il existe un 
+$\tau \in [a,a+h]$ tel que
+$$
+\phi(a+h) - \phi(a) = \phi'(\tau) h = \left<f(a+h) - f(a), f'(\tau) \right> h.
+$$
+Comme par ailleurs
+\begin{align*}
+\phi(a+h) - \phi(a) &= 
+\left<f(a+h) - f(a), f(a+h) \right> - \left<f(a+h) - f(a), f(a) \right>  \\
+&= \|f(a+h) - f(a)\|^2,
+\end{align*}
+on a 
+$$
+\|f(a+h) - f(a)\|^2 = \left<f(a+h) - f(a), f'(\tau) \right> h \leq \|f(b) - f(a)\| \|f'(\tau)\| h.
+$$
+Puisque $\|f'(\tau)\| \leq M$, on en déduit que $\|f(a+h) - f(a)\| \leq M h.$
 
 
 
