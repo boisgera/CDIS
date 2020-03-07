@@ -513,7 +513,7 @@ plus la version $\varepsilon-\delta$.
 
 
 ### TODO
-Diff implique cont, existence des dérivées directionnelles
+Diff implique cont, existence des dérivées directionnelles et expression.
 
 ### {.remark .ante}
 Il n'est pas toujours facile d'établir directement la différentiabilité 
@@ -622,27 +622,26 @@ d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\to
 $$
 (csq exo : difff $\left<x, y\right>$ et $\|x\|$ (si $x \neq 0$))
 
-### Différentielle de la norme euclidienne {.exercice .question #diff-norm}
+### Différentielle et norme euclidienne {.exercice .question #diff-norm}
 En exploitant la règle de différentiation en chaîne, montrer que l'application 
 $$
-f: x \in \R^n\setminus\{0\} \mapsto \|x\| \in \R
+f: x \in \R^n \mapsto \|x\|^2 \in \R
 $$ 
 est différentiable, puis calculer son gradient $\nabla f$.
 
-### Différentiabilité de la norme euclidienne {.answer #answer-diff-norm}
+### Différentiabilité et norme euclidienne {.answer #answer-diff-norm}
 Pour tout $x \in \R^n$ on a
 $$
-\|x\| = \sqrt{\|x\|^2} = \sqrt{x^{\top} \cdot x},
+\|x\|^2 = x^{\top} \cdot I \cdot x,
 $$
-La fonction $x \in \R^n \setminus \{0\}$ peut donc s'écrire comme la composée
-des trois fonctions
+La fonction $x \in \R^n$ peut donc s'écrire comme la composée
+des fonctions
 \begin{align*}
-f &: x \in \R^n \setminus \{0\} \mapsto (x, x) \in \R^{n} \times \R^n \\
-g &: (x, y) \in (\R^n \setminus \{0\}) \times (\R^n \setminus \{0\}) \mapsto x^{\top} \cdot y \in \R \\
-h &: x \in \R\setminus\{0\} \mapsto \sqrt{x} \in \R.
+f &: x \in \R^n  \mapsto (x, x) \in \R^{n} \times \R^n \\
+g &: (x, y) \in \R^n \times \R^n \mapsto x^{\top} \cdot y \in \R \\
 \end{align*}
 
-**TODO*
+**TODO**
 
 ### TODO Liste d'autres identités ?
 
@@ -724,6 +723,9 @@ $$
 \end{split}
 $$
 le résultat est donc acquis.
+
+### TODO {.exercise}
+Différentiation en chaîne dans le cas continûment différentiable.
 
 
 ### Notations compactes
@@ -893,13 +895,16 @@ $$
 Voir l'enseignement de calcul intégral.
 
 ### A propos du terme "intégrable" {.remark .three}
-Dans ce chapitre, sauf précision contraire, le terme "intégrable" doit être compris 
-comme "intégrable au sens de Lebesgue". La définition de ce concept 
+A ce stade, vous pouvez retenir que si $f'$ est continue, 
+continue par morceaux ou même intégrable au sens de Riemann, 
+elle est "intégrable" comme le demandent les hypothèses du théorème.
+
+Dans ce chapitre, sauf précision contraire, le terme "intégrable" 
+doit être compris comme "intégrable au sens de Lebesgue". 
+La définition de ce concept 
 -- ainsi que la preuve du théorème fondamental du calcul -- 
 seront fournies dans le volet calcul intégral de l'enseignement.  
-A ce stade, vous pouvez retenir que si $f'$ est "continue", 
-"continue par morceaux" ou même "intégrable au sens de Riemann", 
-elle est "intégrable" (au sens de Lebesgue) et appliquer le théorème.
+
 
 ### Théorème fondamental du calcul : extension {.remark .four #TFCE}
 Si l'on adopte au lieu de l'intégrale de Lebesgue l'intégrale encore
