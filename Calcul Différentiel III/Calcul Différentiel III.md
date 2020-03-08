@@ -1,56 +1,5 @@
 % Calcul Différentiel III
 
-TODO, à trier, idées en vrac:
-
-  - e.v.n fonctionnels ($C^k$, $L^1$, $L^2$, etc.), Hilbert, Banach.
-
-  - opérateurs linéaires continus (bornés), adjoint (appli calcul diff, 
-    par exemple pour calcul solution diff EDP sans recalcul ?)
-   
-  - différentielle (Fréchet), cas général
-
-En fait va plus loin que le scope du calcul diff, 
-contient un mini "topo en dim infinie" (qu'est-ce qui change ?
-Compacité (en particulier ppté vraie sur les compacts ne donne plus
-le semi-global, ppté de type Ascoli-Arzela pour caractériser la compacité
-pour les fcts continues), non-équivalence des normes, dualité, 
-topologie faible ?) 
-et algèbre linéaire en dim infinie (opérateurs linéaires 
-ne sont pas tous cont., pas de chance ... Hilbert, Banach, etc). 
-
-Prérequis: Topo, Calcul Diff dim finie, sans doute l'intégrale
-(les critères intégraux sont une grande motivation pour enseigner
-le calcul diff en dim infinie), c'est aussi sans doute l'endroit
-ou on veut parler de la complétude des espaces comme $L^1 / L^2$, 
-etc.
-
-Exemples à traiter: "interpolation" données non-paramétrique, 
-calcul des variations, maximum entropie sous contrainte, 
-diff. / chemin (ex: usage en analyse complexe), 
-optimisation/gradient forme, etc. Autre exemple: quantif 
-qui optimise le SNR ou l'entropie. Autre exemple: Pb de Dirichlet
-variationel ? On peut faire ça ? Et lier ça au Laplacien ? 
-Ou il il faut un cadre compliqué (trace & co) ?
-
-Articulation avec Physique Fonda. et Appliquée (calc var, Hilb, etc.).
-Volonté de permettre de comprendre des trucs comme la construction de
-Fourier (prolgt opé lin con à partir d'un ensemble dense avec majoration),
-ou typiquement, définition de la trace sur un bord régulier ...
-
-  - Topo en dim infinie, Banach, Hilbert, opérateurs lin cont, 
-    analyse spectrale
-
-  - Calcul diff en dim infinie (acc. fini, cont df, inversion locale, 
-    point critique et multiplicateurs de lagrange, etc.,
-    tout ça revisité rapidement en se basant sur la familiarité
-    avec la dim finie, déjà vue).
-
-  - Equation de Poisson: intro Sobolev, pb "variationnel" en multivariable,
-    trace, etc. Evocation schéma résolution numérique (élt finis) ?
-
-  - Cadre Méca Q, opérateurs (non bornés) hermitien, semi-groupes (unitaires)
-    fortement continus, etc?
-
 <!-- LaTeX Macros -->
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -60,8 +9,35 @@ ou typiquement, définition de la trace sur un bord régulier ...
 
 --------------------------------------------------------------------------------
 
+TODO
+================================================================================
 
-Différentielles d'ordre supérieur
+  - Tenseur d'ordre (0, 1, 2 et) $3$. Structure d'espace vectoriel normé.
+    Contraction tensorielle, lien avec les applis $n$-linéaires (ouch).
+
+  - Différentielle et matrices (surtout à *valeurs* matricielles ; 
+    il va s'agir de différencier $f'(x)$.)
+
+  - Tenseur des dérivées d'ordre $3$.
+
+  - Différentiabilité d'ordre 2, fct 2 fois continument différentiable.
+
+  - Th fcts implicite version $C^n$, $C^n$ difféo ?
+
+Exercices :
+
+  - Fcts quadratique, Gaussienne, etc.
+
+  - Courbure (dans le plan)
+
+  - "bordered hessian" (optim.) 
+
+  - formules d'analyse vectorielle (div de rot, $\mathrm{div} \, f \vec{u}$, etc.)
+
+  - exemples calcul de DIFFERENTIAL CALCULUS, 
+    TENSOR PRODUCTS AND THE IMPORTANCE OF NOTATION (JONATHAN H. MANTON).
+
+Différentielle d'ordre $2$
 ================================================================================
 
 <!--
@@ -185,7 +161,62 @@ car simplificateur, mais
 
 -->
 
-### Différentielle d'ordre 2 {.definition #d2}
+### Tensor d'ordre $3$ {.definition .one}
+On appelera *tenseur d'ordre $3$* un élément de 
+$\R^{m \times n \times p}$ où $(m, n, p) \in \N^{3}$, 
+c'est-à-dire toute application $A$ de la forme
+$$
+(i,  j , k) \mapsto A_{ijk} \in \R
+$$
+où $(i, j, k) \in \{1,\dots,m\} \times \{1,\dots,n\}  \times \{1,\dots,p\}$.
+
+### {.remark}
+Un tenseur d'ordre $3$ n'est rien d'autre qu'un tableau de réels à 3 dimensions.
+On peut considérer que c'est la suite logique de la progression scalaire
+(tenseur d'ordre 0), vecteur (tenseur d'ordre 1), matrice (tenseur d'ordre 2).
+
+### TODO.
+
+Contraction, application bilinéaire, identification, etc.
+
+
+### TODO
+
+factor out dérivée partielle d'ordre 2.
+
+### Tenseur des dérivées partielles d'ordre $2$ {.definition .one}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$.
+Si toutes les dérivées partielles d'ordre $2$ des $f_i$ existent en $x$, 
+on définit le *tenseur $f''(x) \in \R^{m \times n \times n}$ 
+des dérivées d'ordre $2$ de $f$ en $x$* par
+$$
+[f''(x)]_{ijk} = \partial_{kj} f_i(x).
+$$
+
+### Matrice Hessienne {.definition .one}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
+$x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$, 
+c'est-à-dire telles que
+$f(x) = (f_1(x), \dots, f_m(x)).$
+Si toutes les dérivées partielles d'ordre $2$ de $f$ en $x$ existent,
+on définit *la matrice hessienne $\nabla^2 f(x)$* de $f$ en $x$ par
+$$
+[\nabla^2 f(x)]_{jk} = [f''(x)]_{1kj}  = \partial^2_{jk} f(x)
+$$
+c'est-à-dire
+$$
+\nabla^2 f(x) = \left[
+\begin{array}{cccc}
+\partial_{11} f (x) & \partial_{12} f (x) & \cdots & \partial_{1n} f (x) \\
+\partial_{21} f (x) & \partial_{22} f (x) & \cdots & \partial_{2n} f (x) \\
+\vdots & \vdots & \vdots & \vdots \\
+\partial_{nn} f (x) & \partial_{n2} f (x) & \cdots & \partial_{nn} f (x) \\
+\end{array}
+\right].
+$$
+
+### Différentielle d'ordre 2 {.definition #d2 .two}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 dans un voisinage d'un point $x$ de $U$. 
 On dira que $f$ est *deux fois différentiable en $x$* 
@@ -243,50 +274,30 @@ $$
     $$
 
 
-### Variation de la différentielle I {.proposition #LVD} 
+### Variation de la différentielle {.lemma #LVD} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 deux fois différentiable en $x \in U$,
 $$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
+df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + E(k)\|k\|
 $$
-
-### Interprétation du $o(\|k\|)$ {.remark}
-L'équation ci-dessus s'applique à des fonctions linéaires de $\R^n$
-dans $\R^m$. Elle doit donc être interprétée comme l'existence
-d'une fonction $E$, définie dans un voisinage de $0$ dans $\R^n$, 
-vérifiant
-$$
-E(k) \in \R^n \stackrel{\ell}{\to} \R^m \; \mbox{ et } \;
-\lim_{h \to 0} E(k) = E(0) = 0,
-$$
-telle que
-$$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + E(k) \|k\|.
-$$
+où $\lim_{k \to 0} E(k) = 0 \in \R^{m\times n}$.
 
 ### Démonstration {.proof}
 Par [définition de la différentielle d'ordre 2 en $x$](#d2), 
-pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, on a, 
-pour tout vecteur $k$ de $\mathbb{R}^n$,
+pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, 
+pour tout vecteur $k$ de $\mathbb{R}^n$ dans un voisinage de $0$,
 $$
-df(x+k) \cdot h = df(x) \cdot h + d^2f(x) \cdot h \cdot k + o(\|k\|),
+df(x+k) \cdot h = df(x) \cdot h + d^2f(x) \cdot h \cdot k + \varepsilon_{h}(k)(\|k\|),
 $$
-c'est-à-dire qu'il existe pour tout $h$ une fonction $\varepsilon_h$, 
-définie dans un voisinage de $0 \in \mathbb{R}^n$, nulle et continue
-en $0$, telle que
-$$
-df(x+k) \cdot h 
-= 
-df(x) \cdot h + d^2f(x) \cdot h \cdot k + \varepsilon_{h}(k) \|k\|,
-$$
-Pour tout vecteur $k$ non nul, on a
+où $\varepsilon_h$ vérifie $\lim_{k \to 0} \varepsilon_h(k) = 0$.
+Si $k$ est non nul, on a donc
 $$
 \varepsilon_{h}(k) = \frac{1}{\|k\|}\left(df(x+k) \cdot h - df(x) \cdot h - d^2f(x) \cdot h \cdot k \right),
 $$
 le terme $\varepsilon_{h}(k)$ est donc linéaire en $h$ ; 
 notons $E(k)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
 qui est nulle quand $k=0$ et définie dans le cas contraire
-par $E(k) \cdot h = \varepsilon_h (k)$. On a donc pour tout $h$
+par $E(k) \cdot h = \varepsilon_h (k)$. On a donc pour tout $h \in \R^n$
 $$
 df(x+k) \cdot h 
 = 
@@ -302,18 +313,20 @@ Par ailleurs, pour tout couple de
 vecteurs $h$ et $k$ de $\mathbb{R}^n$, on a
 $$
 \begin{split}
-\|E(k) \cdot h\| &= \left\| E(k) \cdot \left(\sum_i h_i e_i \right) \right\| \\
-&\leq \sum_i \|E(k) \cdot e_i\| |h_i| \\
-&\leq \left(\sum_i \|E(k) \cdot e_i\|\right) \|h\| 
-= \left(\sum_i \|\varepsilon_{e_i}(k)\|\right) \|h\|
+\|E(k) \cdot h\| &= \left\| E(k) \cdot \left(\sum_{i=1}^n h_i e_i \right) \right\| \\
+&\leq \sum_{i=1}^n \|E(k) \cdot e_i\| |h_i| \\
+&\leq \left(\sum_{i=1}^n \|E(k) \cdot e_i\|\right) \|h\| 
+= \left(\sum_{i=1}^n \|\varepsilon_{e_i}(k)\|\right) \|h\|
 \end{split}
 $$
 donc la norme d'opérateur de $E(k)$ vérifie
 $$
-\|E(k)\| \leq \sum_i \|\varepsilon_{e_i}(k)\| \to 0
+\|E(k)\| \leq \sum_{i=1}^n \|\varepsilon_{e_i}(k)\| \to 0
 \, \mbox{ quand } k \, \to 0,
 $$
 ce qui prouve le résultat cherché.
+
+### TODO - Variation d'ordre 1 manquante
 
 ### Variation d'ordre $2$
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
@@ -327,7 +340,7 @@ $$
 \end{split}
 $$
 
-### Variation et différentielle d'ordre deux {.theorem #D2d2}
+### Variation et différentielle d'ordre deux {.lemma #D2d2}
 Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
 $\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
 $$
@@ -424,12 +437,13 @@ $$
 on voit que l'inégalité est en fait valable pour des $h$ et $k$ arbitraires.
 On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h = 0.$
 
-### Variation de la différentielle II {.theorem} 
+### Variation de la différentielle {.theorem} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 deux fois différentiable en $x \in U$,
 $$
-df(x+k) = df(x) + d^2 f(x) \cdot k + o(\|k\|)
+df(x+k) = df(x) + d^2 f(x) \cdot k + E(k)(\|k\|)
 $$
+où $\lim_{k \to 0} E(k) = 0 \in \R^{m\times n}$.
 
 ### Démonstration {.proof}
 Par le [lemme sur la variation de la différentielle](#LVD), on sait que
@@ -456,10 +470,10 @@ $$
 ### Symétrie des dérivées partielles d'ordre 2 {.proposition #sdp2}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x \in U$. Si $f$ est deux fois différentiable en $x$, alors pour
-toute paire d'indice $i$ et $j$ la dérivée partielle $\partial_{ij} f(x)$
+toute paire d'indice $i$ et $j$ la dérivée partielle $\partial^2_{ij} f(x)$
 existe et 
 $$
-\partial_{ij} f(x) = \partial_{ji} f(x) = d^2 f(x) \cdot e_i \cdot e_j.
+\partial^2_{ij} f(x) = \partial^2_{ji} f(x) = d^2 f(x) \cdot e_i \cdot e_j.
 $$
 
 ### Démonstration {.proof}
@@ -491,12 +505,16 @@ $d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition
 ["Symétrie des dérivées partielles d'ordre 2"](#sdp2).
 
 
+
+
+Différentielle d'ordre supérieur
+================================================================================
+
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
 à un ordre plus élevé, par induction sur l'ordre de la différentielle.
 
 ### Différentielle d'ordre $k$ {.definition #dos}
-
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 à l'ordre $k-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
 *$k$ fois différentiable en $x$* si pour tous vecteurs $h_1, \dots, h_{k-1}$ 
