@@ -189,12 +189,12 @@ Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$.
 Si toutes les dérivées partielles d'ordre $2$ des $f_i$ existent en $x$, 
 on définit le *tenseur $f''(x) \in \R^{m \times n \times n}$ 
-des dérivées d'ordre $2$ de $f$ en $x$* par
+des dérivées partielles d'ordre $2$ de $f$ en $x$* par
 $$
 [f''(x)]_{ijk} = \partial_{kj} f_i(x).
 $$
 
-### Matrice Hessienne {.definition .one}
+### Matrice hessienne {.definition .one}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
 $x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$, 
 c'est-à-dire telles que

@@ -522,6 +522,7 @@ def _solve_toc_nesting(doc):  # fuck you LaTeX!
 def handle_typed_sections(doc):
     types = {
         "theorem": "Théorème",
+        "corollary": "Corollaire",
         "definition": "Définition",
         "lemma": "Lemme",
         "proposition": "Proposition",

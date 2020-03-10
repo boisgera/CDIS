@@ -240,7 +240,7 @@ TODO :
 
 ### Conventions
 
-Un vecteur $x \in \R^n$
+Un vecteur $x = (x_1, \dots, x_n) \in \R^n$
 sera implicitement identifié, dans le contexte d'un calcul matriciel, 
 au vecteur colonne
 $$
@@ -351,6 +351,10 @@ $$
 \end{split}
 $$
 
+### TODO topo
+
+domaine def fonction partielle ouvert
+
 ### Matrice jacobienne {.definition .one}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$, 
@@ -426,21 +430,123 @@ systématiquement vraie, est la *différentiabilité* de $f$ en $x$.
 Exhiber une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
 mais qui soit discontinue en $(0,0)$.
 
+
+### Continue différentiabilité {.definition .two #cdiff}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
+On dit que $f$ est *continûment différentiable*
+si pour tout $i \in \{1,\dots, m\}$
+et $j \in \{1,\dots, n\}$, la dérivée partielle
+$$
+x \in U \mapsto \partial_j f_i(x) \in \R
+$$
+est définie et continue en tout point de $U$.
+
+### TODO
+
+Statement équivalent avec $x \mapsto f'(x)$ continue.
+
+### TODO
+
+Todo TOPO : mq $x \mapsto A(x)$ cont ssi pour tout $i, j$, $x \mapsto A_{ij}(x)$
+cont. Même chose sur vecteurs.
+
+
+### Existence d'un développement limité au 1er ordre {.proposition .two #dl1}
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$.
+Si $f$ est continûment différentiable alors $f(x+h)$ admet le développement 
+limité au 1er ordre $h \mapsto f(x) + f'(x) \cdot h$, c'est-à-dire qu'il
+existe sur un voisinage de $h=0$ une fonction
+$\varepsilon$ à valeurs dans $\R^m$ vérifiant
+$\lim_{h \to 0} \varepsilon(h) = 0$
+telle que 
+$$
+f(x+h) = f(x) + f'(x) \cdot h + \varepsilon(h) \|h\|.
+$$
+
+### Démonstration {.proof} 
+Supposons $f: U \subset \R^m \to \R^n$ continûment différentiable.
+Soit $x \in U$ et $r>0$ telle que la boule fermée centrée en $x$ 
+et de rayon $r$ soit incluse dans $U$
+$$
+\overline{B}(x, r) =
+\{y \in \R^n \; | \; \|y - x\| \leq r\} \subset U
+$$
+et soit $h \in \R^n$ tel que $\|h\| \leq r$. 
+La variation de $f$ entre $x$ et $x+h$ satisfait
+\begin{multline*}
+f(x+h) - f(x) = \\ 
+\sum_{i=1}^n f(x+(h_1, \dots,h_{i-1}, h_i, 0, \dots)) - f(x + (h_1, \dots, h_{i-1}, 0, 0, \dots)). 
+\end{multline*}
+
+![Ligne brisée joignant $x$ et $x+h$.](images/cont-diff.tex){#cont-diff}
+
+Or comme pour tout $i$ la fonction
+$$t \in [0,1] \mapsto f(x+(h_1, \dots, th_i, 0, \dots))$$
+est dérivable de dérivée
+$\partial_i f(x+(h_1, \dots, th_i, 0, \dots)) h_i$ et que cette expression
+est une fonction continue -- et donc intégrable -- de la variable $t$, 
+par [le théorème fondamental du calcul](#TFC), on obtient
+\begin{multline*}
+f(x+(h_1, \dots, h_{i-1},h_i, 0, \dots)) - f(x + (h_1, \dots, h_{i-1}, 0, 0, \dots)) = \\
+h_i \int_0^1 \partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) \, dt.
+\end{multline*}
+Par ailleurs, comme
+$$
+f'(x) \cdot h =
+\sum_{i=1}^n \partial_i f(x) h_i
+=
+\sum_{i=1}^n h_i \int_0^1 \partial_i f(x) \, dt,
+$$
+on a 
+\begin{multline*}
+f(x+h) - f(x) - \sum_i \partial_i f(x) h_i = \\
+\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt. 
+\end{multline*}
+Par continuité des dérivées partielles en $x$, si $r$ est choisi suffisamment 
+petit pour que $\|\partial_i f(y) - \partial_i f(x)\| \leq \varepsilon / n$ 
+quand $\|y-x\| \leq r$, alors l'inégalité triangulaire
+fournit
+\begin{multline*}
+\left\|\int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt \right\| \leq \\
+\int_0^1 \left\|\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right\| \, dt \leq \varepsilon/n
+\end{multline*}
+et donc, toujours par inégalité triangulaire, comme $|h_i| \leq \|h\|$,
+$$
+\left\|f(x+h) - f(x) - \sum_{i=1}^n \partial_i f(x) h_i \right\|
+\leq
+\sum_{i=1}^n |h_i| {\varepsilon}/{n}
+\leq \varepsilon \|h\|.
+$$
+La fonction $f$ admet donc un dévelopement limité au 1er ordre en $x$.
+
+### {.remark}
+On peut reformuler ce résultat en qualifiant de différentiable une fonction
+admettant ce développement au premier ordre.
+
 ### Différentiabilité {.definition .three}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 On dit que $f$ est *différentiable en $x$* si la matrice jacobienne de $f$ en
-$x$ existe et que dans un voisinage de $h=0$ on a
+$x$ existe et que $f(x+h)$ admet le développement limité
+au 1er ordre $h \mapsto f(x) + f'(x) \cdot h$ : il existe
+sur un voisinage de $h=0$ une fonction
+$\varepsilon$ à valeurs dans $\R^m$ vérifiant $\lim_{h \to 0} \varepsilon(h) = 0$
+telle que 
 $$
-f(x+h) = f(x) + f'(x) \cdot h + \varepsilon(h) \|h\|
-$$
-où
-$\varepsilon$ est une fonction à valeurs dans $\R^m$ et vérifiant
-$$
-\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
+f(x+h) = f(x) + f'(x) \cdot h + \varepsilon(h) \|h\|.
 $$
 On dit que $f$ est *différentiable* (ou *différentiable sur $U$*)
 si elle est différentiable en tout point $x$ de $U$.
+
+### {.remark}
+[L'existence d'un développement limité au 1er ordre pour les fonctions continûment
+différentiables](#dl1) se reformule alors comme suit : 
+
+### Continue différentiabilité implique différentiabilité {.proposition .two #cdid}
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
+Si $f$ est continûment différentiable, $f$ est différentiable.
 
 <!--
 ### Convention de Landau {.definition .four}
@@ -502,8 +608,6 @@ un approximation (au premier ordre) de la variation de $f$ en $x$ quand
 l'argument varie de $h$.
 
 ### TODO -- Définitions alternatives {.remark .three}
-
-
 En exploitant la linéarité de la différentielle
 $$
 \lim_{h \to 0} \left(\frac{f(x+h) - f(x)}{\|h\|} - f'(x) \cdot \frac{h}{\|h\|}\right) = 0.
@@ -521,76 +625,6 @@ d'une fonction. Néanmoins, on peut fréquemment établir sa
 *continue différentiabilité* sans trop de difficultés, 
 ce qui prouve indirectement sa différentiabilité.
 
-### Continue différentiabilité {.definition .two #cdiff}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x$ un point de $U$. 
-On dit que $f$ est *continûment différentiable*
-si pour tout $i \in \{1,\dots, m\}$
-et $j \in \{1,\dots, n\}$, la dérivée partielle
-$$
-x \in U \mapsto \partial_j f_i(x) \in \R
-$$
-est définie et continue en tout point de $U$.
-
-### Continue différentiabilité implique différentiabilité {.proposition .two #cdid}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
-Si $f$ est continûment différentiable, $f$ est différentiable.
-
-### Démonstration {.proof} 
-Supposons $f: U \subset \R^m \to \R^n$ continûment différentiable.
-Soit $x \in U$ et $r>0$ telle que la boule fermée centrée en $x$ et de rayon
-$r$ soit incluse dans $U$
-$$
-\overline{B}(x, r) =
-\{y \in \R^n \; | \; \|y - x\| \leq r\} \subset U
-$$
-et soit $h \in \R^n$ tel que $\|h\| \leq r$. 
-La variation de $f$ entre $x$ et $x+h$ satisfait
-\begin{multline*}
-f(x+h) - f(x) = \\ 
-\sum_{i=1}^n f(x+(h_1, \dots,h_{i-1}, h_i, 0, \dots)) - f(x + (h_1, \dots, h_{i-1}, 0, 0, \dots)). 
-\end{multline*}
-
-![Ligne brisée joignant $x$ et $x+h$.](images/cont-diff.tex){#cont-diff}
-
-Or comme pour tout $i$ la fonction
-$$t \in [0,1] \mapsto f(x+(h_1, \dots, th_i, 0, \dots))$$
-est dérivable de dérivée
-$\partial_i f(x+(h_1, \dots, th_i, 0, \dots)) h_i$ et que cette expression
-est une fonction continue -- et donc intégrable -- de la variable $t$, 
-par [le théorème fondamental du calcul](#TFC), on obtient
-\begin{multline*}
-f(x+(h_1, \dots, h_{i-1},h_i, 0, \dots)) - f(x + (h_1, \dots, h_{i-1}, 0, 0, \dots)) = \\
-h_i \int_0^1 \partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) \, dt.
-\end{multline*}
-Par ailleurs, comme
-$$
-f'(x) \cdot h =
-\sum_{i=1}^n \partial_i f(x) h_i
-=
-\sum_{i=1}^n h_i \int_0^1 \partial_i f(x) \, dt,
-$$
-on a 
-\begin{multline*}
-f(x+h) - f(x) - \sum_i \partial_i f(x) h_i = \\
-\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt. 
-\end{multline*}
-Par continuité des dérivées partielles en $x$, si $r$ est choisi suffisamment 
-petit pour que $\|\partial_i f(y) - \partial_i f(x)\| \leq \varepsilon / n$ 
-quand $\|y-x\| \leq r$, alors l'inégalité triangulaire
-fournit
-\begin{multline*}
-\left\|\int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt \right\| \leq \\
-\int_0^1 \left\|\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right\| \, dt \leq \varepsilon/n
-\end{multline*}
-et donc, toujours par inégalité triangulaire, comme $|h_i| \leq \|h\|$,
-$$
-\left\|f(x+h) - f(x) - \sum_{i=1}^n \partial_i f(x) h_i \right\|
-\leq
-\sum_{i=1}^n |h_i| {\varepsilon}/{n}
-\leq \varepsilon \|h\|.
-$$
-La fonction $f$ est donc différentiable en $x$.
 
 ### Fonction quadratique {.question #fq .exercise}
 Soit $A \in \R^{n \times n}$. En utilisant le résultat ci-dessus, 
@@ -985,46 +1019,38 @@ $$
 
 
 ### Démonstration {.proof}
-
-**TODO:** basculer début en footnote, reprendre au moment ou on a une
-somme de Riemann arbitrairement proche de l'intégrale. Nécessaire également
-de définir plus en détail notation somme de Riemann et subdivision pointée.
-
 Par [la forme générale du théorème fondamental du calcul](#TFCE),
 la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
 $$
 f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
 $$
-En combinant [la définition de l'intégrale de Henstock-Kurzweil](Calcul Intégral I.pdf#HK) 
-et [le lemme de Cousin](Calcul Intégral I.pdf#cousin), 
-on peut trouver des approximations arbitrairement
-précises de l'intégrale de $f'$ par des sommes de Riemann[^hklc] :
-pour tout $\varepsilon > 0$, 
-il existe une subdivision pointée $\mathcal{D}$
-de l'intervalle $[a,a+h]$ telle que 
+La théorie de l'intégrale de Henstock-Kurzweil nous garantit qu'il est possible 
+d'obtenir des approximations arbitrairement bonnes de cette intégrale au moyen de 
+sommes de Riemman[^aci]. Cela signifie que pour tout $\varepsilon > 0$, 
+il existe des réels $x_0, \dots, x_k, t_0, \dots, t_{k-1}$ vérifiant
 $$
-\left\| f(a+h) - f(a) -  S(f', \mathcal{D}) \right\| 
-=
-\left\| \int_a^{a+h} f'(t) \, dt -  S(f', \mathcal{D}) \right\| 
+a = x_0 \leq t_0 \leq x_1 \leq t_1 \leq  \dots \leq x_{k-1} \leq t_{k-1} \leq x_{k} = a+h
+$$
+telle que la somme
+$$
+S = \sum_{i=0}^{k-1} f'(t_i)(x_{i+1} - x_i)
+$$
+satisfasse
+$$
+\left\| \int_a^{a+h} f'(t) \, dt -  S \right\| 
 \leq 
 \varepsilon.
 $$
-En exploitant l'inégalité triangulaire, on obtient donc
+
+[^aci]:  Il s'agit de combiner la définition de l'intégrabilité de $f'$ 
+au sens de Henstock-Kurzweil et 
+[le lemme de Cousin](Calcul Intégral I.pdf#cousin).
+
+En exploitant deux fois l'inégalité triangulaire, on obtient donc
 $$
 \|f(a+h) - f(a)\|
 \leq 
-\|S(f', \mathcal{D})\| + \varepsilon.
-$$
-Supposons que 
-$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; 0 \leq i \leq k-1 \}$.
-En utilisant à nouveau l'inégalité triangulaire, 
-on peut majorer en norme la somme de Riemann $S(f',\mathcal{D})$:
-$$
-\|S(f', \mathcal{D})\|
-=
-\left\|\sum_{i=0}^{k-1} f'(t_i) (x_{i+1} - x_i)\right\|
-\leq 
-\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|.
+\|S\| + \varepsilon \leq \sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i| +\varepsilon.
 $$
 Comme $\|f'(t_i)\| \leq M$ pour tout $i \in \{0,\dots,k-1\},$
 $$
@@ -1033,30 +1059,24 @@ $$
 \sum_{i=0}^{k-1} M |x_{i+1} - x_i|
 \leq M \sum_{i=0}^{k-1} |x_{i+1} - x_i|
 $$
-Finalement, comme $a=x_0 \leq x_1 \leq \dots x_k = a+h$,
+et comme $a=x_0 \leq x_1 \leq \dots \leq x_k = a+h$,
 $$
 \sum_{i=0}^{k-1} |x_{i+1} - x_i| = \sum_{i=0}^{k-1} (x_{i+1} - x_i) =
-x_p - x_0 = (a+h) - a = h
+x_p - x_0 = (a+h) - a = h.
 $$ 
-et donc 
-$\|S(f', \mathcal{D})\| \leq Mh.$
-Par conséquent, $\|f(a+h) - f(a)\| \leq M h + \varepsilon$
-et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
+On a donc $\|S\| \leq Mh$  et
+par conséquent $\|f(a+h) - f(a)\| \leq M h + \varepsilon$ ;
+le choix de $\varepsilon > 0$ étant arbitraire, on en déduit
 le résultat cherché : $\|f(a+h) - f(a)\| \leq M h.$
 
-[^hklc]: l'intégrabilité de $f'$ signifie que quelle que soit la
-précision $\varepsilon>0$ cherchée on pourra trouver une jauge telle que
-pour toute subdvision pointée subordonnée à cette jauge, l'écart entre
-la somme de Riemann et l'intégrale est au plus $\varepsilon$. 
-Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
-une subdivision pointée qui y soit subordonnée.
 
 
 ### {.remark}
 Il existe une démonstration alternative, plus simple, de 
 l'inégalité des accroissements finis. 
-Elle ne repose pas sur le théorème fondamental du calcul (et le calcul intégral),
-mais exploite la forme spécifique de la norme euclidienne.
+Elle ne repose pas sur le calcul intégral, mais sur
+les identités associées à la norme euclidienne et sur le théorème des
+valeurs intermédiaires :
 
 ### Inégalité des accroissements finis (version euclidienne)  {.exercise #mitch .question .two}
 Soit $\phi: t \in [a, a+h] \to \R$ la fonction définie par
