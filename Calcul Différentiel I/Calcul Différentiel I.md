@@ -656,6 +656,11 @@ d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\to
 $$
 (csq exo : difff $\left<x, y\right>$ et $\|x\|$ (si $x \neq 0$))
 
+### TODO
+
+Exo : si $f$ diff et à valeurs vectorielles, $f_i$ différentiable
+et $df_i = ...$
+
 ### Différentielle et norme euclidienne {.exercice .question #diff-norm}
 En exploitant la règle de différentiation en chaîne, montrer que l'application 
 $$
