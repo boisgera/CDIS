@@ -16,7 +16,8 @@ TODO
     Contraction tensorielle, lien avec les applis $n$-linéaires (ouch).
 
   - Différentielle et matrices (surtout à *valeurs* matricielles ; 
-    il va s'agir de différencier $f'(x)$.)
+    il va s'agir de différencier $f'(x)$. Mais on peut en profiter pour
+    avoir des variables matricielles aussi)
 
   - Tenseur des dérivées d'ordre $3$.
 
@@ -161,7 +162,7 @@ car simplificateur, mais
 
 -->
 
-### Tensor d'ordre $3$ {.definition .one}
+### Tenseur d'ordre $3$ {.definition .one}
 On appelera *tenseur d'ordre $3$* un élément de 
 $\R^{m \times n \times p}$ où $(m, n, p) \in \N^{3}$, 
 c'est-à-dire toute application $A$ de la forme
