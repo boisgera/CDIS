@@ -548,6 +548,10 @@ différentiables](#dl1) se reformule alors comme suit :
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
 Si $f$ est continûment différentiable, $f$ est différentiable.
 
+**TODO.** diff implique cont
+
+**TODO** dérivées directionnelles ?
+
 <!--
 ### Convention de Landau {.definition .four}
 Toute fonction $\varepsilon : V \subset \R^n \mapsto \R^m$ définie sur 
@@ -626,72 +630,19 @@ d'une fonction. Néanmoins, on peut fréquemment établir sa
 ce qui prouve indirectement sa différentiabilité.
 
 
-### Fonction quadratique {.question #fq .exercise}
-Soit $A \in \R^{n \times n}$. En utilisant le résultat ci-dessus, 
-montrer que la fonction 
+### Fonction quadratique {.question #fq .exercise .two}
+Soit $A \in \R^{n \times n}$. En utilisant les liens entre continue 
+différentiabilité et différentiabilité, montrer que la fonction 
 $$
 f : x \in \R^n \mapsto x^{\top} \cdot A \cdot x
 $$
 est différentiable et déterminer l'application $df(x)$.
 
+### TODO : exo diff produit scalaire
+
 Calcul Différentiel
 ================================================================================
 
-### TODO
-
-Expliquer que fondamentalement, calcul = composition de fonctions.
-
-### TODO
-
-Expliquer interêt variables nommées, et usage $dx$, $dy$, etc. qui donnent
-des identités valables même quand le jeu de variables est "inconnu".
-
-### TODO
-
-Déduire régle de la somme et linéarité de l'identité 
-$$d(A \cdot x) = A  \cdot dx$$ ? 
-Déduire la régle du produit de
-$$
-d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\top} \cdot dx
-$$
-(csq exo : difff $\left<x, y\right>$ et $\|x\|$ (si $x \neq 0$))
-
-### TODO
-
-Exo : si $f$ diff et à valeurs vectorielles, $f_i$ différentiable
-et $df_i = ...$
-
-### Différentielle et norme euclidienne {.exercice .question #diff-norm}
-En exploitant la règle de différentiation en chaîne, montrer que le
-carré de la norme euclidienne
-$$
-f: x \in \R^n \mapsto \|x\|^2 \in \R
-$$ 
-est différentiable, puis calculer son gradient $\nabla f$.
-
-### Différentiabilité et norme euclidienne {.answer #answer-diff-norm}
-Pour tout $x \in \R^n$ on a
-$$
-\|x\|^2 = x^{\top} \cdot I \cdot x,
-$$
-La fonction $x \in \R^n$ peut donc s'écrire comme la composée
-des fonctions
-\begin{align*}
-f &: x \in \R^n  \mapsto (x, x) \in \R^{n} \times \R^n \\
-g &: (x, y) \in \R^n \times \R^n \mapsto x^{\top} \cdot y \in \R \\
-\end{align*}
-
-**TODO**
-
-### TODO Liste d'autres identités ?
-
-
-$d(f(x)) = f'(x) \cdot dx$ (quand $x \in \R$),
-
-
-Ooof, tenté du coup de prendre $f'(x)$ comme notation pour la jacobienne
-et $df(x)$ pour la différentielle. Ce qui fournirait un magnifique 
-$df(x) = f'(x) \cdot dx$.
 
 ### Différentielle d'une application linéaire {.theorem #dal .one}
 Toute application linéaire $A: \R^n \to \R^m$ est
@@ -701,15 +652,21 @@ dA(x) = A.
 $$
 
 ### Démonstration {.proof}
-Pour tout $x \in \R^n$, 
+Pour tout $x \in \R^n$, la $i$-ème composante de la fonction $A$ en $x$ est 
+donnée par 
+$(A \cdot x)_i = \sum_{k=1}^n A_{ik} x_k$,
+donc sa $j$-ème dérivée partielle existe et
 $$
-J_A(x) = \partial_j (x \mapsto A \cdot x)_i(x) = \partial_j \left(x \mapsto \sum_{k=1}^n A_{ik} x_k \right)(x)
+\partial_j (x \mapsto A \cdot x)_i(x) = \partial_j \left(x \mapsto \sum_{k=1}^n A_{ik} x_k \right)(x)
 = A_{ij}.
 $$
-La matrice jacobienne $J_A(x)$ est définie en tout point et $J_A(x) = A$.
+La matrice jacobienne $J_A(x)$ est donc définie et $J_A(x) = A$.
 Chaque coefficient de $J_A$ est une constante et donc une fonction continue de
 $x$ : la fonction $A$ est [continûment différentiable -- et donc
 différentiable](#cdid) -- et $dA(x) = J_A(x) = A$.
+
+### TODO
+Expliquer que fondamentalement, calcul = composition de fonctions.
 
 ### Règle de différentiation en chaîne {.theorem #chain-rule .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
@@ -720,7 +677,6 @@ alors la composée $g \circ f$ est différentiable en $x$ et
 $$
 d(g \circ f)(x) = dg(y) \cdot df(x) \; \mbox{ où } \; y = f(x).
 $$
-
 
 ### Démonstration {.proof}
 L'objectif de la preuve est de montrer que dans un voisinage de $h=0$,
@@ -780,8 +736,51 @@ $$
 $$
 le résultat est donc acquis.
 
-### TODO {.exercise}
-Différentiation en chaîne dans le cas continûment différentiable.
+### Composition de fonctions continûment différentiables {.exercise #cfcd .question .one}
+Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#chain-rule) 
+les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
+l'est également.
+
+### TODO
+
+Expliquer interêt variables nommées, et usage $dx$, $dy$, etc. qui donnent
+des identités valables même quand le jeu de variables est "inconnu".
+
+### TODO
+
+Déduire régle de la somme et linéarité de l'identité 
+$$d(A \cdot x) = A  \cdot dx$$ ? 
+Déduire la régle du produit de
+$$
+d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\top} \cdot dx
+$$
+(csq exo : difff $\left<x, y\right>$ et $\|x\|$ (si $x \neq 0$))
+
+
+
+### Différentielle et norme euclidienne {.exercice .question #diff-norm}
+En exploitant la règle de différentiation en chaîne, montrer que le
+carré de la norme euclidienne
+$$
+f: x \in \R^n \mapsto \|x\|^2 \in \R
+$$ 
+est différentiable, puis calculer son gradient $\nabla f$.
+
+### Différentiabilité et norme euclidienne {.answer #answer-diff-norm}
+Pour tout $x \in \R^n$ on a
+$$
+\|x\|^2 = x^{\top} \cdot I \cdot x,
+$$
+La fonction $x \in \R^n$ peut donc s'écrire comme la composée
+des fonctions
+\begin{align*}
+f &: x \in \R^n  \mapsto (x, x) \in \R^{n} \times \R^n \\
+g &: (x, y) \in \R^n \times \R^n \mapsto x^{\top} \cdot y \in \R \\
+\end{align*}
+
+**TODO**
+
+
 
 
 ### Notations compactes
@@ -942,7 +941,7 @@ en intégrant les variations infinitésimales
 de $f$ le long de $[x, x+h]$. 
 
 ### Théorème fondamental du calcul {.theorem #TFC .one}
-Si $f: [a, b] \subset \R \to \R$ est dérivable et que $f'$ est intégrable alors
+Si $f: [a, b] \subset \R \to \R^m$ est dérivable et que $f'$ est intégrable alors
 $$
 f(b) - f(a)  = \int_a^b f'(x) \, dx.
 $$
@@ -969,7 +968,7 @@ alors toute fonction dérivée est automatiquement
 intégrable. 
 Le théorème fondamental du calcul est alors valable en toute généralité ; 
 il prend la forme suivante :
-si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable 
+si $f: [a, b] \to \R^m$ est dérivable, alors $f'$ est intégrable 
 (au sens de Henstock-Kurzweil) et
 $$
 f(b) - f(a)  = \int_a^b f'(x) \, dx.
@@ -1047,7 +1046,7 @@ $$
 f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
 $$
 La théorie de l'intégrale de Henstock-Kurzweil nous garantit qu'il est possible 
-d'obtenir des approximations arbitrairement bonnes de cette intégrale au moyen de 
+d'obtenir des approximations arbitrairement bonnprécises de cette intégrale au moyen de 
 sommes de Riemman[^aci]. Cela signifie que pour tout $\varepsilon > 0$, 
 il existe des réels $x_0, \dots, x_k, t_0, \dots, t_{k-1}$ vérifiant
 $$
@@ -1064,7 +1063,7 @@ $$
 \varepsilon.
 $$
 
-[^aci]:  Il s'agit de combiner la définition de l'intégrabilité de $f'$ 
+[^aci]:  en combinant la définition de l'intégrabilité de $f'$ 
 au sens de Henstock-Kurzweil et 
 [le lemme de Cousin](Calcul Intégral I.pdf#cousin).
 
@@ -1089,7 +1088,7 @@ $$
 On a donc $\|S\| \leq Mh$  et
 par conséquent $\|f(a+h) - f(a)\| \leq M h + \varepsilon$ ;
 le choix de $\varepsilon > 0$ étant arbitraire, on en déduit
-le résultat cherché : $\|f(a+h) - f(a)\| \leq M h.$
+le résultat cherché.
 
 
 
@@ -2826,6 +2825,18 @@ df(x) \cdot h = J_f(x) \cdot h = ((A + A^{\top}) \cdot x)^{\top} \cdot h
 = x^{\top} \cdot (A + A^{\top}) \cdot h.
 $$
 
+### Composition de fonctions continûment différentiables {#answer-cfcd}
+D'après [la règle de différentiation en chaîne](#chain-rule), $d (g\circ f)(x)= dg(f(x)) \cdot df(x)$.
+Donc pour tout $i \in \{1, \dots, m\}$ et $j \in \{1,\dots, p\}$,
+\begin{align*}
+[d (g\circ f)(x)]_{ij} &= 
+[dg(f(x)) \cdot df(x)]_{ij} \\
+&= \sum_{k=1}^n [dg(f(x))]_{ik} [df(x)]_{kj} \\
+&= \sum_{k=1}^n \partial_k g_i(f(x)) \partial_j f_k(x).
+\end{align*}
+Chaque coefficient $\partial_j (g\circ f)_i$ est une somme de produit de 
+fonctions continues et est donc continu. Par conséquent, $g\circ f$ est
+continûment différentiable.
 
 ### Inégalité des accroissements finis (version euclidienne) {.answer #answer-mitch}
 **TODO.** adopter convention $\phi$ déf sur $[0,1]$ plus proche de ce qui
