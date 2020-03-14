@@ -662,7 +662,8 @@ Exo : si $f$ diff et à valeurs vectorielles, $f_i$ différentiable
 et $df_i = ...$
 
 ### Différentielle et norme euclidienne {.exercice .question #diff-norm}
-En exploitant la règle de différentiation en chaîne, montrer que l'application 
+En exploitant la règle de différentiation en chaîne, montrer que le
+carré de la norme euclidienne
 $$
 f: x \in \R^n \mapsto \|x\|^2 \in \R
 $$ 
@@ -692,7 +693,23 @@ Ooof, tenté du coup de prendre $f'(x)$ comme notation pour la jacobienne
 et $df(x)$ pour la différentielle. Ce qui fournirait un magnifique 
 $df(x) = f'(x) \cdot dx$.
 
+### Différentielle d'une application linéaire {.theorem #dal .one}
+Toute application linéaire $A: \R^n \to \R^m$ est
+différentiable et pour tout $x \in \R^n$,
+$$
+dA(x) = A.
+$$
 
+### Démonstration {.proof}
+Pour tout $x \in \R^n$, 
+$$
+J_A(x) = \partial_j (x \mapsto A \cdot x)_i(x) = \partial_j \left(x \mapsto \sum_{k=1}^n A_{ik} x_k \right)(x)
+= A_{ij}.
+$$
+La matrice jacobienne $J_A(x)$ est définie en tout point et $J_A(x) = A$.
+Chaque coefficient de $J_A$ est une constante et donc une fonction continue de
+$x$ : la fonction $A$ est [continûment différentiable -- et donc
+différentiable](#cdid) -- et $dA(x) = J_A(x) = A$.
 
 ### Règle de différentiation en chaîne {.theorem #chain-rule .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
