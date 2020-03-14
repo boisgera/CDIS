@@ -364,11 +364,12 @@ Si toutes les dérivées partielles des fonctions $f_i$ existent en $x$,
 on définit la *matrice jacobienne de $f$ en $x$*, notée $f'(x)$, comme
 la matrice de $\R^{m \times n}$ telle que
 $$
-[f'(x)]_{ij} = \partial_{j} f_i(x),
+[J_f(x)]_{ij} = \partial_{j} f_i(x),
 $$
 c'est-à-dire
 $$
-f'(x) = \left[
+J_f(x) =
+\left[
 \begin{array}{cccc}
 \partial_1 f_1 (x) & \partial_2 f_1 (x) & \cdots & \partial_n f_1 (x) \\
 \partial_1 f_2 (x) & \partial_2 f_2 (x) & \cdots & \partial_n f_2 (x) \\
@@ -378,13 +379,17 @@ f'(x) = \left[
 \right]
 $$
 
+### TODO
+
+$J_f(x)$ en fonction des vecteurs $\partial_i f(x)$ (exo).
+
 ### Gradient {.definition .one}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
 $x$ un point de $U$. Si toutes les dérivées partielles de $f$ existent en $x$,
 on appelle *gradient de $f$ en $x$* et l'on note $\nabla f(x)$ le vecteur
 de $\R^n$ défini comme la transposée de la matrice jacobienne de $f$ en $x$ :
 $$
-\nabla f(x) := f'(x)^{\top} = 
+\nabla f(x) := J_f(x)^{\top} = 
 \left[ 
 \begin{array}{c}
 \partial_1 f(x) \\
@@ -395,6 +400,10 @@ $$
 \right].
 $$
 
+
+### TODO 
+
+mat jacobienne à partir des gradients de $f_i$
 
 <!--
 ### Petit o de Landau {.definition .three}
