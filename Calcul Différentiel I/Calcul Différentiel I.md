@@ -592,8 +592,8 @@ $A \in \R^{m \times n}$ vérifie dans un voisinage de $h=0$
 $$
 f(x+h) = f(x) + A \cdot h + \varepsilon(h) \|h\|
 $$
-avec $\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0$
-alors $f'(x)$ existe et $A = f'(x)$.
+avec $\lim_{h \to 0} \varepsilon(h) =  0$
+alors la matrice jacobienne $J_f(x)$ est bien définie et $J_f(x) = A$.
 
 ### Différentielle {.definition .two}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
@@ -651,7 +651,6 @@ est différentiable et déterminer l'application $df(x)$.
 
 Calcul Différentiel
 ================================================================================
-
 
 ### Différentielle d'une application linéaire {.theorem #dal .one}
 Toute application linéaire $A: \R^n \to \R^m$ est
@@ -750,13 +749,68 @@ Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#ch
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
 
-### TODO
+### notations
 
+Dans les "contexte métiers", les techniques de différentiation s'appliquent 
+souvent à des grandeurs numériques variables plutôt qu'à des "fonctions"
+au sens mathématique du terme. En particulier la liste et l'ordre des variables
+-- des grandeurs dont dépend le terme à différentier -- 
+n'est pas toujours clairement établie, le domaine de définition est le plus
+souvent implicite.
+
+(TODO : rappeler ce qu'est une fct ? Au moins implicitement)
+
+TODO : expliquer que le calcul diff se prête bien à ça à condition d'adapter
+ses notations (warning : concis mais ambigu).
+
+Stratégies : partir d'un terme / expression. Expliciter les constantes, 
+les variables, les fonctions parmi les symboles utilisés dans l'expression ; 
+noter $\partial_x$ ou $\partial / \partial_x$ plutôt que $\partial_1$
+(plus facile à interpréter et "robuste" par rapport à des changements
+d'ordre des variables). Puis expliquer "trick" avec $dx$, $dy$, etc.
+Avant ça expliquer "collusion" nom des variables & points d'évaluation ...
+
+### Thermodynamique {.exemple}
+L'entropie d'un gaz parfait monatomique est donnée par l'expression[^gibbs]
+$$
+S = N k_B \left[\frac{5}{2} + \ln \left(\frac{V}{N} \frac{(2\pi m k_B T)^{3/2}}{h^3} \right)\right].
+$$
+
+[^gibbs]: cf. par exemple [l'article consacré au "Paradoxe de Gibbs" sur Wikipédia](https://fr.wikipedia.org/wiki/Paradoxe_de_Gibbs).
+
+Les grandeurs $k_B$, $h$ sont les constantes de Boltzmann et de Planck.
+Pour un gaz donné, la masse $m$ d'une particule est une constante ;
+si l'on raisonne sur une quantité de particules donnée
+le nombre de particules $N$ est également une constante.
+L'entropie est alors fonction uniquement du volume $V$ occupé par le gaz et
+de sa température $T$ ; on supposera que ces deux grandeurs sont strictement
+positives pour que l'expression soit bien définie. Mathématiquement, nous
+traitons donc l'entropie comme la fonction 
+$$
+(T, V) \in \left]0, +\infty\right[ \times \left]0, +\infty\right[ \mapsto S \in \R.
+$$
+
+<!--
+$$
+d (S(T, V)) = \frac{\partial S(T, V)}{\partial T}  dT + \frac{\partial S(T,V)}{\partial V} dV = N k_B \left( \frac{dV}{V} + \frac{3}{2}\frac{dT}{T}\right).
+$$
+-->
+
+-----
+
+Si l'on considère par exemple la fonction $m$ définie par
+$$
+m: (x, y, z, t) \in \R^4 \to x^2 + y^2 + z^2 - c^2 t^2,
+$$
+comme dans la théorie de la relativité,
+les dérivées partielles par rapport aux variables d'espace $x$, $y$, $z$ 
+sont données par 
+
+### TODO
 Expliquer interêt variables nommées, et usage $dx$, $dy$, etc. qui donnent
 des identités valables même quand le jeu de variables est "inconnu".
 
 ### TODO
-
 Déduire régle de la somme et linéarité de l'identité 
 $$d(A \cdot x) = A  \cdot dx$$ ? 
 Déduire la régle du produit de
@@ -1074,7 +1128,7 @@ $$
 
 [^aci]:  en combinant la définition de l'intégrabilité de $f'$ 
 au sens de Henstock-Kurzweil et 
-[le lemme de Cousin](Calcul Intégral I.pdf#cousin).
+[le lemme de Cousin](Calcul Intégral I.pdf#cousin) du calcul intégral.
 
 En exploitant deux fois l'inégalité triangulaire, on obtient donc
 $$
@@ -2550,24 +2604,6 @@ Dans ce dernier cas, le calcul montre que quand les variations de $\theta_1$ et
 $\theta_2$ sont majorées par $\delta$, l'effecteur reste dans un carré de
 "rayon" au plus $\ell_1 + 2 \ell_2$ centré en ce point.
 
-Différentiation matricielle
---------------------------------------------------------------------------------
-
-Source: [@Tao13]
-
-### Question 1 {.question #dm-1}
-Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
-différentiable en l'identité ($A = I$) et calculer cette différentielle.
-
-### Question 2 {.question #dm-2}
-L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
-vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
-En déduire une identité concernant $\tr A B$ et $\tr BA$.
-
-### Question 3 {.question #dm-3}
-Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
-ouvert de l'identité, est différentiable en ce point et calculer cette
-différentielle.
 
 Dérivée partielles, directionnelles et différentielle
 --------------------------------------------------------------------------------
@@ -2663,29 +2699,6 @@ f(t) = (\cos t, \sin t)
 $$
 Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
 
-Convexité
---------------------------------------------------------------------------------
-
-Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
-deux fois différentiable. 
-
-### Question 0 {.question #c-0}
-Calculer le développement limité à l'ordre 2 de 
-$f(x+2h) - 2f(x+h) + f(x)$.
-
-### Question 1 {.question #c-1}
-Montrer que si $f$ est convexe, c'est-à-dire si
-pour tous $x, y \in U$ et $\lambda\in[0,1]$,
-$$
-f((1-\lambda) x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y),
-$$
-alors pour tout $x \in U$ et $h \in \R^n$,
-$$
-d^2f(x) (\cdot h)^2 = \left<\nabla^2 f(x) \cdot h, h\right> \geq 0.
-$$
-
-### Question 2 {.question #c-2}
-Montrer la réciproque de ce résultat.
 
 <!--
 TODO -- Analycité
@@ -3143,97 +3156,6 @@ J_f(\theta_1, \theta_2)
 \right].
 $$
 
-Différentiation matricielle
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-dm-1}
-Soit $H \in \R^{n\times n}$, telle que
-$$
-H = 
-\left[
-\begin{array}{cccc}
-h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & h_{nn} \\
-\end{array} 
-\right].
-$$
-En développant le déterminant selon la première colonne, on constate
-que
-$$
-\begin{split}
-\det (I+H) &= 
-\left|
-\begin{array}{cccc}
-1+h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & 1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} 
-\right| \\
-&=(1 + h_{11}) 
-\left| \begin{array}{ccc}
-1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots \\
-h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} \right| 
-+ o(\|H\|), \\
-\end{split}
-$$
-une relation dont on tire par récurrence que
-$$
-\begin{split}
-\det (I+H) 
-&= \prod_{i = 1}^n (1 + h_{ii}) + o(\|H\|)
-=\det I + \sum_{i=1}^n h_{ii} + o(\|H\|) \\
-&= \det I + \tr H + o(\|H\|).
-\end{split}
-$$
-La différentiel du déterminant existe donc en l'identité et 
-$d\det(I) \cdot H = \tr H$.
-
-### Question 2 {.answer #answer-dm-2}
-Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
-$$
-\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
-$$
-Les deux membres de cette équations sont dérivables par rapport à
-$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
-et l'égalité de ces dérivées fournit
-$$
-\tr A B = \tr B A.
-$$
-
-### Question 3 {.answer #answer-dm-3}
-Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
-est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
-son déterminant est positif ; la matrice $A$ est alors inversible.
-
-Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
-pour être inversible, la formule de Cramer établit
-$$
-A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
-$$
-Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
-de $A$) est une fonction polynomiale
-des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
-est donc une fonction continûment différentiable des coefficients de $A$
-et donc différentiable en $A=I$.
-Par la règle du produit, chaque coefficient de $A^{-1}$ est 
-donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
-différentiable en $A=I$.
-
-Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
-$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + o(\|H\|),$
-l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
-$$
-(I+H)(I + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)) 
-= I + H + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)
-= I,
-$$
-et donc
-$$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
 Dérivée partielles, directionnelles et différentielle
 --------------------------------------------------------------------------------
@@ -3553,90 +3475,6 @@ La dérivée de $f$ est donnée par $f'(t) = (-\sin t, \cos t)$;
 en particulier pour tout $t \in [0, 2\pi]$, $\|f'(t)\| = 1$.
 Or $f(2\pi) - f(0) = 0$, donc il est impossible de trouver un 
 $t$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$.
-
-Convexité
---------------------------------------------------------------------------------
-
-### Question 0 {.answer #answer-c-0}
-[Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
-$$
-f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2)
-$$
-et donc
-$$
-f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2).
-$$
-Par conséquent,
-$$
-f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
-$$
-
-### Question 1 {.answer #answer-c-1}
-En considérant $y = x+2h$ et $\lambda = 1/2$, on voit que l'hypothèse
-de convexité de $f$ entraîne 
-$$
-f(x+h) \leq \frac{1}{2} f(x) + \frac{1}{2} f(x+2h),
-$$
-soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
-En utilisant le résultat de la question précédente,
-on obtient
-$$d^2 f(x) (\cdot h)^2 + o(\|h\|^2) \geq 0$$ et donc, en substituant 
-$th$ à $h$ et en faisant tendre $t$ vers $0$, 
-$d^2 f(x) (\cdot h)^2 \geq 0.$
-
-### Question 2 {.answer #answer-c-2}
-Comme $f((1-\lambda) x + \lambda y) = f(x + \lambda (y-x))$,
-l'inégalité de Taylor avec reste intégral fournit 
-$$
-\begin{split}
-f((1-\lambda) x + \lambda y)
-&= f(x) + df(x) \cdot \lambda (y-x) \\
-&\phantom{=} + \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot \lambda(y-x))^2 (1- t) \, dt.
-\end{split}
-$$
-L'intégrale ci-dessus étant égale à 
-$$
-\lambda \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot (y-x))^2 
-\left(1- \frac{ \lambda t}{\lambda} \right) \, \ \lambda dt,
-$$
-par le changement de variable $t \lambda \to t$ elle est égale à
-$$
-\lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
-\left(1 - \frac{t}{\lambda} \right)\, dt.
-$$
-En utilisant le développement de Taylor avec reste intégral pour
-$\lambda \in \left]0, 1\right]$ et $\lambda=1$, on obtient donc
-$$
-\begin{split}
-f((1-\lambda) x + \lambda y) - \lambda f(y)
-&= f(x) - \lambda f(x) + df(x) \cdot \lambda (y-x) - \lambda df(x) \cdot (y-x) \\
-&\phantom{=} + \lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2  \left(1 - \frac{t}{\lambda} \right)\, dt
-\\
-&\phantom{=} - \lambda \int_0^{1} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
-\left(1 - t \right)\, dt,
-\end{split}
-$$
-soit 
-$$
-f((1-\lambda) x + \lambda y) - \lambda f(y)
-- (1 - \lambda) f(x) 
-=\lambda \int_0^1 \phi_f(t) \psi_{\lambda} (t) \, dt
-$$
-où
-$\phi_f(t) := d^2f(x+ t (y-x)) (\cdot (y-x))^2$ est positive par hypothèse et 
-$$
-\psi_{\lambda}(t) :=
-\left|
-\begin{array}{cc}
-t(1 - 1/\lambda) & \mbox{si } t \leq \lambda\\
-(t - 1) & \mbox{sinon.}
-\end{array}
-\right.
-$$
-La fonction $\psi_{\lambda}$ étant négative, on en conclut que
-$f((1-\lambda) x + \lambda y) - \lambda f(y) - f(x)$ est négative pour tout
-$\lambda \in \left]0, 1\right]$ ; cette inégalité est également trivialement
-satisfaite si $\lambda=0$. La fonction $f$ est donc convexe.
 
 <!--
 TODO -- Analycité

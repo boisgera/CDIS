@@ -884,3 +884,428 @@ Par dérivation en chaîne, la fonction
 $t \mapsto df^{(i)}(a+th) (\cdot \, h)^i$
 est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
 $df^{(i+1)}(a+th) (\cdot \, h)^{i+1}.$
+
+
+Exercices
+================================================================================
+
+
+Fonction quadratique 
+--------------------------------------------------------------------------------
+Soit $A: \R^n \to \R^n$ un opérateur linéaire, $b$ un vecteur de $\R^n$ et
+$c \in \R$. On considère la fonction $f:\R^n \to \R$ définie par
+$$
+f(x) = \frac{1}{2} \left<x, A \cdot x \right> + \left<b, x\right> + c. 
+$$
+
+### Question 1 {.question #fq-1}
+Montrer que $f$ est 2 fois différentiable en tout point $x$ de $\R^n$ ; 
+calculer $\nabla f(x)$ et $\nabla^2 f(x)$.
+
+### Question 2 {.question #fq-2}
+Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
+Montrer que la fonction $f$ admet un unique point critique $x_0$ et le 
+calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
+
+
+
+Vecteur gaussien
+--------------------------------------------------------------------------------
+
+La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
+est proportionnelle à la fonction
+$$
+f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
+$$
+où $\Sigma : \R^d \to \R^d$ est un opérateur linéaire autoadjoint 
+(c'est-à-dire que $\Sigma^* = \Sigma$) 
+tel que $\left<x, \Sigma \cdot x \right> > 0$ quand $x\neq 0$.
+
+### Question 1 {.question #vg-1}
+Montrer que la fonction $f$ est différentiable et calculer son gradient.
+
+### Question 2 {.question #vg-2}
+Montrer que la fonction $f$ est deux différentiable et calculer sa 
+hessienne.
+
+
+Différentiation matricielle
+--------------------------------------------------------------------------------
+
+Source: [@Tao13]
+
+### Question 1 {.question #dm-1}
+Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
+différentiable en l'identité ($A = I$) et calculer cette différentielle.
+
+### Question 2 {.question #dm-2}
+L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
+vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
+En déduire une identité concernant $\tr A B$ et $\tr BA$.
+
+### Question 3 {.question #dm-3}
+Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
+ouvert de l'identité, est différentiable en ce point et calculer cette
+différentielle.
+
+
+Convexité
+--------------------------------------------------------------------------------
+
+Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
+deux fois différentiable. 
+
+### Question 0 {.question #c-0}
+Calculer le développement limité à l'ordre 2 de 
+$f(x+2h) - 2f(x+h) + f(x)$.
+
+### Question 1 {.question #c-1}
+Montrer que si $f$ est convexe, c'est-à-dire si
+pour tous $x, y \in U$ et $\lambda\in[0,1]$,
+$$
+f((1-\lambda) x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y),
+$$
+alors pour tout $x \in U$ et $h \in \R^n$,
+$$
+d^2f(x) (\cdot h)^2 = \left<\nabla^2 f(x) \cdot h, h\right> \geq 0.
+$$
+
+### Question 2 {.question #c-2}
+Montrer la réciproque de ce résultat.
+
+Solutions
+================================================================================
+
+
+Fonction quadratique 
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-fq-1}
+Pour tout $x \in \R^n$ et tout $h \in \R^n$, on a 
+$$
+\begin{split}
+f(x+h) - f(x) &= \frac{1}{2} \left<(x+h), A \cdot (x+h) \right> + \left<b, x+h\right> + c
+- \frac{1}{2} \left<x, A \cdot x \right> - \left<b, x\right> - c \\
+& =
+\frac{1}{2} \left<x, A \cdot h \right> + \frac{1}{2} \left<h, A \cdot x \right> +
+\left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right> \\
+&=
+\frac{1}{2} \left<A^* \cdot x, h \right> + \frac{1}{2} \left<A \cdot x, h \right> +
+\left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right>.
+\end{split}
+$$
+Comme $|\left<h, A \cdot h \right>| \leq \|h\| \times \|A\| \|h\|$, ce terme
+est un $o(\|h\|)$. On en conclut que
+$$
+f(x+h) - f(x)
+= \left<\frac{1}{2}(A + A^*) \cdot x + b, h\right> + o(\|h\|).
+$$
+La fonction $f$ est donc différentiable en $x$, de gradient
+$$
+\nabla f(x) = \frac{1}{2}(A + A^*) \cdot x + b.
+$$
+Pour tout $h \in \R^n$, la fonction $x \mapsto \left<\nabla f(x), h\right>$
+vérifie
+$$
+\left<\nabla f(x+k), h\right> - \left<\nabla f(x), h\right>
+= \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
+$$
+Elle est donc différentiable et 
+$$
+d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
+$$
+Par symétrie de la différentielle d'ordre $2$,
+$$
+d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot h, k\right>,
+$$
+donc 
+$$
+\nabla^2 f(x) = \frac{1}{2}(A + A^*).
+$$
+
+### Question 2 {.answer #answer-fq-2}
+Si $\nabla^2 f(x)$ est inversible (cet opérateur est constant), comme
+$$
+\nabla f(y) = \frac{1}{2}(A + A^*) \cdot y + b = \nabla^2 f(x) \cdot y + b,
+$$
+résoudre $\nabla f(y) = 0$ revient à rechercher les solutions de
+$$
+\nabla^2 f(x) \cdot y + b = \nabla^2 f(x) \cdot y + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
+$$
+Il existe donc un unique point critique pour $f$, donné par
+$$
+y = x - (\nabla^2 f(x))^{-1} \nabla f(x).
+$$
+
+
+Vecteur gaussien
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-vg-1}
+La fonction 
+$$
+f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
+$$
+apparaît comme la composée des fonctions
+$$
+x \in \R^d \mapsto -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right>
+\; \mbox{ et } \; \exp:\R \to \R.
+$$ 
+La fonction $\exp$ est dérivable, et donc différentiable 
+sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dx = \exp(y) dy$, c'est-à-dire
+$$
+d\exp(y) \cdot h = \exp(y) \times h.
+$$ 
+Quand à la première fonction, pour tout $h \in \R^d$, on a
+\begin{multline*}
+-\frac{1}{2} \left<x+h, \Sigma^{-1} \cdot (x+h) \right>
+=  \\
+-\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>
++ <x, \Sigma^{-1} h> + <h, \Sigma^{-1} \cdot x> + \left<h, \Sigma^{-1} \cdot h \right>
+\right). 
+\end{multline*}
+D'une part, comme $\Sigma$ est autoadjoint (et inversible), $\Sigma^{-1}$ également et
+$$
+<x, \Sigma^{-1} \cdot h> + <h, \Sigma^{-1} \cdot x> = 2 \left<\Sigma^{-1} \cdot x, h \right>,
+$$
+d'autre part
+$$
+\left| \left<h, \Sigma^{-1} \cdot h \right> \right|
+\leq \|h\| \times \|\Sigma^{-1} \cdot h\| \leq \|h\| \times \|\Sigma^{-1}\| \times \|h\| = o(\|h\|).
+$$
+La fonction est donc différentiable sur $\R^n$, avec
+$$
+d \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right) \cdot h
+= - \left<\Sigma^{-1} \cdot x, h \right>.
+$$
+La fonction $f$ est donc différentiable sur $\R^d$ comme composée
+de fonctions différentiables et l'on a
+$$
+d f(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
+\left<\Sigma^{-1} \cdot x, h \right>
+= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>,
+$$
+le gradient de $f$ vaut donc
+$$
+\nabla f(x) = -f(x) \times \Sigma^{-1} \cdot x.
+$$
+
+### Question 2 {.answer #answer-vg-2}
+De l'équation
+$$
+d f(x) \cdot h 
+= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>
+= -f(x) \left<\Sigma^{-1} \cdot h, x \right>
+$$
+on déduit que $x \mapsto d f(x) \cdot h$ est différentiable comme produit
+de fonctions scalaires différentiables (la fonction 
+$x \mapsto \left<\Sigma^{-1} \cdot h, x \right>$ étant linéaire). 
+On a de plus
+$$
+\begin{split}
+d (x \mapsto d f(x) \cdot h) \cdot k
+&=
+- (df(x) \cdot k) \times \left<\Sigma^{-1} \cdot x, h \right>
+- f(x) \times \left<\Sigma^{-1} \cdot h, k \right> \\
+&= 
+\left<-f(x) \times \Sigma^{-1} \cdot x, k \right> \left<\Sigma^{-1} \cdot x, h \right>+
+\left<-f(x) \times \Sigma^{-1} \cdot h, k\right>
+\end{split}
+$$
+
+Pour des vecteurs arbitraires $u$ et $v$ dans $\R^n$, on a
+$$
+\left<u, k \right> \left<v, h \right>
+=
+\left<k, u \right> \left<v, h \right>
+= k^* \cdot u  \times v^* \cdot h = (v \cdot u^* \cdot k)^* \cdot h = \left<(v \cdot u^*) \cdot k, h \right>,
+$$
+par conséquent
+$$
+d (x \mapsto d f(x) \cdot h) \cdot k
+= 
+-f(x) \left<(\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
+$$
+La Hessienne de $f$ en $x$ est donc donnée par
+$$
+\nabla^2 f(x) = - f(x) (\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}).
+$$
+
+
+
+Différentiation matricielle
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dm-1}
+Soit $H \in \R^{n\times n}$, telle que
+$$
+H = 
+\left[
+\begin{array}{cccc}
+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & h_{nn} \\
+\end{array} 
+\right].
+$$
+En développant le déterminant selon la première colonne, on constate
+que
+$$
+\begin{split}
+\det (I+H) &= 
+\left|
+\begin{array}{cccc}
+1+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & 1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} 
+\right| \\
+&=(1 + h_{11}) 
+\left| \begin{array}{ccc}
+1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots \\
+h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} \right| 
++ o(\|H\|), \\
+\end{split}
+$$
+une relation dont on tire par récurrence que
+$$
+\begin{split}
+\det (I+H) 
+&= \prod_{i = 1}^n (1 + h_{ii}) + o(\|H\|)
+=\det I + \sum_{i=1}^n h_{ii} + o(\|H\|) \\
+&= \det I + \tr H + o(\|H\|).
+\end{split}
+$$
+La différentiel du déterminant existe donc en l'identité et 
+$d\det(I) \cdot H = \tr H$.
+
+### Question 2 {.answer #answer-dm-2}
+Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
+$$
+\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
+$$
+Les deux membres de cette équations sont dérivables par rapport à
+$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
+et l'égalité de ces dérivées fournit
+$$
+\tr A B = \tr B A.
+$$
+
+### Question 3 {.answer #answer-dm-3}
+Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
+est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
+son déterminant est positif ; la matrice $A$ est alors inversible.
+
+Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
+pour être inversible, la formule de Cramer établit
+$$
+A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
+$$
+Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
+de $A$) est une fonction polynomiale
+des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
+est donc une fonction continûment différentiable des coefficients de $A$
+et donc différentiable en $A=I$.
+Par la règle du produit, chaque coefficient de $A^{-1}$ est 
+donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
+différentiable en $A=I$.
+
+Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
+$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + o(\|H\|),$
+l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
+$$
+(I+H)(I + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)) 
+= I + H + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)
+= I,
+$$
+et donc
+$$d \,\mathrm{inv} (I) \cdot H= - H.$$
+
+
+Convexité
+--------------------------------------------------------------------------------
+
+### Question 0 {.answer #answer-c-0}
+[Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
+$$
+f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2)
+$$
+et donc
+$$
+f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2).
+$$
+Par conséquent,
+$$
+f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
+$$
+
+### Question 1 {.answer #answer-c-1}
+En considérant $y = x+2h$ et $\lambda = 1/2$, on voit que l'hypothèse
+de convexité de $f$ entraîne 
+$$
+f(x+h) \leq \frac{1}{2} f(x) + \frac{1}{2} f(x+2h),
+$$
+soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
+En utilisant le résultat de la question précédente,
+on obtient
+$$d^2 f(x) (\cdot h)^2 + o(\|h\|^2) \geq 0$$ et donc, en substituant 
+$th$ à $h$ et en faisant tendre $t$ vers $0$, 
+$d^2 f(x) (\cdot h)^2 \geq 0.$
+
+### Question 2 {.answer #answer-c-2}
+Comme $f((1-\lambda) x + \lambda y) = f(x + \lambda (y-x))$,
+l'inégalité de Taylor avec reste intégral fournit 
+$$
+\begin{split}
+f((1-\lambda) x + \lambda y)
+&= f(x) + df(x) \cdot \lambda (y-x) \\
+&\phantom{=} + \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot \lambda(y-x))^2 (1- t) \, dt.
+\end{split}
+$$
+L'intégrale ci-dessus étant égale à 
+$$
+\lambda \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot (y-x))^2 
+\left(1- \frac{ \lambda t}{\lambda} \right) \, \ \lambda dt,
+$$
+par le changement de variable $t \lambda \to t$ elle est égale à
+$$
+\lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
+\left(1 - \frac{t}{\lambda} \right)\, dt.
+$$
+En utilisant le développement de Taylor avec reste intégral pour
+$\lambda \in \left]0, 1\right]$ et $\lambda=1$, on obtient donc
+$$
+\begin{split}
+f((1-\lambda) x + \lambda y) - \lambda f(y)
+&= f(x) - \lambda f(x) + df(x) \cdot \lambda (y-x) - \lambda df(x) \cdot (y-x) \\
+&\phantom{=} + \lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2  \left(1 - \frac{t}{\lambda} \right)\, dt
+\\
+&\phantom{=} - \lambda \int_0^{1} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
+\left(1 - t \right)\, dt,
+\end{split}
+$$
+soit 
+$$
+f((1-\lambda) x + \lambda y) - \lambda f(y)
+- (1 - \lambda) f(x) 
+=\lambda \int_0^1 \phi_f(t) \psi_{\lambda} (t) \, dt
+$$
+où
+$\phi_f(t) := d^2f(x+ t (y-x)) (\cdot (y-x))^2$ est positive par hypothèse et 
+$$
+\psi_{\lambda}(t) :=
+\left|
+\begin{array}{cc}
+t(1 - 1/\lambda) & \mbox{si } t \leq \lambda\\
+(t - 1) & \mbox{sinon.}
+\end{array}
+\right.
+$$
+La fonction $\psi_{\lambda}$ étant négative, on en conclut que
+$f((1-\lambda) x + \lambda y) - \lambda f(y) - f(x)$ est négative pour tout
+$\lambda \in \left]0, 1\right]$ ; cette inégalité est également trivialement
+satisfaite si $\lambda=0$. La fonction $f$ est donc convexe.
