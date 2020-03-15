@@ -749,7 +749,8 @@ Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#ch
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
 
-### notations
+Différentation d'expressions
+--------------------------------------------------------------------------------
 
 Dans les "contexte métiers", les techniques de différentiation s'appliquent 
 souvent à des grandeurs numériques variables plutôt qu'à des "fonctions"
@@ -769,6 +770,14 @@ noter $\partial_x$ ou $\partial / \partial_x$ plutôt que $\partial_1$
 (plus facile à interpréter et "robuste" par rapport à des changements
 d'ordre des variables). Puis expliquer "trick" avec $dx$, $dy$, etc.
 Avant ça expliquer "collusion" nom des variables & points d'évaluation ...
+
+### TODO
+
+Prendre $x^2 - c^2 t^2$ en exemple.
+
+### TODO
+
+Transférer en exo ?
 
 ### Thermodynamique {.exemple}
 L'entropie d'un gaz parfait monatomique est donnée par l'expression[^gibbs]
