@@ -752,6 +752,27 @@ l'est également.
 Différentation d'expressions
 --------------------------------------------------------------------------------
 
+Si le point $(x, y)$ se situe dans le demi-plan droit ouvert, une mesure
+de son angle polaire $\theta$ est donnée par la relation
+$$
+\theta = \arctan \frac{y}{x}
+$$
+$$
+d \theta = -\frac{y}{x^2 + y^2} dx + \frac{x}{x^2 + y^2} dy. 
+$$
+
+
+
+L'expression "$\arctan y/x$" utilise les deux symboles $x$ et $y$ qui 
+désignent des variables. Sa valeur est bien définie dès lors que 
+$x$ est non-nul, mais il est probable que $\theta$
+
+peut être associée à la fonction
+$$
+\theta: (x, y) \in \left]0, +\infty\right[ \times \R \mapsto \arctan y/x \in \R.
+$$
+
+
 Dans les "contexte métiers", les techniques de différentiation s'appliquent 
 souvent à des grandeurs numériques variables plutôt qu'à des "fonctions"
 au sens mathématique du terme. En particulier la liste et l'ordre des variables
@@ -1066,7 +1087,7 @@ $$
 f(a + h) - f(a) = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
-### TODO -- dessin cacahuete
+![Géométrie [du théorème du calcul multivariable](#VF)](images/peanut.tex)
 
 ### Démonstration {.proof}
 L'ensemble $U$ étant ouvert, il existe un $\varepsilon > 0$ tel que
