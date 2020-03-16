@@ -749,8 +749,68 @@ Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#ch
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
 
-Différentation d'expressions
+Notations alternatives
 --------------------------------------------------------------------------------
+
+En tant que client du calcul différentiel (comme physicien par exemple) 
+vous avez peut-être été exposé à des notations assez éloignées de celles 
+que nous avons pratiqué jusqu'à présent. Au coeur de ces notations,
+on trouve une formule du type
+$$
+d (f(x_1, \dots, x_n)) = \frac{\partial f(x_1,\dots, x_n)}{\partial x_1} d x_1 + \dots + \frac{\partial f(x_1,\dots, x_n)}{\partial x_n} dx_n,
+$$
+formule que nous allons interpréter à la lumière des concepts déjà introduits.
+
+
+### Différentielle d'expressions
+
+$x^2 - c^2 t^2$
+
+### Variables nommées
+
+Dans la section précédente, le fait d'avoir sélectionné
+$x$ comme premier argument de la fonction $f$ et
+$t$ comme second argument est largement arbitraire. 
+Il est pourtant nécessaire 
+d'avoir constamment en tête l'ordre de ces arguments pour savoir ce que 
+désignent les dérivées partielles $\partial_1 f$ et $\partial_2 f$.
+Il peut être plus pratique de désigner ces dérivées partielles en utilisant
+le nom des variables plutôt que leur numéro ; ainsi pour désigner la dérivée
+partielle de $f$ par rapport à la variable $x$, on utilisera la notation
+$\partial_x$ ou $\partial/\partial x$ et pour désigner la dérivée
+partielle de $f$ par rapport à la variable $t$, on utilisera la notation
+$\partial_t$ ou $\partial/\partial t$. Soit
+$$
+\partial_x (f(x, t)) := \frac{\partial f(x,t)}{\partial x} := \lim_{\substack{h_x \to 0 \\ h_x \neq 0}} \frac{f(x+h_x,t) - f(x, t)}{h_x},
+$$
+$$
+\partial_t (f(x, t)) := \frac{\partial f(x,t)}{\partial t} := \lim_{\substack{h_t \to 0 \\ h_t \neq 0}} \frac{f(x,t+h_t) - f(x, t)}{h_t}.
+$$
+
+### Différentielle de variables
+
+$$
+d (f(x, t)) = \frac{\partial f(x,t)}{\partial x} dx + \frac{\partial f(x,t)}{\partial t} dt
+$$
+
+
+$$
+dx \cdot (h_x, h_t) = h_x \; \mbox{ et } \; dt \cdot (h_x, h_t) = h_t
+$$
+
+Il ne s'agit pas d'une nouvelle notation, mais de tirer complétement les
+conséquences de la notation concernant la différentiation d'expression.
+Revenons à l'expression $x^2 - c^2 t^2$ ; dans un contexte ou nous avons
+identifié $x$ et $t$ comme variable, l'expression "$x$" est associée
+à la fonction $(x, t) \in \R^2 \mapsto x$ et sa différentielle $dx$ est
+donnée par 
+$$
+dx \cdot (h_x, h_t) = \frac{\partial x}{\partial x} h_x + \frac{\partial x}{\partial t} h_t
+= h_x.
+$$
+
+
+-----
 
 Si le point $(x, y)$ se situe dans le demi-plan droit ouvert, une mesure
 de son angle polaire $\theta$ est donnée par la relation
