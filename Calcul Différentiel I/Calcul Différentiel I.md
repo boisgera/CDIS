@@ -757,9 +757,82 @@ vous avez peut-être été exposé à des notations assez éloignées de celles
 que nous avons pratiqué jusqu'à présent. Au coeur de ces notations,
 on trouve une formule du type
 $$
-d (f(x_1, \dots, x_n)) = \frac{\partial f(x_1,\dots, x_n)}{\partial x_1} d x_1 + \dots + \frac{\partial f(x_1,\dots, x_n)}{\partial x_n} dx_n,
+d (f(x_1, \dots, x_n)) = \frac{\partial f(x_1,\dots, x_n)}{\partial x_1} d x_1 + \dots + \frac{\partial f(x_1,\dots, x_n)}{\partial x_n} dx_n.
 $$
-formule que nous allons interpréter à la lumière des concepts déjà introduits.
+Bien utilisées, ces notations ont le potentiel de simplifier significativement
+le calcul différentiel ; elle recèlent toutefois un potentiel d'ambiguité
+-- et donc des risques d'erreurs -- contre lequel il faut se prémunir. 
+Nous allons donc les détailler sur un exemple et les interpréter à la lumière 
+des concepts déjà introduits.
+
+#### Différentielle d'expressions
+L'idée clé est d'étendre le calcul différentiel des fonctions 
+à des formules mathématiques ou expressions, 
+composées de symboles de fonctions, d'opérateurs, de constantes et de variables. 
+Considérons par exemple, l'expression $$e := ``x^2 - c^2 t^2".$$ 
+Nous allons rapidement omettre les guillemets pour simplifier les notations ; 
+mais pour le moment ils soulignent que nous avons affaire à une formule 
+(à une suite de symboles) et pas à un nombre réel.
+Cette expression exploite les opérateurs d'addition 
+et d'exponentiation ; le symbole "$2$" désigne une
+constante numérique ainsi que "$c$" (ici, la vitesse de la lumière 
+dans le vide) ;
+les symboles "$x$" et "$t$" font référence à des variables (de position et de 
+temps respectivement). 
+La valeur numérique que désigne $e$ est définie pour toute valeur réelle des
+variables $x$ et $t$ ;
+on peut donc lui associer la fonction
+$$
+f: (x,t) \in \R \times \R \mapsto x^2 - c^2 t^2 \in \R
+$$
+et utiliser ensuite les expressions $e$ et "$f(x, t)$" de façon interchangeable.
+La fonction $f$ étant différentiable, on définit la différentielle
+de l'expression $e$ comme
+$$
+d e := d(f(x, t)) := df (x, t).
+$$
+
+#### Dérivées partielles et arguments nommés
+Pour ce qui est des dérivées partielles, on a intérêt à adopter une notation
+qui tient compte du nom des variables plutôt que de leur position dans la liste
+des arguments de la fonction ; on définit donc
+$$
+\frac{\partial e}{\partial x} := \frac{\partial \, f(x, t)}{\partial x} := \partial_1 f(x, t)
+\; \mbox{ et } \;
+\frac{\partial e}{\partial t} := \frac{\partial \, f(x, t)}{\partial t} := \partial_2 f(x, t).
+$$
+Compte tenu de l'expression $e$, on a ici
+$$
+\frac{\partial e}{\partial x} = 2x 
+\; \mbox{ et } \;
+\frac{\partial e}{\partial t} = -2c^2 t. 
+$$
+
+#### Différentielle des variables
+Remarquons que les symboles de variables "$x$" et "$t$" sont aussi des 
+expressions à part entière. Elles peuvent donc être associées aux fonctions
+linéaires
+$(x,t) \in \R \times \R \mapsto x \in \R$ et 
+$(x,t) \in \R \times \R \mapsto t \in \R$ ; leur différentielle satisfait donc
+$$
+dx\cdot (h_x, h_t) = h_x \; \mbox{ et } \; dt \cdot (h_x, h_t) = h_t. 
+$$
+Les fonctions $dx$ et $dt$ -- il s'agit bien de fonctions et pas de nombres -- 
+prélèvent donc dans le vecteur de variation des arguments $(h_x, h_t)$ la 
+composante associée à la variable $x$ et $t$ respectivement.
+
+La différentielle de $e$ satisfait
+$d e \cdot (h_x, h_t) = ({\partial e}/{\partial x}) h_x + ({\partial e}/{\partial t}) h_t$
+pour toute variation $(h_x, h_t)$. On peut donc réécrire cette relation sous la forme
+$$
+d e = \frac{\partial e}{\partial x} dx + \frac{\partial e}{\partial t} dt,
+$$
+et donc ici
+$$
+d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt.
+$$
+
+
 
 
 ### Différentielle d'expressions
@@ -856,29 +929,6 @@ Avant ça expliquer "collusion" nom des variables & points d'évaluation ...
 
 Prendre $x^2 - c^2 t^2$ en exemple.
 
-### TODO
-
-Transférer en exo ?
-
-### Thermodynamique {.exemple}
-L'entropie d'un gaz parfait monatomique est donnée par l'expression[^gibbs]
-$$
-S = N k_B \left[\frac{5}{2} + \ln \left(\frac{V}{N} \frac{(2\pi m k_B T)^{3/2}}{h^3} \right)\right].
-$$
-
-[^gibbs]: cf. par exemple [l'article consacré au "Paradoxe de Gibbs" sur Wikipédia](https://fr.wikipedia.org/wiki/Paradoxe_de_Gibbs).
-
-Les grandeurs $k_B$, $h$ sont les constantes de Boltzmann et de Planck.
-Pour un gaz donné, la masse $m$ d'une particule est une constante ;
-si l'on raisonne sur une quantité de particules donnée
-le nombre de particules $N$ est également une constante.
-L'entropie est alors fonction uniquement du volume $V$ occupé par le gaz et
-de sa température $T$ ; on supposera que ces deux grandeurs sont strictement
-positives pour que l'expression soit bien définie. Mathématiquement, nous
-traitons donc l'entropie comme la fonction 
-$$
-(T, V) \in \left]0, +\infty\right[ \times \left]0, +\infty\right[ \mapsto S \in \R.
-$$
 
 <!--
 $$
@@ -2770,6 +2820,47 @@ Une fonction dérivable directionnellement au sens de Hadamard en $x$ est
 est une fonction linéaire de $h$.
 Montrer que $f$ est différentiable en $x$ au sens de Hadamard 
 si et seulement si elle est différentiable en $x$ au sens de Fréchet.
+
+
+Thermodynamique
+--------------------------------------------------------------------------------
+
+Pour un gaz parfait, la pression $P$, le volume $V$, le nombre de particules 
+$N$ et la température $T$ sont reliés par la relation
+$$
+PV = N k_B T
+$$
+où $k_B$ est la constante de Boltzmann. Si en outre le gaz est mono-atomique, 
+son entropie $S$ est donnée par l'expression[^gibbs]
+$$
+S = N k_B \left[\frac{5}{2} + \ln \left(\frac{V}{N} \frac{(2\pi m k_B T)^{3/2}}{h^3} \right)\right]
+$$
+où $h$ est la constante de Planck et $m$ la masse d'un atome de gaz.
+On s'intéresse dans la suite à une quantité fixe d'un gaz donné de ce type.
+
+[^gibbs]: cf. par exemple [l'article consacré au "Paradoxe de Gibbs" sur Wikipédia](https://fr.wikipedia.org/wiki/Paradoxe_de_Gibbs).
+
+### Question 0 {.question #th-0}
+Quelles sont les grandeurs variables ("variables d'état") associées à 
+cette expression de l'entropie $S$ ? Si l'on souhaite que $S$ Quelles valeurs peuvent-elles prendre pour
+que $S$ soit définie ?
+
+### Question 1 {.question #th-1}
+Montrer que la différentielle $dS$ est bien définie et la calculer
+en utilisant les notations les plus appropriées.
+
+### Question 2 {.question #th-1}
+L'énergie interne $U$ du gaz est une fonction des variables d'état 
+(une "fonction d'état") ;
+sa variation infinitésimale est reliée à celle de l'entropie et 
+du volume par la relation
+$$
+dU = T dS - P dV.
+$$
+Quel sens donnez-vous à cette relation mathématiquement ? 
+Pouvez-vous la réécrire en utilisant les variations associées aux variables
+d'état utilisées précédemment ? En déduire une expression de 
+l'énergie interne en fonction de ces variables ?
 
 Inégalité de la valeur moyenne {.question #ivm}
 --------------------------------------------------------------------------------
