@@ -2842,14 +2842,14 @@ On s'intéresse dans la suite à une quantité fixe d'un gaz donné de ce type.
 
 ### Question 0 {.question #th-0}
 Quelles sont les grandeurs variables ("variables d'état") associées à 
-cette expression de l'entropie $S$ ? Si l'on souhaite que $S$ Quelles valeurs peuvent-elles prendre pour
-que $S$ soit définie ?
+cette expression de l'entropie $S$ ? Quelle intervalle de valeurs peuvent
+prendre ces variables ? (On souhaite que l'entropie soit toujours définie.)
 
 ### Question 1 {.question #th-1}
 Montrer que la différentielle $dS$ est bien définie et la calculer
 en utilisant les notations les plus appropriées.
 
-### Question 2 {.question #th-1}
+### Question 2 {.question #th-2}
 L'énergie interne $U$ du gaz est une fonction des variables d'état 
 (une "fonction d'état") ;
 sa variation infinitésimale est reliée à celle de l'entropie et 
@@ -2859,8 +2859,8 @@ dU = T dS - P dV.
 $$
 Quel sens donnez-vous à cette relation mathématiquement ? 
 Pouvez-vous la réécrire en utilisant les variations associées aux variables
-d'état utilisées précédemment ? En déduire une expression de 
-l'énergie interne en fonction de ces variables ?
+d'état utilisées précédemment ? En déduire 
+une expression de l'énergie interne définie à une constante près.
 
 Inégalité de la valeur moyenne {.question #ivm}
 --------------------------------------------------------------------------------
@@ -3028,7 +3028,7 @@ df(x) \cdot h = J_f(x) \cdot h = ((A + A^{\top}) \cdot x)^{\top} \cdot h
 = x^{\top} \cdot (A + A^{\top}) \cdot h.
 $$
 
-### Composition de fonctions continûment différentiables {#answer-cfcd}
+### Composition de fonctions continûment différentiables {.answer #answer-cfcd}
 D'après [la règle de différentiation en chaîne](#chain-rule), $d (g\circ f)(x)= dg(f(x)) \cdot df(x)$.
 Donc pour tout $i \in \{1, \dots, m\}$ et $j \in \{1,\dots, p\}$,
 \begin{align*}
@@ -3627,6 +3627,61 @@ $$
 $$
 ce qui contredit l'inégalité ci-dessus et prouve la contradiction.
 Par conséquent, $f$ est bien différentiable au sens de Fréchet.
+
+
+Thermodynamique
+--------------------------------------------------------------------------------
+
+### Question 0 {.answer #answer-th-0}
+Les variables associées à l'expression fournie de l'entropie $S$ sont le volume
+$V$ et la température $T$. Pour que l'expression définissant l'entropie soit 
+toujours définie, il suffit d'exiger que $V$ et $T$ soient strictement positives.
+
+### Question 1 {.answer #answer-th-1}
+L'entropie, en tant que fonction de $(V, T) \in \left]0,+\infty\right[^2$, 
+est une fonction (continûment) différentiable. En effet, les dérivées partielles
+de $S(V,T)$ sont définies en tout point et vérifient
+$$
+\frac{\partial S(V, T)}{\partial V} = N k_B \frac{1}{V} 
+\; \mbox{ et } \;
+\frac{\partial S(V,T)}{\partial T} = \frac{3}{2}N k_B \frac{1}{T},
+$$
+deux expressions dépendant continûment de $(V, T)$. 
+On a par conséquent
+$$
+d S = \frac{\partial S(V, T)}{\partial V} d V + \frac{\partial S(V,T)}{\partial T} dT = N k_B \left[\frac{dV}{V} + \frac{3}{2} \frac{dT}{T}\right].
+$$
+
+### Question 2 {.answer #answer-th-2}
+Si $U$ est une fonction (différentiable) de $(V, T)$, 
+on peut interpréter mathématiquement la relation $dU = T dS - P dV$ comme
+$$
+d(U(V, T)) = T d(S(V, T)) - P(V, T) dV
+$$
+où $P(V, T) := N k_B T / V$ résulte de la loi des gaz parfaits $PV = N k_B T$.
+En exploitant la différentielle $dS(V, T)$ déjà calculée, on en déduit 
+$$
+d(U(V, T)) =  T N k_B \left[\frac{dV}{V} + \frac{3}{2} \frac{dT}{T}\right] - N k_B T \frac{dV}{V}
+= \frac{3}{2} N k_B dT.
+$$
+
+Soit $(V_0, T_0) \in \left]0, +\infty\right[^2$ et 
+$(V, T) \in \left]0, +\infty\right[^2$. Le segment reliant $(V_0, T_0)$
+et $(V, T)$ est inclus tout entier dans $\left]0, +\infty\right[^2$
+qui est convexe. Pour tout $t \in [0, 1]$, on a 
+\begin{align*}
+\phi(t) & :=
+dU(V_0 + t(V - V_0), T_0 + t(T - T_0)) \cdot (V - V_0, T - T_0) \\ 
+&\phantom{:}= \frac{3}{2}  N k_B dT \cdot (V - V_0, T - T_0) \\
+&\phantom{:}= \frac{3}{2}  N k_B (T - T_0)
+\end{align*}
+ce qui implique que $\phi$ est intégrable.
+Par [le théorème fondamental du calcul multivariable](#VF), on a donc
+$$
+U(V, T) = U(V_0, T_0) + \int_0^1 \phi(t) \, dt
+= \left[U(V_0, T_0) - \frac{3}{2}  N k_B T_0\right] + \frac{3}{2}  N k_B T,
+$$
+ce qui démontre qu'à une constante près, on a $$U(V, T) =  \frac{3}{2} Nk_B T.$$
 
 Inégalité de la valeur moyenne {.answer #answer-ivm}
 --------------------------------------------------------------------------------
