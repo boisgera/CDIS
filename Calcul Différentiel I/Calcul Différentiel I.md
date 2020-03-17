@@ -1614,7 +1614,7 @@ Montrer que la fonction $f$ est différentiable et calculer son gradient.
 Montrer que la fonction $f$ est deux différentiable et calculer sa 
 hessienne.
 
-Robot manipulateur {.question #rm}
+Robot manipulateur
 --------------------------------------------------------------------------------
 
 Les coordonnées cartésiennes $x$ et $y$ de l'effecteur final 
@@ -1633,16 +1633,22 @@ où $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
 
 ![$\ell_1 = 3$, $\ell_2 = 2$, $\theta_1 = \pi/4$, $\theta_2 = - \pi/4$.](images/robot.tex){#robot}
 
+On souhaite quantifier quel impact un jeu au niveau des articulations affecte
+la précision du positionnement de l'effecteur final.
+
+### Question 1  {.question #rm-1 .one}
 Montrer que l'application 
 $f: (\theta_1, \theta_2) \in \R^2 \mapsto (x, y) \in \R^2$ 
 est différentiable et déterminer sa matrice jacobienne.
 
-**TODO.** Variation des angles, en déduire déplacement max de l'effecteur
-final. Mmm "compliqué" dans la mesure où on voudrait probablement travailler
-en norme d'opérateur $\|\cdot\|_{2\infty}$ ! Ou au moins $\|\cdot\|_{\infty\infty}$ ...
-Dans ce dernier cas, le calcul montre que quand les variations de $\theta_1$ et
-$\theta_2$ sont majorées par $\delta$, l'effecteur reste dans un carré de
-"rayon" au plus $\ell_1 + 2 \ell_2$ centré en ce point.
+### Question 2  {.question #rm-2 .three}
+
+Soit $(\theta_{10}, \theta_{20}) \in \R^2$ et 
+$(x_0, y_0) = f(\theta_{10}, \theta_{20})$.
+Montrer que si 
+$$|\theta_1 - \theta_{10}| \leq \varepsilon \; \mbox{ et } \; 
+|\theta_2 - \theta_{20}| \leq \varepsilon$$ alors $(x, y) = f(\theta_1, \theta_2)$
+appartient au carré centré en $(x_0, y_0)$ d'arête de longueur $\ell_1/2 + \ell_2$.
 
 
 Dérivée partielles, directionnelles et différentielle
@@ -1682,11 +1688,11 @@ défini sur un intervalle ouvert $I$ contenant $0$, tel que
 $\gamma(I) \subset U$,  $\gamma(0) = x$ et $\gamma'(0)$ existe,
 la dérivée $(f \circ \gamma)'(0)$ existe. 
 
-### Question 1 {.question #ddh-1}
+### Question 1 {.question #ddh-1 .one}
 Montrer que si $f$ est directionnellement dérivable au sens de Hadamard 
 en $x$, alors $f$ est directionnellement dérivable au sens classique.
 
-### Question 2 {.question #ddh-2}
+### Question 2 {.question #ddh-2 .three}
 Montrer que si $f$ est directionnellement dérivable au sens de Hadamard
 en $x$, la grandeur $(f \circ \gamma)'(0)$ ne dépend de $\gamma$
 qu'à travers $\gamma'(0)$ et que par conséquent
@@ -1694,7 +1700,7 @@ $$
 (f\circ \gamma)'(0) = f'(x, \gamma'(0)).
 $$
 
-### Question 3 -- Dérivation en chaîne {.question #ddh-3}
+### Question 3 -- Dérivation en chaîne {.question #ddh-3 .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
 sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
@@ -1706,7 +1712,7 @@ $$
 (g\circ f)'(x, h) = g'(f(x), f'(x, h)).
 $$
 
-### Question 4 {.question #ddh-4}
+### Question 4 {.question #ddh-4 .four}
 Montrer que $f$ est directionnellement dérivable au sens de Hadamard en $x$ 
 si et seulement si la limite
 $$
@@ -1714,12 +1720,12 @@ $$
 $$
 existe et que la limite est alors égale à $f'(x, h)$.
 
-### Question 5 {.question #ddh-5}
+### Question 5 {.question #ddh-5 .four}
 Une fonction dérivable directionnellement au sens de Hadamard en $x$ est 
 *différentiable au sens de Hadamard* en $x$ si de plus $f'(x, h)$ 
 est une fonction linéaire de $h$.
 Montrer que $f$ est différentiable en $x$ au sens de Hadamard 
-si et seulement si elle est différentiable en $x$ au sens de Fréchet.
+si et seulement si elle est différentiable en $x$.
 
 
 Thermodynamique
@@ -1740,16 +1746,16 @@ On s'intéresse dans la suite à une quantité fixe d'un gaz donné de ce type.
 
 [^gibbs]: cf. par exemple [l'article consacré au "Paradoxe de Gibbs" sur Wikipédia](https://fr.wikipedia.org/wiki/Paradoxe_de_Gibbs).
 
-### Question 0 {.question #th-0}
+### Question 0 {.question #th-0 .one}
 Quelles sont les grandeurs variables ("variables d'état") associées à 
 cette expression de l'entropie $S$ ? Quelle intervalle de valeurs peuvent
 prendre ces variables ? (On souhaite que l'entropie soit toujours définie.)
 
-### Question 1 {.question #th-1}
+### Question 1 {.question #th-1 .one}
 Montrer que la différentielle $dS$ est bien définie et la calculer
 en utilisant les notations les plus appropriées.
 
-### Question 2 {.question #th-2}
+### Question 2 {.question #th-2 .three}
 L'énergie interne $U$ du gaz est une fonction des variables d'état 
 (une "fonction d'état") ;
 sa variation infinitésimale est reliée à celle de l'entropie et 
@@ -1759,8 +1765,11 @@ dU = T dS - P dV.
 $$
 Quel sens donnez-vous à cette relation mathématiquement ? 
 Pouvez-vous la réécrire en utilisant les variations associées aux variables
-d'état utilisées précédemment ? En déduire 
-une expression de l'énergie interne définie à une constante près.
+d'état utilisées précédemment ? 
+
+### Question 3 {.question #th-3 .two}
+Déduire de la question précédente une expression de l'énergie interne 
+(définie à une constante près).
 
 Inégalité de la valeur moyenne {.question #ivm}
 --------------------------------------------------------------------------------
@@ -2462,7 +2471,7 @@ $$
 existe.
 
 ### Question 5 {.answer #answer-ddh-5}
-Si $f$ est différentiable au sens de Fréchet, notons $\varepsilon$
+Si $f$ est différentiable, notons $\varepsilon$
 la fonction définie dans un voisinage de $0$, continue et nulle en $0$,
 telle que
 $$
@@ -2489,7 +2498,7 @@ Le membre de droite, égal à $f'(x, h)$, est linéaire en $h$ ;
 la fonction $f$ est donc différentiable au sens de Hadamard.
 
 Réciproquement, supposons que $f$ est différentiable au sens de Hadamard.
-Pour montrer que $f$ est différentiable au sens de Fréchet, 
+Pour montrer que $f$ est différentiable, 
 de différentielle $f'(x, h)$, montrons que
 $$
 \frac{\|f(x+h) - f(x) - f'(x, h)\|}{\|h\|} \to 0 \, \mbox{ quand } \, h \to 0,
@@ -2526,7 +2535,7 @@ $$
 \, \mbox{ quand } \, i \to +\infty
 $$
 ce qui contredit l'inégalité ci-dessus et prouve la contradiction.
-Par conséquent, $f$ est bien différentiable au sens de Fréchet.
+Par conséquent, $f$ est bien différentiable.
 
 
 Thermodynamique
@@ -2565,6 +2574,7 @@ d(U(V, T)) =  T N k_B \left[\frac{dV}{V} + \frac{3}{2} \frac{dT}{T}\right] - N k
 = \frac{3}{2} N k_B dT.
 $$
 
+### Question 3 {.answer #answer-th-3}
 Soit $(V_0, T_0) \in \left]0, +\infty\right[^2$ et 
 $(V, T) \in \left]0, +\infty\right[^2$. Le segment reliant $(V_0, T_0)$
 et $(V, T)$ est inclus tout entier dans $\left]0, +\infty\right[^2$
@@ -2573,10 +2583,10 @@ qui est convexe. Pour tout $t \in [0, 1]$, on a
 \phi(t) & :=
 dU(V_0 + t(V - V_0), T_0 + t(T - T_0)) \cdot (V - V_0, T - T_0) \\ 
 &\phantom{:}= \frac{3}{2}  N k_B dT \cdot (V - V_0, T - T_0) \\
-&\phantom{:}= \frac{3}{2}  N k_B (T - T_0)
+&\phantom{:}= \frac{3}{2}  N k_B (T - T_0).
 \end{align*}
-ce qui implique que $\phi$ est intégrable.
-Par [le théorème fondamental du calcul multivariable](#VF), on a donc
+La fonction $\phi$ est constante, donc intégrable sur $[0, 1]$.
+Par [le théorème fondamental du calcul multivariable](#VF), on a
 $$
 U(V, T) = U(V_0, T_0) + \int_0^1 \phi(t) \, dt
 = \left[U(V_0, T_0) - \frac{3}{2}  N k_B T_0\right] + \frac{3}{2}  N k_B T,
