@@ -530,6 +530,8 @@ def handle_typed_sections(doc):
         "remark": "Remarque",
         "exercise": "Exercice",
         "exemple": "Exemple",
+        "question": None,
+        "answer": None,
     }
     levels = {
         1: "section",
@@ -552,7 +554,8 @@ def handle_typed_sections(doc):
                 latex_title = pandoc.write(minidoc, format="latex").strip()
                 todos.append([holder, index, level, latex_title])
                 type_ = shared[0]
-                inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
+                if types[type_]:
+                    inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
                 if "zero" in classes:
                     inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\boldsymbol{\circ}}"), Str(")")] 
                 if "one" in classes:

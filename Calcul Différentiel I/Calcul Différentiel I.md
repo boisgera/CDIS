@@ -1559,7 +1559,7 @@ Différentiation en chaîne {#dec}
 s'applique à la composée de deux fonctions différentiables 
 $f: U \subset \R^p \to \R^n$ et $g: V \subset \R^n \to \R^m$.
 
-### Question 1 {.question #dec-1}
+### Question 1 {.question #dec-1 .one}
 Calculer $d(g \circ f)$ quand $p = n = 1$ (on utilisera les dérivées
 de $f$ et $g$).
 
@@ -1877,7 +1877,7 @@ $$
 en prenant pour fonction $\varepsilon$ la fonction de $\R^n$ dans $\R^m$ 
 identiquement nulle. La fonction $f$ est donc différentiable sur $\R^n$.
 
-### Développement limité au premier ordre {.exercise .answer #answer-dlmj}
+### Développement limité au premier ordre {.answer #answer-dlmj}
 De l'hypothèse 
 $$
 f(x+h) = f(x) + A \cdot h + \varepsilon(h) \|h\|
