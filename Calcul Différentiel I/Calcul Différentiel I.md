@@ -749,7 +749,7 @@ Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#ch
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
 
-Notations alternatives
+Notations compactes
 --------------------------------------------------------------------------------
 
 En tant que client du calcul différentiel (comme physicien par exemple) 
@@ -832,123 +832,21 @@ $$
 d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt.
 $$
 
+### Nouveau jeu de variables {.exercise .one .question}
+On considère successivement l'expression $x^2 - c^2 t^2$ comme une fonction 
+non plus de $(x, t)$, mais de $(t,x)$ puis de $(t, x, y)$. 
+Comment interpréter les termes
+$dt$ et $dx$ dans chacun de ces cas ?
+La relation $d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt$ est-elle
+toujours valable ?
 
 
-
-### Différentielle d'expressions
-
-$x^2 - c^2 t^2$
-
-### Variables nommées
-
-Dans la section précédente, le fait d'avoir sélectionné
-$x$ comme premier argument de la fonction $f$ et
-$t$ comme second argument est largement arbitraire. 
-Il est pourtant nécessaire 
-d'avoir constamment en tête l'ordre de ces arguments pour savoir ce que 
-désignent les dérivées partielles $\partial_1 f$ et $\partial_2 f$.
-Il peut être plus pratique de désigner ces dérivées partielles en utilisant
-le nom des variables plutôt que leur numéro ; ainsi pour désigner la dérivée
-partielle de $f$ par rapport à la variable $x$, on utilisera la notation
-$\partial_x$ ou $\partial/\partial x$ et pour désigner la dérivée
-partielle de $f$ par rapport à la variable $t$, on utilisera la notation
-$\partial_t$ ou $\partial/\partial t$. Soit
+### Différentielle d'une application linéaire {.exercise .one .question}
+Soit $A \in \mathbb{R}^{m\times n}$. Interpréter puis démontrer la relation
 $$
-\partial_x (f(x, t)) := \frac{\partial f(x,t)}{\partial x} := \lim_{\substack{h_x \to 0 \\ h_x \neq 0}} \frac{f(x+h_x,t) - f(x, t)}{h_x},
+d (A \cdot x) = A  \cdot dx.
 $$
-$$
-\partial_t (f(x, t)) := \frac{\partial f(x,t)}{\partial t} := \lim_{\substack{h_t \to 0 \\ h_t \neq 0}} \frac{f(x,t+h_t) - f(x, t)}{h_t}.
-$$
-
-### Différentielle de variables
-
-$$
-d (f(x, t)) = \frac{\partial f(x,t)}{\partial x} dx + \frac{\partial f(x,t)}{\partial t} dt
-$$
-
-
-$$
-dx \cdot (h_x, h_t) = h_x \; \mbox{ et } \; dt \cdot (h_x, h_t) = h_t
-$$
-
-Il ne s'agit pas d'une nouvelle notation, mais de tirer complétement les
-conséquences de la notation concernant la différentiation d'expression.
-Revenons à l'expression $x^2 - c^2 t^2$ ; dans un contexte ou nous avons
-identifié $x$ et $t$ comme variable, l'expression "$x$" est associée
-à la fonction $(x, t) \in \R^2 \mapsto x$ et sa différentielle $dx$ est
-donnée par 
-$$
-dx \cdot (h_x, h_t) = \frac{\partial x}{\partial x} h_x + \frac{\partial x}{\partial t} h_t
-= h_x.
-$$
-
-
------
-
-Si le point $(x, y)$ se situe dans le demi-plan droit ouvert, une mesure
-de son angle polaire $\theta$ est donnée par la relation
-$$
-\theta = \arctan \frac{y}{x}
-$$
-$$
-d \theta = -\frac{y}{x^2 + y^2} dx + \frac{x}{x^2 + y^2} dy. 
-$$
-
-
-
-L'expression "$\arctan y/x$" utilise les deux symboles $x$ et $y$ qui 
-désignent des variables. Sa valeur est bien définie dès lors que 
-$x$ est non-nul, mais il est probable que $\theta$
-
-peut être associée à la fonction
-$$
-\theta: (x, y) \in \left]0, +\infty\right[ \times \R \mapsto \arctan y/x \in \R.
-$$
-
-
-Dans les "contexte métiers", les techniques de différentiation s'appliquent 
-souvent à des grandeurs numériques variables plutôt qu'à des "fonctions"
-au sens mathématique du terme. En particulier la liste et l'ordre des variables
--- des grandeurs dont dépend le terme à différentier -- 
-n'est pas toujours clairement établie, le domaine de définition est le plus
-souvent implicite.
-
-(TODO : rappeler ce qu'est une fct ? Au moins implicitement)
-
-TODO : expliquer que le calcul diff se prête bien à ça à condition d'adapter
-ses notations (warning : concis mais ambigu).
-
-Stratégies : partir d'un terme / expression. Expliciter les constantes, 
-les variables, les fonctions parmi les symboles utilisés dans l'expression ; 
-noter $\partial_x$ ou $\partial / \partial_x$ plutôt que $\partial_1$
-(plus facile à interpréter et "robuste" par rapport à des changements
-d'ordre des variables). Puis expliquer "trick" avec $dx$, $dy$, etc.
-Avant ça expliquer "collusion" nom des variables & points d'évaluation ...
-
-### TODO
-
-Prendre $x^2 - c^2 t^2$ en exemple.
-
-
-<!--
-$$
-d (S(T, V)) = \frac{\partial S(T, V)}{\partial T}  dT + \frac{\partial S(T,V)}{\partial V} dV = N k_B \left( \frac{dV}{V} + \frac{3}{2}\frac{dT}{T}\right).
-$$
--->
-
------
-
-Si l'on considère par exemple la fonction $m$ définie par
-$$
-m: (x, y, z, t) \in \R^4 \to x^2 + y^2 + z^2 - c^2 t^2,
-$$
-comme dans la théorie de la relativité,
-les dérivées partielles par rapport aux variables d'espace $x$, $y$, $z$ 
-sont données par 
-
-### TODO
-Expliquer interêt variables nommées, et usage $dx$, $dy$, etc. qui donnent
-des identités valables même quand le jeu de variables est "inconnu".
+En déduire ... $d(x+y)$ ... $d(\lambda x)$ ... Puis linéarité diff ?
 
 ### TODO
 Déduire régle de la somme et linéarité de l'identité 
@@ -959,7 +857,7 @@ d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\to
 $$
 (csq exo : difff $\left<x, y\right>$ et $\|x\|$ (si $x \neq 0$))
 
-
+### TODO: diff fct bilin
 
 ### Différentielle et norme euclidienne {.exercice .question #diff-norm}
 En exploitant la règle de différentiation en chaîne, montrer que le
@@ -986,113 +884,7 @@ g &: (x, y) \in \R^n \times \R^n \mapsto x^{\top} \cdot y \in \R \\
 
 
 
-### Notations compactes
-
-L'expression $df(x) \cdot h$ dépend de trois éléments : la fonction $f$,
-le point de référence $x$ et la variation de l'argument $h$. Cette notation
-est sans ambiguité mais peut parfois être lourde à manipuler.
-Dans le calcul des dérivées, nous avons l'habitude, pour signifier que
-la dérivée de la fonction $x \mapsto x^2$ en tout point $x$ de $\mathbb{R}$
-est $2x$, d'écrire simplement
-  $$
-  (x^2)' = 2x.
-  $$
-Le membre de gauche désigne la dérivée de la fonction $x \mapsto x^2$, 
-évaluée en $x$.
-Avec notre notation pour la différentielle, à ce stade 
-il nous faudrait écrire:
-$$
-d (x \in \mathbb{R} \to x^2)(x) \cdot h = 2 x h.
-$$
-Si l'on accepte de regrouper la fonction à différencier et le point où
-elle est calculée en un terme unique dans cette notation, qui est une
-expression de $x$, on peut alors écrire:
-$$
-d x^2 \cdot h = 2 x h,
-$$
-ce qui est un progrès, même si la notation n'est pas totalement dénuée 
-d'ambiguité[^amb].
-On remarque alors qu'en exploitant cette convention, le terme $dx$
-vient à désigner $d(x \mapsto x)(x)$; comme $(x)' = 1$,
-on a donc $dx \cdot h = 1 \times h = h$. 
-Par conséquent, on peut réécrire l'équation ci-dessus sous la forme
-mémorable
-$$
-dx^2 = 2 x dx.
-$$
-
-[^amb]: par exemple: est-ce que $df(x^2)$ désigne désormais la différentielle
-de la fonction $f$ évaluée en $x^2$ ou la différentielle de la fonction 
-$x \mapsto f(x^2)$ évaluée en $x$ ? Les deux grandeurs ne sont pas égales ...
-Il faut donc savoir si l'on différencie une fonction en un point ou bien
-une expression par rapport à une variable. On pourra rajouter des parenthèses
-pour lever l'ambiguité si nécessaire, avec $d(f)(x^2)$ dans le premier cas
-et $d(f(x^2))$ dans le second. Par défaut, nous supposerons dans la suite
-que $df(x^2)$ désigne la notation "stricte" $d(f)(x^2)$.
-
-**TODO.** (avant ?). Variables nommées
-
-**TODO.** Notations compactes et cas multivariable (que signifie $dy$ ...
-en fonction du contexte, par exemple s'il y a 2 variables $x$ et $y$ et
-que $y\in\R^n$).
-
-**TODO.** Notations compactes et chain rule. 
-En déduire que si $dg(y) = h(y) \in \R^{n \times m}$, alors on peut noter cela
-$$
-d (g(y)) = h(y) \cdot dy
-$$
-(car $y$ représente ici l'ensemble des variables considérées, 
-donc $dy$ est l'identité de $\R^n$ dans $\R^n$ !) et que si $f$ et $g$
-sont différentiables sur leur domaine de définition, la règle de 
-différentiation en chaîne fournit alors
-$$
-d(g(f(x)) = h(f(x)) \cdot d(f(x)).
-$$
-Autrement dit, il suffit de "remplacer $y$ par $f(x)$" ... 
-
-
-
-
-
-### Règle de la somme {.theorem #sum-rule}
-La somme
-$(x, y) \in \mathbb{R}^2 \mapsto x + y \in \mathbb{R}$ 
-est différentiable en tout point et
-$$
-d(x+y) = dx + dy.
-$$
-
-### Démonstration {.proof}
-Pour tout $(x, y) \in \mathbb{R}^2$ et tout $(h_1, h_2) \in \mathbb{R}^2$, on a
-$$
-(x + h_1) + (y + h_2) = (x + y) + (h_1 + h_2).
-$$
-L'application somme est donc différentiable et sa différentielle
-est l'application $(h_1, h_2) \to h_1 + h_2$, c'est-à-dire 
-$dx + dy$.
-
-### Règle du produit {.theorem #product-rule}
-L'application produit 
-$(x, y) \in \mathbb{R}^2 \mapsto xy  \in \mathbb{R}$
-est différentiable en tout point et
-$$
-d xy = x dy + y dx
-$$
-
-### Démonstration {.proof}
-Soit $(x, y) \in \mathbb{R}^2$. Pour tout $h = (h_1, h_2) \in \mathbb{R}^2$,
-on a 
-$$
-(x+h_1) (y+h_2) = x y + x h_2 + y h_1 + h_1 h_2.
-$$
-Comme $|h_1 h_2| \leq \|h\|^2$, le produit $h_1 h_2$ est un $o(h)$.
-Par conséquent, l'application produit
-est différentiable en tout point $(x, y)$ de $\mathbb{R}^2$ 
-et sa différentielle est l'application
-$(h_1, h_2) \to x h_2 + y h_1,$
-c'est-à-dire $x dy + y dx$.
-
-### Linéarité de la différentielle {.corollary}
+### TODO - adapter. Linéarité de la différentielle {.corollary}
 Soit $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et 
 $g: U \to \mathbb{R}^m$, différentiables en $x \in U$. 
 Pour tous réels $\lambda$ et $\mu$, l'application 
