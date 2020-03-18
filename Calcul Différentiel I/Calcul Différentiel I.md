@@ -241,6 +241,26 @@ TODO :
 Introduction
 ================================================================================
 
+Objectifs d'apprentissage
+--------------------------------------------------------------------------------
+
+Variation des fonctions :
+
+  - théorème fondamental du calcul, forme monovariable
+  
+  - thé fond du calcul, forme multivariable. 
+  
+  - savoir la dériver et "adapter la preuve" le cas échéant.
+
+  - connaitre i acc fini mono et multi-variable (cas euclidien)
+
+  - savoir dériver l'inégalité des accroissements finis du théorème fondamental
+    du calcul sous une hypothèse supplémentaire de régularité renforcée.
+
+  - comprendre / savoir exploiter i acc fini avec autres normes que la norme
+    euclidienne.
+
+
 Conventions
 --------------------------------------------------------------------------------
 
@@ -280,24 +300,6 @@ la norme euclidienne $\|x\|_2$ de $x$ dans $\R^n$ ;
 $\|A\|$ désignera la norme d'opérateur $\|A\|_{22}$ de $A$, 
 induite par les normes euclidiennes sur $\R^m$ et sur $\R^n$.
 
-Objectifs d'apprentissage
---------------------------------------------------------------------------------
-
-Variation des fonctions :
-
-  - théorème fondamental du calcul, forme monovariable
-  
-  - thé fond du calcul, forme multivariable. 
-  
-  - savoir la dériver et "adapter la preuve" le cas échéant.
-
-  - connaitre i acc fini mono et multi-variable (cas euclidien)
-
-  - savoir dériver l'inégalité des accroissements finis du théorème fondamental
-    du calcul sous une hypothèse supplémentaire de régularité renforcée.
-
-  - comprendre / savoir exploiter i acc fini avec autres normes que la norme
-    euclidienne.
 
 Matrice jacobienne et différentielle
 ================================================================================
@@ -452,11 +454,12 @@ $$
 
 ### {.remark}
 En l'absence d'information supplémentaire, l'existence de la matrice jacobienne
-en $x$ offre très peu de garanties. Il est ainsi possible que la fonction
-$f$ ne soit pas même pas continue en $x$. La matrice jacobienne ne devient 
-réellement utile que lorsqu'elle fournit un développement limité 
-au premier ordre de la fonction $f$ au voisinage de $x$ ; cette propriété, qui n'est pas 
-systématiquement vraie, est la *différentiabilité* de $f$ en $x$.
+en $x$ offre très peu de garanties de régularité sur $f$ en $x$. 
+Il est ainsi possible que la fonction $f$ ne soit pas même pas continue en $x$. 
+La matrice jacobienne ne devient réellement utile que lorsqu'elle fournit un 
+développement limité au premier ordre de la fonction $f$ au voisinage de $x$ ; 
+cette propriété, qui n'est pas systématiquement vraie, 
+est la *différentiabilité* de $f$ en $x$.
 
 ### Fonction discontinue {.exercise .one #discont}
 Exhiber une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
@@ -958,7 +961,7 @@ il est possible de calculer la différence entre $f(x+h)$ et $f(x)$
 en intégrant les variations infinitésimales 
 de $f$ le long de $[x, x+h]$. 
 
-### Théorème fondamental du calcul {.theorem #TFC .one}
+### Théorème fondamental du calcul (monovariable) {.theorem #TFC .one}
 Si $f: [a, b] \subset \R \to \R^m$ est dérivable et que $f'$ est intégrable alors
 $$
 f(b) - f(a)  = \int_a^b f'(x) \, dx.
@@ -979,7 +982,7 @@ La définition de ce concept
 seront fournies dans le volet calcul intégral de l'enseignement.  
 
 
-### Théorème fondamental du calcul : extension {.remark .four #TFCE}
+### Forme générale du théorème fondamental du calcul {.remark .four #TFCE}
 Si l'on adopte au lieu de l'intégrale de Lebesgue l'intégrale encore
 plus générale de Henstock-Kurzweil (cf. calcul intégral), 
 alors toute fonction dérivée est automatiquement 
@@ -994,10 +997,13 @@ $$
 Cette forme avancée du théorème est toutefois rarement nécessaire ; 
 elle est néanmoins utile pour prouver 
 [l'inégalité des accroissements finis](#TAFS) en toute généralité.
-Cette extension est aussi applicable au théorème ci-dessous : 
+Cette extension est aussi applicable à 
+[la version multivariable du théorème fondamental du calcul](#VF) : 
 si l'on utilise l'intégrale de Henstock-Kurzweil, il sera inutile
 de vérifier que l'application 
-$t \mapsto df(a+th)  \cdot h$ est intégrable pour appliquer le théorème.
+$t \mapsto df(a+th)  \cdot h$ est intégrable pour appliquer le théorème ;
+comme dérivée de l'application $t \mapsto f(a+th)$, 
+cette fonction l'est automatiquement.
 
 ### Théorème fondamental du calcul (multivariable) {.theorem #VF .two}
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
@@ -1055,6 +1061,10 @@ $$
 \|f(a+h) - f(a)\| \leq M h.
 $$
 
+### TODO
+
+Evoquer idée de la preuve (ou preuve dans le cas ou $f'(t)$ est intégrable) :
+on utilise le théorème fondamental du calcul et l'inégalité triangulaire.
 
 
 ### Démonstration {.proof}
@@ -1158,58 +1168,38 @@ $$
 \leq M \|h\| \times 1 = M \|h\|.
 $$
 
-### TODO -- exo variation du log (plan coupé)
-
-### {.remark}
-Ces deux versions de l'inégalité des accroissement finis peuvent être 
-généralisées à d'autres normes que la norme euclidienne.
-
-### Inégalité des accroissements finis III {.theorem #TAFS-III .three}
-Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
-$h \in \left[0, +\infty\right[$.
-Soit $\|\cdot\|_m$ une norme sur $\R^m$. 
-Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|_m$,
-c'est-à-dire si
+### Variation du logarithme {.exercice .two .question #log}
+Il est possible de définir une version multivariable et vectorielle 
+de la fonction logarithme, définie sur le *plan coupé*
+$$U = \R^2 \setminus \{(x, 0) \; | \;  x \leq 0\}$$ et à valeurs dans $\R^2$. 
+Cette fonction est différentiable et vérifie en tout point
+$$\|d \log (x, y)\| = \frac{1}{\sqrt{x^2 + y^2}}.$$ 
+Montrer que pour tout $(x, y) \in U$, on a 
 $$
-\mbox{pour tout } t \in [a, b], \;\|f'(t)\|_m \leq M.
-$$
-Alors 
-$$
-\|f(a+h) - f(a)\|_m \leq M h.
+\|\log (x, y) - \log (x, -y)\| \leq 2 \pi.
 $$
 
+### TODO
+revoir nom des variables ($a$, $h$, $x$, etc.) en cohérence avec ce qui précède.
 
+### Normes non euclidiennes {.remark .four}
 
-### Inégalité des accroissements finis IV {.theorem #TAF-IV .three}
-Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
-Soit $\|\cdot\|_m$ une norme sur $\R^m$, $\|\cdot\|_n$ une norme sur
-$\R^n$ et $\|\cdot\|_{mn}$ la norme d'opérateur de $\R^n$ dans
-$\R^m$ associée. 
-Si $f$ est différentiable en tout point d'un segment $[a, a+h]$ inclus 
-dans $U$ et que la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
-c'est-à-dire telle que
+Les versions [monovariable](#TAFS) et [multivariable](#TAF) de l'inégalité des 
+accroissements finis peuvent être généralisées à d'autres normes que la 
+norme euclidienne. Dans le cas monovariable, si $\|\cdot\|_{\R^m}$ est
+une norme arbitraire sur $\R^m$ et que l'on dispose de la borne $\|f'(y)\|_{\R^m} \leq M$
+sur $[x, x+h]$,
+alors on peut conclure que $$\|f(x+h) - f(x)\|_{\R^m} \leq Mh.$$ 
+Dans le cas multivariable, si de plus $\|\cdot\|_{\R^n}$ est une norme arbitraire 
+sur $\R^n$ et que l'on définit pour tout $A \in \R^{m\times n}$ la norme d'opérateur
+associée
 $$
-\mbox{pour tout } x \in [a, a+h], \;\|f'(x)\|_{mn} \leq M.
+\|A\|_{\R^{m\times n}} := \sup_{x \neq 0} \frac{\|A \cdot x\|_{\R^m}}{\|x\|_{\R^n}},
 $$
-Alors 
-$$
-\|f(a+h) - f(a)\|_m \leq M \|h\|_n.
-$$
-
-### Démonstration {.proof}
-Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
-dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
-cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
-De plus, 
-$$
-\|\phi'(t)\|_m = \| df(a+th) \cdot h \|_n \leq \| df(a+th) \|_{mn}\|h\|_n \leq M \|h\|_n.
-$$
-Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS-III), 
-$$
-\|f(a+h) - f(a)\|_m = \|\phi(1) - \phi(0)\|_m
-\leq M \|h\|_n \times 1 = M \|h\|_n.
-$$
-
+alors on peut déduire de la borne $\|df(y)\|_{\R^{m\times n}} \leq M$ sur $[x, x+h]$ 
+que $$\|f(x+h) - f(x)\|_{\R^m} \leq M \|h\|_{\R^n}.$$
+Ce deux résultats peuvent être démontrés avec des modifications mineures 
+des arguments exploités dans le cas de la norme euclidienne.
 
 Annexe -- Algèbre linéaire
 ================================================================================
@@ -1532,7 +1522,7 @@ quand $x$ est un vecteur,
 $A \cdot B \cdot x$ désigne indifféremment $(A \cdot B) \cdot x$ ou
 $A \cdot (B \cdot x)$.
 
-Exercices
+Exercices complémentaires
 ================================================================================
 
 <!--
@@ -1837,7 +1827,7 @@ calcul plan tangent ?
 Solutions
 ================================================================================
 
-Exercices courts
+Exercices essentiels
 --------------------------------------------------------------------------------
 
 ### Dérivée sur un intervalle fermé {.answer #answer-dif}
@@ -2007,6 +1997,45 @@ $$
 Puisque $\|f'(\tau)\| \leq M$, on en déduit que $\|f(a+h) - f(a)\| \leq M h.$
 
 
+### Variation du logarithme {.answer #answer-log}
+En premier lieu, on peut noter qu'en général, 
+le segment d'extrémités $(x, y)$ et $(x, -y)$ 
+n'est pas inclus dans le plan coupé $U$.
+On ne peut donc pas appliquer directement [la version multivariable de 
+l'inégalité des accroissements finis](#VF).
+Nous allons donc adapter la technique utilisée dans la démonstration de ce 
+théorème en introduisant un chemin $\phi: [0, 1] \to \R^2$ qui joint $(x, y)$ et 
+$(x, -y)$ et dont l'image est incluse dans $U$.
+
+![Représentation du chemin $\phi$ quand $(x, y)=(-1, -1)$.](images/log.tex)
+
+On note $\theta$ l'unique détermination de l'angle polaire de $(x, y)$ comprise
+dans l'intervalle $\left]-\pi, \pi\right[$ et on pose
+$$
+\phi(t) := \left(r\cos ((1 - 2 t)\theta), r\sin ((1-2t)\theta) \right)
+\; \mbox{ où } \; r := \sqrt{x^2 + y^2}.
+$$
+On remarque que $\phi(t) \in U$ pour tout $t$, que $\phi(0) = (x, y)$
+et que $\phi(1) = (x, -y)$. La fonction $\phi$ est dérivable et 
+$$
+\phi'(t) = \left(2 \theta r\sin ((1 - 2 t)\theta), -2 \theta r\cos ((1-2t)\theta) \right) ;
+$$
+la fonction $\log \circ  \, \phi$ est donc définie et dérivable et 
+$$
+d (\log \circ \, \phi) (t) = d \log (\phi(t)) \cdot d \phi(t)=
+d \log(\phi(t)) \cdot \phi'(t).
+$$
+Par conséquent,
+$$
+\|d (\log \circ \, \phi) (t)\| \leq \|d \log (\phi(t))\| \|\phi'(t)\|
+\leq \frac{1}{r} \times 2 |\theta| r = 2 |\theta| \leq 2 \pi.
+$$
+L'application de 
+[l'inégalité des accroissement finis (monovariable)](#TAFS) à la fonction 
+$\log \circ \, \phi$ fournit donc l'inégalité
+$$
+\|\log (x, y) - \log (x, -y)\| \leq 2 \pi.
+$$
 
 <!--
 Vecteurs, vecteurs colonnes, vecteurs lignes
