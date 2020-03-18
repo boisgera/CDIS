@@ -331,6 +331,10 @@ Alternativement -- au prix d'une pirouette -- il est également possible de déf
 d'une fonction définie sur un intervalle fermé en se ramenant au cas ouvert,
 sans introduire la notion de dérivée à gauche et à droite :
 
+### TODO
+
+Elever ça au statut de résultat ? (on s'en sert ...)
+
 ### Dérivée sur un intervalle fermé {.exercise .question #dif .one}
 Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
 si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
@@ -425,6 +429,8 @@ $$
 \right].
 $$
 
+
+### TODO. Calcul élémentaires mat jac & gradient.
 
 ### TODO 
 
