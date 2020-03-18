@@ -1662,14 +1662,15 @@ Montrer que l'application
 $f: (\theta_1, \theta_2) \in \R^2 \mapsto (x, y) \in \R^2$ 
 est différentiable et déterminer sa matrice jacobienne.
 
-### Question 2  {.question #rm-2 .three}
+### Question 2  {.question #rm-2 .two}
 
 Soit $(\theta_{10}, \theta_{20}) \in \R^2$ et 
 $(x_0, y_0) = f(\theta_{10}, \theta_{20})$.
 Montrer que si 
 $$|\theta_1 - \theta_{10}| \leq \varepsilon \; \mbox{ et } \; 
 |\theta_2 - \theta_{20}| \leq \varepsilon$$ alors $(x, y) = f(\theta_1, \theta_2)$
-appartient au carré centré en $(x_0, y_0)$ d'arête de longueur $\ell_1/2 + \ell_2$.
+appartient au carré centré en $(x_0, y_0)$ d'arête de longueur 
+$(\ell_1/2 + \ell_2) \varepsilon$.
 
 
 Dérivée partielles, directionnelles et différentielle
@@ -2265,8 +2266,10 @@ $$
 $$
 
 
-Robot manipulateur {.answer #answer-rm}
+Robot manipulateur
 --------------------------------------------------------------------------------
+
+### Question 1  {.answer #answer-rm-1}
 
 Des équations
 $$
@@ -2281,17 +2284,17 @@ on déduit que les dérivées partielles de $x$ et de $y$ par rapport
 à $\theta_1$ et $\theta_2$ existent et vérifient
 $$
 \begin{array}{rcl}
-\partial_1 x(\theta_1, \theta_2)
+\partial x/ \partial \theta_1
 &=& -\ell_1 \sin \theta_1 - \ell_2 \sin (\theta_1 + \theta_2), \\
-\partial_2 x(\theta_1, \theta_2)
+\partial x / \partial \theta_2
 &=& - \ell_2 \sin (\theta_1 + \theta_2), \\
-\partial_1 y(\theta_1, \theta_2)
+\partial y / \partial \theta_1
 &=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2), \\
-\partial_2 y(\theta_1, \theta_2)
+\partial y / \partial \theta_2
 &=& \ell_2 \cos (\theta_1 + \theta_2).
 \end{array}
 $$
-Ces grandeurs étant continues, la fonction $f=(x, y)$ est continûment
+Ces grandeurs étant continues, la fonction $f$ est continûment
 différentiable et donc différentiable. Si l'on note $s_1 = \sin \theta_1$,
 $s_{12}= \sin(\theta_1+\theta_2)$, $c_1 = \cos \theta_1$ et
 $c_{12}= \cos(\theta_1+\theta_2)$, on obtient donc
@@ -2305,6 +2308,55 @@ J_f(\theta_1, \theta_2)
 \end{array}
 \right].
 $$
+
+### Question 1  {.answer #answer-rm-2}
+Soient $\delta \theta_1 := \theta_1 - \theta_{10}$
+et $\delta \theta_2 := \theta_2 - \theta_{20}$. La fonction
+$$
+\phi : t \in [0, 1]  
+\mapsto
+f(\theta_{10} + t\delta \theta_1, \theta_{12} + t\delta \theta_2)
+$$
+est continûment dérivable, de dérivée
+$$
+\phi'(t)=
+df(\theta_{10} +t \delta \theta_1, \theta_{20} +t \delta \theta_2) 
+\cdot (\delta \theta_1 , \delta \theta_2)
+$$
+Si l'on note $s_1(t) = \sin (\theta_{10} + t\delta \theta_1)$,
+$c_1(t) = \cos (\theta_{10} + t\delta \theta_1)$, ...,
+le [théorème fondamental du calcul](#TFC) et l'expression de la matrice
+jacobienne de $f$ nous fournissent donc
+\begin{multline*}
+f(\theta_1, \theta_2) - f(\theta_{10}, \theta_{20})
+=
+\int_0^1 \, \phi'(t) \, dt 
+= \\
+\int_0^1
+\left[
+\begin{array}{c}
+(-\ell_1 s_1(t) -\ell_2 s_{12}(t)) \delta \theta_1  -\ell_2 s_{12}(t) \delta \theta_2 \\
+(\ell_1 c_1(t) + \ell_2 c_{12}(t)) \delta \theta_1 + \ell_2 c_{12}(t) \delta \theta_2
+\end{array}
+\right] dt
+\end{multline*}
+et donc par inégalité triangulaire et majoration de l'intégrande,
+$$
+|x- x_0| = |f_1(\theta_1,\theta_2) - f_1(\theta_{10}, \theta_{20})| \leq (\ell_1 + \ell_2) |\delta \theta_1| + \ell_2 |\delta \theta_2|
+$$
+ainsi que 
+$$
+|y - y_0| = |f_2(\theta_1,\theta_2) - f_2(\theta_{10}, \theta_{20})|
+\leq (\ell_1 + \ell_2) |\delta \theta_1| + \ell_2 |\delta \theta_2|.
+$$
+Si $|\delta \theta_1| \leq  \varepsilon$ et $|\delta \theta_2| \leq  \varepsilon$,
+on en déduit
+$$
+|x - x_0| \leq (\ell_1 + 2\ell_2) \varepsilon \; \mbox{ et } \;
+|y - y_0| \leq (\ell_1 + 2\ell_2) \varepsilon.
+$$
+Le point $(x, y) = f(\theta_1, \theta_2)$ appartient donc au carré centré 
+en $(x_0, y_0)$ d'arête de longueur $(\ell_1/2 + \ell_2=\varepsilon$. 
 
 
 Dérivée partielles, directionnelles et différentielle
