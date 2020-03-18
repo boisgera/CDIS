@@ -238,7 +238,11 @@ TODO :
 \newpage
 -->
 
-### Conventions
+Introduction
+================================================================================
+
+Conventions
+--------------------------------------------------------------------------------
 
 Un vecteur $x = (x_1, \dots, x_n) \in \R^n$
 sera implicitement identifié, dans le contexte d'un calcul matriciel, 
@@ -267,7 +271,7 @@ $$
 
 Dans ce document, nous utiliserons le point "$\cdot$" pour 
 désigner le produit entre matrices. Les identifications que nous venons
-d'exposer nous incitent donc à noter $A \cdot x$ l'image du vecteur $x$ 
+d'exposer nous incitent donc également à noter $A \cdot x$ l'image du vecteur $x$ 
 par l'application linéaire $A$ et $A \cdot B$ la composition des 
 applications linéaires $B$ par $A$. 
 
@@ -275,6 +279,25 @@ Sauf mention contraire, $\|x\|$ désignera
 la norme euclidienne $\|x\|_2$ de $x$ dans $\R^n$ ;  
 $\|A\|$ désignera la norme d'opérateur $\|A\|_{22}$ de $A$, 
 induite par les normes euclidiennes sur $\R^m$ et sur $\R^n$.
+
+Objectifs d'apprentissage
+--------------------------------------------------------------------------------
+
+Variation des fonctions :
+
+  - théorème fondamental du calcul, forme monovariable
+  
+  - thé fond du calcul, forme multivariable. 
+  
+  - savoir la dériver et "adapter la preuve" le cas échéant.
+
+  - connaitre i acc fini mono et multi-variable (cas euclidien)
+
+  - savoir dériver l'inégalité des accroissements finis du théorème fondamental
+    du calcul sous une hypothèse supplémentaire de régularité renforcée.
+
+  - comprendre / savoir exploiter i acc fini avec autres normes que la norme
+    euclidienne.
 
 Matrice jacobienne et différentielle
 ================================================================================
@@ -1550,7 +1573,9 @@ $\to$ [Solution](#sol-vvcvl-2)
 
 ### TODO
 
-Pt spline / point de contôle. Avec dessin
+Pt spline / point de contôle. Avec dessin. 
+
+Question / "contrôle de la direction" d'un point / mouvement point de contrôle ?
 
 Différentiation en chaîne {#dec}
 --------------------------------------------------------------------------------
