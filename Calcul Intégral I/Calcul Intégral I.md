@@ -1023,6 +1023,9 @@ Virer critère de Cauchy en annexe.
 Qqpart on veut ajouter : continuité et dérivabilité intégrale indéterminée
 et positive et intégrale nulle donne fct nulle pp. Tout ça étant lié.
 Mais est-ce qu'on veut les énoncés dans le cadre $\R$ plutôt que $[a, b]$ ?
+Reconsidérer ce pb globalement : on a aussi envie de voir ces pptés dans
+$\R$ quand elles ont du sens ... (et plus tard dans $\R^n$). Est-ce qu'on
+va les lister deux ou trois fois, dans une forme avec variante ?
 
 Est-ce qu'on veut/préserver changement de variable ? Sans doute que oui ...
 
