@@ -85,8 +85,8 @@ une caractérisation de "sans chevauchement" comme d'intersection négligeable.
 
 ### TODO
 Représentation "concrête" des subdivisions pointées ; 
-évoquer "mise dans l'ordre des intervalles", intervalles réduit à un
-point (?), etc.
+évoquer "mise dans l'ordre des intervalles", intervalle réduit à un
+singleton, etc.
 
 ### Somme de Riemann {.definition}
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
@@ -94,6 +94,10 @@ et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
 S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I).
 $$
+
+### TODO
+Exo ou pour chaque subdiv, on en trouve une autre avec la même somme
+de Riemann pour toute fonction, mais $t_i$ vaut $x_i$ ou $x_{i+1}$.
 
 ### Intégrale de Riemann {.definition}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
