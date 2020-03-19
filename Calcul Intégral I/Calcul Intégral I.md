@@ -1514,6 +1514,60 @@ sont valables.
 il faut relire le document, qui prend un nouveau sens compte tenu 
 de ce que l'on sait désormais.
 
+
+### Intégration de $x \mapsto 1/x^2$ {.example .three}
+Considérons la fonction $f:\left[1, +\infty\right[ \to \R$ définie par
+$$
+f(x) = \frac{1}{x^2}.
+$$
+On étend immédiatement cette fonction sur $[1, +\infty]$ en posant
+$f(+\infty)=0$ (on note toujours $f$ la fonction qui en résulte).
+La fonction $f$ est continue et admet comme primitive $x \mapsto -1/x$
+sur chaque intervalle borné $[a, b]$ 
+de $\left[1, +\infty \right[$. Par [le théorème fondamental du calcul](#TFC),
+on a donc
+$$
+\int_a^b f(t) \, dt = \left[x \mapsto -\frac{1}{x}\right]_a^b 
+= \frac{1}{a} - \frac{1}{b}.
+$$
+"Passer à la limite" informellement (sans justification) dans cette expression
+peut nous laisser penser que $f$ est intégrable sur 
+$\left[1, +\infty \right]$ et vérifie
+$$
+\int_1^{+\infty} f(t) \, dt \stackrel{?}{=} 1.
+$$
+La suite confirmera cette intuition : nous allons établir que pour tout
+$\varepsilon > 0$, la jauge $\gamma$ sur $[1, +\infty]$ définie par
+$$
+\gamma(t) = \left|
+\begin{array}{rl}
+\left]t(1 - \varepsilon/4), t(1 + \varepsilon / 4) \right[ & \mbox{si $t < +\infty$,} \\
+\left]2 / \varepsilon, +\infty \right] & \mbox{si $t=+\infty$}
+\end{array}
+\right.
+$$
+est telle que pour toute subdivision pointée $\mathcal{D}$ de $[1, + \infty]$ 
+subordonnée à $\gamma$, on a $|S(f,\mathcal{D}) - 1| \leq \varepsilon$.
+
+Soit $\mathcal{D}$ une telle subdivision pointée ; 
+supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
+que les $x_i$ sont agencés de façon (strictement) croissante ; on a en particulier
+$x_{m+1} = +\infty$ et $x_k < +\infty$ quand $k \leq m$. Notons
+$\mathcal{D}_f = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ ;
+on a alors
+$$
+\begin{split}
+\left| S(f, \mathcal{D}) - 1 \right| 
+&\leq
+\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
+\end{split}
+$$
+
+-----
+
+
 ### Intégration de $x \mapsto 1/x^2$ {.example}
 Considérons la fonction $f:\left[1, +\infty\right[$ définie par
 $$
@@ -1521,7 +1575,6 @@ f(x) = \frac{1}{x^2}.
 $$
 On étend immédiatement cette fonction sur $[0, +\infty]$ en posant
 $f(+\infty)=0$ (on note toujours $f$ la fonction qui en résulte).
-
 La fonction $f$ admettant comme primitive $x \mapsto -1/x$
 sur chaque intervalle borné $[a, b]$ 
 de $\left[1, +\infty \right[$, par [le théorème fondamental du calcul](#TFC),
@@ -1536,6 +1589,22 @@ $$
 \int_1^{+\infty} f(t) \, dt \stackrel{?}{=} 1.
 $$
 La suite confirmera cette intuition.
+
+
+Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
+que les $x_i$ sont agencés de façon (strictement) croissante ; on a en particulier
+$x_{m+1} = +\infty$ et $x_k < +\infty$ quand $k \leq m$. Notons
+$\mathcal{D}_f = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ ;
+on a alors
+$$
+\begin{split}
+\left| S(f, \mathcal{D}) - 1 \right| 
+&\leq
+\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
+\end{split}
+$$
 
 Nous souhaitons trouver pour tout $\varepsilon > 0$, une jauge $\gamma$ sur 
 $\left[1, +\infty \right]$

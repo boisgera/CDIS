@@ -35,7 +35,7 @@ def transform(doc):
     add_link_to_answers(doc)
     add_page_to_link(doc)
 
-    demote_proofs_questions_answers_and_exercises_and_exemples(doc)  # -> level 4
+    demote_proofs_questions_answers_and_exercises_and_examples(doc)  # -> level 4
     #___make_level_4_section_headings_inline(doc)
 
     # make_level_4_section_headings_inline(doc) # was:
@@ -344,7 +344,7 @@ def make_level_4_section_headings_inline(doc):
         inlines.insert(1, span)
 
 
-def demote_proofs_questions_answers_and_exercises_and_exemples(doc):
+def demote_proofs_questions_answers_and_exercises_and_examples(doc):
     for elt in pandoc.iter(doc):
         if isinstance(elt, Header):
             header = elt
@@ -355,7 +355,7 @@ def demote_proofs_questions_answers_and_exercises_and_exemples(doc):
                 or "question" in classes
                 or "answer" in classes
                 or "exercise" in classes
-                or "exemple" in classes
+                or "example" in classes
             ):
                 if level == 3:
                     level = 4
@@ -529,7 +529,7 @@ def handle_typed_sections(doc):
         "proposition": "Proposition",
         "remark": "Remarque",
         "exercise": "Exercice",
-        "exemple": "Exemple",
+        "example": "Exemple",
         "question": None,
         "answer": None,
     }
