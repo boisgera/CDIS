@@ -1565,11 +1565,16 @@ $$
 &\leq
 \left| S(f, \mathcal{D}) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
 &\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
-&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}}. \\
 \end{split}
 $$
+On remarque que si $t < +\infty$, alors $+\infty \not \in \gamma(t)$.
+Comme $x_{m+1} = +\infty$, nécessairement $t_m = +\infty$. 
+Par conséquent, 
+$[x_m, x_{m+1}]  \subset \gamma(t_m) = \left]2 / \varepsilon, +\infty \right]$
+et donc $1/x_m \leq \varepsilon / 2$.
 
-**TODO**
+**TODO**: finir
 
 -----
 
