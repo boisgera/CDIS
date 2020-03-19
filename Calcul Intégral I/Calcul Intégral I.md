@@ -10,11 +10,21 @@
 Somme et intégrale de Riemann
 ================================================================================
 
+### TODO
+Reconsidérer nécessité définition générale (intervalle de $\R$ ou 
+de $[-\infty, +\infty]$ suffisent) ; voir plus loin ce qu'on utilise
+sur la droite réelle achevée. Mais on n'a vraisemblablement pas envie
+d'en parler trop tôt. Bon ; virer la définition abstraite, se limiter à
+$\R$.
+
 ### Intervalle {.definition}
 On appelle *intervalle* d'un ensemble ordonné $E$ tout sous-ensemble $I$ de $E$ 
 tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$
 et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$),
 alors $z$ appartient également à $I$.
+
+### TODO
+Dessins intervalles, avec crochets aux bords.
 
 ### Intervalles de $\R$ {.remark .post}
 Les intervalles de $\R$ peuvent être bornés ou non-bornés,
@@ -65,6 +75,19 @@ $$
 où les $I_i$ forment une subdivision de $I$ et 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
 
+### TODO
+Redéfinition "sans chevauchement" d'un manière plus compatible avec ce qui 
+sera fait dans le cas multidimensionnel ? Et moins liée aux intervalles ?
+En tout cas (brève) exploration de ce que ça veut dire au niveau topologique 
+(?). Grmph en fait pas *totalement* pertinent ; la "vrai" définition devrait
+être liée à la théorie de la mesure : plus tard, ajouter (en exo) 
+une caractérisation de "sans chevauchement" comme d'intersection négligeable.
+
+### TODO
+Représentation "concrête" des subdivisions pointées ; 
+évoquer "mise dans l'ordre des intervalles", intervalles réduit à un
+point (?), etc.
+
 ### Somme de Riemann {.definition}
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
@@ -81,15 +104,17 @@ vérifiant pour $(t, J) \in \mathcal{D}$,
 $\ell(J) < \delta$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique ; 
-il est appelé *intégrale de $f$ sur $[a, b]$* et noté
+il est appelé *intégrale (de Riemann) de $f$ sur $[a, b]$* et noté
 $$
 \int_a^b f(t) \, dt
 \, \mbox{ ou } \,
 \int_{[a, b]} f(t) \, dt
 $$
 
-### Quadrature {.example}
+### TODO
+Intégrabilité/intégrale fonction constante, affine.
 
+### Quadrature {.example}
 Cette définition de l'intégrale permet de garantir l'exactitude asymptotique de 
 méthodes de quadrature 
 -- c'est-à-dire d'algorithmes de calcul numérique d'intégrales -- 
@@ -136,14 +161,23 @@ comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
 à la définition de l'intégrale ; d'autres méthodes de quadratures pourront
 être utilisées avec le même résultat asymptotique.
 
-### {.remark .ante}
+### TODO
+Exo méthode des trapèzes : dessin.
 
+
+### {.remark .ante}
 L'intégrale de Riemann possède des limitations qui en font un outil mathématique
 difficile à exploiter. 
 En particulier la classe des fonctions qui peuvent être intégrées est trop 
 restrictive pour certaines applications car les fonctions "trop grandes" ou 
 "trop irrégulières" ne sont pas intégrables. 
 Les deux théorèmes qui suivent précisent cette situation.
+
+
+### TODO
+Bof, intégrer cette partie de la démo dans la preuve (partielle) plus bas
+et faire l'économie de ce "résultat" intermédiaire, pour un exposé plus
+simple et compact.
 
 ### Seules les fonctions bornées sont intégrables {.lemma}
 Si $f:[a, b] \to \R$ est intégrable au sens de Riemann, alors $f$ est bornée. 
@@ -212,6 +246,9 @@ Une propriété dépendant d'un réel $x$ est vraie *presque partout*
 si l'ensemble des points $x$ où elle est fausse est un ensemble
 négligeable.
 
+### TODO
+Reformuler ci-dessous comme remark ante (fini, etc.) + proposition + preuve.
+
 ### Les ensembles dénombrables sont négligeables {.example #edn}
 Par exemple, les ensembles finis sont négligeables, $\Q$ est
 négligeable, etc. En effet, si $A = \{x_n \, | \, n \in \N\}$,
@@ -236,13 +273,21 @@ x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
 \varepsilon.
 $$
 
-### Critère de Lebesgue pour l'intégrabilité au sens de Riemann
+### Critère d'intégrabilité de Lebesgue {.theorem}
 La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
 si et seulement si $f$ est bornée et continue presque partout.
 
-### {.post #Rcpp}
-En particulier, si $f$ est continue par morceaux, elle est intégrable
-au sens de Riemann.
+En particulier,
+
+### Les fonctions continues par morceaux sont intégrables {.corollary}
+Si la fonction $f:[a, b] \to \R$ est continue par morceaux, 
+elle est intégrable au sens de Riemann.
+
+### TODO
+Démonstration.
+
+### TODO
+Adapter preuve.
 
 ### Démonstration {.proof}
 [Le lemme ci-dessus][Seules les fonctions bornées sont intégrables] montre
@@ -281,6 +326,12 @@ une subdivision pointée est ou non subordonnée à la jauge considérée.
 
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
 $t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
+
+
+### TODO
+Déplacer en annexe le lemme de Cousin, et mettre une remarque avancée 
+après la définition de "intégrable au sens de HK" évoquant la nécessité 
+d'un tel résultat et son caractère pas trivial.
 
 ### Lemme de Cousin {.theorem #cousin}
 Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
@@ -341,6 +392,19 @@ $$
 \int_{[a, b]} f(t) \, dt
 $$
 
+### TODO
+Retarder la seconde notation intégrale ?
+
+### TODO
+définition "intégrale de Lebesgue" ou simplement "intégrable". Expliquer que
+c'est notre intégrale de référence. Expliquer que HK ne garantit pas
+que $|f|$ soit intégrable (renvoyer au chap 2) et que ça ne permet par
+exemple pas d'avoir d'inégalité triangulaire (?).
+Expliquer que HK est parfois utile
+(exemple : calcul diff), mais qu'il s'agit d'un objet plus avancé,
+hors-programme, qu'on ne l'utilise ici que comme un moyen d'arriver
+à l'intégrale de Lebesgue.
+
 ![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
 $t \in \lb 0, 1 \rb$ et de la subdivision pointée
 $\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
@@ -376,6 +440,9 @@ $$
 \int_{a}^b f(t) \, dt := - \int_b^a f(t) \, dt.
 $$
 
+### TODO
+Adapter à Lebesgue uniquement le résultat ci-dessous
+
 ### Intégrale de Riemann et de Henstock-Kurzweil {.theorem #RHK}
 Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Riemann
 est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
@@ -396,6 +463,10 @@ par conséquent, $\ell(J) < \delta$ et donc
 $|S(f,\mathcal{D}) - A| \leq \varepsilon$. 
 La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et 
 l'intégrale associée est égale à son intégrale de Riemann.
+
+### TODO
+Virer référence Newton, reformuler. Enoncer TFC sous forme Lebesgue, renvoyer à annexe
+pour résultat général HK (juste évoqué ici) et sa preuve.
 
 ### {.ante}
 Un résultat similaire vaut aussi pour l'intégrale de Newton :
@@ -497,6 +568,9 @@ $$
 et donc
 $|S(f', \mathcal{D}) - (f(b) - f(a))| \leq \varepsilon$, ce qui prouve le
 résultat recherché.
+
+### TODO
+Simplifier, prendre ça comme un exemple ou la jauge uniforme marche.
 
 ### Intégration de $x \mapsto e^x$ {.example}
 La fonction $f: x \mapsto e^x$ est intégrable au sens de Newton sur 
@@ -653,6 +727,11 @@ $$
 
 ![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
 à la somme de Riemann pour évaluer l'intégrale de la fonction $x \in [0, 1] \mapsto e^x$.](images/gauge-plot-exp.py)
+
+### TODO
+Simplifier, FOURNIR la jauge qui marche et uniquement VERIFIER que ça marche
+(éventuellement, sa dérivation pourrait être en annexe). Expliquer qu'ici
+la tactique de jauge uniforme n'a aucune chance de marcher avant.
 
 ### Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
 Considérons la fonction $f:[0,1] \to \R$ définie par
@@ -934,8 +1013,20 @@ $$
 
 -->
 
-Propriétés élementaires de l'intégrale
+Propriétés élémentaires de l'intégrale
 ================================================================================
+
+### TODO
+Reconsidérer le jeu de pptés et adapter au seul cas de Lebesgue. 
+Virer critère de Cauchy en annexe. 
+
+Qqpart on veut ajouter : continuité et dérivabilité intégrale indéterminée
+et positive et intégrale nulle donne fct nulle pp. Tout ça étant lié.
+Mais est-ce qu'on veut les énoncés dans le cadre $\R$ plutôt que $[a, b]$ ?
+
+Est-ce qu'on veut/préserver changement de variable ? Sans doute que oui ...
+
+Reconsidérer le terme "additivité" pour l'intégrale (ambigu) ?
 
 ### Linéarité {.theorem}
 Si $f: [a, b] \to \mathbb{R}$ et $g: [a, b] \to \mathbb{R}$ sont intégrables
@@ -1346,6 +1437,18 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 Intégration sur des intervalles non-bornés
 ================================================================================
 
+### TODO
+Minorer la visibilité de l'intégration sur des ensemble de la droite réelle
+étendue : présenter ça comme une technique (interne), pas un résultat "client".
+
+Virer Hake en annexe (le reformuler ?)
+
+Simplifier l'exemple de $x\mapsto 1/x^2$ pour se limiter à une vérif.
+
+Insister sur le fait que le cas non-borné ENGLOBE le cas borné et influence
+l'esprite et donc les notations $\int_A$ ou $\int$ tout court, par défaut
+c'est sur $\R$.
+
 ### 
 La théorie de l'intégration de Henstock-Kurzweil présentée dans les
 sections précédentes peut être modifiée de façon assez mineure pour 
@@ -1662,6 +1765,9 @@ se démontrent de manière analogue.
 
 Subdivisions partielles
 ================================================================================
+
+### TODO
+Virer en annexe
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* $\mathcal{D}$ de l'intervalle fermé 
