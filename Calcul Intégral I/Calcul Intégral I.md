@@ -1527,7 +1527,7 @@ $$
 On étend immédiatement cette fonction sur $[1, +\infty]$ en posant
 $f(+\infty)=0$ (on note toujours $f$ la fonction qui en résulte).
 La fonction $f$ est continue et admet comme primitive $x \mapsto -1/x$
-sur chaque intervalle borné $[a, b]$ 
+sur toute intervalle borné $[a, b]$ 
 de $\left[1, +\infty \right[$. Par [le théorème fondamental du calcul](#TFC),
 on a donc
 $$
@@ -1540,7 +1540,7 @@ $\left[1, +\infty \right]$ et vérifie
 $$
 \int_1^{+\infty} f(t) \, dt \stackrel{?}{=} 1.
 $$
-La suite confirmera cette intuition : nous allons établir que pour tout
+La suite confirmera cette intuition : nous allons en effet établir que pour tout
 $\varepsilon > 0$, la jauge $\gamma$ sur $[1, +\infty]$ définie par
 $$
 \gamma(t) = \left|
@@ -1554,9 +1554,9 @@ est telle que pour toute subdivision pointée $\mathcal{D}$ de $[1, + \infty]$
 subordonnée à $\gamma$, on a $|S(f,\mathcal{D}) - 1| \leq \varepsilon$.
 
 Soit $\mathcal{D}$ une telle subdivision pointée ; 
-supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
+supposons que $$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$$ et 
 que les $x_i$ sont agencés de façon (strictement) croissante ; on a en particulier
-$x_{m+1} = +\infty$ et $x_k < +\infty$ quand $k \leq m$. Notons
+$x_k < +\infty$ quand $k \leq m$ et $x_{m+1} = +\infty$. Notons
 $\mathcal{D}_f = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ ;
 on a alors
 $$
@@ -1569,171 +1569,41 @@ $$
 \end{split}
 $$
 On remarque que si $t < +\infty$, alors $+\infty \not \in \gamma(t)$.
-Comme $x_{m+1} = +\infty$, nécessairement $t_m = +\infty$. 
+Comme $x_{m+1} = +\infty$ et que $[x_m, x_{m+1}] \subset \gamma(t_m)$, 
+nécessairement $t_m = +\infty$. 
 Par conséquent, 
-$[x_m, x_{m+1}]  \subset \gamma(t_m) = \left]2 / \varepsilon, +\infty \right]$
-et donc $1/x_m \leq \varepsilon / 2$.
+$[x_m, x_{m+1}]  \subset \gamma(+\infty) = \left]2 / \varepsilon, +\infty \right]$
+et donc $$\frac{1}{x_m} \leq \frac{\varepsilon}{2}.$$
 
-**TODO**: finir
-
------
-
-
-### Intégration de $x \mapsto 1/x^2$ {.example}
-Considérons la fonction $f:\left[1, +\infty\right[$ définie par
+D'autre part, on a
 $$
-f(x) = \frac{1}{x^2}.
-$$
-On étend immédiatement cette fonction sur $[0, +\infty]$ en posant
-$f(+\infty)=0$ (on note toujours $f$ la fonction qui en résulte).
-La fonction $f$ admettant comme primitive $x \mapsto -1/x$
-sur chaque intervalle borné $[a, b]$ 
-de $\left[1, +\infty \right[$, par [le théorème fondamental du calcul](#TFC),
-$$
-\int_a^b f(t) \, dt = \left[x \mapsto -\frac{1}{x}\right]_a^b 
-= \frac{1}{a} - \frac{1}{b}.
-$$
-"Passer à la limite" informellement (sans justification) dans cette expression
-peut nous laisser penser que $f$ est intégrable sur 
-$\left[1, +\infty \right]$ et vérifie
-$$
-\int_1^{+\infty} f(t) \, dt \stackrel{?}{=} 1.
-$$
-La suite confirmera cette intuition.
-
-
-Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
-que les $x_i$ sont agencés de façon (strictement) croissante ; on a en particulier
-$x_{m+1} = +\infty$ et $x_k < +\infty$ quand $k \leq m$. Notons
-$\mathcal{D}_f = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ ;
-on a alors
-$$
-\begin{split}
-\left| S(f, \mathcal{D}) - 1 \right| 
-&\leq
-\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
-&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
-&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
-\end{split}
-$$
-
-Nous souhaitons trouver pour tout $\varepsilon > 0$, une jauge $\gamma$ sur 
-$\left[1, +\infty \right]$
-tels que pour toute subdivision pointée $\mathcal{D}$ de $[1, +\infty]$ 
-subordonnée à $\gamma$ on ait
-$\left| S(f, \mathcal{D}) - 1 \right| \leq \varepsilon.$
-Supposons que $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$ et 
-que les $x_i$ sont agencés de façon (strictement) croissante ; on a en particulier
-$x_{m+1} = +\infty$ et $x_k < +\infty$ quand $k \leq m$. Notons
-$\mathcal{D}_f = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ ;
-on a alors
-$$
-\begin{split}
-\left| S(f, \mathcal{D}) - 1 \right| 
-&\leq
-\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
-&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
-&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
-\end{split}
-$$
-Si l'on sélectionne une jauge $\gamma$ telle que
-pour tout $t \in \left[1, +\infty\right[$ on ait $\gamma(t) \subset \R$
-(et donc $+\infty \not \in \gamma(t)$)
-et si la subdivision pointée $\mathcal{D}$ est subordonnée à $\gamma$,
-la valeur $t_m$ associée à $(t_m, [x_m, +\infty]) \in \mathcal{D}$
-vérifie nécessairement $t_m=+\infty$ et donc $[x_m,+\infty] \subset \gamma(+\infty)$.
-Il suffit donc d'imposer par exemple $\gamma(+\infty) = \left]2/\varepsilon, +\infty\right]$
-pour garantir que $1/x_{m} \leq \varepsilon/2.$
-Si nous disposons ensuite d'un majorant pour chaque terme
-$$
-\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|,
-$$
-choisi de telle sorte que leur somme soit également inférieure à $\varepsilon/2$, 
-nous pourrons alors conclure. 
-Toutefois, la stratégie consistant à recherche un majorant proportionnel à 
-la longueur de l'intervalle $[x, y]$ n'est plus applicable car l'intervalle
-$[0, x_{m}]$ peut être arbitrairement long. 
-Au lieu de cela, nous allons tâcher de trouver une jauge $\gamma$ telle que
-$$
-\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \leq
-\frac{\varepsilon}{2xy} (y-x) = \frac{\varepsilon}{2} \left(\frac{1}{x} - \frac{1}{y} \right)
-$$
-Les termes de droite de cette inégalité forment alors une série télescopique
-dont la somme vérifie
-$$
-\sum_{(t, [x, y]) \in \mathcal{D}_f} \frac{\varepsilon}{2} \left(\frac{1}{x} - \frac{1}{y} \right)
- = \frac{\varepsilon}{2} \left(1- \frac{1}{x_m} \right)
- \leq \frac{\varepsilon}{2}.
-$$
-On note qu'il suffit d'établir d'une part que
-$$
-\left|f(t)(y-t) - \left(\frac{1}{t} - \frac{1}{y}\right) \right| \leq
-\frac{\varepsilon}{2} \left(\frac{1}{t} - \frac{1}{y} \right)
-$$
-et d'autre part que
-$$
-\left|f(t)(t-x) - \left(\frac{1}{x} - \frac{1}{t}\right) \right| \leq
-\frac{\varepsilon}{2} \left(\frac{1}{x} - \frac{1}{t} \right)
-$$
-pour obtenir l'inégalité cherchée. Or,
-$$
-\begin{split}
-f(t)(y-t) - \left(\frac{1}{t} - \frac{1}{y}\right)
-&= \frac{y-t}{t^2} - \left(\frac{1}{t} - \frac{1}{y}\right) \\
-&= \frac{y}{t}\frac{y-t}{ty} - \left(\frac{1}{t} - \frac{1}{y}\right) \\
-&= \frac{y}{t} \left(\frac{1}{t} - \frac{1}{y}\right) - \left(\frac{1}{t} - \frac{1}{y}\right) \\
-&= \left(\frac{y-t}{t}\right)\left(\frac{1}{t} - \frac{1}{y}\right). \\
-\end{split}
-$$
-On obtient donc la première inégalité souhaitée si 
-$$
-\frac{y-t}{t} \leq \frac{\varepsilon}{2}
-\; \mbox{ soit } \;
-y \leq t + \frac{\varepsilon}{2} t.
-$$
-De manière similaire, on montre que la seconde inégalité est satisfaite si
-$$
-\frac{t-x}{t} \leq \frac{\varepsilon}{2}
-\; \mbox{ soit } \;
-x \geq t - \frac{\varepsilon}{2} t.
-$$
-Au final, nous avons établi que si $\mathcal{D}$ est subordonnée à la jauge
-$\gamma$ définie par
-$$
-\gamma(t) 
+\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
+=
+\left|\frac{y-x}{t^2}- \left(\frac{1}{x} - \frac{1}{y}\right) \right|
 = 
-\left|
-\begin{array}{rl}
-\left]t - \varepsilon/2, t + \varepsilon/2 \right[ & \mbox{ si } t \in \left[1, +\infty\right[, \\
-\left]2/\varepsilon, +\infty\right] & \mbox{ si } t = +\infty,
-\end{array}
-\right.
+|y-x|
+\left|\frac{1}{t^2} - \frac{1}{xy} \right|.
 $$
-alors $|S(\mathcal{D}, f) - 1| \leq \varepsilon$ ; 
-la fonction $x \mapsto 1/x^2$ est donc intégrable sur $\left[1, +\infty\right]$, 
-d'intégrale égale à 1.
-
-
-<!--
-Pour fournir la majoration cherchée, nous formons
+Comme $y - x = (y -t) + (t - x)$, on a $|y -x| \leq (\varepsilon/2) t$ et donc
 $$
-\frac{f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right)}{\frac{(y - x)}{xy}}
-= \frac{xy}{t^2} - 1.
+\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
+\leq \frac{\varepsilon}{2} \left|\frac{1}{t} - \frac{t}{xy}\right|.
 $$
-Si l'on recherche une jauge $\gamma$ telle que 
-$\gamma(t) = \left]t-\delta(t),t+\delta(t)\right[$, 
-pour $t < +\infty$, on a alors
-$t - \delta(t) \leq x \leq t$ et $t \leq y \leq t =\delta(t)$, et donc
+La fonction $t \in [x, y] \mapsto 1/t - t / xy$ est dérivable, de dérivée
+$-1/t^2 - 1/xy \leq 0$. En $t=x$ et $t=y$,
+elle vaut respectivement $1/x - 1/y$ et $1/y - 1/x$. Dans tous les cas, 
+on a donc
 $$
-\frac{t(t-\delta(t))}{t^2} - 1 \leq \frac{xy}{t^2} - 1 \leq \frac{t(t+\delta(t))}{t^2} - 1,
+\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
+\leq \frac{\varepsilon}{2} \left(\frac{1}{x}  - \frac{1}{y} \right)
 $$
-soit
-$$
-\left|  \frac{xy}{t^2} - 1  \right| \leq \frac{\delta(t)}{t}.
-$$
-Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
-majoration voulue.
--->
+et par conséquent
+\begin{multline*}
+\sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \\
+\leq \frac{\varepsilon}{2}\left(\frac{1}{x_{0}}  - \frac{1}{x_1} + \frac{1}{x_1}  - \frac{1}{x_2} + \dots + \frac{1}{x_{m-1}}  - \frac{1}{x_m} \right)
+= \frac{\varepsilon}{2} \left(1 - \frac{1}{x_m} \right) \leq \frac{\varepsilon}{2}.
+\end{multline*}
+On en déduit l'inégalité recherchée $|S(f, \mathcal{D}) -1| \leq \varepsilon/2$.
 
 --------------------------------------------------------------------------------
 
