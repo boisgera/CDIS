@@ -1244,7 +1244,7 @@ $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
 
 
-### Théorème fondamental du calcul {.theorem #TFC}
+### Théorème fondamental du calcul (forme générale) {.theorem #TFC}
 Soit $[a, b]$ un intervalle compact de $\R$ ;
 si la fonction $f:[a, b] \to \R$ est dérivable, 
 sa dérivée $f'$ est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
