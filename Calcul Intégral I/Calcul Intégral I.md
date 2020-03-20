@@ -576,166 +576,64 @@ résultat recherché.
 ### TODO
 Simplifier, prendre ça comme un exemple ou la jauge uniforme marche.
 
-### Intégration de $x \mapsto e^x$ {.example}
-La fonction $f: x \mapsto e^x$ est intégrable au sens de Newton sur 
-tout intervalle $[a, b]$ puisqu'elle admet $F: x \mapsto e^x$ comme primitive.
-Par le théorème fondamental du calcul, 
-$f$ est intégrable au sens de Henstock-Kurzweil et l'intégrale associée 
-coïncide avec l'intégrale de Newton. On a donc
+### Intégration de $x \mapsto e^x$ {.example .two}
+La fonction $f: x \in [0, 1] \mapsto e^x \in \R$ est continue et est sa propre primitive.
+Par le théorème fondamental du calcul, on sait qu'elle est intégrable et que
 $$
-\int_a^b e^x \,dx 
+\int_0^1 e^x \,dx 
 = 
-\left[ e^x \right]_a^b
-= e^b - e^a. 
+\left[ x \mapsto e^x \right]_0^1
+= e^1 - e^0 = e - 1. 
 $$
-
-L'intégrabilité au sens de Henstock-Kurzweil signifie que
-pour toute précision $\varepsilon > 0$, 
-il existe une jauge $\gamma$ sur $[a, b]$
-telle que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$,
-l'écart entre $S(f, \mathcal{D})$ et la valeur de l'intégrale
-soit au plus $\varepsilon$.
-
-Construisons une telle jauge en nous inspirant de la preuve du théorème
-fondamental du calcul. Dans cette preuve, nous avons montré que si 
-$\varepsilon > 0$, et nous pouvions trouver une jauge $\gamma$ telle que 
-pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$ et 
-tout $(t, [x, y]) \in \mathcal{D}$ nous avions
+Nous allons établir ce résultat directement, sans avoir recours au théorème
+fondamental du calcul. Précisément, nous allons établir que pour tout
+$\varepsilon > 0$, si $\gamma$ est la jauge sur $[0, 1]$ définie
+par
 $$
-|f(t) (y-x) - (F(y) - F(x))| \leq \frac{\varepsilon}{b - a} (y - x),
+\gamma(t) = \left]t - \frac{\varepsilon}{2 e}, t + \frac{\varepsilon}{2 e}\right[
 $$
-alors nous avions 
-$\left|S(f, \mathcal{D}) - (F(b) - F(a))\right| \leq \varepsilon.$
-Nous avons également montré comment sélectionner une jauge $\gamma$ pour
-satisfaire cette inégalité en utilisant le fait que $F' = f$.
-Nous allons reprendre cette approche ici, mais quantitativement, 
-et en exploitant la propriété que la fonction $f$ est continûment
-dérivable (et non plus simplement dérivable) et que donc sa dérivée est
-bornée sur tout compact. 
-Comme
-$$
-f(t) (y - x) = \int_x^y f(t) \, ds
-\; \mbox{ et } \;
-F(y) - F(x) = \int_x^y f(s) \, ds,
-$$
-le membre de gauche de l'inégalité vérifie
-$$
-|f(t) (y-x) - (F(y) - F(x))|
-=
-\left| \int_x^y (f(t) - f(s)) \, ds\right|
-\leq 
-\int_x^y |f(t) - f(s)| \, ds
-$$
-et par conséquent, comme par [l'inégalité des des accroissements finis](Calcul Différentiel I.pdf#TAF)
-$$
-|f(t) - f(s)| 
-\leq \max_{z \in [x, y]} |f'(z)|  \times |t - s|
-\leq \max_{z \in [x, y]} |f'(z)|  \times |t - x|
-,
-$$
-on obtient
-$$
-\int_x^y |f(t) - f(s)| \, ds \leq \max_{z \in [x, y]} |f'(z)| \times \frac{(y-x)^2}{2}.
-$$
-Il suffit donc de garantir
-$$
-\max_{z \in [x, y]} |f'(z)| \times \frac{y - x}{2} \leq \frac{\varepsilon}{b-a}
-$$
-pour obtenir l'inégalité recherchée.
-
-Si l'on décide de rechercher une jauge $\gamma$ garantissant cette inégalité 
-sous la forme $\gamma(t) = \left]t -\delta(t), t+\delta(t)\right[$, comme
-$t \in [x, y] \subset \gamma(t)$, nous somme assurés que l'inégalité 
-est vraie quand
-$$
-\max \{ |f'(z)|, \,   z \in [t-\delta(t), t+\delta(t)]  \} \times \delta(t) 
-\leq \frac{\varepsilon}{b-a}.
-$$
-
-<!--
-
-Dans cette preuve, nous avons montré que la précision
-$\varepsilon$ était atteinte
-si nous choisissions 
-$\gamma(t) = \left]t-\delta(t), t+\delta(t)\right[$
-où $\delta(t) > 0$ est tel que si $0 \leq |h| \leq \delta(t)$, alors
-$$
-|F(t+h) - F(t) - f(t)h| \leq \frac{\varepsilon}{b-a} |h|.
-$$
-
-Explicitons cette contrainte dans le cas de la fonction 
-$F: x \mapsto e^x$. 
-Cette fonction étant deux fois continûment différentiable
-(la fonction $f$ étant continûment différentiable), 
-quand $h$ est non nul,
-la formule de Taylor avec reste intégral nous fournit
-$$
-\begin{split}
-\frac{|F(t+h) - F(t) - f(t)h|}{|h|}
-&= 
-\frac{1}{|h|}\left| \int_t^{t+h}  f'(x) (t + h - x) \, dx \right| \\
+et que la subdivision pointée $\mathcal{D}$ de $[0, 1]$ est subordonnée à
+$\gamma$, alors $|S(f, \mathcal{D}) - (e-1)| \leq \varepsilon$. 
+Soit $\mathcal{D}$ une telle subdivision pointée, 
+que l'on suposera de la forme $$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$$
+où la suite des $x_i$ est croissante. Comme $x_0 = 0$ et $x_m=1$, on a
+\begin{align*}
+e - 1= e^{x_m} - e^{x_0} &= 
+(e^{x_1} - e^{x_0}) + (e^{x_2} - e^{x_1}) + \dots + (e^{x_m} - e^{x_{m-1}}) \\
+&= \sum_{i=0}^{m-1} (e^{x_{i+1}} - e^{x_i}) 
+\end{align*}
+et donc
+\begin{align*}
+|S(f, \mathcal{D}) - (e - 1)|
+&=\left|\sum_{i=0}^{m-1} e^{t_i} (x_{i+1}-x_i) - \sum_{i=0}^{m-1} (e^{x_{i+1}} - e^{x_i})\right| \\
 &\leq 
-\max \left\{ |f'(x)| \, | \, x \in [t-|h|, t+|h|]\right\} \times \frac{|h|}{2}.
-\end{split}
+\sum_{i=0}^{m-1} \left| e^{t_i} (x_{i+1}-x_i) - e^{x_{i+1}} + e^{x_i} \right|.
+\end{align*}
+Posons $x=x_i$, $y=x_{i+1}$ et $t=t_i$. On remarque que
 $$
-Le second membre de cette inégalité étant une fonction croissante de $|h|$, 
-il nous suffit donc pour assurer l'inégalité souhaitée de choisir 
-$\delta(t) > 0$ tel que
+e^{t} (y-x) - e^y + e^x = (e^t y - e^y) - (e^t x - e^x).
 $$
-\max \left\{ |f'(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\} \times \frac{\delta(t)}{2}
-\leq \frac{\varepsilon}{b-a}.
+La fonction $s \in [x, y] \mapsto e^t s - e^s$ étant dérivable de dérivée
+$e^t - e^s$, par l'inégalité des accroissements finis, on obtient
 $$
-
-Dans ce cas précis, puisque $f'(x) = e^x$, lorsque $h \geq 0$ nous avons
+|e^{t} (y-x) - e^y + e^x| \leq \sup_{s \in [x, y]} |e^t - e^s| \times (y - x).
 $$
-\max \left\{ |f'(x)| \, | \, x \in [t-\delta(t), t+\delta(t)]\right\}
-= e^{t + \delta(t)}.
+Puis, en appliquant à nouveau l'inégalité des accroissements finis à la fonction
+$\tau \in [x, y] \mapsto e^\tau$, de dérivée $e^{\tau}$, et en utilisant
+l'inclusion $[x, y] \subset \gamma(t)$, on obtient
 $$
--->
-Ici, comme $f'(z) = e^z$,
-l'inégalité à satisfaire prend simplement la forme
+|e^t - e^s| \leq \sup_{\tau \in [x, y]} e^{\tau} \times |t - s| \leq e  \times (y - x)
+\leq e \times \frac{\varepsilon}{e} = \varepsilon.
 $$
-e^{t+\delta(t)} \times \delta(t) \leq \frac{\varepsilon}{b-a},
-\; \mbox{ soit } \;
-\delta(t) e^{\delta(t)}  \leq e^{-t} \frac{\varepsilon}{b-a}.
-$$
-Or la fonction 
-$\delta \in \left]0, +\infty\right[ \to \delta e^\delta \in \left]0, +\infty\right[$ est 
-croissante et bijective ; notons $W$ son inverse[^W]. 
-Le plus grand $\delta(t)$ satisfaisant 
-l'inégalité précédente est donc donné par
-$$
-\delta(t) = W \left(e^{-t}\frac{\varepsilon}{b-a}\right).
-$$
-En conclusion : pour tout $[0, 1]$ et tout $\varepsilon > 0$, 
-la jauge $\gamma$ définie sur $[a, b]$ par
-$$
-\gamma(t) = 
-\left]
-t - W \left( e^{-t}\frac{\varepsilon}{b-a}\right),
-t + W \left( e^{-t}\frac{\varepsilon}{b-a}\right)
-\right[
-$$
-est telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
-subordonnée à $\gamma$ on ait
-$$
-\left|
-S(x \in [a, b] \mapsto e^x, \mathcal{D}) 
-- 
-\int_a^b e^x \, dx 
-\right| 
-\leq \varepsilon.
-$$
-
-[^W]: La notation $W$ est classique pour désigner [la fonction de Lambert](https://fr.wikipedia.org/wiki/Fonction_W_de_Lambert).
-
-![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
-à la somme de Riemann pour évaluer l'intégrale de la fonction $x \in [0, 1] \mapsto e^x$.](images/gauge-plot-exp.py)
-
-### TODO
-Simplifier, FOURNIR la jauge qui marche et uniquement VERIFIER que ça marche
-(éventuellement, sa dérivation pourrait être en annexe). Expliquer qu'ici
-la tactique de jauge uniforme n'a aucune chance de marcher avant.
+Par conséquent, $|e^{t} (y-x) - e^y + e^x| \leq \varepsilon (y - x)$, ce dont
+on déduit l'inégalité souhaitée :
+\begin{align*}
+|S(f, \mathcal{D}) - (e - 1)|
+&\leq 
+\sum_{i=0}^{m-1} \left| e^{t_i} (x_{i+1}-x_i) - e^{x_{i+1}} + e^{x_i} \right| \\
+&\leq 
+\sum_{i=0}^{m-1} \varepsilon (x_{i+1} - x_i) \\ &\leq \varepsilon.
+\end{align*}
 
 ### Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
 Considérons la fonction $f:[0,1] \to \R$ définie par
