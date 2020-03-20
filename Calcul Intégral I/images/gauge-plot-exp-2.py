@@ -7,7 +7,7 @@ import sys
 # Third-Party Packages
 from numpy import *; seterr(all="ignore")
 import numpy.linalg as la
-import scipy.misc
+import scipy.special
 import matplotlib as mpl; mpl.use("Agg")
 from matplotlib.pyplot import *
 
@@ -54,14 +54,19 @@ def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
     gcf().subplots_adjust(bottom=bottom, top=1.0-top, left=left, right=1.0-right)
 
 # ------------------------------------------------------------------------------
+
 def gauge_plot():
     figure()
     gca().set_aspect("equal")
-    set_ratio(1.0, scale=0.75, top=-0.1, bottom=-0.05)
+    set_ratio(1.0, scale=0.75, bottom=0.05, top=-0.05)#, bottom=-0.05, top=-0.20)
     x = linspace(0.0, 1.0, 1000)
+    ticks = r_[-0.6:1.4:0.2]
+    xticks(ticks); yticks(ticks)
     plot(x, x, "-", color="#808080", lw=1.0)
-    fill_betweenx(x, x-0.2, x+0.2, color="#d3d3d3")
-    xticks([0,0.2,0.4, 0.6, 0.8, 1.0])
+    eps = 0.5
+    #W = lambda x: real(scipy.special.lambertw(x))
+    #fill_betweenx(x, x - W(eps * exp(-x)), x + W(eps * exp(-x)), color="#d3d3d3")
+    fill_betweenx(x, x - 1/4/e, x + 1/4/e, color="#d3d3d3")
     xlabel("$t$")
     grid(True)
     save()

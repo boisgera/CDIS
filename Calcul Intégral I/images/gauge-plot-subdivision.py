@@ -57,7 +57,7 @@ def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
 def gauge_plot():
     figure()
     gca().set_aspect("equal")
-    set_ratio(1.0, top=-0.1, bottom=-0.05)
+    set_ratio(1.0, scale=0.75, top=-0.1, bottom=-0.05)
     x = linspace(0.0, 1.0, 1000)
     plot(x, x, "-", color="#808080", lw=1.0)
     fill_betweenx(x, x-0.2, x+0.2, color="#d3d3d3")

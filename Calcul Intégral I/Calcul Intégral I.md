@@ -299,7 +299,7 @@ que le caractère borné est nécessaire pour l'intégrabilité au sens de
 Riemann. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
 
 
-Intégrale de Riemann généralisée
+Intégrales de Riemann généralisées
 ================================================================================
 
 ### Jauge {.definition}
@@ -333,42 +333,9 @@ $t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
 
 
 ### TODO
-Déplacer en annexe le lemme de Cousin, et mettre une remarque avancée 
+Mettre une remarque avancée 
 après la définition de "intégrable au sens de HK" évoquant la nécessité 
-d'un tel résultat et son caractère pas trivial.
-
-### Lemme de Cousin {.theorem #cousin}
-Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
-il existe une subdivision pointée $\mathcal{D}$ 
-qui soit subordonnée à $\gamma$.
-
-### Démonstration {.proof}
-S'il existe un $t \in I^0 = I = [a, b]$ tel que $I \subset \gamma(t)$, 
-la subdivision pointée $\mathcal{D} = \{(t, I)\}$ convient.
-Sinon, on peut considérer les intervalles $I_0^1 = [a, (a+b)/2]$ et
-$I_1^1 = [(a+b)/2, b]$ et examiner pour chacun de ces intervalles
-s'il existe un $t_i \in I_i^1$ tel que $I_i^1 \subset \gamma(t_i)$,
-dans ce cas ajouter la paire $(t_i, I_i^1)$ à la famille $\mathcal{D}$
-et dans le cas contraire décomposer à nouveau l'intervalle posant 
-problème. 
-Il s'avère que ce procédé converge en un nombre fini d'étapes ; 
-il génère donc une subdivision pointée $\mathcal{D}$ de $I$.
-
-En effet, dans le cas contraire il existerait une infinité 
-d'intervalles fermés $J_i$ emboités ($J_{i+1} \subset J_i$) 
-tels que $J_0 = I$, $\ell(J_{i+1}) = \ell(J_i)/2$ et 
-pour tout $t \in J_i$, $J_i \not \subset \gamma(t)$.
-Soit $t_i$ un point de $J_i$ ; la suite des ces points appartient 
-à $J_0$ qui est compact et admet donc une suite extraite qui converge.
-Comme la suite des $t_k$ appartient à $J_i$ pour tout $k \geq i$,
-cette limite $t$ adhère à tous les $J_i$, et donc appartient à tous
-les $J_i$ puisqu'ils sont fermés.
-La longueur de $J_i$ étant divisée par deux à chaque incrément de $i$,
-$\ell(J_i) = \ell(J_0) / 2^i$ ; 
-comme $t \in J_i$, 
-$J_i \subset [t - \ell(J_0) / 2^i, t + \ell(J_0) / 2^i]$.
-Par conséquent, il existe un rang $i$ à partir duquel
-$J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
+de l'existence (lemme de Cousin) et son caractère pas trivial + ref.
 
 ### {.ante}
 La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégrale
@@ -468,113 +435,29 @@ $|S(f,\mathcal{D}) - A| \leq \varepsilon$.
 La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et 
 l'intégrale associée est égale à son intégrale de Riemann.
 
-### TODO
-Virer référence Newton, reformuler. Enoncer TFC sous forme Lebesgue, renvoyer à annexe
-pour résultat général HK (juste évoqué ici) et sa preuve.
 
-### {.ante}
-Un résultat similaire vaut aussi pour l'intégrale de Newton :
-
-### Intégrale de Newton et de Henstock-Kurzweil {.corollary}
-Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Newton
-est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
-
-### {.post .ante}
-L'énoncé précédent peut être reformulé de la façon suivante : 
-l'intégrale de Henstock-Kurzweil satisfait 
-[le théorème fondamental du calcul](#TFC) en toute généralité.
-
-### Théorème fondamental du calcul {.theorem #TFC}
+### Théorème fondamental du calcul {.theorem #TFCL}
 Soit $[a, b]$ un intervalle compact de $\R$ ;
-si la fonction $f:[a, b] \to \R$ est dérivable, 
-sa dérivée $f'$ est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
+si la fonction $f:[a, b] \to \R$ est dérivable et que sa dérivée est
+intégrable alors 
 $$
 [f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
 $$
 
+<!--
+### Forme générale du théorème fondamental du calcul {.post .remark .four}
+Nous démontrons en annexe que l'intégrale de Henstock-Kurzweil satisfait 
+[le théorème fondamental du calcul](#TFC) en toute généralité, c'est-à-dire
+que si la fonction $f:[a, b] \to \R$ est dérivable alors sa dérivée est
+automatiquement intégrable et vérifie l'égalité ci-dessus, 
+mais **au sens de Henstock-Kurzweil**, et pas nécessairement au sens de Lebesgue. 
+-->
 
-
-### Démonstration du [théorème fondamental du calcul][Théorème fondamental du calcul] {.proof}
-Nous souhaitons établir que $f':[a, b] \to \R$ est intégrable, 
-d'intégrale égale à $f(b) - f(a)$.
-Pour cela, nous devons montrer que pour tout $\varepsilon > 0$ il existe 
-une fonction de jauge $\gamma$ sur $[a, b]$ telle que, 
-si une subdivision pointée 
-$$
-\mathcal{D} = \{(t_0, [x_0, x_1], \dots, (t_{m-1}, [x_{m-1}, x_m]))\}
-$$ 
-vérifie pour tout $i \in \{0, \dots, m-1\},$ 
-$[x_i,x_{i+1}] \subset \gamma(t_i),$ alors 
-$$
-|S(f', \mathcal{D}) - (f(b) - f(a))| \leq \varepsilon.
-$$
-Notons que si $\mathcal{D} = \{(t_0, [x_0, x_1], \dots, (t_{m-1}, [x_{m-1}, x_m]))\}$,
-le membre de gauche de cette inégalité vérifie
-$$
-\begin{split}
-|S(f', \mathcal{D}) - (f(b) - f(a))| 
-  &= \left|\sum_{i=0}^{m-1} f'(t_i)(x_{i+1} - x_i) - (f(b) - f(a))\right| \\
-  &= \left|\sum_{i=0}^{m-1} f'(t_i)(x_{i+1} - x_i) - \sum_{i=0}^{m-1} (f(x_{i+1}) - f(x_i)) \right| \\
-  &= \left|\sum_{i=0}^{m-1} (f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i))) \right| \\
-  &\leq \sum_{i=0}^{m-1} \left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
-\end{split}
-$$
-Si l'on parvient à garantir que pour chacun des termes
-de cette somme,
-$$
-\left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| 
-\leq 
-\frac{\varepsilon}{b-a} (x_{i+1} - x_i),
-$$
-ce qui revient à assigner à chaque terme une erreur maximale
-proportionnelle à la longueur de l'intervalle $[x_i, x_{i+1}]$,
-alors
-$$
-\begin{split}
-|S(f', \mathcal{D}) - (f(b) - f(a))| 
-%&\leq \sum_{i=0}^{m-1} \left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
-&\leq \sum_{i=0}^{m-1} \frac{\varepsilon}{b-a} (x_{i+1} - x_i) \\
-&= \frac{\varepsilon}{b-a} \sum_{i=0}^{m-1} (x_{i+1} - x_i) \\
-&= \frac{\varepsilon}{b-a} (b - a) \\
-&= \varepsilon. \\
-\end{split}
-$$
-Fixons donc un $\varepsilon > 0$ arbitraire ;
-comme pour tout $t \in [a, b],$ 
-$$f(t+h) = f(t) + f'(t) h + o(|h|),$$
-il existe un $\delta(t) > 0$ tel que si $|h| < \delta (t),$
-$$
-|f'(t) h - (f(t+h) - f(t))| \leq \frac{\varepsilon}{b-a} |h|
-$$
-Par conséquent, pour tout sous-intervalle fermé $[c, d]$ de $[a, b]$ tel que
-$t \in [c, d]$ et $[c, d] \subset \left]t-\delta(t), t+\delta(t)\right[,$ 
-nous avons
-$$
-|f'(t) (d-t) - (f(d) - f(t))| \leq \frac{\varepsilon}{b-a} |d - t| = \frac{\varepsilon}{b-a} (d-t)
-$$
-ainsi que
-$$
-|f'(t) (c-t) - (f(c) - f(t))| \leq \frac{\varepsilon}{b-a} |c - t| = \frac{\varepsilon}{b-a} (t - c).
-$$
-L'inégalité triangulaire fournit alors
-$$
-|f'(t)(d - c) - (f(d) - f(c))| \leq \frac{\varepsilon}{b-a} (d - c).
-$$
-Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[$ ;
-nous avons ainsi bien défini une fonction de jauge sur $[a, b]$.
-Si $\mathcal{D}$ est subordonnée à $\gamma$, 
-pour tout $i \in \{0, \dots, m-1\},$ 
-$$t_i \in [x_i,x_{i+1}] \subset \left]t_i - \delta(t_i), t_i + \delta(t_i)\right[,$$
-par conséquent 
-$$
-|f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i))| \leq \frac{\varepsilon}{b-a} (x_{i+1} - x_i).
-$$
-et donc
-$|S(f', \mathcal{D}) - (f(b) - f(a))| \leq \varepsilon$, ce qui prouve le
-résultat recherché.
-
-### TODO
-Simplifier, prendre ça comme un exemple ou la jauge uniforme marche.
+### Démonstration {.proof}
+Si $f'$ existe et est intégrable (au sens de Lebesgue), alors elle est par 
+définition intégrable au sens de Henstock-Kurzweil et d'après la forme générale 
+[du théorème fondamental du calcul](#TFC) en annexe, l'égalité souhaitée est
+satisfaite.
 
 ### Intégration de $x \mapsto e^x$ {.example .two}
 La fonction $f: x \in [0, 1] \mapsto e^x \in \R$ est continue et est sa propre primitive.
@@ -594,6 +477,10 @@ $$
 $$
 et que la subdivision pointée $\mathcal{D}$ de $[0, 1]$ est subordonnée à
 $\gamma$, alors $|S(f, \mathcal{D}) - (e-1)| \leq \varepsilon$. 
+
+![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
+à la somme de Riemann comme approximation de l’intégrale de $x \in [0,1] \mapsto e^x$.](images/gauge-plot-exp-2.py)
+
 Soit $\mathcal{D}$ une telle subdivision pointée, 
 que l'on suposera de la forme $$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$$
 où la suite des $x_i$ est croissante. Comme $x_0 = 0$ et $x_m=1$, on a
@@ -635,249 +522,50 @@ on déduit l'inégalité souhaitée :
 \sum_{i=0}^{m-1} \varepsilon (x_{i+1} - x_i) \\ &\leq \varepsilon.
 \end{align*}
 
-### Intégration de $x \mapsto 1/\sqrt{x}$ {.example}
+### Intégration de $x \mapsto 1/\sqrt{x}$ {.example .four #iis}
 Considérons la fonction $f:[0,1] \to \R$ définie par
 $$
 f(x) = 
 \left|
 \begin{array}{rl}
 1/\sqrt{x} & \mbox{si } \, x > 0, \\
-?          & \mbox{si } \, x = 0.
+0          & \mbox{si } \, x = 0.
 \end{array}
 \right.
 $$
-
-On ne précise pas pour le moment la valeur de $f$ en $0$ : 
-elle est supposée arbitraire (mais finie). 
-On verra que l'intégrale de $f$ sur $[0, 1]$ 
-existe dans tous les cas et ne dépend pas de la valeur de $f$ en $0$
-(même si la sélection d'une jauge assurant une précision $\varepsilon$
-en dépend).
-
-<!--
-
-Variante/extension: autre valeur que $0$ en $0$, montrer que cela n'a aucun
-impact.
-
-Une stratégie intéressant consisterait à expliciter/construire une jauge
-"qui fasse le job" pour $1/\sqrt{x}$ en évitant l'origine en s'inspirant 
-de la preuve du FTC (qui "lisse" l'erreur uniformément), PUIS à bootstraper
-ça pour la singularité. C'est sans doute une bonne idée, il y a beaucoup
-de techniques concentrées sur un seul exercice sinon. Et le coup de 
-la méthode de sélection du pas associée au FTC montre une stratégie
-qui constraste avec celle de Riemann classique, c'est intéressant à contraster.
-
--->
-
-#### Préambule
-
 La difficulté de cet exemple est liée à la "singularité" de $f$ en $x=0$,
 où la fonction est à la fois discontinue et localement non-bornée. 
 Si au lieu de l'intervalle $[0,1]$, on considère l'intervalle
 $[a, 1]$ où $0 < a \leq 1$, comme la fonction $f$ restreinte à $[a, 1]$
-est continue, elle y admet une primitive, par exemple la fonction 
-$F: x \in [a, 1] \mapsto 2 \sqrt{x}$.
-Elle y est intégrable au sens de Newton 
--- et donc au sens de Henstock-Kurzweil -- 
-et
+est continue donc intégrable et la fonction 
+$F: x \in [a, 1] \mapsto 2 \sqrt{x}$ en est une primitive.
+Elle y est intégrable par [le théorème fondamental du calcul](#TFCL) et
 $$
 \int_a^1 f(x) \, dx = \int_a^1 (2\sqrt{x})' \, dx
 =
 \left[ 2 \sqrt{x} \right]_a^1 = 2 \sqrt{1} - 2\sqrt{a}.
 $$
-Si $f$ est bien HK-intégrable sur $[0,1]$, ce que nous allons nous efforcer de
-démontrer, l'expression ci-dessus suggère que son intégrale pourrait être
+Si $f$ est bien intégrable sur $[0,1]$,
+l'expression ci-dessus suggère que son intégrale pourrait être
   $$
   \int_0^1 f(x) \, dx \stackrel{?}{=} 2\sqrt{1} - 2\sqrt{0} = 2.
   $$
-On va confirmer cette intuition dans la suite.
-
-#### Intégrale sur $[a, 1]$, $a>0$
-Une primitive de $F$ de $f$ sur $[a, 1]$ est $x \mapsto 2 \sqrt{x}$.
-Nous allons rechercher une jauge $\gamma$ sur $[a, 1]$ telle que
-$$
-|f(t) (y-x) - (F(y) - F(x))| = 
-\left| \frac{y-x}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{x}\right|
-\leq \frac{\varepsilon}{2} (y-x).
-$$
-quand $t \in [x, y] \subset \gamma(t)$, ce qui garantira que
-$$
-|S(f_{|[a, 1]}, \mathcal{D}_a) - (F(1) - F(a))| \leq \frac{\varepsilon}{2} (1 - a) \leq \frac{\varepsilon}{2}
-$$
-pour tout subdivision pointée $\mathcal{D}_a$ de $[a, 1]$ subordonnée à $\gamma$.
-
-On remarque qu'il suffit de prouver d'une part que 
-$$
-\left| \frac{y-t}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{t}\right|
-\leq \frac{\varepsilon}{2} (y-t)
-$$
-et d'autre part que
-$$
-\left| \frac{t-x}{\sqrt{t}} - 2\sqrt{t} + 2 \sqrt{x} \right|
-\leq \frac{\varepsilon}{2} (t-x)
-$$
-pour obtenir l'inégalité voulue. 
-Intéressons-nous au membre de gauche de la première de ces inégalités ; on a
-$$
-\begin{split}
-\frac{y-t}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{t}
-&=
-\frac{y - t -2 \sqrt{t}\sqrt{y} + 2 t}{\sqrt{t}} \\
-&=
-\frac{\sqrt{y}^2 + \sqrt{t}^2 -2 \sqrt{t}\sqrt{y}}{\sqrt{t}} \\
-&= \frac{(\sqrt{y} - \sqrt{t})^2}{\sqrt{t}}.
-\end{split}
-$$
-Pour garantir que ce terme soit plus petit que 
-$$
-\frac{\varepsilon}{2} (y - t)
-= \frac{\varepsilon}{2} (\sqrt{y} - \sqrt{t})(\sqrt{y} + \sqrt{t}),
-$$
-il suffit donc de s'assurer que
-$$
-\frac{(\sqrt{y} - \sqrt{t})}{\sqrt{t}} \leq \frac{\varepsilon}{2} (\sqrt{y} + \sqrt{t}),
-$$
-soit 
-$$
-\sqrt{y} \leq \sqrt{t} + \frac{\varepsilon}{2} (\sqrt{ty} + t).
-$$
-C'est le cas si 
-$$
-\sqrt{y} \leq \sqrt{t} + \frac{\varepsilon}{2} t
-\; \mbox{ soit } \;
-y \leq \left(\sqrt{t} +  \frac{\varepsilon}{2} t \right)^2.
-$$
-Par une méthode en tout point identique, on montre que la seconde inégalité
--- impliquant $x$ et $t$ -- est satisfaite si
-$$
-\sqrt{t} \leq \sqrt{x} + \frac{\varepsilon}{2} x,
-$$
-soit puisque $x \leq t$, si
-$$
-\sqrt{x} \geq \sqrt{t} - \frac{\varepsilon}{2} x \geq \sqrt{t} - \frac{\varepsilon}{2} t, 
-$$
-ce qui est le cas si
-$$
-x \geq \left(\sqrt{t} -  \frac{\varepsilon}{2} t \right)^2.
-$$
-La jauge $\gamma$ définie par
-$$
-\gamma(t) 
-= 
-\left]
-\left(\sqrt{t} -  \frac{\varepsilon}{2} t \right)^2, \left(\sqrt{t} +  \frac{\varepsilon}{2} t \right)^2  \right[
-$$
-satisfait donc nos critères.
-
-
-<!-- DEPRECATED
-La stratégie est similaire à celle de l'exemple de la fonction 
-$x \mapsto e^x$: on recherche une jauge $\gamma$ sous la forme
-$\gamma(t) = \left]t -\delta(t), t+\delta(t)\right[$, avec $\delta(t) > 0$
-tel que[^wtc]
-$$
-\max \{ |f'(z)|, \,   z \in [t-\delta(t), t+\delta(t)]  \} \times \delta(t) 
-\leq \frac{\varepsilon}{2},
-$$
-ce qui permettra d'assurer que si $t \in [x, z] \subset \gamma(t)$,
-$$
-|f(t) (y-x) - (F(y) - F(x))| \leq \frac{\varepsilon}{2} (y-x).
-$$
-
-[^wtc]: La division de $\varepsilon$ par deux dans l'inégalité correspond
-à allouer 50% du "budget d'erreur" à notre disposition pour le calcul de
-l'intégrale sur $[a, 1]$ par les sommes de Riemann. Les 50% restant
-nous servirons ultérieurement à gérer l'erreur faite en $t=0$.
-
-Toutefois une précaution supplémentaire doit être prise ici: 
-pour avoir l'existence de $f'$ et la majoration associée, 
-nous devons éviter la singularité en $0$: 
-on s'assurera donc que $\delta(t) < t$, ce qui garantit que
-$[t - \delta(t), t + \delta(t)] \subset \left]0, +\infty \right[$.
-
-On a alors $f'(z) = -(1/2) z^{-3/2}$, qui est une fonction décroissante
-de $z$; on cherche donc $\delta(t) > 0$ garantissant
-$$
-\frac{1}{2} (t- \delta(t))^{-3/2} \times  \delta(t) \leq \frac{\varepsilon}{2}.
-$$
-Cette inégalité prend la forme équivalente
-$$
-\varepsilon^2 (t - \delta(t))^3 - \delta(t)^2 \geq 0
-$$
-Le membre de gauche est polynomial en $\delta(t)$; 
-le polynôme $P_{t,\varepsilon}(\delta) = \varepsilon^2 (t - \delta)^3 - \delta^2$
-étant strictement positif pour $\delta = 0$ et strictement négatif
-pour $\delta = t$, on peut prendre pour $\delta(t)$ la plus grande
-racine réelle de $P_{t,\varepsilon}$ sur $[0, t]$. 
-
--->
-
-On remarquera que cette jauge $\gamma$ que nous avons construit
--- et qui est en fait définie sur $\left]0, 1\right]$ --
-ne dépend pas de la valeur de $a$ dans $\left]0, 1\right]$.
-De plus, quand $\varepsilon$ est suffisamment petit -- 
-par exemple $\varepsilon/2 < 1$ -- on constate
-que pour tout $t \in \left]0, 1\right]$,
-comme $\sqrt{t} -  ({\varepsilon}/{2}) t > 0$, on a
-$0 \not \in \gamma(t)$.
-
-### Intégrale sur $[0,1]$
-
-Considérons désormais une jauge sur $[0, 1]$ qui étende la jauge définie
-sur $\left]0,1\right]$ à la section précédente.
-
-Comme $\gamma(t) \subset \left]0, +\infty \right[$ si $t>0$,
-si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), i \in \{0,\dots, m-1\}\}$ est 
-une subdivision pointée de $[0, 1]$ subordonnée à $\gamma$, 
-si $t_i>0$, $0 \not \in [x_i, x_{i+1}]$. 
-Comme les ensembles $[x_i, x_{i+1}]$ doivent recouvrir $[0, 1]$, 
-il est nécessaire que le point $t_0$ associé à l'intervalle $[x_0, x_1]$
-soit $0$. Le reste de la subdivision est alors subordonnée à
-$\gamma$ sur $[x_1,1]$ avec $x_1 > 0$
-$$
-S(f,\mathcal{D})
-=
-f(0) (x_1 - x_0) + \sum_{i = 1}^{m-1} f(t_i) (x_{i+1} - x_i)
-$$
-et d'après la section précédente,
-$$
-\left| 
-\sum_{i = 1}^{m-1} f(t_i) (x_{i+1} - x_i)
-- (2\sqrt{1} - 2\sqrt{x_1}))
-\right|
-\leq \frac{\varepsilon}{2}.
-$$
-Si l'on choisit $\gamma(0) = \left]-\delta, \delta\right[$ tel que si $[x_0, x_1] \subset \gamma(0)$,
-$$
-\left|f(0)(x_1 - 0) - (2\sqrt{x_1} - 2\sqrt{x_0})\right| 
-\leq 
-\frac{\varepsilon}{2},
-$$
-ce qui est le cas si $|f(0) x_1| + 2\sqrt{x_1} \leq {\varepsilon}/{2},$
-alors on a garanti que $|S(f,\mathcal{D}) - 2| \leq \varepsilon$, ce 
-qui est le résultat cherché.
-Comme sur $[0, 1]$, $x_1 \leq \sqrt{x_1}$, il suffit de s'assurer que
-$|f(0)| x_1 + 2 x_1 \leq {\varepsilon}/{2}$, ce qui
-est le cas si
-$$
-\delta = \frac{\varepsilon}{2(|f(0)| + 2)}.
-$$
-Au final, la jauge $\gamma$ sur $[0,1]$ définie par
+Cette intuition est fondée : nous prouvons [en annexe](#iis-proof) que 
+si $\varepsilon > 0$, on a $|S(f, \mathcal{D}) - 1| \leq \varepsilon$ 
+quand $\mathcal{D}$ est subordonnée à la jauge $\gamma$ définie par
 $$
 \gamma(t) =
 \left|
 \begin{array}{cl}
-\displaystyle \left]- \frac{\varepsilon}{2(|f(0)| + 2)}, \frac{\varepsilon}{2(|f(0)| + 2)} \right[ & \mbox{si } t=0 \\
+\displaystyle \left]-1, \frac{\varepsilon^2}{16} \right[ & \mbox{si } t=0, \\
 \displaystyle \left]
-\left(\sqrt{t} -  \frac{\varepsilon}{2} t \right)^2, \left(\sqrt{t} +  \frac{\varepsilon}{2} t \right)^2  \right[
-& \mbox{si } t \in \left]0,1\right]
+\frac{t}{\left(1+\varepsilon/\sqrt{t}\right)^2}, t \left(1+ \varepsilon \sqrt{t} \right)^2  \right[
+& \mbox{si } t \in \left]0,1\right].
 \end{array}
 \right.
 $$
-garantit un écart $|S(f, \mathcal{D}) - 2|$ inférieur à $\varepsilon$
-pour toute subdivision pointée $\mathcal{D}$ de $[0,1]$ subordonnée à $\gamma$.
 
-![Graphe de la jauge $\gamma$ pour $f(0)=0$ et $\varepsilon=0.5$](images/gauge-plot-sqrt.py)
+![Graphe de la jauge $\gamma$ avec $\varepsilon=0.5$](images/gauge-plot-sqrt.py)
 
 
 
@@ -920,7 +608,6 @@ Propriétés élémentaires de l'intégrale
 
 ### TODO
 Reconsidérer le jeu de pptés et adapter au seul cas de Lebesgue. 
-Virer critère de Cauchy en annexe. 
 
 Qqpart on veut ajouter : continuité et dérivabilité intégrale indéterminée
 et positive et intégrale nulle donne fct nulle pp. Tout ça étant lié.
@@ -1146,58 +833,6 @@ La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
 l'hypothèse de non-chevauchement de $b$. Par conséquent l'inégalité
 ci-dessus est satisfaite dans le cas général.
 
-### {.ante}
-Dans le cas où l'on souhaite établir l'intégrabilité sans savoir quelle
-est la valeur de l'intégrale, le test suivant d'intégrabilité est utile :
-
-### Critère d'intégrabilité de Cauchy {#CIC .theorem}
-Une fonction $f: [a, b] \to \R$ est intégrable si et seulement si 
-pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur $[a, b]$ telle que 
-pour tout couple de subdivisions pointées $\mathcal{D}$ et $\mathcal{D}'$
-subordonnées à $\gamma$, on ait
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
-$$
-
-### Démonstration {.proof}
-Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$, 
-il existe une jauge $\gamma$ sur $[a, b]$ telle que pour tout couple de 
-subdivisions pointées $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma$,
-on ait
-$$
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}
-\; \mbox{ et } \;
-\left|S(f, \mathcal{D}') - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}.
-$$
-Par l'inégalité triangulaire, on a alors 
-$|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.$
-
-Réciproquement, si la fonction $f$ vérifie le critère du théorème,
-pour tout $k \in \N$ il existe une jauge $\gamma_{k}$ sur $[a, b]$ 
-telle que pour tout couple de subdivisions pointées 
-$\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma_k$, on ait
-$$
-|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq 2^{-k}.
-$$
-Il est de plus possible de choisir les jauges $\gamma_k$ telles qu'à tout 
-ordre $k$ et pour tout $t \in [a, b]$, 
-on ait $\gamma_{k+1}(t) \subset \gamma_k(t)$ (si $\gamma_{k+1}$ ne satisfait
-pas ce critère, il suffit de lui substituer la jauge définie par en $t$ par
-$\gamma_{k+1}(t) \cap \gamma_k(t)$). 
-Soit $\mathcal{D}_k$ une suite de subdivisions pointées sur $[a, b]$
-subordonnées à $\gamma_k$. Si $m \geq k$ et $n \geq k$, 
-$\mathcal{D}_m$ et $\mathcal{D}_n$ sont subordonnées à $\gamma_k$, donc
-$$
-|S(f, \mathcal{D}_m) - S(f, \mathcal{D}_n)| \leq 2^{-k}.
-$$
-La suite des $S(f, \mathcal{D}_k)$ est donc de Cauchy ; la droite des réels
-étant complète, cette suite à une limite $A$. En passant à la limite sur
-$n$ dans l'inégalité $|S(f, \mathcal{D}) - S(f, \mathcal{D}_n)| \leq 2^{-k}$,
-valable quand $\mathcal{D}$ est subordonnée à $\gamma_k$, on obtient
-$$
-|S(f, \mathcal{D}) - A| \leq 2^{-k}.
-$$
-La fonction $f$ est donc intégrable et d'intégrale $A$.
 
 ### {.ante}
 [La propriété d'additivité](#additivité) de l'intégrale -- 
@@ -1341,6 +976,10 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 
 Intégration sur des intervalles non-bornés
 ================================================================================
+
+### TODO
+Considérer intégration sur $I$ non-borné, PUIS sur $\R$ et comment tout
+se déduit de ce cas via les fonctions caractéristiques.
 
 ### TODO
 Minorer la visibilité de l'intégration sur des ensemble de la droite réelle
@@ -1511,58 +1150,10 @@ indifféremment dans le cas des intervalles bornés ou non de la droite réelle.
 Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour donner
 un sens à l'intégrale d'une fonction définie sur un intervalle non-borné 
 de calculer tout d'abord son intégrale sur un intervalle borné puis
-d'essayer de passer à la limite[^CR]. Toutefois, si on souhaite se livrer
-cette démarche avec l'intégrale de Henstock-Kurzweil, le résultat serait
-identique à la démarche directe que nous avons adoptée ; avec l'intégrale
-de Henstock-Kurzweil, [le théorème de Hake](#hake) montre
-qu'il n'existe pas d'intégrale *impropre*, 
-qui ne serait pas définissable directement mais uniquement par
-un passage à la limite.
+d'essayer de passer à la limite[^CR]. 
 
 [^CR]: sans garantie que ce nouvel objet -- l'intégrale de Cauchy-Riemann --
 partage les propriétés utiles de l'intégrale de Riemann.
-
-
-### Théorème de Hake {.theorem #hake}
-Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
-et $f: [a, b] \to \R$. La fonction $f$ est intégrable sur $[a, b]$ si
-et seulement si elle est intégrable sur tout intervalle $[c, d]$
-tel que $a < c$ et $d < b$ et que l'intégrale
-$$
-\int_c^d f(t) \, dt
-$$
-a une limite quand $c$ tend vers $a$ et $d$ tend vers $b$.
-On a alors
-$$
-\int_a^b f(t) \, dt = \lim_{(c, d) \to (a,b)} \int_{c}^d f(t) \, dt.
-$$
-
-### Démonstration {.proof}
-Se reporter à [@Swa01].
-
-### {.post}
-Le théorème de Hake permet d'étendre facilement certains résultats valables 
-sur des segments de la droite réelle. A titre d'exemple :
-
-### Théorème fondamental du calcul (extension) {.theorem}
-Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
-et $f: [a, b] \to \R$, une fonction dérivable sur $\left]a, b\right[$ et
-continue sur $[a, b]$. La fonction $f'$ (définie partout sauf en $a$ et $b$)
-est intégrable sur $[a, b]$ et
-$$
-[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
-$$
-
-### Démonstration {.proof}
-[Le théorème fondamental du calcul](#TFC) dans le cadre borné nous fournit
-pour tous $c$ et $d$ tels que $a < c \leq d < b$ l'intégrabilité de $f'$
-sur $[c, d]$ et la relation
-$$
-f(d) - f(c) = \int_c^d f'(t) \, dt.
-$$
-Par continuité, le membre de gauche de cette équation a une limite quand
-$c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$. 
-[Le théorème de Hake](#hake) permet alors de conclure.
 
 
 ### {.remark .ante}
@@ -1614,11 +1205,293 @@ Le résultat dans les autres cas ($a=-\infty$ et $b$ fini, $a$ et $b$ finis)
 se démontrent de manière analogue.
 
 
-Subdivisions partielles
+
+Annexe
 ================================================================================
 
-### TODO
-Virer en annexe
+### Lemme de Cousin {.theorem #cousin}
+Pour toute jauge $\gamma$ sur l'intervalle $[a, b]$, 
+il existe une subdivision pointée $\mathcal{D}$ 
+qui soit subordonnée à $\gamma$.
+
+### Démonstration {.proof}
+S'il existe un $t \in I^0 = I = [a, b]$ tel que $I \subset \gamma(t)$, 
+la subdivision pointée $\mathcal{D} = \{(t, I)\}$ convient.
+Sinon, on peut considérer les intervalles $I_0^1 = [a, (a+b)/2]$ et
+$I_1^1 = [(a+b)/2, b]$ et examiner pour chacun de ces intervalles
+s'il existe un $t_i \in I_i^1$ tel que $I_i^1 \subset \gamma(t_i)$,
+dans ce cas ajouter la paire $(t_i, I_i^1)$ à la famille $\mathcal{D}$
+et dans le cas contraire décomposer à nouveau l'intervalle posant 
+problème. 
+Il s'avère que ce procédé converge en un nombre fini d'étapes ; 
+il génère donc une subdivision pointée $\mathcal{D}$ de $I$.
+
+En effet, dans le cas contraire il existerait une infinité 
+d'intervalles fermés $J_i$ emboités ($J_{i+1} \subset J_i$) 
+tels que $J_0 = I$, $\ell(J_{i+1}) = \ell(J_i)/2$ et 
+pour tout $t \in J_i$, $J_i \not \subset \gamma(t)$.
+Soit $t_i$ un point de $J_i$ ; la suite des ces points appartient 
+à $J_0$ qui est compact et admet donc une suite extraite qui converge.
+Comme la suite des $t_k$ appartient à $J_i$ pour tout $k \geq i$,
+cette limite $t$ adhère à tous les $J_i$, et donc appartient à tous
+les $J_i$ puisqu'ils sont fermés.
+La longueur de $J_i$ étant divisée par deux à chaque incrément de $i$,
+$\ell(J_i) = \ell(J_0) / 2^i$ ; 
+comme $t \in J_i$, 
+$J_i \subset [t - \ell(J_0) / 2^i, t + \ell(J_0) / 2^i]$.
+Par conséquent, il existe un rang $i$ à partir duquel
+$J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
+
+
+
+### Théorème fondamental du calcul {.theorem #TFC}
+Soit $[a, b]$ un intervalle compact de $\R$ ;
+si la fonction $f:[a, b] \to \R$ est dérivable, 
+sa dérivée $f'$ est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
+$$
+[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
+
+### Démonstration {.proof}
+Nous souhaitons établir que $f':[a, b] \to \R$ est intégrable, 
+d'intégrale égale à $f(b) - f(a)$.
+Pour cela, nous devons montrer que pour tout $\varepsilon > 0$ il existe 
+une fonction de jauge $\gamma$ sur $[a, b]$ telle que, 
+si une subdivision pointée 
+$$
+\mathcal{D} = \{(t_0, [x_0, x_1], \dots, (t_{m-1}, [x_{m-1}, x_m]))\}
+$$ 
+vérifie pour tout $i \in \{0, \dots, m-1\},$ 
+$[x_i,x_{i+1}] \subset \gamma(t_i),$ alors 
+$$
+|S(f', \mathcal{D}) - (f(b) - f(a))| \leq \varepsilon.
+$$
+Notons que si $\mathcal{D} = \{(t_0, [x_0, x_1], \dots, (t_{m-1}, [x_{m-1}, x_m]))\}$,
+le membre de gauche de cette inégalité vérifie
+$$
+\begin{split}
+|S(f', \mathcal{D}) - (f(b) - f(a))| 
+  &= \left|\sum_{i=0}^{m-1} f'(t_i)(x_{i+1} - x_i) - (f(b) - f(a))\right| \\
+  &= \left|\sum_{i=0}^{m-1} f'(t_i)(x_{i+1} - x_i) - \sum_{i=0}^{m-1} (f(x_{i+1}) - f(x_i)) \right| \\
+  &= \left|\sum_{i=0}^{m-1} (f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i))) \right| \\
+  &\leq \sum_{i=0}^{m-1} \left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
+\end{split}
+$$
+Si l'on parvient à garantir que pour chacun des termes
+de cette somme,
+$$
+\left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| 
+\leq 
+\frac{\varepsilon}{b-a} (x_{i+1} - x_i),
+$$
+ce qui revient à assigner à chaque terme une erreur maximale
+proportionnelle à la longueur de l'intervalle $[x_i, x_{i+1}]$,
+alors
+$$
+\begin{split}
+|S(f', \mathcal{D}) - (f(b) - f(a))| 
+%&\leq \sum_{i=0}^{m-1} \left| f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i)) \right| \\
+&\leq \sum_{i=0}^{m-1} \frac{\varepsilon}{b-a} (x_{i+1} - x_i) \\
+&= \frac{\varepsilon}{b-a} \sum_{i=0}^{m-1} (x_{i+1} - x_i) \\
+&= \frac{\varepsilon}{b-a} (b - a) \\
+&= \varepsilon. \\
+\end{split}
+$$
+Fixons donc un $\varepsilon > 0$ arbitraire ;
+comme pour tout $t \in [a, b],$ 
+$$f(t+h) = f(t) + f'(t) h + o(|h|),$$
+il existe un $\delta(t) > 0$ tel que si $|h| < \delta (t),$
+$$
+|f'(t) h - (f(t+h) - f(t))| \leq \frac{\varepsilon}{b-a} |h|
+$$
+Par conséquent, pour tout sous-intervalle fermé $[c, d]$ de $[a, b]$ tel que
+$t \in [c, d]$ et $[c, d] \subset \left]t-\delta(t), t+\delta(t)\right[,$ 
+nous avons
+$$
+|f'(t) (d-t) - (f(d) - f(t))| \leq \frac{\varepsilon}{b-a} |d - t| = \frac{\varepsilon}{b-a} (d-t)
+$$
+ainsi que
+$$
+|f'(t) (c-t) - (f(c) - f(t))| \leq \frac{\varepsilon}{b-a} |c - t| = \frac{\varepsilon}{b-a} (t - c).
+$$
+L'inégalité triangulaire fournit alors
+$$
+|f'(t)(d - c) - (f(d) - f(c))| \leq \frac{\varepsilon}{b-a} (d - c).
+$$
+Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[$ ;
+nous avons ainsi bien défini une fonction de jauge sur $[a, b]$.
+Si $\mathcal{D}$ est subordonnée à $\gamma$, 
+pour tout $i \in \{0, \dots, m-1\},$ 
+$$t_i \in [x_i,x_{i+1}] \subset \left]t_i - \delta(t_i), t_i + \delta(t_i)\right[,$$
+par conséquent 
+$$
+|f'(t_i)(x_{i+1} - x_i) - (f(x_{i+1}) - f(x_i))| \leq \frac{\varepsilon}{b-a} (x_{i+1} - x_i).
+$$
+et donc
+$|S(f', \mathcal{D}) - (f(b) - f(a))| \leq \varepsilon$, ce qui prouve le
+résultat recherché.
+
+### Intégration de $x \mapsto 1/\sqrt{x}$ {.example #iis-proof}
+
+Suite de [l'exemple](#iis).
+Nous allons tout d'abord prouver que si $0 < x \leq t \leq y \leq 1$, alors
+$$
+|f(t) (y-x) - (F(y) - F(x))| = 
+\left| \frac{y-x}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{x}\right|
+\leq \frac{\varepsilon}{2} (y-x).
+$$
+quand $[x, y] \subset \gamma(t)$, ce qui garantira que
+$$
+|S(f_{|[a, 1]}, \mathcal{D}_a) - (F(1) - F(a))| \leq \frac{\varepsilon}{2} (1 - a) \leq \frac{\varepsilon}{2}
+$$
+pour tout subdivision pointée $\mathcal{D}_a$ de $[a, 1]$ subordonnée à $\gamma$.
+On remarque qu'il suffit de prouver d'une part que 
+$$
+\left| \frac{y-t}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{t}\right|
+\leq \frac{\varepsilon}{2} (y-t)
+$$
+et d'autre part que
+$$
+\left| \frac{t-x}{\sqrt{t}} - 2\sqrt{t} + 2 \sqrt{x} \right|
+\leq \frac{\varepsilon}{2} (t-x)
+$$
+pour obtenir l'inégalité voulue. 
+Intéressons-nous au membre de gauche de la première de ces inégalités ; on a
+$$
+\begin{split}
+\frac{y-t}{\sqrt{t}} - 2\sqrt{y} + 2 \sqrt{t}
+&=
+\frac{y - t -2 \sqrt{t}\sqrt{y} + 2 t}{\sqrt{t}} \\
+&=
+\frac{\sqrt{y}^2 + \sqrt{t}^2 -2 \sqrt{t}\sqrt{y}}{\sqrt{t}} \\
+&= \frac{(\sqrt{y} - \sqrt{t})^2}{\sqrt{t}}.
+\end{split}
+$$
+Pour garantir que ce terme soit plus petit que 
+$$
+\frac{\varepsilon}{2} (y - t)
+= \frac{\varepsilon}{2} (\sqrt{y} - \sqrt{t})(\sqrt{y} + \sqrt{t}),
+$$
+il suffit donc de s'assurer que
+$$
+\frac{(\sqrt{y} - \sqrt{t})}{\sqrt{t}} \leq \frac{\varepsilon}{2} (\sqrt{y} + \sqrt{t}),
+$$
+soit $\sqrt{y} \leq \sqrt{t} + ({\varepsilon}/{2}) (\sqrt{ty} + t)$.
+Comme $t \leq y$, c'est le cas si 
+$$
+\sqrt{y} \leq \sqrt{t} + \varepsilon t
+\; \mbox{ soit } \;
+y \leq t \left(1 +  \varepsilon \sqrt{t} \right)^2.
+$$
+Par une méthode en tout point identique, on montre que la seconde inégalité
+-- impliquant $x$ et $t$ -- est satisfaite si
+$$
+\frac{(\sqrt{t} - \sqrt{x})}{\sqrt{x}} \leq \frac{\varepsilon}{2} (\sqrt{t} + \sqrt{x}),
+$$
+soit 
+$$
+\frac{(\sqrt{x^{-1}} - \sqrt{t^{-1}})}{\sqrt{t^{-1}}} \leq \frac{\varepsilon}{2} (\sqrt{x^{-1}} + \sqrt{t^{-1}}),
+$$
+ou encore $\sqrt{x^{-1}} \leq \sqrt{t^{-1}} + ({\varepsilon}/{2}) (\sqrt{x^{-1}t^{-1}} + t^{-1})$.
+Comme $t^{-1} \leq x^{-1}$, c'est le cas si 
+$$
+\sqrt{x^{-1}} \leq \sqrt{t^{-1}} + \varepsilon t^{-1}
+\; \mbox{ soit } \;
+x \geq \frac{t}{\left(1 +  \varepsilon / \sqrt{t} \right)^2}.
+$$
+
+
+
+Intéressons nous désormais à ce qui se passe pour une subdivision
+$\mathcal{D}$ de $[0, 1]$.
+Comme $\gamma(t) \subset \left]0, +\infty \right[$ si $t>0$,
+si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), i \in \{0,\dots, m-1\}\}$ est 
+une subdivision pointée de $[0, 1]$ subordonnée à $\gamma$, 
+si $t_i>0$, $0 \not \in [x_i, x_{i+1}]$. 
+Comme les ensembles $[x_i, x_{i+1}]$ doivent recouvrir $[0, 1]$, 
+il est nécessaire que le point $t_0$ associé à l'intervalle $[x_0, x_1]$
+soit $0$. Le reste de la subdivision est alors subordonnée à
+$\gamma$ sur $[x_1,1]$ avec $x_1 > 0$
+$$
+S(f,\mathcal{D})
+=
+f(0) (x_1 - x_0) + \sum_{i = 1}^{m-1} f(t_i) (x_{i+1} - x_i)
+$$
+et d'après la section précédente,
+$$
+\left| 
+\sum_{i = 1}^{m-1} f(t_i) (x_{i+1} - x_i)
+- (2\sqrt{1} - 2\sqrt{x_1}))
+\right|
+\leq \frac{\varepsilon}{2}.
+$$
+Avec $\gamma(0) = \left]-1, \frac{\varepsilon^2}{16}\right[$, 
+l'inclusion $[x_0, x_1] \subset \gamma(0)$ fournit
+$$
+\left|f(0)(x_1 - 0) - (2\sqrt{x_1} - 2\sqrt{x_0})\right| 
+= 2\sqrt{x_1}
+\leq 
+\frac{\varepsilon}{2}.
+$$
+On a donc garanti que $|S(f,\mathcal{D}) - 2| \leq \varepsilon$, ce 
+qui est le résultat cherché. 
+Au final, la jauge $\gamma$ sur $[0,1]$ définie initialement
+garantit un écart $|S(f, \mathcal{D}) - 2|$ inférieur à $\varepsilon$
+pour toute subdivision pointée $\mathcal{D}$ de $[0,1]$ subordonnée à $\gamma$.
+
+### {.ante}
+Dans le cas où l'on souhaite établir l'intégrabilité sans savoir quelle
+est la valeur de l'intégrale, le test suivant d'intégrabilité est utile :
+
+### Critère d'intégrabilité de Cauchy {#CIC .theorem}
+Une fonction $f: [a, b] \to \R$ est intégrable si et seulement si 
+pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur $[a, b]$ telle que 
+pour tout couple de subdivisions pointées $\mathcal{D}$ et $\mathcal{D}'$
+subordonnées à $\gamma$, on ait
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.
+$$
+
+### Démonstration {.proof}
+Si la fonction $f$ est intégrable, pour tout $\varepsilon > 0$, 
+il existe une jauge $\gamma$ sur $[a, b]$ telle que pour tout couple de 
+subdivisions pointées $\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma$,
+on ait
+$$
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}
+\; \mbox{ et } \;
+\left|S(f, \mathcal{D}') - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}.
+$$
+Par l'inégalité triangulaire, on a alors 
+$|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq \varepsilon.$
+
+Réciproquement, si la fonction $f$ vérifie le critère du théorème,
+pour tout $k \in \N$ il existe une jauge $\gamma_{k}$ sur $[a, b]$ 
+telle que pour tout couple de subdivisions pointées 
+$\mathcal{D}$ et $\mathcal{D}'$ subordonnées à $\gamma_k$, on ait
+$$
+|S(f, \mathcal{D}) - S(f, \mathcal{D}')| \leq 2^{-k}.
+$$
+Il est de plus possible de choisir les jauges $\gamma_k$ telles qu'à tout 
+ordre $k$ et pour tout $t \in [a, b]$, 
+on ait $\gamma_{k+1}(t) \subset \gamma_k(t)$ (si $\gamma_{k+1}$ ne satisfait
+pas ce critère, il suffit de lui substituer la jauge définie par en $t$ par
+$\gamma_{k+1}(t) \cap \gamma_k(t)$). 
+Soit $\mathcal{D}_k$ une suite de subdivisions pointées sur $[a, b]$
+subordonnées à $\gamma_k$. Si $m \geq k$ et $n \geq k$, 
+$\mathcal{D}_m$ et $\mathcal{D}_n$ sont subordonnées à $\gamma_k$, donc
+$$
+|S(f, \mathcal{D}_m) - S(f, \mathcal{D}_n)| \leq 2^{-k}.
+$$
+La suite des $S(f, \mathcal{D}_k)$ est donc de Cauchy ; la droite des réels
+étant complète, cette suite à une limite $A$. En passant à la limite sur
+$n$ dans l'inégalité $|S(f, \mathcal{D}) - S(f, \mathcal{D}_n)| \leq 2^{-k}$,
+valable quand $\mathcal{D}$ est subordonnée à $\gamma_k$, on obtient
+$$
+|S(f, \mathcal{D}) - A| \leq 2^{-k}.
+$$
+La fonction $f$ est donc intégrable et d'intégrale $A$.
+
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* $\mathcal{D}$ de l'intervalle fermé 
@@ -1742,7 +1615,54 @@ $$
 $$
 
 
-Exercices
+[Le théorème de Hake](#hake) montre
+qu'il n'existe pas d'intégrale *impropre*, 
+qui ne serait pas définissable directement mais uniquement par
+un passage à la limite.
+
+### Théorème de Hake {.theorem #hake}
+Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
+et $f: [a, b] \to \R$. La fonction $f$ est intégrable sur $[a, b]$ si
+et seulement si elle est intégrable sur tout intervalle $[c, d]$
+tel que $a < c$ et $d < b$ et que l'intégrale
+$$
+\int_c^d f(t) \, dt
+$$
+a une limite quand $c$ tend vers $a$ et $d$ tend vers $b$.
+On a alors
+$$
+\int_a^b f(t) \, dt = \lim_{(c, d) \to (a,b)} \int_{c}^d f(t) \, dt.
+$$
+
+### Démonstration {.proof}
+Se reporter à [@Swa01].
+
+### {.post}
+Le théorème de Hake permet d'étendre facilement certains résultats valables 
+sur des segments de la droite réelle. A titre d'exemple :
+
+### Théorème fondamental du calcul (extension) {.theorem}
+Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
+et $f: [a, b] \to \R$, une fonction dérivable sur $\left]a, b\right[$ et
+continue sur $[a, b]$. La fonction $f'$ (définie partout sauf en $a$ et $b$)
+est intégrable sur $[a, b]$ et
+$$
+[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
+
+### Démonstration {.proof}
+[Le théorème fondamental du calcul](#TFC) dans le cadre borné nous fournit
+pour tous $c$ et $d$ tels que $a < c \leq d < b$ l'intégrabilité de $f'$
+sur $[c, d]$ et la relation
+$$
+f(d) - f(c) = \int_c^d f'(t) \, dt.
+$$
+Par continuité, le membre de gauche de cette équation a une limite quand
+$c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$. 
+[Le théorème de Hake](#hake) permet alors de conclure.
+
+
+Exercices complémentaires
 ================================================================================
 
 Intervalle {.question #int}
