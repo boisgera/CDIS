@@ -58,7 +58,6 @@ ou typiquement, définition de la trace sur un bord régulier ...
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
---------------------------------------------------------------------------------
 
 TODO -- Espaces de Hilbert/Banach
 ================================================================================
@@ -272,12 +271,10 @@ Développement de Taylor, Taylor avec reste intégral, etc.
 Calcul des variations
 ================================================================================
 
-<!--
  Notons $C^1(K,U)$ l'ensemble
 $$
 C^1(K,U) = \{f \in C^1(K, \R^m) \, | \, f(K) \subset U\}.
 $$
--->
 
 ### Différentiation d'une composition {.lemma #duc}
 Soit $K \subset \R^n$ un ensemble compact et $U \subset \R^m$ un ensemble
