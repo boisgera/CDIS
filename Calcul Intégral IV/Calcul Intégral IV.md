@@ -124,62 +124,6 @@ d'exercices.
   - connaître le lien entre intégrale associée à la mesure de Lebesgue 
     et au sens de Henstock-Kurzweil dans $\R^n$ ($\bullet\bullet$).
 
-<!--
---------------------------------------------------------------------------------
-
-### TODO -- Basique
-
-  - Tribu $\mathcal{A}$ et mesure $\mu$ (définitions + application directe)
-
-  - Mesures classiques 
-    (de Lebesgue, de Dirac et de comptage)
-
-  - Fonctions mesurables (définition + caractérisation comme des
-    limites simples de fonction étagées mesurables)
-
-  - ...
-
-### TODO -- Standard
-
-  - Intégrale des fonctions positives
-    (propriétés caractéristiques)
-
-  - Intégrale des fonctions signées 
-    (définition)
-
-  - Construction de nouvelles mesures et intégrales associées
-    (mesure image, restrictions, mesure via l'intégrale)
-
-  - Intégrale de Lebesgue et de Henstock-Kurzweil.
-
-  - ...
-
-### TODO -- Avancé
-
-  - Construction de l'intégrale par rapport à $\mu$.
-
-  - Tribu engendrée, Boréliens
-
-  - Mesure produit, Fubini
-
-  - ...
-
-### TODO -- Hors-programme
-
-  - Construction directe (sans l'intégrale de H.-K.) de la mesure de Lebesgue.
-
-  - Démonstration des propriétés caractéristiques de l'intégrale.
-
-  - Notion de mesure extérieure
-
-  - Mesure de Hausdorff
-
-  - ...
-
--->
-
-\newpage
-
 Mesure
 ================================================================================
 
@@ -305,12 +249,6 @@ $$
 est une mesure nommé *mesure de Lebesgue* sur $\R^n$.
 
 ### Démonstration {.proof}
-<!--
-La démonstration que les ensembles mesurables forment une tribu a été fournie 
-dans le chapitre "Calcul Intégral II" dans $\R$ 
-(cf. "Propriétés élémentaires" des ensembles mesurables) ; 
-la démonstration dans le cas général de $\R^n$ est tout à fait similaire.
--->
 La fonction $v$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing$,
 $$
 v(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
@@ -444,9 +382,7 @@ on trouvera également le terme *$\mu$-mesurable* utilisé pour désigner une
 fonction $\mathcal{A}$-mesurable.
 
 ### {.remark .post}
-Cette définition est directement applicable <!-- si $f$ est scalaire 
-c'est-à-dire si $f: X \to [-\infty, +\infty]$ -- ce qui le cas le plus 
-fréquent. Elle est bien sûr également applicable sans modification --> 
+Cette définition est directement applicable
 si $f$ est à valeurs positives ($f(X) \subset [0, +\infty]$) ou finies
 ($f(X) \subset \R$), voire les deux simultanément 
 ($f(X) \subset \left[0, +\infty \right[$).
@@ -603,12 +539,6 @@ Soit $(X, \mathcal{A})$ un espace mesurable.
 Si la fonction $f: X \to [-\infty, +\infty]$ est mesurable et
 la fonction $h : [-\infty, +\infty] \to [-\infty,+\infty]$ est continue, 
 la function composée $h \circ f$ est mesurable. 
-<!--
-Si $f, g: X \to [-\infty, +\infty]$ sont mesurables et 
-$h_2: [-\infty, +\infty]^2 \to [-\infty, +\infty]$ 
-est continue, 
-alors la composée $h_2 \circ (f, g)$ est mesurable.
--->
 
 ### Démonstration {.proof}
 Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
@@ -636,29 +566,6 @@ de fonctions étagées mesurables positives telles $f_{k+} \to f_+$ et
 $f_{k-} \to f_-$ et donc $f_k := f_{k+} - f_{k-} \to f$ quand $k \to +\infty$.
 Par construction, $|f_{k}| = f_{k+} + f_{k-}$ est également croissante comme
 somme de deux suites croissantes. 
-
-<!--
-[^hh]: En effet la fonction $\max(\cdot, 0): [-\infty, +\infty] \to [0, +\infty]$
-est continue. Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
-$U$ par $\max(\cdot, 0)$ est donc un ouvert de $[-\infty, +\infty]$ et comme 
-$f$ est mesurable, l'image réciproque de cet ensemble par $f$ est un ensemble
-mesurable. La fonction composée $F_+ = \max(f, 0) = \max(\cdot, 0) \circ f$ est donc
-mesurable.
-Le cas de la fonction $f_-$  est similaire.
--->
-
-<!--
-### TODO -- Mesurable $\circ$ cont.
-Le seul "problème" ce sont les valeurs infinies qui requièrent parfois des hacks,
-en tout cas qui supposent que la fonction continue ne soit pas globale
-(même avec + par exemple, $[-\infty, +\infty]^2$ pose problème ...) et donc
-il faut considérer une restriction, mais pour que ça marche (facilement), 
-ce sous-ensemble doit être ouvert (ou fermé), c'est totalement naze non ?
-Le vrai truc qui colle, c'est un sous-ensemble Borélien, mais pour expliquer
-ça il faut avoir fait l'extension au cadre général de la mesurabilité
-tribu-tribu ... Alors attendre ? Ou citer le cas global (suffit pour $\max$
-par exemple) ? Ou le cas ouvert/fermé ?
--->
 
 ### Exercice -- Calculs et infinis {.exercise}
 Quand $f, g$ sont deux fonctions $X \to [-\infty, +\infty]$, 
@@ -754,13 +661,7 @@ Une fonction positive peut avoir une intégrale bien définie (finie ou infinie)
 -- il faut et il suffit qu'elle soit mesurable -- sans être pour autant 
 intégrable. Elle est intégrable si et seulement si elle est mesurable et que 
 son intégrale est finie. 
-<!--
-Pour les fonctions positives, la formule
-$$
-\int f \mu < + \infty
-$$
-signifera donc à la fois "l'intégrale est bien définie" (mesurable)
-et "l'intégrale est finie" (c'est-à-dire : la fonction est intégrable).-->
+
 Par contre, dans le cadre des fonctions signées, une fonction mesurable
 peut avoir une intégrale indéfinie.
 En effet, même si l'on peut définir
@@ -838,24 +739,6 @@ positives est donc applicable. Les théorèmes de convergence monotone,
 pour l'intégrale de Henstock-Kurzweil et pour l'intégrale associée à $v$, 
 permettent alors de conclure.
 
-
-<!--
-
-### TODO 
-Rah compliqué, il faut *aussi* parler d'ensemble négligeable 
-... et de l'impact sur l'intégrale. Bon, bascule en exo ? Oui.
-
-### Exercice -- Fonctions à valeurs infinies {.exercise}
-Soit $f: \R^n \to [-\infty,+\infty]$. Montrer que si $f$ est intégrable par 
-rapport à la mesure de Lebesgue $v$ alors 
-$$
-v(f^{-1}(+\infty)) = v(f^{-1}(-\infty)) = 0.
-$$
-**TODO**
-
--->
-
-
 ### {.ante}
 [Les propriétés caractéristiques](#carac) que nous souhaitons obtenir 
 pour l'intégrale par rapport à la mesure $\mu$ ne nous laissent 
@@ -877,34 +760,6 @@ de $f$ par rapport à $\mu$ comme
 $$
 \int f \, \mu := \sum_{k=1}^{n} y_k \, \mu(A_k).
 $$
-<!--
-On appelle *intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
-la grandeur positive (finie ou infinie)
-$$
-\int f \mu := \int_X f(x) \mu(dx) := \sum_{y \in \left[0, +\infty\right[} y \times \mu(f^{-1}(y))),
-$$
-avec la convention que $0 \times (+\infty) = 0$.
--->
-
-<!--
-### {.post}
-A noter que dans la somme définissant l'intégrale, si $y$ ne fait pas partie
-des valeurs prises par $f$, alors $\mu(f^{-1}(y)) = \mu(\varnothing) = 0$. 
-Comme $f$ est supposée simple, cette somme est donc composée d'un nombre 
-fini de termes non nuls. 
-Si l'on veut mettre cela mieux en évidence,
-on peut remplacer la somme dans l'énoncé ci-dessus par 
-$$
-\sum_{y \in f(X)} y \times \mu(f^{-1}(\{y\})),
-$$
-voire
-$$
-\sum_{y \in f(X) \setminus \{0\}} y \times \mu(f^{-1}(\{y\}))
-$$
-Noter
-ce qui permet également de se dispenser de la convention $0 \times (+\infty) = 0$.
--->
-
 ### Intégrale d'une fonction positive
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \to [0, +\infty]$ une fonction mesurable.
@@ -942,12 +797,6 @@ $$
 \int f \, \mu = \lim_{k\to+\infty} \int h_k \, \mu \geq \sup_{g \in \mathcal{F}(f)} \int g \, \mu.
 $$
 
-<!--
-### {.post}
-Il ne nous reste plus qu'à vérifier que cette construction satisfait bien
-[les propriétés caractéristiques](#carac) que nous souhaitions pour l'intégrale,
-ce que nous ferons dans la section suivante.
--->
 
 Propriétés de l'intégrale
 ================================================================================
@@ -1059,43 +908,6 @@ $$
 = \int f\mu.
 $$
 
-<!--
-### {.remark .ante}
-[Le théorème de convergence monotone](#TCM) fournit une alternative,
-plus concrète, à la construction initiale de l'intégrale.
-Dans cette nouvelle version, on substitue au $\sup$ de la définition 
-initiale la limite d'une suite d'intégrales de fonctions étagées.
-
-### Intégrale d'une fonction positive II {.theorem #ifpII}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
-$f: X \to [0, +\infty]$ une fonction mesurable.
-Il existe une suite croissante de fonctions $f_k$ étagées positives finies et 
-mesurables, convergeant simplement vers $f$ ; pour toute suite de ce type, 
-$$
-\lim_{k\to +\infty} \int f_k \mu = \int f \mu
-$$
-
-### Démonstration {.proof}
-Soit $\varepsilon_k \geq 0$ une suite de valeurs telles que
-$$
-\lim_{k\to +\infty} \varepsilon_k  = 0 
-\; \mbox{ et } \;
-\sum_{k=0}^{+\infty} \varepsilon_k = +\infty.
-$$
-La suite des fonctions $f_k$ définies par $f_0=0$, puis
-$$
-f_{k+1} = f_{k} + \varepsilon_k 1_{E_k} \, \mbox{ où } \,
-E_k = \{x \in X \, | \, f(x) \geq f_k(x) + \varepsilon_k\}
-$$
-est croissante, et composée de fonctions étagées positives et mesurables.
-Sa limite simple est la fonction $f$. 
-Par [le théorème de convergence monotone](#TCM), 
-$$
-\lim_{k \to +\infty} \int f_k \mu  = \int f \mu
-$$
-pour toute suite de ce type.
-
--->
 
 ### Linéarité {.theorem #lin}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
@@ -1124,60 +936,6 @@ convergent simplement vers $\lambda f$ et $f+g$ respectivement,
 par [le théorème de convergence monotone](#TCM) on en déduit
 les égalités cherchées.
 
-<!--
-La preuve de l'homogénéité est immédiate si $\lambda =0$ ; 
-dans le cas contraire, l'application
-$$
-h \in \mathcal{F}(f) \mapsto \lambda h \in \mathcal{F}(\lambda f)
-$$
-qui associe à une application $h$ mesurable, étagée et inférieure 
-à $f$ l'application $\lambda h$ qui est mesurable, étagée et 
-inférieure à $\lambda f$ est bijective.
-Par conséquent,
-$$
-\begin{split}
-\int (\lambda f) \mu &=
-\sup_{h \in \mathcal{F}(\lambda f)} \sum_{y \in \left[0, +\infty\right[} y \times \mu(g^{-1}(y)) \\
-&=
-\sup_{k \in \mathcal{F}(f)} \sum_{y \in \left[0, +\infty\right[} y \times \mu((\lambda k)^{-1}(y)) \\
-&=
-\sup_{k \in \mathcal{F}(f)} \sum_{z \in \left[0, +\infty\right[} (\lambda z) \times \mu((\lambda k)^{-1}(\lambda z)) \\
-&=
-\lambda \sup_{k \in \mathcal{F}(f)} \sum_{z \in \left[0, +\infty\right[} z \times \mu(k^{-1}(z)) \\
-&= \lambda \int f \mu.\\
-\end{split}
-$$
-
-L'application
-$$
-(h, k) \in \mathcal{F}(f) \times \mathcal{F}(g) \mapsto h+k \in \mathcal{F}(f + g)
-$$
-est également bien définie mais il n'est pas immédiat qu'elle soit bijective.
-Mais heureusement, [la définition alternative, concrête, à l'intégrale d'une fonction positive](#ifpII)
-nous fournit des suites croissantes de fonctions positives, mesurables et étagées
-$f_k$ et $g_k$, convergeant respectivement vers $f$ et $g$. Pour ces suites,
-$$
-\lim_{k \to + \infty} \int f_k \mu = \int f\mu
-\; \mbox{ et } \;
-\lim_{k \to + \infty} \int g_k \mu = \int g\mu.
-$$
-La suite $h_k = f_k + g_k$ est croissante, composée de fonctions positives
-étagées et mesurable ; elle converge simplement vers $f+g$, par conséquent,
-par [le théorème de convergence monotone](#TCM), on a
-$$
-\int (f+g) \mu = \lim_{k \to +\infty} \int (f_k + g_k) \mu. 
-$$
-On pourra aisément se convaincre que l'intégrale des fonctions
-positives étagées et mesurables est additive ; par conséquent,
-$$
-\begin{split}
-\int (f+g) \mu &= \lim_{k \to +\infty} \int f_k \mu + \int g_k \mu \\
-&= \lim_{k \to +\infty} \int f_k \mu + \lim_{k \to +\infty} \int g_k \mu \\
-&= \int f\mu + \int g \mu. \\
-\end{split}
-$$
-
--->
 
 
 
@@ -1230,40 +988,6 @@ $\lim_{n \to + \infty} \mu\left(f^{-1}\left([2^{-n}, +\infty]\right)\right)
 =
 \mu\left(f^{-1}\left(\left]0, +\infty\right]\right)\right)$.
 
-<!--
-[^cup]: l'ensemble $\left]0, +\infty\right]$ peut être partitionné de façon
-dénombrable comme
-  $$
-  \left]0, +\infty\right] =
-  \left[1, +\infty \right] \cup
-  \bigcup_{n=0}^{+\infty} \left[2^{-(n+1)},2^{-n}\right[
-  $$
-ce qui induit directement la décomposition suivante de $f^{-1}(\left]0, +\infty\right])$
-en une collection dénombrable d'ensemble disjoints mesurables
-  $$
-  f^{-1}(\left]0, +\infty\right]) =
-  f^{-1}(\left[1, +\infty \right]) \cup
-  \bigcup_{n=0}^{+\infty} f^{-1}\left( \left[2^{-(n+1)},2^{-n}\right[ \right) 
-  $$
-  Par $\sigma$-additivité de $\mu$, on a donc
-  $$
-  \mu\left(f^{-1}\left(\left]0, +\infty\right]\right)\right) =
-  \mu(f^{-1}(\left[1, +\infty \right])) 
-  + 
-  \sum_{n=0}^{+\infty} \mu \left( f^{-1}\left(  \left[2^{-(n+1)},2^{-n}\right[   \right)\right)
-  $$
-  et par conséquent
-  $$
-  \lim_{n \to + \infty} \mu\left(f^{-1}\left([2^{-n}, +\infty]\right)\right)
-  = 
-  \lim_{n \to + \infty}
-  \mu(f^{-1}(\left[1, +\infty \right])) 
-  + 
-  \sum_{n=0}^{+\infty} \mu \left( f^{-1}\left(  \left[2^{-(n+1)},2^{-n}\right[   \right)\right)
-  =
-  \mu\left(f^{-1}\left(\left]0, +\infty\right]\right)\right).
-  $$
--->
 
 Notons $A_n = f^{-1}([2^{-n}, +\infty])$ ; c'est un ensemble
 mesurable de mesure positive. La fonction $2^{-n}1_{A_n}$ est positive, étagée, 
@@ -1522,7 +1246,6 @@ en un nombre fini d'ensembles, qui,
 après rotations et translations, 
 forment une partition de deux sphères disjointes de rayon un.
 
---------------------------------------------------------------------------------
 
 
 Si le résultat est qualifié de paradoxe, c'est qu'il nous semble intuitivement 
@@ -1661,188 +1384,8 @@ $$
 Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
 que $v^*$ est bien $\sigma$-subadditive.
 
-<!--
-### {.post}
-Nous renvoyons le lecteur intéressé par la preuve que la mesure de Lebesgue
-prolonge bien la mesure de volume des pavés compacts à [@Hun11, section 2.2].
--->
-
-<!--
-### {.remark .ante} 
-On admettra également sans preuve le résultat suivant, qui montre que la notation
-"$v$" que nous avons employé deux fois est dépourvue d'ambiguité :
-
-### Mesure de Lebesgue et intégrale de Henstock-Kurzweil
-La tribu $\mathcal{L}(\R^n)$ des ensembles $v^*$-mesurables 
-au sens de Caratheodory coïncide avec la tribu des ensembles mesurables 
-définis au moyen de l'intégrale de Henstock-Kurzweil. La mesure de Lebesgue
-$v: \mathcal{L}(\R^n) \to [0, +\infty]$ vérifie
-$$
-v(A) = \int 1_A(x) \, dx
-$$ 
-si $1_A$ est intégrable au sens de Henstock-Kurzweil et
-$v(A)= +\infty$ sinon.
-
--->
-
-<!--
-TODO -- Mesure de grandeurs
-================================================================================
-
-### TODO ; refocus Lebesgue directement.
-
-Il est possible même au sein d'un espace unique comme $\R^3$ de vouloir
-mesurer différentes grandeurs attachées à un ensemble $A$. 
-On peut ainsi vouloir compter le nombre de points que contient $A$
-(sa "mesure de comptage"), sa longueur, sa surface ou encore son volume.
-
-L'exemple du volume a déjà été traité avec l'intégrale de Henstock-Kurzweil
-dans $\R^3$. L'exemple de la surface, a été partiellement traité, 
-dans un cas très limité (la frontière de compacts à bord réguliers) 
-et au prix d'un processus complexe
-permettant de se ramener à des calculs d'intégrale dans $\R^2$.
-Il est en fait possible de traiter ces quatres type de grandeurs, 
-ces quatre *mesures* différentes de façon similaire, et sans requérir
-à la notion d'intégrale. 
-
-Détaillons tous d'abord le cas de la mesure du volume dans $\R^3$.
-Le volume de la sphère de même diamètre qu'un ensemble $B$ arbitraire 
-est donnée par
-$$
-\frac{4 \pi}{3} \left(\frac{\mathrm{diam} \, B}{2}\right)^3.
-$$
-On peut alors calculer pour tout $\delta > 0$ estimer le volume d'un ensemble
-$A$ à partir de tous les recouvrements dénombrables de $A$ par des ensembles
-de diamètre inférieur ou égal à $\delta$ par
-$$
-\mathcal{H}^3_{\delta}(A) =
-\inf \left\{
-\sum_{j=1}^{+\infty} \frac{4\pi}{3} \left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
-\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
-A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
-\right\},
-$$
-puis passer à la limite sur $\delta$. 
-Il s'avère que le résultat
--- on parle de *mesure de Hausdorff* de dimension $3$ de $A$ --
-est identique à l'approche par l'intégrale de Henstock-Kurzweil quand
-l'ensemble $A$ est mesurable :
-$$
-\mathcal{H}^3(A) = \int_A \, dx.
-$$
-On pense a priori avoir amélioré notre approche pour définir le volume d'un
-ensemble $A$, puisque l'on a supprimé la limitation que l'ensemble $A$ soit 
-mesurable. Toutefois, la mesure $\mathcal{H}^3$ qui résulte de cette définition
-perd une propriété importante qui est implicitement attachée à toutes les
-grandeurs que nous avons cité.
-
-Ce problème sera mis en évidence par le résultat suivant :
-
-
-
-Notons $A_1, \dots, A_n$ la partition de la sphère initiale
-et $B_1, \dots, B_n$ leurs images après rotation et translation.
-Comme par construction la mesure $\mathcal{H}^3$ est invariante par
-rotation et translation, il semble que l'on doive avoir
-$$
-\mathcal{H}^3(S) = \sum_{i=1}^n \mathcal{H}^3(A_i)
-= \sum_{i=1}^n \mathcal{H}^3(B_i) = \mathcal{H}^3(S_1) + \mathcal{H}(S_2)
-=2 \times \mathcal{H}^3(S),
-$$ 
-une contradiction puisque $\mathcal{H}^3(S) = 4\pi/3$.
-
-**TODO** négation de l'additivité, comment la retrouver (ensembles qui
-"splittent" proprement la mesure) et on retombe sur les ensembles
-mesurables.
-
-Généralisation de la démarche : le procédé utilisée, qq soit la mesure
-élémentaire, génère une fct sous-additive appelée mesure extérieures. 
-Les ensembles qui splittent proprement la mesure sont appelés ensembles
-mesurables, la restriction de la mesure à ces ensembles est additive,
-et même $\sigma$-additive.
-
-Et on "reboote" la théorie abstraite de la mesure à ce point.
-
---------------------------------------------------------------------------------
-
-$$
-\mathcal{H}^k_{\delta}(A) 
-= 
-\inf \left\{
-\sum_{j=1}^{+\infty} \alpha(k)\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k
-\; \left| \vphantom{\left(\frac{\mathrm{diam} \, B_j}{2}\right)^k} \right. \; 
-A \subset \sum_{j=1}^{+\infty} B_j, \, \mathrm{diam} \, B_j \leq \delta 
-\right\}
-$$
-où $\alpha(k)$ est le volume de la $k$-sphère unité dans $\R^k$([^G])
-$$
-\alpha(k) = \int_{\R^k} 1_{S_k}(x) \, dx 
-\; \mbox{ où } \; 
-S_k = \left\{x \in \R^k \; | \; x_1^2 + \dots + x_k^2 \leq 1 \right\}.
-$$
-
-La mesure de Hausdorff $\mathcal{H}^k(A)$ de dimension $k$ de l'ensemble
-$A \subset \R^n$ est définie par 
-$$
-\mathcal{H}^k(A) = \lim_{\delta \to 0} \mathcal{H}^k_{\delta}(A).
-$$
-
-[^G]: on a $$\alpha(k) = \frac{\pi^{k/2}}{\Gamma \left( \frac{k}{2}+1 \right)} 
-\; \mbox{ avec } \; 
-\Gamma(x) = \int_0^{+\infty} e^{-t} t^{x-1}\, dt.$$ 
-La fonction $\Gamma$ est caractérisée pour des valeurs entières et
-demi-entières par $\Gamma(1/2) = \sqrt{\pi}$, $\Gamma(1) = 1$ et généralement
-par $\Gamma(x+1)= x\Gamma(x)$.
--->
-
-
 Exercices
 ================================================================================
-
-<!--
-Anagramme {.question #BT}
---------------------------------------------------------------------------------
-
-Quel est l'anagramme de "Banach-Tarski" ?
-
-Mesures de Dirac
---------------------------------------------------------------------------------
-
-Soit $x \in \R$. Soit $\delta_x^*: \mathcal{P}(\R) \to [0, +\infty]$ l'application
-définie par
-$$
-\delta_x^*(A) = \left|
-\begin{array}{rl}
-1 & \mbox{si $x \in A$,} \\
-0 & \mbox{sinon.}
-\end{array}
-\right.
-$$
-
-### Question 1 {.question #d1}
-Montrer que $\delta^*_x$ est une mesure extérieure sur $\R$.
-
-### Question 2 {.question #d2}
-Déterminer les ensembles mesurables associés.
-
-### {.remark}
-On note $\delta_x$ la mesure correspondante que l'on appelle
-*mesure de Dirac en $x$*.
-
-### Question 3 {.question #d3}
-Qu'est-ce qu'un ensemble négligeable sur $\R$ pour la mesure de Dirac en $x$ ?
-A quelle condition une fonction $f :\R \to \R$ est-elle nulle presque partout ?
-
-### Question 4 {.question #d4}
-A quelle condition la fonction $f: \R \to [-\infty, +\infty]$ est-elle 
-$\delta_x$-mesurable ? $\delta_x$-intégrable ? Calculer alors
-$$
-\int f \delta_x.
-$$
-
-### TODO Question 5 {.question #d5}
-qqch sur la mesure de comptage 
--->
 
 
 
@@ -1892,19 +1435,6 @@ f \mu : A \in \mathcal{A} \mapsto \int_A f \, \mu := \int 1_A f \, \mu \in [0, +
 $$
 est une mesure sur $(X, \mathcal{A})$.
 
-<!--
-TODO -- Fonctions intégrables à valeurs $+\infty$
---------------------------------------------------------------------------------
-
-Zeroing des infini, tjs possible quand $f$ est intégrable.
-
-TODO -- Peignes de Dirac
---------------------------------------------------------------------------------
-
-(intégrale associée, fct mesurables, lien avec série AC, etc. etc.)
-
--->
-
 Mesure image 
 --------------------------------------------------------------------------------
 
@@ -1929,8 +1459,6 @@ est bien définie et est une mesure sur $(\R,\mathcal{L}(\R))$.
 Indication : on essaiera d'exprimer $\nu$ comme la somme de trois mesures.
 
 ### {.ante}
-
-----
 
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et $h: X \to Y$ une application.
 On définit la collection 
@@ -2027,63 +1555,6 @@ Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
 Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
 et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
 
-<!--
-
-TODO -- Fonctions mesurables
---------------------------------------------------------------------------------
-
-(pour des mesures "exotiques" ... mesure de comptage, densité uniforme,
-sur $[0, 1]$, mesure de dirac en $0$ ?)
-
-TODO -- Mesures de Hausdorff
---------------------------------------------------------------------------------
-
-Que faire ? Définir le volume, la surface et la longueur dans $\R^3$, 
-montrer que l'on a affaire à des mesures extérieures ?
-
-Travailler sur une mesure de Hausdorff "rectangulaire" plutôt que sur 
-la "vraie" ?
-
-Ou mesure de Hausdorff de dimension 1/2 dans $\R$, telle que présentée
-dans <https://terrytao.wordpress.com/2009/05/19/245c-notes-5-hausdorff-dimension-optional/> ?
-
-TODO -- Extension
---------------------------------------------------------------------------------
-
-Tribu générée à partir d'un anneau (e.g. ens. des intervalles $\left[a,b\right[$),
-extension d'une prémesure ? Problématique de non-unicité ? Unicité sous
-caractère $\sigma$-fini ? cf <https://mpaldridge.github.io/teaching/ma40042-notes-06.pdf> 
-
-
-TODO -- Mesure produit
---------------------------------------------------------------------------------
-
-### Question 1 
-Montrer que $\mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^m) \otimes \mathcal{B}(\R^n)$.
-
-### Question 2
-Est-ce que $\mathcal{L}(\R^{m+n}) = \mathcal{L}(\R^m) \otimes \mathcal{L}(\R^n)$ ?
-
-
-TODO -- Intégrale itérée
---------------------------------------------------------------------------------
-
-Exemple classique (e.g. <https://en.wikipedia.org/wiki/Fubini's_theorem#Failure_of_Fubini's_theorem_for_non-integrable_functions>)
-de calcul et comparaison de 
-$$
-\int_0^1 \left( \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}\, dy\right) \, dx
-$$
-et
-$$
-\int_0^1 \left( \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}\, dx\right) \, dy.
-$$
-
-### TODO 
-check / version conditionnellement continue de Fubini. 
-Pourquoi ça ne marche pas ?
--->
-
-
 Solutions
 ================================================================================
 
@@ -2172,91 +1643,9 @@ $$
 \lim_{k \to +\infty} \sum_{n=0}^{+\infty} f_k(n)  = \sum_{n=0}^{+\infty} f(n).
 $$
 
-<!--
-
-Anagramme {.answer #answer-BT}
---------------------------------------------------------------------------------
-
-"Banach-Tarski Banach-Tarski".
-
-Mesures de Dirac
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-d1}
-Le réel $x$ n'appartient pas à l'ensemble vide, 
-donc $\delta^*_x(\varnothing) = 0$. Si $A \subset B \subset \R$
-et si $x \in A$, alors $x \in B$ ; on a donc 
-$\delta^*_x(A) \leq \delta^*_x(B)$. Finalement, 
-si $A = \cup_{k=0}^{+\infty} A_k$ et si $x \in A$, alors il existe un $k \in \N$
-tel que $x \in A_k$, donc $1 \leq \sum_{k=0}^{+\infty} \delta_x^*(A_k)$ ;
-en conséquence, $\delta_x^*(A) \leq \sum_{k=0}^{+\infty} \delta_x^* (A_k)$.
-La fonction $\delta_x^*$ est donc une mesure extérieure sur $\R$.
-
-### Question 2 {.answer #answer-d2}
-Soient $A, B \in \mathcal{P}(\R)$. Si $x \not \in B$, alors
-$x \not \in A\cap B \subset B$ et $x \not \in A^c \cap B \subset B$, donc
-$$
-\delta_x^*(A \cap B) + \delta_x^*(A^c \cap B) = \delta_x^*(B) = 0.
-$$
-Dans le cas contraire, $x$ appartient $A\cap B$ ou à $A^c \cap B$, mais
-pas au deux ensembles simultanément car ils sont disjoints ; on a donc
-$$
-\delta_x^*(A \cap B) + \delta_x^*(A^c \cap B) = \delta_x^*(B) = 0.
-$$
-Tous les sous-ensembles de $\R$ sont donc $\delta_x^*$-mesurables.
- 
-### Question 3 {.answer #answer-d3}
-Comme tout ensemble $A$ de $\R$ est mesurable, $A$ est négligeable pour
-la mesure de Dirac en $x$ si et seulement si $\delta_x(A) = 0$, c'est-à-dire
-si et seulement si $x \not \in A$. La fonction $f: \R \to \R$ est donc nulle
-presque partout si et seulement si $f(x) = 0$.
-
-
-### Question 4 {.answer #answer-d4}
-Quelle que soit la fonction $f: \R \to [-\infty, +\infty]$ et l'ouvert 
-$U$ de $\mathbb{R}$, $f^{-1}(U) \in \mathcal{P}(\R)$ et donc est 
-$\delta_x$-mesurable. La fonction $f$ est donc mesurable.
-Elle est intégrable si et seulement si $f_+$ et $f_-$ sont d'intégrales
-finies. Or, les fonctions simples positives et $\delta_x$-mesurable 
-inférieure $f_{+}$ sont de la forme
-$$
-g(y) = \sum_{k=0}^{n-1} y_k 1_{A_k}(y) 
-\; \mbox{ où } \;
-g(y) = \sum_{k=0}^{n-1} y_k 1_{A_k}(y) \leq f_{+}(y)
-$$
-avec $y_k \geq 0$ et $A_k \in \mathcal{P}(\R)$.
-On a donc
-$$
-\int g \delta_x = \sum_{k=0}^{n-1} y_k 1_{A_k}(x) \leq  f_{+}(x).
-$$
-Comme par ailleurs, la fonction $g  =f_+(x) 1_{\{x\}}$ est 
-simple, positive, $\delta_x$-mesurable, inférieure à $f_{+}$ et vérifie
-$$
-\int g \delta_x = f_+(x),
-$$
-on a par conséquent
-$$
-\int f_+ \delta_x  = \sup_{g \in \mathcal{F}(f_+)} \int g \delta_x = f_+(x).
-$$
-De façon similaire, on peut montrer que 
-$$
-\int f_- \delta_x  = f_-(x).
-$$
-La fonction $f$ est donc $\delta_x^*$-intégrable si et seulement si 
-les valeurs $f_-(x)$ et $f_+(x)$ sont finies, c'est-à-dire si et seulement
-si $f(x) \not \in \{-\infty, +\infty\}$. On a alors
-$$
-\int f \delta_x = f_+(x) - f_-(x) = f(x).
-$$
--->
-
 
 Mesure définie par une intégrale
 --------------------------------------------------------------------------------
-<!--
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Soit $f:X \to [0, +\infty]$ une
-fonction mesurable positive. 
--->
 
 ### Question 1 {.answer #answer-mdi-1}
 Pour tout $A \in \mathcal{A}$, la fonction $1_A$ est mesurable, car
@@ -2412,67 +1801,13 @@ $$
 
 
 
-<!--
-Une fonction $f: Y \to \R$ est positive, mesurable et étagée 
-(appartient à $\mathcal{F}(f)$) si et seulement si elle est 
-de la forme
-$$
-f = \sum_{k=0}^n y_k \times 1_{B_k} \; \mbox{ et } \; y_k \geq 0, \, B_k \in \mathcal{B},
-$$
-On a donc, pour toute fonction mesurable et positive $f: Y \to \R$,
-$$
-\int_Y f (h_*\mu) 
-= 
-\sup 
-\left\{
-\sum_{k=0}^n y_k \times (\mu \circ h^{-1})(B_k) 
-\, \left| \vphantom{\sum} \right. \, 
-\sum_{k=0}^n y_k \times 1_{B_k} \leq f, \, y_k \geq 0, \, B_k \in \mathcal{B}
-\right\}.
-$$
-Or, si $A_k := h^{-1}(B_k)$, $A_k \in \mathcal{A}$ et
-$$
-\left(\sum_{k=0}^n y_k \times 1_{B_k}\right) \circ h = \sum_{k=0}^n y_k \times 1_{A_k}
-\; \mbox{ et } \;
-\sum_{k=0}^n y_k \times (\mu \circ h^{-1})(B_k) = \sum_{k=0}^n y_k \times \mu(A_k)
-$$
-La fonction $\sum_{k=0}^n y_k \times 1_{A_k}$ est donc étagée, mesurable, 
-positive et inférieure à $f \circ h$. Si $f \circ h$ est intégrable, $f$ est
-donc intégrable et 
-$$
-\int_Y f (\mu \circ h^{-1}) \leq \int_X (f\circ h) \mu.
-$$
-Par ailleurs, pour toute collection finie $A_k \in \mathcal{A}$, 
-$k\in\{1,\dots, n\}$, si 
-$$
-\sum_{k=0}^n y_k \times 1_{A_k} \leq f \circ h 
-$$
-
-**TODO:** finir !
-
-**TODO:** réécrire en utilisant le MCT, ou trouver la preuve à laquelle fait
-référence Tao *sans* le MCT.
--->
-
 
 
 Complétion d'une mesure
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cm-1}
-<!--
-Nous allons établir que la tribu engendrée par $\mathcal{A} \cup \mathcal{N}$
-est l'ensemble
-$$
-\mathcal{B} = \{A \ds  N \; | \; A \in \mathcal{A}, \, N \in \mathcal{N}\}.
-$$
-Tout d'abord, comme tout $A \in \mathcal{A}$ et $N \in \mathcal{N}$ 
-appartiennent à cette tribu engendrée, $A^c$ et $N^c$ également et donc
-$(A \cap N^c) \cup (A^c \cap N) = A \ds N$ également. 
-L'ensemble $\mathcal{B}$ est donc inclus dans la tribu engendrée par 
-$\mathcal{A}$ et $\mathcal{N}$. Il suffit donc de montrer qu'il s'agit
-bien d'une tribu pour pouvoir conclure qu'elle est la tribu engendrée
-recherchée. -->
+
 
 Il est clair que $\varnothing$ appartient à $\overline{\mathcal{A}}$,
 comme différence symétrique entre $\varnothing$ et $\varnothing$.
@@ -2567,46 +1902,6 @@ $$
 \end{split}
 $$
 La fonction $\overline{\mu}$ est donc $\sigma$-additive.
-
-
-<!--
-Nous avons déjà évoqué le fait à la question précédente que si 
-les $A_k$, $k \in \N$, appartiennent $\mathcal{A}$ et les 
-$N_k$, $k \in \N$, appartiennent à $\mathcal{N}$, alors 
-$$
-\cup_k (A_k \ds N_k) = (\cup_k A_k) \ds N 
-\; \mbox{ avec } \;
-N \in \mathcal{N},
-$$
-donc
-$$
-\overline{\mu}(\cup_k (A_k \ds N_k)) = \overline{\mu}(\cup_k A_k).
-$$ 
-
-Si $A_0 \ds N_0$ et $A_1 \ds N_1$ sont disjoints, alors, comme l'intersection
-est distributive via-à-vis de la différence symétrique
-($A \cap (B \ds C) = (A\cap B) \ds (A \cap C)$), on a
-$$
-\begin{split}
-\varnothing &= (A_0 \ds N_0) \cap (A_1 \ds N_1) \\
-&=
-(A_0 \cap A_1) \ds ((A_0 \cap N_1) \ds (N_0 \cap A_1) \ds (N_0 \cap N_1))\\
-\end{split}
-$$  
-soit 
-$$
-A_0 \cap A_1 = M_1 :=  ((A_0 \cap N_1) \ds (N_0 \cap A_1) \ds (N_0 \cap N_1)) \in \mathcal{N}.
-$$
-Donc $A_0$ et $A_1 \ds M_1$ sont disjoints et 
-$\overline{\mu}(A_1 \ds M_1) = \overline{\mu}(A_1)$. De proche en proche
-on peut ainsi construire une suite d'ensembles négligeables $M_k$ tels
-que les $A_k \ds M_k$ soient disjoints et $\cup_k A_k  = \cup_k A_k \ds M_k$.
-Par conséquent,
-$$
-\overline{mu}(\cup_k A_k \ds N_k) = \mu(\cup_k A_k) = \overline{\mu} ...
-$$
--->
-
 
 
 Approximation par des ensembles mesurables (hors-programme) {#aem}
