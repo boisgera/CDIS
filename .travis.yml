@@ -38,8 +38,9 @@ install:
   - echo "install started ..."
   - ./build
 
-  # hack for Travis CI (encoding issue ?)
-  - cd Extra/Comit* && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
+  # hack for Travis CI (encoding issue ?). Yes but pdf generation broken again
+  # I disable it for the moment
+  # - cd Extra/Comit* && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
   # now prepare deployment to gh-pages
   - rm -rf env
   - mv .gitignore .gitignore.bak 
