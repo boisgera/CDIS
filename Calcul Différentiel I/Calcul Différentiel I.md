@@ -575,12 +575,12 @@ Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 On dit que $f$ est *différentiable en $x$* si la matrice jacobienne de $f$ en
 $x$ existe et que $f(x+h)$ admet le développement limité
-au 1er ordre $h \mapsto f(x) + f'(x) \cdot h$ : il existe
+au 1er ordre $h \mapsto f(x) + J_f(x) \cdot h$ : il existe
 sur un voisinage de $h=0$ une fonction
 $\varepsilon$ à valeurs dans $\R^m$ vérifiant $\lim_{h \to 0} \varepsilon(h) = 0$
 telle que 
 $$
-f(x+h) = f(x) + f'(x) \cdot h + \varepsilon(h) \|h\|.
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|.
 $$
 On dit que $f$ est *différentiable* (ou *différentiable sur $U$*)
 si elle est différentiable en tout point $x$ de $U$.
