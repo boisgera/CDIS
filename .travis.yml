@@ -39,6 +39,7 @@ install:
   - cd Extra/"Comité Pédagogique 23-05-2019" && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
   # now prepare deployment to gh-pages
   - rm -rf env
+  - rm -rf conda.sh
   - mv .gitignore .gitignore.bak 
 
 deploy:
