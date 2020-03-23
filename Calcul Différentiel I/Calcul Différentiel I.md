@@ -380,10 +380,6 @@ $$
 \end{split}
 $$
 
-### TODO topo
-
-domaine def fonction partielle ouvert
-
 ### Matrice jacobienne {.definition .one}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$, 
@@ -462,20 +458,21 @@ $$
 En l'absence d'information supplémentaire, l'existence de la matrice jacobienne
 en $x$ offre très peu de garanties de régularité sur $f$ en $x$. 
 Il est ainsi possible que la fonction $f$ ne soit pas même pas continue en $x$. 
-La matrice jacobienne ne devient réellement utile que lorsqu'elle fournit un 
-développement limité au premier ordre de la fonction $f$ au voisinage de $x$ ; 
-cette propriété, qui n'est pas systématiquement vraie, 
-est la *différentiabilité* de $f$ en $x$.
+(On rappelle que pour les fonctions d'une variable, l'existence de
+la dérivée en un point implique la continuité en ce point.)
 
 ### Fonction discontinue {.exercise .one #discont}
 Exhiber une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
 mais qui soit discontinue en $(0,0)$.
 
+### {.remark}
+Une façon simple de renforcer la régularité de la fonction $f$ est d'exiger
+qu'elle soit continûment différentiable :
 
-### Continue différentiabilité {.definition .two #cdiff}
+### Continue différentiabilité {.definition .one #cdiff}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x$ un point de $U$. 
-On dit que $f$ est *continûment différentiable*
+$x$ un point de $U$.
+La fonction $f$ est *continûment différentiable*
 si pour tout $i \in \{1,\dots, m\}$
 et $j \in \{1,\dots, n\}$, la dérivée partielle
 $$
@@ -483,18 +480,22 @@ x \in U \mapsto \partial_j f_i(x) \in \R
 $$
 est définie et continue en tout point de $U$.
 
-### TODO
+### Continue différentiabilité -- définitions alternatives {.post .two .remark}
+Cette définition de la continue différentiabilité est probablement la plus 
+élémentaire. 
+Mais de façon équivalente, la fonction $f$ est continûment différentiable si 
+(et seulement si) les dérivées partielles
+$x \in U \mapsto \partial_j f(x) \in \R^m$
+sont définies et continues pour tout $i \in \{1, \dots, m\}$
+ou encore si la fonction $x \in U \mapsto J_f(x) \in \R^{m \times n}$
+est définie et continue.
 
-Statement équivalent avec $x \mapsto f'(x)$ continue.
-
-### TODO
-
-Todo TOPO : mq $x \mapsto A(x)$ cont ssi pour tout $i, j$, $x \mapsto A_{ij}(x)$
-cont. Même chose sur vecteurs.
-
+### {.remark}
+La continue différentiabilité implique l'existence d'un développement au
+premier ordre en tout point :
 
 ### Existence d'un développement limité au 1er ordre {.proposition .two #dl1}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$ et
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$.
 Si $f$ est continûment différentiable alors $f(x+h)$ admet le développement 
 limité au 1er ordre $h \mapsto f(x) + f'(x) \cdot h$, c'est-à-dire qu'il
@@ -563,8 +564,11 @@ $$
 La fonction $f$ admet donc un dévelopement limité au 1er ordre en $x$.
 
 ### {.remark}
-On peut reformuler ce résultat en qualifiant de différentiable une fonction
-admettant ce développement au premier ordre.
+On qualifiera *différentiable* une fonction admettant ce développement 
+au premier ordre. La différentiabilité est la transposition naturelle 
+du concept de dérivabilité aux fonctions de plusieurs variables :
+pour jouer ce rôle, l'existence du jacobien est une propriété trop faible 
+et la continue différentiabilité est une propriété trop forte.
 
 ### Différentiabilité {.definition .three}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
@@ -634,7 +638,7 @@ Si $f$ est différentiable en $x$ on appelle alors *différentielle de $f$ en $x
 l'application linéaire 
 $df(x)$ associée à la matrice jacobienne 
 $$
-df(x) := \left(h \in \R^n \mapsto f'(x) \cdot h \in \R^m \right)
+df(x) := \left(h \in \R^n \mapsto J_f(x) \cdot h \in \R^m \right)
 $$
 soit l'application caractérisée pour tout $h \in \R^n$ par
 $$
@@ -643,7 +647,7 @@ $$
 Si l'on identifie applications linéaires et matrices, la différentielle
 en vient à désigner la matrice jacobienne elle-même :
 $$
-df(x) = f'(x).
+df(x) = J_f(x).
 $$
 
 ### TODO
@@ -652,23 +656,19 @@ Un mot sur ce que le terme $df(x) \cdot h$ (et ses composants) *représente* :
 un approximation (au premier ordre) de la variation de $f$ en $x$ quand 
 l'argument varie de $h$.
 
-### TODO -- Définitions alternatives {.remark .three}
-En exploitant la linéarité de la différentielle
+### Différentiabilité {.two .exercise}
+Montrer que $f$ est différentiable en $x$ si et seulement si $J_f(x)$ est bien
+définie et que
 $$
-\lim_{h \to 0} \left(\frac{f(x+h) - f(x)}{\|h\|} - f'(x) \cdot \frac{h}{\|h\|}\right) = 0.
+\lim_{\substack{h \to 0 \\ h\neq 0}} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0.
 $$
 
-plus la version $\varepsilon-\delta$.
 
 
 ### TODO
 Diff implique cont, existence des dérivées directionnelles et expression.
 
-### {.remark .ante}
-Il n'est pas toujours facile d'établir directement la différentiabilité 
-d'une fonction. Néanmoins, on peut fréquemment établir sa
-*continue différentiabilité* sans trop de difficultés, 
-ce qui prouve indirectement sa différentiabilité.
+
 
 
 ### Fonction quadratique {.question #fq .exercise .two}
