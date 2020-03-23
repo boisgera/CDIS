@@ -1549,7 +1549,9 @@ Il suffit donc de choisir $\delta(t) = (\varepsilon /2) t$ pour obtenir la
 majoration voulue.
 -->
 
+<!--
 --------------------------------------------------------------------------------
+-->
 
 ### {.ante .remark}
 La construction de l'intégrale dans cette section est applicable
