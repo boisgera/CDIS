@@ -4,6 +4,7 @@ language: bash
 branches:
   only:
   - master
+  - 2020
 
 env:
   global:
