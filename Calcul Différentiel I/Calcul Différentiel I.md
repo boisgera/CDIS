@@ -589,7 +589,7 @@ si elle est différentiable en tout point $x$ de $U$.
 [L'existence d'un développement limité au 1er ordre pour les fonctions continûment
 différentiables](#dl1) se reformule alors comme suit : 
 
-### Continue différentiabilité implique différentiabilité {.proposition .two #cdid}
+### Continue différentiabilité implique différentiabilité {.proposition .one #cdid}
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
 Si $f$ est continûment différentiable, $f$ est différentiable.
 
