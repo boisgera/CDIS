@@ -934,6 +934,8 @@ Différentiation matricielle
 
 Source: [@Tao13]
 
+\newcommand{\tr}{\mathrm{tr} \,}
+
 ### Question 1 {.question #dm-1}
 Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
 différentiable en l'identité ($A = I$) et calculer cette différentielle.
