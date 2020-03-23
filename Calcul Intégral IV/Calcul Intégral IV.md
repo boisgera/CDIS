@@ -6,7 +6,6 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
-
 \newcommand{\ds}{\mathbin{\Delta}}
 
 Objectifs
@@ -368,12 +367,12 @@ Intégrale
 ================================================================================
 
 ### Fonction mesurable
-Soit $(X, \mathcal{A})$ un espace mesurable<!-- et $n \in \N^*$-->.
-Une fonction $f: X \to [-\infty,+\infty]$ <!--$f: X \to [-\infty,+\infty]^n$--> est *mesurable* 
+Soit $(X, \mathcal{A})$ un espace mesurable.
+Une fonction $f: X \to [-\infty,+\infty]$  est *mesurable* 
 (ou *$\mathcal{A}$-mesurable* 
 pour lever toute ambiguité) 
 si l'image réciproque 
-de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]$ <!--$[-\infty,+\infty]^n$--> par 
+de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]$ par 
 $f$ est un ensemble mesurable (qui appartient à $\mathcal{A}$).
 
 ### {.post}
@@ -760,6 +759,7 @@ de $f$ par rapport à $\mu$ comme
 $$
 \int f \, \mu := \sum_{k=1}^{n} y_k \, \mu(A_k).
 $$
+
 ### Intégrale d'une fonction positive
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \to [0, +\infty]$ une fonction mesurable.
@@ -796,7 +796,6 @@ vers $f$ mais supérieures à $g_k$ et vérifiant donc nécessairement
 $$
 \int f \, \mu = \lim_{k\to+\infty} \int h_k \, \mu \geq \sup_{g \in \mathcal{F}(f)} \int g \, \mu.
 $$
-
 
 Propriétés de l'intégrale
 ================================================================================
@@ -908,7 +907,6 @@ $$
 = \int f\mu.
 $$
 
-
 ### Linéarité {.theorem #lin}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré.
 L'intégrale par rapport à $\mu$ de fonctions mesurables positives 
@@ -935,9 +933,6 @@ Comme les suites $\lambda f_k$ et $f_k+g_k$ sont croissantes et
 convergent simplement vers $\lambda f$ et $f+g$ respectivement, 
 par [le théorème de convergence monotone](#TCM) on en déduit
 les égalités cherchées.
-
-
-
 
 ### Positivité et nullité {.theorem #pos}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré 
@@ -1067,8 +1062,6 @@ $$
 \lim_{n \to +\infty} \mu(A_n) = \mu \left(\bigcap_{n=0}^{+\infty} A_n \right).
 $$
 
------
-
 ### {.post} 
 Il est assez facile de se convaincre que sans une hypothèse de type
 $\mu(A_0) < +\infty$, le volet décroissant du théorème est faux. 
@@ -1084,6 +1077,8 @@ Toutefois, dans le cas particulier des mesures finies
 (vérifiant $\mu(A) < +\infty$ pour tout $A \in \mathcal{A}$) 
 et en particulier des mesures de probabilité, 
 la condition $\mu(A_0) < +\infty$ est automatiquement vérifiée. 
+
+
 
 ### Démonstration {.proof}
 Si $(A_n)_{n \in \N}$ est une suite croissante d'ensembles de $\mathcal{A}$, 
@@ -2037,3 +2032,5 @@ $A$ est mesurable.
 
 Réferences
 ================================================================================
+
+-->
