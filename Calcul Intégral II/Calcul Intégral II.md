@@ -785,7 +785,6 @@ par $f$ est mesurable.
 
 ### {.post .remark}
 
---------------------------------------------------------------------------------
 
 Ce critère ressemble beaucoup à la caractérisation abstraite des fonctions
 continues, qui exige que l'image de tout fermé (ou de tout ouvert)
