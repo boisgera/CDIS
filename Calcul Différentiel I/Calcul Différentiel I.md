@@ -354,20 +354,37 @@ La fonction $f$ est *dérivable (sur $U$)* si elle est dérivable en tout point
 $x$ de $U$.
 
 ### {.post .remark}
-La définition ci-dessus couvre le cas où $f$ est définie sur un intervalle ;
-il nous faut la compléter pour traiter le cas -- très utile en pratique --
-des fonctions définies sur un intervalle fermé et borné $[a, b]$.
-Une pirouette permet de se ramener au cas précédent :
+Cette définition couvre le cas où la fonction $f$ est définie est sur un 
+intervalle ouvert $\left]a, b\right[$, mais pas sur un intervalle fermé et 
+borné $[a, b]$. Dans ce contexte, le remède classique consiste à 
+faire intervenir les notions de dérivées à gauche et à droite.
 
-### Dérivée sur un intervalle fermé et borné {.definition .one}
+### Dérivée sur un intervalle fermé et borné {.definition .zero}
 Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
-La fonction $f$ est *dérivable (sur $[a, b]$)* si et seulement si elle admet un 
+La fonction $f$ est *dérivable sur $[a, b]$* 
+si elle est dérivable sur l'intervalle ouvert $\left]a, b\right[$ 
+et que les dérivées de $f$ à droite en $a$ et à gauche en $b$ existent
+$$
+f'(a) := \lim_{\substack{h \to 0 \\ h > 0}} \frac{f(a+h) - f(a)}{h}
+\; \mbox{ et } \;
+f'(b) := \lim_{\substack{h \to 0 \\ h < 0}} \frac{f(b+h) - f(b)}{h}.
+$$
+
+### {.remark}
+Il est aussi possible d'utiliser une pirouette permet de se ramener à un domaine
+de définition ouvert ; cela nous sera utile pour intégrer les dérivées 
+au calcul différentiel multivariable qui sera intégralement développé 
+dans le cadre ouvert.
+
+### Dérivée sur un intervalle fermé et borné {.proposition .one}
+Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
+La fonction $f$ est dérivable si et seulement si elle admet un 
 prolongement $g$ à un ensemble ouvert $U$ de $\R$ contenant $[a, b]$ qui soit 
-dérivable. On définit alors la *dérivée* $f'$ de $f$ comme la restriction 
+dérivable. Si c'est le cas, sa dérivée $f'$ est égale à la restriction 
 de la fonction $g'$ à $[a, b]$.
 
 ### Dérivées à gauche et à droite {.exercise .question}
-Montrer que la ...
+Montrer que la ... **TODO** Exo démo résult précédent
 
 
 ### Développement limité {.proposition .zero}
