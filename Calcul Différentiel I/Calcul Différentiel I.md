@@ -251,9 +251,9 @@ TODO
 ### Matrice jacobienne et différentielle
 
 Dérivée permet de traiter fcts à valeurs scalaires ou vectorielles d'une variable.
-L'objet remplaçant la dérivée dans le cas multivariable
+L'objet généralisant la dérivée dans le cas multivariable
 
-  - connaître définition Jacobien, gradient, etc. 
+  - connaître définition dérivées partielles, Jacobien, gradient, etc. 
 
 Toutefois, l'existence du Jacobien est en général insuffisante (? détailler ?) ;
 elle ne suffit pas à garantir l'existence d'un dvlpt au 1er ordre. La façon
@@ -348,44 +348,27 @@ La fonction $f$ est *dérivable en $x$* si la limite du taux d'accroissement
 de $f$ en $x$ existe ; cette limite est appelée dérivée de $f$ en $x$ et
 notée $f'(x)$ :
 $$
-f'(x) = \lim_{\substack{h \to 0 \\ h \neq 0}} \frac{f(x+h) - f(x)}{h}.
+f'(x) := \lim_{\substack{h \to 0 \\ h \neq 0}} \frac{f(x+h) - f(x)}{h}.
 $$
 La fonction $f$ est *dérivable (sur $U$)* si elle est dérivable en tout point
 $x$ de $U$.
 
 ### {.post .remark}
-La définition ci-dessus couvre le cas où $U$ est un intervalle 
-ouvert, mais laisse de coté le cas -- utile en pratique -- 
-des intervalles fermés.
+La définition ci-dessus couvre le cas où $f$ est définie sur un intervalle ;
+il nous faut la compléter pour traiter le cas -- très utile en pratique --
+des fonctions définies sur un intervalle fermé et borné $[a, b]$.
+Une pirouette permet de se ramener au cas précédent :
 
-### TODO
-Pb, on ne couvre pas ici le cas fermé non compact.
+### Dérivée sur un intervalle fermé et borné {.definition .one}
+Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
+La fonction $f$ est *dérivable (sur $[a, b]$)* si et seulement si elle admet un 
+prolongement $g$ à un ensemble ouvert $U$ de $\R$ contenant $[a, b]$ qui soit 
+dérivable. On définit alors la *dérivée* $f'$ de $f$ comme la restriction 
+de la fonction $g'$ à $[a, b]$.
 
-### Dérivée sur un intervalle fermé {.definition .zero}
-Si la fonction $f$ est définie sur un intervalle fermé $[a, b]$ de $\R$
-et à valeurs dans $\R^m$, on dira que $f$ est *dérivable sur $[a, b]$* 
-si elle est dérivable sur l'intervalle ouvert $U = \left]a, b\right[$ 
-et que les dérivées de $f$ à droite en $a$ et à gauche en $b$ existent
-$$
-f'(a) := \lim_{\substack{h \to 0 \\ h > 0}} \frac{f(a+h) - f(a)}{h}
-\; \mbox{ et } \;
-f'(b) := \lim_{\substack{h \to 0 \\ h < 0}} \frac{f(b+h) - f(b)}{h}.
-$$
+### Dérivées à gauche et à droite {.exercise .question}
+Montrer que la ...
 
-### {.remark}
-Alternativement -- au prix d'une pirouette -- il est également possible de définir la dérivée
-d'une fonction définie sur un intervalle fermé en se ramenant au cas ouvert,
-sans introduire la notion de dérivée à gauche et à droite :
-
-### TODO
-
-Elever ça au statut de résultat ? (on s'en sert ...)
-
-### Dérivée sur un intervalle fermé {.exercise .question #dif .one}
-Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
-si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
-$f$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tels que $g$ soit dérivable.
-Montrer qu'alors, on a $f' = g'|_{[a, b]}$.
 
 ### Développement limité {.proposition .zero}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
