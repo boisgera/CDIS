@@ -1105,6 +1105,14 @@ f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt
                                   = \int_0^1 df(a+th) \cdot h \, dt.
 $$
 
+### Cas des fonctions continûment différentiables {.exercise .one .question #cfcd3}
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
+soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
+$[a, a+h] = \{a + th \; | \; t \in [0,1]\}$
+soit inclus dans $U$. 
+Montrer que si $f$ est continûment différentiable sur $U$, 
+[le théorème fondamental du calcul](#VF) est applicable.
+
 ### Inégalité des accroissements finis (monovariable) {.theorem #TAFS .two}
 Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
 $h \in \left[0, +\infty\right[$.
@@ -1260,8 +1268,8 @@ $$
 $$
 alors on peut déduire de la borne $\|df(y)\|_{\R^{m\times n}} \leq M$ sur $[x, x+h]$ 
 que $$\|f(x+h) - f(x)\|_{\R^m} \leq M \|h\|_{\R^n}.$$
-Ce deux résultats peuvent être démontrés avec des modifications mineures 
-des arguments exploités dans le cas de la norme euclidienne.
+Etablir ces deux résultats ne nécessite que des modifications mineures 
+des démonstration déjà présentées.
 
 Annexe -- Algèbre linéaire
 ================================================================================
@@ -2027,6 +2035,16 @@ Donc pour tout $i \in \{1, \dots, m\}$ et $j \in \{1,\dots, p\}$,
 Chaque coefficient $\partial_j (g\circ f)_i$ est une somme de produit de 
 fonctions continues et est donc continu. Par conséquent, $g\circ f$ est
 continûment différentiable.
+
+### Cas des fonctions continûment différentiables {.answer #answer-cfcd3}
+Si $f$ est continûment différentiable sur $U$, elle est en particulier
+différentiable sur $[a, a+h]$. De plus, 
+$$
+df(a+th) \cdot h = \sum_{i=1}^{n} \partial_j f(a+th) h_j,
+$$
+donc la fonction $t \in [0,1] \mapsto df(a+th) \cdot h$ est continue
+et par conséquent intégrable. [Le théorème fondamental du calcul](#VF)
+est donc applicable.
 
 ### Cas des fonctions continûment différentiables {.answer #answer-cfcd2}
 Si la fonction $f'$ est continue (ou intégrable au sens de
