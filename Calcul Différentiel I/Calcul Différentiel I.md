@@ -244,7 +244,45 @@ Introduction
 Objectifs d'apprentissage
 --------------------------------------------------------------------------------
 
-Variation des fonctions :
+### Rappel dérivées ?
+
+TODO
+
+### Matrice jacobienne et différentielle
+
+Dérivée permet de traiter fcts à valeurs scalaires ou vectorielles d'une variable.
+L'objet remplaçant la dérivée dans le cas multivariable
+
+  - connaître définition Jacobien, gradient, etc. 
+
+Toutefois, l'existence du Jacobien est en général insuffisante (? détailler ?) ;
+elle ne suffit pas à garantir l'existence d'un dvlpt au 1er ordre. La façon
+la plus simple de pallier à ça est de réquérir la continue diff
+
+  - def continue diff, existence dvlpt 1er ordre
+
+Dans le cas où l'on ne dispose pas de la cont diff, l'existence d'un dvlpt 
+au 1er ordre peut suffire ; ce cas un peu plus subtil est suffisamment important
+pour justifier une terminologie propre
+
+  - def différentiabilité, lien avec continue diff.
+
+### Calcul différentiel :
+
+  - différentielle à partir des dérivées partielles
+
+  - différentielle d'une application linéaire
+
+  - règle de différentiation en chaîne
+
+  - dérivées partielles et variables nommées
+
+  - différentielles d'expression et de variables.
+
+### Variation des fonctions :
+
+TODO : savoir faire les preuves dans les cas simple continûment diff
+(th fondam du calcul et inég acc finis ?)
 
   - théorème fondamental du calcul, forme monovariable
   
@@ -315,6 +353,14 @@ $$
 La fonction $f$ est *dérivable (sur $U$)* si elle est dérivable en tout point
 $x$ de $U$.
 
+### {.post .remark}
+La définition ci-dessus couvre le cas où $U$ est un intervalle 
+ouvert, mais laisse de coté le cas -- utile en pratique -- 
+des intervalles fermés.
+
+### TODO
+Pb, on ne couvre pas ici le cas fermé non compact.
+
 ### Dérivée sur un intervalle fermé {.definition .zero}
 Si la fonction $f$ est définie sur un intervalle fermé $[a, b]$ de $\R$
 et à valeurs dans $\R^m$, on dira que $f$ est *dérivable sur $[a, b]$* 
@@ -343,17 +389,20 @@ Montrer qu'alors, on a $f' = g'|_{[a, b]}$.
 
 ### Développement limité {.proposition .zero}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
-Si la fonction $f$ est dérivable en $x$ alors dans un voisinage de $x$
+Si la fonction $f$ est dérivable en $x$, alors dans un voisinage de $x$
 on a
 $$
 f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
 $$
-où $\varepsilon$ est définie dans un voisinage de $0$ et
-telle que 
+où la fonction $\varepsilon$, définie dans un voisinage de $h=0$, 
+est telle que 
 $$
 \lim_{h \to 0}\varepsilon(h) = 0.
 $$
-Réciproquement, s'il existe un $\ell \in \R^m$ tel que
+
+### Développement limité, réciproque {.proposition .one}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+S'il existe un $\ell \in \R^m$ tel que
 $$
 f(x+h) = f(x) + \ell h + \varepsilon(h)|h|
 $$
@@ -781,6 +830,8 @@ Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#ch
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
 
+### TODO -- Existence d'une dérivée directionnelle (exo)
+
 Notations compactes
 --------------------------------------------------------------------------------
 
@@ -1067,12 +1118,6 @@ $$
 \|f(a+h) - f(a)\| \leq M h.
 $$
 
-### TODO
-
-Evoquer idée de la preuve (ou preuve dans le cas ou $f'(t)$ est intégrable) :
-on utilise le théorème fondamental du calcul et l'inégalité triangulaire.
-
-
 ### Démonstration {.proof}
 Par [la forme générale du théorème fondamental du calcul](#TFCE),
 la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
@@ -1080,7 +1125,7 @@ $$
 f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
 $$
 La théorie de l'intégrale de Henstock-Kurzweil nous garantit qu'il est possible 
-d'obtenir des approximations arbitrairement bonnprécises de cette intégrale au moyen de 
+d'obtenir des approximations arbitrairement précises de cette intégrale au moyen de 
 sommes de Riemman[^aci]. Cela signifie que pour tout $\varepsilon > 0$, 
 il existe des réels $x_0, \dots, x_k, t_0, \dots, t_{k-1}$ vérifiant
 $$
@@ -1125,12 +1170,23 @@ le choix de $\varepsilon > 0$ étant arbitraire, on en déduit
 le résultat cherché.
 
 
+### {.remark}
+L'énoncé de l'inégalité des accroissements finis ne fait aucune hypothèse sur 
+la régularité de la fonction $f'$ ; c'est cette généralité qui rend sa 
+démonstration technique. Si l'on accepte des hypothèses un peu plus 
+contraignantes, elle peut être simplifiée de façon significative.
+
+### Cas des fonctions continûment différentiables {.exercise .question .one #cfcd2}
+Trouver une démonstration simple de [l'inégalité des accroissement finis](#TAFS)
+reposant sur [le théorème fondamental du calcul](#TFC)
+dans le cas où la fonction $f'$ est continue (ou continue par morceaux,
+ou intégrable au sens de Riemann, ou intégrable au sens de Lebesgue, 
+selon la théorie de l'intégration que vous connaissez à ce stade).
 
 ### {.remark}
-Il existe une démonstration alternative, plus simple, de 
-l'inégalité des accroissements finis. 
-Elle ne repose pas sur le calcul intégral, mais sur
-les identités associées à la norme euclidienne et sur le théorème des
+Il existe également une démonstration alternative
+de l'inégalité des accroissements finis qui ne repose pas sur le calcul intégral, 
+mais sur les identités associées à la norme euclidienne et sur le théorème des
 valeurs intermédiaires :
 
 ### Inégalité des accroissements finis (version euclidienne)  {.exercise #mitch .question .two}
@@ -1972,6 +2028,20 @@ Chaque coefficient $\partial_j (g\circ f)_i$ est une somme de produit de
 fonctions continues et est donc continu. Par conséquent, $g\circ f$ est
 continûment différentiable.
 
+### Cas des fonctions continûment différentiables {.answer #answer-cfcd2}
+Si la fonction $f'$ est continue (ou intégrable au sens de
+Riemann, ou intégrable au sens de Lebesgue), 
+[le théorème fondamental du calcul](#TAFS) est applicable, donc 
+$$
+f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
+$$
+L'inégalité triangulaire appliquée à l'intégrale du membre de droite fournit
+alors
+$$
+\left\|f(a+h) - f(a)\right\| = \left\|\int_a^{a+h} f'(t) \, dt\right\|
+\leq \int_a^{a+h} \|f'(t)\| \, dt \leq \int_a^{a+h} M \, dt = M h.
+$$
+
 ### Inégalité des accroissements finis (version euclidienne) {.answer #answer-mitch}
 **TODO.** adopter convention $\phi$ déf sur $[0,1]$ plus proche de ce qui
 précède et qui suit ?
@@ -2002,6 +2072,8 @@ $$
 \|f(a+h) - f(a)\|^2 = \left<f(a+h) - f(a), f'(\tau) \right> h \leq \|f(b) - f(a)\| \|f'(\tau)\| h.
 $$
 Puisque $\|f'(\tau)\| \leq M$, on en déduit que $\|f(a+h) - f(a)\| \leq M h.$
+
+
 
 
 ### Variation du logarithme {.answer #answer-log}
