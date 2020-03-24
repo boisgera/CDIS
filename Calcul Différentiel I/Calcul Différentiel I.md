@@ -363,7 +363,8 @@ faire intervenir les notions de dérivées à gauche et à droite.
 Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
 La fonction $f$ est *dérivable sur $[a, b]$* 
 si elle est dérivable sur l'intervalle ouvert $\left]a, b\right[$ 
-et que les dérivées de $f$ à droite en $a$ et à gauche en $b$ existent
+et que les dérivées de $f$ à droite en $a$ et à gauche en $b$ existent.
+On pose alors
 $$
 f'(a) := \lim_{\substack{h \to 0 \\ h > 0}} \frac{f(a+h) - f(a)}{h}
 \; \mbox{ et } \;
@@ -371,14 +372,14 @@ f'(b) := \lim_{\substack{h \to 0 \\ h < 0}} \frac{f(b+h) - f(b)}{h}.
 $$
 
 ### {.remark}
-Il est aussi possible d'utiliser une pirouette permet de se ramener à un domaine
-de définition ouvert ; cela nous sera utile pour intégrer les dérivées 
-au calcul différentiel multivariable qui sera intégralement développé 
-dans le cadre ouvert.
+Il est aussi possible d'utiliser une pirouette pour se ramener à un domaine
+de définition ouvert. Cela nous sera utile pour intégrer les dérivées 
+au calcul différentiel multivariable qui ne sera développé que 
+pour de tels domaine de définition.
 
-### Dérivée sur un intervalle fermé et borné {.proposition .one}
+### Dérivée et prolongement {.proposition .one}
 Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
-La fonction $f$ est dérivable si et seulement si elle admet un 
+La fonction $f$ est dérivable sur $[a, b]$ si et seulement si elle admet un 
 prolongement $g$ à un ensemble ouvert $U$ de $\R$ contenant $[a, b]$ qui soit 
 dérivable. Si c'est le cas, sa dérivée $f'$ est égale à la restriction 
 de la fonction $g'$ à $[a, b]$.
@@ -387,7 +388,7 @@ de la fonction $g'$ à $[a, b]$.
 Montrer que la ... **TODO** Exo démo résult précédent
 
 
-### Développement limité {.proposition .zero}
+### Dérivée et développement limité  {.proposition .zero}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 Si la fonction $f$ est dérivable en $x$, alors dans un voisinage de $x$
 on a
@@ -400,7 +401,7 @@ $$
 \lim_{h \to 0}\varepsilon(h) = 0.
 $$
 
-### Développement limité, réciproque {.proposition .one}
+###  Dérivée et développement limité (réciproque)  {.proposition .one}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 S'il existe un $\ell \in \R^m$ tel que
 $$
@@ -529,7 +530,7 @@ x \in U \mapsto \partial_j f_i(x) \in \R
 $$
 est définie et continue en tout point de $U$.
 
-### Continue différentiabilité -- définitions alternatives {.post .two .remark}
+### Continue différentiabilité -- définitions équivalentes {.post .two .remark}
 Cette définition de la continue différentiabilité est probablement la plus 
 élémentaire. 
 Mais de façon équivalente, la fonction $f$ est continûment différentiable si 
