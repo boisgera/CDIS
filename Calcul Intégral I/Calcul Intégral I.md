@@ -337,6 +337,12 @@ Mettre une remarque avancée
 après la définition de "intégrable au sens de HK" évoquant la nécessité 
 de l'existence (lemme de Cousin) et son caractère pas trivial + ref.
 
+### TODO
+Virer (ou mettre en footnote) le nom "Henstock-Kurzweil" ? Ou simplement
+après la définition qui va demander approx de pour $f$ et $|f|$ simultanément
+en disant que si on ne requiert que $f$, ça s'appelle comme ça ? Pourquoi
+pas ...
+
 ### {.ante}
 La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégrale
 de Riemann classique. 
