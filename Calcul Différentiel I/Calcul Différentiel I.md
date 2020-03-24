@@ -1268,8 +1268,8 @@ $$
 $$
 alors on peut déduire de la borne $\|df(y)\|_{\R^{m\times n}} \leq M$ sur $[x, x+h]$ 
 que $$\|f(x+h) - f(x)\|_{\R^m} \leq M \|h\|_{\R^n}.$$
-Etablir ces deux résultats ne nécessite que des modifications mineures 
-des démonstration déjà présentées.
+Seules des modifications mineures des démonstrations déjà présentées sont 
+nécessaires pour établir ces résultats.
 
 Annexe -- Algèbre linéaire
 ================================================================================
