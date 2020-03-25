@@ -250,22 +250,35 @@ TODO
 
 ### Matrice jacobienne et différentielle
 
-Dérivée permet de traiter fcts à valeurs scalaires ou vectorielles d'une variable.
-L'objet généralisant la dérivée dans le cas multivariable
+La notion de dérivée n'est applicable que pour les fonctions d'une variable.
+L'objet généralisant la dérivée dans le cas multivariable, défini au moyen
+des dérivées partielles, est la matrice jacobienne ; pour les fonctions
+scalaires, on préférera souvent utiliser le gradient que la matrice
+jacobienne.
 
-  - connaître définition dérivées partielles, Jacobien, gradient, etc. 
+  - savoir calculer dérivées partielles, matrices jacobiennes et gradients.
 
-Toutefois, l'existence du Jacobien est en général insuffisante (? détailler ?) ;
-elle ne suffit pas à garantir l'existence d'un dvlpt au 1er ordre. La façon
-la plus simple de pallier à ça est de réquérir la continue diff
+Toutefois, la seule existence de la matrice jacobienne est insuffisante 
+pour exploiter la plupart des résultats du calcul différentiel. Pour cette raison, on
+renforce souvent les hypothèses en demandant que cette matrice existe et 
+dépende continûment du point de référence ; c'est la continue différentiabilité.
 
-  - def continue diff, existence dvlpt 1er ordre
+  - savoir que l'existence de la matrice jacobienne est en général insuffisante,
 
-Dans le cas où l'on ne dispose pas de la cont diff, l'existence d'un dvlpt 
-au 1er ordre peut suffire ; ce cas un peu plus subtil est suffisamment important
-pour justifier une terminologie propre
+  - savoir qu'on peut alors avoir recours à la continue différentiabilité,
 
-  - def différentiabilité, lien avec continue diff.
+  - savoir caractériser les fonctions continûment différentiables.
+  
+L'essentiel du calcul différentiel peu en fait être exploité dès que 
+l'on dispose d'un développement limité au premier ordre ; 
+on parle alors de différentiabilité. 
+
+  - comprendre en quoi la différentiabilité généralise la dérivabilité,
+
+  - savoir caractériser et exploiter un développement limité au premier ordre, 
+  
+  - savoir exploiter que continûment différentiable implique différentiable.
+
 
 ### Calcul différentiel :
 
