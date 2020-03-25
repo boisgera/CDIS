@@ -626,7 +626,7 @@ l'expression ci-dessus suggère que son intégrale pourrait être
   \int_0^1 f(x) \, dx \stackrel{?}{=} 2\sqrt{1} - 2\sqrt{0} = 2.
   $$
 Cette intuition est fondée : nous prouvons [en annexe](#iis-proof) que 
-si $\varepsilon > 0$, on a $|S(f, \mathcal{D}) - 1| \leq \varepsilon$ 
+si $\varepsilon > 0$, on a $|S(f, \mathcal{D}) - 2| \leq \varepsilon$ 
 quand $\mathcal{D}$ est subordonnée à la jauge $\gamma$ définie par
 $$
 \gamma(t) =
