@@ -31,7 +31,7 @@ La progression choisie est la suivante:
     partielle et les dérivée directionnnelles.
 
   - après coup, on examine la tentation (légitime) que l'on pourrait avoir
-    de définir la différentielle en passant par les dérivée partielles:
+    de définir la différentielle en passant par cles dérivée partielles:
     cette approche si elle était couronnée de succès, permettrait de 
     définir la différentielle en se ramenant à ce que l'on connaît déjà,
     à savoir la notion de dérivée. Et on se rend compte assez facilement
@@ -344,9 +344,10 @@ Matrice jacobienne et différentielle
 
 ### Dérivée {.definition .zero}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
-La fonction $f$ est *dérivable en $x$* si la limite du taux d'accroissement
-de $f$ en $x$ existe ; cette limite est appelée dérivée de $f$ en $x$ et
-notée $f'(x)$ :
+La fonction $f$ est *dérivable en $x$* si la limite du 
+*taux d'accroissement* de $f$ en $x$ existe ; 
+cette limite est appelée *dérivée de $f$ en $x$* 
+et notée $f'(x)$ :
 $$
 f'(x) := \lim_{\substack{h \to 0 \\ h \neq 0}} \frac{f(x+h) - f(x)}{h}.
 $$
@@ -356,8 +357,8 @@ $x$ de $U$.
 ### {.post .remark}
 Cette définition couvre le cas où la fonction $f$ est définie est sur un 
 intervalle ouvert $\left]a, b\right[$, mais pas sur un intervalle fermé et 
-borné $[a, b]$. Dans ce contexte, le remède classique consiste à 
-faire intervenir les notions de dérivées à gauche et à droite.
+borné $[a, b]$. Pour traiter ce cas, on peut introduire les notions de dérivées 
+à gauche et à droite.
 
 ### Dérivée sur un intervalle fermé et borné {.definition .zero}
 Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
@@ -375,7 +376,7 @@ $$
 Il est aussi possible d'utiliser une pirouette pour se ramener à un domaine
 de définition ouvert. Cela nous sera utile pour intégrer les dérivées 
 au calcul différentiel multivariable qui ne sera développé que 
-pour de tels domaine de définition.
+pour des domaine de définition ouverts.
 
 ### Dérivée et prolongement {.proposition .one}
 Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
@@ -383,6 +384,13 @@ La fonction $f$ est dérivable sur $[a, b]$ si et seulement si elle admet un
 prolongement $g$ à un ensemble ouvert $U$ de $\R$ contenant $[a, b]$ qui soit 
 dérivable. Si c'est le cas, sa dérivée $f'$ est égale à la restriction 
 de la fonction $g'$ à $[a, b]$.
+
+\newcommand{\lb}{\left]}
+\newcommand{\rb}{\right[}
+
+![Un prolongement dérivable de $f:x \in [0,1] \mapsto e^{-x}$ à $\lb-0.5, 1.5 \rb$.
+Ce prolongement $g$ est défini par 
+$g(x) = 1 - x$ si $x < 0$ et $g(x) = (2-x)/e$ si $x>1$.](images/prolongement.tex)
 
 ### Dérivées à gauche et à droite {.exercise .question}
 Montrer que la ... **TODO** Exo démo résult précédent
