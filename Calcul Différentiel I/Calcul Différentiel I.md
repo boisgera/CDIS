@@ -378,7 +378,7 @@ de définition ouvert. Cela nous sera utile pour intégrer les dérivées
 au calcul différentiel multivariable qui ne sera développé que 
 pour des domaine de définition ouverts.
 
-### Dérivée et prolongement {.proposition .one}
+### Dérivée et prolongement {.proposition .one #dep}
 Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
 La fonction $f$ est dérivable sur $[a, b]$ si et seulement si elle admet un 
 prolongement $g$ à un ensemble ouvert $U$ de $\R$ contenant $[a, b]$ qui soit 
@@ -392,9 +392,8 @@ de la fonction $g'$ à $[a, b]$.
 Ce prolongement $g$ est défini par 
 $g(x) = 1 - x$ si $x < 0$ et $g(x) = (2-x)/e$ si $x>1$.](images/prolongement.tex)
 
-### Dérivées à gauche et à droite {.exercise .question}
-Montrer que la ... **TODO** Exo démo résult précédent
-
+### Dérivée et prolongement {.exercise .one .question #exo-dep}
+Démontrer la proposition ["Dérivée et prolongement"](#dep).
 
 ### Dérivée et développement limité  {.proposition .zero}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
@@ -404,17 +403,19 @@ $$
 f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
 $$
 où la fonction $\varepsilon$, définie dans un voisinage de $h=0$, 
-est telle que 
+satisfait
 $$
 \lim_{h \to 0}\varepsilon(h) = 0.
 $$
 
-###  Dérivée et développement limité (réciproque)  {.proposition .one}
+###  Dérivée et développement limité (réciproque)  {.proposition .zero}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 S'il existe un $\ell \in \R^m$ tel que
 $$
 f(x+h) = f(x) + \ell h + \varepsilon(h)|h|
 $$
+pour une fonction $\varepsilon$ définie dans un voisinage de $h=0$ 
+telle que $\lim_{h \to 0}\varepsilon(h) = 0$,
 alors $f$ est dérivable en $x$ et $f'(x) = \ell$.
 
 ### Dérivées partielles {.definition .one}
@@ -438,14 +439,17 @@ $$
 \end{split}
 $$
 
-### Matrice jacobienne {.definition .one}
+### Domaine de définition des fonctions partielles {.exercise .question .one #ddfp}
+Quel est le domaine de définition -- implicite dans l'énoncé ci-dessus -- 
+de la $j$-ème fonction partielle de $f$ associée au point $x$ ?
+Montrer qu'il s'agit bien d'un ouvert de $\R$.
+
+### Matrice jacobienne {.definition .one #matrice-jacobienne}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$, 
-c'est-à-dire telles que
-$f(x) = (f_1(x), \dots, f_m(x)).$
-Si toutes les dérivées partielles des fonctions $f_i$ existent en $x$,
-on définit la *matrice jacobienne de $f$ en $x$*, notée $f'(x)$, comme
-la matrice de $\R^{m \times n}$ telle que
+$x$ un point de $U$. 
+Si toutes les dérivées partielles de toutes les composantes $f_i$ de $f$ 
+existent en $x$, on définit la *matrice jacobienne de $f$ en $x$*, 
+notée $J_f(x)$, comme la matrice de $\R^{m \times n}$ telle que
 $$
 [J_f(x)]_{ij} = \partial_{j} f_i(x),
 $$
@@ -462,11 +466,22 @@ J_f(x) =
 \right]
 $$
 
-### TODO
+### {.remark}
+On peut également utiliser les dérivées partielles de la fonction vectorielle
+$f$ plutôt que ses composantes $f_i$, auquel cas on définit la matrice jacobienne
+de $f$ comme une concaténation de vecteurs colonnes :
+$$
+J_f(x) =
+\left[
+\begin{array}{cccc}
+\vert & \vert & \cdots & \vert \\
+\partial_1 f (x) & \partial_2 f (x) & \cdots & \partial_n f (x) \\
+\vert & \vert & \cdots & \vert \\
+\end{array}
+\right]
+$$
 
-$J_f(x)$ en fonction des vecteurs $\partial_i f(x)$ (exo).
-
-### Gradient {.definition .one}
+### Gradient {.definition .one #gradient}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
 $x$ un point de $U$. Si toutes les dérivées partielles de $f$ existent en $x$,
 on appelle *gradient de $f$ en $x$* et l'on note $\nabla f(x)$ le vecteur
@@ -486,9 +501,12 @@ $$
 
 ### TODO. Calcul élémentaires mat jac & gradient.
 
-### TODO 
+### TODO. grad et produit scalaire.
 
-mat jacobienne à partir des gradients de $f_i$
+
+### Matrice jacobienne et gradient {.exercise #matjac .question}
+Donner une expression de la matrice jacobienne de $f$ en $x$
+en fonction de gradients des fonctions scalaires $f_i$ en $x$.
 
 <!--
 ### Petit o de Landau {.definition .three}
@@ -513,7 +531,7 @@ $$
 -->
 
 ### {.remark}
-En l'absence d'information supplémentaire, l'existence de la matrice jacobienne
+Seule, l'existence de la matrice jacobienne
 en $x$ offre très peu de garanties de régularité sur $f$ en $x$. 
 Il est ainsi possible que la fonction $f$ ne soit pas même pas continue en $x$. 
 (On rappelle que pour les fonctions d'une variable, l'existence de
@@ -539,9 +557,7 @@ $$
 est définie et continue en tout point de $U$.
 
 ### Continue différentiabilité -- définitions équivalentes {.post .two .remark}
-Cette définition de la continue différentiabilité est probablement la plus 
-élémentaire. 
-Mais de façon équivalente, la fonction $f$ est continûment différentiable si 
+Alternativement, la fonction $f$ est continûment différentiable si 
 (et seulement si) les dérivées partielles
 $x \in U \mapsto \partial_j f(x) \in \R^m$
 sont définies et continues pour tout $i \in \{1, \dots, m\}$
@@ -1910,15 +1926,15 @@ Solutions
 Exercices essentiels
 --------------------------------------------------------------------------------
 
-### Dérivée sur un intervalle fermé {.answer #answer-dif}
+### Dérivée et prolongement {.answer #answer-exo-dep}
 
-Si une fonction $g$ dérivable sur $\left]a-\varepsilon, b+\varepsilon \right[$
-étend la fonction $f$ définie sur $[a, b]$,
+Si une fonction $g$ dérivable sur un ouvert $U$ de $\R$ contenant $[a, b]$
+prolonge la fonction $f$ définie sur $[a, b]$,
 il est clair que $f$ est dérivable en tout point de $[a, b]$ et que
 $g'|_{[a, b]} = f'$.
 
 Réciproquement, si $f$ est dérivable sur $[a, b]$ (à droite en $a$ et à gauche
-en $b$), alors la fonction $g: \left]a-1, b+1 \right[$ définie par 
+en $b$), alors la fonction $g: \left]-\infty, +\infty \right[ \to \R^m$ définie par 
 $$
 g(x) = \left|
 \begin{array}{rl}
@@ -1928,8 +1944,36 @@ f(b) + f'(b) \times (x-b) & \mbox{si } x > b
 \end{array}
 \right.
 $$
-étend $f$ et est dérivable par construction.
+prolonge la fonction $f$ et est dérivable par construction.
 
+
+### Domaine de définition des fonctions partielles {.answer #answer-ddfp}
+La valeur de 
+$f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)$
+est définie si et seulement si l'argument $(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)$
+appartient à $U$. Le domaine de définition de la fonction partielle
+$y_j \mapsto f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)$
+est donc l'image réciproque de $U$ par la fonction
+$$
+y_j \in \R \mapsto (x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n) \in \R^n.
+$$
+Cette fonction étant continue (il s'agit d'une fonction affine) 
+et $U$ ouvert par hypothèse, cet ensemble est bien ouvert.
+
+### Matrice jacobienne et gradient {.answer #answer-matjac}
+D'après la définition de [la matrice jacobienne](#matrice-jacobienne) 
+et [du gradient](#gradient), on a 
+$$
+J_f(x) =
+\left[
+\begin{array}{ccc}
+\text{---} & \nabla f_1(x)^{\top} & \text{---} \\
+\text{---} & \nabla f_2(x)^{\top} & \text{---} \\
+\vdots & \vdots & \vdots \\
+\text{---} & \nabla f_m(x)^{\top} & \text{---} \\
+\end{array}
+\right].
+$$
 
 ### Fonction discontinue {.answer #answer-discont}
 La fonction $f: \R^2 \to \R$ définie par :
@@ -1953,6 +1997,8 @@ $$
 sont constantes et égales à $0$. Les dérivées partielles $\partial_1 f(0,0)$
 et $\partial_2 f(0,0)$ existent donc et sont nulles. Le gradient de $f$ en
 $(0,0)$ est donc définie (et nul).
+
+
 
 ### Fonctions affines {.answer #answer-fa}
 Comme $f(x) = A \cdot x + b$, la $i$-ème composante de $f$ satisfait
