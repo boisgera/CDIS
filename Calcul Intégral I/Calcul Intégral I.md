@@ -6,27 +6,20 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
+\newcommand{\Rint}{\mbox{(R)}\!\!\int}
+\newcommand{\HKint}{\mbox{(HK)}\!\!\int}
+\newcommand{\Lint}{\mbox{(L)}\!\!\int}
 
 Somme et intégrale de Riemann
 ================================================================================
 
-### TODO
-Reconsidérer nécessité définition générale (intervalle de $\R$ ou 
-de $[-\infty, +\infty]$ suffisent) ; voir plus loin ce qu'on utilise
-sur la droite réelle achevée. Mais on n'a vraisemblablement pas envie
-d'en parler trop tôt. Bon ; virer la définition abstraite, se limiter à
-$\R$.
-
-### Intervalle {.definition}
-On appelle *intervalle* d'un ensemble ordonné $E$ tout sous-ensemble $I$ de $E$ 
+### Intervalle de $\R$ {.definition .zero}
+On appelle *intervalle* de $\R$ tout sous-ensemble $I$ de $\R$ 
 tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$
-et si $z$ est un point intermédiaire (tel que $x \leq z \leq y$),
+et si $z$ est un point intermédiaire -- tel que $x \leq z \leq y$ --
 alors $z$ appartient également à $I$.
 
-### TODO
-Dessins intervalles, avec crochets aux bords.
-
-### Intervalles de $\R$ {.remark .post}
+### {.remark .post}
 Les intervalles de $\R$ peuvent être bornés ou non-bornés,
 ouverts, fermés, ouverts et fermés ou ni l'un ni l'autre.
 Les intervalles de la forme $\left]-\infty, +\infty\right[$ 
@@ -38,9 +31,9 @@ sont ouverts.
 Les intervalles de la forme $\left]-\infty, +\infty\right[$,
 $\left]-\infty, b\right]$, $\left[a,+\infty\right[$ 
 et $\left[a,b \right]$ sont fermés.
-Les intervalles compacts (à la fois fermés et bornés) sont de la forme $[a, b]$.
+Les intervalles de la forme $[a, b]$ sont à la fois fermés et bornés (compacts).
 
-### Longueur d'un intervalle {.definition}
+### Longueur d'un intervalle {.definition .one}
 La *longueur* $\ell(I)$ d'un intervalle $I$ 
 de $\R$ est le nombre réel étendu positif (appartenant à $[0, +\infty]$)
 défini pour tout intervalle borné
@@ -55,8 +48,7 @@ $$
 \ell(I) = +\infty.
 $$
 
-
-### Subdivision pointée {.definition}
+### Subdivision pointée {.definition .two #sp}
 Une *subdivision* de l'intervalle fermé $[a,b]$
 est une collection finie
 $$
@@ -70,10 +62,10 @@ et *recouvrant $I$*
 Une *subdivision pointée* $\mathcal{D}$ de l'intervalle fermé $I = [a, b]$ 
 est une collection finie 
 $$
-\mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
+\mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq m-1\}
 $$
 où les $I_i$ forment une subdivision de $I$ et 
-$t_i \in I_i$ pour tout $i \in \{0, \dots, n-1\}.$
+$t_i \in I_i$ pour tout $i \in \{0, \dots, m-1\}.$
 
 ### TODO
 Redéfinition "sans chevauchement" d'un manière plus compatible avec ce qui 
@@ -83,23 +75,31 @@ En tout cas (brève) exploration de ce que ça veut dire au niveau topologique
 être liée à la théorie de la mesure : plus tard, ajouter (en exo) 
 une caractérisation de "sans chevauchement" comme d'intersection négligeable.
 
-### TODO
-Représentation "concrête" des subdivisions pointées ; 
-évoquer "mise dans l'ordre des intervalles", intervalle réduit à un
-singleton, etc.
+### Forme canonique {.remark  #rcsp}
+En ordonnant les intervalles $I_i$ d'une subdivision pointée 
+$$
+\mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq m-1\}
+$$
+"de la gauche vers la droite" et en notant $I_i = [x_i, x_{i+1}]$, 
+on peut caractériser $\mathcal{D}$ par des réels 
+$x_0, x_1, \dots, x_m, t_0, \dots, t_{m-1}$ vérifiant
+$$
+a = x_0 \leq t_0 \leq x_1 \leq t_1 \dots \leq t_{m-1} \leq x_{m} = b. 
+$$
 
-### Somme de Riemann {.definition}
+### Somme de Riemann {.definition .two}
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
 S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I).
 $$
+soit avec une subdivision sous forme canonique
+$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; \; 0 \leq i \leq m-1\}$,
+$$
+S(f, \mathcal{D}) = \sum_{i=0}^{m-1} f(t_i) (x_{i+1} - x_i).
+$$
 
-### TODO
-Exo ou pour chaque subdiv, on en trouve une autre avec la même somme
-de Riemann pour toute fonction, mais $t_i$ vaut $x_i$ ou $x_{i+1}$.
-
-### Intégrale de Riemann {.definition}
+### Intégrale de Riemann {.definition .two}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 au sens de Riemann* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe un réel $\delta>0$ tel 
@@ -108,15 +108,54 @@ vérifiant pour $(t, J) \in \mathcal{D}$,
 $\ell(J) < \delta$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique ; 
-il est appelé *intégrale (de Riemann) de $f$ sur $[a, b]$* et noté
+il est appelé *intégrale (de Riemann) de $f$ sur $[a, b]$* :
 $$
-\int_a^b f(t) \, dt
-\, \mbox{ ou } \,
-\int_{[a, b]} f(t) \, dt
+\Rint_a^b f(t) \, dt := A.
 $$
 
-### TODO
-Intégrabilité/intégrale fonction constante, affine.
+
+### Fonction affine {.example}
+La fonction affine $f: x \in [a, b] \mapsto \alpha x + \beta$ est intégrable
+au sens de Riemann pour tout intervalle compact $[a, b]$ de $\R$ et toute valeur des réels
+$\alpha$ et $\beta$. Son intégrale de Riemann vaut
+$$
+\Rint_a^b (\alpha t +\beta) \, dt = \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a).
+$$
+En effet, si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; \; 0 \leq i \leq m-1\}$,
+est une subdivision pointée de $[a, b]$ sous forme canonique, alors on a
+$$
+A := \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a)
+= \sum_{i=0}^{m-1} \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) + \beta (x_{i+1}-x_i).
+$$
+Nous en déduisons
+\begin{align*}
+\left|S(f, \mathcal{D}) -  A\right|
+&=  \left|\sum_{i=0}^{m-1} (\alpha t_i + \beta)(x_{i+1} - x_i) -  \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) - \beta (x_{i+1}-x_i) \right|
+\end{align*}
+et donc que
+$$
+\left|S(f, \mathcal{D}) -  A\right|
+\leq 
+\sum_{i=0}^{m-1}|\alpha| \left|t_i  -  \frac{x_{i} + x_{i+1}}{2} \right| (x_{i+1} - x_i).
+$$
+Dans les cas où $a = b$ ou $\alpha=0$, il est évident que $f$ est intégrable
+au sens de Riemann et d'intégrale $A$. Dans le cas contraire,
+si $\varepsilon > 0$, on peut poser
+$$
+\delta := \frac{2\varepsilon}{|\alpha|(b-a)} > 0.
+$$
+Si la subdivision $\mathcal{D}$ est telle que pour tout $i \in \{0, \dots, m-1\}$ 
+on ait $\ell([x_i, x_{i+1}]) = x_{i+1} - x_i < \delta$, alors 
+$$
+\left|t_i  -  \frac{x_{i} + x_{i+1}}{2} \right| < \frac{\delta}{2} 
+$$
+et par conséquent
+$$
+\left|S(f, \mathcal{D}) -  A\right|
+\leq 
+\sum_{i=0}^{m-1}|\alpha| \frac{\varepsilon}{|\alpha|(b-a)} (x_{i+1} - x_i)
+= \varepsilon.
+$$
 
 ### Quadrature {.example}
 Cette définition de l'intégrale permet de garantir l'exactitude asymptotique de 
@@ -154,7 +193,7 @@ $$
 Par conséquent,
 $$
 \frac{b-a}{m} \sum_{i=0}^{m-1} f\left(a + i\frac{b-a}{m}\right)
-\to \int_a^b f(t) \, dt
+\to \Rint_a^b f(t) \, dt
 \, \mbox{ quand } \, m \to +\infty.
 $$
 La définition de l'intégrale de Riemann ne se limite pas à une famille 
@@ -169,35 +208,109 @@ comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
 Exo méthode des trapèzes : dessin.
 
 
+
+
+
+### Ensemble négligeable  {.definition}
+Un ensemble $A$ de $\R$ est *négligeable* si pour tout
+$\varepsilon > 0$, il existe un recouvrement de $A$ par une famille
+dénombrable d'intervalles $I_i$ de $\R$ tels que
+$$
+\sum_i \ell(I_i) \leq  \varepsilon.
+$$
+
+### {.remark .post}
+Nous voyons que le procédé qui définit la notion d'ensemble négligeable
+consiste à surestimer la longueur de l'ensemble une première fois 
+en lui substituant une collection d'intervalles dont l'union est a
+priori plus grande, puis une seconde fois en calculant la
+somme des longueurs des intervalles, sans tenir compte des éventuels
+chevauchements. 
+Si à l'issue de cette double surestimation la longueur évaluée est encore 
+aussi petite que l'on veut, on peut légitimement considérer que l'ensemble 
+de départ est de longueur nulle[^me] 
+et que c'est donc ce que signifie "négligeable". 
+Nous verrons ultérieurement que cette intuition est valide.
+
+[^me]: techniquement, de mesure *extérieure* de longueur nulle.
+
+### TODO
+Simplifier l'exo en mettant en avant le coeur du problème (intervalle d'intérieur
+no vide pas négligeable). Ajout intro sur redéfinition de "sans chevauchement
+possible" en remarque, mais l'exo ne s'attaque qu'au coeur du problème.
+
+### Absence de chevauchement {.exercise .question .one #absence-chevauchement}
+On dit que deux ensembles $A$ et $B$ de $\R$ sont *sans chevauchement*
+si leur intersection est négligeable. Montrer que cette définition est
+cohérente avec celle que nous avons adopté pour le cas particulier des 
+intervalles fermés et bornés dans [la définition des subdivisions pointées](#sp).
+
+
+
+### Presque partout {.definition}
+Une propriété dépendant d'un réel $x$ est vraie *presque partout*
+si l'ensemble des points $x$ où elle est fausse est un ensemble
+négligeable.
+
+### TODO : exo court "presque partout"
+
+### TODO
+Reformuler ci-dessous comme remark ante (fini, etc.) + proposition + preuve.
+
+### Les ensembles dénombrables sont négligeables {.proposition #edn}
+Si le sous-ensemble $E$ de $\R$ est dénombrable, c'est-à-dire fini ou 
+en bijection avec $\N$, alors il est négligeable.
+
+### Démonstration {.proof}
+L'ensemble $E$ étant dénombrable, il existe une suite de réels $x_n$ tels
+que $E = \{x_n \, | \, n \in \N\}$.
+Alors, pour tout $\varepsilon > 0$, la collection d'intervalles ouverts
+$$
+\left\{
+\left]
+x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
+\right[
+\, \left| \vphantom{\frac{a}{b}} \, \right.
+i \in \N
+\right\}
+$$
+recouvre $E$. Par ailleurs
+$$
+\sum_{i=0}^{+\infty} \ell\left(\left]
+x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
+\right[\right)
+=
+\sum_{i=0}^{+\infty} \frac{\varepsilon}{2^{i+1}}
+=
+\varepsilon.
+$$
+
 ### {.remark .ante}
 L'intégrale de Riemann possède des limitations qui en font un outil mathématique
 difficile à exploiter. 
-En particulier la classe des fonctions qui peuvent être intégrées est trop 
+En particulier, la classe des fonctions qui peuvent être intégrées est trop 
 restrictive pour certaines applications car les fonctions "trop grandes" ou 
 "trop irrégulières" ne sont pas intégrables. 
-Les deux théorèmes qui suivent précisent cette situation.
 
-
-### TODO
-Bof, intégrer cette partie de la démo dans la preuve (partielle) plus bas
-et faire l'économie de ce "résultat" intermédiaire, pour un exposé plus
-simple et compact.
-
-### Seules les fonctions bornées sont intégrables {.lemma}
-Si $f:[a, b] \to \R$ est intégrable au sens de Riemann, alors $f$ est bornée. 
+### Critère d'intégrabilité de Lebesgue {.theorem #CIL}
+La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
+si et seulement si $f$ est bornée et continue presque partout.
 
 ### Démonstration {.proof}
+Nous nous contentons de démontrer ici la partie la plus facile du résultat,
+à savoir que seules les fonctions bornées sont (potentiellement) 
+intégrables. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
 
 Soit $\delta > 0$ tel que pour toute subdivision pointée $\mathcal{D}$ de 
 $[a, b]$ vérifiant $\ell(J) < \delta$ pour tout $(t, J) \in \mathcal{D}$, 
 on ait
 $$\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq 1.$$
-Soit $\mathcal{D} = \{(t_i, [a_i, b_i])\}_{i=0}^{m-1}$ une telle subdivision ;
+Soit $\mathcal{D} = \{(t_i, [x_i, x_i])\}_{i=0}^{m-1}$ une telle subdivision ;
 il est toujours possible de supposer en outre que $\mathcal{D}$ ne contient 
 aucun intervalle de longueur nulle (enlever de tels intervalles à $\mathcal{D}$
 génère une nouvelle subdivision dont la somme de Riemann est identique).
 
-Soit $J_i = [a_i, b_i]$ un intervalle de $\mathcal{D}$ ; 
+Soit $J_i = [x_i, x_{i+1}]$ un intervalle de $\mathcal{D}$ ; 
 si l'on définit $\mathcal{D}'$ à partir de $\mathcal{D}$ en remplaçant 
 $t_i$ par un $t$ de $J_i$ quelconque, on obtient
 $$
@@ -222,64 +335,9 @@ $$
 $$
 la fonction $f$ est donc bornée.
 
-### Ensemble négligeable  {.definition}
-Un ensemble $A$ de $\R$ est *négligeable* si pour tout
-$\varepsilon > 0$, il existe un recouvrement de $A$ par une famille
-dénombrable d'intervalles $I_i$ de $\R$ tels que
-$$
-\sum_i \ell(I_i) \leq  \varepsilon.
-$$
 
-### {.remark .post}
-Nous voyons que le procédé qui définit la notion d'ensemble négligeable
-consiste à surestimer la taille de l'ensemble en lui substituant une
-collection d'intervalles dont l'union est au moins aussi grande,
-puis à surestimer la longueur de l'ensemble résultant en calculant la
-somme des longueurs des intervalles, sans tenir compte des éventuels
-chevauchements. 
-Si à l'issue de cette double surestimation la longueur évaluée est encore 
-aussi petite que l'on veut, on peut légitimement considérer que l'ensemble 
-de départ est de longueur nulle[^me] 
-et que c'est donc ce que signifie "négligeable". 
-Nous verrons ultérieurement que cette intuition est valide.
 
-[^me]: plus exactement de mesure *extérieure* (de longueur) nulle.
 
-### Presque partout {.definition}
-Une propriété dépendant d'un réel $x$ est vraie *presque partout*
-si l'ensemble des points $x$ où elle est fausse est un ensemble
-négligeable.
-
-### TODO
-Reformuler ci-dessous comme remark ante (fini, etc.) + proposition + preuve.
-
-### Les ensembles dénombrables sont négligeables {.example #edn}
-Par exemple, les ensembles finis sont négligeables, $\Q$ est
-négligeable, etc. En effet, si $A = \{x_n \, | \, n \in \N\}$,
-alors pour tout $\varepsilon > 0$, la collection d'intervalle ouverts
-$$
-\left\{
-\left]
-x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
-\right[
-\, \left| \vphantom{\frac{a}{b}} \, \right.
-i \in \N
-\right\}
-$$
-recouvre $A$ et par ailleurs
-$$
-\sum_{i=0}^{+\infty} \ell\left(\left]
-x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
-\right[\right)
-=
-\sum_{i=0}^{+\infty} \frac{\varepsilon}{2^{i+1}}
-=
-\varepsilon.
-$$
-
-### Critère d'intégrabilité de Lebesgue {.theorem}
-La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
-si et seulement si $f$ est bornée et continue presque partout.
 
 En particulier,
 
@@ -289,14 +347,6 @@ elle est intégrable au sens de Riemann.
 
 ### TODO
 Démonstration.
-
-### TODO
-Adapter preuve.
-
-### Démonstration {.proof}
-[Le lemme ci-dessus][Seules les fonctions bornées sont intégrables] montre
-que le caractère borné est nécessaire pour l'intégrabilité au sens de
-Riemann. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
 
 
 Intégrales de Riemann généralisées
@@ -353,24 +403,33 @@ mais contrairement à cette dernière,
 elle permet de contrôler différemment cette finesse 
 en fonction de la zone de l'intervalle d'intégration considérée.
 
-### Intégrale de Henstock-Kurzweil {.definition #HK}
+### Intégrale de Henstock-Kurzweil {.definition #HK .four}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
-au sens de Henstock-Kurzweil[^why-HK]* s'il existe un réel $A$ tel
+au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$, 
 il existe une jauge $\gamma$ sur $[a, b]$ telle que, 
 pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$, 
 on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
-Le réel $A$ quand il existe est unique; il est appelé
-*intégrale de $f$ sur $[a, b]$* et noté
+Le réel $A$ quand il existe est unique ; il est appelé
+*intégrale de Henstock-Kurzweil de $f$ sur $[a, b]$* : 
 $$
-\int_a^b f(t) \, dt
-\, \mbox{ ou } \,
-\int_{[a, b]} f(t) \, dt
+\HKint_a^b f(t) \, dt := A.
+$$
+
+### Intégrale de Lebesgue {.definition #Lebesgue .two}
+Une fonction $f:[a, b] \to \R$ est dite *intégrable (au sens de Lebesgue)* 
+si les fonctions $f$ et $|f|$ sont intégrables au sens de Henstock-Kurzweil. 
+*L'intégrale (de Lebesgue) de $f$ sur $[a, b]$*
+coïncide alors avec l'intégrale de Henstock-Kurzweil :
+$$
+\int_a^b f(t) \, dt := \Lint_a^b f(t) \, dt
+= \HKint_a^b f(t) \, dt.
 $$
 
 ### TODO
-Retarder la seconde notation intégrale ?
+Intégrale de Riemann, Henstock-Kurzweil ou Lebesgue ? Quelle intégrale
+utiliser ?
 
 ### TODO
 définition "intégrale de Lebesgue" ou simplement "intégrable". Expliquer que
@@ -391,7 +450,8 @@ représentés par des croix. La comparaison avec le graphe de la
 jauge $\gamma$ montre que cette subdivision pointée 
 lui est subordonnée.](images/gauge-plot-subdivision.py)
 
-[^why-HK]: On trouvera également dans la littérature cette intégrale désignée
+### {.remark}
+On trouvera également dans la littérature cette intégrale désignée
 par le terme d'*intégrale de Riemann généralisée* ou 
 d'*intégrale de jauge* (mais ces termes sont génériques ; en particulier 
 il existe d'autres intégrales dont la définition repose sur des sommes
@@ -417,12 +477,12 @@ $$
 \int_{a}^b f(t) \, dt := - \int_b^a f(t) \, dt.
 $$
 
-### TODO
-Adapter à Lebesgue uniquement le résultat ci-dessous
-
-### Intégrale de Riemann et de Henstock-Kurzweil {.theorem #RHK}
-Toute fonction $f:[a,b] \mapsto \R$ intégrable au sens de Riemann
-est intégrable au sens de Henstock-Kurzweil et les deux intégrales coïncident.
+### Intégrale de Riemann et de Lebesgue {.theorem #RL}
+Toute fonction $f:[a,b] \to \R$ intégrable au sens de Riemann
+est intégrable (au sens de Lebesgue) et les deux intégrales coïncident.
+$$
+\int_a^b f(t) \, dt = \Rint_a^b f(t) \, dt.
+$$
 
 ### Démonstration {.proof}
 Soit $f:[a,b] \to \R$ une fonction intégrable au sens de Riemann,
@@ -440,6 +500,15 @@ par conséquent, $\ell(J) < \delta$ et donc
 $|S(f,\mathcal{D}) - A| \leq \varepsilon$. 
 La fonction $f$ est donc intégrable au sens de Henstock-Kurzweil et 
 l'intégrale associée est égale à son intégrale de Riemann.
+
+Par ailleurs, par le [critère d'intégrabilité de Lebesgue](#CIL), 
+comme $f$ est intégrable au sens de Riemann, elle est bornée et 
+continue presque partout. Sa valeur absolue $|f|$ est donc également bornée et 
+continue presque partout et donc intégrable au sens de Riemann par le même
+critère. La fonction $f$ est donc intégrable au sens de Lebesgue et
+$$
+\int f(t) \, dt = \HKint f(t) \, dt = \Rint f(t) \, dt.
+$$
 
 
 ### Théorème fondamental du calcul {.theorem #TFCL}
@@ -1829,7 +1898,27 @@ que $|f|$ le soit (on dit que $f$ est conditionnellement intégrable).
 Solutions
 ================================================================================
 
-## Intervalle {.answer #answer-int}
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Absence de chevauchement {.answer #answer-absence-chevauchement}
+Comme l'intersection de deux intervalles fermés et bornés de $\R$ est 
+un intervalle fermé et borné de $\R$, la question posée revient à montrer 
+que les seuls intervalles fermés et bornés de $\R$ qui sont négligeables sont 
+l'ensemble vide et les singletons.
+
+L'ensemble vide est recouvert par la collection vide (ne comportant aucun
+intervalle) ; la somme des longueurs des intervalles de la collection est 
+donc nulle. Le singleton $\{a\}$ 
+est recouvert par la collection comportant l'unique intervalle
+$\{[a,a]\}$ et dans ce cas aussi la somme des longueurs des intervalles est 
+nulle. Ces ensembles sont donc négligeables.
+
+Réciproquement, nous devons montrer qu'aucun intervalle de la forme $[a, b]$
+avec $a < b$ n'est négligeable.
+
+Intervalle {.answer #answer-int}
+--------------------------------------------------------------------------------
 
 Montrons tout d'abord que la condition est nécessaire. 
 Supposons que $x$ et $y$ appartiennent à $I$ et que $x$ 
