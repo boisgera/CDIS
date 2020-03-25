@@ -244,13 +244,14 @@ Introduction
 Objectifs d'apprentissage
 --------------------------------------------------------------------------------
 
-### Rappel dérivées ?
+#### Rappel dérivées ?
 
 TODO
 
-### Matrice jacobienne et différentielle
+#### Matrice jacobienne et différentielle
 
-La notion de dérivée n'est applicable que pour les fonctions d'une variable.
+La notion de dérivée n'est applicable que pour les fonctions d'une variable,
+scalaires ou vectorielles.
 L'objet généralisant la dérivée dans le cas multivariable, défini au moyen
 des dérivées partielles, est la matrice jacobienne ; pour les fonctions
 scalaires, on préférera souvent utiliser le gradient que la matrice
@@ -269,18 +270,20 @@ dépende continûment du point de référence ; c'est la continue différentiabi
 
   - savoir caractériser les fonctions continûment différentiables.
   
-L'essentiel du calcul différentiel peu en fait être exploité dès que 
+L'essentiel du calcul différentiel peut en fait être exploité dès que 
 l'on dispose d'un développement limité au premier ordre ; 
 on parle alors de différentiabilité. 
 
-  - comprendre en quoi la différentiabilité généralise la dérivabilité,
+  - savoir que différentiable signifie existence d'un tel développement limité,
 
   - savoir caractériser et exploiter un développement limité au premier ordre, 
-  
+
+  - savoir que différentiabilité équivaut à dérivabilité dans le cas monovariable,
+
   - savoir exploiter que continûment différentiable implique différentiable.
 
 
-### Calcul différentiel :
+#### Calcul différentiel
 
   - différentielle à partir des dérivées partielles
 
@@ -292,7 +295,7 @@ on parle alors de différentiabilité.
 
   - différentielles d'expression et de variables.
 
-### Variation des fonctions :
+#### Variation des fonctions
 
 TODO : savoir faire les preuves dans les cas simple continûment diff
 (th fondam du calcul et inég acc finis ?)
