@@ -262,25 +262,31 @@ jacobienne.
 Toutefois, la seule existence de la matrice jacobienne est insuffisante 
 pour exploiter la plupart des résultats du calcul différentiel. Pour cette raison, on
 renforce souvent les hypothèses en demandant que cette matrice existe et 
-dépende continûment du point de référence ; c'est la continue différentiabilité.
+dépende continûment du point de référence ; c'est la "continue différentiabilité".
+Avec la "continue différentiabilité", et sans savoir ce que signifie le terme, 
+on peut alors néanmoins exploiter tous les résultats qui nécessitent la simple 
+"différentiabilité".
 
-  - savoir que l'existence de la matrice jacobienne est en général insuffisante,
+  - savoir que l'existence de la matrice jacobienne est souvent insuffisante,
 
   - savoir qu'on peut alors avoir recours à la continue différentiabilité,
 
-  - savoir caractériser les fonctions continûment différentiables.
-  
-L'essentiel du calcul différentiel peut en fait être exploité dès que 
-l'on dispose d'un développement limité au premier ordre ; 
-on parle alors de différentiabilité. 
+  - savoir caractériser les fonctions continûment différentiables,
 
-  - savoir que différentiable signifie existence d'un tel développement limité,
+  - savoir exploiter que continûment différentiable implique différentiable.
 
-  - savoir caractériser et exploiter un développement limité au premier ordre, 
+La différentiabilité n'est autre que l'existence d'un développement limité
+au premier ordre. C'est la généralisation de la notion de dérivabilité au
+cas multivariable.
+
+  - savoir que différentiabilité signifie existence d'un tel développement limité,
 
   - savoir que différentiabilité équivaut à dérivabilité dans le cas monovariable,
 
-  - savoir exploiter que continûment différentiable implique différentiable.
+  - savoir caractériser et exploiter un développement limité au premier ordre, 
+
+  - savoir ce qu'est la différentielle et son lien avec la matrice jacobienne.
+
 
 
 #### Calcul différentiel
