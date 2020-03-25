@@ -260,10 +260,10 @@ jacobienne.
   - savoir calculer dérivées partielles, matrices jacobiennes et gradients.
 
 Toutefois, la seule existence de la matrice jacobienne est insuffisante 
-pour exploiter la plupart des résultats du calcul différentiel. Pour cette raison, on
-renforce souvent les hypothèses en demandant que cette matrice existe et 
-dépende continûment du point de référence ; c'est la "continue différentiabilité".
-Avec la "continue différentiabilité", et sans savoir ce que signifie le terme, 
+pour exploiter la plupart des résultats du calcul différentiel. 
+Pour cette raison, on exige souvent que cette matrice existe et 
+dépende continûment de son argument ; c'est la "continue différentiabilité".
+Avec la continue différentiabilité, même sans savoir ce que signifie le terme, 
 on peut alors néanmoins exploiter tous les résultats qui nécessitent la simple 
 "différentiabilité".
 
