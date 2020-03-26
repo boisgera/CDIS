@@ -33,7 +33,7 @@ $\left]-\infty, b\right]$, $\left[a,+\infty\right[$
 et $\left[a,b \right]$ sont fermés.
 Les intervalles de la forme $[a, b]$ sont à la fois fermés et bornés (compacts).
 
-### Longueur d'un intervalle {.definition .one}
+### Longueur d'un intervalle {.definition .zero}
 La *longueur* $\ell(I)$ d'un intervalle $I$ 
 de $\R$ est le nombre réel étendu positif (appartenant à $[0, +\infty]$)
 défini pour tout intervalle borné
@@ -403,7 +403,7 @@ mais contrairement à cette dernière,
 elle permet de contrôler différemment cette finesse 
 en fonction de la zone de l'intervalle d'intégration considérée.
 
-### Intégrale de Henstock-Kurzweil {.definition #HK .four}
+### Intégrale de Henstock-Kurzweil {.definition #HK .three}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$, 
@@ -680,6 +680,10 @@ $$
 
 Propriétés de l'intégrale
 ================================================================================
+
+### TODO
+Nécessite d'"emprunter" le critère d'intégrabilité dominé du chapitre suivant.
+Ainsi soit-il ... Même chose pour l'IPP ? Mmm indirectement seulement.
 
 ### Linéarité {.theorem}
 Si $f: [a, b] \to \mathbb{R}$ et $g: [a, b] \to \mathbb{R}$ sont intégrables
