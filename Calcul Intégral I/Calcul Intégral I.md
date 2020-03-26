@@ -305,7 +305,7 @@ Soit $\delta > 0$ tel que pour toute subdivision pointée $\mathcal{D}$ de
 $[a, b]$ vérifiant $\ell(J) < \delta$ pour tout $(t, J) \in \mathcal{D}$, 
 on ait
 $$\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq 1.$$
-Soit $\mathcal{D} = \{(t_i, [x_i, x_i])\}_{i=0}^{m-1}$ une telle subdivision ;
+Soit $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\}_{i=0}^{m-1}$ une telle subdivision ;
 il est toujours possible de supposer en outre que $\mathcal{D}$ ne contient 
 aucun intervalle de longueur nulle (enlever de tels intervalles à $\mathcal{D}$
 génère une nouvelle subdivision dont la somme de Riemann est identique).
