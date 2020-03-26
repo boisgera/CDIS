@@ -681,11 +681,7 @@ $$
 Propriétés de l'intégrale
 ================================================================================
 
-### TODO
-Nécessite d'"emprunter" le critère d'intégrabilité dominé du chapitre suivant.
-Ainsi soit-il ... Même chose pour l'IPP ? Mmm indirectement seulement.
-
-### Linéarité {.theorem}
+### Linéarité {.theorem .one #linéarité}
 Si $f: [a, b] \to \mathbb{R}$ et $g: [a, b] \to \mathbb{R}$ sont intégrables
 et $\lambda \in \mathbb{R}$, alors $f+g$ et $\lambda f$ sont intégrables. 
 De plus,
@@ -703,8 +699,11 @@ $$
 $$
 
 ### Démonstration {.proof}
-La linéarité de l'intégrale résulte de la linéarité (additivité et homogénéité)
+La linéarité de l'intégrale de Henstock-Kurzweil résulte de la linéarité 
+(additivité et homogénéité)
 de la somme de Riemann $S(f, \mathcal{D})$ par rapport à $f$.
+La linéarité de l'intégrale de Lebesgue s'en déduit au moyen du critère
+d'intégrabilité dominée du chapitre "Calcul Intégral II" (à venir).
 
 En effet, si $\varepsilon > 0$, on peut trouver des jauges $\gamma_f$ et $\gamma_g$
 sur $[a, b]$ telles que pour toute subdivision pointée $\mathcal{D}$
@@ -718,14 +717,32 @@ Comme $S(f+g, \mathcal{D}) =  S(f, \mathcal{D}) + S(g, \mathcal{D})$,
 toute subdivision pointée $\mathcal{D}$ subordonnée à la jauge $\gamma$
 définie par $\gamma(t) = \gamma_f(t) \cap \gamma_g(t)$ vérifie
 $$
-\left|S(f+g, \mathcal{D}) - \int_a^b f(t)+g(t) \, dt \right| \leq \varepsilon.
+\left|S(f+g, \mathcal{D}) - \left(\int_a^b f(t) \, dt + \int_a^b g(t) \, dt \right)  \right| \leq \varepsilon.
 $$
-La fonction $f+g$ est donc intégrable, et son intégrale sur $[a, b]$ est 
-la somme des intégrales de $f$ et de $g$ sur $[a, b]$.
+La fonction $f+g$ est donc intégrable au sens de Henstock-Kurzweil 
+et son intégrale de Henstock-Kurzweil sur $[a, b]$ est 
+la somme des intégrales de Lebesgue de $f$ et de $g$ sur $[a, b]$ :
+$$
+\HKint_{a}^b f(t) + g(t) \, dt 
+= 
+\int_{a}^b f(t) \, dt +
+\int_{a}^b g(t) \, dt.
+$$
+De plus, les fonctions $|f|$ et $|g|$ sont positives et intégrables au sens de 
+Henstock-Kurzweil donc au sens de Lebesgue ; c'est donc aussi le cas de leur 
+somme $|f| + |g|$. Comme $|f+g| \leq |f| + |g|$,
+par le critère d'intégrabilité dominée,
+$f+g$ est intégrable au sens de Lebesgue et
+$$
+\int_{a}^b f(t) + g(t) \, dt 
+=
+\HKint_{a}^b f(t) + g(t) \, dt  = \int_{a}^b f(t) \, dt +
+\int_{a}^b g(t) \, dt.
+$$
 
 De façon similaire, $S(\lambda f, \mathcal{D}) = \lambda S(f, \mathcal{D})$.
-Dans le cas où $\lambda = 0$, il est clair que $\lambda f$ est intégrable, 
-d'intégrale nulle ;
+Dans le cas où $\lambda = 0$, il est clair que $\lambda f$ est intégrable
+et d'intégrale nulle ;
 dans le cas contraire, on peut trouver une jauge $\gamma$ sur $[a, b]$ telle
 que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$, 
 on ait :
@@ -743,9 +760,23 @@ $$
 \leq 
 \varepsilon.
 $$
-La fonction $\lambda f$ est donc intégrable sur $[a, b]$ et son intégrale
-est le produit de $\lambda$ et de l'intégrale de $f$ sur $[a, b]$.
+La fonction $\lambda f$ est donc intégrable au sens de Henstock-Kurzweil 
+sur $[a, b]$ et son intégrale est le produit de $\lambda$ et de l'intégrale 
+de $f$ sur $[a, b]$ :
+$$
+\HKint_a^b \lambda f(t) \, dt =
+\lambda \int_a^b f(t) \, dt.
+$$
+De plus, la fonction $|\lambda f|$ est dominée par la fonction $|\lambda||f|$ 
+qui est positive et intégrable au sens de Henstock-Kurzweil est donc intégrable.
+Par le critère d'intégrabilité dominée, elle est donc intégrable et
+$$
+\int_a^b \lambda f(t) \, dt =
+\HKint_a^b \lambda f(t) \, dt =
+\lambda \int_a^b f(t) \, dt.
+$$
 
+<!--
 ### Intégration par parties {.theorem}
 Soit $[a, b]$ un intervalle compact de $\R$ ;
 si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
@@ -769,10 +800,10 @@ $$
 = [fg]_a^b,
 $$
 ce qui est le résultat recherché.
+-->
 
-### Changement de variables {.theorem}
-Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$.
-On suppose que la fonction $g:[a, b] \to [c, d]$ est une bijection continue,
+### Changement de variables {.theorem .two}
+Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une bijection continue
 dont la dérivée $g'$ existe et ne s'annule pas sur $\left]a, b\right[$. 
 Alors la fonction $f$ est intégrable sur $[c, d]$ si et seulement si 
 $(f\circ g) g'$ est intégrable sur $[a, b]$ et dans ce cas, on a
@@ -780,7 +811,14 @@ $$
 \int_a^b f(g(t)) g'(t)\, dt = \int_{g(a)}^{g(b)} f(x) \, dx.
 $$
 
-### TODO
+### {.remark}
+On notera que le terme $f(g(t)) g'(t)$ n'est a priori pas défini en 
+$t=a$ et $t=b$. On pourra considérer que l'intégrande vaut $0$ en
+ces points, ou plus généralement une valeur quelconque : l'intégrabilité
+de la fonction ainsi que son intégrale ne dépendent pas de ce choix,
+car ils définissent des [fonctions qui sont égales presque partout](#fepp).
+
+
 Remarque terme $f(g(t)) g'(t)$ pas nécessairement défini en $a$ et $b$ mais
 sans impact. Pb : le "pourquoi" est donné plus tard. Pas trop grave : on
 peut dans un premier temps dire "c'est $0$" et renvoyer à plus tard pour
@@ -795,7 +833,7 @@ cas échéant (selon signe $g'$) et tenir compte des bornes. Pb, le concept
 d'intégral sur un ouvert n'est pas encore donné ...
 
 ### TODO
-Exo démo dans un cas particulier ?
+Exo démo dans un cas particulier en utilisant Riemann et/ou FTC ?
 
 ### Démonstration {.proof}
 Soit $h$ une primitive de $f$. La fonction $t \in [a, b] \mapsto h(g(t))$
@@ -813,13 +851,16 @@ $$
 les deux intégrales sont donc égales.
 
 
-### Additivité {.proposition #additivité}
+### Additivité {.theorem #additivité .one}
 Si la fonction $f$ est définie et intégrable sur les intervalles
 $[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
 et
 $$
 \int_a^b f(t) \, dt + \int_b^c f(t) \, dt = \int_a^c f(t) \, dt.
 $$
+
+### TODO
+Adapter au cadre absolument intégrable.
 
 ### Démonstration {.proof}
 Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
@@ -890,10 +931,13 @@ qui permet de prouver l'intégrabilité de l'intégrale sur un intervalle
 à partir de son intégrabilité sur des intervalles qui la compose --
 admet une réciproque :
 
-### Restriction {.theorem #restriction}
+### Restriction {.theorem #restriction .one}
 Si $f$ est intégrable sur l'intervalle $[a, b]$, 
 elle est intégrable sur tout intervalle $[c, d]$ 
 inclus dans $[a, b]$.
+
+### TODO
+Adapter au cadre absolument intégrable.
 
 ### Démonstration {.proof}
 Nous démontrons en détail le cas où $c = a$ ; le cas où $d=b$ se prouve de
@@ -930,8 +974,7 @@ $$
 Par le [critère d'intégrabilité de Cauchy](#CIC), la fonction $f$ est donc
 intégrable sur l'intervalle $[a, d]$.
 
-
-### Positivité {.proposition}
+### Positivité {.proposition .one}
 Si $f: [a, b] \to \mathbb{R}$ est intégrable et positive alors
 $$
 \int_a^b f(t) \, dt \geq 0.
@@ -958,7 +1001,7 @@ Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
 petit, on en déduit que l'intégrale est positive.
 
 
-### Fonctions égales presque partout {.proposition #fepp}
+### Fonctions égales presque partout {.proposition #fepp .two}
 Une fonction $f:[a, b] \to \R$ égale presque partout à une 
 fonction $g:[a, b] \to \R$ intégrable est elle-même intégrable
 et 
@@ -970,8 +1013,10 @@ $$
 Exo(s) évoquant le fait de faire la démo dans des cas particuliers
 (fini, dénombrable, $f$ borné, etc.)
 
-### Démonstration {.proof}
+### TODO
+Adapter au cadre absolument intégrable.
 
+### Démonstration {.proof}
 Par linéarité de l'intégrale, il suffit d'établir que si 
 $f:[a, b] \to \R$ est nulle presque partout (c'est-à-dire égale
 presque partout à la fonction $g:[a, b] \to \R$ identiquement
@@ -1059,7 +1104,7 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 Sous condition de positivité, 
 la proposition ["Fonction égales presque partout"](#fepp) admet une réciproque :
 
-### Fonctions égales presque partout {.proposition #fepp}
+### Fonctions égales presque partout {.proposition #fepp .two}
 Une fonction $f:[a, b] \to \R$, positive, intégrable et d'intégrale nulle 
 $$
 \mbox{pour tout $t\in[a, b]$, $f(t) \geq 0$} \; \mbox{ et } \; \int_a^b f(t) \, dt = 0
@@ -1071,10 +1116,11 @@ est nulle presque partout.
 Exo ; montrer que ça marche encore si $f$ positive pp ?
 
 ### TODO -- Démonstration {.proof}
+Exploiter restriction, positivité, additivité, puis la dérivabilité des
+intégrales indéterminées.
 
 
-
-### Continuité des intégrales indéterminées {.theorem}
+### Continuité des intégrales indéterminées {.theorem .one}
 Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
 l'application
 $$
@@ -1128,7 +1174,7 @@ $$
 $$
 
 
-### Dérivabilité des intégrales indéterminées {.theorem}
+### Dérivabilité des intégrales indéterminées {.theorem .two}
 Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
 l'application
 $$
@@ -1142,7 +1188,7 @@ $$
 ### Démonstration {.proof}
 Voir [@Swa01, pp. 135-136].
 
-Intégration sur des intervalles non-bornés
+Intégration sur des intervalles arbitraires
 ================================================================================
 
 ### TODO
@@ -1160,6 +1206,11 @@ Simplifier l'exemple de $x\mapsto 1/x^2$ pour se limiter à une vérif.
 Insister sur le fait que le cas non-borné ENGLOBE le cas borné et influence
 l'esprite et donc les notations $\int_A$ ou $\int$ tout court, par défaut
 c'est sur $\R$.
+
+### TODO
+Adapter au cas intervalle arbitraire de $[-\infty, +\infty]$, en commencant
+par évoquer le cas d'intervalle de $\R$ qui n'aurait pas un/les points de 
+leur frontière.
 
 ### 
 La théorie de l'intégration de Henstock-Kurzweil présentée dans les
