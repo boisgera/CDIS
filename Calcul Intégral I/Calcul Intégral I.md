@@ -1111,13 +1111,26 @@ $$
 $$
 est nulle presque partout.
 
-### TODO
+### Démonstration {.proof}
+La fonction $f$ étant intégrable, pour tout $x \in [a, b]$, [ses restrictions
+à $[a, x]$ et $[x, b]$ sont intégrables](#restriction). Comme il s'agit de 
+fonctions positives, 
+$$
+\int_a^x f(t) \, dt \geq 0 \; \mbox{ et } \; \int_x^b f(t) \, dt \geq 0.
+$$
+Comme [par additivité](#additivité)
+$$
+\int_a^x f(t) \, dt + \int_x^b f(t) \, dt = \int_a^b f(t) \, dt = 0,
+$$
+chacune de ces intégrales est nulle.
+La fonction
+$$
+x \in [a, b] \mapsto \int_a^x f(t) \, dt
+$$
+est donc identiquement nulle. Or, [sa dérivée existe et vaut $f$ presque partout](#dii) ;
+la fonction $f$ est donc nulle presque partout.
 
-Exo ; montrer que ça marche encore si $f$ positive pp ?
 
-### TODO -- Démonstration {.proof}
-Exploiter restriction, positivité, additivité, puis la dérivabilité des
-intégrales indéterminées.
 
 
 ### Continuité des intégrales indéterminées {.theorem .one}
@@ -1174,7 +1187,7 @@ $$
 $$
 
 
-### Dérivabilité des intégrales indéterminées {.theorem .two}
+### Dérivabilité des intégrales indéterminées {.theorem .two #dii}
 Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
 l'application
 $$
