@@ -813,16 +813,11 @@ $$
 
 ### {.remark}
 On notera que le terme $f(g(t)) g'(t)$ n'est a priori pas défini en 
-$t=a$ et $t=b$. On pourra considérer que l'intégrande vaut $0$ en
+$t=a$ et $t=b$ ; on pourra considérer que l'intégrande vaut $0$ en
 ces points, ou plus généralement une valeur quelconque : l'intégrabilité
 de la fonction ainsi que son intégrale ne dépendent pas de ce choix,
 car ils définissent des [fonctions qui sont égales presque partout](#fepp).
 
-
-Remarque terme $f(g(t)) g'(t)$ pas nécessairement défini en $a$ et $b$ mais
-sans impact. Pb : le "pourquoi" est donné plus tard. Pas trop grave : on
-peut dans un premier temps dire "c'est $0$" et renvoyer à plus tard pour
-les détails.
 
 ### Démonstration {.proof} 
 Le résultat est un corollaire du théorème de changement de variables dans 
@@ -975,7 +970,7 @@ Par le [critère d'intégrabilité de Cauchy](#CIC), la fonction $f$ est donc
 intégrable sur l'intervalle $[a, d]$.
 
 ### Positivité {.proposition .one}
-Si $f: [a, b] \to \mathbb{R}$ est intégrable et positive alors
+Si $f: [a, b] \to \mathbb{R}$ est positive et intégrable alors
 $$
 \int_a^b f(t) \, dt \geq 0.
 $$
