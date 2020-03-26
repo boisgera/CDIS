@@ -678,22 +678,8 @@ $$
 
 -->
 
-Propriétés élémentaires de l'intégrale
+Propriétés de l'intégrale
 ================================================================================
-
-### TODO
-Reconsidérer le jeu de pptés et adapter au seul cas de Lebesgue. 
-
-Qqpart on veut ajouter : continuité et dérivabilité intégrale indéterminée
-et positive et intégrale nulle donne fct nulle pp. Tout ça étant lié.
-Mais est-ce qu'on veut les énoncés dans le cadre $\R$ plutôt que $[a, b]$ ?
-Reconsidérer ce pb globalement : on a aussi envie de voir ces pptés dans
-$\R$ quand elles ont du sens ... (et plus tard dans $\R^n$). Est-ce qu'on
-va les lister deux ou trois fois, dans une forme avec variante ?
-
-Est-ce qu'on veut/préserver changement de variable ? Sans doute que oui ...
-
-Reconsidérer le terme "additivité" pour l'intégrale (ambigu) ?
 
 ### Linéarité {.theorem}
 Si $f: [a, b] \to \mathbb{R}$ et $g: [a, b] \to \mathbb{R}$ sont intégrables
@@ -756,32 +742,6 @@ $$
 La fonction $\lambda f$ est donc intégrable sur $[a, b]$ et son intégrale
 est le produit de $\lambda$ et de l'intégrale de $f$ sur $[a, b]$.
 
-### Positivité {.proposition}
-Si $f: [a, b] \to \mathbb{R}$ est intégrable et positive alors
-$$
-\int_a^b f(t) \, dt \geq 0.
-$$
-
-### Démonstration {.proof}
-Soit $\varepsilon > 0$ et $\gamma$ une jauge telle que toute
-subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$
-vérifie
-$$
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
-$$
-Quelle que soit la subdivision pointée $\mathcal{D}$ de $[a, b]$,
-la somme de Riemann associée 
-$$
-S(f, \mathcal{D})
-= \sum_{(t,J) \in \mathcal{D}} f(t) \ell(J)
-$$ 
-est positive, ce qui entraîne par l'inégalité triangulaire
-$$
-\int_a^b f(t) \, dt  \geq S(f, \mathcal{D}) - \varepsilon \geq -\varepsilon.
-$$
-Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
-petit, on en déduit que l'intégrale est positive.
-
 ### Intégration par parties {.theorem}
 Soit $[a, b]$ un intervalle compact de $\R$ ;
 si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
@@ -806,21 +766,32 @@ $$
 $$
 ce qui est le résultat recherché.
 
-<!--
-### TODO
-Mentionner résultat plus général, avec juste $f$ intégrable (sous hyp plus
-restrictives pour $g$ ?). Trouver ref ? Ou attendre chapitre multi-variable
-et y faire référence ?
--->
-
 ### Changement de variables {.theorem}
-Soit $[a, b]$ et $[c, d]$ deux intervalles compacts de $\R$ ;
-si la fonction $f:[c, d] \to \R$ admet une primitive et
-que la fonction $g:[a, b] \to [c, d]$ est dérivable, 
-alors la fonction $(f\circ g) g'$ est intégrable sur $[a, b]$ et
+Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$.
+On suppose que la fonction $g:[a, b] \to [c, d]$ est une bijection continue,
+dont la dérivée $g'$ existe et ne s'annule pas sur $\left]a, b\right[$. 
+Alors la fonction $f$ est intégrable sur $[c, d]$ si et seulement si 
+$(f\circ g) g'$ est intégrable sur $[a, b]$ et dans ce cas, on a
 $$
 \int_a^b f(g(t)) g'(t)\, dt = \int_{g(a)}^{g(b)} f(x) \, dx.
 $$
+
+### TODO
+Remarque terme $f(g(t)) g'(t)$ pas nécessairement défini en $a$ et $b$ mais
+sans impact. Pb : le "pourquoi" est donné plus tard. Pas trop grave : on
+peut dans un premier temps dire "c'est $0$" et renvoyer à plus tard pour
+les détails.
+
+### Démonstration {.proof} 
+Le résultat est un corollaire du théorème de changement de variables dans 
+$\R^n$ qui sera étudé dans le chapitre calcul intégral III.
+
+**TODO** Mise en forme pour pouvoir l'invoquer ? Renverser les bornes le
+cas échéant (selon signe $g'$) et tenir compte des bornes. Pb, le concept
+d'intégral sur un ouvert n'est pas encore donné ...
+
+### TODO
+Exo démo dans un cas particulier ?
 
 ### Démonstration {.proof}
 Soit $h$ une primitive de $f$. La fonction $t \in [a, b] \mapsto h(g(t))$
@@ -838,7 +809,7 @@ $$
 les deux intégrales sont donc égales.
 
 
-### Additivité {.proposition #addivité}
+### Additivité {.proposition #additivité}
 Si la fonction $f$ est définie et intégrable sur les intervalles
 $[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
 et
@@ -955,6 +926,34 @@ $$
 Par le [critère d'intégrabilité de Cauchy](#CIC), la fonction $f$ est donc
 intégrable sur l'intervalle $[a, d]$.
 
+
+### Positivité {.proposition}
+Si $f: [a, b] \to \mathbb{R}$ est intégrable et positive alors
+$$
+\int_a^b f(t) \, dt \geq 0.
+$$
+
+### Démonstration {.proof}
+Soit $\varepsilon > 0$ et $\gamma$ une jauge telle que toute
+subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$
+vérifie
+$$
+\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
+$$
+Quelle que soit la subdivision pointée $\mathcal{D}$ de $[a, b]$,
+la somme de Riemann associée 
+$$
+S(f, \mathcal{D})
+= \sum_{(t,J) \in \mathcal{D}} f(t) \ell(J)
+$$ 
+est positive, ce qui entraîne par l'inégalité triangulaire
+$$
+\int_a^b f(t) \, dt  \geq S(f, \mathcal{D}) - \varepsilon \geq -\varepsilon.
+$$
+Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
+petit, on en déduit que l'intégrale est positive.
+
+
 ### Fonctions égales presque partout {.proposition #fepp}
 Une fonction $f:[a, b] \to \R$ égale presque partout à une 
 fonction $g:[a, b] \to \R$ intégrable est elle-même intégrable
@@ -962,6 +961,10 @@ et
 $$
 \int_a^b f(t) \, dt = \int_a^b g(t) \, dt.
 $$
+
+### TODO
+Exo(s) évoquant le fait de faire la démo dans des cas particuliers
+(fini, dénombrable, $f$ borné, etc.)
 
 ### Démonstration {.proof}
 
@@ -1048,6 +1051,92 @@ $$
 $$
 La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 
+### {.remark}
+Sous condition de positivité, 
+la proposition ["Fonction égales presque partout"](#fepp) admet une réciproque :
+
+### Fonctions égales presque partout {.proposition #fepp}
+Une fonction $f:[a, b] \to \R$, positive, intégrable et d'intégrale nulle 
+$$
+\mbox{pour tout $t\in[a, b]$, $f(t) \geq 0$} \; \mbox{ et } \; \int_a^b f(t) \, dt = 0
+$$
+est nulle presque partout.
+
+### TODO
+
+Exo ; montrer que ça marche encore si $f$ positive pp ?
+
+### TODO -- Démonstration {.proof}
+
+
+
+### Continuité des intégrales indéterminées {.theorem}
+Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
+l'application
+$$
+g : x \in [a, b] \mapsto \int_c^x f(t) \, dt 
+$$
+est continue.
+
+### Démonstration {.proof}
+Montrons la continuité de l'intégrale à droite en $x$ quand $x < b$
+(la continuité à gauche peut être établie de façon similaire quand $x>a$). 
+Par [additivité de l'intégrale](#additivité), il suffit de montrer que la grandeur
+$$
+\int_x^{x+h} f(t) \, dt
+$$
+tend vers $0$ quand $h>0$ tend vers $0$. 
+Par [restriction](#restriction), la fonction $f$ est intégrable sur $[x, b]$ : 
+pour tout $\varepsilon > 0$, il existe une jauge
+$\gamma$ sur $[x, b]$ telle que pour toute subdivision pointée
+$\mathcal{D}$ de $[x, b]$ subordonnée à $\gamma$, 
+l'écart entre la somme de Riemann
+$S(f,\mathcal{D})$ et l'intégrale de $f$ entre $x$ et $b$ est au
+plus $\varepsilon/2$. 
+
+On peut remplacer $\gamma$ par une jauge $\nu$ telle que
+$\nu(x) \subset \gamma(x)$ 
+et $\nu(t) = \gamma(t) \cap \left]x,+\infty\right]$ sinon ; 
+cela garantit que pour tout subdivision pointée $\mathcal{D}$ 
+subordonnée à $\nu$, $\mathcal{D}$ est subordonnée à $\gamma$ et que si 
+$(t,J) \in \mathcal{D}$ et $x \in J$, alors $t=x$.
+
+[Le lemme de Henstock](#henstock-lemma), appliqué à toute subdivision partielle
+$\mathcal{D} = \{(x, [x, x+h])\}$ subordonnée à $\nu$, c'est-à-dire telle que
+$[x, x+h] \subset \nu(x)$, fournit
+$$
+\left| 
+f(x) h - \int_x^{x+h} f(t) \, dt
+\right| \leq \frac{\varepsilon}{2},
+$$ 
+dont on déduit par l'inégalité triangulaire que
+$$
+\left| \int_x^{x+h} f(t) \, dt \right|
+\leq
+\frac{\varepsilon}{2} + |f(x)|h.
+$$
+Il suffit donc de choisir $\nu(x)$ tel que $|f(x)| h \leq \varepsilon / 2$
+quand $[x, x+h] \subset \nu(x)$ pour s'assurer que
+$$
+\left| \int_x^{x+h} f(t) \, dt \right|
+\leq
+\varepsilon.
+$$
+
+
+### Dérivabilité des intégrales indéterminées {.theorem}
+Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
+l'application
+$$
+g: x \in [a, b] \mapsto \int_c^x f(t) \, dt 
+$$
+est dérivable presque partout et pour presque tout $x \in [a, b]$,
+$$
+g'(x) = f(x).
+$$
+
+### Démonstration {.proof}
+Voir [@Swa01, pp. 135-136].
 
 Intégration sur des intervalles non-bornés
 ================================================================================
@@ -1637,59 +1726,9 @@ S(f, \mathcal{D})
 $$
 Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
 
-### Continuité des intégrales indéterminées {.proposition}
-Pour toute fonction $f:\R \to \R$ intégrable 
-et pour tout nombre réel étendu $a$, l'application
-$$
-x \in \R \mapsto \int_a^x f(t) \, dt 
-$$
-est continue.
-
-### Démonstration {.proof}
-Montrons la continuité de l'intégrale à droite en $x$, la continuité à gauche
-s'établissant de façon similaire. 
-Par additivité de l'intégrale, il suffit de montrer que la grandeur
-$$
-\int_x^{x+h} f(t) \, dt
-$$
-tend vers $0$ quand $h>0$ tend vers $0$. Par restriction, la fonction $f$ est 
-intégrable sur $[x, +\infty]$ : 
-pour tout $\varepsilon > 0$, il existe une jauge
-$\gamma$ sur $[x, +\infty]$ telle que pour toute subdivision pointée
-$\mathcal{D}$ de $[x, +\infty]$ subordonnée à $\gamma$, 
-l'écart entre la somme de Riemann
-$S(f,\mathcal{D})$ et l'intégrale de $f$ entre $x$ et $+\infty$ est au
-plus $\varepsilon/2$. 
-
-On peut remplacer $\gamma$ par une jauge $\nu$ vérifiant
-$\nu(x) \subset \gamma(x)$ et $\nu(t) = \gamma(t) \cap \left]x,+\infty\right]$
-sinon ; cela garantit que pour tout subdivision pointée $\mathcal{D}$ 
-subordonnée à $\nu$, $\mathcal{D}$ est subordonnée à $\gamma$ et si 
-$(t,J) \in \mathcal{D}$ et $x \in J$, alors $t=x$.
-
-[Le lemme de Henstock](#henstock), appliqué à toute subdivision partielle
-$\mathcal{D} = \{(x, J)\}$ subordonnée à $\nu$, c'est-à-dire telle que
-$J := [x, x+h] \subset \nu(x)$, fournit
-$$
-\left| 
-f(x) h - \int_x^{x+h} f(t) \, dt
-\right| \leq \frac{\varepsilon}{2},
-$$ 
-dont on déduit par l'inégalité triangulaire que
-$$
-\left| \int_x^{x+h} f(t) \, dt \right|
-\leq
-\frac{\varepsilon}{2} + |f(x)|h.
-$$
-Il suffit donc de choisir $\nu(x)$ tel que $|f(x)| h \leq \varepsilon / 2$
-quand $[x, x+h] \subset \nu(x)$ pour assurer que
-$$
-\left| \int_x^{x+h} f(t) \, dt \right|
-\leq
-\varepsilon.
-$$
 
 
+### {.remark}
 [Le théorème de Hake](#hake) montre
 qu'il n'existe pas d'intégrale *impropre*, 
 qui ne serait pas définissable directement mais uniquement par
@@ -1735,6 +1774,8 @@ $$
 Par continuité, le membre de gauche de cette équation a une limite quand
 $c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$. 
 [Le théorème de Hake](#hake) permet alors de conclure.
+
+
 
 
 Exercices complémentaires
