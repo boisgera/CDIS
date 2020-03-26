@@ -678,7 +678,7 @@ $$
 
 -->
 
-Propriétés de l'intégrale
+Propriétés élementaires de l'intégrale
 ================================================================================
 
 ### Linéarité {.theorem .one #linéarité}
