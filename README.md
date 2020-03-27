@@ -56,7 +56,7 @@ Calcul Différentiel, Intégral et Stochastique
 
   - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr) (accès limité)
 
-Enquêtes 2019
+:chart_with_upwards_trend: Enquête 2019
 --------------------------------------------------------------------------------
 
 Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
