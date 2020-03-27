@@ -96,7 +96,7 @@ exécuter dans le terminal la commande
     $ conda env create -f environment.yml -p env
 
 Quand vous voudrez travaillez sur le projet, activez l'environnement par la
-commande:
+commande
 
     $ conda activate ./env
 
