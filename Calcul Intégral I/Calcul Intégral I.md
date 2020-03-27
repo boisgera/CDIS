@@ -113,22 +113,6 @@ $$
 \Rint_a^b f(t) \, dt := A.
 $$
 
-
-### Fonction affine {.exercise .question .three #fa}
-Montrer que toute fonction affine $x \mapsto \alpha x + \beta$ est 
-intégrable au sens de Riemann sur tout intervalle fermé borné $[a, b]$
-de $\R$ et que
-$$
-\Rint_a^b (\alpha t +\beta) \, dt = A := \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a).
-$$
-Indication : si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\}_0^{m-1}$ est une 
-subdivision pointée de $[a, b]$ sous forme canonique, 
-$A$ est la somme d'une série télescopique :
-$$
-A = \sum_{i=0}^{m-1} \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) + \beta (x_{i+1}-x_i).
-$$
-
-
 ### Quadrature {.example .one}
 Cette définition de l'intégrale permet de garantir l'exactitude asymptotique de 
 méthodes de quadrature 
@@ -176,7 +160,22 @@ comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
 à la définition de l'intégrale ; d'autres méthodes de quadratures pourront
 être utilisées avec le même résultat asymptotique.
 
-### Ensemble négligeable  {.definition}
+### Fonction affine {.exercise .question .two #fa}
+Montrer que toute fonction affine $x \mapsto \alpha x + \beta$ est 
+intégrable au sens de Riemann sur tout intervalle fermé borné $[a, b]$
+de $\R$ et que
+$$
+\Rint_a^b (\alpha t +\beta) \, dt = A := \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a).
+$$
+Indication : si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\}_0^{m-1}$ est une 
+subdivision pointée de $[a, b]$ sous forme canonique, 
+$A$ est la somme d'une série télescopique :
+$$
+A = \sum_{i=0}^{m-1} \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) + \beta (x_{i+1}-x_i).
+$$
+
+
+### Ensemble négligeable  {.definition .two}
 Un ensemble $A$ de $\R$ est *négligeable* si pour tout
 $\varepsilon > 0$, il existe un recouvrement de $A$ par une famille
 dénombrable d'intervalles $I_i$ de $\R$ tels que
@@ -212,7 +211,7 @@ intervalles fermés et bornés dans [la définition des subdivisions pointées](
 
 
 
-### Presque partout {.definition}
+### Presque partout {.definition .one}
 Une propriété dépendant d'un réel $x$ est vraie *presque partout*
 si l'ensemble des points $x$ où elle est fausse est un ensemble
 négligeable.
@@ -222,7 +221,7 @@ négligeable.
 ### TODO
 Reformuler ci-dessous comme remark ante (fini, etc.) + proposition + preuve.
 
-### Les ensembles dénombrables sont négligeables {.proposition #edn}
+### Les ensembles dénombrables sont négligeables {.proposition .one #edn}
 Si le sous-ensemble $E$ de $\R$ est dénombrable, c'est-à-dire fini ou 
 en bijection avec $\N$, alors il est négligeable.
 
@@ -257,7 +256,7 @@ En particulier, la classe des fonctions qui peuvent être intégrées est trop
 restrictive pour certaines applications car les fonctions "trop grandes" ou 
 "trop irrégulières" ne sont pas intégrables. 
 
-### Critère d'intégrabilité de Lebesgue {.theorem #CIL}
+### Critère d'intégrabilité de Lebesgue {.theorem .two #CIL}
 La fonction $f:[a, b] \to \R$ est intégrable au sens de Riemann 
 si et seulement si $f$ est bornée et continue presque partout.
 
@@ -305,7 +304,7 @@ la fonction $f$ est donc bornée.
 ### {.remark}
 En particulier,
 
-### Les fonctions continues par morceaux sont intégrables {.corollary}
+### Les fonctions continues par morceaux sont intégrables {.corollary .one}
 Si la fonction $f:[a, b] \to \R$ est continue par morceaux, 
 elle est intégrable au sens de Riemann.
 
@@ -316,18 +315,17 @@ Démonstration.
 Intégrales de Riemann généralisées
 ================================================================================
 
-### Jauge {.definition #jauge}
+### Jauge {.definition #jauge .three}
 Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction 
 qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
 contenant $t$. 
 
-### Subdivision pointée subordonnée à une jauge {.definition}
+### Subdivision pointée subordonnée à une jauge {.definition .two}
 Une subdivision pointée $\mathcal{D}$ de l'intervalle $[a, b]$ 
 est *subordonnée à une jauge* $\gamma$ sur $[a, b]$ si pour tout 
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
-### Représentation graphique
-
+### Représentation graphique {.two .remark}
 On peut associer à une jauge $\gamma$ sur $[a, b]$ l'ensemble du plan
 $$
 \{(x, y) \; | \; y \in [a, b], \, x \in \gamma(y) \}.
@@ -1091,7 +1089,7 @@ la fonction $f$ est donc nulle presque partout.
 
 ### Continuité des intégrales indéterminées {.theorem .one #cii}
 Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
-l'application
+la fonction
 $$
 g : x \in [a, b] \mapsto \int_c^x f(t) \, dt 
 $$
@@ -1145,7 +1143,7 @@ $$
 
 ### Dérivabilité des intégrales indéterminées {.theorem .two #dii}
 Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
-l'application
+la fonction
 $$
 g: x \in [a, b] \mapsto \int_c^x f(t) \, dt 
 $$
