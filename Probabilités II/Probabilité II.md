@@ -70,7 +70,6 @@ soigneusement avant de mettre le principe de proba transportée par une va
 Je n'ai pas l'impression (sans avoir vraiment étudié la question) que se passer
 du concept de proba transportée par une va (ou "changer d'univers") pose un 
 problème. $\to$ **Essayer de se passer de $\mathbb{P}_X$**.
-
 Mais, c'est une limitation un impact pratique limité : la grandeur
 $\mathbb{P}(X \in B)$ est bien définie dès que $X$ est une va (à densité
 ou non) et que $B$ est borélien. (SB)
@@ -179,7 +178,10 @@ $$
 \Esp(h(X)) = \int h(x) f_X(x) \, dx.
 $$
 (pour tout $B$ borélien et $h$ borélienne telle que $h f_X$ soit intégrable).
-Je suis favorable à la troisième option : s'il ne doit rester qu'un seul
+Je serais assez favorable à la seconde option avec la troisième option
+présentée immédiatement comme propriété associée.
+Ca la troisième option se défend, c'est la plus opérationnelle : 
+s'il ne doit rester qu'un seul
 résultat (où si un étudiant ne doit mémoriser qu'un résultat), 
 c'est le plus utile dans le use cas commun (j'ai une variable aléatoire $X$
 dont je connais la densité, j'ai une espérance -- ou une proba, ou une variance -- 
