@@ -33,7 +33,7 @@ $\left]-\infty, b\right]$, $\left[a,+\infty\right[$
 et $\left[a,b \right]$ sont fermés.
 Les intervalles de la forme $[a, b]$ sont à la fois fermés et bornés (compacts).
 
-### Longueur d'un intervalle {.definition .zero}
+### Longueur d'un intervalle de $\R$ {.definition .zero}
 La *longueur* $\ell(I)$ d'un intervalle $I$ 
 de $\R$ est le nombre réel étendu positif (appartenant à $[0, +\infty]$)
 défini pour tout intervalle borné
@@ -49,22 +49,22 @@ $$
 $$
 
 ### Subdivision pointée {.definition .two #sp}
-Une *subdivision* de l'intervalle fermé $[a,b]$
+Une *subdivision* de l'intervalle $[a,b]$
 est une collection finie
 $$
 \{I_i \; | \; \; 0 \leq i \leq n-1 \}
 $$
-constituée d'intervalles fermés inclus dans $I$, *sans chevauchement*
+constituée d'intervalles fermés inclus dans $[a, b]$, *sans chevauchement*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
 plus un point -- 
-et *recouvrant $I$* 
--- l'union de tous les intervalles $I_i$ inclut $I$. 
-Une *subdivision pointée* $\mathcal{D}$ de l'intervalle fermé $I = [a, b]$ 
+et *recouvrant $[a, b]$* 
+-- l'union de tous les intervalles $I_i$ inclut $[a, b]$. 
+Une *subdivision pointée* $\mathcal{D}$ de l'intervalle $[a, b]$ 
 est une collection finie 
 $$
 \mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq m-1\}
 $$
-où les $I_i$ forment une subdivision de $I$ et 
+où les $I_i$ forment une subdivision de $[a, b]$ et 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, m-1\}.$
 
 ### TODO
@@ -87,7 +87,7 @@ $$
 a = x_0 \leq t_0 \leq x_1 \leq t_1 \dots \leq t_{m-1} \leq x_{m} = b. 
 $$
 
-### Somme de Riemann {.definition .two}
+### Somme de Riemann {.definition .two #somme-de-riemann}
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
 et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
@@ -99,7 +99,7 @@ $$
 S(f, \mathcal{D}) = \sum_{i=0}^{m-1} f(t_i) (x_{i+1} - x_i).
 $$
 
-### Intégrale de Riemann {.definition .two}
+### Intégrale de Riemann {.definition .two #intégrale-de-Riemann}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 au sens de Riemann* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe un réel $\delta>0$ tel 
@@ -352,7 +352,7 @@ Démonstration.
 Intégrales de Riemann généralisées
 ================================================================================
 
-### Jauge {.definition}
+### Jauge {.definition #jauge}
 Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction 
 qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
 contenant $t$. 
@@ -802,7 +802,7 @@ $$
 ce qui est le résultat recherché.
 -->
 
-### Changement de variables {.theorem .three}
+### Changement de variable {.theorem .three #changement-de-variable}
 Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une bijection continue
 dont la dérivée $g'$ existe et ne s'annule pas sur $\left]a, b\right[$. 
 Alors la fonction $f$ est intégrable sur $[c, d]$ si et seulement si 
@@ -820,7 +820,7 @@ car ils définissent des [fonctions qui sont égales presque partout](#fepp).
 
 
 ### Démonstration {.proof} 
-Le résultat est un corollaire du théorème de changement de variables dans 
+Le résultat est un corollaire du théorème de changement de variable dans 
 $\R^n$ qui sera étudé dans le chapitre calcul intégral III.
 
 **TODO** Mise en forme pour pouvoir l'invoquer ? Renverser les bornes le
@@ -1099,7 +1099,7 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 Sous condition de positivité, 
 la proposition ["Fonction égales presque partout"](#fepp) admet une réciproque :
 
-### Fonctions égales presque partout {.proposition #fepp .two}
+### Fonctions égales presque partout {.proposition #fepp-réciproque .two}
 Une fonction $f:[a, b] \to \R$, positive, intégrable et d'intégrale nulle 
 $$
 \mbox{pour tout $t\in[a, b]$, $f(t) \geq 0$} \; \mbox{ et } \; \int_a^b f(t) \, dt = 0
@@ -1125,10 +1125,7 @@ $$
 est donc identiquement nulle. Or, [sa dérivée existe et vaut $f$ presque partout](#dii) ;
 la fonction $f$ est donc nulle presque partout.
 
-
-
-
-### Continuité des intégrales indéterminées {.theorem .one}
+### Continuité des intégrales indéterminées {.theorem .one #cii}
 Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
 l'application
 $$
@@ -1199,89 +1196,103 @@ Voir [@Swa01, pp. 135-136].
 Intégration sur des intervalles arbitraires
 ================================================================================
 
-### TODO
-Considérer intégration sur $I$ non-borné, PUIS sur $\R$ et comment tout
-se déduit de ce cas via les fonctions caractéristiques.
+Dans cette section, nous allons étendre 
+-- significativement, mais avec très peu d'efforts --
+la théorie de l'intégration sur les intervalle fermés bornés de $\R$
+à des intervalles arbitraires de $\R$,
+et en particulier à $\R$ tout entier[^cr].
 
-### TODO
-Minorer la visibilité de l'intégration sur des ensemble de la droite réelle
-étendue : présenter ça comme une technique (interne), pas un résultat "client".
+[^cr] : Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour 
+donner un sens à l'intégrale sur $\R$ d'une fonction de calculer tout d'abord 
+son intégrale sur un intervalle borné puis d'essayer de passer à la limite,
+sans garantie que le nouveau type d'intégrale qui en résulte 
+-- l'intégrale de Cauchy-Riemann --
+partage les propriétés de l'intégrale de Riemann.
 
-Virer Hake en annexe (le reformuler ?)
+La première étape de cette démarche consiste à prolonger une fonction définie 
+sur un intervalle quelconque de $\R$, par exemple un intervalle ouvert 
+$\left]a,b\right[$, en une fonction définie l'intervalle $[a, b]$ en lui 
+assignant la valeur $0$ aux extrémités de l'intervalle. 
 
-Simplifier l'exemple de $x\mapsto 1/x^2$ pour se limiter à une vérif.
 
-Insister sur le fait que le cas non-borné ENGLOBE le cas borné et influence
-l'esprite et donc les notations $\int_A$ ou $\int$ tout court, par défaut
-c'est sur $\R$.
 
-### TODO
-Adapter au cas intervalle arbitraire de $[-\infty, +\infty]$, en commencant
-par évoquer le cas d'intervalle de $\R$ qui n'aurait pas un/les points de 
-leur frontière.
+$$
+f: \left]a,b\right[ \to  \R \; \mapsto \; \bar{f}:\left[a,b\right] \to \R, \,
+\bar{f}(x) = \left|
+\begin{array}{rl}
+f(x) & \mbox{si $x \in \left]a,b\right[$,} \\
+0 & \mbox{si $x \in \{a, b\}$.}
+\end{array}
+\right.
+$$
 
-### 
-La théorie de l'intégration de Henstock-Kurzweil présentée dans les
-sections précédentes peut être modifiée de façon assez mineure pour 
-permettre l'intégration de fonctions sur des intervalles non-bornés.
-Le travail central consiste à redéfinir la somme de Riemann; 
-en effet, comme toute subdivision pointée 
-d'un intervalle non-borné comporte nécessairement un ou deux éléments 
-de la forme $(t, I)$ où $I$ est un intervalle non-borné de $\R$,
-la longueur $\ell(I)$ associée est alors infinie.
-La somme de Riemann définie jusqu'à présent comporte alors 
-un ou deux termes de la forme $f(t) \times \infty$ ; 
-elle donc potentiellement infinie, 
-ou même indéfinie si les termes $-\infty$ et $+\infty$ apparaissent.
+Si l'intervalle initial est borné,
+on s'est ramené au cas déjà étudié des intervalles fermés et bornés de $\R$.
+Mais si l'intervalle initial est non-borné, par exemple 
+$\R= \left]-\infty, +\infty \right[$, cette même technique suppose 
+d'introduire une fonction définie sur la droite réelle étendue
+$[-\infty, +\infty]$.
 
-Pour pallier ce problème, nous adoptons la stratégie suivante:
+### Intervalle de $[-\infty,+\infty]$ {.definition .one}
+On appelle *intervalle* de $[-\infty,+\infty]$ tout sous-ensemble $I$ de $[-\infty,+\infty]$ 
+tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$
+et si $z$ est un point intermédiaire -- tel que $x \leq z \leq y$ --
+alors $z$ appartient également à $I$.
 
- 1. **Intervalles.** 
-    Nous considérons désormais l'intégration de fonctions sur des 
-    intervalles de la forme $[a, b]$ où $-\infty \leq a \leq b \leq +\infty$,
-    autrement dit les intervalles fermés (ou ce qui revient au même,
-    compacts) de la droite réelle achevée $[-\infty, +\infty]$.
-    Nous définissons la longueur d'un intervalle de $[-\infty, +\infty]$ 
-    comme la longueur de son intersection avec $\R$([^cp]).
+### {.remark .post}
+Les intervalles de $\left]-\infty,+\infty \right[$
+peuvent être ouverts, fermés, ouverts et fermés ou ni l'un ni l'autre.
+Les intervalles de la forme 
+$\left[-\infty, +\infty\right]$,
+$\left]-\infty, +\infty\right[$ 
+(c'est-à-dire $\R$),
+$\left]-\infty, b\right[$, $\left[-\infty, b\right[$, $\left]a,+\infty\right[$,
+ $\left]a,+\infty\right]$ et $\left]a,b\right[$ 
+-- où $a$ et $b$ désignent des nombres réels étendus -- 
+sont ouverts.
+Les intervalles de la forme $\left[a,b \right]$ sont fermés.
+Tous les intervalles de $[-\infty,+\infty]$ sont bornés, 
+avec comme majorant $+\infty$ et comme minorant $-\infty$. 
 
- 2. **Fonctions.**
-    Si les fonctions que nous souhaitons intégrer sont définies sur des 
-    intervalles fermés mais non bornés dans $\R$, 
-    nous leur assignons une valeur arbitraire en $-\infty$ et/ou en $+\infty$, 
-    par exemple la valeur $0$, pour les prolonger à un intervalle qui soit
-    fermé dans $[-\infty, +\infty]$.
 
- 3. **Somme de Riemann.** Si $\mathcal{D}$ est une subdivision pointée de 
-    $[a, b]$ et $f:[a, b] \to \R$, la somme de Riemann associée est définie
-    comme
-    $$
-    S(f, \mathcal{D}) = \sum f(t) \ell(I) 
-    \; \mbox{ où } \; 
-    (t, I) \in \mathcal{D}
-    \mbox{ et } 
-    I \subset \left]-\infty, +\infty\right[.
-    $$
-
-[^cp]: En particulier avec cette convention, 
+### Longueur d'un intervalle de $[-\infty,+\infty]$ {.definition .one}
+La *longueur* $\ell(I)$ d'un intervalle $I$ 
+de $[-\infty, +\infty]$ est le nombre réel étendu positif défini par 
+$$
+\ell(I) := \ell(I \cap \R).
+$$
+En particulier avec cette convention, 
 $\ell([-\infty, -\infty]) = \ell([+\infty, +\infty])= \ell(\varnothing) = 0$.
 
-Autrement dit, nous remplaçons les intervalles fermés 
-$\R= \left]-\infty, +\infty\right[$ par ceux de
-$[-\infty, +\infty]$ et nous excluons de la somme de Riemann les
-contributions des intervalles contenant $-\infty$ ou $+\infty$ (ce qui
-explique pourquoi les valeurs $f(\pm \infty)$ n'ont pas d'importance).
+[La définition de subdivision pointée](#sp) reste formellement 
+inchangée en passant des intervalles fermés bornés de $\R$ aux intervalles
+fermés bornés de $[-\infty, +\infty]$. Il en est de même pour [la définition
+d'une jauge](#jauge) si l'on interprête 
+"un intervalle ouvert $\gamma(t)$ contenant $t$."
+comme il se doit par "un intervalle ouvert $\gamma(t)$ de $[-\infty, +\infty]$ 
+contenant $t$".
 
-Dans ce nouveau contexte, les définitions de jauge, de subdivision pointée, 
-d'intégrabilité et d'intégrale sur un intervalle fermé restent formellement 
-inchangées[^6s]. Les résultats relatifs à la linéarité de l'intégrale, son
-additivité, sa restriction, l'égalité des intégrales de fonctions égales
-presque partout sont toujours vrais ; des preuves formellement identiques
-sont valables.
+### {.ante .remark}
+Le travail central consiste à redéfinir la somme de Riemann, car il faut se
+prémunir contre les termes $f(t) \ell(I)$ infinis qui pourraient
+engendrer une somme de Riemann infinie ou même indéfinie.
 
-[^6s]: c'est l'effet "Night Shyamalan" ou "6ème sens": 
-il faut relire le document, qui prend un nouveau sens compte tenu 
-de ce que l'on sait désormais.
+### Somme de Riemann (extension) {.definition .two #somme-de-riemann}
+Soit $[a, b] \subset [-\infty, +\infty]$.
+La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
+et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
+$$
+S(f, \mathcal{D}) := \sum f(t) \ell(I) 
+\; \mbox{ où } \; 
+(t, I) \in \mathcal{D}
+\mbox{ et } 
+\ell(I) < +\infty.
+$$
 
+### {.remark}
+Avec cette extension de la somme de Riemann, 
+[la définition de l'intégrale de Henstock-Kurzweil](#HK) et [de Lebesgue](#Lebesgue) 
+restent formellement inchangées.
 
 ### Intégration de $x \mapsto 1/x^2$ {.example .three}
 Considérons la fonction $f:\left[1, +\infty\right[ \to \R$ définie par
@@ -1369,19 +1380,25 @@ et par conséquent
 \end{multline*}
 On en déduit l'inégalité recherchée $|S(f, \mathcal{D}) -1| \leq \varepsilon/2$.
 
---------------------------------------------------------------------------------
 
-### {.ante .remark}
-La construction de l'intégrale dans cette section est applicable
-indifféremment dans le cas des intervalles bornés ou non de la droite réelle.
-Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour donner
-un sens à l'intégrale d'une fonction définie sur un intervalle non-borné 
-de calculer tout d'abord son intégrale sur un intervalle borné puis
-d'essayer de passer à la limite[^CR]. 
+### Propriétés élémentaires de l'intégrale {.theorem  #pei}
+Sont valables pour tous les intervalles fermés de $[-\infty, +\infty]$ :
 
-[^CR]: sans garantie que ce nouvel objet -- l'intégrale de Cauchy-Riemann --
-partage les propriétés utiles de l'intégrale de Riemann.
+  - La [linéarité de l'intégrale](#linéarité),
 
+  - Les propriétés [d'additivité](#additivité) et [de restriction](#restriction),
+
+  - [Le changement de variable](#changement-de-variable),
+
+  - [La positivité](#positivité), [fonctions égales presque partout](#fepp) et [réciproque](#fepp-réciproque),
+
+  - [La continuité](#cii) et [dérivabilité](#dii) des intégrales indéterminées.
+
+
+
+
+### TODO
+réécrire/adapter ci-dessous et travail notations ($\int$ simple ?)
 
 ### {.remark .ante}
 Un facteur vient simplifier l'étude de l'intégration sur des intervalles
@@ -1391,12 +1408,12 @@ d'intervalles possibles car on peut toujours
 se ramener au cas où l'on cherche à intégrer une fonction sur la
 droite réelle (achevée) toute entière:
 
-### Extension à la droite réelle achevée {.corollary #EDRA}
+### Extension à la droite réelle achevée {.proposition #EDRA}
 Une fonction $f:[a, b] \to \R$ est intégrable si et seulement 
-si son prolongement $g$ par zéro dans $[-\infty, +\infty]$, 
-c'est-à-dire la fonction $g :[-\infty, +\infty] \to \R$ telle que
+si son prolongement $\bar{f}$ par zéro dans $[-\infty, +\infty]$, 
+c'est-à-dire la fonction $\bar{f} :[-\infty, +\infty] \to \R$ telle que
 $$
-g(x) = \left|
+\bar{f}(x) = \left|
 \begin{array}{rl}
 f(x) & \mbox{si } \, x \in  [a, b], \\
 0 & \mbox{sinon,}
@@ -1405,24 +1422,24 @@ f(x) & \mbox{si } \, x \in  [a, b], \\
 $$
 est intégrable. Dans ce cas, on a
 $$
-\int_a^b f(t) \, dt = \int_{-\infty}^{+\infty} g(t) \, dt.
+\int_a^b f(t) \, dt = \int_{-\infty}^{+\infty} \bar{f}(t) \, dt.
 $$
 
 ### Démonstration {.proof}
 Supposons que $a$ soit fini et que $b = +\infty$. 
-Si $g$ est intégrable sur $[-\infty, +\infty]$, 
+Si $\bar{f}$ est intégrable sur $[-\infty, +\infty]$, 
 par [restriction](#restriction), $f$ est intégrable sur $[a, +\infty]$.
 Réciproquement, si $f$ est intégrable sur $[a, +\infty]$,
-la fonction $g$ étant nulle sur $\left[-\infty, a\right]$ 
+la fonction $\bar{f}$ étant nulle sur $\left[-\infty, a\right]$ 
 à l'exception d'un point, elle y est intégrable ; 
 étant égale à $f$ sur $[a, +\infty]$ elle y est également intégrable. 
-Par additivité, $g$ est donc
+Par additivité, $\bar{f}$ est donc
 intégrable sur $[-\infty, +\infty]$.
 L'additivité fournit également
 $$
 \int_{-\infty}^{+\infty} g(t) \, dt = \int_{-\infty}^a g(t) \, dt + \int_{a}^{+\infty} g(t) \,dt.
 $$
-Comme $g$ est nulle sur $\left[-\infty, a\right]$ à l'exception au plus 
+Comme $\bar{f}$ est nulle sur $\left[-\infty, a\right]$ à l'exception au plus 
 d'un point,
 son intégrale sur $[-\infty, a]$ est nulle et comme $g=f$ sur $[a, +\infty]$,
 $$
