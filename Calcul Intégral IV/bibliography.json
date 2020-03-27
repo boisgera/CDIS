@@ -1,0 +1,22 @@
+[
+	{
+		"id": "Hun11",
+		"type": "book",
+		"title": "Measure Theory",
+		"URL": "https://www.math.ucdavis.edu/~hunter/measure_theory/measure_theory.html",
+		"author": [
+			{
+				"family": "Hunter",
+				"given": "John K."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2011"
+				]
+			]
+		},
+		"publisher": "Department of Mathematics, University of California at Davis"
+	}
+]

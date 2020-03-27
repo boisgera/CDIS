@@ -1,0 +1,16 @@
+name: CDIS-bazinga
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - pandoc=2.9
+  - numpy
+  - scipy
+  - mpmath
+  - autograd
+  - matplotlib
+  - black
+  - pip:
+    - ics==0.4
+    - "-e git+https://github.com/boisgera/pandoc@3e16b7046fcc7ce1610b041d3b5add15e4df12ac#egg=pandoc"

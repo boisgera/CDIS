@@ -1,0 +1,399 @@
+ 1) Topologie 1/1, Cours Magistral
+    Mardi 10 Septembre 2019, 11:00-12:30.
+    Sébastien Boisgérault
+
+ 2) Calcul Différentiel 1/3, Cours Magistral
+    Mardi 17 Septembre 2019, 11:00-12:30.
+    Sébastien Boisgérault
+
+ 3) Topologie 1/1, Travaux Dirigés
+    Jeudi 19 Septembre 2019, 14:00-15:30.
+    G1: Pauline Bernard
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne (remplacement : Martin Brossard)
+    G6: Dilshad Suroop
+
+ 4) Topologie 1/1, Travail Personnel
+    Jeudi 19 Septembre 2019, 16:00-17:30.
+    G1: Pauline Bernard
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne (remplacement : Martin Brossard)
+    G6: Dilshad Suroop
+
+ 5) Calcul Différentiel 1/3, Travaux Dirigés
+    Vendredi 20 Septembre 2019, 14:00-15:30.
+    G1: Pauline Bernard
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne
+    G6: Dilshad Suroop
+
+ 6) Calcul Différentiel 1/3, Travail Personnel
+    Vendredi 20 Septembre 2019, 16:00-17:30.
+    G1: Pauline Bernard
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu (remplacement : Jean-Emmanuel Deschaud)
+    G5: Matthieu Vigne
+    G6: Dilshad Suroop
+
+ 7) Calcul Différentiel 2/3, Cours Magistral
+    Jeudi 03 Octobre 2019, 11:00-12:30.
+    Sébastien Boisgérault
+
+ 8) Calcul Intégral 1/5, Cours Magistral
+    Vendredi 04 Octobre 2019, 11:00-12:30.
+    Sébastien Boisgérault
+
+ 9) Calcul Différentiel 2/3, Travaux Dirigés
+    Vendredi 04 Octobre 2019, 14:00-15:30.
+    G1: Pauline Bernard
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne
+    G6: Dilshad Suroop
+
+10) Calcul Différentiel 2/3, Travail Personnel
+    Vendredi 04 Octobre 2019, 16:00-17:30.
+    G1: Pauline Bernard
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne
+    G6: Dilshad Suroop
+
+11) Calcul Intégral 1/5, Travaux Dirigés
+    Mardi 08 Octobre 2019, 14:00-15:30.
+    G1: Thomas Romary
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop
+
+12) Calcul Intégral 1/5, Travail Personnel
+    Mardi 08 Octobre 2019, 16:00-17:30.
+    G1: Thomas Romary
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop
+
+13) Calcul Intégral 2/5, Cours Magistral
+    Jeudi 10 Octobre 2019, 11:00-12:30.
+    Sébastien Boisgérault
+
+14) Probabilités 1/5, Cours Magistral
+    Vendredi 11 Octobre 2019, 11:00-12:30.
+    Thomas Romary
+
+15) Calcul Intégral 2/5, Travaux Dirigés
+    Vendredi 11 Octobre 2019, 14:00-15:30.
+    G1: Thomas Romary
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop
+
+16) Calcul Intégral 2/5, Travail Personnel
+    Vendredi 11 Octobre 2019, 16:00-17:30.
+    G1: Thomas Romary
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop
+
+17) Probabilités 1/5, Travaux Dirigés
+    Mardi 15 Octobre 2019, 14:00-15:30.
+    G1: Thomas Romary
+    G2: Emilie Chautru
+    G3: Samy Blusseau
+    G4: Chloé-Agathe Azencott
+    G5: Nicolas Desassis
+    G6: Luc Rongieras
+
+18) Probabilités 1/5, Travail Personnel
+    Mardi 15 Octobre 2019, 16:00-17:30.
+    G1: Thomas Romary
+    G2: Emilie Chautru
+    G3: Samy Blusseau
+    G4: Chloé-Agathe Azencott
+    G5: Nicolas Desassis
+    G6: Luc Rongieras
+
+19) Calcul Différentiel 2/3, Projet Numérique
+    Mardi 22 Octobre 2019, 14:00-15:30.
+    G1: Pauline Bernard
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Thierry Parmentelat
+    G5: Matthieu Vigne (remplacement : Cyril Joly)
+    G6: Dilshad Suroop
+
+20) Calcul Différentiel 2/3, Projet Numérique
+    Mardi 22 Octobre 2019, 16:00-17:30.
+    G1: Pauline Bernard
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Thierry Parmentelat
+    G5: Matthieu Vigne (remplacement : Cyril Joly)
+    G6: Dilshad Suroop
+
+21) Calcul Intégral 3/5, Cours Magistral
+    Jeudi 24 Octobre 2019, 11:00-12:30.
+    Sébastien Boisgérault
+
+22) Probabilités 2/5, Cours Magistral
+    Vendredi 25 Octobre 2019, 11:00-12:30.
+    Thomas Romary
+
+23) Calcul Intégral 3/5, Travaux Dirigés
+    Vendredi 25 Octobre 2019, 14:00-15:30.
+    G1: Thomas Romary
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop
+
+24) Calcul Intégral 3/5, Travail Personnel
+    Vendredi 25 Octobre 2019, 16:00-17:30.
+    G1: Thomas Romary
+    G2: Sébastien Boisgérault
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop
+
+25) Probabilités 2/5, Travaux Dirigés
+    Mardi 29 Octobre 2019, 14:00-15:30.
+    G1: Thomas Romary
+    G2: Emilie Chautru
+    G3: Samy Blusseau
+    G4: Chloé-Agathe Azencott (remplacement : Slawomir Pietrasz)
+    G5: Nicolas Desassis
+    G6: Luc Rongieras
+
+26) Probabilités 2/5, Travail Personnel
+    Mardi 29 Octobre 2019, 16:00-17:30.
+    G1: Thomas Romary
+    G2: Emilie Chautru
+    G3: Samy Blusseau
+    G4: Chloé-Agathe Azencott (remplacement : Slawomir Pietrasz)
+    G5: Nicolas Desassis
+    G6: Luc Rongieras
+
+27) Révisions
+    Samedi 02 Novembre 2019, 11:00-12:30.
+    (non tutoré)
+
+28) Révisions
+    Samedi 02 Novembre 2019, 14:00-15:30.
+    (non tutoré)
+
+29) Examen
+    Vendredi 08 Novembre 2019, 09:00-10:30.
+    (examen écrit avec documents)
+
+30) Examen
+    Vendredi 08 Novembre 2019, 11:00-12:30.
+    (examen écrit avec documents)
+
+31) Calcul Intégral 4/5, Cours Magistral
+    Jeudi 05 Décembre 2019, 11:00-12:30.
+    Sébastien Boisgérault
+
+32) Equations Différentielles 1/2, Cours Magistral
+    Vendredi 06 Décembre 2019, 11:00-12:30.
+    Pauline Bernard
+
+33) Calcul Intégral 4/5, Travaux Dirigés
+    Vendredi 06 Décembre 2019, 14:00-15:30.
+    G1: Sébastien Boisgérault
+    G2: Thomas Romary
+    G3: Delphine Bresch-Pietri (absente, non remplacée)
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop (remplacé par Matthieu Vigne)
+
+34) Calcul Intégral 4/5, Travail Personnel
+    Vendredi 06 Décembre 2019, 16:00-17:30.
+    G1: Sébastien Boisgérault
+    G2: Thomas Romary
+    G3: Delphine Bresch-Pietri (absente, non remplacée)
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop (remplacé par Matthieu Vigne)
+
+35) Equations Différentielles 1/2, Travaux Dirigés
+    Mardi 10 Décembre 2019, 14:00-15:30.
+    G1: Pauline Bernard
+    G2: Nicolas Petit
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne
+    G6: Dilshad Suroop
+
+36) Equations Différentielles 1/2, Travail Personnel
+    Mardi 10 Décembre 2019, 16:00-17:30.
+    G1: Pauline Bernard
+    G2: Nicolas Petit
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne
+    G6: Dilshad Suroop
+
+37) Calcul Intégral 5/5, Cours Magistral
+    Jeudi 12 Décembre 2019, 11:00-12:30.
+    Sébastien Boisgérault
+
+38) Equations Différentielles 2/2, Cours Magistral
+    Vendredi 13 Décembre 2019, 11:00-12:30.
+    Pauline Bernard
+
+39) Calcul Intégral 5/5, Travaux Dirigés
+    Vendredi 13 Décembre 2019, 14:00-15:30.
+    G1: Sébastien Boisgérault (remplacement : Matthieu Vigne)
+    G2: Thomas Romary
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop (absent)
+
+40) Calcul Intégral 5/5, Travail Personnel
+    Vendredi 13 Décembre 2019, 16:00-17:30.
+    G1: Sébastien Boisgérault (remplacement : Matthieu Vigne)
+    G2: Thomas Romary
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Slawomir Pietrasz
+    G6: Dilshad Suroop (absent)
+
+41) Equations Différentielles 2/2, Travaux Dirigés
+    Mardi 17 Décembre 2019, 14:00-15:30.
+    G1: Pauline Bernard
+    G2: Nicolas Petit
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne
+    G6: Dilshad Suroop
+
+42) Equations Différentielles 2/2, Travail Personnel
+    Mardi 17 Décembre 2019, 16:00-17:30.
+    G1: Pauline Bernard
+    G2: Nicolas Petit
+    G3: Delphine Bresch-Pietri
+    G4: Silviu Niculescu
+    G5: Matthieu Vigne
+    G6: Dilshad Suroop
+
+43) Probabilités 3/5, Cours Magistral
+    Jeudi 19 Décembre 2019, 11:00-12:30.
+    Thomas Romary
+
+44) Probabilités 3+/5, Cours Magistral
+    Vendredi 20 Décembre 2019, 11:00-12:30.
+    Thomas Romary
+
+45) Probabilités 3/5, Travaux Dirigés
+    Vendredi 20 Décembre 2019, 14:00-15:30.
+    G1 : Emilie Chautru
+    G2 : Thomas Romary
+    G3 : Samy Blusseau
+    G4 : Chloé-Agathe Azencott
+    G5 : Nicolas Desassis
+    G6 : Luc Rongieras
+
+46) Probabilités 3/5, Travail Personnel
+    Vendredi 20 Décembre 2019, 16:00-17:30.
+    G1 : Emilie Chautru
+    G2 : Thomas Romary
+    G3 : Samy Blusseau
+    G4 : Chloé-Agathe Azencott
+    G5 : Nicolas Desassis
+    G6 : Luc Rongieras
+
+47) Tutorat Projet Numérique II
+    Vendredi 10 Janvier 2020, 14:00-15:30.
+    Pauline Bernard
+    Dilshad Suroop
+    Cyril Joly
+    Mona Buisson-Fenet
+
+48) Tutorat Projet Numérique II
+    Vendredi 10 Janvier 2020, 16:00-17:30.
+    <span><br>Pauline Bernard<br>Dilshad Suroop<br>Cyril Joly<br>Mona Buisson-Fenet</span>
+
+49) Probabilités 4/5, Cours Magistral
+    Mardi 14 Janvier 2020, 14:00-15:30.
+    Thomas Romary
+
+50) Probabilités 5/5, Cours Magistral
+    Vendredi 17 Janvier 2020, 11:00-12:30.
+    Thomas Romary
+
+51) Probabilités 4/5, Travaux Dirigés
+    Vendredi 17 Janvier 2020, 14:00-15:30.
+    G1: Thomas Romary
+    G2: Chloé-Agathe Azencott
+    G3: Samy Blusseau
+    G4: Emilie Chautru
+    G5: Nicolas Desassis
+    G6: Luc Rongieras
+
+52) Probabilités 4/5, Travail Personnel
+    Vendredi 17 Janvier 2020, 16:00-17:30.
+    G1: Thomas Romary
+    G2: Chloé-Agathe Azencott
+    G3: Samy Blusseau
+    G4: Emilie Chautru
+    G5: Nicolas Desassis
+    G6: Luc Rongieras
+
+53) Equations Différentielles 2/2, Projet Numérique
+    Samedi 18 Janvier 2020, 09:00-10:30.
+    (non tutoré)
+
+54) Equations Différentielles 2/2, Projet Numérique
+    Samedi 18 Janvier 2020, 11:00-12:30.
+    (non tutoré)
+
+55) Probabilités 5/5, Projet Numérique
+    Mardi 21 Janvier 2020, 14:00-15:30.
+    G1: Thomas Romary
+    G2: Chloé-Agathe Azencott
+    G3: Samy Blusseau
+    G4: Emilie Chautru
+    G5: Nicolas Desassis
+    G6: Luc Rongieras
+
+56) Probabilités 5/5, Projet Numérique
+    Mardi 21 Janvier 2020, 16:00-17:30.
+    G1: Thomas Romary
+    G2: Chloé-Agathe Azencott
+    G3: Samy Blusseau
+    G4: Emilie Chautru
+    G5: Nicolas Desassis
+    G6: Luc Rongieras
+
+57) Examen
+    Mardi 28 Janvier 2020, 09:00-10:40.
+    (oraux, 11 examinateurs requis)
+
+58) Examen
+    Mardi 28 Janvier 2020, 10:50-12:30.
+    (oraux, 11 examinateurs requis)
+
+59) Examen
+    Mardi 28 Janvier 2020, 17:20-19:00.
+    (oraux, 10 examinateurs requis)
+
