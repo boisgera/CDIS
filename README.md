@@ -56,6 +56,16 @@ Calcul Différentiel, Intégral et Stochastique
 
   - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr) (accès limité)
 
+Enquêtes 2019
+--------------------------------------------------------------------------------
+
+Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
+
+  - Elément constitutif 1 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv)
+
+  - Elément constitutif 2 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv)
+
+
 :pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
 
