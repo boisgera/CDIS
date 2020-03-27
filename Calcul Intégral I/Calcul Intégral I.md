@@ -802,7 +802,7 @@ $$
 ce qui est le résultat recherché.
 -->
 
-### Changement de variables {.theorem .two}
+### Changement de variables {.theorem .three}
 Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une bijection continue
 dont la dérivée $g'$ existe et ne s'annule pas sur $\left]a, b\right[$. 
 Alors la fonction $f$ est intégrable sur $[c, d]$ si et seulement si 
