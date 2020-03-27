@@ -114,50 +114,22 @@ $$
 $$
 
 
-### Fonction affine {.example}
-La fonction affine $f: x \in [a, b] \mapsto \alpha x + \beta$ est intégrable
-au sens de Riemann pour tout intervalle compact $[a, b]$ de $\R$ et toute valeur des réels
-$\alpha$ et $\beta$. Son intégrale de Riemann vaut
+### Fonction affine {.exercise .question .three #fa}
+Montrer que toute fonction affine $x \mapsto \alpha x + \beta$ est 
+intégrable au sens de Riemann sur tout intervalle fermé borné $[a, b]$
+de $\R$ et que
 $$
-\Rint_a^b (\alpha t +\beta) \, dt = \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a).
+\Rint_a^b (\alpha t +\beta) \, dt = A := \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a).
 $$
-En effet, si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; \; 0 \leq i \leq m-1\}$,
-est une subdivision pointée de $[a, b]$ sous forme canonique, alors on a
+Indication : si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\}_0^{m-1}$ est une 
+subdivision pointée de $[a, b]$ sous forme canonique, 
+$A$ est la somme d'une série télescopique :
 $$
-A := \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a)
-= \sum_{i=0}^{m-1} \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) + \beta (x_{i+1}-x_i).
-$$
-Nous en déduisons
-\begin{align*}
-\left|S(f, \mathcal{D}) -  A\right|
-&=  \left|\sum_{i=0}^{m-1} (\alpha t_i + \beta)(x_{i+1} - x_i) -  \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) - \beta (x_{i+1}-x_i) \right|
-\end{align*}
-et donc que
-$$
-\left|S(f, \mathcal{D}) -  A\right|
-\leq 
-\sum_{i=0}^{m-1}|\alpha| \left|t_i  -  \frac{x_{i} + x_{i+1}}{2} \right| (x_{i+1} - x_i).
-$$
-Dans les cas où $a = b$ ou $\alpha=0$, il est évident que $f$ est intégrable
-au sens de Riemann et d'intégrale $A$. Dans le cas contraire,
-si $\varepsilon > 0$, on peut poser
-$$
-\delta := \frac{2\varepsilon}{|\alpha|(b-a)} > 0.
-$$
-Si la subdivision $\mathcal{D}$ est telle que pour tout $i \in \{0, \dots, m-1\}$ 
-on ait $\ell([x_i, x_{i+1}]) = x_{i+1} - x_i < \delta$, alors 
-$$
-\left|t_i  -  \frac{x_{i} + x_{i+1}}{2} \right| < \frac{\delta}{2} 
-$$
-et par conséquent
-$$
-\left|S(f, \mathcal{D}) -  A\right|
-\leq 
-\sum_{i=0}^{m-1}|\alpha| \frac{\varepsilon}{|\alpha|(b-a)} (x_{i+1} - x_i)
-= \varepsilon.
+A = \sum_{i=0}^{m-1} \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) + \beta (x_{i+1}-x_i).
 $$
 
-### Quadrature {.example}
+
+### Quadrature {.example .one}
 Cette définition de l'intégrale permet de garantir l'exactitude asymptotique de 
 méthodes de quadrature 
 -- c'est-à-dire d'algorithmes de calcul numérique d'intégrales -- 
@@ -203,13 +175,6 @@ pas une position fixe au point $t_i$ dans l'intervalle $J_i$ --
 comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
 à la définition de l'intégrale ; d'autres méthodes de quadratures pourront
 être utilisées avec le même résultat asymptotique.
-
-### TODO
-Exo méthode des trapèzes : dessin.
-
-
-
-
 
 ### Ensemble négligeable  {.definition}
 Un ensemble $A$ de $\R$ est *négligeable* si pour tout
@@ -337,8 +302,7 @@ la fonction $f$ est donc bornée.
 
 
 
-
-
+### {.remark}
 En particulier,
 
 ### Les fonctions continues par morceaux sont intégrables {.corollary}
@@ -2021,6 +1985,38 @@ Solutions
 
 Exercices essentiels
 --------------------------------------------------------------------------------
+
+
+### Fonction affine {.answer #answer-fa}
+Nous déduisons de l'indication
+\begin{align*}
+\left|S(f, \mathcal{D}) -  A\right|
+&=  \left|\sum_{i=0}^{m-1} (\alpha t_i + \beta)(x_{i+1} - x_i) -  \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) - \beta (x_{i+1}-x_i) \right|
+\end{align*}
+et donc que
+$$
+\left|S(f, \mathcal{D}) -  A\right|
+\leq 
+\sum_{i=0}^{m-1}|\alpha| \left|t_i  -  \frac{x_{i} + x_{i+1}}{2} \right| (x_{i+1} - x_i).
+$$
+Dans les cas où $a = b$ ou $\alpha=0$, il est évident que $f$ est intégrable
+au sens de Riemann et d'intégrale $A$. Dans le cas contraire,
+si $\varepsilon > 0$, on peut poser
+$$
+\delta := \frac{2\varepsilon}{|\alpha|(b-a)} > 0.
+$$
+Si la subdivision $\mathcal{D}$ est telle que pour tout $i \in \{0, \dots, m-1\}$ 
+on ait $\ell([x_i, x_{i+1}]) = x_{i+1} - x_i < \delta$, alors 
+$$
+\left|t_i  -  \frac{x_{i} + x_{i+1}}{2} \right| < \frac{\delta}{2} 
+$$
+et par conséquent
+$$
+\left|S(f, \mathcal{D}) -  A\right|
+\leq 
+\sum_{i=0}^{m-1}|\alpha| \frac{\varepsilon}{|\alpha|(b-a)} (x_{i+1} - x_i)
+= \varepsilon.
+$$
 
 ### Absence de chevauchement {.answer #answer-absence-chevauchement}
 Comme l'intersection de deux intervalles fermés et bornés de $\R$ est 
