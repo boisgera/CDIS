@@ -45,6 +45,8 @@ install:
   - rm -rf env
   - mv .gitignore .gitignore.bak 
 
+  - git branch | grep \*
+
 deploy:
   provider: pages
   skip-cleanup: true
