@@ -845,7 +845,7 @@ $$
 df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
 $$
 Si l'on identifie applications linéaires et matrices, la différentielle
-en vient à désigner la matrice jacobienne elle-même :
+désigne la matrice jacobienne elle-même :
 $$
 df(x) = J_f(x).
 $$
