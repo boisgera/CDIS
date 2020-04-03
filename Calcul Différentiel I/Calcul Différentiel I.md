@@ -424,8 +424,8 @@ on a
 $$
 f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
 $$
-où la fonction $\varepsilon$, définie dans un voisinage de $h=0$, 
-satisfait
+où la fonction $\varepsilon$, définie dans un voisinage de $h=0$ et à valeurs
+dans $\R^m$, satisfait
 $$
 \lim_{h \to 0}\varepsilon(h) = 0.
 $$
@@ -507,9 +507,14 @@ $$
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
 $x$ un point de $U$. Si toutes les dérivées partielles de $f$ existent en $x$,
 on appelle *gradient de $f$ en $x$* et l'on note $\nabla f(x)$ le vecteur
-de $\R^n$ défini comme la transposée de la matrice jacobienne de $f$ en $x$ :
+de $\R^n$ défini par 
 $$
-\nabla f(x) := J_f(x)^{\top} = 
+\nabla f(x) =(\partial_1 f(x), \partial_2 f(x), \dots, \partial_n f(x))\in \R^n,
+$$
+c'est-à-dire, après identification à un vecteur colonne, 
+la transposée de la matrice jacobienne de $f$ en $x$ :
+$$
+\nabla f(x) = J_f(x)^{\top} = 
 \left[ 
 \begin{array}{c}
 \partial_1 f(x) \\
@@ -517,18 +522,86 @@ $$
 \vdots \\
 \partial_n f(x)
 \end{array}
-\right].
+\right] \in \R^{n\times 1}.
+$$
+
+### Gradient et matrice jacobienne {.example}
+En tout point $x=(x_1, x_2)$ de $\R^2$, les deux fonctions partielles de la fonction
+$$f:(x_1,x_2) \in \R^2 \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2 \in \R$$ sont dérivables,
+vérifient $\partial_1 f(x_1, x_2) = -2(x_2^2 - x_1) + 2 (x_1 - 1)$ et 
+$\partial_2 f(x_1, x_2) = 4 (x_2^2 - x_1)x_2$. 
+Par conséquent,
+$$
+J_f(x_1, x_2) = 
+\left[ 
+  \begin{array}{cc}
+  -2(x_2^2 - x_1) + 2 (x_1 - 1) &
+  4 (x_2^2 - x_1)x_2
+  \end{array}
+  \right] \in \R^{1 \times 2}.
+$$
+La fonction est scalaire (à valeurs dans $\R$), son gradient est donné par
+$$
+\nabla f(x_1, x_2)
+=
+(-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2)
+$$
+ou, représenté comme un vecteur colonne
+$$
+\nabla f(x_1, x_2) = J_f(x_1, x_2)^{\top} =
+\left[ 
+  \begin{array}{c}
+  -2(x_2^2 - x_1) + 2 (x_1 - 1) \\
+  4 (x_2^2 - x_1)x_2
+  \end{array}
+  \right] \in \R^{2\times 1}.
+$$
+
+### Matrice jacobienne {.example} 
+Considérons la fonction 
+$$
+g:(x_1, x_2) \in \R^2 \mapsto (-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2.
+$$
+Elle a deux composantes, les fonctions (scalaires) 
+$$g_1:(x_1, x_2) \in \R^2 \mapsto -2(x_2^2 - x_1) + 2 (x_1 - 1)\in \R
+$$
+et
+$$
+g_2:(x_1, x_2) \in \R^2 \mapsto 4 (x_2^2 - x_1)x_2\in \R.$$
+En tout point $x=(x_1, x_2)$ de $\R^2$, les fonctions partielles de ces deux
+fonctions existent et vérifient
+$\partial_1 g_1(x_1, x_2) = 4$, $\partial_2 g_1(x_1, x_2) = -4x_2$,
+$\partial_1 g_2(x_1, x_2) = -4x_2$ et $\partial_2 g_2(x_1, x_2) = 12 x_2^2$.
+Sa matrice jacobienne est donc définie en tout point et vaut 
+$$
+J_g(x_1, x_2) = 
+\left[ 
+  \begin{array}{cc}
+  4 & -4x_2 \\
+  -4x_2 & 12 x_2^2
+  \end{array}
+  \right]\in \R^{2 \times 2}.
 $$
 
 
-### TODO. Calcul élémentaires mat jac & gradient.
+
+
+
+
+
+
+![Champ du gradient $\nabla f$ de la fonction 
+$f:(x_1,x_2) \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2$ (échelle des vecteurs modifiée).](images/rosenbrock.py)
 
 ### TODO. grad et produit scalaire.
-
+Plus tard, avec la différentielle, car il faut justifier l'intérête de l'expression
+$J_f(x) \cdot h$.
 
 ### Matrice jacobienne et gradient {.exercise #matjac .question}
 Donner une expression de la matrice jacobienne de $f$ en $x$
 en fonction de gradients des fonctions scalaires $f_i$ en $x$.
+
+
 
 <!--
 ### Petit o de Landau {.definition .three}
@@ -663,7 +736,8 @@ La fonction $f$ admet donc un dévelopement limité au 1er ordre en $x$.
 On qualifiera *différentiable* une fonction admettant ce développement 
 au premier ordre. La différentiabilité est la transposition naturelle 
 du concept de dérivabilité aux fonctions de plusieurs variables :
-pour jouer ce rôle, l'existence du jacobien est une propriété trop faible 
+pour jouer ce rôle, l'existence de la matrice jacobienne est une propriété 
+trop faible 
 et la continue différentiabilité est une propriété trop forte.
 
 ### Différentiabilité {.definition .three}
@@ -689,9 +763,39 @@ différentiables](#dl1) se reformule alors comme suit :
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
 Si $f$ est continûment différentiable, $f$ est différentiable.
 
-**TODO.** diff implique cont
+### Différentiabilité implique continuité {.proposition .one #dic}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+Si $f$ est différentiable en $x$, $f$ est continue en $x$.
 
-**TODO** dérivées directionnelles ?
+### Différentiabilité implique continuité {.exercise .question .one #exo-dic}
+Démontrer la proposition ["Différentiabilité implique continuité"](#dic).
+
+### Dérivée directionnelle {.definition .one}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$,
+$x$ un point de $U$ et $h$ un vecteur de $\R^n$. La *dérivée de $f$ en $x$
+dans la direction $h$* est définie comme
+$$
+f'(x, h) := \lim_{\substack{t \to 0 \\ t \neq 0}} \frac{f(x+ th) - f(x)}{t}
+$$
+quand cette limite existe.
+
+### Différentielle et dérivée directionnelle {.proposition #ddd .one}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. Si la fonction $f$ est différentiable en $x$
+alors sa dérivée dans la direction $h \in \R^n$ existe et
+$$
+f'(x, h) = J_f(x) \cdot h.
+$$
+
+### Différentielle et dérivée directionnelle {.exercise .question #exo-ddd .one}
+Démontrer la proposition ["Différentielle et dérivée directionnelle"](#ddd).
+
+### Dérivée directionnelle et différentielle {.exercise .question #exo-ddd2 .three}
+Montrer que la réciproque de la proposition ["Différentielle et dérivée directionnelle"](#ddd)
+est fausse : construire une fonction dont les dérivées directionnelles en $x$
+existent dans toute direction $h \in \R^n$ mais qui ne soit pas différentiable
+en $x$.
+
 
 <!--
 ### Convention de Landau {.definition .four}
@@ -2069,6 +2173,51 @@ $$
 \partial_j f_i(x) = \lim_{t \to 0} \frac{f_i(x + t e_j) - f_i(x)}{t} = A_{ij}.
 $$
 La matrice jacobienne $J_f(x)$ de $f$ en $x$ existe donc et est égale à $A$.
+
+### Différentiabilité implique continuité {.answer #answer-exo-dic}
+Comme $f$ est différentiable en $x$, 
+sa matrice jacobienne en $x$ existe et 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|
+$$
+avec $\lim_{h \to 0} \varepsilon(h) = 0$. Or $\|J_f(x) \cdot h\| \leq \|J_f(x)\| \|h\|$
+donc $\lim_{h\to 0} J_f(x) \cdot h =0$ ; de même $\lim_{h \to 0} \varepsilon(h) \|h\| = 0$.
+Par conséquent, $f(x+h) \to f(x)$ quand $h \to 0$.
+
+### Différentielle et dérivée directionnelle {.answer #answer-exo-ddd}
+Comme $f$ est différentiable en $x$ par hypothèse, 
+sa matrice jacobienne en $x$ existe et 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|
+$$
+avec $\lim_{h \to 0} \varepsilon(h) = 0$. Par conséquent,
+$$
+\frac{f(x+ th) - f(x)}{t} = \frac{J_f(x) \cdot (th)}{t} + \frac{\varepsilon(th) \|th\|}{t}
+= J_f(x) \cdot h + \frac{|t|}{t}\varepsilon(th) \|h\|,
+$$
+et donc en passant à la limite, comme $\lim_{t \to 0} \varepsilon(th) = 0$,
+$$
+f'(x, h) = \lim_{t \to 0} \frac{f(x+ th) - f(x)}{t} = J_f(x) \cdot h.
+$$
+
+### Différentielle et dérivée directionnelle {.answer #answer-exo-ddd2}
+On peut considérer la fonction $f :\R^2 \to \R$ définie par
+$$
+f(x_1, x_2) = \left|
+\begin{array}{rl}
+1 & \mbox{si $x_1 > 0$ et $x_2 = x_1^2$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Elle n'est pas continue en $(0,0)$, [donc elle n'y est pas différentiable](#dic).
+Par contre, pour tout $h \in \R^2$, pour $t$ assez
+petit on a $th_2 \neq (t h_1)^2$ et donc $f(th) = 0$ ; par conséquent
+$$
+f'(0, h) = \lim_{h\to 0} \frac{f(t h) - f(0)}{t} = 0.
+$$
+La dérivée directionnelle de $f$ en $(0,0)$ dans la direction $h$ existe et
+est nulle.
 
 ### Fonction quadratique {#answer-fq .answer}
 Comme
