@@ -525,7 +525,7 @@ $$
 \right] \in \R^{n\times 1}.
 $$
 
-### Gradient et matrice jacobienne {.example}
+### Gradient et matrice jacobienne {.example #gmj}
 En tout point $x=(x_1, x_2)$ de $\R^2$, les deux fonctions partielles de la fonction
 $$f:(x_1,x_2) \in \R^2 \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2 \in \R$$ sont dérivables,
 vérifient $\partial_1 f(x_1, x_2) = -2(x_2^2 - x_1) + 2 (x_1 - 1)$ et 
@@ -591,7 +591,8 @@ $$
 
 
 ![Champ du gradient $\nabla f$ de la fonction 
-$f:(x_1,x_2) \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2$ (échelle des vecteurs modifiée).](images/rosenbrock.py)
+$f:(x_1,x_2) \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2$ (échelle des vecteurs modifiée),
+cf. exemple ["Gradient et matrice jacobienne"](#gmj).](images/rosenbrock.py)
 
 ### TODO. grad et produit scalaire.
 Plus tard, avec la différentielle, car il faut justifier l'intérête de l'expression
@@ -840,10 +841,6 @@ $df(x)$ associée à la matrice jacobienne
 $$
 df(x) := \left(h \in \R^n \mapsto J_f(x) \cdot h \in \R^m \right)
 $$
-soit l'application caractérisée pour tout $h \in \R^n$ par
-$$
-df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
-$$
 Si l'on identifie applications linéaires et matrices, la différentielle
 désigne la matrice jacobienne elle-même :
 $$
@@ -884,26 +881,48 @@ est différentiable et déterminer l'application $df(x)$.
 Calcul Différentiel
 ================================================================================
 
-### Différentielle d'une application linéaire {.theorem #dal .one}
-Toute application linéaire $A: \R^n \to \R^m$ est
-différentiable et pour tout $x \in \R^n$,
+### TODO
+
 $$
-dA(x) = A.
+df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
 $$
 
+### TODO
+3 résultats en rapid-faire différentielle d'une constante, d'une fonction linéaire
+et d'une fonction bilinéaire.
+
+### Différentielle d'une application constante {.theorem #dac .zero}
+Pour tout $c \in \R^m$, l'application 
+$$f: x \in \R^n \mapsto c \in \R^m$$
+est différentiable et pour tout $x \in \R^n$,
+$$df(x) = 0.$$
+
+### Différentielle d'une application linéaire {.theorem #dal .one}
+Pour toute matrice $A \in \R^{m\times n}$, l'application 
+$$f: x \in \R^n \mapsto  A \cdot x \in \R^m$$ 
+est différentiable et pour tout $x \in \R^n$,
+$$df(x) = A.$$
+
 ### Démonstration {.proof}
-Pour tout $x \in \R^n$, la $i$-ème composante de la fonction $A$ en $x$ est 
-donnée par 
-$(A \cdot x)_i = \sum_{k=1}^n A_{ik} x_k$,
-donc sa $j$-ème dérivée partielle existe et
+Pour tout $x \in \R^n$, on a
+$f_i(x) = (A \cdot x)_i = \sum_{k=1}^n A_{ik} x_k$,
+donc la $j$-ème dérivée partielle de $f_i$ existe et
 $$
-\partial_j (x \mapsto A \cdot x)_i(x) = \partial_j \left(x \mapsto \sum_{k=1}^n A_{ik} x_k \right)(x)
+\partial_j f_i(x) = \partial_j \left(x \mapsto \sum_{k=1}^n A_{ik} x_k \right)(x)
 = A_{ij}.
 $$
-La matrice jacobienne $J_A(x)$ est donc définie et $J_A(x) = A$.
-Chaque coefficient de $J_A$ est une constante et donc une fonction continue de
-$x$ : la fonction $A$ est [continûment différentiable -- et donc
-différentiable](#cdid) -- et $dA(x) = J_A(x) = A$.
+La matrice jacobienne $J_f(x)$ est donc définie et $J_f(x) = A$.
+Chaque coefficient de $J_f$ est une constante et donc une fonction continue de
+$x$ : la fonction $f$ est [continûment différentiable -- et donc
+différentiable](#cdid) -- et $df(x) = J_f(x) = A$.
+
+### Différentielle d'une application bilinéaire {.theorem #dab .two}
+Pour toute matrice $B \in \R^{m\times n}$, la fonction bilinéaire
+$$f: (x, y) \in \R^m \times \R^n \mapsto x^{\top} \cdot B \cdot y \in \R$$
+est différentiable et pour tout $x \in \R^n$,
+$$
+df(x, y)\cdot(h_x, h_y) = h_x^{\top} \cdot B \cdot y + x^{\top} \cdot B \cdot h_y.
+$$
 
 ### TODO
 Expliquer que fondamentalement, calcul = composition de fonctions.
