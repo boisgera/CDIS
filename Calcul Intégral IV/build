@@ -493,21 +493,15 @@ def transform_image_format(doc):
                 image[:] = attr, inlines, (new_target, title)
 
 
-def add_latex_header(doc, latex_src):
-    new_blocks = None
-    if isinstance(latex_src, list):  # list of blocks
-        new_blocks = latex_src
-    else:
-        new_blocks = pandoc.read(latex_src)[1]
-    meta, blocks = doc[:]
-    metamap = meta[0]
-    blocks = metamap.setdefault("header-includes", MetaBlocks([]))[0]
-    blocks.extend(new_blocks)
-
+def add_latex_header(doc, latex):
+    metadata = doc[0][0]
+    header_includes = metadata.setdefault("header-includes", MetaList([]))
+    meta_block = MetaBlocks([RawBlock(Format("latex"), latex)])
+    if meta_block not in header_includes[0]:
+        header_includes[0].append(meta_block)
 
 def solve_toc_nesting(doc):
     add_latex_header(doc, r"\usepackage{bookmark}")
-
 
 # Deprecated
 def _solve_toc_nesting(doc):  # fuck you LaTeX!
