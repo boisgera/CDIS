@@ -6,237 +6,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
-
 \newcommand{\tr}{\operatorname{tr}}
-
-<!--
-
-Narratif & Notes & TODOsss
-================================================================================
-
-### Différentielle & Dérivée Directionnelle
-
-La progression choisie est la suivante: 
-
-  - la différentielle d'une fonction en un point est introduite directement,
-    par analogie avec le concept et les propriétés de la dérivée, une fois
-    présentés sous la bonne forme (meilleure approximation linéaire de la
-    variation, forme avec $o$ plutôt que taux d'accroissement).
-
-  - on exploite un peu cette définition, on finit de faire le lien
-    avec la dérivée, on donne les règles de combi linéaires, du produit,
-    de la différentation en chaîne.
-
-  - sous hypothèse de différentiabilité, on donne le liens avec la dérivée
-    partielle et les dérivée directionnnelles.
-
-  - après coup, on examine la tentation (légitime) que l'on pourrait avoir
-    de définir la différentielle en passant par cles dérivée partielles:
-    cette approche si elle était couronnée de succès, permettrait de 
-    définir la différentielle en se ramenant à ce que l'on connaît déjà,
-    à savoir la notion de dérivée. Et on se rend compte assez facilement
-    que:
-
-      - l'existence des dérivées partielles ne suffit pas à assurer 
-        l'existence de la différentielle: un exemple très simple permet
-        de montrer que cela n'assure même pas la continuité de la fonction
-        au point d'intérêt. Plus grave si l'on veut: la règle de dérivation
-        en chaîne ne marche pas non plus; en particulier, on ne peut pas
-        calculer la dérivée partielle d'une fonction composée par ce biais.
-        Note: suppose que l'on ait dérivé la chain rule très rapidement
-        après la définition de la différentielle et c'est légitime:
-        c'est un grand succès du concept.
-
-      - examiner le contre-exemple standard (1 valeur sur les axes, une
-        autre dans le reste du domaine), diagnostiquer ce qui ne va pas
-        (à savoir, on est aveugle au comportement de la fonction en dehors
-        de directions privilégiées), propose une solution en travaillant
-        sur la dérivée directionnelle. Montrer par un nouveau contre-exemple,
-        moins évident, que ça ne va toujours pas (ni continuité ni "chain rule").
-        L'exemple en question travaille toujours avec deux valeurs distinctes,
-        mais sur une parabole. 
-
-      - le nouvelle exemple pour le coup met sur la piste d'une "bonne" solution
-        alternative, la dérivée directionnelle au sens d'Hadamard. On peut
-        la définir au moyens des chemins, simplifier sa caractérisation.
-        Au final, elle vérifie bien la règle de dérivation en chaîne par 
-        exemple, plus ou moins par construction, mais cela n'est pas surprenant
-        car elle est équivalent à la notion de différentielle !
-        A ce stade, pas évident que la démarche adoptée soit plus simple, 
-        on peut se convaincre que le concept de différentielle est finalement
-        pas si mal que ça ... d'autant plus qu'en dimension infinie, les
-        deux notions divergent à nouveau et la différentielle de Fréchet 
-        regagne des points.
-
-    Une partie de ça à faire dans le cours, une partie en exo, 
-    quelle frontière je ne sais pas encore exactement.
-
-    - en parralèle, on montre que tout de même, on a le droit de travailler
-      sur les dérivée partielles si l'on sait établir que le résultat est
-      continu, car cela garantit l'existence de la différentielle (et sa
-      continuité).
-
-### Vecteurs / Matrices / Tenseurs
-
-Sujet assez compliqué. Trois motivations sur ce sujet:
-
-  - Le "tout-matrice" est assez ridicule quand on y pense;
-    l'idée qu'il faille promouvoir des vecteurs de $\mathbb{R}^n$
-    en matrice pour faire des calculs complique souvent les choses
-    par rapport aux conventions tensorielles (où un vecteur est un
-    tableau de dimension 1). C'est aussi assez incohérent avec les
-    convention de NumPy qui pour le coup sont tensorielles par nature
-    (contrairement à Matlab).
-
-    Mais voilà, c'est la vision enseignée en prépa, difficile de tout
-    déconstruire, d'autant que la démarche tensorielle vient avec ses
-    propres problèmes de notation, conventions non partagées, etc.
-
-    Donc on a vocation à rester compatible avec ce tout-matriciel;
-    et à l'étendre mais de façon compatible quand nécessaire.
-    Ainsi, "$\cdot$" interprété comme "application d'une fonction 
-    linéaire", même quand la-dite fonction linéaire est à valeurs
-    fonctionnelle (comme dans les diff d'ordre supérieur)
-
-  - Il y a des problèmes qui supposent naturellement de considérer
-    des fonctions avec des arguments matriciels. Par exemple, on
-    comprend assez bien qu'on peut avoir besoin de différencier
-    $\det A$ ou $A^{-1}$. Même si le problème final n'a que des
-    paramètres vectoriels, on a envie de faire des "chain rules"
-    avec des arguments matriciels.
-
-  - Exemple pas trivial mais typique: calculer $d^2f \circ g$.
-    A l'ordre $1$ on a $d f \circ g(x) = df(g(x)) \cdot df(x)$, 
-    ce qui est (interprétable comme) un produit de matrices.
-
-Positions aujourd'hui:
-
-  - rester dans un premier temps compatible avec le conventions du 
-    tout-matriciel, se contenter de noter l'écart avec les conventions
-    NumPy, conserver une définition de $\cdot$ qui soit plus générale.
-
-  - minimiser les présentations du tensoriel: on peut se contenter de
-    montrer que $d^2f$ est représentable comme un tableau à trois dimensions
-    et de faire les calculs avec les indices pour évaluer 
-    $d^f(x) \cdot h_1 \cdot h_2$ par exemple; le cas différentielle d'ordre 
-    $k$ n'est guère plus complexe.
-
-  - regarder s'il y a des exemples éclairants à faire en TD sur 
-    de la différentielle à argument matriciels et "bootstrapper" la
-    définition de la différentielle à ce moment-là, en "mettant à plat"
-    la matrice par exemple ? Ou exploiter la définition d'Hadamard pour
-    éviter d'avoir à faire ça ?
-
-### Normes
-
-Ne rien mettre dans ce chapitre proprement dit, mais lister ce dont on
-a besoin très concrètement pour inclure ces éléments dans le chapitre 
-de topologie.
-
-J'ai assez envie de noter par défaut $|x|$ les normes dans $\mathbb{R}^n$
-et $\|L\|$ la norme d'opérateur et d'annoter ces normes par des symboles
-(comme $|x|_2$, $\|A\|_{22}$) dans les contextes ou il faudrait être
-plus précis.
-
-Dans ce chapitre j'imagine que l'on peut (presque ?) toujours se limiter aux
-normes euclidiennes et à la norme d'opérateur induite, sauf peut-être si
-l'on en vient à montrer des choses comme le caractére intrinsèque de la
-définition de différentielle ? Non, même là ça va marcher.
-
-Donc concrêtement, définition de ces deux normes, pptés habituelles
-(notamment $|Lx| \leq \|L\||x|$). Le coup de la norme d'opérateur
-associé à la représentation matricielle (via SVD), utile ou pas ?
-Si oui -- et on peut en douter -- alors il faut aussi parler de matrices
-dans le chapitre sur la topo. Ouch, non, éviter. En fait, il faudra sans
-peut-être "retarder" les rappels sur les opérateurs linéaires à ce chapitre,
-car c'est un gros focus du chapitre (idée d'approximation linéaire est 
-centrale ici, avant ça serait abstrait).
-
-Auquel cas on parle de norme en topo, on montrer les exemple classiques en
-dim finie et on parle d'équivalence des normes,
-mais on attend ce chapitre pour parler d'opérateurs et de norme.
-Donc un volet à rajouter ici ?
-
--->
-
-<!--
-TODO
-================================================================================
-
-Changelog :
-
-  - Supression intégrale de Newton
-
-  - Forme classique du théorème fondamental du calcul (avec hypothèse
-    d'intégrabilité de $f'$).
-
-TODO :
-
-  - **Supression annexe intégrale de Newton. 
-    Réviser résultat Théo fondamental du
-    calcul et variation d'une fonction pour se limiter à des fonctions 
-    "intégrables".** Préciser éventuellement dans une remarque (ou pas)
-    que les résultats sont vrais sans hypothèse supplémentaire.
-    Ca peut prendre la forme suivante : énoncer le résultat, PUIS expliquer
-    qu'on peut comprendre "intégrable" comme "Riemann-intégrable" ou
-    (ou même "continue par morceaux")
-    ou "Lebesgue-intégrable" ou même HK-intégrable (hors-programme).  
-    Le cas HK-intégrable est nécessaire pour prouver le théorème des
-    accroissements finis et uniquement là ; la réference à "TFC vrai pour HK"
-    pourrait même être locale et donc se limiter à cette preuve pour ne pas 
-    compliquer le texte. A voir ...
-    Bref, propager les conséquences de ce changement.
-
-  - **Atténuer différence applis lin / matrices.** Dans les notations, etc.
-    "Incarner" beaucoup plutôt les choses dans des matrices pour que 
-    l'interprétation concrête soit toujours possible (tout est "calculable"
-    à chaque étape), accepter en contrepartie qu'une notation soit (un peu) 
-    ambigue dans son interprétation. Du coup, notation unique,
-    par exemple $D f(x)$ pour désigner aussi bien la matrice jacobienne que
-    la différentielle ? Y réfléchir, mais ça semble raisonnable ...
-    Il est toujours possible de distinguer les objets en introduisant 
-    $df(x)$ et $J_f(x)$ a posteriori  si besoin (mais si c'est vraiment le
-    cas, c'est un échec non ?). De toute façon, il sera nécessaire d'expliquer
-    pourquoi on peut écrire / comment interpréter $Dg(y) Df(x)$ vs
-    $Dg(y) \cdot Df(x)$ vs $Dg(y) \circ Df(x)$.
-
-    Ou conserver la notation $df(x)$ pour la matrice également ?
-    On a envie de pouvoir conserver les identités comme $dx^2 = 2x dx$ ...
-
-  - **Commencer par les dérivées partielles, insister sur le cadre $C^1$**.
-    Passer de la dérivée aux dérivées partielles (sur un point intérieur du
-    domaine), puis définir le gradient, la matrice jacobienne. 
-    Dire qu'une fonction est différentiable en un point si la matrice 
-    jacobienne de $f$ en $x$ fournit une approximation au 1er ordre de $f(x+h)$,
-    c'est-à-dire si 
-    $$
-    f(x+h) = f(x) + Df(x) \cdot h + o(\|h\|)
-    $$
-    et qu'alors on appelle différentielle l'application de $f$ en $x$ 
-    l'application linéaire $h \mapsto Df(x) \cdot h$ -- ou "$Df(x)$".
-    (A noter que l'on peut faire l'impasse sur l'unicité de l'opérateur
-    ainsi défini et que l'on n'a pas *a posteriori* à découvrir comment
-    il est lié à la matrice jacobienne ; mais cela peut faire l'objet d'un
-    exercice embarqué à cet endroit.)
-    Exemples bien choisi pour montrer que ce développement au 1er ordre
-    n'existe pas forcément même si la matrice jacobienne est bien définie. 
-
-    La qualification de "continûment différentiable" est alors définie 
-    comme la continuité de
-    l'application $x \mapsto Df(x) \in \mathbb{R}^{n \times n}$.
-    Que continûment différentiable implique différentiable est un théorème
-    (facile à retenir avec la terminologie choisie).
-
-  - Renvoyer en annexe les rappels d'algèbre linéaire (matrices,
-    et applications linéaires, vecteurs, etc.). Puis la simplifier
-    (notamment, les notations sur les applications linéaires).
-
-  - TODO: renvoyer dérivée en annexe (y compris dérivée à droite et à gauche 
-    dans un style extension sur ouvert ?)
-
-
-\newpage
--->
 
 Introduction
 ================================================================================
@@ -417,7 +187,7 @@ $g(x) = 1 - x$ si $x < 0$ et $g(x) = (2-x)/e$ si $x>1$.](images/prolongement.tex
 ### Dérivée et prolongement {.exercise .one .question #exo-dep}
 Démontrer la proposition ["Dérivée et prolongement"](#dep).
 
-### Dérivée et développement limité  {.proposition .zero}
+### Dérivée et développement limité  {.proposition .zero #ddl}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 Si la fonction $f$ est dérivable en $x$, alors dans un voisinage de $x$
 on a
@@ -430,7 +200,7 @@ $$
 \lim_{h \to 0}\varepsilon(h) = 0.
 $$
 
-###  Dérivée et développement limité (réciproque)  {.proposition .zero}
+###  Dérivée et développement limité (réciproque)  {.proposition .zero #ddlr}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 S'il existe un $\ell \in \R^m$ tel que
 $$
@@ -780,8 +550,6 @@ La fonction $h \in V \mapsto \varepsilon(h)\|h\|$ est un $o(h)$
 $\varepsilon(h)\|h\| = o(h)$.
 -->
 
-### TODO -- cas monovariable (dérivabilité équiv diff)
-
 ### Fonctions affines {.exercise .question #fa .one}
 Soit $A \in \R^{m\times n}$ et $b \in \R^m$. 
 Calculer la matrice jacobienne de la fonction $f:\R^n \to \R^m$ définie par 
@@ -833,6 +601,39 @@ définie et que
 $$
 \lim_{\substack{h \to 0 \\ h\neq 0}} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0.
 $$
+
+### Différentielle et dérivée {.proposition .one}
+Soit $U$ un ouvert de $\R$, $f:U \to \R^m$ et $x\in U$. La fonction $f$ est
+différentiable en $x$ si et seulement si elle est dérivable en $x$. Dans ce
+cas, on a pour tout $h \in \R$, 
+$$
+J_f(x) = [f'(x)] \in \R^{1\times 1}
+$$
+c'est-à-dire pour tout $h \in \R$,
+$$
+df(x)\cdot h = f'(x) h.
+$$
+
+### Démonstration {.proof}
+Avec la définition de la matrice jacobienne,
+il est clair que la dérivée de $f$ en $x$ existe si et seulement si
+$J_f(x)$ existe et qu'auquel cas on a $J_f(x) = [f'(x)]$.
+On sait aussi que si $f$ est dérivable en $x$, si et seulement si
+la fonction admet un développement limité au premier ordre en $x$
+(cf. [la proposition "Dérivée et développement limité"](#ddl) ainsi que [sa réciproque](#ddlr)),
+soit
+$$
+f(x+h) = f(x) + f'(x) h + \varepsilon(h) |h|
+$$
+avec $\lim_{h\to 0} \varepsilon (h) = 0$, ce que l'on peut écrire sous
+la forme
+$$
+f(x+h)= f(x) + [f'(x)] \cdot h + \varepsilon(h) \|h\|
+= f(x) + J_f(x) \cdot h +\varepsilon(h) \|h\|,
+$$
+ce qui équivaut à la différentiabilité de $f$ en $x$.
+La relation $df(x) \cdot h= J_f(x) \cdot h$ fournit le dernier élément
+de la proposition.
 
 
 Calcul Différentiel
@@ -962,12 +763,10 @@ $$
 $$
 le résultat est donc acquis.
 
-### Composition de fonctions continûment différentiables {.exercise #cfcd .question .one}
+### Dérivation en chaîne de fonctions continûment différentiables {.exercise #cfcd .question .one}
 Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#chain-rule) 
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
-
-### TODO -- Existence d'une dérivée directionnelle (exo)
 
 Notations compactes
 --------------------------------------------------------------------------------
