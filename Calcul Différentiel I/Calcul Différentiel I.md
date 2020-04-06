@@ -481,7 +481,7 @@ pour jouer ce rôle, l'existence de la matrice jacobienne est une propriété
 trop faible 
 et la continue différentiabilité est une propriété trop forte.
 
-### Différentiabilité {.definition .three}
+### Différentiabilité {.definition .three #différentiabilité}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 On dit que $f$ est *différentiable en $x$* si la matrice jacobienne de $f$ en
@@ -537,19 +537,6 @@ est fausse : construire une fonction dont les dérivées directionnelles en $x$
 existent dans toute direction $h \in \R^n$ mais qui ne soit pas différentiable
 en $x$.
 
-
-<!--
-### Convention de Landau {.definition .four}
-Toute fonction $\varepsilon : V \subset \R^n \mapsto \R^m$ définie sur 
-un voisinage de $0 \in \R^n$ telle que 
-$$
-\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0
-$$
-est appelée "un $o(1)$", ce que l'on note $\varepsilon(h)  = o(1)$.
-La fonction $h \in V \mapsto \varepsilon(h)\|h\|$ est un $o(h)$
-$\varepsilon(h)\|h\| = o(h)$.
--->
-
 ### Fonctions affines {.exercise .question #fa .one}
 Soit $A \in \R^{m\times n}$ et $b \in \R^m$. 
 Calculer la matrice jacobienne de la fonction $f:\R^n \to \R^m$ définie par 
@@ -570,7 +557,7 @@ $$
 avec $\lim_{h \to 0} \varepsilon(h) =  0$
 alors la matrice jacobienne $J_f(x)$ est bien définie et $J_f(x) = A$.
 
-### Différentielle {.definition .two}
+### Différentielle {.definition .two #différentielle} 
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 Si $f$ est différentiable en $x$ on appelle alors *différentielle de $f$ en $x$* 
@@ -585,15 +572,14 @@ $$
 df(x) = J_f(x).
 $$
 
-### TODO
-
-Un mot sur ce que le terme $df(x) \cdot h$ (et ses composants) *représente* :
-un approximation (au premier ordre) de la variation de $f$ en $x$ quand 
-l'argument varie de $h$.
-
-### TODO. grad et produit scalaire.
-Montrer que $df(x) \cdot h = \left<\nabla f(x), h \right>$ dans le cas scalaire.
-
+### Variation d'une fonction en un point {.remark .one}
+Comme le montre l'égalité caractérisant la différentiabilité de $f$ en $x$,
+le terme $df(x) \cdot h$ représente une approximation 
+-- linéaire en $h$ -- de la variation $\Delta f(x, h):= f(x+h) - f(x)$ de 
+$f$ en $x$ dans la direction $h$, car
+$$
+\Delta f(x, h) = df(x)\cdot h + \varepsilon(h)\|h\|.
+$$
 
 ### Différentiabilité {.two .exercise .question #vareps}
 Montrer que $f$ est différentiable en $x$ si et seulement si $J_f(x)$ est bien
@@ -604,12 +590,8 @@ $$
 
 ### Différentielle et dérivée {.proposition .one}
 Soit $U$ un ouvert de $\R$, $f:U \to \R^m$ et $x\in U$. La fonction $f$ est
-différentiable en $x$ si et seulement si elle est dérivable en $x$. Dans ce
-cas, on a pour tout $h \in \R$, 
-$$
-J_f(x) = [f'(x)] \in \R^{1\times 1}
-$$
-c'est-à-dire pour tout $h \in \R$,
+différentiable en $x$ si et seulement si elle est dérivable en $x$. 
+Dans ce cas, pour tout $h \in \R$,
 $$
 df(x)\cdot h = f'(x) h.
 $$
@@ -634,6 +616,21 @@ $$
 ce qui équivaut à la différentiabilité de $f$ en $x$.
 La relation $df(x) \cdot h= J_f(x) \cdot h$ fournit le dernier élément
 de la proposition.
+
+### Différentielle et gradient {.proposition .one}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R$ et $x \in U$. Si la fonction
+$f$ est différentiable en $x$, alors pour tout $h \in \R^n$,
+$$
+df(x)\cdot = \left<\nabla f(x), h\right>.
+$$
+
+### Démonstration {.proof}
+Par [définition de la différentielle](#différentielle), 
+$df(x) \cdot h = J_f(x) \cdot h$.
+Or, d'après [la définition du gradient](#gradient), 
+$\nabla f(x) = J_f(x)^{\top}$. Par conséquent,
+$df(x)\cdot h = \nabla f(x)^{\top} \cdot h = \left<\nabla f(x), h\right>$.
+
 
 
 Calcul Différentiel
@@ -1207,17 +1204,16 @@ que $$\|f(x+h) - f(x)\|_{\R^m} \leq M \|h\|_{\R^n}.$$
 Seules des modifications mineures des démonstrations déjà présentées sont 
 nécessaires pour établir ces résultats.
 
-Annexe -- Algèbre linéaire
+Annexe -- Calcul matriciel
 ================================================================================
 
-Préambule
---------------------------------------------------------------------------------
-
+### {.remark}
 Les fragments de code de ce document utilisent le langage Python 3.
 La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
 
     >>> from numpy import *
 
+<!--
 Ensembles et fonctions
 --------------------------------------------------------------------------------
 
@@ -1249,8 +1245,9 @@ où les notations des ensembles et fonctions $g$, $f$, $A$, $B$ et $C$
 restent dans le même ordre d'apparition et les deux occurrences de 
 l'ensemble intermédiaire $B$ se touchent.
 
-Applications linéaires et calcul matriciel
---------------------------------------------------------------------------------
+-->
+
+<!-- -------------------------------------------------------------------------------- -->
 
 ### Multiplication scalaire-vecteur
 Pour tout scalaire $\lambda \in \mathbb{R}$ et vecteur $x \in \mathbb{R}^n$,
@@ -1303,6 +1300,7 @@ sera représentée avec NumPy par un tableau bi-dimensionnel:
     >>> size(A)
     6
 
+<!--
 ### Mise à plat des matrices {.warning #flatten}
 Dans la notation $\mathbb{R}^{m \times n}$, 
 $\times$ est un symbole de séparation, purement syntactique : 
@@ -1352,9 +1350,11 @@ avec NumPy:
     >>> reshape(a, (2, 3))
     array([[1, 2, 3],
            [4, 5, 6]])
+-->
 
 ### Applications linéaires
 
+<!--
 Notons
 $$
 \mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m
@@ -1362,15 +1362,11 @@ $$
 \mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
 $$ 
 l'ensemble des applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
+-->
 La raison d'être des matrices $\mathbb{R}^{m \times n}$ est de représenter
-ces applications linéaires.
-
-Si $A$ désigne  une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$,
-on peut la décomposer en $m$ composantes $A_i$, 
-des applications de $\mathbb{R}^n$ dans $\mathbb{R}$ 
-telles que pour tout $x$ dans $\mathbb{R}^n$, on ait
-$A(x) = (A_1(x), A_2(x), \dots, A_m(x))$, ce que l'on note
-simplement
+les applications linéaires de $\R^n$ dans $\R^m$.
+Si $A$ désigne une telle application linéaire, notons $A_i$ ses
+$m$ composantes scalaires :
 $$
 A = (A_1, A_2, \dots, A_m).
 $$
@@ -1407,24 +1403,18 @@ $$
 il est possible de définir une application linéaire 
 $A: \mathbb{R}^n \to \mathbb{R}^m$ par la relation
 $$
-(A x)_i := \sum_{j} a_{ij} x_j
+(A \cdot x)_i := \sum_{j} a_{ij} x_j
 $$
 et cette opération est l'inverse de la précédente.
-
-Cette correspondance établit un isomorphisme d'espaces vectoriels entre 
-les applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et 
-les matrices de taille $m \times n$ à coefficients réels :
-$$
-\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
-\, \cong \,
-\mathbb{R}^{m \times n} 
-$$
+Techniquement, cette correspondance établit un isomorphisme d'espaces vectoriels 
+entre les applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et 
+les matrices de $\R^{m \times n}$.
 
 ### Composition d'applications linéaires
  
 Si $A$ et $B$ désignent des applications linéaires de 
 $\mathbb{R}^p$ dans $\mathbb{R}^n$ et de $\mathbb{R}^n$ dans $\mathbb{R}^m$ 
-respectivement, la fonction composée $C = B \circ A$ est une application
+respectivement, la fonction composée $C = B \cdot A$ est une application
 linéaire qui vérifie
   $$
   C_{ij} = \sum_{k} B_{ik} A_{kj}.
@@ -1432,10 +1422,11 @@ linéaire qui vérifie
 Autrement dit, la composition de fonction linéaires se traduit par la
 multiplication des matrices associées.
 
+<!--
 Dans la suite on évitera en général l'utilisation du symbole $\circ$ pour
 désigner la composition d'applications linéaires, en lui préférant le
 symbole $\cdot$ ("point"). 
-<!--
+
 Le même symbole sera utilisé pour désigner le produit
 entre deux matrices (on évitera dans la mesure du possible de désigner
 le produit de deux matrices par simple juxtaposition des symboles).
@@ -1449,19 +1440,19 @@ La méthode `dot` des tableaux NumPy permet de calculer ce produit matriciel :
     array([[1, 2, 3],
            [4, 5, 6]])
 
-### Adjoint d'un opérateur {.definition}
+### Adjoint d'un opérateur
 Lorsque $A: \R^n \to \R^m$ est un opérateur linéaire, on peut définir de
-façon unique l'opérateur *adjoint* $A^* : \R^m \to \R^n$ comme l'unique
+façon unique l'opérateur adjoint $A^{\top} : \R^m \to \R^n$ comme l'unique
 opérateur tel que pour tout $x \in \R^n$ et tout $y \in \R^m$, on ait
 $$
-\left<y, A \cdot x \right> = \left<A^* \cdot y, x \right>.
+\left<y, A \cdot x \right> = \left<A^{\top} \cdot y, x \right>.
 $$
-La matrice représentant $A^*$ est la transposée de la matrice représentant $A$ :
+La matrice associée à $A^{\top}$ est la transposée de la matrice représentant $A$ :
 
     >>> A
     array([[1, 2, 3],
            [4, 5, 6]])
-    >>> transpose(A)
+    >>> A.T
     array([[1, 4],
            [2, 5],
            [3, 6]])
@@ -1488,6 +1479,7 @@ $X \in \mathbb{R}^{n\times 1}$, telle que $X_{i1} = x_i$.
 Le produit entre une matrice et un vecteur colonne de taille compatible
 n'est rien d'autre qu'un produit matriciel classique. 
 
+<!--
 Le vecteur $x$ étant associé à une matrice, on peut se demander quel
 opérateur linéaire est associé à cette matrice. La réponse est simple:
 il s'agit de l'application
@@ -1500,7 +1492,9 @@ $x^*$ (l'adjoint de l'opérateur associé à $x$) : il s'agit
 de l'application linéaire de $\R^n$ dans $\R$ dont la matrice
 est la transposée du vecteur colonne associé à $x$, autrement dit,
 la représentation de $x$ comme vecteur ligne.
+-->
 
+<!--
 L'intérêt de la représentation des vecteurs comme vecteurs colonnes : 
 si $A$ est une application linéaire de $\mathbb{R}^n$ dans
 $\mathbb{R}^m$ et $x$ un vecteur de $\mathbb{R}^n$, le vecteur
@@ -1508,11 +1502,12 @@ image $y=A \cdot x \in \mathbb{R}^m$ de $x$ par $A$ est représenté par
 le vecteur colonne qui est le produit entre 
 la représentation de $A$ comme matrice et la représentation de
 $x$ comme vecteur colonne.
+-->
 
 Concrêtement, NumPy ne nécessite pas qu'un vecteur soit d'abord 
 transformé en matrice pour réaliser un produit matrice-vecteur.
 La méthode `dot` des tableaux peut être utilisée ici aussi 
-pour réaliser cette opération:
+pour réaliser cette opération :
 
     >>> A = array([[1, 2, 3], [4, 5, 6]])
     >>> x = array([7, 8, 9])
