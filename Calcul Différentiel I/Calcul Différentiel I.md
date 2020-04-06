@@ -525,28 +525,17 @@ $$
 \right] \in \R^{n\times 1}.
 $$
 
-### Gradient et matrice jacobienne {.example #gmj}
-En tout point $x=(x_1, x_2)$ de $\R^2$, les deux fonctions partielles de la fonction
-$$f:(x_1,x_2) \in \R^2 \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2 \in \R$$ sont dérivables,
-vérifient $\partial_1 f(x_1, x_2) = -2(x_2^2 - x_1) + 2 (x_1 - 1)$ et 
-$\partial_2 f(x_1, x_2) = 4 (x_2^2 - x_1)x_2$. 
-Par conséquent,
-$$
-J_f(x_1, x_2) = 
-\left[ 
-  \begin{array}{cc}
-  -2(x_2^2 - x_1) + 2 (x_1 - 1) &
-  4 (x_2^2 - x_1)x_2
-  \end{array}
-  \right] \in \R^{1 \times 2}.
-$$
-La fonction est scalaire (à valeurs dans $\R$), son gradient est donné par
+### Gradient et matrice jacobienne {.exercise .question #gmj .one}
+Montrer qu'en  tout point $x=(x_1, x_2)$ de $\R^2$, le gradient de 
+la fonction scalaire
+$$f:(x_1,x_2) \in \R^2 \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2 \in \R$$
+est défini et vérifie
 $$
 \nabla f(x_1, x_2)
 =
-(-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2)
+(-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2
 $$
-ou, représenté comme un vecteur colonne
+c'est-à-dire, comme vecteur colonne,
 $$
 \nabla f(x_1, x_2) = J_f(x_1, x_2)^{\top} =
 \left[ 
@@ -557,22 +546,14 @@ $$
   \right] \in \R^{2\times 1}.
 $$
 
-### Matrice jacobienne {.example} 
-Considérons la fonction 
+
+### Matrice jacobienne {.exercise .question .one #exo-mj2} 
+Montrer qu'en tout point $x=(x_1, x_2)$ de $\R^2$, la matrice jacobienne de
+la fonction 
 $$
 g:(x_1, x_2) \in \R^2 \mapsto (-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2.
 $$
-Elle a deux composantes, les fonctions (scalaires) 
-$$g_1:(x_1, x_2) \in \R^2 \mapsto -2(x_2^2 - x_1) + 2 (x_1 - 1)\in \R
-$$
-et
-$$
-g_2:(x_1, x_2) \in \R^2 \mapsto 4 (x_2^2 - x_1)x_2\in \R.$$
-En tout point $x=(x_1, x_2)$ de $\R^2$, les fonctions partielles de ces deux
-fonctions existent et vérifient
-$\partial_1 g_1(x_1, x_2) = 4$, $\partial_2 g_1(x_1, x_2) = -4x_2$,
-$\partial_1 g_2(x_1, x_2) = -4x_2$ et $\partial_2 g_2(x_1, x_2) = 12 x_2^2$.
-Sa matrice jacobienne est donc définie en tout point et vaut 
+est définie et vérifie
 $$
 J_g(x_1, x_2) = 
 \left[ 
@@ -583,20 +564,9 @@ J_g(x_1, x_2) =
   \right]\in \R^{2 \times 2}.
 $$
 
-
-
-
-
-
-
-
 ![Champ du gradient $\nabla f$ de la fonction 
 $f:(x_1,x_2) \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2$ (échelle des vecteurs modifiée),
 cf. exemple ["Gradient et matrice jacobienne"](#gmj).](images/rosenbrock.py)
-
-### TODO. grad et produit scalaire.
-Plus tard, avec la différentielle, car il faut justifier l'intérête de l'expression
-$J_f(x) \cdot h$.
 
 ### Matrice jacobienne et gradient {.exercise #matjac .question}
 Donner une expression de la matrice jacobienne de $f$ en $x$
@@ -853,30 +823,17 @@ Un mot sur ce que le terme $df(x) \cdot h$ (et ses composants) *représente* :
 un approximation (au premier ordre) de la variation de $f$ en $x$ quand 
 l'argument varie de $h$.
 
-### Différentiabilité {.two .exercise}
+### TODO. grad et produit scalaire.
+Montrer que $df(x) \cdot h = \left<\nabla f(x), h \right>$ dans le cas scalaire.
+
+
+### Différentiabilité {.two .exercise .question #vareps}
 Montrer que $f$ est différentiable en $x$ si et seulement si $J_f(x)$ est bien
 définie et que
 $$
 \lim_{\substack{h \to 0 \\ h\neq 0}} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0.
 $$
 
-
-
-### TODO
-Diff implique cont, existence des dérivées directionnelles et expression.
-
-
-
-
-### Fonction quadratique {.question #fq .exercise .two}
-Soit $A \in \R^{n \times n}$. En utilisant les liens entre continue 
-différentiabilité et différentiabilité, montrer que la fonction 
-$$
-f : x \in \R^n \mapsto x^{\top} \cdot A \cdot x
-$$
-est différentiable et déterminer l'application $df(x)$.
-
-### TODO : exo diff produit scalaire
 
 Calcul Différentiel
 ================================================================================
@@ -923,6 +880,16 @@ est différentiable et pour tout $x \in \R^n$,
 $$
 df(x, y)\cdot(h_x, h_y) = h_x^{\top} \cdot B \cdot y + x^{\top} \cdot B \cdot h_y.
 $$
+
+### Fonction quadratique {.question #fq .exercise .two}
+Soit $A \in \R^{n \times n}$. En utilisant les liens entre continue 
+différentiabilité et différentiabilité, montrer que la fonction 
+$$
+f : x \in \R^n \mapsto x^{\top} \cdot A \cdot x
+$$
+est différentiable et déterminer l'application $df(x)$.
+
+### TODO : exo diff produit scalaire
 
 ### TODO
 Expliquer que fondamentalement, calcul = composition de fonctions.
@@ -2105,6 +2072,66 @@ $$
 Cette fonction étant continue (il s'agit d'une fonction affine) 
 et $U$ ouvert par hypothèse, cet ensemble est bien ouvert.
 
+
+### Gradient et matrice jacobienne {.answer #answer-gmj}
+Les deux fonctions partielles de la fonction
+$$f:(x_1,x_2) \in \R^2 \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2 \in \R$$ sont dérivables,
+vérifient $\partial_1 f(x_1, x_2) = -2(x_2^2 - x_1) + 2 (x_1 - 1)$ et 
+$\partial_2 f(x_1, x_2) = 4 (x_2^2 - x_1)x_2$. 
+Par conséquent,
+$$
+J_f(x_1, x_2) = 
+\left[ 
+  \begin{array}{cc}
+  -2(x_2^2 - x_1) + 2 (x_1 - 1) &
+  4 (x_2^2 - x_1)x_2
+  \end{array}
+  \right] \in \R^{1 \times 2}.
+$$
+Son gradient est donc donné par
+$$
+\nabla f(x_1, x_2)
+=
+(-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2
+$$
+ou, représenté comme un vecteur colonne
+$$
+\nabla f(x_1, x_2) = J_f(x_1, x_2)^{\top} =
+\left[ 
+  \begin{array}{c}
+  -2(x_2^2 - x_1) + 2 (x_1 - 1) \\
+  4 (x_2^2 - x_1)x_2
+  \end{array}
+  \right] \in \R^{2\times 1}.
+$$
+
+
+### Matrice jacobienne {.exercise .one #answer-exo-mj2} 
+La fonction 
+$$
+g:(x_1, x_2) \in \R^2 \mapsto (-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2.
+$$
+a deux composantes, les fonctions (scalaires) 
+$$g_1:(x_1, x_2) \in \R^2 \mapsto -2(x_2^2 - x_1) + 2 (x_1 - 1)\in \R
+$$
+et
+$$
+g_2:(x_1, x_2) \in \R^2 \mapsto 4 (x_2^2 - x_1)x_2\in \R.$$
+En tout point $x=(x_1, x_2)$ de $\R^2$, les fonctions partielles de ces deux
+fonctions existent et vérifient
+$\partial_1 g_1(x_1, x_2) = 4$, $\partial_2 g_1(x_1, x_2) = -4x_2$,
+$\partial_1 g_2(x_1, x_2) = -4x_2$ et $\partial_2 g_2(x_1, x_2) = 12 x_2^2$.
+Sa matrice jacobienne est donc définie en tout point et vaut 
+$$
+J_g(x_1, x_2) = 
+\left[ 
+  \begin{array}{cc}
+  4 & -4x_2 \\
+  -4x_2 & 12 x_2^2
+  \end{array}
+  \right]\in \R^{2 \times 2}.
+$$
+
 ### Matrice jacobienne et gradient {.answer #answer-matjac}
 D'après la définition de [la matrice jacobienne](#matrice-jacobienne) 
 et [du gradient](#gradient), on a 
@@ -2237,6 +2264,42 @@ f'(0, h) = \lim_{h\to 0} \frac{f(t h) - f(0)}{t} = 0.
 $$
 La dérivée directionnelle de $f$ en $(0,0)$ dans la direction $h$ existe et
 est nulle.
+
+
+### Différentiabilité {.answer #answer-vareps}
+Si $f$ est différentiable en $x$, alors la matrice jacobienne de $f$ en
+$x$ existe et il existe
+sur un voisinage de $h=0$ une fonction
+$\varepsilon$ à valeurs dans $\R^m$ vérifiant $\lim_{h \to 0} \varepsilon(h) = 0$
+telle que 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|.
+$$
+On en déduit que sur ce voisinage de $0$ (et hormis pour $h=0$), on a
+$$
+\varepsilon(h) = \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right).
+$$
+Par hypothèse la fonction $\varepsilon$ est continue et nulle en $0$, donc
+le membre de droite de cette équation tend bien vers $0$ quand $h\to 0$ 
+avec $h\neq 0$.
+Réciproquement, si 
+$$
+\lim_{\substack{h \to 0 \\ h\neq 0}} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0,
+$$
+on peut définir sur l'ensemble $V$ des $h$ tels que $x+h \in U$ ($U$ étant le domaine
+de définition de $f$) la fonction $\varepsilon$ par
+$$
+\varepsilon(h) = \left|
+\begin{array}{cl}
+0 & \mbox{si $h=0$,} \\
+\displaystyle \frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|} & \mbox{si $h \in V$ et $h\neq 0$.}
+\end{array}
+\right.
+$$
+Par construction, $V$ est un voisinage de $0$ et $\varepsilon$ vérifie 
+$\lim_{h \to 0} \varepsilon(h) = 0$ ainsi que la relation
+$f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|$ ; $f$ est donc
+différentiable en $x$.
 
 ### Fonction quadratique {#answer-fq .answer}
 Comme
