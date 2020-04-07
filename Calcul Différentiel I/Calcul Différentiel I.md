@@ -942,19 +942,21 @@ Cette égalité est de nature asymptotique, ce qui veut dire que
 pour maîtriser l'écart entre
 $f(x+h)$ et $f(x)$, 
 nous devons être en mesure de faire tendre $h$ vers $0$ ;
-si la grandeur $h$ est fixée cette relation ne
-nous fournit aucune information, même si $h$ est "très petit". 
+si la grandeur $h$ est fixée, en toute rigueur, 
+cette relation ne nous fournit aucune information. 
 
 Mais tout n'est pas perdu : si nous savons que $f$ est différentiable 
 non pas uniquement en $x$ mais sur tout le segment $[x,x+h]$, 
 il est possible de calculer la différence entre $f(x+h)$ et $f(x)$ 
 en intégrant les variations infinitésimales 
-de $f$ le long de $[x, x+h]$. 
+de $f$ le long de ce segment. 
 
 ### Théorème fondamental du calcul (monovariable) {.theorem #TFC .one}
-Si $f: [a, b] \subset \R \to \R^m$ est dérivable et que $f'$ est intégrable alors
+Soit $x \in \R$ et $h\geq 0$.
+Si la fonction $f: [x, x+h] \subset \R \to \R^m$ est dérivable 
+et que sa dérivée $f'$ est intégrable alors
 $$
-f(b) - f(a)  = \int_a^b f'(x) \, dx.
+f(x+h) - f(x)  = \int_x^{x+h} f'(y) \, dy.
 $$
 
 ### Démonstration {.proof}
@@ -978,11 +980,11 @@ plus générale de Henstock-Kurzweil (cf. calcul intégral),
 alors toute fonction dérivée est automatiquement 
 intégrable. 
 Le théorème fondamental du calcul est alors valable en toute généralité ; 
-il prend la forme suivante :
-si $f: [a, b] \to \R^m$ est dérivable, alors $f'$ est intégrable 
+il prend la forme suivante : si $x \in \R$, $h\geq 0$ et 
+la fonction $f: [x, x+h] \to \R^m$ est dérivable, alors $f'$ est intégrable 
 (au sens de Henstock-Kurzweil) et
 $$
-f(b) - f(a)  = \int_a^b f'(x) \, dx.
+f(x+h) - f(x)  = \int_x^{x+h} f'(y) \, dy.
 $$
 Cette forme avancée du théorème est toutefois rarement nécessaire ; 
 elle est néanmoins utile pour prouver 
@@ -991,21 +993,21 @@ Cette extension est aussi applicable à
 [la version multivariable du théorème fondamental du calcul](#VF) : 
 si l'on utilise l'intégrale de Henstock-Kurzweil, il sera inutile
 de vérifier que l'application 
-$t \mapsto df(a+th)  \cdot h$ est intégrable pour appliquer le théorème ;
-comme dérivée de l'application $t \mapsto f(a+th)$, 
+$t \mapsto df(x+th)  \cdot h$ est intégrable pour appliquer le théorème ;
+comme dérivée de l'application $t \mapsto f(x+th)$, 
 cette fonction l'est automatiquement.
 
 ### Théorème fondamental du calcul (multivariable) {.theorem #VF .two}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
-soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$,
+$x \in U$ et $h \in \mathbb{R}^n$ tels que le segment
   $$
-  [a, a+h] = \{a + th \; | \; t \in [0,1]\}
+  [x, x+h] = \{x + th \; | \; t \in [0,1]\}
   $$
-soit inclus dans $U$. Si $f$ est différentiable en tout point de $[a, a+h]$
-et que l'application $t \in [0,1] \mapsto df(a+th) \cdot h \in \R^m$ 
+soit inclus dans $U$. Si $f$ est différentiable en tout point de $[x, x+h]$
+et que l'application $t \in [0,1] \mapsto df(x+th) \cdot h \in \R^m$ 
 est intégrable, alors
 $$
-f(a + h) - f(a) = \int_0^1 df(a+th) \cdot h \, dt.
+f(x + h) - f(x) = \int_0^1 df(x+th) \cdot h \, dt.
 $$
 
 ![Géométrie [du théorème du calcul multivariable](#VF)](images/peanut.tex)
@@ -1017,60 +1019,59 @@ soit inclus dans $U$.
 On note $\phi$ la fonction $I \to \mathbb{R}^n$ 
 définie par
 $$
-\phi(t) = f(a + th)
+\phi(t) = f(x + th)
 $$
 La fonction $\phi$ est différentiable -- et donc dérivable -- 
 en tout point de $[0,1]$ [comme composée des fonctions 
-différentiables $f$ et $t \mapsto a + th$](#chain-rule) ; 
+différentiables $f$ et $t \mapsto x + th$](#chain-rule) ; 
 sa dérivée est donnée par
 $$
 \begin{split}
 \phi'(t) &= d\phi(t) \\
-         &= df(a+th) \cdot d(t\mapsto a+th) \\
-         &= df(a+th) \cdot (t \mapsto a+th)' \\
-         &= df(a+th) \cdot h
+         &= df(x+th) \cdot d(t \mapsto x+th) \\
+         &= df(x+th) \cdot (t \mapsto x+th)' \\
+         &= df(x+th) \cdot h
 \end{split}
 $$
 Par [le théorème fondamental du calcul](#TFC), comme par hypothèse $\phi'$ 
 est intégrable sur $[0, 1]$, on a donc
 $$
-f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt 
-                                  = \int_0^1 df(a+th) \cdot h \, dt.
+f(x+h) - f(x) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt 
+                                  = \int_0^1 df(x+th) \cdot h \, dt.
 $$
 
 ### Cas des fonctions continûment différentiables {.exercise .one .question #cfcd3}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
-soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
-$[a, a+h] = \{a + th \; | \; t \in [0,1]\}$
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$,
+$x \in U$ et $h \in \mathbb{R}^n$ tels que le segment
+$[x, x+h] = \{x + th \; | \; t \in [0,1]\}$
 soit inclus dans $U$. 
 Montrer que si $f$ est continûment différentiable sur $U$, 
 [le théorème fondamental du calcul](#VF) est applicable.
 
 ### Inégalité des accroissements finis (monovariable) {.theorem #TAFS .two}
-Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
-$h \in \left[0, +\infty\right[$.
-Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
+Soit $x \in \R$, $h \geq 0$, $f:[x, x+h] \to \mathbb{R}^m$.
+Si $f$ est dérivable sur $[x,x+h]$ et $M$ est un majorant de $\|f'\|$,
 c'est-à-dire si
 $$
-\mbox{pour tout } t \in [a, b], \;\|f'(t)\| \leq M.
+\mbox{pour tout } y \in [x, x+h], \;\|f'(y)\| \leq M.
 $$
 Alors 
 $$
-\|f(a+h) - f(a)\| \leq M h.
+\|f(x+h) - f(x)\| \leq M h.
 $$
 
 ### Démonstration {.proof}
 Par [la forme générale du théorème fondamental du calcul](#TFCE),
 la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
 $$
-f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
+f(x+h) - f(x) = \int_x^{x+h} f'(y) \, dy.
 $$
 La théorie de l'intégrale de Henstock-Kurzweil nous garantit qu'il est possible 
 d'obtenir des approximations arbitrairement précises de cette intégrale au moyen de 
 sommes de Riemman[^aci]. Cela signifie que pour tout $\varepsilon > 0$, 
 il existe des réels $x_0, \dots, x_k, t_0, \dots, t_{k-1}$ vérifiant
 $$
-a = x_0 \leq t_0 \leq x_1 \leq t_1 \leq  \dots \leq x_{k-1} \leq t_{k-1} \leq x_{k} = a+h
+x = x_0 \leq t_0 \leq x_1 \leq t_1 \leq  \dots \leq x_{k-1} \leq t_{k-1} \leq x_{k} = x+h
 $$
 telle que la somme
 $$
@@ -1078,7 +1079,7 @@ S = \sum_{i=0}^{k-1} f'(t_i)(x_{i+1} - x_i)
 $$
 satisfasse
 $$
-\left\| \int_a^{a+h} f'(t) \, dt -  S \right\| 
+\left\| \int_x^{x+h} f'(t) \, dt -  S \right\| 
 \leq 
 \varepsilon.
 $$
@@ -1089,7 +1090,7 @@ au sens de Henstock-Kurzweil et
 
 En exploitant deux fois l'inégalité triangulaire, on obtient donc
 $$
-\|f(a+h) - f(a)\|
+\|f(x+h) - f(x)\|
 \leq 
 \|S\| + \varepsilon \leq \sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i| +\varepsilon.
 $$
@@ -1100,13 +1101,13 @@ $$
 \sum_{i=0}^{k-1} M |x_{i+1} - x_i|
 \leq M \sum_{i=0}^{k-1} |x_{i+1} - x_i|
 $$
-et comme $a=x_0 \leq x_1 \leq \dots \leq x_k = a+h$,
+et comme $x=x_0 \leq x_1 \leq \dots \leq x_k = x+h$,
 $$
 \sum_{i=0}^{k-1} |x_{i+1} - x_i| = \sum_{i=0}^{k-1} (x_{i+1} - x_i) =
-x_p - x_0 = (a+h) - a = h.
+x_p - x_0 = (x+h) - x = h.
 $$ 
 On a donc $\|S\| \leq Mh$  et
-par conséquent $\|f(a+h) - f(a)\| \leq M h + \varepsilon$ ;
+par conséquent $\|f(x+h) - f(x)\| \leq M h + \varepsilon$ ;
 le choix de $\varepsilon > 0$ étant arbitraire, on en déduit
 le résultat cherché.
 
@@ -1131,9 +1132,9 @@ mais sur les identités associées à la norme euclidienne et sur le théorème 
 valeurs intermédiaires :
 
 ### Inégalité des accroissements finis (version euclidienne)  {.exercise #mitch .question .two}
-Soit $\phi: t \in [a, a+h] \to \R$ la fonction définie par
+Soit $\phi: y \in [a, a+h] \to \R$ la fonction définie par
 $$
-\phi(t) = \left<f(a+h) - f(a), f(t) \right>.
+\phi(y) = \left<f(x+h) - f(x), f(y) \right>.
 $$
 En appliquant le théorème des valeurs intermédiaires à $\phi$, 
 prouver [l'inégalité des accroissements finis](#TAFS).
@@ -1181,9 +1182,6 @@ Montrer que pour tout $(x, y) \in U$, on a
 $$
 \|\log (x, y) - \log (x, -y)\| \leq 2 \pi.
 $$
-
-### TODO
-revoir nom des variables ($a$, $h$, $x$, etc.) en cohérence avec ce qui précède.
 
 ### Normes non euclidiennes {.remark .four}
 
@@ -2140,11 +2138,11 @@ continûment différentiable.
 
 ### Cas des fonctions continûment différentiables {.answer #answer-cfcd3}
 Si $f$ est continûment différentiable sur $U$, elle est en particulier
-différentiable sur $[a, a+h]$. De plus, 
+différentiable sur $[x, a+h]$. De plus, 
 $$
-df(a+th) \cdot h = \sum_{i=1}^{n} \partial_j f(a+th) h_j,
+df(x+th) \cdot h = \sum_{i=1}^{n} \partial_j f(x+th) h_j,
 $$
-donc la fonction $t \in [0,1] \mapsto df(a+th) \cdot h$ est continue
+donc la fonction $t \in [0,1] \mapsto df(x+th) \cdot h$ est continue
 et par conséquent intégrable. [Le théorème fondamental du calcul](#VF)
 est donc applicable.
 
@@ -2153,45 +2151,43 @@ Si la fonction $f'$ est continue (ou intégrable au sens de
 Riemann, ou intégrable au sens de Lebesgue), 
 [le théorème fondamental du calcul](#TAFS) est applicable, donc 
 $$
-f(a+h) - f(a) = \int_a^{a+h} f'(t) \, dt.
+f(x+h) - f(x) = \int_x^{x+h} f'(t) \, dt.
 $$
 L'inégalité triangulaire appliquée à l'intégrale du membre de droite fournit
 alors
 $$
-\left\|f(a+h) - f(a)\right\| = \left\|\int_a^{a+h} f'(t) \, dt\right\|
-\leq \int_a^{a+h} \|f'(t)\| \, dt \leq \int_a^{a+h} M \, dt = M h.
+\left\|f(x+h) - f(x)\right\| = \left\|\int_x^{x+h} f'(t) \, dt\right\|
+\leq \int_x^{x+h} \|f'(y)\| \, dy \leq \int_x^{x+h} M \, dt = M h.
 $$
 
 ### Inégalité des accroissements finis (version euclidienne) {.answer #answer-mitch}
-**TODO.** adopter convention $\phi$ déf sur $[0,1]$ plus proche de ce qui
-précède et qui suit ?
 Comme
 $$
-\frac{\phi(t+s) - \phi(t)}{s} 
+\frac{\phi(y+s) - \phi(y)}{s} 
 = 
-\left<f(a+h) - f(a), \frac{f(t+s) - f(t)}{s}\right>,
+\left<f(x+h) - f(x), \frac{f(y+s) - f(y)}{s}\right>,
 $$
-la fonction $\phi$ est dérivable en tout point $t\in [a,a+h]$ et
+la fonction $\phi$ est dérivable en tout point $y\in [a,a+h]$ et
 $$
-\phi'(t) = \left<f(a+h) - f(a), f'(t) \right>.
+\phi'(y) = \left<f(x+h) - f(x), f'(y) \right>.
 $$
 La fonction $f$ étant à valeurs réelles, 
 le théorème des valeurs intermédiaires est applicable : il existe un 
-$\tau \in [a,a+h]$ tel que
+$y \in [x,x+h]$ tel que
 $$
-\phi(a+h) - \phi(a) = \phi'(\tau) h = \left<f(a+h) - f(a), f'(\tau) \right> h.
+\phi(x+h) - \phi(x) = \phi'(y) h = \left<f(x+h) - f(x), f'(y) \right> h.
 $$
 Comme par ailleurs
 \begin{align*}
-\phi(a+h) - \phi(a) &= 
-\left<f(a+h) - f(a), f(a+h) \right> - \left<f(a+h) - f(a), f(a) \right>  \\
-&= \|f(a+h) - f(a)\|^2,
+\phi(x+h) - \phi(x) &= 
+\left<f(x+h) - f(x), f(x+h) \right> - \left<f(x+h) - f(x), f(x) \right>  \\
+&= \|f(x+h) - f(x)\|^2,
 \end{align*}
 on a 
 $$
-\|f(a+h) - f(a)\|^2 = \left<f(a+h) - f(a), f'(\tau) \right> h \leq \|f(b) - f(a)\| \|f'(\tau)\| h.
+\|f(x+h) - f(x)\|^2 = \left<f(x+h) - f(x), f'(y) \right> h \leq \|f(x+h) - f(x)\| \|f'(y)\| h.
 $$
-Puisque $\|f'(\tau)\| \leq M$, on en déduit que $\|f(a+h) - f(a)\| \leq M h.$
+Etant donné que $\|f'(y)\| \leq M$, on en déduit $\|f(x+h) - f(x)\| \leq M h.$
 
 
 
