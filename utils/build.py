@@ -495,7 +495,9 @@ def transform_image_format(doc):
             image = elt
             attr, inlines, target = image[:]
             url, title = target
-            if pathlib.Path(url).suffix in [".tex", ".py"]:
+            # warning: svg files are replaced with pdf files, but not converted
+            # the generation has to be done manually (and commited)
+            if pathlib.Path(url).suffix in [".tex", ".py", ".svg"]:
                 new_target = url + ".pdf"
                 image[:] = attr, inlines, (new_target, title)
 

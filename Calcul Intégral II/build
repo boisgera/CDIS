@@ -36,7 +36,7 @@ def transform(doc):
     add_page_to_link(doc)
 
     demote_proofs_questions_answers_and_exercises_and_examples(doc)  # -> level 4
-    #___make_level_4_section_headings_inline(doc)
+    # ___make_level_4_section_headings_inline(doc)
 
     # make_level_4_section_headings_inline(doc) # was:
     # fucks up the index; the TOC is still good on print but the index is wrong
@@ -274,15 +274,21 @@ def ___make_level_4_section_headings_inline(doc):
 
     # BUG : some issue here.
 
-    blocks = [RawBlock(Format('tex'), '\\usepackage{titlesec}\n\\titleformat{\\subsubsubsection}[runin]{\\bfseries}{}{}{}[.]')]
+    blocks = [
+        RawBlock(
+            Format("tex"),
+            "\\usepackage{titlesec}\n\\titleformat{\\subsubsubsection}[runin]{\\bfseries}{}{}{}[.]",
+        )
+    ]
 
-#    inlines = [
-#        RawInline("tex", r"\usepackage{titlesec}"),
-        #SoftBreak(),
-        #RawInline("tex", r"\titleformat{\subsubsubsection}[runin]{\bfseries}{}{}{}[.]")
-#    ]
-#    add_latex_header(doc, [Para(inlines)])
+    #    inlines = [
+    #        RawInline("tex", r"\usepackage{titlesec}"),
+    # SoftBreak(),
+    # RawInline("tex", r"\titleformat{\subsubsubsection}[runin]{\bfseries}{}{}{}[.]")
+    #    ]
+    #    add_latex_header(doc, [Para(inlines)])
     add_latex_header(doc, blocks)
+
 
 # STILL BUGGY ...
 
@@ -445,6 +451,7 @@ def add_link_to_answers(doc):
             inlines = last_block[0]
             inlines.extend(link_wrapper)
 
+
 def add_page_to_link(doc):
     # Page references use labels as anchors but spans, even with an id,
     # don't generate such labels, so we need to add them manually.
@@ -454,7 +461,7 @@ def add_page_to_link(doc):
             attr, inlines = span[:]
             id_, _, _ = attr
             if id_ != "":
-                latex_id = id_.replace("é", "uxe9") # Hack (see below)
+                latex_id = id_.replace("é", "uxe9")  # Hack (see below)
                 label = RawInline(Format("tex"), f"\\label{{{latex_id}}}")
                 inlines.append(label)
 
@@ -468,7 +475,7 @@ def add_page_to_link(doc):
         url = link[2][0]
         no_paren = "no-parenthesis" in link[0][1]
         if url.startswith("#"):
-            #print(f"\\pageref{{{url[1:]}}}")
+            # print(f"\\pageref{{{url[1:]}}}")
             latex_id = f"\\pageref*{{{url[1:]}}}"
             latex_id = latex_id.replace("é", "uxe9")
             # quick hack ; would need to see in general how pandoc mangles the
@@ -488,7 +495,9 @@ def transform_image_format(doc):
             image = elt
             attr, inlines, target = image[:]
             url, title = target
-            if pathlib.Path(url).suffix in [".tex", ".py"]:
+            # warning: svg files are replaced with pdf files, but not converted
+            # the generation has to be done manually (and commited)
+            if pathlib.Path(url).suffix in [".tex", ".py", ".svg"]:
                 new_target = url + ".pdf"
                 image[:] = attr, inlines, (new_target, title)
 
@@ -500,8 +509,10 @@ def add_latex_header(doc, latex):
     if meta_block not in header_includes[0]:
         header_includes[0].append(meta_block)
 
+
 def solve_toc_nesting(doc):
     add_latex_header(doc, r"\usepackage{bookmark}")
+
 
 # Deprecated
 def _solve_toc_nesting(doc):  # fuck you LaTeX!
@@ -551,16 +562,41 @@ def handle_typed_sections(doc):
                 if types[type_]:
                     inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
                 if "zero" in classes:
-                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\boldsymbol{\circ}}"), Str(")")] 
+                    inlines += [
+                        Space(),
+                        Str("("),
+                        Math(InlineMath(), r"\mathord{\boldsymbol{\circ}}"),
+                        Str(")"),
+                    ]
                 if "one" in classes:
-                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"), Str(")")] 
+                    inlines += [
+                        Space(),
+                        Str("("),
+                        Math(InlineMath(), r"\mathord{\bullet}"),
+                        Str(")"),
+                    ]
                 if "two" in classes:
-                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"*2), Str(")")] 
+                    inlines += [
+                        Space(),
+                        Str("("),
+                        Math(InlineMath(), r"\mathord{\bullet}" * 2),
+                        Str(")"),
+                    ]
                 if "three" in classes:
-                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"*3), Str(")")] 
+                    inlines += [
+                        Space(),
+                        Str("("),
+                        Math(InlineMath(), r"\mathord{\bullet}" * 3),
+                        Str(")"),
+                    ]
                 if "four" in classes:
-                    inlines += [Space(), Str("("), Math(InlineMath(), r"\mathord{\bullet}"*4), Str(")")]
-                    # r"\mathord{\pmb{\infty}}" 
+                    inlines += [
+                        Space(),
+                        Str("("),
+                        Math(InlineMath(), r"\mathord{\bullet}" * 4),
+                        Str(")"),
+                    ]
+                    # r"\mathord{\pmb{\infty}}"
                 header[2] = inlines
     for holder, index, level, latex_title in todos:
         latex_code = (
