@@ -69,7 +69,7 @@ def contour_demo():
     ylim(-0.125, 2.125)
     yticks([0, 1, 2])
     xlabel("$x_1$"); ylabel("$x_2$")
-    set_ratio(ratio=16/9, bottom=0.10, top=0.0)
+    set_ratio(ratio=16/9, bottom=0.15, top=0.0)
     gca().set_aspect(1.0)
     #grid(True)
     save()
