@@ -562,21 +562,109 @@ Calcul Différentiel
 ================================================================================
 
 
-Notations 
+Notations {#notations}
 --------------------------------------------------------------------------------
 
-En tant qu'utilisateur du calcul différentiel (en Physiques par exemple) 
-vous avez peut-être déjà croisé à des notations assez éloignées de celles 
-que nous avons pratiqué jusqu'à présent. Au coeur de ces notations,
+Comme utilisateur du calcul différentiel
+vous avez probablement déjà croisé des notations assez éloignées de celles 
+que nous avons exploité jusqu'à présent. Vous avez peut-être mémorisé 
+des règles de calcul élémentaires telles que
+$$
+d (x+ y)  = dx + dy, \; d (xy) = y \, dx + x \, dy 
+$$
+ou appris en thermodynamique que
+$$
+dU = TdS - PdV, \; \mbox{ soit } \; T = \frac{\partial U}{\partial S} \mbox{ et } P = -\frac{\partial U}{\partial V}.
+$$
+
+<!--
 on trouve une formule du type
 $$
 d (f(x_1, \dots, x_n)) = \frac{\partial f(x_1,\dots, x_n)}{\partial x_1} d x_1 + \dots + \frac{\partial f(x_1,\dots, x_n)}{\partial x_n} dx_n.
 $$
+-->
 Bien utilisées, ces notations ont le potentiel de simplifier significativement
-le calcul différentiel ; elle recèlent toutefois un potentiel d'ambiguité
+la pratique du calcul différentiel ; elle recèlent toutefois un potentiel d'ambiguité
 -- et donc des risques d'erreurs -- contre lequel il faut se prémunir. 
-Nous allons donc les détailler sur un exemple et les interpréter à la lumière 
-des concepts déjà introduits.
+Nous allons donc détailler ces notations sur un exemple et les interpréter 
+à la lumière des concepts déjà introduits.
+
+### Expressions et fonction anonymes
+La première technique consiste à favoriser l'usage d'expressions
+mathématiques -- comme "$x^2 + y^2$" -- pour désigner des grandeurs variables,
+sans nécessairement expliciter les fonctions correspondantes, la liste de
+leurs arguments ou le domaine de définition associés. 
+Tous ces éléments doivent alors être inférés du contexte ; 
+ainsi on peut assez naturellement associer à l'expression "$x^2 + y^2$" la fonction 
+$f: (x, y) \in \R^2 \mapsto x^2 + y^2 \in \R$. Mais d'autres choix pourraient
+être défendables[^df]. Une fois ce choix fait, on interprête le terme
+$d(x^2 + y^2)$ comme
+$$
+d(x^2 + y^2) := df(x, y).
+$$
+
+[^df]: Peut-être que dans le contexte ou l'on exploite l'expression, 
+les grandeurs $x$ et $y$ ne sont définies que si $x>0$ et $y>0$ ; 
+peut-être a-t'on une bonne raison de plutôt lister la variable $y$ avant $x$ ; 
+peut-être y-a-t'il une troisième variable $z$ et que ça n'est que "par accident" que
+l'expression $x^2 + y^2$ ne dépend pas de $z$, etc.
+
+
+### Arguments nommés et dérivées partielles
+Dans un contexte applicatif donné, il est fréquent que des noms (ou symboles)
+particuliers soit attachés aux grandeurs variables (plutôt que les génériques
+"$x_1$", \dots, "$x_n$") et qu'il soit plus naturel ou pratique d'utiliser 
+ces noms pour désigner les variables plutôt qu'un indice[^lv][^py].
+Pour ce qui est des dérivées partielles en particulier, dans cet esprit,
+on peut alors convenir de noter
+$$
+\frac{\partial  (x^2 + y^2)}{\partial x} := \frac{\partial  f}{\partial x}(x, y) := \partial_1 f(x, y)
+\; \mbox{ et } \;
+\frac{\partial  (x^2 + y^2)}{\partial y} := \frac{\partial  f}{\partial y} (x, y):= \partial_2 f(x, y).
+$$
+
+[^lv]: en particulier, si la fonction considérée est implicite, 
+car issue d'une expression, il n'y a probablement pas d'ordre "naturel" 
+pour lister les variables.
+
+[^py]: c'est le même argument qui peut motiver en Python d'utiliser les
+arguments positionnels, comme dans l'appel `ask("Quit?", 3)`, avec modération.
+L'alternative, utiliser les arguments nommés, 
+comme dans l'appel `ask(question="Quit?", retries=3)`, 
+peut s'avèrer plus lisible.
+
+Compte tenu de l'égalité $f(x,y)=x^2 + y^2$, on a ici
+$$
+\frac{\partial (x^2 + y^2)}{\partial x} = 2x 
+\; \mbox{ et } \;
+\frac{\partial (x^2 + y^2)}{\partial y} = 2y. 
+$$
+
+### Différentielle des variables
+En poussant jusqu'au bout la logique de la différentiation des expressions,
+on peut encore simplifier les notations. A ce stade,
+nous avons établi que pour tout $(h_x, h_y) \in \R^2$, nous avions
+\begin{equation} \label{iff}
+d(x^2 + y^2) \cdot (h_x, h_y) 
+= 
+\frac{\partial(x^2+y^2)}{\partial x} h_x + \frac{\partial(x^2+y^2)}{\partial y} h_y= 2x \, h_x + 2 y \, h_y.
+\end{equation}
+Or, en utilisant les même conventions, nous obtenons
+$$
+dx \cdot (h_x, h_y) 
+= 
+\frac{\partial x}{\partial x} h_x + \frac{\partial x}{\partial y} h_y= h_x
+\; \mbox{ et } \;
+dy \cdot (h_x, h_y) 
+= 
+\frac{\partial y}{\partial x} h_x + \frac{\partial y}{\partial y} h_y= h_y.
+$$
+Par conséquent, nous pouvons réécrire la relation \eqref{iff} sous la forme
+$$
+d(x^2 + y^2) =  \frac{\partial(x^2+y^2)}{\partial x} dx + \frac{\partial(x^2+y^2)}{\partial y} dy = 2x \, dx + 2 y \, dy.
+$$
+
+<!--
 
 #### Différentielle d'expressions
 L'idée clé est d'étendre le calcul différentiel des fonctions 
@@ -605,21 +693,6 @@ $$
 d e := d(f(x, t)) := df (x, t).
 $$
 
-#### Dérivées partielles et arguments nommés
-Pour ce qui est des dérivées partielles, on a intérêt à adopter une notation
-qui tient compte du nom des variables plutôt que de leur position dans la liste
-des arguments de la fonction ; on définit donc
-$$
-\frac{\partial e}{\partial x} := \frac{\partial \, f(x, t)}{\partial x} := \partial_1 f(x, t)
-\; \mbox{ et } \;
-\frac{\partial e}{\partial t} := \frac{\partial \, f(x, t)}{\partial t} := \partial_2 f(x, t).
-$$
-Compte tenu de l'expression $e$, on a ici
-$$
-\frac{\partial e}{\partial x} = 2x 
-\; \mbox{ et } \;
-\frac{\partial e}{\partial t} = -2c^2 t. 
-$$
 
 #### Différentielle des variables
 Remarquons que les symboles de variables "$x$" et "$t$" sont aussi des 
@@ -644,27 +717,33 @@ et donc ici
 $$
 d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt.
 $$
+-->
 
-### Nouveau jeu de variables {.exercise .one .question}
-On considère successivement l'expression $x^2 - c^2 t^2$ comme une fonction 
-non plus de $(x, t)$, mais de $(t,x)$ puis de $(t, x, y)$. 
+### Espace-temps {.exercise .question .one #st}
+Montrer l'existence et calculer la différentielle de 
+$$x^2 +y^2 + z^2 - c^2 t^2$$ en utilisant
+les conventions de cette section.
+
+### Robustesse des notations {.exercise .two .question #rn}
+On considère successivement l'expression $x^2 + y^2$ comme une fonction 
+non plus de $(x, y)$, mais de $(y,x)$ puis de $(x, y, z)$. 
 Comment interpréter les termes
-$dt$ et $dx$ dans chacun de ces cas ?
-La relation $d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt$ est-elle
+$dx$ et $dy$ dans chacun de ces cas ?
+La relation $d (x^2 + y^2) = 2x \, dx + 2 y \, dy$ est-elle
 toujours valable ?
 
 Règles de calcul
 --------------------------------------------------------------------------------
 
-### TODO
 
-$$
-df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
-$$
 
 ### TODO
 3 résultats en rapid-faire différentielle d'une constante, d'une fonction linéaire
 et d'une fonction bilinéaire.
+Non, moduler ... se limiter au cas linéaire et règle du produit.
+Puis les "multipliers" que sont la diff compo par comp et la chain rule,
+et les conséquences appliquées au règles élémentaires (en particulier,
+linéairité de la diff et règle du produit à nouveau ?)
 
 ### Différentielle d'une application constante {.theorem #dac .zero}
 Pour tout $c \in \R^m$, l'application 
@@ -710,7 +789,50 @@ est différentiable et déterminer l'application $df(x)$.
 ### TODO : exo diff produit scalaire
 
 ### TODO
-Expliquer que fondamentalement, calcul = composition de fonctions.
+Expliquer que fondamentalement, calcul complexe = assemblage et composition de fonctions.
+
+### Règle de différentiation composante par composante {.theorem #diff-cc .one}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$ et $x \in U$. La fonction
+$f$ est différentiable en $x$ si et seulement si toutes ses composantes
+$f_i$ sont différentiables en $x$. Dans ce cas, on a 
+$$
+(df(x))_i = df_i(x).
+$$
+
+### Démonstration {.proof}
+Par [la régle de dérivation composante par composante](#der-cc),
+la matrice jacobienne de $f$ en $x$ existe si et seulement si 
+toutes les matrices jacobienne $J_{f_i}(x)$ existent et on a alors
+$(J_f(x))_i = J_{f_i}(x)$.
+La différentiabilité de $f$ en $x$ se traduit donc par
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h)\|h\|
+$$
+où $\lim_{h\to 0} \varepsilon (h) = 0$, ce qui entraine pour tout $i$,
+$$
+f_i(x+h) = f_i(x) + (J_f(x))_i \cdot h + \varepsilon_i(h) \|h\|
+= f_i(x) + J_{f_i}(x) \cdot h + \varepsilon_i(h) \|h\|
+$$
+avec $\lim_{h\to 0} \varepsilon_i (h) = 0$ ; 
+chaque composante $f_i$ est donc différentiable. La réciproque
+s'établit de manière similaire. On déduit alors de la relation
+$(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
+
+
+
+<!--
+$$
+J_f(x) =
+\left[
+\begin{array}{ccc}
+\text{---} & J_{f_1}(x) & \text{---} \\
+\text{---} & J_{f_2}(x) & \text{---} \\
+\vdots & \vdots & \vdots \\
+\text{---} & J_{f_m}(x) & \text{---} \\
+\end{array}
+\right].
+$$
+-->
 
 ### Règle de différentiation en chaîne {.theorem #chain-rule .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
@@ -1157,7 +1279,7 @@ $(f(x+h) - f(x)) / h$ comme la multiplication du vecteur $f(x+h) - f(x)$
 par le scalaire $1/h$. En outre, la dérivée d'une fonction vectorielle
 se déduit aisément de la dérivée de ses composantes :
 
-### Dérivée composante par composante {.definition .zero}
+### Dérivée composante par composante {.definition .zero #der-cc}
 Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 La fonction $f$ est dérivable en $x$ si et seulement si pour tout 
 $i \in \{1,\dots, m\}$, sa $i$-ème composante $f_i  : U \to \R$ est dérivable
@@ -2128,6 +2250,40 @@ Par construction, $V$ est un voisinage de $0$ et $\varepsilon$ vérifie
 $\lim_{h \to 0} \varepsilon(h) = 0$ ainsi que la relation
 $f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|$ ; $f$ est donc
 différentiable en $x$.
+
+### Espace-temps {.answer #answer-st}
+Etant donné le contexte ("Espace-temps"), il est probable que $c$ désigne la vitesse
+de la lumière dans le vide et soit donc considérée comme une constante.
+L'expression $e:=x^2 + y^2 + z^2 - c^2 t^2$ est définie pour toutes les valeurs
+possibles des variables réelles $x$, $y$, $z$ et $t$. Il est clair que toutes
+les dérivées partielles de cette expression existent et sont continues en tout 
+point; 
+l'application des conventions de la section ["Notations"](#notations) fournit
+$$
+de = \frac{\partial e}{\partial x} dx + \frac{\partial e}{\partial y} dy + 
+\frac{\partial e}{\partial z} dz + \frac{\partial e}{\partial t} dt
+= 2 (x \, dx + y \, dy + z \, dz - c^2 t \, dt).
+$$
+
+### Robustesse des notations {.answer #answer-rn}
+Si l'on considère successivement les jeux de variables 
+$(y,x)$ puis de $(x, y, z)$, on obtient
+$$
+dy \cdot (h_y, h_x) = h_y, \; dx \cdot (h_y, h_x) = h_x 
+$$
+et 
+$$
+dx \cdot (h_x, h_y, h_z) = h_x, \; dy \cdot (h_x, h_y, h_z) = h_y, \;
+dz \cdot (h_x, h_y, h_z) = h_z. 
+$$
+Comme on a toujours
+$$
+\frac{\partial (x^2+y^2) }{\partial x} = 2x, \;
+\frac{\partial (x^2+y^2) }{\partial y} = 2y, \;
+\frac{\partial (x^2+y^2) }{\partial z} = 0,
+$$
+on constate qu'on a à nouveau $d(x^2 + y^2) = 2 x \, dx + 2y \, dy$ dans les
+deux cas.
 
 ### Fonction quadratique {#answer-fq .answer}
 Comme
