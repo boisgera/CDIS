@@ -261,7 +261,7 @@ $$
 
 ![Champ du gradient $\nabla f$ de la fonction 
 $f:(x_1,x_2) \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2$ (échelle des vecteurs modifiée)
-et en pointillés les lignes de niveau de $f$ ;
+et en pointillés les lignes de niveau de $f$ de la forme $\{ (x_1,x_2) |\; f(x_1,x_2)=2^n \}$ ; 
 cf. exemple ["Gradient et matrice jacobienne"](#gmj).](images/rosenbrock.py)
 
 ### Matrice jacobienne et gradient {.exercise #matjac .question}
@@ -327,9 +327,37 @@ ou encore si la fonction $x \in U \mapsto J_f(x) \in \R^{m \times n}$
 est définie et continue.
 
 ### {.remark}
-La continue différentiabilité implique l'existence d'un développement au
-premier ordre en tout point :
+On qualifiera *différentiable* une fonction un développement limité 
+au premier ordre. La différentiabilité est la transposition naturelle 
+du concept de dérivabilité aux fonctions de plusieurs variables :
+pour jouer ce rôle, l'existence de la matrice jacobienne est une propriété 
+trop faible 
+et la continue différentiabilité est une propriété trop forte.
 
+### Différentiabilité {.definition .three #différentiabilité}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
+On dit que $f$ est *différentiable en $x$* si la matrice jacobienne de $f$ en
+$x$ existe et que $f(x+h)$ admet le développement limité
+au 1er ordre $h \mapsto f(x) + J_f(x) \cdot h$ : il existe
+sur un voisinage de $h=0$ une fonction
+$\varepsilon$ à valeurs dans $\R^m$ vérifiant $\lim_{h \to 0} \varepsilon(h) = 0$
+telle que 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|.
+$$
+On dit que $f$ est *différentiable* (ou *différentiable sur $U$*)
+si elle est différentiable en tout point $x$ de $U$.
+
+### {.remark}
+Le plus souvent, la façon la plus simple de prouver la différentiabilité d'une
+fonction est d'établir sa continue différentiabilité ; en effet, on a :
+
+### Continue différentiabilité implique différentiabilité {.proposition .one #cdid}
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
+Si $f$ est continûment différentiable, $f$ est différentiable.
+
+<!--
 ### Existence d'un développement limité au 1er ordre {.proposition .two #dl1}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$.
@@ -342,7 +370,7 @@ telle que
 $$
 f(x+h) = f(x) + f'(x) \cdot h + \varepsilon(h) \|h\|.
 $$
-
+-->
 ### Démonstration {.proof} 
 Supposons $f: U \subset \R^m \to \R^n$ continûment différentiable.
 Soit $x \in U$ et $r>0$ telle que la boule fermée centrée en $x$ 
@@ -399,37 +427,6 @@ $$
 $$
 La fonction $f$ admet donc un dévelopement limité au 1er ordre en $x$.
 
-### {.remark}
-On qualifiera *différentiable* une fonction admettant ce développement 
-au premier ordre. La différentiabilité est la transposition naturelle 
-du concept de dérivabilité aux fonctions de plusieurs variables :
-pour jouer ce rôle, l'existence de la matrice jacobienne est une propriété 
-trop faible 
-et la continue différentiabilité est une propriété trop forte.
-
-### Différentiabilité {.definition .three #différentiabilité}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x$ un point de $U$. 
-On dit que $f$ est *différentiable en $x$* si la matrice jacobienne de $f$ en
-$x$ existe et que $f(x+h)$ admet le développement limité
-au 1er ordre $h \mapsto f(x) + J_f(x) \cdot h$ : il existe
-sur un voisinage de $h=0$ une fonction
-$\varepsilon$ à valeurs dans $\R^m$ vérifiant $\lim_{h \to 0} \varepsilon(h) = 0$
-telle que 
-$$
-f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|.
-$$
-On dit que $f$ est *différentiable* (ou *différentiable sur $U$*)
-si elle est différentiable en tout point $x$ de $U$.
-
-### {.remark}
-[L'existence d'un développement limité au 1er ordre pour les fonctions continûment
-différentiables](#dl1) se reformule alors comme suit : 
-
-### Continue différentiabilité implique différentiabilité {.proposition .one #cdid}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
-Si $f$ est continûment différentiable, $f$ est différentiable.
-
 ### Différentiabilité implique continuité {.proposition .one #dic}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 Si $f$ est différentiable en $x$, $f$ est continue en $x$.
@@ -477,13 +474,13 @@ Par contre, si un tel développement existe, il est nécessairement
 obtenu à partir de la matrice jacobienne comme le montre l'exercice suivant.
 
 ### Développement limité au premier ordre {.exercise .question #dlmj .two}
-Montrer que si 
-$A \in \R^{m \times n}$ vérifie dans un voisinage de $h=0$
+Montrer que si $a\in \R^m$ et 
+$B \in \R^{m \times n}$ vérifie dans un voisinage de $h=0$
 $$
-f(x+h) = f(x) + A \cdot h + \varepsilon(h) \|h\|
+f(x+h) = a + B \cdot h + \varepsilon(h) \|h\|
 $$
 avec $\lim_{h \to 0} \varepsilon(h) =  0$
-alors la matrice jacobienne $J_f(x)$ est bien définie et $J_f(x) = A$.
+alors $a = f(x)$, la matrice jacobienne $J_f(x)$ est bien définie et $B = J_f(x)$.
 
 ### Différentielle {.definition .two #différentielle} 
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
@@ -495,9 +492,9 @@ $$
 df(x) := \left(h \in \R^n \mapsto J_f(x) \cdot h \in \R^m \right)
 $$
 Si l'on identifie applications linéaires et matrices, la différentielle
-désigne la matrice jacobienne elle-même :
+se confond avec la matrice jacobienne elle-même. Pour tout $h \in \R^n$,
 $$
-df(x) = J_f(x).
+df(x) \cdot h = J_f(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
 $$
 
 ### Variation d'une fonction en un point {.remark .one}
@@ -549,7 +546,7 @@ de la proposition.
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R$ et $x \in U$. Si la fonction
 $f$ est différentiable en $x$, alors pour tout $h \in \R^n$,
 $$
-df(x)\cdot = \left<\nabla f(x), h\right>.
+df(x) \cdot h= \left<\nabla f(x), h\right>.
 $$
 
 ### Démonstration {.proof}
@@ -2031,23 +2028,24 @@ identiquement nulle. La fonction $f$ est donc différentiable sur $\R^n$.
 ### Développement limité au premier ordre {.answer #answer-dlmj}
 De l'hypothèse 
 $$
-f(x+h) = f(x) + A \cdot h + \varepsilon(h) \|h\|
+f(x+h) = a + B \cdot h + \varepsilon(h) \|h\|
 $$
-on peut déduire que pour tout $i \in \{1,\dots, n\}$, on a 
-$$f_i(x+h) = f_i(x) + [A \cdot h]_i + \varepsilon_i(h) \|h\|$$ et donc
+on peut déduire en faisant tendre $h$ vers $0$ que $a = f(x)$,
+puis que pour tout $i \in \{1,\dots, n\}$, on a 
+$$f_i(x+h) = f_i(x) + [B \cdot h]_i + \varepsilon_i(h) \|h\|$$ et donc
 \begin{align*}
 \frac{f_i(x + t e_j) - f_i(x)}{t} 
-&= \frac{f_i(x) + [A \cdot te_j]_i + \varepsilon_i(te_j) \|te_j\| - f_i(x)}{t} \\
-&= [A \cdot e_j]_i + \varepsilon_i(t e_j) \\
-&= A_{ij} + \varepsilon_i(t e_j).
+&= \frac{f_i(x) + [B \cdot te_j]_i + \varepsilon_i(te_j) \|te_j\| - f_i(x)}{t} \\
+&= [B \cdot e_j]_i + \varepsilon_i(t e_j) \\
+&= B_{ij} + \varepsilon_i(t e_j).
 \end{align*}
 Comme $\lim_{h \to 0}\varepsilon(h) = \varepsilon(0) = 0$,
 cette expression a une limite quand $t \to 0$, donc
 $\partial_j f_i(x)$ existe et vérifie
 $$
-\partial_j f_i(x) = \lim_{t \to 0} \frac{f_i(x + t e_j) - f_i(x)}{t} = A_{ij}.
+\partial_j f_i(x) = \lim_{t \to 0} \frac{f_i(x + t e_j) - f_i(x)}{t} = B_{ij}.
 $$
-La matrice jacobienne $J_f(x)$ de $f$ en $x$ existe donc et est égale à $A$.
+La matrice jacobienne $J_f(x)$ de $f$ en $x$ existe donc et est égale à $B$.
 
 ### Différentiabilité implique continuité {.answer #answer-exo-dic}
 Comme $f$ est différentiable en $x$, 
