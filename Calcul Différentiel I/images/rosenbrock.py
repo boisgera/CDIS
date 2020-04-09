@@ -62,7 +62,7 @@ def contour_demo():
             fmt[l] = f"$2^{{{int(log2(l))}}}$"
         ax.clabel(CS, CS.levels, inline=1, fontsize=10, fmt=fmt)#, fmt='%1.1f')
 
-    quiver(Xg, Yg, Gx, Gy, scale=100, width=0.005, headwidth=3, headlength=5, headaxislength=4.5)
+    quiver(Xg, Yg, Gx, Gy, scale=100, width=0.005, headwidth=3, headlength=5, headaxislength=4.5, zorder=3)
 
     xlim(-0.125, 3.125); 
     xticks([0, 1, 2, 3])
