@@ -596,7 +596,7 @@ sans nécessairement expliciter les fonctions correspondantes, la liste de
 leurs arguments ou le domaine de définition associés. 
 Tous ces éléments doivent alors être inférés du contexte ; 
 ainsi on peut assez naturellement associer à l'expression "$x^2 + y^2$" la fonction 
-$f: (x, y) \in \R^2 \mapsto x^2 + y^2 \in \R$. Mais d'autres choix pourraient
+$f: (x, y) \in \R^2 \mapsto x^2 + y^2 \in \R$. Mais d'autres choix sont
 être défendables[^df]. Une fois ce choix fait, on interprête le terme
 $d(x^2 + y^2)$ comme
 $$
@@ -627,8 +627,8 @@ $$
 car issue d'une expression, il n'y a probablement pas d'ordre "naturel" 
 pour lister les variables.
 
-[^py]: c'est le même argument qui peut motiver en Python d'utiliser les
-arguments positionnels, comme dans l'appel `ask("Quit?", 3)`, avec modération.
+[^py]: c'est le même argument qui motive en Python de n'utiliser les
+arguments positionnels, comme dans l'appel `ask("Quit?", 3)`, qu'avec modération.
 L'alternative, utiliser les arguments nommés, 
 comme dans l'appel `ask(question="Quit?", retries=3)`, 
 peut s'avèrer plus lisible.
@@ -818,6 +818,19 @@ chaque composante $f_i$ est donc différentiable. La réciproque
 s'établit de manière similaire. On déduit alors de la relation
 $(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
 
+### {.remark} 
+[La régle de différentiation composante par composante](#diff-cc) entraîne
+directement :
+
+### Assemblage de fonctions {.corollary}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
+La fonction $$(f,g) : U \to \R^{m+p}$$ est différentiable en $x$ si et 
+seulement si $f$ et $g$ sont différentiable en $x$
+
+### Démonstration {.proof}
+La fonction $(f, g)$ d'une part et les fonctions $f$ et $g$ d'autre part
+ont le même jeu de composantes scalaires ; la conclusion s'ensuit par
+[la régle de différentiation composante par composante](#diff-cc).
 
 
 <!--
