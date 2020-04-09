@@ -597,7 +597,7 @@ leurs arguments ou le domaine de définition associés.
 Tous ces éléments doivent alors être inférés du contexte ; 
 ainsi on peut assez naturellement associer à l'expression "$x^2 + y^2$" la fonction 
 $f: (x, y) \in \R^2 \mapsto x^2 + y^2 \in \R$. Mais d'autres choix sont
-être défendables[^df]. Une fois ce choix fait, on interprête le terme
+défendables[^df]. Une fois ce choix fait, on interprête le terme
 $d(x^2 + y^2)$ comme
 $$
 d(x^2 + y^2) := df(x, y).
