@@ -139,13 +139,13 @@ Matrice jacobienne et différentielle
 Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
 $x=(x_1, \cdots, x_n) \in U$. Lorsque la $j$-ème fonction partielle de $f$
 $$
-y_j \mapsto f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)
+y \mapsto f(x_1, \cdots, x_{j-1}, y, x_{j+1}, \cdots, x_n)
 $$
-est dérivable en $y_j = x_j$, on appelle $j$-ème *dérivée partielle
+est dérivable en $y = x_j$, on appelle $j$-ème *dérivée partielle
 de $f$ en $x$*
 et on note $\partial_j f(x) \in \mathbb{R}^m$ sa dérivée.
 $$
-\partial_j f(x) := \left(y_j \mapsto f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)\right)'(x_j)
+\partial_j f(x) := \left(y \mapsto f(x_1, \cdots, x_{j-1}, y, x_{j+1}, \cdots, x_n)\right)'(x_j)
 $$
 Alternativement,
 $$
@@ -436,6 +436,7 @@ Si $f$ est différentiable en $x$, $f$ est continue en $x$.
 ### Différentiabilité implique continuité {.exercise .question .one #exo-dic}
 Démontrer la proposition ["Différentiabilité implique continuité"](#dic).
 
+<!--
 ### Dérivée directionnelle {.definition .one}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$,
 $x$ un point de $U$ et $h$ un vecteur de $\R^n$. La *dérivée de $f$ en $x$
@@ -461,6 +462,7 @@ Montrer que la réciproque de la proposition ["Différentielle et dérivée dire
 est fausse : construire une fonction dont les dérivées directionnelles en $x$
 existent dans toute direction $h \in \R^n$ mais qui ne soit pas différentiable
 en $x$.
+--->
 
 ### Fonctions affines {.exercise .question #fa .one}
 Soit $A \in \R^{m\times n}$ et $b \in \R^m$. 
@@ -2056,6 +2058,7 @@ avec $\lim_{h \to 0} \varepsilon(h) = 0$. Or $\|J_f(x) \cdot h\| \leq \|J_f(x)\|
 donc $\lim_{h\to 0} J_f(x) \cdot h =0$ ; de même $\lim_{h \to 0} \varepsilon(h) \|h\| = 0$.
 Par conséquent, $f(x+h) \to f(x)$ quand $h \to 0$.
 
+<!--
 ### Différentielle et dérivée directionnelle {.answer #answer-exo-ddd}
 Comme $f$ est différentiable en $x$ par hypothèse, 
 sa matrice jacobienne en $x$ existe et 
@@ -2090,7 +2093,7 @@ f'(0, h) = \lim_{h\to 0} \frac{f(t h) - f(0)}{t} = 0.
 $$
 La dérivée directionnelle de $f$ en $(0,0)$ dans la direction $h$ existe et
 est nulle.
-
+-->
 
 ### Différentiabilité {.answer #answer-vareps}
 Si $f$ est différentiable en $x$, alors la matrice jacobienne de $f$ en
