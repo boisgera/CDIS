@@ -138,15 +138,14 @@ Matrice jacobienne et différentielle
 ### Dérivées partielles {.definition .one}
 Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
 $x=(x_1, \cdots, x_n) \in U$. Lorsque la $j$-ème fonction partielle de $f$
-$$
-y \mapsto f(x_1, \cdots, x_{j-1}, y, x_{j+1}, \cdots, x_n)
-$$
+en $x$, $y \mapsto f(x_1, \cdots, x_{j-1}, y, x_{j+1}, \cdots, x_n)$,
 est dérivable en $y = x_j$, on appelle $j$-ème *dérivée partielle
 de $f$ en $x$*
-et on note $\partial_j f(x) \in \mathbb{R}^m$ sa dérivée.
+et on note $\partial_j f(x)$ sa dérivée :
 $$
-\partial_j f(x) := \left(y \mapsto f(x_1, \cdots, x_{j-1}, y, x_{j+1}, \cdots, x_n)\right)'(x_j)
+\partial_j f(x) := \left(y \mapsto f(x_1, \cdots, x_{j-1}, y, x_{j+1}, \cdots, x_n)\right)'(x_j) \in \R^m
 $$
+<!--
 Alternativement,
 $$
 \begin{split}
@@ -155,6 +154,7 @@ $$
 &\phantom{:}= \lim_{t \to 0} \frac{f(x_1, \dots, x_j + t, \dots, x_n) - f(x_1, \dots, x_n)}{t}. 
 \end{split}
 $$
+-->
 
 ### Domaine de définition des fonctions partielles {.exercise .question .one #ddfp}
 Quel est le domaine de définition -- implicite dans l'énoncé ci-dessus -- 
@@ -873,7 +873,7 @@ Cette égalité est de nature asymptotique, ce qui veut dire que
 pour maîtriser l'écart entre
 $f(x+h)$ et $f(x)$, 
 nous devons être en mesure de faire tendre $h$ vers $0$ ;
-si la grandeur $h$ est fixée, en toute rigueur, 
+si le vecteur $h$ est fixé et même s'il est "petit", en toute rigueur,
 cette relation ne nous fournit aucune information. 
 
 Mais tout n'est pas perdu : si nous savons que $f$ est différentiable 
