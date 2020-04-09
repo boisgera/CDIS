@@ -43,8 +43,8 @@ def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
 
 def contour_demo():
     delta = 0.025
-    x = arange(0, 3 + delta, delta)
-    y = arange(0, 2 + delta, delta)
+    x = arange(-0.125, 3.125 + delta, delta)
+    y = arange(-0.125, 2.125 + delta, delta)
     X, Y = meshgrid(x, y)
     Z = 1 * (Y*Y - X)**2 + (X - 1)**2
 
@@ -55,8 +55,8 @@ def contour_demo():
 
 
     fig, ax = subplots()
-    if False:
-        CS = ax.contour(X, Y, Z, colors="k", linestyles="dashed", linewidths=0.05, levels = [0.25, 0.5, 1.0, 2.0, 4.0, 8, 16, 32, 64, 128])
+    if True:
+        CS = ax.contour(X, Y, Z, colors="grey", linestyles="dashed", linewidths=0.5, levels = [0.25, 0.5, 1.0, 2.0, 4.0, 8, 16, 32, 64, 128])
         fmt = {}
         for l in CS.levels:
             fmt[l] = f"$2^{{{int(log2(l))}}}$"

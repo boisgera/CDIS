@@ -260,7 +260,8 @@ J_g(x_1, x_2) =
 $$
 
 ![Champ du gradient $\nabla f$ de la fonction 
-$f:(x_1,x_2) \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2$ (échelle des vecteurs modifiée),
+$f:(x_1,x_2) \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2$ (échelle des vecteurs modifiée)
+et en pointillés les lignes de niveau de $f$ ;
 cf. exemple ["Gradient et matrice jacobienne"](#gmj).](images/rosenbrock.py)
 
 ### Matrice jacobienne et gradient {.exercise #matjac .question}
