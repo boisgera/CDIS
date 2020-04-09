@@ -134,81 +134,6 @@ induite par les normes euclidiennes sur $\R^m$ et sur $\R^n$.
 Matrice jacobienne et différentielle
 ================================================================================
 
-### Dérivée {.definition .zero}
-Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
-La fonction $f$ est *dérivable en $x$* si la limite du 
-*taux d'accroissement* de $f$ en $x$ existe ; 
-cette limite est appelée *dérivée de $f$ en $x$* 
-et notée $f'(x)$ :
-$$
-f'(x) := \lim_{\substack{h \to 0 \\ h \neq 0}} \frac{f(x+h) - f(x)}{h}.
-$$
-La fonction $f$ est *dérivable (sur $U$)* si elle est dérivable en tout point
-$x$ de $U$.
-
-### {.post .remark}
-Cette définition couvre le cas où la fonction $f$ est définie est sur un 
-intervalle ouvert $\left]a, b\right[$, mais pas sur un intervalle fermé et 
-borné $[a, b]$. Pour traiter ce cas, on peut introduire les notions de dérivées 
-à gauche et à droite.
-
-### Dérivée sur un intervalle fermé et borné {.definition .zero}
-Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
-La fonction $f$ est *dérivable sur $[a, b]$* 
-si elle est dérivable sur l'intervalle ouvert $\left]a, b\right[$ 
-et que les dérivées de $f$ à droite en $a$ et à gauche en $b$ existent.
-On pose alors
-$$
-f'(a) := \lim_{\substack{h \to 0 \\ h > 0}} \frac{f(a+h) - f(a)}{h}
-\; \mbox{ et } \;
-f'(b) := \lim_{\substack{h \to 0 \\ h < 0}} \frac{f(b+h) - f(b)}{h}.
-$$
-
-### {.remark}
-Il est aussi possible d'utiliser une pirouette pour se ramener à un domaine
-de définition ouvert. Cela nous sera utile pour intégrer les dérivées 
-au calcul différentiel multivariable qui ne sera développé que 
-pour des domaine de définition ouverts.
-
-### Dérivée et prolongement {.proposition .one #dep}
-Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
-La fonction $f$ est dérivable sur $[a, b]$ si et seulement si elle admet un 
-prolongement $g$ à un ensemble ouvert $U$ de $\R$ contenant $[a, b]$ qui soit 
-dérivable. Si c'est le cas, sa dérivée $f'$ est égale à la restriction 
-de la fonction $g'$ à $[a, b]$.
-
-\newcommand{\lb}{\left]}
-\newcommand{\rb}{\right[}
-
-![Un prolongement dérivable de $f:x \in [0,1] \mapsto e^{-x}$ à $\lb-0.5, 1.5 \rb$.
-Ce prolongement $g$ est défini par 
-$g(x) = 1 - x$ si $x < 0$ et $g(x) = (2-x)/e$ si $x>1$.](images/prolongement.tex)
-
-### Dérivée et prolongement {.exercise .one .question #exo-dep}
-Démontrer la proposition ["Dérivée et prolongement"](#dep).
-
-### Dérivée et développement limité  {.proposition .zero #ddl}
-Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
-Si la fonction $f$ est dérivable en $x$, alors dans un voisinage de $x$
-on a
-$$
-f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
-$$
-où la fonction $\varepsilon$, définie dans un voisinage de $h=0$ et à valeurs
-dans $\R^m$, satisfait
-$$
-\lim_{h \to 0}\varepsilon(h) = 0.
-$$
-
-###  Dérivée et développement limité (réciproque)  {.proposition .zero #ddlr}
-Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
-S'il existe un $\ell \in \R^m$ tel que
-$$
-f(x+h) = f(x) + \ell h + \varepsilon(h)|h|
-$$
-pour une fonction $\varepsilon$ définie dans un voisinage de $h=0$ 
-telle que $\lim_{h \to 0}\varepsilon(h) = 0$,
-alors $f$ est dérivable en $x$ et $f'(x) = \ell$.
 
 ### Dérivées partielles {.definition .one}
 Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
@@ -636,6 +561,101 @@ $df(x)\cdot h = \nabla f(x)^{\top} \cdot h = \left<\nabla f(x), h\right>$.
 Calcul Différentiel
 ================================================================================
 
+
+Notations 
+--------------------------------------------------------------------------------
+
+En tant qu'utilisateur du calcul différentiel (en Physiques par exemple) 
+vous avez peut-être déjà croisé à des notations assez éloignées de celles 
+que nous avons pratiqué jusqu'à présent. Au coeur de ces notations,
+on trouve une formule du type
+$$
+d (f(x_1, \dots, x_n)) = \frac{\partial f(x_1,\dots, x_n)}{\partial x_1} d x_1 + \dots + \frac{\partial f(x_1,\dots, x_n)}{\partial x_n} dx_n.
+$$
+Bien utilisées, ces notations ont le potentiel de simplifier significativement
+le calcul différentiel ; elle recèlent toutefois un potentiel d'ambiguité
+-- et donc des risques d'erreurs -- contre lequel il faut se prémunir. 
+Nous allons donc les détailler sur un exemple et les interpréter à la lumière 
+des concepts déjà introduits.
+
+#### Différentielle d'expressions
+L'idée clé est d'étendre le calcul différentiel des fonctions 
+à des formules mathématiques ou expressions, 
+composées de symboles de fonctions, d'opérateurs, de constantes et de variables. 
+Considérons par exemple, l'expression $$e := ``x^2 - c^2 t^2".$$ 
+Nous allons rapidement omettre les guillemets pour simplifier les notations ; 
+mais pour le moment ils soulignent que nous avons affaire à une formule 
+(à une suite de symboles) et pas à un nombre réel.
+Cette expression exploite les opérateurs d'addition 
+et d'exponentiation ; le symbole "$2$" désigne une
+constante numérique ainsi que "$c$" (ici, la vitesse de la lumière 
+dans le vide) ;
+les symboles "$x$" et "$t$" font référence à des variables (de position et de 
+temps respectivement). 
+La valeur numérique que désigne $e$ est définie pour toute valeur réelle des
+variables $x$ et $t$ ;
+on peut donc lui associer la fonction
+$$
+f: (x,t) \in \R \times \R \mapsto x^2 - c^2 t^2 \in \R
+$$
+et utiliser ensuite les expressions $e$ et "$f(x, t)$" de façon interchangeable.
+La fonction $f$ étant différentiable, on définit la différentielle
+de l'expression $e$ comme
+$$
+d e := d(f(x, t)) := df (x, t).
+$$
+
+#### Dérivées partielles et arguments nommés
+Pour ce qui est des dérivées partielles, on a intérêt à adopter une notation
+qui tient compte du nom des variables plutôt que de leur position dans la liste
+des arguments de la fonction ; on définit donc
+$$
+\frac{\partial e}{\partial x} := \frac{\partial \, f(x, t)}{\partial x} := \partial_1 f(x, t)
+\; \mbox{ et } \;
+\frac{\partial e}{\partial t} := \frac{\partial \, f(x, t)}{\partial t} := \partial_2 f(x, t).
+$$
+Compte tenu de l'expression $e$, on a ici
+$$
+\frac{\partial e}{\partial x} = 2x 
+\; \mbox{ et } \;
+\frac{\partial e}{\partial t} = -2c^2 t. 
+$$
+
+#### Différentielle des variables
+Remarquons que les symboles de variables "$x$" et "$t$" sont aussi des 
+expressions à part entière. Elles peuvent donc être associées aux fonctions
+linéaires
+$(x,t) \in \R \times \R \mapsto x \in \R$ et 
+$(x,t) \in \R \times \R \mapsto t \in \R$ ; leur différentielle satisfait donc
+$$
+dx\cdot (h_x, h_t) = h_x \; \mbox{ et } \; dt \cdot (h_x, h_t) = h_t. 
+$$
+Les fonctions $dx$ et $dt$ -- il s'agit bien de fonctions et pas de nombres -- 
+prélèvent donc dans le vecteur de variation des arguments $(h_x, h_t)$ la 
+composante associée à la variable $x$ et $t$ respectivement.
+
+La différentielle de $e$ satisfait
+$d e \cdot (h_x, h_t) = ({\partial e}/{\partial x}) h_x + ({\partial e}/{\partial t}) h_t$
+pour toute variation $(h_x, h_t)$. On peut donc réécrire cette relation sous la forme
+$$
+d e = \frac{\partial e}{\partial x} dx + \frac{\partial e}{\partial t} dt,
+$$
+et donc ici
+$$
+d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt.
+$$
+
+### Nouveau jeu de variables {.exercise .one .question}
+On considère successivement l'expression $x^2 - c^2 t^2$ comme une fonction 
+non plus de $(x, t)$, mais de $(t,x)$ puis de $(t, x, y)$. 
+Comment interpréter les termes
+$dt$ et $dx$ dans chacun de ces cas ?
+La relation $d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt$ est-elle
+toujours valable ?
+
+Règles de calcul
+--------------------------------------------------------------------------------
+
 ### TODO
 
 $$
@@ -764,97 +784,6 @@ le résultat est donc acquis.
 Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#chain-rule) 
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
-
-Notations compactes
---------------------------------------------------------------------------------
-
-En tant que client du calcul différentiel (comme physicien par exemple) 
-vous avez peut-être été exposé à des notations assez éloignées de celles 
-que nous avons pratiqué jusqu'à présent. Au coeur de ces notations,
-on trouve une formule du type
-$$
-d (f(x_1, \dots, x_n)) = \frac{\partial f(x_1,\dots, x_n)}{\partial x_1} d x_1 + \dots + \frac{\partial f(x_1,\dots, x_n)}{\partial x_n} dx_n.
-$$
-Bien utilisées, ces notations ont le potentiel de simplifier significativement
-le calcul différentiel ; elle recèlent toutefois un potentiel d'ambiguité
--- et donc des risques d'erreurs -- contre lequel il faut se prémunir. 
-Nous allons donc les détailler sur un exemple et les interpréter à la lumière 
-des concepts déjà introduits.
-
-#### Différentielle d'expressions
-L'idée clé est d'étendre le calcul différentiel des fonctions 
-à des formules mathématiques ou expressions, 
-composées de symboles de fonctions, d'opérateurs, de constantes et de variables. 
-Considérons par exemple, l'expression $$e := ``x^2 - c^2 t^2".$$ 
-Nous allons rapidement omettre les guillemets pour simplifier les notations ; 
-mais pour le moment ils soulignent que nous avons affaire à une formule 
-(à une suite de symboles) et pas à un nombre réel.
-Cette expression exploite les opérateurs d'addition 
-et d'exponentiation ; le symbole "$2$" désigne une
-constante numérique ainsi que "$c$" (ici, la vitesse de la lumière 
-dans le vide) ;
-les symboles "$x$" et "$t$" font référence à des variables (de position et de 
-temps respectivement). 
-La valeur numérique que désigne $e$ est définie pour toute valeur réelle des
-variables $x$ et $t$ ;
-on peut donc lui associer la fonction
-$$
-f: (x,t) \in \R \times \R \mapsto x^2 - c^2 t^2 \in \R
-$$
-et utiliser ensuite les expressions $e$ et "$f(x, t)$" de façon interchangeable.
-La fonction $f$ étant différentiable, on définit la différentielle
-de l'expression $e$ comme
-$$
-d e := d(f(x, t)) := df (x, t).
-$$
-
-#### Dérivées partielles et arguments nommés
-Pour ce qui est des dérivées partielles, on a intérêt à adopter une notation
-qui tient compte du nom des variables plutôt que de leur position dans la liste
-des arguments de la fonction ; on définit donc
-$$
-\frac{\partial e}{\partial x} := \frac{\partial \, f(x, t)}{\partial x} := \partial_1 f(x, t)
-\; \mbox{ et } \;
-\frac{\partial e}{\partial t} := \frac{\partial \, f(x, t)}{\partial t} := \partial_2 f(x, t).
-$$
-Compte tenu de l'expression $e$, on a ici
-$$
-\frac{\partial e}{\partial x} = 2x 
-\; \mbox{ et } \;
-\frac{\partial e}{\partial t} = -2c^2 t. 
-$$
-
-#### Différentielle des variables
-Remarquons que les symboles de variables "$x$" et "$t$" sont aussi des 
-expressions à part entière. Elles peuvent donc être associées aux fonctions
-linéaires
-$(x,t) \in \R \times \R \mapsto x \in \R$ et 
-$(x,t) \in \R \times \R \mapsto t \in \R$ ; leur différentielle satisfait donc
-$$
-dx\cdot (h_x, h_t) = h_x \; \mbox{ et } \; dt \cdot (h_x, h_t) = h_t. 
-$$
-Les fonctions $dx$ et $dt$ -- il s'agit bien de fonctions et pas de nombres -- 
-prélèvent donc dans le vecteur de variation des arguments $(h_x, h_t)$ la 
-composante associée à la variable $x$ et $t$ respectivement.
-
-La différentielle de $e$ satisfait
-$d e \cdot (h_x, h_t) = ({\partial e}/{\partial x}) h_x + ({\partial e}/{\partial t}) h_t$
-pour toute variation $(h_x, h_t)$. On peut donc réécrire cette relation sous la forme
-$$
-d e = \frac{\partial e}{\partial x} dx + \frac{\partial e}{\partial t} dt,
-$$
-et donc ici
-$$
-d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt.
-$$
-
-### Nouveau jeu de variables {.exercise .one .question}
-On considère successivement l'expression $x^2 - c^2 t^2$ comme une fonction 
-non plus de $(x, t)$, mais de $(t,x)$ puis de $(t, x, y)$. 
-Comment interpréter les termes
-$dt$ et $dx$ dans chacun de ces cas ?
-La relation $d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt$ est-elle
-toujours valable ?
 
 
 ### Différentielle d'une application linéaire {.exercise .one .question}
@@ -1202,8 +1131,113 @@ que $$\|f(x+h) - f(x)\|_{\R^m} \leq M \|h\|_{\R^n}.$$
 Seules des modifications mineures des démonstrations déjà présentées sont 
 nécessaires pour établir ces résultats.
 
-Annexe -- Calcul matriciel
+Annexes
 ================================================================================
+
+Dérivée
+--------------------------------------------------------------------------------
+
+### Dérivée {.definition .zero}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+La fonction $f$ est *dérivable en $x$* si la limite du 
+*taux d'accroissement* de $f$ en $x$ existe ; 
+cette limite est appelée *dérivée de $f$ en $x$* 
+et notée $f'(x)$ :
+$$
+f'(x) := \lim_{\substack{h \to 0 \\ h \neq 0}} \frac{f(x+h) - f(x)}{h}.
+$$
+La fonction $f$ est *dérivable (sur $U$)* si elle est dérivable en tout point
+$x$ de $U$.
+
+### {.remark}
+Cette définition accomode sans difficulté le cas des fonctions scalaires
+et vectorielles d'une variable réelle. 
+Dans ce second cas, il suffit d'interpréter le terme 
+$(f(x+h) - f(x)) / h$ comme la multiplication du vecteur $f(x+h) - f(x)$
+par le scalaire $1/h$. En outre, la dérivée d'une fonction vectorielle
+se déduit aisément de la dérivée de ses composantes :
+
+### Dérivée composante par composante {.definition .zero}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+La fonction $f$ est dérivable en $x$ si et seulement si pour tout 
+$i \in \{1,\dots, m\}$, sa $i$-ème composante $f_i  : U \to \R$ est dérivable
+en $x$. 
+On a alors $(f'(x))_i = f_i'(x)$.
+
+
+### {.post .remark}
+La définition de dérivée couvre le cas où la fonction $f$ est définie est sur un 
+intervalle ouvert $\left]a, b\right[$ -- ou d'ailleurs sur une réunion arbitraire
+d'intervalles ouverts de $\R$ --
+mai pas la sur un intervalle fermé et  borné $[a, b]$. 
+Pour appréhender ce cas, on introduit classiquement les notions de dérivées 
+à gauche et à droite.
+
+### Dérivée sur un intervalle fermé et borné {.definition .zero}
+Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
+La fonction $f$ est *dérivable sur $[a, b]$* 
+si elle est dérivable sur l'intervalle ouvert $\left]a, b\right[$ 
+et que les dérivées de $f$ à droite en $a$ et à gauche en $b$ existent.
+On pose alors
+$$
+f'(a) := \lim_{\substack{h \to 0 \\ h > 0}} \frac{f(a+h) - f(a)}{h}
+\; \mbox{ et } \;
+f'(b) := \lim_{\substack{h \to 0 \\ h < 0}} \frac{f(b+h) - f(b)}{h}.
+$$
+
+### {.remark}
+Alternativement, on peut utiliser une pirouette pour se ramener à un domaine
+de définition ouvert. Cette approche nous est utile pour intégrer les dérivées 
+au calcul différentiel multivariable qui n'est développé que 
+pour des domaines de définition ouverts.
+
+### Dérivée et prolongement {.proposition .one #dep}
+Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
+La fonction $f$ est dérivable sur $[a, b]$ si et seulement si elle admet un 
+prolongement $g$ à un ensemble ouvert $U$ de $\R$ contenant $[a, b]$ qui soit 
+dérivable. Si c'est le cas, sa dérivée $f'$ est égale à la restriction 
+de la fonction $g'$ à $[a, b]$.
+
+\newcommand{\lb}{\left]}
+\newcommand{\rb}{\right[}
+
+![Un prolongement dérivable de $f:x \in [0,1] \mapsto e^{-x}$ à $\lb-0.5, 1.5 \rb$.
+Ce prolongement $g$ est défini par 
+$g(x) = 1 - x$ si $x < 0$ et $g(x) = (2-x)/e$ si $x>1$.](images/prolongement.tex)
+
+### Dérivée et prolongement {.exercise .one .question #exo-dep}
+Démontrer la proposition ["Dérivée et prolongement"](#dep).
+
+### {.remark .ante}
+La dérivabilité est équivalente à l'existence d'un développement limité au
+1er ordre ; si elle est acquise, la valeur de la fonction et de sa dérivée
+au point de référence fournissent ce développement.
+
+### Dérivée et développement limité  {.proposition .zero #ddl}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+Si la fonction $f$ est dérivable en $x$, alors dans un voisinage de $x$
+on a
+$$
+f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
+$$
+où la fonction $\varepsilon$, définie dans un voisinage de $h=0$ et à valeurs
+dans $\R^m$, satisfait
+$$
+\lim_{h \to 0}\varepsilon(h) = 0.
+$$
+
+###  Dérivée et développement limité (réciproque)  {.proposition .zero #ddlr}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+S'il existe deux vecteurs $a$ et $b$ de $\R^m$ tels que
+$$
+f(x+h) = a + b h + \varepsilon(h)|h|
+$$
+pour une fonction $\varepsilon$ définie dans un voisinage de $h=0$ 
+telle que $\lim_{h \to 0}\varepsilon(h) = 0$,
+alors $f$ est dérivable en $x$, $a=f(x)$ et et $b = f'(x)$.
+
+Calcul matriciel
+--------------------------------------------------------------------------------
 
 ### {.remark}
 Les fragments de code de ce document utilisent le langage Python 3.
