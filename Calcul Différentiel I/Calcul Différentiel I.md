@@ -836,7 +836,7 @@ $$
 ### Démonstration {.proof}
 La fonction $(f, g)$ d'une part et les fonctions $f$ et $g$ d'autre part
 ont le même jeu de composantes scalaires ; la conclusion s'ensuit par
-[la régle de différentiation composante par composante](#diff-cc).
+[la règle de différentiation composante par composante](#diff-cc).
 
 ### Règle de différentiation en chaîne {.theorem #chain-rule .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
