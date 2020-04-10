@@ -763,7 +763,7 @@ Chaque coefficient de $J_f$ est une constante et donc une fonction continue de
 $x$ : la fonction $f$ est [continûment différentiable -- et donc
 différentiable](#cdid) -- et $df(x) = J_f(x) = A$.
 
-### Règle du produit {.proposition .one #product-rule}
+### Règle du produit (élémentaire) {.proposition .one #product-rule}
 L'application produit $\pi : (x, y) \in \R^2 \mapsto xy \in \R$ est différentiable
 et pour tout $(h_x, h_y) \in \R^2$, on a $d\pi(x, y) \cdot (h_x, h_y)= x h_y + y h_x$ ; 
 autrement dit 
