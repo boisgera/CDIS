@@ -349,6 +349,8 @@ $$
 On dit que $f$ est *différentiable* (ou *différentiable sur $U$*)
 si elle est différentiable en tout point $x$ de $U$.
 
+
+
 ### {.remark}
 Le plus souvent, la façon la plus simple de prouver la différentiabilité d'une
 fonction est d'établir sa continue différentiabilité ; en effet, on a :
@@ -356,6 +358,10 @@ fonction est d'établir sa continue différentiabilité ; en effet, on a :
 ### Continue différentiabilité implique différentiabilité {.proposition .one #cdid}
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
 Si $f$ est continûment différentiable, $f$ est différentiable.
+
+![Relations entre matrice jacobienne, différentiabilité et
+continue différentiabilité.](images/diff-et-cdiff.svg)
+
 
 <!--
 ### Existence d'un développement limité au 1er ordre {.proposition .two #dl1}
@@ -943,7 +949,7 @@ d(fg) (x)
 De façon similaire, on peut désormais tirer des conséquences élargies 
 de la proposition ["Différentielle d'une application linéaire"](#dal) :
 
-### Linéarité de la différentielle {.proposition .one}
+### Linéarité de la différentielle {.proposition .one #ld}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$,
 $\lambda \in \R$, $\mu \in \R$ et $x \in U$.
 Si les fonctions $f$ et $g$ sont différentiables en $x$, 
@@ -962,7 +968,7 @@ d(\lambda f + \mu g)(x) &= d A(f(x), g(x)) \cdot (df(x), dg(x)) \\
 \end{align*}
 
 
-
+<!--
 
 
 
@@ -1014,6 +1020,15 @@ g &: (x, y) \in \R^n \times \R^n \mapsto x^{\top} \cdot y \in \R \\
 \end{align*}
 
 **TODO**
+
+-->
+
+### Produit scalaire {.exercise .question #ps}
+Montrer que la fonction $$\left<\cdot, \cdot\right>: (x, y) \in \R^{2n} \to \left<x, y\right> \in \R$$ est différentiable et
+calculer son gradient.
+
+
+
 
 
 
@@ -1754,11 +1769,14 @@ $\to$ [Solution](#sol-vvcvl-2)
 
 -->
 
+<!--
 ### TODO
 
 Pt spline / point de contôle. Avec dessin. 
 
 Question / "contrôle de la direction" d'un point / mouvement point de contrôle ?
+
+-->
 
 Différentiation en chaîne {#dec}
 --------------------------------------------------------------------------------
@@ -2369,6 +2387,32 @@ Donc pour tout $i \in \{1, \dots, m\}$ et $j \in \{1,\dots, p\}$,
 Chaque coefficient $\partial_j (g\circ f)_i$ est une somme de produit de 
 fonctions continues et est donc continu. Par conséquent, $g\circ f$ est
 continûment différentiable.
+
+
+### Produit scalaire {.answer #answer-ps .one}
+On a $\left<x, y \right> = \sum_{i=1}^n x_i y_i$. Chaque fonction 
+$(x, y) \mapsto x_i y_i$ est (continûment) différentiable, avec
+$d(x_i y_i) = x_i dy_i + y_i dx_i$ (par calcul direct des dérivées partielles ;
+alternativement, on peut combiner 
+[le désassemblage](#assemblage) de $(x, y) \mapsto (x_i, y_i)$ et 
+[la règle du produit](#product-rule) par [différentiation en chaîne](#chain-rule)).
+Par [linéarité de la différentielle](#ld), le produit scalaire est 
+donc différentiable et 
+$$
+d \left<x,y \right> = \sum_{i=1}^n x_i dy_i + y_i dx_i
+= \left[ 
+  \begin{array}{cccccc}
+  y_1 & \cdots & y_n & x_1 & \cdots & x_n
+  \end{array}
+  \right]
+  \cdot
+  \left[
+  \begin{array}{c}
+  dx_1 \\ \vdots \\ dx_n \\ dy_1 \\ \vdots \\ dy_n
+  \end{array}
+  \right].
+$$
+Par conséquent, $\nabla \left<\cdot, \cdot\right>(x, y) = (y, x)$.
 
 ### Cas des fonctions continûment différentiables {.answer #answer-cfcd3}
 Si $f$ est continûment différentiable sur $U$, elle est en particulier
