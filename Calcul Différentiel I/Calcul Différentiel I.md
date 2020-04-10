@@ -920,6 +920,8 @@ Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$ et $x \in U$.
 Si les fonctions $f$ et $g$ sont différentiables en $x$, 
 alors leur produit $fg$ également et $$d(fg)(x)  = f(x) dg(x) + g(x) df(x).$$
 
+![Graphe de calcul de l'application $x \mapsto f(x) g(x)$.](images/graphe-de-calcul.svg)
+
 ### Démonstration {.proof}
 Par [assemblage](#assemblage), la fonction $(f, g)$ est différentiable en $x$ 
 et $d(f,g)(x) = (df(x), dg(x))$.
