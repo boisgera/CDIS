@@ -589,7 +589,7 @@ la pratique du calcul différentiel ; elle recèlent toutefois un potentiel d'am
 Nous allons donc détailler ces notations sur un exemple et les interpréter 
 à la lumière des concepts déjà introduits.
 
-### Expressions et fonction anonymes
+### Expressions et fonctions anonymes
 La première technique consiste à favoriser l'usage d'expressions
 mathématiques -- comme "$x^2 + y^2$" -- pour désigner des grandeurs variables,
 sans nécessairement expliciter les fonctions correspondantes, la liste de
