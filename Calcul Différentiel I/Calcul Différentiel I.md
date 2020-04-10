@@ -912,8 +912,8 @@ les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
 
 ### {.remark}
-Ces deux résultats permettent par exemple de généraliser 
-[la règle du produit](#product-rule) :
+A titre d'exemple, montrons comment ces deux résultats permettent de généraliser 
+[la règle élementaire du produit](#product-rule) :
 
 ### Règle du produit (générique) {.proposition}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$ et $x \in U$.
@@ -938,6 +938,10 @@ d(fg) (x)
 &= d \pi (f(x), g(x)) \cdot (df(x), dg(x)) \\
 &= f(x) dg(x) + g(x) df(x).
 \end{align*}
+
+### {.remark}
+De façon similaire, on peut désormais tirer des conséquences élargies 
+de la proposition ["Différentielle d'une application linéaire"](#dal) :
 
 ### Linéarité de la différentielle {.proposition}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$,
