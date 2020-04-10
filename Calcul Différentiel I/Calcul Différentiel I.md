@@ -825,7 +825,7 @@ $(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
 ### {.remark} 
 Cette règle entraîne directement :
 
-### Assemblage/déassemblage de fonctions {.corollary #assemblage}
+### Assemblage/désassemblage de fonctions {.corollary #assemblage}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
 La fonction $$(f,g) : U \to \R^{m+p}$$ est différentiable en $x$ si et 
 seulement si $f$ et $g$ sont différentiables en $x$ ; on a alors
