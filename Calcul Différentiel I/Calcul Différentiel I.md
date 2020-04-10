@@ -338,7 +338,7 @@ et la continue différentiabilité est une propriété trop forte.
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$. 
 On dit que $f$ est *différentiable en $x$* si la matrice jacobienne de $f$ en
-$x$ existe et que $f(x+h)$ admet le développement limité
+$x$ existe et que $f(x+h)$ admet en $h=0$ le développement limité
 au 1er ordre $h \mapsto f(x) + J_f(x) \cdot h$ : il existe
 sur un voisinage de $h=0$ une fonction
 $\varepsilon$ à valeurs dans $\R^m$ vérifiant $\lim_{h \to 0} \varepsilon(h) = 0$
@@ -763,7 +763,7 @@ Chaque coefficient de $J_f$ est une constante et donc une fonction continue de
 $x$ : la fonction $f$ est [continûment différentiable -- et donc
 différentiable](#cdid) -- et $df(x) = J_f(x) = A$.
 
-### Règle du produit {.proposition #product-rule}
+### Règle du produit {.proposition .one #product-rule}
 L'application produit $\pi : (x, y) \in \R^2 \mapsto xy \in \R$ est différentiable
 et pour tout $(h_x, h_y) \in \R^2$, on a $d\pi(x, y) \cdot (h_x, h_y)= x h_y + y h_x$ ; 
 autrement dit 
@@ -795,7 +795,7 @@ sont [la règle d'assemblage](#assemblage)
 de [différentiation composante par composante](#diff-cc) -- 
 et la règle de [différentiation en chaîne](#chain-rule).
 
-### Règle de différentiation composante par composante {.theorem #diff-cc .one}
+### Règle de différentiation composante par composante {.one .theorem #diff-cc .one}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$ et $x \in U$. La fonction
 $f$ est différentiable en $x$ si et seulement si toutes ses composantes
 $f_i$ sont différentiables en $x$. Dans ce cas, on a 
@@ -825,7 +825,7 @@ $(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
 ### {.remark} 
 Cette règle entraîne directement :
 
-### Assemblage/désassemblage de fonctions {.corollary #assemblage}
+### Assemblage/désassemblage de fonctions {.one .corollary #assemblage}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
 La fonction $$(f,g) : U \to \R^{m+p}$$ est différentiable en $x$ si et 
 seulement si $f$ et $g$ sont différentiables en $x$ ; on a alors
@@ -915,7 +915,7 @@ l'est également.
 A titre d'exemple, montrons comment ces deux résultats permettent de généraliser 
 [la règle élementaire du produit](#product-rule) :
 
-### Règle du produit (générique) {.proposition}
+### Règle du produit (générique) {.proposition .one}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$ et $x \in U$.
 Si les fonctions $f$ et $g$ sont différentiables en $x$, 
 alors leur produit $fg$ également et $$d(fg)(x)  = f(x) dg(x) + g(x) df(x).$$
@@ -943,7 +943,7 @@ d(fg) (x)
 De façon similaire, on peut désormais tirer des conséquences élargies 
 de la proposition ["Différentielle d'une application linéaire"](#dal) :
 
-### Linéarité de la différentielle {.proposition}
+### Linéarité de la différentielle {.proposition .one}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$,
 $\lambda \in \R$, $\mu \in \R$ et $x \in U$.
 Si les fonctions $f$ et $g$ sont différentiables en $x$, 
