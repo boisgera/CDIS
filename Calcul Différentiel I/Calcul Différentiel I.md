@@ -1073,7 +1073,7 @@ il prend la forme suivante : si $x \in \R$, $h\geq 0$ et
 la fonction $f: [x, x+h] \to \R^m$ est dérivable, alors $f'$ est intégrable 
 (au sens de Henstock-Kurzweil) et
 $$
-f(x+h) - f(x)  = \int_x^{x+h} f'(y) \, dy.
+f(x+h) - f(x)  = \mbox{(HK)} \int_x^{x+h} f'(y) \, dy.
 $$
 Cette forme avancée du théorème est toutefois rarement nécessaire ; 
 elle est néanmoins utile pour prouver 
@@ -1153,7 +1153,7 @@ $$
 Par [la forme générale du théorème fondamental du calcul](#TFCE),
 la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
 $$
-f(x+h) - f(x) = \int_x^{x+h} f'(y) \, dy.
+f(x+h) - f(x) =  \mbox{(HK)} \int_x^{x+h} f'(y) \, dy.
 $$
 La théorie de l'intégrale de Henstock-Kurzweil nous garantit qu'il est possible 
 d'obtenir des approximations arbitrairement précises de cette intégrale au moyen de 
@@ -1168,7 +1168,7 @@ S = \sum_{i=0}^{k-1} f'(t_i)(x_{i+1} - x_i)
 $$
 satisfasse
 $$
-\left\| \int_x^{x+h} f'(t) \, dt -  S \right\| 
+\left\|  \mbox{(HK)} \int_x^{x+h} f'(t) \, dt -  S \right\| 
 \leq 
 \varepsilon.
 $$
