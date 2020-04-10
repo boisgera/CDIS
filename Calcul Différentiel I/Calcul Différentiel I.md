@@ -736,10 +736,10 @@ Règles de calcul
 --------------------------------------------------------------------------------
 
 ### {.ante .remark}
-La définition de la différentielle, sa relation au jacobien et avec la 
-continue différentiabilité permettent d'élaborer un nombre quasi-illimité de 
-"règles de calcul élémentaires" réutilisables dont nous donnons quelques
-exemples importants.
+La définition de la différentielle, sa relation à la matrice jacobienne et 
+avec la continue différentiabilité permettent d'élaborer un nombre 
+quasi-illimité de "règles de calcul élémentaires" réutilisables 
+dont nous donnons quelques exemples importants.
 
 ### Différentielle d'une application linéaire {.proposition #dal .one}
 Pour toute matrice $A \in \R^{m\times n}$, 
