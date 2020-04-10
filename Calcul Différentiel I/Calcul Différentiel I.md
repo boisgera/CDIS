@@ -349,8 +349,6 @@ $$
 On dit que $f$ est *différentiable* (ou *différentiable sur $U$*)
 si elle est différentiable en tout point $x$ de $U$.
 
-
-
 ### {.remark}
 Le plus souvent, la façon la plus simple de prouver la différentiabilité d'une
 fonction est d'établir sa continue différentiabilité ; en effet, on a :
