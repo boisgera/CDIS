@@ -793,7 +793,7 @@ Les deux résultats qui permettent de mener cette extension du calcul différent
 sont [la règle d'assemblage](#assemblage) 
 -- ou ce qui revient au même, 
 de [différentiation composante par composante](#diff-cc) -- 
-et de [différentiation en chaîne](#chain-rule).
+et la règle de [différentiation en chaîne](#chain-rule).
 
 ### Règle de différentiation composante par composante {.theorem #diff-cc .one}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$ et $x \in U$. La fonction
