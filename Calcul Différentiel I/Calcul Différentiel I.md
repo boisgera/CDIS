@@ -735,27 +735,20 @@ toujours valable ?
 Règles de calcul
 --------------------------------------------------------------------------------
 
+### {.ante .remark}
+La définition de la différentielle, sa relation au jacobien et avec la 
+continue différentiabilité permettent d'élaborer un nombre quasi-illimité de 
+"règles de calcul élémentaires" réutilisables dont nous donnons quelques
+exemples importants.
 
-
-### TODO
-3 résultats en rapid-faire différentielle d'une constante, d'une fonction linéaire
-et d'une fonction bilinéaire.
-Non, moduler ... se limiter au cas linéaire et règle du produit.
-Puis les "multipliers" que sont la diff compo par comp et la chain rule,
-et les conséquences appliquées au règles élémentaires (en particulier,
-linéairité de la diff et règle du produit à nouveau ?)
-
-### Différentielle d'une application constante {.theorem #dac .zero}
-Pour tout $c \in \R^m$, l'application 
-$$f: x \in \R^n \mapsto c \in \R^m$$
+### Différentielle d'une application linéaire {.proposition #dal .one}
+Pour toute matrice $A \in \R^{m\times n}$, 
+l'application linéaire $f: x \in \R^n \mapsto  A \cdot x \in \R^m$ 
 est différentiable et pour tout $x \in \R^n$,
-$$df(x) = 0.$$
-
-### Différentielle d'une application linéaire {.theorem #dal .one}
-Pour toute matrice $A \in \R^{m\times n}$, l'application 
-$$f: x \in \R^n \mapsto  A \cdot x \in \R^m$$ 
-est différentiable et pour tout $x \in \R^n$,
-$$df(x) = A.$$
+$df(x) = A$ ; autrement dit
+$$
+d(A \cdot x) = A  \cdot dx.
+$$
 
 ### Démonstration {.proof}
 Pour tout $x \in \R^n$, on a
@@ -770,26 +763,37 @@ Chaque coefficient de $J_f$ est une constante et donc une fonction continue de
 $x$ : la fonction $f$ est [continûment différentiable -- et donc
 différentiable](#cdid) -- et $df(x) = J_f(x) = A$.
 
-### Différentielle d'une application bilinéaire {.theorem #dab .two}
-Pour toute matrice $B \in \R^{m\times n}$, la fonction bilinéaire
-$$f: (x, y) \in \R^m \times \R^n \mapsto x^{\top} \cdot B \cdot y \in \R$$
-est différentiable et pour tout $x \in \R^n$,
+### Règle du produit {.proposition #product-rule}
+L'application produit $\pi : (x, y) \in \R^2 \mapsto xy \in \R$ est différentiable
+et pour tout $(h_x, h_y) \in \R^2$, on a $d\pi(x, y) \cdot (h_x, h_y)= x h_y + y h_x$ ; 
+autrement dit 
 $$
-df(x, y)\cdot(h_x, h_y) = h_x^{\top} \cdot B \cdot y + x^{\top} \cdot B \cdot h_y.
+d(xy) = x \, dy + y \, dx.
 $$
 
-### Fonction quadratique {.question #fq .exercise .two}
-Soit $A \in \R^{n \times n}$. En utilisant les liens entre continue 
-différentiabilité et différentiabilité, montrer que la fonction 
+### Démonstration {.proof}
+Les dérivées partielles de $xy$ existent et sont continues : on a 
 $$
-f : x \in \R^n \mapsto x^{\top} \cdot A \cdot x
+\frac{\partial (xy)}{\partial x} = y
+\; \mbox{ et } \; 
+\frac{\partial (xy)}{\partial y} = x.
 $$
-est différentiable et déterminer l'application $df(x)$.
+Par conséquent, l'application produit est [continûment différentiable, donc différentiable](#cdid),
+et
+$$
+d(xy) = \frac{\partial (xy)}{\partial x} dx + \frac{\partial (xy)}{\partial y} dy
+= x \, dy + y \, dx.
+$$
 
-### TODO : exo diff produit scalaire
-
-### TODO
-Expliquer que fondamentalement, calcul complexe = assemblage et composition de fonctions.
+### {.remark .ante}
+Ce type de règles de calcul élémentaires peuvent servir de briques de base pour
+élaborer des règles de calcul "génériques", faisant intervenir des fonctions
+différentiables arbitraires et permettant de traiter des calculs plus complexes. 
+Les deux résultats qui permettent de mener cette extension du calcul différentiel 
+sont [la règle d'assemblage](#assemblage) 
+-- ou ce qui revient au même, 
+de [différentiation composante par composante](#diff-cc) -- 
+et de [différentiation en chaîne](#chain-rule).
 
 ### Règle de différentiation composante par composante {.theorem #diff-cc .one}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$ et $x \in U$. La fonction
@@ -819,33 +823,20 @@ s'établit de manière similaire. On déduit alors de la relation
 $(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
 
 ### {.remark} 
-[La régle de différentiation composante par composante](#diff-cc) entraîne
-directement :
+Cette règle entraîne directement :
 
-### Assemblage de fonctions {.corollary}
+### Assemblage de fonctions {.corollary #assemblage}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
 La fonction $$(f,g) : U \to \R^{m+p}$$ est différentiable en $x$ si et 
-seulement si $f$ et $g$ sont différentiable en $x$
+seulement si $f$ et $g$ sont différentiables en $x$ ; on a alors
+$$
+d(f, g)(x) = (df(x), dg(x)).
+$$
 
 ### Démonstration {.proof}
 La fonction $(f, g)$ d'une part et les fonctions $f$ et $g$ d'autre part
 ont le même jeu de composantes scalaires ; la conclusion s'ensuit par
 [la régle de différentiation composante par composante](#diff-cc).
-
-
-<!--
-$$
-J_f(x) =
-\left[
-\begin{array}{ccc}
-\text{---} & J_{f_1}(x) & \text{---} \\
-\text{---} & J_{f_2}(x) & \text{---} \\
-\vdots & \vdots & \vdots \\
-\text{---} & J_{f_m}(x) & \text{---} \\
-\end{array}
-\right].
-$$
--->
 
 ### Règle de différentiation en chaîne {.theorem #chain-rule .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
@@ -915,22 +906,79 @@ $$
 $$
 le résultat est donc acquis.
 
-### Dérivation en chaîne de fonctions continûment différentiables {.exercise #cfcd .question .one}
+### Différentiation en chaîne des fonctions continûment différentiables {.exercise #cfcd .question .one}
 Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#chain-rule) 
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
 
+### {.remark}
+Ces deux résultats permettent par exemple de généraliser 
+[la règle du produit](#product-rule) :
 
-### Différentielle d'une application linéaire {.exercise .one .question}
-Soit $A \in \mathbb{R}^{m\times n}$. Interpréter puis démontrer la relation
-$$
-d (A \cdot x) = A  \cdot dx.
-$$
-En déduire ... $d(x+y)$ ... $d(\lambda x)$ ... Puis linéarité diff ?
+### Règle du produit (générique) {.proposition}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$ et $x \in U$.
+Si les fonctions $f$ et $g$ sont différentiables en $x$, 
+alors leur produit $fg$ également et $$d(fg)(x)  = f(x) dg(x) + g(x) df(x).$$
 
-### TODO
-Déduire régle de la somme et linéarité de l'identité 
-$$d(A \cdot x) = A  \cdot dx$$ ? 
+### Démonstration {.proof}
+Par [assemblage](#assemblage), la fonction $(f, g)$ est différentiable en $x$ 
+et $d(f,g)(x) = (df(x), dg(x))$.
+Sa composition par la fonction produit $\pi: (x, y) \mapsto xy$ est 
+le produit $fg$ :
+$$
+fg = \pi \circ (f, g).
+$$
+Par [la règle de différentation en chaîne](#chain-rule), le produit $fg$ est
+différentiable et
+\begin{align*}
+d(fg) (x) 
+ &= d \pi (f(x), g(x)) \cdot d(f,g)(x) \\
+&= d \pi (f(x), g(x)) \cdot (df(x), dg(x)) \\
+&= f(x) dg(x) + g(x) df(x).
+\end{align*}
+
+### Linéarité de la différentielle {.proposition}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$,
+$\lambda \in \R$, $\mu \in \R$ et $x \in U$.
+Si les fonctions $f$ et $g$ sont différentiables en $x$, 
+alors la combinaison linéaire $\lambda f + \mu g$ également et
+$$d(\lambda f + \mu g)(x)  = \lambda df(x) + \mu dg(x).$$
+
+### Démonstration {.proof}
+La fonction $\lambda f + \mu g$ peut être obtenue en composant la fonction
+$(f, g)$ et la fonction linéaire $A : (x, y) \in \R^2 \mapsto \lambda x + \mu g$.
+Par [la règle d'assemblage](#assemblage) et [la règle de différentation en chaîne](#chain-rule),
+elle est donc différentiable en $x$ et [comme la différentielle de l'application
+linéaire $A$ en tout point est elle-même](#dal), 
+\begin{align*}
+d(\lambda f + \mu g)(x) &= d A(f(x), g(x)) \cdot (df(x), dg(x)) \\
+&= A \cdot (df(x), dg(x)) \\ &= \lambda f(x) + \mu dg(x).
+\end{align*}
+
+
+
+
+
+
+### Différentielle d'une application bilinéaire {.theorem #dab .two}
+Pour toute matrice $B \in \R^{m\times n}$, la fonction bilinéaire
+$$f: (x, y) \in \R^m \times \R^n \mapsto x^{\top} \cdot B \cdot y \in \R$$
+est différentiable et pour tout $x \in \R^n$,
+$$
+df(x, y)\cdot(h_x, h_y) = h_x^{\top} \cdot B \cdot y + x^{\top} \cdot B \cdot h_y.
+$$
+
+### Fonction quadratique {.question #fq .exercise .two}
+Soit $A \in \R^{n \times n}$. En utilisant les liens entre continue 
+différentiabilité et différentiabilité, montrer que la fonction 
+$$
+f : x \in \R^n \mapsto x^{\top} \cdot A \cdot x
+$$
+est différentiable et déterminer l'application $df(x)$.
+
+### TODO : exo diff produit scalaire
+
+
 Déduire la régle du produit de
 $$
 d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\top} \cdot dx
@@ -961,35 +1009,6 @@ g &: (x, y) \in \R^n \times \R^n \mapsto x^{\top} \cdot y \in \R \\
 
 **TODO**
 
-
-
-
-### TODO - adapter. Linéarité de la différentielle {.corollary}
-Soit $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et 
-$g: U \to \mathbb{R}^m$, différentiables en $x \in U$. 
-Pour tous réels $\lambda$ et $\mu$, l'application 
-$\lambda f + \mu g$ est différentiable en $x$ et
-$$
-d(\lambda f + \mu g)(x) = \lambda df(x) + \mu dg(x).
-$$
-
-### Démonstration {.proof}
-Compte tenu du résultat concernant [la différentiation composante par composante](#dcpc),
-il suffit d'établir le résultat pour $f$ et $g$ à valeurs réelles.
-Or, l'application $x \in \mathbb{R}^n \mapsto (\lambda, f(x))$ est différentiable
-en $x$ car ses composantes sont différentiables ; 
-sa différentielle -- calculée composante par composante -- 
-est l'application $h \mapsto (0, df(x) \cdot h)$.
-L'application $\lambda f$ étant le produit de $\lambda$ et $f$,
-par [la règle de différentiation en chaîne](#chain-rule), 
-elle est différentiable en $x$ et 
-$$
-d (\lambda f)(x) = \lambda df(x) + f(x) \times (h \to 0) = \lambda df(x).
-$$
-De même, $\mu g$ est différentiable en $x$ et $d(\mu g)(x) = \mu dg(x)$.
-Par la règle de la somme, la combinaison linéaire $\lambda f + \mu g$ est
-donc différentiable en $x$ et 
-$d(\lambda f + \mu g)(x) = \lambda df(x) + \mu dg(x)$.
 
 
 Variation des fonctions
