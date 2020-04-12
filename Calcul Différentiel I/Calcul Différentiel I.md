@@ -846,6 +846,11 @@ $$
 d(f, g)(x) = (df(x), dg(x)).
 $$
 
+### TODO
+Exo, montrer que fonction diff implique composante diff et le lien résulte
+de la diff des projections (à montrer) et de la chain rule (donc à faire
+après la chain rule).
+
 ### Démonstration {.proof}
 La fonction $(f, g)$ d'une part et les fonctions $f$ et $g$ d'autre part
 ont le même jeu de composantes scalaires ; la conclusion s'ensuit par
