@@ -970,7 +970,7 @@ $$d(\lambda f + \mu g)(x)  = \lambda df(x) + \mu dg(x).$$
 
 ### Démonstration {.proof}
 La fonction $\lambda f + \mu g$ peut être obtenue en composant la fonction
-$(f, g)$ et la fonction linéaire $A : (x, y) \in \R^2 \mapsto \lambda x + \mu g$.
+$(f, g)$ et la fonction linéaire $A : (x, y) \in \R^2 \mapsto \lambda x + \mu y$.
 Par [la règle d'assemblage](#assemblage) et [la règle de différentation en chaîne](#chain-rule),
 elle est donc différentiable en $x$ et [comme la différentielle de l'application
 linéaire $A$ en tout point est elle-même](#dal), 
