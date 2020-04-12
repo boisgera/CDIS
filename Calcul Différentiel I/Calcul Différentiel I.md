@@ -799,6 +799,13 @@ sont [la règle d'assemblage](#assemblage)
 de [différentiation composante par composante](#diff-cc) -- 
 et la règle de [différentiation en chaîne](#chain-rule).
 
+### TODO
+Montrer d'abord la chain rule et montrer comment la règle de différentation
+composante par composante résulte de ça et de la diff des projections, 
+insertion et somme. Ou faire ça en exo ? Ou faire juste les règles élémentaires
+citées ici en exo (ou en résultat ?), et changer la démo pour montrer 
+qu'on peut utiliser la chain rule ?
+
 ### Règle de différentiation composante par composante {.one .theorem #diff-cc .one}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$ et $x \in U$. La fonction
 $f$ est différentiable en $x$ si et seulement si toutes ses composantes
