@@ -795,66 +795,9 @@ Ce type de règles de calcul élémentaires peuvent servir de briques de base po
 différentiables arbitraires et permettant de traiter des calculs plus complexes. 
 Les deux résultats qui permettent de mener cette extension du calcul différentiel 
 sont [la règle d'assemblage](#assemblage) 
--- ou ce qui revient au même, 
-de [différentiation composante par composante](#diff-cc) -- 
+-- fondée sur la règle de [différentiation composante par composante](#diff-cc) -- 
 et la règle de [différentiation en chaîne](#chain-rule).
 
-<!--
-### TODO
-Montrer d'abord la chain rule et montrer comment la règle de différentation
-composante par composante résulte de ça et de la diff des projections, 
-insertion et somme. Ou faire ça en exo ? Ou faire juste les règles élémentaires
-citées ici en exo (ou en résultat ?), et changer la démo pour montrer 
-qu'on peut utiliser la chain rule ?
--->
-
-### Règle de différentiation composante par composante {.one .theorem #diff-cc .one}
-Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$ et $x \in U$. La fonction
-$f$ est différentiable en $x$ si et seulement si toutes ses composantes
-$f_i$ sont différentiables en $x$. Dans ce cas, on a 
-$$
-(df(x))_i = df_i(x).
-$$
-
-### Démonstration {.proof}
-Par [la régle de dérivation composante par composante](#der-cc),
-la matrice jacobienne de $f$ en $x$ existe si et seulement si 
-toutes les matrices jacobienne $J_{f_i}(x)$ existent et on a alors
-$(J_f(x))_i = J_{f_i}(x)$.
-La différentiabilité de $f$ en $x$ se traduit donc par
-$$
-f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h)\|h\|
-$$
-où $\lim_{h\to 0} \varepsilon (h) = 0$, ce qui entraine pour tout $i$,
-$$
-f_i(x+h) = f_i(x) + (J_f(x))_i \cdot h + \varepsilon_i(h) \|h\|
-= f_i(x) + J_{f_i}(x) \cdot h + \varepsilon_i(h) \|h\|
-$$
-avec $\lim_{h\to 0} \varepsilon_i (h) = 0$ ; 
-chaque composante $f_i$ est donc différentiable. La réciproque
-s'établit de manière similaire. On déduit alors de la relation
-$(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
-
-### {.remark} 
-Cette règle entraîne directement :
-
-### Assemblage/désassemblage de fonctions {.one .corollary #assemblage}
-Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
-La fonction $$(f,g) : U \to \R^{m+p}$$ est différentiable en $x$ si et 
-seulement si $f$ et $g$ sont différentiables en $x$ ; on a alors
-$$
-d(f, g)(x) = (df(x), dg(x)).
-$$
-
-### TODO
-Exo, montrer que fonction diff implique composante diff et le lien résulte
-de la diff des projections (à montrer) et de la chain rule (donc à faire
-après la chain rule).
-
-### Démonstration {.proof}
-La fonction $(f, g)$ d'une part et les fonctions $f$ et $g$ d'autre part
-ont le même jeu de composantes scalaires ; la conclusion s'ensuit par
-[la règle de différentiation composante par composante](#diff-cc).
 
 ### Règle de différentiation en chaîne {.theorem #chain-rule .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
@@ -928,6 +871,70 @@ le résultat est donc acquis.
 Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#chain-rule) 
 les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
 l'est également.
+
+<!--
+### TODO
+Montrer d'abord la chain rule et montrer comment la règle de différentation
+composante par composante résulte de ça et de la diff des projections, 
+insertion et somme. Ou faire ça en exo ? Ou faire juste les règles élémentaires
+citées ici en exo (ou en résultat ?), et changer la démo pour montrer 
+qu'on peut utiliser la chain rule ?
+-->
+
+### Règle de différentiation composante par composante {.one .theorem #diff-cc .one}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$ et $x \in U$. La fonction
+$f$ est différentiable en $x$ si et seulement si toutes ses composantes
+$f_i$ sont différentiables en $x$. Dans ce cas, on a 
+$$
+(df(x))_i = df_i(x).
+$$
+
+### Démonstration {.proof}
+Par [la régle de dérivation composante par composante](#der-cc),
+la matrice jacobienne de $f$ en $x$ existe si et seulement si 
+toutes les matrices jacobienne $J_{f_i}(x)$ existent et on a alors
+$(J_f(x))_i = J_{f_i}(x)$.
+La différentiabilité de $f$ en $x$ se traduit donc par
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h)\|h\|
+$$
+où $\lim_{h\to 0} \varepsilon (h) = 0$, ce qui entraine pour tout $i$,
+$$
+f_i(x+h) = f_i(x) + (J_f(x))_i \cdot h + \varepsilon_i(h) \|h\|
+= f_i(x) + J_{f_i}(x) \cdot h + \varepsilon_i(h) \|h\|
+$$
+avec $\lim_{h\to 0} \varepsilon_i (h) = 0$ ; 
+chaque composante $f_i$ est donc différentiable. La réciproque
+s'établit de manière similaire. On déduit alors de la relation
+$(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
+
+### {.remark .ante .post} 
+Cette règle entraîne :
+
+### Régles d'assemblage et désassemblage {.one .corollary #assemblage}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
+La fonction $(f,g) : U \to \R^{m+p}$ est différentiable en $x$ si et 
+seulement si $f$ et $g$ sont différentiables en $x$ ; on a alors
+$$
+d(f, g)(x) = (df(x), dg(x)).
+$$
+
+### Désassemblage {.exercise .question .two #exo-desass}
+Montrer que pour tous $m, p \in \N$, les fonctions 
+$(x_1,x_2) \in \R^m\times\R^p \mapsto x_1 \in \R^m$
+et $(x_1,x_2) \in \R^m\times\R^p \mapsto x_2 \in \R^p$ sont différentiables.
+En déduire une démonstration de ["la régle de désassemblage"](#assemblage).
+
+### Démonstration {.proof}
+La fonction $(f, g)$ d'une part et les fonctions $f$ et $g$ d'autre part
+ont le même jeu de composantes scalaires ; la conclusion s'ensuit par
+[la règle de différentiation composante par composante](#diff-cc).
+
+
+### Différentiation en chaîne et assemblage {.exercise .question .three #exo-dca}
+Combiner [la règle d'assemblage](#assemblage) 
+et [la règle de différentiation en chaîne](#chain-rule) en
+un résultat unique qui implique les deux résultats
 
 ### {.remark}
 A titre d'exemple, montrons comment ces deux résultats permettent de généraliser 
@@ -2400,6 +2407,37 @@ Chaque coefficient $\partial_j (g\circ f)_i$ est une somme de produit de
 fonctions continues et est donc continu. Par conséquent, $g\circ f$ est
 continûment différentiable.
 
+
+### Désassemblage {.answer #answer-exo-desass}
+Les fonctions $p_1: (x_1,x_2) \in \R^m\times\R^p \mapsto x_1 \in \R^m$
+et $p_2: (x_1,x_2) \in \R^m\times\R^p \mapsto x_2 \in \R^p$ sont 
+[linéaires, et donc différentiables en tout point $x$](#dal) ; 
+leurs différentielles sont données par
+$dp_1(x_1, x_2) = p_1$ et $dp_2(x_1, x_2) = p_2$.
+Par conséquent, si $U$ est un ouvert de $\R^n$, $x \in U$ et que la fonction
+$(f, g): U \to \R^m \times \R^p$ est différentiable en $x$, en appliquant
+à deux reprises [la règle de différentiation en chaîne](#chain-rule),
+on en déduit que $f = p_1 \circ (f, g)$ et que $g= p_2 \circ (f,g)$ sont
+différentiables et que $df(x) = p_1 \cdot d(f,g)(x)$ et $dg(x) = p_2 \cdot d(f,g)(x)$,
+soit $d(f, g)(x) = (df(x), dg(x))$.
+
+
+### Différentiation en chaîne et assemblage {.answer #answer-exo-dca}
+La combinaison des deux résultats prend la forme suivante :
+
+> Soient $f_1: U \subset \mathbb{R}^p \to \mathbb{R}^{n_1}$,
+> $\dots$, $f_m: U \subset \mathbb{R}^p \to \mathbb{R}^{n_m}$ 
+> et $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ 
+> -- où $n={n_1 + \dots + n_m}$ --
+> des fonctions définies sur des ouverts $U$ et $V$ et telles que $(f_1,\dots, f_m)(U) \subset V$. 
+> Si les $f_i$ sont différentiables en $x \in U$ et que $g$ est différentiable en 
+> $(f_1(x), \dots, f_m(x)) \in V$,
+> alors la composée $g \circ (f_1, \dots, f_m)$ est différentiable en $x$ et
+> $$d(g \circ (f_1, \dots, f_m))(x) = dg(f_1(x),\cdots, f_m(x)) \cdot (df_1(x), \dots, df_m(x)).$$
+
+Le cas $m=1$ de cet énoncé correspond à [la règle de différentiation en
+chaîne](#chain-rule) ; le cas où $g$ est la fonction identité correspond 
+à la [régle d'assemblage](#assemblage).
 
 ### Produit scalaire {.answer #answer-ps .one}
 On a $\left<x, y \right> = \sum_{i=1}^n x_i y_i$. Chaque fonction 
