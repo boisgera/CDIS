@@ -2021,7 +2021,7 @@ On s'intéresse dans la suite à une quantité fixe d'un gaz donné de ce type.
 
 [^gibbs]: cf. par exemple [l'article consacré au "Paradoxe de Gibbs" sur Wikipédia](https://fr.wikipedia.org/wiki/Paradoxe_de_Gibbs).
 
-### Question 0 {.question #th-0 .one}
+### Question 0 {.question #th-0 .zero}
 Quelles sont les grandeurs variables ("variables d'état") associées à 
 cette expression de l'entropie $S$ ? Quelle intervalle de valeurs peuvent
 prendre ces variables ? (On souhaite que l'entropie soit toujours définie.)
