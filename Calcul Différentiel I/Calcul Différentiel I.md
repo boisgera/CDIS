@@ -64,7 +64,7 @@ cas multivariable.
 La définition de la différentielle et son lien avec la matrice jacobienne
 et les dérivées partielles permettent le calcul des différentielles 
 des fonctions élémentaires, 
-fournissant autant de "règles" élémentaires de calcul. 
+fournissant autant de règles élémentaires de calcul. 
 Il est donc nécessaire avant toute chose de 
 
   - connaître et savoir mettre en oeuvre quelques règles élémentaires,
