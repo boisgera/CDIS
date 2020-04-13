@@ -61,15 +61,31 @@ cas multivariable.
 
 #### Calcul différentiel
 
-  - différentielle à partir des dérivées partielles
+La définition de la différentielle et son lien avec la matrice jacobienne
+et les dérivées partielles permettent le calcul des différentielles 
+des fonctions élémentaires, 
+fournissant autant de "règles" élémentaires de calcul. 
+Il est donc nécessaire avant toute chose de 
 
-  - différentielle d'une application linéaire
+  - connaître et savoir mettre en oeuvre quelques règles élémentaires,
 
-  - règle de différentiation en chaîne
+  - savoir en élaborer de nouvelles en exploitant les définitions.
 
-  - dérivées partielles et variables nommées
+Ensuite, pour faire face à des calculs plus complexes, deux stratégies
+sont à mener en parallèle. Au niveau pratique, il convient de
 
-  - différentielles d'expression et de variables.
+  - savoir exploiter les notations simplifiant le calcul différentiel,
+
+  - comprendre ce que signifient ces notations pour éviter les erreurs.
+
+Au niveau théorique, il s'agit d'utiliser des règles génériques,
+qui étendent la portée des règles élémentaires ; il convient donc de
+
+  - connaître et savoir mettre en oeuvre quelques règles de calcul génériques,
+
+  - connaître les règles d'assemblage/désassemblage et de dérivation en chaîne,
+
+  - savoir les exploiter pour élaborer de nouvelles règles de calcul génériques.
 
 #### Variation des fonctions
 
@@ -593,7 +609,7 @@ la pratique du calcul différentiel ; elle recèlent toutefois un potentiel d'am
 Nous allons donc détailler ces notations sur un exemple et les interpréter 
 à la lumière des concepts déjà introduits.
 
-### Expressions et fonctions anonymes
+### Expressions et fonctions implicites
 La première technique consiste à favoriser l'usage d'expressions
 mathématiques -- comme "$x^2 + y^2$" -- pour désigner des grandeurs variables,
 sans nécessairement expliciter les fonctions correspondantes, la liste de
@@ -614,7 +630,7 @@ peut-être y-a-t'il une troisième variable $z$ et que ça n'est que "par accide
 l'expression $x^2 + y^2$ ne dépend pas de $z$, etc.
 
 
-### Arguments nommés et dérivées partielles
+### Variables nommées et dérivées partielles
 Dans un contexte applicatif donné, il est fréquent que des noms (ou symboles)
 particuliers soit attachés aux grandeurs variables (plutôt que les génériques
 "$x_1$", \dots, "$x_n$") et qu'il soit plus naturel ou pratique d'utiliser 
