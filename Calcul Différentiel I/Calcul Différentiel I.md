@@ -142,10 +142,11 @@ d'exposer nous incitent donc également à noter $A \cdot x$ l'image du vecteur 
 par l'application linéaire $A$ et $A \cdot B$ la composition des 
 applications linéaires $B$ par $A$. 
 
-Sauf mention contraire, $\|x\|$ désignera
-la norme euclidienne $\|x\|_2$ de $x$ dans $\R^n$ ;  
+Sauf mention contraire, $\left< x, y \right>$ désignera le produit scalaire
+usuel entre les vecteurs $x$ et $y$ de $\R^n$ et $\|x\| = \|x\|_2 = \sqrt{\left<x,x \right>}$ 
+la norme euclidienne associée ; 
 $\|A\|$ désignera la norme d'opérateur $\|A\|_{22}$ de $A$, 
-induite par les normes euclidiennes sur $\R^m$ et sur $\R^n$.
+induite par ces normes euclidiennes sur $\R^m$ et sur $\R^n$.
 
 
 Matrice jacobienne et différentielle
