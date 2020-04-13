@@ -79,7 +79,8 @@ sont à mener en parallèle. Au niveau pratique, il convient de
   - comprendre ce que signifient ces notations pour éviter les erreurs.
 
 Au niveau théorique, il s'agit de compléter les règles élémentaires
-par des règles génériques de plus grande portée, donc de
+par des règles génériques, applicables non plus à une fonction particulière
+mais à des classes de fonctions, donc de
 
   - connaître et savoir mettre en oeuvre quelques règles de calcul génériques,
 
