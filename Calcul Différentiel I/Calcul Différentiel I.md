@@ -534,7 +534,7 @@ $$
 \lim_{\substack{h \to 0 \\ h\neq 0}} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0.
 $$
 
-### Différentielle et dérivée {.proposition .one}
+### Différentielle et dérivée {.proposition .one #dad}
 Soit $U$ un ouvert de $\R$, $f:U \to \R^m$ et $x\in U$. La fonction $f$ est
 différentiable en $x$ si et seulement si elle est dérivable en $x$. 
 Dans ce cas, pour tout $h \in \R$,
@@ -563,7 +563,7 @@ ce qui équivaut à la différentiabilité de $f$ en $x$.
 La relation $df(x) \cdot h= J_f(x) \cdot h$ fournit le dernier élément
 de la proposition.
 
-### Différentielle et gradient {.proposition .one}
+### Différentielle et gradient {.proposition .one #dag}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R$ et $x \in U$. Si la fonction
 $f$ est différentiable en $x$, alors pour tout $h \in \R^n$,
 $$
@@ -907,7 +907,7 @@ $$
 $$
 
 ### Démonstration {.proof}
-Par [la régle de dérivation composante par composante](#der-cc),
+Par [la règle de dérivation composante par composante](#der-cc),
 la matrice jacobienne de $f$ en $x$ existe si et seulement si 
 toutes les matrices jacobienne $J_{f_i}(x)$ existent et on a alors
 $(J_f(x))_i = J_{f_i}(x)$.
@@ -928,7 +928,7 @@ $(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
 ### {.remark .ante .post} 
 Cette règle entraîne :
 
-### Régles d'assemblage et désassemblage {.one .corollary #assemblage}
+### règles d'assemblage et désassemblage {.one .corollary #assemblage}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
 La fonction $(f,g) : U \to \R^{m+p}$ est différentiable en $x$ si et 
 seulement si $f$ et $g$ sont différentiables en $x$ ; on a alors
@@ -940,7 +940,7 @@ $$
 Montrer que pour tous $m, p \in \N$, les fonctions 
 $(x_1,x_2) \in \R^m\times\R^p \mapsto x_1 \in \R^m$
 et $(x_1,x_2) \in \R^m\times\R^p \mapsto x_2 \in \R^p$ sont différentiables.
-En déduire une démonstration de ["la régle de désassemblage"](#assemblage).
+En déduire une démonstration de ["la règle de désassemblage"](#assemblage).
 
 ### Démonstration {.proof}
 La fonction $(f, g)$ d'une part et les fonctions $f$ et $g$ d'autre part
@@ -1015,19 +1015,15 @@ est différentiable et pour tout $x \in \R^n$,
 $$
 df(x, y)\cdot(h_x, h_y) = h_x^{\top} \cdot B \cdot y + x^{\top} \cdot B \cdot h_y.
 $$
+-->
 
-### Fonction quadratique {.question #fq .exercise .two}
-Soit $A \in \R^{n \times n}$. En utilisant les liens entre continue 
-différentiabilité et différentiabilité, montrer que la fonction 
-$$
-f : x \in \R^n \mapsto x^{\top} \cdot A \cdot x
-$$
-est différentiable et déterminer l'application $df(x)$.
 
+
+<!--
 ### TODO : exo diff produit scalaire
 
 
-Déduire la régle du produit de
+Déduire la règle du produit de
 $$
 d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\top} \cdot dx
 $$
@@ -1814,20 +1810,31 @@ Question / "contrôle de la direction" d'un point / mouvement point de contrôle
 
 -->
 
-Différentiation en chaîne {#dec}
+Spécialisation de la différentiation en chaîne {#dec}
 --------------------------------------------------------------------------------
 
 [La règle générale de différentiation en chaîne](#chain-rule)
 s'applique à la composée de deux fonctions différentiables 
-$f: U \subset \R^p \to \R^n$ et $g: V \subset \R^n \to \R^m$.
+$f: U \subset \R^p \to \R^n$ et $g: V \subset \R^n \to \R^m$
+quelles que soient les valeurs des entiers $p, n$ et $m$.
 
-### Question 1 {.question #dec-1 .one}
-Calculer $d(g \circ f)$ quand $p = n = 1$ (on utilisera les dérivées
-de $f$ et $g$).
+En pratique, on préfère souvent "spécialiser" le calcul différentiel 
+en utilisant les dérivées ou les gradients quand c'est possible
+et la différentielle uniquement en dernier recours.
 
-### Question 2 {.question #dec-2}
-Calculer $d(g \circ f)$ quand $p = m = 1$ (on utilisera les dérivées 
-et/ou gradients de $f$ et $g$).
+### Question 1 {.question #dec-1 .zero}
+Spécialiser [la règle de différentiation en chaîne](#chain-rule)
+quand $p=n=1$.
+
+### Question 2 {.question #dec-2 .one}
+Spécialiser [la règle de différentiation en chaîne](#chain-rule)
+quand $p=m=1$, puis quand $n=m=1$.
+
+### Question 3 {.question #dec-3 .two}
+Spécialiser [la règle de différentiation en chaîne](#chain-rule)
+quand $p=1$, puis $n=1$, puis $m=1$.
+
+
 
 <!--
 Soit $f: U \subset \mathbb{R} \to \mathbb{R}$ et 
@@ -1848,14 +1855,19 @@ $$
 f(x) = \frac{1}{2} \left<x, A \cdot x \right> + \left<b, x\right> + c. 
 $$
 
-### Question 1 {.question #fq-1}
-Montrer que $f$ est 2 fois différentiable en tout point $x$ de $\R^n$ ; 
-calculer $\nabla f(x)$ et $\nabla^2 f(x)$.
+### Question 1 {.question #fq-1 .two}
+Montrer que $f$ différentiable en tout point $x$ de $\R^n$ et
+calculer $\nabla f(x)$.
 
-### Question 2 {.question #fq-2}
+### Question 2 {.question #fq-2 .one}
+Montrer que la fonction $\nabla f: \R^n \to \R^n$ est différentiable et
+calculer la matrice jacobienne de $\nabla f$ en $x$. On note désormais
+ $\nabla^2 f(x) := J_{\nabla f}(x)$.
+
+### Question 3 {.question #fq-3 .one}
 Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
-Montrer que la fonction $f$ admet un unique point critique $x_0$ et le 
-calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
+Montrer qu'il existe un unique $x_0 \in \R^n$ où s'annule $\nabla f$ ; 
+le calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
 
 Vecteur gaussien
 --------------------------------------------------------------------------------
@@ -1866,7 +1878,7 @@ $$
 f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
 $$
 où $\Sigma : \R^d \to \R^d$ est un opérateur linéaire autoadjoint 
-(c'est-à-dire que $\Sigma^* = \Sigma$) 
+(c'est-à-dire que $\Sigma^{\top} = \Sigma$) 
 tel que $\left<x, \Sigma \cdot x \right> > 0$ quand $x\neq 0$.
 
 ### Question 1 {.question #vg-1}
@@ -2381,35 +2393,6 @@ $$
 on constate qu'on a à nouveau $d(x^2 + y^2) = 2 x \, dx + 2y \, dy$ dans les
 deux cas.
 
-### Fonction quadratique {#answer-fq .answer}
-Comme
-$$
-f(x) = x^{\top} \cdot A \cdot x = \sum_{i=1}^{n} \sum_{k=1}^n x_i A_{ik} x_k,
-$$
-pour tout $j \in \{1,\dots, n\}$ on a 
-$$
-f(x) = x_j A_{jj} x_j + \sum_{\substack{k=1 \\ k\neq j}}^n x_j  A_{jk} x_k +  \sum_{\substack{i=1\\i\neq j}}^n x_i A_{ij} x_j
-+ \sum_{\substack{i=1\\i\neq j}}^{n} \sum_{\substack{k=1\\k\neq j}}^n x_i A_{ik} x_k.
-$$
-Par conséquent, la dérivée partielle $\partial_j f(x)$ existe et vérifie
-\begin{align*}
-\partial_j f(x) &= 2 A_{jj} x_{j} + \sum_{\substack{k=1 \\ k\neq j}}^n A_{jk} x_k + \sum_{\substack{i=1\\i\neq j}}^n x_i A_{ij} \\
-&= \sum_{k=1}^n A_{jk} x_k + \sum_{i=1}^n x_i A_{ij} \\
-&= [A \cdot x]_j + [A^{\top} \cdot x]_j \\
-&= [(A + A^{\top}) \cdot x]_j.
-\end{align*}
-Toute ces dérivées partielles sont des fonctions linéaires de $x$, 
-elles sont donc continues et la fonction $f$ est continûment différentiable ;
-[elle est donc différentiable](#cdid).
-De plus, l'égalité ci-dessus nous fournit
-$$
-J_f(x)^{\top} = \nabla f(x) = (A + A^{\top}) \cdot x,
-$$
-et donc la différentielle de $f$ en $x$ est l'application déterminée par
-$$
-df(x) \cdot h = J_f(x) \cdot h = ((A + A^{\top}) \cdot x)^{\top} \cdot h
-= x^{\top} \cdot (A + A^{\top}) \cdot h.
-$$
 
 ### Composition de fonctions continûment différentiables {.answer #answer-cfcd}
 D'après [la règle de différentiation en chaîne](#chain-rule), $d (g\circ f)(x)= dg(f(x)) \cdot df(x)$.
@@ -2454,7 +2437,7 @@ La combinaison des deux résultats prend la forme suivante :
 
 Le cas $m=1$ de cet énoncé correspond à [la règle de différentiation en
 chaîne](#chain-rule) ; le cas où $g$ est la fonction identité correspond 
-à la [régle d'assemblage](#assemblage).
+à la [règle d'assemblage](#assemblage).
 
 ### Produit scalaire {.answer #answer-ps .one}
 On a $\left<x, y \right> = \sum_{i=1}^n x_i y_i$. Chaque fonction 
@@ -2602,15 +2585,13 @@ désigne le produit scalaire dans $\mathbb{R}^n$.
 
 -->
 
-Différentiation en chaîne 
+Spécialisation de la différentiation en chaîne 
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dec-1}
-Les fonction $f$ et $g$ sont différentiables  donc dérivables
-(cf. [Différentielle et dérivée]).
-Comme fonctions d'une variable, en raison du
-[lien entre différentielle et dérivée][Différentielle et dérivée],
-on a $df(x) \cdot h = f'(x) h$ et $dg(x) \cdot h = g'(x)h$.
+Comme fonctions d'une variable, $f$ et $g$ sont 
+[différentiables donc dérivables](#dad), $df(x) \cdot h = f'(x) h$ et 
+$dg(x) \cdot h = g'(x)h$.
 Par la [règle de différentiation en chaîne](#chain-rule),
 on obtient
 $$
@@ -2627,28 +2608,118 @@ d(g \circ f)(x) \cdot h
 &= (g'(f(x)) f'(x)) h.
 \end{split}
 $$
+La fonction $g \circ f$ étant également fonction d'une variable, elle
+est dérivable et
+$$
+(g\circ f)'(x) = d(g \circ f)(x) \cdot 1 = g'(f(x)) f'(x).
+$$
 
 ### Question 2 {.answer #answer-dec-2}
 La fonction $f$ dépendant d'une variable scalaire, elle est dérivable et 
-$df(x) \cdot h = f'(x) h$. Quant à $g$ qui est à valeur scalaire, sa
-différentielle en $x$ est reliée à son gradient par 
-$dg(x) \cdot h =\left<\nabla g(x), h\right>$.
+$df(x) \cdot h = f'(x) h$. Quant à $g$ qui est à valeur scalaire, 
+[sa différentielle en $x$ est reliée à son gradient par 
+$dg(x) \cdot h =\left<\nabla g(x), h\right>$](#dag).
 La [règle de différentiation en chaîne](#chain-rule),
-$d(g \circ f)(x)= dg(f(x)) \cdot df(x)$ se décline donc en
+$d(g \circ f)(x)= dg(f(x)) \cdot df(x)$ se décline donc ici en
 $$
 \begin{split}
 d(g \circ f)(x) \cdot h 
 &= dg(f(x)) \cdot (df(x) \cdot h) \\
 &= dg(f(x)) \cdot (f'(x) h) \\
 &= \left<\nabla g(f(x), f'(x)h \right>  \\
-&= \left<\nabla g(f(x)), f'(x) \right> h.
+&= \left<\nabla g(f(x)), f'(x) \right> h,
 \end{split}
 $$ 
+soit $(g \circ f)'(x) = d(g \circ f)(x) \cdot 1 = \left<\nabla g(f(x)), f'(x) \right>$.
+Quand $n=m=1$, on a
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= g'(f(x)) (df(x) \cdot h) \\
+&= g'(f(x)) \left<\nabla f(x), h\right> \\
+&= \left<g'(f(x)) \nabla f(x), h\right> \\
+\end{split}
+$$ 
+donc $\nabla (g\circ f)(x) = g'(f(x)) \nabla f(x)$.
+
+### Question 3 {.answer #answer-dec-3}
+Quand $p=1$, on a
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= dg(f(x)) \cdot (f'(x) h) \\
+&= (dg(f(x)) \cdot f'(x)) h.
+\end{split}
+$$ 
+donc $(g \circ f)'(x) = dg(f(x)) \cdot f'(x)$.
+Quand $n=1$, on a
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= g'(f(x)) \left<\nabla f(x), h\right> \\
+&= g'(f(x)){\nabla f(x)}^{\top} h.
+\end{split}
+$$ 
+donc $d (g\circ f)(x) = g'(f(x)){\nabla f(x)}^{\top}$. 
+Finalement, quand $m=1$, on a
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= \left<\nabla g(f(x)), df(x) \cdot h\right> \\
+&= \left<(df(x))^{\top} \cdot \nabla g(f(x)), \cdot h\right>
+\end{split}
+$$ 
+et donc $\nabla (g \circ f)(x) = (df(x))^{\top} \cdot \nabla g(f(x))$.
+
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-fq-1}
+La fonction présentée est la somme de la fonction
+$x \mapsto \left<x, A\cdot x \right> = x^{\top} \cdot A \cdot x$, de l'application linéaire 
+$x \mapsto \left<b, x\right> = b^{\top} x$ et de l'application constante
+$x \mapsto c$. Les deux dernières fonctions sont différentiables, de 
+différentielles les fonctions $x \mapsto b^{\top}$ 
+(comme [différentielle d'application linéaire](#dal))
+et $x \mapsto 0$ respectivement.
+Seul reste donc à étudier la fonction $g:x \mapsto x^{\top} \cdot A \cdot x$.
+
+Comme
+$$
+g(x) = \frac{1}{2}x^{\top} \cdot A \cdot x = \frac{1}{2}\sum_{i=1}^{n} \sum_{k=1}^n x_i A_{ik} x_k,
+$$
+pour tout $j \in \{1,\dots, n\}$ on a 
+$$
+g(x) = \frac{1}{2} \left(x_j A_{jj} x_j + \sum_{\substack{k=1 \\ k\neq j}}^n x_j  A_{jk} x_k +  \sum_{\substack{i=1\\i\neq j}}^n x_i A_{ij} x_j
++ \sum_{\substack{i=1\\i\neq j}}^{n} \sum_{\substack{k=1\\k\neq j}}^n x_i A_{ik} x_k\right).
+$$
+Par conséquent, la dérivée partielle $\partial_j g(x)$ existe et vérifie
+\begin{align*}
+\partial_j g(x) &= A_{jj} x_{j} + \frac{1}{2} \left(\sum_{\substack{k=1 \\ k\neq j}}^n A_{jk} x_k + \sum_{\substack{i=1\\i\neq j}}^n x_i A_{ij} \right)\\
+&= \frac{1}{2} \sum_{k=1}^n A_{jk} x_k + \frac{1}{2} \sum_{i=1}^n x_i A_{ij} \\
+&= \left[\frac{1}{2}A \cdot x\right]_j + \left[\frac{1}{2}A^{\top} \cdot x\right]_j \\
+&= \left[\frac{1}{2}(A + A^{\top}) \cdot x\right]_j.
+\end{align*}
+Toute ces dérivées partielles sont des fonctions linéaires de $x$, 
+elles sont donc continues et la fonction $g$ est continûment différentiable ;
+[elle est donc différentiable](#cdid).
+De plus, l'égalité ci-dessus nous fournit
+$$
+\nabla g(x) = \frac{1}{2}(A + A^{\top}) \cdot x.
+$$
+La fonction $f$ est donc différentiable (comme [combinaison linéaire de 
+fonctions différentiables](#ld)) et
+$$
+\nabla f(x) = \frac{1}{2}(A + A^{\top}) \cdot x + b^{\top}.
+$$
+
+
+<!--
 Pour tout $x \in \R^n$ et tout $h \in \R^n$, on a 
 $$
 \begin{split}
@@ -2658,7 +2729,7 @@ f(x+h) - f(x) &= \frac{1}{2} \left<(x+h), A \cdot (x+h) \right> + \left<b, x+h\r
 \frac{1}{2} \left<x, A \cdot h \right> + \frac{1}{2} \left<h, A \cdot x \right> +
 \left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right> \\
 &=
-\frac{1}{2} \left<A^* \cdot x, h \right> + \frac{1}{2} \left<A \cdot x, h \right> +
+\frac{1}{2} \left<A^{\top} \cdot x, h \right> + \frac{1}{2} \left<A \cdot x, h \right> +
 \left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right>.
 \end{split}
 $$
@@ -2666,43 +2737,36 @@ Comme $|\left<h, A \cdot h \right>| \leq \|h\| \times \|A\| \|h\|$, ce terme
 est un $o(\|h\|)$. On en conclut que
 $$
 f(x+h) - f(x)
-= \left<\frac{1}{2}(A + A^*) \cdot x + b, h\right> + o(\|h\|).
+= \left<\frac{1}{2}(A + A^{\top}) \cdot x + b, h\right> + o(\|h\|).
 $$
 La fonction $f$ est donc différentiable en $x$, de gradient
 $$
-\nabla f(x) = \frac{1}{2}(A + A^*) \cdot x + b.
+\nabla f(x) = \frac{1}{2}(A + A^{\top}) \cdot x + b.
 $$
-Pour tout $h \in \R^n$, la fonction $x \mapsto \left<\nabla f(x), h\right>$
-vérifie
+-->
+### Question 2 {.answer #answer-fq-2}
+La fonction 
 $$
-\left<\nabla f(x+k), h\right> - \left<\nabla f(x), h\right>
-= \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
+\nabla f: x \in \R^n \mapsto \frac{1}{2}(A + A^{\top}) \cdot x + b^{\top}.
 $$
-Elle est donc différentiable et 
+est affine, somme d'une fonction linéaire et d'une fonction constante.
+Elle est donc différentiable, et
 $$
-d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
-$$
-Par symétrie de la différentielle d'ordre $2$,
-$$
-d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot h, k\right>,
-$$
-donc 
-$$
-\nabla^2 f(x) = \frac{1}{2}(A + A^*).
+\nabla^2 f(x) := J_{\nabla f}(x) = \frac{1}{2}(A + A^{\top}).
 $$
 
-### Question 2 {.answer #answer-fq-2}
+### Question 3 {.answer #answer-fq-3}
 Si $\nabla^2 f(x)$ est inversible (cet opérateur est constant), comme
 $$
-\nabla f(y) = \frac{1}{2}(A + A^*) \cdot y + b = \nabla^2 f(x) \cdot y + b,
+\nabla f(y) = \frac{1}{2}(A + A^{\top}) \cdot y + b = \nabla^2 f(x) \cdot y + b,
 $$
-résoudre $\nabla f(y) = 0$ revient à rechercher les solutions de
+résoudre $\nabla f(x_0) = 0$ revient à rechercher les solutions de
 $$
-\nabla^2 f(x) \cdot y + b = \nabla^2 f(x) \cdot y + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
+\nabla^2 f(x) \cdot x_0 + b = \nabla^2 f(x) \cdot x_0 + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
 $$
-Il existe donc un unique point critique pour $f$, donné par
+Il existe donc un unique zéro de $\nabla f$, donné par
 $$
-y = x - (\nabla^2 f(x))^{-1} \nabla f(x).
+x_0 = x - (\nabla^2 f(x))^{-1} \nabla f(x).
 $$
 
 Vecteur gaussien
