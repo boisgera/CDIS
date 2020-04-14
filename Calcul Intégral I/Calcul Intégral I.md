@@ -10,13 +10,17 @@
 \newcommand{\HKint}{\mbox{(HK)}\!\!\int}
 \newcommand{\Lint}{\mbox{(L)}\!\!\int}
 
+
+TODO -- Objectifs d'apprentissage
+--------------------------------------------------------------------------------
+
 Somme et intégrale de Riemann
 ================================================================================
 
 ### Intervalle de $\R$ {.definition .zero}
 On appelle *intervalle* de $\R$ tout sous-ensemble $I$ de $\R$ 
 tel que si $x$ et $y$ appartiennent à $I$ et vérifient $x \leq y$
-et si $z$ est un point intermédiaire -- tel que $x \leq z \leq y$ --
+et si $z$ est un point intermédiaire, tel que $x \leq z \leq y$,
 alors $z$ appartient également à $I$.
 
 ### {.remark .post}
@@ -27,11 +31,12 @@ Les intervalles de la forme $\left]-\infty, +\infty\right[$
 $\left]-\infty, b\right[$, $\left]a,+\infty\right[$ 
 et $\left]a,b\right[$ 
 -- où $a$ et $b$ désignent des nombres réels -- 
-sont ouverts.
+sont les intervalles ouverts.
 Les intervalles de la forme $\left]-\infty, +\infty\right[$,
 $\left]-\infty, b\right]$, $\left[a,+\infty\right[$ 
-et $\left[a,b \right]$ sont fermés.
-Les intervalles de la forme $[a, b]$ sont à la fois fermés et bornés (compacts).
+et $\left[a,b \right]$ sont les intervalles fermés.
+Les intervalles de la forme $[a, b]$ sont les intervalles simultanément 
+fermés et bornés (compacts).
 
 ### Longueur d'un intervalle de $\R$ {.definition .zero}
 La *longueur* $\ell(I)$ d'un intervalle $I$ 
@@ -52,7 +57,7 @@ $$
 Une *subdivision* de l'intervalle $[a,b]$
 est une collection finie
 $$
-\{I_i \; | \; \; 0 \leq i \leq n-1 \}
+\{I_i \; | \; i \in \{0, \dots, m-1\}\}
 $$
 constituée d'intervalles fermés inclus dans $[a, b]$, *sans chevauchement*
 -- si $i$ et $j$ diffèrent, l'intersection de $I_i$ et $I_j$ contient au 
@@ -62,11 +67,12 @@ et *recouvrant $[a, b]$*
 Une *subdivision pointée* $\mathcal{D}$ de l'intervalle $[a, b]$ 
 est une collection finie 
 $$
-\mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq m-1\}
+\mathcal{D} = \{(t_i, I_i) \; | \; i \in \{0, \dots, m-1\}
 $$
-où les $I_i$ forment une subdivision de $[a, b]$ et 
+où $\{I_i\}_{i=0}^{m-1}$ est une subdivision de $[a, b]$ et 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, m-1\}.$
 
+<!--
 ### TODO
 Redéfinition "sans chevauchement" d'un manière plus compatible avec ce qui 
 sera fait dans le cas multidimensionnel ? Et moins liée aux intervalles ?
@@ -74,18 +80,19 @@ En tout cas (brève) exploration de ce que ça veut dire au niveau topologique
 (?). Grmph en fait pas *totalement* pertinent ; la "vrai" définition devrait
 être liée à la théorie de la mesure : plus tard, ajouter (en exo) 
 une caractérisation de "sans chevauchement" comme d'intersection négligeable.
+-->
 
-### Forme canonique {.remark  #rcsp}
+### Forme canonique d'une subdivision pointée {.remark  #rcsp}
 En ordonnant les intervalles $I_i$ d'une subdivision pointée 
-$$
-\mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq m-1\}
-$$
-"de la gauche vers la droite" et en notant $I_i = [x_i, x_{i+1}]$, 
-on peut caractériser $\mathcal{D}$ par des réels 
+$\{(t_i, I_i)\; | \; i \in \{0, \dots, m-1\}\}$
+"de la gauche vers la droite" et en notant chaque intervalle
+comme $I_i =: [x_i, x_{i+1}]$, on peut la caractériser par des réels 
 $x_0, x_1, \dots, x_m, t_0, \dots, t_{m-1}$ vérifiant
 $$
 a = x_0 \leq t_0 \leq x_1 \leq t_1 \dots \leq t_{m-1} \leq x_{m} = b. 
 $$
+
+### TODO -- Dessin d'une subdivision pointée (trait et croix)
 
 ### Somme de Riemann {.definition .two #somme-de-riemann}
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
@@ -93,16 +100,20 @@ et à la subdivision pointée $\mathcal{D}$ de $[a, b]$ est la grandeur
 $$
 S(f, \mathcal{D}) = \sum_{(t, I) \in \mathcal{D}} f(t) \ell(I).
 $$
-soit avec une subdivision sous forme canonique
-$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; \; 0 \leq i \leq m-1\}$,
+
+### {.remark}
+Pour une subdivision $\mathcal{D}$ sous forme canonique
+$\{(t_i, [x_i, x_{i+1}])\; | \; i \in \{0, \dots, m-1\}\}$, on obtient
 $$
 S(f, \mathcal{D}) = \sum_{i=0}^{m-1} f(t_i) (x_{i+1} - x_i).
 $$
 
+### TODO -- Dessin rectangles et interprétation somme de Riemann
+
 ### Intégrale de Riemann {.definition .two #intégrale-de-Riemann}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
 au sens de Riemann* s'il existe un réel $A$ tel
-que pour tout $\varepsilon > 0$ il existe un réel $\delta>0$ tel 
+que pour tout $\varepsilon > 0$, il existe un réel $\delta>0$ tel 
 que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
 vérifiant pour $(t, J) \in \mathcal{D}$, 
 $\ell(J) < \delta$, on ait
@@ -124,8 +135,7 @@ $$
 \mathcal{D}_m=
 \left\{
 \left(a + i \frac{b-a}{m}, \left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)
-\, \left| \vphantom{\frac{a}{b}}\right.
-i \in \{0,\dots, m-1\}
+\; \left| \vphantom{\left(a + i \frac{b-a}{m}, \left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)} \; i \in \{0, \dots, m-1\} \right.
 \right\},
 $$
 la somme de Riemann associée vérifie
@@ -161,13 +171,13 @@ comme ici à gauche de l'intervalle -- ce qui garantit une forme de robustesse
 être utilisées avec le même résultat asymptotique.
 
 ### Fonction affine {.exercise .question .two #fa}
-Montrer que toute fonction affine $x \mapsto \alpha x + \beta$ est 
+Montrer que toute fonction affine $x \in \R \mapsto \alpha x + \beta$ est 
 intégrable au sens de Riemann sur tout intervalle fermé borné $[a, b]$
 de $\R$ et que
 $$
 \Rint_a^b (\alpha t +\beta) \, dt = A := \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a).
 $$
-Indication : si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\}_0^{m-1}$ est une 
+Indication : si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\}_{i=0}^{m-1}$ est une 
 subdivision pointée de $[a, b]$ sous forme canonique, 
 $A$ est la somme d'une série télescopique :
 $$
@@ -177,7 +187,7 @@ $$
 
 ### Ensemble négligeable  {.definition .two}
 Un ensemble $A$ de $\R$ est *négligeable* si pour tout
-$\varepsilon > 0$, il existe un recouvrement de $A$ par une famille
+$\varepsilon > 0$, il existe un recouvrement de $A$ par une collection
 dénombrable d'intervalles $I_i$ de $\R$ tels que
 $$
 \sum_i \ell(I_i) \leq  \varepsilon.
@@ -192,34 +202,20 @@ somme des longueurs des intervalles, sans tenir compte des éventuels
 chevauchements. 
 Si à l'issue de cette double surestimation la longueur évaluée est encore 
 aussi petite que l'on veut, on peut légitimement considérer que l'ensemble 
-de départ est de longueur nulle[^me] 
-et que c'est donc ce que signifie "négligeable". 
-Nous verrons ultérieurement que cette intuition est valide.
+de départ est de longueur nulle[^me] ; la suite confirmera cette intuition.
 
 [^me]: techniquement, de mesure *extérieure* de longueur nulle.
 
-### TODO
-Simplifier l'exo en mettant en avant le coeur du problème (intervalle d'intérieur
-no vide pas négligeable). Ajout intro sur redéfinition de "sans chevauchement
-possible" en remarque, mais l'exo ne s'attaque qu'au coeur du problème.
-
-### Absence de chevauchement {.exercise .question .one #absence-chevauchement}
-On dit que deux ensembles $A$ et $B$ de $\R$ sont *sans chevauchement*
-si leur intersection est négligeable. Montrer que cette définition est
-cohérente avec celle que nous avons adopté pour le cas particulier des 
-intervalles fermés et bornés dans [la définition des subdivisions pointées](#sp).
-
-
+### TODO -- Intervalles négligeables {.exercise .question .four #intervalles-négligeables}
+Montrer que les seuls intervalles fermés bornés négligeables sont l'ensemble
+vide et les singletons.
 
 ### Presque partout {.definition .one}
 Une propriété dépendant d'un réel $x$ est vraie *presque partout*
 si l'ensemble des points $x$ où elle est fausse est un ensemble
 négligeable.
 
-### TODO : exo court "presque partout"
-
-### TODO
-Reformuler ci-dessous comme remark ante (fini, etc.) + proposition + preuve.
+### TODO : exo court "presque partout" (???)
 
 ### Les ensembles dénombrables sont négligeables {.proposition .one #edn}
 Si le sous-ensemble $E$ de $\R$ est dénombrable, c'est-à-dire fini ou 
@@ -1426,7 +1422,7 @@ la subdivision pointée $\mathcal{D} = \{(t, I)\}$ convient.
 Sinon, on peut considérer les intervalles $I_0^1 = [a, (a+b)/2]$ et
 $I_1^1 = [(a+b)/2, b]$ et examiner pour chacun de ces intervalles
 s'il existe un $t_i \in I_i^1$ tel que $I_i^1 \subset \gamma(t_i)$,
-dans ce cas ajouter la paire $(t_i, I_i^1)$ à la famille $\mathcal{D}$
+dans ce cas ajouter la paire $(t_i, I_i^1)$ à la collection $\mathcal{D}$
 et dans le cas contraire décomposer à nouveau l'intervalle posant 
 problème. 
 Il s'avère que ce procédé converge en un nombre fini d'étapes ; 
@@ -1701,7 +1697,7 @@ La fonction $f$ est donc intégrable et d'intégrale $A$.
 
 ### Subdivision pointée partielle {.definition}
 Une *subdivision pointée partielle* $\mathcal{D}$ de l'intervalle fermé 
-$I = [a, b]$ de $[-\infty, +\infty]$ est une famille finie 
+$I = [a, b]$ de $[-\infty, +\infty]$ est une collection finie 
 $$
 \mathcal{D} = \{(t_i, I_i) \; | \; \; 0 \leq i \leq n-1\}
 $$
@@ -1986,7 +1982,7 @@ Exercices essentiels
 
 
 ### Fonction affine {.answer #answer-fa}
-Nous déduisons de l'indication
+Nous déduisons de l'indication que
 \begin{align*}
 \left|S(f, \mathcal{D}) -  A\right|
 &=  \left|\sum_{i=0}^{m-1} (\alpha t_i + \beta)(x_{i+1} - x_i) -  \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) - \beta (x_{i+1}-x_i) \right|
@@ -1998,8 +1994,9 @@ $$
 \sum_{i=0}^{m-1}|\alpha| \left|t_i  -  \frac{x_{i} + x_{i+1}}{2} \right| (x_{i+1} - x_i).
 $$
 Dans les cas où $a = b$ ou $\alpha=0$, il est évident que $f$ est intégrable
-au sens de Riemann et d'intégrale $A$. Dans le cas contraire,
-si $\varepsilon > 0$, on peut poser
+au sens de Riemann et d'intégrale $A$ car le membre de droite de l'inégalité
+ci-dessus est nul.
+Dans le cas contraire, pour tout $\varepsilon > 0$, on peut poser
 $$
 \delta := \frac{2\varepsilon}{|\alpha|(b-a)} > 0.
 $$
@@ -2013,21 +2010,17 @@ $$
 \left|S(f, \mathcal{D}) -  A\right|
 \leq 
 \sum_{i=0}^{m-1}|\alpha| \frac{\varepsilon}{|\alpha|(b-a)} (x_{i+1} - x_i)
+= \frac{\varepsilon}{(b-a)} \sum_{i=0}^{m-1} (x_{i+1} - x_i)
 = \varepsilon.
 $$
 
-### Absence de chevauchement {.answer #answer-absence-chevauchement}
-Comme l'intersection de deux intervalles fermés et bornés de $\R$ est 
-un intervalle fermé et borné de $\R$, la question posée revient à montrer 
-que les seuls intervalles fermés et bornés de $\R$ qui sont négligeables sont 
-l'ensemble vide et les singletons.
-
+### TODO -- Intervalles négligeables {.answer #answer-intervalles-négligeables}
 L'ensemble vide est recouvert par la collection vide (ne comportant aucun
 intervalle) ; la somme des longueurs des intervalles de la collection est 
-donc nulle. Le singleton $\{a\}$ 
-est recouvert par la collection comportant l'unique intervalle
-$\{[a,a]\}$ et dans ce cas aussi la somme des longueurs des intervalles est 
-nulle. Ces ensembles sont donc négligeables.
+donc nulle. Le singleton $\{a\}$ est recouvert par la 
+collection $\{\{a\}\}_{i=0}^0$ comportant l'unique intervalle
+$\{a\}$ ; dans ce cas aussi la somme des longueurs des intervalles 
+de la collection est nulle. Ces ensembles sont donc négligeables.
 
 Réciproquement, nous devons montrer qu'aucun intervalle de la forme $[a, b]$
 avec $a < b$ n'est négligeable.
