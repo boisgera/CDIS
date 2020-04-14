@@ -16,17 +16,17 @@ Objectifs d'apprentissage
 
 #### Prérequis
 
-Les connaissances suivantes du calcul différentiel sont supposées connues :
+Les élements du calcul différentiel supposés déjà maîtrisés :
 
-  - dérivabilité et dérivée de fonctions définies sur un ouvert de $\R$,
+  - dérivabilité et dérivée de fonctions d'une variable réelle,
 
-  - dérivée sur des intervalles fermés bornés de $\R$,
+  - dérivée sur des sous-ensembles ouverts et des intervalles fermés de $\R$,
 
   - dérivées des fonctions scalaires ($\R$) et vectorielles ($\R^m$),
 
-  - dérivée et développement limité au premier ordre.
+  - dérivée et développement limité au premier ordre,
 
-Les fondements du calcul matriciel sont également supposés connus :
+Les fondements du calcul matriciel supposés maîtrisés :
 
   - vecteurs de $\R^n$ et applications linéaires $\R^n \to \R^m$, 
 
@@ -77,8 +77,6 @@ cas multivariable.
 
   - savoir ce qu'est la différentielle et son lien avec la matrice jacobienne.
 
-
-
 #### Calcul différentiel
 
 La définition de la différentielle et son lien avec la matrice jacobienne
@@ -110,22 +108,30 @@ mais à des classes de fonctions, donc de
 
 #### Variation des fonctions
 
-TODO : savoir faire les preuves dans les cas simple continûment diff
-(th fondam du calcul et inég acc finis ?)
+En intégrant les variations infinitésimales d'une fonction entre deux points, 
+on peut évaluer sa variation entre ces points. Utiliser pleinement cette
+technique suppose de :
 
-  - théorème fondamental du calcul, forme monovariable
+  - connaître le théorème fondamental du calcul (monovariable),
+
+  - connaître le théorème fondamental du calcul (multivariable),
+
+  - connaître la démonstration du cas multivariable, 
   
-  - thé fond du calcul, forme multivariable. 
-  
-  - savoir la dériver et "adapter la preuve" le cas échéant.
+  - savoir l'adapter quand c'est nécessaire,
 
-  - connaitre i acc fini mono et multi-variable (cas euclidien)
+  - connaître l'inégalité des accroissements finis (monovariable),
 
-  - savoir dériver l'inégalité des accroissements finis du théorème fondamental
-    du calcul sous une hypothèse supplémentaire de régularité renforcée.
+  - connaître l'inégalité des accroissements finis (multivariable)
 
-  - comprendre / savoir exploiter i acc fini avec autres normes que la norme
-    euclidienne.
+  - savoir les déduire du théorème fondamental du calcul[^res],
+
+  - savoir exploiter ces résultats dans des contextes variés.
+
+[^res]: sous une hypothèse renforcée, par exemple de continue différentiabilité. 
+
+
+
 
 
 Conventions
@@ -337,9 +343,18 @@ Il est ainsi possible que la fonction $f$ ne soit pas même pas continue en $x$.
 (On rappelle que pour les fonctions d'une variable, l'existence de
 la dérivée en un point implique la continuité en ce point.)
 
-### Fonction discontinue {.exercise .one #discont}
-Exhiber une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
+### Fonction discontinue I {.exercise .one #discont}
+Construire une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
 mais qui soit discontinue en $(0,0)$.
+
+### Fonction discontinue II {.exercise .two #discont2}
+Construire une fonction $f:\R^2 \to \R$ dont la dérivée dans la direction
+$h \in \R^2$
+$$
+f'(x, h) := \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
+$$
+existe en $x=(0,0)$ pour tout $h \in \R^2$,
+mais qui ne soit pas continue en $(0,0)$.
 
 ### {.remark}
 Une façon simple de renforcer la régularité de la fonction $f$ est d'exiger
@@ -631,7 +646,7 @@ la pratique du calcul différentiel ; elle recèlent toutefois un potentiel d'am
 Nous allons donc détailler ces notations sur un exemple et les interpréter 
 à la lumière des concepts déjà introduits.
 
-### Expressions et fonctions implicites
+### Expressions (fonctions implicites)
 La première technique consiste à favoriser l'usage d'expressions
 mathématiques -- comme "$x^2 + y^2$" -- pour désigner des grandeurs variables,
 sans nécessairement expliciter les fonctions correspondantes, la liste de
@@ -652,7 +667,7 @@ peut-être y-a-t'il une troisième variable $z$ et que ça n'est que "par accide
 l'expression $x^2 + y^2$ ne dépend pas de $z$, etc.
 
 
-### Variables nommées et dérivées partielles
+### Variables nommées
 Dans un contexte applicatif donné, il est fréquent que des noms (ou symboles)
 particuliers soit attachés aux grandeurs variables (plutôt que les génériques
 "$x_1$", \dots, "$x_n$") et qu'il soit plus naturel ou pratique d'utiliser 
@@ -665,11 +680,11 @@ $$
 \frac{\partial  (x^2 + y^2)}{\partial y} := \frac{\partial  f}{\partial y} (x, y):= \partial_2 f(x, y).
 $$
 
-[^lv]: en particulier, si la fonction considérée est implicite, 
+[^lv]: En particulier, si la fonction considérée est implicite, 
 car issue d'une expression, il n'y a probablement pas d'ordre "naturel" 
 pour lister les variables.
 
-[^py]: c'est le même argument qui motive en Python de n'utiliser les
+[^py]: C'est le même argument qui motive en Python de n'utiliser les
 arguments positionnels, comme dans l'appel `ask("Quit?", 3)`, qu'avec modération.
 L'alternative, utiliser les arguments nommés, 
 comme dans l'appel `ask(question="Quit?", retries=3)`, 
@@ -949,7 +964,7 @@ $(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
 ### {.remark .ante .post} 
 Cette règle entraîne :
 
-### règles d'assemblage et désassemblage {.one .corollary #assemblage}
+### Règles d'assemblage et désassemblage {.one .corollary #assemblage}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
 La fonction $(f,g) : U \to \R^{m+p}$ est différentiable en $x$ si et 
 seulement si $f$ et $g$ sont différentiables en $x$ ; on a alors
@@ -1296,8 +1311,22 @@ $$
 En appliquant le théorème des valeurs intermédiaires à $\phi$, 
 prouver [l'inégalité des accroissements finis](#TAFS).
 
+### Inégalité de la valeur moyenne {.exercise .one .question #ivm}
+Soit $f:[a, b] \subset \R \to \R^m$ une fonction intégrable et admettant une
+primitive ;
+on appelle *valeur moyenne de $f$* la grandeur
+$$
+\left<f\right> := \frac{1}{b-a} \int_a^b f(x) \, dx.
+$$
+Quel est le lien entre $\left<f\right>$ et la grandeur 
+$\sup_{x \in [a, b]} \|f(x)\|$ ?
 
-
+### Egalité des accroissements finis ? {.question #eaf .exercise .one}
+Soit $f:[0, 2\pi] \to \mathbb{R}^2$ la fonction définie par
+$$
+f(t) = (\cos t, \sin t)
+$$
+Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
 
 
 ### Inégalité des accroissements finis (multivariable) {.theorem #TAF .two}
@@ -1876,38 +1905,30 @@ $$
 f(x) = \frac{1}{2} \left<x, A \cdot x \right> + \left<b, x\right> + c. 
 $$
 
-### Question 1 {.question #fq-1 .two}
+### Question 1 -- Gradient {.question #fq-1 .two}
 Montrer que $f$ différentiable en tout point $x$ de $\R^n$ et
 calculer $\nabla f(x)$.
 
-### Question 2 {.question #fq-2 .one}
+### Question 2 -- Matrice hessienne {.question #fq-2 .one}
 Montrer que la fonction $\nabla f: \R^n \to \R^n$ est différentiable et
 calculer la matrice jacobienne de $\nabla f$ en $x$. On note désormais
  $\nabla^2 f(x) := J_{\nabla f}(x)$.
 
-### Question 3 {.question #fq-3 .one}
+### Question 3 -- Point critique {.question #fq-3 .one}
 Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
 Montrer qu'il existe un unique $x_0 \in \R^n$ où s'annule $\nabla f$ ; 
 le calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
 
-Vecteur gaussien
---------------------------------------------------------------------------------
-
-La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
+### Question 4 -- Vecteur gaussien {.question #fq-4 .two}
+La densité de probabilité associée à un vecteur gaussien $X \in \R^d$ 
 est proportionnelle à la fonction
 $$
-f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
+g: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
 $$
 où $\Sigma : \R^d \to \R^d$ est un opérateur linéaire autoadjoint 
-(c'est-à-dire que $\Sigma^{\top} = \Sigma$) 
-tel que $\left<x, \Sigma \cdot x \right> > 0$ quand $x\neq 0$.
+($\Sigma^{\top} = \Sigma$) tel que $\left<x, \Sigma \cdot x \right> > 0$ quand $x\neq 0$.
 
-### Question 1 {.question #vg-1}
-Montrer que la fonction $f$ est différentiable et calculer son gradient.
-
-### Question 2 {.question #vg-2}
-Montrer que la fonction $f$ est deux différentiable et calculer sa 
-hessienne.
+Montrer que la fonction $g$ est différentiable et calculer son gradient.
 
 Robot manipulateur
 --------------------------------------------------------------------------------
@@ -1945,24 +1966,6 @@ $$|\theta_1 - \theta_{10}| \leq \varepsilon \; \mbox{ et } \;
 |\theta_2 - \theta_{20}| \leq \varepsilon$$ alors $(x, y) = f(\theta_1, \theta_2)$
 appartient au carré centré en $(x_0, y_0)$ d'arête de longueur 
 $(\ell_1/2 + \ell_2) \varepsilon$.
-
-
-Dérivée partielles, directionnelles et différentielle
---------------------------------------------------------------------------------
-
-### Question 1 {.question #dpdd-1}
-Construire une fonction $f:\R^2 \to \R$ dont les dérivées partielles
-existent en $(0,0)$ mais qui ne soit pas différentiable en ce point.
-
-### Question 2 {.question #dpdd-2}
-Construire une fonction $f:\R^2 \to \R$ dont la dérivée dans la direction
-$h \in \R^2$
-$$
-f'(x, h) := \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
-$$
-existe en $x=(0,0)$ pour tout $h \in \R^2$,
-mais qui ne soit pas différentiable en ce point.
-
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2067,23 +2070,7 @@ d'état utilisées précédemment ?
 Déduire de la question précédente une expression de l'énergie interne 
 (définie à une constante près).
 
-Inégalité de la valeur moyenne {.question #ivm}
---------------------------------------------------------------------------------
-Soit $f:[a, b] \subset \R \to \R^m$ une fonction intégrable au sens de Newton;
-on appelle *valeur moyenne de $f$* la grandeur
-$$
-\left<f\right> := \frac{1}{b-a} \int_a^b f(x) \, dx.
-$$
-Quel est le lien entre $\left<f\right>$ et la grandeur 
-$\sup_{x \in [a, b]} \|f(x)\|$ ?
 
-Egalité des accroissements finis ? {.question #eaf}
---------------------------------------------------------------------------------
-Soit $f:[0, 2\pi] \to \mathbb{R}^2$ la fonction définie par
-$$
-f(t) = (\cos t, \sin t)
-$$
-Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
 
 
 <!--
@@ -2105,9 +2092,12 @@ calcul plan tangent ?
 
 -->
 
+
+<!--
 ### TODO
 
 $df = 0$ et connexité par arcs.
+-->
 
 Solutions
 ================================================================================
@@ -2224,7 +2214,7 @@ J_f(x) =
 \right].
 $$
 
-### Fonction discontinue {.answer #answer-discont}
+### Fonction discontinue I {.answer #answer-discont}
 La fonction $f: \R^2 \to \R$ définie par :
 $$
 f(x,y) = \left|
@@ -2247,7 +2237,22 @@ sont constantes et égales à $0$. Les dérivées partielles $\partial_1 f(0,0)$
 et $\partial_2 f(0,0)$ existent donc et sont nulles. Le gradient de $f$ en
 $(0,0)$ est donc définie (et nul).
 
-
+### Fonction discontinue II {.answer #answer-discont2}
+Les dérivées directionnelles de la fonction $f:\R^2 \to \R$ définie par
+$$
+f(x,y) 
+= \left|
+\begin{array}{cl}
+1 & \mbox{si } x > 0 \mbox{ et } y=x^2, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+existent en $(0,0)$ et sont nulles pour tout $h \in \R^2$, 
+puisque les fonctions associées $t \in \R \mapsto f(t h)$
+sont nulles pour $|t|$ suffisamment petit.
+Mais $f$ n'est pas continue en l'origine ; 
+elle n'y est donc a fortiori pas différentiable.
 
 ### Fonctions affines {.answer #answer-fa}
 Comme $f(x) = A \cdot x + b$, la $i$-ème composante de $f$ satisfait
@@ -2540,6 +2545,31 @@ Etant donné que $\|f'(y)\| \leq M$, on en déduit $\|f(x+h) - f(x)\| \leq M h.$
 
 
 
+### Inégalité de la valeur moyenne {.answer #answer-ivm}
+Soit $F:[a, b] \to \R^m$ une primitive de $f$. 
+Par [le théorème fondamental du calcul](#TFC), on a 
+$$
+\left<f\right> = \frac{1}{b-a} \int_a^b f(x) \, dx
+= \frac{F(b) - F(a)}{b-a}.
+$$
+Or si $\|F'\| = \|f\|$ est borné sur $[a, b]$, par 
+[l'inégalité des accroissements finis](#TAFS),
+$$
+\|F(b) - F(a)\| \leq \sup_{x \in [a, b]} \|f(x)\| \times  (b-a),
+$$
+et donc
+$$
+\left\|\left<f\right>\right\| \leq  \sup_{x \in [a, b]} \|f(x)\|.
+$$
+Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
+c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
+
+### Egalité des accroissements finis ? {.answer #answer-eaf}
+La dérivée de $f$ est donnée par $f'(t) = (-\sin t, \cos t)$ ;  
+en particulier pour tout $t \in [0, 2\pi]$, $\|f'(t)\| = 1$.
+Or $f(2\pi) - f(0) = 0$, donc il est impossible de trouver un 
+$t$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$.
+
 
 ### Variation du logarithme {.answer #answer-log}
 En premier lieu, on peut noter qu'en général, 
@@ -2580,6 +2610,8 @@ $\log \circ \, \phi$ fournit donc l'inégalité
 $$
 \|\log (x, y) - \log (x, -y)\| \leq 2 \pi.
 $$
+
+
 
 <!--
 Vecteurs, vecteurs colonnes, vecteurs lignes
@@ -2700,7 +2732,7 @@ et donc $\nabla (g \circ f)(x) = (df(x))^{\top} \cdot \nabla g(f(x))$.
 Fonction quadratique 
 --------------------------------------------------------------------------------
 
-### Question 1 {.answer #answer-fq-1}
+### Question 1 -- Gradient {.answer #answer-fq-1}
 La fonction présentée est la somme de la fonction
 $x \mapsto \left<x, A\cdot x \right> = x^{\top} \cdot A \cdot x$, de l'application linéaire 
 $x \mapsto \left<b, x\right> = b^{\top} x$ et de l'application constante
@@ -2765,7 +2797,7 @@ $$
 \nabla f(x) = \frac{1}{2}(A + A^{\top}) \cdot x + b.
 $$
 -->
-### Question 2 {.answer #answer-fq-2}
+### Question 2 -- Matrice hessienne {.answer #answer-fq-2}
 La fonction 
 $$
 \nabla f: x \in \R^n \mapsto \frac{1}{2}(A + A^{\top}) \cdot x + b^{\top}.
@@ -2776,7 +2808,7 @@ $$
 \nabla^2 f(x) := J_{\nabla f}(x) = \frac{1}{2}(A + A^{\top}).
 $$
 
-### Question 3 {.answer #answer-fq-3}
+### Question 3 -- Point critique {.answer #answer-fq-3}
 Si $\nabla^2 f(x)$ est inversible (cet opérateur est constant), comme
 $$
 \nabla f(y) = \frac{1}{2}(A + A^{\top}) \cdot y + b = \nabla^2 f(x) \cdot y + b,
@@ -2790,13 +2822,10 @@ $$
 x_0 = x - (\nabla^2 f(x))^{-1} \nabla f(x).
 $$
 
-Vecteur gaussien
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-vg-1}
+### Question 4 -- Vecteur gaussien {.answer #answer-fq-4}
 La fonction 
 $$
-f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
+g: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
 $$
 apparaît comme la composée des fonctions
 $$
@@ -2806,83 +2835,30 @@ $$
 La fonction $\exp$ est dérivable, et donc différentiable 
 sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dx = \exp(y) dy$, c'est-à-dire
 $$
-d\exp(y) \cdot h = \exp(y) \times h.
+d\exp(y) \cdot h = \exp(y) h.
 $$ 
-Quand à la première fonction, pour tout $h \in \R^d$, on a
-\begin{multline*}
--\frac{1}{2} \left<x+h, \Sigma^{-1} \cdot (x+h) \right>
-=  \\
--\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>
-+ <x, \Sigma^{-1} h> + <h, \Sigma^{-1} \cdot x> + \left<h, \Sigma^{-1} \cdot h \right>
-\right). 
-\end{multline*}
-D'une part, comme $\Sigma$ est autoadjoint (et inversible), $\Sigma^{-1}$ également et
+Quand à la première fonction, d'après les questions qui précèdent, elle est
+différentiable et 
 $$
-<x, \Sigma^{-1} \cdot h> + <h, \Sigma^{-1} \cdot x> = 2 \left<\Sigma^{-1} \cdot x, h \right>,
+\nabla g(x) = \frac{1}{2}\left(-\Sigma^{-1} - (\Sigma^{-1})^{\top} \right) \cdot x
+= -\Sigma^{-1} \cdot x.
 $$
-d'autre part
-$$
-\left| \left<h, \Sigma^{-1} \cdot h \right> \right|
-\leq \|h\| \times \|\Sigma^{-1} \cdot h\| \leq \|h\| \times \|\Sigma^{-1}\| \times \|h\| = o(\|h\|).
-$$
-La fonction est donc différentiable sur $\R^n$, avec
+Sa différentielle vérifie donc
 $$
 d \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right) \cdot h
 = - \left<\Sigma^{-1} \cdot x, h \right>.
 $$
-La fonction $f$ est donc différentiable sur $\R^d$ comme composée
-de fonctions différentiables et l'on a
+Par conséquent, la fonction $g$ est différentiable sur $\R^d$ comme composée
+de fonctions différentiables et 
 $$
-d f(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
+d g(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
 \left<\Sigma^{-1} \cdot x, h \right>
 = \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>,
 $$
-le gradient de $f$ vaut donc
+le gradient de $g$ vaut donc
 $$
-\nabla f(x) = -f(x) \times \Sigma^{-1} \cdot x.
+\nabla g(x) = -g(x) \times \Sigma^{-1} \cdot x.
 $$
-
-### Question 2 {.answer #answer-vg-2}
-De l'équation
-$$
-d f(x) \cdot h 
-= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>
-= -f(x) \left<\Sigma^{-1} \cdot h, x \right>
-$$
-on déduit que $x \mapsto d f(x) \cdot h$ est différentiable comme produit
-de fonctions scalaires différentiables (la fonction 
-$x \mapsto \left<\Sigma^{-1} \cdot h, x \right>$ étant linéaire). 
-On a de plus
-$$
-\begin{split}
-d (x \mapsto d f(x) \cdot h) \cdot k
-&=
-- (df(x) \cdot k) \times \left<\Sigma^{-1} \cdot x, h \right>
-- f(x) \times \left<\Sigma^{-1} \cdot h, k \right> \\
-&= 
-\left<-f(x) \times \Sigma^{-1} \cdot x, k \right> \left<\Sigma^{-1} \cdot x, h \right>+
-\left<-f(x) \times \Sigma^{-1} \cdot h, k\right>
-\end{split}
-$$
-
-Pour des vecteurs arbitraires $u$ et $v$ dans $\R^n$, on a
-$$
-\left<u, k \right> \left<v, h \right>
-=
-\left<k, u \right> \left<v, h \right>
-= k^* \cdot u  \times v^* \cdot h = (v \cdot u^* \cdot k)^* \cdot h = \left<(v \cdot u^*) \cdot k, h \right>,
-$$
-par conséquent
-$$
-d (x \mapsto d f(x) \cdot h) \cdot k
-= 
--f(x) \left<(\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
-$$
-La Hessienne de $f$ en $x$ est donc donnée par
-$$
-\nabla^2 f(x) = - f(x) (\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}).
-$$
-
 
 Robot manipulateur
 --------------------------------------------------------------------------------
@@ -2975,43 +2951,6 @@ $$
 $$
 Le point $(x, y) = f(\theta_1, \theta_2)$ appartient donc au carré centré 
 en $(x_0, y_0)$ d'arête de longueur $(\ell_1/2 + \ell_2=\varepsilon$. 
-
-
-Dérivée partielles, directionnelles et différentielle
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-dpdd-1}
-
-Les dérivées partielles de la fonction $f:\R^2 \to \R$ définie par
-$$
-f(x,y) 
-= \left|
-\begin{array}{cl}
-0 & \mbox{si } x=0 \mbox{ ou } y=0, \\
-1 & \mbox{sinon.}
-\end{array}
-\right.
-$$
-existent en $(0,0)$ et sont nulles, puisque les fonctions partielles associées
-sont nulles. Mais $f$ n'est pas continue en l'origine ; 
-elle n'y est donc a fortiori pas différentiable.
-
-### Question 2 {.answer #answer-dpdd-2}
-Les dérivées directionnelles de la fonction $f:\R^2 \to \R$ définie par
-$$
-f(x,y) 
-= \left|
-\begin{array}{cl}
-1 & \mbox{si } x > 0 \mbox{ et } y=x^2, \\
-0 & \mbox{sinon.}
-\end{array}
-\right.
-$$
-existent en $(0,0)$ et sont nulles pour tout $h \in \R^2$, 
-puisque les fonctions associées $t \in \R \mapsto f(t h)$
-sont nulles pour $|t|$ suffisamment petit.
-Mais $f$ n'est pas continue en l'origine ; 
-elle n'y est donc a fortiori pas différentiable.
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -3322,35 +3261,6 @@ U(V, T) = U(V_0, T_0) + \int_0^1 \phi(t) \, dt
 = \left[U(V_0, T_0) - \frac{3}{2}  N k_B T_0\right] + \frac{3}{2}  N k_B T,
 $$
 ce qui démontre qu'à une constante près, on a $$U(V, T) =  \frac{3}{2} Nk_B T.$$
-
-Inégalité de la valeur moyenne {.answer #answer-ivm}
---------------------------------------------------------------------------------
-
-Soit $F:[a, b] \to \R^m$ une primitive de $f$. 
-Par [définition de l'intégrale de Newton](#intégrale-Newton),
-$$
-\left<f\right> = \frac{1}{b-a} \int_a^b f(x) \, dx
-= \frac{F(b) - F(a)}{b-a}.
-$$
-Or si $\|F'\| = \|f\|$ est borné sur $[a, b]$, par 
-[le théorème des accroissements finis](#TAFS),
-$$
-\|F(b) - F(a)\| \leq \sup_{x \in [a, b]} \|f(x)\| \times  (b-a),
-$$
-et donc
-$$
-\left\|\left<f\right>\right\| \leq  \sup_{x \in [a, b]} \|f(x)\|.
-$$
-Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
-c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
-
-Egalité des accroissements finis ? {.answer #answer-eaf}
---------------------------------------------------------------------------------
-
-La dérivée de $f$ est donnée par $f'(t) = (-\sin t, \cos t)$; 
-en particulier pour tout $t \in [0, 2\pi]$, $\|f'(t)\| = 1$.
-Or $f(2\pi) - f(0) = 0$, donc il est impossible de trouver un 
-$t$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$.
 
 <!--
 TODO -- Analycité
