@@ -258,17 +258,17 @@ si et seulement si $f$ est bornée et continue presque partout.
 
 ### Démonstration {.proof}
 Nous nous contentons de démontrer ici la partie la plus facile du résultat,
-à savoir que seules les fonctions bornées sont (potentiellement) 
+à savoir que seules les fonctions bornées sont potentiellement 
 intégrables. Pour le reste de la preuve, se reporter à [@Bur07, p. 58].
 
 Soit $\delta > 0$ tel que pour toute subdivision pointée $\mathcal{D}$ de 
 $[a, b]$ vérifiant $\ell(J) < \delta$ pour tout $(t, J) \in \mathcal{D}$, 
 on ait
 $$\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq 1.$$
-Soit $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\}_{i=0}^{m-1}$ une telle subdivision ;
+Soit $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\; | \; i \in \{0, \dots, m-1\}\}$ une telle subdivision ;
 il est toujours possible de supposer en outre que $\mathcal{D}$ ne contient 
-aucun intervalle de longueur nulle (enlever de tels intervalles à $\mathcal{D}$
-génère une nouvelle subdivision dont la somme de Riemann est identique).
+aucun intervalle de longueur nulle (enlever de tels intervalles engendre
+une nouvelle subdivision dont la somme de Riemann est identique).
 
 Soit $J_i = [x_i, x_{i+1}]$ un intervalle de $\mathcal{D}$ ; 
 si l'on définit $\mathcal{D}'$ à partir de $\mathcal{D}$ en remplaçant 
@@ -290,8 +290,8 @@ $$
 $$
 Les intervalles $J_i$ recouvrant $[a, b]$, on a pour tout $t\in [a, b]$
 $$
-|f(t)| \leq \max_i \left\{|f(t_i)| + \frac{2}{\ell(J_i)} 
-\, \left| \vphantom{\frac{a}{b}} \right. \, i \in \{0, \dots, m-1\}\right\};
+|f(t)| \leq \max \left\{|f(t_i)| + \frac{2}{\ell(J_i)} 
+\, \left| \vphantom{\frac{2}{\ell(J_i)}} \right. \, i \in \{0, \dots, m-1\}\right\};
 $$
 la fonction $f$ est donc bornée.
 
@@ -304,8 +304,11 @@ En particulier,
 Si la fonction $f:[a, b] \to \R$ est continue par morceaux, 
 elle est intégrable au sens de Riemann.
 
-### TODO
-Démonstration.
+### Démonstration {.proof}
+Les fonctions continues par morceaux sur un intervalle fermé borné et
+sont discontinues en un nombre fini de points, donc continues presque
+partout ; elle sont également bornées. Par [le critère d'intégrabilité
+de Lebesgue](#CIL), elles sont donc intégrables au sens de Riemann.
 
 
 Intégrales de Riemann généralisées
@@ -316,12 +319,30 @@ Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction
 qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
 contenant $t$. 
 
+\newcommand{\lb}{[}
+\newcommand{\rb}{]}
+\newcommand{\lob}{\left]}
+\newcommand{\rob}{\right[}
+
+![Graphe de la jauge $\gamma(t) = \lob t/2-0.25, t+0.25 \rob ,$
+$t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
+
+
 ### Subdivision pointée subordonnée à une jauge {.definition .two}
 Une subdivision pointée $\mathcal{D}$ de l'intervalle $[a, b]$ 
 est *subordonnée à une jauge* $\gamma$ sur $[a, b]$ si pour tout 
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
-### Représentation graphique {.two .remark}
+![Graphe de la jauge $\gamma(t) = \lob t/2-0.25, t+0.25 \rob ,$
+$t \in \lb 0, 1 \rb$ et de la subdivision pointée
+$\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
+les intervalles de la subdivision sont délimités
+par des barres verticales et les points associés 
+représentés par des croix. La comparaison avec le graphe de la
+jauge $\gamma$ montre que cette subdivision pointée 
+lui est subordonnée.](images/gauge-plot-subdivision.py)
+
+### Représentation graphique des jauges {.two .remark}
 On peut associer à une jauge $\gamma$ sur $[a, b]$ l'ensemble du plan
 $$
 \{(x, y) \; | \; y \in [a, b], \, x \in \gamma(y) \}.
@@ -331,15 +352,9 @@ $D = \{(x,x) \; | \; x \in [a, b]\}.$
 La représentation graphique de cet ensemble permet de visualiser si
 une subdivision pointée est ou non subordonnée à la jauge considérée.
 
-\newcommand{\lb}{[}
-\newcommand{\rb}{]}
-\newcommand{\lob}{\left]}
-\newcommand{\rob}{\right[}
-
-![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
 
 
+<!--
 ### TODO
 Mettre une remarque avancée 
 après la définition de "intégrable au sens de HK" évoquant la nécessité 
@@ -351,6 +366,8 @@ après la définition qui va demander approx de pour $f$ et $|f|$ simultanément
 en disant que si on ne requiert que $f$, ça s'appelle comme ça ? Pourquoi
 pas ...
 
+-->
+
 ### {.ante}
 La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégrale
 de Riemann classique. 
@@ -359,7 +376,7 @@ estimation de l'intégrale et contrôle la finesse des subdivisions employées
 pour améliorer la précision de cette estimation ; 
 mais contrairement à cette dernière, 
 elle permet de contrôler différemment cette finesse 
-en fonction de la zone de l'intervalle d'intégration considérée.
+en fonction de la région de l'intervalle d'intégration considérée.
 
 ### Intégrale de Henstock-Kurzweil {.definition #HK .three}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
@@ -375,6 +392,30 @@ $$
 \HKint_a^b f(t) \, dt := A.
 $$
 
+### {.remark}
+L'intégrale de Henstock-Kurzweil est une intégrale extrêmement générale qui
+apporte des réponses satisfaisantes à certaines questions que ses concurrentes 
+ne traitent qu'imparfaitement[^laHK].
+Mais avec cette puissance vient une certaine fragilité ; 
+la plupart des mathématiciens contemporains préfèrent opter pour une intégrale 
+un peu moins expressive mais un peu plus "confortable", l'intégrale de Lebesgue ;
+nous adopterons également ce choix dans la suite : par défaut, "intégrabilité"
+et "intégrale" seront à comprendre dans la suite comme "au sens de Lebesgue". 
+Nous utiliserons l'intégrale de Henstock-Kurzweil uniquement comme un moyen 
+efficace pour définir l'intégrale de Lebesgue[^lh].
+
+[^lh]: La définition originale de Lebesgue de l'intégrale, antérieure à la 
+définition qui exploite l'intégrale de Henstock-Kurzweil, n'utilise ni jauge 
+ni somme de Riemann, mais introduit une rupture franche dans la façon d'aborder 
+la question.
+
+[^laHK]: Par exemple, [la forme générale du théorème fondamentale du calcul](#TFC)
+n'est valable ni pour l'intégrale de Riemann, ni pour l'intégrale de Lebesgue,
+mais elle l'est pour l'intégrale de Henstock-Kurzweil. On rappelle que cette forme
+générale permet d'établir la preuve de l'inégalité des accroissements finis.
+[Le théorème de Hake](#hake), qui établit que les intégrales impropres ne sont
+jamais nécessaires, est aussi spécifique à l'intégrale de Henstock-Kurzweil.
+
 ### Intégrale de Lebesgue {.definition #Lebesgue .two}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable (au sens de Lebesgue)* 
 si les fonctions $f$ et $|f|$ sont intégrables au sens de Henstock-Kurzweil. 
@@ -385,50 +426,36 @@ $$
 = \HKint_a^b f(t) \, dt.
 $$
 
-### TODO
-Intégrale de Riemann, Henstock-Kurzweil ou Lebesgue ? Quelle intégrale
-utiliser ?
 
-### TODO
-définition "intégrale de Lebesgue" ou simplement "intégrable". Expliquer que
-c'est notre intégrale de référence. Expliquer que HK ne garantit pas
-que $|f|$ soit intégrable (renvoyer au chap 2) et que ça ne permet par
-exemple pas d'avoir d'inégalité triangulaire (?).
-Expliquer que HK est parfois utile
-(exemple : calcul diff), mais qu'il s'agit d'un objet plus avancé,
-hors-programme, qu'on ne l'utilise ici que comme un moyen d'arriver
-à l'intégrale de Lebesgue.
 
-![Graphe de la jauge $\gamma(t) = \lob t-0.2, t+0.2 \rob ,$
-$t \in \lb 0, 1 \rb$ et de la subdivision pointée
-$\{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ ;
-les intervalles de la subdivision sont délimités
-par des barres verticales et les points associés 
-représentés par des croix. La comparaison avec le graphe de la
-jauge $\gamma$ montre que cette subdivision pointée 
-lui est subordonnée.](images/gauge-plot-subdivision.py)
 
 ### {.remark}
-On trouvera également dans la littérature cette intégrale désignée
+On trouvera dans la littérature cet type d'intégrale désignées
 par le terme d'*intégrale de Riemann généralisée* ou 
-d'*intégrale de jauge* (mais ces termes sont génériques ; en particulier 
+d'*intégrale de jauge*[^rk1].
+L'intégrale de Henstock-Kurzweil est aussi appelée
+*intégrale de Kurzweil-Henstock[^hist1]* 
+ou *intégrale de Denjoy-Perron-Kurzweil-Henstock*[^hist2].
+
+[^rk1]: Mais ces termes sont génériques ; en particulier 
 il existe d'autres intégrales dont la définition repose sur des sommes
-de Riemann et des jauges, comme l'intégrale de McShane), 
-*intégrale de Kurzweil-Henstock* 
-(techniquement Jaroslav Kurzweil a inventé cette 
+de Riemann et des jauges, comme l'intégrale de McShane.
+
+[^hist1]: Techniquement Jaroslav Kurzweil a inventé cette 
 construction avant Ralph Henstock dans les années 1950, 
 mais dans un but bien précis
 -- l'étude des équations différentielles généralisées -- probablement sans
 réaliser totalement la portée de sa définition) 
-ou *intégrale de Denjoy-Perron-Kurzweil-Henstock* (Arnaud Denjoy et Oskar Perron
-ont introduit dès les années 1910 des intégrales équivalentes, mais dont les
-définitions sont beaucoup plus complexes et en apparence très différentes ; 
+
+[^hist2]: Arnaud Denjoy et Oskar Perron ont introduit dès les années 1910 
+des intégrales équivalentes, mais dont les définitions sont beaucoup plus 
+complexes et en apparence très différentes ; 
 en particulier, les sommes de Riemann n'interviennent pas dans 
-ces définitions).
+leurs définitions.
 
 ### Ordre des bornes de l'intégrale {.notation .remark}
 Comme dans le cas de l'intégrale de Riemann,
-la première notation peut être étendue sans difficulté au cas où $b < a$ ; 
+la notation désignant l'intégrale peut être étendue sans difficulté au cas où $b < a$ ; 
 on définit alors l'intégrale de $a$ à $b$ en se ramenant 
 au cas précédent, par
 $$
@@ -469,7 +496,7 @@ $$
 $$
 
 
-### Théorème fondamental du calcul {.theorem #TFCL}
+### Théorème fondamental du calcul {.theorem #TFCL .one}
 Soit $[a, b]$ un intervalle compact de $\R$ ;
 si la fonction $f:[a, b] \to \R$ est dérivable et que sa dérivée est
 intégrable alors 
@@ -494,7 +521,7 @@ satisfaite.
 
 ### Intégration de $x \mapsto e^x$ {.example .two}
 La fonction $f: x \in [0, 1] \mapsto e^x \in \R$ est continue et est sa propre primitive.
-Par le théorème fondamental du calcul, on sait qu'elle est intégrable et que
+Par [le théorème fondamental du calcul](#TFCL), on a donc
 $$
 \int_0^1 e^x \,dx 
 = 

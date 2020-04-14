@@ -57,12 +57,14 @@ def set_ratio(ratio, scale=1.0, bottom=0.1, top=0.1, left=0.1, right=0.1):
 def gauge_plot():
     figure()
     gca().set_aspect("equal")
-    set_ratio(1.0, scale=0.75, top=-0.1, bottom=-0.05)
+    set_ratio(1.0, scale=0.75, left=0.15, top=-0.15, bottom=0)
     x = linspace(0.0, 1.0, 1000)
     plot(x, x, "-", color="#808080", lw=1.0)
-    fill_betweenx(x, x-0.2, x+0.2, color="#d3d3d3")
-    xticks([0,0.2,0.4, 0.6, 0.8, 1.0])
+    fill_betweenx(x, 0.5*x-0.25, x+0.25, color="#d3d3d3")
+    xticks([0.0,0.5, 1.0])
+    yticks([0.0,0.5, 1.0])
     xlabel("$t$")
+    ylabel(r"$\gamma(t)$");
     grid(True)
     save()
 
