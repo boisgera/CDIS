@@ -14,9 +14,29 @@ Introduction
 Objectifs d'apprentissage
 --------------------------------------------------------------------------------
 
-#### Rappel dérivées ?
+#### Prérequis
 
-TODO
+Les connaissances suivantes du calcul différentiel sont supposées connues :
+
+  - dérivabilité et dérivée de fonctions définies sur un ouvert de $\R$,
+
+  - dérivée sur des intervalles fermés bornés de $\R$,
+
+  - dérivées des fonctions scalaires ($\R$) et vectorielles ($\R^m$),
+
+  - dérivée et développement limité au premier ordre.
+
+Les fondements du calcul matriciel sont également supposés connus :
+
+  - vecteurs de $\R^n$ et applications linéaires $\R^n \to \R^m$, 
+
+  - matrices, vecteurs lignes et colonnes,
+
+  - produit matriciel, transposition de matrice,
+
+  - interprétation géométrique du calcul matriciel.
+
+
 
 #### Matrice jacobienne et différentielle
 
