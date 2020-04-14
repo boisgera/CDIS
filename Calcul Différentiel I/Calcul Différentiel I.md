@@ -410,7 +410,7 @@ fonction est d'établir sa continue différentiabilité ; en effet, on a :
 Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
 Si $f$ est continûment différentiable, $f$ est différentiable.
 
-![Relations entre matrice jacobienne, différentiabilité et
+![Relations entre existence de la matrice jacobienne, différentiabilité et
 continue différentiabilité.](images/diff-et-cdiff.svg)
 
 
