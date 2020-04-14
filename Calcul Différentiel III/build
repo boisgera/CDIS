@@ -692,7 +692,13 @@ def generate_code(doc):
 '''
 
 
+# Main Entry Point
 # ------------------------------------------------------------------------------
+
+# Options
+# ------------------------------------------------------------------------------
+fast = "-f" in sys.argv[1:] or "--fast" in sys.argv[1:]
+
 
 # Files and Directories
 root = pathlib.Path(".").resolve()
@@ -730,22 +736,23 @@ doc_py = str(output / (doc + ".py"))
 doc_md_md = str(output / (doc + ".md"))
 
 # Images
-if images.exists():
-    try:
-        os.chdir(images)
-        l = pathlib.Path(".")
-        for tex_file in l.glob("*.tex"):
-            pdflatex(tex_file)
-            pdf_file = tex_file.with_suffix(".pdf")
-            # path.rename (which makes more sense) won't work with Windows
-            # if the target file already exists while path.replace works
-            # for all platforms (AFAICT).
-            pdf_file.replace(tex_file.with_suffix(tex_file.suffix + ".pdf"))
-        for python_file in l.glob("*.py"):
-            python(python_file)
-    finally:
-        clean_latex_trash()
-        os.chdir(root)
+if not fast:
+    if images.exists():
+        try:
+            os.chdir(images)
+            l = pathlib.Path(".")
+            for tex_file in l.glob("*.tex"):
+                pdflatex(tex_file)
+                pdf_file = tex_file.with_suffix(".pdf")
+                # path.rename (which makes more sense) won't work with Windows
+                # if the target file already exists while path.replace works
+                # for all platforms (AFAICT).
+                pdf_file.replace(tex_file.with_suffix(tex_file.suffix + ".pdf"))
+            for python_file in l.glob("*.py"):
+                python(python_file)
+        finally:
+            clean_latex_trash()
+            os.chdir(root)
 
 # Pandoc Options
 options = ["--standalone"]
