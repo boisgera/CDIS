@@ -17,7 +17,10 @@ TODO
 
   - Différentielle et matrices (surtout à *valeurs* matricielles ; 
     il va s'agir de différencier $f'(x)$. Mais on peut en profiter pour
-    avoir des variables matricielles aussi)
+    avoir des variables matricielles aussi ... D'autant que si on veut
+    utiliser la chain rule, pour avoir une "chain rule d'ordre 2", 
+    on voudrait utilser la chain rule d'ordre 1 à travers le produit
+    matriciel $(A, B) \to A \cdot B$ donc tout ça est lié.
 
   - Tenseur des dérivées d'ordre $3$.
 
@@ -889,6 +892,9 @@ $df^{(i+1)}(a+th) (\cdot \, h)^{i+1}.$
 Exercices
 ================================================================================
 
+### TODO : diff du produit matriciel
+
+### TODO : diff du déterminant.
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
