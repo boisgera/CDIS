@@ -352,22 +352,6 @@ $D = \{(x,x) \; | \; x \in [a, b]\}.$
 La représentation graphique de cet ensemble permet de visualiser si
 une subdivision pointée est ou non subordonnée à la jauge considérée.
 
-
-
-<!--
-### TODO
-Mettre une remarque avancée 
-après la définition de "intégrable au sens de HK" évoquant la nécessité 
-de l'existence (lemme de Cousin) et son caractère pas trivial + ref.
-
-### TODO
-Virer (ou mettre en footnote) le nom "Henstock-Kurzweil" ? Ou simplement
-après la définition qui va demander approx de pour $f$ et $|f|$ simultanément
-en disant que si on ne requiert que $f$, ça s'appelle comme ça ? Pourquoi
-pas ...
-
--->
-
 ### {.ante}
 La définition de l'intégrale de Henstock-Kurzweil est similaire à l'intégrale
 de Riemann classique. 
@@ -425,9 +409,6 @@ $$
 \int_a^b f(t) \, dt := \Lint_a^b f(t) \, dt
 = \HKint_a^b f(t) \, dt.
 $$
-
-
-
 
 ### {.remark}
 On trouvera dans la littérature cet type d'intégrale désignées
@@ -495,7 +476,6 @@ $$
 \int f(t) \, dt = \HKint f(t) \, dt = \Rint f(t) \, dt.
 $$
 
-
 ### Théorème fondamental du calcul {.theorem #TFCL .one}
 Soit $[a, b]$ un intervalle compact de $\R$ ;
 si la fonction $f:[a, b] \to \R$ est dérivable et que sa dérivée est
@@ -503,15 +483,6 @@ intégrable alors
 $$
 [f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
 $$
-
-<!--
-### Forme générale du théorème fondamental du calcul {.post .remark .four}
-Nous démontrons en annexe que l'intégrale de Henstock-Kurzweil satisfait 
-[le théorème fondamental du calcul](#TFC) en toute généralité, c'est-à-dire
-que si la fonction $f:[a, b] \to \R$ est dérivable alors sa dérivée est
-automatiquement intégrable et vérifie l'égalité ci-dessus, 
-mais **au sens de Henstock-Kurzweil**, et pas nécessairement au sens de Lebesgue. 
--->
 
 ### Démonstration {.proof}
 Si $f'$ existe et est intégrable (au sens de Lebesgue), alors elle est par 
@@ -539,10 +510,10 @@ et que la subdivision pointée $\mathcal{D}$ de $[0, 1]$ est subordonnée à
 $\gamma$, alors $|S(f, \mathcal{D}) - (e-1)| \leq \varepsilon$. 
 
 ![Graphe de la jauge $\gamma$ garantissant une précision $\varepsilon = 1/2$
-à la somme de Riemann comme approximation de l’intégrale de $x \in [0,1] \mapsto e^x$.](images/gauge-plot-exp-2.py)
+à la somme de Riemann en tant qu'approximation de l’intégrale de $x \in [0,1] \mapsto e^x$.](images/gauge-plot-exp-2.py)
 
 Soit $\mathcal{D}$ une telle subdivision pointée, 
-que l'on suposera de la forme $$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$$
+que l'on suposera de la forme $$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; \, i \in \{0, \dots, m-1\}\}$$
 où la suite des $x_i$ est croissante. Comme $x_0 = 0$ et $x_m=1$, on a
 \begin{align*}
 e - 1= e^{x_m} - e^{x_0} &= 
