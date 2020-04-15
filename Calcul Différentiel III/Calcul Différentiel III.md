@@ -229,28 +229,28 @@ $\partial^2_{kj} f:U \to \R$ existe et est continue.
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ une fonction différentiable.
 On dira que $f$ est *deux fois différentiable en $x$* 
 si pour tout vecteur $h$ de $\mathbb{R}^n$,
-la fonction $x \in U \mapsto df(x) \cdot h$ est différentiable en $x$.
+la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
 est définie comme l'application linéaire telle que pour tout $h$ 
 dans $\mathbb{R}^n$,
 $$
-d^2 f(x) \cdot h := d(x\mapsto df(x)\cdot h)(x),
+d^2 f(x) \cdot h_1 := d(x\mapsto df(x)\cdot h_1)(x),
 $$
-c'est-à-dire pour tout vecteur $k$ de $\mathbb{R}^n$,
+c'est-à-dire pour tout vecteur $h_2$ de $\mathbb{R}^n$,
 $$
-d^2f(x) \cdot h \cdot k = d(x\mapsto df(x)\cdot h)(x) \cdot k.
+d^2f(x) \cdot h_1 \cdot h_2 = d(x\mapsto df(x)\cdot h_1)(x) \cdot h_2.
 $$
 On dit que $f$ est *deux fois différentiable (sur $U$)* si elle est 
 deux fois différentiable en tout point $x$ de $U$.
 
 ### {.remark}
-On peut vérifier que le terme $d(x\mapsto df(x)\cdot h)(x)$ dépend 
-bien linéairement de $h$, ce qui justifie l'assertion que $d^2f(x)$
+On peut vérifier que le terme $d(x\mapsto df(x)\cdot h_1)(x)$ dépend 
+bien linéairement de $h_1$, ce qui justifie l'assertion que $d^2f(x)$
 est linéaire et la notation "$\cdot$" lorsqu'elle est appliquée à un
-argument $h$.
+argument $h_1$.
 
 ### {.remark}
-Par construction, le terme $d(x\mapsto df(x)\cdot h)(x)$ 
+Par construction, le terme $d(x\mapsto df(x)\cdot h_1)(x)$ 
 est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
 donc la fonction $d^2f(x)$
 associe linéairement à un vecteur de $\mathbb{R}^n$ une application
@@ -261,9 +261,9 @@ d^2f(x) \in \mathbb{R}^n \to (\mathbb{R}^n \to \mathbb{R}),
 $$
 ce qui se décline successivement en
 $$
-d^2f(x) \cdot h \in (\mathbb{R}^n \to \mathbb{R}),
+d^2f(x) \cdot h_1 \in (\mathbb{R}^n \to \mathbb{R}),
 \; \mbox{ et } \;
-(d^2f(x) \cdot h) \cdot k \in \mathbb{R}^m.
+(d^2f(x) \cdot h_1) \cdot h_2 \in \mathbb{R}^m.
 $$
 On conviendra que, le symbole "$\to$" associe à droite, par exemple :
 $$
@@ -273,7 +273,7 @@ La convention associée -- utilisée dans la définition de la différentielle
 d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
 le symbole "$\cdot$" associe à gauche, par exemple :
 $$
-d^2f(x) \cdot h \cdot k :=  (df^2(x) \cdot h) \cdot k.
+d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
 $$
 
 ### Continue différentiabilité d'ordre 2 implique différentiabilité d'ordre 2 {.proposition .one}
@@ -287,51 +287,51 @@ Lier calcul différentielle et matrice hessienne (dans les deux sens).
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 deux fois différentiable en $x \in U$,
 $$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + E(k)\|k\|
+df(x+h_2) = df(x) + (h_1 \mapsto d^2 f(x) \cdot h_1 \cdot h_2) + E(h_2)\|h_2\|
 $$
-où $\lim_{k \to 0} E(k) = 0 \in \R^{m\times n}$.
+où $\lim_{h_2 \to 0} E(h_2) = 0 \in \R^{m\times n}$.
 
 ### Démonstration {.proof}
 Par [définition de la différentielle d'ordre 2 en $x$](#d2), 
-pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, 
-pour tout vecteur $k$ de $\mathbb{R}^n$ dans un voisinage de $0$,
+pour tout vecteur $h_1$ de $\mathbb{R}^n$ fixé, 
+pour tout vecteur $h_2$ de $\mathbb{R}^n$ dans un voisinage de $0$,
 $$
-df(x+k) \cdot h = df(x) \cdot h + d^2f(x) \cdot h \cdot k + \varepsilon_{h}(k)(\|k\|),
+df(x+h_2) \cdot h_1 = df(x) \cdot h_1 + d^2f(x) \cdot h_1 \cdot h_2 + \varepsilon_{h_1}(h_2)(\|h_2\|),
 $$
-où $\varepsilon_h$ vérifie $\lim_{k \to 0} \varepsilon_h(k) = 0$.
-Si $k$ est non nul, on a donc
+où $\varepsilon_{h_1}$ vérifie $\lim_{h_2 \to 0} \varepsilon_{h_1}(h_2) = 0$.
+Si $h_2$ est non nul, on a donc
 $$
-\varepsilon_{h}(k) = \frac{1}{\|k\|}\left(df(x+k) \cdot h - df(x) \cdot h - d^2f(x) \cdot h \cdot k \right),
+\varepsilon_{h_1}(h_2) = \frac{1}{\|h_2\|}\left(df(x+h_2) \cdot h_1 - df(x) \cdot h_1 - d^2f(x) \cdot h_1 \cdot h_2 \right),
 $$
-le terme $\varepsilon_{h}(k)$ est donc linéaire en $h$ ; 
-notons $E(k)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
-qui est nulle quand $k=0$ et définie dans le cas contraire
-par $E(k) \cdot h = \varepsilon_h (k)$. On a donc pour tout $h \in \R^n$
+le terme $\varepsilon_{h_1}(h_2)$ est donc linéaire en $h_1$ ; 
+notons $E(h_2)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
+qui est nulle quand $h_2=0$ et définie dans le cas contraire
+par $E(h_2) \cdot h_1 = \varepsilon_{h_1} (h_2)$. On a donc pour tout $h_1 \in \R^n$
 $$
-df(x+k) \cdot h 
+df(x+h_2) \cdot h _1
 = 
-df(x) \cdot h + d^2f(x) \cdot h \cdot k + (E(k)\cdot h) \|k\|,
+df(x) \cdot h_1 + d^2f(x) \cdot h_1 \cdot h_2 + (E(h_2)\cdot h_1) \|h_2\|,
 $$
 soit 
 $$
-df(x+k)
+df(x+h_2)
 = 
-df(x) + (h \mapsto d^2f(x) \cdot h \cdot k) + E(k) \|k\|,
+df(x) + (h_1 \mapsto d^2f(x) \cdot h_1 \cdot h_2) + E(h_2) \|h_2\|,
 $$
 Par ailleurs, pour tout couple de 
-vecteurs $h$ et $k$ de $\mathbb{R}^n$, on a
+vecteurs $h_1$ et $h_2$ de $\mathbb{R}^n$, on a
 $$
 \begin{split}
-\|E(k) \cdot h\| &= \left\| E(k) \cdot \left(\sum_{i=1}^n h_i e_i \right) \right\| \\
-&\leq \sum_{i=1}^n \|E(k) \cdot e_i\| |h_i| \\
-&\leq \left(\sum_{i=1}^n \|E(k) \cdot e_i\|\right) \|h\| 
-= \left(\sum_{i=1}^n \|\varepsilon_{e_i}(k)\|\right) \|h\|
+\|E(h_2) \cdot h_1\| &= \left\| E(h_2) \cdot \left(\sum_{i=1}^n (h_1)_i e_i \right) \right\| \\
+&\leq \sum_{i=1}^n \|E(h_2) \cdot e_i\| |(h_1à_i| \\
+&\leq \left(\sum_{i=1}^n \|E(h_2) \cdot e_i\|\right) \|h_1\| 
+= \left(\sum_{i=1}^n \|\varepsilon_{e_i}(h_2)\|\right) \|h_1\|
 \end{split}
 $$
-donc la norme d'opérateur de $E(k)$ vérifie
+donc la norme d'opérateur de $E(h_2)$ vérifie
 $$
-\|E(k)\| \leq \sum_{i=1}^n \|\varepsilon_{e_i}(k)\| \to 0
-\, \mbox{ quand } k \, \to 0,
+\|E(h_2)\| \leq \sum_{i=1}^n \|\varepsilon_{e_i}(h_2)\| \to 0
+\, \mbox{ quand } h_2 \, \to 0,
 $$
 ce qui prouve le résultat cherché.
 
@@ -340,128 +340,128 @@ ce qui prouve le résultat cherché.
 ### Variation d'ordre $2$
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
 Quand cette expression est définie, on appelle *variation d'ordre 2*
-de $f$ en $x$, associée aux variations $h$ et $k$ de l'argument,
+de $f$ en $x$, associée aux variations $h_1$ et $h_2$ de l'argument,
 la grandeur
 $$
 \begin{split}
-\Delta^2 f(x, h, k) &=\Delta(x \mapsto \Delta f(x, h))(x, k) \\
-&= \Delta f(x+k, h) - \Delta f(x, h).
+\Delta^2 f(x, h_1, h_2) &=\Delta(x \mapsto \Delta f(x, h_1))(x, h_2) \\
+&= \Delta f(x+h_2, h_1) - \Delta f(x, h_1).
 \end{split}
 $$
 
 ### Variation et différentielle d'ordre deux {.lemma #D2d2}
 Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
-$\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
+$\|h_1\| \leq \eta$ et $\|h_2\| \leq \eta$, alors
 $$
-\left\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k \right\| \leq \varepsilon (\|h\| + \|k\|)^2.
+\left\|\Delta^2f(x, h_1, h_2) - d^2f(x)\cdot h_1 \cdot h_2 \right\| \leq \varepsilon (\|h_1\| + \|h_2\|)^2.
 $$
 
 ### Démonstration  {.proof}
-Considérons des vecteurs $h$ et $k$ tels que $x+h$, $x+k$ et $x+h+k$ soient
+Considérons des vecteurs $h_1$ et $h_2$ tels que $x+h_1$, $x+h_2$ et $x+h_1+h_2$ soient
 dans le domaine de définition de $f$.
-La différence $e$ entre $\Delta^2 f(x,h, k)$ et $d^2 f(x) \cdot h \cdot k$
+La différence $e$ entre $\Delta^2 f(x,h_1, h_2)$ et $d^2 f(x) \cdot h_1 \cdot h_2$
 vaut
 $$
 \begin{split}
-e &= (f(x+h+k) - f(x+k)) - (f(x+h) - f(x))) - d^2f(x)\cdot h\cdot k \\
-  &= (f(x+h+k) - f(x+h) - d^2f(x) \cdot h \cdot k) \\
-  &\phantom{=} - (f(x+k) - f(x) - d^2f(x) \cdot 0 \cdot k)
+e &= (f(x+h_1+h_2) - f(x+h_2)) - (f(x+h_1) - f(x))) - d^2f(x)\cdot h_1\cdot h_2 \\
+  &= (f(x+h_1+h_2) - f(x+h_1) - d^2f(x) \cdot h_1 \cdot h_2) \\
+  &\phantom{=} - (f(x+h_2) - f(x) - d^2f(x) \cdot 0 \cdot h_2)
 \end{split}
 $$
 Par conséquent, si l'on définit $g$ par
 $$
-g(u) = f(x+u+k) - f(x+u) - d^2f(x) \cdot u \cdot k,
+g(u) = f(x+u+h_2) - f(x+u) - d^2f(x) \cdot u \cdot h_2,
 $$
-la différence vaut $e = g(h) - g(0)$. 
+la différence vaut $e = g(h_1) - g(0)$. 
 Cette différence peut être majorée par [l'inégalité des accroissements finis](#TAF) : 
-$g$ est différentiable sur le segment $[0, h]$ et
+$g$ est différentiable sur le segment $[0, h_1]$ et
 $$
-dg(u) = df(x+u+k) - df(x+u) - (h \mapsto d^2f(x) \cdot h \cdot k). 
+dg(u) = df(x+u+h_2) - df(x+u) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot h_2). 
 $$
 Comme
 $$
 \begin{split}
-dg(u) &= (df(x+u+k) - df(x) - (h \mapsto d^2f(x) \cdot h \cdot (u+k)) )\\
-      &\phantom{=} - (df(x+u) - df(x) - (h \mapsto d^2f(x) \cdot h \cdot u)),
+dg(u) &= (df(x+u+h_2) - df(x) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot (u+h_2)) )\\
+      &\phantom{=} - (df(x+u) - df(x) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot u)),
 \end{split}
 $$
 par le théorème controllant la [variation de la différentielle][Variation de la différentielle I],
 pour $\varepsilon > 0$ quelconque, comme
-$\|u+k\| \leq \|h\| + \|k\|$ et $\|u\| \leq \|h\|$, 
-on peut trouver un $\eta > 0$ tel que si $\|h\| < \eta$ et $\|k\| < \eta,$ 
+$\|u+h_2\| \leq \|h_1\| + \|h_2\|$ et $\|u\| \leq \|h_1\|$, 
+on peut trouver un $\eta > 0$ tel que si $\|h_1\| < \eta$ et $\|h_2\| < \eta,$ 
 alors 
 $$
-\|dg(u)\| \leq \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|.
+\|dg(u)\| \leq \frac{\varepsilon}{2} (\|h_1\| + \|h_2\|) + \frac{\varepsilon}{2} \|h_1\|.
 $$
 Par conséquent, [le théorème des accroissements finis](#TAF) fournit
 $$
-\|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
+\|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h_1\| + \|h_2\|) + \frac{\varepsilon}{2} \|h_1\|\right)\|h_1\| \leq \varepsilon (\|h_1\| + \|h_2\|)^2.
 $$
 
 ### Symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
 deux fois différentiable en un point $x$ de $U$. Pour tout couple
-de vecteur $h$ et $k$ de $\mathbb{R}^n$, on a
+de vecteur $h_1$ et $h_2$ de $\mathbb{R}^n$, on a
 $$
-d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
+d^2 f (x) \cdot h_1 \cdot h_2 = d^2 f(x) \cdot h_2 \cdot h_1.
 $$
 
 ### Démonstration {.proof}
 Notons au préalable que
 $$
 \begin{split}
-\Delta^2 f(x, h, k) &= (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)) \\
-&= f(x+h+k) - f(x+h) - f(x+k) + f(x) \\
-&= (f(x+k+h) - f(x+h)) - (f(x+k) - f(x)) \\
-&= \Delta^2 f(x, k, h).
+\Delta^2 f(x, h_1, h_2) &= (f(x+h_2+h_1) - f(x+h_2)) - (f(x+h_1) - f(x)) \\
+&= f(x+h_1+h_2) - f(x+h_1) - f(x+h_2) + f(x) \\
+&= (f(x+h_2+h_1) - f(x+h_1)) - (f(x+h_2) - f(x)) \\
+&= \Delta^2 f(x, h_2, h_1).
 \end{split}
 $$
 La variation d'ordre $2$ de $f$ en $x$ est donc
-symétrique par rapport à ses arguments $h$ et $k$.
+symétrique par rapport à ses arguments $h_1$ et $h_2$.
 On peut alors exploiter [la relation entre variation d'ordre $2$ et 
 différentielle d'ordre 2](#D2d2) en notant que
 \begin{multline*}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
+\|d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 \|
 \leq \\
-\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
+\|\Delta^2f(x, h_1, h_2) - d^2f(x)\cdot h_1\cdot h_2\| + \| \Delta^2f(x, h_2, h_1) - d^2f(x)\cdot h_1\cdot h_2\|.
 \end{multline*}
-On obtient pour tout $\varepsilon > 0$ et quand $h$ et $k$ sont suffisamment petits,
+On obtient pour tout $\varepsilon > 0$ et quand $h_1$ et $h_2$ sont suffisamment petits,
 $$
 \begin{split}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \| 
-\leq 2\varepsilon (\|h\|+\|k\|)^2.
+\|d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 \| 
+\leq 2\varepsilon (\|h_1\|+\|h_2\|)^2.
 \end{split}
 $$
-Si $h$ et $k$ sont arbitraires, en substituant $th$ à $h$ et $tk$ à $k$
+Si $h_1$ et $h_2$ sont arbitraires, en substituant $th_1$ à $h_1$ et $th_2$ à $h_2$
 pour un $t>0$ suffisamment petit pour que l'inégalité ci-dessus soit valable,
 comme 
 $$
-d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th
-=t^2 \times (d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h)
+d^2f(x) \cdot th_1 \cdot th_2 - d^2f(x) \cdot th_2 \cdot th_1
+=t^2 \times (d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1)
 $$
 et 
 $$
-2 \varepsilon (\|th\|+\|tk\|)^2 = t^2 \times 2 (\|h\|+\|k\|)^2,
+2 \varepsilon (\|th_1\|+\|th_2\|)^2 = t^2 \times 2 (\|h_1\|+\|h_2\|)^2,
 $$
-on voit que l'inégalité est en fait valable pour des $h$ et $k$ arbitraires.
-On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h = 0.$
+on voit que l'inégalité est en fait valable pour des $h_1$ et $h_2$ arbitraires.
+On en déduit que $d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 = 0.$
 
 ### Variation de la différentielle {.theorem} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 deux fois différentiable en $x \in U$,
 $$
-df(x+k) = df(x) + d^2 f(x) \cdot k + E(k)(\|k\|)
+df(x+h_2) = df(x) + d^2 f(x) \cdot h_2 + E(h_2)(\|h_2\|)
 $$
-où $\lim_{k \to 0} E(k) = 0 \in \R^{m\times n}$.
+où $\lim_{h_2 \to 0} E(h_2) = 0 \in \R^{m\times n}$.
 
 ### Démonstration {.proof}
 Par le [lemme sur la variation de la différentielle](#LVD), on sait que
 $$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
+df(x+h_2) = df(x) + (h_1 \mapsto d^2 f(x) \cdot h_1 \cdot h_2) + o(\|h_2\|).
 $$
 La [différentielle d'ordre 2 étant symétrique](#SD2), 
 $$
-d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h,
+d^2 f(x) \cdot h_1 \cdot h_2 = d^2 f(x) \cdot h_2 \cdot h_1 = (d^2 f(x) \cdot h_2) \cdot h_1,
 $$
 ce qui fournit l'égalité cherchée.
 
