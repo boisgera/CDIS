@@ -222,7 +222,10 @@ recouvre $E$ et la somme des longueurs de ces intervalles est $m \varepsilon$ ;
 elle peut donc être rendue arbitraire petite : $E$ est négligeable.
 
 ### Intervalles négligeables {.exercise .question .four #intervalles-négligeables}
-Montrer que si $a < b$, l'ensemble $[a, b]$ n'est pas négligeable.
+Montrer que si $a < b$, l'ensemble $[a, b]$ n'est pas négligeable.  
+Indication : montrer que si les intervalles $I_i$ recouvrent $[a, b]$,
+alors $\sum_{i} \ell(I_i) \geq b-a$. On commencera par le cas d'une collection
+finie d'intervalles.
 
 ### Intervalles négligeables {.answer #answer-intervalles-négligeables}
 Pour démontrer que l'ensemble $[a, b]$ n'est pas négligeable quand $a < b$,
