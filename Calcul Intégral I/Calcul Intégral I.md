@@ -211,20 +211,70 @@ de départ est de longueur nulle[^me] ; la suite confirmera cette intuition.
 
 [^me]: techniquement, de mesure *extérieure* de longueur nulle.
 
-### TODO: découper en deux : la partie facile et la partie dure
+### Ensembles finis {.exercise .question .one #ensemble-fini}
+Montrer que tout sous-ensemble fini de $\R$ est négligeable.
 
-### TODO -- Intervalles négligeables {.exercise .question .four #intervalles-négligeables}
-Montrer que les seuls intervalles fermés bornés négligeables sont l'ensemble
-vide et les singletons.
+### Ensembles finis {.answer #answer-ensemble-fini}
+Soit $E = \{x_1, \dots, x_m\} \subset \R$. Pour tout $\varepsilon > 0$, 
+la collection (finie) d'intervalles
+$\{\left[x_i-\varepsilon/2, x_i + \varepsilon/2\right]\}_{i=1}^m$
+recouvre $E$ et la somme des longueurs de ces intervalles est $m \varepsilon$ ;
+elle peut donc être rendue arbitraire petite : $E$ est négligeable.
+
+### Intervalles négligeables {.exercise .question .four #intervalles-négligeables}
+Montrer que si $a < b$, l'ensemble $[a, b]$ n'est pas négligeable.
+
+### Intervalles négligeables {.answer #answer-intervalles-négligeables}
+Pour démontrer que l'ensemble $[a, b]$ n'est pas négligeable quand $a < b$,
+nous allons établir que si la collection dénombrable d'intervalles
+$I_i$ recouvre $[a, b]$, alors la somme des longueurs des $I_i$ est supérieure
+ou égale à $b-a > 0$ et donc l'intervalle n'est pas négligeable.
+
+Prouvons dans un premier temps ce résultat quand la collection des $I_i$ est finie.
+Considérons une telle collection $\{I_i\}_{i=1}^m$ ;
+on peut supposer que les $I_i$ sont rangés "de la gauche vers la droite",
+c'est-à-dire que si $i < j$, il existe un $x \in I_i$ tel que $x \leq y$
+pour tout $y \in I_j$ et que tous les $I_i$ intersectent $[a, b]$. 
+Alors, la collection $\{J_i\}_{i=1}^m$ définie par
+$J_1 = I_1$, puis $J_{i+1} = I_{i+1} \setminus (\cup_{j=1}^{i} I_j)$ est
+composée d'intervalles disjoints recouvrant $[a, b]$, telle que
+$\ell(J_i) \leq \ell(I_i)$ pour tout $i$. Notons $x_i$ et $x_{i+1}$ les 
+extrémités de gauche et de droite de $J_i$ respectivement ; on a alors 
+$$
+\sum_{i=1}^m \ell(I_i) \geq 
+\sum_{i=1}^m \ell(J_i) = \sum_{i=1}^m (x_{i+1} - x_i) = x^{m+1} - x_1 \geq b-a.
+$$
+
+Supposons désormais la collection des $\{I_i\}_{i \in \N}$. 
+Si $\sum_{i=1}^{+\infty} \ell(I_i) \leq \varepsilon$, alors pour tout $\varepsilon'>0$,
+il existe une collection d'intervalles ouverts $\{J_i\}_{i \in \N}$ tels que
+$I_i \subset J_i$ et $\ell(J_i) \leq \ell(I_i) + \varepsilon'/2^{i}$
+et donc tels que
+$$
+\sum_{i=1}^{+\infty} \ell(J_i) \leq 
+\sum_{i=1}^{+\infty} \ell(I_i) + \sum_{i=1}^{+\infty} \frac{\varepsilon'}{2^i} 
+\leq \varepsilon +\varepsilon'.
+$$
+Or l'ensemble $[a, b]$ étant fermé et borné, il est compact ; 
+les $\{J_i\}_{i \in \N}$ un recouvrement de ce compact par une collection
+d'ouverts, on peut donc en extraire un sous-recouvrement fini $\{K_i\}_{i=1}^m$.
+En utilisant le résultat précédemment établi pour de telles collections finies,
+on en déduit que
+$$
+b - a \leq \sum_{i=1}^{m} \ell(K_i) \leq \sum_{i=1}^{+\infty} \ell(J_i) \leq \varepsilon +\varepsilon',
+$$
+soit puisque $\varepsilon'>0$ est arbitraire, $b - a \leq \varepsilon$.
+
+### TODO -- opérations ensemblistes (exo)
 
 ### Presque partout {.definition .one}
 Une propriété $P$ dépendant d'un réel $x$ est vraie *presque partout*
 si l'ensemble des points $x$ où elle est fausse est un ensemble
-négligeable. On pourra noter "$P$ p.p." pour signifier que la propriété $P$
-est vraie presque partout.
+négligeable. On pourra utiliser la notation "$P$ p.p." pour signifier que 
+la propriété $P$ est vraie presque partout.
 
 ### TODO : exo court "presque partout" (???) 
-Montrer que "p.p". Se combine avec la logique (et, ou)
+Montrer que "p.p". Se combine avec la logique (et, ou, implique)
 
 ### TODO : exo court "presque partout" (???) 
 Montrer qu'une fonction continue qui est nulle presque partout est nulle.
@@ -2046,16 +2096,6 @@ $$
 = \varepsilon.
 $$
 
-### TODO -- Intervalles négligeables {.answer #answer-intervalles-négligeables}
-L'ensemble vide est recouvert par la collection vide (ne comportant aucun
-intervalle) ; la somme des longueurs des intervalles de la collection est 
-donc nulle. Le singleton $\{a\}$ est recouvert par la 
-collection $\{\{a\}\}_{i=0}^0$ comportant l'unique intervalle
-$\{a\}$ ; dans ce cas aussi la somme des longueurs des intervalles 
-de la collection est nulle. Ces ensembles sont donc négligeables.
-
-Réciproquement, nous devons montrer qu'aucun intervalle de la forme $[a, b]$
-avec $a < b$ n'est négligeable.
 
 Intervalle {.answer #answer-int}
 --------------------------------------------------------------------------------
