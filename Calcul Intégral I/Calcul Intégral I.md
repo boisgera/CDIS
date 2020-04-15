@@ -273,8 +273,8 @@ soit puisque $\varepsilon'>0$ est arbitraire, $b - a \leq \varepsilon$.
 ### Presque partout {.definition .one}
 Une propriété $P$ dépendant d'un réel $x$ est vraie *presque partout*
 si l'ensemble des points $x$ où elle est fausse est un ensemble
-négligeable. On pourra utiliser la notation "$P$ p.p." pour signifier que 
-la propriété $P$ est vraie presque partout.
+négligeable. On pourra utiliser la notation "$P$ p.p." ou "$P(x)$ p.p." 
+pour signifier que la propriété $P$ est vraie presque partout.
 
 ### TODO : exo court "presque partout" (???) 
 Montrer que "p.p". Se combine avec la logique (et, ou, implique)
