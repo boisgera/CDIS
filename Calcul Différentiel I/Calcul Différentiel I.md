@@ -131,9 +131,6 @@ technique suppose de :
 [^res]: sous une hypothèse renforcée, par exemple de continue différentiabilité. 
 
 
-
-
-
 Conventions
 --------------------------------------------------------------------------------
 
@@ -177,7 +174,6 @@ induite par ces normes euclidiennes sur $\R^m$ et sur $\R^n$.
 
 Matrice jacobienne et différentielle
 ================================================================================
-
 
 ### Dérivées partielles {.definition .one}
 Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 

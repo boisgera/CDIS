@@ -12,6 +12,22 @@
 TODO
 ================================================================================
 
+Evaluer stratégie 
+
+  - diff d'ordre deux d'une fonction (multivariable) scalaire et
+    tout ce qu'on peut faire à ce niveau, avec de façon concrête la matrice
+    hessienne au centre de tout ça (comme le jacobien l'était dans le
+    chapitre 1).
+
+  - puis, dans un second temps seulement, introduction des tenseurs et
+    "déblocage" : de la différentielle d'ordre 2 de fonction vectorielles,
+    puis de la différentielle d'ordre $n$.
+
+
+
+TODO
+================================================================================
+
   - Tenseur d'ordre (0, 1, 2 et) $3$. Structure d'espace vectoriel normé.
     Contraction tensorielle, lien avec les applis $n$-linéaires (ouch).
 
@@ -32,7 +48,7 @@ Exercices :
 
   - Fcts quadratique, Gaussienne, etc.
 
-  - Courbure (dans le plan)
+  - Courbure (dans le plan ?)
 
   - "bordered hessian" (optim.) 
 
@@ -41,8 +57,6 @@ Exercices :
   - exemples calcul de DIFFERENTIAL CALCULUS, 
     TENSOR PRODUCTS AND THE IMPORTANCE OF NOTATION (JONATHAN H. MANTON).
 
-Différentielle d'ordre $2$
-================================================================================
 
 <!--
 
@@ -165,67 +179,57 @@ car simplificateur, mais
 
 -->
 
-### Tenseur d'ordre $3$ {.definition .one}
-On appelera *tenseur d'ordre $3$* un élément de 
-$\R^{m \times n \times p}$ où $(m, n, p) \in \N^{3}$, 
-c'est-à-dire toute application $A$ de la forme
+Matrice hessienne et différentielle d'ordre $2$
+================================================================================
+
+### Dérivées partielles d'ordre $2$ {.definition .one}
+Soit $U$ un ouvert de $\R^m$, $f: U \to \R$ et $x \in U$.
+Si la $j$-ème dérivée partielle de $f$ est définie sur $U$,
+et que sa $k$-ème dérivée partielle en $x$ existe, on note
 $$
-(i,  j , k) \mapsto A_{ijk} \in \R
+\partial^2_{kj} f(x) := \partial_k (\partial_j f)(x).
 $$
-où $(i, j, k) \in \{1,\dots,m\} \times \{1,\dots,n\}  \times \{1,\dots,p\}$.
-
-### {.remark}
-Un tenseur d'ordre $3$ n'est rien d'autre qu'un tableau de réels à 3 dimensions.
-On peut considérer que c'est la suite logique de la progression scalaire
-(tenseur d'ordre 0), vecteur (tenseur d'ordre 1), matrice (tenseur d'ordre 2).
-
-### TODO.
-
-Contraction, application bilinéaire, identification, etc.
-
-
-### TODO
-
-factor out dérivée partielle d'ordre 2.
-
-### Tenseur des dérivées partielles d'ordre $2$ {.definition .one}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$.
-Si toutes les dérivées partielles d'ordre $2$ des $f_i$ existent en $x$, 
-on définit le *tenseur $f''(x) \in \R^{m \times n \times n}$ 
-des dérivées partielles d'ordre $2$ de $f$ en $x$* par
-$$
-[f''(x)]_{ijk} = \partial_{kj} f_i(x).
-$$
+sa *dérivée partielle d'ordre $2$ de (multi-)indice $(k, j)$*.
 
 ### Matrice hessienne {.definition .one}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
-$x$ un point de $U$. Soient $f_i$ les fonctions scalaires composant $f$, 
-c'est-à-dire telles que
-$f(x) = (f_1(x), \dots, f_m(x)).$
-Si toutes les dérivées partielles d'ordre $2$ de $f$ en $x$ existent,
-on définit *la matrice hessienne $\nabla^2 f(x)$* de $f$ en $x$ par
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$.
+Si toutes les dérivées partielles d'ordre $1$ de $f$ existent sur $U$
+et que toutes leurs dérivées partielles d'ordre 1 existent en $x$,
+on définit *la matrice hessienne $H_f(x) \in \R^n \times \R^n$* 
+de $f$ en $x$ par
 $$
-[\nabla^2 f(x)]_{jk} = [f''(x)]_{1kj}  = \partial^2_{jk} f(x)
+[H_f(x)]_{kj} = \partial^2_{kj} f(x)
 $$
 c'est-à-dire
 $$
-\nabla^2 f(x) = \left[
+H_f(x) = \left[
 \begin{array}{cccc}
 \partial_{11} f (x) & \partial_{12} f (x) & \cdots & \partial_{1n} f (x) \\
 \partial_{21} f (x) & \partial_{22} f (x) & \cdots & \partial_{2n} f (x) \\
 \vdots & \vdots & \vdots & \vdots \\
-\partial_{nn} f (x) & \partial_{n2} f (x) & \cdots & \partial_{nn} f (x) \\
+\partial_{n1} f (x) & \partial_{n2} f (x) & \cdots & \partial_{nn} f (x) \\
 \end{array}
 \right].
 $$
 
-### Différentielle d'ordre 2 {.definition #d2 .two}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
-dans un voisinage d'un point $x$ de $U$. 
+### TODO
+Développer:
+$$
+H_f(x) = J_{\nabla f}(x)^{\top}.
+$$
+
+### Continue différentiabilité d'ordre 2 {.definition .one}
+Soit $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
+*deux fois continûment différentiable* si pour tout $j \in \{1,\dots, n\}$ 
+et tout $k \in \{1,\dots, n\}$, la dérivée partielle d'ordre deux 
+$\partial^2_{kj} f:U \to \R$ existe et est continue.
+
+### Différentielle d'ordre 2 {.definition #d2 .three}
+Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ une fonction différentiable.
 On dira que $f$ est *deux fois différentiable en $x$* 
 si pour tout vecteur $h$ de $\mathbb{R}^n$,
-la fonction $x \mapsto df(x) \cdot h$ est différentiable en $x$.
+la fonction $x \in U \mapsto df(x) \cdot h$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
 est définie comme l'application linéaire telle que pour tout $h$ 
 dans $\mathbb{R}^n$,
@@ -236,47 +240,45 @@ c'est-à-dire pour tout vecteur $k$ de $\mathbb{R}^n$,
 $$
 d^2f(x) \cdot h \cdot k = d(x\mapsto df(x)\cdot h)(x) \cdot k.
 $$
+On dit que $f$ est *deux fois différentiable (sur $U$)* si elle est 
+deux fois différentiable en tout point $x$ de $U$.
 
-### Remarques
+### {.remark}
+On peut vérifier que le terme $d(x\mapsto df(x)\cdot h)(x)$ dépend 
+bien linéairement de $h$, ce qui justifie l'assertion que $d^2f(x)$
+est linéaire et la notation "$\cdot$" lorsqu'elle est appliquée à un
+argument $h$.
 
-  - On peut vérifier que le terme $d(x\mapsto df(x)\cdot h)(x)$ dépend 
-    bien linéairement de $h$, ce qui justifie l'assertion que $d^2f(x)$
-    est linéaire et la notation "$\cdot$" lorsqu'elle est appliquée à un
-    argument $h$.
+### {.remark}
+Par construction, le terme $d(x\mapsto df(x)\cdot h)(x)$ 
+est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
+donc la fonction $d^2f(x)$
+associe linéairement à un vecteur de $\mathbb{R}^n$ une application
+linéaire de $\R^n$ dans $\R$. Autrement dit, si l'on note $A \to B$ 
+l'ensemble des fonctions de $A$ dans $B$, on a
+$$
+d^2f(x) \in \mathbb{R}^n \to (\mathbb{R}^n \to \mathbb{R}),
+$$
+ce qui se décline successivement en
+$$
+d^2f(x) \cdot h \in (\mathbb{R}^n \to \mathbb{R}),
+\; \mbox{ et } \;
+(d^2f(x) \cdot h) \cdot k \in \mathbb{R}^m.
+$$
+On conviendra que, le symbole "$\to$" associe à droite, par exemple :
+$$
+\mathbb{R}^n \to \R^n \to \mathbb{R} := \R^n \to (\mathbb{R}^n \to \mathbb{R}).
+$$
+La convention associée -- utilisée dans la définition de la différentielle
+d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
+le symbole "$\cdot$" associe à gauche, par exemple :
+$$
+d^2f(x) \cdot h \cdot k :=  (df^2(x) \cdot h) \cdot k.
+$$
 
-  - Par construction, le terme $d(x\mapsto df(x)\cdot h)(x)$ 
-    est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
-    donc la fonction $d^2f(x)$
-    associe linéairement à un vecteur de $\mathbb{R}^n$ une application
-    linéaire de $\mathbb{R}^n \to \mathbb{R}^m$. Autrement dit,
-    $$
-    d^2f(x) \in (\mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m)),
-    $$
-    ce qui se décline successivement en
-    $$
-    d^2f(x) \cdot h \in (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m),
-    \; \mbox{ et } \;
-    (d^2f(x) \cdot h) \cdot k \in \mathbb{R}^m.
-    $$
-
-  - Pour alléger ces notations, on pourra considérer que dans les notations
-    d'espace fonctionnels, le symbole "$\to$" associe à droite, par exemple:
-    $$
-    A \to B \to C := A \to (B \to C),
-    $$
-    $$    
-    A \to B \to C \to D := A \to (B \to (C \to D)).
-    $$
-    La convention associée -- utilisée dans la définition de la différentielle
-    d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
-    le symbole "$\cdot$" associe à gauche, par exemple:
-    $$
-    L \cdot h \cdot k :=  (L \cdot h) \cdot k,
-    $$
-    $$
-    L \cdot h \cdot k \cdot l := ((L \cdot h) \cdot k) \cdot l.
-    $$
-
+### Continue différentiabilité d'ordre 2 implique différentiabilité d'ordre 2 {.proposition .one}
+Soit $U$ un ouvert de $\R^n$ et $f : U \to R$. Si $f$ est deux fois 
+continûment différentiable, alors $f$ est deux fois différentiable.
 
 ### Variation de la différentielle {.lemma #LVD} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
@@ -460,6 +462,7 @@ d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h
 $$
 ce qui fournit l'égalité cherchée.
 
+<!--
 ### Dérivées partielles d'ordre 2 {.definition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x \in U$. Soient $i$ et $j$ deux indices dans $\{1,\dots, n\}$.
@@ -470,6 +473,7 @@ et $i$-ème variables et on la note $\partial^2_{ij} f(x)$:
 $$
 \partial^2_{ij} f(x) := \partial_i (x \mapsto \partial_j f(x))(x).
 $$
+-->
 
 ### Symétrie des dérivées partielles d'ordre 2 {.proposition #sdp2}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
@@ -489,6 +493,7 @@ on en déduit donc que $\partial^2_{ij} f(x) = d^2f(x) \cdot e_j \cdot e_i$.
 Par [symétrie de la différentielle d'ordre 2](#SD2), 
 $\partial^2_{ij} f(x) = \partial^2_{ji} f(x)$.
 
+<!--
 ### Hessienne {.definition}
 Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
 $x \in U$. On appelle *Hessienne* de $f$ et $x$ et l'on note
@@ -508,11 +513,33 @@ Elle résulte directement de la définition de $\nabla^2 f(x)$ et des liens entr
 $d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition 
 ["Symétrie des dérivées partielles d'ordre 2"](#sdp2).
 
-
+-->
 
 
 Différentielle d'ordre supérieur
 ================================================================================
+
+### TODO 
+
+Passer directement au tenseur d'ordre $n$ ?
+
+### Tenseur d'ordre $3$ {.definition .one}
+On appelera *tenseur d'ordre $3$* un élément de 
+$\R^{m \times n \times p}$ où $(m, n, p) \in \N^{3}$, 
+c'est-à-dire toute application $A$ de la forme
+$$
+(i,  j , k) \mapsto A_{ijk} \in \R
+$$
+où $(i, j, k) \in \{1,\dots,m\} \times \{1,\dots,n\}  \times \{1,\dots,p\}$.
+
+### {.remark}
+Un tenseur d'ordre $3$ n'est rien d'autre qu'un tableau de réels à 3 dimensions.
+On peut considérer que c'est la suite logique de la progression scalaire
+(tenseur d'ordre 0), vecteur (tenseur d'ordre 1), matrice (tenseur d'ordre 2).
+
+### TODO.
+
+Contraction, application bilinéaire, identification, etc.
 
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
@@ -887,7 +914,6 @@ Par dérivation en chaîne, la fonction
 $t \mapsto df^{(i)}(a+th) (\cdot \, h)^i$
 est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
 $df^{(i+1)}(a+th) (\cdot \, h)^{i+1}.$
-
 
 Exercices
 ================================================================================
