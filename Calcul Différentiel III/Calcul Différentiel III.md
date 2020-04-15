@@ -277,8 +277,11 @@ d^2f(x) \cdot h \cdot k :=  (df^2(x) \cdot h) \cdot k.
 $$
 
 ### Continue différentiabilité d'ordre 2 implique différentiabilité d'ordre 2 {.proposition .one}
-Soit $U$ un ouvert de $\R^n$ et $f : U \to R$. Si $f$ est deux fois 
+Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
 continûment différentiable, alors $f$ est deux fois différentiable.
+
+### TODO
+Lier calcul différentielle et matrice hessienne (dans les deux sens).
 
 ### Variation de la différentielle {.lemma #LVD} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
