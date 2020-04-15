@@ -11,6 +11,11 @@
 \newcommand{\Lint}{\mbox{(L)}\!\!\int}
 
 
+TODO
+--------------------------------------------------------------------------------
+
+  - intégrales de fonctions à valeurs dans $\R^m$
+
 TODO -- Objectifs d'apprentissage
 --------------------------------------------------------------------------------
 
@@ -206,16 +211,23 @@ de départ est de longueur nulle[^me] ; la suite confirmera cette intuition.
 
 [^me]: techniquement, de mesure *extérieure* de longueur nulle.
 
+### TODO: découper en deux : la partie facile et la partie dure
+
 ### TODO -- Intervalles négligeables {.exercise .question .four #intervalles-négligeables}
 Montrer que les seuls intervalles fermés bornés négligeables sont l'ensemble
 vide et les singletons.
 
 ### Presque partout {.definition .one}
-Une propriété dépendant d'un réel $x$ est vraie *presque partout*
+Une propriété $P$ dépendant d'un réel $x$ est vraie *presque partout*
 si l'ensemble des points $x$ où elle est fausse est un ensemble
-négligeable.
+négligeable. On pourra noter "$P$ p.p." pour signifier que la propriété $P$
+est vraie presque partout.
 
-### TODO : exo court "presque partout" (???)
+### TODO : exo court "presque partout" (???) 
+Montrer que "p.p". Se combine avec la logique (et, ou)
+
+### TODO : exo court "presque partout" (???) 
+Montrer qu'une fonction continue qui est nulle presque partout est nulle.
 
 ### Les ensembles dénombrables sont négligeables {.proposition .one #edn}
 Si le sous-ensemble $E$ de $\R$ est dénombrable, c'est-à-dire fini ou 
@@ -393,7 +405,7 @@ définition qui exploite l'intégrale de Henstock-Kurzweil, n'utilise ni jauge
 ni somme de Riemann, mais introduit une rupture franche dans la façon d'aborder 
 la question.
 
-[^laHK]: Par exemple, [la forme générale du théorème fondamentale du calcul](#TFC)
+[^laHK]: Par exemple, [la forme générale du théorème fondamental du calcul](#TFC)
 n'est valable ni pour l'intégrale de Riemann, ni pour l'intégrale de Lebesgue,
 mais elle l'est pour l'intégrale de Henstock-Kurzweil. On rappelle que cette forme
 générale permet d'établir la preuve de l'inégalité des accroissements finis.
@@ -475,20 +487,6 @@ critère. La fonction $f$ est donc intégrable au sens de Lebesgue et
 $$
 \int f(t) \, dt = \HKint f(t) \, dt = \Rint f(t) \, dt.
 $$
-
-### Théorème fondamental du calcul {.theorem #TFCL .one}
-Soit $[a, b]$ un intervalle compact de $\R$ ;
-si la fonction $f:[a, b] \to \R$ est dérivable et que sa dérivée est
-intégrable alors 
-$$
-[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
-$$
-
-### Démonstration {.proof}
-Si $f'$ existe et est intégrable (au sens de Lebesgue), alors elle est par 
-définition intégrable au sens de Henstock-Kurzweil et d'après la forme générale 
-[du théorème fondamental du calcul](#TFC) en annexe, l'égalité souhaitée est
-satisfaite.
 
 ### Intégration de $x \mapsto e^x$ {.example .two}
 La fonction $f: x \in [0, 1] \mapsto e^x \in \R$ est continue et est sa propre primitive.
@@ -598,44 +596,42 @@ $$
 
 ![Graphe de la jauge $\gamma$ avec $\varepsilon=0.5$](images/gauge-plot-sqrt.py)
 
-
-
-<!--
-#### TODO -- Le voisinage de $0$
-
-Soit $\varepsilon > 0$. On cherche à construire une jauge $\gamma$ sur $[0,1]$
-telle que toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$,
-vérifie
-$$
-\left| S(f, \mathcal{D}) - 2 \right| \leq \varepsilon.
-$$ 
-On cherche dans un premier temps à expliciter la contribution du voisinage 
-de l'origine à la somme de Riemann.
-Si $\mathcal{D}$ est composée des paires $([x_i, x_{i+1}], t_i)$ où
-$0 \leq x_0 \leq \dots \leq x_m \leq 1$, et que $x_p$ est le premier
-des $x_i$ qui diffère de $0$, on a 
-$$
-\begin{split}
-S(f, \mathcal{D}) &= f(t_0) (x_1 - x_0) + \dots + f(t_{p-1}) (x_{p} - x_{p-1}) 
-+ \sum_{i = p}^m f(t_i) (x_{i+1} - x_i) \\
-&= f(t_{p-1}) x_{p} 
-+ \sum_{i = p}^m f(t_i) (x_{i+1} - x_i)
-\end{split}
-$$
-soit $S(f, \mathcal{D}) = f(t_{p-1}) x_p + S(f, \mathcal{D}')$
-où $\mathcal{D}' = \{(J, t) \in \mathcal{D} \; | \; J \subset [x_p, 1]\}.$
-
-$$
-\begin{split}
-\left| S(f, \mathcal{D}) - 2 \right| &=
-\left| f(t_{p-1}) x-p - 2(\sqrt{x_p} - \sqrt{0}) - (S(f, \mathcal{D}') - 2 (\sqrt{1} - \sqrt{x_p}) )\right|
-\end{split}
-$$ 
-
--->
-
 Propriétés élementaires de l'intégrale
 ================================================================================
+
+### Théorème fondamental du calcul {.theorem #TFCL .one}
+Soit $[a, b]$ un intervalle compact de $\R$ ;
+si la fonction $f:[a, b] \to \R$ est dérivable et que sa dérivée est
+intégrable alors 
+$$
+[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
+
+### Démonstration {.proof}
+Si $f'$ existe et est intégrable (au sens de Lebesgue), alors elle est par 
+définition intégrable au sens de Henstock-Kurzweil et d'après la forme générale 
+[du théorème fondamental du calcul](#TFC) en annexe, l'égalité souhaitée est
+satisfaite.
+
+### Intégration de $x \mapsto e^x$ {.question .exercise .zero #exp}
+Montrer que 
+$$
+\int_0^1 e^x \,dx 
+= 
+e - 1. 
+$$
+
+### Intégration de $x \mapsto e^x$ {.answer .zero #answer-exp}
+La fonction $x \in [0, 1] \mapsto e^x \in \R$ est continue donc intégrable.
+De plus, $(e^x)' = e^x$, donc par [le théorème fondamental du calcul](#TFCL), 
+on a
+$$
+\int_0^1 e^x \,dx 
+= 
+\left[ x \mapsto e^x \right]_0^1
+= e^1 - e^0 = e - 1. 
+$$
+
 
 ### Linéarité {.theorem .one #linéarité}
 Si $f: [a, b] \to \mathbb{R}$ et $g: [a, b] \to \mathbb{R}$ sont intégrables
@@ -732,6 +728,29 @@ $$
 \lambda \int_a^b f(t) \, dt.
 $$
 
+### Intégration par parties {.question .exercise .one #ex-IPP}
+Montrer que si les fonctions $f:[a, b] \to \R$ et $g:[a, b] \to \R$ sont dérivables,
+et que les fonctions $f'g$ et $fg'$ sont intégrables, alors 
+$$
+\int_a^b f'(t)g(t) \, dt = [fg]_a^b - \int_a^b f(t) g'(t) \, dt.
+$$
+
+### Intégration par parties {.answer #answer-ex-IPP}
+Si les fonctions $f:[a, b] \to \R$ et $g:[a, b] \to \R$ sont dérivables,
+le produit $fg$ est dérivable et $(fg)' = f'g + f g'$. 
+Par hypothèse les fonctions $f'g$ et $fg'$ sont intégrables, 
+donc [par linéarité de l'intégrale](#linéarité), $(fg)'$ également
+et
+$$
+\int_a^b (fg)'(t) \, dt = \int_a^b f(t)g'(t) \, dt + \int_a^b f(t)g'(t) \, dt.
+$$
+Or, par [le théorème fondamental du calcul](#TFC), on a
+$$
+\int_a^b (fg)'(t) \, dt = [fg]_a^b,
+$$
+ce qui fournit l'égalité recherchée.
+
+
 <!--
 ### Intégration par parties {.theorem}
 Soit $[a, b]$ un intervalle compact de $\R$ ;
@@ -774,21 +793,20 @@ ces points, ou plus généralement une valeur quelconque : l'intégrabilité
 de la fonction ainsi que son intégrale ne dépendent pas de ce choix,
 car ils définissent des [fonctions qui sont égales presque partout](#fepp).
 
-
 ### Démonstration {.proof} 
 Le résultat est un corollaire du théorème de changement de variable dans 
-$\R^n$ qui sera étudé dans le chapitre calcul intégral III.
+$\R^n$ qui sera étudié dans le chapitre calcul intégral III.
 
-**TODO** Mise en forme pour pouvoir l'invoquer ? Renverser les bornes le
-cas échéant (selon signe $g'$) et tenir compte des bornes. Pb, le concept
-d'intégral sur un ouvert n'est pas encore donné ...
+### Changement de variables simplifié {.exercise .question #cv .two}
+Démontrer [le théorème de changement de variables](#changement-de-variable)
+au moyen [du théorème fondamental du calcul](#TFC), sous les hypothèses
+supplémentaires que $f$ et $g'$ sont continues.
 
-### TODO
-Exo démo dans un cas particulier en utilisant Riemann et/ou FTC ?
-
-### Démonstration {.proof}
-Soit $h$ une primitive de $f$. La fonction $t \in [a, b] \mapsto h(g(t))$
-a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. 
+### Changement de variables simplifié {.answer #answer-cv}
+La fonction $f$ étant continue, elle a une primitive $h$.
+Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
+a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
+cette fonction est continue, donc intégrable.
 Par [le théorème fondamental du calcul](#TFC) on a donc d'une part
 $$
 \int_a^b f(g(t)) g'(t) \, dt
@@ -801,7 +819,6 @@ $$
 $$
 les deux intégrales sont donc égales.
 
-
 ### Additivité {.theorem #additivité .one}
 Si la fonction $f$ est définie et intégrable sur les intervalles
 $[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
@@ -810,19 +827,19 @@ $$
 \int_a^b f(t) \, dt + \int_b^c f(t) \, dt = \int_a^c f(t) \, dt.
 $$
 
-### TODO
-Adapter au cadre absolument intégrable.
-
 ### Démonstration {.proof}
-Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable sur $[a, b]$ et
-$[b, c]$, alors il existe deux jauges $\gamma_1:[a, b] \to \R$ et
+Soit $\varepsilon > 0$. Si la fonction $f$ est intégrable (au sens de Lebesgue)
+sur $[a, b]$ et $[b, c]$ alors les fonctions $f$ et $|f|$ 
+y sont intégrables au sens de Henstock-Kurzweil.
+
+Concernant $f$ tout d'abord : il existe donc deux jauges $\gamma_1:[a, b] \to \R$ et
 $\gamma_2:[b, c] \to \R$ telles que pour toutes les subdivisions
 pointées $\mathcal{D}_1$ et $\mathcal{D}_2$ de $[a, b]$ et $[b, c]$ 
 respectivement subordonnées à $\gamma_1$ et $\gamma_2$,
 $$
-\left| S(f, \mathcal{D}_1) - \int_a^b f(t) \, dt\right| \leq \varepsilon/2
+\left| S(f, \mathcal{D}_1) - \HKint_a^b f(t) \, dt\right| \leq \varepsilon/2
 \, \mbox{ et } \, 
-\left| S(f, \mathcal{D}_2) - \int_b^c f(t) \, dt\right| \leq \varepsilon/2.
+\left| S(f, \mathcal{D}_2) - \HKint_b^c f(t) \, dt\right| \leq \varepsilon/2.
 $$
 Définissons la fonction $\gamma: [a, b] \to \mathcal{P}(\R)$ par:
 $$
@@ -838,7 +855,7 @@ $$
 Par construction, cette fonction est une jauge sur $[a, c]$ 
 (pour tout $x \in [a, c]$, $\gamma(x)$ est un intervalle 
 ouvert non vide de $\R$ contenant $x$). 
-Supposons que $\mathcal{D} =\{(t_i, I_i)\}_i$ soit une subdivision pointée de 
+Supposons que $\mathcal{D} =\{(t_i, I_i) \; | \; i \in \{1,\dots, m\}\}$ soit une subdivision pointée de 
 $[a, c]$ subordonnée à $\gamma$. 
 Admettons temporairement que chaque intervalle $I_i$ appartienne
 à $[a, b]$ ou bien dans le cas contraire à $[b, c]$. Les
@@ -853,18 +870,18 @@ $$
 \left|
 S(f, \mathcal{D}) 
 - 
-\int_a^bf(t) \, dt + \int_b^c f(t) \, dt 
+\HKint_a^b f(t) \, dt + \HKint_b^c f(t) \, dt 
 \right|
 \leq 
 \varepsilon. 
 $$
 
-Si notre hypothèse temporaire n'est pas vérifié, c'est qu'il
+Si notre hypothèse temporaire n'est pas vérifiée, c'est qu'il
 existe un (unique) intervalle $I_i$ à cheval sur $[a, b]$ et $[b, c]$, 
 c'est-à-dire d'intersection non vide avec $\left[a, b\right[$ et avec 
 $\left]b, c\right]$. 
 La jauge $\gamma$ a été choisie de telle sorte que 
-si $x \neq b$, alors $b \not \in \gamma(x)$;
+si $x \neq b$, alors $b \not \in \gamma(x)$ ; 
 par conséquent, si cet intervalle $I_i=[d_i, e_i]$ existe, 
 alors $t_i = b$ et on peut remplacer le terme $(t_i, I_i)$ dans la subdivision
 pointée $\mathcal{D}$ par $(b, [d_i, b])$ et $(b, [b, e_i])$ sans que
@@ -873,7 +890,17 @@ la somme de Riemann associée change
 $f(b) \ell([d_i, b]) + f(b) \ell([b, e_i])$).
 La nouvelle subdivision $\mathcal{D}'$ ainsi construite vérifie quant à elle
 l'hypothèse de non-chevauchement de $b$. Par conséquent l'inégalité
-ci-dessus est satisfaite dans le cas général.
+ci-dessus est satisfaite dans le cas général. La fonction $f$ est donc
+intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et
+$$
+\HKint_a^b f(t) \, dt + \HKint_b^c f(t) \, dt = \HKint_a^c f(t) \, dt.
+$$
+L'intégrabilité de $|f|$ se montre de la même façon que celle de $f$ ;
+la fonction $f$ est donc
+intégrable (au sens de Lebesgue) sur $[a, b]$ et
+$$
+\int_a^b f(t) \, dt + \int_b^c f(t) \, dt = \int_a^c f(t) \, dt.
+$$
 
 
 ### {.ante}
@@ -887,13 +914,12 @@ Si $f$ est intégrable sur l'intervalle $[a, b]$,
 elle est intégrable sur tout intervalle $[c, d]$ 
 inclus dans $[a, b]$.
 
-### TODO
-Adapter au cadre absolument intégrable.
-
 ### Démonstration {.proof}
 Nous démontrons en détail le cas où $c = a$ ; le cas où $d=b$ se prouve de
 façon similaire et le cas général se déduit facilement de la combinaison 
 de ces deux cas particuliers.
+Par hypothèse $f$ est intégrable sur $[a, b]$, donc $f$ et $|f|$ sont intégrables
+au sens de Henstock-Kurzweil sur $[a, b]$.
 
 Soit $\varepsilon > 0$. Par le [critère d'intégrabilité de Cauchy](#CIC),
 il existe une jauge $\gamma$ sur $[a, b]$ telle
@@ -923,7 +949,10 @@ $$
 \leq \varepsilon.
 $$
 Par le [critère d'intégrabilité de Cauchy](#CIC), la fonction $f$ est donc
-intégrable sur l'intervalle $[a, d]$.
+intégrable au sens de Henstock-Kurzweil sur l'intervalle $[a, d]$.
+De la même façon, on montre que $|f|$ est 
+intégrable au sens de Henstock-Kurzweil sur l'intervalle $[a, d]$.
+La fonction $f$ est donc intégrable (au sens de Lebesgue) sur l'intervalle $[a, d]$.
 
 ### Positivité {.proposition .one}
 Si $f: [a, b] \to \mathbb{R}$ est positive et intégrable alors
@@ -1055,12 +1084,17 @@ La fonction $f$ est donc bien intégrable et d'intégrale nulle.
 Sous condition de positivité, 
 la proposition ["Fonction égales presque partout"](#fepp) admet une réciproque :
 
-### Fonctions égales presque partout {.proposition #fepp-réciproque .two}
-Une fonction $f:[a, b] \to \R$, positive, intégrable et d'intégrale nulle 
+### Fonctions égales presque partout (réciproque) {.proposition #fepp-réciproque .two}
+Si les fonctions $f:[a,b] \to \R$ et $g:[a, b] \to \R$ sont intégrables
+et si 
 $$
-\mbox{pour tout $t\in[a, b]$, $f(t) \geq 0$} \; \mbox{ et } \; \int_a^b f(t) \, dt = 0
+f \geq g \, \mbox{ presque partout} 
+\; \mbox{ et } \;
+\int_a^b f(t) \, dt = \int_a^b g(t) \, dt,
 $$
-est nulle presque partout.
+alors $f = g$ presque partout.
+
+### TODO : adapter à la nouvelle formulation
 
 ### Démonstration {.proof}
 La fonction $f$ étant intégrable, pour tout $x \in [a, b]$, [ses restrictions
