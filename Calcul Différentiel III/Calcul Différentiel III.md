@@ -193,7 +193,7 @@ $$
 sa *dérivée partielle d'ordre $2$ par rapport aux $j_1$-ème et 
 $j_2$-ème variables*.
 
-### Matrice hessienne {.definition .one}
+### Matrice hessienne {.definition .one #hessienne}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$.
 Si toutes les dérivées partielles au premier ordre de $f$ existent sur $U$
@@ -228,7 +228,7 @@ continue.
 ### Différentielle d'ordre 2 {.definition #d2 .three}
 Soit $U$ un ouvert de $\R^n$ et $f: U \subset \mathbb{R}^n \to \mathbb{R}$.
 On dira que $f$ est *deux fois différentiable en $x$* si $f$ est différentiable
-et si pour tout vecteur $h$ de $\mathbb{R}^n$,
+sur $U$ et si pour tout vecteur $h$ de $\mathbb{R}^n$,
 la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
 est définie[^not] comme l'application linéaire telle que pour tout $h$ 
@@ -275,11 +275,11 @@ $$
 d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
 $$
 
-### Différentielle d'ordre 2 et matrice hessienne {.proposition}
+### Différentielle d'ordre 2 et matrice hessienne {.proposition #d2mh}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
 $x \in U$.
 La fonction $f$ est deux fois différentiable en $x$ si et seulement si elle
-est différentiable et que son gradient $\nabla f$ est différentiable en $x$.
+est différentiable sur $U$ et que son gradient $\nabla f$ est différentiable en $x$.
 Sa matrice hessienne est alors définie en $x$ et pour tous $h_1, h_2 \in \R^n$, 
 $$
 d^2f(x) \cdot h_1 \cdot h_2 = h_1^{\top} \cdot H_f(x) \cdot h_2
@@ -331,16 +331,80 @@ d^2 f(x) \cdot
 \left(d^2 f(x) \cdot e_{j_1} \cdot e_{j_2}\right) \\
 &=
 \sum_{j_1=1}^n \sum_{j_2=1}^n h_{1j_1}h_{2j_2} 
-[H_f(x)]_{j_1j_2} \\
+[H_f(x)]_{j_1j_2}. \\
 \end{split}
 $$
 
-### TODO
-Equivalence 2 fois diff / développement limité à l'ordre $2$.
+### Développement limité du gradient {.proposition #dlg}
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+$x \in U$.
+Si la fonction $f$ est deux fois différentiable en $x$ alors
+$$
+\nabla f(x+h) = \nabla f(x) + H_f(x) \cdot h + \varepsilon(h) \|h\|
+$$
+où $\lim_{h \to 0} \varepsilon(h) = 0$.
+
+### Démonstration {.proof}
+D'après la proposition ["Différentielle d'ordre 2 et matrice hessienne"](#d2mh),
+$\nabla f$ existe et est différentiable en $x$. Par conséquent, $\nabla f$
+admet un développement limité au 1er ordre en $x$ :
+$$
+\nabla f(x+h) = \nabla f(x) + J_{\nabla f}(x) \cdot h + \varepsilon(h) \|h\|.
+$$
+D'après [la définition de la matrice hessienne](#hessienne),
+$H_f(x) = J_{\nabla f}(x)$ d'où l'égalité de l'énoncé.
+
+### Développement limité à l'ordre $2$ {.proposition}
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+$x \in U$.
+Si la fonction $f$ est deux fois différentiable en $x$ alors
+$$
+f(x+h) = f(x) + \left<\nabla f(x), h\right> + h^{\top} \cdot \frac{H_f(x)}{2} \cdot h + \varepsilon(h) \|h\|^2
+$$
+où $\lim_{h\to 0} \varepsilon(h) = 0$.
+
+### Démonstration {.proof}
+Il s'agit de montrer que pour tout $\varepsilon > 0$, 
+on peut trouver un seuil $r>0$ tel que si $\|h\| \leq r$, 
+alors
+$$
+\left\|
+f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot \frac{H_f(x)}{2} \cdot h
+\right\| 
+\leq \varepsilon \|h\|^2.
+$$
+La fonction 
+$g : h \mapsto f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot H_f(x) \cdot h \in \R$
+est différentiable, de gradient en $h$
+$$
+\nabla g(h) = \nabla f(x+h) - \nabla f(x) - \left(\frac{ H_f(x) + H_f(x)^{\top}}{2}\right) \cdot h,
+$$
+c'est-à-dire, comme [la matrice hessienne est symmétrique](#SD2),
+$$
+\nabla g(h) = \nabla f(x+h) - \nabla f(x) - H_f(x) \cdot h.
+$$
+Compte tenu [du développement limité du gradient de $f$ en $x$](#dlg), 
+il existe un seuil $r > 0$ tel que pour tout $k$ tel que $\|k\| \leq r$,
+$$
+\|\nabla g(k)\| = \|\nabla f(x+k) - \nabla f(x) - H_f(x) \cdot k\| \leq \varepsilon \|k\|.
+$$
+Par l'inégalité des accroissements finis, quand $\|h\| \leq r$, on a donc
+\begin{align*}
+\|g(h)\| = \|g(h) - g(0)\| 
+&\leq \sup_{k \in [0,h]} \|dg(k)\| \times \|h\| \\
+&= \sup_{k \in [0,h]} \|\nabla g(k)\| \times \|h\| \\
+&\leq \sup_{k \in [0,h]} \varepsilon \|k\| \times \|h\| \\
+&\leq \varepsilon \|h\|^2.
+\end{align*}
+
 
 ### Continue différentiabilité d'ordre 2 implique différentiabilité d'ordre 2 {.proposition .one}
 Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
 continûment différentiable, alors $f$ est deux fois différentiable.
+
+### TODO -- Démonstration 
+
+
 
 ### Variation de la différentielle {.lemma #LVD} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
@@ -364,7 +428,7 @@ $$
 $$
 le terme $\varepsilon_{h_1}(h_2)$ est donc linéaire en $h_1$ ; 
 notons $E(h_2)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
-qui est nulle quand $h_2=0$ et définie dans le cas contraire
+nulle quand $h_2=0$ et définie dans le cas contraire
 par $E(h_2) \cdot h_1 = \varepsilon_{h_1} (h_2)$. On a donc pour tout $h_1 \in \R^n$
 $$
 df(x+h_2) \cdot h _1
@@ -381,15 +445,15 @@ Par ailleurs, pour tout couple de
 vecteurs $h_1$ et $h_2$ de $\mathbb{R}^n$, on a
 $$
 \begin{split}
-\|E(h_2) \cdot h_1\| &= \left\| E(h_2) \cdot \left(\sum_{i=1}^n (h_1)_i e_i \right) \right\| \\
-&\leq \sum_{i=1}^n \|E(h_2) \cdot e_i\| |(h_1à_i| \\
-&\leq \left(\sum_{i=1}^n \|E(h_2) \cdot e_i\|\right) \|h_1\| 
-= \left(\sum_{i=1}^n \|\varepsilon_{e_i}(h_2)\|\right) \|h_1\|
+\|E(h_2) \cdot h_1\| &= \left\| E(h_2) \cdot \left(\sum_{j_1=1}^n h_{1j_1} e_{j_1} \right) \right\| \\
+&\leq \sum_{j_1=1}^n \|E(h_2) \cdot e_{j_1}\| |h_{1i}| \\
+&\leq \left(\sum_{j_1=1}^n \|E(h_2) \cdot e_i\|\right) \|h_1\| 
+= \left(\sum_{j_1=1}^n \|\varepsilon_{e_{j_1}}(h_2)\|\right) \|h_1\|
 \end{split}
 $$
 donc la norme d'opérateur de $E(h_2)$ vérifie
 $$
-\|E(h_2)\| \leq \sum_{i=1}^n \|\varepsilon_{e_i}(h_2)\| \to 0
+\|E(h_2)\| \leq \sum_{j_1=1}^n \|\varepsilon_{e_{j_1}}(h_2)\| \to 0
 \, \mbox{ quand } h_2 \, \to 0,
 $$
 ce qui prouve le résultat cherché.
@@ -432,7 +496,7 @@ $$
 g(u) = f(x+u+h_2) - f(x+u) - d^2f(x) \cdot u \cdot h_2,
 $$
 la différence vaut $e = g(h_1) - g(0)$. 
-Cette différence peut être majorée par [l'inégalité des accroissements finis](#TAF) : 
+Cette différence peut être majorée par l'inégalité des accroissements finis : 
 $g$ est différentiable sur le segment $[0, h_1]$ et
 $$
 dg(u) = df(x+u+h_2) - df(x+u) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot h_2). 
@@ -444,7 +508,7 @@ dg(u) &= (df(x+u+h_2) - df(x) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot (u+h_2)) )\
       &\phantom{=} - (df(x+u) - df(x) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot u)),
 \end{split}
 $$
-par le théorème controllant la [variation de la différentielle][Variation de la différentielle I],
+par le lemme ["Variation de la différentielle"](#LVD),
 pour $\varepsilon > 0$ quelconque, comme
 $\|u+h_2\| \leq \|h_1\| + \|h_2\|$ et $\|u\| \leq \|h_1\|$, 
 on peut trouver un $\eta > 0$ tel que si $\|h_1\| < \eta$ et $\|h_2\| < \eta,$ 
@@ -452,17 +516,25 @@ alors
 $$
 \|dg(u)\| \leq \frac{\varepsilon}{2} (\|h_1\| + \|h_2\|) + \frac{\varepsilon}{2} \|h_1\|.
 $$
-Par conséquent, [le théorème des accroissements finis](#TAF) fournit
+Par conséquent, l'inégalité des accroissements finis fournit
 $$
 \|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h_1\| + \|h_2\|) + \frac{\varepsilon}{2} \|h_1\|\right)\|h_1\| \leq \varepsilon (\|h_1\| + \|h_2\|)^2.
 $$
 
 ### Symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-deux fois différentiable en un point $x$ de $U$. Pour tout couple
-de vecteur $h_1$ et $h_2$ de $\mathbb{R}^n$, on a
+Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable 
+en un point $x$ de $U$. Pour tout couple de vecteurs $h_1$ et $h_2$ 
+de $\mathbb{R}^n$, on a
 $$
-d^2 f (x) \cdot h_1 \cdot h_2 = d^2 f(x) \cdot h_2 \cdot h_1.
+d^2 f (x) \cdot h_1 \cdot h_2 = d^2 f(x) \cdot h_2 \cdot h_1,
+$$
+ou de façon équivalente, la matrice hessienne de $f$ en $x$ est symétrique
+$$
+H_f(x)^{\top} = H_f(x),
+$$
+c'est-à-dire, pour tous $j_1, j_2 \in \{1,\dots,m\}$,
+$$
+\partial^2_{j_2j_1} f(x) = \partial^2_{j_1j_2} f(x).
 $$
 
 ### Démonstration {.proof}
@@ -870,8 +942,8 @@ Il nous faut montrer que $r(h)$ est un $o(\|h\|^j)$, ce qui
 nous allons accomplir en établissant que $\|dr(h)\| = o(\|h\|^{j-1})$.
 En effet, si $dr(h) = E(h) \|h\|^{j-1}$ où l'application linéaire $E$
 est un $o(1)$, alors pour tout $\varepsilon > 0$ et $h$ assez proche de $0$ 
-on a $\|E(h)\| \leq \varepsilon$ et donc par [le théorème des accroissements
-finis](#TAF),
+on a $\|E(h)\| \leq \varepsilon$ et donc par l'inégalité des accroissements
+finis,
 $$
 \|r(h)\| = \|r(h) - r(0)\| \leq \varepsilon \|h\|^{j-1} \times \|h\|
 = \varepsilon \|h\|^j,
