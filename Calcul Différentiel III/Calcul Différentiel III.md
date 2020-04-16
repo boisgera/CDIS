@@ -184,54 +184,54 @@ Matrice hessienne et différentielle d'ordre $2$
 
 ### Dérivées partielles d'ordre $2$ {.definition .one}
 Soit $U$ un ouvert de $\R^m$, $f: U \to \R$ et $x \in U$.
-Si la $j$-ème dérivée partielle de $f$ est définie sur $U$,
-et que sa $k$-ème dérivée partielle en $x$ existe, on note
+Si la $j_1$-ème dérivée partielle de $f$ est définie sur $U$,
+et que la $j_2$-ème dérivée partielle de $\partial_{j_1} f$ 
+en $x$ existe, on note
 $$
-\partial^2_{kj} f(x) := \partial_k (\partial_j f)(x).
+\partial^2_{j_1j_2} f(x) := \partial_{j_2} (\partial_{j_1} f)(x).
 $$
-sa *dérivée partielle d'ordre $2$ de (multi-)indice $(k, j)$*.
+sa *dérivée partielle d'ordre $2$ par rapport aux $j_1$-ème et 
+$j_2$-ème variables*.
 
 ### Matrice hessienne {.definition .one}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x$ un point de $U$.
-Si toutes les dérivées partielles d'ordre $1$ de $f$ existent sur $U$
-et que toutes leurs dérivées partielles d'ordre 1 existent en $x$,
-on définit *la matrice hessienne $H_f(x) \in \R^n \times \R^n$* 
-de $f$ en $x$ par
+Si toutes les dérivées partielles au premier ordre de $f$ existent sur $U$
+et que toutes leurs dérivées partielles au premier ordre existent en $x$,
+on définit *la matrice hessienne $H_f(x)$ de $f$ en $x$* par
 $$
-[H_f(x)]_{kj} = \partial^2_{kj} f(x)
+[H_f(x)]_{j_1j_2} = \partial^2_{j_2 j_1} f(x) \in \R^{n \times n},
 $$
 c'est-à-dire
 $$
-H_f(x) = \left[
+H_f(x) = J_{\nabla f}(x) = \left[
 \begin{array}{cccc}
-\partial_{11} f (x) & \partial_{12} f (x) & \cdots & \partial_{1n} f (x) \\
-\partial_{21} f (x) & \partial_{22} f (x) & \cdots & \partial_{2n} f (x) \\
+\partial_{11} f (x) & \partial_{21} f (x) & \cdots & \partial_{n1} f (x) \\
+\partial_{12} f (x) & \partial_{22} f (x) & \cdots & \partial_{n2} f (x) \\
 \vdots & \vdots & \vdots & \vdots \\
-\partial_{n1} f (x) & \partial_{n2} f (x) & \cdots & \partial_{nn} f (x) \\
+\partial_{1n} f (x) & \partial_{2n} f (x) & \cdots & \partial_{nn} f (x) \\
 \end{array}
 \right].
 $$
 
-### TODO
-Développer:
-$$
-H_f(x) = J_{\nabla f}(x)^{\top}.
-$$
-
 ### Continue différentiabilité d'ordre 2 {.definition .one}
 Soit $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
-*deux fois continûment différentiable* si pour tout $j \in \{1,\dots, n\}$ 
-et tout $k \in \{1,\dots, n\}$, la dérivée partielle d'ordre deux 
-$\partial^2_{kj} f:U \to \R$ existe et est continue.
+*deux fois continûment différentiable* si pour tout $j_1 \in \{1,\dots, n\}$ 
+et tout $j_2 \in \{1,\dots, n\}$, la dérivée partielle d'ordre deux 
+$\partial^2_{j_1j_2} f:U \to \R$ existe et est continue.
+
+### {.remark .post} 
+Alternativement, la fonction $f$ est deux fois continûment différentiable
+si la fonction $x \in U \mapsto H_f(x) \in \R^{n\times n}$ est définie et
+continue.
 
 ### Différentielle d'ordre 2 {.definition #d2 .three}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}$ une fonction différentiable.
-On dira que $f$ est *deux fois différentiable en $x$* 
-si pour tout vecteur $h$ de $\mathbb{R}^n$,
+Soit $U$ un ouvert de $\R^n$ et $f: U \subset \mathbb{R}^n \to \mathbb{R}$.
+On dira que $f$ est *deux fois différentiable en $x$* si $f$ est différentiable
+et si pour tout vecteur $h$ de $\mathbb{R}^n$,
 la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
-est définie comme l'application linéaire telle que pour tout $h$ 
+est définie[^not] comme l'application linéaire telle que pour tout $h$ 
 dans $\mathbb{R}^n$,
 $$
 d^2 f(x) \cdot h_1 := d(x\mapsto df(x)\cdot h_1)(x),
@@ -243,13 +243,12 @@ $$
 On dit que $f$ est *deux fois différentiable (sur $U$)* si elle est 
 deux fois différentiable en tout point $x$ de $U$.
 
-### {.remark}
-On peut vérifier que le terme $d(x\mapsto df(x)\cdot h_1)(x)$ dépend 
+[^not]: On peut vérifier que le terme $d(x\mapsto df(x)\cdot h_1)(x)$ dépend 
 bien linéairement de $h_1$, ce qui justifie l'assertion que $d^2f(x)$
-est linéaire et la notation "$\cdot$" lorsqu'elle est appliquée à un
+est linéaire et donc l'usage du "$\cdot$" lorsqu'elle est appliquée à un
 argument $h_1$.
 
-### {.remark}
+### Notations {.remark}
 Par construction, le terme $d(x\mapsto df(x)\cdot h_1)(x)$ 
 est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
 donc la fonction $d^2f(x)$
@@ -261,27 +260,87 @@ d^2f(x) \in \mathbb{R}^n \to (\mathbb{R}^n \to \mathbb{R}),
 $$
 ce qui se décline successivement en
 $$
-d^2f(x) \cdot h_1 \in (\mathbb{R}^n \to \mathbb{R}),
+d^2f(x) \cdot h_1 \in \mathbb{R}^n \to \mathbb{R},
 \; \mbox{ et } \;
 (d^2f(x) \cdot h_1) \cdot h_2 \in \mathbb{R}^m.
 $$
-On conviendra que, le symbole "$\to$" associe à droite, par exemple :
+On conviendra que dans ce contexte, le symbole "$\to$" associe à droite :
 $$
 \mathbb{R}^n \to \R^n \to \mathbb{R} := \R^n \to (\mathbb{R}^n \to \mathbb{R}).
 $$
 La convention associée -- utilisée dans la définition de la différentielle
 d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
-le symbole "$\cdot$" associe à gauche, par exemple :
+le symbole "$\cdot$" associe à gauche :
 $$
 d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
 $$
 
+### Différentielle d'ordre 2 et matrice hessienne {.proposition}
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+$x \in U$.
+La fonction $f$ est deux fois différentiable en $x$ si et seulement si elle
+est différentiable et que son gradient $\nabla f$ est différentiable en $x$.
+Sa matrice hessienne est alors définie en $x$ et pour tous $h_1, h_2 \in \R^n$, 
+$$
+d^2f(x) \cdot h_1 \cdot h_2 = h_1^{\top} \cdot H_f(x) \cdot h_2
+=\sum_{j_1=1}^n \sum_{j_2=1}^n [H_f(x)]_{j_1j_2} h_{1j_1} h_{2j_2}.
+$$
+En particulier
+$$
+[H_f(x)]_{j_1j_2} = d^2f(x) \cdot e_{j_1} \cdot e_{j_2}.
+$$
+
+### Démonstration {.proof}
+Si la fonction $f$ est deux fois différentiable en $x$, 
+la fonction $f$ est différentiable donc son gradient existe. 
+Pour tout $h_1 \in \R^n$,
+la fonction $x \mapsto df(x) \cdot h_1$ est également différentiable en $x$
+donc en particulier, pour tout $j_1 \in \{1, \dots, n\}$,
+$(\nabla f(x))_{j_1} = \left<\nabla f(x), e_{j_1} \right> = df(x) \cdot e_{j_1}$ ;
+le gradient de $f$ est donc différentiable composante par composante et donc
+différentiable. Réciproquement, si $f$ est différentiable et que son gradient
+est différentiable en $x$, pour tout $h \in \R^n$ on a 
+$$
+df(x) \cdot h_1 = df(x) \cdot \left(\sum_{j_1=1}^n h_{1j_1} e_{j_1}\right)
+= \sum_{j=1}^n h_{1j_1} df(x) \cdot e_{j_1}
+= \sum_{j=1}^n h_{1j_1} (\nabla f(x))_{j_1} ;
+$$
+la fonction $x \mapsto (df(x)\cdot h)$ est donc différentiable en $x$
+comme combinaison linéaire de fonction différentiables en $x$.
+
+Par définition, $[H_f(x)]_{j_1j_2}(x) = 
+\partial^2_{j_1j_2} f(x) = \partial_{j_2} (\partial_{j_1} f) (x)$
+et donc
+$$[H_f(x)]_{j_1j_2}(x) = \partial_{j_2} (x \mapsto df(x)\cdot e_{j_1})(x)
+= d(x \mapsto df(x)\cdot e_{j_1})(x) \cdot e_{j_1},$$
+c'est-à-dire $[H_f(x)]_{j_1j_2}(x) = d^2f(x) \cdot e_{j_1} \cdot e_{j_2}$.
+Pour prouver l'égalité restante, on exploite la linéarité de 
+$d^2f(x) \cdot h_1 \cdot h_2$ par rapport à $h_1$ et à $h_2$ :
+$$
+\begin{split}
+d^2f(x) \cdot h_1 \cdot h_2
+&=
+d^2 f(x) \cdot 
+\left( \sum_{j_1=1}^n h_{1j_1} e_{j_1} \right) \cdot \left( \sum_{j_2=1}^n h_{2j_2} e_{j_2} \right) \\
+&=
+\sum_{j_2=1}^n h_{2j_2} \left(
+d^2 f(x) \cdot 
+\left( \sum_{j_1=1}^n h_{1j_1} e_{j_1} \right) \cdot e_{j_2} \right) \\
+&=
+\sum_{j_1=1}^n \sum_{j_2=1}^n h_{1j_1}h_{2j_2} 
+\left(d^2 f(x) \cdot e_{j_1} \cdot e_{j_2}\right) \\
+&=
+\sum_{j_1=1}^n \sum_{j_2=1}^n h_{1j_1}h_{2j_2} 
+[H_f(x)]_{j_1j_2} \\
+\end{split}
+$$
+
+### TODO
+Equivalence 2 fois diff / développement limité à l'ordre $2$.
+
 ### Continue différentiabilité d'ordre 2 implique différentiabilité d'ordre 2 {.proposition .one}
 Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
 continûment différentiable, alors $f$ est deux fois différentiable.
-
-### TODO
-Lier calcul différentielle et matrice hessienne (dans les deux sens).
 
 ### Variation de la différentielle {.lemma #LVD} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
