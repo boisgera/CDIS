@@ -188,7 +188,7 @@ Si la $j_1$-ème dérivée partielle de $f$ est définie sur $U$,
 et que la $j_2$-ème dérivée partielle de $\partial_{j_1} f$ 
 en $x$ existe, on note
 $$
-\partial^2_{j_1j_2} f(x) := \partial_{j_2} (\partial_{j_1} f)(x).
+\partial^2_{j_2j_1} f(x) := \partial_{j_2} (\partial_{j_1} f)(x).
 $$
 sa *dérivée partielle d'ordre $2$ par rapport aux $j_1$-ème et 
 $j_2$-ème variables*.
