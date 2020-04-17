@@ -9,6 +9,15 @@
 
 --------------------------------------------------------------------------------
 
+Objectifs d'apprentissage
+--------------------------------------------------------------------------------
+
+  - matrice hessienne, diff d'ordre 2, cont. diff d'ordre 2
+
+  - symétrie de la matrice hessienne, 
+  
+  - dvlpt limité d'ordre 2, dvlpt avec reste intégral d'ordre 2
+
 TODO
 ================================================================================
 
@@ -218,7 +227,7 @@ $$
 Soit $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
 *deux fois continûment différentiable* si pour tout $j_1 \in \{1,\dots, n\}$ 
 et tout $j_2 \in \{1,\dots, n\}$, la dérivée partielle d'ordre deux 
-$\partial^2_{j_1j_2} f:U \to \R$ existe et est continue.
+$\partial^2_{j_2j_1} f:U \to \R$ existe et est continue.
 
 ### {.remark .post} 
 Alternativement, la fonction $f$ est deux fois continûment différentiable
@@ -309,7 +318,7 @@ la fonction $x \mapsto (df(x)\cdot h)$ est donc différentiable en $x$
 comme combinaison linéaire de fonction différentiables en $x$.
 
 Par définition, $[H_f(x)]_{j_1j_2}(x) = 
-\partial^2_{j_1j_2} f(x) = \partial_{j_2} (\partial_{j_1} f) (x)$
+\partial^2_{j_2j_1} f(x) = \partial_{j_2} (\partial_{j_1} f) (x)$
 et donc
 $$[H_f(x)]_{j_1j_2}(x) = \partial_{j_2} (x \mapsto df(x)\cdot e_{j_1})(x)
 = d(x \mapsto df(x)\cdot e_{j_1})(x) \cdot e_{j_1},$$
@@ -353,173 +362,6 @@ $$
 $$
 D'après [la définition de la matrice hessienne](#hessienne),
 $H_f(x) = J_{\nabla f}(x)$ d'où l'égalité de l'énoncé.
-
-### Développement limité à l'ordre $2$ {.proposition}
-Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
-$x \in U$.
-Si la fonction $f$ est deux fois différentiable en $x$ alors
-$$
-f(x+h) = f(x) + \left<\nabla f(x), h\right> + h^{\top} \cdot \frac{H_f(x)}{2} \cdot h + \varepsilon(h) \|h\|^2
-$$
-où $\lim_{h\to 0} \varepsilon(h) = 0$.
-
-### Démonstration {.proof}
-Il s'agit de montrer que pour tout $\varepsilon > 0$, 
-on peut trouver un seuil $r>0$ tel que si $\|h\| \leq r$, 
-alors
-$$
-\left\|
-f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot \frac{H_f(x)}{2} \cdot h
-\right\| 
-\leq \varepsilon \|h\|^2.
-$$
-La fonction 
-$g : h \mapsto f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot H_f(x) \cdot h \in \R$
-est différentiable, de gradient en $h$
-$$
-\nabla g(h) = \nabla f(x+h) - \nabla f(x) - \left(\frac{ H_f(x) + H_f(x)^{\top}}{2}\right) \cdot h,
-$$
-c'est-à-dire, comme [la matrice hessienne est symmétrique](#SD2),
-$$
-\nabla g(h) = \nabla f(x+h) - \nabla f(x) - H_f(x) \cdot h.
-$$
-Compte tenu [du développement limité du gradient de $f$ en $x$](#dlg), 
-il existe un seuil $r > 0$ tel que pour tout $k$ tel que $\|k\| \leq r$,
-$$
-\|\nabla g(k)\| = \|\nabla f(x+k) - \nabla f(x) - H_f(x) \cdot k\| \leq \varepsilon \|k\|.
-$$
-Par l'inégalité des accroissements finis, quand $\|h\| \leq r$, on a donc
-\begin{align*}
-\|g(h)\| = \|g(h) - g(0)\| 
-&\leq \sup_{k \in [0,h]} \|dg(k)\| \times \|h\| \\
-&= \sup_{k \in [0,h]} \|\nabla g(k)\| \times \|h\| \\
-&\leq \sup_{k \in [0,h]} \varepsilon \|k\| \times \|h\| \\
-&\leq \varepsilon \|h\|^2.
-\end{align*}
-
-
-### Continue différentiabilité d'ordre 2 implique différentiabilité d'ordre 2 {.proposition .one}
-Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
-continûment différentiable, alors $f$ est deux fois différentiable.
-
-### TODO -- Démonstration 
-
-
-
-### Variation de la différentielle {.lemma #LVD} 
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
-deux fois différentiable en $x \in U$,
-$$
-df(x+h_2) = df(x) + (h_1 \mapsto d^2 f(x) \cdot h_1 \cdot h_2) + E(h_2)\|h_2\|
-$$
-où $\lim_{h_2 \to 0} E(h_2) = 0 \in \R^{m\times n}$.
-
-### Démonstration {.proof}
-Par [définition de la différentielle d'ordre 2 en $x$](#d2), 
-pour tout vecteur $h_1$ de $\mathbb{R}^n$ fixé, 
-pour tout vecteur $h_2$ de $\mathbb{R}^n$ dans un voisinage de $0$,
-$$
-df(x+h_2) \cdot h_1 = df(x) \cdot h_1 + d^2f(x) \cdot h_1 \cdot h_2 + \varepsilon_{h_1}(h_2)(\|h_2\|),
-$$
-où $\varepsilon_{h_1}$ vérifie $\lim_{h_2 \to 0} \varepsilon_{h_1}(h_2) = 0$.
-Si $h_2$ est non nul, on a donc
-$$
-\varepsilon_{h_1}(h_2) = \frac{1}{\|h_2\|}\left(df(x+h_2) \cdot h_1 - df(x) \cdot h_1 - d^2f(x) \cdot h_1 \cdot h_2 \right),
-$$
-le terme $\varepsilon_{h_1}(h_2)$ est donc linéaire en $h_1$ ; 
-notons $E(h_2)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
-nulle quand $h_2=0$ et définie dans le cas contraire
-par $E(h_2) \cdot h_1 = \varepsilon_{h_1} (h_2)$. On a donc pour tout $h_1 \in \R^n$
-$$
-df(x+h_2) \cdot h _1
-= 
-df(x) \cdot h_1 + d^2f(x) \cdot h_1 \cdot h_2 + (E(h_2)\cdot h_1) \|h_2\|,
-$$
-soit 
-$$
-df(x+h_2)
-= 
-df(x) + (h_1 \mapsto d^2f(x) \cdot h_1 \cdot h_2) + E(h_2) \|h_2\|,
-$$
-Par ailleurs, pour tout couple de 
-vecteurs $h_1$ et $h_2$ de $\mathbb{R}^n$, on a
-$$
-\begin{split}
-\|E(h_2) \cdot h_1\| &= \left\| E(h_2) \cdot \left(\sum_{j_1=1}^n h_{1j_1} e_{j_1} \right) \right\| \\
-&\leq \sum_{j_1=1}^n \|E(h_2) \cdot e_{j_1}\| |h_{1i}| \\
-&\leq \left(\sum_{j_1=1}^n \|E(h_2) \cdot e_i\|\right) \|h_1\| 
-= \left(\sum_{j_1=1}^n \|\varepsilon_{e_{j_1}}(h_2)\|\right) \|h_1\|
-\end{split}
-$$
-donc la norme d'opérateur de $E(h_2)$ vérifie
-$$
-\|E(h_2)\| \leq \sum_{j_1=1}^n \|\varepsilon_{e_{j_1}}(h_2)\| \to 0
-\, \mbox{ quand } h_2 \, \to 0,
-$$
-ce qui prouve le résultat cherché.
-
-### TODO - Variation d'ordre 1 manquante
-
-### Variation d'ordre $2$
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
-Quand cette expression est définie, on appelle *variation d'ordre 2*
-de $f$ en $x$, associée aux variations $h_1$ et $h_2$ de l'argument,
-la grandeur
-$$
-\begin{split}
-\Delta^2 f(x, h_1, h_2) &=\Delta(x \mapsto \Delta f(x, h_1))(x, h_2) \\
-&= \Delta f(x+h_2, h_1) - \Delta f(x, h_1).
-\end{split}
-$$
-
-### Variation et différentielle d'ordre deux {.lemma #D2d2}
-Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
-$\|h_1\| \leq \eta$ et $\|h_2\| \leq \eta$, alors
-$$
-\left\|\Delta^2f(x, h_1, h_2) - d^2f(x)\cdot h_1 \cdot h_2 \right\| \leq \varepsilon (\|h_1\| + \|h_2\|)^2.
-$$
-
-### Démonstration  {.proof}
-Considérons des vecteurs $h_1$ et $h_2$ tels que $x+h_1$, $x+h_2$ et $x+h_1+h_2$ soient
-dans le domaine de définition de $f$.
-La différence $e$ entre $\Delta^2 f(x,h_1, h_2)$ et $d^2 f(x) \cdot h_1 \cdot h_2$
-vaut
-$$
-\begin{split}
-e &= (f(x+h_1+h_2) - f(x+h_2)) - (f(x+h_1) - f(x))) - d^2f(x)\cdot h_1\cdot h_2 \\
-  &= (f(x+h_1+h_2) - f(x+h_1) - d^2f(x) \cdot h_1 \cdot h_2) \\
-  &\phantom{=} - (f(x+h_2) - f(x) - d^2f(x) \cdot 0 \cdot h_2)
-\end{split}
-$$
-Par conséquent, si l'on définit $g$ par
-$$
-g(u) = f(x+u+h_2) - f(x+u) - d^2f(x) \cdot u \cdot h_2,
-$$
-la différence vaut $e = g(h_1) - g(0)$. 
-Cette différence peut être majorée par l'inégalité des accroissements finis : 
-$g$ est différentiable sur le segment $[0, h_1]$ et
-$$
-dg(u) = df(x+u+h_2) - df(x+u) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot h_2). 
-$$
-Comme
-$$
-\begin{split}
-dg(u) &= (df(x+u+h_2) - df(x) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot (u+h_2)) )\\
-      &\phantom{=} - (df(x+u) - df(x) - (h_1 \mapsto d^2f(x) \cdot h_1 \cdot u)),
-\end{split}
-$$
-par le lemme ["Variation de la différentielle"](#LVD),
-pour $\varepsilon > 0$ quelconque, comme
-$\|u+h_2\| \leq \|h_1\| + \|h_2\|$ et $\|u\| \leq \|h_1\|$, 
-on peut trouver un $\eta > 0$ tel que si $\|h_1\| < \eta$ et $\|h_2\| < \eta,$ 
-alors 
-$$
-\|dg(u)\| \leq \frac{\varepsilon}{2} (\|h_1\| + \|h_2\|) + \frac{\varepsilon}{2} \|h_1\|.
-$$
-Par conséquent, l'inégalité des accroissements finis fournit
-$$
-\|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h_1\| + \|h_2\|) + \frac{\varepsilon}{2} \|h_1\|\right)\|h_1\| \leq \varepsilon (\|h_1\| + \|h_2\|)^2.
-$$
 
 ### Symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
 Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable 
@@ -577,6 +419,125 @@ $$
 on voit que l'inégalité est en fait valable pour des $h_1$ et $h_2$ arbitraires.
 On en déduit que $d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 = 0.$
 
+### Développement limité à l'ordre $2$ {.proposition #dl2}
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+$x \in U$.
+Si la fonction $f$ est deux fois différentiable en $x$ alors
+$$
+f(x+h) = f(x) + \left<\nabla f(x), h\right> + h^{\top} \cdot \frac{H_f(x)}{2} \cdot h + \varepsilon(h) \|h\|^2
+$$
+où $\lim_{h\to 0} \varepsilon(h) = 0$.
+
+### Démonstration {.proof}
+Il s'agit de montrer que pour tout $\varepsilon > 0$, 
+on peut trouver un seuil $r>0$ tel que si $\|h\| \leq r$, 
+alors
+$$
+\left\|
+f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot \frac{H_f(x)}{2} \cdot h
+\right\| 
+\leq \varepsilon \|h\|^2.
+$$
+La fonction 
+$g : h \mapsto f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot H_f(x) \cdot h \in \R$
+est différentiable, de gradient en $h$
+$$
+\nabla g(h) = \nabla f(x+h) - \nabla f(x) - \left(\frac{ H_f(x) + H_f(x)^{\top}}{2}\right) \cdot h,
+$$
+c'est-à-dire, comme [la matrice hessienne est symmétrique](#SD2),
+$$
+\nabla g(h) = \nabla f(x+h) - \nabla f(x) - H_f(x) \cdot h.
+$$
+Compte tenu [du développement limité du gradient de $f$ en $x$](#dlg), 
+il existe un seuil $r > 0$ tel que pour tout $k$ tel que $\|k\| \leq r$,
+$$
+\|\nabla g(k)\| = \|\nabla f(x+k) - \nabla f(x) - H_f(x) \cdot k\| \leq \varepsilon \|k\|.
+$$
+Par l'inégalité des accroissements finis, quand $\|h\| \leq r$, on a donc
+\begin{align*}
+\|g(h)\| = \|g(h) - g(0)\| 
+&\leq \sup_{k \in [0,h]} \|dg(k)\| \times \|h\| \\
+&= \sup_{k \in [0,h]} \|\nabla g(k)\| \times \|h\| \\
+&\leq \sup_{k \in [0,h]} \varepsilon \|k\| \times \|h\| \\
+&\leq \varepsilon \|h\|^2.
+\end{align*}
+
+### Continue différentiabilité d'ordre 2 implique différentiabilité d'ordre 2 {.proposition .one}
+Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
+continûment différentiable, alors $f$ est deux fois différentiable.
+
+### Démonstration {.proof}
+La fonction $f$ est différentiable à l'ordre 2
+[si elle est différentiable et que son gradient est également différentiable](#d2mh).
+Or, si $f$ est deux fois continûment différentiable, tous les dérivées
+partielles à l'ordre 1 de $f$ existe et sont elles-même dérivables ;
+donc le gradient de $f$ existe et est continu, la fonction $f$ est donc
+continûment différentiable et donc différentiable. De même, les dérivées
+partielles du gradient, qui sont les dérivées partielles de $f$ d'ordre 2,
+existent et sont continues. Le gradient est donc continûment différentiable
+et donc différentiable. La fonction $f$ est donc différentiable.
+
+
+<!--
+
+### Variation de la différentielle {.lemma #LVD} 
+Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
+deux fois différentiable en $x \in U$,
+$$
+df(x+h_2) = df(x) + (h_1 \mapsto d^2 f(x) \cdot h_1 \cdot h_2) + E(h_2)\|h_2\|
+$$
+où $\lim_{h_2 \to 0} E(h_2) = 0 \in \R^{m\times n}$.
+
+### Démonstration {.proof}
+Par [définition de la différentielle d'ordre 2 en $x$](#d2), 
+pour tout vecteur $h_1$ de $\mathbb{R}^n$ fixé, 
+pour tout vecteur $h_2$ de $\mathbb{R}^n$ dans un voisinage de $0$,
+$$
+df(x+h_2) \cdot h_1 = df(x) \cdot h_1 + d^2f(x) \cdot h_1 \cdot h_2 + \varepsilon_{h_1}(h_2)(\|h_2\|),
+$$
+où $\varepsilon_{h_1}$ vérifie $\lim_{h_2 \to 0} \varepsilon_{h_1}(h_2) = 0$.
+Si $h_2$ est non nul, on a donc
+$$
+\varepsilon_{h_1}(h_2) = \frac{1}{\|h_2\|}\left(df(x+h_2) \cdot h_1 - df(x) \cdot h_1 - d^2f(x) \cdot h_1 \cdot h_2 \right),
+$$
+le terme $\varepsilon_{h_1}(h_2)$ est donc linéaire en $h_1$ ; 
+notons $E(h_2)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
+nulle quand $h_2=0$ et définie dans le cas contraire
+par $E(h_2) \cdot h_1 = \varepsilon_{h_1} (h_2)$. On a donc pour tout $h_1 \in \R^n$
+$$
+df(x+h_2) \cdot h _1
+= 
+df(x) \cdot h_1 + d^2f(x) \cdot h_1 \cdot h_2 + (E(h_2)\cdot h_1) \|h_2\|,
+$$
+soit 
+$$
+df(x+h_2)
+= 
+df(x) + (h_1 \mapsto d^2f(x) \cdot h_1 \cdot h_2) + E(h_2) \|h_2\|,
+$$
+Par ailleurs, pour tout couple de 
+vecteurs $h_1$ et $h_2$ de $\mathbb{R}^n$, on a
+$$
+\begin{split}
+\|E(h_2) \cdot h_1\| &= \left\| E(h_2) \cdot \left(\sum_{j_1=1}^n h_{1j_1} e_{j_1} \right) \right\| \\
+&\leq \sum_{j_1=1}^n \|E(h_2) \cdot e_{j_1}\| |h_{1i}| \\
+&\leq \left(\sum_{j_1=1}^n \|E(h_2) \cdot e_i\|\right) \|h_1\| 
+= \left(\sum_{j_1=1}^n \|\varepsilon_{e_{j_1}}(h_2)\|\right) \|h_1\|
+\end{split}
+$$
+donc la norme d'opérateur de $E(h_2)$ vérifie
+$$
+\|E(h_2)\| \leq \sum_{j_1=1}^n \|\varepsilon_{e_{j_1}}(h_2)\| \to 0
+\, \mbox{ quand } h_2 \, \to 0,
+$$
+ce qui prouve le résultat cherché.
+
+-->
+
+
+
+
+<!--
 ### Variation de la différentielle {.theorem} 
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
 deux fois différentiable en $x \in U$,
@@ -596,6 +557,8 @@ d^2 f(x) \cdot h_1 \cdot h_2 = d^2 f(x) \cdot h_2 \cdot h_1 = (d^2 f(x) \cdot h_
 $$
 ce qui fournit l'égalité cherchée.
 
+-->
+
 <!--
 ### Dérivées partielles d'ordre 2 {.definition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
@@ -609,6 +572,7 @@ $$
 $$
 -->
 
+<!--
 ### Symétrie des dérivées partielles d'ordre 2 {.proposition #sdp2}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x \in U$. Si $f$ est deux fois différentiable en $x$, alors pour
@@ -626,6 +590,8 @@ $$d^2f(x) \cdot e_j \cdot e_i = d(d(f(x)) \cdot e_j) \cdot e_i,$$
 on en déduit donc que $\partial^2_{ij} f(x) = d^2f(x) \cdot e_j \cdot e_i$.
 Par [symétrie de la différentielle d'ordre 2](#SD2), 
 $\partial^2_{ij} f(x) = \partial^2_{ji} f(x)$.
+
+-->
 
 <!--
 ### Hessienne {.definition}
@@ -1048,6 +1014,83 @@ Par dérivation en chaîne, la fonction
 $t \mapsto df^{(i)}(a+th) (\cdot \, h)^i$
 est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
 $df^{(i+1)}(a+th) (\cdot \, h)^{i+1}.$
+
+Annexe
+================================================================================
+
+### Variation d'ordre 1 et 2 {.definition}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+Quand cette expression est définie, on appelle *variation d'ordre 1*
+de $f$ en $x$ associée à la variation $h_1$ de l'argument la grandeur
+$$
+\Delta f(x, h_1) := f(x+h_1) - f(x)
+$$
+et
+*variation d'ordre 2* de $f$ en $x$, associée aux variations $h_1$ et 
+$h_2$ de l'argument, la grandeur
+$$
+\begin{split}
+\Delta^2 f(x, h_1, h_2) &:=\Delta(x \mapsto \Delta f(x, h_1))(x, h_2) \\
+&= \Delta f(x+h_2, h_1) - \Delta f(x, h_1).
+\end{split}
+$$
+
+
+### Variation d'ordre 2 et matrice hessienne {.lemma #D2d2}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+Si $f$ est deux fois différentiable en $x$,
+pour tout $\varepsilon > 0$, il existe un $r > 0$ tel que si
+$\|h_1\| \leq r$ et $\|h_2\| \leq r$, alors
+$$
+\left\|\Delta^2f(x, h_1, h_2) - h_1^{\top} \cdot H_f(x) \cdot h_2 \right\| 
+\leq \varepsilon (\|h_1\| + \|h_2\|)^2.
+$$
+
+### Démonstration  {.proof}
+Considérons des vecteurs $h_1$ et $h_2$ tels que $x+h_1$, $x+h_2$ et $x+h_1+h_2$ soient
+dans le domaine de définition de $f$.
+La différence $e$ entre $\Delta^2 f(x,h_1, h_2)$ et $d^2 f(x) \cdot h_1 \cdot h_2$
+vaut
+$$
+\begin{split}
+e &= (f(x+h_1+h_2) - f(x+h_2)) - (f(x+h_1) - f(x))) - d^2f(x)\cdot h_1\cdot h_2 \\
+  &= (f(x+h_1+h_2) - f(x+h_1) - h_1^{\top} \cdot H_f(x) \cdot h_2 \\
+  &\phantom{=} - (f(x+h_2) - f(x) - 0^{\top} \cdot H_f(x) \cdot h_2
+\end{split}
+$$
+Par conséquent, si l'on définit $g$ par
+$$
+g(u) = f(x+u+h_2) - f(x+u) - u^{\top} \cdot H_f(x) \cdot h_2,
+$$
+la différence vaut $e = g(h_1) - g(0)$. 
+Cette différence peut être majorée par l'inégalité des accroissements finis : 
+$g$ est différentiable sur le segment $[0, h_1]$ et
+$$
+\nabla g(u) = \nabla f(x+u+h_2) - df(x+u) - H_f(x) \cdot h_2.
+$$
+Comme
+$$
+\begin{split}
+\nabla g(u) &= (\nabla f(x+u+h_2) - \nabla f(x) - H_f(x) \cdot (u+h_2) )\\
+      &\phantom{=} - (\nabla f(x+u) - \nabla f(x) - H_f(x) \cdot u),
+\end{split}
+$$
+par [le développement limité du gradient de $f$](#dlg),
+pour $\varepsilon > 0$ quelconque, comme
+$\|u+h_2\| \leq \|h_1\| + \|h_2\|$ et $\|u\| \leq \|h_1\|$, 
+on peut trouver un $r > 0$ tel que si $\|h_1\| < r$ et $\|h_2\| < r,$ 
+alors 
+$$
+\|\nabla g(u)\| \leq \frac{\varepsilon}{2} (\|h_1\| + \|h_2\|) + \frac{\varepsilon}{2} \|h_1\|.
+$$
+Par conséquent, l'inégalité des accroissements finis fournit
+\begin{align*}
+\|e\| = \|\nabla g(u) - \nabla g(0)\| 
+&\leq  \left( \frac{\varepsilon}{2} (\|h_1\| + \|h_2\|) + \frac{\varepsilon}{2} \|h_1\|\right)\|h_1\| \\ 
+&\leq \varepsilon (\|h_1\| + \|h_2\|)^2.
+\end{align*}
+
+
 
 Exercices
 ================================================================================
