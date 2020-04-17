@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # Python 3 Standard Library
+import copy
 import datetime
 import os
 import pathlib
@@ -11,17 +12,6 @@ import sys
 # Pandoc
 import pandoc
 from pandoc.types import *
-
-# TODO
-# ------------------------------------------------------------------------------
-"""
-  - rename targets/outputs "print" vs "e-book" (do not distinguish print/letter ?)
-
-  - for the print target, work the local links to display a page and rework
-    the link to answers ? (a rework for the e-book version may be in order too)
-
-"""
-
 
 # Main Document Transform
 # ------------------------------------------------------------------------------
@@ -56,6 +46,34 @@ def transform(doc):
     tt_url(doc)
 
     handle_typed_sections(doc)
+
+    return doc
+
+def transform_html(doc):
+    #remove_html(doc)
+    divify(doc)
+    proofify(doc)
+
+    #add_font_awesome(doc)
+
+    #add_link_to_answers(doc)
+    #add_page_to_link(doc)
+
+    demote_proofs_questions_answers_and_exercises_and_examples(doc)  # -> level 4
+
+    #transform_image_format(doc)
+
+    remove_images(doc) # tmp
+
+    #solve_toc_nesting(doc)
+    anonymify(doc)
+
+    add_date(doc)
+    insert_authors(doc, "html")
+
+    #tt_url(doc)
+
+    #handle_typed_sections(doc)
 
     return doc
 
@@ -121,10 +139,16 @@ aliases = {
 
 # Authors
 # ------------------------------------------------------------------------------
-def insert_authors(doc):
+def insert_authors(doc, *options):
+
+    if "html" not in options: # latex
+        github_icon = r"$\mbox{\faGithub}$"
+    else: # latex target
+        github_icon = ""
+    
     content = "STEP, MINES ParisTech[^1]\n\n"
     content += r"""[^1]: Ce document est un des produits du projet
-[$\mbox{\faGithub}$ `boisgera/CDIS`](https://github.com/),
+[GITHUB_ICON `boisgera/CDIS`](https://github.com/),
 initié par la collaboration de [(S)ébastien Boisgérault](mailto:sebastien.boisgerault@mines-paristech.fr)
 (CAOR),
 [(T)homas Romary](mailto:thomas.romary@mines-paristech.fr) et
@@ -134,7 +158,8 @@ avec la contribution de [Gabriel Stoltz](mailto:gabriel-stolz@mines-paristech.fr
 (Ecole des Ponts ParisTech, CERMICS). 
 Il est mis à disposition selon les termes de [la licence Creative Commons "attribution 
 -- pas d’utilisation commerciale -- partage dans les mêmes conditions" 4.0 internationale](http://creativecommons.org/licenses/by-nc-sa/).
-"""
+""".replace("GITHUB_ICON", github_icon)
+
     content_inlines = pandoc.read(content)[1][0][0]
     metamap = doc[0][0]
     metamap["author"] = MetaList([MetaInlines(content_inlines)])
@@ -248,7 +273,7 @@ def divify(doc, level=None):
 
         for section in reversed(sections):
             holder, start, end = section
-            attr = ("", ["section"], [])
+            attr = ("", ["cdis-section"], [])
             div = Div(attr, holder[slice(start, end)])
             # print(div)
             holder[slice(start, end)] = [div]
@@ -488,6 +513,13 @@ def add_page_to_link(doc):
                 link[1].extend([Space(), Str("(p."), Space(), pageref, Str(")")])
             # TODO ?: insert the pageref inside the link, not after ?
 
+
+def remove_images(doc):
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Image):
+            image = elt
+            holder, index = path[-1]
+            del holder[index]
 
 def transform_image_format(doc):
     for elt in pandoc.iter(doc):
@@ -779,6 +811,7 @@ HTML_options += ["--mathjax"]
 
 # PDF Output
 doc = pandoc.read(file=doc_md)
+doc_ = copy.deepcopy(doc)
 doc = transform(doc)
 
 # Code and Doctest
@@ -811,3 +844,8 @@ shutil.make_archive(str(output_latex), "zip", str(output_latex))
 shutil.rmtree(str(output_latex))
 # pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
 # pandoc.write(doc, format="odt", file=doc_odt, options=ODT_options)
+
+if "--html" in sys.argv:
+    doc = transform_html(doc_)
+    pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
+
