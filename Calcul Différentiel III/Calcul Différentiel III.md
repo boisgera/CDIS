@@ -462,7 +462,7 @@ Par l'inégalité des accroissements finis, quand $\|h\| \leq r$, on a donc
 &\leq \varepsilon \|h\|^2.
 \end{align*}
 
-### Continue différentiabilité d'ordre 2 implique différentiabilité d'ordre 2 {.proposition .one}
+### Continue différentiabilité d'ordre 2 et différentiabilité d'ordre 2 {.proposition .one}
 Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
 continûment différentiable, alors $f$ est deux fois différentiable.
 
@@ -619,23 +619,19 @@ $d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition
 Différentielle d'ordre supérieur
 ================================================================================
 
-### TODO 
-
-Passer directement au tenseur d'ordre $n$ ?
-
-### Tenseur d'ordre $3$ {.definition .one}
-On appelera *tenseur d'ordre $3$* un élément de 
-$\R^{m \times n \times p}$ où $(m, n, p) \in \N^{3}$, 
-c'est-à-dire toute application $A$ de la forme
+### Tenseur d'ordre $n$ {.definition .one}
+On appelera *tenseur d'ordre $n$* un élément de 
+$\R^{i_1 \times i_2 \times \dots \times i_n}$ où $(i_1,i_2,\dots, i_n) \in \N^{n}$, 
+c'est-à-dire une application $A$ de la forme
 $$
-(i,  j , k) \mapsto A_{ijk} \in \R
+(i_1,  i_2, \dots , i_n) \mapsto A_{i_1i_2 \dots i_n} \in \R,
 $$
-où $(i, j, k) \in \{1,\dots,m\} \times \{1,\dots,n\}  \times \{1,\dots,p\}$.
+c'est-à-dire un tableau $n$-dimensionnel de réels.
 
 ### {.remark}
-Un tenseur d'ordre $3$ n'est rien d'autre qu'un tableau de réels à 3 dimensions.
-On peut considérer que c'est la suite logique de la progression scalaire
-(tenseur d'ordre 0), vecteur (tenseur d'ordre 1), matrice (tenseur d'ordre 2).
+Le concept de tenseur généralise la notion de scalaire de $\R$
+(un tenseur d'ordre 0), de vecteur de $\R^n$ (un tenseur d'ordre 1)
+et de matrice $\R^{m\times n}$ (un tenseur d'ordre 2).
 
 ### TODO.
 
@@ -644,6 +640,9 @@ Contraction, application bilinéaire, identification, etc.
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
 à un ordre plus élevé, par induction sur l'ordre de la différentielle.
+
+### TODO
+Expliquer généralisation scalaire -> vectoriel et ordre $k$.
 
 ### Différentielle d'ordre $k$ {.definition #dos}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
