@@ -24,6 +24,8 @@ TODO
 
   - TODO: extension "négligeable" ou "vrai p.p." dans les réels étendus.
 
+  - TODO: expliciter *recouvrement* dans négligeable (et avant ?)
+
 
 TODO -- Objectifs d'apprentissage
 --------------------------------------------------------------------------------
