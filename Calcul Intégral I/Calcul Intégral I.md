@@ -14,7 +14,14 @@
 TODO
 --------------------------------------------------------------------------------
 
-  - intégrales de fonctions à valeurs dans $\R^m$
+  - intégrales de fonctions à valeurs dans $\R^m$,
+
+  - TODO : par cohérence, reformuler "Positivitée avec deux fonctions
+    (en "croissance/monotonie de l'intégrale" ?). Oui ...
+
+  - inégalité triangulaire pour les intégrales. Conséquence de la croissance
+    de l'intégrale (et du caractère abolue de l'intégrale de Lebesgue.)
+
 
 TODO -- Objectifs d'apprentissage
 --------------------------------------------------------------------------------
@@ -653,7 +660,7 @@ Propriétés élementaires de l'intégrale
 ================================================================================
 
 ### Théorème fondamental du calcul {.theorem #TFCL .one}
-Soit $[a, b]$ un intervalle compact de $\R$ ;
+Soit $[a, b]$ un intervalle fermé borné de $\R$ ;
 si la fonction $f:[a, b] \to \R$ est dérivable et que sa dérivée est
 intégrable alors 
 $$
@@ -832,9 +839,10 @@ ce qui est le résultat recherché.
 
 ### Changement de variable {.theorem .three #changement-de-variable}
 Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une bijection continue
-dont la dérivée $g'$ existe et ne s'annule pas sur $\left]a, b\right[$. 
-Alors la fonction $f$ est intégrable sur $[c, d]$ si et seulement si 
-$(f\circ g) g'$ est intégrable sur $[a, b]$ et dans ce cas, on a
+dont la dérivée $g'$ existe, est continue et ne s'annule pas sur 
+$\left]a, b\right[$. Alors la fonction $f$ est intégrable sur $[c, d]$ 
+si et seulement si $(f\circ g) g'$ est intégrable sur $[a, b]$ et 
+dans ce cas, on a
 $$
 \int_a^b f(g(t)) g'(t)\, dt = \int_{g(a)}^{g(b)} f(x) \, dx.
 $$
@@ -853,7 +861,11 @@ $\R^n$ qui sera étudié dans le chapitre calcul intégral III.
 ### Changement de variables simplifié {.exercise .question #cv .two}
 Démontrer [le théorème de changement de variables](#changement-de-variable)
 au moyen [du théorème fondamental du calcul](#TFC), sous les hypothèses
-supplémentaires que $f$ et $g'$ sont continues.
+supplémentaires que $f$ et $g'$ existent et sont continues sur $[a,b]$.
+
+### TODO
+
+Check demo après réécriture théorème et nouvelles hypothèses.
 
 ### Changement de variables simplifié {.answer #answer-cv}
 La fonction $f$ étant continue, elle a une primitive $h$.
@@ -1532,7 +1544,7 @@ $J_i \subset \gamma(t)$, ce qui contredit l'hypothèse de départ.
 
 
 ### Théorème fondamental du calcul (forme générale) {.theorem #TFC}
-Soit $[a, b]$ un intervalle compact de $\R$ ;
+Soit $[a, b]$ un intervalle fermé borné de $\R$ ;
 si la fonction $f:[a, b] \to \R$ est dérivable, 
 sa dérivée $f'$ est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
 $$
@@ -1928,7 +1940,7 @@ Déterminer une subdivision pointée de $[0, 1]$ qui soit subordonnée à $\gamm
 Subdivisions subordonnées à une jauge II {.question #subd-subor-2}
 --------------------------------------------------------------------------------
 
-Soit $[a, b]$ un intervalle compact de $\R$ ;
+Soit $[a, b]$ un intervalle fermé borné de $\R$ ;
 soit $\gamma$ une jauge sur $[a, b]$. On suppose qu'il existe 
 un $\varepsilon > 0$ tel que  
 $$
@@ -1972,7 +1984,7 @@ Continuité par morceaux {.question #cpm}
 --------------------------------------------------------------------------------
 
 Montrer que toute fonction $f:[a, b] \to \R$ continue par morceaux sur un
-intervalle compact de $\R$ est intégrable au sens de Henstock-Kurzweil.
+intervalle fermé borné de $\R$ est intégrable au sens de Henstock-Kurzweil.
 
 Un ensemble de Cantor
 --------------------------------------------------------------------------------
@@ -2229,14 +2241,14 @@ Continuité par morceaux {.answer #answer-cpm}
 On peut bien sûr exploiter les propriétés de l'intégrale de Riemann
 pour répondre à cette question :
 toute [fonction continue par morceaux $f:[a, b] \to \R$ 
-définie sur un intervalle compact de $\R$ est intégrable au sens de Riemann](#Rcpp) ;
+définie sur un intervalle fermé borné de $\R$ est intégrable au sens de Riemann](#Rcpp) ;
 comme [toute fonction intégrable au sens de Riemann est intégrable au sens
 de Henstock-Kurzweil](#RHK), le résultat est acquis.
 
 Si l'on souhaite montrer directement ce résultat, sans passer par l'intégrale
 de Riemann, on peut tout d'abord réduire ce problème à celui de l'intégrabilité
 des fonctions continues $f:[a, b] \to \R$. En effet, supposons les fonctions 
-continues sur un intervalle compact de $\R$ intégrables ; si $f$ est
+continues sur un intervalle fermé borné de $\R$ intégrables ; si $f$ est
 une fonction continue par morceaux sur $[a, b]$, 
 on peut décomposer $[a, b]$ en une union finie d'intervalles $[a_k, b_k]$ qui ne
 se chevauchent pas, et tels que la restriction de $f$ à chaque $[a_k, b_k]$
