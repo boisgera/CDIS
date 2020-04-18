@@ -22,6 +22,8 @@ TODO
   - inégalité triangulaire pour les intégrales. Conséquence de la croissance
     de l'intégrale (et du caractère abolue de l'intégrale de Lebesgue.)
 
+  - TODO: extension "négligeable" ou "vrai p.p." dans les réels étendus.
+
 
 TODO -- Objectifs d'apprentissage
 --------------------------------------------------------------------------------
