@@ -228,9 +228,9 @@ Montrer que tout sous-ensemble fini de $\R$ est négligeable.
 ### Ensembles finis {.answer #answer-ensemble-fini}
 Soit $E = \{x_1, \dots, x_m\} \subset \R$. Pour tout $\varepsilon > 0$, 
 la collection (finie) d'intervalles
-$\{\left[x_i-\varepsilon/2, x_i + \varepsilon/2\right]\}_{i=1}^m$
-recouvre $E$ et la somme des longueurs de ces intervalles est $m \varepsilon$ ;
-elle peut donc être rendue arbitraire petite : $E$ est négligeable.
+$\{\left[x_i, x_i\right]\}_{i=1}^m$
+recouvre $E$ et la somme des longueurs de ces intervalles est nulle,
+donc $E$ est négligeable.
 
 ### Intervalles négligeables {.exercise .question .four #intervalles-négligeables}
 Montrer que si $a < b$, l'ensemble $[a, b]$ n'est pas négligeable.  
@@ -259,7 +259,8 @@ $$
 \sum_{i=1}^m \ell(J_i) = \sum_{i=1}^m (x_{i+1} - x_i) = x^{m+1} - x_1 \geq b-a.
 $$
 
-Supposons désormais la collection des $\{I_i\}_{i \in \N}$. 
+Considérons désormais une collection d'intervalles $\{I_i\}_{i \in \N}$ recouvrant
+$[a, b]$. 
 Si $\sum_{i=1}^{+\infty} \ell(I_i) \leq \varepsilon$, alors pour tout $\varepsilon'>0$,
 il existe une collection d'intervalles ouverts $\{J_i\}_{i \in \N}$ tels que
 $I_i \subset J_i$ et $\ell(J_i) \leq \ell(I_i) + \varepsilon'/2^{i}$
@@ -270,14 +271,14 @@ $$
 \leq \varepsilon +\varepsilon'.
 $$
 Or l'ensemble $[a, b]$ étant fermé et borné, il est compact ; 
-les $\{J_i\}_{i \in \N}$ un recouvrement de ce compact par une collection
-d'ouverts, on peut donc en extraire un sous-recouvrement fini $\{K_i\}_{i=1}^m$.
+les $\{J_i\}_{i \in \N}$ forment un recouvrement de ce compact par une collection
+d'ouverts, on peut donc en extraire un sous-recouvrement fini $\{K_j\}_{j=1}^m$.
 En utilisant le résultat précédemment établi pour de telles collections finies,
 on en déduit que
 $$
-b - a \leq \sum_{i=1}^{m} \ell(K_i) \leq \sum_{i=1}^{+\infty} \ell(J_i) \leq \varepsilon +\varepsilon',
+b - a \leq \sum_{j=1}^{m} \ell(K_j) \leq \sum_{i=1}^{+\infty} \ell(J_i) \leq \varepsilon +\varepsilon',
 $$
-soit puisque $\varepsilon'>0$ est arbitraire, $b - a \leq \varepsilon$.
+soit comme $\varepsilon'>0$ est arbitraire, $b - a \leq \varepsilon$.
 
 ### TODO -- opérations ensemblistes (exo)
 
@@ -300,26 +301,17 @@ en bijection avec $\N$, alors il est négligeable.
 ### Démonstration {.proof}
 L'ensemble $E$ étant dénombrable, il existe une suite de réels $x_n$ tels
 que $E = \{x_n \, | \, n \in \N\}$.
-Alors, pour tout $\varepsilon > 0$, la collection d'intervalles ouverts
+La collection d'intervalles
+$\left\{[x_i, x_i]\; | \;i \in \N\right\}$
+recouvre $E$. Comme
 $$
-\left\{
-\left]
-x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
-\right[
-\, \left| \vphantom{\frac{a}{b}} \, \right.
-i \in \N
-\right\}
-$$
-recouvre $E$. Par ailleurs
-$$
-\sum_{i=0}^{+\infty} \ell\left(\left]
-x_i - \frac{\varepsilon}{2^{i+2}}, x_i + \frac{\varepsilon}{2^{i+2}}
-\right[\right)
+\sum_{i=0}^{+\infty} \ell([x_i, x_i])
 =
-\sum_{i=0}^{+\infty} \frac{\varepsilon}{2^{i+1}}
+\sum_{i=0}^{+\infty} 0 
 =
-\varepsilon.
+0,
 $$
+l'ensemble est donc négligeable.
 
 ### {.remark .ante}
 L'intégrale de Riemann possède des limitations qui en font un outil mathématique
