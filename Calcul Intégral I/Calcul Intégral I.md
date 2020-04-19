@@ -2024,33 +2024,32 @@ Continuité par morceaux {.question #cpm}
 Montrer que toute fonction $f:[a, b] \to \R$ continue par morceaux sur un
 intervalle fermé borné de $\R$ est intégrable au sens de Henstock-Kurzweil.
 
-Un ensemble de Cantor
+Poussière de Cantor {#cantor}
 --------------------------------------------------------------------------------
 
 Chaque nombre réel $x$ de $\left[0, 1\right[$ peut être représenté
-par un développement décimal de la forme $x=0.a_1a_2a_3\cdots$
-où $a_i \in \{0,1, \dots, 9\}$, une notation qui signifie que
+par un développement en base 3 de la forme $x=0.a_1a_2a_3\cdots$
+où $a_i \in \{0,1,2\}$, une notation qui signifie que
 $$
-x = \sum_{i=1}^{+\infty} a_i 10^{-i}.
+x = \sum_{i=1}^{+\infty} a_i 3^{-i}.
 $$
-Ce développement est unique si on lui impose d'être *propre*, 
-c'est-à-dire si l'on interdit les séquences infinie de nombres $9$ consécutifs[^wp].
+Ce développement de $x$ est unique si on lui impose d'être *propre*, 
+c'est-à-dire si l'on interdit les séquences infinies de chiffres 
+$2$ consécutifs[^wp].
 
-[^wp]: Dans le cas contraire, on pourrait par exemple représenter $x=1/2$ comme
-$0.5000\cdots$ ou comme $0.4999\cdots$.
+[^wp]: Dans le cas contraire, $x=1/3$ par exemple s'écrit
+$0.1000\cdots$ en base 3 mais aussi $0.0222\cdots$.
 
-On définit l'ensemble $A$ comme le sous-ensemble de $\left[0, 1\right[$
-dont le développement décimal ne comporte que des nombres pairs.
-Par exemple, $x=2/3 = 0.666\cdots$ appartient à $A$, mais 
-$x=\sqrt{2}/2 = 0.707\cdots$ non.
+On définit l'ensemble $C$ comme le sous-ensemble de $\left[0, 1\right[$
+dont le développement en base 3 ne comporte pas le chiffre 1.
 
-### Question 1 {.question #cantor-1}
+### Question 1 {.question .exercise #cantor-1}
 
-Montrer que l'ensemble $A$ est négligeable.
+Montrer que l'ensemble $C$ est négligeable.
 
-### Question 2 {.question #cantor-2}
+### Question 2 {.question .exercise #cantor-2}
 
-Montrer néanmoins que $A$ n'est pas dénombrable, 
+Montrer néanmoins que $C$ n'est pas dénombrable, 
 mais a la "puissance du continu" 
 (qu'il peut être mis en bijection avec $\R$ 
 ou avec un intervalle de longueur non vide de $\R$, 
@@ -2338,12 +2337,12 @@ $$
 $$
 Par [le critère de Cauchy](#CIC), la fonction $f$ est donc intégrable.
 
-Un ensemble de Cantor
+Poussière de Cantor
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cantor-1}
 
-L'ensemble $A$ peut être recouvert par la collection ne contenant que 
+L'ensemble $C$ peut être recouvert par la collection ne contenant que 
 l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, ou par la collection d'intervalles
 $$
 \mathcal{A}_1 = \{\left[0, 1/10\right[, \left[2/10, 3/10\right[, \dots, \left[8/10, 9/10\right[\}
@@ -2360,13 +2359,13 @@ On peut poursuivre le procédé en considérant la collection
 $\mathcal{A}_n$ des $5^n$ intervalles dont l'union forme l'ensemble
 des nombres $x$ dont
 les $n$ premiers chiffres du développement décimal propre sont pairs,
-ensemble qui inclus $A$.
+ensemble qui inclus $C$.
 On peut de plus se convaincre par récurrence que
 $$
 \sum_{I \in \mathcal{A}_n} \ell(I) = 5^n \times \frac{1}{10^n} = \frac{1}{2^n}.
 $$
 Comme $1/2^n$ tend vers $0$ quand $n$ tend vers $+\infty$, 
-nous avons établi que $A$ est négligeable.
+nous avons établi que $C$ est négligeable.
 
 ### Question 2 {.answer #answer-cantor-2}
 

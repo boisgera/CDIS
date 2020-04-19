@@ -273,7 +273,7 @@ def divify(doc, level=None):
 
         for section in reversed(sections):
             holder, start, end = section
-            attr = ("", ["cdis-section"], [])
+            attr = ("", ["section"], [])
             div = Div(attr, holder[slice(start, end)])
             # print(div)
             holder[slice(start, end)] = [div]

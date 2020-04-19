@@ -273,7 +273,7 @@ def divify(doc, level=None):
 
         for section in reversed(sections):
             holder, start, end = section
-            attr = ("", ["cdis-section"], [])
+            attr = ("", ["section"], [])
             div = Div(attr, holder[slice(start, end)])
             # print(div)
             holder[slice(start, end)] = [div]
@@ -373,7 +373,6 @@ def make_level_4_section_headings_inline(doc):
         # see <https://tex.stackexchange.com/questions/48753/obtaining-the-default-section-spacing-into-the-titlespacing-parameters>
         inlines.insert(0, RawInline("latex", r"\vspace{3.25ex plus 1ex minus .2ex}"))
         inlines.insert(1, span)
-
 
 def demote_proofs_questions_answers_and_exercises_and_examples(doc):
     for elt in pandoc.iter(doc):
