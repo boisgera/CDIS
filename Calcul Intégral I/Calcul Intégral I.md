@@ -2043,6 +2043,8 @@ $0.1000\cdots$ en base 3 mais aussi $0.0222\cdots$.
 On définit l'ensemble $C$ comme le sous-ensemble de $\left[0, 1\right[$
 dont le développement en base 3 ne comporte pas le chiffre 1.
 
+
+
 ### Question 1 {.question .exercise #cantor-1}
 
 Montrer que l'ensemble $C$ est négligeable.
@@ -2360,10 +2362,13 @@ $$
 \sum_{I \in \mathcal{A}_1} \ell(I) = 2 \times \frac{1}{3} = \frac{2}{3}.
 $$
 On peut poursuivre le procédé en considérant la collection 
-$\mathcal{A}_n$ des $2^n$ intervalles dont l'union forme l'ensemble
+$\mathcal{A}_n$ des $2^n$ intervalles dont l'union $C_n$ forme l'ensemble
 des nombres $x$ dont
 les $n$ premiers chiffres du développement décimal propre sont $0$ ou $2$,
 ensemble qui contient $C$.
+
+![Représentation de $C_n$ pour $n \in \{0, 1, \dots, 5\}$.](images/cantor-dust.py)
+
 On peut de plus se convaincre par récurrence que
 $$
 \sum_{I \in \mathcal{A}_n} \ell(I) = 2^n \times \frac{1}{3^n} = \left(\frac{2}{3}\right)^n.
