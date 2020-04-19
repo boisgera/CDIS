@@ -30,9 +30,13 @@ TODO -- Objectifs d'apprentissage
 
 Ensembles négligeables
 
+  - longueur d'intervalles de $[-\infty, +\infty]$.
+
+  - intuition négligeable = "ens. de longueur nulle"
+
   - définition, exemple et contre-exemples, ens. dénombrables
 
-  - "p.p."
+  - "p.p." (et pratique+logique associée)
 
 Intégrale de Riemann
 
