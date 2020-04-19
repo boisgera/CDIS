@@ -2385,7 +2385,7 @@ x=\sum_{i=1}^{+\infty} a_i 3^{-n} \in C \mapsto y=\sum_{i=1}^{+\infty} b_i 2^{-n
 b_i = \left|
 \begin{array}{rl}
 0 &\mbox{si $a_i = 0$,} \\
-1 &\mbox{si $a_1 = 2$.}
+1 &\mbox{si $a_i = 2$.}
 \end{array}
 \right.
 $$ 
