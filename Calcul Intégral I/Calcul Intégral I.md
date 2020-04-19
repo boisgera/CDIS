@@ -2343,37 +2343,51 @@ Poussière de Cantor
 ### Question 1 {.answer #answer-cantor-1}
 
 L'ensemble $C$ peut être recouvert par la collection ne contenant que 
-l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, ou par la collection d'intervalles
+l'intervalle $\mathcal{A}_0 = \left[0, 1\right[$, 
+ou par la collection d'intervalles
 $$
-\mathcal{A}_1 = \{\left[0, 1/10\right[, \left[2/10, 3/10\right[, \dots, \left[8/10, 9/10\right[\}
+\mathcal{A}_1 = \{\left[0, 1/3\right[, \left[2/3, 1\right[\}
 $$
 qui contient exactement les nombres $x$ de $\left[0,1\right[$ dont
-le premier chiffre du développement décimal propre est pair.
-On a  clairement 
+le premier chiffre du développement propre en base 3 est 0 ou 2 :
+$$
+x = 0.0\cdots \, \mbox{ ou } \, x = 0.2\cdots
+$$
+On a clairement 
 $$
 \sum_{I \in \mathcal{A}_1} \ell(I) = \ell(\left[0,1\right[) = 1
 \, \mbox{ et } \,
-\sum_{I \in \mathcal{A}_1} \ell(I) = 5 \times \frac{1}{10} = \frac{1}{2}.
+\sum_{I \in \mathcal{A}_1} \ell(I) = 2 \times \frac{1}{3} = \frac{2}{3}.
 $$
 On peut poursuivre le procédé en considérant la collection 
-$\mathcal{A}_n$ des $5^n$ intervalles dont l'union forme l'ensemble
+$\mathcal{A}_n$ des $2^n$ intervalles dont l'union forme l'ensemble
 des nombres $x$ dont
-les $n$ premiers chiffres du développement décimal propre sont pairs,
-ensemble qui inclus $C$.
+les $n$ premiers chiffres du développement décimal propre sont $0$ ou $2$,
+ensemble qui contient $C$.
 On peut de plus se convaincre par récurrence que
 $$
-\sum_{I \in \mathcal{A}_n} \ell(I) = 5^n \times \frac{1}{10^n} = \frac{1}{2^n}.
+\sum_{I \in \mathcal{A}_n} \ell(I) = 2^n \times \frac{1}{3^n} = \left(\frac{2}{3}\right)^n.
 $$
-Comme $1/2^n$ tend vers $0$ quand $n$ tend vers $+\infty$, 
+Comme $(2/3)^n$ tend vers $0$ quand $n$ tend vers $+\infty$, 
 nous avons établi que $C$ est négligeable.
 
 ### Question 2 {.answer #answer-cantor-2}
 
-L'opération qui à $x=0.a_1a_2\cdots \in A$ associe
-$y=0.b_1b_2\cdots$ où $b_i = a_i/2$ est une bijection
-de $A$ sur $\left[0, 0.444\cdots\right[ = \left[0, 4/9\right[$,
-ce qui montre que $A$ a la puissance du continu (et donc n'est pas
-dénombrable).
+L'opération 
+$$
+x=\sum_{i=1}^{+\infty} a_i 3^{-n} \in C \mapsto y=\sum_{i=1}^{+\infty} b_i 2^{-n} \in \left[0, 1\right[
+\; \mbox{ où } \;
+b_i = \left|
+\begin{array}{rl}
+0 &\mbox{si $a_i = 0$,} \\
+1 &\mbox{si $a_1 = 2$.}
+\end{array}
+\right.
+$$ 
+est une bijection
+de $C$ sur $\left[0, 1\right[$,
+ce qui montre que $C$ a la puissance du continu 
+(et donc n'est pas dénombrable).
 
 <!--
 
