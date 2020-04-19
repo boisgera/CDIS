@@ -24,11 +24,36 @@ TODO
 
   - TODO: extension "négligeable" ou "vrai p.p." dans les réels étendus.
 
-  - TODO: expliciter *recouvrement* dans négligeable (et avant ?)
-
 
 TODO -- Objectifs d'apprentissage
 --------------------------------------------------------------------------------
+
+Ensembles négligeables
+
+  - définition, exemple et contre-exemples, ens. dénombrables
+
+  - "p.p."
+
+Intégrale de Riemann
+
+  - définition, csq méthodes de calcul aproché (quadrature).
+
+  - connaître les limitations, des exemples de fonctions non-intégrales au
+    sens de Riemann qui ne "devraient pas poser de pb".
+
+Intégrale de Riemann généralisée
+
+  - principe (adaptation "maille" de la subdivision pointée selon la région)
+
+  - définition jauge et adaptation intégrale HK et L.
+
+  - adaptations aux définitions apporter pour les intervalles non-bornés
+
+  - comment tout ramener à des intégrales de $-\infty$ à $+\infty$
+
+Pptés : à connaître et savoir mettre en oeuvre.
+
+
 
 Somme et intégrale de Riemann
 ================================================================================
@@ -80,6 +105,11 @@ constituée d'intervalles fermés inclus dans $[a, b]$, *sans chevauchement*
 plus un point -- 
 et *recouvrant $[a, b]$* 
 -- l'union de tous les intervalles $I_i$ inclut $[a, b]$. 
+$$
+[a, b] \subset \bigcup_{i=0}^{m-1} I_i.
+$$
+
+
 Une *subdivision pointée* $\mathcal{D}$ de l'intervalle $[a, b]$ 
 est une collection finie 
 $$
@@ -200,27 +230,36 @@ $$
 A = \sum_{i=0}^{m-1} \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) + \beta (x_{i+1}-x_i).
 $$
 
+### {.ante}
+On rappelle qu'un ensemble est *dénombrable* s'il est fini ou en bijection
+avec $\N$.
 
 ### Ensemble négligeable  {.definition .two}
 Un ensemble $A$ de $\R$ est *négligeable* si pour tout
 $\varepsilon > 0$, il existe un recouvrement de $A$ par une collection
-dénombrable d'intervalles $I_i$ de $\R$ tels que
+dénombrable d'intervalles $I_1$, $I_2$, $\dots$, $I_i$, $\dots$ de $\R$ 
+$$
+A \subset \bigcup_{i} I_i 
+$$
+telle que
 $$
 \sum_i \ell(I_i) \leq  \varepsilon.
 $$
 
 ### {.remark .post}
 Nous voyons que le procédé qui définit la notion d'ensemble négligeable
-consiste à surestimer la longueur de l'ensemble une première fois 
-en lui substituant une collection d'intervalles dont l'union est a
-priori plus grande, puis une seconde fois en calculant la
-somme des longueurs des intervalles, sans tenir compte des éventuels
-chevauchements. 
-Si à l'issue de cette double surestimation la longueur évaluée est encore 
-aussi petite que l'on veut, on peut légitimement considérer que l'ensemble 
-de départ est de longueur nulle[^me] ; la suite confirmera cette intuition.
+consiste à produire des estimations supérieures ou égales à la "longueur"[^me]
+de l'ensemble -- un concept non défini à ce stade -- 
+au moyen d'un recouvrement par des intervalles, 
+ensembles pour lesquels la notion de longueur est bien définie.
+Si on peut construire des estimations supérieures aussi petites que l'on veut,
+l'ensemble est négligeable, c'est-à-dire intuitivement, "de longueur nulle".
+Le chapitre à venir confirmera cette intuition.
 
-[^me]: techniquement, de mesure *extérieure* de longueur nulle.
+[^me]: techniquement, compte tenu du procédé employé, on devrait parler de 
+"mesure extérieure de longueur", la longueur d'un ensemble arbitraire de 
+$\R$ n'étant pas toujours définie.
+
 
 ### Ensembles finis {.exercise .question .one #ensemble-fini}
 Montrer que tout sous-ensemble fini de $\R$ est négligeable.
@@ -233,9 +272,9 @@ recouvre $E$ et la somme des longueurs de ces intervalles est nulle,
 donc $E$ est négligeable.
 
 ### Intervalles négligeables {.exercise .question .four #intervalles-négligeables}
-Montrer que si $a < b$, l'ensemble $[a, b]$ n'est pas négligeable.  
+Montrer que si $a < b$, l'ensemble $[a, b]$ n'est pas négligeable.
 Indication : montrer que si les intervalles $I_i$ recouvrent $[a, b]$,
-alors $\sum_{i} \ell(I_i) \geq b-a$. On commencera par le cas d'une collection
+alors $\sum_{i} \ell(I_i) \geq b-a$ ; on commencera par le cas d'une collection
 finie d'intervalles.
 
 ### Intervalles négligeables {.answer #answer-intervalles-négligeables}
@@ -295,8 +334,7 @@ Montrer que "p.p". Se combine avec la logique (et, ou, implique)
 Montrer qu'une fonction continue qui est nulle presque partout est nulle.
 
 ### Les ensembles dénombrables sont négligeables {.proposition .one #edn}
-Si le sous-ensemble $E$ de $\R$ est dénombrable, c'est-à-dire fini ou 
-en bijection avec $\N$, alors il est négligeable.
+Si le sous-ensemble $E$ de $\R$ est dénombrable alors il est négligeable.
 
 ### Démonstration {.proof}
 L'ensemble $E$ étant dénombrable, il existe une suite de réels $x_n$ tels
