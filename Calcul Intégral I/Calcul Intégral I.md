@@ -1655,7 +1655,7 @@ L'inégalité triangulaire fournit alors
 $$
 |f'(t)(d - c) - (f(d) - f(c))| \leq \frac{\varepsilon}{b-a} (d - c).
 $$
-Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[$ ;
+Posfons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[$ ;
 nous avons ainsi bien défini une fonction de jauge sur $[a, b]$.
 Si $\mathcal{D}$ est subordonnée à $\gamma$, 
 pour tout $i \in \{0, \dots, m-1\},$ 
@@ -1954,6 +1954,23 @@ $c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$.
 Exercices complémentaires
 ================================================================================
 
+### TODO -- Méthode des trapèzes
+
+Montrer que la méthodes des trapèze "marche" avec une fonction 
+Riemann-intégrable.
+
+Estimation erreur sous hypothèse régularité de $f$ ?
+
+### TODO -- Intégrales divergentes ?
+
+Montrer que pour les fonctions positives, si 
+$$
+\lim_{x \to +\infty} \int_a^x f(t) \, dt  = +\infty
+$$
+alors $f$ n'est pas intégrale sur $\left[a, +\infty\right[$.
+En tirer qq conclusions ($1/x$, etc ?)
+
+<!--
 Intervalle {.question #int}
 --------------------------------------------------------------------------------
 
@@ -1962,6 +1979,8 @@ seulement si il *est connexe par arcs*, c'est-à-dire si et seulement
 si pour tout couple de points $x$ et $y$ de $I$ on peut trouver un
 chemin de $I$ joignant $x$ à $y$, c'est-à-dire une fonction continue
 $\phi:[0, 1] \to I$, telle que $\phi(0) = x$ et $\phi(1) = y$.
+
+-->
 
 Subdivisions subordonnées à une jauge I {.question #subd-subor}
 --------------------------------------------------------------------------------
@@ -2150,7 +2169,7 @@ $$
 = \varepsilon.
 $$
 
-
+<!--
 Intervalle {.answer #answer-int}
 --------------------------------------------------------------------------------
 
@@ -2169,6 +2188,9 @@ vérifie le théorème des valeurs intermédiaires : pour toute valeur interméd
 $z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
 Comme $\phi$ est à valeurs dans $I$, $z \in I$ ; l'ensemble $I$ est donc un 
 intervalle de $\R$.
+
+-->
+
 
 Subdivisions subordonnées à une jauge I {.answer #answer-subd-subor}
 --------------------------------------------------------------------------------
