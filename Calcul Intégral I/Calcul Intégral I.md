@@ -813,15 +813,18 @@ suffit de constater que $|\lambda f| = |\lambda||f|$ ; $\lambda f$ et
 $|\lambda f|$ sont donc intégrables au sens de Henstock-Kurzweil et 
 $\lambda f$ est donc intégrable au sens de Lebesgue. 
 
-Concernant $f+g$, en introduisant la partie positive $x_+ = \max(x, 0)$,
+Concernant $f+g$, en introduisant la partie positive $x_+ := \max(x, 0)$
+et négative $x_- := \min(-x, 0) = -(-x)_+$,
 on peut écrire que
 $$
-|f+g| = f + \max(g-f, 0) = f + (g-f)_+.
+|f+g| = (f+g)_+ + (f+g)_- = (f+g)_+ - (-f-g)_+
 $$
-Comme $g-f$ est intégrable au sens de Henstock-Kurzweil, que 
-$(g-f)+ \leq |f|+|g|$ et que $|f|+ |g|$ est intégrable, 
-[la partie positive $(g-f)_+$ est intégrable](#fp) et donc $f+ (g-f)_+$ est
-intégrable au sens de Henstock-Kurzweil ; les fonctions $f+g$ et
+Comme $f+g$ est intégrable au sens de Henstock-Kurzweil, que 
+$(f+g)_+ \leq |f|+|g|$ et que $|f|+ |g|$ est intégrable, 
+[la partie positive $(f+g)_+$ est intégrable](#fp) ; 
+le même argument s'applique à $(-f-g)_+$.
+Donc $|f+g| = (f+g)_+ - (-f-g)_+$ 
+est intégrable au sens de Henstock-Kurzweil ; les fonctions $f+g$ et
 $|f+g|$ sont intégrables au sens de Henstock-Kurzweil, $f+g$
 est donc intégrable au sens de Lebesgue.
 <!--
