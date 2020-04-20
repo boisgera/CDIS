@@ -749,82 +749,105 @@ $$
 $$
 
 ### Démonstration {.proof}
-La linéarité de l'intégrale de Henstock-Kurzweil résulte de la linéarité 
-(additivité et homogénéité)
-de la somme de Riemann $S(f, \mathcal{D})$ par rapport à $f$.
-La linéarité de l'intégrale de Lebesgue s'en déduit au moyen du critère
-d'intégrabilité dominée du chapitre "Calcul Intégral II" (à venir).
-
-En effet, si $\varepsilon > 0$, on peut trouver des jauges $\gamma_f$ et $\gamma_g$
+Supposons dans un premier temps uniquement que $f$ et $g$ sont 
+intégrables au sens de Henstock-Kurzweil.
+Si $\varepsilon > 0$, on peut trouver des jauges $\gamma_f$ et $\gamma_g$
 sur $[a, b]$ telles que pour toute subdivision pointée $\mathcal{D}$
 subordonnée à $\gamma_f$ et $\gamma_g$, on ait
 $$
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}
+\left|S(f, \mathcal{D}) - \HKint_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}
 \; \mbox{ et } \;
-\left|S(g, \mathcal{D}) - \int_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}.
+\left|S(g, \mathcal{D}) - \HKint_a^b f(t) \, dt \right| \leq \frac{\varepsilon}{2}.
 $$
 Comme $S(f+g, \mathcal{D}) =  S(f, \mathcal{D}) + S(g, \mathcal{D})$, 
 toute subdivision pointée $\mathcal{D}$ subordonnée à la jauge $\gamma$
 définie par $\gamma(t) = \gamma_f(t) \cap \gamma_g(t)$ vérifie
 $$
-\left|S(f+g, \mathcal{D}) - \left(\int_a^b f(t) \, dt + \int_a^b g(t) \, dt \right)  \right| \leq \varepsilon.
+\left|S(f+g, \mathcal{D}) - \left(\HKint_a^b f(t) \, dt + \HKint_a^b g(t) \, dt \right)  \right| \leq \varepsilon.
 $$
 La fonction $f+g$ est donc intégrable au sens de Henstock-Kurzweil 
 et son intégrale de Henstock-Kurzweil sur $[a, b]$ est 
-la somme des intégrales de Lebesgue de $f$ et de $g$ sur $[a, b]$ :
+la somme des intégrales de Henstock-Kurzweil de $f$ et de $g$ sur $[a, b]$ :
 $$
 \HKint_{a}^b f(t) + g(t) \, dt 
 = 
-\int_{a}^b f(t) \, dt +
-\int_{a}^b g(t) \, dt.
+\HKint_{a}^b f(t) \, dt +
+\HKint_{a}^b g(t) \, dt.
 $$
+
+
+De façon similaire, $S(\lambda f, \mathcal{D}) = \lambda S(f, \mathcal{D})$.
+Dans le cas où $\lambda = 0$, il est clair que $\lambda f$ est intégrable
+au sens de Henstock-Kurzweil et d'intégrale nulle ;
+dans le cas contraire, on peut trouver une jauge $\gamma$ sur $[a, b]$ telle
+que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$, 
+on ait :
+$$
+\left|S(f, \mathcal{D}) - \HKint_a^b f(t) \, dt \right| 
+\leq 
+\frac{\varepsilon}{|\lambda|}.
+$$
+On a alors
+$$
+\left|S(\lambda f, \mathcal{D}) - \lambda \HKint_a^b f(t) \, dt \right| 
+=
+|\lambda| 
+\left|S(f, \mathcal{D}) - \HKint_a^b f(t) \, dt \right| 
+\leq 
+\varepsilon.
+$$
+La fonction $\lambda f$ est donc intégrable au sens de Henstock-Kurzweil 
+sur $[a, b]$ et son intégrale est le produit de $\lambda$ et de l'intégrale 
+de Henstock-Kurzweil de $f$ sur $[a, b]$ :
+$$
+\HKint_a^b \lambda f(t) \, dt =
+\lambda \HKint_a^b f(t) \, dt.
+$$
+
+Pour établir les résultats correspond avec l'intégrale de Lebesgue, il
+nous suffit de montrer que si $f$ et $g$ sont intégrables au sens de Lebesgue,
+alors c'est également le cas de $\lambda f$ et de $f+g$. 
+
+Pour $\lambda f$, il
+suffit de constater que $|\lambda f| = |\lambda||f|$ ; $\lambda f$ et
+$|\lambda f|$ sont donc intégrables au sens de Henstock-Kurzweil et 
+$\lambda f$ est donc intégrable au sens de Lebesgue. 
+
+Concernant $f+g$, en introduisant la partie positive $x_+ = \max(x, 0)$,
+on peut écrire que
+$$
+|f+g| = f + \max(g-f, 0) = f + (g-f)_+.
+$$
+Comme $g-f$ est intégrable au sens de Henstock-Kurzweil, que 
+$(g-f)+ \leq |f|+|g|$ et que $|f|+ |g|$ est intégrable, 
+[la partie positive $(g-f)_+$ est intégrable](#fp) et donc $f+ (g-f)_+$ est
+intégrable au sens de Henstock-Kurzweil ; les fonctions $f+g$ et
+$|f+g|$ sont intégrables au sens de Henstock-Kurzweil, $f+g$
+est donc intégrable au sens de Lebesgue.
+<!--
 De plus, les fonctions $|f|$ et $|g|$ sont positives et intégrables au sens de 
 Henstock-Kurzweil donc au sens de Lebesgue ; c'est donc aussi le cas de leur 
 somme $|f| + |g|$. Comme $|f+g| \leq |f| + |g|$,
 par le critère d'intégrabilité dominée,
 $f+g$ est intégrable au sens de Lebesgue et
 $$
-\int_{a}^b f(t) + g(t) \, dt 
+\HKint_{a}^b f(t) + g(t) \, dt 
 =
-\HKint_{a}^b f(t) + g(t) \, dt  = \int_{a}^b f(t) \, dt +
-\int_{a}^b g(t) \, dt.
-$$
-
-De façon similaire, $S(\lambda f, \mathcal{D}) = \lambda S(f, \mathcal{D})$.
-Dans le cas où $\lambda = 0$, il est clair que $\lambda f$ est intégrable
-et d'intégrale nulle ;
-dans le cas contraire, on peut trouver une jauge $\gamma$ sur $[a, b]$ telle
-que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$, 
-on ait :
-$$
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| 
-\leq 
-\frac{\varepsilon}{|\lambda|}.
-$$
-On a alors
-$$
-\left|S(\lambda f, \mathcal{D}) - \lambda \int_a^b f(t) \, dt \right| 
-=
-|\lambda| 
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt \right| 
-\leq 
-\varepsilon.
-$$
-La fonction $\lambda f$ est donc intégrable au sens de Henstock-Kurzweil 
-sur $[a, b]$ et son intégrale est le produit de $\lambda$ et de l'intégrale 
-de $f$ sur $[a, b]$ :
-$$
-\HKint_a^b \lambda f(t) \, dt =
-\lambda \int_a^b f(t) \, dt.
+\HKint_{a}^b f(t) + g(t) \, dt  = \HKint_{a}^b f(t) \, dt +
+\HKint_{a}^b g(t) \, dt.
 $$
 De plus, la fonction $|\lambda f|$ est dominée par la fonction $|\lambda||f|$ 
 qui est positive et intégrable au sens de Henstock-Kurzweil est donc intégrable.
 Par le critère d'intégrabilité dominée, elle est donc intégrable et
 $$
-\int_a^b \lambda f(t) \, dt =
 \HKint_a^b \lambda f(t) \, dt =
-\lambda \int_a^b f(t) \, dt.
+\HKint_a^b \lambda f(t) \, dt =
+\lambda \HKint_a^b f(t) \, dt.
 $$
+
+La linéarité de l'intégrale de Lebesgue s'en déduit au moyen du critère
+d'intégrabilité dominée du chapitre "Calcul Intégral II" (à venir).
+-->
 
 ### Intégration par parties {.question .exercise .one #ex-IPP}
 Montrer que si les fonctions $f:[a, b] \to \R$ et $g:[a, b] \to \R$ sont dérivables,
@@ -1850,19 +1873,20 @@ pour tout $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Lemme de Henstock  {.theorem #henstock-lemma}
 Soit $[a, b]$ un intervalle fermé, 
-$f$ une fonction intégrable sur $[a, b]$ et $\gamma$ une jauge sur $[a, b]$ 
+$f$ une fonction intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et 
+$\gamma$ une jauge sur $[a, b]$ 
 telle que pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée
 à $\gamma$, on ait
 $$
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
+\left|S(f, \mathcal{D}) - \HKint_a^b f(t) \, dt\right| \leq \varepsilon.
 $$
 Alors pour toute subdivision pointée partielle $\mathcal{D} = \{(t_k, I_k)\}_k$
 de $[a, b]$ subordonnée à $\gamma$, on a également
 $$
-\left|S(f, \mathcal{D}) - \sum_k \int_{I_k} f(t) \, dt\right| \leq \varepsilon.
+\left|S(f, \mathcal{D}) - \sum_k \HKint_{I_k} f(t) \, dt\right| \leq \varepsilon.
 $$
 
-### Démonstration du [lemme de Henstock][Lemme de Henstock] {.proof}
+### Démonstration {.proof}
 Il existe une famille finie d'intervalles fermés $\{J_j\}$, 
 $j = 1, \dots, m$ 
 telle que l'union des familles $\{I_k\}$ et $\{J_j\}$ forme une subdivision
@@ -1872,7 +1896,7 @@ sur chaque intervalle $J_j$, il existe une jauge $\gamma_j$ telle que si
 $\mathcal{D}_j$ est une subdivision pointée de $J_j$ subordonnée à $\gamma_j$,
 alors 
 $$
-\left|S(f, \mathcal{D}_j) - \int_{J_j} f(t) \, dt \right| \leq \eta.
+\left|S(f, \mathcal{D}_j) - \HKint_{J_j} f(t) \, dt \right| \leq \eta.
 $$
 Si de plus on choisit $\mathcal{D}_j$ subordonnée à la restriction de $\gamma$
 à $J_j$, alors $\mathcal{D} \cup (\cup_j \mathcal{D}_j)$ est une subdivision
@@ -1882,7 +1906,7 @@ $$
 \left|
 S(f, \mathcal{D}) + \sum_j S(f, \mathcal{D}_j) 
 - 
-\sum_k \int_{I_k} f(t) \, dt + \sum_{j} \int_{J_j} f(t) \, dt
+\sum_k \HKint_{I_k} f(t) \, dt + \sum_{j} \HKint_{J_j} f(t) \, dt
 \right|
 \leq
 \varepsilon
@@ -1892,13 +1916,126 @@ $$
 \left|
 S(f, \mathcal{D}) 
 - 
-\sum_k \int_{I_k} f(t) \, dt
+\sum_k \HKint_{I_k} f(t) \, dt
 \right|
 \leq
 \varepsilon + m \eta.
 $$
 Le choix de $\eta > 0$ étant arbitraire, l'inégalité cherchée est établie.
 
+
+### Partie positive d'une fonction {.lemma #fp}
+Soit $f: [a,b] \to \R$ une fonction intégrable au sens de Henstock-Kurzweil
+dont la partie positive $f_+$ est majorée par $g$
+$$
+f_+ := \max(f, 0) \leq g,
+$$
+où $g:[a, b] \to \left[0, +\infty\right[$ est intégrable.
+Alors la fonction $f_+$ est intégrable.
+
+### Démonstration {.proof}
+Nous allons montrer que $f_+$ est intégrable au sens de Henstock-Kurzweil
+-- et donc intégrable puisque positive par construction -- et que
+$$
+\int_a^b f_+(t) \, dt 
+= S :=
+\sup_{\mathcal{D}} 
+\sum_{(t, I) \in \mathcal{D}} \left( \HKint_I f(t) \, dt\right)_{\!\!+}
+$$
+où le supremum est calculé sur toutes les subdivisions pointées de $[a, b]$.
+Tout d'abord, ce supremum est fini ; en effet pour toute subdivision
+$\mathcal{D}$, on a
+$$
+\begin{split}
+\sum_{(t, I) \in \mathcal{D}} \left( \HKint_I f(t) \, dt\right)_{\!\!+}
+&\leq
+\sum_{(t, I) \in \mathcal{D}} \left( \int_I g(t) \, dt\right)_{\!\!+} \\
+&=
+\sum_{(t, I) \in \mathcal{D}} \int_I g(t) \, dt \\
+&=
+\int_a^b g(t) \, dt.
+\end{split}
+$$
+Soit $\varepsilon > 0$ et $\mathcal{D}_{0}$ une subdivision pointée
+de $\R$ telle que
+$$
+S - \frac{\varepsilon}{2} 
+\leq \sum_{(t, I) \in \mathcal{D}_0} \left( \HKint_I f(t) \, dt\right)_{\!\!+} 
+\leq S.
+$$
+Soit $\lambda$ une jauge sur $[a, b]$ assurant une précision $\varepsilon/2$
+dans l'estimation de l'intégrale de $f$ par les sommes de Riemann.
+Soit $\nu$ une jauge sur $[a, b]$ telle que si $(t, [c, d]) \in \mathcal{D}_0$
+et $t \in \left]c,d\right[$ alors $\nu(t) \subset \left]c,d\right[$ ;
+on note $\gamma$ la jauge définie par $\gamma(t) = \lambda(t) \cap \nu(t)$.
+Si $\mathcal{D}$ est subordonnée à $\gamma$, quitte à découper des intervalles
+en deux si $(t, I) \subset \mathcal{D}$ et $t$ appartient à la frontière
+d'un intervalle composant $\mathcal{D}_0$ -- ce qui ne change pas la somme
+de Riemann associée -- les éléments $(t, J) \in \mathcal{D}$ tels que
+$J \subset I$, où $(x, I) \subset \mathcal{D}_0$ forment une subdivision
+pointée de $I$. Par conséquent, comme 
+\begin{align*}
+\left( \HKint_I f(t) \, dt\right)_{\!\!+} 
+&=
+\left( \sum_{(t, J) \in \mathcal{D}, J \subset I}\HKint_J f(t) \, dt\right)_{\!\!+} \\
+&\leq 
+\sum_{(t, J) \in \mathcal{D}, J \subset I} \left(\HKint_J f(t) \, dt\right)_{\!\!+} 
+\end{align*}
+et donc
+$$
+S - \frac{\varepsilon}{2} \leq 
+\sum_{(t, I) \in \mathcal{D}_0} \left( \HKint_I f(t) \, dt\right)_{\!\!+} 
+\leq 
+\sum_{(t, I) \in \mathcal{D}} \left( \HKint_I f(t) \, dt\right)_{\!\!+}
+\leq S, 
+$$
+on obtient
+$$
+\left|
+\sum_{(t, I) \in \mathcal{D}} \left( \HKint_I f(t) \, dt\right)_{\!\!+}
+- S \right| \leq \frac{\varepsilon}{2}.
+$$
+Par ailleurs, si l'on considère la subdivision (partielle) pointée 
+$\mathcal{D}_+$ extraite de $\mathcal{D}$ composée des paires
+$(t, I) \in \mathcal{D}$ et telles que
+$$
+f(t) \ell(I) \geq \HKint_I f(x) \, dx,
+$$
+alors le [lemme de Henstock](Calcul Intégral I.pdf/#henstock-lemma) fournit
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+\left( f(t) \ell(I) - \HKint_I f(x) \, dx \right)_{\!\!+}
+\leq \frac{\varepsilon}{2}.
+$$
+Comme $(x+y)_+ \leq x_+ + y_+$, on en déduit
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+f_+(t) \ell(I) - 
+\sum_{(t, I) \in \mathcal{D}} 
+\left(\HKint_I f(x) \, dx \right)_{\!\!+}
+\leq \frac{\varepsilon}{2}.
+$$
+De façon similaire, en raisonnant sur la subdivision partielle complémentaire
+à $\mathcal{D}_+$ dans $\mathcal{D}$, on peut montrer que
+$$
+\sum_{(t, I) \in \mathcal{D}} 
+\left(\HKint_I f(x) \, dx \right)_{\!\!+} - 
+\sum_{(t, I) \in \mathcal{D}} 
+f_+(t) \ell(I)
+\leq \frac{\varepsilon}{2}.
+$$
+On obtient donc au final
+$$
+\left|
+\sum_{(t, I) \in \mathcal{D}} f_+(t) \ell(I) 
+- 
+S
+\right| 
+\leq 
+\frac{\varepsilon}{2};
+$$
+la fonction $f_+$ est donc comme annoncé intégrable au sens de Henstock-Kurzweil, 
+d'intégrale égale à $S$.
 
 
 ### {.remark}
