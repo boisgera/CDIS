@@ -565,7 +565,7 @@ Si l'ensemble $A$ est négligeable, sa fonction caractéristique est
 égale presque partout à la fonction identiquement nulle, qui est
 intégrable et d'intégrale nulle. 
 Par conséquent, $1_A$ est intégrable et d'intégrale nulle, 
-donc l'ensemble $A$ est intégrable et de longueur nulle.
+donc l'ensemble $A$ est de longueur nulle.
 
 Réciproquement, supposons l'ensemble $A$ de longueur nulle ; 
 nous cherchons à montrer que pour tout $\varepsilon >0$, 
