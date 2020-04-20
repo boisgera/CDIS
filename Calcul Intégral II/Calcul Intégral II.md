@@ -7,95 +7,7 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
-<!--
 
-Perspective {.notes}
---------------------------------------------------------------------------------
-
-Scope: (ensembles mesurables,) fonctions mesurables, absolue intégrabilité.
-
-La perspective est commune dans une large mesure: avec les outils dont on
-dispose à ce moment, il est souvent difficile de savoir dans un calcul,
-une expression composée si une fonction va être intégrable.
-
-Exemples (à améliorer, distiller): 
-
-  - Hypothèses sous lesquelles $\max(f, g)$ ou $fg$ intégrables pas claires
-    (et quand c'est le cas, manque de théorème simple à ce stade pour 
-    l'affirme)
-
-  - produit de deux fonction intégrales n'est pas intégrable
-    (ex: $f(x) = g(x) = 1/\sqrt{x}$ sur $[0,1]$), ok, car
-    le produit est "trop grand", moralement l'intégrale est $+\infty$.
-    Mais s'il n'était pas "trop grand", est-ce que ça marcherait ?
-
-  - Si $f$ est intégrable sur l'intervalle $[a,b]$ de $\R$, 
-    elle est aussi intégrable sur toute union finie $E$ d'intervalles de 
-    $\R$, ce que l'on peut définir comme l'intégrabilité de 
-    $f 1_{E}$. Et si $E$ est plus général ? On "voit bien" qu'il est
-    nécessaire de requérir que $1_E$ soit intégrable (sinon ça ne 
-    marche pas avec $f=1$), ce que l'on appelle "ensemble intégrable",
-    mais est-ce que ça suffit ? La réponse est non ...   
-    (c'est un cas particulier du précédent, le faire avant).
-    Pb résolu si la fct est abs int (c'est même un critère ici !).
-
-  - Mais plus surprenant peut-être: le produit de deux fonction intégrables
-    avec l'une des deux fonctions bornées n'est pas nécessairement intégrable.
-    (cf [@Swa01, p.43, ex. 14] avec $\cos 1/t$ et $t^{-3/2} \cos 1/t$).
-    Pb résolu si les fcts sont abs int.
-
-  - Si $f$ est intégrable et $g$ est "sympa" (Lipschitz), 
-    est-ce que $g \circ f$ est intégrable ? Non ... cf
-    [@HL89, p. 525, ex. 4.2]
-    Pb résolu si les fcts sont abs int.
-
-On a deux outils qui se combinent pour analyser et résoudre ces pbs:
-
-  - La notion de fonction mesurable et le critère d'intégrabilité dominée [@PS17],
-
-  - La notion de fonction absolument mesurable.
-
-(nota: autres avantages fcts abs int: chgt de variable robuste et complétude
-$L^1$.)
-
-Sinon
-
-  - le théorème de convergence dominé est requis techniquement dans certaines
-    preuves et également pour donner une perspective sur la démarche.
-    Mais sa preuve, ses conséquences, variantes, etc. non, ce qui peut
-    suggérer une "preview" de ce résultat et un développement plus complet
-    ultérieurement. On a "besoin" du DCT et de son corollaire qu'une fct
-    est intégrable ssi elle est bornée par des fcts intégrables et mesurable.
-
-  - UPDATE: ensemble mesurable objet "secondaire", défini comme limite simple
-    de fonction caractéristique ?
-
-    Justifier l'introduction des ensembles mesurables ... par la recherche
-    d'une notion de "volume" (longueur/aire/...) suffisamment générale ?
-    Oui, en généralisant ce qui se passe pour les intervalles.
-    Et les ensembles mesurables sont ceux dont la mesure ne pose pas de pb
-    à part qu'ils sont "trop grands".
-    Introduire mesure de Lebesgue à ce stade, est possible, 
-    $\sigma$-algèbres, etc. Nécessaire dans la manip des fcts mesurables.
-
-    Cross-justifier la notion de fonction absolument mesurable 
-    (concept "stable" par multiplication par la fonction caractéristique
-    d'un ensemble mesurable.)
-
-    Probablement inclure plus généralement la pbmatique des fcts 
-    absoluments continues ici. Deux axes: intégrer sur des sous-ensembles
-    "plus généraux" et de façon général, meilleur comportement par rapport
-    aux opération usuelles: le produit borné abs int et abs int est abs int;
-    ça n'est pas le cas pour les fcts simplement intégrables, ce qui est
-    compliqué! Le pb du "multiplier" de fcts intégrable (égal pp à une fct
-    de variation bornée), c'est too much ...
-
-  - JTODO: parallèle séries AC ou C pour fct AI (et exemple restriction est
-    parlant, très proche, faire le parallèle ?)
-
-  - Mener toute la présentation dans $\R$.
-   
--->
 
 Introduction
 ================================================================================
@@ -116,6 +28,8 @@ intégrabilité.
 Or dans le cadre Riemannien, rien de plus simple : si $f$ et $g$ sont
 des fonctions intégrables au sens de Riemann sur un segment, le produit 
 $fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp]. 
+
+
 
 [^ii]: Sans nécessiter de construction supplémentaire ; dans le cadre
 de l'intégrale de Riemann, certaines de ces intégrales peuvent être
@@ -144,6 +58,7 @@ d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/\sqrt{x}$
 fonction par elle-même, ici $x \in [0,1] \mapsto 1/x$ (presque partout).
 Il est donc normal de devoir imposer des conditions supplémentaires
 pour garantir l'intégrabilité d'un produit.
+
 
 Heureusement, comme dans le cas de l'intégrale de Riemann, 
 un critère d'intégrabilité des fonctions -- nécessaire et suffisant -- 
@@ -182,33 +97,6 @@ conditions qui sont plus simples que dans le cadre Riemannien classique
 -- de calculer l'intégrale d'une fonction $f$ à partir
 des intégrales d'une suite de fonctions convergeant vers $f$.
 
-<!--
-Finalement, l'intégrale de Henstock-Kurzweil possède comme l'intégrale de
-Riemann un théorème de convergence dominée, qui permet d'évaluer 
-l'intégrale d'une fonction $f$ en calculant les intégrales d'une suite 
-de fonctions convergeant simplement vers $f$. Contrairement au cadre de 
-l'intégrale de Riemann, il ne sera pas nécessaire de supposer que la
-limite des fonctions considérées soit intégrable -- les hypothèses
-du théorème fourniront automatiquement ce résultat.
--->
-
-<!--
---------------------------------------------------------------------------------
-
-Dans la suite de ce document, nous mettons l'accent sur les fonctions définies
-sur $\R$ (ou $\R \cup \{-\infty, +\infty\}$) ; par défaut le symbole intégrale 
-sans bornes désignera donc l'intégrale entre $-\infty$ et $+\infty$:
-
-$$
-\int := \int_{-\infty}^{+\infty}
-$$
-
-L'essentiel des notions et résultats qui sont introduits peuvent être 
-généralisés sans difficulté à des fonctions définies sur des intervalles
-(voire des ensembles plus complexes), en considérant le prolongement 
-de ces fonctions par zéro.
-
--->
 
 Théorèmes de Convergence
 ================================================================================
@@ -259,6 +147,8 @@ est dérivable pour tout $\lambda$ et
 $$
 S'(\lambda) = \int \partial_{\lambda} f(\lambda, t) \, dt.
 $$
+
+
 
 ### Démonstration {.proof}
 Par linéarité de l'intégrale, 
@@ -316,6 +206,8 @@ $$
 \lim_{k \to +\infty} \int  f(t) \, dt.
 $$
 
+
+
 ### Démonstration {.proof}
 Se reporter à @Dem11.
 
@@ -345,11 +237,6 @@ Cette définition laisse toutefois de coté les ensembles "trop grands"
 pour être intégrables, mais par ailleurs parfaitement inoffensifs, 
 comme $\R$ tout entier ou l'ensemble des réels positifs. 
 Nous préférons donc mettre l'accent sur la notion d'ensemble *mesurable* :
-
-<!--
-### TODO
-Insérer référence ens Vitali en annexe
--->
 
 [^loop]: Il existe des ensembles dont on ne peut pas définir raisonnablement
 la longueur, sauf à accepter un concept de longueur aux propriétés
@@ -390,17 +277,6 @@ $E$ de longueur finie
 sont bien mesurables ;
 en effet si la fonction caractéristique $1_E$ est intégrable,
 sa restriction à tout intervalle compact $[a, b]$ également.
-
-<!--
-### TODO:
-
-intégrale de fct carac sur $[a, b]$ dominé par une borne finie commune,
-conclure que l'ensemble est de longueur finie?
-
-### TODO en exercice
-
-Structure de $\delta$-ring pour les ensembles intégrables ?
--->
 
 ### {.definition .post}
 Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
@@ -461,12 +337,14 @@ $$
     = (A \cap [a, b]) \cup (B \cap [a, b]),
     $$
     ce qui se traduit au moyen des fonctions caractéristiques par la relation
-    $$
-    1_{(A \cup B) \cap [a, b]}  = \max \left(1_{A \cap [a, b]}, 1_{B \cap [a, b]} \right).
-    $$
-    La fonction caractéristique de $(A \cup B) \cap [a, b]$ est donc intégrable
-    comme [maximum de deux fonctions positives intégrables (cf. annexe)](#max).
-    L'union $A \cup B$ est donc mesurable.
+    \begin{align*}
+    1_{(A \cup B) \cap [a, b]}  &= \max \left(1_{A \cap [a, b]}, 1_{B \cap [a, b]} \right) \\
+    &= 1_{A \cap [a, b]} + (1_{B \cap [a, b]} - 1_{A \cap [a, b]})_+
+    \end{align*}
+    où $x_+ := \max(x, 0)$. Comme $1_{B \cap [a, b]} - 1_{A \cap [a, b]}$
+    est intégrable et sa partie positive majorée par $2 \times 1_{[a, b]}$ qui est également
+    intégrable, sa partie positive est intégrable (cf. annexe "Calcul Intégral I").
+    La fonction caractéristique de $(A \cup B) \cap [a, b]$ est donc intégrable.
  
     Considérons désormais une suite d'ensembles mesurables
     $A_k$, pour $k \in \N$. 
@@ -494,15 +372,6 @@ $$
     la fonction caractéristique de $\left(\cup_{k=1}^{+\infty} A_k\right) \cap [a, b]$ 
     est intégrable ; 
     cet ensemble est donc mesurable.
-
-<!--
-### Tribu {.definition .remark}
-Une collection de sous-ensembles contenant l'ensemble vide,
-stable par passage au complémentaire et par union dénombrable 
-est appelée *tribu* (ou *$\sigma$-algèbre*).
-Les ensembles mesurables dans $\R$ forment donc une tribu.
--->
-
 
 ### Intersection d'ensemble mesurables {.proposition #IEM}
 L'intersection d'une collection dénombrable d'ensembles mesurables est mesurable.
@@ -565,7 +434,7 @@ Si l'ensemble $A$ est négligeable, sa fonction caractéristique est
 égale presque partout à la fonction identiquement nulle, qui est
 intégrable et d'intégrale nulle. 
 Par conséquent, $1_A$ est intégrable et d'intégrale nulle, 
-donc l'ensemble $A$ est de longueur nulle.
+donc l'ensemble $A$ est intégrable et de longueur nulle.
 
 Réciproquement, supposons l'ensemble $A$ de longueur nulle ; 
 nous cherchons à montrer que pour tout $\varepsilon >0$, 
@@ -579,7 +448,7 @@ Supposons temporairement que $A$ soit inclus dans un intervalle compact
 $[a, b]$ de $\R$. 
 La fonction caractéristique $1_A$ de $A$ est intégrable, 
 donc pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur
-$[a, b]$ telle que, si la subdivision pointée (totale ou partielle) <!--[^todo-hens]--> 
+$[a, b]$ telle que, si la subdivision pointée (totale ou partielle)
 $\mathcal{D} =\{(t_i, I_i)\}_i$ est
 subordonnée à $\gamma$, on a
 $$
@@ -606,26 +475,6 @@ En passant à la limite sur $k$, cette inégalité fournit comme souhaité
 $$
 \sum_{i=0}^{+\infty} \ell(I_i) \leq \varepsilon.
 $$
-
-
-<!--
-[^todo-hens]: cette formulation est intéressante. C'est un peu moins fort
-que le lemme de Henstock stricto sensu, mais ça peut peut-être suffire 
-à tous nos besoins: le lemme de Henstock permet de revisiter la définition
-d'intégrabilité (de façon équivalente) en rajoutant à la définition le
-qualificatif "(totale ou partielle)" à la subdivision (modulo aussi
-un mini-patch dans la formule inégalité ou l'on n'intègre plus nécessairement
-sur tout $[a, b]$, mais on somme sur les confettis ... Mmmm; on aurait
-peut-être intérêt à écrire ça comme
-$$
-\int_{\cup_i I_i} f(t) \, dt := \sum_i \int_{I_i} f(t) \, dt
-$$
-en définissant l'intégrale sur une union (finie) d'intervalles qui sont
-sans chevauchement).
-Et c'est un raccourci très intéressant pour la présentation orale.
-Il faudrait voir si ce "corollaire" du lemme de Henstock couvre l'ensemble
-des usage que l'on a en aval ...
--->
 
 Procédons à la construction de la collection de $(t_i, I_i)$,
 par dichotomie.
@@ -740,13 +589,6 @@ Les fonctions $f_k + g_k$ et $\lambda f_k$ sont intégrables
 et convergent alors simplement vers $f+g$ et $\lambda f$ 
 respectivement.
 
-<!--
-### TODO ?
-
-Evoquer fct localement intégrable ? Quand on regarde la preuve ci-dessous,
-on n'utilise pas autre chose ...
--->
-
 ### Les fonctions continues (presque partout) sont mesurables
 
 ### Démonstration {.proof}
@@ -792,22 +634,6 @@ continues, qui exige que l'image de tout fermé (ou de tout ouvert)
 soit un fermé (ou un ouvert). Comme [tout fermé (et tout ouvert) est
 mesurable](#OSM), ce critère montre de façon particulièrement simple
 que toute fonction continue est mesurable.
-
-
-<!--
-**NOTA:** l'énonce ici est donné dans le cas des fonctions scalaires,
-mais on a rapidement besoin du cadre vectoriel (pour composer avec
-des opérateurs binaires), ce qui renforce encore l'attrait de la 
-formulation "abstraite" (qui "tient" dans le cas vectoriel, mais
-pas les autres). donc **TODO:** nettoyer, ne garder que le cas 3.,
-et rajouter le bout de démo qui finit la preuve dans le cas vectoriel
-(dans les deux sens).
-
-**TODO:** update: énoncé patché, adapter la preuve en fonction.
-
-**TODO:** remarque très rapidement sur la forme abstraite et lien avec la
-continuité.
--->
 
 ### {.ante}
 En se basant exclusivement sur ce critère de mesurabilité par 
@@ -1011,6 +837,8 @@ Le produit de deux fonctions scalaires mesurables est mesurable.
 
 ### Démonstration {.proof}
 
+
+
 Par continuité de l'application produit 
 $\times: \R \times \R \to \R$.
 
@@ -1084,7 +912,7 @@ elle est donc également intégrable par le même critère.
 
 ### Fonctions absolument intégrables {.theorem}
 L'ensemble des fonctions absolument intégrables 
-<!-- de $\R$ dans $\R$ --> est un espace vectoriel.
+est un espace vectoriel.
 
 ### Démonstration {.proof}
 Si $f$ et $g$ sont absolument intégrables et $\lambda \in \R$,
@@ -1151,7 +979,6 @@ $$
 Par [le critère d'intégrabilité dominée](#CID), la fonction $h(x)$ égale à
 $x \sin (1/x^2)$ si $x>0$ et nulle en zéro est absolument intégrable
 car continue sur $[0, 1]$.
-<!--[^details]-->
 La fonction $g'$ étant également intégrable, $f = g' + h$ est intégrable comme
 somme de deux fonctions intégrables.
 
@@ -1159,16 +986,6 @@ somme de deux fonctions intégrables.
 $$
 \left| \frac{g(h) - g(0)}{h} \right| \leq \frac{|h|}{2} \to 0 \, \mbox{ quand } \, h \to 0.
 $$
-
-<!--
-[^details]: La  fonction $h$ est mesurable comme limite des 
-suite des fonctions continues $h_k$ -- et donc intégrables -- définies par 
-$h_k(x) = 0$ si 
-$x \in [0, 1/\sqrt{2k\pi}]$ et $h_k(x) = h(x)$ sinon. De la même façon,
-$|h|$ est limite des fonctions intégrables $|h_k|$.
-Par ailleurs, $h$ comme $|h|$ sont encadrées par les deux fonctions intégrables
-$x\in [0,1] \mapsto -x$ et $x\in [0,1] \mapsto x$.
--->
 
 La fonction $f$ n'est pourtant pas absolument intégrable, 
 car $h$ est absolument intégrable mais pas $g'$.
@@ -1196,6 +1013,7 @@ $$
 \beta_j = \frac{1}{\sqrt{2\pi(j - 1/4)}},
 $$
 
+
 L'idée sous-jacente est la suivante :
 les fonctions $\phi_k$ sont faites pour coïncider avec $g'$ dans les 
 plages de valeurs où $\cos 1/x^2$ est positif ; comme 
@@ -1203,7 +1021,9 @@ $g'(x) = - x \sin {1}/{x^2} + (1/x)\cos {1} / {x^2}$,
 et que pour $x$ petit, $1/x$ est grand devant $x$, cela correspond 
 approximativement aux plages où $g'(x)$ est positif.
 
-![...](images/g-prime.py)\
+![](images/g-prime.py)\
+
+
 
 Par construction, $\phi_k$ est continue par morceaux et donc absolument 
 intégrable, et bien telle que $|\phi_k| \leq |g'|$.
@@ -1229,6 +1049,7 @@ sur un sous-ensemble $E$ de $\R$* si la fonction $f 1_E$ est intégrable
 $$
 \int_E f(x) \, dx = \int 1_E(x) f(x) \, dx.
 $$
+
 
 ### {.remark .post}
 Cette définition est cohérente avec la définition existant déjà dans le cas
@@ -1262,180 +1083,6 @@ $$
 $$
 elle est intégrable comme somme de fonctions intégrables.
 La fonction $f$ est donc absolument intégrable.
-
-
-Annexes
-================================================================================
-
-<!-- suppression temporaire, cf <https://github.com/boisgera/CDIS/issues/29>
-
-Ensembles non mesurables
---------------------------------------------------------------------------------
-
-L'ensemble $\R / \Q$ 
--- la droite des réels quotientée par l'ensemble des rationnels -- 
-désigne une partition de $\R$ construite de la façon suivante:
-les éléments $A$ de $\R / \Q$ sont de la forme
-$$
-A = \{r + q \, | \, q \in \Q \}, \; r \in \R.
-$$
-Par exemple, l'ensemble $A$ associée à $r=0$ est $\Q$ ; c'est le même que
-celui associé à $1/2$ ou $1$ car la différence entre ces valeurs est 
-rationnelle. Tout élément $A$ de $\R / \Q$ est d'intersection non vide avec
-$[0, 1]$. Nous avons donc une famille d'ensembles non vides indexées par
-$A \in \R / \Q$ définie par
-$$
-A \in \R / \Q \mapsto A \cap [0, 1].
-$$
-L'axiome du choix nous garantit donc l'existence d'une fonction de choix
-$f$ définie sur $\R / \Q$ telle que pour tout $A \in \R / \Q$,
-$f(A) \in A \cap [0, 1]$. On appelle alors *ensemble de Vitali* l'ensemble
-$$
-V := \{f(A) \, | \, A \in \R / \Q \}.
-$$
-(sa définition dépend de la fonction de choix considérée).
-
-### Existence d'un ensemble non-mesurable 
-Tout ensemble de Vitali est non-mesurable.
-
-### TODO -- Démonstration {.proof}
-
--->
-
-Maximum de fonctions intégrables
---------------------------------------------------------------------------------
-
-### Maximum de fonctions intégrables et positives {.lemma #max}
-Si les fonctions $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 
-sont intégrables, la fonction $\max(f, g)$ est également intégrable.
-
-### Démonstration {.proof}
-Pour simplifier le problème, on remarque tout d'abord que 
-$$\max(f, g) = f + \max(g - f, 0) = f + (g-f)_+$$ 
-où $x _+ = \max(x, 0)$ désigne la partie positive de $x$.
-Par linéarité, la fonction $g-f$ est intégrable et 
-$(g-f)_+ \leq g + f$ ; la fonction $g+f$ est également intégrable.
-Pour démontrer le lemme, il nous suffit donc de prouver que 
-toute fonction intégrable dont la partie positive est dominée
-par une fonction intégrable est de partie positive intégrable.
-
-Soit $f$ une telle fonction et $g$ une fonction intégrable telle que 
-$f_+ \leq g$. Nous allons montrer que
-$$
-\int f_+(t) \, dt 
-= S :=
-\sup_{\mathcal{D}} 
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-$$
-où le supremum est calculé sur toutes les subdivisions pointées de $\R$.
-Tout d'abord, ce supremum est fini ; en effet pour toute subdivision
-$\mathcal{D}$, on a
-$$
-\begin{split}
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-&\leq
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I g(t) \, dt\right)_{\!\!+} \\
-&=
-\sum_{(t, I) \in \mathcal{D}} \int_I g(t) \, dt \\
-&=
-\int g(t) \, dt.
-\end{split}
-$$
-Soit $\varepsilon > 0$ et $\mathcal{D}_{0}$ une subdivision pointée
-de $\R$ telle que
-$$
-S - \frac{\varepsilon}{2} 
-\leq \sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
-\leq S.
-$$
-Soit $\lambda$ une jauge sur $\R$ assurant une précision $\varepsilon/2$
-dans l'estimation de l'intégrale de $f$ par les sommes de Riemann.
-Soit $\nu$ une jauge sur $\R$ telle que si $(t, [a, b]) \in \mathcal{D}_0$
-et $t \in \left]a,b\right[$ alors $\nu(t) \subset \left]a,b\right[$ ;
-on note $\gamma$ la jauge définie par $\gamma(t) = \lambda(t) \cap \nu(t)$.
-Si $\mathcal{D}$ est subordonnée à $\gamma$, quitte à découper des intervalles
-en deux si $(t, I) \subset \mathcal{D}$ et $t$ appartient à la frontière
-d'un intervalle composant $\mathcal{D}_0$ -- ce qui ne change pas la somme
-de Riemann associée -- les éléments $(t, J) \in \mathcal{D}$ tels que
-$J \subset I$, où $(x, I) \subset \mathcal{D}_0$ forment une subdivision
-pointée de $I$. Par conséquent, comme 
-$$
-\left( \int_I f(t) \, dt\right)_{\!\!+} 
-=
-\left( \sum_{(t, J) \in \mathcal{D}, J \subset I}\int_J f(t) \, dt\right)_{\!\!+} 
-\leq 
-\sum_{(t, J) \in \mathcal{D}, J \subset I} \left(\int_J f(t) \, dt\right)_{\!\!+} 
-$$
-et donc
-$$
-S - \frac{\varepsilon}{2} \leq 
-\sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
-\leq 
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-\leq S, 
-$$
-on obtient
-$$
-\left|
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-- S \right| \leq \frac{\varepsilon}{2}.
-$$
-Par ailleurs, si l'on considère la subdivision (partielle) pointée 
-$\mathcal{D}_+$ extraite de $\mathcal{D}$ composée des paires
-$(t, I) \in \mathcal{D}$ et telles que
-$$
-f(t) \ell(I) \geq \int_I f(x) \, dx,
-$$
-alors le [lemme de Henstock](Calcul Intégral I.pdf/#henstock-lemma) fournit
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-\left( f(t) \ell(I) - \int_I f(x) \, dx \right)_{\!\!+}
-\leq \frac{\varepsilon}{2}.
-$$
-Comme $(x+y)_+ \leq x_+ + y_+$, on en déduit
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-f_+(t) \ell(I) - 
-\sum_{(t, I) \in \mathcal{D}} 
-\left(\int_I f(x) \, dx \right)_{\!\!+}
-\leq \frac{\varepsilon}{2}.
-$$
-De façon similaire, en raisonnant sur la subdivision partielle complémentaire
-à $\mathcal{D}_+$ dans $\mathcal{D}$, on peut montrer que
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-\left(\int_I f(x) \, dx \right)_{\!\!+} - 
-\sum_{(t, I) \in \mathcal{D}} 
-f_+(t) \ell(I)
-\leq \frac{\varepsilon}{2}.
-$$
-On obtient donc au final
-$$
-\left|
-\sum_{(t, I) \in \mathcal{D}} f_+(t) \ell(I) 
-- 
-S
-\right| 
-\leq 
-\frac{\varepsilon}{2};
-$$
-la fonction $f_+$ est donc intégrable, d'intégrale égale à $S$.
-
-Dérivabilité des intégrales indéterminées
---------------------------------------------------------------------------------
-
-### Une intégrale indéterminée est dérivable presque partout {.theorem #DII}
-Soit $I$ un intervalle fermé de $\R$, 
-$f: I \to \R$ une fonction intégrable et un point 
-$a$ de $I$.
-La dérivée de la fonction
-$$
-F: x\in I \mapsto \int_a^x f(t) \, dt
-$$
-existe et est égale à $f$ presque partout.
-
-### Démonstration {.proof}
-Voir [@Swa01, pp. 135-136].
 
 Exercices
 ================================================================================
@@ -1508,6 +1155,8 @@ c'est-à-dire qu'il existe un $K\geq0$ tel que pour toute paire de réels
 $x$ et $y$  on ait
 $|g(x) - g(y)| \leq K |x - y|$.
 
+
+
 ### Question 1 {.question #cfl-1}
 Si $f$ est mesurable est-ce que $g \circ f$ est mesurable ?
 
@@ -1557,13 +1206,6 @@ en tout point $(x, y)$ de $U$, c'est-à-dire que
     où $R(\alpha)$ désigne la rotation d'angle $\alpha$ centrée sur l'origine.
     Simplifier l'expression de $I'(r)$ et conclure.
     Indication: on pourra évaluer $\partial_{\alpha} (f(z_{\alpha, r}))$.
-
-<!--
-Mesurabilité de $\|f\|$
---------------------------------------------------------------------------------
-
-**TODO**
--->
 
 Intégrabilité du produit {.question #ip}
 --------------------------------------------------------------------------------
