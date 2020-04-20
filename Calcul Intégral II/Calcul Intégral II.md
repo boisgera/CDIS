@@ -544,7 +544,7 @@ dans tous les cas, elle est intégrable.
 
 Si maintenant $U$ est un ensemble ouvert, pour chaque point $x$ de $U$ 
 on peut construire le plus grand intervalle ouvert $I_x$ contenant $x$ et inclus
-dans $U$ (c'est l'union de tous les intervalles ouvert vérifiant ces
+dans $U$ (c'est l'union de tous les intervalles ouverts vérifiant ces
 deux propriétés). Pour un couple $x$ et $y$ dans $U$, soit $I_x = I_y$,
 soit $I_x$ et $I_y$ sont disjoints et l'union de tous les intervalles
 $I_x$ est égale à $U$. Comme dans chaque $I_x$ on peut choisir
