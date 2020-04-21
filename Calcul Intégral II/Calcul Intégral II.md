@@ -507,7 +507,7 @@ longueur est majorée par
 $\sum_{k=0}^{+\infty} \varepsilon/2^{k+1} = \varepsilon.$
 L'ensemble $A$ est donc négligeable.
 
-### Complétude de la longueur {.corollary}
+### Complétude de la longueur {.corollary #complétude}
 
 Un sous-ensemble d'un ensemble de longueur nulle est de longueur nulle.
 
@@ -672,8 +672,8 @@ alors
 $$
 f^{-1}(U) = (g^{-1}(U) \setminus E) \cup F
 $$
-où $E$ et $F$ sont négligeables (et donc mesurables puisque la mesure
-de Lebesgue est complète) ;
+où $E$ et $F$ sont négligeables et donc mesurables puisque 
+[la mesure de Lebesgue est complète](#complétude) ;
 par conséquent, $f^{-1}(U)$ est mesurable.
 
 ### Démonstration du [critère de l'image réciproque](#CIR) {.proof #pCIR}
@@ -682,7 +682,7 @@ si une fonction satisfait le critère de d'image réciproque pour
 tout ouvert de $\R^n$, alors si $F$ est un fermé de $\R^n$, 
 en utilisant l'égalité $f^{-1}(F) = \R \setminus f^{-1}(\R^n \setminus F)$,
 le fait que le complémentaire d'un fermé soit un ouvert et 
-que [le complémentaire d'un ensemble mesurable soit mesurable](#pptés-tribus),
+que [le complémentaire d'un ensemble mesurable soit mesurable](#pptés-tribu),
 on établit le critère pour les fermés.
 
 Montrons tout d'abord le résultat pour les fonctions scalaires ($n=1$).
