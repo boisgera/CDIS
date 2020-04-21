@@ -106,11 +106,12 @@ $x \in \R$,
 $$
 \lim_{k \to +\infty} f_k(x) = f(x)
 $$
-et qu'il existe deux fonctions intégrables $g$ et $h$ encadrant la suite $f_k$,
-c'est-à-dire telles que pour tout $k \in \mathbb{N}$ et pour tout 
+et qu'il existe une fonction intégrable $g:\R \to \left[0, +\infty\right[$ 
+dominant la suite $f_k$, c'est-à-dire telle que pour tout $k \in \N$ 
+et pour tout 
 $x \in \R$,
 $$
-g(x) \leq f_k(x) \leq h(x)
+|f_k(x)| \leq g(x)
 $$
 alors la fonction $f$ est intégrable et 
 $$
@@ -150,7 +151,7 @@ $$
 
 ### Démonstration {.proof}
 Par linéarité de l'intégrale, 
-pour tout $\lambda \in I$ et tout $h \in \R$ tel que $\lambda + h \in I$, 
+pour tout $\lambda \in I$ et tout $h \in \R^*$ tel que $\lambda + h \in I$, 
 on a
 $$
 \frac{S(\lambda + h) - S(\lambda)}{h}
@@ -166,13 +167,9 @@ $$
 De plus, par l'inégalité des accroissement finis, pour tout $k \in \N$,
 $$
 \left|\frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k} \right|
-\leq \sup_{\mu \in I} |\partial_{\lambda} f(\mu, t)| \leq g(t),
+\leq \sup_{\mu \in I} |\partial_{\lambda} f(\mu, t)| \leq g(t).
 $$
-et donc
-$$
--g(t) \leq \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k} \leq g(t).
-$$
-Les taux d'accroissements de $f$ sont donc encadrés par deux fonctions intégrables.
+Les taux d'accroissements de $f$ sont donc bornés par une fonction intégrable.
 Par [le théorème de convergence dominée](#TCD), on conclut que
 $$
 \lim_{k \to +\infty} \frac{S(\lambda + h_k) - S(\lambda)}{h_k}
@@ -187,7 +184,7 @@ Si une suite de fonctions intégrables $f_k:\R \to \R$
 est croissante et majorée en tout point, c'est-à-dire si pour tout
 $x$ de $\R$ 
 $$
-\mbox{pour tout } \, k \in \mathbb{N}, \, f_k(x) \leq f_{k+1}(x) 
+\mbox{pour tout } \, k \in \N, \, f_k(x) \leq f_{k+1}(x) 
 \; \mbox{ et } \;
 \sup_k f_k(x) < + \infty,
 $$
@@ -232,7 +229,7 @@ de $\R$ aussi général que possible[^loop] de $\R$ de prendre cette
 caractéristique soit intégrable ; on parle alors d'*ensemble intégrable*
 ou *de longueur finie*. 
 Cette définition laisse toutefois de coté les ensembles "trop grands" 
-pour être intégrables, mais par ailleurs parfaitement inoffensifs, 
+pour être intégrables, mais par ailleurs parfaitement anodins, 
 comme $\R$ tout entier ou l'ensemble des réels positifs. 
 Nous préférons donc mettre l'accent sur la notion d'ensemble *mesurable* :
 
@@ -242,14 +239,13 @@ très étranges. Cette situation ne résulte pas de la méthode de définition
 de la longueur par l'intégrale ; c'est au contraire une limitation intrinsèque
 de la théorie de la mesure que nous étudierons plus en détail par la suite.
 Malheureusement pour la didactique, il n'existe aucun exemple explicite 
-(élaboré par un procédé constructif) d'ensemble qui ne soit pas 
-mesurable (et c'est une chose que l'on peut prouver !).
+(élaboré par un procédé constructif) d'ensemble qui ne soit pas mesurable.
 On peut se consoler en apprenant que, du point de vue logique, 
 si l'on suppose que tous les ensembles sont
 mesurables -- ce qui peut sembler relativement anodin -- 
 on peut alors prouver des propositions beaucoup plus perturbantes,
-comme l'existence de partitions de $\R$ "strictement
-plus grandes" que $\R$ lui-même. 
+comme l'existence de partitions de $\R$ "contenant strictement plus d'éléments" 
+que $\R$ lui-même. 
 
 ### Ensemble mesurable {.definition}
 Un ensemble $E$ de $\R$ est *de longueur finie* si sa fonction 
@@ -264,7 +260,7 @@ si $E$ est de longueur finie et
 $$
 \ell(E) := +\infty
 $$
-dans le cas contraire (si $E$ mesurable mais pas de longueur finie).
+dans le cas contraire (si $E$ est mesurable mais pas de longueur finie).
 
 ### Interprétation {.remark}
 Il faut comprendre le terme "mesurable" littéralement, 
@@ -278,16 +274,8 @@ sa restriction à tout intervalle compact $[a, b]$ également.
 
 ### {.definition .post}
 Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
-$\mathbb{N}$.
+$\N$.
 
-### Propriétés élémentaires {.theorem #pptés-tribu}
-
- 1. L'ensemble vide est mesurable.
-
- 2. Le complémentaire d'un ensemble mesurable est mesurable.
-
- 3. L'union d'une collection dénombrable d'ensembles mesurables
-    est mesurable.
 
 ### Complémentaire absolu et relatif {.notation .definition}
 Le complémentaire (absolu) d'un ensemble $A$, relativement au
@@ -310,7 +298,21 @@ $$
 A^c = X \setminus A.
 $$
 
-### Démonstration des [propriétés élémentaires](#pptés-tribu) {.proof}
+### Propriétés élémentaires {.theorem #pptés-tribu}
+
+ 1. L'ensemble vide est mesurable.
+
+ 2. Le complémentaire d'un ensemble mesurable est mesurable.
+
+ 3. L'union d'une collection dénombrable d'ensembles mesurables
+    est mesurable.
+
+### {.remark}
+(Les ensembles mesurables de $\R$ forment donc 
+une *tribu* -- ou *$\sigma$-algèbre* -- de $\R$.)
+
+
+### Démonstration {.proof}
  1. La fonction caractéristique $1_{\varnothing}$ est identiquement nulle ; 
     l'ensemble vide $\varnothing$ est donc de longueur finie et par conséquent 
     mesurable.
@@ -527,7 +529,7 @@ c'est-à-dire s'il existe une suite de fonctions intégrables
 $f_k:\R \to \R$ telle que 
 pour tout $x\in \R$, 
 $f_k(x) \to f(x)$ quand $k \to +\infty$.
-Une fonction $f:\R \to \R^n$ est mesurable 
+Une fonction $f:\R \to \R^m$ est mesurable 
 si chacune de ses composantes est mesurable.
 
 ### Mesurabilité sur un intervalle {.remark}
@@ -540,24 +542,26 @@ de généraliser en conséquence les énoncés qui vont suivre.
 
 ### Critère d'intégrabilité dominée {.theorem #CID}
 Une fonction $f: \R \to \R$ est intégrable si et seulement
-si $f$ est mesurable et il existe deux fonctions intégrables 
-$g: \R \to \R$ et $h: \R \to \R$ telles que
-$g \leq f \leq h$.
+si $f$ est mesurable et il existe une fonction intégrable
+$g: \R \to \left[0,+\infty\right[$ telle que $|f| \leq g$.
 
+### {.post}
+La démonstration de ce théorème, qui nécessite des résultats intermédiaires, 
+est donnée [à la fin de cette section](#proof-CID).
 
 ### Interprétation {.post .remark}
 Souvenons-nous qu'une fonction définie sur un intervalle fermé et borné 
 est intégrable au sens de Riemann si et seulement si elle est encadrée 
 par deux fonctions intégrables au sens de Riemann et continue presque partout.
 
-Dans le cas de l'intégrale de Riemann comme de Henstock-Kurzweil, 
+Dans le cas de l'intégrale de Riemann comme de Lebesgue, 
 l'intégrabilité est donc caractérisée par une structure analogue qui
 repose sur deux propriétés distinctes :
 être encadrée par deux fonctions intégrables (pour la notion d'intégrale
 considérée) et être "suffisamment régulière". 
 La différence est que dans le cas de l'intégrale de Riemann
 l'exigence de régularité est forte -- être continue presque partout --
-alors que dans le cas de l'intégrale de Henstock-Kurzweil, 
+alors que dans le cas de l'intégrale de Lebesgue, 
 la régularité demandée -- la mesurabilité -- s'avère être une 
 condition très peu contraignante[^note].
 
@@ -587,7 +591,7 @@ Les fonctions $f_k + g_k$ et $\lambda f_k$ sont intégrables
 et convergent alors simplement vers $f+g$ et $\lambda f$ 
 respectivement.
 
-### Les fonctions continues (presque partout) sont mesurables
+### Les fonctions continues presque partout sont mesurables {.proposition}
 
 ### Démonstration {.proof}
 
@@ -613,25 +617,19 @@ x \in [-k, k] \mapsto (\sigma_k \circ f)(x)
 $$
 est continue presque partout sur $[-k, k]$ et bornée.
 Par conséquent, elle est intégrable au sens de Riemann -- 
-et donc de Henstock-Kurzweil -- sur $[-k, k]$. Son extension
+et donc de Lebesgue -- sur $[-k, k]$. Son extension
 $f_k$ par zéro au reste de $\R$ est donc intégrable au sens de
-Henstock-Kurzweil. De plus, la suite des $f_k$ converge simplement vers $f$ ;
+Lebesgue. De plus, la suite des $f_k$ converge simplement vers $f$ ;
 la fonction $f$ est donc mesurable. 
 
 ### Critère de l'image réciproque {.theorem #CIR}
-Une fonction $f:\R \to \R^n$ est mesurable si et seulement
-l'image réciproque de tout fermé (ou de tout ouvert) de $\R^n$
+Une fonction $f:\R \to \R^m$ est mesurable si et seulement
+l'image réciproque de tout fermé (ou de tout ouvert) de $\R^m$
 par $f$ est mesurable.
 
-### {.post .remark}
-
---------------------------------------------------------------------------------
-
-Ce critère ressemble beaucoup à la caractérisation abstraite des fonctions
-continues, qui exige que l'image de tout fermé (ou de tout ouvert)
-soit un fermé (ou un ouvert). Comme [tout fermé (et tout ouvert) est
-mesurable](#OSM), ce critère montre de façon particulièrement simple
-que toute fonction continue est mesurable.
+### Fonction continues {.exercise .question #fcm}
+Montrer en utilisant le critère de l'image réciproque que toute fonction
+continue est mesurable.
 
 ### {.ante}
 En se basant exclusivement sur ce critère de mesurabilité par 
@@ -677,13 +675,13 @@ par conséquent, $f^{-1}(U)$ est mesurable.
 ### Démonstration du [critère de l'image réciproque](#CIR) {.proof #pCIR}
 Il suffit de démontrer le critère pour les ensembles ouverts : 
 si une fonction satisfait le critère de d'image réciproque pour
-tout ouvert de $\R^n$, alors si $F$ est un fermé de $\R^n$, 
-en utilisant l'égalité $f^{-1}(F) = \R \setminus f^{-1}(\R^n \setminus F)$,
+tout ouvert de $\R^m$, alors si $F$ est un fermé de $\R^m$, 
+en utilisant l'égalité $f^{-1}(F) = \R \setminus f^{-1}(\R^m \setminus F)$,
 le fait que le complémentaire d'un fermé soit un ouvert et 
 que [le complémentaire d'un ensemble mesurable soit mesurable](#pptés-tribu),
 on établit le critère pour les fermés.
 
-Montrons tout d'abord le résultat pour les fonctions scalaires ($n=1$).
+Montrons tout d'abord le résultat pour les fonctions scalaires ($m=1$).
 Supposons [le critère de l'image réciproque](#CIR) satisfait. 
 La démonstration repose sur la construction explicite d'une suite $f_k(x)$ 
 de fonctions intégrables qui soient étagées, c'est-à-dire ne prenant qu'un
@@ -718,8 +716,8 @@ où les $A_j = f_k^{-1}(y_j)$ sont en nombre fini et disjoints.
 A part $A_0$, les $A_j$ sont également bornés, 
 car $f_k$ est nulle en dehors de $[-k, k]$.
 Montrons qu'à tout rang $k$, les ensembles $A_j$ sont mesurables, 
-ce qui prouvera que chaque $f_k$ est intégrable par le critère d'intégrabilité
-dominé.
+ce qui prouvera que chaque $f_k$ est intégrable comme combinaison linéaire
+de fonctions intégrables.
 C'est évident au rang $0$ où 
 $\{y_j\} = \{0\}$ et la collection des $A_j$ se réduit à 
 $\{A_0\} = \{\R\}$.
@@ -772,14 +770,14 @@ par une nouvelle application du résultat de
 ce critère est également satisfait pour toute fonction mesurable.
 
 Pour établir le résultat dans le cas où $n>1$, il suffit de montrer qu'une
-fonction $f:\R \to \R^n$ satisfait le critère de l'image réciproque si et
+fonction $f:\R \to \R^m$ satisfait le critère de l'image réciproque si et
 seulement si toutes ses composantes le satisfont. Pour le sens direct,
 il suffit de constater que 
 $$
 f_k^{-1}(U) = f^{-1}(\R \times \cdots \times U \times \cdots \R)
 $$
 et que si $U$ est ouvert, $\R \times \cdots \times U \times \cdots \R$ également.
-Pour la réciproque, nous exploitons le fait[^demo] que tout ouvert de $\R^n$ peut être
+Pour la réciproque, nous exploitons le fait[^demo] que tout ouvert de $\R^m$ peut être
 décomposé comme l'union d'une collection dénombrable $\mathcal{P}$ 
 de pavés ouverts de la forme
 $$
@@ -793,17 +791,19 @@ et donc $f^{-1}(P)$ est mesurable.
 Comme $f^{-1}(U) = \cup_{P \in \mathcal{P}} f^{-1}(P)$ et que $\mathcal{P}$
 est dénombrable, l'image réciproque de $U$ par $f$ est bien mesurable.
 
-[^demo]: la démonstration est similaire à la décomposition d'un ouvert de
-$\R$ en une collection d'intervalle ouvert : pour chaque point $x$ de 
-$U \subset \R^n$ ouvert dont les coordonnées sont rationnelles, 
-on considère le plus grand pavé ouvert $P_x$ qui contienne $x$ ; 
+[^demo]: Pour chaque point $x$ de 
+$U \subset \R^m$ ouvert dont les coordonnées sont rationnelles, 
+on considère le plus grand pavé ouvert de la forme 
+$$\left]x_1-h, x_1+h\right[ \times \dots \times \left]x_m-h, x_m+h\right[,
+\; h > 0$$ 
+qui soit inclus dans $U$ ; 
 ces pavés forment une collection dénombrable et leur union 
 est égale à $U$ par construction.
 
 ### Composition par une fonction continue {.theorem #CFC}
 
-Soit $f:\R \to \R^n$ une fonction mesurable et 
-$g:\R^n \to \R^m$ une fonction continue.
+Soit $f:\R \to \R^m$ une fonction mesurable et 
+$g:\R^m \to \R^m$ une fonction continue.
 La composée $g \circ f$ de ces deux fonctions est mesurable.
 
 ### {.remark .post}
@@ -816,7 +816,7 @@ $f$ sont appelées fonctions *boréliennes*.).
 
 ### Démonstration {.proof}
 Si $F$ est un fermé de $\R^m$.
-Par continuité de $g$, l'ensemble $g^{-1}(F)$ est un fermé de $\R^n$ 
+Par continuité de $g$, l'ensemble $g^{-1}(F)$ est un fermé de $\R^m$ 
 et par conséquent, par [le critère de mesurabilité par les images réciproques](#CIR)
 $$
 (g\circ f)^{-1}(F) = f^{-1}(g^{-1}(F))
@@ -848,25 +848,19 @@ La valeur absolue d'une fonction scalaire mesurable est mesurable.
 Par continuité de l'application valeur absolue
 $|\, \cdot \,|: \R \to \R$.
 
-### Démonstration du critère d'intégrabilité dominée {.proof}
+### Démonstration du critère d'intégrabilité dominée {.proof #proof-CID}
 Le sens direct est évident :
-si la fonction $f$ est intégrable, elle est mesurable et satisfait
-les inégalités $f \leq f \leq f$. 
-
-Nous notons que pour établir la réciproque, il suffit de se limiter au cas
-où $g=0$. En effet si le résultat est établi dans ce cas précis, sous
-les hypothèses plus générales on a $0 \leq f - g \leq h -g$ où $f-g$
-est mesurable et $h - g$ est intégrable ; $f -g$ est alors intégrable,
-et donc $f$ est intégrable.
+si la fonction $f$ est intégrable, elle est mesurable et est dominée
+par la fonction $|f|$ qui est intégrable.
 
 Pour montrer la réciproque dans ce cas, nous approchons 
 la fonction mesurable $f$ par la suite de fonctions étagées $f_k$ 
 définie par le procédé de [la démonstration du critère de l'image réciproque](#pCIR). 
 La fonction $f$ apparaît comme une limite simple des
-fonctions $f_k$, qui sont intégrables et
-encadrées par les fonctions intégrables $0$ et $h$. 
-Par le théorème de convergence dominée, $f$ est intégrable.
+fonctions $f_k$, qui sont intégrables et dominées par la fonctions intégrable $|f|$. 
+Par [le théorème de convergence dominée](#TCD), $f$ est intégrable.
 
+<!--
 
 Fonctions absolument intégrables
 ================================================================================
@@ -906,6 +900,7 @@ par [le critère d'intégrabilité dominée](#CID), $fg$ est intégrable.
 La valeur absolue $|fg|$ de $fg$ est mesurable
 et vérifie également $- M |f| \leq f g \leq M |f|$, 
 elle est donc également intégrable par le même critère.
+
 
 ### Fonctions absolument intégrables {.theorem}
 L'ensemble des fonctions absolument intégrables 
@@ -950,9 +945,49 @@ $$
 $$
 et en passant à la limite sur $\varepsilon$, l'inégalité cherchée.
 
-### Une fonction conditionnellement intégrable {.example}
+-->
 
-La fonction $f:[0, 1] \to \R$ définie par
+### Intégrabilité sur un sous-ensemble {.definition}
+Une fonction $f: \R \to \R$ est dite *intégrable 
+sur un sous-ensemble $E$ de $\R$* si la fonction $f 1_E$ est intégrable. 
+On note alors
+$$
+\int_E f(t) \, dt := \int 1_E(t) f(t) \, dt.
+$$
+
+
+### {.remark .post}
+Cette définition est cohérente avec la définition existant déjà dans le cas
+où $E$ est un intervalle de $\R$ (cf. "Calcul Intégral I").
+
+### Restriction à des ensembles mesurables {.corollary}
+Une fonction $f:\R \to \R$ est intégrable
+si et seulement si $f$ est intégrable sur $E$
+pour tout ensemble mesurable $E$. 
+
+### Démonstration {.proof}
+Si $f$ est intégrable, elle est mesurable ; si l'ensemble
+$E$ est mesurable, sa fonction caractéristique $1_E$ est également
+mesurable, comme limite des $1_{E\cap[-k, k]}$ qui sont
+intégrables, et donc mesurables. 
+Par conséquent, le produit $f 1_E$ est mesurable, 
+comme sa valeur absolue $|f 1_E|$.
+Par ailleurs, comme $|1_E| \leq 1$, on a 
+$|f1_E| \leq |f|$.
+Par [le critère d'intégrabilité dominée](#CID), 
+$f 1_E$ est donc intégrable.
+
+Réciproquement, supposons $f 1_E$ intégrable pour tout ensemble mesurable 
+$E$. En prenant $E = \R$, on constate que $f$ est nécessairement intégrable.
+
+Annexe -- Intégrabilité conditionnelle
+================================================================================
+
+On utilise parfois le terme *conditionnellement intégrable* pour qualifier
+les fonctions qui intégrables au sens de Henstock-Kurzweil mais pas au sens
+de Lebesgue, car leur valeur absolue n'est pas intégrable. Nous fournissons
+dans cette section l'exemple d'une telle fonction, en démontrant que
+la fonction $f:[0, 1] \to \R$ définie par
 $$
 f(x) = \frac{1}{x} \cos \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, f(0) = 0
 $$
@@ -960,8 +995,9 @@ est conditionnellement intégrable.
 
 ![](images/f.py)\
 
-Pour montrer qu'elle est intégrable, 
-nous exploitons [le théorème fondamental du calcul](Calcul Intégral I.pdf/#TFC), 
+Pour montrer qu'elle est intégrable au sens de Henstock-Kurzweil, 
+nous exploitons la forme générale du théorème fondamental du calcul
+(cf "Calcul Intégral I"), 
 appliqué à la fonction $g:[0, 1] \to \R$ définie par 
 $$
 g(x) = -\frac{x^2}{2} \sin \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, g(0) = 0.
@@ -976,17 +1012,18 @@ $$
 Par [le critère d'intégrabilité dominée](#CID), la fonction $h(x)$ égale à
 $x \sin (1/x^2)$ si $x>0$ et nulle en zéro est absolument intégrable
 car continue sur $[0, 1]$.
-La fonction $g'$ étant également intégrable, $f = g' + h$ est intégrable comme
-somme de deux fonctions intégrables.
+La fonction $g'$ étant également intégrable au sens de Henstock-Kurzweil, 
+$f = g' + h$ est intégrable au sens de Henstock-Kurzweil comme
+somme de deux fonctions intégrables au sens de Henstock-Kurzweil.
 
 [^dn]: En effet,
 $$
 \left| \frac{g(h) - g(0)}{h} \right| \leq \frac{|h|}{2} \to 0 \, \mbox{ quand } \, h \to 0.
 $$
 
-La fonction $f$ n'est pourtant pas absolument intégrable, 
-car $h$ est absolument intégrable mais pas $g'$.
-En effet, si c'était le cas, toute fonction absolument intégrable
+La fonction $f$ n'est pourtant pas intégrable au sens de Lebesgue, 
+car $h$ est intégrable au sens de Lebesgue mais pas $g'$.
+En effet, si c'était le cas, toute fonction intégrable au sens de Lebesgue
 dont la valeur absolue est majorée par $|g'|$ aurait par l'inégalité
 triangulaire son intégrale majorée par celle de $|g'|$. 
 Or nous allons exhiber une suite de telles fonctions dont l'intégrale
@@ -1022,8 +1059,8 @@ approximativement aux plages où $g'(x)$ est positif.
 
 
 
-Par construction, $\phi_k$ est continue par morceaux et donc absolument 
-intégrable, et bien telle que $|\phi_k| \leq |g'|$.
+Par construction, $\phi_k$ est continue par morceaux et donc 
+intégrable au sens de Lebesgue, et bien telle que $|\phi_k| \leq |g'|$.
 Par ailleurs,
 $$
 \begin{split}
@@ -1039,47 +1076,6 @@ Comme la série associée à cette équation est divergente,
 on peut rendre l'intégrale arbitrairement grande en choisissant
 un $k$ suffisamment grand, ce qui permet de conclure.
 
-### Intégrabilité sur un sous-ensemble {.definition}
-Une fonction $f: \R \to \R$ est dite *intégrable (resp. absolument intégrable) 
-sur un sous-ensemble $E$ de $\R$* si la fonction $f 1_E$ est intégrable
-(resp. absolument intégrable). On note alors
-$$
-\int_E f(x) \, dx = \int 1_E(x) f(x) \, dx.
-$$
-
-
-### {.remark .post}
-Cette définition est cohérente avec la définition existant déjà dans le cas
-où $E$ est un intervalle de $\R$ (cf. ["Extension à la droite réelle achevée"
-dans Calcul Intégral I](Calcul Intégral I.pdf/#EDRA)).
-
-### Restriction à des ensembles mesurables {.corollary}
-Une fonction $f:\R \to \R$ est absolument intégrable
-si et seulement si $f$ est (absolument) intégrable sur $E$
-pour tout ensemble mesurable $E$. 
-
-### Démonstration {.proof}
-Si $f$ est absolument intégrable, elle est mesurable ; si l'ensemble
-$E$ est mesurable, sa fonction caractéristique $1_E$ est également
-mesurable. Par conséquent, le produit $f 1_E$ est mesurable, 
-comme sa valeur absolue $|f 1_E|$.
-Par ailleurs, comme $|1_E| \leq 1$, on a 
-$-|f| \leq f1_E \leq |f|$ et donc $-|f| \leq |f1_E| \leq |f|$.
-Par [le critère d'intégrabilité dominée](#CID), 
-$f 1_E$ est (absolument) intégrable.
-
-Réciproquement, supposons $f 1_E$ intégrable pour tout ensemble mesurable 
-$E$. En prenant $E = \R$, on constate que $f$ est intégrable,
-et donc mesurable.
-Notons $E_+ = \{x \in \R \, | \, f(x) \geq 0 \}$ et 
-$E_- = \{x \in \R \, | \, f(x) \leq 0 \}$ ; ces deux ensembles sont
-mesurables [comme images réciproques de fermés par une fonction mesurable](#CIR).
-La fonction $|f|$ satisfaisant
-$$
-|f| = 1_{E_+} f - 1_{E_-} f,
-$$
-elle est intégrable comme somme de fonctions intégrables.
-La fonction $f$ est donc absolument intégrable.
 
 Exercices
 ================================================================================
@@ -1219,6 +1215,15 @@ Montrer que la fonction $\max(f, g)$ est (absolument) intégrable.
 
 Solutions
 ================================================================================
+
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Fonction continues {.answer #answer-fcm}
+L'image réciproque de tout fermé par une application continue $f:\R \to \R^m$ 
+est fermé. Comme [tout fermé est mesurable](#OSM), 
+[le critère de l'image réciproque](#CIR)
+prouve qu'une telle fonction continue est mesurable.
 
 Théorème de convergence dominée {.answer #answer-exo-TCD}
 --------------------------------------------------------------------------------
