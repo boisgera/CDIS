@@ -747,7 +747,7 @@ $\{\dots, A_j, \dots, E, F\}$ et donc un ensemble mesurable. La fonction
 $f_{k+1}$ peut donc être mise sous la forme souhaitée.
 
 Réciproquement, considérons désormais une fonction intégrable $f:\R \to \R$.
-Par le [théorème de dérivation des intégrales indéterminées](#DII),
+Par le théorème de dérivation des intégrales indéterminées,
 si l'on définit la fonction $f_k(x)$ comme le taux d'accroissement
 $$
 f_k(x) :=  \frac{F(x + 2^{-k}) - F(x)}{2^{-k}}
