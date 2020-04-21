@@ -761,7 +761,7 @@ c'est encore le cas des fonctions qui sont égales presque partout aux
 $f_k$ mais valent $0$ aux points ou les $f_k$ ne convergent pas,
 car [elles sont égales presque partout aux fonctions $f_k$](#FPPE).
 L'ensemble des fonctions satisfaisant le critère de l'image réciproque 
-étant [stable par passage à la limite](#SPM), 
+étant [stable par passage à la limite](#SPL), 
 [une fonction égale à $f$ presque partout satisfait le critère de l'image réciproque](#FPPE) ;
 la fonction intégrable $f$ satisfait donc 
 elle-même le critère de l'image réciproque.
