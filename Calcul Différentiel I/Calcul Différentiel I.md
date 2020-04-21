@@ -671,9 +671,11 @@ ces noms pour désigner les variables plutôt qu'un indice[^lv][^py].
 Pour ce qui est des dérivées partielles en particulier, dans cet esprit,
 on peut alors convenir de noter
 $$
-\frac{\partial  (x^2 + y^2)}{\partial x} := \frac{\partial  f}{\partial x}(x, y) := \partial_1 f(x, y)
-\; \mbox{ et } \;
-\frac{\partial  (x^2 + y^2)}{\partial y} := \frac{\partial  f}{\partial y} (x, y):= \partial_2 f(x, y).
+\frac{\partial  (x^2 + y^2)}{\partial x} := \frac{\partial  f}{\partial x}(x, y) := \partial_x f(x, y) := \partial_1 f(x, y)
+$$
+et
+$$
+\frac{\partial  (x^2 + y^2)}{\partial y} := \frac{\partial  f}{\partial y} (x, y):= \partial_y f(x, y) := \partial_2 f(x, y).
 $$
 
 [^lv]: En particulier, si la fonction considérée est implicite, 
