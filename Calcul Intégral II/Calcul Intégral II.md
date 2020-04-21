@@ -12,14 +12,14 @@
 Introduction
 ================================================================================
 
-L'intégrale de Henstock-Kurzweil, introduite dans "Calcul Intégral I", 
+L'intégrale de Lebesgue, introduite dans "Calcul Intégral I", 
 présente l'avantage de pouvoir intégrer une plus grande gamme de fonctions
 que l'intégrale de Riemann : moins régulières, non bornées et/ou définies
 sur des intervalles non-bornés[^ii].
 
 Il faut néanmoins reconnaître qu'à ce stade de notre exposé l'intégrale
 de Riemann est parfois plus pratique. 
-Par exemple : si avec l'intégrale de Henstock-Kurzweil,
+Par exemple : si avec l'intégrale de Lebesgue,
 on sait que $\lambda f$ et $f + g$ sont intégrables quand
 $f$ et $g$ le sont, 
 il n'est pas certain que le produit $f g$ soit intégrable ;
@@ -52,7 +52,7 @@ $C$ des points de discontinuité de $fg$ est nécessairement dans $A\cup B$,
 donc négligeable. Le produit $fg$ est donc intégrable au sens de Riemann.
 
 Cette remarque ne souligne pas à proprement parler un défaut de l'intégrale de 
-Henstock-Kurzweil, mais plutôt une conséquence de sa généralité : en permettant
+Lebesgue, mais plutôt une conséquence de sa généralité : en permettant
 d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/\sqrt{x}$ 
 (presque partout), on s'expose à devoir refuser d'intégrer le produit d'une 
 fonction par elle-même, ici $x \in [0,1] \mapsto 1/x$ (presque partout).
@@ -64,17 +64,15 @@ Heureusement, comme dans le cas de l'intégrale de Riemann,
 un critère d'intégrabilité des fonctions -- nécessaire et suffisant -- 
 existe pour établir ce type de résultat (et bien d'autres).
 Comme dans le cas de l'intégrale de Riemann, il se décompose en deux tests
-indépendants : pour être intégrable une fonction doit être "encadrée par des
-fonctions intégrables" et "suffisamment régulière". Bien sûr ici les 
-fonctions qui jouent le rôle de bornes devront être intégrables au sens
-de Henstock-Kurzweil (et non plus de Riemann) ; 
+indépendants : pour être intégrable une fonction doit être "dominée par une
+fonction intégrable" et "suffisamment régulière". Bien sûr ici la
+fonction qui domine devra être intégrable au sens de Lebesgue 
+(et non plus de Riemann) ; 
 quant à la régularité, il ne s'agira plus de tester la continuité presque
 partout, mais de vérifier la *mesurabilité* de la fonction considérée,
-une propriété que possèdent presque toutes les fonctions "imaginables".
+une propriété que possèdent presque toutes les fonctions "non-pathologiques".
 
-Bien que n'étant un cas particulier, 
-l'intégrabilité d'un produit revêt une importance particulière. 
-En effet dans ce chapitre pour des raisons de simplicité, 
+Dans ce chapitre pour des raisons de simplicité, 
 nous mettrons l'accent sur les fonctions définies sur $\R$ ; 
 par défaut le symbole intégrale sans bornes désignera donc 
 l'intégrale entre $-\infty$ et $+\infty$:
@@ -91,11 +89,11 @@ sous-ensemble nécessite de considérer le produit $1_A f$
 de $f$ par la fonction caractéristique de $A$, ce qui soulève la question
 de l'étude de l'intégrabilité de ces fonctions caractéristiques.
 
-Mais notre première étape dans ce chapitre sera de nous doter d'un
-théorème de convergence dominée, qui permettra -- sous certaines
-conditions qui sont plus simples que dans le cadre Riemannien classique
--- de calculer l'intégrale d'une fonction $f$ à partir
-des intégrales d'une suite de fonctions convergeant vers $f$.
+Mais notre première étape dans ce chapitre sera de nous doter de
+théorèmes de convergence qui nous permettront -- sous certaines
+conditions qui sont plus simples que dans le cadre Riemannien
+-- de calculer l'intégrale d'une fonction $f$ comme la limite
+d'intégrales de fonctions convergeant vers $f$.
 
 
 Théorèmes de Convergence
@@ -766,7 +764,7 @@ L'ensemble des fonctions satisfaisant le critère de l'image réciproque
 la fonction intégrable $f$ satisfait donc 
 elle-même le critère de l'image réciproque.
 
-Finalement, une fonction mesurable étant limite simple
+Finalement, une fonction mesurable est une limite simple
 d'une suite de fonctions intégrables et les fonctions intégrables 
 vérifient le critère de l'image réciproque, 
 par une nouvelle application du résultat de 
@@ -812,10 +810,9 @@ La composée $g \circ f$ de ces deux fonctions est mesurable.
 Dans le cas d'une fonction $g: \R \to \R$, il suffit de supposer que
 $g$ soit continue par morceaux pour pouvoir conclure (cf. exercice
 ["Composition de fonctions et mesurabilité"](#cfm)).
-En général, les fonctions $g$ qui assurent que 
+(En général, les fonctions $g$ qui assurent que 
 $g \circ f$ soit mesurable pour toutes les fonctions mesurables
-$f$ sont appelées fonction *boréliennes* ; elles seront étudiées plus
-en détail par la suite.
+$f$ sont appelées fonctions *boréliennes*.).
 
 ### Démonstration {.proof}
 Si $F$ est un fermé de $\R^m$.
