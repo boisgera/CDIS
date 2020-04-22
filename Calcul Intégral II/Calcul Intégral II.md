@@ -175,7 +175,7 @@ Objectifs d'apprentissage
   - \one connaître la définition d'intégrale sur un sous-ensemble (mesurable).
   
 
-Théorèmes de Convergence
+Théorèmes de convergence
 ================================================================================
 
 ### Théorème de convergence dominée {#TCD .theorem}
