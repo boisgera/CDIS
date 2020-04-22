@@ -7,6 +7,15 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+
+
+<!--{\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}}-->
 
 
 Introduction
@@ -28,8 +37,6 @@ intégrabilité.
 Or dans le cadre Riemannien, rien de plus simple : si $f$ et $g$ sont
 des fonctions intégrables au sens de Riemann sur un segment, le produit 
 $fg$ est systématiquement intégrable au sens de Riemannn sur ce segment[^cocpp]. 
-
-
 
 [^ii]: Sans nécessiter de construction supplémentaire ; dans le cadre
 de l'intégrale de Riemann, certaines de ces intégrales peuvent être
@@ -95,6 +102,78 @@ conditions qui sont plus simples que dans le cadre Riemannien
 -- de calculer l'intégrale d'une fonction $f$ comme la limite
 d'intégrales de fonctions convergeant vers $f$.
 
+Objectifs d'apprentissage
+================================================================================
+
+#### Ensembles mesurables
+
+  - \one savoir qu'un ensemble est mesurable si sa longueur est bien définie,
+
+  - \one connaître la définition formelle d'ensemble mesurable,
+
+  - \one savoir calculer sa longueur comme une intégrale,
+
+  - connaître les propriétés principales des ensembles mesurables :
+
+    - \one les ensembles mesurables forment une tribu,
+
+    - \two ensembles ouverts (et fermés) sont mesurables,
+
+    - \two négligeable = de longueur nulle.
+
+  - connaître quelques propriétés secondaires qui s'en déduisent :
+
+    - \one intersection dénombrable d'ensembles mesurables.
+
+    - \one complémentaire relatif d'ensembles mesurables,
+
+  - savoir les exploiter pour :
+  
+    - \two montrer qu'un ensemble donné est mesurable,
+
+    - \three déduire de nouvelles propriétés secondaires.
+
+#### Fonctions mesurables
+
+  - \one connaître la définition des fonctions mesurables,
+
+  - \one connaître leur caractérisation par le critère de l'image réciproque,
+
+  - savoir que les fonctions suivantes sont mesurables :
+
+    - \one les fonctions intégrables,
+
+    - \one les fonctions égales presque partout à des fonctions mesurables,
+
+    - \two les limites (simples) de fonctions mesurables,
+
+    - \two les compositions de fonctions mesurables et continues.
+
+  - savoir exploiter les éléments précédents pour :
+  
+    - \two montrer qu'une fonction donnée est mesurable,
+      
+    - \three déduire de nouvelles classes de fonctions mesurables.
+
+
+#### Fonctions intégrables
+
+  - \one connaître le critère d'intégrabilité dominée,
+
+  - \one connaître le théorème de convergence dominée,
+
+  - \two connaître le théorème de convergence monotone,
+
+  - savoir mettre en oeuvre ces théorèmes pour :
+
+    - \one montrer qu'une fonction est intégrable,
+
+    - \two calculer l'intégrale d'une fonction comme une limite,
+
+    - \three démontrer qu'une fonction n'est pas intégrable.
+
+  - \one connaître la définition d'intégrale sur un sous-ensemble (mesurable).
+  
 
 Théorèmes de Convergence
 ================================================================================
@@ -272,11 +351,6 @@ sont bien mesurables ;
 en effet si la fonction caractéristique $1_E$ est intégrable,
 sa restriction à tout intervalle compact $[a, b]$ également.
 
-### {.definition .post}
-Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
-$\N$.
-
-
 ### Complémentaire absolu et relatif {.notation .definition}
 Le complémentaire (absolu) d'un ensemble $A$, relativement au
 sur-ensemble $X=\R$ dans ce chapitre
@@ -298,7 +372,11 @@ $$
 A^c = X \setminus A.
 $$
 
-### Propriétés élémentaires {.theorem #pptés-tribu}
+### {.definition .post}
+Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
+$\N$.
+
+### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
 
  1. L'ensemble vide est mesurable.
 
@@ -308,8 +386,8 @@ $$
     est mesurable.
 
 ### {.remark}
-(Les ensembles mesurables de $\R$ forment donc 
-une *tribu* -- ou *$\sigma$-algèbre* -- de $\R$.)
+On aggrège cet ensemble de propriétés en disant que les ensembles mesurables 
+de $\R$ forment une *tribu* -- ou *$\sigma$-algèbre* -- de $\R$.
 
 
 ### Démonstration {.proof}
@@ -535,7 +613,7 @@ si chacune de ses composantes est mesurable.
 ### Mesurabilité sur un intervalle {.remark}
 Nous nous limitons dans ce chapitre à l'étude des fonctions mesurables
 définies sur $\R$. La notion peut être très facilement étendue
-à une fonction $f$ définie sur un intervalle fermé $I$ de $\R$ de la
+à une fonction $f$ définie sur un intervalle $I$ de $\R$ de la
 façon suivante : on dira que $f$ est mesurable si son prolongement par $0$
 dans le complémentaire de $I$ est mesurable. Nous vous laissons le soin
 de généraliser en conséquence les énoncés qui vont suivre.

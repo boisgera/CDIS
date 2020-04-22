@@ -28,7 +28,7 @@ TODO
 TODO -- Objectifs d'apprentissage
 --------------------------------------------------------------------------------
 
-Ensembles négligeables
+#### Ensembles négligeables
 
   - longueur d'intervalles de $[-\infty, +\infty]$.
 
@@ -38,14 +38,14 @@ Ensembles négligeables
 
   - "p.p." (et pratique+logique associée)
 
-Intégrale de Riemann
+#### Intégrale de Riemann
 
   - définition, csq méthodes de calcul aproché (quadrature).
 
   - connaître les limitations, des exemples de fonctions non-intégrales au
     sens de Riemann qui ne "devraient pas poser de pb".
 
-Intégrale de Riemann généralisée
+#### Intégrale de Riemann généralisée
 
   - principe (adaptation "maille" de la subdivision pointée selon la région)
 
