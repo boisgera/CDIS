@@ -8,34 +8,36 @@
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\tr}{\operatorname{tr}}
 
-Introduction
-================================================================================
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
 Objectifs d'apprentissage
---------------------------------------------------------------------------------
+================================================================================
 
 #### Prérequis
 
 Les élements du calcul différentiel supposés déjà maîtrisés :
 
-  - dérivabilité et dérivée de fonctions d'une variable réelle,
+  - \zero dérivabilité et dérivée de fonctions d'une variable réelle,
 
-  - dérivée sur des sous-ensembles ouverts et des intervalles fermés de $\R$,
+  - \zero dérivée sur des sous-ensembles ouverts et des intervalles fermés de $\R$,
 
-  - dérivées des fonctions scalaires ($\R$) et vectorielles ($\R^m$),
+  - \zero dérivées des fonctions scalaires ($\R$) et vectorielles ($\R^m$),
 
-  - dérivée et développement limité au premier ordre,
+  - \zero dérivée et développement limité au premier ordre,
 
 Les fondements du calcul matriciel supposés maîtrisés :
 
-  - vecteurs de $\R^n$ et applications linéaires $\R^n \to \R^m$, 
+  - \zero vecteurs de $\R^n$ et applications linéaires $\R^n \to \R^m$, 
 
-  - matrices, vecteurs lignes et colonnes,
+  - \zero matrices, vecteurs lignes et colonnes,
 
-  - produit matriciel, transposition de matrice,
+  - \zero produit matriciel, transposition de matrice,
 
-  - interprétation géométrique du calcul matriciel.
-
+  - \zero interprétation géométrique du calcul matriciel.
 
 
 #### Matrice jacobienne et différentielle
@@ -47,7 +49,7 @@ des dérivées partielles, est la matrice jacobienne ; pour les fonctions
 scalaires, on préférera souvent utiliser le gradient que la matrice
 jacobienne.
 
-  - savoir calculer dérivées partielles, matrices jacobiennes et gradients.
+  - \one savoir calculer dérivées partielles, matrices jacobiennes et gradients.
 
 Toutefois, la seule existence de la matrice jacobienne est insuffisante 
 pour exploiter la plupart des résultats du calcul différentiel. 
@@ -57,25 +59,25 @@ Avec la continue différentiabilité, même sans savoir ce que signifie le terme
 on peut alors néanmoins exploiter tous les résultats qui nécessitent la simple 
 "différentiabilité".
 
-  - savoir que l'existence de la matrice jacobienne est souvent insuffisante,
+  - \one savoir que l'existence de la matrice jacobienne est souvent insuffisante,
 
-  - savoir qu'on peut alors avoir recours à la continue différentiabilité,
+  - \one savoir qu'on peut alors avoir recours à la continue différentiabilité,
 
-  - savoir caractériser les fonctions continûment différentiables,
+  - \one savoir caractériser les fonctions continûment différentiables,
 
-  - savoir exploiter que continûment différentiable implique différentiable.
+  - \one savoir exploiter que continûment différentiable implique différentiable.
 
 La différentiabilité n'est autre que l'existence d'un développement limité
 au premier ordre. C'est la généralisation de la notion de dérivabilité au
 cas multivariable.
 
-  - savoir que différentiabilité signifie existence d'un tel développement limité,
+  - \two savoir que différentiabilité signifie existence d'un tel développement limité,
 
-  - savoir que différentiabilité équivaut à dérivabilité dans le cas monovariable,
+  - \two savoir que différentiabilité équivaut à dérivabilité dans le cas monovariable,
 
-  - savoir caractériser et exploiter un développement limité au premier ordre, 
+  - \two savoir caractériser et exploiter un développement limité au premier ordre, 
 
-  - savoir ce qu'est la différentielle et son lien avec la matrice jacobienne.
+  - \two savoir ce qu'est la différentielle et son lien avec la matrice jacobienne.
 
 #### Calcul différentiel
 
@@ -85,26 +87,28 @@ des fonctions élémentaires,
 fournissant autant de règles élémentaires de calcul. 
 Il est donc nécessaire avant toute chose de 
 
-  - connaître et savoir mettre en oeuvre quelques règles élémentaires,
+  - \one connaître et savoir mettre en oeuvre quelques règles élémentaires,
 
-  - savoir en élaborer de nouvelles en exploitant les définitions.
+  - \two savoir en élaborer de nouvelles en exploitant les définitions.
 
 Ensuite, pour faire face à des calculs plus complexes, deux stratégies
 sont à mener en parallèle. Au niveau pratique, il convient de
 
-  - savoir exploiter les notations simplifiant le calcul différentiel,
+  - \one savoir exploiter les notations simplifiant le calcul différentiel,
 
-  - comprendre ce que signifient ces notations pour éviter les erreurs.
+  - \two savoir expliciter ce qu'elles signifient.
 
 Au niveau théorique, il s'agit de compléter les règles élémentaires
 par des règles génériques, applicables non plus à une fonction particulière
 mais à des classes de fonctions, donc de
 
-  - connaître et savoir mettre en oeuvre quelques règles de calcul génériques,
+  - \one connaître et savoir mettre en oeuvre quelques règles de calcul génériques,
 
-  - connaître les règles d'assemblage/désassemblage et de dérivation en chaîne,
+  - \two connaître les règles d'assemblage/désassemblage,
 
-  - savoir les exploiter pour élaborer de nouvelles règles de calcul génériques.
+  - \two connaître la règle de dérivation en chaîne,
+
+  - \three savoir élaborer de nouvelles règles de calcul génériques.
 
 #### Variation des fonctions
 
@@ -112,21 +116,23 @@ En intégrant les variations infinitésimales d'une fonction entre deux points,
 on peut évaluer sa variation entre ces points. Utiliser pleinement cette
 technique suppose de :
 
-  - connaître le théorème fondamental du calcul (monovariable),
+  - \one connaître le théorème fondamental du calcul (monovariable),
 
-  - connaître le théorème fondamental du calcul (multivariable),
+  - \two connaître le théorème fondamental du calcul (multivariable),
 
-  - connaître la démonstration du cas multivariable, 
+  - \two connaître la démonstration du cas multivariable, 
   
-  - savoir l'adapter quand c'est nécessaire,
+  - \three savoir l'adapter quand c'est nécessaire,
 
-  - connaître l'inégalité des accroissements finis (monovariable),
+  - \one connaître l'inégalité des accroissements finis (monovariable),
 
-  - connaître l'inégalité des accroissements finis (multivariable)
+  - \two connaître l'inégalité des accroissements finis (multivariable),
 
-  - savoir les déduire du théorème fondamental du calcul[^res],
+  - \two savoir les déduire du théorème fondamental du calcul[^res],
 
-  - savoir exploiter ces résultats dans des contextes variés.
+  - \four connaître la variante non-euclidienne des ces inégalités,
+
+  - \three savoir exploiter ces résultats dans des contextes variés.
 
 [^res]: sous une hypothèse renforcée, par exemple de continue différentiabilité. 
 

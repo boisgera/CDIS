@@ -592,41 +592,42 @@ def handle_typed_sections(doc):
                 type_ = shared[0]
                 if types[type_]:
                     inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
-                if "zero" in classes:
-                    inlines += [
-                        Space(),
-                        Str("("),
-                        Math(InlineMath(), r"\mathord{\boldsymbol{\circ}}"),
-                        Str(")"),
-                    ]
-                if "one" in classes:
-                    inlines += [
-                        Space(),
-                        Str("("),
-                        Math(InlineMath(), r"\mathord{\bullet}"),
-                        Str(")"),
-                    ]
-                if "two" in classes:
-                    inlines += [
-                        Space(),
-                        Str("("),
-                        Math(InlineMath(), r"\mathord{\bullet}" * 2),
-                        Str(")"),
-                    ]
-                if "three" in classes:
-                    inlines += [
-                        Space(),
-                        Str("("),
-                        Math(InlineMath(), r"\mathord{\bullet}" * 3),
-                        Str(")"),
-                    ]
-                if "four" in classes:
-                    inlines += [
-                        Space(),
-                        Str("("),
-                        Math(InlineMath(), r"\mathord{\bullet}" * 4),
-                        Str(")"),
-                    ]
+                if "exercise" in classes:
+                    if "zero" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\boldsymbol{\circ}}"),
+                            Str(")"),
+                        ]
+                    if "one" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\bullet}"),
+                            Str(")"),
+                        ]
+                    if "two" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\bullet}" * 2),
+                            Str(")"),
+                        ]
+                    if "three" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\bullet}" * 3),
+                            Str(")"),
+                        ]
+                    if "four" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\bullet}" * 4),
+                            Str(")"),
+                        ]
                     # r"\mathord{\pmb{\infty}}"
                 header[2] = inlines
     for holder, index, level, latex_title in todos:
