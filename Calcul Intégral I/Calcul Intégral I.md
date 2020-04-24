@@ -268,12 +268,7 @@ $\R$ n'étant pas toujours définie.
 ### Ensembles finis {.exercise .question .one #ensemble-fini}
 Montrer que tout sous-ensemble fini de $\R$ est négligeable.
 
-### Ensembles finis {.answer #answer-ensemble-fini}
-Soit $E = \{x_1, \dots, x_m\} \subset \R$. Pour tout $\varepsilon > 0$, 
-la collection (finie) d'intervalles
-$\{\left[x_i, x_i\right]\}_{i=1}^m$
-recouvre $E$ et la somme des longueurs de ces intervalles est nulle,
-donc $E$ est négligeable.
+
 
 ### Intervalles négligeables {.exercise .question .four #intervalles-négligeables}
 Montrer que si $a < b$, l'ensemble $[a, b]$ n'est pas négligeable.
@@ -281,49 +276,17 @@ Indication : montrer que si les intervalles $I_i$ recouvrent $[a, b]$,
 alors $\sum_{i} \ell(I_i) \geq b-a$ ; on commencera par le cas d'une collection
 finie d'intervalles.
 
-### Intervalles négligeables {.answer #answer-intervalles-négligeables}
-Pour démontrer que l'ensemble $[a, b]$ n'est pas négligeable quand $a < b$,
-nous allons établir que si la collection dénombrable d'intervalles
-$I_i$ recouvre $[a, b]$, alors la somme des longueurs des $I_i$ est supérieure
-ou égale à $b-a > 0$ et donc l'intervalle n'est pas négligeable.
+### Sous-ensemble d'un ensemble négligeable {.exercise .question .one #oe}
+Montrer que si l'ensemble $A$ est négligeable et que $B \subset A$,
+alors $B$ est également négligeable.
 
-Prouvons dans un premier temps ce résultat quand la collection des $I_i$ est finie.
-Considérons une telle collection $\{I_i\}_{i=1}^m$ ;
-on peut supposer que les $I_i$ sont rangés "de la gauche vers la droite",
-c'est-à-dire que si $i < j$, il existe un $x \in I_i$ tel que $x \leq y$
-pour tout $y \in I_j$ et que tous les $I_i$ intersectent $[a, b]$. 
-Alors, la collection $\{J_i\}_{i=1}^m$ définie par
-$J_1 = I_1$, puis $J_{i+1} = I_{i+1} \setminus (\cup_{j=1}^{i} I_j)$ est
-composée d'intervalles disjoints recouvrant $[a, b]$, telle que
-$\ell(J_i) \leq \ell(I_i)$ pour tout $i$. Notons $x_i$ et $x_{i+1}$ les 
-extrémités de gauche et de droite de $J_i$ respectivement ; on a alors 
-$$
-\sum_{i=1}^m \ell(I_i) \geq 
-\sum_{i=1}^m \ell(J_i) = \sum_{i=1}^m (x_{i+1} - x_i) = x^{m+1} - x_1 \geq b-a.
-$$
+### Union d'ensembles négligeables {.exercise .question .three #uen}
+Est-ce que l'union de deux ensembles négligeables est négligeable ?
+L'union d'un nombre fini d'ensembles négligeables ? L'union d'une 
+collection dénombrable d'ensembles négligeables ? L'union d'une collection
+arbitraire d'ensembles négligeables ?
 
-Considérons désormais une collection d'intervalles $\{I_i\}_{i \in \N}$ recouvrant
-$[a, b]$. 
-Si $\sum_{i=1}^{+\infty} \ell(I_i) \leq \varepsilon$, alors pour tout $\varepsilon'>0$,
-il existe une collection d'intervalles ouverts $\{J_i\}_{i \in \N}$ tels que
-$I_i \subset J_i$ et $\ell(J_i) \leq \ell(I_i) + \varepsilon'/2^{i}$
-et donc tels que
-$$
-\sum_{i=1}^{+\infty} \ell(J_i) \leq 
-\sum_{i=1}^{+\infty} \ell(I_i) + \sum_{i=1}^{+\infty} \frac{\varepsilon'}{2^i} 
-\leq \varepsilon +\varepsilon'.
-$$
-Or l'ensemble $[a, b]$ étant fermé et borné, il est compact ; 
-les $\{J_i\}_{i \in \N}$ forment un recouvrement de ce compact par une collection
-d'ouverts, on peut donc en extraire un sous-recouvrement fini $\{K_j\}_{j=1}^m$.
-En utilisant le résultat précédemment établi pour de telles collections finies,
-on en déduit que
-$$
-b - a \leq \sum_{j=1}^{m} \ell(K_j) \leq \sum_{i=1}^{+\infty} \ell(J_i) \leq \varepsilon +\varepsilon',
-$$
-soit comme $\varepsilon'>0$ est arbitraire, $b - a \leq \varepsilon$.
 
-### TODO -- opérations ensemblistes (exo)
 
 ### Presque partout {.definition .one}
 Une propriété $P$ dépendant d'un réel $x$ est vraie *presque partout*
@@ -331,11 +294,14 @@ si l'ensemble des points $x$ où elle est fausse est un ensemble
 négligeable. On pourra utiliser la notation "$P$ p.p." ou "$P(x)$ p.p." 
 pour signifier que la propriété $P$ est vraie presque partout.
 
-### TODO : exo court "presque partout" (???) 
-Montrer que "p.p". Se combine avec la logique (et, ou, implique)
+### Etre non nul {.exercise .question .one #enn}
+Est-ce que la propriété "$x$ est non-nul" est vraie presque partout dans
+$\R$ ?
 
-### TODO : exo court "presque partout" (???) 
-Montrer qu'une fonction continue qui est nulle presque partout est nulle.
+
+### Fonction continue nulle presque partout {.exercise .three #fcnpp}
+Montrer que toute fonction continue $f : \R\to\R$ qui est nulle presque 
+partout est identiquement nulle.
 
 ### Les ensembles dénombrables sont négligeables {.proposition .one #edn}
 Si le sous-ensemble $E$ de $\R$ est dénombrable alors il est négligeable.
@@ -354,6 +320,12 @@ $$
 0,
 $$
 l'ensemble est donc négligeable.
+
+
+### Etre irrationnel {.exercise .question .one #ei}
+Est-ce que la propriété "$x$ est irrationnel" est vraie presque partout dans
+$\R$ ?
+
 
 ### {.remark .ante}
 L'intégrale de Riemann possède des limitations qui en font un outil mathématique
@@ -902,9 +874,11 @@ ce qui est le résultat recherché.
 -->
 
 ### Changement de variable {.theorem .three #changement-de-variable}
-Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une bijection continue
-dont la dérivée $g'$ existe, est continue et ne s'annule pas sur 
-$\left]a, b\right[$. Alors la fonction $f$ est intégrable sur $[c, d]$ 
+Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une fonction
+telle que $g([a, b]) = [c,d]$, continue en $a$ et et $b$,
+dont la dérivée $g'$ existe sur $\left]a, b\right[$, y est continue et ne s'y 
+annule pas. 
+Alors la fonction $f$ est intégrable sur $[c, d]$ 
 si et seulement si $(f\circ g) g'$ est intégrable sur $[a, b]$ et 
 dans ce cas, on a
 $$
@@ -925,7 +899,8 @@ $\R^n$ qui sera étudié dans le chapitre calcul intégral III.
 ### Changement de variables simplifié {.exercise .question #cv .two}
 Démontrer [le théorème de changement de variables](#changement-de-variable)
 au moyen [du théorème fondamental du calcul](#TFC), sous les hypothèses
-supplémentaires que $f$ et $g'$ existent et sont continues sur $[a,b]$.
+supplémentaires que $f$ et $g'$ existent et sont continues sur $[c, d]$ et
+$[a,b]$ respectivement.
 
 ### TODO
 
@@ -2330,6 +2305,113 @@ Comme $\phi$ est à valeurs dans $I$, $z \in I$ ; l'ensemble $I$ est donc un
 intervalle de $\R$.
 
 -->
+
+### Ensembles finis {.answer #answer-ensemble-fini}
+Soit $E = \{x_1, \dots, x_m\} \subset \R$. Pour tout $\varepsilon > 0$, 
+la collection (finie) d'intervalles
+$\{\left[x_i, x_i\right]\}_{i=1}^m$
+recouvre $E$ et la somme des longueurs de ces intervalles est nulle,
+donc $E$ est négligeable.
+
+
+### Intervalles négligeables {.answer #answer-intervalles-négligeables}
+Pour démontrer que l'ensemble $[a, b]$ n'est pas négligeable quand $a < b$,
+nous allons établir que si la collection dénombrable d'intervalles
+$I_i$ recouvre $[a, b]$, alors la somme des longueurs des $I_i$ est supérieure
+ou égale à $b-a > 0$ et donc l'intervalle n'est pas négligeable.
+
+Prouvons dans un premier temps ce résultat quand la collection des $I_i$ est finie.
+Considérons une telle collection $\{I_i\}_{i=1}^m$ ;
+on peut supposer que les $I_i$ sont rangés "de la gauche vers la droite",
+c'est-à-dire que si $i < j$, il existe un $x \in I_i$ tel que $x \leq y$
+pour tout $y \in I_j$ et que tous les $I_i$ intersectent $[a, b]$. 
+Alors, la collection $\{J_i\}_{i=1}^m$ définie par
+$J_1 = I_1$, puis $J_{i+1} = I_{i+1} \setminus (\cup_{j=1}^{i} I_j)$ est
+composée d'intervalles disjoints recouvrant $[a, b]$, telle que
+$\ell(J_i) \leq \ell(I_i)$ pour tout $i$. Notons $x_i$ et $x_{i+1}$ les 
+extrémités de gauche et de droite de $J_i$ respectivement ; on a alors 
+$$
+\sum_{i=1}^m \ell(I_i) \geq 
+\sum_{i=1}^m \ell(J_i) = \sum_{i=1}^m (x_{i+1} - x_i) = x^{m+1} - x_1 \geq b-a.
+$$
+
+Considérons désormais une collection d'intervalles $\{I_i\}_{i \in \N}$ recouvrant
+$[a, b]$. 
+Si $\sum_{i=1}^{+\infty} \ell(I_i) \leq \varepsilon$, alors pour tout $\varepsilon'>0$,
+il existe une collection d'intervalles ouverts $\{J_i\}_{i \in \N}$ tels que
+$I_i \subset J_i$ et $\ell(J_i) \leq \ell(I_i) + \varepsilon'/2^{i}$
+et donc tels que
+$$
+\sum_{i=1}^{+\infty} \ell(J_i) \leq 
+\sum_{i=1}^{+\infty} \ell(I_i) + \sum_{i=1}^{+\infty} \frac{\varepsilon'}{2^i} 
+\leq \varepsilon +\varepsilon'.
+$$
+Or l'ensemble $[a, b]$ étant fermé et borné, il est compact ; 
+les $\{J_i\}_{i \in \N}$ forment un recouvrement de ce compact par une collection
+d'ouverts, on peut donc en extraire un sous-recouvrement fini $\{K_j\}_{j=1}^m$.
+En utilisant le résultat précédemment établi pour de telles collections finies,
+on en déduit que
+$$
+b - a \leq \sum_{j=1}^{m} \ell(K_j) \leq \sum_{i=1}^{+\infty} \ell(J_i) \leq \varepsilon +\varepsilon',
+$$
+soit comme $\varepsilon'>0$ est arbitraire, $b - a \leq \varepsilon$.
+
+
+### Sous-ensemble d'un ensemble négligeable {.answer #answer-oe}
+Si l'ensemble $A$ est négligeable, pour tout $\varepsilon > 0$,
+il existe un recouvrement de $A$ par une collection dénombrable
+d'intervalles $I_i$ tels que $\sum_i \ell(I_i) \leq \varepsilon$.
+La même collection d'intervalles recouvre tout sous-ensemble $B$
+de $A$ donc un tel ensemble $B$ est également négligeable.
+
+
+### Union d'ensembles négligeables {.answer #answer-uen}
+L'union d'une collection dénombrable d'ensembles négligeables est négligeable,
+donc en particulier l'union de deux ou d'un nombre fini d'ensembles négligeables
+est négligeable. Soient $A_0$, $A_1$, $\dots$, $A_i$, $\dots$ une collection 
+dénombrable d'ensembles négligeables. Pour tout $\varepsilon > 0$, 
+il existe une collection dénombrable $\{I_{ij}\}_j$ d'intervalles $I_{ij}$ 
+tels que
+$$
+A_i \subset \sum_{j} I_{ij} \; \mbox{ et } \; \sum_{j} \ell(I_{ij}) \leq \frac{\varepsilon}{2^{i+1}}.
+$$
+Alors la collection des $\{I_{ij}\}_{ij}$ est dénombrable, recouvre $\cup_i A_i$ 
+et 
+$$
+\sum_i \sum_{j} \ell(I_{ij}) \leq \sum_i \frac{\varepsilon}{2^{i+1}}
+\leq \varepsilon.
+$$
+
+Par contre, l'union d'une collection arbitraire d'ensembles négligeables n'est
+pas nécessairement négligeable. Par exemple, la collection des singletons 
+$\{\{x\} \; | \; x \in [0,1] \}$
+est composée d'ensembles négligeables, mais son union $[0,1]$ n'est
+pas négligeable ([cf. exercice "Intervalles négligeables"](#intervalles-négligeables)).
+
+### Fonction continue nulle presque partout {.answer #answer-fcnpp}
+Soit $f : \R\to\R$ une fonction continue et nulle presque partout.
+Soit $x \in \R$ ; s'il existe une suite de $x_k \in \R$ tels que 
+$f(x_k) = 0$ et $\lim_{k\to +\infty} x_k = x$, alors par continuité
+$f(x) = 0$. Mais dans le cas contraire, c'est qu'il existe un 
+$\varepsilon > 0$ tel que pour tout $y \in [x-\varepsilon, x+\varepsilon]$,
+on ait $f(y)\neq 0$. Or $[x-\varepsilon, x+\varepsilon]$ n'est pas 
+négligeable ([cf. exercice "Intervalles négligeables"](#intervalles-négligeables)),
+donc l'ensemble $\{t \in \R \; | \; f(t) \neq 0\}$ n'est pas négligeable
+([cf. exercice "Sous-ensemble d'un ensemble négligeable"](#oe))
+ce qui contredit l'hypothèse que $f$ est nulle presque partout.
+
+
+### Etre non nul {.answer #answer-enn}
+L'ensemble des réels $x$ ne vérifiant pas la propriété "$x$ est non-nul"
+est composé de l'unique réel $0$. Le singleton $\{0\}$ est (fini donc)
+négligeable, par conséquent la propriété initiale est bien vérifiée presque
+partout.
+
+
+### Etre irrationnel {.answer #answer-ei}
+L'ensemble des réels $x$ ne vérifiant pas la propriété "$x$ est irrationnel"
+est l'ensemble des rationnels $\Q$. Cet ensemble est dénombrable, 
+par conséquent la propriété initiale est bien vérifiée presque partout.
 
 
 Subdivisions subordonnées à une jauge I {.answer #answer-subd-subor}
