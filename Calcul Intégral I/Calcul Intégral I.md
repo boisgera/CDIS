@@ -10,6 +10,17 @@
 \newcommand{\HKint}{\mbox{(HK)}\!\!\int}
 \newcommand{\Lint}{\mbox{(L)}\!\!\int}
 
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+
+\newcommand{\lb}{[}
+\newcommand{\rb}{]}
+\newcommand{\lob}{\left]}
+\newcommand{\rob}{\right[}
 
 TODO
 --------------------------------------------------------------------------------
@@ -142,7 +153,11 @@ $$
 a = x_0 \leq t_0 \leq x_1 \leq t_1 \dots \leq t_{m-1} \leq x_{m} = b. 
 $$
 
-### TODO -- Dessin d'une subdivision pointée (trait et croix)
+![Subdivision pointée
+$\mathcal{D} = \{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$ de $[0,1]$.
+Les intervalles de la subdivision sont délimités
+par des barres verticales et les points associés 
+représentés par des croix.](images/gauge-plot-subdivision-only.py)
 
 ### Somme de Riemann {.definition .two #somme-de-riemann}
 La somme de Riemann associée à la fonction $f:[a, b] \to \R$ 
@@ -401,10 +416,6 @@ Une *jauge* $\gamma$ sur un intervalle $[a, b]$ est une fonction
 qui associe à tout $t \in [a, b]$ un intervalle ouvert $\gamma(t)$ 
 contenant $t$. 
 
-\newcommand{\lb}{[}
-\newcommand{\rb}{]}
-\newcommand{\lob}{\left]}
-\newcommand{\rob}{\right[}
 
 ![Graphe de la jauge $\gamma(t) = \lob t/2-0.25, t+0.25 \rob ,$
 $t \in \lb 0, 1 \rb .$](images/gauge-plot.py){#graphe-gauge}
