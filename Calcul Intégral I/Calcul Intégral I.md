@@ -173,7 +173,9 @@ $$
 S(f, \mathcal{D}) = \sum_{i=0}^{m-1} f(t_i) (x_{i+1} - x_i).
 $$
 
-### TODO -- Dessin rectangles et interprétation somme de Riemann
+![L'aire de la zone grisée correspond à la valeur de la somme de Riemann
+$S(f, \mathcal{D})$ pour $f : t \in [0,1] \mapsto \sqrt{t}/2$ et 
+$\mathcal{D} = \{(0.1, [0, 0.2]), \dots, (0.9, [0.8, 1])\}$.](images/subdivision-riemann.py)
 
 ### Intégrale de Riemann {.definition .two #intégrale-de-Riemann}
 Une fonction $f:[a, b] \to \R$ est dite *intégrable 
