@@ -637,6 +637,10 @@ Soit $A$ un ensemble de $X$. On note
   - $\mathring{A}$ l'*intérieur* de $A$ 
     (l'ensemble des points intérieurs à $A$).
 
+![Construction de l'intérieur $\mathring{A}$ et de la frontière $\partial A$ 
+à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
+et des opérations ensemblistes.](images/topological-operations.svg.pdf)
+
 ### Définitions métriques {.definition}
 Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
