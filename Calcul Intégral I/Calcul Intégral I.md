@@ -2421,12 +2421,35 @@ $$
 $$
 
 ### Question 2 {.answer #answer-id2} 
-
-TODO
+Par le théorème fondamental du calcul, pour tout $x \in \left[1, +\infty\right[$,
+on a 
+$$
+\int_1^x \frac{dx}{x} = [\ln]_1^x = \ln x.
+$$
+Par conséquent, 
+$$
+\lim_{x \to +\infty} \frac{dx}{x} = +\infty
+$$
+et la fonction $x \mapsto 1/x$ n'est pas intégrable sur $\left[1, +\infty\right[$.
 
 ### Question 3 {.answer #answer-id3} 
 
-TODO
+Soit $x \in \left[1, +\infty \right[$ et soit $n_x$ le plus grand entier tel que 
+$2\pi(n_x + 3/4) \leq x$, soit 
+$$
+n_x := \left \lfloor \frac{x}{2\pi} - \frac{3}{4} \right \rfloor.
+$$
+Par [additivité](#additivité) et [croissance de l'intégrale](#croissance), on a 
+\begin{align*}
+\int_1^x \left|\frac{\sin t}{t} \right| \,dt &\geq \sum_{i=1}^{n_x} \int_{2\pi(i+1/4)}^{2\pi(i+3/4)} \left|\frac{\sin t}{t} \right| \, dt \\
+&\geq \sum_{i=1}^{n_x} \int_{2\pi(i+1/4)}^{2\pi(i+3/4)} \left|\frac{\sin t}{2\pi(i+3/4)} \right| \, dt \\
+&\geq \sum_{i=1}^{n_x} \frac{1}{{2\pi(i+3/4)}} \int_{2\pi(i+1/4)}^{2\pi(i+3/4)} \sin t \, dt \\
+&\geq \frac{1}{2\pi} \sum_{i=1}^{n_x} \frac{1}{i+3/4} \left[-\cos\right]_{2\pi(i+1/4)}^{2\pi(i+3/4)}  \\
+&\geq \frac{1}{\sqrt{2}\pi} \sum_{i=1}^{n_x} \frac{1}{i+3/4}.
+\end{align*}
+Comme $n_x \to +\infty$ quand $x\to +\infty$ et que la série des $1/(i+3/4)$
+tend vers $+\infty$, la fonction $x \mapsto (\sin x)/ x$ n'est pas intégrable
+sur $\left[1, +\infty\right[$.
 
 
 L'intégrale de Riemann est absolue {.answer #answer-Rabs}
