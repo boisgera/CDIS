@@ -991,7 +991,7 @@ De la même façon, on montre que $|f|$ est
 intégrable au sens de Henstock-Kurzweil sur l'intervalle $[a, d]$.
 La fonction $f$ est donc intégrable (au sens de Lebesgue) sur l'intervalle $[a, d]$.
 
-### Croissance {.proposition .one #croissance}
+### Croissance de l'intégrale {.proposition .one #croissance}
 Si $f: [a, b] \to \R$ et $g :[a, b] \to \R$ sont intégrables et que
 $f \leq g$, alors
 $$
@@ -2061,16 +2061,26 @@ $$
 \lim_{m \to +\infty} S_m = \int_a^b f(t) \, dt.
 $$
 
+Fonctions non intégrables
+--------------------------------------------------------------------------------
 
+Soit $a \in \R$ et $f: \left[a, +\infty\right[ \to \R$ une fonction intégrable 
+sur tout intervalle fermé et borné de $\left[a, +\infty\right[$.
 
-### TODO -- Intégrales divergentes ?
-
-Montrer que pour les fonctions positives, si 
+### Question 1 {.question #id1}
+Montrer que si
 $$
-\lim_{x \to +\infty} \int_a^x f(t) \, dt  = +\infty
+\lim_{x \to +\infty} \int_a^x |f(t)| \, dt  = +\infty
 $$
 alors $f$ n'est pas intégrale sur $\left[a, +\infty\right[$.
-En tirer qq conclusions ($1/x$, etc ?)
+
+### Question 2 {.question #id2}
+La fonction $$x \in \left[a, +\infty\right[ \mapsto \frac{1}{x}$$ est-elle
+intégrable ?
+
+### Question 3 {.question #id3}
+La fonction $$\mbox{sinc}: x \in \left[a, +\infty\right[ \mapsto \frac{\sin x}{x}$$ est-elle
+intégrable ?
 
 L'intégrale de Riemann est absolue {.question #Rabs}
 --------------------------------------------------------------------------------
@@ -2380,6 +2390,40 @@ Par conséquent, si $f$ est intégrable au sens de Riemann,
 $$
 \lim_{m\to +\infty} S_m = \lim_{m\to +\infty} S(f, \mathcal{D}^*_m) = \int_a^b f(t) \, dt.
 $$
+
+Fonctions non intégrables
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-id1}
+
+Supposons que $f:\left[a, +\infty \right[\to \R$ est intégrable. La valeur 
+$$
+I := \int_a^{+\infty} |f(t)| \, dt
+$$
+est bien définie (et finie) car $f$ est intégrable. 
+[Par restriction](#restriction), pour tout $x \in \left[a, +\infty \right[$,
+les intégrales
+$$
+\int_a^x |f(t)| \, dt \; \mbox{ et } \; \int_x^{+\infty} |f(t)| \, dt
+$$
+existent et sont positives [par croissance de l'intégrale](#croissance) ;
+[par additivité](#additivité), comme
+$$
+\int_a^x |f(t)| \, dt + \int_x^{+\infty} |f(t)| \, dt = \int_a^{+\infty} |f(t)|\, dt
+$$
+on a pour tout $x \in \left[a, +\infty \right[$
+$$
+\int_a^x |f(t)| \, dt \leq \int_a^{+\infty} |f(t)| \, dt < +\infty.
+$$
+L'hypothèse de départ ($f$ intégrable) est donc incompatible avec la propriété
+$$
+\lim_{x \to +\infty} \int_a^x f(t) \, dt = +\infty.
+$$
+
+### Question 2 {.answer #answer-id2} TODO
+
+### Question 3 {.answer #answer-id3} TODO
+
 
 L'intégrale de Riemann est absolue {.answer #answer-Rabs}
 --------------------------------------------------------------------------------
