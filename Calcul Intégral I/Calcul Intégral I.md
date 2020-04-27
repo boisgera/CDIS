@@ -2075,11 +2075,11 @@ $$
 alors $f$ n'est pas intégrale sur $\left[a, +\infty\right[$.
 
 ### Question 2 {.question #id2}
-La fonction $$x \in \left[a, +\infty\right[ \mapsto \frac{1}{x}$$ est-elle
+La fonction $$x \in \left[1, +\infty\right[ \mapsto \frac{1}{x}$$ est-elle
 intégrable ?
 
 ### Question 3 {.question #id3}
-La fonction $$\mbox{sinc}: x \in \left[a, +\infty\right[ \mapsto \frac{\sin x}{x}$$ est-elle
+La fonction $$\mbox{sinc}: x \in \left[1, +\infty\right[ \mapsto \frac{\sin x}{x}$$ est-elle
 intégrable ?
 
 L'intégrale de Riemann est absolue {.question #Rabs}
