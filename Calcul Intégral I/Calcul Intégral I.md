@@ -802,30 +802,6 @@ Donc $|f+g| = (f+g)_+ - (-f-g)_+$
 est intégrable au sens de Henstock-Kurzweil ; les fonctions $f+g$ et
 $|f+g|$ sont intégrables au sens de Henstock-Kurzweil, $f+g$
 est donc intégrable au sens de Lebesgue.
-<!--
-De plus, les fonctions $|f|$ et $|g|$ sont positives et intégrables au sens de 
-Henstock-Kurzweil donc au sens de Lebesgue ; c'est donc aussi le cas de leur 
-somme $|f| + |g|$. Comme $|f+g| \leq |f| + |g|$,
-par le critère d'intégrabilité dominée,
-$f+g$ est intégrable au sens de Lebesgue et
-$$
-\HKint_{a}^b f(t) + g(t) \, dt 
-=
-\HKint_{a}^b f(t) + g(t) \, dt  = \HKint_{a}^b f(t) \, dt +
-\HKint_{a}^b g(t) \, dt.
-$$
-De plus, la fonction $|\lambda f|$ est dominée par la fonction $|\lambda||f|$ 
-qui est positive et intégrable au sens de Henstock-Kurzweil est donc intégrable.
-Par le critère d'intégrabilité dominée, elle est donc intégrable et
-$$
-\HKint_a^b \lambda f(t) \, dt =
-\HKint_a^b \lambda f(t) \, dt =
-\lambda \HKint_a^b f(t) \, dt.
-$$
-
-La linéarité de l'intégrale de Lebesgue s'en déduit au moyen du critère
-d'intégrabilité dominée du chapitre "Calcul Intégral II" (à venir).
--->
 
 ### Intégration par parties {.question .exercise .one #ex-IPP}
 Montrer que si les fonctions $f:[a, b] \to \R$ et $g:[a, b] \to \R$ sont dérivables,
@@ -848,33 +824,6 @@ $$
 \int_a^b (fg)'(t) \, dt = [fg]_a^b,
 $$
 ce qui fournit l'égalité recherchée.
-
-
-<!--
-### Intégration par parties {.theorem}
-Soit $[a, b]$ un intervalle compact de $\R$ ;
-si les fonctions $f:[a, b] \to \R$ et $g: [a, b] \to \R$ sont dérivables,
-la fonction $f'g$ est intégrable si et seulement si la fonction $fg'$
-est intégrable. Si c'est le cas, on a
-$$
-\int_a^b f'(t)g(t) \, dt = [f g]_a^b - \int_a^b f(t) g'(t)\, dt.
-$$
-
-### Démonstration {.proof}
-La fonction $f'g + f g'$ est la dérivée du produit $fg$, 
-elle est donc intégrable. Par conséquent, si l'une des fonctions 
-$f'g$ ou $f g'$ est intégrable, l'autre est la différence de deux fonctions
-intégrables et elle est donc intégrable.
-Dans ce cas, [le théorème fondamental du calcul](#TFC) appliqué à $(fg)'$ 
-fournit
-$$
-\int_a^b (fg)'(t) \, dt
-=
-\int_a^b f'(t)g(t) \, dt + \int_a^b f(t)g'(t) \, dt
-= [fg]_a^b,
-$$
-ce qui est le résultat recherché.
--->
 
 ### Changement de variable {.theorem .three #changement-de-variable}
 Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une fonction
@@ -2123,35 +2072,6 @@ $$
 alors $f$ n'est pas intégrale sur $\left[a, +\infty\right[$.
 En tirer qq conclusions ($1/x$, etc ?)
 
-
-<!--
-Subdivisions subordonnées à une jauge I {.question #subd-subor}
---------------------------------------------------------------------------------
-
-![Graphe de la jauge $\gamma$.](images/gauge-plot-squeeze.py)
-
-Soit $\gamma$ la jauge sur $[0, 1]$ définie par 
-$\gamma(0)= \left]-1/2, 1/2\right[$ et $\gamma(t) = \left]0,2t\right[$
-si $t>0$.
-Déterminer une subdivision pointée de $[0, 1]$ qui soit subordonnée à $\gamma$.
-
-
-
-Subdivisions subordonnées à une jauge II {.question #subd-subor-2}
---------------------------------------------------------------------------------
-
-Soit $[a, b]$ un intervalle fermé borné de $\R$ ;
-soit $\gamma$ une jauge sur $[a, b]$. On suppose qu'il existe 
-un $\varepsilon > 0$ tel que  
-$$
-\mbox{pour tout } t \in [a, b], \; \left]t-\varepsilon, t+\varepsilon\right[ \subset \gamma(t).
-$$
-Suggérer un procédé plus simple que le procédé très général utilisé par 
-[le lemme de Cousin](#cousin) pour construire une subdivision pointée
-subordonnée à $\gamma$.
-
--->
-
 L'intégrale de Riemann est absolue {.question #Rabs}
 --------------------------------------------------------------------------------
 
@@ -2221,34 +2141,6 @@ mais a la "puissance du continu"
 ou avec un intervalle de longueur non vide de $\R$, 
 ce qui revient au même).
 
-<!-- En attente ...
-Intégration sur un intervalle non borné  {.question #iinb-1}
---------------------------------------------------------------------------------
-
-Il est possible de définir l'intégrabilité (et l'intégrale) d'une fonction
-sur $\R$ de façon élémentaire,
-sans avoir recours à la droite achevée.
-Le procédé en question est plus élémentaire[^es] ; 
-il revient à exiger que partir les subdivisions d'intervalles bornés
-exploitées par la somme de Riemann en plus d'être suffisamment "fines" 
-soient suffisamment "étendues".
-
-[^es]: mais pas nécessairement plus simple ...
-
-Montrer que la fonction $f:\R \to \R$ est intégrable si et seulement si il
-existe un réel $A$ tel que pour tout $\varepsilon > 0$ 
-il existe une jauge $\gamma$ de $\R$ 
-et un intervalle compact $K$ de $\R$ tels que pour tout intervalle compact 
-$[a, b]$ de $\R$ tel que $K \subset [a, b]$
-et pour toute subdivision pointée $\mathcal{D}$ de $[a, b]$ 
-subordonnée à $\gamma$, on ait
-$|S(f, \mathcal{D}) - A| \leq \varepsilon$.
-
--->
-
-
-
-
 Séries et intégrales {#si}
 --------------------------------------------------------------------------------
 
@@ -2313,28 +2205,6 @@ $$
 = \frac{\varepsilon}{(b-a)} \sum_{i=0}^{m-1} (x_{i+1} - x_i)
 = \varepsilon.
 $$
-
-<!--
-Intervalle {.answer #answer-int}
---------------------------------------------------------------------------------
-
-Montrons tout d'abord que la condition est nécessaire. 
-Supposons que $x$ et $y$ appartiennent à $I$ et que $x$ 
-soit inférieur ou égal à $y$. Alors pour tout $t \in [0,1]$, 
-$\phi(t) = (1-t) x + t y$ est un point intermédiaire entre $x$ et $y$,
-et par conséquent, appartient à $I$. La fonction $\phi$ ainsi définie 
-est clairement continue et vérifie $\phi(0) = x$ et $\phi(1) = y$ ; 
-c'est donc un chemin de $I$ qui joint $x$ à $y$. Par conséquent,
-$I$ est connexe par arcs.
-
-Réciproquement, si $I$ est connexe par arcs et contient les points $x$
-et $y$, tout chemin de $I$ qui joint $x$ et $y$, continu et à valeurs réelles,
-vérifie le théorème des valeurs intermédiaires : pour toute valeur intermédiaire
-$z$ entre $x$ et $y$, il existe donc un $t \in [0, 1]$ tel que $\phi(t) = z$.
-Comme $\phi$ est à valeurs dans $I$, $z \in I$ ; l'ensemble $I$ est donc un 
-intervalle de $\R$.
-
--->
 
 ### Ensembles finis {.answer #answer-ensemble-fini}
 Soit $E = \{x_1, \dots, x_m\} \subset \R$. Pour tout $\varepsilon > 0$, 
@@ -2461,67 +2331,6 @@ $$
 \int_{g(a)}^{g(b)} f(x) \, dx = \int_{g(a)}^{g(b)} h'(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
 $$
 les deux intégrales sont donc égales.
-
-<!--
-Subdivisions subordonnées à une jauge I {.answer #answer-subd-subor}
---------------------------------------------------------------------------------
-
-On applique pas à pas la démarche de la preuve du [lemme de Cousin](#cousin).
-
-On considère initialement les subdivisions pointées de la forme $\{(t_1, [0,1])\}$. 
-Mais quel que soit $t_1 \in [0, 1]$, on réalise que $[0, 1] \not \subset \gamma(t_1)$.
-En effet, $[0, 1] \not \subset \gamma(0) = \left]-1/2, 1/2\right[$ et 
-comme pour tout $t_1>0$, $0 \not \in \gamma(t)$, on ne peut avoir
-$[0, 1] \subset \gamma(t)$.
-
-On considère donc les subdivisions de la forme
-$$\{(t_1, [0,1/2]), (t_2, [1/2, 1])\}.$$ 
-Concernant le second terme de cette subdivision, 
-on se rend compte que pour $t_2 = 1$, on a 
-$\gamma(t_2) = \left]0, 2\right[$ et donc $[1/2, 1] \subset \gamma(t_2)$.
-Par contre on peut se convaincre comme à la première étape du processus
-qu'il est impossible d'avoir $[0, 1/2] \subset \gamma(t_1)$
-quand $t_1 \in [0, 1/2]$.
-
-On considère donc les subdivisions de la forme
-$$\{(t_1, [0,1/4]), (t_2, [1/4, 1/2]), (1, [1/2, 1])\}.$$
-Cette fois-ci, on constate que $t_1=0$ fournit
-$[0,1/4] \subset \gamma(0) = \left]-1/2, 1/2\right[$, et
-qu'avec $t_2 = 1/2$, on a $[1/4, 1/2] \subset \gamma(t_2) = \left]0, 1\right[$.
-
-Par conséquent, la subdivision 
-$$
-\mathcal{D} = \{(t_1, [0,1/4]), (t_2, [1/4, 1/2]), (1, [1/2, 1])\}
-$$
-est subordonnée à $\gamma$.
-
-![Graphe de la jauge $\gamma$ et de la subdivision pointée $\mathcal{D}$](images/gauge-plot-squeeze-solution.py)
-
-Subdivisions subordonnées à une jauge II {.answer #answer-subd-subor-2}
---------------------------------------------------------------------------------
-
-Sous l'hypothèse énoncée, il suffit de limiter la recherche aux subdivisions
-uniformes
-$$
-\mathcal{D}_m 
-= 
-\left\{\left(t_k, \left[a + k\frac{b-a}{m}, a + (k+1)\frac{b-a}{m} \right]\right)
-\, \left|\vphantom{\frac{a}{b}}\right. k \in \{0, \dots, m-1\}\, \right\},
-$$
-et le choix des $t_k$ importe peu.
-En effet, dès que $m$ est assez grand pour que l'on ait
-$$
-\frac{b-a}{m} < \varepsilon,
-$$
-alors pour tout $k \in \{0, \dots, m-1\}$ et pour tout 
-$t \in \left[a + k\frac{b-a}{m}, a + (k+1)\frac{b-a}{m} \right]$,
-$$
-\left[a + k\frac{b-a}{m}, a + (k+1)\frac{b-a}{m} \right] \subset \left]t- \varepsilon, t+\varepsilon \right[
-\subset \gamma(t).
-$$
-La jauge $\mathcal{D}_m$ est donc subordonnée à $\gamma$.
-
--->
 
 Méthode des trapèzes
 --------------------------------------------------------------------------------
@@ -2737,14 +2546,6 @@ est une bijection
 de $C$ sur $\left[0, 1\right[$,
 ce qui montre que $C$ a la puissance du continu 
 (et donc n'est pas dénombrable).
-
-<!--
-
-TODO -- Intégration sur un intervalle non borné {.answer #answer-iinb-1}
---------------------------------------------------------------------------------
-
-  -->
-
 
 Séries et intégrales
 --------------------------------------------------------------------------------
