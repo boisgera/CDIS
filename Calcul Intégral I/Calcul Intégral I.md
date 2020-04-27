@@ -2112,11 +2112,14 @@ $$
 est-elle intégrable sur $[0, 1]$ au sens de Riemann ? 
 Et au sens de Henstock-Kurzweil ?
 
+<!--
 Continuité par morceaux {.question #cpm}
 --------------------------------------------------------------------------------
 
 Montrer que toute fonction $f:[a, b] \to \R$ continue par morceaux sur un
 intervalle fermé borné de $\R$ est intégrable au sens de Henstock-Kurzweil.
+-->
+
 
 Poussière de Cantor {#cantor}
 --------------------------------------------------------------------------------
@@ -2151,6 +2154,7 @@ mais a la "puissance du continu"
 ou avec un intervalle de longueur non vide de $\R$, 
 ce qui revient au même).
 
+<!--
 Séries et intégrales {#si}
 --------------------------------------------------------------------------------
 
@@ -2174,7 +2178,7 @@ $$
 ### Question 3 {.question #si-3}
 En déduire une fonction $f:[0, +\infty] \to \R$ qui soit intégrable sans
 que $|f|$ le soit (on dit que $f$ est conditionnellement intégrable).
-
+-->
 
 Solutions
 ================================================================================
@@ -2463,7 +2467,7 @@ $f$ est continue comme composée de fonctions continues en ce point).
 Par conséquent, $|f|$ est intégrable au sens de Riemann.
 
 
-Continuité presque partout
+Continuité presque partout -- TODO, adapter
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cpp-1}
@@ -2498,6 +2502,7 @@ fonction identiquement nulle qui est continue, elle est donc intégrable au
 sens de Henstock-Kurzweil. Mais elle n'est pas continue presque partout,
 donc elle n'est pas intégrable au sens de Riemann.
 
+<!--
 Continuité par morceaux {.answer #answer-cpm}
 --------------------------------------------------------------------------------
 
@@ -2562,6 +2567,8 @@ $$
 = \varepsilon.
 $$
 Par [le critère de Cauchy](#CIC), la fonction $f$ est donc intégrable.
+-->
+
 
 Poussière de Cantor
 --------------------------------------------------------------------------------
@@ -2618,6 +2625,7 @@ de $C$ sur $\left[0, 1\right[$,
 ce qui montre que $C$ a la puissance du continu 
 (et donc n'est pas dénombrable).
 
+<!--
 Séries et intégrales
 --------------------------------------------------------------------------------
 
@@ -2696,7 +2704,7 @@ est conditionnellement convergente. En effet, $\sum_k a_k$ est convergente
 -- donc $f$ est intégrable -- mais $\sum_k |a_k|$ ne l'est pas ($\sum_k a_k$
 n'est pas absolument convergente). Or la fonction associée aux $|a_k|$ n'est
 autre que $|f|$ ; la fonction $|f|$ n'est donc pas intégrable.
-
+-->
 
 Références
 ================================================================================
