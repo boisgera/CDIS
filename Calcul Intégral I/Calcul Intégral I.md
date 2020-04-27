@@ -2420,9 +2420,13 @@ $$
 \lim_{x \to +\infty} \int_a^x f(t) \, dt = +\infty.
 $$
 
-### Question 2 {.answer #answer-id2} TODO
+### Question 2 {.answer #answer-id2} 
 
-### Question 3 {.answer #answer-id3} TODO
+TODO
+
+### Question 3 {.answer #answer-id3} 
+
+TODO
 
 
 L'intégrale de Riemann est absolue {.answer #answer-Rabs}
