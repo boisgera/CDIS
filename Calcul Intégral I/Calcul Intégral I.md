@@ -133,16 +133,6 @@ $$
 où $\{I_i\}_{i=0}^{m-1}$ est une subdivision de $[a, b]$ et 
 $t_i \in I_i$ pour tout $i \in \{0, \dots, m-1\}.$
 
-<!--
-### TODO
-Redéfinition "sans chevauchement" d'un manière plus compatible avec ce qui 
-sera fait dans le cas multidimensionnel ? Et moins liée aux intervalles ?
-En tout cas (brève) exploration de ce que ça veut dire au niveau topologique 
-(?). Grmph en fait pas *totalement* pertinent ; la "vrai" définition devrait
-être liée à la théorie de la mesure : plus tard, ajouter (en exo) 
-une caractérisation de "sans chevauchement" comme d'intersection négligeable.
--->
-
 ### Forme canonique d'une subdivision pointée {.remark  #rcsp}
 En ordonnant les intervalles $I_i$ d'une subdivision pointée 
 $\{(t_i, I_i)\; | \; i \in \{0, \dots, m-1\}\}$
@@ -255,7 +245,7 @@ $$
 On rappelle qu'un ensemble est *dénombrable* s'il est fini ou en bijection
 avec $\N$.
 
-### Ensemble négligeable  {.definition .two}
+### Ensemble négligeable  {.definition .two #ensemble-négligeable}
 Un ensemble $A$ de $\R$ est *négligeable* si pour tout
 $\varepsilon > 0$, il existe un recouvrement de $A$ par une collection
 dénombrable d'intervalles $I_1$, $I_2$, $\dots$, $I_i$, $\dots$ de $\R$ 
@@ -913,28 +903,9 @@ $\R^n$ qui sera étudié dans le chapitre calcul intégral III.
 Démontrer [le théorème de changement de variables](#changement-de-variable)
 au moyen [du théorème fondamental du calcul](#TFC), sous les hypothèses
 supplémentaires que $f$ et $g'$ existent et sont continues sur $[c, d]$ et
-$[a,b]$ respectivement.
+$[a,b]$ respectivement. (Indication: $f$ étant continue sur $[c, d]$, elle
+y admet une primitive $h$.)
 
-### TODO
-
-Check demo après réécriture théorème et nouvelles hypothèses.
-
-### Changement de variables simplifié {.answer #answer-cv}
-La fonction $f$ étant continue, elle a une primitive $h$.
-Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
-a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
-cette fonction est continue, donc intégrable.
-Par [le théorème fondamental du calcul](#TFC) on a donc d'une part
-$$
-\int_a^b f(g(t)) g'(t) \, dt
-=
-\left[t \mapsto h(g(t)) \right]_a^b = h(g(b)) -  h(g(a))
-$$
-et d'autre part
-$$
-\int_{g(a)}^{g(b)} f(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
-$$
-les deux intégrales sont donc égales.
 
 ### Additivité {.theorem #additivité .one}
 Si la fonction $f$ est définie et intégrable sur les intervalles
@@ -1071,28 +1042,31 @@ De la même façon, on montre que $|f|$ est
 intégrable au sens de Henstock-Kurzweil sur l'intervalle $[a, d]$.
 La fonction $f$ est donc intégrable (au sens de Lebesgue) sur l'intervalle $[a, d]$.
 
-### Positivité {.proposition .one}
-Si $f: [a, b] \to \mathbb{R}$ est positive et intégrable alors
+### Croissance {.proposition .one #croissance}
+Si $f: [a, b] \to \R$ et $g :[a, b] \to \R$ sont intégrables et que
+$f \leq g$, alors
 $$
-\int_a^b f(t) \, dt \geq 0.
+\int_a^b f(t) \, dt \leq \int_a^b g(t)\,dt.
 $$
 
 ### Démonstration {.proof}
+Par [linéarité de l'intégrale](#linéarité), il suffit de montrer que si 
+$h = g-f$ est intégrable et positive alors son intégrale est positive.
 Soit $\varepsilon > 0$ et $\gamma$ une jauge telle que toute
 subdivision pointée $\mathcal{D}$ de $[a, b]$ subordonnée à $\gamma$
 vérifie
 $$
-\left|S(f, \mathcal{D}) - \int_a^b f(t) \, dt\right| \leq \varepsilon.
+\left|S(f, \mathcal{D}) - \int_a^b h(t) \, dt\right| \leq \varepsilon.
 $$
 Quelle que soit la subdivision pointée $\mathcal{D}$ de $[a, b]$,
 la somme de Riemann associée 
 $$
 S(f, \mathcal{D})
-= \sum_{(t,J) \in \mathcal{D}} f(t) \ell(J)
+= \sum_{(t,J) \in \mathcal{D}} h(t) \ell(J)
 $$ 
 est positive, ce qui entraîne par l'inégalité triangulaire
 $$
-\int_a^b f(t) \, dt  \geq S(f, \mathcal{D}) - \varepsilon \geq -\varepsilon.
+\int_a^b h(t) \, dt  \geq S(h, \mathcal{D}) - \varepsilon \geq -\varepsilon.
 $$
 Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
 petit, on en déduit que l'intégrale est positive.
@@ -1110,19 +1084,16 @@ $$
 Exo(s) évoquant le fait de faire la démo dans des cas particuliers
 (fini, dénombrable, $f$ borné, etc.)
 
-### TODO
-Adapter au cadre absolument intégrable.
-
 ### Démonstration {.proof}
-Par linéarité de l'intégrale, il suffit d'établir que si 
-$f:[a, b] \to \R$ est nulle presque partout (c'est-à-dire égale
-presque partout à la fonction $g:[a, b] \to \R$ identiquement
+[Par linéarité de l'intégrale](#linéarité), il suffit d'établir que si 
+$h = g - f$ est nulle presque partout (c'est-à-dire égale
+presque partout à la fonction $[a, b] \to \R$ identiquement
 nulle), alors elle est intégrable et d'intégrale nulle.
 
-Supposons dans un premier temps que $f$ soit bornée.
+Supposons dans un premier temps que $h$ soit bornée.
 Alors, pour tout $\varepsilon > 0$, il existe un recouvrement de
 $$
-A = f^{-1}(\R \setminus \{0\}) = \{x \in [a, b] \, | \, f(x) \neq 0\}
+A = h^{-1}(\R \setminus \{0\}) = \{x \in [a, b] \, | \, h(x) \neq 0\}
 $$ 
 par une collection dénombrable
 d'intervalles $I_i$ telle que $\sum_i \ell(I_i) \leq \varepsilon$.
@@ -1137,10 +1108,10 @@ $\gamma(t) = \left]-\infty,\infty\right[$ si $t \not \in \cup_i I_i$.
 Pour toute subdivision pointée $\mathcal{D} = \{(t_j, J_j)\}_j$ de $[a, b]$ 
 subordonnée à $\gamma$, 
 $$
-\left|S(f, \mathcal{D})\right| 
-= \left|\sum_j f(t_j) \ell(J_j)\right|
-= \left|\sum_{t_j \in A} f(t_j) \ell(J_j)\right|
-\leq \sup_{[a, b]} |f| \times \sum_j \ell(J_j).
+\left|S(h, \mathcal{D})\right| 
+= \left|\sum_j h(t_j) \ell(J_j)\right|
+= \left|\sum_{t_j \in A} h(t_j) \ell(J_j)\right|
+\leq \sup_{[a, b]} |h| \times \sum_j \ell(J_j).
 $$
 Par construction les $J_j$ ne se chevauchent pas et sont
 tous inclus dans un des intervalles $I_i$. On a donc
@@ -1149,17 +1120,17 @@ $$
 $$
 Il suffit par conséquent de choisir un $\varepsilon$ suffisamment petit
 initialement pour rendre la somme de Riemann associée arbitrairement petite ;
-$f$ est donc intégrable d'intégrale nulle.
+$h$ est donc intégrable d'intégrale nulle.
 
 [^why-open]: On peut trouver un recouvrement de $A$ par des
 intervalles $J_i$ non nécessairement ouverts, tels que 
 $\sum_i \ell(J_i) \leq \varepsilon/2$, puis remplacer chaque
 $J_i$ par un intervalle $I_i$ ouvert de longueur double contenant $J_i$.
 
-Si $f$ est non-bornée, on peut faire une démonstration similaire en
+Si $h$ est non-bornée, on peut faire une démonstration similaire en
 considérant les ensembles
 $$
-A_k = \{x \in [a, b] \, | \, k < |f(x)| \leq k+1\},
+A_k = \{x \in [a, b] \, | \, k < |h(x)| \leq k+1\},
 $$
 puis en associant à chaque $A_k$ un recouvrement par une collection dénombrable
 d'intervalles ouverts $I^k_i$ tels que 
@@ -1175,9 +1146,9 @@ $\gamma(t) = \left]-\infty,\infty\right[$ si
 $t \not \in \cup_k \cup_i I^k_i$. L'évaluation d'une somme de Riemann
 pour une subdivision pointée subordonnée à cette jauge fournit
 $$
-\left|S(f, \mathcal{D})\right| 
-= \left|\sum_j f(t_j) \ell(J_j)\right|
-= \left|\sum_k \sum_{t_j \in A_k} f(t_j) \ell(J_j)\right| \leq
+\left|S(h, \mathcal{D})\right| 
+= \left|\sum_j h(t_j) \ell(J_j)\right|
+= \left|\sum_k \sum_{t_j \in A_k} h(t_j) \ell(J_j)\right| \leq
 \sum_k \sum_{t_j \in A_k} (k+1) \ell(J_j)
 $$
 et comme
@@ -1188,49 +1159,49 @@ $$
 $$
 on obtient
 $$
-\left|S(f, \mathcal{D})\right| 
+\left|S(h, \mathcal{D})\right| 
 \leq
 \sum_k (k+1) \sum_{i} \ell(I^k_i)
 \leq 
 \sum_k \frac{\varepsilon}{2^{k+1}} 
 = \varepsilon.
 $$
-La fonction $f$ est donc bien intégrable et d'intégrale nulle.
+La fonction $h$ est donc bien intégrable et d'intégrale nulle.
 
 ### {.remark}
-Sous condition de positivité, 
+Sous une hypothèse d'inégalité, 
 la proposition ["Fonction égales presque partout"](#fepp) admet une réciproque :
 
 ### Fonctions égales presque partout (réciproque) {.proposition #fepp-réciproque .two}
 Si les fonctions $f:[a,b] \to \R$ et $g:[a, b] \to \R$ sont intégrables
 et si 
 $$
-f \geq g \, \mbox{ presque partout} 
+f \leq g \, \mbox{ presque partout} 
 \; \mbox{ et } \;
-\int_a^b f(t) \, dt = \int_a^b g(t) \, dt,
+\int_a^b f(t) \, dt \geq \int_a^b g(t) \, dt,
 $$
 alors $f = g$ presque partout.
 
-### TODO : adapter à la nouvelle formulation
-
 ### Démonstration {.proof}
-La fonction $f$ étant intégrable, pour tout $x \in [a, b]$, [ses restrictions
+La fonction $h = g - f$ étant intégrable, pour tout $x \in [a, b]$, [ses restrictions
 à $[a, x]$ et $[x, b]$ sont intégrables](#restriction). Comme il s'agit de 
 fonctions positives, 
 $$
-\int_a^x f(t) \, dt \geq 0 \; \mbox{ et } \; \int_x^b f(t) \, dt \geq 0.
+\int_a^x h(t) \, dt \geq 0 \; \mbox{ et } \; \int_x^b h(t) \, dt \geq 0.
 $$
 Comme [par additivité](#additivité)
 $$
-\int_a^x f(t) \, dt + \int_x^b f(t) \, dt = \int_a^b f(t) \, dt = 0,
+\int_a^x h(t) \, dt + \int_x^b h(t) \, dt = \int_a^b h(t) \, dt 
+=  \int_a^b g(t) \, dt  - \int_a^b f(t) \, dt \leq 0,
 $$
 chacune de ces intégrales est nulle.
 La fonction
 $$
-x \in [a, b] \mapsto \int_a^x f(t) \, dt
+x \in [a, b] \mapsto \int_a^x h(t) \, dt
 $$
-est donc identiquement nulle. Or, [sa dérivée existe et vaut $f$ presque partout](#dii) ;
-la fonction $f$ est donc nulle presque partout.
+est donc identiquement nulle. Or, [sa dérivée existe et vaut $h$ presque partout](#dii) ;
+la fonction $h$ est donc nulle presque partout, c'est-à-dire que $f=g$ presque
+partout.
 
 ### Continuité des intégrales indéterminées {.theorem .one #cii}
 Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
@@ -1309,7 +1280,7 @@ la théorie de l'intégration sur les intervalle fermés bornés de $\R$
 à des intervalles arbitraires de $\R$,
 et en particulier à $\R$ tout entier[^cr].
 
-[^cr] : Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour 
+[^cr]: Contrairement à l'intégrale de Riemann, il n'est pas nécessaire pour 
 donner un sens à l'intégrale sur $\R$ d'une fonction de calculer tout d'abord 
 son intégrale sur un intervalle borné puis d'essayer de passer à la limite,
 sans garantie que le nouveau type d'intégrale qui en résulte 
@@ -1371,11 +1342,16 @@ $$
 En particulier avec cette convention, 
 $\ell([-\infty, -\infty]) = \ell([+\infty, +\infty])= \ell(\varnothing) = 0$.
 
+La notion d'ensemble négligeable de $[-\infty, +\infty]$ est identique
+à celle [d'ensemble négligeable de $\R$](#ensemble-négligeable) 
+à ceci près qu'il faut considérer remplacer les intervalles de 
+$\R$ par ceux de $[-\infty, +\infty]$ dans la définition.
+
 [La définition de subdivision pointée](#sp) reste formellement 
 inchangée en passant des intervalles fermés bornés de $\R$ aux intervalles
 fermés bornés de $[-\infty, +\infty]$. Il en est de même pour [la définition
 d'une jauge](#jauge) si l'on interprête 
-"un intervalle ouvert $\gamma(t)$ contenant $t$."
+"un intervalle ouvert $\gamma(t)$ contenant $t$"
 comme il se doit par "un intervalle ouvert $\gamma(t)$ de $[-\infty, +\infty]$ 
 contenant $t$".
 
@@ -1422,8 +1398,9 @@ $\left[1, +\infty \right]$ et vérifie
 $$
 \int_1^{+\infty} f(t) \, dt \stackrel{?}{=} 1.
 $$
-La suite confirmera cette intuition : nous allons en effet établir que pour tout
-$\varepsilon > 0$, la jauge $\gamma$ sur $[1, +\infty]$ définie par
+Les calculs confirment cette intuition : nous pouvons en effet établir 
+que pour tout $\varepsilon > 0$, la jauge $\gamma$ sur $[1, +\infty]$ 
+définie par
 $$
 \gamma(t) = \left|
 \begin{array}{rl}
@@ -1433,59 +1410,8 @@ $$
 \right.
 $$
 est telle que pour toute subdivision pointée $\mathcal{D}$ de $[1, + \infty]$ 
-subordonnée à $\gamma$, on a $|S(f,\mathcal{D}) - 1| \leq \varepsilon$.
-
-Soit $\mathcal{D}$ une telle subdivision pointée ; 
-supposons que $$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$$ et 
-que les $x_i$ sont agencés de façon (strictement) croissante ; on a en particulier
-$x_k < +\infty$ quand $k \leq m$ et $x_{m+1} = +\infty$. Notons
-$\mathcal{D}_f = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ ;
-on a alors
-$$
-\begin{split}
-\left| S(f, \mathcal{D}) - 1 \right| 
-&\leq
-\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
-&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
-&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}}. \\
-\end{split}
-$$
-On remarque que si $t < +\infty$, alors $+\infty \not \in \gamma(t)$.
-Comme $x_{m+1} = +\infty$ et que $[x_m, x_{m+1}] \subset \gamma(t_m)$, 
-nécessairement $t_m = +\infty$. 
-Par conséquent, 
-$[x_m, x_{m+1}]  \subset \gamma(+\infty) = \left]2 / \varepsilon, +\infty \right]$
-et donc $$\frac{1}{x_m} \leq \frac{\varepsilon}{2}.$$
-
-D'autre part, on a
-$$
-\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
-=
-\left|\frac{y-x}{t^2}- \left(\frac{1}{x} - \frac{1}{y}\right) \right|
-= 
-|y-x|
-\left|\frac{1}{t^2} - \frac{1}{xy} \right|.
-$$
-Comme $y - x = (y -t) + (t - x)$, on a $|y -x| \leq (\varepsilon/2) t$ et donc
-$$
-\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
-\leq \frac{\varepsilon}{2} \left|\frac{1}{t} - \frac{t}{xy}\right|.
-$$
-La fonction $t \in [x, y] \mapsto 1/t - t / xy$ est dérivable, de dérivée
-$-1/t^2 - 1/xy \leq 0$. En $t=x$ et $t=y$,
-elle vaut respectivement $1/x - 1/y$ et $1/y - 1/x$. Dans tous les cas, 
-on a donc
-$$
-\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
-\leq \frac{\varepsilon}{2} \left(\frac{1}{x}  - \frac{1}{y} \right)
-$$
-et par conséquent
-\begin{multline*}
-\sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \\
-\leq \frac{\varepsilon}{2}\left(\frac{1}{x_{0}}  - \frac{1}{x_1} + \frac{1}{x_1}  - \frac{1}{x_2} + \dots + \frac{1}{x_{m-1}}  - \frac{1}{x_m} \right)
-= \frac{\varepsilon}{2} \left(1 - \frac{1}{x_m} \right) \leq \frac{\varepsilon}{2}.
-\end{multline*}
-On en déduit l'inégalité recherchée $|S(f, \mathcal{D}) -1| \leq \varepsilon/2$.
+subordonnée à $\gamma$, on a $|S(f,\mathcal{D}) - 1| \leq \varepsilon$
+(cf. [calculs en annexe](#jauge-non-borné)).
 
 
 ### Propriétés élémentaires de l'intégrale {.theorem  #pei}
@@ -1497,15 +1423,10 @@ Sont valables pour tous les intervalles fermés de $[-\infty, +\infty]$ :
 
   - [Le changement de variable](#changement-de-variable),
 
-  - [La positivité](#positivité), [fonctions égales presque partout](#fepp) et [réciproque](#fepp-réciproque),
+  - [La croissance de l'intégrale](#croissance), [fonctions égales presque partout](#fepp) et [réciproque](#fepp-réciproque),
 
   - [La continuité](#cii) et [dérivabilité](#dii) des intégrales indéterminées.
 
-
-
-
-### TODO
-réécrire/adapter ci-dessous et travail notations ($\int$ simple ?)
 
 ### {.remark .ante}
 Un facteur vient simplifier l'étude de l'intégration sur des intervalles
@@ -1789,6 +1710,7 @@ qui est le résultat cherché.
 Au final, la jauge $\gamma$ sur $[0,1]$ définie initialement
 garantit un écart $|S(f, \mathcal{D}) - 2|$ inférieur à $\varepsilon$
 pour toute subdivision pointée $\mathcal{D}$ de $[0,1]$ subordonnée à $\gamma$.
+
 
 ### {.ante}
 Dans le cas où l'on souhaite établir l'intégrabilité sans savoir quelle
@@ -2077,17 +1999,120 @@ $c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$.
 [Le théorème de Hake](#hake) permet alors de conclure.
 
 
+### Intégration de $x \in \left[1, +\infty\right[ \mapsto 1/x^2$ {.example #jauge-non-borné}
+Soit $\mathcal{D}$ une subdivision pointée de $[1, +\infty]$ subordonnée à 
+la jauge $\gamma$ définie par
+$$
+\gamma(t) = \left|
+\begin{array}{rl}
+\left]t(1 - \varepsilon/4), t(1 + \varepsilon / 4) \right[ & \mbox{si $t < +\infty$,} \\
+\left]2 / \varepsilon, +\infty \right] & \mbox{si $t=+\infty$}
+\end{array}
+\right.
+$$
+Supposons que $$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m\}\}$$ et 
+que les $x_i$ sont agencés de façon (strictement) croissante ; on a en particulier
+$x_k < +\infty$ quand $k \leq m$ et $x_{m+1} = +\infty$. Notons
+$\mathcal{D}_f = \{(t_i, [x_i, x_{i+1}]), \, i \in \{0, \dots, m-1\}\}$ ;
+on a alors
+$$
+\begin{split}
+\left| S(f, \mathcal{D}) - 1 \right| 
+&\leq
+\left| S(f, \mathcal{D}) - \left(1 - \frac{1}{x_{m}}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \left| \sum_{(t, [x, y]) \in \mathcal{D}_f} f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}} \\
+&\leq \sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| + \frac{1}{x_{m}}. \\
+\end{split}
+$$
+On remarque que si $t < +\infty$, alors $+\infty \not \in \gamma(t)$.
+Comme $x_{m+1} = +\infty$ et que $[x_m, x_{m+1}] \subset \gamma(t_m)$, 
+nécessairement $t_m = +\infty$. 
+Par conséquent, 
+$[x_m, x_{m+1}]  \subset \gamma(+\infty) = \left]2 / \varepsilon, +\infty \right]$
+et donc $$\frac{1}{x_m} \leq \frac{\varepsilon}{2}.$$
+
+D'autre part, on a
+$$
+\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
+=
+\left|\frac{y-x}{t^2}- \left(\frac{1}{x} - \frac{1}{y}\right) \right|
+= 
+|y-x|
+\left|\frac{1}{t^2} - \frac{1}{xy} \right|.
+$$
+Comme $y - x = (y -t) + (t - x)$, on a $|y -x| \leq (\varepsilon/2) t$ et donc
+$$
+\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
+\leq \frac{\varepsilon}{2} \left|\frac{1}{t} - \frac{t}{xy}\right|.
+$$
+La fonction $t \in [x, y] \mapsto 1/t - t / xy$ est dérivable, de dérivée
+$-1/t^2 - 1/xy \leq 0$. En $t=x$ et $t=y$,
+elle vaut respectivement $1/x - 1/y$ et $1/y - 1/x$. Dans tous les cas, 
+on a donc
+$$
+\left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right|
+\leq \frac{\varepsilon}{2} \left(\frac{1}{x}  - \frac{1}{y} \right)
+$$
+et par conséquent
+\begin{multline*}
+\sum_{(t, [x, y]) \in \mathcal{D}_f} \left|f(t)(y-x) - \left(\frac{1}{x} - \frac{1}{y}\right) \right| \\
+\leq \frac{\varepsilon}{2}\left(\frac{1}{x_{0}}  - \frac{1}{x_1} + \frac{1}{x_1}  - \frac{1}{x_2} + \dots + \frac{1}{x_{m-1}}  - \frac{1}{x_m} \right)
+= \frac{\varepsilon}{2} \left(1 - \frac{1}{x_m} \right) \leq \frac{\varepsilon}{2}.
+\end{multline*}
+On en déduit l'inégalité recherchée $|S(f, \mathcal{D}) -1| \leq \varepsilon/2$.
+
 
 
 Exercices complémentaires
 ================================================================================
 
-### TODO -- Méthode des trapèzes
+Méthode des trapèzes
+--------------------------------------------------------------------------------
 
-Montrer que la méthodes des trapèze "marche" avec une fonction 
-Riemann-intégrable.
+La méthode des trapèzes est une méthode de quadrature qui approxime 
+l'intégrale d'une fonction $f:[a, b] \to \R$ en utilisant une subdivision 
+$$
+\mathcal{D}_m=
+\left\{
+\left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]
+\; \left| \vphantom{\left(a + i \frac{b-a}{m}, \left[a + i \frac{b-a}{m}, a + (i+1) \frac{b-a}{m} \right]\right)} \; i \in \{0, \dots, m-1\} \right.
+\right\},
+$$
+pour construire la somme
+$$
+S_m = \frac{b-a}{m}\sum_{i=0}^{m-1} \frac{f\left(a + i \frac{b-a}{m}\right) + f\left(a + (i+1) \frac{b-a}{m}\right)}{2}
+$$
 
-Estimation erreur sous hypothèse régularité de $f$ ?
+### Question 1 {.question #mt-1}
+Calculer l'aire (algébrique) du trapèze délimité par les segments de droite 
+$$
+\left[\left(
+  a+i\frac{b-a}{m}, 0 
+\right),
+\left(
+  a+(i+1)\frac{b-a}{m}, 0 
+\right)
+\right]
+$$
+et 
+$$
+\left[\left(
+  a+i\frac{b-a}{m}, f\left(a+i\frac{b-a}{m}\right)
+\right),
+\left(
+  a+(i+1)\frac{b-a}{m}, f\left(a+(i+1)\frac{b-a}{m}\right)
+\right)
+\right],
+$$
+puis interpréter géométriquement la grandeur $S_m$.
+
+### Question 2 {.question #mt-1}
+Montrer que si la fonction $f$ est intégrable au sens de Riemann alors
+$$
+\lim_{m \to +\infty} S_m = \int_a^b f(t) \, dt.
+$$
+
+
 
 ### TODO -- Intégrales divergentes ?
 
@@ -2098,18 +2123,8 @@ $$
 alors $f$ n'est pas intégrale sur $\left[a, +\infty\right[$.
 En tirer qq conclusions ($1/x$, etc ?)
 
+
 <!--
-Intervalle {.question #int}
---------------------------------------------------------------------------------
-
-Montrer qu'un sous-ensemble $I$ de $\R$ est un intervalle si et
-seulement si il *est connexe par arcs*, c'est-à-dire si et seulement
-si pour tout couple de points $x$ et $y$ de $I$ on peut trouver un
-chemin de $I$ joignant $x$ à $y$, c'est-à-dire une fonction continue
-$\phi:[0, 1] \to I$, telle que $\phi(0) = x$ et $\phi(1) = y$.
-
--->
-
 Subdivisions subordonnées à une jauge I {.question #subd-subor}
 --------------------------------------------------------------------------------
 
@@ -2134,6 +2149,8 @@ $$
 Suggérer un procédé plus simple que le procédé très général utilisé par 
 [le lemme de Cousin](#cousin) pour construire une subdivision pointée
 subordonnée à $\gamma$.
+
+-->
 
 L'intégrale de Riemann est absolue {.question #Rabs}
 --------------------------------------------------------------------------------
@@ -2427,6 +2444,25 @@ est l'ensemble des rationnels $\Q$. Cet ensemble est dénombrable,
 par conséquent la propriété initiale est bien vérifiée presque partout.
 
 
+### Changement de variables simplifié {.answer #answer-cv}
+La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
+Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
+a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
+cette fonction est continue, comme composée et produit de fonction continues, 
+donc intégrable sur $[a, b]$. Par [le théorème fondamental du calcul](#TFC), 
+on a donc
+$$
+\int_a^b f(g(t)) g'(t) \, dt
+=
+\left[h \circ g\right]_a^b = h(g(b)) -  h(g(a)).
+$$
+D'autre part, comme $f$ est continue et a $h$ comme primitive,
+$$
+\int_{g(a)}^{g(b)} f(x) \, dx = \int_{g(a)}^{g(b)} h'(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
+$$
+les deux intégrales sont donc égales.
+
+<!--
 Subdivisions subordonnées à une jauge I {.answer #answer-subd-subor}
 --------------------------------------------------------------------------------
 
@@ -2485,11 +2521,62 @@ $$
 $$
 La jauge $\mathcal{D}_m$ est donc subordonnée à $\gamma$.
 
+-->
+
+Méthode des trapèzes
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-mt-1}
+L'aire du trapèze considéré est identique à l'aire du rectangle de largeur
+$(b-a)/m$ et dont la hauteur est la moyenne de $f(a + i(b-a)/m)$ et 
+$f(a + (i+1)(b-a)/m)$, soit
+$$
+\frac{b-a}{m} \left(\frac{f\left(a + i\frac{b-a}{m}\right) + f\left(a + (i+1)\frac{b-a}{m}\right) }{2}\right).
+$$
+La méthode des trapèzes approxime donc l'aire sous le graphe de la fonction
+$f$ en approximant cette région par $m$ trapèzes.
+
+
+![L'aire de la zone grisée correspond l'estimation de l'intégrale de
+$f : t \in [0,1] \mapsto \sqrt{t}/2$ par la méthode des trapèzes 
+pour la subdivision $\mathcal{D} = \{[0, 0.2], \dots, [0.8, 1]\}$.](images/subdivision-trapèzes.py)
+
+### Question 2 {.answer #answer-mt-2}
+On peut constater en réarrangeant les termes de la somme $S_m$ que
+\begin{align*}
+S_m &= \frac{b-a}{m}\sum_{i=0}^{m-1} \frac{f\left(a + i \frac{b-a}{m}\right) + f\left(a + (i+1) \frac{b-a}{m}\right)}{2} \\
+&= \frac{b-a}{m}
+\left(
+  \frac{1}{2} f(a) 
+  + \sum_{i=1}^{m-1} 
+      f\left(a + i \frac{b-a}{m}\right)
+  + \frac{1}{2} f(b)
+\right),
+\end{align*}
+soit, en introduisant la subdivision pointée
+\begin{align*}
+\mathcal{D}^*_m &= 
+\left\{
+\left(f(a), \left[0, \frac{b-a}{2m}\right]\right), \vphantom{\int} \right. \left(f\left(a+\frac{b-a}{m}\right), \left[\frac{b-a}{2m}, \frac{3(b-a)}{2m}\right]\right), \\
+&\phantom{=}\; \dots, \\
+&\phantom{=}
+\left(f\left(a+\frac{(m-1)(b-a)}{m}\right), \left[(2(m-2)+1)\frac{b-a}{2m}, (2(m-1)+1)\frac{b-a}{2m}\right]\right), \\
+&\phantom{=}\left.\vphantom{\int} \left(f(b), \left[b - \frac{b-a}{2m}, b \right]\right)
+\right\}
+\end{align*}
+que $S_m = S(f, \mathcal{D}^*_m)$. Comme
+$\max \left\{\ell(I) \left| (t, I) \in \mathcal{D}^*_m \right.\right\} = (b-a)/m$,
+quel que soit $\delta > 0$, ce maximum tend vers $0$ quand $m \to +\infty$. 
+Par conséquent, si $f$ est intégrable au sens de Riemann,
+$$
+\lim_{m\to +\infty} S_m = \lim_{m\to +\infty} S(f, \mathcal{D}^*_m) = \int_a^b f(t) \, dt.
+$$
 
 L'intégrale de Riemann est absolue {.answer #answer-Rabs}
 --------------------------------------------------------------------------------
 
-Nous exploitons le [critère de Lebesgue pour l'intégrabilité au sens de Riemann][Critère de Lebesgue pour l'intégrabilité au sens de Riemann] : si $f$ est intégrable au sens de Riemann,
+Nous exploitons [le critère de Lebesgue pour l'intégrabilité au sens de Riemann](#CIL) : 
+si $f$ est intégrable au sens de Riemann,
 elle est bornée -- et donc $f$ également -- et continue presque partout
 -- et donc $|f|$ également ($|f|$ est continue en tout point où
 $f$ est continue comme composée de fonctions continues en ce point). 
