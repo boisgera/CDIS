@@ -56,7 +56,7 @@ Objectifs d'apprentissage
 
   - \two savoir caractériser les fonctions intégrables au sens de Riemann.
 
-#### Intégrale de Riemann généralisée
+#### Intégrales de Riemann généralisées
 
   - \two connaître la définition du terme jauge,
 
