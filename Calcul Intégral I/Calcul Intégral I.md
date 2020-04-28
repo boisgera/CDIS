@@ -16,58 +16,83 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
-
 \newcommand{\lb}{[}
 \newcommand{\rb}{]}
 \newcommand{\lob}{\left]}
 \newcommand{\rob}{\right[}
 
-TODO
---------------------------------------------------------------------------------
-
-  - intégrales de fonctions à valeurs dans $\R^m$,
-
-  - TODO : par cohérence, reformuler "Positivitée avec deux fonctions
-    (en "croissance/monotonie de l'intégrale" ?). Oui ...
-
-  - inégalité triangulaire pour les intégrales. Conséquence de la croissance
-    de l'intégrale (et du caractère abolue de l'intégrale de Lebesgue.)
-
-  - TODO: extension "négligeable" ou "vrai p.p." dans les réels étendus.
-
-
-TODO -- Objectifs d'apprentissage
---------------------------------------------------------------------------------
+Objectifs d'apprentissage
+================================================================================
 
 #### Ensembles négligeables
 
-  - longueur d'intervalles de $[-\infty, +\infty]$.
+  - \zero savoir calculer la longueur des intervalles de $\R$,
 
-  - intuition négligeable = "ens. de longueur nulle"
+  - \one savoir que négligeable $\approx$ "de-longueur-nulle",
 
-  - définition, exemple et contre-exemples, ens. dénombrables
+  - \one savoir que tout ensemble dénombrable est négligeable,
 
-  - "p.p." (et pratique+logique associée)
+  - \one savoir que les seuls intervalles négligeables sont vides ou dégénérés[^raup],
+
+  - \two savoir définir le terme d'ensemble négligeable,
+
+  - \two savoir interpréter les énoncés comportant des "presque partout",
+
+  - \one/\two/\three savoir démontrer qu'un ensemble est négligeable.
+
+[^raup]: c'est-à-dire réduits à un point.
 
 #### Intégrale de Riemann
 
-  - définition, csq méthodes de calcul aproché (quadrature).
+  - \one savoir définir les termes subdivision et subdivision pointée,
 
-  - connaître les limitations, des exemples de fonctions non-intégrales au
-    sens de Riemann qui ne "devraient pas poser de pb".
+  - \one savoir calculer les sommes de Riemann associées,
+
+  - \two savoir définir intégrale/intégrable au sens de Riemann,
+
+  - \three savoir calculer les intégrales de Riemann au moyen de la définition,
+
+  - \two savoir valider asymptotiquement les méthodes de quadrature,
+
+  - \two savoir caractériser les fonctions intégrables au sens de Riemann.
 
 #### Intégrale de Riemann généralisée
 
-  - principe (adaptation "maille" de la subdivision pointée selon la région)
+  - \two connaître la définition du terme jauge,
 
-  - définition jauge et adaptation intégrale HK et L.
+  - \two connaître la définition de subdivision pointée subordonnée à une jauge,
 
-  - adaptations aux définitions apporter pour les intervalles non-bornés
+  - \three savoir définir intégrable/intégrale au sens de Henstock-Kurzweil,
 
-  - comment tout ramener à des intégrales de $-\infty$ à $+\infty$
+  - \one savoir définir intégrable/intégrale au sens de Lebesgue,
 
-Pptés : à connaître et savoir mettre en oeuvre.
+  - \one savoir que l'intégrale de Lebesgue étend l'intégrale de Riemann,
 
+  - \one connaître deux exemples typiques qui motivent le passage à Lebesgue.
+
+#### Intervalles arbitraires
+
+  - \one savoir passer d'une intégrale sur un intervalle arbitraire à $[-\infty, +\infty]$,
+
+  - \two savoir définir l'intégrale d'une fonction de 
+    $[-\infty, +\infty]$ dans $\R$.
+
+
+### Propriétés élementaires de l'intégrale
+
+  - \one connaître le théorème fondamental du calcul,
+
+  - \one savoir que l'intégrale est linéaire, additive et supporte la restriction,
+
+  - \one savoir que l'intégrale est croissante et satisfait l'inégalité triangulaire,
+  
+  - \two savoir que l'intégrale de deux fonctions égales presque partout est égale
+    et que ce résultat admet une réciproque.
+
+  - \two savoir que les intégrales indéterminées sont continues et dérivables
+    presque partout.
+
+  - \three connaître le théorème de changement de variable,
 
 
 Somme et intégrale de Riemann
@@ -181,6 +206,19 @@ $$
 \Rint_a^b f(t) \, dt := A.
 $$
 
+### Intégrale de fonctions vectorielles {.remark}
+Les fonctions $f: [a, b] \to \R^m$ ne présentent pas de difficulté particulière
+pour l'intégration, nous n'en parlerons donc pas spécifiquement par la suite.
+Nous conviendrons qu'une telle fonction est intégrable au sens de Riemann[^tbf]
+si toutes ses composantes $f_i$ le sont. 
+Nous définirons alors l'intégrale associée comme le vecteur de $\R^m$ tel que
+pour tout $i \in \{1,\dots, m\}$,
+$$
+\left[\int_a^b f(t) \, dt \right]_i = \int_a^b f_i(t) \, dt.
+$$
+
+[^tbf]: et par la suite, au sens de Henstock-Kurzweil ou de Lebesgue.
+
 ### Quadrature {.example .one}
 Cette définition de l'intégrale permet de garantir l'exactitude asymptotique de 
 méthodes de quadrature 
@@ -234,9 +272,9 @@ de $\R$ et que
 $$
 \Rint_a^b (\alpha t +\beta) \, dt = A := \alpha \left(\frac{b^2}{2} - \frac{a^2}{2}\right) + \beta (b-a).
 $$
-Indication : si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}])\}_{i=0}^{m-1}$ est une 
+Indication : vérifier tout d'abord que si $\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; i \in \{0, \dots, m-1\} \}$ est une 
 subdivision pointée de $[a, b]$ sous forme canonique, 
-$A$ est la somme d'une série télescopique :
+alors $A$ est la somme d'une série télescopique :
 $$
 A = \sum_{i=0}^{m-1} \alpha \left(\frac{x_{i+1}^2}{2} - \frac{x_i^2}{2}\right) + \beta (x_{i+1}-x_i).
 $$
@@ -1020,6 +1058,26 @@ $$
 Le nombre strictement positif $\varepsilon$ pouvant être choisi arbitrairement
 petit, on en déduit que l'intégrale est positive.
 
+### Inégalité triangulaire {.corollary #inégalité-triangulaire}
+Si $f: [a, b] \to \R$ est intégrable alors $|f|$ est intégrable et
+$$
+\left|\int_a^b f(t) \, dt \right| \leq \int_a^b |f(t)|\,dt.
+$$
+
+### Démonstration {.proof}
+Si $f$ est intégrable, $f$ et $|f|$ sont intégrables au sens de Henstock-Kurzweil
+donc $|f|$ et $||f|| = |f|$ sont intégrables au sens de Henstock-Kurzweil ;
+la fonction $|f|$ est donc intégrable. [Par linéarité](#linéarité), $-f$ est
+également intégrable. Comme $f \leq |f|$ et $-f \leq f$, on a 
+[par croissance de l'intégrale](#croissance)
+$$
+\int_a^b f(t) \, dt \leq \int_a^b |f(t)| \, dt
+$$
+et [par linéarité](#linéarité) et [croissance](#croissance) de l'intégrale
+$$
+-\int_a^b f(t) \, dt = \int_a^b -f(t) \, dt \leq \int_a^b |f(t)| \, dt,
+$$
+ce qui établit l'inégalité triangulaire.
 
 ### Fonctions égales presque partout {.proposition #fepp .two}
 Une fonction $f:[a, b] \to \R$ égale presque partout à une 
@@ -1372,7 +1430,8 @@ Sont valables pour tous les intervalles fermés de $[-\infty, +\infty]$ :
 
   - [Le changement de variable](#changement-de-variable),
 
-  - [La croissance de l'intégrale](#croissance), [fonctions égales presque partout](#fepp) et [réciproque](#fepp-réciproque),
+  - [La croissance de l'intégrale](#croissance), [l'inégalité triangulaire](#inégalité-triangulaire), les
+    [fonctions égales presque partout](#fepp) et [réciproque](#fepp-réciproque),
 
   - [La continuité](#cii) et [dérivabilité](#dii) des intégrales indéterminées.
 
