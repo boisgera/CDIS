@@ -86,13 +86,15 @@ Objectifs d'apprentissage
 
   - \one savoir que l'intégrale est croissante et satisfait l'inégalité triangulaire,
   
-  - \two savoir que l'intégrale de deux fonctions égales presque partout est égale
-    et que ce résultat admet une réciproque.
+  - \two savoir que deux fonctions égales presque partout ont même intégrale,
 
-  - \two savoir que les intégrales indéterminées sont continues et dérivables
-    presque partout.
+  - \two connaître la réciproque à ce résultat,
 
-  - \three connaître le théorème de changement de variable,
+  - \two savoir que les intégrales indéterminées sont continues,
+
+  - \two savoir que les intégrales indétermineés sont dérivables presque partout,
+
+  - \three connaître le théorème de changement de variable.
 
 
 Somme et intégrale de Riemann
