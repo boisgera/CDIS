@@ -204,6 +204,33 @@ $$
 ### Démonstration {.proof}
 Se reporter à @Dem11.
 
+### Théorème fondamental du calcul {.exercise .two #exo-TCD}
+Déduire de la forme classique du théorème fondamental du calcul 
+et du [théorème de convergence dominée](#TCD) que si 
+si $f:\R \to \R$ a des limites notées $f(-\infty)$ et $f(+\infty)$ 
+en $-\infty$ et $+\infty$, est dérivable sur $\R$ et que cette dérivée $f'$ 
+est intégrable, alors
+$$
+f(+\infty) - f(-\infty) = \int f'(t) \, dt.
+$$
+<!-- (Indication: on pourra étudier la suite des $g_k := f'1_{[-k, k]}$.)-->
+
+### Théorème fondamental du calcul {.answer #answer-TCD}
+Pour tout $k \in \N$, la fonction $g_k :=  f'1_{[-k, k]}$ est intégrable
+car $f'|_{[-k, k]}$ est intégrable par restriction ; la suite des $g_k$ est
+dominée par $|f'|$ qui est intégrable. Appliquer le théorème fondamental du
+calcul à $f'|_{[-k, k]}$ donne
+$$
+\int g_k(t) \, dt = \int_{-k}^k f'(t) \, dt = f(k) - f(-k).
+$$
+Par application [du théorème de convergence dominée](#TCD), on obtient donc
+$$
+\int f'(t) \, dt = \lim_{k \to +\infty}  \int g_k(t) \, dt = \lim_{k\to+\infty} f(k) - f(-k)
+=f(+\infty) - f(-\infty).
+$$ 
+
+
+
 ### Dérivation sous le signe somme {.theorem #DSS}
 Soit $I$ un intervalle de $\R$ et $f: I \times \R \to \R$ une fonction
 telle que :
