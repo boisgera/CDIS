@@ -1237,10 +1237,9 @@ Voir [@Swa01, pp. 135-136].
 
 
 ### Changement de variable {.theorem .three #changement-de-variable}
-Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une fonction
-telle que $g([a, b]) = [c,d]$, continue en $a$ et et $b$,
-dont la dérivée $g'$ existe sur $\left]a, b\right[$, y est continue et ne s'y 
-annule pas. 
+Soit $g :[a, b] \to \R$ une fonction continue en $a$ et et $b$, 
+dont la dérivée $g'$ existe sur $\left]a, b\right[$, y est continue 
+et ne s'y annule pas. Soit $[c, d] = g([a, b])$ et $f: [c, d] \to \R$. 
 Alors la fonction $f$ est intégrable sur $[c, d]$ 
 si et seulement si $(f\circ g) g'$ est intégrable sur $[a, b]$ et 
 dans ce cas, on a
@@ -1249,11 +1248,24 @@ $$
 $$
 
 ### {.remark}
+Le calcul différentiel nous a accoutumé à noter le terme $g'(t) dt$ comme
+$dg(t)$. Formellement, le changement de variable $x = g(t)$ peut donc être
+mémorisé sous la forme
+$$
+\int_a^b f(g(t)) dg(t) = \int_{g(a)}^{g(b)} f(x) \, dx.
+$$
+
+### {.remark}
 On notera que le terme $f(g(t)) g'(t)$ n'est a priori pas défini en 
 $t=a$ et $t=b$ ; on pourra considérer que l'intégrande vaut $0$ en
 ces points, ou plus généralement une valeur quelconque : l'intégrabilité
 de la fonction ainsi que son intégrale ne dépendent pas de ce choix,
 car ils définissent des [fonctions qui sont égales presque partout](#fepp).
+
+### {.remark}
+Les hypothèses concernant le changement de variable $g$ peuvent se reformuler 
+de la façon suivante: $g:[a, b] \to \R$ est continue en $a$ et $b$ et est un 
+$C^1$-difféomorphisme de $\left]a, b\right[$ sur $\left]c, d\right[$.
 
 ### Démonstration {.proof} 
 Le résultat est un corollaire du théorème de changement de variable dans 
