@@ -567,7 +567,7 @@ sa valeur absolue $|f|$ le soit (cf. exemple dans l'annexe du chapitre
 Par construction, l'intégrale de Lebesgue n'as pas cet inconvénient ; 
 elle est dite *absolue* :
 
-### L'intégrale de Lebesgue est absolue {.exercise .question .one #lebesgue-absolue}
+### L'intégrale de Lebesgue est absolue {.exercise .question .zero #lebesgue-absolue}
 Montrer que si $f: [a, b] \to \R$ est intégrable, alors $|f|$ est intégrable.
 
 ### Ordre des bornes de l'intégrale {.notation .remark #ordre-bornes}
@@ -743,17 +743,6 @@ $$
 \int_0^1 e^x \,dx 
 = 
 e - 1. 
-$$
-
-### Intégration de $x \mapsto e^x$ {.answer .zero #answer-exp}
-La fonction $x \in [0, 1] \mapsto e^x \in \R$ est continue donc intégrable.
-De plus, $(e^x)' = e^x$, donc par [le théorème fondamental du calcul](#TFCL), 
-on a
-$$
-\int_0^1 e^x \,dx 
-= 
-\left[ x \mapsto e^x \right]_0^1
-= e^1 - e^0 = e - 1. 
 $$
 
 
@@ -951,6 +940,11 @@ $$
 qui permet de prouver l'intégrabilité de l'intégrale sur un intervalle
 à partir de son intégrabilité sur des intervalles qui la compose --
 admet une réciproque :
+
+### Ordre des bornes et additivité {.exercise .one #exo-odb}
+Adapter l'énoncé [du théorème d'additivité](#additivité) pour traiter les
+cas où l'on n'a pas nécessairement $a \leq b \leq c$. (On pourra par exemple
+se limiter aux cas $c \leq b \leq a$ et $a \leq c \leq b$.)
 
 ### Restriction {.theorem #restriction .one}
 Si $f$ est intégrable sur l'intervalle $[a, b]$, 
@@ -2447,6 +2441,19 @@ alors $|f|$ est intégrable au sens de Henstock-Kurzweil ; les fonctions
 $|f|$ et $||f|| = |f|$ sont donc intégrables au sens de Henstock-Kurzweil,
 donc $|f|$ est également intégrable (au sens de Lebesgue).
 
+
+### Intégration de $x \mapsto e^x$ {.answer .zero #answer-exp}
+La fonction $x \in [0, 1] \mapsto e^x \in \R$ est continue donc intégrable.
+De plus, $(e^x)' = e^x$, donc par [le théorème fondamental du calcul](#TFCL), 
+on a
+$$
+\int_0^1 e^x \,dx 
+= 
+\left[ x \mapsto e^x \right]_0^1
+= e^1 - e^0 = e - 1. 
+$$
+
+
 ### Intégration par parties {.answer #answer-ex-IPP}
 Si les fonctions $f:[a, b] \to \R$ et $g:[a, b] \to \R$ sont dérivables,
 le produit $fg$ est dérivable et $(fg)' = f'g + f g'$. 
@@ -2461,6 +2468,36 @@ $$
 \int_a^b (fg)'(t) \, dt = [fg]_a^b,
 $$
 ce qui fournit l'égalité recherchée.
+
+### Ordre des bornes et additivité {.answer #answer-exo-odb}
+Quand $c \leq b \leq a$, on peut utiliser [le théorème d'additivité](#additivité)
+directement, en faisant l'hypothèse que $f$ est intégrable sur $[c, b]$ et sur
+$[b, a]$, pour en conclure qu'elle l'est donc sur $[a, c]$ et que 
+$$
+\int_c^a f(t) \, dt  = \int_c^b f(t) \, dt + \int_b^a f(t) \, dt, 
+$$
+soit
+$$
+-\int_c^a f(t) \, dt  = -\int_c^b f(t) \, dt - \int_b^a f(t) \, dt, 
+$$
+ce qui équivaut, avec [la convention des bornes inversées](#ordre-bornes), à
+$$
+\int_a^c f(t) \, dt  = \int_b^c f(t) \, dt + \int_b^a f(t) \, dt.
+$$
+Si $a \leq c \leq b$ et si l'on suppose que $f$ est intégrable sur $[a, c]$
+et sur $[c, b]$, on établit que $f$ est intégrable sur $[a, b]$ et que
+$$
+\int_a^b f(t) \, dt  = \int_a^c f(t) \, dt + \int_c^b f(t) \, dt,
+$$
+ou encore
+$$
+\int_a^c f(t) \, dt = \int_a^b f(t) \, dt -  \int_c^b f(t) \, dt,
+$$
+soit avec la [la convention des bornes inversées](#ordre-bornes),
+$$
+\int_a^c f(t) \, dt = \int_a^b f(t) \, dt +  \int_b^c f(t) \, dt,
+$$
+
 
 ### Changement de variables simplifié {.answer #answer-cv}
 La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
