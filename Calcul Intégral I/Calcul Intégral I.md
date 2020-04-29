@@ -1436,21 +1436,6 @@ subordonnée à $\gamma$, on a $|S(f,\mathcal{D}) - 1| \leq \varepsilon$
 (cf. [calculs en annexe](#jauge-non-borné)).
 
 
-### Propriétés élémentaires de l'intégrale {.theorem  #pei}
-Sont valables pour tous les intervalles fermés de $[-\infty, +\infty]$ :
-
-  - La [linéarité de l'intégrale](#linéarité),
-
-  - Les propriétés [d'additivité](#additivité) et [de restriction](#restriction),
-
-  - [Le changement de variable](#changement-de-variable),
-
-  - [La croissance de l'intégrale](#croissance), [l'inégalité triangulaire](#inégalité-triangulaire), les
-    [fonctions égales presque partout](#fepp) et [réciproque](#fepp-réciproque),
-
-  - [La continuité](#cii) et [dérivabilité](#dii) des intégrales indéterminées.
-
-
 ### {.remark .ante}
 Un facteur vient simplifier l'étude de l'intégration sur des intervalles
 (a priori) non bornés : il n'est pas nécessaire de considérer l'intégration 
@@ -1498,6 +1483,51 @@ $$
 $$
 Le résultat dans les autres cas ($a=-\infty$ et $b$ fini, $a$ et $b$ finis) 
 se démontrent de manière analogue.
+
+### {.remark}
+L'extension que nous venons d'apporter à l'intégration sur des intervalles
+non-bornés de $[-\infty, +\infty]$ ne perturbe finalement que très peu la
+pratique du calcul intégral : l'essentiel des propriétés élémentaires 
+de l'intégrale sont encore valables dans ce nouveau cadre[^hftc].
+
+[^hftc]: Vous remarquerez que nous n'avons pas listé le 
+[théorème fondamental du calcul](#TFC) dans les propriétés valables en non borné ; 
+celui-ci peut également être exprimé sous une forme valable dans ce cadre, 
+mais elle est un peu plus complexe, avec des hypothèses qui rappellent celles
+du [théorème de changement de variable](#changement-de-variable)
+ : si $f:[a, b] \mapsto \R$ est continue sur 
+$[a, b]$, dérivable sur $\left]a, b\right[$ et que cette dérivée $f'$ est
+intégrable, alors
+$$
+f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
+
+### Propriétés élémentaires de l'intégrale {.theorem  #pei}
+Sont valables pour tous les intervalles fermés de $[-\infty, +\infty]$ :
+
+  - La [linéarité de l'intégrale](#linéarité),
+
+  - Les propriétés [d'additivité](#additivité) et [de restriction](#restriction),
+
+  - [Le changement de variable](#changement-de-variable),
+
+  - [La croissance de l'intégrale](#croissance), [l'inégalité triangulaire](#inégalité-triangulaire), les
+    [fonctions égales presque partout](#fepp) et [réciproque](#fepp-réciproque),
+
+  - [La continuité](#cii) et [dérivabilité](#dii) des intégrales indéterminées.
+
+### {.ante}
+A noter que [le théorème de changement de variable](#changement-de-variable) 
+nous fournit également un moyen alternatif pour définir l'intégrale entre
+$-\infty$ et $+\infty$, en nous remanant à une intégrale sur un intervalle borné.
+
+### Prendre la tangente {.exercise .question #plt}
+Montrer qu'une fonction $f:\R \to \R$ est intégrable entre $-\infty$ et
+$+\infty$ si et seulement si l'intégrale
+$$
+\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} f(\tan t)(1+\tan^2 t) \, dt
+$$
+est bien définie, et que dans ce cas, les deux intégrales sont égales.
 
 
 
@@ -2465,6 +2495,38 @@ $$
 = 
 2 \int_0^1 x f(x) dx.
 $$
+
+
+### Prendre la tangente {.answer #answer-plt}
+On applique [le théorème de changement de variable](#changement-de-variable) 
+avec à la fonction 
+$$
+g : 
+t \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right] 
+\mapsto 
+\left|
+\begin{array}{rl}
+-\infty & \mbox{si $x=-\pi/2$,} \\
+\tan t & \mbox{si $-\pi/2 < x < \pi/2$,} \\
++\infty & \mbox{si $x=\pi/2$.}
+\end{array}
+\right.
+$$
+Cette fonction est bien continue en $-\pi/2$ et $\pi/2$, dérivable sur 
+$\left]-\pi/2,\pi/2\right[$, de dérivée
+$$
+g'(t) = (\tan t)' = 1+ \tan^2 t,
+$$
+qui est continue et ne s'annule pas. Par conséquent, comme
+$g([-\pi/2, \pi/2]) = [-\infty, \infty]$, une fonction 
+$f: [-\infty, +\infty] \to \R$  (ou de $\R$ dans $\R$) est intégrable
+si et seulement si
+$$
+\int_{-\pi/2}^{\pi/2} f(g(t))g'(t) \, dt
+=
+\int_{-\pi/2}^{\pi/2} f(\tan t)(1 + \tan^2 t) \, dt
+$$
+est intégrable et dans ce cas, les deux intégrales sont égales.
 
 Méthode des trapèzes
 --------------------------------------------------------------------------------
