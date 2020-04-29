@@ -609,7 +609,7 @@ continue presque partout. Sa valeur absolue $|f|$ est donc également bornée et
 continue presque partout et donc intégrable au sens de Riemann par le même
 critère. La fonction $f$ est donc intégrable au sens de Lebesgue et
 $$
-\int f(t) \, dt = \HKint f(t) \, dt = \Rint f(t) \, dt.
+\int_a^b f(t) \, dt = \HKint_a^b f(t) \, dt = \Rint_a^b f(t) \, dt.
 $$
 
 ### Intégration de $x \mapsto e^x$ {.example .two}
