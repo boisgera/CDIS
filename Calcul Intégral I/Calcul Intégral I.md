@@ -819,7 +819,7 @@ $$
 \lambda \HKint_a^b f(t) \, dt.
 $$
 
-Pour établir les résultats correspond avec l'intégrale de Lebesgue, il
+Pour établir les résultats correspondants avec l'intégrale de Lebesgue, il
 nous suffit de montrer que si $f$ et $g$ sont intégrables au sens de Lebesgue,
 alors c'est également le cas de $\lambda f$ et de $f+g$. 
 
