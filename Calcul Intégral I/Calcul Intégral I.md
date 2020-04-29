@@ -850,21 +850,6 @@ $$
 \int_a^b f'(t)g(t) \, dt = [fg]_a^b - \int_a^b f(t) g'(t) \, dt.
 $$
 
-### Intégration par parties {.answer #answer-ex-IPP}
-Si les fonctions $f:[a, b] \to \R$ et $g:[a, b] \to \R$ sont dérivables,
-le produit $fg$ est dérivable et $(fg)' = f'g + f g'$. 
-Par hypothèse les fonctions $f'g$ et $fg'$ sont intégrables, 
-donc [par linéarité de l'intégrale](#linéarité), $(fg)'$ également
-et
-$$
-\int_a^b (fg)'(t) \, dt = \int_a^b f(t)g'(t) \, dt + \int_a^b f(t)g'(t) \, dt.
-$$
-Or, par [le théorème fondamental du calcul](#TFC), on a
-$$
-\int_a^b (fg)'(t) \, dt = [fg]_a^b,
-$$
-ce qui fournit l'égalité recherchée.
-
 ### Changement de variable {.theorem .three #changement-de-variable}
 Soit $f: [c, d] \to \R$ et $g :[a, b] \to [c, d]$ une fonction
 telle que $g([a, b]) = [c,d]$, continue en $a$ et et $b$,
@@ -2388,6 +2373,20 @@ L'ensemble des réels $x$ ne vérifiant pas la propriété "$x$ est irrationnel"
 est l'ensemble des rationnels $\Q$. Cet ensemble est dénombrable, 
 par conséquent la propriété initiale est bien vérifiée presque partout.
 
+### Intégration par parties {.answer #answer-ex-IPP}
+Si les fonctions $f:[a, b] \to \R$ et $g:[a, b] \to \R$ sont dérivables,
+le produit $fg$ est dérivable et $(fg)' = f'g + f g'$. 
+Par hypothèse les fonctions $f'g$ et $fg'$ sont intégrables, 
+donc [par linéarité de l'intégrale](#linéarité), $(fg)'$ également
+et
+$$
+\int_a^b (fg)'(t) \, dt = \int_a^b f(t)g'(t) \, dt + \int_a^b f(t)g'(t) \, dt.
+$$
+Or, par [le théorème fondamental du calcul](#TFC), on a
+$$
+\int_a^b (fg)'(t) \, dt = [fg]_a^b,
+$$
+ce qui fournit l'égalité recherchée.
 
 ### Changement de variables simplifié {.answer #answer-cv}
 La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
