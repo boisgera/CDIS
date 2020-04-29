@@ -559,7 +559,18 @@ complexes et en apparence très différentes ;
 en particulier, les sommes de Riemann n'interviennent pas dans 
 leurs définitions.
 
-### Ordre des bornes de l'intégrale {.notation .remark}
+### {.remark}
+L'intégrale de Henstock-Kurzweil présente le "défaut" d'être *conditionnelle* :
+il est possible qu'une fonction $f:[a, b] \to \R$ soit intégrable sans que
+sa valeur absolue $|f|$ le soit (cf. exemple dans l'annexe du chapitre 
+"Calcul Intégral II").
+Par construction, l'intégrale de Lebesgue n'as pas cet inconvénient ; 
+elle est dite *absolue* :
+
+### L'intégrale de Lebesgue est absolue {.exercise .question .one #lebesgue-absolue}
+Montrer que si $f: [a, b] \to \R$ est intégrable, alors $|f|$ est intégrable.
+
+### Ordre des bornes de l'intégrale {.notation .remark #ordre-bornes}
 Comme dans le cas de l'intégrale de Riemann,
 la notation désignant l'intégrale peut être étendue sans difficulté au cas où $b < a$ ; 
 on définit alors l'intégrale de $a$ à $b$ en se ramenant 
@@ -2425,11 +2436,16 @@ est composé de l'unique réel $0$. Le singleton $\{0\}$ est (fini donc)
 négligeable, par conséquent la propriété initiale est bien vérifiée presque
 partout.
 
-
 ### Etre irrationnel {.answer #answer-ei}
 L'ensemble des réels $x$ ne vérifiant pas la propriété "$x$ est irrationnel"
 est l'ensemble des rationnels $\Q$. Cet ensemble est dénombrable, 
 par conséquent la propriété initiale est bien vérifiée presque partout.
+
+### L'intégrale de Lebesgue est absolue {.answer #answer-lebesgue-absolue}
+Si $f: [a, b] \to \R$ est intégrable (au sens de Lebesgue), 
+alors $|f|$ est intégrable au sens de Henstock-Kurzweil ; les fonctions
+$|f|$ et $||f|| = |f|$ sont donc intégrables au sens de Henstock-Kurzweil,
+donc $|f|$ est également intégrable (au sens de Lebesgue).
 
 ### Intégration par parties {.answer #answer-ex-IPP}
 Si les fonctions $f:[a, b] \to \R$ et $g:[a, b] \to \R$ sont dérivables,
