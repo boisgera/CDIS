@@ -1248,9 +1248,9 @@ $$
 $$
 
 ### {.remark}
-Le calcul différentiel nous a accoutumé à noter le terme $g'(t) dt$ comme
-$dg(t)$. Formellement, le changement de variable $x = g(t)$ peut donc être
-mémorisé sous la forme
+Le calcul différentiel nous a accoutumé à noter le terme $g'(t) dt$ 
+sous la forme $dg(t)$. Si l'on réutilise ici cette convention, 
+le changement de variable $x = g(t)$ peut donc être mémorisé sous la forme
 $$
 \int_a^b f(g(t)) dg(t) = \int_{g(a)}^{g(b)} f(x) \, dx.
 $$
@@ -1278,6 +1278,20 @@ supplémentaires que $f$ et $g'$ existent et sont continues sur $[c, d]$ et
 $[a,b]$ respectivement. (Indication: $f$ étant continue sur $[c, d]$, elle
 y admet une primitive $h$.)
 
+### Changement de variable $x=t^2$ {.exercise .question #ft2 .one}
+Soit $f:[0,1] \to \R$ une fonction intégrable. Montrer que l'intégrale 
+$$
+\int_0^1 f(x) \, dx
+$$
+peut s'exprimer comme une intégrale faisant intervenir l'expression $f(t^2)$.
+
+### Changement de variable $x=\sqrt{t}$ {.exercise .question #fst .one}
+Soit $f:[0, 1] \to \R$ ; en supposant qu'elle soit bien définie, 
+calculer l'intégrale
+$$
+\int_0^1 f(\sqrt{t}) \, dt
+$$
+en faisant intervenir une intégrale portant sur $f(x)$.
 
 Intégration sur des intervalles arbitraires
 ================================================================================
@@ -2419,6 +2433,38 @@ $$
 \int_{g(a)}^{g(b)} f(x) \, dx = \int_{g(a)}^{g(b)} h'(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
 $$
 les deux intégrales sont donc égales.
+
+### Changement de variable $x=t^2$ {.answer #answer-ft2}
+La fonction $g: t \in [0, 1] \to t^2 \in \R$ vérifie 
+[les hypothèses du théorème de changement de variable](#changement-de-variable) 
+avec $g([0,1]) = [0,1]$. 
+En effet $g$ est continue en $0$ et en $1$ et $g'$ est définie sur 
+$\left]0,1\right[$, de valeur $g'(t) = 2t$ ; 
+elle y est donc continue et ne s'y annule pas. 
+Par conséquent,
+$$
+\int_0^1 f(x) \, dx = \int_{g(0)}^{g(1)} f(x) \, dx = 
+\int_0^1 f(t^2) \times (2 t) \, dt
+= 2 \int_0^1 t f(t^2) \, dt.
+$$
+
+
+### Changement de variable $x=\sqrt{t}$ {.answer #answer-fst}
+L'expression suggère que l'on utilise le changement de variable $x=\sqrt{t}$,
+et la fonction $g : t\in[0, 1] \mapsto \sqrt{t} \in \R$ est [un changement de
+variable valide](#changement-de-variable) avec $g([0,1]) = [0,1]$ : elle
+est continue en $0$ et $1$, dérivable sur $\left]0, 1\right[$, de dérivée
+$g'(t) = 1/2\sqrt{t}$ qui est continue et ne s'annule pas sur $\left]0, 1\right[$.
+Par contre, l'application du changement de variable suppose de faire apparaître
+le terme $g'(t) dt$. On écrit donc
+$$
+\int_0^1 f(\sqrt{t}) \, dt 
+= \int_0^1 (2\sqrt{t}) f(\sqrt{t}) \frac{1}{2\sqrt{t}}\, dt
+= 
+\int_{g(0)}^{g(1)} 2 x f(x) dx
+= 
+2 \int_0^1 x f(x) dx.
+$$
 
 Méthode des trapèzes
 --------------------------------------------------------------------------------
