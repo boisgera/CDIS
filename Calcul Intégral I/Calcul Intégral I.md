@@ -1193,7 +1193,12 @@ g : x \in [a, b] \mapsto \int_c^x f(t) \, dt
 $$
 est continue.
 
-### Démonstration {.proof}
+### Continuité des intégrales indéterminées simplifiée {.exercise .question .two #exo-ciis}
+Démontrer [le théorème de continuité des intégrales indéterminées](#cii) sous
+l'hypothèse supplémentaire que $f$ est bornée.
+
+
+### Démonstration -- Continuité des intégrales indéterminées {.proof}
 Montrons la continuité de l'intégrale à droite en $x$ quand $x < b$
 (la continuité à gauche peut être établie de façon similaire quand $x>a$). 
 Par [additivité de l'intégrale](#additivité), il suffit de montrer que la grandeur
@@ -1238,6 +1243,13 @@ $$
 \varepsilon.
 $$
 
+### Limite d'intégrale {.exercise .question #exo-cii .one}
+Montrer que 
+$$
+\lim_{\varepsilon \to 0} \int_0^{\varepsilon} \frac{dt}{\sqrt{t}} = 0.
+$$
+
+
 
 ### Dérivabilité des intégrales indéterminées {.theorem .two #dii}
 Pour toute fonction $f: [a, b] \to \R$ intégrable et pour tout $c \in [a, b]$, 
@@ -1252,6 +1264,22 @@ $$
 
 ### Démonstration {.proof}
 Voir [@Swa01, pp. 135-136].
+
+### Dérivabilité presque partout {.exercise .one #dpp}
+Construire une fonction $f:[0, 1] \to \R$ qui soit intégrable et telle que 
+$$
+x \in [0, 1] \mapsto \int_0^x f(t) \, dt
+$$
+ne soit pas dérivable en tout point de $[0, 1]$.
+
+### Normalisation des fonctions {.exercise .question .two #pl}
+Soit $f: [a, b] \to \R$ une fonction intégrable. On associe à $f$ la fonction
+$g$ "filtrée" qui vaut
+$$
+g(t) = \lim_{\substack{h \to 0 \\ h \neq 0}} \frac{1}{2h}\int_{t-h}^{t+h} f(x) \, dx
+$$
+si le membre de droite est défini, et $f(t)$ sinon. Montrer que $g$ est égale
+à $f$ presque partout.
 
 
 ### Changement de variable {.theorem .three #changement-de-variable}
@@ -2552,6 +2580,34 @@ $$
 $$
 La fonction $h$ est donc intégrable et d'intégrale nulle.
 
+
+### Continuité des intégrales indéterminées simplifiée {.answer #answer-exo-ciis}
+Supposons que $|f| \leq M$ sur $[a, b]$. Alors, si 
+$$
+g(x) := \int_c^x f(t) \, dt 
+$$
+et $h\geq 0$, [l'addivité de l'intégrale](#additivité), 
+[l'inégalité triangulaire](#inégalité-triangulaire) et 
+[la croissance de l'intégrale](#croissance) nous fournissent
+$$
+|g(x+h) - g(x)| = \left|\int_{x}^{x+h} f(t) \, dt\right| \leq  \int_{x}^{x+h} |f(t)| \, dt
+\leq \int_{x}^{x+h} M \, dt
+$$
+et donc $|g(x+h) - g(x)| \leq M h$. Un raisonnement similaire pour $h \leq 0$ 
+nous fournit dans tous les cas $|g(x+h) - g(x)| \leq M|h|$. La fonction $g$
+est donc continue.
+
+### Limite d'intégrale {.answer #answer-exo-cii}
+D'après [un exercice précédent](#iis), la fonction $f$ nulle en $0$ et 
+égale à $1/\sqrt{t}$ sur $\left]0, 1\right]$ est intégrable. Comme
+$$
+\int_0^0 f(t) \, dt = 0,
+$$
+[par continuité des intégrales indéterminées](#cii), on en déduit que
+$$
+\lim_{\varepsilon \to 0} \int_0^{\varepsilon} f(t) \, dt = \int_0^0 f(t) \, dt = 0.
+$$
+
 ### Changement de variables simplifié {.answer #answer-cv}
 La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
 Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
@@ -2569,6 +2625,47 @@ $$
 \int_{g(a)}^{g(b)} f(x) \, dx = \int_{g(a)}^{g(b)} h'(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
 $$
 les deux intégrales sont donc égales.
+
+### Dérivabilité presque partout {.answer #answer-dpp}
+On peut par exemple considérer la fonction $f:[0, 1] \to \R$
+définie par
+$$
+f(x) = \left| 
+\begin{array}{rl}
+0 & \mbox{si $x \leq 1/2,$} \\
+1 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+On vérifie facilement que 
+$$
+g(x) := \int_0^x f(t) \, dt = \max(0, t-1/2)
+$$
+et cette fonction n'est pas dérivable en $x=1/2$.
+
+### Normalisation des fonctions {.answer #answer-pl}
+Sauf pour $t=a$ ou $t=b$, on a pour tout $h$ suffisamment petit
+$$
+\int_{t-h}^{t+h} f(x) \, dx
+= \int_a^{t+h} f(x) \, dx - \int_{a}^{t-h} f(x) \, dx,
+$$
+donc en posant
+$$
+F(t) = \int_a^t f(x) \, dx,
+$$
+on obtient
+\begin{align*}
+\frac{1}{2h}\int_{t-h}^{t+h} f(x) \, dx &= \frac{F(t+h) - F(t-h)}{2h} \\
+&= \frac{1}{2}\frac{F(t+h) - F(t)}{h} + \frac{1}{2}\frac{F(t-h) - F(t)}{(-h)}.
+\end{align*}
+Or d'après [le théorème de dérivation des intégrales indéterminées](#dii),
+$F$ est dérivable en presque tout $x$ et de dérivée $f(x)$.
+On a donc en un tel point
+$$
+g(x) = \lim_{\substack{h\to 0 \\ h\neq 0}} \frac{1}{2h}\int_{t-h}^{t+h} f(x) \, dx
+= \frac{1}{2}F'(x) + \frac{1}{2}F'(x) = f(x).
+$$
+Les fonctions $f$ et $g$ sont donc égales presque partout.
 
 ### Changement de variable $x=t^2$ {.answer #answer-ft2}
 La fonction $g: t \in [0, 1] \to t^2 \in \R$ vérifie 
