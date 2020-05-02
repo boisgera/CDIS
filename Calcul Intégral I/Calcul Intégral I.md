@@ -78,7 +78,7 @@ Objectifs d'apprentissage
     $[-\infty, +\infty]$ dans $\R$.
 
 
-### Propriétés élementaires de l'intégrale
+#### Propriétés élementaires de l'intégrale
 
   - \one connaître le théorème fondamental du calcul,
 
