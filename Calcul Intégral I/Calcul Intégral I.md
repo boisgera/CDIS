@@ -1041,6 +1041,14 @@ $$
 $$
 ce qui établit l'inégalité triangulaire.
 
+### Lemme M-L {.exercise .question .one #ML}
+Montrer que si la fonction $f:[a, b] \to \R$ est intégrable et que 
+$|f| \leq M$, alors
+$$
+\left|\int_a^b f(t \, dt) \right| \leq M (b-a)
+$$
+
+
 ### Fonctions égales presque partout {.proposition #fepp .two}
 Une fonction $f:[a, b] \to \R$ égale presque partout à une 
 fonction $g:[a, b] \to \R$ intégrable est elle-même intégrable
@@ -1049,11 +1057,16 @@ $$
 \int_a^b f(t) \, dt = \int_a^b g(t) \, dt.
 $$
 
-### TODO
-Exo(s) évoquant le fait de faire la démo dans des cas particuliers
-(fini, dénombrable, $f$ borné, etc.)
+### Fonctions égales sur un ensemble co-dénombrable {.exercise .question .four #feppco}
+Démontrer la proposition ["Fonctions égales presque partout"](#fepp) 
+sous l'hypothèse renforcée suivante : $f$ et $g$ diffèrent en un nombre
+dénombrable de points.
 
-### Démonstration {.proof}
+
+
+
+
+### Démonstration -- Fonctions égales presque partout {.proof}
 [Par linéarité de l'intégrale](#linéarité), il suffit d'établir que si 
 $h = g - f$ est nulle presque partout (c'est-à-dire égale
 presque partout à la fonction $[a, b] \to \R$ identiquement
@@ -2498,6 +2511,46 @@ $$
 \int_a^c f(t) \, dt = \int_a^b f(t) \, dt +  \int_b^c f(t) \, dt,
 $$
 
+
+### Lemme M-L {.answer #answer-ML}
+L'inégalité triangulaire fournit
+$$
+\left|\int_a^b f(t) \, dt \right| \leq \int_a^b |f(t)| \, dt.
+$$
+Comme pour tout $t \in [a, b]$, on a $|f(t)| \leq M$, 
+[par croissance](#croissance) et [linéarité](#linéarité) de l'intégrale, on a donc
+$$
+\left|\int_a^b f(t) \, dt \right| \leq \int_a ^b M \, dt = M \int_a^b\, dt
+= M (b-a).
+$$
+
+### Fonctions égales sur un ensemble co-dénombrable {.answer #answer-feppco}
+[Par linéarité de l'intégrale](#linéarité), il suffit d'établir que si 
+$h = g - f$ est nulle sauf sur l'ensemble dénombrable 
+$A = \{a_0, a_1, \dots\}$ de $[a, b]$, 
+alors elle est intégrable et d'intégrale nulle.
+Soit $\varepsilon > 0$ ; considérons la jauge de $[a, b]$ définie par
+$$
+\gamma(t) = \left| 
+\begin{array}{rl}
+\left]a_i - \varepsilon / (2^{i+2}  |h(a_i)|), t_i + \varepsilon / (2^{i+2} |h(a_i)|)  \right[ & \mbox{si $t=t_i \in A$,} \\
+\R & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Si la subdivisoin pointée $\mathcal{D}$ de $[a, b]$ est subordonnée à $\gamma$
+et si $(t, I) \in \mathcal{D}$, on a donc soit $t = a_i \in A$
+auquel cas
+$$
+|h(t) \ell(I)| \leq |h(a_i)|\times 2 \times \frac{\varepsilon}{2^{i+2}|h(a_i)|}
+= \frac{\varepsilon}{2^{i+1}},
+$$
+soit $t \not \in A$ auquel cas $h(t) =0$ et donc $h(t) \ell(I) = 0$. Dans
+tous les cas, la somme de Riemann $S(h, \mathcal{D})$ vérifie
+$$
+|S(h,\mathcal{D}) - 0| \leq \sum_{i=0}^{+\infty} \frac{\varepsilon}{2^{i+1}} = \varepsilon.
+$$
+La fonction $h$ est donc intégrable et d'intégrale nulle.
 
 ### Changement de variables simplifié {.answer #answer-cv}
 La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
