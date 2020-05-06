@@ -42,7 +42,7 @@ TODO / acquis {.meta}
 
 -->
 
-Structures topologiques
+Espaces métriques
 ================================================================================
 
 ### Norme {.definition}
