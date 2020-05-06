@@ -326,7 +326,7 @@ Arf, si, si les classe d'équivalences sont fermées, via la distance
 de Hausdorff. Lol.)
 -->
 
-Limite
+Limite et continuité
 ================================================================================
 
 ### Limite d'une suite de points {.definition}
