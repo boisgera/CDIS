@@ -300,6 +300,7 @@ Un sous-ensemble $Y$ d'un espace métrique $X$ est un *sous-espace métrique*
 de $X$ lorsqu'il est muni de la distance de $X$, restreinte aux points de
 $Y$.
 
+<!--
 
 ### Produit d'espaces vectoriels normés {.definition}
 On appelle *produit des espaces vectoriels normés $E_1$, $\dots$, $E_n$*, 
@@ -318,6 +319,8 @@ $$
 d((x_1,\dots, x_n), (y_1,\dots, y_n)) 
 = \sqrt{d_{X_1}(x_1, y_1)^2 + \dots + d_{X_n}(x_n, y_n)^2}.
 $$
+
+-->
 
 <!--
 
