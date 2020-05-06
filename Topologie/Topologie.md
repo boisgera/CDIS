@@ -51,7 +51,7 @@ TODO / acquis {.meta}
 Objectifs d'apprentissage
 ================================================================================
 
-#### Espaces normés
+#### Espaces vectoriels normés
 
   - savoir exploiter les espaces vectoriels normés suivants :
 
@@ -87,9 +87,9 @@ la norme.
 
       - \two boule ouverte, boule fermée
       
-      - \three voisinage, "localement".
+      - \three voisinage, propriété localement vraie.
 
-  - connaître des rudiments de calcul topologique :
+  - savoir exploiter des rudiments de calcul topologique :
 
       - \one $\partial A = \overline{A} \cap \overline{A^c}$, $A^{\circ} = \overline{(A^c)}^c$.
 
@@ -99,7 +99,7 @@ la norme.
         $\overline{\overline{A}} = \overline{A}$
 
       - \two $\overline{A} = A^{\circ} \cup \partial A$, $X = A^{\circ} \cup \partial A \cup (A^c)^{\circ}$
-        (unions disjointes).
+        (unions disjointes),
 
       - \two/\three savoir deviner et prouver de nouvelles identités.
 
@@ -149,10 +149,18 @@ des ensembles fermés bornés non vides de $\R^n$.
 
 
 
-Notations / conventions
+Conventions
 ================================================================================
 
-Notations ensemblistes (dont $A^c$, setminus, etc.)
+On définit le *complémentaire de $A$ dans $X$* comme l'ensemble
+$$
+X \setminus A := \{x \in X \; | \; x \not \in A\}
+$$
+Dans le cas où l'ensemble $X$ est clairement déterminé par le contexte, 
+on notera simplement $A^c$ ce complémentaire :
+$$
+A^c := X \setminus A.
+$$
 
 
 Espaces métriques
@@ -555,6 +563,7 @@ et donc $d(x, A) \to d(x_0, A)$ quand $x \to x_0$, $x\neq x_0$.
 Bestiaire
 ================================================================================
 
+<!--
 ### Point adhérent, frontière, intérieur {.definition}
 Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
@@ -579,24 +588,24 @@ $$
 \; \Leftrightarrow \; 
 d(x, A^c) > 0.
 $$
-
+-->
 
 ### Adhérence, frontière, intérieur {.definition}
 Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
 On note $\overline{A}$ l'*adhérence* de $A$,
-c'est-à-dire l'ensemble des points adhérents à $A$ :
+c'est-à-dire l'ensemble des *points adhérents* à $A$ :
 $$
 \overline{A} := \{x \in X \; | \; d(x, A)= 0 \},
 $$
 On note $\partial A$ la *frontière* de $A$, c'est-à-dire 
-l'ensemble des points frontières de $A$ :
+l'ensemble des *points frontières* de $A$ :
 $$
 \partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\}.
 $$
 
-On note $A^{\circ}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des points 
-intérieurs à $A$ :
+On note $A^{\circ}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des *points 
+intérieurs* à $A$ :
 $$
 A^{\circ} := \{x \in X \; | \; d(x, A^c) > 0\}.
 $$
@@ -635,16 +644,6 @@ A = A^{\circ}
 (x \in A \Rightarrow d(x, A^c) > 0).
 $$
 
-### Voisinage {.definition}
-Soit $X$ un espace métrique.
-Un ensemble $V$ de $X$ est un *voisinage* d'un point $x$ de $X$ si la
-distance de $x$ au complémentaire de $V$ est strictement positive:
-$$
-V \in \mathcal{V}(x)
-\; \Leftrightarrow \; 
-d(x, X \setminus V) > 0.
-$$
-
 ### Boules {.definition}
 Soit $X$ un espace métrique.
 Pour tout $x \in X$ et $r\geq 0$, on définit la *boule ouverte 
@@ -657,6 +656,27 @@ de centre $x$ et de rayon $r$* comme
 $$
 \overline{B}(x, r) = \{y \in X \, | \, d(x, y) \leq r\}.
 $$
+
+### Voisinage {.definition}
+Soit $X$ un espace métrique.
+Un ensemble $V$ de $X$ est un *voisinage* d'un point $x$ de $X$ si la
+distance de $x$ au complémentaire de $V$ est strictement positive:
+$$
+V \in \mathcal{V}(x)
+\; \Leftrightarrow \; 
+d(x, V^c) > 0.
+$$
+
+### Propriétés localement vraies {.definition}
+Soit $X$ un espace métrique.
+Une propriété $P$, fonction d'ensembles $A$ de $X$
+$$
+P:  A \in \mathcal{F} \subset \mathcal{P}(X) \to \{\mbox{vrai}, \mbox{faux}\}
+$$
+est *localement* vraie 
+si pour tout $x$ de $X$ il existe un voisinage $V$ de $x$ tel que
+$V \in \mathcal{F}$ et $P(V)$ soit vraie.
+
 
 ### Caractérisations séquentielles {.proposition}
 
