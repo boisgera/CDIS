@@ -42,16 +42,22 @@ TODO / acquis {.meta}
 
 -->
 
+TODO
+--------------------------------------------------------------------------------
+
+Notations ensemblistes (dont $A^c$, setminus, etc.)
+
+
 Espaces métriques
 ================================================================================
 
 ### Norme {.definition}
-Une *norme* sur un espace vectoriel $E$ est une application
+Une *norme* sur un espace vectoriel $E$ (sur $\R$) est une application
 $$
 \| \cdot \|: E \to \left[0, +\infty\right[
 $$ 
 telle que pour tous les points $x$ et $y$ de $E$ et tous les scalaires
-$\lambda$ dans $\R$ on ait
+$\lambda$ on ait
 
  1. [$\|x\| = 0$ si et seulement si $x=0$ (*séparation*)]{#norme-sep},
 
@@ -85,7 +91,7 @@ aussi Arzela-Ascoli / attendre Calcul Diff 3 / zapper ?)
 -->
 
 ### Normes sur $\R^n$ {.example}
-La norme privilégiée sur $\R^n$ est la *norme euclidienne*
+Par défaut, la norme privilégiée sur $\R^n$ est la *norme euclidienne*
 $\|\cdot\|_2$, définie par
 $$
 \|x\|_2 = \sqrt{x_1^2 + \dots + x_n^2}.
@@ -96,7 +102,7 @@ $$
 $$
 par la relation $\|x\|_2 = \sqrt{\left<x, x\right>}$.
 On la notera simplement $\|\cdot\|$ s'il n'y a pas d'ambiguité.
-Deux autres normes communes dont on peut doter $\R^n$:
+Deux autres normes communes dont on peut doter $\R^n$ :
 la norme $\|\cdot\|_1$, définie par
 $$
 \|x\|_1 = |x_1| + \dots + |x_n|
@@ -116,11 +122,11 @@ $$
 est un espace vectoriel normé.
 
 ### Démonstration {.proof}
-Il est clair que si $A$ et $B$ sont des opérateurs linéaires bornés de $E$ dans
-$F$ et $\lambda$ est un réel, 
-alors $\lambda A$ et $A + B$ sont des opérateurs linéaires bornés de $E$ dans $F$ ; 
-les opérateurs linéaires bornés forment donc un espace vectoriel. 
-De plus la valeur $\|A\|$ est positive et si $\|A\| = 0$, c'est-à-dire si
+Soit $A$ et $B$ des opérateurs linéaires bornés de $E$ dans
+$F$ et $\lambda$ est un réel. Nous allons montrer dans la suite que 
+$\lambda A$ et $A + B$ sont des opérateurs linéaires bornés de $E$ dans $F$,
+c'est-à-dire que les opérateurs linéaires bornés forment un espace vectoriel. 
+De plus la valeur $\|A\|$ est positive ; si $\|A\| = 0$, c'est-à-dire si
 $$
 \sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} = 0,
 $$
@@ -300,8 +306,6 @@ Un sous-ensemble $Y$ d'un espace métrique $X$ est un *sous-espace métrique*
 de $X$ lorsqu'il est muni de la distance de $X$, restreinte aux points de
 $Y$.
 
-<!--
-
 ### Produit d'espaces vectoriels normés {.definition}
 On appelle *produit des espaces vectoriels normés $E_1$, $\dots$, $E_n$*, 
 munis des normes $\|\cdot\|_{E_1}$, $\dots$, $\|\cdot\|_{E_n}$, 
@@ -319,15 +323,6 @@ $$
 d((x_1,\dots, x_n), (y_1,\dots, y_n)) 
 = \sqrt{d_{X_1}(x_1, y_1)^2 + \dots + d_{X_n}(x_n, y_n)^2}.
 $$
-
--->
-
-<!--
-
-(rk: Quotient ne "marche pas" dans une simple structure métrique.
-Arf, si, si les classe d'équivalences sont fermées, via la distance
-de Hausdorff. Lol.)
--->
 
 Limite et continuité
 ================================================================================
@@ -388,8 +383,8 @@ f(y) \to \ell \mbox{ quand } y\to x.
 $$
 
 ### {.remark}
-Quand il sera nécessaire d'être explicite sur le domaine de $f$,
-on pourra également noter
+S'il est nécessaire d'être explicite sur le domaine de $f$,
+on pourra noter
 $$
 \ell = \lim_{\substack{y \to x\\ y \in X}} f(y)
 \; \mbox{ ou } \; 
@@ -402,13 +397,199 @@ Si la fonction $f$ admet une limite en $x$, celle-ci est unique.
 ### Démonstration {.proof}
 Un corollaire de [l'unicité de la limite des suites][Unicité de la limite d'une suite].
 
-### Continuité et limite
+### Continuité {.definition}
 Une fonction $f: X \to Y$, où $X$ et $Y$ sont deux espaces métriques, est
-continue en $x \in X$ si et seulement si la limite de $f$ restreinte à 
+*continue en $x \in X$* si et seulement si la limite de $f$ restreinte à 
 $X\setminus\{x\}$ existe en $x$ et que
 $$
 f(y) \to f(x) \; \mbox{ quand } \; y \to x, \, y\neq x.
 $$
+Elle est *continue (sur $X$)* si elle est continue en tout point $x \in X$.
+
+### Continuité de la distance {.proposition}
+Soit $X$ un espace métrique. La fonction distance
+$d: X \times X \to \left[0, +\infty\right[$ est une application continue.
+Si $A$ est un sous-ensemble non vide de $X$, la distance à $A$
+$$
+x \in X \mapsto d(x, A) \in \left[0, +\infty\right[
+$$ 
+est une application continue.
+
+### Démonstration {.proof}
+Soient $(x_0, y_0)$ et $(x, y)$ deux points de l'espace produit $X \times X$.
+Par [l'inégalité triangulaire](#dist-ineg), 
+$d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)$
+et
+$d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),$
+donc
+$$
+|d(x, y) - d(x_0, y_0)| \leq d(x_0, x) + d(y_0, y).
+$$
+Or la distance sur le produit $X \times X$ est définie comme
+$$
+d_{X \times X}((x, y), (x_0, y_0)) = \sqrt{d(x, x_0)^2 + d(y, y_0)^2},
+$$
+donc
+$$
+|d(x, y) - d(x_0, y_0)| \leq 2 d_{X \times X}((x, y), (x_0, y_0))
+$$
+et $d(x, y) \to d(x_0, y_0)$ quand $(x, y) \to (x_0, y_0)$, $(x,y) \neq (x_0, y_0)$. 
+
+Pour tout $a \in A$, on a $d(x, a) \leq d(x, x_0) + d(x_0, a)$ 
+et donc $d(x, A) \leq d(x, x_0) + d(x_0, A)$. 
+En intervertissant $x$ et $x_0$, on obtient 
+également $d(x_0, A) \leq d(x_0, x) + d(x, A)$. 
+Par [symétrie de la distance](#dist-sym), ces deux inégalités entraînent
+$$
+|d(x, A) - d(x_0, A)| \leq d(x_0, x)
+$$
+et donc $d(x, A) \to d(x_0, A)$ quand $x \to x_0$, $x\neq x_0$.
+
+Bestiaire
+================================================================================
+
+### Point adhérent, frontière, intérieur {.definition}
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+
+Un point $x$ *adhère* (ou *est adhérent*) à un ensemble $A$ si
+sa distance à l'ensemble $A$ est nulle :
+$$
+\mbox{$x$ point adhérent à $A$} \; \Leftrightarrow \; d(x, A) = 0.
+$$
+
+Un point $x$ est *frontière* de $A$ si sa distance à $A$ et au complémentaire
+$A^c$ est nulle :
+$$
+\mbox{$x$ point frontière de $A$}
+\; \Leftrightarrow \; 
+(d(x, A) = 0 \mbox{ et } d(x, A^c)=0).
+$$
+
+Un point $x$ est *intérieur* à un ensemble $A$ si sa distance au 
+complémentaire $A^c$ est strictement positive :
+$$
+\mbox{$x$ point intérieur de $A$}    
+\; \Leftrightarrow \; 
+d(x, A^c) > 0.
+$$
+
+
+### Adhérence, frontière, intérieur {.definition}
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+
+On note $\overline{A}$ l'*adhérence* de $A$,
+c'est-à-dire l'ensemble des points adhérents à $A$ :
+$$
+\overline{A} := \{x \in X \; | \; d(x, A)= 0 \},
+$$
+On note $\partial A$ la *frontière* de $A$, c'est-à-dire 
+l'ensemble des points frontières de $A$ :
+$$
+\partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\}.
+$$
+
+On note $\mathring{A}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des points 
+intérieurs à $A$ :
+$$
+\mathring{A} := \{x \in X \; | \; d(x, A^c) > 0\}.
+$$
+
+### Inclusions {.exercise .one .question #exo-i}
+Montrer que $\mathring{A} \subset A \subset \overline{A}$.
+
+### Topologie basée sur l'adhérence {.exercise .question .one #tba}
+Montrer que $$\partial A = \overline{A} \cap \overline{A^c} \; \mbox{ et } \; 
+\mathring{A} = \left(\overline{A^c}\right)^c.$$
+
+![Construction de l'intérieur $\mathring{A}$ et de la frontière $\partial A$ 
+à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
+et des opérations ensemblistes.](images/topological-operations.svg.pdf)
+
+### Décomposition de $\overline{A}$ {.exercise .question .two #pab}
+Montrer que $$\mathring{A} \cap \partial A = \varnothing \; \mbox{ et } \; 
+\overline{A} = \mathring{A} \cup \partial A.$$
+
+### Topologie basée sur la frontière {.exercise .question .two #tbf}
+Montrer que $$\overline{A} = A \cup \partial A 
+\; \mbox{ et } \; \mathring{A} = A \setminus \partial A.$$
+
+### Ensemble fermé, ouvert {.definition}
+Un ensemble $A$ est *fermé* si tous les points adhérents à $A$
+appartiennent à $A$:
+$$
+\mbox{$A$ fermé} \; \Leftrightarrow \; A = \overline{A} \; \Leftrightarrow \; (d(x, A) = 0 \Rightarrow x \in A).
+$$
+Un ensemble $A$ est *ouvert* si la distance de tout point de $A$
+au complémentaire de $A$ est strictement positive:
+$$
+\mbox{$A$ ouvert} \; \Leftrightarrow \;
+A = \mathring{A}
+\; \Leftrightarrow \; 
+(x \in A \Rightarrow d(x, A^c) > 0).
+$$
+
+### Voisinage {.definition}
+Soit $X$ un espace métrique.
+Un ensemble $V$ de $X$ est un *voisinage* d'un point $x$ de $X$ si la
+distance de $x$ au complémentaire de $V$ est strictement positive:
+$$
+V \in \mathcal{V}(x)
+\; \Leftrightarrow \; 
+d(x, X \setminus V) > 0.
+$$
+
+### Boules {.definition}
+Soit $X$ un espace métrique.
+Pour tout $x \in X$ et $r\geq 0$, on définit la *boule ouverte 
+de centre $x$ et de rayon $r$* comme
+$$
+B(x, r) = \{y \in X \, | \, d(x, y) < r\}
+$$
+et la *boule fermée 
+de centre $x$ et de rayon $r$* comme
+$$
+\overline{B}(x, r) = \{y \in X \, | \, d(x, y) \leq r\}.
+$$
+
+### Caractérisations séquentielles {.proposition}
+
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+
+  - Un point adhère à $A$ s'il existe une suite de points de $A$ 
+    qui converge vers ce point.
+
+  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
+    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
+
+  - Un ensemble $A$ est *fermé* si la limite de toute suite de points de $A$
+    qui est convergente (dans $X$) appartient à $A$.
+
+  - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
+    qui converge vers ce point et une suite de points du complémentaire de $A$
+    dans $X$ qui converge vers ce point.
+
+  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
+    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
+
+  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
+    suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
+
+  - Un ensemble $A$ est *ouvert* si toute suite de points de $X$ 
+    qui converge vers un point de $A$ appartient à $A$ 
+    à partir d'un certain rang.
+
+### TODO : démo
+
+
+
+### Continuité et adhérence {.proposition}
+Soit $X$ et $Y$ deux espaces métriques.
+Une fonction $f : X \to Y$ est continue en $x \in X$ si et seulement si
+pour tout $A \subset X$, si $x$ adhère à $A$, alors $f(x)$ adhère à $f(A)$.
+
+
+### TODO : relire; adapter démo.
+
 
 ### Démonstration {.proof}
 Supposons que $f$ soit telle que $f(y) \to f(x)$ quand $y \to x$.
@@ -432,146 +613,6 @@ Par conséquent, $x$ adhère à $\{y_k \, | \, k \in  \N\}$, mais
 $f(x)$ n'adhère pas à $f(\{y_k \, | \, k \in  \N\}) = 
 \{f(y_k) \, | \, k \in  \N\}$ ; 
 la fonction $f$ n'est donc pas continue en $x$.
-
-### Continuité de la distance {.proposition}
-Soit $X$ un espace métrique. La fonction distance
-$d: X \times X \to \left[0, +\infty\right[$ est une application continue.
-Si $A$ est un sous-ensemble non vide de $X$, la distance à $A$
-$x \in X \mapsto d(x, A) \in \left[0, +\infty\right[$ 
-est une application continue.
-
-### Démonstration {.proof}
-Soient $(x_0, y_0)$ et $(x, y)$ deux points de l'espace produit $X \times X$.
-Par [l'inégalité triangulaire](#dist-ineg), 
-$d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)$
-et
-$d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),$
-donc
-$$
-|d(x, y) - d(x_0, y_0)| \leq d(x_0, x) + d(y_0, y).
-$$
-Or la distance sur le produit $X \times X$ est définie comme
-$$
-d_{X \times X}((x, y), (x_0, y_0)) = \sqrt{d(x, x_0)^2 + d(y, y_0)^2},
-$$
-donc
-$$
-|d(x, y) - d(x_0, y_0)| \leq 2 d_{X \times X}((x, y), (x_0, y_0))
-$$
-et $d(x, y) \to d(x_0, y_0)$ quand $(x, y) \to (x_0, y_0)$. 
-
-Pour tout $a \in A$, on a $d(x, a) \leq d(x, x_0) + d(x_0, a)$ 
-et donc $d(x, A) \leq d(x, x_0) + d(x_0, A)$. 
-En intervertissant $x$ et $x_0$, on obtient 
-également $d(x_0, A) \leq d(x_0, x) + d(x, A)$. 
-Par [symétrie de la distance](#dist-sym), ces deux inégalités entraînent
-$$
-|d(x, A) - d(x_0, A)| \leq d(x_0, x)
-$$
-et donc $d(x, A) \to d(x_0, A)$ quand $x \to x_0$.
-
-Bestiaire
-================================================================================
-
-
-### Définitions métriques {.definition}
-Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
-
-  - Un point $x$ *adhère* (ou *est adhérent*) à un ensemble $A$ si
-    sa distance à l'ensemble $A$ est nulle:
-    $$
-    x \in \overline{A} \; \Leftrightarrow \; d(x, A) = 0.
-    $$
-
-  - Un ensemble $A$ est *fermé* si tous les points à distance nulle de $A$
-    appartiennent à $A$:
-    $$
-    A = \overline{A} \; \Leftrightarrow \; (d(x, A) = 0 \Rightarrow x \in A).
-    $$
-
-  - Un point est *frontière* de $A$ si sa distance à $A$ et au complémentaire
-    de $A$ est nulle:
-    $$
-    x \in \partial{A} 
-    \; \Leftrightarrow \; 
-    (d(x, A) = 0 \mbox{ et } d(x, X \setminus A)=0).
-    $$
-
-  - Un point $x$ est *intérieur* à un ensemble $A$ si sa distance au 
-    complémentaire de $A$ est strictement positive:
-    $$
-    x \in \mathring{A}
-    \; \Leftrightarrow \; 
-    d(x, X \setminus A) > 0.
-    $$
-
-  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si la
-    distance de $x$ au complémentaire de $V$ est strictement positive:
-    $$
-    V \in \mathcal{V}(x)
-    \; \Leftrightarrow \; 
-    d(x, X \setminus V) > 0.
-    $$
-
-  - Un ensemble $A$ est *ouvert* si la distance de tout point de $A$
-    au complémentaire de $A$ est strictement positive:
-    $$
-    A = \mathring{A}
-    \; \Leftrightarrow \; 
-    (x \in A \Rightarrow d(x, X \setminus A) > 0).
-    $$
-
-  - Pour tout $x \in X$ et $r\geq 0$, on définit la *boule ouverte 
-    de centre $x$ et de rayon $r$* comme
-    $$
-    B(x, r) = \{y \in X \, | \, d(x, y) < r\}
-    $$
-    et la *boule fermée 
-    de centre $x$ et de rayon $r$* comme
-    $$
-    \overline{B}(x, r) = \{y \in X \, | \, d(x, y) \leq r\}.
-    $$
-
-### Définitions séquentielles {.definition}
-
-Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
-
-  - Un point *adhère* (ou *est adhérent*) à un ensemble $A$ s'il existe une suite de
-    points de $A$ qui converge vers ce point.
-
-  - Un ensemble $A$ est *fermé* si la limite de toute suite de points de $A$
-    qui est convergente (dans $X$) appartient à $A$.
-
-  - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
-    qui converge vers ce point et une suite de points du complémentaire de $A$
-    dans $X$ qui converge vers ce point.
-
-  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
-    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
-
-  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
-    suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
-
-  - Un ensemble $A$ est *ouvert* si toute suite de points de $X$ 
-    qui converge vers un point de $A$ appartient à $A$ 
-    à partir d'un certain rang.
-
-### Ensembles dérivés {.definition}
-Soit $A$ un ensemble de $X$. On note
-
-  -  $\overline{A}$ l'*adhérence* de $A$
-     (l'ensemble des points adhérents à $A$),
-
-  - $\partial A$ la *frontière* de $A$ 
-    (l'ensemble des points frontières de $A$).
-
-  - $\mathring{A}$ l'*intérieur* de $A$ 
-    (l'ensemble des points intérieurs à $A$).
-
-![Construction de l'intérieur $\mathring{A}$ et de la frontière $\partial A$ 
-à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
-et des opérations ensemblistes.](images/topological-operations.svg.pdf)
-
 
 
 Complétude
@@ -1335,6 +1376,7 @@ La réciproque est établie de façon similaire.
 Exercices
 ================================================================================
 
+
 Normes d'opérateurs {#no .question}
 --------------------------------------------------------------------------------
 
@@ -1858,6 +1900,60 @@ sont compacts.
 
 Solutions
 ================================================================================
+
+
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Inclusions {.answer #answer-exo-i}
+Si $d(x, A^c) > 0$, alors $x \not \in A^c$, donc $x \in A$ ; 
+donc $\mathring{A} \subset A$. Si $x \in A$ alors $d(x, A) \leq d(x, x) = 0$,
+donc $x$ est adhérent à $A$ ; soit $A \subset \overline{A}$.
+
+### Topologie basée sur l'adhérence {.answer #answer-tba}
+La relation $\partial A = \overline{A} \cap \overline{A^c}$ résulte directement
+de la définition d'adhérence et de frontière. Pour ce qui est de l'intérieur,
+on peut noter que
+$\overline{A^c} = \{x \in X \; | \; d(x, A^c) = 0\}$ et donc
+$$
+\left(\overline{A^c}\right)^c
+= \{x \in X \; | \; d(x, A^c) \neq 0\}
+= \{x \in X \; | \; d(x, A^c) > 0\} = \mathring{A}.
+$$
+
+
+### Décomposition de $\overline{A}$ {.answer #answer-pab}
+Aucun point $x$ ne peut vérifier simultanément $d(x,A^c)> 0$ et $d(x, A^c)=0$,
+donc $\mathring{A} \cap \partial A = \varnothing$. Ensuite, il est clair
+d'après la définition de la frontière que $\partial A \subset \overline{A}$ ;
+comme tout point $x$ de $\mathring{A}$ vérifie $d(x, A^c)> 0$, on a $x \not \in A^c$,
+soit $x \in A$ et donc $d(x, A)=0$, soit $x\in\overline{A}$ ; donc 
+$\mathring{A} \cup \partial A \subset \overline{A}$. 
+Finalement, si $x \in \overline{A}$, soit $d(x, A^c) > 0$, auquel cas 
+$x \in \mathring{A}$, soit $d(x, A^c)=0$, auquel cas $d(x, A)= 0$ et 
+$d(x, A^c)=0$, c'est-à-dire $x\in\partial A$. On a donc bien
+$\overline{A} = \mathring{A} \cup \partial A$.
+
+### Topologie basée sur la frontière {.answer #answer-tbf}
+Il est clair d'après les définitions que $A \subset \overline{A}$ et que
+$\partial A \subset \overline{A}$ ; de plus si $x \in \overline{A}$, 
+soit $x \in A$, soit $x \in A^c$ ; dans le premier cas $x \in A$, dans 
+le second cas $d(x,A^c)=0$, donc $x \in \partial A$. 
+On a donc bien $\overline{A} = A \cup \partial A$.
+
+Les points $x \in \mathring{A}$ vérifient $d(x, A^c) > 0$ et donc $x \not \in A^c$,
+soit $x \in A$, donc $\mathring{A} \subset A$. De plus, un point frontière $x$ 
+-- qui vérifie $d(x, A^c) = 0$ -- ne peut appartenir à l'intérieur de $A$.
+Par conséquent, $\mathring{A} \subset A \setminus \partial A$.
+Réciproquement, un point de 
+$A$ qui n'appartient pas à $\partial A$ vérifie $d(x, A) > 0$ -- ce qui
+est impossible -- ou $d(x, A^c) > 0$, donc appartient à $\mathring{A}$. 
+Par conséquent,
+$A \setminus \partial A \subset \mathring{A}$.
+On a donc bien $\mathring{A} = A \setminus \partial A$.
+
+
+
 
 Normes d'opérateurs {#answer-no}
 --------------------------------------------------------------------------------
