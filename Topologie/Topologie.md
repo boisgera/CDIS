@@ -636,7 +636,7 @@ $$
 \mbox{$A$ fermé} \; \Leftrightarrow \; A = \overline{A} \; \Leftrightarrow \; (d(x, A) = 0 \Rightarrow x \in A).
 $$
 Un ensemble $A$ est *ouvert* si la distance de tout point de $A$
-au complémentaire de $A$ est strictement positive:
+au complémentaire de $A$ est strictement positive :
 $$
 \mbox{$A$ ouvert} \; \Leftrightarrow \;
 A = A^{\circ}
