@@ -53,72 +53,99 @@ Objectifs d'apprentissage
 
 #### Espaces normés
 
-  - connaître les espaces vectoriels normés classiques :
+  - savoir exploiter les espaces vectoriels normés suivants :
 
-    - l'espace $\R^n$ muni de la norme euclidienne,
+    - \zero l'espace $\R^n$ muni de la norme euclidienne,
 
-    - l'espace $\R^{m\times n}$ muni d'une norme d'opérateur,
+    - \two l'espace $\R^{m\times n}$ muni de la norme norme d'opérateur,
 
-    - L'espace des fonctions $A \to \R^n$ bornées, 
-      munie de la norme de la convergence uniforme.
+    - \one l'espace des fonctions $A \to \R^n$ bornées, muni de la "norme infinie"[^ncu].
+    
+[^ncu]: ou "norme de la convergence uniforme".
 
-  - autres normes, adapt norme d'opé, adapt norm cgce uniforme,
 
-  - def de norme
+  - \three savoir adapter les espaces précédents aux normes non-euclidiennes,
+
+  - \two savoir définir et caractériser une norme, un espace vectoriel normé.
 
 #### Espaces métriques
 L'accent est mis sur les espace métriques "concrets" : les sous-ensembles
 arbitraires d'espaces vectoriels normés, muni de la distance induite par 
 la norme.
 
-  - savoir que tout sous-ensemble d'un e.v.n. est un espace métrique,
+  - \zero savoir construire une distance (entre points) à partir d'une norme,
 
-  - savoir construire une distance (entre points) à partir d'une norme,
+  - \one savoir que tout sous-ensemble d'un e.v.n. "est" un espace métrique,
 
-  - savoir définir la distance entre un point et un ensemble,
+  - \one savoir définir la distance entre un point et un ensemble,
 
   - savoir définir à partir d'une distance :
 
-      - adhérence, frontière, intérieur,
+      - \two adhérence, frontière, intérieur,
 
-      - ensemble ouvert et fermé,
+      - \two ensemble ouvert et fermé,
 
-      - boule ouverte, boule fermée, voisinage.
+      - \two boule ouverte, boule fermée
+      
+      - \three voisinage, "localement".
 
-  - connaître des élements de calcul topologique :
+  - connaître des rudiments de calcul topologique :
 
-      - TODO
+      - \one $\partial A = \overline{A} \cap \overline{A^c}$, $A^{\circ} = \overline{(A^c)}^c$.
 
-      - TODO
+      - \two $\overline{\varnothing} = \varnothing$, 
+        $A \subset \overline{A}$, 
+        $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
+        $\overline{\overline{A}} = \overline{A}$
 
-      - TODO
+      - \two $\overline{A} = A^{\circ} \cup \partial A$, $X = A^{\circ} \cup \partial A \cup (A^c)^{\circ}$
+        (unions disjointes).
+
+      - \two/\three savoir deviner et prouver de nouvelles identités.
 
 Ces connaissances se transposent aux espaces métriques "abstraits" 
-qui n'apparaissent pas directement comme des sous-ensembles
-d'espaces vectoriels normés. Par exemple : la droite réelle étendue 
-$[-\infty, \infty]$ ou encore l'espace des ensembles fermés et bornés non vides
-de $\R^n$. Dans ce contexte, la distance n'est plus définie à partir d'une
-norme mais construite directement ; elle doit satisfaire des axiomes
+tels que la droite réelle étendue $[-\infty, \infty]$, ou la collection
+des ensembles fermés bornés non vides de $\R^n$.
 
-  - \two connaître et savoir vérifier les axiomes d'une distance,
+  - \one connaître la définition générale d'espace métrique,
 
-  - \one connaître la définition générale d'espace métrique.
+  - \two savoir quels axiomes caractérisent une distance,
 
-#### Suites, limite et continuité 
+  - \two/\three savoir vérifier qu'une fonction est une distance,
 
-  - limite d'une suite dans un espace métriques
+  - \four deviner une distance appropriée pour un ensemble donné.
 
-  - définitions séquentielles des termes topologiques.
+#### Suites, limites et continuité 
 
-#### Complétude
+  - savoir définir et exploiter les notions suivantes :
 
-  - suite de Cauchy
+    - \one limite d'une suite dans un espace métrique,
 
-  - espace complet
+    - \one limite d'une fonction $A \subset X \to Y$ en un point adhérent à $A$,
 
-  - application contractante
+  - \two connaître la caractérisation séquentielle des objets topologiques,
 
-  - théorème de point fixe
+  - savoir caractériser les fonctions continues (en un point, sur son domaine) :
+
+    - \one définition séquentielle : $f(x) \to f(x_0)$ quand $x\to x_0, \, x \neq x_0$, 
+
+    - \two : par l'adhérence : $x_0 \in \overline{A} \implies f(x_0) \in \overline{f(A)}$,
+
+    - \three : par le critère de l'image réciproque.
+
+#### Espaces complets
+
+  - \two savoir définir et caractériser une suite de Cauchy,
+
+  - \one connaître la définition d'espace métrique complet,
+
+  - \one savoir que $\R^n$ est complet,
+
+  - \two savoir qu'un sous-ensemble fermé d'un espace complet est complet,
+
+  - \two savoir caractériser une application contractante,
+
+  - \two savoir utiliser le théorème de point fixe de Banach.
 
 
 
@@ -568,30 +595,30 @@ $$
 \partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\}.
 $$
 
-On note $\mathring{A}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des points 
+On note $A^{\circ}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des points 
 intérieurs à $A$ :
 $$
-\mathring{A} := \{x \in X \; | \; d(x, A^c) > 0\}.
+A^{\circ} := \{x \in X \; | \; d(x, A^c) > 0\}.
 $$
 
 ### Inclusions {.exercise .one .question #exo-i}
-Montrer que $\mathring{A} \subset A \subset \overline{A}$.
+Montrer que $A^{\circ} \subset A \subset \overline{A}$.
 
 ### Topologie basée sur l'adhérence {.exercise .question .one #tba}
 Montrer que $$\partial A = \overline{A} \cap \overline{A^c} \; \mbox{ et } \; 
-\mathring{A} = \left(\overline{A^c}\right)^c.$$
+A^{\circ} = \left(\overline{A^c}\right)^c.$$
 
-![Construction de l'intérieur $\mathring{A}$ et de la frontière $\partial A$ 
+![Construction de l'intérieur $A^{\circ}$ et de la frontière $\partial A$ 
 à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
 et des opérations ensemblistes.](images/topological-operations.svg.pdf)
 
 ### Décomposition de $\overline{A}$ {.exercise .question .two #pab}
-Montrer que $$\mathring{A} \cap \partial A = \varnothing \; \mbox{ et } \; 
-\overline{A} = \mathring{A} \cup \partial A.$$
+Montrer que $$A^{\circ} \cap \partial A = \varnothing \; \mbox{ et } \; 
+\overline{A} = A^{\circ} \cup \partial A.$$
 
 ### Topologie basée sur la frontière {.exercise .question .two #tbf}
 Montrer que $$\overline{A} = A \cup \partial A 
-\; \mbox{ et } \; \mathring{A} = A \setminus \partial A.$$
+\; \mbox{ et } \; A^{\circ} = A \setminus \partial A.$$
 
 ### Ensemble fermé, ouvert {.definition}
 Un ensemble $A$ est *fermé* si tous les points adhérents à $A$
@@ -603,7 +630,7 @@ Un ensemble $A$ est *ouvert* si la distance de tout point de $A$
 au complémentaire de $A$ est strictement positive:
 $$
 \mbox{$A$ ouvert} \; \Leftrightarrow \;
-A = \mathring{A}
+A = A^{\circ}
 \; \Leftrightarrow \; 
 (x \in A \Rightarrow d(x, A^c) > 0).
 $$
@@ -1350,7 +1377,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
   - Un point $x$ est *intérieur* à un ensemble $A$ s'il n'adhère pas
     au complémentaire de $A$
     $$
-    x \in \mathring{A}
+    x \in A^{\circ}
     \; \Leftrightarrow \; 
     x \not \in \overline{X \setminus A}.
     $$
@@ -1365,7 +1392,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
 
   - Un ensemble $A$ est *ouvert* s'il est un voisinage de chacun de ses points
     $$
-    A = \mathring{A}
+    A = A^{\circ}
     \; \Leftrightarrow \; 
     (x \in A \Rightarrow x \not \in \overline{X \setminus A}).
     $$
@@ -1987,7 +2014,7 @@ Exercices essentiels
 
 ### Inclusions {.answer #answer-exo-i}
 Si $d(x, A^c) > 0$, alors $x \not \in A^c$, donc $x \in A$ ; 
-donc $\mathring{A} \subset A$. Si $x \in A$ alors $d(x, A) \leq d(x, x) = 0$,
+donc $A^{\circ} \subset A$. Si $x \in A$ alors $d(x, A) \leq d(x, x) = 0$,
 donc $x$ est adhérent à $A$ ; soit $A \subset \overline{A}$.
 
 ### Topologie basée sur l'adhérence {.answer #answer-tba}
@@ -1998,21 +2025,21 @@ $\overline{A^c} = \{x \in X \; | \; d(x, A^c) = 0\}$ et donc
 $$
 \left(\overline{A^c}\right)^c
 = \{x \in X \; | \; d(x, A^c) \neq 0\}
-= \{x \in X \; | \; d(x, A^c) > 0\} = \mathring{A}.
+= \{x \in X \; | \; d(x, A^c) > 0\} = A^{\circ}.
 $$
 
 
 ### Décomposition de $\overline{A}$ {.answer #answer-pab}
 Aucun point $x$ ne peut vérifier simultanément $d(x,A^c)> 0$ et $d(x, A^c)=0$,
-donc $\mathring{A} \cap \partial A = \varnothing$. Ensuite, il est clair
+donc $A^{\circ} \cap \partial A = \varnothing$. Ensuite, il est clair
 d'après la définition de la frontière que $\partial A \subset \overline{A}$ ;
-comme tout point $x$ de $\mathring{A}$ vérifie $d(x, A^c)> 0$, on a $x \not \in A^c$,
+comme tout point $x$ de $A^{\circ}$ vérifie $d(x, A^c)> 0$, on a $x \not \in A^c$,
 soit $x \in A$ et donc $d(x, A)=0$, soit $x\in\overline{A}$ ; donc 
-$\mathring{A} \cup \partial A \subset \overline{A}$. 
+$A^{\circ} \cup \partial A \subset \overline{A}$. 
 Finalement, si $x \in \overline{A}$, soit $d(x, A^c) > 0$, auquel cas 
-$x \in \mathring{A}$, soit $d(x, A^c)=0$, auquel cas $d(x, A)= 0$ et 
+$x \in A^{\circ}$, soit $d(x, A^c)=0$, auquel cas $d(x, A)= 0$ et 
 $d(x, A^c)=0$, c'est-à-dire $x\in\partial A$. On a donc bien
-$\overline{A} = \mathring{A} \cup \partial A$.
+$\overline{A} = A^{\circ} \cup \partial A$.
 
 ### Topologie basée sur la frontière {.answer #answer-tbf}
 Il est clair d'après les définitions que $A \subset \overline{A}$ et que
@@ -2021,16 +2048,16 @@ soit $x \in A$, soit $x \in A^c$ ; dans le premier cas $x \in A$, dans
 le second cas $d(x,A^c)=0$, donc $x \in \partial A$. 
 On a donc bien $\overline{A} = A \cup \partial A$.
 
-Les points $x \in \mathring{A}$ vérifient $d(x, A^c) > 0$ et donc $x \not \in A^c$,
-soit $x \in A$, donc $\mathring{A} \subset A$. De plus, un point frontière $x$ 
+Les points $x \in A^{\circ}$ vérifient $d(x, A^c) > 0$ et donc $x \not \in A^c$,
+soit $x \in A$, donc $A^{\circ} \subset A$. De plus, un point frontière $x$ 
 -- qui vérifie $d(x, A^c) = 0$ -- ne peut appartenir à l'intérieur de $A$.
-Par conséquent, $\mathring{A} \subset A \setminus \partial A$.
+Par conséquent, $A^{\circ} \subset A \setminus \partial A$.
 Réciproquement, un point de 
 $A$ qui n'appartient pas à $\partial A$ vérifie $d(x, A) > 0$ -- ce qui
-est impossible -- ou $d(x, A^c) > 0$, donc appartient à $\mathring{A}$. 
+est impossible -- ou $d(x, A^c) > 0$, donc appartient à $A^{\circ}$. 
 Par conséquent,
-$A \setminus \partial A \subset \mathring{A}$.
-On a donc bien $\mathring{A} = A \setminus \partial A$.
+$A \setminus \partial A \subset A^{\circ}$.
+On a donc bien $A^{\circ} = A \setminus \partial A$.
 
 
 
