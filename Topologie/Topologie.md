@@ -42,8 +42,88 @@ TODO / acquis {.meta}
 
 -->
 
-TODO
---------------------------------------------------------------------------------
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+Objectifs d'apprentissage
+================================================================================
+
+#### Espaces normés
+
+  - connaître les espaces vectoriels normés classiques :
+
+    - l'espace $\R^n$ muni de la norme euclidienne,
+
+    - l'espace $\R^{m\times n}$ muni d'une norme d'opérateur,
+
+    - L'espace des fonctions $A \to \R^n$ bornées, 
+      munie de la norme de la convergence uniforme.
+
+  - autres normes, adapt norme d'opé, adapt norm cgce uniforme,
+
+  - def de norme
+
+#### Espaces métriques
+L'accent est mis sur les espace métriques "concrets" : les sous-ensembles
+arbitraires d'espaces vectoriels normés, muni de la distance induite par 
+la norme.
+
+  - savoir que tout sous-ensemble d'un e.v.n. est un espace métrique,
+
+  - savoir construire une distance (entre points) à partir d'une norme,
+
+  - savoir définir la distance entre un point et un ensemble,
+
+  - savoir définir à partir d'une distance :
+
+      - adhérence, frontière, intérieur,
+
+      - ensemble ouvert et fermé,
+
+      - boule ouverte, boule fermée, voisinage.
+
+  - connaître des élements de calcul topologique :
+
+      - TODO
+
+      - TODO
+
+      - TODO
+
+Ces connaissances se transposent aux espaces métriques "abstraits" 
+qui n'apparaissent pas directement comme des sous-ensembles
+d'espaces vectoriels normés. Par exemple : la droite réelle étendue 
+$[-\infty, \infty]$ ou encore l'espace des ensembles fermés et bornés non vides
+de $\R^n$. Dans ce contexte, la distance n'est plus définie à partir d'une
+norme mais construite directement ; elle doit satisfaire des axiomes
+
+  - \two connaître et savoir vérifier les axiomes d'une distance,
+
+  - \one connaître la définition générale d'espace métrique.
+
+#### Suites, limite et continuité 
+
+  - limite d'une suite dans un espace métriques
+
+  - définitions séquentielles des termes topologiques.
+
+#### Complétude
+
+  - suite de Cauchy
+
+  - espace complet
+
+  - application contractante
+
+  - théorème de point fixe
+
+
+
+Notations / conventions
+================================================================================
 
 Notations ensemblistes (dont $A^c$, setminus, etc.)
 
