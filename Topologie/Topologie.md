@@ -288,7 +288,7 @@ d_Y(f(x), f(y)) = d_X(x, y)
 $$
 est une *isométrie*.
 
-### {.post}
+### {.post .remark}
 Les isométries sont les *morphismes* des espaces métriques: 
 les applications qui préservent la structure des espaces métriques.
 Construire des isométries peut aller de pair avec la construction
@@ -300,146 +300,6 @@ Un sous-ensemble $Y$ d'un espace métrique $X$ est un *sous-espace métrique*
 de $X$ lorsqu'il est muni de la distance de $X$, restreinte aux points de
 $Y$.
 
-### Structure topologique d'un espace métrique
-Il est possible de se livrer à un exercice d'abstraction sur les
-espaces métriques en considérant la distance $d(x, A)$ entre un 
-point $x$ et un ensemble de points $A$ et en regardant uniquement
-si cette grandeur est nulle -- on dira alors que $x$ *adhère* à $A$ -- 
-ou strictement positive:
-$$
-x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0.
-$$
-En faisant de la sorte pour tous les points et ensembles de points
-de l'espace métrique et en "oubliant" ensuite la distance qui a permis
-cette construction, on remplace une mesure quantitative de proximité
-sur l'ensemble par une mesure uniquement qualitative 
-(dans ce contexte, "$x$ adhère à $A$" peut être interprété comme 
-"$x$ dans $A$ ou infiniment proche de $A$").
-
-### Relation d'adhérence {.definition #ak}
-
-Une *relation d'adhérence* (ou *test d'adhérence*) sur l'ensemble *X* est une 
-relation entre éléments de $X$ et sous-ensembles de $X$ telle que:
-
- 1. Aucun point n'adhère à l'ensemble vide,
-
- 2. Tout point d'un ensemble adhère à cet ensemble,
-
- 3. Un point adhère à l'union de deux ensembles 
-    si et seulement s'il adhère à l'un des deux ensembles,
-
- 4. Un point qui adhère à l'ensemble des points adhérents 
-    à un ensemble adhère à cet ensemble.
-
-### Espace topologique
-Un *espace topologique* est un ensemble muni d'[une relation d'adhérence](#ak).
-Les éléments de l'ensemble sont appelés des *points*, 
-ses sous-ensembles des *ensembles de points*.
-
-### Sous-espace topologique
-Un sous-ensemble $Y$ d'un espace topologique $X$ est un *sous-espace topologique*
-de $X$ lorsqu'il est muni de la relation d'adhérence de $X$, 
-restreinte aux points et sous-ensembles de $Y$.
-
-### Continuité
-Une application $f: X \to Y$ définie entre deux espaces topologiques
-est *continue en $x \in X$* si, lorsque $x$ adhère à $A$ dans $X$, 
-$f(x)$ adhère à $f(A)$ dans $Y$. Une application continue en tout point
-$x \in X$  est *continue*.
-
---------------------------------------------------------------------------------
-
-### {.post}
-Les applications continues sont les *morphismes* des espaces topologiques:
-elle préservent la structure des espaces topologiques.
-
-### {.post}
-Cette caractérisation "abstraite" des fonctions continues se prête
-à des preuves particulièrement concises de certains résultats. Ainsi:
-
-### Composée d'applications continues
-La composée de fonctions $f:X \to Y$ continue en $x \in X$ 
-et $g:Y\to Z$ continue en $f(x) \in Y$ est continue en $x$.
-
-### Démonstration {.proof}
-Si $x$ adhère à $A$, par continuité de $f$ en $x$,
-$f(x)$ adhère à $f(A)$ ; donc par continuité de $g$ en $y=f(x)$,
-$g(y)= (g \circ f)(x)$ adhère à $g(f(A)) = (g \circ f)(A)$.
-La composée de $f$ et de $g$ est donc continue en $x$.
-
-### Les espaces métriques sont des espaces topologiques
-Soit $X$ un espace métrique muni d'une distance $d$. 
-La relation définie par
-$$
-x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0
-$$
-est une relation d'adhérence sur $X$.
-
-### Démonstration {.proof}
-
- 1. Le point $x$ adhère à l'ensemble vide si et seulement si 
-    $d(x, \varnothing) = 0$, mais
-    $$
-    d(x, \varnothing) = \inf_{y \in \varnothing} d(x, y) = +\infty, 
-    $$
-    par conséquent aucun point d'adhère à l'ensemble vide.
-
- 2. Si $x \in A$, on a 
-    $$
-    d(x, A) = \inf_{y \in A} d(x, y) = d(x, x) = 0,
-    $$
-    donc $x$ adhère à $A$.
-
- 3. Si $x$ adhère à $A$, c'est-à-dire si $d(x,A)=0$, alors
-    $$
-    0 \leq d(x, A \cup B) = \inf_{y \in A \cup B} d(x, y)
-    \leq  \inf_{y \in A} d(x, y) = d(x, A)= 0
-    $$
-    et donc $x$ adhère à $A \cup B$.
-    De la même façon, du fait de la symétrie des rôles des ensembles $A$ et $B$,
-    si $x$ adhère à $B$ alors $x$ adhère à $A \cup B$.
-
-    Réciproquement, si $x$ adhère à $A \cup B$, alors il existe une
-    suite de points $x_k$ de $A \cup B$ telle que $d(x, x_k) \to 0$
-    quand $k \to +\infty$. Cette suite $x_k$ admet une suite extraite
-    de points de $A$ et/ou une suite extraite de points de $B$.
-    Dans le premier cas on a donc $d(x, A)=0$ et dans le second $d(x, B)=0$,
-    c'est-à-dire que $x$ adhère à $A$ et/ou à $B$.
-
- 4. Les points $y$ qui adhèrent à l'ensemble $A$ sont caractérisés par
-    $d(y, A) = 0$. Par conséquent, l'ensemble des points $x$ qui adhèrent
-    à cet ensemble sont caractérisés par
-    $$
-    d(x, \{y \in X \, | \, d(y, A) = 0\}) = 0.
-    $$
-    Pour tout $x$ de ce type et pour tout $\varepsilon > 0$,
-    il existe un $y$ tel que $d(y, x) \leq \varepsilon /2$ et $d(y, A)= 0$
-    et donc un $z \in A$ tel que $d(y, z) \leq \varepsilon/2$.
-    L'[inégalité triangulaire](#dist-ineg) fournit donc
-    $$
-    d(x, A) = \inf_{a \in A} d(x, a) \leq d(x, z) 
-    \leq d(x, y) + d(y, z) \leq \varepsilon
-    $$
-    et comme $\varepsilon >0$ est arbitraire, $d(x, A)=0$ : $x$ adhère à $A$.
-
-### L'espace topologique généralise l'espace métrique
-
-Les espaces métriques "sont" des espaces topologiques 
-(c'est-à-dire héritent automatiquement d'une relation d'adhérence,
-définie à partir de leur distance). 
-A l'inverse, les espaces topologiques qui peuvent être muni d'une distance
-compatible avec leur relation d'adhérence sont dits *métrisables*.
-Toutefois, tous les espaces topologiques ne sont pas métrisables[^Sier];
-la notion d'espace topologique est donc strictement plus générale que la notion
-d'espace métrique.
-
-[^Sier]: Par exemple, l'espace formé de deux points $\{0, 1\}$ 
-où $x$ adhère à $A$ si $x$ appartient à $A$ ou $x=0$ et $A=\{1\}$
--- c'est-à-dire l'[espace de Sierpiński](https://en.m.wikipedia.org/wiki/Sierpi%C5%84ski_space) --
-est un espace topologique qui n'est pas métrisable. En effet, si $d$ était une
-distance sur cet ensemble, telle que $d(x, A)= 0$ si et seulement si $x$
-adhère à $A$, alors on aurait $d(0, \{1\}) = d(0, 1) = 0$, ce qui contredirait
-[l'axiome de séparation pour les distances](#dist-sep).
 
 ### Produit d'espaces vectoriels normés {.definition}
 On appelle *produit des espaces vectoriels normés $E_1$, $\dots$, $E_n$*, 
@@ -515,13 +375,22 @@ définie sur un sous-ensemble $X$ d'un espace métrique $Y$
 et à valeurs dans un espace métrique $Z$.
 Soit $x$ un point de $Y$ adhérent à $X$. 
 Le point $\ell \in Z$ est la *limite* de $f$ en $x$ si pour toute suite
-$x_k$ de points de $X$ convergeant vers $x$ mais ne prenant pas la
-valeur $x$, on a $\lim_{k \to +\infty} f(x_k) = \ell$.
-On utilisera alors une des deux notations:
+$x_k$ de points de $X$ convergeant vers $x$, 
+on a $\lim_{k \to +\infty} f(x_k) = \ell$.
+On notera alors 
 $$
 \ell = \lim_{y \to x} f(y)
-\; \mbox{ ou } \;
-f(y) \to \ell \mbox{ quand } y \to x.
+\; \mbox{ ou } \;  
+f(y) \to \ell \mbox{ quand } y\to x.
+$$
+
+### {.remark}
+Quand il sera nécessaire d'être explicite sur le domaine de $f$,
+on pourra également noter
+$$
+\ell = \lim_{\substack{y \to x\\ y \in X}} f(y)
+\; \mbox{ ou } \; 
+f(y) \to \ell \mbox{ quand } y\to x, \, y \in X.
 $$
 
 ### Unicité de la limite d'une fonction en un point {.proposition}
@@ -532,10 +401,10 @@ Un corollaire de [l'unicité de la limite des suites][Unicité de la limite d'un
 
 ### Continuité et limite
 Une fonction $f: X \to Y$, où $X$ et $Y$ sont deux espaces métriques, est
-continue en $x \in X$ si et seulement si la limite de $f$ existe en
-$x$ et
+continue en $x \in X$ si et seulement si la limite de $f$ restreinte à 
+$X\setminus\{x\}$ existe en $x$ et que
 $$
-\lim_{y \to x} f(y) = f(x).
+f(y) \to f(x) \; \mbox{ quand } \; y \to x, \, y\neq x.
 $$
 
 ### Démonstration {.proof}
@@ -601,50 +470,11 @@ et donc $d(x, A) \to d(x_0, A)$ quand $x \to x_0$.
 Bestiaire
 ================================================================================
 
-### Définitions séquentielles {.definition}
-
-Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
-
-  - Un point *adhère* à un ensemble $A$ s'il existe une suite de
-    points de $A$ qui converge vers ce point.
-
-  - Un ensemble $A$ est *fermé* si la limite de toute suite de points de $A$
-    qui est convergente (dans $X$) appartient à $A$.
-
-  - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
-    qui converge vers ce point et une suite de points du complémentaire de $A$
-    dans $X$ qui converge vers ce point.
-
-  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
-    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
-
-  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
-    suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
-
-  - Un ensemble $A$ est *ouvert* si toute suite de points de $X$ 
-    qui converge vers un point de $A$ appartient à $A$ 
-    à partir d'un certain rang.
-
-### Ensembles dérivés {.definition}
-Soit $A$ un ensemble de $X$. On note
-
-  -  $\overline{A}$ l'*adhérence* de $A$
-     (l'ensemble des points adhérents à $A$),
-
-  - $\partial A$ la *frontière* de $A$ 
-    (l'ensemble des points frontières de $A$).
-
-  - $\mathring{A}$ l'*intérieur* de $A$ 
-    (l'ensemble des points intérieurs à $A$).
-
-![Construction de l'intérieur $\mathring{A}$ et de la frontière $\partial A$ 
-à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
-et des opérations ensemblistes.](images/topological-operations.svg.pdf)
 
 ### Définitions métriques {.definition}
 Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
-  - Un point $x$ *adhère* à un ensemble $A$ si
+  - Un point $x$ *adhère* (ou *est adhérent*) à un ensemble $A$ si
     sa distance à l'ensemble $A$ est nulle:
     $$
     x \in \overline{A} \; \Leftrightarrow \; d(x, A) = 0.
@@ -699,130 +529,47 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
     \overline{B}(x, r) = \{y \in X \, | \, d(x, y) \leq r\}.
     $$
 
-### Définitions topologiques {.definition}
-Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
+### Définitions séquentielles {.definition}
 
-  - L'*adhérence* $\overline{A}$ d'un ensemble $A$ est constituée des points
-    qui adhèrent à l'ensemble $A$.
-    
-  - Un ensemble $A$ est *fermé* s'il est égal à son adhérence:
-    $$
-    A = \overline{A} \; \mbox{ ou } \; (x \in \overline{A} \Leftrightarrow x \in A)
-    $$
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
-  - Un point est *frontière* de $A$ s'il appartient à l'adhérence de $A$ et
-    à celle de son complémentaire:
-    $$
-    x \in \partial{A} 
-    \; \Leftrightarrow \; 
-    (x \in \overline{A} = 0 \mbox{ et } x \in \overline{X \setminus A}).
-    $$
+  - Un point *adhère* (ou *est adhérent*) à un ensemble $A$ s'il existe une suite de
+    points de $A$ qui converge vers ce point.
 
-  - Un point $x$ est *intérieur* à un ensemble $A$ s'il n'adhère pas
-    au complémentaire de $A$
-    $$
-    x \in \mathring{A}
-    \; \Leftrightarrow \; 
-    x \not \in \overline{X \setminus A}.
-    $$
+  - Un ensemble $A$ est *fermé* si la limite de toute suite de points de $A$
+    qui est convergente (dans $X$) appartient à $A$.
 
-  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si
-    $x$ est intérieur à $V$
-    $$
-    V \in \mathcal{V}(x)
-    \; \Leftrightarrow \; 
-    x \not \in \overline{X \setminus V}.
-    $$
+  - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
+    qui converge vers ce point et une suite de points du complémentaire de $A$
+    dans $X$ qui converge vers ce point.
 
-  - Un ensemble $A$ est *ouvert* s'il est un voisinage de chacun de ses points
-    $$
-    A = \mathring{A}
-    \; \Leftrightarrow \; 
-    (x \in A \Rightarrow x \not \in \overline{X \setminus A}).
-    $$
+  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
+    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
 
-### Calcul topologique {.ante}
-Avec l'opérateur d'adhérence, [les axiomes définissant
-une relation d'adhérence](#ak) -- et donc un espace topologique -- 
-prennent une forme symbolique simple :
+  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
+    suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
 
- 1. $\overline{\varnothing} = \varnothing$,
+  - Un ensemble $A$ est *ouvert* si toute suite de points de $X$ 
+    qui converge vers un point de $A$ appartient à $A$ 
+    à partir d'un certain rang.
 
- 2. $A \subset \overline{A}$,
+### Ensembles dérivés {.definition}
+Soit $A$ un ensemble de $X$. On note
 
- 3. $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
+  -  $\overline{A}$ l'*adhérence* de $A$
+     (l'ensemble des points adhérents à $A$),
 
- 4. $\overline{\overline{A}} = \overline{A}$.
+  - $\partial A$ la *frontière* de $A$ 
+    (l'ensemble des points frontières de $A$).
 
-### Ouverts et fermés {.theorem}
-Un ensemble est ouvert si et seulement si son complémentaire
-est fermé ; un ensemble est fermé si et seulement 
-si son complémentaire est ouvert.
+  - $\mathring{A}$ l'*intérieur* de $A$ 
+    (l'ensemble des points intérieurs à $A$).
 
-### Démonstration {.proof}
-En raisonnant par équivalence, le complémentaire $F = X \setminus U$
-d'un ensemble ouvert $U$ -- qui vérifie aussi $U = X \setminus F$ -- est 
-caractérisé par
-$$
-x \in X \setminus F \Rightarrow x \not \in \overline{X \setminus (X \setminus F)},
-$$
-soit $x \in X \setminus F \Rightarrow x \not \in \overline{F}$.
-La contraposée de cette relation -- qui lui est équivalente -- est
-$x \in \overline{F} \Rightarrow x \in F$. Comme $F \subset \overline{F}$,
-cela équivaut $\overline{F} =F$, c'est-à-dire au caractère fermé de $F$.
+![Construction de l'intérieur $\mathring{A}$ et de la frontière $\partial A$ 
+à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
+et des opérations ensemblistes.](images/topological-operations.svg.pdf)
 
-La démonstration de la seconde partie de l'énoncé est immédiate
-(le complémentaire du complémentaire d'un ensemble est cet ensemble).
 
-### Continuité {.theorem}
-Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
-continue si et seulement si l'image réciproque de tout ensemble fermé 
-(resp. ouvert) de $Y$ 
-par $f$ est un ensemble fermé (resp. ouvert) de $X$.
-
-### Démonstration {.proof}
-Supposons $f$ continue. 
-Si $B$ est un ensemble fermé de $Y$, par continuité, 
-  $$
-  f(\overline{f^{-1}(B)}) 
-  \subset 
-  \overline{f(f^{-1}(B))} 
-  \subset \overline{B}
-  =
-  B.
-  $$
-Prendre l'image réciproque des deux membre de cette équation fournit
-  $$
-  \overline{f^{-1}(B)} = f^{-1}(B),
-  $$
-par conséquent $f^{-1}(B)$ est fermé.
-
-Réciproquement, supposons que l'image réciproque de tout ensemble fermé
-est un ensemble fermé. Soit $A$ un sous-ensemble de $X$ ;
-l'ensemble $\overline{f(A)}$ étant fermé,
-  $$
-  \overline{f^{-1}(\overline{f(A)})}
-  = 
-  f^{-1}(\overline{f(A)}).
-  $$
-Comme $A \subset f^{-1}(\overline{f(A)})$, on a
-$\overline{A} \subset f^{-1}(\overline{f(A)})$, 
-donc
-  $$
-  f(\overline{A}) 
-  \subset f(f^{-1}(\overline{f(A)})) 
-  \subset \overline{f(A)}.
-  $$
-Comme $A$ est arbitraire, $f$ est continue.
-
-Montrons la variante avec des ensembles ouverts plutôt que fermés.
-Supposons $f$ continue ; si $C$ est un ensemble ouvert de $Y$, 
-son complémentaire $B=Y \setminus C$ est un ensemble fermé. Comme
-$$
-f^{-1}(C) = f^{-1}(Y \setminus B) = X \setminus f^{-1}(B),
-$$  
-son image réciproque est le complémentaire d'un fermé dans $X$ et donc ouverte.
-La réciproque est établie de façon similaire.
 
 Complétude
 ================================================================================
@@ -1313,8 +1060,274 @@ $\overline{A_0} \cap \dots \cap \overline{A_k} = \varnothing$
 et donc que
 $A_0 \cap \dots \cap A_k = \varnothing$, ce qui conclut la preuve.
 
+Annexe -- Espace Topologique
+================================================================================
 
 
+### Structure topologique d'un espace métrique
+Il est possible de se livrer à un exercice d'abstraction sur les
+espaces métriques en considérant la distance $d(x, A)$ entre un 
+point $x$ et un ensemble de points $A$ et en regardant uniquement
+si cette grandeur est nulle -- on dira alors que $x$ *adhère* à $A$ -- 
+ou strictement positive:
+$$
+x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0.
+$$
+En faisant de la sorte pour tous les points et ensembles de points
+de l'espace métrique et en "oubliant" ensuite la distance qui a permis
+cette construction, on remplace une mesure quantitative de proximité
+sur l'ensemble par une mesure uniquement qualitative 
+(dans ce contexte, "$x$ adhère à $A$" peut être interprété comme 
+"$x$ dans $A$ ou infiniment proche de $A$").
+
+### Relation d'adhérence {.definition #ak}
+
+Une *relation d'adhérence* (ou *test d'adhérence*) sur l'ensemble *X* est une 
+relation entre éléments de $X$ et sous-ensembles de $X$ telle que:
+
+ 1. Aucun point n'adhère à l'ensemble vide,
+
+ 2. Tout point d'un ensemble adhère à cet ensemble,
+
+ 3. Un point adhère à l'union de deux ensembles 
+    si et seulement s'il adhère à l'un des deux ensembles,
+
+ 4. Un point qui adhère à l'ensemble des points adhérents 
+    à un ensemble adhère à cet ensemble.
+
+### Espace topologique
+Un *espace topologique* est un ensemble muni d'[une relation d'adhérence](#ak).
+Les éléments de l'ensemble sont appelés des *points*, 
+ses sous-ensembles des *ensembles de points*.
+
+### Sous-espace topologique
+Un sous-ensemble $Y$ d'un espace topologique $X$ est un *sous-espace topologique*
+de $X$ lorsqu'il est muni de la relation d'adhérence de $X$, 
+restreinte aux points et sous-ensembles de $Y$.
+
+### Continuité
+Une application $f: X \to Y$ définie entre deux espaces topologiques
+est *continue en $x \in X$* si, lorsque $x$ adhère à $A$ dans $X$, 
+$f(x)$ adhère à $f(A)$ dans $Y$. Une application continue en tout point
+$x \in X$  est *continue*.
+
+### {.post .remark}
+Les applications continues sont les *morphismes* des espaces topologiques:
+elle préservent la structure des espaces topologiques.
+
+### {.post .remark}
+Cette caractérisation "abstraite" des fonctions continues se prête
+à des preuves particulièrement concises de certains résultats. Ainsi:
+
+### Composée d'applications continues
+La composée de fonctions $f:X \to Y$ continue en $x \in X$ 
+et $g:Y\to Z$ continue en $f(x) \in Y$ est continue en $x$.
+
+### Démonstration {.proof}
+Si $x$ adhère à $A$, par continuité de $f$ en $x$,
+$f(x)$ adhère à $f(A)$ ; donc par continuité de $g$ en $y=f(x)$,
+$g(y)= (g \circ f)(x)$ adhère à $g(f(A)) = (g \circ f)(A)$.
+La composée de $f$ et de $g$ est donc continue en $x$.
+
+### Les espaces métriques sont des espaces topologiques
+Soit $X$ un espace métrique muni d'une distance $d$. 
+La relation définie par
+$$
+x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0
+$$
+est une relation d'adhérence sur $X$.
+
+### Démonstration {.proof}
+
+ 1. Le point $x$ adhère à l'ensemble vide si et seulement si 
+    $d(x, \varnothing) = 0$, mais
+    $$
+    d(x, \varnothing) = \inf_{y \in \varnothing} d(x, y) = +\infty, 
+    $$
+    par conséquent aucun point d'adhère à l'ensemble vide.
+
+ 2. Si $x \in A$, on a 
+    $$
+    d(x, A) = \inf_{y \in A} d(x, y) = d(x, x) = 0,
+    $$
+    donc $x$ adhère à $A$.
+
+ 3. Si $x$ adhère à $A$, c'est-à-dire si $d(x,A)=0$, alors
+    $$
+    0 \leq d(x, A \cup B) = \inf_{y \in A \cup B} d(x, y)
+    \leq  \inf_{y \in A} d(x, y) = d(x, A)= 0
+    $$
+    et donc $x$ adhère à $A \cup B$.
+    De la même façon, du fait de la symétrie des rôles des ensembles $A$ et $B$,
+    si $x$ adhère à $B$ alors $x$ adhère à $A \cup B$.
+
+    Réciproquement, si $x$ adhère à $A \cup B$, alors il existe une
+    suite de points $x_k$ de $A \cup B$ telle que $d(x, x_k) \to 0$
+    quand $k \to +\infty$. Cette suite $x_k$ admet une suite extraite
+    de points de $A$ et/ou une suite extraite de points de $B$.
+    Dans le premier cas on a donc $d(x, A)=0$ et dans le second $d(x, B)=0$,
+    c'est-à-dire que $x$ adhère à $A$ et/ou à $B$.
+
+ 4. Les points $y$ qui adhèrent à l'ensemble $A$ sont caractérisés par
+    $d(y, A) = 0$. Par conséquent, l'ensemble des points $x$ qui adhèrent
+    à cet ensemble sont caractérisés par
+    $$
+    d(x, \{y \in X \, | \, d(y, A) = 0\}) = 0.
+    $$
+    Pour tout $x$ de ce type et pour tout $\varepsilon > 0$,
+    il existe un $y$ tel que $d(y, x) \leq \varepsilon /2$ et $d(y, A)= 0$
+    et donc un $z \in A$ tel que $d(y, z) \leq \varepsilon/2$.
+    L'[inégalité triangulaire](#dist-ineg) fournit donc
+    $$
+    d(x, A) = \inf_{a \in A} d(x, a) \leq d(x, z) 
+    \leq d(x, y) + d(y, z) \leq \varepsilon
+    $$
+    et comme $\varepsilon >0$ est arbitraire, $d(x, A)=0$ : $x$ adhère à $A$.
+
+### L'espace topologique généralise l'espace métrique
+
+Les espaces métriques "sont" des espaces topologiques 
+(c'est-à-dire héritent automatiquement d'une relation d'adhérence,
+définie à partir de leur distance). 
+A l'inverse, les espaces topologiques qui peuvent être muni d'une distance
+compatible avec leur relation d'adhérence sont dits *métrisables*.
+Toutefois, tous les espaces topologiques ne sont pas métrisables[^Sier];
+la notion d'espace topologique est donc strictement plus générale que la notion
+d'espace métrique.
+
+[^Sier]: Par exemple, l'espace formé de deux points $\{0, 1\}$ 
+où $x$ adhère à $A$ si $x$ appartient à $A$ ou $x=0$ et $A=\{1\}$
+-- c'est-à-dire l'[espace de Sierpiński](https://en.m.wikipedia.org/wiki/Sierpi%C5%84ski_space) --
+est un espace topologique qui n'est pas métrisable. En effet, si $d$ était une
+distance sur cet ensemble, telle que $d(x, A)= 0$ si et seulement si $x$
+adhère à $A$, alors on aurait $d(0, \{1\}) = d(0, 1) = 0$, ce qui contredirait
+[l'axiome de séparation pour les distances](#dist-sep).
+
+
+### Définitions topologiques {.definition}
+Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
+
+  - L'*adhérence* $\overline{A}$ d'un ensemble $A$ est constituée des points
+    qui adhèrent à l'ensemble $A$.
+    
+  - Un ensemble $A$ est *fermé* s'il est égal à son adhérence:
+    $$
+    A = \overline{A} \; \mbox{ ou } \; (x \in \overline{A} \Leftrightarrow x \in A)
+    $$
+
+  - Un point est *frontière* de $A$ s'il appartient à l'adhérence de $A$ et
+    à celle de son complémentaire:
+    $$
+    x \in \partial{A} 
+    \; \Leftrightarrow \; 
+    (x \in \overline{A} = 0 \mbox{ et } x \in \overline{X \setminus A}).
+    $$
+
+  - Un point $x$ est *intérieur* à un ensemble $A$ s'il n'adhère pas
+    au complémentaire de $A$
+    $$
+    x \in \mathring{A}
+    \; \Leftrightarrow \; 
+    x \not \in \overline{X \setminus A}.
+    $$
+
+  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si
+    $x$ est intérieur à $V$
+    $$
+    V \in \mathcal{V}(x)
+    \; \Leftrightarrow \; 
+    x \not \in \overline{X \setminus V}.
+    $$
+
+  - Un ensemble $A$ est *ouvert* s'il est un voisinage de chacun de ses points
+    $$
+    A = \mathring{A}
+    \; \Leftrightarrow \; 
+    (x \in A \Rightarrow x \not \in \overline{X \setminus A}).
+    $$
+
+### Calcul topologique {.ante}
+Avec l'opérateur d'adhérence, [les axiomes définissant
+une relation d'adhérence](#ak) -- et donc un espace topologique -- 
+prennent une forme symbolique simple :
+
+ 1. $\overline{\varnothing} = \varnothing$,
+
+ 2. $A \subset \overline{A}$,
+
+ 3. $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
+
+ 4. $\overline{\overline{A}} = \overline{A}$.
+
+### Ouverts et fermés {.theorem}
+Un ensemble est ouvert si et seulement si son complémentaire
+est fermé ; un ensemble est fermé si et seulement 
+si son complémentaire est ouvert.
+
+### Démonstration {.proof}
+En raisonnant par équivalence, le complémentaire $F = X \setminus U$
+d'un ensemble ouvert $U$ -- qui vérifie aussi $U = X \setminus F$ -- est 
+caractérisé par
+$$
+x \in X \setminus F \Rightarrow x \not \in \overline{X \setminus (X \setminus F)},
+$$
+soit $x \in X \setminus F \Rightarrow x \not \in \overline{F}$.
+La contraposée de cette relation -- qui lui est équivalente -- est
+$x \in \overline{F} \Rightarrow x \in F$. Comme $F \subset \overline{F}$,
+cela équivaut $\overline{F} =F$, c'est-à-dire au caractère fermé de $F$.
+
+La démonstration de la seconde partie de l'énoncé est immédiate
+(le complémentaire du complémentaire d'un ensemble est cet ensemble).
+
+### Continuité {.theorem}
+Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
+continue si et seulement si l'image réciproque de tout ensemble fermé 
+(resp. ouvert) de $Y$ 
+par $f$ est un ensemble fermé (resp. ouvert) de $X$.
+
+### Démonstration {.proof}
+Supposons $f$ continue. 
+Si $B$ est un ensemble fermé de $Y$, par continuité, 
+  $$
+  f(\overline{f^{-1}(B)}) 
+  \subset 
+  \overline{f(f^{-1}(B))} 
+  \subset \overline{B}
+  =
+  B.
+  $$
+Prendre l'image réciproque des deux membre de cette équation fournit
+  $$
+  \overline{f^{-1}(B)} = f^{-1}(B),
+  $$
+par conséquent $f^{-1}(B)$ est fermé.
+
+Réciproquement, supposons que l'image réciproque de tout ensemble fermé
+est un ensemble fermé. Soit $A$ un sous-ensemble de $X$ ;
+l'ensemble $\overline{f(A)}$ étant fermé,
+  $$
+  \overline{f^{-1}(\overline{f(A)})}
+  = 
+  f^{-1}(\overline{f(A)}).
+  $$
+Comme $A \subset f^{-1}(\overline{f(A)})$, on a
+$\overline{A} \subset f^{-1}(\overline{f(A)})$, 
+donc
+  $$
+  f(\overline{A}) 
+  \subset f(f^{-1}(\overline{f(A)})) 
+  \subset \overline{f(A)}.
+  $$
+Comme $A$ est arbitraire, $f$ est continue.
+
+Montrons la variante avec des ensembles ouverts plutôt que fermés.
+Supposons $f$ continue ; si $C$ est un ensemble ouvert de $Y$, 
+son complémentaire $B=Y \setminus C$ est un ensemble fermé. Comme
+$$
+f^{-1}(C) = f^{-1}(Y \setminus B) = X \setminus f^{-1}(B),
+$$  
+son image réciproque est le complémentaire d'un fermé dans $X$ et donc ouverte.
+La réciproque est établie de façon similaire.
 
 Exercices
 ================================================================================
