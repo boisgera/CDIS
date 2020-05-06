@@ -1102,7 +1102,7 @@ $$
 Le second membre de cette inégalité tend vers $0$ indépendamment de $p$
 quand $n$ tend vers $+\infty$; la suite des $x_n$ est bien de Cauchy.
 
-Compacité
+Annexe -- Compacité
 ================================================================================
 
 ### Compacité séquentielle {.definition}
@@ -1313,72 +1313,8 @@ $\overline{A_0} \cap \dots \cap \overline{A_k} = \varnothing$
 et donc que
 $A_0 \cap \dots \cap A_k = \varnothing$, ce qui conclut la preuve.
 
-<!--
-
-### Compacité et recouvrement ouvert {.proposition}
-Un ensemble $K$ d'un espace topologique est compact si pour tout
-recouvrement de $K$ par une collection d'ouverts, on peut extraire un
-sous-recouvrement fini.
-
-Autrement dit, si $\mathcal{O}$ est composé d'ouverts $O$ de $X$ tels que
-$$K \subset \bigcup \, \{O \, | \,  O \in \mathcal{O}\},$$ 
-alors il existe une collection
-finie $O_1, \dots, O_k$ de $\mathcal{O}$ telle que 
-$$K \subset O_1 \cup \dots \cup O_k.$$
-
-### TODO -- Démonstration {.proof}
-
--->
-
-<!--
-TODO -- Et $\C$ alors ?
---------------------------------------------------------------------------------
-
-TODO -- Structures Euclidiennes & Hermitiennes
---------------------------------------------------------------------------------
-
-### Produit scalaire {.definition}
-Un *produit scalaire* sur un espace vectoriel $E$ est une application
-$$\left< \cdot , \cdot \right>: E \times E \to \mathbb{R}$$
-qui est
-
-  - Bilinéaire symmétrique: pour tous $\lambda \in \mathbb{R}$ et $x, y, z \in E$:
-    
-      - $\left<x, y\right> = \left<y, x\right>$,
-
-      - $\left<x, \lambda y\right> = \lambda \left<x, y\right>$
-
-      - $\left<x, y + z\right> = \left<x, y\right> + \left<x, z\right>$.
 
 
-  - Définie positive: pour tout $x \in E$, 
-  
-    - $\left<x, x \right> \geq 0$,
-
-    - $\left<x, x \right> = 0$ si et seulement si $x=0$.
-
-### TODO
-
-Mq produit scalaire définit une norme.
-
-
-### TODO
-
-Hors cas euclidien, exemple de produit scalaire ? Trop tôt ? 
-(pas les structures adaptées)
-
-### L'espace euclidien $\mathbb{R}^n$ {.remark}
-L'ensemble $\mathbb{R}^n$ est un espace vectoriel de dimension finie
-qui muni du produit scalaire
-$$
-\left<x,y\right> = x_1 y_1 + \dots + x_n y_n
-$$
-devient un *espace euclidien*; la norme associée vérifie
-$$
-\|x\| = \sqrt{x_1^2 +\dots + x_n^2}.
-$$
-
--->
 
 Exercices
 ================================================================================
