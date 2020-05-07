@@ -14,6 +14,10 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
+```{=latex}
+\newpage
+```
+
 Objectifs d'apprentissage
 ================================================================================
 
