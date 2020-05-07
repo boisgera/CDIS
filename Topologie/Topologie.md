@@ -59,7 +59,7 @@ Objectifs d'apprentissage
 
     - \two l'espace $\R^{m\times n}$ muni de la norme d'opérateur,
 
-    - \one l'espace des fonctions $A \to \R^n$ bornées, muni de la "norme infinie"[^ncu].
+    - \one l'espace des fonctions $A \to \R^n$ bornées, muni de la norme du sup[^ncu].
     
 [^ncu]: ou "norme de la convergence uniforme".
 
@@ -315,15 +315,16 @@ $$
 est également un espace vectoriel normé.
 
 ### Espace de fonctions bornées {.proposition}
-Soit $A$ un ensemble. L'espace vectoriel des fonctions bornées $A \to \R^n$, 
-muni de la norme
+Soit $A$ un ensemble. L'espace vectoriel des fonctions bornées $f$
+de $A$ dans $\R^n$, muni de 
 $$
-\|f\| := \sup_{x \in A} \|f(x)\|_2
+\|f\| := \sup_{x \in A} \|f(x)\| < +\infty
 $$
 est un espace vectoriel normé.
 
 ### Démonstration {.proof}
-L'ensemble des fonctions bornées $A \to \R^n$ est un espace vectoriel quand
+L'ensemble des fonctions bornées $A \to \R^n$
+est un espace vectoriel quand
 on le munit des opérations
 $$
 (f+g)(x) := f(x) + g(x) \; \mbox{ et } \; (\lambda f)(x) := \lambda f(x).
@@ -356,7 +357,7 @@ une démonstration en tout point similaire permet d'établir que
 $$
 \|f\| := \sup_{x \in A} \|f(x)\|_E
 $$
-défini une norme sur l'espace des fonctions bornées de $A$ dans $E$.
+définit une norme sur l'espace des fonctions bornées de $A$ dans $(E, \|\cdot\|_E)$.
 
 
 Espaces métriques
