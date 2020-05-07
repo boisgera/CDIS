@@ -163,7 +163,7 @@ A^c := X \setminus A.
 $$
 
 
-Espaces métriques
+Espaces vectoriels normés
 ================================================================================
 
 ### Norme {.definition}
@@ -224,7 +224,7 @@ $$
 $$
 et la norme $\|\cdot\|_{\infty}$, définie par
 $$
-\|x\|_{\infty} = \max_{i=1\dots n} |x_i|.
+\|x\|_{\infty} = \max(|x_1|,\dots, |x_n|)
 $$
 
 ### Opérateurs linéaires bornés {.proposition}
@@ -291,6 +291,8 @@ $$
 $$
 d'où le caractère borné de $A$.
 
+Espaces métriques
+================================================================================
 
 ### {.remark .ante}
 Si $X$ est un sous-ensemble d'un espace vectoriel normé $E$, 
@@ -439,7 +441,126 @@ d((x_1,\dots, x_n), (y_1,\dots, y_n))
 = \sqrt{d_{X_1}(x_1, y_1)^2 + \dots + d_{X_n}(x_n, y_n)^2}.
 $$
 
-Limite et continuité
+
+Bestiaire Topologique
+================================================================================
+
+<!--
+### Point adhérent, frontière, intérieur {.definition}
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+
+Un point $x$ *adhère* (ou *est adhérent*) à un ensemble $A$ si
+sa distance à l'ensemble $A$ est nulle :
+$$
+\mbox{$x$ point adhérent à $A$} \; \Leftrightarrow \; d(x, A) = 0.
+$$
+
+Un point $x$ est *frontière* de $A$ si sa distance à $A$ et au complémentaire
+$A^c$ est nulle :
+$$
+\mbox{$x$ point frontière de $A$}
+\; \Leftrightarrow \; 
+(d(x, A) = 0 \mbox{ et } d(x, A^c)=0).
+$$
+
+Un point $x$ est *intérieur* à un ensemble $A$ si sa distance au 
+complémentaire $A^c$ est strictement positive :
+$$
+\mbox{$x$ point intérieur de $A$}    
+\; \Leftrightarrow \; 
+d(x, A^c) > 0.
+$$
+-->
+
+### Adhérence, frontière, intérieur {.definition}
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+
+On note $\overline{A}$ l'*adhérence* de $A$,
+c'est-à-dire l'ensemble des *points adhérents* à $A$ :
+$$
+\overline{A} := \{x \in X \; | \; d(x, A)= 0 \},
+$$
+On note $\partial A$ la *frontière* de $A$, c'est-à-dire 
+l'ensemble des *points frontières* de $A$ :
+$$
+\partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\}.
+$$
+
+On note $A^{\circ}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des *points 
+intérieurs* à $A$ :
+$$
+A^{\circ} := \{x \in X \; | \; d(x, A^c) > 0\}.
+$$
+
+### Inclusions {.exercise .one .question #exo-i}
+Montrer que $A^{\circ} \subset A \subset \overline{A}$.
+
+### Topologie basée sur l'adhérence {.exercise .question .one #tba}
+Montrer que $$\partial A = \overline{A} \cap \overline{A^c} \; \mbox{ et } \; 
+A^{\circ} = \left(\overline{A^c}\right)^c.$$
+
+![Construction de l'intérieur $A^{\circ}$ et de la frontière $\partial A$ 
+à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
+et des opérations ensemblistes.](images/topological-operations.svg.pdf)
+
+### Décomposition de $\overline{A}$ {.exercise .question .two #pab}
+Montrer que $$A^{\circ} \cap \partial A = \varnothing \; \mbox{ et } \; 
+\overline{A} = A^{\circ} \cup \partial A.$$
+
+### Topologie basée sur la frontière {.exercise .question .two #tbf}
+Montrer que $$\overline{A} = A \cup \partial A 
+\; \mbox{ et } \; A^{\circ} = A \setminus \partial A.$$
+
+### Ensemble fermé, ouvert {.definition}
+Un ensemble $A$ est *fermé* si tous les points adhérents à $A$
+appartiennent à $A$:
+$$
+\mbox{$A$ fermé} \; \Leftrightarrow \; A = \overline{A} \; \Leftrightarrow \; (d(x, A) = 0 \Rightarrow x \in A).
+$$
+Un ensemble $A$ est *ouvert* si la distance de tout point de $A$
+au complémentaire de $A$ est strictement positive :
+$$
+\mbox{$A$ ouvert} \; \Leftrightarrow \;
+A = A^{\circ}
+\; \Leftrightarrow \; 
+(x \in A \Rightarrow d(x, A^c) > 0).
+$$
+
+### Boules {.definition}
+Soit $X$ un espace métrique.
+Pour tout $x \in X$ et $r\geq 0$, on définit la *boule ouverte 
+de centre $x$ et de rayon $r$* comme
+$$
+B(x, r) = \{y \in X \, | \, d(x, y) < r\}
+$$
+et la *boule fermée 
+de centre $x$ et de rayon $r$* comme
+$$
+\overline{B}(x, r) = \{y \in X \, | \, d(x, y) \leq r\}.
+$$
+
+### Voisinage {.definition}
+Soit $X$ un espace métrique.
+Un ensemble $V$ de $X$ est un *voisinage* d'un point $x$ de $X$ si la
+distance de $x$ au complémentaire de $V$ est strictement positive:
+$$
+V \in \mathcal{V}(x)
+\; \Leftrightarrow \; 
+d(x, V^c) > 0.
+$$
+
+### Propriétés localement vraies {.definition}
+Soit $X$ un espace métrique.
+Une propriété $P$, fonction d'ensembles $A$ de $X$
+$$
+P:  A \in \mathcal{F} \subset \mathcal{P}(X) \to \{\mbox{vrai}, \mbox{faux}\}
+$$
+est *localement* vraie 
+si pour tout $x$ de $X$ il existe un voisinage $V$ de $x$ tel que
+$V \in \mathcal{F}$ et $P(V)$ soit vraie.
+
+
+Suites, limites et continuité
 ================================================================================
 
 ### Limite d'une suite de points {.definition}
@@ -559,124 +680,6 @@ $$
 |d(x, A) - d(x_0, A)| \leq d(x_0, x)
 $$
 et donc $d(x, A) \to d(x_0, A)$ quand $x \to x_0$, $x\neq x_0$.
-
-Bestiaire
-================================================================================
-
-<!--
-### Point adhérent, frontière, intérieur {.definition}
-Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
-
-Un point $x$ *adhère* (ou *est adhérent*) à un ensemble $A$ si
-sa distance à l'ensemble $A$ est nulle :
-$$
-\mbox{$x$ point adhérent à $A$} \; \Leftrightarrow \; d(x, A) = 0.
-$$
-
-Un point $x$ est *frontière* de $A$ si sa distance à $A$ et au complémentaire
-$A^c$ est nulle :
-$$
-\mbox{$x$ point frontière de $A$}
-\; \Leftrightarrow \; 
-(d(x, A) = 0 \mbox{ et } d(x, A^c)=0).
-$$
-
-Un point $x$ est *intérieur* à un ensemble $A$ si sa distance au 
-complémentaire $A^c$ est strictement positive :
-$$
-\mbox{$x$ point intérieur de $A$}    
-\; \Leftrightarrow \; 
-d(x, A^c) > 0.
-$$
--->
-
-### Adhérence, frontière, intérieur {.definition}
-Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
-
-On note $\overline{A}$ l'*adhérence* de $A$,
-c'est-à-dire l'ensemble des *points adhérents* à $A$ :
-$$
-\overline{A} := \{x \in X \; | \; d(x, A)= 0 \},
-$$
-On note $\partial A$ la *frontière* de $A$, c'est-à-dire 
-l'ensemble des *points frontières* de $A$ :
-$$
-\partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\}.
-$$
-
-On note $A^{\circ}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des *points 
-intérieurs* à $A$ :
-$$
-A^{\circ} := \{x \in X \; | \; d(x, A^c) > 0\}.
-$$
-
-### Inclusions {.exercise .one .question #exo-i}
-Montrer que $A^{\circ} \subset A \subset \overline{A}$.
-
-### Topologie basée sur l'adhérence {.exercise .question .one #tba}
-Montrer que $$\partial A = \overline{A} \cap \overline{A^c} \; \mbox{ et } \; 
-A^{\circ} = \left(\overline{A^c}\right)^c.$$
-
-![Construction de l'intérieur $A^{\circ}$ et de la frontière $\partial A$ 
-à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
-et des opérations ensemblistes.](images/topological-operations.svg.pdf)
-
-### Décomposition de $\overline{A}$ {.exercise .question .two #pab}
-Montrer que $$A^{\circ} \cap \partial A = \varnothing \; \mbox{ et } \; 
-\overline{A} = A^{\circ} \cup \partial A.$$
-
-### Topologie basée sur la frontière {.exercise .question .two #tbf}
-Montrer que $$\overline{A} = A \cup \partial A 
-\; \mbox{ et } \; A^{\circ} = A \setminus \partial A.$$
-
-### Ensemble fermé, ouvert {.definition}
-Un ensemble $A$ est *fermé* si tous les points adhérents à $A$
-appartiennent à $A$:
-$$
-\mbox{$A$ fermé} \; \Leftrightarrow \; A = \overline{A} \; \Leftrightarrow \; (d(x, A) = 0 \Rightarrow x \in A).
-$$
-Un ensemble $A$ est *ouvert* si la distance de tout point de $A$
-au complémentaire de $A$ est strictement positive :
-$$
-\mbox{$A$ ouvert} \; \Leftrightarrow \;
-A = A^{\circ}
-\; \Leftrightarrow \; 
-(x \in A \Rightarrow d(x, A^c) > 0).
-$$
-
-### Boules {.definition}
-Soit $X$ un espace métrique.
-Pour tout $x \in X$ et $r\geq 0$, on définit la *boule ouverte 
-de centre $x$ et de rayon $r$* comme
-$$
-B(x, r) = \{y \in X \, | \, d(x, y) < r\}
-$$
-et la *boule fermée 
-de centre $x$ et de rayon $r$* comme
-$$
-\overline{B}(x, r) = \{y \in X \, | \, d(x, y) \leq r\}.
-$$
-
-### Voisinage {.definition}
-Soit $X$ un espace métrique.
-Un ensemble $V$ de $X$ est un *voisinage* d'un point $x$ de $X$ si la
-distance de $x$ au complémentaire de $V$ est strictement positive:
-$$
-V \in \mathcal{V}(x)
-\; \Leftrightarrow \; 
-d(x, V^c) > 0.
-$$
-
-### Propriétés localement vraies {.definition}
-Soit $X$ un espace métrique.
-Une propriété $P$, fonction d'ensembles $A$ de $X$
-$$
-P:  A \in \mathcal{F} \subset \mathcal{P}(X) \to \{\mbox{vrai}, \mbox{faux}\}
-$$
-est *localement* vraie 
-si pour tout $x$ de $X$ il existe un voisinage $V$ de $x$ tel que
-$V \in \mathcal{F}$ et $P(V)$ soit vraie.
-
 
 ### Caractérisations séquentielles {.proposition}
 
