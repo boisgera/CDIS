@@ -48,8 +48,29 @@ TODO / acquis {.meta}
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
+```{=latex}
+\newpage
+```
+
 Objectifs d'apprentissage
 ================================================================================
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, les objectifs "Expert", les démonstrations du document[^hp] 
+et les contenus en annexe ne sont pas exigibles ("hors-programme").
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+### Généralités
+
+TODO
 
 #### Espaces vectoriels normés
 
@@ -57,12 +78,9 @@ Objectifs d'apprentissage
 
     - \zero l'espace $\R^n$ muni de la norme euclidienne,
 
-    - \two l'espace $\R^{m\times n}$ muni de la norme d'opérateur,
+    - \one l'espace $\R^{m\times n}$ muni de la norme d'opérateur,
 
-    - \one l'espace des fonctions $A \to \R^n$ bornées, muni de la norme du sup[^ncu].
-    
-[^ncu]: ou "norme de la convergence uniforme".
-
+    - \two l'espace des fonctions $A \to \R^n$ bornées, muni de la norme du sup.
 
   - \three savoir adapter les espaces précédents aux normes non-euclidiennes,
 
@@ -81,13 +99,13 @@ la norme.
 
   - savoir définir à partir d'une distance :
 
-      - \two adhérence, frontière, intérieur,
+      - \one adhérence, frontière, intérieur,
 
       - \two ensemble ouvert et fermé,
 
       - \two boule ouverte, boule fermée
       
-      - \three voisinage, propriété localement vraie.
+      - \three propriété satisfaite dans un voisinage / localement.
 
   - savoir exploiter des rudiments de calcul topologique :
 
