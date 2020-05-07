@@ -70,7 +70,13 @@ d'exercices.
 
 ### Généralités
 
-TODO
+  - \one savoir que la topologie est une branche de la géométrie,
+
+  - \two savoir que la topologie s'occupe en particulier de "proximité",
+
+  - \two savoir que les notions de limite et de continuité relèvent de la topologie,
+
+  - \three savoir reconnaître quand un problème est de nature topologique.
 
 #### Espaces vectoriels normés
 
@@ -129,9 +135,9 @@ des ensembles fermés bornés non vides de $\R^n$.
 
   - \two savoir quels axiomes caractérisent une distance,
 
-  - \two/\three savoir vérifier qu'une fonction est une distance,
+  - \three savoir vérifier qu'une fonction est une distance,
 
-  - \four deviner une distance appropriée pour un ensemble donné.
+  - \four savoir construire une distance appropriée à un contexte donné.
 
 #### Suites, limites et continuité 
 
