@@ -166,7 +166,7 @@ $$
 Espaces vectoriels normés
 ================================================================================
 
-### Norme {.definition}
+### Norme {.definition #norme}
 Une *norme* sur un espace vectoriel $E$ (sur $\R$) est une application
 $$
 \| \cdot \|: E \to \left[0, +\infty\right[
@@ -205,19 +205,22 @@ plus tard: nécessite à la fois compacité et complétude; évoquer
 aussi Arzela-Ascoli / attendre Calcul Diff 3 / zapper ?)
 -->
 
-### Normes sur $\R^n$ {.example}
-Par défaut, la norme privilégiée sur $\R^n$ est la *norme euclidienne*
-$\|\cdot\|_2$, définie par
+### Espace $\R^n$ {.proposition}
+L'espace $E = \R^n$ muni de la *norme euclidienne* $\|\cdot\|_2$, définie par
 $$
-\|x\|_2 = \sqrt{x_1^2 + \dots + x_n^2}.
+\|x\| := \|x\|_2 = \sqrt{x_1^2 + \dots + x_n^2}
 $$
-Elle se déduit du *produit scalaire* usuel
+est un espace vectoriel normé.
+
+### Normes alternatives sur $\R^n$ {.remark}
+Par défaut, la norme privilégiée sur $\R^n$ est la norme euclidienne ;
+elle se déduit du *produit scalaire* usuel
 $$
 \left<x, y\right> = x_1 y_1 + \dots + x_n y_n
 $$
 par la relation $\|x\|_2 = \sqrt{\left<x, x\right>}$.
 On la notera simplement $\|\cdot\|$ s'il n'y a pas d'ambiguité.
-Deux autres normes communes dont on peut doter $\R^n$ :
+Mais on peut doter $\R^n$ d'autres normes ; par exemple
 la norme $\|\cdot\|_1$, définie par
 $$
 \|x\|_1 = |x_1| + \dots + |x_n|
@@ -227,53 +230,17 @@ $$
 \|x\|_{\infty} = \max(|x_1|,\dots, |x_n|)
 $$
 
-### Opérateurs linéaires bornés {.proposition}
-Si $E$ et $F$ sont deux espaces vectoriels normés muni des normes
-$\|\cdot\|_E$ et $\|\cdot\|_{F}$, l'ensemble des applications linéaires
-$A: E \to F$ dites *bornées*, telles que *la norme d'opérateur*
+### Espace des matrices $\R^{m \times n}$ {.proposition}
+L'ensemble des matrices $A \in \R^{m \times n}$, 
+muni de *la norme d'opérateur*
 $$
-\|A\| := \sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} < +\infty
+\|A\| := \|A\|_{22} := \sup_{x \neq 0} \frac{\|A \cdot x\|_2}{\|x\|_2}.
 $$
 est un espace vectoriel normé.
 
 ### Démonstration {.proof}
-Soit $A$ et $B$ des opérateurs linéaires bornés de $E$ dans
-$F$ et $\lambda$ est un réel. Nous allons montrer dans la suite que 
-$\lambda A$ et $A + B$ sont des opérateurs linéaires bornés de $E$ dans $F$,
-c'est-à-dire que les opérateurs linéaires bornés forment un espace vectoriel. 
-De plus la valeur $\|A\|$ est positive ; si $\|A\| = 0$, c'est-à-dire si
-$$
-\sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E} = 0,
-$$
-nécessairement $A \cdot x$ est nulle pour tout $x \in E \setminus \{0\}$.
-Comme $A \cdot 0 = 0$ par linéarité, l'opérateur $A$ est nul.
-On a également
-$$
-\|\lambda A\| = \sup_{x \neq 0} \frac{\|\lambda A \cdot x\|_F}{\|x\|_E} 
-= \sup_{x \neq 0} \frac{|\lambda| \|A \cdot x\|_F}{\|x\|_E} 
-= |\lambda|\sup_{x \neq 0} \frac{\|A \cdot x\|_F}{\|x\|_E}
-= |\lambda| \|A\| 
-$$
-et 
-$$
-\begin{split}
-\|A+B\| 
-    &= \sup_{x \neq 0} \frac{\|(A+B) \cdot x\|_F}{\|x\|_E} \\
-    &= \sup_{x \neq 0} \frac{\|A\cdot x + B \cdot x\|_F}{\|x\|_E} \\
-    &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F + \|B \cdot x\|_F}{\|x\|_E} \\
-    &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_F}{\|x\|_E} 
-        + \sup_{x \neq 0} \frac{\|B\cdot x\|_F}{\|x\|_E} \\
-    &= \|A\| + \|B\|
-\end{split}
-$$
-ce qui prouve que la norme d'opérateur est bien une norme sur 
-l'espace des opérateurs bornés de $E$ dans $F$.
-
-### Opérateurs linéaires de $\R^n$ dans $\R^m$ {.proposition}
-Tout opérateur linéaire de $\R^n$ dans $\R^m$ 
--- munis de leur normes euclidiennes -- est borné.
-
-### Démonstration {.proof}
+Démontrons tout d'abord que pour toute matrice $A \in \R^{m \times n}$,
+le ratio $\|A \cdot x\|_2/ \|x\|_2$ est borné. 
 Soit $e_i$ le $i$-ème vecteur de la base canonique de $\R^n$
 et soit $x=(x_1, \dots, x_n) \in \R^n$.
 Comme $x = x_1 e_1 + \dots + x_n e_n$, on a 
@@ -285,11 +252,112 @@ $$
 Par [l'inégalité triangulaire](#norme-ineg) 
 et par [homogénéité de la norme](#norme-homo),
 $$
-\|A \cdot x\|_2 \leq \sum_{i=1}^n |x_i| \|A \cdot e_i\|_2
+\|A \cdot x\|_2 \leq \sum_{i=1}^n |x_i| \|A \cdot e_i\|_2.
+$$
+Comme pour la norme euclidienne on a $|x_i| \leq \|x\|_2$, on en déduit que
+$$
+\|A \cdot\|_2 
 \leq \sum_{i=1}^n \|x\|_2 \|A \cdot e_i\|_2
 = \left(\sum_{i=1}^n \|A \cdot e_i\|_2\right) \|x\|_2,
 $$
-d'où le caractère borné de $A$.
+le ratio $\|A \cdot x\|_2/ \|x\|_2$ est donc majoré par 
+$\sum_{i=1}^n \|A \cdot e_i\|_2$.
+
+L'ensemble des matrices $\R^{m \times n}$ est un espace vectoriel, muni des
+opérations
+$$
+[A + B]_{ij} := A_{ij} + B_{ij} \; \mbox{ et } \; 
+[\lambda A]_{ij} = \lambda A_{ij}.
+$$
+De plus la valeur $\|A\|$ est positive ; si $\|A\| = 0$, c'est-à-dire si
+$$
+\sup_{x \neq 0} \frac{\|A \cdot x\|_2}{\|x\|_2} = 0,
+$$
+nécessairement $A \cdot x$ est nulle pour tout $x \in \R^n \setminus \{0\}$.
+Comme $A \cdot 0 = 0$ par linéarité, la matrice $A$ est nulle.
+On a également
+$$
+\|\lambda A\| = \sup_{x \neq 0} \frac{\|\lambda A \cdot x\|_2}{\|x\|_2} 
+= \sup_{x \neq 0} \frac{|\lambda| \|A \cdot x\|_2}{\|x\|_2} 
+= |\lambda|\sup_{x \neq 0} \frac{\|A \cdot x\|_2}{\|x\|_2}
+= |\lambda| \|A\| 
+$$
+et 
+$$
+\begin{split}
+\|A+B\| 
+    &= \sup_{x \neq 0} \frac{\|(A+B) \cdot x\|_2}{\|x\|_2} \\
+    &= \sup_{x \neq 0} \frac{\|A\cdot x + B \cdot x\|_2}{\|x\|_2} \\
+    &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_2 + \|B \cdot x\|_2}{\|x\|_2} \\
+    &\leq \sup_{x \neq 0} \frac{\|A\cdot x\|_2}{\|x\|_2} 
+        + \sup_{x \neq 0} \frac{\|B\cdot x\|_2}{\|x\|_2} \\
+    &= \|A\| + \|B\|
+\end{split}
+$$
+ce qui prouve que la norme d'opérateur est bien une norme sur 
+l'espace des matrices $\R^{m \times n}$.
+
+### Normes alternatives sur $\R^{m \times n}$ {.remark}
+Le résultat précédent est encore valable quand on muni $\R^n$ et $\R^m$
+de normes arbitraires $\|\cdot\|_{\R^n}$ et $\|\cdot\|_{\R^m}$ et que
+l'on définit la norme d'opérateur associée comme
+$$
+\|A\| := \|A\|_{\R^m\R^n} := \sup_{x \neq 0} \frac{\|A \cdot x\|_{\R^m}}{\|x\|_{\R^n}}.
+$$
+Ce résultat nécessite un argument de compacité (cf. [annexe](#annexe-compacité)) 
+qui n'est valable que dans les espaces de dimension finie.
+Mais de façon plus générale si $E$ et $F$ sont des espaces vectoriels normés
+-- pas nécessairement de dimension finie -- l'espace des opérateurs
+linéaires de $E$ dans $F$ bornés, c'est-à-dire tels que
+$$
+\|A\| := \|A\|_{FE} := \sup_{x \neq 0} \frac{\|A \cdot x\|_{F}}{\|x\|_{E}}.
+$$
+est également un espace vectoriel normé.
+
+### Espace de fonctions bornées {.proposition}
+Soit $A$ un ensemble. L'espace vectoriel des fonctions bornées $A \to \R^n$, 
+muni de la norme
+$$
+\|f\| := \sup_{x \in A} \|f(x)\|_2
+$$
+est un espace vectoriel normé.
+
+### Démonstration {.proof}
+L'ensemble des fonctions bornées $A \to \R^n$ est un espace vectoriel quand
+on le munit des opérations
+$$
+(f+g)(x) := f(x) + g(x) \; \mbox{ et } \; (\lambda f)(x) := \lambda f(x).
+$$
+
+De plus, si $\|f\| = \sup_{x \in A} \|f(x)\|_2 = 0$, alors $\|f(x)\|_2= 0$
+pour tout $x \in A$ et donc [par l'axiome de séparation](#norme-sep), 
+$f(x) = 0$ pour tout $x \in A$, c'est-à-dire 
+$f=0$. 
+
+Si $\lambda$ est un réel, on a par 
+[homogénéité de la norme $\|\cdot\|_2$](#norme-homo)
+$$
+\sup_{x \in A} \|\lambda f(x)\|_2 = \sup_{x \in A} |\lambda|\|f(x)\|_2 = |\lambda| \sup_{x \in A} \|f(x)\|_2,
+$$
+soit $\|\lambda f\| = |\lambda|\|f\|$.
+
+Finalement,
+\begin{align*}
+\sup_{x \in A} \|(f+g)(x)\| &=  \sup_{x \in A} \|f(x)+g(x)\| \\
+                            &\leq  \sup_{x \in A} \|f(x)\|+\|g(x)\| \\
+                            &\leq \sup_{x \in A} \|f(x)\| + \sup_{x \in A} \|g(x)\|,
+\end{align*}
+donc $\|f+g\| \leq \|f\|+ \|g\|$. La fonction $\|\cdot\|$ est donc bien une
+norme sur l'espace des fonctions bornées de $A$ dans $\R^n$.
+
+### Normes alternatives pour les fonctions bornées {.remark}
+Si $E$ est un espace vectoriel muni de la norme $\|\cdot\|$, 
+une démonstration en tout point similaire permet d'établir que
+$$
+\|f\| := \sup_{x \in A} \|f(x)\|_E
+$$
+défini une norme sur l'espace des fonctions bornées de $A$ dans $E$.
+
 
 Espaces métriques
 ================================================================================
@@ -299,7 +367,7 @@ Si $X$ est un sous-ensemble d'un espace vectoriel normé $E$,
 celui-ci "hérite" de $E$ une mesure de la distance entre 
 deux points $x$ et $y$ avec la grandeur 
 $$
-d(x, y) = \|x - y\|.
+d(x, y) = \|y - x\|.
 $$ 
 
 ![Le cercle unité $\{x \in \mathbb{R}^2 \, | \, \|x\|=1\}$.
@@ -316,7 +384,7 @@ les additions entre élements de $X$ ou la multiplication d'un
 nous ne pouvons plus définir une norme sur $X$.
 
 La fonction $d$ définie ci-dessus sur $X$ vérifie automatiquement 
-les axiomes qui font techniquement d'elle une distance:
+les axiomes qui nous autorisent à la qualifier de "distance" :
 
 ### Distance
 Une *distance* sur un ensemble $X$ est une fonction 
@@ -1023,10 +1091,10 @@ $$
 Le second membre de cette inégalité tend vers $0$ indépendamment de $p$
 quand $n$ tend vers $+\infty$; la suite des $x_n$ est bien de Cauchy.
 
-Annexe -- Compacité
+Annexe -- Compacité {#annexe-compacité}
 ================================================================================
 
-### Compacité séquentielle {.definition}
+### Compacité séquentielle {.definition #compacité-séquentielle}
 Un ensemble $K$ d'un espace métrique est *compact (séquentiellement)* 
 si toute suite de valeurs de $K$ admet une sous-suite qui converge dans $K$.
 
@@ -1143,7 +1211,7 @@ généraux, sans recourir à une distance ou aux suites de points.
 Une collection d'ensembles vérifie la propriété de l'intersection 
 finie si toute sous-collection finie est d'intersection non vide.
 
-### Compacité et propriété de l'intersection finie {.definition}
+### Compacité et propriété de l'intersection finie {.definition #compacité}
 Un ensemble $K$ d'un espace topologique est *compact* si pour toute collection
 de sous-ensembles de $K$ vérifiant la propriété de l'intersection finie, 
 il existe un point adhérent à tous les ensembles de la collection.
