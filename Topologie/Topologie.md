@@ -564,24 +564,25 @@ $$
 -->
 
 ### Adhérence, frontière, intérieur {.definition}
-Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$. On note
 
-On note $\overline{A}$ l'*adhérence* de $A$,
-c'est-à-dire l'ensemble des *points adhérents* à $A$ :
-$$
-\overline{A} := \{x \in X \; | \; d(x, A)= 0 \},
-$$
-On note $\partial A$ la *frontière* de $A$, c'est-à-dire 
-l'ensemble des *points frontières* de $A$ :
-$$
-\partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\}.
-$$
+  - $\overline{A}$ l'*adhérence* de $A$,
+    c'est-à-dire l'ensemble des *points adhérents* à $A$ :
+    $$
+    \overline{A} := \{x \in X \; | \; d(x, A)= 0 \},
+    $$
 
-On note $A^{\circ}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des *points 
-intérieurs* à $A$ :
-$$
-A^{\circ} := \{x \in X \; | \; d(x, A^c) > 0\}.
-$$
+  - $\partial A$ la *frontière* de $A$, c'est-à-dire 
+    l'ensemble des *points frontières* de $A$ :
+    $$
+    \partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\}.
+    $$
+
+  - $A^{\circ}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des *points 
+    intérieurs* à $A$ :
+    $$
+    A^{\circ} := \{x \in X \; | \; d(x, A^c) > 0\}.
+    $$
 
 ### Inclusions {.exercise .one .question #exo-i}
 Montrer que $A^{\circ} \subset A \subset \overline{A}$.
