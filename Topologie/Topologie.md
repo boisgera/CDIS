@@ -57,7 +57,7 @@ Objectifs d'apprentissage
 
     - \zero l'espace $\R^n$ muni de la norme euclidienne,
 
-    - \two l'espace $\R^{m\times n}$ muni de la norme norme d'opérateur,
+    - \two l'espace $\R^{m\times n}$ muni de la norme d'opérateur,
 
     - \one l'espace des fonctions $A \to \R^n$ bornées, muni de la "norme infinie"[^ncu].
     
