@@ -280,8 +280,8 @@ $$
 \|A\| = \min \{\kappa \in \left[0, +\infty\right[ \; | \; \forall x \in \R^n, \, \|A \cdot x\| \leq \kappa \|x\|\}.
 $$
 
-### Norme d'une matrice $2\times3$ {.example} 
-Considérons la matrice
+### Norme d'une matrice $2\times3$ {.exercise .one .question #nm23} 
+Montrer que la norme d'opérateur de la matrice
 $$
 A = \left[
   \begin{array}{rrr}
@@ -290,26 +290,7 @@ A = \left[
   \end{array}
 \right].
 $$
-Pour tout vecteur non nul $x=(x_1,x_2,x_3) \in \R^3$, on a
-$A\cdot x = (x_1, -x_2)$ et donc
-$$
-\frac{\|A\cdot x\|}{\|x\|} = \frac{\sqrt{(x_1)^2 + (-x_2)^2}}{\sqrt{x_1^2 + x_2^2 + x_3^2}}
-= \frac{\sqrt{x_1^2 + x_2^2}}{\sqrt{x_1^2 + x_2^2 + x_3^2}} \leq 1,
-$$
-soit
-$$
-\|A\| = \sup_{x \neq 0} \frac{\|A \cdot x\|}{\|x\|} \leq 1.
-$$
-De plus, on a $A \cdot (1,0,0) = (1, 0)$, donc
-$$
-\frac{\|A \cdot (1,0,0)\|}{\|(1,0,0)\|} = \frac{\|(1,0)\|}{\|(1,0,0)\|} = \frac{1}{1} = 1,
-$$
-donc
-$$
-\|A\| = \sup_{x \neq 0} \frac{\|A \cdot x\|}{\|x\|} \geq 1.
-$$
-Par conséquent, $\|A\| = 1$.
-
+vaut $1$.
 
 ### Matrice de rotation {.exercise .question .one #mdr} 
 Soit $\theta \in \R$. Calculer la norme d'opérateur de
@@ -2144,6 +2125,29 @@ Solutions
 
 Exercices essentiels
 --------------------------------------------------------------------------------
+
+### Norme d'une matrice $2\times3$ {.answer #answer-nm23} 
+Pour tout vecteur non nul $x=(x_1,x_2,x_3) \in \R^3$, on a
+$A\cdot x = (x_1, -x_2)$ et donc
+$$
+\frac{\|A\cdot x\|}{\|x\|} = \frac{\sqrt{(x_1)^2 + (-x_2)^2}}{\sqrt{x_1^2 + x_2^2 + x_3^2}}
+= \frac{\sqrt{x_1^2 + x_2^2}}{\sqrt{x_1^2 + x_2^2 + x_3^2}} \leq 1,
+$$
+soit
+$$
+\|A\| = \sup_{x \neq 0} \frac{\|A \cdot x\|}{\|x\|} \leq 1.
+$$
+De plus, on a $A \cdot (1,0,0) = (1, 0)$, donc
+$$
+\frac{\|A \cdot (1,0,0)\|}{\|(1,0,0)\|} = \frac{\|(1,0)\|}{\|(1,0,0)\|} = \frac{1}{1} = 1,
+$$
+donc
+$$
+\|A\| = \sup_{x \neq 0} \frac{\|A \cdot x\|}{\|x\|} \geq 1.
+$$
+Par conséquent, $\|A\| = 1$.
+
+
 
 ### Matrice de rotation {.answer #answer-mdr} 
 Un rotation $A$ est une isométrie : pour tout $x \in \R^2$, on a 
