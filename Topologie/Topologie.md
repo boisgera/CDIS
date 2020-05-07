@@ -7,41 +7,6 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
-<!--
-TODO / acquis {.meta}
---------------------------------------------------------------------------------
-
-  - intro: ensembles "nus" (théorie des ensembles sans structure additionnelle)
-   ne disposent que de la notion d'appartence et d'aucun notion de proximité.
-   Structure topologiques sur les ensembles comblent ce manque. 
-   "dualité" structure / morphismes, ie topologie peut être vue comme
-   l'étude des fcts continues (on peut tout ramener à ça: limites, etc.).
-
-  - "hiérarchie" des structures topologiques, justification
-    (généralité et/ou "abstraction"), positionnement utile.
-    Evocation dim finie et infinie (partiellement ici, 
-    principalement les choses qui ne posent pas de pb
-    supplémentaire par rapport au cas dim finie).
-    Exemple définition fonction continue de façon abstraite ... 
-    pas plus compliqué !
-
-  - point fixe, appli contractante, complétude
-
-  - lister "use cases" compacité,
-    transition locale vers le (semi-)global (dim. finie),
-    extraction recouvrement fini (ex compacts à bords),
-    optimisation, etc. Compacité substitut à fini dans le cas des
-    fonctions continues, etc.
-
-  - warning: pptés définies *relativement à un espace de référence* 
-    (ex: fermé dans quoi ?). Topologie "trace" / induite, sous-espace ...
-
-### TODO
-
-    >>> from numpy import *
-
--->
-
 \newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
 \newcommand{\one}{$\mathord{\bullet}$}
 \newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
@@ -211,27 +176,6 @@ $\lambda$ on ait
 Un espace vectoriel $E$ muni d'une norme sur $E$ est 
 *un espace vectoriel normé*.
 
-<!--
-### Remarque
-Terminologie evn, espace métriques regroupées après coup ? Et référence
-au cas plus général en annexe ?
-
-**TODO:** limitation des evn, sous-ensembles d'evn, nouvelle
-structure, et plus tard (?) comment espace métrique n'est pas plus
-général (à une isométrie près). Convention (légèrement abusive)
-qui consiste à appeler espace métrique sous-ensembles d'un evn.
-**Update:** distinguer ici le cours oral du poly; la restriction
-"sous-ensemble d'un e.v.n." peut valoir uniquement dans le cours
-oral.
-
-### TODO
-
-Espace normés: fonctions bornées à valeurs dans $\mathbb{R}$,
-fonctions numériques continues définies sur un compact (à faire
-plus tard: nécessite à la fois compacité et complétude; évoquer
-aussi Arzela-Ascoli / attendre Calcul Diff 3 / zapper ?)
--->
-
 ### Espace $\R^n$ {.proposition}
 L'espace $E = \R^n$ muni de la *norme euclidienne* $\|\cdot\|_2$, définie par
 $$
@@ -324,21 +268,51 @@ $$
 ce qui prouve que la norme d'opérateur est bien une norme sur 
 l'espace des matrices $\R^{m \times n}$.
 
-### TODO {.remark}
-Un mot sur l'interprétation et les conséquences opérationnelles dans le calcul
-de cette définition. (existence d'une borne, meilleure borne telle que, etc.)
+### {.remark}
+La norme d'opérateur $\|A\|$ vérifie par construction les inégalités
+$$
+\forall \, x \in \R^n, \; \|A \cdot x\| \leq \|A\| \|x\|.
+$$
+Plus précisément, $\|A\|$ est la meilleure -- c'est-à-dire la plus stricte,
+la plus petite -- des bornes $\kappa$ telles que $\|A \cdot x\| \leq \kappa \|x\|$
+pour tout $x$ : 
+$$
+\|A\| = \min \{\kappa \in \left[0, +\infty\right[ \; | \; \forall x \in \R^n, \, \|A \cdot x\| \leq \kappa \|x\|\}.
+$$
 
-### TODO {.example} 
+### Norme d'une matrice $2\times3$ {.example} 
+Considérons la matrice
 $$
 A = \left[
-  \begin{array}{rr}
-  1 & 0 \\
-  0 & -1
+  \begin{array}{rrr}
+  1 & 0  & 0\\
+  0 & -1 & 0
   \end{array}
-\right]
+\right].
 $$
+Pour tout vecteur non nul $x=(x_1,x_2,x_3) \in \R^3$, on a
+$A\cdot x = (x_1, -x_2)$ et donc
+$$
+\frac{\|A\cdot x\|}{\|x\|} = \frac{\sqrt{(x_1)^2 + (-x_2)^2}}{\sqrt{x_1^2 + x_2^2 + x_3^2}}
+= \frac{\sqrt{x_1^2 + x_2^2}}{\sqrt{x_1^2 + x_2^2 + x_3^2}} \leq 1,
+$$
+soit
+$$
+\|A\| = \sup_{x \neq 0} \frac{\|A \cdot x\|}{\|x\|} \leq 1.
+$$
+De plus, on a $A \cdot (1,0,0) = (1, 0)$, donc
+$$
+\frac{\|A \cdot (1,0,0)\|}{\|(1,0,0)\|} = \frac{\|(1,0)\|}{\|(1,0,0)\|} = \frac{1}{1} = 1,
+$$
+donc
+$$
+\|A\| = \sup_{x \neq 0} \frac{\|A \cdot x\|}{\|x\|} \geq 1.
+$$
+Par conséquent, $\|A\| = 1$.
 
-### TODO {.exercise .question .one} 
+
+### Matrice de rotation {.exercise .question .one #mdr} 
+Soit $\theta \in \R$. Calculer la norme d'opérateur de
 $$
 A = \left[
   \begin{array}{rr}
@@ -348,24 +322,21 @@ A = \left[
 \right]
 $$
 
-### TODO {.exercise .question .two} 
+### Norme d'une matrice $2 \times 2$ {.exercise .question .two #nm22} 
+Calculer la norme d'opérateur de
 $$
 A = \left[
   \begin{array}{rr}
   2 & 0 \\
   0 & -1
   \end{array}
-\right]
+\right].
 $$
 
-### TODO {.exercise}
-Mq norme d'opérateur sous-multiplicative et que
- norme de Frobenius pas sous-multiplicative.
-
-### TODO {.exercise .question .two} 
-$$
-\|A\|\|A^{-1}\| \geq 1
-$$
+### Sous-multiplicativité de la norme d'opérateur {.exercise .two .question #sous-multip}
+Montrer que si $A \in \R^{m \times n}$ et $B \in \R^{n \times p}$, alors
+la norme du produit des matrices $A$ et $B$ vérifie 
+$\|A \cdot B\| \leq \|A\| \|B\|$.
 
 ### Normes alternatives sur $\R^{m \times n}$ {.remark}
 Le résultat précédent est encore valable quand on muni $\R^n$ et $\R^m$
@@ -2174,6 +2145,44 @@ Solutions
 Exercices essentiels
 --------------------------------------------------------------------------------
 
+### Matrice de rotation {.answer #answer-mdr} 
+Un rotation $A$ est une isométrie : pour tout $x \in \R^2$, on a 
+$\|A \cdot x\| = \|x\|$, donc
+$$
+\|A\| = \sup_{x \neq 0} \frac{\|A \cdot x\|}{\|x\|} = 1.
+$$
+
+
+### Norme d'une matrice $2 \times 2$ {.answer #answer-nm22} 
+Soit $x=(x_1, x_2)$ un vecteur non-nul de $\R^2$. 
+On a $A \cdot x = (2x_1, -x_2)$, donc
+$$
+\frac{\|A \cdot x\|}{\|x\|} = \frac{\sqrt{x_1^2 + 4 x_2^2}}{\sqrt{x_1^2 + x_2^2}}.
+$$
+En formant $r = (x_1 / x_2)^2$, on obtient donc
+$$
+\|A\| = \sup_{(x_1,x_2) \neq 0} \frac{\sqrt{x_1^2 + 4 x_2^2}}{\sqrt{x_1^2 + x_2^2}}= \sup_{r \in [0, +\infty]} \frac{\sqrt{r + 4}}{\sqrt{r + 1}}
+=
+\sup_{r \in [0, +\infty]} \sqrt{1 + \frac{{3}}{{r + 1}}}.
+$$
+La fonction $r \in [0, +\infty] \mapsto \sqrt{1 + 3/(r+1)}$ étant décroissante,
+son supremum est sa valeur $0$, soit
+$$
+\|A\| = \sup_{r \in [0, +\infty]} \sqrt{1 + \frac{{3}}{{r + 1}}}.
+= \sqrt{1 + \frac{{3}}{{0 + 1}}} = \sqrt{4} = 2.
+$$
+
+### Sous-multiplicativité de la norme d'opérateur {.answer #answer-sous-multip}
+On a pour tout $x\in \R^p$
+$$
+\|(A \cdot B) \cdot x\| = \|A \cdot (B \cdot x)\|
+\leq \|A\| \|B \cdot x\| \leq \|A\| \|B\| \|x\|.
+$$
+Par conséquent,
+$$
+\|A \cdot B\| = \sup_{x \neq 0} \frac{\|(A \cdot B)\cdot x\|}{\|x\|} \leq \|A\|\|B\|.
+$$
+ 
 ### Inclusions {.answer #answer-exo-i}
 Si $d(x, A^c) > 0$, alors $x \not \in A^c$, donc $x \in A$ ; 
 donc $A^{\circ} \subset A$. Si $x \in A$ alors $d(x, A) \leq d(x, x) = 0$,
