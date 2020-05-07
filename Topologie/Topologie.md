@@ -141,9 +141,12 @@ des ensembles fermés bornés non vides de $\R^n$.
 
 #### Suites, limites et continuité 
 
+Dans les espaces métriques, tous les concepts topoologiques peuvent être
+caractérisés à travers l'étude des suites de points.
+
   - savoir définir et exploiter les notions suivantes :
 
-    - \one limite d'une suite dans un espace métrique,
+    - \one limite d'une suite de points dans un espace métrique,
 
     - \one limite d'une fonction $A \subset X \to Y$ en un point adhérent à $A$,
 
