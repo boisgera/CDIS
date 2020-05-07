@@ -33,7 +33,7 @@ et les contenus en annexe ne sont pas exigibles ("hors-programme").
 contribuer à votre apprentissage, au même titre que la résolution 
 d'exercices.
 
-### Généralités
+#### Généralités
 
   - \one savoir que la topologie est une branche de la géométrie,
 
