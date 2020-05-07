@@ -297,6 +297,49 @@ $$
 ce qui prouve que la norme d'opérateur est bien une norme sur 
 l'espace des matrices $\R^{m \times n}$.
 
+### TODO {.remark}
+Un mot sur l'interprétation et les conséquences opérationnelles dans le calcul
+de cette définition. (existence d'une borne, meilleure borne telle que, etc.)
+
+### TODO {.example} 
+$$
+A = \left[
+  \begin{array}{rr}
+  1 & 0 \\
+  0 & -1
+  \end{array}
+\right]
+$$
+
+### TODO {.exercise .question .one} 
+$$
+A = \left[
+  \begin{array}{rr}
+  \cos \theta & -\sin \theta \\
+  \sin \theta & \cos \theta
+  \end{array}
+\right]
+$$
+
+### TODO {.exercise .question .two} 
+$$
+A = \left[
+  \begin{array}{rr}
+  2 & 0 \\
+  0 & -1
+  \end{array}
+\right]
+$$
+
+### TODO {.exercise}
+Mq norme d'opérateur sous-multiplicative et que
+ norme de Frobenius pas sous-multiplicative.
+
+### TODO {.exercise .question .two} 
+$$
+\|A\|\|A^{-1}\| \geq 1
+$$
+
 ### Normes alternatives sur $\R^{m \times n}$ {.remark}
 Le résultat précédent est encore valable quand on muni $\R^n$ et $\R^m$
 de normes arbitraires $\|\cdot\|_{\R^n}$ et $\|\cdot\|_{\R^m}$ et que
