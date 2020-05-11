@@ -125,6 +125,24 @@ caractérisés à travers l'étude des suites de points.
 
     - \three : par le critère de l'image réciproque.
 
+  - **TODO** savoir calculer avec les fonctions continues :
+
+    FAIRE LE TRI ICI.
+
+    **TODO** expliciter espace produit ? cont. projection, injection ?
+    Ou rester dans des sous-ens de $\R^n$ ?
+
+    **TODO.** Fonction continues : distance, (pt-pt, pt-ens), 
+
+    - \one savoir assembler/décomposer des fonctions continues à valeurs dans un produit,
+
+    - \one savoir caractériser des fonctions continues de plusieurs variables,
+
+    - \one savoir que la composition de fonctions continues est continue,
+
+    - \two savoir qu'une fonction continue $K \subset \R^n \to \R^m$, $K$ fermé borné,
+      admet un maximum,
+
 #### Espaces complets
 
   - \two savoir définir et caractériser une suite de Cauchy,
