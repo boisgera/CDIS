@@ -82,13 +82,7 @@ la norme.
 
       - \one $\partial A = \overline{A} \cap \overline{A^c}$, $A^{\circ} = \overline{(A^c)}^c$.
 
-      - \two $\overline{\varnothing} = \varnothing$, 
-        $A \subset \overline{A}$, 
-        $\overline{A \cup B} = \overline{A} \cup \overline{B}$,
-        $\overline{\overline{A}} = \overline{A}$
-
-      - \two $\overline{A} = A^{\circ} \cup \partial A$, $X = A^{\circ} \cup \partial A \cup (A^c)^{\circ}$
-        (unions disjointes),
+      - \two $\overline{A} = A^{\circ} \cup \partial A$ (union disjointe),
 
       - \two/\three savoir deviner et prouver de nouvelles identités.
 
@@ -119,40 +113,27 @@ caractérisés à travers l'étude des suites de points.
 
   - savoir caractériser les fonctions continues (en un point, sur son domaine) :
 
-    - \one définition séquentielle : $f(x) \to f(x_0)$ quand $x\to x_0, \, x \neq x_0$, 
+    - \one définition séquentielle : $f(x) \to f(x_0)$ quand $x\to x_0$, 
 
     - \two : par l'adhérence : $x_0 \in \overline{A} \implies f(x_0) \in \overline{f(A)}$,
 
     - \three : par le critère de l'image réciproque.
 
-  - **TODO** savoir calculer avec les fonctions continues :
-
-    FAIRE LE TRI ICI. REDUIRE. Statut espaces produits ? En annexe ...
-    Garder quand même continuité injection et projection ?
-
-    **TODO** expliciter espace produit ? cont. projection, injection ?
-    Ou rester dans des sous-ens de $\R^n$ ?
-
-    **TODO.** Fonction continues : distance, (pt-pt, pt-ens), 
-
-    - \one savoir assembler/décomposer des fonctions continues à valeurs dans un produit,
-
-    - \one savoir caractériser des fonctions continues de plusieurs variables,
-
-    - \one savoir que la composition de fonctions continues est continue,
-
-    - \two savoir qu'une fonction continue $K \subset \R^n \to \R^m$, $K$ fermé borné,
-      admet un maximum,
+  - \one savoir exploiter que la composition de fonctions continues est continue.
 
 #### Espaces complets
 
-  - \two savoir définir et caractériser une suite de Cauchy,
+  - \one comprendre les liens entre zéro de fonction et point fixe,
 
-  - \one connaître la définition d'espace métrique complet,
+  - \three savoir définir et caractériser une suite de Cauchy,
 
-  - \one savoir que $\R^n$ est complet,
+  - savoir caractériser un espace métrique complet, en exploitant :
 
-  - \two savoir qu'un sous-ensemble fermé d'un espace complet est complet,
+    - \one que $\R^n$ est complet,
+
+    - \two qu'un sous-espace fermé d'un espace complet est complet,
+
+    - \three directement la définition d'espace métrique complet.
 
   - \two savoir caractériser une application contractante,
 
@@ -696,6 +677,34 @@ soit par [l'axiome de séparation](#dist-sep),
 que $\ell = \ell'$. 
 Il n'existe donc qu'une limite possible pour la suite des $x_k$.
 
+
+### Caractérisations séquentielles {.proposition}
+
+Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
+
+  - Un point adhère à $A$ s'il existe une suite de points de $A$ 
+    qui converge vers ce point.
+
+  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
+    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
+
+  - Un ensemble $A$ est *fermé* si la limite de toute suite de points de $A$
+    qui est convergente (dans $X$) appartient à $A$.
+
+  - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
+    qui converge vers ce point et une suite de points du complémentaire de $A$
+    dans $X$ qui converge vers ce point.
+
+  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
+    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
+
+  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
+    suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
+
+  - Un ensemble $A$ est *ouvert* si toute suite de points de $X$ 
+    qui converge vers un point de $A$ appartient à $A$ 
+    à partir d'un certain rang.
+
 ### Limite d'une fonction en un point {.definition}
 Soit $f: X \subset Y \to Z$ une application 
 définie sur un sous-ensemble $X$ d'un espace métrique $Y$ 
@@ -735,108 +744,108 @@ f(y) \to f(x) \; \mbox{ quand } \; y \to x, \, y\neq x.
 $$
 Elle est *continue (sur $X$)* si elle est continue en tout point $x \in X$.
 
-### Continuité de la distance {.proposition}
-Soit $X$ un espace métrique. La fonction distance
-$d: X \times X \to \left[0, +\infty\right[$ est une application continue.
-Si $A$ est un sous-ensemble non vide de $X$, la distance à $A$
+Alternativement, 
+
+### Continuité en un point {.proprosition}
+Une fonction $f: X \to Y$, où $X$ et $Y$ sont deux espaces métriques, est
+continue en $x \in X$ si et seulement si 
+$f(y)$ à une limite quand $y \to x$ et $y \in X$
 $$
-x \in X \mapsto d(x, A) \in \left[0, +\infty\right[
+\exists \, \ell \in Y, \, f(x) \to \ell \mbox{ quand } y \to x, \, x \in X
+$$
+et cette limite est nécessairement $\ell = f(x)$.
+
+### Démonstration {.proof}
+La suite constante $x_k = x$ est une
+suite de $X$ qui converge vers $x$, et $f(x_k)$ (la suite constante
+de terme $f(x)$) converge vers $f(x)$, donc $f(x)$ est la seule limite
+éventuelle $\ell$ de $f$ en $x$ ; si cette limite existe, il va de soi
+que $f(y) \to f(x)$ quand $y\to x$, $y \neq x$. 
+
+Réciproquement, supposons que $f(y) \to f(x)$ quand $y \to x$, $y\neq x$. 
+Soit $x_k$ une suite de $X$ qui converge vers $x$. 
+Si à partir d'un certain rang tous les $x_k$ sont égaux à $x$, 
+$f(x_k) \to f(x)$ quand $k \to +\infty$.
+Sinon, on peut extraire de la suite des $x_k$ la suite des termes 
+$y_j$ différents de $x$. Comme par construction $y_j \to x$ et $y_j \neq x$
+quand $j \to +\infty$, $f(y_j) \to f(x)$ quand $j \to +\infty$.
+Le terme $d(f(x_k), f(x))$ converge donc vers $0$ dans tous les cas
+quand $k \to +\infty$.
+
+### Composition de fonctions continues {.proposition}
+Soient $X$, $Y$ et $Z$ des espaces métriques. Soit $f: X \to Y$ et soit
+$g: Y \to Z$ des fonctions continues en $x \in X$ et $y = f(x) \in Y$
+respectivement. Alors la fonction composée $g \circ f$ est continue en 
+$x$.
+
+### Démonstration {.proof}
+Si la suite de points $x_k$ de $X$ converge vers $x$ quand $k \to +\infty$, 
+alors par continuité, la suite $y_k := f(x_k)$ de points de $Y$ converge vers 
+$y = f(x)$ quand $k \to +\infty$. Donc la suite $g(y_k) = (g \circ f)(x_k)$
+converge vers quand $k \to +\infty$. La fonction $g \circ f$ est donc
+continue en $x$.
+
+
+### Continuité de la distance {.proposition}
+Soit $X$ un espace métrique et $A$ est un sous-ensemble non vide de $X$. 
+La fonction distance à l'ensemble $A$
+$$
+d(\cdot, A): x \in X \mapsto d(x, A) \in \left[0, +\infty\right[
 $$ 
 est une application continue.
 
 ### Démonstration {.proof}
-Soient $(x_0, y_0)$ et $(x, y)$ deux points de l'espace produit $X \times X$.
-Par [l'inégalité triangulaire](#dist-ineg), 
-$d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)$
-et
-$d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),$
-donc
-$$
-|d(x, y) - d(x_0, y_0)| \leq d(x_0, x) + d(y_0, y).
-$$
-Or la distance sur le produit $X \times X$ est définie comme
-$$
-d_{X \times X}((x, y), (x_0, y_0)) = \sqrt{d(x, x_0)^2 + d(y, y_0)^2},
-$$
-donc
-$$
-|d(x, y) - d(x_0, y_0)| \leq 2 d_{X \times X}((x, y), (x_0, y_0))
-$$
-et $d(x, y) \to d(x_0, y_0)$ quand $(x, y) \to (x_0, y_0)$, $(x,y) \neq (x_0, y_0)$. 
-
-Pour tout $a \in A$, on a $d(x, a) \leq d(x, x_0) + d(x_0, a)$ 
-et donc $d(x, A) \leq d(x, x_0) + d(x_0, A)$. 
+Pour tout $a \in A$, par [inégalité triangulaire](#dist-ineg), on a $d(x, a) \leq d(x, x_0) + d(x_0, a)$ 
+et donc par passage à l'inf sur $A$, $d(x, A) \leq d(x, x_0) + d(x_0, A)$. 
 En intervertissant $x$ et $x_0$, on obtient 
 également $d(x_0, A) \leq d(x_0, x) + d(x, A)$. 
 Par [symétrie de la distance](#dist-sym), ces deux inégalités entraînent
 $$
 |d(x, A) - d(x_0, A)| \leq d(x_0, x)
 $$
-et donc $d(x, A) \to d(x_0, A)$ quand $x \to x_0$, $x\neq x_0$.
-
-### Caractérisations séquentielles {.proposition}
-
-Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
-
-  - Un point adhère à $A$ s'il existe une suite de points de $A$ 
-    qui converge vers ce point.
-
-  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
-    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
-
-  - Un ensemble $A$ est *fermé* si la limite de toute suite de points de $A$
-    qui est convergente (dans $X$) appartient à $A$.
-
-  - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
-    qui converge vers ce point et une suite de points du complémentaire de $A$
-    dans $X$ qui converge vers ce point.
-
-  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
-    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
-
-  - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
-    suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
-
-  - Un ensemble $A$ est *ouvert* si toute suite de points de $X$ 
-    qui converge vers un point de $A$ appartient à $A$ 
-    à partir d'un certain rang.
-
-### TODO : démo
+et donc $d(x, A) \to d(x_0, A)$ quand $x \to x_0$.
 
 
-
-### Continuité et adhérence {.proposition}
+### Continuité et adhérence {.proposition #cad}
 Soit $X$ et $Y$ deux espaces métriques.
 Une fonction $f : X \to Y$ est continue en $x \in X$ si et seulement si
-pour tout $A \subset X$, si $x$ adhère à $A$, alors $f(x)$ adhère à $f(A)$.
-
-
-### TODO : relire; adapter démo.
-
+pour tout $A \subset X$, $f(x)$ adhère à $f(A)$ si $x$ adhère à $A$ :
+$$
+x \in \overline{A} \implies f(x) \in \overline{f(A)}.
+$$
 
 ### Démonstration {.proof}
-Supposons que $f$ soit telle que $f(y) \to f(x)$ quand $y \to x$.
+Supposons que $f$ soit continue en $x$, c'est-à-dire que 
+$f(y) \to f(x)$ quand $y \to x$, $y \neq x$.
 Soit $A$ un sous-ensemble de $X$ tel que $x$ adhère à $A$.
-Dans un espace métrique, cela signifie que $d(x, A) = 0$, ou encore
-qu'il existe une suite de points $x_k$ de $A$ telle que 
-$d(x, x_k) \to 0$ quand $x_k \to x$. 
+Dans l'espace métrique $X$, cela signifie que $d(x, A) = 0$, 
+c'est-à-dire que $x \in A$ ou encore
+qu'il existe une suite de points $x_k$ de $A$ différents tous de $x$
+telle que $d(x, x_k) \to 0$ quand $x_k \to x$. 
 Par conséquent, $f(x_k) \to f(x)$ quand $k \to +\infty$, 
 soit $d(f(x_k), f(x)) \to 0$ quand $k \to +\infty$. 
 Comme l'ensemble $\{f(x_k) \, | \, k \in \N\}$ est un sous-ensemble
-de $f(A)$, nous en déduisons que $d(f(x), f(A)) = 0$: 
+de $f(A)$, nous en déduisons que $d(f(x), f(A)) = 0$ : 
 le point $f(x)$ adhère à $f(A)$.
-La fonction $f$ est donc continue en $x$.
 
-Réciproquement, si $f(y) \not \to f(x)$ quand $y \to x$, 
-il existe une suite $x_k$ tendant vers $x$ telle que $f(x_k)$ ne tende
-pas vers $f(x)$ et donc un $\varepsilon > 0$ et une suite $y_k$ extraite
-de $x_k$ telle que $y_k \to x$ et pour tout $k \in \N$, 
-$d(f(y_k), f(x))  > \varepsilon$. 
-Par conséquent, $x$ adhère à $\{y_k \, | \, k \in  \N\}$, mais 
-$f(x)$ n'adhère pas à $f(\{y_k \, | \, k \in  \N\}) = 
-\{f(y_k) \, | \, k \in  \N\}$ ; 
-la fonction $f$ n'est donc pas continue en $x$.
+Réciproquement, si $f(y) \not \to f(x)$ quand $y \to x$, $y \neq x$,
+il existe une suite de points $x_k$ tendant vers $x$ 
+tels que $f(x_k)$ ne tende pas vers $f(x)$. Par conséquent, on peut trouver 
+un $\varepsilon > 0$ et une suite $y_j$ extraite de $x_k$ telle que 
+$y_j \to x$ et pour tout $j \in \N$, $d(f(y_j), f(x))  > \varepsilon$. 
+Donc $x$ adhère à $A=\{y_j \, | \, j \in  \N\}$, mais 
+$f(x)$ n'adhère pas à $\{f(y_j) \, | \, j \in  \N\} = f(\{y_j \, | \, j \in  \N\})$ 
+; $f(x)$ n'adhère donc pas à $f(A)$.
 
+### Continuité et image réciproque {.corollaire #CIR}
+Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
+continue si et seulement si l'image réciproque de tout ensemble fermé 
+(resp. ouvert) de $Y$ 
+par $f$ est un ensemble fermé (resp. ouvert) de $X$.
+
+### Démonstration {.proof}
+La démonstration est donnée [en annexe](#CIR-topo) dans le cadre plus général
+des espaces topologiques.
 
 Complétude
 ================================================================================
@@ -1256,23 +1265,22 @@ par continuité de $f$ en $\ell$, la suite des $f(z_k)$
 converge vers $f(\ell) \in f(K)$. 
 L'ensemble $f(K)$ est donc compact.
 
-### Existence d'un minimum / maximum {.corollary #T-EM}
+### Existence d'un maximum {.corollary #T-EM}
 Une fonction continue $f: K \to \mathbb{R}$ définie sur un ensemble compact 
-$K$ admet un minimum global et un maximum global.
+$K$ admet un maximum global.
 
 ### Démonstration {.proof}
-Soit $x_k \in K$ une suite minimisante de $f$, c'est-à-dire telle que
+Soit $x_k \in K$ une suite maximisante de $f$, c'est-à-dire telle que
 $$
-\lim_{k \to +\infty} f(x_k) = \inf_{x \in K} f(x).
+\lim_{k \to +\infty} f(x_k) = \sup_{x \in K} f(x).
 $$
 Il existe une suite $y_k$ extraite de $x_k$ qui converge vers un point
 $\ell$ de $K$. Par continuité de $f$ en $\ell$, on a
 $$
-f(\ell) = \lim_{k \to +\infty} f(y_k) = \inf_{x \in K} f(x).
+f(\ell) = \lim_{k \to +\infty} f(y_k) = \sup_{x \in K} f(x).
 $$
-La fonction $f$ admet donc un minimum en $\ell$.
-En appliquant ce résultat à la fonction $-f$, 
-on établit que $f$ admet un maximum.
+La fonction $f$ admet donc un maximum en $\ell$.
+
 
 
 ### Complétude de l'espace des fonctions continues {.proposition}
@@ -1412,25 +1420,24 @@ Annexe -- Espace Topologique
 
 
 ### Structure topologique d'un espace métrique
-Il est possible de se livrer à un exercice d'abstraction sur les
-espaces métriques en considérant la distance $d(x, A)$ entre un 
-point $x$ et un ensemble de points $A$ et en regardant uniquement
-si cette grandeur est nulle -- on dira alors que $x$ *adhère* à $A$ -- 
-ou strictement positive:
+Dans un espace métrique, il est possible de se livrer à un exercice 
+d'abstraction en considérant le test d'adhérence entre un point et
+un ensemble associé à la distance
 $$
-x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0.
+\mbox{$x$ adhère à $A$} \, \Leftrightarrow \, d(x, A)= 0
 $$
-En faisant de la sorte pour tous les points et ensembles de points
-de l'espace métrique et en "oubliant" ensuite la distance qui a permis
-cette construction, on remplace une mesure quantitative de proximité
-sur l'ensemble par une mesure uniquement qualitative 
-(dans ce contexte, "$x$ adhère à $A$" peut être interprété comme 
-"$x$ dans $A$ ou infiniment proche de $A$").
+et en "oubliant" ensuite la distance qui a servi à construire ce test.
+On remplace ainsi une mesure quantitative de proximité entre points et ensembles
+par une mesure uniquement qualitative 
+(on teste si "$x$ est à distance nulle de $A$").
 
-### Relation d'adhérence {.definition #ak}
+Alternativement, on peut doter un ensemble $X$ directement d'un test
+d'adhérence, tant que celui-ci vérifie les axiomes suivants :
 
-Une *relation d'adhérence* (ou *test d'adhérence*) sur l'ensemble *X* est une 
-relation entre éléments de $X$ et sous-ensembles de $X$ telle que:
+### Test d'adhérence {.definition #ak}
+
+Un *test d'adhérence* sur l'ensemble *X* est une 
+relation entre éléments de $X$ et sous-ensembles de $X$ telle que :
 
  1. Aucun point n'adhère à l'ensemble vide,
 
@@ -1442,29 +1449,32 @@ relation entre éléments de $X$ et sous-ensembles de $X$ telle que:
  4. Un point qui adhère à l'ensemble des points adhérents 
     à un ensemble adhère à cet ensemble.
 
-### Espace topologique
-Un *espace topologique* est un ensemble muni d'[une relation d'adhérence](#ak).
+### Espace topologique {.definition #espace-topologique}
+Un *espace topologique* est un ensemble muni d'[un test d'adhérence](#ak).
 Les éléments de l'ensemble sont appelés des *points*, 
 ses sous-ensembles des *ensembles de points*.
 
-### Sous-espace topologique
+### Sous-espace topologique {.definition}
 Un sous-ensemble $Y$ d'un espace topologique $X$ est un *sous-espace topologique*
-de $X$ lorsqu'il est muni de la relation d'adhérence de $X$, 
-restreinte aux points et sous-ensembles de $Y$.
+de $X$ lorsqu'il est muni du test d'adhérence de $X$, 
+restreint aux points et sous-ensembles de $Y$.
 
-### Continuité
+### Continuité {.definition}
 Une application $f: X \to Y$ définie entre deux espaces topologiques
 est *continue en $x \in X$* si, lorsque $x$ adhère à $A$ dans $X$, 
 $f(x)$ adhère à $f(A)$ dans $Y$. Une application continue en tout point
-$x \in X$  est *continue*.
+$x \in X$  est *continue (sur $X$)*.
 
 ### {.post .remark}
-Les applications continues sont les *morphismes* des espaces topologiques:
+Les applications continues sont les *morphismes* des espaces topologiques :
 elle préservent la structure des espaces topologiques.
 
 ### {.post .remark}
-Cette caractérisation "abstraite" des fonctions continues se prête
-à des preuves particulièrement concises de certains résultats. Ainsi:
+Cette caractérisation "abstraite" des fonctions continues est compatible
+avec celle adoptée dans les espaces métriques, puisque cette définition 
+y est également [une caractérisation de la continuité](#cad).
+
+Elle se prête à des preuves concises de certains résultats ; ainsi :
 
 ### Composée d'applications continues
 La composée de fonctions $f:X \to Y$ continue en $x \in X$ 
@@ -1482,7 +1492,7 @@ La relation définie par
 $$
 x \mbox{ adhère à } A \, \Leftrightarrow \, d(x, A) = 0
 $$
-est une relation d'adhérence sur $X$.
+est un test d'adhérence sur $X$.
 
 ### Démonstration {.proof}
 
@@ -1533,11 +1543,11 @@ est une relation d'adhérence sur $X$.
 
 ### L'espace topologique généralise l'espace métrique
 
-Les espaces métriques "sont" des espaces topologiques 
-(c'est-à-dire héritent automatiquement d'une relation d'adhérence,
-définie à partir de leur distance). 
+Les espaces métriques "sont" donc des espaces topologiques 
+(c'est-à-dire héritent automatiquement d'un test d'adhérence,
+défini à partir de leur distance). 
 A l'inverse, les espaces topologiques qui peuvent être muni d'une distance
-compatible avec leur relation d'adhérence sont dits *métrisables*.
+compatible avec leur test d'adhérence sont dits *métrisables*.
 Toutefois, tous les espaces topologiques ne sont pas métrisables[^Sier];
 la notion d'espace topologique est donc strictement plus générale que la notion
 d'espace métrique.
@@ -1557,17 +1567,17 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
   - L'*adhérence* $\overline{A}$ d'un ensemble $A$ est constituée des points
     qui adhèrent à l'ensemble $A$.
     
-  - Un ensemble $A$ est *fermé* s'il est égal à son adhérence:
+  - Un ensemble $A$ est *fermé* s'il est égal à son adhérence :
     $$
     A = \overline{A} \; \mbox{ ou } \; (x \in \overline{A} \Leftrightarrow x \in A)
     $$
 
   - Un point est *frontière* de $A$ s'il appartient à l'adhérence de $A$ et
-    à celle de son complémentaire:
+    à celle de son complémentaire :
     $$
     x \in \partial{A} 
     \; \Leftrightarrow \; 
-    (x \in \overline{A} = 0 \mbox{ et } x \in \overline{X \setminus A}).
+    (x \in \overline{A} = 0 \mbox{ et } x \in \overline{A^c}).
     $$
 
   - Un point $x$ est *intérieur* à un ensemble $A$ s'il n'adhère pas
@@ -1575,7 +1585,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
     $$
     x \in A^{\circ}
     \; \Leftrightarrow \; 
-    x \not \in \overline{X \setminus A}.
+    x \not \in \overline{A^c}.
     $$
 
   - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si
@@ -1583,19 +1593,19 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
     $$
     V \in \mathcal{V}(x)
     \; \Leftrightarrow \; 
-    x \not \in \overline{X \setminus V}.
+    x \not \in \overline{V^c}.
     $$
 
   - Un ensemble $A$ est *ouvert* s'il est un voisinage de chacun de ses points
     $$
     A = A^{\circ}
     \; \Leftrightarrow \; 
-    (x \in A \Rightarrow x \not \in \overline{X \setminus A}).
+    (x \in A \Rightarrow x \not \in \overline{A^c}).
     $$
 
-### Calcul topologique {.ante}
-Avec l'opérateur d'adhérence, [les axiomes définissant
-une relation d'adhérence](#ak) -- et donc un espace topologique -- 
+### Calcul topologique -- Axiomes de Kuratowksi {.ante}
+Avec l'opération d'adhérence $\overline{(\cdot)}$, [les axiomes définissant
+un test d'adhérence](#ak) -- et donc un espace topologique -- 
 prennent une forme symbolique simple :
 
  1. $\overline{\varnothing} = \varnothing$,
@@ -1612,21 +1622,22 @@ est fermé ; un ensemble est fermé si et seulement
 si son complémentaire est ouvert.
 
 ### Démonstration {.proof}
-En raisonnant par équivalence, le complémentaire $F = X \setminus U$
-d'un ensemble ouvert $U$ -- qui vérifie aussi $U = X \setminus F$ -- est 
+En raisonnant par équivalence, le complémentaire $F = U^c$
+d'un ensemble ouvert $U$ -- qui vérifie aussi $U = F^c$ -- est 
 caractérisé par
 $$
-x \in X \setminus F \Rightarrow x \not \in \overline{X \setminus (X \setminus F)},
+x \in F^c \Rightarrow x \not \in \overline{(F^c)^c},
 $$
-soit $x \in X \setminus F \Rightarrow x \not \in \overline{F}$.
-La contraposée de cette relation -- qui lui est équivalente -- est
+soit $x \in F^c \Rightarrow x \not \in \overline{F}$.
+La contraposée de cette implication -- qui est une proposition logiquement
+équivalente -- est
 $x \in \overline{F} \Rightarrow x \in F$. Comme $F \subset \overline{F}$,
 cela équivaut $\overline{F} =F$, c'est-à-dire au caractère fermé de $F$.
 
 La démonstration de la seconde partie de l'énoncé est immédiate
 (le complémentaire du complémentaire d'un ensemble est cet ensemble).
 
-### Continuité {.theorem}
+### Continuité et image réciproque {.theorem #CIR-topo}
 Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
 continue si et seulement si l'image réciproque de tout ensemble fermé 
 (resp. ouvert) de $Y$ 
@@ -1808,13 +1819,6 @@ localement fermé.
 ### Question 3 {.question #lf-3}
 Montrer qu'un ensemble est localement fermé si et seulement s'il est
 l'intersection d'un ensemble fermé et d'un ensemble ouvert.
-
-<!--
-TODO -- Comparaison des normes
---------------------------------------------------------------------------------
-
-TODO: comparaison manuelle, meilleure bornes
--->
 
 Distance entre ensembles
 --------------------------------------------------------------------------------
