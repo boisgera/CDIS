@@ -127,7 +127,8 @@ caractérisés à travers l'étude des suites de points.
 
   - **TODO** savoir calculer avec les fonctions continues :
 
-    FAIRE LE TRI ICI.
+    FAIRE LE TRI ICI. REDUIRE. Statut espaces produits ? En annexe ...
+    Garder quand même continuité injection et projection ?
 
     **TODO** expliciter espace produit ? cont. projection, injection ?
     Ou rester dans des sous-ens de $\R^n$ ?
@@ -531,24 +532,6 @@ voir à ce propos l'exercice "[Droite réelle achevée]".
 Un sous-ensemble $Y$ d'un espace métrique $X$ est un *sous-espace métrique*
 de $X$ lorsqu'il est muni de la distance de $X$, restreinte aux points de
 $Y$.
-
-### Produit d'espaces vectoriels normés {.definition}
-On appelle *produit des espaces vectoriels normés $E_1$, $\dots$, $E_n$*, 
-munis des normes $\|\cdot\|_{E_1}$, $\dots$, $\|\cdot\|_{E_n}$, 
-l'espace vectoriel $E = E_1 \times \dots \times E_n$, 
-muni de la norme
-$$
-\|(x_1,\dots, x_n)\| = \sqrt{\|x_1\|_{E_1}^2 + \dots + \|x_n\|_{E_n}^2}.
-$$
-
-### Produit d'espaces métriques {.definition}
-On appelle *produit des espaces métriques $X_1$, $\dots$, $X_n$,* 
-munis des distances $d_{X_1}$, $\dots$, $d_{X_n}$ le produit cartésien
-$X = X_1 \times \dots \times X_n$, muni de la distance
-$$
-d((x_1,\dots, x_n), (y_1,\dots, y_n)) 
-= \sqrt{d_{X_1}(x_1, y_1)^2 + \dots + d_{X_n}(x_n, y_n)^2}.
-$$
 
 
 Bestiaire Topologique
@@ -1132,6 +1115,86 @@ d(x_{n+p}, x_n)
 $$
 Le second membre de cette inégalité tend vers $0$ indépendamment de $p$
 quand $n$ tend vers $+\infty$; la suite des $x_n$ est bien de Cauchy.
+
+Annexe -- Espaces produits
+================================================================================
+
+### Produit d'espaces vectoriels normés {.definition}
+On appelle *produit des espaces vectoriels normés $E_1$, $\dots$, $E_n$*, 
+munis des normes $\|\cdot\|_{E_1}$, $\dots$, $\|\cdot\|_{E_n}$, 
+l'espace vectoriel $E := \prod_{k=1}^n E_k := E_1 \times \dots \times E_n$, 
+muni de la norme
+$$
+\|(x_1,\dots, x_n)\| := \sqrt{\|x_1\|_{E_1}^2 + \dots + \|x_n\|_{E_n}^2}.
+$$
+
+### Produit d'espaces métriques {.definition}
+On appelle *produit des espaces métriques $X_1$, $\dots$, $X_n$,* 
+munis des distances $d_{X_1}$, $\dots$, $d_{X_n}$ le produit cartésien
+$X = \prod_{k=1}^n X_k = X_1 \times \dots \times X_n$, muni de la distance
+$$
+d((x_1,\dots, x_n), (y_1,\dots, y_n)) 
+= \sqrt{d_{X_1}(x_1, y_1)^2 + \dots + d_{X_n}(x_n, y_n)^2}.
+$$
+
+### Continuité des projections {.proposition}
+Soient $X_1$, $\dots$, $X_n$ des espaces métriques. 
+Pour tout $k \in \{1,\dots, n\}$, l'application 
+$p_k: \prod_{j} X_j \to x_k \in X_k$
+telle que
+$$p_k(x_1,\dots,x_k,\dots x_n) = x_k$$
+est continue.
+
+### Démonstration {.proof}
+Pour tout couple $x^0$ et $x^0\in \prod_{j=1}^n X_j$, on a
+$$
+d_{X_k}(x_k, x_k^0) 
+\leq \sqrt{d_{X_1}(x_1, x_1^0)^2 + \dots  + d_{X_n}(x_n, x_n^0)^2} 
+= d(x, x^0),
+$$
+par conséquent, $x_k \to x_k^0$ quand $x \to x_0$.
+
+### Continuité des injections {.proposition}
+Soient $X_1$, $\dots$, $X_n$ des espaces métriques. 
+Pour tout $k \in \{1,\dots, n\}$, l'application
+$i_k: X_k \to \prod_{j=1}^n X_j$
+telle que
+$$i_k(x_k) = (0,\dots,0, x_k,0 \dots 0)$$
+est continue.
+
+### Démonstration {.proof}
+Pour tout couple $x_k$ et $x_k^0 \in X_k$, on a 
+\begin{align*}
+d(i_k(x_k), i_k(x_k^0)) &= d((0,\dots x_k,\dots 0), (0,\dots, x_k^0,\dots, 0)) 
+\\ &= \sqrt{0 + \dots d(x_k, x_k^0)^2+\dots + 0} \\ &= d_{X_k}(x_k, x_k^0),
+\end{align*}
+donc $i_k(x_k) \to i_k(x_k^0)$ quand $x_k \to x_k^0$.
+
+
+### Continuité de la distance {.proposition}
+La fonction distance
+$d: X \times X \to \left[0, +\infty\right[$ est une application continue
+pour tout espace métrique $(X, d)$.
+
+### Démonstration {.proof}
+Soient $(x_0, y_0)$ et $(x, y)$ deux points de l'espace produit $X \times X$.
+Par [l'inégalité triangulaire](#dist-ineg), 
+$d(x, y) \leq d(x, x_0) + d(x_0, y_0) + d(y_0, y)$
+et
+$d(x_0, y_0) \leq d(x_0, x) + d(x, y) + d(y, y_0),$
+donc
+$$
+|d(x, y) - d(x_0, y_0)| \leq d(x_0, x) + d(y_0, y).
+$$
+Or la distance sur le produit $X \times X$ est définie comme
+$$
+d_{X \times X}((x, y), (x_0, y_0)) = \sqrt{d(x, x_0)^2 + d(y, y_0)^2},
+$$
+donc
+$$
+|d(x, y) - d(x_0, y_0)| \leq 2 d_{X \times X}((x, y), (x_0, y_0))
+$$
+et $d(x, y) \to d(x_0, y_0)$ quand $(x, y) \to (x_0, y_0)$, $(x,y) \neq (x_0, y_0)$. 
 
 Annexe -- Compacité {#annexe-compacité}
 ================================================================================
