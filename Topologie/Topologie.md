@@ -135,6 +135,10 @@ caractérisés à travers l'étude des suites de points.
 
     - \three directement la définition d'espace métrique complet.
 
+  - **TODO** : insérer ici l'existence d'un max pour les fcts continues sur
+    un fermé borné (par les suites de Cauchy) ? Ce qui revient à inliner
+    Heine-Borel dans l'argument des fcts continues peu ou prou ...
+
   - \two savoir caractériser une application contractante,
 
   - \two savoir utiliser le théorème de point fixe de Banach.
