@@ -937,7 +937,7 @@ $$
 \lim_{k \to + \infty} \mbox{diam}(\{x_n \, | \, n \geq k \}) = 0.
 $$
   
-### Toute suite convergente est de Cauchy
+### Toute suite convergente est de Cauchy {.proposition #tscc}
 Toute suite de points convergente dans un espace métrique est de Cauchy.
 
 ### Démonstration {.proof}
@@ -984,7 +984,6 @@ un mathématicien polonais du 20ème siècle d'après lequel sont nommés
 [de nombreux concepts et théorèmes](https://en.wikipedia.org/wiki/List_of_things_named_after_Stefan_Banach).
 
 ### Complétude de l'espace euclidien {.proposition}
-
 L'espace $\mathbb{R}^n$ est complet.
 
 ### Démonstration {.proof}
@@ -1010,6 +1009,19 @@ Toute suite de Cauchy de $\R^n$ est donc convergente.
 [^ahahah]: bien sûr si l'on a utilisé une technique alternative pour
 construire $\R$, par exemple par les coupures de Dedekind, 
 la complétude de $\R$ n'a rien d'automatique.
+
+### Sous-espaces complets {.proposition}
+Soit $X$ un espace métrique complet. Un sous-espace $Y$ de $X$ est complet
+si et seulement si $Y$ est un sous-ensemble fermé de $X$.
+
+### Démonstration {.proof}
+Si $Y$ est complet, [toute suite de point de $Y$ qui converge dans $X$ est
+de Cauchy](#tscc), donc a une limite dans $X$ puisque celui-ci est complet.
+L'ensemble $Y$ est donc fermé dans $X$.
+
+Réciproquement, si $Y$ est fermé dans $X$ et qu'une suite de points de $Y$
+est de Cauchy, elle converge dans $X$ qui est complet et 
+par conséquent dans $Y$. Le sous-espace $Y$ est donc complet.
 
 ### Complétude de l'espace des fonctions bornées {.proposition}
 Soit $X$ un ensemble et $Y$ un espace métrique complet.
