@@ -9,6 +9,8 @@ dependencies:
   - mpmath
   - autograd
   - matplotlib
+  - jupyterlab
+  - jupytext
   - pip
   - setuptools
   - black
