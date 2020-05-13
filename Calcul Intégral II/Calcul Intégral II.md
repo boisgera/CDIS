@@ -204,30 +204,42 @@ $$
 ### Démonstration {.proof}
 Se reporter à @Dem11.
 
-### Théorème fondamental du calcul {.exercise .two #exo-TCD}
-Déduire de la forme classique du théorème fondamental du calcul 
-et du [théorème de convergence dominée](#TCD) que si 
-si $f:\R \to \R$ a des limites notées $f(-\infty)$ et $f(+\infty)$ 
-en $-\infty$ et $+\infty$, est dérivable sur $\R$ et que cette dérivée $f'$ 
-est intégrable, alors
+### Défaut de domination {.exercise .question .one #dd}
+Comparer
 $$
-f(+\infty) - f(-\infty) = \int f'(t) \, dt.
+\lim_{k \to +\infty} \int f_k(t) \, dt
+\; \mbox{ et } \; 
+\int \lim_{k \to +\infty} f_k(t) \, dt\;
 $$
-<!-- (Indication: on pourra étudier la suite des $g_k := f'1_{[-k, k]}$.)-->
+pour la suite de fonctions $f_k:\R \to \R$ définie par
+$$
+f_k(t) = \left|
+\begin{array}{rl}
+1 & \mbox{si $k\leq t \leq k+1$} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Expliquer le résultat.
 
-### Théorème fondamental du calcul {.answer #answer-TCD}
-Pour tout $k \in \N$, la fonction $g_k :=  f'1_{[-k, k]}$ est intégrable
-car $f'|_{[-k, k]}$ est intégrable par restriction ; la suite des $g_k$ est
-dominée par $|f'|$ qui est intégrable. Appliquer le théorème fondamental du
-calcul à $f'|_{[-k, k]}$ donne
+### Intégrale fonction d'un paramètre {.exercise .question .two #ifp}
+Montrer que 
 $$
-\int g_k(t) \, dt = \int_{-k}^k f'(t) \, dt = f(k) - f(-k).
+\lim_{x \to 0^+} \int_0^1 \frac{e^{-xt}}{1+t^2} \, dt = \frac{\pi}{4}.
 $$
-Par application [du théorème de convergence dominée](#TCD), on obtient donc
+
+### Théorème fondamental du calcul {.exercise .three #exo-TCD}
+Déduire de la forme classique du théorème fondamental du calcul 
+et du [théorème de convergence dominée](#TCD) 
+que si $f: [a, b] \subset [-\infty, +\infty] \to \R$ est continue sur $[a, b]$,
+dérivable sur $[a, b]$ et de dérivée $f'$ intégrable, alors
 $$
-\int f'(t) \, dt = \lim_{k \to +\infty}  \int g_k(t) \, dt = \lim_{k\to+\infty} f(k) - f(-k)
-=f(+\infty) - f(-\infty).
-$$ 
+f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
+(Indication : considérer une suite d'intervalles fermés bornés $[a_k, b_k]$ de $\R$ tels
+que $[a_k, b_k] \subset [a, b]$ et tels que $a_k \to a$ et $b_k \to b$ quand
+$k \to +\infty.$)
+<!-- (Indication: on pourra étudier la suite des $g_k := f'1_{[-k, k]}$.)-->
 
 
 
@@ -307,10 +319,25 @@ $$
 \lim_{k \to +\infty} \int  f(t) \, dt.
 $$
 
-
-
 ### Démonstration {.proof}
 Se reporter à @Dem11.
+
+### Fonctions puissance  {.one .exercise #power}
+Montrer que la fonction puissance $t \in \left[1, +\infty\right[ \mapsto t^{\alpha}$
+est intégrable si et seulement $\alpha < -1$ et que la fonction puissance
+$t \in \left]0,1\right] \mapsto t^{\alpha}$ est intégrable si et seulement
+si $\alpha > -1$.
+
+
+<!--
+### Fonctions d'ordre exponentielle {.one .exercise #exp}
+Montrer que si $f: \left[0, +\infty\right[ \to \R$ satisfait $|f(t)| \leq M e^{at}$
+pour des constantes $M$ et $a$ réelles, alors
+$$
+\int_0^{+\infty} f(t) e^{-xt} \, dt
+$$
+est définie pour tout $x > a$.
+-->
 
 Ensembles mesurables
 ================================================================================
@@ -1185,6 +1212,46 @@ un $k$ suffisamment grand, ce qui permet de conclure.
 Exercices
 ================================================================================
 
+Une intégrale utile en Probabilités
+--------------------------------------------------------------------------------
+
+Source : (Swa01)
+
+On s'intéresse à la valeur de l'intégrale
+$$
+I := \int_0^{+\infty} e^{-t^2} \, dt.
+$$
+On pose 
+$$
+g(x) := \int_0^x e^{-t^2} \, dt,
+\; \mbox{ et } \;
+F(x) := \int_0^1 \frac{e^{-x(1+t^2)}}{1+t^2} \, dt.
+$$
+
+### Question 1 {.question .two #exp-m2-1}
+Montrer que $F$ est continue sur $\left[0, +\infty\right[$.
+Calculer $F(0)$ et $\lim_{x \to +\infty} F(x)$.
+
+### Question 2 {.question .two #exp-m2-2}
+Montrons que la fonction $F$ est dérivable sur $\left]0, +\infty\right[$
+et que
+$$
+F'(x) 
+= -\frac{e^{-x}}{\sqrt{x}} g(\sqrt{x}).
+$$
+
+### Question 3 {.question .three #exp-m2-3}
+Evaluer de deux façons différentes
+$$
+\lim_{\varepsilon \to 0^+} F(\varepsilon^{-1}) - F(\varepsilon)
+$$
+et en conclure que
+$$
+I =\frac{\sqrt{\pi}}{{2}}.
+$$
+
+
+
 Théorème de convergence dominée {.question #exo-TCD}
 --------------------------------------------------------------------------------
 
@@ -1324,11 +1391,234 @@ Solutions
 Exercices essentiels
 --------------------------------------------------------------------------------
 
+
+### Défaut de domination {.answer #answer-dd}
+On établit sans difficultés que pour tout $k \in \N$,
+$$
+\int f_k(t)\, dt = \int_k^{k+1} dt = 1, 
+$$
+et donc
+$$
+\lim_{k \to +\infty} \int f_k(t) \, dt  =1.
+$$
+D'autre part, pour tout $t \in \R$, on a $f_k(t) = 0$ si $k > t$, donc
+$f_k(t) \to 0$ quand $k \to + \infty$ ; par conséquent,
+$$
+\int \lim_{k \to +\infty} f_k(t) \, dt = 0.
+$$
+L'intégrale de la limite des $f_k$ diffère donc de la limite des intégrales
+des $f_k$. Cela ne contredit pas  [le théorème de convergence
+dominée](#TCD) puisque nous n'avons pas exhibé de fonction intégrable dominant
+les $f_k$ ; en l'occurence, une fonction $g$ dominant toutes les $f_k$
+vérifie nécessairement $1 \leq g(t)$ pour tout $t \geq 0$, or aucune 
+fonction de ce type n'est intégrable. 
+
+### Intégrale fonction d'un paramètre {.answer #answer-ifp}
+Au préalable, on note que l'application $\arctan$ est continue et donc 
+intégrable sur $[0, 1]$ ; le théorème fondamental du calcul nous garantit
+donc l'intégrabilité de sa primitive $t \in [0, 1] \mapsto 1/(1+t^2)$ 
+et nous fournit la valeur de son intégrale :
+$$
+\int_0^1 \frac{dt}{1+t^2}
+=
+\int_0^1 \arctan'(t) \, dt
+=
+\arctan(1) - \arctan(0) = \frac{\pi}{4} - 0 = \frac{\pi}{4}.
+$$
+De plus, pour tout $x \geq 0$ et tout $t\in [0, 1]$, on a
+$|e^{-xt}| \leq 1$ ; 
+pour toute suite de réels strictement positifs $x_k$ tendant vers $0$, on a donc
+$$
+\lim_{k\to +\infty} \frac{e^{-x_kt}}{1+t^2} = \frac{1}{1+t^2}  \mbox{ et } \;
+\left| \frac{e^{-x_kt}}{1+t^2} \right| \leq 
+ \frac{1}{1+t^2}.
+$$
+Si l'on introduit des prolongements des fonctions considérées 
+par zéro en dehors de $[0, 1]$,
+[le théorème de convergence dominée](#TCD) nous fournit donc
+$$
+\lim_{x \to 0^+} \int_0^1 \frac{e^{-xt}}{1+t^2} \, dt = 
+\int_0^1 \frac{dt}{1+t^2} = \frac{\pi}{4}.
+$$
+
+
+### Théorème fondamental du calcul {.answer #answer-TCD}
+Soit $[a_k, b_k]$ une suite d'intervalles fermés bornés de $\R$ tels
+que $[a_k, b_k] \subset [a, b]$ et tels que $a_k \to a$ et $b_k \to b$ quand
+$k \to +\infty.$ 
+Pour tout $k \in \N$, la fonction $g_k$ définie par
+$$
+g_k(t) = \left| 
+\begin{array}{rl}
+f'(t) & \mbox{si $t \in [a_k, b_k]$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est intégrable car $f'|_{[a_k, b_k]}$ est intégrable par restriction ; 
+la suite des $g_k$ est dominée par la fonction valant $|f'|$ sur 
+$\left]a, b\right[$ et $0$ en dehors, fonction qui est intégrable par 
+additivité. De plus la suite des $g_k$ converge simplement vers la
+fonction égale à $f'$ sur $\left]a, b\right[$ et nulle en dehors.
+Appliquer le théorème fondamental du calcul à 
+$f'|_{[a_k, b_k]}$ donne par ailleurs
+$$
+\int_{-\infty}^{+\infty} g_k(t) \, dt = \int_{a_k}^{b_k} f'(t) \, dt = f(b_k) - f(a_k).
+$$
+Par application [du théorème de convergence dominée](#TCD), on obtient donc
+$$
+\int_a^b f'(t) \, dt = \int g(t)\, dt = \lim_{k \to +\infty}  \int g_k(t) \, dt,
+$$
+donc
+$$
+\int_a^b f'(t) \, dt  = \lim_{k\to+\infty} f(b_k) - f(a_k)
+=f(b) - f(a).
+$$ 
+
+### Fonctions puissance  {.answer #answer-power}
+Pour tout $x \in \left[1, +\infty\right[$, si $\alpha \neq {-1}$, 
+on a
+$$
+\int_1^x t^{\alpha} \, dt = \left[\frac{t^{\alpha+1}}{\alpha + 1} \right]_1^x
+=\frac{t^{\alpha+1}}{\alpha + 1} - \frac{1}{\alpha + 1},
+$$
+et pour $\alpha = -1$,
+$$
+\int_1^x t^{-1} \, dt = [\ln t]_1^x =\ln x.
+$$
+Si nous définissons les fonctions $f_k :\R \to \R$ pour $k \geq 1$ par
+$$
+f_k(t) = \left|
+\begin{array}{rl}
+t^{\alpha} & \mbox{si $t \in [1, k]$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+alors
+$$
+\lim_{k \to +\infty} \int f_k(t) \, dt = \int_0^k t^{\alpha} \, dt,
+$$
+donc cette limite est finie si et seulement si $\alpha < -1$.
+Comme la suite des fonctions $f_k$ est croissante et converge simplement
+vers la fonction égale à $t \mapsto t^{\alpha}$ sur $\left[1, +\infty \right[$
+et nulle ailleurs, nous en déduisons par [le théorème de convergence monotone](#TCM)
+que la fonction $t \in \left[1, +\infty\right[ \mapsto t^{\alpha}$ est intégrable
+si et seulement si $\alpha < -1$. Le cas de la fonction puissance sur 
+l'intervalle $\left]0,1\right]$ peut être analysé de façon similaire, 
+ou bien en pratiquant le changement de variable $t \mapsto 1/t$ pour se
+ramener à l'intervalle que nous avons déjà étudié.
+
 ### Fonction continues {.answer #answer-fcm}
 L'image réciproque de tout fermé par une application continue $f:\R \to \R^m$ 
 est fermé. Comme [tout fermé est mesurable](#OSM), 
 [le critère de l'image réciproque](#CIR)
 prouve qu'une telle fonction continue est mesurable.
+
+
+Une intégrale utile en Probabilités
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-exp-m2-1}
+
+$$
+F(x) = \int_0^1 \frac{e^{-x(1+t^2)}}{1+t^2} \, dt
+$$
+
+$$
+F(0)= \int_0^1 \frac{dt}{1+t^2}  =[\arctan]^1_0 = \frac{\pi}{4}.
+$$
+
+La fonction $F$ est continue sur $\left[0, +\infty\right[$. En effet, si 
+$x_0 \in \left[0, +\infty\right[$, alors 
+$$
+\frac{e^{-x(1+t^2)}}{1+t^2} \to \frac{e^{-x_0(1+t^2)}}{1+t^2}
+\; \mbox{ quand } \, x \to x_0,
+$$
+et de plus, pour tout $\varepsilon > 0$, si $x \in [\max(0, x_0-\varepsilon), x_0+\varepsilon]$,
+alors 
+$$
+\left|\frac{e^{-x(1+t^2)}}{1+t^2}\right| 
+\leq 
+\frac{e^{-\max(0, x_0-\varepsilon)(1+t^2)}}{1+t^2}
+$$
+Le second membre de cette équation étant intégrable (il est positif et 
+décroit quand $t\to +\infty$ plus vite que $1/t^2$), par [le théorème de 
+convergence dominée](#TCD),
+$$
+F(x) \to F(x_0) \; \mbox{ quand } \; x \to x_0.
+$$
+De plus, toujours par le théorème de convergence dominée, comme
+l'intégrande est dominée par $1/(1+t^2)$ qui est intégrable, on a 
+$$
+\lim_{x \to +\infty} F(x) =  \int_0^1 \lim_{x \to +\infty} \frac{e^{-x(1+t^2)}}{1+t^2}\, dt
+=0
+$$
+
+### Question 2 {.answer #answer-exp-m2-2}
+Montrons que la fonction $F$ est dérivable sur $\left]0, +\infty\right[$.
+Soit $\varepsilon > 0$ ; la fonction
+$$
+x \in \left]\varepsilon ,+\infty\right[ \mapsto \frac{e^{-x(1+t^2)}}{1+t^2}
+$$
+est dérivable en tout $x$, de dérivée égale à
+$-e^{-x(1+t^2)}$, qui est dominée par $e^{-\varepsilon/(1+t^2)}$.
+La fonction $t \in [0, 1] \mapsto e^{-\varepsilon/(1+t^2)}$ est intégrable car
+continue. Par [le théorème de dérivation sous le signe somme](#DSS), on a
+donc
+$$
+F'(x) = -\int_0^1 e^{-x(1+t^2)} \, dt 
+$$
+quand $x > \varepsilon$ et donc quand $x > 0$ puisque $\varepsilon > 0$ est 
+arbitraire.
+Avec $g : \left[0, +\infty\right[ \mapsto \R$ définie par
+$$
+g(x) = \int_0^x e^{-t^2} \, dt,
+$$
+pour tout $x > 0$, on a donc
+$$
+F'(x) = -\int_0^1 e^{-x} e^{-x t^2} \, dt
+= -e^{-x} \int_0^1  e^{-x t^2} \, dt,
+$$
+soit avec le changement de variable $u = \sqrt{x} t$, 
+$$
+F'(x) 
+= -\frac{e^{-x}}{\sqrt{x}} \int_0^{\sqrt{x}}  e^{-u^2} \, du
+= -\frac{e^{-x}}{\sqrt{x}} g(\sqrt{x}).
+$$
+
+### Question 3 {.answer #answer-exp-m2-3}
+On a d'une part par le théorème fondamental du calcul et les résultats de la
+question 1
+$$
+\int_{\varepsilon}^{\varepsilon^{-1}} F'(x) \, dx
+= F(\varepsilon^{-1}) - F(\varepsilon) \to - \frac{\pi}{4}
+\; \mbox{ quand }  \; \varepsilon \to 0^+,
+$$
+et d'autre part avec l'expression de la question 2 de $F'$ et le changement
+de variable $x=\sqrt{t}$, puis $z = g(u)$,
+\begin{align*}
+\int_{\varepsilon}^{\varepsilon^{-1}} F'(x) \, dx
+&= - \int_{\varepsilon}^{\varepsilon^{-1}} \frac{e^{-x}}{\sqrt{x}} g(\sqrt{x}) \, dx \\
+&= - 2 \int_{\varepsilon}^{\varepsilon^{-1}} \frac{e^{-\sqrt{x}^2}}g(\sqrt{x}) \, \frac{dx}{2\sqrt{x}} \\
+&=- 2 \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} \frac{e^{-u^2}} g(u) \, du \\
+&= -2 \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} g'(u) g(u) \, du \\
+&= -2 \int_{g\left(\sqrt{\varepsilon}\right)}^{g\left(1/\sqrt{\varepsilon}\right)} z \, dz \\
+&= \left[-t^2\right]_{g\left(\sqrt{\varepsilon}\right)}^{g\left(1/\sqrt{\varepsilon}\right)} \\
+&= -\left(g\left(1/\sqrt{\varepsilon}\right)\right)^2 + \left(g\left(\sqrt{\varepsilon}\right)\right)^2
+\end{align*}
+et donc
+$$
+\int_{\varepsilon}^{\varepsilon^{-1}} F'(x) \, dx
+\to - \left(\int_0^{+\infty} e^{-t^2} \, dt \right)^2
+\; \mbox{ quand }  \; \varepsilon \to 0^+.
+$$
+On conclut finalement que 
+$$
+\int_0^{+\infty} e^{-t^2} \, dt = \sqrt{\frac{\pi}{4}} = \frac{\sqrt{\pi}}{{2}}.
+$$
+
+
 
 Théorème de convergence dominée {.answer #answer-exo-TCD}
 --------------------------------------------------------------------------------

@@ -592,7 +592,7 @@ def handle_typed_sections(doc):
                 type_ = shared[0]
                 if types[type_]:
                     inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
-                if "exercise" in classes:
+                if "exercise" in classes or "question" in classes:
                     if "zero" in classes:
                         inlines += [
                             Space(),
