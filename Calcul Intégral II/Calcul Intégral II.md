@@ -328,6 +328,15 @@ est intégrable si et seulement $\alpha < -1$ et que la fonction puissance
 $t \in \left]0,1\right] \mapsto t^{\alpha}$ est intégrable si et seulement
 si $\alpha > -1$.
 
+### TODO -- Intégrabilité et intégrales impropres {.two .question .exercise #iii}
+Montrer qu'une fonction $f: \R \to \R$ intégrable sur tout intervalle fermé
+borné est intégrable sur $\R$ si et seulement si
+$$
+\lim_{x \to +\infty} \int_{-x}^x |f(t)| \, dt
+$$
+est fini.
+
+
 
 <!--
 ### Fonctions d'ordre exponentielle {.one .exercise #exp}
@@ -405,10 +414,6 @@ sont bien mesurables ;
 en effet si la fonction caractéristique $1_E$ est intégrable,
 sa restriction à tout intervalle compact $[a, b]$ également.
 
-### {.definition .post}
-On rappelle qu'un ensemble est *dénombrable* s'il est fini 
-ou en bijection avec $\N$.
-
 ### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
 
  1. L'ensemble vide est mesurable.
@@ -417,6 +422,10 @@ ou en bijection avec $\N$.
 
  3. L'union d'une collection dénombrable d'ensembles mesurables
     est mesurable.
+
+### {.remark}
+(On rappelle qu'un ensemble est *dénombrable* s'il est fini 
+ou en bijection avec $\N$.)
 
 ### {.remark}
 On aggrège cet ensemble de propriétés en disant que les ensembles mesurables 
