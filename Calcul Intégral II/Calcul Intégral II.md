@@ -406,8 +406,8 @@ en effet si la fonction caractéristique $1_E$ est intégrable,
 sa restriction à tout intervalle compact $[a, b]$ également.
 
 ### {.definition .post}
-Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
-$\N$.
+On rappelle qu'un ensemble est *dénombrable* s'il est fini 
+ou bien en bijection avec $\N$.
 
 ### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
 
