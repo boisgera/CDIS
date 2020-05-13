@@ -10,11 +10,6 @@ env:
   global:
     - CONDA=https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
-stages:
-  - before_install
-  - install
-  - deploy
-
 before_install:
   - sudo apt-get update
   - sudo apt-get --yes --force-yes install texlive-full
