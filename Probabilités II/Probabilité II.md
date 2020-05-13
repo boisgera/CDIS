@@ -37,43 +37,6 @@ En pratique, l’ensemble $E$ pourra être un ensemble fini ou dénombrable ou $
 ### Remarque {.remark}
 La terminologie, consacrée par l'usage, peut être trompeuse. Une variable aléatoire n'est pas une variable (au sens de l'analyse) mais une fonction. Cette terminologie est apparentée à la notion de variable en physique ou en sciences humaines où on désigne volontiers par "variable" la valeur prise par une fonction de l'état du système étudié.
 
-**TODO[^adap]**
-
-[^adap]: Si l'on limite l'étude des probabilités au cas à densité
-dans $\Omega=\mathbb{R}^d$, 
-on ne peut plus définir $\mathbb{P}_X(\cdot) := \mathbb{P}(X \in \cdot)$ en 
-général comme une probabilité ;
-on doit limiter cette définition au cas des va à densité -- alors qu'on n'a
-aucun mal à parler de $\mathbb{P}(X \in B)$ pour une va $X$ générale tant que
-$B$ est borélien. 
-Même dans le cas des va à densité, selon la définition choisie
-pour "va à densité" il peut y avoir du travail à faire pour transporter la
-proba (et il faut se demander si ça vaut le coup). 
-Ainsi, si une va a densité est caractérisée par l'existence
-d'une densité $f_X$ dans l'espace des valeurs telle que
-$$
-\mathbb{P}(X \in B) = \int 1_{B}(x) f_X(x) \, dx
-$$
-pour tout $B$ borélien -- et uniquement $B$ borélien -- 
-pour rentrer dans les clous de la définition de "proba à densité dans
-$\Omega=\R^d$", il faut alors "passer une seconde couche" en définissant
-$$
-\mathbb{P}_X(A) := \int 1_{A}(x) f_X(x) \, dx
-$$
-pour tout $A$ tel que le membre de droite soit défini. Ce qui suppose au 
-passage d'avoir montré que $\mathbb{P}(X \in B)$ détermine bien $f_X$ presque
-partout (c'est vrai). Je vois sans mal l'intérêt d'une remarque à ce propos,
-avec les arguments ci-dessus (ça peut résonner chez les plus matheux qui
-voient que les morphismes transportent les structures), mais je réfléchirais 
-soigneusement avant de mettre le principe de proba transportée par une va 
-(à densité) sur le chemin critique.
-Je n'ai pas l'impression (sans avoir vraiment étudié la question) que se passer
-du concept de proba transportée par une va (ou "changer d'univers") pose un 
-problème. $\to$ **Essayer de se passer de $\mathbb{P}_X$**.
-Mais, c'est une limitation un impact pratique limité : la grandeur
-$\mathbb{P}(X \in B)$ est bien définie dès que $X$ est une va (à densité
-ou non) et que $B$ est borélien. (SB)
-
 L'intérêt principal de travailler avec des variables aléatoires est de pouvoir substituer à l'espace abstrait $\Omega$ des résultats de l'expérience l'espace $E$, mieux connu dans la pratique. Ainsi, grâce à une variable aléatoire $X$, nous pouvons transporter la structure abstraite du modèle probabiliste $(\Omega, \A, \P)$ sur l'espace d'arrivée $E$, en posant pour $B \subset E$
 $$\P_X (B) = \P(X^{-1}(B)) = \P(\{\omega, X(\omega)\in B\})$$
 
@@ -105,30 +68,16 @@ $\P_X$ sera plus facile à caractériser que $\P$ puisque $E$ est un ensemble co
 La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Dans le cas où $E = \R$, on notera $\E_\R$ la tribu associée[^NB]. Cela nous conduit à poser :
 
 
-### Variable aléatoire réelle {.definition #defvar}
+### Définition -- variable aléatoire réelle {.definition #defvar}
 Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \E_{\R}$.
 
-**TODO**[^lva]
-
-[^lva]: cf supra pour les pbs liés à $\P_X$ ; mais on peut continuer
-à désigner sous le terme "loi de la variable $X$" la fonction 
-$\mathbb{P}(X \in \cdot)$ définie pour tous les boréliens de $\mathbb{R}$ 
-(sans conséquences fâcheuses ?) (SB).
-
-### Loi d'une variable aléatoire réelle {.definition #defloivar}
+### Définition -- loi d'une variable aléatoire réelle {.definition #defloivar}
 La probabilité $\P_X$, définie sur $(\R,\E_{\R})$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \E_{\R}$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
 
 [^NB]: Nous n'avons pas les outils permettant de caractériser cette tribu pour le moment. On verra par la suite que, dans le cas des variables aléatoires réelles à densité, elle est très similaire à la tribu des ensembles mesurables de $\R$, à une collection d'ensembles négligeables près.
 
 
 On a alors le résultat très utile suivant :
-
-**TODO**[^bor]
-
-[^bor]: ce résultat devient la définition (opérationnelle) de fonction borélienne
-$g$ dans la version "à fondation frugales" (au passage ça ne marche pas avec 
-$g$ uniquement "mesurable" au sens usuel ici ; il faut borélienne, ce qui
-est plus exigeant) (SB) .
 
 ### Proposition {.proposition #composition}
 Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction mesurable de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
@@ -152,64 +101,7 @@ Soient $X$, $Y$ et $(X_n)_{n \in \N^\star}$ des variables aléatoires réelles. 
 
  5. $Z = 1_A$ est une variable aléatoire $\Leftrightarrow$ $A \in \A$.
 
-**TODO[^motivation-va-densité]** **TODO[^val-or-vec]** **TODO[^définition-vad-alter]**
-
-[^motivation-va-densité]: quelle motivation(s) pour l'étude des v.a. à densité ? 
-Pourquoi on s'y intéresse plus particulièrement (SB)
-
-[^val-or-vec]: pas 100% convaincu que la duplication des définitions "à densité"
-pour les variables et les vecteurs ait un bénéfice. Il faut voir avec l'ordre
-global. Une version plus faible de la même question (à ordre constant de présentation) : 
-est-ce qu'on n'a pas intérêt à favoriser une définition de "à densité" pour les 
-valeurs aléatoires qui soit immédiatement généralisable aux vecteurs aléatoires ? 
-(C'est le cas de la définition que je préconise ci-dessous.) (SB)
-
-[^définition-vad-alter]: Cf TODO plus haut sur la complexité induite par 
-$\mathbb{P}_X$ à reconsidérer.
-Si on laisse ce point de coté, j'ai l'impression qu'il y a trois définitions
-équivalentes mathématiquement qu'on peut considérer : demander 
-$$
-\P(X\leq x) = \int_{-\infty}^x f_X(y) \, dy
-$$
-(c'est-à-dire ce qui est proposé) ou
-$$ 
-\P(X\in B) = \int_B f_X(x) \, dx
-\; \mbox{ ou } \;
-\Esp(h(X)) = \int h(x) f_X(x) \, dx.
-$$
-(pour tout $B$ borélien et $h$ borélienne telle que $h f_X$ soit intégrable).
-Je serais assez favorable à la seconde option avec la troisième option
-présentée immédiatement comme propriété associée.
-Ca la troisième option se défend, c'est la plus opérationnelle : 
-s'il ne doit rester qu'un seul
-résultat (où si un étudiant ne doit mémoriser qu'un résultat), 
-c'est le plus utile dans le use cas commun (j'ai une variable aléatoire $X$
-dont je connais la densité, j'ai une espérance -- ou une proba, ou une variance -- 
-associée à une grandeur se déduisante de $X$) et la définition fournie ici n'est pas 
-exploitable **directement**.
-Il va de soi que le second cas -- calcul d'une proba --
-se déduit simplement du 3eme avec $h=1_B$ si on en a besoin ; on peut
-imaginer un corollaire dédié, ou mieux, faire en sorte que le meme "quand je 
-sais calculer $\Esp$, je sais calculer $\P$ (et $\V$)" ait déjà percolé avant (?).
-Le cas particulier de la forme $\P(X\leq x)$ est plus directement lié à 
-l'approche par les fonctions de répartition ; je le vois plus comme un
-sous-corollaire (d'autant qu'il devient bien moins naturel quand on passe
-aux vecteurs aléatoires). 
-**Update:** dans certains use cases -- cf exemple "Loi de Cauchy" -- le sous-corollaire est 
-utilisé ; mais en l'espèce, la définition avec $\Esp(h(X))$ marche aussi bien :
-on montre aisément que
-$$
-\Esp(h(\tan \Theta)) = \frac{1}{\pi} \int_{-\pi/2}^{\pi/2} 
-\frac{h(\tan \theta)}{1 +\tan^2 \theta} (1 + \tan^2 \theta) \, d\theta,
-$$
-et l'on déduit donc que $X = \tan \Theta$ vérifie
-$$
-\Esp(h(X)) = \frac{1}{\pi} \int_{-\infty}^{+\infty} 
-\frac{h(x)}{1 +x^2} \, dx.
-$$
-(SB)
-
-### Variable aléatoire à densité {.definition #va.densité}
+### Définition -- variable aléatoire réelle à densité {.definition #va.densité}
 Soit $X$ une variable aléatoire. On dit que $X$ a une *loi de densité $f$* (ou par abus de language "est de densité $f$"), si $\P_X$ admet la densité $f$ et donc si pour tout réel $x$, 
 $$ \P(X\leq x) = \int_{-\infty}^x f(y) dy.$$
 
@@ -263,7 +155,7 @@ Dans le cas d'une variable aléatoire discrète $Y$ à valeurs dans $\N^\ast$, s
 
 Outre l'espace $\L^1$, nous pouvons définir l'espace $\L^2$ des variables aléatoires réelles dont le carré $X^2$ est dans $\L^1$.
 
-### Variable aléatoire de carré intégrable {.definition #defvar}
+### Définition {.definition #defvar}
 La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite *de carré intégrable* si $\Esp(X^2) = \int_\R x^2 f(x)dx$ est définie, autrement dit si le produit $x^2 f(x)$ est intégrable. Sa *variance* est définie par
         $$\V(X) = \Esp((X-\Esp(X))^2)$$
 
@@ -355,23 +247,14 @@ $$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-
 L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \E_\R$ :
 $$\Esp(1_A(X)) = \int_A f(x)dx = \P(X\in A)$$
 
-# Exemples
+## Exemples
 
-**TODO**[^l]
+Nous donnons ici quelques exemples de densités de probabilité. Nous reprenons en particulier les [trois exemples de densités donnés au premier cours](Probabilité I.pdf #exampledens) :
 
-[^l]: reconsidérer nom & niveau de la section. 
-Migrer dans un section "va à densité ?" (SB).
+### *Loi uniforme*
 
-Nous donnons ici quelques exemples de densités de probabilité. 
-Nous reprenons en particulier les [trois exemples de densités 
-donnés au premier cours](Probabilité I.pdf #exampledens) :
-
-### Loi uniforme
-La variable $X$ suit la loi uniforme sur $[a,b]$, où $a < b$, ce que l'on note  
-$X \sim \mathcal{U}_(a,b)$, si $X$ est de densité
-$$
-f(x) = \frac{1}{b-a} 1_{[a,b]} (x).
-$$
+sur $[a,b]$, où $a < b$ et on note $X \sim \mathcal{U}_{[a,b]}$ si $X$ est de densité
+    $$ f(x) = \frac{1}{b-a} 1_{[a,b]} (x).$$
 Son espérance vaut
         $$ \Esp(X) = \int_a^b \frac{x}{b-a} dx = \frac{a+b}{2}$$
 et puisque
@@ -379,15 +262,14 @@ et puisque
 alors sa variance vaut
         $$ \V(X) = \Esp(X^2) - \Esp(X)^2 = \frac{(b-a)^2}{12}.$$
 
-### Loi exponentielle
-La variable $X$ suit la loi exponentielle 
-de paramètre $\theta > 0$, ce que l'on note $X \sim \mathcal{E}(\theta)$, 
-si $X$ est de densité
+### *Loi exponentielle*
+
+de paramètre $\theta > 0$ et on note $X \sim \mathcal{E}(\theta)$ si $X$ est de densité
         $$ f(x) = \theta e^{-\theta x} 1_{\{x>0\}}.$$
 Son espérance et sa variance se calculent aisément et valent
         $$ \Esp(X) = \frac{1}{\theta} \text{ et } \V(X) = \frac{1}{\theta^2}$$
 
-### Loi gamma
+### *Loi gamma*
 
 On rappelle tout d'abord que la fonction gamma est définie pour $\alpha \in \left] 0, + \infty \right[$ par 
         $$\Gamma(\alpha) = \int_0^{+\infty} x^{\alpha-1}e^{-x} dx.$$
@@ -401,11 +283,9 @@ On remarquera que $\Gamma(1,\theta)$ est la loi exponentielle de paramètre $\th
 
 Lorsque $\alpha$ est entier, la loi gamma permet de modéliser le temps d'attente avant la $n$-ième occurence d'événements indépendants de loi exponentielle de paramètre $\theta$.
 
-### Loi normale
-La variable $X$ suit la loi normale
-de paramètres $\mu$ et $\sigma^2$, 
-ce que l'on note $X \sim \mathcal{N}(\mu,\sigma^2)$, 
-si $X$ est de densité[^verif]
+### *Loi normale*
+
+de paramètres $\mu$ et $\sigma^2$ et on note $X \sim \mathcal{N}(\mu,\sigma^2)$ si $X$ est de densité[^verif]
         $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
 Son espérance et sa variance valent
         $$\Esp(X) =  \mu \text{ et } \V(X) = \sigma^2$$
@@ -420,20 +300,14 @@ Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétr�
 
 Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l’exemple suivant.
 
-### Loi de Cauchy
+### *Loi de Cauchy*
 
-Un gyrophare envoie un flash lumineux dans une direction aléatoire uniforme d’angle $\Theta$. 
-On cherche la distribution de l'abscisse $X$ du point d'impact du rayon lumineux sur un écran plan infini situé à distance 1 du gyrophare.
+Un gyrophare envoie un flash lumineux dans une direction aléatoire uniforme d’angle $\theta$. On cherche la distribution de l'abscisse $X$ du point d'impact du rayon lumineux sur un écran plan infini situé à distance 1 du gyrophare.
 
-L'angle $\Theta$ est une variable aléatoire uniforme sur $[-\pi/2,\pi/2]$, de densité 
-$$
-g(\theta) = \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta).
-$$ 
-L'abscisse $X$ est donnée par $X = \tan \Theta$, 
-c'est donc une variable aléatoire, de fonction de répartition
+L'angle $\theta$ est une variable aléatoire uniforme sur $[-\pi/2,\pi/2]$, de densité $g(\theta) = \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta)$. L'abscisse $X$ est donnée par $X = \tan \theta$, c'est donc une variable aléatoire, de fonction de répartition
 \begin{align*}        
 F(x) & = \P(X \leq x) \\
-     & = \P(\Theta \leq \arctan x) \\
+     & = \P(\theta \leq \arctan x) \\
      & = \int_{-\infty}^{\arctan x} \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta) d\theta \\
      & = \frac{1}{\pi} \arctan x + \frac{1}{2}.
 \end{align*}
@@ -454,12 +328,11 @@ De même qu'en dimension 1, la loi de $X$ est caractérisée par la fonction de 
 $$F(x_1,\ldots,x_n) = \P_X(X_1\leq x_1,\ldots,X_n\leq x_n)$$
 Mais caractériser les fonctions de répartition sur $\R^n$ est délicat, de sorte que cette notion est rarement utilisée. Nous allons plus particulièrement nous intéresser aux vecteurs aléatoires à densité.
 
-### Variable aléatoire à densité {.definition #defvect}
+### Définition {.definition #defvect}
 On dit que $X$ admet la densité $f$ si la fonction réelle $f$ sur $\R^n$ est positive, intégrable et vérifie 
 $$\int_{\R^n} f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n) dx_1 \ldots dx_n= 1$$
 et si
 $$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} f(x_1,\ldots,x_n) dx_1 \ldots dx_n.$$
-
 
 De la même manière que dans le [cas unidimensionnel](#esperanceg), on a :
 
@@ -516,7 +389,7 @@ La matrice de covariance est symétrique non-négative (ou encore semi-définie 
 La symétrie est évidente. Non-négative signifie que pour tous réels $a_1,\ldots,a_n$, on a $\sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} \geq 0$. Un calcul simple montre que
 $$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i).$$
 
-### Exemple : Vecteur gaussien $n$-dimensionel {.example}
+### Exemple : Vecteur Gaussien $n$-dimensionel {.example}
 Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons en détail au chapitre suivant. Soient $m \in \R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in \R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
 $$ f(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^tC^{-1}(x-m)) $$
 On a alors $\Esp(X) = m$ et $C_X =C$.
@@ -583,24 +456,7 @@ $$\cov(X,Y) = \cov(X,X^2) = \Esp(X^3) - \Esp(X)\Esp(X^2) = 0$$
 
 # Identification de densité
 
-Un problème important est le suivant **TODO**[^ao]. Soit $X$ une variable aléatoire réel, admettant la densité $f_X$. Soit $g$ une fonction mesurable, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
-
-[^ao]: Ah ouais ? ;) Pas que je ne sois pas d'accord hein, mais ici comme ailleurs,
-c'est "Show, don't tell" qui doit prédominer. Si à ce point on a réussi à convaincre
-que les va a densité sont plus "cool" à gérer que des va plus "générales" ET que
-l'on a fait comprendre que faire des calculs avec des grandeurs aléatoires 
-c'est fondamentalement *composer* des va par des fonctions boréliennes (puis
-calculer des probas, espérances, variances, etc.), 
-alors on est sur le bon chemin pour expliquer pourquoi
-on devrait s'intéresser à ce problème. Ca devra probablement être fait en amont
-(notamment parce que pour justifier l'intérêt de "fonction borélienne" il faut
-déjà avoir compris ça),
-mais j'imagine que ça n'est pas 100% immédiat pour tout le monde que "mener des calculs
-avec des grandeurs", c'est mathématiquement "faire des compositions de fonctions" ;
-si je dis ça c'est que la même abstraction se retrouve quand on fait de la 
-diff auto et que l'usage généralisé de la chain rule n'était pas évident pour
-tous (SB).
-
+Un problème important est le suivant. Soit $X$ une variable aléatoire réel, admettant la densité $f_X$. Soit $g$ une fonction mesurable, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
 
 On peut déjà remarquer que cette densité n’existe pas toujours. Si par exemple $g(x) = a$ pour tout $x$, la loi de $Y$ est la masse de Dirac en $a$, qui n’a
 pas de densité.
@@ -613,40 +469,12 @@ $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R} h \circ g(x) f_X(x) dx$$
 
 et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire, on appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
 
-**TODO.** [^ok]
-
-[^ok]: Cette proposition est a priori devenue une **définition** de va a densité,
-donc on est confort à ce stade.
-
 ### Proposition {.proposition}
 Si il existe une fonction $f$ telle que pour toute fonction mesurable $h$ telle que $h(x) f(x)$ soit absolument intégrable, 
 $$\Esp(h(X)) = \int_\R h(x) f(x) dx$$
 alors la loi de $X$ admet la densité $f$.
 
 L’idée de la preuve repose sur le fait que parmi ces fonctions se trouvent les $h = 1_{]-\infty,y]}$, pour laquelle la formule précédente donne la fonction de répartition de $f$.
-
-**TODO.**[^hierar]
-
-[^hierar]: J'aime bien tout ce qu'il y a ici, mais j'essaierais de le
-hiérarchiser un peu plus et de ne pas forcément tout essayer de faire passer comme
-"résultat général" (mais plutôt de se limiter aux exemples pour 
-"donner l'idée" si la formalisation générale est trop lourde).
-En particulier, à mon avis, il y a ici trois techniques : "changement de
-variable", "découpage" et "marginalisation". S'il n'y en a qu'une
-a retenir à mon avis (le plus "fondamental / utile / propre") c'est la 1ère. 
-Si $Y = g(X)$ et que $g$ est un $C^1$-diffeo
-qui va bien, alors si $X$ est à densité, $Y$ aussi et -- sauf erreur 
-de ma part -- on a
-$$
-f_Y(y) = f_X(g^{-1}(y)) |\det J_{g^{-1}}(y)|.
-$$
-Je mettrais bien ça en avant comme une jolie petite proposition avant de
-présenter comme on peut étendre les hypothèses par "découpage" et 
-"marginalisation" sur des exemples (le découpage, pour l'énoncer de 
-façon générale, il faudrait s'embêter à se ramener à des ouverts, donc
-dire des choses sur le caractère négligeable des frontières, pas vrai en
-général, c'est affreux ...)
-
 
 Nous donnons ici quelques exemples d'application de cette méthode :
 
@@ -678,15 +506,6 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
         $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n.$$
 
 ### Exemples
-
-**TODO.**[^cp]
-
-[^cp]: Dans l'exemple des coordonnées polaires, il faut travailler un peu
-plus pour pouvoir invoquer un changement de variable, car le cadre 
-présenté en calcul intégral III se limite aux ouverts. Il suffit a 
-priori de "retirer" la contribution aux intégrales dans $\R^2$
-la ligne $\mathbb{R}^- \times \{0\}$ (car négligeable) pour pouvoir
-travailler avec un difféo entre ouverts. (SB)
 
  1. **Coordonnées polaires**
     Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, et $Y = (R,\Theta)$ ses coordonnées polaires. La transformation $g$ est un difféomorphisme de $A = \R^2\setminus\{0\}$ dans $B = \left]0,+\infty\right[\times \left]0,2\pi\right]$, et son inverse $g^{-1}$ s'écrit : $u = r\cos \theta,\, v= r\sin \theta$.
@@ -756,7 +575,7 @@ Toujours selon les mêmes hypothèses, calculer la médiane de $Y$. La comparer 
 
 ## Indépendance et vecteurs gaussiens
 
-Soit $Z := (X,Y)$ un vecteur gaussien (i.e. qui suit une loi normale bi-variée) d'espérance $m$ et de matrice de covariance définie positive $C$. Notons $f_Z$ sa densité.
+Soit $Z := (X,Y)$ un vecteur gaussien (i.e. qui suit une loi Normale bi-variée) d'espérance $m$ et de matrice de covariance définie positive $C$. Notons $f_Z$ sa densité.
 
 ### Question 1 {.question #covindepgauss-joint}
 
@@ -773,7 +592,7 @@ Montrer que $X$ et $Y$ sont indépendantes ssi $\text{Cov}\left(X,Y\right) = 0$.
 
 ## Symétrie de la gaussienne
 
-Soit $X$ une variable aléatoire réelle de loi normale centrée réduite, dont la densité est notée $f$ et la fonction de répartition $F$. Pour tout $c>0$ on pose 
+Soit $X$ une variable aléatoire réelle de loi Normale centrée réduite, dont la densité est notée $f$ et la fonction de répartition $F$. Pour tout $c>0$ on pose 
         $$X_c := \left|\begin{array}{ll} X & \text{si } |X| > c,\\ -X & \text{si } |X| \leq c.\end{array}\right.$$
 
 ### Question 1 {.question #gausssym-loi}
@@ -797,39 +616,44 @@ Le vecteur aléatoire $(X,X_{c_0})$ est-il gaussien ?
 
 On considère une variable aléatoire $X$ gaussienne centrée réduite. On note $f$ sa densité et $F$ sa fonction de répartition.
 
-### Question 1 -- Un degré de liberté {.question #khi2-1dl}
+### A 1 degré de liberté {.question #khi2-1dl}
 
-Calculer la densité de la variable aléatoire $Y := X^2$. En donner une expression faisant apparaître la fonction gamma (on rappelle que $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$).
+1. Calculer la densité de la variable aléatoire $Y := X^2$. En donner une expression faisant apparaître la fonction gamma (on rappelle que $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$).
 
 On dit que $Y$ suit une *loi du $\chi^2$ à $1$ degré de liberté*, et on note $Y \sim \chi^2$.
 
-### Question 2 -- Multiples degrés de liberté {.question #khi2-ndl}
+### A n degrés de liberté {.question #khi2-ndl}
 
 Soient maintenant $n\in\mathbb{N}^\ast$ et $X_1,\dots,X_n$ des copies indépendantes de $X$. Pour tout $i \in \{1,\dots,n\}$ on pose $Y_i := X_i^2$.
 
-Montrer que la variable aléatoire $Y := \sum_{i = 1}^n Y_i$ admet pour densité
+2. Montrer que la variable aléatoire $Y := \sum_{i = 1}^n Y_i$ admet pour densité
 $$ f_Y : x\in\R \mapsto \left|\begin{array}{ll} \dfrac{x^{\frac{n}{2} - 1}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{n}{2}\right)}\,\exp\left\{ -\dfrac{x}{2} \right\} & \text{si } x> 0,\\ 0 & \text{si } x \leq 0. \end{array}\right.$$
 On pourra procéder par récurrence sur $n$.
 
 On dit que $Y$ suit une *loi du $\chi^2$ à $n$ degrés de liberté* et on note $Y \sim \chi^2_n$.
 
-## Combinaisons linéaires de variables gaussiennes indépendantes
 
-Soit $X$ une variable aléatoire de loi normale centrée réduite, dont on note $f$ la densité et $F$ la fonction de répartition.
 
-### Question 1 -- Préliminaires {.question #CLIGauss-pre}
+## Combinaisons linéaires de variables Gaussiennes indépendantes
 
-Rappeler la loi de la variable aléatoire $s\,X + m$, où $s, m \in \R$.
+Soit $X$ une variable aléatoire de loi Normale centrée réduite, dont on note $f$ la densité et $F$ la fonction de répartition.
 
-### Question 2 -- Loi {.question #CLIGauss-loi}
+### Préliminaires {.question #CLIGauss-pre}
+
+1. Rappeler la loi de la variable aléatoire $s\,X + m$, où $s, m \in \R$.
+
+### Combinaisons linéaires {.question #CLIGauss-cl}
 
 Soient maintenant $n\in\mathbb{N}^\ast$ variables aléatoires $X_1,\dots,X_n$ indépendantes et de même loi que $X$ (on dit que ce sont des *copies indépendantes* de $X$). Pour tout vecteur $a = (a_1,\dots,a_n) \in (\R^{*})^n$ on pose $S_n^a := \sum_{i = 1}^n a_i\,X_i$. 
 
-Montrer que pour $S_n^a$ suit une loi normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$ (on pourra raisonner par récurrence sur $n$). 
+2. Montrer que pour $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$ (on pourra raisonner par récurrence sur $n$).
 
-### Question 3 -- Covariance {.question #CLIGauss-covariance}
+3. Soient $a,b\in(\R^{*})^n$. Sous quelle condition a-t-on $\text{Cov}\left(S_n^a, S_n^b\right) = 0$ ?
 
-Soient $a,b\in(\R^{*})^n$. Sous quelle condition a-t-on $\text{Cov}\left(S_n^a, S_n^b\right) = 0$ ?
+
+
+
+---
 
 # Solutions
 
@@ -948,11 +772,11 @@ f_X(x) &= \int_{-\infty}^{+\infty} f_Z(x,y)\,dy\\
 &= \dfrac{1}{\sqrt{2\pi}\,\sigma_X}\,\exp\left\{-\dfrac{(x-m_X)^2}{2\,\sigma_X^2} \right\}\times\\
 &\ \ \ \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2\pi}\,\sqrt{1-\rho^2}}\,\exp\left\{-\dfrac{1}{2\,(1-\rho^2)}\,\left(u - \rho\,\dfrac{x-m_X}{\sigma_X}\right)^2 \right\}\,du,
 \end{align*}
-et on reconnaît dans cette dernière intégrale la densité d'une loi normale d'espérance $\rho\,\dfrac{x-m_X}{\sigma_X}$ et de variance $1-\rho^2$. Cette intégrale vaut donc $1$ et on conclut que
+et on reconnaît dans cette dernière intégrale la densité d'une loi Normale d'espérance $\rho\,\dfrac{x-m_X}{\sigma_X}$ et de variance $1-\rho^2$. Cette intégrale vaut donc $1$ et on conclut que
 $$f_X(x) = \dfrac{1}{\sqrt{2\pi}\,\sigma_X}\,\exp\left\{-\dfrac{(x-m_X)^2}{2\,\sigma_X^2} \right\}, $$
-qui correspond à la densité d'une loi normale d'espérance $m_X$ et de variance $\sigma_X^2$.
+qui correspond à la densité d'une loi Normale d'espérance $m_X$ et de variance $\sigma_X^2$.
 
-En procédant de manière symétrique, on obtient de même que $Y$ suit une loi normale d'espérance $m_Y$ et de variance $\sigma_Y^2$.
+En procédant de manière symétrique, on obtient de même que $Y$ suit une loi Normale d'espérance $m_Y$ et de variance $\sigma_Y^2$.
 
 ### Question 3 {.answer #answer-covindepgauss-indep}
 Le premier sens est évident : si $X$ et $Y$ sont indépendantes, alors nous avons vu dans le cours que $\text{Cov}\left(X,Y\right) = 0$, et ce que l'on soit gaussien ou non.
@@ -985,12 +809,12 @@ $$F_c(x) = F(x) - F(c) + F\left(\min\{-c,x\}\right) + F(c) - F(-c) = F(x),$$
 
 * si $-c \leq x \leq c$ alors $\min\{-c,x\} = -c$ et
 $$F_c(x) = F\left(\min\{-c,x\}\right) + F(c) - F(-x) = 1 - F(c) + F(c) - 1 + F(x) = F(x)$$
-car la densité de la loi normale centrée réduite est paire, ce qui implique que $F(-x) = 1 - F(x)$ pour tout $x\in\R$,
+car la densité de la loi Normale centrée réduite est paire, ce qui implique que $F(-x) = 1 - F(x)$ pour tout $x\in\R$,
 
 * si $x < -c$ alors $\min\{-c,x\} = x$ et
 $$F_c(x) =  F\left(\min\{-c,x\}\right) = F(x).$$
 
-On en conclut que $F_c = F$ : $X_c$ a la même loi que $X$. Ce résultat est dû à la symétrie de la densité de la loi normale centrée réduite. On remarque d'ailleurs que le résultat resterait inchangé si l'on prenait n'importe quelle autre loi de densité paire !
+On en conclut que $F_c = F$ : $X_c$ a la même loi que $X$. Ce résultat est dû à la symétrie de la densité de la loi Normale centrée réduite. On remarque d'ailleurs que le résultat resterait inchangé si l'on prenait n'importe quelle autre loi de densité paire !
 
 ### Question 2 {.answer #answer-gausssym-cov}
 
@@ -1001,9 +825,9 @@ puisque $X$ et $X_c$ sont gaussiennes centrées (d'espérance nulle) réduites. 
 &= \Esp\left(X^2\,\left(1_{\R\backslash[-c,c]}(X) + 1_{[-c,c]}(X) - 1_{[-c,c]}(X)\right) - X^2\,1_{[-c,c]}(X)\right)\\
 &= \Esp\left(X^2\right) - 2\,\Esp\left(X^2\,1_{[-c,c]}(X)\right).
 \end{align*}
-Etant donné que $X$ est de loi normale centrée réduite, on a directement que $\Esp\left(X^2\right)=1$; il suffit donc de calculer la dernière espérance pour obtenir le résultat. Comme $x\mapsto x^2\,1_{[-c,c]}(x)$ est bornée et continue sur $\R\backslash\{-c,c\}$ (donc continue presque partout), elle est intégrable et
+Etant donné que $X$ est de loi Normale centrée réduite, on a directement que $\Esp\left(X^2\right)=1$; il suffit donc de calculer la dernière espérance pour obtenir le résultat. Comme $x\mapsto x^2\,1_{[-c,c]}(x)$ est bornée et continue sur $\R\backslash\{-c,c\}$ (donc continue presque partout), elle est intégrable et
 $$\Esp\left(X^2\,1_{[-c,c]}(X)\right) = \int_{-\infty}^{+\infty} x^2\,1_{[-c,c]}\,f(x)\,dx = \int_{-c}^c x^2\,f(x)\,dx. $$
-Or on pourra remarquer que $f^\prime(x) = -x\,f(x)$ puis que $f^{\prime\prime}(x) = (x^2-1)\,f(x)$. Puisque $f$, $f^\prime$ et $f^{\prime\prime}$ sont continues et bornées (voir l'exercice *Densité et fonction de répartition d'une loi normale* du chapitre Probabilités I) elles sont intégrables sur des segments. On en déduit que
+Or on pourra remarquer que $f^\prime(x) = -x\,f(x)$ puis que $f^{\prime\prime}(x) = (x^2-1)\,f(x)$. Puisque $f$, $f^\prime$ et $f^{\prime\prime}$ sont continues et bornées (voir l'exercice *Densité et fonction de répartition d'une loi Normale* du chapitre Probabilités I) elles sont intégrables sur des segments. On en déduit que
 \begin{align*}
 \Esp\left(X^2\,1_{[-c,c]}(X)\right) &= \int_{-c}^c (x^2-1)\,f(x)\,dx + \int_{-c}^c f(x)\,dx\\
 &= \left[-x\,f(x) \right]_{-c}^c + F(c) - F(-c)\\
@@ -1033,35 +857,32 @@ On en conclut que bien que $\text{Cov}\left(X,X_{c_0}\right) = 0$, $X$ et $X_{c_
 
 Supposons que $(X,X_{c_0})$ soit un vecteur gaussien. Alors, puisque $\text{Cov}\left(X,X_{c_0}\right) = 0$, $X$ et $X_{c_0}$ sont nécessairement indépendantes. Or nous venons de voir que ce n'était pas le cas; nous avons donc contradiction. On en conclut que $(X,X_{c_0})$ n'est pas gaussien.
 
-##  Combinaisons linéaires de variables gaussiennes indépendantes
+##  Combinaisons linéaires de variables Gaussiennes indépendantes
 
-### Question 1 -- Préliminaires {.answer #answer-CLIGauss-pre}
+### Préliminaires {.answer #answer-CLIGauss-pre}
 
 Cette question a été traitée de manière générale dans le cours. Nous en proposons une preuve alternative, basée sur le calcul de la fonction de répartition de la variable aléatoire $s\,X + m$, qui caractérise sa loi. Elle dépend clairement des valeurs de $s$.
 
-Si $s = 0$, alors $s\,X + m$ est toujours égale à $m$ : sa loi est une masse de Dirac en $\{m\}$ et pour tout $x\in\R$ on a $\P\left(s\,X +m \leq x\right) = 1_{[m,+\infty[}(x)$.
+* Si $s = 0$, alors $s\,X + m$ est toujours égale à $m$ : sa loi est une masse de Dirac en $\{m\}$ et pour tout $x\in\R$ on a $\P\left(s\,X +m \leq x\right) = 1_{[m,+\infty[}(x)$.
 
-Si $s\neq 0$, alors pour tout $x\in\R$ on a
+* Si $s\neq 0$, alors pour tout $x\in\R$ on a
 $$\P\left( s\,X + m \leq x \right) = \left|\begin{array}{ll}\displaystyle\P\left( X \leq \dfrac{x-m}{s} \right) = \int_{-\infty}^{\frac{x-m}{s}} f(u)\,du & \text{si } s>0,\\[1em] \displaystyle \P\left( X \geq \dfrac{x-m}{s} \right) = \int_{\frac{x-m}{s}}^{+\infty} f(u)\,du & \text{si } s<0,\end{array}\right.$$
 qui en posant le changement de variable $v = s\,x+m$ donne
 $$\P\left( s\,X + m \leq x \right) = \int_{-\infty}^{x} \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s} \right)\,dx.$$
 <!-- On pourra remarquer que cela revient à utiliser la méthode avec E(h(X)) du cours, pour h l'indicatrice qu'on est plus petit que x, car P(X in A) = E(1\_A(X)) -->
 Ainsi, $s\,X+m$ admet une densité, qui pour tout $x\in\R$ est égale à
 $$ \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s}\right) = \dfrac{1}{\sqrt{2\,\pi}\,|s|}\,\exp\left\{-\dfrac{(x-m)^2}{2\,s^2} \right\}.$$
-On reconnaît la densité d'une loi normale d'espérance $m$ et de variance $s^2$.
+On reconnaît la densité d'une loi Normale d'espérance $m$ et de variance $s^2$.
 
-### Question 2 -- Loi {.answer #answer-CLIGauss-loi}
+### Combinaisons linéaires {.answer #answer-CLIGauss-cl}
 
-Commençons par supposer que pour tout $n\in\mathbb{N}^\ast$, $a\in\R^n$ est tel qu'aucune de ses composantes n'est nulle. Nous allons montrer par récurrence sur $n$ que $S_n^a$ suit une loi normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$. On note cette propriété $(\mathcal{P}_n)$. 
+2. Commençons par supposer que pour tout $n\in\mathbb{N}^\ast$, $a\in\R^n$ est tel qu'aucune de ses composantes n'est nulle. Nous allons montrer par récurrence sur $n$ que $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$. On note cette propriété $(\mathcal{P}_n)$. 
 
-#### Initialisation
+**Initialisation.**
 
-Si $n = 1$ et $a_1 \neq 0$, alors $S_1^a = a_1\,X_1$ suit une loi normale centrée de variance $a_1^2$ d'après la question 1; $(\mathcal{P}_1)$ est donc vraie.
+* Si $n = 1$ et $a_1 \neq 0$, alors $S_1^a = a_1\,X_1$ suit une loi Normale centrée de variance $a_1^2$ d'après la question 1; $(\mathcal{P}_1)$ est donc vraie.
 
-Si $n=2$ et $a_1,a_2 \neq 0$, alors d'après le cours $S_2^a = a_1\,X_1 + a_2\,X_2$ admet une densité, notée $f_n^a$, égale au produit de convolution des densités $f_1$ de $a_1\,X_1$ et $f_2$ de $a_2\,X_2$. En outre, d'après la question 1, pour tout $x\in\R$, on a 
-$$
-f_1(x) = \dfrac{1}{|a_1|}\,f\left(\dfrac{x}{a_1} \right) \; \mbox{ et } \; f_2(x) = \dfrac{1}{|a_2|}\,f\left(\dfrac{x}{a_2} \right).$$ 
-Par conséquent, pour tout $x\in\R$,
+* Si $n=2$ et $a_1,a_2 \neq 0$, alors d'après le cours $S_2^a = a_1\,X_1 + a_2\,X_2$ admet une densité, notée $f_n^a$, égale au produit de convolution des densités $f_1$ de $a_1\,X_1$ et $f_2$ de $a_2\,X_2$. En outre, d'après la question 1, pour tout $x\in\R$ on a $f_1(x) = \dfrac{1}{|a_1|}\,f\left(\dfrac{x}{a_1} \right)$ et $f_2(x) = \dfrac{1}{|a_2|}\,f\left(\dfrac{x}{a_2} \right)$. Par conséquent, pour tout $x\in\R$,
 \begin{align*}
 f_2^a(x) &= \int_{\R} f_1(x-u)\,f_2(u)\,du = \int_\R \dfrac{1}{|a_1|\,|a_2|}\,f\left(\dfrac{x - u}{a_1}\right)\,f\left(\dfrac{u}{a_2}\right)\,du\\
 &= \dfrac{1}{\sqrt{a_1^2 +a_2^2}}\,f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)\, \int_{\R} \dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}\,\dfrac{f\left(\dfrac{x - u}{a_1}\right)}{f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)}\,f\left(\dfrac{u}{a_2}\right)\,du.
@@ -1073,21 +894,14 @@ Or pour tout $x,u\in\R$ on a
 &= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{ -\dfrac{\left(a_2^2\,x - (a_1^2 + a_2^2)\,u\right)^2}{2\,a_1^2\,a_2^2\,(a_1^2+a_2^2)} \right\}\\
 &= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{-\dfrac{\left(u - \dfrac{a_2^2\,x}{a_1^2 + a_2^2}\right)^2}{2\,\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}}\right\},
 \end{align*}
-qui -- à une constante multiplicative près -- <!-- multiplié par $\dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}$ -->
-correspond à la densité d'une loi normale d'espérance $m$ et de variance $\sigma^2$, avec 
-$$m = \dfrac{a_2^2\,x}{a_1^2+a_2^2}
-\; \mbox{ et } \; \sigma^2 = \dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}.$$ 
-La précédente intégrale vaut donc $1$ et $(\mathcal{P}_2)$ est vraie.
+qui multiplié par $\dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}$ correspond à la densité d'une loi Normale d'espérance $\dfrac{a_2^2\,x}{a_1^2+a_2^2}$ et de variance $\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}$. La précédente intégrale vaut donc $1$ et $(\mathcal{P}_2)$ est vraie.
 
-#### Hérédité
-Soit maintenant $n\geq 2$, et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $S_n^a = S_{n-1}^{a_{-n}} + a_n\,X_n$, où $a_{-n} := (a_1,\dots,a_{n-1})$. Or $S_{n-1}^{a_{-n}}$ et $a_n\,X_n$ sont des variables gaussiennes centrées, de variances respectives $\sum_{i = 1}^{n-1} a_i^2$ d'après $(\mathcal{P}_{n-1})$ et $a_n^2$ d'après la question 1. Par $(\mathcal{P}_2)$, $S_n^a$ suit donc une loi normale centrée de variance $\sum_{i = 1}^n a_i^2$.
+**Héritage.** Soit maintenant $n\geq 2$, et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $S_n^a = S_{n-1}^{a_{-n}} + a_n\,X_n$, où $a_{-n} := (a_1,\dots,a_{n-1})$. Or $S_{n-1}^{a_{-n}}$ et $a_n\,X_n$ sont des variables gaussiennes centrées, de variances respectives $\sum_{i = 1}^{n-1} a_i^2$ d'après $(\mathcal{P}_{n-1})$ et $a_n^2$ d'après la question 1. Par $(\mathcal{P}_2)$, $S_n^a$ suit donc une loi Normale centrée de variance $\sum_{i = 1}^n a_i^2$.
 
-#### Conclusion
-On en conclut que $(\mathcal{P}_n)$ est vraie pour tout $n\in\mathbb{N}^\ast$.
+**Conclusion.** On en conclut que $(\mathcal{P}_n)$ est vraie pour tout $n\in\mathbb{N}^\ast$.
 
-### Question 3 -- Covariance {.answer #answer-CLIGauss-covariance}
 
-Calculons la covariance de l'énoncé :
+3. Calculons cette covariance :
 \begin{align*}
 \text{Cov}\left(S_n^a, S_n^b\right) &= \text{Cov}\left(\sum_{i =1}^n a_i\,X_i, \sum_{j = 1}^n b_j\,X_j\right)\\
 &= \sum_{i = 1}^n a_i\,b_i\,\mathbb{V}\left(X_i\right) + \sum_{1\leq i\neq j \leq n} a_i\,b_j\,\text{Cov}\left(X_i,X_j\right).
@@ -1099,9 +913,9 @@ qui est nulle ssi $a$ et $b$ sont orthogonaux.
 
 ## Loi du $\chi^2$
 
-### Question 1 -- Un degré de liberté {.answer #answer-khi2-1dl}
+### A 1 degré de liberté {.answer #answer-khi2-1dl}
 
-Soit $h : \R \to \R$ une fonction mesurable telle que $h\times f$ est absolument intégrable. Alors en opérant le changement de variable $u = x^2$ on a
+1. Soit $h : \R \to \R$ une fonction mesurable telle que $h\times f$ est absolument intégrable. Alors en opérant le changement de variable $u = x^2$ on a
 \begin{align*}
 \Esp\left( h(Y) \right) &= \Esp\left(h(X^2)\right) = \int_{\R} h(x^2)\,f(x)\,dx\\
 & = \int_{-\infty}^{0} h(x^2)\,f(x)\,dx + \int_{0}^{+\infty} h(x^2)\,f(x)\,dx\\
@@ -1114,25 +928,19 @@ Or $f$ est paire, donc pour tout $u \in \R^+$ on a $f\left(-\sqrt{u}\right) = f\
 Par propriété $Y$ possède donc une densité $f_Y$ valant pour tout $x\in\R$
 $$f_Y(x) = \left|\begin{array}{ll} f\left(\sqrt{x}\right)\,\dfrac{1}{\sqrt{x}} = \dfrac{x^{-\frac{1}{2}}}{2^{\frac{1}{2}}\,\Gamma\left(\frac{1}{2}\right)}\,\exp\left\{-\dfrac{x}{2}\right\} & \text{si } x > 0,\\ 0 & \text{si } x \leq 0. \end{array}\right. $$
 
-#### Remarque
-
-La fonction $f_Y$ est bien une densité : elle est continue par morceaux donc mesurable, puis positive, et son intégrale sur $\R$ vaut bien $1$ :
+**Remarque.** La fonction $f_Y$ est bien une densité : elle est continue par morceaux donc mesurable, puis positive, et son intégrale sur $\R$ vaut bien $1$ :
 \begin{align*}
 \int_{\R} f_Y(x)\,dx &= \dfrac{1}{2\,\Gamma\left(\frac{1}{2}\right)}\,\int_{0}^{+\infty} \left(\dfrac{x}{2}\right)^{\frac{1}{2}-1}\,\exp\left\{-\dfrac{x}{2}\right\}\,dx \\
 &= \dfrac{1}{\Gamma\left(\frac{1}{2}\right)}\,\int_{0}^{+\infty} u^{\frac{1}{2}-1}\,e^{-u}\,du = \dfrac{\Gamma\left(\frac{1}{2}\right)}{\Gamma\left(\frac{1}{2}\right)} = 1.
 \end{align*}
 
-### Question 2 -- Multiples degrés de liberté {.answer #answer-khi2-ndl}
+### A n degrés de liberté {.answer #answer-khi2-ndl}
 
-On note $(\mathcal{P}_n)$ la propriété à démonter au rang $n$.
+2. On note $(\mathcal{P}_n)$ la propriété à démonter au rang $n$.
 
-#### Initialisation 
+**Initialisation.** Nous avons vu à la question précédente que $(\mathcal{P}_1)$ est vraie.
 
-Nous avons vu à la question précédente que $(\mathcal{P}_1)$ est vraie.
-
-#### Hérédité 
-
-Soit maintenant $n \geq 2$ et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $Y = \sum_{i = 1}^{n-1}Y_i + Y_n$ est la somme de deux variables aléatoires indépendantes, dont la première suit un $\chi_{n-1}^2$ de densité notée $f_{n-1}$ et la seconde un $\chi_1^2$ de densité notée $f_1$. Elle possède donc une densité, égale au produit de convolution de $f_{n-1}$ et $f_1$ : pour tout $x\in\R$
+**Hérédité.** Soit maintenant $n \geq 2$ et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $Y = \sum_{i = 1}^{n-1}Y_i + Y_n$ est la somme de deux variables aléatoires indépendantes, dont la première suit un $\chi_{n-1}^2$ de densité notée $f_{n-1}$ et la seconde un $\chi_1^2$ de densité notée $f_1$. Elle possède donc une densité, égale au produit de convolution de $f_{n-1}$ et $f_1$ : pour tout $x\in\R$
 $$f_Y(x) = \int_{\R} f_1(x-u)\,f_{n-1}(u)\,du.$$
 Or pour tout $x,u\in\R$ on a $f_1(x-u) = 0$ ssi $x \leq u$ et $f_{n-1}(u) = 0$ ssi $u \leq 0$. Donc leur produit est strictement positif ssi $x > u > 0$, nul sinon. La densité $f_Y$ est par conséquent nulle sur $\R^-$ et nous allons maintenant exhiber son expression sur $\R_+^\ast$. Soit $x > 0$, alors
 \begin{align*}
@@ -1156,6 +964,4 @@ et finalement que pour tout $x\in\R$
 $$f_Y(x) = \left|\begin{array}{ll} \dfrac{x^{\frac{n}{2}-1}}{2^{\frac{n}{2}}\,\Gamma\left(\frac{n}{2}\right)}\,\exp\left\{-\dfrac{x}{2}\right\} & \text{si } x> 0,\\ 0 & \text{sinon;}\end{array}\right.$$
 $(\mathcal{P}_n)$ est donc vraie.
 
-#### Conclusion 
-
-La propriété est vraie pour tout $n\in\mathbb{N}^\ast$.
+**Conclusion.** La propriété est vraie pour tout $n\in\mathbb{N}^\ast$.
