@@ -405,27 +405,6 @@ sont bien mesurables ;
 en effet si la fonction caractéristique $1_E$ est intégrable,
 sa restriction à tout intervalle compact $[a, b]$ également.
 
-### Complémentaire absolu et relatif {.notation .definition}
-Le complémentaire (absolu) d'un ensemble $A$, relativement au
-sur-ensemble $X=\R$ dans ce chapitre
--- mais le concept peut facilement être généralisé --
-désigne l'ensemble des points de $X$ qui ne sont pas dans $A$.
-Quand le choix de $X$ est clair dans le contexte, on pourra le noter
-$$
-A^c = \{x \in X \, | \, x \not \in A\}.
-$$
-Pour être plus explicite, on peut utiliser la notation du complémentaire 
-relatif : le complémentaire de $A$ dans $B$ est l'ensemble des points de 
-$B$ qui n'appartiennent pas à $A$ :
-$$
-B \setminus A = \{x \in B \, | \, x \not \in A\}.
-$$
-Cette notation ne suppose pas a priori que $A$ soit inclus dans $B$ ; 
-on a bien sûr
-$$
-A^c = X \setminus A.
-$$
-
 ### {.definition .post}
 Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
 $\N$.
