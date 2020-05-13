@@ -407,7 +407,7 @@ sa restriction à tout intervalle compact $[a, b]$ également.
 
 ### {.definition .post}
 On rappelle qu'un ensemble est *dénombrable* s'il est fini 
-ou bien en bijection avec $\N$.
+ou en bijection avec $\N$.
 
 ### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
 
