@@ -1215,7 +1215,7 @@ Exercices
 Une intégrale utile en Probabilités
 --------------------------------------------------------------------------------
 
-Source : (Swa01)
+Source : @Swa01
 
 On s'intéresse à la valeur de l'intégrale
 $$
