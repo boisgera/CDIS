@@ -1864,7 +1864,7 @@ $E_k := E \cap [-k,k]$
 est intégrable, c'est-à-dire que la fonction $1_{E_k}$ est intégrable.
 La fonction $1_{E}$ est donc mesurable car limite simple de fonctions intégrables.
 
-Réciproquement, si une fonction caratéristique $1_E$ est mesurable, 
+Réciproquement, si une fonction caractéristique $1_E$ est mesurable, 
 par [le critère de l'image réciproque](#CIR), comme
 $E = 1_{E}^{-1}(\{1\})$ et que le singleton $\{1\}$ est fermé,
 $E$ est mesurable.
