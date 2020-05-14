@@ -353,7 +353,7 @@ Ensembles mesurables
 
 Il existe un lien étroit entre la notion de longueur d'un ensemble de réels
 et le calcul intégral. Nous savons par exemple que pour tout intervalle 
-compact $E = [a, b]$, la longueur $b-a$ de l'intervalle peut être calculée
+fermé borné $E = [a, b]$, la longueur $b-a$ de l'intervalle peut être calculée
 par l'intégrale de la fonction caractéristique de $E$ :
 $$
 \ell(E) = \ell([a, b]):=  b - a  = \int_a^b \, dt = 
@@ -393,7 +393,7 @@ que $\R$ lui-même.
 Un ensemble $E$ de $\R$ est *de longueur finie* si sa fonction 
 caractéristique $1_E$ est intégrable sur $\R$ ; 
 il est *mesurable* si sa fonction caractéristique est intégrable 
-sur tout intervalle compact $[a, b]$ de $\R$.
+sur tout intervalle fermé borné $[a, b]$ de $\R$.
 La (mesure de) *longueur* d'un ensemble $E$ mesurable est définie par
 $$
 \ell(E) := \int 1_E(t) \, dt
@@ -412,7 +412,7 @@ Cette interprétation  est cohérente, puisque tous les ensembles
 $E$ de longueur finie 
 sont bien mesurables ;
 en effet si la fonction caractéristique $1_E$ est intégrable,
-sa restriction à tout intervalle compact $[a, b]$ également.
+sa restriction à tout intervalle fermé borné $[a, b]$ également.
 
 ### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
 
@@ -451,7 +451,7 @@ de $\R$ forment une *tribu* -- ou *$\sigma$-algèbre* -- de $\R$.
     mesurables est mesurable ;
     il suffit d'établir que si $A$ et $B$ sont mesurables,
     alors leur union $A \cup B$ l'est également. 
-    Or, pour tout intervalle compact $[a, b]$, on a 
+    Or, pour tout intervalle fermé borné $[a, b]$, on a 
     $$
     (A \cup B) \cap [a, b]
     = (A \cap [a, b]) \cup (B \cap [a, b]),
@@ -474,7 +474,7 @@ de $\R$ forment une *tribu* -- ou *$\sigma$-algèbre* -- de $\R$.
     jusqu'à l'ordre $k$
     --
     on peut supposer que $A_k \subset A_{k+1}$.
-    Pour tout intervalle compact $[a, b]$, 
+    Pour tout intervalle fermé borné $[a, b]$, 
     $$
     \left(\bigcup_{k=0}^{+\infty} A_k\right) \cap [a, b] = 
     \bigcup_{k=0}^{+\infty} \left(A_k \cap [a, b]\right);$$
@@ -525,7 +525,7 @@ on peut se contenter de démontrer le résultat soit pour les ouverts
 soit pour les fermés ; la preuve s'avère plus simple dans le cas des ouverts.
 
 Tout intervalle ouvert $I$ est mesurable : en effet, 
-son intersection avec un intervalle compact $[a, b]$ 
+son intersection avec un intervalle fermé borné $[a, b]$ 
 est un intervalle inclus dans $[a, b]$.
 La fonction caractéristique associée est de la forme $1_{[c, d]}$,
 ou en diffère au plus en deux points ; 
@@ -564,7 +564,7 @@ $$
 \sum_i \ell(I_i) \leq \varepsilon.
 $$
 
-Supposons temporairement que $A$ soit inclus dans un intervalle compact 
+Supposons temporairement que $A$ soit inclus dans un intervalle fermé borné 
 $[a, b]$ de $\R$. 
 La fonction caractéristique $1_A$ de $A$ est intégrable, 
 donc pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur
@@ -579,7 +579,7 @@ S(1_A, \mathcal{D})
 \varepsilon.
 $$
 Pour conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i$ 
-où les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement, 
+où les $I_i$ sont des intervalles fermés bornés de $[a, b]$ sans chevauchement, 
 tels que pour tout $i$, $t_i \in A$, $I_i \subset \gamma(t_i)$ et tels que la famille des
 $I_i$ recouvre $A$. Si cette construction est acquise et que $\mathcal{D}_k$
 désigne la collection des $\{(t_i, I_i)\}$ pour $0 \leq i \leq k-1$, alors c'est
@@ -607,10 +607,10 @@ et s'il existe un $t \in A \cap J$ tel que $J \subset \gamma(t)$,
 on inclut la paire $(t, J)$ dans la collection ; dans le cas contraire,
 on poursuit la dichotomie. Cette procédure définit par construction
 une famille dénombrable $\{(t_i, I_i)\}_i$ où $t_i \in A$ et 
-les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement 
+les $I_i$ sont des intervalles fermés bornés de $[a, b]$ sans chevauchement 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$. 
 De plus, les $I_i$ recouvrent $A$ : en effet si l'on considère $t \in A$,
-il existe nécessairement un entier $k$ tel que tout intervalle compact
+il existe nécessairement un entier $k$ tel que tout intervalle fermé borné
 $I$ de longueur inférieure ou égale à $(b-a)/2^k$ contenant $t$ 
 vérifie $I \subset \gamma(t)$.
 Par conséquent, $t$ appartient à l'un des intervalles inclus par le procédé
@@ -1211,7 +1211,7 @@ I := \int_0^{+\infty} e^{-t^2} \, dt.
 $$
 On pose 
 $$
-g(x) := \int_0^x e^{-t^2} \, dt,
+g(x) := \int_0^x e^{-t^2} \, dt
 \; \mbox{ et } \;
 F(x) := \int_0^1 \frac{e^{-x(1+t^2)}}{1+t^2} \, dt.
 $$
@@ -1251,7 +1251,7 @@ Ensembles de longueur finie {.question #lf}
 --------------------------------------------------------------------------------
 
 Soit $A$ un ensemble mesurable de $\R$ pour lequel il existe une
-constante $L$ (finie) telle que pour tout intervalle compact
+constante $L$ (finie) telle que pour tout intervalle fermé borné
 $[a, b]$, on ait
 $$
 \int_a^b 1_A(t) \, dt \leq L.
@@ -1269,7 +1269,7 @@ où la fonction $f$ soit intégrable.
 
 ### Question 0 {.question #il-0}
 Montrer que $f$ est localement intégrable si et seulement si
-pour tout intervalle compact $[a, b]$ de $\R$, $f$ est intégrable
+pour tout intervalle fermé borné $[a, b]$ de $\R$, $f$ est intégrable
 sur $[a, b]$.
 
 ### Question 1  {.question #il-1}
@@ -1291,7 +1291,7 @@ est mesurable.
 
 ### Question 2 {.question #fm-2}
 En déduire qu'une fonction croissante $f: \R \to \R$ est intégrable 
-sur tout intervalle compact.
+sur tout intervalle fermé borné.
 
 Composition de fonctions et mesurabilité {.question #cfm}
 --------------------------------------------------------------------------------
@@ -1687,7 +1687,7 @@ Intégrabilité locale
 --------------------------------------------------------------------------------
 
 ### Question 0 {.answer #answer-il-0}
-De toute évidence, si $f$ est intégrable sur tout intervalle compact,
+De toute évidence, si $f$ est intégrable sur tout intervalle fermé borné,
 elle est intégrable sur tous les intervalles de la forme 
 $[x - \varepsilon, x+\varepsilon]$.
 
@@ -1801,7 +1801,7 @@ des ensembles de la forme $\left]-\infty,a \right]$ sont des intervalles.
 En effet, si $f(x) \leq a$ et $f(y) \leq a$, pour tout point intermédiaire
 $x \leq z \leq y$, $f(z) \leq a$. Par conséquent, $f$ est mesurable.
 
-De plus, $f$ étant croissante, pour tout intervalle compact $[a, b]$ et tout
+De plus, $f$ étant croissante, pour tout intervalle fermé borné $[a, b]$ et tout
 $x \in [a, b]$, on a $f(a) \leq f(x) \leq f(b)$.
 Par le [critère d'intégrabilité dominée](#CID), $f$ est intégrable sur
 $[a, b]$.
@@ -1885,7 +1885,7 @@ est un fermé de $\R$, $\sigma^{-1}(F)$ est un ouvert ou un
 fermé de $\R$ (4 possibilités uniquement, que l'on peut énumérer, selon
 que $F$ contienne ou non $0$ et $1$), et donc $g_k^{-1} (F) = f_k^{-1} (\sigma^{-1}(F))$
 est un ensemble mesurable.   
-Par conséquent, pour tout intervalle compact $[a, b]$ de $\R$, 
+Par conséquent, pour tout intervalle fermé borné $[a, b]$ de $\R$, 
 $1_{E \cap [a, b]}$ est la limite simple des fonctions mesurables 
 $g_k 1_{[a, b]}$, qui sont dominées par $1_{[a, b]}$ et donc intégrable.
 L'ensemble $E$ est donc mesurable.
@@ -1934,7 +1934,7 @@ $$
 où le sup du membre de droite est bien fini puisque 
 $dg_{\alpha}(r)/dr$
 est une fonction continue du couple $(\alpha, r)$ qui appartient 
-à l'ensemble compact $[0, 2\pi] \times [0, R]$.
+à l'ensemble fermé borné $[0, 2\pi] \times [0, R]$.
 Par conséquent, 
 pour toute suite $h_k$ tendant vers $0$ et 
 telle que $r+h_k \in [0, R]$, la suite des
