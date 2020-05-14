@@ -1200,7 +1200,7 @@ un $k$ suffisamment grand, ce qui permet de conclure.
 Exercices
 ================================================================================
 
-Une intégrale utile en Probabilités
+Intégrale de Gauss
 --------------------------------------------------------------------------------
 
 Source : @Swa01
@@ -1504,7 +1504,7 @@ est fermé. Comme [tout fermé est mesurable](#OSM),
 prouve qu'une telle fonction continue est mesurable.
 
 
-Une intégrale utile en Probabilités
+Intégrale de Gauss
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-exp-m2-1}
