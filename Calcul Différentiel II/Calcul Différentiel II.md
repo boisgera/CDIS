@@ -534,11 +534,11 @@ $0$. Dans la suite, nous ne parlerons pas de ces cas particuliers.
 --------------------------------------------------------------------------------
 Composante             \af                                      Nombre de bits
 --------------------   ---------------------------------------  ----------------
-Bit de signe           $s \in \{0,1\}$                          $\phantom{0}1$
+Bit de signe           $s \in \{0,1\}$                          $\phantom{0}1 / 64$
 
-Exposant (biaisé)      $e\in\{1,\dots, 2046\}$                  $11$
+Exposant (biaisé)      $e\in\{1,\dots, 2046\}$                  $11 / 64$
 
-Mantisse               $f=(f_1,\dots,f_{52})\in \{0,1\}^{52}$   $52$
+Mantisse               $f=(f_1,\dots,f_{52})\in \{0,1\}^{52}$   $52 / 64$
 --------------------------------------------------------------------------------
 
 : Anatomie d'un double normalisé $x$ (`float64`)
@@ -551,7 +551,7 @@ pour nous concentrer sur les nombres normalisés et que de plus nous permettons
 à l'exposant $e$ de décrire $\Z$ tout entier, nous obtenons un modèle simplifié
 des doubles, sous la forme d'un sous-ensemble $\D$ de $\R$ :
 $$
-\D = \{0\} \cup \{(-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52})
+\D = \{0\} \cup \{(-1)^s \times 2^{e} \times (1.f_1f_2 \dots f_{52})
 \; | \; s \in\{0,1\}, e \in \Z, f \in \{0,1\}^{52}\}.
 $$
 Pour simplifier la situation, ce modèle ignore délibérément la possibilité 
@@ -566,7 +566,7 @@ constitue donc un bon modèle d'étude pour la suite.
 
 Presque aucun nombre réel ne peut être représenté exactement comme un double.
 Pour faire face à cette difficulté, il est raisonnable d'associer à un
-nombre réel $x$ "sa meilleure approximation" parmi les doubles 
+nombre réel $x$ "sa meilleure approximation" parmi les doubles, 
 notée `x` ou $[x]$ :
 $$
 \mbox{\tt x} = [x].
@@ -575,8 +575,7 @@ On choisit en général en tant que "fonction d'approximation comme double"
 $$
 [\,\cdot\,] : \R \to \D
 $$
-la méthode *arrondi-au-plus-proche* -- 
-dont les cas limites sont spécifiés[^holes] dans le standard IEE754 [@ANS85].
+la méthode *arrondi-au-plus-proche*[^holes].
 Mais il existe des modes alternatifs d'arrondi (arrondis "orientés", vers $+\infty$
 ou $-\infty$) qui peuvent être utiles. Les considérations qui suivent ne
 dépendent pas du détail de ce choix. On supposera uniquement que :
@@ -589,18 +588,18 @@ dépendent pas du détail de ce choix. On supposera uniquement que :
       
       - soit le double immédiatement supérieur à $x$.
 
-[^holes]: Il faut préciser comme l'opération se comporte quand le réel
-est équidistant de deux doubles, comment les "nombres spéciaux" 
-(`inf`, `nan`, ...) sont traités, etc. Autant de "détails" dont nous
-ne nous préoccuperons pas dans la suite.
+[^holes]: Il faudrait préciser comment l'opération se comporte quand le réel
+est équidistant de deux doubles, un niveau de détail dont nous ne nous 
+préoccuperons pas dans la suite.
 
 ### Précision
 
-**TODO** définir erreur d'arrondi, + plot (en utilisant mpmath ?)
-
 Pour avoir la moindre confiance dans le résultats des calculs que nous 
 effectuons avec des doubles, nous devons être en mesure d'évaluer l'erreur
-faite par la représentation de $x$ par $[x]$. 
+faite en représentant de $x$ par $[x]$, nommée *erreur d'arrondi* :
+$$
+e = [x] - x.
+$$ 
 L'*epsilon machine* $\varepsilon$ est une grandeur clé à cet égard : 
 il est défini comme l'écart entre $1.0$
 -- qui peut être représenté exactement comme un double -- 
@@ -624,8 +623,8 @@ types flottants.
 
 Alternativement, l'examen de la structure des doubles normalisés fournit
 directement la valeur de $\varepsilon$ : la mantisse du nombre après $1.0$
-est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ donc
-$\varepsilon =2^{-52},$ un résultat confirmé par l'expérience :
+est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ et son exposant
+$0$ donc $$\varepsilon =2^{-52},$$ un résultat confirmé par l'expérience :
 
     >>> display_all_digits(2**(-52))
     2.220446049250313080847263336181640625e-16
