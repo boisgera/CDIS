@@ -5,15 +5,37 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\D}{\mathbb{D}}
 \renewcommand{\C}{\mathbb{C}}
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
-Théorème des fonctions implicites
+
+
+
+Objectifs d'apprentissage
 ================================================================================
 
-<!--
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
 
-Objectifs {.meta}
---------------------------------------------------------------------------------
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, les objectifs "Expert", les démonstrations du document[^hp] 
+et les contenus en annexe ne sont pas exigibles ("hors-programme").
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+
+#### Théorème des fonctions implicites
+
 
   - comprendre la portée du résultat: permettre la résolution *locale*
     d'équations non-linéaires paramétrique, autour d'une solution connue
@@ -30,29 +52,45 @@ Objectifs {.meta}
     Etudier un scope raisonnable. Cf Salamon sur scope géom diff ?
 
 
-### TODO {.meta}
+#### Calcul des nombres flottants
 
-  - Différentielle partielle nécessaire en amont, pas que dérivée partielle.
+#### Différentiation automatique
 
-  - Donner un jeu d'hypothèse "non minimal" pour le théorème des fonctions
-    implicite dans le but de simplifier le résultat. Par exemple, supposer
-    au minimum l'existence de la différentielle dans un voisiange du point 
-    de référence ? Ou carrément son existence et sa continuité ?
-    Et ajouter en remarque que l'on peut nuancer / décomposer le résultats
-    en affinant les hypothèses, qui ne sont pas minimales ? En particulier, 
-    cela suffit pour énoncer le théorème d'inversion locale, donc go, 
-    simplifions.
+  - avantage et portée de la méthode (plus détaillée: précision, dérivées à
+    un ordre arbitraire, "workflow", usages en optimisation, machine learning,
+    etc.)
 
-  - Nota: preuve IFT nécessite point fixe *avec paramètre*. 
-    Pas nécessairement si l'on se place directement dans les hypothèses
-    de différentiabilité continue ?
+  - connaître les (une version des) principes des différents "morceaux" 
+    de la méthode dans le cas de Python: "tracer", "computation graph", etc.
+    Solution: en construire un "à la main", au moins les étapes importantes.
+    Note: permet aussi d'apprécier les limitations de la méthode.
+
+  - sur péda, essayer forward pass (plus près du cours),
+    mais expliquer backward pass pour pouvoir se "plugger" dans l'existant.
+
+  - exploiter un système existant, type `autograd` en python
+    (sans doute le plus facile en terme de courbe d'apprentissage)
+
+#### Différences finies
 
 
-### TODO
+  - Savoir quelles sont les options quand il s'agit de calculer des dérivées,
+    gradient, différentielles: "manuelles", symboliques, différences finies,
+    diff auto. et avoir au final une idée de la portée de chacune
+    (applicabilité, avantages, pbs)
 
+  - Connaitre le principe des méthodes de type différence finie 
+    et mes deux sources d'erreurs potentielles associées (très général,
+    pas limité au calcul diff): "erreur de troncature" et "erreur d'arrondi".
+    Savoir calculer des estimations numériques dans les deux cas.
+    (attention, il y a plein de choses ici: il faut en passer par
+    le modèle de représentation des nombres flottants, etc.)
+
+Théorème des fonctions implicites
+================================================================================
+<!--
 Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 (Oswaldo Rio Branco de Oliveira)
-
 -->
 
 ### Théorème des fonctions implicites {.theorem #TFI}
@@ -98,13 +136,6 @@ $W$ où $\partial_y f$ est inversible.
 Nous retrouvons donc les hypothèses initiales du théorème, 
 à ceci près qu'elle sont satisfaites dans un voisinage de $(x_0, y_0)$
 qui peut être plus petit que l'ouvert initial $W$.
-
-<!--
-**TODO:** ref au résultat de Tao sur math overflow où l'on ne dispose que
-de la différentiabilité (pas du caractère continûment différentiable).
-
-**TODO:** évoquer cas Lipschitz ?
--->
 
 ### Démonstration {.proof}
 
@@ -382,82 +413,8 @@ de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par
 construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$ ;
 nous avons donc affaire à un $C^1$-difféomorphisme de $V$ sur $W$.
 
-Analyse numérique
+Calcul des nombres flottants
 ================================================================================
-
-<!--
-Objectifs {.meta}
---------------------------------------------------------------------------------
-
-  - Savoir quelles sont les options quand il s'agit de calculer des dérivées,
-    gradient, différentielles: "manuelles", symboliques, différences finies,
-    diff auto. et avoir au final une idée de la portée de chacune
-    (applicabilité, avantages, pbs)
-
-  - Connaitre le principe des méthodes de type différence finie 
-    et mes deux sources d'erreurs potentielles associées (très général,
-    pas limité au calcul diff): "erreur de troncature" et "erreur d'arrondi".
-    Savoir calculer des estimations numériques dans les deux cas.
-    (attention, il y a plein de choses ici: il faut en passer par
-    le modèle de représentation des nombres flottants, etc.)
--->
-Les exemples utilisés dans cette section exploitent la librairie numérique 
-Python [NumPy] ; 
-assurons-nous tout de suite d'avoir importé tous ses symboles :
-
-    >>> from numpy import *
-
-Introduction
---------------------------------------------------------------------------------
-
-Compte tenu de la définition de la dérivée d'une fonction, la méthode de 
-différentiation numérique la plus naturelle pour évaluer cette dérivée
-repose sur le schéma des *différences finies* de Newton, qui exploite
-l'approximation
-  $$
-  f'(x) \approx \frac{f(x+h) - f(x)}{h},
-  $$
-approximation valable lorsque la valeur du *pas* $h$ est suffisamment faible.
-
-L'implémentation de ce schéma en Python est simple :
-
-    def FD(f, x, h):
-        return (f(x + h) - f(x)) / h
-
-Néanmoins, la relation entre la valeur du pas $h$ et la précision de
-cette évaluation -- c'est-à-dire l'écart entre la valeur de la dérivée
-et son estimation -- est plus complexe. 
-Considérons les échantillons de données suivants :
-
-<!--
-Expression                    Valeur
-----------------------------  --------------------------------------------------
-$\exp'(0)$                    $1$
-`FD(exp, 0, 1e-4)`            `1.000050001667141`
-`FD(exp, 0, 1e-8)`            `0.99999999392252903`
-`FD(exp, 0, 1e-12)`           `1.000088900582341`
--->
-
-    >>> FD(exp, 0, 1e-4)
-    1.000050001667141
-    >>> FD(exp, 0, 1e-8)
-    0.999999993922529
-    >>> FD(exp, 0, 1e-12)
-    1.000088900582341
-
-La valeur théorique de $\exp'(0)$ étant $1.0$,
-la valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
-et uniquement 8 nombres après la virgule du résultat sont *significatifs*.
-
-Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
-du développement de Taylor de $\exp$ au premier ordre ; 
-cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
-Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
-limitée par les erreurs d'*arrondi* dans les calculs, liée à la représentation
-approchée des nombres réels utilisée par le programme informatique.
-
-Arithmétique des ordinateurs
---------------------------------------------------------------------------------
 
 Cette section introduit la représentation des nombres réels sur ordinateur
 comme des "doubles" -- le type le plus utilisé des nombres à virgule flottante -- 
@@ -468,38 +425,42 @@ document classique
 
 [NumPy]: http://www.numpy.org/
 
-### Premier contact
+Les exemples de code utilisés dans la suite utiliserons Python 3 et NumPy :
 
-Dans un interpréteur Python, la façon la plus simple d'afficher un nombre
-consiste à invoquer son nom ; par exemple
+    >>> from numpy import *
+
+NumPy fournit un nombre nommé `pi` dont nous pouvons afficher les décimales :
 
     >>> pi
     3.141592653589793
 
-Cette information est non-ambiguë ; par là nous voulons dire que nous disposons
-d'assez d'information pour reconstituer le nombre initial:
+Cette représentation de `pi` fournie par l'interpréteur Python est non-ambiguë ; 
+par là nous voulons dire que nous disposons d'assez d'information pour 
+reconstituer le nombre initial `pi` si nécessaire :
 
-    >>> pi == eval("3.141592653589793")
+    >>> number = eval("3.141592653589793") 
+    >>> number == pi 
     True
 
-Mais cette représentation n'en est pas moins un mensonge :
-ça n'est pas une représentation décimale exacte du nombre `pi`
-stockée en mémoire. Pour avoir une représentation exacte de `pi`,
+Mais cette représentation n'en est pas moins un subtil mensonge,
+car elle n'est pas une représentation décimale exacte du nombre `pi`
+qui est stocké en mémoire. Pour avoir sa représentation exacte,
 nous pouvons demander l'affichage d'un grand nombre de décimales :
 
-    >>> def all_digits(number):
+    >>> def display_all_digits(number):
     ...     print(f"{number:.100g}")    
-    >>> all_digits(pi)
+    >>> display_all_digits(pi)
     3.141592653589793115997963468544185161590576171875
 
-Demander 100 chiffres après la virgule est suffisant : 
-seul 49 chiffres sont affichés car les suivants sont tous nuls.
+Demander 100 chiffres après la virgule s'avère suffisant : 
+seul 49 chiffres sont effectivement affichés car les suivants sont tous nuls.
 
 Remarquez que nous avons obtenu une représentation exacte du nombre flottant
 `pi` avec 49 chiffres. Cela ne signifie pas que tous ces chiffres
 -- ou même la plupart d'entre eux -- sont significatifs dans la représentation
 du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
-[mpmath] [@Joh13] pour l'arithmétique flottante multi-précision, nous voyons que
+[mpmath] [@Joh13] pour l'arithmétique flottante multi-précision, pour avoir
+les vraies décimales de $\pi$, nous voyons que
 
     >>> import mpmath
     >>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
@@ -508,13 +469,14 @@ du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
 
 [mpmath]: http://mpmath.org/
 
-et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre.
+et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre
+(`3.141592653589793...`).
 
 ### Nombres flottants binaires
 
 Si la représentation des nombres flottants peut apparaître complexe à ce stade,
 c'est que nous avons insisté pour utiliser une représentation *décimale*
-quand ces nombres sont stockés avec une réprésentation *binaire*.
+quand ces nombres exploitent en réalité une représentation *binaire*.
 En d'autres termes ; au lieu d'utiliser une suite de chiffres décimaux
 $f_i \in \{0,1,\dots,9\}$ pour représenter un nombre réel $x$ comme
   $$
@@ -532,51 +494,109 @@ $0.999 \times 10^0$. En base $2$, le seul chiffre non-nul est $1$, donc
 la *mantisse* d'une représentation normalisée est toujours de la forme
 $(1.f_1f_2\dots f_i \dots).$
 
-En calcul scientifique, les nombres réels sont le plus souvent approximés
-sous la forme de "doubles"[^IEEE754]. Dans la bibliothèque standard Python,
-les doubles sont disponibles comme instances du type `float` -- 
-ou alternativement comme `float64` dans NumPy.
+En calcul scientifique, les nombres réels sont le plus souvent décrits 
+de façon approchés par des "doubles". 
+Dans la bibliothèque standard Python, 
+les doubles sont les instances du type `float` ; pour NumPy
+des instances du type `float64`[^conv].
 
-Un triplet de 
+"Double" est un raccourci pour "nombre à virgule flottante de 
+précision double", comme défini dans le standard IEEE 754, cf. [@ANS85] ;
+chaque double occupe en mémoire un espace de 64 bits, d'où le nom `float64`. 
+Un format de simple précision, qui utilise uniquement 32 bits
+est aussi défini ; NumPy le propose sous le nom `float32`. 
+Après un abandon progressif des "singles" au profit des "doubles",
+plus précis et mieux supportés par le CPUs modernes, le format de simple
+précision revient désormais en force avec le développement de l'usage des GPUs 
+comme unités de calcul génériques[^half] ; 
 
-  - *bit de signe* : $s \in \{0,1\},$ 
-  
-  - *exposant (biaisé)* : $e\in\{1,\dots, 2046\}$ (11-bit), 
+[^half]: On trouve même un format de demi-précision ("half"), 
+accessible en NumPy sous le nom de `float16`.
 
-  - *fraction* : $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
 
-représente un double *normalisé*
+
+[^conv]: Fort heureusement, les conversions entre `float` et `float64`,
+quand elles sont nécessaires, sont transparentes pour l'utilisateur
+de Python et NumPy.
+
+Un double *normalisé* $x$ prend la forme
   $$
   x = (-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52}).
   $$
-
-[^IEEE754]: "Double" est un raccourci pour "format à virgule flottante de 
-précision double", comme défini dans le standard IEEE 754, cf. [@ANS85]. 
-Un format de simple précision est aussi défini, qui utilise uniquement
-32 bits ; NumPy le propose sous le nom `float32`. 
-Après un abandon progressif des "singles" au profit des "doubles",
-plus précis et mieux supportés par le CPUs modernes, le format de simple
-précision revient en force avec le développement de l'usage des GPUs 
-comme unités de calcul génériques.
-
 Les doubles qui ne sont pas normalisés sont *not-a-number* (`nan`),
 plus ou moins l'infini (`inf`) et zero (`0.0`) (en fait $\pm$ `0.0`;
 car il existe deux zéros distincts, qui diffèrent par leur signe)
-et les nombres dits *dénormalisés*. Dans la suite, nous ne parlerons
-pas de ces cas particuliers.
+ou les nombres dits *dénormalisés* qui existent dans un voisinage de
+$0$. Dans la suite, nous ne parlerons pas de ces cas particuliers.
 
-### Précision
+\newcommand{\af}{$x =(-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52})$}
+
+--------------------------------------------------------------------------------
+Composante             \af                                      Nombre de bits
+--------------------   ---------------------------------------  ----------------
+Bit de signe           $s \in \{0,1\}$                          $\phantom{0}1$
+
+Exposant (biaisé)      $e\in\{1,\dots, 2046\}$                  $11$
+
+Mantisse               $f=(f_1,\dots,f_{52})\in \{0,1\}^{52}$   $52$
+--------------------------------------------------------------------------------
+
+: Anatomie d'un double normalisé $x$ (`float64`)
+
+
+### Un modèle simplifié : $\D$
+
+Si l'on décide d'oublier les nombres particuliers que nous venons de décrire
+pour nous concentrer sur les nombres normalisés et que de plus nous permettons
+à l'exposant $e$ de décrire $\Z$ tout entier, nous obtenons un modèle simplifié
+des doubles, sous la forme d'un sous-ensemble $\D$ de $\R$ :
+$$
+\D = \{0\} \cup \{(-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52})
+\; | \; s \in\{0,1\}, e \in \Z, f \in \{0,1\}^{52}\}.
+$$
+Pour simplifier la situation, ce modèle ignore délibérément la possibilité 
+d'un "dépassement" (*overflow*)
+-- le choix d'un exposant trop grand pour un vrai double --
+ou d'un "soupassement" (*underflow*) -- c'est-à-dire un exposant trop petit.
+Il retient néanmoins l'essentiel des caractéristiques des doubles comme
+le caractère discret de l'ensemble et l'espacement entre les doubles et
+constitue donc un bon modèle d'étude pour la suite.
+
+### Représentation d'un nombre réel comme un double
 
 Presque aucun nombre réel ne peut être représenté exactement comme un double.
 Pour faire face à cette difficulté, il est raisonnable d'associer à un
-nombre réel $x$ le double le plus proche $[x]$. Une telle méthode
-(*arrondi-au-plus-proche*) totalement spécifiée[^holes] dans le standard IEE754
-[@ANS85], ainsi que des modes alternatifs d'arrondi (arrondis "orientés").
+nombre réel $x$ "sa meilleure approximation" parmi les doubles 
+notée `x` ou $[x]$ :
+$$
+\mbox{\tt x} = [x].
+$$ 
+On choisit en général en tant que "fonction d'approximation comme double" 
+$$
+[\,\cdot\,] : \R \to \D
+$$
+la méthode *arrondi-au-plus-proche* -- 
+dont les cas limites sont spécifiés[^holes] dans le standard IEE754 [@ANS85].
+Mais il existe des modes alternatifs d'arrondi (arrondis "orientés", vers $+\infty$
+ou $-\infty$) qui peuvent être utiles. Les considérations qui suivent ne
+dépendent pas du détail de ce choix. On supposera uniquement que :
+
+  - si $x$ est un double, $[x] = x$,
+
+  - sinon, $[x]$ est :
+  
+      - soit le double immédiatement inférieur à $x$,
+      
+      - soit le double immédiatement supérieur à $x$.
 
 [^holes]: Il faut préciser comme l'opération se comporte quand le réel
 est équidistant de deux doubles, comment les "nombres spéciaux" 
 (`inf`, `nan`, ...) sont traités, etc. Autant de "détails" dont nous
 ne nous préoccuperons pas dans la suite.
+
+### Précision
+
+**TODO** définir erreur d'arrondi, + plot (en utilisant mpmath ?)
 
 Pour avoir la moindre confiance dans le résultats des calculs que nous 
 effectuons avec des doubles, nous devons être en mesure d'évaluer l'erreur
@@ -589,25 +609,25 @@ et le double qui lui est immédiatement supérieur.
     >>> after_one = nextafter(1.0, +inf)
     >>> after_one
     1.0000000000000002
-    >>> all_digits(after_one)
+    >>> display_all_digits(after_one)
     1.0000000000000002220446049250313080847263336181640625
     >>> eps = after_one - 1.0
-    >>> all_digits(eps)
+    >>> display_all_digits(eps)
     2.220446049250313080847263336181640625e-16
 
 Ce nombre est également disponible comme un attribut de la classe `finfo`
 de NumPy qui rassemble les constantes limites de l'arithmétique pour les
 types flottants.
 
-    >>> all_digits(finfo(float).eps)
+    >>> display_all_digits(finfo(float64).eps)
     2.220446049250313080847263336181640625e-16
 
 Alternativement, l'examen de la structure des doubles normalisés fournit
-directement la valeur de $\varepsilon$ : la fraction du nombre après $1.0$
+directement la valeur de $\varepsilon$ : la mantisse du nombre après $1.0$
 est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ donc
-$\varepsilon =2^{-52},$ un résultat confirmé par le code suivant :
+$\varepsilon =2^{-52},$ un résultat confirmé par l'expérience :
 
-    >>> all_digits(2**(-52))
+    >>> display_all_digits(2**(-52))
     2.220446049250313080847263336181640625e-16
 
 L'epsilon machine importe autant parce qu'il fournit une borne simple sur
@@ -617,8 +637,8 @@ des doubles normalisés fournit :
     $$
     \frac{|[x] - x|}{|x|} \leq \varepsilon.
     $$
-Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
-garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
+(Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
+garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$)
 
 ### Chiffres significatifs
 L'erreur relative détermine combien de chiffres décimaux sont significatifs 
@@ -673,8 +693,124 @@ ne sont en général pas correctement arrondies ;
 la conception d'algorithmes de calcul qui aient une performance décente et
 correctement arrondis est un problème difficile (cf. @FHL07).
 
-Différences finies
+
+Différentiation automatique
+================================================================================
+
+Introduction 
 --------------------------------------------------------------------------------
+
+La différentiation automatique désigne une famille de méthodes numériques
+permettant de calculer dérivées et différentielles de fonctions numériques.
+Elle se positionne comme une alternative aux algorithmes de différences
+finies. Ces méthodes ont l'avantage majeur d'éliminer quasi-totalement les 
+erreurs d'arrondis -- l'erreur est aussi faible que dans une dérivation
+symbolique "manuelle" des expressions utilisées dans le calcul de la
+fonction -- et ce sans réglage délicat de paramètres.
+
+Selon le langage informatique utilisé pour implémenter les fonctions numériques 
+(C, Fortran, Python, langages "embarqués", etc.), 
+différentes méthodes permettent de mettre en oeuvre la différentiation
+automatique. 
+Le typage dynamique (ou [*duck typing*](https://en.wikipedia.org/wiki/Duck_typing)) 
+de Python permet de mettre en oeuvre simplement le *tracing* des fonctions 
+numériques -- l'enregistrement des opérations du calcul effectuées par une
+fonction lors de son exécution. A partir du graphe de calcul ainsi construit,
+les différentielles peuvent être calculées mécaniquement 
+par [la règle de différentiation en chaîne](Calcul Différentiel I.pdf#chain-rule) 
+à partir des différentielles des opérations élémentaires. 
+ 
+
+
+### `HIPS/autograd` {#autograd}
+
+Site Web: <https://github.com/HIPS/autograd>
+
+    >>> import autograd
+    >>> from autograd import numpy as np
+
+La documentation de `HIPS/autograd` fournit une bonne illustration d'usage 
+pour le cas des fonctions scalaires
+d'une variable:
+
+    >>> def f(x):
+    ...     y = np.exp(-2.0 * x)
+    ...     return (1.0 - y) / (1.0 + y)
+    >>> deriv_f = autograd.grad(np.tanh)  
+    >>> deriv_f(1.0)
+    0.4199743416140261
+
+Pour les fonctions scalaires de plusieurs variables,
+le fragment de code suivant fournit un exemple :
+
+    >>> def f(x, y):
+    ...     return np.sin(x) + 2.0 * np.sin(y)
+    >>> def grad_f(x, y):
+    ...     g = autograd.grad
+    ...     return np.r_[g(f, 0)(x, y), g(f, 1)(x, y)]
+    >>> grad_f(0.0, 0.0)
+    array([1., 2.])
+
+Pour les fonctions à valeurs vectorielles, l'équivalent est :
+
+    >>> def f(x, y):
+    ...     return np.array([np.exp(x), np.exp(y)])
+    >>> def J_f(x, y):
+    ...     j = autograd.jacobian
+    ...     return np.c_[j(f, 0)(x, y), j(f, 1)(x, y)]
+    >>> J_f(0.0, 0.0)
+    array([[1., 0.],
+           [0., 1.]])
+
+
+Différences finies
+================================================================================
+
+
+Les exemples utilisés dans cette section exploitent la librairie numérique 
+Python [NumPy] ; 
+assurons-nous tout de suite d'avoir importé tous ses symboles :
+
+    >>> from numpy import *
+
+
+Compte tenu de la définition de la dérivée d'une fonction, la méthode de 
+différentiation numérique la plus naturelle pour évaluer cette dérivée
+repose sur le schéma des *différences finies* de Newton, qui exploite
+l'approximation
+  $$
+  f'(x) \approx \frac{f(x+h) - f(x)}{h},
+  $$
+approximation valable lorsque la valeur du *pas* $h$ est suffisamment faible.
+
+L'implémentation de ce schéma en Python est simple :
+
+    def FD(f, x, h):
+        return (f(x + h) - f(x)) / h
+
+Néanmoins, la relation entre la valeur du pas $h$ et la précision de
+cette évaluation -- c'est-à-dire l'écart entre la valeur de la dérivée
+et son estimation -- est plus complexe. 
+Considérons les échantillons de données suivants :
+
+    >>> FD(exp, 0, 1e-4)
+    1.000050001667141
+    >>> FD(exp, 0, 1e-8)
+    0.999999993922529
+    >>> FD(exp, 0, 1e-12)
+    1.000088900582341
+
+La valeur théorique de $\exp'(0)$ étant $1.0$,
+la valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
+et uniquement 8 nombres après la virgule du résultat sont *significatifs*.
+
+Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
+du développement de Taylor de $\exp$ au premier ordre ; 
+cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
+Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
+limitée par les erreurs d'*arrondi* dans les calculs, liée à la représentation
+approchée des nombres réels utilisée par le programme informatique.
+
 
 ### Différence avant
 
@@ -711,19 +847,7 @@ ou de façon équivalent en Python par:
     >>> def FD(f, x, h):
     ...     return (f(x + h) - f(x)) / h
 
-<!--
-[^Landau]: **Bachmann-Landau notation.** For a real or complex variable $h,$ 
-we write $\psi(h) = O(\phi(h))$ if there is a suitable deleted 
-neighbourhood of $h=0$ where the functions $\psi$ and $\phi$ are defined 
-and the inequality $|\psi(h)| \leq \kappa |\phi(h)|$ holds for some $\kappa > 0.$ 
-When $N$ is a natural number, we write 
-$\psi(N) = O(\phi(N))$ if there is a $n$ such that $\psi$ and $\phi$ 
-are defined for $N\geq n$ and for any such $N,$ 
-the inequality $|\psi(N)| \leq \kappa |\phi(N)|$ holds for some $\kappa > 0.$
--->
-
 ### Erreur d'arrondi
-
 Nous considérons à nouveau la fonction $f(x) = \exp(x)$ utilisée dans
 l'introduction et nous calculons la dérivée numérique basée sur la
 différence avant à $x=0$ pour différentes valeurs de $h$.
@@ -832,53 +956,10 @@ d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
 
 
 
-Différentiation automatique
+Annexe -- Différentiation Automatique
 ================================================================================
 
-<!--
-Objectifs {.meta}
---------------------------------------------------------------------------------
 
-  - avantage et portée de la méthode (plus détaillée: précision, dérivées à
-    un ordre arbitraire, "workflow", usages en optimisation, machine learning,
-    etc.)
-
-  - connaître les (une version des) principes des différents "morceaux" 
-    de la méthode dans le cas de Python: "tracer", "computation graph", etc.
-    Solution: en construire un "à la main", au moins les étapes importantes.
-    Note: permet aussi d'apprécier les limitations de la méthode.
-
-  - sur péda, essayer forward pass (plus près du cours),
-    mais expliquer backward pass pour pouvoir se "plugger" dans l'existant.
-
-  - exploiter un système existant, type `autograd` en python
-    (sans doute le plus facile en terme de courbe d'apprentissage)
-
--->
-
-Introduction 
---------------------------------------------------------------------------------
-
-La différentiation automatique désigne une famille de méthodes numériques
-permettant de calculer dérivées et différentielles de fonctions numériques.
-Elle se positionne comme une alternative aux algorithmes de différences
-finies. Ces méthodes ont l'avantage majeur d'éliminer quasi-totalement les 
-erreurs d'arrondis -- l'erreur est aussi faible que dans une dérivation
-symbolique "manuelle" des expressions utilisées dans le calcul de la
-fonction -- et ce sans réglage délicat de paramètres.
-
-Selon le langage informatique utilisé pour implémenter les fonctions numériques 
-(C, Fortran, Python, langages "embarqués", etc.), 
-différentes méthodes permettent de mettre en oeuvre la différentiation
-automatique. 
-Le typage dynamique (ou [*duck typing*](https://en.wikipedia.org/wiki/Duck_typing)) 
-de Python permet de mettre en oeuvre simplement le *tracing* des fonctions 
-numériques -- l'enregistrement des opérations du calcul effectuées par une
-fonction lors de son exécution. A partir du graphe de calcul ainsi construit,
-les différentielles peuvent être calculées mécaniquement 
-par [la règle de différentiation en chaîne](Calcul Différentiel I.pdf#chain-rule) 
-à partir des différentielles des opérations élémentaires. 
- 
 Tracer le graphe de calcul
 --------------------------------------------------------------------------------
 
@@ -1293,21 +1374,6 @@ $f'(x) = df(x) \cdot 1$.
         def deriv_f(x):
             return df(x)(1.0)
         return deriv_f
-
-<!--
-#    >>> from inspect import signature, Parameter
-#    >>> def num_args(f):
-#    ...     positional = [
-#    ...         Parameter.POSITIONAL_ONLY, 
-#    ...         Parameter.POSITIONAL_OR_KEYWORD
-#    ...     ]
-#    ...     parameters = signature(f).parameters.values()
-#    ...     return len([p for p in parameters if p.kind in positional])
-#    >>> def f(x, y, z):
-#    ...     return x + y + z
-#    >>> num_args(f)
-#    3
--->    
   
 Vérifions que le comportement de ces opérateurs de différentiation est
 conforme à nos attentes dans le cas de fonction d'une variable ; 
@@ -1446,6 +1512,38 @@ Pour finir,
 l'étude "Automatic Differentiation in Machine Learning: a Survey"
 [@BPRS15] vous permettra si besoin d'acquérir si besoin une perspective plus large sur
 le sujet.
+
+
+
+<!--
+Idées pour poursuivre l'introduction du moteur de diff auto:
+
+  - gérer fct retournant des constantes
+
+  - compléter les opérateurs arithmétiques, fcts usuelles, etc.
+
+  - gérer le control flow (important et pas dur si un peu guidé !)
+
+  - adapter le code pour faire du backward diff (à évaluer),
+    avec pointeurs vers articles introductifs.
+
+  - diff d'ordre deux ? Compliqué, 2 show-stoppers potentiels
+    (différentiation "lazy" et nodes nestés).
+
+Faire un projet privé et une document de tests (public) pour permettre la
+vérification que ça marche ? Demander résultat comme un fichier autodiff.py
++ notebook mise en oeuvre ou notebook générant autodiff.py ?
+Quoi qu'il en soit: code et doc et accès sur github.
+Ce qui est fait en cours déjà fourni (sous quelle forme ? fichier, 
+notebook, etc ?). Oui, avec jupyter nbconvert, ça ne pose pas de pb.
+Intégration doctest/notebook ? Bof, non, on gère ça "normalement",
+en dehors, avec le truc comme un doc markdown.
+
+Applications (avec algo type IFT par exemple) ? En plus ?
+Eventuellement en utilisant un "vrai" autodiff pour ne pas
+être bloqué par des étapes précédentes non réussies ? 
+
+-->
 
 
 
@@ -1677,10 +1775,9 @@ U = \R^2 \setminus (\R \times \pi \Z).
 $$
 En coordonnées cartésiennes, cela correspond aux points $(x, y)$ 
 à distance minimale $|\ell_1 - \ell_2|$
-ou maximale $\ell_1 + \ell_2$ de l'origine<!--, soit $A_1$-->. 
+ou maximale $\ell_1 + \ell_2$ de l'origine. 
 Les points à une distance intermédiaire $$|\ell_1 - \ell_2| < \sqrt{x^2+y^2} < \ell_1+\ell_2$$
-<!--soit $A_2$ en coordonnées cartésiennes,--> soit $V$, 
-correspondent à une matrice jacobienne $J_f(q)$ inversible quel que soit 
+soit $V$, correspondent à une matrice jacobienne $J_f(q)$ inversible quel que soit 
 l'antécédent $q$ de $(x, y)$ par $f$.
 
 ### Question 3 {.answer #answer-crm-3}
@@ -1973,191 +2070,6 @@ Pour trouver un tel $h$ proche de $10^{-12}$, il suffit de calculer
 
     >>> (floor(1e-12 / eps) + 0.5) * eps
     9.999778782798785e-13
-
-
-
-Projet numérique : lignes de niveau
-================================================================================
-
-L'objectif de ce projet numérique est de développer un programme 
-Python permettant de calculer les lignes de niveau d'une fonction $f$ 
-de deux variables réelles et à valeurs réelles (supposée continûment
-différentiable), c'est-à-dire les ensembles de la forme
-$$
-\{(x, y) \in \R^2 \, | \, f(x, y) = c\} \, \mbox{ où } \, c \in \R.
-$$
-
-La représentation graphique de ces courbes est un *tracé de contour*
-(cf. [les exemples d'usage de la fonction `contour` de matplotlib](https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.contour.html#examples-using-matplotlib-pyplot-contour)).
-
-![Lignes de niveau de $(x, y) \mapsto 2(f(x, y) - g(x, y))$
-où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
-Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py){#contour-demo}
-
-### Contour simple
-On suppose dans un premier temps que la fonction $f$ est définie dans le carré 
-unité $[0,1]^2$ et on limite notre recherche aux lignes de niveau
-qui possèdent un point sur l'arête gauche du domaine de définition
-(de la forme $(0, y)$ pour un $0 \leq y \leq 1$.)
-
-#### Amorce
-À quelle condition raisonnable portant sur $f(0,0)$, $f(0,1)$ et le réel $c$ 
-est-on certain qu'il existe un $t \in [0, 1]$ tel que $f(0, t) = c$ ?
-Développer une fonction, conforme au squelette suivant
-
-``` {.discard}
-def find_seed(g, c=0, eps=2**(-26)):
-    ...
-    return t
-```
-
-qui renvoie un flottant éloigné d'au plus `eps` d'un tel $t$ 
-ou `None` si la condition évoquée ci-dessus n'est pas satisfaite.
-
-#### Propagation
-On souhaite implémenter une fonction dont la signature est :
-
-``` {.discard}
-def simple_contour(f, c=0.0, delta=0.01):
-    ...
-    return x, y
-```
-
-qui renvoie un fragment de ligne de niveau de valeur `c` de `f`, 
-sous la forme de deux tableaux 1d d'abscisses et d'ordonnées de points 
-de cette ligne. 
-Les points devront être espacés d'approximativement `delta`. 
-En cas d'impossibilité de générer un tel fragment
-deux tableaux vides devront être renvoyés.
-
-### Contour complexe
-
-La signature de la fonction `contour` générale sera la suivante
-
-``` {.discard}
-def contour(f, c=0.0, xc=[0.0,1.0], yc=[0.0,1.0], delta=0.01):
-    ...
-    return xs, ys
-```
-
-Le domaine de $f$ n'est plus nécessairement $[0, 1]\times[0, 1]$ ;
-les arguments `xc` et `yc` sont des listes (ou tableaux 1d) croissantes 
-de nombres flottants qui découpent une portion rectangulaire de ce domaine 
-en cellules carrées, telles que `xc[i] <= x <= xc[i+1]` et `yc[j] <= y <= yc[j+1]`.
-Les valeurs par défaut de `xc` et `yc` correspondent à une unique cellule
-qui est $[0,1]^2$ ; il correspond donc au contexte de `simple_contour`.
-
-Dans chaque cellule, on exploitera le procédé utilisé dans `simple_contour`, 
-mais en recherchant des amorces sur toute la frontière de la cellule et plus 
-uniquement sur son arête gauche.
-
-Les tableaux 1d `xs` et `ys` renvoyés par la fonction `contour` ne décrivent pas
-un fragment de contour, mais un ensemble de tels fragments ; 
-cette multiplicité résulte de la présence de plusieurs cellules 
-et/ou de l'existence de plusieurs fragments par cellule.
-Les valeurs `x = xs[i]` et `y = ys[i]` représentent 
-un fragment de contour de `f` comme en produit `simple_contour` ;
-autrement dit, le tracé d'un contour peut être réalisé par le code
-
-``` {.discard}
-for x, y in zip(xs, ys):
-    matplotlib.pyplot.plot(x, y)
-```
-
-### Consignes
-Le livrable de ce projet sera un notebook Jupyter. 
-Ce support doit vous permettre de documenter l'ensemble
-de votre démarche -- d'expliquer d'où viennent vos idées,
-de mener les calculs théoriques associés, d'écrire 
-le code les mettant en oeuvre en pratique, de réaliser 
-des expériences pour tester ce code, puis de mener leur analyse critique,
-analyse qui peut mener à de nouvelles idées, etc.
-En particulier, les échecs -- quand ils sont instructifs -- 
-doivent être documentés !
-
-Expérimenter suppose de pouvoir tester la génération de lignes de niveaux
-sur de "bonnes" fonctions de référence. Pour l'évaluation de 
-`simple_contour`, les fonctions quadratiques sont de bonnes candidates ;
-pour `contour`, la fonction utilisée par la démo de la fonction
-`contour` de `matplotlib`, 
-représentée dans [la figure ci-dessus](#contour-demo), est pertinente.
-
-Ce projet devrait
-exploiter des algorithmes de point-fixe qui nécessitent du
-calcul matriciel et du calcul de gradients et/ou de matrices jacobiennes. 
-Vous utiliserez de préférence NumPy pour le calcul matriciel
-et `HIPS/autograd` pour la différentiation automatique (cf. [annexe](#autograd)).
-
-### Annexe -- `HIPS/autograd` {#autograd}
-
-Site Web: <https://github.com/HIPS/autograd>
-
-    >>> import autograd
-    >>> from autograd import numpy as np
-
-La documentation de `HIPS/autograd` fournit une bonne illustration d'usage 
-pour le cas des fonctions scalaires
-d'une variable:
-
-    >>> def f(x):
-    ...     y = np.exp(-2.0 * x)
-    ...     return (1.0 - y) / (1.0 + y)
-    >>> deriv_f = autograd.grad(np.tanh)  
-    >>> deriv_f(1.0)
-    0.4199743416140261
-
-Pour les fonctions scalaires de plusieurs variables,
-le fragment de code suivant fournit un exemple :
-
-    >>> def f(x, y):
-    ...     return np.sin(x) + 2.0 * np.sin(y)
-    >>> def grad_f(x, y):
-    ...     g = autograd.grad
-    ...     return np.r_[g(f, 0)(x, y), g(f, 1)(x, y)]
-    >>> grad_f(0.0, 0.0)
-    array([1., 2.])
-
-Pour les fonctions à valeurs vectorielles, l'équivalent est :
-
-    >>> def f(x, y):
-    ...     return np.array([np.exp(x), np.exp(y)])
-    >>> def J_f(x, y):
-    ...     j = autograd.jacobian
-    ...     return np.c_[j(f, 0)(x, y), j(f, 1)(x, y)]
-    >>> J_f(0.0, 0.0)
-    array([[1., 0.],
-           [0., 1.]])
-
-<!--
-Idées pour poursuivre l'introduction du moteur de diff auto:
-
-  - gérer fct retournant des constantes
-
-  - compléter les opérateurs arithmétiques, fcts usuelles, etc.
-
-  - gérer le control flow (important et pas dur si un peu guidé !)
-
-  - adapter le code pour faire du backward diff (à évaluer),
-    avec pointeurs vers articles introductifs.
-
-  - diff d'ordre deux ? Compliqué, 2 show-stoppers potentiels
-    (différentiation "lazy" et nodes nestés).
-
-Faire un projet privé et une document de tests (public) pour permettre la
-vérification que ça marche ? Demander résultat comme un fichier autodiff.py
-+ notebook mise en oeuvre ou notebook générant autodiff.py ?
-Quoi qu'il en soit: code et doc et accès sur github.
-Ce qui est fait en cours déjà fourni (sous quelle forme ? fichier, 
-notebook, etc ?). Oui, avec jupyter nbconvert, ça ne pose pas de pb.
-Intégration doctest/notebook ? Bof, non, on gère ça "normalement",
-en dehors, avec le truc comme un doc markdown.
-
-Applications (avec algo type IFT par exemple) ? En plus ?
-Eventuellement en utilisant un "vrai" autodiff pour ne pas
-être bloqué par des étapes précédentes non réussies ? 
-
--->
-
 
 Références
 ================================================================================
