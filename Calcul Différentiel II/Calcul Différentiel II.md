@@ -648,12 +648,31 @@ d'arrondi.
 **ne marche tjs pas correctement**
 
 L'erreur relative détermine combien de chiffres décimaux sont significatifs 
-dans la meilleure approximation d'un nombre réel par un double. 
-Considérons la représentation de $[x]$ en notation scientifique :
+dans l'approximation d'un nombre réel par un double. 
+Considérons la représentation de $[x]$ en notation scientifique
+(on suppose $x$ positif pour simplifier l'analyse) :
     $$
-    [x] = \pm (f_0.f_1 \dots f_{p-1} \dots ) \times 10^{e}.
+    [x] = (f_0.f_1 \dots f_{p-1} \dots ) \times 10^{e}.
     $$
-On dira qu'elle est *significative jusqu'au $n$-ième chiffre* si
+On dira que la représentation $[x]$ de $x$ est *significative jusqu'au 
+$n$-ième chiffre* si
+   $$
+   (f_0.f_1 \dots f_{n-1}) \times 10^{e}  
+   \leq x \leq
+   ((f_0.f_1 \dots f_{n-1}) + 0.0 \dots 0 1)\times 10^{e}
+   $$
+ce qui est nécéssairement le cas si 
+$$
+|x - [x]| \leq ...
+$$
+
+c'est-à-dire, avec $\lfloor \cdot \rfloor$ désignant la partie entière, si
+   $$
+   \frac{\left\lfloor [x] \times 10^{n-1} \right\rfloor}{10^{n-1}} 
+   \leq x
+   \leq \frac{\left \lfloor [x] \times 10^{n-1} +1 \right \rfloor}{10^{n-1}}.
+   $$
+
   $$
   |x -  \pm (f_0.f_1 \dots f_{p-1} \dots f_{n-1}) \times 10^{e}| \leq \frac{10^{e-(n-1)}}{2},
   $$
