@@ -806,7 +806,7 @@ Le second appel est un peu surprenant, mais il va nous permettre d'utiliser la
 version des fonctions NumPy fournie par autograd ; cela est rendu nécessaire
 par l'utilisation des méthodes de tracing pour déterminer l'arbre de calcul,
 ce qui suppose une certaine coopération des fonctions numériques impliquées.
-Autograd modifie donc (*monkeypatch*) la version de NumPy dont vous disposez
+Autograd modifie donc (*monkey patch*) la version de NumPy dont vous disposez
 et c'est cette version modifiée que vous devrez utiliser et non le module
 original.
 
