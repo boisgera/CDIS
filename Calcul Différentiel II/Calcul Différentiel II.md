@@ -571,7 +571,7 @@ notée `x` ou $[x]$ :
 $$
 \mbox{\tt x} = [x].
 $$ 
-On choisit en général en tant que "fonction d'approximation comme double" 
+On choisit en général en tant que *méthode d'arrondi* (*round-off*) :
 $$
 [\,\cdot\,] : \R \to \D
 $$
@@ -631,26 +631,38 @@ $0$ donc $$\varepsilon =2^{-52},$$ un résultat confirmé par l'expérience :
 
 L'epsilon machine importe autant parce qu'il fournit une borne simple sur
 l'erreur relative de la représentation d'un nombre réel comme un double.
-En effet, pour n'importe quelle méthode d'arrondi raisonnable, la structure
-des doubles normalisés fournit :
+En effet, si $2^e \leq x < 2^{e+1}$, comme dans cette région la distance
+entre deux doubles consécutifs est $2^{-52} \times 2^e$, 
+l'erreur d'arrondi vérifie $|[x] - x| \leq \varepsilon \times 2^{e}$ et comme
+$2^{e} \leq |x|$, nous obtenons l'inégalité :
     $$
     \frac{|[x] - x|}{|x|} \leq \varepsilon.
     $$
 (Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
 garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$)
+L'epsilon machine contrôle donc l'*erreur relative* introduite par l'opération
+d'arrondi.
 
-### Chiffres significatifs
+### TODO -- Chiffres significatifs
+
+**ne marche tjs pas correctement**
+
 L'erreur relative détermine combien de chiffres décimaux sont significatifs 
 dans la meilleure approximation d'un nombre réel par un double. 
 Considérons la représentation de $[x]$ en notation scientifique :
     $$
-    [x] = \pm (f_0.f_1 \dots f_{p-1} \dots) \times 10^{e}.
+    [x] = \pm (f_0.f_1 \dots f_{p-1} \dots ) \times 10^{e}.
     $$
 On dira qu'elle est *significative jusqu'au $n$-ième chiffre* si
   $$
-  |x -  [x]| \leq \frac{10^{e-(n-1)}}{2}.
+  |x -  \pm (f_0.f_1 \dots f_{p-1} \dots f_{n-1}) \times 10^{e}| \leq \frac{10^{e-(n-1)}}{2},
   $$
-D'autre part, la borne d'erreur sur $[x]$ fournit
+ce qui est le cas si 
+$$
+|x - [x]| \leq \frac{10^{e-(n-1)}}{2} - |(0.0 \dots 0 f_n \dots ) \times 10^{e}|
+$$
+
+D'autre part, la borne d'erreur relative sur $[x]$ fournit
   $$
   |x - [x]| \leq \frac{\varepsilon}{2} |x| \leq \frac{\varepsilon}{2} \times 10^{e+1}.
   $$
@@ -661,25 +673,28 @@ Ainsi, la précision souhaitée est obtenue tant que
 Par conséquent, les doubles fournissent une approximation des nombres 
 réels avec environ 15 ou 16 chiffres significatifs.
 
-### Fonctions
+### Arrondi des fonctions
 La plupart des nombres réels ne pouvant être représentés par des doubles,
 la plupart des fonctions à valeur réelle et à variables réelles ne peuvent 
-pas non plus être représentée exactement comme des fonctions opérant sur
+pas non plus être représentées exactement comme des fonctions opérant sur
 des doubles. 
 Le mieux que nous puissions espérer est d'avoir des approximations
-*correctement arrondies*. Une approximation $[f]$ d'une fonction $f$
-de $n$ variables est correctement arrondie si pour tout $n$-uplet
-$(x_1, \dots, x_n)$, on a
+*correctement arrondies*. Une approximation noteé `f` (ou $[f]$)
+d'une fonction $f$ de $n$ variables est correctement arrondie 
+si pour tout $n$-uplet $(\mathrm{\tt x_1}, \dots, \mathrm{\tt x_n}) \in \D^n$ 
+de doubles dans le domaine de définition de $f$, on a
   $$
-  [f](x_1,\dots,x_n) = [f([x_1], \dots, [x_n])].
+  \mbox{\tt f}(\mathrm{\tt x_1}, \dots, \mathrm{\tt x_n}) = [f(\mathrm{\tt x_1}, \dots, \mathrm{\tt x_n})].
   $$
-Autrement dit, tout se passe comme si le calcul de $[f](x_1,\dots,x_n)$
-était effectué de la façon suivante : approximation au plus proche 
-des arguments par des doubles, calcul **exact** de $f$ sur ces arguments, 
-et approximation de la valeur produite au plus proche par un double.
-Ou encore:
+Autrement dit, tout se passe comme si le calcul de $\mathrm{\tt f}(\mathrm{\tt x_1},\dots,\mathrm{\tt x_n})$
+était effectué de la façon suivante : calcul **exact** de $f$ sur ces arguments,
+puis arrondi du résultat pour transformer le réel ainsi obtenu en un double.
+Si l'on veut exploiter une telle fonction avec des arguments réels (qui ne sont
+pas nécessairement des doubles),
+il suffit d'arrondir ses arguments avant d'entreprendre les calculs ; on a alors
+la fonction correctement arrondie
 $$
-[f] = [\, \cdot \,] \circ f \circ ([\, \cdot \,], \dots, [\, \cdot \,]).
+\mathrm{\tt f} = [\, \cdot \,] \circ f \circ ([\, \cdot \,], \dots, [\, \cdot \,]).
 $$
 
 Le standard IEEE 754 [@ANS85] impose que certaines fonctions aient des 
@@ -687,10 +702,10 @@ implémentations correctement arrondies ;
 nommément, l'addition, la soustraction, la multiplication, la division, 
 le reste d'une division entière et la racine carrée.
 D'autres fonctions élémentaires 
--- comme sinus, cosinus, exponentielle, logarithme, ... --
+-- comme sinus, cosinus, exponentielle, logarithme --
 ne sont en général pas correctement arrondies ;
 la conception d'algorithmes de calcul qui aient une performance décente et
-correctement arrondis est un problème difficile (cf. @FHL07).
+qui soient correctement arrondis est un problème difficile (cf. @FHL07).
 
 
 Différentiation automatique
