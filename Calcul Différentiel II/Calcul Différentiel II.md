@@ -663,7 +663,7 @@ $n$-ième chiffre* si
    $$
 ce qui est nécéssairement le cas si 
 $$
-|x - [x]| \leq ...
+2 \varepsilon x < 10^{e-n+1}
 $$
 
 c'est-à-dire, avec $\lfloor \cdot \rfloor$ désignant la partie entière, si
