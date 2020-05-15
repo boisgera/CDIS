@@ -730,16 +730,50 @@ qui soient correctement arrondis est un problème difficile (cf. @FHL07).
 Différentiation automatique
 ================================================================================
 
-Introduction 
---------------------------------------------------------------------------------
+### Introduction 
 
 La différentiation automatique désigne une famille de méthodes numériques
-permettant de calculer dérivées et différentielles de fonctions numériques.
-Elle se positionne comme une alternative aux algorithmes de différences
-finies. Ces méthodes ont l'avantage majeur d'éliminer quasi-totalement les 
-erreurs d'arrondis -- l'erreur est aussi faible que dans une dérivation
-symbolique "manuelle" des expressions utilisées dans le calcul de la
-fonction -- et ce sans réglage délicat de paramètres.
+permettant de calculer dérivées, gradients et matrices jacobiennes de 
+fonctions numériques.
+Ces méthodes ont l'avantage majeur d'éliminer une grande partie des 
+erreurs d'arrondis que l'on trouve typiquement associées aux méthodes
+de différences finies qui seront étudiées dans la section suivante.
+L'erreur est en fait aussi faible que dans une dérivation symbolique 
+"manuelle" des fonctions à dériver et ce sans réglage délicat de 
+paramètres comme peuvent en requérir les méthodes de différences finies.
+
+Concrêtement, pour dériver la fonction
+$$
+f: x \in \R \mapsto \frac{1-e^{-2x}}{1+e^{-2x}} \in \R,
+$$
+avec une librairie de différentiation automatique en Python comme autograd,
+il faut tout d'abord implémenter la fonction $f$, par exemple sous la forme
+
+    def f(x):
+        y = exp(-2.0 * x)
+        u = 1.0 - y
+        v = 1.0 + y
+        w = u / v
+        return w
+
+L'algorithme de différentiation automatique construit alors à partir de `f` 
+une fonction qui est fonctionnellement équivalente à la fonction que vous
+auriez probablement implémentée manuellement :
+
+    def g(x):
+        dx = 1.0
+        y = exp(-2.0 * x) * dx
+        u = 1.0 - y
+        v = 1.0 + y
+        w = u / v
+        dy = -2.0 * exp(-2.0 * x)
+        du = 0.0 - dy
+        dv = 1.0 + dy
+        dw = du / v + u * (- dv) / (v * v)  
+        return dw
+
+Les erreurs numériques induites par ce procédé ne sont donc pas totalement nulles
+(`f` n'est pas $f$ et `g` n'est pas $g:=f'$).
 
 Selon le langage informatique utilisé pour implémenter les fonctions numériques 
 (C, Fortran, Python, langages "embarqués", etc.), 
@@ -747,10 +781,11 @@ différentes méthodes permettent de mettre en oeuvre la différentiation
 automatique. 
 Le typage dynamique (ou [*duck typing*](https://en.wikipedia.org/wiki/Duck_typing)) 
 de Python permet de mettre en oeuvre simplement le *tracing* des fonctions 
-numériques -- l'enregistrement des opérations du calcul effectuées par une
-fonction lors de son exécution. A partir du graphe de calcul ainsi construit,
+numériques -- l'enregistrement des opérations de calcul effectuées par une
+fonction lors de son exécution. 
+A partir de ce graphe de calcul,
 les différentielles peuvent être calculées mécaniquement 
-par [la règle de différentiation en chaîne](Calcul Différentiel I.pdf#chain-rule) 
+par la règle de différentiation en chaîne
 à partir des différentielles des opérations élémentaires. 
  
 
@@ -760,16 +795,16 @@ par [la règle de différentiation en chaîne](Calcul Différentiel I.pdf#chain-
 Site Web: <https://github.com/HIPS/autograd>
 
     >>> import autograd
-    >>> from autograd import numpy as np
+    >>> from autograd.numpy import *
 
 La documentation de `HIPS/autograd` fournit une bonne illustration d'usage 
 pour le cas des fonctions scalaires
 d'une variable:
 
     >>> def f(x):
-    ...     y = np.exp(-2.0 * x)
+    ...     y = exp(-2.0 * x)
     ...     return (1.0 - y) / (1.0 + y)
-    >>> deriv_f = autograd.grad(np.tanh)  
+    >>> deriv_f = autograd.grad(tanh)  
     >>> deriv_f(1.0)
     0.4199743416140261
 
@@ -777,20 +812,20 @@ Pour les fonctions scalaires de plusieurs variables,
 le fragment de code suivant fournit un exemple :
 
     >>> def f(x, y):
-    ...     return np.sin(x) + 2.0 * np.sin(y)
+    ...     return sin(x) + 2.0 * sin(y)
     >>> def grad_f(x, y):
     ...     g = autograd.grad
-    ...     return np.r_[g(f, 0)(x, y), g(f, 1)(x, y)]
+    ...     return r_[g(f, 0)(x, y), g(f, 1)(x, y)]
     >>> grad_f(0.0, 0.0)
     array([1., 2.])
 
 Pour les fonctions à valeurs vectorielles, l'équivalent est :
 
     >>> def f(x, y):
-    ...     return np.array([np.exp(x), np.exp(y)])
+    ...     return array([exp(x), exp(y)])
     >>> def J_f(x, y):
     ...     j = autograd.jacobian
-    ...     return np.c_[j(f, 0)(x, y), j(f, 1)(x, y)]
+    ...     return c_[j(f, 0)(x, y), j(f, 1)(x, y)]
     >>> J_f(0.0, 0.0)
     array([[1., 0.],
            [0., 1.]])
