@@ -761,12 +761,12 @@ une fonction qui est fonctionnellement équivalente à la fonction que vous
 auriez probablement implémentée manuellement :
 
     def g(x):
-        dx = 1.0
-        y = exp(-2.0 * x) * dx
+        y = exp(-2.0 * x)
         u = 1.0 - y
         v = 1.0 + y
         w = u / v
-        dy = -2.0 * exp(-2.0 * x)
+        dx = 1.0
+        dy = -2.0 * exp(-2.0 * x) * dx
         du = 0.0 - dy
         dv = 1.0 + dy
         dw = du / v + u * (- dv) / (v * v)  
@@ -787,19 +787,31 @@ A partir de ce graphe de calcul,
 les différentielles peuvent être calculées mécaniquement 
 par la règle de différentiation en chaîne
 à partir des différentielles des opérations élémentaires. 
- 
+[L'annexe "Différentiation automatique"](L'annexe "Différentiation automatique")
+vous explique comment développer une micro-bibliothèque de différentiation 
+automatique en Python  ... à des fins pédagogiques uniquement ! Si vous 
+avez besoin d'utiliser la différentiation automatique dans un projet, 
+consultez la section suivante.
 
+### Autograd {#autograd}
 
-### `HIPS/autograd` {#autograd}
-
-Site Web: <https://github.com/HIPS/autograd>
+La bibliothèque Python autograd (<https://github.com/HIPS/autograd>) est un
+bon choix par défaut si vous avez besoin de différentiation automatique 
+et que vous souhaitez continuer à utiliser NumPy comme vous en avez l'habitude.
 
     >>> import autograd
     >>> from autograd.numpy import *
 
-La documentation de `HIPS/autograd` fournit une bonne illustration d'usage 
-pour le cas des fonctions scalaires
-d'une variable:
+Le second appel est un peu surprenant, mais il va nous permettre d'utiliser la
+version des fonctions NumPy fournie par autograd ; cela est rendu nécessaire
+par l'utilisation des méthodes de tracing pour déterminer l'arbre de calcul,
+ce qui suppose une certaine coopération des fonctions numériques impliquées.
+Autograd modifie donc (*monkeypatch*) la version de NumPy dont vous disposez
+et c'est cette version modifiée que vous devrez utiliser et non le module
+original.
+
+La documentation d'autograd fournit une bonne illustration d'utilisation 
+pour calculer la dérivée d'une fonction scalaire d'une variable :
 
     >>> def f(x):
     ...     y = exp(-2.0 * x)
@@ -809,7 +821,7 @@ d'une variable:
     0.4199743416140261
 
 Pour les fonctions scalaires de plusieurs variables,
-le fragment de code suivant fournit un exemple :
+le fragment de code suivant fournit un exemple de calcul du gradient :
 
     >>> def f(x, y):
     ...     return sin(x) + 2.0 * sin(y)
@@ -819,7 +831,8 @@ le fragment de code suivant fournit un exemple :
     >>> grad_f(0.0, 0.0)
     array([1., 2.])
 
-Pour les fonctions à valeurs vectorielles, l'équivalent est :
+Pour les fonctions vectorielles, le calcul de la matrice jacobienne peut
+prendre la forme suivante :
 
     >>> def f(x, y):
     ...     return array([exp(x), exp(y)])
@@ -834,16 +847,8 @@ Pour les fonctions à valeurs vectorielles, l'équivalent est :
 Différences finies
 ================================================================================
 
-
-Les exemples utilisés dans cette section exploitent la librairie numérique 
-Python [NumPy] ; 
-assurons-nous tout de suite d'avoir importé tous ses symboles :
-
-    >>> from numpy import *
-
-
 Compte tenu de la définition de la dérivée d'une fonction, la méthode de 
-différentiation numérique la plus naturelle pour évaluer cette dérivée
+différentiation numérique la plus naturelle pour évaluer une dérivée
 repose sur le schéma des *différences finies* de Newton, qui exploite
 l'approximation
   $$
@@ -1024,7 +1029,7 @@ d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
 
 
 
-Annexe -- Différentiation Automatique
+Annexe -- Différentiation Automatique {#annexe-AD}
 ================================================================================
 
 
