@@ -13,9 +13,6 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
-
-
-
 Objectifs d'apprentissage
 ================================================================================
 
@@ -571,11 +568,14 @@ notée `x` ou $[x]$ :
 $$
 \mbox{\tt x} = [x].
 $$ 
-On choisit en général en tant que *méthode d'arrondi* (*round-off*) :
+On choisit en général en tant que *méthode d'arrondi* (*round-off*)
 $$
 [\,\cdot\,] : \R \to \D
 $$
-la méthode *arrondi-au-plus-proche*[^holes].
+la méthode *arrondi-au-plus-proche*[^holes] :
+$$
+[x] := \mathop{\mathrm{arg\,min}}_{\mbox{\small \tt x} \in \D} |\mbox{\tt x} - x|.
+$$
 Mais il existe des modes alternatifs d'arrondi (arrondis "orientés", vers $+\infty$
 ou $-\infty$) qui peuvent être utiles. Les considérations qui suivent ne
 dépendent pas du détail de ce choix. On supposera uniquement que :
@@ -643,6 +643,27 @@ garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
 L'epsilon machine contrôle donc l'*erreur relative* introduite par l'opération
 d'arrondi.
 
+### Chiffres significatifs de la représentation décimale
+
+L'erreur relative détermine la précision de la représentation décimale
+utilisée pour représenter un nombre réel par un double. 
+Considérons la représentation de $[x]$ en notation scientifique
+(on suppose $x$ positif pour simplifier l'analyse) :
+    $$
+    [x] = (f_0.f_1 \dots f_{p-1} \dots ) \times 10^{e}.
+    $$
+Dans cette notation par convention, $[x]$ est compris entre
+$1.000\dots  \times 10^e$ et $9.999\dots  \times 10^e \leq 10^{e+1}$.
+La borne dont nous disposons sur l'erreur relative nous garantit donc
+$$|x - [x]| \leq \varepsilon \times 10^{e+1} \approx 2.2 \times 10^{e-15},$$
+voire une borne deux fois plus petite si $[\, \cdot \,]$ est l'arrondi au plus proche.
+On peut donc considérer que les chiffres $f_0$ à $f_{14}$ ou $f_{15}$ sont 
+significatifs dans la représentation de $x$, et les suivants a priori sans 
+intérêt.
+
+
+
+<!--
 ### TODO -- Chiffres significatifs
 
 **ne marche tjs pas correctement**
@@ -691,6 +712,8 @@ Ainsi, la précision souhaitée est obtenue tant que
   $$
 Par conséquent, les doubles fournissent une approximation des nombres 
 réels avec environ 15 ou 16 chiffres significatifs.
+
+-->
 
 ### Arrondi des fonctions
 La plupart des nombres réels ne pouvant être représentés par des doubles,
