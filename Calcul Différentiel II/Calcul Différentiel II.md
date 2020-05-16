@@ -810,8 +810,9 @@ Autograd modifie donc (*monkey patch*) la version de NumPy dont vous disposez
 et c'est cette version modifiée que vous devrez utiliser et non le module
 original.
 
-La documentation d'autograd fournit une bonne illustration d'utilisation 
-pour calculer la dérivée d'une fonction scalaire d'une variable :
+La [documentation d'autograd](https://github.com/HIPS/autograd#autograd---) 
+fournit une bonne illustration d'utilisation pour calculer la dérivée d'une 
+fonction scalaire d'une variable :
 
     >>> def f(x):
     ...     y = exp(-2.0 * x)
@@ -827,7 +828,7 @@ le fragment de code suivant fournit un exemple de calcul du gradient :
     ...     return sin(x) + 2.0 * sin(y)
     >>> def grad_f(x, y):
     ...     g = autograd.grad
-    ...     return r_[g(f, 0)(x, y), g(f, 1)(x, y)]
+    ...     return array([g(f, 0)(x, y), g(f, 1)(x, y)])
     >>> grad_f(0.0, 0.0)
     array([1., 2.])
 
@@ -835,13 +836,13 @@ Pour les fonctions vectorielles, le calcul de la matrice jacobienne peut
 prendre la forme suivante :
 
     >>> def f(x, y):
-    ...     return array([exp(x), exp(y)])
+    ...     return array([1.0 * x + 2.0 * y, 3.0 * x + 4.0 * y])
     >>> def J_f(x, y):
     ...     j = autograd.jacobian
-    ...     return c_[j(f, 0)(x, y), j(f, 1)(x, y)]
+    ...     return vstack([j(f, 0)(x, y), j(f, 1)(x, y)]).T
     >>> J_f(0.0, 0.0)
-    array([[1., 0.],
-           [0., 1.]])
+    array([[1., 2.],
+           [3., 4.]])
 
 
 Différences finies
