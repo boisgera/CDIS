@@ -1057,7 +1057,7 @@ d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
 
 
 
-Annexe -- Différentiation Automatique {#annexe-AD}
+Annexe -- Différentiation automatique {#annexe-AD}
 ================================================================================
 
 
@@ -1352,10 +1352,9 @@ Un autre exemple -- à deux arguments -- pour la route :
     >>> print(t)
     multiply(1.0, add(1.0, 2.0))
 
-Calcul automatique des dérivées
+Différentielle des fonctions élémentaires
 --------------------------------------------------------------------------------
 
-### Différentielle des fonctions élémentaires
 Pour exploiter le graphe de calcul que nous savons désormais déterminer,
 il nous faut déclarer les différentielles des opérations et fonctions 
 primitives dans un "registre" de différentielles, indexées par la fonction
@@ -1403,7 +1402,9 @@ ainsi on déduit de l'identité $(\sin x)' = \cos x$ la déclaration
 
     differential[sin] = d_from_deriv(cos)
 
-### Différentielle des fonctions composées
+Différentielle des fonctions composées
+--------------------------------------------------------------------------------
+
 Pour exploiter le tracing d'une fonction, il nous faut à partir du noeud
 final produit par ce procédé extraire l'ensemble des noeuds amont,
 qui représentent les arguments utilisés dans le calcul de la valeur finale.
