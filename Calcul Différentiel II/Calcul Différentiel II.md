@@ -802,13 +802,17 @@ et que vous souhaitez continuer à utiliser NumPy comme vous en avez l'habitude.
     >>> import autograd
     >>> from autograd.numpy import *
 
-Le second appel est un peu surprenant, mais il va nous permettre d'utiliser la
-version des fonctions NumPy fournie par autograd ; cela est rendu nécessaire
-par l'utilisation des méthodes de tracing pour déterminer l'arbre de calcul,
-ce qui suppose une certaine coopération des fonctions numériques impliquées.
-Autograd modifie donc (*monkey patch*) la version de NumPy dont vous disposez
-et c'est cette version modifiée que vous devrez utiliser et non le module
-original.
+Le second appel est un peu surprenant -- pourquoi pas simplement
+`from numpy import *` ? -- mais il va nous permettre d'utiliser la
+version des fonctions NumPy fournie par autograd.
+Cela est rendu nécessaire par l'utilisation du tracing pour 
+déterminer les graphes de calcul, une méthode qui suppose 
+une forme de coopération des fonctions numériques impliquées.
+Comme les fonction de NumPy en sont incapables,
+Autograd les modifie (*monkey patch*) puis les met ensuite à disposition 
+dans son propre module NumPy ; 
+c'est la version que vous devrez utiliser et non le module original, 
+sans quoi des erreurs cryptiques sont à craindre.
 
 La [documentation d'autograd](https://github.com/HIPS/autograd#autograd---) 
 fournit une bonne illustration d'utilisation pour calculer la dérivée d'une 
@@ -839,7 +843,7 @@ prendre la forme suivante :
     ...     return array([1.0 * x + 2.0 * y, 3.0 * x + 4.0 * y])
     >>> def J_f(x, y):
     ...     j = autograd.jacobian
-    ...     return vstack([j(f, 0)(x, y), j(f, 1)(x, y)]).T
+    ...     return array([j(f, 0)(x, y), j(f, 1)(x, y)]).T
     >>> J_f(0.0, 0.0)
     array([[1., 2.],
            [3., 4.]])
