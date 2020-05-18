@@ -73,35 +73,18 @@ d'exercices.
 
 #### Différentiation automatique
 
-  - avantage et portée de la méthode (plus détaillée: précision, dérivées à
-    un ordre arbitraire, "workflow", usages en optimisation, machine learning,
-    etc.)
+  - \one connaître la fonction d'un outil de différentiation automatique,
 
-  - connaître les (une version des) principes des différents "morceaux" 
-    de la méthode dans le cas de Python: "tracer", "computation graph", etc.
-    Solution: en construire un "à la main", au moins les étapes importantes.
-    Note: permet aussi d'apprécier les limitations de la méthode.
+  - \one savoir comparer cette approche au calcul de différences finies,
 
-  - sur péda, essayer forward pass (plus près du cours),
-    mais expliquer backward pass pour pouvoir se "plugger" dans l'existant.
+  - \two savoir exploiter la bibliothèque autograd dans un projet numérique,
 
-  - exploiter un système existant, type `autograd` en python
-    (sans doute le plus facile en terme de courbe d'apprentissage)
+  - \four comprendre les principes de fonctionnement d'un tel outil.
 
 #### Différences finies
 
+**TODO**
 
-  - Savoir quelles sont les options quand il s'agit de calculer des dérivées,
-    gradient, différentielles: "manuelles", symboliques, différences finies,
-    diff auto. et avoir au final une idée de la portée de chacune
-    (applicabilité, avantages, pbs)
-
-  - Connaitre le principe des méthodes de type différence finie 
-    et mes deux sources d'erreurs potentielles associées (très général,
-    pas limité au calcul diff): "erreur de troncature" et "erreur d'arrondi".
-    Savoir calculer des estimations numériques dans les deux cas.
-    (attention, il y a plein de choses ici: il faut en passer par
-    le modèle de représentation des nombres flottants, etc.)
 
 Théorème des fonctions implicites
 ================================================================================
