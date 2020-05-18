@@ -104,7 +104,7 @@ $\partial_y f$ soit inversible en tout point de $W$.
 Si le point $(x_0, y_0)$ de $W$ vérifie $f(x_0, y_0)= 0$,
 alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $y_0$ tels que
 $U \times V \subset W$ et
-une fonction implicite $\psi: U \to \mathbb{R}^m$, continûment différentiable, 
+une unique fonction implicite $\psi: U \to \mathbb{R}^m$, continûment différentiable, 
 telle que pour tout $x \in  U$ et tout $y \in V$,
 $$
 f(x, y) = 0
@@ -122,6 +122,44 @@ implicites. Au voisinage de $(1,0)$, cela n'est pas le cas ; on constate alors
 que même si $x$ est arbitrairement proche de $1$ et que l'on restreint la 
 recherche des solutions $y$ à un voisinage arbitrairement petit de $0$, 
 il peut exister 0 ou 2 solutions $y$.](images/implicit-function-theorem.tex)
+
+### TODO
+Exercice numérique concret
+
+### TODO
+Courbes de niveau et $\nabla$ non nul
+
+### Abscisse curviligne {.exercise  .question .one #ac}
+Soit $f: \left]a, b\right[ \to \R^2$ un chemin (une fonction) 
+continûment différentiable, dont la dérivée $f'$ ne s'annule pas. 
+Soit $c \in \left]a, b\right[$ ; montrer qu'il existe une unique
+fonction $x$ définie dans un voisinage de $0 \in \R$ et à valeurs dans $\R$ 
+telle que $x(c) = 0$ et
+$$
+\int_c^{x(s)} \|f'(t)\| \, dt = s.
+$$
+
+### Détermination de l'angle {.exercise .two .question #va}
+Soit $u = (u_1, u_2)$ un vecteur de $\R^2$ distinct de l'origine. 
+Une *détermination de l'angle* de $u$ est un nombre réel $\theta$ tel que 
+$$
+\frac{u}{\|u\|} 
+= 
+\left[
+\begin{array}{c}
+\cos \theta \\ \sin \theta
+\end{array}
+\right].
+$$
+Montrer que pour tout vecteur $u_0 \neq 0$ dont l'angle est déterminé par
+$\theta_0$, il existe dans un voisinage ouvert $U$ de $u_0$ 
+une unique fonction $\theta : U \to \R$ continûment différentiable
+telle que $\theta(u)$ soit une détermination de l'angle de $u$.
+Calculer ensuite $\nabla\theta(u)$.
+
+### Détermination de l'angle {.answer #answer-va}
+
+TODO
 
 ### Extensions {.note}
 Il est possible d'affaiblir l'hypothèse concernant $\partial_y f$ en supposant 
@@ -1918,6 +1956,22 @@ Solution des exercices
 
 Exercices essentiels
 --------------------------------------------------------------------------------
+
+### Abscisse curviligne {.answer #answer-ac}
+On considère l'équation 
+$$
+F(s, x) := \int_c^x \|f'(t)\| \, dt - s = 0
+$$
+où $F$ est définie sur l'ouvert $\R \times \left]a, b\right[ \subset \R\times\R$.
+La dérivées partielles de $F$ existent et vérifient
+$$
+\partial_s F(x, s) = 1 \; \mbox{ et } \; \partial_x F(s, x) = \|f'(x)\| \neq 0.
+$$
+Les dérivées partielles étant continues, $F$ est continûment différentiable.
+De plus, la différentielle partielle de $F$ par rapport à $x$ est inversible.
+On a également $F(0, c) = 0$. Par conséquent, dans un voisinage $U \times V$
+ouvert de $(0,c) \in \R^2$, l'équation $F(s, x) = 0$ détermine de façon unique
+$x$ comme une fonction différentiable de $s$.
 
 
 ### Représentation des entiers {.answer #answer-entiers}
