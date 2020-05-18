@@ -13,6 +13,8 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
+\newcommand{\+}{\, \texttt{+} \,}
+
 Objectifs d'apprentissage
 ================================================================================
 
@@ -49,7 +51,7 @@ d'exercices.
     Etudier un scope raisonnable. Cf Salamon sur scope géom diff ?
 
 
-#### Calcul des nombres flottants
+#### Calcul avec les nombres flottants
 
 #### Différentiation automatique
 
@@ -410,7 +412,7 @@ de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par
 construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$ ;
 nous avons donc affaire à un $C^1$-difféomorphisme de $V$ sur $W$.
 
-Calcul des nombres flottants
+Calcul avec les nombres flottants
 ================================================================================
 
 Cette section introduit la représentation des nombres réels sur ordinateur
@@ -444,9 +446,9 @@ car elle n'est pas une représentation décimale exacte du nombre `pi`
 qui est stocké en mémoire. Pour avoir sa représentation exacte,
 nous pouvons demander l'affichage d'un grand nombre de décimales :
 
-    >>> def display_all_digits(number):
+    >>> def print_exact_number(number):
     ...     print(f"{number:.100g}")    
-    >>> display_all_digits(pi)
+    >>> print_exact_number(pi)
     3.141592653589793115997963468544185161590576171875
 
 Demander 100 chiffres après la virgule s'avère suffisant : 
@@ -518,7 +520,7 @@ de Python et NumPy.
 
 Un double *normalisé* $x$ prend la forme
   $$
-  x = (-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52}).
+  x = (-1)^s \times (1.f_1f_2 \dots f_{52}) \times 2^{e-1023}.
   $$
 Les doubles qui ne sont pas normalisés sont *not-a-number* (`nan`),
 plus ou moins l'infini (`inf`) et zero (`0.0`) (en fait $\pm$ `0.0`;
@@ -526,7 +528,7 @@ car il existe deux zéros distincts, qui diffèrent par leur signe)
 ou les nombres dits *dénormalisés* qui existent dans un voisinage de
 $0$. Dans la suite, nous ne parlerons pas de ces cas particuliers.
 
-\newcommand{\af}{$x =(-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52})$}
+\newcommand{\af}{$x =(-1)^s  \times (1.f_1f_2 \dots f_{52}) \times 2^{e-1023}$}
 
 --------------------------------------------------------------------------------
 Composante             \af                                      Nombre de bits
@@ -548,7 +550,7 @@ pour nous concentrer sur les nombres normalisés et que de plus nous permettons
 à l'exposant $e$ de décrire $\Z$ tout entier, nous obtenons un modèle simplifié
 des doubles, sous la forme d'un sous-ensemble $\D$ de $\R$ :
 $$
-\D = \{0\} \cup \{(-1)^s \times 2^{e} \times (1.f_1f_2 \dots f_{52})
+\D = \{0\} \cup \{(-1)^s \times (1.f_1f_2 \dots f_{52}) \times 2^{e} 
 \; | \; s \in\{0,1\}, e \in \Z, f \in \{0,1\}^{52}\}.
 $$
 Pour simplifier la situation, ce modèle ignore délibérément la possibilité 
@@ -592,7 +594,19 @@ dépendent pas du détail de ce choix. On supposera uniquement que :
 est équidistant de deux doubles, un niveau de détail dont nous ne nous 
 préoccuperons pas dans la suite.
 
-### Précision
+### Représentation des entiers {.exercise .two .question #entiers}
+Le type `int32` de Python permet de représenter tous les entiers entre
+`-2147483648` ($-2^{31}$) et `2147483647` ($2^{31}-1$). 
+Est-ce que tous ces entiers sont des doubles ?
+
+
+### Nombres réels et doubles {.exercise .one .question #four-numbers}
+Parmi les réels $1.0$, $2/3$, $0.5$ et $0.1$, lesquels sont des doubles ?
+(Indication : en base $2$, $2/3 = 0.101010101010\dots$ et 
+$0.1 = 0.0001100110011\dots$)
+
+
+### Précision et erreur relative
 
 Pour avoir la moindre confiance dans le résultats des calculs que nous 
 effectuons avec des doubles, nous devons être en mesure d'évaluer l'erreur
@@ -608,17 +622,17 @@ et le double qui lui est immédiatement supérieur.
     >>> after_one = nextafter(1.0, +inf)
     >>> after_one
     1.0000000000000002
-    >>> display_all_digits(after_one)
+    >>> print_exact_number(after_one)
     1.0000000000000002220446049250313080847263336181640625
     >>> eps = after_one - 1.0
-    >>> display_all_digits(eps)
+    >>> print_exact_number(eps)
     2.220446049250313080847263336181640625e-16
 
 Ce nombre est également disponible comme un attribut de la classe `finfo`
 de NumPy qui rassemble les constantes limites de l'arithmétique pour les
 types flottants.
 
-    >>> display_all_digits(finfo(float64).eps)
+    >>> print_exact_number(finfo(float64).eps)
     2.220446049250313080847263336181640625e-16
 
 Alternativement, l'examen de la structure des doubles normalisés fournit
@@ -626,9 +640,10 @@ directement la valeur de $\varepsilon$ : la mantisse du nombre après $1.0$
 est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ et son exposant
 $0$ donc $$\varepsilon =2^{-52},$$ un résultat confirmé par l'expérience :
 
-    >>> display_all_digits(2**(-52))
+    >>> print_exact_number(2**(-52))
     2.220446049250313080847263336181640625e-16
 
+### {.remark}
 L'epsilon machine importe autant parce qu'il fournit une borne simple sur
 l'erreur relative de la représentation d'un nombre réel comme un double.
 En effet, si $2^e \leq x < 2^{e+1}$, comme dans cette région la distance
@@ -642,6 +657,20 @@ $2^{e} \leq |x|$, nous obtenons l'inégalité :
 garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$)
 L'epsilon machine contrôle donc l'*erreur relative* introduite par l'opération
 d'arrondi.
+
+### $\pi$ contre `pi` {.exercise .one .question #pi}
+Par quel nombre peut-on borner l'écart entre $\pi$ et $\texttt{pi} = [\pi]$ ?
+
+### Constantes de la Physique {.exercise .question .one #physics}
+Quelle précision peut-on attendre des doubles $\texttt{N} = [N]$ 
+et $\texttt{h} = [h]$ représentant 
+respectivement le nombre d'Avogrado $N$ et la constante de Planck $h$ ?
+$$
+N = 6.02214076 \times 10^{23} \, \mathrm{mol}^{-1},
+\;
+h = 6.62607015\times{10}^{-34} \, \mathrm{J} \times \mathrm{s}.
+$$
+
 
 ### Chiffres significatifs de la représentation décimale
 
@@ -748,6 +777,80 @@ D'autres fonctions élémentaires
 ne sont en général pas correctement arrondies ;
 la conception d'algorithmes de calcul qui aient une performance décente et
 qui soient correctement arrondis est un problème difficile (cf. @FHL07).
+
+### WTF Python ? {.exercise .question .one #WTF}
+Expliquer pourquoi en Python on a comme on s'y attend :
+
+    >>> 0.3
+    0.3
+
+mais aussi le résultat moins intuitif :
+
+    >>> 0.1 + 0.2
+    0.30000000000000004
+
+(On se contentera de donner un scénario plausible et qualitatif 
+de ce qui se passe quand on approxime $0.1+0.2$ par `0.1 + 0.2`.)   
+
+
+### WTF Python, vraiment ? {.exercise .question .four #WTF2}
+Pour faire taire les sceptiques, détailler les calculs de `0.1 + 0.2` en base
+$2$ pour étayer votre explication.
+
+### Non-associativité de l'addition {.exercise .question .two #non-assoc}
+On note $\cdot \+ \cdot : \R \to \R \to \D$ la version correctement arrondie
+de l'addition entre réels quand $[\, \cdot \,]$ désigne l'arrondi au double
+le plus proche.
+Calculer 
+$$
+(((1.0 \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4
+\; \mbox{ et } \;
+1 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ \varepsilon/4))).
+$$
+Pouvez-vous déterminer expérimentalement si Python interprète `x + y + z`
+comme `(x + y) + z` ou comme `x + (y + z)` ?
+
+### Non-associativité de l'addition {#answer-non-assoc}
+On a $[1.0] = 1.0$ et $[\varepsilon / 4] = \varepsilon / 4$ car $1.0$ et
+$\varepsilon / 4$ appartiennent à $\D$. Par conséquent,
+$$
+1.0 \+ \varepsilon/4 = [1.0 + \varepsilon/4] = 1.0,
+$$
+car $1.0 \+ \varepsilon/4$ est encadré par les doubles consécutifs
+$1.0$ et $1.0 + \varepsilon$ et que $1.0$ est plus proche. On a donc
+$$
+(((1.0 \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4 = 1.0.
+$$
+D'autre part, $\varepsilon / 4 \+ \varepsilon / 4 = [\varepsilon/2] = \varepsilon /2$,
+donc $\varepsilon/4 \+ \varepsilon/2 = [3\varepsilon/4] = 3\varepsilon/4$ et
+donc $\varepsilon / 4 \+ 3 \varepsilon/4 = [\varepsilon] =\varepsilon$.
+Par conséquent,
+$$
+1 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ \varepsilon/4)))
+= [1 +\varepsilon] = 1 + \varepsilon.
+$$
+Les deux valeurs étant différentes, l'opérateur $\+$ n'est donc pas associatif.
+Il est donc nécessaire de préciser ce que l'on entend par `x + y + z`. 
+Livrons-nous à une expérience en Python :
+
+    >>> eps = 2**(-52)
+    >>> e4 = eps / 4
+    >>> s1 = 1.0 + e4 + e4 + e4 + e4
+    >>> s2 = (((1.0 + e4) + e4) + e4) + e4
+    >>> s3 = 1.0 + (e4 + (e4 + (e4 + e4)))
+    >>> print_exact_number(s1)
+    1
+    >>> print_exact_number(s2)
+    1
+    >>> print_exact_number(s3)
+    1.0000000000000002220446049250313080847263336181640625
+
+Il semble donc que par défaut l'opérateur `+` en Python associe à gauche,
+c'est-à-dire interprête `x + y + z` comme `(x + y) + z`.
+
+
+
+
 
 
 Différentiation automatique
@@ -1809,6 +1912,116 @@ l'erreur la plus élevée possible ?
 
 Solution des exercices
 ================================================================================
+
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+
+### Représentation des entiers {.answer #answer-entiers}
+Oui, car l'écriture d'un tel entier $n$ en binaire va demander au plus
+32 bits non nuls $b_i$ pour être décrit :
+$$
+n = (-1)^s \times b_0b_1\dots b_{31}.
+$$
+Si $b_0 = b_1 = \cdots = b_{p-1} = 0$ et $b_{p} = 1$,
+il sera donc de la forme
+$$
+n = (-1)^s \times (1.b_{p}\dots b_{31} 000 \dots) \times 2^{e},
+$$
+
+
+### Nombres réels et doubles {.answer #answer-four-numbers}
+Le nombre $1.0$ s'écrit en base 2 sous la forme
+$$
+1.0 = (-1)^{0} \times (1.000 \dots ) \times 2^{0},
+$$
+et $0.5$ sous la forme
+$$
+0.5 = (-1)^{0} \times (1.000 \dots ) \times 2^{-1}.
+$$
+Ils sont donc des doubles.
+Par contre, les développements en base $2$ de $2/3$ et $0.1$ sont périodiques,
+donc nécessiterait une mantisse de taille infinie pour être décrits exactement ;
+ils ne sont pas des doubles.
+
+
+### $\pi$ contre `pi` {.answer #answer-pi}
+Le nombre $\pi$ est dans l'intervalle $\left[2^1, 2^2\right[$, donc
+sa représentation sous forme de double `pi` en base 2 est de la forme
+$$
+\texttt{pi} = (1.???\dots???) \times 2^{1}.
+$$
+(avec 52 points d'interrogations représentant 0 ou 1).
+Dans cet intervalle, l'espace entre deux doubles consécutifs est de 
+$2^{-52} \times 2^1 = 2 \varepsilon.$ L'erreur est donc bornée
+par $\approx 4.4 \times 10^{-16}$ (deux fois moins si on arrondit au plus
+proche).
+
+### Constantes de la Physique {.answer  #answer-physics}
+En utilisant la formule $|[x] - x| \leq \varepsilon |x|$, on obtient
+$$
+|[N] - N| \leq 1.4  \times 10^8 
+\; \mbox{ et } \;
+|[h] - h| \leq 1.5 \times 10^{-49}.
+$$
+
+
+### WTF Python ? {.answer #answer-WTF}
+Ni $0.1$, ni $0.2$ ni $0.3$ ne sont représentés exactement par des doubles.
+Il est tout à fait possible que dans le calcul de
+$$
+\texttt{0.1} \+ \texttt{0.2} = [[0.1] + [0.2]]
+$$
+les arrondis $[0.1]$ et $[0.2]$ soient légèrement
+supérieurs aux nombres réels exacts et que l'addition de ces nombres arrondis 
+produise un nombre plus proche d'un double strictement supérieur à $[0.3]$
+que de $[0.3]$ lui-même.
+
+
+### WTF Python, vraiment ? {.answer #answer-WTF2}
+On remarque qu'en base 2, on a 
+$$
+\begin{array}{lll}
+0.1 &= 0.00011001100 \dots &= (1.100110011001 \dots 1001|1001\dots) \times 2^{-4} \\
+0.2 &= 0.00110011001 \dots &= (1.100110011001 \dots 1001|1001\dots) \times 2^{-3} \\
+0.3 &= 0.01001100110 \dots &= (1.001100110011 \dots 0011|0011\dots) \times 2^{-2}
+\end{array}
+$$
+où la barre verticale indique la limite entre le 52-ème et le 53-ème bit après 
+le point. Si $[\, \cdot \,]$ est l'arrondi au double le plus proche, on a donc
+$$
+\begin{array}{ll} 
+[0.1]   & = (1.100110011001 \dots 1010|0000\dots) \times 2^{-4} \\
+{[0.2]} & = (1.100110011001 \dots 1010|0000\dots) \times 2^{-3} \\
+{[0.3]} & = (1.001100110011 \dots 0011|0000\dots) \times 2^{-2} \\
+\end{array}
+$$
+et par conséquent
+\begin{align*}
+[0.1] + [0.2] & = \phantom{+}
+(001.100110011001 \dots 10011010|) \times 2^{-4} \\ 
+& \phantom{=} + (011.001100110011 \dots 10110100|) \times 2^{-4} \\
+& = \phantom{+} (100.110011001100 \dots 01001110|) \times 2^{-4} \\
+& = \phantom{+} (1.001100110011 \dots 010011|10) \times 2^{-2}
+\end{align*}
+
+Le nombre $[0.1] + [0.2]$ est exactement à mi-distance des doubles 
+$$(1.001100110011 \dots 010011|) \times 2^{-2} \; \mbox{ et } \;
+(1.001100110011 \dots 010100|) \times 2^{-2}.$$ 
+Dans ce cas, Python 3 semple appliquer la règle 
+*round-to-nearest, ties-to-nearest-even*
+de l'IEEE754 (@ANS85) qui préfère le double se terminant par un 0 (entier pair) 
+et qui est ici le plus grand des deux doubles possibles. On a donc
+$$
+\begin{array}{rl}
+{[0.3]} & = (1.001100110011 \dots 0011|) \times 2^{-2} \\
+{[[0.1]+[0.2]]} & = (1.001100110011 \dots 0100|) \times 2^{-2}
+\end{array}
+$$
+Les deux nombres sont différents, leur écart est $2^{-52} \times 2^{-2} \approx
+5.56 \times 10^{-17}$, qui justifie l'écart observé dans la représentation
+décimale simplifiée affichée dans l'interpréteur ($\approx 4 \times 10^{-17}$).
+
 
 Cinématique d'un robot manipulateur
 --------------------------------------------------------------------------------
