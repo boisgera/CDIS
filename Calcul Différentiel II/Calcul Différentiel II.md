@@ -53,6 +53,24 @@ d'exercices.
 
 #### Calcul avec les nombres flottants
 
+  - \zero savoir que les calculs numériques avec les flottants sont inexacts,
+
+  - \one savoir représenter un nombre réel en base 10 et en base 2,
+
+  - pour les nombres flottants à double précision :
+
+     - \one connaitre la définition et la valeur de $\varepsilon$,
+
+     - \two savoir caractériser un double (modèle simplifié des doubles $\D$),
+
+     - \one connaître les propriétés importantes de l'opération d'arrondi.
+
+  - savoir évaluer les erreurs numériques introduites par :
+
+    - \two la représentation d'un réel par un double (arrondi),
+  
+    - \three une opération mathématique correctement arrondie.
+
 #### Différentiation automatique
 
   - avantage et portée de la méthode (plus détaillée: précision, dérivées à
@@ -579,8 +597,8 @@ $$
 [x] := \mathop{\mathrm{arg\,min}}_{\mbox{\small \tt x} \in \D} |\mbox{\tt x} - x|.
 $$
 Mais il existe des modes alternatifs d'arrondi (arrondis "orientés", vers $+\infty$
-ou $-\infty$) qui peuvent être utiles. Les considérations qui suivent ne
-dépendent pas du détail de ce choix. On supposera uniquement que :
+ou $-\infty$) qui peuvent être utiles. Ces opérations ont en commun les propriétés
+suivantes :
 
   - si $x$ est un double, $[x] = x$,
 
@@ -592,7 +610,9 @@ dépendent pas du détail de ce choix. On supposera uniquement que :
 
 [^holes]: Il faudrait préciser comment l'opération se comporte quand le réel
 est équidistant de deux doubles, un niveau de détail dont nous ne nous 
-préoccuperons pas dans la suite.
+préoccuperons pas dans la suite. Comme il existe deux façon de faire qui sont
+standard (cf. la norme IEEE 754 ,[@ANS85), il faudrait pour être exact parler
+des méthodes d'arrondi au plus proche.
 
 ### Représentation des entiers {.exercise .two .question #entiers}
 Le type `int32` de Python permet de représenter tous les entiers entre
