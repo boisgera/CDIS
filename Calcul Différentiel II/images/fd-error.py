@@ -66,8 +66,8 @@ def fd_error():
     xticks([1e-16, 1e-12, 1e-8, 1e-4, 1e0])
     plot(h, abs(1.0 - FD(f, 0.0, h)), "k", label="erreur de FD")
     title("Graphe de $h \mapsto [|\mathrm{FD}(\exp, 0, h) -\exp'(0)|]$")
-
-    set_ratio(1.0, scale=1, bottom=-0.2, top=-0.2)
+    xlabel("$h$")
+    set_ratio(1.0, scale=1, bottom=-0.15, top=-0.2)
     gca().set_aspect(1.0)
     #gca().set_aspect(1.0)
     #gcf().set_figwidth(width_in)
