@@ -35,23 +35,23 @@ d'exercices.
 
 #### Théorème des fonctions implicites
 
-  - Mettre un pb sous forme d'équ implicite (zéro de fct)
+  - connaître la portée du théorème des fonctions implicites (TFI) qui
 
-  - degrés de libertés, équations "indépendantes", etc ?
+    - \zero explicite une relation fonctionnelle implicite entre des variables liées,
+     
+    - \one localement au voisinage d'un jeu de valeurs admissibles,
 
-  - comprendre la portée du résultat: permettre la résolution *locale*
-    d'équations non-linéaires paramétrique, autour d'une solution connue
-    de référence.
+    - \one sous des hypothèses de régularité et d'inversibilité.
 
-  - savoir mettre en oeuvre la version "inversion locale" du théorème des
-    fonction implicites pour manipuler des changements de variables.
+  - \two savoir reconnaître un problème relevant directement du TFI,
 
-  - connaître et savoir mettre en oeuvre dans les deux cas le ressort 
-    de la preuve: un théorème de point fixe qui exploite la différentielle.
+  - \three savoir transformer un problème pour que le TFI devienne applicable.
 
-  - applications ? Géométriques d'abord ? Au changements de variables de
-    la physique (ex: [thermo](https://fr.m.wikipedia.org/wiki/Gaz_parfait)). 
-    Etudier un scope raisonnable. Cf Salamon sur scope géom diff ?
+  - \one savoir calculer/exploiter la différentielle de la fonction implicite,
+
+  - \two connaître la méthode de Newton (/modifiée) sous-tendant le résultat,
+
+  - \two savoir exploiter le théorème d'inversion locale qui en résulte.
 
 
 #### Calcul avec les nombres flottants
@@ -86,7 +86,15 @@ d'exercices.
 
 #### Différences finies
 
-**TODO**
+   - \zero connaître le principe fondant les méthodes de différences finies,
+
+   - \one savoir les mettre en oeuvre dans un projet numérique,
+
+   - \one savoir expliquer les deux types d'erreurs qu'elles engendrent,
+
+   - \two savoir quantifier les erreurs de troncature,
+
+   - \three savoir quantifier les erreurs d'arrondi.
 
 
 Théorème des fonctions implicites
