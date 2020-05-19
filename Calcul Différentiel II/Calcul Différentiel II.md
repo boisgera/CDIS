@@ -1083,7 +1083,7 @@ Considérons les échantillons de données suivants :
 
 La valeur théorique de $\exp'(0)$ étant $1.0$,
 la valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
-et uniquement 8 nombres après la virgule du résultat sont *significatifs*.
+et uniquement 8 nombres après la virgule du résultat sont significatifs.
 
 Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
 du développement de Taylor de $\exp$ au premier ordre ; 
@@ -1121,12 +1121,11 @@ Le comportement asymptotique de ce schéma de *différence avant*
 Une implémentation de ce schéma est définie pour les réels $x$ et
 $h$ par
   $$
-  \mathrm{FD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x])]}{[h]} \right].
+  \mathrm{FD}(f, x, h) = \left[\frac{[[f ( [x] + [h])] - [f ([x])]]}{[h]} \right]
+  = \mbox{\tt (f(x + h) - f(x)) / h}
   $$
-ou de façon équivalent en Python par:
-
-    >>> def FD(f, x, h):
-    ...     return (f(x + h) - f(x)) / h
+où $\mbox{\tt x} = [x]$, $\mbox{\tt h} = [h]$, $\mbox{\tt f} = [\, \cdot \, ] \circ f \circ[\, \cdot \, ]$,
+$a \, \mbox{\tt -} \, b = [[a] - [b]]$ et $a \, \mbox{\tt /} \, b = [[a] / [b]]$.
 
 ### Erreur d'arrondi
 Nous considérons à nouveau la fonction $f(x) = \exp(x)$ utilisée dans
@@ -1220,10 +1219,10 @@ Son implémentation sur ordinateur est donnée par
   $$
   \mathrm{CD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x]-[h])]}{[2 \times [h]]} \right].
   $$
-ou de façon équivalente en Python:
+ou de façon équivalente en Python :
 
-    >>> def CD(f, x, h):
-    ...    return 0.5 * (f(x + h) - f(x - h)) / h
+    def CD(f, x, h):
+        return 0.5 * (f(x + h) - f(x - h)) / h
 
 
 ![Erreur de la différence centrée](images/cd-error.py){#cde}
