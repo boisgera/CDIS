@@ -51,7 +51,9 @@ d'exercices.
 
   - \two connaître la méthode de Newton (/modifiée) sous-tendant le résultat,
 
-  - \two savoir exploiter le théorème d'inversion locale qui en résulte.
+  - \one savoir caractériser et exploiter les $C^1$-difféomorphismes,
+
+  - \two savoir exploiter le théorème d'inversion locale qui résulte du TFI.
 
 
 #### Calcul avec les nombres flottants
