@@ -35,6 +35,9 @@ d'exercices.
 
 #### Théorème des fonctions implicites
 
+  - Mettre un pb sous forme d'équ implicite (zéro de fct)
+
+  - degrés de libertés, équations "indépendantes", etc ?
 
   - comprendre la portée du résultat: permettre la résolution *locale*
     d'équations non-linéaires paramétrique, autour d'une solution connue
@@ -123,23 +126,41 @@ que même si $x$ est arbitrairement proche de $1$ et que l'on restreint la
 recherche des solutions $y$ à un voisinage arbitrairement petit de $0$, 
 il peut exister 0 ou 2 solutions $y$.](images/implicit-function-theorem.tex)
 
-### TODO
-Exercice numérique concret
+### Le cercle  {.exercise .question .one #circle}
+Déterminer les points $(x_0, y_0)$ du cercle 
+$$C := \{(x,y) \in \R^2 \; | \; x^2+y^2=1\}$$
+au voisinage desquels le cercle est le graphe d'une fonction 
+continûment différentiable $y = \psi(x)$. 
+On déterminera alors explicitement des intervalles ouverts $U$ 
+contenant $x_0$ et $V$ contenant $y_0$ ainsi que la fonction $\psi : U \to \R$ 
+tels que $x^2+y^2 = 0  \, \Leftrightarrow \, y = \psi(x)$ et l'on calculera
+$\psi'(x)$.
 
-### TODO
-Courbes de niveau et $\nabla$ non nul
-
-### Abscisse curviligne {.exercise  .question .one #ac}
+### Abscisse curviligne {.exercise  .question .two #ac}
 Soit $f: \left]a, b\right[ \to \R^2$ un chemin (une fonction) 
 continûment différentiable, dont la dérivée $f'$ ne s'annule pas. 
 Soit $c \in \left]a, b\right[$ ; montrer qu'il existe une unique
-fonction $x$ définie dans un voisinage de $0 \in \R$ et à valeurs dans $\R$ 
-telle que $x(c) = 0$ et
+fonction $x$ définie dans un voisinage ouvert de $0 \in \R$ et 
+à valeurs dans $\R$ telle que $x(c) = 0$ et
 $$
 \int_c^{x(s)} \|f'(t)\| \, dt = s.
 $$
 
-### Détermination de l'angle {.exercise .two .question #va}
+### Courbes de niveau {.exercise .question .two #cn}
+Soit $f: (x,y) \in \R^2 \to \R$ une fonction continûment différentiable
+et $c \in \R$ tels que l'ensemble 
+$$
+C = \{(x,y) \in \R^2 \; | \; f(x,y) = c\}
+$$
+est non vide et que $\nabla f$ ne s'annule pas sur $C$. 
+Soit $(x_0, y_0) \in C$, $$v = \frac{\nabla f(x_0, y_0)}{\|\nabla f(x_0,y_0)\|}$$ et 
+$u \in \R^2$ le vecteur tel que $(u, v)$ soit une base orthonormée.
+Soit $(w, z)$ les coordonnées d'un point $P$ dans cette base ; 
+montrer que pour tout point de $C$, il existe un voisinage de ce point et 
+une fonction $\psi$ pour lesquels $P \in C \Leftrightarrow z = \psi(w)$.
+
+
+### Détermination de l'angle {.exercise .three .question #va}
 Soit $u = (u_1, u_2)$ un vecteur de $\R^2$ distinct de l'origine. 
 Une *détermination de l'angle* de $u$ est un nombre réel $\theta$ tel que 
 $$
@@ -153,13 +174,18 @@ $$
 $$
 Montrer que pour tout vecteur $u_0 \neq 0$ dont l'angle est déterminé par
 $\theta_0$, il existe dans un voisinage ouvert $U$ de $u_0$ 
-une unique fonction $\theta : U \to \R$ continûment différentiable
-telle que $\theta(u)$ soit une détermination de l'angle de $u$.
-Calculer ensuite $\nabla\theta(u)$.
+une unique fonction $\Theta : U \to \R$ continûment différentiable
+telle que $\Theta(u)$ soit une détermination de l'angle de $u$.
+Montrer ensuite que 
+$$
+\nabla \Theta(u_0) = 
+\frac{1}{\|u_0\|}
+\left[\begin{array}{r} -\sin \theta_0 \\ \cos \theta_0 \end{array}
+\right].
+$$
+(Indication : réécrire l'équation initiale reliant $\theta$ et $u$ sous la 
+forme d'une équation scalaire qui lui est localement équivalente.)
 
-### Détermination de l'angle {.answer #answer-va}
-
-TODO
 
 ### Extensions {.note}
 Il est possible d'affaiblir l'hypothèse concernant $\partial_y f$ en supposant 
@@ -424,10 +450,11 @@ La fonction $df(x)$ est donc inversible et son inverse est $d f^{-1}(y)$.
 ### Théorème d'inversion locale {.theorem #TIL}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ continûment différentiable
 sur l'ouvert $U$ et telle que $df(x)$ soit inversible
-en tout point $x$ de $U$. Alors pour tout $x_0$ in $U$, il existe un voisinage
-ouvert $V \subset U$ de $x_0$ tel que $W=f(V)$ soit ouvert et que
-la restriction de la fonction $f$ à $V$ soit un $C^1$-difféomorphisme 
-de $V$ sur $W$.
+en tout point $x$ de $U$. 
+Alors $f$ est un *$C^1$-difféomorphisme local* : pour tout $x_0$ in $U$, 
+il existe un voisinage ouvert $V \subset U$ de $x_0$ tel que $W=f(V)$ 
+soit ouvert et que la restriction de la fonction $f$ à $V$ soit un 
+$C^1$-difféomorphisme de $V$ sur $W$.
 
 ### Démonstration {.proof}
 Considérons la fonction $\phi: U \times \mathbb{R}^n  \to \mathbb{R}^n$
@@ -450,6 +477,15 @@ Par continuité de $f$, $V := A \cap f^{-1}(B)$ est un sous-ensemble ouvert
 de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par 
 construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$ ;
 nous avons donc affaire à un $C^1$-difféomorphisme de $V$ sur $W$.
+
+### Coordonnées polaires {.exercise .one #cp}
+Montrer que l'application 
+$$
+f: (r, \theta) \in \left]0,+\infty\right[ \times \R 
+\to (r \cos \theta, r \sin \theta) \in \R^2 \setminus \{(0,0)\}
+$$ 
+est un difféomorphisme local. Est-ce un difféomorphisme global ?
+
 
 Calcul avec les nombres flottants
 ================================================================================
@@ -1957,6 +1993,28 @@ Solution des exercices
 Exercices essentiels
 --------------------------------------------------------------------------------
 
+
+### Le cercle {.answer #answer-circle}
+La fonction $(x,y) \in \R^2 \mapsto x^2 + y^2$ est continûment différentiable
+et la dérivée partielle $\partial_y f(x,y) = y^2$ est non nulle sur le cercle
+sauf quand $(x, y)= (1,0)$ ou $(x, y)= (-1,0)$. On peut donc appliquer le 
+théorème des fonctions implicites dans un voisinage de tout point 
+$(x_0,y_0) \in C$ à l'exception de ces deux points. On peut déterminer
+directement que $x^2 + y^2 = 1$ est équivalent à $y = \pm \sqrt{1 - x^2}$ ; 
+si $y_0>0$, $\psi(x) := \sqrt{1 - x^2}$ est donc l'unique
+solution de $x^2+y^2 = 1$ telle que $(x, y) \in \left]-1,1\right[ \times \left]0, +\infty\right[$.
+Quand $y_0 < 0$, $\psi(x) := -\sqrt{1 - x^2}$ est l'unique
+solution de $x^2+y^2 = 1$ telle que $(x, y) \in \left]-1,1\right[ \times \left]-\infty, 0\right[$.
+Dans les deux cas, $\psi'(x) = - (\partial_y f (x, y))^{-1} \cdot \partial_x f(x, y)$ 
+où $y=\psi(x)$, donc dans le premier cas on a 
+$$
+\psi'(x) = - (2 \psi(x))^{-1} (2 x) = \frac{x}{\sqrt{1 - x^2}}
+$$
+et dans le second
+$$
+\psi'(x) = - (2 \psi(x))^{-1} (2 x) = -\frac{x}{\sqrt{1 - x^2}}.
+$$
+
 ### Abscisse curviligne {.answer #answer-ac}
 On considère l'équation 
 $$
@@ -1972,6 +2030,79 @@ De plus, la différentielle partielle de $F$ par rapport à $x$ est inversible.
 On a également $F(0, c) = 0$. Par conséquent, dans un voisinage $U \times V$
 ouvert de $(0,c) \in \R^2$, l'équation $F(s, x) = 0$ détermine de façon unique
 $x$ comme une fonction différentiable de $s$.
+
+
+### Courbes de niveau {.answer #answer-cn}
+Avec les coordonnées $(w, z)$, l'appartenance d'un point $P$ à la courbe de
+niveau $C$ est caractérisée par 
+$$
+f(x, y) - c = f\left(w u_1 + z v_1, w u_2 + z v_2 \right) - c = 0.
+$$
+L'expression est continûment différentiable par rapport au
+couple $(w, z)$ et 
+\begin{align*}
+\partial_z \left( f\left(w u_1 + z v_1, w u_2 + z v_2 \right) - c \right)
+&= d f(x, y) \cdot (v_1, v_2) \\
+&= \left<\nabla f(x,y), \frac{\nabla f(x_0, y_0)}{\|\nabla f(x_0,y_0)\|} \right>
+\end{align*}
+Cette dérivée partielle est égale à $\|\nabla f(x_0,y_0)\| > 0$ et $(x_0, y_0)$.
+Le gradient étant continu, cette dérivée partielle est inversible
+dans un voisinage de $(x_0, y_0)$ et [le théorème des fonctions implicites](#TFI) 
+est donc applicable : localement, l'appartenance d'un point $P$ à $C$ peut
+être caractérisé par une relation fonctionnelle de la forme $z = \psi(w)$.
+
+
+### Détermination de l'angle {.answer #answer-va}
+On remarque qu'on ne peut pas utiliser directement le théorème des fonctions
+implicite sur l'équation définissant les déterminations de l'angle, car 
+l'équation est à valeurs dans $\R^2$ mais nous souhaitons la résoudre par
+rapport à une variable scalaire. Mais cette équation est redondante car les
+ses deux membres sont de norme 1 ; si $u_0$ et $\theta_0$ en sont solutions,
+localement $u$ et $\theta$ en seront solutions si et seulement si 
+$u$ et $(\cos \theta, \sin \theta)$ sont colinéaires, c'est-à-dire si et
+seulement si
+$$
+f(u_1, u_2, \theta) := u_1 \sin \theta - u_2 \cos \theta = 0.
+$$
+Nous pouvons alors appliquer [le théorème des fonctions implicites](#TFI) à 
+cette équation. On a 
+$$
+\partial_{u_1} f(u, \theta) = \sin \theta,
+\; \partial_{u_2} f(u, \theta) = -\cos \theta,
+$$
+et 
+$$
+\partial_{\theta} f(u, \theta) = u_1 \cos \theta + u_2 \sin \theta
+= \left<u, (\cos \theta, \sin \theta)\right>.
+$$
+Les expressions sont continues et au point d'intérêt,
+$\partial_{\theta} f(u_0, \theta) = \|u_0\| > 0$, ce qui est donc encore
+localement vrai par continuité. La différentielle de la fonction
+implicite $\theta = \Theta(u)$ est donnée par
+$$
+d \Theta(u) = -(\partial_{\theta} f(u, \Theta(u)))^{-1} \cdot (\partial_u f(u,\Theta(u))),
+$$
+donc
+$$
+\nabla \psi(u_0) = -\frac{\nabla_u f(u_0,\theta_0)}{\partial_{\theta} f(u_0,\theta_0)}
+=\frac{1}{\|u_0\|} \left[ \begin{array}{r} -\sin \theta_0 \\ \cos \theta_0\end{array}\right].
+$$
+
+
+### Coordonnées polaires {.answer #answer-cp}
+La fonction $f$ est continûment différentiable et sa matrice jacobienne est donnée par
+$$
+J_f(r, \theta) = 
+\left[
+    \begin{array}{rr}
+    \cos \theta & - r\sin \theta\\
+    \sin \theta & r \cos \theta\end{array}
+\right].
+$$
+Comme $\det J_f(r, \theta) = r > 0$, $f$ est un $C^1$-difféomorphisme local.
+Par contre, comme $f(r, \theta) = f(r, \theta + 2\pi)$, $f$ n'est pas injective,
+elle n'est donc pas un $C^1$-difféomorphisme global.
+
 
 
 ### Représentation des entiers {.answer #answer-entiers}
