@@ -1848,7 +1848,7 @@ $$
 On note $f$ la fonction de $\R^2$ dans $\R^2$ telle que 
 $f(\theta_1, \theta_2) = (x, y)$.
 
-### Question 1 {.question #crm-1}
+### Question 1 {.question .one #crm-1}
 Supposons que $\ell_1 \neq \ell_2$.
 Déterminer l'ensemble des valeurs $(x, y)$ du plan qui ne correspondent
 à aucun couple $q$ de coordonnées articulaires et 
@@ -1856,30 +1856,31 @@ l'ensemble de celles qui correspondent à des coordonnées articulaires.
 Quand $(x, y)$ appartient à l'intérieur $V$ de ce second ensemble, 
 ces coordonnées articulaires sont-elles uniques (modulo $2\pi$) ?
 
-### Question 2 {.question #crm-2}
+### Question 2 {.question .one #crm-2}
 Déterminer l'ensemble $U$ des $q \in \R^2$ tel que la matrice 
-$J_f(q)$ est inversible et comparer $f(U)$ avec $V$.
+$J_f(q)$ soit inversible et comparer $f(U)$ avec $V$.
 
-### Question 3 {.question #crm-3}
-Soit $\tau > 0$ ; on considère une trajectoire continue
+### Question 3 {.question .three #crm-3}
+On considère une trajectoire continue
 $$
-\gamma: t \in [0, \tau] \mapsto (x(t), y(t)) \in \R^2
+\gamma: t \in [0, 1] \mapsto (x(t), y(t)) \in \R^2
 $$ 
 dans l'espace cartésien, dont l'image est incluse dans $f(U)$. 
 Soit $q_0 = (\theta_{10}, \theta_{20})$ tel que $f(q_0) = (x(0), y(0))$. 
-Montrer que si $\tau$ est suffisamment petit, 
-il existe une unique fonction continue $\gamma_q: [0, \tau] \to \R^2$ 
+Montrer que si l'image de $\gamma$ reste dans un voisinage suffisamment
+petit de $(x(0), y(0))$, il existe une unique fonction continue $\gamma_q: [0, 1] \to \R^2$ 
 telle que $\gamma = f \circ \gamma_q$
 et $\gamma_q(0) = q_0$ ($\gamma_q$ est la trajectoire correspondant à
 $\gamma$ dans l'espace articulaire).
 
-
-### Question 4 {.question #crm-4}
+### Question 4 {.question .two #crm-4}
 Montrer que si $\gamma$ est différentiable, $\gamma_q$ également. 
-Déterminer la relation entre 
-$$(\dot{x}, \dot{y}) := \gamma'(t) \; \mbox{ et } \;
-\dot{q} := (\dot{\theta}_1, \dot{\theta}_2) := \gamma_q'(t).$$
-
+Montrer que l'on peut déduire
+$$
+\dot{q} := (\dot{\theta}_1, \dot{\theta}_2) := \gamma_q'(t) 
+ \; \mbox{ de } \;
+(\dot{x}, \dot{y}) := \gamma'(t).
+$$
 
 Déformations
 --------------------------------------------------------------------------------
@@ -1894,21 +1895,23 @@ $$
 $$
 ($H$ est une *perturbation de l'identité*).
 
-### Question 1 {.question #d-1}
+### Question 1 {.question .two #d-1}
 Montrer que la fonction $T$ est injective.
 
-### Question 2 {.question #d-2}
+### Question 2 {.question .three #d-2}
 Montrer que l'image $V= T(U)$ est un ouvert 
 et que $T$ est difféomorphisme global de $U$ sur $V$.
 
-Valeurs propres d'une matrice {.question #vpm}
+Valeurs propres d'une matrice 
 --------------------------------------------------------------------------------
 
+### Question 1 {.question .two #vpm}
 Déterminer une condition "raisonnable" qui garantisse qu'une valeur propre
 $\lambda \in \R$ d'une matrice $A \in \R^{n \times n}$ varie continûment
 avec les coefficients de $A$.
 
 
+<!--
 Inversion de matrice
 --------------------------------------------------------------------------------
 
@@ -1926,6 +1929,7 @@ sur un ouvert de $\R^{n \times n}$, continûment différentiable et que
 $$
 d(A^{-1}) \cdot H = - A^{-1} \times H \times A^{-1}.
 $$
+-->
 
 
 <!--
@@ -1936,7 +1940,8 @@ Différentiation à pas complexe
 
 -->
 
-Méthode de Newton {.question #mn}
+<!--
+Méthode de Newton 
 --------------------------------------------------------------------------------
 L'analyse de la preuve du théorème des fonctions implicites nous a conduit à
 considérer la méthode de Newton modifiée, associée à la construction
@@ -1952,10 +1957,14 @@ $$
 \phi_x: y \mapsto y - (\partial_y f(x, y))^{-1} \cdot f(x, y)
 $$
 
+### Question 1 {.question #mn}
+
 Montrer que $\phi_x$ est différentiable dans un voisinage de $(x_0, y_0)$ et
 vérifier que $d \phi_x(y)$ est nul si $f(x, y) = 0$.
 
-Différences finies -- erreur d'arrondi {.question #dfl}
+-->
+
+Différences finies -- erreur d'arrondi 
 --------------------------------------------------------------------------------
  
 Non seulement les erreurs d'arrondis sont susceptibles de générer une erreur
@@ -1964,27 +1973,28 @@ susceptible de varier très rapidement avec la valeur du pas,
 d'une façon qui peut sembler aléatoire.
 Ainsi, si
 
-    >>> h = 1e-12
-    >>> FD(exp, 0.0, h)
+    >>> FD(exp, 0.0, h=1e-12)
     1.000088900582341
 
 on a également
 
-    >>> h = 9.999778782798785e-13
-    >>> FD(exp, 0.0, h)
+    >>> FD(exp, 0.0, h=9.999778782798785e-13)
     1.0001110247585212
     
 soit une erreur 25% plus élevée, pour une variation de 0.002% du pas seulement.
 Inversement, avec
 
-    >>> h = 9.99866855977416e-13
-    >>> FD(exp, 0.0, h)
+    >>> FD(exp, 0.0, h=9.99866855977416e-13)
     1.0
 
 soit une variation de 0.01% du pas, l'erreur disparaît purement et simplement !
+
+### Question 1 {.question .three #dfl}
+
 Pouvez-vous contrôler la chance et expliquer comment déterminer au voisinage de 
-$h=10^{-12}$ les valeurs du pas susceptibles d'annuler l'erreur et de générer
-l'erreur la plus élevée possible ?
+$h=10^{-12}$ les valeurs du pas susceptibles d'annuler l'erreur et inversement
+de générer l'erreur la plus élevée possible ?
+
 
 Solution des exercices
 ================================================================================
@@ -2289,14 +2299,13 @@ comme la matrice jacobienne de $f$ est inversible sur $U$,
 la fonction $f$ est un difféomorphisme sur un voisinage ouvert 
 $V \subset U$ de $q_0$, d'inverse $g: W \to U$ défini sur 
 l'ouvert $W = f(V)$. 
-Si $\gamma$ est une trajectoire continue
+Si $\gamma$ est une trajectoire continue 
 $$
-\gamma: t \in [0, \tau] \mapsto (x(t), y(t)) \in \R^2
+\gamma: t \in [0, 1] \mapsto (x(t), y(t)) \in R^2
 $$ 
-dans l'espace cartésien, dont l'image est incluse dans $f(U)$ et telle 
-que $f(q_0) = (x(0), y(0))$, tant que $\tau$ est suffisamment petit pour
-que par continuité $\gamma(t)$ appartienne à $W$, alors
-$f (\gamma_q(t)) = \gamma(t)$ si et seulement si $\gamma_q(t) = g (\gamma(t))$.
+dans l'espace cartésien dont l'image est incluse dans $W = f(V)$ et telle 
+que $f(q_0) = (x(0), y(0))$, alors $f (\gamma_q(t)) = \gamma(t)$ si et 
+seulement si $\gamma_q(t) = g (\gamma(t))$.
 
 ### Question 4 {.answer #answer-crm-4}
 Si $\gamma$ est différentiable, comme $\gamma_q(t) = g (\gamma(t))$ et que
@@ -2338,7 +2347,7 @@ $$
 $$
 
 
-Déformations {.answer #answer-d}
+Déformations 
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-d-1} 
@@ -2370,24 +2379,25 @@ la fonction linéaire $h \mapsto dT(x) \cdot h$ est une perturbation de
 l'identité ; elle est donc injective, et inversible car elle est linéaire de
 $\mathbb{R}^n$ dans $\mathbb{R}^n$. Les hypothèses du 
 [théorème d'inversion locale](#TIL) sont donc satisfaites 
-en tout point $x$ de $U$. La fonction $f$ est donc un difféomorphisme 
+en tout point $x$ de $U$. La fonction $T$ est donc un difféomorphisme 
 local d'un voisinage ouvert $V_x$ de $x$ sur
-$W_x= f(V_x)$ qui est ouvert. Clairement,
+$W_x= T(V_x)$ qui est ouvert. Clairement,
 $$
-f(U) = f\left(\bigcup_{x \in U} V_x\right) = \bigcup_{x \in U} f(V_x)
+T(U) = f\left(\bigcup_{x \in U} V_x\right) = \bigcup_{x \in U} f(V_x)
 $$
-et par conséquent $f(U)$ est ouvert.
-La fonction $f$ est injective et surjective de $U$ dans $f(U)$,
-donc inversible. En tout point $y$ de $f(U)$, il existe $x \in U$
-tel que $f(x) = y$, et un voisinage ouvert $V_x$ de $x$ tel que
-$f$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = f(V_x)$ ; 
+et par conséquent $T(U)$ est ouvert.
+La fonction $T$ est injective et surjective de $T$ dans $T(U)$,
+donc inversible. En tout point $y$ de $T(U)$, il existe $x \in U$
+tel que $T(x) = y$, et un voisinage ouvert $V_x$ de $x$ tel que
+$T$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = T(V_x)$ ; 
 la fonction
-$f^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
-C'est par conséquent un difféomorphisme global de $U$ dans $f(U)$.
+$T^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
+C'est par conséquent un difféomorphisme global de $U$ dans $T(U)$.
 
-Valeurs propres d'une matrice {.answer #answer-vpm}
+Valeurs propres d'une matrice 
 --------------------------------------------------------------------------------
 
+### Question 1 {.answer #answer-vpm}
 Le nombre $\lambda \in \R$ est une valeur propre de $A \in \R^{n\times n}$ 
 si et seulement si 
 $$
@@ -2407,6 +2417,7 @@ et elle est continûment différentiable -- et a fortiori continue --
 par rapport aux coefficients de $A$.
 
 
+<!--
 Inversion de matrice
 --------------------------------------------------------------------------------
 
@@ -2480,9 +2491,15 @@ ou sous une forme plus compacte
 $$
 d (A^{-1}) = -A^{-1} \times dA \times A^{-1}.
 $$
+-->
 
-Méthode de Newton {.answer #answer-mn}
+<!--
+
+Méthode de Newton 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-mn}
+
 Si la fonction $f$ est deux fois continûment différentiable,
 les termes $f(x, y)$ et $\partial_y f(x,y)$ sont des fonctions
 différentiables de $y$ à $x$ fixé. Soit
@@ -2512,9 +2529,12 @@ d \phi_x(y)=
 $$
 En particulier, si $f(x, y) = 0$, on a bien $d \phi_x(y) = 0$.
 
+-->
 
-Différences finies -- erreur d'arrondi {.answer #answer-dfl}
+Différences finies -- erreur d'arrondi 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dfl}
 
 Tout d'abord, pour $x=1$ et un pas de l'ordre de $h=10^{-12}$, l'erreur faite en
 approximant $\exp(x)$ par $1+x$ sera de l'ordre de 
