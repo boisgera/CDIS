@@ -930,7 +930,7 @@ il existe un rang $m$ tel que pour tous les entiers $n \geq m$ et $p \geq m$,
 $d(x_n, x_p) \leq \varepsilon$. 
 
 ### Diamètre {.definition}
-Le diamètre d'un sous-ensemble $A$ d'un espace métrique $X$ est donné par:
+Le diamètre d'un sous-ensemble $A$ d'un espace métrique $X$ est donné par :
 $$
 \mbox{diam}(A) = \sup \, \{d(x, y) \, | \, x \in A, \, y \in A\}
 $$
@@ -1163,7 +1163,7 @@ c'est-à-dire une unique solution $x \in X$ à l'équation
 ### Démonstration {.proof}
 
 L'unicité du point fixe (l'existence d'au plus une solution à $x=f(x)$) est
-simple à établir: si $x$ et $y$ sont deux points fixes de $f$, c'est-à-dire 
+simple à établir : si $x$ et $y$ sont deux points fixes de $f$, c'est-à-dire 
 si $x=f(x)$ et $y=f(y)$, alors $d(x, y) = d(f(x), f(y))$. 
 L'application $f$ étant $\kappa$-contractante, on a donc
 $$
