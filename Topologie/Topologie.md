@@ -1014,7 +1014,7 @@ Toute suite de Cauchy de $\R^n$ est donc convergente.
 construire $\R$, par exemple par les coupures de Dedekind, 
 la complétude de $\R$ n'a rien d'automatique.
 
-### Sous-espaces complets {.proposition}
+### Caractérisation des sous-espaces complets {.proposition #sous-espaces-complets}
 Soit $X$ un espace métrique complet. Un sous-espace $Y$ de $X$ est complet
 si et seulement si $Y$ est un sous-ensemble fermé de $X$.
 
@@ -1063,6 +1063,77 @@ $$
 d(0, f_{\infty}(x)) \leq d(0, f_n(x)) + \varepsilon,
 $$
 et la limite uniforme de la suite des $f_k$.
+
+
+### Existence d'un maximum {.proposition}
+Si $K \subset \R^n$ est fermé et borné,
+toute fonction continue $f: K \to \R$ atteint son maximum :
+$$
+\mbox{il existe $a \in K$ tel que } f(a) = \max_{x \in K} f(x).
+$$
+
+### {.remark .ante}
+En composant une fonction continue vectorielle $f: K \to \R^m$ et la
+fonction continue norme, on en déduit en particulier :
+
+### Borne des fonctions continues {.corollary}
+Si $K \subset \R^n$ est fermé et borné,
+toute fonction continue $f: K \subset \R^n \to \R^m$ est bornée :
+$$
+\|f\|_{\infty} := \sup_{x \in K} \|f(x)\| = \max_{x \in K} \|f(x)\| < + \infty.
+$$
+
+### Démonstration -- Existence d'un maximum {.proof}
+Soit $x_k$ une suite de valeurs de $K$ maximisante pour $f$, 
+c'est-à-dire telle que
+$$
+\sup_{k \in \N} f(x_k) = \sup_{x \in K} f(x) \in \left]0, +\infty\right].
+$$
+On supposera en outre que la suite des $f(x_k)$ est croissante.
+S'il existe une valeur $x \in K$ empruntée une infinité de fois par la
+suite $x_k$, la fonction $f$ atteint son maximum en $x$ et la preuve est achevée. 
+Dans le cas contraire -- ce que nous supposerons désormais -- toute suite
+extraite $y_j$ de $x_k$ prend une infinité de valeurs distinctes et
+$\sup_{j \in \N} f(y_j) = \sup_{x \in K} f(x).$
+
+Pour tout $j \in \N$,  l'ensemble $K$ étant borné, il peut être recouvert par
+un nombre fini d'ensembles du pavage régulier $\mathcal{P}_j$ de $\R^n$ 
+composé des pavés :
+$$
+[i_1 2^{-j}, (i_1+1) 2^{-j}] \times \dots \times [i_n 2^{-j}, (i_n+1) 2^{-j}], \; (i_1, \dots, i_n) \in \Z^n.
+$$
+Dans la collection finie de pavé de $\mathcal{P}_0$ nécessaire pour recouvrir $K$, 
+il en existe nécessairement au moins un qui contient une infinité de valeurs de $x_k$ ; 
+notons $P_0$ ce pavé et $y_0$ la première valeur $x_{k_0}$ de $x_k$ qui soit dans $P_0$. 
+Parmi les $2^n$ pavés de $\mathcal{P}_1$ qui suffisent pour couvrir $P_0$, 
+l'un d'entre eux au moins contient une infinité de $x_k$, $k\geq k_1$ ; 
+notons $P_1$ ce pavé et $y_1$ la première valeur $x_{k_1}$ de $x_k$, $k>k_0$
+qui soit dans $P_1$. 
+
+En itérant ce procédé,
+on construit une suite extraite $y_j$ de $x_k$ et de pavés $P_j$ tels que
+$$
+\mbox{pour tout $j \in \N$, }
+y_j \in P_j \in \mathcal{P}_j
+\mbox{ et }
+P_{j+1} \subset P_j.
+$$
+
+![Suite de pavés imbriqués $P_j$ et suite $y_j$ extraite des $x_k$.](images/maximum.svg)
+
+
+Comme $\mathrm{diam}(P_j) = \sqrt{n} 2^{-j}$, on a pour tout $j \in \N$
+$$
+\mathrm{diam}(\{y_i \; | \; i\geq j\}) \leq \sqrt{n} 2^{-j} \to 0
+\; \mbox{ quand } \; j\to +\infty.
+$$
+La suite $y_j$ est donc de Cauchy ; elle a donc une limite dans $K$, qui
+est [complet comme sous-ensemble fermé dans l'espace complet $\R^n$](#sous-espaces-complets).
+Si $\ell \in K$ est sa limite on a donc par continuité de $f$
+$$
+\sup_{x \in K} f(x) = \sup_{j \in \N} f(y_j)  = \lim_{j \to +\infty} f(y_j) = f(\ell).
+$$
+La fonction $f$ admet donc un maximum en $\ell$.
 
 ### Application contractante {.definition}
 Soit $X$ un espace métrique.
@@ -1140,6 +1211,7 @@ d(x_{n+p}, x_n)
 $$
 Le second membre de cette inégalité tend vers $0$ indépendamment de $p$
 quand $n$ tend vers $+\infty$; la suite des $x_n$ est bien de Cauchy.
+
 
 Annexe -- Espaces produits
 ================================================================================
@@ -1298,6 +1370,8 @@ $$
 La fonction $f$ admet donc un maximum en $\ell$.
 
 
+**TODO.** Reconsidérer. Suffisante de parler de l'e.v.n. ici ? 
+Donc fonctions avec valeurs dans un e.v.n (complet) ? Voire $\R^m$ ?
 
 ### Complétude de l'espace des fonctions continues {.proposition}
 Soit $X$ un espace métrique compact et $Y$ un espace métrique complet.
