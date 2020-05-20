@@ -446,7 +446,7 @@ est une distance sur $X$.
 Autrement dit, tout sous-ensemble d'un espace vectoriel normé "est" un
 espace métrique, c'est-à-dire qu'il existe une fonction distance
 "naturelle" dont on peut le doter, induite par l'espace vectoriel normé.
-Cela vaut en particulier pour l'espace vectoriel normé lui-même:
+Cela vaut en particulier pour l'espace vectoriel normé lui-même :
 tout espace vectoriel normé "est" un espace métrique.
 
 Réciproquement, les espaces métriques ne sont pas plus généraux que les
@@ -500,7 +500,7 @@ la distance entre points peuvent prendre des valeurs infinies.
 
 ### Isométries {.definition}
 Une application $f: X \to Y$ définie entre deux espaces
-métriques $(X, d_X)$ et $(Y, d_Y)$ telle que:
+métriques $(X, d_X)$ et $(Y, d_Y)$ telle que :
 $$
 d_Y(f(x), f(y)) = d_X(x, y)
 $$
@@ -620,7 +620,7 @@ $$
 ### Voisinage {.definition}
 Soit $X$ un espace métrique.
 Un ensemble $V$ de $X$ est un *voisinage* d'un point $x$ de $X$ si la
-distance de $x$ au complémentaire de $V$ est strictement positive:
+distance de $x$ au complémentaire de $V$ est strictement positive :
 $$
 V \in \mathcal{V}(x)
 \; \Leftrightarrow \; 
@@ -883,7 +883,7 @@ il peut également être caractérisé comme un point fixe par l'équation
 $$
 x = 1 + \frac{1}{x}, \; x > 0.
 $$
-Ce type de transformation n'est toutefois pas unique: un zéro de fonction
+Ce type de transformation n'est toutefois pas unique : un zéro de fonction
 peut être caractérisé par une infinité d'équations de type point fixe. 
 Parmi cette multitude de choix, il faudra déterminer une reformulation
 qui soit utile aux objectifs poursuivis, ce qui n'a rien d'automatique.
@@ -1172,7 +1172,7 @@ $$
 et puisque $0\leq \kappa < 1$, cette inégalité entraîne $d(x , y) = 0$, 
 soit $x=y$.
 
-Quant à l'existence du point fixe, sa preuve est constructive: 
+Quant à l'existence du point fixe, sa preuve est constructive : 
 nous allons établir que quel que soit le choix de $x_0 \in E$, 
 la suite de valeurs définie par
 $$
@@ -1203,7 +1203,7 @@ d(x_{n+p} , x_n)
 \leq \sum_{k=0}^{p-1} d(x_{n+k+1} , x_{n+k})
 \leq \sum_{k=0}^{p-1} \kappa^{n+k} d(x_{1}, x_{0}).
 $$
-Dans le second membre apparaît une somme de termes d'une suite géométrique:
+Dans le second membre apparaît une somme de termes d'une suite géométrique :
 $$
 \sum_{k=0}^{p-1} \kappa^{n+k} = \kappa^n \frac{1 - \kappa^{p}}{1 - \kappa}
 \leq \frac{\kappa^n}{1 - \kappa};
@@ -1388,7 +1388,7 @@ $$
 est complet.
 
 ### Démonstration {.proof}
-En préambule: pour toute fonction $f$ continue de $X$ dans $Y$,
+En préambule : pour toute fonction $f$ continue de $X$ dans $Y$,
 la fonction $$x \in X \mapsto d(f(x), 0) \in \R,$$ 
 continue et définie sur un compact, [admet un maximum](#T-EM); 
 la fonction $f$ est donc bornée.
@@ -1441,7 +1441,7 @@ $$
 \mathcal{A} = \{A_k \, | \, k \in \mathbb{N} \}
 \; \mbox{ où } \; A_k = \{x_j \,| \, j \geq k \}.
 $$
-La collection $\mathcal{A}$ vérifie la propriété d'intersection finie: 
+La collection $\mathcal{A}$ vérifie la propriété d'intersection finie : 
 en effet, si $A_{k_1}$, $A_{k_2}$, $\dots$, $A_{k_p} \in \mathcal{A}$, alors
 $$
 A_{k_1} \cap A_{k_2} \cap \dots \cap A_{k_p} = A_{k} 
@@ -1478,7 +1478,7 @@ il existe un $a^A_k \in \overline{A}$ tel que $d(x_k, a^A_k) < 2^{-k}$.
 Mais une telle suite aurait alors une sous-suite convergente;
 la limite serait dans l'adhérence de chacun des
 $A \in \mathcal{A}$, en contradiction avec l'hypothèse initiale.
-On utilise ce résultat de la façon suivante: 
+On utilise ce résultat de la façon suivante : 
 on sélectionne un $x_0 \in K$ et un $A_0 \in \mathcal{A}$ 
 tel que $\overline{A_0} \cap B(x_0, \varepsilon) = \varnothing$, 
 puis un $x_1 \in K \setminus B(x_0, \varepsilon)$ et un
@@ -1791,7 +1791,7 @@ Normes d'opérateurs {#no .question}
 
 [La fonction `norm` du module `numpy.linalg`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html#numpy-linalg-norm) peut calculer des normes de vecteurs 
 de $\R^n$, mais également de matrices carrée de $\R^{n\times n}$. 
-Ainsi, on a par exemple:
+Ainsi, on a par exemple :
 
     >>> from numpy import inf
     >>> from numpy.linalg import norm
@@ -1822,7 +1822,7 @@ Le but de cet exercice est de doter cet ensemble
 $[-\infty, +\infty]$([^nre]) d'une distance aux propriétés
 "raisonnables".
 A cette fin, on introduit l'espace métrique $X$ des points du cercle unité de 
-$\mathbb{R}^2$ d'ordonnée positive:
+$\mathbb{R}^2$ d'ordonnée positive :
 $$
 X = 
 \left\{
@@ -1878,7 +1878,7 @@ Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
 
 ### Question 7 {.question #dra-7}
 Suggérer une variante de la construction précédente pour
-doter l'ensemble $\mathbb{R} \cup \{\infty\}$ ($\infty$ sans signe:
+doter l'ensemble $\mathbb{R} \cup \{\infty\}$ ($\infty$ sans signe :
 ni $+$, ni $-$) d'une métrique $d^{\infty}$ 
 telle $|x_k| \to +\infty$ si et seulement si 
 $d^{\infty}(x_k, \infty) \to 0$. 
@@ -2643,7 +2643,7 @@ nulle quand $x_1 = x_2$ ; cette propriété est donc bien vérifiée.
 
 ### Question 6 {.answer #answer-dra-6}
 Quand $x_k$ est une suite de réels, $x_k \to +\infty$ est à interpréter
-classiquement comme: pour tout $M \in \R$, il existe un rang $m \in \N$
+classiquement comme : pour tout $M \in \R$, il existe un rang $m \in \N$
 tel que si $k \geq m$, alors $x_k \geq M$.
 
 Mais il existe maintenant une seconde interprétation si l'on considère 
@@ -3253,7 +3253,7 @@ si et seulement s'il est un point fixe de l'application
 $$
 \phi: x \in \R^n \mapsto D^{-1} \cdot (D-A) \cdot x + D^{-1} \cdot y \in \R^n.
 $$
-Cette application est affine: pour tout couple $x_1$ et $x_2$ dans $\R^n$, 
+Cette application est affine : pour tout couple $x_1$ et $x_2$ dans $\R^n$, 
 $$
 \phi(x_1) - \phi(x_2) = D^{-1} \cdot (D-A) \cdot (x_1 - x_2).
 $$
