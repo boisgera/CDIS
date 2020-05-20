@@ -918,7 +918,7 @@ dont le développement avec 0 décimales  après la virgule
 -- c'est-à-dire la partie entière --
 oscille indéfiniment entre $0$ et $1$. 
 
-C'est la notion de suite de Cauchy qui capture le bon critère;
+C'est la notion de suite de Cauchy qui capture le bon critère ;
 pour une suite numérique (à valeurs réelles ou dans $\R^n$) 
 "être de Cauchy" -- ou "passer le test de Cauchy" ou encore 
 "vérifier le critère de Cauchy" -- est équivalent à être convergente.
@@ -970,7 +970,7 @@ est de Cauchy -- on peut prouver que
 $|x_n - x_p| \leq {1}/{10^m}$ quand $n \geq m$ et $p \geq m$
 -- mais n'est pas convergente. 
 En effet, la suite converge dans $\R$, mais sa limite $\sqrt{2}$ est 
-irrationelle;
+irrationelle ;
 cette suite n'a donc pas de limite dans $\Q$ 
 (une telle limite serait aussi une limite dans $\R$, 
 ce qui contredirait son unicité.)
@@ -1475,7 +1475,7 @@ $B(x, \varepsilon) \cap \overline{A} = \varnothing$.
 En effet, si cette propriété n'était pas vérifiée, on pourrait construire
 une suite $x_k$ de points de $K$ telle que pour tout $A \in \mathcal{A}$,
 il existe un $a^A_k \in \overline{A}$ tel que $d(x_k, a^A_k) < 2^{-k}$.
-Mais une telle suite aurait alors une sous-suite convergente;
+Mais une telle suite aurait alors une sous-suite convergente ;
 la limite serait dans l'adhérence de chacun des
 $A \in \mathcal{A}$, en contradiction avec l'hypothèse initiale.
 On utilise ce résultat de la façon suivante : 
@@ -1860,7 +1860,7 @@ Montrer que $f$ est une bijection.
 
 ### Question 3 {.question #dra-3}
 En déduire qu'il existe une et une seule fonction distance sur
-$[-\infty, +\infty]$ qui fasse de $f$ une isométrie;
+$[-\infty, +\infty]$ qui fasse de $f$ une isométrie ;
 on note $d^{\pm \infty}$ cette distance. 
 
 ### Question 4 {.question #dra-4}
