@@ -135,9 +135,7 @@ caractérisés à travers l'étude des suites de points.
 
     - \three directement la définition d'espace métrique complet.
 
-  - **TODO** : insérer ici l'existence d'un max pour les fcts continues sur
-    un fermé borné (par les suites de Cauchy) ? Ce qui revient à inliner
-    Heine-Borel dans l'argument des fcts continues peu ou prou ...
+  - \two savoir quand une fonction scalaire continue admet un maximum,
 
   - \two savoir caractériser une application contractante,
 
@@ -519,7 +517,7 @@ de $X$ lorsqu'il est muni de la distance de $X$, restreinte aux points de
 $Y$.
 
 
-Bestiaire Topologique
+Bestiaire topologique
 ================================================================================
 
 <!--
@@ -740,41 +738,20 @@ Si la fonction $f$ admet une limite en $x$, celle-ci est unique.
 Un corollaire de [l'unicité de la limite des suites][Unicité de la limite d'une suite].
 
 ### Continuité {.definition}
-Une fonction $f: X \to Y$, où $X$ et $Y$ sont deux espaces métriques, est
-*continue en $x \in X$* si et seulement si la limite de $f$ restreinte à 
-$X\setminus\{x\}$ existe en $x$ et que
+Soient $X$ et $Y$ deux espaces métriques. 
+Une fonction $f: X \to Y$ est *continue en $x \in X$* si et seulement si 
+la limite de $f$ existe en $x$ et vaut $f(x)$ :
 $$
-f(y) \to f(x) \; \mbox{ quand } \; y \to x, \, y\neq x.
+f(y) \to f(x) \; \mbox{ quand } \; y \to x.
 $$
 Elle est *continue (sur $X$)* si elle est continue en tout point $x \in X$.
 
-Alternativement, 
-
-### Continuité en un point {.proprosition}
-Une fonction $f: X \to Y$, où $X$ et $Y$ sont deux espaces métriques, est
-continue en $x \in X$ si et seulement si 
-$f(y)$ à une limite quand $y \to x$ et $y \in X$
-$$
-\exists \, \ell \in Y, \, f(x) \to \ell \mbox{ quand } y \to x, \, x \in X
-$$
-et cette limite est nécessairement $\ell = f(x)$.
-
-### Démonstration {.proof}
-La suite constante $x_k = x$ est une
-suite de $X$ qui converge vers $x$, et $f(x_k)$ (la suite constante
-de terme $f(x)$) converge vers $f(x)$, donc $f(x)$ est la seule limite
-éventuelle $\ell$ de $f$ en $x$ ; si cette limite existe, il va de soi
-que $f(y) \to f(x)$ quand $y\to x$, $y \neq x$. 
-
-Réciproquement, supposons que $f(y) \to f(x)$ quand $y \to x$, $y\neq x$. 
-Soit $x_k$ une suite de $X$ qui converge vers $x$. 
-Si à partir d'un certain rang tous les $x_k$ sont égaux à $x$, 
-$f(x_k) \to f(x)$ quand $k \to +\infty$.
-Sinon, on peut extraire de la suite des $x_k$ la suite des termes 
-$y_j$ différents de $x$. Comme par construction $y_j \to x$ et $y_j \neq x$
-quand $j \to +\infty$, $f(y_j) \to f(x)$ quand $j \to +\infty$.
-Le terme $d(f(x_k), f(x))$ converge donc vers $0$ dans tous les cas
-quand $k \to +\infty$.
+### {.ante .remark}
+Il est évident que si $x_k$ est la suite constante égale à $x$, alors
+$f(x_k)$ tend vers $f(x)$ quand $k$ tend vers $+\infty$. La valeur
+$f(x)$ est donc la seule limite possible de $f(y)$ quand $y\to x$.
+Par conséquent on peut également dire que $f$ est continue en $x \in X$
+si et seulement si elle admet une limite en $x$, sans préciser sa valeur.
 
 ### Composition de fonctions continues {.proposition}
 Soient $X$, $Y$ et $Z$ des espaces métriques. Soit $f: X \to Y$ et soit
@@ -790,15 +767,27 @@ converge vers quand $k \to +\infty$. La fonction $g \circ f$ est donc
 continue en $x$.
 
 
-### Continuité de la distance {.proposition}
-Soit $X$ un espace métrique et $A$ est un sous-ensemble non vide de $X$. 
-La fonction distance à l'ensemble $A$
+### Continuité de la distance {.proposition #distance-continue}
+Soit $X$ un espace métrique, $y$ un point de $X$ et $A$ un sous-ensemble 
+non vide de $X$. Les fonctions "distance au point $y$" :
+$$
+d(\cdot, y) : x \in X \mapsto d(x, y) \in \left[0, +\infty\right[
+$$ 
+et "distance à l'ensemble $A$" :
 $$
 d(\cdot, A): x \in X \mapsto d(x, A) \in \left[0, +\infty\right[
 $$ 
-est une application continue.
+sont des applications continues.
 
 ### Démonstration {.proof}
+Pour tout $x_0 \in X$, par [inégalité triangulaire](#dist-ineg) on a
+$$
+|d(x, y) - d(x_0, y)| \leq d(x_0, x) \to 0
+\; \mbox{ quand } \;
+x \to x_0,
+$$
+la fonction $d(\cdot, y)$ est donc continue en $x_0$.
+
 Pour tout $a \in A$, par [inégalité triangulaire](#dist-ineg), on a $d(x, a) \leq d(x, x_0) + d(x_0, a)$ 
 et donc par passage à l'inf sur $A$, $d(x, A) \leq d(x, x_0) + d(x_0, A)$. 
 En intervertissant $x$ et $x_0$, on obtient 
@@ -820,11 +809,10 @@ $$
 
 ### Démonstration {.proof}
 Supposons que $f$ soit continue en $x$, c'est-à-dire que 
-$f(y) \to f(x)$ quand $y \to x$, $y \neq x$.
+$f(y) \to f(x)$ quand $y \to x$.
 Soit $A$ un sous-ensemble de $X$ tel que $x$ adhère à $A$.
 Dans l'espace métrique $X$, cela signifie que $d(x, A) = 0$, 
-c'est-à-dire que $x \in A$ ou encore
-qu'il existe une suite de points $x_k$ de $A$ différents tous de $x$
+c'est-à-dire qu'il existe une suite de points $x_k$ de $A$
 telle que $d(x, x_k) \to 0$ quand $x_k \to x$. 
 Par conséquent, $f(x_k) \to f(x)$ quand $k \to +\infty$, 
 soit $d(f(x_k), f(x)) \to 0$ quand $k \to +\infty$. 
@@ -832,7 +820,7 @@ Comme l'ensemble $\{f(x_k) \, | \, k \in \N\}$ est un sous-ensemble
 de $f(A)$, nous en déduisons que $d(f(x), f(A)) = 0$ : 
 le point $f(x)$ adhère à $f(A)$.
 
-Réciproquement, si $f(y) \not \to f(x)$ quand $y \to x$, $y \neq x$,
+Réciproquement, si $f(y) \not \to f(x)$ quand $y \to x$,
 il existe une suite de points $x_k$ tendant vers $x$ 
 tels que $f(x_k)$ ne tende pas vers $f(x)$. Par conséquent, on peut trouver 
 un $\varepsilon > 0$ et une suite $y_j$ extraite de $x_k$ telle que 
@@ -1027,48 +1015,6 @@ Réciproquement, si $Y$ est fermé dans $X$ et qu'une suite de points de $Y$
 est de Cauchy, elle converge dans $X$ qui est complet et 
 par conséquent dans $Y$. Le sous-espace $Y$ est donc complet.
 
-**TODO** Basculer en annexe ? Mmmm peut-être pas ? A défaut, limiter au
-cas des fonctions à valeurs dans un e.v.n ? La bascule est en tout cas
-compatible avec les objectifs d'apprentissage donné, donc je dirais OUI,
-bascule.
-
-### Complétude de l'espace des fonctions bornées {.proposition}
-Soit $X$ un ensemble et $Y$ un espace métrique complet.
-L'ensemble des fonctions $f$ de $X$ dans $Y$ bornées
--- c'est-à-dire telles que $\sup_{x \in X} d(0, f(x))$ soit fini --
-muni de la distance de la convergence uniforme
-$$
-d(f, g) := \sup_{x \in X} d(f(x), g(x))
-$$
-est complet.
-
-### Démonstration {.proof}
-Soit $f_k$ une suite de Cauchy de fonctions bornées pour la distance
-de la convergence uniforme. 
-Pour tout $\varepsilon > 0$, il existe un rang $m \in \N$ tel que si 
-$n\geq m$ et $p\geq m$, on ait
-$$
-\sup_{x \in X} d(f_n(x), f_p(x)) \leq \varepsilon.
-$$
-Par conséquent, pour tout $x \in X$, 
-on a $d(f_n(x), f_p(x)) \leq \varepsilon$, donc
-la suite des $f_k(x)$ est de Cauchy dans $Y$. 
-L'espace $Y$ étant par hypothèse complet, cette suite a une limite,
-que nous notons $f_{\infty}(x)$. Par continuité de la distance, 
-pour tout $x \in X$ et tout $n \geq m$, on a
-$$
-d(f_n(x), f_{\infty}(x)) 
-= \lim_{p \to +\infty} d(f_n(x), f_p(x)) 
-\leq \varepsilon
-$$
-et donc
-$\sup_{x \in X} d(f_n(x), f_{\infty}(x)) \leq \varepsilon$. 
-La fonction $f_{\infty}$ est donc bornée, car
-$$
-d(0, f_{\infty}(x)) \leq d(0, f_n(x)) + \varepsilon,
-$$
-et la limite uniforme de la suite des $f_k$.
-
 
 ### Existence d'un maximum {.proposition}
 Si $K \subset \R^n$ est fermé et borné,
@@ -1088,18 +1034,17 @@ $$
 \|f\|_{\infty} := \sup_{x \in K} \|f(x)\| = \max_{x \in K} \|f(x)\| < + \infty.
 $$
 
-### Démonstration -- Existence d'un maximum {.proof}
+### Démonstration -- Existence d'un maximum {.proof #demo-minimum}
 Soit $x_k$ une suite de valeurs de $K$ maximisante pour $f$, 
 c'est-à-dire telle que
 $$
-\sup_{k \in \N} f(x_k) = \sup_{x \in K} f(x) \in \left]0, +\infty\right].
+\lim_{k \to +\infty} f(x_k) = \sup_{x \in K} f(x) \in \left]0, +\infty\right].
 $$
-On supposera en outre que la suite des $f(x_k)$ est croissante.
 S'il existe une valeur $x \in K$ empruntée une infinité de fois par la
 suite $x_k$, la fonction $f$ atteint son maximum en $x$ et la preuve est achevée. 
 Dans le cas contraire -- ce que nous supposerons désormais -- toute suite
 extraite $y_j$ de $x_k$ prend une infinité de valeurs distinctes et
-$\sup_{j \in \N} f(y_j) = \sup_{x \in K} f(x).$
+$\lim_{j \to +\infty} f(y_j) = \sup_{x \in K} f(x).$
 
 Pour tout $j \in \N$,  l'ensemble $K$ étant borné, il peut être recouvert par
 un nombre fini d'ensembles du pavage régulier $\mathcal{P}_j$ de $\R^n$ 
@@ -1136,7 +1081,7 @@ La suite $y_j$ est donc de Cauchy ; elle a donc une limite dans $K$, qui
 est [complet comme sous-ensemble fermé dans l'espace complet $\R^n$](#sous-espaces-complets).
 Si $\ell \in K$ est sa limite on a donc par continuité de $f$
 $$
-\sup_{x \in K} f(x) = \sup_{j \in \N} f(y_j)  = \lim_{j \to +\infty} f(y_j) = f(\ell).
+\sup_{x \in K} f(x) = \lim_{j \to +\infty} f(y_j) = f(\ell).
 $$
 La fonction $f$ admet donc un maximum en $\ell$.
 
@@ -1302,8 +1247,8 @@ Annexe -- Compacité {#annexe-compacité}
 ================================================================================
 
 ### Compacité séquentielle {.definition #compacité-séquentielle}
-Un ensemble $K$ d'un espace métrique est *compact (séquentiellement)* 
-si toute suite de valeurs de $K$ admet une sous-suite qui converge dans $K$.
+Un ensemble $K$ d'un espace métrique est *(séquentiellement) compact* 
+si toute suite de points de $K$ admet une sous-suite qui converge dans $K$.
 
 ### Théorème de Heine-Borel {.theorem}
 Un ensemble $K$ de l'espace euclidien $\R^n$ est compact 
@@ -1320,27 +1265,12 @@ Si $K$ est non-borné, il existe une suite $x_k$ non-bornée de points de $K$.
 Toute sous-suite de $x_k$ étant également non-bornée, elle ne peut donc converger
 et par conséquent $K$ ne peut pas être compact.
 
-Finalement, supposons $K$ fermé et borné. Soit $x_k$ une suite de valeurs
-de $K$.
-Tout ensemble borné peut être recouvert par un nombre finis d'ensembles 
-fermés et bornés de diamètre arbitrairement faible[^cover]. Si l'on 
-considère un recouvrement de ce type de $K$ pour un diamètre inférieur
-à 1, il existe nécessairement un ensemble du recouvrement qui contient
-l'intégralité d'une sous-suite $x^0_k$ de $x_k$; on le note $K_0$.
-Il est possible de réitérer le raisonnement à la suite des $x^0_k$ dans $K^0$
-en imposant cette fois-ci un diamètre maximale de $1/2$ aux
-élements du recouvrement et plus généralement de construire une suite 
-$y_k$ extraite de $x_k$ telle que $y_k \in K_m$ si $k\geq m$ et 
-$\mathrm{diam}(K_m) \leq 2^{-m}$. 
-La suite des $y_k$ est donc de Cauchy; l'espace euclidien $\R^n$ étant
-complet, elle est convergente. L'ensemble $K$ étant
-fermé par hypothèse, cette limite appartient à $K$ ; 
-l'ensemble $K$ est donc compact.
+Finalement, supposons $K$ fermé et borné. 
+La construction d'une sous-suite convergente extraite 
+d'une suite arbitraire $x_k$ de $K$ est identique à celle effectuée dans 
+[la démonstration de l'existence d'un maximum d'une fonction scalaire continue
+définie sur un fermé borné de $\R^n$](#demo-minimum).
 
-[^cover]: par exemple des pavés de la forme 
-$$[i_1 \varepsilon, (i_1+1)\varepsilon] \times \dots \times [i_n \varepsilon, (i_{n}+1) \varepsilon]
-\, \mbox{ où } \, (i_1,\dots, i_n) \in \Z^n,$$
-dont le diamètre est $\varepsilon \sqrt{n}$.
 
 ### Image d'un compact {.theorem}
 L'image d'un ensemble compact par une application continue est un ensemble
@@ -1374,39 +1304,74 @@ f(\ell) = \lim_{k \to +\infty} f(y_k) = \sup_{x \in K} f(x).
 $$
 La fonction $f$ admet donc un maximum en $\ell$.
 
+### Complétude de l'espace des fonctions bornées {.proposition #cfb}
+Soit $X$ un ensemble et $Y$ un espace vectoriel normé complet.
+L'ensemble des fonctions $f$ de $X$ dans $Y$ bornées --
+telles qu'il existe un $M\geq 0$ tel que pour tout $x \in X$, $\|f(x)\| \leq M$ --
+muni de la norme de la convergence uniforme
+$$
+\|f\|_{\infty} := \sup_{x \in X} \|f(x)\|
+$$
+est complet.
 
-**TODO.** Reconsidérer. Suffisante de parler de l'e.v.n. ici ? 
-Donc fonctions avec valeurs dans un e.v.n (complet) ? Voire $\R^m$ ?
+### Démonstration {.proof}
+Soit $f_k$ une suite  de fonctions bornées qui soit de Cauchy 
+pour la norme de la convergence uniforme. 
+Pour tout $\varepsilon > 0$, il existe un rang $m \in \N$ tel que si 
+$n\geq m$ et $p\geq m$, on ait
+$$
+\sup_{x \in X} \|f_n(x) - f_p(x)\| \leq \varepsilon.
+$$
+Par conséquent, pour tout $x \in X$, 
+on a $\|f_n(x) - f_p(x)\| \leq \varepsilon$, donc
+la suite des $f_k(x)$ est de Cauchy dans $Y$. 
+L'espace $Y$ étant par hypothèse complet, cette suite a une limite,
+que nous notons $f_{\infty}(x)$. Par [continuité de la distance](#distance-continue), 
+pour tout $x \in X$ et tout $n \geq m$, on a
+$$
+\|f_n(x) - f_{\infty}(x)\| 
+= \lim_{p \to +\infty} \|f_n(x) - f_p(x)\| 
+\leq \varepsilon
+$$
+et donc
+$\sup_{x \in X} \|f_n(x) - f_{\infty}(x) \|\leq \varepsilon$. 
+La fonction $f_{\infty}$ est donc bornée, car
+$$
+\|f_{\infty}(x)\| \leq \|f_n(x)\| + \varepsilon,
+$$
+et est a limite uniforme de la suite des $f_k$.
+
 
 ### Complétude de l'espace des fonctions continues {.proposition}
-Soit $X$ un espace métrique compact et $Y$ un espace métrique complet.
+Soit $X$ un espace métrique compact et $Y$ un espace vectoriel normé complet.
 L'ensemble des fonctions continues de $X$ dans $Y$
-muni de la distance de la convergence uniforme
+muni de la norme de la convergence uniforme
 $$
-d(f, g) := \sup_{x \in X} d(f(x), g(x))
+\|f\|_{\infty} := \sup_{x \in X} \|f(x)\|
 $$
 est complet.
 
 ### Démonstration {.proof}
 En préambule : pour toute fonction $f$ continue de $X$ dans $Y$,
-la fonction $$x \in X \mapsto d(f(x), 0) \in \R,$$ 
-continue et définie sur un compact, [admet un maximum](#T-EM); 
+la fonction $$x \in X \mapsto \|f(x)\| = d(f(x), 0) \in \R,$$ 
+[continue](#distance-continue) et définie sur un compact, et donc
+[admet un maximum](#T-EM) ; 
 la fonction $f$ est donc bornée.
 L'espace des fonction continues de $X$ dans $Y$ est donc un
 sous-espace métrique de l'espace des fonctions bornées de $X$ dans $Y$.
 
 Soit $f_k$ une suite de Cauchy de fonctions continues de $X$ dans $Y$.
 Cette suite est convergente dans l'espace des fonctions bornées en raison
-de la complétude de ce dernier. Il nous suffit de montrer que sa limite
+de [la complétude de ce dernier](#cfb). Il nous suffit de montrer que sa limite
 (uniforme) est continue pour conclure la preuve. 
 
 Soit $f$ la limite des $f_k$ et soit $\varepsilon > 0$.
-Soit $k$ tel que $$\sup_{x \in X}(f_k(x), f(x)) \leq \varepsilon /3.$$
+Soit $k$ tel que $$\sup_{x \in X}\|f_k(x) - f(x)\| \leq \varepsilon /3.$$
 Pour tout $x \in X$, $f_k$ étant continue en $x$, pour $y$ assez proche
-de $x$ on a $d(f_k(x), f_k(y)) \leq \varepsilon /3.$ 
-Or, par l'inégalité triangulaire,
+de $x$ on a $\|f_k(x) - f_k(y)\| \leq \varepsilon /3.$ 
+Or, par [l'inégalité triangulaire](#norme-ineg),
 $$
-d(f(x), f(y)) \leq d(f(x), f_k(x))  + d(f_k(x), f_k(y)) + d(f_k(y), f(y))
+\|f(x) - f(y)\| \leq \|f(x) - f_k(x)\|  + \|f_k(x) - f_k(y)\| + \|f_k(y) - f(y)\|
 \leq \varepsilon.
 $$
 La fonction $f$ est donc continue.
@@ -1510,7 +1475,7 @@ $\overline{A_0} \cap \dots \cap \overline{A_k} = \varnothing$
 et donc que
 $A_0 \cap \dots \cap A_k = \varnothing$, ce qui conclut la preuve.
 
-Annexe -- Espace Topologique
+Annexe -- Espace topologique
 ================================================================================
 
 
