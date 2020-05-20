@@ -1027,6 +1027,9 @@ Réciproquement, si $Y$ est fermé dans $X$ et qu'une suite de points de $Y$
 est de Cauchy, elle converge dans $X$ qui est complet et 
 par conséquent dans $Y$. Le sous-espace $Y$ est donc complet.
 
+**TODO** Basculer en annexe ? Mmmm peut-être pas ? A défaut, limiter au
+cas des fonctions à valeurs dans un e.v.n ?
+
 ### Complétude de l'espace des fonctions bornées {.proposition}
 Soit $X$ un ensemble et $Y$ un espace métrique complet.
 L'ensemble des fonctions $f$ de $X$ dans $Y$ bornées
