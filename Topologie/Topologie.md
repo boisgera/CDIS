@@ -1307,10 +1307,10 @@ si toute suite de valeurs de $K$ admet une sous-suite qui converge dans $K$.
 
 ### Théorème de Heine-Borel {.theorem}
 Un ensemble $K$ de l'espace euclidien $\R^n$ est compact 
-si et seulement si il est fermé et borné.
+si et seulement s'il est fermé et borné.
 
 ### Démonstration {.proof}
-Supposons $K$ compact; soit $x_k$ une suite de points de
+Supposons $K$ compact ; soit $x_k$ une suite de points de
 $K$ qui converge dans $\R^n$, vers une limite notée $\ell$. 
 Il existe alors une sous-suite $y_k$ de $x_k$ qui converge dans $K$;
 or comme cette sous-suite a la même limite que $x_k$, $\ell$ 
