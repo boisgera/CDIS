@@ -1028,7 +1028,9 @@ est de Cauchy, elle converge dans $X$ qui est complet et
 par conséquent dans $Y$. Le sous-espace $Y$ est donc complet.
 
 **TODO** Basculer en annexe ? Mmmm peut-être pas ? A défaut, limiter au
-cas des fonctions à valeurs dans un e.v.n ?
+cas des fonctions à valeurs dans un e.v.n ? La bascule est en tout cas
+compatible avec les objectifs d'apprentissage donné, donc je dirais OUI,
+bascule.
 
 ### Complétude de l'espace des fonctions bornées {.proposition}
 Soit $X$ un ensemble et $Y$ un espace métrique complet.
