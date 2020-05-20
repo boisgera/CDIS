@@ -47,6 +47,8 @@ def transform(doc):
 
     handle_typed_sections(doc)
 
+    manage_french_spacing(doc)
+
     return doc
 
 def transform_html(doc):
@@ -74,6 +76,9 @@ def transform_html(doc):
     #tt_url(doc)
 
     #handle_typed_sections(doc)
+
+    manage_french_spacing(doc)
+
 
     return doc
 
@@ -687,6 +692,54 @@ def flag_definitions(doc):
                     RawInline(Format("tex"), r"\faFlagO\;\;")
                 ] + inlines  # Space() doesn't seem to work :(
                 header[:] = level, attr, inlines
+
+ESPACE_MOTS_INSECABLE = "\u00a0"
+ESPACE_FINE_INSECABLE = "\u202f"
+
+def manage_french_spacing(doc):
+    locations = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, list) and len(elt) != 0:
+            n = len(elt)
+            for i in range(0, n-1):
+                if isinstance(elt[i], Space) and elt[i+1] == Str(";"):
+                    locations.append((elt, i))
+    for (holder, i) in reversed(locations):
+        holder[i:i+2] = [Str(ESPACE_FINE_INSECABLE + ";")]
+        #print(holder)
+
+    locations = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, list) and len(elt) != 0:
+            n = len(elt)
+            for i in range(0, n-1):
+                if isinstance(elt[i], Space) and elt[i+1] == Str("?"):
+                    locations.append((elt, i))
+    for (holder, i) in reversed(locations):
+        holder[i:i+2] = [Str(ESPACE_FINE_INSECABLE + "?")]
+        #print(holder)
+
+    locations = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, list) and len(elt) != 0:
+            n = len(elt)
+            for i in range(0, n-1):
+                if isinstance(elt[i], Space) and elt[i+1] == Str("!"):
+                    locations.append((elt, i))
+    for (holder, i) in reversed(locations):
+        holder[i:i+2] = [Str(ESPACE_FINE_INSECABLE + "!")]
+        #print(holder)
+
+    locations = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, list) and len(elt) != 0:
+            n = len(elt)
+            for i in range(0, n-1):
+                if isinstance(elt[i], Space) and elt[i+1] == Str(":"):
+                    locations.append((elt, i))
+    for (holder, i) in reversed(locations):
+        holder[i:i+2] = [Str(ESPACE_MOTS_INSECABLE + ":")]
+        #print(holder)    
 
 
 # Code Generation
