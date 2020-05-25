@@ -82,7 +82,7 @@ la norme.
 
       - \one $\partial A = \overline{A} \cap \overline{A^c}$, $A^{\circ} = \overline{(A^c)}^c$.
 
-      - \two $\overline{A} = A^{\circ} \cup \partial A$ (union disjointe),
+      - \two $A \subset \overline{A}$, $\overline{\overline{A}} = \overline{A}$, $\overline{A} = A^{\circ} \cup \partial A$ (union disjointe), 
 
       - \two/\three savoir deviner et prouver de nouvelles identités.
 
@@ -520,7 +520,7 @@ $Y$.
 Bestiaire topologique
 ================================================================================
 
-<!--
+<!--f
 ### Point adhérent, frontière, intérieur {.definition}
 Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
 
@@ -568,27 +568,39 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$. On note
     A^{\circ} := \{x \in X \; | \; d(x, A^c) > 0\}.
     $$
 
-### Inclusions {.exercise .one .question #exo-i}
-Montrer que $A^{\circ} \subset A \subset \overline{A}$.
-
-### Topologie basée sur l'adhérence {.exercise .question .one #tba}
-Montrer que $$\partial A = \overline{A} \cap \overline{A^c} \; \mbox{ et } \; 
-A^{\circ} = \left(\overline{A^c}\right)^c.$$
+###
 
 ![Construction de l'intérieur $A^{\circ}$ et de la frontière $\partial A$ 
 à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
 et des opérations ensemblistes.](images/topological-operations.svg.pdf)
 
+
+### Intervalles de $\R$ {.exercise .one .question #ir}
+Déterminer l'adhérence, la frontière et l'intérieur de $\left[0,1 \right[$.
+
+### Ensemble des rationnels {.exercise .question .two #Q}
+Déterminer l'adhérence de $\Q$.
+
+
+### Inclusions {.exercise .one .question #exo-i}
+Montrer que $A^{\circ} \subset A \subset \overline{A}$.
+
+### Topologie basée sur l'adhérence {.exercise .question .one #tba}
+Montrer que $\partial A = \overline{A} \cap \overline{A^c}$ et $A^{\circ} = \left(\overline{A^c}\right)^c$.
+
+
 ### Adhérence itérée {.exercise .question .two #ai}
 Montrer que $\overline{\overline{A}} = \overline{A}$.
 
 ### Décomposition de $\overline{A}$ {.exercise .question .two #pab}
-Montrer que $$A^{\circ} \cap \partial A = \varnothing \; \mbox{ et } \; 
-\overline{A} = A^{\circ} \cup \partial A.$$
+Montrer que $A^{\circ} \cap \partial A = \varnothing$ et 
+$\overline{A} = A^{\circ} \cup \partial A.$
 
 ### Topologie basée sur la frontière {.exercise .question .two #tbf}
-Montrer que $$\overline{A} = A \cup \partial A 
-\; \mbox{ et } \; A^{\circ} = A \setminus \partial A.$$
+Montrer que $\overline{A} = A \cup \partial A$ et 
+$A^{\circ} = A \setminus \partial A.$
+
+
 
 ### Ensemble fermé, ouvert {.definition}
 Un ensemble $A$ est *fermé* si tous les points adhérents à $A$
@@ -605,13 +617,36 @@ A = A^{\circ}
 (x \in A \Rightarrow d(x, A^c) > 0).
 $$
 
-**TODO**
 
-### L'adhérence est fermée, l'intérieur ouvert {.one .exercise #adio}
+
+### Ouvert $\Leftrightarrow$ non fermé ? {.exercise .question .one #onf}
+Est-ce que "ouvert" signifie la même chose que "non fermé" ?
+
+
+### L'adhérence est fermée, l'intérieur est ouvert {.one .exercise .question #adio}
 Montrer que l'adhérence $\overline{A}$ d'un ensemble $A$ est fermée et que
 son intérieur $A^{\circ}$ est ouvert.
 
+### Ensemble discret {.two .exercise .question #ed}
+Soit $A$ un sous-ensemble de l'espace métrique $X$ dont tous les points soient 
+isolés : pour tout $x \in A$, la distance de $x$ à $A\setminus \{x\}$ est 
+strictement positive. Est-ce que $A$ est nécessairement fermé ?
 
+
+<!--
+### Ensembles ouverts et fermés {.three .exercise .question #eof}
+Montrer que dans $\R$, les seuls ensembles qui soient ouverts et fermés[^cl] 
+sont $\varnothing$ et $\R$.
+
+[^cl]: *clopen* en anglais (pour *closed* et *open*).
+
+### Ensembles ouverts et fermés {.answer #answer-eof}
+Supposons que $A$ soit un sous-ensemble ouvert et fermé de $\R$ qui n'est ni 
+vide ni $\R$. Soit $x_0 \in A$ et $y_0 \in A^c$ ; si $(x_0 + y_0)/2$ est
+dans $A$ on pose $x_1 = (x_0 + y_0)/2$ et $y_1 = y_0$, et dans le cas
+contraire $x_1 = x_0$ et $y_1 = (x_0 + y_0)/2$. Dans les deux cas on a
+$x_1 \in A$, $y_1 \in A^c$ et $d(x_1, y_1) = d(x_0, y_0) / 2$. En procédant
+-->
 
 ### Boules {.definition}
 Soit $X$ un espace métrique.
@@ -634,9 +669,7 @@ enfin de la norme $\|x\|_{\infty} = \max(|x_1|, |x_2|)$.
 
 ### C'est une boule ça ? {.exercise .question .one #cubc}
 On considère comme espace métrique le carré de $\R^2$ défini par
-$$
-X = \{(x_1, x_2) \in \R^2 \; | \; \mbox{$|x_1| \leq 1$ et $|x_2| \leq 1$}\}
-$$
+$X = \{(x_1, x_2) \in \R^2 \; | \; |x_1| \leq 1 \mbox{ et } |x_2| \leq 1\}$
 muni de la distance euclidienne. Expliciter dans cet espace
 les boules ouvertes $B((0,0), 1)$, 
 $B((1,0), 1)$ et $B((0,0), 2)$.
@@ -887,6 +920,15 @@ par $f$ est un ensemble fermé (resp. ouvert) de $X$.
 ### Démonstration {.proof}
 La démonstration est donnée [en annexe](#CIR-topo) dans le cadre plus général
 des espaces topologiques.
+
+### Courbes de niveau {.exercise .question .one #cn}
+Montrer que pour toute fonction continue $f: \R^2 \to \R$ et tout $c \in \R$, 
+l'ensemble $\{x \in \R^2 \; | \; f(x) = c\}$ est fermé.
+
+### Boules ouvertes et fermées {.exercise .question .two #bof2}
+Montrer que toute "boule ouverte" $B(x, r)$ est ouverte et que toute 
+"boule fermée" $\overline{B}(x, r)$ est fermée.
+
 
 Complétude
 ================================================================================
@@ -2382,6 +2424,47 @@ $$
 \|A \cdot B\| = \sup_{x \neq 0} \frac{\|(A \cdot B)\cdot x\|}{\|x\|} \leq \|A\|\|B\|.
 $$
  
+
+### Intervalles de $\R$ {.answer #answer-ir}
+Posons $I := \left[0,1 \right[$. Des calculs élémentaires établissent que
+$$
+d(x, I) = 
+\left|
+\begin{array}{rl}
+-x & \mbox{si } x \leq 0, \\
+0  & \mbox{si } 0 \leq x \leq 1, \\
+x-1 & \mbox{si } 1 \leq x.
+\end{array}
+\right.
+\; \mbox{ et } \;
+d(x, I^c) = 
+\left|
+\begin{array}{rl}
+0 & \mbox{si } x \leq 0, \\
+x  & \mbox{si } 0 \leq x \leq 1/2, \\
+1 - x & \mbox{si } 1/2 \leq x \leq 1, \\
+0 & \mbox{si } 1 \leq x
+\end{array}
+\right.
+$$
+
+Par conséquent,  $d(x, I) = 0$ si et seulement si 
+$x \in [0, 1]$, donc $\overline{I} = [0,1]$.
+On a $d(x, I)= d(x, I^c)=0$ si et seulement si $x=0$ ou $x=1$ donc 
+$\partial A = \{0,1\}$.
+Finalement, $d(x, I^c) > 0$ si et seulement si $0 < x <1$, donc
+$I^{\circ} = \left]0, 1\right[$.
+
+
+### Ensemble des rationnels {.answer #answer-Q}
+Tout nombre réel $x$ peut être approché par un rationnel avec une précision
+arbitraire : si $\lfloor\cdot \rfloor$ désigne la fonction 
+partie entière, on a par exemple 
+$$
+\left|\frac{\lfloor 10^n x \rfloor}{10^n} - x \right| < 10^{-n}.
+$$
+Par conséquent, pour tout $x \in \R$, $d(x, \Q) = 0$ et donc $\overline{\Q} = \R$.
+
 ### Inclusions {.answer #answer-exo-i}
 Si $d(x, A^c) > 0$, alors $x \not \in A^c$, donc $x \in A$ ; 
 donc $A^{\circ} \subset A$. Si $x \in A$ alors $d(x, A) \leq d(x, x) = 0$,
@@ -2439,6 +2522,25 @@ est impossible -- ou $d(x, A^c) > 0$, donc appartient à $A^{\circ}$.
 Par conséquent,
 $A \setminus \partial A \subset A^{\circ}$.
 On a donc bien $A^{\circ} = A \setminus \partial A$.
+
+### Ouvert $\Leftrightarrow$ non fermé ? {.answer  #answer-onf}
+Non ! De nombreux ensembles qui ne sont ni ouverts ni fermés.
+Par exemple dans $\R$, l'intervalle $I = \left[0, 1\right[$ n'est ni ouvert 
+(car que $I^{\circ} = \left]0,1 \right[ \neq I$) ni fermé 
+(car $\overline{I} = [0,1] \neq I$).
+
+### L'adhérence est fermée, l'intérieur est ouvert {.answer #answer-adio}
+L'adhérence $\overline{A}$ d'un ensemble $A$ vérifie 
+$\overline{\overline{A}} = \overline{A}$, elle est donc fermée.
+De façon similaire on a $(A^{\circ})^{\circ} = A^{\circ}$ et l'intérieur de
+$A$ est ouvert.
+
+
+### Ensemble discret {.answer #answer-ed}
+Non. Un contre-exemple est l'ensemble $A = \{2^{-n} \; | \; n \in \N\}$. 
+Il est bien discret : on a $d(2^{-n}, A \setminus \{n\}) = 2^{-n-1} > 0$.
+Mais $x=0$ est à distance nulle de $A$ et n'appartient pas à $A$.
+L'ensemble $A$ n'est donc pas fermé.
 
 ### Normes et boules {.answer #answer-bdn}
 Pour toute norme $\|\cdot\|$, on a
@@ -2498,6 +2600,22 @@ $$
 Par conséquent, sur l'intervalle ouvert $\left]x-\varepsilon, x+\varepsilon\right[$
 qui est un voisinage de $x$, la fonction $f$ est bornée par $|f(x)|+1$. Elle est
 donc localement bornée.
+
+### Courbes de niveau {.answer #answer-cn}
+L'ensemble $\{x \in \R^2 \; | \; f(x) = c\}$ est [l'image réciproque du singleton
+$\{c\}$, un ensemble fermé de $\R$, par la fonction continue $f$](#CIR), il
+est donc fermé.
+
+### Boules ouvertes et fermées {.answer  #answer-bof2}
+On a $B(x, r) = \{y \in X \; | \; d(x, y) < r\}$ ; 
+L'ensemble $I = \left[0, r\right[$ est ouvert dans l'espace métrique 
+$\left[0, +\infty\right[$ car 
+$d(x, I^c) = d(x, \left[r, +\infty\right[) = r-x > 0$ quand $x \in \left[0, r \right[$.
+La boule ouverte en question
+est donc l'image réciproque par l'application [continue](#distance-continue) 
+$d(x, \cdot) = d(\cdot, x)$ d'un ouvert. Elle est donc ouverte par [le critère de l'image
+réciproque](#CIR).
+La preuve que toute "boule fermée" est fermée est similaire.
 
 
 Normes d'opérateurs {#answer-no}
