@@ -579,6 +579,9 @@ A^{\circ} = \left(\overline{A^c}\right)^c.$$
 à partir de l'ensemble $A$, en utilisant l'opérateur d'adhérence $\overline{(\cdot)}$ 
 et des opérations ensemblistes.](images/topological-operations.svg.pdf)
 
+### Adhérence itérée {.exercise .question .two #ai}
+Montrer que $\overline{\overline{A}} = \overline{A}$.
+
 ### Décomposition de $\overline{A}$ {.exercise .question .two #pab}
 Montrer que $$A^{\circ} \cap \partial A = \varnothing \; \mbox{ et } \; 
 \overline{A} = A^{\circ} \cup \partial A.$$
@@ -589,7 +592,7 @@ Montrer que $$\overline{A} = A \cup \partial A
 
 ### Ensemble fermé, ouvert {.definition}
 Un ensemble $A$ est *fermé* si tous les points adhérents à $A$
-appartiennent à $A$:
+appartiennent à $A$ :
 $$
 \mbox{$A$ fermé} \; \Leftrightarrow \; A = \overline{A} \; \Leftrightarrow \; (d(x, A) = 0 \Rightarrow x \in A).
 $$
@@ -601,6 +604,14 @@ A = A^{\circ}
 \; \Leftrightarrow \; 
 (x \in A \Rightarrow d(x, A^c) > 0).
 $$
+
+**TODO**
+
+### L'adhérence est fermée, l'intérieur ouvert {.one .exercise #adio}
+Montrer que l'adhérence $\overline{A}$ d'un ensemble $A$ est fermée et que
+son intérieur $A^{\circ}$ est ouvert.
+
+
 
 ### Boules {.definition}
 Soit $X$ un espace métrique.
@@ -615,6 +626,23 @@ $$
 \overline{B}(x, r) = \{y \in X \, | \, d(x, y) \leq r\}.
 $$
 
+### Normes et boules {.exercise .question .one #bdn}
+Dans $\R^2$, représenter graphiquement les boules ouvertes centrées sur 
+l'origine et de rayon $1$ lorsque la distance est issue la norme euclidienne 
+$\|x\|_2 = \sqrt{x_1^2+x_2}$, puis de la norme $\|x\|_1 = |x_1| + |x_2|$ et 
+enfin de la norme $\|x\|_{\infty} = \max(|x_1|, |x_2|)$.
+
+### C'est une boule ça ? {.exercise .question .one #cubc}
+On considère comme espace métrique le carré de $\R^2$ défini par
+$$
+X = \{(x_1, x_2) \in \R^2 \; | \; \mbox{$|x_1| \leq 1$ et $|x_2| \leq 1$}\}
+$$
+muni de la distance euclidienne. Expliciter dans cet espace
+les boules ouvertes $B((0,0), 1)$, 
+$B((1,0), 1)$ et $B((0,0), 2)$.
+
+
+
 ### Voisinage {.definition}
 Soit $X$ un espace métrique.
 Un ensemble $V$ de $X$ est un *voisinage* d'un point $x$ de $X$ si la
@@ -625,16 +653,37 @@ V \in \mathcal{V}(x)
 d(x, V^c) > 0.
 $$
 
-### Propriétés localement vraies {.definition}
+![Un voisinage $V$ d'un point $x$ du plan.](images/voisinage.svg)
+
+### {.remark .post}
+Autrement dit, $V$ est un voisinage de $x$ si et seulement si $x$ est un point
+intérieur de $V$, ou encore, s'il existe une boule
+ouverte centrée en $x$ de rayon $r >0$ incluse dans $V$ :
+$$
+x \in B(x, r) \subset V \in \mathcal{V}(x)
+$$
+
+### Dans le plan {.exercise .one .question #dlp}
+La droite $D$ d'équation $x_1 = x_2$ est-elle un voisinage de l'origine 
+dans $\R^2$ ?
+
+### Voisinages ouverts / fermés ? {.exercise .one .question #vof}
+Montrer que si $V$ est un voisinage de $x$, il existe un voisinage ouvert
+de $x$ inclus dans $V$ et un voisinage fermé de $x$ inclus dans $V$.
+
+### Propriétés vraies dans un voisinage / localement {.definition}
 Soit $X$ un espace métrique.
 Une propriété $P$, fonction d'ensembles $A$ de $X$
 $$
 P:  A \in \mathcal{F} \subset \mathcal{P}(X) \to \{\mbox{vrai}, \mbox{faux}\}
 $$
-est *localement* vraie 
-si pour tout $x$ de $X$ il existe un voisinage $V$ de $x$ tel que
-$V \in \mathcal{F}$ et $P(V)$ soit vraie.
+est *vraie au voisinage de $x \in X$* s'il existe un voisinage $V$ de $x$ tel que
+$V \in \mathcal{F}$ et $P(V)$ soit vraie. Elle est *localement vraie*
+si elle est vraie au voisinage de tout $x \in X$.
 
+### Fonction localement bornée {.two .exercise .question #flb}
+Montrer qu'une fonction continue $f:\R \to \R$ n'est pas nécessairement bornée 
+sur $\R$, mais qu'elle y est toujours localement bornée.
 
 Suites, limites et continuité
 ================================================================================
@@ -2349,6 +2398,17 @@ $$
 = \{x \in X \; | \; d(x, A^c) > 0\} = A^{\circ}.
 $$
 
+### Adhérence itérée {.answer #answer-ai}
+De l'inclusion $A \subset \overline{A}$ on déduit que $\overline{A} \subset \overline{\overline{A}}$.
+Réciproquement, pour tout $\varepsilon >0$, 
+si $x \in \overline{\overline{A}}$, il existe un $y \in \overline{A}$ tel que
+$d(x, y) \leq \varepsilon /2$ et de même un $z \in A$ tel que $d(y, z) \leq \varepsilon/2$.
+Par [l'inégalité triangulaire](#dist-ineg), on a donc 
+$$
+d(x, A) \leq d(x, z) \leq d(x, y)  + d(y, z) \leq \varepsilon.
+$$
+Le réel positif $\varepsilon$ étant arbitraire, on a $d(x, A) = 0$, soit
+$x \in \overline{A}$.
 
 ### Décomposition de $\overline{A}$ {.answer #answer-pab}
 Aucun point $x$ ne peut vérifier simultanément $d(x,A^c)> 0$ et $d(x, A^c)=0$,
@@ -2380,7 +2440,64 @@ Par conséquent,
 $A \setminus \partial A \subset A^{\circ}$.
 On a donc bien $A^{\circ} = A \setminus \partial A$.
 
+### Normes et boules {.answer #answer-bdn}
+Pour toute norme $\|\cdot\|$, on a
+$$
+B((0,0),1) = \{x \in \R^2 \; | \; \|x\| < 1\},
+$$
+d'où les représentations graphiques associées aux différentes normes.
 
+![Boules ouvertes unitaires associées à $\|\cdot\|_2$,$\|\cdot\|_1$,
+$\|\cdot\|_{\infty}$](images/normes-boules.svg)
+
+
+### C'est une boule ça ? {.answer #answer-cubc}
+Dans $X$, la boule centrée en $(0,0)$ et de rayon $1$ est constituée des points
+de $x \in X$ tels que $d((0,0), x) < 1$. Comme tous les points $x$ 
+de $\R^2$ vérifiant cette inégalité satisfont $|x_1| \leq 1$ et $|x_2| \leq 1$,
+on a donc
+$$
+B((0,0), 1) = \left\{(x_1,x_2) \in \R^2 \; \left| \; \sqrt{x_1^2 + x_2^2} < 1 \right. \right\}.
+$$
+Pour la boule de même rayon centrée en $(1, 0)$, on peut se convaincre que
+tous les points de $\R^2$ tels que $d((1,0), x) < 1$ satisfont $x_1 \geq -1$
+et $|x_2| \leq 1$, mais pas nécessairement $x_1 \leq 1$. On a donc
+$$
+B((1,0), 1) = \left\{(x_1,x_2) \in \R^2 \; \left| \; x_1 < 1 \mbox{ et } \sqrt{(x_1-1)^2 + x_2^2} < 1 \right. \right\}.
+$$
+Concernant la boule ouverte $B((0,0), 2)$, si $x \in X$, alors 
+la condition $d((0,0), x) < 2$ est automatiquement satisfaite, 
+car
+$$
+\sqrt{x_1^2 + x_2^2} \leq \sqrt{1^2 + 1^2} = \sqrt{2} < 2.
+$$
+Par conséquent, $B((0,0), 2) = X$.
+
+![Boules ouvertes dans le carré $\{(x_1, x_2) \in \R^2 \; | \; |x_1| \leq 1 \mbox{ et } |x_2| \leq 1\}$](images/boules.svg)
+
+### Dans le plan {.answer #answer-dlp}
+Non, car tous les points de la forme $(0,x_2)$, $x_2 \neq 0$ n'appartiennent
+pas à $D$. Donc toute boule ouverte $B((0,0), r)$ est d'intersection non vide
+avec le complémentaire de $D$.
+
+### Voisinages ouverts / fermés ? {.answer #answer-vof}
+Si $V$ est un voisinage de $x$, il contient une boule ouverte non vide
+$B(x, r)$, qui est ouverte et un voisinage de $x$, car
+$d(x, B(x, r)^c) = r>0$ ce qui répond à la première partie de la question.
+La boule fermée $\overline{B}(x, r/2)$ est également un voisinage de $x$
+(car $d(x, \overline{B}(x,r)^c) =r/2 > 0$) et de plus
+$\overline{B}(x, r/2) \subset B(x, r) \subset V$.
+
+### Fonction localement bornée {.answer #answer-flb}
+La fonction $x \in \R \mapsto x \in \R$ est continue mais pas bornée par exemple. 
+Mais si $f: \R \to \R$ est continue, pour tout $x \in \R$, par continuité de $f$ en $x$,
+il existe un $\varepsilon > 0$ tel que 
+$$
+y \in \left]x-\varepsilon, x+\varepsilon\right[ \implies |f(y) - f(x)| \leq 1.
+$$
+Par conséquent, sur l'intervalle ouvert $\left]x-\varepsilon, x+\varepsilon\right[$
+qui est un voisinage de $x$, la fonction $f$ est bornée par $|f(x)|+1$. Elle est
+donc localement bornée.
 
 
 Normes d'opérateurs {#answer-no}
