@@ -1842,11 +1842,11 @@ Exercices
 ================================================================================
 
 
-Normes d'opérateurs {#no .question}
+Normes d'opérateurs
 --------------------------------------------------------------------------------
 
 [La fonction `norm` du module `numpy.linalg`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html#numpy-linalg-norm) peut calculer des normes de vecteurs 
-de $\R^n$, mais également de matrices carrée de $\R^{n\times n}$. 
+de $\R^n$, mais également de matrices carrées de $\R^{n\times n}$. 
 Ainsi, on a par exemple :
 
     >>> from numpy import inf
@@ -1869,6 +1869,14 @@ $$
 \|A\| = \sup_{x \neq 0} \frac{\|A\cdot x\|_?}{\|x\|_?}.
 $$
 
+### Etude de `norm(A)` {#no .question .two}
+
+### Etude de `norm(A, 1)` {#no-1 .question .two}
+
+### Etude de `norm(A, 2)` {#no-2 .question .two}
+
+### Etude de `norm(A, inf)` {#no-inf .question .two}
+
 Droite réelle achevée {#dra}
 --------------------------------------------------------------------------------
 
@@ -1886,7 +1894,7 @@ X =
 \right\},
 $$
 muni de la distance euclidienne de $\mathbb{R}^2$
-et la fonction $f: X \to [-\infty, +\infty]$ définie par
+puis la fonction $f: X \to [-\infty, +\infty]$ définie par
 $$
 f(x,y) = 
 \left|
@@ -1900,39 +1908,39 @@ $$
 
 [^nre]: **Pilule rouge.** Dans le monde réel,
 on trouvera fréquemment la notation $\overline{\R}$ 
-pour désigner l'ensemble des réels étendus; 
+pour désigner l'ensemble des réels étendus ; 
 mais cette convention se heurte alors avec la désignation de l'adhérence
 de $\mathbb{R}$ dans lui-même, une interprétation selon laquelle 
 on aurait $\overline{\mathbb{R}} = \mathbb{R}$. 
 
-### Question 1 {.question #dra-1}
+### Question 1 {.question #dra-1 .one}
 Pouvez-vous donner une interprétation géométrique simple à la grandeur
 calculée par la fonction $f$ ?
 
 ![Construction d'une métrique pour la droite réelle achevée.](images/extended-real-numbers.tex)
 
-### Question 2 {.question #dra-2}
+### Question 2 {.question #dra-2 .one}
 Montrer que $f$ est une bijection.
 
-### Question 3 {.question #dra-3}
+### Question 3 {.question #dra-3 .two}
 En déduire qu'il existe une et une seule fonction distance sur
 $[-\infty, +\infty]$ qui fasse de $f$ une isométrie ;
 on note $d^{\pm \infty}$ cette distance. 
 
-### Question 4 {.question #dra-4}
+### Question 4 {.question #dra-4 .one}
 Calculer $d^{\pm \infty}(0, +\infty)$, $d^{\pm \infty}(-\infty, +\infty)$, 
 $d^{\pm \infty}(-1, 1)$.
 
-### Question 5 {.question #dra-5}
+### Question 5 {.question #dra-5 .one}
 Montrer que l'injection canonique
 $x \in \mathbb{R} \mapsto x \in [-\infty, +\infty]$
 est une fonction continue.
 
-### Question 6 {.question #dra-6}
+### Question 6 {.question #dra-6 .three}
 Yoda a dit "deux façons d'interpréter $x_k \to +\infty$ désormais il y a".
 Qu'est-ce qu'il a voulu dire ? Est-ce que c'est un problème ?
 
-### Question 7 {.question #dra-7}
+### Question 7 {.question #dra-7 .four}
 Suggérer une variante de la construction précédente pour
 doter l'ensemble $\mathbb{R} \cup \{\infty\}$ ($\infty$ sans signe :
 ni $+$, ni $-$) d'une métrique $d^{\infty}$ 
@@ -1950,36 +1958,36 @@ dans $V$ [@Sat59].
 
 [^ext]: ou plus généralement dans un espace topologique.
 
-### Question 0 {.question #lf-0}
+### Question 0 {.question #lf-0 .three}
 Expliquer l'expression "fermé dans $V$" dans la définition ci-dessus; 
 est-ce que cela fait une différence si l'on remplace cette expression
 par "fermé" ? 
 
-### Question 1 {.question #lf-1}
+### Question 1 {.question #lf-1 .three}
 Montrer que dans $\R$, l'intervalle $\left[0, 1\right[$ est localement 
 fermé et que l'image de toute suite convergente est localement fermée. 
 Donner un exemple de sous-ensemble de $\mathbb{R}$ qui ne soit pas 
 localement fermé.
 
-### Question 2 {.question #lf-2} 
+### Question 2 {.question #lf-2 .three} 
 Montrer que tout ensemble fermé est localement fermé, mais aussi que tout
 ensemble ouvert est localement fermé. 
 Montrer que l'intersection de deux ensembles localement fermés est 
 localement fermé.
 
-### Question 3 {.question #lf-3}
+### Question 3 {.question #lf-3 .four}
 Montrer qu'un ensemble est localement fermé si et seulement s'il est
 l'intersection d'un ensemble fermé et d'un ensemble ouvert.
 
 Distance entre ensembles
 --------------------------------------------------------------------------------
 
-Soit $A$ et $B$ deux ensembles compacts non vides de $\mathbb{R}^n$ ; 
-on souhaite évaluer à quel point les deux ensembles diffèrent
+Soit $A$ et $B$ deux ensembles fermés bornés non vides de $\mathbb{R}^n$ ; 
+on souhaite évaluer à quel point les deux ensembles $A$ et $B$ diffèrent
 -- en mesurant à quelle distance les points de $A$ peuvent 
 être éloignés de l'ensemble $B$ et réciproquement.
 
-### Question 1 {.question #dh-1}
+### Question 1 {.question #dh-1 .one}
 Est-ce que la distance entre ensembles classique
 $$
 d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a\in A}\inf_{b \in B} d(a, b)
@@ -1993,30 +2001,30 @@ On définit la grandeur
   $$
 appelée *distance de Hausdorff* entre $A$ et $B$.
 
-### Question 2 {.question #dh-2}
+### Question 2 {.question #dh-2 .two}
 Calculer $d[A, B]$ lorsque $A = [-1,1] \times [-1, 1]$ et
 $B = [0, 2] \times [0,2]$.
 
 ![Ensembles $A = [-1,1] \times [-1, 1]$ et $B = [0, 2] \times [0,2]$.](images/hausdorff.tex){#A-et-B}
 
-### Question 3 {.question #dh-3}
+### Question 3 {.question #dh-3 .three}
 Cette terminologie de "distance" de Hausdorff est-elle légitime ?
 
-### Question 4 {.question #dh-4}
+### Question 4 {.question #dh-4 .four}
 La somme de Minkowksi de deux ensembles $A$ et $B$ est définie comme
 $$
 A + B = \{a + b \, | \, a \in A, \, b \in B \}.
 $$
-Vérifier que la somme de Minkowski de deux ensembles compacts non vides de 
-$\R^n$ est un ensemble compact non vide de $\R^n$.
+Vérifier que la somme de Minkowski de deux ensembles fermés bornés non vides de 
+$\R^n$ est un ensemble fermé borné non vide de $\R^n$.
 Cette opération est-elle continue pour la distance de Hausdorff ?
 
 Plongement de Kuratowski
 --------------------------------------------------------------------------------
 
-Nous souhaitons établir le résulat suivant: tout espace métrique peut être
-identifié à un sous-ensemble d'un espace vectoriel normé
-d'une façon qui préserve la distance entre points.
+Nous souhaitons établir le résultat suivant : 
+tout espace métrique peut être identifié à un sous-ensemble d'un 
+espace vectoriel normé d'une façon qui préserve la distance entre points.
 
 Soit $X$ un espace métrique et $x_0$ un point de $X$. 
 On associe à l'élément $x$ de $X$ la fonction $f_x: X \to \R$ définie
@@ -2025,12 +2033,13 @@ $$
 f_x(y) = d(x, y) - d(x_0, y).
 $$
 
-### Question 1 {#pk-1 .question}
+### Question 1 {#pk-1 .question .two}
 Montrer que la fonction $x \mapsto f_x$ est injective.
 
-### Question 2 {#pk-2 .question}
+### Question 2 {#pk-2 .question .two}
 Montrer que pour tout point $x$ la fonction $f_x$ est bornée.
 
+<!--
 ### Question 3 {#pk-3 .question}
 Montrer que l'espace vectoriel $E$ des fonctions bornées de $X$ dans 
 $\mathbb{R}$ est un espace vectoriel qui peut être muni de la norme 
@@ -2038,9 +2047,11 @@ $\| \cdot \|_{\infty}$ définie par
 $$
 \|f\|_{\infty} = \sup \, \{|f(y)| \, | \, y \in X\}.
 $$
+-->
 
-### Question 4 {#pk-4 .question}
-Montrer que $x \mapsto f_x$ est une isométrie, 
+### Question 3 {#pk-3 .question .three}
+Montrer que $x \mapsto f_x$ est une isométrie de $X$ dans l'espace des
+fonctions bornées de $X$ dans $\R$ muni de la norme $\|\cdot\|_{\infty}$,
 c'est-à-dire que pour tout $x$ et $y$ dans $X$, on a 
 $$
 d(x, y) = \|f_x - f_y\|_{\infty}.
@@ -2068,18 +2079,18 @@ Le but de cet exercice est de montrer l'existence d'un unique réel
 positif $x$ tel que $x^2 = x + 1$ -- le *nombre d'or* --
 et de produire une méthode itérative pour l'évaluer.
 
-### Question 1 {.question #golden-ratio-1}
+### Question 1 {.question #golden-ratio-1 .one}
 Montrer l'existence d'un unique point fixe associé à l'application
 $$
 x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
 $$
 et établir qu'il se situe dans l'intervalle fermé $[4/3, 2]$.
 
-### Question 2 {.question #golden-ratio-2}
+### Question 2 {.question #golden-ratio-2 .two}
 Montrer que la suite de réels définie par $x_0 \in [4/3, 2]$
 et $x_{n+1} = f(x_n)$ converge vers le nombre d'or.
  
-### Question 3 {.question #golden-ratio-3}
+### Question 3 {.question #golden-ratio-3 .three}
 Etudier la fonction $f \circ f$ et en exploitant le résultat de 
 l'exercice ["Point fixe"](#TPFB2), en déduire que la suite des $x_n$
 converge vers le nombre d'or pour toute valeur initial $x_0$ strictement
@@ -2099,7 +2110,7 @@ $$
 Nous souhaitons établir que cette spirale à un point limite quand 
 $t \to +\infty$([^euler]).
 
-### Question 1 {.question #se-1}
+### Question 1 {.question #se-1 .one}
 Montrer que si pour toute suite de valeurs $t_k$ tendant vers l'infini, 
 la suite de points de coordonnées $(x_k, y_k) := (x(t_k), y(t_k))$ 
 a une limite dans le plan
@@ -2107,7 +2118,7 @@ a une limite dans le plan
 alors le point de coordonnées $(x(t), y(t))$ a une limite dans le plan 
 quand $t$ tend vers $+\infty$.
 
-### Question 2 {.question #se-2}
+### Question 2 {.question #se-2 .three}
 Montrer que pour tout couple $(a,b)$ de réels tels que $0 < a \leq b$,
 les grandeurs
 $$
@@ -2123,7 +2134,7 @@ $$
 |J(a, b)| \leq \frac{\alpha}{\sqrt[4]{a}}.
 $$
 
-### Question 3 {.question #se-3}
+### Question 3 {.question #se-3 .three}
 Conclure.
 
 [^euler]: Cette courbe a été introduite par Euler en 1744. 
@@ -2149,13 +2160,13 @@ alors la conclusion du [théorème de point fixe de Banach](#T-TPFB)
 est toujours valable (bien que les hypothèses considérées ici 
 soient plus générales).
 
-### Question 1 {.question #pf-1}
+### Question 1 {.question #pf-1 .three}
 Soit $X$ un ensemble et $f: X \to X$.
 Montrer que tout point fixe de $f$ est également 
 un point fixe de $f^n$ ; montrer que si $f^n$ admet un unique point fixe,
 il est également l'unique point fixe de $f$.
 
-### Question 2 {.question #pf-2}
+### Question 2 {.question #pf-2 .three}
 On suppose désormais que $X$ est un espace métrique complet et que 
 $f^n$ est contractante.
 Montrer que $f$ admet un unique point fixe et que le procédé habituel 
@@ -2204,31 +2215,30 @@ $$
 
 Résolution itérative de systèmes linéaires
 --------------------------------------------------------------------------------
-Un opérateur linéaire $A: \R^n \to \R^n$ est *diagonalement dominant* 
-si la matrice $[a_{ij}]_{ij} \in \R^{n\times n}$ associée vérifie
+Une matrice $A \in \R^{n\times n}$ est *diagonalement dominante* 
+si les coefficients $a_{ij}$ associés vérifient
 pour tout $i \in \{1,\dots, n\}$,
 $$
 \sum_{\substack{j=1\\j\neq i}}^n |a_{ij}| < |a_{ii}|.
 $$
-Soit $D$ l'opérateur dont la matrice $[d_{ij}]_{ij}$ est la diagonale de 
-$[a_{ij}]_{ij}$:
+Soit $D$ la matrice diagonale issue de $A$ :
 $$
-[d_{ij}]_{ij} = \left[
+D = \left[
 \begin{array}{cccc}
 a_{11} & 0 & \cdots & 0 \\
 0 & a_{22} & \cdots & 0 \\
-\cdots & \cdots & \cdots & \cdots \\
+\vdots & \vdots & \vdots & \vdots \\
 0 & \cdots & 0 & a_{nn} \\
 \end{array}
 \right]
 $$
 
-### Question 1 {.question #risl-1}
+### Question 1 {.question #risl-1 .one}
 Montrer que deux vecteurs $x$ et $y$ de $\R^n$ vérifient 
 $A \cdot x = y$ si et seulement si 
 $$x = D^{-1} \cdot (D-A) \cdot x  + D^{-1} \cdot y.$$
 
-### Question 2 {.question #risl-2}
+### Question 2 {.question #risl-2 .three}
 En déduire que $A$ est inversible et une méthode itérative de calcul de $A^{-1}$.
 
 <!--
@@ -2248,7 +2258,7 @@ et lien avec norme.
 
 Équation différentielle
 --------------------------------------------------------------------------------
-Soit $A$ un opérateur linéaire de $\R^n$ dans $\R^n$. 
+Soit $A$ une matrice de $\R^{n\times n}$.
 On souhaite montrer que pour tout $x_0 \in \R^n$,
 il existe une unique fonction dérivable $x: \left[0, +\infty\right[ \to \R^n$
 à l'équation différentielle
@@ -2257,7 +2267,7 @@ $$
 $$
 assortie de la condition initiale $x(0) = x_0$. 
 
-### Question 1 {.question #ed-1}
+### Question 1 {.question #ed-1 .one}
 Montrer que la fonction $x: \left[0, +\infty\right[ \to \R^n$ est solution du 
 problème ci-dessus si et seulement si elle est continue et vérifie 
 pour tout $t \geq 0$ la relation
@@ -2265,7 +2275,7 @@ $$
 x(t) = x_0 + \int_0^t A \cdot x(s) \, ds.
 $$
 
-### Question 2 {.question #ed-2}
+### Question 2 {.question #ed-2 .three}
 Soit $T > 0$ ; 
 on note $E$ l'espace des fonctions continues de $[0, T]$ dans $\R^n$, 
 muni de la norme
@@ -2280,7 +2290,7 @@ $$
 est-elle contractante ? Quelle conclusion (partielle) quant
 au problème initial peut-on en tirer ?
 
-### Question 3 {.question #ed-3}
+### Question 3 {.question #ed-3 .three}
 Soit $\alpha > 0$. On note 
 $$
 \|x\|_{\infty}^{\alpha} = \sup_{t \in [0, T]} \|e^{-\alpha t}x(t)\|.
@@ -2289,11 +2299,12 @@ Montrer que $\|\cdot\|_{\infty}^{\alpha}$ est une norme sur l'espace
 des fonctions continues de $[0, T]$ dans $\R^n$ et que 
 muni de cette norme, l'espace $E$ est complet.
 
-### Question 4 {.question #ed-4}
+### Question 4 {.question #ed-4 .three}
 Reprendre la question 2 avec la norme $\|\cdot\|_{\infty}^{\alpha}$
 au lieu de $\|\cdot\|_{\infty}$ et conclure quant à l'existence
 d'une solution au problème initial.
 
+<!--
 Localement borné
 --------------------------------------------------------------------------------
 Soit $f: U \subset \R^n \to \R$ où $U$ est ouvert.
@@ -2313,6 +2324,8 @@ rayon $r>0$ et une valeur $c \in \R$ tels que pour tout point
 $y \in U$ tel que $\|y - x\| \leq r$ on ait $f(y) = c$.
 La fonction $f$ est-elle nécessairement constante sur 
 tout sous-ensemble borné $A$ de $U$ tel que $d(A, \R^n \setminus U) > 0$ ?
+
+-->
 
 <!--
 TODO -- "Localement"
@@ -2618,31 +2631,51 @@ réciproque](#CIR).
 La preuve que toute "boule fermée" est fermée est similaire.
 
 
-Normes d'opérateurs {#answer-no}
+Normes d'opérateurs
 --------------------------------------------------------------------------------
 
-### `norm(A)` {.answer}
+### Etude de `norm(A)` {.answer #answer-no}
 En l'absence de second argument, la fonction `norm` calcule 
 la norme de Frobenius de l'opérateur $A$, donnée comme
 $$
 \|A\|_F = \sqrt{\sum_{i=1}^n\sum_{j=1}^n a_{ij}^2}.
 $$
-Il s'agit bien d'une norme sur les applications linéaires de 
-$\R^n$ dans $\R^n$, car on peut la calculer
-comme la norme euclidienne de la matrice $[A]$ 
-après une ["mise à plat"](Calcul Différentiel I.pdf#flatten) comme vecteur
-de $\R^{n^2}$, c'est-à-dire par la formule $\|A\|_F = \|\pi([A])\|_2$. 
-Mais elle n'est induite par aucune
-norme de vecteur ; en effet, s'il existait une norme $\|\cdot\|_?$ telle que 
+Il s'agit bien d'une norme sur matrices de $\R^{n\times n}$, 
+car on peut la calculer comme la norme euclidienne du vecteur de $\R^{n^2}$
+obtenu par "mise à plat" de la matrice $A$, c'est-à-dire après avoir
+opéré la transformation (linéaire et bijective)
+$$
+\left[
+  \begin{array}{ccc}
+  a_{11} & \cdots & a_{1n} \\
+  \vdots & \vdots & \vdots \\
+  a_{n1} & \cdots & a_{nn}
+  \end{array}
+\right] \in \R^{n\times n}
+\mapsto \left[
+    \begin{array}{c}
+  a_{11} \\ 
+  \vdots \\ 
+  a_{1n} \\
+  \vdots \\
+  a_{n1} \\ 
+  \vdots \\
+  a_{nn} \\
+  \end{array}
+  \right] \in \R^{n^2}.
+$$
+ Mais elle n'est induite par aucune norme de vecteur ; 
+ en effet, s'il existait une norme $\|\cdot\|_?$ telle que 
 $\|A\|_F = \sup \|A \cdot x\|_? / \|x\|_?$, alors on aurait en particulier
 $$
 \|I\|_F  = \sup_{x \neq 0} \frac{\|I \cdot x\|_?}{\|x\|_?} = 
 \sup_{x \neq 0} \frac{\|x\|_?}{\|x\|_?}  = 1.
 $$
 Or, on peut constater que la norme de Frobenius de la matrice associée
-à l'identité dans $\R^n$ est $\sqrt{n}$, qui diffère de $1$ si $n>1$.
+à la matrice identité dans $\R^{n\times n}$ est $\sqrt{n}$, 
+qui diffère de $1$ si $n>1$.
 
-### `norm(A, 1)` {.answer}
+### Etude de `norm(A, 1)` {.answer #answer-no-1}
 L'expression `norm(A, 1)` calcule d'après la documentation de `norm` la
 grandeur
 $$
@@ -2677,39 +2710,39 @@ $$
 $$
 
 
-### `norm(A, 2)` {.answer}
+### Etude de `norm(A, 2)` {.answer #answer-no-2}
 La norme en question est définie par NumPy comme $\sigma_1$, 
 la plus grande valeur singulière de $A$.
 Les valeurs singulières $\sigma_1 \geq \sigma_2 \geq \sigma_n \geq 0$
-associées à l'opérateur linéaire $A:\R^n \to \R^n$ sont définies à
+associées à la matrice $A\in\R^{n\times n}$ sont définies à
 travers une décomposition de $A$ de la forme
 $$
-A = U \cdot \Sigma \cdot V^*
+A = U \cdot \Sigma \cdot V^{\top}
 $$
 où $\Sigma \cdot (x_1, \dots, x_n) = (\sigma_1 x_1, \dots, \sigma_n x_n)$
-et $U \in \R^{n} \to \R^n$ et $V \in \R^n \to \R^n$ sont des applications 
-linéaires orthogonales (inversible et dont l'inverse est l'adjoint). 
+et $U \in \R^{n\times n}$ et $V \in \R^{n\times n}$ sont matrices orthogonales 
+(inversibles et dont l'inverse est la transposée). 
 Pour montrer que $\sigma_1(\cdot)$
 constitue la norme d'opérateur $\|\cdot\|_{22}$ induite par la norme euclidienne
 $\|\cdot\|_2$ des vecteurs de $\R^n$, on constate au préalable que
 pour toute application orthogonale $U$,
 $$
 \|U \cdot x\| = \sqrt{\left< U \cdot x, U \cdot x \right>}
-= \sqrt{\left<U^* \cdot U \cdot x, x \right>}
+= \sqrt{\left<U^{\top} \cdot U \cdot x, x \right>}
 = \sqrt{\left<x, x\right>} = \|x\|_2,
 $$
 puis que
 $$
 \begin{split}
-\|A\|_{22} &= \sup_{\|x\|_2 \leq 1} \|(U \cdot \Sigma \cdot V^*) \cdot x\|_2  \\
-&= \sup_{\|x\|_2 \leq 1} \|U \cdot (\Sigma \cdot (V^* \cdot x))\|_2 \\
+\|A\|_{22} &= \sup_{\|x\|_2 \leq 1} \|(U \cdot \Sigma \cdot V^{\top}) \cdot x\|_2  \\
+&= \sup_{\|x\|_2 \leq 1} \|U \cdot (\Sigma \cdot (V^{\top} \cdot x))\|_2 \\
 &= \sup_{\|y\|_2 \leq 1} \|\Sigma \cdot y\|_2 \\
 &= \sup_{\|y\|_2 \leq 1} \sqrt{\sigma_1^2 y_1^2 + \dots + \sigma_n^2 y_{n}^2} \\
 &= \sigma_1.
 \end{split}
 $$
 
-### `norm(A, inf)` {.answer}
+### Etude de `norm(A, inf)` {.answer #answer-no-inf}
 On constate que l'expression donnée dans la documentation de `norm`, 
 à savoir
 $$
@@ -2717,13 +2750,10 @@ $$
 $$
 entretient une troublante ressemblance avec la norme 
 $\|\cdot\|_1$ pour les opérateurs. Plus précisément, 
-si $A^{*} : \R^n \to \R^n$ désigne l'opérateur adjoint de $A$,
-tel que pour tous vecteurs $x$ et $y$ de $\R^n$, 
-$\left<y, A x\right> = \left<A^* y,x \right>$,
-associé à la matrice transposée de la matrice associée à $A$,
+si $A^{\top} \in \R^{n\times n}$ désigne l'opérateur adjoint de $A$,
 alors on a
 $$
-\|A\|_{\infty} = \|A^*\|_1.
+\|A\|_{\infty} = \|A^{\top}\|_1.
 $$
 C'est un peu trop gros pour être une coincidence ...
 Pour montrer que $\|\cdot\|_{\infty}$ est la norme d'opérateur 
@@ -2741,12 +2771,12 @@ $$
 \|A\|_{\infty\infty} = \sup_{\|x\|_{\infty} \leq 1} \|A \cdot x\|_{\infty}
 &=\sup_{\|x\|_{\infty} \leq 1} \sup_{\|y\|_1 \leq 1} \left<y, A \cdot x\right> \\
 &=
-\sup_{\|x\|_{\infty} \leq 1} \sup_{\|y\|_1 \leq 1} \left<A^* \cdot y, x\right> \\
+\sup_{\|x\|_{\infty} \leq 1} \sup_{\|y\|_1 \leq 1} \left<A^{\top} \cdot y, x\right> \\
 &=
-\sup_{\|y\|_1 \leq 1} \sup_{\|x\|_{\infty} \leq 1} \left<x, A^* \cdot y \right> \\
+\sup_{\|y\|_1 \leq 1} \sup_{\|x\|_{\infty} \leq 1} \left<x, A^{\top} \cdot y \right> \\
 &=
-\sup_{\|y\|_1 \leq 1} \|A^* \cdot y \| \\
-&=\|A^*\|_1 \\ &= \|A\|_{\infty},
+\sup_{\|y\|_1 \leq 1} \|A^{\top} \cdot y \| \\
+&=\|A^{\top}\|_1 \\ &= \|A\|_{\infty},
 \end{split}
 $$
 et donc $\|\cdot\|_{\infty\infty} = \|\cdot\|_{\infty}$.
@@ -2920,7 +2950,7 @@ $V = ]a - \varepsilon, a + \varepsilon[$ vérifie $A \cap V = \{a\}$.
 $V$ est un voisinage ouvert de $a$ et $A \cap V$ est bien fermé dans $V$.
 Si la valeur limite $\ell$ n'est pas atteinte par un $x_k$, cela conclut
 la preuve que $A$ est localement fermé. Dans le cas contraire, pour 
-$a=\ell$, on peut prendre $V = \R$; en effet, $A$ est alors fermé.
+$a=\ell$, on peut prendre $V = \R$ ; en effet, $A$ est alors fermé.
 
 L'ensemble des rationnels $\mathbb{Q}$ n'est pas localement fermé.
 En effet si $V$ est un voisinage de $0$ il contient nécessairement un ensemble
@@ -2935,17 +2965,17 @@ donc $\mathbb{Q}$ n'est pas localement fermé.
 ### Question 2 {.answer #answer-lf-2}
 
 Si $A$ est fermé, on peut prendre $V=X$ qui est un voisinage ouvert 
-de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
+de tout point de $A$. On a alors $A \cap V = A$ et donc 
 $A \cap V$ est bien fermé dans $V=X$.
 
 Si $A$ est ouvert, on peut prendre $V=A$ qui est un voisinage ouvert 
-de $A$ (il contient $A$ et est ouvert). On a alors $A \cap V = A$ est donc 
+de tout point de $A$. On a alors $A \cap V = A$ et donc 
 $A \cap V$ est bien fermé dans $V=A$.
 
 Si $A$ et $B$ sont localement fermés et $x \in A \cap B$, il existe des 
 voisinages ouverts $U$ et $V$ de $x$ tels que $A \cap U$ soit fermé 
 dans $U$ et $B \cap V$ soit fermé dans $V$. 
-Par construction, $U \cap V$ est un voisinage ouvert de $x$;
+Par construction, $U \cap V$ est un voisinage ouvert de $x$ ;
 en effet, d'une part cette intersection contient $x$ et d'autre part
 pour tout $y$ dans $U \cap V$, 
 $d(y, X \setminus U) > 0$ et $d(y, X \setminus V) > 0$ ; or 
@@ -2961,7 +2991,7 @@ $$
 donc $U \cap V$ est ouvert.
 L'ensemble $A$, qui est fermé dans $U$, est donc fermé dans $U \cap V$
 (si une suite de $A$ converge dans $U \cap V$, elle converge dans $U$
-et donc sa limite appartient à $A$); de la même façon, $B$ est fermé
+et donc sa limite appartient à $A$) ; de la même façon, $B$ est fermé
 dans $U \cap V$. Par conséquent, $A \cap B$ est fermé dans $U \cap V$.
 
 ### Question 3 {.answer #answer-lf-3}
@@ -2971,15 +3001,16 @@ il est l'intersection de deux ensembles localement fermés, donc il
 est localement fermé (par les résultats de la [question précédente](#lf-2)).
 
 Réciproquement, supposons que l'ensemble $A$ soit localement fermé.
-En tout point $a \in A$, il existe un voisinage ouvert $V_a$ tel que
-$A\cap V_a$ soit fermé dans $V_a$. L'ensemble $V_a \setminus (A \cap V_a)
-= V_a \setminus A$ est donc ouvert dans $V_a$ et donc dans $X$.
+En tout point $a \in A$, il existe un voisinage ouvert $V_a$ de $a$
+tel que $A\cap V_a$ soit fermé dans $V_a$. 
+L'ensemble $V_a \setminus (A \cap V_a) = V_a \setminus A$ est donc ouvert 
+dans $V_a$ et donc dans $X$.
 Par construction, la collection des $V_a$ recouvre $A$, c'est-à-dire que
 $A \subset \cup_{a \in A} V_a$, donc
 $$
 A = \bigcup_{a \in A} V_a \setminus \left(\bigcup_{a \in A} V_a \setminus A\right).
 $$
-Posons $V = \cup_{a \in A} V_a$;
+Posons $V = \cup_{a \in A} V_a$ ;
 le complémentaire dans $X$ de $\bigcup_{a \in A} V_a \setminus A$ est un
 ensemble fermé $F$ ; de l'équation ci-dessus on déduit donc
 que $A = V \cap F$ où $V$ est ouvert dans $X$ et $F$ est fermé dans $X$.
@@ -3040,7 +3071,7 @@ La distance de Hausdorff entre $A$ et $B$ vaut donc $\sqrt{2}$.
 ### Question 3 {.answer #answer-dh-3}
 
 Vérifions que la "distance" de Hausdorff est effectivement une distance
-sur l'espace des sous-ensembles compacts de $\R^n$.
+sur l'espace des sous-ensembles fermés bornés non vides de $\R^n$.
 
  1. Axiome de séparation. 
     Si $$d[A, B] = \max(\sup_{a \in A} d(a, B), \sup_{b \in B} d(b, A)) = 0,$$
@@ -3051,7 +3082,7 @@ sur l'espace des sous-ensembles compacts de $\R^n$.
     et donc $A = B$.
 
  2. Axiome de symétrie. Il est clair par construction que pour tous les
-    ensembles compacts non vides $A$ et $B$ de $\R^n$, on a $d[A, B] = d[B, A]$.
+    ensembles fermés bornés non vides $A$ et $B$ de $\R^n$, on a $d[A, B] = d[B, A]$.
 
  3. Pour tout $a \in A$, $b \in B$, $c \in C$, l'inégalité triangulaire
     fournit $d(a, c) \leq d(a, b) + d(b, c)$. 
@@ -3091,7 +3122,7 @@ sur l'espace des sous-ensembles compacts de $\R^n$.
 ### Question 4 {.answer #answer-dh-4}
 
 Si $A$ et $B$ sont des ensembles non vides de $\R^n$, $A+B$ est clairement
-non vide. Si de plus $A$ et $B$ sont compacts, et que l'on considère une
+non vide. Si de plus $A$ et $B$ sont fermés et bornés, et que l'on considère une
 suite $x_k$ de points de $A+B$, alors il existe des $a_k$ de $A$ 
 et $b_k$ de $B$ tels que $x_k = a_k + b_k$. Par compacité de $A$, 
 il existe une suite $a_{\sigma(k)}$ 
@@ -3103,7 +3134,7 @@ qui converge vers un $b \in B$.
 Par continuité de la somme dans $\R^n$, la suite des
 $x_{\tau (\sigma(k))}$, qui est extraite des $x_k$, converge vers $a+b \in A+B$.
 
-Soit $A$, $B$, $C$ et $D$ quatre ensembles compacts non vides de $\R^n$.
+Soit $A$, $B$, $C$ et $D$ quatre ensembles fermés bornés non vides de $\R^n$.
 Si $a \in A$, $b \in B$, $c \in C$ et $d \in D$, on a
 $$
 d(a+b, c+d) = \|a+b - c -d\| \leq \|a - c\| + \|b - d\|.
@@ -3158,6 +3189,7 @@ $$
 $$
 par [l'inégalité triangulaire](#dist-ineg).
 
+<!--
 ### Question 3 {#answer-pk-3 .answer}
 Si $f: E \to \R$ et $g: E \to \R$ sont bornées et $\lambda \in \R$,
 il est clair que $f+g$ et $\lambda f$ sont bornées.
@@ -3169,8 +3201,9 @@ De plus,
   2. On a $\|\lambda f\|_{\infty} = \sup_{x\in E} \|\lambda f(x)\| = |\lambda| \sup_{x\in E} \|f(x)\| = |\lambda| \|f\|_{\infty}$.
 
   3. On a $$\begin{split}\|f+g\|_{\infty} &= \sup_{x\in E} \| f(x) + g(x)\| \\ &\leq \sup_{x\in E} \|\lambda f(x)\| + \sup_{x\in E} \|\lambda g(x)\|\\ &= \|f\|_{\infty} + \|g\|_{\infty}.\end{split}$$
+-->
 
-### Question 4 {#answer-pk-4 .answer}
+### Question 3 {#answer-pk-3 .answer}
 Soient $x, y \in X$ ; on a
 $$
 f_x(z) - f_y(z) = d(z, x) - d(z, x_0) - (d(z, y) - d(z, y_0)) = d(z, x) - d(z, y).
@@ -3254,7 +3287,8 @@ Par conséquent, $f([4/3,2]) \subset [4/3,2]$. Comme $f'(x) = - 1/x^2$,
 pour tout $x \in [4/3,2]$, $|f'(x)| < 9/16 < 1$. 
 Par le théorème des accroissements finis, la restriction de $f$ à $[4/3, 2]$ 
 est donc contractante.
-L'ensemble $[4/3, 2]$ est un ensemble fermé $\R$ ; il est donc complet.
+L'ensemble $[4/3, 2]$ est un ensemble fermé de $\R$ qui est complet ; 
+[il est donc complet](#sous-espaces-complets).
 L'existence et l'unicité du point fixe de $f$ sur $[4/3,2]$ ainsi que son
 obtention comme limite de la suite $x_k$ résultent du [théorème de point fixe
 de Banach](#T-TPFB).
@@ -3267,9 +3301,8 @@ est contractante pour conclure que $f$ possède un unique point fixe
 sur $X$,  obtenu comme limite de la suite
 définie par $x_{k+1} = f(x_k)$ pour tout $x_0 \in X$.
 
-Posons $X = \left[1, +\infty\right[$ ; $X$ est complet car c'est un sous-ensemble
-fermé de $\R$ qui est complet (une suite de Cauchy de $X$ converge dans $\R$,
-donc dans $X$). 
+Posons $X = \left[1, +\infty\right[$ ; $X$ est complet car 
+[c'est un sous-ensemble fermé de $\R$ qui est complet](#sous-espaces-complets). 
 De plus, comme pour tout $x>0$, $1+1/x > 1$, 
 on a bien $f(\left[1, +\infty\right[) \subset \left[1, +\infty\right[$.
 Pour tout $x \geq 1$, on a
@@ -3400,7 +3433,7 @@ $$
 f^3(x) = f(f^2(x)) = f(x) = x,
 $$
 etc. Par récurrence, il est clair que l'on peut établir que pour tout
-$n \geq 1$, on a $f^n(x) = x$: $x$ est un point fixe de $f^n$.
+$n \geq 1$, on a $f^n(x) = x$ : $x$ est un point fixe de $f^n$.
 
 Supposons désormais que la fonction itérée $f^n$ admette un unique point fixe
 $x$. Comme tout point fixe de $f$ est un point fixe de $f^n$, $f$ admet au
@@ -3444,7 +3477,7 @@ $D \cdot x + (A - D) \cdot x = y$, soit
 $$
 D \cdot x = (D - A) \cdot x + y.
 $$
-L'opérateur $A$ étant diagonalement dominant, $a_{ii} > 0$ pour tout $i$; 
+L'opérateur $A$ étant diagonalement dominant, $a_{ii} > 0$ pour tout $i$ ; 
 l'opérateur $D$ est donc inversible. 
 La relation ci-dessus est donc équivalente à
 $$
@@ -3586,6 +3619,7 @@ x(t) = x_0 + \int_0^t A \cdot x(s) \, ds
 $$
 pour tout $t \in [0, T]$. Le problème original admet donc une solution unique.
 
+<!--
 Localement borné
 --------------------------------------------------------------------------------
 
@@ -3618,6 +3652,8 @@ $$
 Elle est localement constante, mais pas constante sur l'ensemble 
 $A = \{-1, +1\}$ qui est pourtant borné et vérifie
 $d(A, \R \setminus U) = d(A, \{0\}) = 1>0$.
+
+-->
 
 Références
 ============================================================================
