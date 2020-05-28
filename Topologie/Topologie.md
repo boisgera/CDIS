@@ -2118,15 +2118,15 @@ J(a, b) := \int_{a}^{b} \sin s^2 \, ds
 $$
 vérifient pour un réel $\alpha > 0$ les inégalités
 $$
-|I(a, b)| \leq \frac{\alpha}{\sqrt{a}}
+|I(a, b)| \leq \frac{\alpha}{\sqrt[4]{a}}
 \, \mbox{ et } \,
-|J(a, b)| \leq \frac{\alpha}{\sqrt{a}}.
+|J(a, b)| \leq \frac{\alpha}{\sqrt[4]{a}}.
 $$
 
 ### Question 3 {.question #se-3}
 Conclure.
 
-[^euler]: cette courbe a été introduite par Euler en 1744. 
+[^euler]: Cette courbe a été introduite par Euler en 1744. 
 Il lui apparait alors manifeste que la courbe est une spirale qui s'enroule 
 après un nombre de tours infinis autour d'un centre bien défini, 
 mais que ce point est très difficile à déterminer par cette construction. 
@@ -3308,8 +3308,8 @@ Considérons deux suites $s_k$ et $r_k$
 de réels positifs tendant vers $+\infty$ et notons $S$ et $R$ les 
 limites de $(x(s_k), y(s_k))$ et $(x(r_k), y(r_k))$. La suite 
 $t_k$ des réels $s_0$, $r_0$, $s_1$, $r_1, \dots$ est positive 
-et tend vers $+\infty$. Les $(x(t_k), y(t_k))$ sont admettent donc
-une limite $T$ quand $k \to +\infty$; toute sous-suite étant convergente
+et tend vers $+\infty$. Les $(x(t_k), y(t_k))$ admettent donc
+une limite $T$ quand $k \to +\infty$ ; toute sous-suite étant convergente
 et de même limite, on a nécessairement $T = S = R$, ce qui prouve le
 résultat cherché.
 
@@ -3323,20 +3323,25 @@ I(a, b) = \int_a^b \cos s^2 \, ds = \int_{\sqrt{a}}^{\sqrt{b}} \frac{\cos \tau}{
 $$
 Par intégration par parties, on obtient alors
 $$
-I(a, b) = \frac{\sin b}{2\sqrt{b}} -  \frac{\sin a}{2\sqrt{a}} 
-+ \int_{\sqrt{a}}^{\sqrt{b}} \frac{\sin \tau}{\tau^{3/2}} \, d\tau.
+I(a, b) = \frac{\sin \sqrt{b}}{2\sqrt[4]{b}} -  \frac{\sin \sqrt{a}}{2\sqrt[4]{a}} 
++ \int_{\sqrt{a}}^{\sqrt{b}} \frac{\sin \tau}{4\tau^{3/2}} \, d\tau.
 $$
 Comme $|\sin \tau| \leq 1$,
 $$
-\left| \int_{\sqrt{a}}^{\sqrt{b}} \frac{\sin \tau}{\tau^{3/2}} \, d\tau \right|
-\leq \int_{\sqrt{a}}^{\sqrt{b}} \frac{d \tau}{\tau^{3/2}}
-= - \frac{2}{\sqrt{b}} + \frac{2}{\sqrt{a}}.
+\left| \int_{\sqrt{a}}^{\sqrt{b}} \frac{\sin \tau}{4\tau^{3/2}} \, d\tau \right|
+\leq \int_{\sqrt{a}}^{\sqrt{b}} \frac{d \tau}{4\tau^{3/2}}
+= - \frac{1}{2\sqrt[4]{b}} + \frac{1}{2\sqrt[4]{a}}
+$$
+et
+$$
+\left| \frac{\sin \sqrt{b}}{2\sqrt[4]{b}} -  \frac{\sin \sqrt{a}}{2\sqrt[4]{a}} \right| \leq
+\frac{1}{2\sqrt[4]{b}} +  \frac{1}{2\sqrt[4]{a}}.
 $$
 On en déduit
 $$
 \left|I(a, b)\right| 
 \leq 
-\frac{5}{2 \sqrt{a}} + \frac{5}{2 \sqrt{b}} \leq \frac{5}{\sqrt{a}}.
+\frac{1}{\sqrt[4]{a}}.
 $$
 
 ### Question 3 {.answer #answer-se-3}
@@ -3347,7 +3352,7 @@ que pour toute suite de valeurs $t_k$ tendant vers $+\infty$,
 la suite des $(x_k, y_k) = (x(t_k), y(t_k))$ est convergente. 
 Comme nous ne connaissons
 par la valeur de cette limite, nous allons établir que cette suite est
-de Cauchy; l'ensemble $\mathbb{R}^2$ étant complet, cela prouvera la
+de Cauchy ; l'ensemble $\mathbb{R}^2$ étant complet, cela prouvera la
 convergence de la suite.
 
 Or, pour tout couple d'entier $n$ et $p$, on a
@@ -3367,17 +3372,17 @@ $$
 \|(x_n, y_n) - (x_p, y_p)\| 
 = 
 \sqrt{I(t_p, t_n)^2 + J(t_p, t_n)^2}
-\leq \frac{2\alpha}{\sqrt{\min(t_p, t_n)}}.
+\leq \frac{\sqrt{2}\alpha}{\sqrt[4]{\min(t_p, t_n)}}.
 $$
 Pour un $\varepsilon > 0$ donné, il suffit de choisir un rang 
 $m \in \mathbb{N}$ tel que
 $$
-t_k \geq \left(\frac{2 \alpha}{\varepsilon}\right)^2, \, k\geq m
+t_k \geq \left(\frac{\sqrt{2} \alpha}{\varepsilon}\right)^4, \, k\geq m
 $$
 pour avoir la garantie que si $p \geq m$ et $n \geq m$, alors
 $$
 \|(x_n, y_n) - (x_p, y_p)\| 
-\leq \frac{2\alpha}{\sqrt{\min(t_p, t_n)}} 
+\leq \frac{\sqrt{2}\alpha}{\sqrt[4]{\min(t_p, t_n)}} 
 \leq \varepsilon.
 $$
 La suite des $(x_k, y_k)$ est donc de Cauchy.
