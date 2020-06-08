@@ -33,17 +33,35 @@ d'exercices.
 
 
 
-#### Intégrale dans $\R^n$
+#### Intégrale de fonctions de plusieurs variables
 
 #### Intégrale multiple
 
 #### Changement de variables
 
-Intégrale dans $\R^n$
+Intégrale de fonctions de plusieurs variables
 ================================================================================
 
+**TODO.** Bascule $\R^n$ $\to$ $[-\infty, +\infty]^n$ ?
+
+Essayer de rester dans $\R^n$ ? Oui, sinon ça va être technique pour les
+changements de variable, de visualiser les ouverts, etc. Reprendre les
+2 options à tete reposée. Et on peut montrer que ces deux ensembles,
+"c'est pareil" parce que leur différence symmétrique est négligeable.
+
+**TODO** expliquer comment se ramener d'un cas quelconque $A \subset \R^n$
+ou $A \subset [-\infty, +\infty]^n$ à $[-\infty, +\infty]^n$.
+
+(ça n'est pas totalement conforme à ce qu'on a fait dans le chapitre I, 
+mais OK)
+
+
 ### {.remark .ante}
-Les pavés joueront dans $\R^n$ le rôle dévolu aux intervalles dans $\R$ :
+
+
+### {.remark .ante}
+Les pavés joueront dans $[-\infty,+\infty]^n$ le rôle qui était dévolu aux 
+intervalles dans la droite réelle étendue $[-\infty, +\infty]$ :
 
 ### Pavés {.definition}
 On appelle *pavé* de $[-\infty,+\infty]^n$ tout ensemble $I$ de la forme
@@ -51,6 +69,9 @@ $$
 I = I_1 \times \dots \times I_n
 $$
 où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
+
+**TODO** passer à $\lambda$ ou $\mu$ en général pour désigner la mesure
+dans $\R^n$ ? Les standard de fait est $\lambda$.
 
 ### Volume d'un pavé
 On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$ de $[-\infty,+\infty]^n$
@@ -131,6 +152,27 @@ ne soient affectés par le choix de ces valeurs.
 Nous évoquons rapidement dans cette section la façon dont les propriétés 
 de l'intégrale dans $\R$ se transposent à $\R^n$.
 
+**TODO en 1er : ensemble négligeable**.
+
+**TODO : transformer la majorité de ces résultats en "macro-theoremes".
+
+
+### Ensemble négligeable  {.definition .two #ensemble-négligeable}
+Un ensemble $A$ de $[-\infty, +\infty]^n$ est *négligeable* si pour tout
+$\varepsilon > 0$, il existe un recouvrement de $A$ par une collection
+dénombrable de pavés $I_1$, $I_2$, $\dots$, $I_i$, $\dots$ de $[-\infty,+\infty]^n$ 
+$$
+A \subset \bigcup_{i} I_i 
+$$
+telle que
+$$
+\sum_i \lambda(I_i) \leq  \varepsilon.
+$$
+
+### Pavé négligeable {.lemma}
+Un pavé $I$ est négligeable si et seulement si sa mesure de Lebesgue
+$\lambda(I)$ est nulle.
+
 L'intégrale dans $\R^n$ est toujours linéaire et positive ;
 l'intégrabilité peut être testée par un critère de Cauchy analogue au cas réel.
 La notion d'ensemble négligeable est similaire au cas réel, à ceci près
@@ -138,12 +180,92 @@ qu'on utilise des pavés au lieu d'intervalles et le volume au lieu de la
 longueur ; comme dans le cas réel, des fonctions égales presque partout
 sont intégrables simultanément et ont la même intégrale.
 
-Un théorème de changement de variable existe, mais il diffère quelque peu
-du résultat élémentaire déjà traité dans $\R$
-(par certains aspects, il est plus général) ; 
-il possède dans sa propre sous-section dans ce chapitre.
+### Linéarité {.theorem .one #linéarité}
+Si les fonctions $f: [-\infty,+\infty]^n \to \mathbb{R}$ et 
+$g: [-\infty, +\infty]^n \to \mathbb{R}$ sont intégrables et 
+$\lambda \in \mathbb{R}$, alors les fonctions $f+g$ et $\lambda f$ sont intégrables. 
+De plus,
+$$
+\int f(x) + g(x) \, dx 
+= 
+\int f(x) \, dx +
+\int  g(x) \, dx
+\;
+\mbox{ et }
+\;
+\int  \lambda f(x) \, dx
+=
+\lambda \int f(x) \, dx.
+$$
+
+**TODO:** que faire avec ça ? Il y a une adaptation trivale où les ensembles
+$A$ et $B$ sont disjoints, une autre dans le cas ou l'intersection est 
+négligeable, mais alors ça n'est pas le moment adéquat dans l'ordre des
+notions.
+
+### Additivité {.theorem #additivité .one}
+Si la fonction $f$ est définie et intégrable sur les intervalles
+$[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
+et
+$$
+\int_a^b f(t) \, dt + \int_b^c f(t) \, dt = \int_a^c f(t) \, dt.
+$$
+
+**TODO.** Même chose : la version "élémentaire" n'est plus guère utile ici ;
+il faut restreindre $f$ à une ensemble mesurable, c'est la version "chapitre 2"
+qui devient pertinente.
+
+### Restriction {.theorem #restriction .one}
+Si $f$ est intégrable sur l'intervalle $[a, b]$, 
+elle est intégrable sur tout intervalle $[c, d]$ 
+inclus dans $[a, b]$.
+
+
+### Croissance de l'intégrale {.proposition .one #croissance}
+Si les fonctions $f: [-\infty,+\infty]^n \to \mathbb{R}$ et 
+$g: [-\infty,+\infty]^n \to \mathbb{R}$ sont intégrables et que
+$f \leq g$, alors
+$$
+\int f(x) \, dx \leq \int g(x)\,dx.
+$$
+
+### Inégalité triangulaire {.corollary #inégalité-triangulaire}
+Si $f: [-\infty, +\infty]^n \to \R$ est intégrable alors $|f|$ est intégrable et
+$$
+\left|\int f(x) \, dx \right| \leq \int |f(x)|\, dx.
+$$
+
+
+
+### Fonctions égales presque partout {.proposition #fepp .two}
+Une fonction $f:[-\infty,+\infty]^n \to \R$ égale presque partout à une 
+fonction $g:[-\infty, +\infty]^n \to \R$ intégrable est elle-même intégrable
+et 
+$$
+\int f(x) \, dx = \int g(x) \, dx.
+$$
+
+
+### Fonctions égales presque partout (réciproque) {.proposition #fepp-réciproque .two}
+Si les fonctions $f:[a,b] \to \R$ et $g:[a, b] \to \R$ sont intégrables
+et si 
+$$
+f \leq g \, \mbox{ presque partout} 
+\; \mbox{ et } \;
+\int_a^b f(t) \, dt \geq \int_a^b g(t) \, dt,
+$$
+alors $f = g$ presque partout.
+
+
+
+
+
+Un théorème de changement de variable existe et généralise le théorème
+déjà énoncé dans $\R$ ; il est suffisamment complexe pour mériter 
+[sapropre section dans ce chapitre](#changement-de-variables).
+
 L'équivalent dans $\R^n$ du théorème fondamental du calcul est le théorème
-de la divergence[^pe] auquel une section entière de ce chapitre est consacrée.
+de la divergence[^pe] auquel [l'annexe](#annexe) est consacrée.
 
 [^pe]: même si cela ne saute pas forcément aux yeux !
 
@@ -211,10 +333,10 @@ est intégrable, alors la fonction $f$ est (absolument) intégrable.
 ### Démonstration {.proof}
 Se reporter à @Swa01.
 
-Changement de variables
+Changement de variables {#changement-de-variables}
 ================================================================================
 
-### Changement de variables {.theorem}
+### Changement de variables {.theorem #theorem-changement-de-variables}
 Soient $D_1$ et $D_2$ des ouverts de $\mathbb{R}^n$ et 
 $h: D_1 \to D_2$ un $C^1$-difféomorphisme de $D_1$ sur $D_2$ :
 une fonction continûment différentiable et bijective
@@ -286,7 +408,7 @@ réordonnancement (exemple mono-dim ou bi-dim) ?
 
 -->
 
-Annexe -- Théorème de la divergence
+Annexe -- Théorème de la divergence {#annexe}
 ================================================================================
 
 <!--
