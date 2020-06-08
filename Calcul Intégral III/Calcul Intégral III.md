@@ -33,18 +33,13 @@ d'exercices.
 
 
 
-#### TODO
+#### Intégrale dans $\R^n$
 
-  - TODO
+#### Intégrale multiple
 
-    - \zero TODO
-     
-    - \one TODO
+#### Changement de variables
 
-    - \two TODO
-
-
-Intégrales dans $\R^n$
+Intégrale dans $\R^n$
 ================================================================================
 
 ### {.remark .ante}
@@ -168,7 +163,7 @@ sous-ensembles de $\R^n$ (ou $[-\infty, +\infty]^n$) sont toujours définies
 à partir de l'extension de la fonction par zéro. Les fonctions absolument 
 et conditionnellement intégrables sont définies de manière identique.
 
-Intégrales multiples
+Intégrale multiple
 ================================================================================
 
 ### Théorème de Fubini {.theorem #Fubini}
