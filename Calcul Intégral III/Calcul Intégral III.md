@@ -944,7 +944,7 @@ soit $x \in \R^n \setminus V_i$ puisque $\R^n \setminus V_i$ est fermé.
 Par conséquent, pour tout $i$, $x \not \in V_i$, ce qui contredit l'hypothèse
 que les $V_i$ forment un recouvrement de $K$.
 
-### Démonstration de l'existence d'une partition de l'unité {.proof}
+### Démonstration de l'existence d'une partition de l'unité {.proof #proof-pu}
 
 Nous allons initialement établir l'existence
 d'une suite de fonctions $\rho_i:\R^n \to \R$ 
