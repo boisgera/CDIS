@@ -762,7 +762,7 @@ $$
 
 ### Linéarité {.theorem .one #linéarité}
 Si $f: [a, b] \to \mathbb{R}$ et $g: [a, b] \to \mathbb{R}$ sont intégrables
-et $\lambda \in \mathbb{R}$, alors $f+g$ et $\lambda f$ sont intégrables. 
+et $\alpha \in \mathbb{R}$, alors $f+g$ et $\alpha f$ sont intégrables. 
 De plus,
 $$
 \int_{a}^b f(t) + g(t) \, dt 
@@ -772,9 +772,9 @@ $$
 \;
 \mbox{ et }
 \;
-\int_{a}^b \lambda f(t) \, dt
+\int_{a}^b \alpha f(t) \, dt
 =
-\lambda \int_{a}^b f(t) \, dt.
+\alpha \int_{a}^b f(t) \, dt.
 $$
 
 ### Démonstration {.proof}
@@ -805,8 +805,8 @@ $$
 $$
 
 
-De façon similaire, $S(\lambda f, \mathcal{D}) = \lambda S(f, \mathcal{D})$.
-Dans le cas où $\lambda = 0$, il est clair que $\lambda f$ est intégrable
+De façon similaire, $S(\alpha f, \mathcal{D}) = \alpha S(f, \mathcal{D})$.
+Dans le cas où $\alpha = 0$, il est clair que $\alpha f$ est intégrable
 au sens de Henstock-Kurzweil et d'intégrale nulle ;
 dans le cas contraire, on peut trouver une jauge $\gamma$ sur $[a, b]$ telle
 que pour toute subdivision pointée $\mathcal{D}$ subordonnée à $\gamma$, 
@@ -814,33 +814,33 @@ on ait :
 $$
 \left|S(f, \mathcal{D}) - \HKint_a^b f(t) \, dt \right| 
 \leq 
-\frac{\varepsilon}{|\lambda|}.
+\frac{\varepsilon}{|\alpha|}.
 $$
 On a alors
 $$
-\left|S(\lambda f, \mathcal{D}) - \lambda \HKint_a^b f(t) \, dt \right| 
+\left|S(\alpha f, \mathcal{D}) - \alpha \HKint_a^b f(t) \, dt \right| 
 =
-|\lambda| 
+|\alpha| 
 \left|S(f, \mathcal{D}) - \HKint_a^b f(t) \, dt \right| 
 \leq 
 \varepsilon.
 $$
-La fonction $\lambda f$ est donc intégrable au sens de Henstock-Kurzweil 
-sur $[a, b]$ et son intégrale est le produit de $\lambda$ et de l'intégrale 
+La fonction $\alpha f$ est donc intégrable au sens de Henstock-Kurzweil 
+sur $[a, b]$ et son intégrale est le produit de $\alpha$ et de l'intégrale 
 de Henstock-Kurzweil de $f$ sur $[a, b]$ :
 $$
-\HKint_a^b \lambda f(t) \, dt =
-\lambda \HKint_a^b f(t) \, dt.
+\HKint_a^b \alpha f(t) \, dt =
+\alpha \HKint_a^b f(t) \, dt.
 $$
 
 Pour établir les résultats correspondants avec l'intégrale de Lebesgue, il
 nous suffit de montrer que si $f$ et $g$ sont intégrables au sens de Lebesgue,
-alors c'est également le cas de $\lambda f$ et de $f+g$. 
+alors c'est également le cas de $\alpha f$ et de $f+g$. 
 
-Pour $\lambda f$, il
-suffit de constater que $|\lambda f| = |\lambda||f|$ ; $\lambda f$ et
-$|\lambda f|$ sont donc intégrables au sens de Henstock-Kurzweil et 
-$\lambda f$ est donc intégrable au sens de Lebesgue. 
+Pour $\alpha f$, il
+suffit de constater que $|\alpha f| = |\alpha||f|$ ; $\alpha f$ et
+$|\alpha f|$ sont donc intégrables au sens de Henstock-Kurzweil et 
+$\alpha f$ est donc intégrable au sens de Lebesgue. 
 
 Concernant $f+g$, en introduisant la partie positive $x_+ := \max(x, 0)$
 et négative $x_- := \min(-x, 0) = -(-x)_+$,

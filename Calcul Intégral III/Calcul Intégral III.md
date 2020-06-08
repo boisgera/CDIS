@@ -70,27 +70,22 @@ I = I_1 \times \dots \times I_n
 $$
 où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
 
-**TODO** passer à $\lambda$ ou $\mu$ en général pour désigner la mesure
-dans $\R^n$ ? Les standard de fait est $\lambda$.
-
 ### Volume d'un pavé
-On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$ de $[-\infty,+\infty]^n$
-la valeur
+On appelle *volume $n$-dimensionnel* (ou parfois simplement *volume*
+quand le contexte est clair) du pavé 
+$I = I_1 \times \dots \times I_n$ de $[-\infty,+\infty]^n$ la valeur
 $$
-v(I)  = \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
+\lambda(I)  = \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
 $$
 en adoptant la convention que $0 \times \infty = 0$.
 
 ### Longeur, aire, volume {.remark}
 On pourra continuer à appeler cette grandeur
-*longueur* plutôt que *volume* si l'on travaille dans $\R$ 
+*longueur* plutôt que *volume $n$-dimensionnel* si l'on travaille dans $\R$ 
 (ou $[-\infty,+\infty]$) ; 
 dans $\R^2$ (ou $[-\infty,+\infty]^2$) il est approprié 
-de la désigner sous le terme d'*aire*. 
-Si l'on souhaite distinguer le cas du
-volume "classique" dans $\R^3$ (ou $[-\infty,+\infty]^3$) et les autres dimensions, 
-on pourra utiliser le terme d'*hypervolume* comme terme générique
-et réserver le terme de *volume* au cas tri-dimensionnel.
+de la désigner sous le terme d'*aire* et dans $\R^3$ (ou $[-\infty, +\infty]^3$)
+sous le terme de *volume*.
 
 ### Subdivision pointée
 Une *subdivision pointée* du pavé fermé $I$ de 
@@ -183,7 +178,7 @@ sont intégrables simultanément et ont la même intégrale.
 ### Linéarité {.theorem .one #linéarité}
 Si les fonctions $f: [-\infty,+\infty]^n \to \mathbb{R}$ et 
 $g: [-\infty, +\infty]^n \to \mathbb{R}$ sont intégrables et 
-$\lambda \in \mathbb{R}$, alors les fonctions $f+g$ et $\lambda f$ sont intégrables. 
+$\alpha \in \mathbb{R}$, alors les fonctions $f+g$ et $\lambda f$ sont intégrables. 
 De plus,
 $$
 \int f(x) + g(x) \, dx 
@@ -193,9 +188,9 @@ $$
 \;
 \mbox{ et }
 \;
-\int  \lambda f(x) \, dx
+\int  \alpha f(x) \, dx
 =
-\lambda \int f(x) \, dx.
+\alpha \int f(x) \, dx.
 $$
 
 **TODO:** que faire avec ça ? Il y a une adaptation trivale où les ensembles
@@ -317,16 +312,34 @@ déduire l'intégrabilité de l'examen des intégrales itérées. Le théorème
 de Fubini peut alors être complété utilement par le théorème de Tonelli :
 
 ### Théorème de Tonelli {.theorem #Tonelli}
-Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ une fonction
-mesurable. Alors, pour presque tout $y \in \R^n$, la fonction 
+Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \left[0, +\infty\right[$ 
+une fonction mesurable. Alors, pour presque tout $y \in \R^n$, la fonction 
 $x \in \R^m \mapsto f(x, y)$ est mesurable. Si de plus pour presque tout 
 $y \in \R^n$ cette fonction est intégrable, 
 alors la fonction (définie presque partout)
 $$
-y \in \R^n \mapsto \int_{\mathbb{R}^m} f(x, y) \, dx
+g : y \in \R^n \mapsto \int_{\mathbb{R}^m} f(x, y) \, dx
 $$
 est mesurable. Si elle est intégrable, alors la fonction 
-$f$ est intégrable et 
+$f$ est intégrable. 
+Réciproquement, si $x \in \R^m \mapsto f(x, y)$ n'est pas intégrable
+presque partout ou que la fonction $g$ n'est pas intégrable, 
+alors $f$ n'est pas intégrable.
+
+#### Tonelli + Fubini, mode d'emploi {.remark}
+Les deux théorèmes sont souvent utilisés en combinaison
+pour montrer l'intégrabilité d'une fonction $f : \R^m \times \R^n \to \R$,
+de la façon suivante.
+On montre tout d'abord que la fonction $f$ est mesurable. 
+Comme sa valeur absolue $|f|$ est mesurable et positive, 
+le théorème de Tonelli est susceptible de lui être appliqué ; on vérifie 
+que $|f|$ vérifie bien les hypothèses nécessaires et on en conclut que 
+$|f|$ est intégrable. La fonction $f$ étant mesurable, [par le critère 
+d'intégrabilité dominée](#CID), elle est donc intégrable. Le théorème de
+Fubini est donc applicable et on peut évaluer l'intégrale de $f$ par des
+intégrales itérées.
+
+<!-- et 
 $$
 \int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dx\right] dy = \int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy.
 $$
@@ -337,6 +350,7 @@ uniquement de démontrer que $f$ est intégrable.
 En effet, une fois arrivé à cette conclusion, 
 l'égalité entre l'intégrale itérée et l'intégrale dans $\mathbb{R}^{m+n}$ 
 résulte alors directement [du théorème de Fubini](#Fubini)
+-->
 
 ### Démonstration {.proof}
 Se reporter à @Swa01.
