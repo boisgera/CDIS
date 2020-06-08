@@ -7,6 +7,43 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+
+Objectifs d'apprentissage
+================================================================================
+
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, les objectifs "Expert", les démonstrations du document[^hp] 
+et les contenus en annexe ne sont pas exigibles ("hors-programme").
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+
+
+#### TODO
+
+  - TODO
+
+    - \zero TODO
+     
+    - \one TODO
+
+    - \two TODO
+
+
 Intégrales Multiples
 ================================================================================
 
