@@ -37,6 +37,7 @@ def transform(doc):
     # square one, titlesec is off-limits.
 
     transform_image_format(doc)
+    solve_image_extension(doc)
     solve_toc_nesting(doc)
     anonymify(doc)
 
@@ -549,7 +550,10 @@ def add_latex_header(doc, latex):
 def solve_toc_nesting(doc):
     add_latex_header(doc, r"\usepackage{bookmark}")
 
-
+def solve_image_extension(doc):
+    # See https://texfaq.org/FAQ-unkgrfextn
+    add_latex_header(doc, r"\usepackage{grffile}")
+    
 # Deprecated
 def _solve_toc_nesting(doc):  # fuck you LaTeX!
     "Add the 'bookmark' package to solve TOC issues"
