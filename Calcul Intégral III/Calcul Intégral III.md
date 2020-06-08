@@ -256,10 +256,6 @@ f \leq g \, \mbox{ presque partout}
 $$
 alors $f = g$ presque partout.
 
-
-
-
-
 Un théorème de changement de variable existe et généralise le théorème
 déjà énoncé dans $\R$ ; il est suffisamment complexe pour mériter 
 [sapropre section dans ce chapitre](#changement-de-variables).
@@ -291,14 +287,14 @@ Intégrale multiple
 ### Théorème de Fubini {.theorem #Fubini}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ 
 une fonction intégrable.
-Alors la fonction partielle $x \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
+Alors la fonction partielle $x \in \mathbb{R}^m \mapsto f(x, y)$ est intégrable 
 pour presque tout $y \in \mathbb{R}^n$, la fonction définie presque partout
 $$
 y \in \R^n \mapsto \int_{\R^m} f(x, y) \, dx
 $$
 est intégrable et
 $$
-\int_{\mathbb{R}^{m+n}} f(z) \, dz = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy.
+\int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy = \int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dx\right] dy.
 $$
 De même, la fonction partielle $y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
 pour presque tout $x \in \mathbb{R}^m$, la fonction définie presque partout
@@ -307,8 +303,8 @@ x \in \R^m \mapsto \int_{\R^n} f(x, y) \, dy
 $$
 est intégrable et
 $$
-\int_{\mathbb{R}^{m+n}} f(z) \, dz =
-\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dy\right] dx.
+\int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy =
+\int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dy\right] dx.
 $$
 
 ### Démonstration {.proof}
@@ -322,13 +318,25 @@ de Fubini peut alors être complété utilement par le théorème de Tonelli :
 
 ### Théorème de Tonelli {.theorem #Tonelli}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ une fonction
-mesurable. Si pour presque tout $y \in \R^m$ la fonction
-$x \in \R^n \mapsto |f(x, y)|$ est intégrable et que la fonction
-définie presque partout
+mesurable. Alors, pour presque tout $y \in \R^n$, la fonction 
+$x \in \R^m \mapsto f(x, y)$ est mesurable. Si de plus pour presque tout 
+$y \in \R^n$ cette fonction est intégrable, 
+alors la fonction (définie presque partout)
 $$
-y \in \R^m \mapsto \int_{\mathbb{R}^n} |f(x, y)| \, dx
+y \in \R^n \mapsto \int_{\mathbb{R}^m} f(x, y) \, dx
 $$
-est intégrable, alors la fonction $f$ est (absolument) intégrable.
+est mesurable. Si elle est intégrable, alors la fonction 
+$f$ est intégrable et 
+$$
+\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dx\right] dy = \int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy.
+$$
+
+### {.remark .post} 
+On pourra remarquer que la contribution réelle du théorème de Tonelli est 
+uniquement de démontrer que $f$ est intégrable. 
+En effet, une fois arrivé à cette conclusion, 
+l'égalité entre l'intégrale itérée et l'intégrale dans $\mathbb{R}^{m+n}$ 
+résulte alors directement [du théorème de Fubini](#Fubini)
 
 ### Démonstration {.proof}
 Se reporter à @Swa01.
@@ -342,9 +350,9 @@ $h: D_1 \to D_2$ un $C^1$-difféomorphisme de $D_1$ sur $D_2$ :
 une fonction continûment différentiable et bijective
 dont l'inverse $h^{-1}: D_2 \to D_1$ également continûment différentiable. 
 La matrice de Jacobi associée à la différentielle de $h$ étant notée $J_h$,
-la fonction $f: D_2 \to \mathbb{R}$ est absolument intégrable
+la fonction $f: D_2 \to \mathbb{R}$ est intégrable
 si et seulement si la fonction $(f \circ h) |\det J_h| : D_1 \to \mathbb{R}$ 
-est absolument intégrable et dans ce cas,
+est intégrable et dans ce cas,
 $$
 \int_{D_2} f(y) \, dy = \int_{D_1} f(h(x)) |\det J_h(x)| \, dx.
 $$
@@ -353,23 +361,30 @@ $$
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
 
-### {.post .remark}
-L'absolue intégrabilité -- et pas simplement l'intégrabilité -- de la fonction
-est une hypothèse cruciale de ce théorème de changement de variables. 
-On peut en effet exhiber une fonction $f:\R^2 \to \R$ qui soit intégrable,
+### Intégrale de Henstock-Kurzweil {.post .remark}
+Il s'avère que le théorème de Fubini est encore valable si l'on raisonne 
+avec l'intégrale de Henstock-Kurzweil plutôt qu'avec l'intégrale de Lebesgue. 
+Mais cela n'est pas le cas du théorème de changement de variable : 
+on peut en effet exhiber une fonction $f:\R^2 \to \R$ qui soit 
+intégrable au sens de Henstock-Kurzweil,
 mais telle que quand $h$ désigne la rotation centrée à l'origine d'angle
 $\pi/4$, la fonction $f \circ h$ ne soit pas intégrable[^ref-ai].
 Comme dans ce cas on a $|\det J_h| = 1$ sur tout $\R^2$, cela contredit
 la conclusion du théorème de changement de variables.
+Compte tenu de l'importance pratique qu'a le théorème de changement de 
+variable, c'est une motivation importante pour privilégier l'intégrale de 
+Lebesgue à cette de Henstock-Kurzweil.
 
 [^ref-ai]: cf. [@Swa01, ex. 29, p. 98].
 
-### {.post .remark}
-La situation est assez similaire à celles des séries réelles. 
-On sait en effet que si la série $\sum_k a_k$ est absolue
-convergente, un réordonnancement des termes de la série n'a pas d'effet,
-ni sur la convergence de la série ni sur la valeur de la somme ;
-pour toute bijection $\sigma: \N \to \N$,
+La situation de l'intégrale de Henstock-Kurzweil vis-à-vis de l'intégrale 
+Lebesgue à un parallèle dans le contexte des séries réelles, selon que
+l'on considère la convergence classique ou absolue
+On sait en effet que si la série $\sum_k a_k$ est absolument convergente 
+($\sum_k a_k$ est convergente ainsi que $\sum_k |a_k|$), 
+un réordonnancement des termes de la série -- un "changement de variable"
+-- n'a pas d'effet, ni sur la convergence de la série ni sur la valeur de 
+la somme ; pour toute bijection $\sigma: \N \to \N$,
 $$
 \sum_{k=0}^{+\infty} a_{\sigma(k)} = \sum_{k=0}^{+\infty} a_{k}.
 $$
