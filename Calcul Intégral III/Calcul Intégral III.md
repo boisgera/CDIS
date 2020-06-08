@@ -375,6 +375,7 @@ $$
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
 
+<!--
 ### Intégrale de Henstock-Kurzweil {.post .remark}
 Il s'avère que le théorème de Fubini est encore valable si l'on raisonne 
 avec l'intégrale de Henstock-Kurzweil plutôt qu'avec l'intégrale de Lebesgue. 
@@ -413,6 +414,7 @@ on peut aussi construire un réordonnancement $\sigma$ tel que
 $$
 \sum_{k=0}^{+\infty} a_{\sigma(k)} = \ell.
 $$
+-->
 
 <!--
 ### TODO
@@ -752,7 +754,7 @@ On admettra que cette définition est indépendante du choix de la
 décomposition de $\partial K$.
 
 
-### Définition {.definition}
+### Divergence {.definition}
 Soit $V$ un ouvert de $\R^n$. 
 On appelle *divergence* d'une fonction différentiable 
 $$
