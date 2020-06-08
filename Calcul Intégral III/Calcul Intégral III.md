@@ -44,11 +44,8 @@ d'exercices.
     - \two TODO
 
 
-Intégrales Multiples
+Intégrales dans $\R^n$
 ================================================================================
-
-Définitions
---------------------------------------------------------------------------------
 
 ### {.remark .ante}
 Les pavés joueront dans $\R^n$ le rôle dévolu aux intervalles dans $\R$ :
@@ -134,8 +131,7 @@ mais on peut étendre $f$ pour des arguments à l'infini
 sans que l'intégrabilité de cette extension ou la valeur de son intégrale
 ne soient affectés par le choix de ces valeurs.
 
-Propriétés élémentaires
---------------------------------------------------------------------------------
+### Propriétés élémentaires
 
 Nous évoquons rapidement dans cette section la façon dont les propriétés 
 de l'intégrale dans $\R$ se transposent à $\R^n$.
@@ -172,8 +168,8 @@ sous-ensembles de $\R^n$ (ou $[-\infty, +\infty]^n$) sont toujours définies
 à partir de l'extension de la fonction par zéro. Les fonctions absolument 
 et conditionnellement intégrables sont définies de manière identique.
 
-Théorème de Fubini
---------------------------------------------------------------------------------
+Intégrales multiples
+================================================================================
 
 ### Théorème de Fubini {.theorem #Fubini}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ 
@@ -221,7 +217,7 @@ est intégrable, alors la fonction $f$ est (absolument) intégrable.
 Se reporter à @Swa01.
 
 Changement de variables
---------------------------------------------------------------------------------
+================================================================================
 
 ### Changement de variables {.theorem}
 Soient $D_1$ et $D_2$ des ouverts de $\mathbb{R}^n$ et 
@@ -295,7 +291,7 @@ réordonnancement (exemple mono-dim ou bi-dim) ?
 
 -->
 
-Théorème de la divergence
+Annexe -- Théorème de la divergence
 ================================================================================
 
 <!--
@@ -572,7 +568,7 @@ $$
 $$
 
 ### {.post}
-La démonstration est donnée [en annexe](#proof-pu).
+La démonstration est donnée [à la fin de cette annexe](#proof-pu).
 
 <!--
 ### TODO
@@ -926,12 +922,7 @@ qu'il s'agisse du bord Lipschitz ou des travaux (Mawhin, Pfeffer, etc.)
 pour demander moins que $C^1$ sur l'intégrande ?
 -->
 
-Annexes
-================================================================================
-
-Partition de l'unité {#proof-pu}
---------------------------------------------------------------------------------
-
+### {.ante}
 La preuve de l'existence d'une partition de l'unité repose sur le lemme suivant :
 
 ### Lemme de recouvrement de Lebesgue {.lemma #lrl}
