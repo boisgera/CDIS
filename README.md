@@ -14,7 +14,7 @@ Calcul Différentiel, Intégral et Stochastique
 
 :zap: **Version 2019/2020 (:construction: travail en cours :construction:) :**
 
-| Chapitre      | Séance | E-book (PDF) | Impression A4 (PDF)  | Notebook | 
+| Chapitre      | # | E-book (PDF) | Impression A4 (PDF)  | Notebook | 
 | ------------- | ------ | ------------ | --------------------- |  :----:  |
 | Topologie | 1 | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Topologie%20(a4%2C%20recto-verso).pdf) |   |
 | Calcul Différentiel | 1 | [Calcul Différentiel I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf) | [Calcul Différentiel I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I%20(a4%2C%20recto-verso).pdf) |  |
