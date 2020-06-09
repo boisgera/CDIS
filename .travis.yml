@@ -4,7 +4,7 @@ language: bash
 branches:
   only:
   - master
-  - 2020 
+  - 2020
 
 env:
   global:
@@ -37,18 +37,20 @@ install:
   - python utils/calendrier/fetch.py > Calendrier/calendrier.txt
   - echo "install started ..."
   - ./build
-  # disable
-  #- cd Extra/"Comité Pédagogique 23-05-2019" && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
+
+  # hack for Travis CI (encoding issue ?). Yes but pdf generation broken again
+  # I disable it for the moment
+  # - cd Extra/Comit* && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
   # now prepare deployment to gh-pages
   - rm -rf env
   - mv .gitignore .gitignore.bak 
-
+  
 deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  
   on:
-    branch: master  
+    branch: 2020
 
 
 
