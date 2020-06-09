@@ -3,7 +3,7 @@ language: bash
 
 branches:
   only:
-  - master
+  - master 
   - 2020
 
 env:
