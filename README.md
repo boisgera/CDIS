@@ -30,7 +30,7 @@ Calcul Différentiel, Intégral et Stochastique
 | Equations Différentielles | 2 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20II.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20II%20(a4%2C%20recto-verso).pdf) |  [:notebook:](https://boisgera.github.io/CDIS/Equations%20Différentielles%20II/Equations%20Differentielles%20II.ipynb) |
 | Probabilités | 3 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20III.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20III%20(a4%2C%20recto-verso).pdf) |   |
 | Probabilités | 4 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV%20(a4%2C%20recto-verso).pdf) |   |
-| Probabilités | 5 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V%20(a4%2C%20recto-verso).pdf) |  [:notebook:](https://boisgera.github.io/CDIS/Probabilités%20V/Probabilité%20V.ipynb)  |
+| Probabilités | 5 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V%20(a4%2C%20recto-verso).pdf) |  [:notebook: IPYNB](https://boisgera.github.io/CDIS/Probabilités%20V/Probabilité%20V.ipynb)  |
 <!--| ... | ... | ... |-->
   
 
