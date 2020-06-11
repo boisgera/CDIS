@@ -76,7 +76,7 @@ Cadre de l'étude
 
 Les équations différentielles apparaissent couramment en physique pour décrire l'évolution des grandeurs décrivant le système.
 
-### Quelques exemples {.exemple}
+### Equations différentielles en physique {.exemple #ex_equaDiffPhys}
 
 - La tension $u_c$ aux bornes d'un condensateur dans un circuit RLC en série évolue selon 
 $$
@@ -116,6 +116,7 @@ Dans tous ces cas, on s'intéresse aux signaux du temps $t$ qui vérifient ces �
 
 
 ### Equation différentielle d'ordre $p$  {.definition}
+
 Soient $n\in \N^*$, $p\in\N^*$, $J$ ouvert de $\R$, $Y$ ouvert de $\R^{np}$ et $\psi:J\times Y \to \R^n$ une application continue. Une fonction $y:I\to \R^n$ sur un intervalle de temps $I\subseteq \R$ non réduit[^intI] à un point, est dite *solution[^solsurI]* de *l'équation différentielle d'ordre $p$* 
 $$
 y^{(p)} = \psi(t,y,\dot{y},\ldots, y^{(p-1)})
@@ -135,6 +136,7 @@ Notons que $f$ sera souvent définie globalement avec $J=\R$ et $Y = \R^{np}$. C
 Même si la physique nous donne souvent des équations différentielles d'ordre supérieur, il est toujours possible de se ramener à l'ordre 1. Cette réduction doit être systématique et sera cruciale dans la suite pour l'étude des propriétés des solutions.
 
 ### Réduction à l'ordre 1
+
 Soient $p\in\N^*$, $J$ ouvert de $\R$, $Y$ ouvert de $\R^{np}$ et $\psi:J\times Y  \to \R^n$ une application continue. 
 Alors $y$ est solution de l'équation différentielle d'ordre $p$ 
 $$
@@ -151,7 +153,8 @@ $$
 
 Nous déduisons que résoudre une équation différentielle d'ordre $p$ est en fait équivalent à résoudre une équation différentielle d'ordre 1, quitte à considérer comme inconnue la suite des dérivées $x=(y,\dot{y},\ldots,y^{(p-1)})\in C^1(I,\R^{np})$, au lieu de $y\in C^p(I,\R^n)$.  Dans la suite de ce cours, nous nous restreignons donc à $p=1$. $x$ est appelé l'*état* du système.
 
-### Exemples
+### Réduction à l'ordre 1 {.example #ex_reducOrdre1} 
+
 Reprenons les exemples plus haut :
 
 - pour un circuit RLC, on prend $x=(u_c,\dot{u}_c)\in \R^2$, et 
@@ -221,6 +224,7 @@ On notera alors $x\in S_f(t_0,x_0)$.
 Avant d'étudier les solutions d'un problème de Cauchy, il est crucial de remarquer la caractérisation qui suit.
 
 ### Représentation intégrale des solutions {.theorem #theo_eq_integrale}
+
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$, $I\subset J$ un intervalle de $\R$ non réduit à un point, $t_0\in I$, $x_0\in X$, et $x\in C(I,\R^n)$ telle que $x(t)\in X$ pour tout $t\in I$. Alors, $x\in S_f(t_0,x_0)$ si et seulement si $x$ est solution de l'équation intégrale
 $$
 x(t) = x_0 + \int_{t_0}^t f(s,x(s))ds \qquad \forall t\in I \ .
@@ -236,10 +240,12 @@ $$
 Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $I\times X$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.
 
 ### Classe plus générale de solutions {.remark}
+
 La définition sous forme intégrale des solutions montre que la recherche de solutions $C^1$ et l'hypothèse de continuité de $f$ pourraient être relachées : il suffirait de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Mais il est souhaitable tout de même d'assurer un minimum de propriétés telles que l'existence de solutions, comme nous allons le voir dans la section suivante.
 
 
 ### Portrait de phase   
+
 En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. Voir [Figure](#fig_pendule) ci-dessous dans le cas d'un pendule.
 
 ![Portraits de phase d'un pendule non amorti à gauche et amorti à droite. $x_1$ représente l'angle du pendule en abscisse et $x_2$ sa vitesse de rotation en ordonnée. Le pendule sera décrit et étudié plus en détail dans la suite du cours.](images/pendule.py){#fig_pendule}
@@ -283,7 +289,8 @@ Unicité des solutions
 
 Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue. Par contre, elles ne sont pas toujours uniques. 
 
-### Exemple de non-unicité des solutions
+### Non-unicité des solutions {.example #ex_nonUnique}
+
 Considérons le problème de Cauchy
 $$
 \dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0) \ .
@@ -361,7 +368,7 @@ $$
 $$
 c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendante : d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement que $x\mapsto f(t,x)$ soit lipschitzienne au voisinage de $(t_0,x_0)$, au lieu de différentiable. Par exemple, $x\mapsto \|x\|$ est lipschitzienne (mais pas $C^1$) et $\dot{x}=\|x\|$ admet donc une unique solution maximale quelque soit la condition initiale.
 
-### Approximations successives {.remarque #rem_approx_succ}
+### Approximations successives {.remark #rem_approx_succ}
 Mise à part quelques formes particulières de $f$, il est très rare de savoir résoudre explicitement une équation différentielle. Cependant, la preuve (dans sa forme moderne donnée plus haut) caractérise la solution comme le point fixe de l'opérateur $\Gamma$. Or, on sait par la preuve du théorème du point fixe de Banach que ce point fixe est la limite uniforme de la suite des itérées de $\Gamma$. En pratique, on peut donc s'approcher arbitrairement proche  de la solution   sur l'intervalle $\left[t_0-\tau_m,t_0+\tau_m \right]$ (au sens de la norme uniforme), en calculant la suite $x_{p+1} = \Gamma(x_p)$ définie par
 $$
 x_{p+1}(t) =  x_0+\int_{t_0}^t f(s,x_p(s))ds  ,
@@ -370,7 +377,7 @@ en notant ici de manière abusive $x_0$ la fonction constante égale à $x_0$.
 Cette méthode de recherche de point fixe porte le nom d'*approximations successives* et est introduite pour la première fois par le mathématicien français Emile Picard à la fin du XIXème siècle grâce aux progrès de l'analyse fonctionnelle.  C'est finalement le mathématicien finlandais Ernst Lindelöf qui donne à la preuve sa forme moderne en utilisant en 1894 la théorie des espaces de Banach. Pour les anglophones, ce théorème s'appelle d'ailleurs le *théorème de Picard-Lindelöf*. 
 
 
-### Exemples {.example #ex_lips}
+### Unicité des solutions {.example #ex_lips}
 
 - Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A\in C(\R,\R^{n\times n})$ et $b\in C(\R,\R^n)$ telles que
 $$
@@ -386,7 +393,8 @@ Solutions globales
 
 Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ par rapport à $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. Mais cet intervalle n'est pas nécessairement $\R$ entier même si $f$ est définie globalement sur $\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la solution n'est pas *globale*. 
 
-### Exemple d'explosion en temps fini
+### Explosion en temps fini {.example #ex_explTempsFini}
+
 Par exemple, considérons le problème de Cauchy
 $$
 \dot{x} = x^2 \quad , \qquad (t_0,x_0)\in \R^2 \ .
@@ -425,7 +433,8 @@ alors toute[^uniCritExGlob] solution maximale au problème de Cauchy associé es
 Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall). 
 
 
-### Exemples
+### Solutions globales {.example #ex_solGlob}
+
 - Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A\in C(I,\R^{n\times n})$ et $b\in C(I,\R^n)$ telles que
 $$
 f(t,x) = A(t) x + b(t) \ .
@@ -493,7 +502,8 @@ On dit alors que la solution du problème de Cauchy est continue par rapport à 
 ### Démonstration {.proof} 
 Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
 
-### Exemples
+### Continuité des solutions par rapport aux perturbations {.example #ex_contCI}
+
 - Si $\lambda<0$, l'erreur commise sur la condition initiale disparait au cours du temps dans les solutions : on dit qu'elles ``oublient'' leur condition initiales et que le système est *contractant*. 
 
 - On peut aussi déduire de ce résultat la continuité des solutions par rapport à des paramètres $p$ intervenant dans la fonction $f$. En effet, il suffit de considérer le système étendu
@@ -538,7 +548,7 @@ Dans ce cas, $\frac{1}{\lambda}$ représente l'ordre de grandeur du temps maxima
 
 Il est important d'insister sur le caractère *déterministe* de ce chaos : chaque cause entraîne un effet bien déterminé mais deux causes très proches peuvent avoir des effets très différents. 
 
-### Exemples 
+### Systèmes chaotiques {.example #ex_chaos} 
 
 - Henri Poincaré met en évidence le premier un comportement chaotique des solutions du problème à 3 corps. Ses livres sont disponibles en ligne [@poincare].
 
@@ -564,14 +574,16 @@ Dans la section précédente nous avons répondu à la première question qui é
 Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc une fonction continue $f:\R^n\to \R^n$, et on prend par défaut $t_0=0$. 
 <!--Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.-->
 
-### Point d'équilibre
+### Point d'équilibre {.definition #def_ptEq}
+
 On appelle *point d'équilibre* un point $a\in \R^n$ tel que
 $$
 f(a) = 0  \ .
 $$
-En d'autres termes, la fonction constante $x\equiv a$ est alors solution de $\dot{x}=f(x)$.
+En d'autres termes, la fonction constante égale à $a$ est alors solution de $\dot{x}=f(x)$.
 
-### Exemple d'un pendule {.exemple #ex_pendule}
+### Pendule {.example #ex_pendule}
+
 L'évolution d'un pendule de longueur $\ell$ et de masse $m$ dans le champ de l'apesanteur $g$ peut être décrit par une dynamique du type
 $$
 \ddot{\theta} = - \frac{\rho}{m} \dot{\theta} -\frac{g}{\ell} \sin\theta 
@@ -586,7 +598,7 @@ $$
 $$
 Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent soit à la position *basse* du pendule $\theta=0$ ou la position *haute* $\theta=\pi$, toutes deux à vitesse nulle $\dot{\theta}=0$. Si le pendule est initialisé exactement à sa position haute ou basse à vitesse nulle alors il y reste indéfiniment.
 
-### Attractivité
+### Attractivité {.definition #def_attract}
 
 Un point d'équilibre $a$ est dit *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ sont globales et convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
 <!--
@@ -601,7 +613,8 @@ De plus, $a$ est dit *globalement attractif* si *toutes les solutions sont globa
 
 Cette notion intuitive ne dit rien sur le comportement des solutions pendant le transitoire, c'est-à-dire avant de converger vers $a$. Des solutions initialisées proche de $a$ pourraient s'en éloigner arbitrairement loin avant de converger, ou mettre un temps arbitrairement long pour revenir dans un voisinage de $a$. Pour garantir une certaine uniformité et robustesse de cette attractivité par rapport à la condition initiale, on a recours à une notion plus forte qui est la *stabilité asymptotique*. 
 
-### Stabilité, stabilité asymptotique
+### Stabilité, stabilité asymptotique {.definition #def_stab}
+
 Un point d'équilibre $a$ est dit:
 
 - *stable* si *les solutions restent arbitrairement proche de $a$ quand elles sont initialisées suffisamment proche de $a$*, c'est-à-dire pour tout $\varepsilon >0$, il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
@@ -617,7 +630,8 @@ $$
 - *localement (resp. globalement) asymptotiquement stable* s'il est à la fois stable en plus d'être localement (resp. globalement) attractif. 
 
 
-### Exemples
+### Stabilité du pendule {.example #ex_stab}
+
 - Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse : l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc localement asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule amorti](#fig_pendule) donné plus haut.  
 
 - Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante : la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule) donné plus haut.  
@@ -627,11 +641,11 @@ $$
 ![Portrait de phase du système de Vinograd](images/vinograd.py){#fig_vinograd}
 -->
 
-### Robustesse vis-à-vis des perturbations (pour la culture)
+### Robustesse vis-à-vis des perturbations (pour la culture) {.remark #rem_robustStab}
 
 L'avantage de la propriété de *stabilité asymptotique* par rapport à la simple *attractivité* est qu'elle apporte de la robustesse par rapport aux perturbations. En effet, lorsque qu'un point d'équilibre est asymptotiquement stable, on peut montrer qu'en présence d'une perturbation de la dynamique, les solutions restent asymptotiquement arbitrairement proche de ce point d'équilibre si la perturbation est suffisamment petite. Il y a donc une sorte de continuité des solutions par rapport aux perturbations en temps infini (contrairement au résultat général de continuité par rapport aux conditions initiales qui n'est qu'en temps fini). Cette propriété n'est pas garantie lorsque le point d'équilibre n'est qu'attractif et c'est la raison pour laquelle en pratique, on essaye toujours d'assurer la stabilité asymptotique d'un système : on sait alors que même en présence de perturbations (inévitables en physique), le comportement du système sera proche du comportement voulu.
 
-### Cas d'un système linéaire
+### Stabilité d'un système linéaire stationnaire {.theorem #Hurwitz}
 Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est globalement asymptotiquement stable pour le système
 $$
 \dot{x} = Ax
@@ -653,6 +667,8 @@ e^{Jt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
 converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 
+### 
+
 Attention ce critère n'est valable que pour $A$ constant. Le fait que $A(t)$ soit Hurwitz pour tout $t$ n'implique pas que le système
 $$
 \dot{x} = A(t) x 
@@ -667,10 +683,11 @@ A(t) = \left( \begin{matrix}
 $$
 a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ aribitrairement proche de 0.
 
-### Lien entre stabilité et stabilité du linéarisé tangent
+### Lien entre stabilité et stabilité du linéarisé tangent {.theorem #theo_linTangent}
+
 Soit $f:\R^n \to \R^n$ de classe $C^1$. 
 
-Si la matrice jacobienne $J_f(a)$ est Hurwitz alors $a$ est localement asymptotiquement stable.
+Si les valeurs propres de la matrice jacobienne $J_f(a)$ sont toutes à partie réelle strictement négative (Hurwitz) alors $a$ est localement asymptotiquement stable.
 
 Si  $J_f(a)$ a au moins une valeur propre à partie réelle strictement positive, alors $a$ est instable.
 
@@ -683,10 +700,15 @@ Notons cependant que rien ne peut être conclu quant à la stabilité (ou stabil
 $$
 \dot{x} = - x^3
 $$
-dont le linéarisé est pourtant nul en zéro.
+dont le linéarisé est nul en zéro, alors que $(0,0)$ est instable pour
+\begin{align*}
+\dot{x}_1 &= x_2 \\
+\dot{x}_2 &= 0
+\end{align*}
+qui admet deux valeurs propres nulles.
 
-### Exemple
-Reprenons l'[exemple du pendule amorti](#ex_pendule_amorti). On a
+### Retour au pendule {.example #ex_pendule_jacob}
+Reprenons l'[exemple du pendule amorti](#ex_pendule). On a
 $$
 J_f(0,0) = \left( \begin{matrix} 
 0 & 1\\
@@ -700,18 +722,18 @@ J_f(\pi,0)= \left( \begin{matrix}
 \end{matrix}
 \right) 
 $$
-Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#answer-crit_stab_dim2), ceci implique que $J_f(0,0)$ est Hurwitz. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
+Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#answer-crit_stab_dim2), ceci implique en dimension 2 que $J_f(0,0)$ est Hurwitz. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
 Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
 
 Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
 
 Lorsque le linéarisé ne permet pas de conclure sur la stabilité asymptotique locale, ou que l'on veut un résultat global, on a recours à la caractérisation non linéaire suivante.
 
-### Caractérisation par Lyapunov
-Soit $f:\R^n \to \R^n$ de classe $C^1$, $a$ un point d'équilibre de $f$, et $W$ un voisinage de $a$.
+### Caractérisation par Lyapunov {.theorem #theo_lyap}
+Soit $f\in C^1(\R^n,\R^n)$ de classe $C^1$, $a$ un point d'équilibre de $f$, et $W$ un voisinage de $a$.
 Soit $V\in C^1(W,\Rgeq)$ telle que 
 $$
-V(x)= 0 \qquad \Longleftrightarrow \qquad x=a  \ . 
+V(x) > 0 \quad  \forall x\in W\setminus\{a\} \qquad , \qquad V(a)= 0 \ .
 $$
 
 -  Si $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in W$ alors $a$ est stable.
@@ -752,8 +774,8 @@ Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un
 Supposons enfin que $\lim_{\|x\|\to +\infty} V(x) = +\infty$ et $W=\R^n$. Alors $V(x(t))< V(x(0))$ pour tout $t\in I$ donc $x(t)\in V^{-1}(\left[ 0,V(x(0)) \right])$ pour tout $t$. Le fait que $\lim_{\|x\|\to +\infty} V(x) = +\infty$ est équivalent au fait que l'image réciproque de toute compact est compact (on dit que $V$ est propre). Donc $V^{-1}(\left[ 0,V(x(0)) \right])$ est compact  et par le théorème des bouts, nécessairement $x(t)$ est défini pour tout $t\geq 0$, et reste dans ce compact. Alors on peut reproduire le même raisonnement que plus haut et obtenir la convergence de $x$ vers $a$.
 
 
-### Exemple
-Reprenons le pendule mais cette fois-ci, non amorti, c'est-à-dire avec $\rho=0$. Nous n'avons pas pu prouver la stabilité du point d'équilibre $(0,0)$ par l'étude de la matrice Jacobienne car ses valeurs propres sont imaginaires pures. Essayons par analyse de Lyapunov. Inspirés par la physique, considérons $V:\left] -\pi, \pi\right[\times \R \to \Rgeq$ définie par
+### Pendule par Lyapunov {.example #ex_pendule_lyap}
+Reprenons le [pendule](#ex_pendule) mais cette fois-ci, non amorti, c'est-à-dire avec $\rho=0$. Nous n'avons pas pu prouver la stabilité du point d'équilibre $(0,0)$ par l'étude de la matrice Jacobienne car ses valeurs propres sont imaginaires pures. Essayons par analyse de Lyapunov. Inspirés par la physique, considérons $V:\left] -\pi, \pi\right[\times \R \to \Rgeq$ définie par
 $$
 V(x_1,x_2) = \frac{1}{2} m\ell^2 x_2^2 + mg\ell(1-\cos(x_1)) \ .
 $$
@@ -769,7 +791,7 @@ $$
 ce qui traduit la conservation de l'énergie en l'absence de frottement. On en déduit donc la stabilité du point d'équilibre $(0,0)$.
 
 
-On peut se demander s'il existe toujours une fonction de Lyapunov autour d'un point d'équilibre stable/asymptotiquement stable. C'est une question délicate étudiée en détail dans [@BacRos].
+On peut se demander s'il existe toujours une fonction de Lyapunov autour d'un point d'équilibre stable/asymptotiquement stable. La réponse est oui, mais c'est une question délicate étudiée en détail dans [@BacRos].
 
 Exercices 
 ==============================================================================
@@ -790,10 +812,10 @@ Etant donné un temps initial $t_0$ et une hauteur initiale $x_0\geq 0$, justifi
 Pour $(t_0,x_0)\in \R\times \R_{\geq0}$, résoudre le problème de Cauchy associé en se restreignant aux solutions $x(t)\geq 0$.
 
 ### Question 3 {.question #tor-3} 
-Comment s'interprète physiquement la multitude de solutions trouvées ?
+Comment pourrait s'interpréter physiquement la multitude de solutions trouvées ?
 
 ### Question 4 (plus dur) {.question #tor-4}
-Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_regCondInit) donné plus haut ? Pourquoi ?
+Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_reg_CI) donné plus haut ? Pourquoi ?
 
 ## Solutions globales (+) {.question #glob_sol}
 
@@ -858,7 +880,8 @@ Justifier que les solutions sont uniques et globales quelque soit la condition i
 ### Question 3 {.question #ressort-3}
 Etudier la stabilité des points d'équilibre et le comportement des solutions pour $\lambda>0$ et $\lambda = 0$. Les dessiner sur un portrait de phase. 
 
-*Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 +\frac{1}{2} m x_2^2$)*
+<!-- *Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 +\frac{1}{2} m x_2^2$)*
+-->
 
 ## Stabilité asymptotique globale ($+$) {.exercice #exo_stab_glob}
 
@@ -881,7 +904,7 @@ $$
 \end{array}
 $$
 
-## Cycle limite 
+## Cycle limite  {.exercice #exo_cycle-lim}
 Considérons le système
 $$
 \begin{array}{rcl}
@@ -894,9 +917,12 @@ $$
 Montrer que ce système admet un seul point d'équilibre. Etudier sa stabilité.
 
 ### Question 2 {.question #cycle-lim-2}
-Posons $V(x) = x_1^2+x_2^2$. Etudier le signe de $\frac{d}{dt}V(x(t))$ le long des trajectoires du système. 
+Posons $V(x) = \|x\|^2 = x_1^2+x_2^2$. Etudier le signe de $\frac{d}{dt}V(x(t))$ le long des trajectoires du système. En déduire que toutes les solutions maximales sont définies pour tout $t\geq t_0$.
 
 ### Question 3 {.question #cycle-lim-3}
+Montrer que si $\|x(0)\|\neq 1$ alors $\|x(t)\|\neq 1$ pour tout $t\geq 0$.
+
+### Question 4 {.question #cycle-lim-4}
 En déduire le comportement des solutions en fonction de la condition initiale.
 
 
@@ -1168,7 +1194,7 @@ J_f(0,0) =
 $$
 qui est Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est bien localement asymptotiquement stable. Cependant, il ne l'est pas globalement car $(1,1)$ est aussi un point d'équilibre : la fonction constante égale à $(1,1)$ est solution (et ne tend pas vers 0).
 
-### Question 2 {.answer #answer-glob-2}
+### Question 2 {.answer #answer-asymp_glob-2}
 
 La jacobienne de la dynamique est donnée par
 $$
@@ -1244,10 +1270,13 @@ qui a pour valeurs propres $1\pm i$. La partie réelle étant positive, le point
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
 &= -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
 \end{align*}
-Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon.
+Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées. Or, vu que $f$ est définie sur $\R^n$, on sait du Théorème des bouts que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq 0$ serait qu'elle explose en temps fini. C'est impossible ici.
 
-### Question 3 {.answer #answer-cycle-lim-3}
-Si $V(x(0))=x_1(0)^2+x_2(0)^2=1$, alors $V$ est constant donc les trajectoires initialisées sur le cercle de rayon 1 y restent. Sur le cercle, la dynamique suit celle d'un oscillateur
+### Question 3 {.answer #answer-cycle-lim-3} 
+Supposons que $x_0=x(0)$ vérifie $\|x(0)\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps rétrograde $-t_1$ vaut $x_0$. Mais il existe une autre solution qui reste sur le cercle en temps rétrograde, ce qui est impossible par le théorème de Cauchy Lipschitz (car $f$ est $C^1$)
+
+### Question 4 {.answer #answer-cycle-lim-3}
+Si $V(x(0))=\|x(0)\|^2=1$, alors $V$ est constant donc les trajectoires initialisées sur le cercle de rayon 1 y restent. Sur le cercle, la dynamique suit celle d'un oscillateur
 $$
 \begin{array}{rcl}
 \dot{x}_1 &=& x_2\\
@@ -1256,7 +1285,7 @@ $$
 $$
 donc les trajectoires "tournent" sur le cercle.
 
-Si $V(x(0))=x_1(0)^2+x_2(0)^2>1$ alors $V$ décroit strictement tant qu'il reste plus grand que 1. Donc les trajectoires initialisées à l'extérieur du cercle s'en approchent. En fait, on peut montrer qu'elles ne l'atteignent jamais. Car sinon on aurait une solution initialisée sur le cercle qui le quitterait en temps rétrograde. Or il existe une autre solution qui reste sur le cercle en temps rétrograde, ce qui est impossible par le théorème de Cauchy Lipschitz ($f$ est $C^1$) 
+Si $V(x(0))=x_1(0)^2+x_2(0)^2>1$ alors $V$ décroit strictement tant qu'il reste plus grand que 1. Donc les trajectoires initialisées à l'extérieur du cercle s'en approchent mais ne le rencontrent jamais d'après la question précédente.  
 
 Si $0< V(x(0))=x_1(0)^2+x_2(0)^2<1$ alors $V$ croit strictement tant qu'il reste plus petit que 1.
 
