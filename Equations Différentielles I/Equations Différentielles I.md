@@ -946,7 +946,9 @@ où $t\mapsto u(t)$ est une entrée à choisir.
 Comment se comporte le système si $u\equiv 0$ ?
 
 ### Question 2 {.question #cont-lin-2}
-Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour le rendre globalement asymptotiquement stable ?
+Si on mesure $t\mapsto x(t)$, comment choisir $u$ pour rendre 0 globalement asymptotiquement stable ?
+
+### 
 
 Plus généralement, considérons un système du type
 $$
@@ -1275,7 +1277,7 @@ Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et
 ### Question 3 {.answer #answer-cycle-lim-3} 
 Supposons que $x_0=x(0)$ vérifie $\|x(0)\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps rétrograde $-t_1$ vaut $x_0$. Mais il existe une autre solution qui reste sur le cercle en temps rétrograde, ce qui est impossible par le théorème de Cauchy Lipschitz (car $f$ est $C^1$)
 
-### Question 4 {.answer #answer-cycle-lim-3}
+### Question 4 {.answer #answer-cycle-lim-4}
 Si $V(x(0))=\|x(0)\|^2=1$, alors $V$ est constant donc les trajectoires initialisées sur le cercle de rayon 1 y restent. Sur le cercle, la dynamique suit celle d'un oscillateur
 $$
 \begin{array}{rcl}

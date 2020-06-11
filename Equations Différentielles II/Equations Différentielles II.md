@@ -249,7 +249,8 @@ $$
 \eta^{j+1} := \frac{x(t_{j+1}) - x(t_j) - \dt_j \Phi_{\dt_j}(t_j,x(t_j))}{\dt_j}.
 $$
 
-### Consistance
+### Consistance {.definition #def_consistance}
+
 On note $\dt = \max_{0\le j\le J-1} \dt_j$ le pas de temps maximal.
 On dit qu'une méthode numérique est *consistante* si 
 $$
@@ -261,7 +262,7 @@ $$
 \|\eta^{j+1}\| \le c_s \, (\dt_j)^{p} \ .
 $$
 
-### Condition suffisante
+### Condition suffisante de consistance {.theorem #theo_CS_consistance}
 
 Si $(\dt,t,x)\mapsto\Phi_{\dt}(t,x)$ est continue et telle que
 $$
@@ -294,7 +295,7 @@ $$
 $$
 et donc $\|\eta^{j+1}\|\leq 2 \varepsilon$ pour tout $j$. Le schéma est donc bien consistant. 
 
-### Exemples
+### Schémas consistants {.example #ex_consistance} 
 
 Reprenons les exemples donnés plus haut.
 
@@ -307,9 +308,11 @@ $\Phi_{\dt_j}(t,x) = \frac{f(t,x) + f(t,x+\dt f(t,x))}{2}$ donne bien $f(t,x)$ s
 
 De même, la consistance des méthodes implicites s'obtiennent en remarquant que $x^{j+1}=x^{j}$ lorsque $\dt=0$.
 
+### 
+
 Cette condition suffisante permet donc de prouver facilement le caractère consistant d'un schéma. Cependant, en pratique, on s'intéresse surtout à son ordre de consistance. Pour cela, l'erreur de consistance se calcule souvent par des développements de Taylor des solutions lorsque celles-ci sont suffisamment régulières, et la constante $c_s$ s'exprime alors comme une borne sur les dérivées des solutions. En fait, on remarque que lorsque $f$ est continue, la solution est $C^1$ (par définition de nos solutions). Mais puisque $\dot{x}(t)=f(t,x(t))$, $\dot{x}$ hérite de la régularité de $f$: si $f$ est $C^k$ alors les solutions $x$ sont $C^{k+1}$. Le calcul de l'ordre de consistance dans le cas dus schéma d'Euler explicite est donné ci-dessous. Pour les autres schémas, voir l'exercice [*Consistance de schémas*](#exo_consist)
 
-###  Ordre de consistance du schéma d'Euler explicite
+###  Ordre de consistance du schéma d'Euler explicite {.example #ex_consistance_Euler} 
  L'erreur de troncature s'écrit
 $$
 \eta^{j+1} = \frac{x(t_j + \dt_j) - \Big( x(t_j) + \dt_j \, f(t_j,x(t_j)) \Big)}{\dt_j}.
@@ -333,12 +336,12 @@ $$
 $$
 et on peut exprimer $c_s$ en fonction de bornes sur $x$ et sur les dérivées de $f$.
 
-## Stabilité
+## Stabilité 
 
 La notion de stabilité quantifie la robustesse de l'approximation numérique par rapport à l'accumulation des erreurs locales et perturbations. 
 <!-- On donne ici la définition pour des schémas à pas fixe. On fixe un pas de temps $\dt > 0$ constant pour simplifier, et un intervalle de temps $[0,T]$ avec $T = J \dt$. -->
 
-### Définition
+### Stabilité {.definition #def_stab}
 
 On dit qu'une méthode numérique est *stable* s'il existe une constante $S(T) > 0$ 
 (indépendente des $\dt_j$)
@@ -356,7 +359,7 @@ $$
 \max_{1 \leq j \leq J} \| x^j - z^j\| \leq S(T) \, \Big( \|x^0 -z^0\| + \sum_{j = 1}^J  \|\delta^j\| \Big).
 $$
 
-### Condition suffisante
+### Condition suffisante de stabilité {.theorem #theo_CS_stab}
 
 Si les $\Phi_{\dt_j}$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$, 
 $$
@@ -385,7 +388,8 @@ ce qui donne le résultat.
 
 La combinaison de consistance et de stabilité donne une propriété dite de *convergence* qui dit que l'erreur commise par le schéma par rapport à la vraie solution converge vers 0 lorsque le pas de temps converge vers 0. C'est une propriété cruciale pour un schéma numérique.
 
-### Définition
+### Convergence {.definition #def_conv} 
+
 Soit $\dt = \max_{0 \leq j \leq J-1} \dt_j$.
 Un schéma numérique est *convergent* si 
 $$
@@ -398,7 +402,7 @@ $$
 on dit que le schéma est *convergent à l'ordre $p$*. 
 
 
-### Théorème de Lax
+### Théorème de Lax {.theorem #theo_Lax}
 Une méthode stable et consistante (à l'ordre $p$) est convergente (à l'ordre $p$).
 
 ### Démonstration {.proof}
@@ -417,7 +421,7 @@ $$
 $$
 
 
-### Condition suffisante de convergence
+### Condition suffisante de convergence {.theorem #theo_CS_conv}
 
 L'inconvénient du théorème de Lax est qu'il faut prouver la stabilité pour obtenir la convergence. Or la seule condition suffisante dont nous disposions à cet effet, est le caractère globalement Lipschitzien de $x\mapsto \Phi_{\dt}(t,x)$. Mais il s'agit d'une condition très forte.  En fait, il est possible de prouver la convergence sous la condition plus faible que $x\mapsto \Phi_{\dt}(t,x)$ est "localement Lipschitzienne" : 
 
@@ -434,7 +438,7 @@ Alors il existe un pas de temps maximal $\dt_{\max}>0$ tel que le schéma est co
 
 L'hypothèse 2. est en particulier vérifiée si $x\mapsto \Phi_{\dt}(t,x)$ est $C^1$ d'après une version un peu plus générale du théorème des accroissement finis.
 
-### Convergence du schéma d'Euler explicite
+### Convergence du schéma d'Euler explicite {.example #ex_conv_Euler}
 
 On a déjà montré que le schéma d'Euler explicite est consistant d'ordre 1. Par ailleurs, si $f$ est $C^1$ par rapport à $x$, alors $x\mapsto \Phi_{\dt}(t,x) = f(t,x)$ est $C^1$. Donc d'après le théorème précédent, le schéma est convergent d'ordre 1.
 
