@@ -10,9 +10,9 @@ Calcul Différentiel, Intégral et Stochastique
 :books: Documents
 --------------------------------------------------------------------------------
 
-:snail: **Version 2018/2019 :** <https://github.com/boisgera/CDIS/releases/tag/v1.17>
+:snail: **Version 2019/2020 :** <https://github.com/boisgera/CDIS/releases/tag/v1.17>
 
-:zap: **Version 2019/2020 (:construction: travail en cours :construction:) :**
+:zap: **Version 2020/2021 (:construction: travail en cours :construction:) :**
 
 | Chapitre      | # | E-book | Papier | Notebook | 
 | ------------- | ------ | ------------ | --------------------- |  :----:  |
