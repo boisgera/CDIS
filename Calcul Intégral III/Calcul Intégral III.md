@@ -27,7 +27,7 @@ Ces objectifs sont organisés en paliers :
 Sauf mention particulière, les objectifs "Expert", les démonstrations du document[^hp] 
 et les contenus en annexe ne sont pas exigibles ("hors-programme").
 
-[^hp]: l'étude des démonstrations du cours peut toutefois 
+[^hp]: L'étude des démonstrations du cours peut toutefois 
 contribuer à votre apprentissage, au même titre que la résolution 
 d'exercices.
 
@@ -42,25 +42,39 @@ d'exercices.
 Intégrale de fonctions de plusieurs variables
 ================================================================================
 
-### Domaine des variables {.remark .ante}
+### Domaine des variables {.remark .ante #dv}
 Comme dans le cas réel, la théorie de l'intégrale de jauge dans $\R^n$
 est en fait techniquement construite dans $[-\infty, +\infty]^n$ : 
 elle est tout à fait applicable aux fonctions dont les variables
-prennent des valeurs dans $[-\infty, +\infty]$. 
+prennent des valeurs réelles ou infinies. 
 Mais il s'agit largement d'un 
 "détail d'implémentation" : en pratique, nous intégrerons uniquement
 des fonctions de variables réelles ; nous énoncerons donc les propriétés 
 de l'intégrale dans ce cadre. 
 S'il est nécessaire techniquement de considérer une telle fonction comme 
 fonction de variables réelles étendues (pouvant être infinies), 
-on supposera que la fonction est nulle dès qu'une de leur variables est infinie.
+on supposera que la fonction est nulle dès qu'une de leur variables est infinie[^tav].
 De façon similaire, il est possible de développer une construction
 de l'intégrale pour une fonction $f: A \to \R$ où $A \subset \R^n$ en
-prolongeant la fonction $f$ par zero sur $\R^n$ (ou $[-\infty, +\infty]^n$).
+prolongeant la fonction $f$ par zéro sur $\R^n$ (ou directement 
+$[-\infty, +\infty]^n$).
+
+[^tav]: Toute autre valeur que zéro conviendrait dans ce cas ausi bien, car
+la différence entre le domaine de définition du prolongement et le domaine 
+initial est $[-\infty, \infty]^n \setminus \R^n$, qui est un ensemble négligeable
+(cf. [exercice "domaine à l'infini"](#dai)). Dans le cas d'un domaine de
+définition initial $A$ quelconque, il faut par contre prolonger par zéro.
+
+### Prolongements {.exercise .question .one #p}
+A quelles fonctions de $[-\infty, +\infty]^2 \to \R$ sont associées 
+la fonction $(x, y) \in \R^2 \mapsto \exp(-x^2-y^2) \in \R$, la fonction
+$(x, y) \in \R^2 \mapsto \arctan (x^2 + y^2) \in \R$, la fonction 
+$(x, y) \in [-1,1]^2 \mapsto 1 \in \R$ ?
 
 ### {.remark .ante}
-Les pavés joueront pour l'intégration des fonctions de $n$ variables le rôle qui 
-était dévolu aux intervalles pour les fonctions d'une variable :
+Dans la suite, les pavés joueront pour l'intégration des fonctions de $n$ 
+variables le rôle qui était dévolu aux intervalles pour les fonctions 
+d'une variable :
 
 ### Pavés {.definition}
 On appelle *pavé* de $[-\infty,+\infty]^n$ tout ensemble $I$ de la forme
@@ -68,6 +82,12 @@ $$
 I = I_1 \times \dots \times I_n
 $$
 où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
+
+**TODO**
+
+### TODO -- Partition en pavés {.exercise .question .one}
+Montrer que l'ensemble $\R^2 \setminus [-1,1]^2$ peut être partitionné en
+4 pavés. 
 
 ### Volume d'un pavé
 On appelle *volume $n$-dimensionnel* (ou parfois simplement *volume*
@@ -268,7 +288,7 @@ alors $f = g$ presque partout.
 exo ici on a besoin de plus de choses à ce stade. Nommément que négligeable
 implique de mesure nulle.
 
-### Additivité {.exercise .question #exo-additivité}
+### Additivité {.exercise .question .two #exo-additivité}
 Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
 et sur $B \subset \R^n$ et que $A$ et $B$ sont sans chevauchement 
 ($A\cap B$ est négligeable) alors $f$ est intégrable sur $A\cup B$ et
@@ -1308,6 +1328,52 @@ Solutions
 
 Exercices essentiels
 --------------------------------------------------------------------------------
+
+### Prolongements {.answer #answer-p}
+Si l'on s'en tient sans réfléchir [à la section "Domaine des variables"](#dv),
+il faut associer à la première fonction la fonction
+$$
+(x,y) \in [-\infty,\infty]^2 \mapsto \left|
+\begin{array}{rl}
+\exp(-x^2-y^2) & \mbox{si $x\in\R$ et $y \in\R$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+à la seconde la fonction
+$$
+(x,y) \in [-\infty,\infty]^2 \mapsto \left|
+\begin{array}{rl}
+\arctan(x^2 + y^2) & \mbox{si $x\in\R$ et $y \in\R$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et à la troisième la fonction
+$$
+(x,y) \in [-\infty,\infty]^2 \mapsto \left|
+\begin{array}{rl}
+\arctan(x^2y^2) & \mbox{si $x\in[-1,1]$ et $y \in[-1, 1]$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Dans le second cas, la note de bas de page nous autorise aussi à considérer
+la fonction
+$$
+(x,y) \in [-\infty,\infty]^2 \mapsto \left|
+\begin{array}{rl}
+\arctan(x^2 + y^2) & \mbox{si $x\in\R$ et $y \in\R$,} \\
+\pi/2 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+qui peut sembler un choix plus naturel car le prolongement ainsi construit est 
+continu. 
+Par contre, dans le troisième cas, c'est bien par zéro que nous 
+avons l'obligation d'étendre la fonction initiale (techniquement, car l'ensemble 
+$[-\infty,\infty]^2\setminus [-1, 1]^2$ n'est pas négligeable.)
+
 
 ### Domaine à l'infini {.answer #answer-dai}
 L'ensemble $[-\infty,\infty]^n \setminus \R^n$ est recouvert par les
