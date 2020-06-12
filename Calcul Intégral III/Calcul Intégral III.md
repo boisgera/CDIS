@@ -97,6 +97,15 @@ $$
 \sum_i \lambda(I_i) \leq  \varepsilon.
 $$
 
+### {.remark}
+De façon similaire à la situation dans $\R$, on a :
+
+### Presque partout {.definition}
+Une propriété $P$ dépendant d'un vecteur $x \in \R^n$ est vraie *presque partout*
+si l'ensemble des points $x$ où elle est fausse est un ensemble
+négligeable. On pourra utiliser la notation "$P$ p.p." ou "$P(x)$ p.p." 
+pour signifier que la propriété $P$ est vraie presque partout.
+
 ### Domaine à l'infini {.exercise .question .one #dai}
 Montrer que l'ensemble $[-\infty,\infty]^n \setminus \R^n$ est d'aire
 négligeable.
@@ -116,7 +125,7 @@ $$
 \{(t_i, J_i) \; | \; \; 0 \leq i \leq k-1\}
 $$
 où les $J_i$ sont des pavés fermés de $I$ sans chevauchement
--- les intersections deux à deux de leurs intérieurs sont vides --
+-- les intersections deux à deux sont des ensembles négligeables --
 qui recouvrent $I$ et tels que 
 $t_i \in J_i$ pour tout $i \in \{0, \dots, k-1\}.$
 
@@ -153,17 +162,24 @@ il est appelé *intégrale de Henstock-Kurzweil de $f$ sur $\R^n$*.
 
 La fonction $f$ est dite *intégrable au sens de Lebesgue* si $f$ et $|f|$ sont
 intégrables au sens de Henstock-Kurzweil. L'intégrale de Lebesgue est alors
-définie comme l'intégrale de Henstcok-Kurzweil de $f$ et notée
+définie comme l'intégrale de Henstock-Kurzweil de $f$ et notée
 $$
 \int f \; \mbox{ ou } \;
-\int_{\R^n} f(x) \, dx \; \mbox{ ou } \; \int_{\R^n} f(x_1,\dots, x_n) \, dx_1\dots dx_n.
+\int f(x) \, dx \; \mbox{ ou } \; \int f(x_1,\dots, x_n) \, dx_1\dots dx_n.
+$$
+Lorsque la fonction $f$ est définie sur $A \subset \R^n$ 
+on dira que $f$ est intégrable sur $A$ si son prolongement $\bar{f}$
+par zéro à $\R^n$ est intégrable sur $\R^n$ ; on utilisera alors 
+la notation
+$$
+\int_A f(x) \, dx := \int \bar{f}(x) \, dx.
 $$
 
 ### {.post}
 Comme dans le cas réel, la définition supposerait que $f$ soit a priori
 définie sur $[-\infty,+\infty]^n$ plutôt que sur $\R^n$ ; 
 mais on peut étendre $f$ pour des arguments à l'infini 
-(dont au moins l'une des composantes est infinie) 
+(dont au moins l'un des arguments est infini) 
 sans que l'intégrabilité de cette extension ou la valeur de son intégrale
 ne soient affectés par le choix de ces valeurs.
 
@@ -172,21 +188,9 @@ ne soient affectés par le choix de ces valeurs.
 Nous évoquons rapidement dans cette section la façon dont les propriétés 
 de l'intégrale dans $\R$ se transposent à $\R^n$.
 
-
-**TODO : transformer la majorité de ces résultats en "macro-theoremes".**
-
-
-
-L'intégrale dans $\R^n$ est toujours linéaire et positive ;
-l'intégrabilité peut être testée par un critère de Cauchy analogue au cas réel.
-La notion d'ensemble négligeable est similaire au cas réel, à ceci près
-qu'on utilise des pavés au lieu d'intervalles et le volume au lieu de la
-longueur ; comme dans le cas réel, des fonctions égales presque partout
-sont intégrables simultanément et ont la même intégrale.
-
 ### Linéarité {.theorem .one #linéarité}
-Si les fonctions $f: [-\infty,+\infty]^n \to \mathbb{R}$ et 
-$g: [-\infty, +\infty]^n \to \mathbb{R}$ sont intégrables et 
+Si les fonctions $f: \R^n \to \mathbb{R}$ et 
+$g: \R^n \to \mathbb{R}$ sont intégrables et 
 $\alpha \in \mathbb{R}$, alors les fonctions $f+g$ et $\lambda f$ sont intégrables. 
 De plus,
 $$
@@ -201,6 +205,8 @@ $$
 =
 \alpha \int f(x) \, dx.
 $$
+
+<!--
 
 **TODO:** que faire avec ça ? Il y a une adaptation trivale où les ensembles
 $A$ et $B$ sont disjoints, une autre dans le cas ou l'intersection est 
@@ -224,46 +230,55 @@ Si $f$ est intégrable sur l'intervalle $[a, b]$,
 elle est intégrable sur tout intervalle $[c, d]$ 
 inclus dans $[a, b]$.
 
+-->
 
 ### Croissance de l'intégrale {.proposition .one #croissance}
-Si les fonctions $f: [-\infty,+\infty]^n \to \mathbb{R}$ et 
-$g: [-\infty,+\infty]^n \to \mathbb{R}$ sont intégrables et que
+Si les fonctions $f: \R^n \to \mathbb{R}$ et 
+$g: \R^n \to \mathbb{R}$ sont intégrables et que
 $f \leq g$, alors
 $$
 \int f(x) \, dx \leq \int g(x)\,dx.
 $$
 
 ### Inégalité triangulaire {.corollary #inégalité-triangulaire}
-Si $f: [-\infty, +\infty]^n \to \R$ est intégrable alors $|f|$ est intégrable et
+Si $f: \R^n \to \R$ est intégrable alors $|f|$ est intégrable et
 $$
 \left|\int f(x) \, dx \right| \leq \int |f(x)|\, dx.
 $$
 
-
-
 ### Fonctions égales presque partout {.proposition #fepp .two}
-Une fonction $f:[-\infty,+\infty]^n \to \R$ égale presque partout à une 
-fonction $g:[-\infty, +\infty]^n \to \R$ intégrable est elle-même intégrable
+Une fonction $f:\R^n \to \R$ égale presque partout à une 
+fonction $g:\R^n \to \R$ intégrable est elle-même intégrable
 et 
 $$
 \int f(x) \, dx = \int g(x) \, dx.
 $$
 
-
 ### Fonctions égales presque partout (réciproque) {.proposition #fepp-réciproque .two}
-Si les fonctions $f:[a,b] \to \R$ et $g:[a, b] \to \R$ sont intégrables
+Si les fonctions $f:\R^n \to \R$ et $g: \R^n \to \R$ sont intégrables
 et si 
 $$
 f \leq g \, \mbox{ presque partout} 
 \; \mbox{ et } \;
-\int_a^b f(t) \, dt \geq \int_a^b g(t) \, dt,
+\int f(x) \, dt \geq \int g(x) \, dx,
 $$
 alors $f = g$ presque partout.
 
+### TODO : 
+exo ici on a besoin de plus de choses à ce stade. Nommément que négligeable
+implique de mesure nulle.
+
+### Additivité {.exercise .question #exo-additivité}
+Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
+et sur $B \subset \R^n$ et que $A$ et $B$ sont sans chevauchement 
+($A\cap B$ est négligeable) alors $f$ est intégrable sur $A\cup B$ et
+$$
+\int_{A \cup B} f(x) \, dx = \int_A f(x) \, dx + \int_B f(x) \, dx.
+$$
+
 Un théorème de changement de variable existe et généralise le théorème
 déjà énoncé dans $\R$ ; il est suffisamment complexe pour mériter 
-[sapropre section dans ce chapitre](#changement-de-variables).
-
+[sa propre section dans ce chapitre](#changement-de-variables).
 L'équivalent dans $\R^n$ du théorème fondamental du calcul est le théorème
 de la divergence[^pe] auquel [l'annexe](#annexe) est consacrée.
 
