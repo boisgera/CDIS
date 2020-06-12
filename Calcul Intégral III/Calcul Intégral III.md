@@ -42,21 +42,21 @@ d'exercices.
 Intégrale de fonctions de plusieurs variables
 ================================================================================
 
-### Préambule {.remark .ante}
+### Domaine des variables {.remark .ante}
 Comme dans le cas réel, la théorie de l'intégrale de jauge dans $\R^n$
 est en fait techniquement construite dans $[-\infty, +\infty]^n$ : 
-elle est tout à fait applicable aux fonctions dont les variables $x_i$ 
+elle est tout à fait applicable aux fonctions dont les variables
 prennent des valeurs dans $[-\infty, +\infty]$. 
 Mais il s'agit largement d'un 
-"détail d'implémentation" : dans l'usage concret, nous intégrerons uniquement
+"détail d'implémentation" : en pratique, nous intégrerons uniquement
 des fonctions de variables réelles ; nous énoncerons donc les propriétés 
 de l'intégrale dans ce cadre. 
-S'il est nécessaire de considérer une telle fonction comme fonction 
-de variables réelles étendues (pouvant être infinies), on supposera que la
-fonction est nulle dès qu'une de leur variables est infinie.
+S'il est nécessaire techniquement de considérer une telle fonction comme 
+fonction de variables réelles étendues (pouvant être infinies), 
+on supposera que la fonction est nulle dès qu'une de leur variables est infinie.
 De façon similaire, il est possible de développer une construction
 de l'intégrale pour une fonction $f: A \to \R$ où $A \subset \R^n$ en
-prolongeant la fonction par zero sur $\R^n$ (ou $[-\infty, +\infty]$).
+prolongeant la fonction $f$ par zero sur $\R^n$ (ou $[-\infty, +\infty]^n$).
 
 ### {.remark .ante}
 Les pavés joueront pour l'intégration des fonctions de $n$ variables le rôle qui 
@@ -74,10 +74,18 @@ On appelle *volume $n$-dimensionnel* (ou parfois simplement *volume*
 quand le contexte est clair) du pavé 
 $I = I_1 \times \dots \times I_n$ de $[-\infty,+\infty]^n$ la valeur
 $$
-\lambda(I)  = \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
+\lambda(I) := \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
 $$
 en adoptant la convention que $0 \times \infty = 0$.
 
+### Longeur, aire, volume {.remark}
+On pourra continuer à appeler cette grandeur
+*longueur* plutôt que *volume $n$-dimensionnel* si l'on travaille dans $\R$ 
+(ou $[-\infty,+\infty]$) ; 
+dans $\R^2$ (ou $[-\infty,+\infty]^2$) il est approprié 
+de la désigner sous le terme d'*aire* et dans $\R^3$ (ou $[-\infty, +\infty]^3$)
+sous le terme de *volume*. On pourra dans ces trois cas particuliers préférer
+les notation $\ell$, $a$ et $v$ au symbole $\lambda$.
 
 ### Ensemble négligeable  {.definition .two #ensemble-négligeable}
 Un ensemble $A$ de $[-\infty, +\infty]^n$ est *négligeable* si pour tout
@@ -89,18 +97,16 @@ $$
 \sum_i \lambda(I_i) \leq  \varepsilon.
 $$
 
-### Pavé négligeable {.lemma}
-Un pavé $I$ est négligeable si et seulement si son volume $n$-dimensionnel
-$\lambda(I)$ est nul.
+### Domaine à l'infini {.exercise .question .one #dai}
+Montrer que l'ensemble $[-\infty,\infty]^n \setminus \R^n$ est d'aire
+négligeable.
 
-### Longeur, aire, volume {.remark}
-On pourra continuer à appeler cette grandeur
-*longueur* plutôt que *volume $n$-dimensionnel* si l'on travaille dans $\R$ 
-(ou $[-\infty,+\infty]$) ; 
-dans $\R^2$ (ou $[-\infty,+\infty]^2$) il est approprié 
-de la désigner sous le terme d'*aire* et dans $\R^3$ (ou $[-\infty, +\infty]^3$)
-sous le terme de *volume*. On pourra dans ces trois cas particulier préférer
-les notation $\ell$, $a$ et $v$ au symbole $\lambda$.
+### Graphe du sinus {.exercise .question .two #gs}
+Montrer que l'ensemble 
+$$G = \{(x, \sin x) \; | \; x \in [0, 2\pi]\}$$ 
+est d'aire négligeable.
+
+![Graphe de la fonction $\sin$ sur $[0, 2\pi]$.](images/sin.py)
 
 ### Subdivision pointée
 Une *subdivision pointée* du pavé fermé $I$ de 
@@ -1156,6 +1162,7 @@ $$
 Exercices
 ================================================================================
 
+
 Changement de variables linéaire
 --------------------------------------------------------------------------------
 
@@ -1282,6 +1289,53 @@ dans $\R^n$ de l'intégration par parties ?
 
 Solutions
 ================================================================================
+
+
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Domaine à l'infini {.answer #answer-dai}
+L'ensemble $[-\infty,\infty]^n \setminus \R^n$ est recouvert par les
+quatres pavés $\{-\infty\} \times [-\infty, \infty]$, 
+$\{+\infty\} \times [-\infty, \infty]$, $[-\infty, \infty] \times \{-\infty\}$
+et $[-\infty, \infty] \times \{+\infty\}$. Chacun de ces pavés est d'aire nulle :
+on a par exemple
+$$
+a(\{-\infty\} \times [-\infty, \infty]) = \ell(\{-\infty\}) \times \ell([-\infty, \infty]) = 0 \times \infty = 0.
+$$
+Par conséquent l'ensemble considéré est négligeable.
+
+
+### Graphe du sinus {.answer #answer-gs}
+Notons $G = \{(x, \sin x) \; | \; x \in [0, 2\pi]\}$.
+Comme $(\sin)' = \cos$ et que le cosinus est majoré par $1$, 
+par le théorème des accroissements finis, pour tout $x, y \in [0, 2\pi]$ on a 
+$|\sin x - \sin y| \leq |x - y|$. Par conséquent, pour tout $x \in [0, 2\pi]$
+et $h>0$,
+$$
+G \cap [x-h, x+h] \times [-\infty, +\infty] \subset [x-h, x+h] \times [(\sin x) - h, (\sin x) + h].
+$$
+En choisissant $h = 2\pi / n$ et $x= \pi/n, 3 \pi/n, 5 \pi /n, \dots$, 
+on recouvre donc $G$ par la collection de pavés
+$$
+I_k = \left[k\frac{2\pi}{n}, (k+1)\frac{2\pi}{n} \right] \times 
+\left[y_k - \frac{\pi}{n}, 
+y_k+\frac{\pi}{n} \right], \; k \in \{0, 1,\dots, n-1\}
+$$
+où 
+$$
+y_k = \sin \left(\left(k+\frac{1}{2} \right) \frac{2\pi}{n} \right).
+$$
+
+![Graphe de la fonction $\sin$ et recouvrement par les pavés $I_k$ ($n=12$).](images/sin-cover.py)
+
+La somme des aires des pavés $I_k$ satisfait
+$$
+\sum_{k=0}^{n-1} a(I_k) = n \times \frac{2\pi}{n} \times \frac{2}{n} = 
+\frac{4 \pi^2}{n}.
+$$
+Il est donc possible de rendre cette somme arbitrairement faible en 
+sélectionnant un $n$ assez grand. L'ensemble $G$ est donc négligeable.
 
 Changement de variables linéaire
 --------------------------------------------------------------------------------
