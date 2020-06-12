@@ -42,26 +42,25 @@ d'exercices.
 Intégrale de fonctions de plusieurs variables
 ================================================================================
 
-**TODO.** Bascule $\R^n$ $\to$ $[-\infty, +\infty]^n$ ?
-
-Essayer de rester dans $\R^n$ ? Oui, sinon ça va être technique pour les
-changements de variable, de visualiser les ouverts, etc. Reprendre les
-2 options à tete reposée. Et on peut montrer que ces deux ensembles,
-"c'est pareil" parce que leur différence symmétrique est négligeable.
-
-**TODO** expliquer comment se ramener d'un cas quelconque $A \subset \R^n$
-ou $A \subset [-\infty, +\infty]^n$ à $[-\infty, +\infty]^n$.
-
-(ça n'est pas totalement conforme à ce qu'on a fait dans le chapitre I, 
-mais OK)
-
+### Préambule {.remark .ante}
+Comme dans le cas réel, la théorie de l'intégrale de jauge dans $\R^n$
+est en fait techniquement construite dans $[-\infty, +\infty]^n$ : 
+elle est tout à fait applicable aux fonctions dont les variables $x_i$ 
+prennent des valeurs dans $[-\infty, +\infty]$. 
+Mais il s'agit largement d'un 
+"détail d'implémentation" : dans l'usage concret, nous intégrerons uniquement
+des fonctions de variables réelles ; nous énoncerons donc les propriétés 
+de l'intégrale dans ce cadre. 
+S'il est nécessaire de considérer une telle fonction comme fonction 
+de variables réelles étendues (pouvant être infinies), on supposera que la
+fonction est nulle dès qu'une de leur variables est infinie.
+De façon similaire, il est possible de développer une construction
+de l'intégrale pour une fonction $f: A \to \R$ où $A \subset \R^n$ en
+prolongeant la fonction par zero sur $\R^n$ (ou $[-\infty, +\infty]$).
 
 ### {.remark .ante}
-
-
-### {.remark .ante}
-Les pavés joueront dans $[-\infty,+\infty]^n$ le rôle qui était dévolu aux 
-intervalles dans la droite réelle étendue $[-\infty, +\infty]$ :
+Les pavés joueront pour l'intégration des fonctions de $n$ variables le rôle qui 
+était dévolu aux intervalles pour les fonctions d'une variable :
 
 ### Pavés {.definition}
 On appelle *pavé* de $[-\infty,+\infty]^n$ tout ensemble $I$ de la forme
@@ -79,13 +78,29 @@ $$
 $$
 en adoptant la convention que $0 \times \infty = 0$.
 
+
+### Ensemble négligeable  {.definition .two #ensemble-négligeable}
+Un ensemble $A$ de $[-\infty, +\infty]^n$ est *négligeable* si pour tout
+$\varepsilon > 0$, il existe une collection dénombrable de pavés 
+$I_1$, $I_2$, $\dots$, de $[-\infty,+\infty]^n$ qui
+recouvre l'ensemble $A$ -- telle que $A \subset \bigcup_{i} I_i$ -- 
+et vérifiant
+$$
+\sum_i \lambda(I_i) \leq  \varepsilon.
+$$
+
+### Pavé négligeable {.lemma}
+Un pavé $I$ est négligeable si et seulement si son volume $n$-dimensionnel
+$\lambda(I)$ est nul.
+
 ### Longeur, aire, volume {.remark}
 On pourra continuer à appeler cette grandeur
 *longueur* plutôt que *volume $n$-dimensionnel* si l'on travaille dans $\R$ 
 (ou $[-\infty,+\infty]$) ; 
 dans $\R^2$ (ou $[-\infty,+\infty]^2$) il est approprié 
 de la désigner sous le terme d'*aire* et dans $\R^3$ (ou $[-\infty, +\infty]^3$)
-sous le terme de *volume*.
+sous le terme de *volume*. On pourra dans ces trois cas particulier préférer
+les notation $\ell$, $a$ et $v$ au symbole $\lambda$.
 
 ### Subdivision pointée
 Une *subdivision pointée* du pavé fermé $I$ de 
@@ -106,7 +121,7 @@ où $I$ est un pavé fermé de $[-\infty,+\infty]^n$
 et à la subdivision pointée $\mathcal{D}$ 
 de $I$ est la grandeur
 $$
-S(f, \mathcal{D}) = \sum f(t) v(J), \; (t, J) \in \mathcal{D}, \, v(J) < + \infty.
+S(f, \mathcal{D}) = \sum f(t) v(J), \; \; (t, J) \in \mathcal{D}, \, v(J) < + \infty.
 $$
 
 ### Jauge {.definition}
@@ -121,14 +136,18 @@ $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Intégrale dans $\mathbb{R}^n$ {.definition}
 Une fonction $f:\R^n \to \R$ est dite *intégrable 
-(au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
+au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de 
 $[-\infty,+\infty]^n$ telle que pour 
 toute subdivision pointée $\mathcal{D}$ de $[-\infty,+\infty]^n$
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique ; 
-il est appelé *intégrale de $f$ sur $\R^n$* et noté
+il est appelé *intégrale de Henstock-Kurzweil de $f$ sur $\R^n$*.
+
+La fonction $f$ est dite *intégrable au sens de Lebesgue* si $f$ et $|f|$ sont
+intégrables au sens de Henstock-Kurzweil. L'intégrale de Lebesgue est alors
+définie comme l'intégrale de Henstcok-Kurzweil de $f$ et notée
 $$
 \int f \; \mbox{ ou } \;
 \int_{\R^n} f(x) \, dx \; \mbox{ ou } \; \int_{\R^n} f(x_1,\dots, x_n) \, dx_1\dots dx_n.
@@ -147,26 +166,10 @@ ne soient affectés par le choix de ces valeurs.
 Nous évoquons rapidement dans cette section la façon dont les propriétés 
 de l'intégrale dans $\R$ se transposent à $\R^n$.
 
-**TODO en 1er : ensemble négligeable**.
 
-**TODO : transformer la majorité de ces résultats en "macro-theoremes".
+**TODO : transformer la majorité de ces résultats en "macro-theoremes".**
 
 
-### Ensemble négligeable  {.definition .two #ensemble-négligeable}
-Un ensemble $A$ de $[-\infty, +\infty]^n$ est *négligeable* si pour tout
-$\varepsilon > 0$, il existe un recouvrement de $A$ par une collection
-dénombrable de pavés $I_1$, $I_2$, $\dots$, $I_i$, $\dots$ de $[-\infty,+\infty]^n$ 
-$$
-A \subset \bigcup_{i} I_i 
-$$
-telle que
-$$
-\sum_i \lambda(I_i) \leq  \varepsilon.
-$$
-
-### Pavé négligeable {.lemma}
-Un pavé $I$ est négligeable si et seulement si sa mesure de Lebesgue
-$\lambda(I)$ est nulle.
 
 L'intégrale dans $\R^n$ est toujours linéaire et positive ;
 l'intégrabilité peut être testée par un critère de Cauchy analogue au cas réel.
