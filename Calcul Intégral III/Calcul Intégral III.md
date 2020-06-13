@@ -227,6 +227,14 @@ $$
 \alpha \int f(x) \, dx.
 $$
 
+### Additivité I {.exercise .question .one #exo-additivité-I}
+Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
+et sur $B \subset \R^n$ et que $A$ et $B$ sont d'intersection vide 
+alors $f$ est intégrable sur $A\cup B$ et
+$$
+\int_{A \cup B} f(x) \, dx = \int_A f(x) \, dx + \int_B f(x) \, dx.
+$$
+
 <!--
 
 **TODO:** que faire avec ça ? Il y a une adaptation trivale où les ensembles
@@ -285,17 +293,8 @@ f \leq g \, \mbox{ presque partout}
 $$
 alors $f = g$ presque partout.
 
-### TODO : 
-exo ici on a besoin de plus de choses à ce stade. Nommément que négligeable
-implique de mesure nulle.
 
-### Additivité {.exercise .question .two #exo-additivité}
-Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
-et sur $B \subset \R^n$ et que $A$ et $B$ sont sans chevauchement 
-($A\cap B$ est négligeable) alors $f$ est intégrable sur $A\cup B$ et
-$$
-\int_{A \cup B} f(x) \, dx = \int_A f(x) \, dx + \int_B f(x) \, dx.
-$$
+
 
 Un théorème de changement de variable existe et généralise le théorème
 déjà énoncé dans $\R$ ; il est suffisamment complexe pour mériter 
@@ -320,6 +319,15 @@ valide. L'intégrabilité (et les intégrales) des fonctions définies sur des
 sous-ensembles de $\R^n$ (ou $[-\infty, +\infty]^n$) sont toujours définies
 à partir de l'extension de la fonction par zéro. Les fonctions absolument 
 et conditionnellement intégrables sont définies de manière identique.
+
+
+### Additivité II {.exercise .question .two #exo-additivité-II}
+Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
+et sur $B \subset \R^n$ et que $A$ et $B$ sont sans chevauchement 
+(si $A\cap B$ est négligeable) alors $f$ est intégrable sur $A\cup B$ et
+$$
+\int_{A \cup B} f(x) \, dx = \int_A f(x) \, dx + \int_B f(x) \, dx.
+$$
 
 Intégrale multiple
 ================================================================================
@@ -1423,6 +1431,41 @@ $$
 $$
 Il est donc possible de rendre cette somme arbitrairement faible en 
 sélectionnant un $n$ assez grand. L'ensemble $G$ est donc négligeable.
+
+
+### Additivité I {.answer #answer-exo-additivité-I}
+Si $f$ est intégrable sur $A \subset \R^n$ 
+et sur $B \subset \R^n$ alors les prolongements de $f|_A$ et de $f|_B$
+par zéro à $\R^n$, qui sont les fonctions $1_A f$ et $1_B f$, 
+sont intégrables sur $\R^n$. On a également
+$$
+\int_A f(x) \, dx = \int_{\R^n} 1_A(x) f(x) \, dx
+\; \mbox{ et } \; 
+\int_B f(x) \, dx = \int_{\R^n} 1_B(x) f(x) \, dx.
+$$
+Si $A$ et $B$ sont d'intersection vide, on a $1_{A \cup B} = 1_A + 1_B$, 
+donc [par linéarité de l'intégrale](#linéarité), $1_{A \cup B} f
+= 1_A f + 1_B f$ est intégrable, la fonction $f$ est intégrable
+sur $A \cup B$ et
+\begin{align*}
+\int_{A \cup B} f(x) \, dx &= \int_{\R^n} 1_{A \cup B} (x) f(x) \, dx \\
+&= \int_{\R^n} 1_A(x) f(x) + 1_B(x) f(x) \, dx \\
+&= \int_A f(x) \, dx + \int_B f(x) \, dx.
+\end{align*}
+
+
+### Additivité II {.answer #answer-exo-additivité-II}
+La trame de la démonstration est similaire [à l'exercice "Additivité I"](#exo-additivité-I).
+On constate ici que $1_{A \cup B} = 1_A + 1_B - 1_{A \cap B}$ ;
+comme $A \cap B$ est négligeable, la fonction $1_{A \cap B} f$ est nulle
+presque partout, donc intégrable et d'intégrale nulle. La fonction 
+$1_{A \cup B}$ est donc intégrable [par linéarité de l'intégrale](#linéarité) et
+\begin{align*}
+\int_{A \cup B} f(x) \, dx &= \int_{\R^n} 1_{A \cup B} (x) f(x) \, dx \\
+&= \int_{\R^n} 1_A(x) f(x) + 1_B(x) f(x) - 1_{A\cap B} f(x) \, dx \\
+&= \int_{\R^n} 1_A(x) f(x) + \int_{\R^n} 1_B(x) f(x) - \int_{\R^n} 1_{A\cap B} f(x) \, dx \\
+&= \int_A f(x) \, dx + \int_B f(x) \, dx.
+\end{align*}
 
 Changement de variables linéaire
 --------------------------------------------------------------------------------
