@@ -307,7 +307,7 @@ de la divergence[^pe] auquel [l'annexe](#annexe) est consacrée.
 Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
 dominée se transposent directement.
 La notion d'ensemble mesurable est inchangée (modulo le remplacement des
-intervalles compact de $\R$ par les pavés compacts de $\R^n$) ; les trois
+intervalles fermés bornés de $\R$ par les pavés fermés bornés de $\R^n$) ; les trois
 propriétés élémentaires de la collection des ensembles mesurables de $\R^n$
 sont toujours vérifiées (la collection est une tribu), cette famille contient
 tous les fermés (et tous les ouverts) et "négligeable" et 
@@ -319,6 +319,39 @@ valide. L'intégrabilité (et les intégrales) des fonctions définies sur des
 sous-ensembles de $\R^n$ (ou $[-\infty, +\infty]^n$) sont toujours définies
 à partir de l'extension de la fonction par zéro. Les fonctions absolument 
 et conditionnellement intégrables sont définies de manière identique.
+
+### Ensemble mesurable {.definition}
+Un ensemble $E$ de $\R$ est *de longueur finie* si sa fonction 
+caractéristique $1_E$ est intégrable sur $\R$ ; 
+il est *mesurable* si sa fonction caractéristique est intégrable 
+sur tout intervalle fermé borné $[a, b]$ de $\R$.
+La (mesure de) *longueur* d'un ensemble $E$ mesurable est définie par
+$$
+\ell(E) := \int 1_E(t) \, dt
+$$
+si $E$ est de longueur finie et
+$$
+\ell(E) := +\infty
+$$
+dans le cas contraire (si $E$ est mesurable mais pas de longueur finie).
+
+
+### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
+
+ 1. L'ensemble vide est mesurable.
+
+ 2. Le complémentaire d'un ensemble mesurable est mesurable.
+
+ 3. L'union d'une collection dénombrable d'ensembles mesurables
+    est mesurable.
+
+
+### Topologie et ensembles mesurables {.theorem #OSM}
+Tout ensemble fermé (ou ouvert) est mesurable.
+
+### Ensembles négligeables {.theorem #négligeable-longueur-nulle}
+Un ensemble est de longueur nulle si et seulement s'il est négligeable.
+
 
 
 ### Additivité II {.exercise .question .two #exo-additivité-II}
