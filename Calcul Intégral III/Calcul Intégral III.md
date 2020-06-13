@@ -43,21 +43,22 @@ Intégrale de fonctions de plusieurs variables
 ================================================================================
 
 ### Domaine des variables {.remark .ante #dv}
-Comme dans le cas réel, la théorie de l'intégrale de jauge dans $\R^n$
-est en fait techniquement construite dans $[-\infty, +\infty]^n$ : 
-elle est tout à fait applicable aux fonctions dont les variables
-prennent des valeurs réelles ou infinies. 
+Comme dans le cas réel, la théorie de l'intégrale de jauge des fonctions de
+$n$ variables est techniquement construite dans $[-\infty, +\infty]^n$, donc
+applicable aux fonctions dont les variables peuvent prendre 
+des valeurs réelles ou infinies. 
 Mais il s'agit largement d'un 
 "détail d'implémentation" : en pratique, nous intégrerons uniquement
-des fonctions de variables réelles ; nous énoncerons donc les propriétés 
-de l'intégrale dans ce cadre. 
-S'il est nécessaire techniquement de considérer une telle fonction comme 
-fonction de variables réelles étendues (pouvant être infinies), 
-on supposera que la fonction est nulle dès qu'une de leur variables est infinie[^tav].
-De façon similaire, il est possible de développer une construction
-de l'intégrale pour une fonction $f: A \to \R$ où $A \subset \R^n$ en
-prolongeant la fonction $f$ par zéro sur $\R^n$ (ou directement 
-$[-\infty, +\infty]^n$).
+des fonctions de variables réelles ; après avoir construit l'intégrale
+dans $[-\infty,\infty]^n$, nous énoncerons donc les propriétés 
+de l'intégrale dans le cadre $\R^n$. 
+Quand il sera nécessaire de considérer une fonction de variables
+réelles comme fonction de variables réelles étendues (pouvant être infinies), 
+on prolongera la fonction initiale en lui assignant la valeur zéro 
+dès qu'une de leur variables est infinie[^tav].
+De façon similaire, il est possible de définir l'intégrale d'une fonction 
+$f: A \to \R$ où $A \subset \R^n$ en la par zéro sur $\R^n$ (ou directement 
+sur $[-\infty, +\infty]^n$).
 
 [^tav]: Toute autre valeur que zéro conviendrait dans ce cas ausi bien, car
 la différence entre le domaine de définition du prolongement et le domaine 
@@ -83,11 +84,11 @@ I = I_1 \times \dots \times I_n
 $$
 où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
 
-**TODO**
-
-### TODO -- Partition en pavés {.exercise .question .one}
+### Partition en pavés {.exercise .question .one #pp}
 Montrer que l'ensemble $\R^2 \setminus [-1,1]^2$ peut être partitionné en
 4 pavés. 
+
+
 
 ### Volume d'un pavé
 On appelle *volume $n$-dimensionnel* (ou parfois simplement *volume*
@@ -117,15 +118,6 @@ $$
 \sum_i \lambda(I_i) \leq  \varepsilon.
 $$
 
-### {.remark}
-De façon similaire à la situation dans $\R$, on a :
-
-### Presque partout {.definition}
-Une propriété $P$ dépendant d'un vecteur $x \in \R^n$ est vraie *presque partout*
-si l'ensemble des points $x$ où elle est fausse est un ensemble
-négligeable. On pourra utiliser la notation "$P$ p.p." ou "$P(x)$ p.p." 
-pour signifier que la propriété $P$ est vraie presque partout.
-
 ### Domaine à l'infini {.exercise .question .one #dai}
 Montrer que l'ensemble $[-\infty,\infty]^n \setminus \R^n$ est d'aire
 négligeable.
@@ -137,6 +129,12 @@ est d'aire négligeable.
 
 ![Graphe de la fonction $\sin$ sur $[0, 2\pi]$.](images/sin.py)
 
+### Presque partout {.definition}
+Une propriété $P$ dépendant d'un vecteur $x \in [-\infty,\infty]^n$ est vraie *presque partout*
+si l'ensemble des points $x$ où elle est fausse est un ensemble
+négligeable. On pourra utiliser la notation "$P$ p.p." ou "$P(x)$ p.p." 
+pour signifier que la propriété $P$ est vraie presque partout.
+
 ### Subdivision pointée
 Une *subdivision pointée* du pavé fermé $I$ de 
 $[-\infty,+\infty]^n$ est 
@@ -145,7 +143,8 @@ $$
 \{(t_i, J_i) \; | \; \; 0 \leq i \leq k-1\}
 $$
 où les $J_i$ sont des pavés fermés de $I$ sans chevauchement
--- les intersections deux à deux sont des ensembles négligeables --
+-- les intersections deux à deux des pavés de cette collection 
+sont des ensembles négligeables --
 qui recouvrent $I$ et tels que 
 $t_i \in J_i$ pour tout $i \in \{0, \dots, k-1\}.$
 
@@ -170,7 +169,7 @@ est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Intégrale dans $\mathbb{R}^n$ {.definition}
-Une fonction $f:\R^n \to \R$ est dite *intégrable 
+Une fonction $f:[-\infty,\infty]^n \to \R$ est dite *intégrable 
 au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de 
 $[-\infty,+\infty]^n$ telle que pour 
@@ -189,12 +188,13 @@ $$
 $$
 Lorsque la fonction $f$ est définie sur $A \subset \R^n$ 
 on dira que $f$ est intégrable sur $A$ si son prolongement $\bar{f}$
-par zéro à $\R^n$ est intégrable sur $\R^n$ ; on utilisera alors 
-la notation
+par zéro à $\R^n$ est intégrable sur $\R^n$ ; s'il est nécessaire
+d'être explicite quant au domaine d'intégration $A$, on utilisera les notations
 $$
-\int_A f(x) \, dx := \int \bar{f}(x) \, dx.
+\int_A f = \int_A f(x) \, dx := \int \bar{f}(x) \, dx.
 $$
 
+<!--
 ### {.post}
 Comme dans le cas réel, la définition supposerait que $f$ soit a priori
 définie sur $[-\infty,+\infty]^n$ plutôt que sur $\R^n$ ; 
@@ -202,6 +202,7 @@ mais on peut étendre $f$ pour des arguments à l'infini
 (dont au moins l'un des arguments est infini) 
 sans que l'intégrabilité de cette extension ou la valeur de son intégrale
 ne soient affectés par le choix de ces valeurs.
+-->
 
 ### Propriétés élémentaires
 
@@ -1374,6 +1375,11 @@ Par contre, dans le troisième cas, c'est bien par zéro que nous
 avons l'obligation d'étendre la fonction initiale (techniquement, car l'ensemble 
 $[-\infty,\infty]^2\setminus [-1, 1]^2$ n'est pas négligeable.)
 
+### Partition en pavés {.answer #answer-pp}
+L'ensemble $\R^2 \setminus [-1, 1]$ est l'union des quatres ensembles disjoints
+non vides suivants : $\left]-\infty, -1\right[ \times \R$, 
+$[-1, 1] \times \left]1, \infty\right[$, $[-1, 1] \times \left]-\infty, -1\right[$
+et $\left]1, +\infty\right[ \times \R$.
 
 ### Domaine à l'infini {.answer #answer-dai}
 L'ensemble $[-\infty,\infty]^n \setminus \R^n$ est recouvert par les
