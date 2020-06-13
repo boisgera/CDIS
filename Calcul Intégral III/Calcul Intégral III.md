@@ -206,8 +206,8 @@ ne soient affectés par le choix de ces valeurs.
 
 ### Propriétés élémentaires
 
-Nous évoquons rapidement dans cette section la façon dont les propriétés 
-de l'intégrale dans $\R$ se transposent à $\R^n$.
+Dans cette section, nous transposons rapidement et sans preuve les propriétés 
+de l'intégrale valable dans $\R$ au cadre $\R^n$.
 
 ### Linéarité {.theorem .one #linéarité}
 Si les fonctions $f: \R^n \to \mathbb{R}$ et 
