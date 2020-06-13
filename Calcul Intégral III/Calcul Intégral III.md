@@ -321,19 +321,19 @@ sous-ensembles de $\R^n$ (ou $[-\infty, +\infty]^n$) sont toujours définies
 et conditionnellement intégrables sont définies de manière identique.
 
 ### Ensemble mesurable {.definition}
-Un ensemble $E$ de $\R$ est *de longueur finie* si sa fonction 
-caractéristique $1_E$ est intégrable sur $\R$ ; 
+Un ensemble $E$ de $\R^n$ est *de mesure (de Lebesgue ou $n$-dimensionnelle)
+finie* si sa fonction caractéristique $1_E$ est intégrable sur $\R^n$ ; 
 il est *mesurable* si sa fonction caractéristique est intégrable 
-sur tout intervalle fermé borné $[a, b]$ de $\R$.
-La (mesure de) *longueur* d'un ensemble $E$ mesurable est définie par
+sur tout pavé fermé borné de $\R^n$.
+La *mesure (de Lebesgue ou $n$-dimensionnelle)* d'un ensemble $E$ mesurable est définie par
 $$
-\ell(E) := \int 1_E(t) \, dt
+\lambda(E) := \int 1_E(t) \, dt
 $$
 si $E$ est de longueur finie et
 $$
-\ell(E) := +\infty
+\lambda(E) := +\infty
 $$
-dans le cas contraire (si $E$ est mesurable mais pas de longueur finie).
+dans le cas contraire (si $E$ est mesurable mais pas de mesure finie).
 
 
 ### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
@@ -350,7 +350,7 @@ dans le cas contraire (si $E$ est mesurable mais pas de longueur finie).
 Tout ensemble fermé (ou ouvert) est mesurable.
 
 ### Ensembles négligeables {.theorem #négligeable-longueur-nulle}
-Un ensemble est de longueur nulle si et seulement s'il est négligeable.
+Un ensemble est de mesure de Lebesgue nulle si et seulement s'il est négligeable.
 
 
 
