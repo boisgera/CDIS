@@ -43,28 +43,29 @@ Intégrale de fonctions de plusieurs variables
 ================================================================================
 
 ### Domaine des variables {.remark .ante #dv}
-Comme dans le cas réel, la théorie de l'intégrale de jauge des fonctions de
-$n$ variables est techniquement construite dans $[-\infty, +\infty]^n$, donc
-applicable aux fonctions dont les variables peuvent prendre 
-des valeurs réelles ou infinies. 
+Comme dans le cas des fonctions d'une variable, 
+la théorie de l'intégrale de jauge des fonctions de plusieurs variables est 
+construite pour des fonctions dont les variables peuvent prendre des valeurs 
+réelles ou infinies, donc techniquement, dans $[-\infty, +\infty]^n$.
 Mais il s'agit largement d'un 
-"détail d'implémentation" : en pratique, nous intégrerons uniquement
-des fonctions de variables réelles ; après avoir construit l'intégrale
-dans $[-\infty,\infty]^n$, nous énoncerons donc les propriétés 
-de l'intégrale dans le cadre $\R^n$. 
+"détail d'implémentation" : en pratique, le besoin que nous souhaitons
+satisfaire, c'est l'intégration des fonctions de variables réelles ; 
+après avoir construit l'intégrale dans $[-\infty,\infty]^n$, 
+nous énoncerons donc les propriétés de l'intégrale dans le cadre $\R^n$. 
 Quand il sera nécessaire de considérer une fonction de variables
 réelles comme fonction de variables réelles étendues (pouvant être infinies), 
 on prolongera la fonction initiale en lui assignant la valeur zéro 
 dès qu'une de leur variables est infinie[^tav].
 De façon similaire, il est possible de définir l'intégrale d'une fonction 
-$f: A \to \R$ où $A \subset \R^n$ en la par zéro sur $\R^n$ (ou directement 
+$f: A \to \R$ où $A \subset \R^n$ en la prolongeant par zéro sur $\R^n$ (ou directement 
 sur $[-\infty, +\infty]^n$).
 
 [^tav]: Toute autre valeur que zéro conviendrait dans ce cas ausi bien, car
 la différence entre le domaine de définition du prolongement et le domaine 
 initial est $[-\infty, \infty]^n \setminus \R^n$, qui est un ensemble négligeable
 (cf. [exercice "domaine à l'infini"](#dai)). Dans le cas d'un domaine de
-définition initial $A$ quelconque, il faut par contre prolonger par zéro.
+définition initial $A$ quelconque, il est par contre nécessaire 
+de prolonger par zéro (au moins presque partout).
 
 ### Prolongements {.exercise .question .one #p}
 A quelles fonctions de $[-\infty, +\infty]^2 \to \R$ sont associées 
@@ -73,8 +74,8 @@ $(x, y) \in \R^2 \mapsto \arctan (x^2 + y^2) \in \R$, la fonction
 $(x, y) \in [-1,1]^2 \mapsto 1 \in \R$ ?
 
 ### {.remark .ante}
-Dans la suite, les pavés joueront pour l'intégration des fonctions de $n$ 
-variables le rôle qui était dévolu aux intervalles pour les fonctions 
+Dans la suite, les pavés joueront pour l'intégration des fonctions de 
+plusieurs variables le rôle qui était dévolu aux intervalles pour les fonctions 
 d'une variable :
 
 ### Pavés {.definition}
@@ -87,8 +88,6 @@ où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
 ### Partition en pavés {.exercise .question .one #pp}
 Montrer que l'ensemble $\R^2 \setminus [-1,1]^2$ peut être partitionné en
 4 pavés. 
-
-
 
 ### Volume d'un pavé
 On appelle *volume $n$-dimensionnel* (ou parfois simplement *volume*
@@ -107,6 +106,10 @@ dans $\R^2$ (ou $[-\infty,+\infty]^2$) il est approprié
 de la désigner sous le terme d'*aire* et dans $\R^3$ (ou $[-\infty, +\infty]^3$)
 sous le terme de *volume*. On pourra dans ces trois cas particuliers préférer
 les notation $\ell$, $a$ et $v$ au symbole $\lambda$.
+
+### Volume de pavés {.exercise .one #exo-volume-pavé}
+Calculer l'aire des pavés $\{(0,0)\}$, $[-1, 1]^2$, $[-1, 1] \times [0, +\infty]$
+et $\{0\} \times \R$ de $[-\infty, +\infty]^2$.
 
 ### Ensemble négligeable  {.definition .two #ensemble-négligeable}
 Un ensemble $A$ de $[-\infty, +\infty]^n$ est *négligeable* si pour tout
@@ -155,7 +158,7 @@ où $I$ est un pavé fermé de $[-\infty,+\infty]^n$
 et à la subdivision pointée $\mathcal{D}$ 
 de $I$ est la grandeur
 $$
-S(f, \mathcal{D}) = \sum f(t) v(J), \; \; (t, J) \in \mathcal{D}, \, v(J) < + \infty.
+S(f, \mathcal{D}) = \sum f(t) \lambda(J), \; \; (t, J) \in \mathcal{D}, \, \lambda(J) < + \infty.
 $$
 
 ### Jauge {.definition}
@@ -186,9 +189,9 @@ $$
 \int f \; \mbox{ ou } \;
 \int f(x) \, dx \; \mbox{ ou } \; \int f(x_1,\dots, x_n) \, dx_1\dots dx_n.
 $$
-Lorsque la fonction $f$ est définie sur $A \subset \R^n$ 
+Lorsque la fonction $f$ est définie sur $A \subset [-\infty,\infty]^n$ 
 on dira que $f$ est intégrable sur $A$ si son prolongement $\bar{f}$
-par zéro à $\R^n$ est intégrable sur $\R^n$ ; s'il est nécessaire
+par zéro à $[-\infty, \infty]^n$ est intégrable sur $\R^n$ ; s'il est nécessaire
 d'être explicite quant au domaine d'intégration $A$, on utilisera les notations
 $$
 \int_A f = \int_A f(x) \, dx := \int \bar{f}(x) \, dx.
@@ -289,47 +292,40 @@ et si
 $$
 f \leq g \, \mbox{ presque partout} 
 \; \mbox{ et } \;
-\int f(x) \, dt \geq \int g(x) \, dx,
+\int f(x) \, dx \geq \int g(x) \, dx,
 $$
 alors $f = g$ presque partout.
 
-
-
-
-Un théorème de changement de variable existe et généralise le théorème
-déjà énoncé dans $\R$ ; il est suffisamment complexe pour mériter 
+### {.remark}
+Un théorème de changement de variables généralise le théorème
+déjà énoncé pour une variable ; il est suffisamment complexe pour mériter 
 [sa propre section dans ce chapitre](#changement-de-variables).
 L'équivalent dans $\R^n$ du théorème fondamental du calcul est le théorème
-de la divergence[^pe] auquel [l'annexe](#annexe) est consacrée.
+de la divergence[^pe] ; [l'annexe](#annexe) lui est entièrement 
+consacrée.
 
 [^pe]: même si cela ne saute pas forcément aux yeux !
 
-Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
-dominée se transposent directement.
+### {.remark .ante}
 La notion d'ensemble mesurable est inchangée (modulo le remplacement des
-intervalles fermés bornés de $\R$ par les pavés fermés bornés de $\R^n$) ; les trois
-propriétés élémentaires de la collection des ensembles mesurables de $\R^n$
+intervalles fermés bornés de $\R$ par les pavés fermés bornés de $\R^n$) ; 
+les trois propriétés élémentaires de la collection des ensembles mesurables 
+de $\R^n$
 sont toujours vérifiées (la collection est une tribu), cette famille contient
 tous les fermés (et tous les ouverts) et "négligeable" et 
-"(mesurable et) de volume nul" sont toujours synonymes.
-
-Les fonctions mesurables ont la même definition (limite simple de fonctions
-intégrables) ; le critère de mesurabilité par l'image réciproque est toujours
-valide. L'intégrabilité (et les intégrales) des fonctions définies sur des 
-sous-ensembles de $\R^n$ (ou $[-\infty, +\infty]^n$) sont toujours définies
-à partir de l'extension de la fonction par zéro. Les fonctions absolument 
-et conditionnellement intégrables sont définies de manière identique.
+"(mesurable et) de mesure nulle" sont toujours synonymes.
 
 ### Ensemble mesurable {.definition}
 Un ensemble $E$ de $\R^n$ est *de mesure (de Lebesgue ou $n$-dimensionnelle)
 finie* si sa fonction caractéristique $1_E$ est intégrable sur $\R^n$ ; 
 il est *mesurable* si sa fonction caractéristique est intégrable 
 sur tout pavé fermé borné de $\R^n$.
-La *mesure (de Lebesgue ou $n$-dimensionnelle)* d'un ensemble $E$ mesurable est définie par
+La *mesure (de Lebesgue ou $n$-dimensionnelle)* $\lambda(E)$ 
+d'un ensemble $E$ mesurable est définie par
 $$
-\lambda(E) := \int 1_E(t) \, dt
+\lambda(E) := \int 1_E(x) \, dx
 $$
-si $E$ est de longueur finie et
+si $E$ est de mesure finie et
 $$
 \lambda(E) := +\infty
 $$
@@ -349,10 +345,12 @@ dans le cas contraire (si $E$ est mesurable mais pas de mesure finie).
 ### Topologie et ensembles mesurables {.theorem #OSM}
 Tout ensemble fermé (ou ouvert) est mesurable.
 
+### Disque fermé {.exercise .one #df}
+Montrer que le disque $D = \{(x_1,x_2) \in \R^2 \; | \; x_1^2 + x_2^2 \leq 1\}$
+est mesurable.
+
 ### Ensembles négligeables {.theorem #négligeable-longueur-nulle}
 Un ensemble est de mesure de Lebesgue nulle si et seulement s'il est négligeable.
-
-
 
 ### Additivité II {.exercise .question .two #exo-additivité-II}
 Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
@@ -361,6 +359,83 @@ et sur $B \subset \R^n$ et que $A$ et $B$ sont sans chevauchement
 $$
 \int_{A \cup B} f(x) \, dx = \int_A f(x) \, dx + \int_B f(x) \, dx.
 $$
+
+### {.remark .ante}
+Les fonctions mesurables ont la même definition (limite simple de fonctions
+intégrables) ; le critère de mesurabilité par l'image réciproque est toujours
+valide. 
+
+
+### Fonction mesurable {.definition}
+Une fonction $f:\R^n \to \R$ est *mesurable* 
+si elle est la limite simple d'une suite de fonctions intégrables,
+c'est-à-dire s'il existe une suite de fonctions intégrables 
+$f_k:\R^n \to \R$ telle que 
+pour tout $x\in \R$, 
+$f_k(x) \to f(x)$ quand $k \to +\infty$.
+Une fonction $f:\R^n \to \R^m$ est mesurable 
+si chacune de ses composantes est mesurable.
+
+### Critère de l'image réciproque {.theorem #CIR}
+Une fonction $f:\R^n \to \R^m$ est mesurable si et seulement
+l'image réciproque de tout fermé (ou de tout ouvert) de $\R^m$
+par $f$ est mesurable.
+
+
+### {.remark .ante}
+Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
+dominée se transposent à l'identique pour les fonctions de plusieurs variables.
+
+### Théorème de convergence dominée {#TCD .theorem}
+Si une suite de fonctions intégrables $f_k:\R^n \to \R$
+converge simplement vers la fonction $f$, c'est-à-dire si pour tout
+$x \in \R^n$,
+$$
+\lim_{k \to +\infty} f_k(x) = f(x)
+$$
+et qu'il existe une fonction intégrable $g:\R \to \left[0, +\infty\right[$ 
+dominant la suite $f_k$, c'est-à-dire telle que pour tout $k \in \N$ 
+et pour tout 
+$x \in \R^n$,
+$$
+|f_k(x)| \leq g(x)
+$$
+alors la fonction $f$ est intégrable et 
+$$
+\int f(x) \, dx 
+=
+\int \lim_{k \to +\infty} f_k(x) \, dx
+= 
+\lim_{k \to +\infty} \int f_k(x) \, dx.
+$$
+
+
+### Théorème de convergence monotone {#TCM .theorem}
+Si une suite de fonctions intégrables $f_k:\R^n \to \R$
+est croissante et majorée en tout point, c'est-à-dire si pour tout
+$x$ de $\R^n$ 
+$$
+\mbox{pour tout } \, k \in \N, \, f_k(x) \leq f_{k+1}(x) 
+\; \mbox{ et } \;
+\sup_k f_k(x) < + \infty,
+$$
+alors la limite simple $f$ des $f_k$ est intégrable si et seulement si 
+$$
+\sup_k \int f_k(x) \, dx < +\infty.
+$$
+et dans ce cas,
+$$
+\int f(x) \, dx 
+=
+\int \lim_{k \to +\infty} f_k(x) \, dx
+= 
+\lim_{k \to +\infty} \int f(x) \, dx.
+$$
+
+### Critère d'intégrabilité dominée {.theorem #CID}
+Une fonction $f: \R^n \to \R$ est intégrable si et seulement
+si $f$ est mesurable et il existe une fonction intégrable
+$g: \R \to \left[0,+\infty\right[$ telle que $|f| \leq g$.
 
 Intégrale multiple
 ================================================================================
@@ -411,6 +486,14 @@ $f$ est intégrable.
 Réciproquement, si $x \in \R^m \mapsto f(x, y)$ n'est pas intégrable
 presque partout ou que la fonction $g$ n'est pas intégrable, 
 alors $f$ n'est pas intégrable.
+
+### Intégrabilité des pavés fermés bornés {.exercise .two #ipfb}
+Montrer que la fonction caractéristique $1_I$ du  pavé 
+$I = [a_1,b_1] \times \dots \times [a_n,b_n]$ de $\R^n$ est intégrable et
+que 
+$$
+\int 1_I(x) \, dx = (b_1 - a_1) \times \dots \times (b_n - a_n).
+$$
 
 #### Tonelli + Fubini, mode d'emploi {.remark}
 Les deux théorèmes sont souvent utilisés en combinaison
@@ -1422,6 +1505,11 @@ non vides suivants : $\left]-\infty, -1\right[ \times \R$,
 $[-1, 1] \times \left]1, \infty\right[$, $[-1, 1] \times \left]-\infty, -1\right[$
 et $\left]1, +\infty\right[ \times \R$.
 
+### Volume de pavés {.answer #answer-exo-volume-pavé}
+On a $a(\{(0,0)\}) = a([0,0]^2) = 0 \times 0 = 0$,
+$a([-1,1]^2) = 2 \times 2 = 4$, $a([-1, 1] \times [0, +\infty])
+= 2 \times \infty = \infty$ et $a(\{0\} \times \R) = 0 \times \infty = \infty$.
+
 ### Domaine à l'infini {.answer #answer-dai}
 L'ensemble $[-\infty,\infty]^n \setminus \R^n$ est recouvert par les
 quatres pavés $\{-\infty\} \times [-\infty, \infty]$, 
@@ -1486,6 +1574,10 @@ sur $A \cup B$ et
 &= \int_A f(x) \, dx + \int_B f(x) \, dx.
 \end{align*}
 
+### Disque fermé {.answer #answer-df}
+L'ensemble $D$ est fermé (c'est par exemple l'image réciproque du fermé
+$[0, 1]$ par l'application continue $(x_1, x_2) \mapsto x_1^2 + x_2^2$), 
+[par conséquent il est mesurable](#OSM).
 
 ### Additivité II {.answer #answer-exo-additivité-II}
 La trame de la démonstration est similaire [à l'exercice "Additivité I"](#exo-additivité-I).
@@ -1499,6 +1591,38 @@ $1_{A \cup B}$ est donc intégrable [par linéarité de l'intégrale](#linéarit
 &= \int_{\R^n} 1_A(x) f(x) + \int_{\R^n} 1_B(x) f(x) - \int_{\R^n} 1_{A\cap B} f(x) \, dx \\
 &= \int_A f(x) \, dx + \int_B f(x) \, dx.
 \end{align*}
+
+
+### Intégrabilité des pavés fermés bornés {.answer #answer}
+On procède par récurrence sur la dimension $n$ de l'espace.
+Admettons le résultat prouvé au rang $n-1$.
+La fonction caractéristique $1_I$ de $I = [a_1,b_1] \times \dots \times [a_n,b_n]$
+est mesurable ; en effet, pour tout ensemble ouvert de $\R$, l'image réciproque
+de cet ensemble par $1_I$ est $\varnothing$, $I$, $\R^2 \setminus I$ ou $\R^2$ et
+tous ces ensembles sont mesurables ([car fermé ou ouverts](#OSM)).
+Fixons $(x_2,\dots,x_n) \in \R^{n-1}$ ; la fonction
+$x_1 \in \R \mapsto f(x_1,x_2,\dots, x_n)$ est intégrable : en effet
+si $(x_2,\dots, x_n) \in [a_2,b_2] \times \dots \times [a_n,b_n]$ on a
+$$
+1_I(x_1,x_2,\dots, x_n) = \left| 
+\begin{array}{rl}
+1 & \mbox{si $a_1 \leq x_1 \leq b_1$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et $1_I(x_1,x_2,\dots, x_n) = 0$ sinon. On a donc
+$$
+\int 1_I(x_1,x_2,\dots, x_n) \, dx_1 = (b_1-a_1) 1_{[a_2,b_2] \times \dots \times [a_n,b_n]}(x_2,\dots,x_n).
+$$
+Par l'hypothèse de récurrence, $1_{[a_2,b_2] \times \dots \times [a_n,b_n]}$
+est intégrable d'intégrale $(b_2 - a_2) \times \dots \times (b_n - a_n)$,
+donc par [le théorème de Tonelli](#Tonelli), $1_I$ est intégrable et 
+\begin{align*}
+\int 1_I(x) \, dx &= (b_1-a_1) \int 1_{[a_2,b_2] \times \dots \times [a_n,b_n]}(x_2,\dots,x_n) \, dx_2\dots dx_n \\
+&= (b_1 - a_1) \times \dots \times (b_n - a_n).
+\end{align*}
+
 
 Changement de variables linéaire
 --------------------------------------------------------------------------------
