@@ -502,7 +502,7 @@ de la façon suivante.
 On montre tout d'abord que la fonction $f$ est mesurable. 
 Comme sa valeur absolue $|f|$ est mesurable et positive, 
 le théorème de Tonelli est susceptible de lui être appliqué ; on vérifie 
-que $|f|$ vérifie bien les hypothèses nécessaires et on en conclut que 
+que $|f|$ satisfait bien les hypothèses nécessaires et on en conclut que 
 $|f|$ est intégrable. La fonction $f$ étant mesurable, [par le critère 
 d'intégrabilité dominée](#CID), elle est donc intégrable. Le théorème de
 Fubini est donc applicable et on peut évaluer l'intégrale de $f$ par des
