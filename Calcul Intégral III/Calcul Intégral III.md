@@ -1326,21 +1326,29 @@ Exercices
 Changement de variables linéaire
 --------------------------------------------------------------------------------
 
-### Question 1 {.question #cvl-1}
-Soit $f:\R \to \R$ une fonction intégrable. Montrer que pour tout
+On souhaite dans cet exercice prouver 
+[le théorème de changement de variables](#theorem-changement-de-variables)
+dans le cas particulier où le changement de variable est linéaire et le
+domaine de la fonction à intégrer est $\R^n$.
+
+### Question 1 {.question .four #cvl-1}
+Soit $f:\R \to \R$ une fonction intégrable. En revenant à la définition 
+de l'intégrale en terme de jauges, montrer que pour tout
 réel $\lambda$ non nul, $x \in \R \mapsto f(\lambda x)$ est intégrable
-et calculer
+et que
 $$
-\int_{-\infty}^{+\infty} f(\lambda x) \, dx.
+\int_{-\infty}^{+\infty} f(\lambda x) \, dx
+=\frac{1}{|\lambda|} \int_{-\infty}^{+\infty} f(x) \, dx
 $$
-Même question pour 
+et que pour tout $h \in \R$, $x \in \R \mapsto f(x+h)$ est intégrable et que
 $$
 \int_{-\infty}^{+\infty} f(x + h) \, dx
+=
+\int_{-\infty}^{+\infty} f(x) \, dx.
 $$
-où $h \in \R$.
 
 ### Question 2 {.question #cvl-2}
-Soit $f:\R^n \to \R$ une fonction absolument intégrable.
+Soit $f:\R^n \to \R$ une fonction intégrable.
 Soient $i, j \in \{1,\dots, n\}$, $i\neq j$ et $\lambda$ un réel non nul.
 Montrer que les intégrales suivantes existent et les calculer en fonction
 de l'intégrale de $f$ :
@@ -1355,11 +1363,11 @@ S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \
 $$
 
 ### Question 3 {.question #cvl-3}
-Soit $A: \R^n \to \R^n$ une application linéaire inversible. 
-Montrer que la fonction $x \in \R^n \mapsto  f(A \cdot x) |\det [A]|$ 
+Soit $A \in \R^{n \times n}$ une matrice carrée inversible. 
+Montrer que la fonction $x \in \R^n \mapsto  f(A \cdot x) |\det A|$ 
 est intégrable et que
 $$
-\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det [A]| \, dx.
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det A| \, dx.
 $$
 
 Déformations d'un compact à bord régulier {.question #dcbr}
@@ -1668,28 +1676,40 @@ $$
 $$
 On montrerait de manière similaire que si $\lambda < 0$, on a 
 $$
-\int_{-\infty}^{+\infty} f(\lambda x) \,dx = -\frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx
+\int_{-\infty}^{+\infty} f(\lambda x) \,dx = -\frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx.
 $$
-et la validité de
+La validité de
 $$
-\int_{-\infty}^{+\infty} f(x + h) \, dx = \int_{-\infty}^{+\infty} f(x) \, dx.
+\int_{-\infty}^{+\infty} f(x + h) \, dx = \int_{-\infty}^{+\infty} f(x) \, dx
 $$
+résulte également d'une démarche similaire.
 
 ### Question 2 {.answer #answer-cvl-2}
-Par le changement de variable linéaire dans $\R$ de la question 1
-et le théorèmes de [Fubini](#Fubini) et [Tonelli](#Tonelli),
+La fonction $f$ étant intégrable, par [le théorème de Fubini](#Fubini), on a
 $$
 \begin{split}
-& \phantom{ =. }  \frac{1}{|\lambda|} \int_{\R^n} f(x) \, dx  \\
-&= \frac{1}{|\lambda|}
-\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
-&= 
-\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
-& = S_1
+&\phantom{ =. } \int_{\R^n} f(x) \, dx \\
+&= \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n 
 \end{split}
 $$
+Par [le résultat de la question 1](#cvl-1) et 
+[par linéarité de l'intégrale](#linéarité), on a donc
+$$
+\begin{split}
+& \int_{\R^n} f(x) \, dx  \\
+&= 
+\int_{\R^{n-1}} |\lambda| \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+&= 
+|\lambda|\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n
+\end{split}
+$$
+
+**TODO** justifier la reconstitution.
+
+
 De même,
 $$
 \begin{split}
