@@ -1319,6 +1319,25 @@ $$
 Exercices
 ================================================================================
 
+
+Aire du disque unité {#adu}
+--------------------------------------------------------------------------------
+Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+
+### Question 1 {.question .one #adu-1}
+Montrer que $1_B$ est intégrable.
+
+### Question 2 {.question .two #adu-2}
+Calculer l'aire de $B$ en utilisant le théorème de Fubini puis un changement
+de variable dans $\R$.
+
+### Question 3 {.question .two #adu-3}
+Calculer l'aire de $B$ en utilisant un changement de variables dans $\R^2$.
+
+
+
+
+
 <!--
 Changement de variables linéaire
 --------------------------------------------------------------------------------
@@ -1398,15 +1417,6 @@ Montrer que si $a \neq b$, l'ensemble $K$ est un compact à bord $C^1$.
 
 ![Ensemble délimité par les ovales de Cassini quand $a=b=1$.](images/cassini-ovals-limite.py)
 
-
-
-Aire du disque unité {.question #adu}
---------------------------------------------------------------------------------
-Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
-Calculer l'aire de $B$
-$$
-A := \int_B \, dx
-$$
 
 
 Intégrales de surface {.question #is}
@@ -1685,6 +1695,95 @@ que comme une rotation $R \in \R^{3 \times 3}$ est orthogonale et directe, on a
 $\det R = 1$, ce qui permet de calculer le changement de variables comme précédemment.
 
 
+Aire du disque unité {.answer #answer-adu}
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-adu-1}
+La fonction $1_B$ est intégrable : en effet,
+[l'ensemble $B$ est fermé donc mesurable](#OSM) et la fonction $1_B$ est 
+dominée par la fonction caractéristique du pavé fermé $[-1,1]^2$, 
+qui est intégrable. Par [le critère d'intégrabilité dominée](#CID), $1_B$
+est donc intégrable.
+
+
+### Question 2 {.answer #answer-adu-2}
+Le théorème de Fubini nous fournit
+$$
+\int_B dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
+= 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
+$$
+Comme
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+= \int_{[-1, 1]} \sqrt{1 - x^2} \, dx
+= \int_{\left]-1, 1\right[} \sqrt{1 - x^2} \, dx,
+$$
+on peut donc opérer le changement de variable 
+$$
+\theta \in \left]0, \pi\right[ \mapsto x = -\cos \theta \in \left]-1,1\right[
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+Comme $(-\cos \theta)' = \sin \theta$, on a
+$$
+\int_{0}^{\pi} \sqrt{1-(-\cos^2 \theta)} \sin \theta  \, d\theta = \int_{-1}^1 \sqrt{1 - x^2} \, dx
+$$
+et donc
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+=
+\int_{0}^{\pi} \sin^2 \theta  \, d\theta
+=
+\int_{0}^{\pi} \frac{1 - \cos 2\theta}{2} \, d\theta
+=
+\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4} \right]_0^{\pi}
+=\frac{\pi}{2},
+$$
+et finalement
+$$
+\int_B \, dx = \pi.
+$$
+
+### Question 3 {.answer #answer-adu-3}
+On remarque que l'union $N$ de la frontière $\partial B$ de $B$ et 
+du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
+et donc que
+$$
+\int_B \, dx = \int_{B \setminus N} dx,
+$$
+ce qui nous permet de considérer le changement de variable
+$$
+\phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
+\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in B \setminus N
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+On calcule la matrice jacobienne
+$$
+J_{\phi}(r, \theta) = 
+\left[ 
+\begin{array}{cr}
+\cos \theta & -r \sin \theta \\
+\sin \theta & r \cos \theta
+\end{array}
+\right],
+$$
+dont le déterminant vaut
+$$
+\det J_{\phi}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
+= r.
+$$
+On a donc
+$$
+\int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
+=
+\int_B \, dx,
+$$
+et donc par le théorème de Fubini,
+$$
+\int_B \, dx
+= \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
+= \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
+= \pi.
+$$
 
 <!--
 
@@ -1920,89 +2019,6 @@ Aucun point $(x, y)$ de $\R^2$ n'annule simulanément $g$ et son gradient ;
 l'ensemble $K$ est donc bien un compact à bord $C^1$.
 
 
-Aire du disque unité {.answer #answer-adu}
---------------------------------------------------------------------------------
-
-La fonction $f: x \in \R^2 \mapsto 1_B(x)$ est intégrable: l'ensemble $B$ est
-fermé, donc mesurable, et la fonction $f$ est par exemple dominée par la
-fonction caractéristique du pavé fermé $[-1,1]^2$, qui est intégrable.
-
-Le théorème de Fubini nous fournit donc
-$$
-\int_B dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
-= 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
-$$
-Comme
-$$
-\int_{-1}^1 \sqrt{1 - x^2} \, dx
-= \int_{[-1, 1]} \sqrt{1 - x^2} \, dx
-= \int_{\left]-1, 1\right[} \sqrt{1 - x^2} \, dx
-$$
-On peut donc opérer le changement de variable 
-$$
-\theta \in \left]0, \pi\right[ \mapsto x = -\cos \theta \in \left]-1,1\right[
-$$
-(bijectif, continûment différentiable ainsi que son inverse).
-Comme $(-\cos \theta)' = \sin \theta$, on a
-$$
-\int_{0}^{\pi} \sqrt{1-(-\cos^2 \theta)} \sin \theta  \, d\theta = \int_{-1}^1 \sqrt{1 - x^2} \, dx
-$$
-et donc
-$$
-\int_{-1}^1 \sqrt{1 - x^2} \, dx
-=
-\int_{0}^{\pi} \sin^2 \theta  \, d\theta
-=
-\int_{0}^{\pi} \frac{1 - \cos 2\theta}{2} \, d\theta
-=
-\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4} \right]_0^{\pi}
-=\frac{\pi}{2},
-$$
-et finalement
-$$
-\int_B \, dx = \pi.
-$$
-
-Alternativement, on peut noter que l'union $N$ de $\partial B$ et 
-du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
-et donc que
-$$
-\int_B \, dx = \int_{B \setminus N} dx,
-$$
-ce qui nous permet de considérer le changement de variable
-$$
-\phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
-\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in B \setminus N
-$$
-(bijectif, continûment différentiable ainsi que son inverse).
-On calcule la matrice jacobienne
-$$
-J_{\phi}(r, \theta) = 
-\left[ 
-\begin{array}{cr}
-\cos \theta & -r \sin \theta \\
-\sin \theta & r \cos \theta
-\end{array}
-\right],
-$$
-dont le déterminant vaut
-$$
-\det J_{\phi}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
-= r.
-$$
-On a donc
-$$
-\int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
-=
-\int_B \, dx,
-$$
-et donc par le théorème de Fubini,
-$$
-\int_B \, dx
-= \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
-= \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
-= \pi.
-$$
 
 Intégrales de surface {.answer #answer-is}
 --------------------------------------------------------------------------------
