@@ -535,11 +535,40 @@ $$
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
 
-### Volume et déplacements {.exercise .question .one #vr}
-Montrer que si $A$ est mesurable et de volume fini dans $\R^3$
-l'image de $A$ par une translation ou une rotation centrée sur l'origine 
-est également mesurable et de même volume.
+### Homothétie {.exercise .question .one #h}
+Soit $f:\R^n \to \R$ une fonction intégrable. Montrer que pour tout
+coefficient $\alpha > 0$, l'intégrale
+$$
+\int_{\R^n} f(\alpha x) dx
+$$
+est bien définie et la calculer en fonction de l'intégrale de $f$ sur $\R^n$.
 
+### Volume et translation {.exercise .question .one #vr}
+Montrer que si $A$ est mesurable et de volume fini dans $\R^3$
+l'image de $A$ par une translation est également mesurable et de même volume.
+
+### Coordonnées polaires {.exercise .question .two #cp}
+Soit 
+$$
+C = \{(x, y) \in \R^2 \; | \; y \neq 0 \mbox{ ou } x > 0\}
+\; \mbox{ et } \;
+P = \{(r,\theta) \in \R^2 \; | \; r>0 \mbox{ et } -\pi < \theta < +\pi\}.$$ 
+On note $h$ la fonction de $P$ dans $C$ définie par
+$\phi(r, \theta) = (r \cos \theta, r \sin \theta)$.
+Montrer que pour toute fonction $f: C \to \R$ intégrable, si l'on pose
+$g(r,\theta) = f(x, y)$ où $(x, y) = h(r,\theta)$, alors
+$$
+\int_{C} f(x, y) \, d(x,y) = \int_{P} g(r,\theta) \, r d(r, \theta).
+$$
+
+### Absence du déterminant jacobien {.exercise .question .two #adj}
+Supposons $D_1$, $D_2$, $h$ et $f$ conformes aux hypothèses [du théorème de 
+changement de variables](#theorem-changement-de-variables). On suppose 
+de plus que $f \circ h$ est intégrable sur $D_1$. Exprimer l'intégrale
+$$
+\int_{D_1} f (h(x)) \, dx
+$$
+comme une intégrale sur $D_2$.
 
 <!--
 ### Intégrale de Henstock-Kurzweil {.post .remark}
@@ -1322,17 +1351,17 @@ Exercices
 
 Aire du disque unité {#adu}
 --------------------------------------------------------------------------------
-Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+Soit $D = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
 
 ### Question 1 {.question .one #adu-1}
-Montrer que $1_B$ est intégrable.
+Montrer que $1_D$ est intégrable.
 
 ### Question 2 {.question .two #adu-2}
-Calculer l'aire de $B$ en utilisant le théorème de Fubini puis un changement
+Calculer l'aire de $D$ en utilisant le théorème de Fubini puis un changement
 de variable dans $\R$.
 
 ### Question 3 {.question .two #adu-3}
-Calculer l'aire de $B$ en utilisant un changement de variables dans $\R^2$.
+Calculer l'aire de $D$ en utilisant un changement de variables dans $\R^2$.
 
 
 
@@ -1636,7 +1665,7 @@ Par l'hypothèse de récurrence, $1_{[a_2,b_2] \times \dots \times [a_n,b_n]}$
 est intégrable d'intégrale $(b_2 - a_2) \times \dots \times (b_n - a_n)$,
 donc par [le théorème de Tonelli](#Tonelli), $1_I$ est intégrable et 
 \begin{align*}
-\int 1_I(x) \, dx &= (b_1-a_1) \int 1_{[a_2,b_2] \times \dots \times [a_n,b_n]}(x_2,\dots,x_n) \, dx_2\dots dx_n \\
+\int 1_I(x) \, dx &= (b_1-a_1) \int 1_{[a_2,b_2] \times \dots \times [a_n,b_n]}(x_2,\dots,x_n) \, d(x_2,\dots x_n) \\
 &= (b_1 - a_1) \times \dots \times (b_n - a_n).
 \end{align*}
 
@@ -1674,7 +1703,30 @@ est donc à nouveau intégrable pour presque tout $x \in \R$ et d'intégrale nul
 La fin du raisonnement est identique à celle du cas précédent.
 
 
-### Volume et déplacements {.answer #answer-vr}
+### Homotéthie {.answer #answer-h}
+Si l'on pose $D_1 = \R^n$, $D_2 = \R^n$, l'application $h:D_1 \to D_2$ 
+définie par $h(x) = \alpha x$ est un $C^1$-difféomorphisme.
+De plus, on a 
+$$
+|\det J_{h}(x)| = \left|\det \left[
+  \begin{array}{cccc}
+  \alpha & 0  & \cdots & 0 \\
+  0 & \alpha & \dots & 0 \\
+  \vdots & \vdots & \vdots & \vdots \\
+  0 & 0 & \dots & \alpha
+  \end{array} \right] \right|  = |\alpha^n| = \alpha^n.
+$$
+Par conséquent, le [théorème de 
+changement de variables](#theorem-changement-de-variables) fournit
+$$
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(\alpha x) \alpha^n \, dx,
+$$
+soit 
+$$
+\int_{\R^n} f(\alpha x) \, dx = \frac{1}{\alpha^n} \int_{\R^n} f(y) \, dy.
+$$
+
+### Volume et translation {.answer #answer-vr}
 L'ensemble $A$ mesurable et de volume fini a une fonction caractéristique
 $1_A$ intégrable et
 $$
@@ -1690,26 +1742,76 @@ $$
 $$
 L'ensemble translaté $A + u = h^{-1}(A)$ est donc mesurable, de volume fini égal
 au volume de $A$.
+<!--
 Le cas des rotations est traité de façon similaire. Le point clé est de constater
 que comme une rotation $R \in \R^{3 \times 3}$ est orthogonale et directe, on a 
 $\det R = 1$, ce qui permet de calculer le changement de variables comme précédemment.
+-->
+
+
+### Coordonnées polaires {.answer #answer-cp}
+Les ensembles $P$ et $C$ sont ouverts et la fonction $h$ -- qui permet de
+passer des coordonées polaires aux coordonnées cartésiennes -- est une bijection
+de $P$ dans $C$. Elle est continûment différentiable ;
+sa matrice jacobienne en $(r, \theta)$ vaut
+$$
+J_{h}(r, \theta) = 
+\left[ 
+\begin{array}{cr}
+\cos \theta & -r \sin \theta \\
+\sin \theta & r \cos \theta
+\end{array}
+\right],
+$$
+dont le déterminant vaut
+$$
+\det J_{h}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
+= r > 0.
+$$
+Le jacobien est donc inversible et $h^{-1}$ continûment différentiable par
+le théorème d'inversion locale. On peut donc appliquer [le théorème de 
+changement de variables](#theorem-changement-de-variables) à la fonction
+$f$, ce qui fournit
+\begin{align*}
+\int_C f(x, y) \, d(x, y) &= \int_P f(h(r, \theta)) |\det J_h(r,\theta)| d(r,\theta) \\
+&= \int_P g(r, \theta) \, r d(r,\theta).
+\end{align*}
+
+### Absence du déterminant jacobien {.answer #answer-adj}
+La façon la plus rapide de procéder consiste à considérer que $f \circ h$
+joue le rôle de $f$ dans [le théorème de changement de variables](#theorem-changement-de-variables),
+que $h$ dans notre énoncé désigne $h^{-1}$ dans ce théorème et que les rôles
+de $D_1$ et $D_2$ sont intervertis. Une fois que l'on a permuté ces notations,
+on réalise que l'intégrale que l'on souhaite calculer est le membre de 
+gauche de l'équation du théorème de changement de variables, dont toutes
+les hypothèses sont par ailleurs satisfaites. Par conséquent on a 
+$$
+\int_{D_1} f (h(x)) \, dx = \int_{D_2} (f \circ h)(h^{-1}(y)) |\det J_{h^{-1}}(y)| \, dy.
+$$
+On peut simplifier $(f \circ h)(h^{-1}(y))$ en $f(y)$ et éventuellement exprimer le
+jacobien de $h^{-1}$ en fonction du jacobien de $h$ : $J_{h^{-1}}(y) = [J_{h}(h^{-1}(y))]^{-1}$ ;
+on obtient donc
+$$
+\int_{D_1} f (h(x)) \, dx = \int_{D_2} f(y) \frac{1}{|\det J_{h}(h^{-1}(y))|} \, dy.
+$$
+
 
 
 Aire du disque unité {.answer #answer-adu}
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-adu-1}
-La fonction $1_B$ est intégrable : en effet,
-[l'ensemble $B$ est fermé donc mesurable](#OSM) et la fonction $1_B$ est 
+La fonction $1_D$ est intégrable : en effet,
+[l'ensemble $B$ est fermé donc mesurable](#OSM) et la fonction $1_D$ est 
 dominée par la fonction caractéristique du pavé fermé $[-1,1]^2$, 
-qui est intégrable. Par [le critère d'intégrabilité dominée](#CID), $1_B$
+qui est intégrable. Par [le critère d'intégrabilité dominée](#CID), $1_D$
 est donc intégrable.
 
 
 ### Question 2 {.answer #answer-adu-2}
 Le théorème de Fubini nous fournit
 $$
-\int_B dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
+\int_D dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
 = 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
 $$
 Comme
@@ -1740,20 +1842,20 @@ $$
 $$
 et finalement
 $$
-\int_B \, dx = \pi.
+\int_D \, dx = \pi.
 $$
 
 ### Question 3 {.answer #answer-adu-3}
-On remarque que l'union $N$ de la frontière $\partial B$ de $B$ et 
+On remarque que l'union $N$ de la frontière $\partial D$ de $D$ et 
 du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
 et donc que
 $$
-\int_B \, dx = \int_{B \setminus N} dx,
+\int_D \, dx = \int_{D \setminus N} dx,
 $$
 ce qui nous permet de considérer le changement de variable
 $$
 \phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
-\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in B \setminus N
+\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in D \setminus N
 $$
 (bijectif, continûment différentiable ainsi que son inverse).
 On calcule la matrice jacobienne
@@ -1775,11 +1877,11 @@ On a donc
 $$
 \int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
 =
-\int_B \, dx,
+\int_D \, dx,
 $$
 et donc par le théorème de Fubini,
 $$
-\int_B \, dx
+\int_D \, dx
 = \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
 = \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
 = \pi.
