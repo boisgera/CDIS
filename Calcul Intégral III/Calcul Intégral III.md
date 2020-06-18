@@ -524,7 +524,7 @@ Soient $D_1$ et $D_2$ des ouverts de $\mathbb{R}^n$ et
 $h: D_1 \to D_2$ un $C^1$-difféomorphisme de $D_1$ sur $D_2$ :
 une fonction continûment différentiable et bijective
 dont l'inverse $h^{-1}: D_2 \to D_1$ est également continûment différentiable. 
-La matrice de Jacobi associée à la différentielle de $h$ étant notée $J_h$,
+La matrice jacobienne associée à la différentielle de $h$ étant notée $J_h$,
 la fonction $f: D_2 \to \mathbb{R}$ est intégrable
 si et seulement si la fonction $(f \circ h) |\det J_h| : D_1 \to \mathbb{R}$ 
 est intégrable et dans ce cas,
