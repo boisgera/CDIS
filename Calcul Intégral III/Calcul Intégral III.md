@@ -558,7 +558,7 @@ $\phi(r, \theta) = (r \cos \theta, r \sin \theta)$.
 Montrer que pour toute fonction $f: C \to \R$ intégrable, si l'on pose
 $g(r,\theta) = f(x, y)$ où $(x, y) = h(r,\theta)$, alors
 $$
-\int_{C} f(x, y) \, d(x,y) = \int_{P} g(r,\theta) \, r d(r, \theta).
+\int_{C} f(x, y) \, d(x,y) = \int_{P} g(r,\theta)  r \, d(r, \theta).
 $$
 
 ### Absence du déterminant jacobien {.exercise .question .two #adj}
@@ -1774,7 +1774,7 @@ changement de variables](#theorem-changement-de-variables) à la fonction
 $f$, ce qui fournit
 \begin{align*}
 \int_C f(x, y) \, d(x, y) &= \int_P f(h(r, \theta)) |\det J_h(r,\theta)| d(r,\theta) \\
-&= \int_P g(r, \theta) \, r d(r,\theta).
+&= \int_P g(r, \theta)  r \, d(r,\theta).
 \end{align*}
 
 ### Absence du déterminant jacobien {.answer #answer-adj}
