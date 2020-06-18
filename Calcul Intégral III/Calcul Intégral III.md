@@ -1703,7 +1703,7 @@ est donc à nouveau intégrable pour presque tout $x \in \R$ et d'intégrale nul
 La fin du raisonnement est identique à celle du cas précédent.
 
 
-### Homotéthie {.answer #answer-h}
+### Homothétie {.answer #answer-h}
 Si l'on pose $D_1 = \R^n$, $D_2 = \R^n$, l'application $h:D_1 \to D_2$ 
 définie par $h(x) = \alpha x$ est un $C^1$-difféomorphisme.
 De plus, on a 
