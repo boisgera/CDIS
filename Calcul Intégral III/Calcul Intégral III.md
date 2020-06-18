@@ -1751,7 +1751,7 @@ $\det R = 1$, ce qui permet de calculer le changement de variables comme précé
 
 ### Coordonnées polaires {.answer #answer-cp}
 Les ensembles $P$ et $C$ sont ouverts et la fonction $h$ -- qui permet de
-passer des coordonées polaires aux coordonnées cartésiennes -- est une bijection
+passer des coordonnées polaires aux coordonnées cartésiennes -- est une bijection
 de $P$ dans $C$. Elle est continûment différentiable ;
 sa matrice jacobienne en $(r, \theta)$ vaut
 $$
