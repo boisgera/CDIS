@@ -487,17 +487,12 @@ Réciproquement, si $x \in \R^m \mapsto f(x, y)$ n'est pas intégrable
 presque partout ou que la fonction $g$ n'est pas intégrable, 
 alors $f$ n'est pas intégrable.
 
-### Intégrabilité des pavés fermés bornés {.exercise .two #ipfb}
-Montrer que la fonction caractéristique $1_I$ du  pavé 
-$I = [a_1,b_1] \times \dots \times [a_n,b_n]$ de $\R^n$ est intégrable et
-que 
-$$
-\int 1_I(x) \, dx = (b_1 - a_1) \times \dots \times (b_n - a_n).
-$$
+### Démonstration {.proof}
+Se reporter à @Swa01.
 
-#### Tonelli + Fubini, mode d'emploi {.remark}
+### Fubini + Tonelli, mode d'emploi {.remark}
 Les deux théorèmes sont souvent utilisés en combinaison
-pour montrer l'intégrabilité d'une fonction $f : \R^m \times \R^n \to \R$,
+pour intégrer une fonction $f : \R^m \times \R^n \to \R$,
 de la façon suivante.
 On montre tout d'abord que la fonction $f$ est mesurable. 
 Comme sa valeur absolue $|f|$ est mesurable et positive, 
@@ -508,21 +503,18 @@ d'intégrabilité dominée](#CID), elle est donc intégrable. Le théorème de
 Fubini est donc applicable et on peut évaluer l'intégrale de $f$ par des
 intégrales itérées.
 
-<!-- et 
+### Intégrabilité des pavés fermés bornés {.exercise .two #ipfb}
+Montrer que la fonction caractéristique $1_I$ du  pavé 
+$I = [a_1,b_1] \times \dots \times [a_n,b_n]$ de $\R^n$ est intégrable et
+que 
 $$
-\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dx\right] dy = \int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy.
+\lambda(I) = \int 1_I(x) \, dx = (b_1 - a_1) \times \dots \times (b_n - a_n).
 $$
 
-### {.remark .post} 
-On pourra remarquer que la contribution réelle du théorème de Tonelli est 
-uniquement de démontrer que $f$ est intégrable. 
-En effet, une fois arrivé à cette conclusion, 
-l'égalité entre l'intégrale itérée et l'intégrale dans $\mathbb{R}^{m+n}$ 
-résulte alors directement [du théorème de Fubini](#Fubini)
--->
+### Tout droite du plan est négligeable {.exercise .two .question #dn}
+En utilisant les [théorèmes de Tonelli](#Tonelli) [et Fubini](#Fubini), 
+montrer que toute droite du plan est négligeable.
 
-### Démonstration {.proof}
-Se reporter à @Swa01.
 
 Changement de variables {#changement-de-variables}
 ================================================================================
@@ -540,9 +532,14 @@ $$
 \int_{D_2} f(y) \, dy = \int_{D_1} f(h(x)) |\det J_h(x)| \, dx.
 $$
 
-
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
+
+### Volume et déplacements {.exercise .question .one #vr}
+Montrer que si $A$ est mesurable et de volume fini dans $\R^3$
+l'image de $A$ par une translation ou une rotation centrée sur l'origine 
+est également mesurable et de même volume.
+
 
 <!--
 ### Intégrale de Henstock-Kurzweil {.post .remark}
@@ -1322,7 +1319,7 @@ $$
 Exercices
 ================================================================================
 
-
+<!--
 Changement de variables linéaire
 --------------------------------------------------------------------------------
 
@@ -1369,6 +1366,8 @@ est intégrable et que
 $$
 \int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det A| \, dx.
 $$
+
+-->
 
 Déformations d'un compact à bord régulier {.question #dcbr}
 --------------------------------------------------------------------------------
@@ -1632,6 +1631,63 @@ donc par [le théorème de Tonelli](#Tonelli), $1_I$ est intégrable et
 \end{align*}
 
 
+### Tout droite du plan est négligeable {.answer #answer-dn}
+Deux cas se présentent : soit la droite considérée est de la forme
+$D = \{(x, y) \in \R^2 \; | \; y = a x + b\}$, soit elle est de la forme
+$D = \{(x, y) \in \R^2 \; | \; x = c\}$. Dans les deux cas, [la droite est
+un ensemble fermé de $\R^2$, donc mesurable](#OSM) ;
+par [le critère de l'image réciprique](#CIR), 
+la fonction caractéristique associée $1_D$ est donc mesurable.
+Dans le premier cas considéré, pour tout $x \in \R$, 
+la fonction $y \mapsto 1_D(x, y)$ est nulle, sauf en $y = ax+b$ ; 
+elle est donc nulle presque partout et donc intégrable et d'intégrale nulle.
+On a donc pour tout $x \in \R$,
+$$
+\int 1_D(x, y) \, dy = 0
+$$
+et par conséquent la fonction 
+$$
+x \in \R \mapsto  \int 1_D(x, y) \, dy
+$$ 
+est donc intégrable. [Par le théorème de Tonelli](#Tonelli), la fonction $f$
+est donc intégrable et [par le théorème de Fubini](#Fubini), on a 
+$$
+a(D) = \int_{\R^2} 1_D(x, y) d(x, y) = \int_{\R}\left[\int_{\R} 1_D(x,y) \, dy \right] \, dx = 0.
+$$
+La droite $D$ est donc [négligeable car mesurable et d'aire nulle](#négligeable-longueur-nulle).
+
+Le cas où $D = \{(x, y) \in \R^2 \; | \; x = c\}$ se traite de façon similaire.
+On constate alors pour tout $x \in \R$, à l'exception de $x=c$,
+la fonction $y \mapsto 1_D(x, y)$ est nulle et donc intégrable et 
+d'intégrale nulle et pour $x=c$ elle n'est pas intégrable. Mais cette fonction
+est donc à nouveau intégrable pour presque tout $x \in \R$ et d'intégrale nulle.
+La fin du raisonnement est identique à celle du cas précédent.
+
+
+### Volume et déplacements {.answer #answer-vr}
+L'ensemble $A$ mesurable et de volume fini a une fonction caractéristique
+$1_A$ intégrable et
+$$
+v(A) = \int 1_A(x) \, dx.
+$$
+Soit $h(x) = x - u$ ou $u \in \R^3$. La fonction $h$ est une bijection de 
+$\R^3$ sur lui-même, continûment différentiable ainsi que son inverse,
+$h^{-1}(x) =  x + u$ et $J_h(x) = I$, donc $\det J_h(x) = 1$.
+Par [le théorème de changement de variables](#theorem-changement-de-variables),
+la fonction $1_{h^{-1}(A)} = 1_{A} \circ h$ est donc intégrable sur $\R^3$ et
+$$
+\int 1_{h^{-1}(A)}\, dx = \int_{\R^3} (1_A \circ h) |\det J_h(x)| \, dx = \int_{\R^3} 1_A(x) \, dx = a(A).
+$$
+L'ensemble translaté $A + u = h^{-1}(A)$ est donc mesurable, de volume fini égal
+au volume de $A$.
+Le cas des rotations est traité de façon similaire. Le point clé est de constater
+que comme une rotation $R \in \R^{3 \times 3}$ est orthogonale et directe, on a 
+$\det R = 1$, ce qui permet de calculer le changement de variables comme précédemment.
+
+
+
+<!--
+
 Changement de variables linéaire
 --------------------------------------------------------------------------------
 
@@ -1690,7 +1746,7 @@ $$
 \begin{split}
 &\phantom{ =. } \int_{\R^n} f(x) \, dx \\
 &= \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n 
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n) 
 \end{split}
 $$
 Par [le résultat de la question 1](#cvl-1) et 
@@ -1700,10 +1756,10 @@ $$
 & \int_{\R^n} f(x) \, dx  \\
 &= 
 \int_{\R^{n-1}} |\lambda| \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n)  \\
 &= 
 |\lambda|\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n) 
 \end{split}
 $$
 
@@ -1716,10 +1772,10 @@ $$
 & \phantom{ =. }  \int_{\R^n} f(x) \, dx  \\
 &= 
 \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n)  \\
 &= 
 \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i + \lambda x_j, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n) \\
 & = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx \\
 & = S_2.
 \end{split}
@@ -1762,6 +1818,7 @@ $$
 = \int f(x)  dx.
 $$
 
+-->
 
 
 Déformations d'un compact à bord régulier {.answer #answer-dcbr}
