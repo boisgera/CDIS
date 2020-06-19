@@ -532,6 +532,8 @@ $$
 \int_{D_2} f(y) \, dy = \int_{D_1} f(h(x)) |\det J_h(x)| \, dx.
 $$
 
+![Changement de variables](images/changement-de-variables.svg.pdf)
+
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
 
