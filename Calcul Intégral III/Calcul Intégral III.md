@@ -463,6 +463,9 @@ $$
 \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dy\right] dx.
 $$
 
+![Graphe de la fonction $f: (x, y) \in \R^2 \mapsto \exp(-x^2+y^2)$ et 
+de la fonction partielle $x \in \R \mapsto f(x, y)$ pour $y=-1$.](images/fubini.py)
+
 ### Démonstration {.proof}
 Se reporter à @Swa01.
 
@@ -490,7 +493,7 @@ alors $f$ n'est pas intégrable.
 ### Démonstration {.proof}
 Se reporter à @Swa01.
 
-### Fubini + Tonelli, mode d'emploi {.remark}
+### Fubini-Tonelli, mode d'emploi {.remark}
 Les deux théorèmes sont souvent utilisés en combinaison
 pour intégrer une fonction $f : \R^m \times \R^n \to \R$,
 de la façon suivante.
