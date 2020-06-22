@@ -514,6 +514,8 @@ $$
 = \frac{\pi}{4}.
 $$
 
+**TODO** Conclusion (analyse)
+
 ### {.ante .post .remark}
 On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
 a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
