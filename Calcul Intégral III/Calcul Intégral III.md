@@ -506,7 +506,7 @@ $$
 $$
 En exploitant la relation
 $$
-\frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial y} \left(\frac{x}{x^2+y^2}\right) 
+\frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial y} \left(\frac{y}{x^2+y^2}\right) 
 $$
 on établit de façon similaire que
 $$
