@@ -469,6 +469,31 @@ de la fonction partielle $x \in \R \mapsto f(x, y)$ pour $y=-1$.](images/fubini.
 ### Démonstration {.proof}
 Se reporter à @Swa01.
 
+
+### Contre-exemple {.exercise .question .two #fubini-counter-example}
+Comparer les intégrales itérées
+$$
+\int_0^1 \left[\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx \right] \, dy
+\; \mbox{ et } \;
+\int_0^1 \left[\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dy \right] \, dx.
+$$
+et expliquer le résultat.
+Indication : on remarquera que
+$$
+\frac{x^2 - y^2}{(x^2+y^2)^2} = - \frac{\partial}{\partial x} \left(\frac{x}{x^2+y^2}\right) =
+ -\frac{\partial}{\partial x} \left(\frac{\partial}{\partial y} \arctan \frac{y}{x} \right)
+$$
+
+### Contre-exemple {.answer .two #answer-fubini-counter-example}
+Pour tout $y>0$ (et donc presque tout $y \in [0, 1]$), on a 
+$$
+\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx 
+= 
+\left[- \frac{x}{x^2+y^2} \right]_0^1
+= 
+\frac{1}{1+y^2}.
+$$
+
 ### {.ante .post .remark}
 On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
 a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
