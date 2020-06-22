@@ -480,9 +480,13 @@ $$
 et expliquer le résultat.
 Indication : on remarquera que
 $$
-\frac{x^2 - y^2}{(x^2+y^2)^2} = - \frac{\partial}{\partial x} \left(\frac{x}{x^2+y^2}\right) =
- -\frac{\partial}{\partial x} \left(\frac{\partial}{\partial y} \arctan \frac{y}{x} \right)
+\frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial x} \left(-\frac{x}{x^2+y^2}\right) 
 $$
+<!--
+ =
+-\frac{\partial}{\partial x} \left(\frac{\partial}{\partial y} \arctan \frac{y}{x} \right).
+$$
+-->
 
 ### Contre-exemple {.answer .two #answer-fubini-counter-example}
 Pour tout $y>0$ (et donc presque tout $y \in [0, 1]$), on a 
@@ -491,7 +495,23 @@ $$
 = 
 \left[- \frac{x}{x^2+y^2} \right]_0^1
 = 
-\frac{1}{1+y^2}.
+- \frac{1}{1+y^2},
+$$
+par conséquent
+$$
+\int_0^1 \left[ \int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx \right] \, dy
+= - \int_0^1 \frac{dy}{1+y^2} \\
+= - [\arctan y]_0^1
+= - \frac{\pi}{4}.
+$$
+En exploitant la relation
+$$
+\frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial y} \left(\frac{x}{x^2+y^2}\right) 
+$$
+on établit de façon similaire que
+$$
+\int_0^1 \left[ \int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dy \right] \, dx
+= \frac{\pi}{4}.
 $$
 
 ### {.ante .post .remark}
