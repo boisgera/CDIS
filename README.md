@@ -100,10 +100,6 @@ Exécutez la commande
 
 Les documents sont générés dans le répertoire `output`.
 
---------------------------------------------------------------------------------
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Cette œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
-
 
 :chart_with_upwards_trend: Enquête 2019
 --------------------------------------------------------------------------------
@@ -113,4 +109,10 @@ Résultats des questionnaires d'évaluation de l'enseignement par les étudiants
   - Elément constitutif 1 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv)
 
   - Elément constitutif 2 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv)
+
+
+--------------------------------------------------------------------------------
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Cette œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
+
 
