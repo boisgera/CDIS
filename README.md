@@ -62,18 +62,18 @@ Calcul Différentiel, Intégral et Stochastique
 Session 2019
 --------------------------------------------------------------------------------
 
-### :books: Documents
+#### :books: Documents
 
 <https://github.com/boisgera/CDIS/releases/tag/v1.17>
 
-### Examen
+#### Examen
 
 | Examen écrit  | E-book        | Papier                |
 | ------------- | ------------- | --------------------- |
 | Enoncé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen%20(a4%2C%20recto-verso).pdf) |
 | Corrigé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé%20(a4%2C%20recto-verso).pdf) |
 
-### :chart_with_upwards_trend: Enquête
+#### :chart_with_upwards_trend: Enquête
 
 Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
 
