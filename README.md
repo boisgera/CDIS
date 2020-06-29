@@ -7,8 +7,10 @@ Calcul Différentiel, Intégral et Stochastique
 Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (UE 11).
 
 
-:books: Documents (:construction: travail en cours :construction:)
+:books: Documents 
 --------------------------------------------------------------------------------
+
+:construction: Travail en cours :construction:
 
 | Chapitre      | # | E-book | Papier | Notebook | 
 | ------------- | ------ | ------------ | --------------------- |  :----:  |
