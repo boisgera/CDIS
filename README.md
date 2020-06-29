@@ -44,12 +44,12 @@ Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (U
 
 -->
 
-:calendar: Calendrier 2020
+:calendar: Calendrier 2020-2021
 --------------------------------------------------------------------------------
 
-  - [interface graphique](https://calendar.google.com/calendar/embed?src=o1rahvtc75kj2qcc5tmsrfr6e0%40group.calendar.google.com&ctz=Europe%2FParis)
+  - :calendar: [interface graphique](https://calendar.google.com/calendar/embed?src=o1rahvtc75kj2qcc5tmsrfr6e0%40group.calendar.google.com&ctz=Europe%2FParis)
 
-  - [lien au format iCal](https://calendar.google.com/calendar/ical/o1rahvtc75kj2qcc5tmsrfr6e0%40group.calendar.google.com/public/basic.ics)
+  - :link: [lien au format iCal](https://calendar.google.com/calendar/ical/o1rahvtc75kj2qcc5tmsrfr6e0%40group.calendar.google.com/public/basic.ics)
 
 
 :speech_balloon: Forum
