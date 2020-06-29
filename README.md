@@ -10,7 +10,6 @@ Calcul Différentiel, Intégral et Stochastique
 :books: Documents
 --------------------------------------------------------------------------------
 
-:snail: **Version 2019/2020 :** <https://github.com/boisgera/CDIS/releases/tag/v1.17>
 
 :zap: **Version 2020/2021 (:construction: travail en cours :construction:) :**
 
@@ -33,15 +32,18 @@ Calcul Différentiel, Intégral et Stochastique
 | Probabilités | 5 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V%20(a4%2C%20recto-verso).pdf) |  [:notebook: IPYNB](https://boisgera.github.io/CDIS/Probabilités%20V/Probabilité%20V.ipynb)  |
 <!--| ... | ... | ... |-->
   
+<!--
 
 :construction: **Errata :** [problèmes résolus post-publication](https://github.com/boisgera/CDIS/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+label%3Abug+-label%3Awont-fix+-label%3Abuild) :construction:
 
-| Examen écrit  | PDF (e-book) | PDF (impression) |
-| ------------- | ------------- | --------------------- |
-| Enoncé | [Examen.pdf](https://boisgera.github.io/CDIS/output/Examen.pdf) | [Examen (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Examen%20(a4%2C%20recto-verso).pdf) |
-| Corrigé | [Examen-corrigé.pdf](https://boisgera.github.io/CDIS/output/Examen-corrigé.pdf) | [Examen-corrigé (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Examen-corrigé%20(a4%2C%20recto-verso).pdf) |
+-->
+
+
+<!--
 
 :construction: **Aperçu :** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
+
+-->
 
 :calendar: Calendrier 2020
 --------------------------------------------------------------------------------
@@ -55,6 +57,30 @@ Calcul Différentiel, Intégral et Stochastique
 --------------------------------------------------------------------------------
 
   - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr) (accès limité)
+
+
+Session 2019
+--------------------------------------------------------------------------------
+
+### :books: Documents
+
+<https://github.com/boisgera/CDIS/releases/tag/v1.17>
+
+### Examen
+
+| Examen écrit  | E-book        | Papier                |
+| ------------- | ------------- | --------------------- |
+| Enoncé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen%20(a4%2C%20recto-verso).pdf) |
+| Corrigé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé%20(a4%2C%20recto-verso).pdf) |
+
+### :chart_with_upwards_trend: Enquête
+
+Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
+
+  - Elément constitutif 1 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv)
+
+  - Elément constitutif 2 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv)
+
 
 :pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
@@ -99,16 +125,6 @@ Exécutez la commande
     $ ./build
 
 Les documents sont générés dans le répertoire `output`.
-
-
-:chart_with_upwards_trend: Enquête 2019
---------------------------------------------------------------------------------
-
-Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
-
-  - Elément constitutif 1 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv)
-
-  - Elément constitutif 2 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv)
 
 
 --------------------------------------------------------------------------------
