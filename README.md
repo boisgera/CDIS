@@ -43,14 +43,12 @@ Calcul Différentiel, Intégral et Stochastique
 
 :construction: **Aperçu :** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
 
-:calendar: Calendrier 2019 
+:calendar: Calendrier 2020
 --------------------------------------------------------------------------------
 
-  - [en ligne (Google Calendar)](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
+  - [interface graphique](https://calendar.google.com/calendar/embed?src=o1rahvtc75kj2qcc5tmsrfr6e0%40group.calendar.google.com&ctz=Europe%2FParis)
 
-  - [lien iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics): `https://tinyurl.com/y3fnkz5h`
-
-  - [en version texte](https://boisgera.github.io/CDIS/Calendrier/calendrier.txt)
+  - [lien au format iCal](https://calendar.google.com/calendar/ical/o1rahvtc75kj2qcc5tmsrfr6e0%40group.calendar.google.com/public/basic.ics)
 
 
 :speech_balloon: Forum
