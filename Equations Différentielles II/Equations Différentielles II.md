@@ -135,14 +135,14 @@ où $t_0 < t_1 < \ldots < t_J$ avec $t_J=T$. L'idée est d'approximer les intég
 
 Dans la suite, on note $x^j$ l'approximation au temps $t_j$ de la valeur exacte $x(t_j)$ et $\dt_j = t_{j+1}-t_j$ le $j$ème pas de temps. L'idée est de calculer récursivement
 $$
-x^{j+1} = x^j + \dt_j \Phi_{\dt_j}(t_j,x^j)
+x^{j+1} = x^j + \dt_j \Phi(t_j,x^j,\dt_j)
 $$
-où $\Phi_{\dt_j}(t_j,x^j)$ doit donc approximer 
+où $\Phi(t_j,x^j,\dt_j)$ doit donc approximer 
 $$
 \frac{1}{t_{j+1}-t_j} \int_{t_j}^{t_{j+1}}f(s,x(s)) \ .
 $$
 Les différentes méthodes de quadrature, i.e. d'approximation de l'intégrale, peuvent donc être mises à profit. La difficulté ici est que seule la valeur initiale $f(t_j,x(t_j))$ de $f$ est connue (ou du moins estimée) à l'itération $j$, par $f(t_j,x^j)$. 
-On distingue donc les méthodes *explicites* où $\Phi_{\dt_j}(t_j,x^j)$ est écrite directement explicitement en fonction de la valeur initiale $x^j$, et les méthodes *implicites* où cette expression n'est connue qu'implicitement et des étapes intermédiaires de calcul sont nécessaires. 
+On distingue donc les méthodes *explicites* où $\Phi(t_j,x^j,\dt_j)$ est écrite directement explicitement en fonction de la valeur initiale $x^j$, et les méthodes *implicites* où cette expression n'est connue qu'implicitement et des étapes intermédiaires de calcul sont nécessaires. 
 
 ## Exemples
 
@@ -196,9 +196,9 @@ On peut bien sûr construire des méthodes plus compliquées et plus précises p
 
 ## Définition implicite de $\Phi$ {.section #sec_def_impl}
 
-Dans les schémas implicites, l'application $\Phi_{\dt}$ est définie de manière implicite. Par exemple, pour le schéma d'Euler, on a :
+Dans les schémas implicites, l'application $\Phi$ est définie de manière implicite. Par exemple, pour le schéma d'Euler, on a :
 $$
-\Phi_{\dt_j}(t_j,x^j) = f\Big(t_j + \dt_j, x^j + \dt_j\Phi_{\dt_j}(t_j,x^j) \Big).
+\Phi(t_j,x^j,\dt_j) = f\Big(t_j + \dt_j, x^j + \dt_j\Phi(t_j,x^j,\dt_j) \Big).
 $$
 Il faut donc s'assurer que $\Phi$ est bien définie, c'est-à-dire qu'il existe bien $x^{j+1}$ tel que
 $$
@@ -246,7 +246,7 @@ L'objectif de l'analyse d'erreur *a priori* est de donner une estimation de l'er
 L'erreur de troncature locale à l'itération $j$ est l'erreur résiduelle que l'on obtiendrait si 
 l'on appliquait le schéma numérique à la solution exacte $x(t_j)$. En d'autres termes, c'est l'erreur due à l'approximation de l'intégrale.  Elle est ainsi définie comme
 $$
-\eta^{j+1} := \frac{x(t_{j+1}) - x(t_j) - \dt_j \Phi_{\dt_j}(t_j,x(t_j))}{\dt_j}.
+\eta^{j+1} := \frac{x(t_{j+1}) - x(t_j) - \dt_j \Phi(t_j,x(t_j),\dt_j)}{\dt_j}.
 $$
 
 ### Consistance {.definition #def_consistance}
@@ -256,19 +256,19 @@ On dit qu'une méthode numérique est *consistante* si
 $$
 \lim_{\dt\to 0} \left( \max_{1\le j\le J} \|\eta^{j}\| \right) = 0 \ ,
 $$
-et qu'elle est *consistante d'ordre $p$* s'il existe une constante $c_s$
+et qu'elle est *consistante d'ordre $\geq p$* s'il existe une constante $c_s$
 telle que, pour tout $0\le j\le J-1$, 
 $$
 \|\eta^{j+1}\| \le c_s \, (\dt_j)^{p} \ .
 $$
+Une méthode est donc *consistante d'ordre $p$* si elle est consistante d'ordre $\geq p$, mais pas $\geq p+1$.
 
-### Condition suffisante de consistance {.theorem #theo_CS_consistance}
+### Condition nécessaire et suffisante de consistance {.theorem #theo_CS_consistance}
 
-Si $(\dt,t,x)\mapsto\Phi_{\dt}(t,x)$ est continue et telle que
+Si $\Phi$ est continue, alors le schéma est consistant si et seulement si
 $$
-\Phi_0(t,x) = f(t,x) \qquad \forall (t,x)\in \left[ 0,T \right]\times \R^n
+\Phi(t,x,0) = f(t,x) \qquad \forall (t,x)\in \left[ 0,T \right]\times \R^n \ .
 $$
-alors le schéma est consistant.
 
 ### Démonstration {.proof}
 
@@ -279,11 +279,17 @@ x(t_{j+1}) = x(t_j) + \int_{t_j}^{t_{j+1}} f(x(s),s)ds
 $$
 l'erreur de troncature locale s'écrit
 $$
-\eta^{j+1} = \frac{1}{\dt_j}  \int_{t_j}^{t_{j+1}} \Big( f(s,x(s)) - \Phi_{\dt_j}(t_j,x(t_j)) \Big)ds \ .
+\eta^{j+1} = \frac{1}{\dt_j}  \int_{t_j}^{t_{j+1}} \Big( f(s,x(s)) - \Phi(t_j,x(t_j),\dt_j) \Big)ds \ .
 $$
-On doit montrer que ces erreurs tendent vers 0 lorsque $\dt$ tend vers 0 (uniformément en $j=1,\hdots,N$). Soit $\varepsilon >0$. Par la continuité de $\Phi$ et $f$ et puisque $\Phi_0=f$, il existe $\Delta_1 >0$ tel que si $\dt\leq \Delta_1$, alors 
+Si le schéma est consistant alors cette erreur tend vers 0 lorsque $\dt$ tend vers 0 (pour n'importe quel système et n'importe quelle trajectoire). Or,
 $$
-\|\Phi_{\dt_j}(t,x) -f(t,x) \| \leq \varepsilon \qquad \forall (t,x) \in \left[ 0,T \right]\times C \quad \forall j=1,\hdots,N \ .
+\lim_{\dt \to 0} \frac{1}{\dt_j}  \int_{t_j}^{t_j+\dt} \Big( f(s,x(s)) - \Phi(t_j,x(t_j),\dt_j) \Big)ds = f(t_j,x(t_j)) - \Phi(t_j,x(t_j),0)
+$$
+qui doit donc être nul.
+
+Réciproquement, supposons $\Phi(\cdot,\cdot,0)=f$. On doit montrer que l'erreur de consistance tend vers 0 lorsque $\dt$ tend vers 0 (uniformément en $j=1,\hdots,N$). Soit $\varepsilon >0$. Par la continuité de $\Phi$ et $f$ et puisque $\Phi(\cdot,\cdot,0)=f$, il existe $\Delta_1 >0$ tel que si $\dt\leq \Delta_1$, alors 
+$$
+\|\Phi(t,x,\dt_j) -f(t,x) \| \leq \varepsilon \qquad \forall (t,x) \in \left[ 0,T \right]\times C \quad \forall j=1,\hdots,N \ .
 $$
 Donc 
 $$
@@ -299,12 +305,12 @@ et donc $\|\eta^{j+1}\|\leq 2 \varepsilon$ pour tout $j$. Le schéma est donc bi
 
 Reprenons les exemples donnés plus haut.
 
-- Euler explicite : $\Phi_{\dt_j}(t,x)= f(t,x)$ indépendamment de $\dt_j$ donc la condition est trivialement satisfaite.
+- Euler explicite : $\Phi(t,x,\dt)= f(t,x)$ indépendamment de $\dt$ donc la condition est trivialement satisfaite.
 
 - Méthode de Heun : 
-$\Phi_{\dt_j}(t,x) = \frac{f(t,x) + f(t,x+\dt f(t,x))}{2}$ donne bien $f(t,x)$ si $\dt=0$.
+$\Phi(t,x,\dt) = \frac{f(t,x) + f(t,x+\dt f(t,x))}{2}$ donne bien $f(t,x)$ si $\dt=0$.
 
-- Runge Kutta d'ordre 4 : lorsque $\dt=0$, $F_1=F_2=F_3=F_4=f(t,x)$ donc $\Phi_{\dt_j}(t,x) = \frac{F_1+2F_2+2F_3+F_4}{6}=f(t,x)$.
+- Runge Kutta d'ordre 4 : lorsque $\dt=0$, $F_1=F_2=F_3=F_4=f(t,x)$ donc $\Phi(t,x,0) = \frac{F_1+2F_2+2F_3+F_4}{6}=f(t,x)$.
 
 De même, la consistance des méthodes implicites s'obtiennent en remarquant que $x^{j+1}=x^{j}$ lorsque $\dt=0$.
 
@@ -325,7 +331,7 @@ en utilisant $\dot{x}(t_j)=f(t_j,x(t_j))$. Ceci donne donc
 $$
 \|\eta^{j+1}\| \leq \dt_j  \int_{0}^{1} \ddot{x}(t_j+s\dt_j)  (1-s) ds \leq \frac{\dt_j}{2} \max_{t\in [t_j,t_{j+1}]} \|\ddot{x}(t)\| \leq \frac{\dt_j}{2} \max_{t\in [0,T]} \|\ddot{x}(t)\| \ .
 $$
-Le schéma d'Euler explicite est donc consistant d'ordre 1 avec
+Le schéma d'Euler explicite est donc consistant d'ordre $\geq 1$ avec
 $$
 c_s= \frac{\max_{t\in [0,T]} \|\ddot{x}(t)\|}{2} \ .
 $$
@@ -334,7 +340,56 @@ Notons qu'en utilisant $\dot{x}(t) = f(t,x(t))$,
 $$
 \ddot{x}(t) = \partial_t f(t,x(t)) + \partial_x f(t,x(t)) \cdot f(t,x(t)),
 $$
-et on peut exprimer $c_s$ en fonction de bornes sur $x$ et sur les dérivées de $f$.
+et on peut exprimer $c_s$ en fonction de bornes sur $x$ et sur les dérivées de $f$. Plus généralement, en dérivant successivement lorsque $f$ est $C^k$, notons $f^{[k]} : \R\times \R^n \to \R^n$ la fonction dépendant des dérivées successives de $f$ telle que
+$$
+x^{(k+1)}(t) = f^{[k]}(t,x(t)) \ .
+$$
+On a alors le théorème suivant, généralisant les calculs précédents.
+
+### Condition nécessaire et suffisante de consistance d'ordre $\geq p$ {.theorem #theo_CS_consistance_ordre_p}
+
+Si $\Phi$ et $f$ sont $C^p$ alors le schéma est consistant d'ordre $\geq p$ si et seulement si
+$$
+\frac{\partial^k \Phi}{\partial \dt^k}(t,x,0) = \frac{1}{k+1}  f^{[k]}(t,x) \qquad \forall 0\leq k\leq p-1 \ , \quad \forall (t,x)\in \left[ 0,T \right]\times \R^n \ .
+$$
+
+
+### Démonstration {.proof}
+
+L'erreur de troncature s'écrit
+$$
+\eta^{j+1} = \frac{x(t_j + \dt_j) - \Big( x(t_j) + \dt_j \, \Phi(t_j,x(t_j),\dt_j) \Big)}{\dt_j}.
+$$
+Or, si $f$ est $C^p$, alors $x$ est $C^{p+1}$ et par application la formule de Taylor avec reste intégral, on a 
+\begin{align*}
+x(t_j + \dt_j) &= x(t_j) + \sum_{k=1}^p \frac{\dt_j^k}{k!}  x^{(k)} (t_j) +  \frac{\dt_j^{p+1}}{p!}\int_{0}^{1} x^{(p+1)}(t_j+s\dt_j)  (1-s)^p ds \\
+&= x(t_j) + \sum_{k=0}^{p-1} \frac{\dt_j^{k+1}}{(k+1)!}  f^{[k]}(t_j,x(t_j)) +  \frac{\dt_j^{p+1}}{p!}\int_{0}^{1} x^{(p+1)}(t_j+s\dt_j)  (1-s)^p ds
+\end{align*}
+Par ailleurs, puisque $\Phi$ est $C^p$,
+$$
+\Phi(t,x,\dt) = \sum_{k=0}^{p-1} \frac{\dt^{k}}{k!}  \frac{\partial^k \Phi}{\partial \dt^k}(t,x,0) +  \frac{\dt^{p}}{(p-1)!}\int_{0}^{1} \frac{\partial^{p} \Phi}{\partial \dt^p}(t,x,t_j+s\dt_j)  (1-s)^{p-1} ds
+$$
+Il s'ensuit que
+$$
+\eta^{j+1} = \sum_{k=0}^{p-1} \frac{\dt_j^k}{k!} \left[ \frac{1}{k+1}  f^{[k]}(t_j,x(t_j)) - \frac{\partial^k \Phi}{\partial \dt^k}(t_j,x(t_j),0)\right] + \dt_j^p R_j
+$$
+où $R_j$ est borné (uniformément en $\dt_j$) par continuité de  $\frac{\partial^{p} \Phi}{\partial \dt^p}$ et $x^{(p+1)}$.
+
+Maintenant, si le schéma est d'ordre $\geq p$, alors $\frac{\eta^{j+1}}{\dt_j^p}$ doit rester borné lorsque $\dt_j$ tend vers 0 et on obtient bien la condition du théorème. Réciproquement,  si la condition du théorème est vérifiée, on obtient directement que $\eta^{j+1}$ est borné en $\dt_j^p$.
+
+###  Ordre de consistance de schémas {.example #ex_consistance_Euler} 
+
+On a vu que si $f$ est $C^1$, le schéma d'Euler explicite est consistant d'ordre $\geq 1$. On peut le retrouver ici en appliquant le critère précédent pour $p=1$ puisque $\Phi(\cdot,\cdot,0)=f$. Ensuite, si $f$ est $C^2$, on constate que 
+$$
+\frac{\partial\Phi}{\partial \dt}(t,x,0) = 0 \neq f^{[1]}(t,x) =\partial_t f(t,x) + \partial_x f(t,x) \cdot f(t,x)
+$$
+donc le schéma d'Euler explicite est consistant d'ordre exactement $1$. 
+
+Par contre, toujours si $f$ est $C^2$, on constate que l'on a bien pour le schéma de Heun
+$$
+\frac{\partial\Phi}{\partial \dt}(t,x,0) =  f^{[1]}(t,x) =\partial_t f(t,x) + \partial_x f(t,x) \cdot f(t,x)
+$$
+donc ce schéma est d'ordre $\geq 2$. On peut vérifier que si $f$ est $C^3$, le critère n'est pas vérifié à l'ordre supérieur donc il est consistant d'ordre égal à 2.
 
 ## Stabilité 
 
@@ -350,8 +405,8 @@ telle que, pour toutes suites $x = \{ x^j \}_{1 \leq j \leq J}$ et $z = \{ z^j \
 vérifiant
 $$
 \left\{ \begin{aligned}
-x^{j+1} & = x^j + \dt_j \Phi_{\dt_j}(t_j,x^j), \\
-z^{j+1} & = z^j + \dt_j \Phi_{\dt_j}(t_j,z^j) + \delta^{j+1},
+x^{j+1} & = x^j + \dt_j \Phi(t_j,x^j,\dt_j), \\
+z^{j+1} & = z^j + \dt_j \Phi(t_j,z^j,\dt_j) + \delta^{j+1},
 \end{aligned} \right.
 $$
 on ait 
@@ -361,9 +416,9 @@ $$
 
 ### Condition suffisante de stabilité {.theorem #theo_CS_stab}
 
-Si les $\Phi_{\dt_j}$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$, 
+Si $\Phi$ sont Lipschitziennes en $x$, c'est-à-dire il existe $L>0$ tel que pour tout $0\leq j\leq J$, 
 $$
-\|\Phi_{\dt_j}(t_j,x_a)-\Phi_{\dt_j}(t_j,x_b)\|\leq L \|x_a-x_b\| \qquad \forall (x_a,x_b)\in \R^n \times \R^n
+\|\Phi(t_j,x_a,\dt_j)-\Phi(t_j,x_b,\dt_j)\|\leq L \|x_a-x_b\| \qquad \forall (x_a,x_b)\in \R^n \times \R^n
 $$
 alors le schéma est stable avec $S(T)=e^{L T}$.
 
@@ -409,7 +464,7 @@ Une méthode stable et consistante (à l'ordre $p$) est convergente (à l'ordre 
 
 Notons $z^j=x(t_j)$. On remarque que 
 $$
-z^{j+1}  = z^j + \dt_j \Phi_{\dt_j}(t_j,z^j) + \dt_j\, \eta^{j+1},
+z^{j+1}  = z^j + \dt_j \Phi(t_j,z^j,\dt_j) + \dt_j\, \eta^{j+1},
 $$
 où $\eta$ est l'erreur de consistance. D'après la propriété de stabilité, on a donc
 $$
@@ -423,7 +478,7 @@ $$
 
 ### Condition suffisante de convergence {.theorem #theo_CS_conv}
 
-L'inconvénient du théorème de Lax est qu'il faut prouver la stabilité pour obtenir la convergence. Or la seule condition suffisante dont nous disposions à cet effet, est le caractère globalement Lipschitzien de $x\mapsto \Phi_{\dt}(t,x)$. Mais il s'agit d'une condition très forte.  En fait, il est possible de prouver la convergence sous la condition plus faible que $x\mapsto \Phi_{\dt}(t,x)$ est "localement Lipschitzienne" : 
+L'inconvénient du théorème de Lax est qu'il faut prouver la stabilité pour obtenir la convergence. Or la seule condition suffisante dont nous disposions à cet effet, est le caractère globalement Lipschitzien de $x\mapsto \Phi(t,x,\dt)$. Mais il s'agit d'une condition très forte.  En fait, il est possible de prouver la convergence sous la condition plus faible que $x\mapsto \Phi(t,x,\dt)$ est "localement Lipschitzienne" : 
 
 Si 
 
@@ -431,28 +486,28 @@ Si
 
 2. pour tout boule fermée $B$ de $\R^n$, il existe $L>0$, $\dt_m>0$ tels que pour tout $t\in \left[ 0,T \right]$ et pour tout $\dt \in \left[ 0, \dt_m \right]$,
 $$
-\|\Phi_{\dt_j}(t_j,x_a)-\Phi_{\dt_j}(t_j,x_b)\|\leq L \|x_a-x_b\| \qquad \forall (x_a,x_b)\in B\times B 
+\|\Phi(t_j,x_a,\dt_j)-\Phi(t_j,x_b,\dt_j)\|\leq L \|x_a-x_b\| \qquad \forall (x_a,x_b)\in B\times B 
 $$
 
 Alors il existe un pas de temps maximal $\dt_{\max}>0$ tel que le schéma est convergent d'ordre $p$.
 
-L'hypothèse 2. est en particulier vérifiée si $x\mapsto \Phi_{\dt}(t,x)$ est $C^1$ d'après une version un peu plus générale du théorème des accroissement finis.
+L'hypothèse 2. est en particulier vérifiée si $x\mapsto \Phi(t,x,\dt)$ est $C^1$ d'après une version un peu plus générale du théorème des accroissement finis.
 
 ### Convergence du schéma d'Euler explicite {.example #ex_conv_Euler}
 
-On a déjà montré que le schéma d'Euler explicite est consistant d'ordre 1. Par ailleurs, si $f$ est $C^1$ par rapport à $x$, alors $x\mapsto \Phi_{\dt}(t,x) = f(t,x)$ est $C^1$. Donc d'après le théorème précédent, le schéma est convergent d'ordre 1.
+On a déjà montré que le schéma d'Euler explicite est consistant d'ordre 1. Par ailleurs, si $f$ est $C^1$ par rapport à $x$, alors $x\mapsto \Phi(t,x) = f(t,x,\dt)$ est $C^1$. Donc d'après le théorème précédent, le schéma est convergent d'ordre 1.
 
 ## Erreurs d'arrondi et pas optimal
 
 A chaque itération, lorsque la machine calcule $x^{j+1}$, elle commet des erreurs d'arrondi de l'ordre de la précision machine. La solution obtenue est donc donnée par
 $$
-\hat{x}^{j+1} = \hat{x}^j + \dt_j \left( \Phi_{\dt_j}(t_j,\hat{x}^j) + \rho^{j+1} \right)+ \varepsilon^{j+1}
+\hat{x}^{j+1} = \hat{x}^j + \dt_j \left( \Phi(t_j,\hat{x}^j,\dt_j) + \rho^{j+1} \right)+ \varepsilon^{j+1}
 $$
 au lieu de 
 $$
-x^{j+1} = x^j + \dt_j \Phi_{\dt_j}(t_j,x^j) \ ,
+x^{j+1} = x^j + \dt_j \Phi(t_j,x^j,\dt_j) \ ,
 $$
-où $\rho$ modélise l'erreur commise sur le calcul de $\Phi_{\dt_j}$ et $\epsilon$ l'erreur sur l'addition finale.
+où $\rho$ modélise l'erreur commise sur le calcul de $\Phi$ et $\epsilon$ l'erreur sur l'addition finale.
 La stabilité nous donne alors l'écart 
 $$
 \max_{0\leq j \leq J} \|x^j-\hat{x}^j\| \leq S(T) \sum_{j=1}^J \dt_{j-1} \|\rho^{j}\| + \|\varepsilon^{j}\| \ .
@@ -520,7 +575,7 @@ $$
 e^{j+1} = \tilde{x}(t_{j+1}) -x^{j+1} = \left(x^j + \int_{t_j}^{t_{j+1}} f(s,\tilde{x}(s))ds\right)
 $$
 où $\tilde{x}$ est la solution de $\dot{x}=f(t,x)$ qui serait initialisée à $x^j$ au temps $t_j$.
-<!--= \int_{t_j}^{t_{j+1}} f(s,x(s))ds - \dt_j \Phi_{\dt_j}(t_j,x^j) -->
+<!--= \int_{t_j}^{t_{j+1}} f(s,x(s))ds - \dt_j \Phi(t_j,x^j,\dt_j) -->
 Notons que si on avait $x^j=x(t_j)$, on aurait exactement $e^{j+1}=\dt_j \eta^{j+1}$, où $\eta^{j+1}$ est l'erreur de consistance.
 <!-- Que ce soit après une étude préalable de stabilité ou non, il est nécessaire d'assurer à chaque itération une erreur locale $\dt_j \eta^{j+1}$ suffisamment faible, où $\eta$ est l'erreur de consistance. -->
 On se donne donc une tolérance d'erreur locale 
@@ -573,19 +628,22 @@ Exercices
 
 ## Consistance et ordre de schémas {.exo #exo_consist}
 
-Supposons $f$ de classe $C^1$. Montrer que :
+Supposons $f$ de classe $C^2$. Montrer que :
 
 ### Question 1 {.question #consist-1}
-le schéma de Heun est consistant d'ordre 2.
+le schéma de Heun est consistant d'ordre $\geq 2$ et égal à 2 si $f$ est $C^3$.
 
 ### Question 2 {.question #consist-2}
-le schéma d'Euler implicite est consistant d'ordre 1 
+le schéma d'Euler implicite est consistant d'ordre $\geq 1$ 
 
 ### Question 3 {.question #consist-3}
-la méthode des trapèzes est consistante d'ordre 2.
+la méthode des trapèzes est consistante d'ordre $\geq 2$.
 
 ### Question 4 {.question #consist-4}
-le schéma du point milieu est consistant d'ordre 2.
+le schéma du point milieu est consistant d'ordre $\geq 2$.
+
+### Question 5 {.question #consist-5}
+le schéma de Runge-Kutta d'ordre 4 est bien consistant d'ordre $4$ si $f$ est $C^5$.
 
 ### 
 On supposera le pas suffisamment petit pour que les schémas implicites soient définis.
@@ -661,12 +719,16 @@ Corrections
 
 ## Consistance et ordre de schémas {.correc #correc_consist}
 
-La dérivée seconde (en temps) des solutions s'écrit
+Vu que $f$ est $C^2$, la dérivée seconde (en temps) des solutions s'écrit
 \begin{align*}
 \ddot{x}(t) &= \frac{d}{dt}\Big( f(t,x(t)) \Big) = \partial_t f(t,x(t))+ \partial_x f(t,x(t)) \dot{x}(t)\\ 
 &= \partial_t f(t,x(t))+ \partial_x f(t,x(t)) f(t,x(t)).
 \end{align*}
-Ainsi, la formule de Taylor le long des solutions donne
+On a donc
+$$
+f^{[1]}(t,x) = \partial_t f(t,x)+ \partial_x f(t,x) f(t,x)
+$$
+et la formule de Taylor le long des solutions donne
 \begin{equation}
 \label{eq:DL_sol_exacte}
 \begin{aligned}
@@ -674,10 +736,15 @@ x(t_{j+1}) = x(t_j) & + \dt f(t_j,x(t_j)) \\
 & + \frac{\dt^2}{2} \Big( \partial_t f(t_j,x(t_j)) + \partial_x f(t_j,x(t_j)) f(t_j,x(t_j)) \Big) + \mathrm{O}(\dt^3).
 \end{aligned}
 \end{equation}
-Pour les calculs de consistance, on compare \eqref{eq:DL_sol_exacte} aux développements en puissances de $\dt$ de la solution numérique $x^{j+1}$, partant de $x(t_j)$.
+
+Pour les calculs de consistance, deux options possibles:
+
+- soit on compare à la main \eqref{eq:DL_sol_exacte} aux développements en puissances de $\dt$ de la solution numérique $x^{j+1}$, partant de $x(t_j)$.
+
+- soit on utilise la [condition nécessaire et suffisante de consistance](#theo_CS_consistance_ordre_p).
 
 ### Question 1 {.answer #answer-consist-1}
-Pour la méthode de Heun, 
+A la main, pour la méthode de Heun, 
 $$
 \eta^{j+1} = \frac{1}{\dt}\left( x(t_{j+1}) - x(t_j) - \frac{\dt}{2}\left[ f(t_j,x(t_j)) + f\Big(t_{j+1},x(t_j)+\dt f(t_j,x(t_j)) \Big) \right]\right). 
 $$
@@ -689,7 +756,13 @@ f\Big(t_{j+1},&x(t_j)+\dt f(t_j,x(t_j)) \Big)\\
 & = f(t_j,x(t_j)) + \dt \Big( \partial_t f(t_j,x(t_j)) + \partial_x f(t_j,x(t_j)) f(t_j,x(t_j)) \Big) + \mathrm{O}(\dt^2).
 \end{aligned}
 $$
-On en déduit que $\eta^{j+1} = \mathrm{O}(\dt^2)$ en utilisant \eqref{eq:DL_sol_exacte}.
+On en déduit que $\eta^{j+1} = \mathrm{O}(\dt^2)$ en utilisant \eqref{eq:DL_sol_exacte}. Donc on a une consistance d'ordre $\geq 2$.
+
+Sinon il suffit de constater que 
+$$
+\Phi(t,x,0) = f(t,x) \quad ,\quad \frac{\partial \Phi}{\partial \dt}(t,x,0) = \frac{1}{2} f^{[1]}(t,x)   \ .
+$$
+Par contre, si $f$ est $C^3$, $\frac{\partial^2 \Phi}{\partial \dt^2}(t,x,0) \neq \frac{1}{3} f^{[2]}(t,x)$ donc le schéma n'est pas d'ordre 3 et donc il est d'ordre égal exactement à 2.
 
 ### Question 2 {.answer #answer-consist-2}
 Pour le schéma d'Euler implicite
@@ -798,35 +871,38 @@ x^{j+1} = x(t_j) + \dt f(t_j,x(t_j) + \frac{\dt^2}{2} (\partial_t f(t_j,x(t_j)) 
 $$
 On en déduit donc $\eta^{j+1}=\mathrm{O}(\dt^2)$.
 
+### Question 5 {.answer #answer-consist-5}
+On vérifie que le critère est vérifié pour $0\leq k \leq 3$ mais pas pour $k=4$ !
+
 ## Convergence de schémas {.answer #answer-conv}
 
-Tout d'abord, dans l'exercice précédent, nous avons montré que les schémas de Heun et d'Euler implicite étaient consistants d'ordre 2 et 1 respectivement. Il ne nous reste donc plus qu'à montrer que $\Phi_\dt$ est localement lipschitzienne (ou $C^1$) par rapport à $x$ pour $\dt$ suffisamment petit, pour en déduire la convergence à l'ordre 2 et 1 respectivement.
+Tout d'abord, dans l'exercice précédent, nous avons montré que les schémas de Heun et d'Euler implicite étaient consistants d'ordre 2 et 1 respectivement. Il ne nous reste donc plus qu'à montrer que $\Phi$ est localement lipschitzienne (ou $C^1$) par rapport à $x$ pour $\dt$ suffisamment petit, pour en déduire la convergence à l'ordre 2 et 1 respectivement.
 
 Pour le schéma de Heun, 
 $$
-\Phi_\dt(t,x) = \frac{1}{2}\Big(f(t,x) + f\big(t+\dt,x+\dt f(t,x)\big)\Big)
+\Phi(t,x,\dt) = \frac{1}{2}\Big(f(t,x) + f\big(t+\dt,x+\dt f(t,x)\big)\Big)
 $$
-donc $\Phi_\dt$ est $C^1$ par rapport à $x$ si $f$ l'est.
+donc $\Phi$ est $C^1$ par rapport à $x$ si $f$ l'est.
 
-Prenons maintenant le schéma d'Euler implicite. Pour $\dt\leq \dt_m$, $\Phi_\dt$ est définie par
+Prenons maintenant le schéma d'Euler implicite. Pour $\dt\leq \dt_m$, $\Phi$ est définie par
 $$
-\Phi_{\dt}(t,x) = f\Big(t+ \dt, x + \dt\Phi_{\dt}(t,x) \Big).
+\Phi(t,x,\dt) = f\Big(t+ \dt, x + \dt\Phi(t,x,\dt) \Big).
 $$
-Soit $B$ un compact de $\R^n$. Soit $B'$ un compact tel que $x + \dt\Phi_{\dt}(t,x) \in B'$ pour tout $x\in B$, tout  $t\in [ 0,T ]$ et tout $\dt\in [ 0,\dt_m ]$. Puisque $f$ est continue, et $C^1$ par rapport à $x$, il existe $L_f>0$ tel que 
+Soit $B$ un compact de $\R^n$. Soit $B'$ un compact tel que $x + \dt\Phi(t,x,\dt) \in B'$ pour tout $x\in B$, tout  $t\in [ 0,T ]$ et tout $\dt\in [ 0,\dt_m ]$. Puisque $f$ est continue, et $C^1$ par rapport à $x$, il existe $L_f>0$ tel que 
 $$
 \|f(t,x_a) - f(t,x_b) \| \leq L_f \|x_a-x_b\| \qquad \forall (x_a,x_b,t)\in B'\times B' \times [ 0,T+\dt_m ] \ . 
 $$
 Ceci est vrai par le théorème des accroissements finis appliqué à $x\mapsto f(t,x)$ et pour $t$ dans un compact.
 Prenons maintenant $(x_a,x_b)\in B\times B$, $t\in [ 0,T ]$ et $\dt\in [ 0,\dt_m ]$, alors
 \begin{align*}
-\|\Phi_{\dt}(t,x_a)-\Phi_{\dt}(t,x_b) \| &= \| f\Big(t+ \dt, x_a + \dt\Phi_{\dt}(t,x_a) \Big)-f\Big(t+ \dt, x_b + \dt\Phi_{\dt}(t,x_b) \Big) \|\\
-&\leq L_f \left( \|x_a-x_b \| + \dt\|\Phi_{\dt}(t,x_a)-\Phi_{\dt}(t,x_b) \| \right)
+\|\Phi(t,x_a,\dt)-\Phi(t,x_b,\dt) \| &= \| f\Big(t+ \dt, x_a + \dt\Phi(t,x_a,\dt) \Big)-f\Big(t+ \dt, x_b + \dt\Phi(t,x_b,\dt) \Big) \|\\
+&\leq L_f \left( \|x_a-x_b \| + \dt\|\Phi(t,x_a,\dt)-\Phi(t,x_b\dt) \| \right)
 \end{align*}
 soit
 $$
-\|\Phi_{\dt}(t,x_a)-\Phi_{\dt}(t,x_b) \| \leq \frac{L_f}{1-L_f \dt} \|x_a-x_b \|
+\|\Phi(t,x_a,\dt)-\Phi(t,x_b,\dt) \| \leq \frac{L_f}{1-L_f \dt} \|x_a-x_b \|
 $$
-si $\dt < 1/L_f$. Donc $\Phi_{\dt}$ est bien localement lipschitzienne par rapport à $x$.
+si $\dt < 1/L_f$. Donc $\Phi$ est bien localement lipschitzienne par rapport à $x$.
 
 
 ## Explicite ou implicite ?

@@ -1022,7 +1022,7 @@ pour tout $t^+\geq t_0$. Ceci ne contredit pas le théorème de Cauchy Lispchitz
 
 ### Question 3 {.answer #answer-tor-3} 
 
-La multiplicité des solutions vient du fait  que lorsqu'on voit le réservoir vide à $t_0$ on ne sait pas depuis quand il est vide.
+La multiplicité des solutions peut être expliquée par le fait  que lorsqu'on voit le réservoir vide à $t_0$ on ne sait pas depuis quand il est vide.
 
 ### Question 4 {.answer #answer-tor-4}
 
@@ -1275,7 +1275,16 @@ qui a pour valeurs propres $1\pm i$. La partie réelle étant positive, le point
 Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées. Or, vu que $f$ est définie sur $\R^n$, on sait du Théorème des bouts que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq 0$ serait qu'elle explose en temps fini. C'est impossible ici.
 
 ### Question 3 {.answer #answer-cycle-lim-3} 
-Supposons que $x_0=x(0)$ vérifie $\|x(0)\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps rétrograde $-t_1$ vaut $x_0$. Mais il existe une autre solution qui reste sur le cercle en temps rétrograde, ce qui est impossible par le théorème de Cauchy Lipschitz (car $f$ est $C^1$)
+Supposons que $x_0:=x(0)$ vérifie $\|x_0_\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps rétrograde $0$ vaut $x_0$. Mais il existe une autre solution 
+$$
+\left(
+\begin{matrix}
+\cos(t-t_1) & \sin(t-t_1) \\
+-\sin(t-t_1) & \cos(t-t_1)
+\end{matrix}
+\right) x^*
+$$
+qui reste sur le cercle en tout temps valant aussi $x^*$ à $t=t_1$, ce qui est impossible par le théorème de Cauchy Lipschitz (car $f$ est $C^1$)
 
 ### Question 4 {.answer #answer-cycle-lim-4}
 Si $V(x(0))=\|x(0)\|^2=1$, alors $V$ est constant donc les trajectoires initialisées sur le cercle de rayon 1 y restent. Sur le cercle, la dynamique suit celle d'un oscillateur
