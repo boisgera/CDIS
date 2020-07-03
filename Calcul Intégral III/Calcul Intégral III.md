@@ -37,6 +37,35 @@ d'exercices.
 
 #### Intégrale multiple
 
+  - \one savoir calculer une intégrale dans $\R^n$ 
+         au moyen $n$ intégrales dans $\R$,
+
+  - \one connaître les variantes de cette technique (ordre et nombre des variables),
+
+  - \one connaître l'hypothèse d'intégrabilité validant ce calcul (Fubini),
+    
+**TODO ** Transférer le point suivant dans la section précédente.
+
+  - savoir montrer cette intégrabilité en combinant quand c'est possible
+
+    - \one une fonction intégrable connue (comme la fonction caractéristique
+      d'un pavé fermé borné),
+
+      **TODO : ajouter Gaussienne dans les exos courts ? (Fubini-Tonelli et changement
+      de variables)**
+
+    - \two le critère d'intégrabilité dominée,
+
+    - \three les caractérisations des fonctions mesurables,
+
+
+  - dans le cas contraire :
+
+    - \two savoir exploiter le théorème de Tonelli (fonctions positives),
+
+    - \three savoir combiner les théorèmes de Tonelli et Fubini.
+
+
 #### Changement de variables
 
 Intégrale de fonctions de plusieurs variables
@@ -563,19 +592,6 @@ T = \{(x, y) \in \R^2 \; | \; x \geq 0, \, y \geq 0 \mbox{ et } x + y \leq  1\}
 $$
 est d'aire finie, c'est-à-dire que $1_T$ est intégrable.
 
-### Triangle d'aire finie {.answer #answer-triangle2}
-La fonction $1_T : \R^2 \to \R$ est positive et mesurable, car l'ensemble
-$T$ est fermé donc mesurable. Par conséquent on peut essayer d'appliquer [le
-théorème de Tonelli](#Tonelli) qui donnerait la conclusion voulue. 
-Les calculs à effectuer pour vérifier que ses hypothèses
-sont vérifiées sont exactement les mêmes que ceux nécessaires au calcul de 
-l'aire dans l'exercice ["Calcul de l'aire d'un triangle"](#triangle2) :
-ils montrent que pour tout $y$, $x \mapsto 1_T(x, y)$ est intégrable,
-puis que 
-$$
-y \mapsto \int 1_T(x, y) \, dy
-$$
-est intégrable, ce qui nous permet de conclure.
 
 ### Intégrabilité des pavés fermés bornés {.exercise .question .two #ipfb}
 Montrer que la fonction caractéristique $1_I$ du  pavé 
@@ -1771,6 +1787,21 @@ $$
 a(T) = \int_0^1\left[ \int_0^{1-y} dx \right] \, dy
 =\int_0^1 (1 - y) \, dy= \left[y - \frac{y^2}{2} \right]_0^1 = \frac{1}{2}.
 $$
+
+### Triangle d'aire finie {.answer #answer-triangle2}
+La fonction $1_T : \R^2 \to \R$ est positive et mesurable, car l'ensemble
+$T$ est fermé donc mesurable. Par conséquent on peut essayer d'appliquer [le
+théorème de Tonelli](#Tonelli) qui donnerait la conclusion voulue. 
+Les calculs à effectuer pour vérifier que ses hypothèses
+sont vérifiées sont exactement les mêmes que ceux nécessaires au calcul de 
+l'aire dans l'exercice ["Calcul de l'aire d'un triangle"](#triangle2) :
+ils montrent que pour tout $y$, $x \mapsto 1_T(x, y)$ est intégrable,
+puis que 
+$$
+y \mapsto \int 1_T(x, y) \, dy
+$$
+est intégrable, ce qui nous permet de conclure.
+
 
 ### Intégrabilité des pavés fermés bornés {.answer #answer-ipfb}
 On procède par récurrence sur la dimension $n$ de l'espace.
