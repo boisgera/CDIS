@@ -1275,7 +1275,7 @@ qui a pour valeurs propres $1\pm i$. La partie réelle étant positive, le point
 Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées. Or, vu que $f$ est définie sur $\R^n$, on sait du Théorème des bouts que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq 0$ serait qu'elle explose en temps fini. C'est impossible ici.
 
 ### Question 3 {.answer #answer-cycle-lim-3} 
-Supposons que $x_0:=x(0)$ vérifie $\|x_0_\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps rétrograde $0$ vaut $x_0$. Mais il existe une autre solution 
+Supposons que $x_0:=x(0)$ vérifie $\|x_0\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps rétrograde $0$ vaut $x_0$. Mais il existe une autre solution 
 $$
 \left(
 \begin{matrix}
