@@ -565,8 +565,9 @@ est d'aire finie, c'est-à-dire que $1_T$ est intégrable.
 
 ### Triangle d'aire finie {.answer #answer-triangle2}
 La fonction $1_T : \R^2 \to \R$ est positive et mesurable, car l'ensemble
-$T$ est fermé donc mesurable. Par conséquent on peut appliquer le
-théorème de Tonelli. Les calculs à effectuer pour vérifier que ses hypothèses
+$T$ est fermé donc mesurable. Par conséquent on peut essayer d'appliquer [le
+théorème de Tonelli](#Tonelli) qui donnerait la conclusion voulue. 
+Les calculs à effectuer pour vérifier que ses hypothèses
 sont vérifiées sont exactement les mêmes que ceux nécessaires au calcul de 
 l'aire dans l'exercice ["Calcul de l'aire d'un triangle"](#triangle2) :
 ils montrent que pour tout $y$, $x \mapsto 1_T(x, y)$ est intégrable,
