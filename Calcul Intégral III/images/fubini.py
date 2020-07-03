@@ -71,10 +71,10 @@ def main():
     #     y = v * ones_like(x)
     #     ax.plot(x, y, zs=f(x, y), color="#868e96", lw=1.0, zorder=100)
         #ax.text(-0.5, -1, f(0, -1), r"$z = f(x, -1)$")
-    for v in [-1]:
+    for v in [-1.5, -1, -0.5]:
         y = v * ones_like(x)
         ax.plot(x, y, zs=f(x, y), color="black", lw=1.0, zorder=100)
-        ax.text(-0.5, -1, f(0, -1), r"$z = f(x, -1)$", zorder=200)
+        ax.text(-0.5, 0, f(0, 0), r"$z = f(x, y)$", zorder=200)
 
     # y = linspace(-2, 2, 1000, endpoint=True);
     # x = 1.5 * ones_like(x)
@@ -86,9 +86,9 @@ def main():
     xlabel("$x$")
     ylabel("$y$")
     ax.set(zlabel="$z$")
-    xticks([0])
-    yticks([0,-1])
-    ax.set_zticks([0])
+    xticks([-2, -1, 0, 1, 2])
+    yticks([-2, -1, 0,1, 2])
+    ax.set_zticks([0 ,1])
     ax.set_zlim(0,1.0)
 
 

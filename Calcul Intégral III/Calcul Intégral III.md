@@ -182,8 +182,8 @@ $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique ; 
 il est appelé *intégrale de Henstock-Kurzweil de $f$ sur $\R^n$*.
 
-La fonction $f$ est dite *intégrable au sens de Lebesgue* si $f$ et $|f|$ sont
-intégrables au sens de Henstock-Kurzweil. L'intégrale de Lebesgue est alors
+La fonction $f$ est dite *intégrable (au sens de Lebesgue)* si $f$ et $|f|$ sont
+intégrables au sens de Henstock-Kurzweil. L'intégrale (de Lebesgue) de $f$ est alors
 définie comme l'intégrale de Henstock-Kurzweil de $f$ et notée
 $$
 \int f \; \mbox{ ou } \;
@@ -194,7 +194,7 @@ on dira que $f$ est intégrable sur $A$ si son prolongement $\bar{f}$
 par zéro à $[-\infty, \infty]^n$ est intégrable sur $\R^n$ ; s'il est nécessaire
 d'être explicite quant au domaine d'intégration $A$, on utilisera les notations
 $$
-\int_A f = \int_A f(x) \, dx := \int \bar{f}(x) \, dx.
+\int_A f := \int_A f(x) \, dx := \int \bar{f}(x) \, dx.
 $$
 
 <!--
@@ -452,32 +452,57 @@ est intégrable et
 $$
 \int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy = \int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dx\right] dy.
 $$
-De même, la fonction partielle $y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
-pour presque tout $x \in \mathbb{R}^m$, la fonction définie presque partout
-$$
-x \in \R^m \mapsto \int_{\R^n} f(x, y) \, dy
-$$
-est intégrable et
-$$
-\int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy =
-\int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dy\right] dx.
-$$
 
-![Graphe de la fonction $f: (x, y) \in \R^2 \mapsto \exp(-x^2+y^2)$ et 
-de la fonction partielle $x \in \R \mapsto f(x, y)$ pour $y=-1$.](images/fubini.py)
+![Graphe de la fonction $f: (x, y) \in \R \times \R \mapsto e^{-x^2-y^2}$ en gris et 
+des fonctions partielles $x \in \R \mapsto f(x, y)$ pour $y=-1.5, -1, -0.5$ en noir.](images/fubini.py)
+
+### Ordre et nombre des variables {.remark .post #Fubini-extension}
+Deux extensions [du théorème de Fubini](#Fubini) souvent utiles :
+
+  - Il est possible de changer l'ordre d'intégration des variables :
+    si $f$ est intégrable, alors la fonction partielle 
+    $y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable pour presque tout 
+    $x \in \mathbb{R}^m$, la fonction définie presque partout
+    $$
+    x \in \R^m \mapsto \int_{\R^n} f(x, y) \, dy
+    $$
+    est intégrable et
+    $$
+    \int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy =
+    \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dy\right] dx.
+    $$
+
+  - Il est possible de considérer des fonctions de trois variables ou plus. 
+    Par exemple, si la fonction $f : \R^m \times \R^n \times \R^p \to \R$ 
+    est intégrable, alors
+    $$
+    \int_{\mathbb{R}^{m+n+p}} f(x, y, z) \, dxdydz =
+    \int_{\R^p} \left[\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y, z) \, dx\right] dy \right] dz.
+    $$
+    (étant entendu que tous les fonctions intermédiaires intervenant dans le membre de droite
+    de cette équation sont bien définies presque partout).
 
 ### Démonstration {.proof}
 Se reporter à @Swa01.
 
+### Calcul de l'aire d'un triangle {.exercise .question .one #triangle}
+Considérons le triangle 
+$$
+\{(x, y) \in \R^2 \; | \; x \geq 0, \, y \geq 0 \mbox{ et } x + y \leq  1\}.
+$$
+En supposant  l'intégrale ci-dessous bien définie, calculer :
+$$
+a(T) = \int_{\R^2} 1_T(x, y) \, dxdy.
+$$
 
 ### Contre-exemple {.exercise .question .two #fubini-counter-example}
-Comparer les intégrales itérées
+Comparer les valeurs des intégrales itérées
 $$
 \int_0^1 \left[\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx \right] \, dy
 \; \mbox{ et } \;
-\int_0^1 \left[\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dy \right] \, dx.
+\int_0^1 \left[\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dy \right] \, dx,
 $$
-et expliquer le résultat.
+puis expliquer le résultat.
 Indication : on remarquera que
 $$
 \frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial x} \left(-\frac{x}{x^2+y^2}\right) 
@@ -488,33 +513,6 @@ $$
 $$
 -->
 
-### Contre-exemple {.answer .two #answer-fubini-counter-example}
-Pour tout $y>0$ (et donc presque tout $y \in [0, 1]$), on a 
-$$
-\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx 
-= 
-\left[- \frac{x}{x^2+y^2} \right]_0^1
-= 
-- \frac{1}{1+y^2},
-$$
-par conséquent
-$$
-\int_0^1 \left[ \int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx \right] \, dy
-= - \int_0^1 \frac{dy}{1+y^2} \\
-= - [\arctan y]_0^1
-= - \frac{\pi}{4}.
-$$
-En exploitant la relation
-$$
-\frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial y} \left(\frac{y}{x^2+y^2}\right) 
-$$
-on établit de façon similaire que
-$$
-\int_0^1 \left[ \int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dy \right] \, dx
-= \frac{\pi}{4}.
-$$
-
-**TODO** Conclusion (analyse)
 
 ### {.ante .post .remark}
 On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
@@ -541,24 +539,49 @@ alors $f$ n'est pas intégrable.
 Se reporter à @Swa01.
 
 ### Fubini-Tonelli, mode d'emploi {.remark}
-Les deux théorèmes sont souvent utilisés en combinaison
+Les deux théorèmes sont souvent utilisés ensemble
 pour intégrer une fonction $f : \R^m \times \R^n \to \R$,
-de la façon suivante.
-On montre tout d'abord que la fonction $f$ est mesurable. 
-Comme sa valeur absolue $|f|$ est mesurable et positive, 
-le théorème de Tonelli est susceptible de lui être appliqué ; on vérifie 
-que $|f|$ satisfait bien les hypothèses nécessaires et on en conclut que 
-$|f|$ est intégrable. La fonction $f$ étant mesurable, [par le critère 
-d'intégrabilité dominée](#CID), elle est donc intégrable. Le théorème de
-Fubini est donc applicable et on peut évaluer l'intégrale de $f$ par des
-intégrales itérées.
+de la façon suivante :
 
-### Intégrabilité des pavés fermés bornés {.exercise .two #ipfb}
+ 1. On vérifie tout d'abord que la fonction $f$ est mesurable. 
+    Comme sa valeur absolue $|f|$ est mesurable et positive, 
+    le théorème de Tonelli est alors *susceptible* de lui être appliqué.
+    
+ 2. On étudie si $|f|$ satisfait bien [toutes les hypothèses du théorème
+    de Tonelli](#Tonelli). Si c'est le cas, la fonction $|f|$ est intégrable ; 
+    la fonction $f$ étant mesurable, [par le critère 
+    d'intégrabilité dominée](#CID), $f$ est donc intégrable. 
+    
+ 3. [Le théorème de Fubini](#Fubini) est donc applicable ! 
+    On peut donc évaluer l'intégrale de $f$ par en calculant des
+    intégrales itérées.
+
+### Triangle d'aire finie {.exercise .one #triangle2}
+Montrer que le triangle
+$$
+T = \{(x, y) \in \R^2 \; | \; x \geq 0, \, y \geq 0 \mbox{ et } x + y \leq  1\}
+$$
+est d'aire finie, c'est-à-dire que $1_T$ est intégrable.
+
+### Triangle d'aire finie {.answer #answer-triangle2}
+La fonction $1_T : \R^2 \to \R$ est positive et mesurable, car l'ensemble
+$T$ est fermé donc mesurable. Par conséquent on peut appliquer le
+théorème de Tonelli. Les calculs à effectuer pour vérifier que ses hypothèses
+sont vérifiées sont exactement les mêmes que ceux nécessaires au calcul de 
+l'aire dans l'exercice ["Calcul de l'aire d'un triangle"](#triangle2) :
+ils montrent que pour tout $y$, $x \mapsto 1_T(x, y)$ est intégrable,
+puis que 
+$$
+y \mapsto \int 1_T(x, y) \, dy
+$$
+est intégrable, ce qui nous permet de conclure.
+
+### Intégrabilité des pavés fermés bornés {.exercise .question .two #ipfb}
 Montrer que la fonction caractéristique $1_I$ du  pavé 
 $I = [a_1,b_1] \times \dots \times [a_n,b_n]$ de $\R^n$ est intégrable et
 que 
 $$
-\lambda(I) = \int 1_I(x) \, dx = (b_1 - a_1) \times \dots \times (b_n - a_n).
+\lambda(I) := \int 1_I(x) \, dx = (b_1 - a_1) \times \dots \times (b_n - a_n).
 $$
 
 ### Tout droite du plan est négligeable {.exercise .two .question #dn}
@@ -1691,7 +1714,64 @@ $1_{A \cup B}$ est donc intégrable [par linéarité de l'intégrale](#linéarit
 \end{align*}
 
 
-### Intégrabilité des pavés fermés bornés {.answer #answer}
+### Contre-exemple {.answer .two #answer-fubini-counter-example}
+Pour tout $y \in \left]0,1\right]$ (et donc presque tout $y \in [0, 1]$), on a 
+$$
+\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx 
+= 
+\left[x \mapsto - \frac{x}{x^2+y^2} \right]_0^1
+= 
+- \frac{1}{1+y^2},
+$$
+par conséquent
+$$
+\int_0^1 \left[ \int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx \right] \, dy
+= - \int_0^1 \frac{dy}{1+y^2} \\
+= - [y \mapsto \arctan y]_0^1
+= - \frac{\pi}{4}.
+$$
+En exploitant la relation
+$$
+\frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial y} \left(\frac{y}{x^2+y^2}\right) 
+$$
+on établit de façon similaire que
+$$
+\int_0^1 \left[ \int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dy \right] \, dx
+= \frac{\pi}{4}.
+$$
+
+Or, si [le théorème de Fubini](#Fubini) était applicable, [on pourrait
+intervertir l'ordre d'intégration des variables sans changer le résultat](#Fubini-extension).
+Comme ça n'est pas le cas, on en déduit que l'hypothèse exigée par le théorème
+de Fubin ne tient pas : la fonction
+$$
+(x, y) \in [0,1] \times [0,1] \mapsto \frac{x^2 - y^2}{(x^2+y^2)^2}
+$$
+n'est pas intégrable.
+
+### Calcul de l'aire d'un triangle {.answer #answer-triangle}
+Si la fonction $1_D$ est intégrable, alors 
+[le théorème de Fubini est applicable](#Fubini).
+On a donc
+$$
+a(T) = \int_{\R}\left[ \int_{\R} 1_T(x, y) \, dx \right] \, dy.
+$$
+Or, si $0 \leq y \leq 1$, 
+$$
+1_T(x, y) = \left| 
+\begin{array}{rl}
+1 & \mbox{si $0 \leq x \leq 1-y$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et dans le cas contraire, $1_T(x, y) = 0$. On a donc
+$$
+a(T) = \int_0^1\left[ \int_0^{1-y} dx \right] \, dy
+=\int_0^1 (1 - y) \, dy= \left[y - \frac{y^2}{2} \right]_0^1 = \frac{1}{2}.
+$$
+
+### Intégrabilité des pavés fermés bornés {.answer #answer-ipfb}
 On procède par récurrence sur la dimension $n$ de l'espace.
 Admettons le résultat prouvé au rang $n-1$.
 La fonction caractéristique $1_I$ de $I = [a_1,b_1] \times \dots \times [a_n,b_n]$
