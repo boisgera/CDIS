@@ -517,7 +517,7 @@ Se reporter à @Swa01.
 ### Calcul de l'aire d'un triangle {.exercise .question .one #triangle}
 Considérons le triangle 
 $$
-\{(x, y) \in \R^2 \; | \; x \geq 0, \, y \geq 0 \mbox{ et } x + y \leq  1\}.
+T = \{(x, y) \in \R^2 \; | \; x \geq 0, \, y \geq 0 \mbox{ et } x + y \leq  1\}.
 $$
 En supposant  l'intégrale ci-dessous bien définie, calculer :
 $$
@@ -1437,9 +1437,8 @@ $$
 \end{split}
 $$
 
-Exercices
+Exercices complémentaires
 ================================================================================
-
 
 Aire du disque unité {#adu}
 --------------------------------------------------------------------------------
@@ -1455,8 +1454,32 @@ de variable dans $\R$.
 ### Question 3 {.question .two #adu-3}
 Calculer l'aire de $D$ en utilisant un changement de variables dans $\R^2$.
 
+Intégrabilité des fonctions puissances
+--------------------------------------------------------------------------------
 
+Soit $C$ la couronne $\{x \in \R^2 \; | \; \|x\| > 1\}$ ;
+on souhaite prouver dans cet exercice que l'intégrale
+$$
+I = \int_C \frac{dx}{\|x\|^{\alpha}}
+$$
+est bien définie si et seulement si $\alpha > 2$.
 
+### Question 1 {.question .one #ifp-1}
+Soit $C_{++} = C \cap \{(x_1,x_2) \in \R^2 \; | \; x_1 > 0 \mbox{ et } x_2 > 0\}$.
+Montrer que $x \mapsto \|x\|^{-\alpha}$ est intégrable sur $C$ si et seulement
+si elle est intégrable sur $C_{++}$.
+
+### Question 2 {.question .one #ifp-2}
+Déterminer l'image de $C_{++}$ par la fonction
+$$
+h: (x_1, x_2) \mapsto (x_1, r) \; \mbox{ où } r = \|(x_1,x_2)\|
+$$
+et montrer que $h$ est un $C^1$-difféomorphisme de $C_{++}$ sur cette image.
+
+### Question 3 {.question .two #ifp-3}
+Déterminer (formellement) l'expression de l'intégrale $I$ au moyen des variables 
+$(x_1, r)$, puis $(y, r)$ où $y = x_1/r$. En déduire que $I$ est bien définie
+si et seulement si $\alpha > 2$.
 
 
 <!--
@@ -1509,12 +1532,14 @@ $$
 
 -->
 
-Déformations d'un compact à bord régulier {.question #dcbr}
+Déformations d'un compact à bord régulier 
 --------------------------------------------------------------------------------
 
 Soit $K$ un compact à bord $C^1$ de $\R^n$ et $T:\R^n \to \R^n$ une application
 continûment différentiable telle que $T = I + H$, où l'application
 continûment différentiable $H:\R^n \to \R^n$ satisfait $\sup_{x \in \R^n} \|dH(x)\| < 1$.
+
+### Question 1 {.question .four #dcbr}
 
 Montrer que l'ensemble
 $$
@@ -1522,7 +1547,7 @@ T(K) = \{x + T(x) \, | \, x \in K\}
 $$
 est un compact à bord $C^1$ de $\R^n$.
 
-Ovales de Cassini {.question #oc}
+Ovales de Cassini 
 --------------------------------------------------------------------------------
 
 Soit $a$ et $b$ deux nombres réels strictements positifs. 
@@ -1531,19 +1556,26 @@ $$
 K = \{(x,y) \in \R^2 \, | \, (x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 \leq b^4\}.
 $$
 
+### Question 1 {.question .four #oc}
+
 Montrer que si $a \neq b$, l'ensemble $K$ est un compact à bord $C^1$.
 
 ![Compact à bord $C^1$ délimité par les ovales de Cassini.](images/cassini-ovals.py)
-
 
 ![Ensemble délimité par les ovales de Cassini quand $a=b=1$.](images/cassini-ovals-limite.py)
 
 
 
-Intégrales de surface {.question #is}
+
+
+
+
+Intégrales de surface 
 --------------------------------------------------------------------------------
 
 Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+
+### Question 1 {.question .four #is}
 Calculer
 $$
 \int_{\partial B} \sigma(dx)
@@ -1569,17 +1601,19 @@ c'est-à-dire une fonction
 $g: D \to \partial D$ telle que $g(x) = x$ si $x \in \partial D$.
 -->
 
-### Question 1  {.question #pfb-1}
+### Question 1  {.question .four #pfb-1}
 Montrer que pour une telle rétraction $f$, on a 
 $$
 \int_B \det J_f(x) \, dx = 0.
 $$
 
-### Question 2  {.question #pfb-2}
+### Question 2  {.question .four #pfb-2}
 En déduire l'impossibilité d'une telle rétraction.
  
-Intégration par parties {.question #IPP-n}
+Intégration par parties 
 --------------------------------------------------------------------------------
+
+### Question 1 {.question .four #IPP-n}
 
 Si l'équivalent dans $\R^n$ du théorème fondamental du calcul 
 est le théorème de la divergence, quel résultat est l'équivalent
@@ -1960,6 +1994,104 @@ $$
 $$
 
 
+Intégrabilité des fonctions puissances
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer .one #answer-ifp-1}
+L'ensemble $C$ peut être partitionné en 5 ensembles : $C_{++}$, $C_{+-}$, $C_{-+}$,
+$C_{--}$ (où les signes en indices déterminent les signes autorisés pour les
+variables $x_1$ et $x_2$) et 
+$$
+N := C \setminus (C_{++} \cup C_{+-} \cup C_{-+} \cup C_{--}).
+$$
+L'ensemble $C_{++}$ est ouvert, donc mesurable. Par conséquent, 
+si $f: x \mapsto \|x\|^{-\alpha}$ est intégrable sur $C$, 
+elle est intégrable sur $C_{++}$. Réciproquement, si $f$ est intégrable sur
+$C_{++}$, elle est intégrable sur chacun des ensembles $C_{\pm\pm}$ par 
+changement de variable : le changement de variable $h: (x_1, x_2) \mapsto (x_1, -x_2)$
+est par exemple un difféomorphisme de $C_{++}$ sur $C_{+-}$ tel que 
+$|\det J_h| = 1$, donc [par changement de variables](#changement-de-variables)
+l'intégrale de $f$ est bien définie sur $C_{+-}$ et
+$$
+\int_{C_{+-}} \|x\|^{-\alpha} \, dx =
+\int_{C_{+-}} \|h(x)\|^{-\alpha} |\det J_{h}(x)|\, dx = 
+\int_{C_{++}} \|y\|^{-\alpha} \, dy = I.
+$$
+Comme $N$ est négligeable, $f$ est également intégrable sur $N$ et par
+conséquent $f$ est intégrable sur $C$ comme somme des fonctions intégrables
+$$
+f = f 1_{C_{++}} +  f 1_{C_{+-}} + f 1_{C_{-+}} + f 1_{C_{--}} + f 1_N.
+$$
+
+### Question 2 {.answer .one #answer-ifp-2}
+Si $x$ appartient à $C_{++}$, $\|x\|>1$, $x_1 >0$ et $x_2>0$, donc
+$r=\|x\| > 1$ et $x_1 = \sqrt{r^2 - x_2^2} < r$. Réciproquement,
+si $r>0$ et $0 < x_1 < r$, l'unique antécédent de $(x_1, r)$ par $h$ dans 
+$C_{++}$ est $(x_1, \sqrt{x_1^2 - r^2})$. La fonction $h$ est donc une
+bijection de $C_{++}$ dans
+$$
+U :=\{(x_1, r) \in \left]0,+\infty\right[\; | \; x_1 < r\}.
+$$
+De plus, $h$ est continûment différentiable, car elle est partout différentiable
+et les coefficients de sa matrice jacobienne
+$$
+J_h(x_1,x_2) = \left[ 
+  \begin{array}{cc}
+  1 & 0 \\
+  \frac{x_1}{\sqrt{x_1^2+x_2^2}} & \frac{x_2}{\sqrt{x_1^2+x_2^2}}
+  \end{array}
+  \right]
+$$
+sont continus par rapport à $(x_1, x_2)$. On à également
+$$
+J_{h^{-1}}(x_1,r) = \left[ 
+  \begin{array}{cc}
+  1 & 0 \\
+  -\frac{x_1}{\sqrt{r^2 - x_1^2}} & \frac{r}{\sqrt{r^2-x_1^2}}
+  \end{array}
+  \right]
+$$
+
+### Question 3 {.answer .one #answer-ifp-3}
+Si l'on considère les variables $x_1$ et $x_2$, la formule
+du [théorème de changement de variables](#changement-de-variables)
+nous fournit
+$$
+\int_{C++} \|x\|^{-\alpha} \, dx = \int_U r^{-\alpha} |\det J_{h^{-1}}(x_1,r)| \, dx_1 dr,
+$$
+soit
+$$
+\int_{C++} \|x\|^{-\alpha} \, dx = \int_U r^{-\alpha} \frac{r}{\sqrt{r^2-x_1^2}} \, dx_1 dr
+=
+\int_U r^{-\alpha} \frac{1}{\sqrt{1-(x_1/r)^2}} \, dx_1 dr ;
+$$
+un nouveau changement de variable introduisant $y = x_1/r \in \left]0, 1\right[$
+fournit
+\begin{align*}
+\int_{C++} \|x\|^{-\alpha} \, dx &=
+\int_{\left]0, 1\right[ \times \left]0,+\infty\right[} r^{-\alpha} \frac{1}{\sqrt{1-y^2}} r\, dy dr \\
+&=
+\int_{\left]0, 1\right[ \times \left]0,+\infty\right[} \frac{1}{r^{\alpha -1}} \frac{1}{\sqrt{1-y^2}} \, dy dr
+\end{align*}
+La fonction $x\mapsto \|x\|^{-\alpha}$ est donc intégrable si et seulement si
+cette dernière intégrale est bien définie. Or, l'intégrande
+$$
+(y, r) \in \left]0, 1\right[ \times \left]0,+\infty\right[ \mapsto \frac{1}{r^{\alpha -1}}\frac{1}{\sqrt{1-y^2}}
+$$
+-- et donc son extension par zéro à $\R^2$ -- sont mesurables et positives, 
+donc la caractérisation par [le théorème de Tonelli](#Tonelli) est valable.
+Pour tout $r > 0$, la fonction en question est intégrable par rapport à
+$y$ sur $\left]0, 1\right[$ et
+$$
+\int_{\left]0, 1\right[} 
+\frac{1}{r^{\alpha -1}} \frac{1}{\sqrt{1-y^2}} \, dy
+=
+\frac{1}{r^{\alpha -1}} [\arcsin y]_0^1
+= \frac{\pi}{2 r^{\alpha -1}}.
+$$
+La fonction $r \left]0, +\infty \right[ \mapsto r^{\alpha-1}$ étant intégrable
+si et seulement si $\alpha > 2$, nous avons bien établi le résultat recherché.
+
 
 Aire du disque unité {.answer #answer-adu}
 --------------------------------------------------------------------------------
@@ -2186,8 +2318,10 @@ $$
 -->
 
 
-Déformations d'un compact à bord régulier {.answer #answer-dcbr}
+Déformations d'un compact à bord régulier 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dcbr}
 
 Sous les hypothèses de l'énoncé, nous avons établi en exercice de 
 "Calcul Différentiel II" que la fonction $T$ est un $C^1$-difféomorphisme
@@ -2217,8 +2351,10 @@ La différentielle de $g \circ T^{-1}$ est donc non nulle en $y_0$.
 Par la [caractérisation implicite des compacts à bord $C^1$](#cbr-implicit), 
 $T(K)$ est donc un compact à bord $C^1$ de $\R^n$.
 
-Ovales de Cassini {.answer #answer-oc}
+Ovales de Cassini 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-oc}
 
 Montrons tout d'abord que l'ensemble $K$ est compact. Si les points
 $(x_k, y_k)$ de $\R^2$ appartiennent à $K$, ils vérifient 
@@ -2286,8 +2422,10 @@ l'ensemble $K$ est donc bien un compact à bord $C^1$.
 
 
 
-Intégrales de surface {.answer #answer-is}
+Intégrales de surface
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-is}
 
 Comme la normale extérieure à $B$ en $\partial B$ vaut $n(x) = (x_1, x_2)$
 et que $x_1^2 + x_2^2 = 1$ sur $\partial B$, on a en posant $v(x) = (x_1, x_2)$ 
@@ -2388,8 +2526,10 @@ $$
 $$
 Si une telle rétraction existait, on aurait donc une contradiction.
 
-Intégration par parties {.answer #answer-IPP-n}
+Intégration par parties 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-IPP-n}
 
 On obtient le théorème d'intégration par parties en appliquant le théorème
 fondamental du calcul à la dérivée du produit $fg$.
