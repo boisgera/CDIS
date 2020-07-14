@@ -114,6 +114,8 @@ I = I_1 \times \dots \times I_n
 $$
 où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
 
+![Réprésentation du pavé $[1,3] \times [1, 2]$ du plan étendu.](images/pavé.svg)
+
 ### Partition en pavés {.exercise .question .one #pp}
 Montrer que l'ensemble $\R^2 \setminus [-1,1]^2$ peut être partitionné en
 4 pavés. 
@@ -180,6 +182,7 @@ sont des ensembles négligeables --
 qui recouvrent $I$ et tels que 
 $t_i \in J_i$ pour tout $i \in \{0, \dots, k-1\}.$
 
+![Une subdivision pointée de $[-\infty, \infty]^2$ comportant 12 pavés.](images/pavage.svg)
 
 ### Somme de Riemman {.definition}
 La somme de Riemann associée à la fonction $f:I \to \mathbb{R}$,
@@ -622,7 +625,7 @@ $$
 \int_{D_2} f(y) \, dy = \int_{D_1} f(h(x)) |\det J_h(x)| \, dx.
 $$
 
-![Changement de variables](images/changement-de-variables.svg.pdf)
+![Changement de variables](images/changement-de-variables.svg)
 
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
