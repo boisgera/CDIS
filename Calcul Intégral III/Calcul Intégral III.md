@@ -35,16 +35,6 @@ d'exercices.
 
 #### Intégrale de fonctions de plusieurs variables
 
-#### Intégrale multiple
-
-  - \one savoir calculer une intégrale dans $\R^n$ 
-         au moyen $n$ intégrales dans $\R$,
-
-  - \one connaître les variantes de cette technique (ordre et nombre des variables),
-
-  - \one connaître l'hypothèse d'intégrabilité validant ce calcul (Fubini),
-    
-**TODO ** Transférer le point suivant dans la section précédente.
 
   - savoir montrer cette intégrabilité en combinant quand c'est possible
 
@@ -59,14 +49,30 @@ d'exercices.
     - \three les caractérisations des fonctions mesurables,
 
 
-  - dans le cas contraire :
+#### Intégrale multiple
 
-    - \two savoir exploiter le théorème de Tonelli (fonctions positives),
+  - \one savoir calculer une intégrale dans $\R^n$ 
+         au moyen de $n$ intégrales dans $\R$,
 
-    - \three savoir combiner les théorèmes de Tonelli et Fubini.
+  - \one connaître les variantes de cette technique (ordre et nombre des variables),
 
+  - \one connaître l'hypothèse d'intégrabilité validant ce calcul (Fubini),
+
+  - \two connaître les propriétés des fonctions intermédiaires (Fubini),
+
+  - \two savoir caractériser l'intégrabilité des fonctions positives (Tonelli),
+
+  - \three connaître les propriétés des fonctions intermédiaires (Tonelli),
+
+  - \two savoir caractériser l'intégrabilité des fonctions signées (via Tonelli).
 
 #### Changement de variables
+
+  - \one connaître la formule du changement des variables,
+
+  - \two 
+
+  - \three
 
 Intégrale de fonctions de plusieurs variables
 ================================================================================
