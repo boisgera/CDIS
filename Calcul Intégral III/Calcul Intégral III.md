@@ -74,6 +74,18 @@ d'exercices.
 
   - \three **TODO**
 
+#### Théorème de la divergence
+
+  - \four savoir caractériser (localement) un compact à bord $C^1$  
+    (explicitement et implicitement),
+
+  - \four savoir calculer la normale extérieure à un tel ensemble,
+
+  - \four connaître la définition d'intégrale de surface,
+
+  - \four connaître l'énoncé du théorème de la divergence     
+    (dans la forme divergence et la variante dérivée partielle).
+
 Intégrale de fonctions de plusieurs variables
 ================================================================================
 
@@ -749,7 +761,7 @@ sa place en exo ?
 
 ### Compact à bord régulier {.definition #cbr}
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
-s'il est compact et peut être caractérisé au voisinage de tout point de
+s'il est compact (fermé et borné) et peut être caractérisé au voisinage de tout point de
 sa frontière $\partial K$, 
 et après un éventuel changement de repère,
 comme l'*hypographe* -- l'ensemble des points en-dessous du graphe -- 
