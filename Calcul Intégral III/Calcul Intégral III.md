@@ -58,7 +58,7 @@ d'exercices.
 
   - \one connaître l'hypothèse d'intégrabilité validant ce calcul (Fubini),
 
-  - \two connaître les propriétés des fonctions intermédiaires (Fubini),
+  - \three connaître les propriétés des fonctions intermédiaires (Fubini),
 
   - \two savoir caractériser l'intégrabilité des fonctions positives (Tonelli),
 
@@ -70,21 +70,22 @@ d'exercices.
 
   - \one connaître la formule du changement de variables,
 
-  - \two **TODO**
+  - \two connaître les hypothèses du théorème et son résultat d'intégrabilité,
 
-  - \three **TODO**
+  - \two savoir appliquer le théorème de façon relativement directe,
+
+  - \three savoir introduire un changement de variables quand c'est pertinent.
 
 #### Théorème de la divergence
 
-  - \four savoir caractériser (localement) un compact à bord $C^1$  
-    (explicitement et implicitement),
+  - \four savoir caractériser un compact à bord $C^1$,  
 
-  - \four savoir calculer la normale extérieure à un tel ensemble,
+  - \four savoir calculer la normale extérieure d'un tel ensemble,
 
   - \four connaître la définition d'intégrale de surface,
 
-  - \four connaître l'énoncé du théorème de la divergence     
-    (dans la forme divergence et la variante dérivée partielle).
+  - \four savoir exploiter le théorème de la divergence.     
+
 
 Intégrale de fonctions de plusieurs variables
 ================================================================================
