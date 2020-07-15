@@ -68,11 +68,11 @@ d'exercices.
 
 #### Changement de variables
 
-  - \one connaître la formule du changement des variables,
+  - \one connaître la formule du changement de variables,
 
-  - \two 
+  - \two **TODO**
 
-  - \three
+  - \three **TODO**
 
 Intégrale de fonctions de plusieurs variables
 ================================================================================
