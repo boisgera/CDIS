@@ -33,20 +33,46 @@ d'exercices.
 
 
 
-#### Intégrale de fonctions de plusieurs variables
+#### Construction de l'intégrale dans $\R^n$
 
 
-  - savoir montrer cette intégrabilité en combinant quand c'est possible
+  - \one savoir définir un pavé de $\R^n$ (ou de $[-\infty, \infty]^n$),
 
-    - \one une fonction intégrable connue (comme la fonction caractéristique
-      d'un pavé fermé borné),
+  - \one savoir calculer son volume $n$-dimensionnel,
 
-      **TODO : ajouter Gaussienne dans les exos courts ? (Fubini-Tonelli et changement
-      de variables)**
+  - savoir comment exploiter dans ce cadre $n$-dimensionnel les concepts :
 
-    - \two le critère d'intégrabilité dominée,
+    - \two d'ensemble négligeable, 
 
-    - \three les caractérisations des fonctions mesurables,
+    - \two de subdivision pointée, 
+
+    - \one de somme de Riemman,
+
+    - \two de jauge et de subdivision subordonnée,
+
+    - \three d'intégrale de Lebesgue.
+
+#### Ensemble et fonctions mesurables
+
+  - savoir caractériser :
+
+    - \two les ensembles de mesure finie et mesurables de $\R^n$,
+
+    - \two les fonctions mesurables (critère de l'image réciproque),
+    
+    - \one les fonctions intégrables (critère d'intégrabilité dominée).
+
+#### Propriétés de l'intégrale dans $\R^n$
+
+  - savoir exploiter
+
+    - \one la linéarité de l'intégrale,
+
+    - \one sa croissance et l'inégalité triangulaire,
+
+    - \two les relations entre intégrale et égalité presque partout,
+
+    - \two les théorèmes de convergence.
 
 
 #### Intégrale multiple
