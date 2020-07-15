@@ -52,7 +52,7 @@ d'exercices.
 
     - \three d'intégrale de Lebesgue.
 
-#### Ensemble et fonctions mesurables
+#### Ensembles et fonctions mesurables
 
   - savoir caractériser :
 
