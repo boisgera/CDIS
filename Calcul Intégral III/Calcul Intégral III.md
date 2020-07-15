@@ -72,15 +72,15 @@ Intégrale de fonctions de plusieurs variables
 ================================================================================
 
 ### Domaine des variables {.remark .ante #dv}
-Comme dans le cas des fonctions d'une variable, 
+Comme pour les fonctions d'une seule variable, 
 la théorie de l'intégrale de jauge des fonctions de plusieurs variables est 
-construite pour des fonctions dont les variables peuvent prendre des valeurs 
-réelles ou infinies, donc techniquement, dans $[-\infty, +\infty]^n$.
+applicable à des variables pouvant prendre des valeurs réelles ou infinies.
 Mais il s'agit largement d'un 
 "détail d'implémentation" : en pratique, le besoin que nous souhaitons
 satisfaire, c'est l'intégration des fonctions de variables réelles ; 
-après avoir construit l'intégrale dans $[-\infty,\infty]^n$, 
-nous énoncerons donc les propriétés de l'intégrale dans le cadre $\R^n$. 
+pour nous conformer à ce cas d'usage principal, 
+et après avoir construit l'intégrale dans le domaine $[-\infty,\infty]^n$, 
+nous énoncerons uniquement les propriétés de l'intégrale dans le domaine $\R^n$. 
 Quand il sera nécessaire de considérer une fonction de variables
 réelles comme fonction de variables réelles étendues (pouvant être infinies), 
 on prolongera la fonction initiale en lui assignant la valeur zéro 
@@ -89,7 +89,7 @@ De façon similaire, il est possible de définir l'intégrale d'une fonction
 $f: A \to \R$ où $A \subset \R^n$ en la prolongeant par zéro sur $\R^n$ (ou directement 
 sur $[-\infty, +\infty]^n$).
 
-[^tav]: Toute autre valeur que zéro conviendrait dans ce cas ausi bien, car
+[^tav]: Toute autre valeur que zéro conviendrait aussi bien ici, car
 la différence entre le domaine de définition du prolongement et le domaine 
 initial est $[-\infty, \infty]^n \setminus \R^n$, qui est un ensemble négligeable
 (cf. [exercice "domaine à l'infini"](#dai)). Dans le cas d'un domaine de
@@ -114,7 +114,7 @@ I = I_1 \times \dots \times I_n
 $$
 où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
 
-![Réprésentation du pavé $[1,3] \times [1, 2]$ du plan étendu.](images/pavé.svg)
+![Réprésentation du pavé $[1,3] \times [1, 2]$ du plan (étendu).](images/pavé.svg)
 
 ### Partition en pavés {.exercise .question .one #pp}
 Montrer que l'ensemble $\R^2 \setminus [-1,1]^2$ peut être partitionné en
@@ -138,7 +138,7 @@ de la désigner sous le terme d'*aire* et dans $\R^3$ (ou $[-\infty, +\infty]^3$
 sous le terme de *volume*. On pourra dans ces trois cas particuliers préférer
 les notation $\ell$, $a$ et $v$ au symbole $\lambda$.
 
-### Volume de pavés {.exercise .one #exo-volume-pavé}
+### Volume de pavés {.exercise .question .one #exo-volume-pavé}
 Calculer l'aire des pavés $\{(0,0)\}$, $[-1, 1]^2$, $[-1, 1] \times [0, +\infty]$
 et $\{0\} \times \R$ de $[-\infty, +\infty]^2$.
 
@@ -153,7 +153,7 @@ $$
 $$
 
 ### Domaine à l'infini {.exercise .question .one #dai}
-Montrer que l'ensemble $[-\infty,\infty]^n \setminus \R^n$ est d'aire
+Montrer que l'ensemble $[-\infty,+\infty]^n \setminus \R^n$ est d'aire
 négligeable.
 
 ### Graphe du sinus {.exercise .question .two #gs}
@@ -176,17 +176,17 @@ une famille finie
 $$
 \{(t_i, J_i) \; | \; \; 0 \leq i \leq k-1\}
 $$
-où les $J_i$ sont des pavés fermés de $I$ sans chevauchement
--- les intersections deux à deux des pavés de cette collection 
-sont des ensembles négligeables --
+où les $J_i$ sont des pavés fermés de $I$ *sans chevauchement*
+(les intersections deux à deux des pavés de cette collection 
+sont des ensembles négligeables)
 qui recouvrent $I$ et tels que 
 $t_i \in J_i$ pour tout $i \in \{0, \dots, k-1\}.$
 
 ![Une subdivision pointée de $[-\infty, \infty]^2$ comportant 12 pavés.](images/pavage.svg)
 
 ### Somme de Riemman {.definition}
-La somme de Riemann associée à la fonction $f:I \to \mathbb{R}$,
-où $I$ est un pavé fermé de $[-\infty,+\infty]^n$ 
+La *somme de Riemann* associée à la fonction $f:I \to \mathbb{R}$,
+où $I$ est un pavé fermé de $[-\infty,+\infty]^n$, 
 et à la subdivision pointée $\mathcal{D}$ 
 de $I$ est la grandeur
 $$
@@ -194,7 +194,7 @@ S(f, \mathcal{D}) = \sum f(t) \lambda(J), \; \; (t, J) \in \mathcal{D}, \, \lamb
 $$
 
 ### Jauge {.definition}
-Une jauge $\gamma$ sur un pavé fermé $I$ de $[-\infty,+\infty]^n$ est une 
+Une *jauge* $\gamma$ sur un pavé fermé $I$ de $[-\infty,+\infty]^n$ est une 
 fonction qui associe à tout $t \in I$ un 
 pavé ouvert $\gamma(t)$ de $[-\infty,+\infty]^n$ contenant $t$. 
 
@@ -223,7 +223,8 @@ $$
 $$
 Lorsque la fonction $f$ est définie sur $A \subset [-\infty,\infty]^n$ 
 on dira que $f$ est intégrable sur $A$ si son prolongement $\bar{f}$
-par zéro à $[-\infty, \infty]^n$ est intégrable sur $\R^n$ ; s'il est nécessaire
+par zéro à $[-\infty, \infty]^n$ est intégrable sur $[-\infty,\infty]^n$ ;
+s'il est nécessaire
 d'être explicite quant au domaine d'intégration $A$, on utilisera les notations
 $$
 \int_A f := \int_A f(x) \, dx := \int \bar{f}(x) \, dx.
@@ -241,13 +242,13 @@ ne soient affectés par le choix de ces valeurs.
 
 ### Propriétés élémentaires
 
-Dans cette section, nous transposons rapidement et sans preuve les propriétés 
-de l'intégrale valable dans $\R$ au cadre $\R^n$.
+Dans cette section, nous énonçons sans preuve dans le cadre $\R^n$
+les propriétés de l'intégrale déjà connues dans $\R$.
 
 ### Linéarité {.theorem .one #linéarité}
 Si les fonctions $f: \R^n \to \mathbb{R}$ et 
 $g: \R^n \to \mathbb{R}$ sont intégrables et 
-$\alpha \in \mathbb{R}$, alors les fonctions $f+g$ et $\lambda f$ sont intégrables. 
+$\alpha \in \mathbb{R}$, alors les fonctions $f+g$ et $\alpha f$ sont intégrables. 
 De plus,
 $$
 \int f(x) + g(x) \, dx 
@@ -345,7 +346,7 @@ les trois propriétés élémentaires de la collection des ensembles mesurables
 de $\R^n$
 sont toujours vérifiées (la collection est une tribu), cette famille contient
 tous les fermés (et tous les ouverts) et "négligeable" et 
-"(mesurable et) de mesure nulle" sont toujours synonymes.
+"(mesurable et) de mesure ($n$-dimensionnelle) nulle" sont toujours synonymes.
 
 ### Ensemble mesurable {.definition}
 Un ensemble $E$ de $\R^n$ est *de mesure (de Lebesgue ou $n$-dimensionnelle)
@@ -377,7 +378,7 @@ dans le cas contraire (si $E$ est mesurable mais pas de mesure finie).
 ### Topologie et ensembles mesurables {.theorem #OSM}
 Tout ensemble fermé (ou ouvert) est mesurable.
 
-### Disque fermé {.exercise .one #df}
+### Disque fermé {.exercise .question .one #df}
 Montrer que le disque $D = \{(x_1,x_2) \in \R^2 \; | \; x_1^2 + x_2^2 \leq 1\}$
 est mesurable.
 
@@ -387,15 +388,14 @@ Un ensemble est de mesure de Lebesgue nulle si et seulement s'il est négligeabl
 ### Additivité II {.exercise .question .two #exo-additivité-II}
 Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
 et sur $B \subset \R^n$ et que $A$ et $B$ sont sans chevauchement 
-(si $A\cap B$ est négligeable) alors $f$ est intégrable sur $A\cup B$ et
+($A\cap B$ est négligeable) alors $f$ est intégrable sur $A\cup B$ et
 $$
 \int_{A \cup B} f(x) \, dx = \int_A f(x) \, dx + \int_B f(x) \, dx.
 $$
 
 ### {.remark .ante}
-Les fonctions mesurables ont la même definition (limite simple de fonctions
-intégrables) ; le critère de mesurabilité par l'image réciproque est toujours
-valide. 
+Les fonctions mesurables ont la même definition que dans $\R$ ; 
+le critère de mesurabilité par l'image réciproque est toujours valide. 
 
 
 ### Fonction mesurable {.definition}
@@ -528,7 +528,7 @@ a(T) = \int_{\R^2} 1_T(x, y) \, dxdy.
 $$
 
 ### Contre-exemple {.exercise .question .two #fubini-counter-example}
-Comparer les valeurs des intégrales itérées
+Comparer les valeurs des intégrales multiples
 $$
 \int_0^1 \left[\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx \right] \, dy
 \; \mbox{ et } \;
@@ -547,10 +547,12 @@ $$
 
 
 ### {.ante .post .remark}
-On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
-a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
-déduire l'intégrabilité de l'examen des intégrales itérées. Le théorème
-de Fubini peut alors être complété utilement par le théorème de Tonelli :
+Pour pouvoir appliquer le théorème de Fubini, il faut savoir 
+a priori que la fonction est intégrable et pas seulement que ses intégrales
+multiples sont bien définies (cf. ["Contre-exemple" ci-dessus](#fubini-counter-example)). 
+Si la fonction est à valeurs positives toutefois,
+l'examen de ses intégrales multiples permet de s'assurer de l'intégrabilité ;
+c'est le théorème de Tonelli :
 
 ### Théorème de Tonelli {.theorem #Tonelli}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \left[0, +\infty\right[$ 
@@ -585,10 +587,10 @@ de la façon suivante :
     d'intégrabilité dominée](#CID), $f$ est donc intégrable. 
     
  3. [Le théorème de Fubini](#Fubini) est donc applicable ! 
-    On peut donc évaluer l'intégrale de $f$ par en calculant des
-    intégrales itérées.
+    On peut donc évaluer l'intégrale de $f$ par en calculant son
+    intégrale multiple.
 
-### Triangle d'aire finie {.exercise .one #triangle2}
+### Triangle d'aire finie {.exercise .question .one #triangle2}
 Montrer que le triangle
 $$
 T = \{(x, y) \in \R^2 \; | \; x \geq 0, \, y \geq 0 \mbox{ et } x + y \leq  1\}
@@ -596,7 +598,7 @@ $$
 est d'aire finie, c'est-à-dire que $1_T$ est intégrable.
 
 
-### Intégrabilité des pavés fermés bornés {.exercise .question .two #ipfb}
+### Intégrabilité des pavés fermés bornés {.exercise .question .one #ipfb}
 Montrer que la fonction caractéristique $1_I$ du  pavé 
 $I = [a_1,b_1] \times \dots \times [a_n,b_n]$ de $\R^n$ est intégrable et
 que 
@@ -647,9 +649,9 @@ Soit
 $$
 C = \{(x, y) \in \R^2 \; | \; y \neq 0 \mbox{ ou } x > 0\}
 \; \mbox{ et } \;
-P = \{(r,\theta) \in \R^2 \; | \; r>0 \mbox{ et } -\pi < \theta < +\pi\}.$$ 
+P = \{(r,\theta) \in \R^2 \; | \; r>0 \mbox{ et } -\pi < \theta < \pi\}.$$ 
 On note $h$ la fonction de $P$ dans $C$ définie par
-$\phi(r, \theta) = (r \cos \theta, r \sin \theta)$.
+$h(r, \theta) = (r \cos \theta, r \sin \theta)$.
 Montrer que pour toute fonction $f: C \to \R$ intégrable, si l'on pose
 $g(r,\theta) = f(x, y)$ où $(x, y) = h(r,\theta)$, alors
 $$
@@ -1677,22 +1679,22 @@ $[-\infty,\infty]^2\setminus [-1, 1]^2$ n'est pas négligeable.)
 ### Partition en pavés {.answer #answer-pp}
 L'ensemble $\R^2 \setminus [-1, 1]$ est l'union des quatres ensembles disjoints
 non vides suivants : $\left]-\infty, -1\right[ \times \R$, 
-$[-1, 1] \times \left]1, \infty\right[$, $[-1, 1] \times \left]-\infty, -1\right[$
+$[-1, 1] \times \left]1, +\infty\right[$, $[-1, 1] \times \left]-\infty, -1\right[$
 et $\left]1, +\infty\right[ \times \R$.
 
 ### Volume de pavés {.answer #answer-exo-volume-pavé}
 On a $a(\{(0,0)\}) = a([0,0]^2) = 0 \times 0 = 0$,
 $a([-1,1]^2) = 2 \times 2 = 4$, $a([-1, 1] \times [0, +\infty])
-= 2 \times \infty = \infty$ et $a(\{0\} \times \R) = 0 \times \infty = \infty$.
+= 2 \times (+\infty) = +\infty$ et $a(\{0\} \times \R) = 0 \times (+\infty) = 0$.
 
 ### Domaine à l'infini {.answer #answer-dai}
-L'ensemble $[-\infty,\infty]^n \setminus \R^n$ est recouvert par les
+L'ensemble $[-\infty,+\infty]^n \setminus \R^n$ est recouvert par les
 quatres pavés $\{-\infty\} \times [-\infty, \infty]$, 
-$\{+\infty\} \times [-\infty, \infty]$, $[-\infty, \infty] \times \{-\infty\}$
-et $[-\infty, \infty] \times \{+\infty\}$. Chacun de ces pavés est d'aire nulle :
+$\{+\infty\} \times [-\infty, +\infty]$, $[-\infty, +\infty] \times \{-\infty\}$
+et $[-\infty, +\infty] \times \{+\infty\}$. Chacun de ces pavés est d'aire nulle :
 on a par exemple
 $$
-a(\{-\infty\} \times [-\infty, \infty]) = \ell(\{-\infty\}) \times \ell([-\infty, \infty]) = 0 \times \infty = 0.
+a(\{-\infty\} \times [-\infty, +\infty]) = \ell(\{-\infty\}) \times \ell([-\infty, +\infty]) = 0 \times (+\infty) = 0.
 $$
 Par conséquent l'ensemble considéré est négligeable.
 
@@ -1704,9 +1706,9 @@ par le théorème des accroissements finis, pour tout $x, y \in [0, 2\pi]$ on a
 $|\sin x - \sin y| \leq |x - y|$. Par conséquent, pour tout $x \in [0, 2\pi]$
 et $h>0$,
 $$
-G \cap [x-h, x+h] \times [-\infty, +\infty] \subset [x-h, x+h] \times [(\sin x) - h, (\sin x) + h].
+G \cap ([x-h, x+h] \times [-\infty, +\infty]) \subset [x-h, x+h] \times [(\sin x) - h, (\sin x) + h].
 $$
-En choisissant $h = 2\pi / n$ et $x= \pi/n, 3 \pi/n, 5 \pi /n, \dots$, 
+En choisissant $h = \pi / n$ et $x= \pi/n, 3 \pi/n, 5 \pi /n, \dots$, 
 on recouvre donc $G$ par la collection de pavés
 $$
 I_k = \left[k\frac{2\pi}{n}, (k+1)\frac{2\pi}{n} \right] \times 
@@ -1722,11 +1724,11 @@ $$
 
 La somme des aires des pavés $I_k$ satisfait
 $$
-\sum_{k=0}^{n-1} a(I_k) = n \times \frac{2\pi}{n} \times \frac{2}{n} = 
+\sum_{k=0}^{n-1} a(I_k) = n \times \frac{2\pi}{n} \times \frac{2\pi}{n} = 
 \frac{4 \pi^2}{n}.
 $$
 Il est donc possible de rendre cette somme arbitrairement faible en 
-sélectionnant un $n$ assez grand. L'ensemble $G$ est donc négligeable.
+sélectionnant un $n$ suffisamment grand. L'ensemble $G$ est donc négligeable.
 
 
 ### Additivité I {.answer #answer-exo-additivité-I}
@@ -1768,6 +1770,28 @@ $1_{A \cup B}$ est donc intégrable [par linéarité de l'intégrale](#linéarit
 \end{align*}
 
 
+### Calcul de l'aire d'un triangle {.answer #answer-triangle}
+Si la fonction $1_D$ est intégrable, alors 
+[le théorème de Fubini est applicable](#Fubini).
+On a donc
+$$
+a(T) = \int_{\R}\left[ \int_{\R} 1_T(x, y) \, dx \right] \, dy.
+$$
+Or, si $0 \leq y \leq 1$, 
+$$
+1_T(x, y) = \left| 
+\begin{array}{rl}
+1 & \mbox{si $0 \leq x \leq 1-y$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et dans le cas contraire, $1_T(x, y) = 0$. On a donc
+$$
+a(T) = \int_0^1\left[ \int_0^{1-y} dx \right] \, dy
+=\int_0^1 (1 - y) \, dy= \left[y - \frac{y^2}{2} \right]_0^1 = \frac{1}{2}.
+$$
+
 ### Contre-exemple {.answer .two #answer-fubini-counter-example}
 Pour tout $y \in \left]0,1\right]$ (et donc presque tout $y \in [0, 1]$), on a 
 $$
@@ -1796,34 +1820,13 @@ $$
 
 Or, si [le théorème de Fubini](#Fubini) était applicable, [on pourrait
 intervertir l'ordre d'intégration des variables sans changer le résultat](#Fubini-extension).
-Comme ça n'est pas le cas, on en déduit que l'hypothèse exigée par le théorème
-de Fubin ne tient pas : la fonction
+Comme cela n'est pas le cas, on en déduit que l'hypothèse exigée par le théorème
+de Fubini ne tient pas : la fonction
 $$
 (x, y) \in [0,1] \times [0,1] \mapsto \frac{x^2 - y^2}{(x^2+y^2)^2}
 $$
 n'est pas intégrable.
 
-### Calcul de l'aire d'un triangle {.answer #answer-triangle}
-Si la fonction $1_D$ est intégrable, alors 
-[le théorème de Fubini est applicable](#Fubini).
-On a donc
-$$
-a(T) = \int_{\R}\left[ \int_{\R} 1_T(x, y) \, dx \right] \, dy.
-$$
-Or, si $0 \leq y \leq 1$, 
-$$
-1_T(x, y) = \left| 
-\begin{array}{rl}
-1 & \mbox{si $0 \leq x \leq 1-y$,} \\
-0 & \mbox{sinon.}
-\end{array}
-\right.
-$$
-et dans le cas contraire, $1_T(x, y) = 0$. On a donc
-$$
-a(T) = \int_0^1\left[ \int_0^{1-y} dx \right] \, dy
-=\int_0^1 (1 - y) \, dy= \left[y - \frac{y^2}{2} \right]_0^1 = \frac{1}{2}.
-$$
 
 ### Triangle d'aire finie {.answer #answer-triangle2}
 La fonction $1_T : \R^2 \to \R$ est positive et mesurable, car l'ensemble
@@ -1931,7 +1934,7 @@ $$
 L'ensemble $A$ mesurable et de volume fini a une fonction caractéristique
 $1_A$ intégrable et
 $$
-v(A) = \int 1_A(x) \, dx.
+\lambda(A) = \int 1_A(x) \, dx.
 $$
 Soit $h(x) = x - u$ ou $u \in \R^3$. La fonction $h$ est une bijection de 
 $\R^3$ sur lui-même, continûment différentiable ainsi que son inverse,
@@ -1939,7 +1942,7 @@ $h^{-1}(x) =  x + u$ et $J_h(x) = I$, donc $\det J_h(x) = 1$.
 Par [le théorème de changement de variables](#theorem-changement-de-variables),
 la fonction $1_{h^{-1}(A)} = 1_{A} \circ h$ est donc intégrable sur $\R^3$ et
 $$
-\int 1_{h^{-1}(A)}\, dx = \int_{\R^3} (1_A \circ h) |\det J_h(x)| \, dx = \int_{\R^3} 1_A(x) \, dx = a(A).
+\int 1_{h^{-1}(A)}\, dx = \int_{\R^3} (1_A \circ h) |\det J_h(x)| \, dx = \int_{\R^3} 1_A(x) \, dx = \lambda(A).
 $$
 L'ensemble translaté $A + u = h^{-1}(A)$ est donc mesurable, de volume fini égal
 au volume de $A$.
@@ -1964,12 +1967,12 @@ J_{h}(r, \theta) =
 \end{array}
 \right],
 $$
-dont le déterminant vaut
+et son déterminant satisfait
 $$
 \det J_{h}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
 = r > 0.
 $$
-Le jacobien est donc inversible et $h^{-1}$ continûment différentiable par
+Le jacobien est donc inversible et $h^{-1}$ est continûment différentiable par
 le théorème d'inversion locale. On peut donc appliquer [le théorème de 
 changement de variables](#theorem-changement-de-variables) à la fonction
 $f$, ce qui fournit
@@ -1993,7 +1996,101 @@ On peut simplifier $(f \circ h)(h^{-1}(y))$ en $f(y)$ et éventuellement exprime
 jacobien de $h^{-1}$ en fonction du jacobien de $h$ : $J_{h^{-1}}(y) = [J_{h}(h^{-1}(y))]^{-1}$ ;
 on obtient donc
 $$
-\int_{D_1} f (h(x)) \, dx = \int_{D_2} f(y) \frac{1}{|\det J_{h}(h^{-1}(y))|} \, dy.
+\int_{D_1} f (h(x)) \, dx = 
+\int_{D_2} f(y) |\det J_{h^{-1}}(y)| \, dy = 
+\int_{D_2} f(y) \frac{1}{|\det J_{h}(h^{-1}(y))|} \, dy.
+$$
+
+
+
+Aire du disque unité {.answer #answer-adu}
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-adu-1}
+La fonction $1_D$ est intégrable : en effet,
+[l'ensemble $B$ est fermé donc mesurable](#OSM) et la fonction $1_D$ est 
+dominée par la fonction caractéristique du pavé fermé $[-1,1]^2$, 
+qui est intégrable. Par [le critère d'intégrabilité dominée](#CID), $1_D$
+est donc intégrable.
+
+
+### Question 2 {.answer #answer-adu-2}
+Le théorème de Fubini nous fournit
+$$
+\int_D dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
+= 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
+$$
+Comme
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+= \int_{[-1, 1]} \sqrt{1 - x^2} \, dx
+= \int_{\left]-1, 1\right[} \sqrt{1 - x^2} \, dx,
+$$
+on peut donc opérer le changement de variable 
+$$
+\theta \in \left]0, \pi\right[ \mapsto x = -\cos \theta \in \left]-1,1\right[
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+Comme $(-\cos \theta)' = \sin \theta$, on a
+$$
+\int_{0}^{\pi} \sqrt{1-(-\cos^2 \theta)} \sin \theta  \, d\theta = \int_{-1}^1 \sqrt{1 - x^2} \, dx
+$$
+et donc
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+=
+\int_{0}^{\pi} \sin^2 \theta  \, d\theta
+=
+\int_{0}^{\pi} \frac{1 - \cos 2\theta}{2} \, d\theta
+=
+\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4} \right]_0^{\pi}
+=\frac{\pi}{2},
+$$
+et finalement
+$$
+\int_D \, dx = \pi.
+$$
+
+### Question 3 {.answer #answer-adu-3}
+On remarque que l'union $N$ de la frontière $\partial D$ de $D$ et 
+du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
+et donc que
+$$
+\int_D \, dx = \int_{D \setminus N} dx,
+$$
+ce qui nous permet de considérer le changement de variable
+$$
+\phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
+\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in D \setminus N
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+On calcule la matrice jacobienne
+$$
+J_{\phi}(r, \theta) = 
+\left[ 
+\begin{array}{cr}
+\cos \theta & -r \sin \theta \\
+\sin \theta & r \cos \theta
+\end{array}
+\right],
+$$
+dont le déterminant vaut
+$$
+\det J_{\phi}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
+= r.
+$$
+On a donc
+$$
+\int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
+=
+\int_D \, dx,
+$$
+et donc par le théorème de Fubini,
+$$
+\int_D \, dx
+= \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
+= \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
+= \pi.
 $$
 
 
@@ -2095,96 +2192,6 @@ $$
 La fonction $r \left]0, +\infty \right[ \mapsto r^{\alpha-1}$ étant intégrable
 si et seulement si $\alpha > 2$, nous avons bien établi le résultat recherché.
 
-
-Aire du disque unité {.answer #answer-adu}
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-adu-1}
-La fonction $1_D$ est intégrable : en effet,
-[l'ensemble $B$ est fermé donc mesurable](#OSM) et la fonction $1_D$ est 
-dominée par la fonction caractéristique du pavé fermé $[-1,1]^2$, 
-qui est intégrable. Par [le critère d'intégrabilité dominée](#CID), $1_D$
-est donc intégrable.
-
-
-### Question 2 {.answer #answer-adu-2}
-Le théorème de Fubini nous fournit
-$$
-\int_D dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
-= 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
-$$
-Comme
-$$
-\int_{-1}^1 \sqrt{1 - x^2} \, dx
-= \int_{[-1, 1]} \sqrt{1 - x^2} \, dx
-= \int_{\left]-1, 1\right[} \sqrt{1 - x^2} \, dx,
-$$
-on peut donc opérer le changement de variable 
-$$
-\theta \in \left]0, \pi\right[ \mapsto x = -\cos \theta \in \left]-1,1\right[
-$$
-(bijectif, continûment différentiable ainsi que son inverse).
-Comme $(-\cos \theta)' = \sin \theta$, on a
-$$
-\int_{0}^{\pi} \sqrt{1-(-\cos^2 \theta)} \sin \theta  \, d\theta = \int_{-1}^1 \sqrt{1 - x^2} \, dx
-$$
-et donc
-$$
-\int_{-1}^1 \sqrt{1 - x^2} \, dx
-=
-\int_{0}^{\pi} \sin^2 \theta  \, d\theta
-=
-\int_{0}^{\pi} \frac{1 - \cos 2\theta}{2} \, d\theta
-=
-\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4} \right]_0^{\pi}
-=\frac{\pi}{2},
-$$
-et finalement
-$$
-\int_D \, dx = \pi.
-$$
-
-### Question 3 {.answer #answer-adu-3}
-On remarque que l'union $N$ de la frontière $\partial D$ de $D$ et 
-du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
-et donc que
-$$
-\int_D \, dx = \int_{D \setminus N} dx,
-$$
-ce qui nous permet de considérer le changement de variable
-$$
-\phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
-\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in D \setminus N
-$$
-(bijectif, continûment différentiable ainsi que son inverse).
-On calcule la matrice jacobienne
-$$
-J_{\phi}(r, \theta) = 
-\left[ 
-\begin{array}{cr}
-\cos \theta & -r \sin \theta \\
-\sin \theta & r \cos \theta
-\end{array}
-\right],
-$$
-dont le déterminant vaut
-$$
-\det J_{\phi}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
-= r.
-$$
-On a donc
-$$
-\int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
-=
-\int_D \, dx,
-$$
-et donc par le théorème de Fubini,
-$$
-\int_D \, dx
-= \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
-= \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
-= \pi.
-$$
 
 <!--
 
@@ -2481,7 +2488,7 @@ On déduit de l'identité $\|f(x)\|^2=\left<f(x), f(x)\right> =1$ valable sur $B
 que pour tout $h \in \R^2$,
 $$
 \left<df(x) \cdot h, f(x) \right> + \left<f(x), df(x) \cdot h \right>=
-2 \left<df(x)^* \cdot f(x), h \right> = 0
+2 \left<df(x)^{\top} \cdot f(x), h \right> = 0
 $$
 et donc la relation $J_f(x)^t f(x) = 0$. La valeur $f(x)$ étant non nulle, cela
 entraîne la non-inversibilité de la matrice jacobienne $J_f(x)$,
