@@ -676,7 +676,8 @@ et de matrice $\R^{m\times n}$ (un tenseur d'ordre 2).
   - Coller au plus près de NumPy et donner des exemples avec NumPy 
     (et einsum ?). Regarder aussi dot, tensordot, outer, etc.
     Voir ce qui fait le job ...Ca serait bien de pouvoir se limiter à `dot` ...
-  
+    Regarder les 3 use cases: diff d'ordre n, chain rule d'ordre 2, determinant
+    et/ou diff de fct matricielles (valeurs et/ou args).
 
 
 ### {.ante}
