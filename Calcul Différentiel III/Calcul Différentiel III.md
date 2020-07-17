@@ -7,16 +7,44 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
---------------------------------------------------------------------------------
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
 
 Objectifs d'apprentissage
---------------------------------------------------------------------------------
+================================================================================
 
-  - matrice hessienne, diff d'ordre 2, cont. diff d'ordre 2
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, les objectifs "Expert", les démonstrations du document[^hp] 
+et les contenus en annexe ne sont pas exigibles ("hors-programme").
+
+[^hp]: L'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+### TODO
+
+  - matrice hessienne & "formules" directement liées à la définition: 
+    $H_f = J_{\nabla f}$, $\partial_{j_1} \partial_{j_2} = \partial_{j_1j_2}^2$,
+    $[H_f]_{j_1j_2} = \partial_{j_1j_2}^2 f$,
+
+  - diff d'ordre 2, cont. diff d'ordre 2
+
+  - "formules" supposant la diff d'ordre 2: $d^2f(x)\cdot h_1 \cdot h_2 = h_1^{\top} \cdot H_f(x) \cdot h_2$,
+    $\nabla f(x+h)=\nabla f(x) + H_f(x)\cdot h + \varepsilon(h) \|h\|$.
 
   - symétrie de la matrice hessienne, 
   
-  - dvlpt limité d'ordre 2, dvlpt avec reste intégral d'ordre 2
+  - dvlpt limité d'ordre 2
 
 TODO
 ================================================================================
@@ -31,11 +59,6 @@ Evaluer stratégie
   - puis, dans un second temps seulement, introduction des tenseurs et
     "déblocage" : de la différentielle d'ordre 2 de fonction vectorielles,
     puis de la différentielle d'ordre $n$.
-
-
-
-TODO
-================================================================================
 
   - Tenseur d'ordre (0, 1, 2 et) $3$. Structure d'espace vectoriel normé.
     Contraction tensorielle, lien avec les applis $n$-linéaires (ouch).
@@ -223,6 +246,8 @@ H_f(x) = J_{\nabla f}(x) = \left[
 \right].
 $$
 
+### TODO -- Exercice(s) calcul matrice Hessienne et dérivées partielles d'ordre 2
+
 ### Continue différentiabilité d'ordre 2 {.definition .one}
 Soit $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
 *deux fois continûment différentiable* si pour tout $j_1 \in \{1,\dots, n\}$ 
@@ -237,10 +262,10 @@ continue.
 ### Différentielle d'ordre 2 {.definition #d2 .three}
 Soit $U$ un ouvert de $\R^n$ et $f: U \subset \mathbb{R}^n \to \mathbb{R}$.
 On dira que $f$ est *deux fois différentiable en $x$* si $f$ est différentiable
-sur $U$ et si pour tout vecteur $h$ de $\mathbb{R}^n$,
+sur $U$ et si pour tout vecteur $h_1$ de $\mathbb{R}^n$,
 la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
-est définie[^not] comme l'application linéaire telle que pour tout $h$ 
+est définie[^not] comme l'application linéaire telle que pour tout $h_1$ 
 dans $\mathbb{R}^n$,
 $$
 d^2 f(x) \cdot h_1 := d(x\mapsto df(x)\cdot h_1)(x),
@@ -284,6 +309,7 @@ $$
 d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
 $$
 
+
 ### Différentielle d'ordre 2 et matrice hessienne {.proposition #d2mh}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
 $x \in U$.
@@ -306,7 +332,7 @@ Pour tout $h_1 \in \R^n$,
 la fonction $x \mapsto df(x) \cdot h_1$ est également différentiable en $x$
 donc en particulier, pour tout $j_1 \in \{1, \dots, n\}$,
 $(\nabla f(x))_{j_1} = \left<\nabla f(x), e_{j_1} \right> = df(x) \cdot e_{j_1}$ ;
-le gradient de $f$ est donc différentiable composante par composante et donc
+le gradient de $f$ est différentiable composante par composante et donc
 différentiable. Réciproquement, si $f$ est différentiable et que son gradient
 est différentiable en $x$, pour tout $h \in \R^n$ on a 
 $$
@@ -339,10 +365,24 @@ d^2 f(x) \cdot
 \sum_{j_1=1}^n \sum_{j_2=1}^n h_{1j_1}h_{2j_2} 
 \left(d^2 f(x) \cdot e_{j_1} \cdot e_{j_2}\right) \\
 &=
-\sum_{j_1=1}^n \sum_{j_2=1}^n h_{1j_1}h_{2j_2} 
-[H_f(x)]_{j_1j_2}. \\
+\sum_{j_1=1}^n \sum_{j_2=1}^n [H_f(x)]_{j_1j_2} h_{1j_1}h_{2j_2}. \\
 \end{split}
 $$
+
+### Continue différentiabilité et différentiabilité d'ordre 2 {.proposition .one}
+Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
+continûment différentiable, alors $f$ est deux fois différentiable.
+
+### Démonstration {.proof}
+La fonction $f$ est différentiable à l'ordre 2
+[si elle est différentiable et que son gradient est également différentiable](#d2mh).
+Or, si $f$ est deux fois continûment différentiable, tous les dérivées
+partielles à l'ordre 1 de $f$ existe et sont elles-même dérivables ;
+donc le gradient de $f$ existe et est continu, la fonction $f$ est donc
+continûment différentiable et donc différentiable. De même, les dérivées
+partielles du gradient, qui sont les dérivées partielles de $f$ d'ordre 2,
+existent et sont continues. Le gradient est donc continûment différentiable
+et donc différentiable. La fonction $f$ est donc différentiable.
 
 ### Développement limité du gradient {.proposition #dlg}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
@@ -374,7 +414,7 @@ ou de façon équivalente, la matrice hessienne de $f$ en $x$ est symétrique
 $$
 H_f(x)^{\top} = H_f(x),
 $$
-c'est-à-dire, pour tous $j_1, j_2 \in \{1,\dots,m\}$,
+c'est-à-dire, pour tous $j_1, j_2 \in \{1,\dots,n\}$,
 $$
 \partial^2_{j_2j_1} f(x) = \partial^2_{j_1j_2} f(x).
 $$
@@ -383,7 +423,7 @@ $$
 Notons au préalable que
 $$
 \begin{split}
-\Delta^2 f(x, h_1, h_2) &= (f(x+h_2+h_1) - f(x+h_2)) - (f(x+h_1) - f(x)) \\
+\Delta^2 f(x, h_1, h_2) &:= (f(x+h_2+h_1) - f(x+h_2)) - (f(x+h_1) - f(x)) \\
 &= f(x+h_1+h_2) - f(x+h_1) - f(x+h_2) + f(x) \\
 &= (f(x+h_2+h_1) - f(x+h_1)) - (f(x+h_2) - f(x)) \\
 &= \Delta^2 f(x, h_2, h_1).
@@ -414,7 +454,7 @@ d^2f(x) \cdot th_1 \cdot th_2 - d^2f(x) \cdot th_2 \cdot th_1
 $$
 et 
 $$
-2 \varepsilon (\|th_1\|+\|th_2\|)^2 = t^2 \times 2 (\|h_1\|+\|h_2\|)^2,
+2 \varepsilon (\|th_1\|+\|th_2\|)^2 = t^2 \times 2 \varepsilon (\|h_1\|+\|h_2\|)^2,
 $$
 on voit que l'inégalité est en fait valable pour des $h_1$ et $h_2$ arbitraires.
 On en déduit que $d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 = 0.$
@@ -462,20 +502,7 @@ Par l'inégalité des accroissements finis, quand $\|h\| \leq r$, on a donc
 &\leq \varepsilon \|h\|^2.
 \end{align*}
 
-### Continue différentiabilité d'ordre 2 et différentiabilité d'ordre 2 {.proposition .one}
-Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
-continûment différentiable, alors $f$ est deux fois différentiable.
 
-### Démonstration {.proof}
-La fonction $f$ est différentiable à l'ordre 2
-[si elle est différentiable et que son gradient est également différentiable](#d2mh).
-Or, si $f$ est deux fois continûment différentiable, tous les dérivées
-partielles à l'ordre 1 de $f$ existe et sont elles-même dérivables ;
-donc le gradient de $f$ existe et est continu, la fonction $f$ est donc
-continûment différentiable et donc différentiable. De même, les dérivées
-partielles du gradient, qui sont les dérivées partielles de $f$ d'ordre 2,
-existent et sont continues. Le gradient est donc continûment différentiable
-et donc différentiable. La fonction $f$ est donc différentiable.
 
 
 <!--
@@ -619,6 +646,8 @@ $d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition
 Différentielle d'ordre supérieur
 ================================================================================
 
+**TODO** notation $i$ bof ; prendre $m$ ?
+
 ### Tenseur d'ordre $n$ {.definition .one}
 On appelera *tenseur d'ordre $n$* un élément de 
 $\R^{i_1 \times i_2 \times \dots \times i_n}$ où $(i_1,i_2,\dots, i_n) \in \N^{n}$, 
@@ -626,7 +655,7 @@ c'est-à-dire une application $A$ de la forme
 $$
 (i_1,  i_2, \dots , i_n) \mapsto A_{i_1i_2 \dots i_n} \in \R,
 $$
-c'est-à-dire un tableau $n$-dimensionnel de réels.
+ou encore, un tableau $n$-dimensionnel de réels.
 
 ### {.remark}
 Le concept de tenseur généralise la notion de scalaire de $\R$
@@ -635,7 +664,20 @@ et de matrice $\R^{m\times n}$ (un tenseur d'ordre 2).
 
 ### TODO.
 
-Contraction, application bilinéaire, identification, etc.
+  - Identification tenseur application $n$-linéaire.
+
+  - Contraction entre tenseurs (taille compatible), 
+
+  - Contraction d'ordre $p$ (quelle convention et notation ?),
+
+  - Décomposer produit de tenseurs et contraction d'indice (pour UN tenseur)
+    ou combiner ? Indices nommés ?
+
+  - Coller au plus près de NumPy et donner des exemples avec NumPy 
+    (et einsum ?). Regarder aussi dot, tensordot, outer, etc.
+    Voir ce qui fait le job ...Ca serait bien de pouvoir se limiter à `dot` ...
+  
+
 
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
@@ -1030,7 +1072,7 @@ $h_2$ de l'argument, la grandeur
 $$
 \begin{split}
 \Delta^2 f(x, h_1, h_2) &:=\Delta(x \mapsto \Delta f(x, h_1))(x, h_2) \\
-&= \Delta f(x+h_2, h_1) - \Delta f(x, h_1).
+&\phantom{:}= \Delta f(x+h_2, h_1) - \Delta f(x, h_1).
 \end{split}
 $$
 
