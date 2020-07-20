@@ -246,7 +246,17 @@ H_f(x) = J_{\nabla f}(x) = \left[
 \right].
 $$
 
-### TODO -- Exercice(s) calcul matrice Hessienne et dérivées partielles d'ordre 2
+### Matrice hessienne d'un monôme {.exercise .question .one #simple}
+Soit $f: (x_1, x_2) \in \R^2 \to \R$ la fonction définie par 
+$f(x_1,x_2) = x_1x_2^2$. Montrer que la matrice $H_f(x)$
+est définie en tout point $x \in \R^2$ et la calculer.
+
+### Matrice hessienne d'un lagrangien {.exercise .question .two #lagrangien}
+Soit $U$ un ouvert de $\R^n$ et $f: U \to \R$ et $g: U \to \R$ deux applications
+dont les matrices hessiennes sont définies sur $U$. Soit $c \in \R$ un constante 
+et $L : U \times \R \to \R$ la fonction telle que 
+$L(x, \lambda) = f(x) + \lambda (g(x) - c)$.
+Calculer $H_L(x, \lambda)$.
 
 ### Continue différentiabilité d'ordre 2 {.definition .one}
 Soit $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
@@ -373,16 +383,19 @@ $$
 Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
 continûment différentiable, alors $f$ est deux fois différentiable.
 
+
 ### Démonstration {.proof}
 La fonction $f$ est différentiable à l'ordre 2
 [si elle est différentiable et que son gradient est également différentiable](#d2mh).
 Or, si $f$ est deux fois continûment différentiable, tous les dérivées
-partielles à l'ordre 1 de $f$ existe et sont elles-même dérivables ;
-donc le gradient de $f$ existe et est continu, la fonction $f$ est donc
-continûment différentiable et donc différentiable. De même, les dérivées
+partielles à l'ordre 1 de $\nabla f$ existent et sont elles-mêmes partiellement dérivables,
+de dérivées partielles continues.
+Donc, le gradient de $f$ est continûment différentiable et donc
+différentiable. En particulier, il est continu, la fonction $f$ est donc
+continûment différentiable et donc différentiable. <!--De même, les dérivées
 partielles du gradient, qui sont les dérivées partielles de $f$ d'ordre 2,
 existent et sont continues. Le gradient est donc continûment différentiable
-et donc différentiable. La fonction $f$ est donc différentiable.
+et donc différentiable. La fonction $f$ est donc différentiable.-->
 
 ### Développement limité du gradient {.proposition #dlg}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
@@ -1228,6 +1241,64 @@ Montrer la réciproque de ce résultat.
 
 Solutions
 ================================================================================
+
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Matrice hessienne d'un monôme {.exercise .answer #answer-simple}
+Le gradient de $f$ est défini en tout point de $\R^2$ et vaut
+$$
+\nabla f(x_1, x_2) = 
+\left[ \begin{array}{c} \partial_1 (x_1x_2^2) \\ \partial_2 (x_1 x_2^2) \end{array}\right] =
+\left[ \begin{array}{c} x_2^2 \\ 2x_1x_2\end{array}\right].
+$$
+Toutes les dérivées partielles des composantes de $\nabla f$ sont définies ;
+on a donc
+$$
+H_f(x) = J_{\nabla f} (x_1, x_2) = 
+\left[ 
+\begin{array}{ll} 
+\partial_1 (x_2^2) & \partial_2 (x_2^2) \\
+\partial_1 (2x_1 x_2) & \partial_2 (2x_1 x_2) \\
+\end{array}\right]
+=
+\left[ 
+\begin{array}{cc} 
+0 & 2x_2 \\
+2x_2 & x_1 x_2 \\
+\end{array}\right].
+$$
+
+
+### Matrice hessienne d'un lagrangien {.answer #answer-lagrangien}
+Le gradient de $L$ en $(x, \lambda)$ vaut
+$$
+\nabla L(x,  \lambda) = 
+\left[ 
+  \begin{array}{c}
+  \nabla_x (f(x) + \lambda (g(x) - c)) \\
+  \partial_{\lambda} (f(x) + \lambda (g(x) - c))
+  \end{array}
+\right]
+=
+\left[ 
+  \begin{array}{c}
+  \nabla f(x) + \lambda \nabla g(x) \\
+  g(x) - c
+  \end{array}
+\right],
+$$
+par conséquent
+$$
+H_L(x, \lambda) = J_{{\nabla}L}(x, \lambda)
+=
+\left[ 
+  \begin{array}{cc}
+  H_f(x) + \lambda H_g(x) & \nabla g(x) \\
+  \nabla g(x)^{\top} & 0
+  \end{array}
+\right].
+$$
 
 
 Fonction quadratique 
