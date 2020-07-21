@@ -1934,12 +1934,12 @@ calculer $\nabla f(x)$.
 ### Question 2 -- Matrice hessienne {.question #fq-2 .one}
 Montrer que la fonction $\nabla f: \R^n \to \R^n$ est différentiable et
 calculer la matrice jacobienne de $\nabla f$ en $x$. On note désormais
- $\nabla^2 f(x) := J_{\nabla f}(x)$.
+ $H_f(x) := J_{\nabla f}(x)$.
 
 ### Question 3 -- Point critique {.question #fq-3 .one}
-Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
+Soit $x \in \R^n$ ; on suppose que $H_f(x)$ est inversible. 
 Montrer qu'il existe un unique $x_0 \in \R^n$ où s'annule $\nabla f$ ; 
-le calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
+le calculer en fonction de $x$, $\nabla f(x)$ et $H_f(x)$.
 
 ### Question 4 -- Vecteur gaussien {.question #fq-4 .two}
 La densité de probabilité associée à un vecteur gaussien $X \in \R^d$ 
@@ -2827,21 +2827,21 @@ $$
 est affine, somme d'une fonction linéaire et d'une fonction constante.
 Elle est donc différentiable, et
 $$
-\nabla^2 f(x) := J_{\nabla f}(x) = \frac{1}{2}(A + A^{\top}).
+H_f(x) := J_{\nabla f}(x) = \frac{1}{2}(A + A^{\top}).
 $$
 
 ### Question 3 -- Point critique {.answer #answer-fq-3}
-Si $\nabla^2 f(x)$ est inversible (cet opérateur est constant), comme
+Si $H_f(x)$ est inversible (cet opérateur est constant), comme
 $$
-\nabla f(y) = \frac{1}{2}(A + A^{\top}) \cdot y + b = \nabla^2 f(x) \cdot y + b,
+\nabla f(y) = \frac{1}{2}(A + A^{\top}) \cdot y + b = H_f(x) \cdot y + b,
 $$
 résoudre $\nabla f(x_0) = 0$ revient à rechercher les solutions de
 $$
-\nabla^2 f(x) \cdot x_0 + b = \nabla^2 f(x) \cdot x_0 + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
+H_f(x) \cdot x_0 + b = H_f(x) \cdot x_0 + (\nabla f(x) - H_f(x) \cdot x) = 0.
 $$
 Il existe donc un unique zéro de $\nabla f$, donné par
 $$
-x_0 = x - (\nabla^2 f(x))^{-1} \nabla f(x).
+x_0 = x - (H_f(x))^{-1} \nabla f(x).
 $$
 
 ### Question 4 -- Vecteur gaussien {.answer #answer-fq-4}
