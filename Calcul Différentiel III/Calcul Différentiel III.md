@@ -1149,25 +1149,30 @@ Par conséquent, l'inégalité des accroissements finis fournit
 
 Exercices
 ================================================================================
-<!--
 
-Fonction quadratique 
+Convexité
 --------------------------------------------------------------------------------
-Soit $A \in \R^{n\times n}$, $b \in \R^n$ et
-$c \in \R$. Soit $f:\R^n \to \R$ la fonction définie par
+
+Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
+deux fois différentiable. 
+
+### Question 0 {.question #c-0}
+Calculer le développement limité à l'ordre 2 de 
+$f(x+2h) - 2f(x+h) + f(x)$.
+
+### Question 1 {.question #c-1}
+Montrer que si $f$ est convexe, c'est-à-dire si
+pour tous $x, y \in U$ et $\lambda\in[0,1]$,
 $$
-f(x) = \frac{1}{2} x^{\top} \cdot A \cdot x  + b^\top \cdot  x + c. 
+f((1-\lambda) x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y),
+$$
+alors pour tout $x \in U$ et $h \in \R^n$,
+$$
+d^2f(x) (\cdot h)^2 = h^{\top} \cdot H_f(x) \cdot h \geq 0.
 $$
 
-### Question 1 {.question #fq-1}
-Montrer que $f$ est 2 fois différentiable en tout point $x$ de $\R^n$ ; 
-calculer $\nabla f(x)$ et $H_f(x)$.
-
-### Question 2 {.question #fq-2}
-Soit $x \in \R^n$ ; on suppose que $H_f(x)$ est inversible. 
-Montrer que le gradient de $f$ admet un unique zéro (point $x_0$ où $\nabla f(x_0) = 0$) ; 
-le calculer en fonction de $x$, $\nabla f(x)$ et $H_f(x)$.
--->
+### Question 2 {.question #c-2}
+Montrer la réciproque de ce résultat.
 
 Différentiation en chaîne à l'ordre 2
 --------------------------------------------------------------------------------
@@ -1186,28 +1191,6 @@ H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +
 \sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
 $$
 
-<!--
-
-Vecteur gaussien
---------------------------------------------------------------------------------
-
-La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
-est proportionnelle à la fonction
-$$
-f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
-$$
-où $\Sigma : \R^d \to \R^d$ est un opérateur linéaire autoadjoint 
-(c'est-à-dire que $\Sigma^* = \Sigma$) 
-tel que $\left<x, \Sigma \cdot x \right> > 0$ quand $x\neq 0$.
-
-### Question 1 {.question #vg-1}
-Montrer que la fonction $f$ est différentiable et calculer son gradient.
-
-### Question 2 {.question #vg-2}
-Montrer que la fonction $f$ est deux différentiable et calculer sa 
-hessienne.
-
--->
 
 <!--
 
@@ -1233,30 +1216,6 @@ ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
 
 -->
-
-Convexité
---------------------------------------------------------------------------------
-
-Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
-deux fois différentiable. 
-
-### Question 0 {.question #c-0}
-Calculer le développement limité à l'ordre 2 de 
-$f(x+2h) - 2f(x+h) + f(x)$.
-
-### Question 1 {.question #c-1}
-Montrer que si $f$ est convexe, c'est-à-dire si
-pour tous $x, y \in U$ et $\lambda\in[0,1]$,
-$$
-f((1-\lambda) x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y),
-$$
-alors pour tout $x \in U$ et $h \in \R^n$,
-$$
-d^2f(x) (\cdot h)^2 = h^{\top} \cdot H_f(x) \cdot h \geq 0.
-$$
-
-### Question 2 {.question #c-2}
-Montrer la réciproque de ce résultat.
 
 Solutions
 ================================================================================
@@ -1319,83 +1278,92 @@ H_L(x, \lambda) = J_{{\nabla}L}(x, \lambda)
 \right].
 $$
 
-<!--
 
-Fonction quadratique 
+
+Convexité
 --------------------------------------------------------------------------------
 
-### Question 1 {.answer #answer-fq-1}
-Pour tout $x \in \R^n$ et tout $h \in \R^n$, on a 
+### Question 0 {.answer #answer-c-0}
+[Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
+$$
+f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2)
+$$
+et donc
+$$
+f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2).
+$$
+Par conséquent,
+$$
+f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
+$$
+
+### Question 1 {.answer #answer-c-1}
+En considérant $y = x+2h$ et $\lambda = 1/2$, on voit que l'hypothèse
+de convexité de $f$ entraîne 
+$$
+f(x+h) \leq \frac{1}{2} f(x) + \frac{1}{2} f(x+2h),
+$$
+soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
+En utilisant le résultat de la question précédente,
+on obtient
+$$d^2 f(x) (\cdot h)^2 + o(\|h\|^2) \geq 0$$ et donc, en substituant 
+$th$ à $h$ et en faisant tendre $t$ vers $0$, 
+$d^2 f(x) (\cdot h)^2 \geq 0.$
+
+### Question 2 {.answer #answer-c-2}
+Comme $f((1-\lambda) x + \lambda y) = f(x + \lambda (y-x))$,
+l'inégalité de Taylor avec reste intégral fournit 
 $$
 \begin{split}
-f(x+h) - f(x) &= \frac{1}{2} \left<(x+h), A \cdot (x+h) \right> + \left<b, x+h\right> + c
-- \frac{1}{2} \left<x, A \cdot x \right> - \left<b, x\right> - c \\
-& =
-\frac{1}{2} \left<x, A \cdot h \right> + \frac{1}{2} \left<h, A \cdot x \right> +
-\left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right> \\
-&=
-\frac{1}{2} \left<A^* \cdot x, h \right> + \frac{1}{2} \left<A \cdot x, h \right> +
-\left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right>.
+f((1-\lambda) x + \lambda y)
+&= f(x) + df(x) \cdot \lambda (y-x) \\
+&\phantom{=} + \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot \lambda(y-x))^2 (1- t) \, dt.
 \end{split}
 $$
-Comme $|\left<h, A \cdot h \right>| \leq \|h\| \times \|A\| \|h\|$, ce terme
-est un $o(\|h\|)$. On en conclut que
+L'intégrale ci-dessus étant égale à 
 $$
-f(x+h) - f(x)
-= \left<\frac{1}{2}(A + A^*) \cdot x + b, h\right> + o(\|h\|).
+\lambda \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot (y-x))^2 
+\left(1- \frac{ \lambda t}{\lambda} \right) \, \ \lambda dt,
 $$
-La fonction $f$ est donc différentiable en $x$, de gradient
+par le changement de variable $t \lambda \to t$ elle est égale à
 $$
-\nabla f(x) = \frac{1}{2}(A + A^*) \cdot x + b.
+\lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
+\left(1 - \frac{t}{\lambda} \right)\, dt.
 $$
-Pour tout $h \in \R^n$, la fonction $x \mapsto \left<\nabla f(x), h\right>$
-vérifie
+En utilisant le développement de Taylor avec reste intégral pour
+$\lambda \in \left]0, 1\right]$ et $\lambda=1$, on obtient donc
 $$
-\left<\nabla f(x+k), h\right> - \left<\nabla f(x), h\right>
-= \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
+\begin{split}
+f((1-\lambda) x + \lambda y) - \lambda f(y)
+&= f(x) - \lambda f(x) + df(x) \cdot \lambda (y-x) - \lambda df(x) \cdot (y-x) \\
+&\phantom{=} + \lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2  \left(1 - \frac{t}{\lambda} \right)\, dt
+\\
+&\phantom{=} - \lambda \int_0^{1} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
+\left(1 - t \right)\, dt,
+\end{split}
 $$
-Elle est donc différentiable et 
+soit 
 $$
-d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
+f((1-\lambda) x + \lambda y) - \lambda f(y)
+- (1 - \lambda) f(x) 
+=\lambda \int_0^1 \phi_f(t) \psi_{\lambda} (t) \, dt
 $$
-Par symétrie de la différentielle d'ordre $2$,
+où
+$\phi_f(t) := d^2f(x+ t (y-x)) (\cdot (y-x))^2$ est positive par hypothèse et 
 $$
-d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot h, k\right>,
+\psi_{\lambda}(t) :=
+\left|
+\begin{array}{cc}
+t(1 - 1/\lambda) & \mbox{si } t \leq \lambda\\
+(t - 1) & \mbox{sinon.}
+\end{array}
+\right.
 $$
-donc 
-$$
-\nabla^2 f(x) = \frac{1}{2}(A + A^*).
-$$
--->
-<!--
-On a 
-\begin{align*}
-f(x) &= \frac{1}{2} x^{\top} \cdot A \cdot x  + b^\top \cdot  x + c \\
-\sum_{i,j} \frac{1}{2}x_i A_{ij} x_j + \sum_i b_i x_i + c,
-\end{align*}
-par conséquent les dérivées partielles de $f$ existent à l'ordre 1 et vérifient
-$$
-\partial_k f = + b_k
-$$
+La fonction $\psi_{\lambda}$ étant négative, on en conclut que
+$f((1-\lambda) x + \lambda y) - \lambda f(y) - f(x)$ est négative pour tout
+$\lambda \in \left]0, 1\right]$ ; cette inégalité est également trivialement
+satisfaite si $\lambda=0$. La fonction $f$ est donc convexe.
 
-$$
-H_f(x) = \frac{1}{2}(A + A^{\top})
-$$
-
-### Question 2 {.answer #answer-fq-2}
-Si $H_f(x)$ est inversible (cet opérateur est constant), comme
-$$
-\nabla f(x_0) = \frac{1}{2}(A + A^*) \cdot x_0 + b = H_f(x) \cdot x_0 + b,
-$$
-résoudre $\nabla f(x_0) = 0$ revient à rechercher les solutions de
-$$
-\nabla^2 f(x) \cdot x_0 + b = \nabla^2 f(x) \cdot x_0 + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
-$$
-Il existe donc un unique zéro $x_0$ de $\nabla f$, donné par
-$$
-x_0 = x - (\nabla^2 f(x))^{-1} \nabla f(x).
-$$
--->
 
 Différentiation en chaîne à l'ordre 2
 --------------------------------------------------------------------------------
@@ -1451,104 +1419,6 @@ ce qui prouve pour tout $x \in U$ la relation matricielle
 $$
 H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  \sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
 $$
-
-
-<!--
-
-Vecteur gaussien
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-vg-1}
-La fonction 
-$$
-f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
-$$
-apparaît comme la composée des fonctions
-$$
-x \in \R^d \mapsto -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right>
-\; \mbox{ et } \; \exp:\R \to \R.
-$$ 
-La fonction $\exp$ est dérivable, et donc différentiable 
-sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dx = \exp(y) dy$, c'est-à-dire
-$$
-d\exp(y) \cdot h = \exp(y) \times h.
-$$ 
-Quand à la première fonction, pour tout $h \in \R^d$, on a
-\begin{multline*}
--\frac{1}{2} \left<x+h, \Sigma^{-1} \cdot (x+h) \right>
-=  \\
--\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>
-+ <x, \Sigma^{-1} h> + <h, \Sigma^{-1} \cdot x> + \left<h, \Sigma^{-1} \cdot h \right>
-\right). 
-\end{multline*}
-D'une part, comme $\Sigma$ est autoadjoint (et inversible), $\Sigma^{-1}$ également et
-$$
-<x, \Sigma^{-1} \cdot h> + <h, \Sigma^{-1} \cdot x> = 2 \left<\Sigma^{-1} \cdot x, h \right>,
-$$
-d'autre part
-$$
-\left| \left<h, \Sigma^{-1} \cdot h \right> \right|
-\leq \|h\| \times \|\Sigma^{-1} \cdot h\| \leq \|h\| \times \|\Sigma^{-1}\| \times \|h\| = o(\|h\|).
-$$
-La fonction est donc différentiable sur $\R^n$, avec
-$$
-d \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right) \cdot h
-= - \left<\Sigma^{-1} \cdot x, h \right>.
-$$
-La fonction $f$ est donc différentiable sur $\R^d$ comme composée
-de fonctions différentiables et l'on a
-$$
-d f(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
-\left<\Sigma^{-1} \cdot x, h \right>
-= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>,
-$$
-le gradient de $f$ vaut donc
-$$
-\nabla f(x) = -f(x) \times \Sigma^{-1} \cdot x.
-$$
-
-### Question 2 {.answer #answer-vg-2}
-De l'équation
-$$
-d f(x) \cdot h 
-= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>
-= -f(x) \left<\Sigma^{-1} \cdot h, x \right>
-$$
-on déduit que $x \mapsto d f(x) \cdot h$ est différentiable comme produit
-de fonctions scalaires différentiables (la fonction 
-$x \mapsto \left<\Sigma^{-1} \cdot h, x \right>$ étant linéaire). 
-On a de plus
-$$
-\begin{split}
-d (x \mapsto d f(x) \cdot h) \cdot k
-&=
-- (df(x) \cdot k) \times \left<\Sigma^{-1} \cdot x, h \right>
-- f(x) \times \left<\Sigma^{-1} \cdot h, k \right> \\
-&= 
-\left<-f(x) \times \Sigma^{-1} \cdot x, k \right> \left<\Sigma^{-1} \cdot x, h \right>+
-\left<-f(x) \times \Sigma^{-1} \cdot h, k\right>
-\end{split}
-$$
-
-Pour des vecteurs arbitraires $u$ et $v$ dans $\R^n$, on a
-$$
-\left<u, k \right> \left<v, h \right>
-=
-\left<k, u \right> \left<v, h \right>
-= k^* \cdot u  \times v^* \cdot h = (v \cdot u^* \cdot k)^* \cdot h = \left<(v \cdot u^*) \cdot k, h \right>,
-$$
-par conséquent
-$$
-d (x \mapsto d f(x) \cdot h) \cdot k
-= 
--f(x) \left<(\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
-$$
-La Hessienne de $f$ en $x$ est donc donnée par
-$$
-\nabla^2 f(x) = - f(x) (\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}).
-$$
-
--->
 
 <!--
 
@@ -1645,88 +1515,3 @@ et donc
 $$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
 -->
-
-
-Convexité
---------------------------------------------------------------------------------
-
-### Question 0 {.answer #answer-c-0}
-[Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
-$$
-f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2)
-$$
-et donc
-$$
-f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2).
-$$
-Par conséquent,
-$$
-f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
-$$
-
-### Question 1 {.answer #answer-c-1}
-En considérant $y = x+2h$ et $\lambda = 1/2$, on voit que l'hypothèse
-de convexité de $f$ entraîne 
-$$
-f(x+h) \leq \frac{1}{2} f(x) + \frac{1}{2} f(x+2h),
-$$
-soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
-En utilisant le résultat de la question précédente,
-on obtient
-$$d^2 f(x) (\cdot h)^2 + o(\|h\|^2) \geq 0$$ et donc, en substituant 
-$th$ à $h$ et en faisant tendre $t$ vers $0$, 
-$d^2 f(x) (\cdot h)^2 \geq 0.$
-
-### Question 2 {.answer #answer-c-2}
-Comme $f((1-\lambda) x + \lambda y) = f(x + \lambda (y-x))$,
-l'inégalité de Taylor avec reste intégral fournit 
-$$
-\begin{split}
-f((1-\lambda) x + \lambda y)
-&= f(x) + df(x) \cdot \lambda (y-x) \\
-&\phantom{=} + \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot \lambda(y-x))^2 (1- t) \, dt.
-\end{split}
-$$
-L'intégrale ci-dessus étant égale à 
-$$
-\lambda \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot (y-x))^2 
-\left(1- \frac{ \lambda t}{\lambda} \right) \, \ \lambda dt,
-$$
-par le changement de variable $t \lambda \to t$ elle est égale à
-$$
-\lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
-\left(1 - \frac{t}{\lambda} \right)\, dt.
-$$
-En utilisant le développement de Taylor avec reste intégral pour
-$\lambda \in \left]0, 1\right]$ et $\lambda=1$, on obtient donc
-$$
-\begin{split}
-f((1-\lambda) x + \lambda y) - \lambda f(y)
-&= f(x) - \lambda f(x) + df(x) \cdot \lambda (y-x) - \lambda df(x) \cdot (y-x) \\
-&\phantom{=} + \lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2  \left(1 - \frac{t}{\lambda} \right)\, dt
-\\
-&\phantom{=} - \lambda \int_0^{1} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
-\left(1 - t \right)\, dt,
-\end{split}
-$$
-soit 
-$$
-f((1-\lambda) x + \lambda y) - \lambda f(y)
-- (1 - \lambda) f(x) 
-=\lambda \int_0^1 \phi_f(t) \psi_{\lambda} (t) \, dt
-$$
-où
-$\phi_f(t) := d^2f(x+ t (y-x)) (\cdot (y-x))^2$ est positive par hypothèse et 
-$$
-\psi_{\lambda}(t) :=
-\left|
-\begin{array}{cc}
-t(1 - 1/\lambda) & \mbox{si } t \leq \lambda\\
-(t - 1) & \mbox{sinon.}
-\end{array}
-\right.
-$$
-La fonction $\psi_{\lambda}$ étant négative, on en conclut que
-$f((1-\lambda) x + \lambda y) - \lambda f(y) - f(x)$ est négative pour tout
-$\lambda \in \left]0, 1\right]$ ; cette inégalité est également trivialement
-satisfaite si $\lambda=0$. La fonction $f$ est donc convexe.
