@@ -1192,14 +1192,44 @@ H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +
 $$
 
 
-<!--
-
 Différentiation matricielle
 --------------------------------------------------------------------------------
 
 Source: [@Tao13]
 
 \newcommand{\tr}{\mathrm{tr} \,}
+
+Dans cet exercice :
+
+  1. Une fonction $F: U \subset \R^n \to \R^{m \times p}$ à valeurs matricielles
+est différentiable si chacune de ses composantes $F_{ij} : U \to \R$ est différentiable.
+La différentielle de $F$ est alors définie par $[dF]_{ij} = dF_{ij}$.
+
+  2. Une fonction $f : U \subset \R^{m\times n} \to \R^{p}$ dont l'argument $X$ est 
+  matriciel est différentiable si la fonction $g : \pi(U) \subset \R^{mn} \to \R^p$
+  caractérisée par
+  $$
+  g(x)
+  :=
+  f\left(\left[\begin{array}{ccc}
+  X_{11} & \dots & X_{1n}  \\
+  \vdots & \vdots &  \vdots \\
+  X_{m1} & \dots  & X_{mn} \\
+  \end{array}\right] \right)
+  $$
+avec
+  $$
+  x =  \pi(X) := (X_{11}, \dots, X_{1n}, \dots, X_{m1},\dots, X_{mn})
+  $$
+  est différentiable. On définit alors pour tout $H \in \R^{m\times n}$
+  $$
+  df(X) \cdot H = dg(x) \cdot h \; \mbox{ avec } \; x = \pi(X), \, h = \pi(H).
+  $$ 
+  La construction se généralise sans difficulté aux fonctions dépendant 
+  de plusieurs matrices.
+
+  3. Il est possible de combiner les deux cas précédents pour définir la différentielle
+de fonctions d'argument et de valeur matriciels.
 
 ### Question 1 {.question #dm-1}
 Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
@@ -1215,7 +1245,6 @@ Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
 ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
 
--->
 
 Solutions
 ================================================================================
@@ -1277,7 +1306,6 @@ H_L(x, \lambda) = J_{{\nabla}L}(x, \lambda)
   \end{array}
 \right].
 $$
-
 
 
 Convexité
@@ -1420,9 +1448,7 @@ $$
 H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  \sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
 $$
 
-<!--
-
-Différentiation matricielle
+TODO -- Différentiation matricielle
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dm-1}
@@ -1514,4 +1540,5 @@ $$
 et donc
 $$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
--->
+Références
+================================================================================
