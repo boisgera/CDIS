@@ -1150,10 +1150,6 @@ Par conséquent, l'inégalité des accroissements finis fournit
 Exercices
 ================================================================================
 
-### TODO : diff du produit matriciel
-
-### TODO : diff du déterminant.
-
 Fonction quadratique 
 --------------------------------------------------------------------------------
 Soit $A: \R^n \to \R^n$ un opérateur linéaire, $b$ un vecteur de $\R^n$ et
@@ -1172,6 +1168,25 @@ Montrer que la fonction $f$ admet un unique point critique $x_0$ et le
 calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
 
 
+Différentiation en chaîne à l'ordre 2
+--------------------------------------------------------------------------------
+
+Soit $U$ et $V$ des ouverts de $\R^n$ et de $\R^m$, $f: U \to \R^m$ et
+$g : V \to \R$ deux applications deux fois différentiables telles que
+$f(U) \subset V$. 
+
+### Question 1 {.question #cr2}
+Montrer que $g \circ f$ est deux fois différentiable sur $U$ et que
+$$
+H_{g \circ f}(x) = J_g(f(x)) \cdot H_f(x) \cdot J_f(x) + J_f(x)^{\top}\cdot H_g(x) \cdot J_f(x)
+$$
+
+Différentiation en chaîne à l'ordre 2
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-cr2}
+
+<!--
 
 Vecteur gaussien
 --------------------------------------------------------------------------------
@@ -1192,6 +1207,9 @@ Montrer que la fonction $f$ est différentiable et calculer son gradient.
 Montrer que la fonction $f$ est deux différentiable et calculer sa 
 hessienne.
 
+-->
+
+<!--
 
 Différentiation matricielle
 --------------------------------------------------------------------------------
@@ -1214,6 +1232,7 @@ Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
 ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
 
+-->
 
 Convexité
 --------------------------------------------------------------------------------
@@ -1362,6 +1381,8 @@ y = x - (\nabla^2 f(x))^{-1} \nabla f(x).
 $$
 
 
+<!--
+
 Vecteur gaussien
 --------------------------------------------------------------------------------
 
@@ -1455,7 +1476,9 @@ $$
 \nabla^2 f(x) = - f(x) (\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}).
 $$
 
+-->
 
+<!--
 
 Différentiation matricielle
 --------------------------------------------------------------------------------
@@ -1548,6 +1571,8 @@ $$
 $$
 et donc
 $$d \,\mathrm{inv} (I) \cdot H= - H.$$
+
+-->
 
 
 Convexité
