@@ -1149,24 +1149,25 @@ Par conséquent, l'inégalité des accroissements finis fournit
 
 Exercices
 ================================================================================
+<!--
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
-Soit $A: \R^n \to \R^n$ un opérateur linéaire, $b$ un vecteur de $\R^n$ et
-$c \in \R$. On considère la fonction $f:\R^n \to \R$ définie par
+Soit $A \in \R^{n\times n}$, $b \in \R^n$ et
+$c \in \R$. Soit $f:\R^n \to \R$ la fonction définie par
 $$
-f(x) = \frac{1}{2} \left<x, A \cdot x \right> + \left<b, x\right> + c. 
+f(x) = \frac{1}{2} x^{\top} \cdot A \cdot x  + b^\top \cdot  x + c. 
 $$
 
 ### Question 1 {.question #fq-1}
 Montrer que $f$ est 2 fois différentiable en tout point $x$ de $\R^n$ ; 
-calculer $\nabla f(x)$ et $\nabla^2 f(x)$.
+calculer $\nabla f(x)$ et $H_f(x)$.
 
 ### Question 2 {.question #fq-2}
-Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
-Montrer que la fonction $f$ admet un unique point critique $x_0$ et le 
-calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
-
+Soit $x \in \R^n$ ; on suppose que $H_f(x)$ est inversible. 
+Montrer que le gradient de $f$ admet un unique zéro (point $x_0$ où $\nabla f(x_0) = 0$) ; 
+le calculer en fonction de $x$, $\nabla f(x)$ et $H_f(x)$.
+-->
 
 Différentiation en chaîne à l'ordre 2
 --------------------------------------------------------------------------------
@@ -1175,16 +1176,15 @@ Soit $U$ et $V$ des ouverts de $\R^n$ et de $\R^m$, $f: U \to \R^m$ et
 $g : V \to \R$ deux applications deux fois différentiables telles que
 $f(U) \subset V$. 
 
-### Question 1 {.question #cr2}
-Montrer que $g \circ f$ est deux fois différentiable sur $U$ et que
-$$
-H_{g \circ f}(x) = J_g(f(x)) \cdot H_f(x) \cdot J_f(x) + J_f(x)^{\top}\cdot H_g(x) \cdot J_f(x)
-$$
+### Question 1 {.question .two #cr2-1}
+Montrer que $g \circ f$ est deux fois différentiable sur $U$. 
 
-Différentiation en chaîne à l'ordre 2
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-cr2}
+### Question 2 {.question .three #cr2-2}
+Montrer que pour tout $x \in U$,
+$$
+H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  
+\sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
+$$
 
 <!--
 
@@ -1252,7 +1252,7 @@ f((1-\lambda) x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y),
 $$
 alors pour tout $x \in U$ et $h \in \R^n$,
 $$
-d^2f(x) (\cdot h)^2 = \left<\nabla^2 f(x) \cdot h, h\right> \geq 0.
+d^2f(x) (\cdot h)^2 = h^{\top} \cdot H_f(x) \cdot h \geq 0.
 $$
 
 ### Question 2 {.question #c-2}
@@ -1264,7 +1264,7 @@ Solutions
 Exercices essentiels
 --------------------------------------------------------------------------------
 
-### Matrice hessienne d'un monôme {.exercise .answer #answer-simple}
+### Matrice hessienne d'un monôme {.answer #answer-simple}
 Le gradient de $f$ est défini en tout point de $\R^2$ et vaut
 $$
 \nabla f(x_1, x_2) = 
@@ -1319,6 +1319,7 @@ H_L(x, \lambda) = J_{{\nabla}L}(x, \lambda)
 \right].
 $$
 
+<!--
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
@@ -1365,19 +1366,90 @@ donc
 $$
 \nabla^2 f(x) = \frac{1}{2}(A + A^*).
 $$
+-->
+<!--
+On a 
+\begin{align*}
+f(x) &= \frac{1}{2} x^{\top} \cdot A \cdot x  + b^\top \cdot  x + c \\
+\sum_{i,j} \frac{1}{2}x_i A_{ij} x_j + \sum_i b_i x_i + c,
+\end{align*}
+par conséquent les dérivées partielles de $f$ existent à l'ordre 1 et vérifient
+$$
+\partial_k f = + b_k
+$$
+
+$$
+H_f(x) = \frac{1}{2}(A + A^{\top})
+$$
 
 ### Question 2 {.answer #answer-fq-2}
-Si $\nabla^2 f(x)$ est inversible (cet opérateur est constant), comme
+Si $H_f(x)$ est inversible (cet opérateur est constant), comme
 $$
-\nabla f(y) = \frac{1}{2}(A + A^*) \cdot y + b = \nabla^2 f(x) \cdot y + b,
+\nabla f(x_0) = \frac{1}{2}(A + A^*) \cdot x_0 + b = H_f(x) \cdot x_0 + b,
 $$
-résoudre $\nabla f(y) = 0$ revient à rechercher les solutions de
+résoudre $\nabla f(x_0) = 0$ revient à rechercher les solutions de
 $$
-\nabla^2 f(x) \cdot y + b = \nabla^2 f(x) \cdot y + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
+\nabla^2 f(x) \cdot x_0 + b = \nabla^2 f(x) \cdot x_0 + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
 $$
-Il existe donc un unique point critique pour $f$, donné par
+Il existe donc un unique zéro $x_0$ de $\nabla f$, donné par
 $$
-y = x - (\nabla^2 f(x))^{-1} \nabla f(x).
+x_0 = x - (\nabla^2 f(x))^{-1} \nabla f(x).
+$$
+-->
+
+Différentiation en chaîne à l'ordre 2
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-cr2-1}
+
+Nous savons par la règle de différentiation en chaîne que $g \circ f$ est
+différentiable et vérifie $d (g\circ f) (x) = dg(f(x)) \cdot df (x)$, ou
+encore
+$$
+\nabla(g\circ f) (x) = \nabla f(x) \cdot [J_g(f(x))]^{\top}.
+$$
+Les coefficients de $J_g$ sont différentiables ainsi que les composants de $f$,
+par conséquent tous les coefficients de $J_g \circ f$ sont différentiables par 
+la règle de différentiation en chaîne.
+Les composants de $\nabla f$ sont également différentiables ; les composants de
+$\nabla(g\circ f)$ se déduisant de tous ces composants par des opérations 
+différentiables -- des produits et des sommes -- ils sont tous différentiables.
+La fonction $\nabla (g \circ f)$ est donc différentiable et $g \circ f$ est
+deux fois différentiable.
+
+### Question 2 {.answer #answer-cr2-2}
+La règle de différentiation en chaîne donne pour tout indice $i \in \{1,\dots, n\}$ 
+$$
+\partial_i (g\circ f) (x) = dg(f(x)) \cdot \partial_i f(x) = \sum_{k=1}^m \partial_k g(f(x)) \partial_i f_k (x).
+$$
+Pour tout $j \in \{1,\dots, m\}$, on a donc
+\begin{align*}
+\partial^2_{ji} (g\circ f)
+&= \partial_{j} (\partial_i (g\circ f)) \\
+&= \partial_j \left(\sum_{k=1}^m (\partial_k g) \circ f \times \partial_i f_k \right) \\
+&= \sum_{k=1}^m \partial_j ((\partial_k g) \circ f)\times \partial_i f_k + (\partial_k g) \circ f \times \partial_j (\partial_i f_k)
+\end{align*}
+Comme par la règle de différentiation en chaîne
+$$
+\partial_j ((\partial_k g) \circ f) = [d((\partial_k g) \circ f)]_j 
+= [(d(\partial_k g) \circ f) \cdot df]_j 
+= \sum_{\ell=1}^m \partial_{\ell} (\partial_k g) \circ f \times \partial_{j} f_{\ell},
+$$
+on en déduit que
+$$
+\partial^2_{ji} (g\circ f)
+= 
+\sum_{k=1}^m \left[\sum_{\ell=1}^m (\partial^2_{\ell k} g)\circ f \times \partial_{j} f_{\ell} \times \partial_i f_k\right] + 
+\sum_{k=1}^m (\partial_k g) \circ f \times \partial^2_{ji} f_k,
+$$
+soit 
+$$
+[H_{g\circ f}]_{ij} = \sum_{k=1}^m \sum_{\ell=1}^m [J_f^{\top}]_{ik} \times ([H_g]_{k\ell} \circ f) \times [J_f]_{\ell j}
++ \sum_{k=1}^m (\partial_k g) \circ f \times [H_{f_k}]_{ij},
+$$
+ce qui prouve pour tout $x \in U$ la relation matricielle
+$$
+H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  \sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
 $$
 
 
