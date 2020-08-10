@@ -4,7 +4,6 @@ language: bash
 branches:
   only:
   - master 
-  - 2020
 
 env:
   global:
@@ -50,7 +49,7 @@ deploy:
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  
   on:
-    branch: 2020
+    branch: master
 
 
 

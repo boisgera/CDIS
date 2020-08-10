@@ -6,174 +6,1525 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
-
 \newcommand{\tr}{\operatorname{tr}}
+
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+```{=latex}
+\newpage
+```
+
+Objectifs d'apprentissage
+================================================================================
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, les objectifs "Expert", les démonstrations du document[^hp] 
+et les contenus en annexe ne sont pas exigibles ("hors-programme").
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+
+#### Prérequis
+
+Les élements du calcul différentiel supposés déjà maîtrisés :
+
+  - \zero dérivabilité et dérivée de fonctions d'une variable réelle,
+
+  - \zero dérivée sur des sous-ensembles ouverts et des intervalles fermés de $\R$,
+
+  - \zero dérivées des fonctions scalaires ($\R$) et vectorielles ($\R^m$),
+
+  - \zero dérivée et développement limité au premier ordre,
+
+Les fondements du calcul matriciel supposés maîtrisés :
+
+  - \zero vecteurs de $\R^n$ et applications linéaires $\R^n \to \R^m$, 
+
+  - \zero matrices, vecteurs lignes et colonnes,
+
+  - \zero produit matriciel, transposition de matrice,
+
+  - \zero interprétation géométrique du calcul matriciel.
+
+
+#### Matrice jacobienne et différentielle
+
+La notion de dérivée n'est applicable que pour les fonctions d'une variable,
+scalaires ou vectorielles.
+L'objet généralisant la dérivée dans le cas multivariable, défini au moyen
+des dérivées partielles, est la matrice jacobienne ; pour les fonctions
+scalaires, on préférera souvent utiliser le gradient que la matrice
+jacobienne.
+
+  - \one savoir calculer dérivées partielles, matrices jacobiennes et gradients.
+
+Toutefois, la seule existence de la matrice jacobienne est insuffisante 
+pour exploiter la plupart des résultats du calcul différentiel. 
+Pour cette raison, on exige souvent que cette matrice existe et 
+dépende continûment de son argument ; c'est la "continue différentiabilité".
+Avec la continue différentiabilité, même sans savoir ce que signifie le terme, 
+on peut alors néanmoins exploiter tous les résultats qui nécessitent la simple 
+"différentiabilité".
+
+  - \one savoir que l'existence de la matrice jacobienne est souvent insuffisante,
+
+  - \one savoir qu'on peut alors avoir recours à la continue différentiabilité,
+
+  - \one savoir caractériser les fonctions continûment différentiables,
+
+  - \one savoir exploiter que continûment différentiable implique différentiable.
+
+La différentiabilité n'est autre que l'existence d'un développement limité
+au premier ordre. C'est la généralisation de la notion de dérivabilité au
+cas multivariable.
+
+  - \two savoir que différentiabilité signifie existence d'un tel développement limité,
+
+  - \two savoir que différentiabilité équivaut à dérivabilité dans le cas monovariable,
+
+  - \two savoir caractériser et exploiter un développement limité au premier ordre, 
+
+  - \two savoir ce qu'est la différentielle et son lien avec la matrice jacobienne.
+
+#### Calcul différentiel
+
+La définition de la différentielle et son lien avec la matrice jacobienne
+et les dérivées partielles permettent le calcul des différentielles 
+des fonctions élémentaires, 
+fournissant autant de règles élémentaires de calcul. 
+Il est donc nécessaire avant toute chose de 
+
+  - \one connaître et savoir mettre en oeuvre quelques règles élémentaires,
+
+  - \two savoir en élaborer de nouvelles en exploitant les définitions.
+
+Ensuite, pour faire face à des calculs plus complexes, deux stratégies
+sont à mener en parallèle. Au niveau pratique, il convient de
+
+  - \one savoir exploiter les notations simplifiant le calcul différentiel,
+
+  - \two savoir expliciter ce qu'elles signifient.
+
+Au niveau théorique, il s'agit de compléter les règles élémentaires
+par des règles génériques, applicables non plus à une fonction particulière
+mais à des classes de fonctions, donc de
+
+  - \one connaître et savoir mettre en oeuvre quelques règles de calcul génériques,
+
+  - \two connaître les règles d'assemblage/désassemblage,
+
+  - \two connaître la règle de dérivation en chaîne,
+
+  - \three savoir élaborer de nouvelles règles de calcul génériques.
+
+#### Variation des fonctions
+
+En intégrant les variations infinitésimales d'une fonction entre deux points, 
+on peut évaluer sa variation entre ces points. Utiliser pleinement cette
+technique suppose de :
+
+  - \one connaître le théorème fondamental du calcul (monovariable),
+
+  - \two connaître le théorème fondamental du calcul (multivariable),
+
+  - \two connaître la démonstration du cas multivariable, 
+  
+  - \three savoir l'adapter quand c'est nécessaire,
+
+  - \one connaître l'inégalité des accroissements finis (monovariable),
+
+  - \two connaître l'inégalité des accroissements finis (multivariable),
+
+  - \two savoir les déduire du théorème fondamental du calcul[^res],
+
+  - \four connaître la variante non-euclidienne des ces inégalités,
+
+  - \three savoir exploiter ces résultats dans des contextes variés.
+
+[^res]: sous une hypothèse renforcée, par exemple de continue différentiabilité. 
+
+
+Conventions
+================================================================================
+
+Un vecteur $x = (x_1, \dots, x_n) \in \R^n$
+sera implicitement identifié, dans le contexte d'un calcul matriciel, 
+au vecteur colonne
+$$
+\left[ \begin{array}{c}
+x_1 \\
+\vdots \\
+x_n
+\end{array}
+\right] \in \R^{n \times 1}.
+$$
+Une application linéaire $A: \R^m \to \R^n$, sera quant à elle
+implicitement identifiée avec la matrice à $m$ lignes et $n$ colonnes
+représentant l'application linéaire dans les bases canoniques de 
+$\R^m$ et $\R^n$
+$$
+\left[ 
+\begin{array}{ccccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{array}
+\right] \in \mathbb{R}^{m \times n}.
+$$
+
+Dans ce document, nous utiliserons le point "$\cdot$" pour 
+désigner le produit entre matrices. Les identifications que nous venons
+d'exposer nous incitent donc également à noter $A \cdot x$ l'image du vecteur $x$ 
+par l'application linéaire $A$ et $A \cdot B$ la composition des 
+applications linéaires $B$ par $A$. 
+
+Sauf mention contraire, $\left< x, y \right>$ désignera le produit scalaire
+usuel entre les vecteurs $x$ et $y$ de $\R^n$ et $\|x\| = \|x\|_2 = \sqrt{\left<x,x \right>}$ 
+la norme euclidienne associée ; 
+$\|A\|$ désignera la norme d'opérateur $\|A\|_{22}$ de $A$, 
+induite par ces normes euclidiennes sur $\R^m$ et sur $\R^n$.
+
+
+Matrice jacobienne et différentielle
+================================================================================
+
+### Dérivées partielles {.definition .one}
+Soient $U$ un ouvert de $\R^n$, $f: U \to \mathbb{R}^m$ et 
+$x=(x_1, \cdots, x_n) \in U$. Lorsque la $j$-ème fonction partielle de $f$
+en $x$, $y \mapsto f(x_1, \cdots, x_{j-1}, y, x_{j+1}, \cdots, x_n)$,
+est dérivable en $y = x_j$, on appelle $j$-ème *dérivée partielle
+de $f$ en $x$*
+et on note $\partial_j f(x)$ sa dérivée :
+$$
+\partial_j f(x) := \left(y \mapsto f(x_1, \cdots, x_{j-1}, y, x_{j+1}, \cdots, x_n)\right)'(x_j) \in \R^m
+$$
+<!--
+Alternativement,
+$$
+\begin{split}
+\partial_j f(x)
+&:= \lim_{t \to 0} \frac{f(x + t e_j) - f(x)}{t} \\
+&\phantom{:}= \lim_{t \to 0} \frac{f(x_1, \dots, x_j + t, \dots, x_n) - f(x_1, \dots, x_n)}{t}. 
+\end{split}
+$$
+-->
+
+### Domaine de définition des fonctions partielles {.exercise .question .one #ddfp}
+Quel est le domaine de définition -- implicite dans l'énoncé ci-dessus -- 
+de la $j$-ème fonction partielle de $f$ associée au point $x$ ?
+Montrer qu'il s'agit bien d'un ouvert de $\R$.
+
+### Matrice jacobienne {.definition .one #matrice-jacobienne}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
+Si toutes les dérivées partielles de toutes les composantes $f_i$ de $f$ 
+existent en $x$, on définit la *matrice jacobienne de $f$ en $x$*, 
+notée $J_f(x)$, comme la matrice de $\R^{m \times n}$ telle que
+$$
+[J_f(x)]_{ij} = \partial_{j} f_i(x),
+$$
+c'est-à-dire
+$$
+J_f(x) =
+\left[
+\begin{array}{cccc}
+\partial_1 f_1 (x) & \partial_2 f_1 (x) & \cdots & \partial_n f_1 (x) \\
+\partial_1 f_2 (x) & \partial_2 f_2 (x) & \cdots & \partial_n f_2 (x) \\
+\vdots & \vdots & \vdots & \vdots \\
+\partial_1 f_m (x) & \partial_2 f_m (x) & \cdots & \partial_n f_m (x) \\
+\end{array}
+\right]
+$$
+
+### {.remark}
+On peut également utiliser les dérivées partielles de la fonction vectorielle
+$f$ plutôt que ses composantes $f_i$, auquel cas on définit la matrice jacobienne
+de $f$ comme une concaténation de vecteurs colonnes :
+$$
+J_f(x) =
+\left[
+\begin{array}{cccc}
+\vert & \vert & \cdots & \vert \\
+\partial_1 f (x) & \partial_2 f (x) & \cdots & \partial_n f (x) \\
+\vert & \vert & \cdots & \vert \\
+\end{array}
+\right]
+$$
+
+### Gradient {.definition .one #gradient}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
+$x$ un point de $U$. Si toutes les dérivées partielles de $f$ existent en $x$,
+on appelle *gradient de $f$ en $x$* et l'on note $\nabla f(x)$ le vecteur
+de $\R^n$ défini par 
+$$
+\nabla f(x) =(\partial_1 f(x), \partial_2 f(x), \dots, \partial_n f(x))\in \R^n,
+$$
+c'est-à-dire, après identification à un vecteur colonne, 
+la transposée de la matrice jacobienne de $f$ en $x$ :
+$$
+\nabla f(x) = J_f(x)^{\top} = 
+\left[ 
+\begin{array}{c}
+\partial_1 f(x) \\
+\partial_2 f(x) \\
+\vdots \\
+\partial_n f(x)
+\end{array}
+\right] \in \R^{n\times 1}.
+$$
+
+### Gradient et matrice jacobienne {.exercise .question #gmj .one}
+Montrer qu'en  tout point $x=(x_1, x_2)$ de $\R^2$, le gradient de 
+la fonction scalaire
+$$f:(x_1,x_2) \in \R^2 \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2 \in \R$$
+est défini et vérifie
+$$
+\nabla f(x_1, x_2)
+=
+(-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2
+$$
+c'est-à-dire, comme vecteur colonne,
+$$
+\nabla f(x_1, x_2) = J_f(x_1, x_2)^{\top} =
+\left[ 
+  \begin{array}{c}
+  -2(x_2^2 - x_1) + 2 (x_1 - 1) \\
+  4 (x_2^2 - x_1)x_2
+  \end{array}
+  \right] \in \R^{2\times 1}.
+$$
+
+
+### Matrice jacobienne {.exercise .question .one #exo-mj2} 
+Montrer qu'en tout point $x=(x_1, x_2)$ de $\R^2$, la matrice jacobienne de
+la fonction 
+$$
+g:(x_1, x_2) \in \R^2 \mapsto (-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2.
+$$
+est définie et vérifie
+$$
+J_g(x_1, x_2) = 
+\left[ 
+  \begin{array}{cc}
+  4 & -4x_2 \\
+  -4x_2 & 12 x_2^2
+  \end{array}
+  \right]\in \R^{2 \times 2}.
+$$
+
+![Champ du gradient $\nabla f$ de la fonction 
+$f:(x_1,x_2) \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2$ (échelle des vecteurs modifiée)
+et en pointillés les lignes de niveau de $f$ de la forme $\{ (x_1,x_2) |\; f(x_1,x_2)=2^n \}$ ; 
+cf. exemple ["Gradient et matrice jacobienne"](#gmj).](images/rosenbrock.py)
+
+### Matrice jacobienne et gradient {.exercise #matjac .question}
+Donner une expression de la matrice jacobienne de $f$ en $x$
+en fonction de gradients des fonctions scalaires $f_i$ en $x$.
+
+
+
+<!--
+### Petit o de Landau {.definition .three}
+Dans ce document, la notation $o(g(h))$ désigne une expression 
+de la forme
+$$
+o(g(h)) := \varepsilon(h) g(h) \in \R^m
+$$
+où $g et $\varepsilon$ sont des fonctions définies dans un voisinage $V$ 
+de $h=0$, $g$ est scalaire, $\varepsilon$ est à valeurs dans $\R^m$ et
+$$
+\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
+$$
+En particulier, un "petit o de $1$" désigne une expression de la forme
+$$
+o(1) := \varepsilon(h)
+$$
+et un "petit o de $\|h\|$" fait référence à
+$$
+o(\|h\|) := \varepsilon(h) \|h\| = o(1) \|h\|.
+$$
+-->
+
+### {.remark}
+Seule, l'existence de la matrice jacobienne
+en $x$ offre très peu de garanties de régularité sur $f$ en $x$. 
+Il est ainsi possible que la fonction $f$ ne soit pas même pas continue en $x$. 
+(On rappelle que pour les fonctions d'une variable, l'existence de
+la dérivée en un point implique la continuité en ce point.)
+
+### Fonction discontinue I {.exercise .one #discont}
+Construire une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
+mais qui soit discontinue en $(0,0)$.
+
+### Fonction discontinue II {.exercise .two #discont2}
+Construire une fonction $f:\R^2 \to \R$ dont la dérivée dans la direction
+$h \in \R^2$
+$$
+f'(x, h) := \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
+$$
+existe en $x=(0,0)$ pour tout $h \in \R^2$,
+mais qui ne soit pas continue en $(0,0)$.
+
+### {.remark}
+Une façon simple de renforcer la régularité de la fonction $f$ est d'exiger
+qu'elle soit continûment différentiable :
+
+### Continue différentiabilité {.definition .one #cdiff}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$.
+La fonction $f$ est *continûment différentiable*
+si pour tout $i \in \{1,\dots, m\}$
+et $j \in \{1,\dots, n\}$, la dérivée partielle
+$$
+x \in U \mapsto \partial_j f_i(x) \in \R
+$$
+est définie et continue en tout point de $U$.
+
+### Continue différentiabilité -- définitions équivalentes {.post .two .remark}
+Alternativement, la fonction $f$ est continûment différentiable si 
+(et seulement si) les dérivées partielles
+$x \in U \mapsto \partial_j f(x) \in \R^m$
+sont définies et continues pour tout $i \in \{1, \dots, m\}$
+ou encore si la fonction $x \in U \mapsto J_f(x) \in \R^{m \times n}$
+est définie et continue.
+
+### {.remark}
+On qualifiera *différentiable* une fonction un développement limité 
+au premier ordre. La différentiabilité est la transposition naturelle 
+du concept de dérivabilité aux fonctions de plusieurs variables :
+pour jouer ce rôle, l'existence de la matrice jacobienne est une propriété 
+trop faible 
+et la continue différentiabilité est une propriété trop forte.
+
+### Différentiabilité {.definition .three #différentiabilité}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
+On dit que $f$ est *différentiable en $x$* si la matrice jacobienne de $f$ en
+$x$ existe et que $f(x+h)$ admet en $h=0$ le développement limité
+au 1er ordre $h \mapsto f(x) + J_f(x) \cdot h$ : il existe
+sur un voisinage de $h=0$ une fonction
+$\varepsilon$ à valeurs dans $\R^m$ vérifiant $\lim_{h \to 0} \varepsilon(h) = 0$
+telle que 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|.
+$$
+On dit que $f$ est *différentiable* (ou *différentiable sur $U$*)
+si elle est différentiable en tout point $x$ de $U$.
+
+### {.remark}
+Le plus souvent, la façon la plus simple de prouver la différentiabilité d'une
+fonction est d'établir sa continue différentiabilité ; en effet, on a :
+
+### Continue différentiabilité implique différentiabilité {.proposition .one #cdid}
+Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
+Si $f$ est continûment différentiable, $f$ est différentiable.
+
+![Relations entre existence de la matrice jacobienne, différentiabilité et
+continue différentiabilité.](images/diff-et-cdiff.svg)
+
+
+<!--
+### Existence d'un développement limité au 1er ordre {.proposition .two #dl1}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$.
+Si $f$ est continûment différentiable alors $f(x+h)$ admet le développement 
+limité au 1er ordre $h \mapsto f(x) + f'(x) \cdot h$, c'est-à-dire qu'il
+existe sur un voisinage de $h=0$ une fonction
+$\varepsilon$ à valeurs dans $\R^m$ vérifiant
+$\lim_{h \to 0} \varepsilon(h) = 0$
+telle que 
+$$
+f(x+h) = f(x) + f'(x) \cdot h + \varepsilon(h) \|h\|.
+$$
+-->
+### Démonstration {.proof} 
+Supposons $f: U \subset \R^m \to \R^n$ continûment différentiable.
+Soit $x \in U$ et $r>0$ telle que la boule fermée centrée en $x$ 
+et de rayon $r$ soit incluse dans $U$
+$$
+\overline{B}(x, r) =
+\{y \in \R^n \; | \; \|y - x\| \leq r\} \subset U
+$$
+et soit $h \in \R^n$ tel que $\|h\| \leq r$. 
+La variation de $f$ entre $x$ et $x+h$ satisfait
+\begin{multline*}
+f(x+h) - f(x) = \\ 
+\sum_{i=1}^n f(x+(h_1, \dots,h_{i-1}, h_i, 0, \dots)) - f(x + (h_1, \dots, h_{i-1}, 0, 0, \dots)). 
+\end{multline*}
+
+![Ligne brisée joignant $x$ et $x+h$.](images/cont-diff.tex){#cont-diff}
+
+Or comme pour tout $i$ la fonction
+$$t \in [0,1] \mapsto f(x+(h_1, \dots, th_i, 0, \dots))$$
+est dérivable de dérivée
+$\partial_i f(x+(h_1, \dots, th_i, 0, \dots)) h_i$ et que cette expression
+est une fonction continue -- et donc intégrable -- de la variable $t$, 
+par [le théorème fondamental du calcul](#TFC), on obtient
+\begin{multline*}
+f(x+(h_1, \dots, h_{i-1},h_i, 0, \dots)) - f(x + (h_1, \dots, h_{i-1}, 0, 0, \dots)) = \\
+h_i \int_0^1 \partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) \, dt.
+\end{multline*}
+Par ailleurs, comme
+$$
+f'(x) \cdot h =
+\sum_{i=1}^n \partial_i f(x) h_i
+=
+\sum_{i=1}^n h_i \int_0^1 \partial_i f(x) \, dt,
+$$
+on a 
+\begin{multline*}
+f(x+h) - f(x) - \sum_i \partial_i f(x) h_i = \\
+\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt. 
+\end{multline*}
+Par continuité des dérivées partielles en $x$, si $r$ est choisi suffisamment 
+petit pour que $\|\partial_i f(y) - \partial_i f(x)\| \leq \varepsilon / n$ 
+quand $\|y-x\| \leq r$, alors l'inégalité triangulaire
+fournit
+\begin{multline*}
+\left\|\int_0^1 \left[\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right] \, dt \right\| \leq \\
+\int_0^1 \left\|\partial_i f(x+(h_1, \dots, h_{i-1}, th_i, 0, \dots)) - \partial_i f(x) \right\| \, dt \leq \varepsilon/n
+\end{multline*}
+et donc, toujours par inégalité triangulaire, comme $|h_i| \leq \|h\|$,
+$$
+\left\|f(x+h) - f(x) - \sum_{i=1}^n \partial_i f(x) h_i \right\|
+\leq
+\sum_{i=1}^n |h_i| {\varepsilon}/{n}
+\leq \varepsilon \|h\|.
+$$
+La fonction $f$ admet donc un dévelopement limité au 1er ordre en $x$.
+
+### Différentiabilité implique continuité {.proposition .one #dic}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+Si $f$ est différentiable en $x$, $f$ est continue en $x$.
+
+### Différentiabilité implique continuité {.exercise .question .one #exo-dic}
+Démontrer la proposition ["Différentiabilité implique continuité"](#dic).
+
+<!--
+### Dérivée directionnelle {.definition .one}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$,
+$x$ un point de $U$ et $h$ un vecteur de $\R^n$. La *dérivée de $f$ en $x$
+dans la direction $h$* est définie comme
+$$
+f'(x, h) := \lim_{\substack{t \to 0 \\ t \neq 0}} \frac{f(x+ th) - f(x)}{t}
+$$
+quand cette limite existe.
+
+### Différentielle et dérivée directionnelle {.proposition #ddd .one}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. Si la fonction $f$ est différentiable en $x$
+alors sa dérivée dans la direction $h \in \R^n$ existe et
+$$
+f'(x, h) = J_f(x) \cdot h.
+$$
+
+### Différentielle et dérivée directionnelle {.exercise .question #exo-ddd .one}
+Démontrer la proposition ["Différentielle et dérivée directionnelle"](#ddd).
+
+### Dérivée directionnelle et différentielle {.exercise .question #exo-ddd2 .three}
+Montrer que la réciproque de la proposition ["Différentielle et dérivée directionnelle"](#ddd)
+est fausse : construire une fonction dont les dérivées directionnelles en $x$
+existent dans toute direction $h \in \R^n$ mais qui ne soit pas différentiable
+en $x$.
+--->
+
+### Fonctions affines {.exercise .question #fa .one}
+Soit $A \in \R^{m\times n}$ et $b \in \R^m$. 
+Calculer la matrice jacobienne de la fonction $f:\R^n \to \R^m$ définie par 
+$f(x) = A \cdot x + b$ et montrer que cette fonction est différentiable.
+
+### {.remark}
+L'existence de la matrice jacobienne de $f$ en $x$ ne garantit pas
+l'existence d'un développement au premier ordre de $f$ en $x$.
+Par contre, si un tel développement existe, il est nécessairement
+obtenu à partir de la matrice jacobienne comme le montre l'exercice suivant.
+
+### Développement limité au premier ordre {.exercise .question #dlmj .two}
+Montrer que si $a\in \R^m$ et 
+$B \in \R^{m \times n}$ vérifie dans un voisinage de $h=0$
+$$
+f(x+h) = a + B \cdot h + \varepsilon(h) \|h\|
+$$
+avec $\lim_{h \to 0} \varepsilon(h) =  0$
+alors $a = f(x)$, la matrice jacobienne $J_f(x)$ est bien définie et $B = J_f(x)$.
+
+### Différentielle {.definition .two #différentielle} 
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x$ un point de $U$. 
+Si $f$ est différentiable en $x$ on appelle alors *différentielle de $f$ en $x$* 
+l'application linéaire 
+$df(x)$ associée à la matrice jacobienne 
+$$
+df(x) := \left(h \in \R^n \mapsto J_f(x) \cdot h \in \R^m \right)
+$$
+Si l'on identifie applications linéaires et matrices, la différentielle
+se confond avec la matrice jacobienne elle-même. Pour tout $h \in \R^n$,
+$$
+df(x) \cdot h = J_f(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
+$$
+
+### Variation d'une fonction en un point {.remark .one}
+Comme le montre l'égalité caractérisant la différentiabilité de $f$ en $x$,
+le terme $df(x) \cdot h$ représente une approximation 
+-- linéaire en $h$ -- de la variation $\Delta f(x, h):= f(x+h) - f(x)$ de 
+$f$ en $x$ dans la direction $h$, car
+$$
+\Delta f(x, h) = df(x)\cdot h + \varepsilon(h)\|h\|.
+$$
+
+### Différentiabilité {.two .exercise .question #vareps}
+Montrer que $f$ est différentiable en $x$ si et seulement si $J_f(x)$ est bien
+définie et que
+$$
+\lim_{\substack{h \to 0 \\ h\neq 0}} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0.
+$$
+
+### Différentielle et dérivée {.proposition .one #dad}
+Soit $U$ un ouvert de $\R$, $f:U \to \R^m$ et $x\in U$. La fonction $f$ est
+différentiable en $x$ si et seulement si elle est dérivable en $x$. 
+Dans ce cas, pour tout $h \in \R$,
+$$
+df(x)\cdot h = f'(x) h.
+$$
+
+### Démonstration {.proof}
+Avec la définition de la matrice jacobienne,
+il est clair que la dérivée de $f$ en $x$ existe si et seulement si
+$J_f(x)$ existe et qu'auquel cas on a $J_f(x) = [f'(x)]$.
+On sait aussi que si $f$ est dérivable en $x$, si et seulement si
+la fonction admet un développement limité au premier ordre en $x$
+(cf. [la proposition "Dérivée et développement limité"](#ddl) ainsi que [sa réciproque](#ddlr)),
+soit
+$$
+f(x+h) = f(x) + f'(x) h + \varepsilon(h) |h|
+$$
+avec $\lim_{h\to 0} \varepsilon (h) = 0$, ce que l'on peut écrire sous
+la forme
+$$
+f(x+h)= f(x) + [f'(x)] \cdot h + \varepsilon(h) \|h\|
+= f(x) + J_f(x) \cdot h +\varepsilon(h) \|h\|,
+$$
+ce qui équivaut à la différentiabilité de $f$ en $x$.
+La relation $df(x) \cdot h= J_f(x) \cdot h$ fournit le dernier élément
+de la proposition.
+
+### Différentielle et gradient {.proposition .one #dag}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R$ et $x \in U$. Si la fonction
+$f$ est différentiable en $x$, alors pour tout $h \in \R^n$,
+$$
+df(x) \cdot h= \left<\nabla f(x), h\right>.
+$$
+
+### Démonstration {.proof}
+Par [définition de la différentielle](#différentielle), 
+$df(x) \cdot h = J_f(x) \cdot h$.
+Or, d'après [la définition du gradient](#gradient), 
+$\nabla f(x) = J_f(x)^{\top}$. Par conséquent,
+$df(x)\cdot h = \nabla f(x)^{\top} \cdot h = \left<\nabla f(x), h\right>$.
+
+
+
+Calcul Différentiel
+================================================================================
+
+
+Notations {#notations}
+--------------------------------------------------------------------------------
+
+Comme utilisateur du calcul différentiel
+vous avez probablement déjà croisé des notations assez éloignées de celles 
+que nous avons exploité jusqu'à présent. Vous avez peut-être mémorisé 
+des règles de calcul élémentaires telles que
+$$
+d (x+ y)  = dx + dy, \; d (xy) = y \, dx + x \, dy 
+$$
+ou appris en thermodynamique que
+$$
+dU = TdS - PdV, \; \mbox{ soit } \; T = \frac{\partial U}{\partial S} \mbox{ et } P = -\frac{\partial U}{\partial V}.
+$$
+
+<!--
+on trouve une formule du type
+$$
+d (f(x_1, \dots, x_n)) = \frac{\partial f(x_1,\dots, x_n)}{\partial x_1} d x_1 + \dots + \frac{\partial f(x_1,\dots, x_n)}{\partial x_n} dx_n.
+$$
+-->
+Bien utilisées, ces notations ont le potentiel de simplifier significativement
+la pratique du calcul différentiel ; elle recèlent toutefois un potentiel d'ambiguité
+-- et donc des risques d'erreurs -- contre lequel il faut se prémunir. 
+Nous allons donc détailler ces notations sur un exemple et les interpréter 
+à la lumière des concepts déjà introduits.
+
+### Expressions (fonctions implicites)
+La première technique consiste à favoriser l'usage d'expressions
+mathématiques -- comme "$x^2 + y^2$" -- pour désigner des grandeurs variables,
+sans nécessairement expliciter les fonctions correspondantes, la liste de
+leurs arguments ou le domaine de définition associés. 
+Tous ces éléments doivent alors être inférés du contexte ; 
+ainsi on peut assez naturellement associer à l'expression "$x^2 + y^2$" la fonction 
+$f: (x, y) \in \R^2 \mapsto x^2 + y^2 \in \R$. Mais d'autres choix sont
+défendables[^df]. Une fois ce choix fait, on interprête le terme
+$d(x^2 + y^2)$ comme
+$$
+d(x^2 + y^2) := df(x, y).
+$$
+
+[^df]: Peut-être que dans le contexte ou l'on exploite l'expression, 
+les grandeurs $x$ et $y$ ne sont définies que si $x>0$ et $y>0$ ; 
+peut-être a-t'on une bonne raison de plutôt lister la variable $y$ avant $x$ ; 
+peut-être y-a-t'il une troisième variable $z$ et que ça n'est que "par accident" que
+l'expression $x^2 + y^2$ ne dépend pas de $z$, etc.
+
+
+### Variables nommées
+Dans un contexte applicatif donné, il est fréquent que des noms (ou symboles)
+particuliers soit attachés aux grandeurs variables (plutôt que les génériques
+"$x_1$", \dots, "$x_n$") et qu'il soit plus naturel ou pratique d'utiliser 
+ces noms pour désigner les variables plutôt qu'un indice[^lv][^py].
+Pour ce qui est des dérivées partielles en particulier, dans cet esprit,
+on peut alors convenir de noter
+$$
+\frac{\partial  (x^2 + y^2)}{\partial x} := \frac{\partial  f}{\partial x}(x, y) := \partial_x f(x, y) := \partial_1 f(x, y)
+$$
+et
+$$
+\frac{\partial  (x^2 + y^2)}{\partial y} := \frac{\partial  f}{\partial y} (x, y):= \partial_y f(x, y) := \partial_2 f(x, y).
+$$
+
+[^lv]: En particulier, si la fonction considérée est implicite, 
+car issue d'une expression, il n'y a probablement pas d'ordre "naturel" 
+pour lister les variables.
+
+[^py]: C'est le même argument qui motive en Python de n'utiliser les
+arguments positionnels, comme dans l'appel `ask("Quit?", 3)`, qu'avec modération.
+L'alternative, utiliser les arguments nommés, 
+comme dans l'appel `ask(question="Quit?", retries=3)`, 
+peut s'avèrer plus lisible.
+
+Compte tenu de l'égalité $f(x,y)=x^2 + y^2$, on a ici
+$$
+\frac{\partial (x^2 + y^2)}{\partial x} = 2x 
+\; \mbox{ et } \;
+\frac{\partial (x^2 + y^2)}{\partial y} = 2y. 
+$$
+
+### Différentielle des variables
+En poussant jusqu'au bout la logique de la différentiation des expressions,
+on peut encore simplifier les notations. A ce stade,
+nous avons établi que pour tout $(h_x, h_y) \in \R^2$, nous avions
+\begin{equation} \label{iff}
+d(x^2 + y^2) \cdot (h_x, h_y) 
+= 
+\frac{\partial(x^2+y^2)}{\partial x} h_x + \frac{\partial(x^2+y^2)}{\partial y} h_y= 2x \, h_x + 2 y \, h_y.
+\end{equation}
+Or, en utilisant les même conventions, nous obtenons
+$$
+dx \cdot (h_x, h_y) 
+= 
+\frac{\partial x}{\partial x} h_x + \frac{\partial x}{\partial y} h_y= h_x
+\; \mbox{ et } \;
+dy \cdot (h_x, h_y) 
+= 
+\frac{\partial y}{\partial x} h_x + \frac{\partial y}{\partial y} h_y= h_y.
+$$
+Par conséquent, nous pouvons réécrire la relation \eqref{iff} sous la forme
+$$
+d(x^2 + y^2) =  \frac{\partial(x^2+y^2)}{\partial x} dx + \frac{\partial(x^2+y^2)}{\partial y} dy = 2x \, dx + 2 y \, dy.
+$$
 
 <!--
 
-Narratif & Notes & TODOsss
-================================================================================
+#### Différentielle d'expressions
+L'idée clé est d'étendre le calcul différentiel des fonctions 
+à des formules mathématiques ou expressions, 
+composées de symboles de fonctions, d'opérateurs, de constantes et de variables. 
+Considérons par exemple, l'expression $$e := ``x^2 - c^2 t^2".$$ 
+Nous allons rapidement omettre les guillemets pour simplifier les notations ; 
+mais pour le moment ils soulignent que nous avons affaire à une formule 
+(à une suite de symboles) et pas à un nombre réel.
+Cette expression exploite les opérateurs d'addition 
+et d'exponentiation ; le symbole "$2$" désigne une
+constante numérique ainsi que "$c$" (ici, la vitesse de la lumière 
+dans le vide) ;
+les symboles "$x$" et "$t$" font référence à des variables (de position et de 
+temps respectivement). 
+La valeur numérique que désigne $e$ est définie pour toute valeur réelle des
+variables $x$ et $t$ ;
+on peut donc lui associer la fonction
+$$
+f: (x,t) \in \R \times \R \mapsto x^2 - c^2 t^2 \in \R
+$$
+et utiliser ensuite les expressions $e$ et "$f(x, t)$" de façon interchangeable.
+La fonction $f$ étant différentiable, on définit la différentielle
+de l'expression $e$ comme
+$$
+d e := d(f(x, t)) := df (x, t).
+$$
 
-### Différentielle & Dérivée Directionnelle
 
-La progression choisie est la suivante: 
+#### Différentielle des variables
+Remarquons que les symboles de variables "$x$" et "$t$" sont aussi des 
+expressions à part entière. Elles peuvent donc être associées aux fonctions
+linéaires
+$(x,t) \in \R \times \R \mapsto x \in \R$ et 
+$(x,t) \in \R \times \R \mapsto t \in \R$ ; leur différentielle satisfait donc
+$$
+dx\cdot (h_x, h_t) = h_x \; \mbox{ et } \; dt \cdot (h_x, h_t) = h_t. 
+$$
+Les fonctions $dx$ et $dt$ -- il s'agit bien de fonctions et pas de nombres -- 
+prélèvent donc dans le vecteur de variation des arguments $(h_x, h_t)$ la 
+composante associée à la variable $x$ et $t$ respectivement.
 
-  - la différentielle d'une fonction en un point est introduite directement,
-    par analogie avec le concept et les propriétés de la dérivée, une fois
-    présentés sous la bonne forme (meilleure approximation linéaire de la
-    variation, forme avec $o$ plutôt que taux d'accroissement).
+La différentielle de $e$ satisfait
+$d e \cdot (h_x, h_t) = ({\partial e}/{\partial x}) h_x + ({\partial e}/{\partial t}) h_t$
+pour toute variation $(h_x, h_t)$. On peut donc réécrire cette relation sous la forme
+$$
+d e = \frac{\partial e}{\partial x} dx + \frac{\partial e}{\partial t} dt,
+$$
+et donc ici
+$$
+d (x^2 - c^2 t^2) = 2x \, dx - 2 c^2 t \, dt.
+$$
+-->
 
-  - on exploite un peu cette définition, on finit de faire le lien
-    avec la dérivée, on donne les règles de combi linéaires, du produit,
-    de la différentation en chaîne.
+### Espace-temps {.exercise .question .one #st}
+Montrer l'existence et calculer la différentielle de 
+$$x^2 +y^2 + z^2 - c^2 t^2$$ en utilisant
+les conventions de cette section.
 
-  - sous hypothèse de différentiabilité, on donne le liens avec la dérivée
-    partielle et les dérivée directionnnelles.
+### Robustesse des notations {.exercise .two .question #rn}
+On considère successivement l'expression $x^2 + y^2$ comme une fonction 
+non plus de $(x, y)$, mais de $(y,x)$ puis de $(x, y, z)$. 
+Comment interpréter les termes
+$dx$ et $dy$ dans chacun de ces cas ?
+La relation $d (x^2 + y^2) = 2x \, dx + 2 y \, dy$ est-elle
+toujours valable ?
 
-  - après coup, on examine la tentation (légitime) que l'on pourrait avoir
-    de définir la différentielle en passant par les dérivée partielles:
-    cette approche si elle était couronnée de succès, permettrait de 
-    définir la différentielle en se ramenant à ce que l'on connaît déjà,
-    à savoir la notion de dérivée. Et on se rend compte assez facilement
-    que:
+Règles de calcul
+--------------------------------------------------------------------------------
 
-      - l'existence des dérivées partielles ne suffit pas à assurer 
-        l'existence de la différentielle: un exemple très simple permet
-        de montrer que cela n'assure même pas la continuité de la fonction
-        au point d'intérêt. Plus grave si l'on veut: la règle de dérivation
-        en chaîne ne marche pas non plus; en particulier, on ne peut pas
-        calculer la dérivée partielle d'une fonction composée par ce biais.
-        Note: suppose que l'on ait dérivé la chain rule très rapidement
-        après la définition de la différentielle et c'est légitime:
-        c'est un grand succès du concept.
+### {.ante .remark}
+La définition de la différentielle, sa relation à la matrice jacobienne et 
+avec la continue différentiabilité permettent d'élaborer un nombre 
+quasi-illimité de "règles de calcul élémentaires" réutilisables 
+dont nous donnons quelques exemples importants.
 
-      - examiner le contre-exemple standard (1 valeur sur les axes, une
-        autre dans le reste du domaine), diagnostiquer ce qui ne va pas
-        (à savoir, on est aveugle au comportement de la fonction en dehors
-        de directions privilégiées), propose une solution en travaillant
-        sur la dérivée directionnelle. Montrer par un nouveau contre-exemple,
-        moins évident, que ça ne va toujours pas (ni continuité ni "chain rule").
-        L'exemple en question travaille toujours avec deux valeurs distinctes,
-        mais sur une parabole. 
+### Différentielle d'une application linéaire {.proposition #dal .one}
+Pour toute matrice $A \in \R^{m\times n}$, 
+l'application linéaire $f: x \in \R^n \mapsto  A \cdot x \in \R^m$ 
+est différentiable et pour tout $x \in \R^n$,
+$df(x) = A$ ; autrement dit
+$$
+d(A \cdot x) = A  \cdot dx.
+$$
 
-      - le nouvelle exemple pour le coup met sur la piste d'une "bonne" solution
-        alternative, la dérivée directionnelle au sens d'Hadamard. On peut
-        la définir au moyens des chemins, simplifier sa caractérisation.
-        Au final, elle vérifie bien la règle de dérivation en chaîne par 
-        exemple, plus ou moins par construction, mais cela n'est pas surprenant
-        car elle est équivalent à la notion de différentielle !
-        A ce stade, pas évident que la démarche adoptée soit plus simple, 
-        on peut se convaincre que le concept de différentielle est finalement
-        pas si mal que ça ... d'autant plus qu'en dimension infinie, les
-        deux notions divergent à nouveau et la différentielle de Fréchet 
-        regagne des points.
+### Démonstration {.proof}
+Pour tout $x \in \R^n$, on a
+$f_i(x) = (A \cdot x)_i = \sum_{k=1}^n A_{ik} x_k$,
+donc la $j$-ème dérivée partielle de $f_i$ existe et
+$$
+\partial_j f_i(x) = \partial_j \left(x \mapsto \sum_{k=1}^n A_{ik} x_k \right)(x)
+= A_{ij}.
+$$
+La matrice jacobienne $J_f(x)$ est donc définie et $J_f(x) = A$.
+Chaque coefficient de $J_f$ est une constante et donc une fonction continue de
+$x$ : la fonction $f$ est [continûment différentiable -- et donc
+différentiable](#cdid) -- et $df(x) = J_f(x) = A$.
 
-    Une partie de ça à faire dans le cours, une partie en exo, 
-    quelle frontière je ne sais pas encore exactement.
+### Règle du produit (élémentaire) {.proposition .one #product-rule}
+L'application produit $\pi : (x, y) \in \R^2 \mapsto xy \in \R$ est différentiable
+et pour tout $(h_x, h_y) \in \R^2$, on a $d\pi(x, y) \cdot (h_x, h_y)= x h_y + y h_x$ ; 
+autrement dit 
+$$
+d(xy) = x \, dy + y \, dx.
+$$
 
-    - en parralèle, on montre que tout de même, on a le droit de travailler
-      sur les dérivée partielles si l'on sait établir que le résultat est
-      continu, car cela garantit l'existence de la différentielle (et sa
-      continuité).
+### Démonstration {.proof}
+Les dérivées partielles de $xy$ existent et sont continues : on a 
+$$
+\frac{\partial (xy)}{\partial x} = y
+\; \mbox{ et } \; 
+\frac{\partial (xy)}{\partial y} = x.
+$$
+Par conséquent, l'application produit est [continûment différentiable, donc différentiable](#cdid),
+et
+$$
+d(xy) = \frac{\partial (xy)}{\partial x} dx + \frac{\partial (xy)}{\partial y} dy
+= x \, dy + y \, dx.
+$$
 
-### Vecteurs / Matrices / Tenseurs
+### {.remark .ante}
+Ce type de règles de calcul élémentaires peuvent servir de briques de base pour
+élaborer des règles de calcul "génériques", faisant intervenir des fonctions
+différentiables arbitraires et permettant de traiter des calculs plus complexes. 
+Les deux résultats qui permettent de mener cette extension du calcul différentiel 
+sont [la règle d'assemblage](#assemblage) 
+-- fondée sur la règle de [différentiation composante par composante](#diff-cc) -- 
+et la règle de [différentiation en chaîne](#chain-rule).
 
-Sujet assez compliqué. Trois motivations sur ce sujet:
 
-  - Le "tout-matrice" est assez ridicule quand on y pense;
-    l'idée qu'il faille promouvoir des vecteurs de $\mathbb{R}^n$
-    en matrice pour faire des calculs complique souvent les choses
-    par rapport aux conventions tensorielles (où un vecteur est un
-    tableau de dimension 1). C'est aussi assez incohérent avec les
-    convention de NumPy qui pour le coup sont tensorielles par nature
-    (contrairement à Matlab).
+### Règle de différentiation en chaîne {.theorem #chain-rule .two}
+Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
+$g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
+sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
+Si $f$ est différentiable en $x \in U$ et $g$ est différentiable en $f(x) \in V$,
+alors la composée $g \circ f$ est différentiable en $x$ et
+$$
+d(g \circ f)(x) = dg(y) \cdot df(x) \; \mbox{ où } \; y = f(x).
+$$
 
-    Mais voilà, c'est la vision enseignée en prépa, difficile de tout
-    déconstruire, d'autant que la démarche tensorielle vient avec ses
-    propres problèmes de notation, conventions non partagées, etc.
+### Démonstration {.proof}
+L'objectif de la preuve est de montrer que dans un voisinage de $h=0$,
+$$
+g(f(x+h)) - g(f(x)) =  (dg(f(x)) \cdot df(x)) \cdot h + \varepsilon(h)\|h\|
+$$
+où $\lim_{h \to 0} \varepsilon(h) = 0$.
+La fonction $g$ étant différentiable en $f(x)$, il existe une fonction
+$\varepsilon_1$ définie dans un voisinage de $0$ et telle que
+$\lim_{h \to 0} \varepsilon_1(h) = 0$, 
+vérifiant
+$$
+g(f(x)+k) - g(f(x)) = dg(f(x)) \cdot k + \varepsilon_1(k) \|k\|.
+$$
+Choisissons $k=f(x+h) - f(x)$ dans cette équation, de telle sorte que
+$$
+g(f(x)+k) = g\left(f(x) + (f(x+h) - f(x))\right) = g(f(x+h)).
+$$
+Nous obtenons donc
+$$
+g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (f(x+h)-f(x)) + \varepsilon_1(k) \|k\|.
+$$
 
-    Donc on a vocation à rester compatible avec ce tout-matriciel;
-    et à l'étendre mais de façon compatible quand nécessaire.
-    Ainsi, "$\cdot$" interprété comme "application d'une fonction 
-    linéaire", même quand la-dite fonction linéaire est à valeurs
-    fonctionnelle (comme dans les diff d'ordre supérieur)
+Notons que la fonction $\varepsilon_2(h) := \varepsilon_1(f(x+h) - f(x))$
+est définie dans un voisinage de $0$ et que par continuité de $f$ en 
+$x$, $f(x+h) - f(x)$ tend vers $0$ quand $h$ tend vers $0$, et par conséquent
+$\varepsilon_2(h) \to 0$ quand $h\to 0$.
+Avec cette notation, on a
+$$
+\begin{split}
+g(f(x+h)) - g(f(x)) &= dg(f(x)) \cdot (f(x+h)-f(x)) \\
+                    &\phantom{=} + \varepsilon_2(h) \|f(x+h)-f(x)\|.
+\end{split}
+$$
+Comme $f$ est également différentiable en $x$, il existe une fonction 
+$\varepsilon_3$ définie dans un voisinage de $0$ et telle que
+$\lim_{h \to 0} \varepsilon(h) = 0$ vérifiant
+$$
+f(x+h) - f(x) = df(x) \cdot h + \varepsilon_3(h) \|h\|.
+$$
+En substituant cette relation dans la précédente, nous obtenons
+$$
+g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (df(x) \cdot h) + \varepsilon(h) \|h\|
+$$
+où $\varepsilon(0) = 0$ et dans le cas contraire,
+$$
+\varepsilon(h) =  dg(f(x)) \cdot \varepsilon_3(h) + \varepsilon_2(h) 
+\left\|df(x) \cdot \frac{h}{\|h\|} + \varepsilon_3(h) \right\|.
+$$
+Il suffit pour conclure de prouver que $\varepsilon(h) \to 0$ quand $h \to 0$.
+Or, 
+$$
+\begin{split}
+\|\varepsilon(h)\| & \leq \|dg(f(x)) \cdot \varepsilon_3(h)\| + \|\varepsilon_2(h)\| \times \|df(x) \cdot (h / \|h\|) \| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|   \\
+& \leq \|dg(f(x))\| \times \|\varepsilon_3(h)\| + \|\varepsilon_2(h)\|  \times \|df(x)\| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|,  
+\end{split}
+$$
+le résultat est donc acquis.
 
-  - Il y a des problèmes qui supposent naturellement de considérer
-    des fonctions avec des arguments matriciels. Par exemple, on
-    comprend assez bien qu'on peut avoir besoin de différencier
-    $\det A$ ou $A^{-1}$. Même si le problème final n'a que des
-    paramètres vectoriels, on a envie de faire des "chain rules"
-    avec des arguments matriciels.
+### Différentiation en chaîne des fonctions continûment différentiables {.exercise #cfcd .question .one}
+Montrer que si dans [l'énoncé de la règle de différentiation en chaîne](#chain-rule) 
+les fonctions $f$ et $g$ sont continûment différentiables, alors $g \circ f$
+l'est également.
 
-  - Exemple pas trivial mais typique: calculer $d^2f \circ g$.
-    A l'ordre $1$ on a $d f \circ g(x) = df(g(x)) \cdot df(x)$, 
-    ce qui est (interprétable comme) un produit de matrices.
+<!--
+### TODO
+Montrer d'abord la chain rule et montrer comment la règle de différentation
+composante par composante résulte de ça et de la diff des projections, 
+insertion et somme. Ou faire ça en exo ? Ou faire juste les règles élémentaires
+citées ici en exo (ou en résultat ?), et changer la démo pour montrer 
+qu'on peut utiliser la chain rule ?
+-->
 
-Positions aujourd'hui:
+### Règle de différentiation composante par composante {.one .theorem #diff-cc .one}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$ et $x \in U$. La fonction
+$f$ est différentiable en $x$ si et seulement si toutes ses composantes
+$f_i$ sont différentiables en $x$. Dans ce cas, on a 
+$$
+(df(x))_i = df_i(x).
+$$
 
-  - rester dans un premier temps compatible avec le conventions du 
-    tout-matriciel, se contenter de noter l'écart avec les conventions
-    NumPy, conserver une définition de $\cdot$ qui soit plus générale.
+### Démonstration {.proof}
+Par [la règle de dérivation composante par composante](#der-cc),
+la matrice jacobienne de $f$ en $x$ existe si et seulement si 
+toutes les matrices jacobienne $J_{f_i}(x)$ existent et on a alors
+$(J_f(x))_i = J_{f_i}(x)$.
+La différentiabilité de $f$ en $x$ se traduit donc par
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h)\|h\|
+$$
+où $\lim_{h\to 0} \varepsilon (h) = 0$, ce qui entraine pour tout $i$,
+$$
+f_i(x+h) = f_i(x) + (J_f(x))_i \cdot h + \varepsilon_i(h) \|h\|
+= f_i(x) + J_{f_i}(x) \cdot h + \varepsilon_i(h) \|h\|
+$$
+avec $\lim_{h\to 0} \varepsilon_i (h) = 0$ ; 
+chaque composante $f_i$ est donc différentiable. La réciproque
+s'établit de manière similaire. On déduit alors de la relation
+$(J_f(x))_i = J_{f_i}(x)$ que $(df(x))_i = df_i(x)$.
 
-  - minimiser les présentations du tensoriel: on peut se contenter de
-    montrer que $d^2f$ est représentable comme un tableau à trois dimensions
-    et de faire les calculs avec les indices pour évaluer 
-    $d^f(x) \cdot h_1 \cdot h_2$ par exemple; le cas différentielle d'ordre 
-    $k$ n'est guère plus complexe.
+### {.remark .ante .post} 
+Cette règle entraîne :
 
-  - regarder s'il y a des exemples éclairants à faire en TD sur 
-    de la différentielle à argument matriciels et "bootstrapper" la
-    définition de la différentielle à ce moment-là, en "mettant à plat"
-    la matrice par exemple ? Ou exploiter la définition d'Hadamard pour
-    éviter d'avoir à faire ça ?
+### Règles d'assemblage et désassemblage {.one .corollary #assemblage}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R^m$, $g: U \to \R^p$ et $x \in U$.
+La fonction $(f,g) : U \to \R^{m+p}$ est différentiable en $x$ si et 
+seulement si $f$ et $g$ sont différentiables en $x$ ; on a alors
+$$
+d(f, g)(x) = (df(x), dg(x)).
+$$
 
-### Normes
+### Désassemblage {.exercise .question .two #exo-desass}
+Montrer que pour tous $m, p \in \N$, les fonctions 
+$(x_1,x_2) \in \R^m\times\R^p \mapsto x_1 \in \R^m$
+et $(x_1,x_2) \in \R^m\times\R^p \mapsto x_2 \in \R^p$ sont différentiables.
+En déduire une démonstration de ["la règle de désassemblage"](#assemblage).
 
-Ne rien mettre dans ce chapitre proprement dit, mais lister ce dont on
-a besoin très concrètement pour inclure ces éléments dans le chapitre 
-de topologie.
+### Démonstration {.proof}
+La fonction $(f, g)$ d'une part et les fonctions $f$ et $g$ d'autre part
+ont le même jeu de composantes scalaires ; la conclusion s'ensuit par
+[la règle de différentiation composante par composante](#diff-cc).
 
-J'ai assez envie de noter par défaut $|x|$ les normes dans $\mathbb{R}^n$
-et $\|L\|$ la norme d'opérateur et d'annoter ces normes par des symboles
-(comme $|x|_2$, $\|A\|_{22}$) dans les contextes ou il faudrait être
-plus précis.
 
-Dans ce chapitre j'imagine que l'on peut (presque ?) toujours se limiter aux
-normes euclidiennes et à la norme d'opérateur induite, sauf peut-être si
-l'on en vient à montrer des choses comme le caractére intrinsèque de la
-définition de différentielle ? Non, même là ça va marcher.
+### Différentiation en chaîne et assemblage {.exercise .question .three #exo-dca}
+Combiner [la règle d'assemblage](#assemblage) 
+et [la règle de différentiation en chaîne](#chain-rule) en
+un résultat unique qui implique les deux résultats
 
-Donc concrêtement, définition de ces deux normes, pptés habituelles
-(notamment $|Lx| \leq \|L\||x|$). Le coup de la norme d'opérateur
-associé à la représentation matricielle (via SVD), utile ou pas ?
-Si oui -- et on peut en douter -- alors il faut aussi parler de matrices
-dans le chapitre sur la topo. Ouch, non, éviter. En fait, il faudra sans
-peut-être "retarder" les rappels sur les opérateurs linéaires à ce chapitre,
-car c'est un gros focus du chapitre (idée d'approximation linéaire est 
-centrale ici, avant ça serait abstrait).
+### {.remark}
+A titre d'exemple, montrons comment ces deux résultats permettent de généraliser 
+[la règle élementaire du produit](#product-rule) :
 
-Auquel cas on parle de norme en topo, on montrer les exemple classiques en
-dim finie et on parle d'équivalence des normes,
-mais on attend ce chapitre pour parler d'opérateurs et de norme.
-Donc un volet à rajouter ici ?
+### Règle du produit (générique) {.proposition .one}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$ et $x \in U$.
+Si les fonctions $f$ et $g$ sont différentiables en $x$, 
+alors leur produit $fg$ également et $$d(fg)(x)  = f(x) dg(x) + g(x) df(x).$$
+
+![Graphe de calcul de l'application $x \mapsto f(x) g(x)$.](images/graphe-de-calcul.svg)
+
+### Démonstration {.proof}
+Par [assemblage](#assemblage), la fonction $(f, g)$ est différentiable en $x$ 
+et $d(f,g)(x) = (df(x), dg(x))$.
+Sa composition par la fonction produit $\pi: (x, y) \mapsto xy$ est 
+le produit $fg$ :
+$$
+fg = \pi \circ (f, g).
+$$
+Par [la règle de différentation en chaîne](#chain-rule), le produit $fg$ est
+différentiable et
+\begin{align*}
+d(fg) (x) 
+ &= d \pi (f(x), g(x)) \cdot d(f,g)(x) \\
+&= d \pi (f(x), g(x)) \cdot (df(x), dg(x)) \\
+&= f(x) dg(x) + g(x) df(x).
+\end{align*}
+
+### {.remark}
+De façon similaire, on peut désormais tirer des conséquences élargies 
+de la proposition ["Différentielle d'une application linéaire"](#dal) :
+
+### Linéarité de la différentielle {.proposition .one #ld}
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$,
+$\lambda \in \R$, $\mu \in \R$ et $x \in U$.
+Si les fonctions $f$ et $g$ sont différentiables en $x$, 
+alors la combinaison linéaire $\lambda f + \mu g$ également et
+$$d(\lambda f + \mu g)(x)  = \lambda df(x) + \mu dg(x).$$
+
+### Démonstration {.proof}
+La fonction $\lambda f + \mu g$ peut être obtenue en composant la fonction
+$(f, g)$ et la fonction linéaire $A : (x, y) \in \R^2 \mapsto \lambda x + \mu y$.
+Par [la règle d'assemblage](#assemblage) et [la règle de différentation en chaîne](#chain-rule),
+elle est donc différentiable en $x$ et [comme la différentielle de l'application
+linéaire $A$ en tout point est elle-même](#dal), 
+\begin{align*}
+d(\lambda f + \mu g)(x) &= d A(f(x), g(x)) \cdot (df(x), dg(x)) \\
+&= A \cdot (df(x), dg(x)) \\ &= \lambda f(x) + \mu dg(x).
+\end{align*}
+
+
+<!--
+
+
+
+### Différentielle d'une application bilinéaire {.theorem #dab .two}
+Pour toute matrice $B \in \R^{m\times n}$, la fonction bilinéaire
+$$f: (x, y) \in \R^m \times \R^n \mapsto x^{\top} \cdot B \cdot y \in \R$$
+est différentiable et pour tout $x \in \R^n$,
+$$
+df(x, y)\cdot(h_x, h_y) = h_x^{\top} \cdot B \cdot y + x^{\top} \cdot B \cdot h_y.
+$$
+-->
+
+
+
+<!--
+### TODO : exo diff produit scalaire
+
+
+Déduire la règle du produit de
+$$
+d(x^{\top} \cdot A \cdot y) =  x^{\top} \cdot A \cdot dy + y^{\top} \cdot A^{\top} \cdot dx
+$$
+(csq exo : difff $\left<x, y\right>$ et $\|x\|$ (si $x \neq 0$))
+
+### TODO: diff fct bilin
+
+### Différentielle et norme euclidienne {.exercice .question #diff-norm}
+En exploitant la règle de différentiation en chaîne, montrer que le
+carré de la norme euclidienne
+$$
+f: x \in \R^n \mapsto \|x\|^2 \in \R
+$$ 
+est différentiable, puis calculer son gradient $\nabla f$.
+
+### Différentiabilité et norme euclidienne {.answer #answer-diff-norm}
+Pour tout $x \in \R^n$ on a
+$$
+\|x\|^2 = x^{\top} \cdot I \cdot x,
+$$
+La fonction $x \in \R^n$ peut donc s'écrire comme la composée
+des fonctions
+\begin{align*}
+f &: x \in \R^n  \mapsto (x, x) \in \R^{n} \times \R^n \\
+g &: (x, y) \in \R^n \times \R^n \mapsto x^{\top} \cdot y \in \R \\
+\end{align*}
+
+**TODO**
 
 -->
 
-Notations
+### Produit scalaire {.exercise .question #ps}
+Montrer que la fonction $$\left<\cdot, \cdot\right>: (x, y) \in \R^{2n} \to \left<x, y\right> \in \R$$ est différentiable et
+calculer son gradient.
+
+
+
+
+
+
+Variation des fonctions
 ================================================================================
 
-### TODO
+### {.remark}
+Lorsque la fonction $f$ est différentiable en $x$, 
+nous disposons de l'égalité 
+$$
+f(x + h) - f(x) = df(x) \cdot h + \varepsilon(h) \|h\|
+$$
+avec $\lim_{h \to 0}\varepsilon(h) = 0$. 
+Cette égalité est de nature asymptotique, ce qui veut dire que
+pour maîtriser l'écart entre
+$f(x+h)$ et $f(x)$, 
+nous devons être en mesure de faire tendre $h$ vers $0$ ;
+si le vecteur $h$ est fixé et même s'il est "petit", en toute rigueur,
+cette relation ne nous fournit aucune information. 
 
-Reprendre, élaguer.
+Mais tout n'est pas perdu : si nous savons que $f$ est différentiable 
+non pas uniquement en $x$ mais sur tout le segment $[x,x+h]$, 
+il est possible de calculer la différence entre $f(x+h)$ et $f(x)$ 
+en intégrant les variations infinitésimales 
+de $f$ le long de ce segment. 
 
-Préambule
+### Théorème fondamental du calcul (monovariable) {.theorem #TFC .one}
+Soit $x \in \R$ et $h\geq 0$.
+Si la fonction $f: [x, x+h] \subset \R \to \R^m$ est dérivable 
+et que sa dérivée $f'$ est intégrable alors
+$$
+f(x+h) - f(x)  = \int_x^{x+h} f'(y) \, dy.
+$$
+
+### Démonstration {.proof}
+Voir l'enseignement de calcul intégral.
+
+### A propos du terme "intégrable" {.remark .three}
+A ce stade, vous pouvez retenir que si $f'$ est continue, 
+continue par morceaux ou même intégrable au sens de Riemann, 
+elle est "intégrable" comme le demandent les hypothèses du théorème.
+
+Dans ce chapitre, sauf précision contraire, le terme "intégrable" 
+doit être compris comme "intégrable au sens de Lebesgue". 
+La définition de ce concept 
+-- ainsi que la preuve du théorème fondamental du calcul -- 
+seront fournies dans le volet calcul intégral de l'enseignement.  
+
+
+### Forme générale du théorème fondamental du calcul {.remark .four #TFCE}
+Si l'on adopte au lieu de l'intégrale de Lebesgue l'intégrale encore
+plus générale de Henstock-Kurzweil (cf. calcul intégral), 
+alors toute fonction dérivée est automatiquement 
+intégrable. 
+Le théorème fondamental du calcul est alors valable en toute généralité ; 
+il prend la forme suivante : si $x \in \R$, $h\geq 0$ et 
+la fonction $f: [x, x+h] \to \R^m$ est dérivable, alors $f'$ est intégrable 
+(au sens de Henstock-Kurzweil) et
+$$
+f(x+h) - f(x)  = \mbox{(HK)} \int_x^{x+h} f'(y) \, dy.
+$$
+Cette forme avancée du théorème est toutefois rarement nécessaire ; 
+elle est néanmoins utile pour prouver 
+[l'inégalité des accroissements finis](#TAFS) en toute généralité.
+Cette extension est aussi applicable à 
+[la version multivariable du théorème fondamental du calcul](#VF) : 
+si l'on utilise l'intégrale de Henstock-Kurzweil, il sera inutile
+de vérifier que l'application 
+$t \mapsto df(x+th)  \cdot h$ est intégrable pour appliquer le théorème ;
+comme dérivée de l'application $t \mapsto f(x+th)$, 
+cette fonction l'est automatiquement.
+
+### Théorème fondamental du calcul (multivariable) {.theorem #VF .two}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$,
+$x \in U$ et $h \in \mathbb{R}^n$ tels que le segment
+  $$
+  [x, x+h] = \{x + th \; | \; t \in [0,1]\}
+  $$
+soit inclus dans $U$. Si $f$ est différentiable en tout point de $[x, x+h]$
+et que l'application $t \in [0,1] \mapsto df(x+th) \cdot h \in \R^m$ 
+est intégrable, alors
+$$
+f(x + h) - f(x) = \int_0^1 df(x+th) \cdot h \, dt.
+$$
+
+![Géométrie [du théorème du calcul multivariable](#VF)](images/peanut.tex)
+
+### Démonstration {.proof}
+L'ensemble $U$ étant ouvert, il existe un $\varepsilon > 0$ tel que
+l'intervalle ouvert $I := \left]-\varepsilon, 1+\varepsilon \right[$ 
+soit inclus dans $U$. 
+On note $\phi$ la fonction $I \to \mathbb{R}^n$ 
+définie par
+$$
+\phi(t) = f(x + th)
+$$
+La fonction $\phi$ est différentiable -- et donc dérivable -- 
+en tout point de $[0,1]$ [comme composée des fonctions 
+différentiables $f$ et $t \mapsto x + th$](#chain-rule) ; 
+sa dérivée est donnée par
+$$
+\begin{split}
+\phi'(t) &= d\phi(t) \\
+         &= df(x+th) \cdot d(t \mapsto x+th) \\
+         &= df(x+th) \cdot (t \mapsto x+th)' \\
+         &= df(x+th) \cdot h
+\end{split}
+$$
+Par [le théorème fondamental du calcul](#TFC), comme par hypothèse $\phi'$ 
+est intégrable sur $[0, 1]$, on a donc
+$$
+f(x+h) - f(x) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt 
+                                  = \int_0^1 df(x+th) \cdot h \, dt.
+$$
+
+### Cas des fonctions continûment différentiables {.exercise .one .question #cfcd3}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$,
+$x \in U$ et $h \in \mathbb{R}^n$ tels que le segment
+$[x, x+h] = \{x + th \; | \; t \in [0,1]\}$
+soit inclus dans $U$. 
+Montrer que si $f$ est continûment différentiable sur $U$, 
+[le théorème fondamental du calcul](#VF) est applicable.
+
+### Inégalité des accroissements finis (monovariable) {.theorem #TAFS .two}
+Soit $x \in \R$, $h \geq 0$, $f:[x, x+h] \to \mathbb{R}^m$.
+Si $f$ est dérivable sur $[x,x+h]$ et $M$ est un majorant de $\|f'\|$,
+c'est-à-dire si
+$$
+\mbox{pour tout } y \in [x, x+h], \;\|f'(y)\| \leq M.
+$$
+Alors 
+$$
+\|f(x+h) - f(x)\| \leq M h.
+$$
+
+### Démonstration {.proof}
+Par [la forme générale du théorème fondamental du calcul](#TFCE),
+la fonction $f'$ est intégrable au sens de Henstock-Kurzweil et
+$$
+f(x+h) - f(x) =  \mbox{(HK)} \int_x^{x+h} f'(y) \, dy.
+$$
+La théorie de l'intégrale de Henstock-Kurzweil nous garantit qu'il est possible 
+d'obtenir des approximations arbitrairement précises de cette intégrale au moyen de 
+sommes de Riemman[^aci]. Cela signifie que pour tout $\varepsilon > 0$, 
+il existe des réels $x_0, \dots, x_k, t_0, \dots, t_{k-1}$ vérifiant
+$$
+x = x_0 \leq t_0 \leq x_1 \leq t_1 \leq  \dots \leq x_{k-1} \leq t_{k-1} \leq x_{k} = x+h
+$$
+telle que la somme
+$$
+S = \sum_{i=0}^{k-1} f'(t_i)(x_{i+1} - x_i)
+$$
+satisfasse
+$$
+\left\|  \mbox{(HK)} \int_x^{x+h} f'(t) \, dt -  S \right\| 
+\leq 
+\varepsilon.
+$$
+
+[^aci]:  en combinant la définition de l'intégrabilité de $f'$ 
+au sens de Henstock-Kurzweil et 
+[le lemme de Cousin](Calcul Intégral I.pdf#cousin) du calcul intégral.
+
+En exploitant deux fois l'inégalité triangulaire, on obtient donc
+$$
+\|f(x+h) - f(x)\|
+\leq 
+\|S\| + \varepsilon \leq \sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i| +\varepsilon.
+$$
+Comme $\|f'(t_i)\| \leq M$ pour tout $i \in \{0,\dots,k-1\},$
+$$
+\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|
+\leq
+\sum_{i=0}^{k-1} M |x_{i+1} - x_i|
+\leq M \sum_{i=0}^{k-1} |x_{i+1} - x_i|
+$$
+et comme $x=x_0 \leq x_1 \leq \dots \leq x_k = x+h$,
+$$
+\sum_{i=0}^{k-1} |x_{i+1} - x_i| = \sum_{i=0}^{k-1} (x_{i+1} - x_i) =
+x_p - x_0 = (x+h) - x = h.
+$$ 
+On a donc $\|S\| \leq Mh$  et
+par conséquent $\|f(x+h) - f(x)\| \leq M h + \varepsilon$ ;
+le choix de $\varepsilon > 0$ étant arbitraire, on en déduit
+le résultat cherché.
+
+
+### {.remark}
+L'énoncé de l'inégalité des accroissements finis ne fait aucune hypothèse sur 
+la régularité de la fonction $f'$ ; c'est cette généralité qui rend sa 
+démonstration technique. Si l'on accepte des hypothèses un peu plus 
+contraignantes, elle peut être simplifiée de façon significative.
+
+### Cas des fonctions continûment différentiables {.exercise .question .one #cfcd2}
+Trouver une démonstration simple de [l'inégalité des accroissement finis](#TAFS)
+reposant sur [le théorème fondamental du calcul](#TFC)
+dans le cas où la fonction $f'$ est continue (ou continue par morceaux,
+ou intégrable au sens de Riemann, ou intégrable au sens de Lebesgue, 
+selon la théorie de l'intégration que vous connaissez à ce stade).
+
+### {.remark}
+Il existe également une démonstration alternative
+de l'inégalité des accroissements finis qui ne repose pas sur le calcul intégral, 
+mais sur les identités associées à la norme euclidienne et sur le théorème des
+valeurs intermédiaires :
+
+### Inégalité des accroissements finis (version euclidienne)  {.exercise #mitch .question .two}
+Soit $\phi: y \in [a, a+h] \to \R$ la fonction définie par
+$$
+\phi(y) = \left<f(x+h) - f(x), f(y) \right>.
+$$
+En appliquant le théorème des valeurs intermédiaires à $\phi$, 
+prouver [l'inégalité des accroissements finis](#TAFS).
+
+### Inégalité de la valeur moyenne {.exercise .one .question #ivm}
+Soit $f:[a, b] \subset \R \to \R^m$ une fonction intégrable et admettant une
+primitive ;
+on appelle *valeur moyenne de $f$* la grandeur
+$$
+\left<f\right> := \frac{1}{b-a} \int_a^b f(x) \, dx.
+$$
+Quel est le lien entre $\left<f\right>$ et la grandeur 
+$\sup_{x \in [a, b]} \|f(x)\|$ ?
+
+### Egalité des accroissements finis ? {.question #eaf .exercise .one}
+Soit $f:[0, 2\pi] \to \mathbb{R}^2$ la fonction définie par
+$$
+f(t) = (\cos t, \sin t)
+$$
+Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
+
+
+### Inégalité des accroissements finis (multivariable) {.theorem #TAF .two}
+
+Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
+supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
+dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
+c'est-à-dire telle que
+$$
+\mbox{pour tout } x \in [a, a+h], \;\|f'(x)\| \leq M.
+$$
+Alors 
+$$
+\|f(a+h) - f(a)\| \leq M \|h\|.
+$$
+
+
+### Démonstration {.proof}
+Considérons la fonction $\phi: t \mapsto f(a+th)$ déjà exploitée 
+dans la démonstration de la proposition ["Variation d'une fonction"](#VF) ;
+cette fonction est dérivable sur $[0,1]$, de dérivée $\phi'(t) = df(a+th) \cdot h$.
+De plus, 
+$$
+\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
+$$
+Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
+$$
+\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
+\leq M \|h\| \times 1 = M \|h\|.
+$$
+
+### Variation du logarithme {.exercice .two .question #log}
+Il est possible de définir une version multivariable et vectorielle 
+de la fonction logarithme, définie sur le *plan coupé*
+$$U = \R^2 \setminus \{(x, 0) \; | \;  x \leq 0\}$$ et à valeurs dans $\R^2$. 
+Cette fonction est différentiable et vérifie en tout point
+$$\|d \log (x, y)\| = \frac{1}{\sqrt{x^2 + y^2}}.$$ 
+Montrer que pour tout $(x, y) \in U$, on a 
+$$
+\|\log (x, y) - \log (x, -y)\| \leq 2 \pi.
+$$
+
+### Normes non euclidiennes {.remark .four}
+
+Les versions [monovariable](#TAFS) et [multivariable](#TAF) de l'inégalité des 
+accroissements finis peuvent être généralisées à d'autres normes que la 
+norme euclidienne. Dans le cas monovariable, si $\|\cdot\|_{\R^m}$ est
+une norme arbitraire sur $\R^m$ et que l'on dispose de la borne $\|f'(y)\|_{\R^m} \leq M$
+sur $[x, x+h]$,
+alors on peut conclure que $$\|f(x+h) - f(x)\|_{\R^m} \leq Mh.$$ 
+Dans le cas multivariable, si de plus $\|\cdot\|_{\R^n}$ est une norme arbitraire 
+sur $\R^n$ et que l'on définit pour tout $A \in \R^{m\times n}$ la norme d'opérateur
+associée
+$$
+\|A\|_{\R^{m\times n}} := \sup_{x \neq 0} \frac{\|A \cdot x\|_{\R^m}}{\|x\|_{\R^n}},
+$$
+alors on peut déduire de la borne $\|df(y)\|_{\R^{m\times n}} \leq M$ sur $[x, x+h]$ 
+que $$\|f(x+h) - f(x)\|_{\R^m} \leq M \|h\|_{\R^n}.$$
+Seules des modifications mineures des démonstrations déjà présentées sont 
+nécessaires pour établir ces résultats.
+
+Annexes
+================================================================================
+
+Dérivée
 --------------------------------------------------------------------------------
 
+### Dérivée {.definition .zero}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+La fonction $f$ est *dérivable en $x$* si la limite du 
+*taux d'accroissement* de $f$ en $x$ existe ; 
+cette limite est appelée *dérivée de $f$ en $x$* 
+et notée $f'(x)$ :
+$$
+f'(x) := \lim_{\substack{h \to 0 \\ h \neq 0}} \frac{f(x+h) - f(x)}{h}.
+$$
+La fonction $f$ est *dérivable (sur $U$)* si elle est dérivable en tout point
+$x$ de $U$.
+
+### {.remark}
+Cette définition accomode sans difficulté le cas des fonctions scalaires
+et vectorielles d'une variable réelle. 
+Dans ce second cas, il suffit d'interpréter le terme 
+$(f(x+h) - f(x)) / h$ comme la multiplication du vecteur $f(x+h) - f(x)$
+par le scalaire $1/h$. En outre, la dérivée d'une fonction vectorielle
+se déduit aisément de la dérivée de ses composantes :
+
+### Dérivée composante par composante {.definition .zero #der-cc}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+La fonction $f$ est dérivable en $x$ si et seulement si pour tout 
+$i \in \{1,\dots, m\}$, sa $i$-ème composante $f_i  : U \to \R$ est dérivable
+en $x$. 
+On a alors $(f'(x))_i = f_i'(x)$.
+
+
+### {.post .remark}
+La définition de dérivée couvre le cas où la fonction $f$ est définie est sur un 
+intervalle ouvert $\left]a, b\right[$ -- ou d'ailleurs sur une réunion arbitraire
+d'intervalles ouverts de $\R$ --
+mai pas la sur un intervalle fermé et  borné $[a, b]$. 
+Pour appréhender ce cas, on introduit classiquement les notions de dérivées 
+à gauche et à droite.
+
+### Dérivée sur un intervalle fermé et borné {.definition .zero}
+Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
+La fonction $f$ est *dérivable sur $[a, b]$* 
+si elle est dérivable sur l'intervalle ouvert $\left]a, b\right[$ 
+et que les dérivées de $f$ à droite en $a$ et à gauche en $b$ existent.
+On pose alors
+$$
+f'(a) := \lim_{\substack{h \to 0 \\ h > 0}} \frac{f(a+h) - f(a)}{h}
+\; \mbox{ et } \;
+f'(b) := \lim_{\substack{h \to 0 \\ h < 0}} \frac{f(b+h) - f(b)}{h}.
+$$
+
+### {.remark}
+Alternativement, on peut utiliser une pirouette pour se ramener à un domaine
+de définition ouvert. Cette approche nous est utile pour intégrer les dérivées 
+au calcul différentiel multivariable qui n'est développé que 
+pour des domaines de définition ouverts.
+
+### Dérivée et prolongement {.proposition .one #dep}
+Soient $a, b \in \R$ avec $a < b$ et $f: [a, b] \to \mathbb{R}^m$.
+La fonction $f$ est dérivable sur $[a, b]$ si et seulement si elle admet un 
+prolongement $g$ à un ensemble ouvert $U$ de $\R$ contenant $[a, b]$ qui soit 
+dérivable. Si c'est le cas, sa dérivée $f'$ est égale à la restriction 
+de la fonction $g'$ à $[a, b]$.
+
+\newcommand{\lb}{\left]}
+\newcommand{\rb}{\right[}
+
+![Un prolongement dérivable de $f:x \in [0,1] \mapsto e^{-x}$ à $\lb-0.5, 1.5 \rb$.
+Ce prolongement $g$ est défini par 
+$g(x) = 1 - x$ si $x < 0$ et $g(x) = (2-x)/e$ si $x>1$.](images/prolongement.tex)
+
+### Dérivée et prolongement {.exercise .one .question #exo-dep}
+Démontrer la proposition ["Dérivée et prolongement"](#dep).
+
+### {.remark .ante}
+La dérivabilité est équivalente à l'existence d'un développement limité au
+1er ordre ; si elle est acquise, la valeur de la fonction et de sa dérivée
+au point de référence fournissent ce développement.
+
+### Dérivée et développement limité  {.proposition .zero #ddl}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+Si la fonction $f$ est dérivable en $x$, alors dans un voisinage de $x$
+on a
+$$
+f(x+h) = f(x) + f'(x) h + \varepsilon(h)|h|
+$$
+où la fonction $\varepsilon$, définie dans un voisinage de $h=0$ et à valeurs
+dans $\R^m$, satisfait
+$$
+\lim_{h \to 0}\varepsilon(h) = 0.
+$$
+
+###  Dérivée et développement limité (réciproque)  {.proposition .zero #ddlr}
+Soient $U$ un ouvert de $\R$, $f: U \to \mathbb{R}^m$ et $x \in U$.
+S'il existe deux vecteurs $a$ et $b$ de $\R^m$ tels que
+$$
+f(x+h) = a + b h + \varepsilon(h)|h|
+$$
+pour une fonction $\varepsilon$ définie dans un voisinage de $h=0$ 
+telle que $\lim_{h \to 0}\varepsilon(h) = 0$,
+alors $f$ est dérivable en $x$, $a=f(x)$ et et $b = f'(x)$.
+
+Calcul matriciel
+--------------------------------------------------------------------------------
+
+### {.remark}
 Les fragments de code de ce document utilisent le langage Python 3.
 La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
 
     >>> from numpy import *
 
+<!--
 Ensembles et fonctions
 --------------------------------------------------------------------------------
 
@@ -205,8 +1556,9 @@ où les notations des ensembles et fonctions $g$, $f$, $A$, $B$ et $C$
 restent dans le même ordre d'apparition et les deux occurrences de 
 l'ensemble intermédiaire $B$ se touchent.
 
-Applications linéaires et calcul matriciel
---------------------------------------------------------------------------------
+-->
+
+<!-- -------------------------------------------------------------------------------- -->
 
 ### Multiplication scalaire-vecteur
 Pour tout scalaire $\lambda \in \mathbb{R}$ et vecteur $x \in \mathbb{R}^n$,
@@ -259,6 +1611,7 @@ sera représentée avec NumPy par un tableau bi-dimensionnel:
     >>> size(A)
     6
 
+<!--
 ### Mise à plat des matrices {.warning #flatten}
 Dans la notation $\mathbb{R}^{m \times n}$, 
 $\times$ est un symbole de séparation, purement syntactique : 
@@ -308,9 +1661,11 @@ avec NumPy:
     >>> reshape(a, (2, 3))
     array([[1, 2, 3],
            [4, 5, 6]])
+-->
 
 ### Applications linéaires
 
+<!--
 Notons
 $$
 \mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m
@@ -318,15 +1673,11 @@ $$
 \mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
 $$ 
 l'ensemble des applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
+-->
 La raison d'être des matrices $\mathbb{R}^{m \times n}$ est de représenter
-ces applications linéaires.
-
-Si $A$ désigne  une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$,
-on peut la décomposer en $m$ composantes $A_i$, 
-des applications de $\mathbb{R}^n$ dans $\mathbb{R}$ 
-telles que pour tout $x$ dans $\mathbb{R}^n$, on ait
-$A(x) = (A_1(x), A_2(x), \dots, A_m(x))$, ce que l'on note
-simplement
+les applications linéaires de $\R^n$ dans $\R^m$.
+Si $A$ désigne une telle application linéaire, notons $A_i$ ses
+$m$ composantes scalaires :
 $$
 A = (A_1, A_2, \dots, A_m).
 $$
@@ -363,24 +1714,18 @@ $$
 il est possible de définir une application linéaire 
 $A: \mathbb{R}^n \to \mathbb{R}^m$ par la relation
 $$
-(A x)_i := \sum_{j} a_{ij} x_j
+(A \cdot x)_i := \sum_{j} a_{ij} x_j
 $$
 et cette opération est l'inverse de la précédente.
-
-Cette correspondance établit un isomorphisme d'espaces vectoriels entre 
-les applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et 
-les matrices de taille $m \times n$ à coefficients réels :
-$$
-\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n
-\, \cong \,
-\mathbb{R}^{m \times n} 
-$$
+Techniquement, cette correspondance établit un isomorphisme d'espaces vectoriels 
+entre les applications linéaires de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et 
+les matrices de $\R^{m \times n}$.
 
 ### Composition d'applications linéaires
  
 Si $A$ et $B$ désignent des applications linéaires de 
 $\mathbb{R}^p$ dans $\mathbb{R}^n$ et de $\mathbb{R}^n$ dans $\mathbb{R}^m$ 
-respectivement, la fonction composée $C = B \circ A$ est une application
+respectivement, la fonction composée $C = B \cdot A$ est une application
 linéaire qui vérifie
   $$
   C_{ij} = \sum_{k} B_{ik} A_{kj}.
@@ -388,10 +1733,11 @@ linéaire qui vérifie
 Autrement dit, la composition de fonction linéaires se traduit par la
 multiplication des matrices associées.
 
+<!--
 Dans la suite on évitera en général l'utilisation du symbole $\circ$ pour
 désigner la composition d'applications linéaires, en lui préférant le
 symbole $\cdot$ ("point"). 
-<!--
+
 Le même symbole sera utilisé pour désigner le produit
 entre deux matrices (on évitera dans la mesure du possible de désigner
 le produit de deux matrices par simple juxtaposition des symboles).
@@ -405,19 +1751,19 @@ La méthode `dot` des tableaux NumPy permet de calculer ce produit matriciel :
     array([[1, 2, 3],
            [4, 5, 6]])
 
-### Adjoint d'un opérateur {.definition}
+### Adjoint d'un opérateur
 Lorsque $A: \R^n \to \R^m$ est un opérateur linéaire, on peut définir de
-façon unique l'opérateur *adjoint* $A^* : \R^m \to \R^n$ comme l'unique
+façon unique l'opérateur adjoint $A^{\top} : \R^m \to \R^n$ comme l'unique
 opérateur tel que pour tout $x \in \R^n$ et tout $y \in \R^m$, on ait
 $$
-\left<y, A \cdot x \right> = \left<A^* \cdot y, x \right>.
+\left<y, A \cdot x \right> = \left<A^{\top} \cdot y, x \right>.
 $$
-La matrice représentant $A^*$ est la transposée de la matrice représentant $A$ :
+La matrice associée à $A^{\top}$ est la transposée de la matrice représentant $A$ :
 
     >>> A
     array([[1, 2, 3],
            [4, 5, 6]])
-    >>> transpose(A)
+    >>> A.T
     array([[1, 4],
            [2, 5],
            [3, 6]])
@@ -444,6 +1790,7 @@ $X \in \mathbb{R}^{n\times 1}$, telle que $X_{i1} = x_i$.
 Le produit entre une matrice et un vecteur colonne de taille compatible
 n'est rien d'autre qu'un produit matriciel classique. 
 
+<!--
 Le vecteur $x$ étant associé à une matrice, on peut se demander quel
 opérateur linéaire est associé à cette matrice. La réponse est simple:
 il s'agit de l'application
@@ -456,7 +1803,9 @@ $x^*$ (l'adjoint de l'opérateur associé à $x$) : il s'agit
 de l'application linéaire de $\R^n$ dans $\R$ dont la matrice
 est la transposée du vecteur colonne associé à $x$, autrement dit,
 la représentation de $x$ comme vecteur ligne.
+-->
 
+<!--
 L'intérêt de la représentation des vecteurs comme vecteurs colonnes : 
 si $A$ est une application linéaire de $\mathbb{R}^n$ dans
 $\mathbb{R}^m$ et $x$ un vecteur de $\mathbb{R}^n$, le vecteur
@@ -464,11 +1813,12 @@ image $y=A \cdot x \in \mathbb{R}^m$ de $x$ par $A$ est représenté par
 le vecteur colonne qui est le produit entre 
 la représentation de $A$ comme matrice et la représentation de
 $x$ comme vecteur colonne.
+-->
 
 Concrêtement, NumPy ne nécessite pas qu'un vecteur soit d'abord 
 transformé en matrice pour réaliser un produit matrice-vecteur.
 La méthode `dot` des tableaux peut être utilisée ici aussi 
-pour réaliser cette opération:
+pour réaliser cette opération :
 
     >>> A = array([[1, 2, 3], [4, 5, 6]])
     >>> x = array([7, 8, 9])
@@ -484,2055 +1834,7 @@ quand $x$ est un vecteur,
 $A \cdot B \cdot x$ désigne indifféremment $(A \cdot B) \cdot x$ ou
 $A \cdot (B \cdot x)$.
 
-Notation de Landau
---------------------------------------------------------------------------------
-
-<!--
-### Objectif {.meta}
-
-Présenté volontairement dans le cadre le plus étroit possible qui satisfasse
-nos besoins (notamment, comparaison par rapport $\|h\|^k$) suffit, ce qui 
-évite un grand nombre de subtilités. Pas jugé d'un grand intérêt en tant que
-tel, nous ne développons absolument pas le "calcul des o"; il s'agit juste
-d'avoir une notation pratique pour noter des résultats, dans le cadre bien
-précis du calcul différentiel et des propriétés des restes dans les 
-développements limités. 
-Toutes les démonstrations commencent par la traduction des $o$ en fonctions;
-on est donc presque dans la situation ou l'on pourrait se passer de la 
-notation; on aurait en contrepartie des résultats un peu plus lourd à énoncer,
-les conséquences seraient limitées à ça.
-
-**TODO:** remarque sur rôle du $o(1)$ et comment on pourrait tout ramener à
-ça ... retenir au moins que $o(\|h\|) = o(1) \|h\|$ ? La notation $o(1)$
-est pratique pour désigner $\varepsilon$ directement, sans avoir à rappeler
-les hypothèses en détail.
--->
-
-### Petit o de Landau
-La notation $o(\|h\|^k)$, 
-où $h \in \mathbb{R}^n$ et $k \in \mathbb{N}$,
-désigne une expression de la forme
-$$
-o(\|h\|^k) := \varepsilon(h) \|h\|^k
-$$
-où $\varepsilon$ est une fonction définie dans un voisinage de $0$ 
-et telle que 
-$$
-\lim_{h \to 0} \varepsilon(h) = \varepsilon(0) = 0.
-$$
-En particulier, dans le cas $k=0$, la notation $o(1)$
-désigne un terme de la forme $\varepsilon(h)$
-où $\varepsilon$ est une fonction du type défini ci-dessus.
-Le cas général peut toujours être réduit à ce cas particulier
-puisque l'on a $o(\|h\|^k) = o(1)\|h\|^k$.
-
-En dehors de tout contexte, cette notation est très ambiguë puisque l'on ne
-précise même pas à quel ensemble appartiennent les valeurs de $\varepsilon$.
-Les choses se précisent lorsqu'elle est utilisée dans une équation donnée,
-comme
-$$
-\phi(h) = o(\|h\|^k)
-$$
-où la fonction $\phi$ est connue.
-Cette relation signifie alors: la fonction $\phi$ est définie dans un
-voisinage de $0$ et vérifie:
-$$
-\lim_{h \to 0} \frac{\phi(h)}{\|h\|^k} = 0.
-$$
-La fonction $\varepsilon$ est alors définie de façon unique 
-sur ce voisinage de $0$ par la relation
-$$
-\varepsilon(h) 
-= 
-\frac{\phi(h)}{\|h\|^k} \, \mbox{ si } \, h \neq 0
-\, \mbox{ et } \,
-\varepsilon(0) = 0.
-$$
-
-### Continuité {.example}
-
-Si $f$ est une fonction définie d'un sous-ensemble de $\mathbb{R}^n$
-et que $x \in \mathbb{R}^n$, la notation
-$$
-f(x+h) = f(x) + o(1)
-$$
-signifie donc que $f$ définie dans un voisinage de $x$ et que
-$$
-\lim_{h \to 0} f(x + h) = f(x),
-$$
-autrement dit que $x$ appartient à l'intérieur du domaine de définition de
-$f$ et que $f$ est continue en ce point.
-
-
-Différentielle
-================================================================================
-
-### Dérivée
-
-Soient $U$ un ouvert de $\mathbb{R}$ et $f: U \to \mathbb{R}^m$.
-La fonction $f$ est *dérivable* en $x \in U$ s'il existe une
-limite $\ell \in \mathbb{R}^n$ au *taux d'accroissement* de
-$f$ en $x$:
-$$
-\ell = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
-$$
-Cette limite quand elle existe est unique ; 
-elle est appelée *dérivée de $f$ en $x$* et notée $f'(x)$:
-$$
-f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
-$$
-
-### Valeurs scalaires ou vectorielles {.remark}
-
-La formation d'un taux d'accroissement dans cette définition 
-nécessite que l'on divise par $h$
-et par conséquent que $h$ soit scalaire ; 
-la dérivée ne peut donc être définie que si $f$ est une fonction 
-d'une unique variable (scalaire).
-En revanche, la fonction peut être à valeurs scalaires ou vectorielles sans
-qu'il soit nécessaire de changer cette définition. 
-Précisement, une fonction vectorielle $f=(f_1, \cdots, f_m)$ sera dite 
-dérivable en $x$ si et seulement si toutes ses composantes 
--- qui sont des fonctions scalaires -- sont dérivables; 
-on a alors
-  $$
-  (f'(x))_i = f_i'(x).
-  $$
-Autrement dit, on peut dériver composante par composante. 
-Cette approche se généralise de façon directe au cas des fonctions
-à valeurs matricielles.
-
-### Développement limité au premier ordre {.theorem}
-Soient $U$ un ouvert de $\mathbb{R}$ et $f: U \to \mathbb{R}^m$.
-La fonction $f$ est *dérivable* en $x \in U$ si et seulement si il 
-existe un vecteur $\ell \in \mathbb{R}^m$ tel que
-$$
-f(x+h) = f(x) + \ell h + o(|h|).
-$$
-Le vecteur $\ell$ est alors égal à $f'(x)$.
-
-### Démonstration {.proof}
-Supposons que le taux d'accroissement de $f$ 
-ait une limite $\ell$ en $x$ et considérons la fonction $\varepsilon$,
-à valeurs dans $\mathbb{R}^m$, définie quand $x+h \in U$ par 
-$\varepsilon(0) = 0$ et si $h \neq 0$ par
-$$
-\varepsilon(h) = \frac{f(x+h) - f(x)}{|h|} - \ell \frac{h}{|h|}.
-$$
-Puisque $U$ est ouvert, la fonction $\varepsilon$ est définie dans un voisinage 
-de $h=0$ ;  
-par construction, pour tout $h$ on a $f(x+h) = f(x) + \ell h + \varepsilon(h) |h|$.
-Finalement, $f$ étant dérivable en $x$ de dérivée $\ell$, comme
-pour $h \neq 0$,
-$$
-\varepsilon(h) = \left(\frac{f(x+h) - f(x)}{h} - \ell h \right) \frac{h}{|h|}
-$$
-on a bien $\lim_{h \to 0} \varepsilon(h) = 0$.
-Par conséquent, avec la notation de Landau,
-$$
-f(x+h) = f(x) + \ell h + o(|h|).
-$$
-Réciproquement, si l'égalité $f(x+h) = f(x) + \ell h + \varepsilon(h) |h|$
-est satisfaite avec un $\varepsilon(h)$ qui soit un $o(1)$, comme
-$$
-\frac{f(x+h) - f(x)}{h} = \ell + \varepsilon(h) \frac{h}{|h|}
-$$
-le taux d'accroissement de $f$ en $x$ tend bien vers
-$\ell$ quand $h$ tend vers $0$.
-
-### Fonctions linéaires d'une variable scalaire {.note}
-Le terme $\ell h$ dans le développement limité au premier ordre de $f$ en
-$x$ est une fonction linéaire de $h$.
-Cette remarque n'est pas anodine car toutes les applications 
-linéaires
-de $\mathbb{R}$ dans $\mathbb{R}^m$ sont de cette forme.
-En effet, pour une telle fonction $L$ et pour tout $h \in \mathbb{R}$, 
-$$L\cdot h = L \cdot (h \times 1) = h (L \cdot 1) = (L \cdot 1) h,$$
-le vecteur $\ell = L \cdot 1$ convient donc. 
-On  peut donc caractériser la dérivabilité de $f$ en $x$
-par l'existence d'une fonction linéaire de $\mathbb{R}^m$ dans $\mathbb{R}$
-telle que
-$$
-f(x) = f(x+h) + L \cdot h + o(|h|).
-$$
-Cette caractérisation de la dérivée est directement généralisable au cas
-de fonctions à $n$ variables.
-
-### Différentielle de Fréchet {.definition .theorem}
-
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
-La fonction $f$ est *[différentiable]{.index}* en $x \in U$ 
-s'il existe une application linéaire $L: \mathbb{R}^n \to \mathbb{R}^m$
-telle que
-$f(x+h) = f(x) + L \cdot h + o(\|h\|).$
-Si c'est le cas, l'application $L$ est unique ; 
-nous la notons alors $df(x)$ et l'appelons *[différentielle de $f$ en $x$]{.index}*.
-Elle est donc caractérisée par :
-$$
-f(x+h) = f(x) + df(x) \cdot h + o(\|h\|).
-$$
-La fonction $f$ est *différentiable*
-(ou *différentiable sur $U$*)
-si elle est différentiable en tout point de $U$. 
-
-### Variation d'une fonction {.definition} 
-On appelle *variation de $f$ en $x$*, 
-pour la variation $h$ de l'argument, 
-la grandeur
-$$
-\Delta f(x, h) := f(x+h) - f(x),
-$$
-
-### Variation et différentielle {.remark .ante}
-La différentielle de $f$ en $x$, quand elle existe, 
-constitue la "meilleure" approximation linéaire de la
-variation de $f$ en $x$, car c'est la seule telle que
-$$
-\Delta f(x, h) = df(x) \cdot h + o(\|h\|).
-$$
-En particulier, quand la fonction $f$ est affine, 
-la fonction linéaire associée est sa différentielle.
-
-### Différentielle d'une fonction affine
-Toute fonction $f: \R^n \to \R^m$ de la forme 
-$f(x) = A \cdot x + b$
-où $A: \R^n \to \R^m$ est linéaire et $b \in \R^m$,
-est différentiable en tout point $x$ de $\R^n$ et
-$df(x) = A.$
-
-### Démonstration {.proof}
-Il suffit de constater que 
-$$\Delta f(x, h) = f(x+h) - f(x) = A \cdot (x+h) + b - A \cdot x -b = A \cdot h$$
-et que par conséquent
-$\Delta f(x, h) = A \cdot h + o(\|h\|)$.
-
-### {.ante}
-Résumons les liens entre dérivée et différentielle à ce stade :
-
-### Différentielle et dérivée {.theorem}
-Soient $U$ un ouvert de $\mathbb{R}$, $f: U \to \mathbb{R}^m$
-et $x \in U$.
-La fonction $f$ est différentiable en $x$ si et seulement si
-elle est dérivable en $x$. Dérivée et différentielle de $f$ en 
-$x$ se déduisent alors l'une de l'autre par les relations 
-$$
-f'(x) = df(x) \cdot 1
-\; \mbox{ et } \;
-df(x) = (h \in \mathbb{R} \mapsto f'(x) h).
-$$
-
-### Démonstration {.proof}
-Une conséquence de la caractérisation de la dérivabilité des fonctions
-par l'existence de [développement limité au premier ordre][Développement limité au premier ordre]
-et de la caractérisation des [fonctions linéaires d'une variable scalaire][Fonctions linéaires d'une variable scalaire].
-
-### Gradient {.definition}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}$ 
-différentiable en $x \in U$. Le *gradient de $f$ en $x$* noté $\nabla f(x)$
-est l'unique vecteur de $\R^n$ tel que pour tout $h \in \R^n$,
-$$
-df(x) \cdot h = \left<\nabla f(x), h \right>.
-$$
-
-### Démonstration (existence et unicité) {.proof}
-La différentielle de $f$ en $x$ est une forme linéaire sur $\mathbb{R}^n$,
-c'est-à-dire une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}$.
-Or pour toute application $A$ de ce type, si un vecteur $a \in \R^n$
-est tel que $A \cdot h = \left<a, h\right>$ pour tout $h \in \R^n$, 
-alors sélectionner successivement $h = e_i$ pour $i=1, \dots, n$
-fournit nécessairement $a = (A(e_1), \dots, A(e_n))$ ; 
-il existe donc au plus un vecteur $a$ satisfaisant ces égalités. 
-Réciproquement, pour ce vecteur
-$a$, on a bien
-$$
-A \cdot h = A \cdot (h_1 e_1 + \dots + h_n e_n) = \sum_i h_i A(e_i) = \sum_i a_i h_i
-= \left<a, h\right>.
-$$
-Dans notre contexte où $A = df(x)$, le gradient est donc défini de façon unique
-par $\nabla f(x) = (df(x)\cdot e_1, \dots, df(x)\cdot e_n)$.
-
-### Point critique
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}$,
-une fonction différentiable. Le point $x$ est un *point critique
-de $f$* si $df(x) = 0$.
-
-### Point critique et extrema
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}$
-une fonction différentiable. Si $f$ admet un minimum ou un maximum
-local en $x \in U$, alors $x$ est un point critique de $f$.
-
-### Démonstration {.proof}
-Supposons que $f$ admette un minimum local en $x$ (le cas du maximum peut
-s'en déduire en considérant la fonction $-f$). Soit $r > 0$ tel que 
-pour tout $y \in \R^n$ satisfaisant $\|y - x\| \leq r$ on ait $y \in U$ 
-et $f(x) \leq f(y)$. Soit $h \in \mathbb{R}^n$ et $t$ un réel non nul
-suffisamment petit pour que $\left\|th \right\| \leq r$. Comme $f$
-est différentiable en $x$, il existe une fonction $\varepsilon$ qui soit
-un petit o de $1$ telle que
-$$
-f(x+th) - f(x) = df(x) \cdot (th) + \varepsilon(th) \|th\|.
-$$
-Soit par linéarité de la différentielle,
-$$
-df(x) \cdot h = \frac{f(x+th) - f(x)}{t} - \varepsilon(th) \frac{|t|}{t} \|h\|. 
-$$
-En faisant tendre $t$ vers $0$ dans le membre de droite de cette équation
-(la limite existe puisque le membre de droite est indépendant de $t$),
-on obtient un nombre positif ou nul. 
-Le même raisonnement pouvant être appliqué pour calculer 
-$df(x) \cdot (-h) = -df(x) \cdot h$, on en déduit
-que $df(x) \cdot h = 0$.
-
-### Différentiation composante par composante {#dcpc}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$.
-La fonction $f=(f_1, \cdots, f_m)$ est différentiable en $x \in U$ 
-si et seulement si chacune de ses composantes $f_i$ est différentiable
-en $x$. On a alors pour tout $h \in \mathbb{R}^n$
-$$
-(df(x) \cdot h)_i = d f_i(x) \cdot h.
-$$
-
-### Démonstration {.proof}
-Supposons $f$ différentiable en $x$ ; soit $\varepsilon$ un $o(1)$ tel que
-$$
-f(x + h) = f(x) + df(x)\cdot h + \varepsilon(h) \|h\|.
-$$
-En prenant la $i$-ème composante de cette equation, on obtient
-$$
-f_i(x + h) = f_i(x) + (df(x)\cdot h)_i + \varepsilon_i(h) \|h\|.
-$$
-On constate alors que l'application $h \mapsto (df(x) \cdot h)_i$ est linéaire
-(l'application "prendre la $i$-ème composante d'un vecteur de $\mathbb{R}^m$" 
-étant linéaire)
-et que $\varepsilon_i$ est un $o(1)$. 
-La $i$-ème composante $i$ de $f$ est donc différentiable et 
-$df_i(x) \cdot h = (df(x) \cdot h)_i$.
-
-Réciproquement, si toutes les composantes de $f$ sont 
-différentables en $x$, c'est-à-dire si il existe pour chaque $i$ une
-fonction $\varepsilon_i$ qui soit un $o(1)$ et telle que
-$$
-f_i(x + h) = f_i(x) + df_i(x)\cdot h + \varepsilon_i(h) \|h\|,
-$$
-on a
-$$
-f(x + h) = f(x) + (df_1(x)\cdot h, \dots, df_m(x)\cdot h) + 
-\varepsilon(h) \|h\|,
-$$ 
-et $\varepsilon := (\varepsilon_1, \dots, \varepsilon_m)$ est bien un $o(1)$.
-Comme la fonction $h \mapsto (df_1(x)\cdot h, \dots, df_m(x)\cdot h)$ est 
-linéaire en $h$, on en déduit que $f$ est différentiable en $x$.
-
-### Valeurs et variables matricielles {.remark}
-On peut de façon très simple définir la différentielle d'une fonction $F$
-d'une ou de plusieurs variables scalaires et dont la valeur est matricielle, 
-c'est-à-dire telle que
-$$
-F : U \subset \mathbb{R}^n \to \R^{m \times p}.
-$$
-Il suffit en effet d'exiger que chaque composante $F_{ij}$ soit différentiable,
-puis de définir $dF(x)$ composante par composante, de façon similaire au cas
-vectoriel:
-$$
-(dF(x) \cdot h)_{ij} = d F_{ij}(x) \cdot h.
-$$
-Mais le traitement des fonctions dont les arguments sont matriciels --
-par exemple l'application trace $\mathrm{tr}: \R^{n\times n} \to \mathbb{R}$ --
-demande une autre approche. Dans le cas d'une unique variable matricielle[^ext],
-donc d'une fonction de la forme
-$$
-f : U \subset \mathbb{R}^{n \times m} \to \R^p,
-$$
-on utilisera la fonction auxiliaire $f^*$ dont l'argument est un vecteur
-de $\R^{m\times n}$, argument qu'on "remettra sous forme matricielle"
-(cf. section "[Mise à plat des matrices]") avant de le fournir comme argument à $f$.
-C'est-à-dire que la fonction auxiliaire $f^*$ est définie à partir de 
-$\pi := \pi_{m \times n}$ comme
-$$
-f^* = f \circ \pi^{-1}
-$$
-On dira alors que $f$ est différentiable en $X$ si et seulement si $f^*$
-est différentiable en $x=\pi(X)$ et si c'est le cas, on définira la
-fonction $df(X): \mathbb{R}^{m\times n} \to \mathbb{R}^p$ par
-$$
-df(X) = df^*(x) \circ \pi.
-$$
-Ces deux façons d'étendre la notion de la différentielle -- 
-aux fonction à valeurs matricielles et à arguments matriciels -- 
-peuvent être combinées.
-
-Prenons un exemple du second cas; la fonction
-$$
-\mathrm{tr}: 
-A = \left[ 
-\begin{array}{cc}
-a_{11} & a_{12} \\
-a_{21} & a_{22}
-\end{array}
-\right] \in \R^{2 \times 2}
-\mapsto 
-a_{11} + a_{22} \in \mathbb{R}.
-$$
-a pour fonction auxiliaire 
-$$
-\mathrm{tr}^*: 
-a=(a_{11}, a_{12}, a_{21}, a_{22}) \in \R^{4}
-\mapsto 
-a_{11} + a_{22} \in \mathbb{R}.
-$$
-Pour tout $h=(h_1, h_2, h_3, h_4) \in \mathbb{R}^4$, on a 
-$$
-\mathrm{tr}^*(a + h) = 
-\mathrm{tr}^*(a) + h_{11} + h_{22}.
-$$
-L'application $h \mapsto h_{11} + h_{22}$ étant linéaire, $\mathrm{tr}^*$
-est différentiable en $a$, de différentielle
-$d\mathrm{tr}^*(a) \cdot h = h_{11} + h_{22}$.
-L'application $\mathrm{tr}$ est donc différentiable en $A$ et
-$$
-d\mathrm{tr}(A) \cdot H  = h_{11} + h_{22}
-\; \mbox{ avec } \;
-H = \left[ 
-\begin{array}{cc}
-h_{11} & h_{12} \\
-h_{21} & h_{22}
-\end{array}
-\right],
-$$
-c'est-à-dire $d\mathrm{tr}(A)  = \mathrm{tr}$.
-
-
-[^ext]: Si la fonction $f$ a plusieurs arguments matriciels
-$$
-A_1 \in \R^{m_1 \times n_1}, \, \dots, A_k \in \R^{m_k \times n_k},
-$$
-on pourra définir une fonction auxiliaire $f^*$ qui reconstruit ces matrices 
-à partir des éléments d'un unique vecteur de $\R^n$ où $n = m_1 n_1 + \dots + m_k n_k$,
-en procédant par exemple de gauche à droite, de haut en bas, 
-et de la première à la dernière matrice.
-
-### Domaine de définition non ouvert {.remark}
-
-La définition de la différentielle de $f$ suppose que le domaine de définition
-de $f$ soit un ensemble ouvert. Cette restriction permet de garantir qu'en
-tout point $x$ considéré du domaine de définition, on puisse examiner la
-variation de $f$ en $x$ dans "toutes les directions" pour voir s'il existe
-une approximation linéaire.
-
-Il y a néanmoins des façons de s'adapter quand le domaine de définition de 
-$f$ n'est pas ouvert :
-
-  - Si $x$ est un point de l'intérieur de ce domaine, 
-    on peut alors considérer la 
-    restriction de $f$ à un voisinage ouvert de $x$ et étudier la 
-    différentiabilité de cette restriction. Le résultat (existence
-    de la différentielle et valeur le cas échéant) est indépendant
-    du voisinage ouvert choisi.
-
-  - Si $x$ est un point de la frontière de ce domaine,
-    on peut à l'inverse chercher s'il existe une extension de $f$
-    à un voisinage ouvert de $x$ qui soit différentiable en $x$.
-    En général cette approche ne garantit pas une définition unique
-    de la différentielle de $f$ en $x$, mais est suffisante dans
-    des cas importants. Par exemple, elle permet d'étudier la
-    [différentiabilité (ou dérivabilité) de fonctions d'une variable 
-    scalaire sur des intervalles fermés de $\mathbb{R}$](#intervalle-fermé).
-
-### Différencier une expression
-L'expression $df(x) \cdot h$ dépend de trois éléments : la fonction $f$,
-le point de référence $x$ et la variation de l'argument $h$. Cette notation
-est sans ambiguité mais peut parfois être lourde à manipuler.
-Dans le calcul des dérivées, nous avons l'habitude, pour signifier que
-la dérivée de la fonction $x \mapsto x^2$ en tout point $x$ de $\mathbb{R}$
-est $2x$, d'écrire simplement
-  $$
-  (x^2)' = 2x.
-  $$
-Le membre de gauche désigne la dérivée de la fonction $x \mapsto x^2$, 
-évaluée en $x$.
-Avec notre notation pour la différentielle, à ce stade 
-il nous faudrait écrire:
-$$
-d (x \in \mathbb{R} \to x^2)(x) \cdot h = 2 x h.
-$$
-Si l'on accepte de regrouper la fonction à différencier et le point où
-elle est calculée en un terme unique dans cette notation, qui est une
-expression de $x$, on peut alors écrire:
-$$
-d x^2 \cdot h = 2 x h,
-$$
-ce qui est un progrès, même si la notation n'est pas totalement dénuée 
-d'ambiguité[^amb].
-On remarque alors qu'en exploitant cette convention, le terme $dx$
-vient à désigner $d(x \mapsto x)(x)$; comme $(x)' = 1$,
-on a donc $dx \cdot h = 1 \times h = h$. 
-Par conséquent, on peut réécrire l'équation ci-dessus sous la forme
-mémorable
-$$
-dx^2 = 2 x dx.
-$$
-
-[^amb]: par exemple: est-ce que $df(x^2)$ désigne désormais la différentielle
-de la fonction $f$ évaluée en $x^2$ ou la différentielle de la fonction 
-$x \mapsto f(x^2)$ évaluée en $x$ ? Les deux grandeurs ne sont pas égales ...
-Il faut donc savoir si l'on différencie une fonction en un point ou bien
-une expression par rapport à une variable. On pourra rajouter des parenthèses
-pour lever l'ambiguité si nécessaire, avec $d(f)(x^2)$ dans le premier cas
-et $d(f(x^2))$ dans le second. Par défaut, nous supposerons dans la suite
-que $df(x^2)$ désigne la notation "stricte" $d(f)(x^2)$.
-
-
-<!--
-### Note {.meta}
-Même si la notation de la différentielle en $x$ donne un indice sur l'étape
-suivante, il faut probablement retarder l'apparition de la notion d'application
-différentielle et construire une familiarité avec la notion de différentielle 
-en $a$ avant de passer à l'étape d'après.
-La notion d'application différentielle ne devient nécessaire que pour parler
-de fonction continûment différentiable et de différentielle d'ordre supérieur.
--->
-
-# {.ante .remark}
-
-Sous les hypothèses ad hoc, la différentielle de $f$ et $g$ en $x$ 
-est la composée des différentielles de $f$ en $x$ et de $g$ en $y=f(x)$.
-
-### Règle de différentiation en chaîne {#chain-rule}
-
-Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
-$g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
-sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
-Si $f$ est différentiable en $x \in U$ et $g$ est différentiable en $f(x) \in V$,
-alors la composée $g \circ f$ est différentiable en $x$ et
-$$
-d(g \circ f)(x) = dg(y) \cdot df(x) \; \mbox{ où } \; y = f(x).
-$$
-
-### Notations {.note}
-
-La formule précédente peut s'écrire de façon plus compacte sans
-la variable intermédiaire $y$ :
-$$
-d(g \circ f)(x) = dg(f(x)) \cdot df(x).
-$$
-Le terme $dg(f(x))$ y désigne la différentielle de $g$ en $f(x)$
-et non la différentielle de l'expression $g(f(x))$ (qui est le terme
-que l'on souhaite calculer).
-
-Comment souvent, annoter les composants d'une formule avec les ensembles 
-auquels ils appartiennent permet de s'assurer qu'elle n'est pas 
-de toute évidence incorrecte. Ici par exemple :
-$$
-\stackrel{\mathbb{R}^m \leftarrow \mathbb{R}^p}{d(g\circ f)(x)} 
-\, = \,  
-\stackrel{\mathbb{R}^m \leftarrow \mathbb{R}^n}{dg(y)} 
-\cdot
-\stackrel{\mathbb{R}^n \leftarrow \mathbb{R}^p}{df(x)} \; \mbox{ où } \; y = f(x).
-$$
-
-### Démonstration {.proof}
-L'objectif de la preuve est de montrer que
-$$
-g(f(x+h)) - g(f(x)) =  (dg(f(x)) \cdot df(x)) \cdot h + o(\|h\|).
-$$
-La fonction $g$ étant différentiable en $f(x)$, il existe une fonction
-$\varepsilon_1$ qui soit un $o(1)$ et telle que
-$$
-g(f(x)+k) - g(f(x)) = dg(f(x)) \cdot k + \varepsilon_1(k) \|k\|.
-$$
-Choisissons $k=f(x+h) - f(x)$ dans cette équation, de telle sorte que
-$$
-g(f(x)+k) = g(f(x) + (f(x+h) - f(x)) = g(f(x+h)).
-$$
-Nous obtenons donc
-$$
-g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (f(x+h)-f(x)) + \varepsilon_1(k) \|k\|.
-$$
-
-Notons que la fonction $\varepsilon_2(h) := \varepsilon_1(f(x+h) - f(x))$
-est définie dans un voisinage de l'origine et que par continuité de $f$ en 
-$x$, $f(x+h) - f(x)$ tend vers $0$ quand $h$ tend vers $0$, et par conséquent
-$\varepsilon_2(h) \to \varepsilon_2(0) = 0$ quand $h\to 0$ ; 
-la fonction $\varepsilon_2$ est donc un $o(1)$.
-Avec cette notation, on a
-$$
-\begin{split}
-g(f(x+h)) - g(f(x)) &= dg(f(x)) \cdot (f(x+h)-f(x)) \\
-                    &\phantom{=} + \varepsilon_2(h) \|f(x+h)-f(x)\|.
-\end{split}
-$$
-Comme $f$ est également différentiable en $x$, il existe une fonction 
-$\varepsilon_3$ qui soit un $o(1)$ et telle que
-$$
-f(x+h) - f(x) = df(x) \cdot h + \varepsilon_3(h) \|h\|.
-$$
-En substituant cette relation dans la précédente, nous obtenons
-$$
-g(f(x+h)) - g(f(x)) = dg(f(x)) \cdot (df(x) \cdot h) + \varepsilon(h) \|h\|
-$$
-où $\varepsilon(0) = 0$ et dans le cas contraire,
-$$
-\varepsilon(h) =  dg(f(x)) \cdot \varepsilon_3(h) + \varepsilon_2(h) 
-\left\|df(x) \cdot \frac{h}{\|h\|} + \varepsilon_3(h) \right\|.
-$$
-Il suffit pour conclure de prouver que $\varepsilon(h) \to 0$ quand $h \to 0$.
-Or, 
-$$
-\begin{split}
-\|\varepsilon(h)\| & \leq \|dg(f(x)) \cdot \varepsilon_3(h)\| + \|\varepsilon_2(h)\| \times \|df(x) \cdot (h / \|h\|) \| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|   \\
-& \leq \|dg(f(x))\| \times \|\varepsilon_3(h)\| + \|\varepsilon_2(h)\|  \times \|df(x)\| + \|\varepsilon_2(h)\| \times \|\varepsilon_3(h) \|,  
-\end{split}
-$$
-le résultat est donc acquis.
-
-
-### Règle de la somme {.theorem #sum-rule}
-La somme
-$(x, y) \in \mathbb{R}^2 \mapsto x + y \in \mathbb{R}$ 
-est différentiable en tout point et
-$$
-d(x+y) = dx + dy.
-$$
-
-### Démonstration {.proof}
-Pour tout $(x, y) \in \mathbb{R}^2$ et tout $(h_1, h_2) \in \mathbb{R}^2$, on a
-$$
-(x + h_1) + (y + h_2) = (x + y) + (h_1 + h_2).
-$$
-L'application somme est donc différentiable et sa différentielle
-est l'application $(h_1, h_2) \to h_1 + h_2$, c'est-à-dire 
-$dx + dy$.
-
-### Règle du produit {.theorem #product-rule}
-L'application produit 
-$(x, y) \in \mathbb{R}^2 \mapsto xy  \in \mathbb{R}$
-est différentiable en tout point et
-$$
-d xy = x dy + y dx
-$$
-
-### Démonstration {.proof}
-Soit $(x, y) \in \mathbb{R}^2$. Pour tout $h = (h_1, h_2) \in \mathbb{R}^2$,
-on a 
-$$
-(x+h_1) (y+h_2) = x y + x h_2 + y h_1 + h_1 h_2.
-$$
-Comme $|h_1 h_2| \leq \|h\|^2$, le produit $h_1 h_2$ est un $o(h)$.
-Par conséquent, l'application produit
-est différentiable en tout point $(x, y)$ de $\mathbb{R}^2$ 
-et sa différentielle est l'application
-$(h_1, h_2) \to x h_2 + y h_1,$
-c'est-à-dire $x dy + y dx$.
-
-### Linéarité de la différentielle {.corollary}
-Soit $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et 
-$g: U \to \mathbb{R}^m$, différentiables en $x \in U$. 
-Pour tous réels $\lambda$ et $\mu$, l'application 
-$\lambda f + \mu g$ est différentiable en $x$ et
-$$
-d(\lambda f + \mu g)(x) = \lambda df(x) + \mu dg(x).
-$$
-
-### Démonstration {.proof}
-Compte tenu du résultat concernant [la différentiation composante par composante](#dcpc),
-il suffit d'établir le résultat pour $f$ et $g$ à valeurs réelles.
-Or, l'application $x \in \mathbb{R}^n \mapsto (\lambda, f(x))$ est différentiable
-en $x$ car ses composantes sont différentiables ; 
-sa différentielle -- calculée composante par composante -- 
-est l'application $h \mapsto (0, df(x) \cdot h)$.
-L'application $\lambda f$ étant le produit de $\lambda$ et $f$,
-par [la règle de différentiation en chaîne](#chain-rule), 
-elle est différentiable en $x$ et 
-$$
-d (\lambda f)(x) = \lambda df(x) + f(x) \times (h \to 0) = \lambda df(x).
-$$
-De même, $\mu g$ est différentiable en $x$ et $d(\mu g)(x) = \mu dg(x)$.
-Par la règle de la somme, la combinaison linéaire $\lambda f + \mu g$ est
-donc différentiable en $x$ et 
-$d(\lambda f + \mu g)(x) = \lambda df(x) + \mu dg(x)$.
-
-Jacobienne, dérivées partielles et directionnelles 
-================================================================================
-
-<!--
-### Objectifs {.meta}
-
-TODO: à l'oral, insister sur différentielle comme point de départ et
-le reste (dérivées partielles, directionnelle, etc) s'ensuivent.
-Montrer que la démarche inverse ne marche pas (bien que la jacobienne
-puisse être formellement définie, la chain rule ne marche pas, donc
-on ne peut pas les multiplier)
--->
-
-### Matrice jacobienne {.definition}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x$ un point de $U$. Quand $f$ est différentiable en $x$, 
-on appelle *matrice jacobienne* de $f$ en $x$ et l'on note 
-$J_f(x)$ la matrice $\mathbb{R}^{m \times n}$ associée à la 
-différentielle $df(x): \mathbb{R}^n \to \mathbb{R}^m$ de $f$ en $x$.
-
-### Dérivées partielles {.definition}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$. 
-Lorsque la $i$-ème fonction partielle de $f$ en $x$
-$$
-y_i \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_n)
-$$
-est dérivable en $y_i = x_i$, on appelle $i$-ème *dérivée partielle*
-de $f$ en $x$ et on note $\partial_i f(x) \in \mathbb{R}^m$ sa dérivée.
-Alternativement,
-$$
-\begin{split}
-\partial_i f(x)
-&= \lim_{t \to 0} \frac{f(x + t e_i) - f(x)}{t} \\
-&= \lim_{t \to 0} \frac{f(x_1, \dots, x_i + t, \dots, x_n) - f(x_1, \dots, x_n)}{t} 
-\end{split}
-$$
-quand le second membre existe.
-
-### Différentielles partielles {.remark .definition}
-La dérivée partielle permet d'étudier séparement l'influence de chaque 
-variable scalaire de $f$ sur sa variation. 
-Mais dans certaine situations il est plus naturel de regrouper 
-les variables dont dépend $f$ en plusieurs variables vectorielles. 
-Ainsi, pour étudier l'application produit scalaire dans $\mathbb{R}^n$
-$$
-\left<\cdot, \cdot \right>: 
-(x_1,\dots, x_n, y_1, \dots, y_n) \in \R^{2n}
-\mapsto \sum_{k=1}^n x_k y_k \in \R,
-$$
-il est raisonnable de partitionner la variable en 
-$x = (x_1, \dots, x_n) \in \mathbb{R}^n$ d'une part et
-$y = (y_1, \dots, y_n) \in \mathbb{R}^n$ d'autre part.
-Pour gérer ce type de situation, la *différentielle partielle* par rapport au 
-$i$-ème argument d'une fonction
-$$
-f: U \subset \R^{n_1} \times \dots \times \R^{n_k} \to \R^m
-$$
-est définie comme la différentielle de la $i$-ème fonction partielle de $f$ en 
-$x = (x_1, \dots, x_k)$
-$$
-y_i \in \R^{n_i} \mapsto f(x_1, \cdots, x_{i-1}, y_i, x_{i+1}, \cdots, x_k)
-$$
-quand celle-ci existe. Elle est notée $\partial_i f(x)$, comme la dérivée
-partielle, ce qui n'est pas trop ambigu tant que l'on explicite
-comment l'argument de $f$ est décomposé.
-
-### Arguments nommés
-Les conventions attribuant un nom aux arguments d'une fonction
-permettent parfois de rendre les dérivées et différentielles partielles
-plus intelligibles. Si le $i$-ème argument 
-d'une fonction $f$ est désigné par un symbole $x$, 
-on pourra noter 
-$\partial_{x} f$ (ou ${\partial f}/{\partial x}$)
-sa dérivée partielle 
-(ou différentielle partielle selon le cas)
-au lieu de $\partial_i f$.
-
-Si l'on considère par exemple la fonction $m$ définie par
-$$
-m: (x, y, z, t) \in \R^4 \to x^2 + y^2 + z^2 - c^2 t^2,
-$$
-comme dans la théorie de la relativité,
-les dérivées partielles par rapport aux variables d'espace $x$, $y$, $z$ 
-sont données par 
-$\partial_x m(x, y, z, t) = 2 x$,
-$\partial_y m(x, y, z, t) = 2 y$,
-$\partial_z m(x, y, z, t) = 2 z$
-et par rapport à la variable de temps $t$ par
-$\partial_{t} m(x, y, z, t) = -2c^2t.$
-Si l'on préfère regrouper les trois premiers arguments en un 
-vecteur d'espace $\mathbf{x} = (x, y, z)$, on a alors
-$$
-m: (\mathbf{x}, t) \in \R^3 \times \R \to \|\mathbf{x}\|^2 - c^2 t^2,
-$$
-et la différentielle partielle
-$$
-\partial_{\mathbf{x}}m(\mathbf{x}, t) = 2 (xdx + y dy + z dz).
-$$
-
-### Différentielle et dérivées partielles {.proposition}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x$ un point de $U$. 
-Lorsque $f$ est différentiable en $x$, 
-toutes ses dérivées partielles existent et vérifient
-$$
-\partial_i f(x) = df(x) \cdot e_i,
-$$
-ou de façon équivalente, pour tout $h \in \mathbb{R}^n$
-$$
-df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) h_i.
-$$
-
-### Différentielle et différentielles partielles {.post}
-Sous les même hypothèses, si l'on considère désormais $f$ comme une
-fonction
-$f: U \subset \R^{n_1} \times \dots \times \R^{n_k} \to \R^m$
-(avec $n_1 + \dots + n_k = n$),
-toutes les différentielles partielles de $f$ en $x$ existent et
-pour tout $h=(h_1, \dots, h_k) \in \R^{n_1} \times \dots \times \R^{n_k}$,
-$$
-df(x) \cdot h = \sum_{i=1}^n \partial_i f(x) \cdot h_i.
-$$
-
-### Démonstration {.proof}
-La différentiabilité de $f$ en $x$ établit l'existence d'une
-fonction $\varepsilon$ qui soit un $o(1)$ et telle que 
-$$
-f(x+h) = f(x) + df(x) \cdot h + \varepsilon(h) \|h\|.
-$$
-Soit $t$ un réel non nul ; substituer $h := t e_i$ dans cette relation fournit
-$$
-f(x+te_i) = f(x) + df(x) \cdot (t e_i) + \varepsilon(t e_i) \|t e_i\|.
-$$
-En exploitant la linéarité de la différentielle, on obtient donc
-$$
-df(x) \cdot e_i = \frac{f(x+te_i) - f(x)}{t} + \varepsilon(t e_i) \frac{|t|}{t}.
-$$
-Par conséquent, en passant à la limite quand $t \to 0$, on obtient
-$$
-df(x) \cdot e_i = \lim_{t \to 0} \frac{f(x+t e_i) - f_i(x)}{t} =: \partial_i f(x)
-$$
-Pour obtenir la seconde forme de cette relation, il suffit de décomposer un
-vecteur $h=(h_1, \dots, h_n)$ sous la forme
-$$
-h = h_1 e_1 + \dots + h_n e_n
-$$
-et d'exploiter la linéarité de la différentielle ; on obtient
-$$
-df(x) \cdot h 
-= df(x) \cdot \left( h_1 e_1 + \dots + h_n e_n\right)
-= \sum_i (df(x) \cdot e_i) h_i 
-= \sum_i \partial_i f(x) h_i,
-$$
-comme attendu.
-
-### Matrice jacobienne et dérivées partielles {.corollary}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x$ un point de $U$. 
-Si $f$ est différentiable en $x$, on a 
-$$
-[J_f(x)]_{ij} = \partial_{j} f_i(x),
-$$
-c'est-à-dire
-$$
-J_f(x) = \left[
-\begin{array}{cccc}
-\partial_1 f_1 (x) & \partial_2 f_1 (x) & \cdots & \partial_n f_1 (x) \\
-\partial_1 f_2 (x) & \partial_2 f_2 (x) & \cdots & \partial_n f_2 (x) \\
-\vdots & \vdots & \vdots & \vdots \\
-\partial_1 f_m (x) & \partial_2 f_m (x) & \cdots & \partial_n f_m (x) \\
-\end{array}
-\right]
-$$
-
-### Démonstration {.proof}
-Par définition, la matrice jacobienne de $f$ en $x$ se déduit de la 
-différentielle par
-$[J_f(x)]_{ij} = (df(x) \cdot e_j)_i.$
-Comme $\partial_j f(x) = df(x) \cdot e_j,$ on a
-$[J_f(x)]_{ij} = (\partial_j f(x))_i.$ 
-Les fonctions vectorielles se dérivant composante par composante, 
-on en déduit que $[J_f(x)]_{ij} = \partial_j f_i(x)$. 
-
-### Gradient et dérivées partielles
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et $x$ un point de $U$. 
-Si $f$ est différentiable en $x$, on a 
-$$
-\nabla f(x) = (\partial_1 f(x), \dots, \partial_n f(x)).
-$$
-
-### Démonstration {.proof}
-Pour tout $h \in \R^n$, on a
-$$
-\left<\nabla f(x), h\right> 
-= df(x) \cdot h
-= \sum_i \partial_i f(x) \cdot h_i 
-= 
-\left<(\partial_1 f(x), \dots, \partial_n f(x)), h \right>, 
-$$
-ce qui établit le résultat.
-
-
-### Matrice jacobienne, gradient et dérivées partielles {.remark #mjgdp}
-On remarquera qu'avec les résultats ci-dessus, il est techniquement possible de 
-définir le gradient $\nabla f(x)$ ou la matrice jacobienne $J_f(x)$ en supposant 
-uniquement que les dérivées partielles de $f$ en $x$ existent, 
-ce qui peut arriver alors que $f$ n'est pas différentiable en $x$. 
-Mais cette extension est à prendre avec précaution. 
-En effet, dans ce cadre étendu, 
-on ne peut plus transposer aux gradients et matrices jacobiennes 
-tous les résultats valides pour les différentielles. 
-Par exemple, si $J_g(f(x))$ et $J_f(x)$ existent
-(au sens où toutes les dérivées partielles concernées existent), on peut
-former le produit matriciel $J_g(f(x)) J_f(x)$, mais sans aucune garantie que 
-$J_{g \circ f}(x)$ existe et/ou soit égal à ce produit, 
-car [la règle de différentiation en chaîne](#chain-rule) requiert l'existence 
-des différentielles.
-
-### Fonction continûment différentiable {.proposition}
-Soit $U$ un ouvert de $\mathbb{R}^n$. 
-Une fonction $f: U \to \mathbb{R}^m$ 
-est *continûment différentiable* si elle est différentiable et si 
-l'application différentielle
-$$
-df: x \in U \subset \R^n \mapsto df(x) \in (\R^n \stackrel{\ell}{\to} \R^m)
-$$
-est continue.
-
-### {.ante}
-Cette définition constitue un moyen de vérifier l'existence de
-la différentielle (et sa continuité) en passant par les dérivées partielles :
-
-### Dérivées partielles continues {.proposition}
-Soit $U$ un ouvert de $\mathbb{R}^n$.
-Une fonction $f: U \to \mathbb{R}^m$ 
-est continûment différentiable si et seulement si toutes ses dérivées
-partielles existent et sont continues.
-
-### Démonstration {.proof}
-Si $f$ est différentiable de différentielle continue, ses dérivées partielles
-sont définies et $\partial_i f(x) = df(x) \cdot e_i$. Le second membre de 
-cette relation est une fonction continue de $x$, donc les dérivées partielles
-sont continues.
-
-Réciproquement, soit $f: U \subset \R^n \to \R$ une fonction 
-dont les dérivées partielles existent et sont continues
-(la preuve dans le cas d'une fonction à valeurs vectorielles se déduit 
-du résultat dans le cas scalaire).
-Soit $a \in U$ et $r>0$ telle que la boule fermée centrée en $a$ et de rayon
-$r$ soit dans $U$ ; soit $h \in \R^n$ tel que $\|h\| \leq r$. 
-La variation de $f$ entre $a$ et $a+h$ satisfait
-$$
-f(a+h) - f(a) = \sum_{i=1}^n f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)). 
-$$
-Or, par [le théorème fondamental du calcul](#TFC), 
-comme pour tout $i$ la fonction
-$$t \in [0,1] \mapsto f(a+(h_1, \dots, th_i, 0, \dots))$$
-est dérivable de dérivée
-$\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) h_i$, on a
-\begin{multline*}
-f(a+(h_1, \dots, h_i, 0, \dots)) - f(a + (h_1, \dots, h_{i-1}, 0, \dots)) = \\
-h_i \int_0^1 \partial_i f(a+(h_1, \dots, th_i, 0, \dots)) \, dt.
-\end{multline*}
-Par ailleurs, comme
-$$
-\partial_i f(a) h_i
-=
-h_i \int_0^1 \partial_i f(a) \, dt,
-$$
-on a 
-\begin{multline*}
-f(a+h) - f(a) - \sum_i \partial_i f(a) h_i = \\
-\sum_{i=1}^n h_i \int_0^1 \left[\partial_i f(a+(h_1, \dots, th_i, 0, \dots)) - \partial_i f(a) \right] \, dt. 
-\end{multline*}
-Par continuité des dérivées partielles en $a$, si $r$ est choisi de telle sorte
-que $|\partial_i f(b) - \partial_i f(a)| \leq \varepsilon / n$ 
-quand $|b-a| \leq r$, alors l'inégalité triangulaire et 
-[la majoration des intégrales](#ML-memma) ci-dessus
-conduisent à
-$$
-\left|f(a+h) - f(a) - \sum_i \partial_i f(a) h_i \right|
-\leq
-\sum_{i=1}^n |h_i| {\varepsilon}/{n}
-\leq \varepsilon \|h\|.
-$$
-La fonction $f$ est donc différentiable en $a$, de différentielle
-$h \mapsto \sum_i \partial_i f(a) h_i$. La matrice (jacobienne) 
-représentant $df(x)$ ayant pour coefficients les dérivées partielles
-de $f$ en $x$, elle est une fonction continue de $x$, comme $df(x)$.
-
-### Matrice jacobienne continue {.remark}
-S'il l'on adopte la définition étendue de jacobien de la remarque
-"[Matrice jacobienne, gradient et dérivées partielles]", la définition de 
-continûment différentiable peut être reformulée comme
-"la matrice jacobienne existe et est continue".
-
-
-Variation des fonctions
-================================================================================
-
-### Différentielle et intégrale
-
-Pour comparer $f(a+h)$ et $f(a)$, 
-lorsque la fonction $f$ est continue en $a$, 
-nous disposons de l'égalité $f(a + h) = f(a) + o(1)$,
-mais cette relation est asymptotique. 
-Pour maîtriser l'écart entre
-$f(a+h)$ et $f(a)$ au moyen de cette formule, 
-nous devons être en mesure de faire tendre $h$ vers $0$. 
-Si la grandeur $h$ est fixée, cette relation est inexploitable. 
-
-Toutefois, dans cette situation, 
-si $f$ est différentiable sur tout le segment $[a,a+h]$, il est possible
-de relier $f(a+h)$ à $f(a)$ en intégrant les variations infinitésimales 
-de $f$ le long de $[a, a+h]$. 
-La seule notion d'intégrale dont nous avons besoin,
-minimaliste et construite exclusivement au service du calcul différentiel,
-est l'intégrale de Newton, présentée [en annexe](#intégrale-Newton) ;
-dans de ce chapitre, c'est toujours cette intégrale dont nous ferons
-usage implicitement.
-
-### Théorème fondamental du calcul {.theorem #TFC}
-Si $f: [a, b] \to \R$ est dérivable, alors $f'$ est intégrable et
-$$
-f(b) - f(a)  = \int_a^b f'(x) \, dx.
-$$
-
-### Démonstration {.proof}
-Cf. [l'annexe consacrée à l'intégrale de Newton](#intégrale-Newton).
-
-### Variation d'une fonction {.theorem}
-Soient $U$ un ouvert de $\mathbb{R}^n$ et $f: U \to \mathbb{R}^m$,
-soient $a \in U$ et $h \in \mathbb{R}^n$ tels que le segment
-  $$
-  [a, a+h] = \{a + th \; | \; t \in [0,1]\}
-  $$
-soit inclus dans $U$. Si $f$ est différentiable en tout point de $[a, a+h]$,
-$$
-f(a + h) = f(a) + \int_0^1 df(a+th) \cdot h \, dt.
-$$
-
-### Démonstration
-Considérons la fonction $\phi: [0,1] \to \mathbb{R}^n$ définie par
-$$
-\phi(t) = f(a + th)
-$$
-La fonction $\phi$ est dérivable sur $[0,1]$ comme composée des fonctions 
-différentiables $f$ et $t \mapsto a + th$ ; sa dérivée est donnée par
-$$
-\begin{split}
-\phi'(t) &= d\phi(t) \cdot 1 \\
-         &= (df(a+th) \cdot d(t\mapsto a+th)) \cdot 1 \\
-         &= df(a+th) \cdot (d(t\mapsto a+th) \cdot 1) \\
-         &= df(a+th) \cdot (t \mapsto a+th)' \\
-         &= df(a+th) \cdot h
-\end{split}
-$$
-Par le théorème fondamental du calcul, on a donc
-$$
-f(a+h) - f(a) = \phi(1) - \phi(0) = \int_0^1 \phi'(t) \, dt 
-                                  = \int_0^1 df(a+th) \cdot h \, dt.
-$$
-
-### Inégalité des accroissements finis I {.theorem #TAFS}
-Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
-$h \in \left[0, +\infty\right[$.
-Si $f$ est dérivable sur $[a,a+h]$ et $M$ est un majorant de $\|f'\|$,
-c'est-à-dire si
-$$
-\mbox{pour tout } t \in [a, b], \;\|f'(t)\| \leq M.
-$$
-Alors 
-$$
-\|f(a+h) - f(a)\| \leq M h.
-$$
-
-### Démonstration {.proof}
-Par construction, la fonction $f'$ est intégrable au sens de Newton et
-$$
-f(a+h) - f(a) = \int_a^b f'(t) \, dt.
-$$
-Elle est donc également intégrable au sens de Henstock-Kurzweil
-(cf. [chapitre "Calcul Intégral I"](Calcul Intégral I.pdf)) ;
-en combinant [la définition de l'intégrale de Henstock-Kurzweil](Calcul Intégral I.pdf#HK) 
-et [le lemme de Cousin](Calcul Intégral I.pdf#cousin), 
-on peut trouver des approximations arbitrairement
-précises de l'intégrale de $f'$ par des sommes de Riemann[^hklc] :
-pour tout $\varepsilon > 0$, 
-il existe une subdivision pointée $\mathcal{D}$
-de l'intervalle $[a,b]$ telle que 
-$$
-\left\| f(a+h) - f(a) -  S(f', \mathcal{D}) \right\| 
-=
-\left\| \int_a^{a+h} f'(t) \, dt -  S(f', \mathcal{D}) \right\| 
-\leq 
-\varepsilon.
-$$
-En exploitant l'inégalité triangulaire, on obtient donc
-$$
-\|f(a+h) - f(a)\|
-\leq 
-\|S(f', \mathcal{D})\| + \varepsilon.
-$$
-Supposons que 
-$\mathcal{D} = \{(t_i, [x_i, x_{i+1}]) \; | \; 0 \leq i \leq k-1 \}$.
-En utilisant à nouveau l'inégalité triangulaire, 
-on peut majorer en norme la somme de Riemann $S(f',\mathcal{D})$:
-$$
-\|S(f', \mathcal{D})\|
-=
-\left\|\sum_{i=0}^{k-1} f'(t_i) (x_{i+1} - x_i)\right\|
-\leq 
-\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|.
-$$
-Comme $\|f'(t_i)\| \leq M$ pour tout $i \in \{0,\dots,k-1\},$
-$$
-\sum_{i=0}^{k-1} \|f'(t_i)\| |x_{i+1} - x_i|
-\leq
-\sum_{i=0}^{k-1} M |x_{i+1} - x_i|
-\leq M \sum_{i=0}^{k-1} |x_{i+1} - x_i|
-$$
-Finalement, comme $a=x_0 \leq x_1 \leq \dots x_k = a+h$,
-$$
-\sum_{i=0}^{k-1} |x_{i+1} - x_i| = \sum_{i=0}^{k-1} (x_{i+1} - x_i) =
-x_p - x_0 = (a+h) - a = h
-$$ 
-et donc 
-$\|S(f', \mathcal{D})\| \leq Mh.$
-Par conséquent, $\|f(a+h) - f(a)\| \leq M h + \varepsilon$
-et comme le choix de $\varepsilon > 0$ est arbitraire, on en déduit
-le résultat cherché : $\|f(a+h) - f(a)\| \leq M h.$
-
-[^hklc]: l'intégrabilité de $f'$ signifie que quelle que soit la
-précision $\varepsilon>0$ cherchée on pourra trouver une jauge telle que
-pour toute subdvision pointée subordonnée à cette jauge, l'écart entre
-la somme de Riemann et l'intégrale est au plus $\varepsilon$. 
-Le lemme de Cousin affirme que pour toute jauge il existe effectivement 
-une subdivision pointée qui y soit subordonnée.
-
-### Inégalité des accroissements finis II {.theorem #TAF}
-
-Soient $U$ un ouvert de $\mathbb{R}^n$, et $f: U \to \mathbb{R}^m$
-supposée différentiable en tout point d'un segment $[a, a+h]$ inclus 
-dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
-c'est-à-dire telle que
-$$
-\mbox{pour tout } x \in [a, a+h], \;\|df(x)\| \leq M.
-$$
-Alors 
-$$
-\|f(a+h) - f(a)\| \leq M \|h\|.
-$$
-
-### Démonstration {.proof}
-Considérons la fonction $\phi: t \in [0,1] \mapsto f(a+th)$.
-Nous avons déjà montré dans la démonstration de "[Variation d'une fonction]"
-que cette fonction est dérivable, de dérivée $\phi'(t) = df(a+th) \cdot h$.
-De plus, 
-$$
-\|\phi'(t)\| = \| df(a+th) \cdot h \| \leq \| df(a+th) \|\|h\| \leq M \|h\|.
-$$
-Par [l'inégalité des accroissements finis dans le cas d'une variable réelle](#TAFS), 
-$$
-\|f(a+h) - f(a)\| = \|\phi(1) - \phi(0)\|
-\leq M \|h\| \times 1 = M \|h\|.
-$$
-
-
-Différentielles d'ordre supérieur
-================================================================================
-
-<!--
-
-Do's and don't {.note}
---------------------------------------------------------------------------------
-
-Ne pas expliciter la correspondance avec les applis $n$-linéaires en général
-(l'isomorphisme de trop). Une notation serait probablement la bienvenue,
-mais la collection des $\cdot h \cdot h \dots$ en $(h, h, \dots)$ peut
-être ambigu (pourrait être lue comme la décomposition d'un vecteur ...).
-Trouver une solution ici. OK, on se contente de multiplier les dots,
-avec convention association à gauche ("greedy")
-
-Ce qui importe:
-
-  - comprendre comment "passer à l'échelle" de la diff à la diff d'ordre 2,
-    qu'il n'y a "rien de nouveau" si l'on a déja compris comment différencier
-    une fonction à valeurs matricielle (/tensorielle).
-
-  - donc dvlper en préambule le calcul diff appliqué aux fcts à valeurs 
-    fonctionnelles/tensorielles. Ne pas faire l'équivalent pour les arguments,
-    cela n'est pas nécessaire pour traiter du calcul différentiel d'ordre
-    supérieur.
-
-  - comprendre comment calculer $d^2f(x)\cdot k \cdot h$ quand on sait
-    qu'il existe sans "monter dans les étages" (trick: différencier
-    $df(x)\cdot h$).
-
-  - comprendre quel terme représente $d^2f(x)\cdot k \cdot h$ en pratique,
-    quelle approximation ce terme fait. (Nota: au passage 
-    c'est crucial pour établir la symétrie !).
-
-  - représentation tensorielle, dérivées partielles. Application au Hessien.
-
-  - Sommes de Taylor (avec o, avec reste intégral)
-
-Nota: peut-être opportun de minimiser le coté diff par les valeurs matricielles.
-Idées serait de caractériser $df$ en vérifiant la différentiabilité de
-$x \mapsto df(x)\cdot h$ pour tout $h$: on ne "monte" pas en rang et
-on peut définit $d^2f(x) \cdot k \cdot h := d(x \mapsto df(x)\cdot h)(x) \cdot k$
-
-Différentielles d'ordre supérieur
---------------------------------------------------------------------------------
-
-### Note {.speaker-note}
-
-La démarche pour présenter les différentielles d'ordre supérieur a été
-simplifié, mais le narratif peut profiter des "échecs" qui mène à notre
-solution finale:
-
-  1. On a envie de définir $d^2f(x)$ comme $d(x \mapsto df(x))(x)$.
-     C'est *exactement* la même démarche que la dérivée, et c'est
-     une démarche légitime que l'on adoptera pour le cadre de la dimension
-     infinie. Seul "problème", l'objet $df(x)$ appartient aux applis
-     linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$ et à ce stade on ne
-     sait différencier que des fonctions à valeurs dans $\mathbb{R}^p$.
-
-  2. On "patche" la démarche précédente: ok, $df(x)$ est linéaire de
-     $\mathbb{R}^n$ dans $\mathbb{R}^m$, mais c'est isomorphe (via les
-    matrices, plus la "mise à plat") à $\mathbb{R}^p$ pour $p=mn$.
-    Si on note $\pi$ cette correspondance, on peut étudier la diff
-    de $\pi \circ df$ et quand ça existe, le seul pb est que l'objet
-    associé produit des valeurs dans $\mathbb{R}^p$ au lieu de
-    trucs dans $\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m$, 
-    mais c'est pas grave, on peut inverser la transformation, ce qui
-    donne comme définition
-    $$
-    d^2 f(x) = \pi^{-1} \circ d(\pi \circ df)(x).
-    $$
-    c'est-à-dire
-    $$
-    d^2 f(x) \cdot h \cdot k = (\pi^{-1} (d(\pi \circ df)(x) \cdot h)) \cdot k
-    $$
-    (attention ici, "$\cdot$" ou "$\circ$" deviennent dangereux à utiliser
-    sans parenthèse, on a basculé dans du higher-order avec $\pi$; et la
-    convention que je pensais utiliser en remplaçant $\circ$ par
-    $\cdot$ quand l'application est linéaire déconne avec $\pi$ parce
-    qu'il y a des applications non-linéaire "plus bas"; le cadre ou 
-    "$\cdot$" fait le job sans ambiguité serait à restreindre/préciser ...).
-    Bon, voilà pourquoi je crois que même si c'est tentant sur le principe, 
-    il ne faut pas présenter les choses comme ça au final.
-    Mais ça peut faire l'objet d'exercices intéressants.
-
-  3. La version final, hyper simple: on se refuse à différencier un objet
-     fonctionnel, on l'évalue sur une direction / variation de l'argument
-     et là on s'est ramené au cadre usuel, donc on requière la diff et on
-     constate que le résultat est linéaire par rapport à la première 
-     variation choisie, et on en déduit l'"anatomie" de la différentielle
-     d'ordre 2 (c'est donc moins une construction qu'une découverte ...).
-     Au passage, par linéarité, on peut se convaincre facilement que notre
-     définition de la différentielle d'ordre 2 revient à vérifier que 
-     chaque dérivée partielle (d'une fonction différentiable)
-     est différentiable. Donc on vérifie l'existence avec la différentielle,
-     mais on peut utiliser les dérivées partielles pour les calculs
-     intermédiaires.
-
-
-### Note {.design-note}
-
-Notre définition simplifie la vie en dimension finie en se ramenant 
-directement à chaque étape de la façon la plus simple au cadre de la 
-différentielle de fonctions de $\mathbb{R}^n$ dans $\mathbb{R}^m$.
-Mais elle n'est probablement pas adapté au cadre de la dimension
-finie; l'adaptation la plus simple consisterait à écrire l'expression
-qui fait que $df(x) \cdot h$ existe en terme de limite par rapport
-à un terme $k$, mais à requérir en plus que cette limite existe
-uniformément par rapport à l'argument $h$ tant que $h$ reste borné
-(voir par exemple [ici](https://en.wikipedia.org/wiki/Fr%C3%A9chet_derivative#Higher_derivatives)).
-
-A ce stade, le cadre abstrait classique devient probablement préférable,
-car simplificateur, mais
-
-  - un contre-exemple qui montre que notre définition ne "marche pas"
-    en dimension infinie (absence d'équivalence avec la classique)
-    serait intéressant
-
-  - une note / un exercice sur cette définition alternative au cadre
-    abstrait, plus proche de la démarche que nous avons choisi pour 
-    la dimension finie pourrait être intéressant
-
--->
-
-### Différentielle d'ordre 2 {.definition #d2}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
-dans un voisinage d'un point $x$ de $U$. 
-On dira que $f$ est *deux fois différentiable en $x$* 
-si pour tout vecteur $h$ de $\mathbb{R}^n$,
-la fonction $x \mapsto df(x) \cdot h$ est différentiable en $x$.
-La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
-est définie comme l'application linéaire telle que pour tout $h$ 
-dans $\mathbb{R}^n$,
-$$
-d^2 f(x) \cdot h := d(x\mapsto df(x)\cdot h)(x),
-$$
-c'est-à-dire pour tout vecteur $k$ de $\mathbb{R}^n$,
-$$
-d^2f(x) \cdot h \cdot k = d(x\mapsto df(x)\cdot h)(x) \cdot k.
-$$
-
-### Remarques
-
-  - On peut vérifier que le terme $d(x\mapsto df(x)\cdot h)(x)$ dépend 
-    bien linéairement de $h$, ce qui justifie l'assertion que $d^2f(x)$
-    est linéaire et la notation "$\cdot$" lorsqu'elle est appliquée à un
-    argument $h$.
-
-  - Par construction, le terme $d(x\mapsto df(x)\cdot h)(x)$ 
-    est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
-    donc la fonction $d^2f(x)$
-    associe linéairement à un vecteur de $\mathbb{R}^n$ une application
-    linéaire de $\mathbb{R}^n \to \mathbb{R}^m$. Autrement dit,
-    $$
-    d^2f(x) \in (\mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m)),
-    $$
-    ce qui se décline successivement en
-    $$
-    d^2f(x) \cdot h \in (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m),
-    \; \mbox{ et } \;
-    (d^2f(x) \cdot h) \cdot k \in \mathbb{R}^m.
-    $$
-
-  - Pour alléger ces notations, on pourra considérer que dans les notations
-    d'espace fonctionnels, le symbole "$\to$" associe à droite, par exemple:
-    $$
-    A \to B \to C := A \to (B \to C),
-    $$
-    $$    
-    A \to B \to C \to D := A \to (B \to (C \to D)).
-    $$
-    La convention associée -- utilisée dans la définition de la différentielle
-    d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
-    le symbole "$\cdot$" associe à gauche, par exemple:
-    $$
-    L \cdot h \cdot k :=  (L \cdot h) \cdot k,
-    $$
-    $$
-    L \cdot h \cdot k \cdot l := ((L \cdot h) \cdot k) \cdot l.
-    $$
-
-
-### Variation de la différentielle I {.proposition #LVD} 
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
-deux fois différentiable en $x \in U$,
-$$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
-$$
-
-### Interprétation du $o(\|k\|)$ {.remark}
-L'équation ci-dessus s'applique à des fonctions linéaires de $\R^n$
-dans $\R^m$. Elle doit donc être interprétée comme l'existence
-d'une fonction $E$, définie dans un voisinage de $0$ dans $\R^n$, 
-vérifiant
-$$
-E(k) \in \R^n \stackrel{\ell}{\to} \R^m \; \mbox{ et } \;
-\lim_{h \to 0} E(k) = E(0) = 0,
-$$
-telle que
-$$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + E(k) \|k\|.
-$$
-
-### Démonstration {.proof}
-Par [définition de la différentielle d'ordre 2 en $x$](#d2), 
-pour tout vecteur $h$ de $\mathbb{R}^n$ fixé, on a, 
-pour tout vecteur $k$ de $\mathbb{R}^n$,
-$$
-df(x+k) \cdot h = df(x) \cdot h + d^2f(x) \cdot h \cdot k + o(\|k\|),
-$$
-c'est-à-dire qu'il existe pour tout $h$ une fonction $\varepsilon_h$, 
-définie dans un voisinage de $0 \in \mathbb{R}^n$, nulle et continue
-en $0$, telle que
-$$
-df(x+k) \cdot h 
-= 
-df(x) \cdot h + d^2f(x) \cdot h \cdot k + \varepsilon_{h}(k) \|k\|,
-$$
-Pour tout vecteur $k$ non nul, on a
-$$
-\varepsilon_{h}(k) = \frac{1}{\|k\|}\left(df(x+k) \cdot h - df(x) \cdot h - d^2f(x) \cdot h \cdot k \right),
-$$
-le terme $\varepsilon_{h}(k)$ est donc linéaire en $h$ ; 
-notons $E(k)$ l'application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$
-qui est nulle quand $k=0$ et définie dans le cas contraire
-par $E(k) \cdot h = \varepsilon_h (k)$. On a donc pour tout $h$
-$$
-df(x+k) \cdot h 
-= 
-df(x) \cdot h + d^2f(x) \cdot h \cdot k + (E(k)\cdot h) \|k\|,
-$$
-soit 
-$$
-df(x+k)
-= 
-df(x) + (h \mapsto d^2f(x) \cdot h \cdot k) + E(k) \|k\|,
-$$
-Par ailleurs, pour tout couple de 
-vecteurs $h$ et $k$ de $\mathbb{R}^n$, on a
-$$
-\begin{split}
-\|E(k) \cdot h\| &= \left\| E(k) \cdot \left(\sum_i h_i e_i \right) \right\| \\
-&\leq \sum_i \|E(k) \cdot e_i\| |h_i| \\
-&\leq \left(\sum_i \|E(k) \cdot e_i\|\right) \|h\| 
-= \left(\sum_i \|\varepsilon_{e_i}(k)\|\right) \|h\|
-\end{split}
-$$
-donc la norme d'opérateur de $E(k)$ vérifie
-$$
-\|E(k)\| \leq \sum_i \|\varepsilon_{e_i}(k)\| \to 0
-\, \mbox{ quand } k \, \to 0,
-$$
-ce qui prouve le résultat cherché.
-
-### Variation d'ordre $2$
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$.
-Quand cette expression est définie, on appelle *variation d'ordre 2*
-de $f$ en $x$, associée aux variations $h$ et $k$ de l'argument,
-la grandeur
-$$
-\begin{split}
-\Delta^2 f(x, h, k) &=\Delta(x \mapsto \Delta f(x, h))(x, k) \\
-&= \Delta f(x+k, h) - \Delta f(x, h).
-\end{split}
-$$
-
-### Variation et différentielle d'ordre deux {.theorem #D2d2}
-Pour tout $\varepsilon > 0$, il existe un $\eta > 0$ tel que si
-$\|h\| \leq \eta$ et $\|k\| \leq \eta$, alors
-$$
-\left\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k \right\| \leq \varepsilon (\|h\| + \|k\|)^2.
-$$
-
-### Démonstration  {.proof}
-Considérons des vecteurs $h$ et $k$ tels que $x+h$, $x+k$ et $x+h+k$ soient
-dans le domaine de définition de $f$.
-La différence $e$ entre $\Delta^2 f(x,h, k)$ et $d^2 f(x) \cdot h \cdot k$
-vaut
-$$
-\begin{split}
-e &= (f(x+h+k) - f(x+k)) - (f(x+h) - f(x))) - d^2f(x)\cdot h\cdot k \\
-  &= (f(x+h+k) - f(x+h) - d^2f(x) \cdot h \cdot k) \\
-  &\phantom{=} - (f(x+k) - f(x) - d^2f(x) \cdot 0 \cdot k)
-\end{split}
-$$
-Par conséquent, si l'on définit $g$ par
-$$
-g(u) = f(x+u+k) - f(x+u) - d^2f(x) \cdot u \cdot k,
-$$
-la différence vaut $e = g(h) - g(0)$. 
-Cette différence peut être majorée par [l'inégalité des accroissements finis](#TAF) : 
-$g$ est différentiable sur le segment $[0, h]$ et
-$$
-dg(u) = df(x+u+k) - df(x+u) - (h \mapsto d^2f(x) \cdot h \cdot k). 
-$$
-Comme
-$$
-\begin{split}
-dg(u) &= (df(x+u+k) - df(x) - (h \mapsto d^2f(x) \cdot h \cdot (u+k)) )\\
-      &\phantom{=} - (df(x+u) - df(x) - (h \mapsto d^2f(x) \cdot h \cdot u)),
-\end{split}
-$$
-par le théorème controllant la [variation de la différentielle][Variation de la différentielle I],
-pour $\varepsilon > 0$ quelconque, comme
-$\|u+k\| \leq \|h\| + \|k\|$ et $\|u\| \leq \|h\|$, 
-on peut trouver un $\eta > 0$ tel que si $\|h\| < \eta$ et $\|k\| < \eta,$ 
-alors 
-$$
-\|dg(u)\| \leq \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|.
-$$
-Par conséquent, [le théorème des accroissements finis](#TAF) fournit
-$$
-\|e\| = \|dg(u) - dg(0)\| \leq  \left( \frac{\varepsilon}{2} (\|h\| + \|k\|) + \frac{\varepsilon}{2} \|h\|\right)\|h\| \leq \varepsilon (\|h\| + \|k\|)^2.
-$$
-
-### Symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-deux fois différentiable en un point $x$ de $U$. Pour tout couple
-de vecteur $h$ et $k$ de $\mathbb{R}^n$, on a
-$$
-d^2 f (x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h.
-$$
-
-### Démonstration {.proof}
-Notons au préalable que
-$$
-\begin{split}
-\Delta^2 f(x, h, k) &= (f(x+k+h) - f(x+k)) - (f(x+h) - f(x)) \\
-&= f(x+h+k) - f(x+h) - f(x+k) + f(x) \\
-&= (f(x+k+h) - f(x+h)) - (f(x+k) - f(x)) \\
-&= \Delta^2 f(x, k, h).
-\end{split}
-$$
-La variation d'ordre $2$ de $f$ en $x$ est donc
-symétrique par rapport à ses arguments $h$ et $k$.
-On peut alors exploiter [la relation entre variation d'ordre $2$ et 
-différentielle d'ordre 2](#D2d2) en notant que
-\begin{multline*}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \|
-\leq \\
-\|\Delta^2f(x, h, k) - d^2f(x)\cdot h\cdot k\| + \| \Delta^2f(x, k, h) - d^2f(x)\cdot h\cdot k\|.
-\end{multline*}
-On obtient pour tout $\varepsilon > 0$ et quand $h$ et $k$ sont suffisamment petits,
-$$
-\begin{split}
-\|d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h \| 
-\leq 2\varepsilon (\|h\|+\|k\|)^2.
-\end{split}
-$$
-Si $h$ et $k$ sont arbitraires, en substituant $th$ à $h$ et $tk$ à $k$
-pour un $t>0$ suffisamment petit pour que l'inégalité ci-dessus soit valable,
-comme 
-$$
-d^2f(x) \cdot th \cdot tk - d^2f(x) \cdot tk \cdot th
-=t^2 \times (d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h)
-$$
-et 
-$$
-2 \varepsilon (\|th\|+\|tk\|)^2 = t^2 \times 2 (\|h\|+\|k\|)^2,
-$$
-on voit que l'inégalité est en fait valable pour des $h$ et $k$ arbitraires.
-On en déduit que $d^2f(x) \cdot h \cdot k - d^2f(x) \cdot k \cdot h = 0.$
-
-### Variation de la différentielle II {.theorem} 
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
-deux fois différentiable en $x \in U$,
-$$
-df(x+k) = df(x) + d^2 f(x) \cdot k + o(\|k\|)
-$$
-
-### Démonstration {.proof}
-Par le [lemme sur la variation de la différentielle](#LVD), on sait que
-$$
-df(x+k) = df(x) + (h \mapsto d^2 f(x) \cdot h \cdot k) + o(\|k\|).
-$$
-La [différentielle d'ordre 2 étant symétrique](#SD2), 
-$$
-d^2 f(x) \cdot h \cdot k = d^2 f(x) \cdot k \cdot h = (d^2 f(x) \cdot k) \cdot h,
-$$
-ce qui fournit l'égalité cherchée.
-
-### Dérivées partielles d'ordre 2 {.definition}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Soient $i$ et $j$ deux indices dans $\{1,\dots, n\}$.
-Lorsque la $j$-ème dérivée partielle de $f$ est définie sur $U$ et
-admet en $x$ une $i$-ème dérivée partielle, on l'appelle 
-*dérivée partielle d'ordre 2* de $f$ en $x$ par rapport aux $j$-ème 
-et $i$-ème variables et on la note $\partial^2_{ij} f(x)$:
-$$
-\partial^2_{ij} f(x) := \partial_i (x \mapsto \partial_j f(x))(x).
-$$
-
-### Symétrie des dérivées partielles d'ordre 2 {.proposition #sdp2}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Si $f$ est deux fois différentiable en $x$, alors pour
-toute paire d'indice $i$ et $j$ la dérivée partielle $\partial_{ij} f(x)$
-existe et 
-$$
-\partial_{ij} f(x) = \partial_{ji} f(x) = d^2 f(x) \cdot e_i \cdot e_j.
-$$
-
-### Démonstration {.proof}
-Si $f$ est deux fois différentiable, on a $\partial_j f(x) = d(f(x)) \cdot e_j$,
-puis $\partial^2_{ij} f(x) = d(d(f(x)) \cdot e_j) \cdot e_i$. 
-Par [définition de la différentielle d'ordre 2](#d2),
-$$d^2f(x) \cdot e_j \cdot e_i = d(d(f(x)) \cdot e_j) \cdot e_i,$$
-on en déduit donc que $\partial^2_{ij} f(x) = d^2f(x) \cdot e_j \cdot e_i$.
-Par [symétrie de la différentielle d'ordre 2](#SD2), 
-$\partial^2_{ij} f(x) = \partial^2_{ji} f(x)$.
-
-### Hessienne {.definition}
-Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable en 
-$x \in U$. On appelle *Hessienne* de $f$ et $x$ et l'on note
-$\nabla^2f(x)$ l'application linéaire $\R^n \to \R^n$ telle 
-que pour tout couple de vecteurs $h$ et $k$ de $\R^n$
-$$
-d^2f(x) \cdot h \cdot k = \left<\nabla^2f(x) \cdot h, k \right>.
-$$
-La *matrice hessienne $H_f(x)$* est la matrice associée à cette application
-linéaire ; elle est donnée par 
-$$
-(H_f(x))_{ij} = \partial^2_{ij} f(x).
-$$
-
-### Démonstration (expression de la matrice hessienne) {.proof}
-Elle résulte directement de la définition de $\nabla^2 f(x)$ et des liens entre
-$d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition 
-["Symétrie des dérivées partielles d'ordre 2"](#sdp2).
-
-
-### {.ante}
-La notion de différentielle d'ordre $2$ se généralise sans difficulté
-à un ordre plus élevé, par induction sur l'ordre de la différentielle.
-
-### Différentielle d'ordre $k$ {.definition #dos}
-
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
-à l'ordre $k-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
-*$k$ fois différentiable en $x$* si pour tous vecteurs $h_1, \dots, h_{k-1}$ 
-de $\mathbb{R}^n$, 
-la fonction 
-$$x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1}$$ 
-est différentiable en $x$.
-La *différentielle d'ordre $k$ de $f$ en $x$*, notée $d^k f(x)$ 
-est définie comme l'application linéaire telle que pour tout 
-$h_1, \dots, h_{k-1}$ de $\mathbb{R}^n$,
-$$
-d^k f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x)
-$$
-ou de façon équivalente
-$$
-d^k f(x) \cdot h_1 \cdot h_2 \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
-$$
-
-### Remarque
-On a 
-$$
-d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
-$$
-
-
-### Stratification {.lemma #stratification}
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
-$k$ fois différentiable en un point $x$ de $U$, pour tous vecteurs 
-$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, et tout $p \in \{0,\dots, k\}$,
-on a
-$$
-d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
-=
-d^{k-p} (x \mapsto d^p f(x) \cdot h_1 \cdot \hdots \cdot h_{p})(x) \cdot h_{p+1} \cdot \hdots \cdot h_k.
-$$
-
-### Démonstration {.proof}
-Faisons l'hypothèse que le théorème est satisfait lorsque la fonction est $j$
-fois différentiable pour tout $j \leq k$. C'est de toute évidence le cas
-pour $k=0, 1, 2$ ; montrons qu'il est encore vrai pour $j=k+1$.
-
-Notons tout d'abord que si $p=0$, le résultat est évident ; on supposera
-donc dans la suite que $p \in \{1,\dots,k+1\}$.
-Par [définition des différentielles d'ordre supérieur](#dos),
-$$
-d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
-= d (d^k f(x) \cdot h_1 \cdot \hdots \cdot h_{k}) \cdot h_{k+1}.
-$$
-Or, par l'hypothèse de récurrence à l'ordre $k$,
-$$
-d^k f(x) \cdot h_1 \cdot \hdots \cdot h_{k}
-= d^{k-p} (d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p) \cdot h_{p+1} \cdot \hdots \cdot h_k
-$$
-donc si l'on pose $g(x) = d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p$ et 
-que l'on applique l'hypothèse de récurrence à l'ordre $k+1-p$
-(un nombre compris entre $0$ et $k$), on obtient
-$$
-\begin{split}
-d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
-&=
-d(d^{k-p} g(x) \cdot h_{p+1} \cdot \hdots \cdot h_k)\cdot h_{k+1} \\
-&=
-d^{k+1-p} g(x) \cdot h_{p+1} \cdot \hdots \cdot h_k \cdot h_{k+1}
-\end{split}
-$$
-et donc au final
-$$
-d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_{k+1}
-=
-d^{k+1-p} (d^p f(x) \cdot h_1 \cdot \hdots \cdot h_p) \cdot h_{p+1} \cdot \hdots \cdot h_k \cdot h_{k+1}.
-$$
-L'hypothèse de récurrence est donc prouvée au rang $k+1$, 
-ce qui établit le résultat.
-
-### Symétrie des différentielles d'ordre supérieur {.proposition #sdos}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction 
-$k$ fois différentiable en un point $x$ de $U$. Pour toute permutation
-$\sigma$ de $\{1,\dots, n\}$
-et pour tous vecteurs 
-$h_1$, $h_2$, $\dots$, $h_k$ de $\R^n$, on a:
-$$
-d^k f(x) \cdot h_{\sigma(1)} \cdot \hdots \cdot h_{\sigma(i)} \cdot \hdots \cdot h_{\sigma(k)}
-=
-d^k f(x) \cdot h_{1} \cdot \hdots \cdot h_{i} \cdot \hdots \cdot h_{k}.
-$$
-
-### Démonstration {.proof}
-Toute permutation peut être décomposée en une succession de transpositions
-$\tau_{ij}$, où $\tau_{ij}(i) = j$, $\tau_{ij}(j)=i$ et $\tau_{ij}(k) = k$
-si $k$ diffère de $i$ et de $j$.
-Il suffit donc d'établir le résultat quand $\sigma$ est une transposition.
-Nous procédons par récurrence sur $k$. Le résultat dans le cas $k=2$ résulte
-de [la symétrie de la différentielle d'ordre 2](#SD2). Supposons désormais 
-le résultat établi au rang $k \geq 2$. 
-En utilisant [la stratification de
-$d^{k+1} f(x) \cdot h_1 \cdot \hdots \cdot h_k \cdot h_{k+1}$
-pour $p=1$ et $p=k$](#stratification), on peut établir le résultat si $i$ et $j$
-appartiennent tous les deux à $\{2,\dots, k+1\}$ ou à $\{1,\dots, k\}$.
-Dans l'unique cas restant, on peut décomposer $\tau_{1(k+1)}$ en
-$\tau_{2(k+1)} \circ \tau_{12} \circ \tau_{2(k+1)}$ et se ramener 
-au cas précédent.
-
-### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
-Les dérivées partielles d'ordre supérieur se définissent par récurrence,
-de manière similaire aux dérivées partielles d'ordre $2$. Pour simplifier
-la notation $\partial^k_{i_1 \dots i_k} f(x)$, on exploite le fait que
-si $f$ est $k$ fois différentiable en $x$,
-$$
-\partial^k_{i_1 \dots i_k} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
-$$
-Compte tenu de la symétrie de $d^k f(x)$, peu importe l'ordre de $i_1$, $\dots$, $i_k$, 
-seul le nombre de fois où un indice apparaît compte. 
-Cette remarque fonde une notation basée sur les multi-indices 
-$\alpha=(\alpha_1, \dots, \alpha_n) \in \N^n$ où $\alpha_i$ détermine le
-nombre de fois où l'indice $i$ apparait. 
-Formellement, le symbole $\partial^{\alpha} f(x)$ désigne $f(x)$ si 
-$\alpha = (0, \dots, 0)$ et dans le cas contraire:
-$$
-\partial^{(\alpha_1, \cdots, \alpha_i + 1, \cdots, \alpha_n)} f(x) = \partial_i (\partial^{\alpha} f)(x).
-$$
-
-
-<!--
-
-Fonctions à valeurs matricielles/tensorielles
---------------------------------------------------------------------------------
-
-+1Objectif: étendre les constructions du calcul différentielle aux fonctions
-$f: U \subset \mathbb{R}^p \to \mathbb{R}^{m \times n}$ (après valeurs
-scalaires et vectorielles, matricielles).
-
-Etape 1: valeurs interprétée indifférement comme une matrice de taille
-$m \times n$ ou comme une application linéaire de $\mathbb{R}^n$ dans
-$\mathbb{R}^m$.
-
-### Examples {#ex-vm .example}
-
-On peut associer à tout vecteur $x$ non nul de $\mathbb{R}^n$ la projection 
-orthogonale sur $x$; c'est une application linéaire $P(x)$ qui a tout vecteur
-$y$ de $\mathbb{R}^n$ associe le vecteur 
-$$
-P(x) \cdot y = \left<\frac{x}{\|x\|}, y\right> \frac{x}{\|x\|}
-= \frac{x}{\|x\|} \cdot \left(\frac{x}{\|x\|}\right)^* \cdot y
-$$
-
-Produit scalaire, exp matrice, etc ?
-
-### Définition
-
-**TODO:** motiver la nature de $dF$ quand $F$ est à valeurs fonctionnelles.
-
-
-Si $F: U \subset \mathbb{R}^n \to \mathbb{R}^{p \times m}$, 
-la différentielle de $F$ au point $x \in \mathbb{R}^n$ 
-est l'application $dF(x)$ telle que $dF(x)\cdot h$ soit 
-la meilleure approximation, linéaire en $h$, de $F(x+h) - F(x)$
-pour de petites valeurs de $h$
-$$
-F(x+h) = F(x) + dF(x) \cdot h + o(h)
-$$
-
-L'application $dF(x)$ est donc une application linéaire de 
-$\mathbb{R}^n$ dans les applications linéaires de 
-$\mathbb{R}^m$ dans $\mathbb{R}^p$:
-$$
-dF(x): \mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^m \stackrel{\ell}{\to} \mathbb{R}^p)
-$$
-On peut associer à cette application un tenseur de rang 3, 
-**TODO, def etc.**
-
-$$
-[dF(x) \cdot e_k \cdot e_j]_i
-$$
-
-**TODO** $\cdot$ désigne la contraction tensorielle, composition, etc.
-Généraliser le cas matriciel, montrer les correspondances avec le cadre
-fonctionnel. Isomorphisme
-
-$$
-\mathbb{R}^{m \times n \times n}
-\; \simeq \;
-\mathbb{R}^m \stackrel{\ell}{\leftarrow} \mathbb{R}^n \stackrel{\ell}{\leftarrow} \mathbb{R}^n
-$$
-
-**TODO:** régle du produit:
-
-$H(x) = G(x) \cdot F(x)$,
-$$
-dH(x) \cdot h = (dG(x) \cdot h) F(x) + (dF(x) \cdot h) G(x)
-$$
-
-
-
-
-
-
-
-Misc.
---------------------------------------------------------------------------------
-$f: U \subset \mathbb{R}^n \to \mathbb{R}^m$
-
-$df: U \subset \mathbb{R}^n \to (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m)$
-
-$$
-d^2 f: 
-U \subset \mathbb{R}^n 
-\to 
-(\mathbb{R}^n \stackrel{\ell}{\to} (\mathbb{R}^n \stackrel{\ell}{\to} \mathbb{R}^m))
-$$
-
-
-
-Tensor stuff
-
-
---------------------------------------------------------------------------------
-
-**TODO:** définition. Il va falloir être malin ...
-
-
-### Théorème 
-Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est deux fois différentiable
-en $x$, pour tout $h \in \mathbb{R}^n$ et $k \in \mathbb{R}^n$,
-$$
-d^2 f(x) \cdot k \cdot h = d(x \mapsto df(x) \cdot k) \cdot h.
-$$
-
-### Preuve
-**TODO**
-
-### Théorème
-
--->
-
-### Puissance symbolique
-Comme les différentielles d'ordre supérieure sont fréquemment évaluées 
-lorsque les termes $h_1$, $h_2$, $\dots$, sont égaux, on adoptera la notation
-(purement syntaxique) suivante :
-$$
-(\cdot \, h)^k := \overbrace{\cdot h \cdot \hdots \cdot h}^{k \; \mathrm{termes}}.
-$$
-
-### Développement limité d'ordre supérieur {.theorem #dl}
-Soit $f: U \subset \R^n \to \R^m$ une fonction $j$ fois différentiable au point
-$x \in U$. Alors
-$$
-f(x+h) = \sum_{i=0}^{j}  \frac{d^i f(x)}{i!} (\cdot \, h)^i
-+ o(\|h\|^j).
-$$
-
-### Démonstration {.proof}
-Le résultat est clair pour $j=0$. Supposons le vrai à un rang $j-1$ arbitraire
-pour toute fonction $j-1$ fois différentiable
-et supposons que $f$ est $j$ fois différentiable. Formons le reste 
-d'ordre $j$ associé à $f$:
-$$
-r(h) = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} (\cdot \, h)^i.
-$$
-Il nous faut montrer que $r(h)$ est un $o(\|h\|^j)$, ce qui 
-nous allons accomplir en établissant que $\|dr(h)\| = o(\|h\|^{j-1})$.
-En effet, si $dr(h) = E(h) \|h\|^{j-1}$ où l'application linéaire $E$
-est un $o(1)$, alors pour tout $\varepsilon > 0$ et $h$ assez proche de $0$ 
-on a $\|E(h)\| \leq \varepsilon$ et donc par [le théorème des accroissements
-finis](#TAF),
-$$
-\|r(h)\| = \|r(h) - r(0)\| \leq \varepsilon \|h\|^{j-1} \times \|h\|
-= \varepsilon \|h\|^j,
-$$
-ce qui établit que $r(h) = o(\|h\|^j)$.
-
-Etablissons donc que $r(h)$ est un $o(\|h\|^j)$.
-Les termes $d^i f(x)\cdot h_1 \cdot \hdots \cdot h_i$ 
-sont linéaires par rapport à chacun des $h_j$, donc pour tout vecteur 
-$k$, compte tenu de la symétrie de $d^i f(x)$,
-$$
-d^i f(x) (\cdot \, (h+k))^i
-= 
-d^i f(x) (\cdot \, h)^i
-+ i d^i f(x) (\cdot \, h)^{i-1} \cdot k
-+ o(\|k\|).
-$$
-La différentielle de 
-$h \mapsto {d^i f(x)} (\cdot \, h)^i$
-vaut donc $id^i f(x) (\cdot \, h)^{i-1}$ et
-$$
-d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k - 
-d^2f(x) \cdot h\cdot k - \dots -
-\frac{d^i f(x)}{(i-1)!} (\cdot \, h)^{i-1} \cdot k.
-$$
-Par [le lemme de stratification](#stratification) et 
-[la symétrie des différentielles d'ordre supérieur](#sdos), on obtient 
-\begin{multline*}
-d r(h) \cdot k = df(x+h) \cdot k - d f(x) \cdot k  \\ 
-- d(x \mapsto df(x) \cdot k)(x) \cdot h - \dots -
-\frac{d^{i-1} (x \mapsto df(x) \cdot k)(x)}{(i-1)!} (\cdot \, h)^{i-1}.
-\end{multline*}
-soit en posant $\phi(x) = df(x) \cdot k$,
-$$
-d r(h) \cdot k = \phi(x+h) - \phi(x) - 
-d \phi(x) \cdot h - \dots -
-\frac{d^{i-1} \phi(x)}{(i-1)!} (\cdot h)^{i-1}.
-$$
-L'hypothèse de récurrence nous garantit donc que 
-$d r(h) \cdot k = o(\|h\|^{j-1})$ à $k$ fixé, ce qui, 
-combiné avec la linéarité de $d r(h)$, fournit
-$\|dr(h)\| = o(\|h\|^{j-1})$.
-
-
-
-### Développement de Taylor avec reste intégral I {#DTRI-I}
-Soit $f:[a, a+h] \to \mathbb{R}^m$ où $a \in \mathbb{R}$, 
-$h \in \left[0, +\infty\right[$.
-Si $f$ est $j+1$ fois dérivable sur $[a,a+h]$,
-$$
-f(a+h)  = \sum_{i=0}^n \frac{f^{(i)}(a)}{i!} h^i + \int_a^{a+h} \frac{f^{(j+1)}(t)}{j!} (a+h-t)^j \, dt.
-$$
-
-### Démonstration {.proof}
-A l'ordre $j=0$, la relation à prouver est
-$$
-f(a+h) = f(a) + \int_a^{a+h} f'(t) \, dt
-$$
-qui n'est autre que [le théorème fondamental du calcul](#TFC).
-Si l'on suppose la relation vérifiée à l'ordre $j$, et $f$ $j+2$ fois dérivable,
-par [intégration par parties](#IPP), on obtient
-\begin{multline*}
-\int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
-= \\
-\left[ f^{(j+1)}(t) \times \left( -\frac{(a+h-t)^{j+1}}{(j+1)!} \right) \right]_a^{a+h} \\
-- 
-\int_a^{a+h} f^{(j+2)}(t) \left( -\frac{(a+h-t)^{j+1}}{(j+1)!} \right) \, dt,
-\end{multline*}
-soit 
-\begin{multline*}
-\int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
-= \\
-f^{(j+1)}(a) \times \frac{h^{j+1}}{(j+1)!}
-+ 
-\int_a^{a+h} f^{(j+2)}(t) \frac{(a+h-t)^{j+1}}{(j+1)!} \, dt,
-\end{multline*}
-ce qui achève la preuve par récurrence.
-
-### Développement de Taylor avec reste intégral II {#DTRI-II}
-Si $f: U \subset \R^n \to \R^m$ est $j+1$ fois différentiable et $[a, a+h] \subset U$,
-$$
-f(a+h)  = \sum_{i=0}^{j} \frac{df^{(i)}(a)}{i!} (\cdot \, h)^i
-+ \int_0^{1} \frac{df^{(j+1)}(a+th)}{j!} (\cdot \, h)^{j+1} (1-t)^j\, dt.
-$$
-
-### Démonstration {.proof}
-La démonstration découle directement du [développement de 
-Taylor avec reste intégral dans le cas d'une fonction d'une variable réelle](#DTRI-I),
-appliqué à la fonction $\phi: t \in [0, 1] \mapsto f(a+th) \in \R^m$.
-Il nous suffit de montrer que $\phi$ est $j+1$ fois différentiable 
-et que pour tout entier $i$ inférieur ou égal à $j+1$,
-$\phi^{(i)}(t) = df^{(i)}(a+th) (\cdot \, h)^i$. 
-
-Cette relation est évidemment satisfaite pour 
-$i=0$. Supposons qu'elle soit vérifiée au rang $i \leq j$. 
-La fonction $f$ étant $i+1$ fois différentiable, la fonction
-$g:x \in U \mapsto df^{(i)}(x) (\cdot \, h)^i$ est différentiable, et
-$$
-dg(x) \cdot h = df^{(i+1)}(x) (\cdot \, h)^{i+1}.
-$$
-Par dérivation en chaîne, la fonction 
-$t \mapsto df^{(i)}(a+th) (\cdot \, h)^i$
-est donc dérivable, de dérivée $dg(a+th) \cdot h$, soit
-$df^{(i+1)}(a+th) (\cdot \, h)^{i+1}.$
-
-
-Annexe -- Intégrale de Newton {#intégrale-Newton}
-================================================================================
-
-### Intégrale de Newton {.definition}
-Soit $f:[a, b] \to \mathbb{R}^m$. On dit que $f$ 
-est *intégrable au sens de Newton* si elle admet une primitive 
-$F: [a, b] \to \mathbb{R}^m$. L'intégrale de $f$ entre $a$ et $b$ est
-alors définie par
-$$
-\int_a^b f(x) \, dx = F(b) - F(a).
-$$
-La primitive $F$ de $f$ quand elle existe étant déterminée à une constante près,
-cette définition est non-ambiguë.
-
-### {.remark}
-Une autre façon de voir les choses : l'intégrale de Newton est définie de telle
-sorte que [le théorème fondamental du calcul](#TFC) soit trivialement satisfait, 
-en toute généralité.
-Pour d'autres intégrales, comme l'intégrale de Riemann ou l'intégrale
-de Lebesgue, il sera nécessaire de faire des hypothèses supplémentaires
-sur la fonction $f'$ (par exemple, $f'$ continue) pour que ce résultat 
-soit valable. L'intégrale de Henstock-Kurzweil, qui sera exposée dans
-le cours de calcul intégral, vérifie bien le théorème fondamental du
-calcul en toute généralité : elle étend donc l'intégrale de Newton
-(et celle de Riemann, ainsi que celle de Lebesgue).
-
-### {.ante}
-L'intégrale de Newton est un outil assez primitif[^smjm] et difficile 
-à exploiter ; elle vérifie tout de même quelques propriétés bien utiles.
-
-[^smjm]: sans mauvais jeu de mots ...
-
-### Linéarité {.proposition}
-Soit $f:[a, b] \to \mathbb{R}^m$, $g:[a, b] \to \mathbb{R}^m$, et 
-$\lambda$, $\mu$ deux constantes réelles. Si $f$ et $g$ sont intégrables
-au sens de Newton, $\lambda f + \mu g$ également et
-$$
-\int_a^b \lambda f(x) + \mu g(x) \, dx
-=
-\lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
-$$
-
-### Démonstration {.proof}
-Par hypothèse, $f$ a une primitive $F$, $g$ a une primitive $G$,
-$$
-\int_a^b f(x) \, dx = F(b) - F(a)
-\; \mbox{ et } \; 
-\int_a^b g(x) \, dx = G(b) - G(a).
-$$
-La fonction $\lambda F + \mu G$ est une primitive de $\lambda f + \mu g$
-et donc
-$$
-\begin{split}
-\int_a^b \lambda f(x) + \mu g(x) \, dx
-&=
-(\lambda F(b) + \mu G(b)) - (\lambda F(a) + \mu G(a))\\
-&=
-\lambda (F(b) - F(a)) + \mu (G(b) - G(a)) \\
-&=
-\lambda \int_a^b f(x) \, dx + \mu \int_a^b g(x) \, dx.
-\end{split}
-$$
-
-### Majoration {.theorem #ML-lemma}
-Si $f:[a, b] \to \mathbb{R}$ est une fonction intégrable au sens de Newton 
-telle que $|f| \leq M,$
-$$
-\left| \int_a^b f(x) \, dx \right| \leq M (b-a).
-$$
-
-### Démonstration {.proof}
-La fonction $g: x \in [a, b] \mapsto f(x) - M$ est intégrable au sens de Newton
-et négative. Si $G$ est une primitive de $g$, elle est donc décroissante.
-Par conséquent,
-$$
-\int_a^b (f(x) - M) \, dx = \int_a^b f(x) \, dx - M(b-a) = G(b) - G(0) \leq 0.
-$$
-On peut de même montrer en intégrant la fonction $x \in [a, b] \to f(x) + M$ 
-que 
-$$
-\int_a^b f(x) \, dx + M(b-a) \geq 0,
-$$
-ce qui fournit le résultat cherché.
-
-### Intégration par parties {.theorem #IPP}
-Soit $f:[a, b] \to \mathbb{R}$ et $g:[a, b] \to \mathbb{R}$ deux fonctions
-dérivables. Si la fonction $f g'$ est intégrable au sens de Newton, 
-la fonction $f' g$ également et
-$$
-\int_a^b f'(x) g(x) \, dx = (f(b) g(b) - f(a) g(a)) -\int_a^b f(x) g'(x) \, dx.
-$$
-
-### Démonstration {.proof}
-Comme $(fg)' = f'g + fg'$, on a $f'g = (fg)' - fg'$. 
-Or, $(fg)'$ est intégrable au sens de Newton ($fg$ est une de ses primitives), 
-$fg'$ est intégrable au sens de Newton par hypothèse, 
-donc $f'g$ est intégrable comme combinaison linéaire de fonctions intégrables. 
-De plus, 
-$$
-\begin{split}
-\int_a^b f'(x) g(x) \,dx 
-&= 
-\int_a^b (fg)'(x) \, dx - \int_a^b f(x) g'(x) \, dx \\
-&= (f(b) g(b) - f(a) g(a)) - \int_a^b f(x) g'(x) \, dx.
-\end{split}
-$$
-
-Exercices
+Exercices complémentaires
 ================================================================================
 
 <!--
@@ -2571,31 +1873,40 @@ $\to$ [Solution](#sol-vvcvl-2)
 
 -->
 
-Dérivée sur un intervalle fermé {.question #dif}
---------------------------------------------------------------------------------
+<!--
+### TODO
 
-Montrer qu'une fonction $f$ est dérivable sur l'intervalle fermé $[a, b]$
--- $f'(a)$ et $f'(b)$ désignant alors les dérivées à droite de $f$ en $a$
-et à gauche de $f$ en $b$ --
-si et seulement si il existe un $\varepsilon > 0$ et une extension $g$ de
-$f$ sur $\left]a-\varepsilon, b+\varepsilon\right[$ tel que $g$ soit dérivable
-et qu'alors, $f' = g'|_{[a, b]}$.
+Pt spline / point de contôle. Avec dessin. 
 
+Question / "contrôle de la direction" d'un point / mouvement point de contrôle ?
 
-Différentiation en chaîne {#dec}
+-->
+
+Spécialisation de la différentiation en chaîne {#dec}
 --------------------------------------------------------------------------------
 
 [La règle générale de différentiation en chaîne](#chain-rule)
 s'applique à la composée de deux fonctions différentiables 
-$f: U \subset \R^p \to \R^n$ et $g: V \subset \R^n \to \R^m$.
+$f: U \subset \R^p \to \R^n$ et $g: V \subset \R^n \to \R^m$
+quelles que soient les valeurs des entiers $p, n$ et $m$.
 
-### Question 1 {.question #dec-1}
-Calculer $d(g \circ f)$ quand $p = n = 1$ (on utilisera les dérivées
-de $f$ et $g$).
+En pratique, on préfère souvent "spécialiser" le calcul différentiel 
+en utilisant les dérivées ou les gradients quand c'est possible
+et la différentielle uniquement en dernier recours.
 
-### Question 2 {.question #dec-2}
-Calculer $d(g \circ f)$ quand $p = m = 1$ (on utilisera les dérivées 
-et/ou gradients de $f$ et $g$).
+### Question 1 {.question #dec-1 .zero}
+Spécialiser [la règle de différentiation en chaîne](#chain-rule)
+quand $p=n=1$.
+
+### Question 2 {.question #dec-2 .one}
+Spécialiser [la règle de différentiation en chaîne](#chain-rule)
+quand $p=m=1$, puis quand $n=m=1$.
+
+### Question 3 {.question #dec-3 .two}
+Spécialiser [la règle de différentiation en chaîne](#chain-rule)
+quand $p=1$, puis $n=1$, puis $m=1$.
+
+
 
 <!--
 Soit $f: U \subset \mathbb{R} \to \mathbb{R}$ et 
@@ -2616,40 +1927,37 @@ $$
 f(x) = \frac{1}{2} \left<x, A \cdot x \right> + \left<b, x\right> + c. 
 $$
 
-### Question 1 {.question #fq-1}
-Montrer que $f$ est 2 fois différentiable en tout point $x$ de $\R^n$ ; 
-calculer $\nabla f(x)$ et $\nabla^2 f(x)$.
+### Question 1 -- Gradient {.question #fq-1 .two}
+Montrer que $f$ différentiable en tout point $x$ de $\R^n$ et
+calculer $\nabla f(x)$.
 
-### Question 2 {.question #fq-2}
-Soit $x \in \R^n$ ; on suppose que $\nabla^2 f(x)$ est inversible. 
-Montrer que la fonction $f$ admet un unique point critique $x_0$ et le 
-calculer en fonction de $x$, $\nabla f(x)$ et $\nabla^2 f(x)$.
+### Question 2 -- Matrice hessienne {.question #fq-2 .one}
+Montrer que la fonction $\nabla f: \R^n \to \R^n$ est différentiable et
+calculer la matrice jacobienne de $\nabla f$ en $x$. On note désormais
+ $H_f(x) := J_{\nabla f}(x)$.
 
-Vecteur gaussien
---------------------------------------------------------------------------------
+### Question 3 -- Point critique {.question #fq-3 .one}
+Soit $x \in \R^n$ ; on suppose que $H_f(x)$ est inversible. 
+Montrer qu'il existe un unique $x_0 \in \R^n$ où s'annule $\nabla f$ ; 
+le calculer en fonction de $x$, $\nabla f(x)$ et $H_f(x)$.
 
-La densité de probabilité associé à un vecteur gaussien $X \in \R^d$ 
+### Question 4 -- Vecteur gaussien {.question #fq-4 .two}
+La densité de probabilité associée à un vecteur gaussien $X \in \R^d$ 
 est proportionnelle à la fonction
 $$
-f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
+g: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
 $$
 où $\Sigma : \R^d \to \R^d$ est un opérateur linéaire autoadjoint 
-(c'est-à-dire que $\Sigma^* = \Sigma$) 
-tel que $\left<x, \Sigma \cdot x \right> > 0$ quand $x\neq 0$.
+($\Sigma^{\top} = \Sigma$) tel que $\left<x, \Sigma \cdot x \right> > 0$ quand $x\neq 0$.
 
-### Question 1 {.question #vg-1}
-Montrer que la fonction $f$ est différentiable et calculer son gradient.
+Montrer que la fonction $g$ est différentiable et calculer son gradient.
 
-### Question 2 {.question #vg-2}
-Montrer que la fonction $f$ est deux différentiable et calculer sa 
-hessienne.
-
-Robot manipulateur {.question #rm}
+Robot manipulateur
 --------------------------------------------------------------------------------
 
 Les coordonnées cartésiennes $x$ et $y$ de l'effecteur final 
-d'un robot dans le plan, composé de deux corps rigides de longueur
-$\ell_1$ et $\ell_2$ et d'articulation rotoïdes sont données
+d'un robot dans le plan, composé de deux barres rigides de longueur
+$\ell_1$ et $\ell_2$ et d'articulations rotoïdes sont données
 par
 $$
 \left|
@@ -2661,45 +1969,25 @@ y &=& \ell_1 \sin \theta_1 + \ell_2 \sin (\theta_1 + \theta_2) \\
 $$
 où $\theta_1$ et $\theta_2$ sont les coordonnées articulaires du robot.
 
+![$\ell_1 = 3$, $\ell_2 = 2$, $\theta_1 = \pi/4$, $\theta_2 = - \pi/4$.](images/robot.tex){#robot}
+
+On souhaite quantifier quel impact un jeu au niveau des articulations affecte
+la précision du positionnement de l'effecteur final.
+
+### Question 1  {.question #rm-1 .one}
 Montrer que l'application 
 $f: (\theta_1, \theta_2) \in \R^2 \mapsto (x, y) \in \R^2$ 
 est différentiable et déterminer sa matrice jacobienne.
 
-Différentiation matricielle
---------------------------------------------------------------------------------
+### Question 2  {.question #rm-2 .two}
 
-Source: [@Tao13]
-
-### Question 1 {.question #dm-1}
-Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
-différentiable en l'identité ($A = I$) et calculer cette différentielle.
-
-### Question 2 {.question #dm-2}
-L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
-vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
-En déduire une identité concernant $\tr A B$ et $\tr BA$.
-
-### Question 3 {.question #dm-3}
-Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
-ouvert de l'identité, est différentiable en ce point et calculer cette
-différentielle.
-
-Dérivée partielles, directionnelles et différentielle
---------------------------------------------------------------------------------
-
-### Question 1 {.question #dpdd-1}
-Construire une fonction $f:\R^2 \to \R$ dont les dérivées partielles
-existent en $(0,0)$ mais qui ne soit pas différentiable en ce point.
-
-### Question 2 {.question #dpdd-2}
-Construire une fonction $f:\R^2 \to \R$ dont la dérivée dans la direction
-$h \in \R^2$
-$$
-f'(x, h) := \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
-$$
-existe en $x=(0,0)$ pour tout $h \in \R^2$,
-mais qui ne soit pas différentiable en ce point.
-
+Soit $(\theta_{10}, \theta_{20}) \in \R^2$ et 
+$(x_0, y_0) = f(\theta_{10}, \theta_{20})$.
+Montrer que si 
+$$|\theta_1 - \theta_{10}| \leq \varepsilon \; \mbox{ et } \; 
+|\theta_2 - \theta_{20}| \leq \varepsilon$$ alors $(x, y) = f(\theta_1, \theta_2)$
+appartient au carré centré en $(x_0, y_0)$ d'arête de longueur 
+$(\ell_1/2 + \ell_2) \varepsilon$.
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2721,11 +2009,11 @@ défini sur un intervalle ouvert $I$ contenant $0$, tel que
 $\gamma(I) \subset U$,  $\gamma(0) = x$ et $\gamma'(0)$ existe,
 la dérivée $(f \circ \gamma)'(0)$ existe. 
 
-### Question 1 {.question #ddh-1}
+### Question 1 {.question #ddh-1 .one}
 Montrer que si $f$ est directionnellement dérivable au sens de Hadamard 
 en $x$, alors $f$ est directionnellement dérivable au sens classique.
 
-### Question 2 {.question #ddh-2}
+### Question 2 {.question #ddh-2 .three}
 Montrer que si $f$ est directionnellement dérivable au sens de Hadamard
 en $x$, la grandeur $(f \circ \gamma)'(0)$ ne dépend de $\gamma$
 qu'à travers $\gamma'(0)$ et que par conséquent
@@ -2733,7 +2021,7 @@ $$
 (f\circ \gamma)'(0) = f'(x, \gamma'(0)).
 $$
 
-### Question 3 -- Dérivation en chaîne {.question #ddh-3}
+### Question 3 -- Dérivation en chaîne {.question #ddh-3 .two}
 Soit $f: U \subset \mathbb{R}^p \to \mathbb{R}^{n}$ et 
 $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ deux fonctions définies
 sur des ouverts $U$ et $V$ et telles que $f(U) \subset V$. 
@@ -2745,7 +2033,7 @@ $$
 (g\circ f)'(x, h) = g'(f(x), f'(x, h)).
 $$
 
-### Question 4 {.question #ddh-4}
+### Question 4 {.question #ddh-4 .four}
 Montrer que $f$ est directionnellement dérivable au sens de Hadamard en $x$ 
 si et seulement si la limite
 $$
@@ -2753,54 +2041,59 @@ $$
 $$
 existe et que la limite est alors égale à $f'(x, h)$.
 
-### Question 5 {.question #ddh-5}
+### Question 5 {.question #ddh-5 .four}
 Une fonction dérivable directionnellement au sens de Hadamard en $x$ est 
 *différentiable au sens de Hadamard* en $x$ si de plus $f'(x, h)$ 
 est une fonction linéaire de $h$.
 Montrer que $f$ est différentiable en $x$ au sens de Hadamard 
-si et seulement si elle est différentiable en $x$ au sens de Fréchet.
+si et seulement si elle est différentiable en $x$.
 
-Inégalité de la valeur moyenne {.question #ivm}
---------------------------------------------------------------------------------
-Soit $f:[a, b] \subset \R \to \R^m$ une fonction intégrable au sens de Newton;
-on appelle *valeur moyenne de $f$* la grandeur
-$$
-\left<f\right> := \frac{1}{b-a} \int_a^b f(x) \, dx.
-$$
-Quel est le lien entre $\left<f\right>$ et la grandeur 
-$\sup_{x \in [a, b]} \|f(x)\|$ ?
 
-Egalité des accroissements finis ? {.question #eaf}
---------------------------------------------------------------------------------
-Soit $f:[0, 2\pi] \to \mathbb{R}^2$ la fonction définie par
-$$
-f(t) = (\cos t, \sin t)
-$$
-Peut-on trouver un $t \in [0, 2\pi]$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$ ?
-
-Convexité
+Thermodynamique
 --------------------------------------------------------------------------------
 
-Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
-deux fois différentiable. 
+Pour un gaz parfait, la pression $P$, le volume $V$, le nombre de particules 
+$N$ et la température $T$ sont reliés par la relation
+$$
+PV = N k_B T
+$$
+où $k_B$ est la constante de Boltzmann. Si en outre le gaz est mono-atomique, 
+son entropie $S$ est donnée par l'expression[^gibbs]
+$$
+S = N k_B \left[\frac{5}{2} + \ln \left(\frac{V}{N} \frac{(2\pi m k_B T)^{3/2}}{h^3} \right)\right]
+$$
+où $h$ est la constante de Planck et $m$ la masse d'un atome de gaz.
+On s'intéresse dans la suite à une quantité fixe d'un gaz donné de ce type.
 
-### Question 0 {.question #c-0}
-Calculer le développement limité à l'ordre 2 de 
-$f(x+2h) - 2f(x+h) + f(x)$.
+[^gibbs]: cf. par exemple [l'article consacré au "Paradoxe de Gibbs" sur Wikipédia](https://fr.wikipedia.org/wiki/Paradoxe_de_Gibbs).
 
-### Question 1 {.question #c-1}
-Montrer que si $f$ est convexe, c'est-à-dire si
-pour tous $x, y \in U$ et $\lambda\in[0,1]$,
-$$
-f((1-\lambda) x + \lambda y) \leq (1 - \lambda) f(x) + \lambda f(y),
-$$
-alors pour tout $x \in U$ et $h \in \R^n$,
-$$
-d^2f(x) (\cdot h)^2 = \left<\nabla^2 f(x) \cdot h, h\right> \geq 0.
-$$
+### Question 0 {.question #th-0 .zero}
+Quelles sont les grandeurs variables ("variables d'état") associées à 
+cette expression de l'entropie $S$ ? Quelle intervalle de valeurs peuvent
+prendre ces variables ? (On souhaite que l'entropie soit toujours définie.)
 
-### Question 2 {.question #c-2}
-Montrer la réciproque de ce résultat.
+### Question 1 {.question #th-1 .one}
+Montrer que la différentielle $dS$ est bien définie et la calculer
+en utilisant les notations les plus appropriées.
+
+### Question 2 {.question #th-2 .three}
+L'énergie interne $U$ du gaz est une fonction des variables d'état 
+(une "fonction d'état") ;
+sa variation infinitésimale est reliée à celle de l'entropie et 
+du volume par la relation
+$$
+dU = T dS - P dV.
+$$
+Quel sens donnez-vous à cette relation mathématiquement ? 
+Pouvez-vous la réécrire en utilisant les variations associées aux variables
+d'état utilisées précédemment ? 
+
+### Question 3 {.question #th-3 .two}
+Déduire de la question précédente une expression de l'énergie interne 
+(définie à une constante près).
+
+
+
 
 <!--
 TODO -- Analycité
@@ -2821,8 +2114,526 @@ calcul plan tangent ?
 
 -->
 
+
+<!--
+### TODO
+
+$df = 0$ et connexité par arcs.
+-->
+
 Solutions
 ================================================================================
+
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Dérivée et prolongement {.answer #answer-exo-dep}
+
+Si une fonction $g$ dérivable sur un ouvert $U$ de $\R$ contenant $[a, b]$
+prolonge la fonction $f$ définie sur $[a, b]$,
+il est clair que $f$ est dérivable en tout point de $[a, b]$ et que
+$g'|_{[a, b]} = f'$.
+
+Réciproquement, si $f$ est dérivable sur $[a, b]$ (à droite en $a$ et à gauche
+en $b$), alors la fonction $g: \left]-\infty, +\infty \right[ \to \R^m$ définie par 
+$$
+g(x) = \left|
+\begin{array}{rl}
+f(a) + f'(a) \times (x-a) & \mbox{si } x < a \\
+f(x) & \mbox{si } x \in [a, b] \\
+f(b) + f'(b) \times (x-b) & \mbox{si } x > b
+\end{array}
+\right.
+$$
+prolonge la fonction $f$ et est dérivable par construction.
+
+
+### Domaine de définition des fonctions partielles {.answer #answer-ddfp}
+La valeur de 
+$f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)$
+est définie si et seulement si l'argument $(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)$
+appartient à $U$. Le domaine de définition de la fonction partielle
+$y_j \mapsto f(x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n)$
+est donc l'image réciproque de $U$ par la fonction
+$$
+y_j \in \R \mapsto (x_1, \cdots, x_{j-1}, y_j, x_{j+1}, \cdots, x_n) \in \R^n.
+$$
+Cette fonction étant continue (il s'agit d'une fonction affine) 
+et $U$ ouvert par hypothèse, cet ensemble est bien ouvert.
+
+
+### Gradient et matrice jacobienne {.answer #answer-gmj}
+Les deux fonctions partielles de la fonction
+$$f:(x_1,x_2) \in \R^2 \mapsto (x_2^2 - x_1)^2 + (x_1 - 1)^2 \in \R$$ sont dérivables,
+vérifient $\partial_1 f(x_1, x_2) = -2(x_2^2 - x_1) + 2 (x_1 - 1)$ et 
+$\partial_2 f(x_1, x_2) = 4 (x_2^2 - x_1)x_2$. 
+Par conséquent,
+$$
+J_f(x_1, x_2) = 
+\left[ 
+  \begin{array}{cc}
+  -2(x_2^2 - x_1) + 2 (x_1 - 1) &
+  4 (x_2^2 - x_1)x_2
+  \end{array}
+  \right] \in \R^{1 \times 2}.
+$$
+Son gradient est donc donné par
+$$
+\nabla f(x_1, x_2)
+=
+(-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2
+$$
+ou, représenté comme un vecteur colonne
+$$
+\nabla f(x_1, x_2) = J_f(x_1, x_2)^{\top} =
+\left[ 
+  \begin{array}{c}
+  -2(x_2^2 - x_1) + 2 (x_1 - 1) \\
+  4 (x_2^2 - x_1)x_2
+  \end{array}
+  \right] \in \R^{2\times 1}.
+$$
+
+
+### Matrice jacobienne {.exercise .one #answer-exo-mj2} 
+La fonction 
+$$
+g:(x_1, x_2) \in \R^2 \mapsto (-2(x_2^2 - x_1) + 2 (x_1 - 1), 4 (x_2^2 - x_1)x_2) \in \R^2.
+$$
+a deux composantes, les fonctions (scalaires) 
+$$g_1:(x_1, x_2) \in \R^2 \mapsto -2(x_2^2 - x_1) + 2 (x_1 - 1)\in \R
+$$
+et
+$$
+g_2:(x_1, x_2) \in \R^2 \mapsto 4 (x_2^2 - x_1)x_2\in \R.$$
+En tout point $x=(x_1, x_2)$ de $\R^2$, les fonctions partielles de ces deux
+fonctions existent et vérifient
+$\partial_1 g_1(x_1, x_2) = 4$, $\partial_2 g_1(x_1, x_2) = -4x_2$,
+$\partial_1 g_2(x_1, x_2) = -4x_2$ et $\partial_2 g_2(x_1, x_2) = 12 x_2^2$.
+Sa matrice jacobienne est donc définie en tout point et vaut 
+$$
+J_g(x_1, x_2) = 
+\left[ 
+  \begin{array}{cc}
+  4 & -4x_2 \\
+  -4x_2 & 12 x_2^2
+  \end{array}
+  \right]\in \R^{2 \times 2}.
+$$
+
+### Matrice jacobienne et gradient {.answer #answer-matjac}
+D'après la définition de [la matrice jacobienne](#matrice-jacobienne) 
+et [du gradient](#gradient), on a 
+$$
+J_f(x) =
+\left[
+\begin{array}{ccc}
+\text{---} & \nabla f_1(x)^{\top} & \text{---} \\
+\text{---} & \nabla f_2(x)^{\top} & \text{---} \\
+\vdots & \vdots & \vdots \\
+\text{---} & \nabla f_m(x)^{\top} & \text{---} \\
+\end{array}
+\right].
+$$
+
+### Fonction discontinue I {.answer #answer-discont}
+La fonction $f: \R^2 \to \R$ définie par :
+$$
+f(x,y) = \left|
+\begin{array}{rl}
+0 & \mbox{si $x=0$ ou $y=0$,} \\
+1 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est discontinue en $(0,0)$, car $f(2^{-n}, 2^{-n}) = 1$ pour tout $n \in \N$,
+donc
+$$
+\lim_{n \to +\infty} f(2^{-n}, 2^{-n}) = 1 \neq 0 = f(0,0).
+$$
+Par contre, les deux fonctions partielles de $f$ en $(0,0)$
+$$
+x_1 \mapsto f(x_1, 0) \; \mbox{ et } \; x_2 \mapsto f(0, x_2)
+$$
+sont constantes et égales à $0$. Les dérivées partielles $\partial_1 f(0,0)$
+et $\partial_2 f(0,0)$ existent donc et sont nulles. Le gradient de $f$ en
+$(0,0)$ est donc définie (et nul).
+
+### Fonction discontinue II {.answer #answer-discont2}
+Les dérivées directionnelles de la fonction $f:\R^2 \to \R$ définie par
+$$
+f(x,y) 
+= \left|
+\begin{array}{cl}
+1 & \mbox{si } x > 0 \mbox{ et } y=x^2, \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+existent en $(0,0)$ et sont nulles pour tout $h \in \R^2$, 
+puisque les fonctions associées $t \in \R \mapsto f(t h)$
+sont nulles pour $|t|$ suffisamment petit.
+Mais $f$ n'est pas continue en l'origine ; 
+elle n'y est donc a fortiori pas différentiable.
+
+### Fonctions affines {.answer #answer-fa}
+Comme $f(x) = A \cdot x + b$, la $i$-ème composante de $f$ satisfait
+$$
+f_i(x) = \sum_{k=1}^n A_{ik} x_k + b_i
+$$
+et donc la $j$-ème fonction partielle de $f_i$ en $x$ est la fonction 
+de la variable $y_j$ dont la valeur est
+\begin{multline*}
+f_i(x_1, \dots, x_{j-1}, y_i, x_{j+1}, \dots, x_n) = \\
+A_{i1} x_1 + \dots + A_{i,j-1} x_{j-1} + A_{ij} y_j + A_{i,j+1} x_{j+1} + b_i.
+\end{multline*}
+C'est une fonction affine de $y_j$ qui est dérivable, de dérivée
+$A_{ij}$. On a donc
+$\partial_j f_i(x) = A_{ij}$ ; la matrice jacobienne $J_f(x)$ existe en tout
+point $x \in \R^n$ et vérifie $J_f(x) = A$.
+
+Pour tout $x \in \R^n$ et $h \in \R^n$, on a donc
+$$
+f(x+h) -  f(x) - J_f(x) \cdot h = A \cdot (x+h) - A \cdot x - A\cdot h = 0,
+$$
+ce que l'on peut écrire sous la forme
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|
+$$
+en prenant pour fonction $\varepsilon$ la fonction de $\R^n$ dans $\R^m$ 
+identiquement nulle. La fonction $f$ est donc différentiable sur $\R^n$.
+
+### Développement limité au premier ordre {.answer #answer-dlmj}
+De l'hypothèse 
+$$
+f(x+h) = a + B \cdot h + \varepsilon(h) \|h\|
+$$
+on peut déduire en faisant tendre $h$ vers $0$ que $a = f(x)$,
+puis que pour tout $i \in \{1,\dots, n\}$, on a 
+$$f_i(x+h) = f_i(x) + [B \cdot h]_i + \varepsilon_i(h) \|h\|$$ et donc
+\begin{align*}
+\frac{f_i(x + t e_j) - f_i(x)}{t} 
+&= \frac{f_i(x) + [B \cdot te_j]_i + \varepsilon_i(te_j) \|te_j\| - f_i(x)}{t} \\
+&= [B \cdot e_j]_i + \varepsilon_i(t e_j) \\
+&= B_{ij} + \varepsilon_i(t e_j).
+\end{align*}
+Comme $\lim_{h \to 0}\varepsilon(h) = \varepsilon(0) = 0$,
+cette expression a une limite quand $t \to 0$, donc
+$\partial_j f_i(x)$ existe et vérifie
+$$
+\partial_j f_i(x) = \lim_{t \to 0} \frac{f_i(x + t e_j) - f_i(x)}{t} = B_{ij}.
+$$
+La matrice jacobienne $J_f(x)$ de $f$ en $x$ existe donc et est égale à $B$.
+
+### Différentiabilité implique continuité {.answer #answer-exo-dic}
+Comme $f$ est différentiable en $x$, 
+sa matrice jacobienne en $x$ existe et 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|
+$$
+avec $\lim_{h \to 0} \varepsilon(h) = 0$. Or $\|J_f(x) \cdot h\| \leq \|J_f(x)\| \|h\|$
+donc $\lim_{h\to 0} J_f(x) \cdot h =0$ ; de même $\lim_{h \to 0} \varepsilon(h) \|h\| = 0$.
+Par conséquent, $f(x+h) \to f(x)$ quand $h \to 0$.
+
+<!--
+### Différentielle et dérivée directionnelle {.answer #answer-exo-ddd}
+Comme $f$ est différentiable en $x$ par hypothèse, 
+sa matrice jacobienne en $x$ existe et 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|
+$$
+avec $\lim_{h \to 0} \varepsilon(h) = 0$. Par conséquent,
+$$
+\frac{f(x+ th) - f(x)}{t} = \frac{J_f(x) \cdot (th)}{t} + \frac{\varepsilon(th) \|th\|}{t}
+= J_f(x) \cdot h + \frac{|t|}{t}\varepsilon(th) \|h\|,
+$$
+et donc en passant à la limite, comme $\lim_{t \to 0} \varepsilon(th) = 0$,
+$$
+f'(x, h) = \lim_{t \to 0} \frac{f(x+ th) - f(x)}{t} = J_f(x) \cdot h.
+$$
+
+### Différentielle et dérivée directionnelle {.answer #answer-exo-ddd2}
+On peut considérer la fonction $f :\R^2 \to \R$ définie par
+$$
+f(x_1, x_2) = \left|
+\begin{array}{rl}
+1 & \mbox{si $x_1 > 0$ et $x_2 = x_1^2$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Elle n'est pas continue en $(0,0)$, [donc elle n'y est pas différentiable](#dic).
+Par contre, pour tout $h \in \R^2$, pour $t$ assez
+petit on a $th_2 \neq (t h_1)^2$ et donc $f(th) = 0$ ; par conséquent
+$$
+f'(0, h) = \lim_{h\to 0} \frac{f(t h) - f(0)}{t} = 0.
+$$
+La dérivée directionnelle de $f$ en $(0,0)$ dans la direction $h$ existe et
+est nulle.
+-->
+
+### Différentiabilité {.answer #answer-vareps}
+Si $f$ est différentiable en $x$, alors la matrice jacobienne de $f$ en
+$x$ existe et il existe
+sur un voisinage de $h=0$ une fonction
+$\varepsilon$ à valeurs dans $\R^m$ vérifiant $\lim_{h \to 0} \varepsilon(h) = 0$
+telle que 
+$$
+f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|.
+$$
+On en déduit que sur ce voisinage de $0$ (et hormis pour $h=0$), on a
+$$
+\varepsilon(h) = \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right).
+$$
+Par hypothèse la fonction $\varepsilon$ est continue et nulle en $0$, donc
+le membre de droite de cette équation tend bien vers $0$ quand $h\to 0$ 
+avec $h\neq 0$.
+Réciproquement, si 
+$$
+\lim_{\substack{h \to 0 \\ h\neq 0}} \left(\frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|}\right) = 0,
+$$
+on peut définir sur l'ensemble $V$ des $h$ tels que $x+h \in U$ ($U$ étant le domaine
+de définition de $f$) la fonction $\varepsilon$ par
+$$
+\varepsilon(h) = \left|
+\begin{array}{cl}
+0 & \mbox{si $h=0$,} \\
+\displaystyle \frac{f(x+h) - f(x)}{\|h\|} - J_f(x) \cdot \frac{h}{\|h\|} & \mbox{si $h \in V$ et $h\neq 0$.}
+\end{array}
+\right.
+$$
+Par construction, $V$ est un voisinage de $0$ et $\varepsilon$ vérifie 
+$\lim_{h \to 0} \varepsilon(h) = 0$ ainsi que la relation
+$f(x+h) = f(x) + J_f(x) \cdot h + \varepsilon(h) \|h\|$ ; $f$ est donc
+différentiable en $x$.
+
+### Espace-temps {.answer #answer-st}
+Etant donné le contexte ("Espace-temps"), il est probable que $c$ désigne la vitesse
+de la lumière dans le vide et soit donc considérée comme une constante.
+L'expression $e:=x^2 + y^2 + z^2 - c^2 t^2$ est définie pour toutes les valeurs
+possibles des variables réelles $x$, $y$, $z$ et $t$. Il est clair que toutes
+les dérivées partielles de cette expression existent et sont continues en tout 
+point; 
+l'application des conventions de la section ["Notations"](#notations) fournit
+$$
+de = \frac{\partial e}{\partial x} dx + \frac{\partial e}{\partial y} dy + 
+\frac{\partial e}{\partial z} dz + \frac{\partial e}{\partial t} dt
+= 2 (x \, dx + y \, dy + z \, dz - c^2 t \, dt).
+$$
+
+### Robustesse des notations {.answer #answer-rn}
+Si l'on considère successivement les jeux de variables 
+$(y,x)$ puis de $(x, y, z)$, on obtient
+$$
+dy \cdot (h_y, h_x) = h_y, \; dx \cdot (h_y, h_x) = h_x 
+$$
+et 
+$$
+dx \cdot (h_x, h_y, h_z) = h_x, \; dy \cdot (h_x, h_y, h_z) = h_y, \;
+dz \cdot (h_x, h_y, h_z) = h_z. 
+$$
+Comme on a toujours
+$$
+\frac{\partial (x^2+y^2) }{\partial x} = 2x, \;
+\frac{\partial (x^2+y^2) }{\partial y} = 2y, \;
+\frac{\partial (x^2+y^2) }{\partial z} = 0,
+$$
+on constate qu'on a à nouveau $d(x^2 + y^2) = 2 x \, dx + 2y \, dy$ dans les
+deux cas.
+
+
+### Composition de fonctions continûment différentiables {.answer #answer-cfcd}
+D'après [la règle de différentiation en chaîne](#chain-rule), $d (g\circ f)(x)= dg(f(x)) \cdot df(x)$.
+Donc pour tout $i \in \{1, \dots, m\}$ et $j \in \{1,\dots, p\}$,
+\begin{align*}
+[d (g\circ f)(x)]_{ij} &= 
+[dg(f(x)) \cdot df(x)]_{ij} \\
+&= \sum_{k=1}^n [dg(f(x))]_{ik} [df(x)]_{kj} \\
+&= \sum_{k=1}^n \partial_k g_i(f(x)) \partial_j f_k(x).
+\end{align*}
+Chaque coefficient $\partial_j (g\circ f)_i$ est une somme de produit de 
+fonctions continues et est donc continu. Par conséquent, $g\circ f$ est
+continûment différentiable.
+
+
+### Désassemblage {.answer #answer-exo-desass}
+Les fonctions $p_1: (x_1,x_2) \in \R^m\times\R^p \mapsto x_1 \in \R^m$
+et $p_2: (x_1,x_2) \in \R^m\times\R^p \mapsto x_2 \in \R^p$ sont 
+[linéaires, et donc différentiables en tout point $x$](#dal) ; 
+leurs différentielles sont données par
+$dp_1(x_1, x_2) = p_1$ et $dp_2(x_1, x_2) = p_2$.
+Par conséquent, si $U$ est un ouvert de $\R^n$, $x \in U$ et que la fonction
+$(f, g): U \to \R^m \times \R^p$ est différentiable en $x$, en appliquant
+à deux reprises [la règle de différentiation en chaîne](#chain-rule),
+on en déduit que $f = p_1 \circ (f, g)$ et que $g= p_2 \circ (f,g)$ sont
+différentiables et que $df(x) = p_1 \cdot d(f,g)(x)$ et $dg(x) = p_2 \cdot d(f,g)(x)$,
+soit $d(f, g)(x) = (df(x), dg(x))$.
+
+
+### Différentiation en chaîne et assemblage {.answer #answer-exo-dca}
+La combinaison des deux résultats prend la forme suivante :
+
+> Soient $f_1: U \subset \mathbb{R}^p \to \mathbb{R}^{n_1}$,
+> $\dots$, $f_m: U \subset \mathbb{R}^p \to \mathbb{R}^{n_m}$ 
+> et $g: V \subset \mathbb{R}^n \to \mathbb{R}^{m}$ 
+> -- où $n={n_1 + \dots + n_m}$ --
+> des fonctions définies sur des ouverts $U$ et $V$ et telles que $(f_1,\dots, f_m)(U) \subset V$. 
+> Si les $f_i$ sont différentiables en $x \in U$ et que $g$ est différentiable en 
+> $(f_1(x), \dots, f_m(x)) \in V$,
+> alors la composée $g \circ (f_1, \dots, f_m)$ est différentiable en $x$ et
+> $$d(g \circ (f_1, \dots, f_m))(x) = dg(f_1(x),\cdots, f_m(x)) \cdot (df_1(x), \dots, df_m(x)).$$
+
+Le cas $m=1$ de cet énoncé correspond à [la règle de différentiation en
+chaîne](#chain-rule) ; le cas où $g$ est la fonction identité correspond 
+à la [règle d'assemblage](#assemblage).
+
+### Produit scalaire {.answer #answer-ps .one}
+On a $\left<x, y \right> = \sum_{i=1}^n x_i y_i$. Chaque fonction 
+$(x, y) \mapsto x_i y_i$ est (continûment) différentiable, avec
+$d(x_i y_i) = x_i dy_i + y_i dx_i$ (par calcul direct des dérivées partielles ;
+alternativement, on peut combiner 
+[le désassemblage](#assemblage) de $(x, y) \mapsto (x_i, y_i)$ et 
+[la règle du produit](#product-rule) par [différentiation en chaîne](#chain-rule)).
+Par [linéarité de la différentielle](#ld), le produit scalaire est 
+donc différentiable et 
+$$
+d \left<x,y \right> = \sum_{i=1}^n x_i dy_i + y_i dx_i
+= \left[ 
+  \begin{array}{cccccc}
+  y_1 & \cdots & y_n & x_1 & \cdots & x_n
+  \end{array}
+  \right]
+  \cdot
+  \left[
+  \begin{array}{c}
+  dx_1 \\ \vdots \\ dx_n \\ dy_1 \\ \vdots \\ dy_n
+  \end{array}
+  \right].
+$$
+Par conséquent, $\nabla \left<\cdot, \cdot\right>(x, y) = (y, x)$.
+
+### Cas des fonctions continûment différentiables {.answer #answer-cfcd3}
+Si $f$ est continûment différentiable sur $U$, elle est en particulier
+différentiable sur $[x, a+h]$. De plus, 
+$$
+df(x+th) \cdot h = \sum_{i=1}^{n} \partial_j f(x+th) h_j,
+$$
+donc la fonction $t \in [0,1] \mapsto df(x+th) \cdot h$ est continue
+et par conséquent intégrable. [Le théorème fondamental du calcul](#VF)
+est donc applicable.
+
+### Cas des fonctions continûment différentiables {.answer #answer-cfcd2}
+Si la fonction $f'$ est continue (ou intégrable au sens de
+Riemann, ou intégrable au sens de Lebesgue), 
+[le théorème fondamental du calcul](#TAFS) est applicable, donc 
+$$
+f(x+h) - f(x) = \int_x^{x+h} f'(t) \, dt.
+$$
+L'inégalité triangulaire appliquée à l'intégrale du membre de droite fournit
+alors
+$$
+\left\|f(x+h) - f(x)\right\| = \left\|\int_x^{x+h} f'(t) \, dt\right\|
+\leq \int_x^{x+h} \|f'(y)\| \, dy \leq \int_x^{x+h} M \, dt = M h.
+$$
+
+### Inégalité des accroissements finis (version euclidienne) {.answer #answer-mitch}
+Comme
+$$
+\frac{\phi(y+s) - \phi(y)}{s} 
+= 
+\left<f(x+h) - f(x), \frac{f(y+s) - f(y)}{s}\right>,
+$$
+la fonction $\phi$ est dérivable en tout point $y\in [a,a+h]$ et
+$$
+\phi'(y) = \left<f(x+h) - f(x), f'(y) \right>.
+$$
+La fonction $f$ étant à valeurs réelles, 
+le théorème des valeurs intermédiaires est applicable : il existe un 
+$y \in [x,x+h]$ tel que
+$$
+\phi(x+h) - \phi(x) = \phi'(y) h = \left<f(x+h) - f(x), f'(y) \right> h.
+$$
+Comme par ailleurs
+\begin{align*}
+\phi(x+h) - \phi(x) &= 
+\left<f(x+h) - f(x), f(x+h) \right> - \left<f(x+h) - f(x), f(x) \right>  \\
+&= \|f(x+h) - f(x)\|^2,
+\end{align*}
+on a 
+$$
+\|f(x+h) - f(x)\|^2 = \left<f(x+h) - f(x), f'(y) \right> h \leq \|f(x+h) - f(x)\| \|f'(y)\| h.
+$$
+Etant donné que $\|f'(y)\| \leq M$, on en déduit $\|f(x+h) - f(x)\| \leq M h.$
+
+
+
+### Inégalité de la valeur moyenne {.answer #answer-ivm}
+Soit $F:[a, b] \to \R^m$ une primitive de $f$. 
+Par [le théorème fondamental du calcul](#TFC), on a 
+$$
+\left<f\right> = \frac{1}{b-a} \int_a^b f(x) \, dx
+= \frac{F(b) - F(a)}{b-a}.
+$$
+Or si $\|F'\| = \|f\|$ est borné sur $[a, b]$, par 
+[l'inégalité des accroissements finis](#TAFS),
+$$
+\|F(b) - F(a)\| \leq \sup_{x \in [a, b]} \|f(x)\| \times  (b-a),
+$$
+et donc
+$$
+\left\|\left<f\right>\right\| \leq  \sup_{x \in [a, b]} \|f(x)\|.
+$$
+Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
+c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
+
+### Egalité des accroissements finis ? {.answer #answer-eaf}
+La dérivée de $f$ est donnée par $f'(t) = (-\sin t, \cos t)$ ;  
+en particulier pour tout $t \in [0, 2\pi]$, $\|f'(t)\| = 1$.
+Or $f(2\pi) - f(0) = 0$, donc il est impossible de trouver un 
+$t$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$.
+
+
+### Variation du logarithme {.answer #answer-log}
+En premier lieu, on peut noter qu'en général, 
+le segment d'extrémités $(x, y)$ et $(x, -y)$ 
+n'est pas inclus dans le plan coupé $U$.
+On ne peut donc pas appliquer directement [la version multivariable de 
+l'inégalité des accroissements finis](#VF).
+Nous allons donc adapter la technique utilisée dans la démonstration de ce 
+théorème en introduisant un chemin $\phi: [0, 1] \to \R^2$ qui joint $(x, y)$ et 
+$(x, -y)$ et dont l'image est incluse dans $U$.
+
+![Représentation du chemin $\phi$ quand $(x, y)=(-1, -1)$.](images/log.tex)
+
+On note $\theta$ l'unique détermination de l'angle polaire de $(x, y)$ comprise
+dans l'intervalle $\left]-\pi, \pi\right[$ et on pose
+$$
+\phi(t) := \left(r\cos ((1 - 2 t)\theta), r\sin ((1-2t)\theta) \right)
+\; \mbox{ où } \; r := \sqrt{x^2 + y^2}.
+$$
+On remarque que $\phi(t) \in U$ pour tout $t$, que $\phi(0) = (x, y)$
+et que $\phi(1) = (x, -y)$. La fonction $\phi$ est dérivable et 
+$$
+\phi'(t) = \left(2 \theta r\sin ((1 - 2 t)\theta), -2 \theta r\cos ((1-2t)\theta) \right) ;
+$$
+la fonction $\log \circ  \, \phi$ est donc définie et dérivable et 
+$$
+d (\log \circ \, \phi) (t) = d \log (\phi(t)) \cdot d \phi(t)=
+d \log(\phi(t)) \cdot \phi'(t).
+$$
+Par conséquent,
+$$
+\|d (\log \circ \, \phi) (t)\| \leq \|d \log (\phi(t))\| \|\phi'(t)\|
+\leq \frac{1}{r} \times 2 |\theta| r = 2 |\theta| \leq 2 \pi.
+$$
+L'application de 
+[l'inégalité des accroissement finis (monovariable)](#TAFS) à la fonction 
+$\log \circ \, \phi$ fournit donc l'inégalité
+$$
+\|\log (x, y) - \log (x, -y)\| \leq 2 \pi.
+$$
+
+
 
 <!--
 Vecteurs, vecteurs colonnes, vecteurs lignes
@@ -2849,36 +2660,13 @@ désigne le produit scalaire dans $\mathbb{R}^n$.
 
 -->
 
-Dérivée sur un intervalle fermé {.answer #answer-dif}
---------------------------------------------------------------------------------
-
-Si une fonction $g$ dérivable sur $\left]a-\varepsilon, b+\varepsilon \right[$
-étend la fonction $f$ définie sur $[a, b]$,
-il est clair que $f$ est dérivable en tout point de $[a, b]$ et que
-$g'|_{[a, b]} = f'$.
-
-Réciproquement, si $f$ est dérivable sur $[a, b]$ (à droite en $a$ et à gauche
-en $b$), alors la fonction $g: \left]a-1, b+1 \right[$ définie par 
-$$
-g(x) = \left|
-\begin{array}{rl}
-f(a) + f'(a) \times (x-a) & \mbox{si } x < a \\
-f(x) & \mbox{si } x \in [a, b] \\
-f(b) + f'(b) \times (x-b) & \mbox{si } x > b
-\end{array}
-\right.
-$$
-étend $f$ et est dérivable par construction.
-
-Différentiation en chaîne 
+Spécialisation de la différentiation en chaîne 
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dec-1}
-Les fonction $f$ et $g$ sont différentiables  donc dérivables
-(cf. [Différentielle et dérivée]).
-Comme fonctions d'une variable, en raison du
-[lien entre différentielle et dérivée][Différentielle et dérivée],
-on a $df(x) \cdot h = f'(x) h$ et $dg(x) \cdot h = g'(x)h$.
+Comme fonctions d'une variable, $f$ et $g$ sont 
+[différentiables donc dérivables](#dad), $df(x) \cdot h = f'(x) h$ et 
+$dg(x) \cdot h = g'(x)h$.
 Par la [règle de différentiation en chaîne](#chain-rule),
 on obtient
 $$
@@ -2895,28 +2683,118 @@ d(g \circ f)(x) \cdot h
 &= (g'(f(x)) f'(x)) h.
 \end{split}
 $$
+La fonction $g \circ f$ étant également fonction d'une variable, elle
+est dérivable et
+$$
+(g\circ f)'(x) = d(g \circ f)(x) \cdot 1 = g'(f(x)) f'(x).
+$$
 
 ### Question 2 {.answer #answer-dec-2}
 La fonction $f$ dépendant d'une variable scalaire, elle est dérivable et 
-$df(x) \cdot h = f'(x) h$. Quant à $g$ qui est à valeur scalaire, sa
-différentielle en $x$ est reliée à son gradient par 
-$dg(x) \cdot h =\left<\nabla g(x), h\right>$.
+$df(x) \cdot h = f'(x) h$. Quant à $g$ qui est à valeur scalaire, 
+[sa différentielle en $x$ est reliée à son gradient par 
+$dg(x) \cdot h =\left<\nabla g(x), h\right>$](#dag).
 La [règle de différentiation en chaîne](#chain-rule),
-$d(g \circ f)(x)= dg(f(x)) \cdot df(x)$ se décline donc en
+$d(g \circ f)(x)= dg(f(x)) \cdot df(x)$ se décline donc ici en
 $$
 \begin{split}
 d(g \circ f)(x) \cdot h 
 &= dg(f(x)) \cdot (df(x) \cdot h) \\
 &= dg(f(x)) \cdot (f'(x) h) \\
 &= \left<\nabla g(f(x), f'(x)h \right>  \\
-&= \left<\nabla g(f(x)), f'(x) \right> h.
+&= \left<\nabla g(f(x)), f'(x) \right> h,
 \end{split}
 $$ 
+soit $(g \circ f)'(x) = d(g \circ f)(x) \cdot 1 = \left<\nabla g(f(x)), f'(x) \right>$.
+Quand $n=m=1$, on a
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= g'(f(x)) (df(x) \cdot h) \\
+&= g'(f(x)) \left<\nabla f(x), h\right> \\
+&= \left<g'(f(x)) \nabla f(x), h\right> \\
+\end{split}
+$$ 
+donc $\nabla (g\circ f)(x) = g'(f(x)) \nabla f(x)$.
+
+### Question 3 {.answer #answer-dec-3}
+Quand $p=1$, on a
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= dg(f(x)) \cdot (f'(x) h) \\
+&= (dg(f(x)) \cdot f'(x)) h.
+\end{split}
+$$ 
+donc $(g \circ f)'(x) = dg(f(x)) \cdot f'(x)$.
+Quand $n=1$, on a
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= g'(f(x)) \left<\nabla f(x), h\right> \\
+&= g'(f(x)){\nabla f(x)}^{\top} h.
+\end{split}
+$$ 
+donc $d (g\circ f)(x) = g'(f(x)){\nabla f(x)}^{\top}$. 
+Finalement, quand $m=1$, on a
+$$
+\begin{split}
+d(g \circ f)(x) \cdot h 
+&= dg(f(x)) \cdot (df(x) \cdot h) \\
+&= \left<\nabla g(f(x)), df(x) \cdot h\right> \\
+&= \left<(df(x))^{\top} \cdot \nabla g(f(x)), \cdot h\right>
+\end{split}
+$$ 
+et donc $\nabla (g \circ f)(x) = (df(x))^{\top} \cdot \nabla g(f(x))$.
+
 
 Fonction quadratique 
 --------------------------------------------------------------------------------
 
-### Question 1 {.answer #answer-fq-1}
+### Question 1 -- Gradient {.answer #answer-fq-1}
+La fonction présentée est la somme de la fonction
+$x \mapsto \left<x, A\cdot x \right> = x^{\top} \cdot A \cdot x$, de l'application linéaire 
+$x \mapsto \left<b, x\right> = b^{\top} x$ et de l'application constante
+$x \mapsto c$. Les deux dernières fonctions sont différentiables, de 
+différentielles les fonctions $x \mapsto b^{\top}$ 
+(comme [différentielle d'application linéaire](#dal))
+et $x \mapsto 0$ respectivement.
+Seul reste donc à étudier la fonction $g:x \mapsto x^{\top} \cdot A \cdot x$.
+
+Comme
+$$
+g(x) = \frac{1}{2}x^{\top} \cdot A \cdot x = \frac{1}{2}\sum_{i=1}^{n} \sum_{k=1}^n x_i A_{ik} x_k,
+$$
+pour tout $j \in \{1,\dots, n\}$ on a 
+$$
+g(x) = \frac{1}{2} \left(x_j A_{jj} x_j + \sum_{\substack{k=1 \\ k\neq j}}^n x_j  A_{jk} x_k +  \sum_{\substack{i=1\\i\neq j}}^n x_i A_{ij} x_j
++ \sum_{\substack{i=1\\i\neq j}}^{n} \sum_{\substack{k=1\\k\neq j}}^n x_i A_{ik} x_k\right).
+$$
+Par conséquent, la dérivée partielle $\partial_j g(x)$ existe et vérifie
+\begin{align*}
+\partial_j g(x) &= A_{jj} x_{j} + \frac{1}{2} \left(\sum_{\substack{k=1 \\ k\neq j}}^n A_{jk} x_k + \sum_{\substack{i=1\\i\neq j}}^n x_i A_{ij} \right)\\
+&= \frac{1}{2} \sum_{k=1}^n A_{jk} x_k + \frac{1}{2} \sum_{i=1}^n x_i A_{ij} \\
+&= \left[\frac{1}{2}A \cdot x\right]_j + \left[\frac{1}{2}A^{\top} \cdot x\right]_j \\
+&= \left[\frac{1}{2}(A + A^{\top}) \cdot x\right]_j.
+\end{align*}
+Toute ces dérivées partielles sont des fonctions linéaires de $x$, 
+elles sont donc continues et la fonction $g$ est continûment différentiable ;
+[elle est donc différentiable](#cdid).
+De plus, l'égalité ci-dessus nous fournit
+$$
+\nabla g(x) = \frac{1}{2}(A + A^{\top}) \cdot x.
+$$
+La fonction $f$ est donc différentiable (comme [combinaison linéaire de 
+fonctions différentiables](#ld)) et
+$$
+\nabla f(x) = \frac{1}{2}(A + A^{\top}) \cdot x + b^{\top}.
+$$
+
+
+<!--
 Pour tout $x \in \R^n$ et tout $h \in \R^n$, on a 
 $$
 \begin{split}
@@ -2926,7 +2804,7 @@ f(x+h) - f(x) &= \frac{1}{2} \left<(x+h), A \cdot (x+h) \right> + \left<b, x+h\r
 \frac{1}{2} \left<x, A \cdot h \right> + \frac{1}{2} \left<h, A \cdot x \right> +
 \left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right> \\
 &=
-\frac{1}{2} \left<A^* \cdot x, h \right> + \frac{1}{2} \left<A \cdot x, h \right> +
+\frac{1}{2} \left<A^{\top} \cdot x, h \right> + \frac{1}{2} \left<A \cdot x, h \right> +
 \left<b, h\right> + \frac{1}{2} \left<h, A \cdot h \right>.
 \end{split}
 $$
@@ -2934,52 +2812,42 @@ Comme $|\left<h, A \cdot h \right>| \leq \|h\| \times \|A\| \|h\|$, ce terme
 est un $o(\|h\|)$. On en conclut que
 $$
 f(x+h) - f(x)
-= \left<\frac{1}{2}(A + A^*) \cdot x + b, h\right> + o(\|h\|).
+= \left<\frac{1}{2}(A + A^{\top}) \cdot x + b, h\right> + o(\|h\|).
 $$
 La fonction $f$ est donc différentiable en $x$, de gradient
 $$
-\nabla f(x) = \frac{1}{2}(A + A^*) \cdot x + b.
+\nabla f(x) = \frac{1}{2}(A + A^{\top}) \cdot x + b.
 $$
-Pour tout $h \in \R^n$, la fonction $x \mapsto \left<\nabla f(x), h\right>$
-vérifie
-$$
-\left<\nabla f(x+k), h\right> - \left<\nabla f(x), h\right>
-= \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
-$$
-Elle est donc différentiable et 
-$$
-d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot k, h\right>.
-$$
-Par symétrie de la différentielle d'ordre $2$,
-$$
-d^2 f(x) \cdot h \cdot k = \left<\frac{1}{2}(A + A^*) \cdot h, k\right>,
-$$
-donc 
-$$
-\nabla^2 f(x) = \frac{1}{2}(A + A^*).
-$$
-
-### Question 2 {.answer #answer-fq-2}
-Si $\nabla^2 f(x)$ est inversible (cet opérateur est constant), comme
-$$
-\nabla f(y) = \frac{1}{2}(A + A^*) \cdot y + b = \nabla^2 f(x) \cdot y + b,
-$$
-résoudre $\nabla f(y) = 0$ revient à rechercher les solutions de
-$$
-\nabla^2 f(x) \cdot y + b = \nabla^2 f(x) \cdot y + (\nabla f(x) - \nabla^2 f(x) \cdot x) = 0.
-$$
-Il existe donc un unique point critique pour $f$, donné par
-$$
-y = x - (\nabla^2 f(x))^{-1} \nabla f(x).
-$$
-
-Vecteur gaussien
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-vg-1}
+-->
+### Question 2 -- Matrice hessienne {.answer #answer-fq-2}
 La fonction 
 $$
-f: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
+\nabla f: x \in \R^n \mapsto \frac{1}{2}(A + A^{\top}) \cdot x + b^{\top}.
+$$
+est affine, somme d'une fonction linéaire et d'une fonction constante.
+Elle est donc différentiable, et
+$$
+H_f(x) := J_{\nabla f}(x) = \frac{1}{2}(A + A^{\top}).
+$$
+
+### Question 3 -- Point critique {.answer #answer-fq-3}
+Si $H_f(x)$ est inversible (cet opérateur est constant), comme
+$$
+\nabla f(y) = \frac{1}{2}(A + A^{\top}) \cdot y + b = H_f(x) \cdot y + b,
+$$
+résoudre $\nabla f(x_0) = 0$ revient à rechercher les solutions de
+$$
+H_f(x) \cdot x_0 + b = H_f(x) \cdot x_0 + (\nabla f(x) - H_f(x) \cdot x) = 0.
+$$
+Il existe donc un unique zéro de $\nabla f$, donné par
+$$
+x_0 = x - (H_f(x))^{-1} \nabla f(x).
+$$
+
+### Question 4 -- Vecteur gaussien {.answer #answer-fq-4}
+La fonction 
+$$
+g: x \in \R^d \mapsto \exp\left( -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right> \right)
 $$
 apparaît comme la composée des fonctions
 $$
@@ -2989,86 +2857,35 @@ $$
 La fonction $\exp$ est dérivable, et donc différentiable 
 sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dx = \exp(y) dy$, c'est-à-dire
 $$
-d\exp(y) \cdot h = \exp(y) \times h.
+d\exp(y) \cdot h = \exp(y) h.
 $$ 
-Quand à la première fonction, pour tout $h \in \R^d$, on a
-\begin{multline*}
--\frac{1}{2} \left<x+h, \Sigma^{-1} \cdot (x+h) \right>
-=  \\
--\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>
-+ <x, \Sigma^{-1} h> + <h, \Sigma^{-1} \cdot x> + \left<h, \Sigma^{-1} \cdot h \right>
-\right). 
-\end{multline*}
-D'une part, comme $\Sigma$ est autoadjoint (et inversible), $\Sigma^{-1}$ également et
+Quand à la première fonction, d'après les questions qui précèdent, elle est
+différentiable et 
 $$
-<x, \Sigma^{-1} \cdot h> + <h, \Sigma^{-1} \cdot x> = 2 \left<\Sigma^{-1} \cdot x, h \right>,
+\nabla g(x) = \frac{1}{2}\left(-\Sigma^{-1} - (\Sigma^{-1})^{\top} \right) \cdot x
+= -\Sigma^{-1} \cdot x.
 $$
-d'autre part
-$$
-\left| \left<h, \Sigma^{-1} \cdot h \right> \right|
-\leq \|h\| \times \|\Sigma^{-1} \cdot h\| \leq \|h\| \times \|\Sigma^{-1}\| \times \|h\| = o(\|h\|).
-$$
-La fonction est donc différentiable sur $\R^n$, avec
+Sa différentielle vérifie donc
 $$
 d \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right) \cdot h
 = - \left<\Sigma^{-1} \cdot x, h \right>.
 $$
-La fonction $f$ est donc différentiable sur $\R^d$ comme composée
-de fonctions différentiables et l'on a
+Par conséquent, la fonction $g$ est différentiable sur $\R^d$ comme composée
+de fonctions différentiables et 
 $$
-d f(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
+d g(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
 \left<\Sigma^{-1} \cdot x, h \right>
 = \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>,
 $$
-le gradient de $f$ vaut donc
+le gradient de $g$ vaut donc
 $$
-\nabla f(x) = -f(x) \times \Sigma^{-1} \cdot x.
-$$
-
-### Question 2 {.answer #answer-vg-2}
-De l'équation
-$$
-d f(x) \cdot h 
-= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>
-= -f(x) \left<\Sigma^{-1} \cdot h, x \right>
-$$
-on déduit que $x \mapsto d f(x) \cdot h$ est différentiable comme produit
-de fonctions scalaires différentiables (la fonction 
-$x \mapsto \left<\Sigma^{-1} \cdot h, x \right>$ étant linéaire). 
-On a de plus
-$$
-\begin{split}
-d (x \mapsto d f(x) \cdot h) \cdot k
-&=
-- (df(x) \cdot k) \times \left<\Sigma^{-1} \cdot x, h \right>
-- f(x) \times \left<\Sigma^{-1} \cdot h, k \right> \\
-&= 
-\left<-f(x) \times \Sigma^{-1} \cdot x, k \right> \left<\Sigma^{-1} \cdot x, h \right>+
-\left<-f(x) \times \Sigma^{-1} \cdot h, k\right>
-\end{split}
+\nabla g(x) = -g(x) \times \Sigma^{-1} \cdot x.
 $$
 
-Pour des vecteurs arbitraires $u$ et $v$ dans $\R^n$, on a
-$$
-\left<u, k \right> \left<v, h \right>
-=
-\left<k, u \right> \left<v, h \right>
-= k^* \cdot u  \times v^* \cdot h = (v \cdot u^* \cdot k)^* \cdot h = \left<(v \cdot u^*) \cdot k, h \right>,
-$$
-par conséquent
-$$
-d (x \mapsto d f(x) \cdot h) \cdot k
-= 
--f(x) \left<(\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}) h, k\right>.
-$$
-La Hessienne de $f$ en $x$ est donc donnée par
-$$
-\nabla^2 f(x) = - f(x) (\Sigma^{-1} \cdot x \cdot x^* \cdot \Sigma^{-1} + \Sigma^{-1}).
-$$
-
-
-Robot manipulateur {.answer #answer-rm}
+Robot manipulateur
 --------------------------------------------------------------------------------
+
+### Question 1  {.answer #answer-rm-1}
 
 Des équations
 $$
@@ -3083,17 +2900,17 @@ on déduit que les dérivées partielles de $x$ et de $y$ par rapport
 à $\theta_1$ et $\theta_2$ existent et vérifient
 $$
 \begin{array}{rcl}
-\partial_1 x(\theta_1, \theta_2)
+\partial x/ \partial \theta_1
 &=& -\ell_1 \sin \theta_1 - \ell_2 \sin (\theta_1 + \theta_2), \\
-\partial_2 x(\theta_1, \theta_2)
+\partial x / \partial \theta_2
 &=& - \ell_2 \sin (\theta_1 + \theta_2), \\
-\partial_1 y(\theta_1, \theta_2)
+\partial y / \partial \theta_1
 &=& \ell_1 \cos \theta_1 + \ell_2 \cos (\theta_1 + \theta_2), \\
-\partial_2 y(\theta_1, \theta_2)
+\partial y / \partial \theta_2
 &=& \ell_2 \cos (\theta_1 + \theta_2).
 \end{array}
 $$
-Ces grandeurs étant continues, la fonction $f=(x, y)$ est continûment
+Ces grandeurs étant continues, la fonction $f$ est continûment
 différentiable et donc différentiable. Si l'on note $s_1 = \sin \theta_1$,
 $s_{12}= \sin(\theta_1+\theta_2)$, $c_1 = \cos \theta_1$ et
 $c_{12}= \cos(\theta_1+\theta_2)$, on obtient donc
@@ -3108,133 +2925,54 @@ J_f(\theta_1, \theta_2)
 \right].
 $$
 
-Différentiation matricielle
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-dm-1}
-Soit $H \in \R^{n\times n}$, telle que
+### Question 1  {.answer #answer-rm-2}
+Soient $\delta \theta_1 := \theta_1 - \theta_{10}$
+et $\delta \theta_2 := \theta_2 - \theta_{20}$. La fonction
 $$
-H = 
+\phi : t \in [0, 1]  
+\mapsto
+f(\theta_{10} + t\delta \theta_1, \theta_{12} + t\delta \theta_2)
+$$
+est continûment dérivable, de dérivée
+$$
+\phi'(t)=
+df(\theta_{10} +t \delta \theta_1, \theta_{20} +t \delta \theta_2) 
+\cdot (\delta \theta_1 , \delta \theta_2)
+$$
+Si l'on note $s_1(t) = \sin (\theta_{10} + t\delta \theta_1)$,
+$c_1(t) = \cos (\theta_{10} + t\delta \theta_1)$, ...,
+le [théorème fondamental du calcul](#TFC) et l'expression de la matrice
+jacobienne de $f$ nous fournissent donc
+\begin{multline*}
+f(\theta_1, \theta_2) - f(\theta_{10}, \theta_{20})
+=
+\int_0^1 \, \phi'(t) \, dt 
+= \\
+\int_0^1
 \left[
-\begin{array}{cccc}
-h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & h_{nn} \\
-\end{array} 
-\right].
-$$
-En développant le déterminant selon la première colonne, on constate
-que
-$$
-\begin{split}
-\det (I+H) &= 
-\left|
-\begin{array}{cccc}
-1+h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & 1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} 
-\right| \\
-&=(1 + h_{11}) 
-\left| \begin{array}{ccc}
-1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots \\
-h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} \right| 
-+ o(\|H\|), \\
-\end{split}
-$$
-une relation dont on tire par récurrence que
-$$
-\begin{split}
-\det (I+H) 
-&= \prod_{i = 1}^n (1 + h_{ii}) + o(\|H\|)
-=\det I + \sum_{i=1}^n h_{ii} + o(\|H\|) \\
-&= \det I + \tr H + o(\|H\|).
-\end{split}
-$$
-La différentiel du déterminant existe donc en l'identité et 
-$d\det(I) \cdot H = \tr H$.
-
-### Question 2 {.answer #answer-dm-2}
-Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
-$$
-\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
-$$
-Les deux membres de cette équations sont dérivables par rapport à
-$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
-et l'égalité de ces dérivées fournit
-$$
-\tr A B = \tr B A.
-$$
-
-### Question 3 {.answer #answer-dm-3}
-Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
-est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
-son déterminant est positif ; la matrice $A$ est alors inversible.
-
-Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
-pour être inversible, la formule de Cramer établit
-$$
-A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
-$$
-Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
-de $A$) est une fonction polynomiale
-des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
-est donc une fonction continûment différentiable des coefficients de $A$
-et donc différentiable en $A=I$.
-Par la règle du produit, chaque coefficient de $A^{-1}$ est 
-donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
-différentiable en $A=I$.
-
-Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
-$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + o(\|H\|),$
-l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
-$$
-(I+H)(I + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)) 
-= I + H + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)
-= I,
-$$
-et donc
-$$d \,\mathrm{inv} (I) \cdot H= - H.$$
-
-Dérivée partielles, directionnelles et différentielle
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-dpdd-1}
-
-Les dérivées partielles de la fonction $f:\R^2 \to \R$ définie par
-$$
-f(x,y) 
-= \left|
-\begin{array}{cl}
-0 & \mbox{si } x=0 \mbox{ ou } y=0, \\
-1 & \mbox{sinon.}
+\begin{array}{c}
+(-\ell_1 s_1(t) -\ell_2 s_{12}(t)) \delta \theta_1  -\ell_2 s_{12}(t) \delta \theta_2 \\
+(\ell_1 c_1(t) + \ell_2 c_{12}(t)) \delta \theta_1 + \ell_2 c_{12}(t) \delta \theta_2
 \end{array}
-\right.
+\right] dt
+\end{multline*}
+et donc par inégalité triangulaire et majoration de l'intégrande,
 $$
-existent en $(0,0)$ et sont nulles, puisque les fonctions partielles associées
-sont nulles. Mais $f$ n'est pas continue en l'origine ; 
-elle n'y est donc a fortiori pas différentiable.
-
-### Question 2 {.answer #answer-dpdd-2}
-Les dérivées directionnelles de la fonction $f:\R^2 \to \R$ définie par
+|x- x_0| = |f_1(\theta_1,\theta_2) - f_1(\theta_{10}, \theta_{20})| \leq (\ell_1 + \ell_2) |\delta \theta_1| + \ell_2 |\delta \theta_2|
 $$
-f(x,y) 
-= \left|
-\begin{array}{cl}
-1 & \mbox{si } x > 0 \mbox{ et } y=x^2, \\
-0 & \mbox{sinon.}
-\end{array}
-\right.
+ainsi que 
 $$
-existent en $(0,0)$ et sont nulles pour tout $h \in \R^2$, 
-puisque les fonctions associées $t \in \R \mapsto f(t h)$
-sont nulles pour $|t|$ suffisamment petit.
-Mais $f$ n'est pas continue en l'origine ; 
-elle n'y est donc a fortiori pas différentiable.
+|y - y_0| = |f_2(\theta_1,\theta_2) - f_2(\theta_{10}, \theta_{20})|
+\leq (\ell_1 + \ell_2) |\delta \theta_1| + \ell_2 |\delta \theta_2|.
+$$
+Si $|\delta \theta_1| \leq  \varepsilon$ et $|\delta \theta_2| \leq  \varepsilon$,
+on en déduit
+$$
+|x - x_0| \leq (\ell_1 + 2\ell_2) \varepsilon \; \mbox{ et } \;
+|y - y_0| \leq (\ell_1 + 2\ell_2) \varepsilon.
+$$
+Le point $(x, y) = f(\theta_1, \theta_2)$ appartient donc au carré centré 
+en $(x_0, y_0)$ d'arête de longueur $(\ell_1/2 + \ell_2=\varepsilon$. 
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -3424,7 +3162,7 @@ $$
 existe.
 
 ### Question 5 {.answer #answer-ddh-5}
-Si $f$ est différentiable au sens de Fréchet, notons $\varepsilon$
+Si $f$ est différentiable, notons $\varepsilon$
 la fonction définie dans un voisinage de $0$, continue et nulle en $0$,
 telle que
 $$
@@ -3451,7 +3189,7 @@ Le membre de droite, égal à $f'(x, h)$, est linéaire en $h$ ;
 la fonction $f$ est donc différentiable au sens de Hadamard.
 
 Réciproquement, supposons que $f$ est différentiable au sens de Hadamard.
-Pour montrer que $f$ est différentiable au sens de Fréchet, 
+Pour montrer que $f$ est différentiable, 
 de différentielle $f'(x, h)$, montrons que
 $$
 \frac{\|f(x+h) - f(x) - f'(x, h)\|}{\|h\|} \to 0 \, \mbox{ quand } \, h \to 0,
@@ -3488,120 +3226,63 @@ $$
 \, \mbox{ quand } \, i \to +\infty
 $$
 ce qui contredit l'inégalité ci-dessus et prouve la contradiction.
-Par conséquent, $f$ est bien différentiable au sens de Fréchet.
+Par conséquent, $f$ est bien différentiable.
 
-Inégalité de la valeur moyenne {.answer #answer-ivm}
+
+Thermodynamique
 --------------------------------------------------------------------------------
 
-Soit $F:[a, b] \to \R^m$ une primitive de $f$. 
-Par [définition de l'intégrale de Newton](#intégrale-Newton),
-$$
-\left<f\right> = \frac{1}{b-a} \int_a^b f(x) \, dx
-= \frac{F(b) - F(a)}{b-a}.
-$$
-Or si $\|F'\| = \|f\|$ est borné sur $[a, b]$, par 
-[le théorème des accroissements finis](#TAFS),
-$$
-\|F(b) - F(a)\| \leq \sup_{x \in [a, b]} \|f(x)\| \times  (b-a),
-$$
-et donc
-$$
-\left\|\left<f\right>\right\| \leq  \sup_{x \in [a, b]} \|f(x)\|.
-$$
-Il va de soi que cette inégalité reste vérifiée si $\|f\|$ est non-bornée,
-c'est-à-dire si $\sup_{x \in [a, b]} \|f(x)\| = +\infty$.
+### Question 0 {.answer #answer-th-0}
+Les variables associées à l'expression fournie de l'entropie $S$ sont le volume
+$V$ et la température $T$. Pour que l'expression définissant l'entropie soit 
+toujours définie, il suffit d'exiger que $V$ et $T$ soient strictement positives.
 
-Egalité des accroissements finis ? {.answer #answer-eaf}
---------------------------------------------------------------------------------
-
-La dérivée de $f$ est donnée par $f'(t) = (-\sin t, \cos t)$; 
-en particulier pour tout $t \in [0, 2\pi]$, $\|f'(t)\| = 1$.
-Or $f(2\pi) - f(0) = 0$, donc il est impossible de trouver un 
-$t$ tel que $f(2\pi) - f(0) = f'(t) \times 2\pi$.
-
-Convexité
---------------------------------------------------------------------------------
-
-### Question 0 {.answer #answer-c-0}
-[Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
+### Question 1 {.answer #answer-th-1}
+L'entropie, en tant que fonction de $(V, T) \in \left]0,+\infty\right[^2$, 
+est une fonction (continûment) différentiable. En effet, les dérivées partielles
+de $S(V,T)$ sont définies en tout point et vérifient
 $$
-f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2)
+\frac{\partial S(V, T)}{\partial V} = N k_B \frac{1}{V} 
+\; \mbox{ et } \;
+\frac{\partial S(V,T)}{\partial T} = \frac{3}{2}N k_B \frac{1}{T},
 $$
-et donc
+deux expressions dépendant continûment de $(V, T)$. 
+On a par conséquent
 $$
-f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2).
-$$
-Par conséquent,
-$$
-f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
+d S = \frac{\partial S(V, T)}{\partial V} d V + \frac{\partial S(V,T)}{\partial T} dT = N k_B \left[\frac{dV}{V} + \frac{3}{2} \frac{dT}{T}\right].
 $$
 
-### Question 1 {.answer #answer-c-1}
-En considérant $y = x+2h$ et $\lambda = 1/2$, on voit que l'hypothèse
-de convexité de $f$ entraîne 
+### Question 2 {.answer #answer-th-2}
+Si $U$ est une fonction (différentiable) de $(V, T)$, 
+on peut interpréter mathématiquement la relation $dU = T dS - P dV$ comme
 $$
-f(x+h) \leq \frac{1}{2} f(x) + \frac{1}{2} f(x+2h),
+d(U(V, T)) = T d(S(V, T)) - P(V, T) dV
 $$
-soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
-En utilisant le résultat de la question précédente,
-on obtient
-$$d^2 f(x) (\cdot h)^2 + o(\|h\|^2) \geq 0$$ et donc, en substituant 
-$th$ à $h$ et en faisant tendre $t$ vers $0$, 
-$d^2 f(x) (\cdot h)^2 \geq 0.$
+où $P(V, T) := N k_B T / V$ résulte de la loi des gaz parfaits $PV = N k_B T$.
+En exploitant la différentielle $dS(V, T)$ déjà calculée, on en déduit 
+$$
+d(U(V, T)) =  T N k_B \left[\frac{dV}{V} + \frac{3}{2} \frac{dT}{T}\right] - N k_B T \frac{dV}{V}
+= \frac{3}{2} N k_B dT.
+$$
 
-### Question 2 {.answer #answer-c-2}
-Comme $f((1-\lambda) x + \lambda y) = f(x + \lambda (y-x))$,
-l'inégalité de Taylor avec reste intégral fournit 
+### Question 3 {.answer #answer-th-3}
+Soit $(V_0, T_0) \in \left]0, +\infty\right[^2$ et 
+$(V, T) \in \left]0, +\infty\right[^2$. Le segment reliant $(V_0, T_0)$
+et $(V, T)$ est inclus tout entier dans $\left]0, +\infty\right[^2$
+qui est convexe. Pour tout $t \in [0, 1]$, on a 
+\begin{align*}
+\phi(t) & :=
+dU(V_0 + t(V - V_0), T_0 + t(T - T_0)) \cdot (V - V_0, T - T_0) \\ 
+&\phantom{:}= \frac{3}{2}  N k_B dT \cdot (V - V_0, T - T_0) \\
+&\phantom{:}= \frac{3}{2}  N k_B (T - T_0).
+\end{align*}
+La fonction $\phi$ est constante, donc intégrable sur $[0, 1]$.
+Par [le théorème fondamental du calcul multivariable](#VF), on a
 $$
-\begin{split}
-f((1-\lambda) x + \lambda y)
-&= f(x) + df(x) \cdot \lambda (y-x) \\
-&\phantom{=} + \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot \lambda(y-x))^2 (1- t) \, dt.
-\end{split}
+U(V, T) = U(V_0, T_0) + \int_0^1 \phi(t) \, dt
+= \left[U(V_0, T_0) - \frac{3}{2}  N k_B T_0\right] + \frac{3}{2}  N k_B T,
 $$
-L'intégrale ci-dessus étant égale à 
-$$
-\lambda \int_0^1 d^2f(x+ t\lambda (y-x)) (\cdot (y-x))^2 
-\left(1- \frac{ \lambda t}{\lambda} \right) \, \ \lambda dt,
-$$
-par le changement de variable $t \lambda \to t$ elle est égale à
-$$
-\lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
-\left(1 - \frac{t}{\lambda} \right)\, dt.
-$$
-En utilisant le développement de Taylor avec reste intégral pour
-$\lambda \in \left]0, 1\right]$ et $\lambda=1$, on obtient donc
-$$
-\begin{split}
-f((1-\lambda) x + \lambda y) - \lambda f(y)
-&= f(x) - \lambda f(x) + df(x) \cdot \lambda (y-x) - \lambda df(x) \cdot (y-x) \\
-&\phantom{=} + \lambda \int_0^{\lambda} d^2f(x+ t (y-x)) (\cdot (y-x))^2  \left(1 - \frac{t}{\lambda} \right)\, dt
-\\
-&\phantom{=} - \lambda \int_0^{1} d^2f(x+ t (y-x)) (\cdot (y-x))^2 
-\left(1 - t \right)\, dt,
-\end{split}
-$$
-soit 
-$$
-f((1-\lambda) x + \lambda y) - \lambda f(y)
-- (1 - \lambda) f(x) 
-=\lambda \int_0^1 \phi_f(t) \psi_{\lambda} (t) \, dt
-$$
-où
-$\phi_f(t) := d^2f(x+ t (y-x)) (\cdot (y-x))^2$ est positive par hypothèse et 
-$$
-\psi_{\lambda}(t) :=
-\left|
-\begin{array}{cc}
-t(1 - 1/\lambda) & \mbox{si } t \leq \lambda\\
-(t - 1) & \mbox{sinon.}
-\end{array}
-\right.
-$$
-La fonction $\psi_{\lambda}$ étant négative, on en conclut que
-$f((1-\lambda) x + \lambda y) - \lambda f(y) - f(x)$ est négative pour tout
-$\lambda \in \left]0, 1\right]$ ; cette inégalité est également trivialement
-satisfaite si $\lambda=0$. La fonction $f$ est donc convexe.
+ce qui démontre qu'à une constante près, on a $$U(V, T) =  \frac{3}{2} Nk_B T.$$
 
 <!--
 TODO -- Analycité

@@ -73,7 +73,8 @@ def cd_error():
     plot(h, abs(1.0 - FD(f, 0.0, h)), "k", color="0.75", label="erreur de FD")
     plot(h, abs(1.0 - CD(f, 0.0, h)), "k", color="0.00", label="erreur de CD")
     title("Graphe de $h \mapsto [|\mathrm{CD}(\exp, 0, h) -\exp'(0)|]$")
-    set_ratio(1.0, scale=1, bottom=-0.1, top=-0.1)
+    set_ratio(1.0, scale=1, bottom=-0.05, top=-0.1)
+    xlabel("$h$")
     gca().set_aspect(1.0)
     #gcf().set_figwidth(width_in)
     extra = 1.2

@@ -7,14 +7,150 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
-Intégrales Multiples
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+
+Objectifs d'apprentissage
 ================================================================================
 
-Définitions
---------------------------------------------------------------------------------
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, les objectifs "Expert", les démonstrations du document[^hp] 
+et les contenus en annexe ne sont pas exigibles ("hors-programme").
+
+[^hp]: L'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+
+
+#### Construction de l'intégrale dans $\R^n$
+
+
+  - \one savoir définir un pavé de $\R^n$ (ou de $[-\infty, \infty]^n$),
+
+  - \one savoir calculer son volume $n$-dimensionnel,
+
+  - savoir comment exploiter dans ce cadre $n$-dimensionnel les concepts :
+
+    - \two d'ensemble négligeable, 
+
+    - \two de subdivision pointée, 
+
+    - \one de somme de Riemman,
+
+    - \two de jauge et de subdivision subordonnée,
+
+    - \three d'intégrale de Lebesgue.
+
+#### Ensembles et fonctions mesurables
+
+  - savoir caractériser :
+
+    - \two les ensembles de mesure finie et mesurables de $\R^n$,
+
+    - \two les fonctions mesurables (critère de l'image réciproque),
+    
+    - \one les fonctions intégrables (critère d'intégrabilité dominée).
+
+#### Propriétés de l'intégrale dans $\R^n$
+
+  - savoir exploiter
+
+    - \one la linéarité de l'intégrale,
+
+    - \one sa croissance et l'inégalité triangulaire,
+
+    - \two les relations entre intégrale et égalité presque partout,
+
+    - \two les théorèmes de convergence.
+
+
+#### Intégrale multiple
+
+  - \one savoir calculer une intégrale dans $\R^n$ 
+         au moyen de $n$ intégrales dans $\R$,
+
+  - \one connaître les variantes de cette technique (ordre et nombre des variables),
+
+  - \one connaître l'hypothèse d'intégrabilité validant ce calcul (Fubini),
+
+  - \three connaître les propriétés des fonctions intermédiaires (Fubini),
+
+  - \two savoir caractériser l'intégrabilité des fonctions positives (Tonelli),
+
+  - \three connaître les propriétés des fonctions intermédiaires (Tonelli),
+
+  - \two savoir caractériser l'intégrabilité des fonctions signées (via Tonelli).
+
+#### Changement de variables
+
+  - \one connaître la formule du changement de variables,
+
+  - \two connaître les hypothèses du théorème et son résultat d'intégrabilité,
+
+  - \two savoir appliquer le théorème de façon relativement directe,
+
+  - \three savoir introduire un changement de variables quand c'est pertinent.
+
+#### Théorème de la divergence
+
+  - \four savoir caractériser un compact à bord $C^1$,  
+
+  - \four savoir calculer la normale extérieure d'un tel ensemble,
+
+  - \four connaître la définition d'intégrale de surface,
+
+  - \four savoir exploiter le théorème de la divergence.     
+
+
+Intégrale de fonctions de plusieurs variables
+================================================================================
+
+### Domaine des variables {.remark .ante #dv}
+Comme pour les fonctions d'une seule variable, 
+la théorie de l'intégrale de jauge des fonctions de plusieurs variables est 
+applicable à des variables pouvant prendre des valeurs réelles ou infinies.
+Mais il s'agit largement d'un 
+"détail d'implémentation" : en pratique, le besoin que nous souhaitons
+satisfaire, c'est l'intégration des fonctions de variables réelles ; 
+pour nous conformer à ce cas d'usage principal, 
+et après avoir construit l'intégrale dans le domaine $[-\infty,\infty]^n$, 
+nous énoncerons uniquement les propriétés de l'intégrale dans le domaine $\R^n$. 
+Quand il sera nécessaire de considérer une fonction de variables
+réelles comme fonction de variables réelles étendues (pouvant être infinies), 
+on prolongera la fonction initiale en lui assignant la valeur zéro 
+dès qu'une de leur variables est infinie[^tav].
+De façon similaire, il est possible de définir l'intégrale d'une fonction 
+$f: A \to \R$ où $A \subset \R^n$ en la prolongeant par zéro sur $\R^n$ (ou directement 
+sur $[-\infty, +\infty]^n$).
+
+[^tav]: Toute autre valeur que zéro conviendrait aussi bien ici, car
+la différence entre le domaine de définition du prolongement et le domaine 
+initial est $[-\infty, \infty]^n \setminus \R^n$, qui est un ensemble négligeable
+(cf. [exercice "domaine à l'infini"](#dai)). Dans le cas d'un domaine de
+définition initial $A$ quelconque, il est par contre nécessaire 
+de prolonger par zéro (au moins presque partout).
+
+### Prolongements {.exercise .question .one #p}
+A quelles fonctions de $[-\infty, +\infty]^2 \to \R$ sont associées 
+la fonction $(x, y) \in \R^2 \mapsto \exp(-x^2-y^2) \in \R$, la fonction
+$(x, y) \in \R^2 \mapsto \arctan (x^2 + y^2) \in \R$, la fonction 
+$(x, y) \in [-1,1]^2 \mapsto 1 \in \R$ ?
 
 ### {.remark .ante}
-Les pavés joueront dans $\R^n$ le rôle dévolu aux intervalles dans $\R$ :
+Dans la suite, les pavés joueront pour l'intégration des fonctions de 
+plusieurs variables le rôle qui était dévolu aux intervalles pour les fonctions 
+d'une variable :
 
 ### Pavés {.definition}
 On appelle *pavé* de $[-\infty,+\infty]^n$ tout ensemble $I$ de la forme
@@ -23,24 +159,60 @@ I = I_1 \times \dots \times I_n
 $$
 où les $I_i$ sont des intervalles de $[-\infty,+\infty]$.
 
+![Réprésentation du pavé $[1,3] \times [1, 2]$ du plan (étendu).](images/pavé.svg)
+
+### Partition en pavés {.exercise .question .one #pp}
+Montrer que l'ensemble $\R^2 \setminus [-1,1]^2$ peut être partitionné en
+4 pavés. 
+
 ### Volume d'un pavé
-On appelle *volume* du pavé $I = I_1 \times \dots \times I_n$ de $[-\infty,+\infty]^n$
-la valeur
+On appelle *volume $n$-dimensionnel* (ou parfois simplement *volume*
+quand le contexte est clair) du pavé 
+$I = I_1 \times \dots \times I_n$ de $[-\infty,+\infty]^n$ la valeur
 $$
-v(I)  = \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
+\lambda(I) := \ell(I_1) \times \dots \times \ell(I_n) \in \left[0, +\infty \right],
 $$
 en adoptant la convention que $0 \times \infty = 0$.
 
 ### Longeur, aire, volume {.remark}
 On pourra continuer à appeler cette grandeur
-*longueur* plutôt que *volume* si l'on travaille dans $\R$ 
+*longueur* plutôt que *volume $n$-dimensionnel* si l'on travaille dans $\R$ 
 (ou $[-\infty,+\infty]$) ; 
 dans $\R^2$ (ou $[-\infty,+\infty]^2$) il est approprié 
-de la désigner sous le terme d'*aire*. 
-Si l'on souhaite distinguer le cas du
-volume "classique" dans $\R^3$ (ou $[-\infty,+\infty]^3$) et les autres dimensions, 
-on pourra utiliser le terme d'*hypervolume* comme terme générique
-et réserver le terme de *volume* au cas tri-dimensionnel.
+de la désigner sous le terme d'*aire* et dans $\R^3$ (ou $[-\infty, +\infty]^3$)
+sous le terme de *volume*. On pourra dans ces trois cas particuliers préférer
+les notation $\ell$, $a$ et $v$ au symbole $\lambda$.
+
+### Volume de pavés {.exercise .question .one #exo-volume-pavé}
+Calculer l'aire des pavés $\{(0,0)\}$, $[-1, 1]^2$, $[-1, 1] \times [0, +\infty]$
+et $\{0\} \times \R$ de $[-\infty, +\infty]^2$.
+
+### Ensemble négligeable  {.definition .two #ensemble-négligeable}
+Un ensemble $A$ de $[-\infty, +\infty]^n$ est *négligeable* si pour tout
+$\varepsilon > 0$, il existe une collection dénombrable de pavés 
+$I_1$, $I_2$, $\dots$, de $[-\infty,+\infty]^n$ qui
+recouvre l'ensemble $A$ -- telle que $A \subset \bigcup_{i} I_i$ -- 
+et vérifiant
+$$
+\sum_i \lambda(I_i) \leq  \varepsilon.
+$$
+
+### Domaine à l'infini {.exercise .question .one #dai}
+Montrer que l'ensemble $[-\infty,+\infty]^n \setminus \R^n$ est d'aire
+négligeable.
+
+### Graphe du sinus {.exercise .question .two #gs}
+Montrer que l'ensemble 
+$$G = \{(x, \sin x) \; | \; x \in [0, 2\pi]\}$$ 
+est d'aire négligeable.
+
+![Graphe de la fonction $\sin$ sur $[0, 2\pi]$.](images/sin.py)
+
+### Presque partout {.definition}
+Une propriété $P$ dépendant d'un vecteur $x \in [-\infty,\infty]^n$ est vraie *presque partout*
+si l'ensemble des points $x$ où elle est fausse est un ensemble
+négligeable. On pourra utiliser la notation "$P$ p.p." ou "$P(x)$ p.p." 
+pour signifier que la propriété $P$ est vraie presque partout.
 
 ### Subdivision pointée
 Une *subdivision pointée* du pavé fermé $I$ de 
@@ -49,23 +221,25 @@ une famille finie
 $$
 \{(t_i, J_i) \; | \; \; 0 \leq i \leq k-1\}
 $$
-où les $J_i$ sont des pavés fermés de $I$ sans chevauchement
--- les intersections deux à deux de leurs intérieurs sont vides --
+où les $J_i$ sont des pavés fermés de $I$ *sans chevauchement*
+(les intersections deux à deux des pavés de cette collection 
+sont des ensembles négligeables)
 qui recouvrent $I$ et tels que 
 $t_i \in J_i$ pour tout $i \in \{0, \dots, k-1\}.$
 
+![Une subdivision pointée de $[-\infty, \infty]^2$ comportant 12 pavés.](images/pavage.svg)
 
 ### Somme de Riemman {.definition}
-La somme de Riemann associée à la fonction $f:I \to \mathbb{R}$,
-où $I$ est un pavé fermé de $[-\infty,+\infty]^n$ 
+La *somme de Riemann* associée à la fonction $f:I \to \mathbb{R}$,
+où $I$ est un pavé fermé de $[-\infty,+\infty]^n$, 
 et à la subdivision pointée $\mathcal{D}$ 
 de $I$ est la grandeur
 $$
-S(f, \mathcal{D}) = \sum f(t) v(J), \; (t, J) \in \mathcal{D}, \, v(J) < + \infty.
+S(f, \mathcal{D}) = \sum f(t) \lambda(J), \; \; (t, J) \in \mathcal{D}, \, \lambda(J) < + \infty.
 $$
 
 ### Jauge {.definition}
-Une jauge $\gamma$ sur un pavé fermé $I$ de $[-\infty,+\infty]^n$ est une 
+Une *jauge* $\gamma$ sur un pavé fermé $I$ de $[-\infty,+\infty]^n$ est une 
 fonction qui associe à tout $t \in I$ un 
 pavé ouvert $\gamma(t)$ de $[-\infty,+\infty]^n$ contenant $t$. 
 
@@ -75,151 +249,494 @@ est *subordonnée à une jauge* $\gamma$ sur $I$ si pour tout
 $(t, J) \in \mathcal{D}$, $J \subset \gamma(t).$
 
 ### Intégrale dans $\mathbb{R}^n$ {.definition}
-Une fonction $f:\R^n \to \R$ est dite *intégrable 
-(au sens de Henstock-Kurzweil)* s'il existe un réel $A$ tel
+Une fonction $f:[-\infty,\infty]^n \to \R$ est dite *intégrable 
+au sens de Henstock-Kurzweil* s'il existe un réel $A$ tel
 que pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ de 
 $[-\infty,+\infty]^n$ telle que pour 
 toute subdivision pointée $\mathcal{D}$ de $[-\infty,+\infty]^n$
 subordonnée à $\gamma$, on ait
 $|S(f, \mathcal{D}) - A| \leq \varepsilon$.
 Le réel $A$ quand il existe est unique ; 
-il est appelé *intégrale de $f$ sur $\R^n$* et noté
+il est appelé *intégrale de Henstock-Kurzweil de $f$ sur $\R^n$*.
+
+La fonction $f$ est dite *intégrable (au sens de Lebesgue)* si $f$ et $|f|$ sont
+intégrables au sens de Henstock-Kurzweil. L'intégrale (de Lebesgue) de $f$ est alors
+définie comme l'intégrale de Henstock-Kurzweil de $f$ et notée
 $$
 \int f \; \mbox{ ou } \;
-\int_{\R^n} f(x) \, dx \; \mbox{ ou } \; \int_{\R^n} f(x_1,\dots, x_n) \, dx_1\dots dx_n.
+\int f(x) \, dx \; \mbox{ ou } \; \int f(x_1,\dots, x_n) \, dx_1\dots dx_n.
+$$
+Lorsque la fonction $f$ est définie sur $A \subset [-\infty,\infty]^n$ 
+on dira que $f$ est intégrable sur $A$ si son prolongement $\bar{f}$
+par zéro à $[-\infty, \infty]^n$ est intégrable sur $[-\infty,\infty]^n$ ;
+s'il est nécessaire
+d'être explicite quant au domaine d'intégration $A$, on utilisera les notations
+$$
+\int_A f := \int_A f(x) \, dx := \int \bar{f}(x) \, dx.
 $$
 
+<!--
 ### {.post}
 Comme dans le cas réel, la définition supposerait que $f$ soit a priori
 définie sur $[-\infty,+\infty]^n$ plutôt que sur $\R^n$ ; 
 mais on peut étendre $f$ pour des arguments à l'infini 
-(dont au moins l'une des composantes est infinie) 
+(dont au moins l'un des arguments est infini) 
 sans que l'intégrabilité de cette extension ou la valeur de son intégrale
 ne soient affectés par le choix de ces valeurs.
+-->
 
-Propriétés élémentaires
---------------------------------------------------------------------------------
+### Propriétés élémentaires
 
-Nous évoquons rapidement dans cette section la façon dont les propriétés 
-de l'intégrale dans $\R$ se transposent à $\R^n$.
+Dans cette section, nous énonçons sans preuve dans le cadre $\R^n$
+les propriétés de l'intégrale déjà connues dans $\R$.
 
-L'intégrale dans $\R^n$ est toujours linéaire et positive ;
-l'intégrabilité peut être testée par un critère de Cauchy analogue au cas réel.
-La notion d'ensemble négligeable est similaire au cas réel, à ceci près
-qu'on utilise des pavés au lieu d'intervalles et le volume au lieu de la
-longueur ; comme dans le cas réel, des fonctions égales presque partout
-sont intégrables simultanément et ont la même intégrale.
+### Linéarité {.theorem .one #linéarité}
+Si les fonctions $f: \R^n \to \mathbb{R}$ et 
+$g: \R^n \to \mathbb{R}$ sont intégrables et 
+$\alpha \in \mathbb{R}$, alors les fonctions $f+g$ et $\alpha f$ sont intégrables. 
+De plus,
+$$
+\int f(x) + g(x) \, dx 
+= 
+\int f(x) \, dx +
+\int  g(x) \, dx
+\;
+\mbox{ et }
+\;
+\int  \alpha f(x) \, dx
+=
+\alpha \int f(x) \, dx.
+$$
 
-Un théorème de changement de variable existe, mais il diffère quelque peu
-du résultat élémentaire déjà traité dans $\R$
-(par certains aspects, il est plus général) ; 
-il possède dans sa propre sous-section dans ce chapitre.
+### Additivité I {.exercise .question .one #exo-additivité-I}
+Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
+et sur $B \subset \R^n$ et que $A$ et $B$ sont d'intersection vide 
+alors $f$ est intégrable sur $A\cup B$ et
+$$
+\int_{A \cup B} f(x) \, dx = \int_A f(x) \, dx + \int_B f(x) \, dx.
+$$
+
+<!--
+
+**TODO:** que faire avec ça ? Il y a une adaptation trivale où les ensembles
+$A$ et $B$ sont disjoints, une autre dans le cas ou l'intersection est 
+négligeable, mais alors ça n'est pas le moment adéquat dans l'ordre des
+notions.
+
+### Additivité {.theorem #additivité .one}
+Si la fonction $f$ est définie et intégrable sur les intervalles
+$[a, b]$ et $[b, c]$, alors elle est intégrable sur l'intervalle $[a, c]$
+et
+$$
+\int_a^b f(t) \, dt + \int_b^c f(t) \, dt = \int_a^c f(t) \, dt.
+$$
+
+**TODO.** Même chose : la version "élémentaire" n'est plus guère utile ici ;
+il faut restreindre $f$ à une ensemble mesurable, c'est la version "chapitre 2"
+qui devient pertinente.
+
+### Restriction {.theorem #restriction .one}
+Si $f$ est intégrable sur l'intervalle $[a, b]$, 
+elle est intégrable sur tout intervalle $[c, d]$ 
+inclus dans $[a, b]$.
+
+-->
+
+### Croissance de l'intégrale {.proposition .one #croissance}
+Si les fonctions $f: \R^n \to \mathbb{R}$ et 
+$g: \R^n \to \mathbb{R}$ sont intégrables et que
+$f \leq g$, alors
+$$
+\int f(x) \, dx \leq \int g(x)\,dx.
+$$
+
+### Inégalité triangulaire {.corollary #inégalité-triangulaire}
+Si $f: \R^n \to \R$ est intégrable alors $|f|$ est intégrable et
+$$
+\left|\int f(x) \, dx \right| \leq \int |f(x)|\, dx.
+$$
+
+### Fonctions égales presque partout {.proposition #fepp .two}
+Une fonction $f:\R^n \to \R$ égale presque partout à une 
+fonction $g:\R^n \to \R$ intégrable est elle-même intégrable
+et 
+$$
+\int f(x) \, dx = \int g(x) \, dx.
+$$
+
+### Fonctions égales presque partout (réciproque) {.proposition #fepp-réciproque .two}
+Si les fonctions $f:\R^n \to \R$ et $g: \R^n \to \R$ sont intégrables
+et si 
+$$
+f \leq g \, \mbox{ presque partout} 
+\; \mbox{ et } \;
+\int f(x) \, dx \geq \int g(x) \, dx,
+$$
+alors $f = g$ presque partout.
+
+### {.remark}
+Un théorème de changement de variables généralise le théorème
+déjà énoncé pour une variable ; il est suffisamment complexe pour mériter 
+[sa propre section dans ce chapitre](#changement-de-variables).
 L'équivalent dans $\R^n$ du théorème fondamental du calcul est le théorème
-de la divergence[^pe] auquel une section entière de ce chapitre est consacrée.
+de la divergence[^pe] ; [l'annexe](#annexe) lui est entièrement 
+consacrée.
 
 [^pe]: même si cela ne saute pas forcément aux yeux !
 
-Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
-dominée se transposent directement.
+### {.remark .ante}
 La notion d'ensemble mesurable est inchangée (modulo le remplacement des
-intervalles compact de $\R$ par les pavés compacts de $\R^n$) ; les trois
-propriétés élémentaires de la collection des ensembles mesurables de $\R^n$
+intervalles fermés bornés de $\R$ par les pavés fermés bornés de $\R^n$) ; 
+les trois propriétés élémentaires de la collection des ensembles mesurables 
+de $\R^n$
 sont toujours vérifiées (la collection est une tribu), cette famille contient
 tous les fermés (et tous les ouverts) et "négligeable" et 
-"(mesurable et) de volume nul" sont toujours synonymes.
+"(mesurable et) de mesure ($n$-dimensionnelle) nulle" sont toujours synonymes.
 
-Les fonctions mesurables ont la même definition (limite simple de fonctions
-intégrables) ; le critère de mesurabilité par l'image réciproque est toujours
-valide. L'intégrabilité (et les intégrales) des fonctions définies sur des 
-sous-ensembles de $\R^n$ (ou $[-\infty, +\infty]^n$) sont toujours définies
-à partir de l'extension de la fonction par zéro. Les fonctions absolument 
-et conditionnellement intégrables sont définies de manière identique.
+### Ensemble mesurable {.definition}
+Un ensemble $E$ de $\R^n$ est *de mesure (de Lebesgue ou $n$-dimensionnelle)
+finie* si sa fonction caractéristique $1_E$ est intégrable sur $\R^n$ ; 
+il est *mesurable* si sa fonction caractéristique est intégrable 
+sur tout pavé fermé borné de $\R^n$.
+La *mesure (de Lebesgue ou $n$-dimensionnelle)* $\lambda(E)$ 
+d'un ensemble $E$ mesurable est définie par
+$$
+\lambda(E) := \int 1_E(x) \, dx
+$$
+si $E$ est de mesure finie et
+$$
+\lambda(E) := +\infty
+$$
+dans le cas contraire (si $E$ est mesurable mais pas de mesure finie).
 
-Théorème de Fubini
---------------------------------------------------------------------------------
+
+### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
+
+ 1. L'ensemble vide est mesurable.
+
+ 2. Le complémentaire d'un ensemble mesurable est mesurable.
+
+ 3. L'union d'une collection dénombrable d'ensembles mesurables
+    est mesurable.
+
+
+### Topologie et ensembles mesurables {.theorem #OSM}
+Tout ensemble fermé (ou ouvert) est mesurable.
+
+### Disque fermé {.exercise .question .one #df}
+Montrer que le disque $D = \{(x_1,x_2) \in \R^2 \; | \; x_1^2 + x_2^2 \leq 1\}$
+est mesurable.
+
+### Ensembles négligeables {.theorem #négligeable-longueur-nulle}
+Un ensemble est de mesure de Lebesgue nulle si et seulement s'il est négligeable.
+
+### Additivité II {.exercise .question .two #exo-additivité-II}
+Soit $f :\R^n \to \R$. Montrer que si $f$ est intégrable sur $A \subset \R^n$ 
+et sur $B \subset \R^n$ et que $A$ et $B$ sont sans chevauchement 
+($A\cap B$ est négligeable) alors $f$ est intégrable sur $A\cup B$ et
+$$
+\int_{A \cup B} f(x) \, dx = \int_A f(x) \, dx + \int_B f(x) \, dx.
+$$
+
+### {.remark .ante}
+Les fonctions mesurables ont la même definition que dans $\R$ ; 
+le critère de mesurabilité par l'image réciproque est toujours valide. 
+
+
+### Fonction mesurable {.definition}
+Une fonction $f:\R^n \to \R$ est *mesurable* 
+si elle est la limite simple d'une suite de fonctions intégrables,
+c'est-à-dire s'il existe une suite de fonctions intégrables 
+$f_k:\R^n \to \R$ telle que 
+pour tout $x\in \R$, 
+$f_k(x) \to f(x)$ quand $k \to +\infty$.
+Une fonction $f:\R^n \to \R^m$ est mesurable 
+si chacune de ses composantes est mesurable.
+
+### Critère de l'image réciproque {.theorem #CIR}
+Une fonction $f:\R^n \to \R^m$ est mesurable si et seulement
+l'image réciproque de tout fermé (ou de tout ouvert) de $\R^m$
+par $f$ est mesurable.
+
+
+### {.remark .ante}
+Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
+dominée se transposent à l'identique pour les fonctions de plusieurs variables.
+
+### Théorème de convergence dominée {#TCD .theorem}
+Si une suite de fonctions intégrables $f_k:\R^n \to \R$
+converge simplement vers la fonction $f$, c'est-à-dire si pour tout
+$x \in \R^n$,
+$$
+\lim_{k \to +\infty} f_k(x) = f(x)
+$$
+et qu'il existe une fonction intégrable $g:\R \to \left[0, +\infty\right[$ 
+dominant la suite $f_k$, c'est-à-dire telle que pour tout $k \in \N$ 
+et pour tout 
+$x \in \R^n$,
+$$
+|f_k(x)| \leq g(x)
+$$
+alors la fonction $f$ est intégrable et 
+$$
+\int f(x) \, dx 
+=
+\int \lim_{k \to +\infty} f_k(x) \, dx
+= 
+\lim_{k \to +\infty} \int f_k(x) \, dx.
+$$
+
+
+### Théorème de convergence monotone {#TCM .theorem}
+Si une suite de fonctions intégrables $f_k:\R^n \to \R$
+est croissante et majorée en tout point, c'est-à-dire si pour tout
+$x$ de $\R^n$ 
+$$
+\mbox{pour tout } \, k \in \N, \, f_k(x) \leq f_{k+1}(x) 
+\; \mbox{ et } \;
+\sup_k f_k(x) < + \infty,
+$$
+alors la limite simple $f$ des $f_k$ est intégrable si et seulement si 
+$$
+\sup_k \int f_k(x) \, dx < +\infty.
+$$
+et dans ce cas,
+$$
+\int f(x) \, dx 
+=
+\int \lim_{k \to +\infty} f_k(x) \, dx
+= 
+\lim_{k \to +\infty} \int f(x) \, dx.
+$$
+
+### Critère d'intégrabilité dominée {.theorem #CID}
+Une fonction $f: \R^n \to \R$ est intégrable si et seulement
+si $f$ est mesurable et il existe une fonction intégrable
+$g: \R \to \left[0,+\infty\right[$ telle que $|f| \leq g$.
+
+Intégrale multiple
+================================================================================
 
 ### Théorème de Fubini {.theorem #Fubini}
 Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ 
 une fonction intégrable.
-Alors la fonction partielle $x \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
+Alors la fonction partielle $x \in \mathbb{R}^m \mapsto f(x, y)$ est intégrable 
 pour presque tout $y \in \mathbb{R}^n$, la fonction définie presque partout
 $$
 y \in \R^n \mapsto \int_{\R^m} f(x, y) \, dx
 $$
 est intégrable et
 $$
-\int_{\mathbb{R}^{m+n}} f(z) \, dz = \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dx\right] dy.
+\int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy = \int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dx\right] dy.
 $$
-De même, la fonction partielle $y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable 
-pour presque tout $x \in \mathbb{R}^m$, la fonction définie presque partout
-$$
-x \in \R^m \mapsto \int_{\R^n} f(x, y) \, dy
-$$
-est intégrable et
-$$
-\int_{\mathbb{R}^{m+n}} f(z) \, dz =
-\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y) \, dy\right] dx.
-$$
+
+![Graphe de la fonction $f: (x, y) \in \R \times \R \mapsto e^{-x^2-y^2}$ en gris et 
+des fonctions partielles $x \in \R \mapsto f(x, y)$ pour $y=-1.5, -1, -0.5$ en noir.](images/fubini.py)
+
+### Ordre et nombre des variables {.remark .post #Fubini-extension}
+Deux extensions [du théorème de Fubini](#Fubini) souvent utiles :
+
+  - Il est possible de changer l'ordre d'intégration des variables :
+    si $f$ est intégrable, alors la fonction partielle 
+    $y \in \mathbb{R}^n \mapsto f(x, y)$ est intégrable pour presque tout 
+    $x \in \mathbb{R}^m$, la fonction définie presque partout
+    $$
+    x \in \R^m \mapsto \int_{\R^n} f(x, y) \, dy
+    $$
+    est intégrable et
+    $$
+    \int_{\mathbb{R}^{m+n}} f(x, y) \, dxdy =
+    \int_{\mathbb{R}^m} \left[ \int_{\mathbb{R}^n} f(x, y) \, dy\right] dx.
+    $$
+
+  - Il est possible de considérer des fonctions de trois variables ou plus. 
+    Par exemple, si la fonction $f : \R^m \times \R^n \times \R^p \to \R$ 
+    est intégrable, alors
+    $$
+    \int_{\mathbb{R}^{m+n+p}} f(x, y, z) \, dxdydz =
+    \int_{\R^p} \left[\int_{\mathbb{R}^n} \left[ \int_{\mathbb{R}^m} f(x, y, z) \, dx\right] dy \right] dz.
+    $$
+    (étant entendu que tous les fonctions intermédiaires intervenant dans le membre de droite
+    de cette équation sont bien définies presque partout).
 
 ### Démonstration {.proof}
 Se reporter à @Swa01.
+
+### Calcul de l'aire d'un triangle {.exercise .question .one #triangle}
+Considérons le triangle 
+$$
+T = \{(x, y) \in \R^2 \; | \; x \geq 0, \, y \geq 0 \mbox{ et } x + y \leq  1\}.
+$$
+En supposant  l'intégrale ci-dessous bien définie, calculer :
+$$
+a(T) = \int_{\R^2} 1_T(x, y) \, dxdy.
+$$
+
+### Contre-exemple {.exercise .question .two #fubini-counter-example}
+Comparer les valeurs des intégrales multiples
+$$
+\int_0^1 \left[\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx \right] \, dy
+\; \mbox{ et } \;
+\int_0^1 \left[\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dy \right] \, dx,
+$$
+puis expliquer le résultat.
+Indication : on remarquera que
+$$
+\frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial x} \left(-\frac{x}{x^2+y^2}\right) 
+$$
+<!--
+ =
+-\frac{\partial}{\partial x} \left(\frac{\partial}{\partial y} \arctan \frac{y}{x} \right).
+$$
+-->
+
 
 ### {.ante .post .remark}
-On peut noter que pour appliquer le théorème de Fubini, il faut savoir 
-a priori que $f$ est intégrable, or fréquemment on souhaiterait pouvoir
-déduire l'intégrabilité de l'examen des intégrales itérées. Le théorème
-de Fubini peut alors être complété utilement par le théorème de Tonelli :
+Pour pouvoir appliquer le théorème de Fubini, il faut savoir 
+a priori que la fonction est intégrable et pas seulement que ses intégrales
+multiples sont bien définies (cf. ["Contre-exemple" ci-dessus](#fubini-counter-example)). 
+Si la fonction est à valeurs positives toutefois,
+l'examen de ses intégrales multiples permet de s'assurer de l'intégrabilité ;
+c'est le théorème de Tonelli :
 
 ### Théorème de Tonelli {.theorem #Tonelli}
-Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \mathbb{R}$ une fonction
-mesurable. Si pour presque tout $y \in \R^m$ la fonction
-$x \in \R^n \mapsto |f(x, y)|$ est intégrable et que la fonction
-définie presque partout
+Soit $f: \mathbb{R}^m\times \mathbb{R}^n \to \left[0, +\infty\right[$ 
+une fonction mesurable. Alors, pour presque tout $y \in \R^n$, la fonction 
+$x \in \R^m \mapsto f(x, y)$ est mesurable. Si de plus pour presque tout 
+$y \in \R^n$ cette fonction est intégrable, 
+alors la fonction (définie presque partout)
 $$
-y \in \R^m \mapsto \int_{\mathbb{R}^n} |f(x, y)| \, dx
+g : y \in \R^n \mapsto \int_{\mathbb{R}^m} f(x, y) \, dx
 $$
-est intégrable, alors la fonction $f$ est (absolument) intégrable.
+est mesurable. Si elle est intégrable, alors la fonction 
+$f$ est intégrable. 
+Réciproquement, si $x \in \R^m \mapsto f(x, y)$ n'est pas intégrable
+presque partout ou que la fonction $g$ n'est pas intégrable, 
+alors $f$ n'est pas intégrable.
 
 ### Démonstration {.proof}
 Se reporter à @Swa01.
 
-Changement de variables
---------------------------------------------------------------------------------
+### Fubini-Tonelli, mode d'emploi {.remark}
+Les deux théorèmes sont souvent utilisés ensemble
+pour intégrer une fonction $f : \R^m \times \R^n \to \R$,
+de la façon suivante :
 
-### Changement de variables {.theorem}
+ 1. On vérifie tout d'abord que la fonction $f$ est mesurable. 
+    Comme sa valeur absolue $|f|$ est mesurable et positive, 
+    le théorème de Tonelli est alors *susceptible* de lui être appliqué.
+    
+ 2. On étudie si $|f|$ satisfait bien [toutes les hypothèses du théorème
+    de Tonelli](#Tonelli). Si c'est le cas, la fonction $|f|$ est intégrable ; 
+    la fonction $f$ étant mesurable, [par le critère 
+    d'intégrabilité dominée](#CID), $f$ est donc intégrable. 
+    
+ 3. [Le théorème de Fubini](#Fubini) est donc applicable ! 
+    On peut donc évaluer l'intégrale de $f$ par en calculant son
+    intégrale multiple.
+
+### Triangle d'aire finie {.exercise .question .one #triangle2}
+Montrer que le triangle
+$$
+T = \{(x, y) \in \R^2 \; | \; x \geq 0, \, y \geq 0 \mbox{ et } x + y \leq  1\}
+$$
+est d'aire finie, c'est-à-dire que $1_T$ est intégrable.
+
+
+### Intégrabilité des pavés fermés bornés {.exercise .question .one #ipfb}
+Montrer que la fonction caractéristique $1_I$ du  pavé 
+$I = [a_1,b_1] \times \dots \times [a_n,b_n]$ de $\R^n$ est intégrable et
+que 
+$$
+\lambda(I) := \int 1_I(x) \, dx = (b_1 - a_1) \times \dots \times (b_n - a_n).
+$$
+
+### Tout droite du plan est négligeable {.exercise .two .question #dn}
+En utilisant les [théorèmes de Tonelli](#Tonelli) [et Fubini](#Fubini), 
+montrer que toute droite du plan est négligeable.
+
+
+Changement de variables {#changement-de-variables}
+================================================================================
+
+### Changement de variables {.theorem #theorem-changement-de-variables}
 Soient $D_1$ et $D_2$ des ouverts de $\mathbb{R}^n$ et 
 $h: D_1 \to D_2$ un $C^1$-difféomorphisme de $D_1$ sur $D_2$ :
 une fonction continûment différentiable et bijective
-dont l'inverse $h^{-1}: D_2 \to D_1$ également continûment différentiable. 
-La matrice de Jacobi associée à la différentielle de $h$ étant notée $J_h$,
-la fonction $f: D_2 \to \mathbb{R}$ est absolument intégrable
+dont l'inverse $h^{-1}: D_2 \to D_1$ est également continûment différentiable. 
+La matrice jacobienne associée à la différentielle de $h$ étant notée $J_h$,
+la fonction $f: D_2 \to \mathbb{R}$ est intégrable
 si et seulement si la fonction $(f \circ h) |\det J_h| : D_1 \to \mathbb{R}$ 
-est absolument intégrable et dans ce cas,
+est intégrable et dans ce cas,
 $$
 \int_{D_2} f(y) \, dy = \int_{D_1} f(h(x)) |\det J_h(x)| \, dx.
 $$
 
+![Changement de variables](images/changement-de-variables.svg)
 
 ### Démonstration {.proof}
 Se reporter à [@Swa01, annexe 5].
 
-### {.post .remark}
-L'absolue intégrabilité -- et pas simplement l'intégrabilité -- de la fonction
-est une hypothèse cruciale de ce théorème de changement de variables. 
-On peut en effet exhiber une fonction $f:\R^2 \to \R$ qui soit intégrable,
+### Homothétie {.exercise .question .one #h}
+Soit $f:\R^n \to \R$ une fonction intégrable. Montrer que pour tout
+coefficient $\alpha > 0$, l'intégrale
+$$
+\int_{\R^n} f(\alpha x) dx
+$$
+est bien définie et la calculer en fonction de l'intégrale de $f$ sur $\R^n$.
+
+### Volume et translation {.exercise .question .one #vr}
+Montrer que si $A$ est mesurable et de volume fini dans $\R^3$
+l'image de $A$ par une translation est également mesurable et de même volume.
+
+### Coordonnées polaires {.exercise .question .two #cp}
+Soit 
+$$
+C = \{(x, y) \in \R^2 \; | \; y \neq 0 \mbox{ ou } x > 0\}
+\; \mbox{ et } \;
+P = \{(r,\theta) \in \R^2 \; | \; r>0 \mbox{ et } -\pi < \theta < \pi\}.$$ 
+On note $h$ la fonction de $P$ dans $C$ définie par
+$h(r, \theta) = (r \cos \theta, r \sin \theta)$.
+Montrer que pour toute fonction $f: C \to \R$ intégrable, si l'on pose
+$g(r,\theta) = f(x, y)$ où $(x, y) = h(r,\theta)$, alors
+$$
+\int_{C} f(x, y) \, d(x,y) = \int_{P} g(r,\theta)  r \, d(r, \theta).
+$$
+
+### Absence du déterminant jacobien {.exercise .question .two #adj}
+Supposons $D_1$, $D_2$, $h$ et $f$ conformes aux hypothèses [du théorème de 
+changement de variables](#theorem-changement-de-variables). On suppose 
+de plus que $f \circ h$ est intégrable sur $D_1$. Exprimer l'intégrale
+$$
+\int_{D_1} f (h(x)) \, dx
+$$
+comme une intégrale sur $D_2$.
+
+<!--
+### Intégrale de Henstock-Kurzweil {.post .remark}
+Il s'avère que le théorème de Fubini est encore valable si l'on raisonne 
+avec l'intégrale de Henstock-Kurzweil plutôt qu'avec l'intégrale de Lebesgue. 
+Mais cela n'est pas le cas du théorème de changement de variable : 
+on peut en effet exhiber une fonction $f:\R^2 \to \R$ qui soit 
+intégrable au sens de Henstock-Kurzweil,
 mais telle que quand $h$ désigne la rotation centrée à l'origine d'angle
 $\pi/4$, la fonction $f \circ h$ ne soit pas intégrable[^ref-ai].
 Comme dans ce cas on a $|\det J_h| = 1$ sur tout $\R^2$, cela contredit
 la conclusion du théorème de changement de variables.
+Compte tenu de l'importance pratique qu'a le théorème de changement de 
+variable, c'est une motivation importante pour privilégier l'intégrale de 
+Lebesgue à cette de Henstock-Kurzweil.
 
 [^ref-ai]: cf. [@Swa01, ex. 29, p. 98].
 
-### {.post .remark}
-La situation est assez similaire à celles des séries réelles. 
-On sait en effet que si la série $\sum_k a_k$ est absolue
-convergente, un réordonnancement des termes de la série n'a pas d'effet,
-ni sur la convergence de la série ni sur la valeur de la somme ;
-pour toute bijection $\sigma: \N \to \N$,
+La situation de l'intégrale de Henstock-Kurzweil vis-à-vis de l'intégrale 
+Lebesgue à un parallèle dans le contexte des séries réelles, selon que
+l'on considère la convergence classique ou absolue
+On sait en effet que si la série $\sum_k a_k$ est absolument convergente 
+($\sum_k a_k$ est convergente ainsi que $\sum_k |a_k|$), 
+un réordonnancement des termes de la série -- un "changement de variable"
+-- n'a pas d'effet, ni sur la convergence de la série ni sur la valeur de 
+la somme ; pour toute bijection $\sigma: \N \to \N$,
 $$
 \sum_{k=0}^{+\infty} a_{\sigma(k)} = \sum_{k=0}^{+\infty} a_{k}.
 $$
@@ -234,6 +751,7 @@ on peut aussi construire un réordonnancement $\sigma$ tel que
 $$
 \sum_{k=0}^{+\infty} a_{\sigma(k)} = \ell.
 $$
+-->
 
 <!--
 ### TODO
@@ -258,7 +776,7 @@ réordonnancement (exemple mono-dim ou bi-dim) ?
 
 -->
 
-Théorème de la divergence
+Annexe -- Théorème de la divergence {#annexe}
 ================================================================================
 
 <!--
@@ -270,7 +788,7 @@ sa place en exo ?
 
 ### Compact à bord régulier {.definition #cbr}
 Un sous-ensemble $K$ de $\mathbb{R}^n$ est *un compact à bord $C^1$*
-s'il est compact et peut être caractérisé au voisinage de tout point de
+s'il est compact (fermé et borné) et peut être caractérisé au voisinage de tout point de
 sa frontière $\partial K$, 
 et après un éventuel changement de repère,
 comme l'*hypographe* -- l'ensemble des points en-dessous du graphe -- 
@@ -535,7 +1053,7 @@ $$
 $$
 
 ### {.post}
-La démonstration est donnée [en annexe](#proof-pu).
+La démonstration est donnée [à la fin de cette annexe](#proof-pu).
 
 <!--
 ### TODO
@@ -573,7 +1091,7 @@ On admettra que cette définition est indépendante du choix de la
 décomposition de $\partial K$.
 
 
-### Définition {.definition}
+### Divergence {.definition}
 Soit $V$ un ouvert de $\R^n$. 
 On appelle *divergence* d'une fonction différentiable 
 $$
@@ -889,12 +1407,7 @@ qu'il s'agisse du bord Lipschitz ou des travaux (Mawhin, Pfeffer, etc.)
 pour demander moins que $C^1$ sur l'intégrande ?
 -->
 
-Annexes
-================================================================================
-
-Partition de l'unité {#proof-pu}
---------------------------------------------------------------------------------
-
+### {.ante}
 La preuve de l'existence d'une partition de l'unité repose sur le lemme suivant :
 
 ### Lemme de recouvrement de Lebesgue {.lemma #lrl}
@@ -916,7 +1429,7 @@ soit $x \in \R^n \setminus V_i$ puisque $\R^n \setminus V_i$ est fermé.
 Par conséquent, pour tout $i$, $x \not \in V_i$, ce qui contredit l'hypothèse
 que les $V_i$ forment un recouvrement de $K$.
 
-### Démonstration de l'existence d'une partition de l'unité {.proof}
+### Démonstration de l'existence d'une partition de l'unité {.proof #proof-pu}
 
 Nous allons initialement établir l'existence
 d'une suite de fonctions $\rho_i:\R^n \to \R$ 
@@ -974,27 +1487,78 @@ $$
 \end{split}
 $$
 
-Exercices
+Exercices complémentaires
 ================================================================================
 
+Aire du disque unité {#adu}
+--------------------------------------------------------------------------------
+Soit $D = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+
+### Question 1 {.question .one #adu-1}
+Montrer que $1_D$ est intégrable.
+
+### Question 2 {.question .two #adu-2}
+Calculer l'aire de $D$ en utilisant le théorème de Fubini puis un changement
+de variable dans $\R$.
+
+### Question 3 {.question .two #adu-3}
+Calculer l'aire de $D$ en utilisant un changement de variables dans $\R^2$.
+
+Intégrabilité des fonctions puissances
+--------------------------------------------------------------------------------
+
+Soit $C$ la couronne $\{x \in \R^2 \; | \; \|x\| > 1\}$ ;
+on souhaite prouver dans cet exercice que l'intégrale
+$$
+I = \int_C \frac{dx}{\|x\|^{\alpha}}
+$$
+est bien définie si et seulement si $\alpha > 2$.
+
+### Question 1 {.question .one #ifp-1}
+Soit $C_{++} = C \cap \{(x_1,x_2) \in \R^2 \; | \; x_1 > 0 \mbox{ et } x_2 > 0\}$.
+Montrer que $x \mapsto \|x\|^{-\alpha}$ est intégrable sur $C$ si et seulement
+si elle est intégrable sur $C_{++}$.
+
+### Question 2 {.question .one #ifp-2}
+Déterminer l'image de $C_{++}$ par la fonction
+$$
+h: (x_1, x_2) \mapsto (x_1, r) \; \mbox{ où } r = \|(x_1,x_2)\|
+$$
+et montrer que $h$ est un $C^1$-difféomorphisme de $C_{++}$ sur cette image.
+
+### Question 3 {.question .two #ifp-3}
+Déterminer (formellement) l'expression de l'intégrale $I$ au moyen des variables 
+$(x_1, r)$, puis $(y, r)$ où $y = x_1/r$. En déduire que $I$ est bien définie
+si et seulement si $\alpha > 2$.
+
+
+<!--
 Changement de variables linéaire
 --------------------------------------------------------------------------------
 
-### Question 1 {.question #cvl-1}
-Soit $f:\R \to \R$ une fonction intégrable. Montrer que pour tout
+On souhaite dans cet exercice prouver 
+[le théorème de changement de variables](#theorem-changement-de-variables)
+dans le cas particulier où le changement de variable est linéaire et le
+domaine de la fonction à intégrer est $\R^n$.
+
+### Question 1 {.question .four #cvl-1}
+Soit $f:\R \to \R$ une fonction intégrable. En revenant à la définition 
+de l'intégrale en terme de jauges, montrer que pour tout
 réel $\lambda$ non nul, $x \in \R \mapsto f(\lambda x)$ est intégrable
-et calculer
+et que
 $$
-\int_{-\infty}^{+\infty} f(\lambda x) \, dx.
+\int_{-\infty}^{+\infty} f(\lambda x) \, dx
+=\frac{1}{|\lambda|} \int_{-\infty}^{+\infty} f(x) \, dx
 $$
-Même question pour 
+et que pour tout $h \in \R$, $x \in \R \mapsto f(x+h)$ est intégrable et que
 $$
 \int_{-\infty}^{+\infty} f(x + h) \, dx
+=
+\int_{-\infty}^{+\infty} f(x) \, dx.
 $$
-où $h \in \R$.
 
 ### Question 2 {.question #cvl-2}
-Soit $f:\R^n \to \R$ une fonction absolument intégrable.
+Soit $f:\R^n \to \R$ une fonction intégrable.
 Soient $i, j \in \{1,\dots, n\}$, $i\neq j$ et $\lambda$ un réel non nul.
 Montrer que les intégrales suivantes existent et les calculer en fonction
 de l'intégrale de $f$ :
@@ -1009,19 +1573,23 @@ S_3 = \int_{\R^n} f(x_1, \dots, x_i, x_j, x_{i+2},\dots, x_{j-1}, x_i, x_{j+1} \
 $$
 
 ### Question 3 {.question #cvl-3}
-Soit $A: \R^n \to \R^n$ une application linéaire inversible. 
-Montrer que la fonction $x \in \R^n \mapsto  f(A \cdot x) |\det [A]|$ 
+Soit $A \in \R^{n \times n}$ une matrice carrée inversible. 
+Montrer que la fonction $x \in \R^n \mapsto  f(A \cdot x) |\det A|$ 
 est intégrable et que
 $$
-\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det [A]| \, dx.
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(A \cdot x) |\det A| \, dx.
 $$
 
-Déformations d'un compact à bord régulier {.question #dcbr}
+-->
+
+Déformations d'un compact à bord régulier 
 --------------------------------------------------------------------------------
 
 Soit $K$ un compact à bord $C^1$ de $\R^n$ et $T:\R^n \to \R^n$ une application
 continûment différentiable telle que $T = I + H$, où l'application
 continûment différentiable $H:\R^n \to \R^n$ satisfait $\sup_{x \in \R^n} \|dH(x)\| < 1$.
+
+### Question 1 {.question .four #dcbr}
 
 Montrer que l'ensemble
 $$
@@ -1029,7 +1597,7 @@ T(K) = \{x + T(x) \, | \, x \in K\}
 $$
 est un compact à bord $C^1$ de $\R^n$.
 
-Ovales de Cassini {.question #oc}
+Ovales de Cassini 
 --------------------------------------------------------------------------------
 
 Soit $a$ et $b$ deux nombres réels strictements positifs. 
@@ -1038,28 +1606,26 @@ $$
 K = \{(x,y) \in \R^2 \, | \, (x^2+y^2)^2 - 2a^2 (x^2 - y^2) + a^4 \leq b^4\}.
 $$
 
+### Question 1 {.question .four #oc}
+
 Montrer que si $a \neq b$, l'ensemble $K$ est un compact à bord $C^1$.
 
 ![Compact à bord $C^1$ délimité par les ovales de Cassini.](images/cassini-ovals.py)
-
 
 ![Ensemble délimité par les ovales de Cassini quand $a=b=1$.](images/cassini-ovals-limite.py)
 
 
 
-Aire du disque unité {.question #adu}
---------------------------------------------------------------------------------
-Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
-Calculer l'aire de $B$
-$$
-A := \int_B \, dx
-$$
 
 
-Intégrales de surface {.question #is}
+
+
+Intégrales de surface 
 --------------------------------------------------------------------------------
 
 Soit $B = \overline{B}(0,1)$ le disque unité fermé de $\R^2$.
+
+### Question 1 {.question .four #is}
 Calculer
 $$
 \int_{\partial B} \sigma(dx)
@@ -1085,17 +1651,19 @@ c'est-à-dire une fonction
 $g: D \to \partial D$ telle que $g(x) = x$ si $x \in \partial D$.
 -->
 
-### Question 1  {.question #pfb-1}
+### Question 1  {.question .four #pfb-1}
 Montrer que pour une telle rétraction $f$, on a 
 $$
 \int_B \det J_f(x) \, dx = 0.
 $$
 
-### Question 2  {.question #pfb-2}
+### Question 2  {.question .four #pfb-2}
 En déduire l'impossibilité d'une telle rétraction.
  
-Intégration par parties {.question #IPP-n}
+Intégration par parties 
 --------------------------------------------------------------------------------
+
+### Question 1 {.question .four #IPP-n}
 
 Si l'équivalent dans $\R^n$ du théorème fondamental du calcul 
 est le théorème de la divergence, quel résultat est l'équivalent
@@ -1103,6 +1671,574 @@ dans $\R^n$ de l'intégration par parties ?
 
 Solutions
 ================================================================================
+
+
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Prolongements {.answer #answer-p}
+Si l'on s'en tient sans réfléchir [à la section "Domaine des variables"](#dv),
+il faut associer à la première fonction la fonction
+$$
+(x,y) \in [-\infty,\infty]^2 \mapsto \left|
+\begin{array}{rl}
+\exp(-x^2-y^2) & \mbox{si $x\in\R$ et $y \in\R$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+à la seconde la fonction
+$$
+(x,y) \in [-\infty,\infty]^2 \mapsto \left|
+\begin{array}{rl}
+\arctan(x^2 + y^2) & \mbox{si $x\in\R$ et $y \in\R$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et à la troisième la fonction
+$$
+(x,y) \in [-\infty,\infty]^2 \mapsto \left|
+\begin{array}{rl}
+\arctan(x^2y^2) & \mbox{si $x\in[-1,1]$ et $y \in[-1, 1]$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Dans le second cas, la note de bas de page nous autorise aussi à considérer
+la fonction
+$$
+(x,y) \in [-\infty,\infty]^2 \mapsto \left|
+\begin{array}{rl}
+\arctan(x^2 + y^2) & \mbox{si $x\in\R$ et $y \in\R$,} \\
+\pi/2 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+qui peut sembler un choix plus naturel car le prolongement ainsi construit est 
+continu. 
+Par contre, dans le troisième cas, c'est bien par zéro que nous 
+avons l'obligation d'étendre la fonction initiale (techniquement, car l'ensemble 
+$[-\infty,\infty]^2\setminus [-1, 1]^2$ n'est pas négligeable.)
+
+### Partition en pavés {.answer #answer-pp}
+L'ensemble $\R^2 \setminus [-1, 1]$ est l'union des quatres ensembles disjoints
+non vides suivants : $\left]-\infty, -1\right[ \times \R$, 
+$[-1, 1] \times \left]1, +\infty\right[$, $[-1, 1] \times \left]-\infty, -1\right[$
+et $\left]1, +\infty\right[ \times \R$.
+
+### Volume de pavés {.answer #answer-exo-volume-pavé}
+On a $a(\{(0,0)\}) = a([0,0]^2) = 0 \times 0 = 0$,
+$a([-1,1]^2) = 2 \times 2 = 4$, $a([-1, 1] \times [0, +\infty])
+= 2 \times (+\infty) = +\infty$ et $a(\{0\} \times \R) = 0 \times (+\infty) = 0$.
+
+### Domaine à l'infini {.answer #answer-dai}
+L'ensemble $[-\infty,+\infty]^n \setminus \R^n$ est recouvert par les
+quatres pavés $\{-\infty\} \times [-\infty, \infty]$, 
+$\{+\infty\} \times [-\infty, +\infty]$, $[-\infty, +\infty] \times \{-\infty\}$
+et $[-\infty, +\infty] \times \{+\infty\}$. Chacun de ces pavés est d'aire nulle :
+on a par exemple
+$$
+a(\{-\infty\} \times [-\infty, +\infty]) = \ell(\{-\infty\}) \times \ell([-\infty, +\infty]) = 0 \times (+\infty) = 0.
+$$
+Par conséquent l'ensemble considéré est négligeable.
+
+
+### Graphe du sinus {.answer #answer-gs}
+Notons $G = \{(x, \sin x) \; | \; x \in [0, 2\pi]\}$.
+Comme $(\sin)' = \cos$ et que le cosinus est majoré par $1$, 
+par le théorème des accroissements finis, pour tout $x, y \in [0, 2\pi]$ on a 
+$|\sin x - \sin y| \leq |x - y|$. Par conséquent, pour tout $x \in [0, 2\pi]$
+et $h>0$,
+$$
+G \cap ([x-h, x+h] \times [-\infty, +\infty]) \subset [x-h, x+h] \times [(\sin x) - h, (\sin x) + h].
+$$
+En choisissant $h = \pi / n$ et $x= \pi/n, 3 \pi/n, 5 \pi /n, \dots$, 
+on recouvre donc $G$ par la collection de pavés
+$$
+I_k = \left[k\frac{2\pi}{n}, (k+1)\frac{2\pi}{n} \right] \times 
+\left[y_k - \frac{\pi}{n}, 
+y_k+\frac{\pi}{n} \right], \; k \in \{0, 1,\dots, n-1\}
+$$
+où 
+$$
+y_k = \sin \left(\left(k+\frac{1}{2} \right) \frac{2\pi}{n} \right).
+$$
+
+![Graphe de la fonction $\sin$ et recouvrement par les pavés $I_k$ ($n=12$).](images/sin-cover.py)
+
+La somme des aires des pavés $I_k$ satisfait
+$$
+\sum_{k=0}^{n-1} a(I_k) = n \times \frac{2\pi}{n} \times \frac{2\pi}{n} = 
+\frac{4 \pi^2}{n}.
+$$
+Il est donc possible de rendre cette somme arbitrairement faible en 
+sélectionnant un $n$ suffisamment grand. L'ensemble $G$ est donc négligeable.
+
+
+### Additivité I {.answer #answer-exo-additivité-I}
+Si $f$ est intégrable sur $A \subset \R^n$ 
+et sur $B \subset \R^n$ alors les prolongements de $f|_A$ et de $f|_B$
+par zéro à $\R^n$, qui sont les fonctions $1_A f$ et $1_B f$, 
+sont intégrables sur $\R^n$. On a également
+$$
+\int_A f(x) \, dx = \int_{\R^n} 1_A(x) f(x) \, dx
+\; \mbox{ et } \; 
+\int_B f(x) \, dx = \int_{\R^n} 1_B(x) f(x) \, dx.
+$$
+Si $A$ et $B$ sont d'intersection vide, on a $1_{A \cup B} = 1_A + 1_B$, 
+donc [par linéarité de l'intégrale](#linéarité), $1_{A \cup B} f
+= 1_A f + 1_B f$ est intégrable, la fonction $f$ est intégrable
+sur $A \cup B$ et
+\begin{align*}
+\int_{A \cup B} f(x) \, dx &= \int_{\R^n} 1_{A \cup B} (x) f(x) \, dx \\
+&= \int_{\R^n} 1_A(x) f(x) + 1_B(x) f(x) \, dx \\
+&= \int_A f(x) \, dx + \int_B f(x) \, dx.
+\end{align*}
+
+### Disque fermé {.answer #answer-df}
+L'ensemble $D$ est fermé (c'est par exemple l'image réciproque du fermé
+$[0, 1]$ par l'application continue $(x_1, x_2) \mapsto x_1^2 + x_2^2$), 
+[par conséquent il est mesurable](#OSM).
+
+### Additivité II {.answer #answer-exo-additivité-II}
+La trame de la démonstration est similaire [à l'exercice "Additivité I"](#exo-additivité-I).
+On constate ici que $1_{A \cup B} = 1_A + 1_B - 1_{A \cap B}$ ;
+comme $A \cap B$ est négligeable, la fonction $1_{A \cap B} f$ est nulle
+presque partout, donc intégrable et d'intégrale nulle. La fonction 
+$1_{A \cup B}$ est donc intégrable [par linéarité de l'intégrale](#linéarité) et
+\begin{align*}
+\int_{A \cup B} f(x) \, dx &= \int_{\R^n} 1_{A \cup B} (x) f(x) \, dx \\
+&= \int_{\R^n} 1_A(x) f(x) + 1_B(x) f(x) - 1_{A\cap B} f(x) \, dx \\
+&= \int_{\R^n} 1_A(x) f(x) + \int_{\R^n} 1_B(x) f(x) - \int_{\R^n} 1_{A\cap B} f(x) \, dx \\
+&= \int_A f(x) \, dx + \int_B f(x) \, dx.
+\end{align*}
+
+
+### Calcul de l'aire d'un triangle {.answer #answer-triangle}
+Si la fonction $1_D$ est intégrable, alors 
+[le théorème de Fubini est applicable](#Fubini).
+On a donc
+$$
+a(T) = \int_{\R}\left[ \int_{\R} 1_T(x, y) \, dx \right] \, dy.
+$$
+Or, si $0 \leq y \leq 1$, 
+$$
+1_T(x, y) = \left| 
+\begin{array}{rl}
+1 & \mbox{si $0 \leq x \leq 1-y$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et dans le cas contraire, $1_T(x, y) = 0$. On a donc
+$$
+a(T) = \int_0^1\left[ \int_0^{1-y} dx \right] \, dy
+=\int_0^1 (1 - y) \, dy= \left[y - \frac{y^2}{2} \right]_0^1 = \frac{1}{2}.
+$$
+
+### Contre-exemple {.answer .two #answer-fubini-counter-example}
+Pour tout $y \in \left]0,1\right]$ (et donc presque tout $y \in [0, 1]$), on a 
+$$
+\int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx 
+= 
+\left[x \mapsto - \frac{x}{x^2+y^2} \right]_0^1
+= 
+- \frac{1}{1+y^2},
+$$
+par conséquent
+$$
+\int_0^1 \left[ \int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dx \right] \, dy
+= - \int_0^1 \frac{dy}{1+y^2} \\
+= - [y \mapsto \arctan y]_0^1
+= - \frac{\pi}{4}.
+$$
+En exploitant la relation
+$$
+\frac{x^2 - y^2}{(x^2+y^2)^2} = \frac{\partial}{\partial y} \left(\frac{y}{x^2+y^2}\right) 
+$$
+on établit de façon similaire que
+$$
+\int_0^1 \left[ \int_0^1 \frac{x^2 - y^2}{(x^2+y^2)^2} \, dy \right] \, dx
+= \frac{\pi}{4}.
+$$
+
+Or, si [le théorème de Fubini](#Fubini) était applicable, [on pourrait
+intervertir l'ordre d'intégration des variables sans changer le résultat](#Fubini-extension).
+Comme cela n'est pas le cas, on en déduit que l'hypothèse exigée par le théorème
+de Fubini ne tient pas : la fonction
+$$
+(x, y) \in [0,1] \times [0,1] \mapsto \frac{x^2 - y^2}{(x^2+y^2)^2}
+$$
+n'est pas intégrable.
+
+
+### Triangle d'aire finie {.answer #answer-triangle2}
+La fonction $1_T : \R^2 \to \R$ est positive et mesurable, car l'ensemble
+$T$ est fermé donc mesurable. Par conséquent on peut essayer d'appliquer [le
+théorème de Tonelli](#Tonelli) qui donnerait la conclusion voulue. 
+Les calculs à effectuer pour vérifier que ses hypothèses
+sont vérifiées sont exactement les mêmes que ceux nécessaires au calcul de 
+l'aire dans l'exercice ["Calcul de l'aire d'un triangle"](#triangle2) :
+ils montrent que pour tout $y$, $x \mapsto 1_T(x, y)$ est intégrable,
+puis que 
+$$
+y \mapsto \int 1_T(x, y) \, dy
+$$
+est intégrable, ce qui nous permet de conclure.
+
+
+### Intégrabilité des pavés fermés bornés {.answer #answer-ipfb}
+On procède par récurrence sur la dimension $n$ de l'espace.
+Admettons le résultat prouvé au rang $n-1$.
+La fonction caractéristique $1_I$ de $I = [a_1,b_1] \times \dots \times [a_n,b_n]$
+est mesurable ; en effet, pour tout ensemble ouvert de $\R$, l'image réciproque
+de cet ensemble par $1_I$ est $\varnothing$, $I$, $\R^2 \setminus I$ ou $\R^2$ et
+tous ces ensembles sont mesurables ([car fermé ou ouverts](#OSM)).
+Fixons $(x_2,\dots,x_n) \in \R^{n-1}$ ; la fonction
+$x_1 \in \R \mapsto f(x_1,x_2,\dots, x_n)$ est intégrable : en effet
+si $(x_2,\dots, x_n) \in [a_2,b_2] \times \dots \times [a_n,b_n]$ on a
+$$
+1_I(x_1,x_2,\dots, x_n) = \left| 
+\begin{array}{rl}
+1 & \mbox{si $a_1 \leq x_1 \leq b_1$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+et $1_I(x_1,x_2,\dots, x_n) = 0$ sinon. On a donc
+$$
+\int 1_I(x_1,x_2,\dots, x_n) \, dx_1 = (b_1-a_1) 1_{[a_2,b_2] \times \dots \times [a_n,b_n]}(x_2,\dots,x_n).
+$$
+Par l'hypothèse de récurrence, $1_{[a_2,b_2] \times \dots \times [a_n,b_n]}$
+est intégrable d'intégrale $(b_2 - a_2) \times \dots \times (b_n - a_n)$,
+donc par [le théorème de Tonelli](#Tonelli), $1_I$ est intégrable et 
+\begin{align*}
+\int 1_I(x) \, dx &= (b_1-a_1) \int 1_{[a_2,b_2] \times \dots \times [a_n,b_n]}(x_2,\dots,x_n) \, d(x_2,\dots x_n) \\
+&= (b_1 - a_1) \times \dots \times (b_n - a_n).
+\end{align*}
+
+
+### Tout droite du plan est négligeable {.answer #answer-dn}
+Deux cas se présentent : soit la droite considérée est de la forme
+$D = \{(x, y) \in \R^2 \; | \; y = a x + b\}$, soit elle est de la forme
+$D = \{(x, y) \in \R^2 \; | \; x = c\}$. Dans les deux cas, [la droite est
+un ensemble fermé de $\R^2$, donc mesurable](#OSM) ;
+par [le critère de l'image réciprique](#CIR), 
+la fonction caractéristique associée $1_D$ est donc mesurable.
+Dans le premier cas considéré, pour tout $x \in \R$, 
+la fonction $y \mapsto 1_D(x, y)$ est nulle, sauf en $y = ax+b$ ; 
+elle est donc nulle presque partout et donc intégrable et d'intégrale nulle.
+On a donc pour tout $x \in \R$,
+$$
+\int 1_D(x, y) \, dy = 0
+$$
+et par conséquent la fonction 
+$$
+x \in \R \mapsto  \int 1_D(x, y) \, dy
+$$ 
+est donc intégrable. [Par le théorème de Tonelli](#Tonelli), la fonction $f$
+est donc intégrable et [par le théorème de Fubini](#Fubini), on a 
+$$
+a(D) = \int_{\R^2} 1_D(x, y) d(x, y) = \int_{\R}\left[\int_{\R} 1_D(x,y) \, dy \right] \, dx = 0.
+$$
+La droite $D$ est donc [négligeable car mesurable et d'aire nulle](#négligeable-longueur-nulle).
+
+Le cas où $D = \{(x, y) \in \R^2 \; | \; x = c\}$ se traite de façon similaire.
+On constate alors pour tout $x \in \R$, à l'exception de $x=c$,
+la fonction $y \mapsto 1_D(x, y)$ est nulle et donc intégrable et 
+d'intégrale nulle et pour $x=c$ elle n'est pas intégrable. Mais cette fonction
+est donc à nouveau intégrable pour presque tout $x \in \R$ et d'intégrale nulle.
+La fin du raisonnement est identique à celle du cas précédent.
+
+
+### Homothétie {.answer #answer-h}
+Si l'on pose $D_1 = \R^n$, $D_2 = \R^n$, l'application $h:D_1 \to D_2$ 
+définie par $h(x) = \alpha x$ est un $C^1$-difféomorphisme.
+De plus, on a 
+$$
+|\det J_{h}(x)| = \left|\det \left[
+  \begin{array}{cccc}
+  \alpha & 0  & \cdots & 0 \\
+  0 & \alpha & \dots & 0 \\
+  \vdots & \vdots & \vdots & \vdots \\
+  0 & 0 & \dots & \alpha
+  \end{array} \right] \right|  = |\alpha^n| = \alpha^n.
+$$
+Par conséquent, le [théorème de 
+changement de variables](#theorem-changement-de-variables) fournit
+$$
+\int_{\R^n} f(y) \, dy = \int_{\R^n} f(\alpha x) \alpha^n \, dx,
+$$
+soit 
+$$
+\int_{\R^n} f(\alpha x) \, dx = \frac{1}{\alpha^n} \int_{\R^n} f(y) \, dy.
+$$
+
+### Volume et translation {.answer #answer-vr}
+L'ensemble $A$ mesurable et de volume fini a une fonction caractéristique
+$1_A$ intégrable et
+$$
+\lambda(A) = \int 1_A(x) \, dx.
+$$
+Soit $h(x) = x - u$ ou $u \in \R^3$. La fonction $h$ est une bijection de 
+$\R^3$ sur lui-même, continûment différentiable ainsi que son inverse,
+$h^{-1}(x) =  x + u$ et $J_h(x) = I$, donc $\det J_h(x) = 1$.
+Par [le théorème de changement de variables](#theorem-changement-de-variables),
+la fonction $1_{h^{-1}(A)} = 1_{A} \circ h$ est donc intégrable sur $\R^3$ et
+$$
+\int 1_{h^{-1}(A)}\, dx = \int_{\R^3} (1_A \circ h) |\det J_h(x)| \, dx = \int_{\R^3} 1_A(x) \, dx = \lambda(A).
+$$
+L'ensemble translaté $A + u = h^{-1}(A)$ est donc mesurable, de volume fini égal
+au volume de $A$.
+<!--
+Le cas des rotations est traité de façon similaire. Le point clé est de constater
+que comme une rotation $R \in \R^{3 \times 3}$ est orthogonale et directe, on a 
+$\det R = 1$, ce qui permet de calculer le changement de variables comme précédemment.
+-->
+
+
+### Coordonnées polaires {.answer #answer-cp}
+Les ensembles $P$ et $C$ sont ouverts et la fonction $h$ -- qui permet de
+passer des coordonnées polaires aux coordonnées cartésiennes -- est une bijection
+de $P$ dans $C$. Elle est continûment différentiable ;
+sa matrice jacobienne en $(r, \theta)$ vaut
+$$
+J_{h}(r, \theta) = 
+\left[ 
+\begin{array}{cr}
+\cos \theta & -r \sin \theta \\
+\sin \theta & r \cos \theta
+\end{array}
+\right],
+$$
+et son déterminant satisfait
+$$
+\det J_{h}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
+= r > 0.
+$$
+Le jacobien est donc inversible et $h^{-1}$ est continûment différentiable par
+le théorème d'inversion locale. On peut donc appliquer [le théorème de 
+changement de variables](#theorem-changement-de-variables) à la fonction
+$f$, ce qui fournit
+\begin{align*}
+\int_C f(x, y) \, d(x, y) &= \int_P f(h(r, \theta)) |\det J_h(r,\theta)| d(r,\theta) \\
+&= \int_P g(r, \theta)  r \, d(r,\theta).
+\end{align*}
+
+### Absence du déterminant jacobien {.answer #answer-adj}
+La façon la plus rapide de procéder consiste à considérer que $f \circ h$
+joue le rôle de $f$ dans [le théorème de changement de variables](#theorem-changement-de-variables),
+que $h$ dans notre énoncé désigne $h^{-1}$ dans ce théorème et que les rôles
+de $D_1$ et $D_2$ sont intervertis. Une fois que l'on a permuté ces notations,
+on réalise que l'intégrale que l'on souhaite calculer est le membre de 
+gauche de l'équation du théorème de changement de variables, dont toutes
+les hypothèses sont par ailleurs satisfaites. Par conséquent on a 
+$$
+\int_{D_1} f (h(x)) \, dx = \int_{D_2} (f \circ h)(h^{-1}(y)) |\det J_{h^{-1}}(y)| \, dy.
+$$
+On peut simplifier $(f \circ h)(h^{-1}(y))$ en $f(y)$ et éventuellement exprimer le
+jacobien de $h^{-1}$ en fonction du jacobien de $h$ : $J_{h^{-1}}(y) = [J_{h}(h^{-1}(y))]^{-1}$ ;
+on obtient donc
+$$
+\int_{D_1} f (h(x)) \, dx = 
+\int_{D_2} f(y) |\det J_{h^{-1}}(y)| \, dy = 
+\int_{D_2} f(y) \frac{1}{|\det J_{h}(h^{-1}(y))|} \, dy.
+$$
+
+
+
+Aire du disque unité {.answer #answer-adu}
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-adu-1}
+La fonction $1_D$ est intégrable : en effet,
+[l'ensemble $B$ est fermé donc mesurable](#OSM) et la fonction $1_D$ est 
+dominée par la fonction caractéristique du pavé fermé $[-1,1]^2$, 
+qui est intégrable. Par [le critère d'intégrabilité dominée](#CID), $1_D$
+est donc intégrable.
+
+
+### Question 2 {.answer #answer-adu-2}
+Le théorème de Fubini nous fournit
+$$
+\int_D dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
+= 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
+$$
+Comme
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+= \int_{[-1, 1]} \sqrt{1 - x^2} \, dx
+= \int_{\left]-1, 1\right[} \sqrt{1 - x^2} \, dx,
+$$
+on peut donc opérer le changement de variable 
+$$
+\theta \in \left]0, \pi\right[ \mapsto x = -\cos \theta \in \left]-1,1\right[
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+Comme $(-\cos \theta)' = \sin \theta$, on a
+$$
+\int_{0}^{\pi} \sqrt{1-(-\cos^2 \theta)} \sin \theta  \, d\theta = \int_{-1}^1 \sqrt{1 - x^2} \, dx
+$$
+et donc
+$$
+\int_{-1}^1 \sqrt{1 - x^2} \, dx
+=
+\int_{0}^{\pi} \sin^2 \theta  \, d\theta
+=
+\int_{0}^{\pi} \frac{1 - \cos 2\theta}{2} \, d\theta
+=
+\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4} \right]_0^{\pi}
+=\frac{\pi}{2},
+$$
+et finalement
+$$
+\int_D \, dx = \pi.
+$$
+
+### Question 3 {.answer #answer-adu-3}
+On remarque que l'union $N$ de la frontière $\partial D$ de $D$ et 
+du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
+et donc que
+$$
+\int_D \, dx = \int_{D \setminus N} dx,
+$$
+ce qui nous permet de considérer le changement de variable
+$$
+\phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
+\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in D \setminus N
+$$
+(bijectif, continûment différentiable ainsi que son inverse).
+On calcule la matrice jacobienne
+$$
+J_{\phi}(r, \theta) = 
+\left[ 
+\begin{array}{cr}
+\cos \theta & -r \sin \theta \\
+\sin \theta & r \cos \theta
+\end{array}
+\right],
+$$
+dont le déterminant vaut
+$$
+\det J_{\phi}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
+= r.
+$$
+On a donc
+$$
+\int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
+=
+\int_D \, dx,
+$$
+et donc par le théorème de Fubini,
+$$
+\int_D \, dx
+= \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
+= \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
+= \pi.
+$$
+
+
+Intégrabilité des fonctions puissances
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer .one #answer-ifp-1}
+L'ensemble $C$ peut être partitionné en 5 ensembles : $C_{++}$, $C_{+-}$, $C_{-+}$,
+$C_{--}$ (où les signes en indices déterminent les signes autorisés pour les
+variables $x_1$ et $x_2$) et 
+$$
+N := C \setminus (C_{++} \cup C_{+-} \cup C_{-+} \cup C_{--}).
+$$
+L'ensemble $C_{++}$ est ouvert, donc mesurable. Par conséquent, 
+si $f: x \mapsto \|x\|^{-\alpha}$ est intégrable sur $C$, 
+elle est intégrable sur $C_{++}$. Réciproquement, si $f$ est intégrable sur
+$C_{++}$, elle est intégrable sur chacun des ensembles $C_{\pm\pm}$ par 
+changement de variable : le changement de variable $h: (x_1, x_2) \mapsto (x_1, -x_2)$
+est par exemple un difféomorphisme de $C_{++}$ sur $C_{+-}$ tel que 
+$|\det J_h| = 1$, donc [par changement de variables](#changement-de-variables)
+l'intégrale de $f$ est bien définie sur $C_{+-}$ et
+$$
+\int_{C_{+-}} \|x\|^{-\alpha} \, dx =
+\int_{C_{+-}} \|h(x)\|^{-\alpha} |\det J_{h}(x)|\, dx = 
+\int_{C_{++}} \|y\|^{-\alpha} \, dy = I.
+$$
+Comme $N$ est négligeable, $f$ est également intégrable sur $N$ et par
+conséquent $f$ est intégrable sur $C$ comme somme des fonctions intégrables
+$$
+f = f 1_{C_{++}} +  f 1_{C_{+-}} + f 1_{C_{-+}} + f 1_{C_{--}} + f 1_N.
+$$
+
+### Question 2 {.answer .one #answer-ifp-2}
+Si $x$ appartient à $C_{++}$, $\|x\|>1$, $x_1 >0$ et $x_2>0$, donc
+$r=\|x\| > 1$ et $x_1 = \sqrt{r^2 - x_2^2} < r$. Réciproquement,
+si $r>0$ et $0 < x_1 < r$, l'unique antécédent de $(x_1, r)$ par $h$ dans 
+$C_{++}$ est $(x_1, \sqrt{x_1^2 - r^2})$. La fonction $h$ est donc une
+bijection de $C_{++}$ dans
+$$
+U :=\{(x_1, r) \in \left]0,+\infty\right[\; | \; x_1 < r\}.
+$$
+De plus, $h$ est continûment différentiable, car elle est partout différentiable
+et les coefficients de sa matrice jacobienne
+$$
+J_h(x_1,x_2) = \left[ 
+  \begin{array}{cc}
+  1 & 0 \\
+  \frac{x_1}{\sqrt{x_1^2+x_2^2}} & \frac{x_2}{\sqrt{x_1^2+x_2^2}}
+  \end{array}
+  \right]
+$$
+sont continus par rapport à $(x_1, x_2)$. On à également
+$$
+J_{h^{-1}}(x_1,r) = \left[ 
+  \begin{array}{cc}
+  1 & 0 \\
+  -\frac{x_1}{\sqrt{r^2 - x_1^2}} & \frac{r}{\sqrt{r^2-x_1^2}}
+  \end{array}
+  \right]
+$$
+
+### Question 3 {.answer .one #answer-ifp-3}
+Si l'on considère les variables $x_1$ et $x_2$, la formule
+du [théorème de changement de variables](#changement-de-variables)
+nous fournit
+$$
+\int_{C++} \|x\|^{-\alpha} \, dx = \int_U r^{-\alpha} |\det J_{h^{-1}}(x_1,r)| \, dx_1 dr,
+$$
+soit
+$$
+\int_{C++} \|x\|^{-\alpha} \, dx = \int_U r^{-\alpha} \frac{r}{\sqrt{r^2-x_1^2}} \, dx_1 dr
+=
+\int_U r^{-\alpha} \frac{1}{\sqrt{1-(x_1/r)^2}} \, dx_1 dr ;
+$$
+un nouveau changement de variable introduisant $y = x_1/r \in \left]0, 1\right[$
+fournit
+\begin{align*}
+\int_{C++} \|x\|^{-\alpha} \, dx &=
+\int_{\left]0, 1\right[ \times \left]0,+\infty\right[} r^{-\alpha} \frac{1}{\sqrt{1-y^2}} r\, dy dr \\
+&=
+\int_{\left]0, 1\right[ \times \left]0,+\infty\right[} \frac{1}{r^{\alpha -1}} \frac{1}{\sqrt{1-y^2}} \, dy dr
+\end{align*}
+La fonction $x\mapsto \|x\|^{-\alpha}$ est donc intégrable si et seulement si
+cette dernière intégrale est bien définie. Or, l'intégrande
+$$
+(y, r) \in \left]0, 1\right[ \times \left]0,+\infty\right[ \mapsto \frac{1}{r^{\alpha -1}}\frac{1}{\sqrt{1-y^2}}
+$$
+-- et donc son extension par zéro à $\R^2$ -- sont mesurables et positives, 
+donc la caractérisation par [le théorème de Tonelli](#Tonelli) est valable.
+Pour tout $r > 0$, la fonction en question est intégrable par rapport à
+$y$ sur $\left]0, 1\right[$ et
+$$
+\int_{\left]0, 1\right[} 
+\frac{1}{r^{\alpha -1}} \frac{1}{\sqrt{1-y^2}} \, dy
+=
+\frac{1}{r^{\alpha -1}} [\arcsin y]_0^1
+= \frac{\pi}{2 r^{\alpha -1}}.
+$$
+La fonction $r \left]0, +\infty \right[ \mapsto r^{\alpha-1}$ étant intégrable
+si et seulement si $\alpha > 2$, nous avons bien établi le résultat recherché.
+
+
+<!--
 
 Changement de variables linéaire
 --------------------------------------------------------------------------------
@@ -1148,38 +2284,50 @@ $$
 $$
 On montrerait de manière similaire que si $\lambda < 0$, on a 
 $$
-\int_{-\infty}^{+\infty} f(\lambda x) \,dx = -\frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx
+\int_{-\infty}^{+\infty} f(\lambda x) \,dx = -\frac{1}{\lambda}\int_{-\infty}^{+\infty} f(x) \,dx.
 $$
-et la validité de
+La validité de
 $$
-\int_{-\infty}^{+\infty} f(x + h) \, dx = \int_{-\infty}^{+\infty} f(x) \, dx.
+\int_{-\infty}^{+\infty} f(x + h) \, dx = \int_{-\infty}^{+\infty} f(x) \, dx
 $$
+résulte également d'une démarche similaire.
 
 ### Question 2 {.answer #answer-cvl-2}
-Par le changement de variable linéaire dans $\R$ de la question 1
-et le théorèmes de [Fubini](#Fubini) et [Tonelli](#Tonelli),
+La fonction $f$ étant intégrable, par [le théorème de Fubini](#Fubini), on a
 $$
 \begin{split}
-& \phantom{ =. }  \frac{1}{|\lambda|} \int_{\R^n} f(x) \, dx  \\
-&= \frac{1}{|\lambda|}
-\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
-&= 
-\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
-& = S_1
+&\phantom{ =. } \int_{\R^n} f(x) \, dx \\
+&= \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n) 
 \end{split}
 $$
+Par [le résultat de la question 1](#cvl-1) et 
+[par linéarité de l'intégrale](#linéarité), on a donc
+$$
+\begin{split}
+& \int_{\R^n} f(x) \, dx  \\
+&= 
+\int_{\R^{n-1}} |\lambda| \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n)  \\
+&= 
+|\lambda|\int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, \lambda x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n) 
+\end{split}
+$$
+
+**TODO** justifier la reconstitution.
+
+
 De même,
 $$
 \begin{split}
 & \phantom{ =. }  \int_{\R^n} f(x) \, dx  \\
 &= 
 \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n)  \\
 &= 
 \int_{\R^{n-1}} \left[\int_{\R} f(x_1, \dots, x_{i-1}, x_i + \lambda x_j, x_{i+1}, \dots, x_n) \, dx_i\right] \, 
-dx_1 \dots dx_{i-1}dx_{i+1}\dots dx_n \\
+d(x_1, \dots x_{i-1},x_{i+1},\dots, x_n) \\
 & = \int_{\R^n} f(x_1, \dots, x_i, x_i + \lambda x_j, x_{i+2},\dots, x_j, \dots, x_n) \, dx \\
 & = S_2.
 \end{split}
@@ -1222,10 +2370,13 @@ $$
 = \int f(x)  dx.
 $$
 
+-->
 
 
-Déformations d'un compact à bord régulier {.answer #answer-dcbr}
+Déformations d'un compact à bord régulier 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dcbr}
 
 Sous les hypothèses de l'énoncé, nous avons établi en exercice de 
 "Calcul Différentiel II" que la fonction $T$ est un $C^1$-difféomorphisme
@@ -1255,8 +2406,10 @@ La différentielle de $g \circ T^{-1}$ est donc non nulle en $y_0$.
 Par la [caractérisation implicite des compacts à bord $C^1$](#cbr-implicit), 
 $T(K)$ est donc un compact à bord $C^1$ de $\R^n$.
 
-Ovales de Cassini {.answer #answer-oc}
+Ovales de Cassini 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-oc}
 
 Montrons tout d'abord que l'ensemble $K$ est compact. Si les points
 $(x_k, y_k)$ de $\R^2$ appartiennent à $K$, ils vérifient 
@@ -1323,92 +2476,11 @@ Aucun point $(x, y)$ de $\R^2$ n'annule simulanément $g$ et son gradient ;
 l'ensemble $K$ est donc bien un compact à bord $C^1$.
 
 
-Aire du disque unité {.answer #answer-adu}
+
+Intégrales de surface
 --------------------------------------------------------------------------------
 
-La fonction $f: x \in \R^2 \mapsto 1_B(x)$ est intégrable: l'ensemble $B$ est
-fermé, donc mesurable, et la fonction $f$ est par exemple dominée par la
-fonction caractéristique du pavé fermé $[-1,1]^2$, qui est intégrable.
-
-Le théorème de Fubini nous fournit donc
-$$
-\int_B dx = \int_{-1}^1 \left[\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} dy\right] dx
-= 2 \int_{-1}^1 \sqrt{1 - x^2} \, dx.
-$$
-Comme
-$$
-\int_{-1}^1 \sqrt{1 - x^2} \, dx
-= \int_{[-1, 1]} \sqrt{1 - x^2} \, dx
-= \int_{\left]-1, 1\right[} \sqrt{1 - x^2} \, dx
-$$
-On peut donc opérer le changement de variable 
-$$
-\theta \in \left]0, \pi\right[ \mapsto x = -\cos \theta \in \left]-1,1\right[
-$$
-(bijectif, continûment différentiable ainsi que son inverse).
-Comme $(-\cos \theta)' = \sin \theta$, on a
-$$
-\int_{0}^{\pi} \sqrt{1-(-\cos^2 \theta)} \sin \theta  \, d\theta = \int_{-1}^1 \sqrt{1 - x^2} \, dx
-$$
-et donc
-$$
-\int_{-1}^1 \sqrt{1 - x^2} \, dx
-=
-\int_{0}^{\pi} \sin^2 \theta  \, d\theta
-=
-\int_{0}^{\pi} \frac{1 - \cos 2\theta}{2} \, d\theta
-=
-\left[\frac{\theta}{2} - \frac{\sin 2\theta}{4} \right]_0^{\pi}
-=\frac{\pi}{2},
-$$
-et finalement
-$$
-\int_B \, dx = \pi.
-$$
-
-Alternativement, on peut noter que l'union $N$ de $\partial B$ et 
-du segment $\{(x, 0) \, | \, x \in [-1, 0]\}$ est négligeable dans $\R^2$ 
-et donc que
-$$
-\int_B \, dx = \int_{B \setminus N} dx,
-$$
-ce qui nous permet de considérer le changement de variable
-$$
-\phi: (r, \theta) \in \left]0, 1\right[ \times \left]-\pi ,\pi\right[
-\mapsto (x, y) = (r \cos \theta, r \sin \theta) \in B \setminus N
-$$
-(bijectif, continûment différentiable ainsi que son inverse).
-On calcule la matrice jacobienne
-$$
-J_{\phi}(r, \theta) = 
-\left[ 
-\begin{array}{cr}
-\cos \theta & -r \sin \theta \\
-\sin \theta & r \cos \theta
-\end{array}
-\right],
-$$
-dont le déterminant vaut
-$$
-\det J_{\phi}(r, \theta) = (\cos \theta)(r \cos \theta) - (\sin \theta)(-r\sin \theta)
-= r.
-$$
-On a donc
-$$
-\int_{\left]0, 1\right[ \times \left]-\pi ,\pi\right[} r \, drd\theta
-=
-\int_B \, dx,
-$$
-et donc par le théorème de Fubini,
-$$
-\int_B \, dx
-= \int_{-\pi}^{\pi} \left[\int_{0}^1 r \, dr \right] \, d\theta
-= \int_{-\pi}^{\pi} \frac{1}{2} \, d\theta
-= \pi.
-$$
-
-Intégrales de surface {.answer #answer-is}
---------------------------------------------------------------------------------
+### Question 1 {.answer #answer-is}
 
 Comme la normale extérieure à $B$ en $\partial B$ vaut $n(x) = (x_1, x_2)$
 et que $x_1^2 + x_2^2 = 1$ sur $\partial B$, on a en posant $v(x) = (x_1, x_2)$ 
@@ -1461,7 +2533,7 @@ On déduit de l'identité $\|f(x)\|^2=\left<f(x), f(x)\right> =1$ valable sur $B
 que pour tout $h \in \R^2$,
 $$
 \left<df(x) \cdot h, f(x) \right> + \left<f(x), df(x) \cdot h \right>=
-2 \left<df(x)^* \cdot f(x), h \right> = 0
+2 \left<df(x)^{\top} \cdot f(x), h \right> = 0
 $$
 et donc la relation $J_f(x)^t f(x) = 0$. La valeur $f(x)$ étant non nulle, cela
 entraîne la non-inversibilité de la matrice jacobienne $J_f(x)$,
@@ -1509,8 +2581,10 @@ $$
 $$
 Si une telle rétraction existait, on aurait donc une contradiction.
 
-Intégration par parties {.answer #answer-IPP-n}
+Intégration par parties 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-IPP-n}
 
 On obtient le théorème d'intégration par parties en appliquant le théorème
 fondamental du calcul à la dérivée du produit $fg$.

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # Python 3 Standard Library
+import copy
 import datetime
 import os
 import pathlib
@@ -15,32 +16,20 @@ from pandoc.types import *
 # Main Document Transform
 # ------------------------------------------------------------------------------
 def transform(doc):
-
-    # DEPRECATED
-    #
-    # Replace rules with anonymous headers (not perfect solution ...
-    # will appear in the TOC. But good for separation purposes)
-    # if False:
-    #     todos = []
-    #     for elt, path in pandoc.iter(doc, path=True):
-    #         if isinstance(elt, HorizontalRule):
-    #             todos.append(path[-1])
-    #     for todo in todos:
-    #         holder, i = todo
-    #         holder[i] = Header(3, ("", [], []), [])
-
     remove_html(doc)
     divify(doc)
     proofify(doc)
 
     add_font_awesome(doc)
+
     add_link_to_answers(doc)
+    add_page_to_link(doc)
 
-    demote_proofs_questions_answers_and_exercises(doc) # -> level 4
-    make_level_4_section_headings_inline(doc)
+    demote_proofs_questions_answers_and_exercises_and_examples(doc)  # -> level 4
+    # ___make_level_4_section_headings_inline(doc)
 
-    # make_level_4_section_headings_inline(doc) # was: 
-    # fucks up the index; the TOC is still good on print but the index is wrong 
+    # make_level_4_section_headings_inline(doc) # was:
+    # fucks up the index; the TOC is still good on print but the index is wrong
     # and the TOC links are fucked-up. Now it's not even the runin config:
     # the use of titlesec package is enough to do that. OK, see
     # <https://tex.stackexchange.com/questions/56023/titlesec-messin-up-my-hyperrefd-table-of-contents>
@@ -48,6 +37,7 @@ def transform(doc):
     # square one, titlesec is off-limits.
 
     transform_image_format(doc)
+    solve_image_extension(doc)
     solve_toc_nesting(doc)
     anonymify(doc)
 
@@ -56,7 +46,43 @@ def transform(doc):
 
     tt_url(doc)
 
+    handle_typed_sections(doc)
+
+    manage_french_spacing(doc)
+
     return doc
+
+def transform_html(doc):
+    #remove_html(doc)
+    divify(doc)
+    proofify(doc)
+
+    #add_font_awesome(doc)
+
+    #add_link_to_answers(doc)
+    #add_page_to_link(doc)
+
+    demote_proofs_questions_answers_and_exercises_and_examples(doc)  # -> level 4
+
+    #transform_image_format(doc)
+
+    remove_images(doc) # tmp
+
+    #solve_toc_nesting(doc)
+    anonymify(doc)
+
+    add_date(doc)
+    insert_authors(doc, "html")
+
+    #tt_url(doc)
+
+    #handle_typed_sections(doc)
+
+    manage_french_spacing(doc)
+
+
+    return doc
+
 
 # Command-Line/Process Helpers
 # ------------------------------------------------------------------------------
@@ -78,20 +104,27 @@ def call(*args):
     if status != 0:
         sys.exit(status)
 
+
 def python(*args):
     return call("python", *args)
+
 
 def doctest(*args):
     return call("python", "-m", "doctest", *args)
 
+
 def pdflatex(*args):
     return call("pdflatex", *args)
+
 
 # Git Helpers
 # ------------------------------------------------------------------------------
 def git_hash():
-    hashes = subprocess.check_output(["git", "log", '--pretty=format:"%H"']).decode("utf-8")
+    hashes = subprocess.check_output(["git", "log", '--pretty=format:"%H"']).decode(
+        "utf-8"
+    )
     return hashes.splitlines()[0].strip()[1:-1]
+
 
 def commiters():
     log = subprocess.check_output(["git", "shortlog", "-snc"]).decode("utf-8")
@@ -100,6 +133,7 @@ def commiters():
         items = line.split()
         cs += [" ".join(items[1:])]
     return cs
+
 
 aliases = {
     "Emilie Chautru": ["Emilie Chautru"],
@@ -111,11 +145,16 @@ aliases = {
 
 # Authors
 # ------------------------------------------------------------------------------
-def insert_authors(doc):
+def insert_authors(doc, *options):
+
+    if "html" not in options: # latex
+        github_icon = r"$\mbox{\faGithub}$"
+    else: # latex target
+        github_icon = ""
+    
     content = "STEP, MINES ParisTech[^1]\n\n"
-    content += \
-r"""[^1]: Ce document est un des produits du projet
-[$\mbox{\faGithub}$ `boisgera/CDIS`](https://github.com/),
+    content += r"""[^1]: Ce document est un des produits du projet
+[GITHUB_ICON `boisgera/CDIS`](https://github.com/),
 initié par la collaboration de [(S)ébastien Boisgérault](mailto:sebastien.boisgerault@mines-paristech.fr)
 (CAOR),
 [(T)homas Romary](mailto:thomas.romary@mines-paristech.fr) et
@@ -125,10 +164,12 @@ avec la contribution de [Gabriel Stoltz](mailto:gabriel-stolz@mines-paristech.fr
 (Ecole des Ponts ParisTech, CERMICS). 
 Il est mis à disposition selon les termes de [la licence Creative Commons "attribution 
 -- pas d’utilisation commerciale -- partage dans les mêmes conditions" 4.0 internationale](http://creativecommons.org/licenses/by-nc-sa/).
-"""
+""".replace("GITHUB_ICON", github_icon)
+
     content_inlines = pandoc.read(content)[1][0][0]
     metamap = doc[0][0]
     metamap["author"] = MetaList([MetaInlines(content_inlines)])
+
 
 # Date Management
 # ------------------------------------------------------------------------------
@@ -137,7 +178,7 @@ def add_date(doc):
     Add the current date in metadata if the field is empty.
     """
     metadata = doc[0][0]
-    if u"date" not in metadata:
+    if "date" not in metadata:
         date = datetime.date.today()
         day = str(date.day)
         year = str(date.year)
@@ -149,11 +190,12 @@ def add_date(doc):
 
         short_hash = "#" + git_hash()[:7]
         empty_attr = ("", [], [])
-        code_hash = Code(empty_attr, short_hash) 
+        code_hash = Code(empty_attr, short_hash)
         inlines.extend([Space(), Str("("), code_hash, Str(")")])
 
         meta["date"] = MetaInlines(inlines)
     return doc
+
 
 # Misc. Helpers
 # ------------------------------------------------------------------------------
@@ -164,6 +206,7 @@ def clean_latex_trash():
     for ext in extensions:
         for file in with_ext(ext):
             file.unlink()
+
 
 # Document Processing
 # ------------------------------------------------------------------------------
@@ -249,23 +292,37 @@ def print_sections(doc):
             level, attr, inlines = header[:]
             minidoc = Pandoc(Meta({}), [Plain(inlines)])
             title = pandoc.write(minidoc)
-            depth = len(
-                [holder for holder, index in path if isinstance(holder, Div)]
-            )
+            depth = len([holder for holder, index in path if isinstance(holder, Div)])
             print(str(depth) + "> " + depth * 4 * " " + title, end="")
 
+
 # Deprecated: titlesec won't work with hyperref used for links (toc, etc.)
-def _make_level_4_section_headings_inline(doc):
+def ___make_level_4_section_headings_inline(doc):
     # Enable titlesec and configure level 4 sections as runin
     # --------------------------------------------------------------------------
-    # workaround: can't just parse the LaTeX command, the "[.]" is not 
+    # workaround: can't just parse the LaTeX command, the "[.]" is not
     # recognized as raw LaTeX by pandoc.
-    inlines = [
-        RawInline("tex", r"\usepackage{titlesec}"),
-        #SoftBreak(),
-        #RawInline("tex", r"\titleformat{\subsubsubsection}[runin]{\bfseries}{}{}{}[.]")
+
+    # BUG : some issue here.
+
+    blocks = [
+        RawBlock(
+            Format("tex"),
+            "\\usepackage{titlesec}\n\\titleformat{\\subsubsubsection}[runin]{\\bfseries}{}{}{}[.]",
+        )
     ]
-    add_latex_header(doc, [Para(inlines)])
+
+    #    inlines = [
+    #        RawInline("tex", r"\usepackage{titlesec}"),
+    # SoftBreak(),
+    # RawInline("tex", r"\titleformat{\subsubsubsection}[runin]{\bfseries}{}{}{}[.]")
+    #    ]
+    #    add_latex_header(doc, [Para(inlines)])
+    add_latex_header(doc, blocks)
+
+
+# STILL BUGGY ...
+
 
 # Deprecated
 def _make_level_4_section_headings_inline(doc):
@@ -298,6 +355,7 @@ def _make_level_4_section_headings_inline(doc):
         inlines = block[0]
         inlines.insert(0, span)
 
+
 def make_level_4_section_headings_inline(doc):
     found = []
     for elt, path in pandoc.iter(doc, path=True):
@@ -322,40 +380,23 @@ def make_level_4_section_headings_inline(doc):
         inlines.insert(0, RawInline("latex", r"\vspace{3.25ex plus 1ex minus .2ex}"))
         inlines.insert(1, span)
 
-def demote_proofs_questions_answers_and_exercises(doc):
+def demote_proofs_questions_answers_and_exercises_and_examples(doc):
     for elt in pandoc.iter(doc):
         if isinstance(elt, Header):
             header = elt
             level, attr, inlines = header[:]
             identifier, classes, kv_pairs = attr
-            if "proof" in classes or "question" in classes or "answer" in classes or "exercise" in classes:
+            if (
+                "proof" in classes
+                or "question" in classes
+                or "answer" in classes
+                or "exercise" in classes
+                or "example" in classes
+            ):
                 if level == 3:
                     level = 4
                     header[:] = level, attr, inlines
 
-
-    # found = []
-    # for elt, path in pandoc.iter(doc, path=True):
-    #     if isinstance(elt, Header):
-    #         header = elt
-    #         level, attr, inlines = header[:]
-    #         identifier, classes, kv_pairs = attr
-    #         if "proof" in classes or "question" in classes or "answer" in classes:
-    #             span = Span(attr, [Strong(inlines), RawInline("latex", r"\quad")])
-    #             holder, i = path[-1]
-    #             assert isinstance(holder, list)
-    #             found.append((holder, span))
-
-    # for holder, span in found:
-    #     assert isinstance(holder[0], Header)
-    #     del holder[0]
-    #     if holder == [] or not isinstance(holder[0], (Plain, Para)):
-    #         holder.insert(0, Para([]))
-    #     block = holder[0]
-    #     inlines = block[0]
-    #     #see <https://tex.stackexchange.com/questions/48753/obtaining-the-default-section-spacing-into-the-titlespacing-parameters>
-    #     inlines.insert(0, RawInline("latex", r"\vspace{3.25ex plus 1ex minus .2ex}"))
-    #     inlines.insert(1, span)
 
 def proofify(doc):
     sections = []
@@ -387,12 +428,14 @@ def proofify(doc):
         else:
             inlines.append(blacksquare)
 
+
 def detect_image(elt):
     for _elt in pandoc.iter(elt):
         if isinstance(_elt, Image):
             return True
     else:
         return False
+
 
 def add_link_to_answers(doc):
     sections = []
@@ -415,29 +458,73 @@ def add_link_to_answers(doc):
         _, attributes, _ = header[:]
         identifier, _, _ = attributes
         if identifier:
-            #symbol_no_space = RawInline(Format("tex"), r"\faQuestionCircle")
-            symbol_no_space = Strong([Str("(?)")])
-            #symbol = RawInline(Format("tex"), r"\; \faQuestionCircle")
-            #symbol = RawInline(Format("tex"), r"\; $\to$")
-            symbol = Strong([Space(), Str("(?)")])
+            need_space = True
             if blocks == [] or not isinstance(blocks[-1], (Plain, Para)):
                 blocks.append(Plain([]))
-                symbol = symbol_no_space
+                need_space = False
             elif isinstance(blocks[-1], Para):
-                para = blocks[-1]           
+                para = blocks[-1]
                 if isinstance(para[0][-1], Image):
                     blocks.append(Para([]))
-                    symbol = symbol_no_space
+                    need_space = False
                 elif isinstance(para[0][-1], Math) and para[0][-1][0] == DisplayMath():
                     blocks.append(Para([]))
-                    symbol = symbol_no_space
+                    need_space = False
 
-            attr = ("", [], [])
+            attr = ("", ["no-parenthesis"], [])
             target = ("#answer-" + identifier, "")
-            link = Link(attr, [symbol], target)
+            link = Link(attr, [Str("Solution")], target)
+            link_wrapper = [Str("("), link, Str(".)")]
+            if need_space:
+                link_wrapper = [Space()] + link_wrapper
             last_block = blocks[-1]
             inlines = last_block[0]
-            inlines.append(link)
+            inlines.extend(link_wrapper)
+
+
+def add_page_to_link(doc):
+    # Page references use labels as anchors but spans, even with an id,
+    # don't generate such labels, so we need to add them manually.
+    for elt in pandoc.iter(doc):
+        if isinstance(elt, Span):
+            span = elt
+            attr, inlines = span[:]
+            id_, _, _ = attr
+            if id_ != "":
+                latex_id = id_.replace("é", "uxe9")  # Hack (see below)
+                label = RawInline(Format("tex"), f"\\label{{{latex_id}}}")
+                inlines.append(label)
+
+    found = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Link):
+            link = elt
+            holder, i = path[-1]
+            found.insert(0, (holder, i, link))
+    for holder, i, link in found:
+        url = link[2][0]
+        no_paren = "no-parenthesis" in link[0][1]
+        if url.startswith("#"):
+            # print(f"\\pageref{{{url[1:]}}}")
+            latex_id = f"\\pageref*{{{url[1:]}}}"
+            latex_id = latex_id.replace("é", "uxe9")
+            # quick hack ; would need to see in general how pandoc mangles the
+            # ids for theme to be used in LaTeX ; at the very least, consider
+            # "à" ?
+            pageref = RawInline(Format("tex"), latex_id)
+            if no_paren:
+                link[1].extend([Space(), Str("p."), Space(), pageref])
+            else:
+                link[1].extend([Space(), Str("(p."), Space(), pageref, Str(")")])
+            # TODO ?: insert the pageref inside the link, not after ?
+
+
+def remove_images(doc):
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Image):
+            image = elt
+            holder, index = path[-1]
+            del holder[index]
 
 def transform_image_format(doc):
     for elt in pandoc.iter(doc):
@@ -445,32 +532,126 @@ def transform_image_format(doc):
             image = elt
             attr, inlines, target = image[:]
             url, title = target
-            if pathlib.Path(url).suffix in [".tex", ".py"]:
+            # warning: svg files are replaced with pdf files, but not converted
+            # the generation has to be done manually (and commited)
+            if pathlib.Path(url).suffix in [".tex", ".py", ".svg"]:
                 new_target = url + ".pdf"
                 image[:] = attr, inlines, (new_target, title)
 
-def add_latex_header(doc, latex_src):
-    new_blocks = None
-    if isinstance(latex_src, list): # list of blocks
-        new_blocks = latex_src
-    else:
-        new_blocks = pandoc.read(latex_src)[1]
-    meta, blocks = doc[:]
-    metamap = meta[0]
-    blocks = metamap.setdefault("header-includes", MetaBlocks([]))[0]
-    blocks.extend(new_blocks)
+
+def add_latex_header(doc, latex):
+    metadata = doc[0][0]
+    header_includes = metadata.setdefault("header-includes", MetaList([]))
+    meta_block = MetaBlocks([RawBlock(Format("latex"), latex)])
+    if meta_block not in header_includes[0]:
+        header_includes[0].append(meta_block)
+
 
 def solve_toc_nesting(doc):
     add_latex_header(doc, r"\usepackage{bookmark}")
 
+def solve_image_extension(doc):
+    # See https://texfaq.org/FAQ-unkgrfextn
+    add_latex_header(doc, r"\usepackage{grffile}")
+    
 # Deprecated
-def _solve_toc_nesting(doc): # fuck you LaTeX!
+def _solve_toc_nesting(doc):  # fuck you LaTeX!
     "Add the 'bookmark' package to solve TOC issues"
     meta, blocks = doc[:]
     metamap = meta[0]
     metamap["header-includes"] = MetaList(
         [MetaBlocks([RawBlock(Format("tex"), "\\usepackage{bookmark}")])]
     )
+
+
+# ------------------------------------------------------------------------------
+def handle_typed_sections(doc):
+    types = {
+        "theorem": "Théorème",
+        "corollary": "Corollaire",
+        "definition": "Définition",
+        "lemma": "Lemme",
+        "proposition": "Proposition",
+        "remark": "Remarque",
+        "exercise": "Exercice",
+        "example": "Exemple",
+        "question": None,
+        "answer": None,
+    }
+    levels = {
+        1: "section",
+        2: "subsection",
+        3: "subsubsection",
+        4: "paragraph",
+        5: "subparagraph",
+    }
+    todos = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, Header):
+            header = elt
+            level, attr, inlines = header
+            id_, classes, kvs = attr
+            shared = [type_ for type_ in classes if type_ in types]
+            if shared:
+                classes.extend(["unnumbered", "unlisted"])
+                holder, index = path[-1]
+                minidoc = Pandoc(Meta(map()), [Para(inlines)])
+                latex_title = pandoc.write(minidoc, format="latex").strip()
+                todos.append([holder, index, level, latex_title])
+                type_ = shared[0]
+                if types[type_]:
+                    inlines = [Str(types[type_]), Space(), Str("–"), Space()] + inlines
+                if "exercise" in classes or "question" in classes:
+                    if "zero" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\boldsymbol{\circ}}"),
+                            Str(")"),
+                        ]
+                    if "one" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\bullet}"),
+                            Str(")"),
+                        ]
+                    if "two" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\bullet}" * 2),
+                            Str(")"),
+                        ]
+                    if "three" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\bullet}" * 3),
+                            Str(")"),
+                        ]
+                    if "four" in classes:
+                        inlines += [
+                            Space(),
+                            Str("("),
+                            Math(InlineMath(), r"\mathord{\bullet}" * 4),
+                            Str(")"),
+                        ]
+                    # r"\mathord{\pmb{\infty}}"
+                header[2] = inlines
+    for holder, index, level, latex_title in todos:
+        latex_code = (
+            r"\addcontentsline{toc}{" + levels[level] + "}{" + latex_title + "}"
+        )
+        holder.insert(index + 1, Para([RawInline("latex", latex_code)]))
+
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, (RawInline, RawBlock)):
+            format = elt[0]
+            if format[0] == "html":
+                holder, i = path[-1]
+                found.insert(0, (holder, i))
+
 
 def add_font_awesome(doc):
     add_latex_header(doc, r"\usepackage{fontawesome}")
@@ -490,8 +671,10 @@ def _add_font_awesome(doc):
     metablocks = metalist[0][0]
     metablocks[0].append(RawBlock(Format("tex"), "\\usepackage{fontawesome}"))
 
+
 def add_marginnote(doc):
     add_latex_header(doc, r"\usepackage{marginnote}")
+
 
 # Deprecated
 def _add_marginnote(doc):
@@ -501,6 +684,7 @@ def _add_marginnote(doc):
     metablocks = metalist[0][0]
     metablocks[0].append(RawBlock(Format("tex"), "\\usepackage{marginnote}"))
 
+
 def flag_definitions(doc):
     for elt in pandoc.iter(doc):
         if isinstance(elt, Header):
@@ -508,8 +692,59 @@ def flag_definitions(doc):
             level, attr, inlines = header[:]
             id_, classes, kv_pairs = attr
             if "definition" in classes:
-                inlines = [RawInline(Format("tex"), r"\faFlagO\;\;")] + inlines # Space() doesn't seem to work :(
+                inlines = [
+                    RawInline(Format("tex"), r"\faFlagO\;\;")
+                ] + inlines  # Space() doesn't seem to work :(
                 header[:] = level, attr, inlines
+
+ESPACE_MOTS_INSECABLE = "\u00a0"
+ESPACE_FINE_INSECABLE = "\u202f"
+
+def manage_french_spacing(doc):
+    locations = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, list) and len(elt) != 0:
+            n = len(elt)
+            for i in range(0, n-1):
+                if isinstance(elt[i], Space) and elt[i+1] == Str(";"):
+                    locations.append((elt, i))
+    for (holder, i) in reversed(locations):
+        holder[i:i+2] = [Str(ESPACE_FINE_INSECABLE + ";")]
+        #print(holder)
+
+    locations = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, list) and len(elt) != 0:
+            n = len(elt)
+            for i in range(0, n-1):
+                if isinstance(elt[i], Space) and elt[i+1] == Str("?"):
+                    locations.append((elt, i))
+    for (holder, i) in reversed(locations):
+        holder[i:i+2] = [Str(ESPACE_FINE_INSECABLE + "?")]
+        #print(holder)
+
+    locations = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, list) and len(elt) != 0:
+            n = len(elt)
+            for i in range(0, n-1):
+                if isinstance(elt[i], Space) and elt[i+1] == Str("!"):
+                    locations.append((elt, i))
+    for (holder, i) in reversed(locations):
+        holder[i:i+2] = [Str(ESPACE_FINE_INSECABLE + "!")]
+        #print(holder)
+
+    locations = []
+    for elt, path in pandoc.iter(doc, path=True):
+        if isinstance(elt, list) and len(elt) != 0:
+            n = len(elt)
+            for i in range(0, n-1):
+                if isinstance(elt[i], Space) and elt[i+1] == Str(":"):
+                    locations.append((elt, i))
+    for (holder, i) in reversed(locations):
+        holder[i:i+2] = [Str(ESPACE_MOTS_INSECABLE + ":")]
+        #print(holder)    
+
 
 # Code Generation
 # ------------------------------------------------------------------------------
@@ -527,26 +762,32 @@ def generate_code(doc):
                     has_doctests = True
                 else:
                     lines = src.splitlines()
-                    for i, line in enumerate(lines): 
+                    for i, line in enumerate(lines):
                         if line.startswith("    "):
                             lines[i] = "... " + line
                         else:
                             lines[i] = ">>> " + line
-                    #lines = [">>> " + lines[0]] + ["... " + line for line in lines[1:]]
+                    # lines = [">>> " + lines[0]] + ["... " + line for line in lines[1:]]
                     doctests.append("\n".join(lines))
                     snippets.append(src)
     if not has_doctests:
         return None
     doctests = "\n\n".join(doctests)
     snippets = "\n\n".join(snippets)
-    return \
-f'''"""
+    return f'''"""
 {doctests}
 """
 {snippets}
 '''
 
+
+# Main Entry Point
 # ------------------------------------------------------------------------------
+
+# Options
+# ------------------------------------------------------------------------------
+fast = "-f" in sys.argv[1:] or "--fast" in sys.argv[1:]
+
 
 # Files and Directories
 root = pathlib.Path(".").resolve()
@@ -558,7 +799,7 @@ images = root / "images"
 #     shutil.rmtree(output)
 # except FileNotFoundError:
 #     pass
-output.mkdir(exist_ok=True) 
+output.mkdir(exist_ok=True)
 
 bibliography = root / "bibliography.json"
 
@@ -584,22 +825,23 @@ doc_py = str(output / (doc + ".py"))
 doc_md_md = str(output / (doc + ".md"))
 
 # Images
-if images.exists():
-    try:
-        os.chdir(images)
-        l = pathlib.Path(".")
-        for tex_file in l.glob("*.tex"):
-            pdflatex(tex_file)
-            pdf_file = tex_file.with_suffix(".pdf")
-            # path.rename (which makes more sense) won't work with Windows
-            # if the target file already exists while path.replace works
-            # for all platforms (AFAICT).
-            pdf_file.replace(tex_file.with_suffix(tex_file.suffix + ".pdf"))
-        for python_file in l.glob("*.py"):
-            python(python_file)
-    finally:
-        clean_latex_trash()
-        os.chdir(root)
+if not fast:
+    if images.exists():
+        try:
+            os.chdir(images)
+            l = pathlib.Path(".")
+            for tex_file in l.glob("*.tex"):
+                pdflatex(tex_file)
+                pdf_file = tex_file.with_suffix(".pdf")
+                # path.rename (which makes more sense) won't work with Windows
+                # if the target file already exists while path.replace works
+                # for all platforms (AFAICT).
+                pdf_file.replace(tex_file.with_suffix(tex_file.suffix + ".pdf"))
+            for python_file in l.glob("*.py"):
+                python(python_file)
+        finally:
+            clean_latex_trash()
+            os.chdir(root)
 
 # Pandoc Options
 options = ["--standalone"]
@@ -611,9 +853,12 @@ TEX_options = options.copy()
 PDF_options = options.copy()
 
 # To use package titlesec, see <https://stackoverflow.com/questions/42916124/not-able-to-use-titlesec-with-markdown-and-pandoc>
-# Update: titlesec is off limit anyway with pandoc, 
+# Update: titlesec is off limit anyway with pandoc,
 # as it is not compatible with hyperref
-# PDF_options += ["--variable", "subparagraph"]
+# UPDATE : it *was* not compatible, with with a more recent TeXLive, it may work.
+# UPDATE : no, it is still borked. But we don't care, we don't need titlesec in
+# the end, the subparagraph option alone does the job ennit?
+PDF_options += ["--variable", "subparagraph"]
 PDF_PRINT_options = PDF_options.copy()
 PDF_PRINT_options += ["-Vpapersize=a4", "-Vclassoption=twoside"]
 
@@ -623,27 +868,30 @@ HTML_options += ["--mathjax"]
 
 # PDF Output
 doc = pandoc.read(file=doc_md)
+doc_ = copy.deepcopy(doc)
 doc = transform(doc)
 
 # Code and Doctest
 code = generate_code(doc)
 if code is not None:
-    #print("code:\n\n", code)
+    # print("code:\n\n", code)
     with open(doc_py, "w") as py_file:
         py_file.write(code)
     python("-m", "doctest", doc_py)
     try:
-        shutil.rmtree(output / "__pycache__") # otherwise, top build has issues.
+        shutil.rmtree(output / "__pycache__")  # otherwise, top build has issues.
     except:
         pass
 
 
 pandoc.write(doc, file=doc_pdf, options=PDF_options)
+pandoc.write(doc, file=doc_md_md, options=PDF_options)
+
 
 # PDF Output (Print)
 pandoc.write(doc, file=doc_pdf_print, options=PDF_PRINT_options)
 
-# LaTeX Output 
+# LaTeX Output
 pandoc.write(doc, file=doc_tex, options=TEX_options)
 gl = lambda pattern: list(images.glob(pattern))
 image_filenames = gl("*.pdf") + gl("*.png") + gl("*.jpg")
@@ -651,5 +899,10 @@ for image in image_filenames:
     shutil.copy(image, output_latex_images)
 shutil.make_archive(str(output_latex), "zip", str(output_latex))
 shutil.rmtree(str(output_latex))
-#pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
-#pandoc.write(doc, format="odt", file=doc_odt, options=ODT_options)
+# pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
+# pandoc.write(doc, format="odt", file=doc_odt, options=ODT_options)
+
+if "--html" in sys.argv:
+    doc = transform_html(doc_)
+    pandoc.write(doc, format="html5", file=doc_html, options=HTML_options)
+
