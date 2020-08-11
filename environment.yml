@@ -6,6 +6,7 @@ dependencies:
   - pandoc=2.9.2
   - numpy
   - scipy
+  - pandas
   - mpmath
   - autograd
   - matplotlib
