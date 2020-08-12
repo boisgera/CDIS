@@ -796,9 +796,9 @@ On peut se demander s'il existe toujours une fonction de Lyapunov autour d'un po
 Exercices 
 ==============================================================================
 
-Les exercices à maîtriser sont marqués d'un ($+$). 
+Les exercices à maîtriser sont marqués de croix (+) ou (++), par ordre de difficulté. 
 
-## Ecoulement dans un réservoir ($+$) {.exercice #exo_Torricelli}
+## Ecoulement dans un réservoir ($++$) {.exercice #exo_Torricelli}
 Considérons un réservoir cylindrique de section $S$ qui se vide par une ouverture de section $s$ située à sa base. On note $x$ la hauteur de liquide dans le réservoir. D'après la *loi de Torricelli*[^Torricelli], l'équation d'évolution de $x$ est donnée par 
 $$
 \dot{x}=-k\sqrt{|x|} \qquad k = \frac{s}{S}\sqrt{2g}
@@ -817,7 +817,7 @@ Comment pourrait s'interpréter physiquement la multitude de solutions trouvées
 ### Question 4 (plus dur) {.question #tor-4}
 Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_reg_CI) donné plus haut ? Pourquoi ?
 
-## Solutions globales (+) {.question #glob_sol}
+## Solutions globales ($+$) {.question #glob_sol}
 
 Justifier que pour toute condition initiale, le système
 $$
@@ -883,7 +883,7 @@ Etudier la stabilité des points d'équilibre et le comportement des solutions p
 <!-- *Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 +\frac{1}{2} m x_2^2$)*
 -->
 
-## Stabilité asymptotique globale ($+$) {.exercice #exo_stab_glob}
+## Stabilité asymptotique globale ($++$) {.exercice #exo_stab_glob}
 
 ### Question 1 {.question #asymp_glob-1}
 Montrer que le point d'équilibre $(0,0)$ est localement asymptotiquement stable pour le système
@@ -903,9 +903,9 @@ $$
 \dot{x}_2 &=& -x_1^3-x_2
 \end{array}
 $$
-*Indice : Essayer de trouver une fonction de Lyapunov...*.
+*Indice : Essayer de trouver une fonction de Lyapunov... $x_2^2$ donne de la négativité en $x_2$, $(x_1+x_2)^2$ de la négativité en $x_1$... voir comment compléter...*.
 
-## Cycle limite ($+$)  {.exercice #exo_cycle-lim}
+## Cycle limite ($++$)  {.exercice #exo_cycle-lim}
 Considérons le système
 $$
 \begin{array}{rcl}
