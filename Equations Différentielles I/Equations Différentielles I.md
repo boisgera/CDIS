@@ -16,9 +16,9 @@
 Un peu d'histoire
 =====================
 
-L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et de la modélisation du mouvement par Kepler et Newton. Avec Leibniz, leur premier réflexe est alors de chercher des solutions exactes, par exemple par des primitives de fonctions conues ou bien sous forme de série, mais ces méthodes atteignent vite leurs limites, mis à part dans des cas très particuliers. 
+L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et de la modélisation du mouvement par Kepler et Newton. Avec Leibniz, leur premier réflexe est alors de chercher à résoudre ces équations de manière exacte, par exemple par des primitives de fonctions connues ou bien sous forme de série, mais ces méthodes atteignent vite leurs limites, sauf dans des cas très particuliers. 
 
-Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on cherche à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
+Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on cherche ensuite plutôt à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
 Laplace, qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
 
 Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
@@ -28,7 +28,7 @@ En parallèle, l'étude de la stabilité et du comportement asymptotique des sol
 Objectifs du cours
 ========================
 
-Ce cours est une introduction à l'étude non linéaire des équations différentielles. Pour une étude plus complète voir par exemple [@Hale]. En première lecture, les objectifs ``opérationnels'' sont les suivants :
+Ce cours est une introduction à l'étude non linéaire des équations différentielles. Pour une étude plus complète voir par exemple [@Hale]. En première lecture, les objectifs "opérationnels" sont les suivants :
 
 - savoir réduire une équation différentielle à l'ordre 1.
 
@@ -129,7 +129,7 @@ si $y$ est de classe $C^p$ sur $I$ et pour tout $t\in \mathring{\overline{I}}$,
 
 On dira que l'équation différentielle est *autonome* si l'application $\psi$ ne dépend pas de $t$. Dans ce cas, on peut définir directement $f: Y \to \R^n$. 
 
-Lorsque l'intervalle de temps $I$ de définition de la solution est $J$ entier, on dira que la solution est globale. Mais l'on verra qu'il peut parfois arriver qu'une solution n'existe que sur un intervalle de temps fini, plus *petit* que $J$, par exemple si elle explose avant, ou si elle s'apprête à quitter $Y$.
+Lorsque l'intervalle de temps $I$ de définition de la solution est $J$ entier, on dira que la solution est globale. Mais l'on verra qu'il peut parfois arriver qu'une solution n'existe que sur un intervalle de temps plus *petit* que $J$, par exemple si elle explose avant, ou si elle s'apprête à quitter $Y$.
 
 Notons que $f$ sera souvent définie globalement avec $J=\R$ et $Y = \R^{np}$. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|^2}$ n'est définie que pour $y_a\neq y_b$.
 
@@ -497,14 +497,14 @@ $$
 
 
 La présence du facteur exponentiel n'est pas crucial ici, et servira dans la suite. Ce qui est important, c'est que plus l'erreur de condition initiale $\delta$ est faible, plus l'erreur sur la trajectoire à horizon de temps fini $\overline{t}$ est faible.
-On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse ``$C^1$ par rapport à $x$'' est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
+On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse "$C^1$ par rapport à $x$" est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
 
 ### Démonstration {.proof} 
 Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
 
 ### Continuité des solutions par rapport aux perturbations {.example #ex_contCI}
 
-- Si $\lambda<0$, l'erreur commise sur la condition initiale disparait au cours du temps dans les solutions : on dit qu'elles ``oublient'' leur condition initiales et que le système est *contractant*. 
+- Si $\lambda<0$, l'erreur commise sur la condition initiale disparait au cours du temps dans les solutions : on dit qu'elles "oublient" leur condition initiales et que le système est *contractant*. 
 
 - On peut aussi déduire de ce résultat la continuité des solutions par rapport à des paramètres $p$ intervenant dans la fonction $f$. En effet, il suffit de considérer le système étendu
 \begin{align*}
@@ -895,7 +895,7 @@ $$
 $$
 L'est-il globalement ?
 
-### Question 2 {.question #asymp_glob-2}
+### Question 2 (plus dur) {.question #asymp_glob-2}
 Même question pour le système
 $$
 \begin{array}{rcl}
@@ -903,8 +903,9 @@ $$
 \dot{x}_2 &=& -x_1^3-x_2
 \end{array}
 $$
+*Indice : Essayer de trouver une fonction de Lyapunov...*.
 
-## Cycle limite  {.exercice #exo_cycle-lim}
+## Cycle limite ($+$)  {.exercice #exo_cycle-lim}
 Considérons le système
 $$
 \begin{array}{rcl}
