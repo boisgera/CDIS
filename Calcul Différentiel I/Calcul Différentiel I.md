@@ -1358,7 +1358,7 @@ supposée différentiable en tout point d'un segment $[a, a+h]$ inclus
 dans $U$ et dont la différentielle est majorée en norme par $M$ sur $[a, a+h]$, 
 c'est-à-dire telle que
 $$
-\mbox{pour tout } x \in [a, a+h], \;\|f'(x)\| \leq M.
+\mbox{pour tout } x \in [a, a+h], \;\|df(x)\| \leq M.
 $$
 Alors 
 $$
