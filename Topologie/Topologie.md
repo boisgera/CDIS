@@ -403,7 +403,7 @@ d'une distance $d$ de l'espace euclidien $\mathbb{R}^2$
 quand $x=(1,0)$ et $y=(0,1)$),
 ce qui fait de lui un espace métrique.](images/circle.tex)
 
-Par contre, à moins que $X$ soit un sous-espace vectoriel de $X$
+Par contre, à moins que $X$ soit un sous-espace vectoriel de $E$
 les additions entre élements de $X$ ou la multiplication d'un 
 élément de $X$ n'ont plus de sens dans $X$ ;
 nous ne pouvons plus définir une norme sur $X$.
@@ -485,7 +485,7 @@ Une distance $d$ sur $X$ associe à deux points de $X$ un réel positif.
 Cette fonction peut servir de base pour définir une distance entre
 un point $x$ de $X$ et un ensemble de points de $A$ de $X$:
 $$
-d(x, A) := \inf_{a \in A} d(x, A) \in \left[0, +\infty \right]
+d(x, A) := \inf_{a \in A} d(x, a) \in \left[0, +\infty \right]
 $$
 ou même entre deux ensembles $A$ et $B$ de points de $X$:
 $$
@@ -664,7 +664,7 @@ $$
 ### Normes et boules {.exercise .question .one #bdn}
 Dans $\R^2$, représenter graphiquement les boules ouvertes centrées sur 
 l'origine et de rayon $1$ lorsque la distance est issue la norme euclidienne 
-$\|x\|_2 = \sqrt{x_1^2+x_2}$, puis de la norme $\|x\|_1 = |x_1| + |x_2|$ et 
+$\|x\|_2 = \sqrt{x_1^2+x_2^2}$, puis de la norme $\|x\|_1 = |x_1| + |x_2|$ et 
 enfin de la norme $\|x\|_{\infty} = \max(|x_1|, |x_2|)$.
 
 ### C'est une boule ça ? {.exercise .question .one #cubc}
@@ -778,9 +778,6 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$.
   - Un point est *frontière* de $A$ s'il existe une suite de points de $A$
     qui converge vers ce point et une suite de points du complémentaire de $A$
     dans $X$ qui converge vers ce point.
-
-  - Un point $x$ est *intérieur* à un ensemble $A$ si toute
-    suite convergeant vers $x$ appartient à $A$ à partir d'un certain rang.
 
   - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si toute
     suite convergeant vers $x$ appartient à $V$ à partir d'un certain rang.
@@ -2082,7 +2079,7 @@ et de produire une méthode itérative pour l'évaluer.
 ### Question 1 {.question #golden-ratio-1 .one}
 Montrer l'existence d'un unique point fixe associé à l'application
 $$
-x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
+f:x \in \left]0, +\infty\right[ \mapsto 1 + \frac{1}{x}
 $$
 et établir qu'il se situe dans l'intervalle fermé $[4/3, 2]$.
 
@@ -2411,11 +2408,11 @@ $$
 Soit $x=(x_1, x_2)$ un vecteur non-nul de $\R^2$. 
 On a $A \cdot x = (2x_1, -x_2)$, donc
 $$
-\frac{\|A \cdot x\|}{\|x\|} = \frac{\sqrt{x_1^2 + 4 x_2^2}}{\sqrt{x_1^2 + x_2^2}}.
+\frac{\|A \cdot x\|}{\|x\|} = \frac{\sqrt{4x_1^2 +  x_2^2}}{\sqrt{x_1^2 + x_2^2}}.
 $$
 En formant $r = (x_1 / x_2)^2$, on obtient donc
 $$
-\|A\| = \sup_{(x_1,x_2) \neq 0} \frac{\sqrt{x_1^2 + 4 x_2^2}}{\sqrt{x_1^2 + x_2^2}}= \sup_{r \in [0, +\infty]} \frac{\sqrt{r + 4}}{\sqrt{r + 1}}
+\|A\| = \sup_{(x_1,x_2) \neq 0} \frac{\sqrt{4x_1^2 +  x_2^2}}{\sqrt{x_1^2 + x_2^2}}= \sup_{r \in [0, +\infty]} \frac{\sqrt{r + 4}}{\sqrt{r + 1}}
 =
 \sup_{r \in [0, +\infty]} \sqrt{1 + \frac{{3}}{{r + 1}}}.
 $$
@@ -2592,7 +2589,7 @@ Par conséquent, $B((0,0), 2) = X$.
 
 ### Dans le plan {.answer #answer-dlp}
 Non, car tous les points de la forme $(0,x_2)$, $x_2 \neq 0$ n'appartiennent
-pas à $D$. Donc toute boule ouverte $B((0,0), r)$ est d'intersection non vide
+pas à $D$. Donc toute boule ouverte $B((0,x_2), r)$ est d'intersection non vide
 avec le complémentaire de $D$.
 
 ### Voisinages ouverts / fermés ? {.answer #answer-vof}
@@ -3608,7 +3605,7 @@ $$
 $$
 on en déduit que 
 $$
-\|x - y\|_{\infty}^{\alpha} \leq \frac{\|A| T}{\alpha} \|x-y\|_{\infty}^{\alpha}.
+\|x - y\|_{\infty}^{\alpha} \leq \frac{\|A\| T}{\alpha} \|x-y\|_{\infty}^{\alpha}.
 $$
 L'application $\Phi$ est donc contractante dès lors que $\alpha > \|A\| T$.
 Pour tout $T > 0$,
