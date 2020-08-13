@@ -400,7 +400,7 @@ ou encore si la fonction $x \in U \mapsto J_f(x) \in \R^{m \times n}$
 est définie et continue.
 
 ### {.remark}
-On qualifiera *différentiable* une fonction un développement limité 
+On qualifiera de *différentiable* une fonction qui admet un développement limité 
 au premier ordre. La différentiabilité est la transposition naturelle 
 du concept de dérivabilité aux fonctions de plusieurs variables :
 pour jouer ce rôle, l'existence de la matrice jacobienne est une propriété 
@@ -551,8 +551,8 @@ Par contre, si un tel développement existe, il est nécessairement
 obtenu à partir de la matrice jacobienne comme le montre l'exercice suivant.
 
 ### Développement limité au premier ordre {.exercise .question #dlmj .two}
-Montrer que si $a\in \R^m$ et 
-$B \in \R^{m \times n}$ vérifie dans un voisinage de $h=0$
+Montrer que pour $a\in \R^m$ et 
+$B \in \R^{m \times n}$, si $f$ est une fonction qui vérifie dans un voisinage de $h=0$
 $$
 f(x+h) = a + B \cdot h + \varepsilon(h) \|h\|
 $$
@@ -2875,7 +2875,7 @@ de fonctions différentiables et
 $$
 d g(x) \cdot h = - \exp \left( -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
 \left<\Sigma^{-1} \cdot x, h \right>
-= \left<-f(x) \times \Sigma^{-1} \cdot x, h \right>,
+= \left<-g(x) \times \Sigma^{-1} \cdot x, h \right>,
 $$
 le gradient de $g$ vaut donc
 $$
@@ -2925,7 +2925,7 @@ J_f(\theta_1, \theta_2)
 \right].
 $$
 
-### Question 1  {.answer #answer-rm-2}
+### Question 2  {.answer #answer-rm-2}
 Soient $\delta \theta_1 := \theta_1 - \theta_{10}$
 et $\delta \theta_2 := \theta_2 - \theta_{20}$. La fonction
 $$
@@ -2972,7 +2972,7 @@ $$
 |y - y_0| \leq (\ell_1 + 2\ell_2) \varepsilon.
 $$
 Le point $(x, y) = f(\theta_1, \theta_2)$ appartient donc au carré centré 
-en $(x_0, y_0)$ d'arête de longueur $(\ell_1/2 + \ell_2=\varepsilon$. 
+en $(x_0, y_0)$ d'arête de longueur $\ell_1 + 2\ell_2=\varepsilon$. 
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
