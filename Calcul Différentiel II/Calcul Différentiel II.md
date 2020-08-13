@@ -143,7 +143,7 @@ au voisinage desquels le cercle est le graphe d'une fonction
 continûment différentiable $y = \psi(x)$. 
 On déterminera alors explicitement des intervalles ouverts $U$ 
 contenant $x_0$ et $V$ contenant $y_0$ ainsi que la fonction $\psi : U \to \R$ 
-tels que $x^2+y^2 = 0  \, \Leftrightarrow \, y = \psi(x)$ et l'on calculera
+tels que $x^2+y^2 = 1  \, \Leftrightarrow \, y = \psi(x)$ et l'on calculera
 $\psi'(x)$.
 
 ### Abscisse curviligne {.exercise  .question .two #ac}
@@ -981,7 +981,7 @@ auriez probablement implémentée manuellement :
         dx = 1.0
         dy = -2.0 * exp(-2.0 * x) * dx
         du = 0.0 - dy
-        dv = 1.0 + dy
+        dv = 0.0 + dy
         dw = du / v + u * (- dv) / (v * v)  
         return dw
 
@@ -2015,7 +2015,7 @@ Exercices essentiels
 
 ### Le cercle {.answer #answer-circle}
 La fonction $(x,y) \in \R^2 \mapsto x^2 + y^2$ est continûment différentiable
-et la dérivée partielle $\partial_y f(x,y) = y^2$ est non nulle sur le cercle
+et la dérivée partielle $\partial_y f(x,y) = 2y$ est non nulle sur le cercle
 sauf quand $(x, y)= (1,0)$ ou $(x, y)= (-1,0)$. On peut donc appliquer le 
 théorème des fonctions implicites dans un voisinage de tout point 
 $(x_0,y_0) \in C$ à l'exception de ces deux points. On peut déterminer
