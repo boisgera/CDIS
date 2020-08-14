@@ -36,7 +36,7 @@ install:
   - python utils/calendrier/fetch.py > Calendrier/calendrier.txt
   - echo "install started ..."
   - ./build
-  - cd quizz && ./build
+  - cd quizz && ./build && cd ..
 
   # hack for Travis CI (encoding issue ?). Yes but pdf generation broken again
   # I disable it for the moment
