@@ -3010,7 +3010,7 @@ nous avons établi que $C$ est négligeable.
 
 L'opération 
 $$
-x=\sum_{i=1}^{+\infty} a_i 3^{-n} \in C \mapsto y=\sum_{i=1}^{+\infty} b_i 2^{-n} \in \left[0, 1\right[
+x=\sum_{i=1}^{+\infty} a_i 3^{-n} \in C \mapsto y=\sum_{i=1}^{+\infty} b_i 2^{-i} \in \left[0, 1\right[
 \; \mbox{ où } \;
 b_i = \left|
 \begin{array}{rl}
