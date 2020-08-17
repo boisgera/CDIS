@@ -56,7 +56,7 @@ Dans $\R$, muni de la norme $\|\cdot\| = |\cdot|$,
 
 
 #### Question (réponse multiple)
-Dans un espace métrique $X$, un ensemble $A$ est ouvert si et seulement 
+Dans un espace métrique $X$, un ensemble $A$ est ouvert si et seulement si
 
   - [ ] A : le complémentaire $A^c$ de $A$ dans $X$ est fermé.
 
