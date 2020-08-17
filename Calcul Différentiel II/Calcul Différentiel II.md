@@ -110,41 +110,61 @@ Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 Soit $f$ une fonction définie sur un ouvert $W$ de 
 $\mathbb{R}^n \times \mathbb{R}^m$:
 $$
-f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
+f: 
+(x, \lambda) \in W \subset \mathbb{R}^m \times \mathbb{R}^n \to \mathbb{R}^m
 $$
 qui soit continûment différentiable et telle que la différentielle partielle
-$\partial_y f$ soit inversible en tout point de $W$.
-Si le point $(x_0, y_0)$ de $W$ vérifie $f(x_0, y_0)= 0$,
-alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $y_0$ tels que
+$\partial_x f$ soit inversible en tout point de $W$.
+Si le point $(x_0, \lambda_0)$ de $W$ vérifie $f(x_0, \lambda_0)= 0$,
+alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $\lambda_0$ tels que
 $U \times V \subset W$ et
-une unique fonction implicite $\psi: U \to \mathbb{R}^m$, continûment différentiable, 
-telle que pour tout $x \in  U$ et tout $y \in V$,
+une unique fonction implicite $\psi: V \to \mathbb{R}^m$, continûment différentiable, 
+telle que pour tout $\lambda \in  V$ et tout $x \in U$,
 $$
-f(x, y) = 0
+f(x, \lambda) = 0
 \; \Leftrightarrow \; 
-y = \psi(x).
+x = \psi(\lambda).
 $$
-De plus, la différentielle de $\psi$ est donnée pour tout $x \in U$ par
+De plus, la différentielle de $\psi$ est donnée pour tout $\lambda \in V$ par
 $$
-d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
+d \psi(\lambda) = - (\partial_x f(x, \lambda))^{-1} \cdot \partial_{\lambda} f(x, \lambda) \, \mbox{ où } \, x=\psi(\lambda).
 $$
 
-![Au voisinage de $(0,1)$, la fonction
-$x, y \mapsto x^2 + y^2 - 1$ satisfait les hypothèses du théorème des fonctions
-implicites. Au voisinage de $(1,0)$, cela n'est pas le cas ; on constate alors
-que même si $x$ est arbitrairement proche de $1$ et que l'on restreint la 
-recherche des solutions $y$ à un voisinage arbitrairement petit de $0$, 
-il peut exister 0 ou 2 solutions $y$.](images/implicit-function-theorem.tex)
+### Description locale d'un ensemble comme un graphe {.example}
 
-### Le cercle  {.exercise .question .one #circle}
-Déterminer les points $(x_0, y_0)$ du cercle 
-$$C := \{(x,y) \in \R^2 \; | \; x^2+y^2=1\}$$
+Les points $(x_1, x_2)$ du cercle unité de $\R^2$ centré sur l'origine sont 
+exactement les solutions de l'équation
+$$
+x_1^2 + x_2^2 = 1.
+$$
+
+![Au voisinage de $(0,1)$ le cercle unité est localement
+le graphe d'une fonction de l'abscisse du point, mais cela n'est pas le cas au voisinage
+du point $(1,0)$.](images/implicit-function-theorem.tex)
+
+Au voisinage de $(0,1)$, l'expression $x_1^2 + x_2^2 - 1$ satisfait les 
+hypothèses du théorème des fonctions implicites avec $x:=x_2$ et $\lambda :=x_1$. 
+En particulier, 
+$\partial_{x_2} (x_1^2 + x_2^2 - 1) = 2x_2 \neq 0$ localement, 
+la différentielle partielle associée $h \in \R \mapsto 2x_2 h \in \R$ est donc inversible.
+Pour les points du cercle unité dans
+un voisinage de ce point, l'ordonnée $x_2$ est donc fonction de l'abscisse $x_1$. 
+
+Au voisinage de $(1,0)$, ces hypothèses ne sont pas satisfaites ; on constate d'ailleurs
+que même si $x_1$ est arbitrairement proche de $1$ et que l'on restreint la 
+recherche des solutions $x_2$ à un voisinage arbitrairement petit de $0$, 
+il peut exister 0 ou 2 solutions $x_2$.
+
+
+### Le cercle unité {.exercise .question .one #circle}
+Déterminer les points $(x_{10}, x_{20})$ du cercle 
+$$C := \{(x_1,x_2) \in \R^2 \; | \; x_1^2+x_2^2=1\}$$
 au voisinage desquels le cercle est le graphe d'une fonction 
-continûment différentiable $y = \psi(x)$. 
-On déterminera alors explicitement des intervalles ouverts $U$ 
-contenant $x_0$ et $V$ contenant $y_0$ ainsi que la fonction $\psi : U \to \R$ 
-tels que $x^2+y^2 = 1  \, \Leftrightarrow \, y = \psi(x)$ et l'on calculera
-$\psi'(x)$.
+continûment différentiable $x_2 = \psi(x_1)$. 
+On déterminera alors explicitement des intervalles ouverts $V$ 
+contenant $x_{10}$ et $U$ contenant $x_{20}$ ainsi que la fonction $\psi : V \to \R$ 
+tels que $x_1^2+x_2^2=1  \, \Leftrightarrow \, x_2 = \psi(x_1)$ et l'on calculera
+$\psi'(x_1)$.
 
 ### Abscisse curviligne {.exercise  .question .two #ac}
 Soit $f: \left]a, b\right[ \to \R^2$ un chemin (une fonction) 
@@ -2013,25 +2033,25 @@ Exercices essentiels
 --------------------------------------------------------------------------------
 
 
-### Le cercle {.answer #answer-circle}
-La fonction $(x,y) \in \R^2 \mapsto x^2 + y^2$ est continûment différentiable
-et la dérivée partielle $\partial_y f(x,y) = 2y$ est non nulle sur le cercle
-sauf quand $(x, y)= (1,0)$ ou $(x, y)= (-1,0)$. On peut donc appliquer le 
+### Le cercle unité {.answer #answer-circle}
+La fonction $(x_1,x_2) \in \R^2 \mapsto x_1^2 + x_2^2 - 1$ est continûment différentiable
+et la dérivée partielle $\partial_{x_2} f(x_1,x_2) = 2x_2$ est non nulle sur le cercle
+unité sauf quand $(x_1, x_2)= (1,0)$ ou $(x_1, x_2)= (-1,0)$. On peut donc appliquer le 
 théorème des fonctions implicites dans un voisinage de tout point 
-$(x_0,y_0) \in C$ à l'exception de ces deux points. On peut déterminer
-directement que $x^2 + y^2 = 1$ est équivalent à $y = \pm \sqrt{1 - x^2}$ ; 
-si $y_0>0$, $\psi(x) := \sqrt{1 - x^2}$ est donc l'unique
-solution de $x^2+y^2 = 1$ telle que $(x, y) \in \left]-1,1\right[ \times \left]0, +\infty\right[$.
-Quand $y_0 < 0$, $\psi(x) := -\sqrt{1 - x^2}$ est l'unique
-solution de $x^2+y^2 = 1$ telle que $(x, y) \in \left]-1,1\right[ \times \left]-\infty, 0\right[$.
-Dans les deux cas, $\psi'(x) = - (\partial_y f (x, y))^{-1} \cdot \partial_x f(x, y)$ 
-où $y=\psi(x)$, donc dans le premier cas on a 
+$(x_{10},x_{20}) \in C$ à l'exception de ces deux points. On peut déterminer
+directement que ${x_1}^2 + x_2^2 = 1$ est équivalent à $x_2 = \pm \sqrt{1 - x_1^2}$ ; 
+si $x_{20}>0$, $\psi(x_1) := \sqrt{1 - x_1^2}$ est donc l'unique
+solution de $x_1^2+x_2^2 = 1$ telle que $(x_1, x_2) \in \left]-1,1\right[ \times \left]0, +\infty\right[$.
+Quand $x_{20} < 0$, $\psi(x_1) := -\sqrt{1 - x_1^2}$ est l'unique
+solution de $x_1^2+x_2^2 = 1$ telle que $(x_1, x_2) \in \left]-1,1\right[ \times \left]-\infty, 0\right[$.
+Dans les deux cas, $\psi'(x_1) = - (\partial_{x_2} f (x_1, x_2))^{-1} \cdot \partial_{x_1} f(x_1, x_2)$ 
+où $x_2=\psi(x_1)$, donc dans le premier cas on a 
 $$
-\psi'(x) = - (2 \psi(x))^{-1} (2 x) = \frac{x}{\sqrt{1 - x^2}}
+\psi'(x_1) = - (2 \psi(x_1))^{-1} (2 x_1) = - \frac{x_1}{\sqrt{1 - x_1^2}}
 $$
 et dans le second
 $$
-\psi'(x) = - (2 \psi(x))^{-1} (2 x) = -\frac{x}{\sqrt{1 - x^2}}.
+\psi'(x_1) = - (2 \psi(x_1))^{-1} (2 x_1) = \frac{x_1}{\sqrt{1 - x_1^2}}.
 $$
 
 ### Abscisse curviligne {.answer #answer-ac}
