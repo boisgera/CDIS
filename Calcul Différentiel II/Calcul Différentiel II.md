@@ -167,7 +167,7 @@ tels que $x_1^2+x_2^2=1  \, \Leftrightarrow \, x_2 = \psi(x_1)$ et l'on calculer
 $\psi'(x_1)$.
 
 ### Abscisse curviligne {.exercise  .question .two #ac}
-Soit $f: \left]a, b\right[ \to \R^2$ un chemin (une fonction) 
+Soit $f: \left]a, b\right[ \to \R^2$ une fonction 
 continûment différentiable, dont la dérivée $f'$ ne s'annule pas. 
 Soit $c \in \left]a, b\right[$ ; montrer qu'il existe une unique
 fonction $x$ définie dans un voisinage ouvert de $0 \in \R$ et 
@@ -177,13 +177,13 @@ $$
 $$
 
 ### Courbes de niveau {.exercise .question .two #cn}
-Soit $f: (x,y) \in \R^2 \to \R$ une fonction continûment différentiable
+Soit $f: (x_1,x_2) \in \R^2 \to \R$ une fonction continûment différentiable
 et $c \in \R$ tels que l'ensemble 
 $$
-C = \{(x,y) \in \R^2 \; | \; f(x,y) = c\}
+C = \{(x_1,x_2) \in \R^2 \; | \; f(x_1,x_2) = c\}
 $$
 est non vide et que $\nabla f$ ne s'annule pas sur $C$. 
-Soit $(x_0, y_0) \in C$, $$v = \frac{\nabla f(x_0, y_0)}{\|\nabla f(x_0,y_0)\|}$$ et 
+Soit $(x_{10}, y_{20}) \in C$, $$v = \frac{\nabla f(x_{10}, x_{20})}{\|\nabla f(x_{10},x_{20})\|}$$ et 
 $u \in \R^2$ le vecteur tel que $(u, v)$ soit une base orthonormée.
 Soit $(w, z)$ les coordonnées d'un point $P$ dans cette base ; 
 montrer que pour tout point de $C$, il existe un voisinage de ce point et 
@@ -218,17 +218,17 @@ forme d'une équation scalaire qui lui est localement équivalente.)
 
 
 ### Extensions {.note}
-Il est possible d'affaiblir l'hypothèse concernant $\partial_y f$ en supposant 
-uniquement celle-ci inversible en $(x_0, y_0)$ au lieu d'inversible sur tout $W$.
+Il est possible d'affaiblir l'hypothèse concernant $\partial_{x} f$ en supposant 
+uniquement celle-ci inversible en $(x_0, \lambda_0)$ au lieu d'inversible sur tout $W$.
 En effet, l'application qui a une application linéaire inversible
 $A: \mathbb{R}^m \to \mathbb{R}^m$ associe son inverse $A^{-1}$ 
 est définie sur un ouvert et continue[^inv]. 
-Comme l'application linéaire $\partial_y f(x_0, y_0)$ 
-est inversible et que l'application $\partial_y f$
-est continue, il existe donc un voisinage ouvert de $(x_0, y_0)$ contenu dans 
-$W$ où $\partial_y f$ est inversible. 
+Comme l'application linéaire $\partial_x f(x_0, \lambda_0)$ 
+est inversible et que l'application $\partial_x f$
+est continue, il existe donc un voisinage ouvert de $(x_0, \lambda_0)$ contenu dans 
+$W$ où $\partial_{x} f$ est inversible. 
 Nous retrouvons donc les hypothèses initiales du théorème, 
-à ceci près qu'elle sont satisfaites dans un voisinage de $(x_0, y_0)$
+à ceci près qu'elle sont satisfaites dans un voisinage de $(x_0, \lambda_0)$
 qui peut être plus petit que l'ouvert initial $W$.
 
 ### Démonstration {.proof}
@@ -2057,17 +2057,17 @@ $$
 ### Abscisse curviligne {.answer #answer-ac}
 On considère l'équation 
 $$
-F(s, x) := \int_c^x \|f'(t)\| \, dt - s = 0
+F(x, s) := \int_c^x \|f'(t)\| \, dt - s = 0
 $$
-où $F$ est définie sur l'ouvert $\R \times \left]a, b\right[ \subset \R\times\R$.
+où $F$ est définie sur l'ouvert $\left]a, b\right[ \times \R  \subset \R\times\R$.
 La dérivées partielles de $F$ existent et vérifient
 $$
-\partial_s F(x, s) = 1 \; \mbox{ et } \; \partial_x F(s, x) = \|f'(x)\| \neq 0.
+\partial_x F(x, s) = \|f'(x)\| \neq 0 \; \mbox{ et } \;  \partial_s F(s, x) = 1.
 $$
 Les dérivées partielles étant continues, $F$ est continûment différentiable.
 De plus, la différentielle partielle de $F$ par rapport à $x$ est inversible.
-On a également $F(0, c) = 0$. Par conséquent, dans un voisinage $U \times V$
-ouvert de $(0,c) \in \R^2$, l'équation $F(s, x) = 0$ détermine de façon unique
+On a également $F(c, 0) = 0$. Par conséquent, dans un voisinage $U \times V$
+ouvert de $(c, 0) \in \R^2$, l'équation $F(x, s) = 0$ détermine de façon unique
 $x$ comme une fonction différentiable de $s$.
 
 
@@ -2075,18 +2075,18 @@ $x$ comme une fonction différentiable de $s$.
 Avec les coordonnées $(w, z)$, l'appartenance d'un point $P$ à la courbe de
 niveau $C$ est caractérisée par 
 $$
-f(x, y) - c = f\left(w u_1 + z v_1, w u_2 + z v_2 \right) - c = 0.
+f(x_1, x_2) - c = f\left(w u_1 + z v_1, w u_2 + z v_2 \right) - c = 0.
 $$
 L'expression est continûment différentiable par rapport au
 couple $(w, z)$ et 
 \begin{align*}
 \partial_z \left( f\left(w u_1 + z v_1, w u_2 + z v_2 \right) - c \right)
-&= d f(x, y) \cdot (v_1, v_2) \\
-&= \left<\nabla f(x,y), \frac{\nabla f(x_0, y_0)}{\|\nabla f(x_0,y_0)\|} \right>
+&= d f(x_1, x_2) \cdot (v_1, v_2) \\
+&= \left<\nabla f(x_1,x_2), \frac{\nabla f(x_{10}, x_{20})}{\|\nabla f(x_{10},x_{20})\|} \right>
 \end{align*}
-Cette dérivée partielle est égale à $\|\nabla f(x_0,y_0)\| > 0$ et $(x_0, y_0)$.
+Cette dérivée partielle est égale à $\|\nabla f(x_{10},x_{20})\| > 0$ et $(x_{10}, x_{20})$.
 Le gradient étant continu, cette dérivée partielle est inversible
-dans un voisinage de $(x_0, y_0)$ et [le théorème des fonctions implicites](#TFI) 
+dans un voisinage de $(x_{10}, x_{20})$ et [le théorème des fonctions implicites](#TFI) 
 est donc applicable : localement, l'appartenance d'un point $P$ à $C$ peut
 être caractérisé par une relation fonctionnelle de la forme $z = \psi(w)$.
 
