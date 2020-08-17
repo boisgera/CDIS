@@ -108,7 +108,7 @@ Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 
 ### Théorème des fonctions implicites {.theorem #TFI}
 Soit $f$ une fonction définie sur un ouvert $W$ de 
-$\mathbb{R}^n \times \mathbb{R}^m$:
+$\mathbb{R}^m \times \mathbb{R}^n$ et à valeurs dans $\R^m$
 $$
 f: 
 (x, \lambda) \in W \subset \mathbb{R}^m \times \mathbb{R}^n \to \mathbb{R}^m
