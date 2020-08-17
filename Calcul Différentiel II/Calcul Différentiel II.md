@@ -221,7 +221,7 @@ forme d'une équation scalaire qui lui est localement équivalente.)
 Il est possible d'affaiblir l'hypothèse concernant $\partial_{x} f$ en supposant 
 uniquement celle-ci inversible en $(x_0, \lambda_0)$ au lieu d'inversible sur tout $W$.
 En effet, l'application qui a une application linéaire inversible
-$A: \mathbb{R}^m \to \mathbb{R}^m$ associe son inverse $A^{-1}$ 
+de ${\R}^m$ dans lui-même associe son inverse 
 est définie sur un ouvert et continue[^inv]. 
 Comme l'application linéaire $\partial_x f(x_0, \lambda_0)$ 
 est inversible et que l'application $\partial_x f$
@@ -237,219 +237,221 @@ La partie la plus technique de la démonstration concerne l'existence et
 la différentiabilité de la fonction implicite $\psi$. 
 Mais si l'on admet temporairement ces résultats, 
 établir l'expression de $d\psi$ est relativement simple.
-En effet, l'égalité $f(x, \psi(x)) = 0$ étant satisfaite identiquement sur $U$
-et la fonction $x \in U \mapsto f(x, \psi(x))$ étant différentiable
+En effet, l'égalité $f(\psi(\lambda), \lambda) = 0$ étant satisfaite identiquement sur $U$
+et la fonction $\lambda \in V \mapsto f(\psi(\lambda),\lambda)$ étant différentiable
 comme composée de fonctions différentiables, la règle de dérivation 
-en chaîne fournit en tout point de $U$:
+en chaîne fournit en tout point de $U$ :
 $$
-\partial_x f(x, \psi(x)) + \partial_y f(x, \psi(x)) \cdot d\psi(x) = 0.
+\partial_{x} f(\psi(\lambda), \lambda) \cdot d\psi(\lambda) + \partial_{\lambda} f(\psi(\lambda), \lambda)  = 0.
 $$
 On en déduit donc que
 $$
-d\psi(x) = - (\partial_y f(x, \psi(x)))^{-1} \cdot \partial_x f(x, \psi(x)).
+d\psi(\lambda) = - (\partial_{x} f(\psi(\lambda), \lambda)^{-1} \cdot \partial_{\lambda} f(\psi(\lambda).
 $$
 L'inversion d'opérateurs linéaires ainsi que leur composition étant des
 opérations continues, si $f$ est continûment différentiable et que 
 $d\psi$ existe, elle est nécessairement continue.
 
 [^inv]: **Continuité de l'inversion.** 
-Une application linéaire de $\mathbb{R}^m \to \mathbb{R}^m$ 
+Une matrice $A \in \mathbb{R}^{m \times m}$ 
 est inversible si et seulement si
-le déterminant de la matrice $[A]$ qui la représente dans $\mathbb{R}^{m \times m}$ 
-est non-nul. 
-Or, la fonction $A \mapsto \det [A]$ est continue 
+son déterminant est non-nul. 
+Or, la fonction $A \mapsto \det A$ est continue 
 car le déterminant ne fait intervenir que des produits et des sommes des 
-coefficients de $[A]$.
-Par conséquent, les applications linéaires inversibles de 
-$\mathbb{R}^m \to \mathbb{R}^m$ sont l'image réciproque de l'ouvert 
+coefficients de $A$.
+Par conséquent, les matrices inversibles de 
+$\mathbb{R}^{ m \times m}$ sont l'image réciproque de l'ouvert 
 $\mathbb{R} \setminus \{0\}$ par une application continue :
 cet ensemble est donc ouvert. Quand $A$ est inversible, on a 
 $$
-[A]^{-1} = \frac{\mathrm{co}([A])^t}{\det [A]}
+A^{-1} = \frac{\mathrm{co}([A])^t}{\det [A]}
 $$
-où $\mathrm{co}([A])$ désigne la comatrice de $[A]$. Chaque coefficient de 
+où $\mathrm{co}(A)$ désigne la comatrice de $A$. Chaque coefficient de 
 cette comatrice ne faisant également intervenir que des sommes et des produits 
-des coefficients de $[A]$, l'application $A \mapsto A^{-1}$ est continue sur
+des coefficients de $A$, l'application $A \mapsto A^{-1}$ est continue sur
 son domaine de définition.
 
 Pour établir l'existence de la fonction implicite $\psi$,
-nous allons pour une valeur $x$ suffisamment proche de $x_0$
-construire une suite convergente d'approximations $y_k$, 
-proches de $y_0$, dont la limite $y$ sera solution de 
-$f(x, y)=0$.
+nous allons pour une valeur $\lambda$ suffisamment proche de $\lambda_0$
+construire une suite convergente d'approximations $x_k$, 
+proches de $x_0$, dont la limite $x$ sera solution de 
+$f(x, \lambda)=0$.
 
 L'idée de cette construction repose sur l'analyse suivante : 
-si nous partons d'une valeur $y_k$ proche de $y_0$ 
-(a priori telle que $f(x, y_k) \neq 0$)
-et que nous recherchons une valeur $y_{k+1}$ proche, 
-qui soit une solution approchée de $f(x, y) = 0$ 
-(meilleure que ne l'est $y_k$),
+si nous partons d'une valeur $x_k$ proche de $x_0$ 
+(a priori telle que $f(x_k, \lambda) \neq 0$)
+et que nous recherchons une valeur $x_{k+1}$ proche, 
+qui soit une solution approchée de $f(\lambda, x) = 0$ 
+(meilleure que ne l'est $x_k$),
 comme au premier ordre
 $$
-f(x, y_{k+1}) \approx f(x, y_k) + \partial_y f(x, y_k) \cdot (y_{k+1} - y_k),
+f(x_{k+1}, \lambda) \approx f(x_k, \lambda) + \partial_{x} f(x_k, \lambda) \cdot (x_{k+1} - x_k),
 $$
-nous en déduisons que la valeur $y_{k+1}$ définie par
+nous en déduisons que la valeur $x_{k+1}$ définie par
 $$
-y_{k+1} := y_k - (\partial_y f(x, y_k))^{-1} \cdot f(x, y_k)
+x_{k+1} := x_k - (\partial_{x} f(x_k, \lambda))^{-1} \cdot f(x_k, \lambda)
 $$
-vérifie $f(x, y_{k+1}) \approx 0$.
-On peut espérer que répéter ce processus en partant de $y_0$ 
+vérifie $f(x_{k+1}, \lambda) \approx 0$.
+On peut espérer que répéter ce processus en partant de $x_0$ 
 détermine une suite convergente dont la limite soit une
-solution exacte $y$ de $f(x, y) = 0$.
+solution exacte $x$ de $f(x, \lambda) = 0$.
 
 Le procédé décrit ci-dessus constitue la *méthode de Newton* 
 de recherche de zéros. 
 Nous allons prouver que cette heuristique est ici justifiée,
 à une modification mineure près : 
-nous allons lui substituer la *méthode de Newton modifiée*, 
-qui n'utilise pas $\partial_y f(x, y_k)$ mais la valeur constante 
-$\partial_y f(x_0, y_0)$, c'est-à-dire qui définit la suite
+nous allons lui substituer une *méthode de Newton modifiée*, 
+qui n'utilise pas $\partial_x f(x_k, \lambda)$ mais la valeur constante 
+$\partial_x f(x_0, y_0)$, c'est-à-dire qui définit la suite
 $$
-y_{k+1} := y_k - Q^{-1} \cdot f(x, y_k) \, \mbox{ où } \, Q = \partial_y f(x_0, y_0).
+x_{k+1} := x_k - Q^{-1} \cdot f(x_k, \lambda) 
+\; \mbox{ où } \; 
+Q = \partial_x f(x_0, \lambda_0).
 $$
 Cette définition par récurrence se réécrit sous la forme
-$y_{k+1} = \phi_x(y_k)$ où
+$x_{k+1} = \phi_{\lambda}(x_k)$ où
 $$
-\phi_x(y) = y - Q^{-1} \cdot f(x, y).
+\phi_{\lambda}(x) = x - Q^{-1} \cdot f(x, \lambda).
 $$
-La fonction $\phi_x$ est différentiable sur l'ensemble 
-$\{y \in \mathbb{R}^m \, | \, (x, y) \in W\}$ et sa différentielle est donnée
-par
+La fonction $\phi_{\lambda}$ est différentiable sur l'ensemble 
+$\{x \in \mathbb{R}^m \, | \, (x, \lambda) \in W\}$ et sa différentielle 
+est donnée par
 $$
-d\phi_x(y) =  I - Q^{-1} \cdot \partial_{y} f(x, y)
+d\phi_{\lambda}(x) =  I - Q^{-1} \cdot \partial_{x} f(x, \lambda)
 $$
 où $I$ désigne la fonction identité. 
 En écrivant
-que $\partial_y f(x, y)$ est la somme de $\partial_y f(x_0, y_0)$ et de 
-$\partial_y f(x, y) - \partial_y f(x_0, y_0)$, on obtient
+que $\partial_x f(x, \lambda)$ est la somme de $\partial_x f(x_0, \lambda_0)$ et de 
+$\partial_x f(x, \lambda) - \partial_x f(x_0, \lambda_0)$, on obtient
 $$
 \begin{split}
-\|d \phi_x(y)\| 
-& \leq \|I - Q^{-1} \cdot Q\| + \|Q^{-1} \cdot (\partial_y f(x, y) - Q)\| \\
-& \leq \|Q^{-1}\| \times \|\partial_y f(x, y) - Q\|.
+\|d \phi_{\lambda}(x)\| 
+& \leq \|I - Q^{-1} \cdot Q\| + \|Q^{-1} \cdot (\partial_x f(x, \lambda) - Q)\| \\
+& \leq \|Q^{-1}\| \times \|\partial_x f(x, \lambda) - Q\|.
 \end{split}
 $$
 La fonction $f$ étant supposée continûment différentiable, 
-il existe un $r>0$ tel que tout couple $(x, y)$ tel que 
-$\|x - x_0\| \leq r$ et $\|y - y_0\| \leq r$ appartienne à $W$ et vérifie 
-$\|\partial_y f(x, y) - Q\| \leq \kappa \|Q^{-1}\|^{-1}$ avec par exemple 
-$\kappa = 1/2$, ce qui entraîne $\|d \phi_x(y)\| \leq \kappa$.
+il existe un $r>0$ tel que tout couple $(x, \lambda)$ tel que 
+$\|x - x_0\| \leq r$ et $\|\lambda - \lambda_0\| \leq r$ appartienne à $W$ et vérifie 
+$\|\partial_x f(x, \lambda) - Q\| \leq \kappa \|Q^{-1}\|^{-1}$ avec par exemple 
+$\kappa = 1/2$, ce qui entraîne $\|d \phi_{\lambda}(x)\| \leq \kappa$.
 Par [l'inégalité des accroissements finis](Calcul Différentiel I.pdf#TAF), 
-la restriction de $\phi$ à $\{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$
-(que l'on continuera à noter $\phi_x$)
+la restriction de $\phi_{\lambda}$ à $\{x \in \mathbb{R}^m \, | \, \|x - x_0\| \leq r\}$
+(que l'on continuera à noter $\phi_{\lambda}$)
 est $\kappa$-contractante:
 $$
-\|\phi_x(y) - \phi_x(z)\| \leq \kappa \|y - z\|.
+\|\phi_{\lambda}(x) - \phi_{\lambda}(w)\| \leq \kappa \|x - w\|.
 $$
 Par ailleurs,
 $$
 \begin{split}
-\|\phi_x(y) - y_0\| 
-&\leq \|\phi_x(y) - \phi_x(y_0)\|  + \|\phi_{x}(y_0) - \phi_{x_0}(y_0)\|. 
+\|\phi_{\lambda}(x) - x_0\| 
+&\leq \|\phi_{\lambda}(x) - \phi_{\lambda}(x_0)\|  + \|\phi_{\lambda}(x_0) - \phi_{\lambda_0}(x_0)\|. 
 \end{split}
 $$
 On a d'une part
-$$\|\phi_x(y) - \phi_x(y_0)\| \leq \kappa\|y - y_0\| \leq \kappa r$$
-et d'autre part, par continuité de $\phi$ en $(x_0, y_0)$, il existe
-un $r'$ tel que $0 < r' < r$ et tel que si $\|x - x_0\| \leq r'$, 
-alors $\|\phi_{x}(y_0) - \phi_{x_0}(y_0)\| \leq (1 - \kappa) r$. 
-Pour de telles valeurs de $x$,
+$$\|\phi_{\lambda}(x) - \phi_{\lambda}(x_0)\| \leq \kappa\|x - x_0\| \leq \kappa r$$
+et d'autre part, par continuité de $\lambda \mapsto \phi_{\lambda}(x_0)$ en 
+$\lambda_0$, il existe
+un $r'$ tel que $0 < r' < r$ et tel que si $\|\lambda - \lambda_0\| \leq r'$, 
+alors $\|\phi_{\lambda}(x_0) - \phi_{\lambda_0}(x_0)\| \leq (1 - \kappa) r$. 
+Pour de telles valeurs de $\lambda$,
 $$
-\|\phi_x(y) - y_0\| \leq \kappa r +  (1- \kappa) r = r.
+\|\phi_{\lambda}(x) - x_0\| \leq \kappa r +  (1- \kappa) r = r.
 $$
 L'image de la boule fermée 
-$B = \{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$ 
-par l'application $\phi_x$ est donc incluse dans $B$.
-Tant que $\|x-x_0\| \leq r'$, les hypothèses du 
+$B = \{x \in \mathbb{R}^m \, | \, \|x - x_0\| \leq r\}$ 
+par l'application $\phi_{\lambda}$ est donc incluse dans $B$.
+Tant que $\|\lambda-\lambda_0\| \leq r'$, les hypothèses du 
 [théorème de point fixe de Banach](Topologie.pdf#T-TPFB) 
-sont donc satisfaites pour $\phi_x: B \to B$, ce qui
+sont donc satisfaites pour $\phi_{\lambda}: B \to B$, ce qui
 montre l'existence et l'unicité de la fonction
-implicite $\psi$ associée aux voisinages ouverts $U = B(x_0, r')$ et 
-$V = B(y_0, r)$.
+implicite $\psi$ associée aux voisinages ouverts $V = B(\lambda_0, r')$ et 
+$U = B(x_0, r)$.
 
 Montrons la continuité de la fonction implicite $\psi$.
-Soit $x_1, x_2$ deux points de $V$ ; 
-notons $y_1 = \psi(x_1)$ et $y_2 = \psi(x_2)$. 
+Soit $\lambda_1, \lambda_2$ deux points de $V$ ; 
+notons $x_1 = \psi(\lambda_1)$ et $x_2 = \psi(\lambda_2)$. 
 Ces valeurs sont des solutions des équations de point fixe
 $$
-y_1 = \phi_{x_1}(y_1) \, \mbox{ et } \, y_2 = \phi_{x_2}(y_2).
+x_1 = \phi_{\lambda_1}(x_1) \, \mbox{ et } \, x_2 = \phi_{\lambda_2}(x_2).
 $$
-En formant la différence de $y_2$ et $y_1$, on obtient donc
+En formant la différence de $x_2$ et $x_1$, on obtient donc
 $$
 \begin{split}
-\|y_2 - y_1\| & = \|\phi_{x_2}(y_2) - \phi_{x_1}(y_1)\| \\
-& \leq \|\phi_{x_2}(y_2) - \phi_{x_2}(y_1)\| +
-\|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
+\|x_2 - x_1\| & = \|\phi_{\lambda_2}(x_2) - \phi_{\lambda_1}(x_1)\| \\
+& \leq \|\phi_{\lambda_2}(x_2) - \phi_{\lambda_2}(x_1)\| +
+\|\phi_{\lambda_1}(y_1) - \phi_{\lambda_2}(y_1)\|.
 \end{split}
 $$
-La fonction $\phi_{x_2}$ étant $\kappa$-contractante,
+La fonction $\phi_{\lambda_2}$ étant $\kappa$-contractante,
 le premier terme du membre de droite de cette inégalité est majoré
-par $\kappa\|y_2 - y_1\|$, par conséquent
+par $\kappa\|x_2 - x_1\|$, par conséquent
 $$
-\|y_2 - y_1\| \leq \frac{1}{1 - \kappa} \|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
+\|x_2 - x_1\| \leq \frac{1}{1 - \kappa} \|\phi_{\lambda_1}(x_1) - \phi_{\lambda_2}(x_1)\|.
 $$
-L'application $x \mapsto \phi_{x}(y_1)$ étant continue en $x_1$, 
-nous pouvons conclure que $y_2$ tend vers $y_1$ quand $x_2$ tend vers $x_1$ ;
-autrement dit : la fonction implicite $\psi$ est continue en $x_1$.
+L'application $\lambda \mapsto \phi_{\lambda}(x_1)$ étant continue en $\lambda_1$, 
+nous pouvons conclure que $x_2$ tend vers $x_1$ quand $\lambda_2$ tend vers $\lambda_1$ ;
+autrement dit : la fonction implicite $\psi$ est continue en $\lambda_1$.
 
-Montrons finalement la différentiabilité de $\psi$ en $x_1$. Pour cela,
-il suffit d'exploiter la différentiabilité de $f$ en $(x_1, y_1)$
-où $y_1 = \psi(x_1)$. Elle fournit l'existence d'une fonction 
-$\varepsilon$ qui soit un $o(1)$ telle que
+Montrons finalement la différentiabilité de $\psi$ en $\lambda_1$. Pour cela,
+il suffit d'exploiter la différentiabilité de $f$ en $(x_1, \lambda_1)$
+où $x_1 = \psi(\lambda_1)$. Elle fournit l'existence d'une fonction 
+$\varepsilon$ qui tende vers $0$ en $0$ telle que
 $$
 \begin{split}
-f(x, y) &= f(x_1, y_1) 
-+ \partial_x f(x_1, y_1) \cdot (x - x_1) 
-+ \partial_y f(x_1, y_1) \cdot (y - y_1) \\
-& \phantom{=} + \varepsilon((x-x_1, y-y_1)) (\|x-x_1\| + \|y-y_1\|)
+f(x, \lambda) &= f(x_1, \lambda_1) 
++ \partial_x f(x_1, \lambda_1) \cdot (x - x_1) 
++ \partial_{\lambda} f(x_1, \lambda_1) \cdot (\lambda - \lambda_1) \\
+& \phantom{=} + \varepsilon((x-x_1, \lambda-\lambda_1)) (\|x-x_1\| + \|\lambda-\lambda_1\|)
 \end{split}
 $$
-On a par construction $f(x_1, y_1) = 0$ ; 
-en prenant $y = \psi(x)$, on annule également $f(x, y) = 0$. 
-En notant $P = \partial_x f(x_1, y_1)$
-et $Q = \partial_y f(x_1, y_1)$, on obtient 
+On a par construction $f(x_1, \lambda_1) = 0$ ; 
+en prenant $x = \psi(\lambda)$, on annule également $f(x, \lambda) = 0$. 
+En notant $Q = \partial_x f(x_1, \lambda_1)$
+et $P = \partial_{\lambda} f(x_1, \lambda_1)$, on obtient 
 $$
 \begin{split}
-\psi(x)  &= \psi(x_1) - Q^{-1} \cdot P \cdot (x - x_1) \\
-&\phantom{=} - Q^{-1} \cdot P \cdot \varepsilon((x-x_1, \psi(x)-\psi(x_1)) (\|x-x_1\| + \|\psi(x)-\psi(x_1)\|).
+\psi(\lambda)  &= \psi(\lambda_1) - Q^{-1} \cdot P \cdot (x - x_1) \\
+&\phantom{=} - Q^{-1} \cdot P \cdot \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1) ( \|\psi(x)-\psi(x_1)\|+\|\lambda-\lambda_1\| ).
 \end{split}
 $$
 Nous allons exploiter une première fois cette égalité. 
 Notons tout d'abord que
 $$
-\varepsilon_x(x-x_1) := \varepsilon((x-x_1, \psi(x)-\psi(x_1))
+\varepsilon_{\lambda}(\lambda-\lambda_1) := \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1))
 $$
-est un $o(1)$ du fait de la continuité de $\psi$ en $x_1$.
-En choisissant $x$
-dans un voisinage suffisamment proche de $x_1$, on peut donc
+tend vers $0$ en $0$ en raison de la continuité de $\psi$ en $\lambda_1$.
+En choisissant $\lambda$
+dans un voisinage suffisamment proche de $\lambda_1$, on peut donc
 garantir que ce terme est arbitrairement petit, par
 exemple, tel que
 $$
-\|Q^{-1} \cdot P\| \times \|\varepsilon_x(x-x_1) \| \leq \frac{1}{2},
+\|Q^{-1} \cdot P\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1) \| \leq \frac{1}{2},
 $$
 ce qui permet d'obtenir
 $$
-\|\psi(x) - \psi(x_1)\|
+\|\psi(\lambda) - \psi(\lambda_1)\|
 \leq
-\|Q^{-1} P\| \times \|x - x_1\| + \frac{1}{2} \|x - x_1\| + \frac{1}{2} \|\psi(x) - \psi(x_1)\|
+\|Q^{-1} P\| \times \|\lambda - \lambda_1\| + \frac{1}{2} \|\lambda - \lambda_1\| + \frac{1}{2} \|\psi(\lambda) - \psi(\lambda_1)\|
 $$
 et donc
 $$
-\|\psi(x) - \psi(x_1)\|
-\leq \alpha \|x - x_1\|
+\|\psi(\lambda) - \psi(\lambda_1)\|
+\leq \alpha \|\lambda - \lambda_1\|
 \, \mbox{ avec } \, \alpha := 2 \|Q^{-1} P\| + 1.
 $$
 En exploitant une nouvelle fois la même égalité, on peut désormais conclure
 que 
 $$
-\|\psi(x) - \psi(x_1) - Q^{-1} \cdot P \cdot (x - x_1)\|
-\leq \|\varepsilon'_x(x-x_1)\| \times \|x - x_1\|.
+\|\psi(\lambda) - \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - \lambda_1)\|
+\leq \|\varepsilon'_{\lambda}(\lambda-\lambda_1)\| \times \|\lambda - \lambda_1\|.
 $$
-où la fonction $\varepsilon'_x$ est le $o(1)$ défini par
+où la fonction $\varepsilon'_x$ est la fonction tendant vers $0$ et $0 définie par
 $$
-\varepsilon'_x(x-x_1) := (1+\alpha)  \times \|Q^{-1} \cdot P\| \times \|\varepsilon_x(x-x_1)\|,
+\varepsilon'_{\lambda}(\lambda-\lambda_1) := (1+\alpha)  \times \|Q^{-1} \cdot P\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1)\|,
 $$
-ce qui prouve la différentiabilité de $\psi$ en $x_1$ et conclut la démonstration.
+ce qui prouve la différentiabilité de $\psi$ en $\lambda_1$ et conclut la démonstration.
 
 ### Difféomorphisme {.definition}
 Une fonction $f: U \subset \mathbb{R}^n \to V \subset \mathbb{R}^n$,
