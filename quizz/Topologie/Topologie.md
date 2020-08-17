@@ -90,9 +90,9 @@ de l'ensemble de niveau $A = \{(x_1, x_2) \in \R^2 \; | \; f(x_1, x_2) = a\}$ ?
 Réponse : l'ensemble $A$ est ............
 
 #### Question
-Si une suite de vecteurs de $\R^n$ vérifie
+Si une suite de vecteurs $x_k$ de $\R^n$ vérifie
 $$
-\lim_{k \to +\infty} \frac{\|x_{k+2} - x_{k+1}\|}{\|x_{k+1} - x_k\|} = 0,
+{\|x_{k+2} - x_{k+1}\|} \leq 0.5 \times {\|x_{k+1} - x_k\|},
 $$
 est-ce qu'elle converge nécessairement ?
 
