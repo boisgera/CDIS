@@ -108,12 +108,12 @@ Pandoc, etc. Nos besoins supplémentaires sont décrits dans le fichier
 Pour créer un environnement conda qui soit conforme à ces besoins,
 exécuter dans le terminal la commande
 
-    $ conda env create -f environment.yml -p env
+    $ conda env create -f environment.yml
 
 Quand vous voudrez travaillez sur le projet, activez l'environnement par la
 commande
 
-    $ conda activate ./env
+    $ conda activate CDIS
 
 Référence: [Gestion des environnements Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
