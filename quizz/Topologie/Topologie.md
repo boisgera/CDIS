@@ -14,7 +14,7 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
-#### Question
+#### Question 1
 Soit $C = \{(x_1, x_2) \in \R^2 \; | \; x_1^2+x_2^2 = 1\}$ le cercle unité
 de $\R^2$ et $d$ la distance sur $C$ dérivée de la norme euclidienne sur $\R^2$. 
 Dans ce contexte, la distance entre les points $(-1,0)$ et $(1,0)$ de $C$ vaut
@@ -25,7 +25,7 @@ Dans ce contexte, la distance entre les points $(-1,0)$ et $(1,0)$ de $C$ vaut
 
   - [ ]  C : $2 \pi$.
 
-#### Question ?
+#### Question 2
 L'ensemble $\R^2$ étant muni de la norme euclidienne, la norme
 d'opérateur $\|A\|$ de la matrice
 $$
@@ -44,7 +44,7 @@ est égale à
 
   - [ ]  C : $\sqrt{2}$.
 
-#### Question (réponse multiple)
+#### Question 3 (réponse multiple)
 
 Dans $\R$, muni de la norme $\|\cdot\| = |\cdot|$,
 
@@ -55,7 +55,7 @@ Dans $\R$, muni de la norme $\|\cdot\| = |\cdot|$,
   - [ ] C : l'ensemble $\left[0, +\infty\right[$ est fermé.
 
 
-#### Question (réponse multiple)
+#### Question 4 (réponse multiple)
 Dans un espace métrique $X$, un ensemble $A$ est ouvert si et seulement si
 
   - [ ] A : le complémentaire $A^c$ de $A$ dans $X$ est fermé.
@@ -64,7 +64,7 @@ Dans un espace métrique $X$, un ensemble $A$ est ouvert si et seulement si
 
   - [ ] C : l'ensemble $A$ n'est pas fermé.
 
-#### Question (réponse multiple)
+#### Question 5 (réponse multiple)
 Dans le plan euclidien, identifiez les ensembles qui sont des voisinages de l'origine
 
   - [ ] A: $\{(x_1,x_2) \in \R^2 \; | \; x_1 \geq 1 \mbox{ et } x_2 \geq 1\}$
@@ -74,7 +74,7 @@ Dans le plan euclidien, identifiez les ensembles qui sont des voisinages de l'or
   - [ ] C: $\{(x_1,x_2) \in \R^2 \; | \; x_1 \geq -1 \mbox{ et } x_2 \geq -1\}$
 
 
-#### Question (réponse multiple)
+#### Question 6 (réponse multiple)
 Dans un espace métrique, si $A \subset B$, alors :
 
   - [ ]  A : $\overline{A} \subset \overline{B}$
@@ -83,13 +83,13 @@ Dans un espace métrique, si $A \subset B$, alors :
 
   - [ ]  C : $A^{\circ} \subset B^{\circ}$
 
-#### Question 
+#### Question 7
 Si $f: \R^2 \to \R$ est une fonction continue et $a \in \R$, que peut-on dire
 de l'ensemble de niveau $A = \{(x_1, x_2) \in \R^2 \; | \; f(x_1, x_2) = a\}$ ?
 
 Réponse : l'ensemble $A$ est ............
 
-#### Question
+#### Question 8
 Si une suite de vecteurs $x_k$ de $\R^n$ vérifie
 $$
 {\|x_{k+2} - x_{k+1}\|} \leq 0.5 \times {\|x_{k+1} - x_k\|},
@@ -100,7 +100,7 @@ est-ce qu'elle converge nécessairement ?
 
   - [ ]  B : non.
 
-#### Question 
+#### Question 9
 Dans le plan euclidien, l'ensemble $\{(x_1, x_2) \in \R^2 \; | \; x_1 \geq 0 \mbox{ et } x_2 \geq 0\}$
 est-il complet ?
 
