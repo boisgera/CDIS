@@ -113,7 +113,7 @@ $$
 f: 
 (x, \lambda) \in W \subset \mathbb{R}^m \times \mathbb{R}^n \to \mathbb{R}^m
 $$
-qui soit continûment différentiable et telle que la différentielle partielle
+qui soit continûment différentiable et telle que la différentielle partielle[^dp]
 $\partial_x f$ soit inversible en tout point de $W$.
 Si le point $(x_0, \lambda_0)$ de $W$ vérifie $f(x_0, \lambda_0)= 0$,
 alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $\lambda_0$ tels que
@@ -130,6 +130,17 @@ $$
 d \psi(\lambda) = - (\partial_x f(x, \lambda))^{-1} \cdot \partial_{\lambda} f(x, \lambda) \, \mbox{ où } \, x=\psi(\lambda).
 $$
 
+[^dp]: Les différentielles partielles de $f$ par rapport aux variables 
+$x$ et $\lambda$ sont définies en fixant
+la valeur des variables complémentaire :
+$$
+\partial_x f(x, \lambda) := d(x'\mapsto f(x',\lambda))(x)
+\; \mbox{ et } \;
+\partial_{\lambda} f(x, \lambda) := d(\lambda' \mapsto f(x,\lambda'))(\lambda).
+$$
+La notion généralise celle de dérivée partielle au cas où les
+variables sont vectorielles.
+
 ### Description locale d'un ensemble comme un graphe {.example}
 
 Les points $(x_1, x_2)$ du cercle unité de $\R^2$ centré sur l'origine sont 
@@ -144,16 +155,16 @@ du point $(1,0)$.](images/implicit-function-theorem.tex)
 
 Au voisinage de $(0,1)$, l'expression $x_1^2 + x_2^2 - 1$ satisfait les 
 hypothèses du théorème des fonctions implicites avec $x:=x_2$ et $\lambda :=x_1$. 
-En particulier, 
-$\partial_{x_2} (x_1^2 + x_2^2 - 1) = 2x_2 \neq 0$ localement, 
+En particulier, la dérivée partielle
+$\partial_{x_2} (x_1^2 + x_2^2 - 1) = 2x_2$ ne s'annule pas localement, 
 la différentielle partielle associée $h \in \R \mapsto 2x_2 h \in \R$ est donc inversible.
-Pour les points du cercle unité dans
-un voisinage de ce point, l'ordonnée $x_2$ est donc fonction de l'abscisse $x_1$. 
+Pour les points du cercle unité dans un voisinage suffisamment petit de ce point, 
+l'ordonnée $x_2$ est donc fonction de l'abscisse $x_1$. 
 
 Au voisinage de $(1,0)$, ces hypothèses ne sont pas satisfaites ; on constate d'ailleurs
 que même si $x_1$ est arbitrairement proche de $1$ et que l'on restreint la 
 recherche des solutions $x_2$ à un voisinage arbitrairement petit de $0$, 
-il peut exister 0 ou 2 solutions $x_2$.
+il peut toujours exister 0 ou 2 solutions $x_2$.
 
 
 ### Le cercle unité {.exercise .question .one #circle}
