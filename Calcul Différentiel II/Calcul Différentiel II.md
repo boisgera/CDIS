@@ -552,8 +552,9 @@ NumPy fournit un nombre nommé `pi` dont nous pouvons afficher les décimales :
     3.141592653589793
 
 Cette représentation de `pi` fournie par l'interpréteur Python est non-ambiguë ; 
-par là nous voulons dire que nous disposons d'assez d'information pour 
-reconstituer le nombre initial `pi` si nécessaire :
+par là nous voulons dire que la chaîne de caractère `"3.141592653589793"` 
+fournit assez d'information pour reconstituer le nombre initial `pi` si 
+nécessaire :
 
     >>> number = eval("3.141592653589793") 
     >>> number == pi 
@@ -586,7 +587,7 @@ les vraies décimales de $\pi$, nous voyons que
 
 [mpmath]: http://mpmath.org/
 
-et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre
+Les deux représentations ne sont identiques que jusqu'au 16ème chiffre
 (`3.141592653589793...`).
 
 ### Nombres flottants binaires
@@ -676,8 +677,8 @@ d'un "dépassement" (*overflow*)
 -- le choix d'un exposant trop grand pour un vrai double --
 ou d'un "soupassement" (*underflow*) -- c'est-à-dire un exposant trop petit.
 Il retient néanmoins l'essentiel des caractéristiques des doubles comme
-le caractère discret de l'ensemble et l'espacement entre les doubles et
-constitue donc un bon modèle d'étude pour la suite.
+le caractère discret de l'ensemble et la mesure de leur espacement. 
+Il constitue donc un bon modèle d'étude pour la suite.
 
 ### Représentation d'un nombre réel comme un double
 
@@ -773,8 +774,8 @@ $2^{e} \leq |x|$, nous obtenons l'inégalité :
     $$
     \frac{|[x] - x|}{|x|} \leq \varepsilon.
     $$
-(Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
-garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$)
+(si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
+garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon$).
 L'epsilon machine contrôle donc l'*erreur relative* introduite par l'opération
 d'arrondi.
 
@@ -918,7 +919,7 @@ Pour faire taire les sceptiques, détailler les calculs de `0.1 + 0.2` en base
 $2$ pour étayer votre explication.
 
 ### Non-associativité de l'addition {.exercise .question .two #non-assoc}
-On note $\cdot \+ \cdot : \R \to \R \to \D$ la version correctement arrondie
+On note $\cdot \+ \cdot : \R \times \R \to \D$ la version correctement arrondie
 de l'addition entre réels quand $[\, \cdot \,]$ désigne l'arrondi au double
 le plus proche.
 Calculer 
@@ -929,47 +930,6 @@ $$
 $$
 Pouvez-vous déterminer expérimentalement si Python interprète `x + y + z`
 comme `(x + y) + z` ou comme `x + (y + z)` ?
-
-### Non-associativité de l'addition {#answer-non-assoc}
-On a $[1.0] = 1.0$ et $[\varepsilon / 4] = \varepsilon / 4$ car $1.0$ et
-$\varepsilon / 4$ appartiennent à $\D$. Par conséquent,
-$$
-1.0 \+ \varepsilon/4 = [1.0 + \varepsilon/4] = 1.0,
-$$
-car $1.0 \+ \varepsilon/4$ est encadré par les doubles consécutifs
-$1.0$ et $1.0 + \varepsilon$ et que $1.0$ est plus proche. On a donc
-$$
-(((1.0 \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4 = 1.0.
-$$
-D'autre part, $\varepsilon / 4 \+ \varepsilon / 4 = [\varepsilon/2] = \varepsilon /2$,
-donc $\varepsilon/4 \+ \varepsilon/2 = [3\varepsilon/4] = 3\varepsilon/4$ et
-donc $\varepsilon / 4 \+ 3 \varepsilon/4 = [\varepsilon] =\varepsilon$.
-Par conséquent,
-$$
-1 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ \varepsilon/4)))
-= [1 +\varepsilon] = 1 + \varepsilon.
-$$
-Les deux valeurs étant différentes, l'opérateur $\+$ n'est donc pas associatif.
-Il est donc nécessaire de préciser ce que l'on entend par `x + y + z`. 
-Livrons-nous à une expérience en Python :
-
-    >>> eps = 2**(-52)
-    >>> e4 = eps / 4
-    >>> s1 = 1.0 + e4 + e4 + e4 + e4
-    >>> s2 = (((1.0 + e4) + e4) + e4) + e4
-    >>> s3 = 1.0 + (e4 + (e4 + (e4 + e4)))
-    >>> print_exact_number(s1)
-    1
-    >>> print_exact_number(s2)
-    1
-    >>> print_exact_number(s3)
-    1.0000000000000002220446049250313080847263336181640625
-
-Il semble donc que par défaut l'opérateur `+` en Python associe à gauche,
-c'est-à-dire interprête `x + y + z` comme `(x + y) + z`.
-
-
-
 
 
 
@@ -983,10 +943,10 @@ permettant de calculer dérivées, gradients et matrices jacobiennes de
 fonctions numériques.
 Ces méthodes ont l'avantage majeur d'éliminer une grande partie des 
 erreurs d'arrondis que l'on trouve typiquement associées aux méthodes
-de différences finies qui seront étudiées dans la section suivante.
+classiques qui seront étudiées dans la section suivante.
 L'erreur est en fait aussi faible que dans une dérivation symbolique 
 "manuelle" des fonctions à dériver et ce sans réglage délicat de 
-paramètres comme peuvent en requérir les méthodes de différences finies.
+paramètres à effectuer.
 
 Concrêtement, pour dériver la fonction
 $$
@@ -1002,9 +962,9 @@ il faut tout d'abord implémenter la fonction $f$, par exemple sous la forme
         w = u / v
         return w
 
-L'algorithme de différentiation automatique construit alors à partir de `f` 
-une fonction qui est fonctionnellement équivalente à la fonction que vous
-auriez probablement implémentée manuellement :
+L'algorithme de différentiation automatique 
+construit alors à partir de `f` une fonction dérivée qui est fonctionnellement 
+équivalente à la fonction que vous auriez probablement implémentée manuellement :
 
     def g(x):
         y = exp(-2.0 * x)
@@ -1037,7 +997,7 @@ par la règle de différentiation en chaîne
 vous explique comment développer une micro-bibliothèque de différentiation 
 automatique en Python  ... à des fins pédagogiques uniquement ! Si vous 
 avez besoin d'utiliser la différentiation automatique dans un projet, 
-consultez la section suivante.
+[consultez la section suivante](#autograd) .
 
 ### Autograd {#autograd}
 
@@ -1055,7 +1015,8 @@ Cela est rendu nécessaire par l'utilisation du tracing pour
 déterminer les graphes de calcul, une méthode qui suppose 
 une forme de coopération des fonctions numériques impliquées.
 Comme les fonction de NumPy en sont incapables,
-Autograd les modifie (*monkey patch*) puis les met ensuite à disposition 
+autograd les modifie <!-- (*monkey patch*)--> 
+puis les met ensuite à disposition 
 dans son propre module NumPy ; 
 c'est la version que vous devrez utiliser et non le module original, 
 sans quoi des erreurs cryptiques sont à craindre.
@@ -1105,7 +1066,7 @@ l'approximation
   $$
   f'(x) \approx \frac{f(x+h) - f(x)}{h},
   $$
-approximation valable lorsque la valeur du *pas* $h$ est suffisamment faible.
+valable lorsque la valeur du *pas* $h$ est suffisamment faible.
 
 L'implémentation de ce schéma en Python est simple :
 
@@ -1871,7 +1832,7 @@ Eventuellement en utilisant un "vrai" autodiff pour ne pas
 
 
 
-Exercices
+Exercices complémentaires
 ================================================================================
 
 Cinématique d'un robot manipulateur
@@ -2261,6 +2222,48 @@ $$
 Les deux nombres sont différents, leur écart est $2^{-52} \times 2^{-2} \approx
 5.56 \times 10^{-17}$, qui justifie l'écart observé dans la représentation
 décimale simplifiée affichée dans l'interpréteur ($\approx 4 \times 10^{-17}$).
+
+
+#### Non-associativité de l'addition {#answer-non-assoc}
+On a $[1.0] = 1.0$ et $[\varepsilon / 4] = \varepsilon / 4$ car $1.0$ et
+$\varepsilon / 4$ appartiennent à $\D$. Par conséquent,
+$$
+1.0 \+ \varepsilon/4 = [1.0 + \varepsilon/4] = 1.0,
+$$
+car $1.0 \+ \varepsilon/4$ est encadré par les doubles consécutifs
+$1.0$ et $1.0 + \varepsilon$ et que $1.0$ est plus proche. On a donc
+$$
+(((1.0 \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4 = 1.0.
+$$
+D'autre part, $\varepsilon / 4 \+ \varepsilon / 4 = [\varepsilon/2] = \varepsilon /2$,
+donc $\varepsilon/4 \+ \varepsilon/2 = [3\varepsilon/4] = 3\varepsilon/4$ et
+donc $\varepsilon / 4 \+ 3 \varepsilon/4 = [\varepsilon] =\varepsilon$.
+Par conséquent,
+$$
+1 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ \varepsilon/4)))
+= [1 +\varepsilon] = 1 + \varepsilon.
+$$
+Les deux valeurs étant différentes, l'opérateur $\+$ n'est donc pas associatif.
+Il est donc nécessaire de préciser ce que l'on entend par `x + y + z`. 
+Livrons-nous à une expérience en Python :
+
+    >>> eps = 2**(-52)
+    >>> e4 = eps / 4
+    >>> s1 = 1.0 + e4 + e4 + e4 + e4
+    >>> s2 = (((1.0 + e4) + e4) + e4) + e4
+    >>> s3 = 1.0 + (e4 + (e4 + (e4 + e4)))
+    >>> print_exact_number(s1)
+    1
+    >>> print_exact_number(s2)
+    1
+    >>> print_exact_number(s3)
+    1.0000000000000002220446049250313080847263336181640625
+
+Il semble donc que par défaut l'opérateur `+` en Python associe à gauche,
+c'est-à-dire interprête `x + y + z` comme `(x + y) + z`.
+
+
+
 
 
 Cinématique d'un robot manipulateur
