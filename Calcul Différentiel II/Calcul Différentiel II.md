@@ -531,7 +531,7 @@ document classique
 
 [NumPy]: http://www.numpy.org/
 
-Les exemples de code utilisés dans la suite utiliserons Python 3 et NumPy :
+Les exemples de code utilisés dans la suite utiliseront Python 3 et NumPy :
 
     >>> from numpy import *
 
