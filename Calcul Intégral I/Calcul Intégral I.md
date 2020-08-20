@@ -2065,23 +2065,24 @@ d'intégrale égale à $S$.
 
 
 ### {.remark}
-[Le théorème de Hake](#hake) montre
+[Le théorème de Hake](#hake) montre qu'avec l'intégrale de Henstock-Kurzweil
 qu'il n'existe pas d'intégrale *impropre*, 
 qui ne serait pas définissable directement mais uniquement par
-un passage à la limite.
+un passage à la limite. Attention : ce résultat n'a pas d'équivalent pour
+l'intégrale de Lebesgue, qui admet des intégrales impropres.
 
 ### Théorème de Hake {.theorem #hake}
 Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
-et $f: [a, b] \to \R$. La fonction $f$ est intégrable sur $[a, b]$ si
-et seulement si elle est intégrable sur tout intervalle $[c, d]$
+et $f: [a, b] \to \R$. La fonction $f$ est intégrable su sens de Henstock-Kurzweil
+sur $[a, b]$ si et seulement si elle est intégrable sur tout intervalle $[c, d]$
 tel que $a < c$ et $d < b$ et que l'intégrale
 $$
-\int_c^d f(t) \, dt
+\HKint_c^d f(t) \, dt
 $$
 a une limite quand $c$ tend vers $a$ et $d$ tend vers $b$.
 On a alors
 $$
-\int_a^b f(t) \, dt = \lim_{(c, d) \to (a,b)} \int_{c}^d f(t) \, dt.
+\HKint_a^b f(t) \, dt = \lim_{(c, d) \to (a,b)} \HKint_{c}^d f(t) \, dt.
 $$
 
 ### Démonstration {.proof}
@@ -2095,17 +2096,18 @@ sur des segments de la droite réelle. A titre d'exemple :
 Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
 et $f: [a, b] \to \R$, une fonction dérivable sur $\left]a, b\right[$ et
 continue sur $[a, b]$. La fonction $f'$ (définie partout sauf en $a$ et $b$)
-est intégrable sur $[a, b]$ et
+est intégrable au sens de Henstock-Kurzweil sur $[a, b]$ et
 $$
-[f]_a^b := f(b) - f(a) = \int_a^b f'(t) \, dt.
+[f]_a^b := f(b) - f(a) = \HKint_a^b f'(t) \, dt.
 $$
 
 ### Démonstration {.proof}
 [Le théorème fondamental du calcul](#TFC) dans le cadre borné nous fournit
-pour tous $c$ et $d$ tels que $a < c \leq d < b$ l'intégrabilité de $f'$
+pour tous $c$ et $d$ tels que $a < c \leq d < b$ l'intégrabilité au sens
+de Henstock-Kurzweil de $f'$
 sur $[c, d]$ et la relation
 $$
-f(d) - f(c) = \int_c^d f'(t) \, dt.
+f(d) - f(c) = \HKint_c^d f'(t) \, dt.
 $$
 Par continuité, le membre de gauche de cette équation a une limite quand
 $c$ tend vers $a$ et $d$ vers $b$, qui est $f(b) - f(a)$. 
