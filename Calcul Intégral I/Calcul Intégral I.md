@@ -2254,7 +2254,7 @@ si une fonction $f$ est intégrable au sens de Riemann,
 sa valeur absolue $|f|$ l'est également.
 
 
-Continuité presque partout {#cpp}
+Continuité presque partout
 --------------------------------------------------------------------------------
 
 ### Question 1 {.question #cpp-1}
@@ -2274,7 +2274,7 @@ $$
 \right.
 $$
 est-elle intégrable sur $[0, 1]$ au sens de Riemann ? 
-Et au sens de Henstock-Kurzweil ?
+Et au sens de Lebesgue ?
 
 <!--
 Continuité par morceaux {.question #cpm}
@@ -2866,7 +2866,7 @@ $f$ est continue comme composée de fonctions continues en ce point).
 Par conséquent, $|f|$ est intégrable au sens de Riemann.
 
 
-Continuité presque partout -- TODO, adapter
+Continuité presque partout 
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-cpp-1}
@@ -2891,14 +2891,21 @@ e(x) = \left|
 $$
 est continue presque partout (sauf en $0$). Mais aucune modification de
 cette fonction sur un ensemble négligeable ne pourra la rendre continue
-en $0$ ; il faudrait pour cela modifier tout un intervalle de la forme
-$\left]-\varepsilon, 0\right[$ ou de la forme $\left]0, \varepsilon\right[$
-pour un $\varepsilon > 0$, mais aucun de ces deux intervalles n'est négligeable.
+en $0$ ; en effet, comme aucun intervalle de la forme $\left]-\varepsilon, 0\right[$
+ou $\left]0, \varepsilon\right[$ n'est négligeable, après modification de $f$
+sur un ensemble négligeable, la fonction $g$ qui en résulte est encore égale à 
+$f$ sur une suite de valeurs $x_k<0$ tendant vers $0$ et sur une suite de
+valeurs $y_k > 0$ tendant vers $0$. On a donc
+$$
+\lim_{k \to +\infty} g(y_k) - g(x_k) = \lim_{k \to +\infty} f(y_k) - f(x_k) = 1.
+$$
+La fonction $g$ ne peut donc pas être continue en $0$.
+
 
 ### Question 2 {.answer #answer-cpp-2}
 La fonction de Dirichlet $1_{\Q}$ sur $[0, 1]$ est égale presque partout à la
 fonction identiquement nulle qui est continue, elle est donc intégrable au
-sens de Henstock-Kurzweil. Mais elle n'est pas continue presque partout,
+sens de Lebesgue. Mais elle n'est pas continue presque partout,
 donc elle n'est pas intégrable au sens de Riemann.
 
 <!--
