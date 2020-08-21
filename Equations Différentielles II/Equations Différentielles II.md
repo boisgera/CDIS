@@ -652,7 +652,7 @@ On souhaite maintenant simuler numériquement les trajectoires.
 
         def solve_euler_explicit(f, x0, dt, t0 = 0, tf):
             ...
-             return t, x
+            return t, x
 
     prenant en entrée une fonction $f:\R \times \R^n \to \R^n$ quelconque, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$. 
     La tester sur les équations de Lotka-Volterra pour différentes valeurs de $dt$. 
