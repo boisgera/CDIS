@@ -632,38 +632,42 @@ Les équations de Lotka-Volterra, ou "modèle proie-prédateur", sont couramment
 \end{align*}
 où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement.
 
-1. Donner une interprétation physique à chaque terme de la dynamique. Quels sont les points d'équilibre ?
+ 1. Donner une interprétation physique à chaque terme de la dynamique. 
+    Quels sont les points d'équilibre ?
 
-2. A l'aide des fonctions `meshgrid` et `streamplot`, visualiser les solutions sur un portrait de phase. On pourra aussi utiliser `quiver` pour visualiser le champ de vecteurs.
+ 2. A l'aide des fonctions `meshgrid` et `streamplot`, visualiser les solutions sur un portrait de phase. 
+    On pourra aussi utiliser `quiver` pour visualiser le champ de vecteurs.
 
-3. On considère la fonction
-$$
-H(x_1,x_2) = \delta x_1 - \gamma \ln x_1 + \beta x_2 - \alpha \ln x_2 
-$$
-définie sur $\Rg\times \Rg$.
-Calculer la dérivée de $H$ le long des solutions issues de conditions initiales dans $\Rg\times \Rg$. Qu'en concluez vous sur le domaine d'existence de ces solutions dans $\Rg\times \Rg$ et sur leur comportement ? Faire le lien avec le portrait de phase.
+ 3. On considère la fonction
+    $$
+    H(x_1,x_2) = \delta x_1 - \gamma \ln x_1 + \beta x_2 - \alpha \ln x_2  
+    $$
+    définie sur $\Rg\times \Rg$.
+    Calculer la dérivée de $H$ le long des solutions issues de conditions initiales dans $\Rg\times \Rg$. 
+    Qu'en concluez vous sur le domaine d'existence de ces solutions dans $\Rg\times \Rg$ et sur leur comportement ? Faire le lien avec le portrait de phase.
 
 On souhaite maintenant simuler numériquement les trajectoires.
 
-4. Coder une fonction du type
+ 4. Coder une fonction du type
 
-    def solve_euler_explicit(f, x0, dt, t0 = 0, tf):
-      ...
-      return t, x
+        def solve_euler_explicit(f, x0, dt, t0 = 0, tf):
+            ...
+             return t, x
 
-prenant en entrée une fonction $f:\R \times \R^n \to \R^n$ quelconque, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$. La tester sur les équations de Lotka-Volterra pour différentes valeurs de $dt$. Que constate-t-on en temps long ? Cette résolution vous semble-t-elle fidèle à la réalité ? On pourra tracer l'évolution de la fonction $H$.
+    prenant en entrée une fonction $f:\R \times \R^n \to \R^n$ quelconque, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$. 
+    La tester sur les équations de Lotka-Volterra pour différentes valeurs de $dt$. 
+    Que constate-t-on en temps long ? Cette résolution vous semble-t-elle fidèle à la réalité ? 
+    On pourra tracer l'évolution de la fonction $H$.
 
-5. Coder maintenant une fonction du type
+ 5. Coder maintenant une fonction du type
 
-    def solve_euler_implicit(f, x0, dt, t0 = 0, tf, itermax = 100):
-      ...
-      return t, x
+        def solve_euler_implicit(f, x0, dt, t0 = 0, tf, itermax = 100):
+            ...
+            return t, x
 
-donnant la solution d'un schéma d'Euler implicite appliqué à $\dot{x}=f(t,x)$ selon la méthode présentée dans le cours. Que se passe-t-il cette fois-ci sur les équations de Lotka-Volterra ?
+    donnant la solution d'un schéma d'Euler implicite appliqué à $\dot{x}=f(t,x)$ selon la méthode présentée dans le cours. Que se passe-t-il cette fois-ci sur les équations de Lotka-Volterra ?
 
-6. Faire de même avec le schéma de Heun ou des trapèzes (Crank-Nicolson). Comparer et conclure. 
-
-
+ 6. Faire de même avec le schéma de Heun ou des trapèzes (Crank-Nicolson). Comparer et conclure. 
 
 
 Exercices
