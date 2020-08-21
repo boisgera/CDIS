@@ -528,7 +528,7 @@ $$
 $$
 
 
-# Choix du pas de temps
+# Choix du pas de temps (pour la culture)
 
 Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\dt_j$, sans jamais dire comment les choisir. Le plus simple est de choisir un pas $\dt$ fixe mais il est difficile de savoir à l'avance quel pas est nécessaire. En particulier, comment savoir si la solution obtenue est suffisamment précise, sans connaître la vraie ?
 
