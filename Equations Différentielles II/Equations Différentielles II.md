@@ -5,6 +5,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Rgeq}{\R_{\geq 0}}
+\newcommand{\Rg}{\R_{> 0}}
 \renewcommand{\C}{\mathbb{C}}
 
 \newcommand{\dt}{{\Delta t}}
@@ -527,7 +528,7 @@ $$
 $$
 
 
-# Projet numérique : choix du pas de temps
+# Choix du pas de temps
 
 Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\dt_j$, sans jamais dire comment les choisir. Le plus simple est de choisir un pas $\dt$ fixe mais il est difficile de savoir à l'avance quel pas est nécessaire. En particulier, comment savoir si la solution obtenue est suffisamment précise, sans connaître la vraie ?
 
@@ -535,6 +536,7 @@ Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\dt_
 
 Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les resultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. On pourrait aussi directement choisir le pas $\dt_{opt}$ obtenu plus haut en prenant en compte les erreurs d'arrondis. Mais les constantes $c_v$ et $S(T)$ sont souvent mal connues et conservatives.
 
+<!--
 **Consigne** Coder une fonction du type
 
     def solve_euler_explicit(f, x0, dt, t0 = 0, tf):
@@ -544,6 +546,7 @@ Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas 
 prenant en entrée une fonction $f$, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$.  Tester les performances de votre solver sur une équation différentielle que vous savez résoudre. Illustrer la convergence du schéma à l'ordre 1. 
 
 **Consigne** Faire de même et comparer la convergence avec un schéma d'ordre 2 de votre choix.
+-->
 
 ## Adaptation du pas de temps
 
@@ -596,16 +599,12 @@ Par défaut, dans les solvers de Numpy, $\texttt{Tol}_{abs} = 10^{-6}$ et $\text
 
 Mais pour cela nous devons trouver un moyen d'estimer l'erreur locale. C'est souvent fait en utilisant une même méthode à deux pas différents (par exemple $\dt_j$ et $\dt_j/2$), ou bien en imbriquant des schémas de Runge-Kutta d'ordres différents. 
 
-**Consigne** Montrer que si $f$ est $C^1$, on a pour un schéma d'Euler explicite
+En fait, il est possible de montrer (exercice) que si $f$ est $C^1$, on a pour un schéma d'Euler explicite
 $$
 \|e^{j+1}\| = \dt_j \, \frac{\big\|f(t_{j+1},x^{j+1}) - f(t_j,x^j)\big\|}{2} + o(\dt_j^2) \ 
 $$
 
-On peut donc estimer à chaque itération l'erreur commise $e^{j+1}$ et adapter le pas selon si celle-ci est inférieure ou supérieure au seuil de tolérance.  
-
-**Consigne** En justifiant que par ailleurs 
-$e^{j+1} =  O(\dt_j^2)$,
-en déduire qu'une possible stratégie d'adaptation est de prendre  
+On peut donc estimer à chaque itération l'erreur commise $e^{j+1}$ et adapter le pas selon si celle-ci est inférieure ou supérieure au seuil de tolérance.  En effet, puisque l'on sait par ailleurs que $e^{j+1} =  O(\dt_j^2)$, une possible stratégie d'adaptation est de prendre  
 $$
 \dt_{new} = \dt_j \sqrt{\frac{\texttt{Tol}_{abs}}{\|e^{j+1}\|}}
 $$
@@ -621,7 +620,50 @@ est fournie dans le notebook Equations Differentielles II.ipynb.
 
  <!-- prenant en entrée la fonction $f$, une condition initiale $x_0$, des bornes $\dt_{\min}$, $\dt_{\max}$ sur le pas de temps, une tolérance absolue  $\texttt{aTol}$ et/ou une tolérance relative $\texttt{Tol}_{rel}$, et renvoyant en sortie le vecteur temps $(t_j)$, et la solution approximée $(x^j)$ correspondante. Lorsque le pas nécessaire est inférieur à $\dt_{\min}$ le solver s'arrête avec un message d'erreur.-->
 
-**Consigne** Expliquer et illustrer le fonctionnement de ce solveur.
+<!--**Consigne** Expliquer et illustrer le fonctionnement de ce solveur.-->
+
+Projet numérique
+===========================================================================
+
+Les équations de Lotka-Volterra, ou "modèle proie-prédateur", sont couramment utilisées pour décrire la dynamique de systèmes biologiques dans lesquels un prédateur et sa proie interagissent dans un milieu commun.  Elles ont été proposées indépendamment par A. J. Lotka en 1925 et V. Volterra en 1926 et s'écrivent de la manière suivante :
+\begin{align*}
+\dot{x}_1 &= x_1(\alpha -\beta x_2) \\
+\dot{x}_2 &= -x_2(\gamma - \delta x_1)
+\end{align*}
+où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement.
+
+1. Donner une interprétation physique à chaque terme de la dynamique.
+
+2. A l'aide des fonctions `meshgrid` et `streamplot`, visualiser les solutions sur un portrait de phase. On pourra aussi utiliser `quiver` pour visualiser le champ de vecteurs.
+
+3. On considère la fonction
+$$
+H(x_1,x_2) = \delta x_1 - \gamma \ln x_1 + \beta x_2 - \alpha \ln x_2 
+$$
+définie sur $\Rg\times \Rg$.
+Calculer la dérivée de $H$ le long des solutions issues de conditions initiales dans $\Rg\times \Rg$. Qu'en concluez vous sur le domaine d'existence de ces solutions dans $\Rg\times \Rg$ et sur leur comportement ? Faire le lien avec le portrait de phase.
+
+On souhaite maintenant simuler numériquement les trajectoires.
+
+4. Coder une fonction du type
+
+    def solve_euler_explicit(f, x0, dt, t0 = 0, tf):
+      ...
+      return t, x
+
+prenant en entrée une fonction $f:\R \times \R^n \to \R^n$ quelconque, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$. La tester sur les équations de Lotka-Volterra pour différentes valeurs de $dt$. Que constate-t-on en temps long ? Cette résolution vous semble-t-elle fidèle à la réalité ? On pourra tracer l'évolution de la fonction $H$.
+
+5. Coder maintenant une fonction du type
+
+    def solve_euler_implicit(f, x0, dt, t0 = 0, tf, itermax = 100):
+      ...
+      return t, x
+
+donnant la solution d'un schéma d'Euler implicite appliqué à $\dot{x}=f(t,x)$ selon la méthode présentée dans le cours. Que se passe-t-il cette fois-ci sur les équations de Lotka-Volterra ?
+
+6. Faire de même avec le schéma de Heun et comparer.
+
+
 
 Exercices
 ================================================================================
