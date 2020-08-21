@@ -106,7 +106,7 @@ d'exercices.
 
   - \two savoir que les intégrales indéterminées sont continues,
 
-  - \two savoir que les intégrales indétermineés sont dérivables presque partout,
+  - \two savoir que les intégrales indéterminées sont dérivables presque partout,
 
   - \three connaître le théorème de changement de variable.
 
