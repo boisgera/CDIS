@@ -632,7 +632,7 @@ Les équations de Lotka-Volterra, ou "modèle proie-prédateur", sont couramment
 \end{align*}
 où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement.
 
-1. Donner une interprétation physique à chaque terme de la dynamique.
+1. Donner une interprétation physique à chaque terme de la dynamique. Quels sont les points d'équilibre ?
 
 2. A l'aide des fonctions `meshgrid` et `streamplot`, visualiser les solutions sur un portrait de phase. On pourra aussi utiliser `quiver` pour visualiser le champ de vecteurs.
 
