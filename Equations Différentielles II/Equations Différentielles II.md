@@ -635,8 +635,9 @@ où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs re
  1. Donner une interprétation physique à chaque terme de la dynamique. 
     Quels sont les points d'équilibre ?
 
- 2. A l'aide des fonctions `meshgrid` et `streamplot`, visualiser les solutions sur un portrait de phase. 
-    On pourra aussi utiliser `quiver` pour visualiser le champ de vecteurs.
+ 2. A l'aide des fonctions `meshgrid` et `quiver`, visualiser graphiquement le champ de vecteurs. 
+    Intuiter le comportement des solutions. 
+    On pourra aussi utiliser `streamplot` pour visualiser le portrait de phase.
 
  3. On considère la fonction
     $$
@@ -644,7 +645,7 @@ où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs re
     $$
     définie sur $\Rg\times \Rg$.
     Calculer la dérivée de $H$ le long des solutions issues de conditions initiales dans $\Rg\times \Rg$. 
-    Qu'en concluez vous sur le domaine d'existence de ces solutions dans $\Rg\times \Rg$ et sur leur comportement ? Faire le lien avec le portrait de phase.
+    Qu'en concluez vous sur le domaine d'existence de ces solutions dans $\Rg\times \Rg$ et sur leur comportement ? 
 
 On souhaite maintenant simuler numériquement les trajectoires.
 
