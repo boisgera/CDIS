@@ -255,7 +255,7 @@ telle que :
  2. pour tout $t \in \R$, la fonction
     $\lambda \in I \mapsto f(\lambda, t)$
     est dérivable et 
-    $$|\partial_{\lambda} f(\lambda, t)| \leq g(t)$$
+    $$\sup_{\lambda \in I} |\partial_{\lambda} f(\lambda, t)| \leq g(t)$$
     où $g: \R \to \left[0, +\infty\right[$ est une fonction intégrable.
 
 Alors, la fonction $S: I \to \R$ définie par
