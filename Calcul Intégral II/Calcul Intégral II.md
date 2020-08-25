@@ -258,11 +258,13 @@ telle que :
     $$|\partial_{\lambda} f(\lambda, t)| \leq g(t)$$
     où $g: \R \to \left[0, +\infty\right[$ est une fonction intégrable.
 
-Alors la fonction $S: I \to \R$ définie par
+Alors, la fonction $S: I \to \R$ définie par
 $$
 S(\lambda) := \int f(\lambda, t) \, dt
 $$
-est dérivable pour tout $\lambda$ et 
+est dérivable ; pour tout $\lambda \in I$,
+la fonction $t \in \R \mapsto \partial_{\lambda} f(\lambda, t)$ est intégrable 
+et
 $$
 S'(\lambda) = \int \partial_{\lambda} f(\lambda, t) \, dt.
 $$
