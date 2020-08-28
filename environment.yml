@@ -10,6 +10,7 @@ dependencies:
   - mpmath
   - autograd
   - matplotlib
+  - seaborn
   - jupyterlab
   - jupytext
   - pip
