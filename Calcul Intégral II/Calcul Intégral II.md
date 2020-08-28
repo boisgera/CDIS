@@ -1036,7 +1036,7 @@ caractéristique $1_E$ est mesurable.
 ### Démonstration {.proof}
 Si l'ensemble $E$ est mesurable, pour tout $k\in \N$, l'ensemble 
 $E_k := E \cap [-k,k]$
-est intégrable, c'est-à-dire que la fonction $1_{E_k}$ est intégrable.
+est de longueur finie, c'est-à-dire que la fonction $1_{E_k}$ est intégrable.
 La fonction $1_{E}$ est donc mesurable car limite simple de fonctions 
 intégrables.
 
