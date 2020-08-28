@@ -393,7 +393,7 @@ sont toujours vérifiées (la collection est une tribu), cette famille contient
 tous les fermés (et tous les ouverts) et "négligeable" et 
 "(mesurable et) de mesure ($n$-dimensionnelle) nulle" sont toujours synonymes.
 
-### Ensemble mesurable {.definition}
+### Ensemble mesurable {.definition #def-em}
 Un ensemble $E$ de $\R^n$ est *de mesure (de Lebesgue ou $n$-dimensionnelle)
 finie* si sa fonction caractéristique $1_E$ est intégrable sur $\R^n$ ; 
 il est *mesurable* si sa fonction caractéristique est intégrable 
@@ -458,11 +458,59 @@ Une fonction $f:\R^n \to \R^m$ est mesurable si et seulement
 l'image réciproque de tout fermé (ou de tout ouvert) de $\R^m$
 par $f$ est mesurable.
 
-### Ensemble mesurable {.proposition}
+### Ensemble mesurable {.proposition #emfc}
 Un sous-ensemble $E$ de $\R^n$ est mesurable si et seulement si sa fonction
 caractéristique $1_E$ est mesurable.
 
+#### {.remark .ante}
+Un cas particulier important sans équivalent dans $\R$ : les produits d'ensembles
+mesurables sont mesurables.
 
+### Produit d'ensembles mesurables
+Si les ensembles $A \subset \R^m$ et $B \subset \R^n$ sont mesurables, 
+alors leur produit cartésien $A \times B \subset \R^m \times \R^n$ est mesurable.
+
+#### Démonstration {.proof}
+Comme $A \times B = (A \times \R^n) \cap (\R^m \times B)$ et que 
+[l'intersection de deux ensembles mesurables est mesurable](#pptés-tribu),
+il suffit d'établir que $A \times \R^n$ et $\R^m \times B$ sont mesurables.
+Nous nous contenterons de prouver que $A \times \R^n$ est mesurable,
+la preuve pour $\R^m \times B$ étant presque identique.
+
+Soient $P_1$ et $P_2$ deux pavés fermés arbitraires 
+de $\R^m$ et $\R^n$ respectivement ;
+nous allons établir que la fonction $(x, y) \in P_1 \times P_2 \to 1_{A}(x)$
+est intégrable. Cela montrera que $(x, y) \in \R^m \times \R^n \to 1_A(x) \times 1_{\R^n}(y)$
+est mesurable [et donc que $A \times \R^n$ est mesurable](#emfc).
+
+Par construction, $A \cap P_1$ est de mesure finie [donc $1_{A \cap P_1}$ est 
+intégrable](#def-em). Soit $\varepsilon > 0$ et $\gamma_1$ une jauge sur $\R^m$ telle
+que pour toute subdivision pointée $\mathcal{D}_1$ de $P_1$ subordonnée à $\gamma_1$ 
+on ait
+$$
+\left|S(1_{A}, \mathcal{D}_1) - \int_{P_1} 1_{A}(x) \, dx\right| \leq \varepsilon.
+$$
+Soit $\gamma$ la jauge sur $P_1 \times P_2$ définie par 
+$$
+\gamma(x, y) = \gamma_1(x) \times [-\infty,+\infty]^m.
+$$
+Soit $\mathcal{D}$ une subdivision pointée de $P_1 \times P_2$ subordonnée à
+$\gamma$. Soit $\mathcal{I}_2$ une collection de $p$ pavés fermés sans chevauchement
+tels que si $I_1 \times I_2$ appartienne à $\mathcal{D}$ alors $I_2$ est l'union
+d'un nombre fini d'éléments de  $\mathcal{I}_2$. 
+En jouant sur le fait que les valeurs de $(x, y) \mapsto 1_{A}(x)$ 
+sont indépendantes de $y$
+et en décomposant les pavés de $\mathcal{D}_1$ selon leur second composante, 
+on peut trouver $p$ subdivisions pointées $\mathcal{D}_1^i$ de $P_1$ toutes subordonnées
+à $\gamma_1$ et des réels positifs $\alpha_i$ tels que $\sum_{i=1}^p \alpha_i = \lambda(P_2)$ et
+$$
+S((x, y) \mapsto 1_{A}(x), \mathcal{D}) = \sum_{i=1}^p \alpha_i S(1_A, \mathcal{D}_1^i).
+$$
+Par conséquent,
+$$
+\left|S((x, y) \mapsto 1_{A}(x), \mathcal{D}) - \lambda(P_2)\int_{P_1\times P_2} 1_{A}(x) \, dx \right| \leq \lambda(P_2) \varepsilon
+$$
+et $(x, y) \in P_1 \times P_2 \mapsto 1_{A}(x)$ est donc bien intégrable.
 
 ### {.remark .ante}
 Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
