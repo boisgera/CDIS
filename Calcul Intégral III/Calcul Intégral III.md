@@ -459,8 +459,10 @@ l'image réciproque de tout fermé (ou de tout ouvert) de $\R^m$
 par $f$ est mesurable.
 
 ### Ensemble mesurable {.proposition}
-Un sous-ensemble $E$ de $\R$ est mesurable si et seulement si sa fonction
+Un sous-ensemble $E$ de $\R^n$ est mesurable si et seulement si sa fonction
 caractéristique $1_E$ est mesurable.
+
+
 
 ### {.remark .ante}
 Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
