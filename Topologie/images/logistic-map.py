@@ -14,7 +14,7 @@ from matplotlib.pyplot import *
 # ------------------------------------------------------------------------------
 rc = {
     "text.usetex": True,
-    "text.latex.preamble": [r"\usepackage{amsmath,amsfonts,amssymb}"], 
+    "text.latex.preamble": r"\usepackage{amsmath,amsfonts,amssymb}", 
     "pgf.preamble": [r"\usepackage{amsmath,amsfonts,amssymb}"], 
     "font.family": "serif",
     "font.serif": [],      # use latex default serif font
