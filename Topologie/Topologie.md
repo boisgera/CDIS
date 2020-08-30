@@ -681,7 +681,7 @@ Soit $X$ un espace métrique.
 Un ensemble $V$ de $X$ est un *voisinage* d'un point $x$ de $X$ si la
 distance de $x$ au complémentaire de $V$ est strictement positive :
 $$
-V \in \mathcal{V}(x)
+\mbox{$V$ voisinage de $x$}
 \; \Leftrightarrow \; 
 d(x, V^c) > 0.
 $$
@@ -693,7 +693,7 @@ Autrement dit, $V$ est un voisinage de $x$ si et seulement si $x$ est un point
 intérieur de $V$, ou encore, s'il existe une boule
 ouverte centrée en $x$ de rayon $r >0$ incluse dans $V$ :
 $$
-x \in B(x, r) \subset V \in \mathcal{V}(x)
+x \in B(x, r) \subset V.
 $$
 
 ### Dans le plan {.exercise .one .question #dlp}
@@ -705,10 +705,11 @@ Montrer que si $V$ est un voisinage de $x$, il existe un voisinage ouvert
 de $x$ inclus dans $V$ et un voisinage fermé de $x$ inclus dans $V$.
 
 ### Propriétés vraies dans un voisinage / localement {.definition}
-Soit $X$ un espace métrique.
-Une propriété $P$, fonction d'ensembles $A$ de $X$
+Soit $X$ un espace métrique et $\mathcal{F}$ une collection d'ensembles
+de $X$.
+Une propriété $P$, dépendant d'un ensemble $A$ appartenant à $\mathcal{F}$
 $$
-P:  A \in \mathcal{F} \subset \mathcal{P}(X) \to \{\mbox{vrai}, \mbox{faux}\}
+P:  A \in \mathcal{F} \to \{\mbox{vrai}, \mbox{faux}\}
 $$
 est *vraie au voisinage de $x \in X$* s'il existe un voisinage $V$ de $x$ tel que
 $V \in \mathcal{F}$ et $P(V)$ soit vraie. Elle est *localement vraie*
@@ -1739,7 +1740,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
   - Un ensemble $V$ est un *voisinage* d'un point $x$ de $X$ si
     $x$ est intérieur à $V$
     $$
-    V \in \mathcal{V}(x)
+    \mbox{$V$ voisinage de $x$} 
     \; \Leftrightarrow \; 
     x \not \in \overline{V^c}.
     $$
