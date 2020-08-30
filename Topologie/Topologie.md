@@ -1184,7 +1184,7 @@ $$
 Une telle application est *contractante* si elle est 
 $\kappa$-contractante pour un $\kappa \in \left[0, 1\right[$.
 
-### Théorème de point fixe de Banach {.definition .theorem #T-TPFB}
+### Théorème de point fixe de Banach {.theorem .theorem #T-TPFB}
 
 Soit $f: X \to X$ une application contractante dans un espace métrique $X$ complet.
 L'application $f$ admet un unique *point fixe* $x$,
