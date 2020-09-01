@@ -14,24 +14,52 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
-#### Question
+#### Question 1
 Déterminer l'aire des pavés suivants du plan étendu :
 
-  - $[0, 1] \times \left]-1, 1[$ : .........
+Ensemble de $[-\infty,+\infty]^2$                    Aire (mesure de Lebesgue)
+-------------------------------------                -----------------------------------------
+$[0, 1] \times \left]-1, 1\right[$                   ........................................
+$\R^2$                                               ........................................
+$\{+\infty\} \times \left[-\infty, +\infty\right]$   ........................................ 
 
-  - $\R^2$ : .........
+<!--
+#### Question (réponse multiple)
+Si $A$ et $B$ sont deux ensembles mesurables de $\R$,
 
-  - $\{+\infty\} \times \left[0, +\infty\right]$ : ......... 
+  - [ ] A: $A \times B$ est un ensemble mesurable de $\R^2$,
 
-#### Question (réponse multiple) -- TODO
-Si $A$ et $B$ sont deux ensembles mesurables de $\R$, et $f: \R \to \R$,
-$g: \R \to \R$ sont deux fonctions mesurables :
+  - [ ] B: si $a(A \times B) < + \infty$ alors $\ell(A) < +\infty$ et $\ell (B) < +\infty$.
 
-  - [ ] $A \times B$ est un ensemble mesurable de $\R^2$,
+  - [ ] C: si 
+-->
 
-  - [ ] L'aire $a(A \times B)$ est le produit des longueurs $\ell(A) \times \ell (B)$.
+### Question 2 (réponse multiple) 
+Soit $D = \{(x,y) \in \R^2 \; | \; x = y\}$ la diagonale principale de $\R^2$.
+Alors
 
-#### Question (réponse multiple) PRENDRE CAS PARTICULIER $e^{-x^2-y^2}$
+  - [ ] A: pour tout $r>0$, $D \cap [-r, r]$ est négligeable,
+
+  - [ ] B: l'ensemble $D$ est négligeable,
+
+  - [ ] C: l'aire de l'ensemble $D$ est nulle.
+
+#### Question 3 (réponse multiple)
+Si $f: \R^2 \to \R$ est mesurable et que 
+$$
+\int_{-\infty}^{+\infty} \left[\int_{-\infty}^{+\infty} f(x,y) \, dx\right] \, dy
+$$
+est bien définie, alors
+
+  - [ ] A: l'intégrale $\int_{-\infty}^{+\infty} f(x,y) \, dx$ est nécessairement définie pour tout $y \in \R$,
+
+  - [ ] B: l'intégrale $\int_{\R^2} f(x, y) \, dxdy$ est bien définie,
+
+  - [ ] C: l'intégrale $\int_{-\infty}^{+\infty} \left[\int_{-\infty}^{+\infty} f(x,y) \, dy\right] \, dx$ est bien définie,
+
+  - [ ] D: si $\int_{-\infty}^{+\infty} \left[\int_{-\infty}^{+\infty} f(x,y) \, dy\right] \, dx$ est également bien définie, alors les deux intégrales sont égales,
+
+#### Question 4 (réponse multiple)
 Soient $f: \R \to \left[0, +\infty \right[$ et $g: \R \to \left[0, +\infty \right[$ 
 deux fonctions intégrables. Alors,
 
@@ -41,7 +69,9 @@ deux fonctions intégrables. Alors,
 
   - [ ] C: on a $$\int_{\R^2} f(x) g(y) \, dxdy = \left(\int_{-\infty}^{+\infty} f(x) \, dx\right)\left(\int_{-\infty}^{+\infty} g(y) dy\right).$$
 
-#### Question (réponse multiple)
+
+
+#### Question 5 (réponse multiple)
 Soient $f: \R^2 \to \R$. L'intégrale
   $$
   \int_{\R^2} f(x, y-x) \, dxdy
@@ -49,8 +79,6 @@ Soient $f: \R^2 \to \R$. L'intégrale
 
   - [ ] A: est définie si $f$ est mesurable et positive,
 
-  - [ ] B: est définie si et seulement si $f$ est intégrable,
-
-  - [ ] C: est égale à $$\int_{\R^2} f(x, y) \, dxdy$$ si $f$ est intégrable.
+  - [ ] B: est égale à $\int_{\R^2} f(x, y) \, dxdy$ si $f$ est intégrable.
 
 
