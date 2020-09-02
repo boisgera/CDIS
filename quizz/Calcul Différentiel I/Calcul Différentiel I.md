@@ -15,7 +15,7 @@
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
 #### Question 1
-Déterminer le gradient de la fonction 
+Déterminer le gradient et la matrice jacobienne de la fonction 
 $(x_1, x_2) \in \R^2 \mapsto x_1x_2 \in \R$.
 
 #### Question 2
