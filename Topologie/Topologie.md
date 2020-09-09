@@ -910,7 +910,7 @@ $f(x)$ n'adhère pas à $\{f(y_j) \, | \, j \in  \N\} = f(\{y_j \, | \, j \in  \
 ; $f(x)$ n'adhère donc pas à $f(A)$.
 
 ### Continuité et image réciproque {.corollaire #CIR}
-Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces topologiques est 
+Une fonction $f: X \to Y$ où $X$ et $Y$ sont des espaces métriques est 
 continue si et seulement si l'image réciproque de tout ensemble fermé 
 (resp. ouvert) de $Y$ 
 par $f$ est un ensemble fermé (resp. ouvert) de $X$.
