@@ -59,7 +59,7 @@ d'exercices.
 
 #### Espaces métriques
 L'accent est mis sur les espace métriques "concrets" : les sous-ensembles
-arbitraires d'espaces vectoriels normés, muni de la distance induite par 
+arbitraires d'espaces vectoriels normés, munis de la distance induite par 
 la norme.
 
   - \zero savoir construire une distance (entre points) à partir d'une norme,
@@ -74,13 +74,13 @@ la norme.
 
       - \two ensemble ouvert et fermé,
 
-      - \two boule ouverte, boule fermée
+      - \two boule ouverte, boule fermée,
       
-      - \three propriété satisfaite dans un voisinage / localement.
+      - \three propriété satisfaite dans un voisinage / localement,
 
   - savoir exploiter des rudiments de calcul topologique :
 
-      - \one $\partial A = \overline{A} \cap \overline{A^c}$, $A^{\circ} = \overline{(A^c)}^c$.
+      - \one $\partial A = \overline{A} \cap \overline{A^c}$, $A^{\circ} = \overline{(A^c)}^c$,
 
       - \two $A \subset \overline{A}$, $\overline{\overline{A}} = \overline{A}$, $\overline{A} = A^{\circ} \cup \partial A$ (union disjointe), 
 
@@ -100,7 +100,7 @@ des ensembles fermés bornés non vides de $\R^n$.
 
 #### Suites, limites et continuité 
 
-Dans les espaces métriques, tous les concepts topoologiques peuvent être
+Dans les espaces métriques, tous les concepts topologiques peuvent être
 caractérisés à travers l'étude des suites de points.
 
   - savoir définir et exploiter les notions suivantes :
@@ -148,7 +148,7 @@ Conventions
 
 On définit le *complémentaire de $A$ dans $X$* comme l'ensemble
 $$
-X \setminus A := \{x \in X \; | \; x \not \in A\}
+X \setminus A := \{x \in X \; | \; x \not \in A\}.
 $$
 Dans le cas où l'ensemble $X$ est clairement déterminé par le contexte, 
 on notera simplement $A^c$ ce complémentaire :
@@ -207,7 +207,7 @@ $$
 L'ensemble des matrices $A \in \R^{m \times n}$, 
 muni de *la norme d'opérateur*
 $$
-\|A\| := \|A\|_{22} := \sup_{x \neq 0} \frac{\|A \cdot x\|_2}{\|x\|_2}.
+\|A\| := \|A\|_{22} := \sup_{x \neq 0} \frac{\|A \cdot x\|_2}{\|x\|_2},
 $$
 est un espace vectoriel normé.
 
@@ -229,7 +229,7 @@ $$
 $$
 Comme pour la norme euclidienne on a $|x_i| \leq \|x\|_2$, on en déduit que
 $$
-\|A \cdot\|_2 
+\|A \cdot x\|_2 
 \leq \sum_{i=1}^n \|x\|_2 \|A \cdot e_i\|_2
 = \left(\sum_{i=1}^n \|A \cdot e_i\|_2\right) \|x\|_2,
 $$
@@ -290,7 +290,7 @@ A = \left[
   1 & 0  & 0\\
   0 & -1 & 0
   \end{array}
-\right].
+\right]
 $$
 vaut $1$.
 
@@ -302,7 +302,7 @@ A = \left[
   \cos \theta & -\sin \theta \\
   \sin \theta & \cos \theta
   \end{array}
-\right]
+\right].
 $$
 
 ### Norme d'une matrice $2 \times 2$ {.exercise .question .two #nm22} 
@@ -334,7 +334,7 @@ Mais de façon plus générale si $E$ et $F$ sont des espaces vectoriels normés
 -- pas nécessairement de dimension finie -- l'espace des opérateurs
 linéaires de $E$ dans $F$ bornés, c'est-à-dire tels que
 $$
-\|A\| := \|A\|_{FE} := \sup_{x \neq 0} \frac{\|A \cdot x\|_{F}}{\|x\|_{E}}.
+\|A\| := \|A\|_{FE} := \sup_{x \neq 0} \frac{\|A \cdot x\|_{F}}{\|x\|_{E}},
 $$
 est également un espace vectoriel normé.
 
@@ -404,7 +404,7 @@ quand $x=(1,0)$ et $y=(0,1)$),
 ce qui fait de lui un espace métrique.](images/circle.tex)
 
 Par contre, à moins que $X$ soit un sous-espace vectoriel de $E$
-les additions entre élements de $X$ ou la multiplication d'un 
+les additions entre éléments de $X$ ou la multiplication d'un 
 élément de $X$ n'ont plus de sens dans $X$ ;
 nous ne pouvons plus définir une norme sur $X$.
 
@@ -417,7 +417,7 @@ $$
 d: X \times X \to \left[0, +\infty\right[
 $$
 telle que pour tous points 
-$x, y$ et $z$ de $X$, on ait:
+$x, y$ et $z$ de $X$, on ait :
 
  1. [$d(x,y) = 0$ si et seulement si $x = y$ (*séparation*)]{#dist-sep},
 
@@ -448,7 +448,7 @@ Cela vaut en particulier pour l'espace vectoriel normé lui-même :
 tout espace vectoriel normé "est" un espace métrique.
 
 Réciproquement, les espaces métriques ne sont pas plus généraux que les
-sous-ensembles d'espace vectoriels normés: tout espace métrique peut en
+sous-ensembles d'espace vectoriels normés : tout espace métrique peut en
 effet être identifié au moyen d'une isométrie avec un tel sous-ensemble
 (cf. l'exercice "[Plongement de Kuratowski]"). Les espaces métriques
 n'exhibent donc aucune propriété qui ne soit déjà manifeste dans l'étude
@@ -457,7 +457,7 @@ des sous-ensembles d'espaces vectoriel normés.
 ### Démonstration {.proof}
 
 Par construction, la fonction $d$ est bien positive. 
-De plus, pour tous points $x, y$ et $z$ de $X$:
+De plus, pour tous points $x, y$ et $z$ de $X$ :
 
  1. Par l'[axiome de séparation des normes](#norme-sep), 
     $$
@@ -483,11 +483,11 @@ De plus, pour tous points $x, y$ et $z$ de $X$:
 ### Distance point-ensemble et ensemble-ensemble
 Une distance $d$ sur $X$ associe à deux points de $X$ un réel positif.
 Cette fonction peut servir de base pour définir une distance entre
-un point $x$ de $X$ et un ensemble de points de $A$ de $X$:
+un point $x$ de $X$ et un ensemble de points de $A$ de $X$ :
 $$
 d(x, A) := \inf_{a \in A} d(x, a) \in \left[0, +\infty \right]
 $$
-ou même entre deux ensembles $A$ et $B$ de points de $X$:
+ou même entre deux ensembles $A$ et $B$ de points de $X$ :
 $$
 d(A, B) = \inf_{a \in A} d(a, B) = \inf_{a \in A} \inf_{b \in B} d(a, b)
 \in \left[0, +\infty \right].
@@ -505,7 +505,7 @@ $$
 est une *isométrie*.
 
 ### {.post .remark}
-Les isométries sont les *morphismes* des espaces métriques: 
+Les isométries sont les *morphismes* des espaces métriques : 
 les applications qui préservent la structure des espaces métriques.
 Construire des isométries peut aller de pair avec la construction
 d'une métrique sur un ensemble qui en est initialement dépourvu ;
@@ -559,7 +559,7 @@ Soit $X$ un espace métrique et $A$ un ensemble de points de $X$. On note
   - $\partial A$ la *frontière* de $A$, c'est-à-dire 
     l'ensemble des *points frontières* de $A$ :
     $$
-    \partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\}.
+    \partial A := \{x \in X \; | \; d(x,A) = d(x, A^c) = 0\},
     $$
 
   - $A^{\circ}$ l'*intérieur* de $A$, c'est-à-dire l'ensemble des *points 
@@ -733,7 +733,7 @@ ou encore si
 $$
 \lim_{k \to +\infty} d(x_k, \ell) = 0.
 $$
-On utilisera alors une des deux notations:
+On utilisera alors une des deux notations :
 $$
 \ell = \lim_{k\to +\infty} x_k
 \; \mbox{ ou } \;
@@ -947,7 +947,7 @@ La démarche inverse
 -- qui consiste à caractériser les solutions d'une équation 
 comme des point fixes -- peut être utile pour établir des résultats
 d'existence et d'unicité de solutions ou obtenir des méthodes numériques 
-pour leur calcul. Un exemple élémentaire de ce type de transformation:
+pour leur calcul. Un exemple élémentaire de ce type de transformation :
 le nombre d'or est déterminé comme l'unique solution de l'équation
 $$
 x^2 = x + 1 , \; x > 0
@@ -1009,7 +1009,7 @@ $d(x_n, x_p) \leq \varepsilon$.
 ### Diamètre {.definition}
 Le diamètre d'un sous-ensemble $A$ d'un espace métrique $X$ est donné par :
 $$
-\mbox{diam}(A) = \sup \, \{d(x, y) \, | \, x \in A, \, y \in A\}
+\mbox{diam}(A) = \sup \, \{d(x, y) \, | \, x \in A, \, y \in A\}.
 $$
 
 ### Suite de Cauchy et diamètre {.proposition}
@@ -1023,7 +1023,7 @@ Toute suite de points convergente dans un espace métrique est de Cauchy.
 
 ### Démonstration {.proof}
 Soit $X$ un espace métrique et $x_k$ une suite convergente, 
-de limite $\ell$. Soit $\varepsilon > 0$; il existe un rang
+de limite $\ell$. Soit $\varepsilon > 0$ ; il existe un rang
 $m$ au-delà duquel on a 
 $d(x_k, \ell) \leq \varepsilon / 2.$
 Par conséquent, si $n \geq m$ et $p\geq m$, 
@@ -1039,7 +1039,7 @@ en particulier quand la limite de la suite est inconnue.
 Malheureusement, dans ce cadre très général, il n'est pas possible en général 
 de déduire la convergence du fait que la suite vérifie le critère de Cauchy. 
 Ainsi, dans $\Q$, considéré en tant que sous-espace métrique de $\R$,
-la suite qui définie le développement décimal de $\sqrt{2}$ à l'ordre $k$:
+la suite qui définie le développement décimal de $\sqrt{2}$ à l'ordre $k$ :
 $$
 x_k = \frac{a_k}{10^k} \, \mbox{ où } \, a_k = \max \, \{ n \in \N \, | \, n^2 \leq 2(10^k)^2\}
 $$
@@ -1052,7 +1052,7 @@ cette suite n'a donc pas de limite dans $\Q$
 (une telle limite serait aussi une limite dans $\R$, 
 ce qui contredirait son unicité.)
 
-L'ensemble $\R$ possède une propriété bien utile qui fait défaut à $\Q$:
+L'ensemble $\R$ possède une propriété bien utile qui fait défaut à $\Q$ :
 toute suite de Cauchy y est convergente.
 
 ### Espaces complets {.definition}
@@ -1097,7 +1097,7 @@ si et seulement si $Y$ est un sous-ensemble fermé de $X$.
 
 ### Démonstration {.proof}
 Si $Y$ est complet, [toute suite de point de $Y$ qui converge dans $X$ est
-de Cauchy](#tscc), donc a une limite dans $X$ puisque celui-ci est complet.
+de Cauchy](#tscc), donc a une limite dans $Y$ puisque celui-ci est complet.
 L'ensemble $Y$ est donc fermé dans $X$.
 
 Réciproquement, si $Y$ est fermé dans $X$ et qu'une suite de points de $Y$
@@ -1282,7 +1282,7 @@ $$p_k(x_1,\dots,x_k,\dots x_n) = x_k$$
 est continue.
 
 ### Démonstration {.proof}
-Pour tout couple $x^0$ et $x^0\in \prod_{j=1}^n X_j$, on a
+Pour tout couple $x$ et $x^0\in \prod_{j=1}^n X_j$, on a
 $$
 d_{X_k}(x_k, x_k^0) 
 \leq \sqrt{d_{X_1}(x_1, x_1^0)^2 + \dots  + d_{X_n}(x_n, x_n^0)^2} 
@@ -1547,7 +1547,7 @@ $\overline{A_2} \cap B(x_2, \varepsilon) = \varnothing$, etc.
 Le procédé s'arrête en un nombre fini d'étapes, dès que
 $B(x_0,\varepsilon) \cup \dots \cup B(x_k, \varepsilon)$ recouvre $K$.
 Cela arrive nécessairement puisque les $x_k$ ainsi construits
-vérifient $d(x_i, x_j) \geq \varepsilon$ si $i\neq j$; si cette suite
+vérifient $d(x_i, x_j) \geq \varepsilon$ si $i\neq j$ ; si cette suite
 était infinie, elle ne pourrait admettre de suite extraite convergente,
 en contradiction avec l'hypothèse de compacité séquentielle.
 Par conséquent, il existe un rang $k$ tel que 
@@ -1718,7 +1718,7 @@ Soit $X$ un espace topologique et $A$ un ensemble de points de $X$.
     
   - Un ensemble $A$ est *fermé* s'il est égal à son adhérence :
     $$
-    A = \overline{A} \; \mbox{ ou } \; (x \in \overline{A} \Leftrightarrow x \in A)
+    A = \overline{A} \; \mbox{ ou } \; (x \in \overline{A} \Leftrightarrow x \in A).
     $$
 
   - Un point est *frontière* de $A$ s'il appartient à l'adhérence de $A$ et
@@ -1957,7 +1957,7 @@ dans $V$ [@Sat59].
 [^ext]: ou plus généralement dans un espace topologique.
 
 ### Question 0 {.question #lf-0 .three}
-Expliquer l'expression "fermé dans $V$" dans la définition ci-dessus; 
+Expliquer l'expression "fermé dans $V$" dans la définition ci-dessus ; 
 est-ce que cela fait une différence si l'on remplace cette expression
 par "fermé" ? 
 
@@ -2936,7 +2936,7 @@ Soit $x \in A:=\left[0, 1\right[$ ;
 si $x>0$, on peut prendre $V=\left]x/2, 1\right[$.
 C'est bien un voisinage ouvert de $x$ et $A\cap V = V$. 
 L'ensemble $A \cap V$ est donc fermé dans $V$. 
-Si $x=0$, on peut prendre $V = \left]-1, 1/2\right[$; 
+Si $x=0$, on peut prendre $V = \left]-1, 1/2\right[$ ; 
 c'est un voisinage ouvert de $x$ 
 et $A \cap V = \left[0, 1/2\right[$ est bien fermé dans $V$.
 
@@ -3169,7 +3169,7 @@ Plongement de Kuratowski
 
 ### Question 1 {#answer-pk-1 .answer}
 
-Soit $x$, $x'$ deux points de $X$. Pour tout $y$ dans $X$ on a:
+Soit $x$, $x'$ deux points de $X$. Pour tout $y$ dans $X$ on a :
 $$
 \begin{split}
 f_x(y) - f_{x'}(y) &= d(x, y) - d(x_0, y) - (d(x', y) - d(x', x_0))\\
@@ -3348,7 +3348,7 @@ résultat cherché.
 
 Nous traitons le cas de $I(a, b)$, celui de $J(a, b)$ étant similaire.
 Pour tout $a$ et $b$ tels que $0 < a \leq b$,
-le changement de variable $\tau = s^2$ fournit:
+le changement de variable $\tau = s^2$ fournit :
 $$
 I(a, b) = \int_a^b \cos s^2 \, ds = \int_{\sqrt{a}}^{\sqrt{b}} \frac{\cos \tau}{2\sqrt{\tau}} \, d\tau.
 $$
