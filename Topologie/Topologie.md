@@ -405,7 +405,7 @@ ce qui fait de lui un espace métrique.](images/circle.tex)
 
 Par contre, à moins que $X$ soit un sous-espace vectoriel de $E$
 les additions entre éléments de $X$ ou la multiplication d'un 
-élément de $X$ n'ont plus de sens dans $X$ ;
+élément de $X$ par un scalaire n'ont plus de sens dans $X$ ;
 nous ne pouvons plus définir une norme sur $X$.
 
 La fonction $d$ définie ci-dessus sur $X$ vérifie automatiquement 
