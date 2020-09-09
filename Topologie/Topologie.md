@@ -342,7 +342,7 @@ est également un espace vectoriel normé.
 Soit $A$ un ensemble. L'espace vectoriel des fonctions bornées $f$
 de $A$ dans $\R^n$, muni de 
 $$
-\|f\| := \sup_{x \in A} \|f(x)\| < +\infty
+\|f\| := \sup_{x \in A} \|f(x)\|_2 < +\infty
 $$
 est un espace vectoriel normé.
 
@@ -368,15 +368,15 @@ soit $\|\lambda f\| = |\lambda|\|f\|$.
 
 Finalement,
 \begin{align*}
-\sup_{x \in A} \|(f+g)(x)\| &=  \sup_{x \in A} \|f(x)+g(x)\| \\
-                            &\leq  \sup_{x \in A} \|f(x)\|+\|g(x)\| \\
-                            &\leq \sup_{x \in A} \|f(x)\| + \sup_{x \in A} \|g(x)\|,
+\sup_{x \in A} \|(f+g)(x)\|_2 &=  \sup_{x \in A} \|f(x)+g(x)\|_2 \\
+                            &\leq  \sup_{x \in A} \|f(x)\|_2+\|g(x)\|_2 \\
+                            &\leq \sup_{x \in A} \|f(x)\|_2 + \sup_{x \in A} \|g(x)\|_2,
 \end{align*}
 donc $\|f+g\| \leq \|f\|+ \|g\|$. La fonction $\|\cdot\|$ est donc bien une
 norme sur l'espace des fonctions bornées de $A$ dans $\R^n$.
 
 ### Normes alternatives pour les fonctions bornées {.remark}
-Si $E$ est un espace vectoriel muni de la norme $\|\cdot\|$, 
+Si $E$ est un espace vectoriel muni de la norme $\|\cdot\|_E$, 
 une démonstration en tout point similaire permet d'établir que
 $$
 \|f\| := \sup_{x \in A} \|f(x)\|_E
