@@ -1047,7 +1047,7 @@ est de Cauchy -- on peut prouver que
 $|x_n - x_p| \leq {1}/{10^m}$ quand $n \geq m$ et $p \geq m$
 -- mais n'est pas convergente. 
 En effet, la suite converge dans $\R$, mais sa limite $\sqrt{2}$ est 
-irrationelle ;
+irrationnelle ;
 cette suite n'a donc pas de limite dans $\Q$ 
 (une telle limite serait aussi une limite dans $\R$, 
 ce qui contredirait son unicité.)
@@ -2953,7 +2953,7 @@ $a=\ell$, on peut prendre $V = \R$ ; en effet, $A$ est alors fermé.
 L'ensemble des rationnels $\mathbb{Q}$ n'est pas localement fermé.
 En effet si $V$ est un voisinage de $0$ il contient nécessairement un ensemble
 de la forme $\left]-\varepsilon, \varepsilon\right[$ pour un $\varepsilon > 0$.
-Or cet intervalle contient des irrationels, qui peuvent être obtenus
+Or cet intervalle contient des irrationnels, qui peuvent être obtenus
 comme limite de rationnels dans $\left]-\varepsilon, \varepsilon\right[$
 et donc de $V$. 
 Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
