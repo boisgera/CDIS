@@ -2843,7 +2843,7 @@ la droite réelle achevée.
 
 ### Question 4 {.answer #answer-dra-4}
 On a $f^{-1}(-\infty) = (-1,0)$, $f^{-1}(-1) = (-\sqrt{2}/2, \sqrt{2}/2)$,
-$f^{-1}(0) = (0, 1)$,  $f^{-1}(-1) = (\sqrt{2}/2, \sqrt{2}/2)$ et
+$f^{-1}(0) = (0, 1)$,  $f^{-1}(1) = (\sqrt{2}/2, \sqrt{2}/2)$ et
 $f^{-1}(\infty) = (1,0)$, donc
 $d^{\pm \infty}(0, +\infty) = d((0,1), (1,0)) = \sqrt{2},$ 
 $d^{\pm \infty}(-\infty, +\infty) = d((-1, 0), (1, 0)) = 2$
