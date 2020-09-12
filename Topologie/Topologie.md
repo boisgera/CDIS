@@ -2590,7 +2590,7 @@ Par conséquent, $B((0,0), 2) = X$.
 
 ### Dans le plan {.answer #answer-dlp}
 Non, car tous les points de la forme $(0,x_2)$, $x_2 \neq 0$ n'appartiennent
-pas à $D$. Donc toute boule ouverte $B((0,x_2), r)$ est d'intersection non vide
+pas à $D$. Donc toute boule ouverte $B((0,0), r)$ est d'intersection non vide
 avec le complémentaire de $D$.
 
 ### Voisinages ouverts / fermés ? {.answer #answer-vof}
