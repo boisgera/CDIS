@@ -363,11 +363,11 @@ Il est ainsi possible que la fonction $f$ ne soit pas même pas continue en $x$.
 (On rappelle que pour les fonctions d'une variable, l'existence de
 la dérivée en un point implique la continuité en ce point.)
 
-### Fonction discontinue I {.exercise .one #discont}
+### Fonction discontinue I {.exercise .one #discont .question}
 Construire une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
 mais qui soit discontinue en $(0,0)$.
 
-### Fonction discontinue II {.exercise .two #discont2}
+### Fonction discontinue II {.exercise .two #discont2 .question}
 Construire une fonction $f:\R^2 \to \R$ dont la dérivée dans la direction
 $h \in \R^2$
 $$
