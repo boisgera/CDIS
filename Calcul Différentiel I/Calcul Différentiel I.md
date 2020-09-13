@@ -680,7 +680,7 @@ $$
 d(x^2 + y^2) := df(x, y).
 $$
 
-[^df]: Peut-être que dans le contexte ou l'on exploite l'expression, 
+[^df]: Peut-être que dans le contexte où l'on exploite l'expression, 
 les grandeurs $x$ et $y$ ne sont définies que si $x>0$ et $y>0$ ; 
 peut-être a-t'on une bonne raison de plutôt lister la variable $y$ avant $x$ ; 
 peut-être y-a-t'il une troisième variable $z$ et que ça n'est que "par accident" que
