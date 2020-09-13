@@ -363,11 +363,11 @@ Il est ainsi possible que la fonction $f$ ne soit pas même pas continue en $x$.
 (On rappelle que pour les fonctions d'une variable, l'existence de
 la dérivée en un point implique la continuité en ce point.)
 
-### Fonction discontinue I {.exercise .one #discont}
+### Fonction discontinue I {.exercise .one #discont .question}
 Construire une fonction $f: \R^2 \to \R$ dont le gradient existe en $(0,0)$
 mais qui soit discontinue en $(0,0)$.
 
-### Fonction discontinue II {.exercise .two #discont2}
+### Fonction discontinue II {.exercise .two #discont2 .question}
 Construire une fonction $f:\R^2 \to \R$ dont la dérivée dans la direction
 $h \in \R^2$
 $$
@@ -680,7 +680,7 @@ $$
 d(x^2 + y^2) := df(x, y).
 $$
 
-[^df]: Peut-être que dans le contexte ou l'on exploite l'expression, 
+[^df]: Peut-être que dans le contexte où l'on exploite l'expression, 
 les grandeurs $x$ et $y$ ne sont définies que si $x>0$ et $y>0$ ; 
 peut-être a-t'on une bonne raison de plutôt lister la variable $y$ avant $x$ ; 
 peut-être y-a-t'il une troisième variable $z$ et que ça n'est que "par accident" que

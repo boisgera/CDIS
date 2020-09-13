@@ -1047,7 +1047,7 @@ est de Cauchy -- on peut prouver que
 $|x_n - x_p| \leq {1}/{10^m}$ quand $n \geq m$ et $p \geq m$
 -- mais n'est pas convergente. 
 En effet, la suite converge dans $\R$, mais sa limite $\sqrt{2}$ est 
-irrationelle ;
+irrationnelle ;
 cette suite n'a donc pas de limite dans $\Q$ 
 (une telle limite serait aussi une limite dans $\R$, 
 ce qui contredirait son unicité.)
@@ -2590,7 +2590,7 @@ Par conséquent, $B((0,0), 2) = X$.
 
 ### Dans le plan {.answer #answer-dlp}
 Non, car tous les points de la forme $(0,x_2)$, $x_2 \neq 0$ n'appartiennent
-pas à $D$. Donc toute boule ouverte $B((0,x_2), r)$ est d'intersection non vide
+pas à $D$. Donc toute boule ouverte $B((0,0), r)$ est d'intersection non vide
 avec le complémentaire de $D$.
 
 ### Voisinages ouverts / fermés ? {.answer #answer-vof}
@@ -2843,7 +2843,7 @@ la droite réelle achevée.
 
 ### Question 4 {.answer #answer-dra-4}
 On a $f^{-1}(-\infty) = (-1,0)$, $f^{-1}(-1) = (-\sqrt{2}/2, \sqrt{2}/2)$,
-$f^{-1}(0) = (0, 1)$,  $f^{-1}(-1) = (\sqrt{2}/2, \sqrt{2}/2)$ et
+$f^{-1}(0) = (0, 1)$,  $f^{-1}(1) = (\sqrt{2}/2, \sqrt{2}/2)$ et
 $f^{-1}(\infty) = (1,0)$, donc
 $d^{\pm \infty}(0, +\infty) = d((0,1), (1,0)) = \sqrt{2},$ 
 $d^{\pm \infty}(-\infty, +\infty) = d((-1, 0), (1, 0)) = 2$
@@ -2953,7 +2953,7 @@ $a=\ell$, on peut prendre $V = \R$ ; en effet, $A$ est alors fermé.
 L'ensemble des rationnels $\mathbb{Q}$ n'est pas localement fermé.
 En effet si $V$ est un voisinage de $0$ il contient nécessairement un ensemble
 de la forme $\left]-\varepsilon, \varepsilon\right[$ pour un $\varepsilon > 0$.
-Or cet intervalle contient des irrationels, qui peuvent être obtenus
+Or cet intervalle contient des irrationnels, qui peuvent être obtenus
 comme limite de rationnels dans $\left]-\varepsilon, \varepsilon\right[$
 et donc de $V$. 
 Par conséquent, $\mathbb{Q} \cap V$ ne peut pas être fermé dans $V$,
