@@ -37,7 +37,7 @@ d'exercices.
 
 #### Prérequis
 
-Les élements du calcul différentiel supposés déjà maîtrisés :
+Les éléments du calcul différentiel supposés déjà maîtrisés :
 
   - \zero dérivabilité et dérivée de fonctions d'une variable réelle,
 
@@ -105,7 +105,7 @@ des fonctions élémentaires,
 fournissant autant de règles élémentaires de calcul. 
 Il est donc nécessaire avant toute chose de 
 
-  - \one connaître et savoir mettre en oeuvre quelques règles élémentaires,
+  - \one connaître et savoir mettre en œuvre quelques règles élémentaires,
 
   - \two savoir en élaborer de nouvelles en exploitant les définitions.
 
@@ -120,7 +120,7 @@ Au niveau théorique, il s'agit de compléter les règles élémentaires
 par des règles génériques, applicables non plus à une fonction particulière
 mais à des classes de fonctions, donc de
 
-  - \one connaître et savoir mettre en oeuvre quelques règles de calcul génériques,
+  - \one connaître et savoir mettre en œuvre quelques règles de calcul génériques,
 
   - \two connaître les règles d'assemblage/désassemblage,
 
@@ -148,7 +148,7 @@ technique suppose de :
 
   - \two savoir les déduire du théorème fondamental du calcul[^res],
 
-  - \four connaître la variante non-euclidienne des ces inégalités,
+  - \four connaître la variante non-euclidienne de ces inégalités,
 
   - \three savoir exploiter ces résultats dans des contextes variés.
 
@@ -602,8 +602,8 @@ $$
 Avec la définition de la matrice jacobienne,
 il est clair que la dérivée de $f$ en $x$ existe si et seulement si
 $J_f(x)$ existe et qu'auquel cas on a $J_f(x) = [f'(x)]$.
-On sait aussi que si $f$ est dérivable en $x$, si et seulement si
-la fonction admet un développement limité au premier ordre en $x$
+On sait aussi que la fonction $f$ est dérivable en $x$ si et seulement si
+elle admet un développement limité au premier ordre en $x$
 (cf. [la proposition "Dérivée et développement limité"](#ddl) ainsi que [sa réciproque](#ddlr)),
 soit
 $$
@@ -644,7 +644,7 @@ Notations {#notations}
 
 Comme utilisateur du calcul différentiel
 vous avez probablement déjà croisé des notations assez éloignées de celles 
-que nous avons exploité jusqu'à présent. Vous avez peut-être mémorisé 
+que nous avons exploitées jusqu'à présent. Vous avez peut-être mémorisé 
 des règles de calcul élémentaires telles que
 $$
 d (x+ y)  = dx + dy, \; d (xy) = y \, dx + x \, dy 
@@ -674,7 +674,7 @@ leurs arguments ou le domaine de définition associés.
 Tous ces éléments doivent alors être inférés du contexte ; 
 ainsi on peut assez naturellement associer à l'expression "$x^2 + y^2$" la fonction 
 $f: (x, y) \in \R^2 \mapsto x^2 + y^2 \in \R$. Mais d'autres choix sont
-défendables[^df]. Une fois ce choix fait, on interprête le terme
+défendables[^df]. Une fois ce choix fait, on interprète le terme
 $d(x^2 + y^2)$ comme
 $$
 d(x^2 + y^2) := df(x, y).
@@ -682,8 +682,8 @@ $$
 
 [^df]: Peut-être que dans le contexte où l'on exploite l'expression, 
 les grandeurs $x$ et $y$ ne sont définies que si $x>0$ et $y>0$ ; 
-peut-être a-t'on une bonne raison de plutôt lister la variable $y$ avant $x$ ; 
-peut-être y-a-t'il une troisième variable $z$ et que ça n'est que "par accident" que
+peut-être a-t-on une bonne raison de plutôt lister la variable $y$ avant $x$ ; 
+peut-être y a-t-il une troisième variable $z$ et que ça n'est que "par accident" que
 l'expression $x^2 + y^2$ ne dépend pas de $z$, etc.
 
 
@@ -721,7 +721,7 @@ $$
 
 ### Différentielle des variables
 En poussant jusqu'au bout la logique de la différentiation des expressions,
-on peut encore simplifier les notations. A ce stade,
+on peut encore simplifier les notations. À ce stade,
 nous avons établi que pour tout $(h_x, h_y) \in \R^2$, nous avions
 \begin{equation} \label{iff}
 d(x^2 + y^2) \cdot (h_x, h_y) 
@@ -1012,8 +1012,8 @@ et [la règle de différentiation en chaîne](#chain-rule) en
 un résultat unique qui implique les deux résultats
 
 ### {.remark}
-A titre d'exemple, montrons comment ces deux résultats permettent de généraliser 
-[la règle élementaire du produit](#product-rule) :
+À titre d'exemple, montrons comment ces deux résultats permettent de généraliser 
+[la règle élémentaire du produit](#product-rule) :
 
 ### Règle du produit (générique) {.proposition .one}
 Soit $U$ un ouvert de $\R^n$, $f: U \to \R$, $g: U \to \R$ et $x \in U$.
@@ -1156,8 +1156,8 @@ $$
 ### Démonstration {.proof}
 Voir l'enseignement de calcul intégral.
 
-### A propos du terme "intégrable" {.remark .three}
-A ce stade, vous pouvez retenir que si $f'$ est continue, 
+### À propos du terme "intégrable" {.remark .three}
+À ce stade, vous pouvez retenir que si $f'$ est continue, 
 continue par morceaux ou même intégrable au sens de Riemann, 
 elle est "intégrable" comme le demandent les hypothèses du théorème.
 
@@ -1445,10 +1445,10 @@ On a alors $(f'(x))_i = f_i'(x)$.
 
 
 ### {.post .remark}
-La définition de dérivée couvre le cas où la fonction $f$ est définie est sur un 
+La définition de dérivée couvre le cas où la fonction $f$ est définie sur un 
 intervalle ouvert $\left]a, b\right[$ -- ou d'ailleurs sur une réunion arbitraire
 d'intervalles ouverts de $\R$ --
-mai pas la sur un intervalle fermé et  borné $[a, b]$. 
+mais pas sur un intervalle fermé et borné $[a, b]$. 
 Pour appréhender ce cas, on introduit classiquement les notions de dérivées 
 à gauche et à droite.
 
@@ -1520,7 +1520,7 @@ Calcul matriciel
 
 ### {.remark}
 Les fragments de code de ce document utilisent le langage Python 3.
-La bibliothèque [NumPy](http://www.numpy.org/) est exploitée:
+La bibliothèque [NumPy](http://www.numpy.org/) est exploitée :
 
     >>> from numpy import *
 
@@ -1578,7 +1578,7 @@ dimension :
     3
 
 La multiplication d'un scalaire et d'un vecteur est désignée par le symbole
-`*`:
+`*` :
 
     >>> 2 * x
     array([2, 4, 6])
@@ -1815,7 +1815,7 @@ la représentation de $A$ comme matrice et la représentation de
 $x$ comme vecteur colonne.
 -->
 
-Concrêtement, NumPy ne nécessite pas qu'un vecteur soit d'abord 
+Concrètement, NumPy ne nécessite pas qu'un vecteur soit d'abord 
 transformé en matrice pour réaliser un produit matrice-vecteur.
 La méthode `dot` des tableaux peut être utilisée ici aussi 
 pour réaliser cette opération :
@@ -1992,7 +1992,7 @@ $(\ell_1/2 + \ell_2) \varepsilon$.
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
 
-Source: [@Sha90]
+Source : [@Sha90]
 
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et $x \in U$. 
 La fonction $f$ est *directionnellement dérivable* si pour tout
@@ -2002,7 +2002,7 @@ f'(x, h) := (t \mapsto f(x+ th))'(0) = \lim_{t \to 0} \frac{f(x+th) - f(x)}{t}
 $$
 est bien définie.
 
-On introduit une variante à cette définition:
+On introduit une variante à cette définition :
 la fonction $f$ est *directionnellement dérivable au sens de Hadamard* 
 en $x$ si pour tout chemin $\gamma: I \subset \mathbb{R} \to \mathbb{R}^n$,
 défini sur un intervalle ouvert $I$ contenant $0$, tel que
