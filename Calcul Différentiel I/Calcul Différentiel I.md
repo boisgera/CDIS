@@ -2855,7 +2855,7 @@ x \in \R^d \mapsto -\frac{1}{2} \left<x, \Sigma^{-1} \cdot x \right>
 \; \mbox{ et } \; \exp:\R \to \R.
 $$ 
 La fonction $\exp$ est dérivable, et donc différentiable 
-sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dx = \exp(y) dy$, c'est-à-dire
+sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dy = \exp(y) dy$, c'est-à-dire
 $$
 d\exp(y) \cdot h = \exp(y) h.
 $$ 
