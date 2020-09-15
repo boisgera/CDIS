@@ -3516,7 +3516,7 @@ Par [le théorème du point fixe de Banach](#T-TPFB),
 elle admet donc un unique point fixe $x$, qui est la solution de $A \cdot x = y$.
 L'opérateur $A$ est donc inversible et $A^{-1} \cdot y$ peut être calculé comme
 la limite de la suite
-$x_{k+1} = B \cdot x_k$ pour un $x_0 \in \R^n$ arbitraire.
+$x_{k+1} = B \cdot x_k+D^{-1}y$ pour un $x_0 \in \R^n$ arbitraire.
 
 Équation différentielle
 --------------------------------------------------------------------------------
