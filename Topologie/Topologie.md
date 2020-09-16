@@ -3055,7 +3055,7 @@ d((x, y), B) = \left|
 \end{array}
 \right.
 $$
-Cette fonction est minimale sur $A$ pour $(x, y) = (-1, -1)$. 
+Cette fonction est maximale sur $A$ pour $(x, y) = (-1, -1)$. 
 On a donc
 $$
 \sup_{a \in A} \inf_{b \in B} d(a, b) = \sqrt{2}.
