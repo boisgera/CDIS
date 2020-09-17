@@ -728,7 +728,7 @@ d(x^2 + y^2) \cdot (h_x, h_y)
 = 
 \frac{\partial(x^2+y^2)}{\partial x} h_x + \frac{\partial(x^2+y^2)}{\partial y} h_y= 2x \, h_x + 2 y \, h_y.
 \end{equation}
-Or, en utilisant les même conventions, nous obtenons
+Or, en utilisant les mêmes conventions, nous obtenons
 $$
 dx \cdot (h_x, h_y) 
 = 
@@ -1058,7 +1058,7 @@ elle est donc différentiable en $x$ et [comme la différentielle de l'applicati
 linéaire $A$ en tout point est elle-même](#dal), 
 \begin{align*}
 d(\lambda f + \mu g)(x) &= d A(f(x), g(x)) \cdot (df(x), dg(x)) \\
-&= A \cdot (df(x), dg(x)) \\ &= \lambda f(x) + \mu dg(x).
+&= A \cdot (df(x), dg(x)) \\ &= \lambda df(x) + \mu dg(x).
 \end{align*}
 
 
