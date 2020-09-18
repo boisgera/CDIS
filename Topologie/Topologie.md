@@ -3204,7 +3204,7 @@ De plus,
 ### Question 3 {#answer-pk-3 .answer}
 Soient $x, y \in X$ ; on a
 $$
-f_x(z) - f_y(z) = d(z, x) - d(z, x_0) - (d(z, y) - d(z, y_0)) = d(z, x) - d(z, y).
+f_x(z) - f_y(z) = d(z, x) - d(z, x_0) - (d(z, y) - d(z, x_0)) = d(z, x) - d(z, y).
 $$
 Par conséquent, par [l'inégalité triangulaire](#dist-ineg),
 $$
