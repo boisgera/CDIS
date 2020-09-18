@@ -1987,7 +1987,7 @@ Montrer que si
 $$|\theta_1 - \theta_{10}| \leq \varepsilon \; \mbox{ et } \; 
 |\theta_2 - \theta_{20}| \leq \varepsilon$$ alors $(x, y) = f(\theta_1, \theta_2)$
 appartient au carré centré en $(x_0, y_0)$ d'arête de longueur 
-$(\ell_1/2 + \ell_2) \varepsilon$.
+$(\ell_1 + 2\ell_2) \varepsilon$.
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2859,10 +2859,11 @@ sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dy = \exp(y) dy$, c'est-à-dire
 $$
 d\exp(y) \cdot h = \exp(y) h.
 $$ 
-Quand à la première fonction, d'après les questions qui précèdent, elle est
+Quant à la première fonction, d'après les questions qui précèdent, elle est
 différentiable et 
 $$
-\nabla g(x) = \frac{1}{2}\left(-\Sigma^{-1} - (\Sigma^{-1})^{\top} \right) \cdot x
+\nabla \left(  -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
+ = \frac{1}{2}\left(-\Sigma^{-1} - (\Sigma^{-1})^{\top} \right) \cdot x
 = -\Sigma^{-1} \cdot x.
 $$
 Sa différentielle vérifie donc
@@ -2972,7 +2973,7 @@ $$
 |y - y_0| \leq (\ell_1 + 2\ell_2) \varepsilon.
 $$
 Le point $(x, y) = f(\theta_1, \theta_2)$ appartient donc au carré centré 
-en $(x_0, y_0)$ d'arête de longueur $\ell_1 + 2\ell_2=\varepsilon$. 
+en $(x_0, y_0)$ d'arête de longueur $(\ell_1 + 2\ell_2)\varepsilon$. 
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
