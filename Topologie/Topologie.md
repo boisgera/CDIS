@@ -3558,7 +3558,7 @@ soit
 $$
 \|\Phi(x) - \Phi(y)\|_{\infty} \leq (\|A\| T) \times \|x - y\|_{\infty}.
 $$
-L'application $\Phi$ est donc contractante si $\|A\| \leq 1/T$.
+L'application $\Phi$ est donc contractante si $\|A\| < 1/T$.
 [Le théorème du point fixe de Banach](#T-TPFB) prouve alors
 l'unicité d'une fonction continue telle que 
 $$
