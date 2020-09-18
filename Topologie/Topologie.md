@@ -3595,7 +3595,7 @@ $$
 &\leq 
 \int_{0}^t \|A\| \|e^{-\alpha s}(x-y)(s)\| e^{-\alpha (t-s)} \, ds \\
 &\leq 
-\left(\|A\| T \int_0^t e^{-\alpha (t-s)} \, ds \right) \|x-y\|_{\infty}^{\alpha}.
+\left(\|A\| \int_0^t e^{-\alpha (t-s)} \, ds \right) \|x-y\|_{\infty}^{\alpha}.
 \end{split}
 $$
 Comme
@@ -3606,9 +3606,9 @@ $$
 $$
 on en déduit que 
 $$
-\|x - y\|_{\infty}^{\alpha} \leq \frac{\|A\| T}{\alpha} \|x-y\|_{\infty}^{\alpha}.
+\|x - y\|_{\infty}^{\alpha} \leq \frac{\|A\|}{\alpha} \|x-y\|_{\infty}^{\alpha}.
 $$
-L'application $\Phi$ est donc contractante dès lors que $\alpha > \|A\| T$.
+L'application $\Phi$ est donc contractante dès lors que $\alpha > \|A\|$.
 Pour tout $T > 0$,
 [le théorème du point fixe de Banach](#T-TPFB) prouve donc, en sélectionnant
 un $\alpha$ adapté, l'unicité d'une fonction continue telle que 
