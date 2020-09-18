@@ -2859,7 +2859,7 @@ sur tout $\R$ avec $d (\exp(y)) = \exp'(y) dy = \exp(y) dy$, c'est-à-dire
 $$
 d\exp(y) \cdot h = \exp(y) h.
 $$ 
-Quand à la première fonction, d'après les questions qui précèdent, elle est
+Quant à la première fonction, d'après les questions qui précèdent, elle est
 différentiable et 
 $$
 \nabla \left(  -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
