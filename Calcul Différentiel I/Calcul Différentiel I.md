@@ -1987,7 +1987,7 @@ Montrer que si
 $$|\theta_1 - \theta_{10}| \leq \varepsilon \; \mbox{ et } \; 
 |\theta_2 - \theta_{20}| \leq \varepsilon$$ alors $(x, y) = f(\theta_1, \theta_2)$
 appartient au carré centré en $(x_0, y_0)$ d'arête de longueur 
-$(\ell_1 + 2\ell_2) \varepsilon$.
+$2(\ell_1 + 2\ell_2) \varepsilon$.
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
@@ -2973,7 +2973,7 @@ $$
 |y - y_0| \leq (\ell_1 + 2\ell_2) \varepsilon.
 $$
 Le point $(x, y) = f(\theta_1, \theta_2)$ appartient donc au carré centré 
-en $(x_0, y_0)$ d'arête de longueur $(\ell_1 + 2\ell_2)\varepsilon$. 
+en $(x_0, y_0)$ d'arête de longueur $2(\ell_1 + 2\ell_2)\varepsilon$.
 
 Dérivée directionnelle d'Hadamard
 --------------------------------------------------------------------------------
