@@ -2862,7 +2862,8 @@ $$
 Quand à la première fonction, d'après les questions qui précèdent, elle est
 différentiable et 
 $$
-\nabla g(x) = \frac{1}{2}\left(-\Sigma^{-1} - (\Sigma^{-1})^{\top} \right) \cdot x
+\nabla \left(  -\frac{1}{2} \left(\left<x, \Sigma^{-1} \cdot x \right>\right) \right)
+ = \frac{1}{2}\left(-\Sigma^{-1} - (\Sigma^{-1})^{\top} \right) \cdot x
 = -\Sigma^{-1} \cdot x.
 $$
 Sa différentielle vérifie donc
