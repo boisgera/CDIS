@@ -155,6 +155,25 @@
 				]
 			]
 		}
+	},
+	{
+		"id": "Fil",
+		"type": "book",
+		"title": "Differential equations with discontinuous right-hand sides ",
+		"publisher": "Mathematics and its Applications Kluwer Academic Publishers Group",
+		"author": [
+			{
+				"family": "Filippov",
+				"given": "A. F."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1988"
+				]
+			]
+		}
 	}
 	
 ]
