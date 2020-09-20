@@ -64,7 +64,7 @@ d'exercices.
 
   - pour les nombres flottants à double précision :
 
-     - \one connaitre la définition et la valeur de $\varepsilon$,
+     - \one connaître la définition et la valeur de $\varepsilon$,
 
      - \two savoir caractériser un double (modèle simplifié des doubles $\D$),
 
@@ -90,7 +90,7 @@ d'exercices.
 
    - \zero connaître le principe fondant les méthodes de différences finies,
 
-   - \one savoir les mettre en oeuvre dans un projet numérique,
+   - \one savoir les mettre en œuvre dans un projet numérique,
 
    - \one savoir expliquer les deux types d'erreurs qu'elles engendrent,
 
@@ -231,7 +231,7 @@ forme d'une équation scalaire qui lui est localement équivalente.)
 ### Extensions {.note}
 Il est possible d'affaiblir l'hypothèse concernant $\partial_{x} f$ en supposant 
 uniquement celle-ci inversible en $(x_0, \lambda_0)$ au lieu d'inversible sur tout $W$.
-En effet, l'application qui a une application linéaire inversible
+En effet, l'application qui à une application linéaire inversible
 de ${\R}^m$ dans lui-même associe son inverse 
 est définie sur un ouvert et continue[^inv]. 
 Comme l'application linéaire $\partial_x f(x_0, \lambda_0)$ 
@@ -494,7 +494,7 @@ La fonction $df(x)$ est donc inversible et son inverse est $d f^{-1}(y)$.
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ continûment différentiable
 sur l'ouvert $U$ et telle que $df(x)$ soit inversible
 en tout point $x$ de $U$. 
-Alors $f$ est un *$C^1$-difféomorphisme local* : pour tout $x_0$ in $U$, 
+Alors $f$ est un *$C^1$-difféomorphisme local* : pour tout $x_0 \in U$, 
 il existe un voisinage ouvert $V \subset U$ de $x_0$ tel que $W=f(V)$ 
 soit ouvert et que la restriction de la fonction $f$ à $V$ soit un 
 $C^1$-difféomorphisme de $V$ sur $W$.
@@ -538,7 +538,7 @@ comme des "doubles" -- le type le plus utilisé des nombres à virgule flottante
 et leur propriétés élémentaires. 
 Pour avoir plus d'informations sur le sujet, vous pouvez vous reporter au 
 document classique 
-"What every computer scientist should know about computer arithmetic" [@Gol91]
+"What every computer scientist should know about floating-point arithmetic" [@Gol91].
 
 [NumPy]: http://www.numpy.org/
 
@@ -624,7 +624,7 @@ chaque double occupe en mémoire un espace de 64 bits, d'où le nom `float64`.
 Un format de simple précision, qui utilise uniquement 32 bits
 est aussi défini ; NumPy le propose sous le nom `float32`. 
 Après un abandon progressif des "singles" au profit des "doubles",
-plus précis et mieux supportés par le CPUs modernes, le format de simple
+plus précis et mieux supportés par les CPUs modernes, le format de simple
 précision revient désormais en force avec le développement de l'usage des GPUs 
 comme unités de calcul génériques[^half] ; 
 
@@ -711,7 +711,7 @@ suivantes :
 
 [^holes]: Il faudrait préciser comment l'opération se comporte quand le réel
 est équidistant de deux doubles, un niveau de détail dont nous ne nous 
-préoccuperons pas dans la suite. Comme il existe deux façon de faire qui sont
+préoccuperons pas dans la suite. Comme il existe deux façons de faire qui sont
 standard (cf. la norme IEEE 754 ,[@ANS85), il faudrait pour être exact parler
 des méthodes d'arrondi au plus proche.
 
@@ -731,7 +731,7 @@ $0.1 = 0.0001100110011\dots$)
 
 Pour avoir la moindre confiance dans le résultats des calculs que nous 
 effectuons avec des doubles, nous devons être en mesure d'évaluer l'erreur
-faite en représentant de $x$ par $[x]$, nommée *erreur d'arrondi* :
+faite en représentant $x$ par $[x]$, nommée *erreur d'arrondi* :
 $$
 e = [x] - x.
 $$ 
@@ -948,7 +948,7 @@ L'erreur est en fait aussi faible que dans une dérivation symbolique
 "manuelle" des fonctions à dériver et ce sans réglage délicat de 
 paramètres à effectuer.
 
-Concrêtement, pour dériver la fonction
+Concrètement, pour dériver la fonction
 $$
 f: x \in \R \mapsto \frac{1-e^{-2x}}{1+e^{-2x}} \in \R,
 $$
@@ -983,13 +983,13 @@ Les erreurs numériques induites par ce procédé ne sont donc pas totalement nu
 
 Selon le langage informatique utilisé pour implémenter les fonctions numériques 
 (C, Fortran, Python, langages "embarqués", etc.), 
-différentes méthodes permettent de mettre en oeuvre la différentiation
+différentes méthodes permettent de mettre en œuvre la différentiation
 automatique. 
 Le typage dynamique (ou [*duck typing*](https://en.wikipedia.org/wiki/Duck_typing)) 
-de Python permet de mettre en oeuvre simplement le *tracing* des fonctions 
+de Python permet de mettre en œuvre simplement le *tracing* des fonctions 
 numériques -- l'enregistrement des opérations de calcul effectuées par une
 fonction lors de son exécution. 
-A partir de ce graphe de calcul,
+À partir de ce graphe de calcul,
 les différentielles peuvent être calculées mécaniquement 
 par la règle de différentiation en chaîne
 à partir des différentielles des opérations élémentaires. 
@@ -997,7 +997,7 @@ par la règle de différentiation en chaîne
 vous explique comment développer une micro-bibliothèque de différentiation 
 automatique en Python  ... à des fins pédagogiques uniquement ! Si vous 
 avez besoin d'utiliser la différentiation automatique dans un projet, 
-[consultez la section suivante](#autograd) .
+[consultez la section suivante](#autograd).
 
 ### Autograd {#autograd}
 
@@ -1028,9 +1028,9 @@ fonction scalaire d'une variable :
     >>> def f(x):
     ...     y = exp(-2.0 * x)
     ...     return (1.0 - y) / (1.0 + y)
-    >>> deriv_f = autograd.grad(tanh)  
+    >>> deriv_f = autograd.grad(f)  
     >>> deriv_f(1.0)
-    0.4199743416140261
+    0.419974341614026
 
 Pour les fonctions scalaires de plusieurs variables,
 le fragment de code suivant fournit un exemple de calcul du gradient :
@@ -1093,7 +1093,7 @@ Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualit
 du développement de Taylor de $\exp$ au premier ordre ; 
 cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
 Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
-limitée par les erreurs d'*arrondi* dans les calculs, liée à la représentation
+limitée par les erreurs d'*arrondi* dans les calculs, liées à la représentation
 approchée des nombres réels utilisée par le programme informatique.
 
 
@@ -1196,7 +1196,7 @@ sélectionnons un double $h>0$ et comparons-le à l'epsilon machine :
 
 Si l'on revient à $\mathrm{FD}(\exp, 0, h)$ et si l'on exploite des échelles
 log-log pour représenter l'erreur totale, on peut clairement distinguer la
-region ou l'erreur est dominée par l'erreur d'arrondi -- l'enveloppe de cette
+région où l'erreur est dominée par l'erreur d'arrondi -- l'enveloppe de cette
 section du graphe est $h \mapsto \log(\varepsilon/h)$ -- et où elle est dominée
 par l'erreur de troncature -- une pente $1$ étant caractéristique des schémas
 d'ordre 1.
@@ -1373,13 +1373,13 @@ par `Node`, une classe qui contient (encapsule) une valeur numérique :
             self.value = value
 
 Nous n'allons pas nous attarder sur cette version 0 de `Node`.
-Si elle est ainsi nommée, c'est parce qu'elle va représenter un noeud
+Si elle est ainsi nommée, c'est parce qu'elle va représenter un nœud
 dans un graphe de calculs. Au lieu d'afficher les opérations réalisées
 sur la sortie standard, nous allons enregistrer les 
 opérations que subit chaque variable et comment elles s'organisent ;
-chaque noeud issu d'une opération devra mémoriser quelle opération
+chaque nœud issu d'une opération devra mémoriser quelle opération
 a été appliquée, et quels étaient les arguments de l'opération (eux-mêmes
-des noeuds). Pour supporter cette démarche, `Node` devient:
+des nœuds). Pour supporter cette démarche, `Node` devient:
 
     class Node:
         def __init__(self, value, function=None, *args):
@@ -1388,7 +1388,7 @@ des noeuds). Pour supporter cette démarche, `Node` devient:
             self.args = args
 
 Il nous faut alors rendre les opérations usuelles compatibles avec la création
-de noeuds ; en examinant les arguments de la fonction, on doit décider si
+de nœuds ; en examinant les arguments de la fonction, on doit décider si
 elle est dans un mode "normal" (recevant des valeurs numériques, produisant
 des valeurs numériques) ou en train de tracer les calculs. Par exemple :
 
@@ -1428,7 +1428,7 @@ il serait possible de définir une fonction opérant automatiquement
 cette transformation. Il s'agit d'une fonction d'ordre supérieur
 car elle prend comme argument une fonction (la fonction numérique
 originale) et renvoie une nouvelle fonction, compatible avec la
-gestion des noeuds. On pourra ignorer son implémentation 
+gestion des nœuds. On pourra ignorer son implémentation 
 en première lecture.
 
     def autodiff(function):
@@ -1455,7 +1455,7 @@ en première lecture.
 
 Malgré sa complexité apparente, l'utilisation de cette fonction est simple ; 
 ainsi pour rendre la foncton `sin` et l'opérateur `*` compatible
-avec la gestion de noeuds, il suffit de faire :
+avec la gestion de nœuds, il suffit de faire :
 
     sin = autodiff(math.sin)
 
@@ -1466,13 +1466,13 @@ et
     multiply = autodiff(multiply)
     Node.__mul__ = Node.__rmul__ = multiply
 
-ce que est sensiblement plus rapide et lisible 
+ce qui est sensiblement plus rapide et lisible 
 que la démarche entreprise pour `cos` et `+` ; 
 mais encore une fois, le résultat est le même.
 
 Il est désormais possible d'implémenter le traceur. 
 Celui-ci encapsule les arguments de la fonction à tracer 
-dans des noeuds, puis appelle la fonction et renvoie le noeud associé
+dans des nœuds, puis appelle la fonction et renvoie le nœud associé
 à la valeur retournée par la fonction :
 
     >>> def trace(f, args):
@@ -1482,7 +1482,7 @@ dans des noeuds, puis appelle la fonction et renvoie le noeud associé
 
 Pour vérifier que tout se passe bien comme prévu,
 faisons en sorte d'afficher une représentation lisible 
-et sympathique des contenus des noeuds sous forme de chaîne de caractères :
+et sympathique des contenus des nœuds sous forme de chaîne de caractères :
 
     def node_str(node):
         if node.function is None:
@@ -1588,11 +1588,11 @@ ainsi on déduit de l'identité $(\sin x)' = \cos x$ la déclaration
 Différentielle des fonctions composées
 --------------------------------------------------------------------------------
 
-Pour exploiter le tracing d'une fonction, il nous faut à partir du noeud
-final produit par ce procédé extraire l'ensemble des noeuds amont,
+Pour exploiter le tracing d'une fonction, il nous faut à partir du nœud
+final produit par ce procédé extraire l'ensemble des nœuds amont,
 qui représentent les arguments utilisés dans le calcul de la valeur finale.
 Puis, pour préparer le calcul de la différentielle, nous ordonnerons 
-les noeuds de telle sorte que les arguments d'une fonction apparaissent 
+les nœuds de telle sorte que les arguments d'une fonction apparaissent 
 toujours avant la valeur qu'elle produit.
 L'implémentation suivante, relativement naïve[^MI], réalise cette opération:
 
@@ -1618,9 +1618,9 @@ par un informaticien en possession de ce code,
 l'UE 11 niera avoir connaissance de vos activités. 
 
 Le calcul de la différentielle en tant que tel ne consiste plus qu'à 
-propager la variation des arguments de noeud en noeud, en se basant
+propager la variation des arguments de nœud en nœud, en se basant
 sur la règle de différentiation en chaîne ; ces variations intermédiaires
-sont stockées dans l'attribut `d_value` des noeuds du graphe.
+sont stockées dans l'attribut `d_value` des nœuds du graphe.
 
     def d(f):
         def df(*args): # args=(x1, x2, ...)
@@ -1817,7 +1817,7 @@ Idées pour poursuivre l'introduction du moteur de diff auto:
 
 Faire un projet privé et une document de tests (public) pour permettre la
 vérification que ça marche ? Demander résultat comme un fichier autodiff.py
-+ notebook mise en oeuvre ou notebook générant autodiff.py ?
++ notebook mise en œuvre ou notebook générant autodiff.py ?
 Quoi qu'il en soit: code et doc et accès sur github.
 Ce qui est fait en cours déjà fourni (sous quelle forme ? fichier, 
 notebook, etc ?). Oui, avec jupyter nbconvert, ça ne pose pas de pb.
