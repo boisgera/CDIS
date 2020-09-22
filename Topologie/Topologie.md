@@ -3204,7 +3204,7 @@ De plus,
 ### Question 3 {#answer-pk-3 .answer}
 Soient $x, y \in X$ ; on a
 $$
-f_x(z) - f_y(z) = d(z, x) - d(z, x_0) - (d(z, y) - d(z, y_0)) = d(z, x) - d(z, y).
+f_x(z) - f_y(z) = d(z, x) - d(z, x_0) - (d(z, y) - d(z, x_0)) = d(z, x) - d(z, y).
 $$
 Par conséquent, par [l'inégalité triangulaire](#dist-ineg),
 $$
@@ -3558,7 +3558,7 @@ soit
 $$
 \|\Phi(x) - \Phi(y)\|_{\infty} \leq (\|A\| T) \times \|x - y\|_{\infty}.
 $$
-L'application $\Phi$ est donc contractante si $\|A\| \leq 1/T$.
+L'application $\Phi$ est donc contractante si $\|A\| < 1/T$.
 [Le théorème du point fixe de Banach](#T-TPFB) prouve alors
 l'unicité d'une fonction continue telle que 
 $$
@@ -3595,7 +3595,7 @@ $$
 &\leq 
 \int_{0}^t \|A\| \|e^{-\alpha s}(x-y)(s)\| e^{-\alpha (t-s)} \, ds \\
 &\leq 
-\left(\|A\| T \int_0^t e^{-\alpha (t-s)} \, ds \right) \|x-y\|_{\infty}^{\alpha}.
+\left(\|A\| \int_0^t e^{-\alpha (t-s)} \, ds \right) \|x-y\|_{\infty}^{\alpha}.
 \end{split}
 $$
 Comme
@@ -3606,9 +3606,9 @@ $$
 $$
 on en déduit que 
 $$
-\|x - y\|_{\infty}^{\alpha} \leq \frac{\|A\| T}{\alpha} \|x-y\|_{\infty}^{\alpha}.
+\|x - y\|_{\infty}^{\alpha} \leq \frac{\|A\|}{\alpha} \|x-y\|_{\infty}^{\alpha}.
 $$
-L'application $\Phi$ est donc contractante dès lors que $\alpha > \|A\| T$.
+L'application $\Phi$ est donc contractante dès lors que $\alpha > \|A\|$.
 Pour tout $T > 0$,
 [le théorème du point fixe de Banach](#T-TPFB) prouve donc, en sélectionnant
 un $\alpha$ adapté, l'unicité d'une fonction continue telle que 

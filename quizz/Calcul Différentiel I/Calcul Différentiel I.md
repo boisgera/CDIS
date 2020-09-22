@@ -50,7 +50,7 @@ en tout point.
 
 #### Question 8
 Soit $f : \R^2 \to \R^m$ une fonction différentiable et vérifiant 
-$\|df(x_1, x_2)\| \leq 1$ quand $|x_1| \geq 1$ et $|x_2| \geq 1$.
+$\|df(x_1, x_2)\| \leq 1$ quand $|x_1| \geq 1$ ou $|x_2| \geq 1$.
 Quelle(s) inégalité(s) êtes-vous en mesure de prouver ?
 
   - [ ] A: $\|f(1, 1) - f(-1, -1) \| \leq 2 \sqrt{2} \approx 2.83$
