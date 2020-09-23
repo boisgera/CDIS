@@ -71,7 +71,7 @@ Il est aisé de trouver des exemples de tels phénomènes.
 
 La théorie des probabilités vise à fournir un modèle mathématique pour décrire ces phénomènes. Elle repose sur trois ingrédients essentiels dont on donne ici les définitions.
 
-### Définition -- L'espace fondamental {.definition}
+### L'espace fondamental {.definition}
 
 Noté habituellement $\Omega$, l'*espace fondamental* (ou encore l'*espace d'état* ou *univers*) contient l'ensemble de tous les résultats possibles d'un phénomène aléatoire. Un résultat possible d'une expérience sera noté $\omega \in \Omega$.
 
@@ -88,7 +88,7 @@ Si on reprend les exemples précédents, on peut facilement définir les univers
 Cette liste d’exemples montre que l’espace $\Omega$ peut varier énormément dans sa structure, d’une expérience à l’autre. Cela permet de réaliser la richesse de la théorie qu’il faut mettre en place, pour créer un modèle qui englobe tous ces cas. Nous verrons également ultérieurement que le modèle abstrait que nous allons construire permettra de s’affranchir du fait que $\Omega$ décrit précisément tous les résultats possibles de l’expérience.
 
 
-### Définition -- Evénement {.definition}
+### Evénement {.definition}
 Un *événement* est une propriété qui est vérifiée ou non une fois l'expérience réalisée. On identifie un événement $A$ à un sous-ensemble ou  *partie* de $\Omega$, i.e. $A = \{\omega \in \Omega : A \text{ est vérifiée pour } \omega \}$.
 
 ### Exemples {.example}
@@ -121,7 +121,7 @@ On doit maintenant répondre à la question de savoir quels sont les événement
 
 Ceci conduit à la notion de *tribu de parties* de $\Omega$.
 
-### Définition -- Tribu {.definition #deftribu}
+### Tribu {.definition #deftribu}
 Une *tribu* (ou *$\sigma$-algèbre*) $\A$ est une collection de sous-ensembles de $\Omega$ tels que :
 
  1. $\Omega \in \A$,
@@ -144,7 +144,7 @@ Soit $\Omega = \R$ et $f : \Omega \to \R_+$ une fonction intégrable telle que
 $$ \int_\Omega f(x)\, dx =1. $$
 
 Soit $\A$ la collection des ensembles mesurables sur $\Omega$ ;
-[les propriétés élémentaires des ensembles mesurables (cf. "Calcul Intégral II")](Calcul Intégral II.pdf#pptés-tribu) établissent que $\mathcal{A}$ est une tribu, 
+[les propriétés élémentaires des ensembles mesurables (cf. Calcul Intégral II)](Calcul Intégral II.pdf#pptés-tribu) établissent que $\mathcal{A}$ est une tribu, 
 sur laquelle on peut définir
 
 $$ \P(A) = \int_\Omega 1_{A}\, f(x)\, dx = \int_A f(x)\, dx. $$
@@ -167,7 +167,7 @@ On vérifie aisément que $\P$ vérifie les 3 propriétés suivantes :
 
 Ces trois propriétés correspondent aux [axiomes de Kolmogorov](#defproba) qui définissent une probabilité sur un espace probabilisable général. La fonction $f$ est appelée *densité de probabilité*. On verra plus loin que l'on ne peut pas caractériser toutes les probabilités sur $\R$ via cette notion. Celle-ci constitue néanmoins un exemple fondamental que l'on approfondira dans la suite du cours, notamment dans le cadre de l'étude des variables aléatoires.
 
-### Remarque {.remark}
+### Lien avec le cas discret {.remark}
 
 On pourra faire l'analogie entre la densité de probabilité et la loi de probabilité sur un univers discret, dans le sens où elle va "pondérer" les valeurs réelles, en remarquant cependant que :
 
@@ -177,7 +177,7 @@ On pourra faire l'analogie entre la densité de probabilité et la loi de probab
 
 ## Probabilité
 
-### Définition -- Probabilité {.definition #defproba}
+###  Probabilité {.definition #defproba}
 Une *probabilité* sur l'espace $(\Omega, \A)$ est une application $\P : \A \rightarrow [0,1]$, telle que :
 
  1. $\P(\Omega) = 1$,
@@ -192,10 +192,10 @@ aléatoire par la donnée d’un espace probabilisé.
 La définition suivante est fondamentale en théorie des probabilités. Elle introduit une
 notion de “vrai ou faux” qui dépend de la probabilité choisie sur l’espace fondamental.
 
-### Définition -- Propriété presque-sûre {.definition}
-Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A$ se réalise *$\P$-presque sûrement* (en abrégé $\P$-p.s.) si P(A) = 1. 
+###  Propriété presque-sûre {.definition}
+Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A$ se réalise *$\P$-presque sûrement* (en abrégé $\P$-p.s.) si $\P(A) = 1$. 
 
-### Proposition -- Propriétés élémentaires {.proposition #elemprop} 
+###  Propriétés élémentaires {.proposition #elemprop} 
  1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
  2. $\forall\, A,B \in \A$, $A \subset B \Rightarrow \P(A) \leq \P(B)$.
  3. $\forall\, A,B \in \A$, $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
@@ -204,40 +204,48 @@ Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A
  5. Formule de Poincaré : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$
  $$ \P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right).$$
 
-### Demonstration {.proof}
-[Exercice.](#propelem)
+### Demonstration {.exercise .question .one #propelem}
 
 ### Théorème de la continuité monotone {.theorem #continuitemonotone}
 Dans le cas d'une suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante, on a 
 $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
-### Demonstration {.proof}
-[Exercice.](#contmon)
+### Demonstration {.exercise .question .one #contmon}
 
-### Remarque {.remark}
+### Une définition alternative de la probabilité {.exercise .question .one #altdef}
+Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ vérifie : 
+ 
+ 1. $\P(\Omega) = 1$, 
+ 2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$, $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
+ 3. Pour toute suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante 
+    $$\P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
+
+Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
+
+### Suite décroissante {.remark}
 Dans le cas d'une suite décroissante, on a 
 $$ \P\left(\bigcap_{n \in \N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
 Le second point de la [définition de la probabilité](#defproba) donne la probabilité de la réunion $\cup_n A_n$ en fonction des $\P(A_n)$ lorsque les événements sont deux à deux disjoints. Si ce n'est pas le cas, on a tout de même la majoration suivante, très utile dans la pratique :
 
-### Proposition {.proposition}
+### {.proposition}
 Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrable d'événements. On a alors
     $$ \P(\cup_n A_n) \leq \sum_{n\in\N^\ast} \P(A_n) $$
 
-### Démonstration {.proof}
-[Exercice.](#boolinf)
+### Démonstration {.exercise .question .one #boolinf}
+
 
 ## Probabilité conditionnelle 
 
 La construction d’un modèle probabiliste repose sur l’information connue **a priori** sur l’expérience aléatoire. Ce modèle permet de quantifier les probabilités de réalisation de certains résultats de l’expérience. Il est fondamental de remarquer que si l’information change, les probabilités de réalisation changent. 
 
-### Exemple {.example}
+### Information a priori {.example}
 On cherche pour un lancer de deux dés, la probabilité de l’événement “la somme est supérieure ou égale à 10”.
 Elle vaut 1/6 sans information supplémentaire, 1/2 si l’on sait que le résultat d’un des dés est 6, 0 si l’on sait a priori que le résultat d’un des dés est 2. Pour obtenir ces résultats, on a calculé dans chaque cas le rapport du nombre de résultats favorables sur le nombre de cas possibles. Il est ainsi indispensable de bien définir l’espace de probabilité lié à l’expérience munie de l’information a priori. On remarque également que l’information a priori a changé la valeur de la probabilité de l’événement.
 
 L'outil qui va nous permettre d'introduire de l'information est la probabilité conditionnelle dont nous donnons ici la définition.
 
-### Définition -- Probabilité conditionnelle {.definition #defprobacond}
+###  Probabilité conditionnelle {.definition #defprobacond}
 Soient $(\Omega, \A, \P)$ un espace probabilisé, $A, B \in \A$ tels que $\P(B)>0$. La *probabilité conditionnelle* de $A$ sachant $B$ est le nombre 
 \begin{equation*}
 \P(A|B) = \frac{\P(A\cap B)}{\P(B)}.
@@ -282,18 +290,10 @@ Le dénominateur vaut $\P(A)$ d'après la [Formule des probabilités totales](#f
 ### Remarque {.remark}
 La formule de Bayes, simple conséquence des axiomes et de la définition de la probabilité conditionnelle, tient une place à part dans le calcul des probabilités en raison de son importance pratique considérable et des controverses auxquelles son application pratique a donné lieu : elle est à la base de toute une branche de la statistique appelée statistique bayésienne.
 
-### Exemple {.example}
+### Test {.exercise .question .one #test}
 Un individu est tiré au hasard dans une population où l’on trouve une proportion $10^{-4}$ de séropositifs. On lui fait passer un test de détection de la
 séropositivité. Par ailleurs, des expérimentations antérieures ont permis de savoir que les probabilités d’avoir un résultat positif lors de l’application du test si l’individu est séropositif, ou s’il ne l’est pas, sont respectivement égales à 0,99 (c’est la sensibilité du test) et à 0,001 (0,999 = 1 - 0,001 est la spécificité du test). Sachant que le test donne un résultat positif, quelle est la probabilité pour que l’individu soit effectivement séropositif ?
 
-On considère les événements $A$ “l’individu est séropositif”, et $B$ “le test de détection donne un résultat positif”. Les données ci-dessus nous indiquent $P(A) = 10^{-4}$ d’où $\P(A^c) = 0,9999$ , $\P(B|A) = 0,99$ et $\P(B|A^c) = 0,001$. Nous trouvons alors
-\begin{align*}
-\P(A|B) &= \frac{\P(A \cap B)}{\P(B)}\\
-        &= \frac{\P(B |A ) \P(A)}{\P(B |A)\P(A) + \P(B|A^c)\P(A^c)}\\
-        &= \frac{0,99 \times 10^{-4}}{0,99 \times 10^{-4} + 0,001 \times 0,9999}\\
-        &\approx 0,09.
-\end{align*}
-On remarque que contrairement à l’intuition, cette probabilité est petite.
 
 ## Indépendance des événements 
 La notion d’indépendance est absolument fondamentale en probabilités et nous verrons
@@ -307,7 +307,7 @@ $$\P(A | B) = \frac{\P(A\cap B)}{\P(B)} = \P(A)$$
 On remarque que cette formule se symétrise et la notion d’indépendance se définit
 finalement comme suit.
 
-### Définition -- Indépendance de deux événements {.definition}
+###  Indépendance de deux événements {.definition}
 Deux événements $A$ et $B$ sont *indépendants* si et seulement si 
 \begin{equation*}
 \P(A\cap B) = \P(A)\, \P(B).
@@ -323,11 +323,13 @@ Deux événements $A$ et $B$ sont *indépendants* si et seulement si
     \P(A\cap B) = \P(A)\, \P(B) \Leftrightarrow \P(A) = \P(A|B) \Leftrightarrow \P(B) = \P(B|A).
     \end{equation*}
 
-Nous laissons en exercice (très simple à vérifier) la démonstration de la proposition
-suivante, dont le résultat est tout-à-fait intuitif.
-
 ### Proposition {.proposition}
 Si les événements $A$ et $B$ sont indépendants, alors il en est de même des couples $(A^c,B)$, $(A,B^c)$ et $(A^c,B^c)$.
+
+### Démonstration {.exercise .question .one #indep}
+
+### Auto-indépendant ?{.exercise .question .one #autoindep}
+A quelle condition un événement $A$ est-il indépendant de lui-même ?
 
 ### Exemple {.example}
 
@@ -360,7 +362,7 @@ Le cas général fait l'objet de la théorie de la mesure et sera développé ul
 
 Nous allons ici nous contenter de résoudre, sans démonstrations complètes, le cas où $\Omega = \R$ et où la tribu $\A$ est la tribu formée des ensembles mesurables.
 
-### Définition -- fonction de répartition {.definition #deffdr}
+###  fonction de répartition {.definition #deffdr}
 La *fonction de répartition* de la probabilité $\P$ sur $(\R,\A)$ est la fonction
 \begin{equation*}
 F(x) = \P(\left]-\infty, x\right]),\ x \in \R.
@@ -444,7 +446,7 @@ Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe
 
 ## Densités de probabilités
 
-### Définition -- densité de probabilité {.definition}
+### Densité de probabilité {.definition}
 Une fonction réelle $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement une *densité*) si elle est positive, intégrable et vérifie 
 $$\int_\R f(x)\, dx = 1.$$ 
 
@@ -517,37 +519,8 @@ est une fonction de répartition, et la probabilité associée $\P$ n'admet pas 
 
 Nous aurons l'occasion de voir par la suite un grand nombre d'autres exemples de probabilités à densité.
 
-# Exercices
-
-## Propriétés élémentaires {.question #propelem}
-A partir de la [définition de la probabilité](#defproba), démontrer les propriétés suivantes :
-
- 1. $\forall\, A \in \A$, $\P(A) \in [0,1]$ et $\P(A^c)= 1-\P(A)$.
- 2. $\forall\, A,B \in \A$, $A \subset B \Rightarrow \P(A) \leq \P(B)$.
- 3. $\forall\, A,B \in \A$, $\P(A \cup B ) = \P(A) + \P(B) - \P(A \cap B)$.
- 4. Inégalité de Boole : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A, \P\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \P(A_i)$.
- 5. Formule de Poincaré : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$
- $$ \P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right).$$
-
-
-## Continuité monotone {.question #contmon}
-Soit une suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante (au sens de l'inclusion). Montrer que 
-$$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
-
-
-## Une définition alternative de la probabilité {.question #altdef}
-Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ vérifie : 
- 
- 1. $\P(\Omega) = 1$, 
- 2. Pour $A, B \in \A$, tels que $A\cap B = \varnothing$, $\P(A\cup B)= \P(A) + \P(B)$ (additivité),
- 3. Pour toute suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante 
-    $$\P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
-
-Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
-
-## Généralisation de l'inégalité de Boole {.question #boolinf}
-Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrable d'événements. On a alors
-    $$ \P(\cup_n A_n) \leq \sum_{n\in\N^\ast} \P(A_n) $$
+Exercices complémentaires
+================================================================================
 
 ## Indépendance et conditionnement
 
@@ -649,7 +622,10 @@ où $\mu \in \R$ et $\sigma^2 > 0$. On note $G$ sa fonction de répartition asso
 
 # Solutions
 
-## Propriétés élémentaires {.answer #answer-propelem}
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Propriétés élémentaires {.answer #answer-propelem}
 
  1. $\P(A) \in [0,1]$ est donné par la définition. Par ailleurs, on a $\Omega = A \cup A^c$ et $A\cap A^c = \varnothing$. En considérant la suite $A_1 = A$, $A_2 = A^c$ et $A_n = \varnothing$ pour $n > 2$, le point 2. de la définition nous donne $1 = \P(\Omega) = \P(A) + \P(A^c)$.
 
@@ -670,22 +646,43 @@ où $\mu \in \R$ et $\sigma^2 > 0$. On note $G$ sa fonction de répartition asso
     \end{align*}
 
 
-## Continuité monotone {.answer #answer-contmon}
+### Continuité monotone {.answer #answer-contmon}
 On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_1 = A_1$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 2$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
 $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=1}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
 
-## Une définition alternative de la probabilité {.answer #answer-altdef}
+### Une définition alternative de la probabilité {.answer #answer-altdef}
 
 Soit $A_n$ une suite d'éléments de $\A$ deux-à-deux disjoints. On définit $B_n = \cup_{p \leq n} A_n$ et $B = \cup_n A_n$. Comme $\P$ est additive, on a $\P(B_n) = \sum_{p \leq n} \P(A_n)$ qui croît vers $\sum_n \P(A_n)$ et aussi vers $\P(B)$ d'après le point 3.
 
 En considérant les résultats de ces deux exercices, on obtient une définition alternative de la probabilité en substituant la [continuité monotone](#contmon) et l'additivité à la propriété de [$\sigma$-additivité](#defproba).
 
-## Généralisation de l'inégalité de Boole {.answer #answer-boolinf}
+### Inégalité {.answer #answer-boolinf}
 On a déjà vu le cas fini avec [l'inégalité de Boole](#propelem). On pose $B_n = \cup_{i=1}^n A_i$, qui croît vers l'ensemble $C = \cup_n A_n$.
 D'après [l'inégalité de Boole](#propelem), on a 
    $$\P(B_n) \leq \sum_{i=1}^n \P(A_i)$$
 Mais $\P(B_n) \to_{n \to \infty} \P(C)$ d'après le [théorème de continuité monotone](#contmon), tandis que $\sum_{i=1}^n \P(A_i) \to_{n \to \infty} \sum_{n\in\N^\ast} \P(A_n)$. En passant à la limite, on obtient donc le résultat.
 
+
+
+### Test {.answer #answer-test}
+On considère les événements $A$ “l’individu est séropositif”, et $B$ “le test de détection donne un résultat positif”. Les données ci-dessus nous indiquent $P(A) = 10^{-4}$ d’où $\P(A^c) = 0,9999$ , $\P(B|A) = 0,99$ et $\P(B|A^c) = 0,001$. Nous trouvons alors
+\begin{align*}
+\P(A|B) &= \frac{\P(A \cap B)}{\P(B)}\\
+        &= \frac{\P(B |A ) \P(A)}{\P(B |A)\P(A) + \P(B|A^c)\P(A^c)}\\
+        &= \frac{0,99 \times 10^{-4}}{0,99 \times 10^{-4} + 0,001 \times 0,9999}\\
+        &\approx 0,09.
+\end{align*}
+On remarque que contrairement à l’intuition, cette probabilité est petite.
+
+### Démonstration {.answer #answer-indep}
+Pour $(A^c,B)$, si $\P(B) = 0$, alors $\P(A^c \cap B) = 0 = \P(B)\P(A^c)$. Sinon, $\P(A^c \cap B) = \P(B)\P(A^c|B) = \P(B)(1-\P(A|B)) = \P(B)(1-\P(A))=\P(B)\P(A^c)$.
+
+Pour $(A,B^c)$, on inverse les rôles de $A$ et $B$ ci-dessus.
+
+Pour $(A^c,B^c)$, on remarque que $A^c \cap B^c = (A \cup B)^c$, d'où $\P(A^c \cap B^c) = 1-\P(A \cup B) = 1-\P(A) - \P(B) +\P(A)\P(B) = (1-\P(A))(1-\P(B)) = \P(A^c)\P(B^c)$
+
+### Auto-indépendant ?{.answer #answer-autoindep}
+$A$ est indépendant de lui-même ssi $\P(A) = \P(A \cap A) = \P(A)\P(A)$, autrement dit si $\P(A) = 0$ ou si $\P(A) = 1$.
 
 ## Indépendance et conditionnement
 
