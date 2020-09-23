@@ -194,7 +194,7 @@ $$
 C = \{(x_1,x_2) \in \R^2 \; | \; f(x_1,x_2) = c\}
 $$
 est non vide et que $\nabla f$ ne s'annule pas sur $C$. 
-Soit $(x_{10}, y_{20}) \in C$, $$v = \frac{\nabla f(x_{10}, x_{20})}{\|\nabla f(x_{10},x_{20})\|}$$ et 
+Soit $(x_{10}, x_{20}) \in C$, $$v = \frac{\nabla f(x_{10}, x_{20})}{\|\nabla f(x_{10},x_{20})\|}$$ et 
 $u \in \R^2$ le vecteur tel que $(u, v)$ soit une base orthonormée.
 Soit $(w, z)$ les coordonnées d'un point $P$ dans cette base ; 
 montrer que pour tout point de $C$, il existe un voisinage de ce point et 
