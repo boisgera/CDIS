@@ -11,12 +11,6 @@
 \newcommand{\B}{\mathcal{B}}
 
 
-
-Objectifs d'apprentissage
-================================================================================
-
-
-
 # Introduction 
 
 Le but de ce cours est de consolider et compléter les connaissances en théorie des probabilités acquises en CPGE mais surtout de permettre d’acquérir le raisonnement probabiliste. En effet, les probabilités peuvent être vues comme un outil de modélisation de phénomènes qui ont la caractéristique d'être aléatoires. L'aléatoire peut intervenir de différentes manières dans ces phénomènes.
@@ -58,6 +52,37 @@ En 1900, Louis Bachelier fut un des premiers mathématiciens à modéliser les v
 L'utilisation des probabilités en biologie a pris un essor dans les années 1970, notamment dans l'étude de l'évolution des espèces. La reproduction des individus est modélisée par un choix aléatoire des gènes transmis ainsi que des mutations apparaissant de manière aléatoire sur les individus. L'extinction des espèces ou des gènes est alors étudiée en fonction des effets stochastiques.
 
 De nos jours, l’Ecole française de Probabilités est très active. La première Médaille Fields décernée à un probabiliste a été attribuée à Wendelin Werner en 2006. Les probabilités se développent de plus en plus, alimentées en particulier de manière essentielle par la physique, le développement des réseaux de télécommunications, la finance, la biologie, la médecine... Elles permettent de construire des modèles mathématiques, qui peuvent être validés par les données suivant la théorie statistique, et fournissent également des possibilités d’expérimentations fictives dans de multiples domaines d’applications.
+
+
+Objectifs d'apprentissage
+================================================================================
+
+#### Probabilités des événements
+
+   - connaître les définitions de base des probabilités :
+
+      - \zero espace fondamental $\Omega$
+      - \zero événement $A \subset \Omega$
+      - \one tribu (de parties) 
+      - \one probabilité
+      - \one propriété presque sûre
+
+   - connaître, savoir démontrer et exploiter les résultats suivants :
+
+      - \zero les propriétés élémentaires d'une probabilité 
+      - \zero le théorème de continuité monotone
+
+   - indépendance et conditionnement 
+
+      - \zero connaître la définition de la probabilité conditionnelle
+      - \one connaître et savoir exploiter la formule des probabilités totales
+      - \one connaître et savoir exploiter la formule de Bayes
+      - \zero connaître la définition de l'indépendance de deux événements
+
+#### Variables aléatoires
+
+   - 
+
 
 # Probabilités des événements 
 
@@ -232,9 +257,9 @@ Montrer que $\P$ vérifie la propriété de [$\sigma$-additivité](#defproba).
 Dans le cas d'une suite décroissante, on a 
 $$ \P\left(\bigcap_{n \in \N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
-Le second point de la [définition de la probabilité](#defproba) donne la probabilité de la réunion $\cup_n A_n$ en fonction des $\P(A_n)$ lorsque les événements sont deux à deux disjoints. Si ce n'est pas le cas, on a tout de même la majoration suivante, très utile dans la pratique :
+Le second point de la [définition de la probabilité](#defproba) donne la probabilité de la réunion $\cup_n A_n$ en fonction des $\P(A_n)$ lorsque les événements sont deux à deux disjoints. Si ce n'est pas le cas, on a tout de même la majoration suivante :
 
-### {.proposition}
+### Une majoration bien utile {.proposition}
 Soit $\P$ une probabilité et soit $(A_n)_{n\in \N^\ast}$ une famille dénombrable d'événements. On a alors
     $$ \P(\cup_n A_n) \leq \sum_{n\in\N^\ast} \P(A_n) $$
 
@@ -411,7 +436,11 @@ Les 3 propriétés de la [définition d'une tribu](#deftribu) pour $\E$ ainsi qu
 $\P_X$ sera plus facile à caractériser que $\P$ puisque $E$ est un ensemble connu (on pourra en particulier utiliser ses propriétés topologiques) alors que $\Omega$ est un espace abstrait. Les variables que nous rencontrerons dans ce cours seront soit à valeurs dans un ensemble dénombrable, soit à valeurs dans $\R$ ou dans $\R^d$. Nous les appellerons respectivement des variables aléatoires discrètes, réelles ou des vecteurs aléatoires. Leurs lois seront alors des probabilités respectivement sur un ensemble dénombrable, sur $\R$ ou sur $\R^d$. Le cas discret est considéré connu. 
 
 ## Variables aléatoires réelles
-La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Dans le cas où $E = \R$, on notera $\B(\R)$ la tribu associée[^NB]. Cela nous conduit à poser :
+La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Dans le cas où $E = \R$, on notera $\B(\R)$ la tribu associée. 
+
+
+
+Cela nous conduit à poser :
 
 
 ### Variable aléatoire réelle {.definition #defvar}

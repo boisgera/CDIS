@@ -16,25 +16,30 @@
 
 
 
+Objectifs d'apprentissage
+================================================================================
+
+
+
 # Moments d'une variable aléatoire à densité
  
 La densité de probabilité d'une variable aléatoire va nous permettre de calculer aisément des grandeurs caractéristiques telles que sa valeur moyenne et sa variance définies ci-dessous :
 
-### Définition {.definition #defesp}
+### Espérance d'une variable aléatoire à densité {.definition #defesp}
 La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si l'intégrale $\int_\R |x|f(x) dx$ est définie, autrement dit si le produit $x f(x)$ est absolument intégrable[^noteesp]. On définit alors son *espérance* par 
         $$\Esp(X) = \int_\R x f(x)dx$$
 
 [^noteesp]: Comme $f$ est positive, on peut en fait se convaincre que $xf(x)$ intégrable équivaut à $xf(x)$ absolument intégrable : si $x f(x)$ est intégrable, ses "restrictions" $g(x) = xf(x) 1_{\R_-}(x)$ et $h(x)=x f(x) 1_{\R_+}(x)$ sont intégrables (passer par la restriction aux intervalles $\R_-$ et $\R_+$ puis par le critère qui étend par 0 à $\R$ ; les deux opérations préservent l'intégrabilité). Or $|x|f(x) = h(x) - g(x)$ (sauf en 0), donc elle est intégrable.
 <!-- **note : pour introduire proprement l'espérance d'une variable aléatoire réelle, on a besoin de l'intégrale de Lebesgue -> CI 5** -->
 
-### Remarque {.remark} 
+### Interprétation {.remark} 
 $\Esp(X)$ est un nombre réel qui donne une valeur moyenne résumant la variable aléatoire $X$.
 
 L’espérance mathématique d’une variable aléatoire est un concept fondamental de la théorie des probabilités. La dénomination d’espérance pour cette quantité fait référence aux problèmes de jeux et d’espérance de gain. Cette terminologie imagée a été introduite par Pascal.
 
 On note $\L^1$ l'ensemble de toutes les variables réelles $X$ à densité intégrables. Les propriétés suivantes découlent directement des propriétés de l'intégrale.
 
-### Proposition {.proposition #propl1}
+### Propriétés de base {.proposition #propl1}
  * $\L^1$ est un espace vectoriel et $\forall X,Y \in \L^1$, $\forall a,b \in \R$ 
         $$\Esp(aX + bY) = a\Esp(X) + b\Esp(Y).$$
  * $X \in \L^1 \Leftrightarrow |X| \in \L^1$, et dans ce cas $$|\Esp(X)| \leq \Esp(|X|).$$
@@ -50,12 +55,12 @@ Dans le cas d'une variable aléatoire discrète $Y$ à valeurs dans $\N^\ast$, s
 
 Outre l'espace $\L^1$, nous pouvons définir l'espace $\L^2$ des variables aléatoires réelles dont le carré $X^2$ est dans $\L^1$.
 
-### Définition {.definition #defvar}
+### Variance {.definition #defvar}
 La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite *de carré intégrable* si $\Esp(X^2) = \int_\R x^2 f(x)dx$ est définie, autrement dit si le produit $x^2 f(x)$ est intégrable. Sa *variance* est définie par
         $$\V(X) = \Esp((X-\Esp(X))^2)$$
 
 
-### Proposition {.proposition #propl2}
+### Propriétés {.proposition #propl2}
 $\L^2$ est un sous-espace vectoriel de $\L^1$, et si $X \in \L^2$,
 $$|\Esp(X)| \leq \Esp(|X|) \leq \sqrt{\Esp(X^2)}$$
 
@@ -69,20 +74,20 @@ La première inégalité a déjà été vue [ci-dessus](#propl1). Pour la second
         $$ \Esp(Y^2) = \Esp(X^2) - 2a \Esp(X) + a^2 = \Esp(X^2)-a^2.$$
 Et $\Esp(Y^2) \geq 0$ par le troisième point de la [proposition ci-dessus](#propl1). Par conséquent, $\Esp(X)^2 = a \leq \Esp(X^2)$ ce qui est le résultat recherché.
 
-### Remarque {.remark}
+### La variance est positive {.remark}
 En vertu de cette [proposition](#propl2), $\V(X)$ est **positive** et sa racine carrée $\sigma_X$ s'appelle l'*écart-type* de $X$. L’écart-type est une grandeur qui mesure la moyenne (en un certain sens) de l’écart des valeurs de $X$ à sa moyenne, d’où son nom.
 
 On a également 
         $$\V(X) = \Esp(X^2)-\Esp(X)^2$$
 que l'on obtient en développant $(X-\Esp(X))^2$. Cette manipulation anodine est fort utile dans la pratique. On retiendra que "La variance est égale à la moyenne des carrés moins le carré de la moyenne". On désigne le terme $\Esp(X^2)$ par l'expression *moment d'ordre deux* tandis que la variance est parfois appelée *moment centré d'ordre deux*.
 
-### Remarque {.remark}
+### Variable centrée réduite {.remark}
 D'après ce qui précède, si $X$ est une variable aléatoire de carré intégrable, d'espérance $\Esp(X)$ et d'écart-type $\sigma_X >0$, alors la variable aléatoire $$\frac{X-\Esp(X)}{\sigma_X}$$
 est d'espérance nulle et de variance 1. On dira qu'une telle variable aléatoire est *centrée et réduite*.
 
 On peut remarquer que si $X$ et $Y$ sont dans $\L^2$, la variable aléatoire $XY$ est dans $\L^1$, puisque $|XY| \leq \frac{1}{2}(X^2+Y^2)$. On peut ainsi définir la *covariance* de deux variables aléatoires :
 
-### Définition {.definition #defcov}
+### Covariance {.definition #defcov}
 Si $X$ et $Y$ sont dans $\L^2$, la variable aléatoire $(X-\Esp(X))(Y-\Esp(Y))$ est intégrable. On appelle la *covariance* de $X$ et $Y$ l'espérance de cette variable aléatoire et on la note :
         $$\cov (X,Y) = \Esp((X-\Esp(X))(Y-\Esp(Y))).$$
 Le *coefficient de corrélation* des variables aléatoires $X$ et $Y$ est le nombre 
@@ -117,13 +122,13 @@ doit donc être négatif ou nul ce qui donne le résultat.
 
 Le discriminant est nul si et seulement si le trinôme admet une racine double $x_0$ et dans ce cas, $Y(\omega) = -x_0 X(\omega)$ pour presque tout $\omega$.
 
-### Remarque {.remark}
+### Coefficient de corrélation {.remark}
 On déduit de l'inégalité de [Cauchy-Schwarz](#CS) que le coefficient de corrélation de $X$ et $Y$ vérifie
 $$-1\leq \rho(X,Y) \leq 1.$$
 
-Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction mesurable d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition vue plus haut](#composition).
+Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction mesurable d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition vue dans le cours précédent](Probabilité I.pdf #composition).
 
-### Proposition {.proposition #esperanceg}
+### Espérance de $g(X)$ {.proposition #esperanceg}
 Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction mesurable de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si l'intégrale
 $$\int_\R |g(x)|f(x) dx,$$
 est définie et dans ce cas
@@ -138,7 +143,7 @@ $$
 Posons $X_n = t_i$ si $X \in I_i$, pour $i \in \{0,\ldots,n-1\}$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow[n \to \infty]{} X(\omega)$ et par continuité de $g$, on a $g(X_n) \xrightarrow[n \to \infty]{} g(X)$. Comme $X_n$ est une variable aléatoire discrète, on a
 $$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-1}g(t_i)f(t_i).$$
 
-### Remarque {.remark}
+### Cas particulier {.remark}
 L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \B(\R)$ :
 $$\Esp(1_A(X)) = \int_A f(x)dx = \P(X\in A)$$
 
@@ -190,7 +195,7 @@ Pour le voir, on fait d'abord le calcul dans le cas centré réduit ($\mu = 0$ e
 $$ I^2 = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x) f(y) dxdy = \int_{0}^{2\pi} d\theta\int_{0}^{+\infty}\frac{1}{2\pi} \rho e^{-\rho^2/2}d\rho $$
 (en passant en coordonnées polaires dans l'intégrale double). Le calcul est ensuite aisé et on obtient $I = 1$.
 
-### Remarque {.remark}
+### Estimation statistique {.remark}
 Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétrées par des nombres réels qui sont liés directement aux valeurs de l’espérance et de la variance de la variable. C’est très utile en statistique où l'on cherchera à estimer la valeur de ces paramètres à partir des observations disponibles. Dans le cas de la loi normale, la moyenne et la variance (empiriques) des échantillons fourniront ainsi directement des estimateurs des paramètres.
 
 Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l’exemple suivant.
@@ -223,7 +228,7 @@ De même qu'en dimension 1, la loi de $X$ est caractérisée par la fonction de 
 $$F(x_1,\ldots,x_n) = \P_X(X_1\leq x_1,\ldots,X_n\leq x_n)$$
 Mais caractériser les fonctions de répartition sur $\R^n$ est délicat, de sorte que cette notion est rarement utilisée. Nous allons plus particulièrement nous intéresser aux vecteurs aléatoires à densité.
 
-### Définition {.definition #defvect}
+### Vecteur aléatoire à densité {.definition #defvect}
 On dit que $X$ admet la densité $f$ si la fonction réelle $f$ sur $\R^n$ est positive, intégrable et vérifie 
 $$\int_{\R^n} f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n) dx_1 \ldots dx_n= 1$$
 et si
@@ -231,7 +236,7 @@ $$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\inf
 
 De la même manière que dans le [cas unidimensionnel](#esperanceg), on a :
 
-### Proposition {.proposition #esperancegvect}
+### Fonction d'un vecteur aléatoire {.proposition #esperancegvect}
 Soit $X$ un vecteur aléatoire de densité $f$, et soit $g$ une fonction de $\R^n$ dans $\R$, mesurable. On a alors $g(X)\in \L^1$ si et seulement si 
 $$\int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} |g(x_1,\ldots,x_n)|f(x_1,\ldots,x_n) dx_1 \ldots dx_n,$$
 est définie et dans ce cas, on a 
@@ -239,7 +244,7 @@ $$\Esp(g(X)) = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} g(x_1,\l
 
 Pour revenir à la densité d'une composante d'un vecteur aléatoire, on intègre par rapport aux autres variables. On le présente ici dans le cas d'un couple $Z=(X,Y)$ de variables aléatoires. On généralise aisément à une dimension supérieure.
 
-### Proposition {.proposition #loimarg}
+### Densités marginales {.proposition #loimarg}
 Supposons que $Z$ admette une densité $f$. Alors $X$ et $Y$ admettent les densités $f_X$ et $f_Y$ données par
 $$f_X(x) = \int_\R f(x,y) dy,\,\,\, f_Y(y) = \int_\R f(x,y) dx.$$
 
@@ -271,7 +276,7 @@ La loi de $Y$ a la même densité.
 
 ## Moments d'un vecteur aléatoire
 
-### Définition {.definition}
+### Vecteur espérance et covariance  {.definition}
 Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont intégrables, on peut définir le *vecteur espérance* 
         $$\Esp(X) = (\Esp(X_1),\ldots,\Esp(X_n))$$
 Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont de carré intégrable, la *matrice de covariance* de $X$ est la matrice $C_X = (c_{i,j})_{1 \leq i \leq n , 1 \leq j \leq n}$ de taille $n \times n$ et dont les éléments valent
