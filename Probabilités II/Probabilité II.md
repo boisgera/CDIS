@@ -14,132 +14,32 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-# Variables aléatoires réelles
-
-En théorie moderne des probabilités, on préfère prendre un point de vue fonctionnel plutôt qu’ensembliste, et utiliser les variables aléatoires plutôt que les événements. Une variable aléatoire est une grandeur qui dépend du résultat de l’expérience. Par exemple,
-
- * le nombre de 6 obtenus dans un lancer de 3 dés,
- * le nombre d’appels dans un central téléphonique pendant une heure,
- * la distance du point d’atteinte d’une flèche au centre de la cible,
- * la valeur maximale d’un prix d’actif sur un intervalle de temps donné,
- 
-sont des variables aléatoires.
-
-La définition formelle d'une variable aléatoire fait intervenir des éléments de la théorie de la mesure qui nous font pour l'instant défaut. On s'interessera dans un premier temps au cas d'une variable réelle dont on donne une définition partielle : 
-
-Soit $\Omega$ l'espace fondamental muni de sa tribu $\A$. Une *variable aléatoire* $X$ est une application de $(\Omega,\A)$ dans un ensemble $E$,
-\begin{equation*}
-\omega \in \Omega \mapsto X(\omega) \in E
-\end{equation*}
-
-En pratique, l’ensemble $E$ pourra être un ensemble fini ou dénombrable ou $\R$ ou $\R^d$ ou encore un espace plus sophistiqué tel que l’ensemble $C(\R_+ , \R^d)$ des fonctions continues de $\R_+$ dans $\R^d$.
-
-### Remarque {.remark}
-La terminologie, consacrée par l'usage, peut être trompeuse. Une variable aléatoire n'est pas une variable (au sens de l'analyse) mais une fonction. Cette terminologie est apparentée à la notion de variable en physique ou en sciences humaines où on désigne volontiers par "variable" la valeur prise par une fonction de l'état du système étudié.
-
-L'intérêt principal de travailler avec des variables aléatoires est de pouvoir substituer à l'espace abstrait $\Omega$ des résultats de l'expérience l'espace $E$, mieux connu dans la pratique. Ainsi, grâce à une variable aléatoire $X$, nous pouvons transporter la structure abstraite du modèle probabiliste $(\Omega, \A, \P)$ sur l'espace d'arrivée $E$, en posant pour $B \subset E$
-$$\P_X (B) = \P(X^{-1}(B)) = \P(\{\omega, X(\omega)\in B\})$$
-
-Cette formule définit une nouvelle probabilité, notée $\P_X$ et définie sur $E$, qui s'appelle la *loi de la variable* $X$.
-
-### Notation {.remark}
-Il est usuel de noter l'ensemble $X^{-1}(B) = \{\omega \in \Omega, X(\omega) \in B\}$ par $\{X \in B\}$, ce qui allège les écritures. On se rappelera néanmoins que cette notation désigne un sous-ensemble de $\Omega$.
-
-Comme $\P(A)$ n'est définie que pour les $A$ de la tribu $\A$, la formule ci-dessus ne permet de définir $\P_X(B)$ que pour les ensembles $B$ tels que $X^{-1}(B) \in \A$, d’où l’importance de la proposition suivante :
-
-### Proposition {.proposition #propva.tribu}
-
- a) La famille $\E$ des parties $B$ de $E$ telles que $X^{-1}(B) \in \A$ est une tribu de $E$.
- b) L'application $\P_X$ définie pour $B \in \E$ par 
- $$ \P_X (B ) = \P(X^{-1}(B)) $$ 
- définit une probabilité sur le couple $(E,\E)$.
-
-### Démonstration {.proof}
-Les 3 propriétés de la [définition d'une tribu](#deftribu) pour $\E$ ainsi que les deux propriétés de la [définition de la probabilité](#defproba) pour $\P_X$ découlent immédiatement des mêmes propriétés pour $\A$ et $\P$, une fois remarquées les propriétés élémentaires suivantes :
-\begin{align*}
-& X^{-1}(\varnothing) = \varnothing, X^{-1}(E) = \Omega, X^{-1}(B^c) = X^{-1}(B)^c \\
-& X^{-1}(\cap_i A_i) = \cap_i X^{-1}(A_i), X^{-1}(\cup_i A_i) = \cup_i X^{-1}(A_i)
-\end{align*}
-
-### {.anonymous}
-
-$\P_X$ sera plus facile à caractériser que $\P$ puisque $E$ est un ensemble connu (on pourra en particulier utiliser ses propriétés topologiques) alors que $\Omega$ est un espace abstrait. Les variables que nous rencontrerons dans ce cours seront soit à valeurs dans un ensemble dénombrable, soit à valeurs dans $\R$ ou dans $\R^d$. Nous les appellerons respectivement des variables aléatoires discrètes, réelles ou des vecteurs aléatoires. Leurs lois seront alors des probabilités respectivement sur un ensemble dénombrable, sur $\R$ ou sur $\R^d$. Le cas discret est considéré connu. 
-
-La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Dans le cas où $E = \R$, on notera $\E_\R$ la tribu associée[^NB]. Cela nous conduit à poser :
 
 
-### Définition -- variable aléatoire réelle {.definition #defvar}
-Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \E_{\R}$.
+Objectifs d'apprentissage
+================================================================================
 
-### Définition -- loi d'une variable aléatoire réelle {.definition #defloivar}
-La probabilité $\P_X$, définie sur $(\R,\E_{\R})$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \E_{\R}$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
-
-[^NB]: Nous n'avons pas les outils permettant de caractériser cette tribu pour le moment. On verra par la suite que, dans le cas des variables aléatoires réelles à densité, elle est très similaire à la tribu des ensembles mesurables de $\R$, à une collection d'ensembles négligeables près.
-
-
-On a alors le résultat très utile suivant :
-
-### Proposition {.proposition #composition}
-Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction mesurable de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
-
-### Démonstration (idée) {#proof}
-Puisque $g$ est mesurable, le critère de l'image réciproque implique que $\forall A \in \E_{\R}$, $g^{-1}(A) \in \E_{\R^n}$. Par composition, on en déduit que $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire.
-
-Comme application de ce résultat, on a les propriétés suivantes :
-
-### Proposition {.proposition}
-
-Soient $X$, $Y$ et $(X_n)_{n \in \N^\star}$ des variables aléatoires réelles. On a 
-
- 1. $X + Y$, $XY$, $\frac{X}{Y}$ si $Y \neq 0$, sont des variables aléatoires.
- 
- 2. $\sup_{1\leq p \leq n} X_p$, $\inf_{1\leq p \leq n} X_p$, sont des variables aléatoires.
-
- 3. $\sup_{n\geq 1} X_n$, $\inf_{n\geq 1} X_n$, sont des variables aléatoires.
-        
- 4. Si $X_n(\omega) \xrightarrow[n \to \infty]{} Z(\omega)$, $\forall \omega$, alors la limite $Z$ est une variable aléatoire.
-
- 5. $Z = 1_A$ est une variable aléatoire $\Leftrightarrow$ $A \in \A$.
-
-### Définition -- variable aléatoire réelle à densité {.definition #va.densité}
-Soit $X$ une variable aléatoire. On dit que $X$ a une *loi de densité $f$* (ou par abus de language "est de densité $f$"), si $\P_X$ admet la densité $f$ et donc si pour tout réel $x$, 
-$$ \P(X\leq x) = \int_{-\infty}^x f(y) dy.$$
-
-### Exemple {.example #ex.expo}
-
-On suppose que la durée de fonctionnement, en heures, d'un ordinateur avant sa première panne est une variable aléatoire positive de loi exponentielle de paramètre 1/100, de densité donnée par 
-
-$$f(x) = \left\{ \begin{array}{ll}
-        \frac{1}{100}\exp\left(-\frac{x}{100}\right) & x \geq 0, \\
-        0 & x < 0.
-        \end{array}
-        \right.$$
-
-Calculons la probabilité que cette durée de fonctionnement $X$ soit comprise entre 50 et 150 heures, elle vaut 
-$$ \P(X \in [50,150]) = \int_{50}^{150} \frac{1}{100}\exp\left(-\frac{x}{100}\right) dx = \exp(-1/2)-\exp(-3/2) \approx 0,38.$$
-Calculons la probabilité que l'ordinateur fonctionne moins de 100 heures :
-$$ \P(X \leq 100) = \int_{0}^{100} \frac{1}{100}\exp\left(-\frac{x}{100}\right) dx = 1-e^{-1} \approx 0,63.$$
 
 
 # Moments d'une variable aléatoire à densité
  
 La densité de probabilité d'une variable aléatoire va nous permettre de calculer aisément des grandeurs caractéristiques telles que sa valeur moyenne et sa variance définies ci-dessous :
 
-### Définition {.definition #defesp}
+### Espérance d'une variable aléatoire à densité {.definition #defesp}
 La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si l'intégrale $\int_\R |x|f(x) dx$ est définie, autrement dit si le produit $x f(x)$ est absolument intégrable[^noteesp]. On définit alors son *espérance* par 
         $$\Esp(X) = \int_\R x f(x)dx$$
 
 [^noteesp]: Comme $f$ est positive, on peut en fait se convaincre que $xf(x)$ intégrable équivaut à $xf(x)$ absolument intégrable : si $x f(x)$ est intégrable, ses "restrictions" $g(x) = xf(x) 1_{\R_-}(x)$ et $h(x)=x f(x) 1_{\R_+}(x)$ sont intégrables (passer par la restriction aux intervalles $\R_-$ et $\R_+$ puis par le critère qui étend par 0 à $\R$ ; les deux opérations préservent l'intégrabilité). Or $|x|f(x) = h(x) - g(x)$ (sauf en 0), donc elle est intégrable.
 <!-- **note : pour introduire proprement l'espérance d'une variable aléatoire réelle, on a besoin de l'intégrale de Lebesgue -> CI 5** -->
 
-### Remarque {.remark} 
+### Interprétation {.remark} 
 $\Esp(X)$ est un nombre réel qui donne une valeur moyenne résumant la variable aléatoire $X$.
 
 L’espérance mathématique d’une variable aléatoire est un concept fondamental de la théorie des probabilités. La dénomination d’espérance pour cette quantité fait référence aux problèmes de jeux et d’espérance de gain. Cette terminologie imagée a été introduite par Pascal.
 
 On note $\L^1$ l'ensemble de toutes les variables réelles $X$ à densité intégrables. Les propriétés suivantes découlent directement des propriétés de l'intégrale.
 
-### Proposition {.proposition #propl1}
+### Propriétés de base {.proposition #propl1}
  * $\L^1$ est un espace vectoriel et $\forall X,Y \in \L^1$, $\forall a,b \in \R$ 
         $$\Esp(aX + bY) = a\Esp(X) + b\Esp(Y).$$
  * $X \in \L^1 \Leftrightarrow |X| \in \L^1$, et dans ce cas $$|\Esp(X)| \leq \Esp(|X|).$$
@@ -155,12 +55,12 @@ Dans le cas d'une variable aléatoire discrète $Y$ à valeurs dans $\N^\ast$, s
 
 Outre l'espace $\L^1$, nous pouvons définir l'espace $\L^2$ des variables aléatoires réelles dont le carré $X^2$ est dans $\L^1$.
 
-### Définition {.definition #defvar}
+### Variance {.definition #defvar}
 La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite *de carré intégrable* si $\Esp(X^2) = \int_\R x^2 f(x)dx$ est définie, autrement dit si le produit $x^2 f(x)$ est intégrable. Sa *variance* est définie par
         $$\V(X) = \Esp((X-\Esp(X))^2)$$
 
 
-### Proposition {.proposition #propl2}
+### Propriétés {.proposition #propl2}
 $\L^2$ est un sous-espace vectoriel de $\L^1$, et si $X \in \L^2$,
 $$|\Esp(X)| \leq \Esp(|X|) \leq \sqrt{\Esp(X^2)}$$
 
@@ -174,20 +74,20 @@ La première inégalité a déjà été vue [ci-dessus](#propl1). Pour la second
         $$ \Esp(Y^2) = \Esp(X^2) - 2a \Esp(X) + a^2 = \Esp(X^2)-a^2.$$
 Et $\Esp(Y^2) \geq 0$ par le troisième point de la [proposition ci-dessus](#propl1). Par conséquent, $\Esp(X)^2 = a \leq \Esp(X^2)$ ce qui est le résultat recherché.
 
-### Remarque {.remark}
+### La variance est positive {.remark}
 En vertu de cette [proposition](#propl2), $\V(X)$ est **positive** et sa racine carrée $\sigma_X$ s'appelle l'*écart-type* de $X$. L’écart-type est une grandeur qui mesure la moyenne (en un certain sens) de l’écart des valeurs de $X$ à sa moyenne, d’où son nom.
 
 On a également 
         $$\V(X) = \Esp(X^2)-\Esp(X)^2$$
 que l'on obtient en développant $(X-\Esp(X))^2$. Cette manipulation anodine est fort utile dans la pratique. On retiendra que "La variance est égale à la moyenne des carrés moins le carré de la moyenne". On désigne le terme $\Esp(X^2)$ par l'expression *moment d'ordre deux* tandis que la variance est parfois appelée *moment centré d'ordre deux*.
 
-### Remarque {.remark}
+### Variable centrée réduite {.remark}
 D'après ce qui précède, si $X$ est une variable aléatoire de carré intégrable, d'espérance $\Esp(X)$ et d'écart-type $\sigma_X >0$, alors la variable aléatoire $$\frac{X-\Esp(X)}{\sigma_X}$$
 est d'espérance nulle et de variance 1. On dira qu'une telle variable aléatoire est *centrée et réduite*.
 
 On peut remarquer que si $X$ et $Y$ sont dans $\L^2$, la variable aléatoire $XY$ est dans $\L^1$, puisque $|XY| \leq \frac{1}{2}(X^2+Y^2)$. On peut ainsi définir la *covariance* de deux variables aléatoires :
 
-### Définition {.definition #defcov}
+### Covariance {.definition #defcov}
 Si $X$ et $Y$ sont dans $\L^2$, la variable aléatoire $(X-\Esp(X))(Y-\Esp(Y))$ est intégrable. On appelle la *covariance* de $X$ et $Y$ l'espérance de cette variable aléatoire et on la note :
         $$\cov (X,Y) = \Esp((X-\Esp(X))(Y-\Esp(Y))).$$
 Le *coefficient de corrélation* des variables aléatoires $X$ et $Y$ est le nombre 
@@ -222,13 +122,13 @@ doit donc être négatif ou nul ce qui donne le résultat.
 
 Le discriminant est nul si et seulement si le trinôme admet une racine double $x_0$ et dans ce cas, $Y(\omega) = -x_0 X(\omega)$ pour presque tout $\omega$.
 
-### Remarque {.remark}
+### Coefficient de corrélation {.remark}
 On déduit de l'inégalité de [Cauchy-Schwarz](#CS) que le coefficient de corrélation de $X$ et $Y$ vérifie
 $$-1\leq \rho(X,Y) \leq 1.$$
 
-Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction mesurable d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition vue plus haut](#composition).
+Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction mesurable d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition vue dans le cours précédent](Probabilité I.pdf #composition).
 
-### Proposition {.proposition #esperanceg}
+### Espérance de $g(X)$ {.proposition #esperanceg}
 Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction mesurable de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si l'intégrale
 $$\int_\R |g(x)|f(x) dx,$$
 est définie et dans ce cas
@@ -243,8 +143,8 @@ $$
 Posons $X_n = t_i$ si $X \in I_i$, pour $i \in \{0,\ldots,n-1\}$. Ainsi, pour tout $\omega$, $X_n(\omega) \xrightarrow[n \to \infty]{} X(\omega)$ et par continuité de $g$, on a $g(X_n) \xrightarrow[n \to \infty]{} g(X)$. Comme $X_n$ est une variable aléatoire discrète, on a
 $$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-1}g(t_i)f(t_i).$$
 
-### Remarque {.remark}
-L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \E_\R$ :
+### Cas particulier {.remark}
+L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \B(\R)$ :
 $$\Esp(1_A(X)) = \int_A f(x)dx = \P(X\in A)$$
 
 ## Exemples
@@ -295,7 +195,7 @@ Pour le voir, on fait d'abord le calcul dans le cas centré réduit ($\mu = 0$ e
 $$ I^2 = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x) f(y) dxdy = \int_{0}^{2\pi} d\theta\int_{0}^{+\infty}\frac{1}{2\pi} \rho e^{-\rho^2/2}d\rho $$
 (en passant en coordonnées polaires dans l'intégrale double). Le calcul est ensuite aisé et on obtient $I = 1$.
 
-### Remarque {.remark}
+### Estimation statistique {.remark}
 Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétrées par des nombres réels qui sont liés directement aux valeurs de l’espérance et de la variance de la variable. C’est très utile en statistique où l'on cherchera à estimer la valeur de ces paramètres à partir des observations disponibles. Dans le cas de la loi normale, la moyenne et la variance (empiriques) des échantillons fourniront ainsi directement des estimateurs des paramètres.
 
 Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l’exemple suivant.
@@ -328,7 +228,7 @@ De même qu'en dimension 1, la loi de $X$ est caractérisée par la fonction de 
 $$F(x_1,\ldots,x_n) = \P_X(X_1\leq x_1,\ldots,X_n\leq x_n)$$
 Mais caractériser les fonctions de répartition sur $\R^n$ est délicat, de sorte que cette notion est rarement utilisée. Nous allons plus particulièrement nous intéresser aux vecteurs aléatoires à densité.
 
-### Définition {.definition #defvect}
+### Vecteur aléatoire à densité {.definition #defvect}
 On dit que $X$ admet la densité $f$ si la fonction réelle $f$ sur $\R^n$ est positive, intégrable et vérifie 
 $$\int_{\R^n} f(x) dx = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} f(x_1,\ldots,x_n) dx_1 \ldots dx_n= 1$$
 et si
@@ -336,7 +236,7 @@ $$\P_X(X_1\leq x_1,\ldots,X_n\leq x_n) = \int_{-\infty}^{x_1} \ldots \int_{-\inf
 
 De la même manière que dans le [cas unidimensionnel](#esperanceg), on a :
 
-### Proposition {.proposition #esperancegvect}
+### Fonction d'un vecteur aléatoire {.proposition #esperancegvect}
 Soit $X$ un vecteur aléatoire de densité $f$, et soit $g$ une fonction de $\R^n$ dans $\R$, mesurable. On a alors $g(X)\in \L^1$ si et seulement si 
 $$\int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} |g(x_1,\ldots,x_n)|f(x_1,\ldots,x_n) dx_1 \ldots dx_n,$$
 est définie et dans ce cas, on a 
@@ -344,7 +244,7 @@ $$\Esp(g(X)) = \int_{-\infty}^{+\infty} \ldots \int_{-\infty}^{+\infty} g(x_1,\l
 
 Pour revenir à la densité d'une composante d'un vecteur aléatoire, on intègre par rapport aux autres variables. On le présente ici dans le cas d'un couple $Z=(X,Y)$ de variables aléatoires. On généralise aisément à une dimension supérieure.
 
-### Proposition {.proposition #loimarg}
+### Densités marginales {.proposition #loimarg}
 Supposons que $Z$ admette une densité $f$. Alors $X$ et $Y$ admettent les densités $f_X$ et $f_Y$ données par
 $$f_X(x) = \int_\R f(x,y) dy,\,\,\, f_Y(y) = \int_\R f(x,y) dx.$$
 
@@ -376,7 +276,7 @@ La loi de $Y$ a la même densité.
 
 ## Moments d'un vecteur aléatoire
 
-### Définition {.definition}
+### Vecteur espérance et covariance  {.definition}
 Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont intégrables, on peut définir le *vecteur espérance* 
         $$\Esp(X) = (\Esp(X_1),\ldots,\Esp(X_n))$$
 Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont de carré intégrable, la *matrice de covariance* de $X$ est la matrice $C_X = (c_{i,j})_{1 \leq i \leq n , 1 \leq j \leq n}$ de taille $n \times n$ et dont les éléments valent
@@ -401,7 +301,7 @@ On a alors $\Esp(X) = m$ et $C_X =C$.
 Dans ce paragraphe, on considère un couple $(X,Y)$ de vecteurs aléatoires respectivement à valeurs dans $\R^m$ et $\R^n$. Les résultats s'étendent sans peine à une famille finie quelconque. 
 
 
-On peut se ramener aux évènements pour caractériser l'indépendance de deux vecteurs aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles dans $\E_{\R^m}$ et $\E_{\R^n}$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quelques soient $A$ et $B$.
+On peut se ramener aux évènements pour caractériser l'indépendance de deux vecteurs aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles dans $\B_{\R^m}$ et $\B_{\R^n}$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quelques soient $A$ et $B$.
 
 ### Définition {.definition #defvai}
 Les vecteurs aléatoires $X$ et $Y$ sont *indépendants* si pour tous ensembles $A$ et $B$ des tribus correspondantes, 
@@ -419,7 +319,7 @@ S'il y a indépendance, la [définition](#defvai) implique
 $$P(X\leq x, Y\leq y) = P(X\leq x) \P(Y\leq y) = \int_{-\infty}^x f_X(u) du \int_{-\infty}^y f_Y(v) dv$$
 ce qui montre que $\P_Z$ vérifie la [définition d'un vecteur aléatoire à densité](#defvect) avec $f_Z=f_X f_Y$.
 
-Inversement, si $f_Z=f_X f_Y$, on a pour tous $A$, $B$ de $\E_{\R}$
+Inversement, si $f_Z=f_X f_Y$, on a pour tous $A$, $B$ de $\B_{\R}$
 $$\P(X\in A, Y\in B) = \int_A \int_B f_X(x) f_Y(y) dxdy = \P(X \in A)\P(Y \in B)$$ 
 où on a utilisé le théorème de Fubini.
 
