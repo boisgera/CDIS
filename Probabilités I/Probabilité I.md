@@ -10,6 +10,12 @@
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\B}{\mathcal{B}}
 
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
 
 # Introduction 
 
@@ -417,7 +423,7 @@ Il est usuel de noter l'ensemble $X^{-1}(B) = \{\omega \in \Omega, X(\omega) \in
 
 Comme $\P(A)$ n'est définie que pour les $A$ de la tribu $\A$, la formule ci-dessus ne permet de définir $\P_X(B)$ que pour les ensembles $B$ tels que $X^{-1}(B) \in \A$, d’où l’importance de la proposition suivante :
 
-### Loi de variable aléatoire {.proposition #propva.tribu}
+### Loi d'une variable aléatoire {.proposition #propva.tribu}
 
  a) La famille $\E$ des parties $B$ de $E$ telles que $X^{-1}(B) \in \A$ est une tribu de $E$.
  b) L'application $\P_X$ définie pour $B \in \E$ par 
@@ -436,12 +442,42 @@ Les 3 propriétés de la [définition d'une tribu](#deftribu) pour $\E$ ainsi qu
 $\P_X$ sera plus facile à caractériser que $\P$ puisque $E$ est un ensemble connu (on pourra en particulier utiliser ses propriétés topologiques) alors que $\Omega$ est un espace abstrait. Les variables que nous rencontrerons dans ce cours seront soit à valeurs dans un ensemble dénombrable, soit à valeurs dans $\R$ ou dans $\R^d$. Nous les appellerons respectivement des variables aléatoires discrètes, réelles ou des vecteurs aléatoires. Leurs lois seront alors des probabilités respectivement sur un ensemble dénombrable, sur $\R$ ou sur $\R^d$. Le cas discret est considéré connu. 
 
 ## Variables aléatoires réelles
-La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Dans le cas où $E = \R$, on notera $\B(\R)$ la tribu associée. 
 
+La [proposition ci-dessus](#propva.tribu) implique que l'ensemble $X^{-1}(B)$ soit un évènement, pour tout $B$ dans $\E$. Dans le cas où $E = \R$, on  a déjà vu que la collection des ensembles mesurables forment une tribu. Cependant, en probabilité, on travaille généralement avec la *tribu des boréliens*, que l'on notera $\B(\R)$, qui est très utile comme on le verra pour identifier les lois de probabilité. Avant de l'introduire, on a toutefois besoin de la notion de tribu engendrée.
 
+### Tribu engendrée {.definition #tribu-engendrée}
+Si $C \subset \mathcal{P}(\Omega)$, on appelle tribu engendrée par $C$ la plus petite tribu contenant $C$. Elle existe toujours, car d’une part $\mathcal{P}(\Omega)$ est une tribu contenant $C$, et d’autre part l’intersection d’une famille quelconque de tribus est une tribu. Ainsi, la tribu
+engendrée par $C$ est l’intersection de toutes les tribus contenant $C$.
 
-Cela nous conduit à poser :
+### Tribus engendrées {.example}
 
+- La tribu engendrée par un ensemble $A \subset \Omega$ est ${\varnothing, A, A^c , \Omega}$.
+- si $(A_i )_{i \in I}$ est une partition finie ou dénombrable de $\Omega$ (i.e. les $A_i$ sont deux-à-deux disjoints et leur réunion est $\Omega$), la tribu engendrée par $\{A_i , i \in I\}$ est l’ensemble des réunions $B_J = \cup_{i \in J} A_i$, où $J$ décrit la classe de toutes les parties
+de I.
+
+### Tribu borélienne sur $\R$ {definition #bor}
+Si $\Omega = \R$, on appelle tribu borélienne, que l'on note $\B(\R)$, la tribu engendrée par la classe des ouverts de $\R$.
+
+À titre d’exercice de maniement des tribus, on donne en détail la démonstration du résultat suivant :
+
+### Définition alternative {.proposition #altbor} 
+La tribu borélienne de $\R$ est la tribu engendrée par les intervalles de la forme $] - \infty, a]$ pour $a \in \Q$.
+
+### Démonstration {.proof}
+On rappelle que toute tribu est stable par passage au complémentaire, par réunion ou intersection dénombrable.
+
+Soit $C_1$ la classe des intervalles ouverts de $\R$, $C_2$ la classe des intervalles  $] - \infty, a]$ pour $a \in \Q$ et $\B(\R)$ la tribu borélienne.
+
+Tout ouvert $A$ est réunion dénombrable d'intervalles ouverts, en effet, on a $A = \cup_{(q,n)\in B} ]q -\frac{1}{n}, q -\frac{1}{n}[$, où $B$ est l'ensemble (dénombrable) des couples $(q,n)$ avec $q \in \Q$, $n \in \N^ast$ et $]q -\frac{1}{n}, q -\frac{1}{n}[ \in A$. La tribu engendrée par les intervalles ouverts est donc identique à la tribu borélienne par la stabilité par réunion dénombrable et le fait que $C_1 \subset \B(\R)$.
+
+Réciproquement, soit $]x, y[$ un intervalle ouvert de $\R$. Soit $(x_n)_n$ une suite de rationnels décroissant vers $x$ et $(y_n)_n$
+une suite de rationnels croissant strictement vers y. On a :
+$$ ]x, y[= \bigcup_n (] - \infty, y_n ]\bigcap ] - \infty, x_n ]^c ).$$
+Donc $C_1$ et par conséquent $\B(\R)$ sont inclus dans la tribu engendrée par $C_2$. Finalement, comme tout fermé est dans $\B(\R)$ par complémentarité, on a aussi $C_2 \subset \B(\R)$, d’où le résultat.
+
+### {.post}
+
+On peut maintenant définir une variable aléatoire réelle :
 
 ### Variable aléatoire réelle {.definition #defvar}
 Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \B_{\R}$.
@@ -449,9 +485,7 @@ Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une appli
 ### Loi d'une variable aléatoire réelle {.definition #defloivar}
 La probabilité $\P_X$, définie sur $(\R,\B_{\R})$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \B_{\R}$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
 
-[^NB]: Nous n'avons pas les outils permettant de caractériser cette tribu pour le moment. On verra par la suite que, dans le cas des variables aléatoires réelles à densité, elle est très similaire à la tribu des ensembles mesurables de $\R$, à une collection d'ensembles négligeables près.
-
-On a alors le résultat très utile suivant :
+On peut voir $\P_X$ comme une transposition de $\P$ sur $\R$. On a alors le résultat très utile suivant :
 
 ### Composition {.proposition #composition}
 Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction mesurable de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
@@ -490,10 +524,13 @@ La *fonction de répartition* de $X$ est la fonction
 F_X(x) = \P_X(\left]-\infty, x\right]) = \P(X \leq x),\ x \in \R.
 \end{equation*}
 
-### Caractérisation de la probabilité {.theorem #carac}
+### La fonction de répartition caractérise la probabilité {.theorem #carac}
 La fonction de répartition $F$ caractérise la probabilité $\P$ sur ($\R,\B(\R)$).
 
 ### Démonstration {.proof}
+
+
+
 voir @Jacod.
 
 ### Caractérisation de la fonction de répartition {.theorem #theofdr}
