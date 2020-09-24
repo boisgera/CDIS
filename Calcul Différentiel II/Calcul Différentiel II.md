@@ -2036,7 +2036,7 @@ $$
 où $F$ est définie sur l'ouvert $\left]a, b\right[ \times \R  \subset \R\times\R$.
 La dérivées partielles de $F$ existent et vérifient
 $$
-\partial_x F(x, s) = \|f'(x)\| \neq 0 \; \mbox{ et } \;  \partial_s F(s, x) = 1.
+\partial_x F(x, s) = \|f'(x)\| \neq 0 \; \mbox{ et } \;  \partial_s F(s, x) = -1.
 $$
 Les dérivées partielles étant continues, $F$ est continûment différentiable.
 De plus, la différentielle partielle de $F$ par rapport à $x$ est inversible.
@@ -2069,7 +2069,7 @@ est donc applicable : localement, l'appartenance d'un point $P$ à $C$ peut
 On remarque qu'on ne peut pas utiliser directement le théorème des fonctions
 implicite sur l'équation définissant les déterminations de l'angle, car 
 l'équation est à valeurs dans $\R^2$ mais nous souhaitons la résoudre par
-rapport à une variable scalaire. Mais cette équation est redondante car les
+rapport à une variable scalaire. Mais cette équation est redondante car
 ses deux membres sont de norme 1 ; si $u_0$ et $\theta_0$ en sont solutions,
 localement $u$ et $\theta$ en seront solutions si et seulement si 
 $u$ et $(\cos \theta, \sin \theta)$ sont colinéaires, c'est-à-dire si et
@@ -2097,7 +2097,7 @@ d \Theta(u) = -(\partial_{\theta} f(u, \Theta(u)))^{-1} \cdot (\partial_u f(u,\T
 $$
 donc
 $$
-\nabla \psi(u_0) = -\frac{\nabla_u f(u_0,\theta_0)}{\partial_{\theta} f(u_0,\theta_0)}
+\nabla \Theta(u_0) = -\frac{\nabla_u f(u_0,\theta_0)}{\partial_{\theta} f(u_0,\theta_0)}
 =\frac{1}{\|u_0\|} \left[ \begin{array}{r} -\sin \theta_0 \\ \cos \theta_0\end{array}\right].
 $$
 
