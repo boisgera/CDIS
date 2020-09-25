@@ -392,7 +392,7 @@ $$
 \begin{split}
 \|x_2 - x_1\| & = \|\phi_{\lambda_2}(x_2) - \phi_{\lambda_1}(x_1)\| \\
 & \leq \|\phi_{\lambda_2}(x_2) - \phi_{\lambda_2}(x_1)\| +
-\|\phi_{\lambda_1}(y_1) - \phi_{\lambda_2}(y_1)\|.
+\|\phi_{\lambda_1}(x_1) - \phi_{\lambda_2}(x_1)\|.
 \end{split}
 $$
 La fonction $\phi_{\lambda_2}$ étant $\kappa$-contractante,
@@ -423,8 +423,8 @@ En notant $Q = \partial_x f(x_1, \lambda_1)$
 et $P = \partial_{\lambda} f(x_1, \lambda_1)$, on obtient 
 $$
 \begin{split}
-\psi(\lambda)  &= \psi(\lambda_1) - Q^{-1} \cdot P \cdot (x - x_1) \\
-&\phantom{=} - Q^{-1} \cdot P \cdot \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1) ( \|\psi(x)-\psi(x_1)\|+\|\lambda-\lambda_1\| ).
+\psi(\lambda)  &= \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - lambda_1) \\
+&\phantom{=} - Q^{-1} \cdot \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1) ( \|\psi(x)-\psi(x_1)\|+\|\lambda-\lambda_1\| ).
 \end{split}
 $$
 Nous allons exploiter une première fois cette égalité. 
@@ -438,7 +438,7 @@ dans un voisinage suffisamment proche de $\lambda_1$, on peut donc
 garantir que ce terme est arbitrairement petit, par
 exemple, tel que
 $$
-\|Q^{-1} \cdot P\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1) \| \leq \frac{1}{2},
+\|Q^{-1}\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1) \| \leq \frac{1}{2},
 $$
 ce qui permet d'obtenir
 $$
@@ -458,9 +458,9 @@ $$
 \|\psi(\lambda) - \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - \lambda_1)\|
 \leq \|\varepsilon'_{\lambda}(\lambda-\lambda_1)\| \times \|\lambda - \lambda_1\|.
 $$
-où la fonction $\varepsilon'_x$ est la fonction tendant vers $0$ et $0 définie par
+où la fonction $\varepsilon'_\lambda$ est la fonction tendant vers $0$ et définie par
 $$
-\varepsilon'_{\lambda}(\lambda-\lambda_1) := (1+\alpha)  \times \|Q^{-1} \cdot P\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1)\|,
+\varepsilon'_{\lambda}(\lambda-\lambda_1) := (1+\alpha)  \times \|Q^{-1}\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1)\|,
 $$
 ce qui prouve la différentiabilité de $\psi$ en $\lambda_1$ et conclut la démonstration.
 
