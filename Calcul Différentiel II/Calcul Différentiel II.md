@@ -392,7 +392,7 @@ $$
 \begin{split}
 \|x_2 - x_1\| & = \|\phi_{\lambda_2}(x_2) - \phi_{\lambda_1}(x_1)\| \\
 & \leq \|\phi_{\lambda_2}(x_2) - \phi_{\lambda_2}(x_1)\| +
-\|\phi_{\lambda_1}(y_1) - \phi_{\lambda_2}(y_1)\|.
+\|\phi_{\lambda_1}(x_1) - \phi_{\lambda_2}(x_1)\|.
 \end{split}
 $$
 La fonction $\phi_{\lambda_2}$ étant $\kappa$-contractante,
@@ -423,8 +423,8 @@ En notant $Q = \partial_x f(x_1, \lambda_1)$
 et $P = \partial_{\lambda} f(x_1, \lambda_1)$, on obtient 
 $$
 \begin{split}
-\psi(\lambda)  &= \psi(\lambda_1) - Q^{-1} \cdot P \cdot (x - x_1) \\
-&\phantom{=} - Q^{-1} \cdot P \cdot \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1) ( \|\psi(x)-\psi(x_1)\|+\|\lambda-\lambda_1\| ).
+\psi(\lambda)  &= \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - \lambda_1) \\
+&\phantom{=} - Q^{-1} \cdot \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1) ( \|\psi(x)-\psi(x_1)\|+\|\lambda-\lambda_1\| ).
 \end{split}
 $$
 Nous allons exploiter une première fois cette égalité. 
@@ -438,7 +438,7 @@ dans un voisinage suffisamment proche de $\lambda_1$, on peut donc
 garantir que ce terme est arbitrairement petit, par
 exemple, tel que
 $$
-\|Q^{-1} \cdot P\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1) \| \leq \frac{1}{2},
+\|Q^{-1}\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1) \| \leq \frac{1}{2},
 $$
 ce qui permet d'obtenir
 $$
@@ -458,9 +458,9 @@ $$
 \|\psi(\lambda) - \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - \lambda_1)\|
 \leq \|\varepsilon'_{\lambda}(\lambda-\lambda_1)\| \times \|\lambda - \lambda_1\|.
 $$
-où la fonction $\varepsilon'_x$ est la fonction tendant vers $0$ et $0 définie par
+où la fonction $\varepsilon'_\lambda$ est la fonction tendant vers $0$ et définie par
 $$
-\varepsilon'_{\lambda}(\lambda-\lambda_1) := (1+\alpha)  \times \|Q^{-1} \cdot P\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1)\|,
+\varepsilon'_{\lambda}(\lambda-\lambda_1) := (1+\alpha)  \times \|Q^{-1}\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1)\|,
 $$
 ce qui prouve la différentiabilité de $\psi$ en $\lambda_1$ et conclut la démonstration.
 
@@ -521,7 +521,7 @@ de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par
 construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$ ;
 nous avons donc affaire à un $C^1$-difféomorphisme de $V$ sur $W$.
 
-### Coordonnées polaires {.exercise .one #cp}
+### Coordonnées polaires {.exercise .one #cp .question}
 Montrer que l'application 
 $$
 f: (r, \theta) \in \left]0,+\infty\right[ \times \R 
@@ -2036,7 +2036,7 @@ $$
 où $F$ est définie sur l'ouvert $\left]a, b\right[ \times \R  \subset \R\times\R$.
 La dérivées partielles de $F$ existent et vérifient
 $$
-\partial_x F(x, s) = \|f'(x)\| \neq 0 \; \mbox{ et } \;  \partial_s F(s, x) = 1.
+\partial_x F(x, s) = \|f'(x)\| \neq 0 \; \mbox{ et } \;  \partial_s F(s, x) = -1.
 $$
 Les dérivées partielles étant continues, $F$ est continûment différentiable.
 De plus, la différentielle partielle de $F$ par rapport à $x$ est inversible.
@@ -2069,7 +2069,7 @@ est donc applicable : localement, l'appartenance d'un point $P$ à $C$ peut
 On remarque qu'on ne peut pas utiliser directement le théorème des fonctions
 implicite sur l'équation définissant les déterminations de l'angle, car 
 l'équation est à valeurs dans $\R^2$ mais nous souhaitons la résoudre par
-rapport à une variable scalaire. Mais cette équation est redondante car les
+rapport à une variable scalaire. Mais cette équation est redondante car
 ses deux membres sont de norme 1 ; si $u_0$ et $\theta_0$ en sont solutions,
 localement $u$ et $\theta$ en seront solutions si et seulement si 
 $u$ et $(\cos \theta, \sin \theta)$ sont colinéaires, c'est-à-dire si et
@@ -2097,7 +2097,7 @@ d \Theta(u) = -(\partial_{\theta} f(u, \Theta(u)))^{-1} \cdot (\partial_u f(u,\T
 $$
 donc
 $$
-\nabla \psi(u_0) = -\frac{\nabla_u f(u_0,\theta_0)}{\partial_{\theta} f(u_0,\theta_0)}
+\nabla \Theta(u_0) = -\frac{\nabla_u f(u_0,\theta_0)}{\partial_{\theta} f(u_0,\theta_0)}
 =\frac{1}{\|u_0\|} \left[ \begin{array}{r} -\sin \theta_0 \\ \cos \theta_0\end{array}\right].
 $$
 
