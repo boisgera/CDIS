@@ -423,7 +423,7 @@ En notant $Q = \partial_x f(x_1, \lambda_1)$
 et $P = \partial_{\lambda} f(x_1, \lambda_1)$, on obtient 
 $$
 \begin{split}
-\psi(\lambda)  &= \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - lambda_1) \\
+\psi(\lambda)  &= \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - \lambda_1) \\
 &\phantom{=} - Q^{-1} \cdot \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1) ( \|\psi(x)-\psi(x_1)\|+\|\lambda-\lambda_1\| ).
 \end{split}
 $$
@@ -521,7 +521,7 @@ de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par
 construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$ ;
 nous avons donc affaire à un $C^1$-difféomorphisme de $V$ sur $W$.
 
-### Coordonnées polaires {.exercise .one #cp}
+### Coordonnées polaires {.exercise .one #cp .question}
 Montrer que l'application 
 $$
 f: (r, \theta) \in \left]0,+\infty\right[ \times \R 
