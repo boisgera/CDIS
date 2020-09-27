@@ -360,7 +360,7 @@ Est-ce que la propriété "$x$ est non-nul" est vraie presque partout dans
 $\R$ ?
 
 
-### Fonction continue nulle presque partout {.exercise .three #fcnpp}
+### Fonction continue nulle presque partout {.exercise .three #fcnpp .question}
 Montrer que toute fonction continue $f : \R\to\R$ qui est nulle presque 
 partout est identiquement nulle.
 
@@ -578,7 +578,7 @@ L'intégrale de Henstock-Kurzweil présente le "défaut" d'être *conditionnelle
 il est possible qu'une fonction $f:[a, b] \to \R$ soit intégrable sans que
 sa valeur absolue $|f|$ le soit (cf. exemple dans l'annexe du chapitre 
 "Calcul Intégral II").
-Par construction, l'intégrale de Lebesgue n'as pas cet inconvénient ; 
+Par construction, l'intégrale de Lebesgue n'a pas cet inconvénient ; 
 elle est dite *absolue* :
 
 ### L'intégrale de Lebesgue est absolue {.exercise .question .zero #lebesgue-absolue}
@@ -955,7 +955,7 @@ qui permet de prouver l'intégrabilité de l'intégrale sur un intervalle
 à partir de son intégrabilité sur des intervalles qui la compose --
 admet une réciproque :
 
-### Ordre des bornes et additivité {.exercise .one #exo-odb}
+### Ordre des bornes et additivité {.exercise .one #exo-odb .question}
 Adapter l'énoncé [du théorème d'additivité](#additivité) pour traiter les
 cas où l'on n'a pas nécessairement $a \leq b \leq c$. (On pourra par exemple
 se limiter aux cas $c \leq b \leq a$ et $a \leq c \leq b$.)
@@ -1059,7 +1059,7 @@ ce qui établit l'inégalité triangulaire.
 Montrer que si la fonction $f:[a, b] \to \R$ est intégrable et que 
 $|f| \leq M$, alors
 $$
-\left|\int_a^b f(t \, dt) \right| \leq M (b-a)
+\left|\int_a^b f(t) \, dt \right| \leq M (b-a)
 $$
 
 
@@ -2550,7 +2550,7 @@ ou encore
 $$
 \int_a^c f(t) \, dt = \int_a^b f(t) \, dt -  \int_c^b f(t) \, dt,
 $$
-soit avec la [la convention des bornes inversées](#ordre-bornes),
+soit avec [la convention des bornes inversées](#ordre-bornes),
 $$
 \int_a^c f(t) \, dt = \int_a^b f(t) \, dt +  \int_b^c f(t) \, dt,
 $$
