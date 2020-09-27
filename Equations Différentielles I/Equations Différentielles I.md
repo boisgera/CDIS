@@ -226,16 +226,11 @@ si $y$ est de classe $C^p$ sur $I$ et pour tout $t\in \mathring{\overline{I}}$,
 
 ### Solution d'une équation différentielle  {.definition}
 
-Soient $n\in \N^*$, $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$ et $f:J\times X \to \R^n$ une application continue. Une fonction $x:I\to \R^n$ définie sur un intervalle de temps $I\subset \R$ non réduit[^intI] à un point, est dite *solution[^solsurI]* de *l'équation différentielle* 
+Soient $n\in \N^*$, $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$ et $f:J\times X \to \R^n$ une application continue. Une fonction $x:I\to \R^n$ définie sur un intervalle de temps $I\subset J$ non réduit[^intI] à un point, est dite *solution[^solsurI]* de *l'équation différentielle* 
 $$
 \dot{x} = f(t,x)
 $$
-si $x$ est de classe $C^1$ sur $I$ et pour tout $t\in \mathring{\overline{I}}$,
-
-- $(t,x(t)) \in J\times X$
-
-- $\dot{x}(t) = f(t,x(t))$.
-
+si $x$ est continue sur $I$ avec $x(t)\in X$ pour tout $t\in I$, et de classe $C^1$ sur $\mathring{\overline{I}}$ avec $\dot{x}(t) = f(t,x(t))$ pour tout $t\in \mathring{\overline{I}}$.
 
 On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$. Dans ce cas, on peut aussi définir directement $f: X \to \R^n$. 
 
@@ -366,13 +361,13 @@ $$
 Voir en [annexe](#pr_theo_bouts). 
 -->
 
-### Domain d'existence des solutions maximales {.theorem #theo_bouts}
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ au problème de Cauchy associé est définie sur un intervalle ouvert $\left]\underline{t},\overline{t}\right[$ avec $\underline{t},\overline{t}\in \R\cup\{+\infty,-\infty\}$ tels que 
+### Domaine maximal d'existence {.theorem #theo_bouts}
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f\in C(J\times X,\R^n)$ et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ au problème de Cauchy associé est définie sur un intervalle ouvert $\left]\underline{t},\overline{t}\right[$ avec $\underline{t},\overline{t}\in \R\cup\{+\infty,-\infty\}$. De plus, si $\underline{t}\in \R$  alors
 $$
 \lim_{t\to \underline{t}} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
 \lim_{t\to \underline{t}} \|(t,x(t))\| = +\infty 
 $$
-et
+et si $\overline{t}\in \R$ alors
 $$
 \lim_{t\to \overline{t}} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
 \lim_{t\to \overline{t}} \|(t,x(t))\| = +\infty  \ .
@@ -824,7 +819,7 @@ En effet, sinon, il existerait une suite $(x_k)_{k\in \N}$ d'éléments de $\ove
 $$
 x\in B(a,\eta)  \ \Longrightarrow V(x)\leq \varepsilon_V \ .
 $$
-Alors si $x(0)\in B(a,\eta)$, $V(x(t))\leq V(x(0))\leq \varepsilon_V$ donc $x(t)\in B(a,\varepsilon)\subset W$ pour tout $t$ tant qu'elle est définie. Par le [théorème des bouts](#theo_bouts), $x$ est définie sur $\Rgeq$. Ceci prouve la stabilité de $a$.
+Alors si $x(0)\in B(a,\eta)$, $V(x(t))\leq V(x(0))\leq \varepsilon_V$ donc $x(t)\in B(a,\varepsilon)\subset W$ pour tout $t$ tant qu'elle est définie. Par le [théorème du domaine maximal d'existence](#theo_bouts), $x$ est définie sur $\Rgeq$. Ceci prouve la stabilité de $a$.
 
 Supposons maintenant $\langle\nabla V (x), f(x)\rangle < 0$ pour tout $x\in W\setminus \{a\}$. Alors par le point précédent $a$ est stable. Il suffit de montrer l'attractivité locale. Par stabilité, si $x(0)\in B(a,\eta)$,  $x(t)\in B(a,\varepsilon)\subset W$ pour tout $t$ et $t\to V(x(t))$ est donc strictement décroissante. Comme elle est aussi bornée inférieurement par 0, elle converge vers $\ell \geq 0$. Supposons $\ell>0$. Alors, par continuité de $V$, il existe $0<\nu<\varepsilon$ et $\overline{t}>0$ tel que pour tout $t\geq \overline{t}$, $\|x(t)-a\| \geq \nu$. Soit 
 $$
@@ -836,7 +831,7 @@ V(x(t)) = V(x(\overline{t})) + \int_0^t \langle\nabla V (x(t)), f(x(t))\rangle \
 $$
 Mais comme $\gamma<0$ cette quantité devient strictement négative au bout d'un certain temps, ce qui est impossible. Donc $\lim_{t\to +\infty} V(x(t))=0$. Finalement, reproduisant le même raisonnement que pour l'existence de $\varepsilon_V$, on peut garantir que $\|x-a\|$ est arbitrairement petit en prenant $V(x)$ suffisamment petit. Donc on en déduit que $\lim_{t\to +\infty} \|x(t)-a\|=0$.
 
-Supposons enfin que $\lim_{\|x\|\to +\infty} V(x) = +\infty$ et $W=\R^n$. Alors $V(x(t))< V(x(0))$ pour tout $t\in I$ donc $x(t)\in V^{-1}(\left[ 0,V(x(0)) \right])$ pour tout $t$. Le fait que $\lim_{\|x\|\to +\infty} V(x) = +\infty$ est équivalent au fait que l'image réciproque de toute compact est compact (on dit que $V$ est propre). Donc $V^{-1}(\left[ 0,V(x(0)) \right])$ est compact  et par le théorème des bouts, nécessairement $x(t)$ est défini pour tout $t\geq 0$, et reste dans ce compact. Alors on peut reproduire le même raisonnement que plus haut et obtenir la convergence de $x$ vers $a$.
+Supposons enfin que $\lim_{\|x\|\to +\infty} V(x) = +\infty$ et $W=\R^n$. Alors $V(x(t))< V(x(0))$ pour tout $t\in I$ donc $x(t)\in V^{-1}(\left[ 0,V(x(0)) \right])$ pour tout $t$. Le fait que $\lim_{\|x\|\to +\infty} V(x) = +\infty$ est équivalent au fait que l'image réciproque de toute compact est compact (on dit que $V$ est propre). Donc $V^{-1}(\left[ 0,V(x(0)) \right])$ est compact  et par le [théorème du domaine maximal d'existence nécessairement](#theo_bouts) $x(t)$ est défini pour tout $t\geq 0$, et reste dans ce compact. Alors on peut reproduire le même raisonnement que plus haut et obtenir la convergence de $x$ vers $a$.
 
 
 ### Pendule par Lyapunov {.example #ex_pendule_lyap}
@@ -1151,7 +1146,7 @@ Sur tout segment $[t^-,t^+]\subset I$, on peut donc appliquer le Lemme de Grönw
 $$
 \|x(t)\| \leq \alpha(t) +  \int_{t_0}^{t} \alpha(s)\beta(s) \exp\left(\int_{s}^t\beta(r)dr \right)
 $$
-avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $J$. Donc $x$ ne peut pas exploser pour $t\in J$, donc d'après le [théoreme des bouts](#theo_bouts), vu que $f$ est définie sur $J\times\R^n$, nécessairement $I=J$.
+avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont continues sur $J$. Donc $x$ ne peut pas exploser pour $t\in J$, donc d'après le [théoreme du domaine maximal d'existence](#theo_bouts), vu que $f$ est définie sur $J\times\R^n$, nécessairement $I=J$.
 
 ### Question 3 {.answer #answer-gro-3}
 
@@ -1338,7 +1333,7 @@ qui a pour valeurs propres $1\pm i$. La partie réelle étant positive, le point
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
 &= -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
 \end{align*}
-Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées. Or, vu que $f$ est définie sur $\R^n$, on sait du Théorème des bouts que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq 0$ serait qu'elle explose en temps fini. C'est impossible ici.
+Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées. Or, vu que $f$ est définie sur $\R^n$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq 0$ serait qu'elle explose en temps fini. C'est impossible ici.
 
 ### Question 3 {.answer #answer-cycle-lim-3} 
 Supposons que $x_0:=x(0)$ vérifie $\|x_0\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps rétrograde $0$ vaut $x_0$. Mais il existe une autre solution 
@@ -1476,8 +1471,40 @@ $$
 $$
 donc la famille $S:=\{x_\epsilon , \ \epsilon \in ]0,1[ \}$ est équicontinue. De plus, vu que leur image est bornée dans $\overline{B}(x_0,r)$ de dimension finie, elle est bien bien relativement compacte. Le théorème d'Ascoli nous dit alors que $S$ est relativement compacte dans $E$. Il existe donc une sous suite $x_{\epsilon_k}$ telle que $\lim_{k\to +\infty} \epsilon_k =0$ et $\lim_{k\to +\infty} x_{\epsilon_k} = x^\star \in E$ au sense de la norme uniforme $\|\cdot \|$. Par uniforme continuité de $f$ sur le compact $\cC$, on en déduit alors que pour tout $s\in [t_0,t_0+\tau_m]$, $\lim_{k\to +\infty} f(s,x_{\epsilon_k}(s-\epsilon_k))= f(s,x^\star(s))$ et donc que $x^\star$ est bien solution de l'équation intégrale, ce qui donne le résultat.
 
+<!--
 ## Preuve du théorème des bouts {.app #pr_theo_bouts}
 Prouvons l'existence de $t_K^+$ (l'existence de $t_K^-$ se prouvant de la même façon). Pour cela, supposons le contraire c'est-à-dire qu'il existe un compact $K\subset J\times X$ tel que
+$$
+ \forall t_K \in \left[t_0,\overline{t}\right[ \, , \, \exists t\in \left[t_K,\overline{t}\right[ \: : \: x(t)\in K
+$$
+En d'autres termes, on suppose que la solution revient de manière persistente dans $K$. Alors il existe une suite $(t_p)_{p\in \N}$ telle que 
+$$
+\overline{t}-\frac{1}{p}\leq  t_p < \overline{t} \quad \text{et} \quad (t_p,x(t_p))\in K \quad \forall p\in \N
+$$
+On a donc $\lim_{p\to+\infty} t_p = \overline{t}$, et par compacité de $K$, on peut extraire de $(t_p,(x(t_p))_{p\in \N}$ une sous-suite qui converge vers $(\overline{t},\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{p\to+\infty} x(t_p) =\overline{x}$.
+
+Soient $\tau>0$, $r>0$ et $\tau_m\in \left(0,\tau \right]$ tels que 
+$$
+\cC:=\left[\overline{t}-2\tau,\overline{t}+2\tau \right]\times \overline{B}(\overline{x},2r)\subset J\times X \quad , \quad \tau_m  \max_{\cC} \|f\| \leq r\ .
+$$
+Soit $p\in \N$ tel que $|t_p-\overline{t}|< \tau_m$ et $\|x(t_p)-\overline{t}\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}(x(t_p),r)\subset J\times X$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\overline{t}$, et par unicité, $x\equiv y$ sur $[t_p,\overline{t})$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
+-->
+
+## Preuve du théorème du domaine maximal d'existence {.app #pr_theo_bouts}
+Soit $x: I \to \R^n$ une solution maximale dans $S_f(t_0,x_0)$. Par définition, $I$ est un intervalle contenant $t_0$. Soient $\overline{t}= \sup I$ et $\underline{t}= \inf I$. Supposons $\overline{t} \in I$ et dénotons $(t_1,x_1) = (\overline{t},x(\overline{t}))$. Toujours par définition, $(t_1,x_1)\in J\times X$, donc par le [théorème de Peano](#theo_peano) il existe $\tau>0$ et $x' : [\overline{t}-\tau,\overline{t}+\tau] \to \R^n$ dans $S_f(t_1,x_1)$. Considérons $\tilde{I} = I\cup [\overline{t},\overline{t}+\tau]$, et  $\tilde{x}: \tilde{I}  \to \R^n$ définie par
+$$
+\tilde{x}(t) = 
+\left\{
+\begin{array}{ll}
+x(t) & \text{si } t\in I \\
+x'(t) & \text{si } t>\overline{t}
+\end{array}
+\right.
+$$
+$\tilde{x}$ est bien continue et à valeurs dans $J\times X$ sur  $\tilde{I}$. De plus, elle est de classe $C^1$ sur $\mathring{\tilde{I}}\setminus \{ \overline{t}\}$ telle que $\dot{\tilde{x}}(t) = f(t,\tilde{x}(t))$ pour tout $t\in \mathring{\tilde{I}}\setminus \{ \overline{t}\}$. Par continuité de $\tilde{x}$ en $\overline{t}$ et de $f$ en $(t_1,x_1)$, on en déduit que $\tilde{x}$ est bien $C^1$ sur $\mathring{\tilde{I}}$. Donc $\tilde{x}\in S_f(t_0,x_0)$, ce qui contredit la maximalité de $x$ car $I \subsetneq \tilde{I}$. On conclut donc que $\overline{t}\notin I$ et de même $\underline{t}\notin I$. Donc $I$ est ouvert.
+
+Supposons $\overline{t}$ fini. Montrons qu'alors lorsque $t$ tend vers $\overline{t}$, soit $x(t)$ diverge, soit $(t,x(t))$ tend vers la frontière de $J\times X$. La propriété se montre de manière similaire en $\underline{t}$. Pour cela, nous allons montrer que lorsque $t$ se rapproche de $\overline{t}$, $(t,x(t))$ finit par sortir de tout sous-ensemble $K$ fermé et borné de $J\times X$.
+Supposons donc le contraire c'est-à-dire qu'il existe un compact $K\subset J\times X$ tel que
 $$
  \forall t_K \in \left[t_0,\overline{t}\right[ \, , \, \exists t\in \left[t_K,\overline{t}\right[ \: : \: x(t)\in K
 $$

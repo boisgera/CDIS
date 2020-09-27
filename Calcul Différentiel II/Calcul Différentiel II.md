@@ -2058,7 +2058,7 @@ couple $(w, z)$ et
 &= d f(x_1, x_2) \cdot (v_1, v_2) \\
 &= \left<\nabla f(x_1,x_2), \frac{\nabla f(x_{10}, x_{20})}{\|\nabla f(x_{10},x_{20})\|} \right>
 \end{align*}
-Cette dérivée partielle est égale à $\|\nabla f(x_{10},x_{20})\| > 0$ et $(x_{10}, x_{20})$.
+Cette dérivée partielle est égale à $\|\nabla f(x_{10},x_{20})\| > 0$ en $(x_{10}, x_{20})$.
 Le gradient étant continu, cette dérivée partielle est inversible
 dans un voisinage de $(x_{10}, x_{20})$ et [le théorème des fonctions implicites](#TFI) 
 est donc applicable : localement, l'appartenance d'un point $P$ à $C$ peut
