@@ -47,7 +47,7 @@ $C^1$-difféomorphisme de $\mathbb{R}^2$ sur son image $f(\mathbb{R}^2)$.
 
   - [ ] B: faux.
 
-#### Question 4
+#### Question 4 (réponses multiples)
 Le symbole $\varepsilon$ désigne l'epsilon machine des doubles.
 Le nombre d'or $x = (1 + \sqrt{5})/2 \approx 1.618$ peut être représenté par
 un double $\mathtt{x}$ avec une erreur $|\mathtt{x} - x|$:
