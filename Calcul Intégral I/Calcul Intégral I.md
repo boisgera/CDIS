@@ -2582,7 +2582,7 @@ $$
 \end{array}
 \right.
 $$
-Si la subdivisoin pointée $\mathcal{D}$ de $[a, b]$ est subordonnée à $\gamma$
+Si la subdivision pointée $\mathcal{D}$ de $[a, b]$ est subordonnée à $\gamma$
 et si $(t, I) \in \mathcal{D}$, on a donc soit $t = a_i \in A$
 auquel cas
 $$
