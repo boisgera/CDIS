@@ -182,7 +182,7 @@ Soit $f: \left]a, b\right[ \to \R^2$ une fonction
 continûment différentiable, dont la dérivée $f'$ ne s'annule pas. 
 Soit $c \in \left]a, b\right[$ ; montrer qu'il existe une unique
 fonction $x$ définie dans un voisinage ouvert de $0 \in \R$ et 
-à valeurs dans $\R$ telle que $x(c) = 0$ et
+à valeurs dans $\R$ telle que $x(0) = c$ et
 $$
 \int_c^{x(s)} \|f'(t)\| \, dt = s.
 $$

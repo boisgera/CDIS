@@ -2125,11 +2125,11 @@ I(a, b) :=
 \mbox{ et }
 J(a, b) := \int_{a}^{b} \sin s^2 \, ds
 $$
-vérifient pour un réel $\alpha > 0$ les inégalités
+vérifient les inégalités
 $$
-|I(a, b)| \leq \frac{\alpha}{\sqrt[4]{a}}
+|I(a, b)| \leq \frac{1}{a}
 \, \mbox{ et } \,
-|J(a, b)| \leq \frac{\alpha}{\sqrt[4]{a}}.
+|J(a, b)| \leq \frac{1}{a}.
 $$
 
 ### Question 3 {.question #se-3 .three}
@@ -3350,29 +3350,29 @@ Nous traitons le cas de $I(a, b)$, celui de $J(a, b)$ étant similaire.
 Pour tout $a$ et $b$ tels que $0 < a \leq b$,
 le changement de variable $\tau = s^2$ fournit :
 $$
-I(a, b) = \int_a^b \cos s^2 \, ds = \int_{\sqrt{a}}^{\sqrt{b}} \frac{\cos \tau}{2\sqrt{\tau}} \, d\tau.
+I(a, b) = \int_a^b \cos s^2 \, ds = \int_{a^2}^{b^2} \frac{\cos \tau}{2\sqrt{\tau}} \, d\tau.
 $$
 Par intégration par parties, on obtient alors
 $$
-I(a, b) = \frac{\sin \sqrt{b}}{2\sqrt[4]{b}} -  \frac{\sin \sqrt{a}}{2\sqrt[4]{a}} 
-+ \int_{\sqrt{a}}^{\sqrt{b}} \frac{\sin \tau}{4\tau^{3/2}} \, d\tau.
+I(a, b) = \frac{\sin b^2}{2b} -  \frac{\sin a^2}{2a} 
++ \int_{a^2}^{b^2} \frac{\sin \tau}{4\tau^{3/2}} \, d\tau.
 $$
-Comme $|\sin \tau| \leq 1$,
+Comme pour tout $\tau \geq 0$, $|\sin \tau| \leq 1$, on a 
 $$
-\left| \int_{\sqrt{a}}^{\sqrt{b}} \frac{\sin \tau}{4\tau^{3/2}} \, d\tau \right|
-\leq \int_{\sqrt{a}}^{\sqrt{b}} \frac{d \tau}{4\tau^{3/2}}
-= - \frac{1}{2\sqrt[4]{b}} + \frac{1}{2\sqrt[4]{a}}
+\left|\frac{\sin b^2}{2b} -  \frac{\sin a^2}{2a}\right|
+\leq \frac{1}{2b} + \frac{1}{2a}
 $$
-et
+et par l'inégalité triangulaire,
 $$
-\left| \frac{\sin \sqrt{b}}{2\sqrt[4]{b}} -  \frac{\sin \sqrt{a}}{2\sqrt[4]{a}} \right| \leq
-\frac{1}{2\sqrt[4]{b}} +  \frac{1}{2\sqrt[4]{a}}.
+\left| \int_{a^2}^{b^2} \frac{\sin \tau}{4\tau^{3/2}} \, d\tau \right|
+\leq \int_{a^2}^{b^2} \frac{d \tau}{4\tau^{3/2}}
+= - \frac{1}{2b} + \frac{1}{2a}.
 $$
-On en déduit
+On en déduit donc
 $$
 \left|I(a, b)\right| 
 \leq 
-\frac{1}{\sqrt[4]{a}}.
+\frac{1}{2b} + \frac{1}{2a} - \frac{1}{2b} + \frac{1}{2a} = \frac{1}{a}.
 $$
 
 ### Question 3 {.answer #answer-se-3}
@@ -3399,21 +3399,21 @@ $$
 y_n - y_p = \int_{t_p}^{t_n} \sin s^2 \, ds  = J(t_p, t_n).
 $$
 En exploitant le résultat de la question 2, on peut alors en déduire que
-$$
+\begin{align*}
 \|(x_n, y_n) - (x_p, y_p)\| 
-= 
-\sqrt{I(t_p, t_n)^2 + J(t_p, t_n)^2}
-\leq \frac{\sqrt{2}\alpha}{\sqrt[4]{\min(t_p, t_n)}}.
-$$
+&= 
+\sqrt{I(t_p, t_n)^2 + J(t_p, t_n)^2} \\
+&\leq \sqrt{\frac{1}{\min(t_p, t_n)^2} + \frac{1}{\min(t_p, t_n)^2}} \\
+&= \frac{\sqrt{2}}{\min(t_p, t_n)}.
+\end{align*}
 Pour un $\varepsilon > 0$ donné, il suffit de choisir un rang 
 $m \in \mathbb{N}$ tel que
 $$
-t_k \geq \left(\frac{\sqrt{2} \alpha}{\varepsilon}\right)^4, \, k\geq m
+t_k \geq \frac{\sqrt{2}}{\varepsilon}, \, \mbox{ quand $k\geq m$}
 $$
 pour avoir la garantie que si $p \geq m$ et $n \geq m$, alors
 $$
 \|(x_n, y_n) - (x_p, y_p)\| 
-\leq \frac{\sqrt{2}\alpha}{\sqrt[4]{\min(t_p, t_n)}} 
 \leq \varepsilon.
 $$
 La suite des $(x_k, y_k)$ est donc de Cauchy.
