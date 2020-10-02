@@ -1279,7 +1279,7 @@ $$
 ### Démonstration {.proof}
 Voir [@Swa01, pp. 135-136].
 
-### Dérivabilité presque partout {.exercise .one #dpp}
+### Dérivabilité presque partout {.exercise .one #dpp .question}
 Construire une fonction $f:[0, 1] \to \R$ qui soit intégrable et telle que 
 $$
 x \in [0, 1] \mapsto \int_0^x f(t) \, dt
@@ -2628,7 +2628,7 @@ $$
 La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
 Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
 a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
-cette fonction est continue, comme composée et produit de fonction continues, 
+cette fonction est continue, comme composée et produit de fonctions continues, 
 donc intégrable sur $[a, b]$. Par [le théorème fondamental du calcul](#TFC), 
 on a donc
 $$
