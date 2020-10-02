@@ -1579,7 +1579,7 @@ Sont valables pour tous les intervalles fermés de $[-\infty, +\infty]$ :
 ### {.ante}
 A noter que [le théorème de changement de variable](#changement-de-variable) 
 nous fournit également un moyen alternatif pour définir l'intégrale entre
-$-\infty$ et $+\infty$, en nous remanant à une intégrale sur un intervalle borné.
+$-\infty$ et $+\infty$, en nous ramenant à une intégrale sur un intervalle borné.
 
 ### Prendre la tangente {.exercise .question #plt}
 Montrer qu'une fonction $f:\R \to \R$ est intégrable entre $-\infty$ et
