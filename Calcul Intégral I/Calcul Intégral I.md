@@ -360,7 +360,7 @@ Est-ce que la propriété "$x$ est non-nul" est vraie presque partout dans
 $\R$ ?
 
 
-### Fonction continue nulle presque partout {.exercise .three #fcnpp}
+### Fonction continue nulle presque partout {.exercise .three #fcnpp .question}
 Montrer que toute fonction continue $f : \R\to\R$ qui est nulle presque 
 partout est identiquement nulle.
 
@@ -578,7 +578,7 @@ L'intégrale de Henstock-Kurzweil présente le "défaut" d'être *conditionnelle
 il est possible qu'une fonction $f:[a, b] \to \R$ soit intégrable sans que
 sa valeur absolue $|f|$ le soit (cf. exemple dans l'annexe du chapitre 
 "Calcul Intégral II").
-Par construction, l'intégrale de Lebesgue n'as pas cet inconvénient ; 
+Par construction, l'intégrale de Lebesgue n'a pas cet inconvénient ; 
 elle est dite *absolue* :
 
 ### L'intégrale de Lebesgue est absolue {.exercise .question .zero #lebesgue-absolue}
@@ -955,7 +955,7 @@ qui permet de prouver l'intégrabilité de l'intégrale sur un intervalle
 à partir de son intégrabilité sur des intervalles qui la compose --
 admet une réciproque :
 
-### Ordre des bornes et additivité {.exercise .one #exo-odb}
+### Ordre des bornes et additivité {.exercise .one #exo-odb .question}
 Adapter l'énoncé [du théorème d'additivité](#additivité) pour traiter les
 cas où l'on n'a pas nécessairement $a \leq b \leq c$. (On pourra par exemple
 se limiter aux cas $c \leq b \leq a$ et $a \leq c \leq b$.)
@@ -1059,7 +1059,7 @@ ce qui établit l'inégalité triangulaire.
 Montrer que si la fonction $f:[a, b] \to \R$ est intégrable et que 
 $|f| \leq M$, alors
 $$
-\left|\int_a^b f(t \, dt) \right| \leq M (b-a)
+\left|\int_a^b f(t) \, dt \right| \leq M (b-a)
 $$
 
 
@@ -1279,7 +1279,7 @@ $$
 ### Démonstration {.proof}
 Voir [@Swa01, pp. 135-136].
 
-### Dérivabilité presque partout {.exercise .one #dpp}
+### Dérivabilité presque partout {.exercise .one #dpp .question}
 Construire une fonction $f:[0, 1] \to \R$ qui soit intégrable et telle que 
 $$
 x \in [0, 1] \mapsto \int_0^x f(t) \, dt
@@ -1579,7 +1579,7 @@ Sont valables pour tous les intervalles fermés de $[-\infty, +\infty]$ :
 ### {.ante}
 A noter que [le théorème de changement de variable](#changement-de-variable) 
 nous fournit également un moyen alternatif pour définir l'intégrale entre
-$-\infty$ et $+\infty$, en nous remanant à une intégrale sur un intervalle borné.
+$-\infty$ et $+\infty$, en nous ramenant à une intégrale sur un intervalle borné.
 
 ### Prendre la tangente {.exercise .question #plt}
 Montrer qu'une fonction $f:\R \to \R$ est intégrable entre $-\infty$ et
@@ -2550,7 +2550,7 @@ ou encore
 $$
 \int_a^c f(t) \, dt = \int_a^b f(t) \, dt -  \int_c^b f(t) \, dt,
 $$
-soit avec la [la convention des bornes inversées](#ordre-bornes),
+soit avec [la convention des bornes inversées](#ordre-bornes),
 $$
 \int_a^c f(t) \, dt = \int_a^b f(t) \, dt +  \int_b^c f(t) \, dt,
 $$
@@ -2582,7 +2582,7 @@ $$
 \end{array}
 \right.
 $$
-Si la subdivisoin pointée $\mathcal{D}$ de $[a, b]$ est subordonnée à $\gamma$
+Si la subdivision pointée $\mathcal{D}$ de $[a, b]$ est subordonnée à $\gamma$
 et si $(t, I) \in \mathcal{D}$, on a donc soit $t = a_i \in A$
 auquel cas
 $$
@@ -2628,7 +2628,7 @@ $$
 La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
 Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
 a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
-cette fonction est continue, comme composée et produit de fonction continues, 
+cette fonction est continue, comme composée et produit de fonctions continues, 
 donc intégrable sur $[a, b]$. Par [le théorème fondamental du calcul](#TFC), 
 on a donc
 $$
