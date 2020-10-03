@@ -13,8 +13,8 @@
 
 \newcommand{\inter}{\mathop{\rm int}\nolimits}
 
-\newcommand{\tmin}{t_m^+}
-\newcommand{\tmax}{t_m^-}
+\newcommand{\tmin}{t_m^-}
+\newcommand{\tmax}{t_m^+}
 
 Un peu d'histoire
 =====================
@@ -35,7 +35,7 @@ Ce cours est une introduction à l'étude non linéaire des équations différen
 
 - savoir réduire une équation différentielle à l'ordre 1.
 
-- savoir justifier l'existence de solutions par le théorème de Peano lorsque "$f$ est continue", et l'unicité des solutions maximales par le théorème de Cauchy-Lipschitz lorsque "$f$ est $C^1$ par rapport à $x$".
+- savoir justifier l'existence de solutions par le théorème de Peano lorsque "$f$ est continue", et l'unicité des solutions maximales par le théorème de Cauchy-Lipschitz lorsque "$f$ est continûment différentiable par rapport à $x$".
 
 - comprendre que les solutions ne sont pas toujours définies globalement si elles "explosent en temps fini" où atteignent le bord du domaine où l'équation différentielle est définie. Savoir faire appel au critère "linéairement borné" pour justifier la globalité des solutions.
 
@@ -65,9 +65,9 @@ En deuxième lecture :
 
 <!--
 - $C(U, V)$ : ensemble des fonctions continues $f:U\to V$
--->
 
 - $C^p(U, V)$ : ensemble des fonctions $f:U\to V$ continûment différentiables d'ordre $p\geq 1$.
+-->
 
 - $B(x,r)$ : boule ouverte centrée en $x$ et de rayon $r$.
 
@@ -273,11 +273,11 @@ $$
 Notons que cette caractérisation n'aurait pas été possible si l'on avait gardé une équation différentielle d'ordre $p>1$.
 
 ### Démonstration {.proof} 
-Supposons $x\in S_f(t_0,x_0)$. Alors $x\in C^1(I,\R^n)$, et pour tout $t\in I$,
+Supposons $x\in S_f(t_0,x_0)$. Alors $x: I\to \R^n$ est de classe $C^1$ sur $\mathring{\overline{I}}$, et pour tout $t\in I$,
 $$
 x_0 + \int_{t_0}^t f(s,x(s))ds = x(t_0)  + \int_{t_0}^t \dot{x}(s) ds = x(t) \ .
 $$
-Réciproquement, si $x$ vérifie l'équation intégrale, $x(t_0)=x_0$, et puisque $f$ est continue sur $I\times X$, on a $x\in C^1(I,\R^n)$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.
+Réciproquement, si $x$ vérifie l'équation intégrale sur $I\subset J$, $x(t_0)=x_0$, et puisque $f$ est continue sur $I\times X$, $x$ est de classe $C^1$ sur $I$ et par dérivation, $\dot{x}(t)=f(t,x(t))$ pour tout $t\in I$.
 
 ### Classe plus générale de solutions {.remark}
 
@@ -300,7 +300,7 @@ Existence de solutions locales
 Notre point de départ est le théorème suivant établi à la fin du XIX$^e$ siècle, qui assure l'existence locale de solutions au [problème de Cauchy](#def_cauchy) sous une simple hypothèse de continuité de $f$. En d'autres termes, dans le cadre de ce cours où $f$ est supposée continue, il existe toujours des solutions pour toute condition initiale, définies au moins pour un certain temps.
 
 ### Théorème de Peano-Arzelà {.theorem  #theo_peano}
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue. Pour tout $(t_0,x_0)\in J\times X$, il existe $\tau_m >0$ et $x\in C^1([t_0-\tau_m,t_0+\tau_m],\R^n)$ tels que $x\in S_f(t_0,x_0)$.
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue. Pour tout $(t_0,x_0)\in J\times X$, il existe $\tau_m >0$ et $x :[t_0-\tau_m,t_0+\tau_m]\to\R^n$ tels que $x\in S_f(t_0,x_0)$.
 
 ### Démonstration {.proof}
 La démonstration de ce résultat est hors-programme et fait appel au théorème d'Ascoli(-Arzelà). Seule la connaissance et la compréhension du résultat est exigible. Pour les curieux, la preuve est données en [annexe](#app_peano). 
@@ -324,11 +324,11 @@ Domaine d'existence des solutions
 Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue. Nous savons qu'elles sont définies *au moins un certain temps*, mais il est intéressant de se demander quel est l'intervalle de temps *maximal* sur lequel elles peuvent être définies. En d'autre terme, on s'intéresse aux *solutions maximales*.
 
 ### Solution maximale {.definition #def_sol_max}
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue. On dit que $x\in C^1(I,\R^n)$ est une solution *maximale* de l'équation différentielle 
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue. On dit que $x : I \to\R^n$ est une solution *maximale* de l'équation différentielle 
 $$
 \dot{x}=f(t,x)
 $$
-si elle n'est pas *prolongeable* en une solution définie plus longtemps. En d'autres termes, pour toute autre solution $x'\in C^1(I',\R^n)$ telle que $I'\subset I$ et $x=x'$ sur $I'$, on a nécessairement $I=I'$ et $x=x'$.
+si elle n'est pas *prolongeable* en une solution définie plus longtemps dans $J\times X$. En d'autres termes, pour toute autre solution $x' : I'\to\R^n$ telle que $I'\subset I$ et $x=x'$ sur $I'$, on a nécessairement $I=I'$ et $x=x'$.
 
 <!--
 Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ par rapport à $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. 
@@ -367,12 +367,12 @@ Voir en [annexe](#pr_theo_bouts).
 -->
 
 ### Domaine maximal d'existence {.theorem #theo_bouts}
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ au problème de Cauchy associé est définie sur un intervalle ouvert $\left]\tmin,\tmax\right[$ avec $\tmin,\tmax\in \R\cup\{+\infty,-\infty\}$. De plus, si $\tmin$ est fini  alors
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ au problème de Cauchy associé est définie sur un intervalle ouvert $\left]\tmin,\tmax\right[$ avec $\tmin,\tmax\in \R\cup\{+\infty,-\infty\}$. De plus, 
 $$
 \lim_{t\to \tmin} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
 \lim_{t\to \tmin} \|(t,x(t))\| = +\infty 
 $$
-et si $\tmax$ est fini alors
+et 
 $$
 \lim_{t\to \tmax} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
 \lim_{t\to \tmax} \|(t,x(t))\| = +\infty  \ .
@@ -435,17 +435,17 @@ Ce système permet en particulier de modéliser l'écoulement d'un fluide dans u
 La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. Mais on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales. Plus de détails sont donnés dans le notebook Equations Différentielles.ipynb.
 
 
-Le théorème suivant, dit de *Cauchy-Lipschitz*, montre que l'unicité des solutions est garantie si $f$ est de plus de classe $C^1$ par rapport à la variable $x$. On voit que ce n'est pas le cas de $x\mapsto -\sqrt{|x|}$ en 0. Le théorème et la preuve de l'époque est disponible en ligne dans des notes de cours [@cauchy].
+Le théorème suivant, dit de *Cauchy-Lipschitz*, montre que l'unicité des solutions est garantie si $f$ est de plus continûment différentiable par rapport à la variable $x$. On voit que ce n'est pas le cas de $x\mapsto -\sqrt{|x|}$ en 0. Le théorème et la preuve de l'époque est disponible en ligne dans des notes de cours [@cauchy].
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $J\times X$ (on dira que $f$ est de classe $C^1$ par rapport à $x$).
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $J\times X$ (i.e., $f$ est continûment différentiable par rapport à $x$).
 Alors pour tout $(t_0,x_0)\in J\times X$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
 
 ### Démonstration {.proof} 
 
 Nous donnons ici le principe de la preuve qui peut être passée en première lecture, mais qu'il est intéressant de comprendre d'un point de vue scientifique. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $J\times X$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
-**Théorème de Cauchy-Lipschitz local** Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et de classe $C^1$ par rapport à $x$, et $(t_0,x_0)\in J\times X$. Soient $\tau>0$ et $r>0$ tels que 
+**Théorème de Cauchy-Lipschitz local** Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et continûment différentiable par rapport à $x$, et $(t_0,x_0)\in J\times X$. Soient $\tau>0$ et $r>0$ tels que 
 $$
 \cC:=\left[t_0-\tau,t_0+\tau \right]\times \overline{B}(x_0,r)\subset J\times X \ .
 $$
@@ -459,7 +459,7 @@ il existe une unique fonction $x\in S_f(t_0,x_0)$ définie sur $[t_0-\tau_m,t_0+
 
 La preuve consiste à voir les solutions comme des points fixes d'un certain opérateur intégral, obtenu par la représentation intégrale des solutions. Le théorème du point fixe de Banach permet ensuite de montrer l'existence et l'unicité de ce point fixe.
 
-Tout d'abord, $\cC$ étant fermé et borné en dimension finie, $\cC$ est  compact et par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous du cours de Topologie que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$, l'ensemble des fonctions continues de $[t_0-\tau_m,t_0+\tau_m]$ dans $\R^n$  est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
+Tout d'abord, $\cC$ étant fermé et borné en dimension finie, par continuité de $f$, $\max_\cC \|f\|$ existe bien.  Rappelons nous du cours de Topologie que $E:=C([t_0-\tau_m,t_0+\tau_m],\R^n)$, l'ensemble des fonctions continues de $[t_0-\tau_m,t_0+\tau_m]$ dans $\R^n$  est un espace de Banach pour la norme uniforme $\|\cdot\|_\infty$, et définissons  
 $$
 F = \{x\in E \: : \: x(\left[t_0-\tau_m,t_0+\tau_m \right])\subset \overline{B}(x_0,r) \} \ .
 $$
@@ -482,7 +482,7 @@ de sorte que $\Gamma(x)\in F$, i.e. $\Gamma:F\to F$. Ensuite, pour tout $(x_a,x_
 $$
 \|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq \left|\int_{t_0}^t \|f(s,x_a(s))-f(s,x_b(s))\| ds \right| \ .
 $$
-Soit $k=\max_\cC \left\|\partial_x f \right\|$ (bien défini car $\cC$ est compact et $\partial_x f$ est continue par hypothèse). Alors l'application du théorème des accroissement finis, nous donne
+Soit $k=\max_\cC \left\|\partial_x f \right\|$ (bien défini car $\cC$ est compact et $\partial_x f$ est continue par hypothèse). Alors l'application du théorème des accroissement finis nous donne
 $$
 \|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq  \left|\int_{t_0}^t k\|x_a(s)-x_b(s)\| ds \right| \leq |t-t_0| k \|x_a-x_b\|_{\infty} 
 $$
@@ -492,18 +492,18 @@ $$
 \|\Gamma^p(x_a)(t)-\Gamma^p(x_b)(t)\|_\infty \leq \frac{(|t-t_0| k)^p}{p!} \|x_a-x_b\|_{\infty}
 $$
 en notant $\Gamma^p = \underbrace{\Gamma \circ \Gamma \circ \ldots \circ \Gamma}_{p \text{ fois }}$.
-Donc pour tout $p\in \N$, $\|\Gamma^p(x_a)-\Gamma^p(x_b)\|_\infty \leq \frac{(\tau_m k)^p}{p!} \|x_a-x_b\|_{\infty}$. Il existe donc $m$ tel que $\Gamma^{m}$ est contractante. D'après le théorème de point fixe de Banach, $\Gamma$ admet un unique point fixe $x^*$ dans $F$. 
+Donc pour tout $p\in \N$, $\|\Gamma^p(x_a)-\Gamma^p(x_b)\|_\infty \leq \frac{(\tau_m k)^p}{p!} \|x_a-x_b\|_{\infty}$. Il existe donc $p$ suffisamment grand tel que $\Gamma^{p}$ est contractante. D'après le théorème de point fixe de Banach, $\Gamma$ admet un unique point fixe $x^*$ dans $F$. 
 
 
 
 
 ### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
-La première preuve d'existence et unicité locale de solutions sous l'hypothèse que $f$ est de classe $C^1$ par rapport à $x$ est dûe à Augustin Louis Cauchy (1820) et repose sur l'utilisation du théorème d'accroissements finis[^accfinis_Cauchy]. Mais on remarque dans notre preuve qu'il suffirait qu'il existe $k>0$ tel que
+La première preuve d'existence et unicité locale de solutions sous l'hypothèse que $f$ est continûment différentiable par rapport à $x$ est dûe à Augustin Louis Cauchy (1820) et repose sur l'utilisation du théorème d'accroissements finis[^accfinis_Cauchy]. Mais on remarque dans notre preuve qu'il suffirait qu'il existe $k>0$ tel que
 \begin{multline*}
 \|f(t,x_a)-f(t,x_b)\|\leq k \|x_a-x_b\| \\
  \forall t\in \left[t_0-\tau_m,t_0+\tau_m \right], \forall (x_a,x_b)\in \overline{B}(x_0,r)\times \overline{B}(x_0,r) \ ,
 \end{multline*}
-c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendante : d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement que $x\mapsto f(t,x)$ soit lipschitzienne au voisinage de $(t_0,x_0)$, au lieu de différentiable. Par exemple, $x\mapsto |x|$ est lipschitzienne (mais pas $C^1$) et $\dot{x}=|x|$ admet donc une unique solution maximale quelque soit la condition initiale.
+c'est-à-dire que la fonction $f$ soit *lipschitzienne* par rapport à $x$ au voisinage de $(t_0,x_0)$. Cette propriété fut introduite par le mathématicien allemand Rudolf Lipschitz  quelques années plus tard (1868) pour prouver le même résultat de façon indépendante : d'où le nom de *théorème de Cauchy-Lipschitz*. Notons que cette dernière hypothèse est plus faible que celle de Cauchy car elle impose seulement que $x\mapsto f(t,x)$ soit lipschitzienne au voisinage de $(t_0,x_0)$, au lieu de différentiable. Par exemple, $x\mapsto |x|$ est lipschitzienne (mais pas différentiable) et $\dot{x}=|x|$ admet donc une unique solution maximale quelque soit la condition initiale.
 
 ### Approximations successives {.remark #rem_approx_succ}
 Mise à part quelques formes particulières de $f$, il est très rare de savoir résoudre explicitement une équation différentielle. Cependant, la preuve (dans sa forme moderne donnée plus haut) caractérise la solution comme le point fixe de l'opérateur $\Gamma$. Or, on sait par la preuve du théorème du point fixe de Banach que ce point fixe est la limite uniforme de la suite des itérées de $\Gamma$. En pratique, on peut donc s'approcher arbitrairement proche  de la solution   sur l'intervalle $\left[t_0-\tau_m,t_0+\tau_m \right]$ (au sens de la norme uniforme), en calculant la suite $x_{p+1} = \Gamma(x_p)$ définie par
@@ -520,9 +520,9 @@ Cette méthode de recherche de point fixe porte le nom d'*approximations success
 $$
 f(t,x) = A(t) x + b(t) \ ,
 $$
-admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $\partial_x f(t,x) = A(t)$ (en identifiant abusivement ici différentielle et matrice Jacobienne).
+admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $J_f(t,x) = A(t)$ est continue.
 
-- Les équations décrivant l'évolution de la tension dans un circuit RLC ou la cinétique chimique données au début de ce cours admettent une unique solution au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,q,\dot{q})$ sont $C^1$ par rapport à la position et la vitesse $(q,\dot{q})$.
+- Les équations décrivant l'évolution de la tension dans un circuit RLC ou la cinétique chimique données au début de ce cours admettent une unique solution au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,q,\dot{q})$ sont continûment différentiable par rapport à la position et la vitesse $(q,\dot{q})$.
 
 
 
@@ -555,14 +555,14 @@ Le théorème suivant nous montre que pour un horizon de temps fini donné, on p
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
 
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et de classe $C^1$ par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\underline{t},\overline{t}$ tel que $t_0\in\left[\underline{t},\overline{t} \right]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $\left[\underline{t},\overline{t} \right]$ et vérifie
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et continûment différentiable par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\underline{t},\overline{t}$ tel que $t_0\in\left[\underline{t},\overline{t} \right]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $\left[\underline{t},\overline{t} \right]$ et vérifie
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in \left[\underline{t},\overline{t} \right] \ .
 $$
 
 
 La présence du facteur exponentiel n'est pas crucial ici, et servira dans la suite. Ce qui est important, c'est que plus l'erreur de condition initiale $\delta$ est faible, plus l'erreur sur la trajectoire à horizon de temps fini $\overline{t}$ est faible.
-On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse "$C^1$ par rapport à $x$" est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
+On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse "continûment différentiable par rapport à $x$" est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
 
 ### Démonstration {.proof} 
 Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
@@ -623,7 +623,7 @@ Il est important d'insister sur le caractère *déterministe* de ce chaos : chaq
 \dot{x}_2 &= \rho \, x_1 - x_2 -x_1x_3 \\
 \dot{x}_3 &= x_1x_2-\beta x_3 
 \end{align*}
-où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires *sautent* de manière *chaotique* d'une aile à l'autre, comme représenté sur la [figure](#fig_attracteur_lorenz) ci-dessous. La croissance exponentielle de l'erreur se visualise en simulation : voir pour cela le notebook Equations Différentielles.ipynb.
+où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour $\sigma=10$, $\beta=8/3$ et $\rho=28$, ce système présente un attracteur en forme de papillon, où les trajectoires passent de manière *chaotique* d'une aile à l'autre, comme représenté sur la [figure](#fig_attracteur_lorenz) ci-dessous. La croissance exponentielle de l'erreur se visualise en simulation : voir pour cela le notebook Equations Différentielles.ipynb.
 
 - En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années [@SussWis]. 
 
@@ -636,12 +636,12 @@ Propriétés asymptotiques
 
 Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. L'étude théorique asymptotique des solutions prend ses origines dans la thèse de Lyapunov [@lyap]. Le but est de rechercher des critères sur la fonction $f$ qui nous permettent de prédire ce comportement : est-ce que les solutions divergent ? est-ce qu'elles tendent vers un point en particulier ? vers un cycle limite ? 
 
-Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc une fonction continue $f:\R^n\to \R^n$, et on prend par défaut $t_0=0$. 
+Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc une fonction continue $f:X\subset\R^n\to \R^n$, et on prend par défaut $t_0=0$. 
 <!--Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.-->
 
 ### Point d'équilibre {.definition #def_ptEq}
 
-On appelle *point d'équilibre* un point $a\in \R^n$ tel que
+On appelle *point d'équilibre* un point $a\in X$ tel que
 $$
 f(a) = 0  \ .
 $$
@@ -697,9 +697,9 @@ $$
 
 ### Stabilité du pendule {.example #ex_stab}
 
-- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse : l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc localement asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule amorti](#fig_pendule) donné plus haut.  
+- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse : l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc localement asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule amorti](#fig_pendule).  
 
-- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante : la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule) donné plus haut.  
+- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante : la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule).  
 
 <!-- - Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Un exemple célèbre est le système de [Vinograd](#fig_vinograd) dont le portrait de phase est représenté ci-dessous.
 
@@ -734,11 +734,11 @@ converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont �
 
 ### 
 
-Attention ce critère n'est valable que pour $A$ constant. Le fait que $A(t)$ soit Hurwitz pour tout $t$ n'implique pas que le système
+Attention ce critère n'est valable que pour $A$ constant. Le fait que $A(t)$ soit Hurwitz pour tout $t$ n'implique pas que les solutions du système
 $$
 \dot{x} = A(t) x 
 $$
-soit localement asymptotiquement stable, où même stable. Par exemple, la matrice
+tendent vers 0 ou même restent bornées. Par exemple, la matrice
 $$
 A(t) = \left( \begin{matrix} 
 -1+1.5\cos^2t & 1-1.5\sin t \cos t \\
@@ -746,11 +746,11 @@ A(t) = \left( \begin{matrix}
 \end{matrix}
 \right)
 $$
-a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ aribitrairement proche de 0.
+a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ arbitrairement proche de 0.
 
 ### Lien entre stabilité et stabilité du linéarisé tangent {.theorem #theo_linTangent}
 
-Soit $f:\R^n \to \R^n$ de classe $C^1$. 
+Soit $f:X \to \R^n$ continûment différentiable et $a\in X$ un point d'équilibre.
 
 Si les valeurs propres de la matrice jacobienne $J_f(a)$ sont toutes à partie réelle strictement négative (Hurwitz) alors $a$ est localement asymptotiquement stable.
 
@@ -795,8 +795,8 @@ Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeu
 Lorsque le linéarisé ne permet pas de conclure sur la stabilité asymptotique locale, ou que l'on veut un résultat global, on a recours à la caractérisation non linéaire suivante.
 
 ### Caractérisation par Lyapunov {.theorem #theo_lyap}
-Soit $f\in C^1(\R^n,\R^n)$ de classe $C^1$, $a$ un point d'équilibre de $f$, et $W$ un voisinage de $a$.
-Soit $V\in C^1(W,\Rgeq)$ telle que 
+Soit $f: X \to \R^n$ continue, $a$ un point d'équilibre de $f$ dans $X$, et $W$ un voisinage de $a$ dans $X$.
+Soit $V:W\to\Rgeq$ continûment différentiable telle que 
 $$
 V(x) > 0 \quad  \forall x\in W\setminus\{a\} \qquad , \qquad V(a)= 0 \ .
 $$
@@ -845,10 +845,7 @@ $$
 V(x_1,x_2) = \frac{1}{2} m\ell^2 x_2^2 + mg\ell(1-\cos(x_1)) \ .
 $$
 Le premier terme correspond à l'énergie cinétique du pendule, et le deuxième son énergie potentielle.
-$V$ est $C^1$, à valeurs positives et telle que 
-$$
-V(x) = 0 \qquad \Longleftrightarrow \qquad x=0 \ .
-$$
+$V$ est continûment différentiable, à valeurs positives et s'annule seulement en $x=0$.
 De plus,
 $$
 \langle\nabla V (x), f(x)\rangle = m\ell^2 x_2\left(-\frac{g}{\ell} \sin x_1\right) + mg \ell \sin x_1 x_2 = 0
@@ -879,7 +876,7 @@ Pour $(t_0,x_0)\in \R\times \R_{\geq0}$, résoudre le problème de Cauchy associ
 ### Question 3 {.question #tor-3} 
 Comment pourrait s'interpréter physiquement la multitude de solutions trouvées ?
 
-### Question 4 (plus dur) {.question #tor-4}
+### Question 4 {.question #tor-4}
 Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_reg_CI) donné plus haut ? Pourquoi ?
 
 ## Solutions globales ($+$) {.question #glob_sol}
@@ -916,7 +913,7 @@ Utiliser le Lemme de Grönwall pour montrer le [théorème d'existence globale d
 
 ### Question 3 {.question #gro-3}
 
-Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI) dans le cas où les solutions sont globales.
+Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par rapport aux conditions initiales](#theo_reg_CI). Expliquer pourquoi le théorème est toujours valable si $f$ est seulement localement Lipschitzienne par rapport à $x$ sur $J\times X$.
 
 
 
@@ -1044,7 +1041,7 @@ $f:(t,x)\mapsto -k\sqrt{|x|}$ est continue sur $\R\times \R$ donc le théorème 
 
 De plus, $\sqrt{|x|}\leq 1+|x|$ pour tout $x\in \R$ donc $f$ est linéairement bornée et toute solution maximale est globale, donc ici définie sur $\R$. 
 
-Enfin, $f$ est $C^1$ sur $\R\times (\R\setminus \{0\})$ donc lorsque $x_0\neq 0$, il existe une unique solution maximale dans $\R\setminus \{0\}$ d'après le théorème de Cauchy-Lipschitz. Lorsque $x_0=0$ par contre, $f$ n'est pas $C^1$ en 0 (ni même lipschitzienne) donc le théorème de Cauchy-Lipschitz ne s'applique pas.
+Enfin, $f$ est continûment différentiable sur $\R\times (\R\setminus \{0\})$ donc lorsque $x_0\neq 0$, il existe une unique solution maximale dans $\R\setminus \{0\}$ d'après le théorème de Cauchy-Lipschitz. Lorsque $x_0=0$ par contre, $f$ n'est pas différentiable en 0 (ni même lipschitzienne) donc le théorème de Cauchy-Lipschitz ne s'applique pas.
 
 ### Question 2 {.answer #answer-tor-2}
 Soit d'abord $x_0>0$. Tant que $x(t)>0$, on a
@@ -1084,7 +1081,7 @@ x(t)=
 \end{array}
 \right.
 $$
-pour tout $t^+\geq t_0$. Ceci ne contredit pas le théorème de Cauchy Lispchitz. En effet, celui-ci ne garantie l'unicité de la solution maximale que dans le domaine où $f$ est $C^1$ par rapport à $x$, c'est-à-dire ici tant qu'elle est non nulle, plus précisément sur l'intervalle ouvert $]-\infty,t_0+2\sqrt{x_0}/k[$. 
+pour tout $t^+\geq t_0$. Ceci ne contredit pas le théorème de Cauchy Lispchitz. En effet, celui-ci ne garantie l'unicité de la solution maximale que dans le domaine où $f$ est continûment différentiable par rapport à $x$, c'est-à-dire ici tant qu'elle est non nulle, plus précisément sur l'intervalle ouvert $]-\infty,t_0+2\sqrt{x_0}/k[$. 
 
 ### Question 3 {.answer #answer-tor-3} 
 
@@ -1096,7 +1093,7 @@ Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initia
 
 ## Solutions globales {.answer #answer-glob_sol}
 
-Fixons une condition initiale dans $\R^2$. La fonction $f:(x_1,x_2)\mapsto (\sin x_1 - x_2 ,\sqrt{1+x_1^2})$ est de classe $C^1$ sur $\R^2$. Donc d'après le théorème de Cauchy-Lipschitz, le problème de Cauchy admet une unique solution maximale définie sur un intervalle de temps $I$ ouvert. 
+Fixons une condition initiale dans $\R^2$. La fonction $f:(x_1,x_2)\mapsto (\sin x_1 - x_2 ,\sqrt{1+x_1^2})$ est continûment différentiable sur $\R^2$. Donc d'après le théorème de Cauchy-Lipschitz, le problème de Cauchy admet une unique solution maximale définie sur un intervalle de temps $I$ ouvert. 
 
 Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
 $$
@@ -1155,25 +1152,34 @@ avec $\alpha(t)=\|x_0\| + \int_{t_0}^t |b(s)|$ et $\beta(t)= |a(t)|$ qui sont co
 
 ### Question 3 {.answer #answer-gro-3}
 
-Supposons que les solutions soient globales.
-Soient $x:J\to \R^n$ et $x_\delta : J\to \R^n$ les solutions maximales associées à $(t_0,x_0)$ et $(t_0,x_0+\delta)$ respectivement, et $\overline{t}>0$ tel que $[t_0,\overline{t}]\subset J$. On sait que
+Soient $(t_0,x_0)\in J\times X$ et $\delta\in \R^n$ tel que $(t_0,x_0+\delta)\in J\times X$. Soient $x:I\to \R^n$ et $x_\delta : I'\to \R^n$ les solutions maximales aux problèmes de Cauchy associés (uniques par le théorème de Cauchy Lipschitz), 
+et $\underline{t},\overline{t}>0$ tel que $[ \underline{t},\overline{t}]\subset I$. On sait que
 \begin{align*}
 x(t)&=x_0  + \int_{t_0}^t f(s,x(s))ds & \forall t\in I\\
-x_\delta(t)&=x_0 +\delta  + \int_{t_0}^t f(s,x_\delta(s))ds &\forall t\in I
+x_\delta(t)&=x_0 +\delta  + \int_{t_0}^t f(s,x_\delta(s))ds &\forall t\in I'
 \end{align*}
 ce qui donne
 $$
-|x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t |f(s,x(s))-f(s,x_\delta(s))|ds \qquad \forall t\in I
+|x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t |f(s,x(s))-f(s,x_\delta(s))|ds \qquad \forall t\in I\cap I' \ .
 $$
 <!-- Si $[t_0,\overline{t}]\subset I\cap I_\delta$, -->
-Définissont le compact $\cC := x([t_0,\overline{t}])\cup x_\delta([t_0,\overline{t}])$. Puisque $\partial_x f$ est continue sur $J\times X$ par hypothèse, $M=\max_{[t_0,\overline{t}]\times \cC} \partial_x f$ est bien défini. On a donc par le théorème des accroissements finis
+Puisque $x$ est continue, l'ensemble $x([ \underline{t},\overline{t}])$ est un sous-ensemble fermé et borné de l'ouvert $X$. Donc il existe $\varepsilon>0$ tel que le "tube" 
 $$
-|x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t M |x(s)-x_\delta(s)|ds \qquad \forall t\in [t_0,\overline{t}] \ .
+\cC = \{ (t,x_\delta) \in [ \underline{t},\overline{t}]\times \R^n \: | \: \|x_\delta-x(t) \| \leq \varepsilon \} 
+$$ 
+est inclus dans $J\times X$. On va montrer que $(t,x_\delta(t))$ est définie et reste dans ce tube sur $[ \underline{t},\overline{t}]$ si $\delta$ est suffisamment petit. Soit $\underline{t}'$ et $\overline{t}'$ les temps minimaux et maximaux sur $[ \underline{t},\overline{t}]$ tel que
+$$
+(t,x_\delta(t)) \in \cC \qquad \forall t\in [ \underline{t}',\overline{t}']
+$$ 
+Puisque $\cC$ est fermé et borné, et $\partial_x f$ est continue sur $\cC$, $M= \max_\cC \|\partial_x f\|$ est bien défini. Donc d'après le théorème des accroissements finis appliqué sur le segment $[ (s,x(s)),(s,x_\delta(s))]$ inclus dans $\cC$,
+$$
+|x(t)-x_\delta(t)|\leq |\delta| + \int_{t_0}^t M |x(s)-x_\delta(s)|ds \qquad \forall t\in [ \underline{t}',\overline{t}'] \ .
 $$
 Donc par le Lemme de Grönwall, 
 $$
-|x(t)-x_\delta(t)|\leq |\delta|e^{M(t-t_0)} \qquad \forall t\in [t_0,\overline{t}] \ .
+|x(t)-x_\delta(t)|\leq |\delta|e^{M(t-t_0)} \qquad \forall t\in [ \underline{t}',\overline{t}'] \ .
 $$
+Pour $\delta$ suffisamment petit, $|\delta|e^{M(t-t_0)}\leq \varepsilon$ sur $[ t_0,\overline{t}]$. On a alors nécessairement $\underline{t}'=\underline{t}$ et $\overline{t}'=\overline{t}$ et le résultat est montré. Notons que la preuve est bien toujours valable pour $f$ localement Lipschitzienne par rapport à $x$ sur $J\times X$, puisqu'il suffit alors de prendre pour $M$ la constante de Lipschitz de $f$ par rapport à $x$ sur $\cC$ qui est fermé et borné (compact).
 <!--Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$.-->
 
 ## Critère de stabilité en dimension 2 {.answer #answer-crit_stab_dim2}
@@ -1215,7 +1221,7 @@ Puisque $A$ est inversible ($\text{det} A=\frac{k}{m}\neq 0$), le seul point d'�
 
 ### Question 2 {.answer #answer-ressort-2}
 
-$x\mapsto Ax$ est $C^1$ donc d'après le théorème de Cauchy-Lipschitz, les solutions sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions sont définies pour tout $t$. Les solutions sont données par $x(t)=e^{At}x_0$.
+$x\mapsto Ax$ est continûment différentiable donc d'après le théorème de Cauchy-Lipschitz, les solutions sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions sont définies pour tout $t$. Les solutions sont données par $x(t)=e^{At}x_0$.
 
 ### Question 3 {.answer #answer-ressort-3}
 
@@ -1230,7 +1236,7 @@ est conservée le long des trajectoires, c'est-à-dire,
 $$
 \dot{\overline{V(x)}} = kx_1x_2 -kx_1x_2 = 0 \ .
 $$ 
-D'après le théorème de Lyapunov, puisque $V$ est à valeurs positives, $C^1$ et telle que $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. 
+D'après le théorème de Lyapunov, puisque $V$ est à valeurs positives, continûment différentiable et telle que $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. 
 
 Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_osci) ci-dessous.
 
@@ -1280,7 +1286,7 @@ Considérons plutôt la fonction $V:\R^2\to \R_{\geq 0}$ définie par
 $$
 V(x_1,x_2)= x_1^4 + x_2^2 + (x_1+x_2)^2
 $$
-$V$ est $C^1$, positive et ne s'annule qu'en $x=0$. De plus, elle vérifie
+$V$ est continûment différentiable, positive et ne s'annule qu'en $x=0$. De plus, elle vérifie
 \begin{align*}
 \langle \nabla V(x) , f(x) \rangle 
 &= 4x_1^3x_2 - 2 x_1^3x_2 - 2x_2^2 + 2(x_1+x_2)(x_2-x_1^3-x_2)\\
@@ -1350,7 +1356,7 @@ $$
 \end{matrix}
 \right) x^*
 $$
-qui reste sur le cercle en tout temps valant aussi $x^*$ à $t=t_1$, ce qui est impossible par le théorème de Cauchy Lipschitz (car $f$ est $C^1$)
+qui reste sur le cercle en tout temps valant aussi $x^*$ à $t=t_1$, ce qui est impossible par le théorème de Cauchy Lipschitz (car $f$ est continûment différentiable)
 
 ### Question 4 {.answer #answer-cycle-lim-4}
 Si $V(x(0))=\|x(0)\|^2=1$, alors $V$ est constant donc les trajectoires initialisées sur le cercle de rayon 1 y restent. Sur le cercle, la dynamique suit celle d'un oscillateur
@@ -1592,7 +1598,7 @@ Par continuité de $x$, $|x(t)-x_0|\leq r$ pour un temps après $t^*$, ce qui co
 En l'absence d'outils d'analyse fonctionnelle à cette époque, la preuve de Cauchy consistait plutôt à discrétiser en temps l'intégrale de plus en plus finement et montrer la convergence vers une solution.
 
 [^uniCritExGlob]:
-Si $f$ est de classe $C^1$ par rapport à $x$, cette solution est unique. Mais ce théorème est aussi valable pour $f$ seulement continue.
+Si $f$ est de classe continûment différentiable par rapport à $x$, cette solution est unique. Mais ce théorème est aussi valable pour $f$ seulement continue.
 
 [^linkFibre]:
 https://portsmouth.github.io/fibre/ 
