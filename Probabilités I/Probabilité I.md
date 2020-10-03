@@ -67,27 +67,43 @@ Objectifs d'apprentissage
 
    - connaître les définitions de base des probabilités :
 
-      - \zero espace fondamental $\Omega$
-      - \zero événement $A \subset \Omega$
-      - \one tribu (de parties) 
-      - \one probabilité
-      - \one propriété presque sûre
+      - \zero  espace fondamental $\Omega$
+      - \zero  événement $A \subset \Omega$
+      - \one  tribu (de parties) 
+      - \one  probabilité
+      - \one  propriété presque sûre
 
    - connaître, savoir démontrer et exploiter les résultats suivants :
 
-      - \zero les propriétés élémentaires d'une probabilité 
-      - \zero le théorème de continuité monotone
+      - \one  les propriétés élémentaires d'une probabilité 
+      - \one  le théorème de continuité monotone
 
    - indépendance et conditionnement 
 
-      - \zero connaître la définition de la probabilité conditionnelle
-      - \one connaître et savoir exploiter la formule des probabilités totales
-      - \one connaître et savoir exploiter la formule de Bayes
-      - \zero connaître la définition de l'indépendance de deux événements
+      - \one  connaître la définition de la probabilité conditionnelle
+      - \one  connaître et savoir exploiter la formule des probabilités totales
+      - \one  connaître et savoir exploiter la formule de Bayes
+      - \one  connaître la définition de l'indépendance de deux événements
 
 #### Variables aléatoires
 
-   - 
+   - variables aléatoires réelles
+
+      - \four connaître la définition de la tribu borélienne
+      - \four savoir manipuler la notion de tribu engendrée
+      - \four savoir que la tribu borélienne est engendrée par les intervalles de la forme $]-\infty, x],~ x\in \R$
+      - \one connaître la définition d'une variable aléatoire réelle et de sa loi de probabilité
+   
+   - loi des variables aléatoires réelles
+      
+      - \one savoir que la fonction de répartition caractérise la loi d'une variable aléatoire réelle
+      - \one connaître les propriétes de base de la fonction de répartition
+
+   - densité de probabilité
+
+      - \one connaître la définition d'une densité de probabilité
+      - \one connaître la définition d'une variable aléatoire réelle à densité 
+      - \two savoir identifier si une variable aléatoire admet une densité
 
 
 # Probabilités des événements 
@@ -455,7 +471,7 @@ engendrée par $C$ est l’intersection de toutes les tribus contenant $C$.
 - si $(A_i )_{i \in I}$ est une partition finie ou dénombrable de $\Omega$ (i.e. les $A_i$ sont deux-à-deux disjoints et leur réunion est $\Omega$), la tribu engendrée par $\{A_i , i \in I\}$ est l’ensemble des réunions $B_J = \cup_{i \in J} A_i$, où $J$ décrit la classe de toutes les parties
 de I.
 
-### Tribu borélienne sur $\R$ {definition #bor}
+### Tribu borélienne sur $\R$ {.definition #bor}
 Si $\Omega = \R$, on appelle tribu borélienne, que l'on note $\B(\R)$, la tribu engendrée par la classe des ouverts de $\R$.
 
 À titre d’exercice de maniement des tribus, on donne en détail la démonstration du résultat suivant :
@@ -480,10 +496,10 @@ Donc $C_1$ et par conséquent $\B(\R)$ sont inclus dans la tribu engendrée par 
 On peut maintenant définir une variable aléatoire réelle :
 
 ### Variable aléatoire réelle {.definition #defvar}
-Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \B_{\R}$.
+Soit l'espace d'état $\Omega$ muni de la tribu $\A$ des évènements. Une application $X$ de $\Omega$ dans $\R$ est une *variable aléatoire réelle* si $X^{-1}(B) \in \A$ pour tout $B \in \B(\R)$.
 
 ### Loi d'une variable aléatoire réelle {.definition #defloivar}
-La probabilité $\P_X$, définie sur $(\R,\B_{\R})$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \B_{\R}$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
+La probabilité $\P_X$, définie sur $(\R,\B(\R))$ par $\P_X (B) = \P(X^{-1}(B))$ pour $B \in \B(\R)$ est appelée *loi de la variable $X$*, ou *distribution* de $X$.
 
 On peut voir $\P_X$ comme une transposition de $\P$ sur $\R$. On a alors le résultat très utile suivant :
 
@@ -491,8 +507,9 @@ On peut voir $\P_X$ comme une transposition de $\P$ sur $\R$. On a alors le rés
 Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction mesurable de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
 
 ### Démonstration (idée) {#proof}
-Puisque $g$ est mesurable, le critère de l'image réciproque implique que $\forall A \in \B_{\R}$, $g^{-1}(A) \in \B_{\R^n}$. Par composition, on en déduit que $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire.
+Puisque $g$ est mesurable, le critère de l'image réciproque implique que $\forall A \in \B(\R)$, $g^{-1}(A) \in \B(\R^n)$. Par composition, on en déduit que $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire.
 
+### {.post}
 Comme application de ce résultat, on a les propriétés suivantes :
 
 ### Conséquences {.proposition}
@@ -525,16 +542,16 @@ F_X(x) = \P_X(\left]-\infty, x\right]) = \P(X \leq x),\ x \in \R.
 \end{equation*}
 
 ### La fonction de répartition caractérise la probabilité {.theorem #carac}
-La fonction de répartition $F$ caractérise la probabilité $\P$ sur ($\R,\B(\R)$).
+La fonction de répartition $F$ caractérise la probabilité $\P_X$ sur ($\R,\B(\R)$).
 
 ### Démonstration {.proof}
 
-
-
-voir @Jacod.
+D'après, [la définition de la fonction de répartition](#deffdr), on a $\P_X(]x,y]) = F(y)-F(x)$ pour tous $x>y$. Par conséquent, si $B = \cup_{i=1}^n ]x_i,y_i]$, avec $x_i < y_i < x_{i+1}$, on a 
+$$\P_X(B) = \sum_{i=1}^n \P_X(]x_i,y_i]) = \sum_{i=1}^n F(y_i)-F(x_i),$$
+car les intervalles sont disjoints. Puisque $\P_X(]x,+ \infty[) = 1-F(x)$, nous en déduisons finalement que $F$ caractérise la réstriction de $\P_X$ à l'ensemble de toutes les réunions finies d'intervalles disjoints de la forme $]x,y]$ ou $]x,+ \infty[$. Cet ensemble contient $\R$, $\varnothing$ et est stable par passage au complémentaire et par réunion finie (on dit que c'est une algèbre). Un résultat difficile de théorie de la mesure (voir @Jacod pour une preuve) montre que la connaissance de $\P_X$ sur cette algèbre suffit à déterminer entièrement $\P_X$ sur la tribu engendrée par cette algèbre. Mais [la proposition vu précédemment](#altbor) nous indique que cette tribu est la tribu borélienne.
 
 ### Caractérisation de la fonction de répartition {.theorem #theofdr}
-Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P$ sur $(\R,\B(\R))$ si et seulement si elle vérifie les trois conditions suivantes :
+Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P_X$ sur $(\R,\B(\R))$ si et seulement si elle vérifie les trois conditions suivantes :
 
  1. elle est croissante,
  2. elle est continue à droite,
@@ -554,10 +571,9 @@ Pour la réciproque, on se reportera à @Jacod.
   * $\P_X([x,y]) = \P( x \geq X \leq y) = F(y) - F(x^-)$
   * $\P_X([x,y[) = \P( x \geq X < y) = F(y-) - F(x^-)$
 
-En particulier, $\P(\{x\}) = F(x) - F(x^-)$ est le **saut** de la fonction $F$ au point $x$. On a donc $\P(\{x\}) = 0$ pour tout $x$ si et seulement si $F$ est continue en tout point.
+En particulier, $\P_X(\{x\}) = F(x) - F(x^-)$ est le **saut** de la fonction $F$ au point $x$. On a donc $\P_X(\{x\}) = 0$ pour tout $x$ si et seulement si $F$ est continue en tout point.
 
 ### Nécessité des tribus {.remark} 
-<!-- cf #32 -->
 Le [théorème ci-dessus](#carac) explique pourquoi, d’un point de vue strictement mathématique, il est nécessaire d’introduire les tribus en probabilités, malgré la complexité que cela engendre. 
 
 Plus concrètement, considérons l'exemple suivant : soit $\Omega = [0,1]$ et $\P$ telle que $\P(]a,b]) = b-a$ pour $0\leq a\leq b\leq 1$ (il s'agit de la loi uniforme sur [0,1]). C'est une probabilité naturelle qui assigne à tout intervalle sa longueur comme probabilité. Supposons maintenant que l'on souhaite étendre de manière unique $\P$ aux $2^{[0,1]}$ éléments de $\mathcal{P}([0,1])$ de manière à ce que $\P(\Omega) =1$ et $\P\left(\cup_{n\in\N^\star} A_n\right) = \sum_{n\in\N^\star} \P(A_n)$ pour toute suite $(A_n)_{n\in\N^\star}$ tels que $\A_n\cap A_m = \varnothing$ pour $n \neq m$. On peut prouver qu'un tel $\P$ n'existe pas. $\mathcal{P}([0,1])$ est trop "grand" pour définir un tel $\P$. Il contient en particulier des ensembles non mesurables.
@@ -568,7 +584,7 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
 
  1. Les masses de Dirac (ou **mesures** de Dirac).  
  
-    $X$ est identiquement égale à $a \in \R$. Alors sa loi est la de Dirac en $a$, la probabilité $\P_X$ sur $\R$ qui vérifie pour $A \in \mathcal{P}(\R)$
+    $X$ est identiquement égale à $a \in \R$. Alors sa loi est la mesure de Dirac en $a$, la probabilité $\P_X$ sur $\R$ qui vérifie pour $A \in \mathcal{P}(\R)$
     \begin{equation*}
         \P_X(_A) = \left\{ \begin{array}{ll}
         1  &\text{si } a \in A, \\
@@ -604,7 +620,7 @@ Il existe bien d’autres probabilités, non discrètes, sur $\R$. Le paragraphe
 
 ## Variables aléatoires réelles à densité
 
-### Densité de probabilité {.definition}
+### Densité de probabilité {.definition #defdens}
 Une fonction réelle $f$ sur $\R$ est une *densité de probabilité* (ou plus simplement une *densité*) si elle est positive, intégrable et vérifie 
 $$\int_\R f(x)\, dx = 1.$$ 
 
@@ -616,7 +632,7 @@ est la fonction de répartition d'une probabilité sur $\R$.
 Soit $X$ une variable aléatoire. On dit que $X$ a une *loi de densité $f$* (ou par abus de language "est de densité $f$"), si $\P_X$ admet la densité $f$ et donc si pour tout réel $x$, 
 $$ \P(X\leq x) = \int_{-\infty}^x f(y) dy.$$
 
-### Fonction de répartition d'une variable aléatoire à densité {.proposition}
+### Fonction de répartition d'une variable aléatoire à densité {.proposition #fdr-va-dens}
 Soit $X$ de loi de densité $f$.
 
    1. Sa fonction de répartition $F$ est continue, de sorte que 
@@ -657,11 +673,15 @@ $$f(x) = \left\{ \begin{array}{ll}
         \end{array}
         \right.$$
 
-Calculons la probabilité que cette durée de fonctionnement $X$ soit comprise entre 50 et 150 heures, elle vaut 
-$$ \P(X \in [50,150]) = \int_{50}^{150} \frac{1}{100}\exp\left(-\frac{x}{100}\right) dx = \exp(-1/2)-\exp(-3/2) \approx 0,38.$$
-Calculons la probabilité que l'ordinateur fonctionne moins de 100 heures :
-$$ \P(X \leq 100) = \int_{0}^{100} \frac{1}{100}\exp\left(-\frac{x}{100}\right) dx = 1-e^{-1} \approx 0,63.$$
+1. Calculer la probabilité que cette durée de fonctionnement $X$ soit comprise entre 50 et 150 heures.
+2. Calculer la probabilité que l'ordinateur fonctionne moins de 100 heures :
+3. Calculer la probabilité que l'ordinateur fonctionne exactement 100 heures avant sa première panne.
 
+### Précipitation {.exercise .one #ex.pluie}
+On souhaite modéliser la hauteur de précipitation (en mm) tombée sur Paris en une journée par une variable aléatoire $X$. On considère que la cette hauteur suit une loi exponentielle de paramètre $1/10$ lorsqu'il pleut et qu'il pleut en moyenne un jour sur deux.
+
+1. Donner la Fonction de répartition de $X$.
+2. $X$ admet-elle une densité ?
 
 
 
@@ -730,9 +750,9 @@ Dans un jeu télévisé, vous êtes confrontés au problème suivant : devant vo
 
 Calculer la probabilité de remporter la voiture selon les deux stratégies (changer ou non son choix de porte).
 
-## Queues de distributions {.question #dlfdr}
+## Queues de distributions
 
-Soit une densité $f$ sur $\R$ étendue à $[-\infty,+\infty]$ telle que la fonction $h: x \in [-\infty,+\infty] \mapsto x\,f(x)$ est absolument intégrable. Cette hypothèse sera appelée $(\mathcal{H})$. On note $F$ la fonction de répartition correspondante sur la droite réelle achevée. Nous allons montrer que[^o]
+Soit une densité $f$ sur $\R$ telle que la fonction $h: x \in \R \mapsto x\,f(x)$ est intégrable. Cette hypothèse sera appelée $(\mathcal{H})$. On note $F$ la fonction de répartition correspondante sur la droite réelle achevée. Nous allons montrer que[^o]
 $$\left|\begin{array}{rl} 1-F(x) \underset{x\to+\infty}{=} o\left(\dfrac{1}{x}\right), & (1)\\[1em] F(x) \underset{x\to-\infty}{=} o\left(\dfrac{1}{x}\right).& (2) \end{array} \right. $$ 
 
 ### Etude en $+\infty$ {.question #dlfdr-pi}
@@ -774,7 +794,7 @@ Soient les fonctions de répartition $$F: x\in\R \mapsto \left|\begin{array}{ll}
 
 ## Densité et fonction de répartition d'une loi Normale
 
-On considère la densité d'une loi Normale centrée réduite : $$f : x\in [-\infty,+\infty] \mapsto \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{x^2}{2}\right\},$$
+On considère la densité d'une loi Normale centrée réduite : $$f : x\in \R \mapsto \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{x^2}{2}\right\},$$
 où $f(-\infty) := \lim\limits_{x\to-\infty} f(x)$ et $f(+\infty) := \lim\limits_{x\to+\infty} f(x)$.
 
 ### Propriétés générales {.question #fdrgaussprop}
@@ -795,10 +815,10 @@ Nous allons maintenant démontrer la propriété suivante : $\forall\,x > 0$ $$ 
 
 5. Déduire de l'encadrement prédédent un équivalent de $1-F(x)$ lorsque $x\to+\infty$. 
 
-### Remarque {.remark} 
+### Ratio de Mills {.remark} 
 Pour $x\in\R$, le rapport $\dfrac{1-F(x)}{f(x)}$ est appelé *ratio de Mills*. Il est beaucoup utilisé en statistique, en particulier pour l'analyse des modèles de régression en présence de biais de sélection.
 
-6. Comparer ce résultat à celui de l'exercice sur les développements limités pour les fonctions de répartition. En particulier, $h:x\in[-\infty,+\infty] \mapsto x\,f(x)$ est-elle absolument intégrable ?
+6. Comparer ce résultat à celui de l'exercice sur les développements limités pour les fonctions de répartition. En particulier, $h:x\in[-\infty,+\infty] \mapsto x\,f(x)$ est-elle intégrable ?
 
 ### Loi Normale générale. {.question #fdrgaussgen}
 
@@ -863,7 +883,7 @@ On considère les événements $A$ “l’individu est séropositif”, et $B$ �
         &= \frac{0,99 \times 10^{-4}}{0,99 \times 10^{-4} + 0,001 \times 0,9999}\\
         &\approx 0,09.
 \end{align*}
-On remarque que contrairement à l’intuition, cette probabilité est petite.
+On remarque que contrairement à l’intuition, cette probabilité est faible.
 
 ### Démonstration {.answer #answer-indep}
 Pour $(A^c,B)$, si $\P(B) = 0$, alors $\P(A^c \cap B) = 0 = \P(B)\P(A^c)$. Sinon, $\P(A^c \cap B) = \P(B)\P(A^c|B) = \P(B)(1-\P(A|B)) = \P(B)(1-\P(A))=\P(B)\P(A^c)$.
@@ -874,6 +894,20 @@ Pour $(A^c,B^c)$, on remarque que $A^c \cap B^c = (A \cup B)^c$, d'où $\P(A^c \
 
 ### Auto-indépendant ?{.answer #answer-autoindep}
 $A$ est indépendant de lui-même ssi $\P(A) = \P(A \cap A) = \P(A)\P(A)$, autrement dit si $\P(A) = 0$ ou si $\P(A) = 1$.
+
+### Durée de fonctionnement {.answer #answer-ex.expo}
+1. $\P(X \in [50,150]) = \int_{50}^{150} \frac{1}{100}\exp\left(-\frac{x}{100}\right) dx = \exp(-1/2)-\exp(-3/2) \approx 0,38.$
+2. $\P(X \leq 100) = \int_{0}^{100} \frac{1}{100}\exp\left(-\frac{x}{100}\right) dx = 1-e^{-1} \approx 0,63.$
+3. $\P(X = 100) = 0$
+
+### Précipitations {.answer #answer-ex.pluie}
+1. $$F(x) = \left\{ \begin{array}{ll}
+   0 & \text{si } x < 0 \\
+   1/2 & \text{si } x = 0 \\ 
+   1/2 + 1/2 \int_0^x \frac{1}{10}\exp\left(-\frac{x}{10}\right) & \text{si } x > 0 
+   \end{array} \right.$$
+   
+2. $F$ n'est pas continue, $X$ n'admet donc pas de densité ([voir la proposition](#fdr-va-dens)).
 
 ## Indépendance et conditionnement
 
@@ -915,14 +949,14 @@ $$\P(B) = \P(B|A)\P(A) + \P(B|A^c)\P(A^c) = 0.\frac{1}{3} + 1.\frac{2}{3} = \fra
 En effet $\P(B|A^c) = 1$ car si la porte choisie initialement n'est pas la bonne, c'est nécessairement la dernière.
 
 Il convient donc de changer son choix compte tenu de la nouvelle information. 
-Pour se convaincre du résultat, on peut refaire le calcul avec disons 100 portes et le présentateur qui ouvre 98 autres porte après le choix du candidat.
+Pour se convaincre du résultat, on peut refaire le calcul avec disons 100 portes et le présentateur qui ouvre 98 autres portes après le choix du candidat.
 
 
-## Queues de distributions {.answer #answer-dlfdr}
+## Queues de distributions
 
 ### Etude en $+\infty$ {.answer #answer-dlfdr-pi}
 
-1. Soit $u>0$. Comme $h$ est absolument intégrable, elle est intégrable et on peut écrire
+1. Soit $u>0$. Comme $h$ est intégrable, on peut écrire
 \begin{align*}
 \int_{-\infty}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} x\,f(x)\,dx & = \int_{-\infty}^{u} x\,f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
 &\geq \int_{-\infty}^{u} x\,f(x)\,dx + u\,\int_{u}^{+\infty} f(x)\,dx\\
@@ -936,7 +970,7 @@ Pour se convaincre du résultat, on peut refaire le calcul avec disons 100 porte
 0 \leq u\,\left(1-F(u)\right) & \leq \int_{-\infty}^{+\infty} h(x)\,dx - \int_{-\infty}^u h(x)\,dx\\
 &= \int_{u}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} h(x)\,1_{[u,+\infty]}(x)\,dx.
 \end{align*}
-Or pour tout $x\in[-\infty,+\infty]$ on a $\left|h(x)\,1_{[u,+\infty]}(x)\right| \leq \left|h(x)\right|$, qui est intégrable. On peut donc appliquer le théorème de convergence dominée, <!-- cf. Calcul intégral 2 --> qui nous donne :
+Or pour tout $x\in \R$ on a $\left|h(x)\,1_{[u,+\infty]}(x)\right| \leq \left|h(x)\right|$, qui est intégrable. On peut donc appliquer le [théorème de convergence dominée](Calcul Intégral II.pdf #TCD), qui nous donne :
 \begin{align*}
 \lim_{u\to+\infty} u\,(1-F(u)) & = \int_{-\infty}^{+\infty} h(x)\,\lim_{u\to+\infty} 1_{[u,+\infty]}(x)\,dx\\
 & = \int_{-\infty}^{+\infty} h(x)\,1_{\varnothing}(x)\,dx = 0.
@@ -945,7 +979,7 @@ On en conclut que $1-F(x) = o\left(\dfrac{1}{x}\right)$ lorsque $x\to+\infty$.
 
 ### Etude en $-\infty$ {.answer #answer-dlfdr-mi}
 
-3. Prenons maintenant $u<0$. Comme $h$ est (absolument) intégrable, on peut écrire
+3. Prenons maintenant $u<0$. Comme $h$ est intégrable, on peut écrire
 \begin{align*}
 \int_{-\infty}^{+\infty} h(x)\,dx = \int_{-\infty}^{+\infty} x\,f(x)\,dx & = \int_{-\infty}^{u} x\,f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
 &\leq u\, \int_{-\infty}^{u} f(x)\,dx + \int_{u}^{+\infty} x\,f(x)\,dx\\
@@ -956,7 +990,7 @@ Or, comme $F$ prend ses valeurs dans $[0,1]$, $u\,F(u) \leq 0$. On obtient donc
 0 \geq u\,F(u) & \geq \int_{-\infty}^{+\infty} h(x)\,dx - \int_{u}^{+\infty} h(x)\,dx\\
 &= \int_{-\infty}^{u} h(x)\,dx = \int_{-\infty}^{+\infty} h(x)\,1_{[-\infty,u]}(x)\,dx.
 \end{align*}
-Comme précédemment, cette dernière fonction sous l'intégrale est bornée par $-\left|h\right|$ (à gauche) et $\left|h\right|$ (à droite), toutes deux intégrables, donc d'après le théorème de convergence dominée <!-- cf. Calcul intégral 2 -->:
+Comme précédemment, cette dernière fonction sous l'intégrale est dominée par $-\left|h\right|$ (à gauche) et $\left|h\right|$ (à droite), toutes deux intégrables, donc d'après le [théorème de convergence dominée](Calcul Intégral II.pdf #TCD)
 \begin{align*}
 \lim_{u\to-\infty} u\,F(u) & = \int_{-\infty}^{+\infty} h(x)\,\lim_{u\to-\infty} 1_{[-\infty,u]}(x)\,dx\\
 & = \int_{-\infty}^{+\infty} h(x)\,1_{\varnothing}(x)\,dx = 0.
@@ -965,24 +999,24 @@ On a donc bien $F(x) = o\left(\dfrac{1}{x}\right)$ lorsque $x\to-\infty$.
 
 ### Interprétation {.answer #answer-dlfdr-interpret}
 
-4. L'hypothèse que $h$ est (absolument) intégrable nous donne une indication sur la vitesse de convergence de $1-F(x)$ et $F(x)$ lorsque $x$ tend respectivement vers $+\infty$ et $-\infty$ : elles convergent vers $0$ au moins aussi vite que $\dfrac{1}{x}$. On dit que les queues de la distribution sont "relativement" fines.
+4. L'hypothèse que $h$ est  intégrable nous donne une indication sur la vitesse de convergence de $1-F(x)$ et $F(x)$ lorsque $x$ tend respectivement vers $+\infty$ et $-\infty$ : elles convergent vers $0$ au moins aussi vite que $\dfrac{1}{x}$. On dit que les queues de la distribution sont "relativement" fines.
 
 Pour mieux comprendre l'impact de ce résultat, prenons un exemple pratique. Considérons un phénomène aléatoire comme la concentration en polluant dans l'air, modélisé par une loi de probabilité sur $\R$ de densité $f$ nulle sur $\R_-^\ast$. Etre capable de déterminer la probabilité que la concentration dépasse un seuil critique $x$ est alors très important pour les organismes de contrôle de la qualité de l'air. Or cet événement correspond mathématiquement à l'événement $[x,+\infty]$. Dans ce cas, $1 - F(x)$ nous donne cette probabilité selon le modèle considéré. Le résultat nous indique que si l'on choisit un modèle tel que $h$ est intégrable, alors cette probabilité décroît plus rapidement que $\dfrac{1}{x}$ lorsque le seuil $x$ augmente. En d'autres termes, les événements extrêmes (quand $x$ est grand) restent "assez" rares. L'impact du choix de modèle n'est donc pas négligeable : si on prend une distribution à queues trop fines alors que les pics de pollution ne sont en réalité pas si rares que ça, $1-F(x)$ risque de sous-estimer le risque réel de dépassement du seuil !
 
 ### Etude de la réciproque {.answer #answer-dlfdr-reciproque}
 
-5. La fonction $F$ considérée est continue et dérivable par morceaux sur $[-\infty,+\infty]$ ; le seul point où $F$ n'est pas dérivable est $e$ (le taux d'accroissement n'a pas les mêmes limites à gauche et à droite). Elle possède donc une densité, <!-- cf. Probabilités 1 --> qui s'obtient en dérivant chaque morceau : pour tout $x\in\R$, $$f(x) = \left|\begin{array}{ll} e\,\dfrac{\ln(x) + 1}{x^2\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon.}\end{array}\right.$$
+5. La fonction $F$ considérée est continue et dérivable par morceaux sur $\R$ ; le seul point où $F$ n'est pas dérivable est $e$ (le taux d'accroissement n'a pas les mêmes limites à gauche et à droite). Elle possède donc [une densité](#fdr-va-dens) qui s'obtient en dérivant chaque morceau : pour tout $x\in\R$, $$f(x) = \left|\begin{array}{ll} e\,\dfrac{\ln(x) + 1}{x^2\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon.}\end{array}\right.$$
 <!-- Ici on peut leur montrer qu'on aurait pu prendre n'importe quelle valeur pour f en e, et ça marcherait quand même (idée qu'on n'a pas forcément une unique densité, mais qu'elles sont toutes égales p.p.) -->
 On peut l'étendre à la droite réelle achevée en posant $f(\pm\infty) = \lim\limits_{x\to\pm\infty}f(x) = 0$.
 
 6. On remarque que pour tout $x\geq e$, $x\,\left(1-F(x)\right) = \dfrac{e}{\ln(x)} \xrightarrow[x\to+\infty]{} 0$, donc le développement asymptotique $(1)$ est bien vérifié. En outre, comme $x\,F(x) = 0$ pour tout $x < e$, le développement asymptotique $(2)$ est aussi bien respecté.
 
 7. Pour tout $x\in\R$, $$ h(x) = \left|h(x)\right| = \left|\begin{array}{ll} e\,\dfrac{\ln(x) + 1}{x\,\ln(x)^2} & \text{si } x \geq e,\\ 0 & \text{sinon,} \end{array}\right.$$ et on pose $h(\pm\infty) = \lim\limits_{x\to\pm\infty}h(x) = 0$.
-Par conséquent, $h$ est clairement (absolument) intégrable sur $[-\infty,e]$, où elle est égale presque partout (partout sauf en $e$) à la fonction nulle. Pour savoir si $h$ est (absolument) intégrable sur toute la droite réelle achevée, il nous faut donc regarder si elle l'est sur $[e,+\infty]$. Pour cela, nous allons utiliser le [théorème de Hake](Calcul Intégral I.pdf #hake), qui nous dit de vérifier que $h$ est intégrable sur tout segment $[a,b] \subsetneq [e,+\infty]$, puis que $\lim\limits_{t\to+\infty} \int_e^t h(x)\,dx$ existe et est finie. Remarquons d'abord que $h$ est continue, donc elle est intégrable sur tout segment strictement inclus dans $[e,+\infty]$; le premier point est vérifié. On remarque en outre que pour tout $x\geq e$, $$h(x) \geq \dfrac{1}{x\,\ln(x)}. $$ Par conséquent, pour tout $t > e$ on a:
+Par conséquent, $h$ est clairement  intégrable sur $[-\infty,e]$, où elle est égale presque partout (partout sauf en $e$) à la fonction nulle. Pour savoir si $h$ est  intégrable sur toute la droite réelle achevée, il nous faut donc regarder si elle l'est sur $[e,+\infty]$. Pour cela, nous allons utiliser le [théorème de Hake](Calcul Intégral I.pdf #hake), qui nous dit de vérifier que $h$ est intégrable sur tout segment $[a,b] \subsetneq [e,+\infty]$, puis que $\lim\limits_{t\to+\infty} \int_e^t h(x)\,dx$ existe et est finie. Remarquons d'abord que $h$ est continue, donc elle est intégrable sur tout segment strictement inclus dans $[e,+\infty]$; le premier point est vérifié. On remarque en outre que pour tout $x\geq e$, $$h(x) \geq \dfrac{1}{x\,\ln(x)}. $$ Par conséquent, pour tout $t > e$ on a:
 $$\int_{e}^t h(x)\,dx \geq \int_e^t \dfrac{1}{x\,\ln(x)}\,dx = \left[\ln(\ln(x))\right]_e^t = \ln(\ln(t)).$$
-Or cette dernière quantité tend vers $+\infty$ quand $t\to+\infty$. Donc $\int_{e}^t h(x)\,dx$ n'a pas de limite finie quand $t\to+\infty$. On en conclut que $h$ n'est pas (absolument) intégrable.
+Or cette dernière quantité tend vers $+\infty$ quand $t\to+\infty$. Donc $\int_{e}^t h(x)\,dx$ n'a pas de limite finie quand $t\to+\infty$. On en conclut que $h$ n'est pas  intégrable.
 
-8. La fonction de répartition $F$ considérée respecte bien les développements asymptotiques $(1)$ et $(2)$, mais la fonction $h$ associée n'est pas (absolument) intégrable. Nous avons donc montré que la réciproque de la propriété est fausse.
+8. La fonction de répartition $F$ considérée respecte bien les développements asymptotiques $(1)$ et $(2)$, mais la fonction $h$ associée n'est pas  intégrable. Nous avons donc montré que la réciproque de la propriété est fausse.
 
 ### Liens entre les développements asymptotiques {.answer #answer-dlfdr-liensdl}
 
@@ -995,14 +1029,15 @@ Or cette dernière quantité tend vers $+\infty$ quand $t\to+\infty$. Donc $\int
 
 1. Faisons l'étude de $f$.
 
-* **Domaine.** $f : [-\infty,+\infty] \to \R^+$.
+* **Domaine.** $f : \R \to \R^+$.
 * **Parité.** On remarque que $f$ est paire : $\forall\,x\in\R$, $f(x) = f(-x)$.
 * **Limites aux bornes.** $\lim\limits_{x\to-\infty} f(x) = \lim\limits_{x\to+\infty} f(x) = 0$. Ainsi, la parité est aussi vraie aux bornes.
-* **Dérivabilité.** $f$ est continue sur $[-\infty,+\infty]$ et infiniment dérivable sur $\R$ en tant que composée de fonctions infiniment dérivables. Pour tout $x\in\R$ sa dérivée première s'écrit $f^\prime(x) = -x\,f(x)$ et a dérivée seconde $f^{\prime\prime}(x) =(x^2 - 1)\,f(x)$. Ces deux dernières fonctions peuvent être étendues à la droite réelle achevée en posant $f^\prime(\pm\infty) := \lim\limits_{x\to\pm\infty} f^\prime(x) = 0$ et $f^{\prime\prime}(\pm\infty) := \lim\limits_{x\to\pm\infty} f^{\prime\prime}(x) = 0$.
+* **Dérivabilité.** $f$ est continue sur $\R$ et infiniment dérivable sur $\R$ en tant que composée de fonctions infiniment dérivables. Pour tout $x\in\R$ sa dérivée première s'écrit $f^\prime(x) = -x\,f(x)$ et a dérivée seconde $f^{\prime\prime}(x) =(x^2 - 1)\,f(x)$. Ces deux dernières fonctions peuvent être étendues à la droite réelle achevée en posant $f^\prime(\pm\infty) := \lim\limits_{x\to\pm\infty} f^\prime(x) = 0$ et $f^{\prime\prime}(\pm\infty) := \lim\limits_{x\to\pm\infty} f^{\prime\prime}(x) = 0$.
 * **Variations.**  $f^\prime$ est strictement positive (resp. négative) ssi $-\infty < x < 0$ (resp. $+\infty > x > 0$). Elle est nulle en $0$, $+\infty$ et $-\infty$. Ainsi, $f$ est strictement croissante sur $]-\infty,0[$, vaut $\left(2\,\pi\right)^{-1/2}$ en $0$, puis est strictement décroissante sur $]0,+\infty[$. 
 * **Convexité/Concavité.** $f^{\prime\prime}$ est strictement positive (resp. négative) sur $\R\backslash\,]-1,1[$ (resp. $]-1,1[$). $f$ est donc convexe sur $\R\backslash\,]-1,1[$ et concave sur $]-1,1[$.
 
-2. Par définition, pour tout $x\in\R$ $$ F(x) = \int_{-\infty}^x \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du.$$ On pose $F(+\infty) = 1$ et $F(-\infty) = 0$. Lorsque $x = 0$, comme $f$ est paire et que son intégrale sur $[-\infty,+\infty]$ vaut $1$ (c'est une densité <!-- cf. Probabilités 1 -->), son intégrale sur $[-\infty,0]$ (i.e. $F(0)$) vaut $\dfrac{1}{2}$. Lorsque $x > 0$, en décomposant l'intégrale puis en utilisant un petit changement de variable <!-- cf. Calcul intégral 1 --> on obtient $$F(x) = \dfrac{1}{2} + \int_{0}^x \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du = \dfrac{1}{2} + \int_{0}^{\frac{x}{\sqrt{2}}} \dfrac{1}{\sqrt{\pi}}\,e^{-v^2}\,dv = \dfrac{1}{2} + \dfrac{1}{2}\,\text{erf}\left(\dfrac{x}{\sqrt{2}}\right).$$
+2. Par définition, pour tout $x\in\R$ $$ F(x) = \int_{-\infty}^x \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du.$$ On pose $F(+\infty) = 1$ et $F(-\infty) = 0$. Lorsque $x = 0$, comme $f$ est paire et que son intégrale sur $[-\infty,+\infty]$ vaut $1$ (c'est [une densité](#defdens)), son intégrale sur $[-\infty,0]$ (i.e. $F(0)$) vaut $\dfrac{1}{2}$. Lorsque $x > 0$, en décomposant l'intégrale puis en utilisant un [changement de variable](Calcul Intégral I.pdf #changement-de-variable)  on obtient 
+$$F(x) = \dfrac{1}{2} + \int_{0}^x \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du = \dfrac{1}{2} + \int_{0}^{\frac{x}{\sqrt{2}}} \dfrac{1}{\sqrt{\pi}}\,e^{-v^2}\,dv = \dfrac{1}{2} + \dfrac{1}{2}\,\text{erf}\left(\dfrac{x}{\sqrt{2}}\right).$$
 Lorsque $x<0$, on peut procéder de la même manière avec $1 - F(x)$ et obtenir la même égalité que ci-dessus.
 
 ### Encadrement de $1 - F(x)$ pour tout $x > 0$ {.answer #answer-fdrgaussenca}
@@ -1011,14 +1046,14 @@ Lorsque $x<0$, on peut procéder de la même manière avec $1 - F(x)$ et obtenir
 $$1 - F(x) = \int_{-\infty}^{+\infty} f(u)\,du - \int_{-\infty}^x f(u)\,du = \int_{x}^{+\infty} \dfrac{1}{\sqrt{2\,\pi}}\,\exp\left\{-\dfrac{u^2}{2}\right\}\,du. $$
 Or pour tout $u\geq x$ on a $u/x \geq 1$, donc 
 $$1 - F(x) \leq \dfrac{1}{\sqrt{2\,\pi}}\,\int_{x}^{+\infty} \dfrac{u}{x}\, \exp\left\{-\dfrac{u^2}{2}\right\}\,du = \dfrac{-1}{x}\,\int_{x}^{+\infty} f^\prime(u)\,du. $$
-Or $f^\prime$ a pour primitive $f$ donc d'après le théorème fondamental du calcul (extension) <!-- cf. Calcul intégral 1 --> on a 
+Or $f^\prime$ a pour primitive $f$ donc d'après [le théorème fondamental du calcul (extension)](Calcul Intégral I.pdf #TFC) on a 
 $$1-F(x) \leq -\dfrac{f(+\infty) - f(x)}{x} = \dfrac{f(x)}{x}. $$
 
 
 4. Soit $x>0$. Par définition, $$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) = \int_x^{+\infty} \left(1 + \dfrac{1}{x^2} \right)\,f(u)\,du.$$
 Or pout tout $u \geq x$ on a $\dfrac{1}{u^2} \leq \dfrac{1}{x^2}$, d'où
 $$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) \geq \int_{x}^{+\infty} \left( 1 + \dfrac{1}{u^2} \right)\,f(u)\,du.$$
-Remarquons maintenant que d'après la question 1, $\left(\dfrac{f(x)}{x} \right)^\prime = \dfrac{-x^2\,f(x) - f(x)}{x^2} = -\left(1+\dfrac{1}{x^2}\right)\,f(x)$. En d'autres termes, $A : x\in\R \mapsto -\dfrac{f(x)}{x}$ est une primitive de $x\in\R \mapsto \left(1+\dfrac{1}{x^2}\right)\,f(x)$. On peut étendre ses valeurs à la droite réelle achevée en posant $A(\pm\infty) = \lim\limits_{x\to\pm\infty} A(x) = 0$. On obtient alors par le théorème fondamental du calcul (extension) <!-- cf. Calcul intégral 1 -->
+Remarquons maintenant que d'après la question 1, $\left(\dfrac{f(x)}{x} \right)^\prime = \dfrac{-x^2\,f(x) - f(x)}{x^2} = -\left(1+\dfrac{1}{x^2}\right)\,f(x)$. En d'autres termes, $A : x\in\R \mapsto -\dfrac{f(x)}{x}$ est une primitive de $x\in\R \mapsto \left(1+\dfrac{1}{x^2}\right)\,f(x)$. On peut étendre ses valeurs à la droite réelle achevée en posant $A(\pm\infty) = \lim\limits_{x\to\pm\infty} A(x) = 0$. On obtient alors par [le théorème fondamental du calcul (extension)](Calcul Intégral I.pdf #TFC)
 $$\left(1 + \dfrac{1}{x^2}\right)\,\left(1-F(x)\right) \geq - \left(A(+\infty) - A(x)\right) = A(x) = \dfrac{f(x)}{x}.$$
 On en déduit directement l'inégalité de gauche :
 $$ 1-F(x) \geq f(x)\,\dfrac{x^2}{(x^2+1)\,x} = f(x)\,\dfrac{x}{x^2+1}. $$
@@ -1029,7 +1064,7 @@ $$ 1-F(x) \geq f(x)\,\dfrac{x^2}{(x^2+1)\,x} = f(x)\,\dfrac{x}{x^2+1}. $$
 $$ \dfrac{x^2}{1+x^2} \leq \dfrac{1-F(x)}{\dfrac{f(x)}{x}} \leq 1, $$
 et comme $\dfrac{x^2}{1+x^2} \to 1$ lorsque $x\to+\infty$, on obtient que $1-F(x) \sim \dfrac{f(x)}{x}$ quand $x\to+\infty$.
 
-6. Pour tout $x \in [-\infty,+\infty]$ on a $\left|h(x)\right| = \left|x\,f(x)\right| = |x|\,f(x)$ puisque $f\geq 0$. Lorsque $x \in [0,+\infty]$, $\left|h(x)\right| = h(x)$, or d'après la question 1, $h$ admet pour primitive $-f$, qui vaut $0$ en $+\infty$ et $-\infty$ puis $(2\,\pi)^{-1/2}$ en $0$. Par conséquent, (d'après l'extension théorème fondamental du calcul <!-- cf. Calcul intégral 1 -->) l'intégrale de $\left|h\right|$ sur $[0,+\infty]$ existe, et vaut $(2\,\pi)^{-1/2}$. Or $\left|h\right|$ est paire, son intégrale sur $[-\infty,0]$ existe donc aussi et vaut $(2\,\pi)^{-1/2}$. On en conclut que $h$ est bien absolument intégrable sur $[-\infty,+\infty]$. En remarquant qu'elle est impaire, on obtient immédiatement que son intégrale vaut $0$.
+6. Pour tout $x \in [-\infty,+\infty]$ on a $\left|h(x)\right| = \left|x\,f(x)\right| = |x|\,f(x)$ puisque $f\geq 0$. Lorsque $x \in [0,+\infty]$, $\left|h(x)\right| = h(x)$, or d'après la question 1, $h$ admet pour primitive $-f$, qui vaut $0$ en $+\infty$ et $-\infty$ puis $(2\,\pi)^{-1/2}$ en $0$. Par conséquent, (d'après l'extension du [théorème fondamental du calcul](Calcul Intégral I.pdf #TFC)) l'intégrale de $\left|h\right|$ sur $[0,+\infty]$ existe, et vaut $(2\,\pi)^{-1/2}$. Or $\left|h\right|$ est paire, son intégrale sur $[-\infty,0]$ existe donc aussi et vaut $(2\,\pi)^{-1/2}$. On en conclut que $h$ est bien absolument intégrable sur $[-\infty,+\infty]$. En remarquant qu'elle est impaire, on obtient immédiatement que son intégrale vaut $0$.
 
 On est donc bien dans le cadre de l'exercice sur les queues de distributions. L'équivalent que nous avons trouvé implique bien que $1-F(x) = o\left(\dfrac{1}{x} \right)$ lorsque $x\to+\infty$. Il nous donne juste plus de précisions quant au comportement de $1-F(x)$ lorsque $x\to+\infty$ dans le cas spécifique de la loi Normale centrée réduite : on connaît sa vitesse de convergence.
 
@@ -1040,6 +1075,7 @@ On obtient alors l'encadrement suivant, pour tout $x>\mu$ :
 $$ \dfrac{x-\mu}{1 + \dfrac{(x-\mu)^2}{\sigma^2}}\,g(x) \leq 1 - G(x) \leq \dfrac{\sigma^2\,g(x)}{x-\mu}.  $$
 
 On en déduit que $1-G(x) \sim \dfrac{\sigma^2\,g(x)}{x-\mu} \sim \sigma^2\,\dfrac{g(x)}{x}$ lorsque $x\to+\infty$.
+
 
 Références
 ================================================================================

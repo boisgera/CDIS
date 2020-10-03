@@ -2833,7 +2833,7 @@ $$
 $$
 Par conséquent, 
 $$
-\lim_{x \to +\infty} \frac{dx}{x} = +\infty
+\lim_{x \to +\infty} \int_1^x \frac{dx}{x} = +\infty
 $$
 et la fonction $x \mapsto 1/x$ n'est pas intégrable sur $\left[1, +\infty\right[$.
 

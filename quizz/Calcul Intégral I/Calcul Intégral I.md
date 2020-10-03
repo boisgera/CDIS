@@ -60,7 +60,7 @@ $$
 Si $f: \left[0, +\infty\right[ \to \mathbb{R}$ est intégrable,
 
   - [ ] A : le prolongement $\bar{f}$ de $f$ à $\left[0, +\infty\right]$ tel que
-    $\bar{f}(+\infty) = +\infty$ est intégrable, 
+    $\bar{f}(+\infty) = 0$ est intégrable, 
 
   - [ ] B : $f$ est bornée et $f(x)$ tend vers $0$ quand $x$ tend vers $+ \infty$,
  
