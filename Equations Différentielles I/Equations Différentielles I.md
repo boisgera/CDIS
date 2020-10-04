@@ -379,7 +379,7 @@ $$
 $$
 
 ### Démonstration {.proof} 
-Voir en [annexe](#pr_theo_bouts). A FAIRE
+Voir en [annexe](#pr_theo_bouts). 
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
 Soient $J$ un intervalle ouvert de $\R$, $(t_0,x_0)\in J\times\R^n$ et $f:J\times\R^n\to\R^n$ continue. S'il existe $a,b: J\to\R$ continues telles que  
