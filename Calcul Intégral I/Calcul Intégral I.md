@@ -1703,7 +1703,7 @@ L'inégalité triangulaire fournit alors
 $$
 |f'(t)(d - c) - (f(d) - f(c))| \leq \frac{\varepsilon}{b-a} (d - c).
 $$
-Posfons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[$ ;
+Posons $\gamma(t) = \left]t - \delta(t), t + \delta(t)\right[$ ;
 nous avons ainsi bien défini une fonction de jauge sur $[a, b]$.
 Si $\mathcal{D}$ est subordonnée à $\gamma$, 
 pour tout $i \in \{0, \dots, m-1\},$ 
@@ -2073,7 +2073,7 @@ l'intégrale de Lebesgue, qui admet des intégrales impropres.
 
 ### Théorème de Hake {.theorem #hake}
 Soit $[a, b]$ un intervalle fermé de $[-\infty, +\infty]$ 
-et $f: [a, b] \to \R$. La fonction $f$ est intégrable su sens de Henstock-Kurzweil
+et $f: [a, b] \to \R$. La fonction $f$ est intégrable au sens de Henstock-Kurzweil
 sur $[a, b]$ si et seulement si elle est intégrable sur tout intervalle $[c, d]$
 tel que $a < c$ et $d < b$ et que l'intégrale
 $$
