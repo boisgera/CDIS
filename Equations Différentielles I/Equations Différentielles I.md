@@ -1514,22 +1514,41 @@ x'(t) & \text{si } t>\tmax
 $$
 $\tilde{x}$ est bien continue et à valeurs dans $J\times X$ sur  $\tilde{I}$. De plus, elle est de classe $C^1$ sur $\mathring{\tilde{I}}\setminus \{ \tmax\}$ telle que $\dot{\tilde{x}}(t) = f(t,\tilde{x}(t))$ pour tout $t\in \mathring{\tilde{I}}\setminus \{ \tmax\}$. Par continuité de $\tilde{x}$ en $\tmax$ et de $f$ en $(t_1,x_1)$, on en déduit que $\tilde{x}$ est bien $C^1$ sur $\mathring{\tilde{I}}$. Donc $\tilde{x}\in S_f(t_0,x_0)$, ce qui contredit la maximalité de $x$ car $I \subsetneq \tilde{I}$. On conclut donc que $\tmax\notin I$ et de même $\tmin\notin I$. Donc $I$ est ouvert.
 
-Supposons $\tmax$ fini. Montrons qu'alors lorsque $t$ tend vers $\tmax$, soit $x(t)$ diverge, soit $(t,x(t))$ tend vers la frontière de $J\times X$. La propriété se montre de manière similaire en $\tmin$. Pour cela, nous allons montrer que lorsque $t$ se rapproche de $\tmax$, $(t,x(t))$ finit par sortir de tout sous-ensemble $K$ fermé et borné de $J\times X$.
-Supposons donc le contraire c'est-à-dire qu'il existe un compact $K\subset J\times X$ tel que
+Supposons $\tmax$ fini. Montrons qu'alors lorsque $t$ tend vers $\tmax$, soit $x(t)$ diverge, soit $(t,x(t))$ tend vers la frontière de $J\times X$. La propriété se montre de manière similaire en $\tmin$. Pour cela, nous allons montrer que lorsque $t$ se rapproche de $\tmax$, $(t,x(t))$ finit par sortir définitivement de tout sous-ensemble $K$ fermé et borné de $J\times X$. Soit donc $K$ fermé et borné de $J\times X$. 
+
+Supposons d'abord qu'il existe $\tau$ tel que $(t,x(t))\in K$ pour tout $t\in [\tau,\tmax[$. Puisque $f$ est continue, $\|f(t,x)\|$ est borné disons par $M$ sur $K$. Donc pour toute suite $(t_k)$ d'éléments de $[\tau,\tmax[$ tendant vers $\tmax$, par la représentation intégrale des solutions,
 $$
- \forall t_K \in \left[t_0,\tmax\right[ \, , \, \exists t\in \left[t_K,\tmax\right[ \: : \: x(t)\in K
+\|x(t_{k+p}) - x(t_{k}) \| \leq \int_{t_k}^{t_{k+p}} \|f(s,x(s))\| ds \leq M (t_{k+p}-t_k) \ .
 $$
-En d'autres termes, on suppose que la solution revient de manière persistente dans $K$. Alors il existe une suite $(t_p)_{p\in \N}$ telle que 
+Donc la suite $(x(t_k))$ est de Cauchy et donc aussi la suite $(t_k,x(t_k))$ dans $K$. Puisque $K$ est un sous-ensemble fermé de $\R\times \R^n$ complet, il est complet. Donc $(t_k,x(t_k))$ converge vers $(\tmax,\bar{x})\in K \subset J\times X$. Donc $x$ peut-être prolongée par continuité en une solution sur $]\tmin,\tmax]$, ce qui est impossible par maximalité. Donc $(t,x(t))$ sort de manière persistente de $K$.
+
+Supposons maintenant que $(t,x(t))$ entre aussi de manière persistente dans $K$, i.e.,
+$$
+ \forall t_K \in \left[t_0,\tmax\right[ \, , \, \exists t\in \left[t_K,\tmax\right[ \: : \: (t,x(t))\in K
+$$
+Alors il existe une suite $(t_p)_{p\in \N}$ telle que 
 $$
 \tmax-\frac{1}{p}\leq  t_p < \tmax \quad \text{et} \quad (t_p,x(t_p))\in K \quad \forall p\in \N
 $$
-On a donc $\lim_{p\to+\infty} t_p = \tmax$, et par compacité de $K$, on peut extraire de $(t_p,(x(t_p))_{p\in \N}$ une sous-suite qui converge vers $(\tmax,\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{p\to+\infty} x(t_p) =\overline{x}$.
+On a donc $\lim_{p\to+\infty} t_p = \tmax$, et par compacité de $K$, on peut extraire de $(t_p,x(t_p))_{p\in \N}$ une sous-suite qui converge vers $(\tmax,\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{p\to+\infty} x(t_p) =\overline{x}$.
 
+Notons $\xi =(\tmax,\overline{x})$. Soit $\varepsilon >0$ tel que $\overline{B}(\xi,2\varepsilon)\subset J\times X$. Il existe $p^*$ tel que pour tout $p\geq p^*$, $(t_{p},x(t_{p}))\in \overline{B}(\xi,\varepsilon)$.  Mais puisque $\overline{B}(\xi,2\varepsilon)$ est un sous-ensemble fermé et borné de $J\times X$, on sait que $(t,x(t))$ en sort de manière persistente. Donc sans perte de généralité, on peut supposer que pour tout $p$, il existe $t_p < t_p' < t_{p+1}$ tel que 
+$$
+\| (t_p',x(t_p')) - \xi \| = 2\varepsilon  \qquad , \qquad (t,x(t))\in \overline{B}(\xi,2\varepsilon) \quad \forall t\in [ t_p,t_p' ] \ .
+$$
+Soit alors $M$ le maximum de $\| f\|$ sur le fermé borné $\overline{B}(\xi,2\varepsilon)$. Par la représentation intégrale, et pour $p$ suffisamment grand, on a donc
+$$
+\frac{\varepsilon}{2} \leq \|x(t_p')-x(t_p) \| \leq \int_{t_p}^{t_p'} \|f(s,x(s))\| ds \leq M (t_p'-t_p) \leq M (t_{p+1}-t_p)  \ .
+$$
+Il s'en suit que pour $p$ suffisamment grand, $t_{p+1}-t_p \geq \frac{\varepsilon}{2M}$, ce qui est impossible puisque $(t_p)$ tend vers $\tmax$. On peut donc conclure que $(t,x(t))$ sort de manière définitive de tout fermé borné $K$ lorsque $t$ s'approche de $\tmax$.
+
+<!--
 Soient $\tau>0$, $r>0$ et $\tau_m\in \left(0,\tau \right]$ tels que 
 $$
 \cC:=\left[\tmax-2\tau,\tmax+2\tau \right]\times \overline{B}(\overline{x},2r)\subset J\times X \quad , \quad \tau_m  \max_{\cC} \|f\| \leq r\ .
 $$
 Soit $p\in \N$ tel que $|t_p-\tmax|< \tau_m$ et $\|x(t_p)-\tmax\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}(x(t_p),r)\subset J\times X$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\tmax$, et par unicité, $x\equiv y$ sur $[t_p,\tmax)$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
+-->
 
 
 ## Stabilité et linéarisé tangent {.app #app_stab_lin}
