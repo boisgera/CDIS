@@ -2624,24 +2624,6 @@ $$
 \lim_{\varepsilon \to 0} \int_0^{\varepsilon} f(t) \, dt = \int_0^0 f(t) \, dt = 0.
 $$
 
-### Changement de variables simplifié {.answer #answer-cv}
-La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
-Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
-a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
-cette fonction est continue, comme composée et produit de fonctions continues, 
-donc intégrable sur $[a, b]$. Par [le théorème fondamental du calcul](#TFC), 
-on a donc
-$$
-\int_a^b f(g(t)) g'(t) \, dt
-=
-\left[h \circ g\right]_a^b = h(g(b)) -  h(g(a)).
-$$
-D'autre part, comme $f$ est continue et a $h$ comme primitive,
-$$
-\int_{g(a)}^{g(b)} f(x) \, dx = \int_{g(a)}^{g(b)} h'(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
-$$
-les deux intégrales sont donc égales.
-
 ### Dérivabilité presque partout {.answer #answer-dpp}
 On peut par exemple considérer la fonction $f:[0, 1] \to \R$
 définie par
@@ -2682,6 +2664,25 @@ g(x) = \lim_{\substack{h\to 0 \\ h\neq 0}} \frac{1}{2h}\int_{t-h}^{t+h} f(x) \, 
 = \frac{1}{2}F'(x) + \frac{1}{2}F'(x) = f(x).
 $$
 Les fonctions $f$ et $g$ sont donc égales presque partout.
+
+### Changement de variables simplifié {.answer #answer-cv}
+La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
+Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
+a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
+cette fonction est continue, comme composée et produit de fonctions continues,
+donc intégrable sur $[a, b]$. Par [le théorème fondamental du calcul](#TFC),
+on a donc
+$$
+\int_a^b f(g(t)) g'(t) \, dt
+=
+\left[h \circ g\right]_a^b = h(g(b)) -  h(g(a)).
+$$
+D'autre part, comme $f$ est continue et a $h$ comme primitive,
+$$
+\int_{g(a)}^{g(b)} f(x) \, dx = \int_{g(a)}^{g(b)} h'(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
+$$
+les deux intégrales sont donc égales.
+
 
 ### Changement de variable $x=t^2$ {.answer #answer-ft2}
 La fonction $g: t \in [0, 1] \to t^2 \in \R$ vérifie 
