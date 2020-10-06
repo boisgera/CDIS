@@ -28,7 +28,7 @@ x^{j+1} = x^j + \dt \, f(t_j,x^j) \qquad x^0 = x_0
 $$
 pour un pas de temps $\dt$ suffisamment petit. Cette méthode appartient à la famille des méthodes *explicites*, c'est-à-dire que $x^{j+1}$ est directement et explicitement défini en fonction de $x^{j}$. En 1824, Cauchy montre la convergence de cette méthode lorsque le pas de temps $\dt$ tend vers 0, et prouve ainsi l'existence et l'unicité des solutions (en fait, il utilise plutôt la version *implicite* de la méthode d'Euler).
 
-Même si la méthode d'Euler suffit dans les cas simples, elle exige parfois de recourir à des pas très faibles pour obtenir une précision acceptable sur des temps longs (voir [Systèmes raides](#sec_systRaides) plus bas). Parfois, le compromis entre précision à chaque itération et accumulation des erreurs d'arrondis devient même impossible. De plus, cette méthode n'est pas adaptée à la simulation de certains systèmes dont certaines propriétés cruciales (comme la conservation de l'énergie) ne sont pas préservées (voir [Systèmes Hamiltoniens](#sec_systHamiltoniens) plus bas). Au cours des derniers siècles, les scientifiques ont donc progressivement développé des méthodes de plus en plus complexes et performantes : schémas multi-pas d'ordre supérieur, méthodes implicites, variation du pas, schémas symplectiques etc.
+Même si la méthode d'Euler suffit dans les cas simples, elle exige parfois de recourir à des pas très faibles pour obtenir une précision acceptable sur des temps longs (voir [Systèmes raides](#sec_systRaides)). Parfois, le compromis entre précision à chaque itération et accumulation des erreurs d'arrondis devient même impossible. De plus, cette méthode n'est pas adaptée à la simulation de certains systèmes dont certaines propriétés cruciales (comme la conservation de l'énergie) ne sont pas préservées (voir [Systèmes Hamiltoniens](#sec_systHamiltoniens)). Au cours des derniers siècles, les scientifiques ont donc progressivement développé des méthodes de plus en plus complexes et performantes : schémas multi-pas d'ordre supérieur, méthodes implicites, variation du pas, schémas symplectiques etc.
 
 En fait, dans l'histoire des équations différentielles, c'est souvent la mécanique céleste qui a été motrice des plus grandes avancées. Au milieu du XIX$^e$ siècle, les astronomes Adams et Le Verrier prédisent mathématiquement l'existence et la position de la planète Neptune et l'on entend parler pour la première fois de méthodes multi-pas. Ensuite, les progrès se sont enchaînés au rythme des modèles physiques. La première tendance a été de rechercher des schémas permettant toujours plus de précision à pas plus grand. Parmi les dates clés, on peut citer la publication en 1895 de la première méthode de Runge-Kutta par Runge, puis en 1901, de la populaire méthode de Runge-Kutta d'ordre 4 par Kutta, et ensuite en 1910, de l'*extrapolation de Richardson* permettant la montée en ordre et donc le recours à des pas plus grand pour une même précision. Mais au milieu du XX$^e$ siècle, on découvre des systèmes, dits *raides* (Hirschfelder, 1952), pour lesquels cette montée en ordre ne suffit pas et pour lesquels il faut repenser de nouveaux schémas (Dalquist, 1968). Enfin, à partir des années 80, les scientifiques développent l'intégration numérique *géométrique*, c'est-à-dire qui préservent les propriétés structurelles du système (symmétrie, conservation d'énergie etc.), utile en particulier pour la simulation des systèmes hamiltoniens. 
 
@@ -50,14 +50,14 @@ En deuxième lecture :
 
 - comprendre que la convergence est la combinaison de deux concepts : la consistance et la stabilité ; savoir utiliser ces notions pour évaluer l'impact des erreurs d'arrondi.
 
-- savoir montrer la convergence de schémas de base, tels que ceux donnés en exercice.
+- savoir calculer l'ordre de consistance et montrer la convergence de schémas de base.
 
 - comprendre l'apport de schémas symplectiques pour les systèmes hamiltoniens.
 
 
 # Limites du schéma d'Euler
 
-La première limite du schéma d'Euler est qu'il est d'ordre 1, c'est-à-dire qu'il produit une erreur en $\dt^2$ à chaque pas. Nous verrons dans la suite d'autres algorithmes d'ordre supérieur qui permettent d'utiliser  un pas plus grand pour une précision donnée. Mais au delà de cette problématique, il existe des systèmes pour lesquels de telles méthodes (même d'ordre supérieur) échouent. En voici  deux exemples célèbres.
+La première limite du schéma d'Euler est qu'il est d'ordre 1, c'est-à-dire qu'il produit une erreur en $\dt^2$ à chaque pas. Nous verrons dans la suite des algorithmes d'ordre supérieur qui permettent d'utiliser  un pas plus grand pour une précision donnée. Mais au delà de cette problématique, il existe des systèmes pour lesquels de telles méthodes (même d'ordre supérieur) échouent. En voici  deux exemples célèbres.
 
 ## Systèmes raides {.section #sec_systRaides}
 
@@ -121,7 +121,7 @@ m_i a_i = m_i \ddot{q_i} =  \sum_{k\neq i} F_k = -G \sum_{k\neq i} \frac{m_i m_j
 $$
 où $F_k$ sont les forces de gravitation exercées par chaque corps $k$ sur le corps $i$.
 
-Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même des schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps ``courts'' sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *symplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma symplectique*](#exo_symplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10]. Un exemple simple de système à deux corps est aussi donné dans le notebook Equations Differentielles II.ipynb. 
+Or, lorsqu'on essaye de simuler le système solaire avec un schéma d'Euler (explicite), l'énergie augmente peu à peu à chaque révolution et les trajectoires sont des spirales divergentes. Avec un schéma d'Euler implicite, Jupiter et Saturne s'effondre vers le soleil et sont éjectées du système solaire ! Même des schémas d'ordre supérieur ne permettent pas de simuler correctement ce système sur des temps "courts" sur l'échelle de temps astronomique (à moins de prendre des pas déraisonnablement petits). En fait, le problème c'est que ces méthodes d'intégration ne préservent pas les propriétés structurelles des solutions telles que la conservation de l'énergie. Il faut donc développer des schémas particuliers, appelés *symplectiques*, comme illustré sur un simple oscillateur dans l'exercice [*Schéma symplectique*](#exo_symplectique). Pour aller plus loin sur ces méthodes, voir [@Hairer10]. Un exemple simple de système à deux corps est aussi donné dans le notebook Equations Differentielles II.ipynb. 
 
 
 # Méthodes à un pas
@@ -240,12 +240,11 @@ Un tel schéma est plus lourd en terme de calculs qu'un algorithme explicite mai
 
 # Analyse d'erreur
 
-L'objectif de l'analyse d'erreur *a priori* est de donner une estimation de l'erreur commise par la méthode numérique en fonction des paramètres du problème (temps d'intégration, pas de temps, propriétés de $f$). L'idée générale est de remarquer qu'à chaque pas de temps, on commet une erreur d'intégration locale (erreur de troncature dans la discrétisation de l'intégrale, à laquelle s'ajoutent souvent des erreurs d'arrondi), et que ces erreurs locales s'accumulent. Le contrôle de cette accumulation demande l'introduction d'une notion de stabilité adéquate, alors que les erreurs locales sont liées à une notion de consistance. L'alliance de stabilité et de consistante donne une propriété de convergence qui est souhaitée lors de l'implémentation de méthodes numériques. 
+L'objectif de l'analyse d'erreur *a priori* est de donner une estimation de l'erreur commise par la méthode numérique en fonction des paramètres du problème (temps d'intégration, pas de temps, propriétés de $f$). L'idée générale est de remarquer qu'à chaque pas de temps, on commet une erreur d'intégration locale (erreur de troncature dans la discrétisation de l'intégrale, à laquelle s'ajoutent souvent des erreurs d'arrondi), et que ces erreurs locales s'accumulent au fil des pas. Le contrôle de cette accumulation demande l'introduction d'une notion de stabilité adéquate, alors que les erreurs locales sont liées à une notion de consistance. L'alliance de stabilité et de consistante donne une propriété de convergence qui est souhaitée lors de l'implémentation de méthodes numériques. 
 
 ## Erreur de troncature locale
 
-L'erreur de troncature locale à l'itération $j$ est l'erreur résiduelle que l'on obtiendrait si 
-l'on appliquait le schéma numérique à la solution exacte $x(t_j)$. En d'autres termes, c'est l'erreur due à l'approximation de l'intégrale.  Elle est ainsi définie comme
+L'erreur de troncature locale à l'itération $j$ est l'erreur que l'on commet en une seule itération lors de l'approximation de l'intégrale pour passer de $x^j$ à $x^{j+1}$. C'est donc l'erreur théorique que l'on obtiendrait si l'on appliquait le schéma numérique à la solution exacte $x(t_j)$.  Elle est ainsi définie comme
 $$
 \eta^{j+1} := \frac{x(t_{j+1}) - x(t_j) - \dt_j \Phi(t_j,x(t_j),\dt_j)}{\dt_j}.
 $$
@@ -273,7 +272,7 @@ $$
 
 ### Démonstration {.proof}
 
-Soit $C$ un ensemble compact tel que $x(t)\in C$ pour tout $t\in \left[ 0,T \right]$. On note toujours $\dt = \max_{0\le j\le J-1} \dt_j$.
+Soit $C$ un ensemble fermé et borné tel que $x(t)\in C$ pour tout $t\in \left[ 0,T \right]$. On note toujours $\dt = \max_{0\le j\le J-1} \dt_j$.
 Par la représentation intégrale des solutions, 
 $$
 x(t_{j+1}) = x(t_j) + \int_{t_j}^{t_{j+1}} f(x(s),s)ds
@@ -296,7 +295,7 @@ Donc
 $$
 \|\eta^{j+1}\| \leq  \varepsilon + \frac{1}{\dt_j}  \int_{t_j}^{t_{j+1}} \big\| f(s,x(s)) - f(t_j,x(t_j)) \big\|ds \ .
 $$
-Puisque $s\mapsto f(s,x(s))$ est continue sur le compact $\left[ 0,T \right]$, elle y est uniformément continue, donc il existe $\Delta_2 >0$ tel que si $\dt \leq \Delta_2$,
+Puisque $s\mapsto f(s,x(s))$ est continue sur l'intervalle fermé et borné $\left[ 0,T \right]$, elle y est uniformément continue, donc il existe $\Delta_2 >0$ tel que si $\dt \leq \Delta_2$,
 $$
 \big\| f(s,x(s)) - f(t_j,x(t_j)) \big\| \leq \varepsilon \qquad \forall s \in \left[ t_j,t_{j+1} \right]\quad \forall j=1,\hdots,N
 $$
@@ -394,7 +393,7 @@ donc ce schéma est d'ordre $\geq 2$. On peut vérifier que si $f$ est $C^3$, le
 
 ## Stabilité 
 
-La notion de stabilité quantifie la robustesse de l'approximation numérique par rapport à l'accumulation des erreurs locales et perturbations. 
+Une fois que l'on a étudié l'erreur locale commise en une itération, on s'intéresse à la manière dont elle va se propager au fur et à mesure des itérations. Pour cela, la notion de stabilité quantifie la robustesse de l'approximation numérique par rapport à l'accumulation des erreurs locales et perturbations. 
 <!-- On donne ici la définition pour des schémas à pas fixe. On fixe un pas de temps $\dt > 0$ constant pour simplifier, et un intervalle de temps $[0,T]$ avec $T = J \dt$. -->
 
 ### Stabilité {.definition #def_stab}
@@ -500,7 +499,7 @@ On a déjà montré que le schéma d'Euler explicite est consistant d'ordre 1. P
 
 ## Erreurs d'arrondi et pas optimal
 
-A chaque itération, lorsque la machine calcule $x^{j+1}$, elle commet des erreurs d'arrondi de l'ordre de la précision machine. La solution obtenue est donc donnée par
+A chaque itération, lorsque la machine calcule $x^{j+1}$, elle commet en plus de l'erreur de troncature de l'intégrale des erreurs d'arrondi de l'ordre de la précision machine. La solution obtenue est donc en fait donnée par
 $$
 \hat{x}^{j+1} = \hat{x}^j + \dt_j \left( \Phi(t_j,\hat{x}^j,\dt_j) + \rho^{j+1} \right)+ \varepsilon^{j+1}
 $$
@@ -630,10 +629,10 @@ Les équations de Lotka-Volterra, ou "modèle proie-prédateur", sont couramment
 \dot{x}_1 &= x_1(\alpha -\beta x_2) \\
 \dot{x}_2 &= -x_2(\gamma - \delta x_1)
 \end{align*}
-où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement.
+où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement et $\alpha$, $\beta$, $\gamma$, $\delta$ sont des paramètres positifs.
 
  1. Donner une interprétation physique à chaque terme de la dynamique. 
-    Quels sont les points d'équilibre ?
+    Quels sont les points d'équilibre ? Etudier leur stabilité locale.
 
  2. A l'aide des fonctions `meshgrid` et `quiver`, visualiser graphiquement le champ de vecteurs. 
     Intuiter le comportement des solutions. 
@@ -644,8 +643,8 @@ où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs re
     H(x_1,x_2) = \delta x_1 - \gamma \ln x_1 + \beta x_2 - \alpha \ln x_2  
     $$
     définie sur $\Rg\times \Rg$.
-    Calculer la dérivée de $H$ le long des solutions issues de conditions initiales dans $\Rg\times \Rg$. 
-    Qu'en concluez vous sur le domaine d'existence de ces solutions dans $\Rg\times \Rg$ et sur leur comportement ? 
+    Calculer la dérivée de $H$ le long des solutions dans $\Rg\times \Rg$. En déduire que toute solution initialisée dans $\Rg\times \Rg$ est définie sur $\R$ et reste dans $\Rg\times \Rg$.
+    Qu'en concluez vous sur leur comportement ? On pourra l'illustrer en représentant les courbes de niveau de $H$.
 
 On souhaite maintenant simuler numériquement les trajectoires.
 
@@ -909,7 +908,7 @@ Il s'ensuit qu'on a toujours
 -->
 On montre de la même façon qu'à la question précédente que pour $\dt$ suffisamment petit, $x^{j+1} = x(t_j)+\dt f(t_j, x(t_j)) + \mathrm{O}(\dt^2)$ et donc
 \begin{align*}
-f\left(t_j+\frac{\dt}{2},\frac{x(t_j)+x^{j+1}}{2}\right) &= f(t_j,x(t_j)) + \partial_t f(t_j,x(t_j)) \frac{\dt}{2} +  \partial_x f(t_j,x(t_j))\left(\frac{x(t_j)+x^{j+1}}{2} - x(t_j)\right) + \mathrm{O}(\|h\|^2) \\
+f&\left(t_j+\frac{\dt}{2},\frac{x(t_j)+x^{j+1}}{2}\right)\\ &= f(t_j,x(t_j)) + \partial_t f(t_j,x(t_j)) \frac{\dt}{2} +  \partial_x f(t_j,x(t_j))\left(\frac{x(t_j)+x^{j+1}}{2} - x(t_j)\right) + \mathrm{O}(\|h\|^2) \\
 &= f(t_j, x(t_j)) + \frac{\dt}{2} (\partial_t f(t_j,x(t_j)) + \partial_x f(t_j,x(t_j))f(t_j,x(t_j))) + \mathrm{O}(\dt^2)
 \end{align*}
 avec l'incrément $h=\left(\frac{\dt}{2}, \frac{x(t_j)+x^{j+1}}{2} - x(t_j)\right)$,
@@ -940,10 +939,10 @@ Soit $B$ un compact de $\R^n$. Soit $B'$ un compact tel que $x + \dt\Phi(t,x,\dt
 $$
 \|f(t,x_a) - f(t,x_b) \| \leq L_f \|x_a-x_b\| \qquad \forall (x_a,x_b,t)\in B'\times B' \times [ 0,T+\dt_m ] \ . 
 $$
-Ceci est vrai par le théorème des accroissements finis appliqué à $x\mapsto f(t,x)$ et pour $t$ dans un compact.
+Ceci est vrai par le théorème des accroissements finis appliqué à $x\mapsto f(t,x)$ et pour $t$ dans un intervalle fermé et borné.
 Prenons maintenant $(x_a,x_b)\in B\times B$, $t\in [ 0,T ]$ et $\dt\in [ 0,\dt_m ]$, alors
 \begin{align*}
-\|\Phi(t,x_a,\dt)-\Phi(t,x_b,\dt) \| &= \| f\Big(t+ \dt, x_a + \dt\Phi(t,x_a,\dt) \Big)-f\Big(t+ \dt, x_b + \dt\Phi(t,x_b,\dt) \Big) \|\\
+\|&\Phi(t,x_a,\dt)-\Phi(t,x_b,\dt) \|\\ &= \| f\Big(t+ \dt, x_a + \dt\Phi(t,x_a,\dt) \Big)-f\Big(t+ \dt, x_b + \dt\Phi(t,x_b,\dt) \Big) \|\\
 &\leq L_f \left( \|x_a-x_b \| + \dt\|\Phi(t,x_a,\dt)-\Phi(t,x_b\dt) \| \right)
 \end{align*}
 soit
@@ -996,7 +995,7 @@ qui n'est pas défini pour $\lambda \dt=1$ et qui explose pour des valeurs proch
 
 ### Question 2 {.answer #answer-impl-2}
 
-Lorsque l'on a deux dynamiques asymptotiquement stables aux constantes de temps très différentes la condition de stabilité de Euler explicite exige de choisir un pas câlé sur la plus petite constante de temps, i.e. il faut $\dt<\frac{1}{mu}$. Ceci est très exigeant car il faut attendre un nombre d'itérations de l'ordre de $\mu$ pour voir l'évolution du système lent. Par contre, une méthode implicite permet de choisir librement le pas de temps en fonction des performances souhaitées.
+Lorsque l'on a deux dynamiques asymptotiquement stables aux constantes de temps très différentes la condition de stabilité de Euler explicite exige de choisir un pas câlé sur la plus petite constante de temps, i.e. il faut $\dt<\frac{1}{\mu}$. Ceci est très exigeant car il faut attendre un nombre d'itérations de l'ordre de $\mu$ pour voir l'évolution du système lent. Par contre, une méthode implicite permet de choisir librement le pas de temps en fonction des performances souhaitées.
 
 
 ## Euler symplectique
