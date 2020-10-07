@@ -96,8 +96,9 @@ Objectifs d'apprentissage
    
    - loi des variables aléatoires réelles
       
-      - \two savoir que la fonction de répartition caractérise la loi d'une variable aléatoire réelle
+      - \one savoir que la fonction de répartition caractérise la loi d'une variable aléatoire réelle
       - \two connaître les propriétes de base de la fonction de répartition
+      - \two savoir calculer la fonction de répartition d'une variable aléatoire
 
    - densité de probabilité
 
