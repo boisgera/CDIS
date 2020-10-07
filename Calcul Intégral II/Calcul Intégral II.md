@@ -230,7 +230,7 @@ $$
 \lim_{x \to 0^+} \int_0^1 \frac{e^{-xt}}{1+t^2} \, dt = \frac{\pi}{4}.
 $$
 
-### Théorème fondamental du calcul {.exercise .three #exo-TCD}
+### Théorème fondamental du calcul {.exercise .three #exo-TCD .question}
 Déduire de la forme classique du théorème fondamental du calcul 
 et du [théorème de convergence dominée](#TCD) 
 que si $f: [a, b] \subset [-\infty, +\infty] \to \R$ est continue sur $[a, b]$,
@@ -326,7 +326,7 @@ $$
 ### Démonstration {.proof}
 Se reporter à @Dem11.
 
-### Fonctions puissance  {.one .exercise #power}
+### Fonctions puissance  {.one .exercise #power .question}
 Montrer que la fonction puissance $t \in \left[1, +\infty\right[ \mapsto t^{\alpha}$
 est intégrable si et seulement $\alpha < -1$ et que la fonction puissance
 $t \in \left]0,1\right] \mapsto t^{\alpha}$ est intégrable si et seulement
@@ -371,7 +371,7 @@ de $\R$ aussi général que possible[^loop] de $\R$ de prendre cette
 égalité comme une définition, ce qui suppose toutefois que la fonction 
 caractéristique soit intégrable ; on parle alors d'*ensemble intégrable*
 ou *de longueur finie*. 
-Cette définition laisse toutefois de coté les ensembles "trop grands" 
+Cette définition laisse toutefois de côté les ensembles "trop grands" 
 pour être intégrables, mais par ailleurs parfaitement anodins, 
 comme $\R$ tout entier ou l'ensemble des réels positifs. 
 Nous préférons donc mettre l'accent sur la notion d'ensemble *mesurable* :
@@ -448,7 +448,7 @@ et $\ell(A \cup B) = \ell(A) + \ell(B)$.
 ou en bijection avec $\N$.)
 
 ### {.remark}
-On aggrège cet ensemble de propriétés en disant que les ensembles mesurables 
+On agrège cet ensemble de propriétés en disant que les ensembles mesurables 
 de $\R$ forment une *tribu* -- ou *$\sigma$-algèbre* -- de $\R$.
 
 
@@ -1468,11 +1468,11 @@ $[-k, k]$ prolongées par zéro à $\R$ est croissante, composée de fonctions
 intégrables, et sa limite est la fonction $|f|$. 
 Par [le théorème de convergence monotone](#TCM), on a donc
 $$
-\lim_{x \to +\infty} \int_{k}^k |f(t)| \, dt = \int  |f(t)| \, dt
+\lim_{k \to +\infty} \int_{k}^k |f(t)| \, dt = \int  |f(t)| \, dt
 $$
 si la limite du membre de gauche est finie. La fonction $|f|$ est alors 
-intégrable ; elle domine les fonction $f_k$ qui convergent simplement vers
-$f$, donc $f$ est également intégrable par [le théorème de convergence dominée](#TCM).
+intégrable ; elle domine les fonctions $f_k$ qui convergent simplement vers
+$f$, donc $f$ est également intégrable par [le théorème de convergence dominée](#TCD).
 
 Réciproquement, si 
 $$
