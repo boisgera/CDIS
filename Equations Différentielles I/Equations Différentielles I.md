@@ -35,9 +35,11 @@ Ce cours est une introduction à l'étude non linéaire des équations différen
 
 - savoir réduire une équation différentielle à l'ordre 1.
 
-- savoir justifier l'existence de solutions par le théorème de Peano lorsque "$f$ est continue", et l'unicité des solutions maximales par le théorème de Cauchy-Lipschitz lorsque "$f$ est continûment différentiable par rapport à $x$".
+- savoir justifier l'existence de solutions par le théorème de Peano lorsque "$f$ est continue"
 
-- comprendre que les solutions ne sont pas toujours définies globalement si elles "explosent en temps fini" où atteignent le bord du domaine où l'équation différentielle est définie. Savoir faire appel au critère "linéairement borné" pour justifier la globalité des solutions.
+- comprendre la notion de solution maximale et savoir qu'elles sont définies tant qu'elles "n'explosent" pas et tant qu'elles n'atteignent pas la frontière du domaine où l'équation différentielle est définie. Savoir justifier qu'une solution est globale si ces éventualités ne peuvent se réaliser en temps fini et/ou en faisant appel au critère "linéairement borné".
+
+- savoir justifier l'unicité des solutions maximales par le théorème de Cauchy-Lipschitz lorsque "$f$ est continûment différentiable par rapport à $x$".
 
 - comprendre (qualitativement) dans quelle mesure une erreur sur la condition initiale se répercute sur les solutions en temps fini. 
 
@@ -119,12 +121,12 @@ où $q\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\
 
 Dans tous ces cas, on s'intéresse aux signaux du temps $t\mapsto y(t)$ de classe $C^p$ qui vérifient une équation du type 
 $$
-y^{(p)}(t) = \psi(t,y(t),\dot{y}(t),\ldots, y^{(p-1)(t)})
+y^{(p)}(t) = \psi\left(t,y(t),\dot{y}(t),\ldots, y^{(p-1)(t)}\right)
 $$
 sur son ensemble de définition, où $p\in \N^*$ désigne l'ordre de l'équation différentielle.
 En fait, on se rend compte que $y$ de classe $C^p$ vérifie
 $$
-y^{(p)}(t) = \psi(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t))
+y^{(p)}(t) = \psi\left(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t)\right)
 $$
 si et seulement si $x=(y,\dot{y},\ldots,y^{(p-1)})$ de classe $C^1$ vérifie
 $$
@@ -208,7 +210,7 @@ f(t,x_1,x_2) =
 \right] \ .
 $$
 
-Ainsi, même si la physique nous donne initialement une équation différentielle d'ordre supérieur, on pourra toujours se ramener à l'ordre 1. Or cette réduction est cruciale pour l'étudier mathématiquement ainsi que numériquement, et devra donc être systématique.
+Ainsi, même si la physique nous donne initialement une équation différentielle d'ordre supérieur, on pourra toujours se ramener à l'ordre 1. Cette réduction est cruciale pour l'étudier mathématiquement ainsi que numériquement, et devra donc être systématique.
 
 Commençons par définir le cadre de cette étude.
 
@@ -231,19 +233,21 @@ si $y$ est de classe $C^p$ sur $I$ et pour tout $t\in \mathring{\overline{I}}$,
 
 ### Solution d'une équation différentielle  {.definition}
 
-Soient $n\in \N^*$, $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$ et $f:J\times X \to \R^n$ une application continue. Une fonction $x:I\to \R^n$ définie sur un intervalle de temps $I\subset J$ non réduit[^intI] à un point, est dite *solution[^solsurI]* de *l'équation différentielle* 
+Soient $n\in \N^*$, $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$ et $f:J\times X \to \R^n$ une application continue. Une fonction $x:I\to \R^n$ définie sur un intervalle de temps $I\subset J$ non réduit[^intI] à un point, est dite solution[^solsurI] de l'équation différentielle
 $$
 \dot{x} = f(t,x)
 $$
 si $x$ est continue sur $I$ avec $x(t)\in X$ pour tout $t\in I$, et de classe $C^1$ sur $\mathring{\overline{I}}$ avec $\dot{x}(t) = f(t,x(t))$ pour tout $t\in \mathring{\overline{I}}$.
 
-On dira que l'équation différentielle est *autonome* si l'application $f$ ne dépend pas de $t$. Dans ce cas, on peut aussi définir directement $f: X \to \R^n$. 
+L'équation différentielle est dite *autonome* si l'application $f$ ne dépend pas de $t$. Dans ce cas, on peut aussi définir directement $f: X \to \R^n$. 
 
-Lorsque l'intervalle de temps $I$ de définition de la solution est $J$ entier, on dira que la solution est globale. Mais on verra qu'il peut parfois arriver qu'une solution n'existe que sur un intervalle de temps plus *petit* que $J$, par exemple si elle explose avant, ou si elle s'apprête à quitter $X$.
+Lorsque l'intervalle de temps $I$ de définition de la solution est $J$ entier, on dira que la solution est *globale*. Mais on verra qu'il peut parfois arriver qu'une solution ne puisse être définie sur $J$ entier, par exemple si elle explose avant, ou si elle s'apprête à quitter $X$.
 
-Notons que $f$ sera souvent définie globalement avec $J=\R$ et $X = \R^{n}$. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|^2}$ n'est définie que pour $y_a\neq y_b$.
+Notons que $f$ sera souvent définie sur $J=\R$ et $X = \R^{n}$ entiers. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|^2}$ n'est définie que pour $y_a\neq y_b$.
 
-En physique, on s'intéresse souvent aux solutions partant d'une *condition initiale* donnée. La recherche et l'étude de ces solutions particulières est dûe à Cauchy et porte le nom de *Problème de Cauchy* :
+### 
+
+La physique s'intéresse souvent aux solutions partant d'une *condition initiale* donnée. La recherche et l'étude de ces solutions particulières est dûe à Cauchy et porte le nom de *Problème de Cauchy* :
 
 > Dans mes leçons données à l'École Polytechnique, comme dans la plupart des ouvrages ou mémoires que j'ai publiés sur le calcul intégral, j'ai cru devoir placer en premier lieu la recherche, non pas des intégrales générales, mais des particulières ; en sorte que la détermination des constantes ou des fonctions arbitraires ne fût plus séparée de la recherche des intégrales.
 
@@ -281,7 +285,7 @@ Réciproquement, si $x$ vérifie l'équation intégrale sur $I\subset J$, $x(t_0
 
 ### Classe plus générale de solutions {.remark}
 
-La définition sous forme intégrale des solutions montre que la recherche de solutions $C^1$ et l'hypothèse de continuité de $f$ pourraient être relachées : il suffirait de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Mais il est souhaitable tout de même d'assurer un minimum de propriétés telles que l'existence de solutions, comme nous allons le voir dans la section suivante.
+La définition sous forme intégrale des solutions montre que la recherche de solutions $C^1$ et l'hypothèse de continuité de $f$ pourraient être relachées : il suffirait de pouvoir définir l'objet $\int_{t_0}^t f(s,x(s))ds$. Mais il est tout de même souhaitable d'assurer un minimum de propriétés telles que l'existence de solutions, comme nous allons le voir dans la section suivante.
 
 
 ### Portrait de phase   
@@ -328,20 +332,20 @@ Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ conti
 $$
 \dot{x}=f(t,x)
 $$
-si elle n'est pas *prolongeable* en une solution définie plus longtemps dans $J\times X$. En d'autres termes, pour toute autre solution $x' : I'\to\R^n$ telle que $I'\subset I$ et $x=x'$ sur $I'$, on a nécessairement $I=I'$ et $x=x'$.
+si elle n'est pas *prolongeable* en une solution définie plus longtemps dans $J\times X$. En d'autres termes, il n'existe pas de solution $x' : I'\to\R^n$ avec $I'\supsetneq I$ et $x=x'$ sur $I$.
 
 <!--
 Dans la section précédente, nous avons vu que lorsque $f$ est $C^1$ par rapport à $x$, la solution maximale au problème de Cauchy (qui est alors unique) est définie sur un intervalle ouvert. 
 -->
-Il s'avère que l'intervalle maximal de définition $I$ d'une solution maximale n'est pas nécessairement $\R$ entier même si $f$ est définie globalement sur $\R \times \R^n$ et $f$ est de classe $C^\infty$. On dit dans ce cas que la solution n'est pas *globale*. 
+Il s'avère que l'intervalle maximal de définition $I$ d'une solution maximale n'est pas nécessairement $\R$ entier même si $f$ est définie globalement sur $\R \times \R^n$ et $f$ est de classe $C^\infty$.  
 
 ### Explosion en temps fini {.example #ex_explTempsFini}
 
-Par exemple, considérons le problème de Cauchy
+Considérons le problème de Cauchy
 $$
 \dot{x} = x^2 \quad , \qquad (t_0,x_0)\in \R^2 \ .
 $$
-L'application $f:(t,x)\mapsto x^2$ est continue sur $\R^2$, donc il existe au moins une solution. On peut par exemple vérifier que que $x:I\to \R$ définie par
+L'application $f:(t,x)\mapsto x^2$ est continue sur $\R^2$, donc il existe au moins une solution. On peut par exemple vérifier que $x:I\to \R$ définie par
 $$
 x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left]-\infty,t_0+\frac{1}{x_0}\right[ 
 $$
@@ -349,7 +353,7 @@ est bien solution. Vu qu'elle diverge au temps $t_0+\frac{1}{x_0}$, elle ne peut
 
 ![Solutions à $\dot{x} = x^2$ pour $t_0=0$ et différentes valeurs de $x_0$](images/explosion_temps_fini.py){#fig_explo_temps_fini}
 
-En fait, le théorème suivant montre que les solutions maximales sont définies sur un intervalle ouvert,  et cet intervalle peut être borné seulement si $t\mapsto x(t)$ diverge ou $t\mapsto(t,x(t))$ tend vers la frontière de l'ensemble de définition $J\times X$ de $f$. 
+En fait, le théorème suivant montre que les solutions maximales sont définies sur un intervalle ouvert,  et cet intervalle ne peut être borné seulement si $t\mapsto x(t)$ diverge en temps fini ou $t\mapsto(t,x(t))$ tend vers la frontière de l'ensemble de définition $J\times X$ de $f$. 
 <!--la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $J\times X$ au bout d'un certain temps. Dans le cas usuel où $J\times X=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $\left[0,\tmax\right[$ avec $\tmax<+\infty$, explose en temps fini, c'est-à-dire
 $$
 \lim_{t\to \tmax} \|x(t)\|=+\infty \ ,
@@ -367,7 +371,7 @@ Voir en [annexe](#pr_theo_bouts).
 -->
 
 ### Domaine maximal d'existence {.theorem #theo_bouts}
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ au problème de Cauchy associé est définie sur un intervalle ouvert $\left]\tmin,\tmax\right[$ avec $\tmin,\tmax\in \R\cup\{+\infty,-\infty\}$. De plus, 
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ dans $S_f(t_0,x_0)$ est définie sur un intervalle ouvert $\left]\tmin,\tmax\right[$ avec $\tmin,\tmax\in \R\cup\{+\infty,-\infty\}$. De plus, 
 $$
 \lim_{t\to \tmin} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
 \lim_{t\to \tmin} \|(t,x(t))\| = +\infty 
@@ -379,14 +383,14 @@ $$
 $$
 
 ### Démonstration {.proof} 
-Voir en [annexe](#pr_theo_bouts). A FAIRE
+Si l'intervalle d'existence n'était pas ouvert, la solution pourrait être prolongée au bord grâce au théorème de Peano, ce qui contredirait sa maximalité. Ensuite, la preuve consiste à montrer que si $\tmax$ (resp. $\tmin$) est fini, alors $(t,x(t))$ finit forcément par sortir définitivement de tout sous-ensemble fermé et borné de $J\times X$ lorsque $t$ tend vers $\tmax$ (resp. $\tmin$). Voir en [annexe](#pr_theo_bouts). 
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
-Soient $J$ un intervalle ouvert de $\R$, $(t_0,x_0)\in J\times\R^n$ et $f:J\times\R^n\to\R^n$ continue. S'il existe $a,b: J\to\R$ continues telles que  
+Soient $J$ un intervalle ouvert de $\R$ et $f:J\times\R^n\to\R^n$ continue. S'il existe $a,b: J\to\R$ continues telles que  
 $$
 \|f(t,x)\|\leq a(t) \|x\| + b(t) \quad \forall (t,x)\in J\times \R^n \ ,
 $$
-alors toute[^uniCritExGlob] solution maximale au problème de Cauchy associé est définie sur $J$ entier. On dit alors que $f$ a une *croissance au plus affine*.
+alors toute solution maximale est définie sur $J$ entier. On dit alors que $f$ a une *croissance au plus affine*.
 
 ### Démonstration {.proof} 
 Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall). 
@@ -394,7 +398,7 @@ Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
 
 ### Solutions globales {.example #ex_solGlob}
 
-- Reprenons l'exemple d'une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A:I\to\R^{n\times n}$ et $b:I\to\R^n$ continues telles que
+- Considérons une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A:\R\to\R^{n\times n}$ et $b:\R\to\R^n$ continues telles que
 $$
 f(t,x) = A(t) x + b(t) \ .
 $$
@@ -413,7 +417,7 @@ $$
 f(t,x)=c(t)\arctan(x) \qquad \text{ ou } \qquad 
 f(t,x)=\frac{c(t)}{1+x^2}
 $$
-engendrent des problèmes de Cauchy aux solutions uniques et globales.
+engendrent des problèmes de Cauchy aux solutions globales.
 
 <!--- Bien sûr, la fonction $f:(t,x)\mapsto x^2$ ne satisfait pas la croissance au plus affine et [on a vu](#ex_lips) que les solutions associées explosent en temps fini. Par contre, si l'on prend $f(t,x)=-x|x|$ ou $f(t,x)=-x^3$ qui ne satisfont pas non plus cette condition, on peut montrer que les solutions maximales sont globales (et tendent vers 0). On en déduit donc que la croissance au plus affine est  suffisante mais pas nécessaire pour garantir la globalité des solutions.-->
 
@@ -423,7 +427,7 @@ engendrent des problèmes de Cauchy aux solutions uniques et globales.
 Unicité des solutions
 -------------------------------
 
-Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue. Par contre, elles ne sont pas toujours uniques. 
+Si des solutions existent toujours, elles ne sont pas toujours uniques. 
 
 ### Non-unicité des solutions {.example #ex_nonUnique}
 
@@ -497,7 +501,7 @@ Donc pour tout $p\in \N$, $\|\Gamma^p(x_a)-\Gamma^p(x_b)\|_\infty \leq \frac{(\t
 
 
 
-### Relâchement à $f$ Lipschitzienne {.remark #rem_f_lips}
+### Relâchement à $f$ localement Lipschitzienne {.remark #rem_f_lips}
 La première preuve d'existence et unicité locale de solutions sous l'hypothèse que $f$ est continûment différentiable par rapport à $x$ est dûe à Augustin Louis Cauchy (1820) et repose sur l'utilisation du théorème d'accroissements finis[^accfinis_Cauchy]. Mais on remarque dans notre preuve qu'il suffirait qu'il existe $k>0$ tel que
 \begin{multline*}
 \|f(t,x_a)-f(t,x_b)\|\leq k \|x_a-x_b\| \\
@@ -516,7 +520,7 @@ Cette méthode de recherche de point fixe porte le nom d'*approximations success
 
 ### Unicité des solutions {.example #ex_lips}
 
-- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A:\R\to\R^{n\times n}$ et $b:\R\to\R^n$ continues telles que
+- Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A:I\to\R^{n\times n}$ et $b:I\to\R^n$ continues telles que
 $$
 f(t,x) = A(t) x + b(t) \ ,
 $$
@@ -555,14 +559,14 @@ Le théorème suivant nous montre que pour un horizon de temps fini donné, on p
 
 ### Régularité en temps fini  {.theorem #theo_reg_CI}
 
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et continûment différentiable par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ la solution maximale dans $S_f(t_0,x_0)$. Pour tout $\underline{t},\overline{t}$ tel que $t_0\in\left[\underline{t},\overline{t} \right]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, la solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $\left[\underline{t},\overline{t} \right]$ et vérifie
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et continûment différentiable par rapport à $x$, $(t_0,x_0)\in J\times X$, et $x:I\to\R^n$ l'unique solution maximale dans $S_f(t_0,x_0)$. Pour tout $\underline{t},\overline{t}$ tel que $t_0\in\left[\underline{t},\overline{t} \right]\subset I$, il existe $\delta_m>0$ et $\lambda\in \R$ tels que pour $\delta\in \R^n$ tel que $|\delta|\leq \delta_m$, l'unique solution maximale $x_\delta$ dans $S_f(t_0,x_0+\delta)$ est définie sur $\left[\underline{t},\overline{t} \right]$ et vérifie
 $$
 |x(t)-x_{\delta}(t)| \leq e^{\lambda (t-t_0)} |\delta| \qquad \forall t\in \left[\underline{t},\overline{t} \right] \ .
 $$
 
 
-La présence du facteur exponentiel n'est pas crucial ici, et servira dans la suite. Ce qui est important, c'est que plus l'erreur de condition initiale $\delta$ est faible, plus l'erreur sur la trajectoire à horizon de temps fini $\overline{t}$ est faible.
-On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse "continûment différentiable par rapport à $x$" est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
+La présence du facteur exponentiel n'est pas cruciale ici, et servira dans la suite. Ce qui est important, c'est que plus l'erreur de condition initiale $\delta$ est faible, plus l'erreur sur la trajectoire à horizon de temps fini $\overline{t}$ est faible.
+On dit alors que la solution du problème de Cauchy est continue par rapport à la condition initiale à horizon de temps fini. Attention, l'hypothèse "continûment différentiable par rapport à $x$" est importante encore ici, comme illustré dans l'exercice *[Ecoulement dans un réservoir](#exo_Torricelli)*. Elle peut toutefois être relâchée à "$f$ localement lipschitzienne par rapport à $x$" comme dans le cas du Théorème de Cauchy-Lipschitz.
 
 ### Démonstration {.proof} 
 Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
@@ -1514,22 +1518,41 @@ x'(t) & \text{si } t>\tmax
 $$
 $\tilde{x}$ est bien continue et à valeurs dans $J\times X$ sur  $\tilde{I}$. De plus, elle est de classe $C^1$ sur $\mathring{\tilde{I}}\setminus \{ \tmax\}$ telle que $\dot{\tilde{x}}(t) = f(t,\tilde{x}(t))$ pour tout $t\in \mathring{\tilde{I}}\setminus \{ \tmax\}$. Par continuité de $\tilde{x}$ en $\tmax$ et de $f$ en $(t_1,x_1)$, on en déduit que $\tilde{x}$ est bien $C^1$ sur $\mathring{\tilde{I}}$. Donc $\tilde{x}\in S_f(t_0,x_0)$, ce qui contredit la maximalité de $x$ car $I \subsetneq \tilde{I}$. On conclut donc que $\tmax\notin I$ et de même $\tmin\notin I$. Donc $I$ est ouvert.
 
-Supposons $\tmax$ fini. Montrons qu'alors lorsque $t$ tend vers $\tmax$, soit $x(t)$ diverge, soit $(t,x(t))$ tend vers la frontière de $J\times X$. La propriété se montre de manière similaire en $\tmin$. Pour cela, nous allons montrer que lorsque $t$ se rapproche de $\tmax$, $(t,x(t))$ finit par sortir de tout sous-ensemble $K$ fermé et borné de $J\times X$.
-Supposons donc le contraire c'est-à-dire qu'il existe un compact $K\subset J\times X$ tel que
+Supposons $\tmax$ fini. Montrons qu'alors lorsque $t$ tend vers $\tmax$, soit $x(t)$ diverge, soit $(t,x(t))$ tend vers la frontière de $J\times X$. La propriété se montre de manière similaire en $\tmin$. Pour cela, nous allons montrer que lorsque $t$ se rapproche de $\tmax$, $(t,x(t))$ finit par sortir définitivement de tout sous-ensemble $K$ fermé et borné de $J\times X$. Soit donc $K$ fermé et borné de $J\times X$. 
+
+Supposons d'abord qu'il existe $\tau$ tel que $(t,x(t))\in K$ pour tout $t\in [\tau,\tmax[$. Puisque $f$ est continue, $\|f(t,x)\|$ est borné disons par $M$ sur $K$. Donc pour toute suite $(t_k)$ d'éléments de $[\tau,\tmax[$ tendant vers $\tmax$, par la représentation intégrale des solutions,
 $$
- \forall t_K \in \left[t_0,\tmax\right[ \, , \, \exists t\in \left[t_K,\tmax\right[ \: : \: x(t)\in K
+\|x(t_{k+p}) - x(t_{k}) \| \leq \int_{t_k}^{t_{k+p}} \|f(s,x(s))\| ds \leq M (t_{k+p}-t_k) \ .
 $$
-En d'autres termes, on suppose que la solution revient de manière persistente dans $K$. Alors il existe une suite $(t_p)_{p\in \N}$ telle que 
+Donc la suite $(x(t_k))$ est de Cauchy et donc aussi la suite $(t_k,x(t_k))$ dans $K$. Puisque $K$ est un sous-ensemble fermé de $\R\times \R^n$ complet, il est complet. Donc $(t_k,x(t_k))$ converge vers $(\tmax,\bar{x})\in K \subset J\times X$. Donc $x$ peut-être prolongée par continuité en une solution sur $]\tmin,\tmax]$, ce qui est impossible par maximalité. Donc $(t,x(t))$ sort de manière persistente de $K$.
+
+Supposons maintenant que $(t,x(t))$ entre aussi de manière persistente dans $K$, i.e.,
+$$
+ \forall t_K \in \left[t_0,\tmax\right[ \, , \, \exists t\in \left[t_K,\tmax\right[ \: : \: (t,x(t))\in K
+$$
+Alors il existe une suite $(t_p)_{p\in \N}$ telle que 
 $$
 \tmax-\frac{1}{p}\leq  t_p < \tmax \quad \text{et} \quad (t_p,x(t_p))\in K \quad \forall p\in \N
 $$
-On a donc $\lim_{p\to+\infty} t_p = \tmax$, et par compacité de $K$, on peut extraire de $(t_p,(x(t_p))_{p\in \N}$ une sous-suite qui converge vers $(\tmax,\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{p\to+\infty} x(t_p) =\overline{x}$.
+On a donc $\lim_{p\to+\infty} t_p = \tmax$, et par compacité de $K$, on peut extraire de $(t_p,x(t_p))_{p\in \N}$ une sous-suite qui converge vers $(\tmax,\overline{x})\in K$. Pour simplifier les notations, on suppose donc directement $\lim_{p\to+\infty} x(t_p) =\overline{x}$.
 
+Notons $\xi =(\tmax,\overline{x})$. Soit $\varepsilon >0$ tel que $\overline{B}(\xi,2\varepsilon)\subset J\times X$. Il existe $p^*$ tel que pour tout $p\geq p^*$, $(t_{p},x(t_{p}))\in \overline{B}(\xi,\varepsilon)$.  Mais puisque $\overline{B}(\xi,2\varepsilon)$ est un sous-ensemble fermé et borné de $J\times X$, on sait que $(t,x(t))$ en sort de manière persistente. Donc sans perte de généralité, on peut supposer que pour tout $p$, il existe $t_p < t_p' < t_{p+1}$ tel que 
+$$
+\| (t_p',x(t_p')) - \xi \| = 2\varepsilon  \qquad , \qquad (t,x(t))\in \overline{B}(\xi,2\varepsilon) \quad \forall t\in [ t_p,t_p' ] \ .
+$$
+Soit alors $M$ le maximum de $\| f\|$ sur le fermé borné $\overline{B}(\xi,2\varepsilon)$. Par la représentation intégrale, et pour $p$ suffisamment grand, on a donc
+$$
+\frac{\varepsilon}{2} \leq \|x(t_p')-x(t_p) \| \leq \int_{t_p}^{t_p'} \|f(s,x(s))\| ds \leq M (t_p'-t_p) \leq M (t_{p+1}-t_p)  \ .
+$$
+Il s'ensuit que pour $p$ suffisamment grand, $t_{p+1}-t_p \geq \frac{\varepsilon}{2M}$, ce qui est impossible puisque $(t_p)$ tend vers $\tmax$. On peut donc conclure que $(t,x(t))$ sort de manière définitive de tout fermé borné $K$ lorsque $t$ s'approche de $\tmax$.
+
+<!--
 Soient $\tau>0$, $r>0$ et $\tau_m\in \left(0,\tau \right]$ tels que 
 $$
 \cC:=\left[\tmax-2\tau,\tmax+2\tau \right]\times \overline{B}(\overline{x},2r)\subset J\times X \quad , \quad \tau_m  \max_{\cC} \|f\| \leq r\ .
 $$
 Soit $p\in \N$ tel que $|t_p-\tmax|< \tau_m$ et $\|x(t_p)-\tmax\|< r$. Alors $\left[t_p-\tau,t_p+\tau \right]\times \overline{B}(x(t_p),r)\subset J\times X$ et le théorème de Cauchy Lipschitz nous dit qu'il existe une solution $y:[t_p-\tau_m,t_p+\tau_m]\to \R^n$ au problème de Cauchy $\dot{y}=f(t,y)$, $y(t_n)=x(t_n)$. On a alors $t_p+\tau_m>\tmax$, et par unicité, $x\equiv y$ sur $[t_p,\tmax)$. Donc $x$ peut être prolongée, ce qui contredit sa maximalité.
+-->
 
 
 ## Stabilité et linéarisé tangent {.app #app_stab_lin}
@@ -1577,7 +1600,7 @@ D'après le théorème de Lyapunov, $a$ est donc localement asymptotiquement sta
 Certaines références autorisent les  solutions définies sur un intervalle d'intérieur vide, c'est-à-dire réduit à un point, qui sont dîtes "triviales". Mais cela n'a pas grand intérêt ici et nous supposons donc que les solutions sont définies au moins "pendant un certain temps".
 
 [^solsurI]:
-On omet de préciser l'intervalle $I$ sur lequel $x$ est solution lorsque $I$ est l'ensemble de définition naturel (ou clairement défini) de $x$. Lorsque celui-ci est ambigue ou bien lorsque l'on veut insister sur l'intervalle de définition, on dira *solution sur $I$*.
+On omet de préciser l'intervalle $I$ sur lequel $x$ est solution lorsque $I$ est l'ensemble de définition naturel (ou clairement défini) de $x$. Lorsque celui-ci est ambigu ou bien lorsque l'on veut insister sur l'intervalle de définition, on dira *solution sur $I$*.
 
 [^Fferme]: 
 Pour toute suite $(x_n)$ d'éléments de $F$ convergeant vers $x^*$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,

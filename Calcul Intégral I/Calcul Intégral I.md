@@ -92,7 +92,7 @@ d'exercices.
     $[-\infty, +\infty]$ dans $\R$.
 
 
-#### Propriétés élementaires de l'intégrale
+#### Propriétés élémentaires de l'intégrale
 
   - \one connaître le théorème fondamental du calcul,
 
@@ -448,7 +448,7 @@ Si la fonction $f:[a, b] \to \R$ est continue par morceaux,
 elle est intégrable au sens de Riemann.
 
 ### Démonstration {.proof}
-Les fonctions continues par morceaux sur un intervalle fermé borné et
+Les fonctions continues par morceaux sur un intervalle fermé borné
 sont discontinues en un nombre fini de points, donc continues presque
 partout ; elle sont également bornées. Par [le critère d'intégrabilité
 de Lebesgue](#CIL), elles sont donc intégrables au sens de Riemann.
@@ -550,7 +550,7 @@ $$
 $$
 
 ### {.remark}
-On trouvera dans la littérature cet type d'intégrale désignées
+On trouvera dans la littérature ce type d'intégrale désignées
 par le terme d'*intégrale de Riemann généralisée* ou 
 d'*intégrale de jauge*[^rk1].
 L'intégrale de Henstock-Kurzweil est aussi appelée
@@ -561,11 +561,11 @@ ou *intégrale de Denjoy-Perron-Kurzweil-Henstock*[^hist2].
 il existe d'autres intégrales dont la définition repose sur des sommes
 de Riemann et des jauges, comme l'intégrale de McShane.
 
-[^hist1]: Techniquement Jaroslav Kurzweil a inventé cette 
+[^hist1]: Techniquement, Jaroslav Kurzweil a inventé cette
 construction avant Ralph Henstock dans les années 1950, 
 mais dans un but bien précis
 -- l'étude des équations différentielles généralisées -- probablement sans
-réaliser totalement la portée de sa définition) 
+réaliser totalement la portée de sa définition.
 
 [^hist2]: Arnaud Denjoy et Oskar Perron ont introduit dès les années 1910 
 des intégrales équivalentes, mais dont les définitions sont beaucoup plus 
@@ -703,7 +703,7 @@ $$
 La difficulté de cet exemple est liée à la "singularité" de $f$ en $x=0$,
 où la fonction est à la fois discontinue et localement non-bornée. 
 Si au lieu de l'intervalle $[0,1]$, on considère l'intervalle
-$[a, 1]$ où $0 < a \leq 1$, comme la fonction $f$ restreinte à $[a, 1]$
+$[a, 1]$ où $0 < a \leq 1$, la fonction $f$ restreinte à $[a, 1]$
 est continue donc intégrable et la fonction 
 $F: x \in [a, 1] \mapsto 2 \sqrt{x}$ en est une primitive.
 Elle y est intégrable par [le théorème fondamental du calcul](#TFCL) et
@@ -734,7 +734,7 @@ $$
 
 ![Graphe de la jauge $\gamma$ avec $\varepsilon=0.5$](images/gauge-plot-sqrt.py)
 
-Propriétés élementaires de l'intégrale
+Propriétés élémentaires de l'intégrale
 ================================================================================
 
 ### Théorème fondamental du calcul {.theorem #TFCL .one}
@@ -1297,7 +1297,7 @@ si le membre de droite est défini, et $f(t)$ sinon. Montrer que $g$ est égale
 
 
 ### Changement de variable {.theorem .three #changement-de-variable}
-Soit $g :[a, b] \to \R$ une fonction continue en $a$ et et $b$, 
+Soit $g :[a, b] \to \R$ une fonction continue en $a$ et en $b$,
 dont la dérivée $g'$ existe sur $\left]a, b\right[$, y est continue 
 et ne s'y annule pas. Soit $[c, d] = g([a, b])$ et $f: [c, d] \to \R$. 
 Alors la fonction $f$ est intégrable sur $[c, d]$ 
@@ -1358,7 +1358,7 @@ Intégration sur des intervalles arbitraires
 
 Dans cette section, nous allons étendre 
 -- significativement, mais avec très peu d'efforts --
-la théorie de l'intégration sur les intervalle fermés bornés de $\R$
+la théorie de l'intégration sur les intervalles fermés bornés de $\R$
 à des intervalles arbitraires de $\R$,
 et en particulier à $\R$ tout entier[^cr].
 
@@ -1426,13 +1426,13 @@ $\ell([-\infty, -\infty]) = \ell([+\infty, +\infty])= \ell(\varnothing) = 0$.
 
 La notion d'ensemble négligeable de $[-\infty, +\infty]$ est identique
 à celle [d'ensemble négligeable de $\R$](#ensemble-négligeable) 
-à ceci près qu'il faut considérer remplacer les intervalles de 
+à ceci près qu'il faut remplacer les intervalles de 
 $\R$ par ceux de $[-\infty, +\infty]$ dans la définition.
 
 [La définition de subdivision pointée](#sp) reste formellement 
 inchangée en passant des intervalles fermés bornés de $\R$ aux intervalles
 fermés bornés de $[-\infty, +\infty]$. Il en est de même pour [la définition
-d'une jauge](#jauge) si l'on interprête 
+d'une jauge](#jauge) si l'on interprète 
 "un intervalle ouvert $\gamma(t)$ contenant $t$"
 comme il se doit par "un intervalle ouvert $\gamma(t)$ de $[-\infty, +\infty]$ 
 contenant $t$".
@@ -1502,7 +1502,7 @@ Un facteur vient simplifier l'étude de l'intégration sur des intervalles
 dans tous les types
 d'intervalles possibles car on peut toujours
 se ramener au cas où l'on cherche à intégrer une fonction sur la
-droite réelle (achevée) toute entière:
+droite réelle (achevée) toute entière.
 
 ### Extension à la droite réelle achevée {.proposition #EDRA}
 Une fonction $f:[a, b] \to \R$ est intégrable si et seulement 
@@ -1577,7 +1577,7 @@ Sont valables pour tous les intervalles fermés de $[-\infty, +\infty]$ :
   - [La continuité](#cii) et [dérivabilité](#dii) des intégrales indéterminées.
 
 ### {.ante}
-A noter que [le théorème de changement de variable](#changement-de-variable) 
+À noter que [le théorème de changement de variable](#changement-de-variable) 
 nous fournit également un moyen alternatif pour définir l'intégrale entre
 $-\infty$ et $+\infty$, en nous ramenant à une intégrale sur un intervalle borné.
 
@@ -1615,7 +1615,7 @@ En effet, dans le cas contraire il existerait une infinité
 d'intervalles fermés $J_i$ emboités ($J_{i+1} \subset J_i$) 
 tels que $J_0 = I$, $\ell(J_{i+1}) = \ell(J_i)/2$ et 
 pour tout $t \in J_i$, $J_i \not \subset \gamma(t)$.
-Soit $t_i$ un point de $J_i$ ; la suite des ces points appartient 
+Soit $t_i$ un point de $J_i$ ; la suite de ces points appartient 
 à $J_0$ qui est compact et admet donc une suite extraite qui converge.
 Comme la suite des $t_k$ appartient à $J_i$ pour tout $k \geq i$,
 cette limite $t$ adhère à tous les $J_i$, et donc appartient à tous
@@ -2065,8 +2065,8 @@ d'intégrale égale à $S$.
 
 
 ### {.remark}
-[Le théorème de Hake](#hake) montre qu'avec l'intégrale de Henstock-Kurzweil
-qu'il n'existe pas d'intégrale *impropre*, 
+[Le théorème de Hake](#hake) montre qu'avec l'intégrale de Henstock-Kurzweil,
+il n'existe pas d'intégrale *impropre*, 
 qui ne serait pas définissable directement mais uniquement par
 un passage à la limite. Attention : ce résultat n'a pas d'équivalent pour
 l'intégrale de Lebesgue, qui admet des intégrales impropres.
@@ -2624,24 +2624,6 @@ $$
 \lim_{\varepsilon \to 0} \int_0^{\varepsilon} f(t) \, dt = \int_0^0 f(t) \, dt = 0.
 $$
 
-### Changement de variables simplifié {.answer #answer-cv}
-La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
-Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
-a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
-cette fonction est continue, comme composée et produit de fonctions continues, 
-donc intégrable sur $[a, b]$. Par [le théorème fondamental du calcul](#TFC), 
-on a donc
-$$
-\int_a^b f(g(t)) g'(t) \, dt
-=
-\left[h \circ g\right]_a^b = h(g(b)) -  h(g(a)).
-$$
-D'autre part, comme $f$ est continue et a $h$ comme primitive,
-$$
-\int_{g(a)}^{g(b)} f(x) \, dx = \int_{g(a)}^{g(b)} h'(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
-$$
-les deux intégrales sont donc égales.
-
 ### Dérivabilité presque partout {.answer #answer-dpp}
 On peut par exemple considérer la fonction $f:[0, 1] \to \R$
 définie par
@@ -2655,7 +2637,7 @@ f(x) = \left|
 $$
 On vérifie facilement que 
 $$
-g(x) := \int_0^x f(t) \, dt = \max(0, t-1/2)
+g(x) := \int_0^x f(t) \, dt = \max(0, x-1/2)
 $$
 et cette fonction n'est pas dérivable en $x=1/2$.
 
@@ -2682,6 +2664,25 @@ g(x) = \lim_{\substack{h\to 0 \\ h\neq 0}} \frac{1}{2h}\int_{t-h}^{t+h} f(x) \, 
 = \frac{1}{2}F'(x) + \frac{1}{2}F'(x) = f(x).
 $$
 Les fonctions $f$ et $g$ sont donc égales presque partout.
+
+### Changement de variables simplifié {.answer #answer-cv}
+La fonction $f$ étant continue sur $[c,d]$, elle y admet une primitive $h$.
+Par la règle de dérivation en chaîne, la fonction $t \in [a, b] \mapsto h(g(t))$
+a pour dérivée $h'(g(t))g'(t) = f(g(t)) g'(t)$. Avec les hypothèses supplémentaires,
+cette fonction est continue, comme composée et produit de fonctions continues,
+donc intégrable sur $[a, b]$. Par [le théorème fondamental du calcul](#TFC),
+on a donc
+$$
+\int_a^b f(g(t)) g'(t) \, dt
+=
+\left[h \circ g\right]_a^b = h(g(b)) -  h(g(a)).
+$$
+D'autre part, comme $f$ est continue et a $h$ comme primitive,
+$$
+\int_{g(a)}^{g(b)} f(x) \, dx = \int_{g(a)}^{g(b)} h'(x) \, dx = [h]_{g(a)}^{g(b)} = h(g(b)) -  h(g(a)) \, ;
+$$
+les deux intégrales sont donc égales.
+
 
 ### Changement de variable $x=t^2$ {.answer #answer-ft2}
 La fonction $g: t \in [0, 1] \to t^2 \in \R$ vérifie 
