@@ -970,7 +970,7 @@ Pour montrer la réciproque dans ce cas, nous approchons
 la fonction mesurable $f$ par la suite de fonctions étagées $f_k$ 
 introduites dans [la démonstration du critère de l'image réciproque](#pCIR). 
 La fonction $f$ apparaît comme une limite simple des
-fonctions $f_k$, qui sont intégrables et dominées par la fonction intégrable $|f|$. 
+fonctions $f_k$, qui sont intégrables et dominées par la fonction intégrable $g$. 
 Par [le théorème de convergence dominée](#TCD), $f$ est intégrable.
 
 ### Composition par une fonction continue {.theorem #CFC}
@@ -1432,7 +1432,7 @@ Pour tout $x \in \left[1, +\infty\right[$, si $\alpha \neq {-1}$,
 on a
 $$
 \int_1^x t^{\alpha} \, dt = \left[\frac{t^{\alpha+1}}{\alpha + 1} \right]_1^x
-=\frac{t^{\alpha+1}}{\alpha + 1} - \frac{1}{\alpha + 1},
+=\frac{x^{\alpha+1}}{\alpha + 1} - \frac{1}{\alpha + 1},
 $$
 et pour $\alpha = -1$,
 $$
@@ -1449,7 +1449,7 @@ t^{\alpha} & \mbox{si $t \in [1, k]$,} \\
 $$
 alors
 $$
-\lim_{k \to +\infty} \int f_k(t) \, dt = \int_1^k t^{\alpha} \, dt,
+\lim_{k \to +\infty} \int f_k(t) \, dt = \lim_{k \to +\infty} \int_1^k t^{\alpha} \, dt,
 $$
 donc cette limite est finie si et seulement si $\alpha < -1$.
 Comme la suite des fonctions $f_k$ est croissante et converge simplement
