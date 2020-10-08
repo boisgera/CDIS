@@ -7,6 +7,7 @@ import sys
 # Third-Party Packages
 from numpy import *; seterr(all="ignore")
 import matplotlib as mpl; mpl.use("Agg")
+from mpl_toolkits.mplot3d import Axes3D # fix "3d" keyerror ? (https://stackoverflow.com/questions/56222259/valueerror-unknown-projection-3d-once-again)
 from matplotlib.pyplot import *
 from matplotlib import cm
 
