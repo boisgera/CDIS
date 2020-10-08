@@ -26,16 +26,55 @@ Objectifs d'apprentissage
 ================================================================================
 
 
+#### Moments d'une variable aléatoire à densité
+
+- \one connaître la définition de l'espérance d'une variable aléatoire à densité
+- \one connaître l'interprétation de l'espérance
+- \one connaître les propriétés de base de l'espérance
+- \one connaître la définition de la variance d'une variable aléatoire à densité
+- \one savoir que la variance est toujours positive
+- \one savoir ce que signifie variable centrée-réduite
+- \one connaître la définition de la covariance
+- \one savoir que la covariance est une forme bilinéaire
+- \one connaître et savoir manipuler l'inégalité de Cauchy-Schwarz
+- \two connaître les conditions d'existence de l'espérance d'une fonction (mesurable) d'une variable aléatoire
+- \two savoir exprimer la probabilité d'un événement de la forme $X \in A$ sous la forme d'une espérance
+- \two connaître et savoir calculer les moments des lois usuelles
+
+#### Vecteurs aléatoires
+
+- \one savoir que les composantes d'un vecteur aléatoire sont des variables aléatoires définies sur le même espace de probabilité
+- \one connaître la définition d'un vecteur aléatoire à densité
+- \two connaître les conditions d'existence de l'espérance d'une fonction (mesurable) d'un vecteur aléatoire à densité
+- \two savoir calculer les densités marginales d'un vecteur aléatoire à densité
+- \two savoir qu'un couple de variables aléatoires à densité n'admet pas nécessairement de densité
+- \one connaître la définition de l'espérance d'un vecteur aléatoire à densité
+- \one connaître la définition de la matrice de covariance d'un vecteur aléatoire à densité
+- \one savoir que la matrice de covariance est semi-définie positive
+
+#### Variables et vecteurs aléatoires indépendantes
+
+- \one connaître la définition de l'indépendance de deux vecteurs/variables aléatoires
+- \one savoir caractériser l'indépendance de deux vecteurs/variables aléatoires à densité
+- \two savoir que si $X$ et $Y$ sont indépendantes, alors $g(X)$ et $h(Y)$ sont aussi indépendantes
+- \two savoir que si $X$ et $Y$ sont indépendantes et si $g(X)$ et $h(Y)$ sont intégrables alors $\Esp(g(X)g(Y)) = \Esp(g(X))\Esp(g(Y))$
+- \one savoir que la covariance de deux variables indépendantes est nulle
+- \two savoir que la réciproque est fausse et connaître un contre-exemple
+
+#### Identification de densité
+
+- \two savoir identifier la densité d'une fonction d'une variable aléatoire par la méthode de la fonction muette 
+- \two savoir identifier la densité d'une fonction d'un vecteur aléatoire par la méthode de la fonction muette 
 
 # Moments d'une variable aléatoire à densité
  
-La densité de probabilité d'une variable aléatoire va nous permettre de calculer aisément des grandeurs caractéristiques telles que sa valeur moyenne et sa variance définies ci-dessous :
+La densité de probabilité d'une variable aléatoire va nous permettre de calculer aisément des grandeurs caractéristiques telles que sa valeur moyenne et sa variance (lorsqu'elles existente). Elles sont définies ci-dessous.
 
 ### Espérance d'une variable aléatoire à densité {.definition #defesp}
-La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si l'intégrale $\int_\R |x|f(x) dx$ est définie, autrement dit si le produit $x f(x)$ est absolument intégrable[^noteesp]. On définit alors son *espérance* par 
+La variable aléatoire $X : \Omega \to \R$ de densité $f$ est dite  *intégrable* si l'intégrale $\int_\R |x|f(x) dx$ est définie, autrement dit si le produit $x f(x)$ est intégrable. On définit alors son *espérance* par 
         $$\Esp(X) = \int_\R x f(x)dx$$
 
-[^noteesp]: Comme $f$ est positive, on peut en fait se convaincre que $xf(x)$ intégrable équivaut à $xf(x)$ absolument intégrable : si $x f(x)$ est intégrable, ses "restrictions" $g(x) = xf(x) 1_{\R_-}(x)$ et $h(x)=x f(x) 1_{\R_+}(x)$ sont intégrables (passer par la restriction aux intervalles $\R_-$ et $\R_+$ puis par le critère qui étend par 0 à $\R$ ; les deux opérations préservent l'intégrabilité). Or $|x|f(x) = h(x) - g(x)$ (sauf en 0), donc elle est intégrable.
+
 <!-- **note : pour introduire proprement l'espérance d'une variable aléatoire réelle, on a besoin de l'intégrale de Lebesgue -> CI 5** -->
 
 ### Interprétation {.remark} 
@@ -80,6 +119,10 @@ La première inégalité a déjà été vue [ci-dessus](#propl1). Pour la second
         $$ \Esp(Y^2) = \Esp(X^2) - 2a \Esp(X) + a^2 = \Esp(X^2)-a^2.$$
 Et $\Esp(Y^2) \geq 0$ par le troisième point de la [proposition ci-dessus](#propl1). Par conséquent, $\Esp(X)^2 = a \leq \Esp(X^2)$ ce qui est le résultat recherché.
 
+### Approximation par une constante {.exercise .question .one #exo-approx}
+
+Soit $X$ une v.a. de carré intégrable. Montrer que $\Esp((X - a)^2 )$ atteint son minimum lorsque $a = \Esp(X)$.
+
 ### La variance est positive {.remark}
 En vertu de cette [proposition](#propl2), $\V(X)$ est **positive** et sa racine carrée $\sigma_X$ s'appelle l'*écart-type* de $X$. L’écart-type est une grandeur qui mesure la moyenne (en un certain sens) de l’écart des valeurs de $X$ à sa moyenne, d’où son nom.
 
@@ -99,6 +142,9 @@ Si $X$ et $Y$ sont dans $\L^2$, la variable aléatoire $(X-\Esp(X))(Y-\Esp(Y))$ 
 Le *coefficient de corrélation* des variables aléatoires $X$ et $Y$ est le nombre 
         $$\rho(X,Y) = \frac{\cov (X,Y)}{\sqrt{\V(X)}\sqrt{\V(Y)}}$$
 qui est bien défini lorsque $\V(X)>0$ et $\V(Y)>0$.
+
+### Calcul d'une covariance {.exercise .question .one #cov-unif}
+Soit $U \sim \mathcal{U}_{[0,1]}$ et $V = 1-U$. Calculer $\cov(U,V)$ et $\rho(U,V)$.
 
 Du fait de la linéarité de l'espérance, on a 
 $$\cov(X,Y) = \Esp(XY) - \Esp(X)\Esp(Y)$$
@@ -128,11 +174,11 @@ doit donc être négatif ou nul ce qui donne le résultat.
 
 Le discriminant est nul si et seulement si le trinôme admet une racine double $x_0$ et dans ce cas, $Y(\omega) = -x_0 X(\omega)$ pour presque tout $\omega$.
 
-### Coefficient de corrélation {.remark}
-On déduit de l'inégalité de [Cauchy-Schwarz](#CS) que le coefficient de corrélation de $X$ et $Y$ vérifie
+### Coefficient de corrélation {.exercise .question .one #CS-corr}
+Montrer que le coefficient de corrélation de $X$ et $Y$ vérifie
 $$-1\leq \rho(X,Y) \leq 1.$$
 
-Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction mesurable d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition vue dans le cours précédent](Probabilité I.pdf #composition).
+Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonction mesurable d'une variable aléatoire réelle à densité qui est une variable aléatoire en vertu de la [proposition vue de composition](Probabilité I.pdf #composition).
 
 ### Espérance de $g(X)$ {.proposition #esperanceg}
 Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction mesurable de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si l'intégrale
@@ -150,7 +196,7 @@ Posons $X_n = t_i$ si $X \in I_i$, pour $i \in \{0,\ldots,n-1\}$. Ainsi, pour to
 $$\Esp(g(X_n)) = \sum_{i=0}^{n-1}g(t_i)\P(X\in I_i)l(I_i) \approx \sum_{i=0}^{n-1}g(t_i)f(t_i).$$
 
 ### Cas particulier {.remark}
-L'espérance et la variance sont des cas particulier de ce résultat. On de plus pour $A \in \B(\R)$ :
+L'espérance et la variance sont des cas particulier de ce résultat. On a de plus pour $A \in \B(\R)$ :
 $$\Esp(1_A(X)) = \int_A f(x)dx = \P(X\in A)$$
 
 ## Exemples
@@ -161,18 +207,22 @@ Nous donnons ici quelques exemples de densités de probabilité. Nous reprenons 
 
 sur $[a,b]$, où $a < b$ et on note $X \sim \mathcal{U}_{[a,b]}$ si $X$ est de densité
     $$ f(x) = \frac{1}{b-a} 1_{[a,b]} (x).$$
-Son espérance vaut
+
+### Moments d'une variable aléatoire de loi uniforme sur $[a,b]$ {.exercise .question .one #moments-unif}   
+
+Soit $X \sim \mathcal{U}_{[a,b]}$. Montrer que son espérance vaut
         $$ \Esp(X) = \int_a^b \frac{x}{b-a} dx = \frac{a+b}{2}$$
-et puisque
-        $$ \Esp(X^2) = \int_a^b \frac{x^2}{b-a} dx = \frac{a^2 + ab +b^2}{3},$$
-alors sa variance vaut
+et que sa variance vaut
         $$ \V(X) = \Esp(X^2) - \Esp(X)^2 = \frac{(b-a)^2}{12}.$$
 
 ### *Loi exponentielle*
 
 de paramètre $\theta > 0$ et on note $X \sim \mathcal{E}(\theta)$ si $X$ est de densité
         $$ f(x) = \theta e^{-\theta x} 1_{\{x>0\}}.$$
-Son espérance et sa variance se calculent aisément et valent
+
+### Moments d'une v.a. exponentielle {.exercise .question .one #moments-expo}    
+
+Montrer que son espérance et sa variance valent
         $$ \Esp(X) = \frac{1}{\theta} \text{ et } \V(X) = \frac{1}{\theta^2}$$
 
 ### *Loi gamma*
@@ -183,45 +233,37 @@ En intégrant par partie, on obtient la relation $\Gamma(\alpha+1) = \alpha \Gam
 
 Une variable aléatoire $X$ suit une loi gamma de paramètre d'échelle $\theta$ et d'indice $\alpha$ et on note $X \sim \Gamma(\alpha,\theta)$, si sa loi admet la densité
         $$f(x) = \frac{1}{\Gamma(\alpha)}\theta^\alpha x^{\alpha -1} e^{-\theta x}.$$
-Son espérance et sa variance s'obtiennent en utilisant le changement de variable $x \mapsto \theta x$ et la définition de la fonction gamma :
-        $$\Esp(X) = \frac{\alpha}{\theta} \text{ et } \V(X) = \frac{\alpha}{\theta^2}.$$
+
+### Moments d'une v.a. de loi gamma {.exercise .question .one #moments-gamma}    
+
+Soit $X\sim \Gamma(\alpha,\theta)$. Montrer que son espérance et sa variance valent :
+
+$$ \Esp(X) = \frac{\alpha}{\theta} \text{ et } \V(X) = \frac{\alpha}{\theta^2}.$$
+
 On remarquera que $\Gamma(1,\theta)$ est la loi exponentielle de paramètre $\theta$. 
 
 Lorsque $\alpha$ est entier, la loi gamma permet de modéliser le temps d'attente avant la $n$-ième occurence d'événements indépendants de loi exponentielle de paramètre $\theta$.
 
 ### *Loi normale*
 
-de paramètres $\mu$ et $\sigma^2$ et on note $X \sim \mathcal{N}(\mu,\sigma^2)$ si $X$ est de densité[^verif]
+de paramètres $\mu$ et $\sigma^2$ et on note $X \sim \mathcal{N}(\mu,\sigma^2)$ si $X$ est de densité
         $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
 Son espérance et sa variance valent
         $$\Esp(X) =  \mu \text{ et } \V(X) = \sigma^2$$
-Pour le voir, on fait d'abord le calcul dans le cas centré réduit ($\mu = 0$ et $\sigma^2 =1$) puis on s'y ramène par le changement de variable $x \mapsto \frac{x-\mu}{\sigma}$.
 
-[^verif]: Pour s'assurer qu'il s'agit bien d'une densité, on remarque que  $I = \int_{-\infty}^{+\infty} f(x) dx$ vérifie 
-$$ I^2 = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x) f(y) dxdy = \int_{0}^{2\pi} d\theta\int_{0}^{+\infty}\frac{1}{2\pi} \rho e^{-\rho^2/2}d\rho $$
-(en passant en coordonnées polaires dans l'intégrale double). Le calcul est ensuite aisé et on obtient $I = 1$.
+### Moments d'une v.a. gaussienne {.exercise .question .one #moments-gauss}
+
+Après avoir vérifié que $f$ est bien une densité, calculer l'espérance et la variance de $X \sim \mathcal{N}(\mu,\sigma^2)$
+
 
 ### Estimation statistique {.remark}
 Dans les exemples ci-dessus, on peut remarquer que les densités sont paramétrées par des nombres réels qui sont liés directement aux valeurs de l’espérance et de la variance de la variable. C’est très utile en statistique où l'on cherchera à estimer la valeur de ces paramètres à partir des observations disponibles. Dans le cas de la loi normale, la moyenne et la variance (empiriques) des échantillons fourniront ainsi directement des estimateurs des paramètres.
 
-Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l’exemple suivant.
+Il existe des variables aléatoires qui n’ont pas d’espérance, comme le montre l'exercice suivant.
 
-### *Loi de Cauchy*
+### *Loi de Cauchy* {.exercise .question .two #exo-cauchy}
 
-Un gyrophare envoie un flash lumineux dans une direction aléatoire uniforme d’angle $\theta$. On cherche la distribution de l'abscisse $X$ du point d'impact du rayon lumineux sur un écran plan infini situé à distance 1 du gyrophare.
-
-L'angle $\theta$ est une variable aléatoire uniforme sur $[-\pi/2,\pi/2]$, de densité $g(\theta) = \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta)$. L'abscisse $X$ est donnée par $X = \tan \theta$, c'est donc une variable aléatoire, de fonction de répartition
-\begin{align*}        
-F(x) & = \P(X \leq x) \\
-     & = \P(\theta \leq \arctan x) \\
-     & = \int_{-\infty}^{\arctan x} \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta) d\theta \\
-     & = \frac{1}{\pi} \arctan x + \frac{1}{2}.
-\end{align*}
-
-$F$ est de classe $C^1$ de dérivée
-        $$f(x) = \frac{1}{\pi(1+x^2)}, x \in \R$$
-
-C'est la densité de la loi de Cauchy. Une variable aléatoire $X$ de loi de Cauchy n'admet pas d'espérance. En effet, $\frac{x}{\pi(1+x^2)} \sim_{x\to \infty} \frac{1}{x}$ n'est pas intégrable.
+Un gyrophare envoie un flash lumineux dans une direction aléatoire uniforme d’angle $\theta$. On cherche la distribution de l'abscisse $X$ du point d'impact du rayon lumineux sur un écran plan infini situé à distance 1 du gyrophare. Donner la densité de $X$. Calculer son espérance.
 
 # Vecteurs aléatoires à densité
 Nous allons généraliser ici la notion de variable aléatoire en considérant qu'elle peut prendre ses valeurs dans $\R^n$. Les vecteurs aléatoires se rencontrent naturellement lorsqu'on s'intéresse à plusieurs quantités conjointement, par exemple dans le cas de la météo, la température, la pluviométrie et la vitesse et la direction du vent.
@@ -259,25 +301,19 @@ Les fonctions $f_X$ et $f_Y$ s'appellent les *densités marginales* de $f$.
 ### Démonstration {.prooof}
 Pour tout $x \in \R$, on a par définition
 $$ \P(X \leq x) = \P(Z \in ]-\infty,x] \times \R) = \Esp(1_{]-\infty,x] \times \R}(Z)) = \int_{-\infty}^x du \left(\int_\R f(u,v) dv\right),$$
-où l'on a utilisé le théorème de Fubini pour $1_{]-\infty,x] \times \R}(u,v)f(u,v)$ intégrable.
+où l'on a utilisé le [théorème de Fubini](Calcul Intégral III.pdf #Fubini) pour $1_{]-\infty,x] \times \R}(u,v)f(u,v)$ intégrable.
 Donc si $f_X$ est définie par $f_X(x) = \int_\R f(x,y) dy$, on obtient que $\P(X \leq x) = \int_{-\infty}^x f_X(u) du$, ce qui montre que $f_X$ est la densité de $X$. Le raisonnement est analogue pour $Y$.
 
-### Remarque {.remark}
+### Réciproque ? {.remark}
 La réciproque de cette proposition est fausse en revanche : les variables aléatoires $X$ et $Y$ peuvent avoir des densités sans que le couple $Z = (X, Y )$ en ait une.
 
 Supposons par exemple que $X = Y$. Si $\Delta = \{(x,x) ; x\in \R\}$ est la diagonale de $\R^2$, nous avons évidemment $\P_Z(\Delta) = 1$ mais si la [proposition précédente](#esperancegvect) était valide pour $\P_Z$, on aurait $\P_Z(\Delta) = \Esp(1_\Delta) = \int_{\R^2} 1_\Delta f_Z(z)dz = 0$ car $\Delta$ est de volume nul dans $\R^2$.
 
 En particulier, il faut faire attention au fait que dans le cas général, la densité d'un couple de variables aléatoires n'est pas le produit des densités.
 
-### Exemple
+### Lancer de fléchette {.exercise .question .two #exo-flechette}
 On lance une fléchette sur une cible circulaire de rayon unité. Le joueur est suffisamment maladroit pour que le point $M$ d’impact de la fléchette
-soit supposé uniformément distribué sur la cible (On décide de n’observer que les lancés qui atteignent la cible).
-
-Les coordonnées cartésiennes de $M \in D = \{(x,y) \in \R^2 , x^2+y^2 \leq 1\}$ constituent un couple de variables aléatoires de densité
-$$f_{(X,Y)}(x,y) = \frac{1}{\pi}1_{D} (x,y)$$
-uniforme sur le disque, par hypothèse. L'abscisse de $X$ est distribuée selon la densité marginale
-$$f_X(x) = \int f_{(X,Y)}(x,y) dy = \frac{2}{\pi} (1-x^2)^{1/2} 1_{[-1,1]}(x).$$
-La loi de $Y$ a la même densité.
+soit supposé uniformément distribué sur la cible (On décide de n’observer que les lancés qui atteignent la cible). Exprimer la densité du couple formé par les coordonnées cartésiennes $(X,Y)$ de $M$ puis leurs densités marginales.
 
 
 ## Moments d'un vecteur aléatoire
@@ -288,34 +324,34 @@ Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont inté
 Si les composantes $X_i$ du vecteur aléatoire $X = (X_1,\ldots,X_n)$ sont de carré intégrable, la *matrice de covariance* de $X$ est la matrice $C_X = (c_{i,j})_{1 \leq i \leq n , 1 \leq j \leq n}$ de taille $n \times n$ et dont les éléments valent
         $$c_{i,j} = \cov (X_i,X_j)$$
 
-### Proposition {.proposition}
+### Matrice de covariance {.proposition}
 La matrice de covariance est symétrique non-négative (ou encore semi-définie positive).
 
 ### Démonstration {.proof}
 La symétrie est évidente. Non-négative signifie que pour tous réels $a_1,\ldots,a_n$, on a $\sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} \geq 0$. Un calcul simple montre que
-$$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i).$$
+$$ \sum_{i=1}^n \sum_{j=1}^n a_i a_j c_{i,j} = \V(\sum_{i=1}^n a_i X_i) \geq 0.$$
 
-### Exemple : Vecteur Gaussien $n$-dimensionel {.example}
-Un exemple de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons en détail au chapitre suivant. Soient $m \in \R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in \R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
+### Vecteur Gaussien $n$-dimensionel {.example}
+Un exemple important de vecteurs aléatoires est celui des vecteurs gaussiens, que nous étudierons plus en détail au chapitre suivant. Soient $m \in \R^n$ et $C$ une matrice symétrique définie positive (c'est-à-dire telle que pour tout $x \in \R^n$ non identiquement nul $x^tCx > 0$ où $^t$ désigne la transposée). Le vecteur $X \in \R^n$ est un vecteur aléatoire gaussien d’espérance $m$ et de matrice de covariance $C$ si sa densité s’écrit
 $$ f(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp (-\frac{1}{2}(x-m)^tC^{-1}(x-m)) $$
 On a alors $\Esp(X) = m$ et $C_X =C$.
 
 ![Densité de probabilité de la loi normale bivariée centrée, réduite, de coefficient de corrélation 1/2](images/PdfGauss3D.tex)
 
-## Variables aléatoires indépendantes
-<!-- Lorsque l'on modélise plusieurs variables conjointement, une hypothèse importante est celle de l'indépendance. Ce caractère traduit l'absence de lien de causalité entre les variables. Par exemple, on fait naturellement l'hypothèse d'indépendance lorsque l'on considère une répétition d'une même expérience dans les mêmes conditions. ??? -->
+# Variables aléatoires indépendantes
+Lorsqu'on modélise plusieurs variables conjointement, une hypothèse importante est celle de l'indépendance. Ce caractère traduit l'absence de lien de causalité entre les variables. Par exemple, on fait naturellement l'hypothèse d'indépendance lorsque l'on considère une répétition d'une même expérience dans les mêmes conditions.
+
 Dans ce paragraphe, on considère un couple $(X,Y)$ de vecteurs aléatoires respectivement à valeurs dans $\R^m$ et $\R^n$. Les résultats s'étendent sans peine à une famille finie quelconque. 
 
+On peut se ramener aux évènements pour caractériser l'indépendance de deux vecteurs aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles dans $\B_{\R^m}$ et $\B_{\R^n}$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quels que soient $A$ et $B$.
 
-On peut se ramener aux évènements pour caractériser l'indépendance de deux vecteurs aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles dans $\B_{\R^m}$ et $\B_{\R^n}$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quelques soient $A$ et $B$.
-
-### Définition {.definition #defvai}
+### Vecteurs aléatoires indépendants {.definition #defvai}
 Les vecteurs aléatoires $X$ et $Y$ sont *indépendants* si pour tous ensembles $A$ et $B$ des tribus correspondantes, 
 $$\P(X \in A, Y \in B) = \P(X \in A)\P(Y \in B)$$
 
 Cette définition se traduit en termes de densités dans la proposition suivante que l'on énonce sans perte de généralité pour un couple de variables aléatoires.
 
-### Proposition {.proposition}
+### Caractérisation de l'indépendance {.proposition}
 Soient $X$ et $Y$ deux variables aléatoires réelles de densités $f_X$ et $f_Y$. $X$ et $Y$ sont indépendantes si et seulement si 
 le couple $Z = (X,Y)$ a pour densité (sur $\R^2$) :
 $$f_Z(x,y) = f_X(x)f_Y(y).$$
@@ -327,18 +363,23 @@ ce qui montre que $\P_Z$ vérifie la [définition d'un vecteur aléatoire à den
 
 Inversement, si $f_Z=f_X f_Y$, on a pour tous $A$, $B$ de $\B_{\R}$
 $$\P(X\in A, Y\in B) = \int_A \int_B f_X(x) f_Y(y) dxdy = \P(X \in A)\P(Y \in B)$$ 
-où on a utilisé le théorème de Fubini.
+où on a utilisé le [théorème de Fubini](Calcul Intégral III.pdf #Fubini).
+
+
+### Lancer de fléchette (suite) {.exercise .question .one #exo-flechettebis}
+Les coordonnées cartésiennes $(X,Y)$ de $M$ sont elles indépendantes ? 
+
 
 ### {.anonymous}
 
 Considérons maintenant deux fonctions $g$ et $h$ définies sur $\R^m$ et $\R^n$ telles que $g(X)$ et $h(Y)$ soient aussi des variables aléatoires. 
 
-### Proposition {.proposition #indep_fct}
+### Fonctions de vecteurs aléatoires indépendants {.proposition #indep_fct}
 Avec les notations précédentes, si $X$ et $Y$ sont indépendantes de densités respectives $f_X$ et $f_Y$, les variables aléatoires $g(X)$ et $h(Y)$ sont aussi indépendantes. Si de plus $g(X)$ et $h(Y)$ sont intégrables, alors le produit $g(X)h(Y)$ est aussi intégrable, et on a 
 $$ \Esp(g(X)h(Y)) = \Esp(g(X))\Esp(h(Y))$$ 
 
 ### Démonstration {.proof}
-La première assertion est évidente par définition de l'indépendance. Par ailleurs, si $g(X)$ et $h(Y)$ sont intégrables, en notant $f_{(X,Y)}$ la densité du couple $(X,Y)$, et en utilisant le théorème de Fubini, on a
+La première assertion est évidente par définition de l'indépendance. Par ailleurs, si $g(X)$ et $h(Y)$ sont intégrables, en notant $f_{(X,Y)}$ la densité du couple $(X,Y)$, et en utilisant le [théorème de Fubini](Calcul Intégral III.pdf #Fubini), on a
 \begin{align*}
 \Esp(g(X)h(Y))  & = \int_{\R^{m+n}} g(x)h(y) f_{(X,Y)}(x,y) dx dy \\
                 & = \int_{\R^m} \int_{\R^n} g(x)h(y)f_X(x) f_Y(y) dx dy \\
@@ -346,14 +387,17 @@ La première assertion est évidente par définition de l'indépendance. Par ail
                 & = \Esp(g(X))\Esp(h(Y))
 \end{align*}
 
-### Remarque {.remark}
-Ce résultat est encore valable $X$ et $Y$ dans le cas général (sans densité) mais nous ne disposons pas encore des outils de théorie de la mesure nécessaires à sa démonstration.
+### Cas général {.remark}
+Ce résultat est encore valable $X$ et $Y$ dans le cas général (sans densité), voir @Jacod pour une démonstration.
 
 On déduit de ce résultat et de la [définition de la covariance](#defcov) que :
 
-### Corollaire {.corollary}
+### Covariance de variables aléatoires indépendantes {.corollary}
 Si les variables aléatoires réelles $X$ et $Y$ sont indépendantes et de carré intégrable, alors
 $\cov(X,Y) = 0$ et $\rho(X,Y) = 0$.
+
+### Démonstration {.exercise .question .one #demo-cov-indep}
+Démontrer ce résultat.
 
 ### Remarque
 Attention, la réciproque est fausse. Par exemple, si $X \sim \mathcal{U}_{[-1,1]}$ et $Y = X^2$. $X$ et $Y$ ne sont clairement pas indépendantes mais on a
@@ -362,10 +406,9 @@ $$\cov(X,Y) = \cov(X,X^2) = \Esp(X^3) - \Esp(X)\Esp(X^2) = 0$$
 
 # Identification de densité
 
-Un problème important est le suivant. Soit $X$ une variable aléatoire réel, admettant la densité $f_X$. Soit $g$ une fonction mesurable, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
+Un problème important est le suivant. Soit $X$ une variable aléatoire réelle, admettant la densité $f_X$. Soit $g$ une fonction mesurable, de sorte que $Y = g(X)$ soit aussi une variable aléatoire. Est-ce que $Y$ admet une densité, et si oui, comment la calculer ?
 
-On peut déjà remarquer que cette densité n’existe pas toujours. Si par exemple $g(x) = a$ pour tout $x$, la loi de $Y$ est la masse de Dirac en $a$, qui n’a
-pas de densité.
+On peut déjà remarquer que cette densité n’existe pas toujours. Si par exemple $g(x) = a$ pour tout $x$, la loi de $Y$ est la masse de Dirac en $a$, qui n’a pas de densité.
 
 Pour résoudre ce problème, l’idée consiste à essayer de mettre $E(h(Y )) = E(h \circ g(X))$ sous la forme $\int h(y)f_Y (y)dy$ pour une fonction convenable 
 $f_Y$, et une classe de fonctions $h$ suffisamment grande. La fonction $f_Y$ sera alors la densité cherchée.
@@ -375,12 +418,16 @@ $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R} h \circ g(x) f_X(x) dx$$
 
 et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire, on appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
 
-### Proposition {.proposition}
+### Méthode de la fonction muette {.proposition}
 Si il existe une fonction $f$ telle que pour toute fonction mesurable $h$ telle que $h(x) f(x)$ soit absolument intégrable, 
 $$\Esp(h(X)) = \int_\R h(x) f(x) dx$$
 alors la loi de $X$ admet la densité $f$.
 
+### Démonstration {.proof}
 L’idée de la preuve repose sur le fait que parmi ces fonctions se trouvent les $h = 1_{]-\infty,y]}$, pour laquelle la formule précédente donne la fonction de répartition de $f$.
+Pour un démonstration complète, voir @Jacod.
+
+### {.post}
 
 Nous donnons ici quelques exemples d'application de cette méthode :
 
@@ -411,22 +458,31 @@ Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldot
  3. $m < n$, on commence par "compléter" $Y$, en essayant de construire une application $g'$ de $\R^n$ dans $\R^n$ dont les $m$ premières composantes coïncident avec les composantes de $g$ et pour laquelle on peut appliquer l'une des deux formules précédentes. On obtient ainsi la densité $f_Y'$ de $Y' = g'(X)$ puis     on obtient la densité de $Y$ en calculant sa loi marginale :
         $$f_Y(y_1,\ldots,y_m) = \int_{\R^{n-m}} f_{Y'}(y_1,\ldots,y_m,y_{m+1},\ldots y_n) dy_{m+1}\ldots dy_n.$$
 
-### Exemples
 
- 1. **Coordonnées polaires**
-    Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, et $Y = (R,\Theta)$ ses coordonnées polaires. La transformation $g$ est un difféomorphisme de $A = \R^2\setminus\{0\}$ dans $B = \left]0,+\infty\right[\times \left]0,2\pi\right]$, et son inverse $g^{-1}$ s'écrit : $u = r\cos \theta,\, v= r\sin \theta$.
-    Le Jacobien de $g^{-1}$ au point $(r,\theta)$ vaut $r$, donc le point 2. ci-dessus entraîne que 
-        $$ f_Y(r,\theta) = r f_X(r\cos\theta,r\sin\theta)1_B(r,\theta)$$
-    Par exemple, si $U$ et $V$ sont indépendantes et de loi $\No(0,1)$, on a $f_X(u,v) = \frac{1}{2\pi}\exp\left(-\frac{u^2+v^2}{2}\right)$ et donc
-        $$ f_Y(r,\theta) = \frac{1}{2\pi} r\left(-\frac{r^2}{2}\right)1_{\left]0,+\infty\right[ }(r)1_{\left]0,2\pi\right]}(\theta).$$
-    En particulier, on remarque que $R$ et $\Theta$ sont indépendantes de densités respectives $r\exp\left(-\frac{r^2}{2}\right)1_{\left]0,+\infty\right[}(r)$ et $1_{\left]0,2\pi\right]}(\theta)$.
- 2. **Somme de deux variables aléatoires indépendantes**
-    Soient $U$ et $V$ indépendantes et admettant les densités $f_U$ et $f_V$, on cherche la densité de la somme $Z = U+V$. On commence par compléter $Z$ en le couple $T = (U,Z)$ (par exemple), correspondant à la bijection $g(u,v) = (u, u+v)$ sur $\R^2$ dont le jacobien est 1 et d'inverse $g^{-1}(x,y) = (x,x-y)$. Appliquant le point 3. ci-dessus, on obtient :
-        $$f_Z(z) = \int_{\R}f_U(u)f_V(z-u) du = \int_{\R}f_U(z-v)f_V(v)dv.$$
-    La fonction $f_Z$ est appelée *le produit de convolution* des des fonctions $f_U$ et $f_V$.
+### **Coordonnées polaires** {.example #polar}
+Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, et $Y = (R,\Theta)$ ses coordonnées polaires. La transformation $g$ est un difféomorphisme de $A = \R^2\setminus\{0\}$ dans $B = \left]0,+\infty\right[\times \left]0,2\pi\right]$, et son inverse $g^{-1}$ s'écrit : $u = r\cos \theta,\, v= r\sin \theta$.
+Le Jacobien de $g^{-1}$ au point $(r,\theta)$ vaut $r$, donc le point 2. ci-dessus entraîne que 
+$$ f_Y(r,\theta) = r f_X(r\cos\theta,r\sin\theta)1_B(r,\theta)$$
+Par exemple, si $U$ et $V$ sont indépendantes et de loi $\mathcal{N}(0,1)$, on a $f_X(u,v) = \frac{1}{2\pi}\exp\left(-\frac{u^2+v^2}{2}\right)$ et donc
+$$ f_Y(r,\theta) = \frac{1}{2\pi} r\exp\left(-\frac{r^2}{2}\right)1_{\left]0,+\infty\right[ }(r)1_{\left]0,2\pi\right]}(\theta).$$
+En particulier, on remarque que $R$ et $\Theta$ sont indépendantes de densités respectives $r\exp\left(-\frac{r^2}{2}\right)1_{\left]0,+\infty\right[}(r)$ et $1_{\left]0,2\pi\right]}(\theta)$.
+
+### Lancer de fléchette (fin) {.exercise .question .one #exo-flechetteter}
+Donner la densité du couple $(R,\Theta)$ des coordonnées polaires de $M$. Sont-elles indépendantes ?
 
 
-# Exercices
+### **Somme de deux variables aléatoires indépendantes** {.example #sum}
+Soient $U$ et $V$ indépendantes et admettant les densités $f_U$ et $f_V$, on cherche la densité de la somme $Z = U+V$. On commence par compléter $Z$ en le couple $T = (U,Z)$ (par exemple), correspondant à la bijection $g(u,v) = (u, u+v)$ sur $\R^2$ dont le jacobien est 1 et d'inverse $g^{-1}(x,y) = (x,x-y)$. Appliquant le point 3. ci-dessus, on obtient :
+$$f_Z(z) = \int_{\R}f_U(u)f_V(z-u) du = \int_{\R}f_U(z-v)f_V(v)dv.$$
+La fonction $f_Z$ est appelée *le produit de convolution* des des fonctions $f_U$ et $f_V$.
+
+### Loi bêta {.exercise .question .three #exo-loibeta}
+
+Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, avec $U$ et $V$ indépendantes de lois $\Gamma(\alpha,\theta)$ et $\Gamma(\beta,\theta)$. Identifier la densité de $Y = \frac{U}{U+V}$, puis de $Z = U+V$.
+
+
+Exercices complémentaires
+================================================================================
 
 ## Loi de vie et de mort 
 
@@ -456,10 +512,36 @@ et exprimer $G$ en fonction de $D$.
 
 Quelles lois correspondent-elles à $D$ constant ?
 
+## Durée de vie
 
-## Loi bêta {.question #loibeta}
+La durée de vie, exprimée en années, d’un circuit électronique est une variable aléatoire $T$ dont la fonction de répartition $F$ est définie par : 
+$$F (t) = (1 - e^{t^2 /2} )1_{t\geq 0}$$
 
-Soit $X = (U,V)$ un vecteur aléatoire de $\R^2$, avec $U$ et $V$ indépendantes de lois $\Gamma(\alpha,\theta)$ et $\Gamma(\beta,\theta)$. Identifier la densité de $\frac{U}{U+V}$.
+### Question 1 {.question #dureevie1} 
+
+Donner la densité de probabilité $f$ de $T$ . Calculer $\Esp(T)$.
+
+### Question 2 {.question #dureevie2} 
+
+Sachant que le circuit a déjà fonctionné durant 1 an, quelle est la probabilité qu’il continue à fonctionner encore durant au moins 2 ans ? La loi est-elle sans
+mémoire ?
+
+Un équipement électronique E est composé de 10 circuits identiques et indépendants. Au circuit $i (1 \leq i \leq 10)$ est associée la variable aléatoire $X_i$ , avec $X_i = 1$
+si la durée de vie du circuit $i$ est inférieure à un an et $X_i = 0$ sinon.
+
+### Question 3 {.question #dureevie3} 
+
+Quelle est la loi du nombre $N$ de circuits de E dont la durée de vie est inférieure à 1 an ?
+
+### Question 4 {.question #dureevie4} 
+ 
+L’équipement E est dit en série si la défaillance de l’un de ses circuits entraîne sa défaillance. Quelle est alors la probabilité qu’il soit défaillant avant 1 an ?
+
+### Question 5 {.question #dureevie5} 
+
+L’équipement E est dit en parallèle si sa défaillance ne peut se produire que si tous ses circuits sont défaillants. Quelle est alors la probabilité qu’il soit défaillant avant 1 an ?
+
+
 
 ## Crues centennales de la Seine
 On suppose que la hauteur d’eau maximale au cours de l’année $n$ est décrite par une variable aléatoire $X_n$ de densité $f(x)$ et de fonction de répartition $F(x)$, identique pour toutes les $X_n$, que l'on suppose également indépendantes.
@@ -563,6 +645,138 @@ Soient maintenant $n\in\mathbb{N}^\ast$ variables aléatoires $X_1,\dots,X_n$ in
 
 # Solutions
 
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+### Approximation par une constante {.answer #answer-exo-approx}
+On a 
+$$\Esp((X-a)^2) = \Esp((X-\Esp(X) + \Esp(X) - a)^2 = \Esp((X - \Esp(X))^2 ) + (\Esp(X) - a)^2$$
+le terme de gauche ne dépend pas de $a$ tandis que celui de droite s'annule en $a = \Esp(X)$.
+
+### Calcul d'une covariance {.answer #answer-cov-unif}
+On a 
+\begin{align*}
+\cov(U,V) &= \Esp((U-\Esp(U))(V-\Esp(V)))\\
+          &= \Esp(UV - \frac{U}{2} - \frac{U}{2} - \Esp(U)\Esp(V))\\
+          &= \Esp(U(1-U)) - 1/4 - 1/4 +1/4 \text{ par linéarité et d'après la solution ci-dessous}\\
+          &= 1/2 - 1/3 -1/4 = -1/12
+\end{align*}
+et 
+$$\rho(U,V) = \frac{\cov(U,V)}{\sqrt{\V(U)}\sqrt{\V(V)}} = -1$$
+
+### Coefficient de corrélation {.answer #answer-CS-corr}
+
+On déduit de l'inégalité de [Cauchy-Schwarz](#CS) que 
+$$|\rho(X,Y)| = \left|\frac{\Esp((X-\Esp(X))(X-\Esp(Y)))}{\sqrt{\V(X)\V(Y)}} \right| \leq \frac{\sqrt{\Esp((X-\Esp(X))^2)\Esp((X-\Esp(Y))^2)}}{\sqrt{\V(X)\V(Y)}} =1$$
+
+### Moments d'une variable aléatoire de loi uniforme sur $[a,b]$ {.answser  #answer-moments-unif}    
+
+Soit $X \sim \mathcal{U}_{[a,b]}$. Son espérance vaut
+        $$\Esp(X) = \int_a^b \frac{x}{b-a} dx = \frac{a+b}{2}$$
+et puisque
+        $$\Esp(X^2) = \int_a^b \frac{x^2}{b-a} dx = \frac{a^2 + ab +b^2}{3},$$
+alors sa variance vaut
+        $$\V(X) = \Esp(X^2) - \Esp(X)^2 = \frac{(b-a)^2}{12}.$$
+
+### Moments d'une v.a. de loi exponentielle {.answer #answer-moments-expo}    
+
+Soit $X \sim \E(\theta)$, alors
+$$\Esp(X) = \int_0^{+\infty} x \theta \exp(-\theta x) dx = [\frac{x}{\theta}\exp(-\theta x)]_0^{+\infty} + \int_0^{+\infty} \exp(-\theta x) dx = \frac{1}{\theta}$$
+
+### Moments d'une v.a. de loi gamma {.answer #answer-moments-gamma}    
+
+Soit $X\sim \Gamma(\alpha,\beta)$. On a
+\begin{align*}
+\Esp(X) &= \frac{1}{\Gamma(\alpha)}\int_0^{+\infty} \theta^\alpha x^\alpha e^{-\theta x} dx\\
+        &= \frac{1}{\Gamma(\alpha)}\int_0^{+\infty} \frac{1}{\theta} u^\alpha e^{-u} du \text{ par le changement de variable } u = \theta x\\
+        &= \frac{\Gamma(\alpha+1)}{\Gamma(\alpha)} \frac{1}{\theta} = \frac{\alpha}{\theta}
+\end{align*}
+puis
+\begin{align*}
+\Esp(X^2) &= \frac{1}{\Gamma(\alpha)}\int_0^{+\infty} \theta^\alpha x^{\alpha+1} e^{-\theta x} dx\\
+        &= \frac{1}{\Gamma(\alpha)}\int_0^{+\infty} \frac{1}{\theta^2} u^{\alpha+1} e^{-u} du \text{ par le changement de variable } u = \theta x\\
+        &= \frac{\Gamma(\alpha+2)}{\Gamma(\alpha)} \frac{1}{\theta^2} = \frac{\alpha(\alpha+1)}{\theta^2}
+\end{align*}
+d'où
+$$\V(X) = \Esp(X^2) - \Esp(X)^2 = \frac{\alpha}{\theta^2}$$
+
+### Moments d'une v.a. gaussienne {.answer #answer-moments-gauss}
+
+Pour s'assurer qu'il s'agit bien d'une densité, on remarque que  $I = \int_{-\infty}^{+\infty} f(x) dx$ vérifie 
+$$ I^2 = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x) f(y) dxdy = \int_{0}^{2\pi} d\theta\int_{0}^{+\infty}\frac{1}{2\pi} r e^{-r^2/2}dr $$
+(en passant en coordonnées polaires dans l'intégrale double). 
+Le calcul est ensuite aisé et on obtient $I = 1$.
+
+
+Pour les moments, on fait d'abord le calcul dans le cas centré réduit ($\mu = 0$ et $\sigma^2 =1$) puis on s'y ramène par le changement de variable $x \mapsto \frac{x-\mu}{\sigma}$. Soit donc $X \sim \mathcal{N}(0,1)$, on a
+\begin{align*}
+\Esp(X) &= \int_{-\infty}^{+\infty} \frac{x}{\sqrt{2\pi}} e^{-x^2/2} dx\\
+         &= \left[-\frac{1}{\sqrt{2\pi}} e^{-x^2/2} \right]_{-\infty}^{+\infty} = 0.
+\end{align*}
+et 
+\begin{align*}
+\V(X) = \Esp(X^2) &= \int_{-\infty}^{+\infty} \frac{x^2}{\sqrt{2\pi}} e^{-x^2/2} dx\\
+         &= \left[-\frac{x}{\sqrt{2\pi}} e^{-x^2/2} \right]_{-\infty}^{+\infty} +\int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi}} e^{-x^2/2} dx \\
+         &= 0 + 1.
+\end{align*}
+
+### *Loi de Cauchy* {.answer #answer-exo-cauchy}
+
+L'angle $\theta$ est une variable aléatoire uniforme sur $[-\pi/2,\pi/2]$, de densité $g(\theta) = \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta)$. L'abscisse $X$ est donnée par $X = \tan \theta$, c'est donc une variable aléatoire, de fonction de répartition
+\begin{align*}        
+F(x) & = \P(X \leq x) \\
+     & = \P(\theta \leq \arctan x) \\
+     & = \int_{-\infty}^{\arctan x} \frac{1}{\pi}1_{[ -\pi/2,\pi/2 ]}(\theta) d\theta \\
+     & = \frac{1}{\pi} \arctan x + \frac{1}{2}.
+\end{align*}
+
+$F$ est de classe $C^1$ de dérivée
+        $$f(x) = \frac{1}{\pi(1+x^2)}, x \in \R$$
+
+C'est la densité de la loi de Cauchy. Une variable aléatoire $X$ de loi de Cauchy n'admet pas d'espérance. En effet, $\frac{x}{\pi(1+x^2)} \sim_{x\to \infty} \frac{1}{x}$ n'est pas intégrable.
+
+### Lancer de fléchette {.answer #answer-exo-flechette}
+
+Les coordonnées cartésiennes de $M \in D = \{(x,y) \in \R^2 , x^2+y^2 \leq 1\}$ constituent un couple de variables aléatoires de densité
+$$f_{(X,Y)}(x,y) = \frac{1}{\pi}1_{D} (x,y)$$
+uniforme sur le disque, par hypothèse. L'abscisse de $X$ est distribuée selon la densité marginale
+$$f_X(x) = \int f_{(X,Y)}(x,y) dy = \frac{2}{\pi} (1-x^2)^{1/2} 1_{[-1,1]}(x).$$
+La loi de $Y$ a la même densité.
+
+### Lancer de fléchette (suite) {.answer #answer-exo-flechettebis}
+La densité des coordonnées cartésiennes ne s'exprime pas comme le produit des densités marginales ; elles ne sont pas indépendantes.
+
+### Démonstration {.answer #answer-demo-cov-indep}
+Soit $X$ et $Y$ deux v.a. aléatoires indépendantes et de carré intégrable. On a d'après [la proposition](#indep_fct)
+$$\Esp((X-\Esp(X))(Y-\Esp(Y))) = \Esp(X-\Esp(X))\Esp(Y-\Esp(Y)) = 0 = \rho(X,Y)$$
+
+### Lancer de fléchette (fin) {.answer #answer-exo-flechetteter}
+En coordonnées polaires, le domaine $D$ est décrit par $D = \{(r,\theta) \in [0,1] \times [0,2\pi]\}$. La densité de $(R,\theta)$ s'écrit ainsi :
+$$f_{(R,\theta)}(r,\theta) = \frac{r}{\pi}1_{D} (r\cos(\theta),r\sin(\theta)) = 2r 1_{[0,1]}(r) \frac{1}{2\pi}1_{[0,2\pi]}(r).$$
+Ainsi $R$ et $\Theta$ sont indépendantes de densités respectives $2r 1_{[0,1]}(r)$ et $\frac{1}{2\pi}1_{[0,2\pi]}(r)$.
+
+### Loi bêta {.answer #answer-exo-loibeta}
+On note d'abord que la dimension de $Y$ est plus petite que celle de $X$. On va donc compléter $Y$ en prenant par exemple $Y' = (Y,Z)$, avec $Z=U+V$, ce qui correspond à $g(u,v) = \left(\frac{u}{u+v},u+v\right)$. Cette application est bijective de $A = \left]0,+\infty\right[^2$ dans $B = \left]0,1\right[ \times \left]0,+\infty\right[$, d'inverse $g^{-1}(y,z) = (yz,z(1-y))$, qui a pour jacobien $z$.
+
+Comme $f_X(u,v) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}u^{\alpha-1}v^{\beta-1}e^{-\theta(u+v)}1_A(u,v)$, on a 
+        $$f_{Y'}(y,z) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}z^{\alpha+\beta -1}y^{\alpha-1}(1-y)^{\beta-1}e^{-\theta z}1_B(y,z).$$
+On obtient alors la densité de Y en intégrant $f_{Y'}(y,z)$ par rapport à $z\in \left]0,+\infty\right[$ :
+\begin{align*}
+f_Y(y) &= \int_0^{+\infty} f_{Y'}(y,z) dz\\
+       &= \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}y^{\alpha-1}(1-y)^{\beta-1}1_{\left]0,1\right[}(y)\int_0^{+\infty}z^{\alpha+\beta -1}e^{-\theta(z)}dz\\
+       &= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}y^{\alpha-1}(1-y)^{\beta-1}1_{\left]0,1\right[}(y),
+\end{align*}
+où on a utilisé la définition de la fonction gamma et le changement de variable linéaire $z \mapsto \theta z$.
+On appelle loi bêta de paramètres $\alpha$ et $\beta$ la loi admettant cette densité. Admettant une grande variété de formes, elle permet de modéliser de nombreuses distributions à support fini.
+
+La loi bêta apparaît naturellement dans une expérience d'urnes, donnée par George Pólya dans un article de 1930, [*Sur quelques points de la théorie des probabilités*](http://www.numdam.org/article/AIHP_1930__1_2_117_0.pdf). Il décrit l'expérience suivante : on se donne une urne contenant initialement $r$ boules rouges et $b$ boules bleues, on tire une boule dans l'urne, puis on la remet dans l'urne avec une deuxième boule de même couleur. Alors la proportion de boules rouges tend vers une variable aléatoire de loi Beta$(r,b)$, et, inversement, la proportion de boules bleues tend vers une variable aléatoire de loi Beta$(b,r)$. 
+
+Nous obtenons aussi facilement la densité de $Z$. En effet, on a $f_{Y'}(y,z) = f_Y(y)f_Z(z)$ ($Y$ et $Z$ sont donc indépendantes), où
+$$f_Z(z) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha+\beta)}z^{\alpha+\beta -1}e^{-\theta z}1_{\left]0,+\infty\right[}$$
+On a ainsi démontré que si $U$ et $V$ sont deux variables aléatoires indépendantes de lois respectives $\Gamma(\alpha,\theta)$ et $\Gamma(\beta,\theta)$, alors $U+V$ suit la loi $\Gamma(\alpha+\beta,\theta)$ et est indépendante de $\frac{U}{U+V}$ qui suit une loi bêta de paramètres $(\alpha,\beta)$.
+
+
+
 ## Loi de vie et de mort 
 
 ### Question 1 {.answer #answer-viemort1}
@@ -586,25 +800,41 @@ Ainsi, $D(t) = \frac{d}{dt}(-\ln G(t))$ et comme $G(0) = 1$, alors on a pour $t 
 Si $D$ est constant, on retrouve une loi exponentielle.
 
 
-## Loi bêta {.answer #answer-loibeta}
-On note d'abord que la dimension de $Y$ est plus petite que celle de $X$. On va donc compléter $Y$ en prenant par exemple $Y' = (Y,Z)$, avec $Z=U+V$, ce qui correspond à $g(u,v) = \left(\frac{u}{u+v},u+v\right)$. Cette application est bijective de $A = \left]0,+\infty\right[^2$ dans $B = \left]0,1\right[ \times \left]0,+\infty\right[$, d'inverse $g^{-1}(y,z) = (yz,z(1-y))$, qui a pour jacobien $z$.
+## Durée de vie
 
-Comme $f_X(u,v) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}u^{\alpha-1}v^{\beta-1}e^{-\theta(u+v)}1_A(u,v)$, on a 
-        $$f_{Y'}(y,z) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}z^{\alpha+\beta -1}y^{\alpha-1}(1-y)^{\beta-1}e^{-\theta z}1_B(y,z).$$
-On obtient alors la densité de Y en intégrant $f_{Y'}(y,z)$ par rapport à $z\in \left]0,+\infty\right[$ :
+### Question 1 {.answer #answer-dureevie1} 
+En dérivant, on obtient que la densité de $T$ est $f(t) = t e^{-t^2/2}1_{t>0}$.
+
+L'espérance vaut :
+
 \begin{align*}
-f_Y(y) &= \int_0^{+\infty} f_{Y'}(y,z) dz\\
-       &= \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha)\Gamma(\beta)}y^{\alpha-1}(1-y)^{\beta-1}1_{\left]0,1\right[}(y)\int_0^{+\infty}z^{\alpha+\beta -1}e^{-\theta(z)}dz\\
-       &= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}y^{\alpha-1}(1-y)^{\beta-1}1_{\left]0,1\right[}(y),
+\Esp(T) &= \int_0^{+\infty} t^2 e^{-t^2/2} dt\\
+        &= \left[-t e^{-t^2/2} \right]_0^{+\infty} + \int_0^{+\infty} e^{-t^2/2} dt \text{ par intégration par parties}\\
+        &= \frac{1}{2} \int_{-\infty}^{+\infty} e^{-t^2/2} dt \\
+        &= \frac{\sqrt{2\pi}}{2}
 \end{align*}
-où on a utilisé la définition de la fonction gamma et le changement de variable linéaire $z \mapsto \theta z$.
-On appelle loi bêta de paramètres $\alpha$ et $\beta$ la loi admettant cette densité. Admettant une grande variété de formes, elle permet de modéliser de nombreuses distributions à support fini.
 
-La loi bêta apparaît naturellement dans une expérience d'urnes, donnée par George Pólya dans un article de 1930, [*Sur quelques points de la théorie des probabilités*](http://www.numdam.org/article/AIHP_1930__1_2_117_0.pdf). Il décrit l'expérience suivante : on se donne une urne contenant initialement $r$ boules rouges et $b$ boules bleues, on tire une boule dans l'urne, puis on la remet dans l'urne avec une deuxième boule de même couleur. Alors la proportion de boules rouges tend vers une variable aléatoire de loi Beta$(r,b)$, et, inversement, la proportion de boules bleues tend vers une variable aléatoire de loi Beta$(b,r)$. 
+### Question 2 {.answer #answer-dureevie2} 
 
-Nous obtenons aussi facilement la densité de $Z$. En effet, on a $f_{Y'}(y,z) = f_Y(y)f_Z(z)$ ($Y$ et $Z$ sont donc indépendantes), où
-$$f_Z(z) = \frac{\theta^{\alpha+\beta}}{\Gamma(\alpha+\beta)}z^{\alpha+\beta -1}e^{-\theta z}1_{\left]0,+\infty\right[}$$
-On a ainsi démontré que si $U$ et $V$ sont deux variables aléatoires indépendantes de lois respectives $\Gamma(\alpha,\theta)$ et $\Gamma(\beta,\theta)$, alors $U+V$ suit la loi $\Gamma(\alpha+\beta,\theta)$ et est indépendante de $\frac{U}{U+V}$ qui suit une loi bêta de paramètres $(\alpha,\beta)$.
+La probabilité s'écrit :
+
+$$\P(T\geq 3 |T \geq 1) = \frac{\P(T \geq 3,T \geq 1)}{\P(T \geq 1)} = \frac{\P(T \geq 3)}{\P(T \geq 1)} = \frac{e^{-9/2}}{e^{-1/2}} = e^-4$$
+
+### Question 3 {.answer #answer-dureevie3} 
+
+Les variables aléatoires $X_1 , \ldots , X_10$ sont indépendantes et suivent une loi de Bernoulli de paramètre :
+$$ \P (T \leq 1) = F (1) = 1 - e^{- 2}$$
+
+On en déduit que la loi de N est la loi binomiale de paramètre (10, 1 - e - 2 ).
+
+### Question 4 {.answer #answer-dureevie4} 
+
+La probabilité que l’équipement en série soit défaillant avant 1 an vaut :
+$$ P(N \geq 1) = 1 - \P(N = 0) = 1 - e^{-2} \approx 9.9 10 -1 = 99%$$
+
+### Question 5 {.answer #answer-dureevie5} 
+La probabilité que l’équipement en parallèle soit défaillant avant 1 an vaut :
+$$ \P(N = 10) = (1 - e^{-2})^10 \approx 8.9 10 -5 $$
 
 ## Crues centennales de la Seine
 
@@ -763,60 +993,6 @@ On en conclut que bien que $\text{Cov}\left(X,X_{c_0}\right) = 0$, $X$ et $X_{c_
 
 Supposons que $(X,X_{c_0})$ soit un vecteur gaussien. Alors, puisque $\text{Cov}\left(X,X_{c_0}\right) = 0$, $X$ et $X_{c_0}$ sont nécessairement indépendantes. Or nous venons de voir que ce n'était pas le cas; nous avons donc contradiction. On en conclut que $(X,X_{c_0})$ n'est pas gaussien.
 
-##  Combinaisons linéaires de variables Gaussiennes indépendantes
-
-### Préliminaires {.answer #answer-CLIGauss-pre}
-
-Cette question a été traitée de manière générale dans le cours. Nous en proposons une preuve alternative, basée sur le calcul de la fonction de répartition de la variable aléatoire $s\,X + m$, qui caractérise sa loi. Elle dépend clairement des valeurs de $s$.
-
-* Si $s = 0$, alors $s\,X + m$ est toujours égale à $m$ : sa loi est une masse de Dirac en $\{m\}$ et pour tout $x\in\R$ on a $\P\left(s\,X +m \leq x\right) = 1_{[m,+\infty[}(x)$.
-
-* Si $s\neq 0$, alors pour tout $x\in\R$ on a
-$$\P\left( s\,X + m \leq x \right) = \left|\begin{array}{ll}\displaystyle\P\left( X \leq \dfrac{x-m}{s} \right) = \int_{-\infty}^{\frac{x-m}{s}} f(u)\,du & \text{si } s>0,\\[1em] \displaystyle \P\left( X \geq \dfrac{x-m}{s} \right) = \int_{\frac{x-m}{s}}^{+\infty} f(u)\,du & \text{si } s<0,\end{array}\right.$$
-qui en posant le changement de variable $v = s\,x+m$ donne
-$$\P\left( s\,X + m \leq x \right) = \int_{-\infty}^{x} \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s} \right)\,dx.$$
-<!-- On pourra remarquer que cela revient à utiliser la méthode avec E(h(X)) du cours, pour h l'indicatrice qu'on est plus petit que x, car P(X in A) = E(1\_A(X)) -->
-Ainsi, $s\,X+m$ admet une densité, qui pour tout $x\in\R$ est égale à
-$$ \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s}\right) = \dfrac{1}{\sqrt{2\,\pi}\,|s|}\,\exp\left\{-\dfrac{(x-m)^2}{2\,s^2} \right\}.$$
-On reconnaît la densité d'une loi Normale d'espérance $m$ et de variance $s^2$.
-
-### Combinaisons linéaires {.answer #answer-CLIGauss-cl}
-
-2. Commençons par supposer que pour tout $n\in\mathbb{N}^\ast$, $a\in\R^n$ est tel qu'aucune de ses composantes n'est nulle. Nous allons montrer par récurrence sur $n$ que $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$. On note cette propriété $(\mathcal{P}_n)$. 
-
-**Initialisation.**
-
-* Si $n = 1$ et $a_1 \neq 0$, alors $S_1^a = a_1\,X_1$ suit une loi Normale centrée de variance $a_1^2$ d'après la question 1; $(\mathcal{P}_1)$ est donc vraie.
-
-* Si $n=2$ et $a_1,a_2 \neq 0$, alors d'après le cours $S_2^a = a_1\,X_1 + a_2\,X_2$ admet une densité, notée $f_n^a$, égale au produit de convolution des densités $f_1$ de $a_1\,X_1$ et $f_2$ de $a_2\,X_2$. En outre, d'après la question 1, pour tout $x\in\R$ on a $f_1(x) = \dfrac{1}{|a_1|}\,f\left(\dfrac{x}{a_1} \right)$ et $f_2(x) = \dfrac{1}{|a_2|}\,f\left(\dfrac{x}{a_2} \right)$. Par conséquent, pour tout $x\in\R$,
-\begin{align*}
-f_2^a(x) &= \int_{\R} f_1(x-u)\,f_2(u)\,du = \int_\R \dfrac{1}{|a_1|\,|a_2|}\,f\left(\dfrac{x - u}{a_1}\right)\,f\left(\dfrac{u}{a_2}\right)\,du\\
-&= \dfrac{1}{\sqrt{a_1^2 +a_2^2}}\,f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)\, \int_{\R} \dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}\,\dfrac{f\left(\dfrac{x - u}{a_1}\right)}{f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)}\,f\left(\dfrac{u}{a_2}\right)\,du.
-\end{align*}
-Or pour tout $x,u\in\R$ on a
-\begin{align*}
-\dfrac{f\left(\dfrac{x - u}{a_1}\right)}{f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)}\,f\left(\dfrac{u}{a_2}\right) & = \dfrac{1}{\sqrt{2\pi}}\,\dfrac{\exp\left\{-\dfrac{(x-u)^2}{2\,a_1^2} \right\}}{\exp\left\{ -\dfrac{x^2}{2\,(a_1^2+a_2^2)} \right\}}\,\exp\left\{ -\dfrac{u^2}{2\,a_2^2} \right\}\\
-& = \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{-\dfrac{1}{2}\,\left( \dfrac{(x-u)^2}{a_1^2} + \dfrac{u^2}{a_2^2} - \dfrac{x^2}{a_1^2+a_2^2} \right) \right\}\\
-&= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{ -\dfrac{\left(a_2^2\,x - (a_1^2 + a_2^2)\,u\right)^2}{2\,a_1^2\,a_2^2\,(a_1^2+a_2^2)} \right\}\\
-&= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{-\dfrac{\left(u - \dfrac{a_2^2\,x}{a_1^2 + a_2^2}\right)^2}{2\,\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}}\right\},
-\end{align*}
-qui multiplié par $\dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}$ correspond à la densité d'une loi Normale d'espérance $\dfrac{a_2^2\,x}{a_1^2+a_2^2}$ et de variance $\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}$. La précédente intégrale vaut donc $1$ et $(\mathcal{P}_2)$ est vraie.
-
-**Héritage.** Soit maintenant $n\geq 2$, et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $S_n^a = S_{n-1}^{a_{-n}} + a_n\,X_n$, où $a_{-n} := (a_1,\dots,a_{n-1})$. Or $S_{n-1}^{a_{-n}}$ et $a_n\,X_n$ sont des variables gaussiennes centrées, de variances respectives $\sum_{i = 1}^{n-1} a_i^2$ d'après $(\mathcal{P}_{n-1})$ et $a_n^2$ d'après la question 1. Par $(\mathcal{P}_2)$, $S_n^a$ suit donc une loi Normale centrée de variance $\sum_{i = 1}^n a_i^2$.
-
-**Conclusion.** On en conclut que $(\mathcal{P}_n)$ est vraie pour tout $n\in\mathbb{N}^\ast$.
-
-
-3. Calculons cette covariance :
-\begin{align*}
-\text{Cov}\left(S_n^a, S_n^b\right) &= \text{Cov}\left(\sum_{i =1}^n a_i\,X_i, \sum_{j = 1}^n b_j\,X_j\right)\\
-&= \sum_{i = 1}^n a_i\,b_i\,\mathbb{V}\left(X_i\right) + \sum_{1\leq i\neq j \leq n} a_i\,b_j\,\text{Cov}\left(X_i,X_j\right).
-\end{align*}
-Or par hypothèse $\mathbb{V}\left(X_i\right) = 1$ pour tout $i\in\{1,\dots,n\}$ et par indépendance on a $\text{Cov}\left(X_i,X_j\right) = 0$ pour tous $i,j \in \{1,\dots,n\}$ tels que $i\neq j$. Ainsi,
-$$ \text{Cov}\left(S_n^a, S_n^b\right) = \sum_{i = 1}^n a_i\,b_i $$
-qui est nulle ssi $a$ et $b$ sont orthogonaux.
-
-
 ## Loi du $\chi^2$
 
 ### A 1 degré de liberté {.answer #answer-khi2-1dl}
@@ -871,3 +1047,59 @@ $$f_Y(x) = \left|\begin{array}{ll} \dfrac{x^{\frac{n}{2}-1}}{2^{\frac{n}{2}}\,\G
 $(\mathcal{P}_n)$ est donc vraie.
 
 **Conclusion.** La propriété est vraie pour tout $n\in\mathbb{N}^\ast$.
+
+
+##  Combinaisons linéaires de variables Gaussiennes indépendantes
+
+### Préliminaires {.answer #answer-CLIGauss-pre}
+
+Cette question a été traitée de manière générale dans le cours. Nous en proposons une preuve alternative, basée sur le calcul de la fonction de répartition de la variable aléatoire $s\,X + m$, qui caractérise sa loi. Elle dépend clairement des valeurs de $s$.
+
+* Si $s = 0$, alors $s\,X + m$ est toujours égale à $m$ : sa loi est une masse de Dirac en $\{m\}$ et pour tout $x\in\R$ on a $\P\left(s\,X +m \leq x\right) = 1_{[m,+\infty[}(x)$.
+
+* Si $s\neq 0$, alors pour tout $x\in\R$ on a
+$$\P\left( s\,X + m \leq x \right) = \left|\begin{array}{ll}\displaystyle\P\left( X \leq \dfrac{x-m}{s} \right) = \int_{-\infty}^{\frac{x-m}{s}} f(u)\,du & \text{si } s>0,\\[1em] \displaystyle \P\left( X \geq \dfrac{x-m}{s} \right) = \int_{\frac{x-m}{s}}^{+\infty} f(u)\,du & \text{si } s<0,\end{array}\right.$$
+qui en posant le changement de variable $v = s\,x+m$ donne
+$$\P\left( s\,X + m \leq x \right) = \int_{-\infty}^{x} \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s} \right)\,dx.$$
+<!-- On pourra remarquer que cela revient à utiliser la méthode avec E(h(X)) du cours, pour h l'indicatrice qu'on est plus petit que x, car P(X in A) = E(1\_A(X)) -->
+Ainsi, $s\,X+m$ admet une densité, qui pour tout $x\in\R$ est égale à
+$$ \dfrac{1}{|s|}\,f\left(\dfrac{u-m}{s}\right) = \dfrac{1}{\sqrt{2\,\pi}\,|s|}\,\exp\left\{-\dfrac{(x-m)^2}{2\,s^2} \right\}.$$
+On reconnaît la densité d'une loi Normale d'espérance $m$ et de variance $s^2$.
+
+### Combinaisons linéaires {.answer #answer-CLIGauss-cl}
+
+2. Commençons par supposer que pour tout $n\in\mathbb{N}^\ast$, $a\in\R^n$ est tel qu'aucune de ses composantes n'est nulle. Nous allons montrer par récurrence sur $n$ que $S_n^a$ suit une loi Normale d'espérance nulle et de variance $\sum_{i = 1}^n a_i^2$. On note cette propriété $(\mathcal{P}_n)$. 
+
+**Initialisation.**
+
+* Si $n = 1$ et $a_1 \neq 0$, alors $S_1^a = a_1\,X_1$ suit une loi Normale centrée de variance $a_1^2$ d'après la question 1; $(\mathcal{P}_1)$ est donc vraie.
+
+* Si $n=2$ et $a_1,a_2 \neq 0$, alors d'après le cours $S_2^a = a_1\,X_1 + a_2\,X_2$ admet une densité, notée $f_n^a$, égale au produit de convolution des densités $f_1$ de $a_1\,X_1$ et $f_2$ de $a_2\,X_2$. En outre, d'après la question 1, pour tout $x\in\R$ on a $f_1(x) = \dfrac{1}{|a_1|}\,f\left(\dfrac{x}{a_1} \right)$ et $f_2(x) = \dfrac{1}{|a_2|}\,f\left(\dfrac{x}{a_2} \right)$. Par conséquent, pour tout $x\in\R$,
+\begin{align*}
+f_2^a(x) &= \int_{\R} f_1(x-u)\,f_2(u)\,du = \int_\R \dfrac{1}{|a_1|\,|a_2|}\,f\left(\dfrac{x - u}{a_1}\right)\,f\left(\dfrac{u}{a_2}\right)\,du\\
+&= \dfrac{1}{\sqrt{a_1^2 +a_2^2}}\,f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)\, \int_{\R} \dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}\,\dfrac{f\left(\dfrac{x - u}{a_1}\right)}{f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)}\,f\left(\dfrac{u}{a_2}\right)\,du.
+\end{align*}
+Or pour tout $x,u\in\R$ on a
+\begin{align*}
+\dfrac{f\left(\dfrac{x - u}{a_1}\right)}{f\left(\dfrac{x}{\sqrt{a_1^2+a_2^2}}\right)}\,f\left(\dfrac{u}{a_2}\right) & = \dfrac{1}{\sqrt{2\pi}}\,\dfrac{\exp\left\{-\dfrac{(x-u)^2}{2\,a_1^2} \right\}}{\exp\left\{ -\dfrac{x^2}{2\,(a_1^2+a_2^2)} \right\}}\,\exp\left\{ -\dfrac{u^2}{2\,a_2^2} \right\}\\
+& = \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{-\dfrac{1}{2}\,\left( \dfrac{(x-u)^2}{a_1^2} + \dfrac{u^2}{a_2^2} - \dfrac{x^2}{a_1^2+a_2^2} \right) \right\}\\
+&= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{ -\dfrac{\left(a_2^2\,x - (a_1^2 + a_2^2)\,u\right)^2}{2\,a_1^2\,a_2^2\,(a_1^2+a_2^2)} \right\}\\
+&= \dfrac{1}{\sqrt{2\pi}}\,\exp\left\{-\dfrac{\left(u - \dfrac{a_2^2\,x}{a_1^2 + a_2^2}\right)^2}{2\,\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}}\right\},
+\end{align*}
+qui multiplié par $\dfrac{\sqrt{a_1^2+a_2^2}}{|a_1|\,|a_2|}$ correspond à la densité d'une loi Normale d'espérance $\dfrac{a_2^2\,x}{a_1^2+a_2^2}$ et de variance $\dfrac{a_1^2\,a_2^2}{a_1^2+a_2^2}$. La précédente intégrale vaut donc $1$ et $(\mathcal{P}_2)$ est vraie.
+
+**Héritage.** Soit maintenant $n\geq 2$, et supposons $(\mathcal{P}_{n-1})$ vraie. Alors $S_n^a = S_{n-1}^{a_{-n}} + a_n\,X_n$, où $a_{-n} := (a_1,\dots,a_{n-1})$. Or $S_{n-1}^{a_{-n}}$ et $a_n\,X_n$ sont des variables gaussiennes centrées, de variances respectives $\sum_{i = 1}^{n-1} a_i^2$ d'après $(\mathcal{P}_{n-1})$ et $a_n^2$ d'après la question 1. Par $(\mathcal{P}_2)$, $S_n^a$ suit donc une loi Normale centrée de variance $\sum_{i = 1}^n a_i^2$.
+
+**Conclusion.** On en conclut que $(\mathcal{P}_n)$ est vraie pour tout $n\in\mathbb{N}^\ast$.
+
+
+3. Calculons cette covariance :
+\begin{align*}
+\text{Cov}\left(S_n^a, S_n^b\right) &= \text{Cov}\left(\sum_{i =1}^n a_i\,X_i, \sum_{j = 1}^n b_j\,X_j\right)\\
+&= \sum_{i = 1}^n a_i\,b_i\,\mathbb{V}\left(X_i\right) + \sum_{1\leq i\neq j \leq n} a_i\,b_j\,\text{Cov}\left(X_i,X_j\right).
+\end{align*}
+Or par hypothèse $\mathbb{V}\left(X_i\right) = 1$ pour tout $i\in\{1,\dots,n\}$ et par indépendance on a $\text{Cov}\left(X_i,X_j\right) = 0$ pour tous $i,j \in \{1,\dots,n\}$ tels que $i\neq j$. Ainsi,
+$$ \text{Cov}\left(S_n^a, S_n^b\right) = \sum_{i = 1}^n a_i\,b_i $$
+qui est nulle ssi $a$ et $b$ sont orthogonaux.
+
+

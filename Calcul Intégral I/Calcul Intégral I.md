@@ -1371,7 +1371,7 @@ partage les propriétés de l'intégrale de Riemann.
 
 La première étape de cette démarche consiste à prolonger une fonction définie 
 sur un intervalle quelconque de $\R$, par exemple un intervalle ouvert 
-$\left]a,b\right[$, en une fonction définie l'intervalle $[a, b]$ en lui 
+$\left]a,b\right[$, en une fonction définie sur l'intervalle $[a, b]$ en lui
 assignant la valeur $0$ aux extrémités de l'intervalle. 
 
 
