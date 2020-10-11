@@ -5,3 +5,5 @@ cd "Calcul Différentiel II" &&  ./build && cd ..
 cd "Calcul Intégral I" &&  ./build && cd ..
 cd "Calcul Intégral II" &&  ./build && cd ..
 cd "Calcul Intégral III" &&  ./build && cd ..
+cd "Probabilités I" &&  ./build && cd ..
+cd "Probabilités II" &&  ./build && cd ..
