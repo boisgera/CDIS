@@ -48,6 +48,8 @@ Soit $f: \R \times \R^n \to \R^n$ continue. Dire que les solutions de $\dot{x}=f
 
  - [ ] vrai si $f$ est continûment différentiable par rapport à $x$.
 
+ - [ ] aucun des deux.
+
 #### Question 4
 Le comportement d'un système chaotique est difficile à prédire parce que
 
@@ -58,5 +60,25 @@ Le comportement d'un système chaotique est difficile à prédire parce que
   - [ ] il est impossible d'assurer une précision suffisante sur la condition initiale pour obtenir une erreur raisonnable au delà d'un certain temps caractéristique.
 
 #### Question 5
+On peut dire que le système $\dot{x} = - a x + bx^2$ avec $a,b>0$, 
 
- 
+  - [ ] admet un point d'équilibre instable.
+
+  - [ ] admet un point d'équilibre localement asymptotiquement stable.
+
+  - [ ] admet un point d'équilibre globalement asymptotiquement stable.
+
+### Question 6
+Le système 
+\begin{align*}
+\dot{x}_1 &= x_1 - x_2 \\
+\dot{x}_2 &= 4x_1 - 3x_2
+\end{align*}
+
+  - [ ] admet plusieurs points d'équilibre.
+
+  - [ ] admet 0 comme point d'équilibre localement asymptotiquement stable.
+
+  - [ ] admet 0 comme point d'équilibre globalement asymptotiquement stable.
+
+  - [ ] a ses solutions de la forme $x(t) = (e^{-t}c_1,e^{-t}c_2)$, avec $c_1,c_2$ constantes.
