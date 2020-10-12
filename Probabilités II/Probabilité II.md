@@ -515,7 +515,7 @@ Quelles lois correspondent-elles à $D$ constant ?
 ## Durée de vie
 
 La durée de vie, exprimée en années, d’un circuit électronique est une variable aléatoire $T$ dont la fonction de répartition $F$ est définie par : 
-$$F (t) = (1 - e^{t^2 /2} )1_{t\geq 0}$$
+$$F (t) = (1 - e^{-t^2 /2} )1_{t\geq 0}$$
 
 ### Question 1 {.question #dureevie1} 
 
