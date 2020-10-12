@@ -720,7 +720,7 @@ alors que dans le cas de l'intégrale de Lebesgue,
 la régularité demandée -- la mesurabilité -- s'avère être une 
 condition très peu contraignante[^note].
 
-[^note]: A tel point que s'il l'on peut prouver l'existence d'une fonction
+[^note]: À tel point que, si l'on peut prouver l'existence d'une fonction
 non-mesurable, sa "construction explicite" est impossible. Les fonctions
 non-mesurables font partie des objets "intangibles" (cf. @Sch96) dont
 l'existence est prédite par la théorie mais que l'on ne rencontre jamais 
