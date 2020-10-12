@@ -1386,6 +1386,10 @@ f(x) & \mbox{si $x \in \left]a,b\right[$,} \\
 \right.
 $$
 
+Une fonction $f$ définie sur un intervalle $I$ quelconque de $\R$ sera alors dite intégrable sur $I$
+si son extension $\bar{f}$ sur l'intervalle fermé $\bar{I}$ correspondant l'est,
+et l'intégrale de $f$ sur $I$ est alors *définie* comme l'intégrale de $\bar{f}$ sur $\bar{I}$.
+
 Si l'intervalle initial est borné,
 on s'est ramené au cas déjà étudié des intervalles fermés et bornés de $\R$.
 Mais si l'intervalle initial est non-borné, par exemple 
