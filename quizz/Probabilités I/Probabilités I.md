@@ -37,7 +37,7 @@ $$X : \omega \in \Omega \mapsto \left\{\begin{array}{ll}
 
   - [ ] B: $\P(X = 1) = e^{-\theta}$
 
-  - [ ] C: $\P(X = +\infty) = 1$
+  - [ ] C: $\P(X \in \{0,1\}) = 1$
 
 #### Question 3 (réponse multiple)
 

@@ -8,6 +8,7 @@
 \renewcommand{\C}{\mathbb{C}}
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Esp}{\mathbb{E}}
 
 \newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
 \newcommand{\one}{$\mathord{\bullet}$}
@@ -15,12 +16,17 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
-#### Question 1
-C'est encore loin grand schtroumf ?
+#### Question 1 (réponse multiple)
+Soit $\lambda \in\mathbb{R}$ et $X$ la variable aléatoire définie par la loi $\P_X(\lbrace\lambda \rbrace) = \P(X = \lambda ) = 1$
 
-  - [ ]  A : oui.
+  - [ ] A: $X$ admet une densité.
 
-  - [ ]  B : non.
+  - [ ] B: $X$ admet une fonction de répartition.
+
+  - [ ] C: $X$ admet une espérance et $\Esp(X) = \lambda$.
+  
+  - [ ] D : $X$ est de variance nulle.
+
 
 #### Question 2
 Soit $X$ une variable aléatoire réelle suivant une loi normale de paramètres $\mu$ et $\sigma^2$ , quelle est la loi de $X+\gamma$ ?
