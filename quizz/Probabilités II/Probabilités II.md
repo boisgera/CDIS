@@ -17,14 +17,14 @@
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
 #### Question 1 (réponse multiple)
-Soit $\lambda \in\mathbb{R}$ et $X$ la variable aléatoire définie par la loi $\P_X(\lbrace\lambda \rbrace) = \P(X = \lambda ) = 1$
+Soit $\lambda \in\mathbb{R}$ et $X$ une variable aléatoire de loi $\P_X(\lbrace\lambda \rbrace) = \P(X = \lambda ) = 1$
 
-  - [ ] A: $X$ admet une densité.
+  - [ ] A : $X$ admet une densité.
 
-  - [ ] B: $X$ admet une fonction de répartition.
+  - [ ] B : $X$ admet une fonction de répartition.
 
-  - [ ] C: $X$ admet une espérance et $\Esp(X) = \lambda$.
-  
+  - [ ] C : $X$ admet une espérance et $\Esp(X) = \lambda$.
+
   - [ ] D : $X$ est de variance nulle.
 
 
