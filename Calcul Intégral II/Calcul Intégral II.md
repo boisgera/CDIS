@@ -424,7 +424,7 @@ Montrer que l'ensemble $\Q$ est de longueur finie et calculer sa longueur.
 
 ### Ensemble de longueur fini III {.exercise .question .two #elfIII}
 Montrer que l'ensemble 
-$E = \cup_{k=0}^{+\infty} \left[k, k+2^{-n}\right[$ 
+$E = \cup_{k=0}^{+\infty} \left[k, k+2^{-k}\right[$ 
 est de longueur finie et calculer sa longueur.
 
 ### La longueur est additive {.exercise .question .three #la}
@@ -720,7 +720,7 @@ alors que dans le cas de l'intégrale de Lebesgue,
 la régularité demandée -- la mesurabilité -- s'avère être une 
 condition très peu contraignante[^note].
 
-[^note]: A tel point que s'il l'on peut prouver l'existence d'une fonction
+[^note]: À tel point que, si l'on peut prouver l'existence d'une fonction
 non-mesurable, sa "construction explicite" est impossible. Les fonctions
 non-mesurables font partie des objets "intangibles" (cf. @Sch96) dont
 l'existence est prédite par la théorie mais que l'on ne rencontre jamais 
@@ -970,7 +970,7 @@ Pour montrer la réciproque dans ce cas, nous approchons
 la fonction mesurable $f$ par la suite de fonctions étagées $f_k$ 
 introduites dans [la démonstration du critère de l'image réciproque](#pCIR). 
 La fonction $f$ apparaît comme une limite simple des
-fonctions $f_k$, qui sont intégrables et dominées par la fonction intégrable $|f|$. 
+fonctions $f_k$, qui sont intégrables et dominées par la fonction intégrable $g$. 
 Par [le théorème de convergence dominée](#TCD), $f$ est intégrable.
 
 ### Composition par une fonction continue {.theorem #CFC}
@@ -1432,7 +1432,7 @@ Pour tout $x \in \left[1, +\infty\right[$, si $\alpha \neq {-1}$,
 on a
 $$
 \int_1^x t^{\alpha} \, dt = \left[\frac{t^{\alpha+1}}{\alpha + 1} \right]_1^x
-=\frac{t^{\alpha+1}}{\alpha + 1} - \frac{1}{\alpha + 1},
+=\frac{x^{\alpha+1}}{\alpha + 1} - \frac{1}{\alpha + 1},
 $$
 et pour $\alpha = -1$,
 $$
@@ -1449,7 +1449,7 @@ t^{\alpha} & \mbox{si $t \in [1, k]$,} \\
 $$
 alors
 $$
-\lim_{k \to +\infty} \int f_k(t) \, dt = \int_0^k t^{\alpha} \, dt,
+\lim_{k \to +\infty} \int f_k(t) \, dt = \lim_{k \to +\infty} \int_1^k t^{\alpha} \, dt,
 $$
 donc cette limite est finie si et seulement si $\alpha < -1$.
 Comme la suite des fonctions $f_k$ est croissante et converge simplement
@@ -1618,26 +1618,26 @@ La fonction $F$ est continue sur $\left[0, +\infty\right[$. En effet, si
 $x_0 \in \left[0, +\infty\right[$, alors 
 $$
 \frac{e^{-x(1+t^2)}}{1+t^2} \to \frac{e^{-x_0(1+t^2)}}{1+t^2}
-\; \mbox{ quand } \, x \to x_0,
+\; \mbox{ quand } \, x \to x_0.
 $$
-et de plus, pour tout $\varepsilon > 0$, si $x \in [\max(0, x_0-\varepsilon), x_0+\varepsilon]$,
-alors 
+De plus pour tout $x \in \left[0, +\infty\right[$,
 $$
 \left|\frac{e^{-x(1+t^2)}}{1+t^2}\right| 
 \leq 
-\frac{e^{-\max(0, x_0-\varepsilon)(1+t^2)}}{1+t^2}
+\frac{1}{1+t^2}
 $$
-Le second membre de cette équation étant intégrable (il est positif et 
-décroit quand $t\to +\infty$ plus vite que $1/t^2$), par [le théorème de 
+Le second membre de cette équation étant intégrable (il est intégrable sur
+tout intervalle fermé borné et 
+décroit quand $t\to +\infty$ comme $1/t^2$), par [le théorème de 
 convergence dominée](#TCD),
 $$
 F(x) \to F(x_0) \; \mbox{ quand } \; x \to x_0.
 $$
-De plus, toujours par le théorème de convergence dominée, comme
-l'intégrande est dominée par $1/(1+t^2)$ qui est intégrable, on a 
+De plus, toujours par le théorème de convergence dominée
+(avec la même domination), on obtient
 $$
-\lim_{x \to +\infty} F(x) =  \int_0^1 \lim_{x \to +\infty} \frac{e^{-x(1+t^2)}}{1+t^2}\, dt
-=0
+\lim_{x \to +\infty} F(x) =  \int_0^1 \lim_{x \to +\infty} \frac{e^{-x(1+t^2)}}{1+t^2}\, dt =
+\int_0^1 0 \, dt =0.
 $$
 
 ### Question 2 {.answer #answer-exp-m2-2}
@@ -1681,21 +1681,21 @@ $$
 \; \mbox{ quand }  \; \varepsilon \to 0^+,
 $$
 et d'autre part avec l'expression de la question 2 de $F'$ et le changement
-de variable $x=\sqrt{t}$, puis $z = g(u)$,
+de variable $x=\sqrt{t}$, on obtient
 \begin{align*}
 \int_{\varepsilon}^{\varepsilon^{-1}} F'(x) \, dx
 &= - \int_{\varepsilon}^{\varepsilon^{-1}} \frac{e^{-x}}{\sqrt{x}} g(\sqrt{x}) \, dx \\
-&= - 2 \int_{\varepsilon}^{\varepsilon^{-1}} \frac{e^{-\sqrt{x}^2}}g(\sqrt{x}) \, \frac{dx}{2\sqrt{x}} \\
-&=- 2 \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} \frac{e^{-u^2}} g(u) \, du \\
-&= -2 \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} g'(u) g(u) \, du \\
-&= -2 \int_{g\left(\sqrt{\varepsilon}\right)}^{g\left(1/\sqrt{\varepsilon}\right)} z \, dz \\
-&= \left[-t^2\right]_{g\left(\sqrt{\varepsilon}\right)}^{g\left(1/\sqrt{\varepsilon}\right)} \\
+&= - 2 \int_{\varepsilon}^{\varepsilon^{-1}} e^{-\sqrt{x}^2}g(\sqrt{x}) \, \frac{dx}{2\sqrt{x}} \\
+&=- 2 \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} {e^{-u^2}} g(u) \, du \\
+&= - \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} 2g'(u) g(u) \, du \\
+&= - \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} ((g(u))^2)' \, du \\
+&= - \left[(g(u))^2\right]_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} \\
 &= -\left(g\left(1/\sqrt{\varepsilon}\right)\right)^2 + \left(g\left(\sqrt{\varepsilon}\right)\right)^2
 \end{align*}
 et donc
 $$
 \int_{\varepsilon}^{\varepsilon^{-1}} F'(x) \, dx
-\to - \left(\int_0^{+\infty} e^{-t^2} \, dt \right)^2
+\to -  \left(\int_0^{+\infty} e^{-t^2} \, dt \right)^2
 \; \mbox{ quand }  \; \varepsilon \to 0^+.
 $$
 On conclut finalement que 

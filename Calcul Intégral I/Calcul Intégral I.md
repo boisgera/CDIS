@@ -1371,7 +1371,7 @@ partage les propriétés de l'intégrale de Riemann.
 
 La première étape de cette démarche consiste à prolonger une fonction définie 
 sur un intervalle quelconque de $\R$, par exemple un intervalle ouvert 
-$\left]a,b\right[$, en une fonction définie l'intervalle $[a, b]$ en lui 
+$\left]a,b\right[$, en une fonction définie sur l'intervalle $[a, b]$ en lui
 assignant la valeur $0$ aux extrémités de l'intervalle. 
 
 
@@ -1385,6 +1385,10 @@ f(x) & \mbox{si $x \in \left]a,b\right[$,} \\
 \end{array}
 \right.
 $$
+
+Une fonction $f$ définie sur un intervalle $I$ quelconque de $\R$ sera alors dite intégrable sur $I$
+si son extension $\bar{f}$ sur l'intervalle fermé $\bar{I}$ correspondant l'est,
+et l'intégrale de $f$ sur $I$ est alors *définie* comme l'intégrale de $\bar{f}$ sur $\bar{I}$.
 
 Si l'intervalle initial est borné,
 on s'est ramené au cas déjà étudié des intervalles fermés et bornés de $\R$.

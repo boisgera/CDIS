@@ -37,7 +37,7 @@ Une fonction $f: \R \to \R$ est nécessairement intégrable si
   - [ ] C: elle est mesurable et bornée.
 
 #### Question 3 (réponse multiple)
-Si la fonction $f: \R \to \R$ est intégrable, alors
+Si la fonction $f: \R \to \left[0, +\infty\right[$ est intégrable, alors
 l'ensemble $\{x \in \R \; | \; f(x) \geq 1\}$ est nécessairement :
 
   - [ ] A: mesurable,

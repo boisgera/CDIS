@@ -685,7 +685,7 @@ de la façon suivante :
     d'intégrabilité dominée](#CID), $f$ est donc intégrable. 
     
  3. [Le théorème de Fubini](#Fubini) est donc applicable ! 
-    On peut donc évaluer l'intégrale de $f$ par en calculant son
+    On peut donc évaluer l'intégrale de $f$ en calculant son
     intégrale multiple.
 
 ### Triangle d'aire finie {.exercise .question .one #triangle2}

@@ -38,7 +38,7 @@ Si $A$ et $B$ sont deux ensembles mesurables de $\R$,
 Soit $D = \{(x,y) \in \R^2 \; | \; x = y\}$ la diagonale principale de $\R^2$.
 Alors
 
-  - [ ] A: pour tout $r>0$, $D \cap [-r, r]$ est négligeable,
+  - [ ] A: pour tout $r>0$, $D \cap [-r, r]^2$ est négligeable,
 
   - [ ] B: l'ensemble $D$ est négligeable,
 

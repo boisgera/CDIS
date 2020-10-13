@@ -188,7 +188,7 @@ Le couple $(\Omega, \A)$ est appelé *espace probabilisable*.
  1. $\A = \{\varnothing,\Omega\}$ est la tribu *grossière* ou *triviale* : c'est la plus petite tribu de $\Omega$.
  2. Dans le cas où $\Omega$ est au plus dénombrable, on choisit systématiquement l'ensemble $\mathcal{P}(\Omega)$ des parties de $\Omega$ dont on vérifie aisément qu'il s'agit d'une tribu ; c'est le cadre étudié en CPGE. On verra plus loin que cette tribu est trop grande dans le cas où $\Omega$ est infini non dénombrable.
  3. Si $\Omega = \R$, on peut le munir de la tribu formée des ensembles mesurables de $\R$, dite *tribu de Lebesgue*.
- 4. On verra ultérieurement qu'il est aisé de définir une tribu sur tout espace topologique.
+ 4. On verra plus loin qu'il est aisé de définir une tribu sur tout espace topologique.
 
 ## Notion de densité de probabilité
 
