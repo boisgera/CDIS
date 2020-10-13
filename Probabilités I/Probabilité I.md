@@ -388,7 +388,7 @@ A quelle condition un événement $A$ est-il indépendant de lui-même ?
 ### Exemples {.example}
 
  1. On lance 3 fois un dé. Si $A_i$ est un événement qui ne dépend que du $i^\text{ème}$ lancer, alors $A_1$ , $A_2$ , $A_3$ sont indépendants.
- 2. On tire une carte au hasard dans un jeude 52 cartes. Soit $A$ = \{la carte est une dame\} et $B$ = \{la carte est un coeur\}. 
+ 2. On tire une carte au hasard dans un jeu de 52 cartes. Soit $A$ = \{la carte est une dame\} et $B$ = \{la carte est un coeur\}. 
  Il est facile de voir que $\P(A) = 4/52$ et $\P(B) = 13/52$ et $\P(A \cap B) = \P( \{\text{la carte est la dame de coeur}\} ) = 1/52 = \P(A) \P(B)$.
  Ainsi, les événements $A$ et $B$ sont indépendants pour la probabilité uniforme $\P$.
  3. On suppose maintenant que le jeu de cartes soit trafiqué. Soit $\widetilde{\P}$ la nouvelle probabilité correspondant au tirage de cartes. On suppose également que
@@ -418,7 +418,7 @@ En théorie moderne des probabilités, on préfère prendre un point de vue fonc
  
 sont des variables aléatoires.
 
-La définition formelle d'une variable aléatoire fait intervenir des éléments de la théorie de la mesure qui nous font pour l'instant défaut. On s'interessera dans un premier temps au cas d'une variable réelle dont on donne une définition partielle : 
+La définition formelle d'une variable aléatoire fait intervenir des éléments de la théorie de la mesure qui nous font pour l'instant défaut. On s'intéressera dans un premier temps au cas d'une variable réelle dont on donne une définition partielle : 
 
 Soit $\Omega$ l'espace fondamental muni de sa tribu $\A$. Une *variable aléatoire* $X$ est une application de $(\Omega,\A)$ dans un ensemble $E$,
 \begin{equation*}
@@ -485,7 +485,7 @@ On rappelle que toute tribu est stable par passage au complémentaire, par réun
 
 Soit $C_1$ la classe des intervalles ouverts de $\R$, $C_2$ la classe des intervalles  $] - \infty, a]$ pour $a \in \Q$ et $\B(\R)$ la tribu borélienne.
 
-Tout ouvert $A$ est réunion dénombrable d'intervalles ouverts, en effet, on a $A = \cup_{(q,n)\in B} ]q -\frac{1}{n}, q -\frac{1}{n}[$, où $B$ est l'ensemble (dénombrable) des couples $(q,n)$ avec $q \in \Q$, $n \in \N^ast$ et $]q -\frac{1}{n}, q -\frac{1}{n}[ \in A$. La tribu engendrée par les intervalles ouverts est donc identique à la tribu borélienne par la stabilité par réunion dénombrable et le fait que $C_1 \subset \B(\R)$.
+Tout ouvert $A$ est réunion dénombrable d'intervalles ouverts, en effet, on a $A = \cup_{(q,n)\in B} ]q -\frac{1}{n}, q -\frac{1}{n}[$, où $B$ est l'ensemble (dénombrable) des couples $(q,n)$ avec $q \in \Q$, $n \in \N$ et $]q -\frac{1}{n}, q -\frac{1}{n}[ \in A$. La tribu engendrée par les intervalles ouverts est donc identique à la tribu borélienne par la stabilité par réunion dénombrable et le fait que $C_1 \subset \B(\R)$.
 
 Réciproquement, soit $]x, y[$ un intervalle ouvert de $\R$. Soit $(x_n)_n$ une suite de rationnels décroissant vers $x$ et $(y_n)_n$
 une suite de rationnels croissant strictement vers y. On a :
@@ -587,7 +587,7 @@ Si l'on voulait travailler avec la tribu $\A = \mathcal{P}(\R)$, il n'existerait
  
     $X$ est identiquement égale à $a \in \R$. Alors sa loi est la mesure de Dirac en $a$, la probabilité $\P_X$ sur $\R$ qui vérifie pour $A \in \mathcal{P}(\R)$
     \begin{equation*}
-        \P_X(_A) = \left\{ \begin{array}{ll}
+        \P_X(A) = \left\{ \begin{array}{ll}
         1  &\text{si } a \in A, \\
         0 &\text{sinon.}
         \end{array}
@@ -721,7 +721,7 @@ On souhaite modéliser la hauteur de précipitation (en mm) tombée sur Paris en
     
     $$f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
     ![Densité de probabilité de la loi normale](images/PdfGauss.tex)
-    Lorsque $\mu = 0$ et $\sigma^2$, on l'appelle la loi normale *centrée réduite* pour des raisons que nous expliciterons au prochain chapitre.
+    Lorsque $\mu = 0$ et $\sigma^2 = 1$, on l'appelle la loi normale *centrée réduite* pour des raisons que nous expliciterons au prochain chapitre.
 
     La distribution normale fut introduite par De Moivre en 1733. Celui-ci l’utilisa pour approximer une variable aléatoire binomiale quand le paramètre $n$ de celle-ci était grand. Ce résultat fut ensuite progressivement généralisé par Laplace et d’autres confrères pour devenir le théorème connu sous le nom de théorème de la limite centrale, qui sera démontré au Chapitre 4. Ce théorème est l’un des plus importants de la théorie des probabilités et prouve que de très nombreux phénomènes aléatoires suivent approximativement une loi normale. On peut citer à titre d’exemple la taille d’un individu choisi au hasard, les composantes de la vitesse d’une molécule de gaz ou l’erreur de mesure d’une quantité physique.
 
