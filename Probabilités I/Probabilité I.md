@@ -83,7 +83,7 @@ Objectifs d'apprentissage
       - \one  connaître la définition de la probabilité conditionnelle
       - \one  connaître et savoir exploiter la formule des probabilités totales
       - \one  connaître et savoir exploiter la formule de Bayes
-      - \one  connaître la définition de l'indépendance de deux événements
+      - \one  connaître la définition de l'indépendance d'événements
 
 #### Variables aléatoires
 
