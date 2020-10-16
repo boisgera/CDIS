@@ -174,7 +174,7 @@ $$
 $$
 en adoptant la convention que $0 \times \infty = 0$.
 
-### Longeur, aire, volume {.remark}
+### Longueur, aire, volume {.remark}
 On pourra continuer à appeler cette grandeur
 *longueur* plutôt que *volume $n$-dimensionnel* si l'on travaille dans $\R$ 
 (ou $[-\infty,+\infty]$) ; 
@@ -439,7 +439,7 @@ $$
 $$
 
 ### {.remark .ante}
-Les fonctions mesurables ont la même definition que dans $\R$ ; 
+Les fonctions mesurables ont la même définition que dans $\R$ ; 
 le critère de mesurabilité par l'image réciproque est toujours valide. 
 
 
@@ -500,7 +500,7 @@ tels que si $I_1 \times I_2$ appartienne à $\mathcal{D}$ alors $I_2$ est l'unio
 d'un nombre fini d'éléments de  $\mathcal{I}_2$. 
 En jouant sur le fait que les valeurs de $(x, y) \mapsto 1_{A}(x)$ 
 sont indépendantes de $y$
-et en décomposant les pavés de $\mathcal{D}_1$ selon leur second composante, 
+et en décomposant les pavés de $\mathcal{D}_1$ selon leur seconde composante, 
 on peut trouver $p$ subdivisions pointées $\mathcal{D}_1^i$ de $P_1$ toutes subordonnées
 à $\gamma_1$ et des réels positifs $\alpha_i$ tels que $\sum_{i=1}^p \alpha_i = \lambda(P_2)$ et
 $$
@@ -513,7 +513,7 @@ $$
 et $(x, y) \in P_1 \times P_2 \mapsto 1_{A}(x)$ est donc bien intégrable.
 
 ### {.remark .ante}
-Les théorème de convergence (dominée, monotone) et le critère d'intégrabilité
+Les théorèmes de convergence (dominée, monotone) et le critère d'intégrabilité
 dominée se transposent à l'identique pour les fonctions de plusieurs variables.
 
 ### Théorème de convergence dominée {#TCD .theorem}
@@ -1977,7 +1977,7 @@ Deux cas se présentent : soit la droite considérée est de la forme
 $D = \{(x, y) \in \R^2 \; | \; y = a x + b\}$, soit elle est de la forme
 $D = \{(x, y) \in \R^2 \; | \; x = c\}$. Dans les deux cas, [la droite est
 un ensemble fermé de $\R^2$, donc mesurable](#OSM) ;
-par [le critère de l'image réciprique](#CIR), 
+par [le critère de l'image réciproque](#CIR), 
 la fonction caractéristique associée $1_D$ est donc mesurable.
 Dans le premier cas considéré, pour tout $x \in \R$, 
 la fonction $y \mapsto 1_D(x, y)$ est nulle, sauf en $y = ax+b$ ; 
