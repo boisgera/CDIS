@@ -396,6 +396,14 @@ A quelle condition un événement $A$ est-il indépendant de lui-même ?
  alors 
     $$\widetilde{\P}(A \cap B) = \frac{1}{102} \neq \widetilde{\P}(A)\widetilde{\P}(B) = \frac{2}{51}\frac{13}{102}.$$
  Les événements $A$ et $B$ ne sont pas indépendants sous la probabilité $\widetilde{\P}$.
+ 
+ ### Définition -- Indépendance de $n$ événements {.definition}
+$n$ événements $A_1, \dots, A_n$ sont *indépendants* si et seulement si pour toute partie $I \subset \lbrace 1,\dots, n\rbrace$
+\begin{equation*}
+\P(\cap_{i\in I} A_i) = \prod_{i\in I} \P(A_i).
+\end{equation*}
+
+## Remarque : Attention, l'indépendance des évènements deux à deux ne suffit pas pour l'indépendance mutuelle de tous les évènements.
 
 ## Remarque : réflexion sur le concept de probabilité 
 
