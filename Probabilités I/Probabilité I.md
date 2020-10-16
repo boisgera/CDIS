@@ -942,7 +942,7 @@ car $A$ et $B$ sont chacun indépendants de $C$, d'où
 $$\frac{\P(A\cap B \cap C)}{\P(C)} = \P(A)\P(B)$$ 
 par [définition](#defprobacond) ; et comme $A$, $B$ et $C$ sont indépendants 2 à 2, 
 $$\P(A\cap B \cap C) = \P(A)\P(B)\P(C)$$ 
-équivaut à $A$, $B$ et $C$ sont mutuellemnent indépendants.
+équivaut à $A$, $B$ et $C$ sont mutuellement indépendants.
 
 ### Question 3 {.answer #answer-ic-3}
 
