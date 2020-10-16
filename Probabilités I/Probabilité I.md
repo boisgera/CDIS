@@ -505,10 +505,20 @@ La probabilité $\P_X$, définie sur $(\R,\B(\R))$ par $\P_X (B) = \P(X^{-1}(B))
 On peut voir $\P_X$ comme une transposition de $\P$ sur $\R$. On a alors le résultat très utile suivant :
 
 ### Composition {.proposition #composition}
-Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction mesurable de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
+Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction continue de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
 
-### Démonstration (idée) {#proof}
-Puisque $g$ est mesurable, le critère de l'image réciproque implique que $\forall A \in \B(\R)$, $g^{-1}(A) \in \B(\R^n)$. Par composition, on en déduit que $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire.
+### Démonstration {#proof}
+
+1. On montre d'abord que si $X : \Omega \to \R$ est une application telle que $\forall a \in \R$, $\{\omega ; X(\omega) \leq a \} = X^{-1}(]-\infty,a]) \in \mathcal{A}$, alors $X$ est une variable aléatoire réelle. Soit $\mathcal{R}$, l'ensemble des $B \in \B(\R)$ tels que $X^{-1}(B) \in \mathcal{A}$. $\mathcal{R}$ est une tribu, comme vu plus haut, et $\mathcal{R}$ contient tous les ensembles de la forme $]-\infty,a]$ par [la proposition](#altbor), on a $\mathcal{R} = \B(\R)$.
+
+2. Soit $a \in \R$, on va montrer que $\{Y \leq a\} \in \mathcal{A}$ ou plutôt, de manière équivalente $\{Y >a\} \in \mathcal{A}$. $f$ étant continue, l'ensemble $A = \{x\in R^n ; f(x)>a\}$ est un ouvert. On peut donc l'écrire comme l'union dénombrable $A = \cup_{i \in \N^\star} A_i$, où les $A_i$ sont des pavés ouverts de la forme $A_i = \prod_{j=1}^n ]x_{ij},y_{ij}[$ et on a :
+\begin{align*}
+\{Y>a\} &= \{(X_1,\ldots,X_n) \in A\} \\
+&= \bigcup_{i \in \N^\star}\{(X_1,\ldots,X_n) \in A_i\} \\
+&= \bigcup_{i \in \N^\star}\bigcap_{j=1}^n \{x_{ij} < X_i < y_{ij}\}
+\end{align*}
+Puisque les $X_i$ sont des variables aléatoires réelles, $\{x_{ij} < X_i < y_{ij}\} \in \mathcal{A}$ et donc $\{Y>a\} \in \mathcal{A}$.
+
 
 ### {.post}
 Comme application de ce résultat, on a les propriétés suivantes :
@@ -547,7 +557,7 @@ La fonction de répartition $F$ caractérise la probabilité $\P_X$ sur ($\R,\B(
 
 ### Démonstration {.proof}
 
-D'après, [la définition de la fonction de répartition](#deffdr), on a $\P_X(]x,y]) = F(y)-F(x)$ pour tous $x>y$. Par conséquent, si $B = \cup_{i=1}^n ]x_i,y_i]$, avec $x_i < y_i < x_{i+1}$, on a 
+D'après, [la définition de la fonction de répartition](#deffdr), on a $\P_X(]x,y]) = F(y)-F(x)$ pour tous $x< y$. Par conséquent, si $B = \cup_{i=1}^n ]x_i,y_i]$, avec $x_i < y_i < x_{i+1}$, on a 
 $$\P_X(B) = \sum_{i=1}^n \P_X(]x_i,y_i]) = \sum_{i=1}^n F(y_i)-F(x_i),$$
 car les intervalles sont disjoints. Puisque $\P_X(]x,+ \infty[) = 1-F(x)$, nous en déduisons finalement que $F$ caractérise la réstriction de $\P_X$ à l'ensemble de toutes les réunions finies d'intervalles disjoints de la forme $]x,y]$ ou $]x,+ \infty[$. Cet ensemble contient $\R$, $\varnothing$ et est stable par passage au complémentaire et par réunion finie (on dit que c'est une algèbre). Un résultat difficile de théorie de la mesure (voir @Jacod pour une preuve) montre que la connaissance de $\P_X$ sur cette algèbre suffit à déterminer entièrement $\P_X$ sur la tribu engendrée par cette algèbre. Mais [la proposition vu précédemment](#altbor) nous indique que cette tribu est la tribu borélienne.
 
@@ -569,8 +579,8 @@ Pour la réciproque, on se reportera à @Jacod.
 
   * $\P_X(]x,y]) = \P( x < X \leq y) = F(y) - F(x)$
   * $\P_X(]x,y[) = \P( x < X < y) = F(y-) - F(x)$
-  * $\P_X([x,y]) = \P( x \geq X \leq y) = F(y) - F(x^-)$
-  * $\P_X([x,y[) = \P( x \geq X < y) = F(y-) - F(x^-)$
+  * $\P_X([x,y]) = \P( x \leq X \leq y) = F(y) - F(x^-)$
+  * $\P_X([x,y[) = \P( x \leq X < y) = F(y-) - F(x^-)$
 
 En particulier, $\P_X(\{x\}) = F(x) - F(x^-)$ est le **saut** de la fonction $F$ au point $x$. On a donc $\P_X(\{x\}) = 0$ pour tout $x$ si et seulement si $F$ est continue en tout point.
 
