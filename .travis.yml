@@ -3,20 +3,22 @@ language: bash
 
 branches:
   only:
-  - master
+  - master 
 
 env:
   global:
-    - CONDA=https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    - CONDA=https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 before_install:
   - sudo apt-get update
   - sudo apt-get --yes --force-yes install texlive-full
   - curl $CONDA > conda.sh
   - bash conda.sh -b -p $HOME/conda
+  - rm conda.sh
   - export PATH=$HOME/conda/bin:$PATH
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
+  - conda install setuptools # hack against the conda "RemoveError" in update
   - conda update conda
   - conda info -a # debugging
   - conda env create -v -f environment.yml -p env
@@ -34,17 +36,21 @@ install:
   - python utils/calendrier/fetch.py > Calendrier/calendrier.txt
   - echo "install started ..."
   - ./build
-  - cd Extra/"Comité Pédagogique 23-05-2019" && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
+  - cd quizz && ./build && cd ..
+
+  # hack for Travis CI (encoding issue ?). Yes but pdf generation broken again
+  # I disable it for the moment
+  # - cd Extra/Comit* && ./build --pdf && cp -rf output/* ../../output/ && cd ../..
   # now prepare deployment to gh-pages
   - rm -rf env
   - mv .gitignore .gitignore.bak 
-
+  
 deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  
   on:
-    branch: master  
+    branch: master
 
 
 

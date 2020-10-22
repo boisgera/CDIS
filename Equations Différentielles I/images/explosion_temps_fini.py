@@ -13,7 +13,7 @@ from matplotlib.pyplot import *
 # ------------------------------------------------------------------------------
 rc = {
     "text.usetex": True,
-    "pgf.preamble": [r"\usepackage{amsmath,amsfonts,amssymb}"], 
+    "pgf.preamble": r"\usepackage{amsmath,amsfonts,amssymb}", 
     "font.family": "serif",
     #"font.serif": [],      # use latex default serif font
     #"font.sans-serif": [], # use a specific sans-serif font
@@ -50,22 +50,23 @@ def f(t,x0):
 # ------------------------------------------------------------------------------
 def explosion_temps_fini():
     t = linspace(0,1,10)
-    plot(t,0*t,'r')
+    plot(t,0*t,'r', label = "$x_0=0$")
     grid()
     list_x0 = [1,2]
-    list_legend = array(["$x_0=0$"])
+    #list_legend = array(["$x_0=0$"])
     for x0 in list_x0:
       t = linspace(0,1/x0,100)
-      plot(t,f(t,x0))
-      new_legend = array(["$x_0=$ "+ str(x0)])
-      list_legend = concatenate([list_legend,new_legend])  
+      plot(t,f(t,x0), label = "$x_0=$ "+ str(x0))
+      #new_legend = array(["$x_0=$ "+ str(x0)])
+      #list_legend = concatenate([list_legend,new_legend])  
     yticks([0.0, 1.0, 2.0, 5.0,10.0])
-    axis([0,1,0,15])
-    legend(list_legend)
+    axis([0,1,-0.1,15])
+    legend()
+    #legend(list_legend)
     xlabel('$t$')
     ylabel('$x(t)$')
     save()
 
 
 if __name__ == "__main__":
-  explosion_temps_fini()
+    explosion_temps_fini()

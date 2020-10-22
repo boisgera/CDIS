@@ -4,47 +4,81 @@
 Calcul Différentiel, Intégral et Stochastique
 ================================================================================
 
-[Mines ParisTech, cycle ingénieur civil 2019](https://admissibles.mines-paristech.fr/), unité d'enseignement Mathématiques (UE 11).
+Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (UE 11).
 
 
-:books: Documents
+:books: Documents 
 --------------------------------------------------------------------------------
 
 
-
-| Chapitre      | PDF (e-book) | PDF (impression) |
-| ------------- | ------------- | --------------------- |
-| Topologie 1/1  | [Topologie.pdf](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [Topologie (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Topologie%20(a4%2C%20recto-verso).pdf) |
-| Calcul Différentiel 1/3 | [Calcul Différentiel I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf) | [Calcul Différentiel I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I%20(a4%2C%20recto-verso).pdf) |
-| Calcul Différentiel 2/3 | [Calcul Différentiel II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II.pdf) | [Calcul Différentiel II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II%20(a4%2C%20recto-verso).pdf) |
-| Calcul Intégral 1/5 | [Calcul Intégral I.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I.pdf) | [Calcul Intégral I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I%20(a4%2C%20recto-verso).pdf) |
-| Calcul Intégral 2/5 | [Calcul Intégral II.pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II.pdf) | [Calcul Intégral II (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II%20(a4%2C%20recto-verso).pdf) |
-| Probabilités 1/5 | [Probabilités I.pdf](https://boisgera.github.io/CDIS/output/Probabilité%20I.pdf) | [Probabilités I (a4, recto-verso).pdf](https://boisgera.github.io/CDIS/output/Probabilité%20I%20(a4%2C%20recto-verso).pdf) | 
-| ... | ... | ... |
-
+| Chapitre      | # | E-book | Papier | Notebook | Quizz | 
+| ------------- | ------: | -----------: | --------------------: |  :----:  | :-----: |
+| Topologie | 1 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Topologie.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Topologie%20(a4%2C%20recto-verso).pdf) |   | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Topologie/output/Topologie.pdf) |
+| Calcul Différentiel | 1 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20I%20(a4%2C%20recto-verso).pdf) |  | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Calcul%20Différentiel%20I/output/Calcul%20Différentiel%20I.pdf) |
+|   | 2 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20II%20(a4%2C%20recto-verso).pdf) |  | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Calcul%20Différentiel%20II/output/Calcul%20Différentiel%20II.pdf) |
+| |   3 | [:construction: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20III.pdf) | [:construction: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Différentiel%20III%20(a4%2C%20recto-verso).pdf) |  |  |
+| Equations Différentielles | 1 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20I.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20I%20(a4%2C%20recto-verso).pdf) |  [:notebook: IPYNB](https://boisgera.github.io/CDIS/Equations%20Différentielles%20I/Equations%20Différentielles%20I.ipynb) |
+|  | 2 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20II.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Equations%20Différentielles%20II%20(a4%2C%20recto-verso).pdf) |  [:notebook: IPYNB](https://boisgera.github.io/CDIS/Equations%20Différentielles%20II/Equations%20Differentielles%20II.ipynb) |  |
+| Calcul Intégral | 1 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20I%20(a4%2C%20recto-verso).pdf) |  | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Calcul%20Intégral%20I/output/Calcul%20Intégral%20I.pdf)  |
+|  | 2 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20II%20(a4%2C%20recto-verso).pdf) |   | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Calcul%20Intégral%20II/output/Calcul%20Intégral%20II.pdf)   |
+| | 3 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20III.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20III%20(a4%2C%20recto-verso).pdf) |  | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Calcul%20Intégral%20III/output/Calcul%20Intégral%20III.pdf) |
+| |  4  | [:construction: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20IV.pdf) |  [:construction: PDF](https://boisgera.github.io/CDIS/output/Calcul%20Intégral%20IV%20(a4%2C%20recto-verso).pdf) |  |  |
+| Probabilités | 1 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20I.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20I%20(a4%2C%20recto-verso).pdf) |   | :construction: [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Probabilités%20I/output/Probabilités%20I.pdf) :construction:|
+|  | 2 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20II.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20II%20(a4%2C%20recto-verso).pdf) |   | :construction: [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Probabilités%20II/output/Probabilités%20II.pdf) :construction:|
+|  | 3 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20III.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20III%20(a4%2C%20recto-verso).pdf) |   |  |
+|  | 4 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV%20(a4%2C%20recto-verso).pdf) |   |  |
+|  | 5 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V%20(a4%2C%20recto-verso).pdf) |  [:notebook: IPYNB](https://boisgera.github.io/CDIS/Probabilités%20V/Probabilité%20V.ipynb)  |  |
+<!--| ... | ... | ... |-->
+  
+<!--
 
 :construction: **Errata :** [problèmes résolus post-publication](https://github.com/boisgera/CDIS/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+label%3Abug+-label%3Awont-fix+-label%3Abuild) :construction:
 
+-->
+
+
+<!--
+
 :construction: **Aperçu :** [tous les documents (PDF, LaTeX)](https://github.com/boisgera/CDIS/tree/gh-pages/output) :construction:
 
+-->
 
-
-
-
-:calendar: Calendrier 2019 
+:calendar: Calendrier 2020-2021
 --------------------------------------------------------------------------------
 
-  - [en ligne (Google Calendar)](https://calendar.google.com/calendar/embed?src=ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com&ctz=Europe%2FParis)
+  - :calendar: [interface graphique](https://calendar.google.com/calendar/embed?src=o1rahvtc75kj2qcc5tmsrfr6e0%40group.calendar.google.com&ctz=Europe%2FParis)
 
-  - [lien iCalendar (.ICS)](https://calendar.google.com/calendar/ical/ecqbbg9bbqgaqh0rgnsjt4ppvk%40group.calendar.google.com/public/basic.ics): `https://tinyurl.com/y3fnkz5h`
-
-  - [en version texte](https://boisgera.github.io/CDIS/Calendrier/calendrier.txt)
+  - :link: [lien au format iCal](https://calendar.google.com/calendar/ical/o1rahvtc75kj2qcc5tmsrfr6e0%40group.calendar.google.com/public/basic.ics)
 
 
 :speech_balloon: Forum
 --------------------------------------------------------------------------------
 
   - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr) (accès limité)
+
+
+Session 2019
+--------------------------------------------------------------------------------
+
+#### :books: Documents
+
+<https://github.com/boisgera/CDIS/releases/tag/v1.17>
+
+#### :mag: Examen
+
+| Examen écrit  | E-book        | Papier                |
+| ------------- | ------------- | --------------------- |
+| Enoncé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen%20(a4%2C%20recto-verso).pdf) |
+| Corrigé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé%20(a4%2C%20recto-verso).pdf) |
+
+#### :chart_with_upwards_trend: Enquête
+
+Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
+
+  - Elément constitutif 1 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv)
+
+  - Elément constitutif 2 : [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv)
+
 
 :pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
@@ -73,12 +107,12 @@ Pandoc, etc. Nos besoins supplémentaires sont décrits dans le fichier
 Pour créer un environnement conda qui soit conforme à ces besoins,
 exécuter dans le terminal la commande
 
-    $ conda env create -f environment.yml -p env
+    $ conda env create -f environment.yml
 
 Quand vous voudrez travaillez sur le projet, activez l'environnement par la
-commande:
+commande
 
-    $ conda activate ./env
+    $ conda activate CDIS
 
 Référence: [Gestion des environnements Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
@@ -90,6 +124,9 @@ Exécutez la commande
 
 Les documents sont générés dans le répertoire `output`.
 
+
 --------------------------------------------------------------------------------
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Cette œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
+
+

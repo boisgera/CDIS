@@ -5,106 +5,242 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\D}{\mathbb{D}}
 \renewcommand{\C}{\mathbb{C}}
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+\newcommand{\+}{\, \texttt{+} \,}
+
+Objectifs d'apprentissage
+================================================================================
+
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, les objectifs "Expert", les démonstrations du document[^hp] 
+et les contenus en annexe ne sont pas exigibles ("hors-programme").
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+
+#### Théorème des fonctions implicites
+
+  - connaître la portée du théorème des fonctions implicites (TFI) qui
+
+    - \zero explicite une relation fonctionnelle implicite entre des variables liées,
+     
+    - \one localement au voisinage d'un jeu de valeurs admissibles,
+
+    - \one sous des hypothèses de régularité et d'inversibilité.
+
+  - \two savoir reconnaître un problème relevant directement du TFI,
+
+  - \three savoir transformer un problème pour que le TFI devienne applicable.
+
+  - \one savoir calculer/exploiter la différentielle de la fonction implicite,
+
+  - \two connaître la méthode de Newton (/modifiée) sous-tendant le résultat,
+
+  - \one savoir caractériser et exploiter les $C^1$-difféomorphismes,
+
+  - \two savoir exploiter le théorème d'inversion locale qui résulte du TFI.
+
+
+#### Calcul avec les nombres flottants
+
+  - \zero savoir que les calculs numériques avec les flottants sont inexacts,
+
+  - \one savoir représenter un nombre réel en base 10 et en base 2,
+
+  - pour les nombres flottants à double précision :
+
+     - \one connaître la définition et la valeur de $\varepsilon$,
+
+     - \two savoir caractériser un double (modèle simplifié des doubles $\D$),
+
+     - \one connaître les propriétés importantes de l'opération d'arrondi.
+
+  - savoir évaluer les erreurs numériques introduites par :
+
+    - \two la représentation d'un réel par un double (arrondi),
+  
+    - \three une opération mathématique correctement arrondie.
+
+#### Différentiation automatique
+
+  - \one connaître la fonction d'un outil de différentiation automatique,
+
+  - \one savoir comparer cette approche au calcul de différences finies,
+
+  - \two savoir exploiter la bibliothèque autograd dans un projet numérique,
+
+  - \four comprendre les principes de fonctionnement d'un tel outil.
+
+#### Différences finies
+
+   - \zero connaître le principe fondant les méthodes de différences finies,
+
+   - \one savoir les mettre en œuvre dans un projet numérique,
+
+   - \one savoir expliquer les deux types d'erreurs qu'elles engendrent,
+
+   - \two savoir quantifier les erreurs de troncature,
+
+   - \three savoir quantifier les erreurs d'arrondi.
+
 
 Théorème des fonctions implicites
 ================================================================================
-
 <!--
-
-Objectifs {.meta}
---------------------------------------------------------------------------------
-
-  - comprendre la portée du résultat: permettre la résolution *locale*
-    d'équations non-linéaires paramétrique, autour d'une solution connue
-    de référence.
-
-  - savoir mettre en oeuvre la version "inversion locale" du théorème des
-    fonction implicites pour manipuler des changements de variables.
-
-  - connaître et savoir mettre en oeuvre dans les deux cas le ressort 
-    de la preuve: un théorème de point fixe qui exploite la différentielle.
-
-  - applications ? Géométriques d'abord ? Au changements de variables de
-    la physique (ex: [thermo](https://fr.m.wikipedia.org/wiki/Gaz_parfait)). 
-    Etudier un scope raisonnable. Cf Salamon sur scope géom diff ?
-
-
-### TODO {.meta}
-
-  - Différentielle partielle nécessaire en amont, pas que dérivée partielle.
-
-  - Donner un jeu d'hypothèse "non minimal" pour le théorème des fonctions
-    implicite dans le but de simplifier le résultat. Par exemple, supposer
-    au minimum l'existence de la différentielle dans un voisiange du point 
-    de référence ? Ou carrément son existence et sa continuité ?
-    Et ajouter en remarque que l'on peut nuancer / décomposer le résultats
-    en affinant les hypothèses, qui ne sont pas minimales ? En particulier, 
-    cela suffit pour énoncer le théorème d'inversion locale, donc go, 
-    simplifions.
-
-  - Nota: preuve IFT nécessite point fixe *avec paramètre*. 
-    Pas nécessairement si l'on se place directement dans les hypothèses
-    de différentiabilité continue ?
-
-
-### TODO
-
 Exploiter "THE IMPLICIT AND THE INVERSE FUNCTION THEOREMS: EASY PROOFS"
 (Oswaldo Rio Branco de Oliveira)
-
 -->
 
 ### Théorème des fonctions implicites {.theorem #TFI}
 Soit $f$ une fonction définie sur un ouvert $W$ de 
-$\mathbb{R}^n \times \mathbb{R}^m$:
+$\mathbb{R}^m \times \mathbb{R}^n$ et à valeurs dans $\R^m$
 $$
-f: (x, y) \in W \subset \mathbb{R}^n \times \mathbb{R}^m \to f(x, y) \in \mathbb{R}^m
+f: 
+(x, \lambda) \in W \subset \mathbb{R}^m \times \mathbb{R}^n \to \mathbb{R}^m
 $$
-qui soit continûment différentiable et telle que la différentielle partielle
-$\partial_y f$ soit inversible en tout point de $W$.
-Si le point $(x_0, y_0)$ de $W$ vérifie $f(x_0, y_0)= 0$,
-alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $y_0$ tels que
+qui soit continûment différentiable et telle que la différentielle partielle[^dp]
+$\partial_x f$ soit inversible en tout point de $W$.
+Si le point $(x_0, \lambda_0)$ de $W$ vérifie $f(x_0, \lambda_0)= 0$,
+alors il existe des voisinages ouverts $U$ de $x_0$ et $V$ de $\lambda_0$ tels que
 $U \times V \subset W$ et
-une fonction implicite $\psi: U \to \mathbb{R}^m$, continûment différentiable, 
-telle que pour tout $x \in  U$ et tout $y \in V$,
+une unique fonction implicite $\psi: V \to \mathbb{R}^m$, continûment différentiable, 
+telle que pour tout $\lambda \in  V$ et tout $x \in U$,
 $$
-f(x, y) = 0
+f(x, \lambda) = 0
 \; \Leftrightarrow \; 
-y = \psi(x).
+x = \psi(\lambda).
 $$
-De plus, la différentielle de $\psi$ est donnée pour tout $x \in U$ par
+De plus, la différentielle de $\psi$ est donnée pour tout $\lambda \in V$ par
 $$
-d \psi(x) = - (\partial_y f(x, y))^{-1} \cdot \partial_x f(x, y) \, \mbox{ où } \, y=\psi(x).
+d \psi(\lambda) = - (\partial_x f(x, \lambda))^{-1} \cdot \partial_{\lambda} f(x, \lambda) \, \mbox{ où } \, x=\psi(\lambda).
 $$
 
-![Au voisinage de $(0,1)$, la fonction
-$x, y \mapsto x^2 + y^2 - 1$ satisfait les hypothèses du théorème des fonctions
-implicites. Au voisinage de $(1,0)$, cela n'est pas le cas ; on constate alors
-que même si $x$ est arbitrairement proche de $1$ et que l'on restreint la 
-recherche des solutions $y$ à un voisinage arbitrairement petit de $0$, 
-il peut exister 0 ou 2 solutions $y$.](images/implicit-function-theorem.tex)
+[^dp]: Les différentielles partielles de $f$ par rapport aux variables 
+$x$ et $\lambda$ sont définies en fixant
+la valeur des variables complémentaire :
+$$
+\partial_x f(x, \lambda) := d(x'\mapsto f(x',\lambda))(x)
+\; \mbox{ et } \;
+\partial_{\lambda} f(x, \lambda) := d(\lambda' \mapsto f(x,\lambda'))(\lambda).
+$$
+La notion généralise celle de dérivée partielle au cas où les
+variables sont vectorielles.
+
+### Description locale d'un ensemble comme un graphe {.example}
+
+Les points $(x_1, x_2)$ du cercle unité de $\R^2$ centré sur l'origine sont 
+exactement les solutions de l'équation
+$$
+x_1^2 + x_2^2 = 1.
+$$
+
+![Au voisinage de $(0,1)$ le cercle unité est localement
+le graphe d'une fonction de l'abscisse du point, mais cela n'est pas le cas au voisinage
+du point $(1,0)$.](images/implicit-function-theorem.tex)
+
+Au voisinage de $(0,1)$, l'expression $x_1^2 + x_2^2 - 1$ satisfait les 
+hypothèses du théorème des fonctions implicites avec $x:=x_2$ et $\lambda :=x_1$. 
+En particulier, la dérivée partielle
+$\partial_{x_2} (x_1^2 + x_2^2 - 1) = 2x_2$ ne s'annule pas localement, 
+la différentielle partielle associée $h \in \R \mapsto 2x_2 h \in \R$ est donc inversible.
+Pour les points du cercle unité dans un voisinage suffisamment petit de ce point, 
+l'ordonnée $x_2$ est donc fonction de l'abscisse $x_1$. 
+
+Au voisinage de $(1,0)$, ces hypothèses ne sont pas satisfaites ; on constate d'ailleurs
+que même si $x_1$ est arbitrairement proche de $1$ et que l'on restreint la 
+recherche des solutions $x_2$ à un voisinage arbitrairement petit de $0$, 
+il peut toujours exister 0 ou 2 solutions $x_2$.
+
+
+### Le cercle unité {.exercise .question .one #circle}
+Déterminer les points $(x_{10}, x_{20})$ du cercle 
+$$C := \{(x_1,x_2) \in \R^2 \; | \; x_1^2+x_2^2=1\}$$
+au voisinage desquels le cercle est le graphe d'une fonction 
+continûment différentiable $x_2 = \psi(x_1)$. 
+On déterminera alors explicitement des intervalles ouverts $V$ 
+contenant $x_{10}$ et $U$ contenant $x_{20}$ ainsi que la fonction $\psi : V \to \R$ 
+tels que $x_1^2+x_2^2=1  \, \Leftrightarrow \, x_2 = \psi(x_1)$ et l'on calculera
+$\psi'(x_1)$.
+
+### Abscisse curviligne {.exercise  .question .two #ac}
+Soit $f: \left]a, b\right[ \to \R^2$ une fonction 
+continûment différentiable, dont la dérivée $f'$ ne s'annule pas. 
+Soit $c \in \left]a, b\right[$ ; montrer qu'il existe une unique
+fonction $x$ définie dans un voisinage ouvert de $0 \in \R$ et 
+à valeurs dans $\R$ telle que $x(0) = c$ et
+$$
+\int_c^{x(s)} \|f'(t)\| \, dt = s.
+$$
+
+### Courbes de niveau {.exercise .question .two #cn}
+Soit $f: (x_1,x_2) \in \R^2 \to \R$ une fonction continûment différentiable
+et $c \in \R$ tels que l'ensemble 
+$$
+C = \{(x_1,x_2) \in \R^2 \; | \; f(x_1,x_2) = c\}
+$$
+est non vide et que $\nabla f$ ne s'annule pas sur $C$. 
+Soit $(x_{10}, x_{20}) \in C$, $$v = \frac{\nabla f(x_{10}, x_{20})}{\|\nabla f(x_{10},x_{20})\|}$$ et 
+$u \in \R^2$ le vecteur tel que $(u, v)$ soit une base orthonormée.
+Soit $(w, z)$ les coordonnées d'un point $P$ dans cette base ; 
+montrer que pour tout point de $C$, il existe un voisinage de ce point et 
+une fonction $\psi$ pour lesquels $P \in C \Leftrightarrow z = \psi(w)$.
+
+
+### Détermination de l'angle {.exercise .three .question #va}
+Soit $u = (u_1, u_2)$ un vecteur de $\R^2$ distinct de l'origine. 
+Une *détermination de l'angle* de $u$ est un nombre réel $\theta$ tel que 
+$$
+\frac{u}{\|u\|} 
+= 
+\left[
+\begin{array}{c}
+\cos \theta \\ \sin \theta
+\end{array}
+\right].
+$$
+Montrer que pour tout vecteur $u_0 \neq 0$ dont l'angle est déterminé par
+$\theta_0$, il existe dans un voisinage ouvert $U$ de $u_0$ 
+une unique fonction $\Theta : U \to \R$ continûment différentiable
+telle que $\Theta(u)$ soit une détermination de l'angle de $u$.
+Montrer ensuite que 
+$$
+\nabla \Theta(u_0) = 
+\frac{1}{\|u_0\|}
+\left[\begin{array}{r} -\sin \theta_0 \\ \cos \theta_0 \end{array}
+\right].
+$$
+(Indication : réécrire l'équation initiale reliant $\theta$ et $u$ sous la 
+forme d'une équation scalaire qui lui est localement équivalente.)
+
 
 ### Extensions {.note}
-Il est possible d'affaiblir l'hypothèse concernant $\partial_y f$ en supposant 
-uniquement celle-ci inversible en $(x_0, y_0)$ au lieu d'inversible sur tout $W$.
-En effet, l'application qui a une application linéaire inversible
-$A: \mathbb{R}^m \to \mathbb{R}^m$ associe son inverse $A^{-1}$ 
+Il est possible d'affaiblir l'hypothèse concernant $\partial_{x} f$ en supposant 
+uniquement celle-ci inversible en $(x_0, \lambda_0)$ au lieu d'inversible sur tout $W$.
+En effet, l'application qui à une application linéaire inversible
+de ${\R}^m$ dans lui-même associe son inverse 
 est définie sur un ouvert et continue[^inv]. 
-Comme l'application linéaire $\partial_y f(x_0, y_0)$ 
-est inversible et que l'application $\partial_y f$
-est continue, il existe donc un voisinage ouvert de $(x_0, y_0)$ contenu dans 
-$W$ où $\partial_y f$ est inversible. 
+Comme l'application linéaire $\partial_x f(x_0, \lambda_0)$ 
+est inversible et que l'application $\partial_x f$
+est continue, il existe donc un voisinage ouvert de $(x_0, \lambda_0)$ contenu dans 
+$W$ où $\partial_{x} f$ est inversible. 
 Nous retrouvons donc les hypothèses initiales du théorème, 
-à ceci près qu'elle sont satisfaites dans un voisinage de $(x_0, y_0)$
+à ceci près qu'elle sont satisfaites dans un voisinage de $(x_0, \lambda_0)$
 qui peut être plus petit que l'ouvert initial $W$.
-
-<!--
-**TODO:** ref au résultat de Tao sur math overflow où l'on ne dispose que
-de la différentiabilité (pas du caractère continûment différentiable).
-
-**TODO:** évoquer cas Lipschitz ?
--->
 
 ### Démonstration {.proof}
 
@@ -112,219 +248,221 @@ La partie la plus technique de la démonstration concerne l'existence et
 la différentiabilité de la fonction implicite $\psi$. 
 Mais si l'on admet temporairement ces résultats, 
 établir l'expression de $d\psi$ est relativement simple.
-En effet, l'égalité $f(x, \psi(x)) = 0$ étant satisfaite identiquement sur $U$
-et la fonction $x \in U \mapsto f(x, \psi(x))$ étant différentiable
+En effet, l'égalité $f(\psi(\lambda), \lambda) = 0$ étant satisfaite identiquement sur $U$
+et la fonction $\lambda \in V \mapsto f(\psi(\lambda),\lambda)$ étant différentiable
 comme composée de fonctions différentiables, la règle de dérivation 
-en chaîne fournit en tout point de $U$:
+en chaîne fournit en tout point de $U$ :
 $$
-\partial_x f(x, \psi(x)) + \partial_y f(x, \psi(x)) \cdot d\psi(x) = 0.
+\partial_{x} f(\psi(\lambda), \lambda) \cdot d\psi(\lambda) + \partial_{\lambda} f(\psi(\lambda), \lambda)  = 0.
 $$
 On en déduit donc que
 $$
-d\psi(x) = - (\partial_y f(x, \psi(x)))^{-1} \cdot \partial_x f(x, \psi(x)).
+d\psi(\lambda) = - (\partial_{x} f(\psi(\lambda), \lambda)^{-1} \cdot \partial_{\lambda} f(\psi(\lambda).
 $$
 L'inversion d'opérateurs linéaires ainsi que leur composition étant des
 opérations continues, si $f$ est continûment différentiable et que 
 $d\psi$ existe, elle est nécessairement continue.
 
 [^inv]: **Continuité de l'inversion.** 
-Une application linéaire de $\mathbb{R}^m \to \mathbb{R}^m$ 
+Une matrice $A \in \mathbb{R}^{m \times m}$ 
 est inversible si et seulement si
-le déterminant de la matrice $[A]$ qui la représente dans $\mathbb{R}^{m \times m}$ 
-est non-nul. 
-Or, la fonction $A \mapsto \det [A]$ est continue 
+son déterminant est non-nul. 
+Or, la fonction $A \mapsto \det A$ est continue 
 car le déterminant ne fait intervenir que des produits et des sommes des 
-coefficients de $[A]$.
-Par conséquent, les applications linéaires inversibles de 
-$\mathbb{R}^m \to \mathbb{R}^m$ sont l'image réciproque de l'ouvert 
+coefficients de $A$.
+Par conséquent, les matrices inversibles de 
+$\mathbb{R}^{ m \times m}$ sont l'image réciproque de l'ouvert 
 $\mathbb{R} \setminus \{0\}$ par une application continue :
 cet ensemble est donc ouvert. Quand $A$ est inversible, on a 
 $$
-[A]^{-1} = \frac{\mathrm{co}([A])^t}{\det [A]}
+A^{-1} = \frac{\mathrm{co}([A])^t}{\det [A]}
 $$
-où $\mathrm{co}([A])$ désigne la comatrice de $[A]$. Chaque coefficient de 
+où $\mathrm{co}(A)$ désigne la comatrice de $A$. Chaque coefficient de 
 cette comatrice ne faisant également intervenir que des sommes et des produits 
-des coefficients de $[A]$, l'application $A \mapsto A^{-1}$ est continue sur
+des coefficients de $A$, l'application $A \mapsto A^{-1}$ est continue sur
 son domaine de définition.
 
 Pour établir l'existence de la fonction implicite $\psi$,
-nous allons pour une valeur $x$ suffisamment proche de $x_0$
-construire une suite convergente d'approximations $y_k$, 
-proches de $y_0$, dont la limite $y$ sera solution de 
-$f(x, y)=0$.
+nous allons pour une valeur $\lambda$ suffisamment proche de $\lambda_0$
+construire une suite convergente d'approximations $x_k$, 
+proches de $x_0$, dont la limite $x$ sera solution de 
+$f(x, \lambda)=0$.
 
 L'idée de cette construction repose sur l'analyse suivante : 
-si nous partons d'une valeur $y_k$ proche de $y_0$ 
-(a priori telle que $f(x, y_k) \neq 0$)
-et que nous recherchons une valeur $y_{k+1}$ proche, 
-qui soit une solution approchée de $f(x, y) = 0$ 
-(meilleure que ne l'est $y_k$),
+si nous partons d'une valeur $x_k$ proche de $x_0$ 
+(a priori telle que $f(x_k, \lambda) \neq 0$)
+et que nous recherchons une valeur $x_{k+1}$ proche, 
+qui soit une solution approchée de $f(\lambda, x) = 0$ 
+(meilleure que ne l'est $x_k$),
 comme au premier ordre
 $$
-f(x, y_{k+1}) \approx f(x, y_k) + \partial_y f(x, y_k) \cdot (y_{k+1} - y_k),
+f(x_{k+1}, \lambda) \approx f(x_k, \lambda) + \partial_{x} f(x_k, \lambda) \cdot (x_{k+1} - x_k),
 $$
-nous en déduisons que la valeur $y_{k+1}$ définie par
+nous en déduisons que la valeur $x_{k+1}$ définie par
 $$
-y_{k+1} := y_k - (\partial_y f(x, y_k))^{-1} \cdot f(x, y_k)
+x_{k+1} := x_k - (\partial_{x} f(x_k, \lambda))^{-1} \cdot f(x_k, \lambda)
 $$
-vérifie $f(x, y_{k+1}) \approx 0$.
-On peut espérer que répéter ce processus en partant de $y_0$ 
+vérifie $f(x_{k+1}, \lambda) \approx 0$.
+On peut espérer que répéter ce processus en partant de $x_0$ 
 détermine une suite convergente dont la limite soit une
-solution exacte $y$ de $f(x, y) = 0$.
+solution exacte $x$ de $f(x, \lambda) = 0$.
 
 Le procédé décrit ci-dessus constitue la *méthode de Newton* 
 de recherche de zéros. 
 Nous allons prouver que cette heuristique est ici justifiée,
 à une modification mineure près : 
-nous allons lui substituer la *méthode de Newton modifiée*, 
-qui n'utilise pas $\partial_y f(x, y_k)$ mais la valeur constante 
-$\partial_y f(x_0, y_0)$, c'est-à-dire qui définit la suite
+nous allons lui substituer une *méthode de Newton modifiée*, 
+qui n'utilise pas $\partial_x f(x_k, \lambda)$ mais la valeur constante 
+$\partial_x f(x_0, y_0)$, c'est-à-dire qui définit la suite
 $$
-y_{k+1} := y_k - Q^{-1} \cdot f(x, y_k) \, \mbox{ où } \, Q = \partial_y f(x_0, y_0).
+x_{k+1} := x_k - Q^{-1} \cdot f(x_k, \lambda) 
+\; \mbox{ où } \; 
+Q = \partial_x f(x_0, \lambda_0).
 $$
 Cette définition par récurrence se réécrit sous la forme
-$y_{k+1} = \phi_x(y_k)$ où
+$x_{k+1} = \phi_{\lambda}(x_k)$ où
 $$
-\phi_x(y) = y - Q^{-1} \cdot f(x, y).
+\phi_{\lambda}(x) = x - Q^{-1} \cdot f(x, \lambda).
 $$
-La fonction $\phi_x$ est différentiable sur l'ensemble 
-$\{y \in \mathbb{R}^m \, | \, (x, y) \in W\}$ et sa différentielle est donnée
-par
+La fonction $\phi_{\lambda}$ est différentiable sur l'ensemble 
+$\{x \in \mathbb{R}^m \, | \, (x, \lambda) \in W\}$ et sa différentielle 
+est donnée par
 $$
-d\phi_x(y) =  I - Q^{-1} \cdot \partial_{y} f(x, y)
+d\phi_{\lambda}(x) =  I - Q^{-1} \cdot \partial_{x} f(x, \lambda)
 $$
 où $I$ désigne la fonction identité. 
 En écrivant
-que $\partial_y f(x, y)$ est la somme de $\partial_y f(x_0, y_0)$ et de 
-$\partial_y f(x, y) - \partial_y f(x_0, y_0)$, on obtient
+que $\partial_x f(x, \lambda)$ est la somme de $\partial_x f(x_0, \lambda_0)$ et de 
+$\partial_x f(x, \lambda) - \partial_x f(x_0, \lambda_0)$, on obtient
 $$
 \begin{split}
-\|d \phi_x(y)\| 
-& \leq \|I - Q^{-1} \cdot Q\| + \|Q^{-1} \cdot (\partial_y f(x, y) - Q)\| \\
-& \leq \|Q^{-1}\| \times \|\partial_y f(x, y) - Q\|.
+\|d \phi_{\lambda}(x)\| 
+& \leq \|I - Q^{-1} \cdot Q\| + \|Q^{-1} \cdot (\partial_x f(x, \lambda) - Q)\| \\
+& \leq \|Q^{-1}\| \times \|\partial_x f(x, \lambda) - Q\|.
 \end{split}
 $$
 La fonction $f$ étant supposée continûment différentiable, 
-il existe un $r>0$ tel que tout couple $(x, y)$ tel que 
-$\|x - x_0\| \leq r$ et $\|y - y_0\| \leq r$ appartienne à $W$ et vérifie 
-$\|\partial_y f(x, y) - Q\| \leq \kappa \|Q^{-1}\|^{-1}$ avec par exemple 
-$\kappa = 1/2$, ce qui entraîne $\|d \phi_x(y)\| \leq \kappa$.
+il existe un $r>0$ tel que tout couple $(x, \lambda)$ tel que 
+$\|x - x_0\| \leq r$ et $\|\lambda - \lambda_0\| \leq r$ appartienne à $W$ et vérifie 
+$\|\partial_x f(x, \lambda) - Q\| \leq \kappa \|Q^{-1}\|^{-1}$ avec par exemple 
+$\kappa = 1/2$, ce qui entraîne $\|d \phi_{\lambda}(x)\| \leq \kappa$.
 Par [l'inégalité des accroissements finis](Calcul Différentiel I.pdf#TAF), 
-la restriction de $\phi$ à $\{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$
-(que l'on continuera à noter $\phi_x$)
+la restriction de $\phi_{\lambda}$ à $\{x \in \mathbb{R}^m \, | \, \|x - x_0\| \leq r\}$
+(que l'on continuera à noter $\phi_{\lambda}$)
 est $\kappa$-contractante:
 $$
-\|\phi_x(y) - \phi_x(z)\| \leq \kappa \|y - z\|.
+\|\phi_{\lambda}(x) - \phi_{\lambda}(w)\| \leq \kappa \|x - w\|.
 $$
 Par ailleurs,
 $$
 \begin{split}
-\|\phi_x(y) - y_0\| 
-&\leq \|\phi_x(y) - \phi_x(y_0)\|  + \|\phi_{x}(y_0) - \phi_{x_0}(y_0)\|. 
+\|\phi_{\lambda}(x) - x_0\| 
+&\leq \|\phi_{\lambda}(x) - \phi_{\lambda}(x_0)\|  + \|\phi_{\lambda}(x_0) - \phi_{\lambda_0}(x_0)\|. 
 \end{split}
 $$
 On a d'une part
-$$\|\phi_x(y) - \phi_x(y_0)\| \leq \kappa\|y - y_0\| \leq \kappa r$$
-et d'autre part, par continuité de $\phi$ en $(x_0, y_0)$, il existe
-un $r'$ tel que $0 < r' < r$ et tel que si $\|x - x_0\| \leq r'$, 
-alors $\|\phi_{x}(y_0) - \phi_{x_0}(y_0)\| \leq (1 - \kappa) r$. 
-Pour de telles valeurs de $x$,
+$$\|\phi_{\lambda}(x) - \phi_{\lambda}(x_0)\| \leq \kappa\|x - x_0\| \leq \kappa r$$
+et d'autre part, par continuité de $\lambda \mapsto \phi_{\lambda}(x_0)$ en 
+$\lambda_0$, il existe
+un $r'$ tel que $0 < r' < r$ et tel que si $\|\lambda - \lambda_0\| \leq r'$, 
+alors $\|\phi_{\lambda}(x_0) - \phi_{\lambda_0}(x_0)\| \leq (1 - \kappa) r$. 
+Pour de telles valeurs de $\lambda$,
 $$
-\|\phi_x(y) - y_0\| \leq \kappa r +  (1- \kappa) r = r.
+\|\phi_{\lambda}(x) - x_0\| \leq \kappa r +  (1- \kappa) r = r.
 $$
 L'image de la boule fermée 
-$B = \{y \in \mathbb{R}^m \, | \, \|y - y_0\| \leq r\}$ 
-par l'application $\phi_x$ est donc incluse dans $B$.
-Tant que $\|x-x_0\| \leq r'$, les hypothèses du 
+$B = \{x \in \mathbb{R}^m \, | \, \|x - x_0\| \leq r\}$ 
+par l'application $\phi_{\lambda}$ est donc incluse dans $B$.
+Tant que $\|\lambda-\lambda_0\| \leq r'$, les hypothèses du 
 [théorème de point fixe de Banach](Topologie.pdf#T-TPFB) 
-sont donc satisfaites pour $\phi_x: B \to B$, ce qui
+sont donc satisfaites pour $\phi_{\lambda}: B \to B$, ce qui
 montre l'existence et l'unicité de la fonction
-implicite $\psi$ associée aux voisinages ouverts $U = B(x_0, r')$ et 
-$V = B(y_0, r)$.
+implicite $\psi$ associée aux voisinages ouverts $V = B(\lambda_0, r')$ et 
+$U = B(x_0, r)$.
 
 Montrons la continuité de la fonction implicite $\psi$.
-Soit $x_1, x_2$ deux points de $V$ ; 
-notons $y_1 = \psi(x_1)$ et $y_2 = \psi(x_2)$. 
+Soit $\lambda_1, \lambda_2$ deux points de $V$ ; 
+notons $x_1 = \psi(\lambda_1)$ et $x_2 = \psi(\lambda_2)$. 
 Ces valeurs sont des solutions des équations de point fixe
 $$
-y_1 = \phi_{x_1}(y_1) \, \mbox{ et } \, y_2 = \phi_{x_2}(y_2).
+x_1 = \phi_{\lambda_1}(x_1) \, \mbox{ et } \, x_2 = \phi_{\lambda_2}(x_2).
 $$
-En formant la différence de $y_2$ et $y_1$, on obtient donc
+En formant la différence de $x_2$ et $x_1$, on obtient donc
 $$
 \begin{split}
-\|y_2 - y_1\| & = \|\phi_{x_2}(y_2) - \phi_{x_1}(y_1)\| \\
-& \leq \|\phi_{x_2}(y_2) - \phi_{x_2}(y_1)\| +
-\|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
+\|x_2 - x_1\| & = \|\phi_{\lambda_2}(x_2) - \phi_{\lambda_1}(x_1)\| \\
+& \leq \|\phi_{\lambda_2}(x_2) - \phi_{\lambda_2}(x_1)\| +
+\|\phi_{\lambda_1}(x_1) - \phi_{\lambda_2}(x_1)\|.
 \end{split}
 $$
-La fonction $\phi_{x_2}$ étant $\kappa$-contractante,
+La fonction $\phi_{\lambda_2}$ étant $\kappa$-contractante,
 le premier terme du membre de droite de cette inégalité est majoré
-par $\kappa\|y_2 - y_1\|$, par conséquent
+par $\kappa\|x_2 - x_1\|$, par conséquent
 $$
-\|y_2 - y_1\| \leq \frac{1}{1 - \kappa} \|\phi_{x_1}(y_1) - \phi_{x_2}(y_1)\|.
+\|x_2 - x_1\| \leq \frac{1}{1 - \kappa} \|\phi_{\lambda_1}(x_1) - \phi_{\lambda_2}(x_1)\|.
 $$
-L'application $x \mapsto \phi_{x}(y_1)$ étant continue en $x_1$, 
-nous pouvons conclure que $y_2$ tend vers $y_1$ quand $x_2$ tend vers $x_1$ ;
-autrement dit : la fonction implicite $\psi$ est continue en $x_1$.
+L'application $\lambda \mapsto \phi_{\lambda}(x_1)$ étant continue en $\lambda_1$, 
+nous pouvons conclure que $x_2$ tend vers $x_1$ quand $\lambda_2$ tend vers $\lambda_1$ ;
+autrement dit : la fonction implicite $\psi$ est continue en $\lambda_1$.
 
-Montrons finalement la différentiabilité de $\psi$ en $x_1$. Pour cela,
-il suffit d'exploiter la différentiabilité de $f$ en $(x_1, y_1)$
-où $y_1 = \psi(x_1)$. Elle fournit l'existence d'une fonction 
-$\varepsilon$ qui soit un $o(1)$ telle que
+Montrons finalement la différentiabilité de $\psi$ en $\lambda_1$. Pour cela,
+il suffit d'exploiter la différentiabilité de $f$ en $(x_1, \lambda_1)$
+où $x_1 = \psi(\lambda_1)$. Elle fournit l'existence d'une fonction 
+$\varepsilon$ qui tende vers $0$ en $0$ telle que
 $$
 \begin{split}
-f(x, y) &= f(x_1, y_1) 
-+ \partial_x f(x_1, y_1) \cdot (x - x_1) 
-+ \partial_y f(x_1, y_1) \cdot (y - y_1) \\
-& \phantom{=} + \varepsilon((x-x_1, y-y_1)) (\|x-x_1\| + \|y-y_1\|)
+f(x, \lambda) &= f(x_1, \lambda_1) 
++ \partial_x f(x_1, \lambda_1) \cdot (x - x_1) 
++ \partial_{\lambda} f(x_1, \lambda_1) \cdot (\lambda - \lambda_1) \\
+& \phantom{=} + \varepsilon((x-x_1, \lambda-\lambda_1)) (\|x-x_1\| + \|\lambda-\lambda_1\|)
 \end{split}
 $$
-On a par construction $f(x_1, y_1) = 0$ ; 
-en prenant $y = \psi(x)$, on annule également $f(x, y) = 0$. 
-En notant $P = \partial_x f(x_1, y_1)$
-et $Q = \partial_y f(x_1, y_1)$, on obtient 
+On a par construction $f(x_1, \lambda_1) = 0$ ; 
+en prenant $x = \psi(\lambda)$, on annule également $f(x, \lambda) = 0$. 
+En notant $Q = \partial_x f(x_1, \lambda_1)$
+et $P = \partial_{\lambda} f(x_1, \lambda_1)$, on obtient 
 $$
 \begin{split}
-\psi(x)  &= \psi(x_1) - Q^{-1} \cdot P \cdot (x - x_1) \\
-&\phantom{=} - Q^{-1} \cdot P \cdot \varepsilon((x-x_1, \psi(x)-\psi(x_1)) (\|x-x_1\| + \|\psi(x)-\psi(x_1)\|).
+\psi(\lambda)  &= \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - \lambda_1) \\
+&\phantom{=} - Q^{-1} \cdot \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1) ( \|\psi(x)-\psi(x_1)\|+\|\lambda-\lambda_1\| ).
 \end{split}
 $$
 Nous allons exploiter une première fois cette égalité. 
 Notons tout d'abord que
 $$
-\varepsilon_x(x-x_1) := \varepsilon((x-x_1, \psi(x)-\psi(x_1))
+\varepsilon_{\lambda}(\lambda-\lambda_1) := \varepsilon((\psi(\lambda)-\psi(\lambda_1), \lambda-\lambda_1))
 $$
-est un $o(1)$ du fait de la continuité de $\psi$ en $x_1$.
-En choisissant $x$
-dans un voisinage suffisamment proche de $x_1$, on peut donc
+tend vers $0$ en $0$ en raison de la continuité de $\psi$ en $\lambda_1$.
+En choisissant $\lambda$
+dans un voisinage suffisamment proche de $\lambda_1$, on peut donc
 garantir que ce terme est arbitrairement petit, par
 exemple, tel que
 $$
-\|Q^{-1} \cdot P\| \times \|\varepsilon_x(x-x_1) \| \leq \frac{1}{2},
+\|Q^{-1}\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1) \| \leq \frac{1}{2},
 $$
 ce qui permet d'obtenir
 $$
-\|\psi(x) - \psi(x_1)\|
+\|\psi(\lambda) - \psi(\lambda_1)\|
 \leq
-\|Q^{-1} P\| \times \|x - x_1\| + \frac{1}{2} \|x - x_1\| + \frac{1}{2} \|\psi(x) - \psi(x_1)\|
+\|Q^{-1} P\| \times \|\lambda - \lambda_1\| + \frac{1}{2} \|\lambda - \lambda_1\| + \frac{1}{2} \|\psi(\lambda) - \psi(\lambda_1)\|
 $$
 et donc
 $$
-\|\psi(x) - \psi(x_1)\|
-\leq \alpha \|x - x_1\|
+\|\psi(\lambda) - \psi(\lambda_1)\|
+\leq \alpha \|\lambda - \lambda_1\|
 \, \mbox{ avec } \, \alpha := 2 \|Q^{-1} P\| + 1.
 $$
 En exploitant une nouvelle fois la même égalité, on peut désormais conclure
 que 
 $$
-\|\psi(x) - \psi(x_1) - Q^{-1} \cdot P \cdot (x - x_1)\|
-\leq \|\varepsilon'_x(x-x_1)\| \times \|x - x_1\|.
+\|\psi(\lambda) - \psi(\lambda_1) - Q^{-1} \cdot P \cdot (\lambda - \lambda_1)\|
+\leq \|\varepsilon'_{\lambda}(\lambda-\lambda_1)\| \times \|\lambda - \lambda_1\|.
 $$
-où la fonction $\varepsilon'_x$ est le $o(1)$ défini par
+où la fonction $\varepsilon'_\lambda$ est la fonction tendant vers $0$ et définie par
 $$
-\varepsilon'_x(x-x_1) := (1+\alpha)  \times \|Q^{-1} \cdot P\| \times \|\varepsilon_x(x-x_1)\|,
+\varepsilon'_{\lambda}(\lambda-\lambda_1) := (1+\alpha)  \times \|Q^{-1}\| \times \|\varepsilon_{\lambda}(\lambda-\lambda_1)\|,
 $$
-ce qui prouve la différentiabilité de $\psi$ en $x_1$ et conclut la démonstration.
+ce qui prouve la différentiabilité de $\psi$ en $\lambda_1$ et conclut la démonstration.
 
 ### Difféomorphisme {.definition}
 Une fonction $f: U \subset \mathbb{R}^n \to V \subset \mathbb{R}^n$,
@@ -355,10 +493,11 @@ La fonction $df(x)$ est donc inversible et son inverse est $d f^{-1}(y)$.
 ### Théorème d'inversion locale {.theorem #TIL}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ continûment différentiable
 sur l'ouvert $U$ et telle que $df(x)$ soit inversible
-en tout point $x$ de $U$. Alors pour tout $x_0$ in $U$, il existe un voisinage
-ouvert $V \subset U$ de $x_0$ tel que $W=f(V)$ soit ouvert et que
-la restriction de la fonction $f$ à $V$ soit un $C^1$-difféomorphisme 
-de $V$ sur $W$.
+en tout point $x$ de $U$. 
+Alors $f$ est un *$C^1$-difféomorphisme local* : pour tout $x_0 \in U$, 
+il existe un voisinage ouvert $V \subset U$ de $x_0$ tel que $W=f(V)$ 
+soit ouvert et que la restriction de la fonction $f$ à $V$ soit un 
+$C^1$-difféomorphisme de $V$ sur $W$.
 
 ### Démonstration {.proof}
 Considérons la fonction $\phi: U \times \mathbb{R}^n  \to \mathbb{R}^n$
@@ -382,124 +521,64 @@ de $A$. La fonction $x \in V \mapsto f(x) \in W:=B$ est bijective par
 construction et son inverse est la fonction $y \in W \mapsto \psi(y) \in V$ ;
 nous avons donc affaire à un $C^1$-difféomorphisme de $V$ sur $W$.
 
-Analyse numérique
+### Coordonnées polaires {.exercise .one #cp .question}
+Montrer que l'application 
+$$
+f: (r, \theta) \in \left]0,+\infty\right[ \times \R 
+\to (r \cos \theta, r \sin \theta) \in \R^2 \setminus \{(0,0)\}
+$$ 
+est un difféomorphisme local. Est-ce un difféomorphisme global ?
+
+
+Calcul avec les nombres flottants
 ================================================================================
-
-<!--
-Objectifs {.meta}
---------------------------------------------------------------------------------
-
-  - Savoir quelles sont les options quand il s'agit de calculer des dérivées,
-    gradient, différentielles: "manuelles", symboliques, différences finies,
-    diff auto. et avoir au final une idée de la portée de chacune
-    (applicabilité, avantages, pbs)
-
-  - Connaitre le principe des méthodes de type différence finie 
-    et mes deux sources d'erreurs potentielles associées (très général,
-    pas limité au calcul diff): "erreur de troncature" et "erreur d'arrondi".
-    Savoir calculer des estimations numériques dans les deux cas.
-    (attention, il y a plein de choses ici: il faut en passer par
-    le modèle de représentation des nombres flottants, etc.)
--->
-Les exemples utilisés dans cette section exploitent la librairie numérique 
-Python [NumPy] ; 
-assurons-nous tout de suite d'avoir importé tous ses symboles :
-
-    >>> from numpy import *
-
-Introduction
---------------------------------------------------------------------------------
-
-Compte tenu de la définition de la dérivée d'une fonction, la méthode de 
-différentiation numérique la plus naturelle pour évaluer cette dérivée
-repose sur le schéma des *différences finies* de Newton, qui exploite
-l'approximation
-  $$
-  f'(x) \approx \frac{f(x+h) - f(x)}{h},
-  $$
-approximation valable lorsque la valeur du *pas* $h$ est suffisamment faible.
-
-L'implémentation de ce schéma en Python est simple :
-
-    def FD(f, x, h):
-        return (f(x + h) - f(x)) / h
-
-Néanmoins, la relation entre la valeur du pas $h$ et la précision de
-cette évaluation -- c'est-à-dire l'écart entre la valeur de la dérivée
-et son estimation -- est plus complexe. 
-Considérons les échantillons de données suivants :
-
-<!--
-Expression                    Valeur
-----------------------------  --------------------------------------------------
-$\exp'(0)$                    $1$
-`FD(exp, 0, 1e-4)`            `1.000050001667141`
-`FD(exp, 0, 1e-8)`            `0.99999999392252903`
-`FD(exp, 0, 1e-12)`           `1.000088900582341`
--->
-
-    >>> FD(exp, 0, 1e-4)
-    1.000050001667141
-    >>> FD(exp, 0, 1e-8)
-    0.999999993922529
-    >>> FD(exp, 0, 1e-12)
-    1.000088900582341
-
-La valeur théorique de $\exp'(0)$ étant $1.0$,
-la valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
-et uniquement 8 nombres après la virgule du résultat sont *significatifs*.
-
-Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
-du développement de Taylor de $\exp$ au premier ordre ; 
-cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
-Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
-limitée par les erreurs d'*arrondi* dans les calculs, liée à la représentation
-approchée des nombres réels utilisée par le programme informatique.
-
-Arithmétique des ordinateurs
---------------------------------------------------------------------------------
 
 Cette section introduit la représentation des nombres réels sur ordinateur
 comme des "doubles" -- le type le plus utilisé des nombres à virgule flottante -- 
 et leur propriétés élémentaires. 
 Pour avoir plus d'informations sur le sujet, vous pouvez vous reporter au 
 document classique 
-"What every computer scientist should know about computer arithmetic" [@Gol91]
+"What every computer scientist should know about floating-point arithmetic" [@Gol91].
 
 [NumPy]: http://www.numpy.org/
 
-### Premier contact
+Les exemples de code utilisés dans la suite utiliseront Python 3 et NumPy :
 
-Dans un interpréteur Python, la façon la plus simple d'afficher un nombre
-consiste à invoquer son nom ; par exemple
+    >>> from numpy import *
+
+NumPy fournit un nombre nommé `pi` dont nous pouvons afficher les décimales :
 
     >>> pi
     3.141592653589793
 
-Cette information est non-ambiguë ; par là nous voulons dire que nous disposons
-d'assez d'information pour reconstituer le nombre initial:
+Cette représentation de `pi` fournie par l'interpréteur Python est non-ambiguë ; 
+par là nous voulons dire que la chaîne de caractère `"3.141592653589793"` 
+fournit assez d'information pour reconstituer le nombre initial `pi` si 
+nécessaire :
 
-    >>> pi == eval("3.141592653589793")
+    >>> number = eval("3.141592653589793") 
+    >>> number == pi 
     True
 
-Mais cette représentation n'en est pas moins un mensonge :
-ça n'est pas une représentation décimale exacte du nombre `pi`
-stockée en mémoire. Pour avoir une représentation exacte de `pi`,
+Mais cette représentation n'en est pas moins un subtil mensonge,
+car elle n'est pas une représentation décimale exacte du nombre `pi`
+qui est stocké en mémoire. Pour avoir sa représentation exacte,
 nous pouvons demander l'affichage d'un grand nombre de décimales :
 
-    >>> def all_digits(number):
+    >>> def print_exact_number(number):
     ...     print(f"{number:.100g}")    
-    >>> all_digits(pi)
+    >>> print_exact_number(pi)
     3.141592653589793115997963468544185161590576171875
 
-Demander 100 chiffres après la virgule est suffisant : 
-seul 49 chiffres sont affichés car les suivants sont tous nuls.
+Demander 100 chiffres après la virgule s'avère suffisant : 
+seul 49 chiffres sont effectivement affichés car les suivants sont tous nuls.
 
 Remarquez que nous avons obtenu une représentation exacte du nombre flottant
 `pi` avec 49 chiffres. Cela ne signifie pas que tous ces chiffres
 -- ou même la plupart d'entre eux -- sont significatifs dans la représentation
 du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
-[mpmath] [@Joh13] pour l'arithmétique flottante multi-précision, nous voyons que
+[mpmath] [@Joh13] pour l'arithmétique flottante multi-précision, pour avoir
+les vraies décimales de $\pi$, nous voyons que
 
     >>> import mpmath
     >>> mpmath.mp.dps = 49; mpmath.mp.pretty = True
@@ -508,13 +587,14 @@ du nombre réel $\pi$. En effet, si nous utilisons la bibliothèque Python
 
 [mpmath]: http://mpmath.org/
 
-et que les deux représentations ne sont identiques que jusqu'au 16ème chiffre.
+Les deux représentations ne sont identiques que jusqu'au 16ème chiffre
+(`3.141592653589793...`).
 
 ### Nombres flottants binaires
 
 Si la représentation des nombres flottants peut apparaître complexe à ce stade,
 c'est que nous avons insisté pour utiliser une représentation *décimale*
-quand ces nombres sont stockés avec une réprésentation *binaire*.
+quand ces nombres exploitent en réalité une représentation *binaire*.
 En d'autres termes ; au lieu d'utiliser une suite de chiffres décimaux
 $f_i \in \{0,1,\dots,9\}$ pour représenter un nombre réel $x$ comme
   $$
@@ -532,55 +612,129 @@ $0.999 \times 10^0$. En base $2$, le seul chiffre non-nul est $1$, donc
 la *mantisse* d'une représentation normalisée est toujours de la forme
 $(1.f_1f_2\dots f_i \dots).$
 
-En calcul scientifique, les nombres réels sont le plus souvent approximés
-sous la forme de "doubles"[^IEEE754]. Dans la bibliothèque standard Python,
-les doubles sont disponibles comme instances du type `float` -- 
-ou alternativement comme `float64` dans NumPy.
+En calcul scientifique, les nombres réels sont le plus souvent décrits 
+de façon approchés par des "doubles". 
+Dans la bibliothèque standard Python, 
+les doubles sont les instances du type `float` ; pour NumPy
+des instances du type `float64`[^conv].
 
-Un triplet de 
-
-  - *bit de signe* : $s \in \{0,1\},$ 
-  
-  - *exposant (biaisé)* : $e\in\{1,\dots, 2046\}$ (11-bit), 
-
-  - *fraction* : $f=(f_1,\dots,f_{52}) \in \{0,1\}^{52}.$ 
-
-représente un double *normalisé*
-  $$
-  x = (-1)^s \times 2^{e-1023} \times (1.f_1f_2 \dots f_{52}).
-  $$
-
-[^IEEE754]: "Double" est un raccourci pour "format à virgule flottante de 
-précision double", comme défini dans le standard IEEE 754, cf. [@ANS85]. 
-Un format de simple précision est aussi défini, qui utilise uniquement
-32 bits ; NumPy le propose sous le nom `float32`. 
+"Double" est un raccourci pour "nombre à virgule flottante de 
+précision double", comme défini dans le standard IEEE 754, cf. [@ANS85] ;
+chaque double occupe en mémoire un espace de 64 bits, d'où le nom `float64`. 
+Un format de simple précision, qui utilise uniquement 32 bits
+est aussi défini ; NumPy le propose sous le nom `float32`. 
 Après un abandon progressif des "singles" au profit des "doubles",
-plus précis et mieux supportés par le CPUs modernes, le format de simple
-précision revient en force avec le développement de l'usage des GPUs 
-comme unités de calcul génériques.
+plus précis et mieux supportés par les CPUs modernes, le format de simple
+précision revient désormais en force avec le développement de l'usage des GPUs 
+comme unités de calcul génériques[^half] ; 
 
+[^half]: On trouve même un format de demi-précision ("half"), 
+accessible en NumPy sous le nom de `float16`.
+
+
+
+[^conv]: Fort heureusement, les conversions entre `float` et `float64`,
+quand elles sont nécessaires, sont transparentes pour l'utilisateur
+de Python et NumPy.
+
+Un double *normalisé* $x$ prend la forme
+  $$
+  x = (-1)^s \times (1.f_1f_2 \dots f_{52}) \times 2^{e-1023}.
+  $$
 Les doubles qui ne sont pas normalisés sont *not-a-number* (`nan`),
 plus ou moins l'infini (`inf`) et zero (`0.0`) (en fait $\pm$ `0.0`;
 car il existe deux zéros distincts, qui diffèrent par leur signe)
-et les nombres dits *dénormalisés*. Dans la suite, nous ne parlerons
-pas de ces cas particuliers.
+ou les nombres dits *dénormalisés* qui existent dans un voisinage de
+$0$. Dans la suite, nous ne parlerons pas de ces cas particuliers.
 
-### Précision
+\newcommand{\af}{$x =(-1)^s  \times (1.f_1f_2 \dots f_{52}) \times 2^{e-1023}$}
+
+--------------------------------------------------------------------------------
+Composante             \af                                      Nombre de bits
+--------------------   ---------------------------------------  ----------------
+Bit de signe           $s \in \{0,1\}$                          $\phantom{0}1 / 64$
+
+Exposant (biaisé)      $e\in\{1,\dots, 2046\}$                  $11 / 64$
+
+Mantisse               $f=(f_1,\dots,f_{52})\in \{0,1\}^{52}$   $52 / 64$
+--------------------------------------------------------------------------------
+
+: Anatomie d'un double normalisé $x$ (`float64`)
+
+
+### Un modèle simplifié : $\D$
+
+Si l'on décide d'oublier les nombres particuliers que nous venons de décrire
+pour nous concentrer sur les nombres normalisés et que de plus nous permettons
+à l'exposant $e$ de décrire $\Z$ tout entier, nous obtenons un modèle simplifié
+des doubles, sous la forme d'un sous-ensemble $\D$ de $\R$ :
+$$
+\D = \{0\} \cup \{(-1)^s \times (1.f_1f_2 \dots f_{52}) \times 2^{e} 
+\; | \; s \in\{0,1\}, e \in \Z, f \in \{0,1\}^{52}\}.
+$$
+Pour simplifier la situation, ce modèle ignore délibérément la possibilité 
+d'un "dépassement" (*overflow*)
+-- le choix d'un exposant trop grand pour un vrai double --
+ou d'un "soupassement" (*underflow*) -- c'est-à-dire un exposant trop petit.
+Il retient néanmoins l'essentiel des caractéristiques des doubles comme
+le caractère discret de l'ensemble et la mesure de leur espacement. 
+Il constitue donc un bon modèle d'étude pour la suite.
+
+### Représentation d'un nombre réel comme un double
 
 Presque aucun nombre réel ne peut être représenté exactement comme un double.
 Pour faire face à cette difficulté, il est raisonnable d'associer à un
-nombre réel $x$ le double le plus proche $[x]$. Une telle méthode
-(*arrondi-au-plus-proche*) totalement spécifiée[^holes] dans le standard IEE754
-[@ANS85], ainsi que des modes alternatifs d'arrondi (arrondis "orientés").
+nombre réel $x$ "sa meilleure approximation" parmi les doubles, 
+notée `x` ou $[x]$ :
+$$
+\mbox{\tt x} = [x].
+$$ 
+On choisit en général en tant que *méthode d'arrondi* (*round-off*)
+$$
+[\,\cdot\,] : \R \to \D
+$$
+la méthode *arrondi-au-plus-proche*[^holes] :
+$$
+[x] := \mathop{\mathrm{arg\,min}}_{\mbox{\small \tt x} \in \D} |\mbox{\tt x} - x|.
+$$
+Mais il existe des modes alternatifs d'arrondi (arrondis "orientés", vers $+\infty$
+ou $-\infty$) qui peuvent être utiles. Ces opérations ont en commun les propriétés
+suivantes :
 
-[^holes]: Il faut préciser comme l'opération se comporte quand le réel
-est équidistant de deux doubles, comment les "nombres spéciaux" 
-(`inf`, `nan`, ...) sont traités, etc. Autant de "détails" dont nous
-ne nous préoccuperons pas dans la suite.
+  - si $x$ est un double, $[x] = x$,
+
+  - sinon, $[x]$ est :
+  
+      - soit le double immédiatement inférieur à $x$,
+      
+      - soit le double immédiatement supérieur à $x$.
+
+[^holes]: Il faudrait préciser comment l'opération se comporte quand le réel
+est équidistant de deux doubles, un niveau de détail dont nous ne nous 
+préoccuperons pas dans la suite. Comme il existe deux façons de faire qui sont
+standard (cf. la norme IEEE 754 ,[@ANS85), il faudrait pour être exact parler
+des méthodes d'arrondi au plus proche.
+
+### Représentation des entiers {.exercise .two .question #entiers}
+Le type `int32` de Python permet de représenter tous les entiers entre
+`-2147483648` ($-2^{31}$) et `2147483647` ($2^{31}-1$). 
+Est-ce que tous ces entiers sont des doubles ?
+
+
+### Nombres réels et doubles {.exercise .one .question #four-numbers}
+Parmi les réels $1.0$, $2/3$, $0.5$ et $0.1$, lesquels sont des doubles ?
+(Indication : en base $2$, $2/3 = 0.101010101010\dots$ et 
+$0.1 = 0.0001100110011\dots$)
+
+
+### Précision et erreur relative
 
 Pour avoir la moindre confiance dans le résultats des calculs que nous 
 effectuons avec des doubles, nous devons être en mesure d'évaluer l'erreur
-faite par la représentation de $x$ par $[x]$. 
+faite en représentant $x$ par $[x]$, nommée *erreur d'arrondi* :
+$$
+e = [x] - x.
+$$ 
 L'*epsilon machine* $\varepsilon$ est une grandeur clé à cet égard : 
 il est défini comme l'écart entre $1.0$
 -- qui peut être représenté exactement comme un double -- 
@@ -589,49 +743,116 @@ et le double qui lui est immédiatement supérieur.
     >>> after_one = nextafter(1.0, +inf)
     >>> after_one
     1.0000000000000002
-    >>> all_digits(after_one)
+    >>> print_exact_number(after_one)
     1.0000000000000002220446049250313080847263336181640625
     >>> eps = after_one - 1.0
-    >>> all_digits(eps)
+    >>> print_exact_number(eps)
     2.220446049250313080847263336181640625e-16
 
 Ce nombre est également disponible comme un attribut de la classe `finfo`
 de NumPy qui rassemble les constantes limites de l'arithmétique pour les
 types flottants.
 
-    >>> all_digits(finfo(float).eps)
+    >>> print_exact_number(finfo(float64).eps)
     2.220446049250313080847263336181640625e-16
 
 Alternativement, l'examen de la structure des doubles normalisés fournit
-directement la valeur de $\varepsilon$ : la fraction du nombre après $1.0$
-est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ donc
-$\varepsilon =2^{-52},$ un résultat confirmé par le code suivant :
+directement la valeur de $\varepsilon$ : la mantisse du nombre après $1.0$
+est $(f_1, f_2, \dots, f_{51}, f_{52}) = (0,0,\dots,0,1),$ et son exposant
+$0$ donc $$\varepsilon =2^{-52},$$ un résultat confirmé par l'expérience :
 
-    >>> all_digits(2**(-52))
+    >>> print_exact_number(2**(-52))
     2.220446049250313080847263336181640625e-16
 
+### {.remark}
 L'epsilon machine importe autant parce qu'il fournit une borne simple sur
 l'erreur relative de la représentation d'un nombre réel comme un double.
-En effet, pour n'importe quelle méthode d'arrondi raisonnable, la structure
-des doubles normalisés fournit :
+En effet, si $2^e \leq x < 2^{e+1}$, comme dans cette région la distance
+entre deux doubles consécutifs est $2^{-52} \times 2^e$, 
+l'erreur d'arrondi vérifie $|[x] - x| \leq \varepsilon \times 2^{e}$ et comme
+$2^{e} \leq |x|$, nous obtenons l'inégalité :
     $$
     \frac{|[x] - x|}{|x|} \leq \varepsilon.
     $$
-Si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
-garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon.$
+(si la méthode "arrondi-au-plus-proche" est utilisée, il est même possible de
+garantir la borne plus contraignante $\varepsilon / 2$ au lieu de $\varepsilon$).
+L'epsilon machine contrôle donc l'*erreur relative* introduite par l'opération
+d'arrondi.
 
-### Chiffres significatifs
+### $\pi$ contre `pi` {.exercise .one .question #pi}
+Par quel nombre peut-on borner l'écart entre $\pi$ et $\texttt{pi} = [\pi]$ ?
+
+### Constantes de la Physique {.exercise .question .one #physics}
+Quelle précision peut-on attendre des doubles $\texttt{N} = [N]$ 
+et $\texttt{h} = [h]$ représentant 
+respectivement le nombre d'Avogrado $N$ et la constante de Planck $h$ ?
+$$
+N = 6.02214076 \times 10^{23} \, \mathrm{mol}^{-1},
+\;
+h = 6.62607015\times{10}^{-34} \, \mathrm{J} \times \mathrm{s}.
+$$
+
+
+### Chiffres significatifs de la représentation décimale
+
+L'erreur relative détermine la précision de la représentation décimale
+utilisée pour représenter un nombre réel par un double. 
+Considérons la représentation de $[x]$ en notation scientifique
+(on suppose $x$ positif pour simplifier l'analyse) :
+    $$
+    [x] = (f_0.f_1 \dots f_{p-1} \dots ) \times 10^{e}.
+    $$
+Dans cette notation par convention, $[x]$ est compris entre
+$1.000\dots  \times 10^e$ et $9.999\dots  \times 10^e \leq 10^{e+1}$.
+La borne dont nous disposons sur l'erreur relative nous garantit donc
+$$|x - [x]| \leq \varepsilon \times 10^{e+1} \approx 2.2 \times 10^{e-15},$$
+voire une borne deux fois plus petite si $[\, \cdot \,]$ est l'arrondi au plus proche.
+On peut donc considérer que les chiffres $f_0$ à $f_{14}$ ou $f_{15}$ sont 
+significatifs dans la représentation de $x$, et les suivants a priori sans 
+intérêt.
+
+
+
+<!--
+### TODO -- Chiffres significatifs
+
+**ne marche tjs pas correctement**
+
 L'erreur relative détermine combien de chiffres décimaux sont significatifs 
-dans la meilleure approximation d'un nombre réel par un double. 
-Considérons la représentation de $[x]$ en notation scientifique :
+dans l'approximation d'un nombre réel par un double. 
+Considérons la représentation de $[x]$ en notation scientifique
+(on suppose $x$ positif pour simplifier l'analyse) :
     $$
-    [x] = \pm (f_0.f_1 \dots f_{p-1} \dots) \times 10^{e}.
+    [x] = (f_0.f_1 \dots f_{p-1} \dots ) \times 10^{e}.
     $$
-On dira qu'elle est *significative jusqu'au $n$-ième chiffre* si
+On dira que la représentation $[x]$ de $x$ est *significative jusqu'au 
+$n$-ième chiffre* si
+   $$
+   (f_0.f_1 \dots f_{n-1}) \times 10^{e}  
+   \leq x \leq
+   ((f_0.f_1 \dots f_{n-1}) + 0.0 \dots 0 1)\times 10^{e}
+   $$
+ce qui est nécéssairement le cas si 
+$$
+2 \varepsilon x < 10^{e-n+1}
+$$
+
+c'est-à-dire, avec $\lfloor \cdot \rfloor$ désignant la partie entière, si
+   $$
+   \frac{\left\lfloor [x] \times 10^{n-1} \right\rfloor}{10^{n-1}} 
+   \leq x
+   \leq \frac{\left \lfloor [x] \times 10^{n-1} +1 \right \rfloor}{10^{n-1}}.
+   $$
+
   $$
-  |x -  [x]| \leq \frac{10^{e-(n-1)}}{2}.
+  |x -  \pm (f_0.f_1 \dots f_{p-1} \dots f_{n-1}) \times 10^{e}| \leq \frac{10^{e-(n-1)}}{2},
   $$
-D'autre part, la borne d'erreur sur $[x]$ fournit
+ce qui est le cas si 
+$$
+|x - [x]| \leq \frac{10^{e-(n-1)}}{2} - |(0.0 \dots 0 f_n \dots ) \times 10^{e}|
+$$
+
+D'autre part, la borne d'erreur relative sur $[x]$ fournit
   $$
   |x - [x]| \leq \frac{\varepsilon}{2} |x| \leq \frac{\varepsilon}{2} \times 10^{e+1}.
   $$
@@ -642,25 +863,30 @@ Ainsi, la précision souhaitée est obtenue tant que
 Par conséquent, les doubles fournissent une approximation des nombres 
 réels avec environ 15 ou 16 chiffres significatifs.
 
-### Fonctions
+-->
+
+### Arrondi des fonctions
 La plupart des nombres réels ne pouvant être représentés par des doubles,
 la plupart des fonctions à valeur réelle et à variables réelles ne peuvent 
-pas non plus être représentée exactement comme des fonctions opérant sur
+pas non plus être représentées exactement comme des fonctions opérant sur
 des doubles. 
 Le mieux que nous puissions espérer est d'avoir des approximations
-*correctement arrondies*. Une approximation $[f]$ d'une fonction $f$
-de $n$ variables est correctement arrondie si pour tout $n$-uplet
-$(x_1, \dots, x_n)$, on a
+*correctement arrondies*. Une approximation noteé `f` (ou $[f]$)
+d'une fonction $f$ de $n$ variables est correctement arrondie 
+si pour tout $n$-uplet $(\mathrm{\tt x_1}, \dots, \mathrm{\tt x_n}) \in \D^n$ 
+de doubles dans le domaine de définition de $f$, on a
   $$
-  [f](x_1,\dots,x_n) = [f([x_1], \dots, [x_n])].
+  \mbox{\tt f}(\mathrm{\tt x_1}, \dots, \mathrm{\tt x_n}) = [f(\mathrm{\tt x_1}, \dots, \mathrm{\tt x_n})].
   $$
-Autrement dit, tout se passe comme si le calcul de $[f](x_1,\dots,x_n)$
-était effectué de la façon suivante : approximation au plus proche 
-des arguments par des doubles, calcul **exact** de $f$ sur ces arguments, 
-et approximation de la valeur produite au plus proche par un double.
-Ou encore:
+Autrement dit, tout se passe comme si le calcul de $\mathrm{\tt f}(\mathrm{\tt x_1},\dots,\mathrm{\tt x_n})$
+était effectué de la façon suivante : calcul **exact** de $f$ sur ces arguments,
+puis arrondi du résultat pour transformer le réel ainsi obtenu en un double.
+Si l'on veut exploiter une telle fonction avec des arguments réels (qui ne sont
+pas nécessairement des doubles),
+il suffit d'arrondir ses arguments avant d'entreprendre les calculs ; on a alors
+la fonction correctement arrondie
 $$
-[f] = [\, \cdot \,] \circ f \circ ([\, \cdot \,], \dots, [\, \cdot \,]).
+\mathrm{\tt f} = [\, \cdot \,] \circ f \circ ([\, \cdot \,], \dots, [\, \cdot \,]).
 $$
 
 Le standard IEEE 754 [@ANS85] impose que certaines fonctions aient des 
@@ -668,13 +894,208 @@ implémentations correctement arrondies ;
 nommément, l'addition, la soustraction, la multiplication, la division, 
 le reste d'une division entière et la racine carrée.
 D'autres fonctions élémentaires 
--- comme sinus, cosinus, exponentielle, logarithme, ... --
+-- comme sinus, cosinus, exponentielle, logarithme --
 ne sont en général pas correctement arrondies ;
 la conception d'algorithmes de calcul qui aient une performance décente et
-correctement arrondis est un problème difficile (cf. @FHL07).
+qui soient correctement arrondis est un problème difficile (cf. @FHL07).
+
+### WTF Python ? {.exercise .question .one #WTF}
+Expliquer pourquoi en Python on a comme on s'y attend :
+
+    >>> 0.3
+    0.3
+
+mais aussi le résultat moins intuitif :
+
+    >>> 0.1 + 0.2
+    0.30000000000000004
+
+(On se contentera de donner un scénario plausible et qualitatif 
+de ce qui se passe quand on approxime $0.1+0.2$ par `0.1 + 0.2`.)   
+
+
+### WTF Python, vraiment ? {.exercise .question .four #WTF2}
+Pour faire taire les sceptiques, détailler les calculs de `0.1 + 0.2` en base
+$2$ pour étayer votre explication.
+
+### Non-associativité de l'addition {.exercise .question .two #non-assoc}
+On note $\cdot \+ \cdot : \R \times \R \to \D$ la version correctement arrondie
+de l'addition entre réels quand $[\, \cdot \,]$ désigne l'arrondi au double
+le plus proche.
+Calculer 
+$$
+(((1.0 \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4
+\; \mbox{ et } \;
+1 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ \varepsilon/4))).
+$$
+Pouvez-vous déterminer expérimentalement si Python interprète `x + y + z`
+comme `(x + y) + z` ou comme `x + (y + z)` ?
+
+
+
+Différentiation automatique
+================================================================================
+
+### Introduction 
+
+La différentiation automatique désigne une famille de méthodes numériques
+permettant de calculer dérivées, gradients et matrices jacobiennes de 
+fonctions numériques.
+Ces méthodes ont l'avantage majeur d'éliminer une grande partie des 
+erreurs d'arrondis que l'on trouve typiquement associées aux méthodes
+classiques qui seront étudiées dans la section suivante.
+L'erreur est en fait aussi faible que dans une dérivation symbolique 
+"manuelle" des fonctions à dériver et ce sans réglage délicat de 
+paramètres à effectuer.
+
+Concrètement, pour dériver la fonction
+$$
+f: x \in \R \mapsto \frac{1-e^{-2x}}{1+e^{-2x}} \in \R,
+$$
+avec une librairie de différentiation automatique en Python comme autograd,
+il faut tout d'abord implémenter la fonction $f$, par exemple sous la forme
+
+    def f(x):
+        y = exp(-2.0 * x)
+        u = 1.0 - y
+        v = 1.0 + y
+        w = u / v
+        return w
+
+L'algorithme de différentiation automatique 
+construit alors à partir de `f` une fonction dérivée qui est fonctionnellement 
+équivalente à la fonction que vous auriez probablement implémentée manuellement :
+
+    def g(x):
+        y = exp(-2.0 * x)
+        u = 1.0 - y
+        v = 1.0 + y
+        w = u / v
+        dx = 1.0
+        dy = -2.0 * exp(-2.0 * x) * dx
+        du = 0.0 - dy
+        dv = 0.0 + dy
+        dw = du / v + u * (- dv) / (v * v)  
+        return dw
+
+Les erreurs numériques induites par ce procédé ne sont donc pas totalement nulles
+(`f` n'est pas $f$ et `g` n'est pas $g:=f'$).
+
+Selon le langage informatique utilisé pour implémenter les fonctions numériques 
+(C, Fortran, Python, langages "embarqués", etc.), 
+différentes méthodes permettent de mettre en œuvre la différentiation
+automatique. 
+Le typage dynamique (ou [*duck typing*](https://en.wikipedia.org/wiki/Duck_typing)) 
+de Python permet de mettre en œuvre simplement le *tracing* des fonctions 
+numériques -- l'enregistrement des opérations de calcul effectuées par une
+fonction lors de son exécution. 
+À partir de ce graphe de calcul,
+les différentielles peuvent être calculées mécaniquement 
+par la règle de différentiation en chaîne
+à partir des différentielles des opérations élémentaires. 
+[L'annexe "Différentiation automatique"](L'annexe "Différentiation automatique")
+vous explique comment développer une micro-bibliothèque de différentiation 
+automatique en Python  ... à des fins pédagogiques uniquement ! Si vous 
+avez besoin d'utiliser la différentiation automatique dans un projet, 
+[consultez la section suivante](#autograd).
+
+### Autograd {#autograd}
+
+La bibliothèque Python autograd (<https://github.com/HIPS/autograd>) est un
+bon choix par défaut si vous avez besoin de différentiation automatique 
+et que vous souhaitez continuer à utiliser NumPy comme vous en avez l'habitude.
+
+    >>> import autograd
+    >>> from autograd.numpy import *
+
+Le second appel est un peu surprenant -- pourquoi pas simplement
+`from numpy import *` ? -- mais il va nous permettre d'utiliser la
+version des fonctions NumPy fournie par autograd.
+Cela est rendu nécessaire par l'utilisation du tracing pour 
+déterminer les graphes de calcul, une méthode qui suppose 
+une forme de coopération des fonctions numériques impliquées.
+Comme les fonction de NumPy en sont incapables,
+autograd les modifie <!-- (*monkey patch*)--> 
+puis les met ensuite à disposition 
+dans son propre module NumPy ; 
+c'est la version que vous devrez utiliser et non le module original, 
+sans quoi des erreurs cryptiques sont à craindre.
+
+La [documentation d'autograd](https://github.com/HIPS/autograd#autograd---) 
+fournit une bonne illustration d'utilisation pour calculer la dérivée d'une 
+fonction scalaire d'une variable :
+
+    >>> def f(x):
+    ...     y = exp(-2.0 * x)
+    ...     return (1.0 - y) / (1.0 + y)
+    >>> deriv_f = autograd.grad(f)  
+    >>> deriv_f(1.0)
+    0.419974341614026
+
+Pour les fonctions scalaires de plusieurs variables,
+le fragment de code suivant fournit un exemple de calcul du gradient :
+
+    >>> def f(x, y):
+    ...     return sin(x) + 2.0 * sin(y)
+    >>> def grad_f(x, y):
+    ...     g = autograd.grad
+    ...     return array([g(f, 0)(x, y), g(f, 1)(x, y)])
+    >>> grad_f(0.0, 0.0)
+    array([1., 2.])
+
+Pour les fonctions vectorielles, le calcul de la matrice jacobienne peut
+prendre la forme suivante :
+
+    >>> def f(x, y):
+    ...     return array([1.0 * x + 2.0 * y, 3.0 * x + 4.0 * y])
+    >>> def J_f(x, y):
+    ...     j = autograd.jacobian
+    ...     return array([j(f, 0)(x, y), j(f, 1)(x, y)]).T
+    >>> J_f(0.0, 0.0)
+    array([[1., 2.],
+           [3., 4.]])
+
 
 Différences finies
---------------------------------------------------------------------------------
+================================================================================
+
+Compte tenu de la définition de la dérivée d'une fonction, la méthode de 
+différentiation numérique la plus naturelle pour évaluer une dérivée
+repose sur le schéma des *différences finies* de Newton, qui exploite
+l'approximation
+  $$
+  f'(x) \approx \frac{f(x+h) - f(x)}{h},
+  $$
+valable lorsque la valeur du *pas* $h$ est suffisamment faible.
+
+L'implémentation de ce schéma en Python est simple :
+
+    def FD(f, x, h):
+        return (f(x + h) - f(x)) / h
+
+Néanmoins, la relation entre la valeur du pas $h$ et la précision de
+cette évaluation -- c'est-à-dire l'écart entre la valeur de la dérivée
+et son estimation -- est plus complexe. 
+Considérons les échantillons de données suivants :
+
+    >>> FD(exp, 0, 1e-4)
+    1.000050001667141
+    >>> FD(exp, 0, 1e-8)
+    0.999999993922529
+    >>> FD(exp, 0, 1e-12)
+    1.000088900582341
+
+La valeur théorique de $\exp'(0)$ étant $1.0$,
+la valeur la plus précise de la dérivée numérique est obtenue pour $h=10^{-8}$
+et uniquement 8 nombres après la virgule du résultat sont significatifs.
+
+Pour la valeur plus grande $h=10^{-4}$, la précision est limitée par la qualité
+du développement de Taylor de $\exp$ au premier ordre ; 
+cette erreur dite *de troncature* décroit linéairement avec la taille du pas.
+Pour la valeur plus petite de $h=10^{-12}$, la précision est essentiellement
+limitée par les erreurs d'*arrondi* dans les calculs, liées à la représentation
+approchée des nombres réels utilisée par le programme informatique.
+
 
 ### Différence avant
 
@@ -704,26 +1125,13 @@ Le comportement asymptotique de ce schéma de *différence avant*
 Une implémentation de ce schéma est définie pour les réels $x$ et
 $h$ par
   $$
-  \mathrm{FD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x])]}{[h]} \right].
+  \mathrm{FD}(f, x, h) = \left[\frac{[[f ( [x] + [h])] - [f ([x])]]}{[h]} \right]
+  = \mbox{\tt (f(x + h) - f(x)) / h}
   $$
-ou de façon équivalent en Python par:
-
-    >>> def FD(f, x, h):
-    ...     return (f(x + h) - f(x)) / h
-
-<!--
-[^Landau]: **Bachmann-Landau notation.** For a real or complex variable $h,$ 
-we write $\psi(h) = O(\phi(h))$ if there is a suitable deleted 
-neighbourhood of $h=0$ where the functions $\psi$ and $\phi$ are defined 
-and the inequality $|\psi(h)| \leq \kappa |\phi(h)|$ holds for some $\kappa > 0.$ 
-When $N$ is a natural number, we write 
-$\psi(N) = O(\phi(N))$ if there is a $n$ such that $\psi$ and $\phi$ 
-are defined for $N\geq n$ and for any such $N,$ 
-the inequality $|\psi(N)| \leq \kappa |\phi(N)|$ holds for some $\kappa > 0.$
--->
+où $\mbox{\tt x} = [x]$, $\mbox{\tt h} = [h]$, $\mbox{\tt f} = [\, \cdot \, ] \circ f \circ[\, \cdot \, ]$,
+$a \, \mbox{\tt -} \, b = [[a] - [b]]$ et $a \, \mbox{\tt /} \, b = [[a] / [b]]$.
 
 ### Erreur d'arrondi
-
 Nous considérons à nouveau la fonction $f(x) = \exp(x)$ utilisée dans
 l'introduction et nous calculons la dérivée numérique basée sur la
 différence avant à $x=0$ pour différentes valeurs de $h$.
@@ -788,7 +1196,7 @@ sélectionnons un double $h>0$ et comparons-le à l'epsilon machine :
 
 Si l'on revient à $\mathrm{FD}(\exp, 0, h)$ et si l'on exploite des échelles
 log-log pour représenter l'erreur totale, on peut clairement distinguer la
-region ou l'erreur est dominée par l'erreur d'arrondi -- l'enveloppe de cette
+région où l'erreur est dominée par l'erreur d'arrondi -- l'enveloppe de cette
 section du graphe est $h \mapsto \log(\varepsilon/h)$ -- et où elle est dominée
 par l'erreur de troncature -- une pente $1$ étant caractéristique des schémas
 d'ordre 1.
@@ -815,10 +1223,10 @@ Son implémentation sur ordinateur est donnée par
   $$
   \mathrm{CD}(f, x, h) = \left[\frac{[[f] ( [x] + [h]) - [f] ([x]-[h])]}{[2 \times [h]]} \right].
   $$
-ou de façon équivalente en Python:
+ou de façon équivalente en Python :
 
-    >>> def CD(f, x, h):
-    ...    return 0.5 * (f(x + h) - f(x - h)) / h
+    def CD(f, x, h):
+        return 0.5 * (f(x + h) - f(x - h)) / h
 
 
 ![Erreur de la différence centrée](images/cd-error.py){#cde}
@@ -832,53 +1240,10 @@ d'arrondi et rend la sélection d'un pas correct $h$ encore plus difficile.
 
 
 
-Différentiation automatique
+Annexe -- Différentiation automatique {#annexe-AD}
 ================================================================================
 
-<!--
-Objectifs {.meta}
---------------------------------------------------------------------------------
 
-  - avantage et portée de la méthode (plus détaillée: précision, dérivées à
-    un ordre arbitraire, "workflow", usages en optimisation, machine learning,
-    etc.)
-
-  - connaître les (une version des) principes des différents "morceaux" 
-    de la méthode dans le cas de Python: "tracer", "computation graph", etc.
-    Solution: en construire un "à la main", au moins les étapes importantes.
-    Note: permet aussi d'apprécier les limitations de la méthode.
-
-  - sur péda, essayer forward pass (plus près du cours),
-    mais expliquer backward pass pour pouvoir se "plugger" dans l'existant.
-
-  - exploiter un système existant, type `autograd` en python
-    (sans doute le plus facile en terme de courbe d'apprentissage)
-
--->
-
-Introduction 
---------------------------------------------------------------------------------
-
-La différentiation automatique désigne une famille de méthodes numériques
-permettant de calculer dérivées et différentielles de fonctions numériques.
-Elle se positionne comme une alternative aux algorithmes de différences
-finies. Ces méthodes ont l'avantage majeur d'éliminer quasi-totalement les 
-erreurs d'arrondis -- l'erreur est aussi faible que dans une dérivation
-symbolique "manuelle" des expressions utilisées dans le calcul de la
-fonction -- et ce sans réglage délicat de paramètres.
-
-Selon le langage informatique utilisé pour implémenter les fonctions numériques 
-(C, Fortran, Python, langages "embarqués", etc.), 
-différentes méthodes permettent de mettre en oeuvre la différentiation
-automatique. 
-Le typage dynamique (ou [*duck typing*](https://en.wikipedia.org/wiki/Duck_typing)) 
-de Python permet de mettre en oeuvre simplement le *tracing* des fonctions 
-numériques -- l'enregistrement des opérations du calcul effectuées par une
-fonction lors de son exécution. A partir du graphe de calcul ainsi construit,
-les différentielles peuvent être calculées mécaniquement 
-par [la règle de différentiation en chaîne](Calcul Différentiel I.pdf#chain-rule) 
-à partir des différentielles des opérations élémentaires. 
- 
 Tracer le graphe de calcul
 --------------------------------------------------------------------------------
 
@@ -1008,13 +1373,13 @@ par `Node`, une classe qui contient (encapsule) une valeur numérique :
             self.value = value
 
 Nous n'allons pas nous attarder sur cette version 0 de `Node`.
-Si elle est ainsi nommée, c'est parce qu'elle va représenter un noeud
+Si elle est ainsi nommée, c'est parce qu'elle va représenter un nœud
 dans un graphe de calculs. Au lieu d'afficher les opérations réalisées
 sur la sortie standard, nous allons enregistrer les 
 opérations que subit chaque variable et comment elles s'organisent ;
-chaque noeud issu d'une opération devra mémoriser quelle opération
+chaque nœud issu d'une opération devra mémoriser quelle opération
 a été appliquée, et quels étaient les arguments de l'opération (eux-mêmes
-des noeuds). Pour supporter cette démarche, `Node` devient:
+des nœuds). Pour supporter cette démarche, `Node` devient:
 
     class Node:
         def __init__(self, value, function=None, *args):
@@ -1023,7 +1388,7 @@ des noeuds). Pour supporter cette démarche, `Node` devient:
             self.args = args
 
 Il nous faut alors rendre les opérations usuelles compatibles avec la création
-de noeuds ; en examinant les arguments de la fonction, on doit décider si
+de nœuds ; en examinant les arguments de la fonction, on doit décider si
 elle est dans un mode "normal" (recevant des valeurs numériques, produisant
 des valeurs numériques) ou en train de tracer les calculs. Par exemple :
 
@@ -1063,7 +1428,7 @@ il serait possible de définir une fonction opérant automatiquement
 cette transformation. Il s'agit d'une fonction d'ordre supérieur
 car elle prend comme argument une fonction (la fonction numérique
 originale) et renvoie une nouvelle fonction, compatible avec la
-gestion des noeuds. On pourra ignorer son implémentation 
+gestion des nœuds. On pourra ignorer son implémentation 
 en première lecture.
 
     def autodiff(function):
@@ -1090,7 +1455,7 @@ en première lecture.
 
 Malgré sa complexité apparente, l'utilisation de cette fonction est simple ; 
 ainsi pour rendre la foncton `sin` et l'opérateur `*` compatible
-avec la gestion de noeuds, il suffit de faire :
+avec la gestion de nœuds, il suffit de faire :
 
     sin = autodiff(math.sin)
 
@@ -1101,13 +1466,13 @@ et
     multiply = autodiff(multiply)
     Node.__mul__ = Node.__rmul__ = multiply
 
-ce que est sensiblement plus rapide et lisible 
+ce qui est sensiblement plus rapide et lisible 
 que la démarche entreprise pour `cos` et `+` ; 
 mais encore une fois, le résultat est le même.
 
 Il est désormais possible d'implémenter le traceur. 
 Celui-ci encapsule les arguments de la fonction à tracer 
-dans des noeuds, puis appelle la fonction et renvoie le noeud associé
+dans des nœuds, puis appelle la fonction et renvoie le nœud associé
 à la valeur retournée par la fonction :
 
     >>> def trace(f, args):
@@ -1117,7 +1482,7 @@ dans des noeuds, puis appelle la fonction et renvoie le noeud associé
 
 Pour vérifier que tout se passe bien comme prévu,
 faisons en sorte d'afficher une représentation lisible 
-et sympathique des contenus des noeuds sous forme de chaîne de caractères :
+et sympathique des contenus des nœuds sous forme de chaîne de caractères :
 
     def node_str(node):
         if node.function is None:
@@ -1170,10 +1535,9 @@ Un autre exemple -- à deux arguments -- pour la route :
     >>> print(t)
     multiply(1.0, add(1.0, 2.0))
 
-Calcul automatique des dérivées
+Différentielle des fonctions élémentaires
 --------------------------------------------------------------------------------
 
-### Différentielle des fonctions élémentaires
 Pour exploiter le graphe de calcul que nous savons désormais déterminer,
 il nous faut déclarer les différentielles des opérations et fonctions 
 primitives dans un "registre" de différentielles, indexées par la fonction
@@ -1221,12 +1585,14 @@ ainsi on déduit de l'identité $(\sin x)' = \cos x$ la déclaration
 
     differential[sin] = d_from_deriv(cos)
 
-### Différentielle des fonctions composées
-Pour exploiter le tracing d'une fonction, il nous faut à partir du noeud
-final produit par ce procédé extraire l'ensemble des noeuds amont,
+Différentielle des fonctions composées
+--------------------------------------------------------------------------------
+
+Pour exploiter le tracing d'une fonction, il nous faut à partir du nœud
+final produit par ce procédé extraire l'ensemble des nœuds amont,
 qui représentent les arguments utilisés dans le calcul de la valeur finale.
 Puis, pour préparer le calcul de la différentielle, nous ordonnerons 
-les noeuds de telle sorte que les arguments d'une fonction apparaissent 
+les nœuds de telle sorte que les arguments d'une fonction apparaissent 
 toujours avant la valeur qu'elle produit.
 L'implémentation suivante, relativement naïve[^MI], réalise cette opération:
 
@@ -1252,9 +1618,9 @@ par un informaticien en possession de ce code,
 l'UE 11 niera avoir connaissance de vos activités. 
 
 Le calcul de la différentielle en tant que tel ne consiste plus qu'à 
-propager la variation des arguments de noeud en noeud, en se basant
+propager la variation des arguments de nœud en nœud, en se basant
 sur la règle de différentiation en chaîne ; ces variations intermédiaires
-sont stockées dans l'attribut `d_value` des noeuds du graphe.
+sont stockées dans l'attribut `d_value` des nœuds du graphe.
 
     def d(f):
         def df(*args): # args=(x1, x2, ...)
@@ -1293,21 +1659,6 @@ $f'(x) = df(x) \cdot 1$.
         def deriv_f(x):
             return df(x)(1.0)
         return deriv_f
-
-<!--
-#    >>> from inspect import signature, Parameter
-#    >>> def num_args(f):
-#    ...     positional = [
-#    ...         Parameter.POSITIONAL_ONLY, 
-#    ...         Parameter.POSITIONAL_OR_KEYWORD
-#    ...     ]
-#    ...     parameters = signature(f).parameters.values()
-#    ...     return len([p for p in parameters if p.kind in positional])
-#    >>> def f(x, y, z):
-#    ...     return x + y + z
-#    >>> num_args(f)
-#    3
--->    
   
 Vérifions que le comportement de ces opérateurs de différentiation est
 conforme à nos attentes dans le cas de fonction d'une variable ; 
@@ -1449,7 +1800,39 @@ le sujet.
 
 
 
-Exercices
+<!--
+Idées pour poursuivre l'introduction du moteur de diff auto:
+
+  - gérer fct retournant des constantes
+
+  - compléter les opérateurs arithmétiques, fcts usuelles, etc.
+
+  - gérer le control flow (important et pas dur si un peu guidé !)
+
+  - adapter le code pour faire du backward diff (à évaluer),
+    avec pointeurs vers articles introductifs.
+
+  - diff d'ordre deux ? Compliqué, 2 show-stoppers potentiels
+    (différentiation "lazy" et nodes nestés).
+
+Faire un projet privé et une document de tests (public) pour permettre la
+vérification que ça marche ? Demander résultat comme un fichier autodiff.py
++ notebook mise en œuvre ou notebook générant autodiff.py ?
+Quoi qu'il en soit: code et doc et accès sur github.
+Ce qui est fait en cours déjà fourni (sous quelle forme ? fichier, 
+notebook, etc ?). Oui, avec jupyter nbconvert, ça ne pose pas de pb.
+Intégration doctest/notebook ? Bof, non, on gère ça "normalement",
+en dehors, avec le truc comme un doc markdown.
+
+Applications (avec algo type IFT par exemple) ? En plus ?
+Eventuellement en utilisant un "vrai" autodiff pour ne pas
+être bloqué par des étapes précédentes non réussies ? 
+
+-->
+
+
+
+Exercices complémentaires
 ================================================================================
 
 Cinématique d'un robot manipulateur
@@ -1469,7 +1852,7 @@ $$
 On note $f$ la fonction de $\R^2$ dans $\R^2$ telle que 
 $f(\theta_1, \theta_2) = (x, y)$.
 
-### Question 1 {.question #crm-1}
+### Question 1 {.question .one #crm-1}
 Supposons que $\ell_1 \neq \ell_2$.
 Déterminer l'ensemble des valeurs $(x, y)$ du plan qui ne correspondent
 à aucun couple $q$ de coordonnées articulaires et 
@@ -1477,30 +1860,31 @@ l'ensemble de celles qui correspondent à des coordonnées articulaires.
 Quand $(x, y)$ appartient à l'intérieur $V$ de ce second ensemble, 
 ces coordonnées articulaires sont-elles uniques (modulo $2\pi$) ?
 
-### Question 2 {.question #crm-2}
+### Question 2 {.question .one #crm-2}
 Déterminer l'ensemble $U$ des $q \in \R^2$ tel que la matrice 
-$J_f(q)$ est inversible et comparer $f(U)$ avec $V$.
+$J_f(q)$ soit inversible et comparer $f(U)$ avec $V$.
 
-### Question 3 {.question #crm-3}
-Soit $\tau > 0$ ; on considère une trajectoire continue
+### Question 3 {.question .three #crm-3}
+On considère une trajectoire continue
 $$
-\gamma: t \in [0, \tau] \mapsto (x(t), y(t)) \in \R^2
+\gamma: t \in [0, 1] \mapsto (x(t), y(t)) \in \R^2
 $$ 
 dans l'espace cartésien, dont l'image est incluse dans $f(U)$. 
 Soit $q_0 = (\theta_{10}, \theta_{20})$ tel que $f(q_0) = (x(0), y(0))$. 
-Montrer que si $\tau$ est suffisamment petit, 
-il existe une unique fonction continue $\gamma_q: [0, \tau] \to \R^2$ 
+Montrer que si l'image de $\gamma$ reste dans un voisinage suffisamment
+petit de $(x(0), y(0))$, il existe une unique fonction continue $\gamma_q: [0, 1] \to \R^2$ 
 telle que $\gamma = f \circ \gamma_q$
 et $\gamma_q(0) = q_0$ ($\gamma_q$ est la trajectoire correspondant à
 $\gamma$ dans l'espace articulaire).
 
-
-### Question 4 {.question #crm-4}
+### Question 4 {.question .two #crm-4}
 Montrer que si $\gamma$ est différentiable, $\gamma_q$ également. 
-Déterminer la relation entre 
-$$(\dot{x}, \dot{y}) := \gamma'(t) \; \mbox{ et } \;
-\dot{q} := (\dot{\theta}_1, \dot{\theta}_2) := \gamma_q'(t).$$
-
+Montrer que l'on peut déduire
+$$
+\dot{q} := (\dot{\theta}_1, \dot{\theta}_2) := \gamma_q'(t) 
+ \; \mbox{ de } \;
+(\dot{x}, \dot{y}) := \gamma'(t).
+$$
 
 Déformations
 --------------------------------------------------------------------------------
@@ -1515,21 +1899,23 @@ $$
 $$
 ($H$ est une *perturbation de l'identité*).
 
-### Question 1 {.question #d-1}
+### Question 1 {.question .two #d-1}
 Montrer que la fonction $T$ est injective.
 
-### Question 2 {.question #d-2}
+### Question 2 {.question .three #d-2}
 Montrer que l'image $V= T(U)$ est un ouvert 
 et que $T$ est difféomorphisme global de $U$ sur $V$.
 
-Valeurs propres d'une matrice {.question #vpm}
+Valeurs propres d'une matrice 
 --------------------------------------------------------------------------------
 
+### Question 1 {.question .two #vpm}
 Déterminer une condition "raisonnable" qui garantisse qu'une valeur propre
 $\lambda \in \R$ d'une matrice $A \in \R^{n \times n}$ varie continûment
 avec les coefficients de $A$.
 
 
+<!--
 Inversion de matrice
 --------------------------------------------------------------------------------
 
@@ -1547,6 +1933,7 @@ sur un ouvert de $\R^{n \times n}$, continûment différentiable et que
 $$
 d(A^{-1}) \cdot H = - A^{-1} \times H \times A^{-1}.
 $$
+-->
 
 
 <!--
@@ -1557,7 +1944,8 @@ Différentiation à pas complexe
 
 -->
 
-Méthode de Newton {.question #mn}
+<!--
+Méthode de Newton 
 --------------------------------------------------------------------------------
 L'analyse de la preuve du théorème des fonctions implicites nous a conduit à
 considérer la méthode de Newton modifiée, associée à la construction
@@ -1573,10 +1961,14 @@ $$
 \phi_x: y \mapsto y - (\partial_y f(x, y))^{-1} \cdot f(x, y)
 $$
 
+### Question 1 {.question #mn}
+
 Montrer que $\phi_x$ est différentiable dans un voisinage de $(x_0, y_0)$ et
 vérifier que $d \phi_x(y)$ est nul si $f(x, y) = 0$.
 
-Différences finies -- erreur d'arrondi {.question #dfl}
+-->
+
+Différences finies -- erreur d'arrondi 
 --------------------------------------------------------------------------------
  
 Non seulement les erreurs d'arrondis sont susceptibles de générer une erreur
@@ -1585,30 +1977,294 @@ susceptible de varier très rapidement avec la valeur du pas,
 d'une façon qui peut sembler aléatoire.
 Ainsi, si
 
-    >>> h = 1e-12
-    >>> FD(exp, 0.0, h)
+    >>> FD(exp, 0.0, h=1e-12)
     1.000088900582341
 
 on a également
 
-    >>> h = 9.999778782798785e-13
-    >>> FD(exp, 0.0, h)
+    >>> FD(exp, 0.0, h=9.999778782798785e-13)
     1.0001110247585212
     
 soit une erreur 25% plus élevée, pour une variation de 0.002% du pas seulement.
 Inversement, avec
 
-    >>> h = 9.99866855977416e-13
-    >>> FD(exp, 0.0, h)
+    >>> FD(exp, 0.0, h=9.99866855977416e-13)
     1.0
 
 soit une variation de 0.01% du pas, l'erreur disparaît purement et simplement !
+
+### Question 1 {.question .three #dfl}
+
 Pouvez-vous contrôler la chance et expliquer comment déterminer au voisinage de 
-$h=10^{-12}$ les valeurs du pas susceptibles d'annuler l'erreur et de générer
-l'erreur la plus élevée possible ?
+$h=10^{-12}$ les valeurs du pas susceptibles d'annuler l'erreur et inversement
+de générer l'erreur la plus élevée possible ?
+
 
 Solution des exercices
 ================================================================================
+
+Exercices essentiels
+--------------------------------------------------------------------------------
+
+
+### Le cercle unité {.answer #answer-circle}
+La fonction $(x_1,x_2) \in \R^2 \mapsto x_1^2 + x_2^2 - 1$ est continûment différentiable
+et la dérivée partielle $\partial_{x_2} f(x_1,x_2) = 2x_2$ est non nulle sur le cercle
+unité sauf quand $(x_1, x_2)= (1,0)$ ou $(x_1, x_2)= (-1,0)$. On peut donc appliquer le 
+théorème des fonctions implicites dans un voisinage de tout point 
+$(x_{10},x_{20}) \in C$ à l'exception de ces deux points. On peut déterminer
+directement que ${x_1}^2 + x_2^2 = 1$ est équivalent à $x_2 = \pm \sqrt{1 - x_1^2}$ ; 
+si $x_{20}>0$, $\psi(x_1) := \sqrt{1 - x_1^2}$ est donc l'unique
+solution de $x_1^2+x_2^2 = 1$ telle que $(x_1, x_2) \in \left]-1,1\right[ \times \left]0, +\infty\right[$.
+Quand $x_{20} < 0$, $\psi(x_1) := -\sqrt{1 - x_1^2}$ est l'unique
+solution de $x_1^2+x_2^2 = 1$ telle que $(x_1, x_2) \in \left]-1,1\right[ \times \left]-\infty, 0\right[$.
+Dans les deux cas, $\psi'(x_1) = - (\partial_{x_2} f (x_1, x_2))^{-1} \cdot \partial_{x_1} f(x_1, x_2)$ 
+où $x_2=\psi(x_1)$, donc dans le premier cas on a 
+$$
+\psi'(x_1) = - (2 \psi(x_1))^{-1} (2 x_1) = - \frac{x_1}{\sqrt{1 - x_1^2}}
+$$
+et dans le second
+$$
+\psi'(x_1) = - (2 \psi(x_1))^{-1} (2 x_1) = \frac{x_1}{\sqrt{1 - x_1^2}}.
+$$
+
+### Abscisse curviligne {.answer #answer-ac}
+On considère l'équation 
+$$
+F(x, s) := \int_c^x \|f'(t)\| \, dt - s = 0
+$$
+où $F$ est définie sur l'ouvert $\left]a, b\right[ \times \R  \subset \R\times\R$.
+La dérivées partielles de $F$ existent et vérifient
+$$
+\partial_x F(x, s) = \|f'(x)\| \neq 0 \; \mbox{ et } \;  \partial_s F(s, x) = -1.
+$$
+Les dérivées partielles étant continues, $F$ est continûment différentiable.
+De plus, la différentielle partielle de $F$ par rapport à $x$ est inversible.
+On a également $F(c, 0) = 0$. Par conséquent, dans un voisinage $U \times V$
+ouvert de $(c, 0) \in \R^2$, l'équation $F(x, s) = 0$ détermine de façon unique
+$x$ comme une fonction différentiable de $s$.
+
+
+### Courbes de niveau {.answer #answer-cn}
+Avec les coordonnées $(w, z)$, l'appartenance d'un point $P$ à la courbe de
+niveau $C$ est caractérisée par 
+$$
+f(x_1, x_2) - c = f\left(w u_1 + z v_1, w u_2 + z v_2 \right) - c = 0.
+$$
+L'expression est continûment différentiable par rapport au
+couple $(w, z)$ et 
+\begin{align*}
+\partial_z \left( f\left(w u_1 + z v_1, w u_2 + z v_2 \right) - c \right)
+&= d f(x_1, x_2) \cdot (v_1, v_2) \\
+&= \left<\nabla f(x_1,x_2), \frac{\nabla f(x_{10}, x_{20})}{\|\nabla f(x_{10},x_{20})\|} \right>
+\end{align*}
+Cette dérivée partielle est égale à $\|\nabla f(x_{10},x_{20})\| > 0$ en $(x_{10}, x_{20})$.
+Le gradient étant continu, cette dérivée partielle est inversible
+dans un voisinage de $(x_{10}, x_{20})$ et [le théorème des fonctions implicites](#TFI) 
+est donc applicable : localement, l'appartenance d'un point $P$ à $C$ peut
+être caractérisé par une relation fonctionnelle de la forme $z = \psi(w)$.
+
+
+### Détermination de l'angle {.answer #answer-va}
+On remarque qu'on ne peut pas utiliser directement le théorème des fonctions
+implicite sur l'équation définissant les déterminations de l'angle, car 
+l'équation est à valeurs dans $\R^2$ mais nous souhaitons la résoudre par
+rapport à une variable scalaire. Mais cette équation est redondante car
+ses deux membres sont de norme 1 ; si $u_0$ et $\theta_0$ en sont solutions,
+localement $u$ et $\theta$ en seront solutions si et seulement si 
+$u$ et $(\cos \theta, \sin \theta)$ sont colinéaires, c'est-à-dire si et
+seulement si
+$$
+f(u_1, u_2, \theta) := u_1 \sin \theta - u_2 \cos \theta = 0.
+$$
+Nous pouvons alors appliquer [le théorème des fonctions implicites](#TFI) à 
+cette équation. On a 
+$$
+\partial_{u_1} f(u, \theta) = \sin \theta,
+\; \partial_{u_2} f(u, \theta) = -\cos \theta,
+$$
+et 
+$$
+\partial_{\theta} f(u, \theta) = u_1 \cos \theta + u_2 \sin \theta
+= \left<u, (\cos \theta, \sin \theta)\right>.
+$$
+Les expressions sont continues et au point d'intérêt,
+$\partial_{\theta} f(u_0, \theta) = \|u_0\| > 0$, ce qui est donc encore
+localement vrai par continuité. La différentielle de la fonction
+implicite $\theta = \Theta(u)$ est donnée par
+$$
+d \Theta(u) = -(\partial_{\theta} f(u, \Theta(u)))^{-1} \cdot (\partial_u f(u,\Theta(u))),
+$$
+donc
+$$
+\nabla \Theta(u_0) = -\frac{\nabla_u f(u_0,\theta_0)}{\partial_{\theta} f(u_0,\theta_0)}
+=\frac{1}{\|u_0\|} \left[ \begin{array}{r} -\sin \theta_0 \\ \cos \theta_0\end{array}\right].
+$$
+
+
+### Coordonnées polaires {.answer #answer-cp}
+La fonction $f$ est continûment différentiable et sa matrice jacobienne est donnée par
+$$
+J_f(r, \theta) = 
+\left[
+    \begin{array}{rr}
+    \cos \theta & - r\sin \theta\\
+    \sin \theta & r \cos \theta\end{array}
+\right].
+$$
+Comme $\det J_f(r, \theta) = r > 0$, $f$ est un $C^1$-difféomorphisme local.
+Par contre, comme $f(r, \theta) = f(r, \theta + 2\pi)$, $f$ n'est pas injective,
+elle n'est donc pas un $C^1$-difféomorphisme global.
+
+
+
+### Représentation des entiers {.answer #answer-entiers}
+Oui, car l'écriture d'un tel entier $n$ en binaire va demander au plus
+32 bits non nuls $b_i$ pour être décrit :
+$$
+n = (-1)^s \times b_0b_1\dots b_{31}.
+$$
+Si $b_0 = b_1 = \cdots = b_{p-1} = 0$ et $b_{p} = 1$,
+il sera donc de la forme
+$$
+n = (-1)^s \times (1.b_{p}\dots b_{31} 000 \dots) \times 2^{e},
+$$
+
+
+### Nombres réels et doubles {.answer #answer-four-numbers}
+Le nombre $1.0$ s'écrit en base 2 sous la forme
+$$
+1.0 = (-1)^{0} \times (1.000 \dots ) \times 2^{0},
+$$
+et $0.5$ sous la forme
+$$
+0.5 = (-1)^{0} \times (1.000 \dots ) \times 2^{-1}.
+$$
+Ils sont donc des doubles.
+Par contre, les développements en base $2$ de $2/3$ et $0.1$ sont périodiques,
+donc nécessiterait une mantisse de taille infinie pour être décrits exactement ;
+ils ne sont pas des doubles.
+
+
+### $\pi$ contre `pi` {.answer #answer-pi}
+Le nombre $\pi$ est dans l'intervalle $\left[2^1, 2^2\right[$, donc
+sa représentation sous forme de double `pi` en base 2 est de la forme
+$$
+\texttt{pi} = (1.???\dots???) \times 2^{1}.
+$$
+(avec 52 points d'interrogations représentant 0 ou 1).
+Dans cet intervalle, l'espace entre deux doubles consécutifs est de 
+$2^{-52} \times 2^1 = 2 \varepsilon.$ L'erreur est donc bornée
+par $\approx 4.4 \times 10^{-16}$ (deux fois moins si on arrondit au plus
+proche).
+
+### Constantes de la Physique {.answer  #answer-physics}
+En utilisant la formule $|[x] - x| \leq \varepsilon |x|$, on obtient
+$$
+|[N] - N| \leq 1.4  \times 10^8 
+\; \mbox{ et } \;
+|[h] - h| \leq 1.5 \times 10^{-49}.
+$$
+
+
+### WTF Python ? {.answer #answer-WTF}
+Ni $0.1$, ni $0.2$ ni $0.3$ ne sont représentés exactement par des doubles.
+Il est tout à fait possible que dans le calcul de
+$$
+\texttt{0.1} \+ \texttt{0.2} = [[0.1] + [0.2]]
+$$
+les arrondis $[0.1]$ et $[0.2]$ soient légèrement
+supérieurs aux nombres réels exacts et que l'addition de ces nombres arrondis 
+produise un nombre plus proche d'un double strictement supérieur à $[0.3]$
+que de $[0.3]$ lui-même.
+
+
+### WTF Python, vraiment ? {.answer #answer-WTF2}
+On remarque qu'en base 2, on a 
+$$
+\begin{array}{lll}
+0.1 &= 0.00011001100 \dots &= (1.100110011001 \dots 1001|1001\dots) \times 2^{-4} \\
+0.2 &= 0.00110011001 \dots &= (1.100110011001 \dots 1001|1001\dots) \times 2^{-3} \\
+0.3 &= 0.01001100110 \dots &= (1.001100110011 \dots 0011|0011\dots) \times 2^{-2}
+\end{array}
+$$
+où la barre verticale indique la limite entre le 52-ème et le 53-ème bit après 
+le point. Si $[\, \cdot \,]$ est l'arrondi au double le plus proche, on a donc
+$$
+\begin{array}{ll} 
+[0.1]   & = (1.100110011001 \dots 1010|0000\dots) \times 2^{-4} \\
+{[0.2]} & = (1.100110011001 \dots 1010|0000\dots) \times 2^{-3} \\
+{[0.3]} & = (1.001100110011 \dots 0011|0000\dots) \times 2^{-2} \\
+\end{array}
+$$
+et par conséquent
+\begin{align*}
+[0.1] + [0.2] & = \phantom{+}
+(001.100110011001 \dots 10011010|) \times 2^{-4} \\ 
+& \phantom{=} + (011.001100110011 \dots 10110100|) \times 2^{-4} \\
+& = \phantom{+} (100.110011001100 \dots 01001110|) \times 2^{-4} \\
+& = \phantom{+} (1.001100110011 \dots 010011|10) \times 2^{-2}
+\end{align*}
+
+Le nombre $[0.1] + [0.2]$ est exactement à mi-distance des doubles 
+$$(1.001100110011 \dots 010011|) \times 2^{-2} \; \mbox{ et } \;
+(1.001100110011 \dots 010100|) \times 2^{-2}.$$ 
+Dans ce cas, Python 3 semple appliquer la règle 
+*round-to-nearest, ties-to-nearest-even*
+de l'IEEE754 (@ANS85) qui préfère le double se terminant par un 0 (entier pair) 
+et qui est ici le plus grand des deux doubles possibles. On a donc
+$$
+\begin{array}{rl}
+{[0.3]} & = (1.001100110011 \dots 0011|) \times 2^{-2} \\
+{[[0.1]+[0.2]]} & = (1.001100110011 \dots 0100|) \times 2^{-2}
+\end{array}
+$$
+Les deux nombres sont différents, leur écart est $2^{-52} \times 2^{-2} \approx
+5.56 \times 10^{-17}$, qui justifie l'écart observé dans la représentation
+décimale simplifiée affichée dans l'interpréteur ($\approx 4 \times 10^{-17}$).
+
+
+#### Non-associativité de l'addition {#answer-non-assoc}
+On a $[1.0] = 1.0$ et $[\varepsilon / 4] = \varepsilon / 4$ car $1.0$ et
+$\varepsilon / 4$ appartiennent à $\D$. Par conséquent,
+$$
+1.0 \+ \varepsilon/4 = [1.0 + \varepsilon/4] = 1.0,
+$$
+car $1.0 \+ \varepsilon/4$ est encadré par les doubles consécutifs
+$1.0$ et $1.0 + \varepsilon$ et que $1.0$ est plus proche. On a donc
+$$
+(((1.0 \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4) \+ \varepsilon/4 = 1.0.
+$$
+D'autre part, $\varepsilon / 4 \+ \varepsilon / 4 = [\varepsilon/2] = \varepsilon /2$,
+donc $\varepsilon/4 \+ \varepsilon/2 = [3\varepsilon/4] = 3\varepsilon/4$ et
+donc $\varepsilon / 4 \+ 3 \varepsilon/4 = [\varepsilon] =\varepsilon$.
+Par conséquent,
+$$
+1 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ (\varepsilon/4 \+ \varepsilon/4)))
+= [1 +\varepsilon] = 1 + \varepsilon.
+$$
+Les deux valeurs étant différentes, l'opérateur $\+$ n'est donc pas associatif.
+Il est donc nécessaire de préciser ce que l'on entend par `x + y + z`. 
+Livrons-nous à une expérience en Python :
+
+    >>> eps = 2**(-52)
+    >>> e4 = eps / 4
+    >>> s1 = 1.0 + e4 + e4 + e4 + e4
+    >>> s2 = (((1.0 + e4) + e4) + e4) + e4
+    >>> s3 = 1.0 + (e4 + (e4 + (e4 + e4)))
+    >>> print_exact_number(s1)
+    1
+    >>> print_exact_number(s2)
+    1
+    >>> print_exact_number(s3)
+    1.0000000000000002220446049250313080847263336181640625
+
+Il semble donc que par défaut l'opérateur `+` en Python associe à gauche,
+c'est-à-dire interprête `x + y + z` comme `(x + y) + z`.
+
+
+
+
 
 Cinématique d'un robot manipulateur
 --------------------------------------------------------------------------------
@@ -1677,10 +2333,9 @@ U = \R^2 \setminus (\R \times \pi \Z).
 $$
 En coordonnées cartésiennes, cela correspond aux points $(x, y)$ 
 à distance minimale $|\ell_1 - \ell_2|$
-ou maximale $\ell_1 + \ell_2$ de l'origine<!--, soit $A_1$-->. 
+ou maximale $\ell_1 + \ell_2$ de l'origine. 
 Les points à une distance intermédiaire $$|\ell_1 - \ell_2| < \sqrt{x^2+y^2} < \ell_1+\ell_2$$
-<!--soit $A_2$ en coordonnées cartésiennes,--> soit $V$, 
-correspondent à une matrice jacobienne $J_f(q)$ inversible quel que soit 
+soit $V$, correspondent à une matrice jacobienne $J_f(q)$ inversible quel que soit 
 l'antécédent $q$ de $(x, y)$ par $f$.
 
 ### Question 3 {.answer #answer-crm-3}
@@ -1690,14 +2345,13 @@ comme la matrice jacobienne de $f$ est inversible sur $U$,
 la fonction $f$ est un difféomorphisme sur un voisinage ouvert 
 $V \subset U$ de $q_0$, d'inverse $g: W \to U$ défini sur 
 l'ouvert $W = f(V)$. 
-Si $\gamma$ est une trajectoire continue
+Si $\gamma$ est une trajectoire continue 
 $$
-\gamma: t \in [0, \tau] \mapsto (x(t), y(t)) \in \R^2
+\gamma: t \in [0, 1] \mapsto (x(t), y(t)) \in R^2
 $$ 
-dans l'espace cartésien, dont l'image est incluse dans $f(U)$ et telle 
-que $f(q_0) = (x(0), y(0))$, tant que $\tau$ est suffisamment petit pour
-que par continuité $\gamma(t)$ appartienne à $W$, alors
-$f (\gamma_q(t)) = \gamma(t)$ si et seulement si $\gamma_q(t) = g (\gamma(t))$.
+dans l'espace cartésien dont l'image est incluse dans $W = f(V)$ et telle 
+que $f(q_0) = (x(0), y(0))$, alors $f (\gamma_q(t)) = \gamma(t)$ si et 
+seulement si $\gamma_q(t) = g (\gamma(t))$.
 
 ### Question 4 {.answer #answer-crm-4}
 Si $\gamma$ est différentiable, comme $\gamma_q(t) = g (\gamma(t))$ et que
@@ -1739,7 +2393,7 @@ $$
 $$
 
 
-Déformations {.answer #answer-d}
+Déformations 
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-d-1} 
@@ -1771,24 +2425,25 @@ la fonction linéaire $h \mapsto dT(x) \cdot h$ est une perturbation de
 l'identité ; elle est donc injective, et inversible car elle est linéaire de
 $\mathbb{R}^n$ dans $\mathbb{R}^n$. Les hypothèses du 
 [théorème d'inversion locale](#TIL) sont donc satisfaites 
-en tout point $x$ de $U$. La fonction $f$ est donc un difféomorphisme 
+en tout point $x$ de $U$. La fonction $T$ est donc un difféomorphisme 
 local d'un voisinage ouvert $V_x$ de $x$ sur
-$W_x= f(V_x)$ qui est ouvert. Clairement,
+$W_x= T(V_x)$ qui est ouvert. Clairement,
 $$
-f(U) = f\left(\bigcup_{x \in U} V_x\right) = \bigcup_{x \in U} f(V_x)
+T(U) = f\left(\bigcup_{x \in U} V_x\right) = \bigcup_{x \in U} f(V_x)
 $$
-et par conséquent $f(U)$ est ouvert.
-La fonction $f$ est injective et surjective de $U$ dans $f(U)$,
-donc inversible. En tout point $y$ de $f(U)$, il existe $x \in U$
-tel que $f(x) = y$, et un voisinage ouvert $V_x$ de $x$ tel que
-$f$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = f(V_x)$ ; 
+et par conséquent $T(U)$ est ouvert.
+La fonction $T$ est injective et surjective de $T$ dans $T(U)$,
+donc inversible. En tout point $y$ de $T(U)$, il existe $x \in U$
+tel que $T(x) = y$, et un voisinage ouvert $V_x$ de $x$ tel que
+$T$ soit un difféomorphisme local de $V_x$ sur l'ouvert $W_x = T(V_x)$ ; 
 la fonction
-$f^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
-C'est par conséquent un difféomorphisme global de $U$ dans $f(U)$.
+$T^{-1}$ est donc continûment différentiable dans un voisinage de $y$.
+C'est par conséquent un difféomorphisme global de $U$ dans $T(U)$.
 
-Valeurs propres d'une matrice {.answer #answer-vpm}
+Valeurs propres d'une matrice 
 --------------------------------------------------------------------------------
 
+### Question 1 {.answer #answer-vpm}
 Le nombre $\lambda \in \R$ est une valeur propre de $A \in \R^{n\times n}$ 
 si et seulement si 
 $$
@@ -1808,6 +2463,7 @@ et elle est continûment différentiable -- et a fortiori continue --
 par rapport aux coefficients de $A$.
 
 
+<!--
 Inversion de matrice
 --------------------------------------------------------------------------------
 
@@ -1881,9 +2537,15 @@ ou sous une forme plus compacte
 $$
 d (A^{-1}) = -A^{-1} \times dA \times A^{-1}.
 $$
+-->
 
-Méthode de Newton {.answer #answer-mn}
+<!--
+
+Méthode de Newton 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-mn}
+
 Si la fonction $f$ est deux fois continûment différentiable,
 les termes $f(x, y)$ et $\partial_y f(x,y)$ sont des fonctions
 différentiables de $y$ à $x$ fixé. Soit
@@ -1913,9 +2575,12 @@ d \phi_x(y)=
 $$
 En particulier, si $f(x, y) = 0$, on a bien $d \phi_x(y) = 0$.
 
+-->
 
-Différences finies -- erreur d'arrondi {.answer #answer-dfl}
+Différences finies -- erreur d'arrondi 
 --------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dfl}
 
 Tout d'abord, pour $x=1$ et un pas de l'ordre de $h=10^{-12}$, l'erreur faite en
 approximant $\exp(x)$ par $1+x$ sera de l'ordre de 
@@ -1973,191 +2638,6 @@ Pour trouver un tel $h$ proche de $10^{-12}$, il suffit de calculer
 
     >>> (floor(1e-12 / eps) + 0.5) * eps
     9.999778782798785e-13
-
-
-
-Projet numérique : lignes de niveau
-================================================================================
-
-L'objectif de ce projet numérique est de développer un programme 
-Python permettant de calculer les lignes de niveau d'une fonction $f$ 
-de deux variables réelles et à valeurs réelles (supposée continûment
-différentiable), c'est-à-dire les ensembles de la forme
-$$
-\{(x, y) \in \R^2 \, | \, f(x, y) = c\} \, \mbox{ où } \, c \in \R.
-$$
-
-La représentation graphique de ces courbes est un *tracé de contour*
-(cf. [les exemples d'usage de la fonction `contour` de matplotlib](https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.contour.html#examples-using-matplotlib-pyplot-contour)).
-
-![Lignes de niveau de $(x, y) \mapsto 2(f(x, y) - g(x, y))$
-où $f(x, y) = \exp(-x^2 - y^2)$ et $g(x, y) = \exp(-(x - 1)^2 - (y - 1)^2)$. 
-Source: ["Contour Demo" (matplotlib)](https://matplotlib.org/3.1.0/gallery/images_contours_and_fields/contour_demo.html#sphx-glr-gallery-images-contours-and-fields-contour-demo-py).](images/contour.py){#contour-demo}
-
-### Contour simple
-On suppose dans un premier temps que la fonction $f$ est définie dans le carré 
-unité $[0,1]^2$ et on limite notre recherche aux lignes de niveau
-qui possèdent un point sur l'arête gauche du domaine de définition
-(de la forme $(0, y)$ pour un $0 \leq y \leq 1$.)
-
-#### Amorce
-À quelle condition raisonnable portant sur $f(0,0)$, $f(0,1)$ et le réel $c$ 
-est-on certain qu'il existe un $t \in [0, 1]$ tel que $f(0, t) = c$ ?
-Développer une fonction, conforme au squelette suivant
-
-``` {.discard}
-def find_seed(g, c=0, eps=2**(-26)):
-    ...
-    return t
-```
-
-qui renvoie un flottant éloigné d'au plus `eps` d'un tel $t$ 
-ou `None` si la condition évoquée ci-dessus n'est pas satisfaite.
-
-#### Propagation
-On souhaite implémenter une fonction dont la signature est :
-
-``` {.discard}
-def simple_contour(f, c=0.0, delta=0.01):
-    ...
-    return x, y
-```
-
-qui renvoie un fragment de ligne de niveau de valeur `c` de `f`, 
-sous la forme de deux tableaux 1d d'abscisses et d'ordonnées de points 
-de cette ligne. 
-Les points devront être espacés d'approximativement `delta`. 
-En cas d'impossibilité de générer un tel fragment
-deux tableaux vides devront être renvoyés.
-
-### Contour complexe
-
-La signature de la fonction `contour` générale sera la suivante
-
-``` {.discard}
-def contour(f, c=0.0, xc=[0.0,1.0], yc=[0.0,1.0], delta=0.01):
-    ...
-    return xs, ys
-```
-
-Le domaine de $f$ n'est plus nécessairement $[0, 1]\times[0, 1]$ ;
-les arguments `xc` et `yc` sont des listes (ou tableaux 1d) croissantes 
-de nombres flottants qui découpent une portion rectangulaire de ce domaine 
-en cellules carrées, telles que `xc[i] <= x <= xc[i+1]` et `yc[j] <= y <= yc[j+1]`.
-Les valeurs par défaut de `xc` et `yc` correspondent à une unique cellule
-qui est $[0,1]^2$ ; il correspond donc au contexte de `simple_contour`.
-
-Dans chaque cellule, on exploitera le procédé utilisé dans `simple_contour`, 
-mais en recherchant des amorces sur toute la frontière de la cellule et plus 
-uniquement sur son arête gauche.
-
-Les tableaux 1d `xs` et `ys` renvoyés par la fonction `contour` ne décrivent pas
-un fragment de contour, mais un ensemble de tels fragments ; 
-cette multiplicité résulte de la présence de plusieurs cellules 
-et/ou de l'existence de plusieurs fragments par cellule.
-Les valeurs `x = xs[i]` et `y = ys[i]` représentent 
-un fragment de contour de `f` comme en produit `simple_contour` ;
-autrement dit, le tracé d'un contour peut être réalisé par le code
-
-``` {.discard}
-for x, y in zip(xs, ys):
-    matplotlib.pyplot.plot(x, y)
-```
-
-### Consignes
-Le livrable de ce projet sera un notebook Jupyter. 
-Ce support doit vous permettre de documenter l'ensemble
-de votre démarche -- d'expliquer d'où viennent vos idées,
-de mener les calculs théoriques associés, d'écrire 
-le code les mettant en oeuvre en pratique, de réaliser 
-des expériences pour tester ce code, puis de mener leur analyse critique,
-analyse qui peut mener à de nouvelles idées, etc.
-En particulier, les échecs -- quand ils sont instructifs -- 
-doivent être documentés !
-
-Expérimenter suppose de pouvoir tester la génération de lignes de niveaux
-sur de "bonnes" fonctions de référence. Pour l'évaluation de 
-`simple_contour`, les fonctions quadratiques sont de bonnes candidates ;
-pour `contour`, la fonction utilisée par la démo de la fonction
-`contour` de `matplotlib`, 
-représentée dans [la figure ci-dessus](#contour-demo), est pertinente.
-
-Ce projet devrait
-exploiter des algorithmes de point-fixe qui nécessitent du
-calcul matriciel et du calcul de gradients et/ou de matrices jacobiennes. 
-Vous utiliserez de préférence NumPy pour le calcul matriciel
-et `HIPS/autograd` pour la différentiation automatique (cf. [annexe](#autograd)).
-
-### Annexe -- `HIPS/autograd` {#autograd}
-
-Site Web: <https://github.com/HIPS/autograd>
-
-    >>> import autograd
-    >>> from autograd import numpy as np
-
-La documentation de `HIPS/autograd` fournit une bonne illustration d'usage 
-pour le cas des fonctions scalaires
-d'une variable:
-
-    >>> def f(x):
-    ...     y = np.exp(-2.0 * x)
-    ...     return (1.0 - y) / (1.0 + y)
-    >>> deriv_f = autograd.grad(np.tanh)  
-    >>> deriv_f(1.0)
-    0.4199743416140261
-
-Pour les fonctions scalaires de plusieurs variables,
-le fragment de code suivant fournit un exemple :
-
-    >>> def f(x, y):
-    ...     return np.sin(x) + 2.0 * np.sin(y)
-    >>> def grad_f(x, y):
-    ...     g = autograd.grad
-    ...     return np.r_[g(f, 0)(x, y), g(f, 1)(x, y)]
-    >>> grad_f(0.0, 0.0)
-    array([1., 2.])
-
-Pour les fonctions à valeurs vectorielles, l'équivalent est :
-
-    >>> def f(x, y):
-    ...     return np.array([np.exp(x), np.exp(y)])
-    >>> def J_f(x, y):
-    ...     j = autograd.jacobian
-    ...     return np.c_[j(f, 0)(x, y), j(f, 1)(x, y)]
-    >>> J_f(0.0, 0.0)
-    array([[1., 0.],
-           [0., 1.]])
-
-<!--
-Idées pour poursuivre l'introduction du moteur de diff auto:
-
-  - gérer fct retournant des constantes
-
-  - compléter les opérateurs arithmétiques, fcts usuelles, etc.
-
-  - gérer le control flow (important et pas dur si un peu guidé !)
-
-  - adapter le code pour faire du backward diff (à évaluer),
-    avec pointeurs vers articles introductifs.
-
-  - diff d'ordre deux ? Compliqué, 2 show-stoppers potentiels
-    (différentiation "lazy" et nodes nestés).
-
-Faire un projet privé et une document de tests (public) pour permettre la
-vérification que ça marche ? Demander résultat comme un fichier autodiff.py
-+ notebook mise en oeuvre ou notebook générant autodiff.py ?
-Quoi qu'il en soit: code et doc et accès sur github.
-Ce qui est fait en cours déjà fourni (sous quelle forme ? fichier, 
-notebook, etc ?). Oui, avec jupyter nbconvert, ça ne pose pas de pb.
-Intégration doctest/notebook ? Bof, non, on gère ça "normalement",
-en dehors, avec le truc comme un doc markdown.
-
-Applications (avec algo type IFT par exemple) ? En plus ?
-Eventuellement en utilisant un "vrai" autodiff pour ne pas
-être bloqué par des étapes précédentes non réussies ? 
-
--->
-
 
 Références
 ================================================================================

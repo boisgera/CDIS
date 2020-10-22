@@ -7,107 +7,28 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
 
-<!--
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
-Perspective {.notes}
---------------------------------------------------------------------------------
 
-Scope: (ensembles mesurables,) fonctions mesurables, absolue intégrabilité.
 
-La perspective est commune dans une large mesure: avec les outils dont on
-dispose à ce moment, il est souvent difficile de savoir dans un calcul,
-une expression composée si une fonction va être intégrable.
+<!--{\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}}-->
 
-Exemples (à améliorer, distiller): 
-
-  - Hypothèses sous lesquelles $\max(f, g)$ ou $fg$ intégrables pas claires
-    (et quand c'est le cas, manque de théorème simple à ce stade pour 
-    l'affirme)
-
-  - produit de deux fonction intégrales n'est pas intégrable
-    (ex: $f(x) = g(x) = 1/\sqrt{x}$ sur $[0,1]$), ok, car
-    le produit est "trop grand", moralement l'intégrale est $+\infty$.
-    Mais s'il n'était pas "trop grand", est-ce que ça marcherait ?
-
-  - Si $f$ est intégrable sur l'intervalle $[a,b]$ de $\R$, 
-    elle est aussi intégrable sur toute union finie $E$ d'intervalles de 
-    $\R$, ce que l'on peut définir comme l'intégrabilité de 
-    $f 1_{E}$. Et si $E$ est plus général ? On "voit bien" qu'il est
-    nécessaire de requérir que $1_E$ soit intégrable (sinon ça ne 
-    marche pas avec $f=1$), ce que l'on appelle "ensemble intégrable",
-    mais est-ce que ça suffit ? La réponse est non ...   
-    (c'est un cas particulier du précédent, le faire avant).
-    Pb résolu si la fct est abs int (c'est même un critère ici !).
-
-  - Mais plus surprenant peut-être: le produit de deux fonction intégrables
-    avec l'une des deux fonctions bornées n'est pas nécessairement intégrable.
-    (cf [@Swa01, p.43, ex. 14] avec $\cos 1/t$ et $t^{-3/2} \cos 1/t$).
-    Pb résolu si les fcts sont abs int.
-
-  - Si $f$ est intégrable et $g$ est "sympa" (Lipschitz), 
-    est-ce que $g \circ f$ est intégrable ? Non ... cf
-    [@HL89, p. 525, ex. 4.2]
-    Pb résolu si les fcts sont abs int.
-
-On a deux outils qui se combinent pour analyser et résoudre ces pbs:
-
-  - La notion de fonction mesurable et le critère d'intégrabilité dominée [@PS17],
-
-  - La notion de fonction absolument mesurable.
-
-(nota: autres avantages fcts abs int: chgt de variable robuste et complétude
-$L^1$.)
-
-Sinon
-
-  - le théorème de convergence dominé est requis techniquement dans certaines
-    preuves et également pour donner une perspective sur la démarche.
-    Mais sa preuve, ses conséquences, variantes, etc. non, ce qui peut
-    suggérer une "preview" de ce résultat et un développement plus complet
-    ultérieurement. On a "besoin" du DCT et de son corollaire qu'une fct
-    est intégrable ssi elle est bornée par des fcts intégrables et mesurable.
-
-  - UPDATE: ensemble mesurable objet "secondaire", défini comme limite simple
-    de fonction caractéristique ?
-
-    Justifier l'introduction des ensembles mesurables ... par la recherche
-    d'une notion de "volume" (longueur/aire/...) suffisamment générale ?
-    Oui, en généralisant ce qui se passe pour les intervalles.
-    Et les ensembles mesurables sont ceux dont la mesure ne pose pas de pb
-    à part qu'ils sont "trop grands".
-    Introduire mesure de Lebesgue à ce stade, est possible, 
-    $\sigma$-algèbres, etc. Nécessaire dans la manip des fcts mesurables.
-
-    Cross-justifier la notion de fonction absolument mesurable 
-    (concept "stable" par multiplication par la fonction caractéristique
-    d'un ensemble mesurable.)
-
-    Probablement inclure plus généralement la pbmatique des fcts 
-    absoluments continues ici. Deux axes: intégrer sur des sous-ensembles
-    "plus généraux" et de façon général, meilleur comportement par rapport
-    aux opération usuelles: le produit borné abs int et abs int est abs int;
-    ça n'est pas le cas pour les fcts simplement intégrables, ce qui est
-    compliqué! Le pb du "multiplier" de fcts intégrable (égal pp à une fct
-    de variation bornée), c'est too much ...
-
-  - JTODO: parallèle séries AC ou C pour fct AI (et exemple restriction est
-    parlant, très proche, faire le parallèle ?)
-
-  - Mener toute la présentation dans $\R$.
-   
--->
 
 Introduction
 ================================================================================
 
-L'intégrale de Henstock-Kurzweil, introduite dans "Calcul Intégral I", 
+L'intégrale de Lebesgue, introduite dans "Calcul Intégral I", 
 présente l'avantage de pouvoir intégrer une plus grande gamme de fonctions
 que l'intégrale de Riemann : moins régulières, non bornées et/ou définies
 sur des intervalles non-bornés[^ii].
 
 Il faut néanmoins reconnaître qu'à ce stade de notre exposé l'intégrale
 de Riemann est parfois plus pratique. 
-Par exemple : si avec l'intégrale de Henstock-Kurzweil,
+Par exemple : si avec l'intégrale de Lebesgue,
 on sait que $\lambda f$ et $f + g$ sont intégrables quand
 $f$ et $g$ le sont, 
 il n'est pas certain que le produit $f g$ soit intégrable ;
@@ -138,28 +59,27 @@ $C$ des points de discontinuité de $fg$ est nécessairement dans $A\cup B$,
 donc négligeable. Le produit $fg$ est donc intégrable au sens de Riemann.
 
 Cette remarque ne souligne pas à proprement parler un défaut de l'intégrale de 
-Henstock-Kurzweil, mais plutôt une conséquence de sa généralité : en permettant
+Lebesgue, mais plutôt une conséquence de sa généralité : en permettant
 d'intégrer des fonctions telles que $x \in [0, 1] \mapsto 1/\sqrt{x}$ 
 (presque partout), on s'expose à devoir refuser d'intégrer le produit d'une 
 fonction par elle-même, ici $x \in [0,1] \mapsto 1/x$ (presque partout).
 Il est donc normal de devoir imposer des conditions supplémentaires
 pour garantir l'intégrabilité d'un produit.
 
+
 Heureusement, comme dans le cas de l'intégrale de Riemann, 
 un critère d'intégrabilité des fonctions -- nécessaire et suffisant -- 
 existe pour établir ce type de résultat (et bien d'autres).
 Comme dans le cas de l'intégrale de Riemann, il se décompose en deux tests
-indépendants : pour être intégrable une fonction doit être "encadrée par des
-fonctions intégrables" et "suffisamment régulière". Bien sûr ici les 
-fonctions qui jouent le rôle de bornes devront être intégrables au sens
-de Henstock-Kurzweil (et non plus de Riemann) ; 
+indépendants : pour être intégrable une fonction doit être "dominée par une
+fonction intégrable" et "suffisamment régulière". Bien sûr ici la
+fonction qui domine devra être intégrable au sens de Lebesgue 
+(et non plus de Riemann) ; 
 quant à la régularité, il ne s'agira plus de tester la continuité presque
 partout, mais de vérifier la *mesurabilité* de la fonction considérée,
-une propriété que possèdent presque toutes les fonctions "imaginables".
+une propriété que possèdent presque toutes les fonctions "non-pathologiques".
 
-Bien que n'étant un cas particulier, 
-l'intégrabilité d'un produit revêt une importance particulière. 
-En effet dans ce chapitre pour des raisons de simplicité, 
+Dans ce chapitre pour des raisons de simplicité, 
 nous mettrons l'accent sur les fonctions définies sur $\R$ ; 
 par défaut le symbole intégrale sans bornes désignera donc 
 l'intégrale entre $-\infty$ et $+\infty$:
@@ -176,41 +96,88 @@ sous-ensemble nécessite de considérer le produit $1_A f$
 de $f$ par la fonction caractéristique de $A$, ce qui soulève la question
 de l'étude de l'intégrabilité de ces fonctions caractéristiques.
 
-Mais notre première étape dans ce chapitre sera de nous doter d'un
-théorème de convergence dominée, qui permettra -- sous certaines
-conditions qui sont plus simples que dans le cadre Riemannien classique
--- de calculer l'intégrale d'une fonction $f$ à partir
-des intégrales d'une suite de fonctions convergeant vers $f$.
+Mais notre première étape dans ce chapitre sera de nous doter de
+théorèmes de convergence qui nous permettront -- sous certaines
+conditions qui sont plus simples que dans le cadre Riemannien
+-- de calculer l'intégrale d'une fonction $f$ comme la limite
+d'intégrales de fonctions convergeant vers $f$.
 
-<!--
-Finalement, l'intégrale de Henstock-Kurzweil possède comme l'intégrale de
-Riemann un théorème de convergence dominée, qui permet d'évaluer 
-l'intégrale d'une fonction $f$ en calculant les intégrales d'une suite 
-de fonctions convergeant simplement vers $f$. Contrairement au cadre de 
-l'intégrale de Riemann, il ne sera pas nécessaire de supposer que la
-limite des fonctions considérées soit intégrable -- les hypothèses
-du théorème fourniront automatiquement ce résultat.
--->
+Objectifs d'apprentissage
+================================================================================
 
-<!--
---------------------------------------------------------------------------------
+#### Ensembles mesurables
 
-Dans la suite de ce document, nous mettons l'accent sur les fonctions définies
-sur $\R$ (ou $\R \cup \{-\infty, +\infty\}$) ; par défaut le symbole intégrale 
-sans bornes désignera donc l'intégrale entre $-\infty$ et $+\infty$:
+  - \one savoir qu'un ensemble est mesurable si sa longueur est bien définie,
 
-$$
-\int := \int_{-\infty}^{+\infty}
-$$
+  - \one connaître la définition formelle d'ensemble mesurable,
 
-L'essentiel des notions et résultats qui sont introduits peuvent être 
-généralisés sans difficulté à des fonctions définies sur des intervalles
-(voire des ensembles plus complexes), en considérant le prolongement 
-de ces fonctions par zéro.
+  - \one savoir calculer sa longueur comme une intégrale,
 
--->
+  - connaître les propriétés principales des ensembles mesurables :
 
-Théorèmes de Convergence
+    - \one les ensembles mesurables forment une tribu,
+
+    - \two ensembles ouverts (et fermés) sont mesurables,
+
+    - \two négligeable = de longueur nulle.
+
+  - connaître quelques propriétés secondaires qui s'en déduisent :
+
+    - \one intersection dénombrable d'ensembles mesurables.
+
+    - \one complémentaire relatif d'ensembles mesurables,
+
+  - savoir les exploiter pour :
+  
+    - \two montrer qu'un ensemble donné est mesurable,
+
+    - \three déduire de nouvelles propriétés secondaires.
+
+#### Fonctions mesurables
+
+  - \one connaître la définition des fonctions mesurables,
+
+  - \one connaître leur caractérisation par le critère de l'image réciproque,
+
+  - savoir que les fonctions suivantes sont mesurables :
+    
+    - \one les fonctions intégrables,
+
+    - \one les fonctions caractéristiques d'ensembles mesurables,
+
+    - \one les fonctions égales presque partout à des fonctions mesurables,
+
+    - \two les limites (simples) de fonctions mesurables,
+
+    - \two les compositions de fonctions mesurables et continues.
+
+  - savoir exploiter les éléments précédents pour :
+  
+    - \two montrer qu'une fonction donnée est mesurable,
+      
+    - \three déduire de nouvelles classes de fonctions mesurables.
+
+
+#### Fonctions intégrables
+
+  - \one connaître le critère d'intégrabilité dominée,
+
+  - \one connaître le théorème de convergence dominée,
+
+  - \two connaître le théorème de convergence monotone,
+
+  - savoir mettre en oeuvre ces théorèmes pour :
+
+    - \one montrer qu'une fonction est intégrable,
+
+    - \two calculer l'intégrale d'une fonction comme une limite,
+
+    - \three démontrer qu'une fonction n'est pas intégrable.
+
+  - \one connaître la définition d'intégrale sur un sous-ensemble (mesurable).
+  
+
+Théorèmes de convergence
 ================================================================================
 
 ### Théorème de convergence dominée {#TCD .theorem}
@@ -220,11 +187,12 @@ $x \in \R$,
 $$
 \lim_{k \to +\infty} f_k(x) = f(x)
 $$
-et qu'il existe deux fonctions intégrables $g$ et $h$ encadrant la suite $f_k$,
-c'est-à-dire telles que pour tout $k \in \mathbb{N}$ et pour tout 
+et qu'il existe une fonction intégrable $g:\R \to \left[0, +\infty\right[$ 
+dominant la suite $f_k$, c'est-à-dire telle que pour tout $k \in \N$ 
+et pour tout 
 $x \in \R$,
 $$
-g(x) \leq f_k(x) \leq h(x)
+|f_k(x)| \leq g(x)
 $$
 alors la fonction $f$ est intégrable et 
 $$
@@ -238,6 +206,45 @@ $$
 ### Démonstration {.proof}
 Se reporter à @Dem11.
 
+### Défaut de domination {.exercise .question .one #dd}
+Comparer
+$$
+\lim_{k \to +\infty} \int f_k(t) \, dt
+\; \mbox{ et } \; 
+\int \lim_{k \to +\infty} f_k(t) \, dt\;
+$$
+pour la suite de fonctions $f_k:\R \to \R$ définie par
+$$
+f_k(t) = \left|
+\begin{array}{rl}
+1 & \mbox{si $k\leq t \leq k+1$} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+Expliquer le résultat.
+
+### Intégrale fonction d'un paramètre {.exercise .question .two #ifp}
+Montrer que 
+$$
+\lim_{x \to 0^+} \int_0^1 \frac{e^{-xt}}{1+t^2} \, dt = \frac{\pi}{4}.
+$$
+
+### Théorème fondamental du calcul {.exercise .three #exo-TCD .question}
+Déduire de la forme classique du théorème fondamental du calcul 
+et du [théorème de convergence dominée](#TCD) 
+que si $f: [a, b] \subset [-\infty, +\infty] \to \R$ est continue sur $[a, b]$,
+dérivable sur $[a, b]$ et de dérivée $f'$ intégrable, alors
+$$
+f(b) - f(a) = \int_a^b f'(t) \, dt.
+$$
+(Indication : considérer une suite d'intervalles fermés bornés $[a_k, b_k]$ de $\R$ tels
+que $[a_k, b_k] \subset [a, b]$ et tels que $a_k \to a$ et $b_k \to b$ quand
+$k \to +\infty.$)
+<!-- (Indication: on pourra étudier la suite des $g_k := f'1_{[-k, k]}$.)-->
+
+
+
 ### Dérivation sous le signe somme {.theorem #DSS}
 Soit $I$ un intervalle de $\R$ et $f: I \times \R \to \R$ une fonction
 telle que :
@@ -248,21 +255,25 @@ telle que :
  2. pour tout $t \in \R$, la fonction
     $\lambda \in I \mapsto f(\lambda, t)$
     est dérivable et 
-    $$|\partial_{\lambda} f(\lambda, t)| \leq g(t)$$
+    $$\sup_{\lambda \in I} |\partial_{\lambda} f(\lambda, t)| \leq g(t)$$
     où $g: \R \to \left[0, +\infty\right[$ est une fonction intégrable.
 
-Alors la fonction $S: I \to \R$ définie par
+Alors, la fonction $S: I \to \R$ définie par
 $$
 S(\lambda) := \int f(\lambda, t) \, dt
 $$
-est dérivable pour tout $\lambda$ et 
+est dérivable ; pour tout $\lambda \in I$,
+la fonction $t \in \R \mapsto \partial_{\lambda} f(\lambda, t)$ est intégrable 
+et
 $$
 S'(\lambda) = \int \partial_{\lambda} f(\lambda, t) \, dt.
 $$
 
+
+
 ### Démonstration {.proof}
 Par linéarité de l'intégrale, 
-pour tout $\lambda \in I$ et tout $h \in \R$ tel que $\lambda + h \in I$, 
+pour tout $\lambda \in I$ et tout $h \in \R^*$ tel que $\lambda + h \in I$, 
 on a
 $$
 \frac{S(\lambda + h) - S(\lambda)}{h}
@@ -278,13 +289,9 @@ $$
 De plus, par l'inégalité des accroissement finis, pour tout $k \in \N$,
 $$
 \left|\frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k} \right|
-\leq \sup_{\mu \in I} |\partial_{\lambda} f(\mu, t)| \leq g(t),
+\leq \sup_{\mu \in I} |\partial_{\lambda} f(\mu, t)| \leq g(t).
 $$
-et donc
-$$
--g(t) \leq \frac{f(\lambda + h_k, t) - f(\lambda, t)}{h_k} \leq g(t).
-$$
-Les taux d'accroissements de $f$ sont donc encadrés par deux fonctions intégrables.
+Les taux d'accroissements de $f$ sont donc bornés par une fonction intégrable.
 Par [le théorème de convergence dominée](#TCD), on conclut que
 $$
 \lim_{k \to +\infty} \frac{S(\lambda + h_k) - S(\lambda)}{h_k}
@@ -299,7 +306,7 @@ Si une suite de fonctions intégrables $f_k:\R \to \R$
 est croissante et majorée en tout point, c'est-à-dire si pour tout
 $x$ de $\R$ 
 $$
-\mbox{pour tout } \, k \in \mathbb{N}, \, f_k(x) \leq f_{k+1}(x) 
+\mbox{pour tout } \, k \in \N, \, f_k(x) \leq f_{k+1}(x) 
 \; \mbox{ et } \;
 \sup_k f_k(x) < + \infty,
 $$
@@ -319,12 +326,35 @@ $$
 ### Démonstration {.proof}
 Se reporter à @Dem11.
 
+### Fonctions puissance  {.one .exercise #power .question}
+Montrer que la fonction puissance $t \in \left[1, +\infty\right[ \mapsto t^{\alpha}$
+est intégrable si et seulement $\alpha < -1$ et que la fonction puissance
+$t \in \left]0,1\right] \mapsto t^{\alpha}$ est intégrable si et seulement
+si $\alpha > -1$.
+
+### Intégrabilité et intégrales impropres {.two .question .exercise #iii}
+Montrer qu'une fonction $f: \R \to \R$ qui est intégrable sur tout intervalle 
+fermé borné de $\R$ est intégrable sur $\R$ si et seulement si
+$$
+\lim_{k \to +\infty} \int_{-k}^k |f(t)| \, dt < +\infty.
+$$
+
+<!--
+### Fonctions d'ordre exponentielle {.one .exercise #exp}
+Montrer que si $f: \left[0, +\infty\right[ \to \R$ satisfait $|f(t)| \leq M e^{at}$
+pour des constantes $M$ et $a$ réelles, alors
+$$
+\int_0^{+\infty} f(t) e^{-xt} \, dt
+$$
+est définie pour tout $x > a$.
+-->
+
 Ensembles mesurables
 ================================================================================
 
 Il existe un lien étroit entre la notion de longueur d'un ensemble de réels
 et le calcul intégral. Nous savons par exemple que pour tout intervalle 
-compact $E = [a, b]$, la longueur $b-a$ de l'intervalle peut être calculée
+fermé borné $E = [a, b]$, la longueur $b-a$ de l'intervalle peut être calculée
 par l'intégrale de la fonction caractéristique de $E$ :
 $$
 \ell(E) = \ell([a, b]):=  b - a  = \int_a^b \, dt = 
@@ -341,15 +371,10 @@ de $\R$ aussi général que possible[^loop] de $\R$ de prendre cette
 égalité comme une définition, ce qui suppose toutefois que la fonction 
 caractéristique soit intégrable ; on parle alors d'*ensemble intégrable*
 ou *de longueur finie*. 
-Cette définition laisse toutefois de coté les ensembles "trop grands" 
-pour être intégrables, mais par ailleurs parfaitement inoffensifs, 
+Cette définition laisse toutefois de côté les ensembles "trop grands" 
+pour être intégrables, mais par ailleurs parfaitement anodins, 
 comme $\R$ tout entier ou l'ensemble des réels positifs. 
 Nous préférons donc mettre l'accent sur la notion d'ensemble *mesurable* :
-
-<!--
-### TODO
-Insérer référence ens Vitali en annexe
--->
 
 [^loop]: Il existe des ensembles dont on ne peut pas définir raisonnablement
 la longueur, sauf à accepter un concept de longueur aux propriétés
@@ -357,20 +382,19 @@ très étranges. Cette situation ne résulte pas de la méthode de définition
 de la longueur par l'intégrale ; c'est au contraire une limitation intrinsèque
 de la théorie de la mesure que nous étudierons plus en détail par la suite.
 Malheureusement pour la didactique, il n'existe aucun exemple explicite 
-(élaboré par un procédé constructif) d'ensemble qui ne soit pas 
-mesurable (et c'est une chose que l'on peut prouver !).
+(élaboré par un procédé constructif) d'ensemble qui ne soit pas mesurable.
 On peut se consoler en apprenant que, du point de vue logique, 
 si l'on suppose que tous les ensembles sont
 mesurables -- ce qui peut sembler relativement anodin -- 
 on peut alors prouver des propositions beaucoup plus perturbantes,
-comme l'existence de partitions de $\R$ "strictement
-plus grandes" que $\R$ lui-même. 
+comme l'existence de partitions de $\R$ "contenant strictement plus d'éléments" 
+que $\R$ lui-même. 
 
 ### Ensemble mesurable {.definition}
 Un ensemble $E$ de $\R$ est *de longueur finie* si sa fonction 
 caractéristique $1_E$ est intégrable sur $\R$ ; 
 il est *mesurable* si sa fonction caractéristique est intégrable 
-sur tout intervalle compact $[a, b]$ de $\R$.
+sur tout intervalle fermé borné $[a, b]$ de $\R$.
 La (mesure de) *longueur* d'un ensemble $E$ mesurable est définie par
 $$
 \ell(E) := \int 1_E(t) \, dt
@@ -379,34 +403,38 @@ si $E$ est de longueur finie et
 $$
 \ell(E) := +\infty
 $$
-dans le cas contraire (si $E$ mesurable mais pas de longueur finie).
+dans le cas contraire (si $E$ est mesurable mais pas de longueur finie).
 
 ### Interprétation {.remark}
-Il faut comprendre le terme "mesurable" litéralement, 
+Il faut comprendre le terme "mesurable" littéralement, 
 comme signifiant "dont on peut définir la mesure (de longueur)", 
 qui est un nombre fini ou infini. 
 Cette interprétation  est cohérente, puisque tous les ensembles 
 $E$ de longueur finie 
 sont bien mesurables ;
 en effet si la fonction caractéristique $1_E$ est intégrable,
-sa restriction à tout intervalle compact $[a, b]$ également.
+sa restriction à tout intervalle fermé borné $[a, b]$ également.
 
-<!--
-### TODO:
+### Ensemble de longueur fini I {.exercise .question .one #elfI}
+Montrer que l'ensemble $E = \left[-1, 0\right[ \cup \left]0, 1\right]$ est
+de longueur finie et calculer sa longueur.
 
-intégrale de fct carac sur $[a, b]$ dominé par une borne finie commune,
-conclure que l'ensemble est de longueur finie?
+### Ensemble de longueur fini II {.exercise .question .one #elfII}
+Montrer que l'ensemble $\Q$ est de longueur finie et calculer sa longueur.
 
-### TODO en exercice
+### Ensemble de longueur fini III {.exercise .question .two #elfIII}
+Montrer que l'ensemble 
+$E = \cup_{k=0}^{+\infty} \left[k, k+2^{-k}\right[$ 
+est de longueur finie et calculer sa longueur.
 
-Structure de $\delta$-ring pour les ensembles intégrables ?
--->
+### La longueur est additive {.exercise .question .three #la}
+Montrer que la longueur $\ell$ est additive : si $A$ et $B$ sont deux
+ensembles mesurables de $\R$ disjoints, alors $A\cup B$ est mesurable
+et $\ell(A \cup B) = \ell(A) + \ell(B)$.
 
-### {.definition .post}
-Un ensemble est *dénombrable* s'il est fini ou bien en bijection avec 
-$\mathbb{N}$.
 
-### Propriétés élémentaires {.theorem #pptés-tribu}
+
+### Propriétés élémentaires (tribu) {.theorem #pptés-tribu}
 
  1. L'ensemble vide est mesurable.
 
@@ -415,28 +443,16 @@ $\mathbb{N}$.
  3. L'union d'une collection dénombrable d'ensembles mesurables
     est mesurable.
 
-### Complémentaire absolu et relatif {.notation .definition}
-Le complémentaire (absolu) d'un ensemble $A$, relativement au
-sur-ensemble $X=\R$ dans ce chapitre
--- mais le concept peut facilement être généralisé --
-désigne l'ensemble des points de $X$ qui ne sont pas dans $A$.
-Quand le choix de $X$ est clair dans le contexte, on pourra le noter
-$$
-A^c = \{x \in X \, | \, x \not \in A\}.
-$$
-Pour être plus explicite, on peut utiliser la notation du complémentaire 
-relatif : le complémentaire de $A$ dans $B$ est l'ensemble des points de 
-$B$ qui n'appartiennent pas à $A$ :
-$$
-B \setminus A = \{x \in B \, | \, x \not \in A\}.
-$$
-Cette notation ne suppose pas a priori que $A$ soit inclus dans $B$ ; 
-on a bien sûr
-$$
-A^c = X \setminus A.
-$$
+### {.remark}
+(On rappelle qu'un ensemble est *dénombrable* s'il est fini 
+ou en bijection avec $\N$.)
 
-### Démonstration des [propriétés élémentaires](#pptés-tribu) {.proof}
+### {.remark}
+On agrège cet ensemble de propriétés en disant que les ensembles mesurables 
+de $\R$ forment une *tribu* -- ou *$\sigma$-algèbre* -- de $\R$.
+
+
+### Démonstration {.proof}
  1. La fonction caractéristique $1_{\varnothing}$ est identiquement nulle ; 
     l'ensemble vide $\varnothing$ est donc de longueur finie et par conséquent 
     mesurable.
@@ -455,18 +471,20 @@ $$
     mesurables est mesurable ;
     il suffit d'établir que si $A$ et $B$ sont mesurables,
     alors leur union $A \cup B$ l'est également. 
-    Or, pour tout intervalle compact $[a, b]$, on a 
+    Or, pour tout intervalle fermé borné $[a, b]$, on a 
     $$
     (A \cup B) \cap [a, b]
     = (A \cap [a, b]) \cup (B \cap [a, b]),
     $$
     ce qui se traduit au moyen des fonctions caractéristiques par la relation
-    $$
-    1_{(A \cup B) \cap [a, b]}  = \max \left(1_{A \cap [a, b]}, 1_{B \cap [a, b]} \right).
-    $$
-    La fonction caractéristique de $(A \cup B) \cap [a, b]$ est donc intégrable
-    comme [maximum de deux fonctions positives intégrables (cf. annexe)](#max).
-    L'union $A \cup B$ est donc mesurable.
+    \begin{align*}
+    1_{(A \cup B) \cap [a, b]}  &= \max \left(1_{A \cap [a, b]}, 1_{B \cap [a, b]} \right) \\
+    &= 1_{A \cap [a, b]} + (1_{B \cap [a, b]} - 1_{A \cap [a, b]})_+
+    \end{align*}
+    où $x_+ := \max(x, 0)$. Comme $1_{B \cap [a, b]} - 1_{A \cap [a, b]}$
+    est intégrable et sa partie positive majorée par $2 \times 1_{[a, b]}$ qui est également
+    intégrable, sa partie positive est intégrable (cf. annexe "Calcul Intégral I").
+    La fonction caractéristique de $(A \cup B) \cap [a, b]$ est donc intégrable.
  
     Considérons désormais une suite d'ensembles mesurables
     $A_k$, pour $k \in \N$. 
@@ -476,7 +494,7 @@ $$
     jusqu'à l'ordre $k$
     --
     on peut supposer que $A_k \subset A_{k+1}$.
-    Pour tout intervalle compact $[a, b]$, 
+    Pour tout intervalle fermé borné $[a, b]$, 
     $$
     \left(\bigcup_{k=0}^{+\infty} A_k\right) \cap [a, b] = 
     \bigcup_{k=0}^{+\infty} \left(A_k \cap [a, b]\right);$$
@@ -495,15 +513,6 @@ $$
     est intégrable ; 
     cet ensemble est donc mesurable.
 
-<!--
-### Tribu {.definition .remark}
-Une collection de sous-ensembles contenant l'ensemble vide,
-stable par passage au complémentaire et par union dénombrable 
-est appelée *tribu* (ou *$\sigma$-algèbre*).
-Les ensembles mesurables dans $\R$ forment donc une tribu.
--->
-
-
 ### Intersection d'ensemble mesurables {.proposition #IEM}
 L'intersection d'une collection dénombrable d'ensembles mesurables est mesurable.
 
@@ -515,6 +524,19 @@ $$
 $$
 La conclusion quand $\mathcal{A}$ est dénombrable résulte alors 
 des [propriétés élémentaires des ensembles mesurables](#pptés-tribu).
+
+### Suite d'ensembles {.exercise .question .two #sde}
+Soit $A_k$, $k \in \N$, une suite d'ensembles mesurables de $\R$,
+$$
+B = \{x \in \R \;| \; \exists \, k_0 \in \N, \, \forall \, k \geq k_0, \, x \in A_k\}
+$$
+et
+$$
+C = \{x \in \R \; | \; \forall \, k_0 \in \N, \, \exists \, k \geq k_0, \, x \in A_k\}.
+$$
+Montrer que les ensembles $B$ et $C$ sont mesurables.
+
+
 
 ### Complémentaire relatif {.proposition #CR}
 Si les ensembles $A$ et $B$ sont mesurables, le complémentaire 
@@ -536,7 +558,7 @@ on peut se contenter de démontrer le résultat soit pour les ouverts
 soit pour les fermés ; la preuve s'avère plus simple dans le cas des ouverts.
 
 Tout intervalle ouvert $I$ est mesurable : en effet, 
-son intersection avec un intervalle compact $[a, b]$ 
+son intersection avec un intervalle fermé borné $[a, b]$ 
 est un intervalle inclus dans $[a, b]$.
 La fonction caractéristique associée est de la forme $1_{[c, d]}$,
 ou en diffère au plus en deux points ; 
@@ -544,7 +566,7 @@ dans tous les cas, elle est intégrable.
 
 Si maintenant $U$ est un ensemble ouvert, pour chaque point $x$ de $U$ 
 on peut construire le plus grand intervalle ouvert $I_x$ contenant $x$ et inclus
-dans $U$ (c'est l'union de tous les intervalles ouvert vérifiant ces
+dans $U$ (c'est l'union de tous les intervalles ouverts vérifiant ces
 deux propriétés). Pour un couple $x$ et $y$ dans $U$, soit $I_x = I_y$,
 soit $I_x$ et $I_y$ sont disjoints et l'union de tous les intervalles
 $I_x$ est égale à $U$. Comme dans chaque $I_x$ on peut choisir
@@ -555,8 +577,10 @@ qui sont tous mesurables, il est donc mesurable.
 
 [^pf]: le résultat correspondant est faux pour les intervalles fermés.
 
-### Ensembles négligeables {.theorem #négligeable-longueur-nulle}
+### Ni ouvert ni fermé {.exercise .question .one #nonf}
+Exhiber un ensemble mesurable $E$ de $\R$ qui ne soit ni ouvert ni fermé.
 
+### Ensembles négligeables {.theorem #négligeable-longueur-nulle}
 Un ensemble est de longueur nulle si et seulement s'il est négligeable.
 
 ### Démonstration {.proof}
@@ -575,11 +599,11 @@ $$
 \sum_i \ell(I_i) \leq \varepsilon.
 $$
 
-Supposons temporairement que $A$ soit inclus dans un intervalle compact 
+Supposons temporairement que $A$ soit inclus dans un intervalle fermé borné 
 $[a, b]$ de $\R$. 
 La fonction caractéristique $1_A$ de $A$ est intégrable, 
 donc pour tout $\varepsilon > 0$ il existe une jauge $\gamma$ sur
-$[a, b]$ telle que, si la subdivision pointée (totale ou partielle) <!--[^todo-hens]--> 
+$[a, b]$ telle que, si la subdivision pointée (totale ou partielle)
 $\mathcal{D} =\{(t_i, I_i)\}_i$ est
 subordonnée à $\gamma$, on a
 $$
@@ -590,7 +614,7 @@ S(1_A, \mathcal{D})
 \varepsilon.
 $$
 Pour conclure, nous allons construire une famille dénombrable $\{(t_i, I_i)\}_i$ 
-où les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement, 
+où les $I_i$ sont des intervalles fermés bornés de $[a, b]$ sans chevauchement, 
 tels que pour tout $i$, $t_i \in A$, $I_i \subset \gamma(t_i)$ et tels que la famille des
 $I_i$ recouvre $A$. Si cette construction est acquise et que $\mathcal{D}_k$
 désigne la collection des $\{(t_i, I_i)\}$ pour $0 \leq i \leq k-1$, alors c'est
@@ -607,26 +631,6 @@ $$
 \sum_{i=0}^{+\infty} \ell(I_i) \leq \varepsilon.
 $$
 
-
-<!--
-[^todo-hens]: cette formulation est intéressante. C'est un peu moins fort
-que le lemme de Henstock stricto sensu, mais ça peut peut-être suffire 
-à tous nos besoins: le lemme de Henstock permet de revisiter la définition
-d'intégrabilité (de façon équivalente) en rajoutant à la définition le
-qualificatif "(totale ou partielle)" à la subdivision (modulo aussi
-un mini-patch dans la formule inégalité ou l'on n'intègre plus nécessairement
-sur tout $[a, b]$, mais on somme sur les confettis ... Mmmm; on aurait
-peut-être intérêt à écrire ça comme
-$$
-\int_{\cup_i I_i} f(t) \, dt := \sum_i \int_{I_i} f(t) \, dt
-$$
-en définissant l'intégrale sur une union (finie) d'intervalles qui sont
-sans chevauchement).
-Et c'est un raccourci très intéressant pour la présentation orale.
-Il faudrait voir si ce "corollaire" du lemme de Henstock couvre l'ensemble
-des usage que l'on a en aval ...
--->
-
 Procédons à la construction de la collection de $(t_i, I_i)$,
 par dichotomie.
 S'il existe un 
@@ -638,10 +642,10 @@ et s'il existe un $t \in A \cap J$ tel que $J \subset \gamma(t)$,
 on inclut la paire $(t, J)$ dans la collection ; dans le cas contraire,
 on poursuit la dichotomie. Cette procédure définit par construction
 une famille dénombrable $\{(t_i, I_i)\}_i$ où $t_i \in A$ et 
-les $I_i$ sont des intervalles compacts de $[a, b]$ sans chevauchement 
+les $I_i$ sont des intervalles fermés bornés de $[a, b]$ sans chevauchement 
 tels que pour tout $t_i$, $I_i \subset \gamma(t_i)$. 
 De plus, les $I_i$ recouvrent $A$ : en effet si l'on considère $t \in A$,
-il existe nécessairement un entier $k$ tel que tout intervalle compact
+il existe nécessairement un entier $k$ tel que tout intervalle fermé borné
 $I$ de longueur inférieure ou égale à $(b-a)/2^k$ contenant $t$ 
 vérifie $I \subset \gamma(t)$.
 Par conséquent, $t$ appartient à l'un des intervalles inclus par le procédé
@@ -658,7 +662,7 @@ longueur est majorée par
 $\sum_{k=0}^{+\infty} \varepsilon/2^{k+1} = \varepsilon.$
 L'ensemble $A$ est donc négligeable.
 
-### Complétude de la longueur {.corollary}
+### Complétude de la longueur {.corollary #complétude}
 
 Un sous-ensemble d'un ensemble de longueur nulle est de longueur nulle.
 
@@ -680,41 +684,43 @@ c'est-à-dire s'il existe une suite de fonctions intégrables
 $f_k:\R \to \R$ telle que 
 pour tout $x\in \R$, 
 $f_k(x) \to f(x)$ quand $k \to +\infty$.
-Une fonction $f:\R \to \R^n$ est mesurable 
+Une fonction $f:\R \to \R^m$ est mesurable 
 si chacune de ses composantes est mesurable.
 
 ### Mesurabilité sur un intervalle {.remark}
 Nous nous limitons dans ce chapitre à l'étude des fonctions mesurables
 définies sur $\R$. La notion peut être très facilement étendue
-à une fonction $f$ définie sur un intervalle fermé $I$ de $\R$ de la
+à une fonction $f$ définie sur un intervalle $I$ de $\R$ de la
 façon suivante : on dira que $f$ est mesurable si son prolongement par $0$
 dans le complémentaire de $I$ est mesurable. Nous vous laissons le soin
 de généraliser en conséquence les énoncés qui vont suivre.
 
 ### Critère d'intégrabilité dominée {.theorem #CID}
 Une fonction $f: \R \to \R$ est intégrable si et seulement
-si $f$ est mesurable et il existe deux fonctions intégrables 
-$g: \R \to \R$ et $h: \R \to \R$ telles que
-$g \leq f \leq h$.
+si $f$ est mesurable et il existe une fonction intégrable
+$g: \R \to \left[0,+\infty\right[$ telle que $|f| \leq g$.
 
+### {.post}
+La démonstration de ce théorème, qui nécessite des résultats intermédiaires, 
+est donnée [à la fin de cette section](#proof-CID).
 
 ### Interprétation {.post .remark}
 Souvenons-nous qu'une fonction définie sur un intervalle fermé et borné 
 est intégrable au sens de Riemann si et seulement si elle est encadrée 
 par deux fonctions intégrables au sens de Riemann et continue presque partout.
 
-Dans le cas de l'intégrale de Riemann comme de Henstock-Kurzweil, 
+Dans le cas de l'intégrale de Riemann comme de Lebesgue, 
 l'intégrabilité est donc caractérisée par une structure analogue qui
 repose sur deux propriétés distinctes :
 être encadrée par deux fonctions intégrables (pour la notion d'intégrale
 considérée) et être "suffisamment régulière". 
 La différence est que dans le cas de l'intégrale de Riemann
 l'exigence de régularité est forte -- être continue presque partout --
-alors que dans le cas de l'intégrale de Henstock-Kurzweil, 
+alors que dans le cas de l'intégrale de Lebesgue, 
 la régularité demandée -- la mesurabilité -- s'avère être une 
 condition très peu contraignante[^note].
 
-[^note]: A tel point que s'il l'on peut prouver l'existence d'une fonction
+[^note]: À tel point que, si l'on peut prouver l'existence d'une fonction
 non-mesurable, sa "construction explicite" est impossible. Les fonctions
 non-mesurables font partie des objets "intangibles" (cf. @Sch96) dont
 l'existence est prédite par la théorie mais que l'on ne rencontre jamais 
@@ -727,7 +733,7 @@ leur définition :
 ### Les fonctions intégrables sont mesurables {.proposition}
 
 ### Démonstration {.proof}
-Si $f$ est une fonction mesurable, elle est la limite simple de la suite
+Si $f$ est une fonction intégrable, elle est la limite simple de la suite
 constante égale à $f$.
 
 ### Les fonctions mesurables forment un espace vectoriel  {.proposition}
@@ -740,54 +746,50 @@ Les fonctions $f_k + g_k$ et $\lambda f_k$ sont intégrables
 et convergent alors simplement vers $f+g$ et $\lambda f$ 
 respectivement.
 
-<!--
-### TODO ?
-
-Evoquer fct localement intégrable ? Quand on regarde la preuve ci-dessous,
-on n'utilise pas autre chose ...
--->
-
-### Les fonctions continues (presque partout) sont mesurables
+### Les fonctions continues presque partout sont mesurables {.proposition}
 
 ### Démonstration {.proof}
 
-Soit $f:\R \to \R$ une fonction continue presque
-partout. Pour tout entier $k$, la fonction $f_k$ égale à $f$ sur
-l'intervalle $[-k, k]$ et zéro en dehors de cet intervalle
-est intégrable (car Riemann-intégrable sur $[-k, k]$)
-et la suite des $f_k$ converge simplement vers $f$, 
-qui est donc mesurable. 
+Soit $f:\R \to \R$ une fonction continue presque partout. 
+Soit $k \in \N$ ; on note $\sigma_k:\R \to \R$ la fonction
+définie par
+$$
+\sigma_k(x)
+=
+\left|
+\begin{array}{rl}
+-k & \mbox{si $x \in \left]-\infty, -k\right]$,} \\
+x  & \mbox{si $x \in \left]-k, k\right[$,} \\
+k & \mbox{si $x \in \left[k, +\infty\right[$.} \\
+\end{array}
+\right.
+$$
+
+Comme $\sigma_k$ est continue et bornée, 
+la fonction $g_k : [-k, k] \to \R$ définie par 
+$$
+x \in [-k, k] \mapsto (\sigma_k \circ f)(x)
+$$
+est continue presque partout sur $[-k, k]$ et bornée.
+Par conséquent, elle est intégrable au sens de Riemann -- 
+et donc de Lebesgue -- sur $[-k, k]$. Son extension
+$f_k$ par zéro au reste de $\R$ est donc intégrable au sens de
+Lebesgue. De plus, la suite des $f_k$ converge simplement vers $f$ ;
+la fonction $f$ est donc mesurable. 
 
 ### Critère de l'image réciproque {.theorem #CIR}
-Une fonction $f:\R \to \R^n$ est mesurable si et seulement
-l'image réciproque de tout fermé (ou de tout ouvert) de $\R^n$
+Une fonction $f:\R \to \R^m$ est mesurable si et seulement
+l'image réciproque de tout fermé (ou de tout ouvert) de $\R^m$
 par $f$ est mesurable.
 
-### {.post .remark}
+### Fonctions continues {.exercise .question .one #fcm}
+Montrer en utilisant le critère de l'image réciproque que toute fonction
+continue est mesurable.
 
---------------------------------------------------------------------------------
+### Image réciproque d'un intervalle {.exercise .question .one #iri}
+Montrer que si $f: \R \to \R$ est mesurable, alors l'image réciproque d'un
+intervalle arbitraire par $f$ est mesurable.
 
-Ce critère ressemble beaucoup à la caractérisation abstraite des fonctions
-continues, qui exige que l'image de tout fermé (ou de tout ouvert)
-soit un fermé (ou un ouvert). Comme [tout fermé (et tout ouvert) est
-mesurable](#OSM), ce critère montre de façon particulièrement simple
-que toute fonction continue est mesurable.
-
-
-<!--
-**NOTA:** l'énonce ici est donné dans le cas des fonctions scalaires,
-mais on a rapidement besoin du cadre vectoriel (pour composer avec
-des opérateurs binaires), ce qui renforce encore l'attrait de la 
-formulation "abstraite" (qui "tient" dans le cas vectoriel, mais
-pas les autres). donc **TODO:** nettoyer, ne garder que le cas 3.,
-et rajouter le bout de démo qui finit la preuve dans le cas vectoriel
-(dans les deux sens).
-
-**TODO:** update: énoncé patché, adapter la preuve en fonction.
-
-**TODO:** remarque très rapidement sur la forme abstraite et lien avec la
-continuité.
--->
 
 ### {.ante}
 En se basant exclusivement sur ce critère de mesurabilité par 
@@ -826,20 +828,20 @@ alors
 $$
 f^{-1}(U) = (g^{-1}(U) \setminus E) \cup F
 $$
-où $E$ et $F$ sont négligeables (et donc mesurables puisque la mesure
-de Lebesgue est complète) ;
+où $E$ et $F$ sont négligeables et donc mesurables puisque 
+[la mesure de Lebesgue est complète](#complétude) ;
 par conséquent, $f^{-1}(U)$ est mesurable.
 
 ### Démonstration du [critère de l'image réciproque](#CIR) {.proof #pCIR}
 Il suffit de démontrer le critère pour les ensembles ouverts : 
 si une fonction satisfait le critère de d'image réciproque pour
-tout ouvert de $\R^n$, alors si $F$ est un fermé de $\R^n$, 
-en utilisant l'égalité $f^{-1}(F) = \R \setminus f^{-1}(\R^n \setminus F)$,
+tout ouvert de $\R^m$, alors si $F$ est un fermé de $\R^m$, 
+en utilisant l'égalité $f^{-1}(F) = \R \setminus f^{-1}(\R^m \setminus F)$,
 le fait que le complémentaire d'un fermé soit un ouvert et 
-que [le complémentaire d'un ensemble mesurable soit mesurable](#pptés-tribus),
+que [le complémentaire d'un ensemble mesurable soit mesurable](#pptés-tribu),
 on établit le critère pour les fermés.
 
-Montrons tout d'abord le résultat pour les fonctions scalaires ($n=1$).
+Montrons tout d'abord le résultat pour les fonctions scalaires ($m=1$).
 Supposons [le critère de l'image réciproque](#CIR) satisfait. 
 La démonstration repose sur la construction explicite d'une suite $f_k(x)$ 
 de fonctions intégrables qui soient étagées, c'est-à-dire ne prenant qu'un
@@ -874,8 +876,8 @@ où les $A_j = f_k^{-1}(y_j)$ sont en nombre fini et disjoints.
 A part $A_0$, les $A_j$ sont également bornés, 
 car $f_k$ est nulle en dehors de $[-k, k]$.
 Montrons qu'à tout rang $k$, les ensembles $A_j$ sont mesurables, 
-ce qui prouvera que chaque $f_k$ est intégrable par le critère d'intégrabilité
-dominé.
+ce qui prouvera que chaque $f_k$ est intégrable comme combinaison linéaire
+de fonctions intégrables.
 C'est évident au rang $0$ où 
 $\{y_j\} = \{0\}$ et la collection des $A_j$ se réduit à 
 $\{A_0\} = \{\R\}$.
@@ -901,7 +903,7 @@ $\{\dots, A_j, \dots, E, F\}$ et donc un ensemble mesurable. La fonction
 $f_{k+1}$ peut donc être mise sous la forme souhaitée.
 
 Réciproquement, considérons désormais une fonction intégrable $f:\R \to \R$.
-Par le [théorème de dérivation des intégrales indéterminées](#DII),
+Par le théorème de dérivation des intégrales indéterminées,
 si l'on définit la fonction $f_k(x)$ comme le taux d'accroissement
 $$
 f_k(x) :=  \frac{F(x + 2^{-k}) - F(x)}{2^{-k}}
@@ -915,12 +917,12 @@ c'est encore le cas des fonctions qui sont égales presque partout aux
 $f_k$ mais valent $0$ aux points ou les $f_k$ ne convergent pas,
 car [elles sont égales presque partout aux fonctions $f_k$](#FPPE).
 L'ensemble des fonctions satisfaisant le critère de l'image réciproque 
-étant [stable par passage à la limite](#SPM), 
+étant [stable par passage à la limite](#SPL), 
 [une fonction égale à $f$ presque partout satisfait le critère de l'image réciproque](#FPPE) ;
 la fonction intégrable $f$ satisfait donc 
 elle-même le critère de l'image réciproque.
 
-Finalement, une fonction mesurable étant limite simple
+Finalement, une fonction mesurable est une limite simple
 d'une suite de fonctions intégrables et les fonctions intégrables 
 vérifient le critère de l'image réciproque, 
 par une nouvelle application du résultat de 
@@ -928,14 +930,14 @@ par une nouvelle application du résultat de
 ce critère est également satisfait pour toute fonction mesurable.
 
 Pour établir le résultat dans le cas où $n>1$, il suffit de montrer qu'une
-fonction $f:\R \to \R^n$ satisfait le critère de l'image réciproque si et
+fonction $f:\R \to \R^m$ satisfait le critère de l'image réciproque si et
 seulement si toutes ses composantes le satisfont. Pour le sens direct,
 il suffit de constater que 
 $$
 f_k^{-1}(U) = f^{-1}(\R \times \cdots \times U \times \cdots \R)
 $$
 et que si $U$ est ouvert, $\R \times \cdots \times U \times \cdots \R$ également.
-Pour la réciproque, nous exploitons le fait[^demo] que tout ouvert de $\R^n$ peut être
+Pour la réciproque, nous exploitons le fait[^demo] que tout ouvert de $\R^m$ peut être
 décomposé comme l'union d'une collection dénombrable $\mathcal{P}$ 
 de pavés ouverts de la forme
 $$
@@ -949,31 +951,45 @@ et donc $f^{-1}(P)$ est mesurable.
 Comme $f^{-1}(U) = \cup_{P \in \mathcal{P}} f^{-1}(P)$ et que $\mathcal{P}$
 est dénombrable, l'image réciproque de $U$ par $f$ est bien mesurable.
 
-[^demo]: la démonstration est similaire à la décomposition d'un ouvert de
-$\R$ en une collection d'intervalle ouvert : pour chaque point $x$ de 
-$U \subset \R^n$ ouvert dont les coordonnées sont rationnelles, 
-on considère le plus grand pavé ouvert $P_x$ qui contienne $x$ ; 
+[^demo]: Pour chaque point $x$ de 
+$U \subset \R^m$ ouvert dont les coordonnées sont rationnelles, 
+on considère le plus grand pavé ouvert de la forme 
+$$\left]x_1-h, x_1+h\right[ \times \dots \times \left]x_m-h, x_m+h\right[,
+\; h > 0$$ 
+qui soit inclus dans $U$ ; 
 ces pavés forment une collection dénombrable et leur union 
 est égale à $U$ par construction.
 
+
+### Démonstration du critère d'intégrabilité dominée {.proof #proof-CID}
+Le sens direct est évident :
+si la fonction $f$ est intégrable, elle est mesurable et est dominée
+par la fonction $|f|$ qui est intégrable.
+
+Pour montrer la réciproque dans ce cas, nous approchons 
+la fonction mesurable $f$ par la suite de fonctions étagées $f_k$ 
+introduites dans [la démonstration du critère de l'image réciproque](#pCIR). 
+La fonction $f$ apparaît comme une limite simple des
+fonctions $f_k$, qui sont intégrables et dominées par la fonction intégrable $g$. 
+Par [le théorème de convergence dominée](#TCD), $f$ est intégrable.
+
 ### Composition par une fonction continue {.theorem #CFC}
 
-Soit $f:\R \to \R^n$ une fonction mesurable et 
-$g:\R^n \to \R^m$ une fonction continue.
+Soit $f:\R \to \R^m$ une fonction mesurable et 
+$g:\R^m \to \R^p$ une fonction continue.
 La composée $g \circ f$ de ces deux fonctions est mesurable.
 
 ### {.remark .post}
 Dans le cas d'une fonction $g: \R \to \R$, il suffit de supposer que
 $g$ soit continue par morceaux pour pouvoir conclure (cf. exercice
 ["Composition de fonctions et mesurabilité"](#cfm)).
-En général, les fonctions $g$ qui assurent que 
+(En général, les fonctions $g$ qui assurent que 
 $g \circ f$ soit mesurable pour toutes les fonctions mesurables
-$f$ sont appelées fonction *boréliennes* ; elles seront étudiées plus
-en détail par la suite.
+$f$ sont appelées fonctions *boréliennes*.).
 
 ### Démonstration {.proof}
-Si $F$ est un fermé de $\R^m$.
-Par continuité de $g$, l'ensemble $g^{-1}(F)$ est un fermé de $\R^n$ 
+Si $F$ est un fermé de $\R^p$,
+par continuité de $g$, l'ensemble $g^{-1}(F)$ est un fermé de $\R^m$ 
 et par conséquent, par [le critère de mesurabilité par les images réciproques](#CIR)
 $$
 (g\circ f)^{-1}(F) = f^{-1}(g^{-1}(F))
@@ -990,124 +1006,87 @@ Citons les deux instances les plus directement utiles.
 Le produit de deux fonctions scalaires mesurables est mesurable.
 
 ### Démonstration {.proof}
-
-Par continuité de l'application produit 
-$\times: \R \times \R \to \R$.
+Par continuité de l'application produit $\times: \R \times \R \to \R$.
 
 ### Mesurabilité de la valeur absolue {.corollary #abs}
-
 La valeur absolue d'une fonction scalaire mesurable est mesurable.
 
 ### Démonstration {.proof}
+Par continuité de l'application valeur absolue $|\, \cdot \,|: \R \to \R$.
 
-Par continuité de l'application valeur absolue
-$|\, \cdot \,|: \R \to \R$.
+### Intégrabilité du produit {.exercise .question .one #ip}
+Soient $f:\R \to \R$ et $g:\R \to \R$ deux
+fonctions mesurables dont les carrés sont intégrables. 
+Montrer que le produit $fg$ est intégrable.
 
-### Démonstration du critère d'intégrabilité dominée {.proof}
-Le sens direct est évident :
-si la fonction $f$ est intégrable, elle est mesurable et satisfait
-les inégalités $f \leq f \leq f$. 
+### Intégrabilité du maximum {.exercise .question .one #im}
+Soient $f:\R \to \R$ et $g:\R \to \R$ deux fonctions intégrables. 
+Montrer que la fonction $\max(f, g)$ est intégrable.
 
-Nous notons que pour établir la réciproque, il suffit de se limiter au cas
-où $g=0$. En effet si le résultat est établi dans ce cas précis, sous
-les hypothèses plus générales on a $0 \leq f - g \leq h -g$ où $f-g$
-est mesurable et $h - g$ est intégrable ; $f -g$ est alors intégrable,
-et donc $f$ est intégrable.
+### Fonction d'ordre exponentiel {.exercise .question .one #foe}
+Soit $f: \left[0, +\infty\right[ \to \R$ une fonction mesurable 
+pour laquelle il existe des constantes réelles $M$ et $\sigma$ telles que 
+$|f(t)| \leq M e^{\sigma t}$. Montrer que si $x \geq \sigma$ alors
+l'application $t \in \left[0, +\infty\right[ \mapsto f(t)e^{-xt}$ est intégrable.
 
-Pour montrer la réciproque dans ce cas, nous approchons 
-la fonction mesurable $f$ par la suite de fonctions étagées $f_k$ 
-définie par le procédé de [la démonstration du critère de l'image réciproque](#pCIR). 
-La fonction $f$ apparaît comme une limite simple des
-fonctions $f_k$, qui sont intégrables et
-encadrées par les fonctions intégrables $0$ et $h$. 
-Par le théorème de convergence dominée, $f$ est intégrable.
+### Ensemble mesurable {.proposition}
+Un sous-ensemble $E$ de $\R$ est mesurable si et seulement si sa fonction
+caractéristique $1_E$ est mesurable.
+
+### Démonstration {.proof}
+Si l'ensemble $E$ est mesurable, pour tout $k\in \N$, l'ensemble 
+$E_k := E \cap [-k,k]$
+est de longueur finie, c'est-à-dire que la fonction $1_{E_k}$ est intégrable.
+La fonction $1_{E}$ est donc mesurable car limite simple de fonctions 
+intégrables.
+
+Réciproquement, si une fonction caractéristique $1_E$ est mesurable, 
+par [le critère de l'image réciproque](#CIR), comme
+$E = 1_{E}^{-1}(\{1\})$ et que le singleton $\{1\}$ est fermé,
+$E$ est mesurable.
 
 
-Fonctions absolument intégrables
+### Intégrabilité sur un sous-ensemble {.definition}
+Une fonction $f: \R \to \R$ est dite *intégrable 
+sur un sous-ensemble $E$ de $\R$* si la fonction $f 1_E$ est intégrable. 
+On note alors
+$$
+\int_E f(t) \, dt := \int 1_E(t) f(t) \, dt.
+$$
+
+
+### {.remark .post}
+Cette définition est cohérente avec la définition existant déjà dans le cas
+où $E$ est un intervalle de $\R$ (cf. "Calcul Intégral I").
+
+### Restriction à des ensembles mesurables {.corollary}
+Une fonction $f:\R \to \R$ est intégrable
+si et seulement si $f$ est intégrable sur $E$
+pour tout ensemble mesurable $E$. 
+
+### Démonstration {.proof}
+Si $f$ est intégrable, elle est mesurable ; si l'ensemble
+$E$ est mesurable, sa fonction caractéristique $1_E$ est également
+mesurable, comme limite des $1_{E\cap[-k, k]}$ qui sont
+intégrables, et donc mesurables. 
+Par conséquent, le produit $f 1_E$ est mesurable, 
+comme sa valeur absolue $|f 1_E|$.
+Par ailleurs, comme $|1_E| \leq 1$, on a 
+$|f1_E| \leq |f|$.
+Par [le critère d'intégrabilité dominée](#CID), 
+$f 1_E$ est donc intégrable.
+
+Réciproquement, supposons $f 1_E$ intégrable pour tout ensemble mesurable 
+$E$. En prenant $E = \R$, on constate que $f$ est nécessairement intégrable.
+
+Annexe -- Intégrabilité conditionnelle
 ================================================================================
 
-### {.ante}
-Un grand nombre de résultats d'intégration 
--- dont [le critère d'intégrabilité dominée](#CID) -- 
-sont plus faciles à exploiter quand les fonctions
-que l'on considère sont intégrables ainsi que leur valeur absolue.
-
-### Fonction absolument/conditionnellement intégrable {.definition} 
-Une fonction $f:\R \to \R$ est *absolument intégrable*
-si $f$ et $|f|$ sont intégrables. 
-Si $f$ est intégrable mais pas $|f|$, 
-elle est *conditionnellement intégrable*.
-
-### {.post .remark .definition}
-Une intégrale (l'intégrale de Newton, Riemann, Henstock-Kurzweil, etc.)
-est dite *conditionnelle* si elle admet des fonctions
-conditionnellement intégrables ; dans le cas contraire -- si le fait que
-$f$ soit intégrable implique que $|f|$ le soit également, 
-elle est dite *absolue*.
-
-### Produit de fonctions absolument intégrable et bornée {.corollary}
-Si $f: \R \to \R$ est une fonction absolument intégrable 
-et $g: \R \to \R$ est une fonction mesurable et bornée,
-alors le produit $fg$ est (absolument) intégrable.
-
-### Preuve {.proof}
-Par hypothèse $f$ est intégrable donc mesurable ; $g$ étant mesurable,
-le produit $fg$ est mesurable. Par ailleurs, si $|g| \leq M$, on a
-$$
-- M |f| \leq f g \leq M |f|
-$$
-et comme les fonctions $-M|f|$ comme $M |f|$ sont intégrables, 
-par [le critère d'intégrabilité dominée](#CID), $fg$ est intégrable. 
-La valeur absolue $|fg|$ de $fg$ est mesurable
-et vérifie également $- M |f| \leq f g \leq M |f|$, 
-elle est donc également intégrable par le même critère.
-
-### Fonctions absolument intégrables {.theorem}
-L'ensemble des fonctions absolument intégrables 
-<!-- de $\R$ dans $\R$ --> est un espace vectoriel.
-
-### Démonstration {.proof}
-Si $f$ et $g$ sont absolument intégrables et $\lambda \in \R$,
-alors $\lambda f$ est mesurable et $\lambda f$ comme $|\lambda f|$
-sont encadrées par les fonctions intégrables $-|\lambda||f|$ et
-$|\lambda||f|$ ; $f$ est donc absolument intégrable par le critère
-d'intégrabilité dominée. La somme $f + g$ est également mesurable
-et $f+g$ comme $|f+g|$ sont encadrées par $-|f| - |g|$ et $|f| + |g|$ qui
-sont intégrables ; la somme est donc intégrable par le même critère.
-
-### Inégalité triangulaire {.theorem}
-Si $f: \R \to \R$ est absolument intégrable, alors
-$$
-\left|\int f(t)\, dt \right| 
-\leq 
-\int |f(t)| \,dt.
-$$
-
-### Démonstration {.proof}
-Les fonctions $f$ et $|f|$ étant intégrables, pour tout $\varepsilon > 0$,
-il existe une jauge commune $\gamma$ sur $\R$ telle que pour toute 
-subdivision pointée $\mathcal{D}$ de $\R$ qui soit subordonnée à $\gamma$, 
-on ait
-$$
-\left| S(f, \mathcal{D}) - \int f(t) \, dt \right| \leq \varepsilon/2
-\; \mbox{ et } \;
-\left| S(|f|, \mathcal{D}) - \int |f(t)| \, dt \right| \leq \varepsilon/2.
-$$
-Par l'inégalité triangulaire appliquée à la somme finie $S(f, \mathcal{D})$, on
-obtient donc
-$$
-\left|
-\int f(t) \, dt
-\right| 
-\leq |S(f, \mathcal{D})| + \varepsilon /2
-\leq S(|f|, \mathcal{D}) + \varepsilon /2
-\leq \int |f(t)| \, dt + \varepsilon,
-$$
-et en passant à la limite sur $\varepsilon$, l'inégalité cherchée.
-
-### Une fonction conditionnellement intégrable {.example}
-
-La fonction $f:[0, 1] \to \R$ définie par
+On utilise parfois le terme *conditionnellement intégrable* pour qualifier
+les fonctions qui intégrables au sens de Henstock-Kurzweil mais pas au sens
+de Lebesgue, car leur valeur absolue n'est pas intégrable. Nous fournissons
+dans cette section l'exemple d'une telle fonction, en démontrant que
+la fonction $f:[0, 1] \to \R$ définie par
 $$
 f(x) = \frac{1}{x} \cos \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, f(0) = 0
 $$
@@ -1115,8 +1094,9 @@ est conditionnellement intégrable.
 
 ![](images/f.py)\
 
-Pour montrer qu'elle est intégrable, 
-nous exploitons [le théorème fondamental du calcul](Calcul Intégral I.pdf/#TFC), 
+Pour montrer qu'elle est intégrable au sens de Henstock-Kurzweil, 
+nous exploitons la forme générale du théorème fondamental du calcul
+(cf "Calcul Intégral I"), 
 appliqué à la fonction $g:[0, 1] \to \R$ définie par 
 $$
 g(x) = -\frac{x^2}{2} \sin \frac{1}{x^2} \, \mbox{ si }\,  x > 0 \, \mbox{ et } \, g(0) = 0.
@@ -1131,28 +1111,18 @@ $$
 Par [le critère d'intégrabilité dominée](#CID), la fonction $h(x)$ égale à
 $x \sin (1/x^2)$ si $x>0$ et nulle en zéro est absolument intégrable
 car continue sur $[0, 1]$.
-<!--[^details]-->
-La fonction $g'$ étant également intégrable, $f = g' + h$ est intégrable comme
-somme de deux fonctions intégrables.
+La fonction $g'$ étant également intégrable au sens de Henstock-Kurzweil, 
+$f = g' + h$ est intégrable au sens de Henstock-Kurzweil comme
+somme de deux fonctions intégrables au sens de Henstock-Kurzweil.
 
 [^dn]: En effet,
 $$
 \left| \frac{g(h) - g(0)}{h} \right| \leq \frac{|h|}{2} \to 0 \, \mbox{ quand } \, h \to 0.
 $$
 
-<!--
-[^details]: La  fonction $h$ est mesurable comme limite des 
-suite des fonctions continues $h_k$ -- et donc intégrables -- définies par 
-$h_k(x) = 0$ si 
-$x \in [0, 1/\sqrt{2k\pi}]$ et $h_k(x) = h(x)$ sinon. De la même façon,
-$|h|$ est limite des fonctions intégrables $|h_k|$.
-Par ailleurs, $h$ comme $|h|$ sont encadrées par les deux fonctions intégrables
-$x\in [0,1] \mapsto -x$ et $x\in [0,1] \mapsto x$.
--->
-
-La fonction $f$ n'est pourtant pas absolument intégrable, 
-car $h$ est absolument intégrable mais pas $g'$.
-En effet, si c'était le cas, toute fonction absolument intégrable
+La fonction $f$ n'est pourtant pas intégrable au sens de Lebesgue, 
+car $h$ est intégrable au sens de Lebesgue mais pas $g'$.
+En effet, si c'était le cas, toute fonction intégrable au sens de Lebesgue
 dont la valeur absolue est majorée par $|g'|$ aurait par l'inégalité
 triangulaire son intégrale majorée par celle de $|g'|$. 
 Or nous allons exhiber une suite de telles fonctions dont l'intégrale
@@ -1176,6 +1146,7 @@ $$
 \beta_j = \frac{1}{\sqrt{2\pi(j - 1/4)}},
 $$
 
+
 L'idée sous-jacente est la suivante :
 les fonctions $\phi_k$ sont faites pour coïncider avec $g'$ dans les 
 plages de valeurs où $\cos 1/x^2$ est positif ; comme 
@@ -1183,10 +1154,12 @@ $g'(x) = - x \sin {1}/{x^2} + (1/x)\cos {1} / {x^2}$,
 et que pour $x$ petit, $1/x$ est grand devant $x$, cela correspond 
 approximativement aux plages où $g'(x)$ est positif.
 
-![...](images/g-prime.py)\
+![](images/g-prime.py)\
 
-Par construction, $\phi_k$ est continue par morceaux et donc absolument 
-intégrable, et bien telle que $|\phi_k| \leq |g'|$.
+
+
+Par construction, $\phi_k$ est continue par morceaux et donc 
+intégrable au sens de Lebesgue, et bien telle que $|\phi_k| \leq |g'|$.
 Par ailleurs,
 $$
 \begin{split}
@@ -1202,236 +1175,64 @@ Comme la série associée à cette équation est divergente,
 on peut rendre l'intégrale arbitrairement grande en choisissant
 un $k$ suffisamment grand, ce qui permet de conclure.
 
-### Intégrabilité sur un sous-ensemble {.definition}
-Une fonction $f: \R \to \R$ est dite *intégrable (resp. absolument intégrable) 
-sur un sous-ensemble $E$ de $\R$* si la fonction $f 1_E$ est intégrable
-(resp. absolument intégrable). On note alors
-$$
-\int_E f(x) \, dx = \int 1_E(x) f(x) \, dx.
-$$
-
-### {.remark .post}
-Cette définition est cohérente avec la définition existant déjà dans le cas
-où $E$ est un intervalle de $\R$ (cf. ["Extension à la droite réelle achevée"
-dans Calcul Intégral I](Calcul Intégral I.pdf/#EDRA)).
-
-### Restriction à des ensembles mesurables {.corollary}
-Une fonction $f:\R \to \R$ est absolument intégrable
-si et seulement si $f$ est (absolument) intégrable sur $E$
-pour tout ensemble mesurable $E$. 
-
-### Démonstration {.proof}
-Si $f$ est absolument intégrable, elle est mesurable ; si l'ensemble
-$E$ est mesurable, sa fonction caractéristique $1_E$ est également
-mesurable. Par conséquent, le produit $f 1_E$ est mesurable, 
-comme sa valeur absolue $|f 1_E|$.
-Par ailleurs, comme $|1_E| \leq 1$, on a 
-$-|f| \leq f1_E \leq |f|$ et donc $-|f| \leq |f1_E| \leq |f|$.
-Par [le critère d'intégrabilité dominée](#CID), 
-$f 1_E$ est (absolument) intégrable.
-
-Réciproquement, supposons $f 1_E$ intégrable pour tout ensemble mesurable 
-$E$. En prenant $E = \R$, on constate que $f$ est intégrable,
-et donc mesurable.
-Notons $E_+ = \{x \in \R \, | \, f(x) \geq 0 \}$ et 
-$E_- = \{x \in \R \, | \, f(x) \leq 0 \}$ ; ces deux ensembles sont
-mesurables [comme images réciproques de fermés par une fonction mesurable](#CIR).
-La fonction $|f|$ satisfaisant
-$$
-|f| = 1_{E_+} f - 1_{E_-} f,
-$$
-elle est intégrable comme somme de fonctions intégrables.
-La fonction $f$ est donc absolument intégrable.
-
-
-Annexes
-================================================================================
-
-<!-- suppression temporaire, cf <https://github.com/boisgera/CDIS/issues/29>
-
-Ensembles non mesurables
---------------------------------------------------------------------------------
-
-L'ensemble $\R / \Q$ 
--- la droite des réels quotientée par l'ensemble des rationnels -- 
-désigne une partition de $\R$ construite de la façon suivante:
-les éléments $A$ de $\R / \Q$ sont de la forme
-$$
-A = \{r + q \, | \, q \in \Q \}, \; r \in \R.
-$$
-Par exemple, l'ensemble $A$ associée à $r=0$ est $\Q$ ; c'est le même que
-celui associé à $1/2$ ou $1$ car la différence entre ces valeurs est 
-rationnelle. Tout élément $A$ de $\R / \Q$ est d'intersection non vide avec
-$[0, 1]$. Nous avons donc une famille d'ensembles non vides indexées par
-$A \in \R / \Q$ définie par
-$$
-A \in \R / \Q \mapsto A \cap [0, 1].
-$$
-L'axiome du choix nous garantit donc l'existence d'une fonction de choix
-$f$ définie sur $\R / \Q$ telle que pour tout $A \in \R / \Q$,
-$f(A) \in A \cap [0, 1]$. On appelle alors *ensemble de Vitali* l'ensemble
-$$
-V := \{f(A) \, | \, A \in \R / \Q \}.
-$$
-(sa définition dépend de la fonction de choix considérée).
-
-### Existence d'un ensemble non-mesurable 
-Tout ensemble de Vitali est non-mesurable.
-
-### TODO -- Démonstration {.proof}
-
--->
-
-Maximum de fonctions intégrables
---------------------------------------------------------------------------------
-
-### Maximum de fonctions intégrables et positives {.lemma #max}
-Si les fonctions $f: \R \to \left[0, +\infty\right[$ et $g: \R \to \left[0, +\infty\right[$ 
-sont intégrables, la fonction $\max(f, g)$ est également intégrable.
-
-### Démonstration {.proof}
-Pour simplifier le problème, on remarque tout d'abord que 
-$$\max(f, g) = f + \max(g - f, 0) = f + (g-f)_+$$ 
-où $x _+ = \max(x, 0)$ désigne la partie positive de $x$.
-Par linéarité, la fonction $g-f$ est intégrable et 
-$(g-f)_+ \leq g + f$ ; la fonction $g+f$ est également intégrable.
-Pour démontrer le lemme, il nous suffit donc de prouver que 
-toute fonction intégrable dont la partie positive est dominée
-par une fonction intégrable est de partie positive intégrable.
-
-Soit $f$ une telle fonction et $g$ une fonction intégrable telle que 
-$f_+ \leq g$. Nous allons montrer que
-$$
-\int f_+(t) \, dt 
-= S :=
-\sup_{\mathcal{D}} 
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-$$
-où le supremum est calculé sur toutes les subdivisions pointées de $\R$.
-Tout d'abord, ce supremum est fini ; en effet pour toute subdivision
-$\mathcal{D}$, on a
-$$
-\begin{split}
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-&\leq
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I g(t) \, dt\right)_{\!\!+} \\
-&=
-\sum_{(t, I) \in \mathcal{D}} \int_I g(t) \, dt \\
-&=
-\int g(t) \, dt.
-\end{split}
-$$
-Soit $\varepsilon > 0$ et $\mathcal{D}_{0}$ une subdivision pointée
-de $\R$ telle que
-$$
-S - \frac{\varepsilon}{2} 
-\leq \sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
-\leq S.
-$$
-Soit $\lambda$ une jauge sur $\R$ assurant une précision $\varepsilon/2$
-dans l'estimation de l'intégrale de $f$ par les sommes de Riemann.
-Soit $\nu$ une jauge sur $\R$ telle que si $(t, [a, b]) \in \mathcal{D}_0$
-et $t \in \left]a,b\right[$ alors $\nu(t) \subset \left]a,b\right[$ ;
-on note $\gamma$ la jauge définie par $\gamma(t) = \lambda(t) \cap \nu(t)$.
-Si $\mathcal{D}$ est subordonnée à $\gamma$, quitte à découper des intervalles
-en deux si $(t, I) \subset \mathcal{D}$ et $t$ appartient à la frontière
-d'un intervalle composant $\mathcal{D}_0$ -- ce qui ne change pas la somme
-de Riemann associée -- les éléments $(t, J) \in \mathcal{D}$ tels que
-$J \subset I$, où $(x, I) \subset \mathcal{D}_0$ forment une subdivision
-pointée de $I$. Par conséquent, comme 
-$$
-\left( \int_I f(t) \, dt\right)_{\!\!+} 
-=
-\left( \sum_{(t, J) \in \mathcal{D}, J \subset I}\int_J f(t) \, dt\right)_{\!\!+} 
-\leq 
-\sum_{(t, J) \in \mathcal{D}, J \subset I} \left(\int_J f(t) \, dt\right)_{\!\!+} 
-$$
-et donc
-$$
-S - \frac{\varepsilon}{2} \leq 
-\sum_{(t, I) \in \mathcal{D}_0} \left( \int_I f(t) \, dt\right)_{\!\!+} 
-\leq 
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-\leq S, 
-$$
-on obtient
-$$
-\left|
-\sum_{(t, I) \in \mathcal{D}} \left( \int_I f(t) \, dt\right)_{\!\!+}
-- S \right| \leq \frac{\varepsilon}{2}.
-$$
-Par ailleurs, si l'on considère la subdivision (partielle) pointée 
-$\mathcal{D}_+$ extraite de $\mathcal{D}$ composée des paires
-$(t, I) \in \mathcal{D}$ et telles que
-$$
-f(t) \ell(I) \geq \int_I f(x) \, dx,
-$$
-alors le [lemme de Henstock](Calcul Intégral I.pdf/#henstock-lemma) fournit
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-\left( f(t) \ell(I) - \int_I f(x) \, dx \right)_{\!\!+}
-\leq \frac{\varepsilon}{2}.
-$$
-Comme $(x+y)_+ \leq x_+ + y_+$, on en déduit
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-f_+(t) \ell(I) - 
-\sum_{(t, I) \in \mathcal{D}} 
-\left(\int_I f(x) \, dx \right)_{\!\!+}
-\leq \frac{\varepsilon}{2}.
-$$
-De façon similaire, en raisonnant sur la subdivision partielle complémentaire
-à $\mathcal{D}_+$ dans $\mathcal{D}$, on peut montrer que
-$$
-\sum_{(t, I) \in \mathcal{D}} 
-\left(\int_I f(x) \, dx \right)_{\!\!+} - 
-\sum_{(t, I) \in \mathcal{D}} 
-f_+(t) \ell(I)
-\leq \frac{\varepsilon}{2}.
-$$
-On obtient donc au final
-$$
-\left|
-\sum_{(t, I) \in \mathcal{D}} f_+(t) \ell(I) 
-- 
-S
-\right| 
-\leq 
-\frac{\varepsilon}{2};
-$$
-la fonction $f_+$ est donc intégrable, d'intégrale égale à $S$.
-
-Dérivabilité des intégrales indéterminées
---------------------------------------------------------------------------------
-
-### Une intégrale indéterminée est dérivable presque partout {.theorem #DII}
-Soit $I$ un intervalle fermé de $\R$, 
-$f: I \to \R$ une fonction intégrable et un point 
-$a$ de $I$.
-La dérivée de la fonction
-$$
-F: x\in I \mapsto \int_a^x f(t) \, dt
-$$
-existe et est égale à $f$ presque partout.
-
-### Démonstration {.proof}
-Voir [@Swa01, pp. 135-136].
 
 Exercices
 ================================================================================
 
-Théorème de convergence dominée {.question #exo-TCD}
+Intégrale de Gauss
 --------------------------------------------------------------------------------
 
+Source : @Swa01
+
+On s'intéresse à la valeur de l'intégrale
+$$
+I := \int_0^{+\infty} e^{-t^2} \, dt.
+$$
+On pose 
+$$
+g(x) := \int_0^x e^{-t^2} \, dt
+\; \mbox{ et } \;
+F(x) := \int_0^1 \frac{e^{-x(1+t^2)}}{1+t^2} \, dt.
+$$
+
+### Question 1 {.question .two #exp-m2-1}
+Montrer que $F$ est continue sur $\left[0, +\infty\right[$.
+Calculer $F(0)$ et $\lim_{x \to +\infty} F(x)$.
+
+### Question 2 {.question .two #exp-m2-2}
+Montrons que la fonction $F$ est dérivable sur $\left]0, +\infty\right[$
+et que
+$$
+F'(x) 
+= -\frac{e^{-x}}{\sqrt{x}} g(\sqrt{x}).
+$$
+
+### Question 3 {.question .three #exp-m2-3}
+Evaluer de deux façons différentes
+$$
+\lim_{\varepsilon \to 0^+} F(\varepsilon^{-1}) - F(\varepsilon)
+$$
+et en conclure que
+$$
+I =\frac{\sqrt{\pi}}{{2}}.
+$$
+
+
+
+Théorème de convergence dominée
+--------------------------------------------------------------------------------
+
+### Question 1  {.question .three #exo-TCD}
 Montrer que la conclusion [du théorème de convergence dominée](#TCD)
 est toujours valide si les fonctions $f_k$ ne satisfont 
 les hypothèses de convergence et d'encadrement que presque partout.
 
-Ensembles de longueur finie {.question #lf}
+Ensembles de longueur finie
 --------------------------------------------------------------------------------
 
+### Question 1 {.question .one #lf}
 Soit $A$ un ensemble mesurable de $\R$ pour lequel il existe une
-constante $L$ (finie) telle que pour tout intervalle compact
+constante $L$ (finie) telle que pour tout intervalle fermé borné
 $[a, b]$, on ait
 $$
 \int_a^b 1_A(t) \, dt \leq L.
@@ -1447,21 +1248,21 @@ si tout point $x$ de $\R$, il existe un $\varepsilon > 0$
 et un intervalle $[x+\varepsilon, x+\varepsilon]$ 
 où la fonction $f$ soit intégrable.
 
-### Question 0 {.question #il-0}
+### Question 0 {.question .three #il-0}
 Montrer que $f$ est localement intégrable si et seulement si
-pour tout intervalle compact $[a, b]$ de $\R$, $f$ est intégrable
+pour tout intervalle fermé borné $[a, b]$ de $\R$, $f$ est intégrable
 sur $[a, b]$.
 
-### Question 1  {.question #il-1}
+### Question 1  {.question .one #il-1}
 Montrer que toute fonction localement intégrable est mesurable.
 
-### Question 2  {.question #il-2}
+### Question 2  {.question .two #il-2}
 La réciproque est-elle vraie ?
  
 Fonctions mesurables 
 --------------------------------------------------------------------------------
 
-### Question 1 {.question #fm-1}
+### Question 1 {.question .four #fm-1}
 Montrer qu'une fonction $f: \R \to \R$ est mesurable si et
 seulement si pour tout nombre réel $a$, l'ensemble
 $$
@@ -1469,12 +1270,14 @@ f^{-1}(\left]-\infty, a\right]) = \{x \in \R \, | \, f(x) \leq a\}
 $$
 est mesurable.
 
-### Question 2 {.question #fm-2}
+### Question 2 {.question .two #fm-2}
 En déduire qu'une fonction croissante $f: \R \to \R$ est intégrable 
-sur tout intervalle compact.
+sur tout intervalle fermé borné.
 
-Composition de fonctions et mesurabilité {.question #cfm}
+Composition de fonctions et mesurabilité 
 --------------------------------------------------------------------------------
+
+### Question 1 {.question .three #cfm}
 Montrer que si la fonction $f:\R \to \R$ est mesurable et que la
 fonction $g: \R \to \R$ est continue par morceaux, 
 alors la fonction composée $g \circ f$ est mesurable.
@@ -1483,27 +1286,22 @@ Composition par une fonction lipschitzienne
 --------------------------------------------------------------------------------
 
 Soit $f:[0,1] \to \R$ et $g:\R \to \R$.
-On suppose que $g$ est nulle en $0$ et lipschitzienne, 
+On suppose que $g$ et lipschitzienne, 
 c'est-à-dire qu'il existe un $K\geq0$ tel que pour toute paire de réels 
 $x$ et $y$  on ait
 $|g(x) - g(y)| \leq K |x - y|$.
 
-### Question 1 {.question #cfl-1}
+### Question 1 {.question .one #cfl-1}
 Si $f$ est mesurable est-ce que $g \circ f$ est mesurable ?
 
+<!--
 ### Question 2 {.question #cfl-2}
 Si $f$ est intégrable, est-ce que $g \circ f$ est intégrable ?
+-->
 
-### Question 3 {.question #cfl-3}
-Si $f$ est absolument intégrable, est-ce que $g \circ f$ est 
-  absolument intégrable ?
-
-Caractérisation des ensembles mesurables {.question #cer}
---------------------------------------------------------------------------------
-
-Montrer qu'un ensemble $E \subset \R$ est mesurable si et seulement si
-sa fonction caractéristique $1_E$ est mesurable.
-
+### Question 2 {.question .one #cfl-2}
+Si $f$ est intégrable, est-ce que $g \circ f$ est 
+intégrable ?
 
 Formule de la moyenne 
 --------------------------------------------------------------------------------
@@ -1521,14 +1319,14 @@ I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
 z_{\alpha, r} = c + r (\cos \alpha, \sin \alpha).
 $$
 
-### Question 1 {.question #fmoy-1}
+### Question 1 {.question .one #fmoy-1}
 Que vaut $I(0)$ ?
 
-### Question 2 {.question #fmoy-2}
+### Question 2 {.question .three #fmoy-2}
 Montrer que l'application $r \in [0, R] \mapsto I(r)$ est dérivable et
 calculer $I'(r)$ pour tout $r \in [0, R]$.
 
-### Question 3 {.question #fmoy-3}
+### Question 3 {.question .three #fmoy-3}
 On suppose désormais que $f$ vérifie les conditions de Cauchy-Riemann
 en tout point $(x, y)$ de $U$, c'est-à-dire que
     $$
@@ -1538,39 +1336,389 @@ en tout point $(x, y)$ de $U$, c'est-à-dire que
     Simplifier l'expression de $I'(r)$ et conclure.
     Indication: on pourra évaluer $\partial_{\alpha} (f(z_{\alpha, r}))$.
 
-<!--
-Mesurabilité de $\|f\|$
---------------------------------------------------------------------------------
-
-**TODO**
--->
-
-Intégrabilité du produit {.question #ip}
---------------------------------------------------------------------------------
-
-Soient $f:\R \to \R$ et $g:\R \to \R$ deux
-fonctions mesurables dont les carrés sont intégrables. 
-Montrer que le produit $fg$ est (absolument) intégrable.
-
-Intégrabilité du maximum {.question #im}
---------------------------------------------------------------------------------
-
-Soient $f:\R \to \R$ et $g:\R \to \R$ deux fonctions absolument intégrables. 
-Montrer que la fonction $\max(f, g)$ est (absolument) intégrable.
 
 Solutions
 ================================================================================
 
-Théorème de convergence dominée {.answer #answer-exo-TCD}
+Exercices essentiels
 --------------------------------------------------------------------------------
 
+
+### Défaut de domination {.answer #answer-dd}
+On établit sans difficultés que pour tout $k \in \N$,
+$$
+\int f_k(t)\, dt = \int_k^{k+1} dt = 1, 
+$$
+et donc
+$$
+\lim_{k \to +\infty} \int f_k(t) \, dt  =1.
+$$
+D'autre part, pour tout $t \in \R$, on a $f_k(t) = 0$ si $k > t$, donc
+$f_k(t) \to 0$ quand $k \to + \infty$ ; par conséquent,
+$$
+\int \lim_{k \to +\infty} f_k(t) \, dt = 0.
+$$
+L'intégrale de la limite des $f_k$ diffère donc de la limite des intégrales
+des $f_k$. Cela ne contredit pas  [le théorème de convergence
+dominée](#TCD) puisque nous n'avons pas exhibé de fonction intégrable dominant
+les $f_k$ ; en l'occurence, une fonction $g$ dominant toutes les $f_k$
+vérifie nécessairement $1 \leq g(t)$ pour tout $t \geq 0$, or aucune 
+fonction de ce type n'est intégrable. 
+
+### Intégrale fonction d'un paramètre {.answer #answer-ifp}
+Au préalable, on note que l'application $\arctan$ est continue et donc 
+intégrable sur $[0, 1]$ ; le théorème fondamental du calcul nous garantit
+donc l'intégrabilité de sa primitive $t \in [0, 1] \mapsto 1/(1+t^2)$ 
+et nous fournit la valeur de son intégrale :
+$$
+\int_0^1 \frac{dt}{1+t^2}
+=
+\int_0^1 \arctan'(t) \, dt
+=
+\arctan(1) - \arctan(0) = \frac{\pi}{4} - 0 = \frac{\pi}{4}.
+$$
+De plus, pour tout $x \geq 0$ et tout $t\in [0, 1]$, on a
+$|e^{-xt}| \leq 1$ ; 
+pour toute suite de réels strictement positifs $x_k$ tendant vers $0$, on a donc
+$$
+\lim_{k\to +\infty} \frac{e^{-x_kt}}{1+t^2} = \frac{1}{1+t^2}  \mbox{ et } \;
+\left| \frac{e^{-x_kt}}{1+t^2} \right| \leq 
+ \frac{1}{1+t^2}.
+$$
+Si l'on introduit des prolongements des fonctions considérées 
+par zéro en dehors de $[0, 1]$,
+[le théorème de convergence dominée](#TCD) nous fournit donc
+$$
+\lim_{x \to 0^+} \int_0^1 \frac{e^{-xt}}{1+t^2} \, dt = 
+\int_0^1 \frac{dt}{1+t^2} = \frac{\pi}{4}.
+$$
+
+
+### Théorème fondamental du calcul {.answer #answer-TCD}
+Soit $[a_k, b_k]$ une suite d'intervalles fermés bornés de $\R$ tels
+que $[a_k, b_k] \subset [a, b]$ et tels que $a_k \to a$ et $b_k \to b$ quand
+$k \to +\infty.$ 
+Pour tout $k \in \N$, la fonction $g_k$ définie par
+$$
+g_k(t) = \left| 
+\begin{array}{rl}
+f'(t) & \mbox{si $t \in [a_k, b_k]$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+est intégrable car $f'|_{[a_k, b_k]}$ est intégrable par restriction ; 
+la suite des $g_k$ est dominée par la fonction valant $|f'|$ sur 
+$\left]a, b\right[$ et $0$ en dehors, fonction qui est intégrable par 
+additivité. De plus la suite des $g_k$ converge simplement vers la
+fonction égale à $f'$ sur $\left]a, b\right[$ et nulle en dehors.
+Appliquer le théorème fondamental du calcul à 
+$f'|_{[a_k, b_k]}$ donne par ailleurs
+$$
+\int_{-\infty}^{+\infty} g_k(t) \, dt = \int_{a_k}^{b_k} f'(t) \, dt = f(b_k) - f(a_k).
+$$
+Par application [du théorème de convergence dominée](#TCD), on obtient donc
+$$
+\int_a^b f'(t) \, dt = \int g(t)\, dt = \lim_{k \to +\infty}  \int g_k(t) \, dt,
+$$
+donc
+$$
+\int_a^b f'(t) \, dt  = \lim_{k\to+\infty} f(b_k) - f(a_k)
+=f(b) - f(a).
+$$ 
+
+### Fonctions puissance  {.answer #answer-power}
+Pour tout $x \in \left[1, +\infty\right[$, si $\alpha \neq {-1}$, 
+on a
+$$
+\int_1^x t^{\alpha} \, dt = \left[\frac{t^{\alpha+1}}{\alpha + 1} \right]_1^x
+=\frac{x^{\alpha+1}}{\alpha + 1} - \frac{1}{\alpha + 1},
+$$
+et pour $\alpha = -1$,
+$$
+\int_1^x t^{-1} \, dt = [\ln t]_1^x =\ln x.
+$$
+Si nous définissons les fonctions $f_k :\R \to \R$ pour $k \geq 1$ par
+$$
+f_k(t) = \left|
+\begin{array}{rl}
+t^{\alpha} & \mbox{si $t \in [1, k]$,} \\
+0 & \mbox{sinon.}
+\end{array}
+\right.
+$$
+alors
+$$
+\lim_{k \to +\infty} \int f_k(t) \, dt = \lim_{k \to +\infty} \int_1^k t^{\alpha} \, dt,
+$$
+donc cette limite est finie si et seulement si $\alpha < -1$.
+Comme la suite des fonctions $f_k$ est croissante et converge simplement
+vers la fonction égale à $t \mapsto t^{\alpha}$ sur $\left[1, +\infty \right[$
+et nulle ailleurs, nous en déduisons par [le théorème de convergence monotone](#TCM)
+que la fonction $t \in \left[1, +\infty\right[ \mapsto t^{\alpha}$ est intégrable
+si et seulement si $\alpha < -1$. Le cas de la fonction puissance sur 
+l'intervalle $\left]0,1\right]$ peut être analysé de façon similaire, 
+ou bien en pratiquant le changement de variable $t \mapsto 1/t$ pour se
+ramener à l'intervalle que nous avons déjà étudié.
+
+### Intégrabilité et intégrales impropres {.answer #answer-iii}
+Si une fonction $f: \R \to \R$ est intégrable sur tout intervalle fermé
+borné de $\R$, alors la suite $|f_k|: \R \to \R$ des restrictions de $|f|$ à 
+$[-k, k]$ prolongées par zéro à $\R$ est croissante, composée de fonctions 
+intégrables, et sa limite est la fonction $|f|$. 
+Par [le théorème de convergence monotone](#TCM), on a donc
+$$
+\lim_{k \to +\infty} \int_{k}^k |f(t)| \, dt = \int  |f(t)| \, dt
+$$
+si la limite du membre de gauche est finie. La fonction $|f|$ est alors 
+intégrable ; elle domine les fonctions $f_k$ qui convergent simplement vers
+$f$, donc $f$ est également intégrable par [le théorème de convergence dominée](#TCD).
+
+Réciproquement, si 
+$$
+\lim_{k \to +\infty} \int_{-k}^k |f(t)| \, dt = +\infty,
+$$
+[le théorème de convergence monotone](#TCM) prouve que la
+fonction $|f|$ n'est pas intégrable et donc que $f$ n'est pas intégrable.
+
+
+### Ensemble de longueur fini I {.answer #answer-elfI}
+La fonction caractéristique $1_E$ est égale presque partout à la fonction
+$1_{[-1, 1]}$ qui est intégrable et satisfait
+$$
+\int 1_{[-1, 1]}(t) \, dt = \int_{-1}^1 \, dt  =2.
+$$
+L'ensemble $E$ est donc de longueur finie égale à $2$.
+
+### Ensemble de longueur fini II {.answer #answer-elfII}
+La fonction caractéristique $1_{\Q}$ est nulle presque partout puisque
+$\Q$ est dénombrable. Elle est donc intégrable d'intégral nulle ; l'ensemble
+des rationnels $\Q$ est donc de longueur nulle.
+
+### Ensemble de longueur fini III {.answer #answer-elfIII}
+La fonction caractéristique $f = 1_E$ est la limite de la suite croissante de
+fonctions $f_j = 1_{\cup_{k=0}^j \left[k, k+2^{-k} \right[}$.
+Comme par linéarité de l'intégrale on a 
+$$
+\int f_j(t) \, dt = \sum_{k=0}^j \int 1_{\left[k, k+2^{-k} \right[}(1) \, dt
+= \sum_{k=0}^j \int_k^{k+2^{-k}} \, dt
+= \sum_{k=0}^j 2^{-k} = 2 - 2^{-j},
+$$ 
+par [le théorème de convergence monotone](#TCM), la fonction $1_E$ est intégrable
+et
+$$
+\ell(E) = \int 1_E(t) \, dt = 2.
+$$
+
+
+### La longueur est additive {.answer #answer-la}
+Si $A$ et $B$ sont deux ensembles de $\R$ disjoints et de longueur finie, 
+alors $1_{A\cup B} = 1_A + 1_B$ donc $A\cup B$ est de longueur finie
+par linéarité de l'intégrale et 
+$$
+\ell(A \cup B) = \int 1_{A \cup B}(t) \, dt =
+\int 1_A(t) \, dt + \int 1_B(t) \, dt =
+\ell(A) + \ell(B).
+$$
+Si $A$ et $B$ sont mesurables et disjoints, alors sur tout intervalle fermé
+borné $[a, b]$ de $\R$, comme 
+$$
+1_{(A \cup B) \cap [a, b]} = 1_{A \cap [a, b]} + 1_{B \cap [a, b]},
+$$
+$A \cup B$ est mesurable. Si l'un des ensembles $A$ et $B$ au moins
+a une longueur infinie, disons $A$ par exemple, 
+alors par [le théorème de convergence monotone](#TCM), on a 
+$$
+\int_{-k}^k 1_A(t) \, dt \to +\infty \; \mbox{ quand } \; k \to +\infty.
+$$
+Par conséquent,
+$$
+\int_{-k}^k 1_A(t) \, dt \leq \int_{-k}^k 1_{A \cup B}(t) \, dt \to +\infty \; \mbox{ quand } \; k \to +\infty
+$$
+et donc dans ce cas aussi on a donc $\ell(A \cup B) = \ell(A) + \ell(B)$.
+
+### Suite d'ensembles {.answer #answer-sde}
+Il suffit de réaliser que d'après leur définition,
+$$
+B = \bigcup_{k_0=0}^{+\infty} \bigcap_{k=k_0}^{+\infty} A_k
+\; \mbox{ et } \;
+C = \bigcap_{k_0=0}^{+\infty} \bigcup_{k=k_0}^{+\infty} A_k
+$$
+puis d'invoquer la stabilité des ensembles mesurables 
+[par union dénombrable](#pptés-tribu) et [intersection dénombrable](#IEM).
+
+### Ni ouvert ni fermé {.answer #answer-nonf}
+L'ensemble $E= \left[0, 1\right[$ n'est ni ouvert ni fermé : $0$ est un point
+frontière qui appartient à $E$ donc $E$ n'est pas ouvert et $1$ est un point
+frontière de $E$ qui n'appartient pas à $E$ donc $E$ n'est pas fermé.
+Mais $E = [0, 1] \setminus \{0\}$ donc l'ensemble est le complémentaire
+d'un ensemble fermé dans un autre ensemble fermé ; or [les ensembles fermés
+sont mesurables](#OSM) et [le complémentaire relatif de deux ensembles mesurables
+est mesurable](#CR), donc $E$ est mesurable.
+
+### Fonctions continues {.answer #answer-fcm}
+L'image réciproque de tout fermé par une application continue $f:\R \to \R^m$ 
+est fermé. Comme [tout fermé est mesurable](#OSM), 
+[le critère de l'image réciproque](#CIR)
+prouve qu'une telle fonction continue est mesurable.
+
+### Image réciproque d'un intervalle {.answer #answer-iri}
+Tout intervalle de $\R$ peut être décomposé comme l'union (disjointe)
+d'un ouvert $U$ et d'un ensemble fermé $F$ (composé de 0, 1 ou 2 points) ;
+comme [ensembles ouverts ou fermés sont mesurables](#OSM), 
+il est donc mesurable et [son image réciproque par $f$ est donc mesurable](#CIR).
+
+
+### Intégrabilité du produit {.answer #answer-ip}
+Les produits $fg$ est mesurable comme [produit de fonctions mesurables](#prod) ;
+[la fonction $|fg|$ est donc également mesurable](#abs).
+De plus, pour tout $x \in \R$, comme $(|f(x)| + |g(x)|)^2 \geq 0,$
+$$
+|fg|(x) \leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
+$$
+Par le [critère d'intégrabilité dominée](#CID), 
+$fg$ est donc intégrable.
+
+### Intégrabilité du maximum {.answer #answer-im}
+Les fonctions $f$ et $g$ étant intégrables, elles sont mesurables.
+Par [composition avec une fonction continue](#CFC), 
+$\max(f, g)$ est également mesurable.
+
+De plus, on a $|\max(f, g)| \leq |f| + |g|$. 
+La fonction $|\max(f, g)|$ est donc dominée par une fonction intégrable ; 
+par le [critère d'intégrabilité dominée](#CID), $\max(f, g)$ est donc intégrable.
+
+### Fonction d'ordre exponentiel {.answer #answer-foe}
+La fonction $t \in \left[0, +\infty\right[ \mapsto f(t)e^{-xt}$ est mesurable
+comme produit de fonctions mesurables. De plus, 
+$$
+|f(t)e^{-xt}| \leq M e^{-\varepsilon t} \; \mbox{ avec } \; \varepsilon = x - \sigma > 0,
+$$
+La fonction $t \mapsto M e^{-\varepsilon t}$ étant intégrable 
+(intégrer la fonction sur un intervalle borné, puis passer à la limite par le
+[le théorème de convergence monotone](#TCM)), la fonction
+$t \in \left[0, +\infty\right[ \mapsto f(t)e^{-xt}$ est intégrable par
+[le critère d'intégrabilité dominée](#CID).
+
+
+Intégrale de Gauss
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-exp-m2-1}
+
+$$
+F(x) = \int_0^1 \frac{e^{-x(1+t^2)}}{1+t^2} \, dt
+$$
+
+$$
+F(0)= \int_0^1 \frac{dt}{1+t^2}  =[\arctan]^1_0 = \frac{\pi}{4}.
+$$
+
+La fonction $F$ est continue sur $\left[0, +\infty\right[$. En effet, si 
+$x_0 \in \left[0, +\infty\right[$, alors 
+$$
+\frac{e^{-x(1+t^2)}}{1+t^2} \to \frac{e^{-x_0(1+t^2)}}{1+t^2}
+\; \mbox{ quand } \, x \to x_0.
+$$
+De plus pour tout $x \in \left[0, +\infty\right[$,
+$$
+\left|\frac{e^{-x(1+t^2)}}{1+t^2}\right| 
+\leq 
+\frac{1}{1+t^2}
+$$
+Le second membre de cette équation étant intégrable (il est intégrable sur
+tout intervalle fermé borné et 
+décroit quand $t\to +\infty$ comme $1/t^2$), par [le théorème de 
+convergence dominée](#TCD),
+$$
+F(x) \to F(x_0) \; \mbox{ quand } \; x \to x_0.
+$$
+De plus, toujours par le théorème de convergence dominée
+(avec la même domination), on obtient
+$$
+\lim_{x \to +\infty} F(x) =  \int_0^1 \lim_{x \to +\infty} \frac{e^{-x(1+t^2)}}{1+t^2}\, dt =
+\int_0^1 0 \, dt =0.
+$$
+
+### Question 2 {.answer #answer-exp-m2-2}
+Montrons que la fonction $F$ est dérivable sur $\left]0, +\infty\right[$.
+Soit $\varepsilon > 0$ ; la fonction
+$$
+x \in \left]\varepsilon ,+\infty\right[ \mapsto \frac{e^{-x(1+t^2)}}{1+t^2}
+$$
+est dérivable en tout $x$, de dérivée égale à
+$-e^{-x(1+t^2)}$, qui est dominée par $e^{-\varepsilon/(1+t^2)}$.
+La fonction $t \in [0, 1] \mapsto e^{-\varepsilon/(1+t^2)}$ est intégrable car
+continue. Par [le théorème de dérivation sous le signe somme](#DSS), on a
+donc
+$$
+F'(x) = -\int_0^1 e^{-x(1+t^2)} \, dt 
+$$
+quand $x > \varepsilon$ et donc quand $x > 0$ puisque $\varepsilon > 0$ est 
+arbitraire.
+Avec $g : \left[0, +\infty\right[ \mapsto \R$ définie par
+$$
+g(x) = \int_0^x e^{-t^2} \, dt,
+$$
+pour tout $x > 0$, on a donc
+$$
+F'(x) = -\int_0^1 e^{-x} e^{-x t^2} \, dt
+= -e^{-x} \int_0^1  e^{-x t^2} \, dt,
+$$
+soit avec le changement de variable $u = \sqrt{x} t$, 
+$$
+F'(x) 
+= -\frac{e^{-x}}{\sqrt{x}} \int_0^{\sqrt{x}}  e^{-u^2} \, du
+= -\frac{e^{-x}}{\sqrt{x}} g(\sqrt{x}).
+$$
+
+### Question 3 {.answer #answer-exp-m2-3}
+On a d'une part par le théorème fondamental du calcul et les résultats de la
+question 1
+$$
+\int_{\varepsilon}^{\varepsilon^{-1}} F'(x) \, dx
+= F(\varepsilon^{-1}) - F(\varepsilon) \to - \frac{\pi}{4}
+\; \mbox{ quand }  \; \varepsilon \to 0^+,
+$$
+et d'autre part avec l'expression de la question 2 de $F'$ et le changement
+de variable $x=\sqrt{t}$, on obtient
+\begin{align*}
+\int_{\varepsilon}^{\varepsilon^{-1}} F'(x) \, dx
+&= - \int_{\varepsilon}^{\varepsilon^{-1}} \frac{e^{-x}}{\sqrt{x}} g(\sqrt{x}) \, dx \\
+&= - 2 \int_{\varepsilon}^{\varepsilon^{-1}} e^{-\sqrt{x}^2}g(\sqrt{x}) \, \frac{dx}{2\sqrt{x}} \\
+&=- 2 \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} {e^{-u^2}} g(u) \, du \\
+&= - \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} 2g'(u) g(u) \, du \\
+&= - \int_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} ((g(u))^2)' \, du \\
+&= - \left[(g(u))^2\right]_{\sqrt{\varepsilon}}^{1/\sqrt{\varepsilon}} \\
+&= -\left(g\left(1/\sqrt{\varepsilon}\right)\right)^2 + \left(g\left(\sqrt{\varepsilon}\right)\right)^2
+\end{align*}
+et donc
+$$
+\int_{\varepsilon}^{\varepsilon^{-1}} F'(x) \, dx
+\to -  \left(\int_0^{+\infty} e^{-t^2} \, dt \right)^2
+\; \mbox{ quand }  \; \varepsilon \to 0^+.
+$$
+On conclut finalement que 
+$$
+\int_0^{+\infty} e^{-t^2} \, dt = \sqrt{\frac{\pi}{4}} = \frac{\sqrt{\pi}}{{2}}.
+$$
+
+
+
+Théorème de convergence dominée
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-exo-TCD}
 Imaginons que les fonctions mesurables $f_k$ convergent vers la fonction
 $f$ sur $\R \setminus A$ où $A$ est négligeable, et satisfont 
 $g \leq f_k \leq h$ sur l'ensemble $\R \setminus B_k$ où $B_k$ est
 négligeable.
 
-Alors l'ensemble $C := A \cup (\cup_{k=1}^{+\infty} B_k)$ est négligeable. 
-En effet, $A$ et chaque $B_k$ [est négligeable donc mesurable et de longueur nulle](#négligeable-longueur-nulle) ;
+Alors l'ensemble $C := A \cup (\cup_{k=1}^{+\infty} B_k)$ est négligeable,
+comme on l'a montré dans l'exercice "Union d'ensembles négligeables" du
+chapitre précédent.
+On peut aussi s'en convaincre avec le calcul intégral :
+$A$ et les $B_k$ [sont négligeables, donc mesurables et de longueur nulle](#négligeable-longueur-nulle) ;
 la suite des $C_j := A \cup (\cup_{k=1}^{j} B_k)$ est composée d'ensemble mesurables,
 croissante et comme
 $$
@@ -1585,14 +1733,15 @@ Par [le théorème de convergence monotone](#TCM),
 $$
 \ell(C) = \int 1_{C}(x) \,dx = \lim_{j\to +\infty} \int 1_{C_j}(x) \,dx = 0.
 $$
+<!--
 Alternativement, il suffit de recouvrir $A$ puis chaque $B_k$ par des intervalles
 sont la somme de longueurs soit inférieure à $\varepsilon/2$, puis $\varepsilon/2^{k+2}$.
 La collection de l'intégralité de ces intervalle est dénombrable, recouvre
 l'ensemble $C$, et la somme des longueurs des intervalles est inférieure à 
 $$
 \frac{\varepsilon}{2} + \sum_{k=0}^{+\infty} \frac{\varepsilon}{2^{k+1}} = \varepsilon.
-$$
-L'ensemble $C$ est donc négligeable.
+$$-->
+L'ensemble $C$ [est de longueur nulle et donc négligeable](#négligeable-longueur-nulle).
 
 Sachant que $C$ est négligeable, c'est-à-dire mesurable et de longueur nulle,
 il suffit alors de rédéfinir chaque fonction $f_k$, $f$, $g$ et $h$ pour leur
@@ -1600,11 +1749,12 @@ assigner la valeur $0$ en tout $x \in C$ ; cette opération ne change pas leur
 caractère mesurable ou intégrable, ni la valeur des intégrales associées.
 Et les nouvelles fonctions satisfont partout les hypothèses de convergence
 et d'encadrement du [théorème de convergence dominée](#TCD). On peut donc
-conclure sous les hypothèse plus faibles considérées dans cet exercice.
+conclure sous les hypothèses plus faibles considérées dans cet exercice.
 
-Ensembles de longueur finie {.answer #answer-lf}
+Ensembles de longueur finie 
 --------------------------------------------------------------------------------
 
+### Question 1 {.answer #answer-lf}
 La suite des fonctions $f_k:\R \to \R$ définie par 
 $$
 f_k(t) = \left|
@@ -1627,7 +1777,7 @@ $$
 \leq 
 L < +\infty. 
 $$
-Le théorème de convergence monotone nous garantit l'intégrabilité de
+[Le théorème de convergence monotone](#TCM) nous garantit l'intégrabilité de
 $1_A$ -- c'est-à-dire le fait que $A$ est de longueur finie -- et 
 fournit
 $$
@@ -1640,7 +1790,7 @@ Intégrabilité locale
 --------------------------------------------------------------------------------
 
 ### Question 0 {.answer #answer-il-0}
-De toute évidence, si $f$ est intégrable sur tout intervalle compact,
+De toute évidence, si $f$ est intégrable sur tout intervalle fermé borné,
 elle est intégrable sur tous les intervalles de la forme 
 $[x - \varepsilon, x+\varepsilon]$.
 
@@ -1652,8 +1802,8 @@ qu'elle n'est pas intégrable sur $[a, (a+b)/2]$ ou sur $[(a+b)/2, b]$
 construit ainsi une suite d'intervalles fermés emboités $[a_k, b_k]$,
 indexés par l'entier $k$, avec $[a_0, b_0] = [a, b]$, 
 de longueur $(b-a)/2^k$ où la fonction $f$ n'est pas intégrable.
-Par compacité de $[a, b]$, 
-il existe un (unique) point $x$ appartenant à tous ces intervalles fermés ;
+La suite des points centraux $(a_k+b_k)/2$ étant de Cauchy, elle a une limite
+$x$ appartenant à tous ces intervalles fermés ;
 pour $k$ assez grand, on a $I_k \subset [x -\varepsilon, x+\varepsilon]$.
 Par restriction, $f$ devrait donc être intégrable sur $I_k$, d'où une
 contradiction ; $f$ est donc intégrable sur $[a, b]$.
@@ -1687,17 +1837,7 @@ f_k(x) =
 $$
 Mais elle n'est intégrable sur $[-\varepsilon, \varepsilon]$ 
 pour aucun $\varepsilon > 0$. 
-En effet, si elle l'était, on pourrait appliquer 
-[le théorème de convergence dominée](#DCT) aux fonctions
-$0 \leq f_k 1_{[-\varepsilon, \varepsilon]} 
-\leq f 1_{[-\varepsilon, \varepsilon]}$
-et conclure que
-$$
-\int_{-\varepsilon}^{\varepsilon} f(x) \, dx 
-= 
-\lim_{k \to +\infty} \int_{-\varepsilon}^{\varepsilon} f_k(x) \, dx
-$$
-Or, quand $2^{-k} \leq \varepsilon$, on a
+En effet, quand $2^{-k} \leq \varepsilon$, on a
 $$
 \begin{split}
 \int_{-\varepsilon}^{\varepsilon} f_k(x) \, dx 
@@ -1706,8 +1846,9 @@ $$
 &= (2^k - 1/\varepsilon) + (2^k - 1/\varepsilon) = 2^{k+1} - 2/\varepsilon.
 \end{split}
 $$
-Cette grandeur tendant vers $+\infty$ quand $k \to +\infty$, on aurait une
-contradiction. La fonction $f$ n'est donc pas intégrable.
+Cette grandeur tendant vers $+\infty$ quand $k \to +\infty$, 
+[le théorème de convergence monotone](#TCM) nous garantit que
+la fonction $f$ n'est pas intégrable sur $[-\varepsilon, \varepsilon]$.
 
 Fonction mesurables
 --------------------------------------------------------------------------------
@@ -1719,9 +1860,8 @@ comme tous les ensembles $\left]-\infty, a\right]$ sont fermés,
 le critère de l'énoncé est bien vérifié pour toute fonction mesurable.
 
 Montrons désormais la réciproque. Supposons le critère de l'énoncé vérifié et 
-soit $U$ un ouvert de $\R$; l'ensemble $U$ peut être décomposé comme
-union d'un nombre dénombrables d'intervalles ouverts bornés $I_k$
-de $\R$.
+soit $U$ un ouvert de $\R$ ; l'ensemble $U$ peut être décomposé comme
+union dénombrable d'intervalles ouverts bornés $I_k$ de $\R$.
 Par conséquent, comme
 $$
 f^{-1}(U) = f^{-1} \left(\cup_k I_k \right) = \bigcup_{k} f^{-1}(I_k),
@@ -1751,33 +1891,37 @@ pour la mesurabilité de $f$ est donc bien vérifié.
 ### Question 2 {.answer #answer-fm-2}
 Si la fonction $f: \R \to \R$ est croissante, les images réciproques
 des ensembles de la forme $\left]-\infty,a \right]$ sont des intervalles.
-En effet, si $f(x) \leq a$ et $f(y) \leq a$, pour tout point intermédiaire
-$x \leq z \leq y$, $f(z) \leq a$. Par conséquent, $f$ est mesurable.
+En effet, si $f(x) \leq a$ et $f(y) \leq a$ et $x \leq y$, 
+pour tout point intermédiaire $x \leq z \leq y$, $f(z) \leq a$. 
+Par conséquent, $f$ est mesurable.
 
-De plus, $f$ étant croissante, pour tout intervalle compact $[a, b]$ et tout
+De plus, $f$ étant croissante, pour tout intervalle fermé borné $[a, b]$ et tout
 $x \in [a, b]$, on a $f(a) \leq f(x) \leq f(b)$.
 Par le [critère d'intégrabilité dominée](#CID), $f$ est intégrable sur
 $[a, b]$.
 
 
-Composition de fonctions et mesurabilité {.answer #answer-cfm}
+Composition de fonctions et mesurabilité 
 --------------------------------------------------------------------------------
 
-Soient $a_0 \leq a_1 \leq \dots \leq a_k$ des nombres réels 
+### Question 1 {.answer #answer-cfm}
+Soient $\dots \leq a_{-k} \leq \dots \leq a_{-1} \leq a_0 \leq a_1 \leq \dots \leq a_k$ des nombres réels 
 tels que la fonction $g$ soit continue sur
 chaque intervalle ouvert $\left]a_j, a_{j+1} \right[$. Soit $U$ un ouvert
-de $\R$ ; alors pour tout $j \in \{0,\dots,k-1\}$ si $g_j$ désigné la
-restriction de $g$ à $\left]a_j, a_{j+1} \right[$, par continuité de $g_j$, 
+de $\R$ ; alors pour tout $j$, 
+si $g_j$ désigne la restriction de $g$ à $\left]a_j, a_{j+1} \right[$, 
+par continuité de $g_j$, 
 l'image réciproque $V_j = g_j^{-1}(U)$ est ouverte dans $\left]a_j, a_{j+1} \right[$
 et donc dans $\R$. L'image réciproque de $U$ par $g$ est donc la réunion $V$
 de ces ouverts, c'est-à-dire un ouvert, 
-et éventuellement d'un sous-ensemble $F$ (nécessairement fini, donc fermé) 
-de $\{a_0, \dots, a_k\}$.
+et éventuellement d'un sous-ensemble $N$ 
+des $\{a_k\}$ qui est nécessairement dénombrable, 
+donc mesurable (et de longueur nulle).
 
 L'image réciproque de $U$ par $g\circ f$ est donc l'image réciproque de 
-$V \cap F$ par $f$. La fonction $f$ étant mesurables, $f^{-1}(V)$ et
-$f^{-1}(F)$ sont mesurables, 
-ainsi que $f^{-1}(V \cap F) = f^{-1}(V) \cap f^{-1}(F)$.
+$V \cup N$ par $f$. La fonction $f$ étant mesurable, $f^{-1}(V)$ et
+$f^{-1}(N)$ sont mesurables, 
+ainsi que $f^{-1}(V \cup N) = f^{-1}(V) \cup f^{-1}(N)$.
 La fonction composée $g \circ f$ est donc mesurable.
 
 
@@ -1789,14 +1933,16 @@ Oui, car toute fonction lipschitzienne est continue ;
 $g \circ f$ est donc mesurable 
 comme [composée d'une fonction mesurable et d'une fonction continue](#CFC).
 
+<!--
 ### Question 2 {.answer #answer-cfl-2}
 Pas nécessairement; si $f$ est une fonction conditionnellement
 intégrable sur $[0,1]$, la fonction $|f|$ n'est pas intégrable ; 
 or, l'application $t \mapsto |t|$ est lipschitzienne (avec $K=1$).
+-->
 
-### Question 3 {.answer #answer-cfl-3}
-Oui. D'une part, $f$ étant absolument intégrable, elle est mesurable et
-donc par la question 1., la composée $g \circ f$ est mesurable.
+### Question 2 {.answer #answer-cfl-2}
+Oui. D'une part, $f$ étant  intégrable, elle est mesurable et
+donc par la question 1, la composée $g \circ f$ est mesurable.
 D'autre part, pour tout $x \in [0,1]$, on a
 $$
 |g \circ f(x) - g \circ f(0)| \leq K |f(x) - f(0)|
@@ -1805,43 +1951,9 @@ et donc
 $$
 |g \circ f(x)| \leq K |f(x)| + (K |f(0)| + |g \circ f(0)|)
 $$
-Le membre de droite de cette inégalité est une fonction (absolument)
-intégrable sur $[0, 1]$, donc par le critère d'intégrabilité dominée,
-la fonction $g \circ f$ est (absolument) intégrable.
-
-Caractérisation des ensembles mesurables {.answer #answer-cer}
---------------------------------------------------------------------------------
-
-Si l'ensemble $E$ est mesurable, pour tout $k\in \N$, l'ensemble 
-$E_k := E \cap [-k,k]$
-est intégrable, c'est-à-dire que la fonction $1_{E_k}$ est intégrable.
-La fonction $1_{E}$ est donc mesurable car limite simple de fonctions intégrables.
-
-Réciproquement, si une fonction caratéristique $1_E$ est mesurable, 
-par [le critère de l'image réciproque](#CIR), comme
-$E = 1_{E}^{-1}(\{1\})$ et que le singleton $\{1\}$ est fermé,
-$E$ est mesurable.
-
-Alternativement, si $1_E$ est une limite simple de fonctions intégrables
-$f_k$ et $\sigma:\R \to \R$ est la fonction définie par
-$$
-\sigma(x) = \left|
-\begin{array}{cl}
-0 & \mbox{si } x \leq 1/2, \\
-1 & \mbox{si } x > 1/2, 
-\end{array}
-\right.
-$$
-alors les fonctions $g_k = \sigma \circ f_k$ sont à valeurs dans $\{0,1\}$, 
-convergent simplement vers $1_E$ et de plus sont mesurables: en effet si $F$
-est un fermé de $\R$, $\sigma^{-1}(F)$ est un ouvert ou un 
-fermé de $\R$ (4 possibilités uniquement, que l'on peut énumérer, selon
-que $F$ contienne ou non $0$ et $1$), et donc $g_k^{-1} (F) = f_k^{-1} (\sigma^{-1}(F))$
-est un ensemble mesurable.   
-Par conséquent, pour tout intervalle compact $[a, b]$ de $\R$, 
-$1_{E \cap [a, b]}$ est la limite simple des fonctions mesurables 
-$g_k 1_{[a, b]}$, qui sont dominées par $1_{[a, b]}$ et donc intégrable.
-L'ensemble $E$ est donc mesurable.
+Le membre de droite de cette inégalité est une fonction
+intégrable sur $[0, 1]$, donc par [le critère d'intégrabilité dominée](#CID),
+la fonction $g \circ f$ est intégrable.
 
 Formule de la moyenne
 --------------------------------------------------------------------------------
@@ -1887,7 +1999,7 @@ $$
 où le sup du membre de droite est bien fini puisque 
 $dg_{\alpha}(r)/dr$
 est une fonction continue du couple $(\alpha, r)$ qui appartient 
-à l'ensemble compact $[0, 2\pi] \times [0, R]$.
+à l'ensemble fermé borné $[0, 2\pi] \times [0, R]$.
 Par conséquent, 
 pour toute suite $h_k$ tendant vers $0$ et 
 telle que $r+h_k \in [0, R]$, la suite des
@@ -1900,7 +2012,7 @@ $$
 + \partial_y f (z_{r, \alpha}) \sin \alpha
 $$
 et chacune des composantes de ce vecteur de $\R^2$ 
-est bornée par la fonction absolument intégrable (constante)
+est bornée par la fonction intégrable (constante)
 $$
 \alpha \in [0, 2\pi] \mapsto \sup_{r \in [0, R]} \left\| \frac{d}{dr} g_{\alpha}(r) \right\|.
 $$
@@ -1990,34 +2102,6 @@ I(r) = \frac{1}{2\pi}\int_0^{2\pi} f(z_{\alpha, r}) \, d\alpha
 = I(0) = f(c).
 $$
 
-Intégrabilité du produit {.answer #answer-ip}
---------------------------------------------------------------------------------
-
-Les produits $fg$ est mesurable comme [produit de fonctions mesurables](#prod) ;
-[la fonction $|fg|$ est donc également mesurable](#abs).
-De plus, pour tout $x \in \R$, comme $(|f(x)| + |g(x)|)^2 \geq 0,$
-$$
-0 \leq |fg|(x) \leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
-$$
-et donc
-$$
-- \frac{1}{2} f(x)^2 - \frac{1}{2} g(x)^2
-\leq fg(x)
-\leq \frac{1}{2} f(x)^2 + \frac{1}{2} g(x)^2.
-$$
-Par le [critère d'intégrabilité dominée](#CID), 
-$fg$ et $|fg|$ sont donc intégrables.
-
-Intégrabilité du maximum {.answer #answer-im}
---------------------------------------------------------------------------------
-
-Les fonctions $f$ et $g$ étant absolument intégrables, elles sont mesurables.
-Par [composition avec une fonctions continue](#CFC), 
-$\max(f, g)$ est également mesurable.
-
-De plus, on a $-|f|-|g| \leq |\max(f, g)| \leq |f| + |g|$. 
-Les fonctions $\max(f, g)$ et sa valeur absolue sont donc encadrées
-par deux fonctions intégrables ; $\max(f, g)$ est donc absolument intégrable.
 
 Références
 ================================================================================

@@ -13,7 +13,7 @@ from matplotlib.pyplot import *
 # ------------------------------------------------------------------------------
 rc = {
     "text.usetex": True,
-    "pgf.preamble": [r"\usepackage{amsmath,amsfonts,amssymb}"], 
+    "pgf.preamble": r"\usepackage{amsmath,amsfonts,amssymb}", 
     "font.family": "serif",
     #"font.serif": [],      # use latex default serif font
     #"font.sans-serif": [], # use a specific sans-serif font
@@ -65,7 +65,8 @@ def fd_value():
     plot([h[0], h[-1]],[1.0, 1.0], "k--", label=r"$[\exp'(0)]$",alpha=1.0) 
     plot(h, 2**(-52) / h, "k:", label=r"$[\varepsilon/h]$")
     legend()
-    set_ratio(sqrt(3.0), bottom=0.1, top=0.1)
+    set_ratio(sqrt(3.0), bottom=0.15, top=0.1)
+    xlabel("$h$")
     title(r"Graphe de $h \mapsto \mathrm{FD}(\exp, 0, h)$")
     save()
 
