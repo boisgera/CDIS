@@ -497,7 +497,7 @@ Dans ce cadre, on peut définir les notions suivantes :
 On dira que la loi de vie satisfait la propriété de non vieillissement (ou d'absence de mémoire) si la loi de survie et la loi de vie sont égales :
         $$\forall t \geq 0 \text{ et } \forall t_0 \geq 0, G_{t_0}(t) = G(t)$$
 
-### Question 1 {.question #vie1}
+### Question 1 {.question #viemort1}
 
 Exprimer la loi de survie à partir de la loi de vie a priori.
 
