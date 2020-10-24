@@ -353,7 +353,7 @@ est bien solution. Vu qu'elle diverge au temps $t_0+\frac{1}{x_0}$, elle ne peut
 
 ![Solutions à $\dot{x} = x^2$ pour $t_0=0$ et différentes valeurs de $x_0$](images/explosion_temps_fini.py){#fig_explo_temps_fini}
 
-En fait, le théorème suivant montre que les solutions maximales sont définies sur un intervalle ouvert,  et cet intervalle ne peut être borné seulement si $t\mapsto x(t)$ diverge en temps fini ou $t\mapsto(t,x(t))$ tend vers la frontière de l'ensemble de définition $J\times X$ de $f$. 
+En fait, le théorème suivant montre que les solutions maximales sont définies sur un intervalle ouvert,  et cet intervalle n'est borné que si $t\mapsto x(t)$ diverge en temps fini ou $t\mapsto(t,x(t))$ tend vers la frontière de l'ensemble de définition $J\times X$ de $f$ en temps fini. 
 <!--la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $J\times X$ au bout d'un certain temps. Dans le cas usuel où $J\times X=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $\left[0,\tmax\right[$ avec $\tmax<+\infty$, explose en temps fini, c'est-à-dire
 $$
 \lim_{t\to \tmax} \|x(t)\|=+\infty \ ,
@@ -383,7 +383,9 @@ $$
 $$
 
 ### Démonstration {.proof} 
-Si l'intervalle d'existence n'était pas ouvert, la solution pourrait être prolongée au bord grâce au théorème de Peano, ce qui contredirait sa maximalité. Ensuite, la preuve consiste à montrer que si $\tmax$ (resp. $\tmin$) est fini, alors $(t,x(t))$ finit forcément par sortir définitivement de tout sous-ensemble fermé et borné de $J\times X$ lorsque $t$ tend vers $\tmax$ (resp. $\tmin$). Voir en [annexe](#pr_theo_bouts). 
+La preuve complète est donnée en [annexe](#pr_theo_bouts). On commence par observer que si l'intervalle d'existence n'était pas ouvert, la solution pourrait être prolongée au bord grâce au théorème de Peano, ce qui contredirait sa maximalité. Ensuite, la preuve consiste à montrer que si $\tmax$ (resp. $\tmin$) est fini, alors $(t,x(t))$ finit forcément par sortir définitivement de tout sous-ensemble fermé et borné de $J\times X$ lorsque $t$ tend vers $\tmax$ (resp. $\tmin$), et donc soit diverger soit tendre vers la frontière de l'ouvert $J\times X$. 
+
+
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
 Soient $J$ un intervalle ouvert de $\R$ et $f:J\times\R^n\to\R^n$ continue. S'il existe $a,b: J\to\R$ continues telles que  
@@ -422,7 +424,27 @@ engendrent des problèmes de Cauchy aux solutions globales.
 <!--- Bien sûr, la fonction $f:(t,x)\mapsto x^2$ ne satisfait pas la croissance au plus affine et [on a vu](#ex_lips) que les solutions associées explosent en temps fini. Par contre, si l'on prend $f(t,x)=-x|x|$ ou $f(t,x)=-x^3$ qui ne satisfont pas non plus cette condition, on peut montrer que les solutions maximales sont globales (et tendent vers 0). On en déduit donc que la croissance au plus affine est  suffisante mais pas nécessaire pour garantir la globalité des solutions.-->
 
 
+### Solutions globales I {.exercise .question #glob_sol .one}
 
+Justifier que pour toute condition initiale,  
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& \sin x_1 - x_2 \\
+\dot{x}_2 &=& \sqrt{1+x_1^2}
+\end{array}
+$$
+admet des solutions et les solutions maximales sont définies sur $\R$.
+
+### Solutions globales II {.exercise .question #glob_sol2 .two}
+Soient $f:\R \times \R^n \to \R^n$ continue et  $V:\R^n \to \R$ définie par $V(x) = x^\top x$ telles que
+$$
+\langle\nabla V (x), f(t,x)\rangle \leq a(t) V(x) + b(t)  \qquad \forall (t,x)\in \R\times \R^n
+$$
+avec $a,b:\R \to \R$ continues. Montrer que quelque soit la condition initiale, les solutions maximales de 
+$$
+\dot{x} = f(t,x)
+$$
+sont définies sur $\R$.
 
 Unicité des solutions
 -------------------------------
@@ -883,16 +905,7 @@ Comment pourrait s'interpréter physiquement la multitude de solutions trouvées
 ### Question 4 {.question #tor-4}
 Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_reg_CI) donné plus haut ? Pourquoi ?
 
-## Solutions globales ($+$) {.question #glob_sol}
 
-Justifier que pour toute condition initiale, le système
-$$
-\begin{array}{rcl}
-\dot{x}_1 &=& \sin x_1 - x_2 \\
-\dot{x}_2 &=& \sqrt{1+x_1^2}
-\end{array}
-$$
-admet une unique solution maximale définie pour tout $t\in \R$.
 
 ## Autour du Lemme de Grönwall {.exercice #exo_gronwall}
 
@@ -1034,9 +1047,23 @@ avec $\phi:\R^n \to \R$ continue et $u:\R \to \R$ à choisir.
 Si on mesure $t\mapsto x(t)$, montrer que l'on peut toujours choisir $t\mapsto u(t)$ pour rendre 0 globalement asymptotiquement stable.
 
 
+Solutions
+================================================================================
 
-Correction des exercices
-===============================
+## Exercices essentiels
+
+### Solutions globales I {.answer #answer-glob_sol}
+
+Fixons une condition initiale dans $\R^2$. La fonction $f:(t,x_1,x_2)\mapsto (\sin x_1 - x_2 ,\sqrt{1+x_1^2})$ est continue sur $\R\times\R^2$. Donc d'après les théorème de Peano des solutions existent. D'après le théorème du domaine maximal d'existence, les solutions maximales sont définies sur un intervalle de temps $I$ ouvert. 
+
+Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
+$$
+|f_1(x)| \leq 1 + |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
+$$
+et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions sont donc globales, i.e. $I=\R$.
+
+
+### Solutions globales II {.answer #answer-glob_sol2}
 
 ## Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
@@ -1095,15 +1122,6 @@ La multiplicité des solutions peut être expliquée par le fait  que lorsqu'on 
 
 Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0+\delta}-\frac{k}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\underline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions par rapport à la condition initiale. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
 
-## Solutions globales {.answer #answer-glob_sol}
-
-Fixons une condition initiale dans $\R^2$. La fonction $f:(x_1,x_2)\mapsto (\sin x_1 - x_2 ,\sqrt{1+x_1^2})$ est continûment différentiable sur $\R^2$. Donc d'après le théorème de Cauchy-Lipschitz, le problème de Cauchy admet une unique solution maximale définie sur un intervalle de temps $I$ ouvert. 
-
-Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
-$$
-|f_1(x)| \leq 1 + |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
-$$
-et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions sont donc globales, i.e. $I=\R$.
 
 ## Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
@@ -1469,12 +1487,12 @@ x(t) = x_0 + \int_{t_0}^t f(s,x(s)) ds
 $$
 sur $[t_0,t_0+\tau_m]$ et la preuve sur $[t_0-\tau_m,t_0]$ se fait de la même façon. 
 
-L'idée est d'approximer de plus en plus finement la forme intégrale et montrer ce procédé converge. On définit donc pour $\epsilon \in ]0,1[$ la fonction
+L'idée est d'approximer de plus en plus finement la forme intégrale et montrer que ce procédé converge. On définit donc pour $\epsilon \in ]0,1[$ la fonction
 \begin{align*}
 x_\epsilon(t) &= x_0 & \forall t\in [t_0-1,t_0] \\
 &= x_0 + \int_{t_0}^t f(s,x_\epsilon(s-\epsilon)) ds & \forall t\in [t_0,t_0+\tau_m]
 \end{align*}
-Ces fonctions sont clairement définies et continues sur $[t_0-1,t_0]$. Puis sur $[t_0,t_0+\epsilon]\cap[t_0,t_0+\tau_m]$, on voit que l'intégrale ne dépend que de $x_\epsilon$ sur $[t_0-1,t_0]$, donc elle est toujours bien définie et continue. De proche en proche, $x_\epsilon$ est donc bien définie et continue sur $[t_0-1,t_0+\tau_m]$. En fait, $\epsilon$ représente un petit retard introduit dans l'intégrale pour la rendre explicite. Si l'on arrive à montrer que ces fonctions converge vers une fonction continues lorsque $\epsilon$ tend vers 0, cette limite sera solution de l'équation intégrale sur $[t_0,t_0+\tau_m]$ et sera donc solution. 
+Ces fonctions sont définies et continues sur $[t_0-1,t_0]$. Puis sur $[t_0,t_0+\epsilon]\cap[t_0,t_0+\tau_m]$, on voit que l'intégrale ne dépend que de $x_\epsilon$ sur $[t_0-1,t_0]$, donc elle est toujours bien définie et continue. De proche en proche, $x_\epsilon$ est donc bien définie et continue sur $[t_0-1,t_0+\tau_m]$. En fait, $\epsilon$ représente un petit retard introduit dans l'intégrale pour la rendre explicite. Si l'on arrive à montrer que ces fonctions converge vers une fonction continues lorsque $\epsilon$ tend vers 0, cette limite sera solution de l'équation intégrale sur $[t_0,t_0+\tau_m]$ et sera donc solution. 
 
 La première étape est de montrer de proche en proche, grâce au retard, que $x_\epsilon(t)\in \overline{B}(x_0,r)$ pour tout $t\in [t_0-1,t_0+\tau_m]$ puisque $\tau_m\max_\cC \|f\|\leq r$. Donc
 $$
