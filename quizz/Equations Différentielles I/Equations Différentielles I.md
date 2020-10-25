@@ -1,4 +1,4 @@
-% Calcul Différentiel I
+% Equations Différentielles I
 
 <!-- LaTeX Macros -->
 \newcommand{\N}{\mathbb{N}}
