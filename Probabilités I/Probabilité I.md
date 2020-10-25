@@ -879,7 +879,7 @@ Exercices essentiels
 
 
 ### Continuité monotone {.answer #answer-contmon}
-On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_1 = A_1$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 2$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
+On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_1 = A_1$ et $B_n = A_n \setminus A_{n-1}$, pour $n\geq 2$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
 $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=1}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
 
 ### Une définition alternative de la probabilité {.answer #answer-altdef}
