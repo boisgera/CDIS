@@ -412,7 +412,11 @@ où $e^{A(t-s)}$ est l'exponentielle de matrice définie par
 $$
 e^{A(t-s)}=\sum^{+\infty}_{p=0} \frac{A^p(t-s)^p}{p!} \ .
 $$
-Attention, cette formule  ne fonctionne que si $A$ est constant.
+Attention, cette formule  ne fonctionne que si $A$ est constant. Notons que si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ telle que $A = P^{-1} D  P$ avec $D\in \R^{n\times n}$ une matrice diagonale contenant les valeurs propres de $A$, alors
+$$
+e^{A(t-s)} = P^{-1} e^{D(t-s)}  P
+$$
+donc les solutions avec $b=0$ sont des combinaisons linéaires de $e^{\lambda_i t}$ où $\lambda_i$ sont les valeurs propres de $A$. Ceci n'est plus vrai lorsque $A$ n'est pas diagonalisable. Voir l'[étude de stabilité d'un système linéaire](#Hurwitz).
 
 - Un autre cas important d'une croissance au plus affine est lorsque $f$ est globalement bornée en $x$. Par exemple, 
 $$
@@ -449,7 +453,7 @@ sont définies sur $\R$. On pourra pour cela étudier l'évolution de $t\mapsto 
 Unicité des solutions
 -------------------------------
 
-Si des solutions existent toujours, elles ne sont pas toujours uniques. 
+Si des solutions maximales existent toujours, elles ne sont pas toujours uniques. 
 
 ### Non-unicité des solutions {.example #ex_nonUnique}
 
@@ -461,7 +465,7 @@ Ce système permet en particulier de modéliser l'écoulement d'un fluide dans u
 La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. Mais on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales. Plus de détails sont donnés dans le notebook Equations Différentielles.ipynb.
 
 
-Le théorème suivant, dit de *Cauchy-Lipschitz*, montre que l'unicité des solutions est garantie si $f$ est de plus continûment différentiable par rapport à la variable $x$. On voit que ce n'est pas le cas de $x\mapsto -\sqrt{|x|}$ en 0. Le théorème et la preuve de l'époque est disponible en ligne dans des notes de cours [@cauchy].
+Le théorème suivant, dit de *Cauchy-Lipschitz*, montre que l'unicité des solutions maximales est garantie si $f$ est de plus continûment différentiable par rapport à la variable $x$. On voit que ce n'est pas le cas de $x\mapsto -\sqrt{|x|}$ en 0. Le théorème et la preuve de l'époque est disponible en ligne dans des notes de cours [@cauchy].
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $J\times X$ (i.e., $f$ est continûment différentiable par rapport à $x$).
@@ -540,7 +544,7 @@ en notant ici de manière abusive $x_0$ la fonction constante égale à $x_0$.
 Cette méthode de recherche de point fixe porte le nom d'*approximations successives* et est introduite pour la première fois par le mathématicien français Emile Picard à la fin du XIXème siècle grâce aux progrès de l'analyse fonctionnelle.  C'est finalement le mathématicien finlandais Ernst Lindelöf qui donne à la preuve sa forme moderne en utilisant en 1894 la théorie des espaces de Banach. Pour les anglophones, ce théorème s'appelle d'ailleurs le *théorème de Picard-Lindelöf*. 
 
 
-### Unicité des solutions {.example #ex_lips}
+### Unicité des solutions maximales {.example #ex_lips}
 
 - Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A:I\to\R^{n\times n}$ et $b:I\to\R^n$ continues telles que
 $$
@@ -548,7 +552,7 @@ f(t,x) = A(t) x + b(t) \ ,
 $$
 admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $J_f(t,x) = A(t)$ est continue.
 
-- Les équations décrivant l'évolution de la tension dans un circuit RLC ou la cinétique chimique données au début de ce cours admettent une unique solution au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,q,\dot{q})$ sont continûment différentiable par rapport à la position et la vitesse $(q,\dot{q})$.
+- Les équations décrivant l'évolution de la tension dans un circuit RLC ou la cinétique chimique données au début de ce cours admettent une unique solution maximale au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,q,\dot{q})$ sont continûment différentiable par rapport à la position et la vitesse $(q,\dot{q})$.
 
 
 
@@ -691,7 +695,7 @@ Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent 
 
 ### Attractivité {.definition #def_attract}
 
-Un point d'équilibre $a$ est dit *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ sont globales et convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
+Un point d'équilibre $a$ est dit *localement attractif* si *toutes les solutions maximales initialisées suffisamment proche de $a$ sont globales et convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
 <!--
 $$
 |x(0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
@@ -700,7 +704,7 @@ $$
 $$
 \lim_{t\to+\infty} x(t)=a \ .
 $$
-De plus, $a$ est dit *globalement attractif* si *toutes les solutions sont globales et convergent vers $a$*.
+De plus, $a$ est dit *globalement attractif* si *toutes les solutions maximales sont globales et convergent vers $a$*.
 
 Cette notion intuitive ne dit rien sur le comportement des solutions pendant le transitoire, c'est-à-dire avant de converger vers $a$. Des solutions initialisées proche de $a$ pourraient s'en éloigner arbitrairement loin avant de converger, ou mettre un temps arbitrairement long pour revenir dans un voisinage de $a$. Pour garantir une certaine uniformité et robustesse de cette attractivité par rapport à la condition initiale, on a recours à une notion plus forte qui est la *stabilité asymptotique*. 
 
@@ -754,7 +758,7 @@ P^{-1} A P = D + N
 $$
 où $D$ est diagonale contenant les valeurs propres de $A$, $N$ est nilpotente, c'est-à-dire qu'il existe $k\in \N$ tel que $N^k=0$, et $D$ et $N$ commutent. C'est la forme dite *de Jordan*. Il s'ensuit que
 $$
-e^{Jt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
+P^{-1} e^{At} P = e^{P^{-1} A Pt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
 converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 
@@ -924,7 +928,7 @@ $$
 Exercices complémentaires
 ==============================================================================
 
-Les exercices à maîtriser sont marqués d'une croix (+). 
+En plus des exercices essentiels, les exercices à maîtriser sont marqués d'une croix (+). 
 
 ## Ecoulement dans un réservoir ($+$) {.exercice #exo_Torricelli}
 Considérons un réservoir cylindrique de section $S$ qui se vide par une ouverture de section $s$ située à sa base. On note $x$ la hauteur de liquide dans le réservoir. D'après la *loi de Torricelli*[^Torricelli], l'équation d'évolution de $x$ est donnée par 
