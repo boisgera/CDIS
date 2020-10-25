@@ -58,7 +58,7 @@ En deuxième lecture :
 
 - savoir que l'on peut relâcher l'hypothèse du théorème de Cauchy-Lipschitz à "$f$ Lipschitzienne par rapport à $x$". 
 
-- comprendre ce que représente l'exposant de Lyapunov d'un système chaotique.
+- comprendre ce qu'est un système chaotique et ce que représente son exposant de Lyapunov.
 
 - comprendre ce que la notion de stabilité apporte en plus de l'attractivité dans la notion de stabilité asymptotique.
 
@@ -371,15 +371,15 @@ Voir en [annexe](#pr_theo_bouts).
 -->
 
 ### Domaine maximal d'existence {.theorem #theo_bouts}
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ dans $S_f(t_0,x_0)$ est définie sur un intervalle ouvert $\left]\tmin,\tmax\right[$ avec $\tmin,\tmax\in \R\cup\{+\infty,-\infty\}$. De plus, 
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ dans $S_f(t_0,x_0)$ est définie sur un intervalle ouvert $\left]\tmin,\tmax\right[$ avec $\tmin,\tmax\in \R\cup\{+\infty,-\infty\}$. De plus, si $\tmin$ est fini alors
 $$
 \lim_{t\to \tmin} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
-\lim_{t\to \tmin} \|(t,x(t))\| = +\infty 
+\lim_{t\to \tmin} \|x(t)\| = +\infty 
 $$
-et 
+et si $\tmax$ est fini alors
 $$
 \lim_{t\to \tmax} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
-\lim_{t\to \tmax} \|(t,x(t))\| = +\infty  \ .
+\lim_{t\to \tmax} \|x(t)\| = +\infty  \ .
 $$
 
 ### Démonstration {.proof} 
@@ -444,7 +444,7 @@ avec $a,b:\R \to \R$ continues. Montrer que quelque soit la condition initiale, 
 $$
 \dot{x} = f(t,x)
 $$
-sont définies sur $\R$.
+sont définies sur $\R$. On pourra pour cela étudier l'évolution de $t\mapsto V(x(t))$.
 
 Unicité des solutions
 -------------------------------
@@ -774,6 +774,19 @@ A(t) = \left( \begin{matrix}
 $$
 a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ arbitrairement proche de 0.
 
+### Oscillateur I {.exercise .question #ressort-1 .one}
+Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
+$$
+m\ddot{y} = - \lambda \dot{y} -k y \ ,
+$$
+où $\lambda$ est un coefficient de frottement. 
+
+1. Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'équilibre.
+
+2. Justifier que les solutions maximales sont uniques et globales quelque soit la condition initiale $(y(0),\dot{y}(0))$.
+
+3. Etudier la stabilité des points d'équilibre pour $\lambda>0$ et $\lambda = 0$. 
+
 ### Lien entre stabilité et stabilité du linéarisé tangent {.theorem #theo_linTangent}
 
 Soit $f:X \to \R^n$ continûment différentiable et $a\in X$ un point d'équilibre.
@@ -817,6 +830,18 @@ Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme 
 Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
 
 Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
+
+### Stabilité asymptotique I  {.exercice .question #asymp_glob-1 .one}
+Montrer que le point d'équilibre $(0,0)$ est localement asymptotiquement stable pour le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2(1-x_2^2)\\
+\dot{x}_2 &=& -(x_1+x_2)(1-x_1^2)
+\end{array}
+$$
+L'est-il globalement ?
+
+###
 
 Lorsque le linéarisé ne permet pas de conclure sur la stabilité asymptotique locale, ou que l'on veut un résultat global, on a recours à la caractérisation non linéaire suivante.
 
@@ -881,12 +906,27 @@ ce qui traduit la conservation de l'énergie en l'absence de frottement. On en d
 
 On peut se demander s'il existe toujours une fonction de Lyapunov autour d'un point d'équilibre stable/asymptotiquement stable. La réponse est oui, mais c'est une question délicate étudiée en détail dans [@BacRos].
 
-Exercices 
+### Oscillateur II {.exercise .question #ressort-2 .one}
+
+Reprendre l'[exercice sur le ressort](#ressort-1) et montrer que l'équilibre $(0,0)$ est stable pour $\lambda =0$.
+
+
+### Stabilité asymptotique II {.exercise .question #asymp_glob-2 .two}
+Montrer que $(0,0)$ est globalement asymptotiquement stable pour 
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2\\
+\dot{x}_2 &=& -x_1^3-x_2
+\end{array}
+$$
+*Indice : Essayer de trouver une fonction de Lyapunov... $x_2^2$ donne de la négativité en $x_2$, $(x_1+x_2)^2$ de la négativité en $x_1$... voir comment compléter...*.
+
+Exercices complémentaires
 ==============================================================================
 
-Les exercices à maîtriser sont marqués de croix (+) ou (++), par ordre de difficulté. 
+Les exercices à maîtriser sont marqués d'une croix (+). 
 
-## Ecoulement dans un réservoir ($++$) {.exercice #exo_Torricelli}
+## Ecoulement dans un réservoir ($+$) {.exercice #exo_Torricelli}
 Considérons un réservoir cylindrique de section $S$ qui se vide par une ouverture de section $s$ située à sa base. On note $x$ la hauteur de liquide dans le réservoir. D'après la *loi de Torricelli*[^Torricelli], l'équation d'évolution de $x$ est donnée par 
 $$
 \dot{x}=-k\sqrt{|x|} \qquad k = \frac{s}{S}\sqrt{2g}
@@ -943,25 +983,7 @@ $$
 
 
 
-## Oscillateur ($+$) {.exercice #exo_masse_ressort}
-Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
-$$
-m\ddot{y} = - \lambda \dot{y} -k y \ ,
-$$
-où $\lambda$ est un coefficient de frottement. 
-
-### Question 1 {.question #ressort-1}
-Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'équilibre.
-
-### Question 2 {.question #ressort-2}
-Justifier que les solutions sont uniques et globales quelque soit la condition initiale $(y(0),\dot{y}(0))$.
-
-### Question 3 {.question #ressort-3}
-Etudier la stabilité des points d'équilibre et le comportement des solutions pour $\lambda>0$ et $\lambda = 0$. Les dessiner sur un portrait de phase. 
-
-<!-- *Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 +\frac{1}{2} m x_2^2$)*
--->
-
+<!--
 ## Stabilité asymptotique globale ($++$) {.exercice #exo_stab_glob}
 
 ### Question 1 {.question #asymp_glob-1}
@@ -983,8 +1005,9 @@ $$
 \end{array}
 $$
 *Indice : Essayer de trouver une fonction de Lyapunov... $x_2^2$ donne de la négativité en $x_2$, $(x_1+x_2)^2$ de la négativité en $x_1$... voir comment compléter...*.
+-->
 
-## Cycle limite ($++$)  {.exercice #exo_cycle-lim}
+## Cycle limite ($+$)  {.exercice #exo_cycle-lim}
 Considérons le système
 $$
 \begin{array}{rcl}
@@ -1064,6 +1087,149 @@ et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions sont
 
 
 ### Solutions globales II {.answer #answer-glob_sol2}
+
+Considérons une condition initiale dans $\R\times \R^n$ et une solution maximale $t\mapsto x(t)$ correspondante définie sur un intervalle ouvert $I$ (qui existe d'après le théorème de Peano car $f$ est continue sur $\R\times \R^n$). Alors
+$$
+\frac{d}{dt} V(x(t)) = \langle\nabla V (x(t)), f(t,x(t))\rangle \leq a(t) V(x(t)) + b(t) \quad \forall t\in I \ ,
+$$
+et donc
+$$
+\frac{d}{dt} V(x(t))e^{-\int_{t_0}^t a(s) ds} \leq b(t)e^{-\int_{t_0}^t a(s) ds}  \quad \forall t\in I \ .
+$$
+En intégrant entre $t_0$ et $t\geq t_0$,
+$$
+V(x(t))e^{-\int_{t_0}^t a(s) ds} - V(x(t_0)) \leq \int_{t_0}^t b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \quad \forall t\in I \cap [t_0,+\infty[
+$$
+et donc
+$$
+V(x(t)) \leq \left[V(x(t_0)) + \int_{t_0}^t b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \right]e^{\int_{t_0}^t a(s) ds}  \quad \forall t\in I \cap [t_0,+\infty[ \ .
+$$
+Une autre manière de faire est de montrer que $V(x(t))\leq v(t)$ où $v$ est solution maximale de 
+$$
+\dot{v} = a(t) v + b(t)
+$$
+pour la condition initiale $v(t_0) = V(x(t_0))$, qui est définie est continue sur $\R$ car la dynamique de $v$ est affine.
+<!--
+Soit $t\mapsto v(t)$ une solution maximale de 
+$$
+\dot{v} = a(t) v + b(t)
+$$
+pour la condition initiale $v(t_0) = V(x(t_0))$. Comme la dynamique de $v$ est affine, nous savons que $v$ est définie et continue sur $\R$. De plus,
+$$
+\frac{d}{dt} \left[V(x(t))- v(t) \right]\leq a(t) \left[V(x(t))-v(t) \right] \quad \forall t\in I
+$$
+et donc
+$$
+\frac{d}{dt} \left[V(x(t))- v(t) \right]e^{-\int_{t_0}^t a(s) ds} \leq 0  \quad \forall t\in I \ .
+$$
+Il s'ensuit que $\left[V(x(t))- v(t) \right]e^{-\int_{t_0}^t a(s) ds}$ est décroissante et donc
+$$
+V(x(t)) - v(t) \leq e^{\int_{t_0}^t a(s) ds} (V(x(t_0)) - v(t_0)) \leq 0  \quad \forall t\in I \cap [t_0,+\infty[ \ .
+$$
+On en déduit ainsi que $V(x(t)) \leq  v(t)$ sur $I$.
+-->
+
+Or si $\tmax = \sup I$ est fini, d'après le théorème du domaine maximal, $(t,x(t))$ tend soit vers la frontière du domaine de définition de $f$, soit diverge. Comme $f$ est définie et continue sur $\R\times \R^n$, nécessairement $\lim_{t\to\tmax} \|x(t)\| = +\infty$ et donc $\lim_{t\to\tmax} V(x(t)) = +\infty$. Or par continuité de $a,b$ sur $\R$,
+$$
+\lim_{t\to\tmax} V(x(t)) \leq \left[V(x(t_0)) + \int_{t_0}^{\tmax} b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \right]e^{\int_{t_0}^{\tmax} a(s) ds}   \ .
+$$
+C'est donc impossible et $\tmax = +\infty$. De même, $\inf I = -\infty$.
+
+### Oscillateur I {.answer #answer-ressort-1}
+
+Prenons $x=(y,\dot{y})$ qui vérifie
+$$
+\dot{x} = 
+\left(
+\begin{matrix}
+x_2\\
+-\frac{k}{m} x_1 &-\frac{\lambda}{m} x_2
+\end{matrix}
+\right) 
+=
+A x
+$$
+avec $A=\left(
+\begin{matrix}
+0&1\\
+-\frac{k}{m}&-\frac{\lambda}{m}
+\end{matrix}
+\right)$.
+Puisque $A$ est inversible ($\text{det} A=\frac{k}{m}\neq 0$), le seul point d'équilibre est $x=(0,0)$.
+
+$x\mapsto Ax$ est continûment différentiable donc d'après le théorème de Cauchy-Lipschitz, les solutions maximales sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions maximales sont définies pour tout $t$. Elles sont données par $x(t)=e^{At}x_0$.
+
+Si $\lambda>0$, on a $\text{tr} A= -\frac{\lambda}{m}<0$ et $\text{det} A=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz et il s'ensuit que 0 est globalement asymptotiquement stable. On peut aussi calculer explicitement les valeurs propres et vérifier qu'elles sont à partie réelle strictement négative. 
+
+Lorsque $\lambda=0$, les frottements sont absents et les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$. Comme le système est linéaire, on peut dire que 0 n'est pas asymptotiquement stable. 
+
+
+### Stabilité asymptotique I {.answer #answer-asymp_glob-1}
+
+La jacobienne de la dynamique est donnée par
+$$
+J_f(x_1,x_2) = 
+\left(
+\begin{matrix}
+0 & 1-3x_2^2 \\
+-1+3x_1^2 & -(1-x_1^2)
+\end{matrix}
+\right)
+$$
+soit
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+0 & 1 \\
+-1 & -1
+\end{matrix}
+\right)
+$$
+qui est Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est bien localement asymptotiquement stable. Cependant, il ne l'est pas globalement car $(1,1)$ est aussi un point d'équilibre : la fonction constante égale à $(1,1)$ est solution (et ne tend pas vers 0).
+
+### Oscillateur II {.answer #answer-ressort-2}
+
+Lorsque $\lambda=0$, les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$ et nous avons vu que 0 n'est pas asymptotiquement stable. Dans ce cas, l'énergie du système
+$$
+V(x)
+= \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2
+$$
+est conservée le long des trajectoires, c'est-à-dire, 
+$$
+\dot{\overline{V(x)}} = kx_1x_2 -kx_1x_2 = 0 \ .
+$$ 
+D'après le théorème de Lyapunov, puisque $V$ est à valeurs positives, continûment différentiable et telle que $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. 
+
+Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_osci) ci-dessous.
+
+![Plan de phase d'un oscillateur amorti à droite et non amorti à gauche](images/oscillateur.py){#fig_osci}
+
+### Stabilité asymptotique II {.answer #answer-asymp_glob-2}
+
+La jacobienne de la dynamique est donnée par
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+0 & 1 \\
+0 & -1
+\end{matrix}
+\right)
+$$
+qui admet 0 et -1 comme valeurs propres. Nous ne pouvons donc rien conclure sur la stabilité de 0 par le linéarisé.
+
+Considérons plutôt la fonction $V:\R^2\to \R_{\geq 0}$ définie par
+$$
+V(x_1,x_2)= x_1^4 + x_2^2 + (x_1+x_2)^2
+$$
+$V$ est continûment différentiable, positive et ne s'annule qu'en $x=0$. De plus, elle vérifie
+\begin{align*}
+\langle \nabla V(x) , f(x) \rangle 
+&= 4x_1^3x_2 - 2 x_1^3x_2 - 2x_2^2 + 2(x_1+x_2)(x_2-x_1^3-x_2)\\
+&= -2x_2^2 -2 x_1^4 \qquad <0 \quad \forall x\neq 0
+\end{align*}
+$V$ est donc une fonction de Lyapunov et on a bien la stabilité asymptotique locale. De plus, $V$ est propre, i.e., $\lim_{\|x\|\to +\infty} V(x) = +\infty$, donc la stabilité asymptotique est globale.
 
 ## Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
@@ -1218,103 +1384,6 @@ Si les valeurs propres sont réelles, les avoir toutes deux strictement négativ
 
 Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
 
-## Oscillateur {.correction #correc_masse_ressort}
-
-### Question 1 {.answer #answer-ressort-1}
-Prenons $x=(y,\dot{y})$ qui vérifie
-$$
-\dot{x} = 
-\left(
-\begin{matrix}
-x_2\\
--\frac{k}{m} x_1 &-\frac{\lambda}{m} x_2
-\end{matrix}
-\right) 
-=
-A x
-$$
-avec $A=\left(
-\begin{matrix}
-0&1\\
--\frac{k}{m}&-\frac{\lambda}{m}
-\end{matrix}
-\right)$.
-Puisque $A$ est inversible ($\text{det} A=\frac{k}{m}\neq 0$), le seul point d'équilibre est $x=(0,0)$.
-
-### Question 2 {.answer #answer-ressort-2}
-
-$x\mapsto Ax$ est continûment différentiable donc d'après le théorème de Cauchy-Lipschitz, les solutions sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions sont définies pour tout $t$. Les solutions sont données par $x(t)=e^{At}x_0$.
-
-### Question 3 {.answer #answer-ressort-3}
-
-Si $\lambda>0$, on a $\text{tr} A= -\frac{\lambda}{m}<0$ et $\text{det} A=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz et il s'ensuit que 0 est globalement asymptotiquement stable. On pourrait aussi calculer explicitement les valeurs propres et vérifier qu'elles sont à partie réelle strictement négative. 
-
-Lorsque $\lambda=0$, les frottements sont absents et les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$. Donc 0 n'est plus asymptotiquement stable. Dans ce cas, l'énergie du système
-$$
-V(x)
-= \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2
-$$
-est conservée le long des trajectoires, c'est-à-dire, 
-$$
-\dot{\overline{V(x)}} = kx_1x_2 -kx_1x_2 = 0 \ .
-$$ 
-D'après le théorème de Lyapunov, puisque $V$ est à valeurs positives, continûment différentiable et telle que $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. 
-
-Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_osci) ci-dessous.
-
-![Plan de phase d'un oscillateur amorti à droite et non amorti à gauche](images/oscillateur.py){#fig_osci}
-
-## Stabilité asymptotique globale 
-
-### Question 1 {.answer #answer-asymp_glob-1}
-
-La jacobienne de la dynamique est donnée par
-$$
-J_f(x_1,x_2) = 
-\left(
-\begin{matrix}
-0 & 1-3x_2^2 \\
--1+3x_1^2 & -(1-x_1^2)
-\end{matrix}
-\right)
-$$
-soit
-$$
-J_f(0,0) = 
-\left(
-\begin{matrix}
-0 & 1 \\
--1 & -1
-\end{matrix}
-\right)
-$$
-qui est Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est bien localement asymptotiquement stable. Cependant, il ne l'est pas globalement car $(1,1)$ est aussi un point d'équilibre : la fonction constante égale à $(1,1)$ est solution (et ne tend pas vers 0).
-
-### Question 2 {.answer #answer-asymp_glob-2}
-
-La jacobienne de la dynamique est donnée par
-$$
-J_f(0,0) = 
-\left(
-\begin{matrix}
-0 & 1 \\
-0 & -1
-\end{matrix}
-\right)
-$$
-qui admet 0 et -1 comme valeurs propres. Nous ne pouvons donc rien conclure sur la stabilité de 0 par le linéarisé.
-
-Considérons plutôt la fonction $V:\R^2\to \R_{\geq 0}$ définie par
-$$
-V(x_1,x_2)= x_1^4 + x_2^2 + (x_1+x_2)^2
-$$
-$V$ est continûment différentiable, positive et ne s'annule qu'en $x=0$. De plus, elle vérifie
-\begin{align*}
-\langle \nabla V(x) , f(x) \rangle 
-&= 4x_1^3x_2 - 2 x_1^3x_2 - 2x_2^2 + 2(x_1+x_2)(x_2-x_1^3-x_2)\\
-&= -2x_2^2 -2 x_1^4 \qquad <0 \quad \forall x\neq 0
-\end{align*}
-$V$ est donc une fonction de Lyapunov et on a bien la stabilité asymptotique locale. De plus, $V$ est propre, i.e., $\lim_{\|x\|\to +\infty} V(x) = +\infty$, donc la stabilité asymptotique est globale.
 
 ## Cycle limite {.correction #correc_cycle_lim}
 On étudie le comportement des solutions de $\dot{x}=f(x)$ pour
