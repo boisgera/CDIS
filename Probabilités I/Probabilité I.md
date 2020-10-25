@@ -83,7 +83,7 @@ Objectifs d'apprentissage
       - \one  connaître la définition de la probabilité conditionnelle
       - \one  connaître et savoir exploiter la formule des probabilités totales
       - \one  connaître et savoir exploiter la formule de Bayes
-      - \one  connaître la définition de l'indépendance de deux événements
+      - \one  connaître la définition de l'indépendance d'événements
 
 #### Variables aléatoires
 
@@ -121,7 +121,7 @@ Il est aisé de trouver des exemples de tels phénomènes.
  2. Lancé de dés
  3. Durée de vie d'une ampoule électrique
  4. Température demain à 12h au sommet de la tour Eiffel 
- 5. Evolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2]$
+ 5. Évolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2]$
 
 La théorie des probabilités vise à fournir un modèle mathématique pour décrire ces phénomènes. Elle repose sur trois ingrédients essentiels dont on donne ici les définitions.
 
@@ -137,7 +137,7 @@ Si on reprend les exemples précédents, on peut facilement définir les univers
  2. Lancé de dés,  $\Omega = \{1,2,3,4,5,6\}$
  3. Durée de vie d'une ampoule électrique, $\Omega = [0,+\infty [$ 
  4. Température demain à 12h au sommet de la tour Eiffel (en degrés Kelvin), $\Omega = [0,+\infty [$
- 5. Evolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2]$, $\Omega$ : ensemble des application continues sur $[t_1,t_2]$ à valeurs dans $\R^3$
+ 5. Évolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2]$, $\Omega$ : ensemble des application continues sur $[t_1,t_2]$ à valeurs dans $\R^3$
 
 Cette liste d’exemples montre que l’espace $\Omega$ peut varier énormément dans sa structure, d’une expérience à l’autre. Cela permet de réaliser la richesse de la théorie qu’il faut mettre en place, pour créer un modèle qui englobe tous ces cas. Nous verrons également ultérieurement que le modèle abstrait que nous allons construire permettra de s’affranchir du fait que $\Omega$ décrit précisément tous les résultats possibles de l’expérience.
 
@@ -151,7 +151,7 @@ Un *événement* est une propriété qui est vérifiée ou non une fois l'expér
  2. Lancé de dés :  $A = \{1,3,5\}$.
  3. Durée de vie d'une ampoule électrique : $A = [t_1,t_2] \subset \R_+$.
  4. Température demain à 12h au sommet de la tour Eiffel (en degrés Kelvin) : $A = [T_1,T_2]\cup[T_3,T_4] \subset \R_+$.
- 5. Evolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2] \subset \R_+$ : 
+ 5. Évolution de la vitesse d’une molécule dans un gaz raréfié sur un intervalle de temps $[t_1,t_2] \subset \R_+$ : 
  $A = \{ f \in C([t_1,t_2], \R^3) : \|f-g\|_{\infty} \leq a \}$, où
  $g \in C([t_1,t_2],\R^3)$ et $a \in \R_+$.
 
@@ -258,13 +258,13 @@ Soit $(\Omega, \A, \P)$ un espace probabilisé. On dit qu'un événement $A\in\A
  5. Formule de Poincaré : $\forall\, n \in \N^\ast$, $\forall\, (A_i)_{1 \leq i \leq n} \in \A$
  $$ \P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \P(A_i) - \sum_{1 \leq i < j \leq n} \P(A_i \cap A_j) + \ldots + (-1)^n \P\left(\bigcap_{i=1}^n A_i\right).$$
 
-### Demonstration {.exercise .question .one #propelem}
+### Démonstration {.exercise .question .one #propelem}
 
 ### Théorème de la continuité monotone {.theorem #continuitemonotone}
 Dans le cas d'une suite $(A_n)_{n\in\N^\ast}$ d'éléments de $\A$ croissante, on a 
 $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \lim_{n \rightarrow \infty} \P(A_n).$$
 
-### Demonstration {.exercise .question .one #contmon}
+### Démonstration {.exercise .question .one #contmon}
 
 ### Une définition alternative de la probabilité {.exercise .question .one #altdef}
 Soit $(\Omega, \A)$ un espace probabilisable. Supposons que $\P : \A \to [0,1]$ vérifie : 
@@ -383,7 +383,7 @@ Si les événements $A$ et $B$ sont indépendants, alors il en est de même des 
 ### Démonstration {.exercise .question .one #indep}
 
 ### Auto-indépendant ?{.exercise .question .one #autoindep}
-A quelle condition un événement $A$ est-il indépendant de lui-même ?
+À quelle condition un événement $A$ est-il indépendant de lui-même ?
 
 ### Exemples {.example}
 
@@ -396,6 +396,15 @@ A quelle condition un événement $A$ est-il indépendant de lui-même ?
  alors 
     $$\widetilde{\P}(A \cap B) = \frac{1}{102} \neq \widetilde{\P}(A)\widetilde{\P}(B) = \frac{2}{51}\frac{13}{102}.$$
  Les événements $A$ et $B$ ne sont pas indépendants sous la probabilité $\widetilde{\P}$.
+ 
+### Indépendance de $n$ événements {.definition}
+$n$ événements $A_1, \dots, A_n$ sont *indépendants* si et seulement si pour toute partie $I \subset \lbrace 1,\dots, n\rbrace$
+\begin{equation*}
+\P(\cap_{i\in I} A_i) = \prod_{i\in I} \P(A_i).
+\end{equation*}
+
+### Remarque {.remark}
+ Attention, l'indépendance des évènements deux à deux ne suffit pas pour l'indépendance mutuelle de tous les évènements.
 
 ## Remarque : réflexion sur le concept de probabilité 
 
@@ -403,9 +412,9 @@ La théorie mathématiques des probabilités ne dit pas quelle loi de probabilit
 
 Pour les tenants du premier point de vue, la probabilité d'un événement peut être déterminée de manière unique. Dans la vision dite classique, héritée des jeux de hasard, $\Omega$ est fini et on donne à chaque événement élémentaire la même probabilité. Le calcul des probabilités se résume alors à un problème de dénombrement et la probabilité d'un événement est le rapport du nombre de cas favorables sur le nombre de cas possibles. Dans le cas infini, la vision fréquentiste repose sur la loi des grands nombres : si on répète un grand nombre de fois l'expérience, la proportion de fois où un événement sera réalisé va converger vers la probabilité de cet événement. Dans ce cadre, il est impossible de donner une valeur et même un sens à un événement non répétable comme "pleuvra-t-il demain ?". En outre, la répétition à l'infini d'une même expérience étant physiquement irréalisable, la loi des grands nombres étant un résultat qui suppose défini le concept de probabilité, la vision fréquentiste est logiquement intenable.
 
-Dans la conception subjectiviste, la probabilité objective d'un événement n'existe pas et n'est donc pas une grandeur mesurable analogue à la masse d'un corps,par exemple. C'est simplement une mesure d'incertitude qui reflète un degré de croyance pouvant varier avec les circonstances et l'observateur, donc subjective, la seule exigence étant qu'elle satisfasse aux axiomes du calcul des probabilités. Des méthodes ont alors été proposées pour passer d'un simple pré-ordre sur les événements, à une probabilité. Puisque la répétition n'est plus nécessaire, on peut probabiliser des événements non répétables et étendre ainsi le domaine d'application du calcul des probabilités, notamment pour orienter des prises de décisions. On notera que la [formule de Bayes](#bayes) permet d'intégrer facilement de l'information a priori, dans la mesure où celle-ci est probabilisée.
+Dans la conception subjectiviste, la probabilité objective d'un événement n'existe pas et n'est donc pas une grandeur mesurable analogue à la masse d'un corps, par exemple. C'est simplement une mesure d'incertitude qui reflète un degré de croyance pouvant varier avec les circonstances et l'observateur, donc subjective, la seule exigence étant qu'elle satisfasse aux axiomes du calcul des probabilités. Des méthodes ont alors été proposées pour passer d'un simple pré-ordre sur les événements, à une probabilité. Puisque la répétition n'est plus nécessaire, on peut probabiliser des événements non répétables et étendre ainsi le domaine d'application du calcul des probabilités, notamment pour orienter des prises de décisions. On notera que la [formule de Bayes](#bayes) permet d'intégrer facilement de l'information a priori, dans la mesure où celle-ci est probabilisée.
 
-On arrête ici ces quelques remarques sans prendre parti dans une querelle qui dure encore. L'un ou l'autre point de vue sera adopté selon les ouvrages rencontrés. Dans tous les cas, les outils mathématiques développés dans ce cours seront adaptés. On rappelle tout de même que la modélisation probabiliste a prouvé son efficacité dans de nombreuses applications mais que, comme tout modèle, ce n'est qu'une représentation simplificatrice de la réalité et que ses hypothèses doivent être mises à l'épreuve des faits. A ce titre, on citera Georges Matheron qui dans son essai sur la pratique des probabilités Estimer et Choisir (@matheron) écrit fort justement : "Il n'y a pas de probabilités en soi. Il n'y que des modèles probabilistes".
+On arrête ici ces quelques remarques sans prendre parti dans une querelle qui dure encore. L'un ou l'autre point de vue sera adopté selon les ouvrages rencontrés. Dans tous les cas, les outils mathématiques développés dans ce cours seront adaptés. On rappelle tout de même que la modélisation probabiliste a prouvé son efficacité dans de nombreuses applications mais que, comme tout modèle, ce n'est qu'une représentation simplificatrice de la réalité et que ses hypothèses doivent être mises à l'épreuve des faits. À ce titre, on citera Georges Matheron qui dans son essai sur la pratique des probabilités Estimer et Choisir (@matheron) écrit fort justement : "Il n'y a pas de probabilités en soi. Il n'y a que des modèles probabilistes".
 
 # Variables aléatoires
 
@@ -505,10 +514,21 @@ La probabilité $\P_X$, définie sur $(\R,\B(\R))$ par $\P_X (B) = \P(X^{-1}(B))
 On peut voir $\P_X$ comme une transposition de $\P$ sur $\R$. On a alors le résultat très utile suivant :
 
 ### Composition {.proposition #composition}
-Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction mesurable de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
+Si $X_1, \ldots, X_n$ sont des variables aléatoires réelles et si $g$ est une fonction continue de $\R^n$ dans $\R$, alors $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire réelle.
 
-### Démonstration (idée) {#proof}
-Puisque $g$ est mesurable, le critère de l'image réciproque implique que $\forall A \in \B(\R)$, $g^{-1}(A) \in \B(\R^n)$. Par composition, on en déduit que $Y = g(X_1,\ldots,X_n)$ est une variable aléatoire.
+### Démonstration {#proof}
+
+1. On montre d'abord que si $X : \Omega \to \R$ est une application telle que $\forall a \in \R$, $\{\omega ; X(\omega) \leq a \} = X^{-1}(]-\infty,a]) \in \mathcal{A}$, alors $X$ est une variable aléatoire réelle. Soit $\mathcal{R}$, l'ensemble des $B \in \B(\R)$ tels que $X^{-1}(B) \in \mathcal{A}$. $\mathcal{R}$ est une tribu, comme vu plus haut, et $\mathcal{R}$ contient tous les ensembles de la forme $]-\infty,a]$ par [la proposition](#altbor), on a $\mathcal{R} = \B(\R)$.
+
+2. Soit $a \in \R$, on va montrer que $\{Y \leq a\} \in \mathcal{A}$ ou plutôt, de manière équivalente $\{Y >a\} \in \mathcal{A}$.
+$g$ étant continue, l'ensemble $A = \{x\in R^n ; g(x)>a\}$ est un ouvert. On peut donc l'écrire comme l'union dénombrable $A = \cup_{i \in \N^\star} A_i$, où les $A_i$ sont des pavés ouverts de la forme $A_i = \prod_{j=1}^n ]x_{ij},y_{ij}[$ et on a :
+\begin{align*}
+\{Y>a\} &= \{(X_1,\ldots,X_n) \in A\} \\
+&= \bigcup_{i \in \N^\star}\{(X_1,\ldots,X_n) \in A_i\} \\
+&= \bigcup_{i \in \N^\star}\bigcap_{j=1}^n \{x_{ij} < X_i < y_{ij}\}
+\end{align*}
+Puisque les $X_i$ sont des variables aléatoires réelles, $\{x_{ij} < X_i < y_{ij}\} \in \mathcal{A}$ et donc $\{Y>a\} \in \mathcal{A}$.
+
 
 ### {.post}
 Comme application de ce résultat, on a les propriétés suivantes :
@@ -547,9 +567,9 @@ La fonction de répartition $F$ caractérise la probabilité $\P_X$ sur ($\R,\B(
 
 ### Démonstration {.proof}
 
-D'après, [la définition de la fonction de répartition](#deffdr), on a $\P_X(]x,y]) = F(y)-F(x)$ pour tous $x>y$. Par conséquent, si $B = \cup_{i=1}^n ]x_i,y_i]$, avec $x_i < y_i < x_{i+1}$, on a 
+D'après [la définition de la fonction de répartition](#deffdr), on a $\P_X(]x,y]) = F(y)-F(x)$ pour tous $x< y$. Par conséquent, si $B = \cup_{i=1}^n ]x_i,y_i]$, avec $x_i < y_i < x_{i+1}$, on a 
 $$\P_X(B) = \sum_{i=1}^n \P_X(]x_i,y_i]) = \sum_{i=1}^n F(y_i)-F(x_i),$$
-car les intervalles sont disjoints. Puisque $\P_X(]x,+ \infty[) = 1-F(x)$, nous en déduisons finalement que $F$ caractérise la réstriction de $\P_X$ à l'ensemble de toutes les réunions finies d'intervalles disjoints de la forme $]x,y]$ ou $]x,+ \infty[$. Cet ensemble contient $\R$, $\varnothing$ et est stable par passage au complémentaire et par réunion finie (on dit que c'est une algèbre). Un résultat difficile de théorie de la mesure (voir @Jacod pour une preuve) montre que la connaissance de $\P_X$ sur cette algèbre suffit à déterminer entièrement $\P_X$ sur la tribu engendrée par cette algèbre. Mais [la proposition vu précédemment](#altbor) nous indique que cette tribu est la tribu borélienne.
+car les intervalles sont disjoints. Puisque $\P_X(]x,+ \infty[) = 1-F(x)$, nous en déduisons finalement que $F$ caractérise la restriction de $\P_X$ à l'ensemble de toutes les réunions finies d'intervalles disjoints de la forme $]x,y]$ ou $]x,+ \infty[$. Cet ensemble contient $\R$, $\varnothing$ et est stable par passage au complémentaire et par réunion finie (on dit que c'est une algèbre). Un résultat difficile de théorie de la mesure (voir @Jacod pour une preuve) montre que la connaissance de $\P_X$ sur cette algèbre suffit à déterminer entièrement $\P_X$ sur la tribu engendrée par cette algèbre. Mais [la proposition vu précédemment](#altbor) nous indique que cette tribu est la tribu borélienne.
 
 ### Caractérisation de la fonction de répartition {.theorem #theofdr}
 Une fonction $F$ est la fonction de répartition d'une unique probabilité $\P_X$ sur $(\R,\B(\R))$ si et seulement si elle vérifie les trois conditions suivantes :
@@ -569,8 +589,8 @@ Pour la réciproque, on se reportera à @Jacod.
 
   * $\P_X(]x,y]) = \P( x < X \leq y) = F(y) - F(x)$
   * $\P_X(]x,y[) = \P( x < X < y) = F(y-) - F(x)$
-  * $\P_X([x,y]) = \P( x \geq X \leq y) = F(y) - F(x^-)$
-  * $\P_X([x,y[) = \P( x \geq X < y) = F(y-) - F(x^-)$
+  * $\P_X([x,y]) = \P( x \leq X \leq y) = F(y) - F(x^-)$
+  * $\P_X([x,y[) = \P( x \leq X < y) = F(y-) - F(x^-)$
 
 En particulier, $\P_X(\{x\}) = F(x) - F(x^-)$ est le **saut** de la fonction $F$ au point $x$. On a donc $\P_X(\{x\}) = 0$ pour tout $x$ si et seulement si $F$ est continue en tout point.
 
@@ -675,11 +695,11 @@ $$f(x) = \left\{ \begin{array}{ll}
         \right.$$
 
 1. Calculer la probabilité que cette durée de fonctionnement $X$ soit comprise entre 50 et 150 heures.
-2. Calculer la probabilité que l'ordinateur fonctionne moins de 100 heures :
+2. Calculer la probabilité que l'ordinateur fonctionne moins de 100 heures.
 3. Calculer la probabilité que l'ordinateur fonctionne exactement 100 heures avant sa première panne.
 
 ### Précipitation {.exercise .one #ex.pluie}
-On souhaite modéliser la hauteur de précipitation (en mm) tombée sur Paris en une journée par une variable aléatoire $X$. On considère que la cette hauteur suit une loi exponentielle de paramètre $1/10$ lorsqu'il pleut et qu'il pleut en moyenne un jour sur deux.
+On souhaite modéliser la hauteur de précipitation (en mm) tombée sur Paris en une journée par une variable aléatoire $X$. On considère que cette hauteur suit une loi exponentielle de paramètre $1/10$ lorsqu'il pleut et qu'il pleut en moyenne un jour sur deux.
 
 1. Donner la Fonction de répartition de $X$.
 2. $X$ admet-elle une densité ?
@@ -859,7 +879,7 @@ Exercices essentiels
 
 
 ### Continuité monotone {.answer #answer-contmon}
-On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_1 = A_1$ et $B_n = A_n \setminus B_{n-1}$, pour $n\geq 2$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
+On définit une suite $(B_n)_{n\in \N^\ast}$ telle que $B_1 = A_1$ et $B_n = A_n \setminus A_{n-1}$, pour $n\geq 2$. Les $B_n$ ainsi définis sont deux à deux disjoints et $\cup B_n = \cup A_n$, donc :
 $$ \P\left(\bigcup_{n\in\N^\ast} A_n\right) = \sum_n \P(B_n) = \lim_{n \to \infty} \sum_{p=1}^n \P(B_p) = \lim_{n \to \infty} \P(A_n).$$
 
 ### Une définition alternative de la probabilité {.answer #answer-altdef}
@@ -924,7 +944,7 @@ car $A$ et $B$ sont chacun indépendants de $C$, d'où
 $$\frac{\P(A\cap B \cap C)}{\P(C)} = \P(A)\P(B)$$ 
 par [définition](#defprobacond) ; et comme $A$, $B$ et $C$ sont indépendants 2 à 2, 
 $$\P(A\cap B \cap C) = \P(A)\P(B)\P(C)$$ 
-équivaut à $A$, $B$ et $C$ sont mutuellemnent indépendants.
+équivaut à $A$, $B$ et $C$ sont mutuellement indépendants.
 
 ### Question 3 {.answer #answer-ic-3}
 

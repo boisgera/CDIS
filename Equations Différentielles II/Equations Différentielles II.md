@@ -527,7 +527,8 @@ $$
 $$
 
 
-# Choix du pas de temps (pour la culture)
+Annexe -- Choix du pas de temps 
+===============================================================================
 
 Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\dt_j$, sans jamais dire comment les choisir. Le plus simple est de choisir un pas $\dt$ fixe mais il est difficile de savoir à l'avance quel pas est nécessaire. En particulier, comment savoir si la solution obtenue est suffisamment précise, sans connaître la vraie ?
 
@@ -629,45 +630,65 @@ Les équations de Lotka-Volterra, ou "modèle proie-prédateur", sont couramment
 \dot{x}_1 &= x_1(\alpha -\beta x_2) \\
 \dot{x}_2 &= -x_2(\gamma - \delta x_1)
 \end{align*}
-où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement et $\alpha$, $\beta$, $\gamma$, $\delta$ sont des paramètres positifs.
+où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement et $\alpha$, $\beta$, $\gamma$, $\delta$ sont des paramètres strictement positifs.
 
  1. Donner une interprétation physique à chaque terme de la dynamique. 
-    Quels sont les points d'équilibre ? Etudier leur stabilité locale.
+    Montrer qu'il existe deux points d'équilibre $(0,0)$ et $\bar{x}\in \Rg\times\Rg$. Que peut-on dire de leur stabilité à ce stade ?
 
  2. A l'aide des fonctions `meshgrid` et `quiver`, visualiser graphiquement le champ de vecteurs. 
     Intuiter le comportement des solutions. 
     On pourra aussi utiliser `streamplot` pour visualiser le portrait de phase.
 
- 3. On considère la fonction
+ 3. Par le théorème de Cauchy-Lipschitz, démontrer que toute solution initialisée dans 
+    $\Rg\times\Rg$ reste dans $\Rg\times\Rg$ sur son ensemble de définition.
+ 
+ 4. On considère la fonction
     $$
     H(x_1,x_2) = \delta x_1 - \gamma \ln x_1 + \beta x_2 - \alpha \ln x_2  
     $$
     définie sur $\Rg\times \Rg$.
-    Calculer la dérivée de $H$ le long des solutions dans $\Rg\times \Rg$. En déduire que toute solution initialisée dans $\Rg\times \Rg$ est définie sur $\R$ et reste dans $\Rg\times \Rg$.
-    Qu'en concluez vous sur leur comportement ? On pourra l'illustrer en représentant les courbes de niveau de $H$.
+    Calculer la dérivée de $H$ le long des solutions initialisées dans $\Rg\times \Rg$. En déduire que toute solution maximale initialisée dans $\Rg\times \Rg$ est définie sur $\R$ et que $\bar{x}$ est stable.
+
+ 5. Représenter les courbes de niveau de $H$. Qu'en conclue-t-on sur le comportement des solutions ?
 
 On souhaite maintenant simuler numériquement les trajectoires.
 
- 4. Coder une fonction du type
+ 6. Coder une fonction du type
 
-        def solve_euler_explicit(f, x0, dt, t0 = 0, tf):
+        def solve_euler_explicit(f, x0, dt, t0, tf):
             ...
             return t, x
 
-    prenant en entrée une fonction $f:\R \times \R^n \to \R^n$ quelconque, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$. 
-    La tester sur les équations de Lotka-Volterra pour différentes valeurs de $dt$. 
+    prenant en entrée une fonction $f:\R \times \R^n \to \R^n$ quelconque, une condition initiale $x_0$, un pas de temps $dt$, les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$. La tester sur une équation différentielle aux solutions exactes connues. Vérifier la convergence du schéma lorsque $dt$ tend vers 0. Comment visualiser graphiquement l'ordre de convergence ?
+
+ 7. Utiliser le schéma d'Euler explicite pour simuler les équations de Lotka-Volterra. 
     Que constate-t-on en temps long ? Cette résolution vous semble-t-elle fidèle à la réalité ? 
     On pourra tracer l'évolution de la fonction $H$.
 
- 5. Coder maintenant une fonction du type
+ 8. Coder maintenant une fonction du type
 
         def solve_euler_implicit(f, x0, dt, t0 = 0, tf, itermax = 100):
             ...
             return t, x
 
-    donnant la solution d'un schéma d'Euler implicite appliqué à $\dot{x}=f(t,x)$ selon la méthode présentée dans le cours. Que se passe-t-il cette fois-ci sur les équations de Lotka-Volterra ?
+    donnant la solution d'un schéma d'Euler implicite appliqué à $\dot{x}=f(t,x)$ selon la méthode présentée dans le cours. Vérifier de nouveau sa convergence sur des solutions connues. Que se passe-t-il cette fois-ci sur les équations de Lotka-Volterra ?
 
- 6. Faire de même avec le schéma de Heun ou des trapèzes (Crank-Nicolson). Comparer et conclure. 
+On propose maintenant de modifier ces schémas de façon à stabiliser $H$ et assurer sa conservation le long des solutions numériques. 
+
+ 8. Expliquer pourquoi les solutions de
+ \begin{align*}
+ \dot{x}_1 &= x_1(\alpha -\beta x_2) - u_1(x_1,x_2) (H(x_1,x_2)-H_0) \\
+ \dot{x}_2 &= -x_2(\gamma - \delta x_1) - u_2(x_1,x_2) (H(x_1,x_2)-H_0) 
+ \end{align*}
+ sont identiques à celles de Lotka-Volterra si $H_0 = H(x(0))$ pour tout choix de $u:\R^2 \to \R^2$.
+
+ 9. Soit $H_0\in \R$. Calculer la dérivée de $H-H_0$ le long des solutions de ce nouveau système. Montrer que l'on peut choisir $u$ tel que
+ $$
+ \frac{d }{dt} (H(x(t))-H_0) = -k \| \nabla H(x(t)) \|^2 (H(x(t))-H_0) \ .
+ $$ 
+ En déduire qu'alors $H(x(t))$ converge exponentiellement vers $H_0$ lorsque $t$ tend vers l'infini si $x$ reste à une distance strictement positive de $\bar{x}$.
+
+ 10. En déduire comment modifier l'implémentation du schéma d'Euler pour assurer la stabilité de $H$. Quel est le rôle de $k$ ? Peut-il être choisi arbitrairement grand ? Pourquoi ?
 
 
 Exercices

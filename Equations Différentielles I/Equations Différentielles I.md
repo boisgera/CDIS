@@ -58,7 +58,7 @@ En deuxième lecture :
 
 - savoir que l'on peut relâcher l'hypothèse du théorème de Cauchy-Lipschitz à "$f$ Lipschitzienne par rapport à $x$". 
 
-- comprendre ce que représente l'exposant de Lyapunov d'un système chaotique.
+- comprendre ce qu'est un système chaotique et ce que représente son exposant de Lyapunov.
 
 - comprendre ce que la notion de stabilité apporte en plus de l'attractivité dans la notion de stabilité asymptotique.
 
@@ -353,7 +353,7 @@ est bien solution. Vu qu'elle diverge au temps $t_0+\frac{1}{x_0}$, elle ne peut
 
 ![Solutions à $\dot{x} = x^2$ pour $t_0=0$ et différentes valeurs de $x_0$](images/explosion_temps_fini.py){#fig_explo_temps_fini}
 
-En fait, le théorème suivant montre que les solutions maximales sont définies sur un intervalle ouvert,  et cet intervalle ne peut être borné seulement si $t\mapsto x(t)$ diverge en temps fini ou $t\mapsto(t,x(t))$ tend vers la frontière de l'ensemble de définition $J\times X$ de $f$. 
+En fait, le théorème suivant montre que les solutions maximales sont définies sur un intervalle ouvert,  et cet intervalle n'est borné que si $t\mapsto x(t)$ diverge en temps fini ou $t\mapsto(t,x(t))$ tend vers la frontière de l'ensemble de définition $J\times X$ de $f$ en temps fini. 
 <!--la paire $(t,x(t))$  quitte nécessairement n'importe quel compact de $J\times X$ au bout d'un certain temps. Dans le cas usuel où $J\times X=\R\times \R^n$, ceci implique donc que toute solution maximale non globale, i.e. définie sur $\left[0,\tmax\right[$ avec $\tmax<+\infty$, explose en temps fini, c'est-à-dire
 $$
 \lim_{t\to \tmax} \|x(t)\|=+\infty \ ,
@@ -371,19 +371,21 @@ Voir en [annexe](#pr_theo_bouts).
 -->
 
 ### Domaine maximal d'existence {.theorem #theo_bouts}
-Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ dans $S_f(t_0,x_0)$ est définie sur un intervalle ouvert $\left]\tmin,\tmax\right[$ avec $\tmin,\tmax\in \R\cup\{+\infty,-\infty\}$. De plus, 
+Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et $(t_0,x_0)\in J\times X$. Toute solution maximale $x:I\to \R^n$ dans $S_f(t_0,x_0)$ est définie sur un intervalle ouvert $\left]\tmin,\tmax\right[$ avec $\tmin,\tmax\in \R\cup\{+\infty,-\infty\}$. De plus, si $\tmin$ est fini alors
 $$
 \lim_{t\to \tmin} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
-\lim_{t\to \tmin} \|(t,x(t))\| = +\infty 
+\lim_{t\to \tmin} \|x(t)\| = +\infty 
 $$
-et 
+et si $\tmax$ est fini alors
 $$
 \lim_{t\to \tmax} d\Big((t,x(t)),\partial (J\times X) \Big) = 0  \quad  \text{ou} \quad 
-\lim_{t\to \tmax} \|(t,x(t))\| = +\infty  \ .
+\lim_{t\to \tmax} \|x(t)\| = +\infty  \ .
 $$
 
 ### Démonstration {.proof} 
-Si l'intervalle d'existence n'était pas ouvert, la solution pourrait être prolongée au bord grâce au théorème de Peano, ce qui contredirait sa maximalité. Ensuite, la preuve consiste à montrer que si $\tmax$ (resp. $\tmin$) est fini, alors $(t,x(t))$ finit forcément par sortir définitivement de tout sous-ensemble fermé et borné de $J\times X$ lorsque $t$ tend vers $\tmax$ (resp. $\tmin$). Voir en [annexe](#pr_theo_bouts). 
+La preuve complète est donnée en [annexe](#pr_theo_bouts). On commence par observer que si l'intervalle d'existence n'était pas ouvert, la solution pourrait être prolongée au bord grâce au théorème de Peano, ce qui contredirait sa maximalité. Ensuite, la preuve consiste à montrer que si $\tmax$ (resp. $\tmin$) est fini, alors $(t,x(t))$ finit forcément par sortir définitivement de tout sous-ensemble fermé et borné de $J\times X$ lorsque $t$ tend vers $\tmax$ (resp. $\tmin$), et donc soit diverger soit tendre vers la frontière de l'ouvert $J\times X$. 
+
+
 
 ### Critère d'existence globale {.theorem #theo_exist_glob}
 Soient $J$ un intervalle ouvert de $\R$ et $f:J\times\R^n\to\R^n$ continue. S'il existe $a,b: J\to\R$ continues telles que  
@@ -410,7 +412,11 @@ où $e^{A(t-s)}$ est l'exponentielle de matrice définie par
 $$
 e^{A(t-s)}=\sum^{+\infty}_{p=0} \frac{A^p(t-s)^p}{p!} \ .
 $$
-Attention, cette formule  ne fonctionne que si $A$ est constant.
+Attention, cette formule  ne fonctionne que si $A$ est constant. Notons que si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ telle que $A = P^{-1} D  P$ avec $D\in \R^{n\times n}$ une matrice diagonale contenant les valeurs propres de $A$, alors
+$$
+e^{A(t-s)} = P^{-1} e^{D(t-s)}  P
+$$
+donc les solutions avec $b=0$ sont des combinaisons linéaires de $e^{\lambda_i t}$ où $\lambda_i$ sont les valeurs propres de $A$. Ceci n'est plus vrai lorsque $A$ n'est pas diagonalisable. Voir l'[étude de stabilité d'un système linéaire](#Hurwitz).
 
 - Un autre cas important d'une croissance au plus affine est lorsque $f$ est globalement bornée en $x$. Par exemple, 
 $$
@@ -422,12 +428,32 @@ engendrent des problèmes de Cauchy aux solutions globales.
 <!--- Bien sûr, la fonction $f:(t,x)\mapsto x^2$ ne satisfait pas la croissance au plus affine et [on a vu](#ex_lips) que les solutions associées explosent en temps fini. Par contre, si l'on prend $f(t,x)=-x|x|$ ou $f(t,x)=-x^3$ qui ne satisfont pas non plus cette condition, on peut montrer que les solutions maximales sont globales (et tendent vers 0). On en déduit donc que la croissance au plus affine est  suffisante mais pas nécessaire pour garantir la globalité des solutions.-->
 
 
+### Solutions globales I {.exercise .question #glob_sol .one}
 
+Justifier que pour toute condition initiale,  
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& \sin x_1 - x_2 \\
+\dot{x}_2 &=& \sqrt{1+x_1^2}
+\end{array}
+$$
+admet des solutions et les solutions maximales sont définies sur $\R$.
+
+### Solutions globales II {.exercise .question #glob_sol2 .two}
+Soient $f:\R \times \R^n \to \R^n$ continue et  $V:\R^n \to \R$ définie par $V(x) = x^\top x$ telles que
+$$
+\langle\nabla V (x), f(t,x)\rangle \leq a(t) V(x) + b(t)  \qquad \forall (t,x)\in \R\times \R^n
+$$
+avec $a,b:\R \to \R$ continues. Montrer que quelque soit la condition initiale, les solutions maximales de 
+$$
+\dot{x} = f(t,x)
+$$
+sont définies sur $\R$. On pourra pour cela étudier l'évolution de $t\mapsto V(x(t))$.
 
 Unicité des solutions
 -------------------------------
 
-Si des solutions existent toujours, elles ne sont pas toujours uniques. 
+Si des solutions maximales existent toujours, elles ne sont pas toujours uniques. 
 
 ### Non-unicité des solutions {.example #ex_nonUnique}
 
@@ -439,7 +465,7 @@ Ce système permet en particulier de modéliser l'écoulement d'un fluide dans u
 La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. Mais on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales. Plus de détails sont donnés dans le notebook Equations Différentielles.ipynb.
 
 
-Le théorème suivant, dit de *Cauchy-Lipschitz*, montre que l'unicité des solutions est garantie si $f$ est de plus continûment différentiable par rapport à la variable $x$. On voit que ce n'est pas le cas de $x\mapsto -\sqrt{|x|}$ en 0. Le théorème et la preuve de l'époque est disponible en ligne dans des notes de cours [@cauchy].
+Le théorème suivant, dit de *Cauchy-Lipschitz*, montre que l'unicité des solutions maximales est garantie si $f$ est de plus continûment différentiable par rapport à la variable $x$. On voit que ce n'est pas le cas de $x\mapsto -\sqrt{|x|}$ en 0. Le théorème et la preuve de l'époque est disponible en ligne dans des notes de cours [@cauchy].
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $J\times X$ (i.e., $f$ est continûment différentiable par rapport à $x$).
@@ -518,7 +544,7 @@ en notant ici de manière abusive $x_0$ la fonction constante égale à $x_0$.
 Cette méthode de recherche de point fixe porte le nom d'*approximations successives* et est introduite pour la première fois par le mathématicien français Emile Picard à la fin du XIXème siècle grâce aux progrès de l'analyse fonctionnelle.  C'est finalement le mathématicien finlandais Ernst Lindelöf qui donne à la preuve sa forme moderne en utilisant en 1894 la théorie des espaces de Banach. Pour les anglophones, ce théorème s'appelle d'ailleurs le *théorème de Picard-Lindelöf*. 
 
 
-### Unicité des solutions {.example #ex_lips}
+### Unicité des solutions maximales {.example #ex_lips}
 
 - Une équation différentielle *linéaire*, c'est-à-dire pour laquelle il existe $A:I\to\R^{n\times n}$ et $b:I\to\R^n$ continues telles que
 $$
@@ -526,7 +552,7 @@ f(t,x) = A(t) x + b(t) \ ,
 $$
 admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $J_f(t,x) = A(t)$ est continue.
 
-- Les équations décrivant l'évolution de la tension dans un circuit RLC ou la cinétique chimique données au début de ce cours admettent une unique solution au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,q,\dot{q})$ sont continûment différentiable par rapport à la position et la vitesse $(q,\dot{q})$.
+- Les équations décrivant l'évolution de la tension dans un circuit RLC ou la cinétique chimique données au début de ce cours admettent une unique solution maximale au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,q,\dot{q})$ sont continûment différentiable par rapport à la position et la vitesse $(q,\dot{q})$.
 
 
 
@@ -669,7 +695,7 @@ Ce système a pour points d'équilibre $(k\pi,0)$, $k\in \Z$, qui correspondent 
 
 ### Attractivité {.definition #def_attract}
 
-Un point d'équilibre $a$ est dit *localement attractif* si *toutes les solutions initialisées suffisamment proche de $a$ sont globales et convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
+Un point d'équilibre $a$ est dit *localement attractif* si *toutes les solutions maximales initialisées suffisamment proche de $a$ sont globales et convergent vers $a$*, c'est-à-dire s'il existe $\eta>0$ tel que pour tout $x_0$ vérifiant $|x_0-a|\leq \eta$, toute solution maximale $x \in S_f(x_0)$ est définie sur $\Rgeq$ et vérifie
 <!--
 $$
 |x(0)-a|\leq \eta \qquad \Longrightarrow \qquad \lim_{t\to+\infty} x(t)=a \ .
@@ -678,7 +704,7 @@ $$
 $$
 \lim_{t\to+\infty} x(t)=a \ .
 $$
-De plus, $a$ est dit *globalement attractif* si *toutes les solutions sont globales et convergent vers $a$*.
+De plus, $a$ est dit *globalement attractif* si *toutes les solutions maximales sont globales et convergent vers $a$*.
 
 Cette notion intuitive ne dit rien sur le comportement des solutions pendant le transitoire, c'est-à-dire avant de converger vers $a$. Des solutions initialisées proche de $a$ pourraient s'en éloigner arbitrairement loin avant de converger, ou mettre un temps arbitrairement long pour revenir dans un voisinage de $a$. Pour garantir une certaine uniformité et robustesse de cette attractivité par rapport à la condition initiale, on a recours à une notion plus forte qui est la *stabilité asymptotique*. 
 
@@ -732,7 +758,7 @@ P^{-1} A P = D + N
 $$
 où $D$ est diagonale contenant les valeurs propres de $A$, $N$ est nilpotente, c'est-à-dire qu'il existe $k\in \N$ tel que $N^k=0$, et $D$ et $N$ commutent. C'est la forme dite *de Jordan*. Il s'ensuit que
 $$
-e^{Jt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
+P^{-1} e^{At} P = e^{P^{-1} A Pt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
 converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 
@@ -751,6 +777,19 @@ A(t) = \left( \begin{matrix}
 \right)
 $$
 a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ arbitrairement proche de 0.
+
+### Oscillateur I {.exercise .question #ressort-1 .one}
+Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
+$$
+m\ddot{y} = - \lambda \dot{y} -k y \ ,
+$$
+où $\lambda$ est un coefficient de frottement. 
+
+1. Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'équilibre.
+
+2. Justifier que les solutions maximales sont uniques et globales quelque soit la condition initiale $(y(0),\dot{y}(0))$.
+
+3. Etudier la stabilité des points d'équilibre pour $\lambda>0$ et $\lambda = 0$. 
 
 ### Lien entre stabilité et stabilité du linéarisé tangent {.theorem #theo_linTangent}
 
@@ -795,6 +834,18 @@ Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme 
 Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
 
 Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
+
+### Stabilité asymptotique I  {.exercice .question #asymp_glob-1 .one}
+Montrer que le point d'équilibre $(0,0)$ est localement asymptotiquement stable pour le système
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2(1-x_2^2)\\
+\dot{x}_2 &=& -(x_1+x_2)(1-x_1^2)
+\end{array}
+$$
+L'est-il globalement ?
+
+###
 
 Lorsque le linéarisé ne permet pas de conclure sur la stabilité asymptotique locale, ou que l'on veut un résultat global, on a recours à la caractérisation non linéaire suivante.
 
@@ -859,12 +910,27 @@ ce qui traduit la conservation de l'énergie en l'absence de frottement. On en d
 
 On peut se demander s'il existe toujours une fonction de Lyapunov autour d'un point d'équilibre stable/asymptotiquement stable. La réponse est oui, mais c'est une question délicate étudiée en détail dans [@BacRos].
 
-Exercices 
+### Oscillateur II {.exercise .question #ressort-2 .one}
+
+Reprendre l'[exercice sur le ressort](#ressort-1) et montrer que l'équilibre $(0,0)$ est stable pour $\lambda =0$.
+
+
+### Stabilité asymptotique II {.exercise .question #asymp_glob-2 .two}
+Montrer que $(0,0)$ est globalement asymptotiquement stable pour 
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& x_2\\
+\dot{x}_2 &=& -x_1^3-x_2
+\end{array}
+$$
+*Indice : Essayer de trouver une fonction de Lyapunov... $x_2^2$ donne de la négativité en $x_2$, $(x_1+x_2)^2$ de la négativité en $x_1$... voir comment compléter...*.
+
+Exercices complémentaires
 ==============================================================================
 
-Les exercices à maîtriser sont marqués de croix (+) ou (++), par ordre de difficulté. 
+En plus des exercices essentiels, les exercices à maîtriser sont marqués d'une croix (+). 
 
-## Ecoulement dans un réservoir ($++$) {.exercice #exo_Torricelli}
+## Ecoulement dans un réservoir ($+$) {.exercice #exo_Torricelli}
 Considérons un réservoir cylindrique de section $S$ qui se vide par une ouverture de section $s$ située à sa base. On note $x$ la hauteur de liquide dans le réservoir. D'après la *loi de Torricelli*[^Torricelli], l'équation d'évolution de $x$ est donnée par 
 $$
 \dot{x}=-k\sqrt{|x|} \qquad k = \frac{s}{S}\sqrt{2g}
@@ -883,16 +949,7 @@ Comment pourrait s'interpréter physiquement la multitude de solutions trouvées
 ### Question 4 {.question #tor-4}
 Les solutions sont-elles continues par rapport aux conditions initiales au sens du [théorème de régularité des solutions](#theo_reg_CI) donné plus haut ? Pourquoi ?
 
-## Solutions globales ($+$) {.question #glob_sol}
 
-Justifier que pour toute condition initiale, le système
-$$
-\begin{array}{rcl}
-\dot{x}_1 &=& \sin x_1 - x_2 \\
-\dot{x}_2 &=& \sqrt{1+x_1^2}
-\end{array}
-$$
-admet une unique solution maximale définie pour tout $t\in \R$.
 
 ## Autour du Lemme de Grönwall {.exercice #exo_gronwall}
 
@@ -930,25 +987,7 @@ $$
 
 
 
-## Oscillateur ($+$) {.exercice #exo_masse_ressort}
-Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
-$$
-m\ddot{y} = - \lambda \dot{y} -k y \ ,
-$$
-où $\lambda$ est un coefficient de frottement. 
-
-### Question 1 {.question #ressort-1}
-Réduire l'équation différentielle à l'ordre $1$ et déterminer les points d'équilibre.
-
-### Question 2 {.question #ressort-2}
-Justifier que les solutions sont uniques et globales quelque soit la condition initiale $(y(0),\dot{y}(0))$.
-
-### Question 3 {.question #ressort-3}
-Etudier la stabilité des points d'équilibre et le comportement des solutions pour $\lambda>0$ et $\lambda = 0$. Les dessiner sur un portrait de phase. 
-
-<!-- *Indice : pour $\lambda=0$, on pourra étudier l'évolution de l'énergie $V(x)= \frac{1}{2} k x_1^2 +\frac{1}{2} m x_2^2$)*
--->
-
+<!--
 ## Stabilité asymptotique globale ($++$) {.exercice #exo_stab_glob}
 
 ### Question 1 {.question #asymp_glob-1}
@@ -970,8 +1009,9 @@ $$
 \end{array}
 $$
 *Indice : Essayer de trouver une fonction de Lyapunov... $x_2^2$ donne de la négativité en $x_2$, $(x_1+x_2)^2$ de la négativité en $x_1$... voir comment compléter...*.
+-->
 
-## Cycle limite ($++$)  {.exercice #exo_cycle-lim}
+## Cycle limite ($+$)  {.exercice #exo_cycle-lim}
 Considérons le système
 $$
 \begin{array}{rcl}
@@ -1034,9 +1074,166 @@ avec $\phi:\R^n \to \R$ continue et $u:\R \to \R$ à choisir.
 Si on mesure $t\mapsto x(t)$, montrer que l'on peut toujours choisir $t\mapsto u(t)$ pour rendre 0 globalement asymptotiquement stable.
 
 
+Solutions
+================================================================================
 
-Correction des exercices
-===============================
+## Exercices essentiels
+
+### Solutions globales I {.answer #answer-glob_sol}
+
+Fixons une condition initiale dans $\R^2$. La fonction $f:(t,x_1,x_2)\mapsto (\sin x_1 - x_2 ,\sqrt{1+x_1^2})$ est continue sur $\R\times\R^2$. Donc d'après les théorème de Peano des solutions existent. D'après le théorème du domaine maximal d'existence, les solutions maximales sont définies sur un intervalle de temps $I$ ouvert. 
+
+Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
+$$
+|f_1(x)| \leq 1 + |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
+$$
+et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions sont donc globales, i.e. $I=\R$.
+
+
+### Solutions globales II {.answer #answer-glob_sol2}
+
+Considérons une condition initiale dans $\R\times \R^n$ et une solution maximale $t\mapsto x(t)$ correspondante définie sur un intervalle ouvert $I$ (qui existe d'après le théorème de Peano car $f$ est continue sur $\R\times \R^n$). Alors
+$$
+\frac{d}{dt} V(x(t)) = \langle\nabla V (x(t)), f(t,x(t))\rangle \leq a(t) V(x(t)) + b(t) \quad \forall t\in I \ ,
+$$
+et donc
+$$
+\frac{d}{dt} V(x(t))e^{-\int_{t_0}^t a(s) ds} \leq b(t)e^{-\int_{t_0}^t a(s) ds}  \quad \forall t\in I \ .
+$$
+En intégrant entre $t_0$ et $t\geq t_0$,
+$$
+V(x(t))e^{-\int_{t_0}^t a(s) ds} - V(x(t_0)) \leq \int_{t_0}^t b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \quad \forall t\in I \cap [t_0,+\infty[
+$$
+et donc
+$$
+V(x(t)) \leq \left[V(x(t_0)) + \int_{t_0}^t b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \right]e^{\int_{t_0}^t a(s) ds}  \quad \forall t\in I \cap [t_0,+\infty[ \ .
+$$
+Une autre manière de faire est de montrer que $V(x(t))\leq v(t)$ où $v$ est solution maximale de 
+$$
+\dot{v} = a(t) v + b(t)
+$$
+pour la condition initiale $v(t_0) = V(x(t_0))$, qui est définie est continue sur $\R$ car la dynamique de $v$ est affine.
+<!--
+Soit $t\mapsto v(t)$ une solution maximale de 
+$$
+\dot{v} = a(t) v + b(t)
+$$
+pour la condition initiale $v(t_0) = V(x(t_0))$. Comme la dynamique de $v$ est affine, nous savons que $v$ est définie et continue sur $\R$. De plus,
+$$
+\frac{d}{dt} \left[V(x(t))- v(t) \right]\leq a(t) \left[V(x(t))-v(t) \right] \quad \forall t\in I
+$$
+et donc
+$$
+\frac{d}{dt} \left[V(x(t))- v(t) \right]e^{-\int_{t_0}^t a(s) ds} \leq 0  \quad \forall t\in I \ .
+$$
+Il s'ensuit que $\left[V(x(t))- v(t) \right]e^{-\int_{t_0}^t a(s) ds}$ est décroissante et donc
+$$
+V(x(t)) - v(t) \leq e^{\int_{t_0}^t a(s) ds} (V(x(t_0)) - v(t_0)) \leq 0  \quad \forall t\in I \cap [t_0,+\infty[ \ .
+$$
+On en déduit ainsi que $V(x(t)) \leq  v(t)$ sur $I$.
+-->
+
+Or si $\tmax = \sup I$ est fini, d'après le théorème du domaine maximal, $(t,x(t))$ tend soit vers la frontière du domaine de définition de $f$, soit diverge. Comme $f$ est définie et continue sur $\R\times \R^n$, nécessairement $\lim_{t\to\tmax} \|x(t)\| = +\infty$ et donc $\lim_{t\to\tmax} V(x(t)) = +\infty$. Or par continuité de $a,b$ sur $\R$,
+$$
+\lim_{t\to\tmax} V(x(t)) \leq \left[V(x(t_0)) + \int_{t_0}^{\tmax} b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \right]e^{\int_{t_0}^{\tmax} a(s) ds}   \ .
+$$
+C'est donc impossible et $\tmax = +\infty$. De même, $\inf I = -\infty$.
+
+### Oscillateur I {.answer #answer-ressort-1}
+
+Prenons $x=(y,\dot{y})$ qui vérifie
+$$
+\dot{x} = 
+\left(
+\begin{matrix}
+x_2\\
+-\frac{k}{m} x_1 &-\frac{\lambda}{m} x_2
+\end{matrix}
+\right) 
+=
+A x
+$$
+avec $A=\left(
+\begin{matrix}
+0&1\\
+-\frac{k}{m}&-\frac{\lambda}{m}
+\end{matrix}
+\right)$.
+Puisque $A$ est inversible ($\text{det} A=\frac{k}{m}\neq 0$), le seul point d'équilibre est $x=(0,0)$.
+
+$x\mapsto Ax$ est continûment différentiable donc d'après le théorème de Cauchy-Lipschitz, les solutions maximales sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions maximales sont définies pour tout $t$. Elles sont données par $x(t)=e^{At}x_0$.
+
+Si $\lambda>0$, on a $\text{tr} A= -\frac{\lambda}{m}<0$ et $\text{det} A=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz et il s'ensuit que 0 est globalement asymptotiquement stable. On peut aussi calculer explicitement les valeurs propres et vérifier qu'elles sont à partie réelle strictement négative. 
+
+Lorsque $\lambda=0$, les frottements sont absents et les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$. Comme le système est linéaire, on peut dire que 0 n'est pas asymptotiquement stable. 
+
+
+### Stabilité asymptotique I {.answer #answer-asymp_glob-1}
+
+La jacobienne de la dynamique est donnée par
+$$
+J_f(x_1,x_2) = 
+\left(
+\begin{matrix}
+0 & 1-3x_2^2 \\
+-1+3x_1^2 & -(1-x_1^2)
+\end{matrix}
+\right)
+$$
+soit
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+0 & 1 \\
+-1 & -1
+\end{matrix}
+\right)
+$$
+qui est Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est bien localement asymptotiquement stable. Cependant, il ne l'est pas globalement car $(1,1)$ est aussi un point d'équilibre : la fonction constante égale à $(1,1)$ est solution (et ne tend pas vers 0).
+
+### Oscillateur II {.answer #answer-ressort-2}
+
+Lorsque $\lambda=0$, les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$ et nous avons vu que 0 n'est pas asymptotiquement stable. Dans ce cas, l'énergie du système
+$$
+V(x)
+= \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2
+$$
+est conservée le long des trajectoires, c'est-à-dire, 
+$$
+\dot{\overline{V(x)}} = kx_1x_2 -kx_1x_2 = 0 \ .
+$$ 
+D'après le théorème de Lyapunov, puisque $V$ est à valeurs positives, continûment différentiable et telle que $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. 
+
+Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_osci) ci-dessous.
+
+![Plan de phase d'un oscillateur amorti à droite et non amorti à gauche](images/oscillateur.py){#fig_osci}
+
+### Stabilité asymptotique II {.answer #answer-asymp_glob-2}
+
+La jacobienne de la dynamique est donnée par
+$$
+J_f(0,0) = 
+\left(
+\begin{matrix}
+0 & 1 \\
+0 & -1
+\end{matrix}
+\right)
+$$
+qui admet 0 et -1 comme valeurs propres. Nous ne pouvons donc rien conclure sur la stabilité de 0 par le linéarisé.
+
+Considérons plutôt la fonction $V:\R^2\to \R_{\geq 0}$ définie par
+$$
+V(x_1,x_2)= x_1^4 + x_2^2 + (x_1+x_2)^2
+$$
+$V$ est continûment différentiable, positive et ne s'annule qu'en $x=0$. De plus, elle vérifie
+\begin{align*}
+\langle \nabla V(x) , f(x) \rangle 
+&= 4x_1^3x_2 - 2 x_1^3x_2 - 2x_2^2 + 2(x_1+x_2)(x_2-x_1^3-x_2)\\
+&= -2x_2^2 -2 x_1^4 \qquad <0 \quad \forall x\neq 0
+\end{align*}
+$V$ est donc une fonction de Lyapunov et on a bien la stabilité asymptotique locale. De plus, $V$ est propre, i.e., $\lim_{\|x\|\to +\infty} V(x) = +\infty$, donc la stabilité asymptotique est globale.
 
 ## Ecoulement dans un réservoir {.correction #correc_Torricelli}
 
@@ -1095,15 +1292,6 @@ La multiplicité des solutions peut être expliquée par le fait  que lorsqu'on 
 
 Lorsque $x_0>0$, les solutions sont continues par rapport à la condition initiale tant qu'elles restent positives. Par contre, si $x_0=0$, une solution possible est $x\equiv 0$ alors que pour tout $\delta>0$, la solution partant de $x_0+\delta$ est donnée par $x_\delta(t)=\left(\sqrt{x_0+\delta}-\frac{k}{2}(t-t_0)\right)^2$ pour $t\leq t_0$. Donc sur un horizon de temps fixé (rétrograde) $[\underline{t},t_0]$, la différence $\|x-x_\delta\|$ ne peut être rendue arbitrairement petite en faisant tendre $\delta$ vers 0. Le même phénomène apparaît en temps positif lorsque l'on considère  les solutions négatives (voir remarque plus haut). En ce sens, on n'a pas la continuité des solutions par rapport à la condition initiale. Cela ne contredit pas le théorème car $f(x)=-\sqrt{|x|}$ n'est pas $C^1$, ni lipschitzienne en 0. 
 
-## Solutions globales {.answer #answer-glob_sol}
-
-Fixons une condition initiale dans $\R^2$. La fonction $f:(x_1,x_2)\mapsto (\sin x_1 - x_2 ,\sqrt{1+x_1^2})$ est continûment différentiable sur $\R^2$. Donc d'après le théorème de Cauchy-Lipschitz, le problème de Cauchy admet une unique solution maximale définie sur un intervalle de temps $I$ ouvert. 
-
-Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
-$$
-|f_1(x)| \leq 1 + |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
-$$
-et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions sont donc globales, i.e. $I=\R$.
 
 ## Autour du Lemme de Grönwall {.correction #correc_gronwall}
 
@@ -1200,103 +1388,6 @@ Si les valeurs propres sont réelles, les avoir toutes deux strictement négativ
 
 Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
 
-## Oscillateur {.correction #correc_masse_ressort}
-
-### Question 1 {.answer #answer-ressort-1}
-Prenons $x=(y,\dot{y})$ qui vérifie
-$$
-\dot{x} = 
-\left(
-\begin{matrix}
-x_2\\
--\frac{k}{m} x_1 &-\frac{\lambda}{m} x_2
-\end{matrix}
-\right) 
-=
-A x
-$$
-avec $A=\left(
-\begin{matrix}
-0&1\\
--\frac{k}{m}&-\frac{\lambda}{m}
-\end{matrix}
-\right)$.
-Puisque $A$ est inversible ($\text{det} A=\frac{k}{m}\neq 0$), le seul point d'équilibre est $x=(0,0)$.
-
-### Question 2 {.answer #answer-ressort-2}
-
-$x\mapsto Ax$ est continûment différentiable donc d'après le théorème de Cauchy-Lipschitz, les solutions sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions sont définies pour tout $t$. Les solutions sont données par $x(t)=e^{At}x_0$.
-
-### Question 3 {.answer #answer-ressort-3}
-
-Si $\lambda>0$, on a $\text{tr} A= -\frac{\lambda}{m}<0$ et $\text{det} A=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz et il s'ensuit que 0 est globalement asymptotiquement stable. On pourrait aussi calculer explicitement les valeurs propres et vérifier qu'elles sont à partie réelle strictement négative. 
-
-Lorsque $\lambda=0$, les frottements sont absents et les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$. Donc 0 n'est plus asymptotiquement stable. Dans ce cas, l'énergie du système
-$$
-V(x)
-= \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2
-$$
-est conservée le long des trajectoires, c'est-à-dire, 
-$$
-\dot{\overline{V(x)}} = kx_1x_2 -kx_1x_2 = 0 \ .
-$$ 
-D'après le théorème de Lyapunov, puisque $V$ est à valeurs positives, continûment différentiable et telle que $V(x)=0$ est équivalent à $x=0$, la position d'équilibre 0 est donc stable. En fait, la masse oscille autour de sa position d'équilibre à énergie constante et à la pulsation $\sqrt{\frac{k}{m}}$. 
-
-Les portraits de phase de ces deux scénarios sont donnés sur la [Figure](#fig_osci) ci-dessous.
-
-![Plan de phase d'un oscillateur amorti à droite et non amorti à gauche](images/oscillateur.py){#fig_osci}
-
-## Stabilité asymptotique globale 
-
-### Question 1 {.answer #answer-asymp_glob-1}
-
-La jacobienne de la dynamique est donnée par
-$$
-J_f(x_1,x_2) = 
-\left(
-\begin{matrix}
-0 & 1-3x_2^2 \\
--1+3x_1^2 & -(1-x_1^2)
-\end{matrix}
-\right)
-$$
-soit
-$$
-J_f(0,0) = 
-\left(
-\begin{matrix}
-0 & 1 \\
--1 & -1
-\end{matrix}
-\right)
-$$
-qui est Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est bien localement asymptotiquement stable. Cependant, il ne l'est pas globalement car $(1,1)$ est aussi un point d'équilibre : la fonction constante égale à $(1,1)$ est solution (et ne tend pas vers 0).
-
-### Question 2 {.answer #answer-asymp_glob-2}
-
-La jacobienne de la dynamique est donnée par
-$$
-J_f(0,0) = 
-\left(
-\begin{matrix}
-0 & 1 \\
-0 & -1
-\end{matrix}
-\right)
-$$
-qui admet 0 et -1 comme valeurs propres. Nous ne pouvons donc rien conclure sur la stabilité de 0 par le linéarisé.
-
-Considérons plutôt la fonction $V:\R^2\to \R_{\geq 0}$ définie par
-$$
-V(x_1,x_2)= x_1^4 + x_2^2 + (x_1+x_2)^2
-$$
-$V$ est continûment différentiable, positive et ne s'annule qu'en $x=0$. De plus, elle vérifie
-\begin{align*}
-\langle \nabla V(x) , f(x) \rangle 
-&= 4x_1^3x_2 - 2 x_1^3x_2 - 2x_2^2 + 2(x_1+x_2)(x_2-x_1^3-x_2)\\
-&= -2x_2^2 -2 x_1^4 \qquad <0 \quad \forall x\neq 0
-\end{align*}
-$V$ est donc une fonction de Lyapunov et on a bien la stabilité asymptotique locale. De plus, $V$ est propre, i.e., $\lim_{\|x\|\to +\infty} V(x) = +\infty$, donc la stabilité asymptotique est globale.
 
 ## Cycle limite {.correction #correc_cycle_lim}
 On étudie le comportement des solutions de $\dot{x}=f(x)$ pour
@@ -1469,12 +1560,12 @@ x(t) = x_0 + \int_{t_0}^t f(s,x(s)) ds
 $$
 sur $[t_0,t_0+\tau_m]$ et la preuve sur $[t_0-\tau_m,t_0]$ se fait de la même façon. 
 
-L'idée est d'approximer de plus en plus finement la forme intégrale et montrer ce procédé converge. On définit donc pour $\epsilon \in ]0,1[$ la fonction
+L'idée est d'approximer de plus en plus finement la forme intégrale et montrer que ce procédé converge. On définit donc pour $\epsilon \in ]0,1[$ la fonction
 \begin{align*}
 x_\epsilon(t) &= x_0 & \forall t\in [t_0-1,t_0] \\
 &= x_0 + \int_{t_0}^t f(s,x_\epsilon(s-\epsilon)) ds & \forall t\in [t_0,t_0+\tau_m]
 \end{align*}
-Ces fonctions sont clairement définies et continues sur $[t_0-1,t_0]$. Puis sur $[t_0,t_0+\epsilon]\cap[t_0,t_0+\tau_m]$, on voit que l'intégrale ne dépend que de $x_\epsilon$ sur $[t_0-1,t_0]$, donc elle est toujours bien définie et continue. De proche en proche, $x_\epsilon$ est donc bien définie et continue sur $[t_0-1,t_0+\tau_m]$. En fait, $\epsilon$ représente un petit retard introduit dans l'intégrale pour la rendre explicite. Si l'on arrive à montrer que ces fonctions converge vers une fonction continues lorsque $\epsilon$ tend vers 0, cette limite sera solution de l'équation intégrale sur $[t_0,t_0+\tau_m]$ et sera donc solution. 
+Ces fonctions sont définies et continues sur $[t_0-1,t_0]$. Puis sur $[t_0,t_0+\epsilon]\cap[t_0,t_0+\tau_m]$, on voit que l'intégrale ne dépend que de $x_\epsilon$ sur $[t_0-1,t_0]$, donc elle est toujours bien définie et continue. De proche en proche, $x_\epsilon$ est donc bien définie et continue sur $[t_0-1,t_0+\tau_m]$. En fait, $\epsilon$ représente un petit retard introduit dans l'intégrale pour la rendre explicite. Si l'on arrive à montrer que ces fonctions converge vers une fonction continues lorsque $\epsilon$ tend vers 0, cette limite sera solution de l'équation intégrale sur $[t_0,t_0+\tau_m]$ et sera donc solution. 
 
 La première étape est de montrer de proche en proche, grâce au retard, que $x_\epsilon(t)\in \overline{B}(x_0,r)$ pour tout $t\in [t_0-1,t_0+\tau_m]$ puisque $\tau_m\max_\cC \|f\|\leq r$. Donc
 $$
