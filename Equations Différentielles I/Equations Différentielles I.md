@@ -124,11 +124,7 @@ $$
 y^{(p)}(t) = \psi\left(t,y(t),\dot{y}(t),\ldots, y^{(p-1)(t)}\right)
 $$
 sur son ensemble de définition, où $p\in \N^*$ désigne l'ordre de l'équation différentielle.
-En fait, on se rend compte que $y$ de classe $C^p$ vérifie
-$$
-y^{(p)}(t) = \psi\left(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t)\right)
-$$
-si et seulement si $x=(y,\dot{y},\ldots,y^{(p-1)})$ de classe $C^1$ vérifie
+En fait, on se rend compte que $y$ de classe $C^p$ vérifie l'équation différentielle ci-dessus si et seulement si $x=(y,\dot{y},\ldots,y^{(p-1)})$ de classe $C^1$ vérifie
 $$
 \dot{x} = f(t,x) \ , 
 $$
@@ -243,7 +239,7 @@ L'équation différentielle est dite *autonome* si l'application $f$ ne dépend 
 
 Lorsque l'intervalle de temps $I$ de définition de la solution est $J$ entier, on dira que la solution est *globale*. Mais on verra qu'il peut parfois arriver qu'une solution ne puisse être définie sur $J$ entier, par exemple si elle explose avant, ou si elle s'apprête à quitter $X$.
 
-Notons que $f$ sera souvent définie sur $J=\R$ et $X = \R^{n}$ entiers. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|^2}$ n'est définie que pour $y_a\neq y_b$.
+Notons que $f$ sera souvent définie sur $J=\R$ et $X = \R^{n}$. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|^2}$ n'est définie que pour $y_a\neq y_b$.
 
 ### 
 
@@ -292,7 +288,7 @@ La définition sous forme intégrale des solutions montre que la recherche de so
 
 En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. Voir [Figure](#fig_pendule) ci-dessous dans le cas d'un pendule.
 
-![Portraits de phase d'un pendule non amorti à gauche et amorti à droite. $x_1$ représente l'angle du pendule en abscisse et $x_2$ sa vitesse de rotation en ordonnée. Le pendule sera décrit et étudié plus en détail dans la suite du cours.](images/pendule.py){#fig_pendule}
+![Portraits de phase d'un pendule non amorti en haut et amorti en bas. $x_1$ représente l'angle du pendule en abscisse et $x_2$ sa vitesse de rotation en ordonnée. Le pendule sera décrit et étudié plus en détail dans la suite du cours.](images/pendule.py){#fig_pendule}
 
 
 Etude du problème de Cauchy
@@ -318,14 +314,14 @@ L'existence de solutions $C^1$ est garantie lorsque $f$ est continue. Il s'avèr
 
 - il existe une fonction intégrable $t\mapsto b(t)$ telle que $|f(t,x)|\leq b(t)$ pour tout $(t,x)$.
 
- Ce sont les conditions de *Carathéodory*. Voir [@Hale]. Un cadre encore plus général consisterait à autoriser des discontinuités de $f$ en $x$ mais l'étude des solutions passerait alors par celle des *inclusions différentielles* du type $\dot{x} \in F(t,x)$, ce qui nous amènerait bien trop loin de ce cours.  Voir [@Fil].
+ Ce sont les conditions de *Carathéodory*. Voir [@Hale]. Un cadre encore plus général consiste à autoriser des discontinuités de $f$ par rapport à $x$ mais l'étude des solutions passe alors par celle des *inclusions différentielles* du type $\dot{x} \in F(t,x)$, ce qui nous amènerait bien trop loin de ce cours.  Voir [@Fil].
 
 
  
 Domaine d'existence des solutions
 --------------------------------
 
-Nous venons de voir que des solutions locales au problème de Cauchy existent toujours si $f$ est continue. Nous savons qu'elles sont définies *au moins un certain temps*, mais il est intéressant de se demander quel est l'intervalle de temps *maximal* sur lequel elles peuvent être définies. En d'autre terme, on s'intéresse aux *solutions maximales*.
+Nous venons de voir que des solutions locales au problème de Cauchy existent si $f$ est continue. Nous savons qu'elles sont définies *au moins un certain temps*, mais il est intéressant de se demander quel est l'intervalle de temps *maximal* sur lequel elles peuvent être définies. En d'autre terme, on s'intéresse aux *solutions maximales*.
 
 ### Solution maximale {.definition #def_sol_max}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue. On dit que $x : I \to\R^n$ est une solution *maximale* de l'équation différentielle 
@@ -349,7 +345,7 @@ L'application $f:(t,x)\mapsto x^2$ est continue sur $\R^2$, donc il existe au mo
 $$
 x(t)=\frac{x_0}{1-x_0(t-t_0)} \quad , \quad I=\left]-\infty,t_0+\frac{1}{x_0}\right[ 
 $$
-est bien solution. Vu qu'elle diverge au temps $t_0+\frac{1}{x_0}$, elle ne peut être prolongée au delà. On dit qu'elle *explose en temps fini*. 
+est bien solution. Vu qu'elle diverge au temps $t_0+\frac{1}{x_0}$, elle ne peut être prolongée au delà. Elle est donc maximale et on dit qu'elle *explose en temps fini*. 
 
 ![Solutions à $\dot{x} = x^2$ pour $t_0=0$ et différentes valeurs de $x_0$](images/explosion_temps_fini.py){#fig_explo_temps_fini}
 
@@ -433,7 +429,7 @@ engendrent des problèmes de Cauchy aux solutions globales.
 Justifier que pour toute condition initiale,  
 $$
 \begin{array}{rcl}
-\dot{x}_1 &=& \sin x_1 - x_2 \\
+\dot{x}_1 &=& \sin x_1 - \sqrt{|t|} x_2 \\
 \dot{x}_2 &=& \sqrt{1+x_1^2}
 \end{array}
 $$
@@ -444,13 +440,13 @@ Soient $f:\R \times \R^n \to \R^n$ continue et  $V:\R^n \to \R$ définie par $V(
 $$
 \langle\nabla V (x), f(t,x)\rangle \leq a(t) V(x) + b(t)  \qquad \forall (t,x)\in \R\times \R^n
 $$
-avec $a,b:\R \to \R$ continues. Montrer que quelque soit la condition initiale, les solutions maximales de 
+avec $a,b:\R \to \R$ continues. Montrer que quelque soit la condition initiale $(t_0,x_0)\in \R\times \R^2$, les solutions maximales de 
 $$
 \dot{x} = f(t,x)
 $$
-sont définies sur $\R$. On pourra pour cela étudier l'évolution de $t\mapsto V(x(t))$.
+sont définies sur $[t_0,+\infty[$. On pourra pour cela étudier l'évolution de $t\mapsto V(x(t))$.
 
-Unicité des solutions
+Unicité des solutions maximales
 -------------------------------
 
 Si des solutions maximales existent toujours, elles ne sont pas toujours uniques. 
@@ -461,19 +457,22 @@ Considérons le problème de Cauchy
 $$
 \dot{x}=-\sqrt{|x|} \qquad , \qquad (t_0,x_0)=(0,0) \ .
 $$ 
-Ce système permet en particulier de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli* (voir [exercice](#exo_Torricelli) correspondant).
-La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. Mais on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales. Plus de détails sont donnés dans le notebook Equations Différentielles.ipynb.
+Ce système permet en particulier de modéliser l'écoulement d'un fluide dans un réservoir, selon la loi de *Torricelli* (voir [exercice](#exo_Torricelli)).
+La fonction $f:(t,x)\mapsto -\sqrt{|x|}$ est continue sur $\R\times \R$, donc ce problème de Cauchy admet au moins une solution. Mais on montrera en [exercice](#exo_Torricelli) qu'il existe une infinité de solutions maximales. Plus de détails sont donnés dans le notebook Equations Différentielles I.ipynb.
 
 
 Le théorème suivant, dit de *Cauchy-Lipschitz*, montre que l'unicité des solutions maximales est garantie si $f$ est de plus continûment différentiable par rapport à la variable $x$. On voit que ce n'est pas le cas de $x\mapsto -\sqrt{|x|}$ en 0. Le théorème et la preuve de l'époque est disponible en ligne dans des notes de cours [@cauchy].
 
 ### Théorème de Cauchy-Lipschitz (ou de Picard-Lindelöf) {.theorem #theo_lips}
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue telle que sa dérivée partielle $(t,x)\mapsto \partial_x f(t,x)$ existe et est continue sur $J\times X$ (i.e., $f$ est continûment différentiable par rapport à $x$).
-Alors pour tout $(t_0,x_0)\in J\times X$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.
+Alors pour tout $(t_0,x_0)\in J\times X$, il existe une unique solution maximale $x:I\to\R^n$ dans $S_f(t_0,x_0)$. 
+<!-- De plus,  l'intervalle $I$ est ouvert et contient un voisinage de $t_0$.-->
 
 ### Démonstration {.proof} 
 
-Nous donnons ici le principe de la preuve qui peut être passée en première lecture, mais qu'il est intéressant de comprendre d'un point de vue scientifique. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale. L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $J\times X$ est ouvert, ce qui contredirait sa maximalité. La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
+Nous donnons ici le principe de la preuve qui peut être passée en première lecture, mais qu'il est intéressant de comprendre d'un point de vue scientifique. L'essentiel est en fait de montrer que sous l'hypothèse de régularité de $f$ par rapport à $x$, il existe une unique solution locale au problème de Cauchy. De là on peut ensuite déduire qu'elle se prolonge en une unique solution maximale dans $J\times X$. 
+<!--L'ouverture de son intervalle de définition vient du fait qu'elle serait sinon de nouveau prolongeable *au bord* de l'intervalle puisque $J\times X$ est ouvert, ce qui contredirait sa maximalité. -->
+La partie cruciale est donc le résultat local suivant qui constitue en fait le théorème initial de Cauchy-Lipschitz (sa généralisation aux solutions globales étant plutôt dûe à [Picard et Lindelöf](#rem_approx_succ)).
 
 **Théorème de Cauchy-Lipschitz local** Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue et continûment différentiable par rapport à $x$, et $(t_0,x_0)\in J\times X$. Soient $\tau>0$ et $r>0$ tels que 
 $$
@@ -512,7 +511,7 @@ de sorte que $\Gamma(x)\in F$, i.e. $\Gamma:F\to F$. Ensuite, pour tout $(x_a,x_
 $$
 \|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq \left|\int_{t_0}^t \|f(s,x_a(s))-f(s,x_b(s))\| ds \right| \ .
 $$
-Soit $k=\max_\cC \left\|\partial_x f \right\|$ (bien défini car $\cC$ est compact et $\partial_x f$ est continue par hypothèse). Alors l'application du théorème des accroissement finis nous donne
+Soit $k=\max_\cC \left\|\partial_x f \right\|$ (bien défini car $\cC$ est fermé et borné dans $\R^n$ et $\partial_x f$ est continue par hypothèse). Alors l'application du théorème des accroissement finis nous donne
 $$
 \|\Gamma(x_a)(t)-\Gamma(x_b)(t)\|\leq  \left|\int_{t_0}^t k\|x_a(s)-x_b(s)\| ds \right| \leq |t-t_0| k \|x_a-x_b\|_{\infty} 
 $$
@@ -553,6 +552,17 @@ $$
 admet une unique solution maximale quelque-soit sa condition initiale $(t_0,x_0)\in \R\times \R^n$, car $J_f(t,x) = A(t)$ est continue.
 
 - Les équations décrivant l'évolution de la tension dans un circuit RLC ou la cinétique chimique données au début de ce cours admettent une unique solution maximale au voisinage de toute condition initiale $(t_0,x_0)$. C'est aussi le cas des équations de la mécanique Newtonnienne ou Lagrangienne si les forces/couples $F_k(t,q,\dot{q})$ sont continûment différentiable par rapport à la position et la vitesse $(q,\dot{q})$.
+
+### Unicité de la solution maximale {.exercise .question #ini_sol .one}
+
+Justifier que pour toute condition initiale,  
+$$
+\begin{array}{rcl}
+\dot{x}_1 &=& \sin x_1 - \sqrt{|t|} x_2 \\
+\dot{x}_2 &=& \sqrt{1+x_1^2}
+\end{array}
+$$
+admet une unique solution maximale définie sur $\R$.
 
 
 
@@ -657,7 +667,7 @@ où $\sigma$, $\rho$ et $\beta$ sont des paramètres strictement positifs. Pour 
 
 - En 1989, l'astrologue français Jacques Laskar met en évidence numériquement le caractère chaotique des orbites des planètes de notre système solaire, en particulier celle de Mercure, dont les variations d'excentricité pourraient entraîner des collisions ou éjections de planètes dans certains scénarios long-termes. Ces travaux sont confirmés en 1992 par Gerald Jay Sussman et Jack Wisdom, qui démontrent que le système solaire est chaotique avec un horizon de Lyapunov de l'ordre de 4 million d'années [@SussWis]. 
 
-- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité, la mécanique. Parfois, le comportement chaotique apparaît seulement lorsque le système est soumis à certaines excitations, par exemple une excitation sinusoïdale du pendule ou de oscillateur de Van der Pol [@HolRand].
+- Plus généralement, les systèmes chaotiques apparaissent dans des domaines très divers, comprenant l'économie, l'électricité, la mécanique, la médecine. Parfois, le comportement chaotique apparaît seulement lorsque le système est soumis à certaines excitations, par exemple une excitation sinusoïdale du pendule ou de l'oscillateur de Van der Pol [@HolRand].
 
 ![Trajectoire de l'oscillateur de Lorenz](images/attracteur_lorenz.py){#fig_attracteur_lorenz}
 
@@ -727,9 +737,9 @@ $$
 
 ### Stabilité du pendule {.example #ex_stab}
 
-- Lorsqu'un pendule est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse : l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc localement asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule amorti](#fig_pendule).  
+- Lorsqu'un pendule amorti est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse : l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc localement asymptotiquement stable. Voir le [portrait de phase du pendule amorti](#fig_pendule).  
 
-- Si l'on avait pris un pendule non amorti, c'est-à-dire avec $\rho=0$, on aurait des oscillations indéfiniment à énergie constante : la position basse serait alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Ceci se voit sur le [portrait de phase du pendule non amorti](#fig_pendule).  
+- Dans le cas d'un pendule non amorti par contre, c'est-à-dire avec $\rho=0$, le pendule oscille indéfiniment à énergie constante : la position basse est alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Voir le [portrait de phase du pendule non amorti](#fig_pendule).  
 
 <!-- - Il existe des systèmes pour lesquels un équilibre est attractif sans être stable. C'est le cas lorsque les trajectoires initialisées *de plus en plus proche* de l'équilibre doivent d'abord s'éloigner *de plus en plus* avant de converger. Un exemple célèbre est le système de [Vinograd](#fig_vinograd) dont le portrait de phase est représenté ci-dessous.
 
@@ -752,7 +762,7 @@ La notion de *globalement asymptotiquement stable* contient deux propriétés : 
 $$
 x(t)= e^{At} x_0 \ .
 $$
-Si $A$ était diagonale, on aurait $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ inversible telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit, toute matrice $A$ n'est pas diagonalisable. Par contre, il existe toujours $P\in \R^{n\times n}$ inversible telle que
+Si $A$ est diagonale, on a $x_i(t)=e^{\lambda_i t}x_{0,i}$, où $\lambda_i$ sont les valeurs propres de $A$ et l'on voit bien que la convergence des solutions vers 0 est équivalente à avoir $\lambda_i<0$. Maintenant, si $A$ est diagonalisable, i.e., il existe $P\in \R^{n\times n}$ inversible telle que $P^{-1} A P$ est diagonale, on a $P^{-1} x(t) P =  e^{P^{-1} A P t} P^{-1} x_0 P$, et reproduisant le même argument, $P^{-1} x P$ (et donc $x$) converge vers 0 si et seulement si les entrées diagonales de $P^{-1} A P$, qui sont les valeurs propres de $A$, sont à partie réelle strictement négative. Ceci dit, toute matrice $A$ n'est pas diagonalisable. Par contre, il existe toujours $P\in \R^{n\times n}$ inversible telle que
 $$
 P^{-1} A P = D + N
 $$
@@ -777,6 +787,10 @@ A(t) = \left( \begin{matrix}
 \right)
 $$
 a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant, $\dot{x} = A(t) x$ admet des solutions non bornées pour $x(0)$ arbitrairement proche de 0.
+
+### Critère de stabilité d'un système linéaire plan {.exercise .question #crit_stab_dim2 .one}
+
+Montrer que $A\in \R^{2\times 2}$ est Hurwitz si et seulement si $\text{tr} A <0$ et $\text{det} A >0$. Attention, ce critère ne marche qu'en dimension 2 !
 
 ### Oscillateur I {.exercise .question #ressort-1 .one}
 Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
@@ -875,7 +889,7 @@ Supposons d'abord que $\langle\nabla V (x), f(x)\rangle \leq 0$ pour tout $x\in 
 $$
 \forall x\in \overline{B}(a,2\varepsilon) \ : \ V(x)\leq \varepsilon_V \ \Longrightarrow x\in B(a,\varepsilon) \ .
 $$
-En effet, sinon, il existerait une suite $(x_k)_{k\in \N}$ d'éléments de $\overline{B}(a,2\varepsilon)$ telle que pour tout $k>0$, $V(x_k)\leq \frac{1}{k}$ et $\|x_k-a\|\geq \varepsilon$. L'ensemble $\overline{B}(a,2\varepsilon)$ étant compact, on peut en extraire une sous-suite convergeant vers $x^\star$ qui vérifie nécessairement $V(x^\star)=0$  par continuité de $V$ et $\|x^\star-a\|\geq \varepsilon$, i.e. $x^\star \neq a$. Ceci est impossible par hypothèse. On a donc l'existence de $\varepsilon_V$. Maintenant, par continuité de $V$ en $a$ et puisque $V(a)=0$, il existe aussi $\eta>0$ tel que 
+En effet, sinon, il existerait une suite $(x_k)_{k\in \N}$ d'éléments de $\overline{B}(a,2\varepsilon)$ telle que pour tout $k>0$, $V(x_k)\leq \frac{1}{k}$ et $\|x_k-a\|\geq \varepsilon$. L'ensemble $\overline{B}(a,2\varepsilon)$ étant fermé et borné donc compact, on peut en extraire une sous-suite convergeant vers $x^\star$ qui vérifie nécessairement $V(x^\star)=0$  par continuité de $V$ et $\|x^\star-a\|\geq \varepsilon$, i.e. $x^\star \neq a$. Ceci est impossible par hypothèse. On a donc l'existence de $\varepsilon_V$. Maintenant, par continuité de $V$ en $a$ et puisque $V(a)=0$, il existe aussi $\eta>0$ tel que 
 $$
 x\in B(a,\eta)  \ \Longrightarrow V(x)\leq \varepsilon_V \ .
 $$
@@ -978,15 +992,6 @@ Utiliser le Lemme de Grönwall pour montrer le [théorème de continuité par ra
 
 
 
-## Critère de stabilité d'un système plan {.question #crit_stab_dim2}
-
-Montrer que $A\in \R^{2\times 2}$ est Hurwitz si et seulement si 
-$$
-\text{tr} A <0  \qquad \text{ et } \qquad \text{det} A >0 \ .
-$$
-
-
-
 <!--
 ## Stabilité asymptotique globale ($++$) {.exercice #exo_stab_glob}
 
@@ -1024,10 +1029,11 @@ $$
 Montrer que ce système admet un seul point d'équilibre. Etudier sa stabilité.
 
 ### Question 2 {.question #cycle-lim-2}
-Posons $V(x) = \|x\|^2 = x_1^2+x_2^2$. Etudier le signe de $\frac{d}{dt}V(x(t))$ le long des trajectoires du système. En déduire que toutes les solutions maximales sont définies pour tout $t\geq t_0$.
+Montrer que quelque-soit la condition initiale, le système admet une unique solution maximale $x:I\to \R^2$.
+Soit $V:\R^2\to\R$ définie par $V(x) = \|x\|^2 = x_1^2+x_2^2$. En étudiant le signe de $\frac{d}{dt}V(x(t))$, montrer que $[t_0,+\infty[ \subset I$.
 
 ### Question 3 {.question #cycle-lim-3}
-Montrer que si $\|x(0)\|\neq 1$ alors $\|x(t)\|\neq 1$ pour tout $t\geq 0$.
+Montrer que si $\|x(t_0)\|\neq 1$ alors $\|x(t)\|\neq 1$ pour tout $t\in  I$.
 
 ### Question 4 {.question #cycle-lim-4}
 En déduire le comportement des solutions en fonction de la condition initiale.
@@ -1042,7 +1048,7 @@ alors il l'est globalement et 0 est stable.
 
 
 
-## Contrôle d'un système linéaire {.exercice #exo_cont_lin}
+## Contrôle d'un système {.exercice #exo_cont_lin}
 Soit le système décrit par
 $$
 \dot{x} = x + u(t)
@@ -1081,32 +1087,32 @@ Solutions
 
 ### Solutions globales I {.answer #answer-glob_sol}
 
-Fixons une condition initiale dans $\R^2$. La fonction $f:(t,x_1,x_2)\mapsto (\sin x_1 - x_2 ,\sqrt{1+x_1^2})$ est continue sur $\R\times\R^2$. Donc d'après les théorème de Peano des solutions existent. D'après le théorème du domaine maximal d'existence, les solutions maximales sont définies sur un intervalle de temps $I$ ouvert. 
+Fixons une condition initiale dans $\R \times \R^2$. La fonction $f:(t,x_1,x_2)\mapsto (\sin x_1 - \sqrt{|t|} x_2 ,\sqrt{1+x_1^2})$ est continue sur $\R\times\R^2$. Donc d'après les théorème de Peano des solutions existent. D'après le théorème du domaine maximal d'existence, les solutions maximales sont définies sur un intervalle de temps $I$ ouvert. 
 
 Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
 $$
 |f_1(x)| \leq 1 + |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
 $$
-et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions sont donc globales, i.e. $I=\R$.
+et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions maximales sont donc globales, i.e. $I=\R$.
 
 
 ### Solutions globales II {.answer #answer-glob_sol2}
 
-Considérons une condition initiale dans $\R\times \R^n$ et une solution maximale $t\mapsto x(t)$ correspondante définie sur un intervalle ouvert $I$ (qui existe d'après le théorème de Peano car $f$ est continue sur $\R\times \R^n$). Alors
+Considérons une condition initiale dans $\R\times \R^n$ et une solution maximale $t\mapsto x(t)$  définie sur un intervalle $I$ (qui existe d'après le théorème de Peano car $f$ est continue sur $\R\times \R^n$). Alors
 $$
 \frac{d}{dt} V(x(t)) = \langle\nabla V (x(t)), f(t,x(t))\rangle \leq a(t) V(x(t)) + b(t) \quad \forall t\in I \ ,
 $$
 et donc
 $$
-\frac{d}{dt} V(x(t))e^{-\int_{t_0}^t a(s) ds} \leq b(t)e^{-\int_{t_0}^t a(s) ds}  \quad \forall t\in I \ .
+\frac{d}{dt} \left[e^{-\int_{t_0}^t a(\tau) d\tau}  V(x(t))\right] \leq e^{-\int_{t_0}^t a(\tau) d\tau} b(t)  \quad \forall t\in I \ .
 $$
 En intégrant entre $t_0$ et $t\geq t_0$,
 $$
-V(x(t))e^{-\int_{t_0}^t a(s) ds} - V(x(t_0)) \leq \int_{t_0}^t b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \quad \forall t\in I \cap [t_0,+\infty[
+e^{-\int_{t_0}^t a(\tau) d\tau} V(x(t)) - V(x(t_0)) \leq \int_{t_0}^t e^{-\int_{t_0}^s a(\tau) d\tau} b(s) ds \quad \forall t\in I \cap [t_0,+\infty[
 $$
 et donc
 $$
-V(x(t)) \leq \left[V(x(t_0)) + \int_{t_0}^t b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \right]e^{\int_{t_0}^t a(s) ds}  \quad \forall t\in I \cap [t_0,+\infty[ \ .
+V(x(t)) \leq e^{\int_{t_0}^t a(\tau) d\tau} V(x(t_0)) + \int_{t_0}^t e^{\int_{s}^t a(\tau) d\tau} b(s) ds \quad \forall t\in I \cap [t_0,+\infty[ \ .
 $$
 Une autre manière de faire est de montrer que $V(x(t))\leq v(t)$ où $v$ est solution maximale de 
 $$
@@ -1135,9 +1141,28 @@ On en déduit ainsi que $V(x(t)) \leq  v(t)$ sur $I$.
 
 Or si $\tmax = \sup I$ est fini, d'après le théorème du domaine maximal, $(t,x(t))$ tend soit vers la frontière du domaine de définition de $f$, soit diverge. Comme $f$ est définie et continue sur $\R\times \R^n$, nécessairement $\lim_{t\to\tmax} \|x(t)\| = +\infty$ et donc $\lim_{t\to\tmax} V(x(t)) = +\infty$. Or par continuité de $a,b$ sur $\R$,
 $$
-\lim_{t\to\tmax} V(x(t)) \leq \left[V(x(t_0)) + \int_{t_0}^{\tmax} b(s)e^{-\int_{t_0}^s a(\tau) d\tau} ds \right]e^{\int_{t_0}^{\tmax} a(s) ds}   \ .
+\lim_{t\to\tmax} V(x(t)) \leq e^{\int_{t_0}^{\tmax} a(\tau) d\tau} V(x(t_0)) + \int_{t_0}^{\tmax} e^{\int_{s}^{\tmax} a(\tau) d\tau} b(s) ds   \ .
 $$
-C'est donc impossible et $\tmax = +\infty$. De même, $\inf I = -\infty$.
+C'est donc impossible et $\tmax = +\infty$. 
+
+### Unicité de la solution maximale {.answer #answer-ini_sol}
+
+Nous avons vu dans l'exercice Solutions globales I que les solutions maximales de ce système sont définies sur $\R$. Par ailleurs, la fonction $f:(t,x_1,x_2)\mapsto (\sin x_1 - \sqrt{|t|} x_2 ,\sqrt{1+x_1^2})$ est continûment différentiable par rapport à $x$ sur $\R\times\R^2$. Donc pour chaque condition initiale dans $\R\times\R^2$, il existe une unique solution maximale.
+
+### Critère de stabilité d'un système linéaire plan {.answer #answer-crit_stab_dim2}
+
+Soient $\lambda_1$ et $\lambda_2$ les valeurs propres d'une matrice $A$ de dimension 2. Son polynôme caractéristique est donné par
+$$
+s^2 - \text{tr} A s + \det A = (s-\lambda_1)(s-\lambda_2) = s^2 - (\lambda_1+\lambda_2)  s + \lambda_1\lambda_2 \ .
+$$
+Donc $\text{tr} A = \lambda_1+\lambda_2$ et $\det A = \lambda_1\lambda_2$. Il y a deux cas: soit les valeurs propres sont complexes conjuguées, soit elles sont réelles.
+
+Si $\lambda_i = \lambda_0 \pm j\omega$, alors $\lambda_1\lambda_2=\lambda_0^2+\omega^2$ et $\lambda_1+\lambda_2 = 2\lambda_0$. Donc $\lambda_0<0$ si et seulement si $\text{tr} A <0$ (et on a alors toujours $\det A>0$).
+
+Si les valeurs propres sont réelles, les avoir toutes deux strictement négatives implique que $\lambda_1\lambda_2>0$ et $\lambda_1+\lambda_2<0$. Réciproquement, si $\lambda_1\lambda_2>0$, elles sont non nulles et du même signe, et si de plus $\lambda_1+\lambda_2<0$, ce signe est nécessairement négatif.
+
+Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
+
 
 ### Oscillateur I {.answer #answer-ressort-1}
 
@@ -1165,7 +1190,7 @@ $x\mapsto Ax$ est continûment différentiable donc d'après le théorème de Ca
 
 Si $\lambda>0$, on a $\text{tr} A= -\frac{\lambda}{m}<0$ et $\text{det} A=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz et il s'ensuit que 0 est globalement asymptotiquement stable. On peut aussi calculer explicitement les valeurs propres et vérifier qu'elles sont à partie réelle strictement négative. 
 
-Lorsque $\lambda=0$, les frottements sont absents et les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$. Comme le système est linéaire, on peut dire que 0 n'est pas asymptotiquement stable. 
+Lorsque $\lambda=0$, les frottements sont absents et les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$. Comme le système est linéaire, on peut dire que 0 n'est pas attratif donc pas asymptotiquement stable. Par contre, il faut une étude plus approfondie pour étudier sa stabilité.
 
 
 ### Stabilité asymptotique I {.answer #answer-asymp_glob-1}
@@ -1374,19 +1399,6 @@ $$
 Pour $\delta$ suffisamment petit, $|\delta|e^{M(t-t_0)}\leq \varepsilon$ sur $[ t_0,\overline{t}]$. On a alors nécessairement $\underline{t}'=\underline{t}$ et $\overline{t}'=\overline{t}$ et le résultat est montré. Notons que la preuve est bien toujours valable pour $f$ localement Lipschitzienne par rapport à $x$ sur $J\times X$, puisqu'il suffit alors de prendre pour $M$ la constante de Lipschitz de $f$ par rapport à $x$ sur $\cC$ qui est fermé et borné (compact).
 <!--Il suffit donc de montrer que $[t_0,\overline{t}]\subset I\cap I_\delta$.-->
 
-## Critère de stabilité en dimension 2 {.answer #answer-crit_stab_dim2}
-
-Soient $\lambda_1$ et $\lambda_2$ les valeurs propres d'une matrice $A$ de dimension 2. Son polynôme caractéristique est donné par
-$$
-s^2 - \text{tr} A s + \det A = (s-\lambda_1)(s-\lambda_2) = s^2 - (\lambda_1+\lambda_2)  s + \lambda_1\lambda_2 \ .
-$$
-Donc $\text{tr} A = \lambda_1+\lambda_2$ et $\det A = \lambda_1\lambda_2$. Il y a deux cas: soit les valeurs propres sont complexes conjuguées, soit elles sont réelles.
-
-Si $\lambda_i = \lambda_0 \pm j\omega$, alors $\lambda_1\lambda_2=\lambda_0^2+\omega^2$ et $\lambda_1+\lambda_2 = 2\lambda_0$. Donc $\lambda_0<0$ si et seulement si $\text{tr} A <0$ (et on a alors toujours $\det A>0$).
-
-Si les valeurs propres sont réelles, les avoir toutes deux strictement négatives implique que $\lambda_1\lambda_2>0$ et $\lambda_1+\lambda_2<0$. Réciproquement, si $\lambda_1\lambda_2>0$, elles sont non nulles et du même signe, et si de plus $\lambda_1+\lambda_2<0$, ce signe est nécessairement négatif.
-
-Donc dans tous les cas, $\lambda_i$ à parties réelles strictement négatives équivaut à $\text{tr} A <0$ et $\det A>0$.
 
 
 ## Cycle limite {.correction #correc_cycle_lim}
@@ -1433,16 +1445,17 @@ J_f(0,0) =
 $$
 qui a pour valeurs propres $1\pm i$. La partie réelle étant positive, le point d'équilibre est  instable.
 
-### Question 2 {.answer #answer-cycle-lim-2}
+### Question 2 {.answer #answer-cycle-lim-2} 
+$f:\R^2 \to \R^2$ définie par $f(x) =(x_1+x_2-x_1(x_1^2+x_2^2) ,-x_1+x_2-x_2(x_1^2+x_2^2))$ est continûment différentiable sur $\R^2$. Donc d'après le théorème de Cauchy-Lipschitz, le système admet une unique solution maximale pour toute condition initiale. De plus,
 \begin{align*}
 \frac{d}{dt}V(x(t)) &= \langle \nabla V(x) , f(x) \rangle \\
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
 &= -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
 \end{align*}
-Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées. Or, vu que $f$ est définie sur $\R^n$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq 0$ serait qu'elle explose en temps fini. C'est impossible ici.
+Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées en temps positif. Or, vu que $f$ est continue sur $\R^2$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq t_0$ serait qu'elle explose en temps fini. C'est impossible ici.
 
 ### Question 3 {.answer #answer-cycle-lim-3} 
-Supposons que $x_0:=x(0)$ vérifie $\|x_0\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps rétrograde $0$ vaut $x_0$. Mais il existe une autre solution 
+Supposons que $x_0:=x(t_0)$ vérifie $\|x_0\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps $t_0$ vaut $x_0$. Mais il existe une autre solution 
 $$
 \left(
 \begin{matrix}
@@ -1451,10 +1464,10 @@ $$
 \end{matrix}
 \right) x^*
 $$
-qui reste sur le cercle en tout temps valant aussi $x^*$ à $t=t_1$, ce qui est impossible par le théorème de Cauchy Lipschitz (car $f$ est continûment différentiable)
+qui reste sur le cercle en tout temps et qui vaut aussi $x^*$ à $t=t_1$, ce qui est impossible par le théorème de Cauchy Lipschitz (car $f$ est continûment différentiable)
 
 ### Question 4 {.answer #answer-cycle-lim-4}
-Si $V(x(0))=\|x(0)\|^2=1$, alors $V$ est constant donc les trajectoires initialisées sur le cercle de rayon 1 y restent. Sur le cercle, la dynamique suit celle d'un oscillateur
+Si $V(x(t_0))=\|x(t_0)\|^2=1$, alors $V$ est constant donc les trajectoires initialisées sur le cercle de rayon 1 y restent. Sur le cercle, la dynamique suit celle d'un oscillateur
 $$
 \begin{array}{rcl}
 \dot{x}_1 &=& x_2\\
@@ -1463,9 +1476,9 @@ $$
 $$
 donc les trajectoires "tournent" sur le cercle.
 
-Si $V(x(0))=x_1(0)^2+x_2(0)^2>1$ alors $V$ décroit strictement tant qu'il reste plus grand que 1. Donc les trajectoires initialisées à l'extérieur du cercle s'en approchent mais ne le rencontrent jamais d'après la question précédente.  
+Si $V(x(t_0))=x_1(t_0)^2+x_2(t_0)^2>1$ alors $V$ décroit strictement tant qu'il reste plus grand que 1. Donc les trajectoires initialisées à l'extérieur du cercle s'en approchent mais ne le rencontrent jamais d'après la question précédente.  
 
-Si $0< V(x(0))=x_1(0)^2+x_2(0)^2<1$ alors $V$ croit strictement tant qu'il reste plus petit que 1.
+Si $0< V(x(t_0))=x_1(t_0)^2+x_2(t_0)^2<1$ alors $V$ croit strictement tant qu'il reste plus petit que 1.
 
 Enfin, la trajectoire initialisée à zéro reste à zéro. 
 
@@ -1496,7 +1509,7 @@ $$
 $$
 On conclut que pour des conditions initiales suffisamment petites ($\eta <\frac{\varepsilon}{nM}$), les solutions restent inférieures à $\varepsilon$ en norme. Donc le système est stable.
 
-## Contrôle d'un système linéaire {.correction #correc_cont_lin}
+## Contrôle d'un système {.correction #correc_cont_lin}
 
 ### Question 1 {.answer #answer-cont-lin-1}
 Si $u\equiv 0$, les solutions sont $x(t) = e^t x_0$ donc le point d'équilibre 0 est instable et les solutions divergent. 
@@ -1696,17 +1709,17 @@ On omet de préciser l'intervalle $I$ sur lequel $x$ est solution lorsque $I$ es
 [^Fferme]: 
 Pour toute suite $(x_n)$ d'éléments de $F$ convergeant vers $x^*$, pour tout $t\in [t_0-\tau_m,t_0+\tau_m]$,
 $$
-|x_n(t)-x^*(t)|\leq |x_n-x^*|_{\infty} \quad \underset{n\to \infty}{\longrightarrow} 0
+\|x_n(t)-x^*(t)\|\leq \|x_n-x^*\|_{\infty} \quad \underset{n\to \infty}{\longrightarrow} 0
 $$
 donc la suite $(x_n(t))$ d'éléments du fermé $\overline{B}(x_0,r)$  converge dans $\R^n$ vers $x^*(t)$ qui est donc dans $\overline{B}(x_0,r)$. Ceci implique $x^*\in F$.
 
 [^solutionF]:
-Il suffit de montrer que $x([t_0-\tau_m,t_0+\tau_m])\subset \overline{B}(x_0,r)$. Supposons le contraire et sans perdre en généralité supposons que $S := \{ t\in [t_0,t_0+\tau_m] \: : \: |x(t)-x_0|>r \}$ est non vide.
+Il suffit de montrer que $x([t_0-\tau_m,t_0+\tau_m])\subset \overline{B}(x_0,r)$. Supposons le contraire et sans perdre en généralité supposons que $S := \{ t\in [t_0,t_0+\tau_m] \: : \: \|x(t)-x_0\|>r \}$ est non vide.
 Soit $t^*=\inf S$. Nécessairement $t_0 < t^* < t_0+\tau_m$. Donc par la [représentation intégrale](#theo_eq_integrale), 
 $$
-|x(t^*)-x_0|\leq (t^*-t_0) \max_{s\in [t_0,t^*]} f(s,x(s)) < \tau_m \max_\cC|f|< r \ .
+\|x(t^*)-x_0\|\leq (t^*-t_0) \max_{s\in [t_0,t^*]} \|f(s,x(s)) \| < \tau_m \max_\cC \|f\|< r \ .
 $$
-Par continuité de $x$, $|x(t)-x_0|\leq r$ pour un temps après $t^*$, ce qui contredit sa définition.
+Par continuité de $x$, $\|x(t)-x_0\|\leq r$ pour un temps après $t^*$, ce qui contredit sa définition.
 
 [^accfinis_Cauchy]:
 En l'absence d'outils d'analyse fonctionnelle à cette époque, la preuve de Cauchy consistait plutôt à discrétiser en temps l'intégrale de plus en plus finement et montrer la convergence vers une solution.

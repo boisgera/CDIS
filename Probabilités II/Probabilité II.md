@@ -786,7 +786,7 @@ $$ G_{t_0}(t) = \P(T>t+t_0|T>t_0) = \frac{\P(T>t+t_0,T>t)}{\P(T>t)} = \frac{G(t+
 
 ### Question 2 {.answer #answer-viemort2}
 
-D'après la question précédente, $G$ vérifie alors $G(t_0+t) = G(t)G(t_0)$ pour tous $t, t_0 > 0$. Comme $G$ est décroissante, continue à gauche et tend vers 0 à l'infini, on en déduit que $G(t) = e ^{-\theta t}$, pour un $\theta > 0$. On reconnaît la fonction de répartition complémentaire d'une loi exponentielle de paramètre $\theta$.
+D'après la question précédente, $G$ vérifie alors $G(t_0+t) = G(t)G(t_0)$ pour tous $t, t_0 > 0$. Comme $G$ est décroissante, continue à droite et tend vers 0 à l'infini, on en déduit que $G(t) = e ^{-\theta t}$, pour un $\theta > 0$. On reconnaît la fonction de répartition complémentaire d'une loi exponentielle de paramètre $\theta$.
 
 ### Question 3 {.answer #answer-viemort3}
 \begin{align*}

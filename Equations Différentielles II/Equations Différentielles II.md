@@ -667,7 +667,7 @@ On souhaite maintenant simuler numériquement les trajectoires.
 
  8. Coder maintenant une fonction du type
 
-        def solve_euler_implicit(f, x0, dt, t0 = 0, tf, itermax = 100):
+        def solve_euler_implicit(f, x0, dt, t0, tf, itermax = 100):
             ...
             return t, x
 
