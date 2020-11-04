@@ -440,7 +440,7 @@ Soient $f:\R \times \R^n \to \R^n$ continue et  $V:\R^n \to \R$ définie par $V(
 $$
 \langle\nabla V (x), f(t,x)\rangle \leq a(t) V(x) + b(t)  \qquad \forall (t,x)\in \R\times \R^n
 $$
-avec $a,b:\R \to \R$ continues. Montrer que quelque soit la condition initiale $(t_0,x_0)\in \R\times \R^2$, les solutions maximales de 
+avec $a,b:\R \to \R$ continues. Montrer que quelque soit la condition initiale $(t_0,x_0)\in \R\times \R^n$, les solutions maximales de 
 $$
 \dot{x} = f(t,x)
 $$
