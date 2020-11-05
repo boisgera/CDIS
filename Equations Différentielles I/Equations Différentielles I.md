@@ -1222,7 +1222,7 @@ qui est Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est 
 Lorsque $\lambda=0$, les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$ et nous avons vu que 0 n'est pas asymptotiquement stable. Dans ce cas, l'énergie du système
 $$
 V(x)
-= \frac{1}{2} k x_1^2 \frac{1}{2} m x_2^2
+= \frac{1}{2} k x_1^2 + \frac{1}{2} m x_2^2
 $$
 est conservée le long des trajectoires, c'est-à-dire, 
 $$
