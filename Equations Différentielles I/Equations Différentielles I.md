@@ -770,7 +770,7 @@ où $D$ est diagonale contenant les valeurs propres de $A$, $N$ est nilpotente, 
 $$
 P^{-1} e^{At} P = e^{P^{-1} A Pt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
-converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
+converge vers zéro si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 
 ### 
 
@@ -1452,7 +1452,7 @@ $f:\R^2 \to \R^2$ définie par $f(x) =(x_1+x_2-x_1(x_1^2+x_2^2) ,-x_1+x_2-x_2(x_
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
 &= -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
 \end{align*}
-Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées en temps positif. Or, vu que $f$ est continue sur $\R^2$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq t_0$ serait qu'elle explose en temps fini. C'est impossible ici.
+Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zéro sur la frontière, et positif à l'intérieur si $x\neq 0$ et zéro sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées en temps positif. Or, vu que $f$ est continue sur $\R^2$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq t_0$ serait qu'elle explose en temps fini. C'est impossible ici.
 
 ### Question 3 {.answer #answer-cycle-lim-3} 
 Supposons que $x_0:=x(t_0)$ vérifie $\|x_0\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps $t_0$ vaut $x_0$. Mais il existe une autre solution 
