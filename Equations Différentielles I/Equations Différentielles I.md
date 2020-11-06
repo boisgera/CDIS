@@ -21,12 +21,12 @@ Un peu d'histoire
 
 L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et de la modélisation du mouvement par Kepler et Newton. Avec Leibniz, leur premier réflexe est alors de chercher à résoudre ces équations de manière exacte, par exemple par des primitives de fonctions connues ou bien sous forme de série, mais ces méthodes atteignent vite leurs limites, sauf dans des cas très particuliers. 
 
-Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on cherche ensuite plutôt à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
+Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on cherche ensuite plutôt à caractériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
 Laplace, qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
 
 Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
 
-En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens comme Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des sytèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
+En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens comme Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des systèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
 
 Objectifs du cours
 ========================
@@ -770,7 +770,7 @@ où $D$ est diagonale contenant les valeurs propres de $A$, $N$ est nilpotente, 
 $$
 P^{-1} e^{At} P = e^{P^{-1} A Pt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
-converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
+converge vers zéro si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 
 ### 
 
@@ -1089,9 +1089,9 @@ Solutions
 
 Fixons une condition initiale dans $\R \times \R^2$. La fonction $f:(t,x_1,x_2)\mapsto (\sin x_1 - \sqrt{|t|} x_2 ,\sqrt{1+x_1^2})$ est continue sur $\R\times\R^2$. Donc d'après les théorème de Peano des solutions existent. D'après le théorème du domaine maximal d'existence, les solutions maximales sont définies sur un intervalle de temps $I$ ouvert. 
 
-Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
+Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+|y|$, donc 
 $$
-|f_1(x)| \leq 1 + |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
+|f_1(x)| \leq 1 + \sqrt(t) |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
 $$
 et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions maximales sont donc globales, i.e. $I=\R$.
 
@@ -1452,7 +1452,7 @@ $f:\R^2 \to \R^2$ définie par $f(x) =(x_1+x_2-x_1(x_1^2+x_2^2) ,-x_1+x_2-x_2(x_
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
 &= -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
 \end{align*}
-Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées en temps positif. Or, vu que $f$ est continue sur $\R^2$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq t_0$ serait qu'elle explose en temps fini. C'est impossible ici.
+Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zéro sur la frontière, et positif à l'intérieur si $x\neq 0$ et zéro sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées en temps positif. Or, vu que $f$ est continue sur $\R^2$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq t_0$ serait qu'elle explose en temps fini. C'est impossible ici.
 
 ### Question 3 {.answer #answer-cycle-lim-3} 
 Supposons que $x_0:=x(t_0)$ vérifie $\|x_0\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps $t_0$ vaut $x_0$. Mais il existe une autre solution 
