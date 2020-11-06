@@ -34,7 +34,7 @@ En fait, dans l'histoire des équations différentielles, c'est souvent la méca
 
 # Objectifs du cours
 
-Ce cours a pour but de sensibiliser aux problèmes apparaissant lors de la simulation numérique des solutions d'équations différentielles, et de donner les bases d'analyse d'erreur numérique. Pour un exposé plus approfondi, on pourra par exemple se réferrer à [@Dem06].
+Ce cours a pour but de sensibiliser aux problèmes apparaissant lors de la simulation numérique des solutions d'équations différentielles, et de donner les bases d'analyse d'erreur numérique. Pour un exposé plus approfondi, on pourra par exemple se référer à [@Dem06].
 
 En première lecture :
 
