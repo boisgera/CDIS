@@ -415,14 +415,14 @@ sont bien mesurables ;
 en effet si la fonction caractéristique $1_E$ est intégrable,
 sa restriction à tout intervalle fermé borné $[a, b]$ également.
 
-### Ensemble de longueur fini I {.exercise .question .one #elfI}
+### Ensemble de longueur finie I {.exercise .question .one #elfI}
 Montrer que l'ensemble $E = \left[-1, 0\right[ \cup \left]0, 1\right]$ est
 de longueur finie et calculer sa longueur.
 
-### Ensemble de longueur fini II {.exercise .question .one #elfII}
+### Ensemble de longueur finie II {.exercise .question .one #elfII}
 Montrer que l'ensemble $\Q$ est de longueur finie et calculer sa longueur.
 
-### Ensemble de longueur fini III {.exercise .question .two #elfIII}
+### Ensemble de longueur finie III {.exercise .question .two #elfIII}
 Montrer que l'ensemble 
 $E = \cup_{k=0}^{+\infty} \left[k, k+2^{-k}\right[$ 
 est de longueur finie et calculer sa longueur.
@@ -1482,7 +1482,7 @@ $$
 fonction $|f|$ n'est pas intégrable et donc que $f$ n'est pas intégrable.
 
 
-### Ensemble de longueur fini I {.answer #answer-elfI}
+### Ensemble de longueur finie I {.answer #answer-elfI}
 La fonction caractéristique $1_E$ est égale presque partout à la fonction
 $1_{[-1, 1]}$ qui est intégrable et satisfait
 $$
@@ -1490,12 +1490,12 @@ $$
 $$
 L'ensemble $E$ est donc de longueur finie égale à $2$.
 
-### Ensemble de longueur fini II {.answer #answer-elfII}
+### Ensemble de longueur finie II {.answer #answer-elfII}
 La fonction caractéristique $1_{\Q}$ est nulle presque partout puisque
 $\Q$ est dénombrable. Elle est donc intégrable d'intégral nulle ; l'ensemble
 des rationnels $\Q$ est donc de longueur nulle.
 
-### Ensemble de longueur fini III {.answer #answer-elfIII}
+### Ensemble de longueur finie III {.answer #answer-elfIII}
 La fonction caractéristique $f = 1_E$ est la limite de la suite croissante de
 fonctions $f_j = 1_{\cup_{k=0}^j \left[k, k+2^{-k} \right[}$.
 Comme par linéarité de l'intégrale on a 
