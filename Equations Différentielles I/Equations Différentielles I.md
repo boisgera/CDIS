@@ -1091,7 +1091,7 @@ Fixons une condition initiale dans $\R \times \R^2$. La fonction $f:(t,x_1,x_2)\
 
 Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+|y|$, donc 
 $$
-|f_1(x)| \leq 1 + \sqrt(t) |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
+|f_1(x)| \leq 1 + \sqrt(|t|) |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
 $$
 et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions maximales sont donc globales, i.e. $I=\R$.
 
@@ -1557,7 +1557,7 @@ Cette preuve repose sur le théorème d'Ascoli :
 >
 > 2. $S$ est *équicontinu* et pour tout $x\in X$, $\{f(x) \ , \ f\in S \}$ est *relativement compacte* dans $Y$.
 
-On dit qu'un ensemble est *relativement compact* si son adhérence est compacte. En dimension finie, vue que "compact" est équivalent à "fermé-borné" et que l'adhérence est fermée par définition, "relativement compact" est équivalent à "borné". Mais ce n'est pas le cas en dimension finie (en particulier $C(X,Y)$) où  "relativement compact" est alors équivalent au fait de pouvoir extraire des suites convergentes dans l'adhérence de l'ensemble. 
+On dit qu'un ensemble est *relativement compact* si son adhérence est compacte. En dimension finie, vue que "compact" est équivalent à "fermé-borné" et que l'adhérence est fermée par définition, "relativement compact" est équivalent à "borné". Mais ce n'est pas le cas en dimension infinie (en particulier $C(X,Y)$) où  "relativement compact" est alors équivalent au fait de pouvoir extraire des suites convergentes dans l'adhérence de l'ensemble. 
 
 Ici, puisque $X$ est compact et $Y$ complet, on peut montrer que $C(X,Y)$ muni de la norme uniforme $\|\cdot\|_\infty$ est complet, donc fermé. Il s'ensuit que  "$S$ est relativement compact dans $C(X,Y)$" implique pouvoir extraire de toute suite de $S$ une sous-suite convergente dans $C(X,Y)$ (au sens de $\|\cdot\|_\infty$). C'est ce que nous allons utiliser pour prouver l'existence d'une solution au problème de Cauchy.
 
@@ -1666,9 +1666,9 @@ $$
 \Delta(x) = f(x)-f(a) - J_f(a)(x-a) = f(x)- J_f(a)(x-a)\ ,
 $$
 puisque $f(a)=0$.
-Par la définition de la différentiabilité de $f$, on sait que $\Delta(x) = o(\|x-a\|)$, i.e. $\lim_{x\to a} \frac{\Delta(x)}{\|x-a\|}=0$. Donc il existe $\varepsilon>0$ et $a>0$ tels que  
+Par la définition de la différentiabilité de $f$, il existe $\varepsilon>0$ et une fonction $\delta:\R^n\to \R^n$ tels que $\lim_{x\to a} \delta(x)=0$ et  
 $$
-\|\Delta(x)\| \leq a \|x-a\|^2 \qquad \forall x\in B(a,\varepsilon) \ .
+\Delta(x) = \delta(x) \|x-a\| \qquad \forall x\in B(a,\varepsilon) \ .
 $$
 
 La preuve repose ensuite sur le lemme suivant dû à Lyapunov :  
@@ -1689,11 +1689,11 @@ Considérons alors $V(x) = (x-a)^\top P (x-a)$ qui est bien positive, et nulle s
 \left< \nabla V(x), f(x) \right> & = (x-a)^\top P f(x) + f(x)^\top P(x-a) \\
 &= (x-a)^\top\left( J_f(a)^\top P +P J_f(a)\right) (x-a) + 2 (x-a)^\top P\Delta(x) \\
 &\leq - \|x-a\|^2 + 2 \|x-a\| \|P\| \|\Delta(x)\| \\
-&\leq - \|x-a\|^2\left(1- 2a\|P\|\|x-a\| \right)
+&\leq - \|x-a\|^2\left(1- 2\|P\|  \|\delta(x) \| \right)
 \end{align*}
-Donc $\left< \nabla V(x), f(x) \right><0$ pour tout $x\in B(a,\epsilon')$ avec
+Donc $\left< \nabla V(x), f(x) \right><0$ pour tout $x\in B(a,\epsilon')$ avec $\epsilon'<\epsilon$ suffisamment petit tel que 
 $$
-\epsilon' = \min \left\{ \varepsilon , \frac{1}{2a\|P\|} \right\} 
+\|\delta(x) \| \leq  \frac{1}{2\|P\|}  \qquad \forall x\in B(a,\epsilon') \ .
 $$
 D'après le théorème de Lyapunov, $a$ est donc localement asymptotiquement stable.
 
