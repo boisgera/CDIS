@@ -140,7 +140,7 @@ x^{j+1} = x^j + \dt_j \Phi(t_j,x^j,\dt_j)
 $$
 où $\Phi(t_j,x^j,\dt_j)$ doit donc approximer 
 $$
-\frac{1}{t_{j+1}-t_j} \int_{t_j}^{t_{j+1}}f(s,x(s)) \ .
+\frac{1}{t_{j+1}-t_j} \int_{t_j}^{t_{j+1}}f(s,x(s)) ds \ .
 $$
 Les différentes méthodes de quadrature, i.e. d'approximation de l'intégrale, peuvent donc être mises à profit. La difficulté ici est que seule la valeur initiale $f(t_j,x(t_j))$ de $f$ est connue (ou du moins estimée) à l'itération $j$, par $f(t_j,x^j)$. 
 On distingue donc les méthodes *explicites* où $\Phi(t_j,x^j,\dt_j)$ est écrite directement explicitement en fonction de la valeur initiale $x^j$, et les méthodes *implicites* où cette expression n'est connue qu'implicitement et des étapes intermédiaires de calcul sont nécessaires. 
