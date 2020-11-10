@@ -400,7 +400,7 @@ Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
 $$
 f(t,x) = A(t) x + b(t) \ .
 $$
-D'après le théorème précédent, quelque-soit sa condition initiale $(t_0,x_0)\in I\times\R^n$, sa solution maximale est définie sur $I$ entier. Dans le cas où $A$ est constant, on en a même une formule explicite (obtenue par la méthode de *variation de la constante*)
+D'après le théorème précédent, quelle que soit sa condition initiale $(t_0,x_0)\in I\times\R^n$, sa solution maximale est définie sur $I$ entier. Dans le cas où $A$ est constant, on en a même une formule explicite (obtenue par la méthode de *variation de la constante*)
 $$
 x(t) = e^{A(t-t_0)}x_0 + \int_{t_0}^t e^{A(t-s)} b(s)ds \ ,
 $$
