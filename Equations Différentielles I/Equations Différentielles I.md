@@ -21,12 +21,12 @@ Un peu d'histoire
 
 L'étude des équations différentielles remonte au  XVII$^e$ siècle lors de la découverte du calcul infinitésimal et de la modélisation du mouvement par Kepler et Newton. Avec Leibniz, leur premier réflexe est alors de chercher à résoudre ces équations de manière exacte, par exemple par des primitives de fonctions connues ou bien sous forme de série, mais ces méthodes atteignent vite leurs limites, sauf dans des cas très particuliers. 
 
-Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on cherche ensuite plutôt à charactériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
+Alors que l'idée d'approximer les solutions apparaît au milieu du XVIII$^e$ siècle avec Euler, on cherche ensuite plutôt à caractériser leurs propriétés sans les connaître explicitement. Cauchy, et parallèlement Lipschitz, démontrent les premiers, au milieu du XIX$^e$ siècle, l'existence et l'unicité des solutions sous des hypothèses de régularités de l'équation différentielle.
 Laplace, qui s'intéresse alors à la mécanique céleste, s'émerveille devant la capacité de l'Homme à prédire l'évolution du monde physique. C'est l'avénement du *déterminisme* c'est-à-dire la certitude que l'état du monde futur (ou passé) peut être prédit de manière unique par la connaissance de l'état initial. 
 
 Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
 
-En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens comme Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des sytèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
+En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens comme Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des systèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
 
 Objectifs du cours
 ========================
@@ -121,7 +121,7 @@ où $q\in \R^n$ modélise la position du système (spatiale, angulaire, etc), $\
 
 Dans tous ces cas, on s'intéresse aux signaux du temps $t\mapsto y(t)$ de classe $C^p$ qui vérifient une équation du type 
 $$
-y^{(p)}(t) = \psi\left(t,y(t),\dot{y}(t),\ldots, y^{(p-1)(t)}\right)
+y^{(p)}(t) = \psi\left(t,y(t),\dot{y}(t),\ldots, y^{(p-1)}(t)\right)
 $$
 sur son ensemble de définition, où $p\in \N^*$ désigne l'ordre de l'équation différentielle.
 En fait, on se rend compte que $y$ de classe $C^p$ vérifie l'équation différentielle ci-dessus si et seulement si $x=(y,\dot{y},\ldots,y^{(p-1)})$ de classe $C^1$ vérifie
@@ -239,11 +239,11 @@ L'équation différentielle est dite *autonome* si l'application $f$ ne dépend 
 
 Lorsque l'intervalle de temps $I$ de définition de la solution est $J$ entier, on dira que la solution est *globale*. Mais on verra qu'il peut parfois arriver qu'une solution ne puisse être définie sur $J$ entier, par exemple si elle explose avant, ou si elle s'apprête à quitter $X$.
 
-Notons que $f$ sera souvent définie sur $J=\R$ et $X = \R^{n}$. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'intéraction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|^2}$ n'est définie que pour $y_a\neq y_b$.
+Notons que $f$ sera souvent définie sur $J=\R$ et $X = \R^{n}$. Cependant, il peut arriver que cela ne soit pas le cas, comme par exemple pour deux corps de position $y_a,y_b$ dont la force d'interaction gravitationnelle $\frac{Gm_a m_b}{\|y_a-y_b\|^2}$ n'est définie que pour $y_a\neq y_b$.
 
 ### 
 
-La physique s'intéresse souvent aux solutions partant d'une *condition initiale* donnée. La recherche et l'étude de ces solutions particulières est dûe à Cauchy et porte le nom de *Problème de Cauchy* :
+La physique s'intéresse souvent aux solutions partant d'une *condition initiale* donnée. La recherche et l'étude de ces solutions particulières est due à Cauchy et porte le nom de *Problème de Cauchy* :
 
 > Dans mes leçons données à l'École Polytechnique, comme dans la plupart des ouvrages ou mémoires que j'ai publiés sur le calcul intégral, j'ai cru devoir placer en premier lieu la recherche, non pas des intégrales générales, mais des particulières ; en sorte que la détermination des constantes ou des fonctions arbitraires ne fût plus séparée de la recherche des intégrales.
 
@@ -286,7 +286,7 @@ La définition sous forme intégrale des solutions montre que la recherche de so
 
 ### Portrait de phase   
 
-En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t)x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. Voir [Figure](#fig_pendule) ci-dessous dans le cas d'un pendule.
+En dimension 2 (ou 3), il est possible de visualiser géométriquement le comportement des solutions en traçant les courbes paramétriques $t\mapsto(x_1(t),x_2(t))$ dans le plan (ou $t\mapsto(x_1(t),x_2(t),x_3(t))$ dans l'espace) pour différentes conditions initiales. C'est ce que l'on appelle un *portrait de phase*. Voir [Figure](#fig_pendule) ci-dessous dans le cas d'un pendule.
 
 ![Portraits de phase d'un pendule non amorti en haut et amorti en bas. $x_1$ représente l'angle du pendule en abscisse et $x_2$ sa vitesse de rotation en ordonnée. Le pendule sera décrit et étudié plus en détail dans la suite du cours.](images/pendule.py){#fig_pendule}
 
@@ -303,7 +303,7 @@ Notre point de départ est le théorème suivant établi à la fin du XIX$^e$ si
 Soient $J$ ouvert de $\R$, $X$ ouvert de $\R^{n}$, $f: J\times X \to \R^n$ continue. Pour tout $(t_0,x_0)\in J\times X$, il existe $\tau_m >0$ et $x :[t_0-\tau_m,t_0+\tau_m]\to\R^n$ tels que $x\in S_f(t_0,x_0)$.
 
 ### Démonstration {.proof}
-La démonstration de ce résultat est hors-programme et fait appel au théorème d'Ascoli(-Arzelà). Seule la connaissance et la compréhension du résultat est exigible. Pour les curieux, la preuve est données en [annexe](#app_peano). 
+La démonstration de ce résultat est hors-programme et fait appel au théorème d'Ascoli(-Arzelà). Seule la connaissance et la compréhension du résultat est exigible. Pour les curieux, la preuve est donnée en [annexe](#app_peano). 
 
 ### Classe plus générale de solutions (pour la culture) {.remark}
 L'existence de solutions $C^1$ est garantie lorsque $f$ est continue. Il s'avère que l'existence de solutions *absolument continues*, est garantie sous les hypothèses plus faibles suivantes dans un voisinage de $(t_0,x_0)$ :
@@ -400,7 +400,7 @@ Prouvé dans l'exercice [*Autour du Lemme de Grönwall*](#exo_gronwall).
 $$
 f(t,x) = A(t) x + b(t) \ .
 $$
-D'après le théorème précédent, quelque-soit sa condition initiale $(t_0,x_0)\in I\times\R^n$, sa solution maximale est définie sur $I$ entier. Dans le cas où $A$ est constant, on en a même une formule explicite (obtenue par la méthode de *variation de la constante*)
+D'après le théorème précédent, quelle que soit sa condition initiale $(t_0,x_0)\in I\times\R^n$, sa solution maximale est définie sur $I$ entier. Dans le cas où $A$ est constant, on en a même une formule explicite (obtenue par la méthode de *variation de la constante*)
 $$
 x(t) = e^{A(t-t_0)}x_0 + \int_{t_0}^t e^{A(t-s)} b(s)ds \ ,
 $$
@@ -676,7 +676,7 @@ Propriétés asymptotiques
 
 Dans la section précédente nous avons répondu à la première question qui était la sensibilité des solutions aux erreurs de condition initiale et de modèle. Mais cette étude était en temps fini et nous nous intéressons maintenant à la seconde question qui est le comportement asymptotique des solutions. L'étude théorique asymptotique des solutions prend ses origines dans la thèse de Lyapunov [@lyap]. Le but est de rechercher des critères sur la fonction $f$ qui nous permettent de prédire ce comportement : est-ce que les solutions divergent ? est-ce qu'elles tendent vers un point en particulier ? vers un cycle limite ? 
 
-Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendente du temps. On se donne donc une fonction continue $f:X\subset\R^n\to \R^n$, et on prend par défaut $t_0=0$. 
+Dans la suite, pour simplifier, nous étudions les équations différentielles dites *autonomes*, c'est-à-dire dont la fonction $f$ est indépendante du temps. On se donne donc une fonction continue $f:X\subset\R^n\to \R^n$, et on prend par défaut $t_0=0$. 
 <!--Puisque l'on souhaite étudier plus particulièrement le comportement *asymptotique* des solutions de $\dot{x}=f(x)$, on se restreint aux solutions *complètes*, c'est-à-dire définies sur $\Rgeq = [0,+\infty)$.-->
 
 ### Point d'équilibre {.definition #def_ptEq}
@@ -737,7 +737,7 @@ $$
 
 ### Stabilité du pendule {.example #ex_stab}
 
-- Lorsqu'un pendule amorti est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse aritrairement faible, il se met à osciller en passant par sa position basse : l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc localement asymptotiquement stable. Voir le [portrait de phase du pendule amorti](#fig_pendule).  
+- Lorsqu'un pendule amorti est initialisé arbitrairement proche de sa position haute ou dans sa position haute mais à vitesse arbitrairement faible, il se met à osciller en passant par sa position basse : l'équilibre haut est donc instable, puisqu'on ne peut pas garder les trajectoires dans son voisinage. Par contre, lorsqu'il est initialisé proche de sa position basse, il oscille de façon amortie en tendant vers l'équilibre bas, qui est donc localement asymptotiquement stable. Voir le [portrait de phase du pendule amorti](#fig_pendule).  
 
 - Dans le cas d'un pendule non amorti par contre, c'est-à-dire avec $\rho=0$, le pendule oscille indéfiniment à énergie constante : la position basse est alors toujours stable mais plus attractive, et donc plus asymptotiquement stable. Voir le [portrait de phase du pendule non amorti](#fig_pendule).  
 
@@ -770,7 +770,7 @@ où $D$ est diagonale contenant les valeurs propres de $A$, $N$ est nilpotente, 
 $$
 P^{-1} e^{At} P = e^{P^{-1} A Pt} = e^{Dt}e^{Nt} = e^{Dt}\sum_{i=0}^k \frac{1}{i!} N^i t^i
 $$
-converge vers zero si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
+converge vers zéro si et seulement si, encore, les valeurs propres de $A$ sont à partie réelle négative. 
 
 ### 
 
@@ -1089,9 +1089,9 @@ Solutions
 
 Fixons une condition initiale dans $\R \times \R^2$. La fonction $f:(t,x_1,x_2)\mapsto (\sin x_1 - \sqrt{|t|} x_2 ,\sqrt{1+x_1^2})$ est continue sur $\R\times\R^2$. Donc d'après les théorème de Peano des solutions existent. D'après le théorème du domaine maximal d'existence, les solutions maximales sont définies sur un intervalle de temps $I$ ouvert. 
 
-Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+y$, donc 
+Par ailleurs, on peut vérifier que pour tout $y\in \R$, $\sqrt{1+y^2}\leq 1+|y|$, donc 
 $$
-|f_1(x)| \leq 1 + |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
+|f_1(x)| \leq 1 + \sqrt(|t|) |x_2| \quad , \quad |f_2(x)|\leq 1 + |x_1|
 $$
 et $f$ est bornée par une fonction affine en $\|x\|$. Toutes les solutions maximales sont donc globales, i.e. $I=\R$.
 
@@ -1201,7 +1201,7 @@ J_f(x_1,x_2) =
 \left(
 \begin{matrix}
 0 & 1-3x_2^2 \\
--1+3x_1^2 & -(1-x_1^2)
+-1+3x_1^2+2x_1x_2 & -(1-x_1^2)
 \end{matrix}
 \right)
 $$
@@ -1452,7 +1452,7 @@ $f:\R^2 \to \R^2$ définie par $f(x) =(x_1+x_2-x_1(x_1^2+x_2^2) ,-x_1+x_2-x_2(x_
 &= x_1^2+x_1x_2-x_1^2(x_1^2+x_2^2) -x_1x_2 +x_2^2 - x_2^2(x_1^2+x_2^2)\\
 &= -(x_1^2+x_2^2-1)(x_1^2+x_2^2)
 \end{align*}
-Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zero sur la frontière, et positif à l'intérieur si $x\neq 0$ et zero sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées en temps positif. Or, vu que $f$ est continue sur $\R^2$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq t_0$ serait qu'elle explose en temps fini. C'est impossible ici.
+Donc $\frac{d}{dt}V(x(t))$ est négatif à l'extérieur du disque de centre 0 et de rayon 1, zéro sur la frontière, et positif à l'intérieur si $x\neq 0$ et zéro sinon. Il s'ensuit en particulier que $\|x\|$ décroit lorsque $\|x\|>1$, donc les solutions restent bornées en temps positif. Or, vu que $f$ est continue sur $\R^2$, on sait du [Théorème du domaine maximal d'existence](#theo_bouts) que la seule raison pour laquelle une solution maximale ne serait pas définie pour tout $t\geq t_0$ serait qu'elle explose en temps fini. C'est impossible ici.
 
 ### Question 3 {.answer #answer-cycle-lim-3} 
 Supposons que $x_0:=x(t_0)$ vérifie $\|x_0\|\neq 1$ et qu'il existe $t_1$ tel que $\|x(t_1)\|= 1$. Considérons le problème de Cauchy de condition initiale $x^*:=x(t_1)$ à $t=t_1$. Il admet donc une solution qui au temps $t_0$ vaut $x_0$. Mais il existe une autre solution 
@@ -1557,7 +1557,7 @@ Cette preuve repose sur le théorème d'Ascoli :
 >
 > 2. $S$ est *équicontinu* et pour tout $x\in X$, $\{f(x) \ , \ f\in S \}$ est *relativement compacte* dans $Y$.
 
-On dit qu'un ensemble est *relativement compact* si son adhérence est compacte. En dimension finie, vue que "compact" est équivalent à "fermé-borné" et que l'adhérence est fermée par définition, "relativement compact" est équivalent à "borné". Mais ce n'est pas le cas en dimension finie (en particulier $C(X,Y)$) où  "relativement compact" est alors équivalent au fait de pouvoir extraire des suites convergentes dans l'adhérence de l'ensemble. 
+On dit qu'un ensemble est *relativement compact* si son adhérence est compacte. En dimension finie, vue que "compact" est équivalent à "fermé-borné" et que l'adhérence est fermée par définition, "relativement compact" est équivalent à "borné". Mais ce n'est pas le cas en dimension infinie (en particulier $C(X,Y)$) où  "relativement compact" est alors équivalent au fait de pouvoir extraire des suites convergentes dans l'adhérence de l'ensemble. 
 
 Ici, puisque $X$ est compact et $Y$ complet, on peut montrer que $C(X,Y)$ muni de la norme uniforme $\|\cdot\|_\infty$ est complet, donc fermé. Il s'ensuit que  "$S$ est relativement compact dans $C(X,Y)$" implique pouvoir extraire de toute suite de $S$ une sous-suite convergente dans $C(X,Y)$ (au sens de $\|\cdot\|_\infty$). C'est ce que nous allons utiliser pour prouver l'existence d'une solution au problème de Cauchy.
 
@@ -1666,9 +1666,9 @@ $$
 \Delta(x) = f(x)-f(a) - J_f(a)(x-a) = f(x)- J_f(a)(x-a)\ ,
 $$
 puisque $f(a)=0$.
-Par la définition de la différentiabilité de $f$, on sait que $\Delta(x) = o(\|x-a\|)$, i.e. $\lim_{x\to a} \frac{\Delta(x)}{\|x-a\|}=0$. Donc il existe $\varepsilon>0$ et $a>0$ tels que  
+Par la définition de la différentiabilité de $f$, il existe $\varepsilon>0$ et une fonction $\delta:\R^n\to \R^n$ tels que $\lim_{x\to a} \delta(x)=0$ et  
 $$
-\|\Delta(x)\| \leq a \|x-a\|^2 \qquad \forall x\in B(a,\varepsilon) \ .
+\Delta(x) = \delta(x) \|x-a\| \qquad \forall x\in B(a,\varepsilon) \ .
 $$
 
 La preuve repose ensuite sur le lemme suivant dû à Lyapunov :  
@@ -1689,11 +1689,11 @@ Considérons alors $V(x) = (x-a)^\top P (x-a)$ qui est bien positive, et nulle s
 \left< \nabla V(x), f(x) \right> & = (x-a)^\top P f(x) + f(x)^\top P(x-a) \\
 &= (x-a)^\top\left( J_f(a)^\top P +P J_f(a)\right) (x-a) + 2 (x-a)^\top P\Delta(x) \\
 &\leq - \|x-a\|^2 + 2 \|x-a\| \|P\| \|\Delta(x)\| \\
-&\leq - \|x-a\|^2\left(1- 2a\|P\|\|x-a\| \right)
+&\leq - \|x-a\|^2\left(1- 2\|P\|  \|\delta(x) \| \right)
 \end{align*}
-Donc $\left< \nabla V(x), f(x) \right><0$ pour tout $x\in B(a,\epsilon')$ avec
+Donc $\left< \nabla V(x), f(x) \right><0$ pour tout $x\in B(a,\epsilon')$ avec $\epsilon'<\epsilon$ suffisamment petit tel que 
 $$
-\epsilon' = \min \left\{ \varepsilon , \frac{1}{2a\|P\|} \right\} 
+\|\delta(x) \| \leq  \frac{1}{2\|P\|}  \qquad \forall x\in B(a,\epsilon') \ .
 $$
 D'après le théorème de Lyapunov, $a$ est donc localement asymptotiquement stable.
 
@@ -1701,7 +1701,7 @@ D'après le théorème de Lyapunov, $a$ est donc localement asymptotiquement sta
 <!-- Footnotes -->
 
 [^intI]:
-Certaines références autorisent les  solutions définies sur un intervalle d'intérieur vide, c'est-à-dire réduit à un point, qui sont dîtes "triviales". Mais cela n'a pas grand intérêt ici et nous supposons donc que les solutions sont définies au moins "pendant un certain temps".
+Certaines références autorisent les  solutions définies sur un intervalle d'intérieur vide, c'est-à-dire réduit à un point, qui sont dites "triviales". Mais cela n'a pas grand intérêt ici et nous supposons donc que les solutions sont définies au moins "pendant un certain temps".
 
 [^solsurI]:
 On omet de préciser l'intervalle $I$ sur lequel $x$ est solution lorsque $I$ est l'ensemble de définition naturel (ou clairement défini) de $x$. Lorsque celui-ci est ambigu ou bien lorsque l'on veut insister sur l'intervalle de définition, on dira *solution sur $I$*.
