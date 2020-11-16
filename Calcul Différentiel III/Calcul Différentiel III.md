@@ -319,6 +319,45 @@ $$
 d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
 $$
 
+### TODO ... autograd
+
+La bibliothèque autograd nous a déjà permis de calculer automatiquement
+le gradient de fonctions scalaires et la matrice jacobienne de fonctions
+scalaires ou vectorielles.
+
+    import autograd as ag
+    from autograd import numpy as np
+
+    def grad(f):
+        def grad_f(*x):
+            n = len(x)
+            return np.array([ag.grad(f, i)(*x) for i in range(n)])
+        return grad_f
+
+    def J(f):
+        def J_f(*x):
+            n = len(x)
+            return np.array([ag.jacobian(f, i)(*x) for i in range(n)]).T
+        return J_f
+
+Autograd permet également le calcul des dérivées (partielles) d'ordre supérieur.
+Concrêtement, on peut appliquer à nouveau un opérateur différentiel sur une 
+fonction qui est issue d'un calcul fait par autograd. L'implémentation de la
+fonction qui calcule la matrice hessienne d'une fonction scalaire est donc 
+particulièrement simple :
+
+    def H(f):
+        return J(grad(f))
+
+     def gauss(x1, x2):
+         return np.exp(-0.5*x1*x1-0.5x2*x2)
+
+TODO : restore automated tests here.
+
+    >>> H(gauss)(1.0, 2.0)
+    array([[0.      , 0.16417 ],
+          [0.16417 , 0.246255]])
+
 
 ### Différentielle d'ordre 2 et matrice hessienne {.proposition #d2mh}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
