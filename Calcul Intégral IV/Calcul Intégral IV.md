@@ -8,15 +8,26 @@
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\ds}{\mathbin{\Delta}}
 
-Objectifs
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+\newcommand{\lb}{[}
+\newcommand{\rb}{]}
+\newcommand{\lob}{\left]}
+\newcommand{\rob}{\right[}
+
+Objectifs d'apprentissage
 ================================================================================
 
-Cette section -- expérimentale -- s'efforce d'expliciter et de hiérarchiser
+Cette section s'efforce d'expliciter et de hiérarchiser
 les acquis d'apprentissages associés au chapitre. 
 Ces objectifs sont organisés en paliers :
 
-($\bullet$) Fondamental ($\bullet\bullet$) Standard ($\bullet\!\bullet\!\bullet$) Avancé
-($\circ$) Expert (non exigible)
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
 
 Sauf mention particulière, la connaissance des démonstrations du document 
 n'est pas exigible[^hp] ; les notions développées en annexe sont toutes hors-programme.
