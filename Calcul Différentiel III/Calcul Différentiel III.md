@@ -349,15 +349,16 @@ particulièrement simple :
     def H(f):
         return J(grad(f))
 
-     def gauss(x1, x2):
-         return np.exp(-0.5*x1*x1-0.5x2*x2)
+Un exemple d'usage :
+
+    def gauss(x1, x2):
+        return np.exp(-0.5 * (x1 * x1 + x2 * x2))
 
 TODO : restore automated tests here.
 
     >>> H(gauss)(1.0, 2.0)
     array([[0.      , 0.16417 ],
-          [0.16417 , 0.246255]])
-
+           [0.16417 , 0.246255]])
 
 ### Différentielle d'ordre 2 et matrice hessienne {.proposition #d2mh}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
