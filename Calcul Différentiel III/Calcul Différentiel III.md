@@ -246,6 +246,12 @@ H_f(x) = J_{\nabla f}(x) = \left[
 \right].
 $$
 
+### Laplacien et matrice hessienne {.exercise .question .zero #lagrangien}
+Soit $U$ un ouvert de $\R^n$, $x \in U$ et $f: U \to \R$ une fonction dont 
+la matrice hessienne en $x$ est bien définie. Exprimer le laplacien
+de $f$ en $x$, $\Delta f (x) := \sum_{i=1}^n \partial^2_{ii} f(x)$,
+en fonction de $H_f(x)$.
+
 ### Matrice hessienne d'un monôme {.exercise .question .one #simple}
 Soit $f: (x_1, x_2) \in \R^2 \to \R$ la fonction définie par 
 $f(x_1,x_2) = x_1x_2^2$. Montrer que la matrice $H_f(x)$
@@ -282,7 +288,7 @@ d^2 f(x) \cdot h_1 := d(x\mapsto df(x)\cdot h_1)(x),
 $$
 c'est-à-dire pour tout vecteur $h_2$ de $\mathbb{R}^n$,
 $$
-d^2f(x) \cdot h_1 \cdot h_2 = d(x\mapsto df(x)\cdot h_1)(x) \cdot h_2.
+(d^2f(x) \cdot h_1) \cdot h_2 = d(x\mapsto df(x)\cdot h_1)(x) \cdot h_2.
 $$
 On dit que $f$ est *deux fois différentiable (sur $U$)* si elle est 
 deux fois différentiable en tout point $x$ de $U$.
@@ -312,8 +318,7 @@ On conviendra que dans ce contexte, le symbole "$\to$" associe à droite :
 $$
 \mathbb{R}^n \to \R^n \to \mathbb{R} := \R^n \to (\mathbb{R}^n \to \mathbb{R}).
 $$
-La convention associée -- utilisée dans la définition de la différentielle
-d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
+La convention associée veut que lors de l'application d'une fonction linéaire,
 le symbole "$\cdot$" associe à gauche :
 $$
 d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
@@ -1289,6 +1294,14 @@ Solutions
 
 Exercices essentiels
 --------------------------------------------------------------------------------
+
+
+### Laplacien et matrice hessienne {.answer #answer-lagrangien}
+Le laplacien de $f$ en $x$ est la somme des coefficients diagonaux 
+-- donc la trace -- de la matrice hessiene de $f$ en $x$ :
+$$
+\Delta f(x) = \tr H_f(x).
+$$
 
 ### Matrice hessienne d'un monôme {.answer #answer-simple}
 Le gradient de $f$ est défini en tout point de $\R^2$ et vaut
