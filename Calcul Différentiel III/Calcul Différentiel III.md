@@ -523,7 +523,7 @@ $$
 on voit que l'inégalité est en fait valable pour des $h_1$ et $h_2$ arbitraires.
 On en déduit que $d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 = 0.$
 
-### Analyse vectorielle {.exercise .question .two #analyse-vectorielle}
+### Analyse vectorielle {.exercise .question .one #analyse-vectorielle}
 Soit $U$ un ouvert de $\R^3$ et $f: U \to \R^3$. On note
 (quand les expressions ont du sens)
 $$
@@ -540,6 +540,12 @@ $$
 Soient $f: U \to \R^3$ et $g: U \to \R$ des fonctions deux fois différentiable en 
 $x \in U$. Calculer $\mathrm{div} \, (\mathrm{rot} \, f)(x)$ et 
 $\mathrm{rot}\, (\nabla f)(x)$
+
+
+### Gradient unitaire {.exercise .question .one #gradient-unitaire}
+Soit $U$ un ouvert de $\R^n$ et $f: U \to \R$ une fonction deux fois différentiable. 
+Montrer que si $\|\nabla f\| =  1$, alors $H_f \cdot \nabla f = 0$.
+
 
 ### Développement limité à l'ordre $2$ {.proposition #dl2}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
@@ -1474,6 +1480,17 @@ On a également
 et donc -- à nouveau [par symmétrie de la différentielle d'ordre 2](#SD2) --
 on obtient $\mathrm{rot} \, \nabla g(x)=0$
 
+### Gradient unitaire {.answer #answer-gradient-unitaire}
+Si $\|\nabla f\| =  1$, alors 
+$$
+\|\nabla f\|^2 = \left<\nabla f, \nabla f\right> = \sum_i (\partial_i f)^2 = 1
+$$
+et donc pour tout $j \in \{1,\dots, n\}$,
+$$
+\partial_j \left( \sum_i \partial_i f^2 \right) =  2 \sum_i {\partial^2_{ji} f \times \partial_i f} = 
+2 H_f^{\top} \cdot \nabla f = 0.
+$$
+Le résultat $H_f \cdot \nabla f = 0$ s'en déduit donc [par symmétrie de la différentielle d'ordre 2](#SD2).
 
 Convexité
 --------------------------------------------------------------------------------
