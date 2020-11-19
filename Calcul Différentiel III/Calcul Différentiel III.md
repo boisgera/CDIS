@@ -246,7 +246,7 @@ H_f(x) = J_{\nabla f}(x) = \left[
 \right].
 $$
 
-### Laplacien et matrice hessienne {.exercise .question .zero #lagrangien}
+### Laplacien et matrice hessienne {.exercise .question .zero #laplacien}
 Soit $U$ un ouvert de $\R^n$, $x \in U$ et $f: U \to \R$ une fonction dont 
 la matrice hessienne en $x$ est bien définie. Exprimer le laplacien
 de $f$ en $x$, $\Delta f (x) := \sum_{i=1}^n \partial^2_{ii} f(x)$,
@@ -257,12 +257,19 @@ Soit $f: (x_1, x_2) \in \R^2 \to \R$ la fonction définie par
 $f(x_1,x_2) = x_1x_2^2$. Montrer que la matrice $H_f(x)$
 est définie en tout point $x \in \R^2$ et la calculer.
 
-### Matrice hessienne d'un lagrangien {.exercise .question .two #lagrangien}
+### Matrice hessienne d'un lagrangien {.exercise .question .one #lagrangien}
 Soit $U$ un ouvert de $\R^n$ et $f: U \to \R$ et $g: U \to \R$ deux applications
 dont les matrices hessiennes sont définies sur $U$. Soit $c \in \R$ un constante 
 et $L : U \times \R \to \R$ la fonction telle que 
 $L(x, \lambda) = f(x) + \lambda (g(x) - c)$.
 Calculer $H_L(x, \lambda)$.
+
+### Matrice hessienne diagonale {.exercise .question .two #hessienne-diag}
+Soit $f: \R^2 \to \R$ une fonction dont la matrice hessienne est définie en
+tout point. 
+Montrer que sa matrice hessienne $H_f$ est diagonale en tout point de $\R^2$
+si et seulement si $f(x_1,x_2) = g(x_1) + h(x_2)$ où $g:\R\to\R$ et $h:\R\to\R$
+sont des fonctions deux fois dérivables.
 
 ### Continue différentiabilité d'ordre 2 {.definition .one}
 Soit $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
@@ -324,7 +331,7 @@ $$
 d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
 $$
 
-### Calcul de la matrice hessienne {.remark}
+### Différentiation automatique d'ordre 2 {.remark}
 
 La bibliothèque autograd nous a déjà permis de calculer automatiquement
 le gradient de fonctions scalaires et la matrice jacobienne de fonctions
@@ -401,7 +408,7 @@ Par définition, $[H_f(x)]_{j_1j_2}(x) =
 \partial^2_{j_2j_1} f(x) = \partial_{j_2} (\partial_{j_1} f) (x)$
 et donc
 $$[H_f(x)]_{j_1j_2}(x) = \partial_{j_2} (x \mapsto df(x)\cdot e_{j_1})(x)
-= d(x \mapsto df(x)\cdot e_{j_1})(x) \cdot e_{j_1},$$
+= d(x \mapsto df(x)\cdot e_{j_1})(x) \cdot e_{j_2},$$
 c'est-à-dire $[H_f(x)]_{j_1j_2}(x) = d^2f(x) \cdot e_{j_1} \cdot e_{j_2}$.
 Pour prouver l'égalité restante, on exploite la linéarité de 
 $d^2f(x) \cdot h_1 \cdot h_2$ par rapport à $h_1$ et à $h_2$ :
@@ -515,6 +522,24 @@ $$
 $$
 on voit que l'inégalité est en fait valable pour des $h_1$ et $h_2$ arbitraires.
 On en déduit que $d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 = 0.$
+
+### Analyse vectorielle {.exercise .question .two #analyse-vectorielle}
+Soit $U$ un ouvert de $\R^3$ et $f: U \to \R^3$. On note
+(quand les expressions ont du sens)
+$$
+\mathrm{div} \, f(x) := \partial_1 f_1(x) + \partial_2 f_2(x) + \partial_3 f_3(x)
+\; \mbox{ et } \;
+\mathrm{rot} \, f(x) := \left[
+\begin{array}{c}
+\partial_2 f_3(x) - \partial_3 f_2(x) \\
+\partial_3 f_1(x) - \partial_1 f_3(x) \\
+\partial_1 f_2(x) - \partial_2 f_1(x)
+\end{array}
+\right].
+$$
+Soient $f: U \to \R^3$ et $g: U \to \R$ des fonctions deux fois différentiable en 
+$x \in U$. Calculer $\mathrm{div} \, (\mathrm{rot} \, f)(x)$ et 
+$\mathrm{rot}\, (\nabla f)(x)$
 
 ### Développement limité à l'ordre $2$ {.proposition #dl2}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
@@ -1296,7 +1321,7 @@ Exercices essentiels
 --------------------------------------------------------------------------------
 
 
-### Laplacien et matrice hessienne {.answer #answer-lagrangien}
+### Laplacien et matrice hessienne {.answer #answer-laplacien}
 Le laplacien de $f$ en $x$ est la somme des coefficients diagonaux 
 -- donc la trace -- de la matrice hessiene de $f$ en $x$ :
 $$
@@ -1327,7 +1352,6 @@ H_f(x) = J_{\nabla f} (x_1, x_2) =
 \end{array}\right].
 $$
 
-
 ### Matrice hessienne d'un lagrangien {.answer #answer-lagrangien}
 Le gradient de $L$ en $(x, \lambda)$ vaut
 $$
@@ -1357,6 +1381,98 @@ H_L(x, \lambda) = J_{{\nabla}L}(x, \lambda)
   \end{array}
 \right].
 $$
+
+### Matrice hessienne diagonale {.answer #answer-hessienne-diag}
+Soit $f: \R^2 \to \R$ une fonction dont la matrice hessienne est partout définie. 
+Si $f(x_1,x_2) = g(x_1) + h(x_2)$ où $g:\R\to\R$ et $h:\R\to\R$
+sont des fonctions deux fois dérivables, alors $f$ est
+différentiable et
+$$
+\nabla f(x_1, x_2) = 
+\left[ 
+\begin{array}{c}
+g'(x_1) \\
+h'(x_2)
+\end{array}
+\right].
+$$
+Ce gradient admet bien une matrice jacobienne et
+$$
+H_f(x_1,x_2) = J_{\nabla f}(x_1, x_2) = 
+\left[
+\begin{array}{cc}
+g''(x_1) & 0 \\
+0 & h''(x_2)
+\end{array}
+\right].
+$$
+Cette matrice est bien diagonale pour tout $(x_1, x_2) \in \R^2$.
+Réciproquement, si $H_f$ est diagonale, alors 
+$\partial^2_{12} f = \partial_1 \partial_2 f = 0$. 
+Par le théorème fondamental du calcul on a pour tout $(x_1,x_2) \in \R^2$,
+$$
+\partial_2 f(x_1, x_2) 
+= 
+\partial_2 f(0,x_2) + \int_{0}^{x_1} \partial^2_{12} f(y_1,x_2) \, dy_1
+=
+\partial_2 f(0,x_2).
+$$
+La fonction $\partial_2 f(0, x_2)$ étant dérivable par rapport à $x_2$,
+elle est continue par rapport à $x_2$ et à nouveau par le théorème fondamental
+du calcul, on obtient
+$$
+f(x_1, x_2) 
+= f(x_1, 0) + \int_0^{x_2} \partial_2 f(x_1, y_2) \, dy_2
+= f(x_1, 0) + \int_0^{x_2} \partial_2 f(0, y_2) \, dy_2.
+$$
+Cette fonction est de la forme $f(x_1,x_2) = g(x_1) + h(x_2)$ avec
+$$
+g(x_1) = f(x_1,0) \; \mbox{ et } \; h(x_2) = \int_0^{x_2} \partial_2 f(0, y_2) \, dy_2.
+$$
+Les fonctions $f$ et $g$ sont bien deux fois dérivables.
+
+
+### Analyse vectorielle {.answer #answer-analyse-vectorielle}
+Soient $f: U \to \R^3$ et $g: U \to \R$ des fonctions deux fois différentiable en 
+$x \in U$. On a
+\begin{align*}
+\mathrm{div} \, (\mathrm{rot} \, f)(x) 
+&= \mathrm{div} \left[
+\begin{array}{c}
+\partial_2 f_3(x) - \partial_3 f_2(x) \\
+\partial_3 f_1(x) - \partial_1 f_3(x) \\
+\partial_1 f_2(x) - \partial_2 f_1(x)
+\end{array}
+\right] \\
+&= \partial_1(\partial_2 f_3 - \partial_3 f_2)(x)
++ \partial_2 (\partial_3 f_1 - \partial_1 f_3)(x)
++ \partial_3 (\partial_1 f_2 - \partial_2 f_1)(x) \\
+&= (\partial^2_{12} f_3 - \partial^2_{21} f_3)(x)
++ (\partial^2_{23} f_1 - \partial^2_{32} f_1)(x)
++ (\partial^2_{31} f_2 - \partial^2_{13} f_2)(x),
+\end{align*}
+et donc $\mathrm{div} \, (\mathrm{rot} \, f)(x) = 0$ 
+[par symmétrie de la différentielle d'ordre 2](#SD2).
+On a également
+\begin{align*}
+\mathrm{rot} \, \nabla g(x) &:= \left[
+\begin{array}{c}
+\partial_2 (\nabla g)_3(x) - \partial_3 (\nabla g)_2(x) \\
+\partial_3 (\nabla g)_1(x) - \partial_1 (\nabla g)_3(x) \\
+\partial_1 (\nabla g)_2(x) - \partial_2 (\nabla g)_1(x) \\
+\end{array}
+\right] \\
+&=
+\left[
+\begin{array}{c}
+\partial_2 \partial_3 g(x) - \partial_3 \partial_2 g(x) \\
+\partial_3 \partial_1 g(x) - \partial_1 \partial_3 g(x) \\
+\partial_1 \partial_2 g(x) - \partial_2 \partial_1 g(x)
+\end{array}
+\right]\\
+\end{align*}
+et donc -- à nouveau [par symmétrie de la différentielle d'ordre 2](#SD2) --
+on obtient $\mathrm{rot} \, \nabla g(x)=0$
 
 
 Convexité
