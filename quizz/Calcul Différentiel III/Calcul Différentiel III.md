@@ -18,12 +18,12 @@
 #### Question ?
 Le tenseur de type $(1,1,1)$ défini par par $t_{ijk} = 1.0$ :
 
-  - [ ] est d'ordre $1+1+1 = 3$,
+  - [ ] est d'ordre $1$,
 
-  - [ ] est décrit en NumPy par le tableau `np.array(1.0)`,
+  - [ ] est décrit en NumPy par le tableau `np.array([1.0])`,
 
   - [ ] représente l'application linéaire
-    $x \in \R \to y \in \R \to z \in \R \to 1.0 \in \R$
+    $x \in \R \to y \in \R \to xy \in \R$
 
 
 -----------

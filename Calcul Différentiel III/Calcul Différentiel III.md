@@ -749,6 +749,8 @@ $$
 ### Scalaires, Vecteurs, Matrices {.remark}
 Le concept de tenseur englobe et généralise :
 
+**TODO:** mieux expliqué indexation : dans NumPy on a une indexation démarrant à 0 ...
+
  1. les scalaires comme tenseurs d'ordre 0 (ne dépendant d'aucun indice).
     Les éléments de $\R$ ont pour type le $0$-uplet $()$. 
 
@@ -759,6 +761,8 @@ Le concept de tenseur englobe et généralise :
         0
         >>> T.shape
         ()
+        >>> T[()]
+        1.0
 
  2. les vecteurs comme tenseurs d'ordre 1. Un vecteur de $\R^m$ a pour type 
     le $1$-uplet $(m)$ :
@@ -770,6 +774,8 @@ Le concept de tenseur englobe et généralise :
         1
         >>> T.shape
         (3,)
+        >>> T[1]
+        2.0
 
  3. les matrices comme tenseurs d'ordre $2$. Une matrice de $\R^{m \times n}$
     a pour type la paire $(m, n)$).
@@ -779,20 +785,9 @@ Le concept de tenseur englobe et généralise :
         2
         >>> T.shape
         (2, 3)
+        >>> T[1, 2]
+        6.0
 
-### Contraction tensorielle
-Soient $A$ et $B$ des tenseurs de type respectifs 
-$(m_1,m_2,\dots, m_n) \in \N^{n}$ et $(p_1,p_2,\dots, p_q) \in \N^{q}$.
-Si $m_n = p_1$, la contraction de $A$ et $B$ est le tenseur de 
-$(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q}$ noté $A \cdot B$ 
-défini par
-$$
-(A \cdot B)_{i_1 \dots, i_{n-1}, i_{n+1}, i_{n+q}} = \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} 
-$$
-
-### TODO : cas usuels (produit vecteurs, matrices-vecteurs, matrices-matrices)
-
-### TODO : warning implémentation (2nd-to-last stuff).
 
 ### Applications linéaires d'ordre supérieur {.remark}
 
@@ -811,8 +806,8 @@ a_{ij} = (A \cdot e_j)_i
 A \cdot x = \sum_i \left( \sum_{j} a_{ij} x_j \right) e_i
 $$
 pour tout $x \in \R^n$.
-(Par abus de notation, les $e_j$ désignent les vecteurs de la base canonique 
-dans $\R^p$ quel que soit $p$). Cette correspondance légitime l'identification 
+(Par abus de notation, $e_j$ désigne le $j$-ème vecteur de la base canonique 
+de $\R^p$ quel que soit $p$). Cette correspondance légitime l'identification 
 fréquemment opérée entre $A$ et $[a_{ij}]_{ij}$. 
 
 **TODO:** pour streamliner ici, j'aurais besoin de montrer/expliquer que
@@ -831,11 +826,11 @@ T \in \mathcal{L}(\R^p, \mathcal{L}(\R^n, \R^m)).
 $$
 On définit cette correspondance de la façon suivante : 
 $$
-t_{ijk} = ((T \cdot e_k) \cdot e_j) \cdot e_i
+t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
 \; \mbox{ et } \;
-((T \cdot x) \cdot y) \cdot z) 
+(T \cdot x) \cdot y
 = 
-\sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) z_i
+\sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
 $$
 pour tout $x\in \R^p$ et $y \in \R^n$. Le processus se généralise aux
 tenseurs d'ordre $n$ :
@@ -854,7 +849,23 @@ $$
 
 ### Alternatives {.remark}
 
-formes $n$-linéaires et $\otimes$
+formes $n$-linéaires et $\otimes$. Evoquer cas particulier bilinéaire comme
+exemple ?
+
+
+### Contraction tensorielle
+Soient $A$ et $B$ des tenseurs de type respectifs 
+$(m_1,m_2,\dots, m_n) \in \N^{n}$ et $(p_1,p_2,\dots, p_q) \in \N^{q}$.
+Si $m_n = p_1$, la contraction de $A$ et $B$ est le tenseur de 
+$(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q}$ noté $A \cdot B$ 
+défini par
+$$
+(A \cdot B)_{i_1 \dots, i_{n-1}, i_{n+1}, i_{n+q}} = \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} 
+$$
+
+### TODO : cas usuels (produit vecteurs, matrices-vecteurs, matrices-matrices)
+
+### TODO : warning implémentation (2nd-to-last stuff).
 
 ### TODO.
 
