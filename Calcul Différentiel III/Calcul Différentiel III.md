@@ -367,6 +367,8 @@ Un exemple d'usage :
     def gauss(x1, x2):
         return np.exp(-0.5 * (x1 * x1 + x2 * x2))
 
+exercé de la façon suivante :
+
     >>> H(gauss)(1.0, 2.0)
     array([[0.      , 0.16417 ],
            [0.16417 , 0.246255]])
@@ -733,21 +735,120 @@ $d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition
 Différentielle d'ordre supérieur
 ================================================================================
 
-**TODO** notation $i$ bof ; prendre $m$ ?
-
-### Tenseur d'ordre $n$ {.definition .one}
-On appelera *tenseur d'ordre $n$* un élément de 
-$\R^{i_1 \times i_2 \times \dots \times i_n}$ où $(i_1,i_2,\dots, i_n) \in \N^{n}$, 
-c'est-à-dire une application $A$ de la forme
+### Tenseur d'ordre $n$ (tableau $n$-dimensionnel) {.definition .one}
+On appelera *tenseur d'ordre $n \in \N$* et de *type* $(m_1,m_2,\dots, m_n) \in \N^{n}$
+un élément de $\R^{m_1 \times m_2 \times \dots \times m_n}$ c'est-à-dire un réel
 $$
-(i_1,  i_2, \dots , i_n) \mapsto A_{i_1i_2 \dots i_n} \in \R,
+ A_{i_1 i_2 \dots i_n} \in \R,
 $$
-ou encore, un tableau $n$-dimensionnel de réels.
+indexé par $n$ indices
+$$
+(i_1,  i_2, \dots , i_n) \in \{1, \dots, m_1\} \times \{1,\dots, m_2\} \times \dots \times \{1,\dots, m_n\}.
+$$
 
-### {.remark}
-Le concept de tenseur généralise la notion de scalaire de $\R$
-(un tenseur d'ordre 0), de vecteur de $\R^n$ (un tenseur d'ordre 1)
-et de matrice $\R^{m\times n}$ (un tenseur d'ordre 2).
+### Scalaires, Vecteurs, Matrices {.remark}
+Le concept de tenseur englobe et généralise :
+
+ 1. les scalaires comme tenseurs d'ordre 0 (ne dépendant d'aucun indice).
+    Les éléments de $\R$ ont pour type le $0$-uplet $()$. 
+
+        >>> np.array(1.0)
+        array(1.)
+        >>> T = np.array(1.0)
+        >>> T.ndim
+        0
+        >>> T.shape
+        ()
+
+ 2. les vecteurs comme tenseurs d'ordre 1. Un vecteur de $\R^m$ a pour type 
+    le $1$-uplet $(m)$ :
+
+        >>> T = np.array([1.0, 2.0, 3.0])
+        >>> T
+        array([1., 2., 3.])
+        >>> T.ndim
+        1
+        >>> T.shape
+        (3,)
+
+ 3. les matrices comme tenseurs d'ordre $2$. Une matrice de $\R^{m \times n}$
+    a pour type la paire $(m, n)$).
+
+        >>> T = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
+        >>> T.ndim
+        2
+        >>> T.shape
+        (2, 3)
+
+### Contraction tensorielle
+Soient $A$ et $B$ des tenseurs de type respectifs 
+$(m_1,m_2,\dots, m_n) \in \N^{n}$ et $(p_1,p_2,\dots, p_q) \in \N^{q}$.
+Si $m_n = p_1$, la contraction de $A$ et $B$ est le tenseur de 
+$(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q}$ noté $A \cdot B$ 
+défini par
+$$
+(A \cdot B)_{i_1 \dots, i_{n-1}, i_{n+1}, i_{n+q}} = \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} 
+$$
+
+### TODO : cas usuels (produit vecteurs, matrices-vecteurs, matrices-matrices)
+
+### TODO : warning implémentation (2nd-to-last stuff).
+
+### Applications linéaires d'ordre supérieur {.remark}
+
+La raison d'être des matrices de $\R^{m \times n}$ -- c'est-à-dire des tenseurs
+d'ordre $2$ de type $(m, n)$ -- est la représentation concrête des 
+applications linéaires de $\R^n \to \R^m$, dont l'espace est noté 
+$\mathcal{L}(\R^n, \R^m)$. Si l'on désigne par $A$ une telle 
+l'application linéaire et par $[a_{ij}]_{ij}$ la matrice associée, on a
+$$
+a_{ij} = (A \cdot e_j)_i 
+\; \mbox{ et } \;
+A \cdot x = \sum_i \left( \sum_{j} a_{ij} x_j \right) e_i
+$$
+pour tout $x \in \R^n$.
+(Par abus de notation, les $e_j$ désignent les vecteurs de la base canonique 
+dans $\R^p$ quel que soit $p$). Cette correspondance légitime l'identification 
+fréquemment opérée entre $A$ et $[a_{ij}]_{ij}$. 
+
+**TODO:** pour streamliner ici, j'aurais besoin de montrer/expliquer que
+$\left<x,e_i\right> = x \cdot e_i$ mais ça suppose déjà que j'ai parlé de
+contraction :(. OK, en parler en amont alors !
+
+Une correspondance similaire existe pour les tenseurs d'ordre
+supérieur à $2$. Ainsi, à l'ordre $3$ on peut mettre en correspondance un
+tenseur $[t_{ijk}]_{ijk}$ de type $(m, n, p)$ et une application linéaire $T$
+de $\R^p$ dans l'espace des applications linéaires de $\R^n$ dans $\R^m$([^ho]),
+c'est-à-dire
+$$
+[t_{ijk}]_{ijk} \in \R^{m \times n \times p} 
+\; \longleftrightarrow \;
+T \in \mathcal{L}(\R^p, \mathcal{L}(\R^n, \R^m)).
+$$
+On définit cette correspondance de la façon suivante : 
+$$
+t_{ijk} = ((T \cdot e_k) \cdot e_j)_i 
+\; \mbox{ et } \;
+(T \cdot x) \cdot y= \sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
+$$
+pour tout $x\in \R^p$ et $y \in \R^n$. Le processus se généralise aux
+tenseurs d'ordre $n$ :
+
+[^ho]: on parle ici d'application d'ordre supérieur car la fonction linéaire
+considérée associe à un argument une "valeur" qui est elle-même une fonction
+(linéaire).
+
+
+$$
+t_{i_1 \dots i_n} = (((\cdots(T \cdot e_{i_n}) \cdots) \cdot e_{i_2})_{i_1}
+$$
+
+**TODO**
+
+
+### Alternatives {.remark}
+
+formes $n$-linéaires et $\otimes$
 
 ### TODO.
 
