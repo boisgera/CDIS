@@ -749,6 +749,9 @@ $$
 ### Scalaires, Vecteurs, Matrices {.remark}
 Le concept de tenseur englobe et généralise :
 
+**TODO:** probablement découpler cette remarque et l'implémentation NumPy.
+
+
 **TODO:** mieux expliqué indexation : dans NumPy on a une indexation démarrant à 0 ...
 
  1. les scalaires comme tenseurs d'ordre 0 (ne dépendant d'aucun indice).
