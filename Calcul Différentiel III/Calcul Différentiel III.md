@@ -790,7 +790,7 @@ et
     (2, 3, 1)
 
 Les coefficients d'un tenseur `T` s'obtiennent au moyen du crochet `T[]`
-(méthode `__getitem__`), mais avec un indexation commençant à 0 et non 1
+(méthode `__getitem__`)[^o0], mais avec un indexation commençant à 0 et non 1
 comme la convention mathématique classique. Ainsi :
 
     >>> T1[1]
@@ -799,7 +799,7 @@ comme la convention mathématique classique. Ainsi :
     6.0
     >>> T3[1,2,0]
     6.0
-
+<!--
 A noter que la notation `T2[(1,2)]` ($n$-uplet explicite)
 est équivalente à `T2[1,2]` ($n$-uplet implicite). Cette remarque est utile
 pour accéder au contenu des tenseurs d'ordre 0, car la notation "évidente"
@@ -811,8 +811,23 @@ n'est pas acceptée :
     SyntaxError: invalid syntax
     >>> T0[()]
     1.0
+-->
 
-
+[^o0]: On notera que la notation `T2[(1,2)]` ($n$-uplet explicite)
+est équivalente à `T2[1,2]` ($n$-uplet implicite). Cette remarque est utile
+pour accéder au contenu des tenseurs d'ordre 0, car la notation "évidente"
+n'est pas acceptée :
+```
+>>> T0[]
+Traceback (most recent call last):
+...
+SyntaxError: invalid syntax
+```
+mais la notation avec un 0-uplet explicite fonctionne :
+```
+>>> T0[()]
+1.0
+```
 
 
 ### Applications linéaires d'ordre supérieur {.remark}
@@ -993,6 +1008,19 @@ $$
 chaque application dans la chaîne étant linéaire. La différentielle
 $d^k f(x)$ peut donc être représentée par un tenseur d'ordre $k+1$ et 
 de type $(m, n, \dots, n)$.
+
+**TODO: expliciter correspondance, du type:**
+$$
+t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
+\; \mbox{ et } \;
+(T \cdot x) \cdot y
+= 
+\sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
+$$
+**Lien avec les dérivés partielles pas évident à ce stade ... ou plus tard, si ?
+A ce stade je crois que ça n'est nulle part ... Ca manque !**
+
+
 
 
 ### Stratification {.lemma #stratification}
