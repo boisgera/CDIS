@@ -747,62 +747,81 @@ $$
 $$
 
 ### Scalaires, Vecteurs, Matrices {.remark}
-Le concept de tenseur englobe et généralise :
+Le concept de tenseur englobe et généralise les scalaires, vecteurs et matrices :
 
-**TODO:** probablement découpler cette remarque et l'implémentation NumPy.
+ 1. Les scalaires les tenseurs d'ordre 0 
+    (car ne dépendant d'aucun indice). Il n'existe qu'un type de de tenseur 
+    d'ordre  $0$, car il existe un unique $0$-uplet, noté $()$.
+
+ 2. les vecteurs sont les tenseurs d'ordre 1 ; un vecteur de $\R^m$ a pour type 
+    $(m)$, le 1-uplet contenant $m$.
+
+ 3. les matrices les tenseurs d'ordre $2$ ; une matrice de $\R^{m \times n}$
+    a pour type la paire $(m, n)$.
+
+Les tenseurs d'ordre $n \geq 3$ sont des objets qui ne sont ni des 
+scalaires, ni des vecteurs, ni des matrices.
+
+### Les tenseurs avec NumPy {.remark}
+Les tenseurs étant des tableaux $n$-dimensionnels, 
+ils sont représentés comme des instances du type `array`. 
+Leur ordre est donnée par la méthode `ndim` (nombre de dimensions),
+leur type par la méthode `shape`. Ainsi, avec
+
+    >>> T0 = np.array(1.0)
+    >>> T1 = np.array([1.0, 2.0, 3.0])
+    >>> T2 = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
+    >>> T3 = np.array([[[1.0], [2.0], [3.0]], [[4.0], [5.0], [6.0]]])
+
+on a
+
+    >>> (T0.ndim, T1.ndim, T2.ndim, T3.ndim)
+    (0, 1, 2, 3)
+
+et
+
+    >>> T0.shape
+    ()
+    >>> T1.shape
+    (3,)
+    >>> T2.shape
+    (2, 3)
+    >>> T3.shape
+    (2, 3, 1)
+
+Les coefficients d'un tenseur `T` s'obtiennent au moyen du crochet `T[]`
+(méthode `__getitem__`), mais avec un indexation commençant à 0 et non 1
+comme la convention mathématique classique. Ainsi :
+
+    >>> T1[1]
+    2.0
+    >>> T2[1,2]
+    6.0
+    >>> T3[1,2,0]
+    6.0
+
+A noter que la notation `T2[(1,2)]` ($n$-uplet explicite)
+est équivalente à `T2[1,2]` ($n$-uplet implicite). Cette remarque est utile
+pour accéder au contenu des tenseurs d'ordre 0, car la notation "évidente"
+n'est pas acceptée :
+
+    >>> T0[]
+    Traceback (most recent call last):
+    ...
+    SyntaxError: invalid syntax
+    >>> T0[()]
+    1.0
 
 
-**TODO:** mieux expliqué indexation : dans NumPy on a une indexation démarrant à 0 ...
-
- 1. les scalaires comme tenseurs d'ordre 0 (ne dépendant d'aucun indice).
-    Les éléments de $\R$ ont pour type le $0$-uplet $()$. 
-
-        >>> np.array(1.0)
-        array(1.)
-        >>> T = np.array(1.0)
-        >>> T.ndim
-        0
-        >>> T.shape
-        ()
-        >>> T[()]
-        1.0
-
- 2. les vecteurs comme tenseurs d'ordre 1. Un vecteur de $\R^m$ a pour type 
-    le $1$-uplet $(m)$ :
-
-        >>> T = np.array([1.0, 2.0, 3.0])
-        >>> T
-        array([1., 2., 3.])
-        >>> T.ndim
-        1
-        >>> T.shape
-        (3,)
-        >>> T[1]
-        2.0
-
- 3. les matrices comme tenseurs d'ordre $2$. Une matrice de $\R^{m \times n}$
-    a pour type la paire $(m, n)$).
-
-        >>> T = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
-        >>> T.ndim
-        2
-        >>> T.shape
-        (2, 3)
-        >>> T[1, 2]
-        6.0
 
 
 ### Applications linéaires d'ordre supérieur {.remark}
 
-**TODO:** adresser mismatch dans la présentation entre "niveau matrice" et
-"niveau tenseur" (objet final vecteur vs objet final scalaire ?) ... d'une
-façon ou d'une autre.
-
-La raison d'être des matrices de $\R^{m \times n}$ -- c'est-à-dire des tenseurs
-d'ordre $2$ de type $(m, n)$ -- est la représentation concrête des 
-applications linéaires de $\R^n \to \R^m$, dont l'espace est noté 
-$\mathcal{L}(\R^n, \R^m)$. Si l'on désigne par $A$ une telle 
-l'application linéaire et par $[a_{ij}]_{ij}$ la matrice associée, on a
+Une raison d'être des matrices de $\R^{m \times n}$ 
+est la représentation concrête des applications linéaires de $\R^n \to \R^m$, 
+dont l'espace est noté $\mathcal{L}(\R^n, \R^m)$.
+Si l'on désigne par $A$ une telle 
+l'application linéaire et par $[a_{ij}]_{ij}$ la matrice associée,
 $$
 a_{ij} = (A \cdot e_j)_i 
 \; \mbox{ et } \;
@@ -813,17 +832,13 @@ pour tout $x \in \R^n$.
 de $\R^p$ quel que soit $p$). Cette correspondance légitime l'identification 
 fréquemment opérée entre $A$ et $[a_{ij}]_{ij}$. 
 
-**TODO:** pour streamliner ici, j'aurais besoin de montrer/expliquer que
-$\left<x,e_i\right> = x \cdot e_i$ mais ça suppose déjà que j'ai parlé de
-contraction :(. OK, en parler en amont alors !
-
 Une correspondance similaire existe pour les tenseurs d'ordre
 supérieur à $2$. Ainsi, à l'ordre $3$ on peut mettre en correspondance un
-tenseur $[t_{ijk}]_{ijk}$ de type $(m, n, p)$ et une application linéaire $T$
+tenseur $(t_{ijk})_{ijk}$ de type $(m, n, p)$ et une application linéaire $T$
 de $\R^p$ dans l'espace des applications linéaires de $\R^n$ dans $\R^m$([^ho]),
 c'est-à-dire
 $$
-[t_{ijk}]_{ijk} \in \R^{m \times n \times p} 
+(t_{ijk})_{ijk} \in \R^{m \times n \times p} 
 \; \longleftrightarrow \;
 T \in \mathcal{L}(\R^p, \mathcal{L}(\R^n, \R^m)).
 $$
@@ -835,65 +850,121 @@ t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
 = 
 \sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
 $$
-pour tout $x\in \R^p$ et $y \in \R^n$. Le processus se généralise aux
-tenseurs d'ordre $n$ :
+(sous-entendu, pour tout $x\in \R^p$ et $y \in \R^n$). 
+Le processus se généralise sans difficulté à des tenseurs d'ordre supérieur
+à $3$.
 
 [^ho]: on parle ici d'application d'ordre supérieur car la fonction linéaire
 considérée associe à un argument une "valeur" qui est elle-même une fonction
 (linéaire).
 
+### Applications multilinéaires {.remark}
 
+Les tenseurs vus comme des tableaux permettent de représenter d'autres 
+objets mathématiques, équivalents aux applications linéaires (d'ordre 
+supérieur). A titre d'exemple, si l'on considère les tenseurs d'ordre 2, 
+une matrice $A \in \R^{m \times n}$ correspond à une application
+$\mathcal{L}(\R^n, \R^m)$ mais également à une forme bilinéaire 
+$Q \in \mathcal{L}_2(\R^n \times \R^m, \R)$, 
+c'est-à-dire une fonction de deux variables dans $\R^n$ et $\R^m$,
+linéaire par rapport à chacune de ces variables, et à valeurs dans $\R$. 
+Cette forme bilinéaire $Q$ est donnée par
 $$
-t_{i_1 \dots i_n} = (((\cdots(T \cdot e_{i_n}) \cdots) \cdot e_{i_2})_{i_1}
+Q(x, y) = \sum_{i=1}^m \sum_{j=1}^n T_{ij} x_i y_j.
 $$
+Dans le cas général, un tenseur d'ordre $n$ correspond avec une forme 
+$n$-linéaire.
 
-**TODO**
-
-
-### Alternatives {.remark}
-
-formes $n$-linéaires et $\otimes$. Evoquer cas particulier bilinéaire comme
-exemple ?
-
-
-### Contraction tensorielle
+### Produit tensoriel {.definition}
 Soient $A$ et $B$ des tenseurs de type respectifs 
 $(m_1,m_2,\dots, m_n) \in \N^{n}$ et $(p_1,p_2,\dots, p_q) \in \N^{q}$.
-Si $m_n = p_1$, la contraction de $A$ et $B$ est le tenseur de 
+Si $m_n = p_1$, le produit de $A$ et $B$ est le tenseur de 
 $(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q}$ noté $A \cdot B$ 
 défini par
 $$
 (A \cdot B)_{i_1 \dots, i_{n-1}, i_{n+1}, i_{n+q}} = \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} 
 $$
 
-### TODO : cas usuels (produit vecteurs, matrices-vecteurs, matrices-matrices)
+### Produits tensoriels classiques {.remark} 
+Pour $x, y \in \R^n$, on a
+$$
+x \cdot y  = \sum_{i=1}^m x_i y_i \in \R.
+$$
+Si de plus $A \in \R^{m \times n}$ et 
+$B \in \R^{n \times p}$,
+$$
+A\cdot x \in \R^m, \; (A \cdot x)_i = \sum_{j=1}^n A_{ij} x_j  
+$$
+$$
+A \cdot B \in \R^{m \times p}\; \mbox{ et } \;
+(A \cdot B)_{ik} = \sum_{j=1} A_{ij} B_{jk}.
+$$
+Autrement dit le le produit tensoriel de vecteurs
+coïncide avec leur produit scalaire, 
+et les produits tensoriels matrice-vecteur et matrice-matrice
+coïncident avec les produits classiques.
 
-### TODO : warning implémentation (2nd-to-last stuff).
+### Produit tensoriel avec NumPy {.remark}
+Si $A$ et $B$ sont deux tenseurs de forme compatibles pour un produit
+représentés par les tableaux $n$-dimensionnels `A` et `B`, 
+**et tant que l'ordre de $B$ est inférieur ou égal à $2$**, 
+on peut calculer le produit tensoriel de $A$ et $B$ au moyen de la méthode `dot`.
+Par exemple, avec :
 
-### TODO.
+    >>> x = np.array([0.0, 1.0])
+    >>> y = np.array([2.0, 4.0])
+    >>> A = np.array([[1.0, 2.0], [3.0, 4.0]])
+    >>> B = np.array([[5.0, 6.0], [7.0, 8.0]])
+    >>> T = np.array([[[1.0, 2.0], [3.0, 4.0]], 
+    ...               [[5.0, 6.0], [7.0, 8.0]]])
 
-  - Identification tenseur application $n$-linéaire.
+on obtient le produits tensoriels associés par :
 
-  - Contraction entre tenseurs (taille compatible), 
+    >>> x.dot(y)
+    4.0
+    >>> A.dot(x)
+    array([2., 4.])
+    >>> A.dot(B)
+    array([[19., 22.],
+           [43., 50.]])
+    >>> T.dot(A)
+    array([[[ 7., 10.],
+            [15., 22.]],
+    <BLANKLINE>
+           [[23., 34.],
+            [31., 46.]]])
 
-  - Contraction d'ordre $p$ (quelle convention et notation ?),
+Dans le cas contraire (ou systématiquement), 
+on pourra utiliser la fonction NumPy `tensordot` avec l'option
+`axes=1`, car la fonction `numpy.dot` diffère alors du produit tensoriel tel
+que nous l'avons défini
+[(cf. documentation de `numpy.dot`)](https://numpy.org/doc/stable/reference/generated/numpy.dot.html).
 
-  - Décomposer produit de tenseurs et contraction d'indice (pour UN tenseur)
-    ou combiner ? Indices nommés ?
+    >>> x.dot(T) # Probably not what you want.
+    array([[3., 4.],
+           [7., 8.]])
+    >>> np.tensordot(x, T, axes=1) # Better!
+    array([[5., 6.],
+           [7., 8.]])
 
-  - Coller au plus près de NumPy et donner des exemples avec NumPy 
-    (et einsum ?). Regarder aussi dot, tensordot, outer, etc.
-    Voir ce qui fait le job ...Ca serait bien de pouvoir se limiter à `dot` ...
-    Regarder les 3 use cases: diff d'ordre n, chain rule d'ordre 2, determinant
-    et/ou diff de fct matricielles (valeurs et/ou args).
+Pour un contrôle plus fin des opérations, on pourra également avoir recours
+[à la fonction `numpy.einsum`](https://numpy.org/doc/stable/reference/generated/numpy.einsum.html). Pour calculer $(x \cdot T)_{jk} = \sum_{i} x_i T_{ijk}$, 
+comme nous le souhaitons :
 
+    >>> np.einsum("i, ijk -> jk", x, T)
+    array([[5., 6.],
+           [7., 8.]])
+
+Ici le tenseur calculé par `x.dot(T)` correspond à $S_{jk} = \sum_{i} x_i T_{jik}$ ;
+si c'est ce que l'on souhaite, on peut aussi l'obtenir par :
+
+    >>> np.einsum("i, jik -> jk", x, T)
+    array([[3., 4.],
+           [7., 8.]])
 
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
 à un ordre plus élevé, par induction sur l'ordre de la différentielle.
-
-### TODO
-Expliquer généralisation scalaire -> vectoriel et ordre $k$.
 
 ### Différentielle d'ordre $k$ {.definition #dos}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
@@ -914,11 +985,14 @@ $$
 d^k f(x) \cdot h_1 \cdot h_2 \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
 $$
 
-### Remarque
+### Différentielle d'ordre $k$ comme tenseur {.remark}
 On a 
 $$
-d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
+d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m,
 $$
+chaque application dans la chaîne étant linéaire. La différentielle
+$d^k f(x)$ peut donc être représentée par un tenseur d'ordre $k+1$ et 
+de type $(m, n, \dots, n)$.
 
 
 ### Stratification {.lemma #stratification}
