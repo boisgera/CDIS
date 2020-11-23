@@ -796,6 +796,10 @@ $$
 
 ### Applications linéaires d'ordre supérieur {.remark}
 
+**TODO:** adresser mismatch dans la présentation entre "niveau matrice" et
+"niveau tenseur" (objet final vecteur vs objet final scalaire ?) ... d'une
+façon ou d'une autre.
+
 La raison d'être des matrices de $\R^{m \times n}$ -- c'est-à-dire des tenseurs
 d'ordre $2$ de type $(m, n)$ -- est la représentation concrête des 
 applications linéaires de $\R^n \to \R^m$, dont l'espace est noté 
@@ -827,9 +831,11 @@ T \in \mathcal{L}(\R^p, \mathcal{L}(\R^n, \R^m)).
 $$
 On définit cette correspondance de la façon suivante : 
 $$
-t_{ijk} = ((T \cdot e_k) \cdot e_j)_i 
+t_{ijk} = ((T \cdot e_k) \cdot e_j) \cdot e_i
 \; \mbox{ et } \;
-(T \cdot x) \cdot y= \sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
+((T \cdot x) \cdot y) \cdot z) 
+= 
+\sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) z_i
 $$
 pour tout $x\in \R^p$ et $y \in \R^n$. Le processus se généralise aux
 tenseurs d'ordre $n$ :
