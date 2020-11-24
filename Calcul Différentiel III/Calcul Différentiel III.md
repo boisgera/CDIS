@@ -345,7 +345,7 @@ La fonction $f$ est deux fois différentiable en $x$ si et seulement si elle
 est différentiable sur $U$ et que son gradient $\nabla f$ est différentiable en $x$.
 Sa matrice hessienne est alors définie en $x$ et pour tous $h_1, h_2 \in \R^n$, 
 $$
-d^2f(x) \cdot h_1 \cdot h_2 = h_1^{\top} \cdot H_f(x) \cdot h_2
+d^2f(x) \cdot h_1 \cdot h_2 = \left<h_1, H_f(x) \cdot h_2 \right> = h_1^{\top} \cdot H_f(x) \cdot h_2
 =\sum_{j_1=1}^n \sum_{j_2=1}^n [H_f(x)]_{j_1j_2} h_{1j_1} h_{2j_2}.
 $$
 En particulier
