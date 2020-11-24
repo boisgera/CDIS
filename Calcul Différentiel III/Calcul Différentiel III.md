@@ -13,6 +13,7 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
+\newpage
 
 Objectifs d'apprentissage
 ================================================================================
@@ -31,63 +32,27 @@ et les contenus en annexe ne sont pas exigibles ("hors-programme").
 contribuer à votre apprentissage, au même titre que la résolution 
 d'exercices.
 
-### TODO
+#### Matrice hessienne et différentiabilité d'ordre 2
 
-  - matrice hessienne & "formules" directement liées à la définition: 
-    $H_f = J_{\nabla f}$, $\partial_{j_1} \partial_{j_2} = \partial_{j_1j_2}^2$,
-    $[H_f]_{j_1j_2} = \partial_{j_1j_2}^2 f$,
+  - \one connaître les définitions classiques de la matrice hessienne.
 
-  - diff d'ordre 2, cont. diff d'ordre 2
+  - \one savoir définir et relier existence de la matrice hessienne,
+    différentiabilité d'ordre 2 et continue différentiabilité d'ordre 2.
 
-  - "formules" supposant la diff d'ordre 2: $d^2f(x)\cdot h_1 \cdot h_2 = h_1^{\top} \cdot H_f(x) \cdot h_2$,
-    $\nabla f(x+h)=\nabla f(x) + H_f(x)\cdot h + \varepsilon(h) \|h\|$.
+  - \one savoir à quelle condition la matrice hessienne est symétrique.
 
-  - symétrie de la matrice hessienne, 
+  - \one savoir exploiter cette symétrie dans les calculs.
+
+  - \two savoir définir la différentielle d'ordre $2$ de $f$ en $x$.
+
+  - \one connaître les liens entre $d^2f(x)$ et $H_f(x)$. 
   
-  - dvlpt limité d'ordre 2
+  - \two savoir exploiter les développements limités et avec
+    reste intégral faisant intervenir la matrice Hessienne.
 
-TODO
-================================================================================
+#### Différentielle d'ordre supérieur
 
-Evaluer stratégie 
-
-  - diff d'ordre deux d'une fonction (multivariable) scalaire et
-    tout ce qu'on peut faire à ce niveau, avec de façon concrête la matrice
-    hessienne au centre de tout ça (comme le jacobien l'était dans le
-    chapitre 1).
-
-  - puis, dans un second temps seulement, introduction des tenseurs et
-    "déblocage" : de la différentielle d'ordre 2 de fonction vectorielles,
-    puis de la différentielle d'ordre $n$.
-
-  - Tenseur d'ordre (0, 1, 2 et) $3$. Structure d'espace vectoriel normé.
-    Contraction tensorielle, lien avec les applis $n$-linéaires (ouch).
-
-  - Différentielle et matrices (surtout à *valeurs* matricielles ; 
-    il va s'agir de différencier $f'(x)$. Mais on peut en profiter pour
-    avoir des variables matricielles aussi ... D'autant que si on veut
-    utiliser la chain rule, pour avoir une "chain rule d'ordre 2", 
-    on voudrait utilser la chain rule d'ordre 1 à travers le produit
-    matriciel $(A, B) \to A \cdot B$ donc tout ça est lié.
-
-  - Tenseur des dérivées d'ordre $3$.
-
-  - Différentiabilité d'ordre 2, fct 2 fois continument différentiable.
-
-  - Th fcts implicite version $C^n$, $C^n$ difféo ?
-
-Exercices :
-
-  - Fcts quadratique, Gaussienne, etc.
-
-  - Courbure (dans le plan ?)
-
-  - "bordered hessian" (optim.) 
-
-  - formules d'analyse vectorielle (div de rot, $\mathrm{div} \, f \vec{u}$, etc.)
-
-  - exemples calcul de DIFFERENTIAL CALCULUS, 
-    TENSOR PRODUCTS AND THE IMPORTANCE OF NOTATION (JONATHAN H. MANTON).
+**TODO**
 
 
 <!--
@@ -554,7 +519,7 @@ Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
 $x \in U$.
 Si la fonction $f$ est deux fois différentiable en $x$ alors
 $$
-f(x+h) = f(x) + \left<\nabla f(x), h\right> + h^{\top} \cdot \frac{H_f(x)}{2} \cdot h + \varepsilon(h) \|h\|^2
+f(x+h) = f(x) + \left<\nabla f(x), h\right> + \frac{1}{2}\left<h,  H_f(x) \cdot h\right> + \varepsilon(h) \|h\|^2
 $$
 où $\lim_{h\to 0} \varepsilon(h) = 0$.
 
@@ -564,12 +529,12 @@ on peut trouver un seuil $r>0$ tel que si $\|h\| \leq r$,
 alors
 $$
 \left\|
-f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot \frac{H_f(x)}{2} \cdot h
+f(x+h) - f(x) - \left<\nabla f(x), h\right> - \frac{1}{2}\left<h,  H_f(x) \cdot h\right> 
 \right\| 
 \leq \varepsilon \|h\|^2.
 $$
 La fonction 
-$g : h \mapsto f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot H_f(x) \cdot h \in \R$
+$g : h \mapsto f(x+h) - f(x) - \left<\nabla f(x), h\right> - \frac{1}{2}\left<h,  H_f(x) \cdot h\right>  \in \R$
 est différentiable, de gradient en $h$
 $$
 \nabla g(h) = \nabla f(x+h) - \nabla f(x) - \left(\frac{ H_f(x) + H_f(x)^{\top}}{2}\right) \cdot h,
@@ -592,6 +557,32 @@ Par l'inégalité des accroissements finis, quand $\|h\| \leq r$, on a donc
 &\leq \varepsilon \|h\|^2.
 \end{align*}
 
+
+### Développement de Taylor d'ordre 1 avec reste intégral {.proposition #dt1}
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$,
+$x \in U$ et $h \in \R^n$ tel que $[x, x+h] \subset U$.
+Si la fonction $f$ est deux fois continûment différentiable, alors
+$$
+f(x+h) = f(x) + \left<\nabla f(x), h\right> + \int_0^1 (h^{\top} \cdot H_f(x+th) \cdot h) \times (1-t) \, dt.
+$$
+
+### Démonstration {.proof}
+Définissons la fonction $\phi : [0, 1] \to \R$ par $\phi(t) = f(x+th)$.
+Par le théorème fondamental du calcul, puis par intégration par parties,
+on obtient
+\begin{align*}
+\phi(1) 
+&= \phi(0) + \int_0^1 \phi'(t) \, dt \\
+&= \phi(0) + [\phi'(t)(t-1)]_0^1 - \int_0^1 \phi''(t) \times (t-1) \, dt \\
+&= \phi(0) + \phi'(0) + \int_0^1 \phi''(t) \times (1-t) \, dt
+\end{align*}
+Or, on a $\phi(0) = f(x)$, $\phi(1) = f(x + h)$, puis par la règle de dérivation
+en chaîne, $\phi'(t) = df(x+th) \cdot h$ et $\phi''(t) = d^2f(x+th) \cdot h \cdot h$.
+Par conséquent
+$$
+f(x+h) = f(x) + df(x) \cdot h + \int_0^1 (d^2f(x+th)\cdot h \cdot h) \times (1-t) \, dt,
+$$
+ce qui est équivalent à l'équation recherchée.
 
 
 
@@ -1019,9 +1010,6 @@ t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
 $$
 **Lien avec les dérivés partielles pas évident à ce stade ... ou plus tard, si ?
 A ce stade je crois que ça n'est nulle part ... Ca manque !**
-
-
-
 
 ### Stratification {.lemma #stratification}
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
