@@ -39,15 +39,18 @@ d'exercices.
   - \one savoir définir et relier existence de la matrice hessienne,
     différentiabilité d'ordre 2 et continue différentiabilité d'ordre 2.
 
-  - \one savoir à quelle condition la matrice hessienne est symétrique.
+  - \one savoir à quelle condition la matrice hessienne est symétrique ;
+    savoir exploiter cette symétrie dans les calculs.
 
-  - \one savoir exploiter cette symétrie dans les calculs.
+  - \three comprendre le concept de fonctions linéaires d'ordre $2$ ; 
+    savoir manipuler les notations associées ("$\to$", "$\cdot$", 
+    avec associativité à droite et à gauche respectivement).
 
-  - \two savoir définir la différentielle d'ordre $2$ de $f$ en $x$.
+  - \one savoir définir la différentielle d'ordre $2$ de $f$ en $x$.
 
-  - \one connaître les liens entre $d^2f(x)$ et $H_f(x)$. 
+  - \one savoir déterminer $d^2f(x)$ en fonction de $H_f(x)$ et réciproquement. 
   
-  - \two savoir exploiter les développements limités et avec
+  - \two connaître et savoir exploiter les développements limités et avec
     reste intégral faisant intervenir la matrice Hessienne.
 
 #### Différentielle d'ordre supérieur
