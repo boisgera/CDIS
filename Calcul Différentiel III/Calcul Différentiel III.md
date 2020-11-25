@@ -252,12 +252,13 @@ si la fonction $x \in U \mapsto H_f(x) \in \R^{n\times n}$ est définie et
 continue.
 
 ### Différentielle d'ordre 2 {.definition #d2 .three}
-Soit $U$ un ouvert de $\R^n$ et $f: U \subset \mathbb{R}^n \to \mathbb{R}$.
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+$x \in U$.
 On dira que $f$ est *deux fois différentiable en $x$* si $f$ est différentiable
 sur $U$ et si pour tout vecteur $h_1$ de $\mathbb{R}^n$,
 la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
-est définie[^not] comme l'application linéaire telle que pour tout $h_1$ 
+est définie comme l'application linéaire telle que pour tout $h_1$ 
 dans $\mathbb{R}^n$,
 $$
 d^2 f(x) \cdot h_1 := d(x\mapsto df(x)\cdot h_1)(x),
@@ -269,29 +270,51 @@ $$
 On dit que $f$ est *deux fois différentiable (sur $U$)* si elle est 
 deux fois différentiable en tout point $x$ de $U$.
 
-[^not]: On peut vérifier que le terme $d(x\mapsto df(x)\cdot h_1)(x)$ dépend 
-bien linéairement de $h_1$, ce qui justifie l'assertion que $d^2f(x)$
-est linéaire et donc l'usage du "$\cdot$" lorsqu'elle est appliquée à un
-argument $h_1$.
+### {.ante}
+Dans cette définition, le caractère linéaire de $d^2f(x)$ repose sur le lemme technique suivant :
+
+### Linéarité de $d(x \mapsto df(x) \cdot h_1)(x)$ par rapport à $h_1$ {.lemma}
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et $x\in U$.
+Si $f$ est différentiable sur $U$ et si pour tout vecteur $h_1$ de $\mathbb{R}^n$,
+la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$,
+alors la fonction $d(x \mapsto df(x) \cdot h_1)(x)$ dépend linéairement de 
+$h_1 \in \R^n$.
+
+### Démonstration {.proof} 
+Pour tous $h_1, k_1 \in \R^n$, par additivité de $df(x)$ et de la différentiation,
+\begin{align*}
+d(x\mapsto df(x)\cdot (h_1+k_1))(x) &= 
+d(x\mapsto (df(x)\cdot h_1 + df(x)\cdot k_1))(x) \\ 
+&= d((x\mapsto df(x)\cdot h_1) + (x \mapsto df(x)\cdot k_1))(x) \\ 
+&= d(x\mapsto df(x)\cdot h_1)(x)  + d(x\mapsto df(x)\cdot k_1)(x) 
+\end{align*}
+et pour tout $\alpha \in \R$, par homogénéité de $df(x)$ et de la différentiation,
+\begin{align*}
+d(x\mapsto df(x)\cdot (\alpha h_1))(x) &=  d(x\mapsto \alpha df(x)\cdot h_1)(x) \\
+&=d(\alpha(x\mapsto df(x)\cdot h_1))(x)
+&= \alpha d(x\mapsto df(x)\cdot h_1)(x).
+\end{align*}
+
 
 ### Applications linéaires d'ordre 2 {.remark}
 Par construction, le terme $d(x\mapsto df(x)\cdot h_1)(x)$ 
 est une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$, 
 donc la fonction $d^2f(x)$
-associe (linéairement) à un vecteur de $\mathbb{R}^n$ une application
+associe linéairement à un vecteur de $\mathbb{R}^n$ une application
 linéaire de $\R^n$ dans $\R$. 
 
-Notons $A \to B$ les applications de $A$ dans $B$ ; on a donc
+Notons $A \to B$ l'ensemble des applications de $A$ dans $B$ ; on a donc
 $$
 d^2f(x) \in \mathbb{R}^n \rightarrow (\mathbb{R}^n \rightarrow \mathbb{R}),
 $$
 ce qui se décline successivement en
 $$
-d^2f(x) \cdot h_1 \in \mathbb{R}^n \to \mathbb{R},
+d^2f(x) \cdot h_1 \in \mathbb{R}^n \to \mathbb{R}
 \; \mbox{ et } \;
 (d^2f(x) \cdot h_1) \cdot h_2 \in \mathbb{R}^m.
 $$
-On conviendra que dans ce contexte, le symbole "$\to$" associe à droite :
+Pour simplifier les notations, on conviendra que dans ce contexte
+le symbole "$\to$" associe à droite :
 $$
 \mathbb{R}^n \to \R^n \to \mathbb{R} := \R^n \to (\mathbb{R}^n \to \mathbb{R}).
 $$
@@ -371,7 +394,8 @@ Un exemple d'usage :
 
 exercé de la façon suivante :
 
-    >>> H(f)(1.0, 2.0)
+    >>> H_f = H(f)
+    >>> H_f(1.0, 2.0)
     array([[0.      , 0.16417 ],
            [0.16417 , 0.246255]])
 
@@ -613,14 +637,22 @@ on obtient
 &= \phi(0) + [\phi'(t)(t-1)]_0^1 - \int_0^1 \phi''(t) \times (t-1) \, dt \\
 &= \phi(0) + \phi'(0) + \int_0^1 \phi''(t) \times (1-t) \, dt
 \end{align*}
-Or, on a $\phi(0) = f(x)$, $\phi(1) = f(x + h)$, puis par la règle de dérivation
-en chaîne, $\phi'(t) = df(x+th) \cdot h$ et $\phi''(t) = d^2f(x+th) \cdot h \cdot h$.
+Or, on a $\phi(0) = f(x)$, $\phi(1) = f(x + h)$ ; par la règle de dérivation
+en chaîne on obtient également 
+$\phi'(t) = df(x+th) \cdot h$ et $\phi''(t) = d^2f(x+th) \cdot h \cdot h$.
 Par conséquent
 $$
 f(x+h) = f(x) + df(x) \cdot h + \int_0^1 (d^2f(x+th)\cdot h \cdot h) \times (1-t) \, dt,
 $$
 ce qui est équivalent à l'équation recherchée.
 
+### Accroissements finis d'ordre 2 {.exercise .question #maj2 .one}
+Montrer que si $f: \R^n \to \R$ est deux fois continûment différentiable et
+que la norme d'opérateur de $H_f$ est bornée par la constante $M$ sur $\R^n$, 
+alors pour tous $x, h \in \R^n$,
+$$
+\|f(x+h) - f(x) - \left<\nabla f(x), h \right> \| \leq M \frac{\|h\|^2}{2}.
+$$
 
 
 <!--
@@ -1469,7 +1501,7 @@ Par conséquent, l'inégalité des accroissements finis fournit
 
 
 
-Exercices
+Exercices complémentaires
 ================================================================================
 
 Convexité
@@ -1739,6 +1771,30 @@ $$
 2 H_f^{\top} \cdot \nabla f = 0.
 $$
 Le résultat $H_f \cdot \nabla f = 0$ s'en déduit donc [par symmétrie de la différentielle d'ordre 2](#SD2).
+
+
+### Accroissements finis d'ordre 2 {.answer #answer-maj2}
+[Le développement de Taylor avec reste intégral](#dt1) et l'inégalité
+triangulaire nous fournissent
+\begin{align*}
+\|f(x+h) - f(x) - \left<\nabla f(x), h\right> \| &\leq
+\left\| \int_0^1 (h^{\top} \cdot H_f(x+th) \cdot h) \times (1-t) \, dt \right\| \\
+&\leq 
+\int_0^1 \| h^{\top} \cdot H_f(x+th) \cdot h \|(1-t)\, dt.
+\end{align*}
+L'inégalité de Cauchy-Schwarz et la définition de la norme d'opérateur donnent :
+\begin{align*}
+\| h^{\top} \cdot H_f(x+th) \cdot h \| &\leq \|h\| \times \|H_f(x+th) \cdot h\| \\
+&\leq \|h\| \times \|H_f(x+th)\| \times \|h\| \\ &\leq M \|h\|^2.
+\end{align*}
+Le résultat cherché se déduit alors comme suit :
+\begin{align*}
+\int_0^1 \| h^{\top} \cdot H_f(x+th) \cdot h \|(1-t)\, dt
+& \leq 
+\int_0^1 M\|h\|^2 (1-t) \, dt \\
+&= M \|h\|^2 \int_0^1 (1-t) \, dt \\
+&= M\frac{\|h\|^2}{2}.
+\end{align*}
 
 Convexité
 --------------------------------------------------------------------------------
