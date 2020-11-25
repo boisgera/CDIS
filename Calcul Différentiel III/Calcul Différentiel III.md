@@ -41,7 +41,7 @@ d'exercices.
     différentiabilité d'ordre 2 et continue différentiabilité d'ordre 2.
 
   - \one savoir à quelle condition la matrice hessienne est symétrique ;
-    savoir exploiter cette symétrie dans les calculs.
+    savoir exploiter cette symétrie.
 
   - \three comprendre le concept de fonctions linéaires d'ordre $2$ ; 
     savoir manipuler les notations associées ("$\to$", "$\cdot$", 
@@ -184,18 +184,18 @@ Matrice hessienne et différentielle d'ordre $2$
 ================================================================================
 
 ### Dérivées partielles d'ordre $2$ {.definition .one}
-Soit $U$ un ouvert de $\R^m$, $f: U \to \R$ et $x \in U$.
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R$ et $x \in U$.
 Si la $j_1$-ème dérivée partielle de $f$ est définie sur $U$,
 et que la $j_2$-ème dérivée partielle de $\partial_{j_1} f$ 
 en $x$ existe, on note
 $$
-\partial^2_{j_2j_1} f(x) := \partial_{j_2} (\partial_{j_1} f)(x).
+\partial^2_{j_2j_1} f(x) := \partial_{j_2} (\partial_{j_1} f)(x) \in \R.
 $$
 sa *dérivée partielle d'ordre $2$ par rapport aux $j_1$-ème et 
 $j_2$-ème variables*.
 
 ### Matrice hessienne {.definition .one #hessienne}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
 $x$ un point de $U$.
 Si toutes les dérivées partielles au premier ordre de $f$ existent sur $U$
 et que toutes leurs dérivées partielles au premier ordre existent en $x$,
@@ -207,10 +207,10 @@ c'est-à-dire
 $$
 H_f(x) = J_{\nabla f}(x) = \left[
 \begin{array}{cccc}
-\partial_{11} f (x) & \partial_{21} f (x) & \cdots & \partial_{n1} f (x) \\
-\partial_{12} f (x) & \partial_{22} f (x) & \cdots & \partial_{n2} f (x) \\
+\partial^2_{11} f (x) & \partial^2_{21} f (x) & \cdots & \partial^2_{n1} f (x) \\
+\partial^2_{12} f (x) & \partial^2_{22} f (x) & \cdots & \partial^2_{n2} f (x) \\
 \vdots & \vdots & \vdots & \vdots \\
-\partial_{1n} f (x) & \partial_{2n} f (x) & \cdots & \partial_{nn} f (x) \\
+\partial^2_{1n} f (x) & \partial^2_{2n} f (x) & \cdots & \partial^2_{nn} f (x) \\
 \end{array}
 \right].
 $$
@@ -228,7 +228,7 @@ est définie en tout point $x \in \R^2$ et la calculer.
 
 ### Matrice hessienne d'un lagrangien {.exercise .question .one #lagrangien}
 Soit $U$ un ouvert de $\R^n$ et $f: U \to \R$ et $g: U \to \R$ deux applications
-dont les matrices hessiennes sont définies sur $U$. Soit $c \in \R$ un constante 
+dont les matrices hessiennes sont définies sur $U$. Soit $c \in \R$ une constante 
 et $L : U \times \R \to \R$ la fonction telle que 
 $L(x, \lambda) = f(x) + \lambda (g(x) - c)$.
 Calculer $H_L(x, \lambda)$.
@@ -274,15 +274,16 @@ bien linéairement de $h_1$, ce qui justifie l'assertion que $d^2f(x)$
 est linéaire et donc l'usage du "$\cdot$" lorsqu'elle est appliquée à un
 argument $h_1$.
 
-### Notations {.remark}
+### Applications linéaires d'ordre 2 {.remark}
 Par construction, le terme $d(x\mapsto df(x)\cdot h_1)(x)$ 
-est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
+est une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$, 
 donc la fonction $d^2f(x)$
-associe linéairement à un vecteur de $\mathbb{R}^n$ une application
-linéaire de $\R^n$ dans $\R$. Autrement dit, si l'on note $A \to B$ 
-l'ensemble des fonctions de $A$ dans $B$, on a
+associe (linéairement) à un vecteur de $\mathbb{R}^n$ une application
+linéaire de $\R^n$ dans $\R$. 
+
+Notons $A \to B$ les applications de $A$ dans $B$ ; on a donc
 $$
-d^2f(x) \in \mathbb{R}^n \to (\mathbb{R}^n \to \mathbb{R}),
+d^2f(x) \in \mathbb{R}^n \rightarrow (\mathbb{R}^n \rightarrow \mathbb{R}),
 $$
 ce qui se décline successivement en
 $$
@@ -299,6 +300,38 @@ le symbole "$\cdot$" associe à gauche :
 $$
 d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
 $$
+
+L'usage du "$.$" doit nous rappeller que les dépendances de 
+$df(x) \cdot h_1$ en $h_1$ et de $d^2f(x) \cdot h_1 \cdot h_2$ en $h_2$
+sont linéaires[^sinon]. Cela signifie pour la linéarité de $d^2f(x)$ que
+$d^2f(x) \cdot (\alpha h_1) = \alpha d^2f(x) \cdot h_1$ et 
+$d^2f(x) \cdot (h_1+k_1) = d^2f(x) \cdot h_1 + d^2f(x) \cdot k_1$ ; il s'agit 
+d'égalités entre fonctions de $\R^n \to \R$, que nous devons donc interpréter
+comme :
+$$
+\left|
+\begin{array}{lll}
+d^2f(x) \cdot (\alpha h_1) \cdot h_2 &=& \alpha d^2f(x) \cdot h_1 \cdot h_2 \\
+d^2f(x) \cdot (h_1+k_1)\cdot h_2 &=& d^2f(x) \cdot h_1 \cdot h_2 + d^2f(x) \cdot k_1 \cdot h_2
+\end{array}
+\right.
+$$
+La linéarité de $d^2f(x)\cdot h_1$ conduit quant à elle à
+$$
+\left|
+\begin{array}{lll}
+d^2f(x) \cdot h_1 \cdot (\beta h_2) &=& \beta d^2f(x) \cdot h_1 \cdot h_2 \\
+d^2f(x) \cdot h_1 \cdot (h_2+k_2) &=& d^2f(x) \cdot h_1 \cdot h_2 + 
+d^2f(x) \cdot h_1 \cdot k_2
+\end{array}
+\right.
+$$
+L'expression $d^2f(x) \cdot h_1 \cdot h_2$ est donc linéaire par rapport à 
+$h_1$ et $h_2$ pris isolément ; on parlera de dépendance *bilinéaire* dans
+le couple $(h_1, h_2)$.
+
+[^sinon]: la notation "générique" serait sinon $d^2f(x) (h_1)$ et $d^2f(x)(h_1)(h_2)$, 
+voire $(d^2f(x)) (h_1)$ et $((d^2f(x))(h_1))(h_2)$ si l'on souhaitait être tout à fait explicite.
 
 ### Différentiation automatique d'ordre 2 {.remark}
 
@@ -333,12 +366,12 @@ particulièrement simple :
 
 Un exemple d'usage :
 
-    def gauss(x1, x2):
+    def f(x1, x2):
         return np.exp(-0.5 * (x1 * x1 + x2 * x2))
 
 exercé de la façon suivante :
 
-    >>> H(gauss)(1.0, 2.0)
+    >>> H(f)(1.0, 2.0)
     array([[0.      , 0.16417 ],
            [0.16417 , 0.246255]])
 
