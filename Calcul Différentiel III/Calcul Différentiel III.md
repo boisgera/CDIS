@@ -795,7 +795,7 @@ $d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition
 Différentielle d'ordre supérieur
 ================================================================================
 
-### Tenseur d'ordre $n$ (tableau $n$-dimensionnel) {.definition .one}
+### Tenseur d'ordre $n$ {.definition .one}
 On appelera *tenseur d'ordre $n \in \N$* et de *type* $(m_1,m_2,\dots, m_n) \in \N^{n}$
 un élément de $\R^{m_1 \times m_2 \times \dots \times m_n}$ c'est-à-dire un réel
 $$
@@ -823,8 +823,8 @@ Les tenseurs d'ordre $n \geq 3$ sont des objets qui ne sont ni des
 scalaires, ni des vecteurs, ni des matrices.
 
 ### Les tenseurs avec NumPy {.remark}
-Les tenseurs étant des tableaux $n$-dimensionnels, 
-ils sont représentés comme des instances du type `array`. 
+Les tenseurs sont des tableaux $n$-dimensionnels ; 
+ils sont donc représentés comme des instances du type `array`. 
 Leur ordre est donnée par la méthode `ndim` (nombre de dimensions),
 leur type par la méthode `shape`. Ainsi, avec
 
