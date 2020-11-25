@@ -806,7 +806,7 @@ $$
 (i_1,  i_2, \dots , i_n) \in \{1, \dots, m_1\} \times \{1,\dots, m_2\} \times \dots \times \{1,\dots, m_n\}.
 $$
 
-### Scalaires, Vecteurs, Matrices {.remark}
+### Scalaires, vecteurs, matrices {.remark}
 Le concept de tenseur englobe et généralise les scalaires, vecteurs et matrices :
 
  1. Les scalaires les tenseurs d'ordre 0 
@@ -873,20 +873,17 @@ n'est pas acceptée :
     1.0
 -->
 
-[^o0]: On notera que la notation `T2[(1,2)]` ($n$-uplet explicite)
+[^o0]: La notation `T2[(1,2)]` ($n$-uplet explicite)
 est équivalente à `T2[1,2]` ($n$-uplet implicite). Cette remarque est utile
-pour accéder au contenu des tenseurs d'ordre 0, car la notation "évidente"
+pour accéder au contenu des tenseurs d'ordre 0, car la notation `T0[]`
 n'est pas acceptée :
 ```
+>>> T0[()]
+1.0
 >>> T0[]
 Traceback (most recent call last):
 ...
 SyntaxError: invalid syntax
-```
-mais la notation avec un 0-uplet explicite fonctionne :
-```
->>> T0[()]
-1.0
 ```
 
 
@@ -910,7 +907,7 @@ fréquemment opérée entre $A$ et $[a_{ij}]_{ij}$.
 Une correspondance similaire existe pour les tenseurs d'ordre
 supérieur à $2$. Ainsi, à l'ordre $3$ on peut mettre en correspondance un
 tenseur $(t_{ijk})_{ijk}$ de type $(m, n, p)$ et une application linéaire $T$
-de $\R^p$ dans l'espace des applications linéaires de $\R^n$ dans $\R^m$([^ho]),
+de $\R^p$ dans l'espace des applications linéaires de $\R^n$ dans $\R^m$<!--([^ho])-->,
 c'est-à-dire
 $$
 (t_{ijk})_{ijk} \in \R^{m \times n \times p} 
@@ -929,9 +926,11 @@ $$
 Le processus se généralise sans difficulté à des tenseurs d'ordre supérieur
 à $3$.
 
+<!--
 [^ho]: on parle ici d'application d'ordre supérieur car la fonction linéaire
 considérée associe à un argument une "valeur" qui est elle-même une fonction
 (linéaire).
+-->
 
 ### Applications multilinéaires {.remark}
 
