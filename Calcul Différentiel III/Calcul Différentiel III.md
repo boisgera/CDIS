@@ -34,7 +34,7 @@ d'exercices.
 
 #### Matrice hessienne et différentiabilité d'ordre 2
 
-  - \one connaître les définitions classiques de la matrice hessienne.
+  - \one connaître les définitions de la matrice hessienne.
 
   - \one savoir définir et relier existence de la matrice hessienne,
     différentiabilité d'ordre 2 et continue différentiabilité d'ordre 2.
