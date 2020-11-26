@@ -139,7 +139,7 @@ Mesure
 
 ### Tribu et espace mesurable {.definition}
 Une *tribu* (ou *$\sigma$-algèbre*) $\mathcal{A}$ sur un ensemble $X$ est une 
-collection d'ensembles de $X$ contenant l'ensemble vide et fermé par passage 
+collection d'ensembles de $X$ contenant l'ensemble vide et fermée par passage 
 au complémentaire et à l'union dénombrable[^fp] :
 
 [^fp]: c'est-à-dire que ces opérations, 
@@ -177,12 +177,13 @@ des parties (sous-ensembles) de $X$ est une tribu sur $X$.
 ### Ensembles fermés {.exercise .question .zero #fermés}
 La collection des ensembles fermés de $\R^n$ est-elle une tribu sur $\R^n$ ?
 
-### Ensembles fermés {.answer #answer-fermés}
-
-
-### Tribu née sous $X$ {.exercise .one}
+### Tribu née sous $X$ {.exercise .question .one #X}
 Supposons que la collection $\mathcal{A}$ soit une tribu sur l'ensemble $X$ mais 
 que $X$ soit inconnu. Comment peut-on déduire $X$ de la collection $\mathcal{A}$ ?
+
+### Opérations ensemblistes {.exercise .question .one #op-ens}
+Montrer que si $A$ et $B$ appartiennent à une tribu $\mathcal{A}$ sur $X$, alors
+$A \cup B$, $A \cap B$ et $A \setminus B$ appartiennent également à $\mathcal{A}$.
 
 ### Intersection de tribus {.exercise .one}
 Montrer que pour tout ensemble $X$, l'intersection de deux tribus
@@ -190,10 +191,6 @@ $\mathcal{A}_1$ et $\mathcal{A}_2$ sur $X$ -- c'est-à-dire la collection
 $\mathcal{A}$ définie par
 $\mathcal{A} = \{A \subset X \; | \; A \in \mathcal{A}_1 \mbox{ et } A \in \mathcal{A}_2\}$ 
 -- est une tribu sur $X$. 
-
-### Opérations ensemblistes {.exercise .one}
-Montrer que si $A$ et $B$ appartiennent à une tribu $\mathcal{A}$, alors
-$A \cup B$, $A \setminus B$ et $A \cap B$ appartiennent également à $\mathcal{A}$.
 
 ### Intersection dénombrable {.exercise .one}
 Montrer que si pour tout $k \in \N$, $A_k \in \mathcal{A}$, alors
@@ -1963,6 +1960,27 @@ prouver que $\mathcal{A}$ est une tribu de $X$ équivaut à établir
      $\cup_{k=0}^{+\infty} A_k \subset X.$
 
 et ces trois propriétés sont clairement satisfaites.
+
+### Ensembles fermés {.answer #answer-fermés}
+Non. Par exmemle, le singleton $\{0\}$ est un ensemble fermé de $\R^n$,
+mais son complémentaire $\R^n \setminus \{0\}$ n'est pas fermé.
+
+### Tribu née sous $X$ {.answer #answer-X}
+Il suffit de chercher "le plus grand" ensemble (avec comme relation d'ordre 
+l'inclusion) dans la collection $\mathcal{A}$. En effet, tous les ensembles
+$A$ de $\mathcal{A}$ sont inclus dans $X$ ; de plus $\varnothing \in \mathcal{A}$
+et comme la tribu $\mathcal{A}$ est fermée par passage au complémentaire,
+$X \setminus \varnothing = X \in \mathcal{A}$. 
+
+### Opérations ensemblistes {.answer #answer-op-ens}
+Soient $A$ et $B$ des ensembles de $\mathcal{A}$. 
+La suite $(A_k)_{k\in \N}$ définie par $A_0 = A$, $A_1 = B$ et 
+$A_k = \varnothing$ si $k \geq 2$ est composée d'ensembles de $\mathcal{A}$. 
+Or, $\cup_{k \in N} A_k = A \cup B$ donc $A \cup B \in \mathcal{A}$. 
+L'ensemble $A \cap B$ vérifie $A \cap B = X \setminus ((X \setminus A) \cup (X \setminus B))$, il appartient
+donc également à $\mathcal{A}$.
+Finalement, on a $A \setminus B = A \cap (X \setminus B)$, donc $A \setminus B$
+appartient également à $\mathcal{A}$.
 
 Intégrales et séries
 --------------------------------------------------------------------------------
