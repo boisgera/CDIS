@@ -170,29 +170,32 @@ ou qu'il est $\mathcal{L}(\R^n)$-mesurable.
 [^rapp]: c'est-à-dire les ensembles $A$ de $\R^n$ tels que pour tout pavé compact $P$ de 
 $\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Henstock-Kurzweil.
 
-### Exercice -- Ensemble des parties {.exercise}
+### Ensemble des parties {.exercise .question .zero #parties}
 Montrer que pour tout ensemble $X$, la collection $\mathcal{A} = \mathcal{P}(X)$
 des parties (sous-ensembles) de $X$ est une tribu sur $X$.
 
-### Exercice -- Ensembles fermés {.exercise}
+### Ensembles fermés {.exercise .question .zero #fermés}
 La collection des ensembles fermés de $\R^n$ est-elle une tribu sur $\R^n$ ?
 
-### Exercice -- Tribu née sous $X$ {.exercise}
+### Ensembles fermés {.answer #answer-fermés}
+
+
+### Tribu née sous $X$ {.exercise .one}
 Supposons que la collection $\mathcal{A}$ soit une tribu sur l'ensemble $X$ mais 
 que $X$ soit inconnu. Comment peut-on déduire $X$ de la collection $\mathcal{A}$ ?
 
-### Exercice -- Intersection de tribus {.exercise}
+### Intersection de tribus {.exercise .one}
 Montrer que pour tout ensemble $X$, l'intersection de deux tribus
 $\mathcal{A}_1$ et $\mathcal{A}_2$ sur $X$ -- c'est-à-dire la collection 
 $\mathcal{A}$ définie par
 $\mathcal{A} = \{A \subset X \; | \; A \in \mathcal{A}_1 \mbox{ et } A \in \mathcal{A}_2\}$ 
 -- est une tribu sur $X$. 
 
-### Exercice -- Opérations ensemblistes {.exercise}
+### Opérations ensemblistes {.exercise .one}
 Montrer que si $A$ et $B$ appartiennent à une tribu $\mathcal{A}$, alors
 $A \cup B$, $A \setminus B$ et $A \cap B$ appartiennent également à $\mathcal{A}$.
 
-### Exercice -- Intersection dénombrable {.exercise}
+### Intersection dénombrable {.exercise .one}
 Montrer que si pour tout $k \in \N$, $A_k \in \mathcal{A}$, alors
 $\cap_{k=0}^{+\infty} A_k \in \mathcal{A}.$
 
@@ -212,7 +215,7 @@ L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$
 -- c'est-à-dire formellement le triplet $(X, \mathcal{A}, \mu)$ -- 
 est un *espace mesuré*.
 
-### Exercice -- Les mesures sont (finiment) additives {.exercise}
+### Les mesures sont (finiment) additives {.exercise}
 Vérifier que toute mesure $\mu$ sur $(X, \mathcal{A})$ est additive, 
 c'est-à-dire que si les ensembles $A_0, A_1, A_2, \dots, A_n$ de $\mathcal{A}$
 sont deux à deux disjoints, alors
@@ -220,20 +223,20 @@ $$
 \mu \left( \bigcup_{k=0}^{n} A_k \right) = \sum_{k=0}^{n} \mu(A_k).
 $$
 
-### Exercice -- Monotonie {.exercise}
+### Monotonie {.exercise}
 Vérifier que toute mesure est *croissante* (on dit aussi *monotone*), 
 c'est-à-dire que si $A, B \in \mathcal{A}$
 et $A \subset B$, alors $\mu(A) \leq \mu(B)$.
 
-### Exercice -- Cas dégénéré {.exercise} 
+### Cas dégénéré {.exercise} 
 Existe-t'il des fonctions $\mu: \mathcal{A} \to [0, +\infty]$ qui soient
 $\sigma$-additives mais pas nulles en $0$ ?
 
-### Exercice -- Ca commence par un $\mathbb{P}$ {.exercise}
+### Ca commence par un $\mathbb{P}$ {.exercise}
 Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
 $\mu(X) = 1$ ? Une fois que vous avez deviné, justifier la réponse.
 
-### Exercice -- Trace d'une mesure  {.exercise}
+### Trace d'une mesure  {.exercise}
 Soit $\mu$ une mesure sur $(X, \mathcal{A})$. Montrer que pour tout 
 $A \in \mathcal{A}$, la *trace* $\mu|_A$ de $\mu$ sur $A$, définie
 comme
@@ -242,7 +245,7 @@ $$
 $$ 
 est également une mesure sur $(X, \mathcal{A})$.
 
-### Exercice -- Somme de mesures {.exercise}
+### Somme de mesures {.exercise}
 Montrer que la somme de deux mesures $\mu_1$ et $\mu_2$ sur un espace mesurable 
 $(X, \mathcal{A})$ est une mesure sur $(X, \mathcal{A})$.
 
@@ -309,7 +312,7 @@ simplement vers $1_A$.
 
 Nous avons bien démontré la $\sigma$-additivité de $v$.
 
-### Exercice -- Mesure de Lebesgue d'un pavé {.exercise}
+### Mesure de Lebesgue d'un pavé {.exercise}
 Déterminer la mesure de Lebesgue du pavé compact 
 $P = [a_1,b_1] \times \dots \times [a_n, b_n]$.
 
@@ -328,10 +331,10 @@ $$
 \right. 
 $$
 
-### Exercice -- Démonstration {.exercise}
+### Démonstration {.exercise}
 Montrer que les mesures de Dirac sont bien des mesures.
 
-### Exercice -- Et en changeant de point de vue ? {.exercise}
+### Et en changeant de point de vue ? {.exercise}
 Quand on considère $\delta_x(A)$ comme une fonction de $x$ à $A$ fixé,
 qu'obtient-on ?
 
@@ -350,7 +353,7 @@ $$
 La notation $\mathrm{card}(A)$ désigne le cardinal de $A$ -- c'est-à-dire dans
 le cas d'un ensemble fini, le nombre d'éléments de $A$.
 
-### Exercice -- Démonstration {.exercise}
+### Démonstration {.exercise}
 Montrer que les mesures de comptage sont bien des mesures.
 
 ### Ensemble négligeable {.definition}
@@ -364,13 +367,13 @@ d'un $x \in X$ est vraie *presque partout* (ou *$\mu$-presque partout*)
 si l’ensemble des éléments $x$ 
 où elle est fausse est un ensemble $\mu$-négligeable.
 
-### Exercice -- Négligeable pour la mesure de comptage {.exercise}
+### Négligeable pour la mesure de comptage {.exercise}
 Caractériser les ensembles négligeables pour la mesure de comptage $c$.
 
-### Exercice -- Négligeable pour la mesure de Dirac {.exercise}
+### Négligeable pour la mesure de Dirac {.exercise}
 Caractériser les ensembles négligeables pour la mesure de Dirac $\delta_x$.
 
-### Exercice -- Négligeable et mesurable {.exercise}
+### Négligeable et mesurable {.exercise}
 Montrer qu'un ensemble mesurable est négligeable si et seulement si il
 est de mesure nulle.
 
@@ -397,11 +400,11 @@ si $f$ est à valeurs positives ($f(X) \subset [0, +\infty]$) ou finies
 ($f(X) \subset \R$), voire les deux simultanément 
 ($f(X) \subset \left[0, +\infty \right[$).
 
-### Exercice -- Ensemble des parties de $X$ {.exercise}
+### Ensemble des parties de $X$ {.exercise}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
 une fonction $f: X \to [-\infty, +\infty]$ est-elle $\mathcal{A}$-mesurable ?
 
-### Exercice -- Fonction caractéristique {.exercise}
+### Fonction caractéristique {.exercise}
 Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
 A quelle condition la fonction $1_A: X \to \R$ est-elle mesurable ?
 
@@ -426,7 +429,7 @@ qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union
 Une fonction $f: X \to [-\infty, +\infty]$ est *étagée* si et seulement
 l'image de $X$ par $f$ ne comporte qu'un nombre fini de valeurs distinctes.
 
-### Exercice -- Fonction étagée {.exercise}
+### Fonction étagée {.exercise}
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 A quelle condition une fonction $f: X \to [-\infty, +\infty]$ qui ne prend 
 qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
@@ -535,12 +538,12 @@ $$
 $$
 alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
 
-### Exercice -- Trace de fonction {.exercise}
+### Trace de fonction {.exercise}
 Soient $f: X \to [0, +\infty]$ une fonction mesurable positive
 (à valeurs finies ou infinies) et soit $A \in \mathcal{A}$.
 Montrer que $1_A f$ est mesurable.
 
-### Exercice -- Somme de fonctions {.exercise}
+### Somme de fonctions {.exercise}
 Soient $f, g : X \to [0, +\infty]$ deux fonctions mesurables positives
 (à valeurs finies ou infinies). Montrer que $f+g$ est mesurable.
 
@@ -577,11 +580,11 @@ $f_{k-} \to f_-$ et donc $f_k := f_{k+} - f_{k-} \to f$ quand $k \to +\infty$.
 Par construction, $|f_{k}| = f_{k+} + f_{k-}$ est également croissante comme
 somme de deux suites croissantes. 
 
-### Exercice -- Calculs et infinis {.exercise}
+### Calculs et infinis {.exercise}
 Quand $f, g$ sont deux fonctions $X \to [-\infty, +\infty]$, 
 les fonctions $f+g$, $fg$ et $\max(f,g)$ sont-elles bien définies ?
 
-### Exercice -- Combinaison linéaire {.exercise}
+### Combinaison linéaire {.exercise}
 Soit $\lambda \in \R$ et soient $f, g : X \to \left[0, +\infty\right[$ 
 deux fonctions mesurables à valeurs finies. Montrer que les fonctions
 $\lambda f$ et $f+g$ sont mesurables.
@@ -622,7 +625,7 @@ sera donnée dans le reste de cette section. La preuve que l'intégrale ainsi
 construite satisfait bien les trois propriétés caractéristiques ci-dessus 
 sera donnée dans la section suivante. 
 
-### Exercice -- Intégrale et mesures de Dirac {.exercise}
+### Intégrale et mesures de Dirac {.exercise}
 Soit $x \in \R$ et $f:\R \to [0, +\infty]$. Sachant que 
 $f$ est limite simple d'une suite croissante de fonctions étagées
 $f_k : \R \to \left[0, +\infty\right[$, en déduire, en exploitant
@@ -652,11 +655,11 @@ $$
 \int f \mu = \int_X f(x) \, \mu(dx) \in \R.
 $$
 
-### Exercice -- Absolue intégrabilité {.exercise}
+### Absolue intégrabilité {.exercise}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
 est intégrable alors $|f|$ est également intégrable.
 
-### Exercice -- Fonctions étagées {.exercise}
+### Fonctions étagées {.exercise}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et soient $A_1, \dots, A_n$ 
 des ensemble mesurables disjoints non vides et 
 $y_1, \dots, y_{n-1} \in [-\infty, +\infty] \setminus \{0\}$. 
@@ -1444,22 +1447,22 @@ pour pouvoir conclure. Or
     $\cup_{k=0}^{+\infty} A_k \in \mathcal{C}$ et par conséquent
     $\cup_{k=0}^{+\infty} A_k \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$.
 
-### Exercice -- Singletons de $\N$ {.exercise}
+### Singletons de $\N$ {.exercise}
 Montrer que la collection des singletons de $\N$ $\{\{n\} \; | \; n \in \N\}$
 engendre dans $\N$ la tribu des parties $\mathcal{P}(\N)$.
 
-### Exercice -- Tribu engendrée par une collection finie {.exercise}
+### Tribu engendrée par une collection finie {.exercise}
 Montrer que si $\mathcal{B} = \{A_1, A_2\}$ où $A_1$ et $A_2$ sont des
 ensembles de $X$, alors la tribu engendrée par $\mathcal{B}$ dans $X$
 contient au plus 16 ensembles. Que devient le résultat quand 
 $\mathcal{B} = \{A_1, A_2, A_3\}$ ?
 
-### Exercice -- Tribu engendrée par les ensembles dénombrables {.exercise}
+### Tribu engendrée par les ensembles dénombrables {.exercise}
 Montrer que la tribu engendrée par les ensembles dénombrables de $\R$ est la
 collection des ensembles de $\R$ qui sont dénombrables ou dont le
 complémentaire est dénombrable.
 
-### Exercice -- Calculs avec les tribus engendrées {.exercise}
+### Calculs avec les tribus engendrées {.exercise}
 Soit $\mathcal{A}$ et $\mathcal{B}$ deux collections d'ensembles de $X$.
 Montrer que $\sigma(\sigma(\mathcal{A})) = \sigma(\mathcal{A})$ et que
 si $\mathcal{A} \subset \mathcal{B}$, alors $\sigma(\mathcal{A}) \subset \sigma(\mathcal{B})$.
@@ -1472,11 +1475,11 @@ notée $\mathcal{B}(X)$ engendrée
 par les ensembles fermés (ou les ensembles ouverts) de $X$.
 Les ensembles qu'elle contient sont appelés les *boréliens*.
 
-### Exercice -- Ouverts ou fermés {.exercise}
+### Ouverts ou fermés {.exercise}
 Montrer que la tribu engendrée par les ensembles ouverts de $X$ est bien
 identique à la tribu engendrée par les ensembles fermés de $X$.
 
-### Exercice -- Tribu engendrée par les pavés compacts {.exercise}
+### Tribu engendrée par les pavés compacts {.exercise}
 Montrer que la tribu engendrée par la collection des pavés compacts
 $[a_1, b_1] \times \dots \times [a_n, b_n]$ de $\R^n$ est la tribu
 de Borel de $\R^n$. (indication[^up])
@@ -1697,7 +1700,7 @@ $\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} \subset \mathcal{B}(X)$
 et la fonction $f$ est bien $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable, 
 c'est-à-dire borélienne.
 
-### Exercice -- Fonctions croissantes {.exercise}
+### Fonctions croissantes {.exercise}
 Soit $f: \R \to \R$ ; montrer que si l'image réciproque par $f$
 de tout intervalle compact est un intervalle compact alors $f$ est borélienne.
 En déduire que si $f$ est croissante alors $f$ est borélienne.
@@ -1774,7 +1777,7 @@ $$
 
 -->
 
-Exercices
+Exercices complémentaires
 ================================================================================
 
 
@@ -1947,6 +1950,19 @@ et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
 
 Solutions
 ================================================================================
+
+### Ensemble des parties {.answer #answer-parties}
+Comme $A \in \mathcal{A} := \mathcal{P}(X)$ si et seulement si $A \subset X$,
+prouver que $\mathcal{A}$ est une tribu de $X$ équivaut à établir
+
+  1. $\varnothing \subset X$.
+
+  2. Si $A \subset X$, $A^c = X \setminus A \subset X$.
+
+  3. Si pour tout $k \in \N$, $A_k \subset X$, alors
+     $\cup_{k=0}^{+\infty} A_k \subset X.$
+
+et ces trois propriétés sont clairement satisfaites.
 
 Intégrales et séries
 --------------------------------------------------------------------------------
