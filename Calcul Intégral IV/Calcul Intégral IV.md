@@ -168,7 +168,7 @@ d'un ensemble qu'il est mesurable au sens du chapitre "Calcul Intégral III"
 ou qu'il est $\mathcal{L}(\R^n)$-mesurable.
 
 [^rapp]: c'est-à-dire les ensembles $A$ de $\R^n$ tels que pour tout pavé compact $P$ de 
-$\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Henstock-Kurzweil.
+$\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Lebesgue.
 
 ### Ensemble des parties {.exercise .question .zero #parties}
 Montrer que pour tout ensemble $X$, la collection $\mathcal{A} = \mathcal{P}(X)$
@@ -185,16 +185,27 @@ que $X$ soit inconnu. Comment peut-on déduire $X$ de la collection $\mathcal{A}
 Montrer que si $A$ et $B$ appartiennent à une tribu $\mathcal{A}$ sur $X$, alors
 $A \cup B$, $A \cap B$ et $A \setminus B$ appartiennent également à $\mathcal{A}$.
 
-### Intersection de tribus {.exercise .one}
-Montrer que pour tout ensemble $X$, l'intersection de deux tribus
-$\mathcal{A}_1$ et $\mathcal{A}_2$ sur $X$ -- c'est-à-dire la collection 
-$\mathcal{A}$ définie par
-$\mathcal{A} = \{A \subset X \; | \; A \in \mathcal{A}_1 \mbox{ et } A \in \mathcal{A}_2\}$ 
--- est une tribu sur $X$. 
-
-### Intersection dénombrable {.exercise .one}
+### Intersection dénombrable {.exercise .question .two #id}
 Montrer que si pour tout $k \in \N$, $A_k \in \mathcal{A}$, alors
 $\cap_{k=0}^{+\infty} A_k \in \mathcal{A}.$
+
+### Intersection de tribus I {.exercise .question .two #it1}
+Montrer que pour tout ensemble $X$, l'intersection de deux tribus
+$\mathcal{A}_1$ et $\mathcal{A}_2$ sur $X$, c'est-à-dire la collection 
+$\mathcal{A}$ définie par
+$$\mathcal{A} := \mathcal{A}_1 \cap \mathcal{A}_2 = \{A \subset X \; | \; A \in \mathcal{A}_1 \mbox{ et } A \in \mathcal{A}_2\}$$ 
+est une tribu sur $X$. 
+
+### Intersection de tribus II {.exercise .question .three #it2}
+Soit $X$ un ensemble et $(\mathcal{A}_i)_{i \in I}$, une collection de tribus
+de $X$. Est-ce que l'intersection
+$$
+\mathcal{A} := \bigcap_{i \in I} \mathcal{A}_i 
+= 
+\{A \subset X \; | \; \mbox{pour tout $i\in I$, $A \in \mathcal{A}_i$} \}
+$$
+est une tribu quand $I$ est fini ? Quand $I$ est dénombrable ? Pour un ensemble
+$I$ arbitraire ?
 
 ### Mesure et espace mesuré {.definition}
 Une *mesure* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
@@ -251,7 +262,7 @@ La fonction $v$ qui a un ensemble $A \in \mathcal{L}(\R^n)$ associe
 $$
 v(A) = \left|
 \begin{array}{cl}
-\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
+\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Lebesgue,}\\
 +\infty & \mbox{sinon.}
 \end{array}
 \right.
@@ -1981,6 +1992,50 @@ L'ensemble $A \cap B$ vérifie $A \cap B = X \setminus ((X \setminus A) \cup (X 
 donc également à $\mathcal{A}$.
 Finalement, on a $A \setminus B = A \cap (X \setminus B)$, donc $A \setminus B$
 appartient également à $\mathcal{A}$.
+
+### Intersection dénombrable {.answer #answer-id}
+Si pour tout $k \in \N$ on a $A_k \in X$, alors comme la tribu $\mathcal{A}$ est fermée
+par complémentation, $X \setminus A_k \in \mathcal{A}$. Comme $\mathcal{A}$
+est fermée par union dénombrable, $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}$ ; 
+son complémentaire dans $X$ appartient donc également à $\mathcal{A}$.
+Or, 
+$$
+X \setminus \left(\bigcup_{k=0}^{+\infty} (X \setminus A_k)\right) = \bigcap_{k=0}^{+\infty} A_k,
+$$
+donc l'intersection des $A_k$ appartient à $\mathcal{A}$.
+
+### Intersection de tribus I {.answer #answer-it1}
+
+  1. $\varnothing \in \mathcal{A}_1$ et $\varnothing \in \mathcal{A}_2$ donc
+     $\varnothing \in \mathcal{A}_1 \cap \mathcal{A}_2$.
+
+  2. Si $A \in \mathcal{A}_1$ et $A \in \mathcal{A}_2$, alors
+     $A^c \in \mathcal{A}_1$ et 
+     $A^c \in \mathcal{A}_2$, donc
+     $A^c \in \mathcal{A}_1 \cap \mathcal{A}_2$.
+
+  3. Si pour tout $k \in \N$, $A_k \in \mathcal{A}_1$ et $A_k \in \mathcal{A}_2$ 
+     alors $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_1$ et 
+     $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_2$, donc 
+     $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_1 \cap \mathcal{A}_2.$
+
+### Intersection de tribus I {.answer #answer-it2}
+
+La collection $\mathcal{A} := \cap_{i \in I} \mathcal{A}_{i \in I}$ est une tribu quel que soit l'ensemble
+d'indexation $I$ et sa cardinalité. En effet :
+
+  1. $\varnothing \in \mathcal{A}_i$ pour tout $i \in I$ donc
+     $\varnothing \in \cap_{i \in I} \mathcal{A}_i$.
+
+  2. Si $A \in \mathcal{A}_i$  pour tout $i \in I$, alors 
+     $A^c \in \mathcal{A}_i$ pour tout $i \in I$, donc
+     $A^c \in \cap_{i \in I} \mathcal{A}_i$.
+
+  3. Si pour tout $k \in \N$, $A_k \in \mathcal{A}_i$ pour tout $i \in I$, 
+     alors $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_i$ pour tout $i \in I$, 
+     donc 
+     $\cup_{k=0}^{+\infty} A_k \in \cap_{i \in U} \mathcal{A}_i.$
+
 
 Intégrales et séries
 --------------------------------------------------------------------------------
