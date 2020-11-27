@@ -154,27 +154,35 @@ sont également dans $\mathcal{A}$.
      $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}.$
 
 Un ensemble $A \in \mathcal{A}$ est dit *mesurable* 
-(relativement à la tribu $\mathcal{A}$) ou *$\mathcal{A}$-mesurable*.
+(relativement à la tribu $\mathcal{A}$) ou *$\mathcal{A}$-mesurable* si le
+contexte demande d'être explicite.
 L'ensemble $X$ muni de $\mathcal{A}$ 
 -- c'est-à-dire formellement la paire $(X,\mathcal{A})$ -- 
 est un *espace mesurable*.
 
-### Exemple -- Tribu de Lebesgue dans $\R^n$
-Dans le chapitre "Calcul Intégral III" nous avons montré que les ensembles 
-que nous avions alors qualifiés de "mesurables"[^rapp] avaient les propriétés 
-caractéristiques d'une tribu. Elle est notée $\mathcal{L}(\R^n)$ et est 
-appelée *tribu de Lebesgue* sur $\R^n$. Il est donc équivalent de dire
-d'un ensemble qu'il est mesurable au sens du chapitre "Calcul Intégral III"
-ou qu'il est $\mathcal{L}(\R^n)$-mesurable.
+### Tribu de Lebesgue {.definition}
+On appelle *tribu de Lebesgue sur $\R^n$* et on note $\mathcal{L}(\R^n)$
+la collection des ensembles $A \subset \R^n$ tels que pour tout pavé fermé
+borné de $\R^n$, la fonction caractéristique de $A\cap P$ soit intégrable au sens de
+Lebesgue, c'est-à-dire telle que l'intégrale
+$$
+\int_{\R^n} 1_{A \cap P}(x) \,  dx
+$$
+soit bien définie.
 
-[^rapp]: c'est-à-dire les ensembles $A$ de $\R^n$ tels que pour tout pavé compact $P$ de 
-$\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Lebesgue.
+###  {.post .remark}
+Autrement dit, un ensemble de $\R^n$ est "$\mathcal{L}(\R^n)$-mesurable" si et 
+seulement si il est "mesurable" au sens du chapitre "Calcul Intégral III". 
+Nous avions montré dans ce chapitre que la collection de ces ensembles forme
+effectivement une tribu ; la notion originalle d'ensemble mesurable apparaît désormais
+comme un cas particulier de la notion d'ensemble mesurable relativement à
+une tribu.
 
 ### Ensemble des parties {.exercise .question .zero #parties}
 Montrer que pour tout ensemble $X$, la collection $\mathcal{A} = \mathcal{P}(X)$
 des parties (sous-ensembles) de $X$ est une tribu sur $X$.
 
-### Ensembles fermés {.exercise .question .zero #fermés}
+### Ensembles fermés {.exercise .question .one #fermés}
 La collection des ensembles fermés de $\R^n$ est-elle une tribu sur $\R^n$ ?
 
 ### Tribu née sous $X$ {.exercise .question .one #X}
@@ -216,35 +224,39 @@ $$
 telle que $\mu(\varnothing)= 0$ (*nullité en $0$*) et telle que pour toute suite
 $(A_k)_{k\in \N}$ d'ensembles de $\mathcal{A}$ disjoints deux à deux, on ait
 $$
-\mu \left( \bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k) ;
+\mu \left( \bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k) \; ;
 $$
 on dit que $\mu$ est *$\sigma$-additive* (on dit aussi *dénombrablement additive*).
 L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ 
 -- c'est-à-dire formellement le triplet $(X, \mathcal{A}, \mu)$ -- 
 est un *espace mesuré*.
 
-### Les mesures sont (finiment) additives {.exercise}
+### Les mesures sont (finiment) additives {.exercise .question .one #fa}
 Vérifier que toute mesure $\mu$ sur $(X, \mathcal{A})$ est additive, 
-c'est-à-dire que si les ensembles $A_0, A_1, A_2, \dots, A_n$ de $\mathcal{A}$
+c'est-à-dire que si les ensembles $A_0, A_1, \dots, A_n$ de $\mathcal{A}$
 sont deux à deux disjoints, alors
 $$
-\mu \left( \bigcup_{k=0}^{n} A_k \right) = \sum_{k=0}^{n} \mu(A_k).
+\mu \left( A_0 \cup A_1 \cup \cdots \cup A_n \right) = \mu(A_0) + \mu(A_1) + \cdots +\mu(A_n).
 $$
 
-### Monotonie {.exercise}
+### Monotonie {.exercise .question .one #mono}
 Vérifier que toute mesure est *croissante* (on dit aussi *monotone*), 
 c'est-à-dire que si $A, B \in \mathcal{A}$
 et $A \subset B$, alors $\mu(A) \leq \mu(B)$.
 
-### Cas dégénéré {.exercise} 
-Existe-t'il des fonctions $\mu: \mathcal{A} \to [0, +\infty]$ qui soient
-$\sigma$-additives mais pas nulles en $0$ ?
+### Cas dégénéré {.exercise .question .two #degen} 
+Existe-t'il une fonction $\mu: \mathcal{A} \to [0, +\infty]$ qui soit
+$\sigma$-additive mais pas nulle en $0$ ? Si oui, quelle est alors la valeur
+de $\mu(\varnothing)$ ?
 
-### Ca commence par un $\mathbb{P}$ {.exercise}
+### Ca commence par un $\mathbb{P}$ {.exercise .question .one #P}
 Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
 $\mu(X) = 1$ ? Une fois que vous avez deviné, justifier la réponse.
 
-### Trace d'une mesure  {.exercise}
+### Ca commence par un $\mathbb{P}$ {.answer #answer-P}
+**TODO**
+
+### Trace d'une mesure {.exercise .question .one #trace}
 Soit $\mu$ une mesure sur $(X, \mathcal{A})$. Montrer que pour tout 
 $A \in \mathcal{A}$, la *trace* $\mu|_A$ de $\mu$ sur $A$, définie
 comme
@@ -253,11 +265,17 @@ $$
 $$ 
 est également une mesure sur $(X, \mathcal{A})$.
 
-### Somme de mesures {.exercise}
+### Trace d'une mesure {.answer #answer-trace}
+**TODO**
+
+### Somme de mesures {.exercise .question .one #somme}
 Montrer que la somme de deux mesures $\mu_1$ et $\mu_2$ sur un espace mesurable 
 $(X, \mathcal{A})$ est une mesure sur $(X, \mathcal{A})$.
 
-### Mesure de Lebesgue
+### Somme de mesures {.answer #answer-somme}
+**TODO**
+
+### Mesure de Lebesgue {.definition}
 La fonction $\lambda$ qui a un ensemble $A \in \mathcal{L}(\R^n)$ associe
 $$
 \lambda(A) = \left|
@@ -2036,6 +2054,37 @@ d'indexation $I$ et sa cardinalité. En effet :
      donc 
      $\cup_{k=0}^{+\infty} A_k \in \cap_{i \in U} \mathcal{A}_i.$
 
+### Les mesures sont (finiment) additives {.answer #answer-fa}
+Etendons la suite finie des $A_k$ en posant $A_k = \varnothing$ quand $k\geq n+1$.
+En combinant la $\sigma$-additivité de $\mu$ et sa nullité en $0$, on obtient
+$$
+\mu\left( \bigcup_{k=0}^{n} A_k \right)
+=
+\mu\left( \bigcup_{k=0}^{+\infty} A_k \right)
+=
+\sum_{k=0}^{+\infty} \mu(A_k) = \sum_{k=0}^{n} \mu(A_k).
+$$
+
+### Monotonie {.answer #answer-mono}
+L'ensemble $B \setminus A = B \cap A^c$ appartient à $\mathcal{A}$, 
+est disjoint de $A$ et son union avec $A$ est $B$. 
+Donc [comme $\mu$ est finiment additive](#fa), on a
+$$
+\mu(B) = \mu(A \cup (B \setminus A)) =  \mu(A) + \mu(B \setminus A).
+$$
+Comme $\mu(B \setminus A) \geq 0$, on en déduit que $\mu(A) \leq \mu(B)$.
+
+### Cas dégénéré {.answer #answer-degen} 
+Oui, il y a par exemple la fonction qui associe à tout ensemble 
+$A \in \mathcal{A}$ la valeur $\mu(A) = +\infty$. 
+Si $\mu$ n'est pas nulle en 0, 
+par $\sigma$-additivité
+$$
+\mu(\varnothing) 
+= \mu\left(\bigcup_{k=0}^{+\infty} \varnothing \right)
+= \sum_{k=0}^{+\infty} \mu(\varnothing)
+$$
+donc on a nécessairement $\mu(\varnothing) = +\infty$. 
 
 Intégrales et séries
 --------------------------------------------------------------------------------
