@@ -258,9 +258,9 @@ Montrer que la somme de deux mesures $\mu_1$ et $\mu_2$ sur un espace mesurable
 $(X, \mathcal{A})$ est une mesure sur $(X, \mathcal{A})$.
 
 ### Mesure de Lebesgue
-La fonction $v$ qui a un ensemble $A \in \mathcal{L}(\R^n)$ associe
+La fonction $\lambda$ qui a un ensemble $A \in \mathcal{L}(\R^n)$ associe
 $$
-v(A) = \left|
+\lambda(A) = \left|
 \begin{array}{cl}
 \displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Lebesgue,}\\
 +\infty & \mbox{sinon.}
@@ -270,20 +270,20 @@ $$
 est une mesure nommé *mesure de Lebesgue* sur $\R^n$.
 
 ### Démonstration {.proof}
-La fonction $v$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing$,
+La fonction $\lambda$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing$,
 $$
-v(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
+\lambda(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
 $$
 
-Reste à montrer la $\sigma$-additivité de $v$.
+Reste à montrer la $\sigma$-additivité de $\lambda$.
 Soit $(A_k)_{k\in \N}$ une suite d'ensembles de $\mathcal{L}(\R^n)$ 
 disjoints deux à deux. Trois cas uniquement peuvent se produirent :
 
-  1. La somme $\sum_{k=0}^{+\infty} v(A_k)$ est finie.
+  1. La somme $\sum_{k=0}^{+\infty} \lambda(A_k)$ est finie.
 
-  2. Pour tout $k \in \N$, $v(A_k) < +\infty$ mais $\sum_{k=0}^{+\infty} v(A_k) = +\infty$.
+  2. Pour tout $k \in \N$, $\lambda(A_k) < +\infty$ mais $\sum_{k=0}^{+\infty} \lambda(A_k) = +\infty$.
 
-  3. Il existe un $k \in \N$ tel que $v(A_k) = +\infty$.
+  3. Il existe un $k \in \N$ tel que $\lambda(A_k) = +\infty$.
 
 Posons 
 $$A = \cup_{k=0}^{+\infty} A_k \; \mbox{ et } \; f_j = 1_{\cup_{k=0}^j A_k} = \sum_{k=0}^j 1_{A_k}.$$ 
@@ -294,31 +294,31 @@ simplement vers $1_A$.
     fonction caractéristique $1_{A_k}$ est intégrable, $f_j$ est intégrable.
     Par ailleurs,
     $$
-    \int f_j(x) \, dx = \sum_{k=0}^j \int 1_{A_k}(x) \, dx = \sum_{k=0}^j v(A_k) \leq \sum_{k=0}^{+\infty} v(A_k) < +\infty.
+    \int f_j(x) \, dx = \sum_{k=0}^j \int 1_{A_k}(x) \, dx = \sum_{k=0}^j \lambda(A_k) \leq \sum_{k=0}^{+\infty} \lambda(A_k) < +\infty.
     $$
     Par le théorème de convergence monotone, on a donc
     $$
-    v(A) = \int 1_A(x) \, dx = \lim_{j \to +\infty} \int f_j(x) \, dx =  \sum_{k=0}^{+\infty} v(A_k).
+    \lambda(A) = \int 1_A(x) \, dx = \lim_{j \to +\infty} \int f_j(x) \, dx =  \sum_{k=0}^{+\infty} \lambda(A_k).
     $$
 
  2. Dans le second cas, comme
     $$
-    \sup_j \int f_j(x) \, dx = \sum_{k=0}^{+\infty} v(A_k) = + \infty,
+    \sup_j \int f_j(x) \, dx = \sum_{k=0}^{+\infty} \lambda(A_k) = + \infty,
     $$
     le théorème de convergence monotone nous affirme que $1_A$ n'est pas intégrable.
-    Par définition de $v(A)$, on a donc $v(A) = +\infty$ et donc on a également
+    Par définition de $\lambda(A)$, on a donc $\lambda(A) = +\infty$ et donc on a également
     $$
-    v(A) = \sum_{k=0}^{+\infty} v(A_k).
+    \lambda(A) = \sum_{k=0}^{+\infty} \lambda(A_k).
     $$
 
  3. Dans le dernier cas, par le critère d'intégrabilité dominée, 
-    si $v(A_k)=+\infty$, $f_k$ n'est pas intégrable et donc $1_A$ non plus,
-    ce qui entraîne $v(A) = +\infty$. On a donc à nouveau
+    si $\lambda(A_k)=+\infty$, $f_k$ n'est pas intégrable et donc $1_A$ non plus,
+    ce qui entraîne $\lambda(A) = +\infty$. On a donc à nouveau
     $$
-    v(A) = \sum_{k=0}^{+\infty} v(A_k).
+    \lambda(A) = \sum_{k=0}^{+\infty} \lambda(A_k).
     $$
 
-Nous avons bien démontré la $\sigma$-additivité de $v$.
+Nous avons bien démontré la $\sigma$-additivité de $\lambda$.
 
 ### Mesure de Lebesgue d'un pavé {.exercise}
 Déterminer la mesure de Lebesgue du pavé compact 
@@ -701,23 +701,23 @@ est un concept très proche). Mais nous n'allons pas explorer cette piste ici.
 ### Exercice {.exercise}
 Construire une fonction $f:\R \to \R$ mesurable par rapport à la tribu de 
 Lebesgue $\mathcal{L}(\R)$ mais dont l'intégrale n'est pas définie par rapport à
-la mesure de Lebesgue $v$ (ni finie ni infinie).
+la mesure de Lebesgue $\lambda$ (ni finie ni infinie).
 
 
 ### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
 Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
-par rapport à la mesure de Lebesgue $v$ si et seulement si 
+par rapport à la mesure de Lebesgue $\lambda$ si et seulement si 
 $f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
 pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
 deux intégrales sont égales :
 $$
-\int_{\R^n} f(x) \, v(dx) = \int_{\R^n} f(x) \, dx.
+\int_{\R^n} f(x) \, \lambda(dx) = \int_{\R^n} f(x) \, dx.
 $$
 
 ### Démonstration {.proof}
 Par construction, la fonction $f$ est intégrable par rapport à la mesure de 
-Lebesgue $v$ si et seulement si les fonctions $f_+ = \max(f, 0)$ et 
-$f_- = -\min(f, 0)$ sont intégrables par rapport à $v$. Comme
+Lebesgue $\lambda$ si et seulement si les fonctions $f_+ = \max(f, 0)$ et 
+$f_- = -\min(f, 0)$ sont intégrables par rapport à $\lambda$. Comme
 $$
 f_+ = \frac{f+|f|}{2}, \, f_- = \frac{f - |f|}{2} \; \mbox{ et } \;
 f = f_+ - f_-, \, |f| = f_+ + f_-,
@@ -732,23 +732,23 @@ $$
 g = \sum_{k=1}^{n} y_k 1_{A_k}
 $$
 où les ensembles $A_1, \dots, A_{n} \in \mathcal{A}$ sont disjoints,
-et $y_1, \dots, y_{n} \in \left]0, +\infty\right[$ est $v$-intégrable
-si et seulement si $v(A_k) < +\infty$ pour tout $k$. 
-Par définition de la mesure de Lebesgue $v$, c'est équivalent à l'HK-intégrabilité 
+et $y_1, \dots, y_{n} \in \left]0, +\infty\right[$ est $\lambda$-intégrable
+si et seulement si $\lambda(A_k) < +\infty$ pour tout $k$. 
+Par définition de la mesure de Lebesgue $\lambda$, c'est équivalent à l'HK-intégrabilité 
 de chaque $1_{A_k}$ et donc de $g$ ; 
-l'intégrale de $g$ par rapport à $v$ vaut alors
+l'intégrale de $g$ par rapport à $\lambda$ vaut alors
 $$
-\int g\, v =
-\sum_{k=1}^n y_k \, v(A_k)
+\int g\, \lambda =
+\sum_{k=1}^n y_k \, \lambda(A_k)
 =\sum_{k=1} y_k \int 1_{A_k}(x) \, dx
 = \int \sum_{k=1} y_k 1_{A_k}(x) \, dx
 =\int g(x) \, dx.
 $$
 
-Si une fonction $f$ positive est $v$-intégrable, elle est la 
+Si une fonction $f$ positive est $\lambda$-intégrable, elle est la 
 limite simple d'une suite croissante telles fonctions étagées positives et 
-$v$-intégrables à valeurs finies et son intégrale par rapport à $v$ est la limite
-des intégrales par rapport à $v$ des fonctions étagées. D'après
+$\lambda$-intégrables à valeurs finies et son intégrale par rapport à $\lambda$ est la limite
+des intégrales par rapport à $\lambda$ des fonctions étagées. D'après
 le résultat précédente, elle est donc la limite des intégrales au sens de
 Henstock-Kurzweil de ces fonctions, qui, d'après le résultat des convergence
 monotone de l'intégrale de Henstock-Kurzweil, converge vers l'intégrale de
@@ -757,7 +757,7 @@ est mesurable -- mesurable au sens de Henstock-Kurzweil et donc par le critère
 de l'image réciproque, également $\mathcal{L}(\R)$-mesurable --
 et le même procédé d'approximation par une suite croissante de fonctions étagées
 positives est donc applicable. Les théorèmes de convergence monotone, 
-pour l'intégrale de Henstock-Kurzweil et pour l'intégrale associée à $v$, 
+pour l'intégrale de Henstock-Kurzweil et pour l'intégrale associée à $\lambda$, 
 permettent alors de conclure.
 
 ### {.ante}
@@ -1195,13 +1195,13 @@ P = [a_1, b_1] \times \dots \times [a_n, b_n]
 $$
 au moyen de la formule
 $$
-v(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
+\lambda(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
 $$
-L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $v$ 
+L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $\lambda$ 
 en une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
 par la relation
 $$
-v(A) = \left|
+\lambda(A) = \left|
 \begin{array}{cl}
 \displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
 +\infty & \mbox{sinon.}
@@ -1210,7 +1210,7 @@ v(A) = \left|
 $$
 Mais cette approche n'est pas totalement satisfaisante intellectuellement.
 D'une part on peut considérer l'usage de l'intégrale comme un chemin
-tortueux pour étendre $v$.
+tortueux pour étendre $\lambda$.
 D'autre part on peut avoir l'impression
 que cette approche -- qui ne permet pas de mesurer le volume de tout
 ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
@@ -1239,15 +1239,15 @@ de l'ensemble. Formellement :
 
 ### Mesure extérieure de Lebesgue {.definition #mel}
 On appelle *mesure extérieure de Lebesgue* sur $\R^n$ la fonction
-$$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
+$$\lambda^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
 qui a tout ensemble $A$ de $\R^n$ associe le nombre réel étendu positif
 défini par
 $$
-v^*(A) 
+\lambda^*(A) 
 = 
 \inf 
 \left\{
-\sum_{k=0}^{+\infty} v(P_k)
+\sum_{k=0}^{+\infty} \lambda(P_k)
 \; \left| \vphantom{\bigcup_{k=0}^{+\infty}} \right. \; 
 \mbox{$P_k$ pavé compact de $\R^n$,} \, A \subset \bigcup_{k=0}^{+\infty} P_k
 \right\},
@@ -1282,42 +1282,42 @@ sont les deux sphère finales.
 
 Tout d'abord, on a bien
 $$
-v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
+\lambda^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; \lambda^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
 $$
 car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
 (au sens de l'intégrale de Henstock-Kurzweil)
 et nous verrons ultérieurement que dans ce cas, la mesure extérieure
-$v^*$ coïncide avec $v$.
+$\lambda^*$ coïncide avec $\lambda$.
 Un simple calcul intégral fournit alors le résultat.
 
 On peut croire que le point faible de notre raisonnement est la préservation
-de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
-que lorsque $B$ se déduit de $A$ par une translation alors $v^*(A) = v^*(B)$, 
+de la valeur de $\lambda^*(A)$ par translation et rotation ; s'il est facile d'établir
+que lorsque $B$ se déduit de $A$ par une translation alors $\lambda^*(A) = \lambda^*(B)$, 
 on peut douter du résultat pour les rotations. 
-Après tout, la définition de $v^*(A)$ fait appel
+Après tout, la définition de $\lambda^*(A)$ fait appel
 à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
 conservée par rotation. 
 Mais si le résultat n'est pas évident, il s'avère pourtant que
-la mesure extérieure $v^*$ est bien invariante par rotation 
+la mesure extérieure $\lambda^*$ est bien invariante par rotation 
 (cf. [@Hun11, section 2.8]).
 
-La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
+La propriété qui nous fait défaut est plus fondamentale : la fonction $\lambda^*$
 n'est tout simplement pas additive ! Même si les ensembles 
 $A_1, \dots, A_p$ sont disjoints, il est possible que 
 $$
-v^*(A_1 \cup \dots \cup A_p) \neq v^*(A_1) + \dots + v^*(A_p).
+\lambda^*(A_1 \cup \dots \cup A_p) \neq \lambda^*(A_1) + \dots + \lambda^*(A_p).
 $$
-On peut par contre établir avec la définition de $v^*$ qu'elle est 
+On peut par contre établir avec la définition de $\lambda^*$ qu'elle est 
 sous-additive : pour tous les ensembles $A_1, \dots, A_p$ (disjoints ou non),
 on a 
 $$
-v^*(A_1 \cup \dots \cup A_p) \leq v^*(A_1) + \dots + v^*(A_p).
+\lambda^*(A_1 \cup \dots \cup A_p) \leq \lambda^*(A_1) + \dots + \lambda^*(A_p).
 $$
 Elle est même $\sigma$-sous-additive : si $(A_k)_{k \in \N}$ est une suite
 de sous-ensembles de $\R^n$, 
 $$
-v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
-\leq \sum_{k=0}^{+\infty} v^*\left(A_k\right).
+\lambda^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
+\leq \sum_{k=0}^{+\infty} \lambda^*\left(A_k\right).
 $$
 
 Cette propriété est la caractéristique centrale des *mesures extérieures* :
@@ -1371,35 +1371,35 @@ La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue
 produit la mesure de Lebesgue.
 
 ### Mesure de Lebesgue {.theorem .definition}
-La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{P}(\R^n) \to [0, +\infty]$
+La "[mesure extérieure de Lebesgue](#mel)" $\lambda^*:\mathcal{P}(\R^n) \to [0, +\infty]$
 est bien une mesure extérieure sur $\R^n$.
-La collection des ensembles $v^*$-mesurables (au sens de Caratheodory)
+La collection des ensembles $\lambda^*$-mesurables (au sens de Caratheodory)
 est identique à la tribu de Lebesgue $\mathcal{L}(\R^n)$ ; 
-la mesure $v$ associée à $v^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
+la mesure $\lambda$ associée à $\lambda^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
 
-### Démonstration (partielle : $v^*$ est une mesure extérieure.) {.proof}
-Il est clair que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
+### Démonstration (partielle : $\lambda^*$ est une mesure extérieure.) {.proof}
+Il est clair que $\lambda^*$ satisfait $\lambda^*(\varnothing)=0$ (car le pavé
 $[0,0]^n$ recouvre $\varnothing$ par exemple). 
 Si $A \subset B \subset \R^n$, alors tout recouvrement de $B$ par des
-pavés compacts recouvre également $A$ ; par conséquent $v^*(A) \leq v^*(B)$.
+pavés compacts recouvre également $A$ ; par conséquent $\lambda^*(A) \leq \lambda^*(B)$.
 Finalement, pour tout $A_k \subset \R^n$, $k \in \N$, et pour tout $\varepsilon > 0$, 
 il existe des pavés compacts $P_{jk}$ tels que 
 $$
 A_k \subset \bigcup_{j=0}^{+\infty} P_{jk} 
 \; \mbox{ et } \;
-\sum_{j=0}^{+\infty} v(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
-\leq v^*(A_k) \leq \sum_{j=0}^{+\infty} v(P_{jk}).
+\sum_{j=0}^{+\infty} \lambda(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
+\leq \lambda^*(A_k) \leq \sum_{j=0}^{+\infty} \lambda(P_{jk}).
 $$
 Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $\cup_{k=0}^{+\infty} A_k$, 
 on a donc
 $$
-v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
+v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} \lambda(P_{jk})
 \leq 
-\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
-= \left(\sum_{k=0}^{+\infty} v^*(A_k)\right) +\varepsilon.
+\sum_{k=0}^{+\infty} \left(\lambda^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
+= \left(\sum_{k=0}^{+\infty} \lambda^*(A_k)\right) +\varepsilon.
 $$
 Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
-que $v^*$ est bien $\sigma$-subadditive.
+que $\lambda^*$ est bien $\sigma$-subadditive.
 
 
 Tribus engendrées
@@ -1928,12 +1928,12 @@ Approximation par des ensembles mesurables (hors-programme)
 Soit $A$ un sous-ensemble de $\R^n$.
 
 ### Question 1 {.question #enm-1}
-Montrer qu'il existe un ensemble $v^*$-mesurable $B$ contenant $A$ et tel que
-$v^*(A) = v^*(B)$.
+Montrer qu'il existe un ensemble $\lambda^*$-mesurable $B$ contenant $A$ et tel que
+$\lambda^*(A) = \lambda^*(B)$.
 
 ### Question 2 {.question #enm-2}
-A quelle condition portant sur $v^*(B \setminus A)$ l'ensemble $A$ est-il 
-$v^*$-mesurable ?
+A quelle condition portant sur $\lambda^*(B \setminus A)$ l'ensemble $A$ est-il 
+$\lambda^*$-mesurable ?
 
 Mesure intérieure (hors-programme)
 --------------------------------------------------------------------------------
@@ -1942,19 +1942,19 @@ Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact de $\R^n$
 contenant $A$.
 On appelle *mesure intérieure de $A$* la grandeur
 $$
-v_*(A) = v^*(P) - v^*(P \setminus A)
+\lambda_*(A) = \lambda^*(P) - \lambda^*(P \setminus A)
 $$
-où $v^*$ désigne la mesure extérieure de Lebesgue sur $\R^n$.
+où $\lambda^*$ désigne la mesure extérieure de Lebesgue sur $\R^n$.
 
 ### Question 1 {.question #mi-1}
-Montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé $P$.
+Montrer que la définition de $\lambda_*(A)$ ne dépend pas du choix du pavé $P$.
 
 ### Question 2 {.question #mi-2}
-Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
+Montrer que $\lambda_*(A) \leq \lambda^*(A)$, avec égalité si $A$ est $\lambda^*$-mesurable.
 
 ### Question 3 {.question #mi-3}
 Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
-et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
+et $\lambda_*(A) = \lambda^*(A)$, alors $A$ est $\lambda^*$-mesurable.
 
 Solutions
 ================================================================================
@@ -2387,107 +2387,107 @@ Approximation par des ensembles mesurables (hors-programme) {#aem}
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-enm-1}
-Par définition de $v^*(A)$, pour tout $j \in \N$, il existe une collection
+Par définition de $\lambda^*(A)$, pour tout $j \in \N$, il existe une collection
 dénombrable de pavés $P^j_k$ tels que
 $$
-v^*(A) \leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
+\lambda^*(A) \leq \sum_{k=0}^{+\infty} \lambda(P^j_k) \leq \lambda^*(A) + 2^{-j}.
 $$
-Les ensembles $B_j = \cup_k P^j_k$ sont $v^*$-mesurables comme unions 
+Les ensembles $B_j = \cup_k P^j_k$ sont $\lambda^*$-mesurables comme unions 
 dénombrables d'ensembles mesurables. 
-De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité de $v^*$
+De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité de $\lambda^*$
 $$
-v^*(A) 
-\leq v^*(B_j) 
-\leq \sum_{k=0}^{+\infty} v^*(P^j_k)
-\leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
+\lambda^*(A) 
+\leq \lambda^*(B_j) 
+\leq \sum_{k=0}^{+\infty} \lambda^*(P^j_k)
+\leq \sum_{k=0}^{+\infty} \lambda(P^j_k) \leq \lambda^*(A) + 2^{-j}.
 $$
 L'intersection $B = \cap_j B_j$ est un ensemble mesurable qui recouvre $A$ 
 et est contenu dans chaque $B_j$ ; par conséquent pour tout $j \in \N$,
 $$
-v^*(A) \leq v(B) \leq v(B_j) \leq v^*(A) + 2^{-j}.
+\lambda^*(A) \leq \lambda(B) \leq \lambda(B_j) \leq \lambda^*(A) + 2^{-j}.
 $$
-On en déduit donc que $A \subset B$ et $v^*(A) = v^*(B)$ avec $B$ mesurable. 
+On en déduit donc que $A \subset B$ et $\lambda^*(A) = \lambda^*(B)$ avec $B$ mesurable. 
 
 ### Question 2 {.answer #answer-enm-2}
-Notons au préalable que si $v^*(A) = +\infty$, alors $A$ est automatiquement 
-mesurable. Dans le cas contraire ($v^*(A) < +\infty$)
-l'ensemble $A$ est $v^*$-mesurable si et seulement si $v^*(B \setminus A) = 0$.
-En effet, si $A$ est $v^*$-mesurable et de mesure finie, comme $A \subset B$, on a 
+Notons au préalable que si $\lambda^*(A) = +\infty$, alors $A$ est automatiquement 
+mesurable. Dans le cas contraire ($\lambda^*(A) < +\infty$)
+l'ensemble $A$ est $\lambda^*$-mesurable si et seulement si $\lambda^*(B \setminus A) = 0$.
+En effet, si $A$ est $\lambda^*$-mesurable et de mesure finie, comme $A \subset B$, on a 
 $$
-v^*(B) = v^*(A \cap B) + v^*(A^c \cap B) = v^*(A) + v^*(B \setminus A) = v^*(B) + v^*(B \setminus A).
+\lambda^*(B) = \lambda^*(A \cap B) + \lambda^*(A^c \cap B) = \lambda^*(A) + \lambda^*(B \setminus A) = \lambda^*(B) + \lambda^*(B \setminus A).
 $$
-Comme la mesure $v^*(A)$ est finie, $v^*(B \setminus A) = 0$.
-Réciproquement, si $v^*(B \setminus A) = 0$, alors $B \setminus A$ (et donc $A$)
+Comme la mesure $\lambda^*(A)$ est finie, $\lambda^*(B \setminus A) = 0$.
+Réciproquement, si $\lambda^*(B \setminus A) = 0$, alors $B \setminus A$ (et donc $A$)
 est mesurable.
 En effet, pour tout ensemble $C$ de $\R^n$, on a d'une part 
 $$
-v^*(C) \leq v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C) 
+\lambda^*(C) \leq \lambda^*((B \setminus A) \cap C) + \lambda^*((B \setminus A)^c \cap C) 
 $$
-par subbadditivité de $v^*$.
+par subbadditivité de $\lambda^*$.
 D'autre part, comme $(B \setminus A) \cap C \subset B \setminus A$, 
-$v^*((B \setminus A) \cap C) \leq v^*(B \setminus A) = 0$. 
+$\lambda^*((B \setminus A) \cap C) \leq \lambda^*(B \setminus A) = 0$. 
 Par ailleurs, $C \supset (B \setminus A)^c \cap C$, donc
 $$
-v^*(C) \geq v^*((B \setminus A)^c \cap C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C).
+\lambda^*(C) \geq \lambda^*((B \setminus A)^c \cap C) = \lambda^*((B \setminus A) \cap C) + \lambda^*((B \setminus A)^c \cap C).
 $$
-On a donc l'égalité $v^*(C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C)$ ;
+On a donc l'égalité $\lambda^*(C) = \lambda^*((B \setminus A) \cap C) + \lambda^*((B \setminus A)^c \cap C)$ ;
 l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \setminus A)$.
 
 Mesure intérieure (hors-programme)
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-mi-1}
-Pour montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé
+Pour montrer que la définition de $\lambda_*(A)$ ne dépend pas du choix du pavé
 $P$ contenant $A$, il suffit de prouver qu'on peut remplacer $P$ par un
-pavé compact $P'$ contenant $P$ sans changer la valeur de $v_*(A)$ (pour toute
+pavé compact $P'$ contenant $P$ sans changer la valeur de $\lambda_*(A)$ (pour toute
 paire de pavés compacts on peut en effet trouver un pavé compact les contenant).
 
 Comme les pavés compacts $P$ et $P'$ sont mesurables (au sens de Carathéodory,
-pour la mesure extérieure $v^*$), l'ensemble $P' \setminus P$ l'est également 
+pour la mesure extérieure $\lambda^*$), l'ensemble $P' \setminus P$ l'est également 
 ; on a donc
 $$
-v^*(P') = v^*(P' \setminus P) + v^{*}(P) 
+\lambda^*(P') = \lambda^*(P' \setminus P) + \lambda^{*}(P) 
 $$
 et
 $$
-v^{*}(P' \setminus A)
+\lambda^{*}(P' \setminus A)
 =
-v^*(P' \setminus P) + v^*(P \setminus A),
+\lambda^*(P' \setminus P) + \lambda^*(P \setminus A),
 $$ 
 ce qui établit
 $$
-v^*(P') - v{*}(P' \setminus A)
+\lambda^*(P') - \lambda{*}(P' \setminus A)
 =
-v^*(P) - v^{*}(P \setminus A).
+\lambda^*(P) - \lambda^{*}(P \setminus A).
 $$
 
 ### Question 2 {.answer #answer-mi-2}
-La fonction $v^*$ étant subadditive, on a
+La fonction $\lambda^*$ étant subadditive, on a
 $$
-v^*(P) \leq v^*(A) + v^*(P\setminus A)
+\lambda^*(P) \leq \lambda^*(A) + \lambda^*(P\setminus A)
 $$
-et donc $v_*(A) \leq v^*(A)$. Si $A$ est mesurable, l'inégalité initiale
-devient une égalité et donc $v_*(A) = v^*(A)$. 
+et donc $\lambda_*(A) \leq \lambda^*(A)$. Si $A$ est mesurable, l'inégalité initiale
+devient une égalité et donc $\lambda_*(A) = \lambda^*(A)$. 
 
 ### Question 3 {.answer #answer-mi-3}
 Montrons que la réciproque est également vraie. 
 Soit $A$ un ensemble borné de $\R^n$ tel que 
-$v_*(A) = v^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
-Nous cherchons à établir que $v^*(B) = v^*(A \cap B) + v^*(A^c \cap B)$.
+$\lambda_*(A) = \lambda^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
+Nous cherchons à établir que $\lambda^*(B) = \lambda^*(A \cap B) + \lambda^*(A^c \cap B)$.
 Remarquons tout d'abord que si le pavé compact $P$ -- qui est mesurable -- 
 contient $A$, on a
 $$
-v^*(B) = v^*(P \cap B) + v^*(P^c \cap B) \; ;
+\lambda^*(B) = \lambda^*(P \cap B) + \lambda^*(P^c \cap B) \; ;
 $$
 si nous réussissons à établir que 
-$$v^*(P \cap B) = v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)),$$
+$$\lambda^*(P \cap B) = \lambda^*(A \cap (P \cap B)) + \lambda^*(A^c \cap (P \cap B)),$$
 on pourra alors conclure que
 $$
 \begin{split}
-v^*(B) &= v^*(P \cap B) + v^*(P^c \cap B) \\
-&= v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)) + v^*(P^c \cap B) \\
-&= v^*(A \cap B) + v^*(P \cap (A^c \cap B)) + v^*(P^c \cap (A^c \cap B)) \\
-&= v^*(A \cap B) + v^*(A^c \cap B).
+\lambda^*(B) &= \lambda^*(P \cap B) + \lambda^*(P^c \cap B) \\
+&= \lambda^*(A \cap (P \cap B)) + \lambda^*(A^c \cap (P \cap B)) + \lambda^*(P^c \cap B) \\
+&= \lambda^*(A \cap B) + \lambda^*(P \cap (A^c \cap B)) + \lambda^*(P^c \cap (A^c \cap B)) \\
+&= \lambda^*(A \cap B) + \lambda^*(A^c \cap B).
 \end{split}
 $$
 Autrement dit, il nous suffit d'établir le résultat cherché quand $B$ est un
@@ -2495,21 +2495,21 @@ ensemble de $\R^n$ contenu dans le pavé compact $P$.
 
 Pour cela, nous exploitons les résultats de l'exercice "[Approximation par des
 ensembles mesurables](#aem)". A l'ensemble $A$ on peut associer un sur-ensemble
-$v^*$-mesurable $B$ tel que $v^*(A) = v^*(B)$ ; quitte à remplacer $B$ par
+$\lambda^*$-mesurable $B$ tel que $\lambda^*(A) = \lambda^*(B)$ ; quitte à remplacer $B$ par
 $P \cap B$, on peut également supposer que $B \subset P$. On a 
 $$
-v^*(P) = v^*(A) + v^*(P \setminus A) = v^*(B) + v^*(P \setminus B)
+\lambda^*(P) = \lambda^*(A) + \lambda^*(P \setminus A) = \lambda^*(B) + \lambda^*(P \setminus B)
 $$
-et donc $v^*(P \setminus A) = v^*(P \setminus B)$. 
+et donc $\lambda^*(P \setminus A) = \lambda^*(P \setminus B)$. 
 D'autre part
 $$
 \begin{split}
-v^*(P) &= v^*(B) + v^*(P \setminus B) \\
-&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus B) \\
-&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus A) \\
+\lambda^*(P) &= \lambda^*(B) + \lambda^*(P \setminus B) \\
+&= \lambda^*(A) + \lambda^*(B \setminus A) + \lambda^*(P \setminus B) \\
+&= \lambda^*(A) + \lambda^*(B \setminus A) + \lambda^*(P \setminus A) \\
 \end{split}
 $$
-et donc $v^*(B \setminus A) = 0$. Par les résultats de l'exercice 
+et donc $\lambda^*(B \setminus A) = 0$. Par les résultats de l'exercice 
 "[Approximation par des ensembles mesurables](#aem)", on en déduit que 
 $A$ est mesurable.
 
