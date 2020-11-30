@@ -315,9 +315,20 @@ $1_A$ est non-intégrable, ce qui fournit $\lambda(A) = +\infty$.
 
 La $\sigma$-additivité de $\lambda$ est donc établie dans tous les cas.
 
-### Mesure de Lebesgue d'un pavé {.exercise .question .zero}
+### Mesure de Lebesgue d'un pavé {.exercise .question .zero #mlp}
 Déterminer la mesure de Lebesgue $\lambda(P)$ du pavé fermé borné 
 $P = [a_1,b_1] \times \dots \times [a_n, b_n] \subset \R^n$.
+
+
+### Mesure de Lebesgue d'un pavé {.answer #answer-mlp}
+La fonction caractéristique du pavé fermé borné $P$ est intégrable et par
+le théorème de Fubini on a donc
+\begin{align*}
+\lambda(P) &= \int 1_{[a_1,b_1] \times \dots \times [a_n,b_n]} (x) \,dx \\
+&= \int (1_{[a_1, b_1]}(x_1) \times \dots \times 1_{[a_n, b_n]}(x_n)) \, dx_1 \dots dx_n \\
+&= \left(\int 1_{[a_1, b_1]}(x_1) \, dx_1\right) \times \dots \times \left(\int 1_{[a_n, b_n]}(x_n) \, dx_n\right) \\
+&= (b_1 - a_1) \times \dots \times (b_n - a_n).
+\end{align*}
 
 ### Mesure de Dirac {.definition}
 Soit $X$ un ensemble et $x \in X$ ; on appelle *mesure de Dirac* en $x$ la mesure 
@@ -331,14 +342,14 @@ $$
 \right. 
 $$
 
-### Démonstration {.exercise .question .zero}
+### Démonstration {.exercise .question .one #dirac}
 Montrer que les mesures de Dirac sont bien des mesures.
 
-### Et en changeant de point de vue ? {.one}
+### Et en changeant de point de vue ? {.zero .exercise .question #ptdevue}
 Quand on considère $\delta_x(A)$ comme une fonction de $x$ à $A$ fixé,
 qu'obtient-on ?
 
-### Mesure de comptage {.definition}
+### Mesure de comptage {.definition #comptage}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
 de $\R^n$. On appelle *mesure de comptage* sur $X$ la fonction 
 $c : \mathcal{P}(X) \to [0, +\infty]$ définie par
@@ -351,7 +362,7 @@ n & \mbox{si $A$ contient $n \in \N$ éléments distincts,} \\
 \right. 
 $$
 
-### Démonstration {.exercise .question .one}
+### Démonstration {.exercise .question .one #ct}
 Montrer que les mesures de comptage sont bien des mesures.
 
 ### Ensemble négligeable {.definition}
@@ -365,13 +376,13 @@ d'un $x \in X$ est vraie *presque partout* (ou *$\mu$-presque partout*)
 si l’ensemble des éléments $x$ 
 où elle est fausse est un ensemble $\mu$-négligeable.
 
-### Négligeable pour la mesure de comptage {.exercise .question .one}
+### Négligeable pour la mesure de comptage {.exercise .question .one #nmc}
 Caractériser les ensembles négligeables pour la mesure de comptage $c$.
 
-### Négligeable pour la mesure de Dirac {.exercise .question .one}
+### Négligeable pour la mesure de Dirac {.exercise .question .one #nmd}
 Caractériser les ensembles négligeables pour la mesure de Dirac $\delta_x$.
 
-### Négligeable et mesurable {.exercise .question .one}
+### Négligeable et mesurable {.exercise .question .one #nem}
 Montrer qu'un ensemble mesurable est négligeable si et seulement si il
 est de mesure nulle.
 
@@ -2109,6 +2120,58 @@ deux à deux disjoints, alors
 &= \sum_{k=0}^{+\infty} (\mu_1+\mu_2)(A_k)
 \end{align*}
 
+
+### Mesure de Dirac {.answer #answer-dirac}
+Comme pour tout $x \in X$, on $x \not \in \varnothing$, 
+il s'ensuit que $\delta_x(\varnothing)=0$. De plus, si les $A_k$ ($k \in \N$) sont 
+des sous-ensembles de $X$ disjoints deux à deux, soit aucun d'entre eux
+ne contient $x$, auquel cas
+$$
+\delta_x\left( \bigcup_{k=0}^{+\infty} A_k\right) = 0
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \mu(A_k) = 0
+$$
+soit exactement l'un d'entre eux contient $x$, auquel cas
+$$
+\delta_x\left( \bigcup_{k=0}^{+\infty} A_k\right) = 1
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \mu(A_k) = 1.
+$$
+
+### Et en changeant de point de vue ? {.answer #answer-ptdevue}
+Comme $\delta_x(A) = 1$ si $x\in A$ et $0$ sinon, on a $\delta_x(A) = 1_A(x)$.
+
+### Mesure de comptage {.answer #answer-ct}
+Commen l'ensemble vide ne contient aucun élément, on a $c(\varnothing) = 0$.
+De plus, si les ensembles $A_k$ ($k \in \N$) sont disjoints deux à deux, 
+alors le nombre -- fini ou infini -- d'éléments distincts de 
+$\cup_{k=0}^{+\infty} A_k$ est la somme des éléments des $A_k$, c'est-à-dire
+$$
+c\left(\bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} c(A_k).
+$$
+La mesure de comptage est bien une mesure.
+
+### Négligeable pour la mesure de comptage {.answer #answer-nmc}
+Un ensemble $A \subset \mathcal{P}(X)$ est de mesure de comptage nulle si et
+seulement s'il est vide. Donc il existe un unique ensemble contenu dans un 
+ensemble de mesure nulle : l'ensemble vide.
+
+### Négligeable pour la mesure de Dirac {.answer #answer-nmd}
+Un ensemble $A \subset \mathcal{P}(X)$ est de mesure de Dirac en $x$ nulle si et
+seulement s'il ne contient pas $x$. Un ensemble $N$ peut être inclus dans un
+tel ensemble $A$ si et seulement s'il ne contient pas lui-même le point $x$. 
+Donc un ensemble est $\delta_x$-négligeable si et seulement s'il ne contient
+pas $x$.
+
+### Négligeable et mesurable {.answer #answer-nem}
+Si $N$ est mesurable et de mesure nulle, alors $N \subset N$ et $\mu(N)=0$ ;
+$N$ est donc négligeable.
+Réciproquement, si un ensemble $N$ est négligeable et mesurable alors 
+$N \in \mathcal{A}$
+et il existe $A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$. 
+[Comme $\mu$ est monotone](#mono), on a également $\mu(N) = 0$ ; 
+$N$ est donc de mesure nulle.
+
 Intégrales et séries
 --------------------------------------------------------------------------------
 
@@ -2193,7 +2256,6 @@ alors
 $$
 \lim_{k \to +\infty} \sum_{n=0}^{+\infty} f_k(n)  = \sum_{n=0}^{+\infty} f(n).
 $$
-
 
 Mesure définie par une intégrale
 --------------------------------------------------------------------------------
@@ -2349,10 +2411,6 @@ $$
 =
 \int (f \circ h) \, \mu.
 $$
-
-
-
-
 
 Complétion d'une mesure
 --------------------------------------------------------------------------------
