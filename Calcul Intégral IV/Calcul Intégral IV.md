@@ -160,6 +160,16 @@ L'ensemble $X$ muni de $\mathcal{A}$
 -- c'est-à-dire formellement la paire $(X,\mathcal{A})$ -- 
 est un *espace mesurable*.
 
+### Ensemble des parties {.definition}
+On appelle *ensemble des parties* d'un ensemble *X* la tribu
+$$
+\mathcal{P}(X) = \{A \; | \; A \subset X\}.
+$$
+
+### Ensemble des parties {.exercise .question .zero #parties}
+Montrer que pour tout ensemble $X$, la collection $\mathcal{P}(X)$
+est bien une tribu sur $X$.
+
 ### Tribu de Lebesgue {.definition}
 On appelle *tribu de Lebesgue sur $\R^n$* et on note $\mathcal{L}(\R^n)$
 la collection des ensembles $A \subset \R^n$ tels que pour tout pavé fermé
@@ -174,13 +184,11 @@ soit bien définie.
 Autrement dit, un ensemble de $\R^n$ est "$\mathcal{L}(\R^n)$-mesurable" si et 
 seulement si il est "mesurable" au sens du chapitre "Calcul Intégral III". 
 Nous avions montré dans ce chapitre que la collection de ces ensembles forme
-effectivement une tribu ; la notion originalle d'ensemble mesurable apparaît désormais
+effectivement une tribu ; la notion originale d'ensemble mesurable apparaît désormais
 comme un cas particulier de la notion d'ensemble mesurable relativement à
 une tribu.
 
-### Ensemble des parties {.exercise .question .zero #parties}
-Montrer que pour tout ensemble $X$, la collection $\mathcal{A} = \mathcal{P}(X)$
-des parties (sous-ensembles) de $X$ est une tribu sur $X$.
+
 
 ### Ensembles fermés {.exercise .question .one #fermés}
 La collection des ensembles fermés de $\R^n$ est-elle une tribu sur $\R^n$ ?
@@ -287,60 +295,32 @@ $$
 \lambda(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
 $$
 
-Reste à montrer la $\sigma$-additivité de $\lambda$.
-Soit $(A_k)_{k\in \N}$ une suite d'ensembles de $\mathcal{L}(\R^n)$ 
-disjoints deux à deux. Trois cas uniquement peuvent se produirent :
-
-  1. La somme $\sum_{k=0}^{+\infty} \lambda(A_k)$ est finie.
-
-  2. Pour tout $k \in \N$, $\lambda(A_k) < +\infty$ mais $\sum_{k=0}^{+\infty} \lambda(A_k) = +\infty$.
-
-  3. Il existe un $k \in \N$ tel que $\lambda(A_k) = +\infty$.
-
+Soit $A_k$, $k \in \N$, une suite d'ensemble disjoints deux à deux de $\mathcal{L}(\R^n)$.
 Posons 
-$$A = \cup_{k=0}^{+\infty} A_k \; \mbox{ et } \; f_j = 1_{\cup_{k=0}^j A_k} = \sum_{k=0}^j 1_{A_k}.$$ 
+$$A := \bigcup_{k=0}^{+\infty} A_k \; \mbox{ et } \; f_j = 1_{\cup_{k=0}^j A_k} = \sum_{k=0}^j 1_{A_k}.$$ 
 La suite des $f_j$ est croissante, composée de fonctions mesurables et converge
-simplement vers $1_A$.
+simplement vers $1_A$. Par le théorème de convergence monotone, soit la
+suite des intégrales des $f_j$ est bornée et
+\begin{align*}
+\lambda(A) 
+&= \int 1_A(x) \, dx \\ 
+&= \lim_{j \to +\infty} \int \sum_{k=0}^j 1_{A_k}(x) \, dx \\
+&= \lim_{j \to +\infty}  \sum_{k=0}^j \int 1_{A_k}(x) \, dx \\
+&= \lim_{j \to +\infty} \sum_{k=0}^j \lambda(A_k)  \\
+&= \sum_{j=0}^{+\infty} \lambda(A_k) < +\infty,
+\end{align*}
+soit cette suite est non-bornée, c'est-à-dire
+$\sum_{j=0}^{+\infty} \lambda(A_k) = +\infty$ et alors 
+$1_A$ est non-intégrable, ce qui fournit $\lambda(A) = +\infty$. 
 
- 1. Dans le premier cas, comme $f_j = \sum_{k=0}^j 1_{A_k}$ que chaque 
-    fonction caractéristique $1_{A_k}$ est intégrable, $f_j$ est intégrable.
-    Par ailleurs,
-    $$
-    \int f_j(x) \, dx = \sum_{k=0}^j \int 1_{A_k}(x) \, dx = \sum_{k=0}^j \lambda(A_k) \leq \sum_{k=0}^{+\infty} \lambda(A_k) < +\infty.
-    $$
-    Par le théorème de convergence monotone, on a donc
-    $$
-    \lambda(A) = \int 1_A(x) \, dx = \lim_{j \to +\infty} \int f_j(x) \, dx =  \sum_{k=0}^{+\infty} \lambda(A_k).
-    $$
+La $\sigma$-additivité de $\lambda$ est donc établie dans tous les cas.
 
- 2. Dans le second cas, comme
-    $$
-    \sup_j \int f_j(x) \, dx = \sum_{k=0}^{+\infty} \lambda(A_k) = + \infty,
-    $$
-    le théorème de convergence monotone nous affirme que $1_A$ n'est pas intégrable.
-    Par définition de $\lambda(A)$, on a donc $\lambda(A) = +\infty$ et donc on a également
-    $$
-    \lambda(A) = \sum_{k=0}^{+\infty} \lambda(A_k).
-    $$
+### Mesure de Lebesgue d'un pavé {.exercise .question .zero}
+Déterminer la mesure de Lebesgue $\lambda(P)$ du pavé fermé borné 
+$P = [a_1,b_1] \times \dots \times [a_n, b_n] \subset \R^n$.
 
- 3. Dans le dernier cas, par le critère d'intégrabilité dominée, 
-    si $\lambda(A_k)=+\infty$, $f_k$ n'est pas intégrable et donc $1_A$ non plus,
-    ce qui entraîne $\lambda(A) = +\infty$. On a donc à nouveau
-    $$
-    \lambda(A) = \sum_{k=0}^{+\infty} \lambda(A_k).
-    $$
-
-Nous avons bien démontré la $\sigma$-additivité de $\lambda$.
-
-### Mesure de Lebesgue d'un pavé {.exercise}
-Déterminer la mesure de Lebesgue du pavé compact 
-$P = [a_1,b_1] \times \dots \times [a_n, b_n]$.
-
-### Mesure de Dirac
-Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
-de $X$ (la collection des sous-ensembles de $X$ : $A \in \mathcal{P}(X)$ si 
-et seulement si $A \subset X$.)
-Soit $x \in X$ ; on appelle *mesure de Dirac* en $x$ la fonction 
+### Mesure de Dirac {.definition}
+Soit $X$ un ensemble et $x \in X$ ; on appelle *mesure de Dirac* en $x$ la mesure 
 $\delta_x : \mathcal{P}(X) \to [0, +\infty]$ définie par
 $$
 \delta_x(A) = \left|
@@ -351,29 +331,27 @@ $$
 \right. 
 $$
 
-### Démonstration {.exercise}
+### Démonstration {.exercise .question .zero}
 Montrer que les mesures de Dirac sont bien des mesures.
 
-### Et en changeant de point de vue ? {.exercise}
+### Et en changeant de point de vue ? {.one}
 Quand on considère $\delta_x(A)$ comme une fonction de $x$ à $A$ fixé,
 qu'obtient-on ?
 
-### Mesure de comptage
+### Mesure de comptage {.definition}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
 de $\R^n$. On appelle *mesure de comptage* sur $X$ la fonction 
 $c : \mathcal{P}(X) \to [0, +\infty]$ définie par
 $$
 c(A) = \left|
 \begin{array}{rl}
-\mathrm{card}(A) & \mbox{si $A$ est fini} \\
-+\infty & \mbox{sinon.}
+n & \mbox{si $A$ contient $n \in \N$ éléments distincts,} \\
++\infty & \mbox{si $A$ contient une infinité d'éléments distincts.}
 \end{array}
 \right. 
 $$
-La notation $\mathrm{card}(A)$ désigne le cardinal de $A$ -- c'est-à-dire dans
-le cas d'un ensemble fini, le nombre d'éléments de $A$.
 
-### Démonstration {.exercise}
+### Démonstration {.exercise .question .one}
 Montrer que les mesures de comptage sont bien des mesures.
 
 ### Ensemble négligeable {.definition}
@@ -387,13 +365,13 @@ d'un $x \in X$ est vraie *presque partout* (ou *$\mu$-presque partout*)
 si l’ensemble des éléments $x$ 
 où elle est fausse est un ensemble $\mu$-négligeable.
 
-### Négligeable pour la mesure de comptage {.exercise}
+### Négligeable pour la mesure de comptage {.exercise .question .one}
 Caractériser les ensembles négligeables pour la mesure de comptage $c$.
 
-### Négligeable pour la mesure de Dirac {.exercise}
+### Négligeable pour la mesure de Dirac {.exercise .question .one}
 Caractériser les ensembles négligeables pour la mesure de Dirac $\delta_x$.
 
-### Négligeable et mesurable {.exercise}
+### Négligeable et mesurable {.exercise .question .one}
 Montrer qu'un ensemble mesurable est négligeable si et seulement si il
 est de mesure nulle.
 
@@ -2031,7 +2009,7 @@ donc l'intersection des $A_k$ appartient à $\mathcal{A}$.
      $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_2$, donc 
      $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_1 \cap \mathcal{A}_2.$
 
-### Intersection de tribus I {.answer #answer-it2}
+### Intersection de tribus II {.answer #answer-it2}
 
 La collection $\mathcal{A} := \cap_{i \in I} \mathcal{A}_{i \in I}$ est une tribu quel que soit l'ensemble
 d'indexation $I$ et sa cardinalité. En effet :
