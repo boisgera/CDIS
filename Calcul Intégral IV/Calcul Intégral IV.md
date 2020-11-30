@@ -253,9 +253,6 @@ de $\mu(\varnothing)$ ?
 Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
 $\mu(X) = 1$ ? Une fois que vous avez deviné, justifier la réponse.
 
-### Ca commence par un $\mathbb{P}$ {.answer #answer-P}
-**TODO**
-
 ### Trace d'une mesure {.exercise .question .one #trace}
 Soit $\mu$ une mesure sur $(X, \mathcal{A})$. Montrer que pour tout 
 $A \in \mathcal{A}$, la *trace* $\mu|_A$ de $\mu$ sur $A$, définie
@@ -265,15 +262,12 @@ $$
 $$ 
 est également une mesure sur $(X, \mathcal{A})$.
 
-### Trace d'une mesure {.answer #answer-trace}
-**TODO**
+
 
 ### Somme de mesures {.exercise .question .one #somme}
 Montrer que la somme de deux mesures $\mu_1$ et $\mu_2$ sur un espace mesurable 
 $(X, \mathcal{A})$ est une mesure sur $(X, \mathcal{A})$.
 
-### Somme de mesures {.answer #answer-somme}
-**TODO**
 
 ### Mesure de Lebesgue {.definition}
 La fonction $\lambda$ qui a un ensemble $A \in \mathcal{L}(\R^n)$ associe
@@ -2085,6 +2079,57 @@ $$
 = \sum_{k=0}^{+\infty} \mu(\varnothing)
 $$
 donc on a nécessairement $\mu(\varnothing) = +\infty$. 
+
+### Ca commence par un $\mathbb{P}$ {.answer #answer-P}
+La mesure $\mu$ est une probabilité. En effet, comme $\mu(X)=1$, 
+[par monotonie de la mesure](#mono), pour tout $A \in \mathcal{A}$,
+comme $A \subset X$, $\mu(A) \leq 1$. Donc, comme toute mesure est positive,
+$\mu(A) \in [0,1]$. La mesure $\mu$ est également $\sigma$-additive ; c'est
+donc une (mesure de) probabilité. Réciproquement, toute probabilité est une
+mesure : elle est positive, $\sigma$-additive, et comme elle est finie,
+$$
+\mathbb{P}(\varnothing) 
+= \mathbb{P}\left(\bigcup_{k=0}^{+\infty} \varnothing \right)
+= \sum_{k=0}\mathbb{P}(\varnothing),
+$$
+donc nécessairement $\mathbb{P}(\varnothing)= 0$ ; elle est donc nulle en $0$
+et c'est bien une mesure.
+
+### Trace d'une mesure {.answer #answer-trace}
+La fonction $\mu|_A$, définie sur $\mathcal{A}$, est bien à valeurs dans
+$[0, +\infty]$. De plus, 
+$$
+\mu|_A(\varnothing) = \mu(A \cap \varnothing) = \mu(\varnothing)  =0
+$$
+donc $\mu|_A$ est nulle en 0. Finalement, si les ensembles $A_k$, $k \in \N$ 
+de $\mathcal{A}$ sont disjoints deux à deux, alors les ensembles $A \cap A_k$
+sont également disjoints deux à deux donc
+\begin{align*}
+\mu|_A \left(\bigcup_{k=0}^{+\infty} A_k \right) 
+&= \mu \left(A \cap \bigcup_{k=0}^{+\infty} A_k \right) \\
+&= \mu \left(\bigcup_{k=0}^{+\infty} A \cap A_k \right) \\
+&= \sum_{k=0}^{+\infty} \mu(A \cap A_k) \\
+&= \sum_{k=0}^{+\infty} \mu|_A (A_k).
+\end{align*}
+La fonction $\mu|_A$ est donc une mesure sur $(X, \mathcal{A})$.
+
+
+### Somme de mesures {.answer #answer-somme}
+On a bien $\mu_1 + \mu_2 : \mathcal{A} \to [0, +\infty]$. De plus, 
+$$
+(\mu_1 + \mu_2)(\varnothing) = \mu_1(\varnothing) + \mu_2(\varnothing) = 0 + 0 =0.
+$$
+Finalement, si la suite $A_k \in \mathcal{A}$, $k \in \N$ est formée d'ensembles
+deux à deux disjoints, alors
+\begin{align*}
+(\mu_1 + \mu_2)\left(\bigcup_{k=0}^{+\infty}A_k\right)
+&=
+\mu_1\left(\bigcup_{k=0}^{+\infty}A_k\right)
++ \mu_2\left(\bigcup_{k=0}^{+\infty}A_k\right) \\
+&= \sum_{k=0}^{+\infty} \mu_1(A_k) + \sum_{k=0}^{+\infty} \mu_2(A_k) \\
+&= \sum_{k=0}^{+\infty} (\mu_1(A_k) + \mu_2(A_k)) \\
+&= \sum_{k=0}^{+\infty} (\mu_1+\mu_2)(A_k)
+\end{align*}
 
 Intégrales et séries
 --------------------------------------------------------------------------------
