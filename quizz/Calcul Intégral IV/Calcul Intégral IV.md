@@ -24,9 +24,9 @@ Est-ce que $\mu$ est une mesure sur $(X, \mathcal{A})$ ?
 
   - [ ] A : Non, car $\mathcal{A}$ n'est pas une tribu,
 
-  - [ ] B : Non, car elle n'est pas nulle en 0,
+  - [ ] B : Non, car $\mu$ n'est pas nulle en 0,
 
-  - [ ] C : Non, car elle n'est pas $\sigma$-additive,
+  - [ ] C : Non, car $\mu$ n'est pas $\sigma$-additive,
 
   - [ ] D : Oui.
 
