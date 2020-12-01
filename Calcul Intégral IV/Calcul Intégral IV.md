@@ -389,7 +389,7 @@ est de mesure nulle.
 Intégrale
 ================================================================================
 
-### Fonction mesurable
+### Fonction mesurable {.definition}
 Soit $(X, \mathcal{A})$ un espace mesurable.
 Une fonction $f: X \to [-\infty,+\infty]$  est *mesurable* 
 (ou *$\mathcal{A}$-mesurable* 
@@ -398,7 +398,7 @@ si l'image réciproque
 de tout fermé (ou de tout ouvert) de $[-\infty,+\infty]$ par 
 $f$ est un ensemble mesurable (qui appartient à $\mathcal{A}$).
 
-### {.post}
+### {.post .remark}
 Quand la tribu $\mathcal{A}$ est le domaine de définition d'une mesure $\mu$,
 on trouvera également le terme *$\mu$-mesurable* utilisé pour désigner une
 fonction $\mathcal{A}$-mesurable.
@@ -409,13 +409,13 @@ si $f$ est à valeurs positives ($f(X) \subset [0, +\infty]$) ou finies
 ($f(X) \subset \R$), voire les deux simultanément 
 ($f(X) \subset \left[0, +\infty \right[$).
 
-### Ensemble des parties de $X$ {.exercise}
+### Mesurabilité et ensemble des parties de $X$ {.exercise .one #pm}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
 une fonction $f: X \to [-\infty, +\infty]$ est-elle $\mathcal{A}$-mesurable ?
 
-### Fonction caractéristique {.exercise}
+### Fonction caractéristique {.exercise .two #fc}
 Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
-A quelle condition la fonction $1_A: X \to \R$ est-elle mesurable ?
+A quelle condition portant sur $A$ la fonction $1_A: X \to \R$ est-elle mesurable ?
 
 ### Limite simple de fonctions mesurables
 Soit $(X, \mathcal{A})$ un espace mesurable. 
@@ -426,13 +426,18 @@ alors $f$ est mesurable.
 ### Démonstration {.proof}
 Il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de 
 $\left[-\infty, +\infty\right]$ appartient à $\mathcal{A}$.
-Or $f(x) \in U$ si et seulement si $f_k(x) \in U$
+Considérons la suite d'ensembles $K_n$ ($n \in \N$) définis par :
+$$
+K_n = \{x \in U \; | \; d(x, U^c) \leq 2^{-n} \, \mbox{ et } \,  d(0, x) \leq 2^n \}. 
+$$
+Alors $f(x) \in U$ si et seulement s'il existe un $n \in \N$ tel que $f_k(x) \in K_n$
 pour $k$ assez grand, ce qui se traduit par la formule
 $$
-f^{-1}(U) = \bigcup_{j=0}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
+f^{-1}(U) = \bigcup_{n=0}^{+\infty} \bigcup_{j=0}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(K_n)
 $$
-qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
-(dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
+qui établit que $f^{-1}(U)$ est un ensemble mesurable en exploitant le fait 
+qu'unions dénombrables et intersections dénombrables d'ensembles mesurables
+sont des ensembles mesurables.
 
 ### Fonction étagée
 Une fonction $f: X \to [-\infty, +\infty]$ est *étagée* si et seulement
@@ -2171,6 +2176,20 @@ $N \in \mathcal{A}$
 et il existe $A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$. 
 [Comme $\mu$ est monotone](#mono), on a également $\mu(N) = 0$ ; 
 $N$ est donc de mesure nulle.
+
+### Mesurabilité et ensemble des parties de $X$ {.answer #answer-pm}
+Toutes les fonctions  $f: X \to [-\infty, +\infty]$ sont $\mathcal{A}$-mesurables.
+En effet, l'image réciproque de tout fermé par $f$ appartient bien à 
+$\mathcal{A}$ puisque $\mathcal{A}$ contient tous les sous-ensembles de $X$.
+
+### Fonction caractéristique {.answer #answer-fc}
+A la condition que $A \in \mathcal{A}$, c'est-à-dire que $A$ soit mesurable.
+En effet, si $f$ est mesurable, alors comme $A = f^{-1}(\{1\})$, il est
+nécessaire que $A$ soit mesurable. Réciproquement, si $A$ est mesurable,
+quel que soit $F$ fermé de $[-\infty, +\infty]$, en énumérant les cas, et selon
+que $0$ et $1$ appartiennent ou non à $F$, on réalise que $f^{-1}(F)$ est l'un des 4 ensembles
+suivants : $\varnothing$, $A$, $A^c$, ou $X$. Dans tous les cas, $f^{-1}(F)$
+est mesurable.
 
 Intégrales et séries
 --------------------------------------------------------------------------------
