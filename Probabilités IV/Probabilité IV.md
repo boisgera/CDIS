@@ -14,51 +14,9 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-Probabilités --- cadre général
-================================================================================
 
-## Interprétation 
 
-Les éléments de théorie de la mesure donnés en calcul intégral permettent une relecture des premiers chapitres de probabilités. Le principal avantage est que les différents cas de figures déjà évoqués : lois de probabilités discrètes, à densité, mixtes vont pouvoir être traités dans un cadre unifié. L'intégrale que nous considérons est l'intégrale de Lebesgue. On peut déjà s'apercevoir qu'une [probabilité](Probabilité I.pdf #defproba) $\P$ définie sur un espace probabilisable (mesurable) $(\Omega, \A)$ est une mesure positive *finie* au sens où $\P(\Omega) = 1$ et hérite ainsi de ses propriétés, on parle aussi de *mesure de probabilité*. 
 
-### Remarque {.remark}
-
-* Dans le cas discret ($\Omega$ au plus dénombrable), la mesure de probabilité est une somme pondérée de mesures de Dirac :
-  $$\P = \sum_{\omega \in \Omega} p_{\omega} \delta_{\omega},$$
-  où $\sum_{\omega \in \Omega} p_{\omega} =1$
-* Dans le cas à densité ($\Omega = \R^n$, $n\in\N^\ast$), la mesure de probabilité s'écrit :
-  $$\P = f\mu,$$
-  où $f$ est une densité et $\mu$ la mesure de (Borel-)Lebesgue sur $\R^n$. On dit que $\P$ admet une densité par rapport à la mesure de (Borel-)Lebesgue.
-
-Une [variable aléatoire réelle](Probabilité II.pdf #defvar) (v.a.r), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$. 
-
-Le fait que la composition d'un vecteur aléatoire réel par une application $\B(\R^n)/\B(\R)$ mesurable est une variable aléatoire s'obtient immédiatement par le résultat du chapitre précédent de calcul intégral relatif à la [composition de fonctions mesurables](Calcul Intégral V.pdf #compfoncmes). 
-
-On peut généraliser la définition des espaces vectoriels $\L^1$ et $\L^2$ de la manière suivante :
-
-### Définition --- Espace $\L^1$ {.definition}
-Soit $X$ une variable aléatoire réelle. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\R} |x| \P_X(dx) = \int_{\Omega} |X|(\omega)\P(d\omega) < +\infty$.
-
-### Définition --- Espace $\L^2$ {.definition}
-Soit $X$ une variable aléatoire réelle. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\R} x^2 \P_X(dx) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
-
-Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in \N^\ast$ quelconque.
-
-### Définition --- Espace $\L^p$ {.definition}
-Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^p(\Omega,\A,\P)$, si et seulement si $\Esp(|X|^p) = \int_\R |x|^p \P_X(dx) = \int_{\Omega} |X|^p(\omega)\P(d\omega) < +\infty$.
-
-Si $X \in \L^p$, on dit qu'elle admet un moment d'ordre $p$. Du fait que $\P$ est une mesure finie, on a la stabilité par inclusion suivante :
-
-### Proposition {.proposition}
-Soit $p \in \N^\ast$, on a l'inclusion :
-$$ \L^{p+1}(\Omega,\A,\P) \subset \L^p(\Omega,\A,\P)$$
-
-### Démonstration {.proof}
-Supposons $X \in \L^{p+1}(\Omega,\A,\P)$. On a
-$$|X|^p \leq \max(1,|X|^{p+1}) = 1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}.$$
-Le terme de droite est intégrable, en effet :
-$$\Esp\left(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}\right) \leq \int_\Omega \P(d\omega) + \int_\Omega |X(\omega)|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}).$$
-donc $|X|^p$ est intégrable.
 
 ### {.anonymous}
 
@@ -86,15 +44,6 @@ C'est une application immédiate de [l'inégalité de Markov](#inegmarkov) à $(
 L'inégalité de Bienaymé-Chebyshev est très utile en pratique. Elle permet de mesurer la probabilité des grands écarts entre $X$ et sa moyenne. Par exemple, avec $a = 10 \sigma X$, il en résulte qu’il est improbable qu’une variable aléatoire $X$ dévie de son espérance $\Esp(X)$ de plus de 10 fois son écart-type
 (probabilité inférieure à 0.01). Cette inégalité, tout à fait générale, n’est cependant pas très précise, et surestime très souvent en pratique le membre de gauche. On préférera, quand c'est possible, calculer directement ces probabilités à partir de la loi de $X$.
 
-On peut également réécrire [la proposition portant sur l'espérance de la composée d'une variable aléatoire et d'une fonction mesurable](Probabilité II.pdf #esperanceg) avec l'intégrale de Lebesgue.
-
-### Proposition {.proposition #esperanceg2}
-Soit $X$ une variable aléatoire réelle de loi $\P_X$ et $g$ une fonction $\B(\R)/\B(\R)$-mesurable (borélienne). Alors $g(X)$ est intégrable si et seulement si l'intégrale
-$$\int_\R |g(x)| \P_X(dx) = \int_\Omega |g(X(\omega))|\P(d\omega)$$
-est finie et dans ce cas
-$$\Esp(g(X)) = \int_R g(x) \P_X(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
-
-Ce résultat a été démontré en exercice au chapitre IV de calcul intégral (mesure image).
 
 ## Indépendance et suites de variables indépendantes
 On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peut ainsi caractériser l'indépendance de deux variables aléatoires quelconques au moyen du théorème de Fubini et du résultat d'unicité de la mesure produit donné au chapitre V de calcul intégral.
