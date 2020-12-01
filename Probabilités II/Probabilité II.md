@@ -829,7 +829,7 @@ $$\P(T\geq 3 |T \geq 1) = \frac{\P(T \geq 3,T \geq 1)}{\P(T \geq 1)} = \frac{\P(
 Les variables aléatoires $X_1 , \ldots , X_{10}$ sont indépendantes et suivent une loi de Bernoulli de paramètre :
 $$ \P (T \leq 1) = F (1) = 1 - e^{- 1/2}$$
 
-On en déduit que la loi de N est la loi binomiale de paramètre $(10, 1 - e ^{- 1/2)$.
+On en déduit que la loi de N est la loi binomiale de paramètre $(10, 1 - e^{- 1/2})$.
 
 ### Question 4 {.answer #answer-dureevie4} 
 
