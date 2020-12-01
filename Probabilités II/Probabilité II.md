@@ -117,7 +117,7 @@ L'inclusion $\L^2 \subset \L^1$ découle de $|X| \leq 1 + X^2$ et de la [proposi
 
 La première inégalité a déjà été vue [ci-dessus](#propl1). Pour la seconde, nous pouvons nous limiter au cas où $X$ est positive. Soit alors $a = \Esp(X)$ et $Y = X-a$. Par linéarité, on a 
         $$ \Esp(Y^2) = \Esp(X^2) - 2a \Esp(X) + a^2 = \Esp(X^2)-a^2.$$
-Et $\Esp(Y^2) \geq 0$ par le troisième point de la [proposition ci-dessus](#propl1). Par conséquent, $\Esp(X)^2 = a \leq \Esp(X^2)$ ce qui est le résultat recherché.
+Et $\Esp(Y^2) \geq 0$ par le troisième point de la [proposition ci-dessus](#propl1). Par conséquent, $\Esp(X)^2 = a^2 \leq \Esp(X^2)$ ce qui est le résultat recherché.
 
 ### Approximation par une constante {.exercise .question .one #exo-approx}
 
@@ -145,6 +145,8 @@ qui est bien défini lorsque $\V(X)>0$ et $\V(Y)>0$.
 
 ### Calcul d'une covariance {.exercise .question .one #cov-unif}
 Soit $U \sim \mathcal{U}_{[0,1]}$ et $V = 1-U$. Calculer $\cov(U,V)$ et $\rho(U,V)$.
+
+### {.anonymous}
 
 Du fait de la linéarité de l'espérance, on a 
 $$\cov(X,Y) = \Esp(XY) - \Esp(X)\Esp(Y)$$
@@ -343,7 +345,7 @@ Lorsqu'on modélise plusieurs variables conjointement, une hypothèse importante
 
 Dans ce paragraphe, on considère un couple $(X,Y)$ de vecteurs aléatoires respectivement à valeurs dans $\R^m$ et $\R^n$. Les résultats s'étendent sans peine à une famille finie quelconque. 
 
-On peut se ramener aux évènements pour caractériser l'indépendance de deux vecteurs aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles dans $\B_{\R^m}$ et $\B_{\R^n}$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quels que soient $A$ et $B$.
+On peut se ramener aux évènements pour caractériser l'indépendance de deux vecteurs aléatoires. En effet, considérons le vecteur aléatoire $Z = (X,Y)$, $A$ et $B$ deux ensembles dans $\B({\R^m})$ et $\B({\R^n})$. On a vu que les évènements $X\in A$ et $Y \in B$ sont indépendants si et seulement si $\P_Z(X \in A, Y \in B) = \P(X^{-1}(A) \cap Y^{-1}(B)) = \P(X^{-1}(A))\P(Y^{-1}(B)) = \P_X(X \in A)\P_Y(Y \in B)$. Pour que deux vecteurs aléatoires soient indépendants, on va donc demander que ceci soit valable quels que soient $A$ et $B$.
 
 ### Vecteurs aléatoires indépendants {.definition #defvai}
 Les vecteurs aléatoires $X$ et $Y$ sont *indépendants* si pour tous ensembles $A$ et $B$ des tribus correspondantes, 
@@ -361,7 +363,7 @@ S'il y a indépendance, la [définition](#defvai) implique
 $$P(X\leq x, Y\leq y) = P(X\leq x) \P(Y\leq y) = \int_{-\infty}^x f_X(u) du \int_{-\infty}^y f_Y(v) dv$$
 ce qui montre que $\P_Z$ vérifie la [définition d'un vecteur aléatoire à densité](#defvect) avec $f_Z=f_X f_Y$.
 
-Inversement, si $f_Z=f_X f_Y$, on a pour tous $A$, $B$ de $\B_{\R}$
+Inversement, si $f_Z=f_X f_Y$, on a pour tous $A$, $B$ de $\B({\R})$
 $$\P(X\in A, Y\in B) = \int_A \int_B f_X(x) f_Y(y) dxdy = \P(X \in A)\P(Y \in B)$$ 
 où on a utilisé le [théorème de Fubini](Calcul Intégral III.pdf #Fubini).
 
@@ -419,13 +421,13 @@ $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R} h \circ g(x) f_X(x) dx$$
 et on fait le changement de variable $y = g(x)$ dans cette intégrale. Cela nécessite que $g$ soit dérivable et bijective “par morceaux”, et il faut faire très attention aux domaines où $g$ est croissante ou décroissante. Puisque la fonction $h$ est arbitraire, on appelle couramment cette technique la *méthode de la fonction muette*. Cette approche résulte en fait de la proposition suivante que nous ne démontrerons pas :
 
 ### Méthode de la fonction muette {.proposition}
-Si il existe une fonction $f$ telle que pour toute fonction mesurable $h$ telle que $h(x) f(x)$ soit absolument intégrable, 
+Si il existe une fonction $f$ telle que pour toute fonction mesurable $h$ telle que $h(x) f(x)$ soit  intégrable, 
 $$\Esp(h(X)) = \int_\R h(x) f(x) dx$$
 alors la loi de $X$ admet la densité $f$.
 
 ### Démonstration {.proof}
 L’idée de la preuve repose sur le fait que parmi ces fonctions se trouvent les $h = 1_{]-\infty,y]}$, pour laquelle la formule précédente donne la fonction de répartition de $f$.
-Pour un démonstration complète, voir @Jacod.
+Pour une démonstration complète, voir @Jacod.
 
 ### {.post}
 
@@ -443,13 +445,15 @@ Nous donnons ici quelques exemples d'application de cette méthode :
    et on en déduit
         $$f_Y(y) = (f_X(-\sqrt{y})+f_X(\sqrt{y}))\frac{1}{2\sqrt{y}}1_{\left]0,+\infty\right[}$$
 
+### Conséquences {.remark}
+
 Dans le cas des vecteurs aléatoires, l'idée est la même. Soit $X = (X_1,\ldots,X_n)$, un vecteur aléatoire de densité $f_X$ sur $\R^n$, $g$ une fonction de $\R^n$ dans $\R^m$ et $Y = g(X)$. Plusieurs cas sont à considérer :
 
  1. $m > n$, le vecteur $Y$ n'admet pas de densité.
  2. $m=n$, on utilise comme dans le cas unidimensionel le changement de variable $y = g(x)$ dans 
         $$ \Esp(h(Y)) = \Esp(h \circ g (X)) = \int_{\R^n} h \circ g(x) f_X(x) dx $$
-    Supposons d'abord que $g$ soit une bijection continûment différentiable de $A$ dans $B$, ouverts de $\R^n$. Sous l'hypothèse que $h \circ g(x) f_X(x)$ soit absolument intégrable, le [théorème de changement de variable](Calcul Intégral III.pdf) nous assure :
-        $$ \int_A h\circ g f_X(x) dx = \int_B h(y) f_X \circ g^{-1}(y) \frac{1}{|\det J_g (g^{-1}(y))|} dy,$$ 
+    Supposons d'abord que $g$ soit une bijection continûment différentiable de $A$ dans $B$, ouverts de $\R^n$. Sous l'hypothèse que $h \circ g(x) f_X(x)$ soit  intégrable, le [théorème de changement de variable](Calcul Intégral III.pdf) nous assure :
+        $$ \int_A h\circ g (x) f_X(x) dx = \int_B h(y) f_X \circ g^{-1}(y) \frac{1}{|\det J_g (g^{-1}(y))|} dy,$$ 
     où $J_g$ désigne la matrice de Jacobi associée à la différentielle de $g$. Dans le cas où $f_X(x) = 0$ en dehors de $A$, on obtient que $Y$ admet la densité
         $$ f_Y(y) = 1_B(y)f_X \circ g^{-1}(y)\frac{1}{|\det J_g (g^{-1}(y))|}.$$
     Lorsque $g$ est simplement continûment différentiable, il existe souvent une partition finie $(A_i)_{1\leq i \leq n}$ de l'ensemble $\{x ; f(x) >0\}$, telle que $g$ soit injective sur chaque $A_i$. On note alors $B_i = g(A_i)$ l'image de $A_i$ par $g$. On découpe alors l'intégrale selon les $A_i$, on applique la formule précédente à chaque morceau et on somme pour obtenir :
@@ -753,7 +757,7 @@ $$\Esp((X-\Esp(X))(Y-\Esp(Y))) = \Esp(X-\Esp(X))\Esp(Y-\Esp(Y)) = 0 = \rho(X,Y)$
 ### Lancer de fléchette (fin) {.answer #answer-exo-flechetteter}
 En coordonnées polaires, le domaine $D$ est décrit par $D = \{(r,\theta) \in [0,1] \times [0,2\pi]\}$. La densité de $(R,\theta)$ s'écrit ainsi :
 $$f_{(R,\theta)}(r,\theta) = \frac{r}{\pi}1_{D} (r\cos(\theta),r\sin(\theta)) = 2r 1_{[0,1]}(r) \frac{1}{2\pi}1_{[0,2\pi]}(r).$$
-Ainsi $R$ et $\Theta$ sont indépendantes de densités respectives $2r 1_{[0,1]}(r)$ et $\frac{1}{2\pi}1_{[0,2\pi]}(r)$.
+Ainsi $R$ et $\Theta$ sont indépendantes de densités respectives $2r 1_{[0,1]}(r)$ et $\frac{1}{2\pi}1_{[0,2\pi]}(\theta)$.
 
 ### Loi bêta {.answer #answer-exo-loibeta}
 On note d'abord que la dimension de $Y$ est plus petite que celle de $X$. On va donc compléter $Y$ en prenant par exemple $Y' = (Y,Z)$, avec $Z=U+V$, ce qui correspond à $g(u,v) = \left(\frac{u}{u+v},u+v\right)$. Cette application est bijective de $A = \left]0,+\infty\right[^2$ dans $B = \left]0,1\right[ \times \left]0,+\infty\right[$, d'inverse $g^{-1}(y,z) = (yz,z(1-y))$, qui a pour jacobien $z$.
@@ -786,7 +790,7 @@ $$ G_{t_0}(t) = \P(T>t+t_0|T>t_0) = \frac{\P(T>t+t_0,T>t)}{\P(T>t)} = \frac{G(t+
 
 ### Question 2 {.answer #answer-viemort2}
 
-D'après la question précédente, $G$ vérifie alors $G(t_0+t) = G(t)G(t_0)$ pour tous $t, t_0 > 0$. Comme $G$ est décroissante, continue à gauche et tend vers 0 à l'infini, on en déduit que $G(t) = e ^{-\theta t}$, pour un $\theta > 0$. On reconnaît la fonction de répartition complémentaire d'une loi exponentielle de paramètre $\theta$.
+D'après la question précédente, $G$ vérifie alors $G(t_0+t) = G(t)G(t_0)$ pour tous $t, t_0 > 0$. Comme $G$ est décroissante, continue à droite et tend vers 0 à l'infini, on en déduit que $G(t) = e ^{-\theta t}$, pour un $\theta > 0$. On reconnaît la fonction de répartition complémentaire d'une loi exponentielle de paramètre $\theta$.
 
 ### Question 3 {.answer #answer-viemort3}
 \begin{align*}
@@ -818,23 +822,23 @@ L'espérance vaut :
 
 La probabilité s'écrit :
 
-$$\P(T\geq 3 |T \geq 1) = \frac{\P(T \geq 3,T \geq 1)}{\P(T \geq 1)} = \frac{\P(T \geq 3)}{\P(T \geq 1)} = \frac{e^{-9/2}}{e^{-1/2}} = e^-4$$
+$$\P(T\geq 3 |T \geq 1) = \frac{\P(T \geq 3,T \geq 1)}{\P(T \geq 1)} = \frac{\P(T \geq 3)}{\P(T \geq 1)} = \frac{e^{-9/2}}{e^{-1/2}} = e^{-4}$$
 
 ### Question 3 {.answer #answer-dureevie3} 
 
-Les variables aléatoires $X_1 , \ldots , X_10$ sont indépendantes et suivent une loi de Bernoulli de paramètre :
-$$ \P (T \leq 1) = F (1) = 1 - e^{- 2}$$
+Les variables aléatoires $X_1 , \ldots , X_{10}$ sont indépendantes et suivent une loi de Bernoulli de paramètre :
+$$ \P (T \leq 1) = F (1) = 1 - e^{- 1/2}$$
 
-On en déduit que la loi de N est la loi binomiale de paramètre (10, 1 - e - 2 ).
+On en déduit que la loi de N est la loi binomiale de paramètre $(10, 1 - e ^{- 1/2)$.
 
 ### Question 4 {.answer #answer-dureevie4} 
 
 La probabilité que l’équipement en série soit défaillant avant 1 an vaut :
-$$ P(N \geq 1) = 1 - \P(N = 0) = 1 - e^{-2} \approx 9.9 10 -1 = 99%$$
+$$ P(N \geq 1) = 1 - \P(N = 0) = 1 - e^{-1/2} \approx 9.9 10 -1 = 99%$$
 
 ### Question 5 {.answer #answer-dureevie5} 
 La probabilité que l’équipement en parallèle soit défaillant avant 1 an vaut :
-$$ \P(N = 10) = (1 - e^{-2})^10 \approx 8.9 10 -5 $$
+$$ \P(N = 10) = (1 - e^{-1/2})^10 \approx 8.9 10 -5 $$
 
 ## Crues centennales de la Seine
 
@@ -997,7 +1001,7 @@ Supposons que $(X,X_{c_0})$ soit un vecteur gaussien. Alors, puisque $\text{Cov}
 
 ### A 1 degré de liberté {.answer #answer-khi2-1dl}
 
-1. Soit $h : \R \to \R$ une fonction mesurable telle que $h\times f$ est absolument intégrable. Alors en opérant le changement de variable $u = x^2$ on a
+1. Soit $h : \R \to \R$ une fonction mesurable telle que $h\times f$ est  intégrable. Alors en opérant le changement de variable $u = x^2$ on a
 \begin{align*}
 \Esp\left( h(Y) \right) &= \Esp\left(h(X^2)\right) = \int_{\R} h(x^2)\,f(x)\,dx\\
 & = \int_{-\infty}^{0} h(x^2)\,f(x)\,dx + \int_{0}^{+\infty} h(x^2)\,f(x)\,dx\\
