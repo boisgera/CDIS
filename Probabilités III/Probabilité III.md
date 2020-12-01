@@ -1,11 +1,10 @@
-% Probabilité III
+% Probabilités III
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
 \renewcommand{\P}{\mathbb{P}}
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
-\renewcommand{\No}{\mathcal{N}}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\B}{\mathcal{B}}
@@ -14,1131 +13,649 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
-Probabilités --- cadre général
-================================================================================
 
-## Interprétation 
+On s'est consacré jusqu'à présent à l'étude de (suites de) variables aléatoires indépendantes. En pratique cependant, on rencontre souvent des variables dépendant les unes des autres. Dans le cas de la météo, les variables température, vitesse du vent et pression en fournissent un exemple. Dans les approches bayésiennes, on résume l'information disponible sur l'état du système étudié par la **loi a priori** et on met à jour notre connaissance du système en incorporant de l'information supplémentaire (par exemple des observations). On cherche alors à caractériser la **loi a posteriori** de l'état du système, qui est la loi de l'état sachant l'information supplémentaire. On va ainsi s'attacher dans ce chapitre à décrire les **lois conditionnelles** qui vont permettre de résumer l'information apportée par une variable (ou un vecteur) sur une autre et s'intéresser en particulier à l'**espérance conditionnelle** qui indiquera le comportement moyen d'une variable conditionnellement à une autre. Ce dernier cas pose le cadre probabiliste d'un des problèmes fondamentaux en apprentissage statistique : l'apprentissage supervisé, où on dispose d'un ensemble de réalisations d'une variable dont on cherche à prédire le comportement à partir d'un ensemble de variables dites explicatives (ou prédicteurs).
 
-Les éléments de théorie de la mesure donnés en calcul intégral permettent une relecture des premiers chapitres de probabilités. Le principal avantage est que les différents cas de figures déjà évoqués : lois de probabilités discrètes, à densité, mixtes vont pouvoir être traités dans un cadre unifié. L'intégrale que nous considérons est l'intégrale de Lebesgue. On peut déjà s'apercevoir qu'une [probabilité](Probabilité I.pdf #defproba) $\P$ définie sur un espace probabilisable (mesurable) $(\Omega, \A)$ est une mesure positive *finie* au sens où $\P(\Omega) = 1$ et hérite ainsi de ses propriétés, on parle aussi de *mesure de probabilité*. 
+# Lois conditionnelles dans un couple
+
+Soient deux variables aléatoire $X$ et $Y$ définies sur le même espace probabilisé $(\Omega, \A, \P)$. Dans le cas où $X$ et $Y$ sont indépendantes, on a vu que pour tous boréliens $B_1$ et $B_2$ de $\R$, on a 
+$$\P(X\in B_1, Y\in B_2)= \P(X\in B_1)\P(Y\in B_2) = \P_X(B_1)\P_Y(B_2) = \int_{B_1}\P_Y(B_2)\P_X(dx),$$
+où on a utilisé le théorème de Fubini (les mesures de probabiltés sont finies, donc $\sigma$-finies).
+
+Du fait de l'indépendance, on a aussi $\P_Y(B_2) = \P(Y\in B_2) = \P(Y \in B_2 | X \in B_1) = \P_Y(B_2|X \in B_1)$ ce qui exprime que pour tout borélien $B_1$, la loi conditionnelle de $Y$ sachant $X\in B_1$ est identique à la loi de $Y$.
+
+Dans le cas général, on va chercher une égalité de la forme
+$$\P(X\in B_1, Y\in B_2) = \P_X(B_1)\P_Y(B_2 |X\in B_1) = \int_{B_1}\P_{Y|X=x}(B_2)\P_X(dx)$$
+et s'intéresser à caractériser la *loi conditionnelle de $Y$ sachant $X=x$*, que l'on notera donc $\P_{Y|X=x}$.
+
+De même, pour toute application $g : \R^2 \to \R$ borélienne telle que $g(X,Y)$ admette une espérance (relativement à la loi du couple $\P_{X,Y}$), on voudrait écrire :
+$$\Esp(g(X,Y)) = \int_{\R} \left( \int_{\R} g(x,y) \P_{Y|X=x}(dy)\right) \P_X(dx)$$
+
+Pour bien fixer les idées, on va décrire spécifiquement les cas où $X$ est discrète puis où le couple $(X,Y)$ admet une densité avant d'aborder le cas général.
+
+## Cas où $X$ est discrète
+Dans ce paragraphe, on suppose que la variable aléatoire réelle $X$ est discrète, c'est-à-dire que l'ensemble $X(\Omega) \subset \R$ des valeurs $x_k$ prises par $X$ est au plus dénombrable.
+
+On peut imposer que $\forall x \in X(\Omega)$ on ait $\P(X=x) > 0$, quitte à modifier $X$ sur un ensemble de probabilité nulle. On va ainsi pouvoir utiliser la définition de la probabilité conditionnelle pour des événements de la forme $\{X =x\}$. Ceci permet d'écrire pour tous boréliens $B_1$ et $B_2$ de $\R$ :
+\begin{align*}
+\P(X \in B_1, Y \in B_2) &= \sum_{x \in X(\Omega)\cap B_1} \P(X=x, Y\in B_2)\\
+                         &= \sum_{x \in X(\Omega)\cap B_1} \P(X=x) \P(Y \in B_2 | X=x)\\
+                         &= \int_{B_1} \P(Y \in B_2 | X=x) \P_X(dx)
+\end{align*}
+puisque $\P_X = \sum_{x \in X(\Omega)} \P(X=x)\delta_x$. On obtient ainsi l'écriture souhaitée en posant
+$$\P_{Y|X=x}(B_2) = \P(Y \in B_2 | X=x),\,\,\,\forall x \in X(\Omega), \forall B_2\in\B(\R).$$
 
 ### Remarque {.remark}
+$\P_{Y|X=x}$ ainsi définie est simplement la probabilité sur $(\R,\B(\R))$ image par $Y$ de la probabilité conditionnelle $\P(\cdot|X=x)$ définie sur $(\Omega,\A)$, autrement dit, la **loi de $Y$ relative à $\P(\cdot|X=x)$** et non à $\P$.
 
-* Dans le cas discret ($\Omega$ au plus dénombrable), la mesure de probabilité est une somme pondérée de mesures de Dirac :
-  $$\P = \sum_{\omega \in \Omega} p_{\omega} \delta_{\omega},$$
-  où $\sum_{\omega \in \Omega} p_{\omega} =1$
-* Dans le cas à densité ($\Omega = \R^n$, $n\in\N^\ast$), la mesure de probabilité s'écrit :
-  $$\P = f\mu,$$
-  où $f$ est une densité et $\mu$ la mesure de (Borel-)Lebesgue sur $\R^n$. On dit que $\P$ admet une densité par rapport à la mesure de (Borel-)Lebesgue.
+La formule ci-dessus s'écrit $\P_{X,Y}(B_1 \times B_2) = \int_{B_1} \P(Y \in B_2 | X=x) \P_X(dx)$, où $\P_{X,Y}$ est la loi du couple. Elle se généralise à tout borélien $B$ de $\R^2$ de la manière suivante :
 
-Une [variable aléatoire réelle](Probabilité II.pdf #defvar) (v.a.r), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$. 
+\begin{align*}
+\P_{X,Y}(B) &= \P((X,Y)\in B) = \sum_{x \in X(\Omega)} \P(X=x, (x,Y) \in B) \\
+      &= \sum_{x \in X(\Omega)} \P(X=x) \P((x,Y) \in B | X=x) \\
+      &= \sum_{x \in X(\Omega)} \P(X=x) \P_{Y|X=x}(B_x),
+\end{align*}
 
-Le fait que la composition d'un vecteur aléatoire réel par une application $\B(\R^n)/\B(\R)$ mesurable est une variable aléatoire s'obtient immédiatement par le résultat du chapitre précédent de calcul intégral relatif à la [composition de fonctions mesurables](Calcul Intégral V.pdf #compfoncmes). 
+où $B_x = \{y\in \R, (x,y) \in B\}$. Ainsi, pour tout $B$ borélien de $\R^2$,
 
-On peut généraliser la définition des espaces vectoriels $\L^1$ et $\L^2$ de la manière suivante :
+$$\Esp(1_B(X,Y)) = \int_{\R^2} 1_B(x,y)\P_{X,Y}(dx dy) = \int_\R \left(\int_\R 1_B(x,y) \P_{Y|X=x}(dy)\right)  \P_X(dx)$$
 
-### Définition --- Espace $\L^1$ {.definition}
-Soit $X$ une variable aléatoire réelle. $X$ est intégrable et on note $X \in \L^1$, ou $\L^1(\Omega,\A,\P)$, si et seulement si $\Esp(|X|) = \int_{\R} |x| \P_X(dx) = \int_{\Omega} |X|(\omega)\P(d\omega) < +\infty$.
+Par linéarité de l'espérance, on peut ainsi exprimer l'espérance d'une fonction étagée. Pour avoir le résultat pour une fonction borélienne positive, on exprime celle-ci comme limite simple d'une suite croissante de fonctions étagées, et on applique le théorème de convergence monotone. Enfin, on applique cette construction à $g_+$ et $g_-$ pour une fonction $g$ de signe quelconque $\P_{X,Y}$-intégrable. En d'autres termes, on reprend le procédé de construction de l'intégrale de Lebesgue. On obtient ainsi la formule souhaitée :
+$$\Esp(g(X,Y)) = \int_{\R} \left( \int_{\R} g(x,y) \P_{Y|X=x}(dy)\right) \P_X(dx).$$
 
-### Définition --- Espace $\L^2$ {.definition}
-Soit $X$ une variable aléatoire réelle. $X$ est de carré intégrable et on note $X \in \L^2$, ou $\L^2(\Omega,\A,\P)$, si et seulement si $\Esp(X^2) = \int_{\R} x^2 \P_X(dx) = \int_{\Omega} X^2(\omega)\P(d\omega) < +\infty$.
+### Exemple {.example #ex1}
 
-Les propriétés des espaces $\L^1$ et $\L^2$ données au chapitre 2 du cours de probabilités sont vraies en toute généralité. On peut d'ailleurs étendre ces définitions pour un $p \in \N^\ast$ quelconque.
+Soit $X \geq 0$ une variable aléatoire à valeurs dans $\N$ et $Y$ une variable aléatoire réelle positive telle que la loi du couple $\P_{X,Y}$ vérifie pour tout $n\in\N$ et tout borélien $B_2$ de $\R$ :
+$$\P_{X,Y} (\{n\}\times B_2) = (1-\alpha)\alpha^n \int_{B_2 \cap \R_+^\ast}e^{-t}\frac{t^n}{n!}dt,\,\,\, 0 < \alpha <1$$
+$\P_{X,Y}$ est bien une probabilité sur $\R^2$ puisque par convergence monotone :
+\begin{align*}
+\P_{X,Y} (\R^2) &= \P_{X,Y}(\N \times \R) \\
+                &= \sum_{n\in\N} \P_{X,Y} (\{n\}\times \R)\\
+                &= \sum_{n\in\N} (1-\alpha)\alpha^n \int_{\R_+^\ast}e^{-t}\frac{t^n}{n!}dt \\
+                &= (1-\alpha)\int_{\R_+^\ast}e^{-t} \sum_{n\in\N} \frac{\alpha t^n}{n!}dt \\
+                &= (1-\alpha)\int_{\R_+^\ast}e^{-(1-\alpha)t} dt = 1
+\end{align*}               
+où on aura reconnu la loi exponentielle de paramètre $(1-\alpha)$.
+$\forall n \in \N$, 
+$$ \int_{\R_+^\ast}e^{-t}\frac{t^n}{n!}dt = \int_{\R_+^\ast}e^{-t}\frac{t^{(n-1)}}{(n-1)!}dt = \ldots = \int_{\R_+^\ast}e^{-t}dt =1$$
+par intégrations par parties itérées. La loi marginale de $X$ s'écrit donc :
+$$\forall n \in \N, \P(X=n) = \P_{X,Y} (\{n\}\times \R_+^\ast) = (1-\alpha)\alpha^n,$$ 
+loi géométrique de paramètre $(1-\alpha)$. On en déduit la loi conditionnelle de $Y$ sachant $X = x$ :
+$$\P_{Y|X=x}(B_2) = \P(Y \in B_2 | X=x) = \frac{\P_{X,Y} (\{n\}\times B_2)}{\P(X=n)} = \int_{B_2 \cap \R_+^\ast} e^{-t}\frac{t^n}{n!}dt$$
+et $\P_{Y|X=x}$ est la donc la loi gamma de paramètre $(n+1,1)$.
 
-### Définition --- Espace $\L^p$ {.definition}
-Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^p(\Omega,\A,\P)$, si et seulement si $\Esp(|X|^p) = \int_\R |x|^p \P_X(dx) = \int_{\Omega} |X|^p(\omega)\P(d\omega) < +\infty$.
 
-Si $X \in \L^p$, on dit qu'elle admet un moment d'ordre $p$. Du fait que $\P$ est une mesure finie, on a la stabilité par inclusion suivante :
+## Densités conditionnelles
+
+On suppose maintenant que le couple $(X,Y)$ admet une densité $f_{X,Y}$ (par rapport à la mesure de Borel-Lebesgue). On note $f_X(x) = \int_\R f_{X,Y}(x,y)dy$ (respectivement $f_Y(y) = \int_\R f_{X,Y}(x,y)dx$) la loi marginale de $X$ (resp. de $Y$). On s'intéresse à caractériser la densité de la variable $Y$ connaissant la valeur prise par la variable $X$, c'est la *densité conditionnelle* de $Y$ sachant $\{X = x\}$ :
+
+### Proposition {.proposition #defdenscond}
+La formule suivante définit une densité sur $\R$, pour tout $x \in \R$ tel que $f_X(x) > 0$.
+$$ f_{Y|X=x}(y) = \frac{f_{X,Y}(x,y)}{f_X(x)}.$$
+Cette fonction s'appelle la *densité conditionnelle de $Y$ sachant $\{X = x\}$*.
+La probabilité conditionnelle de $Y$ sachant $\{X = x\}$ s'écrit ainsi $\P_{Y|X=x} = f_{Y|X=x}\ell$, où $\ell$ représente la mesure de Borel-Lebesgue.
+
+### Démonstration {.proof}
+La preuve est immédiate puisque $f_{Y|X=x}$ est une fonction positive d'intégrale 1.
+
+### {.anonymous}
+
+L’interprétation de cette définition est la suivante : la fonction $f_{Y|X=x}$ est la densité de la “loi conditionnelle de $Y$ sachant que $X = x$”. Bien sûr, nous avons $\P(X = x) = 0$ puisque $X$ admet une densité, donc la phrase ci-dessus n’a pas réellement de sens, mais elle se justifie heuristiquement ainsi : $dx$ et $dy$ étant de “petits” accroissements des variables $x$ et $y$ et lorsque $f$ et $f_X$ sont continues et strictement positives respectivement en $(x,y)$ et $x$ :
+\begin{align*}
+f_X(x) dx & \approx \P(X \in [x, x+dx])\\
+f_{X,Y}(x,y) dx dy & \approx \P(X \in [x, x+dx], Y \in [y, y+dy])\\
+\end{align*}
+Par suite 
+\begin{align*}
+f_{Y|X=x} (y) dy & \approx \frac{\P(X \in [x, x+dx], Y \in [y, y+dy])}{\P(X \in [x, x+dx])}\\
+                 & \approx \P(Y \in [y, y+dy]|X \in [x, x+dx])\\
+\end{align*}
+
+On a alors le résultat suivant qui résout le problème posé en introduction :
 
 ### Proposition {.proposition}
-Soit $p \in \N^\ast$, on a l'inclusion :
-$$ \L^{p+1}(\Omega,\A,\P) \subset \L^p(\Omega,\A,\P)$$
-
-### Démonstration {.proof}
-Supposons $X \in \L^{p+1}(\Omega,\A,\P)$. On a
-$$|X|^p \leq \max(1,|X|^{p+1}) = 1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}.$$
-Le terme de droite est intégrable, en effet :
-$$\Esp\left(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}\right) \leq \int_\Omega \P(d\omega) + \int_\Omega |X(\omega)|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}).$$
-donc $|X|^p$ est intégrable.
-
-### {.anonymous}
-
-On donne ici dans le cas général les inégalités de Markov et de Bienaymé-Chebyshev, déjà vues en CPGE.
-
-### Inégalité de Markov {.theorem #inegmarkov}
-Soient $p \in \N^\ast$ et $a \in \R^\ast$. Soit $X \in \L^p(\Omega,\A,\P)$, on a
-$$\P(|X|\geq a) \leq \frac{\Esp(|X|^p)}{a^p}$$
+Pour toute fonction $g : \R^2 \to \R$ telle que $g(X,Y)$ admette une espérance, on a :
+$$\Esp(g(X,Y)) = \int_\R \left( \int_\R g(x,y)f_{Y|X=x}(y) dy \right) f_X(x) dx,$$ 
+dont on déduit, en prenant $g=1_{B_1 \times B_2}$, que :
+$$\P(X\in B_1, Y\in B_2) = \int_{B_1} \left( \int_{B_2}f_{Y|X=x}(y) dy \right) f_X(x) dx.$$
 
 ### Démonstration {.proof}
 On a 
-$$|X|^p \geq a^p 1_{[a, +\infty[}(|X|)$$
-et en prenant l'espérance, on obtient ainsi
-$$\Esp(|X|^p) \geq a^p \Esp(1_{[a, +\infty[}(|X|)) = a^p \P(|X|\geq a).$$
-
-### Inégalité de Bienaymé-Chebyshev {.corollary #inegbc}
-Soit $X \in \L^2$, on a
-$$\P(|X-\Esp(X)| > a) \leq \frac{\V(X)}{a^2}$$
-
-### Démonstration {.proof}
-C'est une application immédiate de [l'inégalité de Markov](#inegmarkov) à $(X-\Esp(X))$ avec $p =2$.
-
-### Remarque {.remark}
-
-L'inégalité de Bienaymé-Chebyshev est très utile en pratique. Elle permet de mesurer la probabilité des grands écarts entre $X$ et sa moyenne. Par exemple, avec $a = 10 \sigma X$, il en résulte qu’il est improbable qu’une variable aléatoire $X$ dévie de son espérance $\Esp(X)$ de plus de 10 fois son écart-type
-(probabilité inférieure à 0.01). Cette inégalité, tout à fait générale, n’est cependant pas très précise, et surestime très souvent en pratique le membre de gauche. On préférera, quand c'est possible, calculer directement ces probabilités à partir de la loi de $X$.
-
-On peut également réécrire [la proposition portant sur l'espérance de la composée d'une variable aléatoire et d'une fonction mesurable](Probabilité II.pdf #esperanceg) avec l'intégrale de Lebesgue.
-
-### Proposition {.proposition #esperanceg2}
-Soit $X$ une variable aléatoire réelle de loi $\P_X$ et $g$ une fonction $\B(\R)/\B(\R)$-mesurable (borélienne). Alors $g(X)$ est intégrable si et seulement si l'intégrale
-$$\int_\R |g(x)| \P_X(dx) = \int_\Omega |g(X(\omega))|\P(d\omega)$$
-est finie et dans ce cas
-$$\Esp(g(X)) = \int_R g(x) \P_X(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
-
-Ce résultat a été démontré en exercice au chapitre IV de calcul intégral (mesure image).
-
-## Indépendance et suites de variables indépendantes
-On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peut ainsi caractériser l'indépendance de deux variables aléatoires quelconques au moyen du théorème de Fubini et du résultat d'unicité de la mesure produit donné au chapitre V de calcul intégral.
-
-### Proposition --- indépendance d'un couple de variables aléatoires {.proposition}
-
-Soient $X$ et $Y$ deux variables aléatoires réelles définies toutes deux sur $(\Omega,\A,\P)$. Le couple $Z = (X,Y)$ peut-être considéré comme un vecteur aléatoire à valeurs dans $(\R^2, \B(\R)\otimes \B(\R))$, et les deux variables aléatoires $X$ et $Y$ sont indépendantes si et seulement si la loi $\P_{X,Y}$ du couple est égale au produit $\P_X \otimes \P_Y$ des lois de $X$ et $Y$.
-
-### Démonstration {.proof}
-
-Soit $A$ et $B$ deux boréliens de $\R$. On a évidemment $Z^{-1}(A \times B) = X^{-1}(A) \cap Y^{-1}(B) \in \A$ et donc la mesurabilité ($\A/ \left(\B(\R)\otimes \B(\R)\right)$)de $Z$ découle de [la définition de la tribu produit de Borel]().
-
-L'indépendance de $X$ et $Y$ revient au fait que pour tous boréliens $A$ et $B$ de $\R$, on ait
-    $$\P((X,Y) \in A\times B) = \P(X\in A)\P(Y \in B),$$
-ce qui équivaut à 
-    $$\P_{X,Y}(A \times B) = \P_X(A)\P_Y(B),$$
-qui est assuré par l'unicité de la mesure (de probabilité) produit.
-
-### {.anonymous}
-Ce résultat nous indique que l'on peut effectivement construire des couples (et même des $n$-uplets en itérant) de variables aléatoires réelles indépendantes en considérant l'espace produit, munis des tribus produit et des (mesures de) probabilités produit. Il est malheureusement beaucoup plus délicat, mais indispensable pour les applications (en particulier la loi des grands nombres), de construire une **suite infinie de variables indépendantes** de lois données.
-
-Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie sur un espace de probabilité $(\Omega_n,\A_n,\P_n)$, à valeurs dans $(\R,\B(\R))$ et de loi $\P_{X_n}$ (pour construire chaque $X_n$, on peut procéder comme ci-dessus). Ensuite, on pose
 \begin{align*}
-\Omega &= \prod_{n=1}^{\infty}\Omega_n \text{        (produit cartésien dénombrable),}\\
-\A &= \bigotimes_{n=1}^{\infty}\A_n,
+\Esp(g(X,Y)) &= \int_{\R^2} g(x,y) f_{X,Y}(x,y) dy dx \\
+             &= \int_{\R^2} g(x,y) f_{Y|X=x}(y)f_X(x) dy dx \\
+             &= \int_\R \left( \int_\R g(x,y)f_{Y|X=x}(y) dy \right) f_X(x)dx,
 \end{align*}
-où $\bigotimes_{n=1}^{\infty}\A_n$ désigne la plus petite tribu de $\Omega$ à laquelle appartienne tous les ensembles de la forme 
-$$A_1 \times A_2 \times \ldots\times A_k \times \Omega_{k+1} \times \Omega_{k+2} \times \ldots, \,\,\, A_i \in \A_i, \,\,\, k \in \N^\ast$$
+les calculs étant licites par application du théorème de Fubini et du fait que l'application $x \mapsto \int_\R g(x,y)f_{Y|X=x}(y) dy$ est définie pour $f_X(x) >0$, soit presque partout relativement à la mesure $\P_X = f_X l$.
 
-On a alors le théorème suivant, que l'on admettra, qui constitue un résultat non trivial de la théorie de la mesure et qui généralise le théorème d'unicité de la mesure produit.
+## Cas général
+On peut établir le résultat suivant, qui complète le théorème de Fubini et le résultat d'existence et d'unicité des mesures produits, et que l'on admettra.
 
-### Théorème --- mesure produit sur un espace de dimension infinie {.theorem #probaespaceden}
-Avec les notations ci-dessus, il existe une unique probabilité $\P$ sur $(\Omega,\A)$, telle que
-$$\P(A_1 \times \ldots\times A_k \times \Omega_{k+1} \times \ldots) =\prod_{i=1}^k \P_i(A_i)$$
-pour tous $k \in \N^{\ast}$ et $A_i \in \A_i$, $i \in \{1,\ldots,k\}$.
+### Théorème {.theorem #fubinicond}
+Soit un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$, il existe une famille $\left(\P_{Y|X=x}\right)_{x\in\R}$ de probabilités sur $(\R,\B(\R))$, unique à une égalité $\P_X$-presque partout près[^footequi], qui vérifie pour tous $B_1, B_2$ boréliens de $\R$ :
+$$ \P_{X,Y}(B_1 \times B_2) = \int_{B_1} \left( \int_{B_2} \P_{Y|X=x}(dy) \right) \P_X(dx).$$
+Ces probabilités sont appelées *lois conditionnelles* de $Y$ sachant $X =x$. On a de plus pour toute application $g : \R^2 \to \R$ telle que $g(X,Y)$ admette une espérance :
+$$\Esp(g(X,Y)) = \int_\R \left( \int_\R g(x,y)\P_{Y|X=x}(dy) \right) \P_X(dx).$$ 
 
-Nous sommes maintenant en mesure de définir une suite de variables aléatoires toutes définies sur le même espace de probabilité $(\Omega, \A, \P)$.
+[^footequi]: c'est-à-dire qu'on peut définir ces probabilités de la manière qu'on souhaite pour les boréliens $B$ tels que $\P_X(B)=0$.
 
-### Définition --- suites de variables aléatoires indépendantes {.definition}
-La suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires est dite *indépendante* si pour tout $n \in \N^\ast$, la famille finie $X_1,\ldots,X_n$ est indépendante.
+### Remarques {.remark}
 
-Il est facile de vérifier que l’indépendance est préservée par certaines transformations.
+* Ce résultat peut être interprété comme un **théorème de Fubini conditionnel**, dans le sens où il permet une intégration séquentielle, mais ici la mesure de probabilité du couple $(X,Y)$ s'exprime comme un produit de mesures dont l'un des termes dépend de la variable d'intégration de l'autre. En particulier, si on change l'ordre d'intégration, on change les mesures qui interviennent.
+* Fréquemment, dans les applications, la famille des lois conditionnelles est une donnée du modèle considéré, et leur existence ne pose donc pas de problème !
+* On retrouve les cas vus précédemment en notant que pour tout borélien $B_1$ de $\R$ on a $\P_X(B_1) = \int_{B_1}\P_X(dx) = \sum_{x \in B_1} \P(X=x)$ lorsque $X$ est discrète, et que pour tous boréliens $B_1$ et $B_2$ de $\R$ on a $\P_X(B_1) = \int_{B_1} f_X(x)dx$ et $\P_{X,Y}(B_1 \times B_2) = \int_{B_1 \times B_2}f_{X,Y}(x,y) dx dy$.
+* Dans tout ce qui précède, les rôles de $X$ et $Y$ peuvent évidemment être inversés. 
 
-### Proposition --- conséquences {.proposition}
-L'indépendance de la suite $(X_n)_{n\in \N^\ast}$ entraîne celle de 
+## Conséquences
+Le [théorème précédent](#fubinicond) a deux conséquences majeures. Il fournit d'une part un moyen efficace d'identifier la loi marginale de $Y$ connaissant la loi marginale de $X$ et la loi de $Y$ sachant $X = x$. En effet, en notant que pour tout borélien $B$ de $\R$, $\P_Y(B) = \P_{X,Y}(\R \times B)$ et en appliquant ce théorème, on a la proposition suivante :
 
- 1. toute sous-suite $(X_{i_k})_{k\in \N^\ast}$,
- 2. toute suite de vecteurs issus de $X_n$,
- 3. toute suite de la forme $(f_n(X_n))_{n\in \N^\ast}$, où les fonctions $f_n$ sont des fonctions mesurables.
+### Proposition {.proposition #balcond}
+
+* La loi marginale $\P_Y$ de $Y$ s’exprime comme la moyenne des lois conditionnelles $\P_{Y|X=x}$ pondérée par la loi de $X$. Pour tout $B$ borélien de $\R$
+$$\P_Y(B) = \int_\R \left( \int_{B} \P_{Y|X=x}(dy) \right) \P_X(dx) = \int_\R \P_{Y|X=x}(B) \P_X(dx)$$
+* Dans le cas où $X$ est discrète (à valeurs dans $I$ dénombrable), on retrouve une expression de la formule des probabilités totales et composées :
+$$\P_Y(B) = \P(Y\in B) = \sum_{x \in I} \P(Y \in B | X = x)\P(X=x)$$
+* Dans le cas où le couple $(X,Y)$ admet une densité, puisqu'on a $f_{X,Y}(x,y) = f_{Y | X=x}(y)f_X(x)$, on obtient l'expression suivante pour la densité marginale :
+$$f_Y(y) = \int_\R f_{X,Y}(x,y)dx = \int_\R f_{Y | X=x}(y)f_X(x) dx.$$
+ On a en particulier la *formule de Bayes pour les densités* : pour tout $x$ tel que $f_X(x) > 0$ et tout $y$ tel que $f_Y(y) > 0$ :
+    $$ f_{X|Y=y}(x) = \frac{f_{X,Y}(x,y)}{f_Y(y)} = \frac{f_{Y|X=x}(y)f_X(x)}{f_Y(y)} .$$
+
+
 
 ### Exemple {.example}
-Nous considérons l’ensemble $\Omega = [0, 1[$ muni de la tribu borélienne restreinte à cet ensemble, et de la mesure de Lebesgue. A chaque réel $\omega$, nous associons son développement dyadique (unique si l’on impose que les $\omega_i$ ne soient pas tous égaux à 1 à partir d’un certain rang) :
-$$ \omega = \sum_{i\in \N^\ast} \frac{\omega_i}{2^i},\,\,\, \omega_i \in \{0,1\}.$$
-L'application $X_i : \Omega \to \{0,1\}$, qui à $\omega$ associe $X_i(\omega) = \omega_i$ est une variable aléatoire sur $\Omega$. En effet, pour $x_i \in \{0,1\}$, $1\leq i \leq n$,
-$$ \{X_i = x_i\} = \bigcup_{x_1,\ldots, x_{i-1} \in \{0,1\}} \left[ \sum_{j=1}^i \frac{x_j}{2^j}, \sum_{j=1}^i \frac{x_j}{2^j} + \frac{1}{2^i}\right[, $$
-qui est bien un élément de la tribu borélienne de $\Omega = [0,1[$, et
-$$\P(\{X_i = x_i\}) = \frac{1}{2^i} \sum_{x_1,\ldots, x_{i-1} \in \{0,1\}} 1 = \frac{1}{2}.$$
-Montrons l'indépendance des variables aléatoires $(X_i)_{1\leq i \leq n}$. Nous avons 
-$$ \bigcap_{1\leq i \leq n} \{X_i = x_i\} = \left[ \sum_{i=1}^n \frac{x_i}{2^i}, \sum_{i=1}^n \frac{x_i}{2^i} + \frac{1}{2^n}\right[ $$
-si bien que 
-$$ \P\left(\bigcap_{1\leq i \leq n} \{X_i = x_i\}\right) = \frac{1}{2^n} = \prod_{1\leq i \leq n} \P(\{X_i = x_i\}).$$
-Cela démontre que les variables aléatoires $X_i$ sont indépendantes et de loi de Bernoulli de paramètre $\frac{1}{2}$ . Ainsi, nous venons de construire sur $\Omega$ une suite de variables aléatoires telle que toute sous-suite finie est constituée de variables aléatoires indépendantes. C’est donc une suite de
-variables aléatoires indépendantes de loi de Bernoulli de paramètre $\frac{1}{2}$ .
+Poursuivons [l'exemple vu plus haut](#ex1). On rappelle qu'on a déjà identifié la loi marginale de $X$ ainsi que la loi conditionnelle de $Y$ sachant $X=n$ pour $n\in\N$ que l'on rappelle ici :
+$$\P(X=n) = (1-\alpha)\alpha^n,\,n\in\N \text{ et }\forall  B \in \B(\R), \, \P_{Y|X=x}(B) = \int_{B \cap \R_+^\ast} e^{-t}\frac{t^n}{n!}dt$$
+On peut en déduire la loi marginale de $Y$ en utilisant la [proposition précédente](#balcond) et le théorème de convergence monotone :
+\begin{align*}
+\P_Y(B)  &= \sum_{n \in \N} (1-\alpha)\alpha^n \int_{B \cap \R_+^\ast} e^{-t}\frac{t^n}{n!} dt\\
+         &= (1-\alpha) \int_{B \cap \R_+^\ast} e^{-t} \sum_{n \in \N} \frac{(\alpha t)^n}{n!} dt \\
+         &= \int_B 1_{\R_+}(t)(1-\alpha) e^{-(1-\alpha)t} dt,
+\end{align*}
+de sorte que $Y$ suit une loi exponentielle de paramètre $(1-\alpha)$.
 
-On note enfin le résultat très utile suivant portant sur les suites d'événements indépendants.
+En inversant les rôles, on va pouvoir identifier la loi de $X$ sachant $Y \in B$ en notant que
+\begin{align*}
+\P_{X,Y}(\{n\} \times B) &= \P_X(\{n\})\P_{Y|X=n}(B) \\
+                         &= \int_B \frac{(\alpha t)^n}{n!} e^{-\alpha t} \P_Y(dt)\\
+                         &= \int_B \P_{X | Y =t}(\{n\}) \P_Y(dt)
+\end{align*}
+où l'on reconnaît que $\P_{X =n | Y =t}(\{n\}) = \frac{(\alpha t)^n}{n!} e^{-\alpha t}$, c'est-à-dire que $X$ sachant $Y = t$ suit une loi de Poisson de paramètre $\alpha t$ pour $\P_Y$-presque tout $t$.
 
-### Lemme de Borel-Cantelli {.lemma #BC}
+En utilisant, le [théorème précédent](#fubinicond), on obtient également une nouvelle caractérisation de l'indépendance de deux variables aléatoires faisant intervenir les lois conditionnelles.
 
-Soit $(A_n)_{n\in\N^\ast}$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
+### Proposition (critère d'indépendance) {.proposition}
 
-1. Si $\sum_{n=1}^{\infty} \P(A_n) < \infty$, alors $\P(\limsup\limits_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_n \right) =0$.
+1. $X$ et $Y$ sont indépendantes si et seulement si, pour $\P_X$-presque tout $x$, $\P_{Y |X = x}$ ne dépend pas de $x$ et dans ce cas, on a $\P_{Y |X = x} = \P_Y$, c'est-à-dire que la loi conditionnelle est identique à la loi marginale.
 
-2. Si $\sum_{n=1}^{\infty} \P(A_n) = \infty$ et si les événements $A_n$ sont mutuellement indépendants, alors on a $\P(\limsup\limits_{n \to \infty} A_n) = 1$.
+2. Dans le cas où $(X,Y)$ admet une densité, $X$ et $Y$ sont indépendantes si et seulement si la densité conditionnelle de $Y$ sachant $\{X = x\}$ ne dépend pas de $x$.
 
 ### Démonstration {.proof}
 
-Exercice.
+1. Si $X$ et $Y$ sont indépendantes, pour tous $B_1$, $B_2$ boréliens de $\R$, $\P_{X,Y} (B_1 \times B_2) = \P_X(B_1)\P_Y(B_2) = \int_{B_1}\P_Y(B_2)\P_X(dx) = \int_{B_2}\P_X(B_1) \P_Y(dy)$. Le résultat d'unicité du [théorème de Fubini conditionnel](#fubinicond) (à une égalité $\P_X$-presque sûre près), nous indique alors que $\P_{Y|X=x}(B_2) = \P_Y(B_2)$.
 
-# Convergences et loi des grands nombres
+   Inversement, si $\P_{Y |X = x} = \P_Y$, alors $\P_{X,Y} (B_1 \times B_2) = \int_{B_1}\P_{Y|X=x}(B_2)\P_X(dx) = \int_{B_1}\P_Y(B_2)\P_X(dx) = \P_X(B_1)\P_Y(B_2)$.
 
-## Convergences des variables aléatoires
-Dans ce paragraphe, on va décrire les notions de convergence de variables (on y inclut les vecteurs) aléatoires. On verra que plusieurs notions sont possibles, non équivalentes, ce qui enrichit mais complique aussi la description des comportements asymptotiques.
+2. Si $X$ et $Y$ sont indépendantes, $f_{X,Y} (x,y) = f_X(x) f_Y(y)$, d'où $f_{Y|X=x}(y) = f_Y(y)$.
 
-En calcul intégral, on a beaucoup étudié le cas de suites de fonctions convergeant simplement. Une variable aléatoire étant une fonction, on a donc la même notion qui revient à écrire qu'une suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires converge simplement vers $X$ si $\lim_{n \to \infty} X_n(\omega) = X(\omega)$ pour tout $\omega \in \Omega$. Cette définition naturelle est malheureusement à peu près inutile en probabilité, comme l'illustre l'exemple suivant.
+   Inversement, si $f_{Y|X=x}(y) = f_Y(y)$ alors $f_{X,Y}(x,y) = f_{Y|X=x}(y) f_X(x) = f_Y(y)f_X(x)$ et $X$ et $Y$ sont indépendantes.
 
-### Exemple {.example #pfinf}
+# Espérance conditionnelle
 
-Soit $(X_n)_{n\in \N^\ast}$ une suite de v.a. réelles qui sont indépendantes et de même loi (on notera *i.i.d* pour *indépendantes et identiquement distribuées*), avec $\P(X_n = 1) = p$ et $\P(X_n=0) = 1-p$. Ce sont donc des v.a. de loi de Bernoulli de paramètre $p$ qui modélisent par exemple les résultats d'un jeu de pile ou face. Lorsque $n$ est grand, on s'attend à ce que la proportion de faces ($X_n=1$) soit à peu près égale à $p$ (c'est l'essence de la conception objectiviste des probabilités). Mathématiquement, on voudrait que
-$$\lim_{n \to \infty} \frac{X_1(\omega) + \ldots +X_n(\omega)}{n} = p \text{   pour tout }\omega\in\Omega.$$
-C'est en fait complètement faux. En effet, si on considère par exemple la suite $\omega_0 = {p,p,p,\ldots}$ qui ne contient que des piles, on obtient
-$$\lim_{n \to \infty} \frac{X_1(\omega_0) + \ldots +X_n(\omega_0)}{n} = 0$$
-et plus généralement, on a $\lim_{n \to \infty} \frac{1}{n}\sum_{i=1}^n X_i(\omega) = 0$ pour tout $\omega$ dans l'ensemble $A = \{\omega : \text{ il n'y a qu'un nombre fini de faces}\}$. On peut même trouver des $\omega$ pour lesquels la fréquence converge vers n'importe quel nombre fixé dans $[0,1]$ ! Bien entendu, l'événement $A$ est invraisemblable et on peut montrer qu'il vérifie $\P(A) = 0$[^NBpf]. On verra cependant que la **loi des grands nombres** assure :
-$$\P\left(\left\{\omega ; \lim_{n \to \infty} \frac{1}{n}\sum_{i=1}^n X_i(\omega) = p\right\}\right)=1.$$
-Ce type de convergence, pour lequel on n'a pas convergence pour tout $\omega$, mais seulement pour presque tout $\omega$ (autrement dit $\P$-presque partout) est typiquement ce qui arrive pour des variables aléatoires.
+Puisque $\P_{Y|X=x}$ est la loi d'une variable aléatoire, on peut définir l'espérance qui lui est associée et introduire la notion d'espérance conditionnelle dans le cas où $Y$ est intégrable.
+
+### Définition {.definition #defespcond}
+Soit $Y$ une variable aléatoire intégrable.
+
+ 1. L'*espérance conditionnelle de $Y$ sachant $\{X=x\}$* est définie par 
+    $$\Esp(Y|X=x) = \int_\R y \P_{Y|X=x} (dy).$$
+ 2. L'*espérance conditionnelle de $Y$ sachant $X$* est la **variable aléatoire** définie par :
+    $$\Esp(Y|X) = \psi(X), \text{ avec } \psi(x) = \Esp(Y|X=x).$$
+
+### Remarques {.remark}
+
+ 1. $\psi(x)$ n'est définie que pour $x \notin N$, avec $\P(X\in N) = 0$. Par conséquent, la [définition](#defespcond) définit bien l'espérance conditionnelle $\psi(X) = \Esp(Y|X)$ $\P_X$-presque partout, autrement dit avec probabilité 1, ou encore presque sûrement.
+ 2. $\Esp(\Esp(|Y||X)) = \Esp(|Y|)$ comme conséquence directe du [théorème de Fubini conditionnel](#fubinicond). L'espérance conditionnelle de $Y$ sachant $X$ est bien définie dès que $Y$ est intégrable. 
+ 3. Lorsque $(X,Y)$ admet une densité, l'espérance conditionnelle de $Y$ sachant $\{X=x\}$ s'écrit
+ $$\Esp(Y|X=x) = \int_\R y f_{Y|X=x}(y) dy.$$
+
+On peut étendre cette définition aux variables de la forme $g(X,Y)$.
+
+### Définition {.definition #defespcondg}
+Soit $Y$ une variable aléatoire et $g$ une fonction mesurable positive ou $\P_{X,Y}$-intégrable sur $\R^2$.
+
+ 1. L'*espérance conditionnelle de $g(X,Y)$ sachant $\{X=x\}$* est définie par 
+    $$\Esp(g(X,Y)|X=x) = \int_\R g(x,y) \P_{Y|X=x} (dy).$$
+ 2. L'*espérance conditionnelle de $g(X,Y)$ sachant $X$* est la **variable aléatoire** définie par :
+    $$\Esp(g(X,Y)|X) = \psi(X), \text{ avec } \psi(x) = \Esp(g(X,Y)|X=x).$$
 
 
-[^NBpf]: Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}$, puis on montre que $\sum_{n=1}^\infty \P(A_n) = \infty$ et on conclut en invoquant le lemme de Borel-Cantelli.
+### Théorème {.theorem} 
+Si $Y$ est intégrable, alors $\psi(X) = \Esp(Y | X)$ est intégrable, et 
+$$\Esp( \psi(X)) = E( Y ) .$$
 
-On considère une suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
+### Démonstration {.proof} 
+C'est une conséquence directe du [théorème de Fubini conditionnel](#fubinicond).
 
-### Définition --- convergences {.definition}
+### {.anonyomous}
+Ce résultat permet de calculer $\Esp( Y )$ en conditionnant par une variable auxiliaire $X$ :
+$$\Esp( Y ) = \int_\R \Esp(Y | X = x) \P_X(dx)$$
 
- 1. La suite $(X_n)_{n\in \N^\ast}$ *converge presque sûrement* vers $X$, ce qui s'écrit $X_n \to X$ p.s., s'il existe un ensemble $N \in \A$ de probabilité nulle tel que
- $$ X_n (\omega) \xrightarrow[n \to \infty]{}  X(\omega),\,\,\, \forall \omega \notin N.$$
- 2. La suite $(X_n)_{n\in \N^\ast}$ *converge en probabilité* vers $X$, ce qui s'écrit $X_n \xrightarrow{\P} X$, si $\forall \varepsilon >0$ on a
- $$ \P(|X_n-X| \geq \varepsilon) \xrightarrow[n \to \infty]{}  0. $$
- 3. La suite $(X_n)_{n\in \N^\ast}$ *converge en moyenne* (ou dans $\L^1$) vers $X$, ce qui s'écrit $X_n \xrightarrow{\L^1} X$, si $X_n$ et $X$ sont dans $\L^1$ et si
- $$ \Esp(|X_n - X|) \xrightarrow[n \to \infty]{}  0 .$$
+Il généralise la [formule des probabilités totales](Probabilité I.pdf #formprobatot), qui correspond ici à $Y = 1_A$ , et $B_x = \{X = x\}$ où les $B_x$ forment cette fois une partition non dénombrable de $\R$. On l’écrit souvent sous la forme
+$$ \Esp \left( \Esp(Y | X) \right) = \Esp( Y )$$
+et on l'appelle la *formule de l'espérance totale*.
 
-### Remarque {.remark}
-
-La définition de la convergence dans $\L^1$ se généralise aux ordres supérieurs, pour $p \in \N^\ast$, on parle de convergence dans $\L^p$ (en moyenne quadratique si $p=2$) ce qui s'écrit $X_n \xrightarrow{\L^p} X$, si $X_n$ et $X$ sont dans $\L^p$ et si
- $$ \Esp(|X_n - X|^p) \xrightarrow[n \to \infty]{}  0 .$$
-
-Ces convergences ne sont pas équivalentes comme le montrent les exemples suivants.
-
-### Exemples {.example}
-
- * Soit $(X_n)_{n\in \N^\ast}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
- $$ \P(X_n=1) = \frac{1}{n} ;\,\,\,\, \P(X_n = 0) = 1- \frac{1}{n}.$$
- Pour tout $\varepsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \varepsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\ast}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
+L’espérance conditionnelle étant définie comme l’espérance de la loi conditionnelle,
+elle hérite des propriétés usuelles de l’espérance :
  
-   Mais si on considère maintenant une suite $(Y_n)_{n\in \N^\ast}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
-   $$ \P(Y_n=n^2) = \frac{1}{n} ;\,\,\,\, \P(Y_n = 0) = 1- \frac{1}{n}.$$
-   Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\ast}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
+ 1. si $Y$ et $Z$ sont intégrables, $\Esp (aY + bZ | X) = a \Esp (Y | X) + b \Esp(Z | X)$,
+ 2. $\Esp (Y | X) \geq 0$ si $Y \geq 0$,
+ 3. $\Esp (1 | X) = 1$.
 
- * Soit $U$ une variable aléatoire uniforme sur $[0 , 1]$. Posons $Z_n = 1_{\{ U \leq \frac{1}{n}\} }$. Alors
- $$ \P(Z_n = 1)= \frac{1}{n} ;\,\,\,\, \P(Z_n = 0) = 1 - \frac{1}{n}$$
- Si $\omega \in \{U > 0\}$ est fixé, alors $\exists n_0 \in \N$ tel que $U(\omega) > \frac{1}{n_0}$, et donc tel que $Z_n(\omega) = 0$ pour tout $n \geq n_0$. Comme $\P(U>0)=1$, ceci montre que la suite $(Z_n)_{n\in \N^\ast}$ converge presque sûrement vers 0.
+De plus, si $g$ est mesurable positive ou $\P_X$-intégrable,
+$$ \Esp (Y g(X) | X) = g(X) \Esp (Y | X) $$
+est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$. Enfin, on déduit directement du [théorème de Fubini conditionnel]{#fubinicond} la proposition suivante.
 
-On étudie maintenant les liens entre ces différentes convergences.
+### Proposition --- transfert conditionnel {.proposition}
+Soient un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$ et $g$ une fonction mesurable positive ou $\P_{X,Y}$-intégrable sur $\R^2$. On a pour $\P_X$-presque tout $x$ dans $\R$
+$$\Esp(g(X,Y)|X=x) = \Esp(g(x,Y)|X=x) = \int_{\R}g(x,y) \P_{Y|X=x} (dy)$$
+Si de plus $X$ et $Y$ sont indépendantes, on a :
+$$\Esp(g(X,Y)|X=x) = \Esp(g(x,Y)|X=x) = \int_{\R}g(x,y) \P_Y(dy).$$
 
-### Proposition --- p.s. / $\L^1$ $\Rightarrow$ en proba {.proposition #propconv1}
-La convergence presque sûre et la convergence en moyenne entraînent la convergence en probabilité.
-
-### Démonstration {.proof}
-Soient $n\in\N^\ast$, $\varepsilon > 0$ et $A_{n,\varepsilon} = \{|X_n - X| > \varepsilon \}$.
-
- * Supposons que $X_n \to X$ p.s. et soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \to X(\omega)$. Si $\omega \notin N$, on a $\omega \notin A_{n,\varepsilon}$ pour tout $n \geq n_0$, où $n_0$ dépend de $\omega$ et de $\varepsilon$, ce qui implique que les variables aléatoires $Y_{n,\varepsilon} = 1_{N^c\cap A_{n,\varepsilon}}$ tendent simplement vers 0 lorsque $n \to \infty$. Comme on a aussi $0 \leq Y_{n,\varepsilon} \leq 1$ le théorème de convergence dominée implique que $\Esp(Y_{n,\varepsilon}) \xrightarrow[n \to \infty]{} 0.$ Mais
- $$\P(A_{n,\varepsilon}) \leq \P(N^c \cap A_{n,\varepsilon}) + \P(N) = \P(N^c \cap A_{n,\varepsilon}) = \Esp(Y_{n,\varepsilon}) \xrightarrow[n \to \infty]{} 0.$$
-
- * Supposons que $X_n \xrightarrow{\L^1} X$. Pour $\varepsilon >0$, on a $1_{A_{n,\varepsilon}} \leq \frac{1}{\varepsilon}|X_n - X|$, donc 
- $$ \P(A_{n,\varepsilon}) \leq \frac{1}{\varepsilon}\Esp(|X_n - X|) \xrightarrow[n \to \infty]{} 0.$$
-
-### {.anonymous}
-La convergence en probabilité n’entraîne pas la convergence en moyenne, comme nous l’avons vu dans l’exemple précédent, ne serait-ce que parce qu'elle n'implique pas l'appartenance de $X_n$ et $X$ à $\L^1$. Si les $X_n$ ne sont “pas trop grands”, il y a cependant équivalence entre les deux modes de convergence. En voici un exemple.
-
-### Proposition --- cas borné {.proposition #propconv2}
-S'il existe une constante $a$ telle que $|X_n| \leq a$ presque sûrement, il y a équivalence entre $X_n \xrightarrow{\P} X$ et $X_n \xrightarrow{\L^1} X$.
-
-### Démonstration {.proof}
-Etant donnée la [proposition précédente](#propconv1), dont on reprend les notations, il suffit de montrer que la convergence en probabilité implique la convergence en moyenne lorsque $|X_n| \leq a$.
-
-Comme $|X_n| \leq a$ p.s., on a $\{|X| > a +\varepsilon\} \subset A_{n,\varepsilon}$, et donc $\P(|X| > a +\varepsilon ) \leq \P(A_{n,\varepsilon})$. En faisant $n \to \infty$, on en déduit que $\P(|X| > a + \varepsilon) = 0$. Ceci est vrai pour tout $\varepsilon$ et donc
-$$\P(|X|> a) = 0.$$
-Comme $|X_n| \leq a$, on a aussi
-$$ |X_n -X| \leq \varepsilon + (X_n + X) 1_{A_{n,\varepsilon}} \leq \varepsilon + 2a 1_{A_{n,\varepsilon}}$$
-sur l'ensemble $\{|X| \leq a \}$ qui est de probabilité 1. On a ainsi 
-$$ \Esp(|X_n - X|) \leq \varepsilon +2a \P(A_{n,\varepsilon})$$
-On en déduit que $\lim \sup_{n \to \infty} \Esp(|X_n - X|) \leq \varepsilon$, et comme $\varepsilon$ est arbitrairement proche de 0, on a le résultat souhaité.
-
-### {.anonymous}
-Les rapports entre convergence presque-sûre et convergence en probabilité sont plus subtils. La première de ces deux convergences est plus forte que la seconde d’après la [proposition plus haut](#propconv1), mais “à peine plus”, comme le montre le résultat suivant.
-
-### Proposition --- Existence d'une sous-suite convergente {.proposition #propconv3}
-Si $X_n \xrightarrow{\P} X$, il existe une sous-suite $(n_k)$ telle que $X_{n_k} \to X$ p.s. quand $k \to \infty$.
-
-### Démonstration {.proof}
-On remarque d'abord que l'on peut réécrire la définition de la convergence en probabilité de la manière suivante : $\forall \varepsilon >0$ et $\delta > 0$, il existe $N = N(\delta,\varepsilon)$ tel que
-$$n\geq N \Rightarrow \P(|X_n-X| > \varepsilon ) < \delta.$$
-
-Comme la suite $(X_n)_{n\in \N^\ast}$ converge en probabilité vers $X$, on peut définir une sous-suite de la manière suivante : posons $n_1 = 1$, et soit
-$$n_j = \inf \left\{ n > n_{j-1} ; \P \left(|X_m - X| > \frac{1}{2^j} \right) < \frac{1}{3^j}, \text{ pour } m \geq n \right\}.$$
-On a alors 
-$$\sum_j \P \left(|X_{n_j} - X| > \frac{1}{2^j} \right) < \sum_j \frac{1}{3^j} < \infty$$
-et en appliquant le [lemme de Borel-Cantelli](#BC) aux ensembles 
-$$A_j =\left\{|X_{n_{j}} - X| > \frac{1}{2^j} \right\},$$
-on obtient que la suite $(X_{n_j})_{j\in \N^\ast}$ converge presque-sûrement. 
-
-### Exemple {.example}
-
-Soient $\Omega = \R$ muni de sa tribu borélienne et $\P$ la probabilité uniforme sur [0, 1]. Soit $X_n = 1_{A_n}$ , où $A_n$ est un intervalle de [0, 1] de longueur $\frac{1}{n}$.
-
-Ainsi, $\Esp(X_n) = \frac{1}{n}$, et la suite $X_n$ tend vers $X = 0$ en moyenne, et donc en probabilité. Supposons que les $A_n$ soient placés bout-à-bout, en recommençant en 0 chaque fois qu’on arrive au point 1. Il est clair que l’on parcourt indéfiniment l’intervalle [0, 1] (car la série de terme général $1/n$ diverge). 
-
-Ainsi la suite numérique $X_n (\omega)$ ne converge pour aucun $\omega$, et on n’a pas $X_n \to X$ presque-sûrement ; cependant comme
-la série $\sum_n 1/n^2$ converge, il s’en suit que $X_{n^2} \to X = 0$ presque-sûrement. Nous avons donc la convergence presque-sûre de la sous-suite $(X_{n^2})_{n\in \N^\ast}$.
-
-### Proposition --- continuité {.proposition #propconv4}
-Soit $f$ une fonction continue de $\R^d$ dans $\R$.
-
- 1. Si $X_n \to X$ presque-sûrement, alors $f(X_n) \to f(X)$ presque-sûrement.
- 2. Si $X_n \xrightarrow{\P} X$, alors $f(X_n) \xrightarrow{\P} f(X)$.
-
-### Démonstration {.proof}
-
-1. Soit $N$ l'ensemble de probabilité nulle en dehors duquel on a $X_n(\omega) \xrightarrow[n \to \infty]{} X(\omega)$. Si $\omega \notin N$, il vient 
-$$ \lim_{n \to \infty}f(X_n(\omega)) = f(\lim_{n \to \infty}X_n(\omega)) = f(X(\omega))$$
-par continuité de $f$, d'où le résultat.
-
-2. On remarqe d'abord que si $K >0$ et $\varepsilon >0$,
-$$\{|f(X_n)-f(X)| \geq \varepsilon\} \subset \{|X| > K\}\cup\{|X| \leq K, |f(X_n)-f(X)| \geq \varepsilon\}.$$
-La fonction $f$ est uniformément continue sur $\{x : |x| \leq K\}$, donc il existe $\eta > 0$ tel que $|x-y| <\eta$ et $|x| \leq 2K$ et $|y|\leq 2K$ impliquent 
-$|f(x) - f(y)| <\varepsilon$. On a donc
-$$\{|f(X_n)-f(X)| \geq \varepsilon\} \subset \{|X| > K\}\cup\{|X_n-X| \geq \eta\}$$
-d'où
-$$\P(|f(X_n)-f(X)| \geq \varepsilon) \leq \P(|X| > K) + \P(|X_n-X| \geq \eta).$$
-Par hypothèse, il vient
-$$ \lim_{n \to \infty} \P(|f(X_n)-f(X)| \geq \varepsilon) \leq \P(|X| > K) .$$
-Enfin, $\lim_{K\to +\infty} \P(|X| > K) = 0$ (par convergence dominée) et donc la limite ci-dessus est nulle. On a ainsi le résultat.
+Autrement dit, lorsqu'on conditionne par l'événement $\{X=x\}$, cela revient à fixer la valeur de la variable aléatoire $X$ à la constante $x$.
 
 
-## La loi des grands nombres 
+# Vecteurs Gaussiens à densité
 
-On présente maintenant l’un des résultats essentiels de la théorie des probabilités. Ce résultat montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation d’un événement converge p.s. vers la probabilité de réalisation de cet événement. Ce résultat, appelé **Loi des grands nombres**, a d’autres portées fondamentales. Il est en particulier à l’origine de méthodes de calcul numérique appelées Méthodes de Monte-Carlo, qui sont extrêmement puissantes et robustes. Elles sont par exemple très utilisées en Physique, en Mathématiques Financières, dans les méthodes de quantification d'incertitudes.
+Dans ce qui précède, on a décrit les lois et les espérances conditionnelles dans le cas d'un couple de variables aléatoires à valeurs dans $\R^2$. Ces résultats sont aussi valables pour des couples de vecteurs, dont on décrit ici un cas particulier.
 
-Dans ce paragraphe, on considère une suite $(X_n)_{n\in\N^\ast}$ de variables aléatoires **indépendantes et de même loi** (ou indépendantes et identiquement distribuées, i.i.d. en abrégé). On considère la "moyenne" des $n$ premières variables aléatoires :
-$$ M_n = \frac{X_1 + \ldots + X_n}{n},$$
-et notre objectif est de montrer que $M_n$ converge vers l'espérance des $X_n$ lorsque celle-ci existe (comme les $X_n$ ont même loi, cette espérance est la
-même pour tout $n$). 
+Dans le cas des vecteurs gaussiens à densité, c'est-à-dire dont la matrice de covariance est définie positive et donc inversible, le calcul des lois conditionnelles de certaines composantes par rapport aux autres est particulièrement aisé. On va voir en particulier que les lois conditionnelles ont le bon goût d'être elles-mêmes gaussiennes, ce qui explique (en partie) le succès de ces modèles dans les applications.
 
-Nous allons démontrer dans un premier temps la loi des grands nombres pour des variables aléatoires de carré intégrable.
+On considère un vecteur gaussien $X = (X_1,\ldots,X_n)$ à valeurs dans $\R^n$ d'espérance $m$ et de matrice de covariance $C$ définie positive. On a vu au chapitre 2 que la densité du vecteur $X$ s'écrit pour $x\in\R^d$ :
+$$f_X(x) = \frac{1}{(2\pi)^{n/2}\sqrt{\det (C)}}\exp \left(-\frac{1}{2}(x-m)^t C^{-1}(x-m)\right)$$
 
-### Théorème --- loi des grands nombres cas $\L^2${.theorem}
-Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur espérance. Alors la suite $(M_n)_{n\in\N^\ast}$ définie par
-$$M_n = \frac{X_1 + \ldots + X_n}{n}$$
-converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini. Elle converge donc aussi en probabilité. On a même convergence en *moyenne quadratique*, à savoir que :
-$$ \Esp((M_n - m)^2) \xrightarrow[n \to \infty]{} 0.$$
-
-Le résultat sur la convergence en probabilité est appelé *loi faible des grands nombres*. Sa preuve est presque immédiate. Elle résulte de l’[inégalité de Bienaymé-Chebyshev](#inegbc) (exercice). Le résultat est peu informatif et permet d’obtenir certains contrôles d’erreurs. Le résultat prouvant la convergence presque-sûre est appelé *loi forte des grands nombres*. Sa preuve est plus délicate et utilise le [lemme de Borel-Cantelli](#BC).
-
-### Démonstration
-Notons $\sigma^2$ la variance des variables $X_n$, bien définie puisqu'on les a supposées de carré intégrable. En vertu de la linéarité de l'espérance, on a
-$$ \Esp(M_n) = m,\,\,\,\, \Esp((M_n-m)^2) = \V(M_n) = \frac{\sigma^2}{n},$$
-d'où la convergence en moyenne quadratique.
-
-Comme $\Esp(Y)^2 \leq \Esp(Y^2)$, on en déduit que $\Esp(|M_n -m|)\to 0$, donc on a aussi la convergence en moyenne.
-
-La preuve de la convergence presque-sûre est plus délicate.
-
-Quitte à remplacer $X_n$ par $X_n - m$ (et donc $M_n$ par $M_n - m$), nous pouvons supposer que $m = 0$.
-
-Montrons tout d’abord que la sous-suite $(M_{n^2})_{n \in \N^\ast}$ converge presque-sûrement vers 0.
-
-La convergence dans $\L^1$ impliquant la convergence en probabilité, on sait qu'on peut extraire de $(M_n)_n$ une sous-suite convergeant p.s. vers 0. Cependant, cela ne suffit pas puisqu'on veut que la suite $(M_n)_n$ elle-même converge p.s. Pour le montrer, on construit d'abord une sous suite-particulière qui converge p.s. puis on traite les termes qui se trouvent entre deux éléments successifs de la sous-suite.
-
-D'après l'[inégalité de Bienaymé-Chebyshev](#inegbc) et ce qui précède, on a pour $q\in \N^\ast$
-$$\P\left(|M_{n^2}|\geq \frac{1}{q}\right) \leq \frac{\sigma^2 q^2}{n^2}$$
-
-Donc si $A_{n,q} = \{|M_{n^2}|\geq \frac{1}{q}\}$, nous obtenons que $\sum_{n\geq 1} \P(A_{n,q}) < \infty$. Posons ensuite $B_{n,q} = \cup_{m\geq n} A_{m,q}$ et $C_q = \cap_{n \geq 1} B_{n,q} = \lim\sup_n A_{n,q}$. En appliquant le [lemme de Borel-Cantelli](#BC), on obtient que $\P(C_q) = 0$. En conséquence, si on pose $N = \cup_{q \in \N^\ast} C_q$, on obtient $\P(N) \leq \sum_{q\in\N^\ast} \P(C_q)= 0$.
-
-Si $\omega \notin N$, alors $\omega \in \cap_{q \in \N^\ast} (C_q)^c$. Ainsi, $\omega \notin C_q$ pour tout $q \geq 1$, et donc $\omega \notin B_{n,q}$ pour $n$ assez grand (car $B_{n,q}$ est décroissant en $n$). Cela siginfie que pour tout $\omega \notin N$, pour tout $q \geq 1$, il existe un $n$ assez grand tel que $M_{k^2} \leq \frac{1}{q}$ dès que $k \geq n$. Autrement dit, $M_{n^2} \to 0$ si $\omega \notin N$, avec $\P(N) = 0$, d'où
-$$ M_{n^2} \xrightarrow[n \to \infty]{} 0 \text{ p.s.}$$
-
-Montrons maintenant que la suite $(M_n)_{n\in\N^\ast}$ tend presque-sûrement vers 0.
-
-Pour tout entier $n$, notons $p(n)$, l'entier tel que $p(n)^2 \leq n \leq (p(n)+1)^2$. Alors, 
-$$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} = \frac{1}{n} \sum_{p = p(n)^2+1}^{n} X_p,$$
-et puique les variables aléatoires de la somme sont indépendantes, il vient
+Soit $1 \leq k < n$ un entier. On souhaite exprimer $f_{Y|Z=z}$, la densité conditionnelle de $Y = (X_1,\ldots,X_{k-1})$ sachant $Z = (X_k,\ldots,X_n) = (x_k,\ldots,x_n) = z$. On a vu que 
+$$f_X = f_{Y|Z=z} f_Z,$$
+où $f_Z$ est la densité marginale de $Z$. On cherche donc à décomposer $f_X$ de la sorte. On note $m = (m_Y,m_Z)$ et on remarque que $C$ peut se décomposer en blocs :
+\begin{equation*}
+C = \left(\begin{array}{cc} C_Y & C_{Y,Z} \\ C_{Z,Y} & C_Z \end{array}\right)
+\end{equation*}
+où $C_Y = \cov(Y,Y)$, $C_Z = \cov(Z,Z)$ et $C_{Y,Z} = \cov(Y,Z)$. Le *complément de Schur*[^mckbk] du bloc $C_Y$ est la matrice 
+$$CS_Y = C_Y - C_{Y,Z}C_Z^{-1}C_{Z,Y}$$
+et permet d'exprimer l'inverse de $C$ comme :
+\begin{equation*}
+C^{-1} = \left(\begin{array}{cc} CS_Y^{-1} & -CS_Y^{-1}C_{Y,Z}C_Z^{-1} \\ -C_Z^{-1}C_{Z,Y}CS_Y^{-1}  & C_Z^{-1} + C_Z^{-1}C_{Z,Y}CS_Y^{-1}C_{Y,Z}C_Z^{-1} \end{array}\right)
+\end{equation*}
+On peut alors réarranger les termes de la forme quadratique dans $f_X$ et on obtient :
 \begin{align*}
-\Esp\left(\left(M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right)^2\right) & = \frac{n-p(n)^2}{n^2}\sigma^2 \\
-                                                                 & \leq \frac{2p(n)+1}{n^2} \sigma^2 \\
-                                                                 & \leq \frac{2\sqrt{n}+1}{n^2} \sigma^2 \leq \frac{3}{n^{3/2}}\sigma^2
+(x-m)^t C^{-1}(x-m) =& \left(y - (m_Y + C_{Y,Z}C_Z^{-1}(z-m_Z))\right)^t CS_Y^{-1}\\
+&.\left(y - (m_Y + C_{Y,Z}C_Z^{-1}(z-m_Z))\right)\\
+ &+ (z-m_Z)^t C_Z^{-1}(z-m_Z)
+\end{align*}
+Pour la constante, on peut remarquer que :
+$$ \det (C) = \det(CS_Y)\det(C_Z).$$
+On en déduit ainsi que 
+<!-- \begin{align*}
+f_{Y|Z=z}(y) =& \frac{1}{(2\pi)^{n/2}\sqrt{\det (CS_Y)}}\\
+&\exp \left(-\frac{1}{2}\left(y - \psi(z)\right)^t CS_Y^{-1}\left(y - \psi(z))\right)\right)
+\end{align*} -->
+$$f_{Y|Z=z}(y) = \frac{1}{(2\pi)^{k/2}\sqrt{\det (CS_Y)}}\exp \left(-\frac{1}{2}\left(y - \psi(z)\right)^t CS_Y^{-1}\left(y - \psi(z))\right)\right)$$
+
+
+C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_{Y|Z=z} = \psi(z) = m_Y + C_{Y,Z}C_Z^{-1}(z-m_Z)$ et de matrice de covariance $CS_Y = C_Y - C_{Y,Z}C_Z^{-1}C_{Z,Y}$. Autrement dit, l'espérance conditionnelle de $Y$ sachant $Z$ est la variable aléatoire $\Esp(Y|Z) = \psi(Z) =(m_Y + C_{Y,Z}C_Z^{-1}(Z-m_Z))$. On notera que la covariance conditionnelle donnée par $CS_Y$ ne dépend pas de la valeur prise par $Z$.
+
+[^mckbk]: voir par exemple l'excellent [matrix cookbook](https://www.ics.uci.edu/~welling/teaching/KernelsICS273B/MatrixCookBook.pdf).
+
+
+
+# Régression et espérance conditionnelle des variables de carré intégrable
+La régression est un ensemble de méthodes (d'apprentissage) statistiques très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variables mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable (ou dans $\L^2$). On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
+
+## Régression linéaire
+On considère deux variables aléatoires rélles, de carré intégrable, définies sur le même espace de probabilité $(\Omega,\A,\P)$, et dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est-à-dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
+$$\Esp((Y - (aX + b))^2) = \Esp(Y^2) -2a\Esp(XY) -2b \Esp(Y) +a^2\Esp(X^2) +2ab\Esp(X) +b^2.$$
+L'annulation de ses dérivées partielles en à $a$ et $b$ entraîne que les solutions sont
+
+\begin{align*}
+a & = \frac{\cov(X,Y)}{\V(X)} = \rho(X,Y)\frac{\sigma_Y}{\sigma_X} \\
+b & = \Esp(Y)  - a \Esp(X)
 \end{align*}
 
-où on a utilisé le fait que $p(n) \leq \sqrt{n}$.
+On vérifie aisément que ces valeurs donnent bien un minimum pour $\Esp((Y - (aX + b))^2)$ qui est convexe, et déterminent ainsi la meilleure approximation linéaire de $Y$ basée sur $X$ au sens de l'erreur quadratique moyenne.
 
-En appliquant de nouveau l'[inégalité de Bienaymé-Chebyshev](#inegbc), on obtient
-$$ \P\left(\left|M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right|>a\right) \leq \frac{2\sqrt{n}+1}{n^2} \frac{\sigma^2}{a^2}$$
-Comme la série $\sum_n \frac{2\sqrt{n}+1}{n^2}$ converge, le même raisonnement que pour $M_{n^2}$ décrit ci-dessus, montre que
-$$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} \to 0 \text{ p.s.}$$
-Par ailleurs, on a déjà montré que $M_{p(n)^2} \to 0$ p.s. et $\frac{p(n)^2}{n} \to 1$. On en déduit que $M_n \to 0$ p.s.
+Cette approximation linéaire vaut
+$$ \Esp(Y) + \rho(X,Y)\frac{\sigma_Y}{\sigma_X} (X -\Esp(X))$$
+et l'erreur quadratique moyenne vaut alors
+\begin{align*}
+\Esp\left(\left(Y - \Esp(Y) - \rho(X,Y)\frac{\sigma_Y}{\sigma_X} (X -\Esp(X))\right)^2\right) & = \sigma_Y^2 + \rho^2(X,Y)\sigma^2_Y - 2\rho^2(X,Y)\sigma^2_Y\\
+                        & = \sigma^2_Y(1-\rho^2(X,Y)).
+\end{align*}
 
-### {.anonymous}
-Plus généralement, le théorème suivant donne les hypothèses minimales assurant la validité de la loi des grands nombres, à savoir que les $X_n$ sont dans $\L_1$ (on se référera par exemple à [ce document en ligne](https://perso.univ-rennes1.fr/ismael.bailleul/AGREG/COURS/LFGN.pdf) ou à @Jacod pour la démonstration).
-
-### Théorème --- loi des grands nombres cas $\L^1$ {.theorem #lfgn}
-Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi et **intégrables**, et $m = \Esp(X_n)$ leur espérance. Alors la suite $(M_n)_{n\in\N^\ast}$ définie par
-$$M_n = \frac{X_1 + \ldots + X_n}{n}$$
-converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
-
-# Convergence en loi --- fonction caractéristique --- théorème central limite
-Nous allons introduire maintenant une nouvelle notion de convergence de suites de variables aléatoires. La convergence en loi définie dans ce paragraphe va concerner les lois des variables aléatoires. Elle signifiera que les lois sont asymptotiquement “proches”, sans que les variables aléatoires elles-mêmes le soient nécessairement. 
-
-## Convergence en loi
-
-On considère des vecteurs aléatoires $X_n$ et $X$, tous à valeurs dans le même espace $\R^d$, mais pouvant éventuellement être définis sur des espaces de probabilité différents.
-
-### Définition {.definition #defconvloi}
-On dit que la suite $(X_n)_{n\in \N^\ast}$ *converge en loi* vers $X$ et on écrit $X_n \xrightarrow{\L} X$, si pour toute fonction réelle $f$ **continue bornée** sur $\R^d$, 
-$$\Esp(f(X_n)) \xrightarrow[n \to \infty]{} \Esp(f(X)).$$
-
-### Exemple {.example}
-Un cas très simple est celui où toutes les variables aléatoires $X_n$ prennent un nombre fini de valeurs $\{ x_i , 1 \leq i \leq N \}$. Alors, la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$ si et seulement si 
-$$\lim_{n \to +\infty} \P(X_n = x_i ) = \P(X = x_i),\,\,\, \forall 1 \leq i \leq N$$
-Il suffit d’écrire pour $f$ continue bornée
-$$ \Esp(f (X_n)) = \sum_{i=1}^N f (x_i ) P(X_n = x_i) $$
-
-Dans l’exemple ci-dessus, $N$ est fini et fixé. Mais nous avons un résultat analogue (en faisant tendre $N$ vers l’infini) si les variables aléatoires ont un nombre dénombrable de valeurs. En particulier, le cas de la convergence de la loi binomiale vers la loi de Poisson a été traité en CPGE.
+On voit ainsi que cette erreur est proche de 0 lorsque $|\rho(X,Y)| \approx 1$ tandis qu'elle est proche de $\V(Y) = \sigma^2_Y$ lorsque $\rho(X,Y) \approx 0$. On notera au passage qu'on obtient que la meilleure approximation de $Y$ par une constante est son espérance.
 
 ### Remarque {.remark}
+L'hypothèse d'une relation linéaire est très forte et pas nécessairement toujours adaptée pour expliquer des relations de dépendances entre variables. Soit en effet une variable aléatoire réelle $X$ de $\L^3$ symétrique, c'est-à-dire telle que $X$ et $-X$ sont de même loi. On a alors $\Esp(X) = -\Esp(X) = 0$. Les variables $X$ et $X^2$ ne sont clairement pas indépendantes. Pour autant, on a $\cov(X,X^2) = \Esp(X^3) = -\Esp(X^3) = 0$ et le coefficient de régression $a$ ci-dessus est nul. 
 
-Dans la [définition](#defconvloi), les v.a. $X_n$ et $X$ peuvent être définies sur des univers distincts puisque seules leurs lois sont en cause. Il arrive même qu'une suite $X_n$ converge vers une limite $X$ qui ne peut pas exister sur les espaces sur lesquels sont définies les $X_n$, parce que ceux-ci sont trop "petits" : par exemple, si $X_n$ est une variable binomiale à $n$ modalités, convenablement normalisée, et la limite $X$ est gaussienne (on pourra justifier ceci par le [théorème central limite](#TCL)); l'espace naturel sur lequel est définie $X_n$ contient $n+1$ points, et sur un tel espace toutes les v.a. sont discrètes. La convergence en loi permet donc une sorte de convergence pour des v.a. pour lesquelles toute autre forme de convergence serait impossible.
 
-### Exemple {.example}
-Soit $(X_n)_{n \in \N^\ast}$ et $X$ des variables aléatoires de lois respectives $\No (0,\sigma^2_n)$ et $\No (0,\sigma^2)$. On suppose que la suite de réels positifs $(\sigma_n)_{n\in \N^\ast}$ converge vers $\sigma > 0$ quand $n$ tend vers l'infini. Alors la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$. En effet, soit $f$ une fonction continue bornée sur $\R$. On a
+## Espace de Hilbert des variables aléatoires de carré intégrable
+
+Dans le paragraphe précédent, on s'est intéressé à approximer linéairement une variable aléatoire $Y$ de carré intégrable par une autre variable $X$ également de carré intégrable. On va montrer ici que la meilleure approximation, au sens de l'erreur quadratique moyenne, de $Y$ par une fonction de $X$ est précisément donnée par $\psi(X) = \Esp(Y|X)$. Ce paragraphe fait appel à des notions hors programme et est par conséquent non exigible. Il fournit néanmoins une interprétation géométrique particulièrement frappante de l'espérance conditionnelle.
+
+On a besoin en pratique de travailler sur un espace un peu plus petit que $\L^2$ tout entier. En effet, les outils que nous allons utiliser ne nous permettent pas de distinguer entre deux variables $X$ et $Y$ égales presque sûrement, c'est-à-dire telles que $\exists N \in \A$, tel que $\P(N) = 0$ et $\forall \omega \in N^c,\,\, X(\omega) = Y(\omega)$. Cette notion d'égalité presque sûre est une relation d'équivalence. On va ainsi travailler avec l'espace $L^2$ des classes de variables pour l'égalité presque sûre, c'est-à-dire que $L^2$ contiendra un unique représentant de chacune de ces classes. Dans ce cadre, au lieu d'écrire $X=0$ p.s., on écrit simplement $X=0$.
+
+On peut  d'abord montrer que l'espace vectoriel $L^2$ des variables aléatoires de carré intégrable forme un espace de Hilbert si on le munit du produit scalaire :
+$$<X,Y > = \Esp(XY) \text{   et de la norme associée   } \|X\| = \Esp(X^2)^{1/2}.$$
+L'écart-type est ainsi la norme des variables centrées et la covariance le produit scalaire des variables centrées. 
+
+Ce produit scalaire est bien défini pour tout couple $(X,Y)$ de variables de $L^2$ puisque par l'inégalité de Cauchy-Schwartz :
+$$\Esp(XY)^2 \leq \Esp(X^2)\Esp(Y^2)$$
+et on a bien $\|X\| = 0$ si et seulement si $X=0$. On peut enfin montrer que $L^2$ est complet pour la norme définie ci-dessus (voir @Jacod pour la démonstration). 
+
+Soient maintenant $X$ et $Y \in L^2(\Omega,\A,\P)$. On onsidère $L^2_X$ le sous-espace de $L^2$ constitué des (classes d'équivalence) des variables aléatoires fonctions seulement de $X$ du type $\phi(X)$ (avec $\phi$ telle que $\phi(X) \in L^2$). On peut montrer que $L^2_X$ est convexe et fermé.
+
+Alors, l'espérance conditionnelle de $Y$ sachant $X$, $\Esp(Y|X)$ s'interprète comme **la projection orthogonale** de $Y$ sur $L^2_X$.
+
+Soit en effet l'opérateur qui à $Y \in L^2$ associe $\Esp(Y|X) \in L^2_X$. On a vu que c'est un opérateur linéaire. Pour montrer qu'il s'agit d'un projecteur orthogonal, on peut vérifier qu'il est idempotent et auto-adjoint :
+
+- on a bien $\Esp(\Esp(Y|X)|X) = \Esp(Y|X)$
+- et pour $Z\in L^2$, $<Z,\Esp(Y|X) > = \Esp(Z\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y|X)) = \Esp(\Esp(Z|X)\Esp(Y)) = <\Esp(Z|X),Y>$.
+
+Le théorème de projection sur un convexe fermé dans les espaces de Hilbert[^rmbf] assure alors que 
+$$\underset{\phi(X) \in L^2_X}{\mathrm{arg}\,\mathrm{min}} \|Y-\phi(X)\|^2 = \underset{\phi(X) \in L^2_X}{{\mathrm{arg}\,\mathrm{min}}} \Esp((Y-\phi(X))^2) = \Esp(Y|X) = \psi(X)$$
+
+[^rmbf]: voir par exemple les [Rappels mathématiques pour la mécanique quantique de Bruno Figliuzzi](https://discourse.mines-paristech.fr/uploads/short-url/v4CxgD6KzWUZpmQWbvckL7eaP7C.pdf)
+
+Ainsi, $\Esp(Y|X)$ est la meilleure approximation (au sens des moindres carrés) de $Y$ par une fonction de $X$.
+
+ <!-- C'est la solution théorique au problème de la régression par moindres carrés, que l'on sait résoudre dans certains cas particulier, notamment dans le cas des vecteurs gaussiens. Le problème de la régression en statistique se traduit donc en  -->
+
+
+Il est alors immédiat que le "résidu" $Y-\Esp(Y|X)$ est non corrélé avec $X$ du fait de l'orthogonalité. On en déduit la *formule de la variance totale* :
+
 \begin{align*}
-\Esp(f(X_n)) &= \int_\R f(y) \frac{1}{\sqrt{2\pi}\sigma_n} \exp\left(-\frac{y^2}{2\sigma^2_n}\right) dy \\
-             &\xrightarrow[n \to \infty]{} \int_\R f(y) \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{y^2}{2\sigma^2}\right) dy
+\V(Y) = \|Y - \Esp(Y)\|^2 &=  \|Y - \Esp(Y|X) + \Esp(Y|X) - \Esp(Y)\|^2 \\
+                          &=  \|Y - \Esp(Y|X)\|^2 + \|\Esp(Y|X) - \Esp(Y)\|^2 \\
+                          &=  \Esp((Y - \Esp(Y|X))^2) + \Esp((\Esp(Y|X) - \Esp(Y))^2)\\
+                          &= \Esp(\Esp((Y - \Esp(Y|X))^2|X)) + \V(\Esp(Y|X))\\
+                          &= \Esp(\V(Y|X)) + \V(\Esp(Y|X)).
 \end{align*}
-où l'on a utilisée le théorème de convergence dominée.
+où on a utilisé la formule de l'espérance totale et introduit la variable aléatoire variance conditionnelle $\V(Y|X) = \Esp((Y - \Esp(Y|X))^2|X)$ comme cas particulier de la [définition vue plus haut](#defespcondg).
 
-La convergence en loi est plus faible que la convergence en probabilité et donc aussi que les convergences presque-sûre et en moyenne.
-
-### Proposition --- en proba $\Rightarrow$ en loi {.proposition}
-Soient $(X_n)_{n\in\N\ast}$ et $X$ des v.a., toutes définies sur le même espace de probabilité $(\Omega, \A, \P)$. Si $X_n \xrightarrow{\P} X$, alors $X_n\xrightarrow{\L} X$.
-
-### Démonstration {.proof}
-Soit $f$ une fonction réelle continue bornée. D'après la [proposition de continuité](#propconv4), on a $f(X_n) \xrightarrow{\P} f(X)$ et donc $f(X_n)$ converge aussi en moyenne vers $f(X)$ par la [proposition --- cas borné](#propconv2). Comme $|\Esp(Y)|\leq \Esp(|Y|)$ pour toute variable aléatoire réelle $Y$, on en déduit $\Esp(f(X_n)) \to \Esp(f(X))$.
-
-### {.anonymous}
-
-On peut finalement résumer les implications entre les différents modes de convergence à l'aide de la figure suivante :
-
-![Relations entre modes de convergence](images/cvgces.tex)
-
-Un moyen efficace de caractériser la convergence en loi des variables aléatoires réelles passe par l'étude de la suite des fonctions de répartition.
-
-### Proposition --- convergence en loi et fonction de répartition {.proposition #cvceloifdr}
-Soient $(X_n)_{n\in\N^\ast}$ et $X$ des variables aléatoires réelles de fonctions de répartition respectives $F_n$ et $F$. Pour que $X_n \xrightarrow{\L} X$, il faut et il suffit que $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x$ en lequel $F$ est continue.
-
-Notons que puisque la fonction $F$ est continue à droite et croissante, l’ensemble des points où $F$ est continue est l’ensemble $D = \{x : F (x-) = F (x)\}$, et son complémentaire est au plus dénombrable. Ainsi, $D$ est dense[^dense] dans $\R$.
-
-[^dense]: Soient $\Omega$ un espace topologique et $A$ une partie de $\Omega$. On dit que $A$ est *dense* dans $\Omega$ si l'une des propriétés équivalentes est satisfaite : tout ouvert non vide de $\Omega$ contient des éléments de $A$ ; l'adhérence de $A$ est égale à $\Omega$ ; tout point de $\Omega$ est adhérent à $A$ ; le complémentaire de $A$ est d'intérieur vide.
-
-### Démonstration {.proof}
-
- 1. Supposons d'abord que $X_n \xrightarrow{\L} X$. Soit $a \in \R$ tel que $F(a-)=F(a)$. Pour tout $p \in \N^\ast$ et tout $b \in \R$, il existe une fonction $f_{p,b}$ continue bornée sur $\R$ telle que 
- $$ 1_{]-\infty,b]} \leq f_{p,b} \leq 1_{]-\infty,b + \frac{1}{p}]}.$$
- Alors, par définition, $\Esp(f_{p,b}(X_n)) \to \Esp(f_{p,b}(X))$ quand $n$ tend vers l'infini.
- L'inégalité ci-dessus implique que $F_n(a) = \P(X_n \leq a) \leq \Esp(f_{p,a}(X_n))$ et $\Esp(f_{p,a}(X)) \leq F(a+1/p)$ ; 
- donc $\lim\sup_n F_n(a) \leq F(a+1/p)$ pour tout $p$ et donc on a aussi $\lim\sup_n F_n(a) \leq F(a)$.
- On a également que $F_n(a) \geq \Esp(f_{p,a-1/p}(X_n))$ et $\Esp(f_{p,a-1/p}(X)) \geq F(a-1/p)$ ; donc $\lim\inf_n F_n(a) \geq F(a-1/p)$ pour tout $p$ et donc aussi $\lim\inf_n F_n(a) \geq F(a)$, puique $F(a-)=F(a)$. Ces deux résultats impliquent que $F_n(a) \xrightarrow[n\to \infty]{} F(a)$.
- 2. Inversement, supposons $F_n(x) \xrightarrow[n\to \infty]{} F(x)$ pour tout $x\in T$, où $T$ est une partie dense de $\R$. Soit $f$ une fonction continue bornée sur $\R$ et $\varepsilon > 0$. Soient $a,b \in T$ avec $F(a) \leq \varepsilon$ et $F(b) \geq 1-\varepsilon$. Il existe $n_0$ tel que 
- $$ n\geq n_0 \Rightarrow \P(X_n\notin ]a,b]) = 1-F_n(b)+F_n(a) \leq 3\varepsilon.$$
- La fonction $f$ est uniformément continue sur $[a,b]$, donc il existe un nombre fini de points $a_0 = a < a_1 < \ldots < a_k = b$ appartenant tous à $T$, et tels que $|f(x) - f(a_i)|\leq \varepsilon$ si $a_{i-1} \leq x \leq a_i$. Donc
- $$ g(x) = \sum_{i=1}^k f(a_i)1_{]a_{i-1},a_i]}(x)$$
- vérifie $|f-g| \leq \varepsilon$ sur $]a,b]$. Si $M = \sup_x |f(x)|$, il vient alors
- $$|\Esp(f(X_n))-\Esp(g(X_n))| \leq M \P(X_n \notin [a,b]) + \varepsilon,$$
- de même pour $X$. Enfin, $\Esp(g(X_n)) = \sum_{i=1}^k f(a_i)(F_n(a_i) - F_n(a_{i-1})$, et de même pour $X$ par définition de $g$. Comme $(F_n(a_i))_{n \in \N^\ast}$ converge vers $F(a_i)$ pour tout $i$, on en déduit l'existence de $n_1$ tel que 
- $$ n\geq n_1 \Rightarrow |\Esp(g(X_n)) - \Esp(g(X))|\leq \varepsilon.$$
- Finalement, on a 
- $$ n \geq \sup(n_0,n_1) \Rightarrow |\Esp(f(X_n))-\Esp(f(X))|\leq 3\varepsilon + 5 M \varepsilon .$$ 
- Vu l'arbitraire sur $\varepsilon$, on en déduit que $\Esp(f(X_n))$ converge vers $\Esp(f(X))$, d'où le résultat.
-
-### Corollaire {.corollary}
-Si la suite $(X_n)_{n\in\N^\ast}$ de variables aléatoires réelles converge en loi vers $X$, et si la loi de $X$ admet une densité, alors pour tous $a< b$,
-$$ \P(X_n \in ]a,b]) \xrightarrow[n\to \infty]{} \P(X\in]a,b]).$$
-
-### Démonstration {.proof}
-La fonction de répartition de $X$ est alors continue en tout point. (Mais pas nécessairement celle des variables aléatoires $X_n$.)
-
-## Fonctions caractéristiques
-
-Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités : il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire, et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment nécessaire, via le théorème de Lévy, pour démontrer le théorème central limite. L'essentiel de cette section peut être considéré hors programme, dans le sens où, bien que très utile en pratique, sa connaissance ne sera pas évaluée à l'examen.
-
-On notera $< x, y >$ le produit scalaire de deux vecteurs de $\R^n$ . Si $u \in \R^n$ , la fonction (complexe) $x \mapsto e^{i < u,x>}$ est continue, de module 1. Donc si $X$ est un vecteur aléatoire à valeurs dans $\R^n$ , nous pouvons considérer $e^{i < u,X>}$ comme une variable aléatoire à valeurs complexes. Ses parties réelle $Y = \cos(< u, X>)$ et imaginaire $Z = \sin(< u, X>)$ sont des variables aléatoires réelles. Ces variables aléatoires réelles
-sont de plus bornées par 1, donc elles admettent une espérance. Il est alors naturel d’écrire que l’espérance de $e^{i < u,x>}$ est
-    $$\Esp(e^{i < u,X>}) = \Esp(Y) + i \Esp(Z) = \Esp(\cos< u, X>) + i\Esp(\sin< u, X>) $$
-
-### Définition {.definition}
-Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, sa *fonction caractéristique* est la fonction $\phi_X$ de $\R^n$ dans $\C$ définie par
-    $$ \phi_X(u) = \Esp(e^{i < u,X>}) = \int_{\R^n} e^{i < u,x>} \P_X(dx).$$
-
-### Remarque {.remark}
-La fonction caractéristique ne dépend en fait **que de la loi $\P_X$ de $X$** : c’est la “transformée de Fourier” de la loi $\P_X$.
-
-Nous verrons que cette fonction porte bien son nom, au sens où elle caractérise la loi $\P_X$. C’est une notion qui, de ce point de vue, généralise la fonction génératrice $G_X(s) = \Esp(s^X), \, s \in [0,1]$, vue en CPGE dans le cas discret. Elle vérifie
-    $$\phi_X(u) = G_X(e^{iu}) = \Esp(e^{iuX}) $$
-pour une variable $X$ à valeurs dans $\N$.
-
-### Proposition --- propriétés de la fonction caractéristique {.proposition}
-$\phi_X$ est de module inférieur à 1, continue, avec
-    $$ \phi(0) = 1 ;\,\,\, \phi_X(-u) = \overline{\phi_X(u)}.$$
-
-### Démonstration {.proof}
-$|z|$ désigne le module d'un nombre complexe $z$.
-
-Comme $\Esp(Y)^2 \leq \Esp(Y^2)$ pour toute variable réelle $Y$, on a :
-$$ |\phi_X(u)|^2 = \Esp(\cos< u, X>)^2 + \Esp(\sin< u, X>)^2 \leq \Esp(\cos^2< u, X> + \sin^2< u, X>) = 1.$$
-
-Pour montrer la continuité, considérons une suite $u_p \xrightarrow[p \to \infty]{} u$. Il y a convergence simple de $e^{i < u_p,X>}$ vers $e^{i < u,X>}$. Comme ces variables aléatoires sont de module inférieur à 1, le théorème de convergence dominée assure que $\phi_X(u_p) \xrightarrow[p \to \infty]{} \phi_X(u)$. $\phi_X$ est donc continue.
-
-### Proposition --- transformation linéaire {.proposition #fct_carac_vec}
-Si $X$ est un vecteur aléatoire à valeurs dans $\R^n$, si $a \in \R^m$ et $A$ est une matrice réelle de taille $m \times n$, alors 
-    $$ \phi_{a+AX}(u) = e^{i < u,a>} \phi_X (A^t u), \forall u \in \R^m$$
-
-### Démonstration {.proof}
-Nous avons $e^{i< u, a + AX>} = e^{i < u,a>}e^{i <A^tu, X>}$. En effet, $< u, A X> = < A^t u, X>$. On prend ensuite les espérances pour obtenir le résultat.
-
-### Exemples {.example #ex}
-
- 1. $X$ suit une loi binomiale $\mathcal{B}(n,p)$ : $\phi_X(u) = (p e^{iu}+ 1- p)^n$.
- 2. $X$ suit une loi de Poisson $\mathcal{P}(\theta)$ : $\phi_X(u) = e^{\theta (e^{iu}-1)}$.
- 3. $X$ suit une loi uniforme $\mathcal{U}_{[a,b]}$ :$\phi_X(u) = \frac{e^{iua} - e^{iub}}{iu(b-a)}$.
- 4. $X$ suit une loi exponentielle $\mathcal{E}(\lambda)$, $\lambda > 0$ : $\phi_X(u) = \frac{\lambda}{\lambda - iu}$.
- 5. $X$ suit une loi normale $\No(0,1)$ : $\phi_X(u) = e^{-u^2/2}$. ([calcul en annexe](#fctcaracgauss))
- 6. $X$ suit une loi normale $\No(\mu,\sigma^2)$ : $\phi_X(u) = e^{iu\mu -u^2\sigma^2/2}$. (application directe de [la proposition ci-dessus](#fct_carac_vec))
-
-L’intérêt majeur de la fonction caractéristique réside dans le fait qu’elle caractérise la loi de la variable aléatoire (d'où son nom).
-
-### Théorème --- caractérisation {.theorem #caracfc}
-La fonction caractéristique $\phi_X$ caractérise la loi du vecteur aléatoire $X$. Ainsi, si deux vecteurs aléatoires $X$ et $Y$ ont même fonction caractéristique, ils ont même loi.
-
-### Démonstration {.proof}
-Soient les fonctions suivantes avec $\sigma > 0$ :
-    $$ f_\sigma (x) = \frac{1}{(2\pi \sigma^2)^{n/2}}\exp\left(-\frac{|x|^2}{2\sigma^2}\right) \text{ et } \widehat{f}_\sigma (u)= \exp\left(-\frac{|u|^2\sigma^2}{2}\right).$$
-On note que $f_\sigma$ est la densité d'un vecteur gaussien $Z$ de dimension $n$, centré et de matrice de covariance $\sigma^2 I_n$, autrement dit dont les composantes sont indépendantes, centrées, de variances $\sigma^2$.
-
-On a 
-\begin{align*}
-\Esp(e^{i < u,Z>}) = \int f_\sigma (x) e^{i < u,x>} dx &= \int_{\R^n} \prod_{j=1}^n \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{x_j^2}{2\sigma^2}+iu_j x_j\right) dx_1\ldots dx_n \\
-                                  &= \prod_{j=1}^n \int_{\R} \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{t^2}{2\sigma^2}+iu_j t\right) dt \\
-                                  &= \prod_{j=1}^n e^{-u_j^2\sigma^2/2}\\
-                                  & = \widehat{f}_\sigma(u)
-\end{align*}
-d'après l'exemple 5 [ci-dessus](ex) et en utilisant le théorème de Fubini. On remarque ainsi que
-$$ f_\sigma (u-v) = \frac{1}{(2\pi \sigma^2)^{n/2}} \widehat{f}_{\sigma}\left(\frac{u-v}{\sigma^2}\right) = \frac{1}{(2\pi \sigma^2)^{n/2}} \int f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx.$$
-
-Supposons que $X$ et $Y$ admettent la même fonction caractéristique $\phi_X = \phi_{Y}$. En utilisant le théorème de Fubini, on a 
-\begin{align*}
-\Esp_X(f_\sigma (X-v)) &= \int f_\sigma (u-v) \P_X (du) \\
-                       &= \int_{\R^n} \frac{1}{(2\pi \sigma^2)^{n/2}} \left( \int_{\R^n} f_\sigma (x) e^{i < u -v ,x>/\sigma^2} dx \right) \P_X (du)\\
-                       &= \int_{\R^n} f_\sigma (x) \frac{1}{(2\pi \sigma^2)^{n/2}} \left( \int_{\R^n}  e^{i < u ,x/\sigma^2>} \P_X(du) \right) e^{-i < v ,x>/\sigma^2} dx\\
-                       &= \int_{\R^n} f_\sigma (x) \frac{1}{(2\pi \sigma^2)^{n/2}} \phi_X\left(\frac{x}{\sigma^2}\right) e^{-i < v ,x>/\sigma^2} dx,
-\end{align*}
-
-et la même égalité reste vraie pour $\P_{Y}$. On en déduit que
-$$\Esp(g(X)) = \int g(u) \P_X (du) = \int g(u) \P_Y (du) = \Esp(g(X'))$$ 
-pour toute fonction $g$ de l'espace vectoriel de fonction engendrées par $u \mapsto f_\sigma (u-v)$. 
-
-D'après le théorème de Stone-Weiertrass[^SW], cet espace est dense dans l'ensemble $C_0$ des fonctions continues sur $\R^n$ et ayant une limite nulle à l'infini, pour la topologie de la convergence uniforme (la norme est le sup sur $\R^n$). 
-
-Par suite, $\Esp(g(X)) = \Esp(g(X'))$ pour toute fonction $g \in C_0$. Comme l'indicatrice de tout ouvert est limite croissante de fonctions de $C_0$, on en déduit que $\P_X(A) = \Esp(1_A (X))$ est égal à $\P_{X'}(A) = \Esp(1_A (X'))$ pour tout ouvert $A$, ce qui implique $P_X = P_{X'}$.
-
-[^SW]: voir par exemple @Simmons p.160.
-
-### {.anonymous}
-La fonction caractéristique offre également un moyen commode de caractériser l'indépendance.
-
-### Corollaire {.corollary}
-Soit $X = (X_1,\ldots,X_n)$ un vecteur aléatoire à valeurs dans $\R^n$. Ses composantes $X_i$ sont indépendantes si et seulement si pour tous $u_1, \ldots, u_n \in \R$, 
-    $$ \phi_X(u_1,\ldots,u_n) = \prod_{j=1}^n \phi_{X_j}(u_j) $$
-où $\phi_X$ désigne la fonction caractéristique du vecteur aléatoire $X$, et $\phi_{X_j}$ celle de la composante $X_j$ pour chaque $j$.
-
-### Démonstration {.proof}
-On a $< u,X> = \sum_{j=1}^n u_j X_j$. Si les $X_i$ sont indépendantes, et comme $e^{i < u,x>} = \prod_j e^{i u_j x_j}$, nous obtenons directement le résultat en utilisant la [proposition](Probabilité II.pdf #indep_fct) (valable dans le cas général) qui montre que l'espérance du produit de fonctions de variables aléatoires indépendantes est égal au produit des espérances.
-
-Supposons inversement qu'on ait $\phi_X (u_1,\ldots,u_n) = \prod_{j=1}^n \phi_{X_j}(u_j)$. On peut alors construire des variables aléatoires $X'_j$ indépendantes, telles que $X'_j$ et $X_j$ aient même loi pour tout $j$ et donc telles que $\phi_{X'_j} = \phi_{X_j}$. Si $X' = (X'_1,\ldots,X'_n)$, on a donc $\phi_{X'} = \phi_X$. Donc $X$ et $X'$ ont même loi, ce qui entraîne que pour tous boréliens $A_j$, on ait
-$$ \P(\bigcap_j \{X_j \in A_j\}) = \P(\bigcap_j \{X'_j \in A_j\}) = \prod_j \P(\{X'_j \in A_j\}) = \prod_j \P(\{X_j \in A_j\})$$
-d'où l'indépendance.
-
-### Proposition --- somme {.proposition #fct_carac_sum}
-Si $X$ et $Y$ sont deux vecteurs aléatoires indépendants à valeurs dans $\R^n$, la fonction caractéristique de la somme $X+Y$ est donnée par
-    $$ \phi_{X+Y} = \phi_X\phi_Y$$
-
-### Démonstration {.proof}
-Comme $e^{i< u, X+Y>}=e^{i< u, X>}e^{i< u, Y>}$, il suffit d'appliquer la [proposition](Probabilité II.pdf #indep_fct) déjà utilisée dans la preuve du corollaire ci-dessus.
-
-### Exemples :
-Soient $X$ et $Y$ deux variables aléatoires réelles indépendantes et $Z = X+Y$ :
-
- 1. Si $X$ suit la loi normale $\No(m,\sigma^2)$ et $Y$ suit $\No(m',\sigma'^2)$, alors $Z$ suit une loi $\No(m+m',\sigma^2+\sigma'^2)$, d'après l'[exemple ci-dessus](#ex) point 6. et la [proposition ci-dessus](#fct_carac_sum).
- 2. Si $X$ et $Y$ suivent des lois de Poisson de paramètres $\theta$ et $\theta'$, alors $Z$ suit une loi de Poisson de paramètre $\theta + \theta'$, d'après l'[exemple ci-dessus](#ex) point 2. et la [proposition ci-dessus](#fct_carac_sum).
- 3. Si $X$ suit une loi binomiale $\mathcal{B}(n,p)$ et $Y$ la loi biomiale $\mathcal{B}(m,p)$, alors $Z$ suit une loi binomiale $\mathcal{B}(n+m,p)$, d'après l'[exemple ci-dessus ](#ex) point 1. et la [proposition ci-dessus](#fct_carac_sum).
-
-### Proposition --- fonction caractéristique et moments {.proposition #fct_carac_deriv}
-Soit $X$ un vecteur aléatoire de $\R^n$. Si la variable $|X|^m$ (où $|\cdot|$ désigne la norme euclidienne) est intégrable pour un entier $m$, la fonction $\phi_X$ est $m$ fois continûment différentiable sur $\R^n$ et pour tout choix des indices $i_1,\ldots, i_m$, 
-    $$ \frac{\partial^m}{\partial u_{i_1}\ldots \partial u_{i_m}} \phi_X(u) = i^m \Esp (e^{i < u,X >}X_{i_1}\ldots X_{i_m}),$$
-où les $X_j$ sont les composantes de $X$.
-
-### Démonstration {.proof}
-Le résultat se démontre par application itérée du théorème de dérivation sous le signe somme.
-
-### Remarque {.remark}
-En prenant $u=0$ dans la [proposition --- somme](#fct_carac_sum), la formule permet de calculer $\Esp(X_{i_1}\ldots X_{i_m})$ en fonction des dérivées à l'origine de $\phi_X$, autrement dit de calculer tous les moments du vecteur $X$, s'ils existent. Par exemple, si $X$ est à valeurs réelles et est intégrable (respectivement de carré intégrable), on a
-    $$ \Esp(X) = i \phi'_X(0), \,\,\,(\text{resp. } \Esp(X^2) = \phi"_X(0))$$
-
-On donne ici la définition générale d'un vecteur gaussien, qui nous sera utile pour la démonstration du théorème central limite. 
-
-### Définition {.definition #gauss_vec}
-Un vecteur aléatoire $X=(X_1,\ldots,X_n)$ à valeurs dans $\R^n$ est dit gaussien si toute combinaison linéaire de ses composantes, soit $\sum_{j=1}^n a_j X_j$ où $a_j \in \R$, suit une loi normale uni-dimensionnelle (éventuellement dégénérée, par exemple si on prend $a_j = 0$ pour tout j).
-
-
-### Théorème --- cas gaussien{.theorem #fct_carac_gauss}
-$X$ est un vecteur gaussien si et seulement si sa fonction caractéristique s'écrit
-    $$\phi_X(u) = e^{i< u,m> - \frac{1}{2}< u,Cu>}$$
-où $m = \Esp(X) \in \R^n$ et $C$ est la matrice de covariance de $X$ qui est donc semi-définie positive.
-
-### Démonstration {.proof}
-
- 1. Supposons $\phi_X(u) = e^{i< u,m> - \frac{1}{2}< u,Cu>}$. Pour toute combinaison linéaire $Y = \sum_j a_j X_j = < a, X >$, et pour tout $v \in \R$, on a 
-    $$ \phi_Y(v) = \phi_X(va) = e^{iv< a ,m> - \frac{v^2}{2}< a,Ca>}$$
-    donc $Y$ suit la loi $\No(< a, m>, < a, Ca>)$.
- 2. Inversement, soit $C$ la matrice de covariance de $X$ et $m$ son vecteur moyenne. Si $Y = < a, X > = \sum_{j=1}^n a_j X_j$ avec $a\in\R^n$, un calcul simple montre
-        $$ \Esp(Y) = < a, m >, \V(Y) = < a, Ca> $$
-    Par hypothèse, $Y$ suit une loi normale donc vu le point 6. de l'[exemple plus haut](#ex), sa fonction caractéristique est
-        $$ \phi_Y(v) = e^{iv< a ,m> - \frac{v^2}{2}< a,Ca>} $$
-    Mais $\phi_Y(1) = \phi_{< a,X>} (1) = \Esp (e^{i < a, X>}) = \phi_X(a)$, d'où le résultat.
-
-### {.anonymous}
-
-Le théorème suivant caractérise la convergence en loi à l’aide des fonctions caractéristiques. C’est un critère extrêmement utile dans la pratique.
-
-### Théorème de Lévy {.theorem #levytheorem}
-Soit $(X_n)_{n \in \N^\ast}$ une suite de vecteurs aléatoires à valeurs dans $\R^d$.
-
- 1. Si la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$, alors $\phi_{X_n}$ converge simplement vers $\phi_X$.
-
- 2. Si les $\phi_{X_n}$ convergent simplement vers une fonction (complexe) $\phi$ sur $\R^d$ et si cette fonction est **continue** en 0, alors c'est la fonction caractéristique d'une variable aléatoire $X$ et $X_n \xrightarrow{\L} X$.
-
-### Démonstration {.proof}
-
- 1. On remarque que $\phi_{X_n}(u) = \Esp(g_u(X_n))$ et $\phi_X(u) = \Esp(g_u(X))$ où $g_u$ est la fonction continue bornée $g_u(x) = e^{i < u,x>}$. On applique alors la [définition](#defconvloi).
- 2. Se reporter à @Jacod.
-
-## Théorème central limite
-Ce théorème est aussi connu sous le nom de théorème de la limite centrale. Plus simplement, il apparaît souvent sous l’abréviation TCL.
-
-On considère une suite de variables aléatoire $(X_n)_{n \in \N^\ast}$ indépendantes, de même loi et de carré intégrable. On note $m$ et $\sigma^2$ l'espérance et la variance commune aux variables $X_n$, et
-    $$S_n = X_1 + \ldots + X_n$$
-ainsi ($S_n = n M_n$). On a vu que la loi des grands nombres assure que $M_n$ converge vers $m$ presque-sûrement et en moyenne. On va s'intéresser a la vitesse à laquelle cette convergence a lieu.
-
-Pour évaluer cette vitesse, c’est-à-dire trouver un équivalent de $\frac{S_n}{n} - m$, on est amené à étudier la limite éventuelle de la suite $n^\alpha (\frac{S_n}{n} - m)$ pour différentes valeurs de $\alpha$ : si $\alpha$ est “petit” cette suite va encore tendre vers 0, et elle va “exploser” si $\alpha$ est “grand”. On peut espérer que pour une (et alors nécessairement une seule) valeur de $\alpha$, cette suite converge vers une limite qui n’est ni infinie ni nulle.
-
-Il se trouve que la réponse à cette question a un aspect “négatif” : la suite $n^\alpha (\frac{S_n}{n} - m)$ ne converge au sens presque-sûr, ou même en probabilité, pour aucune valeur de $\alpha$. Elle a aussi un aspect “positif” : cette suite converge, au sens de la convergence en loi, pour la même valeur $\alpha = 1/2$ quelle que soit la loi des $X_n$, et toujours vers une loi normale.
-
-Ce résultat, qui peut sembler miraculeux, a été énoncé par Laplace (1749-1827) et démontré beaucoup plus tard par Lyapounov (1901). Il montre le caractère universel de la loi normale en probabilités (d'où son nom). 
-
-### Théorème central limite {.theorem #TCL}
-Si les $X_n$ sont des variables aléatoires réelles, indépendantes et de même loi, de carré intégrable, d'espérance $m$ et de variance $\sigma^2 >0$, alors les variables
-    $$ \frac{S_n -nm}{\sigma \sqrt{n}}$$
-convergent en loi vers une variable aléatoire de loi $\No(0,1)$.
-
-En d'autres termes, $\sqrt{n}(M_n - m)$ converge vers une variable normale de loi $\No(0,\sigma^2)$.
-
-### Démonstration {.proof}
-Soit $\phi$ la fonction caractéristique de $X_n - m$, et $Y_n = \frac{S_n -nm}{\sigma \sqrt{n}}$. Comme les $X_n$ sont indépendantes, la [proposition --- somme](#fct_carac_sum) entraîne que la fonction caractéristique de $Y_n$ est 
-\begin{align*}
-    \phi_{Y_n}(u) & = \phi_{\frac{1}{\sigma\sqrt{n}}\sum_{j=1}^n(X_j-m)}(u) \\
-                  & = \phi_{\sum_{j=1}^n(X_j-m)}\left(\frac{u}{\sigma\sqrt{n}}\right) \\
-                  & = \prod_{j=1}^n \phi \left(\frac{u}{\sigma\sqrt{n}}\right)\\
-                  & = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n
-\end{align*}
-Comme $\Esp(X_n -m) = 0$ et $\Esp((X_n-m)^2) = \sigma^2$, la [proposition --- fonction caractéristique et moments](#fct_carac_deriv) entraîne que
-    $$\phi'(0) = 0 \text{     et } \phi''(0) = -\sigma^2$$
-Si on fait le développement de Taylor à l'ordre 2 au voisinage de zéro, on obtient
-    $$\phi(u) = 1 - \frac{u^2\sigma^2}{2} + u^2 h(|u|),$$
-où $h(u) \to 0$ quand $u \to 0$. On a ainsi
-\begin{align*}
-    \phi_{Y_n}(u) & = \phi\left(\frac{u}{\sigma\sqrt{n}}\right)^n \\
-                  & = e^{n\log \phi\left(\frac{u}{\sigma\sqrt{n}}\right)} \\
-                  & = e^{n\log (1 - \frac{u^2}{2n} + \frac{u^2}{n\sigma^2} h(\frac{u}{\sigma\sqrt{n}}))}
-\end{align*}
-où $\log$ désigne la valeur principale du logarithme complexe[^logcplx] (elle vaut 0 au point 1 et est continue dans le cercle complexe de centre 1 et de rayon 1/2 et admet le même développement limité au voisinage de $z=1$ que le logarithme réel).
-Comme $\phi(0) = 1$ et que $\phi$ est continue en 0, on a  que pour $u$ fixé et $n$ assez grand,
-    $$\left| \phi\left(\frac{u}{\sigma\sqrt{n}}\right)-1\right| \leq 1/2.$$
-En faisant $n \to \infty$, on obtient
-    $$\lim_{n \to \infty} \phi_n(u) = \exp -\frac{u^2}{2}$$
-Le [théorème de Lévy](#levytheorem) implique alors que $Y_n$ converge en loi vers $Z$ de fonction caractéristique $\phi_Z(u) = e^{-u^2/2}$ où l'on reconnaît la fonction caractéristique de la loi $\No(0,1)$.
-
-[^logcplx]: voir par exemple https://fr.wikipedia.org/wiki/Logarithme_complexe
-
-### Remarque {.remark}
-
-On peut déduire de ce résultat que $n^\alpha (\frac{S_n}{n} - m)$ converge vers 0 (resp. $+\infty$) en probabilité lorsque $\alpha < 1/2$ (resp. $\alpha > 1/2$).
-
-### Exemple : convergence des lois binomiales
-Supposons que $S_n$ suive une loi binomiale $\mathcal{B}(p,n)$. Cela revient à dire que $S_n$ a la même loi qu'une somme $X_1+\ldots+X_n$ de $n$ variables aléatoires $X_i$ indépendantes de loi $\mathcal{B}(p,1)$, i.e. $\P(X_i= 1) = p$ et $\P(X_i= 0) = 1- p$. On a alors $m=p$ et $\sigma^2= p(1-p)$.
-
-On veut calculer $\P(S_n \leq x)$ pour $x$ fixé et $n$ grand.
-
-Si $p$ est petit de sorte que $\theta = np$ ne soit pas trop grand (en pratique, $\theta \leq 5$ convient), on peut utiliser l’approximation par une loi de Poisson, vue en CPGE. Si $p$ est très proche de 1, de sorte que $\theta = n(1 - p)$ soit comme ci-dessus, alors $n - S_n$ suit à son tour une loi proche de la loi de Poisson de paramètre $\theta$.
-
-Dans les autres cas, on utilise la loi des grands nombres et le théorème central limite :
-\begin{align*}
-\frac{S_n}{n} & \xrightarrow{\P} p,\\
-\frac{S_n - np}{\sqrt{n p(1-p)}} & \xrightarrow{\L} Y \sim \No(0,1)
-\end{align*}
-
-Si on désigne par $\Phi$ la fonction de répartition de la loi $\No(0,1)$, il vient 
-    $$\P(S_n \leq x) \approx \Phi \left(\frac{x - np}{\sqrt{n p(1-p)}}\right)$$
-
-Imaginons que l'on lance 1000 fois une pièce (non truquée). On cherche la probabilité d’obtenir plus de 545 fois le côté Face. Le calcul exact utilisant les lois binomiales est extrêmement lourd. Le résultat ci-dessus nous donne une très bonne approximation. On a
-    $$ \P(S_{1000} > 545) = \P\left(\frac{S_{1000} - 500}{\sqrt{250}} > \frac{45}{\sqrt{250}}\right) \approx \int_{\frac{45}{\sqrt{250}}}^{+\infty} \frac{1}{\sqrt{2\pi}} e^{-x^2/2} dx.$$
-
-Cette dernière intégrale se calcule numériquement (on trouve encore des abaques où les valeurs de $\Phi$ sont tabulées) et on obtient
-    $$ \P(S_{1000} > 545) \approx 1 - \Phi(2,84) \approx 0,0023.$$
-
-Le [théorème](#TCL) admet une version multidimensionnelle, de preuve similaire. On considère des vecteurs aléatoires $X_n$ à valeurs dans $\R^d$, indépendants et de même loi, dont les composantes sont de carré intégrable. On a un vecteur espérance $m = E(X_n)$, et une matrice de covariance $C = (c_{ij} )_{i,j=1,\ldots,d}$ avec $c_ij = \cov(X_i,X_j)$. On peut alors énoncer le TCL multi-dimensionnel.
-
-### Théorème central limite multi-dimensionnel {.theorem}
-Les vecteurs aléatoires $\frac{S_n-nm}{\sqrt{n}}$ convergent en loi vers un vecteur aléatoire gaussien centré (i.e. d'espérance nulle), de matrice $C$.
-
-### Remarque {.remark}
-Il est important de noter ici que la vitesse de convergence ne dépend pas de la dimension des vecteurs $X_n$.
-
-Annexe
-===============================================================================
-
-Fonction caractéristique d'une variable gaussienne {#fctcaracgauss}
--------------------------------------------------------------------------------
-Soit $X \sim \No(0,1)$. On a
-\begin{align*}
-\phi_X(u) = \Esp(e^{iuX}) &= \int_\R e^{iux}\frac{1}{\sqrt{2\pi}}e^{-x^2/2}dx \\
-                          &= \int_\R \frac{\cos(ux)}{\sqrt{2\pi}}e^{-x^2/2}dx + \int_\R \frac{i\sin(ux)}{\sqrt{2\pi}}e^{-x^2/2}dx
-\end{align*}
-Comme $x \mapsto \frac{\sin(ux)}{\sqrt{2\pi}}e^{-x^2/2}$ est impaire et intégrable, son intégrale est nulle, d'où
-$$\phi_X(u) = \int_\R \frac{\cos(ux)}{\sqrt{2\pi}}e^{-x^2/2}dx.$$
-D'après la [proposition --- fonction caractéristique et moments](#fct_carac_deriv), on peut dériver les deux membres par rapport à $u$, et on obtient
-$$\phi'_X(u) = \frac{1}{\sqrt{2\pi}}\int_\R -x\sin(ux)e^{-x^2/2}dx$$
-puis par intégration par parties 
-$$\phi'_X(u) = -\frac{1}{\sqrt{2\pi}}\int_\R u\cos(ux)e^{-x^2/2}dx = -u\phi_X(u).$$
-Ainsi, $\phi_X$ satisfait à l'équation différentielle $\phi'_X(u) = -u\phi_X(u)$, dont la solution générale est 
-$$\phi_X(u) = C e^{-u^2/2}.$$
-Comme $\phi_X(0) = 1,$ on en déduit finalement que
-$$\phi_X(u) = e^{-u^2/2}.$$
 
 Exercices
 ===============================================================================
 
-Inégalités de concentration 
----------------------------------------------------------------------------------
+## Un exercice tout bête {.question #etb} 
 
-### Question 1 {.question #idc1}
-Soit $(X_n)_n$ une suite de variables aléatoires indépendantes et identiquement distribuées d'espérance $\Esp(X_i) = m$ et de variance $\V(X_i) = \sigma^2 \leq 1$. Montrer que pour tout $\delta \in \left]0,1\right[$, avec probabilité au moins $1-\delta$ on a
-$$\left|\frac{1}{n}\sum_{i=1}^n X_i - m \right| \leq \sqrt{\frac{1}{\delta n}}$$
+Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T$ est le triangle $T = \{0< y< x < 1\}$.
 
-On peut trouver des bornes à décroissance beaucoup plus rapide dans des cas particuliers.
+1. Calculer la densité marginale de $X$
+2. Calculer la densité conditionnelle de $Y$ sachant $X=x$.
+3. En déduire l'espérance conditionnelle de $Y$ sachant $X$.
 
-### Question 2 {.question #idc2}
-On suppose désormais que les $X_i$ sont de loi $\No (m, \sigma^2 )$.
+## Mélanges de lois 
 
- i) On pose pour $u \in \R : M(u) = \Esp(e^{u(X_1 -m)})$. Calculer $M (u)$.
+*Adapté du cours de probabilités de S. Bonnabel et M. Schmidt (MINES ParisTech).*
 
- ii) On pose $S_n = X_1 + \ldots + X_n$ . Montrer que $\forall a \in \R, \forall u \in \R_+$,
-    $$\P(S_n - nm > a) \leq e^{-ua} (M(u))^n,$$
-   et que $\forall a \in \R, \forall u \in \R_-$,
-    $$\P(S_n - nm < -a) \leq e^{ua} (M(u))^n.$$
- iii) Soit $Y_n =\frac{S_n}{n}$. Montrer que $\forall \varepsilon >0$, 
-    $$\P(|Y_n - m| > \varepsilon) \leq 2 \exp\left(\frac{-n\varepsilon^2}{2\sigma^2}\right).$$
-    Cette inégalité est appelée inégalité de Chernov. 
-    
-On peut dériver ce type d'inégalités pour différentes lois de probabilité. On voit qu'ici la concentration auprès de la moyenne se fait à vitesse exponentielle. On a le même type de résultats pour la loi de Bernoulli par exemple ce qui est très utile en apprentissage statistique dans les problèmes de classification.
+Pour modéliser un phénomène multimodal, on utilise souvent des mélanges de gaussiennes. C'est le cas notamment en classification non-supervisée, où on fait l'hypothèse que chacune des classes suit une loi gaussienne. Soient $n\in\N^\ast$ et $K$ une variable aléatoire prenant les valeurs $1,\dots,n$ avec les probabilités non nulles $p_1,\dots,p_n$ telles que $\sum_{i = 1}^n p_i = 1$. Soient $X_1,\dots,X_n$ des variables aléatoires gaussiennes mutuellement indépendantes, d'espérances respectives $m_1,\dots,m_n \in \R$ et de variances respectives $\sigma_1^2,\dots,\sigma_n^2 \in\R_+^\ast$, toutes indépendantes de $K$. On appelle mélange de gaussiennes la loi de la variable aléatoire $X = X_K$. Pour tout $i\in\{1,\dots,n\}$, on notera $f_i$ la densité de la variable aléatoire $X_i$.
 
-### Question 3 {.question #idc3}
- iv) On suppose que $m = 1$ et que $\sigma^2 = 10$. Quelle taille d’échantillon doit-on choisir pour obtenir
-    $$\P(|Y_n - m| < \varepsilon) \geq \alpha,$$
-    avec $\alpha = 0,95$ et $\varepsilon = 0,05$,
-    
-        * en utilisant l’inégalité de Bienaymé-Chebyshev ?
-        * en utilisant l’inégalité de Chernov ?
+### Question 1 {.question #melloi1} 
+Soit $i \in \{1,\dots,n\}$. Quelle est la densité $f_{X\mid K = i}$ de $X$ conditionnellement à l'événement $\{K = i\}$ ?
 
+### Question 2 {.question #melloi2} 
+Calculer la densité de probabilité de la variable $X$.
 
-Lemme de Borel-Cantelli
---------------------------------------------------------------------------------
+### Question 3 {.question #melloi3} 
+Calculer $\Esp(X)$. Montrer que $\V(X) = \sum_{i = 1}^n p_i\sigma_i^2 + \bar{\sigma}^2$, où ce dernier terme peut être interprété comme la dispersion des espérances.
 
-Soit $A_n$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
+### Question 4 {.question #melloi4} 
+Comment approximeriez-vous le mélange par une unique gaussienne ? Faire un schéma dans le cas $m = 2$.
 
-### Question 1 {.question #bc1}
+## Lois conjuguées
 
-On suppose que $\sum_{i=1}^n \P(A_n) < \infty$. Montrer que $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_n \right) =0$.
+Soit un vecteur aléatoire $(X,Y)$ de loi jointe $\P_{X,Y}$. Expliciter la loi conditionnelle de $Y$ sachant $\{X=x\}$ dans les situations suivantes, en prenant soin d'expliciter pour quelles valeurs de $x$ ces dernières ont du sens.
 
-### Question 2 {.question #bc2}
+### Question 1 {.question #loiconj-expexp}
 
-On suppose maintenant que les événements $A_n$ sont mutuellement indépendants. Montrer que si $\sum_{i=1}^n \P(A_n) = \infty$, alors on a $\P(\lim \sup_{n \to \infty} A_n) = 1$.
+$Y$ suit une loi Exponentielle de paramètre $\lambda \in\R_+^\ast$ et pour tout $y\in\R_+^\ast$, la variable aléatoire $X$ sachant $\{Y=y\}$ suit une loi Exponentielle de paramètre $y$.
 
-### Question 3 {.question #bc3}
+### Question 2 {.question #loiconj-gampoi}
 
-Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \infty} A_n) < 1$ quand les $A_n$ ne sont pas indépendants.
+$Y$ suit une loi Gamma de paramètres $\alpha,\theta \in \R_+^\ast$ et pour tout $y\in\R_+^\ast$, la variable aléatoire $X$ sachant $\{Y=y\}$ suit une loi de Poisson de paramètre $y$.
 
-### Question 4 {.question #bc4}
+## Randomisation {.question #randomize}
 
-On considère le jeu de pile ou face infini de [l'exemple en début de cours](#pfinf). Montrer que  l'événement $A = \{\omega : \text{ il n'y a qu'un nombre fini de faces}\}$ est de probabilité nulle. (Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}, puis montrer que $\sum_{n=1}^\infty \P(A_n) = \infty$).
+*Extrait du cours de probabilités de S. Bonnabel et M. Schmidt (MINES ParisTech).*
 
-Convergence vers une constante
-----------------------------------------------------------------------------------
+Des clients arrivent à la boutique SNCF du boulevard Saint-Michel à des instants aléatoires. On note $T_0$ l'heure d'ouverture puis $T_1, T_2, \dots$ les temps successifs d'arrivée des clients jusqu'à l'heure de fermeture. Les études statistiques montrent qu'on peut, dans une tranche horaire donnée, supposer que les temps d'attente $X_1 = T_1 -T_0, X_2 = T_2 -T_1,\dots$ peuvent être modélisés par des variables aléatoires indépendantes et de même loi qu'une variable aléatoire positive $X$. Par ailleurs, une loterie interne décide que chaque jour dans la tranche horaire considérée, le $N^{\text{ème}}$ client sera l'heureux gagnant d'un trajet gratuit Paris-La Ciotat, où $N$ est une variable aléatoire bornée dont la loi dépend du processus de loterie (e.g. tous les clients entre le
+premier et le $30^{\text{ème}}$ ont une chance $1/30$ d'être tirés au sort, en supposant qu'on est sûr d'avoir au moins $30$ clients dans la tranche horaire).
 
-Soient $\left(X_n\right)_{n\in\N^\ast}$ une suite de variables aléatoires réelles, $X$ une autre variable aléatoire réelle et $a \in \R$.
+On se demande alors : quel est le temps d'attente moyen avant d'obtenir un gagnant ?
 
-### Convergence $\mathcal{L}^2$ {.question #cvtocst-l2}
+## Etats cachés --- indépendance conditionnelle 
 
-On suppose que $X$ et chaque $X_n$, $n\in\N^\ast$, sont de carré intégrable. 
+Soucieux de l'évolution du potager de l'école, des élèves à la main verte s'intéressent à l'évolution de la température dans le jardin côté Luxembourg. Ils récupèrent pour cela un thermomètre dans un laboratoire, l'installent près du potager, et en relèvent les mesures à intervalles de temps réguliers. Les résultats les surprennent rapidement : les températures affichées ne correspondent pas à celles prévues par météo-France. Leur thermomètre est sans doute déréglé.
 
-1. Montrer l'implication 
+On se propose de les aider à comprendre le phénomène dont ils sont témoins à l'aide d'un modèle probabiliste particulier, nommé *modèle de Markov caché*. Précisément, on considère la suite des vraies températures que l'on aurait souhaité relever comme une suite de v.a.r. non indépendantes $(X_n)_{n\in\N^\ast}$, dite *d'états cachés* (on ne les observe pas directement). Les erreurs commises par le thermomètre sont quant à elles modélisées par une suite de v.a.r. $(\epsilon_n)_{n\in\N^\ast}$, toutes indépendantes et de même loi admettant une densité $f_\epsilon$. Elles sont supposées indépendantes de la suite $(X_n)_{n\in\N^\ast}$ (l'erreur du thermomètre lui est propre et ne dépend pas de la température réelle). A chaque instant $n\in\N^\ast$, on suppose que la mesure du thermomètre est la variable aléatoire $$Y_n = X_n + \epsilon_n,$$
+et que le vecteur aléatoire $(X_1,\dots,X_n)$ possède une densité jointe notée $f_{1:n}$.
 
-$$X_n \xrightarrow[n\to+\infty]{\mathcal{L}^2} X \Rightarrow \left|\begin{array}{ll} \Esp\left(X_n\right) \xrightarrow[n\to+\infty]{} \Esp(X),\\ \mathbb{V}\left(X_n\right) \xrightarrow[n\to+\infty]{} \mathbb{V}(X). \end{array}\right.$$
+### Question 1 {.question #ec1}
+Montrer que pour tout $n \in \N^\ast$ et tout $x\in\R$, la loi de $Y_n$ sachant $\{X_n = x\}$ admet une densité, que l'on explicitera.
+
+### Question 2 {.question #ec2}
+Montrer que les $n\in\N^\ast$ relevés de température $Y_1,\dots,Y_n$ sont indépendants **conditionnellement** aux états cachés $X_1,\dots,X_n$.
 
 
-2. Vérifier l'équivalence $$X_n \xrightarrow[n\to+\infty]{\mathcal{L}^2} a \Leftrightarrow \left|\begin{array}{ll} \Esp\left(X_n\right) \xrightarrow[n\to+\infty]{} a,\\ \mathbb{V}\left(X_n\right) \xrightarrow[n\to+\infty]{} 0. \end{array}\right.$$
+## Covariance totale {.question #covtot}
 
-### Convergences en loi et probabilité {.question #cvtocst-loiprob}
+Soient $X$, $Y$ et $Z$ trois variables aléatoires réelles de carré intégrable. La covariance conditionnelle de $X$ et $Y$ sachant $Z$ est définie comme la variable aléatoire
+$$\cov(X,Y \mid Z) = \Esp\Bigl( \bigl( X - \Esp(X\mid Z) \bigr)\bigl( Y - \Esp(Y\mid Z) \bigr) \Bigm| Z  \Bigr).$$
 
-Montrer que si $X_n$ converge en loi vers $a$ quand $n\to+\infty$, alors elle converge aussi en probabilité vers $a$.
+Etablir la formule de la covariance totale : $$\cov(X,Y) = \Esp\bigl(\cov(X,Y\mid Z)\bigr) + \cov\bigl( \Esp(X\mid Z), \Esp(Y\mid Z) \bigr).$$
 
+## Non-réponse 
+*Inspiré du cours de probabilité de M. Christine (ENSAE ParisTech).*
 
+Un questionnaire est diffusé aux $n\in\N^\ast$ étudiants de l'école pour savoir combien de temps ils ont consacré à l'étude des probabilités ce semestre. On note $Y_i$ le temps de travail de l'étudiant $i \in \{1,\dots,n\}$ et $X_i$ la variable valant $1$ s'il a répondu au questionnaire et $0$ sinon. On suppose que les $(X_1,Y_1),\dots,(X_n,Y_n)$ sont des vecteurs aléatoires indépendants de même distribution qu'un vecteur générique $(X,Y)$ tel que
 
-Loi faible des grands nombres
----------------------------------------------------------------------------------
-Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Montrer que la suite $(M_n)_{n\in\N^\ast}$ définie par
-$$M_n = \frac{X_1 + \ldots + X_n}{n}$$
-converge vers $m$ en probabilité quand $n$ tend vers l'infini.
+* $X$ est une variable de Bernoulli de paramètre $p\in\,]0,1[$ indiquant la probabilité de réponse,
+* $Y$ est positive, de carré intégrable, d'espérance $m\in\R_+$ et de variance $\sigma^2 \in\R_+^\ast$.
+Le coefficient de corrélation entre $X$ et $Y$ est enfin noté $\rho \in [-1,1]$.
 
-Fonction de répartition empirique
--------------------------------------------------------------------
+### Question 1 {.question #nonrep1}
+En reprenant la définition de l'espérance conditionnelle $\Esp(Y\mid X)$ comme meilleure approximation au sens des moindres carrés de $Y$ par une fonction de $X$, montrer qu'elle coïncide ici avec l'approximation affine de $Y$ par $X$ puis l'écrire en fonction de $m$, $\rho$, $\sigma$ et $p$.
 
-Soient $X$ une variable aléatoire réelle de fonction de répartition $F$ et $\left(X_n\right)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi que $X$. Pour tout $n\in\N^\ast$ on définit la fonction de répartition empirique comme suit :
-$$F_n : x \in \R \mapsto \dfrac{1}{n}\,\sum_{i = 1}^n 1_{]-\infty,x]}(X_i).$$
+### Question 2 {.question #nonrep2}
+On pose $m_0 := \Esp(Y\mid X = 0)$ et $m_1 = \Esp(Y\mid X = 1)$. Calculer $m_0$ et $m_1$ en fonction de $m$, $\rho$, $\sigma$ et $p$.
 
-Son nom est issu de la modélisation probabiliste en statistique. Lorsque l'on souhaite étudier une variable physique dont on n'est pas à même de prédire parfaitement les valeurs (e.g. la hauteur d'eau de la Seine à la station d'Austerlitz), le statisticien va la considérer comme une variable aléatoire $X$. Pour en retrouver les propriétés, il va observer un certain nombre $n\in\N^\ast$ de réalisations de cette variable (en réalisant des mesures sur le terrain), qu'il va à nouveau considérer comme des variables aléatoires $X_1,\dots,X_n$ de même loi que $X$. Lorsque cette hypothèse est raisonnable, il va supposer que ces dernières sont même indépendantes. Nous allons voir dans cet exercice que pour tout $x\in\R$, $F_n(x)$, calculée à partir des données de terrain (d'où le nom attribué à $F_n$), approche bien la quantité théorique $F(x) = \P(X\leq x)$.
+### Question 3 {.question #nonrep3}
+On pose $\sigma^2_0 := \V\left(Y\mid X = 0\right)$ et $\sigma^2_1 := \V\left(Y\mid X = 1\right)$. Vérifier l'égalité $$\sigma^2 = \dfrac{(1-p)\,\sigma^2_0 + p\,\sigma^2_1}{1-\rho^2}.$$
 
-On considère $x\in\R$ fixé.
+### Question 4 {.question #nonrep4}
+Que dire des résultats obtenus aux questions 2 et 3 lorsque :
 
-### Préliminaire {.question #fdremp-loi}
-
-Quelle est la loi de la variable aléatoire $1_{]-\infty,x]}(X)$ ? Expliciter son espérance et sa variance.
-
-### Biais {.question #fdremp-biais}
-
-Soit $n\in\N^\ast$. Calculer l'espérance de $F_n(x)$. On dit que $F_n(x)$ est un *estimateur sans biais* de $F(x)$.
-
-### Erreur quadratique moyenne {.question #fdremp-mse}
-
-Montrer que $F_n(x) \overset{\mathcal{L}^2}{\longrightarrow} F(x)$ quand $n\to+\infty$.
-
-### Consistance {.question #fdremp-ps}
-
-Montrer que $F_n(x) \to F(x)$ p.s. quand $n\to+\infty$. On dit que $F_n(x)$ est un *estimateur fortement consistant* de $F(x)$.
-
-## Théorème de Weierstrass sur $[0,1]$
-
-Le théorème de Weierstrass est un résultat classique d'analyse dont l'énoncé est le suivant : soient $I$ un segment de $\R$ et $f : I \to \R$ une fonction continue. Alors il existe une suite $(P_n)_{n\in\N^\ast}$ de polynômes $\R \to\R$ convergeant uniformément vers $f$ sur $I$.
-
-Dans cet exercice, nous allons voir une démonstration constructive de ce théorème dans le cas particulier où $I = [0,1]$.
-
-### Préliminaires {.question #weier-prelim}
-
-Nous allons avoir besoin de deux résultats intermédiaires pour établir la preuve du théorème de Weierstrass sur $[0,1]$. 
-
-* **Théorème de convergence dominée.** Soient $(X,\mathcal{A},\mu)$ un espace mesuré, $(f_n)_{n\in\N^\ast}$ une suite de fonctions mesurables $X \to [-\infty,+\infty]$ et $g : X \to [-\infty,+\infty]$ une fonction intégrable, telles que pour tout $n\in\N^\ast$ on a $|f_n| \leq g$ $\mu$-**presque partout**. Supposons qu'il existe $f : X \to [-\infty,+\infty]$ telle que $f_n$ converge simplement vers $f$ $\mu$-**presque partout** quand $n\to+\infty$. Alors $f$ est intégrable et $$\int_X f_n\mu \xrightarrow[n\to+\infty]{} \int_X f\mu.$$
-    
-* **Inégalité de Jensen.** Soient $(\Omega,\mathcal{A},\P)$ un espace probabilisé, $X : \Omega \to \R$ une variable aléatoire  intégrable et $f : \R \to \R$ une fonction mesurable convexe, telle que $f(X) \in \mathcal{L}^1$. Alors $$f\left(\Esp(X)\right) \leq \Esp\left(f(X)\right).$$
-Démontrer ce résultat.
-    
-### Preuve du théorème. {.question #weier-thm}
-
-Soit $\left(X_n\right)_{n\in\N^\ast}$ une suite de variable aléatoires indépendantes, suivant toutes la même loi de Bernoulli de paramètre $x \in ]0,1[$. Pour tout $n\in\N^\ast$ on pose $M_n := \frac{1}{n}\,\sum_{i = 1}^n X_i$. On considère une fonction $f : [0,1] \to \R$ continue.
-
-1. Soit $n\in\N^\ast$. Vérifier que $\Esp\left( f(M_n) \right)$ peut s'écrire sous forme de polynôme.
-
-2. Montrer que $\Esp\left( f(M_n)  \right) \xrightarrow[n\to+\infty]{} f(x).$
-
-3. En déduire qu'il existe une suite de polynômes $[0,1] \to \R$ qui convergent simplement vers $f$.
-
-4. Montrer que la suite de polynômes exhibée à la question précédente converge même uniformément vers $f$.
-
-
-Théorème de Slutsky
----------------------------------------------------------------------------------
-### Question 1 {.question #slut1}
-Soient $(X_n)_n$ et $X$ des variables aléatoires. Montrer que $X_n \xrightarrow{\L} X$ si et seulement si $\Esp(f(X_n)) \xrightarrow[n\to\infty]{} \Esp(f(X))$ pour toute fonction $f$ lipschitzienne bornée.
-
-### Question 2 {.question #slut2}
-
-Soient $(X_n)_n$ et $(Y_n)_n$ deux suites de variables aléatoires définies sur le même espace de probabilité. On suppose que $(X_n)_n$ converge en loi vers $X$ et que $(X_n - Y_n)_n$ converge vers 0 en probabilité. Montrer que $(Y_n)_n$ converge en loi vers $X$.
-
-### Question 3 {.question #slut3}
-Montrer ce résultat à l'aide du [théorème de Lévy](#levytheorem).
-
+* $X$ et $Y$ sont non corrélées,
+* $X$ et $Y$ sont indépendantes ?
 
 -----------------------------------------------------------
 
+
 Solutions
-=================================================================================
+===============================================================================
 
-Inégalités de concentration 
----------------------------------------------------------------------------------
-### Question 1 {.answer #answer-idc1}
-L'inégalité de Chebyshev nous donne pour tout $a>0$
-$$\P\left(\left|\frac{1}{n}\sum_{i=1}^n X_i - m \right| > a\right) \leq \frac{\V(X_1)}{n a^2}$$
-Prenant, $\frac{\V(X_1)}{n a^2} = \delta$, on obtient $a = \frac{1}{\sqrt{n\delta}}$, d'où le résultat.
-On retrouve au passage la même vitesse de convergence que celle donnée par le TCL.
 
-### Question 2 {.answer #answer-idc2}
+## Un exercice tout bête {.answer #answer-etb} 
 
-i) $M(u) = \Esp(e^{u(X_1 -m)}) = \phi_{X_1}(-iu) = e^{u^2 \sigma^2/2}$, où $\phi_{X_1}$ est la fonction caractéristique de $X_1$.
-ii) On a $e^{u(M_n-nm)} \geq e^{ua} 1_{S_n -nm \geq a}$, d'où
-    $$\P(S_n -nm \geq a) \leq \frac{\Esp(e^{u(M_n-nm)})}{e^{ua}} = e^{-ua}M(u)^n$$
-    par indépendance des $X_i$.
-iii) 
+La densité marginale de $X$ est donnée par $f_X(x) = \int f_{X,Y}(x,y) dy = 1_{]0,1[}(x)$ et pour $x \in ]0,1[$,
+$$f_{Y|X=x} (y) = \frac{1}{x} 1_{]0,x[}(y)$$
+Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$. Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(Y|X) = \frac{X}{2}$.
+
+## Mélanges de lois
+
+### Question 1 {.answer #answer-melloi1}
+Soit $B$ un borélien. Par indépendance de $K$ avec $X_i$, on a $$\P(X \in B \mid K = i) = \P(X_i \in B \mid K = i) = \P(X_i \in B).$$ La loi de $X$ sachant $\{K = i\}$ est donc la même que celle de $X_i$, d'où $$f_{X\mid K = i} : x\in\R \mapsto f_i(x) = \dfrac{1}{\sqrt{2\pi}\sigma_i}\,\exp\left\{- \dfrac{(x-m_i)^2}{2\sigma_i^2} \right\}.$$
+
+### Question 2 {.answer #answer-melloi2}
+Soit $B$ un borélien. D'après la formule des probabilités totales et la question précédente, on a $$\P(X\in B) = \sum_{i = 1}^n p_i\,\P(X \in B \mid K = i) = \sum_{i = 1}^n p_i\,\P(X_i \in B).$$ La variable aléatoire $X$ admet donc une densité, qui vaut
+$$f_X : x\in\R \mapsto \sum_{i = 1}^n p_i\,f_i(x).$$
+
+### Question 3 {.answer #answer-melloi3}
+D'après la question précédente, $X$ a pour espérance
 \begin{align*}
-\P(|Y_n - m| \geq \varepsilon) &= \P(S_n - nm \geq n\varepsilon) + P(S_n - nm \leq -n\varepsilon) \\
-                            &\leq e^{-nu\varepsilon} (M (u))^n + e^{-n(-u)(-\varepsilon)} (M (-u))^n = 2e^{-nu\varepsilon}(M (u))^n \\
-                            &\leq 2e^{-nu\varepsilon}e^{nu^2\sigma^2/2}, \,\,\, \forall u \geq 0
+\Esp(X) &= \int_\R x\,f_X(x)\,dx = \int_\R x \sum_{i = 1}^n p_i\, f_i(x)\,dx =  \sum_{i = 1}^n p_i \int_\R x\,f_i(x)\,dx\\
+& = \sum_{i = 1}^n p_i\,m_i.
 \end{align*}
-La meilleure majoration va être obtenue en minimisant l’exposant, c’est-à-dire pour $u = \varepsilon/\sigma^2$. Nous en déduisons l’inégalité de Chernov.
-
-### Question 3 {.answer #answer-idc3}
-Par l’inégalité de Bienaymé-Chebyshev, $\P(|Y_n - m| > \varepsilon) \leq \frac{\V(Y_n)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}$.
-
-Ainsi, $\P(|Y_n - m| \leq \varepsilon)\leq \alpha$ dès que $1-\frac{\sigma^2}{n\varepsilon^2}$. Avec $\varepsilon = 0,05$, il vient $n \geq 80000$.
-
-Par l’inégalité de Chernov, nous obtenons $2e^{- n\varepsilon^2/20} \leq 0, 05$. Il vient que $n \geq 29512$. Pour avoir une évaluation du même ordre de la probabilité cherchée, nous pouvons donc prendre un échantillon beaucoup plus petit si nous utilisons l’inégalité de Chernov. A taille d’échantillon fixée, nous aurons une meilleure évaluation avec cette inégalité.
-
-
-Lemme de Borel-Cantelli
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-bc1}
-
-On voit dans un premier temps que $\bigcap_{n\geq 0} \bigcup_{k \geq n} A_n \in \A$ par unions et intersections dénombrables.
-On a 
-$$\P(\lim \sup_n A_n ) = \lim_{p \to \infty} \P(\cup_{n\geq p} A_n) \leq \lim_{p \to \infty} \sum_{n \geq p} \P(A_n),$$
-où on remarque que les deux suites sont décroissantes.
-
-Si la série $\sum_n \P(A_n)$ est convergente, le reste de cette série tend vers 0 et l'inégalité implique que $\P(\lim \sup_n A n) = 0$.
-
-### Question 2 {.answer #answer-bc2}
-
-Supposons maintenant que les $A_n$ soient indépendants et que la série diverge. Soit $m$ un nombre entier. Nous avons
+Quant à la variance de $X$, en utilisant l'égalité $\sum_{i= 1}^n p_i = 1$, elle vaut
 \begin{align*}
-\P(\cup_{i=p}^m A_i) &= 1- \P(\cap_{i=p}^m A_i^c) = 1- \prod_{i=p}^m \P(A_i^c) \text{ par indépendance}\\
-& = 1- \prod_{i=p}^m (1-\P(A_i)) \geq 1- e^{-\sum_{i=p}^m\P(A_i)}
+\V(X) &= \Esp\left(X^2\right) - \Esp(X)^2 = \int_\R x^2\,f_X(x)\,dx - \left(\sum_{i = 1}^n p_i\,m_i\right)^2\\
+&= \sum_{i = 1}^n p_i (\sigma_i^2 + m_i^2) - \sum_{i = 1}^n p_i\left(\sum_{j = 1}^n p_j\,m_j\right)^2\\
+&= \sum_{i = 1}^n p_i\,\sigma_i^2 + \sum_{i = 1}^n p_i \left(m_i - \sum_{j=1}^n p_j\,m_j \right)^2.
 \end{align*}
-du fait de l’inégalité $1 - x \leq e^{-x}$ pour $x \geq 0$. Ainsi,
-$$ \P(\cup_{i=p}^{\infty} A_i) \geq 1- e^{-\sum_{i=p}^{\infty} \P(A_i)} = 1 $$
-et l’on conclut finalement que pour tout $p$, $\P(\cup_{i=p}^{\infty} A_i) = 1$, ce qui implique finalement
-que $\P(\lim \sup_{n \to \infty} A_n) = 1$.
+On retrouve bien la forme désirée, avec la dispersion des espérances
+$$\bar{\sigma}^2 := \sum_{i = 1}^n p_i \left(m_i - \sum_{j=1}^n p_j\,m_j \right)^2.$$
 
-### Question 3 {.answer #answer-bc3}
+### Question 4 {.answer #answer-melloi4}
+Si l'on souhaite approcher la loi de $X$ avec une unique Gaussienne, et non un mélange, les questions précédentes suggèrent de prendre celle d'espérance $\sum_{i =1}^n p_i\,m_i$ et de variance $\sum_{i = 1}^n p_i\,\sigma^2_i + \bar{\sigma}^2$. Voir figure ci-dessous.
 
-Prendre tous les $A_n$ égaux à un même événement $A$ de probabilité $\P(A) \in \left]0,1\right[$.
+![Illustration](images/PdfMelGauss.tex)
 
-### Question 4 {.answer #answer-bc4}
+## Lois conjuguées {.answer #answer-loiconj}
 
-En suivant l'indication, on a $\P(A_n) = p$, d'où $\sum_{n=1}^\infty \P(A_n) = \infty$. Le lemme de Borel-Cantelli nous indique alors que $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\cap_{n\geq 1} \cup_{k \geq n} A_n \right) = 1$. Autrement dit, on a presque sûrement un nombre infini de faces. En passant au complémentaire, on en déduit que l'événement $A$ est de probabilité nulle.
+On considère dans tout cet exercice $B_1$ et $B_2$ des Boréliens.
 
-Loi faible des grands nombres
----------------------------------------------------------------------------------
-Appliquer l'inégalité de Bienaymé-Chebyshev à la variable aléatoire $M_n$.
+### Question 1 {.answer #answer-loiconj-expexp}
 
-Convergence vers une constante
-----------------------------------------------------------------------------------
-
-### Convergence $\mathcal{L}^2$ {.answer #answer-cvtocst-l2}
-
-1. Supposons $X_n \overset{\mathcal{L}^2}{\longrightarrow} X$ quand $n\to+\infty$, i.e. $\Esp\left(\left(X_n - X\right)^2\right) \xrightarrow[n\to+\infty]{} 0$.
-
-Par positivité de la variance, on a tout d'abord
-$$\Esp\left(\left(X_n - X\right)^2\right) \geq \left(\Esp\left(X_n-X\right)\right)^2 \geq 0,$$
-qui garantit que $\left|\Esp\left(X_n-X\right)\right| = \left|\Esp(X_n) - \Esp(X)\right| \to 0$ quand $n\to+\infty$.
-
-Ensuite, par inégalité triangulaire on a
+D'après les hypothèses on a
 \begin{align*}
-\left|\mathbb{V}\left(X_n\right) - \mathbb{V}\left(X\right)\right| &= \left|\Esp\left(X_n^2\right) - \Esp(X_n)^2 - \Esp\left(X^2\right) + \Esp(X)^2 \right|\\
-& \leq \left|\Esp\left(X_n^2 - X^2\right)\right| + \left|\Esp(X_n)^2 - \Esp(X)^2\right|.
+\P_{X,Y}(B_1\times B_2) &= \int_{B_2} \left(\int_{B_1} \P_{X\mid Y = y}(dx) \right) \P_Y(dy) \hspace{1em}\text{par théorème,}\\
+&= \int_{B_2} \left(\int_{B_1} y\,e^{-y x}\,1_{\R_+^\ast}(x)\,dx \right) \lambda\,e^{-\lambda y}\,1_{\R_+^\ast}(y)\,dy\\
+&= \int_{B_1} \int_{B_2} \lambda\, y\,e^{-(x+\lambda)\,y}1_{\R_+^\ast}(x)\,1_{\R_+^\ast}(y) \,dy\, dx \hspace{1em}\text{par Fubini.}
 \end{align*}
-
-Or, comme nous avons vu que $\Esp(X_n) \xrightarrow[n\to+\infty]{} \Esp(X)$, on a directement que $\left|\Esp(X_n)^2 - \Esp(X)^2\right| \xrightarrow[n\to+\infty]{} 0$. Par ailleurs,
+Le vecteur aléatoire $(X,Y)$ possède donc une densité jointe
+$$f_{X,Y} : (x,y) \in\R^2 \mapsto \lambda\, y\,e^{-(x+\lambda)\,y}1_{\R_+^\ast}(x)\,1_{\R_+^\ast}(y).$$
+La variable aléatoire $X$ a donc aussi une densité : pour tout $x\in\R$
 \begin{align*}
-\left|\Esp\left(X_n^2 - X^2\right)\right| &= \left|\Esp\left( \left(X_n-X\right)^2 \right) - 2\Esp\left(X^2\right) + 2\Esp\left(X\,X_n\right)\right|\\
-&= \left|\Esp\left( \left(X_n-X\right)^2 \right) + 2\Esp\left(X\,(X_n-X)\right)\right|\\
-&\leq \Esp\left( \left(X_n-X\right)^2 \right) + 2\left|\Esp\left(X\,(X_n-X)\right)\right|.
+f_X(x) &= \int_{\R} f_{X,Y}(x,y)\,dy = \int_\R \lambda\, y\,e^{-(x+\lambda)\,y}1_{\R_+^\ast}(x)\,1_{\R_+^\ast}(y)\,dy\\
+&= \left|\begin{array}{ll}\displaystyle \dfrac{\lambda}{x+\lambda} \int_{0}^{+\infty} y\,(x+\lambda)\,e^{-(x+\lambda)\,y}\,dy & \text{si } x>0,\\[1em] 0 & \text{sinon.} \end{array}\right.
 \end{align*}
-Par l'inégalité de Cauchy-Schwartz on a
-$$\left|\Esp\left(X\,(X_n-X)\right)\right|^2 \leq \Esp\left(X^2\right)\,\Esp\left( \left(X_n-X\right)^2 \right),$$
-donc
-$$\left|\Esp\left(X_n^2 - X^2\right)\right| \leq \Esp\left( \left(X_n-X\right)^2 \right) + 2\sqrt{\Esp\left(X^2\right)}\,\sqrt{\Esp\left( \left(X_n-X\right)^2 \right)},$$
-qui tend bien vers $0$ quand $n\to+\infty$ par hypothèse.
-On en conclut que $\left|\mathbb{V}\left(X_n\right) - \mathbb{V}\left(X\right)\right|\xrightarrow[n\to+\infty]{} 0.$ 
-
-2. Par définition, $X_n \overset{\mathcal{L}^2}{\longrightarrow} a$ quand $n\to+\infty$ ssi $\Esp\left(\left(X_n - a\right)^2\right) \xrightarrow[n\to+\infty]{} 0$. 
-
-Le premier sens de l'équivalence est immédiatement obtenu par la question précédente, en prenant $X = a$ presque-sûrement.
-
-Réciproquement, pour tout $n\in\N^\ast$, par linéarité de l'espérance on a
+On reconnaît dans cette dernière intégrale la formule de l'espérance d'une loi Exponentielle de paramètre $x+\lambda$, et on en déduit que pour tout $x\in\R$
+$$f_X(x) = \dfrac{\lambda}{(x+\lambda)^2}\,1_{\R_+^\ast}(x).$$
+Pour tout $x\in\R_+^\ast$ la variable $Y$ sachant $\{X=x\}$ admet donc aussi une densité, que l'on explicite avec la formule de Bayes : pour tout $y\in\R$
 \begin{align*}
-\Esp\left( \left(X_n-a\right)^2 \right) &= \Esp\left( X_n^2 + a^2 - 2aX_n \right) = \Esp\left(X_n^2\right) + a^2 - 2a\Esp\left(X_n\right)\\
-&= \mathbb{V}\left(X_n\right) + a^2 - 2a\Esp\left(X_n\right) + \Esp\left(X_n\right)^2\\
-&= \mathbb{V}\left(X_n\right) + \left(\Esp(X_n) - a\right)^2.
+f_{Y\mid X=x}(y) &= \dfrac{f_{X,Y}(x,y)}{f_X(x)} = \dfrac{\lambda\, y\,e^{-(x+\lambda)\,y}\,1_{\R_+^\ast}(y)}{\dfrac{\lambda}{(x+\lambda)^2}}\\
+&= (x+\lambda)^2\,y\,e^{-(x+\lambda)\,y}\,1_{\R_+\ast}(y).
 \end{align*}
-On en déduit immédiatement le deuxième sens de l'équivalence.
+Comme $\Gamma(2) = 1$, on reconnaît ici la densité d'une loi Gamma d'indice $2$ et de paramètre d'échelle $x+\lambda$.
 
-### Convergences en loi et probabilité {.answer #answer-cvtocst-loiprob}
+### Question 2 {.answer #answer-loiconj-gampoi}
 
-Supposons que $X_n \overset{\mathcal{L}}{\longrightarrow} a$ quand $n\to+\infty$. Cela revient à dire que $X_n$ tend en loi vers la variable aléatoire $X = a$ p.s. quand $n\to+\infty$. Dans ce cas, $X$ a pour fonction de répartition $x\in\R \mapsto 1_{[a,+\infty[}(x)$ et pour tout $x \in \R\backslash\{a\}$, on a $$\P\left(X_n \leq x \right) \xrightarrow[n\to+\infty]{} 1_{[a,+\infty[}(x).$$
-
-Soit maintenant $\varepsilon > 0$. D'après la croissance de la fonction de répartition et l'hypothèse de convergence en loi, on a
+D'après les hypothèses, en procédant comme précédemment, on a
 \begin{align*}
-\P\left(\left|X_n - a\right| \geq \varepsilon \right) &= \P\left(X_n \geq a + \varepsilon \right) + \P\left(X_n \leq a - \varepsilon \right)\\
-&= 1 - \P\left(X_n < a + \varepsilon \right) + \P\left(X_n \leq a - \varepsilon \right)\\
-&\leq 1 - \P\left(X_n \leq a + \frac{\varepsilon}{2} \right) + \P\left(X_n \leq a - \varepsilon \right)\\
-& \xrightarrow[n\to+\infty]{} 1 - 1_{[a,+\infty[}\left(a+\frac{\varepsilon}{2}\right) + 1_{[a,+\infty[}\left(a-\varepsilon\right) = 0.
+\P_{X,Y}(B_1\times B_2) &= \int_{B_2} \left(\int_{B_1} \P_{X\mid Y = y}(dx) \right) \P_Y(dy)\\
+&= \int_{B_2} \left(\sum_{x\in B_1} \dfrac{y^{x}}{x!}\,e^{-y}\,1_{\N}(x) \right) \dfrac{\theta^{\alpha}}{\Gamma(\alpha)}\,y^{\alpha-1}e^{-\theta y}\,1_{\R_+}(y)\,dy\\
+&= \sum_{x\in B_1\cap\N} \left(\dfrac{1}{x!} \int_{B_2\cap\R_+} \dfrac{\theta^{\alpha}}{\Gamma(\alpha)}\,y^{x+\alpha-1}e^{-(\theta+1) y}\,dy\right)\\
+&= \sum_{x\in B_1\cap\N} \biggl(\dfrac{\Gamma(x+\alpha)\,\theta^\alpha}{x!\,\Gamma(\alpha)\,(\theta+1)^{x+\alpha}}\\
+&\hspace{5em} \times \int_{B_2\cap\R_+} \dfrac{(\theta+1)^{x+\alpha}}{\Gamma(x+\alpha)}\,y^{x+\alpha-1}e^{-(\theta+1) y}\,dy\biggr).
+\end{align*}
+On reconnaît dans cette dernière intégrale la densité d'une loi Gamma d'indice $x+\alpha$ et de paramètre d'échelle $\theta+1$, qui correspond exactement à la loi conditionnelle de $Y$ sachant $\{X=x\}$ pour $x\in\N$. En effet, on a d'une part
+\begin{align*}
+\P_X(B_1) &= \P_{X,Y}(B_1 \times \R) = \sum_{x\in B_1\cap\N} \dfrac{\theta^\alpha}{\Gamma(\alpha)}\, \dfrac{\Gamma(x+\alpha)}{x!\,(\theta+1)^{x+\alpha}},
+\end{align*}
+ce qui donne bien pour tout $x\in\N$ :
+\begin{align*}
+\P_{Y\mid X=x} (B_2) &= \P\left(Y \in B_2 \mid X = x\right) = \dfrac{\P_{X,Y}\left(\{x\}\times B_2\right)}{\P_X(\{x\})}\\
+&= \int_{B_2\cap\R_+} \dfrac{(\theta+1)^{x+\alpha}}{\Gamma(x+\alpha)}\,y^{x+\alpha-1}\,e^{-(\theta+1)y}\,dy.
 \end{align*}
 
-Ainsi, on a bien $X_n \overset{\P}{\longrightarrow} a$ quand $n\to+\infty$.
+## Randomisation {.answer #answer-randomize}
 
+En termes probabilistes et selon les notations de l'exercice, il s'agit de calculer $\Esp(T_N - T_0)$, où la variable aléatoire $T_N$ peut s'écrire en fonction d'une somme aléatoire de variables aléatoires indépendantes : $$T_N = \sum_{i = 1}^N X_i + T_0.$$
+Comme la boutique ferme au bout d'un certain temps, toutes les variables aléatoires figurant dans l'équation précédente sont bornées, donc intégrables. On peut ainsi calculer $\Esp(T_N-T_0)$ à l'aide de la formule de l'espérance totale : $$\Esp\left(T_N - T_0\right) = \Esp\left(\Esp\left(T_N \mid N\right)\right) - T_0.$$
+Pour tout $n\in\N^\ast$ l'énoncé suggère que $N$ est indépendante de $X_1,\dots,X_n$, elles-mêmes indépendantes et de même loi que $X$, d'où :
+$$\Esp\left(T_n \mid N = n\right) = \sum_{i = 1}^n \Esp(X_i\mid N = n) = \sum_{i = 1}^n \Esp(X_i) = n\Esp(X).$$
+Ainsi, en posant $\psi : n \in\N^\ast \mapsto n \Esp(X)$, on obtient
+$$\Esp\left(T_N - T_0\right) = \Esp\left(\psi(N)\right) - T_0 = \Esp(N)\Esp(X) - T_0.$$
+C'était prévisible : en posant arbitrairement $T_0 = 0$, le temps d'attente moyen est le temps d'attente moyen entre deux arrivées, multiplié par le rang moyen du gagnant. Si la loterie dépendait des temps d'arrivées, par exemple en faisant gagner le premier client qui arrive au moins 10 minutes après le client précédent, $\psi$, et donc le résultat, seraient différents.
 
-Fonction de répartition empirique
------------------------------------------------------------------------
+## Etats cachés --- indépendance conditionnelle 
 
-### Préliminaire {.answer #answer-fdremp-loi}
-
-La variable aléatoire $1_{]-\infty,x]}(X)$ est à valeurs dans $\{0,1\}$ et 
-$$\P\left( 1_{]-\infty,x]}(X) = 1\right) = F(x) = 1 - \P\left( 1_{]-\infty,x]}(X) = 0\right).$$
-On reconnaît une loi de Bernoulli de paramètre $F(x)$. On en déduit directement que $\Esp(1_{]-\infty,x]}(X)) = F(x)$ et $\mathbb{V}(1_{]-\infty,x]}(X)) = F(x)\,(1-F(x))$.
-
-### Biais {.answer #answer-fdremp-biais}
-
-Sous les hypothèses de l'exercice, on a
+### Question 1 {.answer #answer-ec1}
+Soit $n\in\N^\ast$. Quels que soient $x\in\R$ et $B$ borélien on a
 \begin{align*}
-\Esp\left(F_n(x) \right) &= \dfrac{1}{n}\,\sum_{i = 1}^n \Esp\left( 1_{]-\infty,x]}(X_i) \right) \hspace{1em}\text{par linéarité de l'espérance,}\\
-& = \dfrac{1}{n}\,\sum_{i = 1}^n \Esp\left( 1_{]-\infty,x]}(X) \right) \hspace{1em}\text{car $X_1,\dots,X_n$ ont même loi que $X$,}\\
-& = \dfrac{1}{n}\,\sum_{i = 1}^n F(x) \hspace{1em}\text{d'après la première question,}\\
-& = F(x).
+\P_{Y_n \mid X_n = x}(B) &= \Esp\left(1_B(X_n+\epsilon_n) \mid X_n = x \right)\\
+&= \int_\R 1_B(x+y)\,\P_{\epsilon_n\mid X_n = x}(dy)\\
+& = \int_\R 1_B(x+y)\,f_\epsilon(y)\,dy \hspace{1em}\text{par indépendance de $X_n$ et $\epsilon_n$}\\
+&= \int_B f_\epsilon(y-x)\,dy.
+\end{align*}
+Ainsi, $\P_{Y_n\mid X_n =x}$ admet bien une densité : $$f_{Y_n\mid X_n=x} : y \in\R \mapsto f_\epsilon(y - x).$$
+
+### Question 2 {.answer #answer-ec2}
+Soient $n\in\N^\ast$, $(x_1,\dots,x_n)\in\R^n$ et $B_1,\dots,B_n$ des boréliens. Pour simplifier les écritures, on note $x_{1:n}$ tout vecteur $(x_1,\dots,x_n)$ de $\R^n$. Alors
+\begin{align*}
+&\P_{Y_{1:n}\mid X_{1:n}=x_{1:n}}(B_1\times\dots\times B_n)
+=\Esp\left(\prod_{i = 1}^n 1_{B_i}(X_i + \epsilon_i) \Bigm\vert X_{1:n} = x_{1:n} \right)\\
+&= \int_{\R^n} \prod_{i = 1}^n 1_{B_i}(x_i + y_i)\,\P_{\epsilon_{1:n}\mid X_{1:n} = x_{1:n}}(dy_{1:n})\\
+&= \int_{\R^n} \prod_{i = 1}^n 1_{B_i}(x_i + y_i)\,\P_{\epsilon_{1:n}}(dy_{1:n}) \ \text{par indépendance des $\epsilon_i$ et $X_j$,}\\
+&= \prod_{i = 1}^n \int_{\R} 1_{B_i}(x_i + y_i)\,f_\epsilon(x_i)\,dy_{i} \ \text{par Fubini et indépendance et même loi des $\epsilon_i$,}\\
+&= \prod_{i = 1}^n \int_{\R} 1_{B_i}(y_i)\,f_\epsilon(y_i - x_i)\,dy_i\\
+& = \prod_{i = 1}^n \int_{\R} 1_{B_i}(y_i)\,f_{Y_i\mid X_i = x_i}(y_i)\,dy_i\ \text{par la question 1,}\\
+&= \prod_{i = 1}^n \P_{Y_i\mid X_i = x_i}(B_i).
+\end{align*}
+Les $n$ relevés de température sont donc bien indépendants conditionnellement aux états cachés.
+
+
+## Covariance totale {.answer #answer-covtot}
+
+Tout d'abord, par linéarité de l'espérance conditionnelle on a :
+\begin{align*}
+\cov(X,Y \mid Z) &= \Esp\Bigl( \bigl( X - \Esp(X\mid Z) \bigr)\bigl( Y - \Esp(Y\mid Z) \bigr) \Bigm| Z  \Bigr)\\
+&= \Esp\Bigl( XY - X\Esp(Y\mid Z) - Y\Esp(X\mid Z) + \Esp(X\mid Z)\Esp(Y\mid Z) \Bigm| Z  \Bigr)\\
+&= \Esp(XY \mid Z) - \Esp(X\mid Z)\Esp(Y\mid Z).
 \end{align*}
 
-### Erreur quadratique moyenne {.answer #answer-fdremp-mse}
-
-Soit $n\in\N^\ast$. D'après la question précédente, on a
-
-$\Esp\left( \left(F_n(x) - F(x)\right)^2 \right) =  \Esp\left( \left(F_n(x) - \Esp(F_n(x))\right)^2 \right) = \mathbb{V}\left(F_n(x)\right).$
-
-Or
+En utilisant la formule de l'espérance totale et la linéarité de l'espérance, on obtient alors
 \begin{align*}
-\mathbb{V}\left(F_n(x)\right) &= \dfrac{1}{n^2}\,\sum_{i = 1}^n \mathbb{V}\left(1_{]-\infty,x]}(X_i)\right) \hspace{1em}\text{par indépendance des variables,}\\
-&= \dfrac{1}{n^2}\,\sum_{i = 1}^n \mathbb{V}\left(1_{]-\infty,x]}(X)\right) \hspace{1em}\text{car $X_1,\dots,X_n$ ont même loi que $X$,}\\
-&= \dfrac{1}{n^2}\,\sum_{i = 1}^n F(x)\,(1-F(x)) \hspace{1em}\text{d'après la première question,}\\
-&= \dfrac{1}{n}\, F(x)\,(1-F(x)) \xrightarrow[n\to+\infty]{} 0.
+\cov(X,Y) &= \Esp(XY) - \Esp(X)\Esp(Y)\\
+&= \Esp\bigl( \Esp(XY \mid Z) \bigr) - \Esp\bigl( \Esp(X \mid Z) \bigr)\Esp\bigl( \Esp(Y \mid Z) \bigr)\\
+&= \Esp\bigl( \Esp(XY \mid Z) - \Esp(X\mid Z)\Esp(Y\mid Z) \bigr)\\
+&\ \ \  + \Esp\bigl( \Esp(X\mid Z)\Esp(Y\mid Z) \bigr) - \Esp\bigl( \Esp(X \mid Z) \bigr)\Esp\bigl( \Esp(Y \mid Z) \bigr)\\
+&= \Esp\bigl(\cov(X,Y\mid Z)\bigr) + \cov\bigl( \Esp(X\mid Z), \Esp(Y\mid Z) \bigr).
 \end{align*}
 
-On en conclut que $F_n(x) \overset{\mathcal{L}^2}{\longrightarrow} F(x)$ quand $n\to+\infty$.
+## Non-réponse 
 
-### Consistance {.answer #answer-fdremp-ps}
+### Question 1 {.answer #answer-nonrep1}
+L'espérance conditionnelle de $Y$ sachant $X$ peut s'écrire comme la solution au problème de minimisation
+$$\min_{\phi(X)\in L^2_X} \Esp\left(\left(Y-\phi(X)\right)^2\right).$$
+Or pour $\phi(X)\in L^2_X$ on a ici
+$$\Esp\left(\left(Y-\phi(X)\right)^2\right) = \Esp\left( \left(Y - \phi(1)\right)^2 1_{\{1\}}(X) \right) + \Esp\left( \left(Y - \phi(0)\right)^2 1_{\{0\}}(X) \right),$$
+il suffit donc de résoudre pour tout $x\in\{0,1\}$
+$$\min_{\lambda \in \R} \Esp\left(\left(Y-\lambda\right)^2 1_{\{x\}}(X)\right).$$
+Soit $x\in\{0,1\}$ et posons $J_x : \lambda\in\R \mapsto \Esp\left(\left(Y-\lambda\right)^2 1_{\{x\}}(X)\right)$. Alors pour tout $\lambda\in\R$
+$$J_x(\lambda) = \Esp\left(Y^21_{\{x\}}(X)\right) + \lambda^2\,\P(X=x) -2\lambda\,\Esp\left(Y1_{\{x\}}(X)\right)$$
+et sa dérivée
+$$J_x^\prime(\lambda) = 2\lambda\,\P(X=x) -2\,\Esp\left(Y1_{\{x\}}(X)\right)$$
+s'annule en $$\lambda_x := \dfrac{\Esp\left(Y1_{\{x\}}(X)\right)}{\P(X=x)} = \Esp(Y\mid X = x).$$
+On en conclut que $$\Esp(Y\mid X) = \Esp(Y\mid X = 1)1_{\{1\}}(X) + \Esp(Y\mid X = 0)1_{\{0\}}(X).$$
+Or on remarque que $1_{\{1\}}(X) = X$ et $1_{\{0\}}(X) = 1 - X$, ce qui fait de $\Esp(Y\mid X)$ une fonction affine de $X$. Elle est par définition la meilleure approximation de $Y$ par une fonction de $X$, elle coïncide donc avec l'approximation affine de $Y$ par $X$:
+$$\Esp(Y\mid X) = m + \dfrac{\rho\,\sigma}{\sqrt{p(1-p)}}\,(X - p).$$
 
-On remarque que pour tout $n\in\N^\ast$, $F_n(x)$ n'est autre que la moyenne de $n$ variables aléatoires indépendantes de même loi de Bernoulli de paramètre $F(x)$. La loi forte des grands nombres nous assure donc qu'elle converge presque-sûrement vers l'espérance de cette loi, qui n'est autre que $F(x)$.
+### Question 2 {.answer #answer-nonrep2}
+D'après la question précédente, on a $\Esp(Y\mid X) = m_0 + (m_1 - m_0) X$, la meilleure approximation affine de $Y$ par $X$. Ainsi, $m_0$ et $m_1$ satisfont
+$$\left|\begin{array}{l} m_1 - m_0 = \dfrac{\rho\sigma}{\sqrt{p(1-p)}},\\[1em] m_0 = m - (m_1-m_0)p,  \end{array}\right. \Leftrightarrow \left|\begin{array}{l} m_1 = m + \rho\sigma\sqrt{\dfrac{1-p}{p}},\\[1em] m_0 = m - \rho\sigma\sqrt{\dfrac{p}{1-p}}.  \end{array}\right.$$
 
-### Remarque
-On peut en fait aller plus loin et montrer que l'on a la convergence presque sûre uniformément sur $\R$ voir par exemple [ce document](http://math.univ-lyon1.fr/~gelineau/devagreg/Theoreme_Dini.pdf), c'est le théorème de Glivenko-Cantelli très utile en statistiques.
-
-
-## Théorème de Weierstrass sur $[0,1]$ 
-
-### Préliminaires {.answer #answer-weier-prelim}
-
-
-**Théorème de convergence dominée presque partout** --- Puisque $f_n$ converge vers $f$ $\mu$-presque partout, il existe un ensemble $E$ mesurable et négligeable tel que
-$$f_n(x) \to f(x),\,\,\, \forall x \in X \setminus E$$
-De même, puisque $|f_n(x)|\leq g(x)$ $\mu$-presque partout, les ensembles $F_n = \{x \in X; |f(x)| > g(x) \}$ sont mesurables et négligeables pour tout $n \in \N^\ast$. Alors $N = E \cup_{n\in\N^\ast} F_n$ est mesurable et négligeable.
-
-Soit $\tilde{f}_n = 1_{N^c}f_n$ et $\tilde{f}=1_{N^c}f$, les restrictions à $N^c$ des $f_n$ et $f$. Alors le théorème de convergence dominée s'applique à la suite des $(\tilde{f}_n)_{n\in\N^\ast}$. On a ainsi que $\tilde{f}$ est intégrable et 
-$$\int_X \tilde{f} \mu = \lim_{n\to\infty}\int_X \tilde{f}_n \mu.$$
-
-Puisque $f = \tilde{f}$ $\mu$-p.p. et $f_n = \tilde{f}_n$ $\mu$-p.p., on a $\int_X f \mu = \int_X \tilde{f} \mu$ et $\int_X f_n \mu = \int_X \tilde{f}_n \mu$. Alors $f$ est intégrable et 
-$$\int_X f_n\mu \xrightarrow[n\to+\infty]{} \int_X f\mu.$$
-
-
-**Inégalité de Jensen** --- Puisque $f$ est convexe, pour tout $a \in \R$ il existe $\lambda_a \in \R$ tel que pour tout $x\in\R$ on a $$f(x) \geq f(a) + \lambda_a\,(x-a).$$ C'est une conséquence directe de la caractérisation de la convexité par les inégalités des pentes. C'est vrai en particulier pour $x =X(\omega)$, $\omega \in \Omega$, et $a = \Esp(X)$ : pour tout $\omega \in \Omega$,
-$$f\left(X(\omega)\right) \geq f\left(\Esp(X)\right) + \lambda_{\Esp(X)}\,\left(X(\omega) - \Esp(X)\right).$$
-En intégrant de chaque côté de l'inégalité, on obtient bien
+### Question 3 {.answer #answer-nonrep3}
+Par la formule de la variance totale et d'après la question 1, on a
 \begin{align*}
-\int_\Omega f\left(X(\omega)\right) \,\P(d\omega) = \Esp\left(f(X)\right) &\geq f\left(\Esp(X)\right) + \lambda_{\Esp(X)}\,\left(\int_\Omega X(\omega)\,\P(d\omega) - \Esp(X)\right)\\
-& = f\left(\Esp(X)\right) + \lambda_{\Esp(X)}\,\left(\Esp(X) - \Esp(X)\right)\\
-& = f\left(\Esp(X)\right).
+\sigma^2 &= \V\left(Y\right) = \Esp\bigl(\V\left(Y\mid X\right)\bigr) + \V\bigl(\Esp(Y\mid X)\bigr)\\
+&= p\,\sigma^2_1 + (1-p)\,\sigma^2_0 + \dfrac{\rho^2\sigma^2}{p\,(1-p)}\V(X)\\
+&= p\,\sigma^2_1 + (1-p)\,\sigma^2_0 + \rho^2\sigma^2.
 \end{align*}
+Cette égalité se simplifie et donne bien
+$$\sigma^2 = \dfrac{(1-p)\,\sigma_0^2 + p\,\sigma_1^2}{1-\rho^2}.$$
 
-### Preuve du théorème. {.answer #answer-weier-thm}
-
-1. Comme $X_1,\dots,X_n$ sont indépendantes de même loi de Bernoulli de paramètre $x\in]0,1[$, $M_n$ est à valeurs dans $\bigl\{\frac{k}{n} : k \in \{0,\dots,n\} \bigr\}$ et pour tout $k\in\{0,\dots,n\}$ on a
-$$\P\left(M_n = \dfrac{k}{n}\right) = \binom{k}{n} x^k\,(1-x)^{n-k}.$$
-Ainsi,
-$$\Esp\left(f(M_n)\right) = \sum_{k=0}^{n} \binom{k}{n} f\left(\dfrac{k}{n}\right)\, x^k\,(1-x)^{n-k}.$$
-
-Les polynômes de la forme $B_{n,k} : u\in [0,1] \mapsto \binom{n}{k} u^k\,(1-u)^{n-k}$ sont appelés *polynômes de Bernstein*.
-
-2. Comme une variable de Bernoulli admet une espérance égale à son paramètre, la loi (forte) des grands nombres nous assure que $M_n \to x$ p.s. quand $n\to+\infty$. Puisque $f$ est continue, on a de même $f\left(M_n\right) \to f(x)$ p.s. quand $n\to+\infty$. 
-
-Par ailleurs, la continuité de $f$ sur $[0,1]$ nous assure que $f$ est bornée (l'image d'un compact par une fonction continue $\R \to \R$ est un compact). Ainsi, pour tout $n\in\N^\ast$, la variable aléatoire $f\left(M_n\right)$ l'est également. Cela nous permet d'appliquer le théorème de convergence dominée de la question 1 : en notant $(\Omega,\mathcal{A},\P)$ l'espace probabilisé sur lequel sont définies nos variables aléatoires,
-
-$$\Esp\left( f\left(M_n\right) \right) = \int_{\Omega} f\left(M_n(\omega)\right)\,\P(d\omega) \xrightarrow[n\to+\infty]{} \int_{\Omega} f(x)\,\P(d\omega) = f(x).$$
-
-3. En combinant les résultats des deux questions précédentes, on obtient que la suite $\left(P_n\right)_{n\in\N^\ast}$ des polynômes définis pour tout $n\in\N^\ast$ par $$P_n : x \in ]0,1[ \mapsto \sum_{k=0}^{n} \binom{k}{n} f\left(\dfrac{k}{n}\right)\, x^k\,(1-x)^{n-k}$$ converge simplement vers $f(x)$. On étend simplement ce résultat à $[0,1]$ en remarquant que pour tout $n\in\N^\ast$ on a directement l'égalité
-$$P_n(0) = f\left(\dfrac{0}{n}\right) = f(0) \text{ et } P_n(1) = f\left(\dfrac{n}{n}\right) = f(1).$$
-On a même toujours l'égalité $P_n(x) = \Esp\left( f\left(M_n\right) \right)$ pour $x\in[0,1]$ si l'on remarque qu'une loi de Bernoulli de paramètre $a\in \{0,1\}$ n'est autre d'une Dirac en $\{a\}$, ce qui signifie que $M_n = a$ p.s. et donc que $\Esp\left(f(M_n)\right) = f(a) = P_n(a)$.
-
-4. On souhaite montrer que $$\forall\,\varepsilon > 0 \ \exists\,N_\varepsilon\in\N^\ast : \left(n\geq N_\varepsilon\right) \Rightarrow \left(\forall\,x\in[0,1] : \left|P_n(x) - f(x)\right|\leq \varepsilon\right).$$
-
-Remarquons tout d'abord que la fonction $f$ étant bornée, elle admet un maximum sur $[0,1]$, que l'on note $K$. Puisqu'elle est continue sur un segment réel, elle est aussi uniformément continue : $$\forall\,\varepsilon > 0\ \ \exists\,\delta_{\varepsilon} > 0 : \forall\,(x,y) \in ]0,1[^2,\ \ |x-y| < \delta_\varepsilon \Rightarrow \left|f(x) - f(y)\right| < \varepsilon.$$
-Soient $\varepsilon > 0$, puis $\delta = \delta_{\varepsilon/2} > 0$ pour lequel l'implication précédente est vraie avec $\dfrac{\varepsilon}{2}$. Alors pour tous $n\in\N^\ast$ et $x\in]0,1[$ on a
-\begin{align*}
-\left|\Esp\left( f(M_n) \right) - f(x)\right| & \leq \Esp\left( \left|f(M_n) - f(x) \right| \right) \hspace{1em}\text{par l'inégalité de Jensen,}\\
-& = \Esp\left( \left|f(M_n) - f(x) \right|\,1_{[0,\delta[}\left(\left|M_n - x\right|\right) \right)\\
-&\ \ \ + \Esp\left( \left|f(M_n) - f(x) \right|\,1_{[\delta,+\infty[}\left(\left|M_n - x\right|\right) \right)\\
-&\leq \dfrac{\varepsilon}{2} + 2|K|\,\P\left(\left|M_n-x\right|\geq \delta\right) \hspace{1em}\text{par inégalité triangulaire,}\\
-&\leq \dfrac{\varepsilon}{2} + 2|K|\,\dfrac{\mathbb{V}(M_n)}{\delta^2} \hspace{1em}\text{par Bienaymé-Chebyshev.}
-\end{align*}
-Or pour tout $n\in\N^\ast$
-\begin{align*}
-\mathbb{V}(M_n) &= \mathbb{V}\left(\dfrac{1}{n}\,\sum_{i = 1}^n X_i \right)\\
-&= \dfrac{1}{n^2}\,\sum_{i = 1}^n \mathbb{V}(X_i) \hspace{1em}\text{par indépendance de $X_1,\dots,X_n$,}\\
-&= \dfrac{1}{n^2}\,\sum_{i = 1}^n x(1-x) \hspace{1em}\text{car $X_1,\dots,X_n$ suivent la même loi de Bernoulli},\\
-&= \dfrac{x(1-x)}{n} < \dfrac{1}{4n} \hspace{1em}\text{car $x \in ]0,1[$.}
-\end{align*}
-Par conséquent, pour tout $n\in\N^\ast$,
-$$\left|\Esp\left( f(M_n) \right) - f(x)\right| < \dfrac{\varepsilon}{2} + \dfrac{|K|}{2n\delta^2}.$$
-En prenant $N_\varepsilon$ le plus petit entier naturel supérieur ou égal à $\dfrac{|K|}{\varepsilon\,\delta^2}$, on obtient alors que pour tout $n\geq N_\varepsilon$, $\left|\Esp\left( f(M_n) \right) - f(x)\right| < \varepsilon.$ Comme $\varepsilon$ et $N_\varepsilon$ sont les mêmes quel que soit $x \in [0,1]$, on obtient bien la convergence uniforme désirée.
-
-Théorème de Slutsky
----------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-slut1}
-
-Il suffit de montrer que dans la preuve de [la proposition sur la convergence des f.d.r.](#cvceloifdr), on peut remplacer les fonctions continues bornées $f_{p,b}$ approchant $1_{\left]-\infty,b\right]}$ par des fonctions lipschitziennes bornées, ce qui est immédiat.
-
-### Question 2 {.answer #answer-slut2}
-
-Du fait du résultat de la question 1, il suffit de montrer que $\lim_{n \to \infty} \Esp(f (Y_n)) = \Esp(f (X))$, pour toute fonction lipschitzienne bornée. Soit $f$ une telle fonction. On a alors $|f (x)| \leq k$ et $|f (x) -f (y)| \leq C|x - y|$, pour des constantes $k$ et $C$. 
-
-Soit $\varepsilon > 0$ donné. On a
-\begin{align*}
-|\Esp(f (Y_n )) - \Esp(f (X_n ))| &\leq \Esp(|f (Y_n) - f (X_n )|) \\
-                                  &\leq \Esp(|f (Y_n) - f (X_n )|(1_{|Y_n-X_n|\leq \varepsilon} + 1_{|Y_n-X_n| > \varepsilon}))\\
-                                  &\leq C \varepsilon + 2k P(|X_n - Y_n | > \varepsilon)
-\end{align*}
-Le deuxième terme du membre de droite tend vers 0 quand $n$ tend vers l’infini, car $(X_n - Y_n )_n$ converge en probabilité vers 0. Comme $\varepsilon$ est arbitrairement petit, nous en déduisons que $\lim_{n\to\infty}|\Esp(f (Y_n )) - \Esp(f (X_n ))| = 0$, d’où le résultat.
-
-### Question 3 {.answer #answer-slut3}
-Soit $u \in R^d$ . On a :
-$$|\phi_{Y_n} (u) - \phi_X (u)| \leq |\phi_{Y_n} (u) - \phi_{X_n} (u)| + |\phi_{X_n} (u) - \phi_{X} (u)|$$
-D’une part, le [théorème de Lévy](#levytheorem) partie 1. montre que $|\phi_{X_n}(u) - \phi_X (u)|$ tend vers 0 quand $n \to \infty$. D’autre part,
-$$|\phi_{Y_n} (u) - \phi_{X_n} (u)|  = |\Esp(e^{i< u, Y_n>} - e^{i< u, X_n>})| = |\Esp(e^{i<u,X_n>} (e^{i<u,Y_n-X_n>} - 1))|\leq \Esp(|e^{i<u,Y_n-X_n>} - 1|)$$
-tend vers 0 quand $n \to \infty$ d’après [la proposition --- cas borné](#propconv2) appliquée aux variables aléatoires $e^{i<u,Y_n -X_n>}-1$ dont la convergence en proba vers 0 est assurée par la [propriété de continuité](#propconv4).
-
+### Question 4 {.answer #answer-nonrep4}
+Lorsque $X$ et $Y$ sont non corrélées, i.e. $\rho = 0$, on obtient $m_0 = m_1 = m$ puis $\sigma^2 = (1-p)\,\sigma_0^2 + p\,\sigma_1^2$. En d'autres termes, $\Esp(Y\mid X) = m$ est une variable aléatoire constante, et $\Esp\bigl(\V(Y\mid X)\bigr) = \sigma^2$. Dans ce cas, la non-réponse n'affecte pas l'espérance, mais potentiellement la variance (la dispersion du temps de travail peut être différente chez les répondants et les non-répondants). Ces deux propriétés sont encore vraies en cas d'indépendance entre $X$ et $Y$, puisque l'indépendance implique la non corrélation, mais nous avons de plus $\V(Y\mid X) = \sigma^2 = \sigma^2_1 = \sigma^2_0$; la variable aléatoire $\V(Y\mid X)$ est elle aussi constante. Cette fois-ci, la dispersion est la même chez les répondants et les non-répondants : la non-réponse n'affecte pas la variance.
 
 
 Références
-================================================================================
+===============================================================================

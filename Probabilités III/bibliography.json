@@ -33,33 +33,5 @@
 				]
 			]
 		}
-	},
-	{
-		"id": "Simmons",
-		"type": "book",
-		"title": "Introduction to Topology and Modern Analysis",
-		"publisher": "Krieger Publishing Company",
-		"publisher-place": "Malabar, Fla",
-		"number-of-pages": "384",
-		"edition": "Reprint edition",
-		"source": "Amazon",
-		"ISBN": "978-1-57524-238-5",
-		"language": "English",
-		"author": [
-			{
-				"family": "Simmons",
-				"given": "George F."
-			}
-		],
-		"issued": {
-			"date-parts": [
-				[
-					"2003",
-					6,
-					1
-				]
-			]
-		}
 	}
-
 ]
