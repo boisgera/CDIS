@@ -30,11 +30,11 @@ pour un pas de temps $\dt$ suffisamment petit. Cette méthode appartient à la f
 
 Même si la méthode d'Euler suffit dans les cas simples, elle exige parfois de recourir à des pas très faibles pour obtenir une précision acceptable sur des temps longs (voir [Systèmes raides](#sec_systRaides)). Parfois, le compromis entre précision à chaque itération et accumulation des erreurs d'arrondis devient même impossible. De plus, cette méthode n'est pas adaptée à la simulation de certains systèmes dont certaines propriétés cruciales (comme la conservation de l'énergie) ne sont pas préservées (voir [Systèmes Hamiltoniens](#sec_systHamiltoniens)). Au cours des derniers siècles, les scientifiques ont donc progressivement développé des méthodes de plus en plus complexes et performantes : schémas multi-pas d'ordre supérieur, méthodes implicites, variation du pas, schémas symplectiques etc.
 
-En fait, dans l'histoire des équations différentielles, c'est souvent la mécanique céleste qui a été motrice des plus grandes avancées. Au milieu du XIX$^e$ siècle, les astronomes Adams et Le Verrier prédisent mathématiquement l'existence et la position de la planète Neptune et l'on entend parler pour la première fois de méthodes multi-pas. Ensuite, les progrès se sont enchaînés au rythme des modèles physiques. La première tendance a été de rechercher des schémas permettant toujours plus de précision à pas plus grand. Parmi les dates clés, on peut citer la publication en 1895 de la première méthode de Runge-Kutta par Runge, puis en 1901, de la populaire méthode de Runge-Kutta d'ordre 4 par Kutta, et ensuite en 1910, de l'*extrapolation de Richardson* permettant la montée en ordre et donc le recours à des pas plus grand pour une même précision. Mais au milieu du XX$^e$ siècle, on découvre des systèmes, dits *raides* (Hirschfelder, 1952), pour lesquels cette montée en ordre ne suffit pas et pour lesquels il faut repenser de nouveaux schémas (Dalquist, 1968). Enfin, à partir des années 80, les scientifiques développent l'intégration numérique *géométrique*, c'est-à-dire qui préservent les propriétés structurelles du système (symmétrie, conservation d'énergie etc.), utile en particulier pour la simulation des systèmes hamiltoniens. 
+En fait, dans l'histoire des équations différentielles, c'est souvent la mécanique céleste qui a été motrice des plus grandes avancées. Au milieu du XIX$^e$ siècle, les astronomes Adams et Le Verrier prédisent mathématiquement l'existence et la position de la planète Neptune et l'on entend parler pour la première fois de méthodes multi-pas. Ensuite, les progrès se sont enchaînés au rythme des modèles physiques. La première tendance a été de rechercher des schémas permettant toujours plus de précision à pas plus grand. Parmi les dates clés, on peut citer la publication en 1895 de la première méthode de Runge-Kutta par Runge, puis en 1901, de la populaire méthode de Runge-Kutta d'ordre 4 par Kutta, et ensuite en 1910, de l'*extrapolation de Richardson* permettant la montée en ordre et donc le recours à des pas plus grand pour une même précision. Mais au milieu du XX$^e$ siècle, on découvre des systèmes, dits *raides* (Hirschfelder, 1952), pour lesquels cette montée en ordre ne suffit pas et pour lesquels il faut repenser de nouveaux schémas (Dalquist, 1968). Enfin, à partir des années 80, les scientifiques développent l'intégration numérique *géométrique*, c'est-à-dire qui préservent les propriétés structurelles du système (symétrie, conservation d'énergie etc.), utile en particulier pour la simulation des systèmes hamiltoniens. 
 
 # Objectifs du cours
 
-Ce cours a pour but de sensibiliser aux problèmes apparaissant lors de la simulation numérique des solutions d'équations différentielles, et de donner les bases d'analyse d'erreur numérique. Pour un exposé plus approfondi, on pourra par exemple se referrer à [@Dem06].
+Ce cours a pour but de sensibiliser aux problèmes apparaissant lors de la simulation numérique des solutions d'équations différentielles, et de donner les bases d'analyse d'erreur numérique. Pour un exposé plus approfondi, on pourra par exemple se référer à [@Dem06].
 
 En première lecture :
 
@@ -140,7 +140,7 @@ x^{j+1} = x^j + \dt_j \Phi(t_j,x^j,\dt_j)
 $$
 où $\Phi(t_j,x^j,\dt_j)$ doit donc approximer 
 $$
-\frac{1}{t_{j+1}-t_j} \int_{t_j}^{t_{j+1}}f(s,x(s)) \ .
+\frac{1}{t_{j+1}-t_j} \int_{t_j}^{t_{j+1}}f(s,x(s)) ds \ .
 $$
 Les différentes méthodes de quadrature, i.e. d'approximation de l'intégrale, peuvent donc être mises à profit. La difficulté ici est que seule la valeur initiale $f(t_j,x(t_j))$ de $f$ est connue (ou du moins estimée) à l'itération $j$, par $f(t_j,x^j)$. 
 On distingue donc les méthodes *explicites* où $\Phi(t_j,x^j,\dt_j)$ est écrite directement explicitement en fonction de la valeur initiale $x^j$, et les méthodes *implicites* où cette expression n'est connue qu'implicitement et des étapes intermédiaires de calcul sont nécessaires. 
@@ -534,7 +534,7 @@ Jusqu'à présent, on a présenté des schémas dépendant de pas de temps $\dt_
 
 ## Pas fixe 
 
-Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les resultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. On pourrait aussi directement choisir le pas $\dt_{opt}$ obtenu plus haut en prenant en compte les erreurs d'arrondis. Mais les constantes $c_v$ et $S(T)$ sont souvent mal connues et conservatives.
+Une voie empirique est de fixer un pas, lancer la simulation, puis fixer un pas plus petit, relancer la simulation, jusqu'à ce que les résultats *ne semble plus changer* (au sens de ce qui nous intéresse d'observer). Notons que la connaissance des constantes de temps présentes dans le système peut aider à fixer un premier ordre de grandeur du pas. On pourrait aussi directement choisir le pas $\dt_{opt}$ obtenu plus haut en prenant en compte les erreurs d'arrondis. Mais les constantes $c_v$ et $S(T)$ sont souvent mal connues et conservatives.
 
 <!--
 **Consigne** Coder une fonction du type
@@ -630,45 +630,65 @@ Les équations de Lotka-Volterra, ou "modèle proie-prédateur", sont couramment
 \dot{x}_1 &= x_1(\alpha -\beta x_2) \\
 \dot{x}_2 &= -x_2(\gamma - \delta x_1)
 \end{align*}
-où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement et $\alpha$, $\beta$, $\gamma$, $\delta$ sont des paramètres positifs.
+où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs respectivement et $\alpha$, $\beta$, $\gamma$, $\delta$ sont des paramètres strictement positifs.
 
  1. Donner une interprétation physique à chaque terme de la dynamique. 
-    Quels sont les points d'équilibre ? Etudier leur stabilité locale.
+    Montrer qu'il existe deux points d'équilibre $(0,0)$ et $\bar{x}\in \Rg\times\Rg$. Que peut-on dire de leur stabilité à ce stade ?
 
  2. A l'aide des fonctions `meshgrid` et `quiver`, visualiser graphiquement le champ de vecteurs. 
     Intuiter le comportement des solutions. 
     On pourra aussi utiliser `streamplot` pour visualiser le portrait de phase.
 
- 3. On considère la fonction
+ 3. Par le théorème de Cauchy-Lipschitz, démontrer que toute solution initialisée dans 
+    $\Rg\times\Rg$ reste dans $\Rg\times\Rg$ sur son ensemble de définition.
+ 
+ 4. On considère la fonction
     $$
     H(x_1,x_2) = \delta x_1 - \gamma \ln x_1 + \beta x_2 - \alpha \ln x_2  
     $$
     définie sur $\Rg\times \Rg$.
-    Calculer la dérivée de $H$ le long des solutions dans $\Rg\times \Rg$. En déduire que toute solution initialisée dans $\Rg\times \Rg$ est définie sur $\R$ et reste dans $\Rg\times \Rg$.
-    Qu'en concluez vous sur leur comportement ? On pourra l'illustrer en représentant les courbes de niveau de $H$.
+    Calculer la dérivée de $H$ le long des solutions initialisées dans $\Rg\times \Rg$. En déduire que toute solution maximale initialisée dans $\Rg\times \Rg$ est définie sur $\R$ et que $\bar{x}$ est stable.
+
+ 5. Représenter les courbes de niveau de $H$. Qu'en conclue-t-on sur le comportement des solutions ?
 
 On souhaite maintenant simuler numériquement les trajectoires.
 
- 4. Coder une fonction du type
+ 6. Coder une fonction du type
 
-        def solve_euler_explicit(f, x0, dt, t0 = 0, tf):
+        def solve_euler_explicit(f, x0, dt, t0, tf):
             ...
             return t, x
 
-    prenant en entrée une fonction $f:\R \times \R^n \to \R^n$ quelconque, une condition initiale $x_0$, un pas de temps $dt$, et les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$. 
-    La tester sur les équations de Lotka-Volterra pour différentes valeurs de $dt$. 
+    prenant en entrée une fonction $f:\R \times \R^n \to \R^n$ quelconque, une condition initiale $x_0$, un pas de temps $dt$, les temps initiaux et finaux, et renvoyant le vecteur des temps $t^j$ et de la solution $x^j$ du schéma d'Euler explicite appliqué à $\dot{x}=f(t,x)$. La tester sur une équation différentielle aux solutions exactes connues. Vérifier la convergence du schéma lorsque $dt$ tend vers 0. Comment visualiser graphiquement l'ordre de convergence ?
+
+ 7. Utiliser le schéma d'Euler explicite pour simuler les équations de Lotka-Volterra. 
     Que constate-t-on en temps long ? Cette résolution vous semble-t-elle fidèle à la réalité ? 
     On pourra tracer l'évolution de la fonction $H$.
 
- 5. Coder maintenant une fonction du type
+ 8. Coder maintenant une fonction du type
 
-        def solve_euler_implicit(f, x0, dt, t0 = 0, tf, itermax = 100):
+        def solve_euler_implicit(f, x0, dt, t0, tf, itermax = 100):
             ...
             return t, x
 
-    donnant la solution d'un schéma d'Euler implicite appliqué à $\dot{x}=f(t,x)$ selon la méthode présentée dans le cours. Que se passe-t-il cette fois-ci sur les équations de Lotka-Volterra ?
+    donnant la solution d'un schéma d'Euler implicite appliqué à $\dot{x}=f(t,x)$ selon la méthode présentée dans le cours. Vérifier de nouveau sa convergence sur des solutions connues. Que se passe-t-il cette fois-ci sur les équations de Lotka-Volterra ?
 
- 6. Faire de même avec le schéma de Heun ou des trapèzes (Crank-Nicolson). Comparer et conclure. 
+On propose maintenant de modifier ces schémas de façon à stabiliser $H$ et assurer sa conservation le long des solutions numériques. 
+
+ 9. Expliquer pourquoi les solutions de
+ \begin{align*}
+ \dot{x}_1 &= x_1(\alpha -\beta x_2) - u_1(x_1,x_2) (H(x_1,x_2)-H_0) \\
+ \dot{x}_2 &= -x_2(\gamma - \delta x_1) - u_2(x_1,x_2) (H(x_1,x_2)-H_0) 
+ \end{align*}
+ sont identiques à celles de Lotka-Volterra si $H_0 = H(x(0))$ pour tout choix de $u:\R^2 \to \R^2$.
+
+ 10. Soit $H_0\in \R$. Calculer la dérivée de $H-H_0$ le long des solutions de ce nouveau système. Montrer que l'on peut choisir $u$ tel que
+ $$
+ \frac{d }{dt} (H(x(t))-H_0) = -k \| \nabla H(x(t)) \|^2 (H(x(t))-H_0) \ .
+ $$ 
+ En déduire qu'alors $H(x(t))$ converge exponentiellement vers $H_0$ lorsque $t$ tend vers l'infini si $x$ reste à une distance strictement positive de $\bar{x}$.
+
+ 11. En déduire comment modifier l'implémentation du schéma d'Euler pour assurer la stabilité de $H$. Quel est le rôle de $k$ ? Peut-il être choisi arbitrairement grand ? Pourquoi ?
 
 
 Exercices

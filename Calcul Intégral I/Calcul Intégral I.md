@@ -2242,7 +2242,7 @@ Montrer que si
 $$
 \lim_{x \to +\infty} \int_a^x |f(t)| \, dt  = +\infty
 $$
-alors $f$ n'est pas intégrale sur $\left[a, +\infty\right[$.
+alors $f$ n'est pas intégrable sur $\left[a, +\infty\right[$.
 
 ### Question 2 {.question #id2}
 La fonction $$x \in \left[1, +\infty\right[ \mapsto \frac{1}{x}$$ est-elle

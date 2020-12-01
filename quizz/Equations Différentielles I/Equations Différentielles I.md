@@ -1,4 +1,4 @@
-% Calcul Différentiel I
+% Equations Différentielles I
 
 <!-- LaTeX Macros -->
 \newcommand{\N}{\mathbb{N}}
@@ -42,7 +42,7 @@ L'équation différentielle $\dot{x} = tx^2 +t$ de condition initiale $(t_0,x_0)
   - [ ] admet une unique solution maximale définie sur un intervalle ouvert borné de $\R$.
 
 #### Question 3 
-Soit $f: \R \times \R^n \to \R^n$ continue. Dire que les solutions de $\dot{x}=f(x)$ varient continûment par rapport à leur condition initiale sur leur intervalle de définition est
+Soit $f: \R^n \to \R^n$ continue. Dire que les solutions de $\dot{x}=f(x)$ varient continûment par rapport à leur condition initiale sur leur intervalle de définition est
 
  - [ ] vrai.
 

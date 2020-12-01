@@ -13,6 +13,7 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
+\newpage
 
 Objectifs d'apprentissage
 ================================================================================
@@ -31,63 +32,31 @@ et les contenus en annexe ne sont pas exigibles ("hors-programme").
 contribuer à votre apprentissage, au même titre que la résolution 
 d'exercices.
 
-### TODO
+#### Matrice hessienne et différentiabilité d'ordre 2
 
-  - matrice hessienne & "formules" directement liées à la définition: 
-    $H_f = J_{\nabla f}$, $\partial_{j_1} \partial_{j_2} = \partial_{j_1j_2}^2$,
-    $[H_f]_{j_1j_2} = \partial_{j_1j_2}^2 f$,
+  - \one connaître les définitions et notations de la matrice hessienne et 
+    des dérivées partielles d'ordre 2.
 
-  - diff d'ordre 2, cont. diff d'ordre 2
+  - \one savoir définir et relier existence de la matrice hessienne,
+    différentiabilité d'ordre 2 et continue différentiabilité d'ordre 2.
 
-  - "formules" supposant la diff d'ordre 2: $d^2f(x)\cdot h_1 \cdot h_2 = h_1^{\top} \cdot H_f(x) \cdot h_2$,
-    $\nabla f(x+h)=\nabla f(x) + H_f(x)\cdot h + \varepsilon(h) \|h\|$.
+  - \one savoir à quelle condition la matrice hessienne est symétrique ;
+    savoir exploiter cette symétrie.
 
-  - symétrie de la matrice hessienne, 
+  - \three comprendre le concept de fonctions linéaires d'ordre $2$ ; 
+    savoir manipuler les notations associées ("$\to$", "$\cdot$", 
+    avec associativité à droite et à gauche respectivement).
+
+  - \one savoir définir la différentielle d'ordre $2$ de $f$ en $x$.
+
+  - \one savoir déterminer $d^2f(x)$ en fonction de $H_f(x)$ et réciproquement. 
   
-  - dvlpt limité d'ordre 2
+  - \two connaître et savoir exploiter les développements limités et avec
+    reste intégral faisant intervenir la matrice Hessienne.
 
-TODO
-================================================================================
+#### Différentielle d'ordre supérieur
 
-Evaluer stratégie 
-
-  - diff d'ordre deux d'une fonction (multivariable) scalaire et
-    tout ce qu'on peut faire à ce niveau, avec de façon concrête la matrice
-    hessienne au centre de tout ça (comme le jacobien l'était dans le
-    chapitre 1).
-
-  - puis, dans un second temps seulement, introduction des tenseurs et
-    "déblocage" : de la différentielle d'ordre 2 de fonction vectorielles,
-    puis de la différentielle d'ordre $n$.
-
-  - Tenseur d'ordre (0, 1, 2 et) $3$. Structure d'espace vectoriel normé.
-    Contraction tensorielle, lien avec les applis $n$-linéaires (ouch).
-
-  - Différentielle et matrices (surtout à *valeurs* matricielles ; 
-    il va s'agir de différencier $f'(x)$. Mais on peut en profiter pour
-    avoir des variables matricielles aussi ... D'autant que si on veut
-    utiliser la chain rule, pour avoir une "chain rule d'ordre 2", 
-    on voudrait utilser la chain rule d'ordre 1 à travers le produit
-    matriciel $(A, B) \to A \cdot B$ donc tout ça est lié.
-
-  - Tenseur des dérivées d'ordre $3$.
-
-  - Différentiabilité d'ordre 2, fct 2 fois continument différentiable.
-
-  - Th fcts implicite version $C^n$, $C^n$ difféo ?
-
-Exercices :
-
-  - Fcts quadratique, Gaussienne, etc.
-
-  - Courbure (dans le plan ?)
-
-  - "bordered hessian" (optim.) 
-
-  - formules d'analyse vectorielle (div de rot, $\mathrm{div} \, f \vec{u}$, etc.)
-
-  - exemples calcul de DIFFERENTIAL CALCULUS, 
-    TENSOR PRODUCTS AND THE IMPORTANCE OF NOTATION (JONATHAN H. MANTON).
+**TODO**
 
 
 <!--
@@ -215,18 +184,18 @@ Matrice hessienne et différentielle d'ordre $2$
 ================================================================================
 
 ### Dérivées partielles d'ordre $2$ {.definition .one}
-Soit $U$ un ouvert de $\R^m$, $f: U \to \R$ et $x \in U$.
+Soit $U$ un ouvert de $\R^n$, $f: U \to \R$ et $x \in U$.
 Si la $j_1$-ème dérivée partielle de $f$ est définie sur $U$,
 et que la $j_2$-ème dérivée partielle de $\partial_{j_1} f$ 
 en $x$ existe, on note
 $$
-\partial^2_{j_2j_1} f(x) := \partial_{j_2} (\partial_{j_1} f)(x).
+\partial^2_{j_2j_1} f(x) := \partial_{j_2} (\partial_{j_1} f)(x) \in \R.
 $$
 sa *dérivée partielle d'ordre $2$ par rapport aux $j_1$-ème et 
 $j_2$-ème variables*.
 
 ### Matrice hessienne {.definition .one #hessienne}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}$ et
 $x$ un point de $U$.
 Si toutes les dérivées partielles au premier ordre de $f$ existent sur $U$
 et que toutes leurs dérivées partielles au premier ordre existent en $x$,
@@ -238,25 +207,38 @@ c'est-à-dire
 $$
 H_f(x) = J_{\nabla f}(x) = \left[
 \begin{array}{cccc}
-\partial_{11} f (x) & \partial_{21} f (x) & \cdots & \partial_{n1} f (x) \\
-\partial_{12} f (x) & \partial_{22} f (x) & \cdots & \partial_{n2} f (x) \\
+\partial^2_{11} f (x) & \partial^2_{21} f (x) & \cdots & \partial^2_{n1} f (x) \\
+\partial^2_{12} f (x) & \partial^2_{22} f (x) & \cdots & \partial^2_{n2} f (x) \\
 \vdots & \vdots & \vdots & \vdots \\
-\partial_{1n} f (x) & \partial_{2n} f (x) & \cdots & \partial_{nn} f (x) \\
+\partial^2_{1n} f (x) & \partial^2_{2n} f (x) & \cdots & \partial^2_{nn} f (x) \\
 \end{array}
 \right].
 $$
+
+### Laplacien et matrice hessienne {.exercise .question .zero #laplacien}
+Soit $U$ un ouvert de $\R^n$, $x \in U$ et $f: U \to \R$ une fonction dont 
+la matrice hessienne en $x$ est bien définie. Exprimer le laplacien
+de $f$ en $x$, $\Delta f (x) := \sum_{i=1}^n \partial^2_{ii} f(x)$,
+en fonction de $H_f(x)$.
 
 ### Matrice hessienne d'un monôme {.exercise .question .one #simple}
 Soit $f: (x_1, x_2) \in \R^2 \to \R$ la fonction définie par 
 $f(x_1,x_2) = x_1x_2^2$. Montrer que la matrice $H_f(x)$
 est définie en tout point $x \in \R^2$ et la calculer.
 
-### Matrice hessienne d'un lagrangien {.exercise .question .two #lagrangien}
+### Matrice hessienne d'un lagrangien {.exercise .question .one #lagrangien}
 Soit $U$ un ouvert de $\R^n$ et $f: U \to \R$ et $g: U \to \R$ deux applications
-dont les matrices hessiennes sont définies sur $U$. Soit $c \in \R$ un constante 
+dont les matrices hessiennes sont définies sur $U$. Soit $c \in \R$ une constante 
 et $L : U \times \R \to \R$ la fonction telle que 
 $L(x, \lambda) = f(x) + \lambda (g(x) - c)$.
 Calculer $H_L(x, \lambda)$.
+
+### Matrice hessienne diagonale {.exercise .question .two #hessienne-diag}
+Soit $f: \R^2 \to \R$ une fonction dont la matrice hessienne est définie en
+tout point. 
+Montrer que sa matrice hessienne $H_f$ est diagonale en tout point de $\R^2$
+si et seulement si $f(x_1,x_2) = g(x_1) + h(x_2)$ où $g:\R\to\R$ et $h:\R\to\R$
+sont des fonctions deux fois dérivables.
 
 ### Continue différentiabilité d'ordre 2 {.definition .one}
 Soit $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
@@ -270,55 +252,152 @@ si la fonction $x \in U \mapsto H_f(x) \in \R^{n\times n}$ est définie et
 continue.
 
 ### Différentielle d'ordre 2 {.definition #d2 .three}
-Soit $U$ un ouvert de $\R^n$ et $f: U \subset \mathbb{R}^n \to \mathbb{R}$.
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+$x \in U$.
 On dira que $f$ est *deux fois différentiable en $x$* si $f$ est différentiable
 sur $U$ et si pour tout vecteur $h_1$ de $\mathbb{R}^n$,
 la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$.
 La *différentielle d'ordre $2$ de $f$ en $x$*, notée $d^2f(x)$, 
-est définie[^not] comme l'application linéaire telle que pour tout $h_1$ 
+est définie comme l'application linéaire telle que pour tout $h_1$ 
 dans $\mathbb{R}^n$,
 $$
 d^2 f(x) \cdot h_1 := d(x\mapsto df(x)\cdot h_1)(x),
 $$
 c'est-à-dire pour tout vecteur $h_2$ de $\mathbb{R}^n$,
 $$
-d^2f(x) \cdot h_1 \cdot h_2 = d(x\mapsto df(x)\cdot h_1)(x) \cdot h_2.
+(d^2f(x) \cdot h_1) \cdot h_2 = d(x\mapsto df(x)\cdot h_1)(x) \cdot h_2.
 $$
 On dit que $f$ est *deux fois différentiable (sur $U$)* si elle est 
 deux fois différentiable en tout point $x$ de $U$.
 
-[^not]: On peut vérifier que le terme $d(x\mapsto df(x)\cdot h_1)(x)$ dépend 
-bien linéairement de $h_1$, ce qui justifie l'assertion que $d^2f(x)$
-est linéaire et donc l'usage du "$\cdot$" lorsqu'elle est appliquée à un
-argument $h_1$.
+### {.ante}
+Dans cette définition, le caractère linéaire de $d^2f(x)$ repose sur le lemme technique suivant :
 
-### Notations {.remark}
+### Linéarité de $d(x \mapsto df(x) \cdot h_1)(x)$ par rapport à $h_1$ {.lemma}
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et $x\in U$.
+Si $f$ est différentiable sur $U$ et si pour tout vecteur $h_1$ de $\mathbb{R}^n$,
+la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$,
+alors la fonction $d(x \mapsto df(x) \cdot h_1)(x)$ dépend linéairement de 
+$h_1 \in \R^n$.
+
+### Démonstration {.proof} 
+Pour tous $h_1, k_1 \in \R^n$, par additivité de $df(x)$ et de la différentiation,
+\begin{align*}
+d(x\mapsto df(x)\cdot (h_1+k_1))(x) &= 
+d(x\mapsto (df(x)\cdot h_1 + df(x)\cdot k_1))(x) \\ 
+&= d((x\mapsto df(x)\cdot h_1) + (x \mapsto df(x)\cdot k_1))(x) \\ 
+&= d(x\mapsto df(x)\cdot h_1)(x)  + d(x\mapsto df(x)\cdot k_1)(x) 
+\end{align*}
+et pour tout $\alpha \in \R$, par homogénéité de $df(x)$ et de la différentiation,
+\begin{align*}
+d(x\mapsto df(x)\cdot (\alpha h_1))(x) &=  d(x\mapsto \alpha df(x)\cdot h_1)(x) \\
+&=d(\alpha(x\mapsto df(x)\cdot h_1))(x)
+&= \alpha d(x\mapsto df(x)\cdot h_1)(x).
+\end{align*}
+
+
+### Applications linéaires d'ordre 2 {.remark}
 Par construction, le terme $d(x\mapsto df(x)\cdot h_1)(x)$ 
-est une application linéaire de $\mathbb{R}^n \to \mathbb{R}^m$, 
+est une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$, 
 donc la fonction $d^2f(x)$
 associe linéairement à un vecteur de $\mathbb{R}^n$ une application
-linéaire de $\R^n$ dans $\R$. Autrement dit, si l'on note $A \to B$ 
-l'ensemble des fonctions de $A$ dans $B$, on a
+linéaire de $\R^n$ dans $\R$. 
+
+Notons $A \to B$ l'ensemble des applications de $A$ dans $B$ ; on a donc
 $$
-d^2f(x) \in \mathbb{R}^n \to (\mathbb{R}^n \to \mathbb{R}),
+d^2f(x) \in \mathbb{R}^n \rightarrow (\mathbb{R}^n \rightarrow \mathbb{R}),
 $$
 ce qui se décline successivement en
 $$
-d^2f(x) \cdot h_1 \in \mathbb{R}^n \to \mathbb{R},
+d^2f(x) \cdot h_1 \in \mathbb{R}^n \to \mathbb{R}
 \; \mbox{ et } \;
 (d^2f(x) \cdot h_1) \cdot h_2 \in \mathbb{R}^m.
 $$
-On conviendra que dans ce contexte, le symbole "$\to$" associe à droite :
+Pour simplifier les notations, on conviendra que dans ce contexte
+le symbole "$\to$" associe à droite :
 $$
 \mathbb{R}^n \to \R^n \to \mathbb{R} := \R^n \to (\mathbb{R}^n \to \mathbb{R}).
 $$
-La convention associée -- utilisée dans la définition de la différentielle
-d'ordre 2 -- veut que lors de l'application d'une fonction linéaire,
+La convention associée veut que lors de l'application d'une fonction linéaire,
 le symbole "$\cdot$" associe à gauche :
 $$
 d^2f(x) \cdot h_1 \cdot h_2 :=  (df^2(x) \cdot h_1) \cdot h_2.
 $$
 
+L'usage du "$.$" doit nous rappeller que les dépendances de 
+$df(x) \cdot h_1$ en $h_1$ et de $d^2f(x) \cdot h_1 \cdot h_2$ en $h_2$
+sont linéaires[^sinon]. Cela signifie pour la linéarité de $d^2f(x)$ que
+$d^2f(x) \cdot (\alpha h_1) = \alpha d^2f(x) \cdot h_1$ et 
+$d^2f(x) \cdot (h_1+k_1) = d^2f(x) \cdot h_1 + d^2f(x) \cdot k_1$ ; il s'agit 
+d'égalités entre fonctions de $\R^n \to \R$, que nous devons donc interpréter
+comme :
+$$
+\left|
+\begin{array}{lll}
+d^2f(x) \cdot (\alpha h_1) \cdot h_2 &=& \alpha d^2f(x) \cdot h_1 \cdot h_2 \\
+d^2f(x) \cdot (h_1+k_1)\cdot h_2 &=& d^2f(x) \cdot h_1 \cdot h_2 + d^2f(x) \cdot k_1 \cdot h_2
+\end{array}
+\right.
+$$
+La linéarité de $d^2f(x)\cdot h_1$ conduit quant à elle à
+$$
+\left|
+\begin{array}{lll}
+d^2f(x) \cdot h_1 \cdot (\beta h_2) &=& \beta d^2f(x) \cdot h_1 \cdot h_2 \\
+d^2f(x) \cdot h_1 \cdot (h_2+k_2) &=& d^2f(x) \cdot h_1 \cdot h_2 + 
+d^2f(x) \cdot h_1 \cdot k_2
+\end{array}
+\right.
+$$
+L'expression $d^2f(x) \cdot h_1 \cdot h_2$ est donc linéaire par rapport à 
+$h_1$ et $h_2$ pris isolément ; on parlera de dépendance *bilinéaire* dans
+le couple $(h_1, h_2)$.
+
+[^sinon]: la notation "générique" serait sinon $d^2f(x) (h_1)$ et $d^2f(x)(h_1)(h_2)$, 
+voire $(d^2f(x)) (h_1)$ et $((d^2f(x))(h_1))(h_2)$ si l'on souhaitait être tout à fait explicite.
+
+### Différentiation automatique d'ordre 2 {.remark}
+
+La bibliothèque autograd nous a déjà permis de calculer automatiquement
+le gradient de fonctions scalaires et la matrice jacobienne de fonctions
+scalaires ou vectorielles.
+
+    import autograd as ag
+    from autograd import numpy as np
+
+    def grad(f):
+        def grad_f(*x):
+            n = len(x)
+            return np.array([ag.grad(f, i)(*x) for i in range(n)])
+        return grad_f
+
+    def J(f):
+        def J_f(*x):
+            n = len(x)
+            di_f_x = [ag.jacobian(f, i)(*x) for i in range(n)]
+            return np.array(di_f_x).T
+        return J_f
+
+Autograd permet également le calcul des dérivées partielles d'ordre supérieur.
+Concrêtement, on peut appliquer à nouveau un opérateur différentiel sur une 
+fonction qui est issue d'un calcul fait par autograd. L'implémentation de la
+fonction qui calcule la matrice hessienne d'une fonction scalaire est donc 
+particulièrement simple :
+
+    def H(f):
+        return J(grad(f))
+
+Un exemple d'usage :
+
+    def f(x1, x2):
+        return np.exp(-0.5 * (x1 * x1 + x2 * x2))
+
+exercé de la façon suivante :
+
+    >>> H_f = H(f)
+    >>> H_f(1.0, 2.0)
+    array([[0.      , 0.16417 ],
+           [0.16417 , 0.246255]])
 
 ### Différentielle d'ordre 2 et matrice hessienne {.proposition #d2mh}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
@@ -327,7 +406,7 @@ La fonction $f$ est deux fois différentiable en $x$ si et seulement si elle
 est différentiable sur $U$ et que son gradient $\nabla f$ est différentiable en $x$.
 Sa matrice hessienne est alors définie en $x$ et pour tous $h_1, h_2 \in \R^n$, 
 $$
-d^2f(x) \cdot h_1 \cdot h_2 = h_1^{\top} \cdot H_f(x) \cdot h_2
+d^2f(x) \cdot h_1 \cdot h_2 = \left<h_1, H_f(x) \cdot h_2 \right> = h_1^{\top} \cdot H_f(x) \cdot h_2
 =\sum_{j_1=1}^n \sum_{j_2=1}^n [H_f(x)]_{j_1j_2} h_{1j_1} h_{2j_2}.
 $$
 En particulier
@@ -357,7 +436,7 @@ Par définition, $[H_f(x)]_{j_1j_2}(x) =
 \partial^2_{j_2j_1} f(x) = \partial_{j_2} (\partial_{j_1} f) (x)$
 et donc
 $$[H_f(x)]_{j_1j_2}(x) = \partial_{j_2} (x \mapsto df(x)\cdot e_{j_1})(x)
-= d(x \mapsto df(x)\cdot e_{j_1})(x) \cdot e_{j_1},$$
+= d(x \mapsto df(x)\cdot e_{j_1})(x) \cdot e_{j_2},$$
 c'est-à-dire $[H_f(x)]_{j_1j_2}(x) = d^2f(x) \cdot e_{j_1} \cdot e_{j_2}$.
 Pour prouver l'égalité restante, on exploite la linéarité de 
 $d^2f(x) \cdot h_1 \cdot h_2$ par rapport à $h_1$ et à $h_2$ :
@@ -472,12 +551,36 @@ $$
 on voit que l'inégalité est en fait valable pour des $h_1$ et $h_2$ arbitraires.
 On en déduit que $d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 = 0.$
 
+### Analyse vectorielle {.exercise .question .one #analyse-vectorielle}
+Soit $U$ un ouvert de $\R^3$ et $f: U \to \R^3$. On note
+(quand les expressions ont du sens)
+$$
+\mathrm{div} \, f(x) := \partial_1 f_1(x) + \partial_2 f_2(x) + \partial_3 f_3(x)
+\; \mbox{ et } \;
+\mathrm{rot} \, f(x) := \left[
+\begin{array}{c}
+\partial_2 f_3(x) - \partial_3 f_2(x) \\
+\partial_3 f_1(x) - \partial_1 f_3(x) \\
+\partial_1 f_2(x) - \partial_2 f_1(x)
+\end{array}
+\right].
+$$
+Soient $f: U \to \R^3$ et $g: U \to \R$ des fonctions deux fois différentiable en 
+$x \in U$. Calculer $\mathrm{div} \, (\mathrm{rot} \, f)(x)$ et 
+$\mathrm{rot}\, (\nabla f)(x)$
+
+
+### Gradient unitaire {.exercise .question .one #gradient-unitaire}
+Soit $U$ un ouvert de $\R^n$ et $f: U \to \R$ une fonction deux fois différentiable. 
+Montrer que si $\|\nabla f\| =  1$, alors $H_f \cdot \nabla f = 0$.
+
+
 ### Développement limité à l'ordre $2$ {.proposition #dl2}
 Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
 $x \in U$.
 Si la fonction $f$ est deux fois différentiable en $x$ alors
 $$
-f(x+h) = f(x) + \left<\nabla f(x), h\right> + h^{\top} \cdot \frac{H_f(x)}{2} \cdot h + \varepsilon(h) \|h\|^2
+f(x+h) = f(x) + \left<\nabla f(x), h\right> + \frac{1}{2}\left<h,  H_f(x) \cdot h\right> + \varepsilon(h) \|h\|^2
 $$
 où $\lim_{h\to 0} \varepsilon(h) = 0$.
 
@@ -487,12 +590,12 @@ on peut trouver un seuil $r>0$ tel que si $\|h\| \leq r$,
 alors
 $$
 \left\|
-f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot \frac{H_f(x)}{2} \cdot h
+f(x+h) - f(x) - \left<\nabla f(x), h\right> - \frac{1}{2}\left<h,  H_f(x) \cdot h\right> 
 \right\| 
 \leq \varepsilon \|h\|^2.
 $$
 La fonction 
-$g : h \mapsto f(x+h) - f(x) - \left<\nabla f(x), h\right> - h^{\top} \cdot H_f(x) \cdot h \in \R$
+$g : h \mapsto f(x+h) - f(x) - \left<\nabla f(x), h\right> - \frac{1}{2}\left<h,  H_f(x) \cdot h\right>  \in \R$
 est différentiable, de gradient en $h$
 $$
 \nabla g(h) = \nabla f(x+h) - \nabla f(x) - \left(\frac{ H_f(x) + H_f(x)^{\top}}{2}\right) \cdot h,
@@ -516,6 +619,40 @@ Par l'inégalité des accroissements finis, quand $\|h\| \leq r$, on a donc
 \end{align*}
 
 
+### Développement de Taylor d'ordre 1 avec reste intégral {.proposition #dt1}
+Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$,
+$x \in U$ et $h \in \R^n$ tel que $[x, x+h] \subset U$.
+Si la fonction $f$ est deux fois continûment différentiable, alors
+$$
+f(x+h) = f(x) + \left<\nabla f(x), h\right> + \int_0^1 (h^{\top} \cdot H_f(x+th) \cdot h) \times (1-t) \, dt.
+$$
+
+### Démonstration {.proof}
+Définissons la fonction $\phi : [0, 1] \to \R$ par $\phi(t) = f(x+th)$.
+Par le théorème fondamental du calcul, puis par intégration par parties,
+on obtient
+\begin{align*}
+\phi(1) 
+&= \phi(0) + \int_0^1 \phi'(t) \, dt \\
+&= \phi(0) + [\phi'(t)(t-1)]_0^1 - \int_0^1 \phi''(t) \times (t-1) \, dt \\
+&= \phi(0) + \phi'(0) + \int_0^1 \phi''(t) \times (1-t) \, dt
+\end{align*}
+Or, on a $\phi(0) = f(x)$, $\phi(1) = f(x + h)$ ; par la règle de dérivation
+en chaîne on obtient également 
+$\phi'(t) = df(x+th) \cdot h$ et $\phi''(t) = d^2f(x+th) \cdot h \cdot h$.
+Par conséquent
+$$
+f(x+h) = f(x) + df(x) \cdot h + \int_0^1 (d^2f(x+th)\cdot h \cdot h) \times (1-t) \, dt,
+$$
+ce qui est équivalent à l'équation recherchée.
+
+### Accroissements finis d'ordre 2 {.exercise .question #maj2 .one}
+Montrer que si $f: \R^n \to \R$ est deux fois continûment différentiable et
+que la norme d'opérateur de $H_f$ est bornée par la constante $M$ sur $\R^n$, 
+alors pour tous $x, h \in \R^n$,
+$$
+\|f(x+h) - f(x) - \left<\nabla f(x), h \right> \| \leq M \frac{\|h\|^2}{2}.
+$$
 
 
 <!--
@@ -658,46 +795,250 @@ $d^2f(x)$ et $\partial^2_{ij} f(x)$ établis par la proposition
 Différentielle d'ordre supérieur
 ================================================================================
 
-**TODO** notation $i$ bof ; prendre $m$ ?
-
 ### Tenseur d'ordre $n$ {.definition .one}
-On appelera *tenseur d'ordre $n$* un élément de 
-$\R^{i_1 \times i_2 \times \dots \times i_n}$ où $(i_1,i_2,\dots, i_n) \in \N^{n}$, 
-c'est-à-dire une application $A$ de la forme
+On appelera *tenseur d'ordre $n \in \N$* et de *type* $(m_1,m_2,\dots, m_n) \in \N^{n}$
+un élément de $\R^{m_1 \times m_2 \times \dots \times m_n}$ c'est-à-dire un réel
 $$
-(i_1,  i_2, \dots , i_n) \mapsto A_{i_1i_2 \dots i_n} \in \R,
+ A_{i_1 i_2 \dots i_n} \in \R,
 $$
-ou encore, un tableau $n$-dimensionnel de réels.
+indexé par $n$ indices
+$$
+(i_1,  i_2, \dots , i_n) \in \{1, \dots, m_1\} \times \{1,\dots, m_2\} \times \dots \times \{1,\dots, m_n\}.
+$$
 
-### {.remark}
-Le concept de tenseur généralise la notion de scalaire de $\R$
-(un tenseur d'ordre 0), de vecteur de $\R^n$ (un tenseur d'ordre 1)
-et de matrice $\R^{m\times n}$ (un tenseur d'ordre 2).
+### Scalaires, vecteurs, matrices {.remark}
+Le concept de tenseur englobe et généralise les scalaires, vecteurs et matrices :
 
-### TODO.
+ 1. Les scalaires les tenseurs d'ordre 0 
+    (car ne dépendant d'aucun indice). Il n'existe qu'un type de de tenseur 
+    d'ordre  $0$, car il existe un unique $0$-uplet, noté $()$.
 
-  - Identification tenseur application $n$-linéaire.
+ 2. les vecteurs sont les tenseurs d'ordre 1 ; un vecteur de $\R^m$ a pour type 
+    $(m)$, le 1-uplet contenant $m$.
 
-  - Contraction entre tenseurs (taille compatible), 
+ 3. les matrices les tenseurs d'ordre $2$ ; une matrice de $\R^{m \times n}$
+    a pour type la paire $(m, n)$.
 
-  - Contraction d'ordre $p$ (quelle convention et notation ?),
+Les tenseurs d'ordre $n \geq 3$ sont des objets qui ne sont ni des 
+scalaires, ni des vecteurs, ni des matrices.
 
-  - Décomposer produit de tenseurs et contraction d'indice (pour UN tenseur)
-    ou combiner ? Indices nommés ?
+### Les tenseurs avec NumPy {.remark}
+Les tenseurs sont des tableaux $n$-dimensionnels ; 
+ils sont donc représentés comme des instances du type `array`. 
+Leur ordre est donnée par la méthode `ndim` (nombre de dimensions),
+leur type par la méthode `shape`. Ainsi, avec
 
-  - Coller au plus près de NumPy et donner des exemples avec NumPy 
-    (et einsum ?). Regarder aussi dot, tensordot, outer, etc.
-    Voir ce qui fait le job ...Ca serait bien de pouvoir se limiter à `dot` ...
-    Regarder les 3 use cases: diff d'ordre n, chain rule d'ordre 2, determinant
-    et/ou diff de fct matricielles (valeurs et/ou args).
+    >>> T0 = np.array(1.0)
+    >>> T1 = np.array([1.0, 2.0, 3.0])
+    >>> T2 = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
+    >>> T3 = np.array([[[1.0], [2.0], [3.0]], [[4.0], [5.0], [6.0]]])
 
+on a
+
+    >>> (T0.ndim, T1.ndim, T2.ndim, T3.ndim)
+    (0, 1, 2, 3)
+
+et
+
+    >>> T0.shape
+    ()
+    >>> T1.shape
+    (3,)
+    >>> T2.shape
+    (2, 3)
+    >>> T3.shape
+    (2, 3, 1)
+
+Les coefficients d'un tenseur `T` s'obtiennent au moyen du crochet `T[]`
+(méthode `__getitem__`)[^o0], mais avec un indexation commençant à 0 et non 1
+comme la convention mathématique classique. Ainsi :
+
+    >>> T1[1]
+    2.0
+    >>> T2[1,2]
+    6.0
+    >>> T3[1,2,0]
+    6.0
+<!--
+A noter que la notation `T2[(1,2)]` ($n$-uplet explicite)
+est équivalente à `T2[1,2]` ($n$-uplet implicite). Cette remarque est utile
+pour accéder au contenu des tenseurs d'ordre 0, car la notation "évidente"
+n'est pas acceptée :
+
+    >>> T0[]
+    Traceback (most recent call last):
+    ...
+    SyntaxError: invalid syntax
+    >>> T0[()]
+    1.0
+-->
+
+[^o0]: La notation `T2[(1,2)]` ($n$-uplet explicite)
+est équivalente à `T2[1,2]` ($n$-uplet implicite). Cette remarque est utile
+pour accéder au contenu des tenseurs d'ordre 0, car la notation `T0[]`
+n'est pas acceptée :
+```
+>>> T0[()]
+1.0
+>>> T0[]
+Traceback (most recent call last):
+...
+SyntaxError: invalid syntax
+```
+
+
+### Applications linéaires d'ordre supérieur {.remark}
+
+Une raison d'être des matrices de $\R^{m \times n}$ 
+est la représentation concrête des applications linéaires de $\R^n \to \R^m$, 
+dont l'espace est noté $\mathcal{L}(\R^n, \R^m)$.
+Si l'on désigne par $A$ une telle 
+l'application linéaire et par $[a_{ij}]_{ij}$ la matrice associée,
+$$
+a_{ij} = (A \cdot e_j)_i 
+\; \mbox{ et } \;
+A \cdot x = \sum_i \left( \sum_{j} a_{ij} x_j \right) e_i
+$$
+pour tout $x \in \R^n$.
+(Par abus de notation, $e_j$ désigne le $j$-ème vecteur de la base canonique 
+de $\R^p$ quel que soit $p$). Cette correspondance légitime l'identification 
+fréquemment opérée entre $A$ et $[a_{ij}]_{ij}$. 
+
+Une correspondance similaire existe pour les tenseurs d'ordre
+supérieur à $2$. Ainsi, à l'ordre $3$ on peut mettre en correspondance un
+tenseur $(t_{ijk})_{ijk}$ de type $(m, n, p)$ et une application linéaire $T$
+de $\R^p$ dans l'espace des applications linéaires de $\R^n$ dans $\R^m$<!--([^ho])-->,
+c'est-à-dire
+$$
+(t_{ijk})_{ijk} \in \R^{m \times n \times p} 
+\; \longleftrightarrow \;
+T \in \mathcal{L}(\R^p, \mathcal{L}(\R^n, \R^m)).
+$$
+On définit cette correspondance de la façon suivante : 
+$$
+t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
+\; \mbox{ et } \;
+(T \cdot x) \cdot y
+= 
+\sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
+$$
+(sous-entendu, pour tout $x\in \R^p$ et $y \in \R^n$). 
+Le processus se généralise sans difficulté à des tenseurs d'ordre supérieur
+à $3$.
+
+<!--
+[^ho]: on parle ici d'application d'ordre supérieur car la fonction linéaire
+considérée associe à un argument une "valeur" qui est elle-même une fonction
+(linéaire).
+-->
+
+### Applications multilinéaires {.remark}
+
+Les tenseurs vus comme des tableaux permettent de représenter d'autres 
+objets mathématiques, équivalents aux applications linéaires (d'ordre 
+supérieur). A titre d'exemple, si l'on considère les tenseurs d'ordre 2, 
+une matrice $A \in \R^{m \times n}$ correspond à une application
+$\mathcal{L}(\R^n, \R^m)$ mais également à une forme bilinéaire 
+$Q \in \mathcal{L}_2(\R^n \times \R^m, \R)$, 
+c'est-à-dire une fonction de deux variables dans $\R^n$ et $\R^m$,
+linéaire par rapport à chacune de ces variables, et à valeurs dans $\R$. 
+Cette forme bilinéaire $Q$ est donnée par
+$$
+Q(x, y) = \sum_{i=1}^m \sum_{j=1}^n T_{ij} x_i y_j.
+$$
+Dans le cas général, un tenseur d'ordre $n$ correspond avec une forme 
+$n$-linéaire.
+
+### Produit tensoriel {.definition}
+Soient $A$ et $B$ des tenseurs de type respectifs 
+$(m_1,m_2,\dots, m_n) \in \N^{n}$ et $(p_1,p_2,\dots, p_q) \in \N^{q}$.
+Si $m_n = p_1$, le produit de $A$ et $B$ est le tenseur de 
+$(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q}$ noté $A \cdot B$ 
+défini par
+$$
+(A \cdot B)_{i_1 \dots, i_{n-1}, i_{n+1}, i_{n+q}} = \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} 
+$$
+
+### Produits tensoriels classiques {.remark} 
+Pour $x, y \in \R^n$, on a
+$$
+x \cdot y  = \sum_{i=1}^m x_i y_i \in \R.
+$$
+Si de plus $A \in \R^{m \times n}$ et 
+$B \in \R^{n \times p}$,
+$$
+A\cdot x \in \R^m, \; (A \cdot x)_i = \sum_{j=1}^n A_{ij} x_j  
+$$
+$$
+A \cdot B \in \R^{m \times p}\; \mbox{ et } \;
+(A \cdot B)_{ik} = \sum_{j=1} A_{ij} B_{jk}.
+$$
+Autrement dit le le produit tensoriel de vecteurs
+coïncide avec leur produit scalaire, 
+et les produits tensoriels matrice-vecteur et matrice-matrice
+coïncident avec les produits classiques.
+
+### Produit tensoriel avec NumPy {.remark}
+Si $A$ et $B$ sont deux tenseurs de forme compatibles pour un produit
+représentés par les tableaux $n$-dimensionnels `A` et `B`, 
+**et tant que l'ordre de $B$ est inférieur ou égal à $2$**, 
+on peut calculer le produit tensoriel de $A$ et $B$ au moyen de la méthode `dot`.
+Par exemple, avec :
+
+    >>> x = np.array([0.0, 1.0])
+    >>> y = np.array([2.0, 4.0])
+    >>> A = np.array([[1.0, 2.0], [3.0, 4.0]])
+    >>> B = np.array([[5.0, 6.0], [7.0, 8.0]])
+    >>> T = np.array([[[1.0, 2.0], [3.0, 4.0]], 
+    ...               [[5.0, 6.0], [7.0, 8.0]]])
+
+on obtient le produits tensoriels associés par :
+
+    >>> x.dot(y)
+    4.0
+    >>> A.dot(x)
+    array([2., 4.])
+    >>> A.dot(B)
+    array([[19., 22.],
+           [43., 50.]])
+    >>> T.dot(A)
+    array([[[ 7., 10.],
+            [15., 22.]],
+    <BLANKLINE>
+           [[23., 34.],
+            [31., 46.]]])
+
+Dans le cas contraire (ou systématiquement), 
+on pourra utiliser la fonction NumPy `tensordot` avec l'option
+`axes=1`, car la fonction `numpy.dot` diffère alors du produit tensoriel tel
+que nous l'avons défini
+[(cf. documentation de `numpy.dot`)](https://numpy.org/doc/stable/reference/generated/numpy.dot.html).
+
+    >>> x.dot(T) # Probably not what you want.
+    array([[3., 4.],
+           [7., 8.]])
+    >>> np.tensordot(x, T, axes=1) # Better!
+    array([[5., 6.],
+           [7., 8.]])
+
+Pour un contrôle plus fin des opérations, on pourra également avoir recours
+[à la fonction `numpy.einsum`](https://numpy.org/doc/stable/reference/generated/numpy.einsum.html). Pour calculer $(x \cdot T)_{jk} = \sum_{i} x_i T_{ijk}$, 
+comme nous le souhaitons :
+
+    >>> np.einsum("i, ijk -> jk", x, T)
+    array([[5., 6.],
+           [7., 8.]])
+
+Ici le tenseur calculé par `x.dot(T)` correspond à $S_{jk} = \sum_{i} x_i T_{jik}$ ;
+si c'est ce que l'on souhaite, on peut aussi l'obtenir par :
+
+    >>> np.einsum("i, jik -> jk", x, T)
+    array([[3., 4.],
+           [7., 8.]])
 
 ### {.ante}
 La notion de différentielle d'ordre $2$ se généralise sans difficulté
 à un ordre plus élevé, par induction sur l'ordre de la différentielle.
-
-### TODO
-Expliquer généralisation scalaire -> vectoriel et ordre $k$.
 
 ### Différentielle d'ordre $k$ {.definition #dos}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
@@ -718,12 +1059,25 @@ $$
 d^k f(x) \cdot h_1 \cdot h_2 \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
 $$
 
-### Remarque
+### Différentielle d'ordre $k$ comme tenseur {.remark}
 On a 
 $$
-d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m
+d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m,
 $$
+chaque application dans la chaîne étant linéaire. La différentielle
+$d^k f(x)$ peut donc être représentée par un tenseur d'ordre $k+1$ et 
+de type $(m, n, \dots, n)$.
 
+**TODO: expliciter correspondance, du type:**
+$$
+t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
+\; \mbox{ et } \;
+(T \cdot x) \cdot y
+= 
+\sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
+$$
+**Lien avec les dérivés partielles pas évident à ce stade ... ou plus tard, si ?
+A ce stade je crois que ça n'est nulle part ... Ca manque !**
 
 ### Stratification {.lemma #stratification}
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
@@ -1146,7 +1500,7 @@ Par conséquent, l'inégalité des accroissements finis fournit
 
 
 
-Exercices
+Exercices complémentaires
 ================================================================================
 
 Convexité
@@ -1251,6 +1605,14 @@ Solutions
 Exercices essentiels
 --------------------------------------------------------------------------------
 
+
+### Laplacien et matrice hessienne {.answer #answer-laplacien}
+Le laplacien de $f$ en $x$ est la somme des coefficients diagonaux 
+-- donc la trace -- de la matrice hessiene de $f$ en $x$ :
+$$
+\Delta f(x) = \tr H_f(x).
+$$
+
 ### Matrice hessienne d'un monôme {.answer #answer-simple}
 Le gradient de $f$ est défini en tout point de $\R^2$ et vaut
 $$
@@ -1274,7 +1636,6 @@ H_f(x) = J_{\nabla f} (x_1, x_2) =
 2x_2 & x_1 x_2 \\
 \end{array}\right].
 $$
-
 
 ### Matrice hessienne d'un lagrangien {.answer #answer-lagrangien}
 Le gradient de $L$ en $(x, \lambda)$ vaut
@@ -1306,6 +1667,133 @@ H_L(x, \lambda) = J_{{\nabla}L}(x, \lambda)
 \right].
 $$
 
+### Matrice hessienne diagonale {.answer #answer-hessienne-diag}
+Soit $f: \R^2 \to \R$ une fonction dont la matrice hessienne est partout définie. 
+Si $f(x_1,x_2) = g(x_1) + h(x_2)$ où $g:\R\to\R$ et $h:\R\to\R$
+sont des fonctions deux fois dérivables, alors $f$ est
+différentiable et
+$$
+\nabla f(x_1, x_2) = 
+\left[ 
+\begin{array}{c}
+g'(x_1) \\
+h'(x_2)
+\end{array}
+\right].
+$$
+Ce gradient admet bien une matrice jacobienne et
+$$
+H_f(x_1,x_2) = J_{\nabla f}(x_1, x_2) = 
+\left[
+\begin{array}{cc}
+g''(x_1) & 0 \\
+0 & h''(x_2)
+\end{array}
+\right].
+$$
+Cette matrice est bien diagonale pour tout $(x_1, x_2) \in \R^2$.
+Réciproquement, si $H_f$ est diagonale, alors 
+$\partial^2_{12} f = \partial_1 \partial_2 f = 0$. 
+Par le théorème fondamental du calcul on a pour tout $(x_1,x_2) \in \R^2$,
+$$
+\partial_2 f(x_1, x_2) 
+= 
+\partial_2 f(0,x_2) + \int_{0}^{x_1} \partial^2_{12} f(y_1,x_2) \, dy_1
+=
+\partial_2 f(0,x_2).
+$$
+La fonction $\partial_2 f(0, x_2)$ étant dérivable par rapport à $x_2$,
+elle est continue par rapport à $x_2$ et à nouveau par le théorème fondamental
+du calcul, on obtient
+$$
+f(x_1, x_2) 
+= f(x_1, 0) + \int_0^{x_2} \partial_2 f(x_1, y_2) \, dy_2
+= f(x_1, 0) + \int_0^{x_2} \partial_2 f(0, y_2) \, dy_2.
+$$
+Cette fonction est de la forme $f(x_1,x_2) = g(x_1) + h(x_2)$ avec
+$$
+g(x_1) = f(x_1,0) \; \mbox{ et } \; h(x_2) = \int_0^{x_2} \partial_2 f(0, y_2) \, dy_2.
+$$
+Les fonctions $f$ et $g$ sont bien deux fois dérivables.
+
+
+### Analyse vectorielle {.answer #answer-analyse-vectorielle}
+Soient $f: U \to \R^3$ et $g: U \to \R$ des fonctions deux fois différentiable en 
+$x \in U$. On a
+\begin{align*}
+\mathrm{div} \, (\mathrm{rot} \, f)(x) 
+&= \mathrm{div} \left[
+\begin{array}{c}
+\partial_2 f_3(x) - \partial_3 f_2(x) \\
+\partial_3 f_1(x) - \partial_1 f_3(x) \\
+\partial_1 f_2(x) - \partial_2 f_1(x)
+\end{array}
+\right] \\
+&= \partial_1(\partial_2 f_3 - \partial_3 f_2)(x)
++ \partial_2 (\partial_3 f_1 - \partial_1 f_3)(x)
++ \partial_3 (\partial_1 f_2 - \partial_2 f_1)(x) \\
+&= (\partial^2_{12} f_3 - \partial^2_{21} f_3)(x)
++ (\partial^2_{23} f_1 - \partial^2_{32} f_1)(x)
++ (\partial^2_{31} f_2 - \partial^2_{13} f_2)(x),
+\end{align*}
+et donc $\mathrm{div} \, (\mathrm{rot} \, f)(x) = 0$ 
+[par symmétrie de la différentielle d'ordre 2](#SD2).
+On a également
+\begin{align*}
+\mathrm{rot} \, \nabla g(x) &:= \left[
+\begin{array}{c}
+\partial_2 (\nabla g)_3(x) - \partial_3 (\nabla g)_2(x) \\
+\partial_3 (\nabla g)_1(x) - \partial_1 (\nabla g)_3(x) \\
+\partial_1 (\nabla g)_2(x) - \partial_2 (\nabla g)_1(x) \\
+\end{array}
+\right] \\
+&=
+\left[
+\begin{array}{c}
+\partial_2 \partial_3 g(x) - \partial_3 \partial_2 g(x) \\
+\partial_3 \partial_1 g(x) - \partial_1 \partial_3 g(x) \\
+\partial_1 \partial_2 g(x) - \partial_2 \partial_1 g(x)
+\end{array}
+\right]\\
+\end{align*}
+et donc -- à nouveau [par symmétrie de la différentielle d'ordre 2](#SD2) --
+on obtient $\mathrm{rot} \, \nabla g(x)=0$
+
+### Gradient unitaire {.answer #answer-gradient-unitaire}
+Si $\|\nabla f\| =  1$, alors 
+$$
+\|\nabla f\|^2 = \left<\nabla f, \nabla f\right> = \sum_i (\partial_i f)^2 = 1
+$$
+et donc pour tout $j \in \{1,\dots, n\}$,
+$$
+\partial_j \left( \sum_i \partial_i f^2 \right) =  2 \sum_i {\partial^2_{ji} f \times \partial_i f} = 
+2 H_f^{\top} \cdot \nabla f = 0.
+$$
+Le résultat $H_f \cdot \nabla f = 0$ s'en déduit donc [par symmétrie de la différentielle d'ordre 2](#SD2).
+
+
+### Accroissements finis d'ordre 2 {.answer #answer-maj2}
+[Le développement de Taylor avec reste intégral](#dt1) et l'inégalité
+triangulaire nous fournissent
+\begin{align*}
+\|f(x+h) - f(x) - \left<\nabla f(x), h\right> \| &\leq
+\left\| \int_0^1 (h^{\top} \cdot H_f(x+th) \cdot h) \times (1-t) \, dt \right\| \\
+&\leq 
+\int_0^1 \| h^{\top} \cdot H_f(x+th) \cdot h \|(1-t)\, dt.
+\end{align*}
+L'inégalité de Cauchy-Schwarz et la définition de la norme d'opérateur donnent :
+\begin{align*}
+\| h^{\top} \cdot H_f(x+th) \cdot h \| &\leq \|h\| \times \|H_f(x+th) \cdot h\| \\
+&\leq \|h\| \times \|H_f(x+th)\| \times \|h\| \\ &\leq M \|h\|^2.
+\end{align*}
+Le résultat cherché se déduit alors comme suit :
+\begin{align*}
+\int_0^1 \| h^{\top} \cdot H_f(x+th) \cdot h \|(1-t)\, dt
+& \leq 
+\int_0^1 M\|h\|^2 (1-t) \, dt \\
+&= M \|h\|^2 \int_0^1 (1-t) \, dt \\
+&= M\frac{\|h\|^2}{2}.
+\end{align*}
 
 Convexité
 --------------------------------------------------------------------------------

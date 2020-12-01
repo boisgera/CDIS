@@ -8,15 +8,26 @@
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\ds}{\mathbin{\Delta}}
 
-Objectifs
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+\newcommand{\lb}{[}
+\newcommand{\rb}{]}
+\newcommand{\lob}{\left]}
+\newcommand{\rob}{\right[}
+
+Objectifs d'apprentissage
 ================================================================================
 
-Cette section -- expérimentale -- s'efforce d'expliciter et de hiérarchiser
+Cette section s'efforce d'expliciter et de hiérarchiser
 les acquis d'apprentissages associés au chapitre. 
 Ces objectifs sont organisés en paliers :
 
-($\bullet$) Fondamental ($\bullet\bullet$) Standard ($\bullet\!\bullet\!\bullet$) Avancé
-($\circ$) Expert (non exigible)
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
 
 Sauf mention particulière, la connaissance des démonstrations du document 
 n'est pas exigible[^hp] ; les notions développées en annexe sont toutes hors-programme.
@@ -128,7 +139,7 @@ Mesure
 
 ### Tribu et espace mesurable {.definition}
 Une *tribu* (ou *$\sigma$-algèbre*) $\mathcal{A}$ sur un ensemble $X$ est une 
-collection d'ensembles de $X$ contenant l'ensemble vide et fermé par passage 
+collection d'ensembles de $X$ contenant l'ensemble vide et fermée par passage 
 au complémentaire et à l'union dénombrable[^fp] :
 
 [^fp]: c'est-à-dire que ces opérations, 
@@ -143,47 +154,74 @@ sont également dans $\mathcal{A}$.
      $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}.$
 
 Un ensemble $A \in \mathcal{A}$ est dit *mesurable* 
-(relativement à la tribu $\mathcal{A}$) ou *$\mathcal{A}$-mesurable*.
+(relativement à la tribu $\mathcal{A}$) ou *$\mathcal{A}$-mesurable* si le
+contexte demande d'être explicite.
 L'ensemble $X$ muni de $\mathcal{A}$ 
 -- c'est-à-dire formellement la paire $(X,\mathcal{A})$ -- 
 est un *espace mesurable*.
 
-### Exemple -- Tribu de Lebesgue dans $\R^n$
-Dans le chapitre "Calcul Intégral III" nous avons montré que les ensembles 
-que nous avions alors qualifiés de "mesurables"[^rapp] avaient les propriétés 
-caractéristiques d'une tribu. Elle est notée $\mathcal{L}(\R^n)$ et est 
-appelée *tribu de Lebesgue* sur $\R^n$. Il est donc équivalent de dire
-d'un ensemble qu'il est mesurable au sens du chapitre "Calcul Intégral III"
-ou qu'il est $\mathcal{L}(\R^n)$-mesurable.
+### Ensemble des parties {.definition}
+On appelle *ensemble des parties* d'un ensemble *X* la tribu
+$$
+\mathcal{P}(X) = \{A \; | \; A \subset X\}.
+$$
 
-[^rapp]: c'est-à-dire les ensembles $A$ de $\R^n$ tels que pour tout pavé compact $P$ de 
-$\R^n$, la fonction caractéristique $1_{A \cap P}$ est intégrable au sens de Henstock-Kurzweil.
+### Ensemble des parties {.exercise .question .zero #parties}
+Montrer que pour tout ensemble $X$, la collection $\mathcal{P}(X)$
+est bien une tribu sur $X$.
 
-### Exercice -- Ensemble des parties {.exercise}
-Montrer que pour tout ensemble $X$, la collection $\mathcal{A} = \mathcal{P}(X)$
-des parties (sous-ensembles) de $X$ est une tribu sur $X$.
+### Tribu de Lebesgue {.definition}
+On appelle *tribu de Lebesgue sur $\R^n$* et on note $\mathcal{L}(\R^n)$
+la collection des ensembles $A \subset \R^n$ tels que pour tout pavé fermé
+borné de $\R^n$, la fonction caractéristique de $A\cap P$ soit intégrable au sens de
+Lebesgue, c'est-à-dire telle que l'intégrale
+$$
+\int_{\R^n} 1_{A \cap P}(x) \,  dx
+$$
+soit bien définie.
 
-### Exercice -- Ensembles fermés {.exercise}
+###  {.post .remark}
+Autrement dit, un ensemble de $\R^n$ est "$\mathcal{L}(\R^n)$-mesurable" si et 
+seulement si il est "mesurable" au sens du chapitre "Calcul Intégral III". 
+Nous avions montré dans ce chapitre que la collection de ces ensembles forme
+effectivement une tribu ; la notion originale d'ensemble mesurable apparaît désormais
+comme un cas particulier de la notion d'ensemble mesurable relativement à
+une tribu.
+
+
+
+### Ensembles fermés {.exercise .question .one #fermés}
 La collection des ensembles fermés de $\R^n$ est-elle une tribu sur $\R^n$ ?
 
-### Exercice -- Tribu née sous $X$ {.exercise}
+### Tribu née sous $X$ {.exercise .question .one #X}
 Supposons que la collection $\mathcal{A}$ soit une tribu sur l'ensemble $X$ mais 
 que $X$ soit inconnu. Comment peut-on déduire $X$ de la collection $\mathcal{A}$ ?
 
-### Exercice -- Intersection de tribus {.exercise}
-Montrer que pour tout ensemble $X$, l'intersection de deux tribus
-$\mathcal{A}_1$ et $\mathcal{A}_2$ sur $X$ -- c'est-à-dire la collection 
-$\mathcal{A}$ définie par
-$\mathcal{A} = \{A \subset X \; | \; A \in \mathcal{A}_1 \mbox{ et } A \in \mathcal{A}_2\}$ 
--- est une tribu sur $X$. 
+### Opérations ensemblistes {.exercise .question .one #op-ens}
+Montrer que si $A$ et $B$ appartiennent à une tribu $\mathcal{A}$ sur $X$, alors
+$A \cup B$, $A \cap B$ et $A \setminus B$ appartiennent également à $\mathcal{A}$.
 
-### Exercice -- Opérations ensemblistes {.exercise}
-Montrer que si $A$ et $B$ appartiennent à une tribu $\mathcal{A}$, alors
-$A \cup B$, $A \setminus B$ et $A \cap B$ appartiennent également à $\mathcal{A}$.
-
-### Exercice -- Intersection dénombrable {.exercise}
+### Intersection dénombrable {.exercise .question .two #id}
 Montrer que si pour tout $k \in \N$, $A_k \in \mathcal{A}$, alors
 $\cap_{k=0}^{+\infty} A_k \in \mathcal{A}.$
+
+### Intersection de tribus I {.exercise .question .two #it1}
+Montrer que pour tout ensemble $X$, l'intersection de deux tribus
+$\mathcal{A}_1$ et $\mathcal{A}_2$ sur $X$, c'est-à-dire la collection 
+$\mathcal{A}$ définie par
+$$\mathcal{A} := \mathcal{A}_1 \cap \mathcal{A}_2 = \{A \subset X \; | \; A \in \mathcal{A}_1 \mbox{ et } A \in \mathcal{A}_2\}$$ 
+est une tribu sur $X$. 
+
+### Intersection de tribus II {.exercise .question .three #it2}
+Soit $X$ un ensemble et $(\mathcal{A}_i)_{i \in I}$, une collection de tribus
+de $X$. Est-ce que l'intersection
+$$
+\mathcal{A} := \bigcap_{i \in I} \mathcal{A}_i 
+= 
+\{A \subset X \; | \; \mbox{pour tout $i\in I$, $A \in \mathcal{A}_i$} \}
+$$
+est une tribu quand $I$ est fini ? Quand $I$ est dénombrable ? Pour un ensemble
+$I$ arbitraire ?
 
 ### Mesure et espace mesuré {.definition}
 Une *mesure* $\mu$ sur un espace mesurable $(X, \mathcal{A})$
@@ -194,35 +232,36 @@ $$
 telle que $\mu(\varnothing)= 0$ (*nullité en $0$*) et telle que pour toute suite
 $(A_k)_{k\in \N}$ d'ensembles de $\mathcal{A}$ disjoints deux à deux, on ait
 $$
-\mu \left( \bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k) ;
+\mu \left( \bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} \mu(A_k) \; ;
 $$
 on dit que $\mu$ est *$\sigma$-additive* (on dit aussi *dénombrablement additive*).
 L'ensemble $X$ muni de $\mathcal{A}$ et $\mu$ 
 -- c'est-à-dire formellement le triplet $(X, \mathcal{A}, \mu)$ -- 
 est un *espace mesuré*.
 
-### Exercice -- Les mesures sont (finiment) additives {.exercise}
+### Les mesures sont (finiment) additives {.exercise .question .one #fa}
 Vérifier que toute mesure $\mu$ sur $(X, \mathcal{A})$ est additive, 
-c'est-à-dire que si les ensembles $A_0, A_1, A_2, \dots, A_n$ de $\mathcal{A}$
+c'est-à-dire que si les ensembles $A_0, A_1, \dots, A_n$ de $\mathcal{A}$
 sont deux à deux disjoints, alors
 $$
-\mu \left( \bigcup_{k=0}^{n} A_k \right) = \sum_{k=0}^{n} \mu(A_k).
+\mu \left( A_0 \cup A_1 \cup \cdots \cup A_n \right) = \mu(A_0) + \mu(A_1) + \cdots +\mu(A_n).
 $$
 
-### Exercice -- Monotonie {.exercise}
+### Monotonie {.exercise .question .one #mono}
 Vérifier que toute mesure est *croissante* (on dit aussi *monotone*), 
 c'est-à-dire que si $A, B \in \mathcal{A}$
 et $A \subset B$, alors $\mu(A) \leq \mu(B)$.
 
-### Exercice -- Cas dégénéré {.exercise} 
-Existe-t'il des fonctions $\mu: \mathcal{A} \to [0, +\infty]$ qui soient
-$\sigma$-additives mais pas nulles en $0$ ?
+### Cas dégénéré {.exercise .question .two #degen} 
+Existe-t'il une fonction $\mu: \mathcal{A} \to [0, +\infty]$ qui soit
+$\sigma$-additive mais pas nulle en $0$ ? Si oui, quelle est alors la valeur
+de $\mu(\varnothing)$ ?
 
-### Exercice -- Ca commence par un $\mathbb{P}$ {.exercise}
+### Ca commence par un $\mathbb{P}$ {.exercise .question .one #P}
 Comment appelle-t'on une mesure $\mu$ sur $(X, \mathcal{A})$ telle que
 $\mu(X) = 1$ ? Une fois que vous avez deviné, justifier la réponse.
 
-### Exercice -- Trace d'une mesure  {.exercise}
+### Trace d'une mesure {.exercise .question .one #trace}
 Soit $\mu$ une mesure sur $(X, \mathcal{A})$. Montrer que pour tout 
 $A \in \mathcal{A}$, la *trace* $\mu|_A$ de $\mu$ sur $A$, définie
 comme
@@ -231,16 +270,19 @@ $$
 $$ 
 est également une mesure sur $(X, \mathcal{A})$.
 
-### Exercice -- Somme de mesures {.exercise}
+
+
+### Somme de mesures {.exercise .question .one #somme}
 Montrer que la somme de deux mesures $\mu_1$ et $\mu_2$ sur un espace mesurable 
 $(X, \mathcal{A})$ est une mesure sur $(X, \mathcal{A})$.
 
-### Mesure de Lebesgue
-La fonction $v$ qui a un ensemble $A \in \mathcal{L}(\R^n)$ associe
+
+### Mesure de Lebesgue {.definition}
+La fonction $\lambda$ qui a un ensemble $A \in \mathcal{L}(\R^n)$ associe
 $$
-v(A) = \left|
+\lambda(A) = \left|
 \begin{array}{cl}
-\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
+\displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Lebesgue,}\\
 +\infty & \mbox{sinon.}
 \end{array}
 \right.
@@ -248,65 +290,48 @@ $$
 est une mesure nommé *mesure de Lebesgue* sur $\R^n$.
 
 ### Démonstration {.proof}
-La fonction $v$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing$,
+La fonction $\lambda$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing$,
 $$
-v(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
+\lambda(\varnothing) = \int 1_{\varnothing} (x) \, dx = \int 0 \, dx = 0.
 $$
 
-Reste à montrer la $\sigma$-additivité de $v$.
-Soit $(A_k)_{k\in \N}$ une suite d'ensembles de $\mathcal{L}(\R^n)$ 
-disjoints deux à deux. Trois cas uniquement peuvent se produirent :
-
-  1. La somme $\sum_{k=0}^{+\infty} v(A_k)$ est finie.
-
-  2. Pour tout $k \in \N$, $v(A_k) < +\infty$ mais $\sum_{k=0}^{+\infty} v(A_k) = +\infty$.
-
-  3. Il existe un $k \in \N$ tel que $v(A_k) = +\infty$.
-
+Soit $A_k$, $k \in \N$, une suite d'ensemble disjoints deux à deux de $\mathcal{L}(\R^n)$.
 Posons 
-$$A = \cup_{k=0}^{+\infty} A_k \; \mbox{ et } \; f_j = 1_{\cup_{k=0}^j A_k} = \sum_{k=0}^j 1_{A_k}.$$ 
+$$A := \bigcup_{k=0}^{+\infty} A_k \; \mbox{ et } \; f_j = 1_{\cup_{k=0}^j A_k} = \sum_{k=0}^j 1_{A_k}.$$ 
 La suite des $f_j$ est croissante, composée de fonctions mesurables et converge
-simplement vers $1_A$.
+simplement vers $1_A$. Par le théorème de convergence monotone, soit la
+suite des intégrales des $f_j$ est bornée et
+\begin{align*}
+\lambda(A) 
+&= \int 1_A(x) \, dx \\ 
+&= \lim_{j \to +\infty} \int \sum_{k=0}^j 1_{A_k}(x) \, dx \\
+&= \lim_{j \to +\infty}  \sum_{k=0}^j \int 1_{A_k}(x) \, dx \\
+&= \lim_{j \to +\infty} \sum_{k=0}^j \lambda(A_k)  \\
+&= \sum_{j=0}^{+\infty} \lambda(A_k) < +\infty,
+\end{align*}
+soit cette suite est non-bornée, c'est-à-dire
+$\sum_{j=0}^{+\infty} \lambda(A_k) = +\infty$ et alors 
+$1_A$ est non-intégrable, ce qui fournit $\lambda(A) = +\infty$. 
 
- 1. Dans le premier cas, comme $f_j = \sum_{k=0}^j 1_{A_k}$ que chaque 
-    fonction caractéristique $1_{A_k}$ est intégrable, $f_j$ est intégrable.
-    Par ailleurs,
-    $$
-    \int f_j(x) \, dx = \sum_{k=0}^j \int 1_{A_k}(x) \, dx = \sum_{k=0}^j v(A_k) \leq \sum_{k=0}^{+\infty} v(A_k) < +\infty.
-    $$
-    Par le théorème de convergence monotone, on a donc
-    $$
-    v(A) = \int 1_A(x) \, dx = \lim_{j \to +\infty} \int f_j(x) \, dx =  \sum_{k=0}^{+\infty} v(A_k).
-    $$
+La $\sigma$-additivité de $\lambda$ est donc établie dans tous les cas.
 
- 2. Dans le second cas, comme
-    $$
-    \sup_j \int f_j(x) \, dx = \sum_{k=0}^{+\infty} v(A_k) = + \infty,
-    $$
-    le théorème de convergence monotone nous affirme que $1_A$ n'est pas intégrable.
-    Par définition de $v(A)$, on a donc $v(A) = +\infty$ et donc on a également
-    $$
-    v(A) = \sum_{k=0}^{+\infty} v(A_k).
-    $$
+### Mesure de Lebesgue d'un pavé {.exercise .question .zero #mlp}
+Déterminer la mesure de Lebesgue $\lambda(P)$ du pavé fermé borné 
+$P = [a_1,b_1] \times \dots \times [a_n, b_n] \subset \R^n$.
 
- 3. Dans le dernier cas, par le critère d'intégrabilité dominée, 
-    si $v(A_k)=+\infty$, $f_k$ n'est pas intégrable et donc $1_A$ non plus,
-    ce qui entraîne $v(A) = +\infty$. On a donc à nouveau
-    $$
-    v(A) = \sum_{k=0}^{+\infty} v(A_k).
-    $$
 
-Nous avons bien démontré la $\sigma$-additivité de $v$.
+### Mesure de Lebesgue d'un pavé {.answer #answer-mlp}
+La fonction caractéristique du pavé fermé borné $P$ est intégrable et par
+le théorème de Fubini on a donc
+\begin{align*}
+\lambda(P) &= \int 1_{[a_1,b_1] \times \dots \times [a_n,b_n]} (x) \,dx \\
+&= \int (1_{[a_1, b_1]}(x_1) \times \dots \times 1_{[a_n, b_n]}(x_n)) \, dx_1 \dots dx_n \\
+&= \left(\int 1_{[a_1, b_1]}(x_1) \, dx_1\right) \times \dots \times \left(\int 1_{[a_n, b_n]}(x_n) \, dx_n\right) \\
+&= (b_1 - a_1) \times \dots \times (b_n - a_n).
+\end{align*}
 
-### Exercice -- Mesure de Lebesgue d'un pavé {.exercise}
-Déterminer la mesure de Lebesgue du pavé compact 
-$P = [a_1,b_1] \times \dots \times [a_n, b_n]$.
-
-### Mesure de Dirac
-Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
-de $X$ (la collection des sous-ensembles de $X$ : $A \in \mathcal{P}(X)$ si 
-et seulement si $A \subset X$.)
-Soit $x \in X$ ; on appelle *mesure de Dirac* en $x$ la fonction 
+### Mesure de Dirac {.definition}
+Soit $X$ un ensemble et $x \in X$ ; on appelle *mesure de Dirac* en $x$ la mesure 
 $\delta_x : \mathcal{P}(X) \to [0, +\infty]$ définie par
 $$
 \delta_x(A) = \left|
@@ -317,29 +342,27 @@ $$
 \right. 
 $$
 
-### Exercice -- Démonstration {.exercise}
+### Démonstration {.exercise .question .one #dirac}
 Montrer que les mesures de Dirac sont bien des mesures.
 
-### Exercice -- Et en changeant de point de vue ? {.exercise}
+### Et en changeant de point de vue ? {.zero .exercise .question #ptdevue}
 Quand on considère $\delta_x(A)$ comme une fonction de $x$ à $A$ fixé,
 qu'obtient-on ?
 
-### Mesure de comptage
+### Mesure de comptage {.definition #comptage}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
 de $\R^n$. On appelle *mesure de comptage* sur $X$ la fonction 
 $c : \mathcal{P}(X) \to [0, +\infty]$ définie par
 $$
 c(A) = \left|
 \begin{array}{rl}
-\mathrm{card}(A) & \mbox{si $A$ est fini} \\
-+\infty & \mbox{sinon.}
+n & \mbox{si $A$ contient $n \in \N$ éléments distincts,} \\
++\infty & \mbox{si $A$ contient une infinité d'éléments distincts.}
 \end{array}
 \right. 
 $$
-La notation $\mathrm{card}(A)$ désigne le cardinal de $A$ -- c'est-à-dire dans
-le cas d'un ensemble fini, le nombre d'éléments de $A$.
 
-### Exercice -- Démonstration {.exercise}
+### Démonstration {.exercise .question .one #ct}
 Montrer que les mesures de comptage sont bien des mesures.
 
 ### Ensemble négligeable {.definition}
@@ -353,13 +376,13 @@ d'un $x \in X$ est vraie *presque partout* (ou *$\mu$-presque partout*)
 si l’ensemble des éléments $x$ 
 où elle est fausse est un ensemble $\mu$-négligeable.
 
-### Exercice -- Négligeable pour la mesure de comptage {.exercise}
+### Négligeable pour la mesure de comptage {.exercise .question .one #nmc}
 Caractériser les ensembles négligeables pour la mesure de comptage $c$.
 
-### Exercice -- Négligeable pour la mesure de Dirac {.exercise}
+### Négligeable pour la mesure de Dirac {.exercise .question .one #nmd}
 Caractériser les ensembles négligeables pour la mesure de Dirac $\delta_x$.
 
-### Exercice -- Négligeable et mesurable {.exercise}
+### Négligeable et mesurable {.exercise .question .one #nem}
 Montrer qu'un ensemble mesurable est négligeable si et seulement si il
 est de mesure nulle.
 
@@ -386,11 +409,11 @@ si $f$ est à valeurs positives ($f(X) \subset [0, +\infty]$) ou finies
 ($f(X) \subset \R$), voire les deux simultanément 
 ($f(X) \subset \left[0, +\infty \right[$).
 
-### Exercice -- Ensemble des parties de $X$ {.exercise}
+### Ensemble des parties de $X$ {.exercise}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
 une fonction $f: X \to [-\infty, +\infty]$ est-elle $\mathcal{A}$-mesurable ?
 
-### Exercice -- Fonction caractéristique {.exercise}
+### Fonction caractéristique {.exercise}
 Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
 A quelle condition la fonction $1_A: X \to \R$ est-elle mesurable ?
 
@@ -415,7 +438,7 @@ qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union
 Une fonction $f: X \to [-\infty, +\infty]$ est *étagée* si et seulement
 l'image de $X$ par $f$ ne comporte qu'un nombre fini de valeurs distinctes.
 
-### Exercice -- Fonction étagée {.exercise}
+### Fonction étagée {.exercise}
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 A quelle condition une fonction $f: X \to [-\infty, +\infty]$ qui ne prend 
 qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
@@ -524,12 +547,12 @@ $$
 $$
 alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
 
-### Exercice -- Trace de fonction {.exercise}
+### Trace de fonction {.exercise}
 Soient $f: X \to [0, +\infty]$ une fonction mesurable positive
 (à valeurs finies ou infinies) et soit $A \in \mathcal{A}$.
 Montrer que $1_A f$ est mesurable.
 
-### Exercice -- Somme de fonctions {.exercise}
+### Somme de fonctions {.exercise}
 Soient $f, g : X \to [0, +\infty]$ deux fonctions mesurables positives
 (à valeurs finies ou infinies). Montrer que $f+g$ est mesurable.
 
@@ -566,11 +589,11 @@ $f_{k-} \to f_-$ et donc $f_k := f_{k+} - f_{k-} \to f$ quand $k \to +\infty$.
 Par construction, $|f_{k}| = f_{k+} + f_{k-}$ est également croissante comme
 somme de deux suites croissantes. 
 
-### Exercice -- Calculs et infinis {.exercise}
+### Calculs et infinis {.exercise}
 Quand $f, g$ sont deux fonctions $X \to [-\infty, +\infty]$, 
 les fonctions $f+g$, $fg$ et $\max(f,g)$ sont-elles bien définies ?
 
-### Exercice -- Combinaison linéaire {.exercise}
+### Combinaison linéaire {.exercise}
 Soit $\lambda \in \R$ et soient $f, g : X \to \left[0, +\infty\right[$ 
 deux fonctions mesurables à valeurs finies. Montrer que les fonctions
 $\lambda f$ et $f+g$ sont mesurables.
@@ -611,7 +634,7 @@ sera donnée dans le reste de cette section. La preuve que l'intégrale ainsi
 construite satisfait bien les trois propriétés caractéristiques ci-dessus 
 sera donnée dans la section suivante. 
 
-### Exercice -- Intégrale et mesures de Dirac {.exercise}
+### Intégrale et mesures de Dirac {.exercise}
 Soit $x \in \R$ et $f:\R \to [0, +\infty]$. Sachant que 
 $f$ est limite simple d'une suite croissante de fonctions étagées
 $f_k : \R \to \left[0, +\infty\right[$, en déduire, en exploitant
@@ -641,11 +664,11 @@ $$
 \int f \mu = \int_X f(x) \, \mu(dx) \in \R.
 $$
 
-### Exercice -- Absolue intégrabilité {.exercise}
+### Absolue intégrabilité {.exercise}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
 est intégrable alors $|f|$ est également intégrable.
 
-### Exercice -- Fonctions étagées {.exercise}
+### Fonctions étagées {.exercise}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et soient $A_1, \dots, A_n$ 
 des ensemble mesurables disjoints non vides et 
 $y_1, \dots, y_{n-1} \in [-\infty, +\infty] \setminus \{0\}$. 
@@ -679,23 +702,23 @@ est un concept très proche). Mais nous n'allons pas explorer cette piste ici.
 ### Exercice {.exercise}
 Construire une fonction $f:\R \to \R$ mesurable par rapport à la tribu de 
 Lebesgue $\mathcal{L}(\R)$ mais dont l'intégrale n'est pas définie par rapport à
-la mesure de Lebesgue $v$ (ni finie ni infinie).
+la mesure de Lebesgue $\lambda$ (ni finie ni infinie).
 
 
 ### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
 Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
-par rapport à la mesure de Lebesgue $v$ si et seulement si 
+par rapport à la mesure de Lebesgue $\lambda$ si et seulement si 
 $f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
 pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
 deux intégrales sont égales :
 $$
-\int_{\R^n} f(x) \, v(dx) = \int_{\R^n} f(x) \, dx.
+\int_{\R^n} f(x) \, \lambda(dx) = \int_{\R^n} f(x) \, dx.
 $$
 
 ### Démonstration {.proof}
 Par construction, la fonction $f$ est intégrable par rapport à la mesure de 
-Lebesgue $v$ si et seulement si les fonctions $f_+ = \max(f, 0)$ et 
-$f_- = -\min(f, 0)$ sont intégrables par rapport à $v$. Comme
+Lebesgue $\lambda$ si et seulement si les fonctions $f_+ = \max(f, 0)$ et 
+$f_- = -\min(f, 0)$ sont intégrables par rapport à $\lambda$. Comme
 $$
 f_+ = \frac{f+|f|}{2}, \, f_- = \frac{f - |f|}{2} \; \mbox{ et } \;
 f = f_+ - f_-, \, |f| = f_+ + f_-,
@@ -710,23 +733,23 @@ $$
 g = \sum_{k=1}^{n} y_k 1_{A_k}
 $$
 où les ensembles $A_1, \dots, A_{n} \in \mathcal{A}$ sont disjoints,
-et $y_1, \dots, y_{n} \in \left]0, +\infty\right[$ est $v$-intégrable
-si et seulement si $v(A_k) < +\infty$ pour tout $k$. 
-Par définition de la mesure de Lebesgue $v$, c'est équivalent à l'HK-intégrabilité 
+et $y_1, \dots, y_{n} \in \left]0, +\infty\right[$ est $\lambda$-intégrable
+si et seulement si $\lambda(A_k) < +\infty$ pour tout $k$. 
+Par définition de la mesure de Lebesgue $\lambda$, c'est équivalent à l'HK-intégrabilité 
 de chaque $1_{A_k}$ et donc de $g$ ; 
-l'intégrale de $g$ par rapport à $v$ vaut alors
+l'intégrale de $g$ par rapport à $\lambda$ vaut alors
 $$
-\int g\, v =
-\sum_{k=1}^n y_k \, v(A_k)
+\int g\, \lambda =
+\sum_{k=1}^n y_k \, \lambda(A_k)
 =\sum_{k=1} y_k \int 1_{A_k}(x) \, dx
 = \int \sum_{k=1} y_k 1_{A_k}(x) \, dx
 =\int g(x) \, dx.
 $$
 
-Si une fonction $f$ positive est $v$-intégrable, elle est la 
+Si une fonction $f$ positive est $\lambda$-intégrable, elle est la 
 limite simple d'une suite croissante telles fonctions étagées positives et 
-$v$-intégrables à valeurs finies et son intégrale par rapport à $v$ est la limite
-des intégrales par rapport à $v$ des fonctions étagées. D'après
+$\lambda$-intégrables à valeurs finies et son intégrale par rapport à $\lambda$ est la limite
+des intégrales par rapport à $\lambda$ des fonctions étagées. D'après
 le résultat précédente, elle est donc la limite des intégrales au sens de
 Henstock-Kurzweil de ces fonctions, qui, d'après le résultat des convergence
 monotone de l'intégrale de Henstock-Kurzweil, converge vers l'intégrale de
@@ -735,7 +758,7 @@ est mesurable -- mesurable au sens de Henstock-Kurzweil et donc par le critère
 de l'image réciproque, également $\mathcal{L}(\R)$-mesurable --
 et le même procédé d'approximation par une suite croissante de fonctions étagées
 positives est donc applicable. Les théorèmes de convergence monotone, 
-pour l'intégrale de Henstock-Kurzweil et pour l'intégrale associée à $v$, 
+pour l'intégrale de Henstock-Kurzweil et pour l'intégrale associée à $\lambda$, 
 permettent alors de conclure.
 
 ### {.ante}
@@ -1173,13 +1196,13 @@ P = [a_1, b_1] \times \dots \times [a_n, b_n]
 $$
 au moyen de la formule
 $$
-v(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
+\lambda(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
 $$
-L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $v$ 
+L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $\lambda$ 
 en une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
 par la relation
 $$
-v(A) = \left|
+\lambda(A) = \left|
 \begin{array}{cl}
 \displaystyle \int 1_A(x) \, dx & \mbox{si $1_A$ est intégrable au sens de Henstock-Kurzweil,}\\
 +\infty & \mbox{sinon.}
@@ -1188,7 +1211,7 @@ v(A) = \left|
 $$
 Mais cette approche n'est pas totalement satisfaisante intellectuellement.
 D'une part on peut considérer l'usage de l'intégrale comme un chemin
-tortueux pour étendre $v$.
+tortueux pour étendre $\lambda$.
 D'autre part on peut avoir l'impression
 que cette approche -- qui ne permet pas de mesurer le volume de tout
 ensemble de $\R^n$ -- n'atteint pas totalement son objectif ;
@@ -1217,15 +1240,15 @@ de l'ensemble. Formellement :
 
 ### Mesure extérieure de Lebesgue {.definition #mel}
 On appelle *mesure extérieure de Lebesgue* sur $\R^n$ la fonction
-$$v^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
+$$\lambda^*: \mathcal{P}(\R^n) \to [0, +\infty],$$ 
 qui a tout ensemble $A$ de $\R^n$ associe le nombre réel étendu positif
 défini par
 $$
-v^*(A) 
+\lambda^*(A) 
 = 
 \inf 
 \left\{
-\sum_{k=0}^{+\infty} v(P_k)
+\sum_{k=0}^{+\infty} \lambda(P_k)
 \; \left| \vphantom{\bigcup_{k=0}^{+\infty}} \right. \; 
 \mbox{$P_k$ pavé compact de $\R^n$,} \, A \subset \bigcup_{k=0}^{+\infty} P_k
 \right\},
@@ -1260,42 +1283,42 @@ sont les deux sphère finales.
 
 Tout d'abord, on a bien
 $$
-v^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; v^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
+\lambda^*(S) = \frac{4\pi}{3} \; \mbox{ et } \; \lambda^*(S_1 \cup S_2) = 2 \times \frac{4 \pi}{3},
 $$
 car les ensembles $S_0$, $S_1$ et $S_2$ considérés sont intégrables 
 (au sens de l'intégrale de Henstock-Kurzweil)
 et nous verrons ultérieurement que dans ce cas, la mesure extérieure
-$v^*$ coïncide avec $v$.
+$\lambda^*$ coïncide avec $\lambda$.
 Un simple calcul intégral fournit alors le résultat.
 
 On peut croire que le point faible de notre raisonnement est la préservation
-de la valeur de $v^*(A)$ par translation et rotation ; s'il est facile d'établir
-que lorsque $B$ se déduit de $A$ par une translation alors $v^*(A) = v^*(B)$, 
+de la valeur de $\lambda^*(A)$ par translation et rotation ; s'il est facile d'établir
+que lorsque $B$ se déduit de $A$ par une translation alors $\lambda^*(A) = \lambda^*(B)$, 
 on peut douter du résultat pour les rotations. 
-Après tout, la définition de $v^*(A)$ fait appel
+Après tout, la définition de $\lambda^*(A)$ fait appel
 à des rectangles qui sont parallèles aux axes, une propriété qui n'est pas
 conservée par rotation. 
 Mais si le résultat n'est pas évident, il s'avère pourtant que
-la mesure extérieure $v^*$ est bien invariante par rotation 
+la mesure extérieure $\lambda^*$ est bien invariante par rotation 
 (cf. [@Hun11, section 2.8]).
 
-La propriété qui nous fait défaut est plus fondamentale : la fonction $v^*$
+La propriété qui nous fait défaut est plus fondamentale : la fonction $\lambda^*$
 n'est tout simplement pas additive ! Même si les ensembles 
 $A_1, \dots, A_p$ sont disjoints, il est possible que 
 $$
-v^*(A_1 \cup \dots \cup A_p) \neq v^*(A_1) + \dots + v^*(A_p).
+\lambda^*(A_1 \cup \dots \cup A_p) \neq \lambda^*(A_1) + \dots + \lambda^*(A_p).
 $$
-On peut par contre établir avec la définition de $v^*$ qu'elle est 
+On peut par contre établir avec la définition de $\lambda^*$ qu'elle est 
 sous-additive : pour tous les ensembles $A_1, \dots, A_p$ (disjoints ou non),
 on a 
 $$
-v^*(A_1 \cup \dots \cup A_p) \leq v^*(A_1) + \dots + v^*(A_p).
+\lambda^*(A_1 \cup \dots \cup A_p) \leq \lambda^*(A_1) + \dots + \lambda^*(A_p).
 $$
 Elle est même $\sigma$-sous-additive : si $(A_k)_{k \in \N}$ est une suite
 de sous-ensembles de $\R^n$, 
 $$
-v^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
-\leq \sum_{k=0}^{+\infty} v^*\left(A_k\right).
+\lambda^*\left(\bigcup_{k=0}^{+\infty} A_k\right)
+\leq \sum_{k=0}^{+\infty} \lambda^*\left(A_k\right).
 $$
 
 Cette propriété est la caractéristique centrale des *mesures extérieures* :
@@ -1349,37 +1372,421 @@ La spécialisation de ce procédé au cas de la mesure extérieure de Lebesgue
 produit la mesure de Lebesgue.
 
 ### Mesure de Lebesgue {.theorem .definition}
-La "[mesure extérieure de Lebesgue](#mel)" $v^*:\mathcal{P}(\R^n) \to [0, +\infty]$
+La "[mesure extérieure de Lebesgue](#mel)" $\lambda^*:\mathcal{P}(\R^n) \to [0, +\infty]$
 est bien une mesure extérieure sur $\R^n$.
-La collection des ensembles $v^*$-mesurables (au sens de Caratheodory)
+La collection des ensembles $\lambda^*$-mesurables (au sens de Caratheodory)
 est identique à la tribu de Lebesgue $\mathcal{L}(\R^n)$ ; 
-la mesure $v$ associée à $v^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
+la mesure $\lambda$ associée à $\lambda^*$ coïncide avec la mesure de Lebesgue sur $\R^n$. 
 
-### Démonstration (partielle : $v^*$ est une mesure extérieure.) {.proof}
-Il est clair que $v^*$ satisfait $v^*(\varnothing)=0$ (car le pavé
+### Démonstration (partielle : $\lambda^*$ est une mesure extérieure.) {.proof}
+Il est clair que $\lambda^*$ satisfait $\lambda^*(\varnothing)=0$ (car le pavé
 $[0,0]^n$ recouvre $\varnothing$ par exemple). 
 Si $A \subset B \subset \R^n$, alors tout recouvrement de $B$ par des
-pavés compacts recouvre également $A$ ; par conséquent $v^*(A) \leq v^*(B)$.
+pavés compacts recouvre également $A$ ; par conséquent $\lambda^*(A) \leq \lambda^*(B)$.
 Finalement, pour tout $A_k \subset \R^n$, $k \in \N$, et pour tout $\varepsilon > 0$, 
 il existe des pavés compacts $P_{jk}$ tels que 
 $$
 A_k \subset \bigcup_{j=0}^{+\infty} P_{jk} 
 \; \mbox{ et } \;
-\sum_{j=0}^{+\infty} v(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
-\leq v^*(A_k) \leq \sum_{j=0}^{+\infty} v(P_{jk}).
+\sum_{j=0}^{+\infty} \lambda(P_{jk}) - \frac{\varepsilon}{2^{k+1}} 
+\leq \lambda^*(A_k) \leq \sum_{j=0}^{+\infty} \lambda(P_{jk}).
 $$
 Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $\cup_{k=0}^{+\infty} A_k$, 
 on a donc
 $$
-v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} v(P_{jk})
+v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} \lambda(P_{jk})
 \leq 
-\sum_{k=0}^{+\infty} \left(v^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
-= \left(\sum_{k=0}^{+\infty} v^*(A_k)\right) +\varepsilon.
+\sum_{k=0}^{+\infty} \left(\lambda^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
+= \left(\sum_{k=0}^{+\infty} \lambda^*(A_k)\right) +\varepsilon.
 $$
 Le réel positif $\varepsilon$ étant arbitrairement petit, on en déduit
-que $v^*$ est bien $\sigma$-subadditive.
+que $\lambda^*$ est bien $\sigma$-subadditive.
 
-Exercices
+
+Tribus engendrées
+--------------------------------------------------------------------------------
+
+### Tribu engendrée par une collection {.definition}
+Dans un ensemble $X$, on appelle *tribu engendrée* par une collection 
+$\mathcal{B}$ d'ensembles de $X$ la plus petite tribu 
+(au sens de l'inclusion) 
+$\mathcal{A} = \sigma(\mathcal{B})$ de $X$ contenant $\mathcal{C}$.
+Autrement dit : 
+
+  - $\sigma(\mathcal{B})$ est une tribu.
+  
+  - si $\mathcal{B} \subset \mathcal{C}$ et $\mathcal{C}$ est une tribu de $X$, alors $\sigma(\mathcal{B}) \subset \mathcal{C}$.
+
+ Quand il y a une ambiguité sur l'ensemble $X$ hébergeant la collection 
+ $\mathcal{B}$, on pourra noter la tribu engendrée $\sigma_X(\mathcal{B})$.
+
+### Démonstration (existence de la tribu engendrée) {.proof}
+Désignons par $\mathfrak{S}$ la collection des tribus de 
+contenant $\mathcal{B}$ comme sous-ensemble. 
+$$
+\mathfrak{S}
+=
+\{
+\mbox{$\mathcal{C}$ tribu de $X$} \; | \; \mathcal{B} \subset \mathcal{C} 
+\}
+$$
+Elle n'est pas vide : elle contient la collection $\mathcal{P}(X)$
+des ensembles de $X$ (qui de toute évidence est un sur-ensemble de $\mathcal{B}$
+et une tribu de $X$). Montrons que la plus petite tribu $\sigma(\mathcal{B})$
+de $X$ contenant $\mathcal{B}$ est l'intersection de toutes les tribus de 
+$\mathfrak{S}$, c'est-à-dire que
+$$\sigma(\mathcal{B}) = \bigcap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C} 
+= \{A \subset X \, | \, A \in \mathcal{C} \mbox{ pour tout } \mathcal{C} \in \mathfrak{S}\}.$$
+Il est clair que si $\mathcal{A}$ est une tribu de $X$ contenant $\mathcal{B}$,
+alors $\cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C} \subset \mathcal{A}$, 
+car $\mathcal{A} \in \mathfrak{S}$.
+Il nous suffit donc de montrer que $\cap \mathfrak{S}$ est une tribu de $X$
+pour pouvoir conclure. Or
+
+  - pour tout $\mathcal{C} \in \mathfrak{S}$, $\varnothing \in \mathcal{C}$,
+    donc $\varnothing \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$ ;
+
+  - si $A \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$, alors 
+    pour tout $\mathcal{C} \in \mathfrak{S}$, $A \in \mathcal{C}$, donc
+    $X \setminus A \in \mathcal{C}$ et par conséquent 
+    $X \setminus A \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$ ;
+
+  - si pour tout $k \in \N$, $A_k \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$,
+    alors pour tout $\mathcal{C} \in \mathfrak{S}$, $A_k \in \mathcal{C}$, donc
+    $\cup_{k=0}^{+\infty} A_k \in \mathcal{C}$ et par conséquent
+    $\cup_{k=0}^{+\infty} A_k \in \cap_{\mathcal{C} \in \mathfrak{S}} \mathcal{C}$.
+
+### Singletons de $\N$ {.exercise}
+Montrer que la collection des singletons de $\N$ $\{\{n\} \; | \; n \in \N\}$
+engendre dans $\N$ la tribu des parties $\mathcal{P}(\N)$.
+
+### Tribu engendrée par une collection finie {.exercise}
+Montrer que si $\mathcal{B} = \{A_1, A_2\}$ où $A_1$ et $A_2$ sont des
+ensembles de $X$, alors la tribu engendrée par $\mathcal{B}$ dans $X$
+contient au plus 16 ensembles. Que devient le résultat quand 
+$\mathcal{B} = \{A_1, A_2, A_3\}$ ?
+
+### Tribu engendrée par les ensembles dénombrables {.exercise}
+Montrer que la tribu engendrée par les ensembles dénombrables de $\R$ est la
+collection des ensembles de $\R$ qui sont dénombrables ou dont le
+complémentaire est dénombrable.
+
+### Calculs avec les tribus engendrées {.exercise}
+Soit $\mathcal{A}$ et $\mathcal{B}$ deux collections d'ensembles de $X$.
+Montrer que $\sigma(\sigma(\mathcal{A})) = \sigma(\mathcal{A})$ et que
+si $\mathcal{A} \subset \mathcal{B}$, alors $\sigma(\mathcal{A}) \subset \sigma(\mathcal{B})$.
+En déduire que si $\mathcal{A} \subset \mathcal{B} \subset \sigma(\mathcal{A})$, 
+alors $\sigma(\mathcal{A})  = \sigma(\mathcal{B})$.
+
+### Tribu de Borel {.definition}
+On appelle *tribu de Borel* d'un espace topologique $X$ la tribu
+notée $\mathcal{B}(X)$ engendrée
+par les ensembles fermés (ou les ensembles ouverts) de $X$.
+Les ensembles qu'elle contient sont appelés les *boréliens*.
+
+### Ouverts ou fermés {.exercise}
+Montrer que la tribu engendrée par les ensembles ouverts de $X$ est bien
+identique à la tribu engendrée par les ensembles fermés de $X$.
+
+### Tribu engendrée par les pavés compacts {.exercise}
+Montrer que la tribu engendrée par la collection des pavés compacts
+$[a_1, b_1] \times \dots \times [a_n, b_n]$ de $\R^n$ est la tribu
+de Borel de $\R^n$. (indication[^up])
+
+[^up]: Commencer par montrer que tout ouvert de $\R^n$ s'écrit comme 
+une union dénombrable de pavés compacts de la forme
+$[k_1/2^m, (k_1+1)/2^m] \times \dots \times [k_n/2^m, (k_n+1)/2^m]$ où
+$m \in \N^*$ et $(k_1, \dots, k_n) \in \Z^n$.
+
+### {.ante}
+Nous généralisons désormais la notion de fonction $\mathcal{A}$-mesurable du 
+chapitre précédent en tenant désormais explicitement compte d'une tribu dans 
+l'ensemble d'arrivée de la fonction :
+
+### Fonction $\mathcal{A}/\mathcal{B}$-mesurable
+Une fonction $f: X \to Y$ associée aux espaces mesurables $(X, \mathcal{A})$
+et $(Y,\mathcal{B})$ est *mesurable* 
+(ou *$\mathcal{A}/\mathcal{B}$-mesurable*)
+si l'image réciproque $A =f^{-1}(B)$
+de tout ensemble $B$ de $\mathcal{B}$ par $f$ appartient à $\mathcal{A}$.
+
+<!--
+### L'infini
+Dans le cadre abstrait de l'intégration selon Lebesgue, on pourra si nécessaire
+considérer des fonctions prenant (éventuellement) des valeurs infinies,
+c'est-à-dire travailler avec des fonctions à valeurs dans $Y = [-\infty, +\infty]$
+plutôt que dans $Y=\R$([^inv]). Cette extension simplifiera notamment
+l'énoncé du [théorème de Fubini](#fubini).
+
+[^inv]: dans le cadre de l'intégration de Henstock-Kurzweil, c'est pour 
+l'ensemble de départ que nous avions l'habitude de prendre $[-\infty, +\infty]$ ;
+il s'agissait d'une "astuce" technique qui permettait d'intégrer des fonctions
+définies au départ sur $\R$ avec des techniques déjà développées pour les
+intervalles compacts $[a, b]$ de $\R$. Avec l'intégrale de Lebesgue 
+il n'est plus nécessaire d'étendre $\R$ comme ensemble de départ.  
+La théorie de Henstock-Kurzweil accepte donc volontiers les fonctions dont les 
+**arguments** sont infinis -- $f(+\infty) = 0$ par exemple a du sens -- mais 
+est "allergique" aux fonctions à **valeurs** infinies. Par exemple, 
+si l'on essayait de calculer l'intégrale de Henstock-Kurzweil de la fonction
+$$
+f(x) = 
+\left|
+\begin{array}{rl}
++\infty & \mbox{si } x= 0, \\
+1 / \sqrt{x} & \mbox{si } x \in \left]0, 1\right] \\
+\end{array}
+\right.
+$$
+on obtiendrait $+\infty$, alors même que l'intégrale vaut $2$ pour toute valeur 
+finie de $f(0)$. L'intégrale de Lebesgue n'a pas cette difficulté, et produira
+la valeur $2$ dans tous les cas.
+
+-->
+
+<!--
+### Conventions
+Lorsque l'ensemble de départ de $f$ est $X = \R^n$ on supposera sauf
+mention contraire que la tribu associée est la tribu de Lebesgue :
+$$
+\mathcal{A} = \mathcal{L}(\R^n)
+\, \mbox{ et } 
+\mathcal{B} = ?.
+$$
+Lorsque l'ensemble d'arrivée $Y$ de $f$ a une structure topologique
+-- par exemple $Y = [-\infty, +\infty]$ ou $Y = [-\infty, +\infty]^m$ -- 
+on supposera par défaut que la tribu associée est la tribu de Borel :
+$$
+\mathcal{A} = ? \, \mbox{ et } 
+\mathcal{B} = \mathcal{B}(Y).
+$$
+Lorsque l'on souhaitera munir $X$ et $Y$ de la tribu de Borel,
+on parlera de fonction *borélienne* :
+$$
+\mathcal{A} = \mathcal{B}(X) \, \mbox{ et } \, \mathcal{B} = \mathcal{B}(Y).
+$$
+Il existe une bonne raison pour favoriser par défaut la convention hybride 
+(avec tribu de Lebesgue au départ et de Borel à l'arrivée) pour la définition
+de "mesurable" :
+-->
+
+
+<!--
+### Lebesgue/Borel-mesurable équivaut à H.-K.-mesurable {.proposition}
+Une fonction $f:\R^n \to \R^m$ est limite simple de fonctions intégrables 
+au sens de Henstock-Kurzweil
+-- c'est-à-dire "mesurable" au sens de ["Calcul Intégral III"](Calcul Intégral III.pdf) --
+si et seulement si elle est $\mathcal{L}(\R^n)/\mathcal{B}(\R^m)$-mesurable.
+-->
+
+### {.ante}
+La notions de $\mathcal{A}$-mesurabilité du chapitre précédent correspond
+implicitement à la notion plus générale de mesurabilité quand la tribu de Borel 
+est sélectionnée sur l'espace d'arrivée :
+
+### $\mathcal{A}$-mesurable équivaut à $\mathcal{A}/\mathcal{B}(Y)$-mesurable.
+Soit $(X, \mathcal{A})$ un espace mesurable et $Y$ un espace topologique.
+Une fonction $f: X \to Y$ est $\mathcal{A}$-mesurable -- au sens où
+l'image réciproque par $f$ de tout ouvert (ou fermé) de $Y$ appartient 
+à $\mathcal{A}$ -- si et seulement si elle est $\mathcal{A}/\mathcal{B}(Y)$-mesurable.
+
+La démonstration de ce résultat repose sur le lemme suivant :
+
+### Image réciproque et tribus engendrées {.lemma #irte}
+Soit $f : X \to Y$ une application et $\mathcal{B}$ une collection d'ensembles
+de $Y$. Alors 
+$$
+\mathcal{F} := \sigma_X(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}) = \{f^{-1}(A) \; | \; A \in \sigma_Y(\mathcal{B})\}.
+$$
+
+![Ce diagramme est *commutatif*.](images/commutative-diagram.tex)
+
+<!--
+La tribu engendrée dans $X$ par l'ensemble des images réciproques par
+$f$ des ensembles $B \in \mathcal{B}$ est incluse dans
+la collection des images réciproques par $f$ des ensembles de la tribu engendrée 
+par $\mathcal{B}$ dans $Y$.
+$$
+\sigma\left(\{f^{-1}(B) \, | \, B \in \mathcal{B}\} \right)
+\subset
+\{f^{-1}(A) \, | \, A \in \sigma(\mathcal{B})\}.
+$$
+-->
+
+### Démonstration {.proof}
+Notons $\mathcal{A} = \sigma(\mathcal{B})$.
+Comme $\mathcal{B} \subset \mathcal{A}$, on a
+$$
+\{f^{-1}(B) \, | \, B \in \mathcal{B}\} \subset
+\{f^{-1}(A) \, | \, A \in \mathcal{A}\}.
+$$
+Si nous montrons que 
+$\mathcal{C}:=\{f^{-1}(A) \, | \, A \in \mathcal{A}\}$ est une tribu 
+nous pouvons en déduire que
+$$
+ \sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}) \subset \{f^{-1}(A) \; | \; A \in \mathcal{A}\}.
+$$
+L'ensemble vide appartient à $\mathcal{C}$ car 
+$\varnothing = f^{-1}(\varnothing)$. Si $A \in \mathcal{A}$,
+$X \setminus f^{-1}(A) = f^{-1}(Y \setminus A)$
+et $Y \setminus A \in \mathcal{A}$, donc $X \setminus f^{-1}(A) \in \mathcal{C}$.
+Finalement, si $A_0, A_1, \dots \in \mathcal{A}$, 
+$\cup_k f^{-1}(A_k) = f^{-1}(\cup_k A_k) \in \mathcal{C}$.
+La collection $\mathcal{C}$ est donc une tribu.
+
+Réciproquement, posons $\mathcal{E} = \sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\})$ 
+et considérons 
+$$
+\mathcal{D} = \{A \in Y \; | \; f^{-1}(A) \in \mathcal{E}\}.
+$$
+La collection $\mathcal{D}$ est également une tribu. En effet,
+$f^{-1}(\varnothing) \in \mathcal{E}$, si $f^{-1}(A) \in \mathcal{E}$ alors
+$f^{-1}(Y \setminus A) = X \setminus f^{-1}(A) \in \mathcal{E}$ et si 
+$f^{-1}(A_0), f^{-1}(A_1), \dots \in \mathcal{E}$, alors 
+$f^{-1}(\cup_k A_k) = \cup_k f^{-1}(A_k) \in \mathcal{E}$.
+Par conséquent, comme $\mathcal{B} \subset \mathcal{D}$,
+$\mathcal{A} = \sigma(\mathcal{B}) \subset \sigma(\mathcal{D}) = \mathcal{D}$.
+Donc pour tout $A \in \mathcal{A}$, on a $f^{-1}(A) \in \mathcal{E}$,
+soit
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{A}\} \subset \mathcal{E}  =\sigma(\{f^{-1}(B) \; | \; B \in \mathcal{B}\}).
+$$
+
+
+### Démonstration "$\mathcal{A}$-mesurable $\leftrightarrow$ $\mathcal{A}/\mathcal{B}(Y)$-mesurable" {.proof}
+De toute évidence, si $f$ est $\mathcal{A}/\mathcal{B}(Y)$-mesurable, 
+comme tout ouvert appartient à la tribu de Borel, l'image réciproque par
+$f$ de tout ouvert de $Y$ appartient bien à $\mathcal{A}$ donc
+$f$ est $\mathcal{A}$-mesurable.
+
+Réciproquement, si l'image réciproque de tout ouvert de $Y$
+est $\mathcal{A}$-mesurable, alors la tribu engendrée par les images réciproques
+des ouverts de $Y$ est incluse dans $\mathcal{A}$.
+Comme cette tribu est d'après [le lemme précédent](#irte) l'ensemble
+des images réciproques par $f$ de la tribu engendrée par les ouverts dans $Y$,
+c'est-à-dire la tribu de Borel dans $Y$, l'image réciproque de tout
+borélien est un ensemble de $\mathcal{A}$ : la fonction 
+$f$ est $\mathcal{A}/\mathcal{B}(Y)$-mesurable.
+
+### Composition de fonctions mesurables {.proposition #compfoncmes}
+Soient $(X, \mathcal{A})$, $(Y, \mathcal{B})$ et $(Z, \mathcal{C})$ des
+espaces mesurables.
+Soit $f: X\to Y$ une fonction $\mathcal{A}/\mathcal{B}$-mesurable et 
+$g: Y \to X$ une fonction $\mathcal{B}/\mathcal{C}$-mesurable.
+Alors la composition $g \circ f$ de $f$ et $g$ est 
+$\mathcal{A}/\mathcal{C}$-mesurable.
+
+### Démonstration {.proof}
+Pour tout ensemble $C \in \mathcal{C}$, on a $g^{-1}(C) \in \mathcal{B}$ 
+et donc $(g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C)) \in \mathcal{A}$.
+
+### Fonction boréliennes
+Soit $X$ et $Y$ deux espaces topologiques. Une fonction $f : X \to Y$ est
+*borélienne* si elle est $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable.
+
+### Les fonctions continues sont boréliennes
+Soient $X$ et $Y$ deux espaces topologiques.
+Toute fonction continue $f : X \to Y$ est borélienne.
+
+### Démonstration {.proof}
+Notons $\mathcal{F}_X$ et $\mathcal{F}_Y$ les collections de tous les ensembles 
+fermés de $X$ et $Y$ respectivement.
+Comme les boréliens de $Y$ sont engendrés par les fermés de $\mathcal{F}_Y$, on a
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} = \{f^{-1}(A) \; | \; A \in \sigma_Y(\mathcal{F}_Y)\}
+$$
+et par conséquent, par [commutativité](#irte),
+$$
+\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} = \sigma_X (\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\}).
+$$
+Or la fonction $f$ étant continue, 
+$\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\} \subset \mathcal{F}_X$ et par 
+conséquent
+$$
+\sigma_X(\{f^{-1}(A) \; | \; A \in \mathcal{F}_Y\}) \subset \sigma_X(\mathcal{F}_X) = \mathcal{B}(X).
+$$
+Au final, 
+$\{f^{-1}(A) \; | \; A \in \mathcal{B}(Y)\} \subset \mathcal{B}(X)$
+et la fonction $f$ est bien $\mathcal{B}(X)/\mathcal{B}(Y)$-mesurable, 
+c'est-à-dire borélienne.
+
+### Fonctions croissantes {.exercise}
+Soit $f: \R \to \R$ ; montrer que si l'image réciproque par $f$
+de tout intervalle compact est un intervalle compact alors $f$ est borélienne.
+En déduire que si $f$ est croissante alors $f$ est borélienne.
+
+<!--
+### Limite simple de fonctions mesurables
+Soit $(X, \mathcal{A})$ un espace mesurable et $Y=\left[-\infty, +\infty\right]$, 
+muni de la tribu de Borel. 
+Si les fonctions $f_k: X \to Y$,
+$k \in \N$, sont mesurables et convergent simplement vers $f$, 
+alors $f$ est mesurable. 
+
+### Démonstration {.proof}
+Par [le lemme liant image réciproque et tribus engendrées](#irte),
+il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de $Y$
+appartient à $\mathcal{A}$.
+Or $f(x) \in U$ si et seulement si $f_k(x) \in U$
+pour $k$ assez grand, ce qui se traduit par la formule
+$$
+f^{-1}(U) = \bigcup_{j=0}^{+\infty} \bigcap_{k = j}^{+\infty} f_k^{-1}(U)
+$$
+qui établit que $f^{-1}(U)$ est un ensemble mesurable, comme union 
+(dénombrable) d'intersections (dénombrable) d'ensembles mesurables.
+
+
+### Fonction mesurable
+Soit $\mathcal{A}$ une tribu sur l'ensemble $X$.
+Une fonction $f: X \to [-\infty, +\infty]$ est
+$\mathcal{A}/$Borel- mesurable si et seulement si $f$ est la limite
+simple de fonctions étagées $X \to \R$ qui soient $\mathcal{A}$/Borel-mesurables.
+
+### TODO -- Démonstration {.proof}
+
+-->
+
+<!--
+
+### Intégrale d'une fonction à valeurs réelles
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
+$f: X \mapsto [-\infty, +\infty]$ une fonction mesurable.
+On dit que la fonction $f$ est *intégrable au sens de Lebesgue 
+relativement à la mesure $\mu$* si elle est mesurable et que 
+les intégrales des fonctions positives 
+$f_+ = \max(f, 0)$ et $f_- = -\min(f, 0)$ sont finies. 
+*L'intégrale de Lebesgue de $f$ relativement à la mesure $\mu$*
+est alors la grandeur réelle (finie)
+$$
+\int f \mu :=  \int_X f(x) \mu(dx) := \int_X f_+ \mu - \int_X f_- \mu.
+$$ 
+-->
+
+
+<!--
+
+### Une intégrale absolue
+On remarquera que l'essentiel de la complexité de l'intégrale de Lebesgue
+est encapsulée dans l'intégrale des fonctions positives ; la définition 
+(et les propriétés) de l'intégrale de fonctions signées s'en déduisent
+facilement. En particulier, comme la valeur absolue d'une fonction vérifie
+$|f| = f_+ + f_-$, on constate que si $f$ est intégrable, alors $|f|$
+également ; par construction, l'intégrale de Lebesgue est absolue,
+contrairement à l'intégrale de Henstock-Kurzweil sur $\R^n$.
+On a le résultat plus précis suivant, que l'on admettra :
+
+### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
+Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
+par rapport à la mesure de Lebesgue $v$ si et seulement si 
+$f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
+au sens de Henstock-Kurzweil. Dans ce cas, les
+deux intégrales sont égales :
+$$
+\int_{\R^n} f(x) v(dx) = \int_{\R^n} f(x) dx.
+$$
+
+-->
+
+Exercices complémentaires
 ================================================================================
 
 
@@ -1522,12 +1929,12 @@ Approximation par des ensembles mesurables (hors-programme)
 Soit $A$ un sous-ensemble de $\R^n$.
 
 ### Question 1 {.question #enm-1}
-Montrer qu'il existe un ensemble $v^*$-mesurable $B$ contenant $A$ et tel que
-$v^*(A) = v^*(B)$.
+Montrer qu'il existe un ensemble $\lambda^*$-mesurable $B$ contenant $A$ et tel que
+$\lambda^*(A) = \lambda^*(B)$.
 
 ### Question 2 {.question #enm-2}
-A quelle condition portant sur $v^*(B \setminus A)$ l'ensemble $A$ est-il 
-$v^*$-mesurable ?
+A quelle condition portant sur $\lambda^*(B \setminus A)$ l'ensemble $A$ est-il 
+$\lambda^*$-mesurable ?
 
 Mesure intérieure (hors-programme)
 --------------------------------------------------------------------------------
@@ -1536,22 +1943,234 @@ Soit $A$ un ensemble borné de $\R^n$ et $P$ un pavé compact de $\R^n$
 contenant $A$.
 On appelle *mesure intérieure de $A$* la grandeur
 $$
-v_*(A) = v^*(P) - v^*(P \setminus A)
+\lambda_*(A) = \lambda^*(P) - \lambda^*(P \setminus A)
 $$
-où $v^*$ désigne la mesure extérieure de Lebesgue sur $\R^n$.
+où $\lambda^*$ désigne la mesure extérieure de Lebesgue sur $\R^n$.
 
 ### Question 1 {.question #mi-1}
-Montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé $P$.
+Montrer que la définition de $\lambda_*(A)$ ne dépend pas du choix du pavé $P$.
 
 ### Question 2 {.question #mi-2}
-Montrer que $v_*(A) \leq v^*(A)$, avec égalité si $A$ est $v^*$-mesurable.
+Montrer que $\lambda_*(A) \leq \lambda^*(A)$, avec égalité si $A$ est $\lambda^*$-mesurable.
 
 ### Question 3 {.question #mi-3}
 Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
-et $v_*(A) = v^*(A)$, alors $A$ est $v^*$-mesurable.
+et $\lambda_*(A) = \lambda^*(A)$, alors $A$ est $\lambda^*$-mesurable.
 
 Solutions
 ================================================================================
+
+### Ensemble des parties {.answer #answer-parties}
+Comme $A \in \mathcal{A} := \mathcal{P}(X)$ si et seulement si $A \subset X$,
+prouver que $\mathcal{A}$ est une tribu de $X$ équivaut à établir
+
+  1. $\varnothing \subset X$.
+
+  2. Si $A \subset X$, $A^c = X \setminus A \subset X$.
+
+  3. Si pour tout $k \in \N$, $A_k \subset X$, alors
+     $\cup_{k=0}^{+\infty} A_k \subset X.$
+
+et ces trois propriétés sont clairement satisfaites.
+
+### Ensembles fermés {.answer #answer-fermés}
+Non. Par exmemle, le singleton $\{0\}$ est un ensemble fermé de $\R^n$,
+mais son complémentaire $\R^n \setminus \{0\}$ n'est pas fermé.
+
+### Tribu née sous $X$ {.answer #answer-X}
+Il suffit de chercher "le plus grand" ensemble (avec comme relation d'ordre 
+l'inclusion) dans la collection $\mathcal{A}$. En effet, tous les ensembles
+$A$ de $\mathcal{A}$ sont inclus dans $X$ ; de plus $\varnothing \in \mathcal{A}$
+et comme la tribu $\mathcal{A}$ est fermée par passage au complémentaire,
+$X \setminus \varnothing = X \in \mathcal{A}$. 
+
+### Opérations ensemblistes {.answer #answer-op-ens}
+Soient $A$ et $B$ des ensembles de $\mathcal{A}$. 
+La suite $(A_k)_{k\in \N}$ définie par $A_0 = A$, $A_1 = B$ et 
+$A_k = \varnothing$ si $k \geq 2$ est composée d'ensembles de $\mathcal{A}$. 
+Or, $\cup_{k \in N} A_k = A \cup B$ donc $A \cup B \in \mathcal{A}$. 
+L'ensemble $A \cap B$ vérifie $A \cap B = X \setminus ((X \setminus A) \cup (X \setminus B))$, il appartient
+donc également à $\mathcal{A}$.
+Finalement, on a $A \setminus B = A \cap (X \setminus B)$, donc $A \setminus B$
+appartient également à $\mathcal{A}$.
+
+### Intersection dénombrable {.answer #answer-id}
+Si pour tout $k \in \N$ on a $A_k \in X$, alors comme la tribu $\mathcal{A}$ est fermée
+par complémentation, $X \setminus A_k \in \mathcal{A}$. Comme $\mathcal{A}$
+est fermée par union dénombrable, $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}$ ; 
+son complémentaire dans $X$ appartient donc également à $\mathcal{A}$.
+Or, 
+$$
+X \setminus \left(\bigcup_{k=0}^{+\infty} (X \setminus A_k)\right) = \bigcap_{k=0}^{+\infty} A_k,
+$$
+donc l'intersection des $A_k$ appartient à $\mathcal{A}$.
+
+### Intersection de tribus I {.answer #answer-it1}
+
+  1. $\varnothing \in \mathcal{A}_1$ et $\varnothing \in \mathcal{A}_2$ donc
+     $\varnothing \in \mathcal{A}_1 \cap \mathcal{A}_2$.
+
+  2. Si $A \in \mathcal{A}_1$ et $A \in \mathcal{A}_2$, alors
+     $A^c \in \mathcal{A}_1$ et 
+     $A^c \in \mathcal{A}_2$, donc
+     $A^c \in \mathcal{A}_1 \cap \mathcal{A}_2$.
+
+  3. Si pour tout $k \in \N$, $A_k \in \mathcal{A}_1$ et $A_k \in \mathcal{A}_2$ 
+     alors $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_1$ et 
+     $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_2$, donc 
+     $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_1 \cap \mathcal{A}_2.$
+
+### Intersection de tribus II {.answer #answer-it2}
+
+La collection $\mathcal{A} := \cap_{i \in I} \mathcal{A}_{i \in I}$ est une tribu quel que soit l'ensemble
+d'indexation $I$ et sa cardinalité. En effet :
+
+  1. $\varnothing \in \mathcal{A}_i$ pour tout $i \in I$ donc
+     $\varnothing \in \cap_{i \in I} \mathcal{A}_i$.
+
+  2. Si $A \in \mathcal{A}_i$  pour tout $i \in I$, alors 
+     $A^c \in \mathcal{A}_i$ pour tout $i \in I$, donc
+     $A^c \in \cap_{i \in I} \mathcal{A}_i$.
+
+  3. Si pour tout $k \in \N$, $A_k \in \mathcal{A}_i$ pour tout $i \in I$, 
+     alors $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}_i$ pour tout $i \in I$, 
+     donc 
+     $\cup_{k=0}^{+\infty} A_k \in \cap_{i \in U} \mathcal{A}_i.$
+
+### Les mesures sont (finiment) additives {.answer #answer-fa}
+Etendons la suite finie des $A_k$ en posant $A_k = \varnothing$ quand $k\geq n+1$.
+En combinant la $\sigma$-additivité de $\mu$ et sa nullité en $0$, on obtient
+$$
+\mu\left( \bigcup_{k=0}^{n} A_k \right)
+=
+\mu\left( \bigcup_{k=0}^{+\infty} A_k \right)
+=
+\sum_{k=0}^{+\infty} \mu(A_k) = \sum_{k=0}^{n} \mu(A_k).
+$$
+
+### Monotonie {.answer #answer-mono}
+L'ensemble $B \setminus A = B \cap A^c$ appartient à $\mathcal{A}$, 
+est disjoint de $A$ et son union avec $A$ est $B$. 
+Donc [comme $\mu$ est finiment additive](#fa), on a
+$$
+\mu(B) = \mu(A \cup (B \setminus A)) =  \mu(A) + \mu(B \setminus A).
+$$
+Comme $\mu(B \setminus A) \geq 0$, on en déduit que $\mu(A) \leq \mu(B)$.
+
+### Cas dégénéré {.answer #answer-degen} 
+Oui, il y a par exemple la fonction qui associe à tout ensemble 
+$A \in \mathcal{A}$ la valeur $\mu(A) = +\infty$. 
+Si $\mu$ n'est pas nulle en 0, 
+par $\sigma$-additivité
+$$
+\mu(\varnothing) 
+= \mu\left(\bigcup_{k=0}^{+\infty} \varnothing \right)
+= \sum_{k=0}^{+\infty} \mu(\varnothing)
+$$
+donc on a nécessairement $\mu(\varnothing) = +\infty$. 
+
+### Ca commence par un $\mathbb{P}$ {.answer #answer-P}
+La mesure $\mu$ est une probabilité. En effet, comme $\mu(X)=1$, 
+[par monotonie de la mesure](#mono), pour tout $A \in \mathcal{A}$,
+comme $A \subset X$, $\mu(A) \leq 1$. Donc, comme toute mesure est positive,
+$\mu(A) \in [0,1]$. La mesure $\mu$ est également $\sigma$-additive ; c'est
+donc une (mesure de) probabilité. Réciproquement, toute probabilité est une
+mesure : elle est positive, $\sigma$-additive, et comme elle est finie,
+$$
+\mathbb{P}(\varnothing) 
+= \mathbb{P}\left(\bigcup_{k=0}^{+\infty} \varnothing \right)
+= \sum_{k=0}\mathbb{P}(\varnothing),
+$$
+donc nécessairement $\mathbb{P}(\varnothing)= 0$ ; elle est donc nulle en $0$
+et c'est bien une mesure.
+
+### Trace d'une mesure {.answer #answer-trace}
+La fonction $\mu|_A$, définie sur $\mathcal{A}$, est bien à valeurs dans
+$[0, +\infty]$. De plus, 
+$$
+\mu|_A(\varnothing) = \mu(A \cap \varnothing) = \mu(\varnothing)  =0
+$$
+donc $\mu|_A$ est nulle en 0. Finalement, si les ensembles $A_k$, $k \in \N$ 
+de $\mathcal{A}$ sont disjoints deux à deux, alors les ensembles $A \cap A_k$
+sont également disjoints deux à deux donc
+\begin{align*}
+\mu|_A \left(\bigcup_{k=0}^{+\infty} A_k \right) 
+&= \mu \left(A \cap \bigcup_{k=0}^{+\infty} A_k \right) \\
+&= \mu \left(\bigcup_{k=0}^{+\infty} A \cap A_k \right) \\
+&= \sum_{k=0}^{+\infty} \mu(A \cap A_k) \\
+&= \sum_{k=0}^{+\infty} \mu|_A (A_k).
+\end{align*}
+La fonction $\mu|_A$ est donc une mesure sur $(X, \mathcal{A})$.
+
+
+### Somme de mesures {.answer #answer-somme}
+On a bien $\mu_1 + \mu_2 : \mathcal{A} \to [0, +\infty]$. De plus, 
+$$
+(\mu_1 + \mu_2)(\varnothing) = \mu_1(\varnothing) + \mu_2(\varnothing) = 0 + 0 =0.
+$$
+Finalement, si la suite $A_k \in \mathcal{A}$, $k \in \N$ est formée d'ensembles
+deux à deux disjoints, alors
+\begin{align*}
+(\mu_1 + \mu_2)\left(\bigcup_{k=0}^{+\infty}A_k\right)
+&=
+\mu_1\left(\bigcup_{k=0}^{+\infty}A_k\right)
++ \mu_2\left(\bigcup_{k=0}^{+\infty}A_k\right) \\
+&= \sum_{k=0}^{+\infty} \mu_1(A_k) + \sum_{k=0}^{+\infty} \mu_2(A_k) \\
+&= \sum_{k=0}^{+\infty} (\mu_1(A_k) + \mu_2(A_k)) \\
+&= \sum_{k=0}^{+\infty} (\mu_1+\mu_2)(A_k)
+\end{align*}
+
+
+### Mesure de Dirac {.answer #answer-dirac}
+Comme pour tout $x \in X$, on $x \not \in \varnothing$, 
+il s'ensuit que $\delta_x(\varnothing)=0$. De plus, si les $A_k$ ($k \in \N$) sont 
+des sous-ensembles de $X$ disjoints deux à deux, soit aucun d'entre eux
+ne contient $x$, auquel cas
+$$
+\delta_x\left( \bigcup_{k=0}^{+\infty} A_k\right) = 0
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \mu(A_k) = 0
+$$
+soit exactement l'un d'entre eux contient $x$, auquel cas
+$$
+\delta_x\left( \bigcup_{k=0}^{+\infty} A_k\right) = 1
+\; \mbox{ et } \;
+\sum_{k=0}^{+\infty} \mu(A_k) = 1.
+$$
+
+### Et en changeant de point de vue ? {.answer #answer-ptdevue}
+Comme $\delta_x(A) = 1$ si $x\in A$ et $0$ sinon, on a $\delta_x(A) = 1_A(x)$.
+
+### Mesure de comptage {.answer #answer-ct}
+Commen l'ensemble vide ne contient aucun élément, on a $c(\varnothing) = 0$.
+De plus, si les ensembles $A_k$ ($k \in \N$) sont disjoints deux à deux, 
+alors le nombre -- fini ou infini -- d'éléments distincts de 
+$\cup_{k=0}^{+\infty} A_k$ est la somme des éléments des $A_k$, c'est-à-dire
+$$
+c\left(\bigcup_{k=0}^{+\infty} A_k \right) = \sum_{k=0}^{+\infty} c(A_k).
+$$
+La mesure de comptage est bien une mesure.
+
+### Négligeable pour la mesure de comptage {.answer #answer-nmc}
+Un ensemble $A \subset \mathcal{P}(X)$ est de mesure de comptage nulle si et
+seulement s'il est vide. Donc il existe un unique ensemble contenu dans un 
+ensemble de mesure nulle : l'ensemble vide.
+
+### Négligeable pour la mesure de Dirac {.answer #answer-nmd}
+Un ensemble $A \subset \mathcal{P}(X)$ est de mesure de Dirac en $x$ nulle si et
+seulement s'il ne contient pas $x$. Un ensemble $N$ peut être inclus dans un
+tel ensemble $A$ si et seulement s'il ne contient pas lui-même le point $x$. 
+Donc un ensemble est $\delta_x$-négligeable si et seulement s'il ne contient
+pas $x$.
+
+### Négligeable et mesurable {.answer #answer-nem}
+Si $N$ est mesurable et de mesure nulle, alors $N \subset N$ et $\mu(N)=0$ ;
+$N$ est donc négligeable.
+Réciproquement, si un ensemble $N$ est négligeable et mesurable alors 
+$N \in \mathcal{A}$
+et il existe $A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$. 
+[Comme $\mu$ est monotone](#mono), on a également $\mu(N) = 0$ ; 
+$N$ est donc de mesure nulle.
 
 Intégrales et séries
 --------------------------------------------------------------------------------
@@ -1637,7 +2256,6 @@ alors
 $$
 \lim_{k \to +\infty} \sum_{n=0}^{+\infty} f_k(n)  = \sum_{n=0}^{+\infty} f(n).
 $$
-
 
 Mesure définie par une intégrale
 --------------------------------------------------------------------------------
@@ -1794,10 +2412,6 @@ $$
 \int (f \circ h) \, \mu.
 $$
 
-
-
-
-
 Complétion d'une mesure
 --------------------------------------------------------------------------------
 
@@ -1903,107 +2517,107 @@ Approximation par des ensembles mesurables (hors-programme) {#aem}
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-enm-1}
-Par définition de $v^*(A)$, pour tout $j \in \N$, il existe une collection
+Par définition de $\lambda^*(A)$, pour tout $j \in \N$, il existe une collection
 dénombrable de pavés $P^j_k$ tels que
 $$
-v^*(A) \leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
+\lambda^*(A) \leq \sum_{k=0}^{+\infty} \lambda(P^j_k) \leq \lambda^*(A) + 2^{-j}.
 $$
-Les ensembles $B_j = \cup_k P^j_k$ sont $v^*$-mesurables comme unions 
+Les ensembles $B_j = \cup_k P^j_k$ sont $\lambda^*$-mesurables comme unions 
 dénombrables d'ensembles mesurables. 
-De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité de $v^*$
+De plus, comme $A \subset B_j$, et par $\sigma$-subadditivité de $\lambda^*$
 $$
-v^*(A) 
-\leq v^*(B_j) 
-\leq \sum_{k=0}^{+\infty} v^*(P^j_k)
-\leq \sum_{k=0}^{+\infty} v(P^j_k) \leq v^*(A) + 2^{-j}.
+\lambda^*(A) 
+\leq \lambda^*(B_j) 
+\leq \sum_{k=0}^{+\infty} \lambda^*(P^j_k)
+\leq \sum_{k=0}^{+\infty} \lambda(P^j_k) \leq \lambda^*(A) + 2^{-j}.
 $$
 L'intersection $B = \cap_j B_j$ est un ensemble mesurable qui recouvre $A$ 
 et est contenu dans chaque $B_j$ ; par conséquent pour tout $j \in \N$,
 $$
-v^*(A) \leq v(B) \leq v(B_j) \leq v^*(A) + 2^{-j}.
+\lambda^*(A) \leq \lambda(B) \leq \lambda(B_j) \leq \lambda^*(A) + 2^{-j}.
 $$
-On en déduit donc que $A \subset B$ et $v^*(A) = v^*(B)$ avec $B$ mesurable. 
+On en déduit donc que $A \subset B$ et $\lambda^*(A) = \lambda^*(B)$ avec $B$ mesurable. 
 
 ### Question 2 {.answer #answer-enm-2}
-Notons au préalable que si $v^*(A) = +\infty$, alors $A$ est automatiquement 
-mesurable. Dans le cas contraire ($v^*(A) < +\infty$)
-l'ensemble $A$ est $v^*$-mesurable si et seulement si $v^*(B \setminus A) = 0$.
-En effet, si $A$ est $v^*$-mesurable et de mesure finie, comme $A \subset B$, on a 
+Notons au préalable que si $\lambda^*(A) = +\infty$, alors $A$ est automatiquement 
+mesurable. Dans le cas contraire ($\lambda^*(A) < +\infty$)
+l'ensemble $A$ est $\lambda^*$-mesurable si et seulement si $\lambda^*(B \setminus A) = 0$.
+En effet, si $A$ est $\lambda^*$-mesurable et de mesure finie, comme $A \subset B$, on a 
 $$
-v^*(B) = v^*(A \cap B) + v^*(A^c \cap B) = v^*(A) + v^*(B \setminus A) = v^*(B) + v^*(B \setminus A).
+\lambda^*(B) = \lambda^*(A \cap B) + \lambda^*(A^c \cap B) = \lambda^*(A) + \lambda^*(B \setminus A) = \lambda^*(B) + \lambda^*(B \setminus A).
 $$
-Comme la mesure $v^*(A)$ est finie, $v^*(B \setminus A) = 0$.
-Réciproquement, si $v^*(B \setminus A) = 0$, alors $B \setminus A$ (et donc $A$)
+Comme la mesure $\lambda^*(A)$ est finie, $\lambda^*(B \setminus A) = 0$.
+Réciproquement, si $\lambda^*(B \setminus A) = 0$, alors $B \setminus A$ (et donc $A$)
 est mesurable.
 En effet, pour tout ensemble $C$ de $\R^n$, on a d'une part 
 $$
-v^*(C) \leq v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C) 
+\lambda^*(C) \leq \lambda^*((B \setminus A) \cap C) + \lambda^*((B \setminus A)^c \cap C) 
 $$
-par subbadditivité de $v^*$.
+par subbadditivité de $\lambda^*$.
 D'autre part, comme $(B \setminus A) \cap C \subset B \setminus A$, 
-$v^*((B \setminus A) \cap C) \leq v^*(B \setminus A) = 0$. 
+$\lambda^*((B \setminus A) \cap C) \leq \lambda^*(B \setminus A) = 0$. 
 Par ailleurs, $C \supset (B \setminus A)^c \cap C$, donc
 $$
-v^*(C) \geq v^*((B \setminus A)^c \cap C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C).
+\lambda^*(C) \geq \lambda^*((B \setminus A)^c \cap C) = \lambda^*((B \setminus A) \cap C) + \lambda^*((B \setminus A)^c \cap C).
 $$
-On a donc l'égalité $v^*(C) = v^*((B \setminus A) \cap C) + v^*((B \setminus A)^c \cap C)$ ;
+On a donc l'égalité $\lambda^*(C) = \lambda^*((B \setminus A) \cap C) + \lambda^*((B \setminus A)^c \cap C)$ ;
 l'ensemble $B \setminus A$ est donc mesurable, ainsi que $A = B \setminus (B \setminus A)$.
 
 Mesure intérieure (hors-programme)
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-mi-1}
-Pour montrer que la définition de $v_*(A)$ ne dépend pas du choix du pavé
+Pour montrer que la définition de $\lambda_*(A)$ ne dépend pas du choix du pavé
 $P$ contenant $A$, il suffit de prouver qu'on peut remplacer $P$ par un
-pavé compact $P'$ contenant $P$ sans changer la valeur de $v_*(A)$ (pour toute
+pavé compact $P'$ contenant $P$ sans changer la valeur de $\lambda_*(A)$ (pour toute
 paire de pavés compacts on peut en effet trouver un pavé compact les contenant).
 
 Comme les pavés compacts $P$ et $P'$ sont mesurables (au sens de Carathéodory,
-pour la mesure extérieure $v^*$), l'ensemble $P' \setminus P$ l'est également 
+pour la mesure extérieure $\lambda^*$), l'ensemble $P' \setminus P$ l'est également 
 ; on a donc
 $$
-v^*(P') = v^*(P' \setminus P) + v^{*}(P) 
+\lambda^*(P') = \lambda^*(P' \setminus P) + \lambda^{*}(P) 
 $$
 et
 $$
-v^{*}(P' \setminus A)
+\lambda^{*}(P' \setminus A)
 =
-v^*(P' \setminus P) + v^*(P \setminus A),
+\lambda^*(P' \setminus P) + \lambda^*(P \setminus A),
 $$ 
 ce qui établit
 $$
-v^*(P') - v{*}(P' \setminus A)
+\lambda^*(P') - \lambda{*}(P' \setminus A)
 =
-v^*(P) - v^{*}(P \setminus A).
+\lambda^*(P) - \lambda^{*}(P \setminus A).
 $$
 
 ### Question 2 {.answer #answer-mi-2}
-La fonction $v^*$ étant subadditive, on a
+La fonction $\lambda^*$ étant subadditive, on a
 $$
-v^*(P) \leq v^*(A) + v^*(P\setminus A)
+\lambda^*(P) \leq \lambda^*(A) + \lambda^*(P\setminus A)
 $$
-et donc $v_*(A) \leq v^*(A)$. Si $A$ est mesurable, l'inégalité initiale
-devient une égalité et donc $v_*(A) = v^*(A)$. 
+et donc $\lambda_*(A) \leq \lambda^*(A)$. Si $A$ est mesurable, l'inégalité initiale
+devient une égalité et donc $\lambda_*(A) = \lambda^*(A)$. 
 
 ### Question 3 {.answer #answer-mi-3}
 Montrons que la réciproque est également vraie. 
 Soit $A$ un ensemble borné de $\R^n$ tel que 
-$v_*(A) = v^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
-Nous cherchons à établir que $v^*(B) = v^*(A \cap B) + v^*(A^c \cap B)$.
+$\lambda_*(A) = \lambda^*(A)$, et soit $B$ un ensemble quelconque de $\R^n$.
+Nous cherchons à établir que $\lambda^*(B) = \lambda^*(A \cap B) + \lambda^*(A^c \cap B)$.
 Remarquons tout d'abord que si le pavé compact $P$ -- qui est mesurable -- 
 contient $A$, on a
 $$
-v^*(B) = v^*(P \cap B) + v^*(P^c \cap B) \; ;
+\lambda^*(B) = \lambda^*(P \cap B) + \lambda^*(P^c \cap B) \; ;
 $$
 si nous réussissons à établir que 
-$$v^*(P \cap B) = v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)),$$
+$$\lambda^*(P \cap B) = \lambda^*(A \cap (P \cap B)) + \lambda^*(A^c \cap (P \cap B)),$$
 on pourra alors conclure que
 $$
 \begin{split}
-v^*(B) &= v^*(P \cap B) + v^*(P^c \cap B) \\
-&= v^*(A \cap (P \cap B)) + v^*(A^c \cap (P \cap B)) + v^*(P^c \cap B) \\
-&= v^*(A \cap B) + v^*(P \cap (A^c \cap B)) + v^*(P^c \cap (A^c \cap B)) \\
-&= v^*(A \cap B) + v^*(A^c \cap B).
+\lambda^*(B) &= \lambda^*(P \cap B) + \lambda^*(P^c \cap B) \\
+&= \lambda^*(A \cap (P \cap B)) + \lambda^*(A^c \cap (P \cap B)) + \lambda^*(P^c \cap B) \\
+&= \lambda^*(A \cap B) + \lambda^*(P \cap (A^c \cap B)) + \lambda^*(P^c \cap (A^c \cap B)) \\
+&= \lambda^*(A \cap B) + \lambda^*(A^c \cap B).
 \end{split}
 $$
 Autrement dit, il nous suffit d'établir le résultat cherché quand $B$ est un
@@ -2011,21 +2625,21 @@ ensemble de $\R^n$ contenu dans le pavé compact $P$.
 
 Pour cela, nous exploitons les résultats de l'exercice "[Approximation par des
 ensembles mesurables](#aem)". A l'ensemble $A$ on peut associer un sur-ensemble
-$v^*$-mesurable $B$ tel que $v^*(A) = v^*(B)$ ; quitte à remplacer $B$ par
+$\lambda^*$-mesurable $B$ tel que $\lambda^*(A) = \lambda^*(B)$ ; quitte à remplacer $B$ par
 $P \cap B$, on peut également supposer que $B \subset P$. On a 
 $$
-v^*(P) = v^*(A) + v^*(P \setminus A) = v^*(B) + v^*(P \setminus B)
+\lambda^*(P) = \lambda^*(A) + \lambda^*(P \setminus A) = \lambda^*(B) + \lambda^*(P \setminus B)
 $$
-et donc $v^*(P \setminus A) = v^*(P \setminus B)$. 
+et donc $\lambda^*(P \setminus A) = \lambda^*(P \setminus B)$. 
 D'autre part
 $$
 \begin{split}
-v^*(P) &= v^*(B) + v^*(P \setminus B) \\
-&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus B) \\
-&= v^*(A) + v^*(B \setminus A) + v^*(P \setminus A) \\
+\lambda^*(P) &= \lambda^*(B) + \lambda^*(P \setminus B) \\
+&= \lambda^*(A) + \lambda^*(B \setminus A) + \lambda^*(P \setminus B) \\
+&= \lambda^*(A) + \lambda^*(B \setminus A) + \lambda^*(P \setminus A) \\
 \end{split}
 $$
-et donc $v^*(B \setminus A) = 0$. Par les résultats de l'exercice 
+et donc $\lambda^*(B \setminus A) = 0$. Par les résultats de l'exercice 
 "[Approximation par des ensembles mesurables](#aem)", on en déduit que 
 $A$ est mesurable.
 
