@@ -18,7 +18,7 @@
 Soit $X = \R^3$ et $\mathcal{A} = \mathcal{P}(X)$, l'ensemble des parties de $X$.
 On définit pour tout $X \in \mathcal{A}$ la grandeur $\mu(A)$ comme le diamètre de $A$ :
 $$
-\mu(A) := \mathrm{diam}(A) := \sup \{\|x - y\| \; | \; (x, y) \in A \times A\} \in [0, +\infty].
+\mu(A) := \mathrm{diam}(A) := \sup \, \{\|x - y\| \; | \; (x, y) \in A \times A\} \in [0, +\infty].
 $$
 Est-ce que $\mu$ est une mesure sur $(X, \mathcal{A})$ ?
 
