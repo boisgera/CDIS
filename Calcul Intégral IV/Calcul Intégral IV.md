@@ -606,7 +606,7 @@ $$
 $$
 et qui est caractérisée par
 
- 1. *Intégrale et mesure:* pour tout ensemble $A \in \mathcal{A}$,
+ 1. *Intégrale et mesure :* pour tout ensemble $A \in \mathcal{A}$,
     $$
     \int 1_A \, \mu = \mu(A).
     $$
