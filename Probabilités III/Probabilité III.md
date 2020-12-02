@@ -30,35 +30,27 @@ Objectifs d'apprentissage
 - \one savoir qu'une variable aléatoire réelle est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$
 - \one savoir que la loi de probabilité $\P_X$ d'une variable aléatoire $X$ définie sur $(\Omega,\A,\P)$ est la mesure image de $\P$ par $X$ 
 - \one connaître la contrepartie des deux point précédents dans le cas des vecteurs aléatoires
-- \one 
-- \one savoir ce que signifie variable centrée-réduite
-- \one connaître la définition de la covariance
-- \one savoir que la covariance est une forme bilinéaire
-- \one connaître et savoir manipuler l'inégalité de Cauchy-Schwarz
-- \two connaître les conditions d'existence de l'espérance d'une fonction (mesurable) d'une variable aléatoire
-- \two savoir exprimer la probabilité d'un événement de la forme $X \in A$ sous la forme d'une espérance
-- \two connaître et savoir calculer les moments des lois usuelles
+- \four connaître la définition d'une tribu produit
+- \three savoir que $\mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n})$ 
+- \two savoir utiliser le théorème de Fubini pour les probas
+- \two connaître la caractérisation de l'indépendance dans le cas général
 
 #### Lois conditionnelles
 
-- \one savoir que les composantes d'un vecteur aléatoire sont des variables aléatoires définies sur le même espace de probabilité
-- \one connaître la définition d'un vecteur aléatoire à densité
-- \two connaître les conditions d'existence de l'espérance d'une fonction (mesurable) d'un vecteur aléatoire à densité
-- \two savoir calculer les densités marginales d'un vecteur aléatoire à densité
-- \two savoir qu'un couple de variables aléatoires à densité n'admet pas nécessairement de densité
-- \one connaître la définition de l'espérance d'un vecteur aléatoire à densité
-- \one connaître la définition de la matrice de covariance d'un vecteur aléatoire à densité
-- \one savoir que la matrice de covariance est semi-définie positive
+- \two connaître le théorème de Fubini conditionnel 
+- \two connaître les formules de balayage conditionnel 
+- \two savoir appliquer ces résultats pour différents types de loi de probabilité (à densité ou non)
+- \one connaître le critère d'indépendance qui résulte du théorème de Fubini conditionnel
 
 #### Espérance conditionnelle
 
-- \one connaître la définition de l'indépendance de deux vecteurs/variables aléatoires
-- \one savoir caractériser l'indépendance de deux vecteurs/variables aléatoires à densité
-- \two savoir que si $X$ et $Y$ sont indépendantes, alors $g(X)$ et $h(Y)$ sont aussi indépendantes
-- \two savoir que si $X$ et $Y$ sont indépendantes et si $g(X)$ et $h(Y)$ sont intégrables alors $\Esp(g(X)g(Y)) = \Esp(g(X))\Esp(g(Y))$
-- \one savoir que la covariance de deux variables indépendantes est nulle
-- \two savoir que la réciproque est fausse et connaître un contre-exemple
-
+- \one connaître les deux points de la définition de l'espérance conditionnelle
+- \one connaître les deux points de la définition de l'espérance conditionnelle d'une fonction de variables aléatoires
+- \one connaître et savoir utiliser la formule de l'espérance totale
+- \two savoir calculer la densité conditionnelle d'un certain nombre de composantes sachant les autres dans un vecteur gaussien
+- \two savoir que la régression linéaire est la meilleure approximation linéaire (au sens des moindres carrés) d'une variable aléatoire par une autre
+- \three savoir retrouver ce résultat
+- \four connaître l'interprétation géométrique de l'espérance conditionnelle dans le cas $\L^2$
 
 
 
@@ -75,7 +67,10 @@ Les éléments de théorie de la mesure donnés en calcul intégral permettent u
   où $\sum_{\omega \in \Omega} p_{\omega} =1$ et $\forall \omega \in \Omega, p_{\omega} \geq 0$
 * Dans le cas à densité ($\Omega = \R^n$, $n\in\N^\ast$), la mesure de probabilité s'écrit :
   $$\P = f\ell,$$
-  où $f$ est une densité et $\ell$ la mesure de (Borel-)Lebesgue sur $\R^n$. On dit que $\P$ admet une densité par rapport à la mesure de (Borel-)Lebesgue.
+  où $f$ est une densité et $\ell$ la mesure de (Borel-)Lebesgue sur $\R^n$[^footmes]. On dit que $\P$ admet une densité par rapport à la mesure de (Borel-)Lebesgue.
+
+[^footmes]: Comme on a vu au chapitre 1, quand on considère des variables aléaoires, on considère la tribu des boréliens $\B(\R)$. On appelle mesure de Borel-Lebesgue ou de Borel la mesure de Lebesgue restreinte à cette tribu.
+
 
 Une [variable aléatoire réelle](Probabilité II.pdf #defvar) (v.a.r), respectivement un vecteur aléatoire, $X$ est une application mesurable de $(\Omega, \A)$ dans $(\R,\B(\R))$, respectivement dans $(\R^n,\B(\R^n))$, et [sa loi](Probabilité II.pdf #defloivar) $\P_X$ est la mesure image de $\P$ par $X$. 
 
@@ -102,7 +97,7 @@ $$\Esp(g(X)) = \int_R g(x) \P_X(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
 ### {.anonymous}
 Ce résultat fait l'objet d'un exercice du chapitre IV de calcul intégral (mesure image).
 
-Enfin, pour généraliser la caractérisation de l'indépendance de deux variables aléatoires (ou de $n$ variables aléatoires, en itérant), on a besoin de définir un espace probabilisé (ou mesuré) sur $\R^n$. Pour ce faire, on introduit (sans preuve) quelques résultats fondamentaux associés aux produits de mesures de probabilités et aux intégrales associées. On pourra se reporter à @Jacod pour les démonstrations.
+Enfin, pour généraliser la caractérisation de l'indépendance de deux variables aléatoires (ou de $n$ variables aléatoires, en itérant), on a besoin de définir un espace probabilisé (ou mesuré) sur $\R^n$. Pour ce faire, on introduit (sans preuve) quelques résultats fondamentaux associés aux produits de mesures de probabilités et aux intégrales associées. On pourra se reporter à @Jacod pour les démonstrations, ou bien à @Hun11 ou @Tao11 pour un exposé dans le cadre plus général de la théorie de la mesure.
 
 ### Tribu produit
 Soit $(X ,\mathcal{A})$ et $(Y, \mathcal{B})$ deux espaces mesurables. On appelle *tribu produit* de $\mathcal{A}$ et $\mathcal{B}$ 
@@ -131,15 +126,12 @@ Notons que le résultat similaire est faux pour la mesure de Lebesgue :
   $$
   \mathcal{L}(\R^{m+n}) \neq \mathcal{L}(\R^{m}) \otimes \mathcal{L}(\R^{n}).
   $$
-Pour obtenir $\mathcal{L}(\R^{m+n})$, 
-il est nécessaire de compléter la tribu produit $\mathcal{L}(\R^m) \otimes \mathcal{L}(\R^n)$
-par rapport à la mesure de Lebesgue sur $\R^{m+n}$, c'est-à-dire de rajouter les
-ensembles négligeables pour la tribu de Lebesgue à la collection, 
-puis de construire la tribu engendrée
-(cf. [exercice "Complétion d'une mesure" du chapitre IV](Calcul Intégral IV.pdf#complétion)).
+Pour obtenir $\mathcal{L}(\R^{m+n})$, il est nécessaire de compléter la tribu produit $\mathcal{L}(\R^m) \otimes \mathcal{L}(\R^n)$
+par rapport à la mesure de Lebesgue sur $\R^{m+n}$, c'est-à-dire de rajouter les ensembles négligeables pour la tribu de Lebesgue à la collection, 
+puis de construire la tribu engendrée (cf. [exercice "Complétion d'une mesure" du chapitre IV](Calcul Intégral IV.pdf#complétion)).
 
 ### Théorème de Fubini (pour les probabilités) {.theorem #fubiniproba} 
-Soient  $\P_1$ et $\P_2$ deux probabilités définies respectivement sur $(\R^n, \B(\R^n))$ et $(\R^m, \B(\R^m))$.
+Soient $\P_1$ et $\P_2$ deux probabilités définies respectivement sur $(\R^n, \B(\R^n))$ et $(\R^m, \B(\R^m))$.
 
 1. Soient $A \in \B(\R^n)$ et $B \in \B(\R^m)$, alors
    $$\P(A \times B) = \P_1(A)\P_2(B)$$
@@ -235,9 +227,9 @@ $\forall n \in \N$,
 $$ \int_{\R_+^\ast}e^{-t}\frac{t^n}{n!}dt = \int_{\R_+^\ast}e^{-t}\frac{t^{(n-1)}}{(n-1)!}dt = \ldots = \int_{\R_+^\ast}e^{-t}dt =1$$
 par intégrations par parties itérées. La loi marginale de $X$ s'écrit donc :
 $$\forall n \in \N, \P(X=n) = \P_{X,Y} (\{n\}\times \R_+^\ast) = (1-\alpha)\alpha^n,$$ 
-loi géométrique de paramètre $(1-\alpha)$. On en déduit la loi conditionnelle de $Y$ sachant $X = x$ :
-$$\P_{Y|X=x}(B_2) = \P(Y \in B_2 | X=x) = \frac{\P_{X,Y} (\{n\}\times B_2)}{\P(X=n)} = \int_{B_2 \cap \R_+^\ast} e^{-t}\frac{t^n}{n!}dt$$
-et $\P_{Y|X=x}$ est la donc la loi gamma de paramètre $(n+1,1)$.
+loi géométrique de paramètre $(1-\alpha)$. On en déduit la loi conditionnelle de $Y$ sachant $X = n$ :
+$$\P_{Y|X=n}(B_2) = \P(Y \in B_2 | X=n) = \frac{\P_{X,Y} (\{n\}\times B_2)}{\P(X=n)} = \int_{B_2 \cap \R_+^\ast} e^{-t}\frac{t^n}{n!}dt$$
+et $\P_{Y|X=n}$ est la donc la loi gamma de paramètre $(n+1,1)$.
 
 
 ## Densités conditionnelles
@@ -318,7 +310,7 @@ $$f_Y(y) = \int_\R f_{X,Y}(x,y)dx = \int_\R f_{Y | X=x}(y)f_X(x) dx.$$
 
 ### Pour fixer les idées (2) {.example}
 Poursuivons [l'exemple vu plus haut](#ex1). On rappelle qu'on a déjà identifié la loi marginale de $X$ ainsi que la loi conditionnelle de $Y$ sachant $X=n$ pour $n\in\N$ que l'on rappelle ici :
-$$\P(X=n) = (1-\alpha)\alpha^n,\,n\in\N \text{ et }\forall  B \in \B(\R), \, \P_{Y|X=x}(B) = \int_{B \cap \R_+^\ast} e^{-t}\frac{t^n}{n!}dt$$
+$$\P(X=n) = (1-\alpha)\alpha^n,\,n\in\N \text{ et }\forall  B \in \B(\R), \, \P_{Y|X=n}(B) = \int_{B \cap \R_+^\ast} e^{-t}\frac{t^n}{n!}dt$$
 On peut en déduire la loi marginale de $Y$ en utilisant la [formule de balayage conditionnel](#balcond) et le théorème de convergence monotone :
 \begin{align*}
 \P_Y(B)  &= \sum_{n \in \N} (1-\alpha)\alpha^n \int_{B \cap \R_+^\ast} e^{-t}\frac{t^n}{n!} dt\\
@@ -384,7 +376,7 @@ Soit $Y$ une variable aléatoire et $g$ une fonction borélienne positive ou $\P
     $$\Esp(g(X,Y)|X) = \psi(X), \text{ avec } \psi(x) = \Esp(g(X,Y)|X=x).$$
 
 
-### Théorème {.theorem} 
+### Espérance totale {.theorem} 
 Si $Y$ est intégrable, alors $\psi(X) = \Esp(Y | X)$ est intégrable, et 
 $$\Esp( \psi(X)) = E( Y ) .$$
 
@@ -399,7 +391,7 @@ Il généralise la [formule des probabilités totales](Probabilité I.pdf #formp
 $$ \Esp \left( \Esp(Y | X) \right) = \Esp( Y )$$
 et on l'appelle la *formule de l'espérance totale*.
 
-L’espérance conditionnelle étant définie comme l’espérance de la loi conditionnelle,
+L’espérance conditionnelle étant définie comme l’espérance selon la loi conditionnelle,
 elle hérite des propriétés usuelles de l’espérance :
  
  1. si $Y$ et $Z$ sont intégrables, $\Esp (aY + bZ | X) = a \Esp (Y | X) + b \Esp(Z | X)$,
@@ -410,7 +402,7 @@ De plus, si $g$ est borélienne positive ou $\P_X$-intégrable,
 $$ \Esp (Y g(X) | X) = g(X) \Esp (Y | X) $$
 est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$. Enfin, on déduit directement du [théorème de Fubini conditionnel]{#fubinicond} la proposition suivante.
 
-### Transfert conditionnel {.proposition}
+### Transfert conditionnel {.proposition #transfcond}
 Soient un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$ et $g$ une fonction borélienne positive ou $\P_{X,Y}$-intégrable sur $\R^2$. On a pour $\P_X$-presque tout $x$ dans $\R$
 $$\Esp(g(X,Y)|X=x) = \Esp(g(x,Y)|X=x) = \int_{\R}g(x,y) \P_{Y|X=x} (dy)$$
 Si de plus $X$ et $Y$ sont indépendantes, on a :
