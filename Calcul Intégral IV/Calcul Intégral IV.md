@@ -560,7 +560,7 @@ Si les fonctions $f_1, \dots, f_n: X \to [-\infty, +\infty]$ sont mesurables et
 que la fonction $h : [-\infty, +\infty]^n \to [-\infty,+\infty]$ est continue, 
 la function composée $h \circ (f_1, \dots, f_n)$ est mesurable. 
 
-### Démonstration (limité au cas $n=1$) {.proof}
+### Démonstration (limitée au cas $n=1$) {.proof}
 Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
 $U$ par $h$ est un ouvert de $[-\infty, +\infty]$ et comme 
 $f$ est mesurable, l'image réciproque de cet ensemble par $f$ est un ensemble
