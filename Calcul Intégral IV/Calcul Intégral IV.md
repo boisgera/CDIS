@@ -470,7 +470,7 @@ Soit $f: X \to \R$ une fonction étagée ;
 il existe donc des réels $y_1, \dots, y_{n}$ distincts non nuls tels que
 $f(X) \setminus \{0\}= \{y_1,\dots, y_{n-1}\}.$
 On a alors
-$$f = \sum_{k=1}^{n} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
+$$f = \sum_{k=1}^{n} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(\{y_k\}).$$ 
 Si de plus $f$ est mesurable, les singletons de $\R$ étant fermés, 
 les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
 
@@ -500,7 +500,7 @@ Il existe une suite croissante de fonctions
 étagées mesurables positives $f_k : X \to \left[0, +\infty\right[$ (à valeurs
 finies) convergeant simplement vers $f$.
 $$
-0 \leq f_0(x) \leq f_1(x) \leq \dots \leq f_k(x) \to f(x)
+0 \leq f_0(x) \leq f_1(x) \leq \dots \leq f_k(x) \to f(x) \mbox{ quand $k\to +\infty.$}
 $$
 
 ### Démonstration {.proof}
@@ -570,7 +570,7 @@ mesurable. La fonction composée $h \circ f$ est donc mesurable.
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable. 
 Il existe une suite de fonctions 
-étagées mesurables $f_k : X \to \left[0, +\infty\right[$ (à valeurs
+étagées mesurables $f_k : X \to \left]-\infty, +\infty\right[$ (à valeurs
 finies) dont la suite des valeurs absolues $|f_k|$ est croissante 
 $$
 0 \leq |f_0| \leq \cdots \leq |f_k| \leq |f_{k+1}| \leq \cdots
