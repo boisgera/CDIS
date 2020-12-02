@@ -386,7 +386,7 @@ Caractériser les ensembles négligeables pour la mesure de Dirac $\delta_x$.
 Montrer qu'un ensemble mesurable est négligeable si et seulement si il
 est de mesure nulle.
 
-Intégrale
+Fonctions mesurables
 ================================================================================
 
 ### Fonction mesurable {.definition}
@@ -578,8 +578,8 @@ $$
 et qui convergent simplement vers $f$.
 
 ### Démonstration {.proof}
-Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ sont mesurables
-comme composées de fonctions mesurables et de fonctions continues.
+Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ [sont mesurables
+comme composées de fonctions mesurables et de fonctions continues](#cpfc).
 Elle sont également positives, telles que $f = f_+ - f_-$ et $|f| = f_+ + f_-$. 
 Il existe donc deux suites croissantes de fonctions $f_{k+}$ et $f_{k-}$ 
 de fonctions étagées mesurables positives telles $f_{k+} \to f_+$ et 
@@ -595,6 +595,9 @@ les fonctions $f+g$, $fg$ et $\max(f,g)$ sont-elles bien définies ?
 Soit $\lambda > 0$ et soient $f, g : X \to \left[0, +\infty\right]$ 
 deux fonctions mesurables. Montrer que les fonctions
 $\lambda f$ et $f+g$ sont mesurables.
+
+Intégrale
+================================================================================
 
 ### Intégrale d'une fonction positive -- Propriétés caractéristiques {#carac}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. *L'intégrale (de Lebesgue)
