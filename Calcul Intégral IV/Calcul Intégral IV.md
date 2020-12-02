@@ -593,7 +593,7 @@ les fonctions $f+g$, $fg$ et $\max(f,g)$ sont-elles bien définies ?
 
 ### Combinaison linéaire {.exercise .question .one #cl}
 Soit $\lambda > 0$ et soient $f, g : X \to \left[0, +\infty\right]$ 
-deux fonctions mesurables à valeurs finies. Montrer que les fonctions
+deux fonctions mesurables. Montrer que les fonctions
 $\lambda f$ et $f+g$ sont mesurables.
 
 ### Intégrale d'une fonction positive -- Propriétés caractéristiques {#carac}
