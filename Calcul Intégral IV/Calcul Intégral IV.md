@@ -409,15 +409,15 @@ si $f$ est à valeurs positives ($f(X) \subset [0, +\infty]$) ou finies
 ($f(X) \subset \R$), voire les deux simultanément 
 ($f(X) \subset \left[0, +\infty \right[$).
 
-### Mesurabilité et ensemble des parties de $X$ {.exercise .one #pm}
+### Mesurabilité et ensemble des parties de $X$ {.exercise .question .one #pm}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$. A quelle condition
 une fonction $f: X \to [-\infty, +\infty]$ est-elle $\mathcal{A}$-mesurable ?
 
-### Fonction caractéristique {.exercise .two #fc}
+### Fonction caractéristique {.exercise .question .two #fc}
 Soit $(X, \mathcal{A})$ un espace mesurable et $A$ un sous-ensemble de $X$.
 A quelle condition portant sur $A$ la fonction $1_A: X \to \R$ est-elle mesurable ?
 
-### Limite simple de fonctions mesurables
+### Limite simple de fonctions mesurables {.theorem #limite-simple}
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 Si les fonctions $f_k: X \to \left[-\infty, +\infty\right]$,
 $k \in \N$, sont mesurables et convergent simplement vers $f$, 
@@ -439,18 +439,11 @@ qui établit que $f^{-1}(U)$ est un ensemble mesurable en exploitant le fait
 qu'unions dénombrables et intersections dénombrables d'ensembles mesurables
 sont des ensembles mesurables.
 
-### Fonction étagée
+### Fonction étagée {.definition}
 Une fonction $f: X \to [-\infty, +\infty]$ est *étagée* si et seulement
 l'image de $X$ par $f$ ne comporte qu'un nombre fini de valeurs distinctes.
 
-### Fonction étagée {.exercise}
-Soit $(X, \mathcal{A})$ un espace mesurable. 
-A quelle condition une fonction $f: X \to [-\infty, +\infty]$ qui ne prend 
-qu'un nombre fini de valeurs est-elle $\mathcal{A}$-mesurable ?
-
-
-
-### Fonction étagées mesurables
+### Fonction étagées mesurables {.proposition}
 Soit $(X, \mathcal{A})$ un espace mesurable.
 Une fonction $f: X \to \R$ est étagée et mesurable 
 si et seulement s'il existe une collection finie d'ensembles mesurables
@@ -500,7 +493,7 @@ d'une sous-collection des $C_j$ ($C_j$ étant inclus dans la collection
 si et seulement si $z_j \in A$)
 et si $0 \in U$, de $X \setminus \cup_j C_j$.
 
-### Approximation par des fonctions étagées positives {.theorem}
+### Approximation par des fonctions étagées positives {.theorem #app-fep}
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 Soit $f: X \to [0, +\infty]$ une fonction mesurable positive. 
 Il existe une suite croissante de fonctions 
@@ -550,30 +543,30 @@ $$
 \; \mbox{ et } \;
 \sum_{k=0}^{+\infty} \varepsilon_k = +\infty,
 $$
-alors la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
+alors nécessairement la suite des $f_k(x)$ converge vers $f(x)$ pour tout $x \in X$. 
 
-### Trace de fonction {.exercise}
+### Trace de fonction {.exercise .question .two #trace-mesurable}
 Soient $f: X \to [0, +\infty]$ une fonction mesurable positive
 (à valeurs finies ou infinies) et soit $A \in \mathcal{A}$.
 Montrer que $1_A f$ est mesurable.
 
-### Somme de fonctions {.exercise}
+### Somme de fonctions {.exercise .question .two #somme-mesurable}
 Soient $f, g : X \to [0, +\infty]$ deux fonctions mesurables positives
 (à valeurs finies ou infinies). Montrer que $f+g$ est mesurable.
 
-### Composition par une fonction continue
+### Composition par une fonction continue {.proposition #cpfc}
 Soit $(X, \mathcal{A})$ un espace mesurable.
-Si la fonction $f: X \to [-\infty, +\infty]$ est mesurable et
-la fonction $h : [-\infty, +\infty] \to [-\infty,+\infty]$ est continue, 
-la function composée $h \circ f$ est mesurable. 
+Si les fonctions $f_1, \dots, f_n: X \to [-\infty, +\infty]$ sont mesurables et
+que la fonction $h : [-\infty, +\infty]^n \to [-\infty,+\infty]$ est continue, 
+la function composée $h \circ (f_1, \dots, f_n)$ est mesurable. 
 
-### Démonstration {.proof}
+### Démonstration (limité au cas $n=1$) {.proof}
 Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
 $U$ par $h$ est un ouvert de $[-\infty, +\infty]$ et comme 
 $f$ est mesurable, l'image réciproque de cet ensemble par $f$ est un ensemble
 mesurable. La fonction composée $h \circ f$ est donc mesurable.
 
-### Approximation par des fonctions étagées
+### Approximation par des fonctions étagées {.theorem #app-fe}
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable. 
 Il existe une suite de fonctions 
@@ -594,13 +587,13 @@ $f_{k-} \to f_-$ et donc $f_k := f_{k+} - f_{k-} \to f$ quand $k \to +\infty$.
 Par construction, $|f_{k}| = f_{k+} + f_{k-}$ est également croissante comme
 somme de deux suites croissantes. 
 
-### Calculs et infinis {.exercise}
+### Calculs et infinis {.exercise .question #inf .zero}
 Quand $f, g$ sont deux fonctions $X \to [-\infty, +\infty]$, 
 les fonctions $f+g$, $fg$ et $\max(f,g)$ sont-elles bien définies ?
 
-### Combinaison linéaire {.exercise}
-Soit $\lambda \in \R$ et soient $f, g : X \to \left[0, +\infty\right[$ 
-deux fonctions mesurables à valeurs finies. Montrer que les fonctions
+### Combinaison linéaire {.exercise .question .one #cl}
+Soit $\lambda > 0$ et soient $f, g : X \to \left[0, +\infty\right]$ 
+deux fonctions mesurables. Montrer que les fonctions
 $\lambda f$ et $f+g$ sont mesurables.
 
 ### Intégrale d'une fonction positive -- Propriétés caractéristiques {#carac}
@@ -613,7 +606,7 @@ $$
 $$
 et qui est caractérisée par
 
- 1. *Intégrale et mesure:* pour tout ensemble $A \in \mathcal{A}$,
+ 1. *Intégrale et mesure :* pour tout ensemble $A \in \mathcal{A}$,
     $$
     \int 1_A \, \mu = \mu(A).
     $$
@@ -2190,6 +2183,60 @@ quel que soit $F$ fermé de $[-\infty, +\infty]$, en énumérant les cas, et sel
 que $0$ et $1$ appartiennent ou non à $F$, on réalise que $f^{-1}(F)$ est l'un des 4 ensembles
 suivants : $\varnothing$, $A$, $A^c$, ou $X$. Dans tous les cas, $f^{-1}(F)$
 est mesurable.
+
+
+### Trace de fonction {.answer #answer-trace-mesurable}
+[La fonction $f$ peut être approximée par des fonctions étagées positives](#app-fep) :
+elle est la limite simple d'une suite 
+de fonctions $f_j$ ($j \in \N$) de la forme
+$$
+f_j = \sum_{k=1}^{n_j} y_k^j 1_{A_k^j},
+$$
+où les ensembles $A_k^j$ sont mesurables et les réels $y_k^j$ positifs.
+Comme $A$ est mesurable, pour tout $j$ et $k$, l'ensemble $A \cap A_k^j$ est mesurable
+et donc les fonctions
+$$
+1_A f_j = \sum_{k=1}^{n_j} y_k^j 1_{A \cap A_{k}^j}
+$$
+sont également mesurables. Elles convergent simplement vers $1_A f$ quand $j$ tend
+vers $+\infty$ ; [par conséquent](#limite-simple), la fonction $1_A f$ est mesurable.
+
+
+### Somme de fonctions {.answer #answer-somme-mesurable}
+[Les fonctions $f$ et $g$ peuvent être approximées par des fonctions étagées positives](#app-fep) :
+elle sont les limites simples de suites 
+de fonctions $f_j$ et $g_j$ ($j \in \N$) de la forme
+$$
+f_j = \sum_{k=1}^{n_j} y_k^j 1_{A_k^j} \; \mbox{ et } \; g_j = \sum_{l=1}^{m_j} z_l^j 1_{B_l^j}
+$$
+où les ensembles $A_k^j$ et $B_l^j$ sont mesurables 
+et les réels $y_k^j$ et $z_l^j$ sont positifs.
+La somme
+$$
+f_j + g_j = \sum_{k=1}^{n_j} y_k^j 1_{A_k^j} + \sum_{l=1}^{m_j} z_l^j 1_{B_l^j}
+$$
+est (étagée positive et) mesurable (elle s'écrit comme une somme pondérée par des 
+coefficients réels positifs des fonctions caractéristiques des ensembles $A_k^j \cap B_l^j$).
+De plus la suite $f_j + g_j$ converge simplement vers $f + g$ quand $j$ tend
+vers $+\infty$ ; [par conséquent](#limite-simple), la fonction $f + g$ est mesurable.
+
+### Calculs et infinis {.answer #answer-inf}
+La somme pose un problème quand $f(x) = +\infty$ et $g(x) = -\infty$ 
+(ou la situation inverse). Le produit n'est pas non plus défini quand
+l'un des termes est nul et l'autre est infini. Par contre, le maximum
+de $f(x)$ et de $g(x)$ est toujours bien défini, même si $f$ et $g$ prennent
+leur valeurs dans $[-\infty, +\infty]$.
+
+### Combinaison linéaire {.answer #answer-cl}
+La fonction $x \in [-\infty, +\infty] \to \lambda x \in [-\infty, +\infty]$
+est bien définie et continue, donc $\lambda f$ est mesurable [par composition par une
+fonction continue](#cpfc).
+
+Quand à $f+g$, on peut remarquer que comme $f$ et $g$ sont positives, 
+$f(x) + g(x) = \max(f(x), 0) + \max(g(x), 0)$. Or la fonction 
+$(x, y) \in [-\infty, +\infty]^2 \to \max(x, 0) + \max(y, 0) \in [-\infty, +\infty]$
+est bien définie et contine donc $f+g$ est continue [par composition par une
+fonction continue](#cpfc). 
 
 Intégrales et séries
 --------------------------------------------------------------------------------
