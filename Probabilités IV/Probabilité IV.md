@@ -14,9 +14,25 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
+# Préambule - rappels
 
+On peut  étendre ces définitions pour un $p \in \N^\ast$ quelconque.
 
+### Définition --- Espace $\L^p$ {.definition}
+Soit $X$ une variable aléatoire. On note $X \in \L^p$, ou $\L^p(\Omega,\A,\P)$, si et seulement si $\Esp(|X|^p) = \int_\R |x|^p \P_X(dx) = \int_{\Omega} |X|^p(\omega)\P(d\omega) < +\infty$.
 
+Si $X \in \L^p$, on dit qu'elle admet un moment d'ordre $p$. Du fait que $\P$ est une mesure finie, on a la stabilité par inclusion suivante :
+
+### Proposition {.proposition}
+Soit $p \in \N^\ast$, on a l'inclusion :
+$$ \L^{p+1}(\Omega,\A,\P) \subset \L^p(\Omega,\A,\P)$$
+
+### Démonstration {.proof}
+Supposons $X \in \L^{p+1}(\Omega,\A,\P)$. On a
+$$|X|^p \leq \max(1,|X|^{p+1}) = 1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}.$$
+Le terme de droite est intégrable, en effet :
+$$\Esp\left(1_{|X| < 1} + 1_{|X| \geq 1} |X|^{p+1}\right) \leq \int_\Omega \P(d\omega) + \int_\Omega |X(\omega)|^{p+1} \P(d\omega) = 1 + \Esp(|X|^{p+1}).$$
+donc $|X|^p$ est intégrable.
 
 ### {.anonymous}
 
@@ -46,24 +62,7 @@ L'inégalité de Bienaymé-Chebyshev est très utile en pratique. Elle permet de
 
 
 ## Indépendance et suites de variables indépendantes
-On notera que $\P$ étant finie, elle est nécessairement $\sigma$-finie. On peut ainsi caractériser l'indépendance de deux variables aléatoires quelconques au moyen du théorème de Fubini et du résultat d'unicité de la mesure produit donné au chapitre V de calcul intégral.
-
-### Proposition --- indépendance d'un couple de variables aléatoires {.proposition}
-
-Soient $X$ et $Y$ deux variables aléatoires réelles définies toutes deux sur $(\Omega,\A,\P)$. Le couple $Z = (X,Y)$ peut-être considéré comme un vecteur aléatoire à valeurs dans $(\R^2, \B(\R)\otimes \B(\R))$, et les deux variables aléatoires $X$ et $Y$ sont indépendantes si et seulement si la loi $\P_{X,Y}$ du couple est égale au produit $\P_X \otimes \P_Y$ des lois de $X$ et $Y$.
-
-### Démonstration {.proof}
-
-Soit $A$ et $B$ deux boréliens de $\R$. On a évidemment $Z^{-1}(A \times B) = X^{-1}(A) \cap Y^{-1}(B) \in \A$ et donc la mesurabilité ($\A/ \left(\B(\R)\otimes \B(\R)\right)$)de $Z$ découle de [la définition de la tribu produit de Borel]().
-
-L'indépendance de $X$ et $Y$ revient au fait que pour tous boréliens $A$ et $B$ de $\R$, on ait
-    $$\P((X,Y) \in A\times B) = \P(X\in A)\P(Y \in B),$$
-ce qui équivaut à 
-    $$\P_{X,Y}(A \times B) = \P_X(A)\P_Y(B),$$
-qui est assuré par l'unicité de la mesure (de probabilité) produit.
-
-### {.anonymous}
-Ce résultat nous indique que l'on peut effectivement construire des couples (et même des $n$-uplets en itérant) de variables aléatoires réelles indépendantes en considérant l'espace produit, munis des tribus produit et des (mesures de) probabilités produit. Il est malheureusement beaucoup plus délicat, mais indispensable pour les applications (en particulier la loi des grands nombres), de construire une **suite infinie de variables indépendantes** de lois données.
+Au début du chapitre 4, nous avons vu comment construire des couples (et même des $n$-uplets en itérant) de variables aléatoires réelles indépendantes en considérant l'espace produit, munis des tribus produit et des (mesures de) probabilités produit. Il est malheureusement beaucoup plus délicat, mais indispensable pour les applications (en particulier la loi des grands nombres), de construire une **suite infinie de variables indépendantes** de lois données.
 
 Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie sur un espace de probabilité $(\Omega_n,\A_n,\P_n)$, à valeurs dans $(\R,\B(\R))$ et de loi $\P_{X_n}$ (pour construire chaque $X_n$, on peut procéder comme ci-dessus). Ensuite, on pose
 \begin{align*}
