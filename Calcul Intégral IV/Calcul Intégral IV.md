@@ -707,7 +707,7 @@ Construire une fonction $f:\R \to \R$ mesurable par rapport à la tribu de
 Lebesgue $\mathcal{L}(\R)$ mais dont l'intégrale n'est pas définie par rapport à
 la mesure de Lebesgue $\lambda$ (ni finie ni infinie).
 
-### Intégrale abstraite et intégrale de jauge {.theorem}
+### Intégrale par rapport à une mesure et intégrale de jauge {.theorem}
 Soit $f: \R^n \to \R$. 
 La fonction $f$ est intégrable par rapport à la mesure de Lebesgue $\lambda$ 
 si et seulement si 
