@@ -22,13 +22,13 @@ $$
 $$
 Est-ce que $\mu$ est une mesure sur $(X, \mathcal{A})$ ?
 
-  - [ ] A : Non, car $\mathcal{A}$ n'est pas une tribu,
+  - [ ] A : non, car $\mathcal{A}$ n'est pas une tribu,
 
-  - [ ] B : Non, car $\mu$ n'est pas nulle en 0,
+  - [ ] B : non, car $\mu$ n'est pas nulle en 0,
 
-  - [ ] C : Non, car $\mu$ n'est pas $\sigma$-additive,
+  - [ ] C : non, car $\mu$ n'est pas $\sigma$-additive,
 
-  - [ ] D : Oui.
+  - [ ] D : oui.
 
 
 #### Question 2 (réponses multiples) 
@@ -53,4 +53,33 @@ et seulement si :
 
   - [ ] C : la longueur de $\{x \in \R \; | \; f(x) \neq g(x)\}$ est nulle,
 
-  - [ ] D : est vrai sans condition sur $f$ et $g$.
+  - [ ] D : $f$ et $g$ sont égales $c$-presque partout sans condition.
+
+#### Question 4
+La fonction caractéristique de $\mathbb{Q}$ est une fonction étagée
+
+  - [ ] A : oui,
+
+  - [ ] B : non.
+
+  - [ ] C : ça dépend (question ambigüe).
+
+#### Question 5
+Si $\mathcal{A}$ est une tribu de $\R$ et la fonction
+$h: \R \to [-\infty, +\infty]$ est continue, alors $h$ est $\mathcal{A}$-mesurable
+
+  - [ ] A : oui,
+
+  - [ ] B : non, pas nécessairement.
+
+#### Question 6 (réponse multiple)
+L'intégrale d'une fonction $f: X \to [0, +\infty]$ (positive) mesurable :
+
+  - [ ] A : est toujours définie,
+  
+  - [ ] B : est toujours positive,
+
+  - [ ] C : ne peut être infinie que si $f$ prend des valeurs infinies,
+
+  - [ ] D : est infinie dès que $f$ prend des valeurs infinies.
+
