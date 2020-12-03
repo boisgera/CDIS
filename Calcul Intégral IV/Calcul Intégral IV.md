@@ -1801,24 +1801,24 @@ un cadre permettant d'étudier les séries et leur somme.
 
 Soit $c$ la mesure de comptage sur $\N$.
 
-### Question 1 {.question #is-1}
+### Question 1 {.question #is-1 .one}
 A quelle condition (nécessaire et suffisante) une fonction 
 $f:\N \to [-\infty, +\infty]$ est-elle mesurable 
 (vis-à-vis de la tribu associée à la mesure de comptage sur $\N$) ?
 
-### Question 2 {.question #is-2}
+### Question 2 {.question #is-2 .two}
 Soit $f:\N \to [0, +\infty]$ une fonction mesurable.
 Montrer que l'intégrale de $f$ par rapport à la mesure de comptage vérifie
 $$
 \int f \, c = \sum_{n \in \N} f(n).
 $$
 
-### Question 3 {.question #is-3}
+### Question 3 {.question #is-3 .two}
 Soit $f:\N \to [-\infty, +\infty]$ une fonction mesurable.
 A quelle condition (nécessaire et suffisante) la fonction $f$ est-elle $c$-intégrable ? 
 Calculer alors son intégrale.
 
-### Question 4 {.question #is-4}
+### Question 4 {.question #is-4 .two}
 Formuler le théorème de convergence dominée associé à la mesure de comptage 
 $c$ sur $\N$ comme un résultat portant sur les séries.
 
@@ -1829,10 +1829,10 @@ Mesure définie par une intégrale
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Soit $f:X \to \left[0, +\infty\right[$ 
 une fonction mesurable positive à valeurs finies. 
 
-### Question 1 {.question #mdi-1}
+### Question 1 {.question #mdi-1 .two}
 Montrer que pour tout $A \in \mathcal{A}$, la fonction $1_A f$ est mesurable.
 
-### Question 2 {.question #mdi-2}
+### Question 2 {.question #mdi-2 .two}
 Montrer que la fonction notée $f \mu$ définie par
 $$
 f \mu : A \in \mathcal{A} \mapsto \int_A f \, \mu := \int 1_A f \, \mu \in [0, +\infty].
@@ -1842,7 +1842,7 @@ est une mesure sur $(X, \mathcal{A})$.
 Mesure image 
 --------------------------------------------------------------------------------
 
-### Question 0 {.question #mim-0}
+### Question 0 {.question #mim-0 .two}
 Soit $\mu$ une mesure sur $\R$ muni de la tribu de Lebesgue $\mathcal{L}(\R)$.
 Soit $h: \R \to \R$ la fonction définie par
 $$
@@ -1874,14 +1874,14 @@ $$
 \mu \circ h^{-1}(B) = \mu(h^{-1}(B)).
 $$
 
-### Question 1 {.question #mim-1}
+### Question 1 {.question #mim-1 .one}
 Montrer que $\mathcal{B}$ est une tribu.
 
-### Question 2 {.question #mim-2}
+### Question 2 {.question #mim-2 .one}
 Montrer que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$ ; 
 on l'appelle la *mesure image de $\mu$ par $h$*.
 
-### Question 3 {.question #mim-3}
+### Question 3 {.question #mim-3 .three}
 Montrer que la fonction $f:Y \to [-\infty,\infty]$ est 
 $\mathcal{B}$-mesurable si et seulement si $f \circ h$ est 
 $\mathcal{A}$-mesurable.
@@ -1911,7 +1911,7 @@ N \subset X
 \}.
 $$
 
-### Question 1 {.question #cm-1}
+### Question 1 {.question #cm-1 .two}
 Montrer que la collection $\overline{\mathcal{A}}$ définie par
 $$
 \overline{\mathcal{A}} 
@@ -1920,7 +1920,7 @@ $$
 $$
 est une tribu.
 
-### Question 2 {.question #cm-2}
+### Question 2 {.question #cm-2 .three}
 Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
 mesure $\overline{\mu}$ définie sur $\overline{\mathcal{A}}$.
 
@@ -1930,11 +1930,11 @@ Approximation par des ensembles mesurables (hors-programme)
 
 Soit $A$ un sous-ensemble de $\R^n$.
 
-### Question 1 {.question #enm-1}
+### Question 1 {.question #enm-1 .four}
 Montrer qu'il existe un ensemble $\lambda^*$-mesurable $B$ contenant $A$ et tel que
 $\lambda^*(A) = \lambda^*(B)$.
 
-### Question 2 {.question #enm-2}
+### Question 2 {.question #enm-2 .four}
 A quelle condition portant sur $\lambda^*(B \setminus A)$ l'ensemble $A$ est-il 
 $\lambda^*$-mesurable ?
 
@@ -1949,13 +1949,13 @@ $$
 $$
 où $\lambda^*$ désigne la mesure extérieure de Lebesgue sur $\R^n$.
 
-### Question 1 {.question #mi-1}
+### Question 1 {.question #mi-1 .four}
 Montrer que la définition de $\lambda_*(A)$ ne dépend pas du choix du pavé $P$.
 
-### Question 2 {.question #mi-2}
+### Question 2 {.question #mi-2 .four}
 Montrer que $\lambda_*(A) \leq \lambda^*(A)$, avec égalité si $A$ est $\lambda^*$-mesurable.
 
-### Question 3 {.question #mi-3}
+### Question 3 {.question #mi-3 .four}
 Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
 et $\lambda_*(A) = \lambda^*(A)$, alors $A$ est $\lambda^*$-mesurable.
 
@@ -2787,4 +2787,3 @@ $A$ est mesurable.
 Réferences
 ================================================================================
 
--->
