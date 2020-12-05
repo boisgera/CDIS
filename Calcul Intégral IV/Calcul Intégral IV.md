@@ -386,7 +386,7 @@ Caractériser les ensembles négligeables pour la mesure de Dirac $\delta_x$.
 Montrer qu'un ensemble mesurable est négligeable si et seulement si il
 est de mesure nulle.
 
-Intégrale
+Fonctions mesurables
 ================================================================================
 
 ### Fonction mesurable {.definition}
@@ -470,7 +470,7 @@ Soit $f: X \to \R$ une fonction étagée ;
 il existe donc des réels $y_1, \dots, y_{n}$ distincts non nuls tels que
 $f(X) \setminus \{0\}= \{y_1,\dots, y_{n-1}\}.$
 On a alors
-$$f = \sum_{k=1}^{n} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(y_k).$$ 
+$$f = \sum_{k=1}^{n} y_k 1_{A_k} \, \mbox{ avec } \, A_k = f^{-1}(\{y_k\}).$$ 
 Si de plus $f$ est mesurable, les singletons de $\R$ étant fermés, 
 les ensembles $A_k$ sont nécessairement ($\mathcal{A}$-)mesurables.
 
@@ -500,7 +500,7 @@ Il existe une suite croissante de fonctions
 étagées mesurables positives $f_k : X \to \left[0, +\infty\right[$ (à valeurs
 finies) convergeant simplement vers $f$.
 $$
-0 \leq f_0(x) \leq f_1(x) \leq \dots \leq f_k(x) \to f(x)
+0 \leq f_0(x) \leq f_1(x) \leq \dots \leq f_k(x) \to f(x) \mbox{ quand $k\to +\infty.$}
 $$
 
 ### Démonstration {.proof}
@@ -560,7 +560,7 @@ Si les fonctions $f_1, \dots, f_n: X \to [-\infty, +\infty]$ sont mesurables et
 que la fonction $h : [-\infty, +\infty]^n \to [-\infty,+\infty]$ est continue, 
 la function composée $h \circ (f_1, \dots, f_n)$ est mesurable. 
 
-### Démonstration (limité au cas $n=1$) {.proof}
+### Démonstration (limitée au cas $n=1$) {.proof}
 Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
 $U$ par $h$ est un ouvert de $[-\infty, +\infty]$ et comme 
 $f$ est mesurable, l'image réciproque de cet ensemble par $f$ est un ensemble
@@ -570,7 +570,7 @@ mesurable. La fonction composée $h \circ f$ est donc mesurable.
 Soit $(X, \mathcal{A})$ un espace mesurable. 
 Soit $f: X \to [-\infty, +\infty]$ une fonction mesurable. 
 Il existe une suite de fonctions 
-étagées mesurables $f_k : X \to \left[0, +\infty\right[$ (à valeurs
+étagées mesurables $f_k : X \to \left]-\infty, +\infty\right[$ (à valeurs
 finies) dont la suite des valeurs absolues $|f_k|$ est croissante 
 $$
 0 \leq |f_0| \leq \cdots \leq |f_k| \leq |f_{k+1}| \leq \cdots
@@ -578,8 +578,8 @@ $$
 et qui convergent simplement vers $f$.
 
 ### Démonstration {.proof}
-Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ sont mesurables
-comme composées de fonctions mesurables et de fonctions continues.
+Les fonctions $f_+ = \max(f, 0)$ et $f_- = - \min(f, 0)$ [sont mesurables
+comme composées de fonctions mesurables et de fonctions continues](#cpfc).
 Elle sont également positives, telles que $f = f_+ - f_-$ et $|f| = f_+ + f_-$. 
 Il existe donc deux suites croissantes de fonctions $f_{k+}$ et $f_{k-}$ 
 de fonctions étagées mesurables positives telles $f_{k+} \to f_+$ et 
@@ -595,6 +595,9 @@ les fonctions $f+g$, $fg$ et $\max(f,g)$ sont-elles bien définies ?
 Soit $\lambda > 0$ et soient $f, g : X \to \left[0, +\infty\right]$ 
 deux fonctions mesurables. Montrer que les fonctions
 $\lambda f$ et $f+g$ sont mesurables.
+
+Intégrale
+================================================================================
 
 ### Intégrale d'une fonction positive -- Propriétés caractéristiques {#carac}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. *L'intégrale (de Lebesgue)
@@ -632,11 +635,11 @@ sera donnée dans le reste de cette section. La preuve que l'intégrale ainsi
 construite satisfait bien les trois propriétés caractéristiques ci-dessus 
 sera donnée dans la section suivante. 
 
-### Intégrale et mesures de Dirac {.exercise}
-Soit $x \in \R$ et $f:\R \to [0, +\infty]$. Sachant que 
-$f$ est limite simple d'une suite croissante de fonctions étagées
-$f_k : \R \to \left[0, +\infty\right[$, en déduire, en exploitant
-les propriétés caractéristiques de l'intégrale, la valeur de
+### Intégrale et mesures de Dirac {.exercise .question .two #imd}
+Soit $x \in \R$ et $f:\R \to [0, +\infty]$ une fonction mesurable. 
+Sachant que $f$ est limite simple d'une suite croissante de fonctions étagées
+$\delta_x$-mesurables $f_j : \R \to \left[0, +\infty\right[$, en déduire, 
+en exploitant les propriétés caractéristiques de l'intégrale, la valeur de
 $$
 \int f \, \delta_x = \int_{\R} f(y) \, \delta_x(dy).
 $$
@@ -662,11 +665,12 @@ $$
 \int f \mu = \int_X f(x) \, \mu(dx) \in \R.
 $$
 
-### Absolue intégrabilité {.exercise}
-Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Montrer que si $f: X \to [-\infty,+\infty]$
+### Absolue intégrabilité {.exercise .question .one #AI}
+Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. 
+Montrer que si $f: X \to [-\infty,+\infty]$
 est intégrable alors $|f|$ est également intégrable.
 
-### Fonctions étagées {.exercise}
+### Intégrabilité de fonctions étagées {.exercise .question .two #feAI}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et soient $A_1, \dots, A_n$ 
 des ensemble mesurables disjoints non vides et 
 $y_1, \dots, y_{n-1} \in [-\infty, +\infty] \setminus \{0\}$. 
@@ -676,7 +680,8 @@ f = \sum_{k=1}^n y_k 1_{A_k}
 $$
 est-elle intégrable ? Quelle est alors la valeur de son intégrale ?
 
-### Intégrales finies, infinies et indéfinies {.post}
+
+### Intégrales finies, infinies et indéfinies {.remark .post}
 Une fonction positive peut avoir une intégrale bien définie (finie ou infinie) 
 -- il faut et il suffit qu'elle soit mesurable -- sans être pour autant 
 intégrable. Elle est intégrable si et seulement si elle est mesurable et que 
@@ -697,18 +702,17 @@ absorbant pour l'addition, tel que $\bot = +\infty - \infty$
 (le [NaN ou *not-a-number* des numériciens](https://en.wikipedia.org/wiki/NaN) 
 est un concept très proche). Mais nous n'allons pas explorer cette piste ici.
 
-### Exercice {.exercise}
+### Vers l'indéfini et au-delà {.exercise .question .two #ied}
 Construire une fonction $f:\R \to \R$ mesurable par rapport à la tribu de 
 Lebesgue $\mathcal{L}(\R)$ mais dont l'intégrale n'est pas définie par rapport à
 la mesure de Lebesgue $\lambda$ (ni finie ni infinie).
 
-
-### Intégrale de Lebesgue et de Henstock-Kurzweil {.theorem}
-Soit $f: \R^n \to \R$. La fonction $f$ est intégrable
-par rapport à la mesure de Lebesgue $\lambda$ si et seulement si 
-$f$ est absolument intégrable ($f$ et $|f|$ sont intégrables) 
-pour l'intégrale de Henstock-Kurzweil. Dans ce cas, les
-deux intégrales sont égales :
+### Intégrale par rapport à une mesure et intégrale de jauge {.theorem}
+Soit $f: \R^n \to \R$. 
+La fonction $f$ est intégrable par rapport à la mesure de Lebesgue $\lambda$ 
+si et seulement si 
+$f$ est intégrable au sens de Lebesgue (par l'approche des intégrales de jauges). 
+Dans ce cas, les deux intégrales sont égales :
 $$
 \int_{\R^n} f(x) \, \lambda(dx) = \int_{\R^n} f(x) \, dx.
 $$
@@ -721,9 +725,9 @@ $$
 f_+ = \frac{f+|f|}{2}, \, f_- = \frac{f - |f|}{2} \; \mbox{ et } \;
 f = f_+ - f_-, \, |f| = f_+ + f_-,
 $$
-les fonctions $f_+$ et $f_-$ sont HK-intégrables si et seulement 
-si $f$ et $|f|$ sont HK-intégrables, c'est-à-dire si et seulement
-si $f$ est absolument HK-intégrable. Il nous suffit donc de démontrer le
+les fonctions $f_+$ et $f_-$ sont Lebesgue-intégrables si et seulement 
+si $f$ et $|f|$ sont Lebesgue-intégrables, soit -- comme cette intégrale est absolue -- 
+si et seulement si $f$ est Lebesgue-intégrable. Il nous suffit donc de démontrer le
 résultat pour les fonctions positives.
 
 Remarquons qu'une fonction étagée positive
@@ -733,7 +737,7 @@ $$
 où les ensembles $A_1, \dots, A_{n} \in \mathcal{A}$ sont disjoints,
 et $y_1, \dots, y_{n} \in \left]0, +\infty\right[$ est $\lambda$-intégrable
 si et seulement si $\lambda(A_k) < +\infty$ pour tout $k$. 
-Par définition de la mesure de Lebesgue $\lambda$, c'est équivalent à l'HK-intégrabilité 
+Par définition de la mesure de Lebesgue $\lambda$, c'est équivalent à la Lebesgue-intégrabilité 
 de chaque $1_{A_k}$ et donc de $g$ ; 
 l'intégrale de $g$ par rapport à $\lambda$ vaut alors
 $$
@@ -748,15 +752,15 @@ Si une fonction $f$ positive est $\lambda$-intégrable, elle est la
 limite simple d'une suite croissante telles fonctions étagées positives et 
 $\lambda$-intégrables à valeurs finies et son intégrale par rapport à $\lambda$ est la limite
 des intégrales par rapport à $\lambda$ des fonctions étagées. D'après
-le résultat précédente, elle est donc la limite des intégrales au sens de
-Henstock-Kurzweil de ces fonctions, qui, d'après le résultat des convergence
-monotone de l'intégrale de Henstock-Kurzweil, converge vers l'intégrale de
-Henstock-Kurzweil de $f$. Réciproquement, si $f$ est HK-intégrable, elle
-est mesurable -- mesurable au sens de Henstock-Kurzweil et donc par le critère 
+le résultat précédent, elle est donc la limite des intégrales au sens de
+Lebesgue de ces fonctions, qui, d'après le résultat des convergence
+monotone de l'intégrale de Lebesgue, converge vers l'intégrale de
+Lebesgue de $f$. Réciproquement, si $f$ est Lebesgue-intégrable, elle
+est mesurable -- mesurable au sens de Lebesgue et donc par le critère 
 de l'image réciproque, également $\mathcal{L}(\R)$-mesurable --
 et le même procédé d'approximation par une suite croissante de fonctions étagées
 positives est donc applicable. Les théorèmes de convergence monotone, 
-pour l'intégrale de Henstock-Kurzweil et pour l'intégrale associée à $\lambda$, 
+pour l'intégrale de Lebesgue et pour l'intégrale associée à $\lambda$, 
 permettent alors de conclure.
 
 ### {.ante}
@@ -781,7 +785,7 @@ $$
 \int f \, \mu := \sum_{k=1}^{n} y_k \, \mu(A_k).
 $$
 
-### Intégrale d'une fonction positive
+### Intégrale d'une fonction positive {.definition}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et 
 $f: X \to [0, +\infty]$ une fonction mesurable.
 Soit $\mathcal{F}(f)$ la collection des fonctions étagées mesurables 
@@ -832,7 +836,7 @@ satisfait bien [les propriétés caractéristiques souhaitées](#carac), en comm
 le lien entre mesure d'un ensemble et intégrale de sa fonction
 caractéristique.
 
-### Lemme de croissance {#lemme-croissance}
+### Lemme de croissance {.lemma #lemme-croissance}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
 $g, h: X \to \left[0, +\infty\right[$ deux fonction mesurables telles 
 que $g\leq h$. Alors
@@ -848,7 +852,7 @@ $$
 $$
 ce qui est l'égalité entre intégrales souhaitée.
 
-### Intégrale et mesure
+### Intégrale et mesure {.théorème}
 Pour tout ensemble $A \in \mathcal{A}$, 
 $$
 \int_X 1_A (x) \mu(dx) = \mu(A).
@@ -1021,7 +1025,7 @@ en annexe.
 
 ### Théorème de convergence dominée {.theorem #TCD}
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré et
-$f_k: X \to [-\infty, +\infty]$, $k \in \N$, une suite de fonctions 
+$f_k: X \to [-\infty, +\infty]$ ($k \in \N$) une suite de fonctions 
 mesurables, dominées par la fonction intégrable $g: X \to [0, +\infty]$
 c'est-à-dire telles que pour tout tout $k \in \N$ et tout $x \in X$,
 $$
@@ -1797,24 +1801,24 @@ un cadre permettant d'étudier les séries et leur somme.
 
 Soit $c$ la mesure de comptage sur $\N$.
 
-### Question 1 {.question #is-1}
+### Question 1 {.question #is-1 .one}
 A quelle condition (nécessaire et suffisante) une fonction 
 $f:\N \to [-\infty, +\infty]$ est-elle mesurable 
 (vis-à-vis de la tribu associée à la mesure de comptage sur $\N$) ?
 
-### Question 2 {.question #is-2}
+### Question 2 {.question #is-2 .two}
 Soit $f:\N \to [0, +\infty]$ une fonction mesurable.
 Montrer que l'intégrale de $f$ par rapport à la mesure de comptage vérifie
 $$
 \int f \, c = \sum_{n \in \N} f(n).
 $$
 
-### Question 3 {.question #is-3}
+### Question 3 {.question #is-3 .two}
 Soit $f:\N \to [-\infty, +\infty]$ une fonction mesurable.
 A quelle condition (nécessaire et suffisante) la fonction $f$ est-elle $c$-intégrable ? 
 Calculer alors son intégrale.
 
-### Question 4 {.question #is-4}
+### Question 4 {.question #is-4 .two}
 Formuler le théorème de convergence dominée associé à la mesure de comptage 
 $c$ sur $\N$ comme un résultat portant sur les séries.
 
@@ -1825,10 +1829,10 @@ Mesure définie par une intégrale
 Soit $(X, \mathcal{A}, \mu)$ un espace mesuré. Soit $f:X \to \left[0, +\infty\right[$ 
 une fonction mesurable positive à valeurs finies. 
 
-### Question 1 {.question #mdi-1}
+### Question 1 {.question #mdi-1 .two}
 Montrer que pour tout $A \in \mathcal{A}$, la fonction $1_A f$ est mesurable.
 
-### Question 2 {.question #mdi-2}
+### Question 2 {.question #mdi-2 .two}
 Montrer que la fonction notée $f \mu$ définie par
 $$
 f \mu : A \in \mathcal{A} \mapsto \int_A f \, \mu := \int 1_A f \, \mu \in [0, +\infty].
@@ -1838,7 +1842,7 @@ est une mesure sur $(X, \mathcal{A})$.
 Mesure image 
 --------------------------------------------------------------------------------
 
-### Question 0 {.question #mim-0}
+### Question 0 {.question #mim-0 .two}
 Soit $\mu$ une mesure sur $\R$ muni de la tribu de Lebesgue $\mathcal{L}(\R)$.
 Soit $h: \R \to \R$ la fonction définie par
 $$
@@ -1870,14 +1874,14 @@ $$
 \mu \circ h^{-1}(B) = \mu(h^{-1}(B)).
 $$
 
-### Question 1 {.question #mim-1}
+### Question 1 {.question #mim-1 .one}
 Montrer que $\mathcal{B}$ est une tribu.
 
-### Question 2 {.question #mim-2}
+### Question 2 {.question #mim-2 .one}
 Montrer que $\mu \circ h^{-1}$ est une mesure sur $\mathcal{B}$ ; 
 on l'appelle la *mesure image de $\mu$ par $h$*.
 
-### Question 3 {.question #mim-3}
+### Question 3 {.question #mim-3 .three}
 Montrer que la fonction $f:Y \to [-\infty,\infty]$ est 
 $\mathcal{B}$-mesurable si et seulement si $f \circ h$ est 
 $\mathcal{A}$-mesurable.
@@ -1907,7 +1911,7 @@ N \subset X
 \}.
 $$
 
-### Question 1 {.question #cm-1}
+### Question 1 {.question #cm-1 .two}
 Montrer que la collection $\overline{\mathcal{A}}$ définie par
 $$
 \overline{\mathcal{A}} 
@@ -1916,7 +1920,7 @@ $$
 $$
 est une tribu.
 
-### Question 2 {.question #cm-2}
+### Question 2 {.question #cm-2 .three}
 Montrer que la mesure $\mu$ peut être étendue d'une façon unique en une
 mesure $\overline{\mu}$ définie sur $\overline{\mathcal{A}}$.
 
@@ -1926,11 +1930,11 @@ Approximation par des ensembles mesurables (hors-programme)
 
 Soit $A$ un sous-ensemble de $\R^n$.
 
-### Question 1 {.question #enm-1}
+### Question 1 {.question #enm-1 .four}
 Montrer qu'il existe un ensemble $\lambda^*$-mesurable $B$ contenant $A$ et tel que
 $\lambda^*(A) = \lambda^*(B)$.
 
-### Question 2 {.question #enm-2}
+### Question 2 {.question #enm-2 .four}
 A quelle condition portant sur $\lambda^*(B \setminus A)$ l'ensemble $A$ est-il 
 $\lambda^*$-mesurable ?
 
@@ -1945,13 +1949,13 @@ $$
 $$
 où $\lambda^*$ désigne la mesure extérieure de Lebesgue sur $\R^n$.
 
-### Question 1 {.question #mi-1}
+### Question 1 {.question #mi-1 .four}
 Montrer que la définition de $\lambda_*(A)$ ne dépend pas du choix du pavé $P$.
 
-### Question 2 {.question #mi-2}
+### Question 2 {.question #mi-2 .four}
 Montrer que $\lambda_*(A) \leq \lambda^*(A)$, avec égalité si $A$ est $\lambda^*$-mesurable.
 
-### Question 3 {.question #mi-3}
+### Question 3 {.question #mi-3 .four}
 Montrer la réciproque de la question précédente : si $A \subset \R^n$ est borné
 et $\lambda_*(A) = \lambda^*(A)$, alors $A$ est $\lambda^*$-mesurable.
 
@@ -2237,6 +2241,76 @@ $f(x) + g(x) = \max(f(x), 0) + \max(g(x), 0)$. Or la fonction
 $(x, y) \in [-\infty, +\infty]^2 \to \max(x, 0) + \max(y, 0) \in [-\infty, +\infty]$
 est bien définie et contine donc $f+g$ est continue [par composition par une
 fonction continue](#cpfc). 
+
+### Intégrale et mesures de Dirac {.answer #answer-imd}
+Pour tout $j \in \N$, $f_j$ peut s'écrire comme 
+$f_j= \sum_{k=1}^n y_k 1_{A_k}$, où $y_k > 0$ et $A_k \in \mathcal{P}(\R)$. 
+Donc, en utilisant successivement la linéarité de l'intégrale
+et le lien entre intégrale et mesure, on obtient
+$$
+\int f_j \, \delta_x 
+= \int \left( \sum_{k=1}^n y_k 1_{A_k} \right) \, \delta_x
+= \sum_{k=1}^n y_k \left(\int 1_{A_k} \, \delta_x\right)
+= \sum_{k=1}^n y_k \delta_x(A_k)
+$$
+et comme $\delta_x(A_k) = 1_{A_k}(x)$,
+$$
+\int f_j \, \delta_x 
+= \sum_{k=1}^n y_k 1_{A_k}(x) = f_j(x).
+$$
+Par conséquent, comme $f_j(x) \to f(x)$ quand $j \to +\infty$, 
+la propriété de convergence monotone garantit que
+$$
+\int f \, \delta_x = f(x).
+$$
+
+### Absolue intégrabilité {.answer #answer-AI}
+Si la fonction $f$ est intégrable alors $f_+$ et $f_-$ sont intégrables,
+donc $f_+ + f_-$, c'est-à-dire $|f|$, est également intégrable.
+
+
+### Intégrabilité de fonctions étagées {.answer #answer-feAI}
+Notons $(y_{k})_+ = \max(y_k, 0)$ et $(y_{k})_- = -\min(y_k, 0)$ ; les parties
+positives et négatives de $f$ se mettent sous la forme
+$$
+f_+ = \sum_{k=1}^n (y_{k})_+ 1_{A_k} 
+\; \mbox{ et } \;
+f_- = \sum_{k=1}^n (y_{k})_- 1_{A_k}.
+$$
+La fonction $f$ est donc intégrable si et seulement si 
+$$
+\int f_+ \, \mu = \sum_k (y_{k})_+ \, \mu(A_k) < + \infty
+\; \mbox{ et } \;
+\int f_- \, \mu = \sum_k (y_{k})_- \, \mu(A_k) < + \infty
+$$
+ou de façon équivalente si leur somme est finie, ce qui se réécrit comme
+$$
+\sum_k (y_{k})_+ \, \mu(A_k) 
++
+\sum_k (y_{k})_- \, \mu(A_k)
+=
+\sum_k |y_{k}| \, \mu(A_k) < + \infty.
+$$
+La valeur de son intégrale est alors
+$$
+\int f \, \mu
+= \int f_+ \mu - \int f_- \mu
+= \sum_k (y_{k})_+ \, \mu(A_k) 
+-
+\sum_k (y_{k})_- \, \mu(A_k)
+=
+\sum_k y_k \, \mu(A_k).
+$$
+
+### Vers l'indéfini et au-delà {.answer #answer-ied}
+On peut considérer (une des définitions de) la fonction signe $f: \R \to \R$,
+caractérisée par $f(x) = -1$ si $x<0$, $f(0)= 0$ et $f(x)=1$ si $x>1$. 
+La fonction $f$ est continue par morceaux, donc "classiquement" mesurable,
+c'est-à-dire mesurable pour la tribu de Lebesgue.
+En examinant successivement $f_+$ est $f_-$ on peut se convaincre que
+ces fonctions (qui sont étagées) ont pour intégrales 
+(par rapport à la mesure de Lebesgue) $+\infty$ ; 
+la fonction $f$ n'est donc pas intégrable.
 
 Intégrales et séries
 --------------------------------------------------------------------------------
@@ -2713,4 +2787,3 @@ $A$ est mesurable.
 Réferences
 ================================================================================
 
--->
