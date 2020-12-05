@@ -23,6 +23,19 @@
 Objectifs d'apprentissage
 ================================================================================
 
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, la connaissance des démonstrations du document 
+n'est pas exigible[^hp] 
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
 
 #### Cadre général des probabilités
 
@@ -31,7 +44,7 @@ Objectifs d'apprentissage
 - \one savoir que la loi de probabilité $\P_X$ d'une variable aléatoire $X$ définie sur $(\Omega,\A,\P)$ est la mesure image de $\P$ par $X$ 
 - \one connaître la contrepartie des deux point précédents dans le cas des vecteurs aléatoires
 - \four connaître la définition d'une tribu produit
-- \three savoir que $\mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n})$ 
+- \four savoir que $\mathcal{B}(\R^{m+n}) = \mathcal{B}(\R^{m}) \otimes \mathcal{B}(\R^{n})$ 
 - \two savoir utiliser le théorème de Fubini pour les probas
 - \two connaître la caractérisation de l'indépendance dans le cas général
 
@@ -47,13 +60,11 @@ Objectifs d'apprentissage
 - \one connaître les deux points de la définition de l'espérance conditionnelle
 - \one connaître les deux points de la définition de l'espérance conditionnelle d'une fonction de variables aléatoires
 - \one connaître et savoir utiliser la formule de l'espérance totale
-- \two savoir calculer la densité conditionnelle d'un certain nombre de composantes sachant les autres dans un vecteur gaussien
+- \two savoir calculer la densité conditionnelle d'un certain nombre de composantes sachant les autres dans un vecteur gaussien à densité
 - \two savoir que la régression linéaire est la meilleure approximation linéaire (au sens des moindres carrés) d'une variable aléatoire par une autre
 - \three savoir retrouver ce résultat
 - \four connaître l'interprétation géométrique de l'espérance conditionnelle dans le cas $\L^2$
-
-
-
+- \one connaître et savoir utiliser la formule de la variance totale
 
 Probabilités --- cadre général
 ================================================================================
@@ -62,12 +73,12 @@ Les éléments de théorie de la mesure donnés en calcul intégral permettent u
 
 ### Cas particuliers {.remark}
 
-* Dans le cas discret ($\Omega$ au plus dénombrable), la mesure de probabilité est une somme pondérée de mesures de Dirac :
+* Dans le cas discret ($\Omega$ au plus dénombrable, muni de $\mathcal{P}(\Omega)$), la mesure de probabilité est une somme pondérée de mesures de Dirac :
   $$\P = \sum_{\omega \in \Omega} p_{\omega} \delta_{\omega},$$
   où $\sum_{\omega \in \Omega} p_{\omega} =1$ et $\forall \omega \in \Omega, p_{\omega} \geq 0$
-* Dans le cas à densité ($\Omega = \R^n$, $n\in\N^\ast$), la mesure de probabilité s'écrit :
+* Dans le cas à densité ($\Omega = \R$, muni par exemple de la tribu de Borel), la mesure de probabilité s'écrit :
   $$\P = f\ell,$$
-  où $f$ est une densité et $\ell$ la mesure de (Borel-)Lebesgue sur $\R^n$[^footmes]. On dit que $\P$ admet une densité par rapport à la mesure de (Borel-)Lebesgue.
+  où $f$ est une densité et $\ell$ la mesure de (Borel-)Lebesgue sur $\R$[^footmes]. On dit que $\P$ admet une densité par rapport à la mesure de (Borel-)Lebesgue.
 
 [^footmes]: Comme on a vu au chapitre 1, quand on considère des variables aléaoires, on considère la tribu des boréliens $\B(\R)$. On appelle mesure de Borel-Lebesgue ou de Borel la mesure de Lebesgue restreinte à cette tribu.
 
@@ -92,7 +103,7 @@ On peut également réécrire [la proposition portant sur l'espérance de la com
 Soit $X$ une variable aléatoire réelle de loi $\P_X$ et $g$ une fonction $\B(\R)/\B(\R)$-mesurable (borélienne). Alors $g(X)$ est intégrable si et seulement si l'intégrale
 $$\int_\R |g(x)| \P_X(dx) = \int_\Omega |g(X(\omega))|\P(d\omega)$$
 est finie et dans ce cas
-$$\Esp(g(X)) = \int_R g(x) \P_X(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
+$$\Esp(g(X)) = \int_\R g(x) \P_X(dx) = \int_\Omega g(X(\omega))\P(d\omega).$$
 
 ### {.anonymous}
 Ce résultat fait l'objet d'un exercice du chapitre IV de calcul intégral (mesure image).
@@ -148,7 +159,7 @@ Soient $X$ et $Y$ deux variables aléatoires réelles définies toutes deux sur 
 
 ### Démonstration {.proof}
 
-Soit $A$ et $B$ deux boréliens de $\R$. On a évidemment $Z^{-1}(A \times B) = X^{-1}(A) \cap Y^{-1}(B) \in \A$ et donc la mesurabilité ($\A/ \left(\B(\R)\otimes \B(\R)\right)$)de $Z$ découle de la définition de la tribu produit de Borel, se reporter à @Jacod.
+Soit $A$ et $B$ deux boréliens de $\R$. On a évidemment $Z^{-1}(A \times B) = X^{-1}(A) \cap Y^{-1}(B) \in \A$ et donc la mesurabilité ($\A/ \left(\B(\R)\otimes \B(\R)\right)$)de $Z$ découle de la définition de la tribu produit de Borel.
 
 L'indépendance de $X$ et $Y$ revient au fait que pour tous boréliens $A$ et $B$ de $\R$, on ait
     $$\P((X,Y) \in A\times B) = \P(X\in A)\P(Y \in B),$$
@@ -244,6 +255,14 @@ La probabilité conditionnelle de $Y$ sachant $\{X = x\}$ s'écrit ainsi $\P_{Y|
 
 ### Démonstration {.proof}
 La preuve est immédiate puisque $f_{Y|X=x}$ est une fonction positive d'intégrale 1.
+
+### Dans un triangle (1) {.exercise .question .one #etb1} 
+
+Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T$ est le triangle $T = \{0< y< x < 1\}$.
+
+1. Calculer la densité marginale de $X$
+2. Calculer la densité conditionnelle de $Y$ sachant $X=x$.
+
 
 ### {.anonymous}
 
@@ -358,6 +377,11 @@ Soit $Y \in \L^1$.
  2. L'*espérance conditionnelle de $Y$ sachant $X$* est la **variable aléatoire** définie par :
     $$\Esp(Y|X) = \psi(X), \text{ avec } \psi(x) = \Esp(Y|X=x).$$
 
+### Dans un triangle (2) {.exercise .question .one #etb2} 
+Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T$ est le triangle $T = \{0< y< x < 1\}$.
+Calculer l'espérance conditionnelle de $Y$ sachant $X$.
+
+
 ### Conséquences {.remark}
 
  1. $\psi(x)$ n'est définie que pour $x \notin N$, avec $\P(X\in N) = 0$. Par conséquent, la [définition](#defespcond) définit bien l'espérance conditionnelle $\psi(X) = \Esp(Y|X)$ $\P_X$-presque partout, autrement dit avec probabilité 1, ou encore presque sûrement.
@@ -365,16 +389,19 @@ Soit $Y \in \L^1$.
  3. Lorsque $(X,Y)$ admet une densité, l'espérance conditionnelle de $Y$ sachant $\{X=x\}$ s'écrit
  $$\Esp(Y|X=x) = \int_\R y f_{Y|X=x}(y) dy.$$
 
+### Auto-conditionnement {.exercise .question .one #autocond}
+Montrer que $\Esp(Y|Y) = Y$.
+
+### {.anonymous}
 On peut étendre cette définition aux variables de la forme $g(X,Y)$.
 
 ### Espérance conditionelle d'une fonction de variables aléatoires  {.definition #defespcondg}
-Soit $Y$ une variable aléatoire et $g$ une fonction borélienne positive ou $\P_{X,Y}$-intégrable sur $\R^2$.
+Soit $(X,Y)$ un couple de variables aléatoires réelles et $g$ une fonction borélienne positive ou $\P_{X,Y}$-intégrable sur $\R^2$.
 
  1. L'*espérance conditionnelle de $g(X,Y)$ sachant $\{X=x\}$* est définie par 
     $$\Esp(g(X,Y)|X=x) = \int_\R g(x,y) \P_{Y|X=x} (dy).$$
  2. L'*espérance conditionnelle de $g(X,Y)$ sachant $X$* est la **variable aléatoire** définie par :
     $$\Esp(g(X,Y)|X) = \psi(X), \text{ avec } \psi(x) = \Esp(g(X,Y)|X=x).$$
-
 
 ### Espérance totale {.theorem} 
 Si $Y$ est intégrable, alors $\psi(X) = \Esp(Y | X)$ est intégrable, et 
@@ -391,6 +418,7 @@ Il généralise la [formule des probabilités totales](Probabilité I.pdf #formp
 $$ \Esp \left( \Esp(Y | X) \right) = \Esp( Y )$$
 et on l'appelle la *formule de l'espérance totale*.
 
+
 L’espérance conditionnelle étant définie comme l’espérance selon la loi conditionnelle,
 elle hérite des propriétés usuelles de l’espérance :
  
@@ -400,7 +428,7 @@ elle hérite des propriétés usuelles de l’espérance :
 
 De plus, si $g$ est borélienne positive ou $\P_X$-intégrable,
 $$ \Esp (Y g(X) | X) = g(X) \Esp (Y | X) $$
-est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$. Enfin, on déduit directement du [théorème de Fubini conditionnel]{#fubinicond} la proposition suivante.
+est une généralisation de l’égalité 1. ci-dessus, au cas où $a = g(X)$, qui doit être considéré “comme une constante” dans le calcul de l’espérance conditionnelle sachant $X$ ($X$ est fixée comme une donnée connue a priori). En effet, on a alors $\Esp(g(x)Y|X=x) = g(x)\psi(x)$. Enfin, on déduit directement du [théorème de Fubini conditionnel](#fubinicond) la proposition suivante.
 
 ### Transfert conditionnel {.proposition #transfcond}
 Soient un couple $(X,Y)$ de variables aléatoires réelles de loi jointe $\P_{X,Y}$ et $g$ une fonction borélienne positive ou $\P_{X,Y}$-intégrable sur $\R^2$. On a pour $\P_X$-presque tout $x$ dans $\R$
@@ -410,6 +438,8 @@ $$\Esp(g(X,Y)|X=x) = \Esp(g(x,Y)|X=x) = \int_{\R}g(x,y) \P_Y(dy).$$
 
 Autrement dit, lorsqu'on conditionne par l'événement $\{X=x\}$, cela revient à fixer la valeur de la variable aléatoire $X$ à la constante $x$.
 
+### Espérance conditionnelle d'un produit de variables {.exercise .question .one #prod}
+Calculer $\Esp(XY|X=x)$ puis $\Esp(XY|Y)$.
 
 ## Exemple : vecteurs Gaussiens à densité
 
@@ -466,6 +496,9 @@ L'annulation de ses dérivées partielles en à $a$ et $b$ entraîne que les sol
 a & = \frac{\cov(X,Y)}{\V(X)} = \rho(X,Y)\frac{\sigma_Y}{\sigma_X} \\
 b & = \Esp(Y)  - a \Esp(X)
 \end{align*}
+
+### En détail {.exercise .question .one #detail}
+Détailler le calcul de $a$ et $b$.
 
 On vérifie aisément que ces valeurs donnent bien un minimum pour $\Esp((Y - (aX + b))^2)$ qui est convexe, et déterminent ainsi la meilleure approximation linéaire de $Y$ basée sur $X$ au sens de l'erreur quadratique moyenne.
 
@@ -527,17 +560,26 @@ Il est alors immédiat que le "résidu" $Y-\Esp(Y|X)$ est non corrélé avec $X$
 \end{align*}
 où on a utilisé la formule de l'espérance totale et introduit la variable aléatoire variance conditionnelle $\V(Y|X) = \Esp((Y - \Esp(Y|X))^2|X)$ comme cas particulier de la [définition vue plus haut](#defespcondg).
 
+### Variance totale {.exercise .question .one #vartot}
+Redémontrer ce résultat sans utiliser la notion d'orthogonalité.
 
 Exercices
 ===============================================================================
 
-## Un exercice tout bête {.question #etb} 
+## Couple de variables
+Soient $X$ et $Y$ deux v.a. réelles. On suppose que la densité conditionnelle de $X$ sachant $Y = y$ est la densité $1_{\R_+}(x)y^2 xe^{-xy}$ et que la loi de $Y$
+est de densité $\frac{1}{y^2} 1_{[1,+\infty[} (y)$.
+On pose $T = XY$.
 
-Soient $X$ et $Y$ de densité jointe $f_{X,Y}(x,y)= \frac{1}{x}1_T (x,y)$ où $T$ est le triangle $T = \{0< y< x < 1\}$.
+### Question 1 {.question #ex1-1} 
+Trouver la loi du couple $(T,Y)$. Qu’en déduit-on ?
 
-1. Calculer la densité marginale de $X$
-2. Calculer la densité conditionnelle de $Y$ sachant $X=x$.
-3. En déduire l'espérance conditionnelle de $Y$ sachant $X$.
+### Question 2 {.question #ex1-2} 
+Trouver la loi conditionnelle de $Y$ sachant $X = x$.
+
+### Question 3 {.question #ex1-3} 
+Calculer $E(Y |X)$.
+
 
 ## Mélanges de lois 
 
@@ -629,12 +671,68 @@ Que dire des résultats obtenus aux questions 2 et 3 lorsque :
 Solutions
 ===============================================================================
 
-
-## Un exercice tout bête {.answer #answer-etb} 
+### Dans un triangle (1) {.answer #answer-etb1} 
 
 La densité marginale de $X$ est donnée par $f_X(x) = \int f_{X,Y}(x,y) dy = 1_{]0,1[}(x)$ et pour $x \in ]0,1[$,
 $$f_{Y|X=x} (y) = \frac{1}{x} 1_{]0,x[}(y)$$
-Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$. Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(Y|X) = \frac{X}{2}$.
+Ainsi $X$ est uniformément distribué sur $]0,1[$, et la loi de $Y$ sachant $X =x$ est uniforme sur $]0,x[$ pour $(0 < x < 1)$.
+
+### Dans un triangle (2) {.answer #answer-etb2} 
+
+Pour un tel $x$, l'espérance conditionnelle $\Esp(Y|X=x)$ vaut ainsi $x/2$ et nous obtenons $\Esp(Y|X) = \frac{X}{2}$.
+
+
+### Auto-conditionnement {.answer #answer-autocond}
+On a $\psi(y) = \Esp(Y|Y=y) = y$ et donc $\Esp(Y|Y) = \psi(Y) = Y$ p.s.
+
+### Espérance conditionnelle d'un produit de variables {.answer #answer-prod}
+On a $\Esp(XY|X = x) = x\Esp(Y|X=x)$, d'où $\Esp(XY|X) = X\Esp(Y|X)$ p.s.
+
+### En détail {.answer #answer-detail}
+Notons $J(a,b) = \Esp((Y-(aX+b))^2)$
+$$\frac{\partial J(a,b)}{\partial b} = -2\Esp(Y^2) + 2a \Esp(X) + 2b$$
+d'où $b = \Esp(Y) - a \Esp(X)$
+
+Par ailleurs, 
+\begin{align*}
+\frac{\partial J(a,b)}{\partial a} & = -2\Esp(XY) + 2a \Esp(X^2) + 2b \Esp(X)\\
+                                   & = -2\Esp(XY) + 2a \Esp(X^2) + 2\Esp(X)\Esp(Y) - 2 a \Esp(X^2)\\
+                                   & = -2\cov(X,Y) + a\V(X)
+\end{align*}
+
+d'où $a = \frac{\cov(X,Y)}{\V(X)} = \rho(X,Y)\frac{\sigma_Y}{\sigma_X}$
+
+### Variance totale {.answer #answer-vartot}
+\begin{align*}
+\V(Y) =& \Esp((Y-\Esp(Y)^2)) = \Esp(\Esp((Y-\Esp(Y))^2|X)) \text{   par la formule de l'espérance totale}\\
+=& \Esp(\Esp((Y-\Esp(Y|X)+\Esp(Y|X)-\Esp(Y))^2|X)) \\
+=& \Esp(\Esp((Y-\Esp(Y|X))^2|X)) + \Esp(\Esp((\Esp(Y|X)-\Esp(Y))^2|X)) \\
+ &+ 2\Esp(\Esp((Y-\Esp(Y|X))(\Esp(Y|X)-\Esp(Y))|X))\\
+=& \Esp(\V(Y|X)) + \Esp((\Esp(Y|X)-\Esp(Y))^2) + 2\Esp((\Esp(Y|X)-\Esp(Y))\Esp((Y-\Esp(Y|X))|X))\\
+=& \Esp(\V(Y|X)) + \V(\Esp(Y|X)) \text{   car    } \Esp((Y-\Esp(Y|X))|X) = 0 
+\end{align*}
+
+## Couple de variables
+
+### Question 1 {.answer #answer-ex1-1} 
+On voit d'abord que la densité du couple $(X,Y)$ vaut :
+$$f_{X,Y}(x,y) = f_{X|Y=y}(x)f_Y(y) = xe^{-xy}1_{\R_+}(x) 1_{[1,+\infty[} (y)$$
+Soit $h$ une fonction continue bornée sur $\R^2_+$. Le changement de variable $(x, y) \mapsto (t = xy , y)$ de jacobien $y$, donne alors que 
+$$\Esp(h(T, Y )) = \Esp(h(XY, Y )) = \int_1^{+\infty}\int_0^{+\infty} h(t,y) e^{-t} \frac{t}{y^2} dt dy$$
+et donc la densité du couple $(T, Y)$ vaut 
+$$f_{T,Y} = e^{-t} \frac{t}{y^2}1_{[1,+\infty[} (y)1_{\R_+}(t)$$
+Elle s’écrit comme produit d’une fonction de $t$ et d’une fonction de $y$. On en déduit que $T$ et $Y$ sont indépendantes et que $T$ a pour densité $te^{-t} 1_{\R_+}(t)$.
+
+### Question 2 {.answer #answer-ex1-2} 
+La loi marginale de $X$ a pour densité $f_X (x) = \int_1^{+\infty} x e^{-xy} dy = e^{-x}$. Ainsi $X$ suit une loi exponentielle de paramètre 1 et la loi conditionnelle de $Y$ sachant $X = x$ admet la densité :
+$$f_{Y|X=x}(y) = \frac{f_{X,Y}(x,y)}{f_X(x)} = x e^{-x(y-1)} 1_{[1,+\infty[} (y)$$
+pour x > 0.
+
+### Question 3 {.answer #answer-ex1-3}
+On en déduit que 
+$$\Esp(Y|X=x ) = \int_1^{+\infty} y x e^{-x(y-1)} dy = \frac{x+1}{x}1_{\R_+}(x)$$
+par intégration par parties. Ainsi $\Esp(Y|X) = \frac{X+1}{X}$.
+
 
 ## Mélanges de lois
 
