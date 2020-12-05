@@ -7,7 +7,7 @@ dependencies:
   - numpy
   - scipy
   - pandas
-  - sklearn
+  - scikit-learn
   - mpmath
   - autograd
   - matplotlib
