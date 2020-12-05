@@ -20,5 +20,4 @@ dependencies:
   - twine
   - pip:
     - ics==0.4
-    - sparklines
     - pandoc==2.0a4
