@@ -19,6 +19,8 @@
 \newcommand{\lob}{\left]}
 \newcommand{\rob}{\right[}
 
+
+
 Objectifs d'apprentissage
 ================================================================================
 
@@ -40,99 +42,103 @@ d'exercices.
 
 ### Tribu
 
-  - terminologie : tribu $\mathcal{A}$, ensemble mesurable, espace mesurable. ($\bullet$).
+  - terminologie : tribu $\mathcal{A}$, ensemble mesurable, espace mesurable. (\one).
 
-  - connaître : tribu $\mathcal{P}(X)$ des parties de $X$, tribu de Lebesgue $\mathcal{L}(\R^n)$ ($\bullet$).
+  - connaître : tribu $\mathcal{P}(X)$ des parties de $X$, tribu de Lebesgue $\mathcal{L}(\R^n)$ (\one).
 
   - savoir exploiter que si $A, B \in \mathcal{A}$, $A\cup B \in \mathcal{A}$, $A\cap B \in \mathcal{A}$ et
-    $A\setminus B \in \mathcal{A}$ ($\bullet$).
+    $A\setminus B \in \mathcal{A}$ (\one).
 
   - savoir exploiter que si $A_k \in \mathcal{A}$, alors
     $\cup_{k=0}^{+\infty} A_k \in \mathcal{A}$ et 
-    $\cap_{k=0}^{+\infty} A_k \in \mathcal{A}$ ($\bullet\bullet$).
+    $\cap_{k=0}^{+\infty} A_k \in \mathcal{A}$ (\two).
 
   - plus généralement, savoir déterminer quand un ensemble, 
     produit par des opérations ensemblistes à partir d'ensembles de $\mathcal{A}$, 
-    appartient à $\mathcal{A}$ ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
+    appartient à $\mathcal{A}$ (\two/\three).
 
-  - savoir caractériser si une collection d'ensembles est une tribu ($\bullet\!\bullet\!\bullet$).
+  - savoir caractériser si une collection d'ensembles est une tribu (\three).
 
-  - savoir que la raison d'être d'une tribu est d'être le domaine de définition d'une mesure ($\bullet$).
+  - savoir que la raison d'être d'une tribu est d'être le domaine de définition d'une mesure (\one).
 
 ### Mesure
 
-  - terminologie : mesure $\mu$, espace mesuré ($\bullet$).
+  - terminologie : mesure $\mu$, espace mesuré (\one).
 
-  - connaître : mesures de Dirac, de comptage, de Lebesgue ($\bullet$).
+  - connaître : mesures de Dirac, de comptage, de Lebesgue (\one).
 
   - savoir déterminer si une fonction est une mesure 
-    ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
+    (\two/\three).
 
-  - savoir exploiter que les mesures sont nulles en zéro, additives et croissantes ($\bullet$).
+  - savoir exploiter que les mesures sont nulles en zéro, additives et croissantes (\one).
 
-  - savoir exploiter la $\sigma$-additivité des mesures ($\bullet\bullet$).
+  - savoir exploiter la $\sigma$-additivité des mesures (\two).
 
-  - savoir calculer des mesures d'ensembles ($\bullet\bullet$/$\bullet\!\bullet\!\bullet$).
+  - savoir calculer des mesures d'ensembles (\two/\three).
 
-  - terminologie : ensemble $\mu$-négligeable, propriété vraie $\mu$-presque partout ($\bullet$).
+  - terminologie : ensemble $\mu$-négligeable, propriété vraie $\mu$-presque partout (\one).
 
-  - savoir déterminer si un ensemble est $\mu$-négligeable ($\bullet\bullet$).
+  - savoir déterminer si un ensemble est $\mu$-négligeable (\two).
 
 ### Intégrale de fonctions positives
 
-  - savoir : chaque mesure détermine une intégrale ($\bullet$).
+  - savoir : chaque mesure détermine une intégrale (\one).
 
-  - terminologie : intégrale par rapport à $\mu$ ($\mu$-intégrale) ($\bullet$).
+  - terminologie : intégrale par rapport à $\mu$ ($\mu$-intégrale) (\one).
 
-  - savoir : si $f\geq 0$, la $\mu$-intégrale de $f$ est définie $\leftrightarrow$ $f$ est $\mu$-mesurable ($\bullet$).
+  - savoir : si $f\geq 0$, la $\mu$-intégrale de $f$ est définie $\leftrightarrow$ $f$ est $\mu$-mesurable (\one).
 
-  - terminologie : fonction mesurable (ou $\mathcal{A}$-mesurable ou $\mu$-mesurable) ($\bullet\bullet$)
+  - terminologie : fonction mesurable (ou $\mathcal{A}$-mesurable ou $\mu$-mesurable) (\two)
 
-  - connaître les trois propriétés caractéristiques de la $\mu$-intégrale ($\bullet$).
+  - connaître les trois propriétés caractéristiques de la $\mu$-intégrale (\one).
  
-  - terminologie : fonction étagée ($\bullet$)
+  - terminologie : fonction étagée (\one)
 
-  - savoir exploiter la forme $\sum_{k=1}^n y_k 1_{A_k}$ des fonctions étagées ($\bullet$)
+  - savoir exploiter la forme $\sum_{k=1}^n y_k 1_{A_k}$ des fonctions étagées (\one)
 
-  - savoir caractériser les fonctions étagées mesurables ($\bullet$).
+  - savoir caractériser les fonctions étagées mesurables (\one).
 
-  - savoir calculer la $\mu$-intégrale d'une fonction étagée $\mu$-mesurable ($\bullet$).
+  - savoir calculer la $\mu$-intégrale d'une fonction étagée $\mu$-mesurable (\one).
 
-  - savoir que la limite simple de fonctions mesurables est mesurable ($\bullet\bullet$)
+  - savoir que la limite simple de fonctions mesurables est mesurable (\two)
 
-  - savoir exploiter le résultat d'approximation des fonctions mesurables par des fonctions étagées
+  - savoir exploiter le résultat d'approximation des fonctions mesurables par des fonctions étagées mesurables
     (en particulier pour montrer la mesurabilité d'une fonction)
-    ($\bullet\bullet$) ; connaître la suite de fonctions étagées utilisée dans sa démonstration ($\bullet\!\bullet\!\bullet$).
+    (\two) ; connaître la suite de fonctions étagées utilisée dans sa démonstration (\three).
 
   - savoir exploiter la propriété de convergence monotone pour calculer l'intégrale de
-    fonctions mesurables ($\bullet\bullet$).
+    fonctions mesurables (\two).
 
   - connaître la définition formelle de la $\mu$-intégrale (avec le sup des intégrales
-    des fonctions étagées) ($\bullet\!\bullet\!\bullet$) ;
+    des fonctions étagées) (\three) ;
     savoir démontrer qu'avec cette définition les trois propriétés caractéristiques
-    de l'intégrale sont bien vérifiées ($\circ$).
+    de l'intégrale sont bien vérifiées (\four).
 
-  - savoir à quelle condition l'intégrale d'une fonction est nulle (cf. positivité et nullité) ($\bullet\bullet$).
+  - savoir à quelle condition l'intégrale d'une fonction est nulle (cf. positivité et nullité) (\two).
 
 ### Intégrale de fonction signées
   
-  - terminologie : $\mu$-intégrale, $\mu$-intégrabilité ($\bullet$).
+  - terminologie : $\mu$-intégrale, $\mu$-intégrabilité (\one).
 
   - savoir : seule l'intégrale des fonctions signées qui sont mesurables est susceptible
-    d'être définie ; mais cette intégrale peut être finie, infinie ou indéfinie ($\bullet$).
+    d'être définie ; mais cette intégrale peut être finie, infinie ou indéfinie (\one).
 
   - savoir : une fonction est intégrable si son intégrale est définie et
-    réelle ($\bullet$).
+    réelle (\one).
 
-  - calcul de l'intégrale d'une fonction $f$ à partir de celle de $f_+$ et $f_-$ ($\bullet$).
+  - calcul de l'intégrale d'une fonction $f$ à partir de celle de $f_+$ et $f_-$ (\one).
 
   - compétence : savoir transposer les résultats du calcul intégral 
-    des fonctions positives au contexte des fonctions signées ($\bullet\bullet$).
+    des fonctions positives au contexte des fonctions signées (\two).
 
-  - savoir utiliser le théorème de convergence dominée ($\bullet\bullet$).
+  - savoir utiliser le théorème de convergence dominée (\two).
 
   - connaître le lien entre intégrale associée à la mesure de Lebesgue 
-    et au sens de Henstock-Kurzweil dans $\R^n$ ($\bullet\bullet$).
+    sur $\R^n$ et l'intégrale au sens de Lebesgue issue de la théorie de l'intégrale
+    de jauge (définie au moyen de l'intégrale de Henstock-Kurzweil) 
+    (\two).
+
+
 
 Mesure
 ================================================================================
