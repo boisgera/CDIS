@@ -647,9 +647,9 @@ où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs re
     H(x_1,x_2) = \delta x_1 - \gamma \ln x_1 + \beta x_2 - \alpha \ln x_2  
     $$
     définie sur $\Rg\times \Rg$.
-    Calculer la dérivée de $H$ le long des solutions initialisées dans $\Rg\times \Rg$. En déduire que toute solution maximale initialisée dans $\Rg\times \Rg$ est définie sur $\R$ et que $\bar{x}$ est stable.
+    Calculer la dérivée de $H$ le long des solutions initialisées dans $\Rg\times \Rg$. En déduire que toute solution maximale initialisée dans $\Rg\times \Rg$ est définie sur $\R$.
 
- 5. Représenter les courbes de niveau de $H$. Qu'en conclue-t-on sur le comportement des solutions ?
+  5. Représenter les courbes de niveau de $H$. Où se trouve $\bar{x}$ ? Qu'en conclue-t-on sur le comportement des solutions ? En déduire (graphiquement) que $\bar{x}$ est stable, au sens de la définition de stabilité.
 
 On souhaite maintenant simuler numériquement les trajectoires.
 
@@ -688,7 +688,7 @@ On propose maintenant de modifier ces schémas de façon à stabiliser $H$ et as
  $$ 
  En déduire qu'alors $H(x(t))$ converge exponentiellement vers $H_0$ lorsque $t$ tend vers l'infini si $x$ reste à une distance strictement positive de $\bar{x}$.
 
- 11. En déduire comment modifier l'implémentation du schéma d'Euler pour assurer la stabilité de $H$. Quel est le rôle de $k$ ? Peut-il être choisi arbitrairement grand ? Pourquoi ?
+ 11. En déduire comment modifier l'implémentation du schéma d'Euler pour assurer la stabilité de $H$. Quel est le rôle de $k$ ? Peut-il être choisi arbitrairement grand ? Pourquoi ? On pourra exprimer $H(x^{j+1})-H(x_0)$ en fonction de $H(x^{j})-H(x_0)$ au premier ordre en $dt$.
 
 
 Exercices
