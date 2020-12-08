@@ -809,22 +809,21 @@ $$
 ### Scalaires, vecteurs, matrices {.remark}
 Le concept de tenseur englobe et généralise les scalaires, vecteurs et matrices :
 
- 1. Les scalaires les tenseurs d'ordre 0 
-    (car ne dépendant d'aucun indice). Il n'existe qu'un type de de tenseur 
-    d'ordre  $0$, car il existe un unique $0$-uplet, noté $()$.
+ 1. Les scalaires sont les tenseurs d'ordre 0 
+    (ils ne dépendent d'aucun indice). Il n'existe qu'un type de de tenseur 
+    d'ordre  $0$ : $()$ (l'unique $0$-uplet).
 
- 2. les vecteurs sont les tenseurs d'ordre 1 ; un vecteur de $\R^m$ a pour type 
-    $(m)$, le 1-uplet contenant $m$.
+ 2. les vecteurs sont les tenseurs d'ordre 1 ; le type d'un vecteur de $\R^m$ est 
+    $(m)$ (le $1$-uplet contenant $m$).
 
- 3. les matrices les tenseurs d'ordre $2$ ; une matrice de $\R^{m \times n}$
-    a pour type la paire $(m, n)$.
+ 3. les matrices les tenseurs d'ordre $2$ ; le type d'une matrice de $\R^{m \times n}$
+    est $(m, n)$ (la paire contenant $m$ et $n$).
 
-Les tenseurs d'ordre $n \geq 3$ sont des objets qui ne sont ni des 
-scalaires, ni des vecteurs, ni des matrices.
+Les tenseurs d'ordre $n \geq 3$ généralisent ces constructions.
 
 ### Les tenseurs avec NumPy {.remark}
 Les tenseurs sont des tableaux $n$-dimensionnels ; 
-ils sont donc représentés comme des instances du type `array`. 
+ils sont donc représentés comme des instances du type `array` de NumPy. 
 Leur ordre est donnée par la méthode `ndim` (nombre de dimensions),
 leur type par la méthode `shape`. Ainsi, avec
 
@@ -889,8 +888,8 @@ SyntaxError: invalid syntax
 
 ### Applications linéaires d'ordre supérieur {.remark}
 
-Une raison d'être des matrices de $\R^{m \times n}$ 
-est la représentation concrête des applications linéaires de $\R^n \to \R^m$, 
+La raison d'être des matrices de $\R^{m \times n}$ est
+de représenter concrêtement les applications linéaires de $\R^n \to \R^m$, 
 dont l'espace est noté $\mathcal{L}(\R^n, \R^m)$.
 Si l'on désigne par $A$ une telle 
 l'application linéaire et par $[a_{ij}]_{ij}$ la matrice associée,
@@ -902,19 +901,19 @@ $$
 pour tout $x \in \R^n$.
 (Par abus de notation, $e_j$ désigne le $j$-ème vecteur de la base canonique 
 de $\R^p$ quel que soit $p$). Cette correspondance légitime l'identification 
-fréquemment opérée entre $A$ et $[a_{ij}]_{ij}$. 
+fréquemment opérée entre l'application linéaire $A$ et la matrice $[a_{ij}]_{ij}$. 
 
 Une correspondance similaire existe pour les tenseurs d'ordre
-supérieur à $2$. Ainsi, à l'ordre $3$ on peut mettre en correspondance un
+supérieur à $2$. Ainsi, à l'ordre $3$, on peut mettre en correspondance un
 tenseur $(t_{ijk})_{ijk}$ de type $(m, n, p)$ et une application linéaire $T$
 de $\R^p$ dans l'espace des applications linéaires de $\R^n$ dans $\R^m$<!--([^ho])-->,
-c'est-à-dire
+c'est-à-dire établir la correspondance
 $$
 (t_{ijk})_{ijk} \in \R^{m \times n \times p} 
 \; \longleftrightarrow \;
-T \in \mathcal{L}(\R^p, \mathcal{L}(\R^n, \R^m)).
+T \in \mathcal{L}(\R^p, \mathcal{L}(\R^n, \R^m))
 $$
-On définit cette correspondance de la façon suivante : 
+de la façon suivante : 
 $$
 t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
 \; \mbox{ et } \;
@@ -922,9 +921,12 @@ t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
 = 
 \sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
 $$
-(sous-entendu, pour tout $x\in \R^p$ et $y \in \R^n$). 
-Le processus se généralise sans difficulté à des tenseurs d'ordre supérieur
-à $3$.
+(sous-entendu, pour tout $x\in \R^p$ et $y \in \R^n$). Cette représentation
+du tenseur d'ordre $3$ par une application linéaire est dite
+d'ordre supérieur car les valeurs des applications (linéaires) en question
+sont elles-mêmes des applications (linéaires). 
+
+Le processus décrit dans ce paragraphe se généralise à des tenseurs d'ordre supérieur à $3$.
 
 <!--
 [^ho]: on parle ici d'application d'ordre supérieur car la fonction linéaire
@@ -937,26 +939,27 @@ considérée associe à un argument une "valeur" qui est elle-même une fonction
 Les tenseurs vus comme des tableaux permettent de représenter d'autres 
 objets mathématiques, équivalents aux applications linéaires (d'ordre 
 supérieur). A titre d'exemple, si l'on considère les tenseurs d'ordre 2, 
-une matrice $A \in \R^{m \times n}$ correspond à une application
+une matrice $[a_{ij}]_{ij} \in \R^{m \times n}$ correspond à une application
 $\mathcal{L}(\R^n, \R^m)$ mais également à une forme bilinéaire 
 $Q \in \mathcal{L}_2(\R^n \times \R^m, \R)$, 
 c'est-à-dire une fonction de deux variables dans $\R^n$ et $\R^m$,
-linéaire par rapport à chacune de ces variables, et à valeurs dans $\R$. 
-Cette forme bilinéaire $Q$ est donnée par
+linéaire par rapport à chacune de ces variables indépendamment et à valeurs dans $\R$. 
+Cette forme bilinéaire $B$ est donnée par
 $$
-Q(x, y) = \sum_{i=1}^m \sum_{j=1}^n T_{ij} x_i y_j.
+B(x, y) = \sum_{i=1}^m \sum_{j=1}^n a_{ij} x_i y_j.
 $$
-Dans le cas général, un tenseur d'ordre $n$ correspond avec une forme 
-$n$-linéaire.
+Dans le cas général, un tenseur d'ordre $n$ correspond à une forme $n$-linéaire.
 
 ### Produit tensoriel {.definition}
 Soient $A$ et $B$ des tenseurs de type respectifs 
 $(m_1,m_2,\dots, m_n) \in \N^{n}$ et $(p_1,p_2,\dots, p_q) \in \N^{q}$.
-Si $m_n = p_1$, le produit de $A$ et $B$ est le tenseur de 
-$(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q}$ noté $A \cdot B$ 
+Si $m_n = p_1$, le produit de $A$ et $B$ est le tenseur de type
+$(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q-2}$ noté $A \cdot B$ 
 défini par
 $$
-(A \cdot B)_{i_1 \dots, i_{n-1}, i_{n+1}, i_{n+q}} = \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} 
+(A \cdot B)_{i_1 \dots i_{n-1} i_{n+1} \dots i_{n+q}} 
+= 
+\sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} .
 $$
 
 ### Produits tensoriels classiques {.remark} 
@@ -964,6 +967,7 @@ Pour $x, y \in \R^n$, on a
 $$
 x \cdot y  = \sum_{i=1}^m x_i y_i \in \R.
 $$
+Le produit tensoriel de deux vecteurs est bien défini et coïncide avec leur produit scalaire[^oops].
 Si de plus $A \in \R^{m \times n}$ et 
 $B \in \R^{n \times p}$,
 $$
@@ -973,13 +977,15 @@ $$
 A \cdot B \in \R^{m \times p}\; \mbox{ et } \;
 (A \cdot B)_{ik} = \sum_{j=1} A_{ij} B_{jk}.
 $$
-Autrement dit le le produit tensoriel de vecteurs
-coïncide avec leur produit scalaire, 
-et les produits tensoriels matrice-vecteur et matrice-matrice
-coïncident avec les produits classiques.
+Autrement dit, les produits tensoriels matrices-vecteurs et matrices-matrices
+coïncident avec les produits classiques de l'algèbre linéaire.
+
+[^oops]: Souvenons-nous à l'inverse que si l'on interprête "$\cdot$" comme un produit matriciel et que 
+l'on représente implicitement $x$ et $y$ comme deux vecteurs-colonnes de $\R^{n \times 1}$, 
+l'expression $x \cdot y$ n'a pas de sens !
 
 ### Produit tensoriel avec NumPy {.remark}
-Si $A$ et $B$ sont deux tenseurs de forme compatibles pour un produit
+Si $A$ et $B$ sont deux tenseurs de type compatibles pour un produit
 représentés par les tableaux $n$-dimensionnels `A` et `B`, 
 **et tant que l'ordre de $B$ est inférieur ou égal à $2$**, 
 on peut calculer le produit tensoriel de $A$ et $B$ au moyen de la méthode `dot`.
@@ -992,7 +998,7 @@ Par exemple, avec :
     >>> T = np.array([[[1.0, 2.0], [3.0, 4.0]], 
     ...               [[5.0, 6.0], [7.0, 8.0]]])
 
-on obtient le produits tensoriels associés par :
+on obtient les produits tensoriels associés par :
 
     >>> x.dot(y)
     4.0
@@ -1008,21 +1014,27 @@ on obtient le produits tensoriels associés par :
            [[23., 34.],
             [31., 46.]]])
 
-Dans le cas contraire (ou systématiquement), 
-on pourra utiliser la fonction NumPy `tensordot` avec l'option
-`axes=1`, car la fonction `numpy.dot` diffère alors du produit tensoriel tel
+Si l'ordre de $B$ est $3$ ou plus, 
+on ne pourra utiliser cette méthode pour calculer le produit tensoriel $A \cdot B$ car elle diffère alors du produit tensoriel tel
 que nous l'avons défini
 [(cf. documentation de `numpy.dot`)](https://numpy.org/doc/stable/reference/generated/numpy.dot.html).
 
-    >>> x.dot(T) # Probably not what you want.
+    >>> x.dot(T) # Not what we expect here!
     array([[3., 4.],
            [7., 8.]])
-    >>> np.tensordot(x, T, axes=1) # Better!
+
+Une option consiste alors (dans ce cas particulier ou systématiquement) 
+à utiliser la fonction NumPy `tensordot` avec l'option `axes=1` :
+
+    >>> def dot(A, B): # Let's define our own tensor product
+    ...     return np.tensordot(A, B, axes=1)           
+    >>> dot(x, T) # Problem solved!
     array([[5., 6.],
            [7., 8.]])
 
 Pour un contrôle plus fin des opérations, on pourra également avoir recours
-[à la fonction `numpy.einsum`](https://numpy.org/doc/stable/reference/generated/numpy.einsum.html). Pour calculer $(x \cdot T)_{jk} = \sum_{i} x_i T_{ijk}$, 
+[à la fonction `numpy.einsum`](https://numpy.org/doc/stable/reference/generated/numpy.einsum.html), une fonction qui exploite la *convention de sommation (des indices
+répétés) d'Einstein*. Pour calculer $(x \cdot T)_{jk} = \sum_{i} x_i T_{ijk}$, 
 comme nous le souhaitons :
 
     >>> np.einsum("i, ijk -> jk", x, T)
