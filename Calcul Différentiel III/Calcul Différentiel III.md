@@ -982,7 +982,7 @@ coïncident avec les produits classiques de l'algèbre linéaire.
 
 [^oops]: Souvenons-nous à l'inverse que si l'on interprête "$\cdot$" comme un produit matriciel et que 
 l'on représente implicitement $x$ et $y$ comme deux vecteurs-colonnes de $\R^{n \times 1}$, 
-l'expression $x \cdot y$ n'a pas de sens ; il alors plutôt considérer $x^{\top} \cdot y$.
+l'expression $x \cdot y$ n'a pas de sens ; il alors considérer $x^{\top} \cdot y$ à la place, puis assimiler ensuite le résultat -- qui est une matrice $1 \times 1$ -- à un nombre réel. Les conventions du calcul tensoriel ont donc ici une action simplificatrice.
 
 ### Produit tensoriel avec NumPy {.remark}
 Si $A$ et $B$ sont deux tenseurs de type compatibles pour un produit
