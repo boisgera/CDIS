@@ -56,7 +56,7 @@ et seulement si :
   - [ ] D : $f$ et $g$ sont égales $c$-presque partout sans condition.
 
 #### Question 4
-La fonction caractéristique de $\mathbb{Q}$ est une fonction étagée
+La fonction caractéristique de $\mathbb{Q} \subset \mathbb{R}$ est une fonction étagée
 
   - [ ] A : oui,
 
