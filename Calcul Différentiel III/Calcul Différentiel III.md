@@ -985,7 +985,7 @@ l'on représente implicitement $x$ et $y$ comme deux vecteurs-colonnes de $\R^{n
 l'expression $x \cdot y$ n'a pas de sens ; il alors considérer $x^{\top} \cdot y$ à la place, puis assimiler ensuite le résultat -- qui est une matrice $1 \times 1$ -- à un nombre réel. Les conventions du calcul tensoriel ont donc ici une action simplificatrice.
 
 ### Produit tensoriel avec NumPy {.remark}
-Si $A$ et $B$ sont deux tenseurs de type compatibles pour un produit
+Si $A$ et $B$ sont deux tenseurs de type compatibles pour le produit (la dernière dimension de $A$ égale à la première dimension de $B$)
 représentés par les tableaux $n$-dimensionnels `A` et `B`, 
 **et tant que l'ordre de $B$ est inférieur ou égal à $2$**, 
 on peut calculer le produit tensoriel de $A$ et $B$ au moyen de la méthode `dot`.
@@ -998,7 +998,7 @@ Par exemple, avec :
     >>> T = np.array([[[1.0, 2.0], [3.0, 4.0]], 
     ...               [[5.0, 6.0], [7.0, 8.0]]])
 
-on obtient les produits tensoriels associés par :
+on obtient des produits tensoriels variés par les appels :
 
     >>> x.dot(y)
     4.0
@@ -1014,8 +1014,9 @@ on obtient les produits tensoriels associés par :
            [[23., 34.],
             [31., 46.]]])
 
-Si l'ordre de $B$ est $3$ ou plus, 
-on ne pourra utiliser cette méthode pour calculer le produit tensoriel $A \cdot B$ car elle diffère alors du produit tensoriel tel
+Par contre, si l'ordre de $B$ est $3$ ou plus, 
+on ne pourra pas utiliser cette méthode pour calculer le produit tensoriel $A \cdot B$ car son
+résultat diffère du produit tensoriel tel
 que nous l'avons défini
 [(cf. documentation de `numpy.dot`)](https://numpy.org/doc/stable/reference/generated/numpy.dot.html).
 
@@ -1032,7 +1033,7 @@ Une option consiste alors (dans ce cas particulier ou systématiquement)
     array([[5., 6.],
            [7., 8.]])
 
-Pour un contrôle plus fin des opérations, on pourra également avoir recours
+Pour un contrôle plus fin des opérations tensorielles, on pourra également avoir recours
 [à la fonction `numpy.einsum`](https://numpy.org/doc/stable/reference/generated/numpy.einsum.html), une fonction qui exploite la *convention de sommation (des indices
 répétés) d'Einstein*. Pour calculer $(x \cdot T)_{jk} = \sum_{i} x_i T_{ijk}$, 
 comme nous le souhaitons :
@@ -1048,9 +1049,12 @@ si c'est ce que l'on souhaite, on peut aussi l'obtenir par :
     array([[3., 4.],
            [7., 8.]])
 
-### {.ante}
-La notion de différentielle d'ordre $2$ se généralise sans difficulté
-à un ordre plus élevé, par induction sur l'ordre de la différentielle.
+### {.ante .remark}
+Armés de la notion d'application linéaire d'ordre supérieure, 
+et de sa représentation concrête comme tenseur, nous pouvons désormais 
+généraliser la notion de différentielle à un ordre $k \geq 2$ arbitraire,
+pour des fonctions à valeurs scalaires ou vectorielles de $\R^m$,
+par induction sur l'ordre de la différentielle.
 
 ### Différentielle d'ordre $k$ {.definition #dos}
 Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
@@ -1068,28 +1072,27 @@ d^k f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1} := d(x\mapsto d^{k-1}f(x
 $$
 ou de façon équivalente
 $$
-d^k f(x) \cdot h_1 \cdot h_2 \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
+d^k f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
 $$
 
-### Différentielle d'ordre $k$ comme tenseur {.remark}
+### Différentielle d'ordre $k$ et tenseur {.remark}
 On a 
 $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m,
 $$
 chaque application dans la chaîne étant linéaire. La différentielle
-$d^k f(x)$ peut donc être représentée par un tenseur d'ordre $k+1$ et 
-de type $(m, n, \dots, n)$.
-
-**TODO: expliciter correspondance, du type:**
+$d^k f(x)$ peut donc être représentée concrêtement par un tenseur d'ordre 
+$k+1$ et de type $(m, n, \dots, n)$ :
 $$
-t_{ijk} = ((T \cdot e_k) \cdot e_j)_i
-\; \mbox{ et } \;
-(T \cdot x) \cdot y
-= 
-\sum_i \left( \sum_{j} \left(\sum_{k} t_{ijk} x_k\right) y_j\right) e_i
+t_{i_1 \dots i_k i_{k+1}} :=
+(d^k f(x) \cdot e_{i_1} \cdot \dots \cdots e_{i_k}) \cdot e_{i_{k+1}}.
 $$
-**Lien avec les dérivés partielles pas évident à ce stade ... ou plus tard, si ?
-A ce stade je crois que ça n'est nulle part ... Ca manque !**
+On a alors (par linéarité par rapport à chacun des $h_i$),
+$$
+d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
+=
+\sum_{i_1,\dots, i_k, i_{k+1}}\left(t_{i_1 \dots i_k i_{k+1}} \times h_{1i_1} \times \cdots  \times h_{ki_k} \right) e_{i_{k+1}}
+$$
 
 ### Stratification {.lemma #stratification}
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
@@ -1168,11 +1171,24 @@ Dans l'unique cas restant, on peut décomposer $\tau_{1(k+1)}$ en
 $\tau_{2(k+1)} \circ \tau_{12} \circ \tau_{2(k+1)}$ et se ramener 
 au cas précédent.
 
-### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
+### {.ante .remark}
 Les dérivées partielles d'ordre supérieur se définissent par récurrence,
-de manière similaire aux dérivées partielles d'ordre $2$. Pour simplifier
-la notation $\partial^k_{i_1 \dots i_k} f(x)$, on exploite le fait que
-si $f$ est $k$ fois différentiable en $x$,
+de manière similaire aux dérivées partielles d'ordre $2$.
+
+### Dérivées partielles d'ordre $k$ {.definition}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x \in U$. Soient $i_1, i_2, \dots, i_k$ des indices de $\{1,\dots, n\}$ ;
+lorsque la dérivée partielle $\partial^{k-1}_{i_2 \dots i_k} f$
+est définie en tout point de $U$ et est différentiable par rapport à
+la $i_1$-ème variable en $x$, on définit
+$$
+\partial^k_{i_1 \dots i_k} f(x) 
+:= \partial_{i_1} (\partial^{k-1}_{i_2 \dots i_k} f)(x).
+$$
+
+### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
+Pour compacter la notation $\partial^k_{i_1 \dots i_k} f(x)$, on peut exploiter 
+le fait que si $f$ est $k$ fois différentiable en $x$,
 $$
 \partial^k_{i_1 \dots i_k} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
 $$
@@ -1313,8 +1329,9 @@ Soit $f: U \subset \R^n \to \R^m$ une fonction $j$ fois différentiable au point
 $x \in U$. Alors
 $$
 f(x+h) = \sum_{i=0}^{j}  \frac{d^i f(x)}{i!} (\cdot \, h)^i
-+ o(\|h\|^j).
++ \varepsilon(h) \times \|h\|^j.
 $$
+où $\varepsilon(h) \to 0$ quand $h \to 0$.
 
 ### Démonstration {.proof}
 Le résultat est clair pour $j=0$. Supposons le vrai à un rang $j-1$ arbitraire
@@ -1324,19 +1341,21 @@ d'ordre $j$ associé à $f$:
 $$
 r(h) = f(x+h) - \sum_{i=0}^{j} \frac{d^i f(x)}{i!} (\cdot \, h)^i.
 $$
-Il nous faut montrer que $r(h)$ est un $o(\|h\|^j)$, ce qui 
-nous allons accomplir en établissant que $\|dr(h)\| = o(\|h\|^{j-1})$.
-En effet, si $dr(h) = E(h) \|h\|^{j-1}$ où l'application linéaire $E$
-est un $o(1)$, alors pour tout $\varepsilon > 0$ et $h$ assez proche de $0$ 
+Il nous faut montrer que $r(h)$ est de la forme $\varepsilon(h) \times \|h\|^j$
+où $\varepsilon(h) \to 0$ quand $h \to 0$, 
+ce qui nous allons accomplir en établissant que $\|dr(h)\| = \varepsilon'(h) \times \|h\|^{j-1}$
+avec $\varepsilon'(h) \to 0$ quand $h \to 0$.
+En effet, si c'est le cas, $dr(h) = E(h) \|h\|^{j-1}$ où l'application linéaire $E$
+tend vers $0$ quand $h$ tend vers $0$, et pour tout $\varepsilon > 0$ et $h$ assez proche de $0$ 
 on a $\|E(h)\| \leq \varepsilon$ et donc par l'inégalité des accroissements
 finis,
 $$
 \|r(h)\| = \|r(h) - r(0)\| \leq \varepsilon \|h\|^{j-1} \times \|h\|
 = \varepsilon \|h\|^j,
 $$
-ce qui établit que $r(h) = o(\|h\|^j)$.
+ce qui établit que $r(h) = \varepsilon(h) \times \|h\|^j$ avec $\varepsilon(h) \to 0$ quand $h \to 0$.
 
-Etablissons donc que $r(h)$ est un $o(\|h\|^j)$.
+Etablissons donc ce résultat.
 Les termes $d^i f(x)\cdot h_1 \cdot \hdots \cdot h_i$ 
 sont linéaires par rapport à chacun des $h_j$, donc pour tout vecteur 
 $k$, compte tenu de la symétrie de $d^i f(x)$,
@@ -1345,7 +1364,7 @@ d^i f(x) (\cdot \, (h+k))^i
 = 
 d^i f(x) (\cdot \, h)^i
 + i d^i f(x) (\cdot \, h)^{i-1} \cdot k
-+ o(\|k\|).
++ \varepsilon(k)\|k\|.
 $$
 La différentielle de 
 $h \mapsto {d^i f(x)} (\cdot \, h)^i$
@@ -1369,9 +1388,9 @@ d \phi(x) \cdot h - \dots -
 \frac{d^{i-1} \phi(x)}{(i-1)!} (\cdot h)^{i-1}.
 $$
 L'hypothèse de récurrence nous garantit donc que 
-$d r(h) \cdot k = o(\|h\|^{j-1})$ à $k$ fixé, ce qui, 
+$d r(h) \cdot k = \varepsilon(h)\|h\|^{j-1}$ à $k$ fixé, ce qui, 
 combiné avec la linéarité de $d r(h)$, fournit
-$\|dr(h)\| = o(\|h\|^{j-1})$.
+$\|dr(h)\| = \varepsilon(h)\|h\|^{j-1}$.
 
 
 
@@ -1388,9 +1407,9 @@ A l'ordre $j=0$, la relation à prouver est
 $$
 f(a+h) = f(a) + \int_a^{a+h} f'(t) \, dt
 $$
-qui n'est autre que [le théorème fondamental du calcul](#TFC).
+qui n'est autre que le théorème fondamental du calcul.
 Si l'on suppose la relation vérifiée à l'ordre $j$, et $f$ $j+2$ fois dérivable,
-par [intégration par parties](#IPP), on obtient
+par intégration par parties, on obtient
 \begin{multline*}
 \int_a^{a+h} f^{(j+1)}(t) \frac{(a+h-t)^j}{j!} \, dt
 = \\
