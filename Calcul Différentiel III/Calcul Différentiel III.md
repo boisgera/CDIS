@@ -1132,7 +1132,7 @@ T_{i_1i_2 \dots i_{k+1}} :=
 (\partial^k f_{i_2 \dots i_{k+1}}(x))\cdot e_{i_1} =
 (d^k f(x) \cdot e_{i_{k+1}} \cdot \hdots \cdot e_{i_2}) \cdot e_{i_1}.
 $$
-On a alors (par linéarité par rapport à chacun des $h_i$),
+Par linéarité par rapport à chacun des $h_i$, on a :
 \begin{align*}
 d^k f(x) \cdot h_{k+1} \cdot \hdots \cdot h_2
 &=
