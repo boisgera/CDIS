@@ -1075,24 +1075,73 @@ $$
 d^k f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1} \cdot h_k:= d(x\mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1})(x) \cdot h_k
 $$
 
+### {.ante .remark}
+Les dérivées partielles d'ordre supérieur -- qui se définissent par récurrence --
+permettent vont permettrent d'expliciter les différentielles d'ordre supérieures
+comme une tenseur.
+
+### Dérivées partielles d'ordre $k$ {.definition}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x \in U$. Soient $i_1, i_2, \dots, i_k$ des indices de $\{1,\dots, n\}$ ;
+lorsque la dérivée partielle $\partial^{k-1}_{i_2 \dots i_k} f$
+est définie en tout point de $U$ et est différentiable par rapport à
+la $i_1$-ème variable en $x$, on définit
+$$
+\partial^k_{i_1 \dots i_k} f(x) 
+:= \partial_{i_1} (\partial^{k-1}_{i_2 \dots i_k} f)(x).
+$$
+
+### Calcul des dérivées partielles d'ordre $k$ {.proposition}
+Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
+$x \in U$. Si $f$ est $k$ fois différentiable en $x$, alors pour tout
+$i_1, i_2, \dots, i_k$ dans $\{1,\dots, n\}$,
+$$
+\partial^k_{i_1 i_2\dots i_k} f(x) 
+= 
+d^k f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2} \cdot e_{i_1}.
+$$
+
+### Démonstration {.proof}
+A l'ordre $1$, $\partial^1_{i_1} f(x) = \partial_{i_1} f(x)$ ; l'égalité
+$\partial_{i_1} f(x) = df(x) \cdot e_{i_1}$ a été démontrée dans le
+chapitre "Calcul Différentiel I".
+Supposons que l'égalité soit vraie à l'ordre $k-1$. Alors, 
+\begin{align*}
+\partial^k_{i_1 \dots i_k} f(x)
+&=
+\partial_{i_1} (\partial^{k-1}_{i_2 \dots i_k} f)(x) \\
+&=
+\partial_{i_1} (x \mapsto d^{k-1}f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2}) \\
+&=
+d (x \mapsto d^{k-1}f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2}) \cdot e_{i_1} \\
+&=
+d^k f (x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2} \cdot e_{i_1}
+\end{align*}
+et l'égalité est également vraie à l'ordre $k$.
+
 ### Différentielle d'ordre $k$ et tenseur {.remark}
 On a 
 $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m,
 $$
 chaque application dans la chaîne étant linéaire. La différentielle
-$d^k f(x)$ peut donc être représentée concrêtement par un tenseur d'ordre 
+$d^k f(x)$ peut donc être représentée concrêtement par un tenseur $T$ d'ordre 
 $k+1$ et de type $(m, n, \dots, n)$ :
 $$
-t_{i_1 \dots i_k i_{k+1}} :=
-(d^k f(x) \cdot e_{i_1} \cdot \dots \cdots e_{i_k}) \cdot e_{i_{k+1}}.
+T_{i_1i_2 \dots i_{k+1}} := 
+(\partial^k f_{i_2 \dots i_{k+1}}(x))\cdot e_{i_1} =
+(d^k f(x) \cdot e_{i_{k+1}} \cdot \hdots \cdot e_{i_2}) \cdot e_{i_1}.
 $$
 On a alors (par linéarité par rapport à chacun des $h_i$),
-$$
-d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
-=
-\sum_{i_1,\dots, i_k, i_{k+1}}\left(t_{i_1 \dots i_k i_{k+1}} \times h_{1i_1} \times \cdots  \times h_{ki_k} \right) e_{i_{k+1}}
-$$
+\begin{align*}
+d^k f(x) \cdot h_{k+1} \cdot \hdots \cdot h_2
+&=
+\sum_{i_1,i_2\dots, i_{k+1}}
+\left(
+\partial^k f_{i_1i_2 \dots i_{k+1}}(x)
+\times h_{k+1i_{k+1}} \times \cdots  \times h_{2i_2} 
+\right) e_{i_1} \\
+\end{align*}
 
 ### Stratification {.lemma #stratification}
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
@@ -1171,20 +1220,7 @@ Dans l'unique cas restant, on peut décomposer $\tau_{1(k+1)}$ en
 $\tau_{2(k+1)} \circ \tau_{12} \circ \tau_{2(k+1)}$ et se ramener 
 au cas précédent.
 
-### {.ante .remark}
-Les dérivées partielles d'ordre supérieur se définissent par récurrence,
-de manière similaire aux dérivées partielles d'ordre $2$.
 
-### Dérivées partielles d'ordre $k$ {.definition}
-Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Soient $i_1, i_2, \dots, i_k$ des indices de $\{1,\dots, n\}$ ;
-lorsque la dérivée partielle $\partial^{k-1}_{i_2 \dots i_k} f$
-est définie en tout point de $U$ et est différentiable par rapport à
-la $i_1$-ème variable en $x$, on définit
-$$
-\partial^k_{i_1 \dots i_k} f(x) 
-:= \partial_{i_1} (\partial^{k-1}_{i_2 \dots i_k} f)(x).
-$$
 
 ### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
 Pour compacter la notation $\partial^k_{i_1 \dots i_k} f(x)$, on peut exploiter 
