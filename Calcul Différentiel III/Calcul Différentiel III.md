@@ -1140,7 +1140,7 @@ d^k f(x) \cdot h_{k+1} \cdot \hdots \cdot h_2
 \left(
 \partial^k f_{i_1i_2 \dots i_{k+1}}(x)
 \times h_{k+1i_{k+1}} \times \cdots  \times h_{2i_2} 
-\right) e_{i_1} \\
+\right) e_{i_1}. \\
 \end{align*}
 
 ### Stratification {.lemma #stratification}
