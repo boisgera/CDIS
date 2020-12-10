@@ -35,31 +35,46 @@
 		}
 	},
 	{
-		"id": "Simmons",
-		"type": "book",
-		"title": "Introduction to Topology and Modern Analysis",
-		"publisher": "Krieger Publishing Company",
-		"publisher-place": "Malabar, Fla",
-		"number-of-pages": "384",
-		"edition": "Reprint edition",
-		"source": "Amazon",
-		"ISBN": "978-1-57524-238-5",
-		"language": "English",
-		"author": [
-			{
-				"family": "Simmons",
-				"given": "George F."
-			}
-		],
-		"issued": {
-			"date-parts": [
-				[
-					"2003",
-					6,
-					1
-				]
-			]
-		}
-	}
-
+        "id": "Tao11",
+        "type": "book",
+        "title": "An Introduction to Measure Theory",
+        "collection-title": "Graduate studies in mathematics",
+        "publisher": "American Mathematical Society",
+        "URL": "https://terrytao.files.wordpress.com/2011/01/measure-book1.pdf",
+        "ISBN": "978-0-8218-6919-2",
+        "note": "LCCN: 2011018926",
+        "author": [
+                {
+                        "family": "Tao",
+                        "given": "T."
+                }
+        ],
+        "issued": {
+                "date-parts": [
+                        [
+                                "2011"
+                        ]
+                ]
+        }
+},
+{
+        "id": "Hun11",
+        "type": "book",
+        "title": "Measure Theory",
+        "URL": "https://www.math.ucdavis.edu/~hunter/measure_theory/measure_theory.html",
+        "author": [
+                {
+                        "family": "Hunter",
+                        "given": "John K."
+                }
+        ],
+        "issued": {
+                "date-parts": [
+                        [
+                                "2011"
+                        ]
+                ]
+        },
+        "publisher": "Department of Mathematics, University of California at Davis"
+}
 ]

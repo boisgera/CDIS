@@ -140,7 +140,7 @@ x^{j+1} = x^j + \dt_j \Phi(t_j,x^j,\dt_j)
 $$
 où $\Phi(t_j,x^j,\dt_j)$ doit donc approximer 
 $$
-\frac{1}{t_{j+1}-t_j} \int_{t_j}^{t_{j+1}}f(s,x(s)) \ .
+\frac{1}{t_{j+1}-t_j} \int_{t_j}^{t_{j+1}}f(s,x(s)) ds \ .
 $$
 Les différentes méthodes de quadrature, i.e. d'approximation de l'intégrale, peuvent donc être mises à profit. La difficulté ici est que seule la valeur initiale $f(t_j,x(t_j))$ de $f$ est connue (ou du moins estimée) à l'itération $j$, par $f(t_j,x^j)$. 
 On distingue donc les méthodes *explicites* où $\Phi(t_j,x^j,\dt_j)$ est écrite directement explicitement en fonction de la valeur initiale $x^j$, et les méthodes *implicites* où cette expression n'est connue qu'implicitement et des étapes intermédiaires de calcul sont nécessaires. 
@@ -647,9 +647,9 @@ où $x_1$ et $x_2$ désignent le nombre (positif) de proies et de prédateurs re
     H(x_1,x_2) = \delta x_1 - \gamma \ln x_1 + \beta x_2 - \alpha \ln x_2  
     $$
     définie sur $\Rg\times \Rg$.
-    Calculer la dérivée de $H$ le long des solutions initialisées dans $\Rg\times \Rg$. En déduire que toute solution maximale initialisée dans $\Rg\times \Rg$ est définie sur $\R$ et que $\bar{x}$ est stable.
+    Calculer la dérivée de $H$ le long des solutions initialisées dans $\Rg\times \Rg$. En déduire que toute solution maximale initialisée dans $\Rg\times \Rg$ est définie sur $\R$.
 
- 5. Représenter les courbes de niveau de $H$. Qu'en conclue-t-on sur le comportement des solutions ?
+  5. Représenter les courbes de niveau de $H$. Où se trouve $\bar{x}$ ? Qu'en conclut-on sur le comportement des solutions ? En déduire (graphiquement) que $\bar{x}$ est stable, au sens de la définition de stabilité.
 
 On souhaite maintenant simuler numériquement les trajectoires.
 
@@ -688,7 +688,7 @@ On propose maintenant de modifier ces schémas de façon à stabiliser $H$ et as
  $$ 
  En déduire qu'alors $H(x(t))$ converge exponentiellement vers $H_0$ lorsque $t$ tend vers l'infini si $x$ reste à une distance strictement positive de $\bar{x}$.
 
- 11. En déduire comment modifier l'implémentation du schéma d'Euler pour assurer la stabilité de $H$. Quel est le rôle de $k$ ? Peut-il être choisi arbitrairement grand ? Pourquoi ?
+ 11. En déduire comment modifier l'implémentation du schéma d'Euler pour assurer la stabilité de $H$. Quel est le rôle de $k$ ? Peut-il être choisi arbitrairement grand ? Pourquoi ? On pourra exprimer $H(x^{j+1})-H(x_0)$ en fonction de $H(x^{j})-H(x_0)$ au premier ordre en $dt$.
 
 
 Exercices
