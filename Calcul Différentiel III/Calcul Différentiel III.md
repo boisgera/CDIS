@@ -1077,8 +1077,8 @@ $$
 
 ### {.ante .remark}
 Les dérivées partielles d'ordre supérieur -- qui se définissent par récurrence --
-permettent vont permettrent d'expliciter les différentielles d'ordre supérieures
-comme une tenseur.
+vont permettre d'expliciter les différentielles d'ordre supérieures
+comme un tenseur.
 
 ### Dérivées partielles d'ordre $k$ {.definition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
