@@ -1982,7 +1982,7 @@ prouver que $\mathcal{A}$ est une tribu de $X$ équivaut à établir
 et ces trois propriétés sont clairement satisfaites.
 
 ### Ensembles fermés {.answer #answer-fermés}
-Non. Par exmemle, le singleton $\{0\}$ est un ensemble fermé de $\R^n$,
+Non. Par exemple, le singleton $\{0\}$ est un ensemble fermé de $\R^n$,
 mais son complémentaire $\R^n \setminus \{0\}$ n'est pas fermé.
 
 ### Tribu née sous $X$ {.answer #answer-X}
@@ -2087,7 +2087,7 @@ mesure : elle est positive, $\sigma$-additive, et comme elle est finie,
 $$
 \mathbb{P}(\varnothing) 
 = \mathbb{P}\left(\bigcup_{k=0}^{+\infty} \varnothing \right)
-= \sum_{k=0}\mathbb{P}(\varnothing),
+= \sum_{k=0}^{+\infty}\mathbb{P}(\varnothing),
 $$
 donc nécessairement $\mathbb{P}(\varnothing)= 0$ ; elle est donc nulle en $0$
 et c'est bien une mesure.
