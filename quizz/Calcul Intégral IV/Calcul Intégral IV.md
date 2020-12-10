@@ -53,7 +53,7 @@ et seulement si :
 
   - [ ] C : la longueur de $\{x \in \R \; | \; f(x) \neq g(x)\}$ est nulle,
 
-  - [ ] D : $f$ et $g$ sont égales $c$-presque partout sans condition.
+  - [ ] D : $f$ et $g$ sont en fait égales $c$-presque partout sans condition.
 
 #### Question 4
 La fonction caractéristique de $\mathbb{Q} \subset \mathbb{R}$ est une fonction étagée
