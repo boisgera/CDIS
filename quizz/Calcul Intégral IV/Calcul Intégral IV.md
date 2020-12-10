@@ -33,7 +33,7 @@ Est-ce que $\mu$ est une mesure sur $(X, \mathcal{A})$ ?
 
 #### Question 2 (réponses multiples) 
 Si $\mu$ et $\nu$ sont des mesures sur le même espace mesurable $(X, \mathcal{A})$,
-$\alpha \in \R$ et $f: [0, +\infty] \to [0, +\infty]$ est continue, 
+$\alpha \geq 0$ et $f: [0, +\infty] \to [0, +\infty]$ est continue, 
 alors
 
   - [ ] A : $\mu + \nu$ est une mesure,
