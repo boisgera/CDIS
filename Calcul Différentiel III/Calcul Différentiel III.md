@@ -1228,18 +1228,16 @@ au cas précédent.
 
 
 ### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
-Pour compacter la notation $\partial^k_{i_1 \dots i_k} f(x)$, on peut exploiter 
-le fait que si $f$ est $k$ fois différentiable en $x$,
-$$
-\partial^k_{i_1 \dots i_k} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
-$$
-Compte tenu de la symétrie de $d^k f(x)$, peu importe l'ordre de $i_1$, $\dots$, $i_k$, 
-seul le nombre de fois où un indice apparaît compte. 
+Pour compacter la notation $\partial^k_{i_k \dots i_1} f(x)$, on peut exploiter 
+le fait que si $f$ est $k$ fois différentiable en $x$, on a
+$$\partial^k_{i_k \dots i_1} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}$$
+et utiliser ensuite la symétrie de $d^k f(x)$. Peu importe l'ordre d'apparition de $i_1$, $\dots$, $i_k$, 
+seul le nombre de fois où un indice donné apparaît compte. 
 Cette remarque fonde une notation basée sur les multi-indices 
 $\alpha=(\alpha_1, \dots, \alpha_n) \in \N^n$ où $\alpha_i$ détermine le
 nombre de fois où l'indice $i$ apparait. 
 Formellement, le symbole $\partial^{\alpha} f(x)$ désigne $f(x)$ si 
-$\alpha = (0, \dots, 0)$ et dans le cas contraire:
+$\alpha = (0, \dots, 0)$ et dans le cas contraire :
 $$
 \partial^{(\alpha_1, \cdots, \alpha_i + 1, \cdots, \alpha_n)} f(x) = \partial_i (\partial^{\alpha} f)(x).
 $$
