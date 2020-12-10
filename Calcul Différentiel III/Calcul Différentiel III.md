@@ -1082,23 +1082,26 @@ comme un tenseur.
 
 ### Dérivées partielles d'ordre $k$ {.definition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Soient $i_1, i_2, \dots, i_k$ des indices de $\{1,\dots, n\}$ ;
-lorsque la dérivée partielle $\partial^{k-1}_{i_2 \dots i_k} f$
-est définie en tout point de $U$ et est différentiable par rapport à
-la $i_1$-ème variable en $x$, on définit
+$x \in U$. Soient $i_1, i_2, \dots, i_k$ des indices de $\{1,\dots, n\}$.
+Si $k=1$, et que $f$ est différentiable par rapport à la $i_1$-ème variable en $x$,
 $$
-\partial^k_{i_1 \dots i_k} f(x) 
-:= \partial_{i_1} (\partial^{k-1}_{i_2 \dots i_k} f)(x).
+\partial^1_{i_1} f(x) := \partial_{i_1} f(x).
+$$
+Dans le cas contraire, lorsque la dérivée partielle $\partial^{k-1}_{i_{k-1} \dots i_1} f$
+est définie en tout point de $U$ et est différentiable par rapport à la $i_k$-ème variable en $x$
+$$
+\partial^k_{i_k \dots i_1} f(x) 
+:= \partial_{i_k} (\partial^{k-1}_{i_{k-1} \dots i_1} f)(x).
 $$
 
 ### Calcul des dérivées partielles d'ordre $k$ {.proposition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Si $f$ est $k$ fois différentiable en $x$, alors pour tout
+$x \in U$. Si $f$ est $k$ fois différentiable en $x$, alors pour tous
 $i_1, i_2, \dots, i_k$ dans $\{1,\dots, n\}$,
 $$
-\partial^k_{i_1 i_2\dots i_k} f(x) 
+\partial^k_{i_k i_2\dots i_1} f(x) 
 = 
-d^k f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2} \cdot e_{i_1}.
+d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
 $$
 
 ### Démonstration {.proof}
@@ -1107,19 +1110,20 @@ $\partial_{i_1} f(x) = df(x) \cdot e_{i_1}$ a été démontrée dans le
 chapitre "Calcul Différentiel I".
 Supposons que l'égalité soit vraie à l'ordre $k-1$. Alors, 
 \begin{align*}
-\partial^k_{i_1 \dots i_k} f(x)
+\partial^k_{i_k \dots i_1} f(x)
 &=
-\partial_{i_1} (\partial^{k-1}_{i_2 \dots i_k} f)(x) \\
+\partial_{i_k} (\partial^{k-1}_{i_{k-1} \dots i_1} f)(x) \\
 &=
-\partial_{i_1} (x \mapsto d^{k-1}f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2}) \\
+\partial_{i_k} (x \mapsto d^{k-1}f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k-1}}) \\
 &=
-d (x \mapsto d^{k-1}f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2}) \cdot e_{i_1} \\
+d (x \mapsto d^{k-1} f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k-1}} ) \cdot e_{i_k} \\
 &=
-d^k f (x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2} \cdot e_{i_1}
+d^k f (x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k-1}} \cdot e_{i_k}
 \end{align*}
-et l'égalité est également vraie à l'ordre $k$.
+et l'égalité est donc également vraie à l'ordre $k$, ce qui prouve le résultat
+recherché par récurrence.
 
-### Différentielle d'ordre $k$ et tenseur {.remark}
+### Différentielle d'ordre $k$ et tenseur {.proposition}
 On a 
 $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m,
@@ -1128,19 +1132,20 @@ chaque application dans la chaîne étant linéaire. La différentielle
 $d^k f(x)$ peut donc être représentée concrêtement par un tenseur $T$ d'ordre 
 $k+1$ et de type $(m, n, \dots, n)$ :
 $$
-T_{i_1i_2 \dots i_{k+1}} := 
-(\partial^k f_{i_2 \dots i_{k+1}}(x))\cdot e_{i_1} =
-(d^k f(x) \cdot e_{i_{k+1}} \cdot \hdots \cdot e_{i_2}) \cdot e_{i_1}.
+T_{ji_1 \dots i_{k}} := 
+(d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k}}) \cdot e_{j}
+=
+(\partial^k_{i_{k} \dots i_1} f(x))\cdot e_{j}.
 $$
 Par linéarité par rapport à chacun des $h_i$, on a :
 \begin{align*}
-d^k f(x) \cdot h_{k+1} \cdot \hdots \cdot h_2
+d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
 &=
-\sum_{i_1,i_2\dots, i_{k+1}}
+\sum_{j,i_1\dots, i_{k}}
 \left(
-\partial^k f_{i_1i_2 \dots i_{k+1}}(x)
-\times h_{k+1i_{k+1}} \times \cdots  \times h_{2i_2} 
-\right) e_{i_1}. \\
+\partial^k f_{i_k \dots i_{1}}(x)
+h_{1i_{1}} \cdots  h_{ki_k} 
+\right) e_j. \\
 \end{align*}
 
 ### Stratification {.lemma #stratification}
