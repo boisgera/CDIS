@@ -1610,11 +1610,11 @@ Convexité
 Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
 deux fois différentiable. 
 
-### Question 0 {.question #c-0}
+### Question 0 {.question #c-0 .one}
 Calculer le développement limité à l'ordre 2 de 
 $f(x+2h) - 2f(x+h) + f(x)$.
 
-### Question 1 {.question #c-1}
+### Question 1 {.question #c-1 .two}
 Montrer que si $f$ est convexe, c'est-à-dire si
 pour tous $x, y \in U$ et $\lambda\in[0,1]$,
 $$
@@ -1625,7 +1625,7 @@ $$
 d^2f(x) (\cdot h)^2 = h^{\top} \cdot H_f(x) \cdot h \geq 0.
 $$
 
-### Question 2 {.question #c-2}
+### Question 2 {.question #c-2 .three}
 Montrer la réciproque de ce résultat.
 
 Différentiation en chaîne à l'ordre 2
@@ -1635,10 +1635,10 @@ Soit $U$ et $V$ des ouverts de $\R^n$ et de $\R^m$, $f: U \to \R^m$ et
 $g : V \to \R$ deux applications deux fois différentiables telles que
 $f(U) \subset V$. 
 
-### Question 1 {.question .two #cr2-1}
+### Question 1 {.question  #cr2-1 .one}
 Montrer que $g \circ f$ est deux fois différentiable sur $U$. 
 
-### Question 2 {.question .three #cr2-2}
+### Question 2 {.question #cr2-2 .three}
 Montrer que pour tout $x \in U$,
 $$
 H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  
@@ -1656,11 +1656,12 @@ Source: [@Tao13]
 Dans cet exercice :
 
   1. Une fonction $F: U \subset \R^n \to \R^{m \times p}$ à valeurs matricielles
-est différentiable si chacune de ses composantes $F_{ij} : U \to \R$ est différentiable.
-La différentielle de $F$ est alors définie par $[dF]_{ij} = dF_{ij}$.
+est différentiable en $x$ si chacune de ses composantes $F_{ij} : U \to \R$ est 
+différentiable en $x$. La différentielle de $F$ en $x$ est alors définie par 
+$[dF(x)]_{ij} = dF_{ij}(x)$.
 
   2. Une fonction $f : U \subset \R^{m\times n} \to \R^{p}$ dont l'argument $X$ est 
-  matriciel est différentiable si la fonction $g : \pi(U) \subset \R^{mn} \to \R^p$
+  matriciel est différentiable en $X$ si la fonction $g : \pi(U) \subset \R^{mn} \to \R^p$
   caractérisée par
   $$
   g(x)
@@ -1675,7 +1676,7 @@ avec
   $$
   x =  \pi(X) := (X_{11}, \dots, X_{1n}, \dots, X_{m1},\dots, X_{mn})
   $$
-  est différentiable. On définit alors pour tout $H \in \R^{m\times n}$
+  est différentiable en $x$. On définit alors pour tout $H \in \R^{m\times n}$
   $$
   df(X) \cdot H = dg(x) \cdot h \; \mbox{ avec } \; x = \pi(X), \, h = \pi(H).
   $$ 
@@ -1683,7 +1684,7 @@ avec
   de plusieurs matrices.
 
   3. Il est possible de combiner les deux cas précédents pour définir la différentielle
-de fonctions d'argument et de valeur matriciels.
+de fonctions d'arguments et de valeur matriciels.
 
 ### Question 1 {.question #dm-1}
 Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
@@ -1933,17 +1934,21 @@ Convexité
 --------------------------------------------------------------------------------
 
 ### Question 0 {.answer #answer-c-0}
+(Dans cette question $\varepsilon$ désigne un symbole de fonction générique
+-- plutôt que $\varepsilon_1, \varepsilon_2,$ etc. --
+qui tend vers $0$ quand son argument tend vers $0$.) 
 [Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
 $$
-f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2)
+f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + \varepsilon(h) \times \|h\|^2
 $$
+
 et donc
 $$
-f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2).
+f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + \varepsilon(h) \times \|h\|^2.
 $$
 Par conséquent,
 $$
-f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
+f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + \varepsilon(h) \times \|h\|^2.
 $$
 
 ### Question 1 {.answer #answer-c-1}
@@ -1955,9 +1960,20 @@ $$
 soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
 En utilisant le résultat de la question précédente,
 on obtient
-$$d^2 f(x) (\cdot h)^2 + o(\|h\|^2) \geq 0$$ et donc, en substituant 
-$th$ à $h$ et en faisant tendre $t$ vers $0$, 
-$d^2 f(x) (\cdot h)^2 \geq 0.$
+$$d^2 f(x) (\cdot h)^2 + \varepsilon(h) \times \|h\|^2 \geq 0$$ et donc, 
+en substituant $th$ à $h$ pour $t \in \left]0, 1\right]$,
+$$
+t^2 d^2f(x) (\cdot h)^2 = d^2 f(x) (\cdot th)^2   
+\geq  
+- \varepsilon(th) \times \|th\|^2
+=
+- \varepsilon(th) \times t^2 \|h\|^2,
+$$
+soit 
+$$
+d^2f(x) (\cdot h)^2 \geq - \varepsilon(th) \times \|h\|^2
+$$
+et donc en faisant tendre $t$ vers $0$ à $h$ fixé, $d^2 f(x) (\cdot h)^2 \geq 0.$
 
 ### Question 2 {.answer #answer-c-2}
 Comme $f((1-\lambda) x + \lambda y) = f(x + \lambda (y-x))$,
@@ -2035,9 +2051,15 @@ La fonction $\nabla (g \circ f)$ est donc différentiable et $g \circ f$ est
 deux fois différentiable.
 
 ### Question 2 {.answer #answer-cr2-2}
-La règle de différentiation en chaîne donne pour tout indice $i \in \{1,\dots, n\}$ 
+Comme pour tout indice $i \in \{1,\dots, n\}$,
 $$
-\partial_i (g\circ f) (x) = dg(f(x)) \cdot \partial_i f(x) = \sum_{k=1}^m \partial_k g(f(x)) \partial_i f_k (x).
+\partial_i (g\circ f) (x)
+=
+d (g \circ f)(x) \cdot e_i,
+$$
+la règle de différentiation en chaîne donne 
+$$
+\partial_i (g\circ f) (x) = d g(f(x)) \cdot df(x)\cdot e_i = dg(f(x)) \cdot \partial_i f(x) = \sum_{k=1}^m \partial_k g(f(x)) \partial_i f_k (x).
 $$
 Pour tout $j \in \{1,\dots, m\}$, on a donc
 \begin{align*}
@@ -2139,7 +2161,7 @@ son déterminant est positif ; la matrice $A$ est alors inversible.
 Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
 pour être inversible, la formule de Cramer établit
 $$
-A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
+A^{-1} = \frac{1}{\det A}  \mathrm{co}(A)^t.
 $$
 Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
 de $A$) est une fonction polynomiale
