@@ -1096,10 +1096,7 @@ $$
 
 ### Dérivées partielles d'ordre 3 {.exercice .question .one #dpo3}
 Calculer les 8 dérivées partielles d'ordre $3$ de la fonction
-$(x_1, x_2) \in \R^2 \mapsto x_1^4 + 4x_1^3 x_2$.
-
-### Dérivées partielles d'ordre 3 {.answer #answer-dpo3}
-**TODO**
+$f: (x_1, x_2) \in \R^2 \mapsto x_1^4 + 4x_1^3 x_2 \in \R$.
 
 ### Calcul des dérivées partielles d'ordre $k$ {.proposition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
@@ -1155,7 +1152,7 @@ h_{1i_{1}} \cdots  h_{ki_k}
 \right) e_j. \\
 \end{align*}
 
-### Continue différentiabilité d'ordre k {.definition}
+### Continue différentiabilité d'ordre $k$ {.definition}
 Soit $U$ un ouvert de $\R^n$ et $f:U \to \R^m$. La fonction $f$ est
 *$k$ fois continûment différentiable* si pour tout $i_{k}, \dots, i_i \in \{1,\dots, n\}$,
 $\partial^k_{i_k \dots i_1} f:U \to \R^m$ existe et est continue.
@@ -1897,6 +1894,39 @@ Le résultat cherché se déduit alors comme suit :
 \int_0^1 M\|h\|^2 (1-t) \, dt \\
 &= M \|h\|^2 \int_0^1 (1-t) \, dt \\
 &= M\frac{\|h\|^2}{2}.
+\end{align*}
+
+### Dérivées partielles d'ordre 3 {.answer #answer-dpo3}
+On a 
+$$\partial_1 f(x_1, x_2) = 4 x_1^3 + 12 x_1^2 x_2 
+\; \mbox{ et } \; \partial_2 f(x_1, x_2) = 4x_1^3.$$
+
+Puis,
+\begin{align*}
+&\partial^2_{11} f(x_1, x_2) = 
+\partial_1 (\partial_1 f)(x_1, x_2) =
+\partial_1 (4 x_1^3 + 12 x_1^2 x_2) = 12 x_1^2+24 x_1 x_2,
+\\
+&\partial^2_{12} f(x_1, x_2) = 
+\partial_1(\partial_2 f)(x_1, x_2) = \partial_1 (4x_1^3) = 12 x_1^2,
+\\
+&\partial^2_{21} f(x_1, x_2) = \partial_2 (\partial_1 f)(x_1, x_2) = \partial_2(4 x_1^3 + 12 x_1^2 x_2) = 12 x_1^2,
+\\
+&\partial^2_{22} f(x_1, x_2) = \partial_2 (\partial_2 f)(x_1, x_2) = \partial_2 (4x_1^3)  
+=0.
+\\
+\end{align*}
+
+Et enfin
+\begin{align*}
+&\partial^3_{111} f(x_1, x_2) = \partial_1 (\partial^2_{11} f)(x_1, x_2) = \partial_1 (12 x_1^2+24 x_1 x_2) = 24 x_1 + 24, \\
+&\partial^3_{112} f(x_1, x_2) = \partial_1 (\partial^2_{12} f)(x_1, x_2) = \partial_1 (12 x_1^2)  =  24 x_1,\\
+&\partial^3_{121} f(x_1, x_2) = \partial_1 (\partial^2_{21} f)(x_1, x_2) = \partial_1 (12 x_1^2)  = 24 x_1,\\
+&\partial^3_{122} f(x_1, x_2) = \partial_1 (\partial^2_{22} f)(x_1, x_2) = \partial_1 (0) =0,\\
+&\partial^3_{211} f(x_1, x_2) = \partial_2 (\partial^2_{11} f)(x_1, x_2) = \partial_2 (12 x_1^2+24 x_1 x_2) = 24x_1,\\
+&\partial^3_{212} f(x_1, x_2) = \partial_2 (\partial^2_{12} f)(x_1, x_2) = \partial_2 (12 x_1^2) = 0, \\
+&\partial^3_{221} f(x_1, x_2) = \partial_2 (\partial^2_{21} f)(x_1, x_2) = \partial_2 (12 x_1^2) = 0, \\
+&\partial^3_{222} f(x_1, x_2) = \partial_2 (\partial^2_{22} f)(x_1, x_2) = \partial_2 (0) =0.\\
 \end{align*}
 
 Convexité
