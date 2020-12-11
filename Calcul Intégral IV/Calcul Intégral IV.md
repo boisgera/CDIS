@@ -293,7 +293,7 @@ $$
 \end{array}
 \right.
 $$
-est une mesure nommé *mesure de Lebesgue* sur $\R^n$.
+est une mesure nommée *mesure de Lebesgue* sur $\R^n$.
 
 ### Démonstration {.proof}
 La fonction $\lambda$ est bien à valeurs dans $[0, +\infty]$ ; quand $A = \varnothing$,
@@ -325,17 +325,6 @@ La $\sigma$-additivité de $\lambda$ est donc établie dans tous les cas.
 Déterminer la mesure de Lebesgue $\lambda(P)$ du pavé fermé borné 
 $P = [a_1,b_1] \times \dots \times [a_n, b_n] \subset \R^n$.
 
-
-### Mesure de Lebesgue d'un pavé {.answer #answer-mlp}
-La fonction caractéristique du pavé fermé borné $P$ est intégrable et par
-le théorème de Fubini on a donc
-\begin{align*}
-\lambda(P) &= \int 1_{[a_1,b_1] \times \dots \times [a_n,b_n]} (x) \,dx \\
-&= \int (1_{[a_1, b_1]}(x_1) \times \dots \times 1_{[a_n, b_n]}(x_n)) \, dx_1 \dots dx_n \\
-&= \left(\int 1_{[a_1, b_1]}(x_1) \, dx_1\right) \times \dots \times \left(\int 1_{[a_n, b_n]}(x_n) \, dx_n\right) \\
-&= (b_1 - a_1) \times \dots \times (b_n - a_n).
-\end{align*}
-
 ### Mesure de Dirac {.definition}
 Soit $X$ un ensemble et $x \in X$ ; on appelle *mesure de Dirac* en $x$ la mesure 
 $\delta_x : \mathcal{P}(X) \to [0, +\infty]$ définie par
@@ -357,7 +346,7 @@ qu'obtient-on ?
 
 ### Mesure de comptage {.definition #comptage}
 Soit $X$ un ensemble et $\mathcal{A} = \mathcal{P}(X)$ l'ensemble des parties
-de $\R^n$. On appelle *mesure de comptage* sur $X$ la fonction 
+de $X$. On appelle *mesure de comptage* sur $X$ la fonction 
 $c : \mathcal{P}(X) \to [0, +\infty]$ définie par
 $$
 c(A) = \left|
@@ -446,7 +435,7 @@ qu'unions dénombrables et intersections dénombrables d'ensembles mesurables
 sont des ensembles mesurables.
 
 ### Fonction étagée {.definition}
-Une fonction $f: X \to [-\infty, +\infty]$ est *étagée* si et seulement
+Une fonction $f: X \to [-\infty, +\infty]$ est *étagée* si et seulement si
 l'image de $X$ par $f$ ne comporte qu'un nombre fini de valeurs distinctes.
 
 ### Fonction étagées mesurables {.proposition}
@@ -2126,6 +2115,17 @@ deux à deux disjoints, alors
 &= \sum_{k=0}^{+\infty} \mu_1(A_k) + \sum_{k=0}^{+\infty} \mu_2(A_k) \\
 &= \sum_{k=0}^{+\infty} (\mu_1(A_k) + \mu_2(A_k)) \\
 &= \sum_{k=0}^{+\infty} (\mu_1+\mu_2)(A_k)
+\end{align*}
+
+
+### Mesure de Lebesgue d'un pavé {.answer #answer-mlp}
+La fonction caractéristique du pavé fermé borné $P$ est intégrable et par
+le théorème de Fubini on a donc
+\begin{align*}
+\lambda(P) &= \int 1_{[a_1,b_1] \times \dots \times [a_n,b_n]} (x) \,dx \\
+&= \int (1_{[a_1, b_1]}(x_1) \times \dots \times 1_{[a_n, b_n]}(x_n)) \, dx_1 \dots dx_n \\
+&= \left(\int 1_{[a_1, b_1]}(x_1) \, dx_1\right) \times \dots \times \left(\int 1_{[a_n, b_n]}(x_n) \, dx_n\right) \\
+&= (b_1 - a_1) \times \dots \times (b_n - a_n).
 \end{align*}
 
 
