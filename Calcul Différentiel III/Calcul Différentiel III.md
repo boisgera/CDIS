@@ -1094,6 +1094,13 @@ $$
 := \partial_{i_k} (\partial^{k-1}_{i_{k-1} \dots i_1} f)(x).
 $$
 
+### Dérivées partielles d'ordre 3 {.exercice .question .one #dpo3}
+Calculer les 8 dérivées partielles d'ordre $3$ de la fonction
+$(x_1, x_2) \in \R^2 \mapsto x_1^4 + 4x_1^3 x_2$.
+
+### Dérivées partielles d'ordre 3 {.answer #answer-dpo3}
+**TODO**
+
 ### Calcul des dérivées partielles d'ordre $k$ {.proposition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
 $x \in U$. Si $f$ est $k$ fois différentiable en $x$, alors pour tous
@@ -1147,6 +1154,33 @@ d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
 h_{1i_{1}} \cdots  h_{ki_k} 
 \right) e_j. \\
 \end{align*}
+
+### Continue différentiabilité d'ordre k {.definition}
+Soit $U$ un ouvert de $\R^n$ et $f:U \to \R^m$. La fonction $f$ est
+*$k$ fois continûment différentiable* si pour tout $i_{k}, \dots, i_i \in \{1,\dots, n\}$,
+$\partial^k_{i_k \dots i_1} f:U \to \R^m$ existe et est continue.
+
+### Continue différentiabilité et différentiabilité {.proposition}
+Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est $k$ fois
+continûment différentiable, alors $f$ est $k$ fois différentiable.
+
+
+### Démonstration {.proof}
+Le résultat est connu à l'ordre 1 ; supposons-le établi à l'ordre $k-1$.
+Si $f$ est $k$ fois continûment différentiable à l'ordre $k$, comme pour tout
+$k-1$-uplet $h_1$, $h_2$, $\dots$, $h_{k-1}$, dans $\R^n$ on a
+$$
+d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1} 
+=
+\sum_{j,i_1\dots, i_{k-1}}
+\left(
+\partial^{k-1} f_{i_{k-1} \dots i_{1}}(x)
+h_{1i_{1}} \cdots  h_{k-1i_{k-1}} 
+\right) e_j,
+$$
+la fonction $x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1}$
+est différentiable et par conséquent $f$ est $k$ fois différentiable.
+
 
 ### Stratification {.lemma #stratification}
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
