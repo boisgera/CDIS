@@ -746,7 +746,7 @@ où $\lim_{h_2 \to 0} E(h_2) = 0 \in \R^{m\times n}$.
 ### Démonstration {.proof}
 Par le [lemme sur la variation de la différentielle](#LVD), on sait que
 $$
-df(x+h_2) = df(x) + (h_1 \mapsto d^2 f(x) \cdot h_1 \cdot h_2) + o(\|h_2\|).
+df(x+h_2) = df(x) + (h_1 \mapsto d^2 f(x) \cdot h_1 \cdot h_2) + \varepsilon(\|h_2\|).
 $$
 La [différentielle d'ordre 2 étant symétrique](#SD2), 
 $$
@@ -1330,7 +1330,7 @@ est l'application $dF(x)$ telle que $dF(x)\cdot h$ soit
 la meilleure approximation, linéaire en $h$, de $F(x+h) - F(x)$
 pour de petites valeurs de $h$
 $$
-F(x+h) = F(x) + dF(x) \cdot h + o(h)
+F(x+h) = F(x) + dF(x) \cdot h + \varepsilon(h)
 $$
 
 L'application $dF(x)$ est donc une application linéaire de 
@@ -1706,16 +1706,16 @@ avec
   3. Il est possible de combiner les deux cas précédents pour définir la différentielle
 de fonctions d'arguments et de valeur matriciels.
 
-### Question 1 {.question #dm-1}
+### Question 1 {.question #dm-1 .two}
 Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
 différentiable en l'identité ($A = I$) et calculer cette différentielle.
 
-### Question 2 {.question #dm-2}
+### Question 2 {.question #dm-2 .one}
 L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
 vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
 En déduire une identité concernant $\tr A B$ et $\tr BA$.
 
-### Question 3 {.question #dm-3}
+### Question 3 {.question #dm-3 .three}
 Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
 ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
@@ -2111,7 +2111,7 @@ $$
 H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  \sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
 $$
 
-TODO -- Différentiation matricielle
+Différentiation matricielle
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dm-1}
@@ -2146,16 +2146,16 @@ h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
 \vdots & \vdots & \vdots \\
 h_{n2} & \hdots & 1+h_{nn} \\
 \end{array} \right| 
-+ o(\|H\|), \\
++ \varepsilon(\|H\|), \\
 \end{split}
 $$
 une relation dont on tire par récurrence que
 $$
 \begin{split}
 \det (I+H) 
-&= \prod_{i = 1}^n (1 + h_{ii}) + o(\|H\|)
-=\det I + \sum_{i=1}^n h_{ii} + o(\|H\|) \\
-&= \det I + \tr H + o(\|H\|).
+&= \prod_{i = 1}^n (1 + h_{ii}) + \varepsilon(\|H\|)
+=\det I + \sum_{i=1}^n h_{ii} + \varepsilon(\|H\|) \\
+&= \det I + \tr H + \varepsilon(\|H\|).
 \end{split}
 $$
 La différentiel du déterminant existe donc en l'identité et 
@@ -2193,11 +2193,11 @@ donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
 différentiable en $A=I$.
 
 Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
-$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + o(\|H\|),$
+$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + \varepsilon(\|H\|),$
 l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
 $$
-(I+H)(I + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)) 
-= I + H + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)
+(I+H)(I + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)) 
+= I + H + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)
 = I,
 $$
 et donc
