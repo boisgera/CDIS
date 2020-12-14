@@ -1005,7 +1005,7 @@ l'on représente implicitement $x$ et $y$ comme deux vecteurs-colonnes de $\R^{n
 l'expression $x \cdot y$ n'a pas de sens ; il alors considérer $x^{\top} \cdot y$ à la place, puis assimiler ensuite le résultat -- qui est une matrice $1 \times 1$ -- à un nombre réel. Les conventions du calcul tensoriel ont donc ici une action simplificatrice.
 
 ### Contraction tensorielle avec NumPy {.remark}
-Si $A$ et $B$ sont deux tenseurs de type compatibles pour le produit (la dernière dimension de $A$ égale à la première dimension de $B$)
+Si $A$ et $B$ sont deux tenseurs de type compatibles pour la contraction (la dernière dimension de $A$ égale à la première dimension de $B$)
 représentés par les tableaux $n$-dimensionnels `A` et `B`, 
 **et tant que l'ordre de $B$ est inférieur ou égal à $2$**, 
 on peut calculer la contraction de $A$ et $B$ au moyen de la méthode `dot`.
@@ -1035,7 +1035,7 @@ on obtient des contraction variées par les appels :
             [31., 46.]]])
 
 Par contre, si l'ordre de $B$ est $3$ ou plus, 
-on ne pourra pas utiliser cette méthode pour calculer le produit tensoriel $A \cdot B$ car son
+on ne pourra pas utiliser cette méthode pour calculer la contraction tensorielle $A \cdot B$ car son
 résultat diffère de la contraction tensorielle telle
 que nous l'avons défini
 [(cf. documentation de `numpy.dot`)](https://numpy.org/doc/stable/reference/generated/numpy.dot.html).
