@@ -67,7 +67,7 @@ d'exercices.
     savoir l'exploiter pour établir la différentiabilité d'ordre $k$.
 
   - \two connaître la notion de tenseur, les concepts d'ordre, type et
-    produit associés, et comment ces notions généralisent des concepts
+    contraction associés, et comment ces notions généralisent des concepts
     et opérations déjà connues.
 
   - \three savoir représenter une application linéaire d'ordre supérieure
@@ -970,10 +970,10 @@ B(x, y) = \sum_{i=1}^m \sum_{j=1}^n a_{ij} x_i y_j.
 $$
 Dans le cas général, un tenseur d'ordre $n$ correspond à une forme $n$-linéaire.
 
-### Produit tensoriel {.definition}
+### Contraction tensorielle {.definition}
 Soient $A$ et $B$ des tenseurs de type respectifs 
 $(m_1,m_2,\dots, m_n) \in \N^{n}$ et $(p_1,p_2,\dots, p_q) \in \N^{q}$.
-Si $m_n = p_1$, le produit de $A$ et $B$ est le tenseur de type
+Si $m_n = p_1$, la *contraction de $A$ et $B$* est le tenseur de type
 $(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q-2}$ noté $A \cdot B$ 
 défini par
 $$
@@ -982,12 +982,12 @@ $$
 \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} .
 $$
 
-### Produits tensoriels classiques {.remark} 
+### Contraction tensorielles classiques {.remark} 
 Pour $x, y \in \R^n$, on a
 $$
 x \cdot y  = \sum_{i=1}^m x_i y_i \in \R.
 $$
-Le produit tensoriel de deux vecteurs est bien défini et coïncide avec leur produit scalaire[^oops].
+La contraction de deux vecteurs est bien défini et coïncide avec leur produit scalaire[^oops].
 Si de plus $A \in \R^{m \times n}$ et 
 $B \in \R^{n \times p}$,
 $$
@@ -997,7 +997,7 @@ $$
 A \cdot B \in \R^{m \times p}\; \mbox{ et } \;
 (A \cdot B)_{ik} = \sum_{j=1} A_{ij} B_{jk}.
 $$
-Autrement dit, les produits tensoriels matrices-vecteurs et matrices-matrices
+Autrement dit, les contractions matrices-vecteurs et matrices-matrices
 coïncident avec les produits classiques de l'algèbre linéaire.
 
 [^oops]: Souvenons-nous à l'inverse que si l'on interprête "$\cdot$" comme un produit matriciel et que 
@@ -1008,7 +1008,7 @@ l'expression $x \cdot y$ n'a pas de sens ; il alors considérer $x^{\top} \cdot 
 Si $A$ et $B$ sont deux tenseurs de type compatibles pour le produit (la dernière dimension de $A$ égale à la première dimension de $B$)
 représentés par les tableaux $n$-dimensionnels `A` et `B`, 
 **et tant que l'ordre de $B$ est inférieur ou égal à $2$**, 
-on peut calculer le produit tensoriel de $A$ et $B$ au moyen de la méthode `dot`.
+on peut calculer la contraction de $A$ et $B$ au moyen de la méthode `dot`.
 Par exemple, avec :
 
     >>> x = np.array([0.0, 1.0])
@@ -1018,7 +1018,7 @@ Par exemple, avec :
     >>> T = np.array([[[1.0, 2.0], [3.0, 4.0]], 
     ...               [[5.0, 6.0], [7.0, 8.0]]])
 
-on obtient des produits tensoriels variés par les appels :
+on obtient des contraction variées par les appels :
 
     >>> x.dot(y)
     4.0
@@ -1036,7 +1036,7 @@ on obtient des produits tensoriels variés par les appels :
 
 Par contre, si l'ordre de $B$ est $3$ ou plus, 
 on ne pourra pas utiliser cette méthode pour calculer le produit tensoriel $A \cdot B$ car son
-résultat diffère du produit tensoriel tel
+résultat diffère de la contraction tensorielle telle
 que nous l'avons défini
 [(cf. documentation de `numpy.dot`)](https://numpy.org/doc/stable/reference/generated/numpy.dot.html).
 
