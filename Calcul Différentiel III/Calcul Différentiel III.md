@@ -1004,7 +1004,7 @@ coïncident avec les produits classiques de l'algèbre linéaire.
 l'on représente implicitement $x$ et $y$ comme deux vecteurs-colonnes de $\R^{n \times 1}$, 
 l'expression $x \cdot y$ n'a pas de sens ; il alors considérer $x^{\top} \cdot y$ à la place, puis assimiler ensuite le résultat -- qui est une matrice $1 \times 1$ -- à un nombre réel. Les conventions du calcul tensoriel ont donc ici une action simplificatrice.
 
-### Produit tensoriel avec NumPy {.remark}
+### Contraction tensorielle avec NumPy {.remark}
 Si $A$ et $B$ sont deux tenseurs de type compatibles pour le produit (la dernière dimension de $A$ égale à la première dimension de $B$)
 représentés par les tableaux $n$-dimensionnels `A` et `B`, 
 **et tant que l'ordre de $B$ est inférieur ou égal à $2$**, 
