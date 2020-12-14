@@ -982,7 +982,7 @@ $$
 \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} .
 $$
 
-### Contraction tensorielles classiques {.remark} 
+### Contractions tensorielles classiques {.remark} 
 Pour $x, y \in \R^n$, on a
 $$
 x \cdot y  = \sum_{i=1}^m x_i y_i \in \R.
