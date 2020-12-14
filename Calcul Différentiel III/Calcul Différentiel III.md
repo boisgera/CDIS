@@ -56,8 +56,28 @@ d'exercices.
 
 #### Différentielle d'ordre supérieur
 
-**TODO**
+  - \three appréhender le concept de différentielle d'ordre $k$ : 
+    sa nature d'application linéaire d'ordre supérieure,
+    quand elle existe, comment la calculer.
 
+  - \one savoir définir et exploiter les dérivées partielles d'ordre $k$, 
+    leurs relations avec la différentielle d'ordre $k$, leurs symétries.
+
+  - \one savoir caractériser la continue différentiabilité d'ordre $k$ et
+    savoir l'exploiter pour établir la différentiabilité d'ordre $k$.
+
+  - \two connaître la notion de tenseur, les concepts d'ordre, type et
+    produit associés, et comment ces notions généralisent des concepts
+    et opérations déjà connues.
+
+  - \three savoir représenter une application linéaire d'ordre supérieure
+    par un tenseur et réciproquement ; faire le lien entre les coefficients
+    du tenseur de la différentielle d'ordre $k$ et les dérivées
+    partielles d'ordre $k$.
+
+  - \two connaître et savoir exploiter les développements limités et avec reste intégral 
+     à l'ordre $k$.
+    
 
 <!--
 
