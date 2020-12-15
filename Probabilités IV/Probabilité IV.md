@@ -14,6 +14,60 @@
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\cov}{\text{Cov}}
 
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+
+Objectifs d'apprentissage
+================================================================================
+
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, la connaissance des démonstrations du document 
+n'est pas exigible[^hp] 
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+#### Préambule
+
+- \one connaître la définition des espaces $\L^p$
+- \two connaître la propriété d'inclusion dans les espaces $\L^p$
+- \one connaître l'inégalité de Markov 
+- \one connaître l'inégalité de Bienaymé-Chebyshev
+
+#### Suites de v.a. indépendantes
+
+- \four connaître le théorème d'existence et d'unicité de la mesure produit sur les espaces produit de dimension infinie
+- \two connaître la définition d'une suite de variables aléatoires indépendantes 
+- \two connaître et savoir utiliser le lemme de Borel-Cantelli
+
+#### Convergence et loi des grands nombres
+
+- \two connaître les différents modes de convergence des suites de v.a. 
+- \three savoir caractériser le(s) mode(s) de convergence d'une suite de v.a.
+- \two connaître les liens d'implication entre les différents modes de convergence
+- \two connaître la propriété de continuité
+- \one connaître la loi faible des grands nombre
+- \one connaître la loi forte des grands nombre (sous les hypothèses minimales)
+
+#### Convergence en loi et théorème central limite
+
+- \one connaître la définition de la convergence en loi
+- \one savoir que la convergence en probabilité implique la convergence en loi
+- \two savoir que la convergence simple des fonctions de répartition équivaut à la convergence en loi
+- \one connaître et savoir utiliser le théorème central limite
+
+
 # Préambule 
 
 Dans ce chapitre, on va s'intéresser à l'étude des suites de variables aléatoires. On introduira notamment différents modes de convergence. En particulier, on établira la *loi des grands nombres* qui montre rigoureusement que, quand le nombre de répétitions de l’expérience tend vers l’infini, la fréquence de réalisation
@@ -55,8 +109,7 @@ $$\Esp(|X|^p) \geq a^p \Esp(1_{[a, +\infty[}(|X|)) = a^p \P(|X|\geq a).$$
 Soit $X \in \L^2$, on a
 $$\P(|X-\Esp(X)| > a) \leq \frac{\V(X)}{a^2}$$
 
-### Démonstration {.proof}
-C'est une application immédiate de [l'inégalité de Markov](#inegmarkov) à $(X-\Esp(X))$ avec $p =2$.
+### Démonstration {.exercise .question .one #bienaymécheby}
 
 ### Interprétation {.remark}
 
@@ -64,7 +117,8 @@ L'inégalité de Bienaymé-Chebyshev est très utile en pratique. Elle permet de
 (probabilité inférieure à 0.01). Cette inégalité, tout à fait générale, n’est cependant pas très précise, et surestime très souvent en pratique le membre de gauche. On préférera, quand c'est possible, calculer directement ces probabilités à partir de la loi de $X$.
 
 
-## Indépendance et suites de variables indépendantes
+# Suites de variables indépendantes
+
 Au début du chapitre III, nous avons vu comment construire des couples (et même des $n$-uplets en itérant) de variables aléatoires réelles indépendantes en considérant l'espace produit, munis des tribus produit et des (mesures de) probabilités produit. Il est malheureusement beaucoup plus délicat, mais indispensable pour les applications (en particulier la loi des grands nombres), de construire une **suite infinie de variables indépendantes** de lois données.
 
 Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie sur un espace de probabilité $(\Omega_n,\A_n,\P_n)$, à valeurs dans $(\R,\B(\R))$ et de loi $\P_{X_n}$ (pour construire chaque $X_n$, on peut procéder comme ci-dessus). Ensuite, on pose
@@ -75,7 +129,7 @@ Plus précisément, pour chaque entier $n$ on se donne une v.a.r. $X_n$ définie
 où $\bigotimes_{n=1}^{\infty}\A_n$ désigne la plus petite tribu de $\Omega$ à laquelle appartienne tous les ensembles de la forme 
 $$A_1 \times A_2 \times \ldots\times A_k \times \Omega_{k+1} \times \Omega_{k+2} \times \ldots, \,\,\, A_i \in \A_i, \,\,\, k \in \N^\ast$$
 
-On a alors le théorème suivant, que l'on admettra, qui constitue un résultat non trivial de la théorie de la mesure et qui généralise le [théorème d'existence et d'unicité de la mesure produit](Probabilité III.pdf #fubiniproba).
+On a alors le théorème suivant, que l'on admettra, qui constitue un résultat non trivial de la théorie de la mesure et qui généralise le [théorème de Fubini](Probabilité III.pdf #fubiniproba).
 
 ### Mesure produit sur un espace de dimension infinie {.theorem #probaespaceden}
 Avec les notations ci-dessus, il existe une unique probabilité $\P$ sur $(\Omega,\A)$, telle que
@@ -94,9 +148,9 @@ L'indépendance de la suite $(X_n)_{n\in \N^\ast}$ entraîne celle de
 
  1. toute sous-suite $(X_{i_k})_{k\in \N^\ast}$,
  2. toute suite de vecteurs issus de $X_n$,
- 3. toute suite de la forme $(f_n(X_n))_{n\in \N^\ast}$, où les fonctions $f_n$ sont des fonctions mesurables.
+ 3. toute suite de la forme $(f_n(X_n))_{n\in \N^\ast}$, où les fonctions $f_n$ sont des fonctions boréliennes.
 
-### Exemple {.example}
+### Développement dyadique {.example}
 Nous considérons l’ensemble $\Omega = [0, 1[$ muni de la tribu borélienne restreinte à cet ensemble, et de la mesure de Lebesgue. A chaque réel $\omega$, nous associons son développement dyadique (unique si l’on impose que les $\omega_i$ ne soient pas tous égaux à 1 à partir d’un certain rang) :
 $$ \omega = \sum_{i\in \N^\ast} \frac{\omega_i}{2^i},\,\,\, \omega_i \in \{0,1\}.$$
 L'application $X_i : \Omega \to \{0,1\}$, qui à $\omega$ associe $X_i(\omega) = \omega_i$ est une variable aléatoire sur $\Omega$. En effet, pour $x_i \in \{0,1\}$, $1\leq i \leq n$,
@@ -112,7 +166,7 @@ variables aléatoires indépendantes de loi de Bernoulli de paramètre $\frac{1}
 
 On note enfin le résultat très utile suivant portant sur les suites d'événements indépendants.
 
-### Lemme de Borel-Cantelli {.lemma #BC}
+### Borel-Cantelli {.lemma #BC}
 
 Soit $(A_n)_{n\in\N^\ast}$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
 
@@ -124,6 +178,10 @@ Soit $(A_n)_{n\in\N^\ast}$ une suite d'événements sur l'espace probabilisé $(
 
 Exercice.
 
+### Pile ou face infini {.exercise .one .question #pf}
+On considère un jeu de pile ou face infini où on a une probabilité $p, 0< p < 1$, d'obtenir face. Montrer que  l'événement $A = \{\omega : \text{ il n'y a qu'un nombre fini de faces}\}$ est de probabilité nulle. (Considérer les événements $A_n = \{\text{on a face au }n\text{-ième tirage}\}$, puis montrer que $\sum_{n=1}^\infty \P(A_n) = \infty$).
+
+
 # Convergences et loi des grands nombres
 
 ## Convergences des variables aléatoires
@@ -131,7 +189,7 @@ Dans ce paragraphe, on va décrire les notions de convergence de variables (on y
 
 En calcul intégral, on a beaucoup étudié le cas de suites de fonctions convergeant simplement. Une variable aléatoire étant une fonction, on a donc la même notion qui revient à écrire qu'une suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires converge simplement vers $X$ si $\lim_{n \to \infty} X_n(\omega) = X(\omega)$ pour tout $\omega \in \Omega$. Cette définition naturelle est malheureusement à peu près inutile en probabilité, comme l'illustre l'exemple suivant.
 
-### Exemple {.example #pfinf}
+### Pile ou face infini again {.example #pfinf}
 
 Soit $(X_n)_{n\in \N^\ast}$ une suite de v.a. réelles qui sont indépendantes et de même loi (on notera *i.i.d* pour *indépendantes et identiquement distribuées*), avec $\P(X_n = 1) = p$ et $\P(X_n=0) = 1-p$. Ce sont donc des v.a. de loi de Bernoulli de paramètre $p$ qui modélisent par exemple les résultats d'un jeu de pile ou face. Lorsque $n$ est grand, on s'attend à ce que la proportion de faces ($X_n=1$) soit à peu près égale à $p$ (c'est l'essence de la conception objectiviste des probabilités). Mathématiquement, on voudrait que
 $$\lim_{n \to \infty} \frac{X_1(\omega) + \ldots +X_n(\omega)}{n} = p \text{   pour tout }\omega\in\Omega.$$
@@ -142,9 +200,9 @@ $$\P\left(\left\{\omega ; \lim_{n \to \infty} \frac{1}{n}\sum_{i=1}^n X_i(\omega
 Ce type de convergence, pour lequel on n'a pas convergence pour tout $\omega$, mais seulement pour presque tout $\omega$ (autrement dit $\P$-presque partout) est typiquement ce qui arrive pour des variables aléatoires.
 
 
-[^NBpf]: Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}$, puis on montre que $\sum_{n=1}^\infty \P(A_n) = \infty$ et on conclut en invoquant le lemme de Borel-Cantelli.
+[^NBpf]: cf. [exercice plus haut](#pf)
 
-On considère une suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires, définis sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
+On considère une suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires, définies sur un même espace de probabilité $(\Omega, \A, \P)$, et à valeurs dans $\R^d$. On considère également sur le même espace un vecteur "limite" $X$. On notera $|\cdot|$ la valeurs absolue dans $\R$ ou la norme euclidienne dans $\R^d$.
 
 ### Modes de convergences {.definition}
 
@@ -160,23 +218,28 @@ On considère une suite $(X_n)_{n\in \N^\ast}$ de variables aléatoires, défini
 La définition de la convergence dans $\L^1$ se généralise aux ordres supérieurs, pour $p \in \N^\ast$, on parle de convergence dans $\L^p$ (en moyenne quadratique si $p=2$) ce qui s'écrit $X_n \xrightarrow{\L^p} X$, si $X_n$ et $X$ sont dans $\L^p$ et si
  $$ \Esp(|X_n - X|^p) \xrightarrow[n \to \infty]{}  0 .$$
 
-Ces modes de convergences ne sont pas équivalentes comme le montrent les exemples suivants.
+Ces modes de convergences ne sont pas équivalents comme le montrent les exemples suivants.
 
-### Lien entre les modes de convergences {.example}
+### En proba et en moyenne {.exercise .one .question #lien}
 
- * Soit $(X_n)_{n\in \N^\ast}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
- $$ \P(X_n=1) = \frac{1}{n} ;\,\,\,\, \P(X_n = 0) = 1- \frac{1}{n}.$$
- Pour tout $\varepsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \varepsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\ast}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
- 
-   Mais si on considère maintenant une suite $(Y_n)_{n\in \N^\ast}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
+Soit $(X_n)_{n\in \N^\ast}$ une suite de variables aléatoires de Bernoulli à valeurs dans $\{0,1\}$ telles que
+$$ \P(X_n=1) = \frac{1}{n} ;\,\,\,\, \P(X_n = 0) = 1- \frac{1}{n}.$$
+Montrer que la suite $(X_n)_{n\in \N^\ast}$ converge en probabilité et en moyenne vers 0.
+
+### En proba mais pas en moyenne {.exercise .one .question #lien2} 
+
+Soit maintenant une suite $(Y_n)_{n\in \N^\ast}$ de variables aléatoires de Bernoulli à valeurs dans $\{0,n^2\}$ telles que 
    $$ \P(Y_n=n^2) = \frac{1}{n} ;\,\,\,\, \P(Y_n = 0) = 1- \frac{1}{n}.$$
-   Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\ast}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
+Montrer que la suite $(Y_n)_{n\in \N^\ast}$ converge en probabilité vers 0 mais pas en moyenne.
 
- * Soit $U$ une variable aléatoire uniforme sur $[0 , 1]$. Posons $Z_n = 1_{\{ U \leq \frac{1}{n}\} }$. Alors
- $$ \P(Z_n = 1)= \frac{1}{n} ;\,\,\,\, \P(Z_n = 0) = 1 - \frac{1}{n}$$
- Si $\omega \in \{U > 0\}$ est fixé, alors $\exists n_0 \in \N$ tel que $U(\omega) > \frac{1}{n_0}$, et donc tel que $Z_n(\omega) = 0$ pour tout $n \geq n_0$. Comme $\P(U>0)=1$, ceci montre que la suite $(Z_n)_{n\in \N^\ast}$ converge presque sûrement vers 0.
+### Presque sûre {.exercise .one .question #lien3} 
 
-On étudie maintenant les liens entre ces différentes convergences.
+Soit $U$ une variable aléatoire uniforme sur $[0 , 1]$. Posons $Z_n = 1_{\{ U \leq \frac{1}{n}\} }$. Alors
+$$ \P(Z_n = 1)= \frac{1}{n} ;\,\,\,\, \P(Z_n = 0) = 1 - \frac{1}{n}$$
+Montrer que la suite $(Z_n)_{n\in\N^\ast}$ converge presque sûrement vers 0.
+
+### {.anonymous}
+Il existe cependant des liens entre ces différents modes de convergences que l'on explore ci-dessous.
 
 ###  p.s. / $\L^1$ $\Rightarrow$ en proba {.proposition #propconv1}
 La convergence presque sûre et la convergence en moyenne entraînent la convergence en probabilité.
@@ -191,7 +254,7 @@ Soient $n\in\N^\ast$, $\varepsilon > 0$ et $A_{n,\varepsilon} = \{|X_n - X| > \v
  $$ \P(A_{n,\varepsilon}) \leq \frac{1}{\varepsilon}\Esp(|X_n - X|) \xrightarrow[n \to \infty]{} 0.$$
 
 ### {.anonymous}
-La convergence en probabilité n’entraîne pas la convergence en moyenne, comme nous l’avons vu dans l’exemple précédent, ne serait-ce que parce qu'elle n'implique pas l'appartenance de $X_n$ et $X$ à $\L^1$. Si les $X_n$ ne sont “pas trop grands”, il y a cependant équivalence entre les deux modes de convergence. En voici un exemple.
+La convergence en probabilité n’entraîne pas la convergence en moyenne, comme nous l’avons vu dans [l’exemple précédent](#lien2), ne serait-ce que parce qu'elle n'implique pas l'appartenance de $X_n$ et $X$ à $\L^1$. Si les $X_n$ ne sont “pas trop grands”, il y a cependant équivalence entre les deux modes de convergence. En voici un exemple.
 
 ### Cas borné {.proposition #propconv2}
 S'il existe une constante $a$ telle que $|X_n| \leq a$ presque sûrement, il y a équivalence entre $X_n \xrightarrow{\P} X$ et $X_n \xrightarrow{\L^1} X$.
@@ -225,14 +288,15 @@ et en appliquant le [lemme de Borel-Cantelli](#BC) aux ensembles
 $$A_j =\left\{|X_{n_{j}} - X| > \frac{1}{2^j} \right\},$$
 on obtient que la suite $(X_{n_j})_{j\in \N^\ast}$ converge presque-sûrement. 
 
-### Exemple {.example}
+### Intervalles de longueur aléatoire (1) {.exercise .one .question #ia}
 
 Soient $\Omega = \R$ muni de sa tribu borélienne et $\P$ la probabilité uniforme sur [0, 1]. Soit $X_n = 1_{A_n}$ , où $A_n$ est un intervalle de [0, 1] de longueur $\frac{1}{n}$.
 
-Ainsi, $\Esp(X_n) = \frac{1}{n}$, et la suite $X_n$ tend vers $X = 0$ en moyenne, et donc en probabilité. Supposons que les $A_n$ soient placés bout-à-bout, en recommençant en 0 chaque fois qu’on arrive au point 1. Il est clair que l’on parcourt indéfiniment l’intervalle [0, 1] (car la série de terme général $1/n$ diverge). 
+Montrer que la suite des $X_n$ converge en moyenne et en proba.
 
-Ainsi la suite numérique $X_n (\omega)$ ne converge pour aucun $\omega$, et on n’a pas $X_n \to X$ presque-sûrement ; cependant comme
-la série $\sum_n 1/n^2$ converge, il s’en suit que $X_{n^2} \to X = 0$ presque-sûrement. Nous avons donc la convergence presque-sûre de la sous-suite $(X_{n^2})_{n\in \N^\ast}$.
+### Intervalles de longueur aléatoire (2) {.exercise .three .question #ia2}
+
+Montrer que la suite des $X_n$ ne converge pas presque sûrement. Extraire une sous-suite qui converge presque sûrement.
 
 ### Continuité {.proposition #propconv4}
 Soit $f$ une fonction continue de $\R^d$ dans $\R$.
@@ -275,7 +339,11 @@ $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini. Elle converge donc aussi en probabilité. On a même convergence en *moyenne quadratique*, à savoir que :
 $$ \Esp((M_n - m)^2) \xrightarrow[n \to \infty]{} 0.$$
 
-Le résultat sur la convergence en probabilité est appelé *loi faible des grands nombres*. Sa preuve est presque immédiate. Elle résulte de l’[inégalité de Bienaymé-Chebyshev](#inegbc) (exercice). Le résultat est peu informatif et permet d’obtenir certains contrôles d’erreurs. Le résultat prouvant la convergence presque-sûre est appelé *loi forte des grands nombres*. Sa preuve est plus délicate et utilise le [lemme de Borel-Cantelli](#BC).
+### Loi faible des grands nombres {.exercise .question .one #wlln}
+Le résultat sur la convergence en probabilité est appelé *loi faible des grands nombres*. Démontrer ce résultat.
+
+### {.anonymous}
+Le résultat est peu informatif et permet d’obtenir certains contrôles d’erreurs. Le résultat prouvant la convergence presque-sûre est appelé *loi forte des grands nombres*. Sa preuve est plus délicate et utilise le [lemme de Borel-Cantelli](#BC).
 
 ### Démonstration
 Notons $\sigma^2$ la variance des variables $X_n$, bien définie puisqu'on les a supposées de carré intégrable. En vertu de la linéarité de l'espérance, on a
@@ -327,6 +395,16 @@ Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de
 $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
 
+### Exponentielle {.exercise .one .question #expo}
+Soit $(X_i)_{i \in \N^\ast}$ une suite de variables aléatoires i.i.d. d'espérance $m$ et $Y_i = e^X_i$. Montrer que :
+$$\left(\prod_{i=1}^n Y_i\right)^{1/n}$$
+converge presque sûrement vers une constante à déterminer.
+
+### Variance {.exercise .one .question #variance}
+Soit $(X_i)_{i \in \N^\ast}$ une suite de variables aléatoires i.i.d. d'espérance $m$ et de variance $\sigma^2$. Montrer que :
+$$\lim_{n \to \infty} \frac{1}{n}\sum_{i=1}^n (X_i - m)^2 \to \sigma^2 \text{   p.s.}$$
+
+
 # Convergence en loi et théorème central limite
 Nous allons introduire maintenant une nouvelle notion de convergence de suites de variables aléatoires. La convergence en loi définie dans ce paragraphe va concerner les lois des variables aléatoires. Elle signifiera que les lois sont asymptotiquement “proches”, sans que les variables aléatoires elles-mêmes le soient nécessairement. 
 
@@ -334,11 +412,11 @@ Nous allons introduire maintenant une nouvelle notion de convergence de suites d
 
 On considère des vecteurs aléatoires $X_n$ et $X$, tous à valeurs dans le même espace $\R^d$, mais pouvant éventuellement être définis sur des espaces de probabilité différents.
 
-### Définition {.definition #defconvloi}
+### Convergence en loi {.definition #defconvloi}
 On dit que la suite $(X_n)_{n\in \N^\ast}$ *converge en loi* vers $X$ et on écrit $X_n \xrightarrow{\L} X$, si pour toute fonction réelle $f$ **continue bornée** sur $\R^d$, 
 $$\Esp(f(X_n)) \xrightarrow[n \to \infty]{} \Esp(f(X)).$$
 
-### Exemple {.example}
+### Cas fini {.example}
 Un cas très simple est celui où toutes les variables aléatoires $X_n$ prennent un nombre fini de valeurs $\{ x_i , 1 \leq i \leq N \}$. Alors, la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$ si et seulement si 
 $$\lim_{n \to +\infty} \P(X_n = x_i ) = \P(X = x_i),\,\,\, \forall 1 \leq i \leq N$$
 Il suffit d’écrire pour $f$ continue bornée
@@ -350,14 +428,10 @@ Dans l’exemple ci-dessus, $N$ est fini et fixé. Mais nous avons un résultat 
 
 Dans la [définition](#defconvloi), les v.a. $X_n$ et $X$ peuvent être définies sur des univers distincts puisque seules leurs lois sont en cause. Il arrive même qu'une suite $X_n$ converge vers une limite $X$ qui ne peut pas exister sur les espaces sur lesquels sont définies les $X_n$, parce que ceux-ci sont trop "petits" : par exemple, si $X_n$ est une variable binomiale à $n$ modalités, convenablement normalisée, et la limite $X$ est gaussienne (on pourra justifier ceci par le [théorème central limite](#TCL)); l'espace naturel sur lequel est définie $X_n$ contient $n+1$ points, et sur un tel espace toutes les v.a. sont discrètes. La convergence en loi permet donc une sorte de convergence pour des v.a. pour lesquelles toute autre forme de convergence serait impossible.
 
-### Exemple {.example}
-Soit $(X_n)_{n \in \N^\ast}$ et $X$ des variables aléatoires de lois respectives $\No (0,\sigma^2_n)$ et $\No (0,\sigma^2)$. On suppose que la suite de réels positifs $(\sigma_n)_{n\in \N^\ast}$ converge vers $\sigma > 0$ quand $n$ tend vers l'infini. Alors la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$. En effet, soit $f$ une fonction continue bornée sur $\R$. On a
-\begin{align*}
-\Esp(f(X_n)) &= \int_\R f(y) \frac{1}{\sqrt{2\pi}\sigma_n} \exp\left(-\frac{y^2}{2\sigma^2_n}\right) dy \\
-             &\xrightarrow[n \to \infty]{} \int_\R f(y) \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{y^2}{2\sigma^2}\right) dy
-\end{align*}
-où l'on a utilisée le théorème de convergence dominée.
+### Suite gaussienne {.exercise .question .one #suitegauss}
+Soit $(X_n)_{n \in \N^\ast}$ et $X$ des variables aléatoires de lois respectives $\No (0,\sigma^2_n)$ et $\No (0,\sigma^2)$. On suppose que la suite de réels positifs $(\sigma_n)_{n\in \N^\ast}$ converge vers $\sigma > 0$ quand $n$ tend vers l'infini. Montrer que la suite $(X_n)_{n \in \N^\ast}$ converge en loi vers $X$.
 
+### {.anonymous}
 La convergence en loi est plus faible que la convergence en probabilité et donc aussi que les convergences presque-sûre et en moyenne.
 
 ### En proba $\Rightarrow$ en loi {.proposition}
@@ -368,7 +442,7 @@ Soit $f$ une fonction réelle continue bornée. D'après la [proposition de cont
 
 ### {.anonymous}
 
-On peut finalement résumer les implications entre les différents modes de convergence à l'aide de la figure suivante :
+On peut finalement résumer les liens d'implications entre les différents modes de convergence à l'aide de la figure suivante :
 
 ![Relations entre modes de convergence](images/cvgces.tex)
 
@@ -401,7 +475,7 @@ Notons que puisque la fonction $F$ est continue à droite et croissante, l’ens
  $$ n \geq \sup(n_0,n_1) \Rightarrow |\Esp(f(X_n))-\Esp(f(X))|\leq 3\varepsilon + 5 M \varepsilon .$$ 
  Vu l'arbitraire sur $\varepsilon$, on en déduit que $\Esp(f(X_n))$ converge vers $\Esp(f(X))$, d'où le résultat.
 
-### Corollaire {.corollary}
+### Cas où $X$ admet une densité {.corollary}
 Si la suite $(X_n)_{n\in\N^\ast}$ de variables aléatoires réelles converge en loi vers $X$, et si la loi de $X$ admet une densité, alors pour tous $a< b$,
 $$ \P(X_n \in ]a,b]) \xrightarrow[n\to \infty]{} \P(X\in]a,b]).$$
 
@@ -482,6 +556,11 @@ Imaginons que l'on lance 1000 fois une pièce (non truquée). On cherche la prob
 Cette dernière intégrale se calcule numériquement (on trouve encore des abaques où les valeurs de $\Phi$ sont tabulées) et on obtient
     $$ \P(S_{1000} > 545) \approx 1 - \Phi(2,84) \approx 0,0023.$$
 
+### Surbooking {.exercise .question .one #surbooking}
+400 places dans un avion, 420 billets vendus, 8% de taux de non-présentation : quelle probabilité de surbooking ? On utilisera une approximation judicieuse.
+
+
+### {.anonymous}
 Le [théorème](#TCL) admet une version multidimensionnelle, de preuve similaire. On considère des vecteurs aléatoires $X_n$ à valeurs dans $\R^d$, indépendants et de même loi, dont les composantes sont de carré intégrable. On a un vecteur espérance $m = E(X_n)$, et une matrice de covariance $C = (c_{ij} )_{i,j=1,\ldots,d}$ avec $c_ij = \cov(X_i,X_j)$. On peut alors énoncer le TCL multi-dimensionnel.
 
 ### central limite multi-dimensionnel {.theorem}
@@ -733,7 +812,6 @@ Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \i
 
 ### Question 4 {.question #bc4}
 
-On considère le jeu de pile ou face infini de [l'exemple en début de cours](#pfinf). Montrer que  l'événement $A = \{\omega : \text{ il n'y a qu'un nombre fini de faces}\}$ est de probabilité nulle. (Considérer les événements $A_n = \{\text{on a face au $n$-ième tirage}\}, puis montrer que $\sum_{n=1}^\infty \P(A_n) = \infty$).
 
 Convergence vers une constante
 ----------------------------------------------------------------------------------
@@ -799,9 +877,9 @@ Dans cet exercice, nous allons voir une démonstration constructive de ce théor
 
 Nous allons avoir besoin de deux résultats intermédiaires pour établir la preuve du théorème de Weierstrass sur $[0,1]$. 
 
-* **Théorème de convergence dominée.** Soient $(X,\mathcal{A},\mu)$ un espace mesuré, $(f_n)_{n\in\N^\ast}$ une suite de fonctions mesurables $X \to [-\infty,+\infty]$ et $g : X \to [-\infty,+\infty]$ une fonction intégrable, telles que pour tout $n\in\N^\ast$ on a $|f_n| \leq g$ $\mu$-**presque partout**. Supposons qu'il existe $f : X \to [-\infty,+\infty]$ telle que $f_n$ converge simplement vers $f$ $\mu$-**presque partout** quand $n\to+\infty$. Alors $f$ est intégrable et $$\int_X f_n\mu \xrightarrow[n\to+\infty]{} \int_X f\mu.$$
+* **Théorème de convergence dominée.** Soient $(X,\mathcal{A},\mu)$ un espace mesuré, $(f_n)_{n\in\N^\ast}$ une suite de fonctions boréliennes $X \to [-\infty,+\infty]$ et $g : X \to [-\infty,+\infty]$ une fonction intégrable, telles que pour tout $n\in\N^\ast$ on a $|f_n| \leq g$ $\mu$-**presque partout**. Supposons qu'il existe $f : X \to [-\infty,+\infty]$ telle que $f_n$ converge simplement vers $f$ $\mu$-**presque partout** quand $n\to+\infty$. Alors $f$ est intégrable et $$\int_X f_n\mu \xrightarrow[n\to+\infty]{} \int_X f\mu.$$
     
-* **Inégalité de Jensen.** Soient $(\Omega,\mathcal{A},\P)$ un espace probabilisé, $X : \Omega \to \R$ une variable aléatoire  intégrable et $f : \R \to \R$ une fonction mesurable convexe, telle que $f(X) \in \mathcal{L}^1$. Alors $$f\left(\Esp(X)\right) \leq \Esp\left(f(X)\right).$$
+* **Inégalité de Jensen.** Soient $(\Omega,\mathcal{A},\P)$ un espace probabilisé, $X : \Omega \to \R$ une variable aléatoire  intégrable et $f : \R \to \R$ une fonction borélienne convexe, telle que $f(X) \in \mathcal{L}^1$. Alors $$f\left(\Esp(X)\right) \leq \Esp\left(f(X)\right).$$
 Démontrer ce résultat.
     
 ### Preuve du théorème. {.question #weier-thm}
@@ -834,6 +912,56 @@ Montrer ce résultat à l'aide du [théorème de Lévy](#levytheorem).
 
 Solutions
 =================================================================================
+
+### Démonstration {.answer #answer-bienaymécheby}
+C'est une application immédiate de [l'inégalité de Markov](#inegmarkov) à $(X-\Esp(X))$ avec $p =2$.
+
+### Pile ou face infini {.answer #answer-pf}
+En suivant l'indication, on a $\P(A_n) = p$, d'où $\sum_{n=1}^\infty \P(A_n) = \infty$. Le lemme de Borel-Cantelli nous indique alors que $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\cap_{n\geq 1} \cup_{k \geq n} A_n \right) = 1$. Autrement dit, on a presque sûrement un nombre infini de faces. En passant au complémentaire, on en déduit que l'événement $A$ est de probabilité nulle.
+
+### En proba et en moyenne {.answer #answer-lien}
+Pour tout $\varepsilon \in ]0,1[$, la probabilité $\P(|X_n|\geq \varepsilon) = \frac{1}{n}$ tend vers 0 quand $n$ tend vers l'infini. Ainsi, la suite $(X_n)_{n\in \N^\ast}$ tend vers $X=0$ en probabilité. Comme $\Esp(X_n) = \frac{1}{n}$, elle tend également en moyenne vers 0.
+
+### En proba mais pas en moyenne {.answer #answer-lien2} 
+Par le même argument que ci-dessus, nous voyons que la suite $(Y_n)_{n\in \N^\ast}$ converge en probabilité vers 0, mais comme $\Esp(Y_n) = n$, la suite ne converge pas en moyenne vers 0 (ni vers aucune autre limite finie).
+
+### Presque sûre {.answer #answer-lien3} 
+Si $\omega \in \{U > 0\}$ est fixé, alors $\exists n_0 \in \N$ tel que $U(\omega) > \frac{1}{n_0}$, et donc tel que $Z_n(\omega) = 0$ pour tout $n \geq n_0$. Comme $\P(U>0)=1$, ceci montre que la suite $(Z_n)_{n\in \N^\ast}$ converge presque sûrement vers 0.
+
+### Intervalles de longueur aléatoire (1) {.answer #answer-ia}
+$\Esp(X_n) = \frac{1}{n}$, et la suite $X_n$ tend vers $X = 0$ en moyenne, et donc en probabilité. 
+
+### Intervalles de longueur aléatoire (2) {.answer #answer-ia2}
+Supposons que les $A_n$ soient placés bout-à-bout, en recommençant en 0 chaque fois qu’on arrive au point 1. Il est clair que l’on parcourt indéfiniment l’intervalle [0, 1] (car la série de terme général $1/n$ diverge). Ainsi la suite numérique $X_n (\omega)$ ne converge pour aucun $\omega$, et on n’a pas $X_n \to X$ presque-sûrement. 
+Cependant comme la série $\sum_n 1/n^2$ converge, il s’en suit que $X_{n^2} \to X = 0$ presque-sûrement. En effet, posant $B_n =\{\omega \in \Omega, X_{n^2}(\omega)=1\}$, on a $\P(B_n) = \frac{1}{n^2}$ et $\sum_{n=1}^{+\infty} \P(B_n) = \frac{\pi^2}{6}$. Le [lemme de Borel Cantelli](#BC) nous indique alors que $\P(B) = 0$ où $B = \cap_{n\geq 1}\cup_{k\geq n} B_n$ et donc $X_{n^2}(\omega) \to 0,\, \forall \omega \notin B$.
+
+### Loi faible des grands nombres {.answer #answer-wlln}
+Par l'inégalité de Bienaymé-Chebyshev, on a 
+$$\P(|M_n-m| > \epsilon) \leq \frac{\V(M_n)}{\epsilon} = \frac{\sigma^2}{n\epsilon},$$
+où $\sigma^2 = \V(X_i), \forall i \in \N^\ast$.
+
+### Exponentielle {.answer #answer-expo}
+On a $\log\left(\prod_{i=1}^n Y_i\right)^{1/n} = \frac{1}{n}\sum_{i=1}^n X_i \to m$ p.s. par la [loi forte des grands nombre](#lfgn).
+Puisque l'exponentielle est continue, la [proposition de continuité](#propconv4) nous indique que $\left(\prod_{i=1}^n Y_i\right)^{1/n} \to e^m$ p.s.
+
+### Variance {.answer #answer-variance}
+Les variables aléatoires $Y_i = (X_i - \sigma)^2$ sont i.i.d. telles que $\Esp(Y_i)= \sigma^2$. Par la [loi forte des grands nombre](#lfgn), on a 
+$$\lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^n (X_i - m)^2 \to \sigma^2  \text{   p.s.}$$
+
+
+### Suite gaussienne {.answer #answer-suitegauss}
+Soit $f$ une fonction continue bornée sur $\R$. On a
+\begin{align*}
+\Esp(f(X_n)) &= \int_\R f(y) \frac{1}{\sqrt{2\pi}\sigma_n} \exp\left(-\frac{y^2}{2\sigma^2_n}\right) dy \\
+             &\xrightarrow[n \to \infty]{} \int_\R f(y) \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{y^2}{2\sigma^2}\right) dy
+\end{align*}
+où l'on a utilisé le théorème de convergence dominée appliqué à la suite de fonctions $\frac{1}{\sqrt{2\pi}\sigma_n} \exp\left(-\frac{y^2}{2\sigma^2_n}\right)$.
+
+### Surbooking {.answer #answer-surbooking}
+Le nombre de passager $S_{420}$ se présentant effectivement à l'embarquement suit une loi binomiale $\mathcal{B}(420,0.92)$. On veut donc calculer $\P(S_{420} > 400) = 1 - \P(S_{420}<400)$. Le TCL nous fournit l'approximation 
+$$\frac{S_{420} - np}{\sqrt{n p (1-p)}} = \frac{S_{420} - 386.4}{5.56} \approx Y \sim \No(0,1)$$
+Ainsi, $\P(S_{420}<400) \approx \Phi(2.44) \approx 0.99$
+La probabilité de surbooking est donc de 1\%.
 
 Inégalités de concentration 
 ---------------------------------------------------------------------------------
@@ -893,9 +1021,6 @@ que $\P(\lim \sup_{n \to \infty} A_n) = 1$.
 
 Prendre tous les $A_n$ égaux à un même événement $A$ de probabilité $\P(A) \in \left]0,1\right[$.
 
-### Question 4 {.answer #answer-bc4}
-
-En suivant l'indication, on a $\P(A_n) = p$, d'où $\sum_{n=1}^\infty \P(A_n) = \infty$. Le lemme de Borel-Cantelli nous indique alors que $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\cap_{n\geq 1} \cup_{k \geq n} A_n \right) = 1$. Autrement dit, on a presque sûrement un nombre infini de faces. En passant au complémentaire, on en déduit que l'événement $A$ est de probabilité nulle.
 
 Loi faible des grands nombres
 ---------------------------------------------------------------------------------
@@ -997,7 +1122,7 @@ On en conclut que $F_n(x) \overset{\mathcal{L}^2}{\longrightarrow} F(x)$ quand $
 
 On remarque que pour tout $n\in\N^\ast$, $F_n(x)$ n'est autre que la moyenne de $n$ variables aléatoires indépendantes de même loi de Bernoulli de paramètre $F(x)$. La loi forte des grands nombres nous assure donc qu'elle converge presque-sûrement vers l'espérance de cette loi, qui n'est autre que $F(x)$.
 
-### Remarque
+### Pour aller plus loin {.remark}
 On peut en fait aller plus loin et montrer que l'on a la convergence presque sûre uniformément sur $\R$ voir par exemple [ce document](http://math.univ-lyon1.fr/~gelineau/devagreg/Theoreme_Dini.pdf), c'est le théorème de Glivenko-Cantelli très utile en statistiques.
 
 
@@ -1006,9 +1131,9 @@ On peut en fait aller plus loin et montrer que l'on a la convergence presque sû
 ### Préliminaires {.answer #answer-weier-prelim}
 
 
-**Théorème de convergence dominée presque partout** --- Puisque $f_n$ converge vers $f$ $\mu$-presque partout, il existe un ensemble $E$ mesurable et négligeable tel que
+**Théorème de convergence dominée presque partout** --- Puisque $f_n$ converge vers $f$ $\mu$-presque partout, il existe un ensemble $E$ borélien et négligeable tel que
 $$f_n(x) \to f(x),\,\,\, \forall x \in X \setminus E$$
-De même, puisque $|f_n(x)|\leq g(x)$ $\mu$-presque partout, les ensembles $F_n = \{x \in X; |f(x)| > g(x) \}$ sont mesurables et négligeables pour tout $n \in \N^\ast$. Alors $N = E \cup_{n\in\N^\ast} F_n$ est mesurable et négligeable.
+De même, puisque $|f_n(x)|\leq g(x)$ $\mu$-presque partout, les ensembles $F_n = \{x \in X; |f(x)| > g(x) \}$ sont boréliens et négligeables pour tout $n \in \N^\ast$. Alors $N = E \cup_{n\in\N^\ast} F_n$ est borélien et négligeable.
 
 Soit $\tilde{f}_n = 1_{N^c}f_n$ et $\tilde{f}=1_{N^c}f$, les restrictions à $N^c$ des $f_n$ et $f$. Alors le théorème de convergence dominée s'applique à la suite des $(\tilde{f}_n)_{n\in\N^\ast}$. On a ainsi que $\tilde{f}$ est intégrable et 
 $$\int_X \tilde{f} \mu = \lim_{n\to\infty}\int_X \tilde{f}_n \mu.$$
