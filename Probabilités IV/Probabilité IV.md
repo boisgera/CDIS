@@ -170,7 +170,7 @@ On note enfin le résultat très utile suivant portant sur les suites d'événem
 
 Soit $(A_n)_{n\in\N^\ast}$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
 
-1. Si $\sum_{n=1}^{\infty} \P(A_n) < \infty$, alors $\P(\limsup\limits_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_n \right) =0$.
+1. Si $\sum_{n=1}^{\infty} \P(A_n) < \infty$, alors $\P(\limsup\limits_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_k \right) =0$.
 
 2. Si $\sum_{n=1}^{\infty} \P(A_n) = \infty$ et si les événements $A_n$ sont mutuellement indépendants, alors on a $\P(\limsup\limits_{n \to \infty} A_n) = 1$.
 
@@ -800,7 +800,7 @@ Soit $A_n$ une suite d'événements sur l'espace probabilisé $(\Omega,\A, \P)$.
 
 ### Question 1 {.question #bc1}
 
-On suppose que $\sum_{i=1}^n \P(A_n) < \infty$. Montrer que $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_n \right) =0$.
+On suppose que $\sum_{i=1}^n \P(A_n) < \infty$. Montrer que $\P(\lim \sup_{n \to \infty} A_n) = \P \left(\bigcap_{n\geq 1} \bigcup_{k \geq n} A_k \right) =0$.
 
 ### Question 2 {.question #bc2}
 
@@ -809,8 +809,6 @@ On suppose maintenant que les événements $A_n$ sont mutuellement indépendants
 ### Question 3 {.question #bc3}
 
 Donner un exemple où $\sum_{i=1}^n \P(A_n) = \infty$ et $\P(\lim \sup_{n \to \infty} A_n) < 1$ quand les $A_n$ ne sont pas indépendants.
-
-### Question 4 {.question #bc4}
 
 
 Convergence vers une constante
@@ -833,13 +831,6 @@ $$X_n \xrightarrow[n\to+\infty]{\mathcal{L}^2} X \Rightarrow \left|\begin{array}
 
 Montrer que si $X_n$ converge en loi vers $a$ quand $n\to+\infty$, alors elle converge aussi en probabilité vers $a$.
 
-
-
-Loi faible des grands nombres
----------------------------------------------------------------------------------
-Soit $(X_n)_{n\in\N^\ast}$ une suite de variables aléatoires indépendantes, de même loi et de **carré intégrable**, et $m = \Esp(X_n)$ leur moyenne. Montrer que la suite $(M_n)_{n\in\N^\ast}$ définie par
-$$M_n = \frac{X_1 + \ldots + X_n}{n}$$
-converge vers $m$ en probabilité quand $n$ tend vers l'infini.
 
 Fonction de répartition empirique
 -------------------------------------------------------------------
@@ -998,7 +989,7 @@ Lemme de Borel-Cantelli
 
 ### Question 1 {.answer #answer-bc1}
 
-On voit dans un premier temps que $\bigcap_{n\geq 0} \bigcup_{k \geq n} A_n \in \A$ par unions et intersections dénombrables.
+On voit dans un premier temps que $\bigcap_{n\geq 0} \bigcup_{k \geq n} A_k \in \A$ par unions et intersections dénombrables.
 On a 
 $$\P(\lim \sup_n A_n ) = \lim_{p \to \infty} \P(\cup_{n\geq p} A_n) \leq \lim_{p \to \infty} \sum_{n \geq p} \P(A_n),$$
 où on remarque que les deux suites sont décroissantes.
@@ -1021,10 +1012,6 @@ que $\P(\lim \sup_{n \to \infty} A_n) = 1$.
 
 Prendre tous les $A_n$ égaux à un même événement $A$ de probabilité $\P(A) \in \left]0,1\right[$.
 
-
-Loi faible des grands nombres
----------------------------------------------------------------------------------
-Appliquer l'inégalité de Bienaymé-Chebyshev à la variable aléatoire $M_n$.
 
 Convergence vers une constante
 ----------------------------------------------------------------------------------
