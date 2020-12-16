@@ -26,8 +26,8 @@ Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (U
 | Probabilités | 1 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20I.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20I%20(a4%2C%20recto-verso).pdf) |   | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Probabilités%20I/output/Probabilités%20I.pdf) |
 |  | 2 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20II.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20II%20(a4%2C%20recto-verso).pdf) |   | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Probabilités%20II/output/Probabilités%20II.pdf) |
 |  | 3 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20III.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20III%20(a4%2C%20recto-verso).pdf) |   |  |
-|  | 4 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV%20(a4%2C%20recto-verso).pdf) |   |  |
-|  | 5 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V%20(a4%2C%20recto-verso).pdf) |  [:notebook: IPYNB](https://boisgera.github.io/CDIS/Probabilités%20V/Probabilité%20V.ipynb)  |  |
+|  | 4 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV%20(a4%2C%20recto-verso).pdf) |   | [:construction: PDF](https://boisgera.github.io/CDIS/quizz/Probabilités%20IV/output/Probabilités%20IV.pdf)|
+|  | 5 | [:construction: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V.pdf) | [:construction: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20V%20(a4%2C%20recto-verso).pdf) |  [:construction: IPYNB](https://boisgera.github.io/CDIS/Probabilités%20V/Probabilité%20V.ipynb)  |  |
 <!--| ... | ... | ... |-->
   
 <!--
