@@ -1184,7 +1184,7 @@ Théorème de Slutsky
 
 ### Question 1 {.answer #answer-slut1}
 
-Il suffit de montrer que dans la preuve de [la proposition sur la convergence des f.d.r.](#cvceloifdr), on peut remplacer les fonctions continues bornées $f_{p,b}$ approchant $1_{\left]-\infty,b\right]}$ par des fonctions lipschitziennes bornées, ce qui est immédiat.
+La démonstration est analogue à celle de la [la proposition sur la convergence des f.d.r.](#cvceloifdr), où on peut voir que l'on peut remplacer les fonctions continues bornées $f_{p,b}$ approchant $1_{\left]-\infty,b\right]}$ par des fonctions lipschitziennes bornées. Voir la démonstration du théorème 18.7 dans @Jacod pour une version complète.
 
 ### Question 2 {.answer #answer-slut2}
 
@@ -1202,7 +1202,10 @@ Le deuxième terme du membre de droite tend vers 0 quand $n$ tend vers l’infin
 Soit $u \in R^d$ . On a :
 $$|\phi_{Y_n} (u) - \phi_X (u)| \leq |\phi_{Y_n} (u) - \phi_{X_n} (u)| + |\phi_{X_n} (u) - \phi_{X} (u)|$$
 D’une part, le [théorème de Lévy](#levytheorem) partie 1. montre que $|\phi_{X_n}(u) - \phi_X (u)|$ tend vers 0 quand $n \to \infty$. D’autre part,
-$$|\phi_{Y_n} (u) - \phi_{X_n} (u)|  = |\Esp(e^{i< u, Y_n>} - e^{i< u, X_n>})| = |\Esp(e^{i<u,X_n>} (e^{i<u,Y_n-X_n>} - 1))|\leq \Esp(|e^{i<u,Y_n-X_n>} - 1|)$$
+\begin{align*}
+|\phi_{Y_n} (u) - \phi_{X_n} (u)|  & = |\Esp(e^{i< u, Y_n>} - e^{i< u, X_n>})| \\
+& = |\Esp(e^{i<u,X_n>} (e^{i<u,Y_n-X_n>} - 1))|\leq \Esp(|e^{i<u,Y_n-X_n>} - 1|)
+\end{align*}
 tend vers 0 quand $n \to \infty$ d’après [la proposition --- cas borné](#propconv2) appliquée aux variables aléatoires $e^{i<u,Y_n -X_n>}-1$ dont la convergence en proba vers 0 est assurée par la [propriété de continuité](#propconv4).
 
 
