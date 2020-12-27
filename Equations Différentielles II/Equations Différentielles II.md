@@ -680,7 +680,7 @@ On propose maintenant de modifier ces schémas de façon à stabiliser $H$ et as
  \dot{x}_1 &= x_1(\alpha -\beta x_2) - u_1(x_1,x_2) (H(x_1,x_2)-H_0) \\
  \dot{x}_2 &= -x_2(\gamma - \delta x_1) - u_2(x_1,x_2) (H(x_1,x_2)-H_0) 
  \end{align*}
- sont identiques à celles de Lotka-Volterra si $H_0 = H(x(0))$ pour tout choix de $u:\R^2 \to \R^2$.
+ sont identiques à celles de Lotka-Volterra si $H_0 = H(x(0))$ pour tout choix de $u:\R^2 \to \R^2$ continûment différentiable.
 
  10. Soit $H_0\in \R$. Calculer la dérivée de $H-H_0$ le long des solutions de ce nouveau système. Montrer que l'on peut choisir $u$ tel que
  $$

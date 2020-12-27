@@ -14,7 +14,7 @@
 \newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 \newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
 
-#### Question 1 (réponse multiple)
+#### Question 1 (réponses multiples)
 Soit $f: (x_1, x_2) \in \R^2 \mapsto x_1 x_2 \in \R$. On a
 
  - [ ] A: $$H_f(x) = \left[\begin{array}{cc} 0 & 1 \\ 1 & 0 \end{array} \right]$$
@@ -32,37 +32,71 @@ Si $f: \R^n \to \R$ est deux fois différentiable en $x \in U$
 et que $df(x) \cdot h \cdot h$ est connu pour tout $h \in \R^n$, 
 peut-on déterminer $df(x) \cdot h_1 \cdot h_2$ pour tout $h_1, h_2 \in \R^n$ ?
 
-  - [ ] Non.
+  - [ ] A : oui,
 
-  - [ ] Oui.
+  - [ ] B : non.
 
 #### Question 3
-Le tenseur de type $(1,1,1)$ défini par par $t_{ijk} = 1.0$ :
+La différentielle $d^3f$ d'ordre $3$ d'une fonction $f: U \subset \R^2\to \R^3$
 
-  - [ ] est d'ordre $1$,
+  - [ ] A : associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
+    associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
+    associe linéairement à tout vecteur $h$ de $\R^2$ un vecteur de $\R^3$.
 
-  - [ ] est décrit en NumPy par le tableau `np.array([1.0])`,
+  - [ ] B : associe linéairement à tout point $x \in U$ une application 
+    qui associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
+    associe linéairement à tout vecteur $h$ de $\R^2$ un vecteur de $\R^3$.
 
-  - [ ] représente l'application linéaire
-    $x \in \R \to y \in \R \to xy \in \R$
+  - [ ] C : associe à tout point $x \in U$ une application 
+    qui associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
+    associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
+    associe linéairement à tout vecteur $h$ de $\R^2$ un vecteur de $\R^3$.
 
+#### Question 4 (réponses multiples)
+Le tenseur de type $(1,1,1)$ défini par $t_{ijk} = 1.0$ :
+
+  - [ ] A : est d'ordre $1$,
+
+  - [ ] B : est décrit en NumPy par le tableau `np.array([1.0])`,
+
+  - [ ] C : représente l'application linéaire
+    $x \in \R \to y \in \R \to xy \in \R.$
 
 #### Question 5
+La contraction du tenseur  $[t_{ijk}]_{ijk}$ de type $(m, n, p)$ et
+du tenseur de type $(p,p)$ défini par $\delta_{lm} = 1$ si $l=m$ et $\delta_{lm}=0$ sinon
+
+  - [ ] A : n'est pas définie en général,
+
+  - [ ] B : est le tenseur $[t_{ijk}]_{ijk}$,
+
+  - [ ] C : est le tenseur $[\sum_{k} t_{ijk}]_{ij}$.
+
+#### Question 6
 Si $f: \R^2 \to \R^4$ est trois fois différentiable, quel est le type du tenseur
 représentant $d^3f(x)$ ?
 
- - [ ] A: (4, 2, 2, 2)
+ - [ ] A : (4, 2, 2, 2),
 
- - [ ] B: (3, 4, 2)
+ - [ ] B : (3, 4, 2),
 
- - [ ] C: (4, 2, 1)
+ - [ ] C : (4, 2, 1).
 
-#### Question 6
+#### Question 7 (réponses multiples)
+Si $f$ est $k$ fois différentiable en $x$,
+
+  - [ ] A : les dérivées partielles d'ordre $k$ de $f$ en $x$ existent,
+
+  - [ ] B : on a $\partial^k_{i_{k} \dots i_1} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k}},$
+
+  - [ ] C : ces dérivées partielles déterminent $d^k f(x)$ de façon unique.
+
+#### Question 8
 Si $f: \R^3 \to \R^3$ est deux fois différentiable, combien y'a-t'il au plus
 de coefficients différents dans le tenseur représentant $d^2f(x)$ ?
 
-  - [ ] A: 9
+  - [ ] A : 9,
 
-  - [ ] B: 18
+  - [ ] B : 18,
 
-  - [ ] C: 27
+  - [ ] C : 27.

@@ -56,8 +56,28 @@ d'exercices.
 
 #### Différentielle d'ordre supérieur
 
-**TODO**
+  - \three appréhender le concept de différentielle d'ordre $k$ : 
+    sa nature d'application linéaire d'ordre supérieure,
+    quand elle existe, comment la calculer.
 
+  - \one savoir définir et exploiter les dérivées partielles d'ordre $k$, 
+    leurs relations avec la différentielle d'ordre $k$, leurs symétries.
+
+  - \one savoir caractériser la continue différentiabilité d'ordre $k$ et
+    savoir l'exploiter pour établir la différentiabilité d'ordre $k$.
+
+  - \two connaître la notion de tenseur, les concepts d'ordre, type et
+    contraction associés, et comment ces notions généralisent des concepts
+    et opérations déjà connues.
+
+  - \three savoir représenter une application linéaire d'ordre supérieure
+    par un tenseur et réciproquement ; faire le lien entre les coefficients
+    du tenseur de la différentielle d'ordre $k$ et les dérivées
+    partielles d'ordre $k$.
+
+  - \two connaître et savoir exploiter les développements limités et avec reste intégral 
+     à l'ordre $k$.
+    
 
 <!--
 
@@ -726,7 +746,7 @@ où $\lim_{h_2 \to 0} E(h_2) = 0 \in \R^{m\times n}$.
 ### Démonstration {.proof}
 Par le [lemme sur la variation de la différentielle](#LVD), on sait que
 $$
-df(x+h_2) = df(x) + (h_1 \mapsto d^2 f(x) \cdot h_1 \cdot h_2) + o(\|h_2\|).
+df(x+h_2) = df(x) + (h_1 \mapsto d^2 f(x) \cdot h_1 \cdot h_2) + \varepsilon(\|h_2\|).
 $$
 La [différentielle d'ordre 2 étant symétrique](#SD2), 
 $$
@@ -950,10 +970,10 @@ B(x, y) = \sum_{i=1}^m \sum_{j=1}^n a_{ij} x_i y_j.
 $$
 Dans le cas général, un tenseur d'ordre $n$ correspond à une forme $n$-linéaire.
 
-### Produit tensoriel {.definition}
+### Contraction tensorielle {.definition}
 Soient $A$ et $B$ des tenseurs de type respectifs 
 $(m_1,m_2,\dots, m_n) \in \N^{n}$ et $(p_1,p_2,\dots, p_q) \in \N^{q}$.
-Si $m_n = p_1$, le produit de $A$ et $B$ est le tenseur de type
+Si $m_n = p_1$, la *contraction de $A$ et $B$* est le tenseur de type
 $(m_1, \dots, m_{n-1}, p_2, \dots, p_q) \in \N^{n+q-2}$ noté $A \cdot B$ 
 défini par
 $$
@@ -962,12 +982,12 @@ $$
 \sum_{i_{n}=1}^{m_n} A_{i_1 i_2 \dots i_n} B_{i_n i_{n+1}\dots i_{n+q}} .
 $$
 
-### Produits tensoriels classiques {.remark} 
+### Contractions tensorielles classiques {.remark} 
 Pour $x, y \in \R^n$, on a
 $$
 x \cdot y  = \sum_{i=1}^m x_i y_i \in \R.
 $$
-Le produit tensoriel de deux vecteurs est bien défini et coïncide avec leur produit scalaire[^oops].
+La contraction de deux vecteurs est bien défini et coïncide avec leur produit scalaire[^oops].
 Si de plus $A \in \R^{m \times n}$ et 
 $B \in \R^{n \times p}$,
 $$
@@ -977,18 +997,18 @@ $$
 A \cdot B \in \R^{m \times p}\; \mbox{ et } \;
 (A \cdot B)_{ik} = \sum_{j=1} A_{ij} B_{jk}.
 $$
-Autrement dit, les produits tensoriels matrices-vecteurs et matrices-matrices
+Autrement dit, les contractions matrices-vecteurs et matrices-matrices
 coïncident avec les produits classiques de l'algèbre linéaire.
 
 [^oops]: Souvenons-nous à l'inverse que si l'on interprête "$\cdot$" comme un produit matriciel et que 
 l'on représente implicitement $x$ et $y$ comme deux vecteurs-colonnes de $\R^{n \times 1}$, 
 l'expression $x \cdot y$ n'a pas de sens ; il alors considérer $x^{\top} \cdot y$ à la place, puis assimiler ensuite le résultat -- qui est une matrice $1 \times 1$ -- à un nombre réel. Les conventions du calcul tensoriel ont donc ici une action simplificatrice.
 
-### Produit tensoriel avec NumPy {.remark}
-Si $A$ et $B$ sont deux tenseurs de type compatibles pour le produit (la dernière dimension de $A$ égale à la première dimension de $B$)
+### Contraction tensorielle avec NumPy {.remark}
+Si $A$ et $B$ sont deux tenseurs de type compatibles pour la contraction (la dernière dimension de $A$ égale à la première dimension de $B$)
 représentés par les tableaux $n$-dimensionnels `A` et `B`, 
 **et tant que l'ordre de $B$ est inférieur ou égal à $2$**, 
-on peut calculer le produit tensoriel de $A$ et $B$ au moyen de la méthode `dot`.
+on peut calculer la contraction de $A$ et $B$ au moyen de la méthode `dot`.
 Par exemple, avec :
 
     >>> x = np.array([0.0, 1.0])
@@ -998,7 +1018,7 @@ Par exemple, avec :
     >>> T = np.array([[[1.0, 2.0], [3.0, 4.0]], 
     ...               [[5.0, 6.0], [7.0, 8.0]]])
 
-on obtient des produits tensoriels variés par les appels :
+on obtient des contraction variées par les appels :
 
     >>> x.dot(y)
     4.0
@@ -1015,8 +1035,8 @@ on obtient des produits tensoriels variés par les appels :
             [31., 46.]]])
 
 Par contre, si l'ordre de $B$ est $3$ ou plus, 
-on ne pourra pas utiliser cette méthode pour calculer le produit tensoriel $A \cdot B$ car son
-résultat diffère du produit tensoriel tel
+on ne pourra pas utiliser cette méthode pour calculer la contraction tensorielle $A \cdot B$ car son
+résultat diffère de la contraction tensorielle telle
 que nous l'avons défini
 [(cf. documentation de `numpy.dot`)](https://numpy.org/doc/stable/reference/generated/numpy.dot.html).
 
@@ -1077,28 +1097,35 @@ $$
 
 ### {.ante .remark}
 Les dérivées partielles d'ordre supérieur -- qui se définissent par récurrence --
-permettent vont permettrent d'expliciter les différentielles d'ordre supérieures
-comme une tenseur.
+vont permettre d'expliciter les différentielles d'ordre supérieures
+comme un tenseur.
 
 ### Dérivées partielles d'ordre $k$ {.definition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Soient $i_1, i_2, \dots, i_k$ des indices de $\{1,\dots, n\}$ ;
-lorsque la dérivée partielle $\partial^{k-1}_{i_2 \dots i_k} f$
-est définie en tout point de $U$ et est différentiable par rapport à
-la $i_1$-ème variable en $x$, on définit
+$x \in U$. Soient $i_1, i_2, \dots, i_k$ des indices de $\{1,\dots, n\}$.
+Si $k=1$, et que $f$ est différentiable par rapport à la $i_1$-ème variable en $x$,
 $$
-\partial^k_{i_1 \dots i_k} f(x) 
-:= \partial_{i_1} (\partial^{k-1}_{i_2 \dots i_k} f)(x).
+\partial^1_{i_1} f(x) := \partial_{i_1} f(x).
 $$
+Dans le cas contraire, lorsque la dérivée partielle $\partial^{k-1}_{i_{k-1} \dots i_1} f$
+est définie en tout point de $U$ et est différentiable par rapport à la $i_k$-ème variable en $x$
+$$
+\partial^k_{i_k \dots i_1} f(x) 
+:= \partial_{i_k} (\partial^{k-1}_{i_{k-1} \dots i_1} f)(x).
+$$
+
+### Dérivées partielles d'ordre 3 {.exercice .question .one #dpo3}
+Calculer les 8 dérivées partielles d'ordre $3$ de la fonction
+$f: (x_1, x_2) \in \R^2 \mapsto x_1^4 + 4x_1^3 x_2 \in \R$.
 
 ### Calcul des dérivées partielles d'ordre $k$ {.proposition}
 Soient $U$ un ouvert de $\mathbb{R}^n$, $f: U \to \mathbb{R}^m$ et
-$x \in U$. Si $f$ est $k$ fois différentiable en $x$, alors pour tout
+$x \in U$. Si $f$ est $k$ fois différentiable en $x$, alors pour tous
 $i_1, i_2, \dots, i_k$ dans $\{1,\dots, n\}$,
 $$
-\partial^k_{i_1 i_2\dots i_k} f(x) 
+\partial^k_{i_k i_2\dots i_1} f(x) 
 = 
-d^k f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2} \cdot e_{i_1}.
+d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
 $$
 
 ### Démonstration {.proof}
@@ -1107,19 +1134,20 @@ $\partial_{i_1} f(x) = df(x) \cdot e_{i_1}$ a été démontrée dans le
 chapitre "Calcul Différentiel I".
 Supposons que l'égalité soit vraie à l'ordre $k-1$. Alors, 
 \begin{align*}
-\partial^k_{i_1 \dots i_k} f(x)
+\partial^k_{i_k \dots i_1} f(x)
 &=
-\partial_{i_1} (\partial^{k-1}_{i_2 \dots i_k} f)(x) \\
+\partial_{i_k} (\partial^{k-1}_{i_{k-1} \dots i_1} f)(x) \\
 &=
-\partial_{i_1} (x \mapsto d^{k-1}f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2}) \\
+\partial_{i_k} (x \mapsto d^{k-1}f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k-1}}) \\
 &=
-d (x \mapsto d^{k-1}f(x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2}) \cdot e_{i_1} \\
+d (x \mapsto d^{k-1} f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k-1}} ) \cdot e_{i_k} \\
 &=
-d^k f (x) \cdot e_{i_k} \cdot \hdots \cdot e_{i_2} \cdot e_{i_1}
+d^k f (x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k-1}} \cdot e_{i_k}
 \end{align*}
-et l'égalité est également vraie à l'ordre $k$.
+et l'égalité est donc également vraie à l'ordre $k$, ce qui prouve le résultat
+recherché par récurrence.
 
-### Différentielle d'ordre $k$ et tenseur {.remark}
+### Différentielle d'ordre $k$ et tenseur {.proposition}
 On a 
 $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m,
@@ -1128,20 +1156,48 @@ chaque application dans la chaîne étant linéaire. La différentielle
 $d^k f(x)$ peut donc être représentée concrêtement par un tenseur $T$ d'ordre 
 $k+1$ et de type $(m, n, \dots, n)$ :
 $$
-T_{i_1i_2 \dots i_{k+1}} := 
-(\partial^k f_{i_2 \dots i_{k+1}}(x))\cdot e_{i_1} =
-(d^k f(x) \cdot e_{i_{k+1}} \cdot \hdots \cdot e_{i_2}) \cdot e_{i_1}.
+T_{ji_1 \dots i_{k}} := 
+(d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k}}) \cdot e_{j}
+=
+(\partial^k_{i_{k} \dots i_1} f(x))\cdot e_{j}.
 $$
 Par linéarité par rapport à chacun des $h_i$, on a :
 \begin{align*}
-d^k f(x) \cdot h_{k+1} \cdot \hdots \cdot h_2
+d^k f(x) \cdot h_1 \cdot \hdots \cdot h_k
 &=
-\sum_{i_1,i_2\dots, i_{k+1}}
+\sum_{j,i_1\dots, i_{k}}
 \left(
-\partial^k f_{i_1i_2 \dots i_{k+1}}(x)
-\times h_{k+1i_{k+1}} \times \cdots  \times h_{2i_2} 
-\right) e_{i_1}. \\
+\partial^k f_{i_k \dots i_{1}}(x)
+h_{1i_{1}} \cdots  h_{ki_k} 
+\right) e_j. \\
 \end{align*}
+
+### Continue différentiabilité d'ordre $k$ {.definition}
+Soit $U$ un ouvert de $\R^n$ et $f:U \to \R^m$. La fonction $f$ est
+*$k$ fois continûment différentiable* si pour tout $i_{k}, \dots, i_i \in \{1,\dots, n\}$,
+$\partial^k_{i_k \dots i_1} f:U \to \R^m$ existe et est continue.
+
+### Continue différentiabilité et différentiabilité {.proposition}
+Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est $k$ fois
+continûment différentiable, alors $f$ est $k$ fois différentiable.
+
+
+### Démonstration {.proof}
+Le résultat est connu à l'ordre 1 ; supposons-le établi à l'ordre $k-1$.
+Si $f$ est $k$ fois continûment différentiable à l'ordre $k$, comme pour tout
+$k-1$-uplet $h_1$, $h_2$, $\dots$, $h_{k-1}$, dans $\R^n$ on a
+$$
+d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1} 
+=
+\sum_{j,i_1\dots, i_{k-1}}
+\left(
+\partial^{k-1} f_{i_{k-1} \dots i_{1}}(x)
+h_{1i_{1}} \cdots  h_{k-1i_{k-1}} 
+\right) e_j,
+$$
+la fonction $x \mapsto d^{k-1}f(x) \cdot h_1 \cdot h_2 \cdot \hdots \cdot h_{k-1}$
+est différentiable et par conséquent $f$ est $k$ fois différentiable.
+
 
 ### Stratification {.lemma #stratification}
 Si $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ est une fonction 
@@ -1223,18 +1279,16 @@ au cas précédent.
 
 
 ### Dérivées partielles d'ordre supérieur et multi-indices {.remark}
-Pour compacter la notation $\partial^k_{i_1 \dots i_k} f(x)$, on peut exploiter 
-le fait que si $f$ est $k$ fois différentiable en $x$,
-$$
-\partial^k_{i_1 \dots i_k} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}.
-$$
-Compte tenu de la symétrie de $d^k f(x)$, peu importe l'ordre de $i_1$, $\dots$, $i_k$, 
-seul le nombre de fois où un indice apparaît compte. 
+Pour compacter la notation $\partial^k_{i_k \dots i_1} f(x)$, on peut exploiter 
+le fait que si $f$ est $k$ fois différentiable en $x$, on a
+$$\partial^k_{i_k \dots i_1} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_k}$$
+et utiliser ensuite la symétrie de $d^k f(x)$. Peu importe l'ordre d'apparition de $i_1$, $\dots$, $i_k$, 
+seul le nombre de fois où un indice donné apparaît compte. 
 Cette remarque fonde une notation basée sur les multi-indices 
 $\alpha=(\alpha_1, \dots, \alpha_n) \in \N^n$ où $\alpha_i$ détermine le
 nombre de fois où l'indice $i$ apparait. 
 Formellement, le symbole $\partial^{\alpha} f(x)$ désigne $f(x)$ si 
-$\alpha = (0, \dots, 0)$ et dans le cas contraire:
+$\alpha = (0, \dots, 0)$ et dans le cas contraire :
 $$
 \partial^{(\alpha_1, \cdots, \alpha_i + 1, \cdots, \alpha_n)} f(x) = \partial_i (\partial^{\alpha} f)(x).
 $$
@@ -1276,7 +1330,7 @@ est l'application $dF(x)$ telle que $dF(x)\cdot h$ soit
 la meilleure approximation, linéaire en $h$, de $F(x+h) - F(x)$
 pour de petites valeurs de $h$
 $$
-F(x+h) = F(x) + dF(x) \cdot h + o(h)
+F(x+h) = F(x) + dF(x) \cdot h + \varepsilon(h)
 $$
 
 L'application $dF(x)$ est donc une application linéaire de 
@@ -1576,11 +1630,11 @@ Convexité
 Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
 deux fois différentiable. 
 
-### Question 0 {.question #c-0}
+### Question 0 {.question #c-0 .one}
 Calculer le développement limité à l'ordre 2 de 
 $f(x+2h) - 2f(x+h) + f(x)$.
 
-### Question 1 {.question #c-1}
+### Question 1 {.question #c-1 .two}
 Montrer que si $f$ est convexe, c'est-à-dire si
 pour tous $x, y \in U$ et $\lambda\in[0,1]$,
 $$
@@ -1591,7 +1645,7 @@ $$
 d^2f(x) (\cdot h)^2 = h^{\top} \cdot H_f(x) \cdot h \geq 0.
 $$
 
-### Question 2 {.question #c-2}
+### Question 2 {.question #c-2 .three}
 Montrer la réciproque de ce résultat.
 
 Différentiation en chaîne à l'ordre 2
@@ -1601,10 +1655,10 @@ Soit $U$ et $V$ des ouverts de $\R^n$ et de $\R^m$, $f: U \to \R^m$ et
 $g : V \to \R$ deux applications deux fois différentiables telles que
 $f(U) \subset V$. 
 
-### Question 1 {.question .two #cr2-1}
+### Question 1 {.question  #cr2-1 .one}
 Montrer que $g \circ f$ est deux fois différentiable sur $U$. 
 
-### Question 2 {.question .three #cr2-2}
+### Question 2 {.question #cr2-2 .three}
 Montrer que pour tout $x \in U$,
 $$
 H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  
@@ -1622,11 +1676,12 @@ Source: [@Tao13]
 Dans cet exercice :
 
   1. Une fonction $F: U \subset \R^n \to \R^{m \times p}$ à valeurs matricielles
-est différentiable si chacune de ses composantes $F_{ij} : U \to \R$ est différentiable.
-La différentielle de $F$ est alors définie par $[dF]_{ij} = dF_{ij}$.
+est différentiable en $x$ si chacune de ses composantes $F_{ij} : U \to \R$ est 
+différentiable en $x$. La différentielle de $F$ en $x$ est alors définie par 
+$[dF(x)]_{ij} = dF_{ij}(x)$.
 
   2. Une fonction $f : U \subset \R^{m\times n} \to \R^{p}$ dont l'argument $X$ est 
-  matriciel est différentiable si la fonction $g : \pi(U) \subset \R^{mn} \to \R^p$
+  matriciel est différentiable en $X$ si la fonction $g : \pi(U) \subset \R^{mn} \to \R^p$
   caractérisée par
   $$
   g(x)
@@ -1641,7 +1696,7 @@ avec
   $$
   x =  \pi(X) := (X_{11}, \dots, X_{1n}, \dots, X_{m1},\dots, X_{mn})
   $$
-  est différentiable. On définit alors pour tout $H \in \R^{m\times n}$
+  est différentiable en $x$. On définit alors pour tout $H \in \R^{m\times n}$
   $$
   df(X) \cdot H = dg(x) \cdot h \; \mbox{ avec } \; x = \pi(X), \, h = \pi(H).
   $$ 
@@ -1649,18 +1704,18 @@ avec
   de plusieurs matrices.
 
   3. Il est possible de combiner les deux cas précédents pour définir la différentielle
-de fonctions d'argument et de valeur matriciels.
+de fonctions d'arguments et de valeur matriciels.
 
-### Question 1 {.question #dm-1}
+### Question 1 {.question #dm-1 .two}
 Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
 différentiable en l'identité ($A = I$) et calculer cette différentielle.
 
-### Question 2 {.question #dm-2}
+### Question 2 {.question #dm-2 .one}
 L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
 vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
 En déduire une identité concernant $\tr A B$ et $\tr BA$.
 
-### Question 3 {.question #dm-3}
+### Question 3 {.question #dm-3 .three}
 Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
 ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
@@ -1862,21 +1917,58 @@ Le résultat cherché se déduit alors comme suit :
 &= M\frac{\|h\|^2}{2}.
 \end{align*}
 
+### Dérivées partielles d'ordre 3 {.answer #answer-dpo3}
+On a 
+$$\partial_1 f(x_1, x_2) = 4 x_1^3 + 12 x_1^2 x_2 
+\; \mbox{ et } \; \partial_2 f(x_1, x_2) = 4x_1^3.$$
+
+Puis,
+\begin{align*}
+&\partial^2_{11} f(x_1, x_2) = 
+\partial_1 (\partial_1 f)(x_1, x_2) =
+\partial_1 (4 x_1^3 + 12 x_1^2 x_2) = 12 x_1^2+24 x_1 x_2,
+\\
+&\partial^2_{12} f(x_1, x_2) = 
+\partial_1(\partial_2 f)(x_1, x_2) = \partial_1 (4x_1^3) = 12 x_1^2,
+\\
+&\partial^2_{21} f(x_1, x_2) = \partial_2 (\partial_1 f)(x_1, x_2) = \partial_2(4 x_1^3 + 12 x_1^2 x_2) = 12 x_1^2,
+\\
+&\partial^2_{22} f(x_1, x_2) = \partial_2 (\partial_2 f)(x_1, x_2) = \partial_2 (4x_1^3)  
+=0.
+\\
+\end{align*}
+
+Et enfin
+\begin{align*}
+&\partial^3_{111} f(x_1, x_2) = \partial_1 (\partial^2_{11} f)(x_1, x_2) = \partial_1 (12 x_1^2+24 x_1 x_2) = 24 x_1 + 24, \\
+&\partial^3_{112} f(x_1, x_2) = \partial_1 (\partial^2_{12} f)(x_1, x_2) = \partial_1 (12 x_1^2)  =  24 x_1,\\
+&\partial^3_{121} f(x_1, x_2) = \partial_1 (\partial^2_{21} f)(x_1, x_2) = \partial_1 (12 x_1^2)  = 24 x_1,\\
+&\partial^3_{122} f(x_1, x_2) = \partial_1 (\partial^2_{22} f)(x_1, x_2) = \partial_1 (0) =0,\\
+&\partial^3_{211} f(x_1, x_2) = \partial_2 (\partial^2_{11} f)(x_1, x_2) = \partial_2 (12 x_1^2+24 x_1 x_2) = 24x_1,\\
+&\partial^3_{212} f(x_1, x_2) = \partial_2 (\partial^2_{12} f)(x_1, x_2) = \partial_2 (12 x_1^2) = 0, \\
+&\partial^3_{221} f(x_1, x_2) = \partial_2 (\partial^2_{21} f)(x_1, x_2) = \partial_2 (12 x_1^2) = 0, \\
+&\partial^3_{222} f(x_1, x_2) = \partial_2 (\partial^2_{22} f)(x_1, x_2) = \partial_2 (0) =0.\\
+\end{align*}
+
 Convexité
 --------------------------------------------------------------------------------
 
 ### Question 0 {.answer #answer-c-0}
+(Dans cette question $\varepsilon$ désigne un symbole de fonction générique
+-- plutôt que $\varepsilon_1, \varepsilon_2,$ etc. --
+qui tend vers $0$ quand son argument tend vers $0$.) 
 [Le développement limité à l'ordre 2 de $f$ en $x$](#dl) fournit
 $$
-f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2)
+f(x+h) = f(x) + df(x) \cdot h + \frac{d^2f(x)}{2} (\cdot h)^2 + \varepsilon(h) \times \|h\|^2
 $$
+
 et donc
 $$
-f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + o(\|h\|^2).
+f(x+2h) = f(x) + 2 df(x) \cdot h + 4 \frac{d^2f(x)}{2} (\cdot h)^2 + \varepsilon(h) \times \|h\|^2.
 $$
 Par conséquent,
 $$
-f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + o(\|h\|^2).
+f(x+2h) - 2 f(x+h) + f(x) = d^2 f(x) (\cdot h)^2 + \varepsilon(h) \times \|h\|^2.
 $$
 
 ### Question 1 {.answer #answer-c-1}
@@ -1888,9 +1980,20 @@ $$
 soit $$f(x+2h) - 2 f(x+h) - f(x) \geq 0.$$
 En utilisant le résultat de la question précédente,
 on obtient
-$$d^2 f(x) (\cdot h)^2 + o(\|h\|^2) \geq 0$$ et donc, en substituant 
-$th$ à $h$ et en faisant tendre $t$ vers $0$, 
-$d^2 f(x) (\cdot h)^2 \geq 0.$
+$$d^2 f(x) (\cdot h)^2 + \varepsilon(h) \times \|h\|^2 \geq 0$$ et donc, 
+en substituant $th$ à $h$ pour $t \in \left]0, 1\right]$,
+$$
+t^2 d^2f(x) (\cdot h)^2 = d^2 f(x) (\cdot th)^2   
+\geq  
+- \varepsilon(th) \times \|th\|^2
+=
+- \varepsilon(th) \times t^2 \|h\|^2,
+$$
+soit 
+$$
+d^2f(x) (\cdot h)^2 \geq - \varepsilon(th) \times \|h\|^2
+$$
+et donc en faisant tendre $t$ vers $0$ à $h$ fixé, $d^2 f(x) (\cdot h)^2 \geq 0.$
 
 ### Question 2 {.answer #answer-c-2}
 Comme $f((1-\lambda) x + \lambda y) = f(x + \lambda (y-x))$,
@@ -1968,9 +2071,15 @@ La fonction $\nabla (g \circ f)$ est donc différentiable et $g \circ f$ est
 deux fois différentiable.
 
 ### Question 2 {.answer #answer-cr2-2}
-La règle de différentiation en chaîne donne pour tout indice $i \in \{1,\dots, n\}$ 
+Comme pour tout indice $i \in \{1,\dots, n\}$,
 $$
-\partial_i (g\circ f) (x) = dg(f(x)) \cdot \partial_i f(x) = \sum_{k=1}^m \partial_k g(f(x)) \partial_i f_k (x).
+\partial_i (g\circ f) (x)
+=
+d (g \circ f)(x) \cdot e_i,
+$$
+la règle de différentiation en chaîne donne 
+$$
+\partial_i (g\circ f) (x) = d g(f(x)) \cdot df(x)\cdot e_i = dg(f(x)) \cdot \partial_i f(x) = \sum_{k=1}^m \partial_k g(f(x)) \partial_i f_k (x).
 $$
 Pour tout $j \in \{1,\dots, m\}$, on a donc
 \begin{align*}
@@ -2002,7 +2111,7 @@ $$
 H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  \sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
 $$
 
-TODO -- Différentiation matricielle
+Différentiation matricielle
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dm-1}
@@ -2037,16 +2146,16 @@ h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
 \vdots & \vdots & \vdots \\
 h_{n2} & \hdots & 1+h_{nn} \\
 \end{array} \right| 
-+ o(\|H\|), \\
++ \varepsilon(\|H\|), \\
 \end{split}
 $$
 une relation dont on tire par récurrence que
 $$
 \begin{split}
 \det (I+H) 
-&= \prod_{i = 1}^n (1 + h_{ii}) + o(\|H\|)
-=\det I + \sum_{i=1}^n h_{ii} + o(\|H\|) \\
-&= \det I + \tr H + o(\|H\|).
+&= \prod_{i = 1}^n (1 + h_{ii}) + \varepsilon(\|H\|)
+=\det I + \sum_{i=1}^n h_{ii} + \varepsilon(\|H\|) \\
+&= \det I + \tr H + \varepsilon(\|H\|).
 \end{split}
 $$
 La différentiel du déterminant existe donc en l'identité et 
@@ -2072,7 +2181,7 @@ son déterminant est positif ; la matrice $A$ est alors inversible.
 Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
 pour être inversible, la formule de Cramer établit
 $$
-A^{-1} = \frac{1}{\det A} \mathrm{co}(A)^t.
+A^{-1} = \frac{1}{\det A}  \mathrm{co}(A)^t.
 $$
 Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
 de $A$) est une fonction polynomiale
@@ -2084,11 +2193,11 @@ donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
 différentiable en $A=I$.
 
 Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
-$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + o(\|H\|),$
+$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + \varepsilon(\|H\|),$
 l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
 $$
-(I+H)(I + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)) 
-= I + H + d\,\mathrm{inv}(I) \cdot H + o(\|H\|)
+(I+H)(I + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)) 
+= I + H + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)
 = I,
 $$
 et donc

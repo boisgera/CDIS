@@ -33,7 +33,7 @@ Est-ce que $\mu$ est une mesure sur $(X, \mathcal{A})$ ?
 
 #### Question 2 (réponses multiples) 
 Si $\mu$ et $\nu$ sont des mesures sur le même espace mesurable $(X, \mathcal{A})$,
-$\alpha \in \R$ et $f: [0, +\infty] \to [0, +\infty]$ est continue, 
+$\alpha \geq 0$ et $f: [0, +\infty] \to [0, +\infty]$ est continue, 
 alors
 
   - [ ] A : $\mu + \nu$ est une mesure,
@@ -53,7 +53,7 @@ et seulement si :
 
   - [ ] C : la longueur de $\{x \in \R \; | \; f(x) \neq g(x)\}$ est nulle,
 
-  - [ ] D : $f$ et $g$ sont égales $c$-presque partout sans condition.
+  - [ ] D : $f$ et $g$ sont en fait égales $c$-presque partout sans condition.
 
 #### Question 4
 La fonction caractéristique de $\mathbb{Q} \subset \mathbb{R}$ est une fonction étagée

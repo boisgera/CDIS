@@ -423,7 +423,7 @@ Il suffit de prouver que l'image réciproque par $f$ de tout ouvert $U$ de
 $\left[-\infty, +\infty\right]$ appartient à $\mathcal{A}$.
 Considérons la suite d'ensembles $K_n$ ($n \in \N$) définis par :
 $$
-K_n = \{x \in U \; | \; d(x, U^c) \leq 2^{-n} \, \mbox{ et } \,  d(0, x) \leq 2^n \}. 
+K_n = \{x \in U \; | \; d(x, U^c) \geq 2^{-n} \, \mbox{ et } \,  d(0, x) \leq 2^n \}. 
 $$
 Alors $f(x) \in U$ si et seulement s'il existe un $n \in \N$ tel que $f_k(x) \in K_n$
 pour $k$ assez grand, ce qui se traduit par la formule
