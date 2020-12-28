@@ -65,7 +65,7 @@ Soit $(X_n)_{n\in \N^\ast}$ une suite de v.a. indépendantes de loi de Cauchy, d
 
 #### Question 5 (réponse multiple)
 
-Soit $(X_n)_{n\in \N^\ast}$ une suite de v.a. indépendantes et une v.a. $X$, toutes définies sur le même espace probabilisé, telles que $\forall \varepsilon > 0$, $\P(|X_n - X|>\varepsilon) \leq \frac{1}{n^2}$.
+Soit $(X_n)_{n\in \N^\ast}$ une suite de v.a. indépendantes et une v.a. $X$, toutes définies sur le même espace probabilisé, telles que $\forall \varepsilon > 0$, $\P(|X_n - X|>\varepsilon) \leq \frac{1}{\varepsilon^2 n^2}$.
 
   - [ ]  A : $X_n \xrightarrow[n \to \infty]{\L} X$  
 
