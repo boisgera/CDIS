@@ -230,7 +230,7 @@ $\P_{X,Y}$ est bien une probabilité sur $\R^2$ puisque par convergence monotone
 \P_{X,Y} (\R^2) &= \P_{X,Y}(\N \times \R) \\
                 &= \sum_{n\in\N} \P_{X,Y} (\{n\}\times \R)\\
                 &= \sum_{n\in\N} (1-\alpha)\alpha^n \int_{\R_+^\ast}e^{-t}\frac{t^n}{n!}dt \\
-                &= (1-\alpha)\int_{\R_+^\ast}e^{-t} \sum_{n\in\N} \frac{\alpha t^n}{n!}dt \\
+                &= (1-\alpha)\int_{\R_+^\ast}e^{-t} \sum_{n\in\N} \frac{(\alpha t)^n}{n!}dt \\
                 &= (1-\alpha)\int_{\R_+^\ast}e^{-(1-\alpha)t} dt = 1
 \end{align*}               
 où on aura reconnu la loi exponentielle de paramètre $(1-\alpha)$.
@@ -439,7 +439,7 @@ $$\Esp(g(X,Y)|X=x) = \Esp(g(x,Y)|X=x) = \int_{\R}g(x,y) \P_Y(dy).$$
 Autrement dit, lorsqu'on conditionne par l'événement $\{X=x\}$, cela revient à fixer la valeur de la variable aléatoire $X$ à la constante $x$.
 
 ### Espérance conditionnelle d'un produit de variables {.exercise .question .one #prod}
-Calculer $\Esp(XY|X=x)$ puis $\Esp(XY|Y)$.
+Calculer $\Esp(XY|X=x)$ puis $\Esp(XY|X)$.
 
 ## Exemple : vecteurs Gaussiens à densité
 
@@ -488,7 +488,7 @@ C'est-à-dire que la variable aléatoire $Y|Z=z$ est gaussienne d'espérance $m_
 La régression est un ensemble de méthodes (d'apprentissage) statistiques très utilisées pour analyser la relation d'une variable par rapport à une ou plusieurs autres. Ces méthodes visent notamment à décrire les liens de dépendance entre variables mais aussi de prédire au mieux la valeur d’une quantité non observée en fonction d'une ou plusieurs autres variables. On va en décrire ici le principe du point de vue probabiliste dans le cas particulier des variables de carré intégrable (ou dans $\L^2$). On verra dans ce cadre, que l'on rencontre très fréquemment en pratique, une interprétation géométrique très éclairante de l'espérance conditionnelle.
 
 ## Régression linéaire
-On considère deux variables aléatoires rélles, de carré intégrable, définies sur le même espace de probabilité $(\Omega,\A,\P)$, et dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est-à-dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
+On considère deux variables aléatoires réelles, de carré intégrable, définies sur le même espace de probabilité $(\Omega,\A,\P)$, et dont on suppose connues les variances et la covariance. Nous souhaitons trouver la meilleure approximation de $Y$ par une fonction affine de $X$ de la forme $aX + b$, au sens des moindres carrés, c’est-à-dire qui minimise la quantité $\Esp((Y - (aX + b))^2)$. Il s’agit de déterminer les constantes $a$ et $b$ telles que $\Esp((Y - (aX + b))^2)$ soit minimale. Or, par linéarité,
 $$\Esp((Y - (aX + b))^2) = \Esp(Y^2) -2a\Esp(XY) -2b \Esp(Y) +a^2\Esp(X^2) +2ab\Esp(X) +b^2.$$
 L'annulation de ses dérivées partielles en à $a$ et $b$ entraîne que les solutions sont
 
@@ -499,6 +499,8 @@ b & = \Esp(Y)  - a \Esp(X)
 
 ### En détail {.exercise .question .one #detail}
 Détailler le calcul de $a$ et $b$.
+
+### {.anonymous}
 
 On vérifie aisément que ces valeurs donnent bien un minimum pour $\Esp((Y - (aX + b))^2)$ qui est convexe, et déterminent ainsi la meilleure approximation linéaire de $Y$ basée sur $X$ au sens de l'erreur quadratique moyenne.
 
@@ -704,7 +706,7 @@ d'où $a = \frac{\cov(X,Y)}{\V(X)} = \rho(X,Y)\frac{\sigma_Y}{\sigma_X}$
 
 ### Variance totale {.answer #answer-vartot}
 \begin{align*}
-\V(Y) =& \Esp((Y-\Esp(Y)^2)) = \Esp(\Esp((Y-\Esp(Y))^2|X)) \text{   par la formule de l'espérance totale}\\
+\V(Y) =& \Esp((Y-\Esp(Y))^2) = \Esp(\Esp((Y-\Esp(Y))^2|X)) \text{   par la formule de l'espérance totale}\\
 =& \Esp(\Esp((Y-\Esp(Y|X)+\Esp(Y|X)-\Esp(Y))^2|X)) \\
 =& \Esp(\Esp((Y-\Esp(Y|X))^2|X)) + \Esp(\Esp((\Esp(Y|X)-\Esp(Y))^2|X)) \\
  &+ 2\Esp(\Esp((Y-\Esp(Y|X))(\Esp(Y|X)-\Esp(Y))|X))\\
