@@ -47,6 +47,11 @@ En outre, cette propriété indique que la vitesse de convergence de $M_n(h)$ es
 
 [^foot1]: ce résultat sera démontré dans le cours de science des données au second semestre.
 
+### Calcul numérique d'une probabilité {.exercise .question .two #mc1}
+Calculer une estimation de la probabilité de l’événement $\sin(X) > 1/2$ pour $X$ de loi $\No (0, 1)$.
+
+Indication : si x est un vecteur, `y=(np.sin(x)>1/2)` désigne le vecteur de booléens dont les coordonnées valent `True` ou `False` selon que les coordonnées correspondantes de `np.sin(x)` soient ou non > 1/2. Par ailleurs, les vecteurs de booléens se convertissent naturellement en vecteurs de 0 et de 1 si on leur applique une fonction dont les arguments sont des nombres (ex : `np.mean`).
+
 
 # Génération de nombres pseudo-aléatoires
 
@@ -212,7 +217,7 @@ Calculer le taux de rejet de la méthode proposée ci-dessus.
 
 ## Simulation de variables aléatoires gaussiennes : Box-Muller
 
-On a vu que la méthode d'inversion est inappropriée pour simuler une variable gaussienne, puisqu'elle requiert l'expression analytique de la fonction de répartition cible. Il existe des méthodes basées sur une intégration numérique de la densité gaussienne puis une inversion de cette approximation de la f.d.r. mais elle ne sont pas optimales en temps de calcul. La méthode du rejet est quant à elle sous-optimale, dans le sens où toutes les variables uniformes générées ne sont pas directement utilisées (une partie, potentiellement grande, est rejetée). La loi normale étant fondamentale en probabilité, il est plus que souhaitable de pouvoir en trouver une méthode de simulation exacte et efficace.
+On a vu que la méthode d'inversion est inappropriée pour simuler une variable gaussienne, puisqu'elle requiert l'expression analytique de la fonction de répartition cible. Il existe des méthodes basées sur une intégration numérique de la densité gaussienne puis une inversion de cette approximation de la f.d.r. mais elle ne sont pas optimales en temps de calcul. La méthode de rejet est quant à elle sous-optimale, dans le sens où toutes les variables uniformes générées ne sont pas directement utilisées (une partie, potentiellement grande, est rejetée). La loi normale étant fondamentale en probabilité, il est plus que souhaitable de pouvoir en trouver une méthode de simulation exacte et efficace.
 
 George E. P. Box et Mervin E. Muller ont proposé en 1958 une telle méthode (@BoxMuller). Elle exploite la propriété d'invariance par rotation de la densité d'un couple de variables gaussiennes indépendantes centrées réduites.
 
@@ -260,7 +265,7 @@ Alors, le vecteur $Z = m + L\,Y$ est gaussien, d'espérance $m$ et de matrice de
 
 On introduit dans cette section la méthode d'échantillonnage d'importance (importance sampling en anglais), que l'on appelle aussi, de manière plus intuitive, échantillonnage préférentiel, pour les lois à densité. Pour ce faire, nous allons commencer par un exemple qui montre qu'il peut être plus efficace de simuler des valeurs selon une loi différente de celle d'intérêt, autrement dit de modifier la représentation de l'intégrale $\mathcal{I}$ sous la forme d'une espérance calculée selon une autre densité.
 
-### Exemple {.example}
+### Loi de Cauchy conditionnelle {.example}
 Supposons que l'on s'intéresse à calculer la probabilité $p$ qu'une variable $X$ de loi de Cauchy standard soit plus grande que 2 (on peut le calculer directement et $p=0.15$)
 $$p = \int_2^{+\infty} \frac{1}{\pi(1+x^2)}dx.$$
 Si on estime $p$ directement à partir d'un échantillon $(X_1,\ldots,X_n)$ simulé selon la loi de Cauchy standard, soit
@@ -327,13 +332,13 @@ Exercices
 
 ## Loi uniforme dans un domaine 
 
-Ecrire un algorithme pour simuler un point uniforme dans les trois domaines suivants
+Ecrire un algorithme pour simuler un point uniforme dans les trois domaines représentés ci-dessous.
 
-![A](images/ex1-eps-converted-to.pdf){ width=30% } 
+![Domaine A](images/ex1-eps-converted-to.pdf){ width=30% } 
 
-![B](images/ex2-eps-converted-to.pdf){ width=30% } 
+![Domaine B](images/ex2-eps-converted-to.pdf){ width=30% } 
 
-![C](images/ex3-eps-converted-to.pdf)
+![Domaine C](images/ex3-eps-converted-to.pdf)
 
 ## Simulation selon la loi géométrique
 
@@ -348,27 +353,31 @@ Calculer l'espérance et la variance de $X$
 Générer un échantillon de taille 1000 pour $p=0.6$, en utilisant une approche génétique. Calculer la moyenne et la variance. Comparer avec les valeurs théoriques.
     
 ### Question 3 {.question #loigeom3}
-Montrer que si $X\sim{\cal E}$, alors $\lceil X \rceil \sim{\cal G}(p)$
+Montrer que si $X\sim{\cal E}(\lambda)$, alors $\lceil X \rceil \sim{\cal G}(p)$. On précisera la valeur de $\lambda$.
     
 ### Question 4 {.question #loigeom4}
 Donner, implémenter et tester un algorithme pour simuler ${\cal G}(p)$ directement
 
-## Simulation de la loi gaussienne par la méthode du rejet
+## Simulation de la loi gaussienne par la méthode de rejet
 
 $X$ est une variable aléatoire de loi gaussienne d'espérance $m=0$ et de variance $\sigma^2=1$, $\No(0,1)$. Sa densité est
   $$f(x) = \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{1}{2}x^2\right),~x\in \R$$
   
 ### Question 1 {.question #lgrej1}
-  Montrer que $f(x) \leq C \exp \left(-|x|\right)$ où $C=\sqrt{\frac{e}{2\pi}}$
+Montrer que $f(x) \leq C \exp \left(-|x|\right)$ où $C=\sqrt{\frac{e}{2\pi}}$
 
 ### Question 2 {.question #lgrej2}
-  On considère $g(x) = \frac{1}{2}\exp \left(-|x|\right),~x\in \R$. Montrer que $g$ est une densité de probabilité.
+On considère $g(x) = \frac{1}{2}\exp \left(-|x|\right),~x\in \R$. Montrer que $g$ est une densité de probabilité.
 
 ### Question 3 {.question #lgrej3}
- En notant que si $X\sim g$, alors $|X|\sim{\cal E}(1)$, déduire un algorithme pour simuler selon $g$
+Proposer un algorithme pour simuler selon $g$.
 
 ### Question 4 {.question #lgrej4} 
-Implémenter l'algorithme de rejet pour simuler selon $f$
+Implémenter l'algorithme de rejet pour simuler selon $f$.
+
+## Simulation selon la loi de Wigner {.question #wigner}
+
+La loi de Wigner (ou du demi-cercle) est la loi de support $[-2, 2]$ et de densité $f(x) = \frac{1}{2\pi}\sqrt{4 - x^2}$. Simuler un grand nombre de variables aléatoires de loi de Wigner, représenter l'histogramme associé et le comparer à la densité. 
 
 ## Loi des grands nombres et théorème central limite
 
@@ -389,11 +398,39 @@ Faire de même avec des variables aléatoires $Y_i$ de loi de Cauchy (c'est-à-d
 Calculer la moyenne $\mu$ et l’écart-type $\sigma$ des $X_i$ et vérifier, afin d’illustrer le [Théorème Central Limite](Probabilité IV.pdf #TCL), que 
 $\sqrt{n} (S_n - \mu)/\sigma$ converge en loi, lorsque $n \to \infty$, vers une variable de loi $\mathcal{N}(0, 1)$ : on se fixera une grande valeur de n, on simulera un grand nombre de fois $\sqrt{n} (S_n - \mu)/\sigma$, on en tracera l’histogramme et on le comparera à la densité $(2\pi)^-1/2 e^{-x^2}$ la loi $\mathcal{N}(0, 1)$.
 
+## Simulation d'un mélange de gaussiennes
+
+On souhaite simuler selon la loi de mélange introduite dans l'exercice Mélange de loi du chapitre 3.
+
+### Question 1 {.question #melloi1}
+Soit $K$ une v.a.r. de loi :
+$$\mathbb{P}(K=x) = \left\{\begin{array}{ll} 1/2 & \text{ si }x = 1 \\ 1/4 & \text{ si }x = 2 \\ 1/4 & \text{ si }x = 3 \\ 0 & \text{ sinon} \end{array} \right.$$
+Implémenter la méthode d'inversion pour simuler $K$
+
+### Question 2 {.question #melloi2}
+Soit $X_1$, $X_2$ et $X_3$ des variables aléatoires de lois respectives $\mathcal{N}(0,1)$, $\mathcal{N}(5,1/2)$ et $\mathcal{N}(8,4)$. Implémenter un algorithme de simulation de $X_K$. Comparer l'histogramme obtenu pour un échantillon de taille 1000 avec la densité de $X_K$.
+
+## Echantillonnage d'importance
+
+On cherche à évaluer l'espérance d'une variable aléatoire $X$ gaussienne centrée réduite (de densité $f_X$ et de f.d.r. $F_X$) sachant qu'elle dépasse la valeur 3.
+
+### Question 1 {.question #echimp1}
+Exprimer la densité conditionnelle de $X|X>3$.
+
+### Question 2 {.question #echimp2}
+Calculer la quantité souhaitée à partir d'un échantillon de taille 1000 généré selon $F_X$. Quelle est la valeur du taux de rejet ?
+
+### Question 3 {.question #echimp3}
+Implémenter l'algorithme d'échantillonnage d'importance en prenant comme loi instrumentale la loi gaussienne d'espérance 3 et de variance 1. Quelle est la proportion de poids nuls ?
+
 
 -----------------------------------------------------------
 
 Solutions
 =================================================================================
+
+### Calcul numérique d'une probabilité {.answer .two #answer-mc1}
+cf. notebook
 
 ### Exemples d'application 1 {.answer  .one #answer-exemples1}
 On suppose que $U \sim \mathcal{U}_{]0,1[}$
@@ -408,7 +445,7 @@ On suppose que $U \sim \mathcal{U}_{]0,1[}$
 
 * de Cauchy, de densité $x\in\R \mapsto \left(\pi\left(1+x^2\right)\right)^{-1}$,
 
-    la loi de Cauchy admet la fonction de répartition $F(x) = \frac{1}{\pi} \arctan (x) + \frac{1}{2}$, d'où $X = tan(\pi U -1/2)$
+    la loi de Cauchy admet la fonction de répartition $F(x) = \frac{1}{\pi} \arctan (x) + \frac{1}{2}$, d'où $X = \tan(\pi U -1/2)$
 
 * de Laplace de paramètres $\mu \in \R$ et $s\in\R_+^\ast$, de densité $x\in\R \mapsto \frac{1}{2s}\,\exp\left\{-\frac{|x-\mu|}{s}\right\}$,
 
@@ -418,17 +455,17 @@ On suppose que $U \sim \mathcal{U}_{]0,1[}$
     1 - \frac{1}{2} \exp(-x) & \text{ si } x \geq 0,
     \end{array} \right. = \frac{1}{2}\left(1 + \text{sgn}(x)(1-\exp(-|x|))\right)$$
 
-    d'où $X = \text{sgn}(U - 1/2)\ln(1-2|U-1/2|)$.
+    d'où $X = \text{sgn}(U - 1/2)\ln(1-2|U-1/2|)$, où sgn est la fonction signe.
 
 * Logistique de paramètres $\mu \in \R$ et $s\in\R_+^\ast$, de fonction de répartition $x\in\R \mapsto \left(1 + \exp\left\{-\frac{x-\mu}{s} \right\}\right)^{-1}$ :
 
     par inversion, $X = s \left(-\ln\left(\frac{1}{U}-1\right)+ \mu\right)$  
 
 ### Pile ou face {.answer  .one #answer-pf}
-Il suffit d'associer à "pile" un événement portant sur $U \sim \mathcal{U}_{]0,1[}$ de la bonne probabilité, $p \in ]0,1[$, par exemple $\{U < p\}$. On obtient ainsi l'algorithme :
+Il suffit d'associer à "pile" un événement portant sur $U \sim \mathcal{U}_{]0,1[}$ de la bonne probabilité, $p \in ]0,1[$, par exemple $\{U \leq p\}$. On obtient ainsi l'algorithme :
     
 1. Générer $u$ selon $\mathcal{U}_{]0,1[}$
-2. Renvoyer "pile" si $u < p$, "face" sinon
+2. Renvoyer "pile" si $u \leq p$, "face" sinon
 
 ### Exemples d'application 2 {.answer  .one #answer-exemples2}
 
@@ -474,7 +511,7 @@ On note $[a_1,b_1]\times\dots\times[a_d,b_d] \subset \R^d$.
 On peut voir que la densité d'une v.a. uniforme sur un tel pavé s'écrit $f(x) = \frac{1}{b_1 - a_1} \cdots \frac{1}{b_d - a_d} 1_{[a_1,b_1]\times\dots\times[a_d,b_d]}(x)$ soit comme le produit des densités de ses coordonnées qui sont donc indépendantes. On peut donc simuler la variable d'intérêt avec cet algorithme :
 
 1. Générer $u_1,\ldots,u_d$ indépendamment selon $\mathcal{U}_{]0,1[}$
-2. Retourner $(a_1 + u(b_1-a_1), \ldots, a_d + u(b_d-a_d))$ 
+2. Retourner $(a_1 + u_1(b_1-a_1), \ldots, a_d + u_d(b_d-a_d))$ 
 
 ### Démonstration {.answer  .one #answer-unicond}
 Soit $C \in \B(B)$ (considérer les boréliens de $B$ suffit à caractériser la loi conditionnelle à l'événement $U \in B$ puisque si $C \cap B = \varnothing$, alors nécessairement, $\P(U \in C |U \in B) = 0$). On a 
@@ -570,7 +607,7 @@ cf. notebook
 
 ### Question 3 {.answer #answer-loigeom3}
 \begin{align*}
-\P(\lceil X \lceil = n) & = \P(n-1 < X \leq n) \\
+\P(\lceil X \rceil = n) & = \P(n-1 < X \leq n) \\
 & = F_X(n) - F_X(n-1) \\
 & = e^{-\lambda (n-1)}(1-e^{-\lambda})
 \end{align*}
@@ -579,38 +616,66 @@ d'où $\lambda = -\ln(1-p)$
 ### Question 4 {.answer #answer-loigeom4}
 cf. notebook 
 
-## Simulation de la loi gaussienne par la méthode du rejet
+## Simulation de la loi gaussienne par la méthode de rejet
 
 $X$ est une variable aléatoire de loi gaussienne d'espérance $m=0$ et de variance $\sigma^2=1$, $\No(0,1)$. Sa densité est
   $$f(x) = \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{1}{2}x^2\right),~x\in \R$$
   
 ### Question 1 {.answer #answer-lgrej1}
-  Montrer que $f(x) \leq C \exp \left(-|x|\right)$ où $C=\sqrt{\frac{e}{2\pi}}$
+Soit $x \in \R$
+\begin{align*}
+x^2 & \geq 2|x| - 1 \\
+\frac{1}{\sqrt{2\pi}}e^{-x^2/2} & \leq \sqrt{\frac{e}{2\pi}} e^{-|x|}
+\end{align*}
 
 ### Question 2 {.answer #answer-lgrej2}
-  On considère $g(x) = \frac{1}{2}\exp \left(-|x|\right),~x\in \R$. Montrer que $g$ est une densité de probabilité.
+$g$ est bien positive et son intégrale sur $\R$ vaut
+$$\int_\R g(x) dx = \int_\R \frac{1}{2} e^{-|x|} dx = \int_{\R^+} e^{-x} dx = 1$$
 
 ### Question 3 {.answer #answer-lgrej3}
- En notant que si $X\sim g$, alors $|X|\sim{\cal E}(1)$, déduire un algorithme pour simuler selon $g$
+voir dans [exemples d'application 1](#exemples1). 
 
 ### Question 4 {.answer #answer-lgrej4} 
 cf. notebook
 
+## Simulation de la loi de Wigner {.answer #answer-wigner}
+cf. notebook
+
 ## Loi des grands nombres et théorème central limite
 
-### Question 1 {.question #lgntcl1}
-cf. notebook
-
-### Question 2 {.question #lgntcl2}
+### Question 1 {.answer #answer-lgntcl1}
 
 cf. notebook
 
-### Question 3 {.question #lgntcl3}
+### Question 2 {.answer #answer-lgntcl2}
 
 cf. notebook
 
+### Question 3 {.answer #answer-lgntcl3}
 
-# Projet numérique : câble sous-marin
+cf. notebook
+
+## Simulation d'un mélange de gaussiennes
+
+### Question 1 {.answer #answer-melloi1}
+cf. notebook
+
+### Question 2 {.answer #answer-melloi2}
+cf. notebook
+
+## Echantillonnage d'importance
+
+### Question 1 {.answer #answer-echimp1}
+On a $F_{X|X>3}(x) = \P(X \leq x |X > 3) = \frac{\P(X\leq x, X>3)}{1-F_X(3)} = \frac{F_X(x)-F_X(3)}{1-F_X(3)}1_{]3,+\infty[}(x)$
+d'où $f_{X|X>3}(x) = \frac{f_X(x)}{1-F_X(3)}1_{]3,+\infty[}(x)$
+
+### Question 2 {.answer #answer-echimp2}
+cf. notebook
+
+### Question 3 {.answer #answer-echimp3}
+cf. notebook
+
+# Projet numérique : câble sous-marin (énoncé 2020)
 
 ## Enoncé du problème
 
