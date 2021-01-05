@@ -27,7 +27,7 @@ Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (U
 |  | 2 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20II.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20II%20(a4%2C%20recto-verso).pdf) |   | [:grey_question: PDF](https://boisgera.github.io/CDIS/quizz/Probabilités%20II/output/Probabilités%20II.pdf) |
 |  | 3 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20III.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20III%20(a4%2C%20recto-verso).pdf) |   |  |
 |  | 4 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Probabilité%20IV%20(a4%2C%20recto-verso).pdf) |   | [:grey_question: PDF](https://cloud.mines-paristech.fr/index.php/s/xBpxCjhLblwLTDR/download) |
-|  | 5 | [:computer: PDF](https://cloud.mines-paristech.fr/index.php/s/GLDwtTAMOJCYk3i/download) | [:book: PDF](https://cloud.mines-paristech.fr/index.php/s/4HAYcP6BsTeOEIO/download) |  [:construction: IPYNB](https://boisgera.github.io/CDIS/Probabilités%20V/Probabilité%20V.ipynb)  |  |
+|  | 5 | [:computer: PDF](https://cloud.mines-paristech.fr/index.php/s/GLDwtTAMOJCYk3i/download) | [:book: PDF](https://cloud.mines-paristech.fr/index.php/s/4HAYcP6BsTeOEIO/download) |  [:notebook: IPYNB](https://boisgera.github.io/CDIS/Probabilités%20V/Probabilité%20V.ipynb)  |  |
 <!--| ... | ... | ... |-->
   
 <!--
