@@ -147,7 +147,7 @@ Soient $\P_1$ et $\P_2$ deux probabilités définies respectivement sur $(\R^n, 
 1. Soient $A \in \B(\R^n)$ et $B \in \B(\R^m)$, alors
    $$\P(A \times B) = \P_1(A)\P_2(B)$$
    définit de manière unique une probabilité sur $(\R^{n+m}, \B(\R^{n+m}))$ (que l'on note  aussi $\P_1 \otimes \P_2$).
-2. Soit $f$ une fonction $\B(\R^{n+m})$-mesurable positive ou $\P_1 \otimes \P_2$-intégrable, alors la fonction $x \mapsto f(x, y)\P_2(dy)$ est $\B(\R^{n})$-mesurable, la fonction $y \mapsto f (x, y) \P_1(dx)$ est $\B(\R^m)$-mesurable et 
+2. Soit $f$ une fonction $\B(\R^{n+m})$-mesurable positive ou $\P_1 \otimes \P_2$-intégrable, alors la fonction $x \mapsto \int f(x, y)\P_2(dy)$ est $\B(\R^{n})$-mesurable, la fonction $y \mapsto \int f (x, y) \P_1(dx)$ est $\B(\R^m)$-mesurable et
 $$\int f d\P_1\otimes\P_2 = \int \left(\int f(x,y) \P_2(dy) \right) \P_1(dx) = \int \left(\int f(x,y) \P_1(dx) \right) \P_2(dy)$$
 
 ### {.anonymous}
