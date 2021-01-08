@@ -57,7 +57,7 @@ d'exercices.
 #### Différentielle d'ordre supérieur
 
   - \three appréhender le concept de différentielle d'ordre $k$ : 
-    sa nature d'application linéaire d'ordre supérieure,
+    sa nature d'application linéaire d'ordre supérieur,
     quand elle existe, comment la calculer.
 
   - \one savoir définir et exploiter les dérivées partielles d'ordre $k$, 
@@ -70,7 +70,7 @@ d'exercices.
     contraction associés, et comment ces notions généralisent des concepts
     et opérations déjà connues.
 
-  - \three savoir représenter une application linéaire d'ordre supérieure
+  - \three savoir représenter une application linéaire d'ordre supérieur
     par un tenseur et réciproquement ; faire le lien entre les coefficients
     du tenseur de la différentielle d'ordre $k$ et les dérivées
     partielles d'ordre $k$.
@@ -204,7 +204,7 @@ Matrice hessienne et différentielle d'ordre $2$
 ================================================================================
 
 ### Dérivées partielles d'ordre $2$ {.definition .one}
-Soit $U$ un ouvert de $\R^n$, $f: U \to \R$ et $x \in U$.
+Soient $U$ un ouvert de $\R^n$, $f: U \to \R$ et $x \in U$.
 Si la $j_1$-ème dérivée partielle de $f$ est définie sur $U$,
 et que la $j_2$-ème dérivée partielle de $\partial_{j_1} f$ 
 en $x$ existe, on note
@@ -236,7 +236,7 @@ H_f(x) = J_{\nabla f}(x) = \left[
 $$
 
 ### Laplacien et matrice hessienne {.exercise .question .zero #laplacien}
-Soit $U$ un ouvert de $\R^n$, $x \in U$ et $f: U \to \R$ une fonction dont 
+Soient $U$ un ouvert de $\R^n$, $x \in U$ et $f: U \to \R$ une fonction dont 
 la matrice hessienne en $x$ est bien définie. Exprimer le laplacien
 de $f$ en $x$, $\Delta f (x) := \sum_{i=1}^n \partial^2_{ii} f(x)$,
 en fonction de $H_f(x)$.
@@ -247,8 +247,8 @@ $f(x_1,x_2) = x_1x_2^2$. Montrer que la matrice $H_f(x)$
 est définie en tout point $x \in \R^2$ et la calculer.
 
 ### Matrice hessienne d'un lagrangien {.exercise .question .one #lagrangien}
-Soit $U$ un ouvert de $\R^n$ et $f: U \to \R$ et $g: U \to \R$ deux applications
-dont les matrices hessiennes sont définies sur $U$. Soit $c \in \R$ une constante 
+Soient $U$ un ouvert de $\R^n$ et $f: U \to \R$ et $g: U \to \R$ deux applications
+dont les matrices hessiennes sont définies sur $U$. Soient $c \in \R$ une constante 
 et $L : U \times \R \to \R$ la fonction telle que 
 $L(x, \lambda) = f(x) + \lambda (g(x) - c)$.
 Calculer $H_L(x, \lambda)$.
@@ -261,7 +261,7 @@ si et seulement si $f(x_1,x_2) = g(x_1) + h(x_2)$ où $g:\R\to\R$ et $h:\R\to\R$
 sont des fonctions deux fois dérivables.
 
 ### Continue différentiabilité d'ordre 2 {.definition .one}
-Soit $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
+Soient $U$ un ouvert de $\R^n$ et $f:U \to \R$. La fonction $f$ est 
 *deux fois continûment différentiable* si pour tout $j_1 \in \{1,\dots, n\}$ 
 et tout $j_2 \in \{1,\dots, n\}$, la dérivée partielle d'ordre deux 
 $\partial^2_{j_2j_1} f:U \to \R$ existe et est continue.
@@ -272,7 +272,7 @@ si la fonction $x \in U \mapsto H_f(x) \in \R^{n\times n}$ est définie et
 continue.
 
 ### Différentielle d'ordre 2 {.definition #d2 .three}
-Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+Soient $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
 $x \in U$.
 On dira que $f$ est *deux fois différentiable en $x$* si $f$ est différentiable
 sur $U$ et si pour tout vecteur $h_1$ de $\mathbb{R}^n$,
@@ -294,7 +294,7 @@ deux fois différentiable en tout point $x$ de $U$.
 Dans cette définition, le caractère linéaire de $d^2f(x)$ repose sur le lemme technique suivant :
 
 ### Linéarité de $d(x \mapsto df(x) \cdot h_1)(x)$ par rapport à $h_1$ {.lemma}
-Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et $x\in U$.
+Soient $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et $x\in U$.
 Si $f$ est différentiable sur $U$ et si pour tout vecteur $h_1$ de $\mathbb{R}^n$,
 la fonction $x \in U \mapsto df(x) \cdot h_1$ est différentiable en $x$,
 alors la fonction $d(x \mapsto df(x) \cdot h_1)(x)$ dépend linéairement de 
@@ -318,7 +318,7 @@ d(x\mapsto df(x)\cdot (\alpha h_1))(x) &=  d(x\mapsto \alpha df(x)\cdot h_1)(x) 
 
 ### Applications linéaires d'ordre 2 {.remark}
 Par construction, le terme $d(x\mapsto df(x)\cdot h_1)(x)$ 
-est une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}^m$, 
+est une application linéaire de $\mathbb{R}^n$ dans $\mathbb{R}$, 
 donc la fonction $d^2f(x)$
 associe linéairement à un vecteur de $\mathbb{R}^n$ une application
 linéaire de $\R^n$ dans $\R$. 
@@ -331,7 +331,7 @@ ce qui se décline successivement en
 $$
 d^2f(x) \cdot h_1 \in \mathbb{R}^n \to \mathbb{R}
 \; \mbox{ et } \;
-(d^2f(x) \cdot h_1) \cdot h_2 \in \mathbb{R}^m.
+(d^2f(x) \cdot h_1) \cdot h_2 \in \mathbb{R}.
 $$
 Pour simplifier les notations, on conviendra que dans ce contexte
 le symbole "$\to$" associe à droite :
@@ -420,7 +420,7 @@ exercé de la façon suivante :
            [0.16417 , 0.246255]])
 
 ### Différentielle d'ordre 2 et matrice hessienne {.proposition #d2mh}
-Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+Soient $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
 $x \in U$.
 La fonction $f$ est deux fois différentiable en $x$ si et seulement si elle
 est différentiable sur $U$ et que son gradient $\nabla f$ est différentiable en $x$.
@@ -479,7 +479,7 @@ d^2 f(x) \cdot
 $$
 
 ### Continue différentiabilité et différentiabilité d'ordre 2 {.proposition .one}
-Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
+Soient $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est deux fois 
 continûment différentiable, alors $f$ est deux fois différentiable.
 
 
@@ -497,7 +497,7 @@ existent et sont continues. Le gradient est donc continûment différentiable
 et donc différentiable. La fonction $f$ est donc différentiable.-->
 
 ### Développement limité du gradient {.proposition #dlg}
-Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+Soient $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
 $x \in U$.
 Si la fonction $f$ est deux fois différentiable en $x$ alors
 $$
@@ -516,7 +516,7 @@ D'après [la définition de la matrice hessienne](#hessienne),
 $H_f(x) = J_{\nabla f}(x)$ d'où l'égalité de l'énoncé.
 
 ### Symétrie de la différentielle d'ordre $2$ {#SD2 .theorem}
-Soit $f: U \subset \R^n \to \R$ une fonction deux fois différentiable 
+Soient $f: U \subset \R^n \to \R$ une fonction deux fois différentiable 
 en un point $x$ de $U$. Pour tout couple de vecteurs $h_1$ et $h_2$ 
 de $\mathbb{R}^n$, on a
 $$
@@ -572,7 +572,7 @@ on voit que l'inégalité est en fait valable pour des $h_1$ et $h_2$ arbitraire
 On en déduit que $d^2f(x) \cdot h_1 \cdot h_2 - d^2f(x) \cdot h_2 \cdot h_1 = 0.$
 
 ### Analyse vectorielle {.exercise .question .one #analyse-vectorielle}
-Soit $U$ un ouvert de $\R^3$ et $f: U \to \R^3$. On note
+Soient $U$ un ouvert de $\R^3$ et $f: U \to \R^3$. On note
 (quand les expressions ont du sens)
 $$
 \mathrm{div} \, f(x) := \partial_1 f_1(x) + \partial_2 f_2(x) + \partial_3 f_3(x)
@@ -591,12 +591,12 @@ $\mathrm{rot}\, (\nabla f)(x)$
 
 
 ### Gradient unitaire {.exercise .question .one #gradient-unitaire}
-Soit $U$ un ouvert de $\R^n$ et $f: U \to \R$ une fonction deux fois différentiable. 
+Soient $U$ un ouvert de $\R^n$ et $f: U \to \R$ une fonction deux fois différentiable. 
 Montrer que si $\|\nabla f\| =  1$, alors $H_f \cdot \nabla f = 0$.
 
 
 ### Développement limité à l'ordre $2$ {.proposition #dl2}
-Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
+Soient $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$ et
 $x \in U$.
 Si la fonction $f$ est deux fois différentiable en $x$ alors
 $$
@@ -640,7 +640,7 @@ Par l'inégalité des accroissements finis, quand $\|h\| \leq r$, on a donc
 
 
 ### Développement de Taylor d'ordre 1 avec reste intégral {.proposition #dt1}
-Soit $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$,
+Soient $U$ un ouvert de $\R^n$, $f: U \subset \mathbb{R}^n \to \mathbb{R}$,
 $x \in U$ et $h \in \R^n$ tel que $[x, x+h] \subset U$.
 Si la fonction $f$ est deux fois continûment différentiable, alors
 $$
@@ -830,13 +830,13 @@ $$
 Le concept de tenseur englobe et généralise les scalaires, vecteurs et matrices :
 
  1. Les scalaires sont les tenseurs d'ordre 0 
-    (ils ne dépendent d'aucun indice). Il n'existe qu'un type de de tenseur 
+    (ils ne dépendent d'aucun indice). Il n'existe qu'un type de tenseur 
     d'ordre  $0$ : $()$ (l'unique $0$-uplet).
 
- 2. les vecteurs sont les tenseurs d'ordre 1 ; le type d'un vecteur de $\R^m$ est 
+ 2. Les vecteurs sont les tenseurs d'ordre 1 ; le type d'un vecteur de $\R^m$ est 
     $(m)$ (le $1$-uplet contenant $m$).
 
- 3. les matrices les tenseurs d'ordre $2$ ; le type d'une matrice de $\R^{m \times n}$
+ 3. Les matrices sont les tenseurs d'ordre $2$ ; le type d'une matrice de $\R^{m \times n}$
     est $(m, n)$ (la paire contenant $m$ et $n$).
 
 Les tenseurs d'ordre $n \geq 3$ généralisent ces constructions.
@@ -844,7 +844,7 @@ Les tenseurs d'ordre $n \geq 3$ généralisent ces constructions.
 ### Les tenseurs avec NumPy {.remark}
 Les tenseurs sont des tableaux $n$-dimensionnels ; 
 ils sont donc représentés comme des instances du type `array` de NumPy. 
-Leur ordre est donnée par la méthode `ndim` (nombre de dimensions),
+Leur ordre est donné par la méthode `ndim` (nombre de dimensions),
 leur type par la méthode `shape`. Ainsi, avec
 
     >>> T0 = np.array(1.0)
@@ -869,7 +869,7 @@ et
     (2, 3, 1)
 
 Les coefficients d'un tenseur `T` s'obtiennent au moyen du crochet `T[]`
-(méthode `__getitem__`)[^o0], mais avec un indexation commençant à 0 et non 1
+(méthode `__getitem__`)[^o0], mais avec une indexation commençant à 0 et non 1
 comme la convention mathématique classique. Ainsi :
 
     >>> T1[1]
@@ -912,7 +912,7 @@ La raison d'être des matrices de $\R^{m \times n}$ est
 de représenter concrêtement les applications linéaires de $\R^n \to \R^m$, 
 dont l'espace est noté $\mathcal{L}(\R^n, \R^m)$.
 Si l'on désigne par $A$ une telle 
-l'application linéaire et par $[a_{ij}]_{ij}$ la matrice associée,
+application linéaire et par $[a_{ij}]_{ij}$ la matrice associée,
 $$
 a_{ij} = (A \cdot e_j)_i 
 \; \mbox{ et } \;
@@ -958,7 +958,7 @@ considérée associe à un argument une "valeur" qui est elle-même une fonction
 
 Les tenseurs vus comme des tableaux permettent de représenter d'autres 
 objets mathématiques, équivalents aux applications linéaires (d'ordre 
-supérieur). A titre d'exemple, si l'on considère les tenseurs d'ordre 2, 
+supérieur). À titre d'exemple, si l'on considère les tenseurs d'ordre 2, 
 une matrice $[a_{ij}]_{ij} \in \R^{m \times n}$ correspond à une application
 $\mathcal{L}(\R^n, \R^m)$ mais également à une forme bilinéaire 
 $Q \in \mathcal{L}_2(\R^n \times \R^m, \R)$, 
@@ -1002,7 +1002,7 @@ coïncident avec les produits classiques de l'algèbre linéaire.
 
 [^oops]: Souvenons-nous à l'inverse que si l'on interprête "$\cdot$" comme un produit matriciel et que 
 l'on représente implicitement $x$ et $y$ comme deux vecteurs-colonnes de $\R^{n \times 1}$, 
-l'expression $x \cdot y$ n'a pas de sens ; il alors considérer $x^{\top} \cdot y$ à la place, puis assimiler ensuite le résultat -- qui est une matrice $1 \times 1$ -- à un nombre réel. Les conventions du calcul tensoriel ont donc ici une action simplificatrice.
+l'expression $x \cdot y$ n'a pas de sens ; il faut alors considérer $x^{\top} \cdot y$ à la place, puis assimiler ensuite le résultat -- qui est une matrice $1 \times 1$ -- à un nombre réel. Les conventions du calcul tensoriel ont donc ici une action simplificatrice.
 
 ### Contraction tensorielle avec NumPy {.remark}
 Si $A$ et $B$ sont deux tenseurs de type compatibles pour la contraction (la dernière dimension de $A$ égale à la première dimension de $B$)
@@ -1070,14 +1070,14 @@ si c'est ce que l'on souhaite, on peut aussi l'obtenir par :
            [7., 8.]])
 
 ### {.ante .remark}
-Armés de la notion d'application linéaire d'ordre supérieure, 
+Armés de la notion d'application linéaire d'ordre supérieur, 
 et de sa représentation concrête comme tenseur, nous pouvons désormais 
 généraliser la notion de différentielle à un ordre $k \geq 2$ arbitraire,
 pour des fonctions à valeurs scalaires ou vectorielles de $\R^m$,
 par induction sur l'ordre de la différentielle.
 
 ### Différentielle d'ordre $k$ {.definition #dos}
-Soit $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
+Soient $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ une fonction différentiable
 à l'ordre $k-1$ dans un voisinage d'un point $x$ de $U$. On dira que $f$ est 
 *$k$ fois différentiable en $x$* si pour tous vecteurs $h_1, \dots, h_{k-1}$ 
 de $\mathbb{R}^n$, 
@@ -1097,7 +1097,7 @@ $$
 
 ### {.ante .remark}
 Les dérivées partielles d'ordre supérieur -- qui se définissent par récurrence --
-vont permettre d'expliciter les différentielles d'ordre supérieures
+vont permettre d'expliciter les différentielles d'ordre supérieurs
 comme un tenseur.
 
 ### Dérivées partielles d'ordre $k$ {.definition}
@@ -1173,12 +1173,12 @@ h_{1i_{1}} \cdots  h_{ki_k}
 \end{align*}
 
 ### Continue différentiabilité d'ordre $k$ {.definition}
-Soit $U$ un ouvert de $\R^n$ et $f:U \to \R^m$. La fonction $f$ est
+Soient $U$ un ouvert de $\R^n$ et $f:U \to \R^m$. La fonction $f$ est
 *$k$ fois continûment différentiable* si pour tout $i_{k}, \dots, i_i \in \{1,\dots, n\}$,
 $\partial^k_{i_k \dots i_1} f:U \to \R^m$ existe et est continue.
 
 ### Continue différentiabilité et différentiabilité {.proposition}
-Soit $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est $k$ fois
+Soient $U$ un ouvert de $\R^n$ et $f : U \to \R$. Si $f$ est $k$ fois
 continûment différentiable, alors $f$ est $k$ fois différentiable.
 
 
@@ -1407,7 +1407,7 @@ $$
 -->
 
 ### Puissance symbolique
-Comme les différentielles d'ordre supérieure sont fréquemment évaluées 
+Comme les différentielles d'ordre supérieur sont fréquemment évaluées 
 lorsque les termes $h_1$, $h_2$, $\dots$, sont égaux, on adoptera la notation
 (purement syntaxique) suivante :
 $$
@@ -1627,7 +1627,7 @@ Exercices complémentaires
 Convexité
 --------------------------------------------------------------------------------
 
-Soit $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
+Soient $U$ un ensemble ouvert et convexe de $\R^n$ et $f: U \to \R$ une fonction
 deux fois différentiable. 
 
 ### Question 0 {.question #c-0 .one}
@@ -1651,7 +1651,7 @@ Montrer la réciproque de ce résultat.
 Différentiation en chaîne à l'ordre 2
 --------------------------------------------------------------------------------
 
-Soit $U$ et $V$ des ouverts de $\R^n$ et de $\R^m$, $f: U \to \R^m$ et
+Soient $U$ et $V$ des ouverts de $\R^n$ et de $\R^m$, $f: U \to \R^m$ et
 $g : V \to \R$ deux applications deux fois différentiables telles que
 $f(U) \subset V$. 
 
@@ -1720,6 +1720,61 @@ Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
 ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
 
+Différentielle d'ordre 2 et symétrie I
+--------------------------------------------------------------------------------
+
+On considère la fonction $f : \R^2 \to \R$ définie par
+$$
+	f(x_1, x_2) = \left\{\begin{array}{ll}
+				\frac{x_1^2x_2^2}{x_1^2+x_2^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
+				0 & \text{si $(x_1,x_2) = (0,0)$.}
+			\end{array} \right.
+$$
+
+### Question 1 {.question #dos1-1 .one}
+Montrer que $\partial_1 f$ et $\partial_2 f$ existent en $(0,0)$. Calculer $\partial_1 f(0,0)$ et $\partial_2 f(0,0)$. 
+
+### Question 2 {.question #dos1-2 .one}
+Calculer $\partial_{12} f(0,0)$ et $\partial_{21} f(0,0)$. 
+
+### Question 3 {.question #dos1-3 .one}
+La fonction $f$ est-elle deux fois continûment différentiable en $0$ ?
+
+### Question 4 {.question #dos1-4 .two}
+Est-elle deux fois différentiable en $0$ ?
+
+Différentielle d'ordre 2 et symétrie II
+--------------------------------------------------------------------------------
+
+On considère la fonction $f : \R^2 \to \R$ définie par
+$$
+	f(x_1, x_2) = \left\{\begin{array}{ll}
+				\frac{x_1x_2(x_1^2 -x_2^2)}{x_1^2+x_2^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
+				0 & \text{si $(x_1,x_2) = (0,0)$.}
+			\end{array} \right.
+$$
+
+### Question 1 {.question #dos2-1 .two}
+Montrer que $f$, $\partial_1 f$ et $\partial_2 f$ sont continues sur $\R^2$. 
+
+### Question 2 {.question #dos2-2 .one}
+Calculer $\partial_{12}f(0,0)$ et $\partial_{21} f(0,0)$. Conclure sur la régularité de $f$ en $(0,0)$.
+
+Conditions d'optimalité
+--------------------------------------------------------------------------------
+
+Soient $U$ un ouvert de $\R^n$ et $f : U \to \R$ deux fois différentiable sur $U$.  
+
+### Question 1 {.question #optim-1 .two}
+
+Montrer que si $x^* \in U$ est un minimum local de $f$, alors pour tout $h \in \R^n$,
+$$
+df(x^*) \cdot h = 0 \quad \text{et} \quad d^2 f(x^*)(\cdot h)^2 = h^T \cdot H_f(x^*) \cdot h \geq 0.
+$$
+
+### Question 2 {.question #optim-2 .four}
+
+Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^) \cdot h = 0$ et $d^2 f(x^*) (\cdot h)^2 > 0$ pour tout $h \in \R^n$, alors $x^*$ est un minimum local de $f$. 
 
 Solutions
 ================================================================================
@@ -2202,6 +2257,117 @@ $$
 $$
 et donc
 $$d \,\mathrm{inv} (I) \cdot H= - H.$$
+
+Différentielle d'ordre 2 et symétrie I
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dos1-1}
+
+Pour $h \in \R$, on remarque que $f(h,0) = f(0,h) = 0$. En particulier, 
+
+$$ 
+\lim_{h\to 0} \frac{f(h,0) - f(0,0)}{h} = 0.
+$$
+
+Par définition de la dérivée partielle, cette limite est égale à $\partial_1 f(0,0)$. On montre de même que $\partial_2 f$ existe en $(0,0)$, et $\partial_1 f(0,0) = \partial_2 f(0,0) = 0$. 
+
+### Question 2 {.answer #answer-dos1-2}
+Pour $(x_1, x_2) \neq (0,0)$, le calcul de $\partial_1 f$ donne
+$$\partial_1 f(x_1, x_2) = \frac{2x_1 x_2^4}{\left(x_1^2+ x_2^2\right)^2}.
+$$ 
+Comme $\partial_1 f(0, h) = 0$, le raisonnement précédent s'applique, et $\partial_{21} f(0,0) = 0$. Et de même, $\partial_{12} f(0,0) = 0$. 
+
+### Question 3 {.answer #answer-dos1-3}
+Pour $(x_1, x_2) \neq (0,0)$, le calcul de $\partial_{21}f$ donne  
+$$
+\partial_{21} f (x_1, x_2) = \left(\frac{2x_1x_2}{x_1^2+x_2^2}\right)^3.
+$$ 
+La fonction $\partial_{21} f$ n'est pas continue en $(0,0)$. En effet, pour $h \in \R$, $\partial_{21} f(h, h) = 1$, donc en particulier 
+$$
+\partial_{21} f(h, h)\xrightarrow[h \to 0]{} 1 \neq \partial_{21} f(0,0).
+$$
+Par conséquent, $f$ n'est pas deux fois continûment différentiable en $(0,0)$. 
+
+### Question 4 {.answer #answer-dos1-4}
+Supposons par l'absurde que $f$ est deux fois différentiable en $(0,0)$. Alors $\partial_1 f$ est différentiable en $(0,0)$. En ce point, son développement limité s'écrit, avec $h = (h_1, h_2)$, 
+$$
+			\partial_1 f(h_1, h_2) = \partial_1 f(0,0) + h_1\partial_{21} f(0,0) + h_2 \partial_{11} f(0,0) + \varepsilon(h) \times \| h \|, 
+$$
+avec $\varepsilon(h) \to 0$ quand $h \to 0$. D'après la question 2, $\partial_{21} f(0,0)$ ; on montre de la même manière que $\partial_{11} f(0,0) = 0$. Le développement limité de $\partial_1 f$ en $(0,0)$ s'écrit alors simplement $\partial_1 f(h) = \varepsilon (h) \|h\|$. Ainsi, $\varepsilon(h)$ vérifie
+$$
+\varepsilon(h) = \frac{\partial_1 f(h_1, h_2)}{\|h\|} = \frac{2x_1 x_2^4}{(h_1^2 + h_2^2)^{5/2}}. 
+$$
+Avec $h = (h_1, h_1)$, $\varepsilon$ vérifie $\varepsilon(h) = 1 \neq 0$, ce qui est absurde puisque $\varepsilon(h) \to 0$ lorsque $h \to 0$. La fonction $f$ n'est donc pas deux fois différentiable en $(0,0)$, même si $\partial_{21} f(0,0) = \partial_{12}f(0,0)$.
+
+Différentielle d'ordre 2 et symétrie II
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dos2-1}
+D'après l'inégalité de Young, pour $(x_1, x_2) \neq (0,0)$, $\lvert x_1 x_2 \rvert \leq (x_1^2 + x_2^2)/2$. Donc
+$$
+\lvert f(x_1, x_2) \rvert \leq \frac{1}{2} \lvert x_1^2 - x_2^2 \rvert.
+$$
+Ainsi, $f(x_1, x_2) \to 0 = f(0,0)$ lorsque $(x_1, x_2) \to (0,0)$. La fonction $f$ est donc continue en $(0,0)$. De plus, pour $(x_1, x_2) \neq 0$, $\partial_1 f$ vérifie
+$$
+\partial_1 f(x_1, x_2) = \frac{x_2(x_1^4 + 4x_1^2x_2^2 - x_2^4)}{(x_1^2 + x_2^2)^2}.
+$$	
+La fonction $\partial_1 f$ est donc continue en $(x_1, x_2) \neq (0,0)$. Par ailleurs,
+$$
+\lvert \partial_1 f(x_1, x_2) \rvert \leq \lvert x_2 \rvert \frac{ x_1^4 + 4x_1^2 x_2^2 + x_2^4 }{ (x_1^2 + x_2^2)^2} \leq 2 \lvert x_2 \rvert.
+$$
+Donc $\partial_1 f(x_1,x_2) \to 0$ quand $(x_1,x_2) \to (0,0)$. $\partial_1f$ est bien continue en $(0,0)$, et $\partial_1 f(0,0) = 0$. On montre de la même manière que $\partial_2 f$ est continue sur $\R^2$, avec $\partial_2 f(0,0) = 0$, et
+$$
+\partial_2 f(x_1, x_2) = \frac{-x_1(- x_1^4 + 4x_1^2 x_2^2 + x_2^4)}{(x_1^2 + x_2^2)^2}
+$$
+
+### Question 2 {.answer #answer-dos2-2}
+
+Pour $h_2 \in \R$, et d'après l'expression de $\partial_1 f$ précédemment calculée, $\partial_1 f(0,h_2) = -h_2$, donc en particulier
+
+$$
+\lim_{h_2\to 0} \frac{\partial_1 f(0,h_2) - \partial_1 f(0,0)}{h_2} = -1.
+$$
+
+Par définition de la dérivée partielle, cette limite est égale à $\partial_{21} f(0,0)$. De la même manière,  $\partial_2 f(h_1,0) = h_1$, donc
+
+$$
+\partial_{12}f(0,0) = \lim_{h_1 \to 0}\frac{\partial_2 f(h_1,0) - \partial_2 f(0,0)}{h_1} = 1.
+$$
+
+Ainsi, $\partial_{21} f(0,0) = -1$ et $\partial_{12} f(0,0) = 1$. Si $f$ était deux fois différentiable en $(0,0)$, la différentielle d'ordre deux de $f$ en ce point serait symétrique, ce qui n'est pas le cas ici. La fonction $f$ n'est donc pas deux fois différentiable en $(0,0)$. 
+
+Conditions d'optimalité
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-optim-1}
+Soit $h \in \R^n$. La fonction $f$ étant différentiable en $x^*$, son développement limité à l'ordre un en $x^*$ s'écrit
+$$ 
+f(x^* + th) = f(x^*) + df(x^*) \cdot th + \varepsilon_1(t) \|th \|.
+$$
+avec $\varepsilon_1 (t) \to 0$ quand $t \to 0$. La fonction $f$ admet un minimum local en $x^*$, donc il existe un voisinage ouvert $V$ de $x^*$ tel que pour $x \in V$, $f(x) \geq f(x^*)$. De plus, pour $t > 0$ suffisamment petit, $x^* + th \in V$, d'où
+$$ 
+f(x^* + th) - f(x^*) = df(x^*) \cdot th + \varepsilon_1(t) \geq 0.
+$$
+En divisant de chaque côté par $t$ et en faisant tendre $t > 0$ vers $0$, on obtient
+$df(x^*) \cdot h \geq 0$. Cette inégalité est aussi vérifiée par $-h$, et comme $df(x^*) \cdot -h = - df(x^*) \cdot h$, on obtient $df(x^*) \cdot h = 0$. 
+
+Le développement limité à l'ordre deux de $f$ en $x^*$ s'écrit
+$$ 
+f(x^* + th) = f(x^*) + df(x^*) \cdot th + \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| th \|^2,
+$$
+avec $\varepsilon_2 (t) \to 0$ quand $t \to 0$. D'après ce qui précède, $df(x^*)\cdot th = 0$, et donc
+$$
+f(x^* + th) - f(x^*) = \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| t \| \geq 0 
+$$
+Diviser par $t^2$ de chaque côté et faire tendre $t\to 0$ donne bien $d^2 f(x^*)(\cdot h)^2 \geq 0$. 
+
+### Question 2 {.answer #answer-optim-2}
+En reprenant le développement limité à l'ordre deux précédent, il vient
+$$
+f(x^* + h) - f(x^*) = df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2
+$$
+L'application $d^2 f(x^*)$ étant bilinéaire symétrique définie positive sur un espace de dimension finie, elle est coercive, donc il existe $\alpha > 0$ tel que $d^2 f(x^*) (\cdot h)^2 \geq \alpha \| h \|^2$. Comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \alpha\|h\|^2/2$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \alpha \times \|h\|^2 /2 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
+
 
 Références
 ================================================================================
