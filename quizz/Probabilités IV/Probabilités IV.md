@@ -39,7 +39,7 @@ Soit $(X_n)_{n\in \N^\ast}$ une suite de v.a. i.i.d. de même loi qu'une variabl
 
   - [ ]  C : $\P(X_n \leq a) \to 0$  quand $n \to \infty$
 
-  - [ ]  D : $\Esp(1_{]a,+\infty}(X)) = 1-F(a)$
+  - [ ]  D : $\Esp(1_{]a,+\infty[}(X)) = 1-F(a)$
 
 #### Question 3 (réponse multiple)
 Soit $(X_n)_{n\in \N^\ast}$ une suite de v.a. indépendantes de loi $\mathcal{E}(\lambda_n)$ où $\lambda_n$ est une suite réelle qui converge vers 1.
