@@ -936,7 +936,7 @@ On a $\log\left(\prod_{i=1}^n Y_i\right)^{1/n} = \frac{1}{n}\sum_{i=1}^n X_i \to
 Puisque l'exponentielle est continue, la [proposition de continuité](#propconv4) nous indique que $\left(\prod_{i=1}^n Y_i\right)^{1/n} \to e^m$ p.s.
 
 ### Variance {.answer #answer-variance}
-Les variables aléatoires $Y_i = (X_i - \sigma)^2$ sont i.i.d. telles que $\Esp(Y_i)= \sigma^2$. Par la [loi forte des grands nombre](#lfgn), on a 
+Les variables aléatoires $Y_i = (X_i - m)^2$ sont i.i.d. telles que $\Esp(Y_i)= \sigma^2$. Par la [loi forte des grands nombre](#lfgn), on a 
 $$\lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^n (X_i - m)^2 \to \sigma^2  \text{   p.s.}$$
 
 
