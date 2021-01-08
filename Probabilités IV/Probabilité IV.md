@@ -310,7 +310,7 @@ Soit $f$ une fonction continue de $\R^d$ dans $\R$.
 $$ \lim_{n \to \infty}f(X_n(\omega)) = f(\lim_{n \to \infty}X_n(\omega)) = f(X(\omega))$$
 par continuité de $f$, d'où le résultat.
 
-2. On remarqe d'abord que si $K >0$ et $\varepsilon >0$,
+2. On remarque d'abord que si $K >0$ et $\varepsilon >0$,
 $$\{|f(X_n)-f(X)| \geq \varepsilon\} \subset \{|X| > K\}\cup\{|X| \leq K, |f(X_n)-f(X)| \geq \varepsilon\}.$$
 La fonction $f$ est uniformément continue sur $\{x : |x| \leq K\}$, donc il existe $\eta > 0$ tel que $|x-y| <\eta$ et $|x| \leq 2K$ et $|y|\leq 2K$ impliquent 
 $|f(x) - f(y)| <\varepsilon$. On a donc
