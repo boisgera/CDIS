@@ -576,7 +576,7 @@ Annexe
 
 Dans ce paragraphe, nous introduisons un outil important en calcul des probabilités : il s’agit de ce que l’on appelle *la fonction caractéristique* d’une variable aléatoire, et qui dans d’autres branches des mathématiques s’appelle aussi *la transformée de Fourier*. Elle nous sera notamment nécessaire, via le théorème de Lévy, pour démontrer le théorème central limite. L'essentiel de cette section peut être considéré hors programme, dans le sens où, bien que très utile en pratique, sa connaissance ne sera pas évaluée à l'examen.
 
-On notera $< x, y >$ le produit scalaire de deux vecteurs de $\R^n$ . Si $u \in \R^n$ , la fonction (complexe) $x \mapsto e^{i < u,x>}$ est continue, de module 1. Donc si $X$ est un vecteur aléatoire à valeurs dans $\R^n$ , nous pouvons considérer $e^{i < u,X>}$ comme une variable aléatoire à valeurs complexes. Ses parties réelles $Y = \cos(< u, X>)$ et imaginaire $Z = \sin(< u, X>)$ sont des variables aléatoires réelles. Ces variables aléatoires réelles
+On notera $< x, y >$ le produit scalaire de deux vecteurs de $\R^n$ . Si $u \in \R^n$ , la fonction (complexe) $x \mapsto e^{i < u,x>}$ est continue, de module 1. Donc si $X$ est un vecteur aléatoire à valeurs dans $\R^n$ , nous pouvons considérer $e^{i < u,X>}$ comme une variable aléatoire à valeurs complexes. Ses parties réelle $Y = \cos(< u, X>)$ et imaginaire $Z = \sin(< u, X>)$ sont des variables aléatoires réelles. Ces variables aléatoires réelles
 sont de plus bornées par 1, donc elles admettent une espérance. Il est alors naturel d’écrire que l’espérance de $e^{i < u,x>}$ est
     $$\Esp(e^{i < u,X>}) = \Esp(Y) + i \Esp(Z) = \Esp(\cos< u, X>) + i\Esp(\sin< u, X>) $$
 
