@@ -372,7 +372,7 @@ Montrons maintenant que la suite $(M_n)_{n\in\N^\ast}$ tend presque-sûrement ve
 
 Pour tout entier $n$, notons $p(n)$, l'entier tel que $p(n)^2 \leq n \leq (p(n)+1)^2$. Alors, 
 $$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} = \frac{1}{n} \sum_{p = p(n)^2+1}^{n} X_p,$$
-et puique les variables aléatoires de la somme sont indépendantes, il vient
+et puisque les variables aléatoires de la somme sont indépendantes, il vient
 \begin{align*}
 \Esp\left(\left(M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right)^2\right) & = \frac{n-p(n)^2}{n^2}\sigma^2 \\
                                                                  & \leq \frac{2p(n)+1}{n^2} \sigma^2 \\
@@ -396,7 +396,7 @@ $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
 
 ### Exponentielle {.exercise .one .question #expo}
-Soit $(X_i)_{i \in \N^\ast}$ une suite de variables aléatoires i.i.d. d'espérance $m$ et $Y_i = e^X_i$. Montrer que :
+Soit $(X_i)_{i \in \N^\ast}$ une suite de variables aléatoires i.i.d. d'espérance $m$ et $Y_i = e^{X_i}$. Montrer que :
 $$\left(\prod_{i=1}^n Y_i\right)^{1/n}$$
 converge presque sûrement vers une constante à déterminer.
 
