@@ -65,14 +65,14 @@ La dénomination *systèmes raides* a été introduite en 1952 par Hirschfelder 
 $$
 \dot{x} = A x + b
 $$
-avec $A$ Hurwitz quand le rapport entre les parties réelles maximales et minimales des valeurs propres devient très grand. Ce phénomène peut notamment apparaître dans un simple système masse/ressort
+avec $A$ de Hurwitz quand le rapport entre les parties réelles maximales et minimales des valeurs propres devient très grand. Ce phénomène peut notamment apparaître dans un simple système masse/ressort
 $$
 m\ddot{y} = -\rho \dot{y} - k y
 $$
-qui se met sous la forme précédente avec $x=(y,\dot{y})\in \R^2$ et $A=\left(\begin{smallmatrix} 0&1\\-\frac{k}{m} & -\frac{\rho}{m} \end{smallmatrix}\right)$. 
+qui se met sous la forme précédente avec $x=(y,\dot{y})\in \R^2$ et $A=\left(\begin{smallmatrix} 0&1\\-\dfrac{k}{m} & -\dfrac{\rho}{m} \end{smallmatrix}\right)$. 
 Lorsque les valeurs propres sont réelles  (i.e. $\rho>2\sqrt{mk}$), leur rapport est donné par
 $$
-\frac{1+\sqrt{1-4\frac{mk}{\rho^2}}}{1-\sqrt{1-4\frac{mk}{\rho^2}}}
+\frac{1+\sqrt{1-4\dfrac{mk}{\rho^2}}}{1-\sqrt{1-4\dfrac{mk}{\rho^2}}}
 $$
 qui explose lorsque $\frac{mk}{\rho^2}$ tend vers 0. Par exemple, lorsque les frottements sont très grands par rapport à la raideur du ressort, ou bien lorsque $\rho$ et $k$ sont du même ordre de grandeur et très grands.
 
