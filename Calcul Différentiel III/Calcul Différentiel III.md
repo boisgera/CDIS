@@ -1666,59 +1666,6 @@ H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +
 $$
 
 
-Différentiation matricielle
---------------------------------------------------------------------------------
-
-Source: [@Tao13]
-
-\newcommand{\tr}{\mathrm{tr} \,}
-
-Dans cet exercice :
-
-  1. Une fonction $F: U \subset \R^n \to \R^{m \times p}$ à valeurs matricielles
-est différentiable en $x$ si chacune de ses composantes $F_{ij} : U \to \R$ est 
-différentiable en $x$. La différentielle de $F$ en $x$ est alors définie par 
-$[dF(x)]_{ij} = dF_{ij}(x)$.
-
-  2. Une fonction $f : U \subset \R^{m\times n} \to \R^{p}$ dont l'argument $X$ est 
-  matriciel est différentiable en $X$ si la fonction $g : \pi(U) \subset \R^{mn} \to \R^p$
-  caractérisée par
-  $$
-  g(x)
-  :=
-  f\left(\left[\begin{array}{ccc}
-  X_{11} & \dots & X_{1n}  \\
-  \vdots & \vdots &  \vdots \\
-  X_{m1} & \dots  & X_{mn} \\
-  \end{array}\right] \right)
-  $$
-avec
-  $$
-  x =  \pi(X) := (X_{11}, \dots, X_{1n}, \dots, X_{m1},\dots, X_{mn})
-  $$
-  est différentiable en $x$. On définit alors pour tout $H \in \R^{m\times n}$
-  $$
-  df(X) \cdot H = dg(x) \cdot h \; \mbox{ avec } \; x = \pi(X), \, h = \pi(H).
-  $$ 
-  La construction se généralise sans difficulté aux fonctions dépendant 
-  de plusieurs matrices.
-
-  3. Il est possible de combiner les deux cas précédents pour définir la différentielle
-de fonctions d'arguments et de valeur matriciels.
-
-### Question 1 {.question #dm-1 .two}
-Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
-différentiable en l'identité ($A = I$) et calculer cette différentielle.
-
-### Question 2 {.question #dm-2 .one}
-L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
-vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
-En déduire une identité concernant $\tr A B$ et $\tr BA$.
-
-### Question 3 {.question #dm-3 .three}
-Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
-ouvert de l'identité, est différentiable en ce point et calculer cette
-différentielle.
 
 Différentielle d'ordre 2 et symétrie I
 --------------------------------------------------------------------------------
@@ -1775,6 +1722,62 @@ $$
 ### Question 2 {.question #optim-2 .four}
 
 Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^) \cdot h = 0$ et $d^2 f(x^*) (\cdot h)^2 > 0$ pour tout $h \in \R^n$, alors $x^*$ est un minimum local de $f$. 
+
+
+Différentiation matricielle
+--------------------------------------------------------------------------------
+
+Source: [@Tao13]
+
+\newcommand{\tr}{\mathrm{tr} \,}
+
+Dans cet exercice :
+
+  1. Une fonction $F: U \subset \R^n \to \R^{m \times p}$ à valeurs matricielles
+est différentiable en $x$ si chacune de ses composantes $F_{ij} : U \to \R$ est 
+différentiable en $x$. La différentielle de $F$ en $x$ est alors définie par 
+$[dF(x)]_{ij} = dF_{ij}(x)$.
+
+  2. Une fonction $f : U \subset \R^{m\times n} \to \R^{p}$ dont l'argument $X$ est 
+  matriciel est différentiable en $X$ si la fonction $g : \pi(U) \subset \R^{mn} \to \R^p$
+  caractérisée par
+  $$
+  g(x)
+  :=
+  f\left(\left[\begin{array}{ccc}
+  X_{11} & \dots & X_{1n}  \\
+  \vdots & \vdots &  \vdots \\
+  X_{m1} & \dots  & X_{mn} \\
+  \end{array}\right] \right)
+  $$
+avec
+  $$
+  x =  \pi(X) := (X_{11}, \dots, X_{1n}, \dots, X_{m1},\dots, X_{mn})
+  $$
+  est différentiable en $x$. On définit alors pour tout $H \in \R^{m\times n}$
+  $$
+  df(X) \cdot H = dg(x) \cdot h \; \mbox{ avec } \; x = \pi(X), \, h = \pi(H).
+  $$ 
+  La construction se généralise sans difficulté aux fonctions dépendant 
+  de plusieurs matrices.
+
+  3. Il est possible de combiner les deux cas précédents pour définir la différentielle
+de fonctions d'arguments et de valeur matriciels.
+
+### Question 1 {.question #dm-1 .two}
+Montrer que l'application $\det: A \in \R^{n \times n} \to \det A \in \R$ est 
+différentiable en l'identité ($A = I$) et calculer cette différentielle.
+
+### Question 2 {.question #dm-2 .one}
+L'identité de Weinstein–Aronszajn $\det (I + AB) = \det (I + BA)$
+vaut pour toutes les matrices carrées $A$ et $B$ de même dimension.
+En déduire une identité concernant $\tr A B$ et $\tr BA$.
+
+### Question 3 {.question #dm-3 .three}
+Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
+ouvert de l'identité, est différentiable en ce point et calculer cette
+différentielle.
+
 
 Solutions
 ================================================================================
@@ -2166,98 +2169,6 @@ $$
 H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  \sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
 $$
 
-Différentiation matricielle
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-dm-1}
-Soit $H \in \R^{n\times n}$, telle que
-$$
-H = 
-\left[
-\begin{array}{cccc}
-h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & h_{nn} \\
-\end{array} 
-\right].
-$$
-En développant le déterminant selon la première colonne, on constate
-que
-$$
-\begin{split}
-\det (I+H) &= 
-\left|
-\begin{array}{cccc}
-1+h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & 1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} 
-\right| \\
-&=(1 + h_{11}) 
-\left| \begin{array}{ccc}
-1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots \\
-h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} \right| 
-+ \varepsilon(\|H\|), \\
-\end{split}
-$$
-une relation dont on tire par récurrence que
-$$
-\begin{split}
-\det (I+H) 
-&= \prod_{i = 1}^n (1 + h_{ii}) + \varepsilon(\|H\|)
-=\det I + \sum_{i=1}^n h_{ii} + \varepsilon(\|H\|) \\
-&= \det I + \tr H + \varepsilon(\|H\|).
-\end{split}
-$$
-La différentiel du déterminant existe donc en l'identité et 
-$d\det(I) \cdot H = \tr H$.
-
-### Question 2 {.answer #answer-dm-2}
-Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
-$$
-\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
-$$
-Les deux membres de cette équations sont dérivables par rapport à
-$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
-et l'égalité de ces dérivées fournit
-$$
-\tr A B = \tr B A.
-$$
-
-### Question 3 {.answer #answer-dm-3}
-Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
-est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
-son déterminant est positif ; la matrice $A$ est alors inversible.
-
-Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
-pour être inversible, la formule de Cramer établit
-$$
-A^{-1} = \frac{1}{\det A}  \mathrm{co}(A)^t.
-$$
-Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
-de $A$) est une fonction polynomiale
-des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
-est donc une fonction continûment différentiable des coefficients de $A$
-et donc différentiable en $A=I$.
-Par la règle du produit, chaque coefficient de $A^{-1}$ est 
-donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
-différentiable en $A=I$.
-
-Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
-$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + \varepsilon(\|H\|),$
-l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
-$$
-(I+H)(I + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)) 
-= I + H + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)
-= I,
-$$
-et donc
-$$d \,\mathrm{inv} (I) \cdot H= - H.$$
-
 Différentielle d'ordre 2 et symétrie I
 --------------------------------------------------------------------------------
 
@@ -2368,6 +2279,98 @@ f(x^* + h) - f(x^*) = df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \var
 $$
 L'application $d^2 f(x^*)$ étant bilinéaire symétrique définie positive sur un espace de dimension finie, elle est coercive, donc il existe $\alpha > 0$ tel que $d^2 f(x^*) (\cdot h)^2 \geq \alpha \| h \|^2$. Comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \alpha\|h\|^2/2$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \alpha \times \|h\|^2 /2 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
 
+
+Différentiation matricielle
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dm-1}
+Soit $H \in \R^{n\times n}$, telle que
+$$
+H = 
+\left[
+\begin{array}{cccc}
+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & h_{nn} \\
+\end{array} 
+\right].
+$$
+En développant le déterminant selon la première colonne, on constate
+que
+$$
+\begin{split}
+\det (I+H) &= 
+\left|
+\begin{array}{cccc}
+1+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & 1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} 
+\right| \\
+&=(1 + h_{11}) 
+\left| \begin{array}{ccc}
+1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots \\
+h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} \right| 
++ \varepsilon(\|H\|), \\
+\end{split}
+$$
+une relation dont on tire par récurrence que
+$$
+\begin{split}
+\det (I+H) 
+&= \prod_{i = 1}^n (1 + h_{ii}) + \varepsilon(\|H\|)
+=\det I + \sum_{i=1}^n h_{ii} + \varepsilon(\|H\|) \\
+&= \det I + \tr H + \varepsilon(\|H\|).
+\end{split}
+$$
+La différentiel du déterminant existe donc en l'identité et 
+$d\det(I) \cdot H = \tr H$.
+
+### Question 2 {.answer #answer-dm-2}
+Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
+$$
+\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
+$$
+Les deux membres de cette équations sont dérivables par rapport à
+$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
+et l'égalité de ces dérivées fournit
+$$
+\tr A B = \tr B A.
+$$
+
+### Question 3 {.answer #answer-dm-3}
+Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
+est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
+son déterminant est positif ; la matrice $A$ est alors inversible.
+
+Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
+pour être inversible, la formule de Cramer établit
+$$
+A^{-1} = \frac{1}{\det A}  \mathrm{co}(A)^t.
+$$
+Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
+de $A$) est une fonction polynomiale
+des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
+est donc une fonction continûment différentiable des coefficients de $A$
+et donc différentiable en $A=I$.
+Par la règle du produit, chaque coefficient de $A^{-1}$ est 
+donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
+différentiable en $A=I$.
+
+Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
+$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + \varepsilon(\|H\|),$
+l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
+$$
+(I+H)(I + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)) 
+= I + H + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)
+= I,
+$$
+et donc
+$$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
 Références
 ================================================================================
