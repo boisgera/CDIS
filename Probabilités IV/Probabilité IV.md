@@ -1141,9 +1141,9 @@ En intégrant de chaque côté de l'inégalité, on obtient bien
 ### Preuve du théorème. {.answer #answer-weier-thm}
 
 1. Comme $X_1,\dots,X_n$ sont indépendantes de même loi de Bernoulli de paramètre $x\in]0,1[$, $M_n$ est à valeurs dans $\bigl\{\frac{k}{n} : k \in \{0,\dots,n\} \bigr\}$ et pour tout $k\in\{0,\dots,n\}$ on a
-$$\P\left(M_n = \dfrac{k}{n}\right) = \binom{k}{n} x^k\,(1-x)^{n-k}.$$
+$$\P\left(M_n = \dfrac{k}{n}\right) = \binom{n}{k} x^k\,(1-x)^{n-k}.$$
 Ainsi,
-$$\Esp\left(f(M_n)\right) = \sum_{k=0}^{n} \binom{k}{n} f\left(\dfrac{k}{n}\right)\, x^k\,(1-x)^{n-k}.$$
+$$\Esp\left(f(M_n)\right) = \sum_{k=0}^{n} \binom{n}{k} f\left(\dfrac{k}{n}\right)\, x^k\,(1-x)^{n-k}.$$
 
 Les polynômes de la forme $B_{n,k} : u\in [0,1] \mapsto \binom{n}{k} u^k\,(1-u)^{n-k}$ sont appelés *polynômes de Bernstein*.
 
@@ -1153,7 +1153,7 @@ Par ailleurs, la continuité de $f$ sur $[0,1]$ nous assure que $f$ est bornée 
 
 $$\Esp\left( f\left(M_n\right) \right) = \int_{\Omega} f\left(M_n(\omega)\right)\,\P(d\omega) \xrightarrow[n\to+\infty]{} \int_{\Omega} f(x)\,\P(d\omega) = f(x).$$
 
-3. En combinant les résultats des deux questions précédentes, on obtient que la suite $\left(P_n\right)_{n\in\N^\ast}$ des polynômes définis pour tout $n\in\N^\ast$ par $$P_n : x \in ]0,1[ \mapsto \sum_{k=0}^{n} \binom{k}{n} f\left(\dfrac{k}{n}\right)\, x^k\,(1-x)^{n-k}$$ converge simplement vers $f(x)$. On étend simplement ce résultat à $[0,1]$ en remarquant que pour tout $n\in\N^\ast$ on a directement l'égalité
+3. En combinant les résultats des deux questions précédentes, on obtient que la suite $\left(P_n\right)_{n\in\N^\ast}$ des polynômes définis pour tout $n\in\N^\ast$ par $$P_n : x \in ]0,1[ \mapsto \sum_{k=0}^{n} \binom{n}{k} f\left(\dfrac{k}{n}\right)\, x^k\,(1-x)^{n-k}$$ converge simplement vers $f(x)$. On étend simplement ce résultat à $[0,1]$ en remarquant que pour tout $n\in\N^\ast$ on a directement l'égalité
 $$P_n(0) = f\left(\dfrac{0}{n}\right) = f(0) \text{ et } P_n(1) = f\left(\dfrac{n}{n}\right) = f(1).$$
 On a même toujours l'égalité $P_n(x) = \Esp\left( f\left(M_n\right) \right)$ pour $x\in[0,1]$ si l'on remarque qu'une loi de Bernoulli de paramètre $a\in \{0,1\}$ n'est autre d'une Dirac en $\{a\}$, ce qui signifie que $M_n = a$ p.s. et donc que $\Esp\left(f(M_n)\right) = f(a) = P_n(a)$.
 
