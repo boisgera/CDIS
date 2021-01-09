@@ -553,7 +553,7 @@ Soient $f, g : X \to [0, +\infty]$ deux fonctions mesurables positives
 Soit $(X, \mathcal{A})$ un espace mesurable.
 Si les fonctions $f_1, \dots, f_n: X \to [-\infty, +\infty]$ sont mesurables et
 que la fonction $h : [-\infty, +\infty]^n \to [-\infty,+\infty]$ est continue, 
-la function composée $h \circ (f_1, \dots, f_n)$ est mesurable. 
+la fonction composée $h \circ (f_1, \dots, f_n)$ est mesurable. 
 
 ### Démonstration (limitée au cas $n=1$) {.proof}
 Pour tout ouvert $U$ de $[-\infty, +\infty]$, l'image réciproque de 
@@ -1195,7 +1195,7 @@ au moyen de la formule
 $$
 \lambda(P) := (b_1  -a_1) \times \dots \times (b_n - a_n).
 $$
-L'intégrable de Henstock-Kurzweil nous permet de prolonger cette fonction $\lambda$ 
+L'intégrale de Henstock-Kurzweil nous permet de prolonger cette fonction $\lambda$ 
 en une fonction définie pour tous les ensembles mesurables $A$ de $\R^n$,
 par la relation
 $$
@@ -1326,7 +1326,7 @@ $$v^* :\mathcal{P}(X) \to [0, +\infty]$$ telle que :
 
   1. $\mu^*(\varnothing) = 0$ (*nullité en $\varnothing$*).
 
-  2. $A \subset B \Rightarrow \mu^*(A) \subset \mu^*(B)$ (*croissance*).
+  2. $A \subset B \Rightarrow \mu^*(A) \leq \mu^*(B)$ (*croissance*).
 
   3. $\mu^*\left(\cup_{k=0}^{+\infty}A_k\right) \leq \sum_{k=0}^{+\infty} \mu^*\left(A_k\right)$ (*$\sigma$-subadditivité*).
 
@@ -1391,7 +1391,7 @@ $$
 Comme la famille des $\{P_{jk}\}_{jk}$ recouvre $\cup_{k=0}^{+\infty} A_k$, 
 on a donc
 $$
-v^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} \lambda(P_{jk})
+\lambda^*(\cup_{k=0}^{+\infty} A_k) \leq \sum_{k=0}^{+\infty} \sum_{j=0}^{+\infty} \lambda(P_{jk})
 \leq 
 \sum_{k=0}^{+\infty} \left(\lambda^*(A_k) +\frac{\varepsilon}{2^{k+1}}\right)
 = \left(\sum_{k=0}^{+\infty} \lambda^*(A_k)\right) +\varepsilon.
