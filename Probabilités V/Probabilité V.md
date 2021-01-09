@@ -14,6 +14,53 @@
 \newcommand{\cov}{\text{Cov}}
 \renewcommand{\No}{\mathcal{N}}
 
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+
+
+Objectifs d'apprentissage
+================================================================================
+
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, la connaissance des démonstrations du document 
+n'est pas exigible[^hp] 
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+#### Intégrale de Monte Carlo
+
+- \one connaître le principe de l'intégration par la méthode Monte Carlo
+- \one savoir que cette approche se justifie par la loi des grands nombres
+- \one savoir que l'approximation fournie par le TCL fournit un contrôle de l'erreur
+
+#### Génération de nombres pseudo-aléatoires
+
+- \one connaître le principe de la génération de nombres pseudo-aléatoires par la méthode des congruences
+
+#### Méthodes de simulation de v.a.
+
+- \one connaître et savoir implémenter en python la méthode d'inversion
+- \one connaître et savoir implémenter en python la méthode de rejet
+- \one connaître la méthode de Box-Muller
+- \one connaître et savoir implémenter la simulation de vecteurs gaussien par la méthode de Cholesky
+
+#### Echantillonnage d'importance
+
+- \one connaître la définition de la méthode d'échantillonnage d'importance
+- \one savoir qu'un bon choix de densité instrumentale permet de minimiser la variance d'estimation
+
 
 # Intégrale de Monte-Carlo
 
@@ -47,6 +94,11 @@ En outre, cette propriété indique que la vitesse de convergence de $M_n(h)$ es
 
 [^foot1]: ce résultat sera démontré dans le cours de science des données au second semestre.
 
+### Calcul numérique d'une probabilité {.exercise .question .two #mc1}
+Calculer une estimation de la probabilité de l’événement $\sin(X) > 1/2$ pour $X$ de loi $\No (0, 1)$.
+
+Indication : si x est un vecteur, `y=(np.sin(x)>1/2)` désigne le vecteur de booléens dont les coordonnées valent `True` ou `False` selon que les coordonnées correspondantes de `np.sin(x)` soient ou non > 1/2. Par ailleurs, les vecteurs de booléens se convertissent naturellement en vecteurs de 0 et de 1 si on leur applique une fonction dont les arguments sont des nombres (ex : `np.mean`).
+
 
 # Génération de nombres pseudo-aléatoires
 
@@ -56,14 +108,14 @@ Les ordinateurs sont des machines déterministes. Il peut sembler paradoxal de l
 a state of sin. As has been pointed out several times, there is no such thing as a random number --- there are only methods of producing random numbers, and a
 strict arithmetic procedure of course is not such a method. "
 
-### Définition --- Générateur de nombres uniformes pseudo-aléatoires {.definition} 
+### Générateur de nombres uniformes pseudo-aléatoires {.definition} 
 Un *générateur de nombres uniformes pseudo-aléatoires* est un algorithme qui étant donné une valeur initiale $u_0$ et une transformation $T$ produit une séquence $u_i=T^i(u_0)$, $i \in\N^\ast$, de valeurs dans $]0,1[$. 
 
 Pour tout $n\in\N^\ast$, les valeurs $(u_1,\ldots,u_n)$ reproduisent le comportement d'une suite de variables aléatoires $(V_1,\ldots,V_n)$ i.i.d de loi uniforme sur ]0,1[, lorsqu'on les compare au travers d'un ensemble de tests statistiques[^diehard], vérifiant par exemple que la corrélation entre deux nombres successifs est suffisamment faible.
 
 [^diehard]: Par exemple, la suite de tests [Die Hard](https://en.wikipedia.org/wiki/Diehard_tests), due à Marsaglia.
 
-### Exemple : la méthode des congruences {.example}
+### la méthode des congruences {.example}
 Cet algorithme, dû à @Lehmer, est l'un des premiers à avoir été proposé et implémenté. Il repose sur 2 paramètres :
  
  - le multiplicateur $a\in\N^\ast$,
@@ -86,7 +138,7 @@ Pour certains usages, cet algorithme n'est cependant pas recommandé du fait de 
 
 # Méthodes de simulation de variables aléatoires réelles
 
-On a vu au chapitre II du cours de Probabilités que l'on pouvait transformer des variables aléatoires réelles suivant certaines lois pour obtenir  de nouvelles. Par exemple, si $X_1,\dots,X_n$ sont $n\in\N^\ast$ variables gaussiennes centrées réduites indépendantes, alors $X_1^2+\dots,X_n^2$ suit une loi du $\chi^2$ à $n$ degrés de liberté. Dans le même esprit, on va voir ici comment simuler des v.a.r. de lois diverses à partir de la simulation de variables uniformes sur $]0,1[$. On introduit une notation qui sera utile dans la suite : pour spécifier que deux v.a.r. $X$ et $Y$ ont même loi, on écrira $X \overset{\L}{=} Y$.
+On a vu au chapitre II du cours de Probabilités que l'on pouvait transformer des variables aléatoires réelles suivant certaines lois pour en obtenir de nouvelles. Par exemple, si $X_1,\dots,X_n$ sont $n\in\N^\ast$ variables gaussiennes centrées réduites indépendantes, alors $X_1^2+\dots,X_n^2$ suit une loi du $\chi^2$ à $n$ degrés de liberté. Dans le même esprit, on va voir ici comment simuler des v.a.r. de lois diverses à partir de la simulation de variables uniformes sur $]0,1[$. On introduit une notation qui sera utile dans la suite : pour spécifier que deux v.a.r. $X$ et $Y$ ont même loi, on écrira $X \overset{\L}{=} Y$.
 
 ## Méthode d'inversion
 
@@ -94,7 +146,7 @@ L'objectif de ce paragraphe est de définir quand et comment il est possible de 
 
 Commençons par un cadre simple, où $F_X$ est **bijective** d'un intervalle non vide de $\R$ sur $]0,1[$.
 
-### Proposition {.proposition #invbij}
+### Cas où $F_X$ est bijective {.proposition #invbij}
 Soient $X$ une variable aléatoire réelle de fonction de répartition $F_X$ et $U$ une variable uniforme sur $]0,1[$. S'il existe un intervalle non vide $]a,b[ \subset \R$ tel que $F_X :\, ]a,b[ \to \,]0,1[$ est bijective, de bijection réciproque $F_X^{-1} :\, ]0,1[ \to ]a,b[$, alors $F_X^{-1}(U) \overset{\L}{=} X$ et $F_X(X) \overset{\L}{=} U$.
 
 ### Démonstration {.proof}
@@ -103,7 +155,7 @@ $$\P\left(F_X^{-1}(U)\leq x\right) = \P\left(U \leq F_X(x) \right) = F_X(x).$$
 Concernant le second, notons $G$ la fonction de répartition de la variable aléatoire $F_X(X)$. La croissance de $F_X$ garantit que $\P\left(F_X(X) \in\, ]0,1[\right) = 1$. Ainsi, pour tout $x\in\R$ on a bien
 $$G(x) = \left|\begin{array}{ll} 1 & \text{si } x \geq 1,\\ \P\left(F_X(X)\leq x\right) = \P\left( X \leq F_X^{-1}(x) \right) = x & \text{si } 0 < x < 1,\\ 0 & \text{sinon.}\end{array}\right.$$
 
-### Exercice -- Exemples d'application {.exercise}
+### Exemples d'application 1 {.exercise .question .one #exemples1}
 Donner un algorithme de simulation d'une v.a.r. $X$ suivant une loi
 
 * Uniforme sur un intervalle $I \subset \R$,
@@ -112,18 +164,22 @@ Donner un algorithme de simulation d'une v.a.r. $X$ suivant une loi
 * de Laplace de paramètres $\mu \in \R$ et $s\in\R_+^\ast$, de densité $x\in\R \mapsto \frac{1}{2s}\,\exp\left\{-\frac{|x-\mu|}{s}\right\}$,
 * Logistique de paramètres $\mu \in \R$ et $s\in\R_+^\ast$, de fonction de répartition $x\in\R \mapsto \left(1 + \exp\left\{-\frac{x-\mu}{s} \right\}\right)^{-1}$ ?
 
+### {.anonymous}
+
 Dans cette situation idéale, $\psi = F_X^{-1}$ est une solution à notre problème. Que se passe-t-il en revanche si $F_X$ n'est pas bijective ? 
 
-### Exercice {.exercise}
+### Pile ou face {.exercise .question .one #pf}
 Proposer une méthode pour simuler un tir à pile ou face à partir de la simulation d'une variable uniforme sur $]0,1[$.
+
+### {.anonymous}
 
 On a déjà vu au chapitre II que les fonctions de répartition de v.a.r. possèdent un nombre au plus dénombrable de points de discontinuité. Sur chaque intervalle où elles sont continues, on peut alors considérer qu'elles sont bijectives, quitte à réduire les zones de palier à un point. Cela permet de généraliser la notion de bijection réciproque pour ces fonctions.
 
-### Définition {.definition #defrecgen}
+### Réciproque généralisée {.definition #defrecgen}
 Soit $F$ une fonction de répartition. On définit sa *réciproque généralisée* (aussi appelée *inverse généralisée* ou *pseudo-inverse*) comme la fonction
 $$F^{-} : u \in\, ]0,1[\, \mapsto \inf\left\{ x \in \R : F(x) \geq u \right\} \in \R.$$
 
-### Remarques {.remark} 
+### Conséquences {.remark} 
 
 * Cette fonction est bien définie sur tout $]0,1[$, car quel que soit $u$ dans cet intervalle, l'ensemble $\left\{ x \in \R : F(x) \geq u \right\}$ est non vide et minoré. S'il était vide ou non minoré pour un certain $u_0\in\,]0,1[$, pour tout $x \in \R$ on aurait dans le premier cas $F(x) < u_0 < 0$ et dans le second $F(x) \geq u_0 > 1$. L'une comme l'autre de ces inégalités est impossible pour une fonction de répartition.
 * La réciproque généralisée de la f.d.r. $F_X$ d'une v.a.r. $X$ est aussi appelée *fonction quantile*. On pourra notamment remarquer que $F_X^{-}\left(\frac{1}{2}\right)$ n'est autre que la médiane de $X$.
@@ -131,44 +187,46 @@ $$F^{-} : u \in\, ]0,1[\, \mapsto \inf\left\{ x \in \R : F(x) \geq u \right\} \i
 
 On a alors le résultat suivant, qui stipule que $\psi = F_X^-$ est une solution universelle à notre problème. La preuve détaillée est donnée en Annexe.
 
-### Théorème -- Méthode d'inversion {.theorem #invgen}
+### Méthode d'inversion {.theorem #invgen}
 Soient $U$ une variable uniforme sur $]0,1[$ ainsi que $X$ une variable aléatoire réelle de fonction de répartition $F_X$ et de réciproque généralisée $F_X^-$. Alors $F_X^-(U) \overset{\L}{=} X$. 
 
-### Exercice -- Exemples d'application {.exercise}
+### Exemples d'application 2 {.exercise .question .one #exemples2}
 
 Donner un algorithme de simulation d'une v.a.r. $X$ suivant une loi
 
 * Binomiale de paramètres $n\in\N^\ast$ et $p \in\, ]0,1[$,
-* de Poisson de paramètre $\lambda \in \R_+^\ast$,
 * Uniforme sur l'union de deux segments non vides et disjoints $[a,b], [c,d]\subset\R$, de densité $x\in\R \mapsto (b-a + d-c)^{-1}\,1_{[a,b]\cup[c,d]}(x)$ ?
 
 ### Limitations 
-La méthode d'inversion peut sembler universelle pour simuler toute v.a.r. $X$ à partir de $U \sim \mathcal{U}_{]0,1[}$. Cependant, elle nécessite en pratique de disposer d'une expression analytique de $F_X$ pour pouvoir en déduire sa réciproque généralisée. Or ce n'est typiquement pas le cas de nombreuses lois usuelles comme la loi Normale ! On va donc déterminer d'autres procédures pour simuler des variables suivant de telles lois.
+La méthode d'inversion peut sembler universelle pour simuler une v.a.r. $X$ à partir de $U \sim \mathcal{U}_{]0,1[}$. Cependant, elle nécessite en pratique de disposer d'une expression analytique de $F_X$ pour en déduire sa réciproque généralisée. Or ce n'est typiquement pas le cas de nombreuses lois usuelles comme la loi Normale ! On va donc déterminer d'autres procédures pour simuler des variables suivant de telles lois.
 
 ## Méthode de rejet
 
 La méthode de rejet est une alternative populaire à la méthode d'inversion, lorsque cette dernière ne peut être utilisée directement et que **la loi cible possède une densité**. On la doit à @vonNeumann. Pour en comprendre le fondement, il nous faut d'abord introduire une généralisation naturelle de la loi Uniforme dans $\R$ à tout $\R^d$ ($d\in\N^\ast$). On notera $\ell$ la mesure de Borel-Lebesgue sur $\R^d$.
 
-### Définition {.definition}
+### Loi uniforme sur un borélien {.definition}
 La loi Uniforme sur un borélien $A\subset\R^d$ de volume $\ell(A) > 0$ est une loi de probabilité admettant pour densité $$f : x\in\R^d \mapsto \dfrac{1_A(x)}{\ell(A)}.$$
 
-### Exercice -- Loi Uniforme sur un pavé {.exercise}
-Comment simuleriez-vous un vecteur aléatoire $(U_1,\dots,U_d)$ de loi Uniforme sur un pavé non vide $[a_1,b_1]\times\dots\times[a_d,b_d] \subset \R^d$ ?
+### Loi Uniforme sur un pavé {.exercise .question .one #unipave}
+Comment simuler un vecteur aléatoire $(U_1,\dots,U_d)$ de loi Uniforme sur un pavé non vide $[a_1,b_1]\times\dots\times[a_d,b_d] \subset \R^d$ ?
+
+### {.anonymous}
 
 Une propriété fondamentale de cette loi est qu'elle reste stable par conditionnement, dans le sens suivant.
 
-### Propriété {.proposition #stabunif}
+### Stabilité par conditionnement {.proposition #stabunif}
 Soit $U$ un vecteur aléatoire de loi Uniforme sur un borélien $A\subset\R^d$ de volume $\ell(A) > 0$. Alors pour tout borélien $B \subset A$ de volume $\ell(B) > 0$, la loi conditionnelle $\P_{U\mid U\in B}$ de $U$ sachant que $U \in B$ est Uniforme sur $B$.
 
-### Démonstration {.proof}
-La preuve, élémentaire, est laissée en exercice.
+### Démonstration {.exercise .question .one #unicond}
 
-### Exercice {.exercise}
-Déduire de la propriété précédente une méthode pour simuler un vecteur aléatoire de loi Uniforme sur un borélien $B \subset \R^d$ **borné** et de volume $\ell(B) > 0$.
+### Simulation {.exercise .question .one #simunibor}
+Déduire de la [proposition précédente](#stabunif) une méthode pour simuler un vecteur aléatoire de loi Uniforme sur un borélien $B \subset \R^d$ **borné** et de volume $\ell(B) > 0$.
 
-Il est même possible de simuler un vecteur aléatoire de loi Uniforme sur certains boréliens non vides et non bornés, comme l'établit la proposition ci-dessous.
+### {.anonymous}
 
-### Proposition {.proposition #simunifdens} 
+Il est aussi possible de simuler un vecteur aléatoire de loi Uniforme sur certains boréliens non vides et non bornés, comme l'établit la proposition ci-dessous.
+
+### Loi uniforme sur le sous-graphe d'une densité {.proposition #simunifdens} 
 Soient une densité $f : \R \to \R$, une v.a.r. $X$ et une variable $U$ uniforme sur $]0,1[$, indépendante de $X$. On note $A_f := \left\{ (x,y) \in \R \times \R_+ : f(x) \geq y \right\}$ le domaine limité par le graphe de $f$ et l'axe des abscisses (souvent appelé sous-graphe de $f$). Si $X$ est de densité $f$, alors le couple $(X,Uf(X))$ suit une loi Uniforme sur $A_f$. 
 
 ### Démonstration {.proof}
@@ -185,13 +243,10 @@ Ainsi, $(X,Uf(X))$ admet pour densité $1_{A_f}$, qui correspond bien à celle d
 
 Pour simuler un vecteur uniforme $(X,Y)$ sur un ensemble $A_f$ tel que défini à la proposition précédente, il suffit donc de simuler une v.a.r. $X$ de densité $f$, puis une variable $U$ uniforme sur $]0,1[$, et de poser $Y = f(X)U$.
 
-### Exercice {.exercise}
-En reprenant les notations de la proposition précédente et en prenant $a \in \R_+^\ast$, expliciter la loi du couple $(X,aUf(X))$.
-
-En combinant les résultats des propriété et proposition précédentes, on obtient la méthode de rejet, illustrée sur la figure ci-dessous.
+En combinant les résultats précédents, on obtient la méthode de rejet, illustrée sur la figure ci-dessous, où $A_Y := \left\{ (x,y) \in \R \times \R_+ : y \leq f_Y(x) \right\}$.
 
 ### Méthode de rejet
-On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Supposons que l'on sait simuler une variable $U$ uniforme sur $]0,1[$, ainsi qu'une v.a.r. $Y$ (par exemple avec la méthode d'inversion) de densité $f_Y$ telle qu'il existe un réel $a > 0$ pour lequel on a $\forall x \in \R$ : $f_X(x) \leq a\,f_Y(x)$. On note $A_Y := \left\{ (x,y) \in \R \times \R_+ : y \leq f_Y(x) \right\}$. Il suffit alors de suivre l'algorithme suivant :
+On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Supposons que l'on sait simuler une variable $U$ uniforme sur $]0,1[$, ainsi qu'une v.a.r. $Y$ (par exemple avec la méthode d'inversion) de densité $f_Y$ telle qu'il existe un réel $a > 0$ pour lequel on a $\forall x \in \R$ : $f_X(x) \leq a\,f_Y(x)$. Il suffit alors de suivre l'algorithme suivant :
 
 1. simuler $Y$ et $U$,
 
@@ -201,12 +256,15 @@ On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Suppo
 
 ![Méthode de rejet](images/MetRej.tex)
 
-### Limitations de la méthode
-La méthode de rejet a l'avantage non négligeable de permettre de simuler des variables aléatoires à densité dont la fonction de répartition n'a pas de forme analytique, rendant la méthode d'inversion inapplicable. Néanmoins, pour pouvoir l'appliquer il faut absolument connaître une densité auxiliaire qui, multipliée par un réel positif, majore la densité cible, et que l'on peut simuler. Quand bien même ce serait le cas, selon le volume de la zone de rejet, l'algorithme peut prendre beaucoup de temps à tourner. 
+### Limitations 
+La méthode de rejet a l'avantage de permettre de simuler des variables aléatoires à densité dont la fonction de répartition n'a pas de forme analytique, rendant la méthode d'inversion inapplicable. Néanmoins, pour pouvoir l'appliquer il faut connaître une densité auxiliaire qui, multipliée par un réel positif, majore la densité cible, et que l'on sait simuler. Le taux de rejet, c'est-à-dire la probabilité de l'événement $\{aUf_Y(Y) > f_X(Y)\}$, peut parfois être élevé, notamment lorsque la dimension de $X$ est grande, ce qui limite l'efficacité de la méthode.
+
+### Taux de rejet {.exercise .two .question #tauxrej}
+Calculer le taux de rejet de la méthode proposée ci-dessus.
 
 ## Simulation de variables aléatoires gaussiennes : Box-Muller
 
-On a vu que la méthode d'inversion est inappropriée pour simuler une variable gaussienne, puisqu'elle requiert l'expression analytique de la fonction de répartition cible. Il existe des méthodes basées sur une intégration numérique de la densité gaussienne puis une inversion de cette approximation de la f.d.r. mais elle ne sont pas optimales en temps de calcul. La méthode du rejet est quant à elle sous-optimale, dans le sens où toutes les variables uniformes générées ne sont pas directement utilisées (une partie, potentiellement grande, est rejetée). La loi normale étant fondamentale en probabilité, il est plus que souhaitable de pouvoir en trouver une méthode de simulation exacte et efficace.
+On a vu que la méthode d'inversion est inappropriée pour simuler une variable gaussienne, puisqu'elle requiert l'expression analytique de la fonction de répartition cible. Il existe des méthodes basées sur une intégration numérique de la densité gaussienne puis une inversion de cette approximation de la f.d.r. mais elle ne sont pas optimales en temps de calcul. La méthode de rejet est quant à elle sous-optimale, dans le sens où toutes les variables uniformes générées ne sont pas directement utilisées (une partie, potentiellement grande, est rejetée). La loi normale étant fondamentale en probabilité, il est plus que souhaitable de pouvoir en trouver une méthode de simulation exacte et efficace.
 
 George E. P. Box et Mervin E. Muller ont proposé en 1958 une telle méthode (@BoxMuller). Elle exploite la propriété d'invariance par rotation de la densité d'un couple de variables gaussiennes indépendantes centrées réduites.
 
@@ -231,11 +289,10 @@ qui n'est autre que la fonction de répartition d'une loi uniforme sur $]0,2\pi[
 
 ### {.anonymous}
 
-Cette méthode permet de simuler directement deux variables gaussiennes centrées réduites indépendantes à partir de deux variables uniformes indépendantes. Pour simuler une variable gaussienne d'espérance $m \in \R$ et de variance $\sigma^2 \in \R_+^\ast$ quelconques, il suffit de se rappeler le résultat préliminaire de l'exercice *Combinaisons linéaires de variables aléatoires Gaussiennes indépendantes* du cours Probabilités II : si $X$ suit une loi normale centrée réduite, alors $\sigma X + m$ suit une loi normale d'espérance $m$ et de variance $\sigma^2$.
-
+Cette méthode permet de simuler directement deux variables gaussiennes centrées réduites indépendantes à partir de deux variables uniformes indépendantes. Pour simuler une variable gaussienne d'espérance $m \in \R$ et de variance $\sigma^2 \in \R_+^\ast$ quelconques, il suffit de se rappeler que si $X$ suit une loi normale centrée réduite, alors $\sigma X + m$ suit une loi normale d'espérance $m$ et de variance $\sigma^2$.
 
 # Simulation d'un vecteur gaussien à densité
-La simulation d'un vecteur gaussien dont la matrice de covariance est inversible est extrêmement aisée. En effet, on souhaite simuler un vecteur gaussien $X = (X_1,\ldots,X_d)$ à valeurs dans $\R^d$ d'espérance $m$ et de matrice de covariance $C$ définie positive données. 
+On souhaite simuler un vecteur gaussien $X = (X_1,\ldots,X_d)$ à valeurs dans $\R^d$ d'espérance $m$ et de matrice de covariance $C$ définie positive (et donc inversible) données. 
 
 Puisque la matrice $C$ est inversible, elle admet une racine carrée, c'est-à-dire qu'il existe une matrice $N$ telle que $C = N\,N^t$. En effet, on peut par exemple décomposer $C$ de la manière suivante :
 $$C = V\,D\,V^t,$$
@@ -255,7 +312,7 @@ Alors, le vecteur $Z = m + L\,Y$ est gaussien, d'espérance $m$ et de matrice de
 
 On introduit dans cette section la méthode d'échantillonnage d'importance (importance sampling en anglais), que l'on appelle aussi, de manière plus intuitive, échantillonnage préférentiel, pour les lois à densité. Pour ce faire, nous allons commencer par un exemple qui montre qu'il peut être plus efficace de simuler des valeurs selon une loi différente de celle d'intérêt, autrement dit de modifier la représentation de l'intégrale $\mathcal{I}$ sous la forme d'une espérance calculée selon une autre densité.
 
-### Exemple {.example}
+### Loi de Cauchy conditionnelle {.example}
 Supposons que l'on s'intéresse à calculer la probabilité $p$ qu'une variable $X$ de loi de Cauchy standard soit plus grande que 2 (on peut le calculer directement et $p=0.15$)
 $$p = \int_2^{+\infty} \frac{1}{\pi(1+x^2)}dx.$$
 Si on estime $p$ directement à partir d'un échantillon $(X_1,\ldots,X_n)$ simulé selon la loi de Cauchy standard, soit
@@ -275,7 +332,7 @@ On a ainsi vu sur ce cas particulier que l'estimation d'une intégrale de la for
 $$\mathcal{I}=\Esp\left(h(X)\right)=\int_{\R^d} h(x) f(x) dx,$$
 peut s'écrire de différentes manières, en faisant varier $h$ et $f$. Par conséquent, un estimateur "optimal" devrait tenir compte de l'ensemble de ces possibilités. C'est justement l'idée développée dans la méthode d'échantillonnage d'importance dont le principe est décrit dans la définition suivante.
 
-### Définition {.definition #is}
+### Echantillonnage d'importance {.definition #is}
 La méthode d'*échantillonnage d'importance* est une évaluation de $\mathcal{I}$ basée sur la simulation d'un
 échantillon $X_1, \ldots,X_n$ de loi de densité $g$ et approximant :
 $$\Esp_{f}\left(h(X)\right)\approx \frac{1}{n}\sum_{i=1}^{n}\frac{f(X_i)}{g(X_i)}h(X_i),$$
@@ -295,7 +352,7 @@ où on a remplacé $n$ par la somme des poids d'importance. Puisque $\frac{1}{n}
 
 Parmi les densités $g$ qui fournissent des estimateurs de variance finie, il est possible d'exhiber la densité optimale (au sens de la variance de l'estimateur associé) pour une fonction $h$ et une densité $f$ données.
 
-### Théorème {.theorem}
+### Densité optimale {.theorem}
 Le choix de $g$ qui minimise la variance de l'estimateur donné dans la [définition ci-dessus](#is) est 
 $$g^\ast(x) = \frac{|h(x)|f(x)}{\int |h(x)|f(x) dx}.$$
 
@@ -317,7 +374,355 @@ vers l'intégrale d'intérêt
 $$\mathcal{I}=\Esp\left(h(X)\right)=\int_{\R^d} h(x) \P_X(dx).$$
 On a montré qu'à partir d'un échantillon on peut construire un intervalle de confiance asymptotique à 95\% pour la quantité $\mathcal{I}$. En revanche,  -->
 
-# Projet numérique : câble sous-marin
+Exercices
+===============================================================================
+
+## Loi uniforme dans un domaine 
+
+Ecrire un algorithme pour simuler un point uniforme dans les trois domaines représentés ci-dessous.
+
+![Domaine A](images/ex1-eps-converted-to.pdf){ width=30% } 
+
+![Domaine B](images/ex2-eps-converted-to.pdf){ width=30% } 
+
+![Domaine C](images/ex3-eps-converted-to.pdf)
+
+## Simulation selon la loi géométrique
+
+Cette loi correspond à la loi du nombre d'essais avant d'obtenir un
+évènement de probabilité $p$
+$$X\sim{\cal G} (p)~~\P (X=n)=p(1-p)^{n-1}~~n=1,2,\ldots$$
+
+### Question 1 {.question #loigeom1}
+Calculer l'espérance et la variance de $X$
+    
+### Question 2 {.question #loigeom2}
+Générer un échantillon de taille 1000 pour $p=0.6$, en utilisant une approche génétique. Calculer la moyenne et la variance. Comparer avec les valeurs théoriques.
+    
+### Question 3 {.question #loigeom3}
+Montrer que si $X\sim{\cal E}(\lambda)$, alors $\lceil X \rceil \sim{\cal G}(p)$. On précisera la valeur de $\lambda$.
+    
+### Question 4 {.question #loigeom4}
+Donner, implémenter et tester un algorithme pour simuler ${\cal G}(p)$ directement
+
+## Simulation de la loi gaussienne par la méthode de rejet
+
+$X$ est une variable aléatoire de loi gaussienne d'espérance $m=0$ et de variance $\sigma^2=1$, $\No(0,1)$. Sa densité est
+  $$f(x) = \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{1}{2}x^2\right),~x\in \R$$
+  
+### Question 1 {.question #lgrej1}
+Montrer que $f(x) \leq C \exp \left(-|x|\right)$ où $C=\sqrt{\frac{e}{2\pi}}$
+
+### Question 2 {.question #lgrej2}
+On considère $g(x) = \frac{1}{2}\exp \left(-|x|\right),~x\in \R$. Montrer que $g$ est une densité de probabilité.
+
+### Question 3 {.question #lgrej3}
+Proposer un algorithme pour simuler selon $g$.
+
+### Question 4 {.question #lgrej4} 
+Implémenter l'algorithme de rejet pour simuler selon $f$.
+
+## Simulation selon la loi de Wigner {.question #wigner}
+
+La loi de Wigner (ou du demi-cercle) est la loi de support $[-2, 2]$ et de densité $f(x) = \frac{1}{2\pi}\sqrt{4 - x^2}$. Simuler un grand nombre de variables aléatoires de loi de Wigner, représenter l'histogramme associé et le comparer à la densité. 
+
+## Loi des grands nombres et théorème central limite
+
+### Question 1 {.question #lgntcl1}
+Afin d’illustrer la [Loi des Grands Nombres](Probabilité IV.pdf #lfgn), visualiser la suite $S_n = \frac{X_1 + \ldots +X_n}{n}$
+pour $(X_i)_{i \in \N^\ast}$ une suite de variables aléatoires indépendantes de loi uniforme sur [-1, 1].
+
+Indication : pour $x= [x_1 , \ldots, x_n]$ vecteur, `np.cumsum(x)` est le vecteur
+$[x_1 , x_1 + x_2 , x_1 + x_2 + x_3 , \ldots , x_1 + \ldots + x_n]$
+des sommes cumulées des coordonnées de $x$.
+
+### Question 2 {.question #lgntcl2}
+
+Faire de même avec des variables aléatoires $Y_i$ de loi de Cauchy (c'est-à-dire de densité $\frac{1}{\pi(1+x^2)}$). La suite $\frac{Y_1 + \ldots +Y_n}{n}$ semble-t-elle converger ? Pourquoi ?
+
+### Question 3 {.question #lgntcl3}
+
+Calculer la moyenne $\mu$ et l’écart-type $\sigma$ des $X_i$ et vérifier, afin d’illustrer le [Théorème Central Limite](Probabilité IV.pdf #TCL), que 
+$\sqrt{n} (S_n - \mu)/\sigma$ converge en loi, lorsque $n \to \infty$, vers une variable de loi $\mathcal{N}(0, 1)$ : on se fixera une grande valeur de n, on simulera un grand nombre de fois $\sqrt{n} (S_n - \mu)/\sigma$, on en tracera l’histogramme et on le comparera à la densité $(2\pi)^-1/2 e^{-x^2}$ la loi $\mathcal{N}(0, 1)$.
+
+## Simulation d'un mélange de gaussiennes
+
+On souhaite simuler selon la loi de mélange introduite dans l'exercice Mélange de loi du chapitre 3.
+
+### Question 1 {.question #melloi1}
+Soit $K$ une v.a.r. de loi :
+$$\mathbb{P}(K=x) = \left\{\begin{array}{ll} 1/2 & \text{ si }x = 1 \\ 1/4 & \text{ si }x = 2 \\ 1/4 & \text{ si }x = 3 \\ 0 & \text{ sinon} \end{array} \right.$$
+Implémenter la méthode d'inversion pour simuler $K$
+
+### Question 2 {.question #melloi2}
+Soit $X_1$, $X_2$ et $X_3$ des variables aléatoires de lois respectives $\mathcal{N}(0,1)$, $\mathcal{N}(5,1/2)$ et $\mathcal{N}(8,4)$. Implémenter un algorithme de simulation de $X_K$. Comparer l'histogramme obtenu pour un échantillon de taille 1000 avec la densité de $X_K$.
+
+## Echantillonnage d'importance
+
+On cherche à évaluer l'espérance d'une variable aléatoire $X$ gaussienne centrée réduite (de densité $f_X$ et de f.d.r. $F_X$) sachant qu'elle dépasse la valeur 3.
+
+### Question 1 {.question #echimp1}
+Exprimer la densité conditionnelle de $X|X>3$.
+
+### Question 2 {.question #echimp2}
+Calculer la quantité souhaitée à partir d'un échantillon de taille 1000 généré selon $F_X$. Quelle est la valeur du taux de rejet ?
+
+### Question 3 {.question #echimp3}
+Implémenter l'algorithme d'échantillonnage d'importance en prenant comme loi instrumentale la loi gaussienne d'espérance 3 et de variance 1. Quelle est la proportion de poids nuls ?
+
+
+-----------------------------------------------------------
+
+Solutions
+=================================================================================
+
+### Calcul numérique d'une probabilité {.answer .two #answer-mc1}
+cf. notebook
+
+### Exemples d'application 1 {.answer  .one #answer-exemples1}
+On suppose que $U \sim \mathcal{U}_{]0,1[}$
+
+* Uniforme sur un intervalle $I \subset \R$ : 
+
+    Si $I = ]a,b[,~a< b$, alors la fonction de répartition de $X \sim \mathcal{U}_I$ est $F_X(x) = \frac{x-a}{b-a} 1_{]a,b[}(x) + 1_{[b,+\infty[}(x)$, d'où par inversion $X = a + (b-a)U$ 
+
+* Exponentielle de paramètre $\lambda \in \R_+^\ast$ : 
+
+    la fonction de répartition de $X \sim \mathcal{E}(\lambda)$ est $F_X (x) = 1-\exp(-\lambda x)$, d'où par inversion $X = -\frac{\l(1-U)}{\lambda}$. Pour simplifier, on remarquera que si $U \sim \mathcal{U}_{]0,1 [ }$ , alors $1- U \sim \mathcal{U}_{]0,1[}$, d'où $X = -\frac{\ln(U)}{\lambda}$
+
+* de Cauchy, de densité $x\in\R \mapsto \left(\pi\left(1+x^2\right)\right)^{-1}$,
+
+    la loi de Cauchy admet la fonction de répartition $F(x) = \frac{1}{\pi} \arctan (x) + \frac{1}{2}$, d'où $X = \tan(\pi U -1/2)$
+
+* de Laplace de paramètres $\mu \in \R$ et $s\in\R_+^\ast$, de densité $x\in\R \mapsto \frac{1}{2s}\,\exp\left\{-\frac{|x-\mu|}{s}\right\}$,
+
+    la loi de Laplace admet la fonction de répartition 
+    $$F(x) = \left\{ \begin{array}{ll}
+    \frac{1}{2} \exp(x) & \text{ si } x < 0,\\
+    1 - \frac{1}{2} \exp(-x) & \text{ si } x \geq 0,
+    \end{array} \right. = \frac{1}{2}\left(1 + \text{sgn}(x)(1-\exp(-|x|))\right)$$
+
+    d'où $X = \text{sgn}(U - 1/2)\ln(1-2|U-1/2|)$, où sgn est la fonction signe.
+
+* Logistique de paramètres $\mu \in \R$ et $s\in\R_+^\ast$, de fonction de répartition $x\in\R \mapsto \left(1 + \exp\left\{-\frac{x-\mu}{s} \right\}\right)^{-1}$ :
+
+    par inversion, $X = s \left(-\ln\left(\frac{1}{U}-1\right)+ \mu\right)$  
+
+### Pile ou face {.answer  .one #answer-pf}
+Il suffit d'associer à "pile" un événement portant sur $U \sim \mathcal{U}_{]0,1[}$ de la bonne probabilité, $p \in ]0,1[$, par exemple $\{U \leq p\}$. On obtient ainsi l'algorithme :
+    
+1. Générer $u$ selon $\mathcal{U}_{]0,1[}$
+2. Renvoyer "pile" si $u \leq p$, "face" sinon
+
+### Exemples d'application 2 {.answer  .one #answer-exemples2}
+
+* Binomiale de paramètres $n\in\N^\ast$ et $p \in\, ]0,1[$,
+
+    La fonction de répartition de la loi binomiale est donnée par 
+    $$F(x) = \begin{cases}
+    0&\text{si } \;x<0\\
+    \sum_{{k=0}}^{{\lfloor x\rfloor }}{n \choose k}p^{k}(1-p)^{{n-k}} & \text{si } \;0\leq x<n\\
+    1&\text{si} \;x \geq n
+    \end{cases}$$
+    
+    où ${\lfloor x\rfloor }$ est la partie entière de $x$.   
+    On peut alors découper $]0,1[$ en intervalles de la forme $]\sum_{{k=0}}^{{m}}{n \choose k}p^{k}(1-p)^{{n-k}},\sum_{{k=0}}^{{m+1}}{n \choose k}p^{k}(1-p)^{{n-k}}[$ pour $m \in \{0,n-1\}$ et renvoyer $m+1$ si un $u$ généré selon $\mathcal{U}_{] 0,1[}$ appartient à l'un de ces intervalles, 0 sinon.
+
+    Il est cependant beaucoup plus simple de remarquer qu'une variable aléatoire de loi $\mathcal{B}(n,p)$ s'obtient comme la somme de $n$ variables de Bernoulli que l'on peut simuler comme [ci-dessus](#answer-pf).
+
+<!-- * de Poisson de paramètre $\lambda \in \R_+^\ast$,
+
+    La fonction de répartition de la loi de Poisson est 
+    $$ F(x) = \begin{cases}
+    0&\text{si } \;x<0\\
+    \sum_{{k=0}}^{{\lfloor x\rfloor }} \frac{\lambda^k}{k!} e^{-\lambda} & \text{sinon}\\
+    \end{cases}
+    On peut encore procéder en découpant $]0,1[$ en intervalles de longueur $\frac{\lambda^k}{k!} e^{-\lambda}$ pour $k \in \N$ mais cela devient vite peu commode pour les grandes valeurs de $k$.
+ -->
+    
+* Uniforme sur l'union de deux segments non vides et disjoints $[a,b], [c,d]\subset\R$, de densité $x\in\R \mapsto (b-a + d-c)^{-1}\,1_{[a,b]\cup[c,d]}(x)$
+
+    La fonction de répartition d'une telle variable est 
+    $$F(x) = \frac{x-a}{b-a + d-c} 1_{]a,b[}(x) + \frac{b-a}{b-a + d-c} 1_{[b,c]}(x) + \frac{x-c+b-a}{b-a + d-c} 1_{]c,d[}(x) + 1_{[d,+\infty[}(x)$$
+    Pour simuler cette variable, on peut donc utiliser l'algorithme suivant :
+    
+    1. Générer $u$ selon $\mathcal{U}_{]0,1[}$
+    2. Retourner
+    $$\begin{cases} 
+    a + u(b-a + d -c) & \text{ si } u \in ]0,\frac{b-a}{b-a + d-c}[ \\
+    c + (u(b-a + d -c) - (b-a)) \text{ sinon }
+    \end{cases}$$
+
+### Loi Uniforme sur un pavé {.answer  .one #answer-unipave}
+On note $[a_1,b_1]\times\dots\times[a_d,b_d] \subset \R^d$.
+On peut voir que la densité d'une v.a. uniforme sur un tel pavé s'écrit $f(x) = \frac{1}{b_1 - a_1} \cdots \frac{1}{b_d - a_d} 1_{[a_1,b_1]\times\dots\times[a_d,b_d]}(x)$ soit comme le produit des densités de ses coordonnées qui sont donc indépendantes. On peut donc simuler la variable d'intérêt avec cet algorithme :
+
+1. Générer $u_1,\ldots,u_d$ indépendamment selon $\mathcal{U}_{]0,1[}$
+2. Retourner $(a_1 + u_1(b_1-a_1), \ldots, a_d + u_d(b_d-a_d))$ 
+
+### Démonstration {.answer  .one #answer-unicond}
+Soit $C \in \B(B)$ (considérer les boréliens de $B$ suffit à caractériser la loi conditionnelle à l'événement $U \in B$ puisque si $C \cap B = \varnothing$, alors nécessairement, $\P(U \in C |U \in B) = 0$). On a 
+\begin{align*}
+\P(U \in C |U \in B) & = \frac{\P(U\in C, U \in B)}{\P(U \in B)} = \frac{\P(U\in C)}{\P(U \in B)} \\
+& = \frac{\int_C \frac{dx}{\ell(A)}}{\int_B \frac{dx}{\ell(A)}} \text{ puisque } U \sim \mathcal{U}_A \\
+& = \frac{\ell(C)}{\ell(B)} = \int_C \frac{1}{\ell(B)} dx
+\end{align*}
+on reconnaît bien la loi uniforme sur $B$.
+
+### Simulation {.answer  .one #answer-simunibor}
+On prend un pavé $R$ tel que $B \subset R$ puis on applique l'algorithme suivant :
+ 
+1. générer $u$ selon $\mathcal{U}_R$
+2. Si $u \notin R$, retour en 1.
+3. retourner $u$
+
+### Taux de rejet {.answer .two  #answer-tauxrej}
+Puisque le couple $(Y, Uf_Y(Y))$ est uniforme sur $A_f$, alors le couple $(Y, aUf_Y(Y))$ est uniforme sur $A_{af}$, d'où
+\begin{align*}
+\P(\{aUf_Y(Y) > f_X(Y)\}) & = \Esp(1_{\{aUf_Y(Y) > f_X(Y)\}}) \\
+& = \Esp(\Esp(1_{\{aUf_Y(y) > f_X(y)\}}|Y=y)) \\
+& = \int_R \int_0^{af_Y(y)} 1_{\{auf_Y(Y) > f_X(Y)\}} \frac{1}{af_Y(y)} du f_Y(y) dy \\
+& = \int_R \left(1 - \frac{f_X(y)}{af_Y(y)}\right) f_Y(y) dy \\
+& = 1 - \frac{1}{a}
+\end{align*}
+
+## Loi uniforme dans un domaine 
+
+cf. notebook
+
+## Simulation selon la loi géométrique
+
+### Question 1 {.answer #answer-loigeom1}
+$\P(X=n) = p (1-p)^{n-1} = (1-q)q^{n-1} \text{, où } p \text{ est la probabilité de succès, } n=1,2,\ldots$
+\begin{align*}
+\Esp[X]&=\sum_{i=1}^{\infty}i\P(X=i)\\
+&=\sum_{i=1}^{\infty} i (1-q)q^{i-1}\\
+&=(1-q)\sum_{i=1}^{\infty} iq^{i-1}\\
+&=(1-q)\sum_{i=1}^{\infty} \frac{\mathrm{d}}{\mathrm{d} q} q^i\\
+&=(1-q)\frac{\mathrm{d}}{\mathrm{d} q}\left(\sum_{i=1}^{\infty}  q^i\right)\\
+&=(1-q)\frac{\mathrm{d}}{\mathrm{d} q}\left(\frac{q}{1-q}\right), \text{ car } \sum_{i=1}^{\infty}  q^i = q \sum_{i=0}^{\infty}  q^i = \frac{q}{1-q}\\
+&=(1-q)\frac{1}{(1-q)^2} \\
+&=\frac{1}{(1-q)}\\
+&=\frac{1}{p}
+\end{align*}
+\bigskip
+Pour la variance $\V[X] = \Esp[X^2]-\Esp[X]$
+\begin{align*}
+\Esp[X^2]&=\sum_{i=1}^{\infty}i^2\P(X=i)\\
+&=\sum_{i=1}^{\infty} i^2 (1-q)q^{i-1}\\
+&=(1-q)\sum_{i=1}^{\infty} i^2q^{i-1}\\
+&=(1-q)\sum_{i=1}^{\infty}\left( i\left((i+1)q^{i-1} - q^{i-1}\right)\right)\\
+&=(1-q)\sum_{i=1}^{\infty}\left( i(i+1)q^{i-1} - iq^{i-1}\right)\\
+&=(1-q)\sum_{i=1}^{\infty}\left( \frac{\mathrm{d}^2}{\mathrm{d} q^2} q^{i+1} - \frac{\mathrm{d}}{\mathrm{d} q} q^i\right)\\
+&=(1-q)\left( \frac{\mathrm{d}^2}{\mathrm{d} q^2}\left(\sum_{i=1}^{\infty}q^{i+1}\right)-\frac{\mathrm{d}}{\mathrm{d} q}\left(\sum_{i=1}^{\infty}  q^i\right)\right)
+\end{align*}
+On a déjà calculé le second terme ci-dessus.
+\begin{align*}
+\frac{\mathrm{d}^2}{\mathrm{d} q^2}\sum_{i=1}^{\infty}q^{i+1} &= \frac{\mathrm{d}^2}{\mathrm{d} q^2}q \sum_{i=1}^{\infty}q^{i}\\
+&=\frac{\mathrm{d}^2}{\mathrm{d} q^2}\frac{q^2}{1-q}
+\end{align*}
+Calcul des dérivées :
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d} q}\frac{q^2}{1-q} &= \frac{2q(1-q)+q^2}{(1-q)^2}\\
+&= \frac{2q-q^2}{(1-q)^2}
+\end{align*}
+
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d} q}\frac{2q-q^2}{(1-q)^2}&=\frac{2(1-q)(1-q)^2+2(1-q)(2q-q^2)}{(1-q)^4}\\
+&= \frac{2(1-q)^2+2(2q-q^2)}{(1-q)^3}\\
+&= \frac{2 - 4q +2q^2 + 4q -2q^2}{(1-q)^3}\\
+&= \frac{2}{(1-q)^3}
+\end{align*}
+On en déduit
+\begin{align*}
+\Esp[X^2]&=(1-q)\left(\frac{2}{(1-q)^3}-\frac{1}{(1-q)^2}\right)\\
+&=\frac{2}{(1-q)^2}-\frac{1}{(1-q)}\\
+&=\frac{2-(1-q)}{(1-q)^2}\\
+&=\frac{1+q}{(1-q)^2}
+\end{align*}
+Et finalement
+\begin{align*}
+\V[X] &= \Esp[X^2]-\Esp[X]\\
+&= \frac{1+q}{(1-q)^2}-\frac{1}{(1-q)^2}\\
+&=\frac{q}{(1-q)^2}\\
+&=\frac{1-p}{p^2}
+\end{align*}
+
+
+### Question 2 {.answer #answer-loigeom2}
+cf. notebook
+
+### Question 3 {.answer #answer-loigeom3}
+\begin{align*}
+\P(\lceil X \rceil = n) & = \P(n-1 < X \leq n) \\
+& = F_X(n) - F_X(n-1) \\
+& = e^{-\lambda (n-1)}(1-e^{-\lambda})
+\end{align*}
+d'où $\lambda = -\ln(1-p)$
+    
+### Question 4 {.answer #answer-loigeom4}
+cf. notebook 
+
+## Simulation de la loi gaussienne par la méthode de rejet
+
+$X$ est une variable aléatoire de loi gaussienne d'espérance $m=0$ et de variance $\sigma^2=1$, $\No(0,1)$. Sa densité est
+  $$f(x) = \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{1}{2}x^2\right),~x\in \R$$
+  
+### Question 1 {.answer #answer-lgrej1}
+Soit $x \in \R$
+\begin{align*}
+x^2 & \geq 2|x| - 1 \\
+\frac{1}{\sqrt{2\pi}}e^{-x^2/2} & \leq \sqrt{\frac{e}{2\pi}} e^{-|x|}
+\end{align*}
+
+### Question 2 {.answer #answer-lgrej2}
+$g$ est bien positive et son intégrale sur $\R$ vaut
+$$\int_\R g(x) dx = \int_\R \frac{1}{2} e^{-|x|} dx = \int_{\R^+} e^{-x} dx = 1$$
+
+### Question 3 {.answer #answer-lgrej3}
+voir dans [exemples d'application 1](#exemples1). 
+
+### Question 4 {.answer #answer-lgrej4} 
+cf. notebook
+
+## Simulation de la loi de Wigner {.answer #answer-wigner}
+cf. notebook
+
+## Loi des grands nombres et théorème central limite
+
+### Question 1 {.answer #answer-lgntcl1}
+
+cf. notebook
+
+### Question 2 {.answer #answer-lgntcl2}
+
+cf. notebook
+
+### Question 3 {.answer #answer-lgntcl3}
+
+cf. notebook
+
+## Simulation d'un mélange de gaussiennes
+
+### Question 1 {.answer #answer-melloi1}
+cf. notebook
+
+### Question 2 {.answer #answer-melloi2}
+cf. notebook
+
+## Echantillonnage d'importance
+
+### Question 1 {.answer #answer-echimp1}
+On a $F_{X|X>3}(x) = \P(X \leq x |X > 3) = \frac{\P(X\leq x, X>3)}{1-F_X(3)} = \frac{F_X(x)-F_X(3)}{1-F_X(3)}1_{]3,+\infty[}(x)$
+d'où $f_{X|X>3}(x) = \frac{f_X(x)}{1-F_X(3)}1_{]3,+\infty[}(x)$
+
+### Question 2 {.answer #answer-echimp2}
+cf. notebook
+
+### Question 3 {.answer #answer-echimp3}
+cf. notebook
+
+# Projet numérique : câble sous-marin (énoncé 2020)
 
 ## Enoncé du problème
 
