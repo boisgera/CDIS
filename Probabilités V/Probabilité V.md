@@ -182,7 +182,7 @@ $$F^{-} : u \in\, ]0,1[\, \mapsto \inf\left\{ x \in \R : F(x) \geq u \right\} \i
 ### Conséquences {.remark} 
 
 * Cette fonction est bien définie sur tout $]0,1[$, car quel que soit $u$ dans cet intervalle, l'ensemble $\left\{ x \in \R : F(x) \geq u \right\}$ est non vide et minoré. S'il était vide ou non minoré pour un certain $u_0\in\,]0,1[$, pour tout $x \in \R$ on aurait dans le premier cas $F(x) < u_0 < 0$ et dans le second $F(x) \geq u_0 > 1$. L'une comme l'autre de ces inégalités est impossible pour une fonction de répartition.
-* La réciproque généralisée de la f.d.r. $F_X$ d'une v.a.r. $X$ est aussi appelée *fonction quantile*. On pourra notamment remarquer que $F_X^{-}\left(\frac{1}{2}\right)$ n'est autre que la médiane de $X$.
+* La réciproque généralisée de la f.d.r. $F_X$ d'une v.a.r. $X$ est aussi appelée *fonction quantile*. On pourra notamment remarquer que $F_X^{-1}\left(\frac{1}{2}\right)$ n'est autre que la médiane de $X$.
 * Lorsque $F$ réalise une bijection d'un intervalle non vide $I\subset \R$ sur $]0,1[$, sa réciproque généralisée coïncide avec sa bijection réciproque.
 
 On a alors le résultat suivant, qui stipule que $\psi = F_X^-$ est une solution universelle à notre problème. La preuve détaillée est donnée en Annexe.
