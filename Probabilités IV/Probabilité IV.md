@@ -310,7 +310,7 @@ Soit $f$ une fonction continue de $\R^d$ dans $\R$.
 $$ \lim_{n \to \infty}f(X_n(\omega)) = f(\lim_{n \to \infty}X_n(\omega)) = f(X(\omega))$$
 par continuité de $f$, d'où le résultat.
 
-2. On remarqe d'abord que si $K >0$ et $\varepsilon >0$,
+2. On remarque d'abord que si $K >0$ et $\varepsilon >0$,
 $$\{|f(X_n)-f(X)| \geq \varepsilon\} \subset \{|X| > K\}\cup\{|X| \leq K, |f(X_n)-f(X)| \geq \varepsilon\}.$$
 La fonction $f$ est uniformément continue sur $\{x : |x| \leq K\}$, donc il existe $\eta > 0$ tel que $|x-y| <\eta$ et $|x| \leq 2K$ et $|y|\leq 2K$ impliquent 
 $|f(x) - f(y)| <\varepsilon$. On a donc
@@ -365,14 +365,14 @@ $$\P\left(|M_{n^2}|\geq \frac{1}{q}\right) \leq \frac{\sigma^2 q^2}{n^2}$$
 
 Donc si $A_{n,q} = \{|M_{n^2}|\geq \frac{1}{q}\}$, nous obtenons que $\sum_{n\geq 1} \P(A_{n,q}) < \infty$. Posons ensuite $B_{n,q} = \cup_{m\geq n} A_{m,q}$ et $C_q = \cap_{n \geq 1} B_{n,q} = \lim\sup_n A_{n,q}$. En appliquant le [lemme de Borel-Cantelli](#BC), on obtient que $\P(C_q) = 0$. En conséquence, si on pose $N = \cup_{q \in \N^\ast} C_q$, on obtient $\P(N) \leq \sum_{q\in\N^\ast} \P(C_q)= 0$.
 
-Si $\omega \notin N$, alors $\omega \in \cap_{q \in \N^\ast} (C_q)^c$. Ainsi, $\omega \notin C_q$ pour tout $q \geq 1$, et donc $\omega \notin B_{n,q}$ pour $n$ assez grand (car $B_{n,q}$ est décroissant en $n$). Cela siginfie que pour tout $\omega \notin N$, pour tout $q \geq 1$, il existe un $n$ assez grand tel que $M_{k^2} \leq \frac{1}{q}$ dès que $k \geq n$. Autrement dit, $M_{n^2} \to 0$ si $\omega \notin N$, avec $\P(N) = 0$, d'où
+Si $\omega \notin N$, alors $\omega \in \cap_{q \in \N^\ast} (C_q)^c$. Ainsi, $\omega \notin C_q$ pour tout $q \geq 1$, et donc $\omega \notin B_{n,q}$ pour $n$ assez grand (car $B_{n,q}$ est décroissant en $n$). Cela signifie que pour tout $\omega \notin N$, pour tout $q \geq 1$, il existe un $n$ assez grand tel que $M_{k^2} \leq \frac{1}{q}$ dès que $k \geq n$. Autrement dit, $M_{n^2} \to 0$ si $\omega \notin N$, avec $\P(N) = 0$, d'où
 $$ M_{n^2} \xrightarrow[n \to \infty]{} 0 \text{ p.s.}$$
 
 Montrons maintenant que la suite $(M_n)_{n\in\N^\ast}$ tend presque-sûrement vers 0.
 
 Pour tout entier $n$, notons $p(n)$, l'entier tel que $p(n)^2 \leq n \leq (p(n)+1)^2$. Alors, 
 $$ M_n - \frac{p(n)^2}{n}M_{p(n)^2} = \frac{1}{n} \sum_{p = p(n)^2+1}^{n} X_p,$$
-et puique les variables aléatoires de la somme sont indépendantes, il vient
+et puisque les variables aléatoires de la somme sont indépendantes, il vient
 \begin{align*}
 \Esp\left(\left(M_n - \frac{p(n)^2}{n}M_{p(n)^2}\right)^2\right) & = \frac{n-p(n)^2}{n^2}\sigma^2 \\
                                                                  & \leq \frac{2p(n)+1}{n^2} \sigma^2 \\
@@ -396,7 +396,7 @@ $$M_n = \frac{X_1 + \ldots + X_n}{n}$$
 converge vers $m$, **presque sûrement et en moyenne**, quand $n$ tend vers l'infini.
 
 ### Exponentielle {.exercise .one .question #expo}
-Soit $(X_i)_{i \in \N^\ast}$ une suite de variables aléatoires i.i.d. d'espérance $m$ et $Y_i = e^X_i$. Montrer que :
+Soit $(X_i)_{i \in \N^\ast}$ une suite de variables aléatoires i.i.d. d'espérance $m$ et $Y_i = e^{X_i}$. Montrer que :
 $$\left(\prod_{i=1}^n Y_i\right)^{1/n}$$
 converge presque sûrement vers une constante à déterminer.
 
@@ -488,7 +488,7 @@ Ce théorème est aussi connu sous le nom de théorème de la limite centrale. P
 
 On considère une suite de variables aléatoire $(X_n)_{n \in \N^\ast}$ indépendantes, de même loi et de carré intégrable. On note $m$ et $\sigma^2$ l'espérance et la variance commune aux variables $X_n$, et
     $$S_n = X_1 + \ldots + X_n$$
-ainsi ($S_n = n M_n$). On a vu que la loi des grands nombres assure que $M_n$ converge vers $m$ presque-sûrement et en moyenne. On va s'intéresser a la vitesse à laquelle cette convergence a lieu.
+ainsi ($S_n = n M_n$). On a vu que la loi des grands nombres assure que $M_n$ converge vers $m$ presque-sûrement et en moyenne. On va s'intéresser à la vitesse à laquelle cette convergence a lieu.
 
 Pour évaluer cette vitesse, c’est-à-dire trouver un équivalent de $\frac{S_n}{n} - m$, on est amené à étudier la limite éventuelle de la suite $n^\alpha (\frac{S_n}{n} - m)$ pour différentes valeurs de $\alpha$ : si $\alpha$ est “petit” cette suite va encore tendre vers 0, et elle va “exploser” si $\alpha$ est “grand”. On peut espérer que pour une (et alors nécessairement une seule) valeur de $\alpha$, cette suite converge vers une limite qui n’est ni infinie ni nulle.
 
@@ -936,7 +936,7 @@ On a $\log\left(\prod_{i=1}^n Y_i\right)^{1/n} = \frac{1}{n}\sum_{i=1}^n X_i \to
 Puisque l'exponentielle est continue, la [proposition de continuité](#propconv4) nous indique que $\left(\prod_{i=1}^n Y_i\right)^{1/n} \to e^m$ p.s.
 
 ### Variance {.answer #answer-variance}
-Les variables aléatoires $Y_i = (X_i - \sigma)^2$ sont i.i.d. telles que $\Esp(Y_i)= \sigma^2$. Par la [loi forte des grands nombre](#lfgn), on a 
+Les variables aléatoires $Y_i = (X_i - m)^2$ sont i.i.d. telles que $\Esp(Y_i)= \sigma^2$. Par la [loi forte des grands nombre](#lfgn), on a 
 $$\lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^n (X_i - m)^2 \to \sigma^2  \text{   p.s.}$$
 
 
