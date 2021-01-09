@@ -258,7 +258,6 @@ On souhaite simuler une variable aléatoire réelle $X$ de densité $f_X$. Suppo
 
 ### Limitations 
 La méthode de rejet a l'avantage de permettre de simuler des variables aléatoires à densité dont la fonction de répartition n'a pas de forme analytique, rendant la méthode d'inversion inapplicable. Néanmoins, pour pouvoir l'appliquer il faut connaître une densité auxiliaire qui, multipliée par un réel positif, majore la densité cible, et que l'on sait simuler. Le taux de rejet, c'est-à-dire la probabilité de l'événement $\{aUf_Y(Y) > f_X(Y)\}$, peut parfois être élevé, notamment lorsque la dimension de $X$ est grande, ce qui limite l'efficacité de la méthode.
-
 ### Taux de rejet {.exercise .two .question #tauxrej}
 Calculer le taux de rejet de la méthode proposée ci-dessus.
 
@@ -488,7 +487,7 @@ On suppose que $U \sim \mathcal{U}_{]0,1[}$
 
 * Exponentielle de paramètre $\lambda \in \R_+^\ast$ : 
 
-    la fonction de répartition de $X \sim \mathcal{E}(\lambda)$ est $F_X (x) = 1-\exp(-\lambda x)$, d'où par inversion $X = -\frac{\l(1-U)}{\lambda}$. Pour simplifier, on remarquera que si $U \sim \mathcal{U}_{]0,1 [ }$ , alors $1- U \sim \mathcal{U}_{]0,1[}$, d'où $X = -\frac{\ln(U)}{\lambda}$
+    la fonction de répartition de $X \sim \mathcal{E}(\lambda)$ est $F_X (x) = 1-\exp(-\lambda x)$, d'où par inversion $X = -\frac{\ln(1-U)}{\lambda}$. Pour simplifier, on remarquera que si $U \sim \mathcal{U}_{]0,1 [ }$ , alors $1- U \sim \mathcal{U}_{]0,1[}$, d'où $X = -\frac{\ln(U)}{\lambda}$
 
 * de Cauchy, de densité $x\in\R \mapsto \left(\pi\left(1+x^2\right)\right)^{-1}$,
 
