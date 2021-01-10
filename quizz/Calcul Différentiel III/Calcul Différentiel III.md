@@ -40,17 +40,17 @@ peut-on déterminer $df(x) \cdot h_1 \cdot h_2$ pour tout $h_1, h_2 \in \R^n$ ?
 La différentielle $d^3f$ d'ordre $3$ d'une fonction $f: U \subset \R^2\to \R^3$
 
   - [ ] A : associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
-    associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
-    associe linéairement à tout vecteur $h$ de $\R^2$ un vecteur de $\R^3$.
+    associe linéairement à tout vecteur $k$ de $\R^2$ une application qui 
+    associe linéairement à tout vecteur $p$ de $\R^2$ un vecteur de $\R^3$.
 
   - [ ] B : associe linéairement à tout point $x \in U$ une application 
     qui associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
-    associe linéairement à tout vecteur $h$ de $\R^2$ un vecteur de $\R^3$.
+    associe linéairement à tout vecteur $k$ de $\R^2$ un vecteur de $\R^3$.
 
   - [ ] C : associe à tout point $x \in U$ une application 
     qui associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
-    associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
-    associe linéairement à tout vecteur $h$ de $\R^2$ un vecteur de $\R^3$.
+    associe linéairement à tout vecteur $k$ de $\R^2$ une application qui 
+    associe linéairement à tout vecteur $p$ de $\R^2$ un vecteur de $\R^3$.
 
 #### Question 4 (réponses multiples)
 Le tenseur de type $(1,1,1)$ défini par $t_{ijk} = 1.0$ :
@@ -100,3 +100,18 @@ de coefficients différents dans le tenseur représentant $d^2f(x)$ ?
   - [ ] B : 18,
 
   - [ ] C : 27.
+
+#### Question 9 (réponses multiples)
+Soient $f: \R^2 \to \R$ et $a \in \R^2$ tels que $\partial_{12}f(a) = \partial_{21}f(a)$. Alors $f$ est 
+
+  - [ ] deux fois continûment différentiable en $a$,
+
+  - [ ] deux fois différentiable en $a$,
+
+  - [ ] différentiable en $a$,
+
+  - [ ] continue en $a$.
+
+
+
+  
