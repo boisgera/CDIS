@@ -767,7 +767,7 @@ un nombre $K$ de réalités (disons des réalisations du modèle
 probabiliste choisi), et sur chacune d'entre elle, 
 la quantité de câble nécessaire sera évaluée. 
 On disposera ainsi d'un échantillon $l_{(1)},\dots,l_{(K)}$ de 
-longueures simulées. Puis on approchera l'espérance conditionnelle  par 
+longueurs simulées. Puis on approchera l'espérance conditionnelle  par 
 $$L^\star=\sum_{k=1}^K l_{(k)}.$$
 
 L'objectif de ce projet est donc d'écrire un code permettant 
