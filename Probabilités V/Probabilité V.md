@@ -301,7 +301,7 @@ En pratique, il est coûteux numériquement d'effectuer le calcul des valeurs pr
 $$C = L\,L^t$$
 avec $L$ une matrice triangulaire inférieure [^chol].
 
-[^chol]: Cette décomposition est très utile dans la résolution de systèmes linéaires de la forme $A\,x = b$, où $b$ est connu, $x$ inconnu et $A$ est définie positive. Cela revient à résoudre $L\,L^t\,x = b$. On pose alors $y = L^t\,x$ et on résout d'abord $Ly=b$, ce qui est très rapide puisque $L$ est triangulaire inférieure (on commence par $y_1 = b_1/L_{11}$, puis $y_2 = (b_2 - L{21}y_1)/L_{22}$, etc. en descendant). On résoud ensuite $L^t\,x = y$, ce qui est aussi très rapide pour la même raison (on commence par $x_n = y_n/L_{nn}$ puis on remonte).
+[^chol]: Cette décomposition est très utile dans la résolution de systèmes linéaires de la forme $A\,x = b$, où $b$ est connu, $x$ inconnu et $A$ est définie positive. Cela revient à *re $L\,L^t\,x = b$. On pose alors $y = L^t\,x$ et on résout d'abord $Ly=b$, ce qui est très rapide puisque $L$ est triangulaire inférieure (on commence par $y_1 = b_1/L_{11}$, puis $y_2 = (b_2 - L{21}y_1)/L_{22}$, etc. en descendant). On résout ensuite $L^t\,x = y$, ce qui est aussi très rapide pour la même raison (on commence par $x_n = y_n/L_{nn}$ puis on remonte).
 
 Soit maintenant un autre vecteur gaussien $Y = (Y_1,\ldots,Y_d)$ à valeurs dans $\R^d$ et de matrice de covariance l'identité, notée $I_d$. Autrement dit, les $Y_i$ sont des variables aléatoires gaussiennes centrées, réduites et indépendantes.
 
