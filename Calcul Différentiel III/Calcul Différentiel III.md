@@ -1666,6 +1666,69 @@ H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +
 $$
 
 
+
+Différentielle d'ordre 2 et symétrie I
+--------------------------------------------------------------------------------
+
+On considère la fonction $f : \R^2 \to \R$ définie par
+$$
+	f(x_1, x_2) = \left\{\begin{array}{ll}
+				\frac{x_1^2x_2^2}{x_1^2+x_2^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
+				0 & \text{si $(x_1,x_2) = (0,0)$.}
+			\end{array} \right.
+$$
+
+### Question 1 {.question #dos1-1 .one}
+Montrer que $\partial_1 f$ et $\partial_2 f$ existent en $(0,0)$. Calculer $\partial_1 f(0,0)$ et $\partial_2 f(0,0)$. 
+
+### Question 2 {.question #dos1-2 .one}
+Calculer $\partial_{12} f(0,0)$ et $\partial_{21} f(0,0)$. 
+
+### Question 3 {.question #dos1-3 .one}
+La fonction $f$ est-elle deux fois continûment différentiable en $0$ ?
+
+### Question 4 {.question #dos1-4 .two}
+Est-elle deux fois différentiable en $0$ ?
+
+Différentielle d'ordre 2 et symétrie II
+--------------------------------------------------------------------------------
+
+On considère la fonction $f : \R^2 \to \R$ définie par
+$$
+	f(x_1, x_2) = \left\{\begin{array}{ll}
+				\frac{x_1x_2(x_1^2 -x_2^2)}{x_1^2+x_2^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
+				0 & \text{si $(x_1,x_2) = (0,0)$.}
+			\end{array} \right.
+$$
+
+### Question 1 {.question #dos2-1 .two}
+Montrer que $f$, $\partial_1 f$ et $\partial_2 f$ sont continues sur $\R^2$. 
+
+### Question 2 {.question #dos2-2 .one}
+Calculer $\partial_{12}f(0,0)$ et $\partial_{21} f(0,0)$. Conclure sur la régularité de $f$ en $(0,0)$.
+
+Conditions d'optimalité
+--------------------------------------------------------------------------------
+
+Soient $U$ un ouvert de $\R^n$ et $f : U \to \R$ deux fois différentiable sur $U$.  
+
+### Question 1 {.question #optim-1 .two}
+
+Montrer que si $x^* \in U$ est un minimum local de $f$, alors pour tout $h \in \R^n$,
+$$
+df(x^*) \cdot h = 0 \quad \text{et} \quad d^2 f(x^*)(\cdot h)^2 = h^T \cdot H_f(x^*) \cdot h \geq 0.
+$$
+
+### Question 2 {.question #optim-2 .two}
+
+Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^) \cdot h = 0$ et $d^2 f(x^*) (\cdot h)^2 > 0$ pour tout $h \in \R^n$, alors $x^*$ est un minimum local de $f$. 
+
+On rappelle que pour une matrice A symétrique définie positive, $h^T \cdot A \cdot h \geq \lambda_1 \| x \|^2$, où $\lambda_1 > 0$ est la plus petite valeur propre de $A$. 
+
+### Question 3 {.question #optim-3 .one}
+
+Soit $f : (x_1, x_2) \in \R^2 \to x_1^3 - 12x_1 x_2 + 8x_2^3$. Déterminer les extrema locaux de la fonction $f$. 
+
 Différentiation matricielle
 --------------------------------------------------------------------------------
 
@@ -1720,61 +1783,6 @@ Montrer que l'application $A \mapsto A^{-1}$ est définie dans un voisinage
 ouvert de l'identité, est différentiable en ce point et calculer cette
 différentielle.
 
-Différentielle d'ordre 2 et symétrie I
---------------------------------------------------------------------------------
-
-On considère la fonction $f : \R^2 \to \R$ définie par
-$$
-	f(x_1, x_2) = \left\{\begin{array}{ll}
-				\frac{x_1^2x_2^2}{x_1^2+x_2^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
-				0 & \text{si $(x_1,x_2) = (0,0)$.}
-			\end{array} \right.
-$$
-
-### Question 1 {.question #dos1-1 .one}
-Montrer que $\partial_1 f$ et $\partial_2 f$ existent en $(0,0)$. Calculer $\partial_1 f(0,0)$ et $\partial_2 f(0,0)$. 
-
-### Question 2 {.question #dos1-2 .one}
-Calculer $\partial_{12} f(0,0)$ et $\partial_{21} f(0,0)$. 
-
-### Question 3 {.question #dos1-3 .one}
-La fonction $f$ est-elle deux fois continûment différentiable en $0$ ?
-
-### Question 4 {.question #dos1-4 .two}
-Est-elle deux fois différentiable en $0$ ?
-
-Différentielle d'ordre 2 et symétrie II
---------------------------------------------------------------------------------
-
-On considère la fonction $f : \R^2 \to \R$ définie par
-$$
-	f(x_1, x_2) = \left\{\begin{array}{ll}
-				\frac{x_1x_2(x_1^2 -x_2^2)}{x_1^2+x_2^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
-				0 & \text{si $(x_1,x_2) = (0,0)$.}
-			\end{array} \right.
-$$
-
-### Question 1 {.question #dos2-1 .two}
-Montrer que $f$, $\partial_1 f$ et $\partial_2 f$ sont continues sur $\R^2$. 
-
-### Question 2 {.question #dos2-2 .one}
-Calculer $\partial_{12}f(0,0)$ et $\partial_{21} f(0,0)$. Conclure sur la régularité de $f$ en $(0,0)$.
-
-Conditions d'optimalité
---------------------------------------------------------------------------------
-
-Soient $U$ un ouvert de $\R^n$ et $f : U \to \R$ deux fois différentiable sur $U$.  
-
-### Question 1 {.question #optim-1 .two}
-
-Montrer que si $x^* \in U$ est un minimum local de $f$, alors pour tout $h \in \R^n$,
-$$
-df(x^*) \cdot h = 0 \quad \text{et} \quad d^2 f(x^*)(\cdot h)^2 = h^T \cdot H_f(x^*) \cdot h \geq 0.
-$$
-
-### Question 2 {.question #optim-2 .four}
-
-Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^) \cdot h = 0$ et $d^2 f(x^*) (\cdot h)^2 > 0$ pour tout $h \in \R^n$, alors $x^*$ est un minimum local de $f$. 
 
 Solutions
 ================================================================================
@@ -2166,98 +2174,6 @@ $$
 H_{g \circ f}(x) = J_f(x)^{\top}\cdot H_g(f(x)) \cdot J_f(x) +  \sum_{k=1}^m \partial_k g (f(x)) H_{f_k} (x).
 $$
 
-Différentiation matricielle
---------------------------------------------------------------------------------
-
-### Question 1 {.answer #answer-dm-1}
-Soit $H \in \R^{n\times n}$, telle que
-$$
-H = 
-\left[
-\begin{array}{cccc}
-h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & h_{nn} \\
-\end{array} 
-\right].
-$$
-En développant le déterminant selon la première colonne, on constate
-que
-$$
-\begin{split}
-\det (I+H) &= 
-\left|
-\begin{array}{cccc}
-1+h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & 1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} 
-\right| \\
-&=(1 + h_{11}) 
-\left| \begin{array}{ccc}
-1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots \\
-h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} \right| 
-+ \varepsilon(\|H\|), \\
-\end{split}
-$$
-une relation dont on tire par récurrence que
-$$
-\begin{split}
-\det (I+H) 
-&= \prod_{i = 1}^n (1 + h_{ii}) + \varepsilon(\|H\|)
-=\det I + \sum_{i=1}^n h_{ii} + \varepsilon(\|H\|) \\
-&= \det I + \tr H + \varepsilon(\|H\|).
-\end{split}
-$$
-La différentiel du déterminant existe donc en l'identité et 
-$d\det(I) \cdot H = \tr H$.
-
-### Question 2 {.answer #answer-dm-2}
-Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
-$$
-\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
-$$
-Les deux membres de cette équations sont dérivables par rapport à
-$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
-et l'égalité de ces dérivées fournit
-$$
-\tr A B = \tr B A.
-$$
-
-### Question 3 {.answer #answer-dm-3}
-Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
-est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
-son déterminant est positif ; la matrice $A$ est alors inversible.
-
-Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
-pour être inversible, la formule de Cramer établit
-$$
-A^{-1} = \frac{1}{\det A}  \mathrm{co}(A)^t.
-$$
-Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
-de $A$) est une fonction polynomiale
-des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
-est donc une fonction continûment différentiable des coefficients de $A$
-et donc différentiable en $A=I$.
-Par la règle du produit, chaque coefficient de $A^{-1}$ est 
-donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
-différentiable en $A=I$.
-
-Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
-$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + \varepsilon(\|H\|),$
-l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
-$$
-(I+H)(I + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)) 
-= I + H + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)
-= I,
-$$
-et donc
-$$d \,\mathrm{inv} (I) \cdot H= - H.$$
-
 Différentielle d'ordre 2 et symétrie I
 --------------------------------------------------------------------------------
 
@@ -2357,17 +2273,153 @@ f(x^* + th) = f(x^*) + df(x^*) \cdot th + \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + 
 $$
 avec $\varepsilon_2 (t) \to 0$ quand $t \to 0$. D'après ce qui précède, $df(x^*)\cdot th = 0$, et donc
 $$
-f(x^* + th) - f(x^*) = \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| t \| \geq 0 
+f(x^* + th) - f(x^*) = \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| t \| \geq 0.
 $$
 Diviser par $t^2$ de chaque côté et faire tendre $t\to 0$ donne bien $d^2 f(x^*)(\cdot h)^2 \geq 0$. 
 
 ### Question 2 {.answer #answer-optim-2}
-En reprenant le développement limité à l'ordre deux précédent, il vient
+Le développement limité à l'ordre deux de $f$ en $x^*$ s'écrit
 $$
-f(x^* + h) - f(x^*) = df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2
+f(x^* + h) - f(x^*) = df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2.
 $$
-L'application $d^2 f(x^*)$ étant bilinéaire symétrique définie positive sur un espace de dimension finie, elle est coercive, donc il existe $\alpha > 0$ tel que $d^2 f(x^*) (\cdot h)^2 \geq \alpha \| h \|^2$. Comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \alpha\|h\|^2/2$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \alpha \times \|h\|^2 /2 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
+Par hypothèse, $d^2 f(x^*) (\cdot h)^2 = h^T \cdot H_f (x^*) \cdot h$ avec $H_f (x^*)$ symétrique définie positive. Avec $\lambda_1 > 0$ la plus petite valeur propre de $H_f(x^*)$, on a $d^2 f(x^*) (\cdot h)^2 \geq \lambda_1 \| h \|^2$. Comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \lambda_1\|h\|^2/4$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \lambda_1 \times \|h\|^2 /4 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
 
+### Question 3 {.answer #answer-optim-3}
+La fonction $f$ est deux fois différentiable ; son gradient s'écrit
+$$
+\nabla f(x_1, x_2) = 
+\left[
+\begin{array}{c}
+	3x_1^2 - 12x_2 \\
+	-12x_1 + 24x_2^2
+\end{array}
+\right].
+$$
+
+Il s'annule si et seulement si $(x_1, x_2) = (0,0)$ ou $(2,1)$. Le calcul de la matrice hessienne donne
+
+$$
+H_f(x_1, x_2) = 
+\left[
+\begin{array}{cc}
+	6x_1 & -12 \\
+	-12 & 48x_2 
+\end{array}
+\right].
+$$
+Son évaluation en $(0,0)$ donne
+$$ 
+H_f(0,0) = 
+\left[
+\begin{array}{cc}
+	0 & -12 \\
+	-12 & 0 
+\end{array}
+\right],
+$$ 
+qui n'est pas définie positive. Le point $(0,0)$ n'est donc ni un minimum, ni un maximum local de $f$. En $(2,1)$, 
+$$
+H_f(2,1) = 
+\left[
+\begin{array}{cc}
+	12 & -12 \\
+	-12 & 48 
+\end{array}
+\right].
+$$
+La trace et le déterminant de cette matrice sont positifs : la matrice est donc définie positive, et $(2,1)$ est un minimum local de la fonction $f$. 
+
+Différentiation matricielle
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dm-1}
+Soit $H \in \R^{n\times n}$, telle que
+$$
+H = 
+\left[
+\begin{array}{cccc}
+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & h_{nn} \\
+\end{array} 
+\right].
+$$
+En développant le déterminant selon la première colonne, on constate
+que
+$$
+\begin{split}
+\det (I+H) &= 
+\left|
+\begin{array}{cccc}
+1+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & 1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} 
+\right| \\
+&=(1 + h_{11}) 
+\left| \begin{array}{ccc}
+1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots \\
+h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} \right| 
++ \varepsilon(\|H\|), \\
+\end{split}
+$$
+une relation dont on tire par récurrence que
+$$
+\begin{split}
+\det (I+H) 
+&= \prod_{i = 1}^n (1 + h_{ii}) + \varepsilon(\|H\|)
+=\det I + \sum_{i=1}^n h_{ii} + \varepsilon(\|H\|) \\
+&= \det I + \tr H + \varepsilon(\|H\|).
+\end{split}
+$$
+La différentiel du déterminant existe donc en l'identité et 
+$d\det(I) \cdot H = \tr H$.
+
+### Question 2 {.answer #answer-dm-2}
+Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
+$$
+\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
+$$
+Les deux membres de cette équations sont dérivables par rapport à
+$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
+et l'égalité de ces dérivées fournit
+$$
+\tr A B = \tr B A.
+$$
+
+### Question 3 {.answer #answer-dm-3}
+Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
+est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
+son déterminant est positif ; la matrice $A$ est alors inversible.
+
+Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
+pour être inversible, la formule de Cramer établit
+$$
+A^{-1} = \frac{1}{\det A}  \mathrm{co}(A)^t.
+$$
+Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
+de $A$) est une fonction polynomiale
+des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
+est donc une fonction continûment différentiable des coefficients de $A$
+et donc différentiable en $A=I$.
+Par la règle du produit, chaque coefficient de $A^{-1}$ est 
+donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
+différentiable en $A=I$.
+
+Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
+$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + \varepsilon(\|H\|),$
+l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
+$$
+(I+H)(I + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)) 
+= I + H + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)
+= I,
+$$
+et donc
+$$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
 Références
 ================================================================================
