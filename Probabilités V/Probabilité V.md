@@ -14,6 +14,53 @@
 \newcommand{\cov}{\text{Cov}}
 \renewcommand{\No}{\mathcal{N}}
 
+\newcommand{\zero}{$\mathord{\boldsymbol{\circ}}$}
+\newcommand{\one}{$\mathord{\bullet}$}
+\newcommand{\two}{$\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\three}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+\newcommand{\four}{$\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}\mathord{\bullet}$}
+
+
+
+Objectifs d'apprentissage
+================================================================================
+
+Cette section s'efforce d'expliciter et de hiérarchiser
+les acquis d'apprentissages associés au chapitre. 
+Ces objectifs sont organisés en paliers :
+
+(\zero) Prérequis (\one) Fondamental (\two) Standard (\three) Avancé
+(\four) Expert
+
+Sauf mention particulière, la connaissance des démonstrations du document 
+n'est pas exigible[^hp] 
+
+[^hp]: l'étude des démonstrations du cours peut toutefois 
+contribuer à votre apprentissage, au même titre que la résolution 
+d'exercices.
+
+#### Intégrale de Monte Carlo
+
+- \one connaître le principe de l'intégration par la méthode Monte Carlo
+- \one savoir que cette approche se justifie par la loi des grands nombres
+- \one savoir que l'approximation fournie par le TCL fournit un contrôle de l'erreur
+
+#### Génération de nombres pseudo-aléatoires
+
+- \one connaître le principe de la génération de nombres pseudo-aléatoires par la méthode des congruences
+
+#### Méthodes de simulation de v.a.
+
+- \one connaître et savoir implémenter en python la méthode d'inversion
+- \one connaître et savoir implémenter en python la méthode de rejet
+- \one connaître la méthode de Box-Muller
+- \one connaître et savoir implémenter la simulation de vecteurs gaussien par la méthode de Cholesky
+
+#### Echantillonnage d'importance
+
+- \one connaître la définition de la méthode d'échantillonnage d'importance
+- \one savoir qu'un bon choix de densité instrumentale permet de minimiser la variance d'estimation
+
 
 # Intégrale de Monte-Carlo
 

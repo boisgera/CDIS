@@ -52,6 +52,7 @@ La différentielle $d^3f$ d'ordre $3$ d'une fonction $f: U \subset \R^2\to \R^3$
     associe linéairement à tout vecteur $k$ de $\R^2$ une application qui 
     associe linéairement à tout vecteur $p$ de $\R^2$ un vecteur de $\R^3$.
 
+<!--
 #### Question 4 (réponses multiples)
 Le tenseur de type $(1,1,1)$ défini par $t_{ijk} = 1.0$ :
 
@@ -72,7 +73,9 @@ du tenseur de type $(p,p)$ défini par $\delta_{lm} = 1$ si $l=m$ et $\delta_{lm
 
   - [ ] C : est le tenseur $[\sum_{k} t_{ijk}]_{ij}$.
 
-#### Question 6
+-->
+
+#### Question 4
 Si $f: \R^2 \to \R^4$ est trois fois différentiable, quel est le type du tenseur
 représentant $d^3f(x)$ ?
 
@@ -82,7 +85,7 @@ représentant $d^3f(x)$ ?
 
  - [ ] C : (4, 2, 1).
 
-#### Question 7 (réponses multiples)
+#### Question 5 (réponses multiples)
 Si $f$ est $k$ fois différentiable en $x$,
 
   - [ ] A : les dérivées partielles d'ordre $k$ de $f$ en $x$ existent,
@@ -91,7 +94,7 @@ Si $f$ est $k$ fois différentiable en $x$,
 
   - [ ] C : ces dérivées partielles déterminent $d^k f(x)$ de façon unique.
 
-#### Question 8
+#### Question 6
 Si $f: \R^3 \to \R^3$ est deux fois différentiable, combien y'a-t'il au plus
 de coefficients différents dans le tenseur représentant $d^2f(x)$ ?
 
@@ -101,7 +104,7 @@ de coefficients différents dans le tenseur représentant $d^2f(x)$ ?
 
   - [ ] C : 27.
 
-#### Question 9 (réponses multiples)
+#### Question 7 (réponses multiples)
 Soient $f: \R^2 \to \R$ et $a \in \R^2$ tels que $\partial_{12}f(a) = \partial_{21}f(a)$. Alors $f$ est 
 
   - [ ] deux fois continûment différentiable en $a$,

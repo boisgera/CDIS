@@ -1729,6 +1729,7 @@ On rappelle que pour une matrice A symétrique définie positive, $h^T \cdot A \
 
 Soit $f : (x_1, x_2) \in \R^2 \to x_1^3 - 12x_1 x_2 + 8x_2^3$. Déterminer les extrema locaux de la fonction $f$. 
 
+
 Différentiation matricielle
 --------------------------------------------------------------------------------
 
@@ -2328,6 +2329,98 @@ H_f(2,1) =
 \right].
 $$
 La trace et le déterminant de cette matrice sont positifs : la matrice est donc définie positive, et $(2,1)$ est un minimum local de la fonction $f$. 
+
+Différentiation matricielle
+--------------------------------------------------------------------------------
+
+### Question 1 {.answer #answer-dm-1}
+Soit $H \in \R^{n\times n}$, telle que
+$$
+H = 
+\left[
+\begin{array}{cccc}
+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & h_{nn} \\
+\end{array} 
+\right].
+$$
+En développant le déterminant selon la première colonne, on constate
+que
+$$
+\begin{split}
+\det (I+H) &= 
+\left|
+\begin{array}{cccc}
+1+h_{11} & h_{12} & \hdots & h_{1n} \\
+h_{21} & 1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} 
+\right| \\
+&=(1 + h_{11}) 
+\left| \begin{array}{ccc}
+1+h_{22} & \hdots & h_{2n} \\
+\vdots & \vdots & \vdots \\
+h_{n2} & \hdots & 1+h_{nn} \\
+\end{array} \right| 
++ \varepsilon(\|H\|), \\
+\end{split}
+$$
+une relation dont on tire par récurrence que
+$$
+\begin{split}
+\det (I+H) 
+&= \prod_{i = 1}^n (1 + h_{ii}) + \varepsilon(\|H\|)
+=\det I + \sum_{i=1}^n h_{ii} + \varepsilon(\|H\|) \\
+&= \det I + \tr H + \varepsilon(\|H\|).
+\end{split}
+$$
+La différentiel du déterminant existe donc en l'identité et 
+$d\det(I) \cdot H = \tr H$.
+
+### Question 2 {.answer #answer-dm-2}
+Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
+$$
+\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
+$$
+Les deux membres de cette équations sont dérivables par rapport à
+$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
+et l'égalité de ces dérivées fournit
+$$
+\tr A B = \tr B A.
+$$
+
+### Question 3 {.answer #answer-dm-3}
+Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
+est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
+son déterminant est positif ; la matrice $A$ est alors inversible.
+
+Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
+pour être inversible, la formule de Cramer établit
+$$
+A^{-1} = \frac{1}{\det A}  \mathrm{co}(A)^t.
+$$
+Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
+de $A$) est une fonction polynomiale
+des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
+est donc une fonction continûment différentiable des coefficients de $A$
+et donc différentiable en $A=I$.
+Par la règle du produit, chaque coefficient de $A^{-1}$ est 
+donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
+différentiable en $A=I$.
+
+Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
+$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + \varepsilon(\|H\|),$
+l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
+$$
+(I+H)(I + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)) 
+= I + H + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)
+= I,
+$$
+et donc
+$$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
 Différentiation matricielle
 --------------------------------------------------------------------------------
