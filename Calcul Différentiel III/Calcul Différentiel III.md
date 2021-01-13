@@ -1710,6 +1710,8 @@ Calculer $\partial_{12}f(0,0)$ et $\partial_{21} f(0,0)$. Conclure sur la régul
 Conditions d'optimalité
 --------------------------------------------------------------------------------
 
+Pour cet exercice, on rappelle le théorème spectral : toute matrice symétrique de $\R^{n\times n}$ est diagonalisable dans une base orthonormée et ses valeurs propres sont réelles. En d'autres termes, pour tout $H\in \R^{n\times n}$ symétrique, il existe une base orthonormée $(e_i)_{1\leq i\leq n}$ de $\R^n$ telle que pour tout $i\in \{1,\ldots, n\}$, $H \cdot e_i = \lambda_i e_i$ avec $(\lambda_i)_{1\leq i\leq n}$ les valeurs propres réelles de $H$. 
+
 Soient $U$ un ouvert de $\R^n$ et $f : U \to \R$ deux fois différentiable sur $U$.  
 
 ### Question 1 {.question #optim-1 .two}
@@ -1719,11 +1721,12 @@ $$
 df(x^*) \cdot h = 0 \quad \text{et} \quad d^2 f(x^*)(\cdot h)^2 = h^T \cdot H_f(x^*) \cdot h \geq 0.
 $$
 
-### Question 2 {.question #optim-2 .two}
+### Question 2 {.question #optim-2 .three}
 
 Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^*) \cdot h = 0$ et $d^2 f(x^* ) (\cdot h)^2 > 0$ pour tout $h \in \R^n\setminus \{0\}$, alors $x^*$ est un minimum local de $f$. 
 
-On rappelle que pour une matrice A symétrique définie positive, $h^T \cdot A \cdot h \geq \lambda_1 \| x \|^2$, où $\lambda_1 > 0$ est la plus petite valeur propre de $A$. 
+<!-- On rappelle que pour une matrice A symétrique définie positive, $h^T \cdot A \cdot h \geq \lambda_1 \| x \|^2$, où $\lambda_1 > 0$ est la plus petite valeur propre de $A$. 
+-->
 
 ### Question 3 {.question #optim-3 .one}
 
@@ -2295,9 +2298,19 @@ Pour $h\in \R^n$, le développement limité à l'ordre deux de $f$ en $x^*$ s'é
 f(x^* + h) - f(x^*) &= df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2 \\
  &= \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2 .
 \end{align*}
-Par hypothèse, $d^2 f(x^*) (\cdot h)^2 = h^T \cdot H_f (x^*) \cdot h >0$ pour tout $h\neq 0$ donc $H_f (x^*)$ est symétrique définie positive. Avec $\lambda_1 > 0$ la plus petite valeur propre de $H_f(x^*)$, on a donc $d^2 f(x^*) (\cdot h)^2 \geq \lambda_1 \| h \|^2$. Comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \lambda_1\|h\|^2/4$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \lambda_1 \times \|h\|^2 /4 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
+Par hypothèse, $d^2 f(x^*) (\cdot h)^2 = h^T \cdot H_f (x^*) \cdot h >0$ pour tout $h\neq 0$. Or, la matrice hessienne $H_f (x^*)$ est symétrique, donc par le théorème spectral, ses valeurs propres sont réelles et il existe une base orthonormée $(e_i)$ de vecteurs propres de $H_f (x^*)$. Tout $h\in \R^n$ se décompose donc sous la forme $h=\sum_{i=1}^n h_i e_i$ et  $H\cdot h=\sum_{i=1}^n \lambda_ih_i e_i$. On a donc
+$$
+h^T \cdot H_f (x^*) \cdot h = \sum_{i=1}^n h_i^2 \lambda_i  \ .
+$$
+En appliquant cette formule au vecteurs $e_i$ de la base, on déduit que toutes les valeurs propres $\lambda_i$ doivent être strictement positives. De plus, en notant $\lambda_m>0$ la plus petite valeur propre, $h^T \cdot H_f (x^*) \cdot h \geq \lambda_m \| h \|^2$. Or, comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \lambda_m\|h\|^2/4$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \lambda_1 \times \|h\|^2 /4 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
 
 ### Question 3 {.answer #answer-optim-3}
+Tout d'abord notons que $x^*$ est un maximum local de $f$ si et seulement si $x^*$ est un minimum local de $-f$. On en déduit donc que si $x^*$ est un maximum de $f$ alors nécessairement
+$$
+df(x^*) \cdot h = 0 \quad \text{et} \quad d^2 f(x^*)(\cdot h)^2 = h^T \cdot H_f(x^*) \cdot h \leq 0
+$$
+pour tout $h \in \R^n$, et que réciproquement, si $df(x^*) \cdot h = 0$ et $d^2 f(x^* ) (\cdot h)^2 < 0$ pour tout $h \in \R^n\setminus \{0\}$, alors $x^*$ est un maximum local de $f$.
+
 La fonction $f$ est deux fois différentiable ; son gradient s'écrit
 $$
 \nabla f(x_1, x_2) = 
@@ -2328,9 +2341,9 @@ H_f(0,0) =
 	0 & -12 \\
 	-12 & 0 
 \end{array}
-\right],
+\right] .
 $$ 
-qui n'est pas définie positive. Le point $(0,0)$ n'est donc ni un minimum, ni un maximum local de $f$. En $(2,1)$, 
+Pour $h=(1,1)$, on a $h^\top H_f(0,0) h = -24$ et pour $h=(-1,1)$, on a $h^\top H_f(0,0) h = 24$. Donc aucune des deux conditions nécessaires d'extrema n'est vérifiée et le point $(0,0)$ n'est donc ni un minimum, ni un maximum local de $f$. En $(2,1)$, 
 $$
 H_f(2,1) = 
 \left[
@@ -2340,7 +2353,11 @@ H_f(2,1) =
 \end{array}
 \right].
 $$
-La trace et le déterminant de cette matrice sont positifs : la matrice est donc définie positive, et $(2,1)$ est un minimum local de la fonction $f$. 
+La trace et le déterminant de cette matrice, étant respectivement la somme et le produit des valeurs propres, sont positifs donc $H_f(2,1)$ a ses valeurs propres strictement positives. Comme vu à la question précédente, en appliquant le théorème spectral, on a pour tout $h\in \R^2\setminus \{0\}$,   
+$$
+h^T \cdot H_f (2,1) \cdot h = h_1^2 \lambda_1 + h_2^2 \lambda_2 > 0 \ .
+$$
+La condition suffisante de la Question 2 est vérifiée donc $(2,1)$ est un minimum local de la fonction $f$. 
 
 Différentiation matricielle
 --------------------------------------------------------------------------------
