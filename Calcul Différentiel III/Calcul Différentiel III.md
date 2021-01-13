@@ -1682,7 +1682,7 @@ $$
 Montrer que $\partial_1 f$ et $\partial_2 f$ existent en $(0,0)$. Calculer $\partial_1 f(0,0)$ et $\partial_2 f(0,0)$. 
 
 ### Question 2 {.question #dos1-2 .one}
-Calculer $\partial_{12} f(0,0)$ et $\partial_{21} f(0,0)$. 
+Montrer que $\partial_{12} f(0,0)$ et $\partial_{21} f(0,0)$ existent et sont telles que $\partial_{12} f(0,0)=\partial_{21} f(0,0)$. 
 
 ### Question 3 {.question #dos1-3 .one}
 La fonction $f$ est-elle deux fois continûment différentiable en $0$ ?
@@ -1721,7 +1721,7 @@ $$
 
 ### Question 2 {.question #optim-2 .two}
 
-Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^) \cdot h = 0$ et $d^2 f(x^*) (\cdot h)^2 > 0$ pour tout $h \in \R^n$, alors $x^*$ est un minimum local de $f$. 
+Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^*) \cdot h = 0$ et $d^2 f(x^* ) (\cdot h)^2 > 0$ pour tout $h \in \R^n\setminus \{0\}$, alors $x^*$ est un minimum local de $f$. 
 
 On rappelle que pour une matrice A symétrique définie positive, $h^T \cdot A \cdot h \geq \lambda_1 \| x \|^2$, où $\lambda_1 > 0$ est la plus petite valeur propre de $A$. 
 
@@ -2189,10 +2189,21 @@ $$
 Par définition de la dérivée partielle, cette limite est égale à $\partial_1 f(0,0)$. On montre de même que $\partial_2 f$ existe en $(0,0)$, et $\partial_1 f(0,0) = \partial_2 f(0,0) = 0$. 
 
 ### Question 2 {.answer #answer-dos1-2}
-Pour $(x_1, x_2) \neq (0,0)$, le calcul de $\partial_1 f$ donne
-$$\partial_1 f(x_1, x_2) = \frac{2x_1 x_2^4}{\left(x_1^2+ x_2^2\right)^2}.
-$$ 
-Comme $\partial_1 f(0, h) = 0$, le raisonnement précédent s'applique, et $\partial_{21} f(0,0) = 0$. Et de même, $\partial_{12} f(0,0) = 0$. 
+Le calcul de $\partial_1 f$ pour $(x_1, x_2) \neq (0,0)$ donne
+$$
+\partial_1 f(x_1, x_2) = \left\{\begin{array}{ll}
+				\frac{2x_1 x_2^4}{\left(x_1^2+ x_2^2\right)^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
+				0 & \text{si $(x_1,x_2) = (0,0)$.}
+			\end{array} \right.
+$$
+Comme $\partial_1 f(0, h) = 0$, le raisonnement précédent s'applique, et $\partial_{21} f(0,0) = 0$. Et de même, 
+$$
+\partial_2 f(x_1, x_2) = \left\{\begin{array}{ll}
+				\frac{2x_1^4 x_2}{\left(x_1^2+ x_2^2\right)^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
+				0 & \text{si $(x_1,x_2) = (0,0)$.}
+			\end{array} \right.
+$$
+donc $\partial_2 f(h, 0) = 0$ et donc $\partial_{12} f(0,0) = 0$. 
 
 ### Question 3 {.answer #answer-dos1-3}
 Pour $(x_1, x_2) \neq (0,0)$, le calcul de $\partial_{21}f$ donne  
@@ -2208,19 +2219,19 @@ Par conséquent, $f$ n'est pas deux fois continûment différentiable en $(0,0)$
 ### Question 4 {.answer #answer-dos1-4}
 Supposons par l'absurde que $f$ est deux fois différentiable en $(0,0)$. Alors $\partial_1 f$ est différentiable en $(0,0)$. En ce point, son développement limité s'écrit, avec $h = (h_1, h_2)$, 
 $$
-			\partial_1 f(h_1, h_2) = \partial_1 f(0,0) + h_1\partial_{21} f(0,0) + h_2 \partial_{11} f(0,0) + \varepsilon(h) \times \| h \|, 
+			\partial_1 f(h_1, h_2) = \partial_1 f(0,0) + h_1\partial_{11} f(0,0) + h_2 \partial_{21} f(0,0) + \varepsilon(h) \times \| h \|, 
 $$
-avec $\varepsilon(h) \to 0$ quand $h \to 0$. D'après la question 2, $\partial_{21} f(0,0)$ ; on montre de la même manière que $\partial_{11} f(0,0) = 0$. Le développement limité de $\partial_1 f$ en $(0,0)$ s'écrit alors simplement $\partial_1 f(h) = \varepsilon (h) \|h\|$. Ainsi, $\varepsilon(h)$ vérifie
+avec $\varepsilon(h) \to 0$ quand $h \to 0$. D'après la question 2, $\partial_{21} f(0,0)=0$ ; on montre de la même manière que $\partial_{11} f(0,0) = 0$. Le développement limité de $\partial_1 f$ en $(0,0)$ s'écrit alors simplement $\partial_1 f(h) = \varepsilon (h) \|h\|$. Ainsi, $\varepsilon(h)$ vérifie
 $$
-\varepsilon(h) = \frac{\partial_1 f(h_1, h_2)}{\|h\|} = \frac{2x_1 x_2^4}{(h_1^2 + h_2^2)^{5/2}}. 
+\varepsilon(h) = \frac{\partial_1 f(h_1, h_2)}{\|h\|} = \frac{2h_1 h_2^4}{(h_1^2 + h_2^2)^{5/2}}. 
 $$
-Avec $h = (h_1, h_1)$, $\varepsilon$ vérifie $\varepsilon(h) = 1 \neq 0$, ce qui est absurde puisque $\varepsilon(h) \to 0$ lorsque $h \to 0$. La fonction $f$ n'est donc pas deux fois différentiable en $(0,0)$, même si $\partial_{21} f(0,0) = \partial_{12}f(0,0)$.
+Avec $h = (h_1, h_1)$, $\varepsilon$ vérifie $\varepsilon(h) = 1/2^{\frac{3}{2}} \neq 0$, ce qui est absurde puisque $\varepsilon(h) \to 0$ lorsque $h \to 0$. La fonction $f$ n'est donc pas deux fois différentiable en $(0,0)$, même si $\partial_{21} f(0,0) = \partial_{12}f(0,0)$.
 
 Différentielle d'ordre 2 et symétrie II
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dos2-1}
-D'après l'inégalité de Young, pour $(x_1, x_2) \neq (0,0)$, $\lvert x_1 x_2 \rvert \leq (x_1^2 + x_2^2)/2$. Donc
+D'après l'inégalité de Young,  $\lvert x_1 x_2 \rvert \leq (x_1^2 + x_2^2)/2$. Donc pour $(x_1, x_2) \neq (0,0)$,
 $$
 \lvert f(x_1, x_2) \rvert \leq \frac{1}{2} \lvert x_1^2 - x_2^2 \rvert.
 $$
@@ -2263,27 +2274,28 @@ f(x^* + th) = f(x^*) + df(x^*) \cdot th + \varepsilon_1(t) \|th \|.
 $$
 avec $\varepsilon_1 (t) \to 0$ quand $t \to 0$. La fonction $f$ admet un minimum local en $x^*$, donc il existe un voisinage ouvert $V$ de $x^*$ tel que pour $x \in V$, $f(x) \geq f(x^*)$. De plus, pour $t > 0$ suffisamment petit, $x^* + th \in V$, d'où
 $$ 
-f(x^* + th) - f(x^*) = df(x^*) \cdot th + \varepsilon_1(t) \geq 0.
+f(x^* + th) - f(x^*) = df(x^*) \cdot th + \varepsilon_1(t)\|th \| \geq 0.
 $$
-En divisant de chaque côté par $t$ et en faisant tendre $t > 0$ vers $0$, on obtient
-$df(x^*) \cdot h \geq 0$. Cette inégalité est aussi vérifiée par $-h$, et comme $df(x^*) \cdot -h = - df(x^*) \cdot h$, on obtient $df(x^*) \cdot h = 0$. 
+En divisant par $t$ et en faisant tendre $t > 0$ vers $0$, on obtient
+$df(x^*) \cdot h \geq 0$. Cette inégalité est aussi vérifiée par $-h$, et comme $df(x^*) \cdot -h = - df(x^*) \cdot h$, on obtient aussi que $-df(x^*) \cdot h \geq 0$, et donc $df(x^*) \cdot h = 0$. 
 
 Le développement limité à l'ordre deux de $f$ en $x^*$ s'écrit
 $$ 
 f(x^* + th) = f(x^*) + df(x^*) \cdot th + \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| th \|^2,
 $$
-avec $\varepsilon_2 (t) \to 0$ quand $t \to 0$. D'après ce qui précède, $df(x^*)\cdot th = 0$, et donc
+avec $\varepsilon_2 (t) \to 0$ quand $t \to 0$. D'après ce qui précède, $df(x^*)\cdot th = 0$, et donc pour $t$ suffisamment petit
 $$
 f(x^* + th) - f(x^*) = \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| t \| \geq 0.
 $$
-Diviser par $t^2$ de chaque côté et faire tendre $t\to 0$ donne bien $d^2 f(x^*)(\cdot h)^2 \geq 0$. 
+Diviser par $t^2$ et faire tendre $t\to 0$ donne bien $d^2 f(x^*)(\cdot h)^2 \geq 0$. 
 
 ### Question 2 {.answer #answer-optim-2}
-Le développement limité à l'ordre deux de $f$ en $x^*$ s'écrit
-$$
-f(x^* + h) - f(x^*) = df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2.
-$$
-Par hypothèse, $d^2 f(x^*) (\cdot h)^2 = h^T \cdot H_f (x^*) \cdot h$ avec $H_f (x^*)$ symétrique définie positive. Avec $\lambda_1 > 0$ la plus petite valeur propre de $H_f(x^*)$, on a $d^2 f(x^*) (\cdot h)^2 \geq \lambda_1 \| h \|^2$. Comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \lambda_1\|h\|^2/4$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \lambda_1 \times \|h\|^2 /4 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
+Pour $h\in \R^n$, le développement limité à l'ordre deux de $f$ en $x^*$ s'écrit
+\begin{align*}
+f(x^* + h) - f(x^*) &= df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2 \\
+ &= \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2 .
+\end{align*}
+Par hypothèse, $d^2 f(x^*) (\cdot h)^2 = h^T \cdot H_f (x^*) \cdot h >0$ pour tout $h\neq 0$ donc $H_f (x^*)$ est symétrique définie positive. Avec $\lambda_1 > 0$ la plus petite valeur propre de $H_f(x^*)$, on a donc $d^2 f(x^*) (\cdot h)^2 \geq \lambda_1 \| h \|^2$. Comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \lambda_1\|h\|^2/4$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \lambda_1 \times \|h\|^2 /4 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
 
 ### Question 3 {.answer #answer-optim-3}
 La fonction $f$ est deux fois différentiable ; son gradient s'écrit
@@ -2422,97 +2434,7 @@ $$
 et donc
 $$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
-Différentiation matricielle
---------------------------------------------------------------------------------
 
-### Question 1 {.answer #answer-dm-1}
-Soit $H \in \R^{n\times n}$, telle que
-$$
-H = 
-\left[
-\begin{array}{cccc}
-h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & h_{nn} \\
-\end{array} 
-\right].
-$$
-En développant le déterminant selon la première colonne, on constate
-que
-$$
-\begin{split}
-\det (I+H) &= 
-\left|
-\begin{array}{cccc}
-1+h_{11} & h_{12} & \hdots & h_{1n} \\
-h_{21} & 1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots & \vdots \\
-h_{n1} & h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} 
-\right| \\
-&=(1 + h_{11}) 
-\left| \begin{array}{ccc}
-1+h_{22} & \hdots & h_{2n} \\
-\vdots & \vdots & \vdots \\
-h_{n2} & \hdots & 1+h_{nn} \\
-\end{array} \right| 
-+ \varepsilon(\|H\|), \\
-\end{split}
-$$
-une relation dont on tire par récurrence que
-$$
-\begin{split}
-\det (I+H) 
-&= \prod_{i = 1}^n (1 + h_{ii}) + \varepsilon(\|H\|)
-=\det I + \sum_{i=1}^n h_{ii} + \varepsilon(\|H\|) \\
-&= \det I + \tr H + \varepsilon(\|H\|).
-\end{split}
-$$
-La différentiel du déterminant existe donc en l'identité et 
-$d\det(I) \cdot H = \tr H$.
-
-### Question 2 {.answer #answer-dm-2}
-Pour tout réel $\varepsilon$ et $A$, $B$ matrices carrées de même taille, on a
-$$
-\det (I + \varepsilon A B) = \det (I + \varepsilon B A).
-$$
-Les deux membres de cette équations sont dérivables par rapport à
-$\varepsilon$ en $0$ par la règle de différentiation en chaîne 
-et l'égalité de ces dérivées fournit
-$$
-\tr A B = \tr B A.
-$$
-
-### Question 3 {.answer #answer-dm-3}
-Le déterminant étant une application continue, si $A \in \R^{n\times n}$ 
-est suffisamment proche de l'identité -- dont le déterminant vaut $1$ --
-son déterminant est positif ; la matrice $A$ est alors inversible.
-
-Quand la matrice $A \in \R^{n \times n}$ est suffisamment proche de l'identité 
-pour être inversible, la formule de Cramer établit
-$$
-A^{-1} = \frac{1}{\det A}  \mathrm{co}(A)^t.
-$$
-Chaque coefficient de $\mathrm{co}(A)^t$ (la transposée de la comatrice
-de $A$) est une fonction polynomiale
-des coefficients $a_{ij}$ de $A$ ; chaque coefficient de $\mathrm{co}(A)^t$
-est donc une fonction continûment différentiable des coefficients de $A$
-et donc différentiable en $A=I$.
-Par la règle du produit, chaque coefficient de $A^{-1}$ est 
-donc différentiable en $A=I$ ; l'application $A \mapsto A^{-1}$ est donc
-différentiable en $A=I$.
-
-Notons $\mathrm{inv}(A) = A^{-1}$ ; comme 
-$\mathrm{inv}(I+H) = I + d \, \mathrm{inv}(I) \cdot H + \varepsilon(\|H\|),$
-l'identité $(I+ H) (I + H)^{-1} = I$ fournit :
-$$
-(I+H)(I + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)) 
-= I + H + d\,\mathrm{inv}(I) \cdot H + \varepsilon(\|H\|)
-= I,
-$$
-et donc
-$$d \,\mathrm{inv} (I) \cdot H= - H.$$
 
 Références
 ================================================================================
