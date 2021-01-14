@@ -37,6 +37,28 @@ peut-on déterminer $df(x) \cdot h_1 \cdot h_2$ pour tout $h_1, h_2 \in \R^n$ ?
   - [ ] B : non.
 
 #### Question 3
+Si $f: \R^3 \to \R^3$ est deux fois différentiable, combien y'a-t'il au plus
+de coefficients différents dans le tenseur représentant $d^2f(x)$ ?
+
+  - [ ] A : 9,
+
+  - [ ] B : 18,
+
+  - [ ] C : 27.
+
+#### Question 4 (réponses multiples)
+Soient $f: \R^2 \to \R$ et $a \in \R^2$ tels que $\partial_{12}f(a) = \partial_{21}f(a)$. Alors $f$ est 
+
+  - [ ] deux fois continûment différentiable en $a$,
+
+  - [ ] deux fois différentiable en $a$,
+
+  - [ ] différentiable en $a$,
+
+  - [ ] continue en $a$.
+
+
+#### Question 5
 La différentielle $d^3f$ d'ordre $3$ d'une fonction $f: U \subset \R^2\to \R^3$
 
   - [ ] A : associe linéairement à tout vecteur $h$ de $\R^2$ une application qui 
@@ -75,7 +97,7 @@ du tenseur de type $(p,p)$ défini par $\delta_{lm} = 1$ si $l=m$ et $\delta_{lm
 
 -->
 
-#### Question 4
+#### Question 6
 Si $f: \R^2 \to \R^4$ est trois fois différentiable, quel est le type du tenseur
 représentant $d^3f(x)$ ?
 
@@ -85,7 +107,7 @@ représentant $d^3f(x)$ ?
 
  - [ ] C : (4, 2, 1).
 
-#### Question 5 (réponses multiples)
+#### Question 7 (réponses multiples)
 Si $f$ est $k$ fois différentiable en $x$,
 
   - [ ] A : les dérivées partielles d'ordre $k$ de $f$ en $x$ existent,
@@ -94,26 +116,6 @@ Si $f$ est $k$ fois différentiable en $x$,
 
   - [ ] C : ces dérivées partielles déterminent $d^k f(x)$ de façon unique.
 
-#### Question 6
-Si $f: \R^3 \to \R^3$ est deux fois différentiable, combien y'a-t'il au plus
-de coefficients différents dans le tenseur représentant $d^2f(x)$ ?
-
-  - [ ] A : 9,
-
-  - [ ] B : 18,
-
-  - [ ] C : 27.
-
-#### Question 7 (réponses multiples)
-Soient $f: \R^2 \to \R$ et $a \in \R^2$ tels que $\partial_{12}f(a) = \partial_{21}f(a)$. Alors $f$ est 
-
-  - [ ] deux fois continûment différentiable en $a$,
-
-  - [ ] deux fois différentiable en $a$,
-
-  - [ ] différentiable en $a$,
-
-  - [ ] continue en $a$.
 
 
 
