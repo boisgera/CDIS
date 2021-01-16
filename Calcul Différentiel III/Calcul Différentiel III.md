@@ -1813,7 +1813,7 @@ H_f(x) = J_{\nabla f} (x_1, x_2) =
 \left[ 
 \begin{array}{cc} 
 0 & 2x_2 \\
-2x_2 & x_1 x_2 \\
+2x_2 & 2 x_1 \\
 \end{array}\right].
 $$
 
