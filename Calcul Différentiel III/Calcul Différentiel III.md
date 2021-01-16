@@ -399,7 +399,7 @@ scalaires ou vectorielles.
         return J_f
 
 Autograd permet également le calcul des dérivées partielles d'ordre supérieur.
-Concrêtement, on peut appliquer à nouveau un opérateur différentiel sur une 
+Concrètement, on peut appliquer à nouveau un opérateur différentiel sur une 
 fonction qui est issue d'un calcul fait par autograd. L'implémentation de la
 fonction qui calcule la matrice hessienne d'une fonction scalaire est donc 
 particulièrement simple :
@@ -909,7 +909,7 @@ SyntaxError: invalid syntax
 ### Applications linéaires d'ordre supérieur {.remark}
 
 La raison d'être des matrices de $\R^{m \times n}$ est
-de représenter concrêtement les applications linéaires de $\R^n \to \R^m$, 
+de représenter concrètement les applications linéaires de $\R^n \to \R^m$, 
 dont l'espace est noté $\mathcal{L}(\R^n, \R^m)$.
 Si l'on désigne par $A$ une telle 
 application linéaire et par $[a_{ij}]_{ij}$ la matrice associée,
@@ -1153,7 +1153,7 @@ $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m,
 $$
 chaque application dans la chaîne étant linéaire. La différentielle
-$d^k f(x)$ peut donc être représentée concrêtement par un tenseur $T$ d'ordre 
+$d^k f(x)$ peut donc être représentée concrètement par un tenseur $T$ d'ordre 
 $k+1$ et de type $(m, n, \dots, n)$ :
 $$
 T_{ji_1 \dots i_{k}} := 
