@@ -1917,7 +1917,7 @@ $x \in U$. On a
 + (\partial^2_{31} f_2 - \partial^2_{13} f_2)(x),
 \end{align*}
 et donc $\mathrm{div} \, (\mathrm{rot} \, f)(x) = 0$ 
-[par symmétrie de la différentielle d'ordre 2](#SD2).
+[par symétrie de la différentielle d'ordre 2](#SD2).
 On a également
 \begin{align*}
 \mathrm{rot} \, \nabla g(x) &:= \left[
@@ -1936,7 +1936,7 @@ On a également
 \end{array}
 \right]\\
 \end{align*}
-et donc -- à nouveau [par symmétrie de la différentielle d'ordre 2](#SD2) --
+et donc -- à nouveau [par symétrie de la différentielle d'ordre 2](#SD2) --
 on obtient $\mathrm{rot} \, \nabla g(x)=0$
 
 ### Gradient unitaire {.answer #answer-gradient-unitaire}
@@ -1949,7 +1949,7 @@ $$
 \partial_j \left( \sum_i \partial_i f^2 \right) =  2 \sum_i {\partial^2_{ji} f \times \partial_i f} = 
 2 H_f^{\top} \cdot \nabla f = 0.
 $$
-Le résultat $H_f \cdot \nabla f = 0$ s'en déduit donc [par symmétrie de la différentielle d'ordre 2](#SD2).
+Le résultat $H_f \cdot \nabla f = 0$ s'en déduit donc [par symétrie de la différentielle d'ordre 2](#SD2).
 
 
 ### Accroissements finis d'ordre 2 {.answer #answer-maj2}
