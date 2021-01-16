@@ -1998,7 +1998,7 @@ Puis,
 
 Et enfin
 \begin{align*}
-&\partial^3_{111} f(x_1, x_2) = \partial_1 (\partial^2_{11} f)(x_1, x_2) = \partial_1 (12 x_1^2+24 x_1 x_2) = 24 x_1 + 24, \\
+&\partial^3_{111} f(x_1, x_2) = \partial_1 (\partial^2_{11} f)(x_1, x_2) = \partial_1 (12 x_1^2+24 x_1 x_2) = 24 x_1 + 24 x_2, \\
 &\partial^3_{112} f(x_1, x_2) = \partial_1 (\partial^2_{12} f)(x_1, x_2) = \partial_1 (12 x_1^2)  =  24 x_1,\\
 &\partial^3_{121} f(x_1, x_2) = \partial_1 (\partial^2_{21} f)(x_1, x_2) = \partial_1 (12 x_1^2)  = 24 x_1,\\
 &\partial^3_{122} f(x_1, x_2) = \partial_1 (\partial^2_{22} f)(x_1, x_2) = \partial_1 (0) =0,\\
