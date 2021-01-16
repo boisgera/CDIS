@@ -1682,7 +1682,7 @@ $$
 Montrer que $\partial_1 f$ et $\partial_2 f$ existent en $(0,0)$. Calculer $\partial_1 f(0,0)$ et $\partial_2 f(0,0)$. 
 
 ### Question 2 {.question #dos1-2 .one}
-Calculer $\partial_{12} f(0,0)$ et $\partial_{21} f(0,0)$. 
+Montrer que $\partial_{12} f(0,0)$ et $\partial_{21} f(0,0)$ existent et sont telles que $\partial_{12} f(0,0)=\partial_{21} f(0,0)$. 
 
 ### Question 3 {.question #dos1-3 .one}
 La fonction $f$ est-elle deux fois continûment différentiable en $0$ ?
@@ -1710,6 +1710,8 @@ Calculer $\partial_{12}f(0,0)$ et $\partial_{21} f(0,0)$. Conclure sur la régul
 Conditions d'optimalité
 --------------------------------------------------------------------------------
 
+Pour cet exercice, on rappelle le théorème spectral : toute matrice symétrique de $\R^{n\times n}$ est diagonalisable dans une base orthonormée et ses valeurs propres sont réelles. En d'autres termes, pour tout $H\in \R^{n\times n}$ symétrique, il existe une base orthonormée $(e_i)_{1\leq i\leq n}$ de $\R^n$ telle que pour tout $i\in \{1,\ldots, n\}$, $H \cdot e_i = \lambda_i e_i$ avec $(\lambda_i)_{1\leq i\leq n}$ les valeurs propres réelles de $H$. 
+
 Soient $U$ un ouvert de $\R^n$ et $f : U \to \R$ deux fois différentiable sur $U$.  
 
 ### Question 1 {.question #optim-1 .two}
@@ -1719,9 +1721,16 @@ $$
 df(x^*) \cdot h = 0 \quad \text{et} \quad d^2 f(x^*)(\cdot h)^2 = h^T \cdot H_f(x^*) \cdot h \geq 0.
 $$
 
-### Question 2 {.question #optim-2 .four}
+### Question 2 {.question #optim-2 .three}
 
-Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^) \cdot h = 0$ et $d^2 f(x^*) (\cdot h)^2 > 0$ pour tout $h \in \R^n$, alors $x^*$ est un minimum local de $f$. 
+Montrer que si, en $x^* \in U$, $f$ vérifie $df(x^*) \cdot h = 0$ et $d^2 f(x^* ) (\cdot h)^2 > 0$ pour tout $h \in \R^n\setminus \{0\}$, alors $x^*$ est un minimum local de $f$. 
+
+<!-- On rappelle que pour une matrice A symétrique définie positive, $h^T \cdot A \cdot h \geq \lambda_1 \| x \|^2$, où $\lambda_1 > 0$ est la plus petite valeur propre de $A$. 
+-->
+
+### Question 3 {.question #optim-3 .one}
+
+Soit $f : (x_1, x_2) \in \R^2 \to x_1^3 - 12x_1 x_2 + 8x_2^3$. Déterminer les extrema locaux de la fonction $f$. 
 
 
 Différentiation matricielle
@@ -2183,10 +2192,21 @@ $$
 Par définition de la dérivée partielle, cette limite est égale à $\partial_1 f(0,0)$. On montre de même que $\partial_2 f$ existe en $(0,0)$, et $\partial_1 f(0,0) = \partial_2 f(0,0) = 0$. 
 
 ### Question 2 {.answer #answer-dos1-2}
-Pour $(x_1, x_2) \neq (0,0)$, le calcul de $\partial_1 f$ donne
-$$\partial_1 f(x_1, x_2) = \frac{2x_1 x_2^4}{\left(x_1^2+ x_2^2\right)^2}.
-$$ 
-Comme $\partial_1 f(0, h) = 0$, le raisonnement précédent s'applique, et $\partial_{21} f(0,0) = 0$. Et de même, $\partial_{12} f(0,0) = 0$. 
+Le calcul de $\partial_1 f$ pour $(x_1, x_2) \neq (0,0)$ donne
+$$
+\partial_1 f(x_1, x_2) = \left\{\begin{array}{ll}
+				\frac{2x_1 x_2^4}{\left(x_1^2+ x_2^2\right)^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
+				0 & \text{si $(x_1,x_2) = (0,0)$.}
+			\end{array} \right.
+$$
+Comme $\partial_1 f(0, h) = 0$, le raisonnement précédent s'applique, et $\partial_{21} f(0,0) = 0$. Et de même, 
+$$
+\partial_2 f(x_1, x_2) = \left\{\begin{array}{ll}
+				\frac{2x_1^4 x_2}{\left(x_1^2+ x_2^2\right)^2} & \text{si $(x_1 ,x_2) \neq (0,0)$} \\
+				0 & \text{si $(x_1,x_2) = (0,0)$.}
+			\end{array} \right.
+$$
+donc $\partial_2 f(h, 0) = 0$ et donc $\partial_{12} f(0,0) = 0$. 
 
 ### Question 3 {.answer #answer-dos1-3}
 Pour $(x_1, x_2) \neq (0,0)$, le calcul de $\partial_{21}f$ donne  
@@ -2202,19 +2222,19 @@ Par conséquent, $f$ n'est pas deux fois continûment différentiable en $(0,0)$
 ### Question 4 {.answer #answer-dos1-4}
 Supposons par l'absurde que $f$ est deux fois différentiable en $(0,0)$. Alors $\partial_1 f$ est différentiable en $(0,0)$. En ce point, son développement limité s'écrit, avec $h = (h_1, h_2)$, 
 $$
-			\partial_1 f(h_1, h_2) = \partial_1 f(0,0) + h_1\partial_{21} f(0,0) + h_2 \partial_{11} f(0,0) + \varepsilon(h) \times \| h \|, 
+			\partial_1 f(h_1, h_2) = \partial_1 f(0,0) + h_1\partial_{11} f(0,0) + h_2 \partial_{21} f(0,0) + \varepsilon(h) \times \| h \|, 
 $$
-avec $\varepsilon(h) \to 0$ quand $h \to 0$. D'après la question 2, $\partial_{21} f(0,0)$ ; on montre de la même manière que $\partial_{11} f(0,0) = 0$. Le développement limité de $\partial_1 f$ en $(0,0)$ s'écrit alors simplement $\partial_1 f(h) = \varepsilon (h) \|h\|$. Ainsi, $\varepsilon(h)$ vérifie
+avec $\varepsilon(h) \to 0$ quand $h \to 0$. D'après la question 2, $\partial_{21} f(0,0)=0$ ; on montre de la même manière que $\partial_{11} f(0,0) = 0$. Le développement limité de $\partial_1 f$ en $(0,0)$ s'écrit alors simplement $\partial_1 f(h) = \varepsilon (h) \|h\|$. Ainsi, $\varepsilon(h)$ vérifie
 $$
-\varepsilon(h) = \frac{\partial_1 f(h_1, h_2)}{\|h\|} = \frac{2x_1 x_2^4}{(h_1^2 + h_2^2)^{5/2}}. 
+\varepsilon(h) = \frac{\partial_1 f(h_1, h_2)}{\|h\|} = \frac{2h_1 h_2^4}{(h_1^2 + h_2^2)^{5/2}}. 
 $$
-Avec $h = (h_1, h_1)$, $\varepsilon$ vérifie $\varepsilon(h) = 1 \neq 0$, ce qui est absurde puisque $\varepsilon(h) \to 0$ lorsque $h \to 0$. La fonction $f$ n'est donc pas deux fois différentiable en $(0,0)$, même si $\partial_{21} f(0,0) = \partial_{12}f(0,0)$.
+Avec $h = (h_1, h_1)$, $\varepsilon$ vérifie $\varepsilon(h) = 1/2^{\frac{3}{2}} \neq 0$, ce qui est absurde puisque $\varepsilon(h) \to 0$ lorsque $h \to 0$. La fonction $f$ n'est donc pas deux fois différentiable en $(0,0)$, même si $\partial_{21} f(0,0) = \partial_{12}f(0,0)$.
 
 Différentielle d'ordre 2 et symétrie II
 --------------------------------------------------------------------------------
 
 ### Question 1 {.answer #answer-dos2-1}
-D'après l'inégalité de Young, pour $(x_1, x_2) \neq (0,0)$, $\lvert x_1 x_2 \rvert \leq (x_1^2 + x_2^2)/2$. Donc
+D'après l'inégalité de Young,  $\lvert x_1 x_2 \rvert \leq (x_1^2 + x_2^2)/2$. Donc pour $(x_1, x_2) \neq (0,0)$,
 $$
 \lvert f(x_1, x_2) \rvert \leq \frac{1}{2} \lvert x_1^2 - x_2^2 \rvert.
 $$
@@ -2257,28 +2277,87 @@ f(x^* + th) = f(x^*) + df(x^*) \cdot th + \varepsilon_1(t) \|th \|.
 $$
 avec $\varepsilon_1 (t) \to 0$ quand $t \to 0$. La fonction $f$ admet un minimum local en $x^*$, donc il existe un voisinage ouvert $V$ de $x^*$ tel que pour $x \in V$, $f(x) \geq f(x^*)$. De plus, pour $t > 0$ suffisamment petit, $x^* + th \in V$, d'où
 $$ 
-f(x^* + th) - f(x^*) = df(x^*) \cdot th + \varepsilon_1(t) \geq 0.
+f(x^* + th) - f(x^*) = df(x^*) \cdot th + \varepsilon_1(t)\|th \| \geq 0.
 $$
-En divisant de chaque côté par $t$ et en faisant tendre $t > 0$ vers $0$, on obtient
-$df(x^*) \cdot h \geq 0$. Cette inégalité est aussi vérifiée par $-h$, et comme $df(x^*) \cdot -h = - df(x^*) \cdot h$, on obtient $df(x^*) \cdot h = 0$. 
+En divisant par $t$ et en faisant tendre $t > 0$ vers $0$, on obtient
+$df(x^*) \cdot h \geq 0$. Cette inégalité est aussi vérifiée par $-h$, et comme $df(x^*) \cdot -h = - df(x^*) \cdot h$, on obtient aussi que $-df(x^*) \cdot h \geq 0$, et donc $df(x^*) \cdot h = 0$. 
 
 Le développement limité à l'ordre deux de $f$ en $x^*$ s'écrit
 $$ 
 f(x^* + th) = f(x^*) + df(x^*) \cdot th + \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| th \|^2,
 $$
-avec $\varepsilon_2 (t) \to 0$ quand $t \to 0$. D'après ce qui précède, $df(x^*)\cdot th = 0$, et donc
+avec $\varepsilon_2 (t) \to 0$ quand $t \to 0$. D'après ce qui précède, $df(x^*)\cdot th = 0$, et donc pour $t$ suffisamment petit
 $$
-f(x^* + th) - f(x^*) = \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| t \| \geq 0 
+f(x^* + th) - f(x^*) = \frac{1}{2} d^2 f(x^*) (\cdot th)^2 + \varepsilon_2(t) \| t \| \geq 0.
 $$
-Diviser par $t^2$ de chaque côté et faire tendre $t\to 0$ donne bien $d^2 f(x^*)(\cdot h)^2 \geq 0$. 
+Diviser par $t^2$ et faire tendre $t\to 0$ donne bien $d^2 f(x^*)(\cdot h)^2 \geq 0$. 
 
 ### Question 2 {.answer #answer-optim-2}
-En reprenant le développement limité à l'ordre deux précédent, il vient
+Pour $h\in \R^n$, le développement limité à l'ordre deux de $f$ en $x^*$ s'écrit
+\begin{align*}
+f(x^* + h) - f(x^*) &= df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2 \\
+ &= \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2 .
+\end{align*}
+Par hypothèse, $d^2 f(x^*) (\cdot h)^2 = h^T \cdot H_f (x^*) \cdot h >0$ pour tout $h\neq 0$. Or, la matrice hessienne $H_f (x^*)$ est symétrique, donc par le théorème spectral, ses valeurs propres sont réelles et il existe une base orthonormée $(e_i)$ de vecteurs propres de $H_f (x^*)$. Tout $h\in \R^n$ se décompose donc sous la forme $h=\sum_{i=1}^n h_i e_i$ et  $H\cdot h=\sum_{i=1}^n \lambda_ih_i e_i$. On a donc
 $$
-f(x^* + h) - f(x^*) = df(x^*)\cdot h +  \frac{1}{2} d^2f(x^*)(\cdot h)^2  + \varepsilon_2(h) \| h \|^2
+h^T \cdot H_f (x^*) \cdot h = \sum_{i=1}^n h_i^2 \lambda_i  \ .
 $$
-L'application $d^2 f(x^*)$ étant bilinéaire symétrique définie positive sur un espace de dimension finie, elle est coercive, donc il existe $\alpha > 0$ tel que $d^2 f(x^*) (\cdot h)^2 \geq \alpha \| h \|^2$. Comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \alpha\|h\|^2/2$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \alpha \times \|h\|^2 /2 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
+En appliquant cette formule au vecteurs $e_i$ de la base, on déduit que toutes les valeurs propres $\lambda_i$ doivent être strictement positives. De plus, en notant $\lambda_m>0$ la plus petite valeur propre, $h^T \cdot H_f (x^*) \cdot h \geq \lambda_m \| h \|^2$. Or, comme $\varepsilon_2(h) \to 0$ quand $h \to 0$, il existe $\eta > 0$ tel que pour $\|h\| \leq \eta$, $|\varepsilon_2 (h)|\|h\|^2 \leq \lambda_m\|h\|^2/4$. Ainsi, pour $\|h\| \leq \eta$, $f(x^* + h) - f(x^*) \geq \lambda_1 \times \|h\|^2 /4 \geq 0$. La fonction $f$ admet donc bien un minimum local en $x^*$. 
 
+### Question 3 {.answer #answer-optim-3}
+Tout d'abord notons que $x^*$ est un maximum local de $f$ si et seulement si $x^*$ est un minimum local de $-f$. On en déduit donc que si $x^*$ est un maximum de $f$ alors nécessairement
+$$
+df(x^*) \cdot h = 0 \quad \text{et} \quad d^2 f(x^*)(\cdot h)^2 = h^T \cdot H_f(x^*) \cdot h \leq 0
+$$
+pour tout $h \in \R^n$, et que réciproquement, si $df(x^*) \cdot h = 0$ et $d^2 f(x^* ) (\cdot h)^2 < 0$ pour tout $h \in \R^n\setminus \{0\}$, alors $x^*$ est un maximum local de $f$.
+
+La fonction $f$ est deux fois différentiable ; son gradient s'écrit
+$$
+\nabla f(x_1, x_2) = 
+\left[
+\begin{array}{c}
+	3x_1^2 - 12x_2 \\
+	-12x_1 + 24x_2^2
+\end{array}
+\right].
+$$
+
+Il s'annule si et seulement si $(x_1, x_2) = (0,0)$ ou $(2,1)$. Le calcul de la matrice hessienne donne
+
+$$
+H_f(x_1, x_2) = 
+\left[
+\begin{array}{cc}
+	6x_1 & -12 \\
+	-12 & 48x_2 
+\end{array}
+\right].
+$$
+Son évaluation en $(0,0)$ donne
+$$ 
+H_f(0,0) = 
+\left[
+\begin{array}{cc}
+	0 & -12 \\
+	-12 & 0 
+\end{array}
+\right] .
+$$ 
+Pour $h=(1,1)$, on a $h^\top H_f(0,0) h = -24$ et pour $h=(-1,1)$, on a $h^\top H_f(0,0) h = 24$. Donc aucune des deux conditions nécessaires d'extrema n'est vérifiée et le point $(0,0)$ n'est donc ni un minimum, ni un maximum local de $f$. En $(2,1)$, 
+$$
+H_f(2,1) = 
+\left[
+\begin{array}{cc}
+	12 & -12 \\
+	-12 & 48 
+\end{array}
+\right].
+$$
+La trace et le déterminant de cette matrice, étant respectivement la somme et le produit des valeurs propres, sont positifs donc $H_f(2,1)$ a ses valeurs propres strictement positives. Comme vu à la question précédente, en appliquant le théorème spectral, on a pour tout $h\in \R^2\setminus \{0\}$,   
+$$
+h^T \cdot H_f (2,1) \cdot h = h_1^2 \lambda_1 + h_2^2 \lambda_2 > 0 \ .
+$$
+La condition suffisante de la Question 2 est vérifiée donc $(2,1)$ est un minimum local de la fonction $f$. 
 
 Différentiation matricielle
 --------------------------------------------------------------------------------
@@ -2371,6 +2450,8 @@ $$
 $$
 et donc
 $$d \,\mathrm{inv} (I) \cdot H= - H.$$
+
+
 
 Références
 ================================================================================
