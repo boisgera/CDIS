@@ -486,7 +486,7 @@ continûment différentiable, alors $f$ est deux fois différentiable.
 ### Démonstration {.proof}
 La fonction $f$ est différentiable à l'ordre 2
 [si elle est différentiable et que son gradient est également différentiable](#d2mh).
-Or, si $f$ est deux fois continûment différentiable, tous les dérivées
+Or, si $f$ est deux fois continûment différentiable, toutes les dérivées
 partielles à l'ordre 1 de $\nabla f$ existent et sont elles-mêmes partiellement dérivables,
 de dérivées partielles continues.
 Donc, le gradient de $f$ est continûment différentiable et donc
