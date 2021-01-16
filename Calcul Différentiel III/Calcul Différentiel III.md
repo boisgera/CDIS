@@ -620,7 +620,7 @@ est différentiable, de gradient en $h$
 $$
 \nabla g(h) = \nabla f(x+h) - \nabla f(x) - \left(\frac{ H_f(x) + H_f(x)^{\top}}{2}\right) \cdot h,
 $$
-c'est-à-dire, comme [la matrice hessienne est symmétrique](#SD2),
+c'est-à-dire, comme [la matrice hessienne est symétrique](#SD2),
 $$
 \nabla g(h) = \nabla f(x+h) - \nabla f(x) - H_f(x) \cdot h.
 $$
