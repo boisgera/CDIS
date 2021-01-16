@@ -1788,7 +1788,7 @@ Exercices essentiels
 
 ### Laplacien et matrice hessienne {.answer #answer-laplacien}
 Le laplacien de $f$ en $x$ est la somme des coefficients diagonaux 
--- donc la trace -- de la matrice hessiene de $f$ en $x$ :
+-- donc la trace -- de la matrice hessienne de $f$ en $x$ :
 $$
 \Delta f(x) = \tr H_f(x).
 $$
