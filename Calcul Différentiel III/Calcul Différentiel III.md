@@ -399,7 +399,7 @@ scalaires ou vectorielles.
         return J_f
 
 Autograd permet également le calcul des dérivées partielles d'ordre supérieur.
-Concrêtement, on peut appliquer à nouveau un opérateur différentiel sur une 
+Concrètement, on peut appliquer à nouveau un opérateur différentiel sur une 
 fonction qui est issue d'un calcul fait par autograd. L'implémentation de la
 fonction qui calcule la matrice hessienne d'une fonction scalaire est donc 
 particulièrement simple :
@@ -486,7 +486,7 @@ continûment différentiable, alors $f$ est deux fois différentiable.
 ### Démonstration {.proof}
 La fonction $f$ est différentiable à l'ordre 2
 [si elle est différentiable et que son gradient est également différentiable](#d2mh).
-Or, si $f$ est deux fois continûment différentiable, tous les dérivées
+Or, si $f$ est deux fois continûment différentiable, toutes les dérivées
 partielles à l'ordre 1 de $\nabla f$ existent et sont elles-mêmes partiellement dérivables,
 de dérivées partielles continues.
 Donc, le gradient de $f$ est continûment différentiable et donc
@@ -620,7 +620,7 @@ est différentiable, de gradient en $h$
 $$
 \nabla g(h) = \nabla f(x+h) - \nabla f(x) - \left(\frac{ H_f(x) + H_f(x)^{\top}}{2}\right) \cdot h,
 $$
-c'est-à-dire, comme [la matrice hessienne est symmétrique](#SD2),
+c'est-à-dire, comme [la matrice hessienne est symétrique](#SD2),
 $$
 \nabla g(h) = \nabla f(x+h) - \nabla f(x) - H_f(x) \cdot h.
 $$
@@ -909,7 +909,7 @@ SyntaxError: invalid syntax
 ### Applications linéaires d'ordre supérieur {.remark}
 
 La raison d'être des matrices de $\R^{m \times n}$ est
-de représenter concrêtement les applications linéaires de $\R^n \to \R^m$, 
+de représenter concrètement les applications linéaires de $\R^n \to \R^m$, 
 dont l'espace est noté $\mathcal{L}(\R^n, \R^m)$.
 Si l'on désigne par $A$ une telle 
 application linéaire et par $[a_{ij}]_{ij}$ la matrice associée,
@@ -1153,7 +1153,7 @@ $$
 d^kf(x) \in \overbrace{\mathbb{R}^n \to \mathbb{R}^n \to \cdots \to  \mathbb{R}^n}^{k \; \mathrm{termes}} \to \mathbb{R}^m,
 $$
 chaque application dans la chaîne étant linéaire. La différentielle
-$d^k f(x)$ peut donc être représentée concrêtement par un tenseur $T$ d'ordre 
+$d^k f(x)$ peut donc être représentée concrètement par un tenseur $T$ d'ordre 
 $k+1$ et de type $(m, n, \dots, n)$ :
 $$
 T_{ji_1 \dots i_{k}} := 
@@ -1797,7 +1797,7 @@ Exercices essentiels
 
 ### Laplacien et matrice hessienne {.answer #answer-laplacien}
 Le laplacien de $f$ en $x$ est la somme des coefficients diagonaux 
--- donc la trace -- de la matrice hessiene de $f$ en $x$ :
+-- donc la trace -- de la matrice hessienne de $f$ en $x$ :
 $$
 \Delta f(x) = \tr H_f(x).
 $$
@@ -1822,7 +1822,7 @@ H_f(x) = J_{\nabla f} (x_1, x_2) =
 \left[ 
 \begin{array}{cc} 
 0 & 2x_2 \\
-2x_2 & x_1 x_2 \\
+2x_2 & 2 x_1 \\
 \end{array}\right].
 $$
 
@@ -1926,7 +1926,7 @@ $x \in U$. On a
 + (\partial^2_{31} f_2 - \partial^2_{13} f_2)(x),
 \end{align*}
 et donc $\mathrm{div} \, (\mathrm{rot} \, f)(x) = 0$ 
-[par symmétrie de la différentielle d'ordre 2](#SD2).
+[par symétrie de la différentielle d'ordre 2](#SD2).
 On a également
 \begin{align*}
 \mathrm{rot} \, \nabla g(x) &:= \left[
@@ -1945,7 +1945,7 @@ On a également
 \end{array}
 \right]\\
 \end{align*}
-et donc -- à nouveau [par symmétrie de la différentielle d'ordre 2](#SD2) --
+et donc -- à nouveau [par symétrie de la différentielle d'ordre 2](#SD2) --
 on obtient $\mathrm{rot} \, \nabla g(x)=0$
 
 ### Gradient unitaire {.answer #answer-gradient-unitaire}
@@ -1958,7 +1958,7 @@ $$
 \partial_j \left( \sum_i \partial_i f^2 \right) =  2 \sum_i {\partial^2_{ji} f \times \partial_i f} = 
 2 H_f^{\top} \cdot \nabla f = 0.
 $$
-Le résultat $H_f \cdot \nabla f = 0$ s'en déduit donc [par symmétrie de la différentielle d'ordre 2](#SD2).
+Le résultat $H_f \cdot \nabla f = 0$ s'en déduit donc [par symétrie de la différentielle d'ordre 2](#SD2).
 
 
 ### Accroissements finis d'ordre 2 {.answer #answer-maj2}
@@ -2007,7 +2007,7 @@ Puis,
 
 Et enfin
 \begin{align*}
-&\partial^3_{111} f(x_1, x_2) = \partial_1 (\partial^2_{11} f)(x_1, x_2) = \partial_1 (12 x_1^2+24 x_1 x_2) = 24 x_1 + 24, \\
+&\partial^3_{111} f(x_1, x_2) = \partial_1 (\partial^2_{11} f)(x_1, x_2) = \partial_1 (12 x_1^2+24 x_1 x_2) = 24 x_1 + 24 x_2, \\
 &\partial^3_{112} f(x_1, x_2) = \partial_1 (\partial^2_{12} f)(x_1, x_2) = \partial_1 (12 x_1^2)  =  24 x_1,\\
 &\partial^3_{121} f(x_1, x_2) = \partial_1 (\partial^2_{21} f)(x_1, x_2) = \partial_1 (12 x_1^2)  = 24 x_1,\\
 &\partial^3_{122} f(x_1, x_2) = \partial_1 (\partial^2_{22} f)(x_1, x_2) = \partial_1 (0) =0,\\
