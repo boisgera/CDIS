@@ -585,9 +585,9 @@ $$
 \end{array}
 \right].
 $$
-Soient $f: U \to \R^3$ et $g: U \to \R$ des fonctions deux fois différentiable en 
+Soient $f: U \to \R^3$ et $g: U \to \R$ des fonctions deux fois différentiables en 
 $x \in U$. Calculer $\mathrm{div} \, (\mathrm{rot} \, f)(x)$ et 
-$\mathrm{rot}\, (\nabla f)(x)$
+$\mathrm{rot}\, (\nabla g)(x)$
 
 
 ### Gradient unitaire {.exercise .question .one #gradient-unitaire}
