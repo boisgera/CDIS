@@ -1,5 +1,3 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
 # %% [markdown]
 # # UE 11 – Calcul Différentiel, Intégral et Stochastique 
 # # Enquête 2020-2021, Elément Constitutif 1 
@@ -7,6 +5,10 @@
 # ## Dépendances
 
 # %%
+# Python Standard Library
+import re
+
+# Third-Party Libraries
 import matplotlib.pyplot as pp
 from matplotlib import cm
 pp.rcParams['figure.figsize'] = 16, 5
@@ -21,9 +23,6 @@ from IPython.display import Markdown
 # ## Utilitaires
 
 # %%
-# TODO: filter off empty answers
-# TODO: "invert colormap" option
-
 def barplot(df, key, answers, colormap="viridis", alpha=1.0, invert=False):
     data = df[key].dropna() # filter off empty answers
     data = [len(data[data==k])/len(data)*100 for k in answers]
@@ -34,7 +33,6 @@ def barplot(df, key, answers, colormap="viridis", alpha=1.0, invert=False):
     pp.grid(True) 
     pp.ylabel("Pourcentage")
     pp.yticks(np.linspace(0, 100, 11))
-    # TODO
     colormap = cm.get_cmap(colormap)
     xrange = np.linspace(0.0, 1.0, n)
     if invert:
@@ -45,7 +43,16 @@ def barplot(df, key, answers, colormap="viridis", alpha=1.0, invert=False):
 
 
 # %%
-def comments(df, number=0, label=None):
+blacklist = "Jean Auriol Chloé-Agathe Azencott Martin Bauw Pauline Bernard Samy Blusseau Sébastien Boisgérault Delphine Bresch-Pietri Mona Buisson Emilie Chautru Cyril Joly Hubert Ménou Silviu Niculescu Nicolescu Slawomir Pietrasz Thomas Romary Lev-Arcady Sellem Emilia Siviero Dilshad Surroop".split()
+
+pattern = re.compile("|".join(f"({string})" for string in blacklist))
+
+def filter_text(text):
+    return pattern.sub(8 * "?", text)
+
+
+# %%
+def comments(df, number=0, label=None, filter=True):
     key = "Commentaires"
     if number:
         key += f".{number}"
@@ -56,6 +63,8 @@ def comments(df, number=0, label=None):
     for item in df[key]:
         if isinstance(item, str) and item:
             text += f" - {item}\n\n"
+    if filter:
+        text = filter_text(text)
     return Markdown(text)
 
 
@@ -923,7 +932,7 @@ topics = [
     "Synthèse"
 ]
 for i, answers in enumerate(topics):
-    display(comments(df, i, answers))
+    display(comments(df, i, answers, filter=True))
 
 
 # %%
