@@ -45,7 +45,7 @@ install:
   # now prepare deployment to gh-pages
   - rm -rf env
   - mv .gitignore .gitignore.bak 
-  - mv Enquete/2020/.gitignore Enquete/2020/.gitignore.back
+  - mv Enquete/2020/.gitignore Enquete/2020/.gitignore.bak
   
 deploy:
   provider: pages
