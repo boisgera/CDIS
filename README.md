@@ -78,7 +78,7 @@ Résultats des questionnaires d'évaluation de l'enseignement par les étudiants
 | Années | Elément constitutif 1 | Elément constitutif 2 |
 | ------ | --------------------- | ---------------------- |
 | 2019-2020 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv) | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv) |
-| 2020-2021 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021.csv) | :construction: |
+| 2020-2021 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv) | :construction: |
 
 :pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
