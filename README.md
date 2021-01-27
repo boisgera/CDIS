@@ -64,7 +64,7 @@ Sessions 2019 et 2020
 
 <https://github.com/boisgera/CDIS/releases/tag/v1.17>
 
-#### :mag: Examen (2019)
+#### :mag: Examen écrit (2019)
 
 | Examen écrit  | E-book        | Papier                |
 | ------------- | ------------- | --------------------- |
