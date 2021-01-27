@@ -1,0 +1,936 @@
+# To add a new cell, type '# %%'
+# To add a new markdown cell, type '# %% [markdown]'
+# %% [markdown]
+# # UE 11 – Calcul Différentiel, Intégral et Stochastique 
+# # Enquête 2020-2021, Elément Constitutif 1 
+# %% [markdown]
+# ## Dépendances
+
+# %%
+import matplotlib.pyplot as pp
+from matplotlib import cm
+pp.rcParams['figure.figsize'] = 16, 5
+
+import numpy as np
+import scipy.stats as st
+import pandas as pd
+
+from IPython.display import Markdown
+
+# %% [markdown]
+# ## Utilitaires
+
+# %%
+# TODO: filter off empty answers
+# TODO: "invert colormap" option
+
+def barplot(df, key, answers, colormap="viridis", alpha=1.0, invert=False):
+    data = df[key].dropna() # filter off empty answers
+    data = [len(data[data==k])/len(data)*100 for k in answers]
+    n = len(answers)
+    index = list(range(n))
+    pp.xticks(index, answers)
+    pp.axis([-0.5, n-0.5, 0, 100]) 
+    pp.grid(True) 
+    pp.ylabel("Pourcentage")
+    pp.yticks(np.linspace(0, 100, 11))
+    # TODO
+    colormap = cm.get_cmap(colormap)
+    xrange = np.linspace(0.0, 1.0, n)
+    if invert:
+        xrange = 1.0 - xrange
+    colors = [colormap(x) for x in xrange]
+    _ = pp.bar(index, data, width=1.0, color=colors, alpha=alpha)
+    pp.title(key)
+
+
+# %%
+def comments(df, number=0, label=None):
+    key = "Commentaires"
+    if number:
+        key += f".{number}"
+    data = df[key]
+    text = "### Commentaires"
+    if label:
+        text += f" – {label}\n\n"
+    for item in df[key]:
+        if isinstance(item, str) and item:
+            text += f" - {item}\n\n"
+    return Markdown(text)
+
+
+# %%
+def hist_diff(df, label=None, color="black", kde=True):
+    data = df["Difficulté"]
+    m, s = np.nanmean(data), np.nanstd(data)
+    n = len(data)
+    try:
+        label += f" ({n} élèves)"
+    except:
+        pass
+    pp.hist(data, bins=np.linspace(0.0, 3.0001, 4*3 + 1), density=True, color=color, alpha=0.15,label=label)
+    pp.legend()
+
+    if len(data)>= 5:
+        data.plot.kde(lw=2, color=color)
+    bottom, top = pp.gca().get_ylim()
+    pp.plot([m, m], [0.0, top], "-", color=color)
+    if len(data) >= 5:
+        pp.plot([m-s, m-s], [0.0, top], "--", color=color, alpha=0.5)
+        pp.plot([m+s, m+s], [0.0, top], "--", color=color, alpha=0.5)
+    pp.axis([0, 3, bottom, top])
+  
+    pp.xticks([0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0], ["trop faible", "", "plutôt faible", "(moyenne)", "plutôt forte", "", "trop forte"])
+    pp.yticks([])
+    pp.title("Difficulté")
+
+    pp.ylabel("Densité")
+
+
+# %%
+def hist_interest(df, label=None, color="black"):
+    data = df["Intérêt"]
+    m, s = np.nanmean(data), np.nanstd(data)
+    n = len(data)
+    try:
+        label += f" ({n} élèves)"
+    except:
+        pass
+    pp.hist(data, bins=np.linspace(0.0, 3.0001, 4*3 + 1), density=True, color=color, alpha=0.15,label=label)
+    pp.legend()
+
+    if len(data) >= 5:
+        data.plot.kde(lw=2, color=color)
+    bottom, top = pp.gca().get_ylim()
+    pp.plot([m, m], [0.0, top], "-", color=color)
+    if len(data) >= 5:
+        pp.plot([m-s, m-s], [0.0, top], "--", color=color, alpha=0.5)
+        pp.plot([m+s, m+s], [0.0, top], "--", color=color, alpha=0.5)
+    pp.axis([0, 3, bottom, top])
+  
+    pp.xticks([0.0, 1.0, 1.5, 2.0, 3.0], ["Faible", "Plutôt faible", "", "Plutôt fort", "Fort"])
+    pp.yticks([])
+    pp.title("Intérêt/Utilité")
+
+    pp.ylabel("Densité")
+
+# %% [markdown]
+# ## Données
+
+# %%
+df = pd.read_csv("survey-2020-2021-EC1.csv")
+
+
+# %%
+df
+
+# %% [markdown]
+# ### Calculs supplémentaires
+# %% [markdown]
+# Nous calculons la difficulté globale avec la difficulté de chaque thème, pondérée par le nombre de sessions qu'il occupe. 
+
+# %%
+diff = {"Trop facile": 0 , "Plutôt facile": 1, "Plutôt difficile": 2, "Trop difficile": 3}
+df["TO"] = df["Le thème X de l'enseignement vous a paru [Topologie]"].map(diff)
+df["CD"] = df["Le thème X de l'enseignement vous a paru [Calcul différentiel]"].map(diff)
+df["CI"] = df["Le thème X de l'enseignement vous a paru [Calcul intégral]"].map(diff)
+df["PR"] = df["Le thème X de l'enseignement vous a paru [Probabilités]"].map(diff)
+df["Difficulté"] = (df["TO"] + 2* df["CD"] + 3 * df["CI"] + 2 * df["PR"]) / 8
+
+
+# %%
+interest = {"Pas du tout": 0 , "Plutôt non": 1, "Plutôt oui": 2, "Tout à fait": 3}
+df["TO.U"] = df["Le thème X de l'enseignement vous a semblé utile / pertinent / intéressant [Topologie]"].map(interest)
+df["CD.U"] = df["Le thème X de l'enseignement vous a semblé utile / pertinent / intéressant [Calcul différentiel]"].map(interest)
+df["CI.U"] = df["Le thème X de l'enseignement vous a semblé utile / pertinent / intéressant [Calcul intégral]"].map(interest)
+df["PR.U"] = df["Le thème X de l'enseignement vous a semblé utile / pertinent / intéressant [Probabilités]"].map(interest)
+df["Intérêt"] = (df["TO.U"] + 2* df["CD.U"] + 3 * df["CI.U"] + 2 * df["PR.U"]) / 8
+
+
+# %%
+df["Note Examen / 20"] = pd.to_numeric(df["Note Examen / 20"], downcast="float", errors="coerce")
+
+# %% [markdown]
+# ### Sous-groupes
+# %% [markdown]
+# Filières d'origine :
+
+# %%
+MP = df[df["Filière d'origine"]=="MP/MP* : classe préparatoire Mathématiques-Physique"]
+PSI = df[df["Filière d'origine"]=="PSI/PSI* : classe préparatoire Physique-Sciences de l'Ingénieur"]
+PC = df[df["Filière d'origine"]=="PC/PC* : classe préparatoire Physique-Chimie"]
+PT = df[df["Filière d'origine"]=="PT/PT* : classe préparatoire Physique-Technologie"]
+TSI = df[df["Filière d'origine"]=="TSI : classe préparatoire Technologie et Sciences Industrielles"]
+ATS = df[df["Filière d'origine"]=="ATS : classe préparatoire Adaptation Technicien Supérieur"]
+AST_Fr = df[df["Filière d'origine"]=="AST Fr. : admis sur titres (France)"]
+AST_Etr = df[df["Filière d'origine"]=="AST Etr. : admis sur titres (Etranger)"]
+
+# %% [markdown]
+# Groupe de soutien :
+
+# %%
+GS = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]] # déterminé manuellement.
+
+
+# %%
+labels = ["MP", "PSI", "PC", "PT", "TSI", "ATS", "AST_Fr", "AST_Etr"]
+_ = pp.pie([len(eval(label)) for label in labels], labels=labels)
+
+
+# %%
+df[df["Vous pensez avoir bénéficié du groupe de soutien (si vous en avez fait partie)."].notnull()]["Prénom, Nom "]
+
+
+# %%
+
+
+
+# %%
+barplot(
+    df,
+    "Globalement, cet enseignement vous a paru [Votre réponse]",
+    ["Pas du tout satisfaisant", "Peu satisfaisant", "Plutôt satisfaisant", "Très satisfaisant"],
+    colormap="plasma", alpha=0.75, invert=True
+    )
+
+
+# %%
+sdf = df[df["Vous pensez avoir bénéficié du groupe de soutien (si vous en avez fait partie)."].notnull()]
+groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]]
+
+
+# %%
+for i, n in enumerate(df["Prénom, Nom "].to_list()):
+    print(i, n)
+
+
+# %%
+df.loc[8]
+
+
+# %%
+groupe_1
+
+
+# %%
+#df = pd.read_csv("survey-anonymous.csv")
+
+
+# %%
+df
+
+
+# %%
+hist_diff(df, label="Tous")
+
+
+# %%
+hist_diff(MP, label="MP", color="green")
+
+
+# %%
+hist_diff(PSI, label="PSI", color="blue")
+
+
+# %%
+hist_diff(PC, label="PC", color="orange")
+
+
+# %%
+hist_diff(GS, label="Groupe de soutien", color="teal")
+
+
+# %%
+hist_diff(PT, label="PT", color="red")
+hist_diff(AST_Fr, label="AST Fr.", color="purple")
+hist_diff(TSI, label="TSI", color="magenta")
+hist_diff(AST_Etr, label="AST Etr.", color="gold")
+hist_diff(ATS, label="ATS", color="sienna")
+
+# %% [markdown]
+# ### Difficulté perçue et note à l'examen
+
+# %%
+pp.scatter(df["Difficulté"], df["Note Examen / 20"], alpha=0.5, s=200)
+pp.yticks([0.0, 5.0, 10.0, 15.0, 20.0])
+pp.xticks([0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0], ["Trop facile", "", "", "Difficulté Moyenne", "", "", "Trop difficle"])
+pp.grid(True)
+pp.axis([0.0, 3.0, 0.0, 20.0])
+
+dfv = df[df["Note Examen / 20"].notnull() & df["Difficulté"].notnull()]
+X, Y = dfv["Difficulté"], dfv["Note Examen / 20"]
+print(f"corrélation Note / Difficulté : {X.corr(Y):.2g}")
+
+Xs, Ys = dfv["Difficulté"].to_numpy().reshape((-1, 1)), dfv["Note Examen / 20"].to_numpy().reshape((-1, 1))
+from sklearn.linear_model import LinearRegression
+lr = LinearRegression()
+lr.fit(Xs, Ys)
+m, M = lr.predict([[0.0], [3.0]])
+_ = pp.plot([0, 3.0], [m, M], "r--")
+
+
+# %%
+pp.figure()
+pp.xticks([0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0], ["Trop facile", "", "", "Difficulté Moyenne", "", "", "Trop difficle"])
+pp.yticks([0.0, 5.0, 10.0, 15.0, 20.0])
+
+def s(df, label, color):
+    dfv = df[df["Note Examen / 20"].notnull() & df["Difficulté"].notnull()]
+    X, Y = dfv["Difficulté"], dfv["Note Examen / 20"]
+    print(f"{label}: corrélation Note / Difficulté : {X.corr(Y):.2g}")
+
+    Xs = df["Difficulté"].to_numpy().reshape((-1, 1))
+    Ys = df["Note Examen / 20"].to_numpy().reshape((-1, 1))
+    
+    # Sklearn doesn't like nan
+    is_ = [i for i in range(len(Xs)) if not np.isnan(Xs[i]) and not np.isnan(Ys[i])]
+    lr = LinearRegression()
+    lr.fit(Xs[is_], Ys[is_])
+    pp.scatter(Xs, Ys, color=color, alpha=0.5, s=200, label=label)
+    [m, M] = lr.predict([[0.0], [3.0]])
+    pp.plot([0.0, 3.0], [m, M], "--", color=color)
+    pp.xlabel("Difficulté")
+
+s(MP, "MP", "green")
+s(PSI, "PSI", "blue")
+s(PC, "PC", "orange")
+
+pp.grid(True)
+pp.axis([0.0, 3.0, 0.0, 20.0])
+_ = pp.legend()
+
+# %% [markdown]
+# ### Intéret / Utilité
+
+# %%
+hist_interest(df, label="Tous")
+
+
+# %%
+hist_interest(MP, label="MP", color="green")
+
+
+# %%
+hist_interest(PSI, label="PSI", color="blue")
+
+
+# %%
+hist_interest(PC, label="PC", color="orange")
+
+
+# %%
+hist_interest(GS, label="groupe de soutien", color="teal")
+
+
+# %%
+hist_interest(PT, label="TSI", color="red")
+hist_interest(AST_Fr, label="AST Fr.", color="purple")
+hist_interest(TSI, label="TSI", color="magenta")
+hist_interest(AST_Etr, label="AST Etr.", color="gold")
+hist_interest(ATS, label="ATS", color="sienna")
+
+
+# %%
+df_ = df
+color="black"
+
+pp.scatter(df_["Difficulté"].to_numpy(), df_["Intérêt"].to_numpy(), alpha=0.5, s=500, c=color)
+pp.axis([-0.1, 3.1, 0.9, 3.1])
+pp.xlabel("Difficulté")
+pp.ylabel("Intérêt/Utilité")
+pp.xticks([0, 1, 2, 3],["Trop facile", "Plutôt facile", "Plutôt difficile", "Trop difficile"])
+pp.yticks([1, 2, 3],["Peu intéressant", "Plutôt intéressant", "Tout à fait intéressant"])
+pp.gcf().set_size_inches(16,16) 
+pp.grid(True)
+
+
+# %%
+set(df["Filière d'origine"])
+
+
+# %%
+set(df["Globalement, cet enseignement vous a paru [Votre réponse]"])
+
+
+# %%
+mapping = {"Pas satisfaisant": 0, "Peu satisfaisant": 1, "Plutôt satisfaisant": 2, "Très satisfaisant": 3}
+
+
+# %%
+df["Satisfaction"] = df["Globalement, cet enseignement vous a paru [Votre réponse]"].map(mapping)
+
+
+# %%
+dfs = df.dropna(subset=["Satisfaction"])
+dfs.groupby("Filière d'origine")["Satisfaction"].agg(["mean", "count"]).sort_values("mean").style.format({"mean" : "{0:,.1f} / 3.0"}).bar(color='#FFA07A', align='zero', subset=["mean"]).bar(color='lightgreen', align='zero', subset=["count"]).set_caption("Satisfaction, par filière")
+
+
+# %%
+dfs[dfs["Satisfaction"] == 3]["Filière d'origine"]
+
+
+# %%
+dfs[dfs["Satisfaction"] == 1]["Filière d'origine"]
+
+
+# %%
+groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]]
+groupe_1["Satisfaction"]
+
+
+# %%
+np.mean(groupe_1["Satisfaction"])
+
+
+# %%
+groupe_1['Vous êtes globalement satisfait des travaux dirigés [Votre réponse]']
+
+
+# %%
+groupe_1['Vous pensez avoir bénéficié du groupe de soutien (si vous en avez fait partie).']
+
+
+# %%
+df.loc[19]
+
+
+# %%
+groupe_1.loc[67]
+
+# %% [markdown]
+# ### Tutorats
+# %% [markdown]
+# #### Participation et satisfaction
+# 
+# **Tutorats classiques.**
+# Approximativement la moitié des étudiants a participé régulièrement ou occasionnellement (au moins une fois sur trois) aux tutorats classiques. Parmi les étudiants assidus, on trouve 
+# 
+#   1. des étudiants des filières PT, AST, ATS et TSI pour un quart (plus du double de leur poids dans la promotion),
+#   
+#   2. des étudiants issus de MP, approximativement dans la même proportion que dans la promotion (!),
+# 
+#   3. des étudiants issus de PSI et PC, mais dans des proportions moindres que dans la promotion.
+# 
+# Les étudiants du groupe 1., issus de filière avec ou le poids des Mathématiques est plus faible, sont a priori en recherche d'un soutien/tutorat actif en Mathématiques. Les motivations des MPs sont probablement très différenciées avec sans doute la recherche d'un lieu d'étude et/ou l'envie d'aller plus loin. On retrouvera beaucoup plus de PSI et PC en participants occasionnels. On remarquera enfin que tous les étudiants du groupe 1. semblent participer régulièrement ou occasionnellement aux tutorats classiques (les étudiants participant peu ou pas aux tutorats classiques sont tous issus des 3 filières MP, PSI, ou PC).
+# 
+# La satisfaction quant aux tutorats classique est bonne, avec ~ 85% de plutôt ou tout à fait satisfait. Mais cette proportion passe à 100% avec les PT, AST, ATS et TSI (dont une majorité de "tout à fait satisfait") ; ils sont donc actuellement les principaux bénéficiaires de la formule des tutorats classiques. La proportion de satisfaits retombe à moins de 80% pour les MPs qui ont participé aux tutorats classiques.
+# 
+# **Tutorats avancés.** Approximativement un tiers des étudiants a participé régulièrement ou occasionnellement aux tutorats avancés. C'est moins que pour les tutorats classiques, mais la satisfaction générale est meilleure que dans les tutorats classique. Pour l'ensemble des participants : ~ 90% de plutôt ou tout à fait satisfaits (dont ~ 55% de "tout à fait satisfaits"). Les participants sont presque au 3/4 issus de la filière MP et leur satisfaction est encore meilleure : ~ 95% de satisfaits, dont ~ 70% de "tout à fait satisfaits". Dans les catégories complémentaires présentes dans les participants assidus (PSI, PC, PT), la satisfaction reste élevée (~85 %), mais il n'y a plus que ~25 % d'étudiants "tout à fait satisfaits". 
+
+# %%
+barplot(
+    df,
+    "Vous avez participé [aux tutorats classiques]",
+    ["Moins de 1 fois sur 3", "Au moins 1 fois sur 3", "Au moins 2 fois sur 3"],
+    colormap="plasma", alpha=0.75, invert=True
+    )
+
+
+# %%
+origin = list(df["Filière d'origine"]) 
+labels = list(set(origin)) # get all possible labels, exactly once
+# sort them (largest category first)
+labels = sorted(labels, key=lambda label: -len(df[df["Filière d'origine"]==label]))
+print(labels)
+_ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
+_ = pp.gca().set_title("Filière d'origine (tous)", fontweight="bold", fontsize=18)
+
+
+# %%
+index = df["Vous avez participé [aux tutorats classiques]"] == "Au moins 2 fois sur 3"
+dfi = df[index]
+origin = list(dfi["Filière d'origine"]) 
+_ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
+_ = pp.gca().set_title("Tutorat classique : participants réguliers", fontweight="bold", fontsize=18)
+
+
+# %%
+index = df["Vous avez participé [aux tutorats classiques]"] == "Au moins 1 fois sur 3"
+dfi = df[index]
+origin = list(dfi["Filière d'origine"]) 
+_ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
+_ = pp.gca().set_title("Tutorat classique : participants occasionnels", fontweight="bold", fontsize=18)
+
+
+# %%
+index = df["Vous avez participé [aux tutorats classiques]"] == "Moins de 1 fois sur 3"
+dfi = df[index]
+origin = list(dfi["Filière d'origine"]) 
+_ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
+_ = pp.gca().set_title("Tutorat classique : participants rares et non-participants", fontweight="bold", fontsize=18)
+
+
+# %%
+barplot(
+    df, 
+    "Si vous y avez participé, vous avez apprécié / trouvé utile [les tutorats classiques]",
+    ["Pas du tout", "Plutôt non", "Plutôt oui", "Tout à fait"],
+    colormap="plasma", alpha=0.75, invert=True
+)
+_ = pp.gca().set_title("Tous : " + pp.gca().get_title())
+
+
+# %%
+l = ["PT/PT* : classe préparatoire Physique-Technologie", 
+"TSI : classe préparatoire Technologie et Sciences Industrielles",
+"ATS : classe préparatoire Adaptation Technicien Supérieur",
+"AST Fr. : admis sur titres (France)",
+"AST Etr. : admis sur titres (Etranger)"]
+index = df["Filière d'origine"].isin(l)
+dfi = df[index]
+barplot(
+    dfi, 
+    "Si vous y avez participé, vous avez apprécié / trouvé utile [les tutorats classiques]",
+    ["Pas du tout", "Plutôt non", "Plutôt oui", "Tout à fait"],
+    colormap="plasma", alpha=0.75, invert=True
+)
+_ = pp.gca().set_title("PT, TSI, ATS, AST : " + pp.gca().get_title())
+
+
+# %%
+l = ["MP/MP* : classe préparatoire Mathématiques-Physique"]
+#PSI = df[df["Filière d'origine"]=="PSI/PSI* : classe préparatoire Physique-Sciences de l'Ingénieur"]
+#PC = df[df["Filière d'origine"]=="PC/PC* : classe préparatoire Physique-Chimie"]
+index = df["Filière d'origine"].isin(l)
+dfi = df[index]
+barplot(
+    dfi, 
+    "Si vous y avez participé, vous avez apprécié / trouvé utile [les tutorats classiques]",
+    ["Pas du tout", "Plutôt non", "Plutôt oui", "Tout à fait"],
+    colormap="plasma", alpha=0.75, invert=True
+)
+_ = pp.gca().set_title("MP : " + pp.gca().get_title())
+
+
+# %%
+barplot(
+    df,
+    "Vous avez participé [aux tutorats avancés]",
+    ["Moins de 1 fois sur 3", "Au moins 1 fois sur 3", "Au moins 2 fois sur 3"],
+    colormap="plasma", alpha=0.75, invert=True
+    )
+
+
+# %%
+origin = list(df["Filière d'origine"]) 
+labels = list(set(origin)) # get all possible labels, exactly once
+# sort them (largest category first)
+labels = sorted(labels, key=lambda label: -len(df[df["Filière d'origine"]==label]))
+_ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
+_ = pp.gca().set_title("Filière d'origine (tous)", fontweight="bold", fontsize=18)
+
+
+# %%
+index = df["Vous avez participé [aux tutorats avancés]"] == "Au moins 2 fois sur 3"
+dfi = df[index]
+origin = list(dfi["Filière d'origine"]) 
+_ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
+_ = pp.gca().set_title("Tutorat avancé : participants réguliers", fontweight="bold", fontsize=18)
+
+
+# %%
+barplot(
+    df, 
+    "Si vous y avez participé, vous avez apprécié / trouvé utile [les tutorats avancés]",
+    ["Pas du tout", "Plutôt non", "Plutôt oui", "Tout à fait"],
+    colormap="plasma", alpha=0.75, invert=True
+)
+_ = pp.gca().set_title("Tous : " + pp.gca().get_title())
+
+
+# %%
+l = ["MP/MP* : classe préparatoire Mathématiques-Physique"]
+index = df["Filière d'origine"].isin(l)
+dfi = df[index]
+barplot(
+    dfi, 
+    "Si vous y avez participé, vous avez apprécié / trouvé utile [les tutorats avancés]",
+    ["Pas du tout", "Plutôt non", "Plutôt oui", "Tout à fait"],
+    colormap="plasma", alpha=0.75, invert=True
+)
+_ = pp.gca().set_title("MP : " + pp.gca().get_title())
+
+
+# %%
+l = ["PSI/PSI* : classe préparatoire Physique-Sciences de l'Ingénieur",
+"PC/PC* : classe préparatoire Physique-Chimie",
+"PT/PT* : classe préparatoire Physique-Technologie"]
+index = df["Filière d'origine"].isin(l)
+dfi = df[index]
+barplot(
+    dfi, 
+    "Si vous y avez participé, vous avez apprécié / trouvé utile [les tutorats avancés]",
+    ["Pas du tout", "Plutôt non", "Plutôt oui", "Tout à fait"],
+    colormap="plasma", alpha=0.75, invert=True
+)
+_ = pp.gca().set_title("PSI, PC, PT : " + pp.gca().get_title())
+
+# %% [markdown]
+# Charge de travail
+# --------------------
+
+# %%
+nan = np.nan
+li = df["Temps total consacré à l'étude du cours (en présence des enseignants ou non)"]
+l =  ['10',
+ nan,
+ '15',
+ '12',
+ '12',
+ '18',
+ '10',
+ '24',
+ '24',
+ nan,
+ 'Je ne sais pas, mais je passe beaucoup de temps à relire le cours et à le ficher',
+ '15',
+ "24",
+ '18',
+ '16',
+ '24',
+ '15',
+ '16',
+ '12',
+ '13',
+ '16',
+ '20',
+ '12',
+ '22',
+ nan,
+ '15',
+ '15',
+ "10",
+ '12',
+ nan,
+ '27.5',
+ '4',
+ '12',
+ '14',
+ '21',
+ '20',
+ '26',
+ '10',
+ '16',
+ '24',
+ '15',
+ '9',
+ nan,
+ '10',
+ '10',
+ '15',
+ "13.5",
+ '10',
+ '20',
+ "20",
+ nan,
+ '18',
+ '19',
+ '20',
+ '12',
+ '18',
+ '20',
+ '24',
+ "20",
+ '12 ',
+ '11',
+ '18',
+ '30',
+ '10',
+ '12',
+ '20',
+ 'Non mesuré : probablement dans la moyenne conseillée',
+ '25',
+ 'Je ne saurais donner de temps...',
+ '9',
+ '17',
+ '13',
+ '25',
+ '12',
+ '17',
+ '15',
+ "20",
+ '15',
+ '24',
+ '20',
+ '12',
+ '18',
+ '24',
+ '16',
+ "20",
+ '24',
+ '20',
+ '13',
+ '15',
+ '16',
+ '22',
+ '16',
+ '12',
+ '16',
+ '10.5',
+ nan,
+ '10',
+ '15',
+ '20',
+ '15',
+ '12',
+ '14',
+ '15.5',
+ '24',
+ '14',
+ '20',
+ '20']
+time_old_new = []
+for i, x in enumerate(l):
+    try:
+        l[i] = float(x)
+    except:
+        l[i] = np.nan
+    time_old_new.append([li[i], l[i]])
+df["Temps total consacré à l'étude du cours (en présence des enseignants ou non)"] = l
+
+with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+    display(pd.DataFrame(time_old_new, columns=["Original", "Transcrit"]))
+
+
+# %%
+np.nanmean(l)
+
+
+# %%
+t1 = data = df["Temps total consacré à l'étude du cours (en présence des enseignants ou non)"] 
+color="black"
+label=None
+data.plot.kde(color=color)
+m, s = np.nanmean(data), np.nanstd(data)
+bottom, top = pp.gca().get_ylim()
+pp.plot([m, m], [0.0, top], "--", color=color, alpha=0.5)
+pp.plot([m-s, m-s], [0.0, top], "--", color=color, alpha=0.5)
+pp.plot([m+s, m+s], [0.0, top], "--", color=color, alpha=0.5)
+
+
+# %%
+li = df["Temps total consacré aux exercices (en présence des enseignants ou non)"].tolist()
+l = ['12',
+'13',
+'24',
+'12',
+'16',
+'15',
+'14',
+'20',
+'22',
+nan,
+"En fichant je fais tous les exercices essentiels, je fais les avancés lorsque j'ai relu mon cours et que je pense le maîtriser",
+'12',
+'15',
+'20',
+'24',
+'15',
+'12',
+'12',
+'15',
+'12',
+'14',
+'16',
+'17',
+'22',
+nan,
+'12',
+'20',
+'15',
+'12',
+nan,
+'27.5',
+'17',
+'20',
+'12',
+'18',
+'16',
+'18',
+'14',
+'12',
+'24',
+'13',
+'3',
+nan,
+'17',
+'10',
+'15',
+'14.5',
+'12',
+'18',
+'16.5 ',
+nan,
+'12',
+'13.5',
+'24',
+'12',
+'14',
+'14',
+'26',
+"15",
+'12',
+'15',
+'16',
+'24',
+'14',
+"12",
+'23',
+"Non mesuré  probablement dans la moyenne conseillée (un peu de préparation à l'avance)",
+'30',
+'Idem',
+'12',
+'17',
+'16',
+'20',
+'12',
+'24',
+'25',
+"15",
+'12',
+'14',
+'20',
+'12',
+'18',
+'24',
+'13',
+'24',
+nan,
+'20',
+'30',
+'12',
+'18',
+'20',
+'24',
+'12',
+'12',
+'12',
+nan,
+'20',
+nan,
+'12',
+'17',
+'15',
+'16',
+'13.5',
+'16',
+"18",
+'12',
+'30']
+time_old_new = []
+for i, x in enumerate(l):
+   try:
+       l[i] = float(x)
+   except:
+       l[i] = np.nan
+   time_old_new.append([li[i], l[i]])
+
+t2 = df["Temps total consacré aux exercices (en présence des enseignants ou non)"] = l
+with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+   display(pd.DataFrame(time_old_new, columns=["Original", "Transcrit"]))
+
+
+# %%
+np.nanmean(l)
+
+
+# %%
+t2 = data = df["Temps total consacré aux exercices (en présence des enseignants ou non)"]
+color="black"
+label=None
+data.plot.kde(color=color)
+m, s = np.nanmean(data), np.nanstd(data)
+bottom, top = pp.gca().get_ylim()
+pp.plot([m, m], [0.0, top], "--", color=color, alpha=0.5)
+pp.plot([m-s, m-s], [0.0, top], "--", color=color, alpha=0.5)
+pp.plot([m+s, m+s], [0.0, top], "--", color=color, alpha=0.5)
+
+
+# %%
+t3 = data = l = df["Temps total consacré au projet numérique (en présence des enseignants ou non)"]
+color="black"
+label=None
+data.plot.kde(color=color)
+m, s = np.nanmean(data), np.nanstd(data)
+bottom, top = pp.gca().get_ylim()
+pp.plot([m, m], [0.0, top], "--", color=color, alpha=0.5)
+pp.plot([m-s, m-s], [0.0, top], "--", color=color, alpha=0.5)
+pp.plot([m+s, m+s], [0.0, top], "--", color=color, alpha=0.5)
+pp.xticks([0, 10, 20, 30, 40])
+#pp.axis([0, 3, bottom, top])
+title = ""
+if label:
+    title += f"{label} "  
+
+
+# %%
+np.nanmean(l)
+
+
+# %%
+t = t1 + t2 + 0.5 * t3 + 3.0 + 1/3 # added exams, substracted CS part in project (half)
+#t.plot.kde(color=color)
+t = t[t.notnull()]
+k = st.gaussian_kde(t)
+h = np.linspace(0, 100, 1000)
+color = "black"
+pp.plot(h, k(h), color)
+pp.fill_between(h, np.zeros_like(h), k(h), color=color, alpha=0.15)
+m, s = np.nanmean(t), np.nanstd(t)
+bottom, top = pp.gca().get_ylim()
+left, right = pp.gca().get_xlim()
+pp.plot([m, m], [bottom, top], "--", color=color)
+pp.plot([m-s, m-s], [bottom, top], "--", color=color, alpha=0.5)
+pp.plot([m+s, m+s], [bottom, top], "--", color=color, alpha=0.5)
+pp.axis([left, right, bottom, top])
+ticks = np.r_[0:100:10]
+pp.title("Temps de travail total")
+pp.xlabel("Temps (en heures)")
+pp.ylabel("Densité")
+_ = pp.xticks(ticks)
+
+
+# %%
+df.loc[t[t <= 35].index]["Filière d'origine"]
+
+
+# %%
+df.loc[t[t >= 55].index]["Filière d'origine"]
+
+# %% [markdown]
+# ## Commentaires
+
+# %%
+topics = [
+    "Difficulté des contenus", 
+    "Intérêt/Utilité des contenus",
+    "Amphis, questions-réponses, vidéos, poly",
+    "Travaux dirigés",
+    "Quizzes",
+    "Exercices",
+    "Tutorats",
+    "Intérêt du projet numérique",
+    "Assistance au proet numérique",
+    "Informatique pour les Maths",
+    "Modalités d'évaluation du projet numérique",
+    "Pertinence/cohérence de l'examen écrit",
+    "Sections \"Objectifs d'apprentissage\"",
+    "Equipe pédagogique", # manque Avez-vous des commentaires sur l'exploitation des outils numériques dans l'enseignement ? Sur l'impact de leur utilisation sur votre apprentissage ?"
+    "Enseignement numérique",
+    "Temps passé à étudier le cours",
+    "Temps passé à faire des exercices",
+    "Temps passé sur le projet numérique",
+    "Synthèse"
+]
+for i, answers in enumerate(topics):
+    display(comments(df, i, answers))
+
+
+# %%
+
+
+
+# %%
+
+
+
