@@ -57,28 +57,31 @@ Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (U
   - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr) (accès limité)
 
 
-Session 2019
+Sessions 2019 et 2020
 --------------------------------------------------------------------------------
 
-#### :books: Documents
+#### :books: Snapshot documents (2019)
 
 <https://github.com/boisgera/CDIS/releases/tag/v1.17>
 
-#### :mag: Examen
+#### :mag: Examen (2019)
 
 | Examen écrit  | E-book        | Papier                |
 | ------------- | ------------- | --------------------- |
 | Enoncé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen%20(a4%2C%20recto-verso).pdf) |
 | Corrigé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé%20(a4%2C%20recto-verso).pdf) |
 
-#### :chart_with_upwards_trend: Enquêtes
+#### :chart_with_upwards_trend: Enquêtes (2019, 2020)
 
 Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
 
 | Années | Elément constitutif 1 | Elément constitutif 2 |
 | ------ | --------------------- | ---------------------- |
-| 2019-2020 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv) | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv) |
-| 2020-2021 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv) | :construction: |
+| 2019 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv) | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv) |
+| 2020 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv) | :construction: |
+
+
+
 
 :pencil: Développeurs & Contributeurs
 --------------------------------------------------------------------------------
