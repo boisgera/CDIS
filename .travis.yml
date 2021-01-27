@@ -37,6 +37,7 @@ install:
   - echo "install started ..."
   - ./build
   - cd quizz && ./build && cd ..
+  - cd Enquete/2020 && ./build && cd ../..
 
   # hack for Travis CI (encoding issue ?). Yes but pdf generation broken again
   # I disable it for the moment
@@ -44,6 +45,7 @@ install:
   # now prepare deployment to gh-pages
   - rm -rf env
   - mv .gitignore .gitignore.bak 
+  - mv Enquete/2020/.gitignore Enquete/2020/.gitignore.back
   
 deploy:
   provider: pages
