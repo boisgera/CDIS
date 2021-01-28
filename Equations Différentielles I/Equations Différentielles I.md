@@ -26,8 +26,7 @@ Laplace, qui s'intéresse alors à la mécanique céleste, s'émerveille devant 
 
 Cependant, à la fin du  XIX$^e$ siècle, les travaux de Poincaré et de ses contemporains mettent en évidence les limites de ce déterminisme. Le constat que le modèle physique n'est jamais exactement connu, ni sa condition initiale, amène les scientifiques à étudier la sensibilité des solutions à ces erreurs.  Une sensibilité extrême chez certains systèmes rend leur simulation impossible sur des temps longs et mène à la théorie du *chaos* qui occupera les scientifiques durant une grande partie du XX$^e$ siècle. 
 
-En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens comme Ruth, 
-itz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des systèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
+En parallèle, l'étude de la stabilité et du comportement asymptotique des solutions intéresse dès le XIX$^e$ siècle, d'abord dans le cas des systèmes linéaires avec des mathématiciens comme Ruth, Hurwitz, etc. Mais c'est finalement la thèse de Lyapunov à la fin du  XIX$^e$ siècle qui lance la théorie générale de la stabilité des systèmes non linéaires qui sera ensuite étayée tout au long des XX$^e$ et XXI$^e$ siècles.
 
 Objectifs du cours
 ========================
