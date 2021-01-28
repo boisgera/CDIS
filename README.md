@@ -68,8 +68,8 @@ Sessions 2019 et 2020
 
 | Examen écrit  | E-book        | Papier                |
 | ------------- | ------------- | --------------------- |
-| Enoncé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen%20(a4%2C%20recto-verso).pdf) |
-| Corrigé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé%20(a4%2C%20recto-verso).pdf) |
+| Enoncé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-2019.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-2019%20(a4%2C%20recto-verso).pdf) |
+| Corrigé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2019.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2019%20(a4%2C%20recto-verso).pdf) |
 
 #### :chart_with_upwards_trend: Enquêtes (2019, 2020)
 
