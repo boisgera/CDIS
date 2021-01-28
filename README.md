@@ -64,12 +64,14 @@ Sessions 2019 et 2020
 
 <https://github.com/boisgera/CDIS/releases/tag/v1.17>
 
-#### :mag: Examen (2019)
+#### :mag: Examens (2019, 2020)
 
 | Examen écrit  | E-book        | Papier                |
 | ------------- | ------------- | --------------------- |
-| Enoncé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-2019.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-2019%20(a4%2C%20recto-verso).pdf) |
-| Corrigé | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2019.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2019%20(a4%2C%20recto-verso).pdf) |
+| Enoncé 2019 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-2019.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-2019%20(a4%2C%20recto-verso).pdf) |
+| Enoncé + Corrigé 2019 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2019.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2019%20(a4%2C%20recto-verso).pdf) |
+| Enoncé 2020 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-2020.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-2020%20(a4%2C%20recto-verso).pdf) |
+| Enoncé + Corrigé 2020 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2020.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2020%20(a4%2C%20recto-verso).pdf) |
 
 #### :chart_with_upwards_trend: Enquêtes (2019, 2020)
 
