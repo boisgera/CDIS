@@ -79,7 +79,7 @@ Résultats des questionnaires d'évaluation de l'enseignement par les étudiants
 
 | Années | Elément constitutif 1 | Elément constitutif 2 | Analyse & Bilan |
 | ------ | --------------------- | ---------------------- | -------- |
-| 2019 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv) | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv) | [:speech_balloon: Eléments](https://discourse.mines-paristech.fr/c/mathematiques/bilan-ue-11), [:speech_balloon: synthèse](https://discourse.mines-paristech.fr/t/note-de-synthese-comite-de-revue/489?u=sboisgerault) (accès : MINES ParisTech) |
+| 2019 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv) | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv) | :speech_balloon: : [analyse](https://discourse.mines-paristech.fr/c/mathematiques/bilan-ue-11), [synthèse](https://discourse.mines-paristech.fr/t/note-de-synthese-comite-de-revue/489?u=sboisgerault) (accès : MINES ParisTech) |
 | 2020 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv) | :construction: | :construction: |
 
 
