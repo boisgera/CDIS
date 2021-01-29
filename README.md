@@ -54,7 +54,7 @@ Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (U
 :speech_balloon: Forum
 --------------------------------------------------------------------------------
 
-  - [Discourse Mines ParisTech](https://discourse.mines-paristech.fr) (accès limité)
+  - [Discourse](https://discourse.mines-paristech.fr) (accès : MINES ParisTech)
 
 
 Sessions 2019 et 2020
@@ -77,10 +77,10 @@ Sessions 2019 et 2020
 
 Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
 
-| Années | Elément constitutif 1 | Elément constitutif 2 |
-| ------ | --------------------- | ---------------------- |
-| 2019 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv) | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv) |
-| 2020 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv) | :construction: |
+| Années | Elément constitutif 1 | Elément constitutif 2 | Bilan |
+| ------ | --------------------- | ---------------------- | -------- |
+| 2019 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv) | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv) | [:speech_balloon:](https://discourse.mines-paristech.fr/c/mathematiques/bilan-ue-11), [synthèse](https://discourse.mines-paristech.fr/t/note-de-synthese-comite-de-revue/489?u=sboisgerault) (accès : MINES ParisTech) |
+| 2020 | [fichier csv](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv) | :construction: | :construction : |
 
 
 
