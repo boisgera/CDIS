@@ -755,7 +755,7 @@ Soit $A\in \R^{n\times n}$. Le point d'équilibre 0 est globalement asymptotique
 $$
 \dot{x} = Ax
 $$
-si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative. On dit alors que la matrice est *Hurwitz*, du nom du mathématicien allemand Adolf Hurwitz.
+si et seulement si les valeurs propres de $A$ sont toutes à partie réelle strictement négative. On dit alors que la matrice est de *Hurwitz*, du nom du mathématicien allemand Adolf Hurwitz.
 
 ### Démonstration {.proof} 
 La notion de *globalement asymptotiquement stable* contient deux propriétés : la stabilité et l'attractivité globale. On montrera en [exercice](#attrac_stab) que pour un système linéaire, elles sont équivalentes à l'attractivité (locale), c'est-à-dire que la stabilité et la globalité viennent gratuitement. C'est une propriété propre aux systèmes linéaires. Il suffit donc de trouver un critère caractérisant l'attractivité de 0. On a vu que les solutions s'écrivent
@@ -774,7 +774,7 @@ converge vers zéro si et seulement si, encore, les valeurs propres de $A$ sont 
 
 ### 
 
-Attention ce critère n'est valable que pour $A$ constant. Le fait que $A(t)$ soit Hurwitz pour tout $t$ n'implique pas que les solutions du système
+Attention ce critère n'est valable que pour $A$ constant. Le fait que $A(t)$ soit de Hurwitz pour tout $t$ n'implique pas que les solutions du système
 $$
 \dot{x} = A(t) x 
 $$
@@ -790,7 +790,7 @@ a des valeurs propres constantes égales à $-0.25\pm  0.25\sqrt{7}j$. Pourtant,
 
 ### Critère de stabilité d'un système linéaire plan {.exercise .question #crit_stab_dim2 .one}
 
-Montrer que $A\in \R^{2\times 2}$ est Hurwitz si et seulement si $\text{tr} A <0$ et $\text{det} A >0$. Attention, ce critère ne marche qu'en dimension 2 !
+Montrer que $A\in \R^{2\times 2}$ est de Hurwitz si et seulement si $\text{tr} A <0$ et $\text{det} A >0$. Attention, ce critère ne marche qu'en dimension 2 !
 
 ### Oscillateur I {.exercise .question #ressort-1 .one}
 Considérons une masse $m$ évoluant sur un support horizontal et accrochée à un mur via un ressort de raideur $k$. L'évolution de sa position par rapport à sa position d'équilibre est décrite par  
@@ -844,7 +844,7 @@ J_f(\pi,0)= \left( \begin{matrix}
 \end{matrix}
 \right) 
 $$
-Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#answer-crit_stab_dim2), ceci implique en dimension 2 que $J_f(0,0)$ est Hurwitz. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
+Dans le premier cas, $\text{tr}(J_f(0,0))<0$ et $\text{det}(J_f(0,0))>0$. Comme prouvé en [exercice](#answer-crit_stab_dim2), ceci implique en dimension 2 que $J_f(0,0)$ est de Hurwitz. Donc la position basse $(0,0)$ est bien un équilibre asymptotiquement stable.
 Dans le deuxième cas par contre, le produit des valeurs propres $\lambda_1\lambda_2 = \text{det}(J_f(0,0))<0$. Elles ne peuvent donc pas être complexes conjuguées et sont nécessairement réelles de signes opposés. Il s'ensuit que l'une est strictement positive et la position haute  $(\pi,0)$ est donc bien instable.
 
 Notons que si $\rho=0$, c'est-à-dire que le pendule n'est pas amorti, les valeurs propres $J_f(0,0)$ sont imaginaires pures, et l'on ne peut donc rien conclure quant à la stabilité des points d'équilibre. Une étude plus approfondie est nécessaire. 
@@ -1188,7 +1188,7 @@ Puisque $A$ est inversible ($\text{det} A=\frac{k}{m}\neq 0$), le seul point d'�
 
 $x\mapsto Ax$ est continûment différentiable donc d'après le théorème de Cauchy-Lipschitz, les solutions maximales sont uniques. De plus, la dynamique est linéaire (donc a fortiori linéairement bornée) donc les solutions maximales sont définies pour tout $t$. Elles sont données par $x(t)=e^{At}x_0$.
 
-Si $\lambda>0$, on a $\text{tr} A= -\frac{\lambda}{m}<0$ et $\text{det} A=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est Hurwitz et il s'ensuit que 0 est globalement asymptotiquement stable. On peut aussi calculer explicitement les valeurs propres et vérifier qu'elles sont à partie réelle strictement négative. 
+Si $\lambda>0$, on a $\text{tr} A= -\frac{\lambda}{m}<0$ et $\text{det} A=\frac{k}{m}>0$ donc d'après l'exercice [Critère de stabilité en dimension 2](#answer-crit_stab_dim2), $A$ est de Hurwitz et il s'ensuit que 0 est globalement asymptotiquement stable. On peut aussi calculer explicitement les valeurs propres et vérifier qu'elles sont à partie réelle strictement négative. 
 
 Lorsque $\lambda=0$, les frottements sont absents et les valeurs propres sont $\pm i \sqrt{\frac{k}{m}}$. Comme le système est linéaire, on peut dire que 0 n'est pas attratif donc pas asymptotiquement stable. Par contre, il faut une étude plus approfondie pour étudier sa stabilité.
 
@@ -1215,7 +1215,7 @@ J_f(0,0) =
 \end{matrix}
 \right)
 $$
-qui est Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est bien localement asymptotiquement stable. Cependant, il ne l'est pas globalement car $(1,1)$ est aussi un point d'équilibre : la fonction constante égale à $(1,1)$ est solution (et ne tend pas vers 0).
+qui est de Hurwitz (valeurs propres $\frac{-1\pm i \sqrt{3}}{2}$) Donc $(0,0)$ est bien localement asymptotiquement stable. Cependant, il ne l'est pas globalement car $(1,1)$ est aussi un point d'équilibre : la fonction constante égale à $(1,1)$ est solution (et ne tend pas vers 0).
 
 ### Oscillateur II {.answer #answer-ressort-2}
 
