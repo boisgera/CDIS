@@ -37,7 +37,7 @@ install:
   - echo "install started ..."
   - ./build
   - cd quizz && ./build && cd ..
-  - cd Enquete/2020 && ./build && cd ../..
+  - cd Enquete/2020 && ./build && unzip report-2020-2021-EC1.zip && cd ../..
 
   # hack for Travis CI (encoding issue ?). Yes but pdf generation broken again
   # I disable it for the moment
