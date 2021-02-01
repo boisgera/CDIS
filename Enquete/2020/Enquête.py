@@ -176,6 +176,10 @@ AST_Etr = df[df["Filière d'origine"]=="AST Etr. : admis sur titres (Etranger)"]
 
 
 # %%
+GS = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]] # déterminé manuellement (les réponses sont parfois erronées).
+
+
+# %%
 labels = ["MP", "PSI", "PC", "PT", "TSI", "ATS", "AST_Fr", "AST_Etr"]
 _ = pp.pie([len(eval(label)) for label in labels], labels=labels)
 
@@ -344,7 +348,7 @@ pp.grid(True)
 # Des étudiants se sont positionnés incorrectement comme appartenant au groupe de soutien (groupe 1). Les données corrigées manuellement, ci-dessous, montrent une satisfaction légèrement inférieure à la moyenne concernant l'enseignement (attendu compte tenu des filière d'origine des participants), mais le sentiment assez net d'avoir bénéficié de cette formule.
 
 # %%
-groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]]
+groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]] # déterminé manuellement (les réponses sont parfois erronées).
 groupe_1["Satisfaction"]
 
 
