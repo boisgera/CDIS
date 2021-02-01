@@ -1,3 +1,5 @@
+# To add a new cell, type '# %%'
+# To add a new markdown cell, type '# %% [markdown]'
 # %% [markdown]
 # # UE 11 – Calcul Différentiel, Intégral et Stochastique 
 # # Enquête 2020-2021, Elément Constitutif 1 
@@ -129,10 +131,6 @@ def hist_interest(df, label=None, color="black"):
 # %%
 df = pd.read_csv("survey-2020-2021-EC1.csv")
 
-
-# %%
-df
-
 # %% [markdown]
 # ### Calculs supplémentaires
 # %% [markdown]
@@ -160,7 +158,7 @@ df["Intérêt"] = (df["TO.U"] + 2* df["CD.U"] + 3 * df["CI.U"] + 2 * df["PR.U"])
 df["Note Examen / 20"] = pd.to_numeric(df["Note Examen / 20"], downcast="float", errors="coerce")
 
 # %% [markdown]
-# ### Sous-groupes
+# ### Catégories
 # %% [markdown]
 # Filières d'origine :
 
@@ -178,7 +176,7 @@ AST_Etr = df[df["Filière d'origine"]=="AST Etr. : admis sur titres (Etranger)"]
 # Groupe de soutien :
 
 # %%
-GS = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]] # déterminé manuellement.
+GS = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]] # déterminé manuellement (les réponses sont parfois erronées).
 
 
 # %%
@@ -189,10 +187,10 @@ _ = pp.pie([len(eval(label)) for label in labels], labels=labels)
 # %%
 df[df["Vous pensez avoir bénéficié du groupe de soutien (si vous en avez fait partie)."].notnull()]["Prénom, Nom "]
 
-
-# %%
-
-
+# %% [markdown]
+# ## Satisfaction
+# %% [markdown]
+# L'enseignement est jugé globalement un peu mieux que "plutôt satisfaisant", avec aucune opinion "insatisfaite" exprimée et moins de 5 % d'opinions "plutôt insatisfaites" exprimées. Cette satisfaction est également assez peu sensible par rapport à la filière d'origine ; ce sont les MP qui préfèrent légèrement plus l'enseignement et les filières ATS, AST, TSI qui sont légèrement  moins satisfaites (en moyenne tout de même "plutôt satisfaites" avec 2.0/3.0 ; attention toutefois aux analyses les concernant car elle ne sont basées que sur 5 réponses). 
 
 # %%
 barplot(
@@ -204,30 +202,18 @@ barplot(
 
 
 # %%
+mapping = {"Pas satisfaisant": 0, "Peu satisfaisant": 1, "Plutôt satisfaisant": 2, "Très satisfaisant": 3}
+df["Satisfaction"] = df["Globalement, cet enseignement vous a paru [Votre réponse]"].map(mapping)
+dfs = df.dropna(subset=["Satisfaction"])
+dfs.groupby("Filière d'origine")["Satisfaction"].agg(["mean", "count"]).sort_values("count").style.format({"mean" : "{0:,.1f} / 3.0"}).bar(color='#FFA07A', align='zero', subset=["mean"]).bar(color='lightgreen', align='zero', subset=["count"]).set_caption("Satisfaction, par filière")
+
+
+# %%
 sdf = df[df["Vous pensez avoir bénéficié du groupe de soutien (si vous en avez fait partie)."].notnull()]
 groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]]
 
-
-# %%
-for i, n in enumerate(df["Prénom, Nom "].to_list()):
-    print(i, n)
-
-
-# %%
-df.loc[8]
-
-
-# %%
-groupe_1
-
-
-# %%
-#df = pd.read_csv("survey-anonymous.csv")
-
-
-# %%
-df
-
+# %% [markdown]
+# ## Difficulté perçue
 
 # %%
 hist_diff(df, label="Tous")
@@ -309,7 +295,7 @@ pp.axis([0.0, 3.0, 0.0, 20.0])
 _ = pp.legend()
 
 # %% [markdown]
-# ### Intéret / Utilité
+# ## Intéret & Utilité de l'enseignement
 
 # %%
 hist_interest(df, label="Tous")
@@ -354,35 +340,6 @@ pp.grid(True)
 
 
 # %%
-set(df["Filière d'origine"])
-
-
-# %%
-set(df["Globalement, cet enseignement vous a paru [Votre réponse]"])
-
-
-# %%
-mapping = {"Pas satisfaisant": 0, "Peu satisfaisant": 1, "Plutôt satisfaisant": 2, "Très satisfaisant": 3}
-
-
-# %%
-df["Satisfaction"] = df["Globalement, cet enseignement vous a paru [Votre réponse]"].map(mapping)
-
-
-# %%
-dfs = df.dropna(subset=["Satisfaction"])
-dfs.groupby("Filière d'origine")["Satisfaction"].agg(["mean", "count"]).sort_values("mean").style.format({"mean" : "{0:,.1f} / 3.0"}).bar(color='#FFA07A', align='zero', subset=["mean"]).bar(color='lightgreen', align='zero', subset=["count"]).set_caption("Satisfaction, par filière")
-
-
-# %%
-dfs[dfs["Satisfaction"] == 3]["Filière d'origine"]
-
-
-# %%
-dfs[dfs["Satisfaction"] == 1]["Filière d'origine"]
-
-
-# %%
 groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]]
 groupe_1["Satisfaction"]
 
@@ -398,16 +355,8 @@ groupe_1['Vous êtes globalement satisfait des travaux dirigés [Votre réponse]
 # %%
 groupe_1['Vous pensez avoir bénéficié du groupe de soutien (si vous en avez fait partie).']
 
-
-# %%
-df.loc[19]
-
-
-# %%
-groupe_1.loc[67]
-
 # %% [markdown]
-# ### Tutorats
+# ## Tutorats
 # %% [markdown]
 # #### Participation et satisfaction
 # 
@@ -577,6 +526,19 @@ _ = pp.gca().set_title("PSI, PC, PT : " + pp.gca().get_title())
 # %% [markdown]
 # Charge de travail
 # --------------------
+# %% [markdown]
+# 
+#   - 16h30 d'étude du cours,
+# 
+#   - 16h40 d'exercices,
+# 
+#   - 15h20 du projet numérique.
+#   
+# Si l'on affecte 50% du temps passé sur le projet numérique à l'enseignement informatique (comme annoncé), et que l'on rajoute aux heures déjà listées les 3 heures d'examen et les 20 minutes de soutenance de projet numérique, on obtient un temps de travail total moyen de **44 heures**, très proche de la moyenne théorique de 45 heures affectée par le cursus à l'enseignement. 
+# 
+# Ce volume de travail varie considérablement d'un étudiant à l'autre, avec un écart-type de ~10 heures. Le facteur explicatif principal est la filière d'origine, comme le montre la composition des populations ayant eu besoin de moins de 35h et celle ayant eu besoin de plus de 55h. Dans la première catégorie on trouve une très marge majorité de MP (presque 3/4), contre moins d'un quart dans la seconde catégorie. Inversement, aucun AST, ATS, TSI ou PT n'est présent dans la première catégorie, alors qu'ils sont surreprésentés dans la seconde (plus d'un quart de la population). Les proportions de PSI et de PC varient moins d'une catégorie à l'autre.
+# 
+#   
 
 # %%
 nan = np.nan
@@ -886,6 +848,7 @@ color = "black"
 pp.plot(h, k(h), color)
 pp.fill_between(h, np.zeros_like(h), k(h), color=color, alpha=0.15)
 m, s = np.nanmean(t), np.nanstd(t)
+print("moyenne :", m, ", écart-type :", s)
 bottom, top = pp.gca().get_ylim()
 left, right = pp.gca().get_xlim()
 pp.plot([m, m], [bottom, top], "--", color=color)
@@ -900,46 +863,52 @@ _ = pp.xticks(ticks)
 
 
 # %%
-df.loc[t[t <= 35].index]["Filière d'origine"]
+dfi = df.loc[t[t <= 35].index]
+origin = dfi["Filière d'origine"]
+_ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
+_ = pp.gca().set_title("Temps de travail total : moins de 35 h", fontweight="bold", fontsize=18)
 
 
 # %%
-df.loc[t[t >= 55].index]["Filière d'origine"]
+dfi = df.loc[t[t >= 55].index]
+origin = dfi["Filière d'origine"]
+_ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
+_ = pp.gca().set_title("Temps de travail total : plus de 55 h", fontweight="bold", fontsize=18)
 
 # %% [markdown]
-# ## Commentaires
+# ## Equipe pédagogique
+# %% [markdown]
+# **Satisfaction moyenne vis-à-vis du travail des enseignants.** Le calcul n'est **pas** explicitement pondéré par le nombre d'heures fait par les enseignants (chaque appréciation donnée ayant le même poids). Mais les enseignants ayant vu le plus souvent les élèves et surtout un nombre d'élèves plus grand sont susceptibles d'avoir plus d'appréciations de leur part, et donc indirectement un poids plus important dans le calcul.
+# 
+# Au final, avec ce mode de calcul, 90% des étudiants apparaissent comme plutôt ou tout à fait satisfaits du travail de l'équipe pédagogique, contre 10% des étudiants qui semblent peu ou pas satisfaits. 
 
 # %%
-topics = [
-    "Difficulté des contenus", 
-    "Intérêt/Utilité des contenus",
-    "Amphis, questions-réponses, vidéos, poly",
-    "Travaux dirigés",
-    "Quizzes",
-    "Exercices",
-    "Tutorats",
-    "Intérêt du projet numérique",
-    "Assistance au proet numérique",
-    "Informatique pour les Maths",
-    "Modalités d'évaluation du projet numérique",
-    "Pertinence/cohérence de l'examen écrit",
-    "Sections \"Objectifs d'apprentissage\"",
-    "Equipe pédagogique", # manque Avez-vous des commentaires sur l'exploitation des outils numériques dans l'enseignement ? Sur l'impact de leur utilisation sur votre apprentissage ?"
-    "Enseignement numérique",
-    "Temps passé à étudier le cours",
-    "Temps passé à faire des exercices",
-    "Temps passé sur le projet numérique",
-    "Synthèse"
-]
-for i, answers in enumerate(topics):
-    display(comments(df, i, answers, filter=True))
+teachers = "Toutes modalités confondues, êtes-vous satisfait du travail des enseignants" 
+all_teachers = [key for key in df.columns.values if key.startswith(teachers)]
+#a = df[all_teachers].value_counts()
+results = df[all_teachers].apply(pd.value_counts).sum(axis=1) # series
+total = results.sum()
+percentage = pd.DataFrame({"Satisfaction" : results.apply(lambda s: round(s / total * 100, 2))})
+answers = ["Non, pas du tout", "Plutôt non", "Plutôt oui", "Oui, tout à fait"]
+percentage = percentage.reindex(answers)
+display(percentage)
 
-
-# %%
-
-
-
-# %%
-
+colormap="viridis"
+alpha=0.75
+invert=True
+n = len(answers)
+index = list(range(n))
+pp.xticks(index, answers)
+pp.axis([-0.5, n-0.5, 0, 100]) 
+pp.grid(True) 
+pp.ylabel("Pourcentage")
+pp.yticks(np.linspace(0, 100, 11))
+colormap = cm.get_cmap(colormap)
+xrange = np.linspace(0.0, 1.0, n)
+if invert:
+    xrange = 1.0 - xrange
+colors = [colormap(x) for x in xrange]
+_ = pp.bar(index, percentage["Satisfaction"], width=1.0, color=colors, alpha=alpha)
+_ = pp.title("Etes vous satisfait du travail des enseignants ?")
 
 
