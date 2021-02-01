@@ -2,6 +2,10 @@
 # # UE 11 – Calcul Différentiel, Intégral et Stochastique 
 # # Enquête 2020-2021, Elément Constitutif 1 
 # %% [markdown]
+# Compléments à [la synthèse automatique des données](https://boisgera.github.io/CDIS/Enquete/2020/report-2020-2021-EC1.html) fournie par Google forms.
+# 
+# Données brutes : [survey-2020-2021-EC1.csv](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv)
+# %% [markdown]
 # ## Dépendances
 
 # %%
@@ -170,25 +174,15 @@ ATS = df[df["Filière d'origine"]=="ATS : classe préparatoire Adaptation Techni
 AST_Fr = df[df["Filière d'origine"]=="AST Fr. : admis sur titres (France)"]
 AST_Etr = df[df["Filière d'origine"]=="AST Etr. : admis sur titres (Etranger)"]
 
-# %% [markdown]
-# Groupe de soutien :
-
-# %%
-GS = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]] # déterminé manuellement (les réponses sont parfois erronées).
-
 
 # %%
 labels = ["MP", "PSI", "PC", "PT", "TSI", "ATS", "AST_Fr", "AST_Etr"]
 _ = pp.pie([len(eval(label)) for label in labels], labels=labels)
 
-
-# %%
-df[df["Vous pensez avoir bénéficié du groupe de soutien (si vous en avez fait partie)."].notnull()]["Prénom, Nom "]
-
 # %% [markdown]
 # ## Satisfaction
 # %% [markdown]
-# L'enseignement est jugé globalement un peu mieux que "plutôt satisfaisant", avec aucune opinion "insatisfaite" exprimée et moins de 5 % d'opinions "plutôt insatisfaites" exprimées. Cette satisfaction est également assez peu sensible par rapport à la filière d'origine ; ce sont les MP qui préfèrent légèrement plus l'enseignement et les filières ATS, AST, TSI qui sont légèrement  moins satisfaites (en moyenne tout de même "plutôt satisfaites" avec 2.0/3.0 ; attention toutefois aux analyses les concernant car elle ne sont basées que sur 5 réponses). 
+# L'enseignement est jugé globalement un peu mieux que "plutôt satisfaisant", avec aucune opinion "insatisfaite" exprimée et moins de 5 % d'opinions "plutôt insatisfaites" exprimées. Cette satisfaction est également assez peu sensible par rapport à la filière d'origine ; ce sont les MP qui préfèrent légèrement plus l'enseignement et les filières ATS, AST, TSI qui sont légèrement  moins satisfaites (en moyenne tout de même "plutôt satisfaites" avec 2.0 / 3.0 ; attention toutefois aux analyses les concernant car elle ne sont basées que sur 5 réponses). 
 
 # %%
 barplot(
@@ -203,6 +197,7 @@ barplot(
 mapping = {"Pas satisfaisant": 0, "Peu satisfaisant": 1, "Plutôt satisfaisant": 2, "Très satisfaisant": 3}
 df["Satisfaction"] = df["Globalement, cet enseignement vous a paru [Votre réponse]"].map(mapping)
 dfs = df.dropna(subset=["Satisfaction"])
+print("Satisfaction moyenne:", np.round(np.nanmean(dfs["Satisfaction"]), 2), "/ 3.0")
 dfs.groupby("Filière d'origine")["Satisfaction"].agg(["mean", "count"]).sort_values("count").style.format({"mean" : "{0:,.1f} / 3.0"}).bar(color='#FFA07A', align='zero', subset=["mean"]).bar(color='lightgreen', align='zero', subset=["count"]).set_caption("Satisfaction, par filière")
 
 
@@ -212,6 +207,8 @@ groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]]
 
 # %% [markdown]
 # ## Difficulté perçue
+# 
+# L'enseignement est perçu en moyenne comme (un peu plus dur que) "moyennement difficile". Les variations d'une filière d'origine à l'autre sont assez faibles pour les PC, PSI et MP (les trois filières les plus importantes en volume), mais assez importante au sein de chaque filière. 
 
 # %%
 hist_diff(df, label="Tous")
@@ -242,6 +239,8 @@ hist_diff(ATS, label="ATS", color="sienna")
 
 # %% [markdown]
 # ### Difficulté perçue et note à l'examen
+# 
+# La note à l'examen diminue en moyenne avec la difficulté (perçue) de l'enseignement. Toutefois, cette corrélation est plus forte pour les PC que les PSI et a fortiori pour les MP ; pour les MP la difficulté perçu de l'enseignement n'est plus un facteur explicatif significatif de la note à l'examen.
 
 # %%
 pp.scatter(df["Difficulté"], df["Note Examen / 20"], alpha=0.5, s=200)
@@ -294,8 +293,11 @@ _ = pp.legend()
 
 # %% [markdown]
 # ## Intéret & Utilité de l'enseignement
+# 
+# L'intérêt/utilité perçu de l'enseignement est bonne (un peu au-dessus en moyenne que "plutôt forte"). La variabilité selon la filière d'origine est relativement faible. Il ne semble pas y avoir de lien évident entre la difficulté perçue de l'enseignement et son intérêt/utilité.
 
 # %%
+print("Intérêt/utilité de l'enseignement :", round(np.nanmean(df["Intérêt"]), 2), "/ 3.0")
 hist_interest(df, label="Tous")
 
 
@@ -336,6 +338,10 @@ pp.yticks([1, 2, 3],["Peu intéressant", "Plutôt intéressant", "Tout à fait i
 pp.gcf().set_size_inches(16,16) 
 pp.grid(True)
 
+# %% [markdown]
+# ## Groupe de soutien
+# %% [markdown]
+# Des étudiants se sont positionnés incorrectement comme appartenant au groupe de soutien (groupe 1). Les données corrigées manuellement, ci-dessous, montrent une satisfaction légèrement inférieure à la moyenne concernant l'enseignement (attendu compte tenu des filière d'origine des participants), mais le sentiment assez net d'avoir bénéficié de cette formule.
 
 # %%
 groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]]
@@ -343,7 +349,7 @@ groupe_1["Satisfaction"]
 
 
 # %%
-np.mean(groupe_1["Satisfaction"])
+print("Satisfaction :",  np.mean(groupe_1["Satisfaction"]), "/ 3.0")
 
 
 # %%
