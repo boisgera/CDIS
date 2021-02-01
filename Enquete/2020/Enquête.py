@@ -1,5 +1,3 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
 # %% [markdown]
 # # UE 11 – Calcul Différentiel, Intégral et Stochastique 
 # # Enquête 2020-2021, Elément Constitutif 1 
