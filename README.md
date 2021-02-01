@@ -80,7 +80,7 @@ Résultats des questionnaires d'évaluation de l'enseignement par les étudiants
 | Années | Elément constitutif 1 | Elément constitutif 2 | Analyse & Bilan |
 | ------ | --------------------- | ---------------------- | -------- |
 | 2019 | [:clipboard: CSV](https://boisgera.github.io/CDIS/Enquete/2019/survey-1.csv) | [:clipboard: CSV](https://boisgera.github.io/CDIS/Enquete/2019/survey-2.csv) | :speech_balloon: [discussion](https://discourse.mines-paristech.fr/c/mathematiques/bilan-ue-11), [synthèse](https://discourse.mines-paristech.fr/t/note-de-synthese-comite-de-revue/489?u=sboisgerault) (:lock: MINES ParisTech) |
-| 2020 | [:clipboard: CSV](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv), [:bar_chart: HTML](https://boisgera.github.io/CDIS/Enquete/2020/report-2020-2021-EC1.html) | :construction: | :construction: Compléments EC1 [:bar_chart:](https://boisgera.github.io/CDIS/Enquete/2020/Enquête.html), [:notebook: IPYNB](https://boisgera.github.io/CDIS/Enquete/2020/Enquête.ipynb)|
+| 2020 | [:clipboard: CSV](https://boisgera.github.io/CDIS/Enquete/2020/survey-2020-2021-EC1.csv), [:bar_chart: HTML](https://boisgera.github.io/CDIS/Enquete/2020/report-2020-2021-EC1.html) | :construction: | :construction: Compléments EC1 :[:bar_chart: HTML](https://boisgera.github.io/CDIS/Enquete/2020/Enquête.html), [:notebook: IPYNB](https://boisgera.github.io/CDIS/Enquete/2020/Enquête.ipynb)|
 
 
 
