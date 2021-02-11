@@ -134,7 +134,7 @@ def hist_interest(df, label=None, color="black"):
 df = pd.read_csv("survey-2020-2021-EC1.csv")
 
 # %% [markdown]
-# ### Calculs supplémentaires
+# ### Calculs préalables
 # %% [markdown]
 # Nous calculons la difficulté globale avec la difficulté de chaque thème, pondérée par le nombre de sessions qu'il occupe. 
 
@@ -206,7 +206,6 @@ dfs.groupby("Filière d'origine")["Satisfaction"].agg(["mean", "count"]).sort_va
 
 
 # %%
-sdf = df[df["Vous pensez avoir bénéficié du groupe de soutien (si vous en avez fait partie)."].notnull()]
 groupe_1 = df.loc[[5, 10, 19, 30, 39, 67, 91, 8]]
 
 # %% [markdown]
@@ -244,7 +243,7 @@ hist_diff(ATS, label="ATS", color="sienna")
 # %% [markdown]
 # ### Difficulté perçue et note à l'examen
 # 
-# La note à l'examen diminue en moyenne avec la difficulté (perçue) de l'enseignement. Toutefois, cette corrélation est plus forte pour les PC que les PSI et a fortiori pour les MP ; pour les MP la difficulté perçu de l'enseignement n'est plus un facteur explicatif significatif de la note à l'examen.
+# La note à l'examen diminue en moyenne avec la difficulté (perçue) de l'enseignement. Toutefois, cette corrélation est plus forte pour les PC que les PSI et a fortiori pour les MP ; pour les MP la difficulté perçue de l'enseignement n'est plus un facteur explicatif significatif de la note à l'examen.
 
 # %%
 pp.scatter(df["Difficulté"], df["Note Examen / 20"], alpha=0.5, s=200)
@@ -298,7 +297,7 @@ _ = pp.legend()
 # %% [markdown]
 # ## Intéret & Utilité de l'enseignement
 # 
-# L'intérêt/utilité perçu de l'enseignement est bonne (un peu au-dessus en moyenne que "plutôt forte"). La variabilité selon la filière d'origine est relativement faible. Il ne semble pas y avoir de lien évident entre la difficulté perçue de l'enseignement et son intérêt/utilité.
+# L'intérêt/utilité perçu de l'enseignement est bonne (supérieure à "plutôt forte"). La variabilité selon la filière d'origine est relativement faible. Il ne semble pas y avoir de lien évident entre la difficulté perçue de l'enseignement et son intérêt/utilité.
 
 # %%
 print("Intérêt/utilité de l'enseignement :", round(np.nanmean(df["Intérêt"]), 2), "/ 3.0")
@@ -377,7 +376,7 @@ groupe_1['Vous pensez avoir bénéficié du groupe de soutien (si vous en avez f
 # 
 #   3. des étudiants issus de PSI et PC, mais dans des proportions moindres que dans la promotion.
 # 
-# Les étudiants du groupe 1., issus de filière avec ou le poids des Mathématiques est plus faible, sont a priori en recherche d'un soutien/tutorat actif en Mathématiques. Les motivations des MPs sont probablement très différenciées avec sans doute la recherche d'un lieu d'étude et/ou l'envie d'aller plus loin. On retrouvera beaucoup plus de PSI et PC en participants occasionnels. On remarquera enfin que tous les étudiants du groupe 1. semblent participer régulièrement ou occasionnellement aux tutorats classiques (les étudiants participant peu ou pas aux tutorats classiques sont tous issus des 3 filières MP, PSI, ou PC).
+# Les étudiants issus des filières PT, AST, ATS et TSI ou le poids des Mathématiques est en général plus faible, sont a priori en recherche d'un soutien/tutorat actif en Mathématiques. Les motivations des MPs sont probablement très différenciées avec sans doute la recherche d'un lieu d'étude et/ou l'envie d'aller plus loin. On retrouvera beaucoup plus de PSI et PC en participants occasionnels. On remarquera enfin que tous les étudiants issus de PT, AST, ATS et TSI semblent participer régulièrement ou occasionnellement aux tutorats classiques (les étudiants participant peu ou pas aux tutorats classiques sont tous issus des 3 filières MP, PSI, ou PC).
 # 
 # La satisfaction quant aux tutorats classique est bonne, avec ~ 85% de plutôt ou tout à fait satisfait. Mais cette proportion passe à 100% avec les PT, AST, ATS et TSI (dont une majorité de "tout à fait satisfait") ; ils sont donc actuellement les principaux bénéficiaires de la formule des tutorats classiques. La proportion de satisfaits retombe à moins de 80% pour les MPs qui ont participé aux tutorats classiques.
 # 
@@ -397,7 +396,6 @@ origin = list(df["Filière d'origine"])
 labels = list(set(origin)) # get all possible labels, exactly once
 # sort them (largest category first)
 labels = sorted(labels, key=lambda label: -len(df[df["Filière d'origine"]==label]))
-print(labels)
 _ = pp.pie([len([item for item in origin if item == label]) for label in labels], labels=labels)
 _ = pp.gca().set_title("Filière d'origine (tous)", fontweight="bold", fontsize=18)
 
@@ -535,12 +533,14 @@ _ = pp.gca().set_title("PSI, PC, PT : " + pp.gca().get_title())
 # Charge de travail
 # --------------------
 # %% [markdown]
+#
+# Les étudiants ont passé en moyenne : 
+#
+#   - 16h30 à étudier le cours,
 # 
-#   - 16h30 d'étude du cours,
+#   - 16h40 à faire des exercices,
 # 
-#   - 16h40 d'exercices,
-# 
-#   - 15h20 du projet numérique.
+#   - 15h20 à travailler sur le projet numérique.
 #   
 # Si l'on affecte 50% du temps passé sur le projet numérique à l'enseignement informatique (comme annoncé), et que l'on rajoute aux heures déjà listées les 3 heures d'examen et les 20 minutes de soutenance de projet numérique, on obtient un temps de travail total moyen de **44 heures**, très proche de la moyenne théorique de 45 heures affectée par le cursus à l'enseignement. 
 # 
@@ -685,7 +685,7 @@ bottom, top = pp.gca().get_ylim()
 pp.plot([m, m], [0.0, top], "--", color=color, alpha=0.5)
 pp.plot([m-s, m-s], [0.0, top], "--", color=color, alpha=0.5)
 pp.plot([m+s, m+s], [0.0, top], "--", color=color, alpha=0.5)
-
+pp.title("Temps total consacré à l'étude du cours")
 
 # %%
 li = df["Temps total consacré aux exercices (en présence des enseignants ou non)"].tolist()
@@ -823,7 +823,7 @@ bottom, top = pp.gca().get_ylim()
 pp.plot([m, m], [0.0, top], "--", color=color, alpha=0.5)
 pp.plot([m-s, m-s], [0.0, top], "--", color=color, alpha=0.5)
 pp.plot([m+s, m+s], [0.0, top], "--", color=color, alpha=0.5)
-
+pp.title("Temps total consacré aux exercices")
 
 # %%
 t3 = data = l = df["Temps total consacré au projet numérique (en présence des enseignants ou non)"]
@@ -836,10 +836,7 @@ pp.plot([m, m], [0.0, top], "--", color=color, alpha=0.5)
 pp.plot([m-s, m-s], [0.0, top], "--", color=color, alpha=0.5)
 pp.plot([m+s, m+s], [0.0, top], "--", color=color, alpha=0.5)
 pp.xticks([0, 10, 20, 30, 40])
-#pp.axis([0, 3, bottom, top])
-title = ""
-if label:
-    title += f"{label} "  
+pp.title("Temps total consacré au projet numérique")
 
 
 # %%
