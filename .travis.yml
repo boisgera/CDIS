@@ -40,7 +40,7 @@ install:
   - cd Enquete/2019 &&            unzip report-2019-2020-EC1.zip && cd ../..
   - cd Enquete/2019 &&            unzip report-2019-2020-EC2.zip && cd ../..
   - cd Enquete/2020 && ./build && unzip report-2020-2021-EC1.zip && cd ../..
-  - cd Enquete/2020 && ./build && unzip report-2020-2021-EC2.zip && cd ../..
+  - cd Enquete/2020 &&            unzip report-2020-2021-EC2.zip && cd ../..
 
   # hack for Travis CI (encoding issue ?). Yes but pdf generation broken again
   # I disable it for the moment
