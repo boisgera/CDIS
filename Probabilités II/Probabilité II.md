@@ -186,7 +186,7 @@ Enfin, il peut être intéressant de pouvoir calculer l'espérance d'une fonctio
 Soit $X$ une variable aléatoire réelle admettant la densité $f$, et $g$ une fonction mesurable de $\R$ dans $\R$. Alors $g(X)$ est intégrable si et seulement si l'intégrale
 $$\int_\R |g(x)|f(x) dx,$$
 est définie et dans ce cas
-$$\Esp(g(X)) = \int_R g(x)f(x) dx.$$
+$$\Esp(g(X)) = \int_\R g(x)f(x) dx.$$
 
 Nous n'avons pas tous les éléments permettant de démontrer ce résultat, mais l'argument heuristique suivant permet de comprendre pourquoi il est vrai : supposons $g$ continue telle que $|g|f$ soit intégrable. Alors il existe une jauge $\gamma(t)$, sur $[-\infty, +\infty]$ telle que, si la subdivision pointée (totale ou partielle) $\mathcal{D} =\{(t_i, I_i)\}_i$ est subordonnée à $\gamma$, on a
 $$
@@ -220,7 +220,7 @@ et que sa variance vaut
 ### *Loi exponentielle*
 
 de paramètre $\theta > 0$ et on note $X \sim \mathcal{E}(\theta)$ si $X$ est de densité
-        $$ f(x) = \theta e^{-\theta x} 1_{\{x>0\}}.$$
+        $$ f(x) = \theta e^{-\theta x} 1_{\{x>0\}} (x).$$
 
 ### Moments d'une v.a. exponentielle {.exercise .question .one #moments-expo}    
 

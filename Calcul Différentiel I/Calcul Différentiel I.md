@@ -710,7 +710,7 @@ pour lister les variables.
 arguments positionnels, comme dans l'appel `ask("Quit?", 3)`, qu'avec modération.
 L'alternative, utiliser les arguments nommés, 
 comme dans l'appel `ask(question="Quit?", retries=3)`, 
-peut s'avèrer plus lisible.
+peut s'avérer plus lisible.
 
 Compte tenu de l'égalité $f(x,y)=x^2 + y^2$, on a ici
 $$
@@ -1343,7 +1343,7 @@ $$
 Quel est le lien entre $\left<f\right>$ et la grandeur 
 $\sup_{x \in [a, b]} \|f(x)\|$ ?
 
-### Egalité des accroissements finis ? {.question #eaf .exercise .one}
+### Égalité des accroissements finis ? {.question #eaf .exercise .one}
 Soit $f:[0, 2\pi] \to \mathbb{R}^2$ la fonction définie par
 $$
 f(t) = (\cos t, \sin t)

@@ -29,7 +29,7 @@ $df(x)$ et $h$ ?
 Que vaut l'expression en fonction de $f'(x)$ ?
 
 #### Question 4
-Soit $p: \R^n \to \left]0, +\infty\right[$ une fonction différentiable.
+Soit $p: \R^2 \to \left]0, +\infty\right[$ une fonction différentiable.
 Calculer le gradient de $x \in \R^2 \mapsto \ln p(x) \in \R$
 en fonction du gradient de $p$.
 
