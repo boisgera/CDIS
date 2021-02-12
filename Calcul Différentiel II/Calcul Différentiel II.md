@@ -571,7 +571,7 @@ nous pouvons demander l'affichage d'un grand nombre de décimales :
     3.141592653589793115997963468544185161590576171875
 
 Demander 100 chiffres après la virgule s'avère suffisant : 
-seul 49 chiffres sont effectivement affichés car les suivants sont tous nuls.
+seuls 49 chiffres sont effectivement affichés car les suivants sont tous nuls.
 
 Remarquez que nous avons obtenu une représentation exacte du nombre flottant
 `pi` avec 49 chiffres. Cela ne signifie pas que tous ces chiffres
@@ -1904,7 +1904,7 @@ Montrer que la fonction $T$ est injective.
 
 ### Question 2 {.question .three #d-2}
 Montrer que l'image $V= T(U)$ est un ouvert 
-et que $T$ est difféomorphisme global de $U$ sur $V$.
+et que $T$ est un difféomorphisme global de $U$ sur $V$.
 
 Valeurs propres d'une matrice 
 --------------------------------------------------------------------------------

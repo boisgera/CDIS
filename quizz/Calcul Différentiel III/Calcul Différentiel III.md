@@ -114,7 +114,7 @@ Si $f$ est $k$ fois différentiable en $x$,
 
   - [ ] B : on a $\partial^k_{i_{k} \dots i_1} f(x) = d^k f(x) \cdot e_{i_1} \cdot \hdots \cdot e_{i_{k}},$
 
-  - [ ] C : ces dérivées partielles déterminent $d^k f(x)$ de façon unique.
+  - [ ] C : ses dérivées partielles déterminent $d^k f(x)$ de façon unique.
 
 
 
