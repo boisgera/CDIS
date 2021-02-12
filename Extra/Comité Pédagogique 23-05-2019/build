@@ -1,0 +1,62 @@
+#!/bin/bash
+set -e
+set -o pipefail
+
+# Help
+usage(){
+	echo "Usage: $0 [--pdf]"
+}
+
+# Options
+PDF=false
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --pdf) PDF=true
+            ;;
+        -h) usage
+            exit 0
+            ;;
+        --help) usage
+            exit 0
+            ;;
+        *) usage
+           exit 1
+           ;;
+    esac
+    shift
+done
+
+# Markdown Documents
+DOCS=()
+for file in *.md; do
+    doc="${file%.*}"
+    if [ "$doc" != "README" ]; then
+        DOCS+=("$doc")
+    fi
+done
+
+# Output Directory
+mkdir -p output
+
+# Options
+OPT=(--standalone)
+OPT+=(-V lang=fr)
+OPT+=(--mathjax)
+OPT+=(-t revealjs -V theme:white -V slideNumber:true)
+
+# PDF Output
+for doc in "${DOCS[@]}"; do
+   echo "Processing $doc ..."
+   pandoc "${OPT[@]}" -o "$doc".html "$doc".md
+   if [ $PDF = "true" ]; then
+       decktape --size 1600x900 automatic "$doc".html "$doc".pdf
+   fi
+done
+
+# Ship
+mkdir -p output
+cp -rf reveal.js output/
+mv *.html output/
+if [ $PDF = "true" ]; then
+    mv *.pdf output/
+fi

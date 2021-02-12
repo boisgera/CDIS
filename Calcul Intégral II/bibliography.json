@@ -1,0 +1,142 @@
+[  
+	{
+		"id": "Dem11",
+		"type": "book",
+		"title": "Théorie élémentaire de l'intégration : l'intégrale de Kurzweil-Henstock",
+		"publisher": "Université Joseph Fourier Grenoble I",
+		"URL": "http://www-fourier.ujf-grenoble.fr/~demailly/books.html",
+		"language": "French",
+		"author":[
+			{
+				"family": "Demailly",
+				"given": "Jean-Pierre"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2011"
+				]
+			]
+		}
+  },
+	{
+		"id": "Swa01",
+		"type": "book",
+		"title": "Introduction to gauge integrals.",
+		"publisher": "Singapore: World Scientific",
+		"number-of-pages": "x + 157",
+		"ISBN": "981-02-4239-5",
+		"language": "English",
+		"author": [
+			{
+				"family": "Swartz",
+				"given": "Charles"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001"
+				]
+			]
+		}
+	},
+	{
+		"id": "HL89",
+		"type": "article-journal",
+		"title": "Some remarks on generalized Riemann integral.",
+		"container-title": "Journal of Mathematical Analysis and Applications",
+		"page": "515–527",
+		"volume": "137",
+		"issue": "2",
+		"ISSN": "0022-247X",
+		"journalAbbreviation": "J. Math. Anal. Appl.",
+		"language": "English",
+		"author": [
+			{
+				"family": "Hu",
+				"given": "Shouchuan"
+			},
+			{
+				"family": "Lakshmikantham",
+				"given": "V."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1989"
+				]
+			]
+		}
+	},
+	{
+		"id": "PS17",
+		"type": "article-journal",
+		"title": "Gauge-measurable functions",
+		"DOI": "10.13137/2464-8728/16208",
+		"note": "Published: Rend. Istit. Mat. Univ. Trieste 49 (2017), 113-135",
+		"author": [
+			{
+				"family": "Ponce",
+				"given": "Augusto C."
+			},
+			{
+				"family": "Schaftingen",
+				"given": "Jean Van"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2017"
+				]
+			]
+		}
+	},
+	{
+		"id": "Sch96",
+		"type": "book",
+		"title": "Handbook of Analysis and Its Foundations",
+		"publisher": "Elsevier Science",
+		"URL": "https://books.google.fr/books?id=eqUv3Bcd56EC",
+		"ISBN": "978-0-08-053299-8",
+		"note": "LCCN: 96032226",
+		"author": [
+			{
+				"family": "Schechter",
+				"given": "E."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1996"
+				]
+			]
+		}
+	},
+	{
+		"id": "Swa01",
+		"type": "book",
+		"title": "Introduction to gauge integrals.",
+		"publisher": "Singapore: World Scientific",
+		"number-of-pages": "x + 157",
+		"ISBN": "981-02-4239-5",
+		"language": "English",
+		"author": [
+			{
+				"family": "Swartz",
+				"given": "Charles"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2001"
+				]
+			]
+		}
+	}
+] 
