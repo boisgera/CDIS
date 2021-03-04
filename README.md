@@ -62,9 +62,9 @@ Sessions 2019 et 2020
 
 #### :books: Snapshot documents
 
-  - <https://github.com/boisgera/CDIS/releases/tag/v1.17>
+  - 2019 : <https://github.com/boisgera/CDIS/releases/tag/v1.17>
 
-  - <https://github.com/boisgera/CDIS/releases/tag/v2.0>
+  - 2020 : <https://github.com/boisgera/CDIS/releases/tag/v2.0>
 
 #### :mag: Examens
 
