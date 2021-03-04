@@ -60,11 +60,13 @@ Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (U
 Sessions 2019 et 2020
 --------------------------------------------------------------------------------
 
-#### :books: Snapshot documents (2019)
+#### :books: Snapshot documents
 
-<https://github.com/boisgera/CDIS/releases/tag/v1.17>
+  - <https://github.com/boisgera/CDIS/releases/tag/v1.17>
 
-#### :mag: Examens (2019, 2020)
+  - <https://github.com/boisgera/CDIS/releases/tag/v2.0>
+
+#### :mag: Examens
 
 | Examen écrit  | E-book        | Papier                |
 | ------------- | ------------- | --------------------- |
@@ -73,7 +75,7 @@ Sessions 2019 et 2020
 | Enoncé 2020 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-2020.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-2020%20(a4%2C%20recto-verso).pdf) |
 | Enoncé + Corrigé 2020 | [:computer: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2020.pdf) | [:book: PDF](https://boisgera.github.io/CDIS/output/Examen-corrigé-2020%20(a4%2C%20recto-verso).pdf) |
 
-#### :chart_with_upwards_trend: Enquêtes (2019, 2020)
+#### :chart_with_upwards_trend: Enquêtes
 
 Résultats des questionnaires d'évaluation de l'enseignement par les étudiants :
 
