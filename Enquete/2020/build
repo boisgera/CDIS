@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+jupytext --to notebook --execute Enquête.py
+jupyter nbconvert --to html Enquête.ipynb
