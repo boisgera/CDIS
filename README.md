@@ -1,3 +1,8 @@
+🏴 Je ([boisgera](https://github.com/boisgera)) ne suis plus responsable de l'unité d'enseignement ; ce dépôt n'est plus actif.
+
+-----
+
+
 [![Build Status](https://travis-ci.org/boisgera/CDIS.svg?branch=master)](https://travis-ci.org/boisgera/CDIS)
 <!-- don't you dare break my build! -->
 
@@ -5,7 +10,6 @@ Calcul Différentiel, Intégral et Stochastique
 ================================================================================
 
 Mines ParisTech, cycle ingénieur civil, unité d'enseignement Mathématiques (UE 11).
-
 
 :books: Documents 
 --------------------------------------------------------------------------------
