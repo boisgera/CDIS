@@ -1,4 +1,4 @@
-🏴 Je ([boisgera](https://github.com/boisgera)) ne suis plus responsable de l'unité d'enseignement ; ce dépôt n'est plus actif.
+🏴 [boisgera](https://github.com/boisgera) n'est plus responsable de l'unité d'enseignement ; ce dépôt n'est plus actif.
 
 -----
 
